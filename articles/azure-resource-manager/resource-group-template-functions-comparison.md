@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - összehasonlítása |} Microsoft Docs"
-description: "Az értékek összehasonlítása az Azure Resource Manager sablon használatával funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - összehasonlítása |} Microsoft Docs"
+description: "Az Azure Resource Manager sablon toocompare értékek hello funkciók toouse ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 521e5ed06c138bcd374913588f06a2e6c1e99963
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ebcfc9ed6c93f8b540ec4c066e9457c621800b7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparison-functions-for-azure-resource-manager-templates"></a>Az Azure Resource Manager sablonokhoz összehasonlítás funkciók
 
@@ -39,16 +39,16 @@ Ellenőrzi, hogy a két érték egyenlő egymással.
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |int, string, tömb vagy objektum |Az első érték egyenlő kereséséhez. |
-| Arg2 |Igen |int, string, tömb vagy objektum |A második érték egyenlő kereséséhez. |
+| arg1 |Igen |int, string, tömb vagy objektum |hello első érték toocheck az egyezés keresésekor. |
+| Arg2 |Igen |int, string, tömb vagy objektum |hello második érték toocheck az egyezés keresésekor. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** Ha két érték egyenlő; ellenkező esetben **hamis**.
+Beolvasása **igaz** Ha hello érték egyenlő; ellenkező esetben **hamis**.
 
 ### <a name="remarks"></a>Megjegyzések
 
-A mező értéke függvény gyakran használják a a `condition` elem annak megállapítására, hogy egy erőforrás van telepítve.
+hello egyenlő funkció ugyancsak gyakran használják a hello `condition` elem tootest e erőforrás van telepítve.
 
 ```json
 {
@@ -67,7 +67,7 @@ A mező értéke függvény gyakran használják a a `condition` elem annak meg�
 
 ### <a name="example"></a>Példa
 
-A példa sablon ellenőrzi a különböző típusú érték azonosságát. Az alapértelmezett értékeket adhat vissza IGAZ.
+hello példa sablon ellenőrzi a különböző típusú érték azonosságát. Minden hello alapértelmezett értéket adnak vissza IGAZ értéket.
 
 ```json
 {
@@ -130,7 +130,7 @@ A példa sablon ellenőrzi a különböző típusú érték azonosságát. Az al
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -140,7 +140,7 @@ Az alapértelmezett értékeit az előző példából kimenete:
 | checkObjects | logikai érték | True (Igaz) |
 
 
-Az alábbi példában [nem](resource-group-template-functions-logical.md#not) rendelkező **egyenlő**.
+hello alábbi példában [nem](resource-group-template-functions-logical.md#not) rendelkező **egyenlő**.
 
 ```json
 {
@@ -156,7 +156,7 @@ Az alábbi példában [nem](resource-group-template-functions-logical.md#not) re
     }
 ```
 
-Az előző példában a kimenete a következő:
+Példa megelőző hello hello kimenete a következő:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -166,22 +166,22 @@ Az előző példában a kimenete a következő:
 ## <a name="greater"></a>nagyobb
 `greater(arg1, arg2)`
 
-Ellenőrzi, hogy az első érték nagyobb, mint a második érték.
+Ellenőrzi, hogy hello első érték nagyobb, mint hello második érték.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |egész szám vagy karakterlánc |Az első érték nagyobb összehasonlítására. |
-| Arg2 |Igen |egész szám vagy karakterlánc |A második érték nagyobb összehasonlítására. |
+| arg1 |Igen |egész szám vagy karakterlánc |hello hello nagyobb összehasonlítás első érték. |
+| Arg2 |Igen |egész szám vagy karakterlánc |hello hello nagyobb összehasonlítási második értéket. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** Ha az első érték nagyobb, mint a második érték; ellenkező esetben **hamis**.
+Beolvasása **igaz** Ha hello első érték nagyobb, mint a második érték hello; ellenkező esetben **hamis**.
 
 ### <a name="example"></a>Példa
 
-A példa sablon ellenőrzi, hogy az egyik érték nagyobb, mint a többi.
+hello példa sablon ellenőrzi, hogy hello egyik érték nagyobb, mint más hello.
 
 ```json
 {
@@ -220,7 +220,7 @@ A példa sablon ellenőrzi, hogy az egyik érték nagyobb, mint a többi.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -231,22 +231,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="greaterorequals"></a>greaterOrEquals
 `greaterOrEquals(arg1, arg2)`
 
-Ellenőrzi, hogy az első érték kisebb, mint a második érték.
+Ellenőrzi, hogy hello első érték második érték nagyobb vagy egyenlő toohello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |egész szám vagy karakterlánc |Az első érték kisebb, mint összehasonlítására. |
-| Arg2 |Igen |egész szám vagy karakterlánc |A második érték kisebb, mint összehasonlítására. |
+| arg1 |Igen |egész szám vagy karakterlánc |hello hello nagyobb vagy egyenlő összehasonlítás első érték. |
+| Arg2 |Igen |egész szám vagy karakterlánc |hello hello nagyobb vagy egyenlő összehasonlítási második értéket. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** Ha az első érték nagyobb, mint vagy egyenlő a második érték; ellenkező esetben **hamis**.
+Beolvasása **igaz** Ha hello első érték második érték nagyobb vagy egyenlő toohello; ellenkező esetben **hamis**.
 
 ### <a name="example"></a>Példa
 
-A példa sablon ellenőrzi, hogy az egyik érték nagyobb vagy egyenlő a másikra.
+hello példa sablon ellenőrzi, hogy hello egyik érték nagyobb, mint vagy egyenlő toohello más.
 
 ```json
 {
@@ -285,7 +285,7 @@ A példa sablon ellenőrzi, hogy az egyik érték nagyobb vagy egyenlő a másik
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -297,22 +297,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="less"></a>kevesebb
 `less(arg1, arg2)`
 
-Ellenőrzi, hogy van-e az első érték kisebb, mint a második érték.
+Ellenőrzi, hogy hello első érték kisebb, mint hello a második érték.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |egész szám vagy karakterlánc |Az első érték kisebb összehasonlítására. |
-| Arg2 |Igen |egész szám vagy karakterlánc |A második érték kevesebb összehasonlítására. |
+| arg1 |Igen |egész szám vagy karakterlánc |hello hello kevésbé összehasonlítás első érték. |
+| Arg2 |Igen |egész szám vagy karakterlánc |hello kevésbé összehasonlítás hello második érték. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** Ha az első érték kisebb, mint a második érték; ellenkező esetben **hamis**.
+Beolvasása **igaz** Ha hello első érték kisebb, mint hello második érték; ellenkező esetben **hamis**.
 
 ### <a name="example"></a>Példa
 
-A példa sablon ellenőrzi, hogy az egyik érték kisebb, mint a többi.
+hello példa sablon ellenőrzi, hogy hello egyik érték kisebb, mint más hello.
 
 ```json
 {
@@ -351,7 +351,7 @@ A példa sablon ellenőrzi, hogy az egyik érték kisebb, mint a többi.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -362,22 +362,22 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="lessorequals"></a>lessOrEquals
 `lessOrEquals(arg1, arg2)`
 
-Ellenőrzi, hogy az első érték nagyobb, mint a második érték.
+Ellenőrzi, hogy hello első érték kisebb vagy egyenlő, mint a második érték toohello.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| arg1 |Igen |egész szám vagy karakterlánc |Az első értékét a kevésbé vagy egyenlőségi összehasonlítás. |
-| Arg2 |Igen |egész szám vagy karakterlánc |A második érték, annál kisebb a vagy egyenlőségi összehasonlítást. |
+| arg1 |Igen |egész szám vagy karakterlánc |hello első értéke hello kisebb vagy egyenlő összehasonlítása. |
+| Arg2 |Igen |egész szám vagy karakterlánc |második értéke hello hello kisebb vagy egyenlő összehasonlítása. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Beolvasása **igaz** az első érték kisebb, mint vagy egyenlő a második érték, ha sikertelen, ha **hamis**.
+Beolvasása **igaz** hello első értéke kisebb vagy egyenlő, mint ha toohello második érték; ellenkező esetben **hamis**.
 
 ### <a name="example"></a>Példa
 
-A példa sablon ellenőrzi, hogy egy érték kisebb vagy egyenlő, mint a másikra.
+hello példa sablon ellenőrzi, hogy egy érték hello kisebb vagy egyenlő, mint más toohello.
 
 ```json
 {
@@ -416,7 +416,7 @@ A példa sablon ellenőrzi, hogy egy érték kisebb vagy egyenlő, mint a másik
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
@@ -426,8 +426,8 @@ Az alapértelmezett értékeit az előző példából kimenete:
 
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure API Management házirend-kifejezések |} Microsoft Docs"
+title: "aaaAzure API-felügyeleti házirend-kifejezések |} Microsoft Docs"
 description: "További tudnivalók az Azure API Management kifejezés."
 services: api-management
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: d96dde8c74141d000c1f7c5fd9ef624ff5e46953
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79da0d6ca3963307ec811a33aaac3d63a7abd97d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-policy-expressions"></a>API-felügyeleti házirend-kifejezések
-Házirend kifejezések szintaxisa a C# 6.0. Minden egyes kifejezés hozzáfér a implicit módon megadott [környezetben](api-management-policy-expressions.md#ContextVariables) változó és egy engedélyezett [részhalmaza](api-management-policy-expressions.md#CLRTypes) .NET-keretrendszer típusú.  
+Házirend kifejezések szintaxisa a C# 6.0. Minden egyes kifejezésének implicit módon megadott hozzáférési toohello [környezetben](api-management-policy-expressions.md#ContextVariables) változó és egy engedélyezett [részhalmaza](api-management-policy-expressions.md#CLRTypes) .NET-keretrendszer típusú.  
   
 > [!NOTE]
->  Házirend-kifejezések kapcsolatos további információkért tekintse meg a [házirend-kifejezések](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/) videó.  
+>  Házirend-kifejezések kapcsolatos további információkért lásd: hello [házirend-kifejezések](https://azure.microsoft.com/documentation/videos/policy-expressions-in-azure-api-management/) videó.  
 >   
->  Tekintse meg a házirend-kifejezések használatával házirendek konfigurálásához a bemutatók [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). Ez a videó tartalmazza a következő házirend-kifejezés bemutatók.  
+>  Tekintse meg a házirend-kifejezések használatával házirendek konfigurálásához a bemutatók [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). Ez a videó tartalmazza a következő házirend-kifejezés bemutatók hello.  
 >   
->  -   10:30 - ismerheti meg az API szintjén adja meg a háttérrendszer szolgáltatás történő kontextusadatok házirend alkalmazása a [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) és [be HTTP-fejléc](api-management-transformation-policies.md#SetHTTPheader) házirendek. 12:10 nincs egy bemutatója művelet hívása a fejlesztői portálra, ahol ezek a házirendek munkahelyi láthatók.  
-> -   13:50 - használata című részben találja a [érvényesítése JWT](api-management-access-restriction-policies.md#ValidateJWT) házirend előre a műveletek hozzáférés hitelesítése a token jogcímei alapján. Gyors továbbítsa 15:00, a házirendek a Helyicsoportházirend-szerkesztő konfigurált megjelenítéséhez, majd a művelet hívása a developer portálról, és a szükséges engedélyezési jogkivonat anélkül bemutatója 18:50.  
-> -   21:00 - használata című részben találja egy [API Inspector](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) nyomkövetési házirendek kiértékelése hogyan megtekintéséhez és az eredmények.  
-> -   25:25 – a házirend-kifejezések használata a [lekérni a gyorsítótár](api-management-caching-policies.md#GetFromCache) és [tároló, a gyorsítótár](api-management-caching-policies.md#StoreToCache) a biztonsági másolat szolgáltatás által meghatározott szolgáltatás szabályzatainak használatával konfigurálhatja az API Management válasz gyorsítótár, amely megfelel a háttérrendszer válasz gyorsítótárazás időtartama `Cache-Control` irányelv.  
-> -   34:30 - hogyan hajthat végre a tartalom alapján történő szűrés adatelemek eltávolítása a válasz érkezett a szolgáltatás a háttérrendszer tekintse meg a [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) és [állítsa be a szervezet](api-management-transformation-policies.md#SetBody) házirendek. Megtekinthet egy áttekintést 31:50 kezdjék [a sötét égbolt előrejelzési API](https://developer.forecast.io/) ebben a bemutatóban használt.  
-> -   Ez a videó használt házirend-utasításoknál letöltéséhez lásd: a [api-felügyeleti-minták/házirendek](https://github.com/Azure/api-management-samples/tree/master/policies) github-tárház.  
+>  -   10:30 - tekintse meg, hogyan hello API tooapply házirendje szinten toosupply környezetben információk toohello háttérszolgáltatást hello segítségével [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) és [be HTTP-fejléc](api-management-transformation-policies.md#SetHTTPheader) házirendek. 12:10 nincs a művelet hívásának hello developer portálon, ahol láthatja, ezek a házirendek munkahelyi bemutató.  
+> -   13:50 – lásd: hogyan toouse hello [érvényesítése JWT](api-management-access-restriction-policies.md#ValidateJWT) házirend toopre-hozzáférés toooperations a jogcímek jogkivonat-alapú hitelesítéséhez. Gyors toosee hello házirendeket a Helyicsoportházirend-szerkesztő hello az too15:00 továbbítja, és majd a művelet hívásának hello developer portálról vagy anélkül hello bemutatója too18:50 szükséges engedélyezési jogkivonat.  
+> -   21:00 – lásd: hogyan toouse egy [API Inspector](https://azure.microsoft.com/documentation/articles/api-management-howto-api-inspector/) nyomkövetési toosee hogyan házirendek kiértékelése és hello hello értékelések eredményeit.  
+> -   25:25 – tekintse meg a házirend-kifejezések toouse hello hogyan [lekérni a gyorsítótár](api-management-caching-policies.md#GetFromCache) és [tároló toocache](api-management-caching-policies.md#StoreToCache) házirendek tooconfigure API Management válasz gyorsítótár, hogy megfelel hello válasz gyorsítótárazását hello időtartama háttérszolgáltatást hello által meghatározott biztonsági szolgáltatás `Cache-Control` direktívát.  
+> -   34:30 - lásd: hogyan adatelemek eltávolításával hello válasz szűrés tooperform tartalom hello segítségével hello háttérszolgáltatást kapott [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) és [állítsa be a szervezet](api-management-transformation-policies.md#SetBody) házirendek. Áttekintést 31:50 toosee kezdjék [sötét égbolt előrejelzési API hello](https://developer.forecast.io/) ebben a bemutatóban használt.  
+> -   toodownload házirend-utasításoknál hello használni ezt a videót, lásd: hello [api-felügyeleti-minták/házirendek](https://github.com/Azure/api-management-samples/tree/master/policies) github-tárház.  
   
   
 ##  <a name="Syntax"></a>Szintaxis  
@@ -68,13 +68,13 @@ Házirend kifejezések szintaxisa a C# 6.0. Minden egyes kifejezés hozzáfér a
 ```  
   
 ##  <a name="PolicyExpressionsUsage"></a>Használat  
- Kifejezések használhatók attribútum vagy az API Management bármelyikét szöveges értékek [házirendek](api-management-policies.md), kivéve, ha a házirend-hivatkozás ellenkező esetben adja meg.  
+ Kifejezések használhatók attribútum vagy az API Management hello bármelyikét szöveges értékek [házirendek](api-management-policies.md), kivéve, ha hello szabályzataihoz ellenkező esetben adja meg.  
   
 > [!IMPORTANT]
->  Vegye figyelembe, hogy házirend-kifejezések használata esetén a házirend-kifejezések csak korlátozott ellenőrzése során a házirend lett meghatározva. Mivel a kifejezések hajt végre futás közben a bejövő vagy kimenő feldolgozási az átjáró, a házirend-kifejezések által létrehozott futásidejű kivételek az API-hívásban futásidejű hiba okozza.  
+>  Vegye figyelembe, hogy házirend-kifejezések használata esetén az hello házirend-kifejezések csak korlátozott ellenőrzése amikor hello házirend lett meghatározva. Mivel hello kifejezések hello átjáró végrehajtásának hello bejövő vagy kimenő folyamat futásidőben, hello házirend-kifejezések által létrehozott futásidejű kivételek hello API-hívásban futásidejű hiba okozza.  
   
 ##  <a name="CLRTypes"></a>.NET-keretrendszer típusok engedélyezett a házirend-kifejezések  
- A következő táblázat felsorolja a .NET-keretrendszer típusok és azok tagjait, házirend-kifejezések engedélyezett.  
+ hello következő táblázatban hello .NET-keretrendszer típusok és azok tagjait, házirend-kifejezések engedélyezett.  
   
 |CLR-típus|Támogatott módszerek|  
 |--------------|-----------------------|  
@@ -168,7 +168,7 @@ Házirend kifejezések szintaxisa a C# 6.0. Minden egyes kifejezés hozzáfér a
 |System.Xml.XmlNodeType|Összes|  
   
 ##  <a name="ContextVariables"></a>Környezeti változó  
- Nevű változó `context` implicit módon érhető el minden házirend [kifejezés](api-management-policy-expressions.md#Syntax). A tagok adja meg a megfelelő adatokat a `\request`. Összes a `context` tagjai csak olvasható.  
+ Nevű változó `context` implicit módon érhető el minden házirend [kifejezés](api-management-policy-expressions.md#Syntax). A tagok adja meg a lényeges információk toohello `\request`. Az összes hello `context` tagjai csak olvasható.  
   
 |Környezeti változó|Engedélyezett metódusok, tulajdonságok és értékei|  
 |----------------------|-------------------------------------------------------|  
@@ -179,26 +179,26 @@ Házirend kifejezések szintaxisa a C# 6.0. Minden egyes kifejezés hozzáfér a
 |a környezetben. Művelet|Azonosító: karakterlánc<br /><br /> Módszer: karakterlánc<br /><br /> Name: karakterlánc<br /><br /> UrlTemplate: karakterlánc|  
 |a környezetben. A termék|API-k: IEnumerable < IApi\><br /><br /> ApprovalRequired: logikai<br /><br /> Csoportok: IEnumerable < IGroup\><br /><br /> Azonosító: karakterlánc<br /><br /> Name: karakterlánc<br /><br /> Állapot: enum ProductState {NotPublished, közzétett}<br /><br /> SubscriptionLimit: int?<br /><br /> SubscriptionRequired: logikai|  
 |a környezetben. Kérelem|Törzs: IMessageBody<br /><br /> Tanúsítvány: System.Security.Cryptography.X509Certificates.X509Certificate2<br /><br /> Fejlécek: IReadOnlyDictionary < string, string [] ><br /><br /> IP-cím: karakterlánc<br /><br /> MatchedParameters: IReadOnlyDictionary < karakterlánc, karakterlánc ><br /><br /> Módszer: karakterlánc<br /><br /> OriginalUrl:IUrl<br /><br /> URL-cím: IUrl|  
-|karakterlánc-környezetben. Request.Headers.GetValueOrDefault (fejléc neve: karakterlánc, alapértelmezett érték: karakterlánc)|fejléc neve: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Beolvasása vesszővel elválasztott kérelem fejléc értékek vagy `defaultValue` Ha a fejléc nem található.|  
+|karakterlánc-környezetben. Request.Headers.GetValueOrDefault (fejléc neve: karakterlánc, alapértelmezett érték: karakterlánc)|fejléc neve: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Beolvasása vesszővel elválasztott kérelem fejléc értékek vagy `defaultValue` Ha hello fejléc nem található.|  
 |a környezetben. Válasz|Törzs: IMessageBody<br /><br /> Fejlécek: IReadOnlyDictionary < string, string [] ><br /><br /> StatusCode: int<br /><br /> StatusReason: karakterlánc|  
-|karakterlánc-környezetben. Response.Headers.GetValueOrDefault (fejléc neve: karakterlánc, alapértelmezett érték: karakterlánc)|fejléc neve: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> A fejléc értékei vesszővel elválasztott választ ad vissza, vagy `defaultValue` Ha a fejléc nem található.|  
+|karakterlánc-környezetben. Response.Headers.GetValueOrDefault (fejléc neve: karakterlánc, alapértelmezett érték: karakterlánc)|fejléc neve: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> A fejléc értékei vesszővel elválasztott választ ad vissza, vagy `defaultValue` Ha hello fejléc nem található.|  
 |a környezetben. Előfizetés|CreatedTime: DateTime<br /><br /> EndDate: DateTime?<br /><br /> Azonosító: karakterlánc<br /><br /> Kulcs: karakterlánc<br /><br /> Name: karakterlánc<br /><br /> PrimaryKey: karakterlánc<br /><br /> Másodlagos kulcs: karakterlánc<br /><br /> A StartDate: DateTime?|  
 |a környezetben. Felhasználó|E-mailek: karakterlánc<br /><br /> Utónév: karakterlánc<br /><br /> Csoportok: IEnumerable < IGroup\><br /><br /> Azonosító: karakterlánc<br /><br /> Identitások: IEnumerable < IUserIdentity\><br /><br /> Vezetéknév: karakterlánc<br /><br /> Megjegyzés: karakterlánc<br /><br /> RegistrationDate: DateTime|  
 |IApi|Azonosító: karakterlánc<br /><br /> Name: karakterlánc<br /><br /> Elérési út: karakterlánc<br /><br /> Protokollok: IEnumerable < karakterlánc\><br /><br /> ServiceUrl: IUrl<br /><br /> SubscriptionKeyParameterNames: ISubscriptionKeyParameterNames|  
 |IGroup|Azonosító: karakterlánc<br /><br /> Name: karakterlánc|  
-|IMessageBody|Mint < T\>(preserveContent: bool = false): Ha T: karakterlánc, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> A `context.Request.Body.As<T>` és `context.Response.Body.As<T>` módszerek használhatók egy kérelem-válasz olvasása a megadott típusú üzenettörzs `T`. Alapértelmezés szerint a módszert használja az eredeti üzenet törzsének adatfolyam és reneders ez után adja vissza, nem érhető el. Azzal, hogy a szervezet adatfolyam másolatát működik metódus, amely elkerüléséhez állítsa a `preserveContent` paramétert `true`. Nyissa meg [Itt](api-management-transformation-policies.md#SetBody) lásd például.|  
+|IMessageBody|Mint < T\>(preserveContent: bool = false): Ha T: karakterlánc, JObject, JToken, JArray, XNode, XElement, XDocument<br /><br /> Hello `context.Request.Body.As<T>` és `context.Response.Body.As<T>` módszerek állnak a megadott típusú szervek egy kérelem-válasz üzenet használt tooread `T`. Alapértelmezés szerint hello metódus által használt hello eredeti üzenet törzsének adatfolyam és reneders nem érhető el ez után adja vissza. -t üzemeltető azzal, hogy hello metódus hello törzs adatfolyam set hello másolatán tooavoid `preserveContent` paraméter túl`true`. Nyissa meg [Itt](api-management-transformation-policies.md#SetBody) toosee példa.|  
 |IUrl|Állomás: karakterlánc<br /><br /> Elérési út: karakterlánc<br /><br /> Port: int<br /><br /> Lekérdezés: IReadOnlyDictionary < string, string [] ><br /><br /> Lekérdezési karakterlánc: karakterlánc<br /><br /> Rendszer: karakterlánc|  
 |IUserIdentity|Azonosító: karakterlánc<br /><br /> Szolgáltató: karakterlánc|  
 |ISubscriptionKeyParameterNames|Fejléc: karakterlánc<br /><br /> Lekérdezés: karakterlánc|  
-|karakterlánc-IUrl.Query.GetValueOrDefault (queryParameterName: karakterlánc, alapértelmezett érték: karakterlánc)|queryParameterName: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Beolvasása vesszővel elválasztott lekérdezési paraméter értékek vagy `defaultValue` Ha a paraméter nem található.|  
-|T környezetben. Variables.GetValueOrDefault < T\>(variableName: karakterlánc, defaultValue: T)|variableName: karakterlánc<br /><br /> defaultValue: T<br /><br /> Írja be a típusúvá változó értékét adja vissza `T` vagy `defaultValue` Ha a változó nem található.<br /><br /> Ez a metódus kivételt jelez, ha a megadott típus nem egyezik a tényleges típus, a visszaadott változó.|  
-|BasicAuthCredentials AsBasic(input: this string)|bemeneti: karakterlánc<br /><br /> Ha a bemeneti paraméter érvényes HTTP-hitelesítés alapszintű engedélyezési kérelem fejléc értéke tartalmaz, a metódus visszaadja típusú objektum `BasicAuthCredentials`; ellenkező esetben a metódus null értéket ad vissza.|  
-|logikai TryParseBasic (bemenet: a karakterlánc, az eredmény: BasicAuthCredentials kimenő)|bemeneti: karakterlánc<br /><br /> eredmény: BasicAuthCredentials kimenő<br /><br /> Ha a bemeneti paraméter értéke érvényes HTTP-hitelesítés alapszintű engedélyezési kérelem fejléc, a metódus visszaadja `true` és az eredmény paraméter típusú értéket tartalmaz `BasicAuthCredentials`; ellenkező esetben a metódus visszaadja `false`.|  
+|karakterlánc-IUrl.Query.GetValueOrDefault (queryParameterName: karakterlánc, alapértelmezett érték: karakterlánc)|queryParameterName: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Beolvasása vesszővel elválasztott lekérdezési paraméter értékek vagy `defaultValue` Ha hello paraméter nem található.|  
+|T környezetben. Variables.GetValueOrDefault < T\>(variableName: karakterlánc, defaultValue: T)|variableName: karakterlánc<br /><br /> defaultValue: T<br /><br /> Cast tootype változó értékét adja vissza `T` vagy `defaultValue` Ha hello változó nem található.<br /><br /> Ez a metódus kivételt jelez, ha hello megadott típus nem egyezik meg a változó visszaadott hello hello tényleges típusú.|  
+|BasicAuthCredentials AsBasic(input: this string)|bemeneti: karakterlánc<br /><br /> Ha hello bemeneti paraméter érvényes HTTP-hitelesítés alapszintű engedélyezési kérelem fejléc értéke tartalmaz, a hello metódus típusú objektum beállítása/beolvasása `BasicAuthCredentials`; ellenkező esetben hello metódus null értéket ad vissza.|  
+|logikai TryParseBasic (bemenet: a karakterlánc, az eredmény: BasicAuthCredentials kimenő)|bemeneti: karakterlánc<br /><br /> eredmény: BasicAuthCredentials kimenő<br /><br /> Ha hello bemeneti paraméter értéke érvényes HTTP-hitelesítés alapszintű engedélyezési kérelem fejléc, hello metódus visszaadja `true` hello eredmény paraméter típusú értéket tartalmaz, és `BasicAuthCredentials`; ellenkező esetben a hello metódus visszaadja `false`.|  
 |BasicAuthCredentials|Jelszó: karakterlánc<br /><br /> Felhasználóazonosító: karakterlánc|  
-|Jwt AsJwt(input: this string)|bemeneti: karakterlánc<br /><br /> A bemeneti paraméter értéke érvényes JWT jogkivonat, ha a metódus visszaadja típusú objektum `Jwt`; ellenkező esetben a metódus visszaadja `null`.|  
-|logikai TryParseJwt (bemenet: a karakterlánc, az eredmény: Jwt kimenő)|bemeneti: karakterlánc<br /><br /> eredmény: Jwt-kimenő<br /><br /> Ha a bemeneti paraméter értéke érvénytelen JWT jogkivonat, a metódus visszaadja `true` és az eredmény paraméter típusú értéket tartalmaz `Jwt`; ellenkező esetben a metódus visszaadja `false`.|  
+|Jwt AsJwt(input: this string)|bemeneti: karakterlánc<br /><br /> Ha hello bemeneti paraméter értéke érvényes JWT jogkivonat, hello metódus típusú objektum beállítása/beolvasása `Jwt`; ellenkező esetben a hello metódus visszaadja `null`.|  
+|logikai TryParseJwt (bemenet: a karakterlánc, az eredmény: Jwt kimenő)|bemeneti: karakterlánc<br /><br /> eredmény: Jwt-kimenő<br /><br /> Ha hello bemeneti paraméter értéke érvénytelen JWT jogkivonat, hello metódus visszaadja `true` hello eredmény paraméter típusú értéket tartalmaz, és `Jwt`; ellenkező esetben a hello metódus visszaadja `false`.|  
 |Jwt-t|Algoritmus: karakterlánc<br /><br /> A célközönség: IEnumerable < karakterlánc\><br /><br /> Jogcímek: IReadOnlyDictionary < string, string [] ><br /><br /> ExpirationTime: DateTime?<br /><br /> Azonosító: karakterlánc<br /><br /> Kibocsátó: karakterlánc<br /><br /> NotBefore: DateTime?<br /><br /> Tulajdonos: karakterlánc<br /><br /> Típus: karakterlánc|  
-|karakterlánc-Jwt.Claims.GetValueOrDefault (claimName: karakterlánc, alapértelmezett érték: karakterlánc)|claimName: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Vesszővel elválasztott jogcímértékek adja vissza vagy `defaultValue` Ha a fejléc nem található.|
+|karakterlánc-Jwt.Claims.GetValueOrDefault (claimName: karakterlánc, alapértelmezett érték: karakterlánc)|claimName: karakterlánc<br /><br /> DefaultValue érték: karakterlánc<br /><br /> Vesszővel elválasztott jogcímértékek adja vissza vagy `defaultValue` Ha hello fejléc nem található.|
 
 ## <a name="next-steps"></a>Következő lépések
 Házirendek használata további információkért lásd: [házirendek az API Management](api-management-howto-policies.md).  

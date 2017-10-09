@@ -1,6 +1,6 @@
 ---
-title: "Egyéni Docker-lemezkép használata Linux Azure webalkalmazás számára |} Microsoft Docs"
-description: "Hogyan használható az egyéni Docker-lemezkép Linux Azure webalkalmazás számára."
+title: "az Azure Web Apps Linux rendszeren egyéni Docker kép aaaHow toouse |} Microsoft Docs"
+description: "Hogyan toouse egyéni Docker kép Linux Azure webalkalmazás számára."
 keywords: "az Azure app service, a webes alkalmazás, a linux, a docker, a tároló"
 services: app-service
 documentationcenter: 
@@ -15,54 +15,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 1458217a31c4781b28877c030a665f5b22819e13
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8853095d0e1067cfea4297bbd23b622fe4a0d4db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-a-custom-docker-image-for-azure-web-app-on-linux"></a>Az Azure Web Apps Linux rendszeren egyéni Docker-lemezkép használatával #
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 
-App Service biztosít előre definiált alkalmazás verem Linux-támogatással rendelkező különböző verziókat, például a PHP 7.0 és a Node.js 4.5. App Service Linux Docker-tároló ezeket az előre elkészített alkalmazás-készleteket használ. Egyéni Docker-lemezkép használatával a webalkalmazás telepítése az egy alkalmazás verem nem definiált már az Azure-ban. Egyéni Docker lemezképek alábbiakon tárolható vagy egy nyilvános vagy privát Docker-tárházat.
+App Service biztosít előre definiált alkalmazás verem Linux-támogatással rendelkező különböző verziókat, például a PHP 7.0 és a Node.js 4.5. App Service Linux az Docker-tároló toohost ezek előzetesen elkészített alkalmazás verem. A Docker egyéni rendszerkép toodeploy a webes alkalmazás tooan alkalmazáscsoportokat, amely már nincs definiálva az Azure-ban is használja. Egyéni Docker lemezképek alábbiakon tárolható vagy egy nyilvános vagy privát Docker-tárházat.
 
 
 ## <a name="how-to-set-a-custom-docker-image-for-a-web-app"></a>Útmutató: a webalkalmazáshoz tartozó egyéni Docker-lemezkép beállítása
-Az egyéni Docker lemezképet mindkét meglévő és új webhelyek alkalmazások állíthatja be. Ha a Linux-webalkalmazás létrehozása a [Azure-portálon](https://portal.azure.com/#create/Microsoft.AppSvcLinux), kattintson a **konfigurálása tároló** beállítása egy egyéni Docker-lemezképet:
+Hello egyéni Docker lemezképet mindkét új és meglévő Web apps állíthatja be. Amikor hoz létre egy webalkalmazást Linux rendszeren a hello [Azure-portálon](https://portal.azure.com/#create/Microsoft.AppSvcLinux), kattintson a **konfigurálása tároló** tooset egyéni Docker-lemezkép:
 
 ![Az új webalkalmazáshoz Linux rendszeren egyéni Docker kép][1]
 
 
 ## <a name="how-to-use-a-custom-docker-image-from-docker-hub"></a>Útmutató: a Docker Hub egyéni Docker kép használata ##
-A Docker Hub egyéni Docker-lemezkép használata:
+a Docker Hub egyéni Docker-lemezkép toouse:
 
-1. Az a [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **Docker-tároló**.
+1. A hello [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **Docker-tároló**.
 
-2.  Válassza ki **Docker Hub** , a **lemezképforrás**, ezután kattintson **nyilvános** vagy **titkos** , és írja be a **lemezkép és nem kötelező címke neve**, például a `node:4.5`. A **indítási parancs** beállítása automatikusan alapul a Docker bináris fájlban meghatározott, de a saját parancsok állíthatja be.  
+2.  Válassza ki **Docker Hub** hello, **lemezképforrás**, ezután kattintson **nyilvános** vagy **titkos** és típus hello **lemezkép és nem kötelező címke neve**, például a `node:4.5`. Hello **indítási parancs** beállítása automatikusan alapuló hello Docker képfájl meghatározott, de a saját parancsok állíthatja be.  
 
     ![Kép: a nyilvános tárház Docker központ konfigurálása][2]
 
-    A lemezkép egy titkos tárházból esetén is kell a Docker Hub hitelesítő adatokat, mint (**bejelentkezési felhasználónevének** és **jelszó**) a saját Docker Hub tárház.
+    A lemezkép egy titkos tárházból esetén szükség tooenter hello Docker Hub hitelesítő adatokat (**bejelentkezési felhasználónevének** és **jelszó**) hello titkos Docker Hub tárház.
 
     ![Kép: Docker Hub személyes adattár konfigurálása][3]
 
-3. Miután konfigurálta a tárolót, kattintson a **mentése**.
+3. Hello tároló beállítását követően kattintson **mentése**.
 
-## <a name="how-to-use-a-docker-image-from-a-private-image-registry"></a>A Docker-lemezkép használata a titkos kép beállításjegyzékből ##
-Egyéni Docker-lemezkép használata a titkos kép beállításjegyzékből:
+## <a name="how-toouse-a-docker-image-from-a-private-image-registry"></a>Hogyan toouse egy Docker titkos kép beállításjegyzékbeli kép ##
+a titkos kép beállításjegyzékből egyéni Docker-lemezkép toouse:
 
-1. Az a [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **Docker-tároló**.
+1. A hello [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **Docker-tároló**.
 
-2.  Kattintson a **titkos beállításjegyzék** , a **lemezképforrás**. Adja meg a **kép és a választható címkenév**, **URL-címe** titkos beállításjegyzék, a hitelesítő adatokkal együtt (**bejelentkezési felhasználónevének** és **jelszó**). Kattintson a **Save** (Mentés) gombra.
+2.  Kattintson a **titkos beállításjegyzék** , hello **lemezképforrás**. Adja meg a hello **kép és a nem kötelező címke neve**, **URL-címe** hello titkos rendszerleíró hello hitelesítő adatokkal együtt (**bejelentkezési felhasználónevének** és **jelszó** ). Kattintson a **Save** (Mentés) gombra.
 
     ![Docker kép titkos beállításjegyzékből konfigurálása][4]
 
 
-## <a name="how-to-set-the-port-used-by-your-docker-image"></a>Útmutató: a Docker-lemezkép által használt port beállítása ##
+## <a name="how-to-set-hello-port-used-by-your-docker-image"></a>Útmutató: a Docker-lemezkép által használt hello port beállítása ##
 
-Ha egy egyéni Docker lemezképet használ a webalkalmazás, használhatja a `WEBSITES_PORT` környezeti változót a Dockerfile, amely lekérdezi a generált tárolóhoz adni. Vegye figyelembe a következő példa egy docker-fájl egy Ruby alkalmazáshoz:
+A webalkalmazás egyéni Docker-lemezkép használatakor hello használhatja `WEBSITES_PORT` a Dockerfile, amely lekérdezi hozzá toohello létrehozott tároló környezeti változót. Vegye figyelembe a következő példa egy docker-fájl egy Ruby alkalmazáshoz hello:
 
     FROM ruby:2.2.0
     RUN mkdir /app
@@ -71,49 +71,49 @@ Ha egy egyéni Docker lemezképet használ a webalkalmazás, használhatja a `WE
     RUN bundle install
     CMD bundle exec puma config.ru -p WEBSITES_PORT -e production
 
-A parancs utolsó sora megtekintheti, hogy a WEBSITES_PORT környezeti változó átadása futásidőben. Ne feledje, hogy a kis-és nagybetűk parancsokban számít.
+Utolsó sora hello parancs megtekintheti hello WEBSITES_PORT környezeti változó átadása futásidőben. Ne feledje, hogy a kis-és nagybetűk parancsokban számít.
 
-A platform használta korábban `PORT` app beállításnál azt tervezi, hogy érvényteleníthető használatát az alkalmazás, beállítás és áthelyezése használatával `WEBSITES_PORT` kizárólag.
+Hello platform használta korábban `PORT` app, azt tervezi, toodeprecate hello használata az alkalmazás, beállítás és toousing áthelyezése `WEBSITES_PORT` kizárólag.
 
-Egy meglévő, beépített valaki más Docker kép használatakor esetleg adja meg az alkalmazás 80-as portra. Az a port megadásához nevű beállításával alkalmazás hozzáadása `WEBSITES_PORT` a értékű alább látható módon:
+Ha valaki más beépített meglévő Docker lemezképet használja, szükség lehet hello alkalmazás toospecify 80-as portra. tooconfigure hello port, nevű beállításával alkalmazás hozzáadása `WEBSITES_PORT` hello értékkel alább látható módon:
 
 ![Egyéni Docker-lemezképet alkalmazás portbeállítást konfigurálása][6]
 
-## <a name="how-to-set-the-startup-time-for-your-docker-image"></a>Útmutató: a Docker-lemezkép indítási idejének beállítása ##
+## <a name="how-to-set-hello-startup-time-for-your-docker-image"></a>Útmutató: a Docker kép hello indítási idő beállítása ##
 
-Alapértelmezés szerint a tároló nem indul el, mielőtt 230 másodperc, ha a platform újraindítja a tárolót. Ha az egyéni Docker-lemezkép 230 másodpercnél indul, használhatja a `WEBSITES_CONTAINER_START_TIME_LIMIT` másodpercben alkalmazás beállítása, a beállításnak az értéke, ez lehetővé teszi a platform tartsa a tárolóban fut, akkor az újraindítás előtt. Az alapértelmezett érték 230 másodperc, és a maximális megengedett értéke 600 másodperc.
+Alapértelmezés szerint a tároló nem indul 230 másodperc, mielőtt hello platform újraindítja a tárolót. A Docker egyéni rendszerkép 230 másodpercnél indítja el, ha használható hello `WEBSITES_CONTAINER_START_TIME_LIMIT` másodpercben app beállítása, a beállításnak hello értéke, ez lehetővé teszi a hello platform tartsa a tárolóban fut, akkor az újraindítás előtt. hello alapértelmezett értéke 230 másodperc, és hello maximálisan megengedett értéke 600 másodperc.
 
-## <a name="how-to-unmount-the-platform-provided-storage"></a>Útmutató: a megadott platform tárolási leválasztása ##
+## <a name="how-to-unmount-hello-platform-provided-storage"></a>Hogyan: hello megadott platform tárolási leválasztása ##
 
-Alapértelmezés szerint a platform egy állandó tároló megosztás fogja csatlakoztatni a `\home\` könyvtár. Ha a tároló-lemezkép nem kell egy állandó megosztást, tárolási csatlakoztatása beállításával letilthatja a `WEBSITES_ENABLE_APP_SERVICE_STORAGE` Alkalmazásbeállítás `false`. Ön továbbra is hozzáférhetnek a tárolási az scm-helyről, és minden Docker-naplók (Ha engedélyezve van), a platform által létrehozott naplófájlok lesz írva.
+Alapértelmezés szerint hello platform fogja csatlakoztatni egy állandó tároló megosztás toohello `\home\` könyvtár. Ha a tároló-lemezkép nem kell egy állandó megosztást, letilthatja, által hello beállítása, hogy a tároló csatlakoztatása `WEBSITES_ENABLE_APP_SERVICE_STORAGE` app beállítás túl`false`. Továbbra is kapnak toothat tároló elérése hello scm helyről, valamint minden Docker-naplók (Ha engedélyezve van), a rendszer úgy tünteti toohello hello platform által generált naplófájlokat.
 
-## <a name="how-to-switch-back-to-using-a-built-in-image"></a>Hogyan: Váltás beépített lemezkép használatával ##
+## <a name="how-to-switch-back-toousing-a-built-in-image"></a>Útmutató: biztonsági toousing beépített kép kapcsoló ##
 
-Váltás a beépített lemezképpel egyéni lemezkép használatával:
+egy egyéni lemezkép toousing beépített lemezkép használatával tooswitch:
 
-1. Az a [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **App Service**.
+1. A hello [Azure-portálon](https://portal.azure.com), majd keresse meg a webalkalmazás Linux, a **beállítások** kattintson **App Service**.
 
-2. Válassza ki a **futásidejű verem** kíván használni a beépített lemezképet, majd kattintson a **mentése**. 
+2. Válassza ki a **futásidejű verem** toouse hello beépített lemezképhez, majd kattintson a **mentése**. 
 
 ![Kép: a beépített Docker konfigurálása][5]
 
 
 ## <a name="troubleshooting"></a>Hibaelhárítás ##
 
-Ha az alkalmazás nem az egyéni Docker lemezképpel indul el, ellenőrizze a Docker naplózza a naplófájlok könyvtárban. Ez a könyvtár az SCM-hely vagy FTP-n keresztül érheti el.
-A napló a `stdout` és `stderr` a tárolóból, engedélyezni kell a **Docker-tároló naplózási** alatt **diagnosztikai naplók**.
+Ha az alkalmazás nem sikerül toostart az egyéni Docker-lemezképre, ellenőrizze a Docker bejelentkezik hello naplófájlok directory hello. Ez a könyvtár az SCM-hely vagy FTP-n keresztül érheti el.
+toolog hello `stdout` és `stderr` a tárolóból tooenable kell **Docker-tároló naplózási** alatt **diagnosztikai naplók**.
 
 ![Naplózás engedélyezése][8]
 
-![A Kudu segítségével Docker naplók megtekintése][7]
+![A Kudu tooview Docker-naplók segítségével][7]
 
-Érheti el az SCM helyet **speciális eszközök** a a **Fejlesztőeszközök** menü.
+Van-e hozzáférési hello SCM helyet **speciális eszközök** a hello **Fejlesztőeszközök** menü.
 
 ## <a name="next-steps"></a>Következő lépések ##
 
-Az alábbi hivatkozásokból Ismerkedés a Linux webalkalmazás.   
+Hajtsa végre a következő hivatkozások tooget Linux webalkalmazás használatába hello.   
 
-* [Bevezetés az Azure-webalkalmazásban Linux rendszeren](./app-service-linux-intro.md)
+* [Bevezetés tooAzure webalkalmazás Linux rendszeren](./app-service-linux-intro.md)
 * [PM2 Configuration for Node.js Linux Azure Web App használatával](./app-service-linux-using-nodejs-pm2.md)
 * [Az Azure App Service webalkalmazásba Linux – gyakori kérdések](app-service-linux-faq.md)
 

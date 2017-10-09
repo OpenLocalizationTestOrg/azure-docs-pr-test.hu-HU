@@ -1,6 +1,6 @@
 ---
-title: "A SharePoint Server-összekötő használata a Logic Apps |} Microsoft Docs"
-description: "Az első lépéseiben a Logic Apps alkalmazásait a SharePoint Server-összekötő"
+title: "SharePoint Server-összekötőt a Logic Apps a aaaUse hello |} Microsoft Docs"
+description: "Hello hello SharePoint Server-összekötőt a Logic apps a használatának megkezdése"
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 0f3274816e279a1aa57febaa2f8294914900799a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b814f42611e4971ff5c94ae3b021829217911dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-sharepoint-connector"></a>A SharePoint-összekötő az első lépései
-A SharePoint-összekötő segítségével egy SharePoint-webhelyre listák használata.
+# <a name="get-started-with-hello-sharepoint-connector"></a>Hello SharePoint összekötő az első lépései
+SharePoint-összekötő hello egy módon toowork listákkal SharePoint biztosít.
 
 Hozzon létre egy logic app; első lépései Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-sharepoint"></a>Kapcsolatot létesíthet SharePoint
-A SharePoint-összekötő használatához először létre kell hoznia egy **kapcsolat** adja meg a részleteket a tulajdonságok: 
+## <a name="create-a-connection-toosharepoint"></a>Egy kapcsolat tooSharePoint létrehozása
+toouse hello SharePoint összekötő, először létre kell hoznia egy **kapcsolat** hello részletek adja meg ezeket a tulajdonságokat: 
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | Token |Igen |Adja meg a SharePoint rendszerbeli hitelesítő adatokat |
 
-Csatlakozni **SharePoint**, adja meg az identitás (felhasználónév és jelszó, intelligens kártyához tartozó hitelesítő adatok, stb.) a SharePoint. Amennyiben Ön már hitelesítve, folytassa a SharePoint-összekötő használatához a Logic Apps alkalmazást a. 
+tooconnect túl**SharePoint**, adja meg az identitás (felhasználónév és jelszó, intelligens kártya hitelesítő adatainak stb.) tooSharePoint. Amennyiben Ön már hitelesítve, toouse hello SharePoint összekötő a Logic Apps alkalmazást továbbléphessen. 
 
-A Logic Apps alkalmazást designer, a következő lépések segítségével jelentkezzen be a SharePoint, a VPN-kapcsolat létrehozásához **kapcsolat** használható a Logic Apps alkalmazást:
+A hello tervezője a Logic Apps alkalmazást, kövesse ezeket a lépéseket toosign a SharePoint toocreate hello kapcsolat **kapcsolat** használható a Logic Apps alkalmazást:
 
-1. A keresőmezőbe írja be a SharePoint, és várja meg, a Keresés a SharePoint összes bejegyzés a nevét adja vissza:   
+1. Hello keresőmezőbe írja be a SharePoint, és várjon, amíg hello keresési tooreturn hello neve a SharePoint összes bejegyzést:   
    ![A SharePoint konfigurálása][1]  
 2. Válassza ki **SharePoint - fájl létrehozásakor**   
-3. Válassza ki **jelentkezzen be a SharePoint**:   
+3. Válassza ki **tooSharePoint bejelentkezés**:   
    ![A SharePoint konfigurálása][2]    
-4. Jelentkezzen be a SharePoint való hitelesítéshez szükséges a SharePoint hitelesítő adatok megadása   
+4. Adja meg a SharePoint hitelesítő adatok toosign tooauthenticate a SharePoint   
    ![A SharePoint konfigurálása][3]     
-5. A hitelesítés befejezése után meg fogja átirányítani a Logic Apps alkalmazást úgy konfigurálja a SharePoint befejezéséhez **fájl létrehozásának** párbeszédpanel.          
+5. Hello hitelesítés befejezése után lesz átirányított tooyour logic app toocomplete azt SharePoint konfigurálásával **fájl létrehozásának** párbeszédpanel.          
    ![A SharePoint konfigurálása][4]  
-6. Más eseményindítók és műveletek végre kell hajtania a Logic Apps alkalmazást, majd adja hozzá.   
-7. Mentse a munkáját kiválasztásával **mentése** fenti menüsávjában.  
+6. Más eseményindítók és műveletek toocomplete a Logic Apps alkalmazást újra kell majd is hozzáadhat.   
+7. Mentse a munkáját kiválasztásával **mentése** fenti hello menüsávjában.  
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/sharepoint/).
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/sharepoint/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza a [API-k lista](apis-list.md).
+Lépjen vissza toohello [API-k lista](apis-list.md).
 
 [1]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig1.png  
 [2]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig2.png 

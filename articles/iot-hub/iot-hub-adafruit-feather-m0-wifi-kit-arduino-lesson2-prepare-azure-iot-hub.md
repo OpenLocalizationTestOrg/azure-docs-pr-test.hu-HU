@@ -1,12 +1,12 @@
 ---
-title: "Csatlakozás Azure IoT - lecke 2 Arduino: eszköz regisztrálása |} Microsoft Docs"
-description: "Hozzon létre egy erőforráscsoportot, Azure IoT hub létrehozása és az Azure IoT hub Adafruit lágyított M0 Wi-Fi regisztrálása az Azure parancssori felület használatával."
+title: "Csatlakozás Arduino tooAzure IoT - lecke 2: eszköz regisztrálása |} Microsoft Docs"
+description: "Hozzon létre egy erőforráscsoportot, Azure IoT hub létrehozása és regisztrálása Adafruit lágyított M0 Wi-Fi hello Azure IoT hub hello Azure parancssori felület használatával."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "eszköz, arduino felhő arduino csatlakozik a felhő, az azure iot hub, dolgot felhőalapú azure iot-központ az eszközök internetes létrehozása"
+keywords: "Csatlakozás arduino toocloud, az azure iot hub, internet dolgot felhőalapú azure iot hub eszköz, arduino felhő létrehozása"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started
 ms.assetid: 5edc690b-7a1d-4ebc-b011-ff27bfffe6e8
@@ -17,34 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: c5ad5e900671c7cedd3cdad2c2aa345315de223b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca362f9c143dd3a98bf47a66b63a9725a0ffc2d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-iot-hub-and-register-your-adafruit-feather-m0-wifi-arduino-board"></a>Az IoT hub létrehozása és regisztrálása a Adafruit lágyított M0 Wi-Fi Arduino board
 
 ## <a name="what-you-will-do"></a>Mit fog
 * Hozzon létre egy erőforráscsoportot.
-* Az Azure IoT hub létrehozása az erőforráscsoportban.
-* A Arduino board az Azure parancssori felület (CLI) használatával adja hozzá az Azure IoT hub.
+* Az Azure IoT hub létrehozása hello erőforráscsoportban.
+* Adja hozzá az Arduino board toohello Azure IoT hub hello Azure parancssori felület (CLI) használatával.
 
-Ha az Azure parancssori felület használatával adja hozzá a Arduino board az IoT hub, a szolgáltatás kulcsot hoz létre egy az a Arduino üzenőfalon, a szolgáltatás szolgáltatással való hitelesítésre. Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshoot].
+Hello Azure CLI tooadd használatakor az Arduino Bizottság tooyour IoT hub hello szolgáltatás kulcsot hoz létre egy az a Arduino board tooauthenticate hello szolgáltatásban. Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshoot].
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
-* Hogyan lehet az Azure CLI segítségével létrehoz egy IoT-központot.
-* Hogyan hozhat létre egy eszközidentitás a Arduino kártya az IoT hub.
+* Hogyan toouse hello Azure CLI toocreate egy IoT-központot.
+* Hogyan toocreate egy eszköz identitást a Arduino board az IoT hub.
 
 ## <a name="what-you-need"></a>Mi szükséges
 * Az Azure-fiók
-* Az Azure parancssori felület telepítve rendelkező számítógép
+* Egy számítógép, amelyen hello Azure parancssori felület telepítve
 
 ## <a name="create-your-iot-hub"></a>Az IoT hub létrehozása
-Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több millió az IoT-eszközök kezelése. Az IoT hub létrehozásához kövesse az alábbi lépéseket:
+Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több millió az IoT-eszközök kezelése. toocreate az IoT hub, kövesse az alábbi lépéseket:
 
-1. Jelentkezzen be az Azure-fiókjával a következő parancs futtatásával:
+1. Jelentkezzen be tooyour Azure-fiók hello a következő parancs futtatásával:
 
    ```bash
    az login
@@ -52,41 +52,41 @@ Azure IoT-központ segítségével csatlakozzon, figyeléséhez és több milli�
 
    Az elérhető előfizetések sikeres bejelentkezés után vannak felsorolva.
 
-2. Állítsa be az alapértelmezett előfizetést szeretné használni a következő parancs futtatásával:
+2. Állítsa be a hello alapértelmezett előfizetést, amelyet az toouse hello a következő parancs futtatásával:
 
    ```bash
    az account set --subscription {subscription id or name}
    ```
 
-   `subscription ID or name`Itt található: a kimenetét a `az login` vagy a `az account list` parancsot.
+   `subscription ID or name`Itt található: hello hello kimenete `az login` vagy hello `az account list` parancsot.
 
-3. Regisztrálja a szolgáltatót a következő parancs futtatásával. Erőforrás-szolgáltató a szolgáltatások, hogy biztosít erőforrásokat az alkalmazáshoz. Az Azure-erőforrás, a szolgáltató által telepítése előtt regisztrálnia kell a szolgáltatót.
+3. Hello szolgáltató regisztrálása hello a következő parancs futtatásával. Erőforrás-szolgáltató a szolgáltatások, hogy biztosít erőforrásokat az alkalmazáshoz. Hello szolgáltató ajánlatok hello Azure-erőforrás telepítése előtt regisztrálnia kell az hello szolgáltató.
 
    ```bash
    az provider register -n "Microsoft.Devices"
    ```
-4. Hozzon létre egy erőforráscsoportot az USA nyugati régiója régióban iot-minta a következő parancs futtatásával:
+4. Hozzon létre egy erőforráscsoportot nevű iot-minta hello USA nyugati régiója régióban hello a következő parancs futtatásával:
 
    ```bash
    az group create --name iot-sample --location westus
    ```
 
-   `westus`az a hely, az erőforráscsoport létrehozásához. Ha egy másik hely használni kívánt, futtathatja `az account list-locations -o table` megtekintéséhez az összes hely Azure támogatja.
+   `westus`az hello hely, az erőforráscsoport létrehozásához. Ha máshová szeretné toouse, futtathatja `az account list-locations -o table` toosee összes hello Azure támogatja helyét.
 
-5. Az iot-minta erőforráscsoportban IoT hub létrehozása a következő parancs futtatásával:
+5. IoT hub létrehozása hello iot-minta erőforráscsoportban hello a következő parancs futtatásával:
 
    ```bash
    az iot hub create --name {my hub name} --resource-group iot-sample
    ```
 
-Alapértelmezés szerint a létrehoz egy IoT-központ az ingyenes tarifacsomag. További információkért lásd: [Azure IoT Hub árképzési](https://azure.microsoft.com/pricing/details/iot-hub/).
+Alapértelmezés szerint hello létrehoz egy IoT-központot hello ingyenes tarifacsomag. További információkért lásd: [Azure IoT Hub árképzési](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 > [!NOTE]
-> Az IoT hub nevét globálisan egyedinek kell lennie.
+> az IoT hub hello nevének globálisan egyedi kell lennie.
 > Az Azure-előfizetéshez tartozó Azure IoT Hub kiadása csak egy F1 hozhat létre.
 
 ## <a name="register-your-arduino-board-in-your-iot-hub"></a>Regisztrálja a Arduino board az IoT hub
-Minden eszköz, amely üzeneteket küld az IoT hub, valamint üzeneteket fogad az IoT hub regisztrálni kell egy egyedi azonosítót.
+Minden eszköz, amely üzeneteket küld üzenetek tooyour IoT-központot, illetve üzeneteket fogad az IoT hub regisztrálni kell egy egyedi azonosítót.
 
 Az IoT hub a Arduino board regisztrálása fut a következő parancsot:
 
@@ -95,10 +95,10 @@ az iot device create --device-id mym0wifi --hub-name {my hub name}
 ```
 
 ## <a name="summary"></a>Összefoglalás
-Az IoT-központ elkészítette és a Arduino board regisztrálva az IoT hub eszköz identitással. Készen áll a Arduino board üzenetek küldése az IoT hub módjáról.
+Az IoT-központ elkészítette és a Arduino board regisztrálva az IoT hub eszköz identitással. Most készen áll a toolearn hogyan toosend üzenetek a Arduino board tooyour IoT hubról.
 
 ## <a name="next-steps"></a>Következő lépések
-[Hozzon létre egy Azure függvény alkalmazást és feldolgozni, és az IoT hub üzenetek tárolásához Azure Storage-fiók][process-and-store-iot-hub-messages].
+[Hozzon létre egy Azure függvény alkalmazás és az Azure Storage fiók tooprocess és a tároló IoT-központ üzenetek][process-and-store-iot-hub-messages].
 
 
 <!-- Images and links -->

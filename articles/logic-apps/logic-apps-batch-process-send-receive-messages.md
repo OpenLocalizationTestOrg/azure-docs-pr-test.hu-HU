@@ -1,5 +1,5 @@
 ---
-title: "A Batch-folyamat üzenetek egy csoport vagy a gyűjtemény - Azure Logic Apps |} Microsoft Docs"
+title: "egy csoport vagy a gyűjtemény - Azure Logic Apps aaaBatch folyamat üzenetek |} Microsoft Docs"
 description: "A kötegelt feldolgozáson a logic apps üzeneteket küldjön és fogadjon"
 keywords: "kötegelt, kötegelt folyamat"
 author: jonfancey
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/7/2017
 ms.author: LADocs; estfan; jonfan
-ms.openlocfilehash: 480ffce5dbe7c25181bb0ba5639de884e98ff4e6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2603db71ee0659d5b6bf5ce3d32f1b0d13c34194
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-receive-and-batch-process-messages-in-logic-apps"></a>Küldése, fogadására és a batch-folyamat üzenetek a logic Apps alkalmazások
 
-Együtt a csoportokban lévő üzenetek feldolgozásához, elküldheti az elemeket, vagy üzenetek, a egy *kötegelt*, és majd dolgozni elemeket a köteg. Ez a módszer akkor hasznos, ha azt szeretné, hogy az elemeket a meghatározott módon vannak csoportosítva, és dolgoznak együtt. 
+tooprocess üzenetek csoportokban együtt, küldhet adatokat elemek vagy az üzenetek, tooa *kötegelt*, és majd dolgozni elemeket a köteg. Ezt a módszert akkor hasznos, ha azt szeretné, hogy toomake meg arról, hogy az elemeket a meghatározott módon vannak csoportosítva, és dolgoznak együtt. 
 
-A logic apps elemek fogadó kötegként használatával hozhat létre a **kötegelt** eseményindító. A logic apps által küldött elemeket a köteg használatával is létrehozhat a **kötegelt** művelet.
+A logic apps elemek fogadó kötegként hello segítségével hozhat létre **kötegelt** eseményindító. A logic apps által küldött elemek tooa kötegelt hello segítségével is létrehozhat **kötegelt** művelet.
 
 Ez a témakör bemutatja, hogyan hozhat létre egy kötegelési megoldás ezen feladatok végrehajtásával: 
 
-* [Fogadó és elemek gyűjt kötegként logikai alkalmazás létrehozása](#batch-receiver). A "batch fogadó" logikai alkalmazás határozza meg a kötegelt nevét és verzióját leíró feltételek teljesítéséhez, mielőtt a fogadó logikai alkalmazás kiadja, és feldolgozza elemeket. 
+* [Fogadó és elemek gyűjt kötegként logikai alkalmazás létrehozása](#batch-receiver). A "batch fogadó" logikai alkalmazás hello kötegelt nevét és verzióját leíró feltételeket toomeet határozza meg, mielőtt hello fogadó logikai alkalmazás kiadja, és feldolgozza elemeket. 
 
-* [Hozzon létre egy logikai alkalmazás, amely elemeket küld egy kötegelt](#batch-sender). A "batch küldő" logikai alkalmazás határozza meg, hova küldje a cikkek, amelyek egy meglévő kötegelt fogadó logic app kell lennie. Egyedi kulcs, például egy ügyfél száma "partíció", vagy ossza, a cél kötegelt kulcs alapján részekre is megadható. Így minden elem ezzel a kulccsal összegyűjti és feldolgozza együtt. 
+* [Hozzon létre egy logikai alkalmazás által küldött elemek tooa kötegelt](#batch-sender). A "batch küldő" logikai alkalmazás meghatározza, hogy hol toosend elemek, amely lehet egy meglévő kötegelt fogadó logikai alkalmazást. Is adjon meg egy egyedi kulcs, például egy ügyfél száma, túl "partíció", vagy ossza, hello cél kötegelt kulcs alapján részekre. Így minden elem ezzel a kulccsal összegyűjti és feldolgozza együtt. 
 
 ## <a name="requirements"></a>Követelmények
 
-Kövesse az alábbi példát, ezek az elemek szükségesek:
+toofollow ebben a példában a következőkre van szükség:
 
 * Azure-előfizetés. Ha nem rendelkezik előfizetéssel, [kezdhet egy ingyenes Azure-fiókkal](https://azure.microsoft.com/free/). Egyéb esetben [regisztrálhat használatalapú fizetéses előfizetésre](https://azure.microsoft.com/pricing/purchase-options/).
 
-* Alapszintű ismerete [logic Apps alkalmazások létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) 
+* Alapszintű ismerete [hogyan toocreate logic Apps alkalmazások](../logic-apps/logic-apps-create-a-logic-app.md) 
 
 * Az összes e-mail fiókot [Azure Logic Apps által támogatott e-mail szolgáltató](../connectors/apis-list.md)
 
@@ -47,32 +47,32 @@ Kövesse az alábbi példát, ezek az elemek szükségesek:
 
 ## <a name="create-logic-apps-that-receive-messages-as-a-batch"></a>Üzenetek fogadása egy kötegelt logic Apps-alkalmazások létrehozása
 
-Mielőtt üzeneteket küldhetnek egy tranzakcióköteghez, létre kell hoznia egy "batch fogadó" logikai alkalmazást a a **kötegelt** eseményindító. Ezzel a módszerrel választhat a fogadó logikai alkalmazás a küldő logikai alkalmazás létrehozásakor. A címzett adja meg a kötegelt, kiadási feltételek, és egyéb beállításokat. 
+Üzenetek tooa kötegelt elküldése előtt, előbb létre kell hoznia egy "batch fogadó" logikai alkalmazás hello **kötegelt** eseményindító. Ezzel a módszerrel választhat a fogadó logikai alkalmazás hello küldő logikai alkalmazás létrehozásakor. Hello fogadó megadhatja, hello neve, a kiadási feltételek és az egyéb beállításokat. 
 
-Küldő logic Apps alkalmazásokat kell tudja, hova küldje a elemek, amíg a fogadó logic Apps alkalmazásokat nem kell ismernie a küldők.
+Küldő logic apps kell tudnia, ahol toosend elem, amíg a fogadó logic Apps alkalmazásokat nem kell semmi kapcsolatos hello feladók tooknow.
 
-1. Az a [Azure-portálon](https://portal.azure.com), logikai alkalmazás létrehozása ezen a néven: "BatchReceiver" 
+1. A hello [Azure-portálon](https://portal.azure.com), logikai alkalmazás létrehozása ezen a néven: "BatchReceiver" 
 
-2. A Logic Apps Designer, adja hozzá a **kötegelt** eseményindító, amely elindítja a logic app munkafolyamatot. A keresési mezőbe írja be a "batch" szűrőként. Válassza ki az ehhez az eseményindítóhoz: **kötegelt – kötegelt üzenetek**
+2. A Logic Apps Designer, adja hozzá a hello **kötegelt** eseményindító, amely elindítja a logic app munkafolyamatot. Hello keresési mezőbe írja be a "batch" szűrőként. Válassza ki az ehhez az eseményindítóhoz: **kötegelt – kötegelt üzenetek**
 
    ![Kötegelt eseményindító hozzáadása](./media/logic-apps-batch-process-send-receive-messages/add-batch-receiver-trigger.png)
 
-3. Adjon meg egy nevet a kötegelt, és a feltételek megadása a kötegelt például feloldása:
+3. Adjon meg egy nevet hello kötegelt, és a feltételek megadása hello kötegelt, például feloldása:
 
-   * **A Batch-név**: A a kötegben, amely "TestBatch" Ebben a példában azonosítására használt nevet.
-   * **Üzenetek száma**: ahhoz, hogy a kötegelt feldolgozásra, amely "5" Ebben a példában kibocsátása előtt üzenetek száma.
+   * **A Batch-név**: hello használt név tooidentify hello kötegelt, amely "TestBatch" Ebben a példában.
+   * **Üzenetek száma**: hello toohold üzenetek száma a kötegelt feldolgozásra, amely "5" Ebben a példában feloldása előtt.
 
    ![Kötegelt eseményindító részleteinek megadása](./media/logic-apps-batch-process-send-receive-messages/receive-batch-trigger-details.png)
 
-4. Adja hozzá egy másik művelet, amely egy e-mailt küld, amikor a kötegelt eseményindító következik be. Minden alkalommal, amikor a kötegelt rendelkezik öt elemek, a logikai alkalmazást egy e-mailt küld.
+4. Adja hozzá egy másik művelet, amely egy e-mailt küld, amikor hello kötegelt eseményindító következik be. Minden alkalommal hello kötegelt öt elemek, a hello logikai alkalmazás elküld egy e-mailt.
 
-   1. Válassza ki a kötegelt eseményindító **+ új lépés** > **művelet hozzáadása**.
+   1. Hello kötegelt eseményindító, válassza ki **+ új lépés** > **művelet hozzáadása**.
 
-   2. A keresési mezőbe írja be az "e-mail" szűrőként.
+   2. Hello keresési mezőbe írja be az "e-mail" szűrőként.
    Az e-mailt provider alapján, válassza ki az e-mailek csatlakozó.
    
-      Például, ha munkahelyi vagy iskolai fiókkal rendelkezik, jelölje be az Office 365 Outlook-összekötő. 
-      Ha Gmail fiókkal rendelkezik, válassza ki a Gmail összekötőt.
+      Például ha egy munkahelyi vagy iskolai fiókjával rendelkezik, válassza ki az hello Office 365 Outlook összekötő. 
+      Ha Gmail fiókkal rendelkezik, válassza ki a hello Gmail összekötőt.
 
    3. Válassza ki a művelet az összekötőhöz:  **{*e-mailt provider*}-küldjön egy e-mailek **
 
@@ -82,26 +82,26 @@ Küldő logic Apps alkalmazásokat kell tudja, hova küldje a elemek, amíg a fo
 
 5. Ha a kapcsolat korábban az e-mailek szolgáltató nem hozott létre, e-mailek hitelesítő adatok megadása a hitelesítéshez, ha a rendszer kéri. További információ [az e-mailek hitelesítő adatok hitelesítése](../logic-apps/logic-apps-create-a-logic-app.md).
 
-6. A művelet az előzőekben adott hozzá tulajdonságainak beállítása.
+6. Az előzőekben adott hozzá hello művelet hello tulajdonságainak beállítása.
 
-   * Az a **való** mezőbe írja be a címzett e-mail címét. 
+   * A hello **való** hello címzett e-mail címét adja meg. 
    Tesztelési célokra használhatja az e-mail címét.
 
-   * A a **tulajdonos** be, amikor a **dinamikus tartalom** megjelenik a listán, válassza ki a **partíciónév** mező.
+   * A hello **tulajdonos** mezőben, ha hello **dinamikus tartalom** megjelenik a listán, válassza ki a hello **partíciónév** mező.
 
-     ![A "Dinamikus tartalom" listából válassza a "Partíció neve"](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
+     ![Hello "Dinamikus tartalom" listából válassza a "Partíció neve"](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
 
-     Egy későbbi szakasz ismerteti adjon meg egy egyedi partíciós kulcs, amely felosztja a célként megadott köteg logikai készletek ahol küldhet üzeneteket. 
-     Minden a küldő logikai alkalmazás által létrehozott egyedi szám van. 
-     A funkció lehetővé teszi a kötegek használjon több részhalmazának, és adja meg a névvel, Ön által biztosított minden részhalmaza.
+     Egy későbbi szakasz ismerteti megadhatja, hogy felosztása a logikai cél kötegelt hello egyedi partíciókulcsot beállítja toowhere küldhet üzeneteket. 
+     Minden hello küldő logikai alkalmazás által létrehozott egyedi szám van. 
+     A funkció lehetővé teszi a kötegek használata több részhalmazának, és adja meg a hello névvel, Ön által biztosított minden részhalmaza.
 
-   * A a **törzs** mezőben, ha a **dinamikus tartalom** megjelenik a listán, válassza ki a **üzenetazonosítója** mező.
+   * A hello **törzs** mezőben, ha hello **dinamikus tartalom** megjelenik a listán, válassza ki a hello **üzenet azonosítója** mező.
 
      ![A "Törzs" válassza a "Üzenet azonosítója"](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details-for-each.png)
 
-     Mivel az e-mail küldési művelet a megadott tömb, automatikusan hozzáadja a Tervező egy **az egyes** körül hurok a **egy e-mailek küldése** művelet. 
-     Ez a ciklus a kötegben lévő egyes elemek belső műveletet végez. 
-     Így a kötegelt eseményindító öt elemet beállítva, az beszerzése öt e-mailek minden idő az eseményindító következik be.
+     Mivel hello hello küldési e-mail művelet a megadott tömb, hello designer automatikusan hozzáadja a **minden** körül hello hurok **egy e-mailek küldése** művelet. 
+     Ez a ciklus egyes elemek hello kötegben hello belső művelet végez. 
+     Igen hello kötegelt eseményindító set toofive elemekhez, kapott öt e-mailek, minden alkalommal hello eseményindító következik be.
 
 7.  Most, hogy a létrehozott logikai alkalmazás kötegelt fogadó, mentse a Logic Apps alkalmazást.
 
@@ -109,61 +109,61 @@ Küldő logic Apps alkalmazásokat kell tudja, hova küldje a elemek, amíg a fo
 
 <a name="batch-sender"></a>
 
-## <a name="create-logic-apps-that-send-messages-to-a-batch"></a>Üzenetek küldése egy kötegelt logic Apps-alkalmazások létrehozása
+## <a name="create-logic-apps-that-send-messages-tooa-batch"></a>A logic apps által küldött üzenetek tooa kötegelt létrehozása
 
-Most hozzon létre egy vagy több logikai alkalmazások által küldött elemeket a köteg határozzák meg a fogadó logikai alkalmazást. A küldő megadhatja a fogadó logikai alkalmazás és a neve, üzenet tartalma és egyéb beállításokat. Megadhat egyedi partíciókulcsot részekre a kötegelt elemek gyűjtéséhez ezzel a kulccsal.
+Most hozzon létre egy vagy több logikai alkalmazások által küldött hello fogadó logikai alkalmazás által meghatározott elemek toohello kötegelt. Hello küldő megadhatja a hello fogadó logikai alkalmazás és a neve, üzenet tartalma és egyéb beállításokat. Is megadhat egy egyedi partíciós kulcs toodivide hello kötegelt részhalmazának toocollect elemek az ezzel a kulccsal.
 
-Küldő logic Apps alkalmazásokat kell tudja, hova küldje a elemek, amíg a fogadó logic Apps alkalmazásokat nem kell ismernie a küldők.
+Küldő logic apps kell tudnia, ahol toosend elem, amíg a fogadó logic Apps alkalmazásokat nem kell semmi kapcsolatos hello feladók tooknow.
 
 1. Egy másik logikai alkalmazás létrehozása ezen a néven: "BatchSender"
 
-   1. A keresési mezőbe írja be a "ismétlődési" szűrőként. 
+   1. Hello keresési mezőbe írja be a "ismétlődési" szűrőként. 
    Válassza ki az ehhez az eseményindítóhoz: **ütemezés - ismétlődési**
 
-      ![A "Ismétlődés ütemezése" eseményindító hozzáadása](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
+      ![Hello "Ismétlődés ütemezése" eseményindító hozzáadása](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
 
-   2. Adja meg a gyakoriság és a feladó futtatásának időköze logikai alkalmazás percenként.
+   2. Állítsa be hello gyakoriságát és időköz toorun hello küldő logikai alkalmazás percenként.
 
       ![Gyakoriság és eseményindító ismétlődési időköz beállítása](./media/logic-apps-batch-process-send-receive-messages/recurrence-trigger-batch-receiver-details.png)
 
-2. Adjon hozzá egy új lépést egy kötegelt üzenetküldésre.
+2. Adjon hozzá egy új lépést tooa kötegelt üzenetek küldéséhez.
 
-   1. Válassza ki az ismétlődési eseményindító **+ új lépés** > **művelet hozzáadása**.
+   1. Hello ismétlődési eseményindító, válassza ki **+ új lépés** > **művelet hozzáadása**.
 
-   2. A keresési mezőbe írja be a "batch" szűrőként. 
+   2. Hello keresési mezőbe írja be a "batch" szűrőként. 
 
-   3. Ez a művelet kiválasztása: **üzenetek küldését a batch- – válassza ki a Logic Apps-munkafolyamat kötegelt eseményindító**
+   3. Ez a művelet kiválasztása: **toobatch üzenetek küldése – a Logic Apps-munkafolyamat kötegelt eseményindító kiválasztása**
 
-      ![Jelölje be a "Batch-üzenetek küldése"](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
+      ![Válassza a "Küldési üzenetek toobatch"](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
 
    4. Most válassza a "BatchReceiver" logikai alkalmazás, amely korábban hozott létre, amely csomópontként jelenik meg a műveletet.
 
       ![Válassza ki a "batch fogadó" logikai alkalmazás](./media/logic-apps-batch-process-send-receive-messages/send-batch-select-batch-receiver.png)
 
       > [!NOTE]
-      > A listán az más logikai alkalmazások kötegelt eseményindítók is látható.
+      > hello lista is mutatja az más logikai alkalmazások kötegelt eseményindítók.
 
-3. A kötegelt beállításainak megadása.
+3. Hello kötegelt tulajdonságainak beállítása.
 
-   * **A Batch-név**: határozzák meg a fogadó logikai alkalmazás, amely "TestBatch" Ebben a példában, és futásidőben érvényesíti a batch-neve.
+   * **A Batch-név**: hello hello fogadó logikai alkalmazás, amely "TestBatch" Ebben a példában, és futásidőben érvényesíti által definiált neve.
 
      > [!IMPORTANT]
-     > Győződjön meg arról, hogy nem módosíthatja a kötegelt nevét, amely meg kell egyeznie a kötegelt a fogadó logikai alkalmazás által meghatározott.
-     > A kötegelt nevének módosítása hatására a küldő logikai alkalmazás sikertelen lesz.
+     > Győződjön meg arról, hogy meg kell egyeznie a hello neve hello fogadó logikai alkalmazás által meghatározott hello kötegelt nevét ne módosítsa.
+     > Hello változó neve a logic app toofail hello küldő okoz.
 
-   * **Üzenet-tartalom**: az elküldeni kívánt üzenet tartalma. 
-   Ebben a példában adja hozzá a kifejezés, amely az aktuális dátum és idő szúr be a a kötegelt küldendő üzenet tartalma:
+   * **Üzenet-tartalom**: hello üzenet tartalmát, amelyet az toosend. 
+   Ennél a példánál adja hozzá a kifejezést, hogy Beszúrások aktuális dátum és idő hello tartalom, hogy küldjön toohello kötegelt hello üzenetbe:
 
-     1. Ha a **dinamikus tartalom** megjelenik a listán, válassza a **kifejezés**. 
-     2. Adja meg a kifejezés **utcnow()**, és válassza a **OK**. 
+     1. Ha hello **dinamikus tartalom** megjelenik a listán, válassza a **kifejezés**. 
+     2. Adja meg a hello kifejezés **utcnow()**, és válassza a **OK**. 
 
         ![A "Üzenet tartalom" válassza a "Kifejezése". Adja meg a "utcnow()".](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details.png)
 
-4. Most már készen a köteg partíció. Válassza ki a "BatchReceiver" művelet **speciális beállítások megjelenítése**.
+4. Most már készen hello köteg partíció. Hello "BatchReceiver" művelet, válassza a **speciális beállítások megjelenítése**.
 
-   * **Partícióazonosító neve**: egy nem kötelező egyedi partíciókulcs a célként megadott köteg megosztásának használatára. Vegye fel az ebben a példában egy kifejezés, amely egy és öt közötti véletlenszerű számot állít elő.
+   * **A partíció neve**: egy nem kötelező egyedi partíciós kulcs toouse hello cél kötegelt megosztásának. Vegye fel az ebben a példában egy kifejezés, amely egy és öt közötti véletlenszerű számot állít elő.
    
-     1. Ha a **dinamikus tartalom** megjelenik a listán, válassza a **kifejezés**.
+     1. Ha hello **dinamikus tartalom** megjelenik a listán, válassza a **kifejezés**.
      2. Adja meg a kifejezés: **rand(1,6)**
 
         ![A célként megadott köteg partíció beállítása](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-partition-advanced-options.png)
@@ -174,18 +174,18 @@ Küldő logic Apps alkalmazásokat kell tudja, hova küldje a elemek, amíg a fo
    * **Üzenet azonosítója**: nem kötelező azonosítót és egy előállított GUID Azonosítóhoz, ha üres. 
    Ehhez a példához hagyja üresen a mezőt.
 
-5. Mentse a Logic Apps alkalmazást. A küldő logikai alkalmazás most hasonlít-e ebben a példában:
+5. Mentse a Logic Apps alkalmazást. A küldő logikai alkalmazás most következőhöz hasonló toothis példa:
 
    ![Mentse a küldő Logic Apps alkalmazást](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details-finished.png)
 
 ## <a name="test-your-logic-apps"></a>A logic Apps alkalmazások tesztelése
 
-A kötegelési megoldás teszteléséhez hagyja meg a logic Apps alkalmazásokat futtató néhány percig. Hamarosan először e-mailek első öt, mind az azonos partíciókulcsú csoportokban.
+tootest a kötegelés megoldás, hagyja a logic Apps alkalmazásokat futtató néhány percig. Hamarosan e-mailek első öt csoportokban indítása, mindezt hello azonos partícióazonosító kulcs.
 
-A BatchSender Logic Apps alkalmazást percenként fut, egy és öt közötti véletlenszerű számot állít elő, és a létrehozott számot használja a célként megadott köteg partíciókulcsnak, ahol az üzenetek küldése történik. Minden alkalommal, amikor a kötegelt rendelkezik ugyanazzal a partíciós kulccsal, öt elemet a BatchReceiver Logic Apps alkalmazást következik be, és minden üzenetet az e-mail küldése.
+A BatchSender Logic Apps alkalmazást percenként fut, egy és öt közötti véletlenszerű számot állít elő, és a létrehozott szám használ kulcsaként hello partíció hello cél kötegelt, ahol az üzenetek küldése történik. Minden alkalommal, amikor hello kötegelt hello öt elemek rendelkezik ugyanazzal a partíciókulccsal, a BatchReceiver Logic Apps alkalmazást következik be, és elküldi mail minden egyes üzenet esetében.
 
 > [!IMPORTANT]
-> Ha elkészült teszteléshez, győződjön meg arról, hogy tiltsa le az üzenetek küldése és kerülje a túl van terhelve beérkezett BatchSender logikai alkalmazás.
+> Amikor végzett tesztelése, győződjön meg arról, tiltsa le a hello BatchSender logic app toostop üzenetküldésre, és el lehessen kerülni a beérkezett túlterhelését.
 
 ## <a name="next-steps"></a>Következő lépések
 

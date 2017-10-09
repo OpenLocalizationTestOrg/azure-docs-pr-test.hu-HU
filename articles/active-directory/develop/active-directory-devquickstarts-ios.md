@@ -1,6 +1,6 @@
 ---
-title: "Az iOS-alkalmazásoknak az Azure AD integrálása |} Microsoft Docs"
-description: "Hogyan hozhat létre, amely az Azure AD bejelentkezési és a hívások Azure AD számára az iOS-alkalmazás OAuth használatával védett API-k."
+title: "az iOS-alkalmazások az Azure AD aaaIntegrate |} Microsoft Docs"
+description: "Hogyan toobuild, amely az Azure AD bejelentkezési és a hívások Azure AD számára az iOS-alkalmazás OAuth használatával védett API-k."
 services: active-directory
 documentationcenter: ios
 author: brandwe
@@ -15,76 +15,76 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 ms.custom: aaddev
-ms.openlocfilehash: 57f465df99ac234466459b8031f61805d8334b59
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6e05745b2b2b122995dcba896ab0f2ed32509e3a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-into-an-ios-app"></a>Az Azure AD integrálása az iOS-alkalmazás
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 > [!TIP]
-> Az új az előzetes kiadás kipróbálásához [fejlesztői portálján](https://identity.microsoft.com/Docs/iOS) , amely segít, amelyekből megismerheti az Azure Active Directoryval csak néhány perc múlva!  A fejlesztői portálján végigvezeti a regisztrálja az alkalmazást, és az Azure AD integrálása a kódot.  Amikor elkészült, akkor kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók számára a bérlő és a háttérkiszolgáló fogadni és-ellenőrzéshez. 
+> Próbálja meg az új hello előnézete [fejlesztői portálján](https://identity.microsoft.com/Docs/iOS) , amely segít, amelyekből megismerheti az Azure Active Directoryval csak néhány perc múlva!  hello fejlesztői portálján végigvezeti hello regisztrálja az alkalmazást, és az Azure AD integrálása a kódot.  Amikor elkészült, akkor kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók számára a bérlő és a háttérkiszolgáló fogadni és-ellenőrzéshez. 
 > 
 > 
 
-Azure Active Directory (Azure AD) biztosítja az Active Directory Authentication Library, vagy az adal-t, iOS-ügyfelek számára, amelyek védett erőforrások eléréséhez. ADAL egyszerűbben alkalmazása használja-e a hozzáférési tokenek beszerzése érdekében. Annak bemutatásához, hogyan könnyen van, a cikkben azt Objective C feladatlista alkalmazás létrehozásához, amely:
+Azure Active Directory (Azure AD) biztosít hello Active Directory Authentication Library vagy adal-t, iOS-ügyfelek számára, amelyek tooaccess védett erőforrásokhoz. Adal-t, hogy alkalmazása használja-e tooobtain hozzáférési jogkivonatok hello folyamat egyszerűbbé teszi. milyen egyszerűen van, ez a cikk toodemonstrate Objective C feladatlista alkalmazás létrehozásához azt:
 
-* Lekérdezi az Azure AD Graph API felület meghívásakor használatával jogkivonatainak hozzáférni a [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
+* Lekérdezi hozzáférési jogkivonatainak hello Azure AD Graph API felület meghívásakor hello segítségével [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
 * Egy könyvtárat a felhasználók egy adott aliasnév keres.
 
-A teljes működő alkalmazás létrehozásához kell:
+toobuild hello teljes működő alkalmazást kell:
 
 1. Az alkalmazás regisztrálása az Azure ad-val.
 2. Telepítse és konfigurálja az adal-t.
-3. Adal-t használó tokenek lekérni az Azure AD.
+3. Használja az Azure AD ADAL tooget jogkivonatokat.
 
-A kezdéshez [töltse le az alkalmazás vázat](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/skeleton.zip) vagy [töltse le az elkészült mintát](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip). Akkor is, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő kell. Ha még nem rendelkezik a bérlő [beszerzéséről egy](active-directory-howto-tenant.md).
+elindult, tooget [hello app vázat letöltése](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/skeleton.zip) vagy [letöltése befejeződött hello minta](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip). Akkor is, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő kell. Ha még nem rendelkezik a bérlő [megtudhatja, hogyan egy tooget](active-directory-howto-tenant.md).
 
 
 > [!TIP]
-> Az új az előzetes kiadás kipróbálásához [fejlesztői portálján](https://identity.microsoft.com/Docs/iOS) , amely segít, amelyekből megismerheti az Azure AD csak néhány perc múlva. A fejlesztői portálján végigvezeti a regisztrálja az alkalmazást, és az Azure AD integrálása a kódot. Ha végzett, konfigurálnia kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók az Ön bérlőjében, és egy háttérhálózatként, hogy fogadni, és -ellenőrzéshez. 
+> Próbálja meg az új hello előnézete [fejlesztői portálján](https://identity.microsoft.com/Docs/iOS) , amely segít, amelyekből megismerheti az Azure AD csak néhány perc múlva. hello fejlesztői portálján végigvezeti hello regisztrálja az alkalmazást, és az Azure AD integrálása a kódot. Ha végzett, konfigurálnia kell egy egyszerű alkalmazást, amely képes hitelesíteni a felhasználók az Ön bérlőjében, és egy háttérhálózatként, hogy fogadni, és -ellenőrzéshez. 
 > 
 > 
 
 ## <a name="1-determine-what-your-redirect-uri-is-for-ios"></a>1. Határozza meg, milyen az átirányítási URI megadása iOS-hez
-Biztonságosan indítsa el az alkalmazások bizonyos SSO forgatókönyvekben, létre kell hoznia egy *átirányítási URI* adott formátumban. Egy átirányítási URI-t annak biztosítására szolgál, hogy a jogkivonatok térjen vissza a megfelelő alkalmazás feltett számukra.
+toosecurely bizonyos SSO forgatókönyvekben indítsa el az alkalmazásokat, és létre kell hoznia egy *átirányítási URI* adott formátumban. Egy átirányítási URI megadása, amelyek jogkivonatok visszatérési toohello megfelelő alkalmazás számukra feltett hello használt tooensure.
 
 
-Az iOS egy átirányítási URI formátuma:
+hello iOS egy átirányítási URI formátuma:
 
 ```
 <app-scheme>://<bundle-id>
 ```
 
 * **alkalmazás-séma** -ez regisztrálva van az XCode-projektjéhez. Fontos, hogy milyen más alkalmazások hívhatják meg. Ez az Info.plist -> található URL-cím típusú -> URL-cím azonosítója. Ha még nem rendelkezik legalább egy konfigurálni kell létrehoznia egyet.
-* **Csomagazonosító** -Ez az "azonosító" alatt található csomagazonosítót megszünteti a projektbeállításokat, az xcode-ban.
+* **Csomagazonosító** -Ez az hello Bundle Identifier "azonosító" alatt található megszünteti a projektbeállításokat, az xcode-ban.
 
 A kód gyors üzembe helyezési példa: ***msquickstart://com.microsoft.azureactivedirectory.samples.graph.QuickStart***
 
-## <a name="2-register-the-directorysearcher-application"></a>2. A DirectorySearcher alkalmazás regisztrálása
-Az alkalmazás beállítása a jogkivonatok lekérésére, először kell regisztrálni az Azure AD-bérlő, és adja meg azt az engedélyt az Azure AD Graph API eléréséhez:
+## <a name="2-register-hello-directorysearcher-application"></a>2. Hello DirectorySearcher alkalmazás regisztrálása
+tooset be az alkalmazás tooget jogkivonatokat, először tooregister azt az Azure ad bérlői, és adja meg az engedélyt tooaccess hello Azure AD Graph API:
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. A felső eszköztáron kattintson a fiókját. Az a **Directory** menüben válassza ki, hol szeretné az alkalmazás regisztrálása az Active Directory-bérlő.
-3. Kattintson a **több szolgáltatások** a bal oldali navigációs ablaktáblán, és válassza ki azt a **Azure Active Directory**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hello felső sávon kattintson a fiókját. A hello **Directory** menüben válassza ki a kívánt tooregister hello Active Directory-bérlőt az alkalmazást.
+3. Kattintson a **több szolgáltatások** a hello bal oldali navigációs panelen, majd válassza ki **Azure Active Directory**.
 4. Kattintson a **App regisztrációk**, majd válassza ki **Hozzáadás**.
-5. Kövesse az utasításokat, hozzon létre egy új **natív ügyfélalkalmazás**.
-  * A **neve** , az alkalmazás írja le az alkalmazást a végfelhasználók számára.
-  * A **átirányítási Uri-** protokollt és a karakterlánc kombinációját, amely az Azure AD token válaszok adja vissza.  Adjon meg egy értéket, amely az alkalmazásra vonatkoznak, és a korábbi átirányítási URI információkon alapul.
-6. A regisztráció befejezését követően az Azure AD rendeli hozzá az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszokban lévő, másolja az alkalmazás lapján.
-7. A a **beállítások** lapon jelölje be **szükséges engedélyek** majd **hozzáadása**. Válassza ki **Microsoft Graph** , az API-t, majd adja hozzá a **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Az alkalmazás a felhasználók számára az Azure AD Graph API lekérdezni állít be.
+5. Hajtsa végre a hello kérni fogja az új toocreate **natív ügyfélalkalmazás**.
+  * Hello **neve** hello az alkalmazás az alkalmazás tooend felhasználók ismerteti.
+  * Hello **átirányítási Uri-** , hogy az Azure AD által használt tooreturn token válaszok protokollt és a karakterlánc kombinációját.  Adjon meg egy értéket, amely adott tooyour alkalmazás, és hello előző átirányítási URI információkon alapul.
+6. Hello regisztráció befejezését követően az Azure AD rendeli hozzá az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszok hello, ezért másolja hello alkalmazás lapján.
+7. A hello **beállítások** lapon jelölje be **szükséges engedélyek** , és válassza **Hozzáadás**. Válassza ki **Microsoft Graph** hello API-t, majd adja hozzá a hello **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Az alkalmazás tooquery hello Azure AD Graph API a felhasználók állít be.
 
 ## <a name="3-install-and-configure-adal"></a>3. Telepítse és konfigurálja az adal-t
-Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Az adal-t az Azure AD kommunikálni meg kell adnia azt bizonyos információkat az alkalmazás regisztrációját.
+Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Az Azure ad-val ADAL toocommunicate tooprovide kell azt bizonyos információkat az alkalmazás regisztrációját.
 
-1. Kezdje az adal-t hozzáadása a DirectorySearcher projekt CocoaPods segítségével.
+1. Kezdje az ADAL toohello DirectorySearcher projekt hozzáadása a CocoaPods segítségével.
 
     ```
     $ vi Podfile
     ```
-2. Adja hozzá a következőt a pod-fájlhoz:
+2. Adja hozzá a következő toothis podfile hello:
 
     ```
     source 'https://github.com/CocoaPods/Specs.git'
@@ -94,7 +94,7 @@ Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapc
     pod 'ADALiOS'
     ```
 
-3. Most töltse be a podfile CocoaPods segítségével. Ebben a lépésben létrehoz egy új XCode-munkaterületet, hogy betöltve.
+3. Most töltse be hello podfile CocoaPods segítségével. Ebben a lépésben létrehoz egy új XCode-munkaterületet, hogy betöltve.
 
     ```
     $ pod install
@@ -102,15 +102,15 @@ Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapc
     $ open QuickStart.xcworkspace
     ```
 
-4. A gyors üzembe helyezés projektben nyissa meg a plist-fájlt `settings.plist`.  Cserélje le az értékeket az elemek a szakaszban az Azure-portálon megadott értékeknek megfelelően. A kód hivatkozik ezeket az értékeket, minden alkalommal adal-t.
-  * A `tenant` a tartományt az Azure AD-bérlőn, például a contoso.onmicrosoft.com.
-  * A `clientId` a portálról másolt az alkalmazás ügyfél-azonosító.
-  * A `redirectUri` az átirányítási URL-cím regisztrált a portálon.
+4. Hello Gyorsútmutató-projekt, nyissa meg hello plist-fájlt `settings.plist`.  Hello értékek hello elemeinek hello szakasz tooreflect hello értékek hello Azure-portálon megadott helyett. A kód hivatkozik ezeket az értékeket, minden alkalommal adal-t.
+  * Hello `tenant` hello tartománya, akkor az Azure AD-bérlőn, például a contoso.onmicrosoft.com.
+  * Hello `clientId` hello ügyfél-azonosító az alkalmazás hello portálról másolt.
+  * Hello `redirectUri` hello átirányítási URL-cím hello portálon regisztrált.
 
-## <a name="4----use-adal-to-get-tokens-from-azure-ad"></a>4.    Adal-t használó tokenek lekérni az Azure AD
-Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja a completionBlock `+(void) getToken : `, és a többi adal-t.  
+## <a name="4----use-adal-tooget-tokens-from-azure-ad"></a>4.    Az Azure AD ADAL tooget jogkivonatok használata
+hello alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja a completionBlock `+(void) getToken : `, és ADAL rest hello.  
 
-1. Az a `QuickStart` projektben nyissa meg `GraphAPICaller.m` , és keresse meg a `// TODO: getToken for generic Web API flows. Returns a token with no additional parameters provided.` Megjegyzés felső részén.  Ez az adott át adal-t a koordináták a CompletionBlock, az Azure ad-val, és módon gyorsítótárazza a jogkivonatok keresztül.
+1. A hello `QuickStart` projektben nyissa meg `GraphAPICaller.m` , és keresse meg a hello `// TODO: getToken for generic Web API flows. Returns a token with no additional parameters provided.` Megjegyzés hello felső közelében.  Ez az adott ADAL hello koordináták CompletionBlock, az Azure ad-val, toocommunicate keresztül továbbítja, és mondja el hogyan toocache jogkivonatokat.
 
     ```ObjC
     +(void) getToken : (BOOL) clearCache
@@ -134,7 +134,7 @@ Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen megh
                                   redirectUri:redirectUri
                                promptBehavior:AD_PROMPT_AUTO
                                        userId:data.userItem.userInformation.userId
-                        extraQueryParameters: @"nux=1" // if this strikes you as strange it was legacy to display the correct mobile UX. You most likely won't need it in your code.
+                        extraQueryParameters: @"nux=1" // if this strikes you as strange it was legacy toodisplay hello correct mobile UX. You most likely won't need it in your code.
                              completionBlock:^(ADAuthenticationResult *result) {
 
                                   if (result.status != AD_SUCCEEDED)
@@ -151,7 +151,7 @@ Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen megh
 
     ```
 
-2. Most létre kell a token használata a grafikonon felhasználók kereséséhez. Keresés a `// TODO: implement SearchUsersList` megjegyzés. Ez a módszer az Azure AD Graph API lekérdezéshez GET kérés teszi a felhasználók számára, amelyek egyszerű felhasználónév a megadott keresési kifejezés kezdődik.  Az Azure AD Graph API lekérdezni, meg kell adnia egy access_token a a `Authorization` a kérelem fejlécében. Ez az adal-t honnan.
+2. Most létre kell toouse a token toosearch hello graph lévő felhasználók számára. Hello található `// TODO: implement SearchUsersList` megjegyzés. Ez a módszer egy GET kérelmet toohello Azure AD Graph API tooquery teszi a felhasználók számára, akiknek UPN keresőkifejezéssel megadott hello kezdődik.  tooquery hello Azure AD Graph API-t kell tooinclude egy access_token a hello `Authorization` hello kérelem fejlécében. Ez az adal-t honnan.
 
     ```ObjC
     +(void) searchUserList:(NSString*)searchString
@@ -186,10 +186,10 @@ Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen megh
 
                          NSDictionary *dataReturned = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
-                         // We can grab the JSON node at the top to get our graph data.
+                         // We can grab hello JSON node at hello top tooget our graph data.
                          NSArray *graphDataArray = [dataReturned objectForKey:@"value"];
 
-                         // Don't be thrown off by the key name being "value". It really is the name of the
+                         // Don't be thrown off by hello key name being "value". It really is hello name of the
                          // first node. :-)
 
                          // Each object is a key value pair
@@ -223,25 +223,25 @@ Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen megh
     ```
 
 
-3. Ha az alkalmazás kísérel meg jogkivonat meghívásával `getToken(...)`, adal-t próbálja elküldeni a jogkivonatot a felhasználói hitelesítő adatok kérése nélkül.  ADAL határozza meg, hogy a felhasználó bejelentkezhet a szolgáltatáshitelesítést egy token kell-e, ha azt fogja bejelentkezésnél párbeszédpanel megjelenítése, a felhasználói hitelesítő adatok összegyűjtése és sikeres hitelesítés után térjen vissza a jogkivonat.  Ha az adal-t nem tud visszatérni jogkivonat bármilyen okból, jelez egy `AdalException`.
+3. Ha az alkalmazás kísérel meg jogkivonat meghívásával `getToken(...)`, ADAL tooreturn jogkivonat kísérletek hello felhasználói hitelesítő adatok kérése nélkül.  Ha ADAL hello felhasználó van szüksége a tooget jogkivonat toosign, azt fogja bejelentkezésnél párbeszédpanel megjelenítése, hello felhasználói hitelesítő adatok összegyűjtése és sikeres hitelesítés után térjen vissza a jogkivonat.  Ha az adal TÁRAT nem képes tooreturn jogkivonat bármilyen okból, jelez egy `AdalException`.
 
 > [!Note] 
-> A `AuthenticationResult` objektum tartalmaz egy `tokenCacheStoreItem` objektum, amely a céghez, amely csak az alkalmazás akkor is használható. A gyorsindító `tokenCacheStoreItem` határozza meg, ha a hitelesítés már megtörtént.
+> Hello `AuthenticationResult` objektum tartalmaz egy `tokenCacheStoreItem` objektum, amely lehet, hogy az alkalmazás esetleg használt toocollect hello információkat. A gyors üzembe helyezés, hello `tokenCacheStoreItem` használt toodetermine akkor, ha a hitelesítés már megtörtént.
 >
 >
 
-## <a name="5-build-and-run-the-application"></a>5. Az alkalmazás fordítása és futtatása
-Gratulálunk! Most már rendelkezik egy működő iOS-alkalmazást, amely hitelesíti a felhasználókat, biztonságos webes API-k hívására OAuth 2.0-s, és a felhasználó alapszintű adatainak beolvasása.  Ha még nem tette meg, most már az egyes felhasználóival a bérlő feltölti idő.  Indítsa el a gyorsindító alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Zárja be az alkalmazást, majd indítsa el újból.  Figyelje meg, hogy a felhasználói munkamenet érintetlen marad.
+## <a name="5-build-and-run-hello-application"></a>5. Hozza létre és hello alkalmazás futtatása
+Gratulálunk! Most már rendelkezik egy működő iOS-alkalmazást, amely hitelesíti a felhasználókat, biztonságos webes API-k hívására OAuth 2.0-s, és alapszintű hello felhasználó adatainak beolvasása.  Ha még nem tette meg, most az hello idő toopopulate a bérlő az egyes felhasználók.  Indítsa el a gyorsindító alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Hello-alkalmazások bezárása, majd indítsa el újból.  Figyelje meg, hogy hello felhasználói munkamenet érintetlen marad.
 
-Az adal TÁRAT megkönnyíti, hogy átfogó mindezeket a közös identitás funkciókat az alkalmazásba.  Azt gondoskodik a dirty munkát meg, mint a gyorsítótár-felügyelet OAuth protokoll támogatása, a felhasználó a felhasználói felületen való bejelentkezéshez, bemutató, és a jogkivonatok frissítése lejárt.  Biztosan tudni, hogy szüksége egy egyetlen API-hívással `getToken`.
+ADAL teszi, hogy könnyen tooincorporate mindezeket a funkciókat az alkalmazásba közös identitás.  Az gondoskodik összes hello dirty munkahelyi meg, mint a gyorsítótár-felügyelet OAuth protokoll támogatása, és a felhasználói felület toosign a hello felhasználói bemutató, és lejárt jogkivonatok frissítésekor.  Valóban tooknow szüksége egy egyetlen API-hívással `getToken`.
 
-Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként a megadott [GitHub](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip).  
+A megadott befejeződött hello mintát (a konfigurációs értékek nélkül) referenciaként [GitHub](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip).  
 
 ## <a name="next-steps"></a>Következő lépések
-Most már továbbléphet további helyzeteket is.  Előfordulhat, hogy ki szeretné próbálni:
+Most már továbbléphet tooadditional forgatókönyvek.  Érdemes lehet tootry:
 
 * [Egy Node.JS webes API-t az Azure ad-vel biztonságos](active-directory-devquickstarts-webapi-nodejs.md)
-* Ismerje meg, [adal-t használó IOS alkalmazások közötti SSO engedélyezése](active-directory-sso-ios.md)  
+* Ismerje meg, [hogyan tooenable adal-t használó IOS alkalmazások közötti SSO](active-directory-sso-ios.md)  
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure hálózati figyelőt csomagrögzítéssel bemutatása |} Microsoft Docs"
-description: "Ezen a lapon a hálózati figyelőt csomag rögzítése funkció áttekintése"
+title: "az Azure hálózati figyelőt aaaIntroduction tooPacket rögzítési |} Microsoft Docs"
+description: "Ezen a lapon hello hálózati figyelőt csomag rögzítése funkció áttekintése"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 4fdd007c2cfad7b42f26ab2cacfba06d95c8dad3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ce01b391b9c1a1c19aa29c8620628c55586df03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-variable-packet-capture-in-azure-network-watcher"></a>Az Azure hálózati figyelőt változó csomagrögzítéssel bemutatása
+# <a name="introduction-toovariable-packet-capture-in-azure-network-watcher"></a>Bevezetés toovariable csomagrögzítéssel Azure hálózati figyelőt
 
-Hálózati figyelő változó csomagrögzítéssel csomag rögzítési munkamenetek nyomon követéséhez forgalma és a virtuális gép létrehozását teszi lehetővé. Csomag rögzítési segítségével mindkét hálózati rendellenességeket reaktív diagnosztizálásához és proactivity. Egyéb felhasználásra tartalmazzák a hálózati statisztikákat, hálózati behatolások, ügyfél-kiszolgáló közötti kommunikációt, és még sok más hibakeresési információkat való összegyűjtéséhez.
+Hálózati figyelő változó csomagrögzítéssel lehetővé teszi a virtuális gép toocreate csomag rögzítési munkamenetek tootrack forgalom tooand. Csomagrögzítéssel segít toodiagnose hálózati rendellenességeket mindkét reaktív és proactivity. Egyéb felhasználásra tartalmazzák a hálózati statisztikákat, való információk hálózati behatolások, toodebug ügyfél-kiszolgáló közötti kommunikációt, és még sok más összegyűjtéséhez.
 
-Csomagrögzítéssel a virtuálisgép-bővítmény hálózati figyelőt keresztül távolról elindult. Ez a funkció megkönnyíti a csomagrögzítéssel manuálisan futó a használni kívánt virtuális gépet, amely értékes időt takaríthat meg okozta terheket. A portál, a PowerShell, a parancssori felület vagy a REST API-n keresztül is elindítható a csomagrögzítéssel. Például hogyan csomagrögzítéssel is elindítható a virtuális gép a riasztások van. A rögzítési munkamenet rögzíti a figyelni kívánt forgalom biztosításához szűrők célokat szolgálnak. 5 rekordos (protokoll, helyi IP-cím, távoli IP-cím, helyi port és távoli port) alapuló szűrők információkat. A rögzített adatok a helyi lemez vagy egy tárolási blob tárolja. A 10 csomag rögzítési munkamenetek régiónként korlátozva van. Ezt a határt csak a munkamenetek vonatkozik, és nem vonatkozik a mentett csomag rögzítési fájlok helyileg a virtuális gép vagy egy tárfiókot.
+Csomagrögzítéssel a virtuálisgép-bővítmény hálózati figyelőt keresztül távolról elindult. Ez a funkció megkönnyíti a hello okozta terheket egy csomagrögzítéssel manuálisan virtuális gépen futó hello szükséges, amely értékes időt takaríthat meg. Csomagrögzítéssel hello portál, a PowerShell, a CLI vagy a REST API-n keresztül is elindítható. Például hogyan csomagrögzítéssel is elindítható a virtuális gép a riasztások van. Szűrők a következők: megadott hello rögzítési munkamenet tooensure a kívánt toomonitor forgalom rögzítése. 5 rekordos (protokoll, helyi IP-cím, távoli IP-cím, helyi port és távoli port) alapuló szűrők információkat. hello rögzített adatok hello helyi lemez vagy egy tárolási blob tárolja. A 10 csomag rögzítési munkamenetek régiónként korlátozva van. Ezt a határt csak toohello munkamenetek vonatkozik, és nem felel meg a csomag rögzítési fájlok mentése helyileg hello VM vagy a storage-fiók toohello.
 
 > [!IMPORTANT]
-> Csomagrögzítéssel van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A bővítmény telepítése a Windows virtuális gép a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
+> Csomagrögzítéssel van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A virtuális gép Windows hello-bővítmény telepítése a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
 
-Az információk csak a szükséges információkkal rögzítené csökkentése érdekében az alábbi beállítások érhetők el egy csomag rögzítési munkamenet:
+tooreduce hello információkat rögzíti a tooonly hello információt csomag rögzítési munkamenet hello alábbi beállítások érhetők el:
 
 **Konfigurációjának rögzítése**
 
 |Tulajdonság|Leírás|
 |---|---|
-|**Maximális bájtokat csomagot (bájt)** | A szám bájtok számát az egyes csomagok, amelyek rögzítve lesznek, az összes bájt rofilok rögzítésének, ha üresen hagyja. A szám bájtok számát az egyes csomagok, amelyek rögzítve lesznek, az összes bájt rofilok rögzítésének, ha üresen hagyja. Ha csak az IPv4-fejléc – kell jelző 34 Itt |
-|**Maximális bájtokat munkamenet (bájt)** | Az adott bájtok teljes száma a rendszer rögzíti, az érték elérésekor a munkamenet véget ér.|
-|**Időkorlát (másodperc)** | Beállítja a csomag időkorlát munkamenet rögzítése. Az alapértelmezett érték 18000 másodperceken vagy 5 óra.|
+|**Maximális bájtokat csomagot (bájt)** | szám hello bájtok számát az egyes csomagok, amelyek rögzítve lesznek, az összes bájt rofilok rögzítésének, ha üresen hagyja. szám hello bájtok számát az egyes csomagok, amelyek rögzítve lesznek, az összes bájt rofilok rögzítésének, ha üresen hagyja. Ha csak hello IPv4-fejléc – kell jelző 34 Itt |
+|**Maximális bájtokat munkamenet (bájt)** | Az adott bájtok teljes száma a rendszer rögzíti, hello érték elérésekor hello munkamenete véget nem ér.|
+|**Időkorlát (másodperc)** | Készletek hello csomag időkorlát munkamenet rögzítése. hello alapérték 18000 másodperceken vagy 5 óra.|
 
 **Szűrés (nem kötelező)**
 
 |Tulajdonság|Leírás|
 |---|---|
-|**Protocol (Protokoll)** | A csomagrögzítéssel szűrhet protokollt. A lehetséges értékek a következők: TCP és UDP összes.|
-|**Helyi IP-cím** | Ez az érték a csomagrögzítéssel csomagok szűrése, ahol a helyi IP-cím megegyezik-e a szűrő.|
-|**Helyi port** | Ez az érték a csomagrögzítéssel csomagok szűrése, ahol a helyi port megegyezik-e a szűrő.|
-|**Távoli IP-cím** | Ez az érték a csomagrögzítéssel csomagok szűrése, ahol az távoli IP-cím megegyezik-e a szűrő.|
-|**Távoli port** | Ez az érték a csomagrögzítéssel csomagok szűrése, ahol a távoli port megegyezik-e a szűrő.|
+|**Protocol (Protokoll)** | hello protokoll toofilter hello csomagok rögzíti. hello elérhető értékek a következők: TCP és UDP összes.|
+|**Helyi IP-cím** | Ez az érték szűrők hello csomagok rögzítési toopackets, ahol hello helyi IP-cím megegyezik-e a szűrő.|
+|**Helyi port** | Az érték szűrők hello csomag ahol hello helyi port megegyezik-e a szűrő toopackets rögzíti.|
+|**Távoli IP-cím** | Az érték szűrők hello csomag ahol hello távoli IP megegyezik-e a szűrő toopackets rögzíti.|
+|**Távoli port** | Az érték szűrők hello csomag ahol hello távoli port megegyezik-e a szűrő toopackets rögzíti.|
 
 ### <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan kezelheti a portálon keresztül csomag rögzítésekre ellátogatva [kezelése az Azure portálon csomagrögzítéssel](network-watcher-packet-capture-manage-portal.md) vagy a PowerShell-lel ellátogatva [csomag rögzítése kezelése a PowerShell-lel](network-watcher-packet-capture-manage-powershell.md).
+Megtudhatja, hogyan kezelheti csomag rögzítésekre hello portálon keresztül ellátogatva [kezelése az Azure-portálon hello csomagrögzítéssel](network-watcher-packet-capture-manage-portal.md) vagy a PowerShell-lel ellátogatva [csomag rögzítése kezelése a PowerShell használatával](network-watcher-packet-capture-manage-powershell.md).
 
-Látogasson el a virtuális gép riasztások alapján proaktív csomag rögzítésekre létrehozásával [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
+Megtudhatja, hogyan toocreate proaktív csomag rögzíti látogasson el a virtuális gép riasztásain alapuló [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
 
 <!--Image references-->
 [1]: ./media/network-watcher-packet-capture-overview/figure1.png

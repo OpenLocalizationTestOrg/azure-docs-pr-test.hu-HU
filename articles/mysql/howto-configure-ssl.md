@@ -1,6 +1,6 @@
 ---
-title: "Konfigurálja az SSL-kapcsolatot való biztonságos kapcsolódás Azure-adatbázis a MySQL |} Microsoft Docs"
-description: "Útmutatást megfelelően konfigurálni az Azure-adatbázis MySQL és a társított alkalmazások megfelelően az SSL-kapcsolat használata"
+title: "SSL-kapcsolat toosecurely aaaConfigure tooAzure adatbázis kapcsolati MySQL |} Microsoft Docs"
+description: "Hogyan tooproperly konfigurálása az Azure Database MySQL és társított alkalmazásokat toocorrectly utasításokat SSL-kapcsolat használata"
 services: mysql
 author: seanli1988
 ms.author: seanli
@@ -9,47 +9,47 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 07/28/2017
-ms.openlocfilehash: 77e1b6266a2cf47949fa06358ec003f6b6b38065
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8c37c19d4c101abfb730f429a19441e94e52fc85
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-ssl-connectivity-in-your-application-to-securely-connect-to-azure-database-for-mysql"></a>Az alkalmazásokhoz való biztonságos kapcsolódás Azure-adatbázis a MySQL SSL-kapcsolat konfigurálása
-Azure MySQL-adatbázis támogatja az Azure-adatbázis MySQL-kiszolgáló csatlakozik a Secure Sockets Layer (SSL) használó ügyfélalkalmazások. Az adatbázis-kiszolgáló és az ügyfél alkalmazások közötti SSL-kapcsolatok kényszerítése segít lánctámadások elleni védelem érdekében "man a középső" az adatfolyamot a kiszolgáló és az alkalmazás közötti titkosításával.
+# <a name="configure-ssl-connectivity-in-your-application-toosecurely-connect-tooazure-database-for-mysql"></a>Az SSL konfigurálása az alkalmazás toosecurely való csatlakozással tooAzure adatbázis kapcsolati MySQL
+MySQL az Azure-adatbázishoz való csatlakozást az Azure-adatbázis MySQL tooclient olyan kiszolgálóalkalmazások esetén használja a Secure Sockets Layer (SSL) támogatja. Az adatbázis-kiszolgáló és az ügyfél alkalmazások közötti SSL-kapcsolatok kényszerítése megvédi a "hello középső man" támadások ellen hello adatfolyam hello kiszolgáló és az alkalmazás közötti titkosításával.
 
 ## <a name="step-1-obtain-ssl-certificate"></a>1. lépés: SSL-tanúsítvány beszerzése
-Töltse le a tanúsítványt, az Azure-adatbázis a MySQL-kiszolgáló az SSL protokollt használó kommunikációra szükséges [https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem](https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem) és mentette a tanúsítványfájlt (a helyi meghajtójára Ebben az oktatóanyagban használtuk c:\ssl).
-**A Microsoft Internet Explorer és a Microsoft Edge:** a letöltés befejezése után nevezze át a tanúsítvány BaltimoreCyberTrustRoot.crt.pem.
+Töltse le a hello tanúsítvány szükséges toocommunicate az Azure-adatbázissal a MySQL-kiszolgáló SSL-en keresztül [https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem](https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem) és hello tanúsítvány fájl tooyour helyi mentése meghajtó (ebben az oktatóanyagban a használtuk c:\ssl).
+**A Microsoft Internet Explorer és a Microsoft Edge:** hello letöltés befejezése után nevezze át a hello tanúsítvány tooBaltimoreCyberTrustRoot.crt.pem.
 
 ## <a name="step-2-bind-ssl"></a>2. lépés: A kötés SSL
-### <a name="connecting-to-server-using-the-mysql-workbench-over-ssl"></a>Kapcsolódás a kiszolgálóhoz a MySQL munkaterület használata az SSL-en keresztül
-Konfigurálja a MySQL munkaterület biztonságos SSL Csatornán keresztül csatlakozni. Keresse meg a **SSL** a MySQL munkaterület az új kapcsolat beállítása párbeszéd fülre. Adja meg a fájl helyét a **BaltimoreCyberTrustRoot.crt.pem** a a **SSL-hitelesítésszolgáltató fájl:** mező.
+### <a name="connecting-tooserver-using-hello-mysql-workbench-over-ssl"></a>Hello MySQL munkaterület használata az SSL-en keresztül csatlakozó tooserver
+Konfigurálja a MySQL munkaterület tooconnect biztonságos SSL-en keresztül. Keresse meg a toohello **SSL** hello MySQL munkaterület az új kapcsolat beállítása párbeszéd hello lapján. Adja meg a fájl helye hello hello **BaltimoreCyberTrustRoot.crt.pem** a hello **SSL-hitelesítésszolgáltató fájl:** mező.
 ![testre szabott csempe mentése](./media/howto-configure-ssl/mysql-workbench-ssl.png)
 
-### <a name="connecting-to-server-using-the-mysql-cli-over-ssl"></a>Kapcsolódás a kiszolgálóhoz SSL-en keresztül a MySQL parancssori felület használatával
-A MySQL parancssori felületén, hajtsa végre a következő parancsot:
+### <a name="connecting-tooserver-using-hello-mysql-cli-over-ssl"></a>Hello MySQL CLI használata SSL-en keresztül csatlakozó tooserver
+A következő parancs hello hello MySQL parancssori felület segítségével hajtható végre:
 ```dos
 mysql.exe -h mysqlserver4demo.mysql.database.azure.com -u Username@mysqlserver4demo -p --ssl-ca=c:\ssl\BaltimoreCyberTrustRoot.crt.pem
 ```
 
 ## <a name="step-3--enforcing-ssl-connections-in-azure"></a>3. lépés: SSL-kapcsolatok az Azure-ban kényszerítése 
 ### <a name="using-azure-portal"></a>Az Azure Portal használata
-Az Azure-portált használja, látogasson el a MySQL-kiszolgálót, majd kattintson az Azure Database **kapcsolatbiztonsági**. A váltógomb segítségével engedélyezheti vagy tilthatja le a **kényszerítése SSL-kapcsolat** beállítást. Ezután kattintson a **Save** (Mentés) gombra. A Microsoft azt javasolja, hogy mindig engedélyezése **kényszerítése SSL-kapcsolat** vonatkozó fokozott biztonsági beállításait.
+Hello Azure-portál használatával keresse fel a MySQL-kiszolgálót, majd kattintson az Azure Database **kapcsolatbiztonsági**. Hello váltása gomb tooenable használja, vagy tiltsa le a hello **kényszerítése SSL-kapcsolat** beállítást. Ezután kattintson a **Save** (Mentés) gombra. A Microsoft azt javasolja, tooalways engedélyezése **kényszerítése SSL-kapcsolat** vonatkozó fokozott biztonsági beállításait.
 ![ssl engedélyezése](./media/howto-configure-ssl/enable-ssl.png)
 
 ### <a name="using-azure-cli"></a>Az Azure parancssori felület használata
-Engedélyezheti vagy letilthatja a **ssl-kényszerítési** paraméter, illetve Azure CLI engedélyezve vagy letiltva értékei alapján.
+Engedélyezheti vagy letilthatja a hello **ssl-kényszerítési** paraméter, illetve Azure CLI engedélyezve vagy letiltva értékei alapján.
 ```azurecli-interactive
 az mysql server update --resource-group myresource --name mysqlserver4demo --ssl-enforcement Enabled
 ```
 
 ## <a name="step-4-verify-ssl-connection"></a>4. lépés: SSL-kapcsolat ellenőrzése
-A mysql végrehajtása **állapot** parancs futtatásával ellenőrizze, hogy rendelkezik-e csatlakozik a MySQL-kiszolgálóval SSL használatával:
+Hello mysql végrehajtása **állapot** parancs tooverify, hogy csatlakozott-e tooyour MySQL kiszolgálóval SSL használatával:
 ```dos
 mysql> status
 ```
-Ellenőrizze, hogy a kapcsolat a kimeneti megtekintésével titkosított. Kell megjelennie: **SSL: titkosító használatban AES256-SHA** 
+Győződjön meg róla, hello kapcsolat titkosított hello kimeneti megtekintésével. Kell megjelennie: **SSL: titkosító használatban AES256-SHA** 
 
 ## <a name="sample-code"></a>Mintakód
 ### <a name="php"></a>PHP
@@ -58,7 +58,7 @@ $conn = mysqli_init();
 mysqli_ssl_set($conn,NULL,NULL, "/var/www/html/BaltimoreCyberTrustRoot.crt.pem", NULL, NULL) ; 
 mysqli_real_connect($conn, 'myserver4demo.mysql.database.azure.com', 'myadmin@myserver4demo', 'yourpassword', 'quickstartdb', 3306);
 if (mysqli_connect_errno($conn)) {
-die('Failed to connect to MySQL: '.mysqli_connect_error());
+die('Failed tooconnect tooMySQL: '.mysqli_connect_error());
 }
 ```
 ### <a name="python"></a>Python

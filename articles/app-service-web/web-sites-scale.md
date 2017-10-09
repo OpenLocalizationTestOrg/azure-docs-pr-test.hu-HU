@@ -1,6 +1,6 @@
 ---
-title: "Vertikális felskálázás egy alkalmazást az Azure-ban |} Microsoft Docs"
-description: "Megtudhatja, hogyan vertikális felskálázás az Azure App Service kapacitás és szolgáltatások hozzáadása egy alkalmazáshoz."
+title: "egy alkalmazás az Azure-ban aaaScale |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooscale be egy alkalmazást az Azure App Service tooadd kapacitás és a szolgáltatásokat."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
-ms.openlocfilehash: 75ddbacbd4dd14597b786d26f0730477f6c85811
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 97f46f77aeef95aec90d38e8396a023820e3caeb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-up-an-app-in-azure"></a>Vertikális felskálázás egy alkalmazást az Azure-ban
-Ez a cikk bemutatja, hogyan alkalmazás skálázása az Azure App Service-ben. Két munkafolyamatok méretezési, bővített fel és kibővítési, és ez a cikk azt ismerteti, a munkafolyamat felskálázott.
+Ez a cikk bemutatja, hogyan tooscale az alkalmazást az Azure App Service-ben. Két munkafolyamatok méretezési, bővített fel és kibővítési, és ez a cikk azt ismerteti, hello felskálázott munkafolyamat.
 
-* [Vertikális felskálázás](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): több Processzor, memória, lemezterület és extra funkciók, például dedikált virtuális gépek (VM), egyedi tartományok és tanúsítványok, előkészítési tárhelyek, automatikus skálázás és több beolvasása. Vertikális felskálázás az alkalmazáshoz tartozó App Service-csomag tarifacsomagját módosításával.
-* [Horizontális felskálázás](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): növelje az alkalmazást futtató Virtuálisgép-példányok számát.
-  Ki lehet terjeszteni akár 20 példányokhoz, attól függően, hogy a tarifacsomagot. [App Service Environment-környezetek](../app-service/app-service-app-service-environments-readme.md) a **prémium** réteg tovább növeli a kibővíthető számát, hogy legfeljebb 50 példányt. Kiterjesztésére vonatkozó további információkért lásd: [méretezése példányszám manuális vagy automatikus](../monitoring-and-diagnostics/insights-how-to-scale.md). Nem található az automatikus skálázást, amely a példányok száma alapján automatikusan előre meghatározott szabályok és ütemezések méretezési útmutató.
+* [Vertikális felskálázás](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): több Processzor, memória, lemezterület és extra funkciók, például dedikált virtuális gépek (VM), egyedi tartományok és tanúsítványok, előkészítési tárhelyek, automatikus skálázás és több beolvasása. Vertikális felskálázás az alkalmazáshoz tartozó App Service-csomag tarifacsomag hello módosításával.
+* [Horizontális felskálázás](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): növelje az alkalmazást futtató Virtuálisgép-példányok hello számát.
+  Ki lehet terjeszteni tooas több mint 20 példányok, attól függően, hogy a tarifacsomagot. [App Service Environment-környezetek](../app-service/app-service-app-service-environments-readme.md) a **prémium** réteg tovább növeli a kibővíthető száma too50 példányok. Kiterjesztésére vonatkozó további információkért lásd: [méretezése példányszám manuális vagy automatikus](../monitoring-and-diagnostics/insights-how-to-scale.md). Nem található ki, hogyan toouse automatikus skálázást, amely tooscale példányszám automatikusan alapján előre meghatározott szabályok és ütemezések.
 
-A skálázási beállításokat másodpercre csak alkalmazásához, és hatással lévő összes alkalmazásra a [App Service-csomag](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
-Nem kell módosítania kell a kódot, vagy telepítse újra az alkalmazást.
+hello skálázási beállításokat hajtsa végre a megfelelő csak másodperc tooapply, és hatással lévő összes alkalmazásra a [App Service-csomag](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+Nem szükséges, toochange a kódot, és telepítse újra az alkalmazást.
 
-A díjszabás és az App Service-csomagokról szolgáltatásokkal kapcsolatos további információkért lásd: [App Service díjszabás](https://azure.microsoft.com/pricing/details/web-sites/).  
+További információ a hello tarifa- és szolgáltatásokat az App Service-csomagokról: [App Service díjszabás](https://azure.microsoft.com/pricing/details/web-sites/).  
 
 > [!NOTE]
-> Az App Service-csomagot váltottunk az **szabad** réteg, el kell távolítania a [költségkeretek](https://azure.microsoft.com/pricing/spending-limits/) biztosítani az Azure-előfizetéshez. Beállításainak megtekintése vagy módosítása a Microsoft Azure App Service előfizetési, lásd: [Microsoft Azure-előfizetések][azuresubscriptions].
+> App Service-csomagot a hello váltottunk **szabad** réteg, először el kell távolítania hello [költségkeretek](https://azure.microsoft.com/pricing/spending-limits/) biztosítani az Azure-előfizetéshez. Tekintse meg a tooview, vagy módosítsa a Microsoft Azure App Service előfizetési beállítások [Microsoft Azure-előfizetések][azuresubscriptions].
 > 
 > 
 
@@ -41,63 +41,63 @@ A díjszabás és az App Service-csomagokról szolgáltatásokkal kapcsolatos to
 <a name="scalingstandard"></a>
 
 ## <a name="scale-up-your-pricing-tier"></a>Vertikális felskálázás tarifacsomag
-1. A böngészőben nyissa meg a [Azure-portálon][portal].
+1. A böngészőben nyissa meg a hello [Azure-portálon][portal].
 2. Az alkalmazás paneljén kattintson **összes beállítás**, és kattintson a **vertikális Felskálázás**.
    
-    ![Navigáljon az Azure alkalmazás növelheti.][ChooseWHP]
+    ![Lépjen be az Azure alkalmazást tooscale.][ChooseWHP]
 3. Válassza ki a réteg, és kattintson a **válasszon**.
    
-    A **értesítések** lapon villogjon, egy zöld **sikeres** a művelet befejeződése után.
+    Hello **értesítések** lapon villogjon, egy zöld **sikeres** hello művelet befejeződése után.
 
 <a name="ScalingSQLServer"></a>
 
 ## <a name="scale-related-resources"></a>Kapcsolódó erőforrások méretezése
-Ha az alkalmazás egyéb szolgáltatások, például az Azure SQL Database vagy az Azure Storage függ is méretezheti fel ezeket az erőforrásokat a igények alapján. Ezeket az erőforrásokat az App Service-csomag nincs korlátozva, és külön-külön lehet méretezni.
+Ha az alkalmazás egyéb szolgáltatások, például az Azure SQL Database vagy az Azure Storage függ is méretezheti fel ezeket az erőforrásokat a igények alapján. Ezeket az erőforrásokat az App Service-csomag hello nem méretezi, és külön-külön lehet méretezni.
 
-1. A **Essentials**, kattintson a **erőforráscsoport** hivatkozásra.
+1. A **Essentials**, kattintson a hello **erőforráscsoport** hivatkozásra.
    
     ![Vertikális felskálázás az Azure alkalmazás kapcsolódó erőforrások](./media/web-sites-scale/RGEssentialsLink.png)
-2. Az a **összegzés** része a **erőforráscsoport** paneljén kattintson egy skálázni kívánt erőforrás. Az alábbi képernyőfelvételen látható egy SQL-adatbázis és egy Azure Storage típusú erőforrást.
+2. A hello **összegzés** hello része **erőforráscsoport** paneljén kattintson egy erőforrás, amelyet az tooscale. a következő képernyőkép hello jeleníti meg, egy SQL-adatbázis és egy Azure Storage típusú erőforrást.
    
-    ![Keresse meg a vertikális felskálázás az Azure alkalmazás erőforráscsoport panel](./media/web-sites-scale/ResourceGroup.png)
-3. Egy SQL-adatbázis erőforrás kattintson **beállítások** > **tarifacsomag** méretezni a tarifacsomag.
+    ![Keresse meg a tooresource csoport panel tooscale be az Azure alkalmazást](./media/web-sites-scale/ResourceGroup.png)
+3. Egy SQL-adatbázis erőforrás kattintson **beállítások** > **tarifacsomag** tooscale hello tarifacsomagra vált.
    
-    ![Vertikális felskálázás az Azure alkalmazás az SQL-adatbázis háttér](./media/web-sites-scale/ScaleDatabase.png)
+    ![Vertikális felskálázás az Azure alkalmazás hello SQL-adatbázis háttér](./media/web-sites-scale/ScaleDatabase.png)
    
     Is bekapcsolhatja a [georeplikáció](../sql-database/sql-database-geo-replication-overview.md) az SQL Database-példányt.
    
-    Egy Azure Storage erőforrás kattintson **beállítások** > **konfigurációs** méretezése a tárolási beállítások konfigurálásával.
+    Egy Azure Storage erőforrás kattintson **beállítások** > **konfigurációs** tooscale a tárolási beállítások konfigurálásával.
    
-    ![Vertikális felskálázás az Azure-alkalmazás által használt Azure Storage-fiókban](./media/web-sites-scale/ScaleStorage.png)
+    ![Vertikális felskálázás az Azure-alkalmazás által használt hello Azure Storage-fiókban](./media/web-sites-scale/ScaleStorage.png)
 
 <a name="devfeatures"></a>
 
 ## <a name="learn-about-developer-features"></a>Fejlesztői szolgáltatásainak megismerése
-Attól függően, hogy ez a tarifacsomag a következő fejlesztőknek készített funkciók érhetők el:
+Attól függően, hogy a hello IP-címek hello következő fejlesztőknek készített funkciók érhetők el:
 
 ### <a name="bitness"></a>Bitszámának
-* A **alapvető**, **szabványos**, és **prémium** rétegek támogatja a 64 bites és 32 bites alkalmazásokat.
-* A **szabad** és **megosztott** terv rétegek csak a 32 bites alkalmazások támogatásához.
+* Hello **alapvető**, **szabványos**, és **prémium** rétegek támogatja a 64 bites és 32 bites alkalmazásokat.
+* Hello **szabad** és **megosztott** terv rétegek csak a 32 bites alkalmazások támogatásához.
 
 ### <a name="debugger-support"></a>Hibakereső támogatás
-* Hibakereső támogatás érhető el a **szabad**, **megosztott**, és **alapvető** módot, az App Service-csomag egy kapcsolattípust.
-* Hibakereső támogatás érhető el a **szabványos** és **prémium** módot, az App Service-csomag öt egyidejű kapcsolatok.
+* Hibakereső támogatás érhető el a hello **szabad**, **megosztott**, és **alapvető** módot, az App Service-csomag egy kapcsolattípust.
+* Hibakereső támogatás érhető el a hello **szabványos** és **prémium** módot, az App Service-csomag öt egyidejű kapcsolatok.
 
 <a name="OtherFeatures"></a>
 
 ## <a name="learn-about-other-features"></a>Egyéb funkciókkal kapcsolatos tudnivalók
-* További információk az App Service a fennmaradó funkciók csomagokat, beleértve a díjszabás és lehetőségeket az összes felhasználóra (beleértve a fejlesztők), lásd: [App Service díjszabás](https://azure.microsoft.com/pricing/details/web-sites/).
+* Részletes információ összes fennmaradó hello App Service szolgáltatások hello csomagokat, beleértve a díjszabás és érdeklődési tooall a felhasználók (beleértve a fejlesztők) szolgáltatások: [App Service díjszabás](https://azure.microsoft.com/pricing/details/web-sites/).
 
 > [!NOTE]
-> Ismerkedés az Azure App Service szolgáltatásban, az az Azure-fiók regisztrálása előtt szeretné, ha Ugrás [App Service kipróbálása](https://azure.microsoft.com/try/app-service/) ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Nincs bankkártyára szükséges találhatók és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépések tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/) ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Nincs bankkártyára szükséges találhatók és nem jár kötelezettségekkel.
 > 
 > 
 
 <a name="Next Steps"></a>
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerkedés az Azure-ral, lásd: [Microsoft Azure ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
-* Árképzési, támogatást és szolgáltatásiszint-szerződés kapcsolatos információkért látogasson el a következő hivatkozások.
+* Azure-ban használatába tooget lásd [Microsoft Azure ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
+* Információk a díjszabásról támogatást és szolgáltatásiszint-szerződés, látogasson el a következő hivatkozások hello.
   
     [Adatátvitel díjszabása](https://azure.microsoft.com/pricing/details/data-transfers/)
   
@@ -113,9 +113,9 @@ Attól függően, hogy ez a tarifacsomag a következő fejlesztőknek készítet
   
     [Az App Service díjszabás részletei – SSL-kapcsolatok](https://azure.microsoft.com/pricing/details/web-sites/#ssl-connections)
 * Azure App Service információ gyakorlati tanácsok felépítése méretezhető és rugalmas architektúra, beleértve: [gyakorlati tanácsok: Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx).
-* App Service apps méretezésével kapcsolatos videók lásd a következőket:
+* App Service apps méretezésével kapcsolatos videók tekintse meg a következő erőforrások hello:
   
-  * [Mikor érdemes méretezni az Azure - lengyel Schackow webhelyek](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
+  * [Ha Azure webhelyek - lengyel Schackow tooScale](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
   * [Az automatikus skálázás Azure-webhelyek, CPU vagy ütemezett - rendelkező lengyel Schackow](https://azure.microsoft.com/resources/videos/auto-scaling-azure-web-sites/)
   * [Az Azure webhelyek méretezéssel -, lengyel Schackow](https://azure.microsoft.com/resources/videos/how-azure-web-sites-scale/)
 

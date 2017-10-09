@@ -1,5 +1,5 @@
 ---
-title: "Azure Event Hubs névtér és felhasználó-csoport létrehozása sablon alapján |} Microsoft Docs"
+title: "az Azure Event Hubs-névteret és a fogyasztói csoportot sablon aaaCreate |} Microsoft Docs"
 description: "Hozzon létre egy Event Hubs-névtér az eseményközpontok és egy felhasználói csoport Azure Resource Manager-sablonok használatával"
 services: event-hubs
 documentationcenter: .net
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: eb9a80eec0326aaa605cb8b21aecbaeec94ff212
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 74b0d6b3fbe848705e2c20e628aa4e5269b53edb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-event-hubs-namespace-with-event-hub-and-consumer-group-using-an-azure-resource-manager-template"></a>Az Event Hubs-névtér létrehozása Azure Resource Manager-sablonnal esemény hub és felhasználói csoport
 
-Ez a cikk bemutatja, hogyan használható az Azure Resource Manager sablon, amely létrehoz egy névtér, az Event Hubs egy eseményközpontba való típusú és egy fogyasztói csoporton. A cikk bemutatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása. Ezt a sablont saját üzembe helyezési műveleteihez is használhatja, vagy akár igényeinek megfelelően testre is szabhatja
+Ez a cikk bemutatja, hogyan toouse Azure Resource Manager-sablon, amely hoz létre egy névtér, típus az Event Hubs egy eseményközpontba és egy fogyasztói csoporton. hello hogyan cikkre mutat be toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet a követelmények
 
 A sablonok létrehozásáról további információkat az [Authoring Azure Resource Manager templates][Authoring Azure Resource Manager templates] (Azure Resource Manager-sablonok készítése) című témakörben talál.
 
-A teljes sablon, tekintse meg a [hub és felhasználói csoport eseménysablon] [ Event Hub and consumer group template] a Githubon.
+Hello teljes sablon, lásd: hello [hub és felhasználói csoport eseménysablon] [ Event Hub and consumer group template] a Githubon.
 
 > [!NOTE]
-> A legújabb sablonokért keresse fel az [Azure-gyorssablonok][Azure Quickstart Templates] gyűjteményt, és keressen az Event Hubs kifejezésre.
+> toocheck hello legújabb sablonok, látogasson el a hello [Azure gyors üzembe helyezési sablonokat] [ Azure Quickstart Templates] -dokumentumtárban és keressen rá az Event Hubs.
 > 
 > 
 
 ## <a name="what-will-you-deploy"></a>Mit fog üzembe helyezni?
 Ezzel a sablonnal egy Event Hubs névtér eseményközpontban, és egy felhasználói csoport fog üzembe helyezni.
 
-Az [Event Hubs](event-hubs-what-is-event-hubs.md) egy eseményfeldolgozási szolgáltatás, amely az Azure-ba irányuló, nagy léptékű esemény- és telemetriabevitelt biztosít alacsony késéssel és nagy megbízhatósággal.
+[Az Event Hubs](event-hubs-what-is-event-hubs.md) egy Eseményfeldolgozási szolgáltatás használt tooprovide esemény- és telemetriabevitelt érkező tooAzure nagy méretű, alacsony késéssel és nagy megbízhatósággal.
 
-Az automatikus üzembe helyezéshez kattintson az alábbi gombra:
+toorun telepítési hello automatikusan, kattintson a következő gombra hello:
 
-[![Üzembe helyezés az Azure-ban](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>Paraméterek
-Az Azure Resource Managerrel meghatározhatja a sablon üzembe helyezésekor megadandó értékek paramétereit. A sablonban található egy `Parameters` nevű rész, amely magába foglalja az összes paraméterértéket. Ezeket az értékeket, amelyek változhatnak, a projekt telepít vagy a környezet, amely telepíti alapján egy paramétert meg kell határozni. Ne adjon meg olyan paramétereket olyan értékhez, amelyek nem változnak. A sablon minden paraméter értéke határozza meg a telepített erőforrások esetén.
+Az Azure Resource Manager paraméterek megadása értékek keresi toospecify hello sablon telepítésekor. hello sablon tartalmaz nevű szakaszban `Parameters` , amely tartalmazza az összes hello paraméterértékeket. Ezeket az értékeket, amelyek változhatnak, hello projekt telepít vagy telepít hello környezet toowhich alapján egy paramétert meg kell határozni. Paraméterei nem adják meg, az értékek, amelyek mindig azonos hello. Minden paraméter értéke, hello sablonban hello telepített erőforrások esetén határozza meg.
 
-A sablon meghatározza a következő:
+hello sablon meghatározza, hogy a következő paraméterek hello:
 
 ### <a name="eventhubnamespacename"></a>eventHubNamespaceName
-A létrehozandó Event Hubs-névtér neve.
+hello Event Hubs névtér toocreate hello neve.
 
 ```json
 "eventHubNamespaceName": {
@@ -57,7 +57,7 @@ A létrehozandó Event Hubs-névtér neve.
 ```
 
 ### <a name="eventhubname"></a>eventHubName
-Az Event Hubs-névtérben létrehozott eseményközpont neve.
+hello hello eseményközpont létre hello Event Hubs névtér neve.
 
 ```json
 "eventHubName": {
@@ -66,7 +66,7 @@ Az Event Hubs-névtérben létrehozott eseményközpont neve.
 ```
 
 ### <a name="eventhubconsumergroupname"></a>eventHubConsumerGroupName
-A fogyasztói csoportot az eseményközpont létre neve.
+hello fogyasztói csoportot hello eseményközpont létre hello neve.
 
 ```json
 "eventHubConsumerGroupName": {
@@ -75,7 +75,7 @@ A fogyasztói csoportot az eseményközpont létre neve.
 ```
 
 ### <a name="apiversion"></a>apiVersion
-A sablon API-verziója.
+hello sablon hello API verzióját.
 
 ```json
 "apiVersion": {
@@ -83,7 +83,7 @@ A sablon API-verziója.
 }
 ```
 
-## <a name="resources-to-deploy"></a>Üzembe helyezendő erőforrások
+## <a name="resources-toodeploy"></a>Erőforrások toodeploy
 Létrehoz egy névtér, típus **EventHubs**, az event hubs és a fogyasztói csoportot.
 
 ```json
@@ -127,7 +127,7 @@ Létrehoz egy névtér, típus **EventHubs**, az event hubs és a fogyasztói cs
    ],
 ```
 
-## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
+## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
@@ -143,7 +143,7 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md)
 * [Eseményközpont létrehozása](event-hubs-create.md)
@@ -152,5 +152,5 @@ Az alábbi webhelyeken további információt talál az Event Hubsról:
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
 [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
-[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
+[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
 [Event hub and consumer group template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-event-hubs-create-event-hub-and-consumer-group/

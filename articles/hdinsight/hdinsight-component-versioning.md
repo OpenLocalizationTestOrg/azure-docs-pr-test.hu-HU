@@ -1,7 +1,7 @@
 ---
-title: "Hadoop-összetevők és verziók - Azure HDInsight |} Microsoft Docs"
-description: "Ismerje meg, a Hadoop-összetevők és a HDInsight és a szolgáltatási szintek érhető el a felhőalapú terjesztési Hortonworks Data platform-verziók."
-keywords: "hadoop verziók, a hadoop-ökoszisztémával összetevők, a hadoop-összetevők, hogyan hadoop-verziójának ellenőrzése"
+title: "aaaHadoop összetevők és verziók - Azure HDInsight |} Microsoft Docs"
+description: "Ismerje meg, hello Hadoop-összetevők és a HDInsight és hello szolgáltatási szintek érhető el a felhőalapú terjesztési Hortonworks Data platform verziók."
+keywords: "hadoop verziók, a hadoop-ökoszisztémával összetevők, a hadoop-összetevők, hogyan toocheck hadoop verziója"
 services: hdinsight
 editor: cgronlun
 manager: asadk
@@ -17,25 +17,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: bprakash
-ms.openlocfilehash: 26512049dba3d4dde575c5a67ba884fb56374236
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b661d901b0113458c3501ec06454fc8841189672
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-are-the-hadoop-components-and-versions-available-with-hdinsight"></a>Mik azok a Hadoop-összetevők és a hdinsight eszközzel verziók?
+# <a name="what-are-hello-hadoop-components-and-versions-available-with-hdinsight"></a>Mik azok a hello Hadoop-összetevők és a hdinsight eszközzel verziók?
 
-További tudnivalók az Apache Hadoop-ökoszisztémával összetevők és a Microsoft Azure HDInsight, valamint a Standard és Premium szolgáltatásszintek verziók. Emellett ismerje meg a HDInsight Hadoop összetevő verziók ellenőrzéséhez. 
+Hello Apache Hadoop-ökoszisztémával összetevők és a Microsoft Azure hdinsight verziókkal kapcsolatos tudnivalók, valamint Standard és Premium szolgáltatásszintek hello. Emellett ismerje meg, hogyan toocheck Hadoop összetevő verziók a hdinsight eszközben. 
 
 Minden HDInsight-verzió egy felhőalapú terjesztési verziójának Hortonworks Data Platform (HDP).
 
 ## <a name="hadoop-components-available-with-different-hdinsight-versions"></a>HDInsight különböző verzióiban Hadoop-összetevők
-Az Azure HDInsight Hadoop fürt több verziója, amely bármikor telepíthető támogatja. Minden egyes verzió choice hoz létre, egy adott verziójához a HDP telepítési és összetevők belüli, hogy a terjesztési. 2017. február 17.,-től az Azure HDInsight által használt alapértelmezett fürt verzió 3.5-ös és HDP 2.5 alapul.
+Az Azure HDInsight Hadoop fürt több verziója, amely bármikor telepíthető támogatja. Minden egyes verzió choice hoz létre, egy adott verziójához hello HDP telepítési és összetevők belüli, hogy a terjesztési. 2017. február 17., frissítésétől hello Azure HDInsight által használt alapértelmezett fürt verzió 3.5-ös és HDP 2.5 alapul.
 
-A HDInsight-fürt verziókról társított összetevő-verziók a következő táblázatban láthatók. 
+HDInsight-fürt verziókról társított hello összetevő verziók hello a következő táblázatban láthatók. 
 
 > [!NOTE]
-> Az alapértelmezett verzió a HDInsight szolgáltatás minden külön értesítés nélkül változhatnak. Ha verzió függőség, ha a .NET SDK-val Azure PowerShell és az Azure parancssori felület a fürtök létrehozásához, adja meg a HDInsight-verzió.
+> hello alapértelmezett verziója a HDInsight-szolgáltatás hello minden külön értesítés nélkül változhatnak. Ha verzió függőség, ha hello .NET SDK-val Azure PowerShell és az Azure parancssori felület a fürt létrehozásához adja meg hello HDInsight-verzió.
 
 | Összetevő | HDInsight 3.6 (alapértelmezett) | HDInsight 3.5 | HDInsight 3.4 | HDInsight 3.3 | A HDInsight 3.2. | HDInsight 3.1 | A HDInsight 3.0 |
 | --- | --- | --- | --- | --- | --- | --- |--- |
@@ -62,26 +62,26 @@ A HDInsight-fürt verziókról társított összetevő-verziók a következő t�
 
 ## <a name="check-for-current-hadoop-component-version-information"></a>Ellenőrizze a jelenlegi Hadoop összetevő verzióinformáció
 
-HDInsight-fürt verziókról társított Hadoop-ökoszisztémával összetevő verziók HDInsight módosíthatja a frissítések. Ellenőrizze a Hadoop-összetevők, és ellenőrizze, hogy mely verzióit használatban van egy fürt használja az Ambari REST API-t. A **GetComponentInformation** parancs segítségével lekérdezhető szolgáltatás-összetevőivel kapcsolatos információk. További információkért lásd: a [Ambari dokumentáció][ambari-docs].
+hello Hadoop ökoszisztémájának összetevő társított verziók HDInsight-fürt verziókról módosíthatja a frissítések tooHDInsight. toocheck hello Hadoop-összetevők és tooverify mely verzióit használatban van egy fürt használja hello Ambari REST API-t. Hello **GetComponentInformation** parancs segítségével lekérdezhető szolgáltatás-összetevőivel kapcsolatos információk. További információkért lásd: hello [Ambari dokumentáció][ambari-docs].
 
-Windows-fürtök esetén egy másik összetevő verziójának módja távoli asztal használatával jelentkezzen be egy fürtöt, és vizsgálja meg a C:\apps\dist\ könyvtár tartalmát.
+Windows-fürtök esetén egy másik módja toocheck hello összetevő verziószáma toolog tooa fürt távoli asztal használatával, és vizsgálja meg a hello hello C:\apps\dist\ könyvtár tartalmának.
 
 > [!IMPORTANT]
-> Linux az egyetlen operációs rendszer használt a HDInsight 3.4 vagy újabb verziója. További információkért lásd: [Windows használatból való kivonást a HDInsight](#hdinsight-windows-retirement).
+> Linux egy hello azt az egyetlen operációs rendszer, a HDInsight 3.4 vagy újabb verzióját használja. További információkért lásd: [Windows használatból való kivonást a HDInsight](#hdinsight-windows-retirement).
 
 ### <a name="release-notes"></a>Kibocsátási megjegyzések
 
-Lásd: [HDInsight kibocsátási megjegyzések](hdinsight-release-notes.md) további kibocsátási megjegyzések a HDInsight legújabb verziói.
+Lásd: [HDInsight kibocsátási megjegyzések](hdinsight-release-notes.md) további kibocsátási megjegyzések hello HDInsight legújabb verziói.
 
 ## <a name="supported-hdinsight-versions"></a>Támogatott HDInsight-verziókról
-A következő táblázat az Azure-portál jelenleg rendelkezésre álló HDInsight-verziók listája olvasható. Az, hogy minden HDInsight-verzió HDP-verziók szerepelnek a listán, a termék kiadási dátum együtt. A támogatás lejárati és a használatból való kivonást dátumát is biztosít, ha azok még ismert.
+hello következő táblázatban hello verziói HDInsight jelenleg elérhető hello Azure-portálon. hello HDP verziókat, amelyek megfelelnek a HDInsight-verzió tooeach hello termék kiadási dátum együtt jelennek meg. hello támogatás lejárati és a használatból való kivonást dátumát is biztosít, ha azok még ismert.
 
 > [!NOTE]
-> Támogatási után az egy lejárt, azt nem feltétlenül érhető el a Microsoft Azure klasszikus portálon keresztül. Azonban fürt verziók továbbra is a rendelkezésre álló használatával a `Version` a Windows PowerShell paraméter [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) parancs és a .NET SDK, amíg a verzió kivezetési dátum.
+> Támogatási után az egy lejárt, azt nem feltétlenül érhető el hello Microsoft Azure klasszikus portálon keresztül. Azonban továbbra is a fürt verzió érhető el a hello használatával toobe `Version` hello Windows PowerShell paraméter [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) parancsot, és a .NET SDK hello amíg hello verzió kivezetési dátum.
 > 
 > Magas rendelkezésre állású fürtök két átjárócsomópontokkal a HDInsight-verzió 2.1-es és újabb verziók esetében alapértelmezés szerint vannak telepítve. Nem elérhetők a HDInsight-fürtök 1.6-os verzióra.
 
-| HDInsight-verzió | HDP verzió | VIRTUÁLIS GÉP OPERÁCIÓS RENDSZERE | Magas rendelkezésre állás | Kiadás dátuma | Az Azure portálon rendelkezésre állása | Támogatás lejárati dátuma | Kivezetési dátum |
+| HDInsight-verzió | HDP verzió | VIRTUÁLIS GÉP OPERÁCIÓS RENDSZERE | Magas rendelkezésre állás | Kiadás dátuma | Elérhetőségét a hello Azure-portálon | Támogatás lejárati dátuma | Kivezetési dátum |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | HDInsight 3.6. |2.6 HDP |Ubuntu 16 |Igen |2017. április 4. |Igen | | |
 | HDInsight 3.5 |2.5 HDP |Ubuntu 16 |Igen |2016. Szeptembertől 30. |Igen |2017. szeptember 5. |2018. május 31-ig. |
@@ -95,68 +95,68 @@ A következő táblázat az Azure-portál jelenleg rendelkezésre álló HDInsig
 | HDInsight 1.6-os |1.1 HDP | |Nem |2013. október 28. |Nem |2014. április 26. |2015. május 31-ig. |
 
 ## <a name="hdinsight-windows-retirement"></a>HDInsight Windows kivonása
-A Microsoft Azure HDInsight 3.3-as verzió a legfrissebb verziója a Windows a HDInsight volt. A Windows a HDInsight a kivezetési dátum 2018 július 31. Ha a HDInsight-fürtök Windows 3.3-as vagy annál régebbi, át kell telepítenie a Linux (HDInsight 3.5-ös vagy újabb verziójú) HDInsight 2018 július 31 előtt. A Linux operációs rendszert futtató történő lehetővé teszi létrehozása vagy a HDInsight-fürtök átméretezése megőrzése. HDInsight Windows 3.3-as verzió támogatása lejárt 2016. június 27.
+Microsoft Azure HDInsight 3.3-as verziója lett HDInsight a Windows hello legutóbbi verzióját. hello kivezetési dátum Windows hdinsight 2018 július 31. Ha a HDInsight-fürtök Windows 3.3-as vagy annál régebbi, át kell tooHDInsight Linux (HDInsight 3.5-ös vagy újabb verzió) 2018 július 31 előtt. Toohello áttelepítése Linux operációs rendszert futtató tooretain hello képességét toocreate lehetővé teszi, vagy a HDInsight-fürtök átméretezése. HDInsight Windows 3.3-as verzió támogatása lejárt 2016. június 27.
 
-HDInsight 3.4-es verziójú verziótól kezdődően a Microsoft közzétette a HDInsight csak a Linux operációs rendszeren. Ennek eredményeképpen egyes összetevői belül HDInsight érhetők el a Linux csak. Ezek közé tartoznak, Apache Pletyka, Kafka, interaktív struktúra, a Spark HDInsight-alkalmazásokat, és az Azure Data Lake Store elsődleges fájlrendszer. A HDInsight a későbbi kiadásokban csak a Linux operációs rendszeren érhetők el. Nincs HDInsight a Windows későbbi kiadásaiban lesz. 
+HDInsight 3.4-es verziójú verziótól kezdődően a Microsoft HDInsight csak a Linux operációs rendszert futtató hello kiadott. Ennek eredményeképpen egyes hello összetevők HDInsight belül érhetők Linux csak. Ezek közé tartoznak, Apache Pletyka, Kafka, interaktív struktúra, a Spark HDInsight-alkalmazásokat, és az Azure Data Lake Store hello elsődleges fájlrendszer. Csak a Linux operációs rendszert futtató hello HDInsight későbbi kiadásaiban érhetők el. Nincs HDInsight a Windows későbbi kiadásaiban lesz. 
 
 ## <a name="faqs"></a>Gyakori kérdések
 
-### <a name="what-is-the-timeline-for-retiring-hdinsight-on-windows"></a>Mi az az ütemterv HDInsight eltávolítása Windows?
-2018. július 31. a Windows a HDInsight a kivezetési dátum. Ha a tervezett kivezetési dátum eltér a régió, hogy értesítést kap külön-külön. 
+### <a name="what-is-hello-timeline-for-retiring-hdinsight-on-windows"></a>Mi az a HDInsight eltávolítása Windows hello ütemtervét?
+2018. július 31. a kivezetési dátum a HDInsight a Windows hello. Ha hello tervezett kivezetési dátum nem azonos a régió, értesítést fog kapni külön-külön. 
 
-### <a name="what-is-the-impact-of-retiring-hdinsight-on-windows-for-existing-customers"></a>Mi az a Windows HDInsight eltávolítása a meglévő ügyfeleknek hatását?
-A Windows HDInsight kivonását követően nem egy új HDInsight Windows-fürt létrehozása, vagy egy meglévő HDInsight-Windows-fürt méretezése. HDInsight 3.3-as verzió támogatása lejárt 2016. június 27. Ezért nincs támogatási vagy a HDInsight 3.3-as vagy korábbi verziójú hibajavításokat tartalmaz. A HDInsight a későbbi kiadásokban csak a Linux operációs rendszeren érhetők el. Nincs HDInsight a Windows későbbi kiadásaiban lesz.
+### <a name="what-is-hello-impact-of-retiring-hdinsight-on-windows-for-existing-customers"></a>Mi az a meglévő ügyfeleknek eltávolítása HDInsight Windows hello hatását?
+A Windows HDInsight kivonását követően nem egy új HDInsight Windows-fürt létrehozása, vagy egy meglévő HDInsight-Windows-fürt méretezése. HDInsight 3.3-as verzió támogatása lejárt 2016. június 27. Ezért nincs támogatási vagy a HDInsight 3.3-as vagy korábbi verziójú hibajavításokat tartalmaz. Csak a Linux operációs rendszert futtató hello HDInsight későbbi kiadásaiban érhetők el. Nincs HDInsight a Windows későbbi kiadásaiban lesz.
  
 ### <a name="which-versions-of-hdinsight-on-windows-are-affected"></a>A HDInsight a Windows mely verzióit érintett?
-Az Azure HDInsight 3.3-as verziójú HDInsight Windows utolsó verziója telepítve. HDInsight Windows kivonják, mielőtt az összes HDInsight Windows fürtök 3.3-as verziójának vagy korábbi verzióját HDInsight Linux 3.5-ös vagy újabb verzió kell áttelepíteni. A fürtökhöz történő HDInsight Linux rendszeren lehetővé teszi új fürtök létrehozása vagy meglévő fürtök átméretezése megőrzése. 
+Az Azure HDInsight 3.3-as verzióját az HDInsight a Windows hello utolsó verziója. Mielőtt Windows HDInsight kivonják, 3.3-as verziójának vagy korábbi fürtök verziójúnak kell lennie az összes HDInsight Windows át tooHDInsight Linux 3.5-ös vagy újabb verziója. A fürtök tooHDInsight Linux áttelepítése lehetővé teszi a tooretain hello képességét toocreate új fürtök, vagy meglévő fürtök átméretezése. 
 
-### <a name="what-do-i-need-to-do"></a>Mit kell tennem?
-A Windows a HDInsight-fürtök áttelepítése támogatott HDInsight Linux fürtre 2018 július 31 előtt. További információ: a [HDInsight áttelepítési dokumentum](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). További Azure HDInsight verzióival kapcsolatos információkért lásd: listájának [támogatott verziók](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions). 
+### <a name="what-do-i-need-toodo"></a>Mire van szükségem az toodo?
+A HDInsight Windows fürtök támogatott tooa HDInsight Linux-fürt áttelepítése előtt 2018 július 31. További információ: hello [HDInsight áttelepítési dokumentum](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). További Azure HDInsight verzióival kapcsolatos információkért lásd: hello listája [támogatott verziók](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions). 
 
-### <a name="where-do-i-find-the-cluster-os-type"></a>Hol található a fürt az operációs rendszer típusa?
-Az Azure portálon lépjen a HDInsight-fürtök – áttekintés oldalra, és keresse meg **típusú fürt** alatt **Essentials**. Azok a fürttípusok az operációs rendszer adott oldalon találhatók. 
+### <a name="where-do-i-find-hello-cluster-os-type"></a>Hol található hello fürt operációs rendszerének típusa?
+A hello Azure-portálon, válassza a toohello HDInsight-fürtök – áttekintés oldalra, és keresse meg **típusú fürt** alatt **Essentials**. az operációs rendszer fürttípusok hello adott oldalon felsorolt. 
 
-### <a name="i-cant-migrate-to-an-hdinsight-linux-cluster-by-july-31-2018-what-is-the-impact-to-my-hdinsight-windows-cluster"></a>I nem telepíthet át egy HDInsight Linux-fürt által 2018 július 31-ig. Újdonságok a Windows a HDInsight fürt gyakorolt?
-A HDInsight-Windows-fürt futtatja-van, de nem hozható létre egy új HDInsight Windows-fürt, vagy egy meglévő HDInsight-Windows-fürt méretezése. 
+### <a name="i-cant-migrate-tooan-hdinsight-linux-cluster-by-july-31-2018-what-is-hello-impact-toomy-hdinsight-windows-cluster"></a>Nem, ha az tooan HDInsight Linux-fürt által 2018 július 31 telepíthetők át. Mi az a hello hatás toomy HDInsight Windows-fürt?
+hello HDInsight Windows-fürt futtatja-van, de nem hozható létre egy új HDInsight Windows-fürt, vagy egy meglévő HDInsight-Windows-fürt méretezése. 
 
 ### <a name="my-cluster-has-a-net-dependency-how-do-i-resolve-this-dependency-on-linux"></a>A fürt egy .NET-függőség van. Hogyan oldja meg a függőség Linux?
-A Linux-fürt függőségi használva oldhatja a [monó projekt](http://www.mono-project.com/). A nyílt forráskódú végrehajtása .NET HDInsight Linux-fürtök érhető el. További információ: a [HDInsight áttelepítési dokumentum](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). 
+A Linux-fürt függőségi oldhatja hello segítségével [monó projekt](http://www.mono-project.com/). A nyílt forráskódú végrehajtása .NET HDInsight Linux-fürtök érhető el. További információ: hello [HDInsight áttelepítési dokumentum](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). 
 
 ### <a name="im-a-new-customer-for-hdinsight-on-windows-how-can-i-create-an-hdinsight-windows-cluster"></a>A HDInsight a Windows egy új ügyfél vagyok. Hogyan hozható létre egy HDInsight Windows fürt?
-2017. július 3. frissítésétől csak meglévő HDInsight-Windows-ügyfelek tárolófürtöket hozhat létre új HDInsight Windows. Új ügyfelek nem hozható létre egy HDInsight Windows-fürthöz az Azure portálon PowerShell vagy az SDK használatával. Javasoljuk, hogy új ügyfelek hozzon létre egy Linux HDInsight-fürtöt. Meglévő ügyfelek tárolófürtöket hozhat létre új HDInsight Windows a kivezetési dátum Windows HDInsight-ig. 
+2017. július 3. frissítésétől csak meglévő HDInsight-Windows-ügyfelek tárolófürtöket hozhat létre új HDInsight Windows. Új ügyfelek nem hozható létre egy HDInsight Windows fürt hello Azure-portálon a PowerShell vagy a hello SDK használatával. Javasoljuk, hogy új ügyfelek hozzon létre egy Linux HDInsight-fürtöt. Meglévő ügyfelek tárolófürtöket hozhat létre új HDInsight Windows kivezetési dátum HDInsight a Windows hello-ig. 
 
-### <a name="is-there-a-pricing-impact-associated-with-moving-from-hdinsight-on-windows-to-hdinsight-on-linux"></a>Van egy árképzési hatás társított Windows HDInsight Linux rendszeren továbblép a HDInsight-ból?
-Nem, a jelenlegi díjszabás megegyezik a HDInsight vagy operációs rendszer. 
+### <a name="is-there-a-pricing-impact-associated-with-moving-from-hdinsight-on-windows-toohdinsight-on-linux"></a>A társított helyezze át a HDInsight Linux rendszeren a Windows tooHDInsight árképzési hatása van?
+Nem, hello árképzési van hello azonos HDInsight vagy operációs rendszer. 
 
-### <a name="what-are-the-customer-advantages-associated-with-the-move-to-only-using-hdinsight-on-linux"></a>Mik azok a felhasználói előnyeit, csak a HDInsight Linux rendszeren tételének társított?
-* Gyorsabb idő piacra jutási nyílt forráskódú big Data típusú adatok technológiák a HDInsight szolgáltatáson keresztül
+### <a name="what-are-hello-customer-advantages-associated-with-hello-move-tooonly-using-hdinsight-on-linux"></a>Mik azok a hello ügyfél előnyeit hello társított helyezze át a HDInsight használata Linux tooonly?
+* Gyorsabb idő piacra jutási nyílt forráskódú big Data típusú adatok technológiák keresztül hello HDInsight-szolgáltatás
 * A nagy közösségi és támogatási ökoszisztémájának
-* Azon képessége, hogy a Hadoop és egyéb big Data típusú adatok technológiák nyílt forráskódú közösségi aktív fejlesztés
+* Képes tooexercise aktív fejlesztési által hello nyissa meg a forrás közösségi Hadoop és egyéb big Data típusú adatok technológiák
 
 ### <a name="does-hdinsight-on-linux-provide-additional-functionality-beyond-what-is-available-in-hdinsight-on-windows"></a>HDInsight Linux rendszeren nyújt további funkciók túl az elérhető a Windows a Hdinsightban?
-HDInsight 3.4-es verziójú verziótól kezdődően a Microsoft közzétette a HDInsight csak a Linux operációs rendszeren. Ennek eredményeképpen egyes összetevői belül HDInsight érhetők el a Linux csak. Ezek közé tartoznak, Apache Pletyka, Kafka, interaktív struktúra, a Spark HDInsight-alkalmazásokat, és az Azure Data Lake Store elsődleges fájlrendszer. 
+HDInsight 3.4-es verziójú verziótól kezdődően a Microsoft HDInsight csak a Linux operációs rendszert futtató hello kiadott. Ennek eredményeképpen egyes hello összetevők HDInsight belül érhetők Linux csak. Ezek közé tartoznak, Apache Pletyka, Kafka, interaktív struktúra, a Spark HDInsight-alkalmazásokat, és az Azure Data Lake Store hello elsődleges fájlrendszer. 
 
 ## <a name="service-level-agreement-for-hdinsight-cluster-versions"></a>HDInsight-fürt verziókról szolgáltatásiszint-szerződés
-A szolgáltatásiszint-szerződéssel (SLA) van megadva a egy _támogatási ablak_. A támogatási időszak, amelyet egy HDInsight-fürt verziószáma támogat a Microsoft ügyfélszolgálata és mennyi ideig. A verzió-e egy _támogatja a lejárati dátum_ , amely megfelelt, a támogatási időszakon kívül van a HDInsight-fürthöz. Támogatott verzióival kapcsolatos további információkért tekintse meg a listája [támogatott HDInsight-fürt verziók](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). A megadott HDInsight verziója X (miután elérhetővé vált egy újabb X + 1) támogatás lejárati dátuma, a későbbi kiszámítása a:  
+hello szolgáltatásiszint-szerződéssel (SLA) van megadva a egy _támogatási ablak_. hello támogatási időszak hello időn belül, egy HDInsight-fürt verziószáma Microsoft ügyfélszolgálata és által támogatott. Hello verzió-e egy _támogatja a lejárati dátum_ , amely megfelelt, a HDInsight-fürt hello hello támogatási időszakon kívül. Támogatott verzióival kapcsolatos további információkért lásd: hello listája [támogatott HDInsight-fürt verziók](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux). hello támogatás lejárati dátuma a megadott HDInsight verziója X (miután elérhetővé vált egy újabb X + 1) hello később, akkor a program:  
 
-* 1. képlet: 180 nap hozzáadása a dátum, amikor a HDInsight-fürt verziószáma X jelent.
-* 2. képlet: 90 nap hozzáadása a dátum, amikor a HDInsight-fürt verziószáma X + 1 szeretné elérhetővé tenni az Azure portálon.
+* 1 képlet: 180 nap toohello dátum, amikor hello HDInsight-fürt verziószáma X jelent hozzáadása.
+* 2 képlet: 90 nap toohello dátum, amikor hello HDInsight-fürt verziószáma X + 1 szeretné elérhetővé tenni az Azure portál hozzáadása.
 
-A _kivezetési dátum_ a dátum, amely után a fürt verziószáma nem hozható létre a hdinsight platformon. 2017. július 31., kezdve a kivezetési dátum után egy HDInsight-fürt nem tudja átméretezni. 
+Hello _kivezetési dátum_ hello dátum, amely után hello fürt verziószáma nem hozható létre a HDInsight-on. 2017. július 31., kezdve a kivezetési dátum után egy HDInsight-fürt nem tudja átméretezni. 
 
 > [!NOTE]
-> HDInsight Windows-fürtök (többek között a következőket verzió 2.1, 3.0-s, 3.1, 3.2-es és 3.3-as) futtatható Azure Vendég operációsrendszer-család 4-es verzióját, amely a Windows Server 2012 R2 64 bites verzióját használja. Azure Vendég operációsrendszer-család 4-es verziója támogatja a .NET-keretrendszer verziója 4.0-s, 4.5-ös, 4.5.1 és 4.5.2-es.
+> HDInsight Windows-fürtök (többek között a következőket verzió 2.1, 3.0-s, 3.1, 3.2-es és 3.3-as) futtatható Azure Vendég operációsrendszer-család 4-es verzióját, amely Windows Server 2012 R2 hello 64 bites verzióját használja. Azure Vendég operációsrendszer-család 4-es verziójú hello .NET-keretrendszer 4.0-s, 4.5-ös, 4.5.1, és verziói 4.5.2 támogatja.
 
 ## <a name="hortonworks-release-notes-associated-with-hdinsight-versions"></a>Hortonworks kibocsátási megjegyzéseket társított a HDInsight-verziókról
 
-A szakasz a kibocsátási megjegyzésekben a Hortonworks Data Platform disztribúcióiról, valamint a hdinsight eszközzel használt Apache összetevők mutató hivatkozásokat tartalmaz.
+hello szakasz hivatkozások toorelease megjegyzések hello Hortonworks Data Platform disztribúcióiról, valamint a hdinsight eszközzel használt Apache-összetevők.
 * HDInsight-fürt verziószáma 3.6 alapuló Hadoop-terjesztést használja [Hortonworks Data Platform 2.6](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_release-notes/content/ch_relnotes.html).
-* HDInsight-fürt verziószáma 3.5-ös verzióját használja egy Hadoop-terjesztést alapuló [Hortonworks Data Platform 2.5](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_release-notes/content/ch_relnotes_v250.html). A HDInsight fürt 3.5-ös verziója a _alapértelmezett_ Hadoop-fürt, amely az Azure portálon jön létre.
+* HDInsight-fürt verziószáma 3.5-ös verzióját használja egy Hadoop-terjesztést alapuló [Hortonworks Data Platform 2.5](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_release-notes/content/ch_relnotes_v250.html). A HDInsight fürt 3.5-ös verziója hello _alapértelmezett_ hello Azure-portálon létrehozott Hadoop-fürt.
 * HDInsight-fürt verziószáma 3.4 alapuló Hadoop-terjesztést használja [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html).
 * HDInsight-fürt verziószáma 3.3-as verzióját használja egy Hadoop-terjesztést alapuló [Hortonworks Data Platform 2.3](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html).
 
-  * [Apache Storm kibocsátási megjegyzések](https://storm.apache.org/2015/11/05/storm0100-released.html) az Apache webhelyen érhetők el.
-  * [Kibocsátási megjegyzések Apache Hive](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12332384&styleName=Text&projectId=12310843) az Apache webhelyen érhetők el.
+  * [Apache Storm kibocsátási megjegyzések](https://storm.apache.org/2015/11/05/storm0100-released.html) hello Apache webhelyen érhetők el.
+  * [Kibocsátási megjegyzések Apache Hive](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12332384&styleName=Text&projectId=12310843) hello Apache webhelyen érhetők el.
 * A HDInsight fürt 3.2-es verziójú alapuló Hadoop-terjesztést használja [Hortonworks Data Platform 2.2][hdp-2-2].
 
   * Kibocsátási megjegyzések a meghatározott Apache összetevők érhetők el: [Hive 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310843&version=12326450), [Pig 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310730&version=12326954), [HBase 0.98.4](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310753&version=12326810), [Phoenix 4.2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12315120&version=12327581), [M/R 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310941&version=12327180), [HDFS 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310942&version=12327181), [YARN 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12313722&version=12327197), [közös](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310240&version=12327179), [Tez 0.5.2](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314426&version=12328742), [Ambari 2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12312020&version=12327486), [0.9.3-as Storm](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314820&version=12327112), és [Oozie 4.1.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12324960&projectId=12311620).
@@ -167,17 +167,17 @@ A szakasz a kibocsátási megjegyzésekben a Hortonworks Data Platform disztrib�
 
 ## <a name="hdinsight-standard-and-hdinsight-premium"></a>HDInsight Standard és HDInsight Prémium
 
-Az Azure HDInsight a big data felhőajánlatokat két kategóriába biztosít: _szabványos_ és _prémium_. A következő táblázat felsorolja az elérhető _csak_ a HDInsight prémium. HDInsight Standard és Premium funkciókat, amelyek a tábla nem kifejezetten ismertetett érhetők el.
+Az Azure HDInsight big data felhőajánlatokat hello két kategóriába biztosít: _szabványos_ és _prémium_. hello következő táblázatban elérhető _csak_ a HDInsight prémium. A HDInsight Standard és Premium funkciókat, amelyek nem kifejezetten ismertetett hello tábla érhetők el.
 
 > [!NOTE]
-> A HDInsight prémium ajánlat jelenleg előzetes, és csak a Linux-fürtök esetén érhető el.
+> hello HDInsight prémium ajánlat jelenleg előzetes verzióban érhetők, és csak a Linux-fürtök esetén érhető el.
 
 | HDInsight prémium funkció | Leírás |
 | --- | --- |
-| A HDInsight-fürtök tartományhoz |Csatlakoztassa a HDInsight-fürtök olyan Azure Active Directory (Azure AD) tartományhoz a vállalati szintű biztonság. HDInsight prémium konfigurálnia a vállalati, akik bejelentkezni a HDInsight-fürtök az Azure AD használatával képes hitelesíteni az alkalmazottakat. A vállalati rendszergazda konfigurálhatja a Hive biztonsági szerepköralapú hozzáférés-vezérlés használatával [Apache Pletyka](http://hortonworks.com/apache/ranger/) és adatokhoz való hozzáférést, csak, mint amennyit szükséges használatára. Végül a rendszergazda az alkalmazottak és változások a hozzáférés-vezérlési házirendeket, ezáltal a cégirányítási a vállalati erőforrások magas fokú elérése által elért adatokat is naplózza. További információkért lásd: [konfigurálása tartományhoz a HDInsight-fürtök](hdinsight-domain-joined-configure.md). |
+| A HDInsight-fürtök tartományhoz |HDInsight fürtök tooAzure Active Directory (Azure AD) tartományhoz a vállalati szintű biztonság csatlakozni. HDInsight prémium konfigurálnia a vállalati, akik az Azure AD toolog tooan HDInsight-fürt használatával képes hitelesíteni az alkalmazottakat. hello vállalati rendszergazda konfigurálhatja a Hive biztonsági szerepköralapú hozzáférés-vezérlés használatával [Apache Pletyka](http://hortonworks.com/apache/ranger/) és adatok hozzáférési toouse korlátozhatja a csak, mint amennyit szükséges. Végül Üdvözöljük a rendszergazdákat naplózhatja az alkalmazottak által elért adatokat, és a módosítások tooaccess hozzáférésvezérlési házirendeket, ezáltal a cégirányítási a vállalati erőforrások magas fokú elérése. További információkért lásd: [konfigurálása tartományhoz a HDInsight-fürtök](hdinsight-domain-joined-configure.md). |
 
 ### <a name="cluster-types-supported-in-hdinsight-premium"></a>Fürt típusokat támogatja a HDInsight prémium
-A következő táblázat a fürttípusok, amelyekkel a HDInsight prémium támogatottak.
+hello következő táblázatban hello fürttípusok, amelyekkel a HDInsight prémium támogatottak.
 
 | Fürttípus | Standard | Prémium (előzetes verzió) |
 | --- | --- | --- |
@@ -197,7 +197,7 @@ HDInsight prémium fürtök nem támogatják az Azure Data Lake Store elsődlege
 HDInsight prémium tarifacsomag és SLA-t információkért lásd: [HDInsight árképzési](https://azure.microsoft.com/pricing/details/hdinsight/).
 
 ## <a name="default-node-configuration-and-virtual-machine-sizes-for-clusters"></a>Alapértelmezett csomópont konfigurációs és virtuális gépek méretei fürtök
-Az alábbi táblázatok a HDInsight-fürtök az alapértelmezett virtuális gép (VM) mérete.
+a következő táblák hello alapértelmezett virtuális gép (VM) méretek listázása a HDInsight-fürtök hello.
 
 > [!IMPORTANT]
 > Ha több mint 32 munkavégző csomópontokhoz fürtben, ki kell választania egy átjárócsomóponttal mérete legalább 8 maggal és 14 GB RAM-mal.
@@ -230,9 +230,9 @@ Az alábbi táblázatok a HDInsight-fürtök az alapértelmezett virtuális gép
   | Peremhálózati: ajánlott Virtuálisgép-méretek | | | | |Windows: D12 D13, D14; Linux: D4, D12 D13, D14 |
 
 > [!NOTE]
-> - HEAD nevezik *Nimbus* a Storm a fürt típusa.
-> - Néven dolgozó *felügyelő* a Storm a fürt típusa.
-> - Néven dolgozó *régió* a HBase a fürt típusa.
+> - HEAD nevezik *Nimbus* hello Storm a fürt típusa.
+> - Néven dolgozó *felügyelő* hello Storm a fürt típusa.
+> - Néven dolgozó *régió* hello HBase a fürt típusa.
 
 ## <a name="next-steps"></a>Következő lépések
 - [A telepítő Hadoop, Spark, és a HDInsight fürt](hdinsight-hadoop-provision-linux-clusters.md)

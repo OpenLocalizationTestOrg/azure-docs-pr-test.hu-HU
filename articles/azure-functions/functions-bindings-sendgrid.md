@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Functions SendGrid kötések |} Microsoft Docs"
+title: "aaaAzure funkciók SendGrid kötések |} Microsoft Docs"
 description: "Az Azure Functions SendGrid kötések referencia"
 services: functions
 documentationcenter: na
@@ -12,35 +12,35 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 03/16/2017
 ms.author: rachelap
-ms.openlocfilehash: 445a40a884e648cdb2a57f8ef43bed4f8a3efcf2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10a3837875eb6ae18e6c789bcf64cc401cf5f26a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-sendgrid-bindings"></a>Az Azure Functions SendGrid kötések
 
-Ez a cikk azt ismerteti, hogyan konfigurálását és az Azure Functions SendGrid kötések használatát. Sendgrid használhatja az Azure Functions programozott módon testreszabott e-mail üzenetek küldéséhez.
+Ez a cikk azt ismerteti, hogyan tooconfigure és az Azure Functions SendGrid kötések munkahelyi. A SendGrid programozott módon használhatja az Azure Functions toosend testreszabott e-mail.
 
-Ez a cikk az Azure Functions fejlesztői útmutatót. Ha most ismerkedik az Azure Functions, kezdje a a következőket:
+Ez a cikk az Azure Functions fejlesztői útmutatót. Ha új tooAzure funkciók, indítsa el a következő erőforrások hello:
 
 [Az első Azure-függvény létrehozása](functions-create-first-azure-function.md). 
 [C#](functions-reference-csharp.md), [F #](functions-reference-fsharp.md), vagy [csomópont](functions-reference-node.md) fejlesztői hivatkozik.
 
 ## <a name="functionjson-for-sendgrid-bindings"></a>a SendGrid kötések Function.JSON
 
-Az Azure Functions biztosít SendGrid egy kimeneti kötése. A SendGrid kimeneti kötés lehetővé teszi, hogy a létrehozása és elküldése e-mailben elküldi programozott módon. 
+Az Azure Functions biztosít SendGrid egy kimeneti kötése. a kimeneti hello SendGrid kötés lehetővé teszi a toocreate, majd küldje el e-mailek programozott módon. 
 
-A SendGrid kötés támogatja-e a következő tulajdonságokkal:
+hello SendGrid kötés támogatja-e hello következő tulajdonságai:
 
-- `name`: Szükséges – a kérelem vagy kérelemtörzset függvény a kódban használt változó neve. Ez az érték ```$return``` Ha csak egy visszatérési értéket. 
-- `type`: Szükséges – kell állítani "sendGrid."
-- `direction`: Szükséges – kell állítani "out".
-- `apiKey`: A függvény App Alkalmazásbeállítások tárolja az API-kulcs nevét szükséges – kell lennie.
-- `to`: a címzett e-mail címét.
-- `from`: a feladó e-mail címe.
-- `subject`: az e-mail tárgyát.
-- `text`: az e-mailek tartalmának.
+- `name`: Szükséges – hello hello kérelemmel vagy a kérelem törzsében függvény a kódban használt változó neve. Ez az érték ```$return``` Ha csak egy visszatérési értéket. 
+- `type`: Szükséges – túl lehet beállított "sendGrid."
+- `direction`: Szükséges – kell állítható túl "lejárt."
+- `apiKey`: Szükséges – toohello neve a API-kulcs hello függvény App Alkalmazásbeállítások tárolva kell lennie.
+- `to`: hello címzett e-mail címét.
+- `from`: hello feladó e-mail címe.
+- `subject`: hello hello e-mail tárgya.
+- `text`: e-mailek tartalmának hello.
 
 Példa **function.json**:
 
@@ -65,7 +65,7 @@ Példa **function.json**:
 >
 >
 
-## <a name="c-example-of-the-sendgrid-output-binding"></a>A SendGrid például C# kimeneti kötése
+## <a name="c-example-of-hello-sendgrid-output-binding"></a>C# – példa hello SendGrid kimeneti kötése
 
 ```csharp
 #r "SendGrid"
@@ -92,7 +92,7 @@ public static Mail Run(TraceWriter log, string input, out Mail message)
 }
 ```
 
-## <a name="node-example-of-the-sendgrid-output-binding"></a>A SendGrid csomópont példa kimeneti kötése
+## <a name="node-example-of-hello-sendgrid-output-binding"></a>Hello csomópont példa SendGrid kimeneti kötése
 
 ```javascript
 module.exports = function (context, input) {    
@@ -115,6 +115,6 @@ module.exports = function (context, input) {
 Az Azure Functions más kötései és eseményindítók kapcsolatos információkért lásd: 
 - [Az Azure Functions eseményindítók és kötések fejlesztői segédanyagai](functions-triggers-bindings.md)
 
-- [Gyakorlati tanácsok az Azure Functions](functions-best-practices.md) néhány ajánlott eljárás az Azure Functions létrehozásakor használandó sorolja fel.
+- [Gyakorlati tanácsok az Azure Functions](functions-best-practices.md) néhány gyakorlati tanácsok toouse sorolja fel, az Azure Functions létrehozásakor.
 
 - [Az Azure Functions fejlesztői segédanyagai](functions-reference.md) programozói segédanyagok függvények kódolásához, valamint eseményindítók és kötések meghatározásához.

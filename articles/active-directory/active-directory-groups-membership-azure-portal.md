@@ -1,6 +1,6 @@
 ---
-title: "A csoportok a csoport beletartozik az Azure Active Directoryban kezelése |} Microsoft Docs"
-description: "Csoportok tartalmazhatnak más csoportok az Azure Active Directoryban. Megtudhatja, hogyan kezelheti az adott tagságok."
+title: a csoport tartozik tooin Azure Active Directory aaaManage hello csoportok |} Microsoft Docs
+description: "Csoportok tartalmazhatnak más csoportok az Azure Active Directoryban. Itt hogyan toomanage adott tagságok."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,33 +15,33 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 08e04a6590176c4084ca47b4bd6cbb22500eca2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0a0a1967084de0968e1e802559f9cdfd7ca6ae4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-to-which-groups-a-group-belongs-in-your-azure-active-directory-tenant"></a>Kezelheti az Azure Active Directory-bérlőhöz tartozik egy csoport mely csoportok
-Csoportok tartalmazhatnak más csoportok az Azure Active Directoryban. Megtudhatja, hogyan kezelheti az adott tagságok.
+# <a name="manage-toowhich-groups-a-group-belongs-in-your-azure-active-directory-tenant"></a>Az Azure Active Directory-bérlőhöz tartozik egy csoport toowhich csoportok kezelése
+Csoportok tartalmazhatnak más csoportok az Azure Active Directoryban. Itt hogyan toomanage adott tagságok.
 
-## <a name="how-do-i-find-the-groups-my-group-is-a-member-of"></a>Hogyan találhatom meg a csoportok a csoport egy tagja?
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** a szövegmezőbe, majd válassza ki azt a **Enter**.
+## <a name="how-do-i-find-hello-groups-my-group-is-a-member-of"></a>Hogyan találhatom hello csoportok a csoport egy tagja?
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** hello szövegmezőbe, és válassza ki **Enter**.
 
    ![Nyitó felhasználók kezelése](./media/active-directory-groups-membership-azure-portal/search-user-management.png)
-3. Az a **felhasználók és csoportok** panelen válassza **összes csoport**.
+3. A hello **felhasználók és csoportok** panelen válassza **összes csoport**.
 
-   ![A csoportok panel megnyitása](./media/active-directory-groups-membership-azure-portal/view-groups-blade.png)
-4. Az a **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
-5. Az a **csoport - *groupname***  panelen válassza **csoporttagságok**.
+   ![Nyitó hello csoportok panelen](./media/active-directory-groups-membership-azure-portal/view-groups-blade.png)
+4. A hello **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
+5. A hello **csoport - *groupname***  panelen válassza **csoporttagságok**.
 
-   ![A csoport tagságát panel megnyitása](./media/active-directory-groups-membership-azure-portal/group-membership-blade.png)
-6. A csoport tagja másik csoportnak, hozzáadja a a **Group - csoporttagságok** panelen válassza a **Hozzáadás** parancsot.
-7. Válasszon csoportot a **csoport kijelölése** panelt, és válassza a **válasszon** gomb a panel alján. Egyszerre csak egy csoporthoz adhat hozzá a csoporthoz. A **felhasználói** mezőben szűrése a képernyőt a megfelelő felhasználó vagy eszköz nevek a bejegyzést. Nem helyettesítő karakterek használata engedélyezett, hogy a mezőben.
+   ![Hello tagságát panel megnyitása](./media/active-directory-groups-membership-azure-portal/group-membership-blade.png)
+6. tooadd a csoport egy másik csoportot, a hello tagjaként **Group - csoporttagságok** panelen, jelölje be hello **Hozzáadás** parancsot.
+7. Jelöljön ki egy csoportot hello **csoport kijelölése** panelen, és jelölje ki hello **válasszon** hello hello panel alsó részén gombra. A csoport tooonly egy csoport egyszerre is hozzáadhat. Hello **felhasználói** szűri hello megjelenítési megfelelő a bejegyzés tooany része egy felhasználó vagy eszköz nevét. Nem helyettesítő karakterek használata engedélyezett, hogy a mezőben.
 
    ![A csoporttagság hozzáadása](./media/active-directory-groups-membership-azure-portal/add-group-membership.png)
-8. A csoport eltávolításához egy másik csoport tagjaként a a **Group - csoporttagságok** panelen válasszon ki egy csoportot.
-9. Az a ***groupname*** panelen válassza a **eltávolítása** parancsot, és erősítse meg választását a parancssorba.
+8. tooremove a csoport egy másik csoportot, a hello tagjaként **Group - csoporttagságok** panelen válasszon ki egy csoportot.
+9. A hello ***groupname*** panelen, jelölje be hello **eltávolítása** parancsot, és erősítse meg választását hello a parancssorból.
 
    ![Távolítsa el a tagság parancs](./media/active-directory-groups-membership-azure-portal/remove-group-membership.png)
 10. Amikor befejezte a csoport csoporttagság módosítása, válassza ki a **mentése**.

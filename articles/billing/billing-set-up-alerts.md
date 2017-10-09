@@ -1,5 +1,5 @@
 ---
-title: "Az Azure-előfizetések számlázással vagy jóváírás riasztások beállítása |} Microsoft Docs"
+title: "az Azure-előfizetések számlázással vagy jóváírás figyelmeztetéseket aaaSet |} Microsoft Docs"
 description: "Ismerteti, hogyan állíthat be riasztásokat a az Azure számlázásának számlázási meglepetések számát elkerülése érdekében."
 keywords: "jóváírás riasztást, számlázási riasztás"
 services: 
@@ -17,46 +17,46 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: vikdesai
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7a1b579fdde831fdc3afa0a2aee4c24890216ed1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 711b9c72c59874792b0e229cdc5ec0fa517c24c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-billing-or-credit-alerts-for-your-microsoft-azure-subscriptions"></a>A Microsoft Azure-előfizetések a számlázással vagy jóváírás riasztások beállítása
-Ha a Fiókadminisztrátor az Azure-előfizetésre, az Azure számlázási értesítési szolgáltatás testreszabott létrehozásához használhatja számlázási riasztásokat, amelyek segítenek figyelése és kezelése az Azure-fiókra számlázási tevékenységet.
+Ha Ön hello Fiókadminisztrátor az Azure-előfizetéssel, használhatja a hello Azure számlázási riasztás szolgáltatás testre szabott toocreate számlázási riasztásokat, amelyek segítik a figyelheti és kezelheti a számlázási tevékenységet az Azure-fiókra.
 
-Ez a szolgáltatás a helyzet a képen az előzetes verziójú Funkciók lapon engedélyezni kell.
+Ez a szolgáltatás ennyi az egész Preview, ezért meg kell tooenable hello előzetes verziójú funkciók a lapon először.
 
-## <a name="set-the-alert-threshold-and-email-recipients"></a>A riasztási küszöbérték és e-mailek címzettjeinek beállítása
-1. Látogasson el [az előzetes verziójú funkciók oldalon](https://account.windowsazure.com/PreviewFeatures) , és engedélyezze **értesítési szolgáltatás számlázási**.
+## <a name="set-hello-alert-threshold-and-email-recipients"></a>Hello riasztási küszöbérték és e-mailek címzettjeinek beállítása
+1. Látogasson el [hello előzetes verziójú funkciók lap](https://account.windowsazure.com/PreviewFeatures) , és engedélyezze **értesítési szolgáltatás számlázási**.
 
-1. Miután megkapta az e-mailes megerősítés, amely a számlázási szolgáltatás be van kapcsolva az előfizetéséhez, látogasson el a [az előfizetések oldalán](https://account.windowsazure.com/Subscriptions) a fiókportálon. Kattintson a figyelheti, és kattintson a kívánt előfizetést **riasztások**.
+1. Miután megkapta hello e-mailes megerősítés hello számlázási szolgáltatás be van kapcsolva, az előfizetés, látogasson el [hello előfizetések oldalán](https://account.windowsazure.com/Subscriptions) hello fiókportálon. Szeretné, hogy toomonitor, és kattintson az előfizetés hello **riasztások**.
 
-    ![Az előfizetések nézet az Azure Account center riasztások kiemelt – képernyőfelvétel][Image1]
+    ![Képernyőfelvétel a hello előfizetések nézet az Azure Account center, a riasztások kiemelt][Image1]
 
-2. Ezután kattintson **riasztási hozzáadása** az elsőt létrehozásához. Összesen előfizetésenként, egy másik küszöbérték és az egyes riasztások két e-mailek címzettjeinek legfeljebb öt számlázási riasztásokat állíthat be.
+2. Ezután kattintson **riasztási hozzáadása** toocreate az elsőt. Is beállítása öt számlázási riasztásokat, amelyek különböző küszöbértéke előfizetésenként összesen és az egyes riasztások tootwo e-mailek címzettjeinek fel.
 
-    ![A riasztások nézetben, ahol felveheti a riasztás képernyőképe][Image2]
+    ![Képernyőfelvétel a hello riasztások nézet, ahol felveheti a riasztás][Image2]
 
-3. Amikor egy riasztást, adjon neki egy egyedi nevet, választja a költségkeret küszöbértéket, és válassza ki az e-mail címeket, ha elküldi a riasztásokat. A küszöbérték beállításakor, vagy választhat egy **teljes számlázási** vagy egy **pénzügyi kreditet** a a **riasztási a** listája. Számlázási összesen riasztást küldi, amikor az előfizetés költségeik meghaladja a küszöbértéket. A pénzügyi kreditet riasztást küldi, amikor a pénzügyi kreditek meghaladja az vetett. Pénzügyi kreditek általában az ingyenes próbaverzió és a Visual Studio előfizetések vonatkozik.
+3. Amikor egy riasztást, akkor adjon neki egy egyedi nevet, válassza ki a költségkeret küszöbérték, és válassza hello e-mail címeket, ha elküldi a riasztásokat. Hello küszöb beállításához, vagy választhat egy **teljes számlázási** vagy egy **dolláros kreditet** a hello **riasztási a** listája. Számlázási összesen riasztást küldi, amikor hello küszöbértéket meghaladó előfizetés kiadásokat. A pénzügyi kreditet riasztást küldi, amikor a pénzügyi kreditek eshessen hello korlátot. Pénzügyi kreditek általában tooFree próbaverzió és a Visual Studio előfizetések alkalmazni.
 
-    ![A riasztási hozzáadása nézet, ahol konfigurálhatja a címzettek képernyőképe][Image3]
+    ![Képernyőfelvétel a hello riasztási hozzáadása nézet, ahol konfigurálhatja a címzetteknek][Image3]
 
-Azure akármilyen e-mail címet támogatja, de nem győződjön meg arról, hogy az e-mail cím működésével úgy exportálást elírás eredménye.
+Azure támogatja akármilyen e-mail címet, de nem győződjön meg arról, hogy működik-e hello e-mail címét, így gondosan ellenőrizze a elírás eredménye.
 
 ## <a name="check-on-your-alerts"></a>A riasztások ellenőrzése
-Miután beállította a riasztásokat, a Account Center sorolja fel azokat, és bemutatja, hogy hány több állíthat be. Az egyes riasztások látható, a dátumot és küldési időpontja, hogy egy riasztás teljes számlázási vagy pénzügyi kreditet-e, és a beállított korlátot. A dátum és idő formátuma 24 órás világidő koordinálják (UTC), és a dátum, éééé-hh-nn formátumban. Kattintson a plusz jelre riasztás szerkesztheti a listában, vagy kattintson a Kuka törli-e.
+Miután beállította a riasztások, hello Account Center sorolja fel azokat, és bemutatja, hogy hány több állíthat be. Az egyes riasztások látható a hello dátum és a küldési időpontja, hogy egy riasztás teljes számlázási vagy pénzügyi kreditet-e, és a hello korlátot állít be. hello dátum és idő formátuma 24 órás világidő koordinálják (UTC), és hello dátum, éééé-hh-nn formátumban. Kattintson a hello és írja alá a hello lista tooedit riasztás vagy hello Kuka toodelete azt.
 
 ## <a name="billing-alerts-for-enterprise-agreement-ea-customers"></a>A nagyvállalati szerződés (EA) ügyfelek számlázási riasztások
-Nagyvállalati ügyfelek a beléptetési kvóták költségeik beállítás a minden részleg számára is megkapja az értesítéseket. Lásd: [részleg költségeik kvóták](https://ea.azure.com/helpdocs/departmentSpendingQuotas) a kezdéshez EA portálon.
+Nagyvállalati ügyfelek a beléptetési kvóták költségeik beállítás a minden részleg számára is megkapja az értesítéseket. Lásd: [részleg költségeik kvóták](https://ea.azure.com/helpdocs/departmentSpendingQuotas) a hello EA portál tooget elindult.
 
 ## <a name="learn-more-about-azure-cost-management"></a>További információ az Azure költség kezeléséről
-- Becsült költségeit használatával a [árképzési Számológép](https://azure.microsoft.com/pricing/calculator/), [összköltsége tulajdonjoga Számológép](https://aka.ms/azure-tco-calculator), és egy szolgáltatás hozzáadásakor.
+- Becsült költségeit hello segítségével [árképzési Számológép](https://azure.microsoft.com/pricing/calculator/), [összköltsége tulajdonjoga Számológép](https://aka.ms/azure-tco-calculator), és egy szolgáltatás hozzáadásakor.
 - [Tekintse át a használati és költségek az Azure portálon rendszeresen](billing-getting-started.md#costs).
 - Kapcsolja be a [Azure Advisor költség javaslatok](../advisor/advisor-cost-recommendations.md).
 
-További tudnivalókért lásd: [Azure költség felügyeleti útmutató](billing-getting-started.md).
+több, lásd: toolearn [Azure költség felügyeleti útmutató](billing-getting-started.md).
 
 [Image1]: ./media/azure-billing-set-up-alerts/billingalert1.png 
 [Image2]: ./media/azure-billing-set-up-alerts/billingalert2.png

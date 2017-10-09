@@ -8,7 +8,7 @@
 
 # Bevezetés
 ## klasszikus Azure portál
-### [1. feladat: a rendszergazdák csoportjának létrehozása](active-directory-ds-getting-started-create-group.md)
+### [1. feladat: hello rendszergazda-csoport létrehozása](active-directory-ds-getting-started-create-group.md)
 ### [2. feladat: virtuális hálózat létrehozása vagy kiválasztása](active-directory-ds-getting-started-vnet.md)
 ### [3. feladat: az Azure AD Domain Services engedélyezése](active-directory-ds-getting-started-enableaadds.md)
 ### [4. feladat: a virtuális hálózat DNS-beállításainak frissítése](active-directory-ds-getting-started-update-dns.md)
@@ -30,9 +30,9 @@
 ### [DNS-kezelés felügyelt tartományon](active-directory-ds-admin-guide-administer-dns.md)
 ### Biztonságos LDAP konfigurálása felügyelt tartományhoz
 #### [1. feladat: tanúsítvány beszerzése biztonságos LDAP-hoz](active-directory-ds-admin-guide-configure-secure-ldap.md)
-#### [2. feladat: a megbízható LDAP-tanúsítványának exportálása](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
-#### [3. feladat: biztonságos LDAP engedélyezése a felügyelt tartományhoz klasszikus Azure portállal](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
-#### [3. feladat: biztonságos LDAP engedélyezése a felügyelt tartományhoz az Azure portállal (előnézet)](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
+#### [2. feladat: hello biztonságos LDAP tanúsítvány exportálása](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
+#### [3. feladat: hello felügyelt tartomány klasszikus Azure portál használatával biztonságos LDAP engedélyezése](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
+#### [3. feladat: hello felügyelt tartomány (előzetes verzió) Azure-portál használatával biztonságos LDAP engedélyezése](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
 
 ### [Szervezeti egység létrehozása egy felügyelt tartományon](active-directory-ds-admin-guide-create-ou.md)
 ### [Csoportházirend-kezelése felügyelt tartományon](active-directory-ds-admin-guide-administer-group-policy.md)
@@ -44,7 +44,7 @@
 ## Hibaelhárítás
 ### [Gyakori kérdések](active-directory-ds-faqs.md)
 ### [Hibaelhárítási útmutató](active-directory-ds-troubleshooting.md)
-### [Az Azure portál előnézeti felületének engedélyezése](active-directory-ds-azure-portal-enable-preview-access.md)
+### [Hello minta Azure portál felhasználói élmény engedélyezése](active-directory-ds-azure-portal-enable-preview-access.md)
 ### [Eltérő bérlők hibáinak megoldása](active-directory-ds-mismatched-tenant-error.md)
 
 # Referencia

@@ -1,5 +1,5 @@
 ---
-title: "Feladatütemező – PowerShell-parancsmagok referencia"
+title: aaaScheduler PowerShell parancsmag-referencia
 description: "Feladatütemező – PowerShell-parancsmagok referencia"
 services: scheduler
 documentationcenter: .NET
@@ -14,16 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 141919ab4506b3de4c4a69670dcf54c60ee6409c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2b23bcd3e4493ffba1dbf21fbb87818be7c01e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-powershell-cmdlets-reference"></a>Feladatütemező – PowerShell-parancsmagok referencia
-A következő táblázat ismerteti, és hivatkozásokat tartalmaz a fő parancsmagok Azure Scheduler a hivatkozás lapján.
+hello a következő táblázat ismerteti, és hivatkozásokat tartalmaz az egyes hello fő parancsmagok a Azure Scheduler toohello referencialapja.
 
-Az Azure PowerShell telepítésérről és az Azure-előfizetéssel való társításáról további információt [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) című cikkben találhat. 
+Azure PowerShell tooinstall és rendelje hozzá azt az Azure-előfizetéssel, lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview). 
 
 További információ [Azure Resource Manager parancsmagjainak](/powershell/azure/overview), lásd: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
 
@@ -47,7 +47,7 @@ További információ [Azure Resource Manager parancsmagjainak](/powershell/azur
 | [Set-AzureRmSchedulerServiceBusTopicJob](/powershell/module/azurerm.scheduler/set-azurermschedulerservicebustopicjob) |Módosítja egy service bus témakör feladat. |
 | [Set-AzureRmSchedulerStorageQueueJob](/powershell/module/azurerm.scheduler/set-azurermschedulerstoragequeuejob) |Módosítja egy sor feladat. |
 
-További részletes információt a következő parancsmagokat futtathatja: 
+Részletesebb információkért hello a következő parancsmagok bármelyikével futtathatja: 
 
 ```
 Get-Help <cmdlet name> -Detailed
@@ -64,7 +64,7 @@ Get-Help <cmdlet name> -Full
 
  [Az Azure Scheduler alapfogalmai, terminológiája és entitáshierarchiája](scheduler-concepts-terms.md)
 
- [Ismerkedés a Scheduler szolgáltatás Azure Portalon való használatával](scheduler-get-started-portal.md)
+ [Az ütemező hello Azure-portálon az első lépéseiben](scheduler-get-started-portal.md)
 
  [Csomagok és számlázás az Azure Schedulerben](scheduler-plans-billing.md)
 

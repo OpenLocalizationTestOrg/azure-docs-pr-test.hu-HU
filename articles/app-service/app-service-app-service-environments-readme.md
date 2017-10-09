@@ -1,6 +1,6 @@
 ---
-title: "App Service Environment-környezet |} Microsoft Docs"
-description: "Mi az az Azure App Service-környezetek? App Service Environment bemutatása."
+title: "Service-környezet aaaApp |} Microsoft Docs"
+description: "Mi az az Azure App Service-környezetek? Egy bevezető tooApp Service-környezet."
 keywords: "az Azure app service Environment-környezet, virtuális hálózati biztonságos hálózatkezelés"
 services: app-service
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: stefsch
-ms.openlocfilehash: 1de3f2c513f4f5ce6fd2ab2b57514122955a9a98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b59fed4e5a72d4c4805e1dca203747e07e77103
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-documentation"></a>Az App Service-környezet dokumentáció
 Az App Service Environment-környezet egy [prémium] [ PremiumTier] terv lehetőségét, amely egy teljesen elkülönített és dedikált környezetben történő biztonságos futtatására, nagy méretekben Azure App Service-alkalmazásokhoz Azure App Service szolgáltatás beleértve [Web Apps][WebApps], [Mobile Apps][MobileApps], és [API-alkalmazások][APIApps].  
@@ -31,9 +31,9 @@ App Service-környezetek ideálisak igénylő alkalmazások és szolgáltatások
 
 Az ügyfelek több App Service Environment-környezetek belül egyetlen Azure-régió, valamint több Azure-régiók közötti hozhatnak létre.  Így az App Service Environment-környezetek magas RPS munkaterhelések támogatásához állapot nélküli alkalmazások szintek vízszintesen méretezéshez ideális.
 
-App Service-környezetek csak az egyetlen ügyfél-alkalmazások futtatása érdekében elkülönített, és mindig telepített virtuális hálózatba.  Az ügyfelek szabályozhassák részletes mindkét bejövő és kimenő hálózati forgalom használó [hálózati biztonsági csoportok][NetworkSecurityGroups].  Alkalmazások is is nagy sebességű biztonságos kapcsolat létrehozása a virtuális hálózatokon keresztül kapcsolódjanak a helyszíni vállalati erőforrásokhoz.
+App Service-környezetek elkülönített toorunning csak egyetlen vevő alkalmazások, és mindig telepített virtuális hálózatba.  Az ügyfelek szabályozhassák részletes mindkét bejövő és kimenő hálózati forgalom használó [hálózati biztonsági csoportok][NetworkSecurityGroups].  Alkalmazások is is nagy sebességű biztonságos kapcsolat létrehozása a virtuális hálózatok tooon helyszíni vállalati erőforrások keresztül.
 
-Alkalmazások gyakran kell hozzáférhet a vállalati erőforrásokhoz, például a belső adatbázisok és webszolgáltatásokat.  App Service Environment-környezetek futó alkalmazások hozzáférhetnek a keresztül elérhető erőforrásokhoz [pont-pont] [ SiteToSite] VPN és [Azure ExpressRoute] [ ExpressRoute] kapcsolatok.
+Alkalmazások gyakran kell tooaccess vállalati erőforrások, például belső adatbázisok és a web services.  App Service Environment-környezetek futó alkalmazások hozzáférhetnek a keresztül elérhető erőforrásokhoz [pont-pont] [ SiteToSite] VPN és [Azure ExpressRoute] [ ExpressRoute] kapcsolatok.
 
 * [Mi az az App Service Environment?](../app-service-web/app-service-app-service-environment-intro.md)
 * [App Service Environment környezetek létrehozása](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)

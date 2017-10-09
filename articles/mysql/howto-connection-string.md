@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás a MySQL az Azure Database-alkalmazások |} Microsoft Docs"
-description: "Ez a dokumentum a jelenleg támogatott kapcsolati karakterláncok az alkalmazások az Azure Database-MySQL, beleértve az ADO.NET (C#), JDBC, Node.js, ODBC, PHP, Python vagy Ruby kapcsolati sorolja fel."
+title: "aaaConnect alkalmazások tooAzure MySQL adatbázis |} Microsoft Docs"
+description: "Ez a dokumentum az Azure Database alkalmazások tooconnect jelenleg támogatott hello kapcsolati karakterláncok MySQL, beleértve az ADO.NET (C#), JDBC, Node.js, ODBC, PHP, Python vagy Ruby sorolja fel."
 services: mysql
 author: mswutao
 ms.author: wuta
@@ -9,25 +9,25 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/12/2017
-ms.openlocfilehash: 2f40da41bcfda7e35f6fc63ead5d055246ab390c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bbcb2c0ddb4f8e5c225ebef53781e073f5c7b1a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-connect-applications-to-azure-database-for-mysql"></a>A MySQL az Azure Database-alkalmazások összekapcsolása
-Ez a dokumentum által támogatott Azure-adatbázis a MySQL, sablonok és példákkal együtt karakterláncot kapcsolattípusokat sorolja fel. Lehetséges, hogy más paraméterekkel, és különböző beállításokat a kapcsolati karakterláncban.
+# <a name="how-tooconnect-applications-tooazure-database-for-mysql"></a>Hogyan tooconnect alkalmazások tooAzure MySQL adatbázist
+Ez a dokumentum hello karakterláncot kapcsolattípusokat által támogatott Azure-adatbázis a MySQL, sablonok és példákkal együtt sorolja fel. Lehetséges, hogy más paraméterekkel, és különböző beállításokat a kapcsolati karakterláncban.
 
-- A tanúsítvány beszerzéséről [SSL konfigurálása](./howto-configure-ssl.md).
+- tooobtain hello tanúsítvány, lásd: [hogyan tooconfigure SSL](./howto-configure-ssl.md).
 - {your_host} = <servername>. mysql.database.azure.com
-- {your_user}@{servername} megfelelően = userID formátum a hitelesítéshez.  Csak a felhasználói azonosítóját használja, akkor a hitelesítés sikertelen lesz.
+- {your_user}@{servername} megfelelően = userID formátum a hitelesítéshez.  Csak hello userID használ, akkor a hello hitelesítési toofail.
 
 ## <a name="adonet"></a>ADO.NET
 ```ado.net
 Server={your_host};Port={your_port};Database={your_database};Uid={username@servername};Pwd={your_password};[SslMode=Required;]
 ```
 
-Ebben a példában a kiszolgáló neve, `myserver4demo`, adatbázisnév `wpdb`, a felhasználó neve `WPAdmin`, és a jelszó `mypassword!2`. Ezt követően a kapcsolati karakterláncot kell lennie:
+Ebben a példában hello kiszolgáló neve, `myserver4demo`, adatbázisnév `wpdb`, a felhasználó neve `WPAdmin`, és a jelszó `mypassword!2`. Ezt követően hello kapcsolati karakterláncot kell lennie:
 
 ```ado.net
 Server= "myserver4demo.mysql.database.azure.com"; Port=3306; Database= "wpdb"; Uid= "WPAdmin@myserver4demo"; Pwd="mypassword!2"; SslMode=Required;
@@ -63,10 +63,10 @@ cnx = mysql.connector.connect(user={username@servername}, password={your_passwor
 client = Mysql2::Client.new(username: {username@servername}, password: {your_password}, database: {your_database}, host: {your_host}, port: {your_port}[, sslca:{ca-cert filename}, sslverify:false, sslcipher:'AES256-SHA'])
 ```
 
-## <a name="get-the-connection-string-details-from-the-azure-portal"></a>Ismerje meg a kapcsolati karakterlánc részleteket az Azure-portálon
-Az a [Azure-portálon](https://portal.azure.com), nyissa meg a MySQL-kiszolgáló Azure-adatbázishoz, és kattintson a **kapcsolati karakterláncok** a listában beolvasni a példány: ![a kapcsolati karakterláncok ablaktáblán az Azure-portálon](./media/howto-connection-strings/connection-strings-on-portal.png)
+## <a name="get-hello-connection-string-details-from-hello-azure-portal"></a>Ismerje meg hello kapcsolati karakterlánc részleteket hello Azure-portálon
+A hello [Azure-portálon](https://portal.azure.com), nyissa meg az Azure Database tooyour MySQL-kiszolgáló, és kattintson a **kapcsolati karakterláncok** tooget a karakterlánc-példány listázása: ![hello kapcsolati karakterláncok ablaktábláján hello Azure-portálon](./media/howto-connection-strings/connection-strings-on-portal.png)
 
-A karakterlánc részletesen bemutatja a például az illesztőprogram, a kiszolgáló és a más adatbázis kapcsolat paramétereit. Módosítsa a példákat a saját paramétereivel, például az adatbázis nevét, jelszó és így tovább. Ez a karakterlánc segítségével majd csatlakozni a kiszolgálóhoz, a kódot és az alkalmazások.
+hello karakterlánc például hello illesztőprogram, a kiszolgáló és a más adatbázis paramétereit részletes adatokat biztosít. Módosítsa a példákat a saját paramétereivel, például az adatbázis nevét, jelszó és így tovább. A karakterlánc tooconnect toohello kiszolgáló a kódot és az alkalmazások használhatja.
 
 ## <a name="next-steps"></a>Következő lépések
 - Kapcsolat szalagtárakkal kapcsolatos további információkért lásd: [fogalmak - adatkapcsolattárak](./concepts-connection-libraries.md).

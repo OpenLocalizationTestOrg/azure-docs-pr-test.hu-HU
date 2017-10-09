@@ -1,6 +1,6 @@
 ---
-title: "Hajtsa végre az Azure parancssori felület a Jenkins |} Microsoft Docs"
-description: "Azure CLI használata Java-webalkalmazás telepítése az Azure-bA Jenkins folyamat"
+title: "aaaExecute hello Jenkins az Azure parancssori Felülettel |} Microsoft Docs"
+description: Ismerje meg, hogyan toouse Azure CLI toodeploy Java web app tooAzure Jenkins folyamat
 services: app-service\web
 documentationcenter: 
 author: mlearned
@@ -15,14 +15,14 @@ ms.workload: web
 ms.date: 6/7/2017
 ms.author: mlearned
 ms.custom: Jenkins
-ms.openlocfilehash: 5ca8338d4bf343f08fe70081cff755fa76a126a9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bd1e12e6de1f010453ff51c835f84e7361962f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-to-azure-app-service-with-jenkins-and-the-azure-cli"></a>Az Azure App Service Jenkins és az Azure parancssori felület telepítése
-Java-webalkalmazás telepítése az Azure-ba, használja az Azure CLI [Jenkins csővezeték](https://jenkins.io/doc/book/pipeline/). Ebben az oktatóanyagban létrehoz egy CI/CD folyamat egy Azure virtuális gépen történő is beleértve:
+# <a name="deploy-tooazure-app-service-with-jenkins-and-hello-azure-cli"></a>TooAzure Jenkins az App Service telepítése és hello Azure parancssori felület
+a Java web app tooAzure toodeploy, használhatja az Azure CLI [Jenkins csővezeték](https://jenkins.io/doc/book/pipeline/). Ebben az oktatóanyagban létrehoz egy CI/CD folyamat egy Azure virtuális gépen történő is beleértve:
 
 > [!div class="checklist"]
 > * Jenkins virtuális gép létrehozása
@@ -30,39 +30,39 @@ Java-webalkalmazás telepítése az Azure-ba, használja az Azure CLI [Jenkins c
 > * Webalkalmazás létrehozása az Azure-ban
 > * A GitHub-tárházban előkészítése
 > * Jenkins folyamat létrehozása
-> * A folyamat fut, és ellenőrizze a webes alkalmazás
+> * Hello folyamat fut, és ellenőrizze a hello webalkalmazás
 
-Az oktatóanyaghoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség. A verzió megkereséséhez futtassa a következőt: `az --version`. Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
+Ez az oktatóanyag szükséges hello Azure CLI 2.0.4 verzió vagy újabb. toofind hello verzió, futtassa `az --version`. Ha tooupgrade van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-and-configure-jenkins-instance"></a>Hozzon létre és Jenkins konfigurálása
-Ha még nem rendelkezik egy Jenkins master, kezdje a [Megoldássablonban](install-jenkins-solution-template.md), mely tartalmazza a szükséges [Azure hitelesítő adatok](https://plugins.jenkins.io/azure-credentials) beépülő modul alapértelmezés szerint. 
+Ha még nem rendelkezik egy Jenkins master, kezdje hello [Megoldássablonban](install-jenkins-solution-template.md), mely tartalmazza a szükséges hello [Azure hitelesítő adatok](https://plugins.jenkins.io/azure-credentials) beépülő modul alapértelmezés szerint. 
 
-Az Azure hitelesítő adat beépülő modul a Microsoft Azure szolgáltatás egyszerű hitelesítő adatok tárolása Jenkins teszi lehetővé. 1.2-es verziója, az azt támogatása a úgy, hogy Jenkins csővezeték beszerezheti az Azure hitelesítő adataival. 
+hello Azure hitelesítő adat beépülő modul lehetővé teszi toostore Microsoft Azure szolgáltatás egyszerű hitelesítő adatait a Jenkins. 1.2-es verziója, az azt támogatása hello úgy, hogy Jenkins csővezeték beszerezheti hello Azure hitelesítő adataival. 
 
 Győződjön meg arról, hogy 1.2-es vagy újabb verziót:
-* Belül Jenkins irányítópulton kattintson **Jenkins kezelése beépülő modul Manager -> ->** keresse meg a **Azure hitelesítő**. 
-* Frissítse a beépülő modul, ha a régebbi, mint 1.2-es.
+* Belül hello Jenkins irányítópultján kattintson **Jenkins kezelése beépülő modul Manager -> ->** keresse meg a **Azure hitelesítő**. 
+* Frissítse a hello beépülő modult, ha hello verziója korábbi, mint 1.2-es.
 
-A Jenkins fő Java JDK és Maven is szükséges. Telepítéséhez Jenkins fő SSH használatával bejelentkezni, és futtassa a következő parancsokat:
+Hello Jenkins fő Java JDK és Maven is szükséges. tooinstall, jelentkezzen be tooJenkins fő SSH használatával, és futtassa a következő parancsok hello:
 ```bash
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get install -y maven
 ```
 
-## <a name="add-azure-service-principal-to-jenkins-credential"></a>Adja hozzá az Azure szolgáltatás egyszerű Jenkins hitelesítő adatok
+## <a name="add-azure-service-principal-toojenkins-credential"></a>Az Azure szolgáltatás egyszerű tooJenkins hitelesítő adatok hozzáadása
 
-Egy Azure hitelesítő adatok Azure CLI végrehajtására van szükség.
+Meg kell szükséges tooexecute Azure parancssori felület egy Azure hitelesítő adatait.
 
-* Belül Jenkins irányítópulton kattintson **hitelesítő adatok -> rendszer ->**. Kattintson a **globális credentials(unrestricted)**.
-* Kattintson a **adja hozzá a hitelesítő adatok** hozzáadása egy [Microsoft Azure szolgáltatás egyszerű](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json) a előfizetés-azonosító, az ügyfél-azonosító, a titkos Ügyfélkulcs és a OAuth 2.0 Token-végpont kitöltésével. Adja meg a Azonosítót az ezt követő lépés felhasználásra.
+* Belül hello Jenkins irányítópultján kattintson **hitelesítő adatok -> rendszer ->**. Kattintson a **globális credentials(unrestricted)**.
+* Kattintson a **adja hozzá a hitelesítő adatok** tooadd egy [Microsoft Azure szolgáltatás egyszerű](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json) előfizetés-azonosító, az ügyfél-azonosító, a titkos Ügyfélkulcs és a OAuth 2.0 Token-végpont hello kitöltésével. Adja meg a Azonosítót az ezt követő lépés felhasználásra.
 
 ![Adja hozzá a hitelesítő adatok](./media/execute-cli-jenkins-pipeline/add-credentials.png)
 
-## <a name="create-an-azure-app-service-for-deploying-the-java-web-app"></a>Az Azure App Service üzembe helyezéséhez a Java-webalkalmazás létrehozása
+## <a name="create-an-azure-app-service-for-deploying-hello-java-web-app"></a>Az Azure App Service üzembe helyezéséhez hello Java-webalkalmazás létrehozása
 
-Az Azure App Service-csomagot hozzon létre a **szabad** árképzési szint használatával a [az App Service-csomagot hozzon létre](/cli/azure/appservice/plan#create) CLI parancsot. Az App Service-csomagot határoz meg a fizikai erőforrásokat, az alkalmazások tárolására szolgálnak. Az App Service-csomagra hozzárendelt összes alkalmazás ossza meg ezeket az erőforrásokat, lehetővé téve költség menthetők, ha több alkalmazást üzemeltető. 
+Hozzon létre az Azure App Service-csomag hello **szabad** hello segítségével tarifacsomag [az App Service-csomagot hozzon létre](/cli/azure/appservice/plan#create) CLI parancsot. hello App Service-csomagot határoz meg hello használt fizikai erőforrások toohost az alkalmazásokat. App Service-csomagot tooan hozzárendelt összes alkalmazás ossza meg ezeket az erőforrásokat, így toosave költség több alkalmazás esetén. 
 
 ```azurecli-interactive
 az appservice plan create \
@@ -71,7 +71,7 @@ az appservice plan create \
     --sku FREE
 ```
 
-Amikor készen áll a csomag, az Azure parancssori felület az alábbi példához hasonló kimenetét mutatja be:
+Amikor készen áll a hello terv, hello Azure CLI hasonló látható kimeneti toohello a következő példa:
 
 ```json
 { 
@@ -91,7 +91,7 @@ Amikor készen áll a csomag, az Azure parancssori felület az alábbi példáho
 
 ### <a name="create-an-azure-web-app"></a>Azure-webalkalmazás létrehozása
 
- Használja a [az webalkalmazás létrehozása](/cli/azure/appservice/web#create) CLI parancs futtatásával hozzon létre egy webalkalmazás az app-definíciót a `myAppServicePlan` App Service-csomag. A web app-definíciót érhetik el az alkalmazást az URL-CÍMÉT tartalmazza, és beállítja a kód telepítésére, az Azure számos lehetőség közül választhat. 
+ Használjon hello [az webalkalmazás létrehozása](/cli/azure/appservice/web#create) CLI parancs toocreate egy web app-definíciót a hello `myAppServicePlan` App Service-csomag. hello web app-definíciót tartalmaz egy URL-cím tooaccess az alkalmazásba, és konfigurálja a több beállítások toodeploy a kód tooAzure. 
 
 ```azurecli-interactive
 az webapp create \
@@ -100,9 +100,9 @@ az webapp create \
     --plan myAppServicePlan
 ```
 
-Helyettesítő a `<app_name>` helyőrző a saját egyedi alkalmazás nevével. A egyedi név része a webes alkalmazás esetén az alapértelmezett tartomány nevét, a nevének egyedinek kell lennie az Azure-ban minden alkalmazások között. A web app egy egyéni tartomány bejegyzése előtt a felhasználók számára közzétenni leképezheti.
+Helyettesítő hello `<app_name>` helyőrző a saját egyedi alkalmazás nevével. A egyedi név része hello alapértelmezett tartomány nevét hello webalkalmazás, így hello nevének kell toobe egyedi az Azure-ban minden alkalmazások között. Ki kell alakítani az tooyour felhasználók hozzárendelhető egy egyéni tartomány nevét bejegyzés toohello webalkalmazást.
 
-Amikor készen áll a web app-definíciót, az Azure parancssori felület információkat jeleníti meg az alábbi példához hasonló: 
+Amikor készen áll a hello web app-definíciót, hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg: 
 
 ```json 
 {
@@ -121,9 +121,9 @@ Amikor készen áll a web app-definíciót, az Azure parancssori felület inform
 
 ### <a name="configure-java"></a>Java konfigurálása 
 
-A Java runtime konfiguráció az alkalmazást igénylő a [az App Service web config frissítés](/cli/azure/appservice/web/config#update) parancsot.
+Hello Java runtime konfiguráció, amelyet az alkalmazás a hello [az App Service web config frissítés](/cli/azure/appservice/web/config#update) parancsot.
 
-A következő parancsot konfigurálása a webalkalmazás a legújabb Java 8 JDK futtathatnak és [Apache Tomcat](http://tomcat.apache.org/) 8.0.
+hello következő parancsot konfigurálása hello web app toorun a legújabb Java 8 JDK és [Apache Tomcat](http://tomcat.apache.org/) 8.0.
 
 ```azurecli-interactive
 az webapp config set \ 
@@ -135,16 +135,16 @@ az webapp config set \
 ```
 
 ## <a name="prepare-a-github-repository"></a>A GitHub-tárházban előkészítése
-Nyissa meg a [egyszerű Azure Java-webalkalmazás](https://github.com/azure-devops/javawebappsample) tárházban. A tárház a saját GitHub-fiók oszthatja ketté, kattintson a **elágazás** gombra a jobb felső sarkában.
+Nyissa meg hello [egyszerű Azure Java-webalkalmazás](https://github.com/azure-devops/javawebappsample) tárházban. toofork hello tárház tooyour saját GitHub-fiók, kattintson a hello **elágazás** hello jobb felső sarkában található gombra.
 
-* Nyissa meg a GitHub webes felhasználói felület, **Jenkinsfile** fájlt. Kattintson a ceruza ikonra az erőforráscsoportot és a sor 20 és 21 webalkalmazás neve rendre frissíteni a fájl szerkesztéséhez.
+* Nyissa meg a GitHub webes felhasználói felület, **Jenkinsfile** fájlt. Kattintson a gombra hello ceruza ikonra tooedit a fájl tooupdate hello erőforráscsoport és a sor 20 és 21 a webalkalmazás nevét.
 
 ```java
 def resourceGroup = '<myResourceGroup>'
 def webAppName = '<app_name>'
 ```
 
-* Módosítsa a sor 23-hitelesítő adat azonosító Jenkins betűtípusainak módosítása
+* Módosítsa a Jenkins példányát sor 23 tooupdate Hitelesítőadat-azonosító
 
 ```java
 withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
@@ -153,60 +153,60 @@ withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
 ## <a name="create-jenkins-pipeline"></a>Jenkins folyamat létrehozása
 Nyissa meg webböngészővel Jenkins, kattintson **új elem**. 
 
-* Adjon meg egy nevet a feladatot, és válasszon **csővezeték**. Kattintson az **OK** gombra.
-* Kattintson a **csővezeték** lapon mellett. 
+* Adja meg a hello feladatnak a nevét, majd válasszon **csővezeték**. Kattintson az **OK** gombra.
+* Kattintson a hello **csővezeték** következő lap. 
 * A **Definition**, jelölje be **parancsfájl az SCM-feldolgozási folyamat**.
 * A **SCM**, jelölje be **Git**.
-* Adja meg a GitHub URL-címet a villás tárház: https:\<a villás tárház\>.git
+* Adja meg a villás tárház a Githubon URL-cím hello: https:\<a villás tárház\>.git
 * Kattintson a **mentése**
 
 ## <a name="test-your-pipeline"></a>A folyamat tesztelése
-* Nyissa meg a létrehozott folyamat, kattintson a **Build most**
-* Néhány másodpercen belül a build sikeres legyen, és nyissa meg a buildre, és kattintson a **konzol kimeneti** a részletek megtekintéséhez
+* Nyissa meg a létrehozott toohello csővezeték, kattintson a **Build most**
+* Néhány másodpercen belül a build sikeres legyen, és toohello build megnyithatja, és kattintson a **konzol kimeneti** toosee hello részletei
 
 ## <a name="verify-your-web-app"></a>A webalkalmazás ellenőrzése
-A WAR ellenőrzése fájl sikeresen telepítve lett a webes alkalmazást. Nyisson meg egy webböngészőt:
+tooverify hello WAR-fájl sikeresen telepítve lett tooyour webalkalmazás. Nyisson meg egy webböngészőt:
 
-* Keresse fel a http://&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/ping  
+* Nyissa meg toohttp: / /&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/ping  
 Lásd:
 
-        Welcome to Java Web App!!! This is updated!
+        Welcome tooJava Web App!!! This is updated!
         Sun Jun 17 16:39:10 UTC 2017
 
-* Keresse fel a http://&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (helyettesítse &lt;x > és &lt;y > bármely számokkal) lekérni az összegük az x és y
+* Nyissa meg toohttp: / /&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (helyettesítse &lt;x > és &lt;y > bármely számokkal) tooget hello számának összege, azaz x és y
 
 ![A Számológép: hozzáadása](./media/execute-cli-jenkins-pipeline/calculator-add.png)
 
-## <a name="deploy-to-azure-web-app-on-linux"></a>Az Azure Web Apphoz Linux telepítése
-Most, hogy ismeri az Azure parancssori felület használata a Jenkins folyamat, a parancsfájl központi telepítése Linux Azure Web Apps módosíthatja.
+## <a name="deploy-tooazure-web-app-on-linux"></a>TooAzure Linux webalkalmazás telepítése
+Most, hogy tudja, hogyan toouse a Jenkins az Azure CLI-feldolgozási, hello parancsfájl toodeploy tooan Azure Web Apps Linux módosíthatja.
 
-Webes alkalmazás Linux egy másik módja a környezetben, amely Docker használandó támogatja. Ha szeretné telepíteni, meg kell adnia egy Dockerfile, amely csomagokat a webalkalmazás szolgáltatás futtatási idő mellett a Docker-lemezkép. A beépülő modul majd elkészíti a kép, hogy egy Docker-beállításjegyzék és a webalkalmazás a lemezkép telepítéséhez.
+Webes alkalmazás Linux egy másik módja toodo hello környezetben, amely toouse Docker támogatja. toodeploy, tooprovide egy Dockerfile, amely csomagokat a webalkalmazás szolgáltatás futtatási idő mellett a Docker-lemezkép szükséges. hello beépülő modul fog majd hello lemezkép, tooa Docker beállításjegyzék leküldeni és hello kép tooyour webalkalmazás telepítése.
 
-* Kövesse a lépéseket [Itt](/azure/app-service-web/app-service-linux-how-to-create-web-app) egy Azure Linux rendszeren futó webalkalmazás létrehozásához.
-* Ezen cikk utasításait követve telepítse Docker Jenkins példány [cikk](https://docs.docker.com/engine/installation/linux/ubuntu/).
-* Egy tároló beállításjegyzék létrehozása az Azure portálon lépések segítségével [Itt](/azure/container-registry/container-registry-get-started-azure-cli).
-* Ugyanazon [egyszerű Azure Java-webalkalmazás](https://github.com/azure-devops/javawebappsample) tárház ágazik el, módosítsa a **Jenkinsfile2** fájlt:
-    * 18-21. sor, illetve frissítse az erőforráscsoport, a web app és az ACR nevét. 
+* Hello lépésekkel [Itt](/azure/app-service-web/app-service-linux-how-to-create-web-app) toocreate egy Linux rendszeren futó Azure webalkalmazás.
+* A Jenkins példányán, ezen hello utasításokat követve telepítse Docker [cikk](https://docs.docker.com/engine/installation/linux/ubuntu/).
+* Egy tároló beállításjegyzék hello Azure-portálon a hello lépések használatával hozható létre [Itt](/azure/container-registry/container-registry-get-started-azure-cli).
+* Az azonos hello [egyszerű Azure Java-webalkalmazás](https://github.com/azure-devops/javawebappsample) ágazik el, hogy tárház szerkesztése hello **Jenkinsfile2** fájlt:
+    * 18-21. sor, illetve frissíteni az erőforráscsoport, a web app és az ACR toohello nevei. 
         ```
         def webAppResourceGroup = '<myResourceGroup>'
         def webAppName = '<app_name>'
         def acrName = '<myRegistry>'
         ```
 
-    * Sor 24, a frissítés \<azsrvprincipal\> a hitelesítő adat azonosító
+    * Sor 24, a frissítés \<azsrvprincipal\> tooyour Hitelesítőadat-azonosító
         ```
         withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
         ```
 
-* Hozzon létre egy új Jenkins folyamat adott ezúttal csak a Windows Azure-webalkalmazásban való üzembe helyezés esetén használhatja **Jenkinsfile2** helyette.
+* Hozzon létre egy új Jenkins folyamat tooAzure webes alkalmazás a Windows rendszerben csak megadott idő használata telepítése hasonló módon **Jenkinsfile2** helyette.
 * Az új feladat futtatása.
-* Az Azure parancssori felület futtatásával ellenőrizheti:
+* tooverify, az Azure parancssori felület futtassa:
 
     ```
     az acr repository list -n <myRegistry> -o json
     ```
 
-    A következő eredményt kapja:
+    A következő eredmény hello elérhetővé:
     
     ```
     [
@@ -214,15 +214,15 @@ Webes alkalmazás Linux egy másik módja a környezetben, amely Docker használ
     ]
     ```
     
-    Keresse fel a http://&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/ping. Az üzenet jelenik meg: 
+    Nyissa meg toohttp: / /&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/ping. Hello üzenet jelenik meg: 
     
-        Welcome to Java Web App!!! This is updated!
+        Welcome tooJava Web App!!! This is updated!
         Sun Jul 09 16:39:10 UTC 2017
 
-    Keresse fel a http://&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (helyettesítse &lt;x > és &lt;y > bármely számokkal) lekérni az összegük az x és y
+    Nyissa meg toohttp: / /&lt;alkalmazás_neve >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (helyettesítse &lt;x > és &lt;y > bármely számokkal) tooget hello számának összege, azaz x és y
     
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy Jenkins folyamatot, amely a forráskódot, a GitHub-tárház kivesz konfigurálva. A war-fájl létrehozásához Maven fut, és az Azure parancssori felület használatával telepítése az Azure App Service. Megtudta, hogyan, hogy:
+Ebben az oktatóanyagban egy Jenkins folyamatot, amely ellenőrzi a kimenő hello forráskód a GitHub-tárház konfigurálva. Maven toobuild futtatja a war-fájl, és ezután használja az Azure CLI toodeploy tooAzure App Service. Megismerte, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 > * Jenkins virtuális gép létrehozása
@@ -230,4 +230,4 @@ Ebben az oktatóanyagban egy Jenkins folyamatot, amely a forráskódot, a GitHub
 > * Webalkalmazás létrehozása az Azure-ban
 > * A GitHub-tárházban előkészítése
 > * Jenkins folyamat létrehozása
-> * A folyamat fut, és ellenőrizze a webes alkalmazás
+> * Hello folyamat fut, és ellenőrizze a hello webalkalmazás

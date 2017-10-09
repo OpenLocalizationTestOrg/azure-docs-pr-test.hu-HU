@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás MultiStorageAccountCombo felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Storage.MultiStorageAccountCombo felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás MultiStorageAccountCombo felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Storage.MultiStorageAccountCombo felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 27843b116d949899e4eae65f342324f77ebca70b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 765be145b61c3dbf0a035a7a00aa18eee464a3eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftstoragemultistorageaccountcombo-ui-element"></a>Microsoft.Storage.MultiStorageAccountCombo felhasználói felületi elem
 Több tárfiókot, a közös előtaggal kezdődő neveket való létrehozásának vezérlők egy csoportja. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
@@ -52,14 +52,14 @@ Több tárfiókot, a közös előtaggal kezdődő neveket való létrehozásána
 ```
 
 ## <a name="remarks"></a>Megjegyzések
-- A következő `defaultValue.prefix` tárfiókneveket sorozatát létrehozásához legalább egy egész számokat van kibővítve. Például ha `defaultValue.prefix` van **foobar** és `count` van **2**, majd tárfiókok neve **foobar1** és **foobar2** jönnek létre. Létrehozott tárfiókok neve automatikusan érvényesíti egyedi-e.
-- A tárfiókok neve lexicographically alapján generált `count`. Például ha `count` 10, akkor a tárfiókok neve végződhet 2 számjegyből álló egész számok (01, 02, 03, stb.).
-- Az alapértelmezett érték `defaultValue.prefix` van **null**, és a `defaultValue.type` van **Premium_LRS**.
+- a következő hello `defaultValue.prefix` egy vagy több egész számok toogenerate hello sorozatát tárfiókneveket van kibővítve. Például ha `defaultValue.prefix` van **foobar** és `count` van **2**, majd tárfiókok neve **foobar1** és **foobar2** jönnek létre. Létrehozott tárfiókok neve automatikusan érvényesíti egyedi-e.
+- hello tárfiókok neve lexicographically alapján generált `count`. Például ha `count` 10, majd 2 számjegyből álló egész számok végén hello tárfiókok neve (01, 02, 03, stb.).
+- az alapértelmezett érték hello `defaultValue.prefix` van **null**, és a `defaultValue.type` van **Premium_LRS**.
 - Nincs megadva a bármilyen `constraints.allowedTypes` rejtett, és nincs megadva a bármilyen `constraints.excludedTypes` jelenik meg.
 `constraints.allowedTypes`és `constraints.excludedTypes` mindkettő nem kötelező, de nem használható egyszerre.
-- Tárfiókok neve, generálása mellett `count` elemhez a megfelelő többszöröző beállítására szolgál. Egy állandó érték, például támogatja **2**, vagy egy másik elem dinamikus értéket, például `[steps('step1').storageAccountCount]`. Az alapértelmezett érték **1**.
+- Továbbá toogenerating tárfiókok neve, a `count` használt tooset van a megfelelő többszöröző hello elemhez. Egy állandó érték, például támogatja **2**, vagy egy másik elem dinamikus értéket, például `[steps('step1').storageAccountCount]`. hello alapértelmezett értéke **1**.
 
-## <a name="sample-output"></a>Minta kimenet
+## <a name="sample-output"></a>Példa kimenet
 ```json
 {
   "prefix": "sa",
@@ -70,6 +70,6 @@ Több tárfiókot, a közös előtaggal kezdődő neveket való létrehozásána
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

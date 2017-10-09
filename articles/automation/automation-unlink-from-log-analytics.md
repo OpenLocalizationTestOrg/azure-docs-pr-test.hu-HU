@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation-fiók Log Analyticshez való leválasztása |} Microsoft Docs"
-description: "Ez a cikk áttekintést az Azure Automation-fiók az OMS-munkaterület választható módjáról."
+title: "Azure Automation-fiók a Naplóelemzési aaaUnlink |} Microsoft Docs"
+description: "A cikkben megtudhatja, hogyan toounlink az Azure Automation szolgáltatásbeli fiók az OMS-munkaterület áttekintését."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: how-to-article
 ms.date: 02/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 56b09c2cfc14813b5efcb364c580787fec1bf639
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ec0745673f6a872538d33023a7a1d2bb1d18ec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-unlink-your-automation-account-from-a-log-analytics-workspace"></a>Az Automation-fiók a Naplóelemzési munkaterület választható hogyan
+# <a name="how-toounlink-your-automation-account-from-a-log-analytics-workspace"></a>Hogyan toounlink az automatizálási fiók egy Naplóelemzési munkaterületet
 
-Azure Automation szolgáltatásbeli integrálható a Log Analyticshez nem csak a proaktív figyeléshez, a runbook-feladatok az Automation-fiók összes támogatására, de is szükség a Naplóelemzési függő következő megoldások importálásakor:
+Azure Automation szolgáltatásbeli Naplóelemzési toonot csak támogatja az előrejelzéses figyeléssel a runbook-feladatok az Automation-fiók összes integrálható, de is szükség a következő megoldások Naplóelemzési függő hello importálásakor:
 
 * [Frissítéskezelés](../operations-management-suite/oms-solution-update-management.md)
 * [Változáskövetés](../log-analytics/log-analytics-change-tracking.md)
 * [Indítása/leállítása virtuális gépek munkaidőn kívüli során](automation-solution-vm-management.md)
  
-Ha úgy dönt, hogy már nem szeretne az Automation-fiók integrálása Naplóelemzési, megszüntetheti a fiók közvetlenül az Azure portálról.  Mielőtt továbblépne, akkor először a fentebb említett megoldások eltávolítása, ellenkező esetben ez a folyamat nem lesz lehetséges a folytatás.  Tekintse át a témakör az adott megoldás importálását megérteni, hogy eltávolítsa a szükséges lépéseket.  
+Ha úgy dönt, hogy már nem kívánja toointegrate az Automation-fiók a Naplóelemzési, megszüntetheti a fiók közvetlenül a hello Azure-portálon.  Mielőtt továbblép, akkor először a korábban említett tooremove hello megoldások, ellenkező esetben ez a folyamat nem lesz lehetséges a folytatás.  Tekintse át a hello témakör hello adott megoldás toounderstand hello lépéseit importálta tooremove azt.  
 
-Ezek a megoldások eltávolítása után az Automation-fiók leválasztása a következő lépésekkel végezheti el.
+Ezek a megoldások eltávolítása után végezheti el a következő lépéseket toounlink hello az Automation-fiók.
 
 ## <a name="unlink-workspace"></a>Munkaterület választható
 
-1. Azure-portálról, nyissa meg az Automation-fiók, és az Automation-fiók panelen, a fiók panelen válassza ki a **munkaterület választható**.<br><br> ![Munkaterület beállítás leválasztása](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
-2. Szétkapcsolás munkaterület paneljén kattintson **worksapce leválasztása**.<br><br> ![Panel munkaterület választható](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  A rendszer felkéri, hogy erősítse meg, valóban folytani kívánja-e.<br><br>
-3. Azure Automation kísérli meg a fiók a Naplóelemzési munkaterület választható, amíg a folyamat állapotát követheti **értesítések** a menüből.
+1. Hello Azure-portálon, nyissa meg az Automation-fiók, és hello Automation-fiók panelen hello-fiók panelen válassza ki a **munkaterület választható**.<br><br> ![Munkaterület beállítás leválasztása](media/automation-unlink-from-log-analytics/automation-unlink-workspace-option.png)<br><br>  
+2. Hello szétkapcsolás munkaterület paneljén kattintson **worksapce leválasztása**.<br><br> ![Panel munkaterület választható](media/automation-unlink-from-log-analytics/automation-unlink-workspace-blade.png).<br><br>  A kérdés ellenőrzése tooproceed kívánja fog kapni.<br><br>
+3. Azure Automation próbál toounlink hello fiók Naplóelemzési munkaterületet, amíg előrehaladásának hello alatt **értesítések** hello menüből.
 
-Ha a frissítés felügyeleti megoldás, opcionálisan előfordulhat, hogy szeretné eltávolítani a következő elemek, a megoldás eltávolítása után már nem szükséges.
+Ha hello frissítés felügyeleti megoldás, opcionálisan érdemes lehet tooremove hello hello megoldás eltávolítása után már nem szükséges elemeket a következő.
 
-* Ütemezés frissítésére.  Minden egyes lesz melyek nevei egyeznek a létrehozott központi telepítések)
+* Ütemezés frissítésére.  Minden egyes lesz melyek nevei egyeznek hello központi telepítést hozott létre)
 
-* Hibrid dolgozó csoportok létrehozása a megoldáshoz.  Minden egyes lesznek elnevezve hasonlóan a machine1.contoso.com_9ceb8108 - 26 c 9-4051-b6b3-227600d715c8).
+* Hibrid feldolgozó csoportja hello megoldás.  Minden egyes lesznek elnevezve hasonlóképpen túl machine1.contoso.com_9ceb8108 - 26 c 9-4051-b6b3-227600d715c8).
 
-Munkaidőn kívüli megoldás során használt virtuális gépek indítása/leállítása, ha szükség lehet, hogy szeretné eltávolítani a következő elemek, a megoldás eltávolítása után már nem szükséges.
+Ha munkaidőn kívüli megoldás során használt hello indítása/leállítása virtuális gépeket, opcionálisan érdemes lehet tooremove hello hello megoldás eltávolítása után már nem szükséges elemeket a következő.
 
 * Elindítása és leállítása a virtuális gép runbook ütemezése 
 * Virtuális gép runbookok elindítása és leállítása
@@ -52,4 +52,4 @@ Munkaidőn kívüli megoldás során használt virtuális gépek indítása/leá
 
 ## <a name="next-steps"></a>Következő lépések
 
-Konfigurálja újra az Automation-fiók OMS Naplóelemzési integrálása, lásd: [továbbítása feladat állapotát és a feladat adatfolyamok Automation való Naplóelemzés (OMS)](automation-manage-send-joblogs-log-analytics.md). 
+tooreconfigure az Automation-fiók toointegrate az OMS szolgáltatáshoz, lásd: [feladat állapotát és a feladat adatfolyam továbbítása Automation tooLog szolgáltatás (OMS)](automation-manage-send-joblogs-log-analytics.md). 

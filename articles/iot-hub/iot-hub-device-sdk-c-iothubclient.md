@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT-eszközök SDK c - IoTHubClient |} Microsoft Docs"
-description: "Hogyan használható a IoTHubClient könyvtár, az Azure IoT eszközben C-hez készült SDK kommunikáló eszközön futó alkalmazások létrehozásához az IoT-központ számára."
+title: "aaaAzure IoT-eszközök SDK c - IoTHubClient |} Microsoft Docs"
+description: "Hogyan toouse hello IoTHubClient szalagtár hello Azure IoT-eszközök SDK C toocreate eszköz alkalmazások, amelyek kommunikálni az IoT-központ."
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
-ms.openlocfilehash: 422d89014511f0d08ba57a893570ff7b253b7bc4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d1ece79e9ba6d1e5fd45cabb8fca393b24052e07
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-device-sdk-for-c--more-about-iothubclient"></a>Az Azure IoT-eszközök SDK c – további információ az IoTHubClient
-A [először a következő cikket:](iot-hub-device-sdk-c-intro.md) a sorozat bevezette a **C-hez készült SDK Azure IoT-eszközök**. A cikk alapján, hogy nincsenek-e két architekturális rétegek SDK. Az alap van a **IoTHubClient** könyvtárban, amely közvetlenül kezeli az IoT-központ folytatott kommunikáció. Szerepel továbbá a **szerializáló** könyvtár épülő a szerializálási szolgáltatások biztosításához. Ebben a cikkben a következőkhöz nyújtunk további részletek a a **IoTHubClient** könyvtárban.
+Hello [először a következő cikket:](iot-hub-device-sdk-c-intro.md) az a sorozat bevezetett hello **C-hez készült SDK Azure IoT-eszközök**. A cikk alapján, hogy nincsenek-e két architekturális rétegek SDK. Alapszintű hello van hello **IoTHubClient** könyvtárban, amely közvetlenül kezeli az IoT-központ folytatott kommunikáció. Szerepel továbbá hello **szerializáló** , mely a buildek tooprovide szerializálási szolgáltatások. Ebben a cikkben a következőkhöz nyújtunk további részletek a hello **IoTHubClient** könyvtárban.
 
-Az előző cikkben leírt használata a **IoTHubClient** könyvtár események küldése az IoT-központ és az üzenetek fogadásához. Ez a cikk e kiterjeszti pontosabban kezelése ismertető *amikor* küldött és fogadott adatok bemutatása, hogy a **alacsonyabb szintű API-k**. Azt is ismertetjük tulajdonságok csatolható események (és üzenetek lekérése őket) szolgáltatások kezelése tulajdonság használatával a **IoTHubClient** könyvtárban. Végül az IoT-központ fogadott üzenetek kezelésének különböző módjai további magyarázata a következőkhöz nyújtunk.
+hello előző cikkben leírt hogyan toouse hello **IoTHubClient** könyvtár toosend események tooIoT központ és az üzenetek fogadásához. Ez a cikk kiterjeszti ezekre a kérdésekre adott válaszokat azáltal, hogy elmagyarázza, hogyan toomore pontosan kezelése *amikor* küldött és fogadott adatok bevezeti a toohello **alacsonyabb szintű API-k**. Azt is ismertetjük, hogyan tooattach tulajdonságok tooevents (és üzenetek lekérése őket) hello szolgáltatások kezelése hello tulajdonsággal **IoTHubClient** könyvtárban. Végezetül, a következőkhöz nyújtunk különböző módokon toohandle további magyarázata IoT-központ érkezett.
 
-A cikk arra a következtetésre jut, vegyes témaköreit, beleértve több hitelesítő adatai és működésének módosításához néhány kiterjed a **IoTHubClient** konfigurációs lehetőségek között.
+hello cikk arra a következtetésre jut vegyes témaköreit, beleértve az bővebben a hitelesítő adatai, és hogyan toochange hello hello működésének néhány kiterjed **IoTHubClient** konfigurációs lehetőségek között.
 
-Fogjuk használni a **IoTHubClient** SDK minták az alábbi témakörök ismertetik. Ha azt szeretné, követéséhez, tekintse meg a **IOT hubbal\_ügyfél\_minta\_http** és **IOT hubbal\_ügyfél\_minta\_amqp** , amely az Azure IoT-eszközök SDK meg a c mindent az alábbi szakaszok ismertetik ezeket a mintákat a bemutatott alkalmazások.
+Hello fogjuk használni **IoTHubClient** SDK-minták tooexplain ezeket a témaköröket. Ha azt szeretné, hogy mentén toofollow, tekintse meg a hello **IOT hubbal\_ügyfél\_minta\_http** és **IOT hubbal\_ügyfél\_minta\_amqp** hello Azure IoT-eszközök SDK szereplő minden c hello a következő részekben leírt mutatják be ezeket a mintákat az alkalmazások.
 
-Megtalálhatja az [ **C-hez készült SDK Azure IoT-eszközök** ](https://github.com/Azure/azure-iot-sdk-c) GitHub tárház és nézet adatai az API-nak a [C API-referencia](https://azure.github.io/azure-iot-sdk-c/index.html).
+Hello található [ **C-hez készült SDK Azure IoT-eszközök** ](https://github.com/Azure/azure-iot-sdk-c) hello API hello a GitHub tárház és nézet adatai [C API-referencia](https://azure.github.io/azure-iot-sdk-c/index.html).
 
-## <a name="the-lower-level-apis"></a>Az alacsonyabb szintű API-k
-Az előző cikkben leírt alapszintű működését a **IotHubClient** kontextusában a **IOT hubbal\_ügyfél\_minta\_amqp** alkalmazás. Például azt a könyvtárban, a kód használatával inicializálásával ismertetése.
+## <a name="hello-lower-level-apis"></a>hello alacsonyabb szintű API-k
+hello előző cikkben leírt hello alapszintű hello működésének **IotHubClient** belül hello hello kontextusában **IOT hubbal\_ügyfél\_minta\_amqp** az alkalmazás. Például azt, hogyan tooinitialize hello könyvtár használja ezt a kódot.
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-Azt is ismerteti, hogyan küldhet e függvényhívás eseményeket.
+Azt is ismerteti, hogyan függvényhívás használatát az toosend események.
 
 ```
 IoTHubClient_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message);
 ```
 
-A cikk azt is ismerteti, hogyan regisztrálja a visszahívási függvény üzeneteket fogadni.
+hello a cikk azt is ismerteti, hogyan tooreceive üzenetek, ha regisztrálja a visszahívási függvény.
 
 ```
 int receiveContext = 0;
 IoTHubClient_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext);
 ```
 
-A cikk is bemutatta, hogyan lehet felszabadítani az erőforrásokat, például az alábbi kód használatával.
+hello cikket is bemutatta, hogyan toofree-erőforrások hello alábbi kód.
 
 ```
 IoTHubClient_Destroy(iotHubClientHandle);
 ```
 
-Azonban ezen API-k mindegyikének kiegészítő funkciók vannak:
+Vannak azonban olyan API-e kiegészítő funkciók tooeach:
 
 * IoTHubClient\_inden\_CreateFromConnectionString
 * IoTHubClient\_inden\_SendEventAsync
 * IoTHubClient\_inden\_SetMessageCallback
 * IoTHubClient\_inden\_megszüntetése
 
-Ezek a függvények minden "R" szerepeljenek az API-név. Eltérő ezek a paraméterek megegyeznek mint a nem le. Azonban ezeket a funkciókat a viselkedés eltér egy fontos módon.
+Ezek a függvények minden "R" foglalandó hello API-név. Eltérő hello ezek paraméterei azonos tootheir nem inden megfelelők esetében. Azonban hello ezek a funkciók működése eltérő módon, egy fontos.
 
-A hívás esetén **IoTHubClient\_CreateFromConnectionString**, a mögöttes tárak, amelyek a háttérben fut, új szálat létrehozni. Ebből a szálból küldi az eseményeket, és az IoT-központ fogadja az üzeneteket. Nincs ilyen szál jön létre, az "R" API-k használatakor. A háttérben futó szál létrehozásának a fejlesztők a könnyebb elérhetőség érdekében. Nem rendelkezik explicit módon események üzenetek küldése és fogadása az IoT Hub – automatikusan történik a háttérben foglalkoznia. Ezzel szemben a "r" API-k biztosítanak explicit ellenőrzése alatt tartja a kommunikáció a IoT-központot, ha esetleg szükség lenne rá.
+A hívás esetén **IoTHubClient\_CreateFromConnectionString**, alapul szolgáló szalagtárak hello hello háttérben futó új szálat létrehozni. Ebből a szálból küldi az eseményeket, és az IoT-központ fogadja az üzeneteket. Nincs ilyen szálhoz létrehoz az hello "R" API-k használatakor. hello háttérszál hello létrehozását a fejlesztők kényelme toohello. Nincs tooworry kapcsolatos explicit módon események üzenetek küldése és fogadása az IoT Hub – hello háttérben automatikusan történik. Ezzel szemben hello "R" API-k biztosítanak explicit ellenőrzése alatt tartja a kommunikáció a IoT-központot, ha esetleg szükség lenne rá.
 
-Ez jobb megértéséhez, nézzük például:
+toounderstand a megfelelőbb nézzük például:
 
-A hívás esetén **IoTHubClient\_SendEventAsync**, mi ténylegesen végzett helyezi az esemény a pufferben. Létre, ha meghívja a háttérszálon **IoTHubClient\_CreateFromConnectionString** folyamatosan figyeli az adott puffer és a benne található adatokat küld az IoT hubhoz. Ez akkor fordul elő a háttérben, hogy a fő szálnak működik-e más feladatok egy időben.
+A hívás esetén **IoTHubClient\_SendEventAsync**, mi ténylegesen végzett helyezi hello esemény a pufferben. létre, ha meghívja a háttérben futó szál hello **IoTHubClient\_CreateFromConnectionString** folyamatosan figyeli az adott puffer és adatokat küld, hogy az tartalmazza-e tooIoT központ. Ez akkor fordul elő: hello hello háttérben azonos ideje, hogy hello fő szálnak működik-e más feladatok.
 
-Hasonlóképpen, az üzenetek visszahívási függvény regisztrálásakor **IoTHubClient\_SetMessageCallback**, az SDK kell rendelkeznie a visszahívási függvény meghívása, ha egy üzenetet kapott, a fő szálnak független háttérszál most utasítja.
+Hasonlóképpen, az üzenetek visszahívási függvény regisztrálásakor **IoTHubClient\_SetMessageCallback**, hello SDK toohave hello háttér most utasítja szál a hello visszahívási függvény meghívása az üzenet esetén fogadott, független hello fő szálnak.
 
-A "r" API-k ne hozzon létre egy háttérszálon. Ehelyett egy új API-t meg kell hívni explicit módon adatokat küldeni és fogadni az IoT-központot. A következő példa ezt mutatják.
+hello "R" API-k ne hozzon létre egy háttérszálon. Ehelyett egy olyan új API tooexplicitly küldési kell meghívni, és fogadhat adatokat az IoT-központ. Ezt mutatják be a következő példa hello.
 
-A **IOT hubbal\_ügyfél\_minta\_http** alkalmazás, amely tartalmazza az SDK az alacsonyabb szintű API-k mutatja be. A minta nem küldeni események IoT-központ a következő kóddal:
+Hello **IOT hubbal\_ügyfél\_minta\_http** alkalmazás, amely azt mutatja be, SDK hello megtalálható hello alacsonyabb szintű API-k. A mintában szereplő küldünk események tooIoT Hub például hello következő kóddal:
 
 ```
 EVENT_INSTANCE message;
@@ -87,7 +87,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-Az első három sort, hozza létre az üzenetet, és az utolsó sort elküldi az esemény. Azonban amint azt korábban említettük, "küldő" az esemény azt jelenti, hogy az adatok egyszerűen kerülnek a pufferben. Nem történik adatátvitel a hálózaton, hívása **IoTHubClient\_inden\_SendEventAsync**. Ahhoz, hogy ténylegesen az adatokat az IoT-központ érkező, meg kell hívnia **IoTHubClient\_inden\_DoWork**, a példában szereplő:
+hello első három sorok hello üzenet létrehozása, és hello utolsó sora küldi hello esemény. Azonban amint azt korábban említettük, "küldése a" hello esemény azt jelenti, hogy egyszerűen hello adatok kerülnek a pufferben. Nem történik adatátvitel hello hálózaton, hívása **IoTHubClient\_inden\_SendEventAsync**. A sorrend tooactually érkező hello adatok tooIoT Hub, meg kell hívnia **IoTHubClient\_inden\_DoWork**, a példában szereplő:
 
 ```
 while (1)
@@ -97,13 +97,13 @@ while (1)
 }
 ```
 
-Ez a kód (a a **IOT hubbal\_ügyfél\_minta\_http** alkalmazás) egymás után többször hívja **IoTHubClient\_inden\_DoWork**. Minden alkalommal, amikor **IoTHubClient\_inden\_DoWork** van neve, a puffer az IoT-központ küldené egyes események, és lekérdezi az eszközre küldött aszinkron üzenet. Ez utóbbi esetben azt jelenti, hogy ha a jelenleg regisztrált üzenetek visszahívási függvény, majd a visszahívás meghívták (feltéve, hogy minden üzenet sorba vannak). Azt kellene regisztrált visszahívási függvény a következő kódot:
+Ez a kód (a hello **IOT hubbal\_ügyfél\_minta\_http** alkalmazás) egymás után többször hívja **IoTHubClient\_inden\_DoWork** . Minden alkalommal, amikor **IoTHubClient\_inden\_DoWork** van neve, az egyes események küldi hello puffer tooIoT Hub, és lekérdezi a egy aszinkron küldés alatt álló toohello eszköz. hello ez utóbbi esetben azt jelenti, hogy ha a jelenleg regisztrált visszahívási függvény üzenetek, majd hello visszahívási meghívták (feltéve, hogy minden üzenet sorba vannak). Azt kellene regisztrált visszahívási függvény például hello következő kóddal:
 
 ```
 IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext)
 ```
 
-Az OK, amely **IoTHubClient\_inden\_DoWork** gyakran nevezik hurok, amely minden alkalommal, amikor azt nevezzük, elküldi *néhány* eseményeket az IoT-központ, pufferelt és beolvassa a *a következő* üzenet sorba az eszköz. Minden hívás nem garantált is küldi az összes pufferelt eseményeket, vagy beolvasni az összes várólistára helyezett üzenetek. Ha szeretné a pufferben lévő összes eseményt küldeni, és folytassa a más feldolgozás a lecserélheti Ez a ciklus a következő kódot:
+hello OK, amely **IoTHubClient\_inden\_DoWork** gyakran nevezik hurok, amely minden alkalommal, amikor azt nevezzük, elküldi *néhány* pufferelt eseményeket tooIoT Hub és lekéri *következő hello* üzenet sorba hello eszközhöz. Minden hívás nem garantált toosend összes pufferelt eseményeket vagy tooretrieve összes sorba állított üzenetek. Ha azt szeretné, hogy toosend események kerülnek egy hello puffer, és folytassa a más feldolgozás a lecserélheti a hurok hello alábbi kódot:
 
 ```
 IOTHUB_CLIENT_STATUS status;
@@ -115,29 +115,29 @@ while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLI
 }
 ```
 
-Ez a kód **IoTHubClient\_inden\_DoWork** mindaddig, amíg az IoT hubhoz elküldése a pufferben lévő összes eseményt. Megjegyzés: Ez nem feltétlenül is jelenti, hogy az összes várólistára helyezett üzenetek fogadott. Ennek oka részét képezi, hogy "all" üzenetek ellenőrzése a nem a determinisztikus művelet. Mi történik, ha visszaállíthatja az "összes" üzenetet, de majd egy másikat küld az eszköz után azonnal? Jobb módja foglalkozik, amely programozott időkorlát. Például az üzenet visszahívási függvény sikerült alaphelyzetbe állítani egy számlálót minden alkalommal, amikor meghívták. Majd írhat logika folytatódik a feldolgozás, ha például nem érkeztek üzenetek a legutóbbi *X* másodperc.
+Ez a kód **IoTHubClient\_inden\_DoWork** amíg hello pufferben lévő összes esemény elküldött tooIoT központ. Megjegyzés: Ez nem feltétlenül is jelenti, hogy az összes várólistára helyezett üzenetek fogadott. Ennek oka hello részét képezi, hogy "all" üzenetek ellenőrzése a nem a determinisztikus művelet. Mi történik, ha visszaállíthatja az "összes" köszönőüzenetei, de majd egy másikat toohello eszköz küldött után azonnal? A jobb módon toodeal vele programozott időtúllépés jelenti. Például hello üzenet visszahívási függvény sikerült alaphelyzetbe állítani egy számlálót minden alkalommal, amikor meghívták. Majd írhat logika toocontinue feldolgozási, ha például nem érkeztek üzenetek hello a legutóbbi *X* másodperc.
 
-Ha végzett ingressing események van, és fogadja az üzeneteket, ügyeljen arra, hogy a megfelelő függvény erőforrások karbantartása.
+Ha végzett ingressing események van, és fogadja az üzeneteket, lehet, hogy toocall hello megfelelő függvény tooclean erőforrásait.
 
 ```
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-Nincs alapvetően csak egy készletét API-k a háttérszálon és API-k, amelyet az ugyanaz a háttérszálon nélkül egy másik készlet adatokat küldeni és fogadni. Nagy mennyiségű fejlesztők előfordulhat, hogy inkább a nem - inden API-k, de az alacsonyabb szintű API-k akkor hasznos, ha a fejlesztői szeretne rendelni a hálózati átvitelt explicit vezérelheti. Például bizonyos eszközök begyűjtik az adatokat idő és a csak érkező jelzések (például óra egy alkalommal vagy naponta egyszer) meghatározott időközönként. Az alacsonyabb szintű API-k tudatjuk a felhasználókkal, lehetővé teszi, explicit módon vezérlő küld és fogad adatokat az IoT-központot. Mások egyszerűen, főként a az egyszerűség, amelyek az alacsonyabb szintű API-k biztosítanak. Minden egyes munka azonban a háttérben, hanem a fő szálnak történik.
+Alapvetően az API-k toosend csak egy készletét, és az API-t hello nélkül hello háttérszál ugyanaz a háttérszálon és más adatok fogadására. Nagy mennyiségű fejlesztők számára előnyös lehet hello nem - inden API-k, de hello alacsonyabb szintű API-k akkor hasznos, ha hello fejlesztői szeretne rendelni a hálózati átvitelt explicit vezérelheti. Például bizonyos eszközök begyűjtik az adatokat idő és a csak érkező jelzések (például óra egy alkalommal vagy naponta egyszer) meghatározott időközönként. alacsonyabb szintű API-kat biztosít lehetőséget tooexplicitly vezérlő hello, amikor Ön adatokat küldeni és fogadni az IoT-központ hello. Mások egyszerűen, főként a hello egyszerűség érdekében, hogy alacsonyabb szintű API-k olyan hello. Minden egyes munka azonban hello háttérben helyett hello fő szálnak történik.
 
-Bármelyik modellt választja, ne felejtse el konzisztens mely API-kat használ. Ha először meghívásával **IoTHubClient\_inden\_CreateFromConnectionString**, győződjön meg a megfelelő alacsonyabb szintű API-kat csak használ követő munka:
+Bármelyik modellt választja, lehet, hogy toobe konzisztens mely API-kat használ. Ha először meghívásával **IoTHubClient\_inden\_CreateFromConnectionString**, alacsonyabb szintű API-khoz, követési munka megfelelő hello csak használnia kell:
 
 * IoTHubClient\_inden\_SendEventAsync
 * IoTHubClient\_inden\_SetMessageCallback
 * IoTHubClient\_inden\_megszüntetése
 * IoTHubClient\_inden\_DoWork
 
-Ellenkező is igaz. Ha először **IoTHubClient\_CreateFromConnectionString**, majd használja a nem - inden API-k minden további feldolgozásra.
+Ellenkező hello is igaz. Ha először **IoTHubClient\_CreateFromConnectionString**, akkor használjon hello nem - inden API-k minden további feldolgozásra.
 
-Az Azure IoT-eszközök SDK C-hez, olvassa el a **IOT hubbal\_ügyfél\_minta\_http** alkalmazás az alacsonyabb szintű API-k átfogó példát. A **IOT hubbal\_ügyfél\_minta\_amqp** alkalmazás teljes például az a nem - inden API-k lehet hivatkozni.
+Hello Azure IoT-eszközök SDK C-hez, a következő látható: hello **IOT hubbal\_ügyfél\_minta\_http** hello átfogó példát alkalmazás alacsonyabb szintű API-k. Hello **IOT hubbal\_ügyfél\_minta\_amqp** alkalmazás teljes például a hello nem - inden API-k lehet hivatkozni.
 
 ## <a name="property-handling"></a>Tulajdonság kezelése
-Amennyiben azt korábban leírt adatokat küldő, amikor azt korábban már hivatkozik az üzenet törzsét. Tegyük fel ezt a kódot:
+Amennyiben azt korábban leírt adatokat küldő, ha azt már lett utaló toohello hello üzenet törzsét. Tegyük fel ezt a kódot:
 
 ```
 EVENT_INSTANCE message;
@@ -146,7 +146,7 @@ message.messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char*)
 IoTHubClient_LL_SendEventAsync(iotHubClientHandle, message.messageHandle, SendConfirmationCallback, &message)
 ```
 
-Ez a példa egy üzenetet küld az IoT-központ szöveget a "Hello World". Azonban az IoT-központ lehetővé teszi tulajdonságok az egyes üzeneteket kell csatolni. A rendszer az üzenethez csatolt név/érték párok tulajdonságokat. Módosíthatja például azt az előző kód csatolni egy tulajdonság az üzenet:
+Ez a példa küld egy üzenet tooIoT Hub hello szövegre "Hello World". Azonban az IoT-központ lehetővé teszi tulajdonságok toobe csatolt tooeach üzenet. Tulajdonságok olyan név/érték párok, amelyek csatlakoztatott toohello üzenet lehetnek. Módosíthatja például a Microsoft hello előző kód tooattach tulajdonság toohello üzenet:
 
 ```
 MAP_HANDLE propMap = IoTHubMessage_Properties(message.messageHandle);
@@ -154,18 +154,18 @@ sprintf_s(propText, sizeof(propText), "%d", i);
 Map_AddOrUpdate(propMap, "SequenceNumber", propText);
 ```
 
-Először meghívásával **IoTHubMessage\_tulajdonságok** , és átadja azt a leíró az üzenet. Mi azt vissza van egy **térkép\_KEZELNI** hivatkozás, amely lehetővé teszi indíthatja el a tulajdonságokat. Meghívásával elvégzéséhez **térkép\_AddOrUpdate**, így tovább is hivatkozni kell a Térképen\_leíró, a tulajdonság nevét és a tulajdonság értéke. Ez az API-t hozzá lehessen adni annyi tulajdonságai, például azt.
+Először meghívásával **IoTHubMessage\_tulajdonságok** , és átadja azt a üzenet hello leíróját. Mi azt vissza van egy **térkép\_KEZELNI** hivatkozás, amely lehetővé teszi velünk toostart tulajdonságokat. hívása úgy érhető el, ez utóbbi hello **térkép\_AddOrUpdate**, amely fogad egy hivatkozás tooa térkép\_leíró hello tulajdonságnév és hello tulajdonság értéke. Ez az API-t hozzá lehessen adni annyi tulajdonságai, például azt.
 
-Ha az esemény olvasni **Event Hubs**, a fogadó a tulajdonságok enumerálása, és a hozzájuk tartozó értékek beolvasása. Például a .NET ez szeretné végezni a fér hozzá a [tulajdonsággyűjteményében a EventData objektum](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx).
+Ha hello esemény olvasni **Event Hubs**, hello fogadó hello tulajdonságlistázás, és a hozzájuk tartozó értékek beolvasása. Például a .NET ez lenne elvégezhető hello elérésével [tulajdonsággyűjteményében hello EventData objektum](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.properties.aspx).
 
-Az előző példában azt csatol tulajdonságok nem küldeni az IoT-központ eseményre. Az IoT-központ érkező üzenetek is csatolható tulajdonságok. Tulajdonságok lekérése üzenet szeretnénk, ha azt az üzenet visszahívási függvény a következő kódot használhatja:
+Hello előző példában csatol azt, hogy küldünk tooIoT Hub tulajdonságainak tooan esemény. Tulajdonságok is csatolt toomessages IoT-központ kapott. Tooretrieve tulajdonságok üzenetből szeretnénk, ha azt az üzenet visszahívási függvény például hello következő kódot használhatja:
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
 {
     . . .
 
-    // Retrieve properties from the message
+    // Retrieve properties from hello message
     MAP_HANDLE mapProperties = IoTHubMessage_Properties(message);
     if (mapProperties != NULL)
     {
@@ -190,12 +190,12 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-A hívás **IoTHubMessage\_tulajdonságok** adja vissza a **térkép\_KEZELNI** hivatkozás. Azt, akkor továbbítja a hivatkozó **térkép\_GetInternals** a név/érték párok (valamint a tulajdonságok száma) tömbje mutató hivatkozás beszerzése. Ezen a ponton azt szeretnénk, ha az értékek gombra tulajdonságainak egyszerű kérdése.
+hívás túl hello**IoTHubMessage\_tulajdonságok** értéket ad vissza hello **térkép\_KEZELNI** hivatkozás. Jelenleg akkor továbbítja a hivatkozás túl**térkép\_GetInternals** tooobtain egy hivatkozás tooan tömbje hello név-érték párokat (valamint hello tulajdonságok száma). Ezen a ponton számbavétele hello tulajdonságok tooget toohello értékek azt szeretnénk, ha egyszerű kérdése.
 
-Tulajdonságok használata az alkalmazás nem rendelkezik. Azonban, ha szeretné-e meg őket a események vagy kérheti le azokat az üzeneteket, a **IoTHubClient** könyvtár megkönnyíti.
+Az alkalmazás nem rendelkezik toouse tulajdonságait. Azonban ha tooset kell őket események vagy kérheti le azokat az üzeneteket, hello **IoTHubClient** könyvtár megkönnyíti.
 
 ## <a name="message-handling"></a>Üzenet kezelése
-Ahogy korábban is hangsúlyoztuk, amikor érkező üzenetek IoT-központ a **IoTHubClient** könyvtár regisztrált visszahívási függvény meghívása válaszol. Ez a funkció, amely további rövid érdemel visszatérési paraméterének van. Ez a visszahívási függvény cikkből a **IOT hubbal\_ügyfél\_minta\_http** mintaalkalmazást:
+Ahogy korábban is hangsúlyoztuk, amikor érkező üzenetek IoT-központ hello **IoTHubClient** könyvtár regisztrált visszahívási függvény meghívása válaszol. Ez a funkció, amely további rövid érdemel visszatérési paraméterének van. Ez egy olyan hello visszahívási függvény hello **IOT hubbal\_ügyfél\_minta\_http** mintaalkalmazást:
 
 ```
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -205,35 +205,35 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-Vegye figyelembe, hogy a visszatérési típus **IOTHUBMESSAGE\_törlése\_eredmény** és az adott esetben a rendszer visszaadja a **IOTHUBMESSAGE\_elfogadott**. Nincsenek más értékek azt adhatja vissza a függvény, amely módosíthatja az **IoTHubClient** könyvtár reagálás az üzenet visszahívási. Az alábbiakban a beállításokat.
+Vegye figyelembe, hogy hello visszatérési típusa **IOTHUBMESSAGE\_törlése\_eredmény** és az adott esetben a rendszer visszaadja a **IOTHUBMESSAGE\_elfogadott**. Nincsenek más értékek azt adhatja vissza a függvény módosítása hogyan hello **IoTHubClient** könyvtár reagál toohello üzenet visszahívási. Az alábbiakban hello-beállítások.
 
-* **IOTHUBMESSAGE\_elfogadott** – az üzenet feldolgozása sikeresen megtörtént. A **IoTHubClient** könyvtár nem indítja el a visszahívási függvény újra ugyanazt az üzenetet.
-* **IOTHUBMESSAGE\_elutasítva** – az üzenet nem lett feldolgozva, és tudni az ehhez a jövőben van. A **IoTHubClient** könyvtár nem kell meghívnia a visszahívási függvény újra ugyanazt az üzenetet.
-* **IOTHUBMESSAGE\_ABANDONED** – az üzenet nem feldolgozása sikeresen megtörtént, de a **IoTHubClient** könyvtárban kell meghívnia a visszahívási függvény újra ugyanazt az üzenetet.
+* **IOTHUBMESSAGE\_elfogadott** – hello üzenet feldolgozása sikeresen megtörtént. Hello **IoTHubClient** könyvtár nem indítja el hello visszahívási függvényt újra hello ugyanazt az üzenetet.
+* **IOTHUBMESSAGE\_elutasítva** – hello üzenet nem lett feldolgozva, és nem desire toodo ezért hello jövőbeli van. Hello **IoTHubClient** könyvtár nem kell meghívnia hello visszahívási függvényt újra hello ugyanazt az üzenetet.
+* **IOTHUBMESSAGE\_ABANDONED** – üdvözlőüzenetére nem feldolgozása sikeresen megtörtént, de hello **IoTHubClient** könyvtárban kell meghívnia hello visszahívási függvényt újra hello ugyanazt az üzenetet.
 
-Az első két visszatérési kódok, a **IoTHubClient** könyvtár üzenetet küld az IoT-központ, amely jelzi, hogy az üzenet törlődik az eszköz üzenetsorból kell-e, és nem kézbesíteni újra. A nettó hatást megegyezik (az üzenet törlődik az eszköz várólista), de e a elfogadta vagy visszautasított továbbra is rögzíti.  Ezt a különbséget rögzítése célszerű az üzenet feladók, akik a visszajelzés figyelésére és megtudhatja, ha egy eszköz elfogadta vagy egy üzenet visszautasította.
+Hello az első két visszatérési kódok, hello **IoTHubClient** könyvtár küld egy üzenet tooIoT Hub, amely jelzi, hogy üdvözlőüzenetére törli hello eszköz várólistáról legyen, és nem érkezik újra. hello nettó hatása van hello azonos (üdvözlőüzenetére hello eszköz várólista törlődik), de e hello elfogadta vagy visszautasított továbbra is rögzíti.  Felvétel a különbség üdvözlőüzenetére hasznos toosenders, akik a visszajelzés figyelésére és megtudhatja, ha egy eszköz elfogadta vagy egy üzenet visszautasította.
 
-Az utolsó esetben egy üzenet is lett van küldve IoT-központot, de azt jelzi, hogy az üzenet újból kézbesítve a kell. Általában egy üzenetet fog abandon, ha néhány hibát, de az üzenet feldolgozására újra megpróbálhatja. Ezzel szemben elutasítása üzenet akkor megfelelő ha helyrehozhatatlan hibát észlel (vagy egyszerűen döntenie nem tudja feldolgozni az üzenetet).
+Hello utolsó esetben egy üzenetet is kap tooIoT Hub, de azt jelzi, hogy hello üzenet újbóli kézbesítése kell lennie. Általában egy üzenetet fog abandon, ha valamilyen hiba előforduló, de tootry tooprocess hello üzenet újra. Ezzel szemben egy üzenet elutasítása akkor megfelelő ha helyrehozhatatlan hibát észlel (vagy, egyszerűen dönthet úgy, hogy tooprocess üdvözlőüzenetére).
 
-Mindenképpen figyelembe vennie a különböző visszatérési kódokat, hogy a kívánt viselkedés akkor is kér a **IoTHubClient** könyvtárban.
+Mindenképpen figyelembe hello különböző visszatérési kódokat, hogy akkor is kér hello viselkedés hello a kívánt **IoTHubClient** könyvtárban.
 
 ## <a name="alternate-device-credentials"></a>Alternatív hitelesítő adatai
-Ahogy korábban, az első lépés az használatakor a **IoTHubClient** könyvtár az beszerzése egy **IOT HUBBAL\_ügyfél\_KEZELNI** például a következő hívással:
+Ahogy korábban, hello először thing toodo az hello használatakor **IoTHubClient** könyvtárban tooobtain egy **IOT HUBBAL\_ügyfél\_KEZELNI** hello például a következőt hívja a következő:
 
 ```
 IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-Az argumentumok **IoTHubClient\_CreateFromConnectionString** az eszköz kapcsolati karakterláncát, és egy paraméter, amely jelzi a protokoll használatával kommunikáljon az IoT hubbal. Az eszköz kapcsolati karakterlánc formátuma a következőképpen jelenik meg:
+argumentum túl hello**IoTHubClient\_CreateFromConnectionString** hello eszköz kapcsolati karakterláncot és a paraméter, amely jelzi az IoT hubbal használjuk toocommunicate hello protokoll. hello eszköz kapcsolati karakterlánc formátuma a következőképpen jelenik meg:
 
 ```
 HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY
 ```
 
-Ez a karakterlánc a négy adatra van: az IoT-központ nevét, az IoT-központ utótag, Eszközazonosító és megosztott elérési kulcsot. A teljesen minősített tartománynevét (FQDN), az IoT-központ kaphat az Azure-portálon az IoT hub-példány létrehozásakor – ez lehetővé teszi az IoT-központnév (első része a teljes Tartományneve) és az IoT hub utótagot (az FQDN a többi). Kapott az Eszközazonosító és a megosztott elérési kulcsot az eszköz regisztrálása az IoT-központ (lásd: a [előző cikkben](iot-hub-device-sdk-c-intro.md)).
+Ez a karakterlánc a négy adatra van: az IoT-központ nevét, az IoT-központ utótag, Eszközazonosító és megosztott elérési kulcsot. Hello teljesen minősített tartománynevét (FQDN) az IoT-központ az beszerzése az hello Azure-portálon az IoT hub-példány létrehozásakor – így hello IoT hub name (hello első része hello teljes Tartományneve) és hello IoT hub utótag (hello többi hello FQDN). Kapott hello Eszközazonosító és hello megosztott elérési kulcsot az eszköz regisztrálása az IoT-központ (lásd: hello [előző cikkben](iot-hub-device-sdk-c-intro.md)).
 
-**IoTHubClient\_CreateFromConnectionString** lehetővé teszi az egyik módja a kódtár inicializálása. Ha jobban szeret, hozhat létre egy új **IOT HUBBAL\_ügyfél\_KEZELNI** az eszköz kapcsolati karakterlánc helyett ezen egyéni paraméterek használatával. Ez úgy érhető el, az alábbi kódra:
+**IoTHubClient\_CreateFromConnectionString** egyirányú tooinitialize hello library lehetővé teszi. Ha jobban szeret, hozhat létre egy új **IOT HUBBAL\_ügyfél\_KEZELNI** hello eszköz kapcsolati karakterlánc helyett ezeket az egyes paraméterek használatával. Ez a kód a következő hello érhető el:
 
 ```
 IOTHUB_CLIENT_CONFIG iotHubClientConfig;
@@ -245,12 +245,12 @@ iotHubClientConfig.protocol = HTTP_Protocol;
 IOTHUB_CLIENT_HANDLE iotHubClientHandle = IoTHubClient_LL_Create(&iotHubClientConfig);
 ```
 
-Ezt a feladatot el ugyanaz, mint **IoTHubClient\_CreateFromConnectionString**.
+Ezt a feladatot el hello ugyanaz, mint **IoTHubClient\_CreateFromConnectionString**.
 
-Nyilvánvaló, hogy volna használni kívánt tűnhet **IoTHubClient\_CreateFromConnectionString** ahelyett, hogy ez a részletesebb módszer az inicializálás. Ne feledje, azonban, hogy amikor regisztrál egy eszközt az IoT-központ tartalmával egy Eszközazonosító és eszközkulcs (kapcsolati karakterlánc). A *eszköz explorer* SDK eszköz bevezetett a [előző cikkben](iot-hub-device-sdk-c-intro.md) a-tárakat használ a **Azure IoT szolgáltatás SDK** az eszköz kapcsolati karakterlánc létrehozása a Eszközazonosító eszközkulcs és az IoT-központ állomásnevet. Így hívása **IoTHubClient\_inden\_létrehozása** lehet, hogy előnyösebb egy kapcsolati karakterlánc létrehozása a lépés menti azt. Használja az kényelmes bármelyik módszert.
+Nyilvánvaló, hogy érdemes-e toouse tűnhet **IoTHubClient\_CreateFromConnectionString** ahelyett, hogy ez a részletesebb módszer az inicializálás. Ne feledje, azonban, hogy amikor regisztrál egy eszközt az IoT-központ tartalmával egy Eszközazonosító és eszközkulcs (kapcsolati karakterlánc). Hello *eszköz explorer* hello bevezetett SDK eszköz [előző cikkben](iot-hub-device-sdk-c-intro.md) hello-tárakat használ **Azure IoT szolgáltatás SDK** származó toocreate hello eszköz kapcsolati karakterlánc hello Eszközazonosító eszközkulcs és az IoT-központ állomásnevet. Így hívása **IoTHubClient\_inden\_létrehozása** oka menti azt előnyösebb lehet hello lépésében létrehozása egy kapcsolati karakterláncot. Használja az kényelmes bármelyik módszert.
 
 ## <a name="configuration-options"></a>Konfigurációs beállítások
-Amennyiben mindent ismertetett beállításairól a **IoTHubClient** könyvtár works tükrözi az alapértelmezett viselkedés. Van azonban néhány lehetőség, amely lehet módosítani a szalagtár működése. Mindez, ami a **IoTHubClient\_inden\_SetOption** API. Vegye figyelembe az ebben a példában:
+Amennyiben minden leírt hello módon hello kapcsolatos **IoTHubClient** könyvtár works tükrözi az alapértelmezett viselkedés. Van azonban néhány lehetőség, amely lehet toochange hello szalagtár működése. Mindez, ami hello **IoTHubClient\_inden\_SetOption** API. Vegye figyelembe az ebben a példában:
 
 ```
 unsigned int timeout = 30000;
@@ -259,17 +259,17 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 Van néhány gyakran használt beállításokat:
 
-* **SetBatching** (logikai) – Ha **igaz**, majd az IoT-központ küldött adatok küldése kötegek. Ha **hamis**, majd üzenetküldés külön-külön. Az alapértelmezett érték **hamis**. Vegye figyelembe, hogy a **SetBatching** beállítás csak akkor érvényes, a HTTP protokollhoz, és nem a MQTT vagy az AMQP protokollt.
-* **Időtúllépés** (előjel nélküli egész) – Ez az érték ezredmásodpercben szerepel. Ha egy HTTP-kérés vagy válasz fogadása ennél hosszabb ideje tart, akkor a kapcsolat időtúllépés miatt küldi.
+* **SetBatching** (logikai) – Ha **igaz**, majd a küldött adatok tooIoT Hub rendszer kötegekben. Ha **hamis**, majd üzenetküldés külön-külön. hello alapértelmezett érték a **hamis**. Vegye figyelembe, hogy hello **SetBatching** beállítás csak akkor alkalmazható, toohello HTTP protokollt, és nem toohello MQTT vagy AMQP protokollt.
+* **Időtúllépés** (előjel nélküli egész) – Ez az érték ezredmásodpercben szerepel. Ha egy HTTP-kérés vagy válasz fogadása ennél hosszabb ideje tart, majd hello kapcsolat időtúllépése küldi.
 
-Fontos a kötegelési lehetőséget. Alapértelmezés szerint a szalagtár ingresses események külön-külön (egy adott eseményhez bármilyen át a **IoTHubClient\_inden\_SendEventAsync**). Ha a kötegelési beállítás **igaz**, a könyvtár (akár a maximális méretét, amely elfogadja az IoT-központ) pufferből használhatja annyi eseményeit gyűjti.  Az esemény kötegelt küldése az IoT hubhoz (az egyes események, egy JSON-tömb be vannak becsomagolva) egyetlen HTTP-hívással. Általában kötegelés engedélyezését eredményezi nagy teljesítménynövekedéshez óta hálózati üzenetváltások most csökkentése. Mivel az esemény-es HTTP-fejlécek egy készletét, nem pedig a minden egyes esemény fejléc készlettel küldi is jelentősen csökkenti a sávszélesség. Ha valamiért másképp nincs, általában érdemes engedélyezni a kötegelés.
+a beállítás kötegelés hello fontos. Alapértelmezés szerint hello könyvtár ingresses események külön-külön (egy adott eseményhez bármilyen át túl**IoTHubClient\_inden\_SendEventAsync**). Ha kötegelés beállítás hello **igaz**, hello könyvtár eseményeit annyi hello pufferből (felfelé toohello üzenetek maximális méretét, amely elfogadja az IoT-központ) használhatja.  hello esemény kötegelt küldött tooIoT központ egyetlen HTTP hívás (hello események, egy JSON-tömb be vannak becsomagolva). Általában kötegelés engedélyezését eredményezi nagy teljesítménynövekedéshez óta hálózati üzenetváltások most csökkentése. Mivel az esemény-es HTTP-fejlécek egy készletét, nem pedig a minden egyes esemény fejléc készlettel küldi is jelentősen csökkenti a sávszélesség. Ha egy konkrét Okkód toodo egyébként nincs, általában érdemes tooenable kötegelés.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk ismerteti részletesen a működését a **IoTHubClient** függvénytár szerepel a **C-hez készült SDK Azure IoT-eszközök**. Az információ funkcióinak beható ismerete rendelkeznie kell a **IoTHubClient** könyvtárban. A [tovább cikk](iot-hub-device-sdk-c-serializer.md) hasonló részletesen ismerteti a a **szerializáló** könyvtár.
+Ez a cikk ismerteti a részletes hello viselkedését hello **IoTHubClient** függvénytár szerepel a hello **C-hez készült SDK Azure IoT-eszközök**. Az információ, rendelkeznie kell hello hello funkcióinak beható ismerete **IoTHubClient** könyvtárban. Hello [tovább cikk](iot-hub-device-sdk-c-serializer.md) hasonló részletesen ismerteti a hello **szerializáló** könyvtár.
 
-Az IoT-központ fejlesztésével kapcsolatos további tudnivalókért tekintse meg a [Azure IoT SDK-k][lnk-sdks].
+az IoT-központ fejlesztésével kapcsolatos további toolearn lásd: hello [Azure IoT SDK-k][lnk-sdks].
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [Egy eszköz szimulálva Azure IoT oldala][lnk-iotedge]
 

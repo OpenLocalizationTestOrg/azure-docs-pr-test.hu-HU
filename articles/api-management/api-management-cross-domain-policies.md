@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management tartományközi házirendjei |} Microsoft Docs"
-description: "További tudnivalók a tartományok közötti házirendek az Azure API Management használható."
+title: "aaaAzure API Management tartományközi házirendjei |} Microsoft Docs"
+description: "További információk a tartományközi házirendjei használható az Azure API Management hello."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: ddca9e35b44a21294abbb5eaa4418bcdb85494cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd5ebfd65b92ebd0c1f589a2bac669a3928d40b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-cross-domain-policies"></a>Az API Management tartományközi házirendjei
-Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek hello. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="CrossDomainPolicies"></a>Kereszt-tartományi házirendek  
   
--   [Lehetővé teszi a tartományok közötti hívások](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -elérhetővé válnak az API-t az Adobe Flash és a Microsoft Silverlight webböngésző-alapú ügyfelektől.  
+-   [Lehetővé teszi a tartományok közötti hívások](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -hello API elérhető lesz az Adobe Flash és a Microsoft Silverlight webböngésző-alapú ügyfelektől.  
   
--   [A CORS](api-management-cross-domain-policies.md#CORS) -hozzáadja az eltérő eredetű erőforrások megosztása (CORS) a támogatási művelet vagy API lehetővé teszi a tartományok közötti hívások webböngésző-alapú ügyfelekről.  
+-   [A CORS](api-management-cross-domain-policies.md#CORS) -hozzáadja az eltérő eredetű erőforrások megosztása (CORS) támogatja a tooan műveletet, vagy egy API-tooallow-tartományok webböngésző-alapú ügyfelek hívásait.  
   
--   [JSONP](api-management-cross-domain-policies.md#JSONP) -JSON ad hozzá egy műveletet, vagy lehetővé teszi a tartományok közötti hívások JavaScript-ügyfelekből webböngésző-alapú API kitöltési (JSONP) támogatással.  
+-   [JSONP](api-management-cross-domain-policies.md#JSONP) - JSON hozzáadása (JSONP) kitöltési támogatási tooan műveletet, vagy egy API tooallow tartományokon átívelő JavaScript-ügyfelekből webböngésző-alapú hívja.  
   
 ##  <a name="AllowCrossDomainCalls"></a>Lehetővé teszi a tartományok közötti hívások  
- Használja a `cross-domain` házirend ahhoz, hogy elérhető az API-t az Adobe Flash és a Microsoft Silverlight webböngésző-alapú ügyfelektől.  
+ Használjon hello `cross-domain` házirend toomake hello API érhető el az Adobe Flash és a Microsoft Silverlight webböngésző-alapú ügyfelektől.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
 <cross-domain>  
-   <!-Policy configuration is in the Adobe cross-domain policy file format,   
+   <!-Policy configuration is in hello Adobe cross-domain policy file format,   
       see http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html-->  
 </cross-domain>  
 ```  
@@ -57,19 +57,19 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|  
 |----------|-----------------|--------------|  
-|tartományok közötti|A gyökérelem. Gyermekelemek meg kell felelnie a [Adobe tartományok közötti házirend specifikációnak](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Igen|  
+|tartományok közötti|A gyökérelem. Gyermekelemek meg kell felelnie a toohello [Adobe tartományok közötti házirend specifikációnak](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Igen|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   
 -   **Házirend hatókörök:** globális  
   
 ##  <a name="CORS"></a>A CORS  
- A `cors` házirendnek eltérő eredetű erőforrások megosztása (CORS) a támogatási művelet vagy API lehetővé teszi a tartományok közötti hívások webböngésző-alapú ügyfelekről.  
+ Hello `cors` házirendnek eltérő eredetű erőforrások megosztása (CORS) támogatja a tooan műveletet, vagy egy API-tooallow-tartományok webböngésző-alapú ügyfelek hívásait.  
   
- A CORS lehetővé teszi, hogy egy böngésző és a kiszolgáló működjön, és meghatározzák, hogy az adott eltérő eredetű kérések (azaz XMLHttpRequests hívásoknak JavaScript weblapon lévő más tartományokra) engedélyezése. Ez lehetővé teszi, hogy csak az azonos eredetű kérések engedélyezése-nál nagyobb rugalmasságot, de biztonságosabb, mint az összes eltérő eredetű kérések engedélyezése.  
+ A CORS lehetővé teszi, hogy egy böngésző és egy kiszolgáló toointeract, és határozza meg, függetlenül attól, tooallow adott eltérő eredetű kérések (azaz XMLHttpRequests hívásoknak JavaScript egy weblap tooother tartományokban). Ez lehetővé teszi, hogy csak az azonos eredetű kérések engedélyezése-nál nagyobb rugalmasságot, de biztonságosabb, mint az összes eltérő eredetű kérések engedélyezése.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -91,7 +91,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ```  
   
 ### <a name="example"></a>Példa  
- Ez a példa bemutatja, hogyan előtti repülési kérések, például az egyéni fejlécek vagy nem GET vagy POST metódusok támogatására. Egyéni fejlécek és további HTTP-műveletek támogatásához használja a `allowed-methods` és `allowed-headers` szakasz a következő példában látható módon.  
+ Ez a példa bemutatja, hogyan toosupport előtti repülési kér, például az egyéni fejlécek vagy nem GET vagy POST metódusok. toosupport egyéni fejlécek és további HTTP-műveletek használata hello `allowed-methods` és `allowed-headers` látható módon hello a következő példában szakaszok.  
   
 ```xml  
 <cors allow-credentials="true">  
@@ -128,30 +128,30 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
 |a cors|A gyökérelem.|Igen|N/A|  
-|engedélyezett források|Tartalmaz `origin` elemek, amelyek a tartományok közötti kérelmek engedélyezett eredetet ismertetik. `allowed-origins`vagy egyetlen tartalmazhat `origin` megadó elem `*` engedélyezéséhez a forrás vagy egy vagy több `origin` egy URI-t tartalmazó elemek.|Igen|N/A|  
-|Forrás|Az érték lehet `*` minden eredet vagy URI, amely meghatározza egy egyetlen forrás. Az URI tartalmaznia kell egy protokollt, a gazdagép és a port.|Igen|Ha a port nincs megadva az URI, 80-as portot használja HTTP és a 443-as portot használja HTTPS.|  
-|engedélyezett módszerek|Ez az elem szükség, ha a módszerek nem GET vagy POST engedélyezettek. Tartalmaz `method` elemeit, adja meg a támogatott HTTP-műveleteket.|Nem|Ha ez a szakasz nincs jelen, a GET és POST támogatott.|  
-|Módszer|Adja meg a HTTP-műveletet.|Legalább egy `method` elemet kell megadni, ha a `allowed-methods` szakaszt.|N/A|  
-|engedélyezett fejlécek|Ez az elem tartalmaz `header` elemek a fejlécek, a kérelemben szereplő nevének megadása.|Nem|N/A|  
-|a fejlécek elérhetővé tétele|Ez az elem tartalmaz `header` elemek a fejlécek, az ügyfél által hozzáférhető nevének megadása.|Nem|N/A|  
-|header|Meghatározza a fejléc neve.|Legalább egy `header` elemnek kell szerepelnie a `allowed-headers` vagy `expose-headers` Ha a szakaszban található.|N/A|  
+|engedélyezett források|Tartalmaz `origin` engedélyezett eredetet a tartományok közötti kérelmek hello leíró elemek. `allowed-origins`vagy egyetlen tartalmazhat `origin` megadó elem `*` tooallow minden eredet, vagy egy vagy több `origin` egy URI-t tartalmazó elemek.|Igen|N/A|  
+|Forrás|hello érték lehet `*` tooallow minden eredet vagy URI, amely meghatározza egy egyetlen forrás. hello URI tartalmaznia kell egy protokollt, a gazdagép és a port.|Igen|Ha hello port nincs megadva az URI, 80-as portot használja HTTP és a 443-as portot használja HTTPS.|  
+|engedélyezett módszerek|Ez az elem szükség, ha a módszerek nem GET vagy POST engedélyezettek. Tartalmaz `method` elemei, amelyek megadják a hello támogatott HTTP-műveleteket.|Nem|Ha ez a szakasz nincs jelen, a GET és POST támogatott.|  
+|Módszer|Adja meg a HTTP-műveletet.|Legalább egy `method` elemet kell megadni, ha hello `allowed-methods` szakaszt.|N/A|  
+|engedélyezett fejlécek|Ez az elem tartalmaz `header` elemek hello fejlécek hello kérelemben szereplő nevének megadása.|Nem|N/A|  
+|a fejlécek elérhetővé tétele|Ez az elem tartalmaz `header` elemek hello fejlécek hello ügyfél által hozzáférhető nevének megadása.|Nem|N/A|  
+|header|Meghatározza a fejléc neve.|Legalább egy `header` elemnek kell szerepelnie a `allowed-headers` vagy `expose-headers` Ha hello szakaszban található.|N/A|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|hitelesítő adatok engedélyezése|A `Access-Control-Allow-Credentials` fejléc a következő ellenőrzés válasz Ez az attribútum értékét úgy lesz beállítva, és hatással az ügyfél hitelesítő adatait, a tartományok közötti kérelmek elküldése.|Nem|hamis|  
-|ellenőrzés-result-maximális-kor|A `Access-Control-Max-Age` fejléc a következő ellenőrzés válasz Ez az attribútum értékét úgy lesz beállítva, és a felhasználói ügynök képességét, gyorsítótári előtti repülési választ.|Nem|0|  
+|hitelesítő adatok engedélyezése|Hello `Access-Control-Allow-Credentials` fejléc a következő hello elővizsgálati válaszok set toohello értéke ennek az attribútumnak és hello ügyfél képes toosubmit hitelesítő adatait a tartományok közötti kérelmek hatással.|Nem|hamis|  
+|ellenőrzés-result-maximális-kor|Hello `Access-Control-Max-Age` fejléc a következő hello elővizsgálati válaszok set toohello értéke ennek az attribútumnak és hello felhasználói ügynök képes toocache előtti repülési válasz hatással.|Nem|0|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   
 -   **Házirend hatókörök:** API-művelet  
   
 ##  <a name="JSONP"></a>JSONP  
- A `jsonp` házirend ad JSON (JSONP) kitöltési-támogatással rendelkező művelet vagy API lehetővé teszi a tartományok közötti hívások JavaScript-ügyfelekből webböngésző-alapú. JSONP módszere a JavaScript programok kérelem adatai egy kiszolgálóról egy másik tartományban. JSONP megkerüli a korlátozás kikényszeríti a legtöbb webböngészővel, ahol a weblapok elérése ugyanabban a tartományban kell lennie.  
+ Hello `jsonp` házirend JSON hozzáadja a kitöltési (JSONP) támogatási tooan művelet vagy egy API-tooallow tartományokon átívelő JavaScript-ügyfelekből böngészőalapú hívások. JSONP a JavaScript programok toorequest adatait egy másik tartományban lévő kiszolgálóhoz használt módszer. JSONP megkerüli hello korlátozás kikényszeríti a legtöbb webböngészővel, ahol tooweb lapok hello kell ugyanabban a tartományban.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -165,9 +165,9 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 <jsonp callback-parameter-name="cb" />  
 ```  
   
- A visszahívási paraméter nélkül. a metódus hívásakor? cb = XXX egyszerű JSON (nélkül függvény hívása burkoló) ad vissza.  
+ Hello visszahívási paraméter nélkül hello metódus hívásakor? cb = XXX egyszerű JSON (nélkül függvény hívása burkoló) ad vissza.  
   
- Ha a visszahívási paraméter hozzáadása `?cb=XXX` JSONP eredményt ad vissza, az eredményeket a visszahívási függvény körül, például az eredeti JSON alkalmazásburkoló`XYZ('<json result goes here>');`  
+ Ha hello visszahívási paraméter hozzáadása `?cb=XXX` JSONP eredményeként alkalmazásburkoló hello eredeti JSON eredmények körül hello visszahívási függvény például ad vissza`XYZ('<json result goes here>');`  
   
 ### <a name="elements"></a>Elemek  
   
@@ -179,10 +179,10 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|a visszahívási paraméternév|A tartományokon átívelő JavaScript függvény hívása a teljesen minősített tartománynevét, amelyen a függvényt található előtagként.|Igen|N/A|  
+|a visszahívási paraméternév|hello tartományokon átívelő JavaScript függvényhívást előtagú hello teljesen minősített tartománynevét hello függvény tároló.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** kimenő  
   

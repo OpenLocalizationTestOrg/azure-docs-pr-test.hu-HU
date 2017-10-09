@@ -1,6 +1,6 @@
 ---
-title: "Azure hálózati figyelőt topológia - REST API megtekintése |} Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan REST API használatával a hálózati topológia lekérdezése."
+title: "aaaView Azure hálózati figyelőt topológia - REST API |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse REST API tooquery a hálózati topológia."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 568f3060da372f4a08cec342e04359172522cb69
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39292025bcd561f007c9e31271b1389be48ea79f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-network-watcher-topology-with-rest-api"></a>REST API-t a hálózati figyelőt topológia megtekintése
 
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-topology-cli.md)
 > - [REST API](network-watcher-topology-rest.md)
 
-A hálózati figyelőt topológia szolgáltatása a hálózati erőforrások, az előfizetés vizuális ábrázolását. A portál Ez a képi megjelenítés áll rendelkezésre, automatikusan. Az adatokat a topológia e nézetében a portálon mögött PowerShell kérhető.
-Ez a funkció lehetővé teszi a topológiainfomációja rugalmasabb, az adatok a képi megjelenítés felé más eszközökkel feldolgozottként.
+hello topológia szolgáltatása hálózati figyelőt hello hálózati erőforrások egy előfizetésben vizuális ábrázolását biztosítja. Hello portal Ez a képi megjelenítés áll rendelkezésre tooyou automatikusan. hello információk mögött hello topológia e nézetében hello portálon PowerShell kérhető.
+E képesség révén hello topológiainfomációja rugalmasabb hello adatok más eszközök toobuild kimenő hello képi megjelenítés által feldolgozottként.
 
-Az összekapcsolási két kapcsolatok alapján van modellezve.
+hello összekapcsolása a két van modellezve.
 
 - **Befoglaltsági** -példa: virtuális hálózat tartalmaz egy alhálózat egy hálózati Adaptert tartalmaz
 - **Kapcsolódó** -példa: a hálózati adapter kapcsolódik a virtuális gépek
 
-Az alábbi lista a topológia REST API lekérdezésekor visszaadott tulajdonságait.
+hello következő lista rendszer hello topológia REST API lekérdezésekor visszaadott tulajdonságait.
 
-* **név** – az erőforrás neve
-* **azonosító** -erőforrás uri.
-* **hely** – a hely, ahol az erőforrás található.
-* **társítások** -társítást a hivatkozott objektum listáját.
-    * **név** -a hivatkozott erőforrás nevét.
-    * **resourceId** – az erőforrás-azonosítója a található a hivatkozott erőforrás uri.
-    * **associationType** -ezt az értéket a gyermekobjektum és a szülő közötti kapcsolat hivatkozik. Érvényes értékek a következők **Contains** vagy **társított**.
+* **név** – hello hello erőforrás neve
+* **azonosító** -hello hello erőforrás URI azonosítóját.
+* **hely** -hello helyre, ahol hello erőforrás létezik-e.
+* **társítások** -társítások toohello listája hivatkozott objektum.
+    * **név** -hello hello neve hivatkozott erőforrás.
+    * **resourceId** -hello resourceId hello hello társítás hivatkozott hello erőforrás URI azonosítóját.
+    * **associationType** -Ez az érték hivatkozik hello gyermekobjektum és hello szülő hello kapcsolatát. Érvényes értékek a következők **Contains** vagy **társított**.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ebben a forgatókönyvben a topológia adatainak beolvasása. A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
+Ebben a forgatókönyvben hello topológia adatainak beolvasása. ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A forgatókönyv a cikkben szereplő lekéri a topológia választ adott erőforráscsoport.
+a cikkben szereplő hello forgatókönyv hello topológia választ adott erőforráscsoport kéri le.
 
 ## <a name="log-in-with-armclient"></a>Jelentkezzen be ARMClient
 
-Jelentkezzen be a Azure hitelesítő adataival armclient.
+Jelentkezzen be a Azure hitelesítő adataival tooarmclient.
 
 ```PowerShell
 armclient login
@@ -66,11 +66,11 @@ armclient login
 
 ## <a name="retrieve-topology"></a>Topológia beolvasása
 
-A következő példa a topológia kéri le a REST API-t.  A példa van paraméteres rugalmasság például létrehozása érdekében.  Cserélje le az összes érték \< \> körülvevő őket.
+a következő példa hello hello topológia kér hello REST API-t.  hello példája paraméteres tooallow létrehozása, például a rugalmasságot biztosít.  Cserélje le az összes érték \< \> körülvevő őket.
 
 ```powershell
 $subscriptionId = "<subscription id>"
-$resourceGroupName = "<resource group name>" # Resource group name to run topology on
+$resourceGroupName = "<resource group name>" # Resource group name toorun topology on
 $NWresourceGroupName = "<resource group name>" # Network Watcher resource group name
 $networkWatcherName = "<network watcher name>"
 $requestBody = @"
@@ -82,7 +82,7 @@ $requestBody = @"
 armclient POST "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${NWresourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/topology?api-version=2016-07-01" $requestBody
 ```
 
-A rendszer a következő választ a rövidített válasz eredményül, ha például egy erőforráscsoport-topológiát beolvasása:
+válasz a következő hello, a rövidített válasz eredményül, ha például egy erőforráscsoport-topológiát beolvasása:
 
 ```json
 {
@@ -116,5 +116,5 @@ s65qcto",
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan jelenítheti meg az NSG folyamata naplók a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Ismerje meg, hogyan toovisualize az NSG-folyamat naplózza a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 

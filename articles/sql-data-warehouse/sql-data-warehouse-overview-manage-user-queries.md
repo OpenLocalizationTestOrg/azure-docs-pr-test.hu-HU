@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL Data Warehouse felhasználói lekérdezések figyelése |} Microsoft Docs"
-description: "A szempontok, ajánlott eljárások és a feladatokat az Azure SQL Data Warehouse felhasználói lekérdezések Figyelés áttekintése"
+title: "az Azure SQL Data Warehouse aaaMonitor felhasználói lekérdezések |} Microsoft Docs"
+description: "Hello szempontok, ajánlott eljárások és feladatok az Azure SQL Data Warehouse felhasználói lekérdezések Figyelés áttekintése"
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,22 +15,22 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 65509a65c2b34553822cc02d7a7fa5a614adc57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67639e81b04635452e1ed844fe2d7245aa96a4fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a>Az Azure SQL Data Warehouse felhasználói lekérdezések figyelése
-A szempontok, ajánlott eljárások és a feladatokat az SQL Data Warehouse felhasználói lekérdezések Figyelés áttekintése.
+Hello szempontok, ajánlott eljárások és feladatok felhasználói lekérdezés az SQL Data Warehouse Figyelés áttekintése.
 
 | Kategória | A feladat vagy szempont | Leírás |
 |:--- |:--- |:--- |
 | Lassú teljesítmény |Olyan hosszan futó felhasználói lekérdezés |[Hosszan futó lekérdezések keresése][Find long-running queries] |
-| Egyidejűség |Felhasználói lekérdezések párhuzamos erőforrások hozzárendelése |[Párhuzamossági és munkaterhelés-kezelés][Concurrency and workload management] |
+| Egyidejűség |Egyidejű erőforrások toouser lekérdezések hozzárendelése |[Párhuzamossági és munkaterhelés-kezelés][Concurrency and workload management] |
 
 ## <a name="next-steps"></a>Következő lépések
-További tudnivalók az felügyeleti, látogasson el a [kezelése-áttekintés][Management overview].
+További felügyeleti tippek látogasson toohello [kezelése-áttekintés][Management overview].
 
 <!--Image references-->
 

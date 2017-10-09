@@ -1,4 +1,4 @@
-A storage emulator megosztott kulcsos hitelesítést támogatja egy rögzített fiókhoz és egy jól ismert hitelesítési kulcs. A fiók és a kulcs a storage emulator való használatra engedélyezett csak megosztott kulcsos hitelesítő adatait. Ezek a következők:
+hello storage emulator megosztott kulcsos hitelesítést támogatja egy rögzített fiókhoz és egy jól ismert hitelesítési kulcs. A fiók és a kulcs nem hello csak megosztott kulcsos hitelesítő adatok hello storage emulator való használatra engedélyezett. Ezek a következők:
 
 ```
 Account name: devstoreaccount1
@@ -6,13 +6,13 @@ Account key: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZ
 ```
 
 > [!NOTE]
-> A hitelesítési kulcs a storage emulator által támogatott készült csak egy ügyfél-hitelesítési kód funkció tesztelése. Bármilyen biztonsági célt nem szolgál. A termelési tárfiók és a kulcs a storage emulator nem használható. Ne használjon a fejlesztői fiók termelési adatokkal.
+> hello storage emulator által támogatott hello hitelesítési kulcs csak tesztelési hello funkcióit az ügyfél-hitelesítési kód készült. Bármilyen biztonsági célt nem szolgál. A termelési tárfiók és a kulcs hello storage emulator nem használható. Ne használjon hello fejlesztői fiók termelési adatokkal.
 > 
-> A storage emulator csak a HTTP Protokollon keresztül kapcsolatot támogat. HTTPS azonban az ajánlott protokoll egy éles Azure-tárfiók-erőforrások eléréséhez.
+> hello storage emulator csak a HTTP Protokollon keresztül kapcsolatot támogat. Azonban a HTTPS protokoll egy éles Azure-tárfiók-erőforrások eléréséhez ajánlott hello.
 > 
 
-#### <a name="connect-to-the-emulator-account-using-a-shortcut"></a>Csatlakozás a parancsikonnal emulátor-fiókhoz
-Csatlakozás a storage emulator az alkalmazás a legegyszerűbb módja a konfigurálhat egy kapcsolati karakterláncot az alkalmazás konfigurációs fájljában, amely hivatkozik a helyi `UseDevelopmentStorage=true`. A storage emulator a kapcsolati karakterlánc példa egy *app.config* fájlt: 
+#### <a name="connect-toohello-emulator-account-using-a-shortcut"></a>Csatlakozás parancsikonnal toohello emulátor fiók
+hello legegyszerűbb módja tooconnect toohello storage emulator az alkalmazásról egy kapcsolati karakterláncot az alkalmazás konfigurációs fájljában hello helyi hivatkozó tooconfigure `UseDevelopmentStorage=true`. A kapcsolati karakterlánc toohello a storage emulatort, például egy *app.config* fájlt: 
 
 ```xml
 <appSettings>
@@ -20,8 +20,8 @@ Csatlakozás a storage emulator az alkalmazás a legegyszerűbb módja a konfigu
 </appSettings>
 ```
 
-#### <a name="connect-to-the-emulator-account-using-the-well-known-account-name-and-key"></a>Csatlakozás a jól ismert fióknevet és a kulcs segítségével emulátor-fiókhoz
-Hozzon létre egy kapcsolati karakterláncot, amely hivatkozik a emulátor fióknevet és kulcsot, meg kell adnia a végpontok minden, a szolgáltatások szeretné használni a kapcsolódási karakterláncban emulátorától. Erre akkor szükség, úgy, hogy a kapcsolati karakterlánc használatával hivatkozik a emulátor végpontok, amelyek eltérnek a storage-fiók esetében. Például a kapcsolati karakterlánc értékét fog kinézni:
+#### <a name="connect-toohello-emulator-account-using-hello-well-known-account-name-and-key"></a>Csatlakozás toohello emulátor fiókját hello jól ismert fióknevet és kulcsot
+toocreate egy kapcsolati karakterláncot, hogy hivatkozásokat hello emulátor fióknevet és kulcs, meg kell adnia hello végpontok egyes hello szolgáltatási meg akarja toouse hello emulátorától hello kapcsolat-karakterláncban. Erre akkor szükség, így hello kapcsolati karakterlánc használatával hello emulátor végpontok, amelyek eltérnek a termelési tárfiókon hivatkozik. Például a kapcsolati karakterlánc értékét hello fog kinézni:
 
 ```
 DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;
@@ -31,10 +31,10 @@ TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;
 QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;
 ```
 
-Ez az érték megegyezik a fenti, helyi `UseDevelopmentStorage=true`.
+Az értéket nem látható a fenti azonos toohello helyi `UseDevelopmentStorage=true`.
 
 #### <a name="specify-an-http-proxy"></a>Adjon meg egy HTTP-proxy
-A szolgáltatás a storage emulatorban tesztelést használandó HTTP-proxy is megadható. Ez lehet hasznos, ha HTTP-kérések és válaszok betartásával, akkor a tárolási szolgáltatások műveleteket hibakeresése közben. A proxy megadásához adja hozzá a `DevelopmentStorageProxyUri` a kapcsolati karakterlánc módosításait lehetőséget, és állítsa be az értékét a proxy URI. Például itt található egy kapcsolati karakterláncot, amely a storage emulator mutat, és egy HTTP-proxy konfigurálása:
+Ha a szolgáltatás hello storage emulatorban tesztelést egy HTTP-proxy toouse is megadható. Ez lehet hasznos, ha HTTP-kérések és válaszok betartásával, akkor hibakeresése hello tárolószolgáltatások műveleteket közben. a proxy toospecify hozzáadása hello `DevelopmentStorageProxyUri` toohello kapcsolati karakterlánc lehetőséget, és állítsa be az érték toohello proxy URI. Például: Itt toohello storage emulator mutat, és konfigurálja a HTTP-proxy kapcsolati karakterlánc:
 
 ```
 UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri

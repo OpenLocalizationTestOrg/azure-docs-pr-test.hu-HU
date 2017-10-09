@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service API Apps szolgáltatás egyszerű hitelesítéssel |} Microsoft Docs"
-description: "Ismerje meg, hogyan védi meg a szolgáltatások közötti forgatókönyvek az Azure App Service API-alkalmazás."
+title: "az Azure App Service API Apps aaaService egyszerű hitelesítéssel |} Microsoft Docs"
+description: "Ismerje meg, hogy az API-k tooprotect alkalmazást az Azure App Service szolgáltatások forgatókönyvek esetén."
 services: app-service\api
 documentationcenter: .net
 author: alexkarcher-msft
@@ -14,143 +14,143 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2016
 ms.author: alkarche
-ms.openlocfilehash: 95653287546bbe358111ed16af0c30a53caff2b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94d9ee11f38293df4a2fd815ef02c59cc6defed4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-principal-authentication-for-api-apps-in-azure-app-service"></a>Az Azure App Service API Apps szolgáltatás egyszerű hitelesítés
 ## <a name="overview"></a>Áttekintés
-Ez a cikk ismerteti, hogyan App Service hitelesítés *belső* API-alkalmazások elérésére. Egy belső forgatókönyv, csak a saját alkalmazáskód felhasználhatóvá kell használni kívánt API-alkalmazások esetében. Az ajánlott módszer az App Service-ben Ez a forgatókönyv végrehajtásához az Azure AD használatára a hívott API-alkalmazás védelme érdekében. Meghívja az alkalmazásidentitás (egyszerű szolgáltatásnév) hitelesítő adatok megadásával az Azure AD-ből kapott tulajdonosi jogkivonatok védett API-alkalmazásba. Más Azure AD, tekintse meg a **szolgáltatások közötti hitelesítési** szakasza a [Azure App Service hitelesítés áttekintése](../app-service/app-service-authentication-overview.md#service-to-service-authentication).
+Ez a cikk azt ismerteti, hogyan toouse App Service hitelesítés *belső* tooAPI alkalmazások eléréséhez. Egy belső forgatókönyv, melyekben egy API-alkalmazást, amelyet toobe fogyasztható csak a saját alkalmazás kóddal. hello ajánlott módja tooimplement ebben a forgatókönyvben az App Service-ben az Azure AD toouse tooprotect hello nevezik API-alkalmazásba. Védett hello API-alkalmazás azáltal, hogy az alkalmazásidentitás (egyszerű szolgáltatásnév) hitelesítő adatait az Azure AD-ből kapott tulajdonosi jogkivonatok hívható meg. Alternatívák toousing az Azure AD, lásd: hello **szolgáltatások közötti hitelesítési** hello szakasza [Azure App Service hitelesítés áttekintése](../app-service/app-service-authentication-overview.md#service-to-service-authentication).
 
 Ebből a cikkből megtudhatja:
 
-* Hogyan illetéktelen hozzáférés elleni védelmének API-alkalmazás az Azure Active Directory (Azure AD) segítségével.
-* Hogyan védett API-alkalmazás egy API-alkalmazást, a webes alkalmazás vagy a mobilalkalmazás használják az Azure AD szolgáltatás rendszerbiztonsági tag (app-identitás) hitelesítő adatait. A logikai alkalmazás felhasználása kapcsolatos információkért lásd: [az App Service a Logic apps üzemeltetett egyéni API használata](../logic-apps/logic-apps-custom-hosted-api.md).
-* Győződjön meg arról, hogy a védett API-alkalmazás nem lehet meghívni egy böngészőből bejelentkezett felhasználók módjáról.
-* Győződjön meg arról, hogy a védett API-alkalmazás csak akkor hívható meg az adott Azure AD szolgáltatás egyszerű módja.
+* Hogyan toouse Azure Active Directory (Azure AD) tooprotect egy API-alkalmazást a hitelesítés nélküli hozzáférést.
+* Hogyan tooconsume védett API app egy API-alkalmazás, a webes alkalmazás vagy a mobilalkalmazás az Azure AD szolgáltatás rendszerbiztonsági tag (app-identitás) hitelesítő adatok használatával. További információ a logic App tooconsume lásd [az App Service a Logic apps üzemeltetett egyéni API használata](../logic-apps/logic-apps-custom-hosted-api.md).
+* Hogyan toomake meg arról, hogy hello védett API-alkalmazás által a böngészőből nem hívható bejelentkezett felhasználók számára.
+* Hogyan toomake meg arról, hogy hello védett API-alkalmazás csak meghívható egy adott Azure AD szolgáltatás egyszerű.
 
-A cikk két részből áll:
+hello cikk két részből áll:
 
-* A [szolgáltatás egyszerű hitelesítés konfigurálása az Azure App Service](#authconfig) a szakasz a hitelesítés az API-alkalmazások konfigurálása, és a védett API-alkalmazások felhasználása általában ismerteti. Ez a szakasz App Service, beleértve a .NET, Node.js és Java által támogatott összes keretrendszerek egyaránt vonatkozik.
-* Kezdve a [a .NET-bevezető oktatóanyagok folytatása](#tutorialstart) szakaszban az oktatóanyag végigvezeti Önt egy "belső hozzáférés" forgatókönyvet, az App Service-ben futó .NET mintaalkalmazás konfigurálása. 
+* Hello [hogyan tooconfigure szolgáltatás egyszerű hitelesítés az Azure App Service](#authconfig) a szakasz ismerteti a általános hogyan tooconfigure hitelesítési API-alkalmazást, és hogyan tooconsume hello védett API-alkalmazás. Ez a szakasz egyformán tooall keretrendszerek App Service, beleértve a .NET, Node.js és Java által támogatott.
+* Hello kezdve [hello .NET-bevezető oktatóanyagok folytatása](#tutorialstart) szakaszban hello az oktatóanyag végigvezeti Önt egy "belső hozzáférés" forgatókönyvet, az App Service-ben futó .NET mintaalkalmazás konfigurálása. 
 
-## <a id="authconfig"></a>Az Azure App Service szolgáltatás egyszerű hitelesítés konfigurálása
-Ez a témakör általános API-alkalmazásra vonatkozó utasításokat. A lépések az adott való tegye lista .NET mintaalkalmazás, lásd [a .NET API-alkalmazások útmutató-sorozat folytatása](#tutorialstart).
+## <a id="authconfig"></a>Hogyan tooconfigure szolgáltatás egyszerű hitelesítés az Azure App Service-ben
+Ez a témakör általános útmutatást, amelyek érvényesek a tooany API-alkalmazás. A lépések adott toohello tooDo lista .NET mintaalkalmazás, go túl[hello .NET API-alkalmazások útmutató-sorozat folytatása](#tutorialstart).
 
-1. Az a [Azure-portálon](https://portal.azure.com/), keresse meg a **beállítások** panelen az API-alkalmazás, amelyet szeretne védeni, és keresse meg a **szolgáltatások** szakaszt, és kattintson **hitelesítési / engedélyezési**.
+1. A hello [Azure-portálon](https://portal.azure.com/), keresse meg a toohello **beállítások** hello API-alkalmazás, hogy szeretné, hogy tooprotect, és ezután megkeresi a hello panel **szolgáltatások** szakaszt, és kattintson a **Hitelesítési / engedélyezési**.
    
     ![Hitelesítési/engedélyezési Azure-portálon](./media/app-service-api-dotnet-user-principal-auth/features.png)
-2. Az a **hitelesítési / engedélyezési** panelen kattintson a **a**.
-3. Az a **hitelesítetlen kérés esetén elvégzendő művelet** legördülő listában válassza **bejelentkezés Azure Active Directoryval** .
+2. A hello **hitelesítési / engedélyezési** panelen kattintson a **a**.
+3. A hello **hitelesítetlen kérés esetén a művelet tootake** legördülő listában válassza **bejelentkezés Azure Active Directoryval** .
 4. A **hitelesítésszolgáltatókat**, jelölje be **Azure Active Directory**.
    
     ![Hitelesítési/engedélyezési panel az Azure-portálon](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
-5. Konfigurálja a **Azure Active Directory beállításai** hozzon létre egy új panel az Azure AD-alkalmazást, vagy ha már rendelkezik egy használni kívánt, meglévő Azure AD alkalmazás használja.
+5. Hello konfigurálása **Azure Active Directory beállításai** panel toocreate egy új Azure AD-alkalmazást, vagy ha már rendelkezik egy meglévő Azure AD alkalmazás használja, amelyet az toouse.
    
     Belső forgatókönyvek általában tartalmaz, amely az API-alkalmazást hívja az API-alkalmazások. Használhatja a külön Azure AD-alkalmazásokat minden API-alkalmazás vagy egy Azure AD-alkalmazást.
    
-    A panel részletes utasításokért lásd: [konfigurálása az App Service alkalmazás használhatja az Azure Active Directory bejelentkezési](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
-6. Ha a hitelesítési szolgáltató konfigurációs panelen végzett, kattintson **OK**.
-7. Az a **hitelesítési / engedélyezési** panelen kattintson a **mentése**.
+    A panel részletes utasításokért lásd: [hogyan tooconfigure az App Service alkalmazás toouse Azure Active Directory bejelentkezési](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
+6. Amikor elkészült, a hello hitelesítési szolgáltató konfigurációs panelen, kattintson a **OK**.
+7. A hello **hitelesítési / engedélyezési** panelen kattintson a **mentése**.
    
     ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-dotnet-service-principal-auth/authsave.png)
 
-Ebben az esetben, ha az App Service csak lehetővé teszi a kérelmek a beállított a hívók az Azure AD-bérlő. Nincs hitelesítési vagy engedélyezési kód szükséges a védett API-alkalmazás. Az API-alkalmazásba, általában együtt a tulajdonosi jogkivonattal a HTTP-fejlécekben használt jogcímek átadását és érheti el ezt az információt a kódot, hogy ellenőrizze, hogy vannak-e kérelmek egy adott hívó, például egy egyszerű szolgáltatást.
+Ebben az esetben az App Service csak engedélyez kéréseket a konfigurált hello Azure AD-bérlő hívókat. Nincs hitelesítési vagy engedélyezési kód védett hello API-alkalmazás szükséges. hello tulajdonosi jogkivonattal átadott toohello API app együtt gyakran használt jogcímek HTTP-fejlécek, és ezt az információt, amelyek egy adott hívó, például az egyszerű szolgáltatás kérelmek kód toovalidate érheti el.
 
-Ez a hitelesítési szolgáltatás működik, mint az összes, az App service támogat, beleértve a .NET, Node.js és Java nyelven. 
+Ez a hitelesítési funkció hello működik ugyanúgy minden nyelvhez, hogy az App service támogatja, beleértve a .NET, Node.js és Java. 
 
-#### <a name="how-to-consume-the-protected-api-app"></a>Hogyan kell a védett API-alkalmazások felhasználása
-A hívónak biztosítania kell egy Azure AD-tulajdonosi jogkivonattal API-hívások. Ahhoz, hogy a szolgáltatás egyszerű hitelesítő adataival tulajdonosi jogkivonattal, a hívó által használt Active Directory Authentication Library (adal-t a [.NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory), [Node.js](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs), vagy [Java](https://github.com/AzureAD/azure-activedirectory-library-for-java)). Egy token beszerzéséhez az adal-t meghívó kód az adal-ra a következő adatokat tartalmazza:
+#### <a name="how-tooconsume-hello-protected-api-app"></a>Hogyan tooconsume hello védett API-alkalmazás
+hello hívónak biztosítania kell egy Azure AD-tulajdonosi jogkivonattal API-hívások. tooget szolgáltatás egyszerű hitelesítő adataival tulajdonosi jogkivonattal, hello hívó használja az Active Directory Authentication Library (adal-t a [.NET](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory), [Node.js](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs), vagy [Java](https://github.com/AzureAD/azure-activedirectory-library-for-java)). tooget jogkivonatot, ADAL behívó kód hello tooADAL hello a következő információkat biztosítja:
 
-* Az Azure AD-bérlő neve.
-* Az ügyfél-azonosító és a titkos ügyfélkódot (Alkalmazáskulcs) az Azure AD-alkalmazás a hívó társított.
-* Az Azure AD-alkalmazás a védett API-alkalmazáshoz tartozó ügyfél-azonosító. (Ha csak egy Azure AD-alkalmazást használ, ez az ügyfél azonosítója megegyezik azzal a hívónak.)
+* az Azure AD-bérlő hello neve.
+* hello azonosító és az ügyfél ügyfélkulcs (Alkalmazáskulcs) hello hívó társított hello Azure AD-alkalmazás.
+* hello hello társított Azure AD-alkalmazás Ügyfélazonosítója hello védett API-alkalmazásba. (Ha csak egy Azure AD-alkalmazást használ, ez van hello ugyanazon ügyfél-Azonosítót, egy a hello hívó hello.)
 
-Ezeket az értékeket az Azure AD lapján érhetők el a [a klasszikus Azure portálon](https://manage.windowsazure.com/).
+Ezek az értékek érhetők el az Azure AD hello lapjain hello [a klasszikus Azure portálon](https://manage.windowsazure.com/).
 
-A token beszerzett, ha a hívó tartalmazza a HTTP-kérések a hitelesítési fejléc.  App Service érvényesíti a jogkivonatot, és lehetővé teszi a kérelmek a védett API-alkalmazás eléréséhez.
+Hello token beszerzett, miután hello hívó tartalmazza a HTTP-kérelmek hello engedélyezési fejlécben.  App Service érvényesíti hello jogkivonatot, és lehetővé teszi, hogy hello kérelmek tooreach hello védett API-alkalmazás.
 
-#### <a name="how-to-protect-the-api-app-from-access-by-users-in-the-same-tenant"></a>Az API-alkalmazás a felhasználók ugyanazzal a bérlővel védelme
-A felhasználók ugyanazzal a bérlővel tulajdonosi jogkivonatok érvényesek védett API-alkalmazás.  Ha azt szeretné, annak érdekében, hogy csak egy egyszerű meghívhatja a védett API-alkalmazás, adja hozzá a kódot a védett API-alkalmazás a következő jogcímeket a jogkivonatból ellenőrzése:
+#### <a name="how-tooprotect-hello-api-app-from-access-by-users-in-hello-same-tenant"></a>Hogyan tooprotect hello API-alkalmazást a hello a felhasználók ugyanazt a bérlői
+Tulajdonosi jogkivonatok ugyanannak a bérlőnek érvényesek a hello hello lévő felhasználók számára védett API-alkalmazásba.  Ha azt szeretné, hogy csak egy egyszerű szolgáltatásnév meghívhatja tooensure hello védett API-alkalmazást, adja hozzá a kódot a hello védett API app toovalidate hello hello jogkivonatból jogcímek a következő:
 
-* `appid`az ügyfél-Azonosítóját az Azure AD-alkalmazás, amely a hívó társított kell lennie. 
-* `oid`(`objectidentifier`) kell lennie a hívó szolgáltatás résztvevő-azonosító. 
+* `appid`hello hívó társított hello Azure AD-alkalmazás ügyfél-azonosító hello kell lennie. 
+* `oid`(`objectidentifier`) hello szolgáltatás résztvevő-azonosító hello hívó kell lennie. 
 
-App Service emellett a `objectidentifier` jogcím X-MS-CLIENT-tag-ID fejlécében.
+App Service emellett hello `objectidentifier` jogcím hello X-MS-CLIENT-tag-ID-fejlécben.
 
-### <a name="how-to-protect-the-api-app-from-browser-access"></a>Hogyan védi meg a böngésző-hozzáférés az API-alkalmazás
-Ha Ön nem ellenőrizhesse a kódban a védett API-alkalmazás, és külön használhatja az Azure AD alkalmazás védett API-alkalmazás, ügyeljen arra, hogy az Azure AD-alkalmazás válasz URL-CÍMEN nem ugyanaz, mint az API-alkalmazás alap URL-címet. Ha a válasz URL-címet közvetlenül a védett API-alkalmazás mutat, az azonos Azure AD-bérlő a felhasználó képes keresse meg az API-alkalmazás, jelentkezzen be, és sikeresen hívja az API-t.
+### <a name="how-tooprotect-hello-api-app-from-browser-access"></a>Hogyan tooprotect hello böngészőalapú hozzáférés API-alkalmazások
+Ha Ön nem ellenőrizhesse a kódban védett hello API-alkalmazás, és külön használja az Azure AD-alkalmazást hello védett API-alkalmazás, győződjön meg arról, hogy az Azure AD alkalmazás-válasz URL-cím hello nem hello megegyeznek a hello API-alkalmazás alap URL-címet. Ha hello válasz URL-címet közvetlenül védett toohello API-alkalmazás, egy felhasználó hello ugyanazt az Azure AD-bérlőben sikerült toohello API-alkalmazás keresse meg, jelentkezzen be, és sikeresen meg tudja hívni hello API.
 
-## <a id="tutorialstart"></a>A .NET API-alkalmazások útmutató-sorozat folytatása
-Ha a Node.js vagy Java oktatóanyag sorozat API-alkalmazások, ugorjon a [további lépések](#next-steps) szakasz. 
+## <a id="tutorialstart"></a>Hello .NET API-alkalmazások útmutató-sorozat folytatása
+Ha a következő hello Node.js vagy Java oktatóanyag adatsorozat API-alkalmazások, hagyja ki toohello [további lépések](#next-steps) szakasz. 
 
-Az a cikk hátralévő része a .NET API-alkalmazások útmutató-sorozat folytatja, és feltételezi, hogy végrehajtotta a [felhasználói hitelesítési oktatóanyag](app-service-api-dotnet-user-principal-auth.md) , és a felhasználói hitelesítés engedélyezve van az Azure-ban futó mintaalkalmazást.
+hello a cikk hátralévő része továbbra is hello .NET API-alkalmazások útmutató-sorozat, és feltételezi, hogy végrehajtotta-e az hello [felhasználói hitelesítési oktatóanyag](app-service-api-dotnet-user-principal-auth.md) és hello minta alkalmazást az Azure-ban és a felhasználói hitelesítés engedélyezve van.
 
 ## <a name="set-up-authentication-in-azure"></a>Az Azure-ban hitelesítés beállítása
-Ebben a szakaszban megadhatja az App Service, hogy csak a HTTP-kérelmek az adatréteg API-alkalmazásának eléréséhez, akkor azok, amelyek érvényes Azure AD tulajdonosi jogkivonatoknak nevezzük. 
+Ebben a szakaszban App szolgáltatást konfigurálja úgy, hogy csak a HTTP-kérelmek tooreach hello API-alkalmazás adatrétegét lehetővé teszi, hogy hello hello érvényes Azure melyeket AD tulajdonosi jogkivonatoknak nevezzük. 
 
-A következő szakaszban a középső réteg API-alkalmazás alkalmazás hitelesítő adatok küldése az Azure AD vissza egy tulajdonosi jogkivonatot és a tulajdonosi jogkivonattal küldeni az adatréteg API-alkalmazásának konfigurálásához. Ez a folyamat az az ábrán látható.
+A következő szakasz hello hello középső réteg API app toosend alkalmazás hitelesítő adatok tooAzure AD konfigurálhatja, vissza egy tulajdonosi jogkivonatot, és küldjön hello tulajdonosi jogkivonat toohello adatrétegbeli API-alkalmazást. Ez a folyamat hello ábrán látható.
 
 ![Szolgáltatás-hitelesítés diagramja](./media/app-service-api-dotnet-service-principal-auth/appdiagram.png)
 
-Ha problémát tapasztal az oktatóanyag utasításait követve közben, olvassa el a [hibaelhárítás](#troubleshooting) szakasz az oktatóanyag végén. 
+Ha a következő hello oktatóanyag utasításait során problémákat tapasztal, tekintse meg a hello [hibaelhárítás](#troubleshooting) szakasz hello oktatóanyag hello végén. 
 
-1. A a [Azure-portálon](https://portal.azure.com/), keresse meg a **beállítások** ToDoListDataAPI (adatok réteg) API-alkalmazás létrehozása, és kattintson az API-alkalmazás paneljén **beállítások**.
-2. Az a **beállítások** panelen található az **szolgáltatások** szakaszt, és kattintson a **hitelesítési / engedélyezési**.
+1. A hello [Azure-portálon](https://portal.azure.com/), keresse meg a toohello **beállítások** hello API-alkalmazást, amely hello ToDoListDataAPI (adatok réteg) API-alkalmazást létrehozni, és kattintson a panel **beállítások**.
+2. A hello **beállítások** panelen, a keresés hello **szolgáltatások** szakaszt, és kattintson a **hitelesítési / engedélyezési**.
    
     ![Hitelesítési/engedélyezési Azure-portálon](./media/app-service-api-dotnet-user-principal-auth/features.png)
-3. Az a **hitelesítési / engedélyezési** panelen kattintson a **a**.
-4. Az a **hitelesítetlen kérés esetén elvégzendő művelet** legördülő listában válassza **bejelentkezés Azure Active Directoryval**.
+3. A hello **hitelesítési / engedélyezési** panelen kattintson a **a**.
+4. A hello **hitelesítetlen kérés esetén a művelet tootake** legördülő listában válassza **bejelentkezés Azure Active Directoryval**.
    
-    Ez a beállítás hatására az App Service annak érdekében, hogy csak hitelesített kérelmek reach az API-alkalmazásba. Érvényes tulajdonosi jogkivonatok rendelkező kéréseknél az App Service mentén jogkivonatok átadása az API-alkalmazás tölti fel ezt az információt könnyebben számára elérhetővé tenni a kódot a gyakran használt JOGCÍMEKKEL rendelkező és HTTP-fejlécek.
+    Ez az, hogy csak hitelesített kérelmek reach hello API-alkalmazás az App Service tooensure okozó hello beállítása. Érvényes tulajdonosi jogkivonatok rendelkező kérelmek, az App Service hello jogkivonatok mentén toohello API app továbbítja, és tölti fel a HTTP-fejlécek a gyakran használt jogcímek toomake ezt az információt könnyebben elérhető tooyour kódot.
 5. A **hitelesítésszolgáltatókat**, kattintson a **Azure Active Directory**.
    
     ![Hitelesítési/engedélyezési panel az Azure-portálon](./media/app-service-api-dotnet-user-principal-auth/authblade.png)
-6. Az a **Azure Active Directory beállításai** panelen kattintson a **Express**.
+6. A hello **Azure Active Directory beállításai** panelen kattintson a **Express**.
    
-    Az a **Express** beállítás Azure automatikusan létrehozhat egy AAD-alkalmazást az Azure ad [bérlői](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant). 
+    A hello **Express** beállítás Azure automatikusan létrehozhat egy AAD-alkalmazást az Azure ad [bérlői](https://msdn.microsoft.com/en-us/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant). 
    
-    Nem rendelkezik a bérlő létrehozására, mert minden Azure-fiók automatikusan van egy.
+    Nincs toocreate a bérlőt, mert minden Azure-fiók automatikusan van egy.
 7. A **üzemmód**, kattintson a **új AD-alkalmazás létrehozása** Ha még nincs kiválasztva.
    
-    A portál csatlakozik a **létrehozása App** beviteli mezőt, alapértelmezett értékkel. Alapértelmezés szerint az Azure AD-alkalmazás neve megegyezik az API-alkalmazásba. Tetszés szerint megadhat egy másik nevet.
+    hello portál csatlakozik hello **létrehozása App** beviteli mezőt, alapértelmezett értékkel. Alapértelmezés szerint az Azure AD-alkalmazást hello nevű hello ugyanaz, mint hello API alkalmazás. Tetszés szerint megadhat egy másik nevet.
    
     ![Az Azure AD-beállítások](./media/app-service-api-dotnet-service-principal-auth/aadsettings.png)
    
-    **Megjegyzés:**: alternatív megoldásként használhat egy egyetlen Azure AD alkalmazás a hívó API-alkalmazás és a védett API-alkalmazásba. Ha úgy dönt, hogy az alternatív, nem kell a **új AD-alkalmazás létrehozása** itt beállítást, mert már létrehozott egy Azure AD-alkalmazást a felhasználó hitelesítési az oktatóanyag korábbi részében. Ebben az oktatóanyagban fogja használni a hívó API-alkalmazás és a védett API-alkalmazás az Azure AD-alkalmazások.
-8. Jegyezze fel az értéket a **alkalmazás létrehozása** beviteli mezőt; az AAD-alkalmazást a klasszikus Azure portálon később lesz meg.
+    **Megjegyzés:**: alternatív megoldásként használhat egy egyetlen Azure AD alkalmazás mindkét hello hívó API-alkalmazást, és hello védett API-alkalmazásba. Ha úgy dönt, hogy az alternatív, nem kell hello **új AD-alkalmazás létrehozása** itt beállítást, mert a korábbi részében hello felhasználói hitelesítési oktatóanyag már létrehozott egy Azure AD-alkalmazást. Ebben az oktatóanyagban használt Azure AD-alkalmazások külön hívja az API-alkalmazás és hello hello védett API-alkalmazásba.
+8. Jegyezze fel a hello értéket, amely a hello **létrehozása App** beviteli mezőt; meg fogja keresni az AAD-alkalmazást hello a klasszikus Azure portálon később.
 9. Kattintson az **OK** gombra.
-10. Az a **hitelesítési / engedélyezési** panelen kattintson a **mentése**.
+10. A hello **hitelesítési / engedélyezési** panelen kattintson a **mentése**.
     
     ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-dotnet-service-principal-auth/saveauth.png)
     
-    App Service hoz létre az Azure Active Directory alkalmazás **bejelentkezési URL-cím** és **válasz URL-CÍMEN** automatikusan beállítja az API-alkalmazás URL-címét. Az utóbbi érték lehetővé teszi a felhasználók az AAD-bérlőben jelentkezzen be, és az API-alkalmazás eléréséhez.
+    App Service hoz létre egy Azure Active Directory-alkalmazás az **bejelentkezési URL-cím** és **válasz URL-CÍMEN** toohello URL-címet a API-alkalmazás automatikusan beállítani. hello ez utóbbi érték az AAD-bérlő toolog a felhasználók és a hozzáférés hello API-alkalmazás lehetővé teszi.
 
-### <a name="verify-that-the-api-app-is-protected"></a>Győződjön meg arról, hogy védett-e az API-alkalmazás
-1. Egy böngészőben nyissa meg az URL-címet a API-alkalmazás: az a **API-alkalmazás** panel az Azure-portálon kattintson a hivatkozásra kattintva **URL-cím**. 
+### <a name="verify-that-hello-api-app-is-protected"></a>Győződjön meg arról, hogy hello API app védett
+1. Egy böngészőben nyissa meg hello API-alkalmazás URL-CÍMÉT toohello: a hello **API-alkalmazás** panel az Azure-portálon hello alatt hello hivatkozásra **URL-cím**. 
    
-    Ekkor megnyílik egy bejelentkezési képernyő, mert nem hitelesített kérelmek nem engedélyezettek az API-alkalmazás eléréséhez. 
+    Átirányított tooa bejelentkezési képernyő áll, mert nem hitelesített kérelmek nem engedélyezettek tooreach hello API-alkalmazás. 
    
-    Ha a böngészőben navigáljon a Swagger felhasználói felület, a böngésző már kerülhettek naplózásra a – ebben az esetben, nyisson meg egy InPrivate vagy Incognito ablakot, és navigáljon a Swagger felhasználói felület URL-CÍMÉT.
+    Ha a böngészőben nyissa meg toohello Swagger felhasználói Felületet, előfordulhat, hogy a böngésző már bejelentkezett a – ebben az esetben, nyisson meg egy InPrivate vagy Incognito ablakot, és folytassa toohello Swagger felhasználói felület URL-CÍMÉT.
 2. Jelentkezzen be az AAD-bérlőben egy olyan felhasználó hitelesítő adataival.
    
-   Ha van bejelentkezve, a "sikeres létrehozásról" tájékoztató oldal jelenik meg a böngészőben.
+   Ha van bejelentkezve, hello "sikeresen létrejött" lap hello böngészőben.
 
-## <a name="configure-the-todolistapi-project-to-acquire-and-send-the-azure-ad-token"></a>A beszerzést, mind az Azure AD-jogkivonat küldése a ToDoListAPI projekt konfigurálása
-Ebben a szakaszban a következő feladatokat hajthatnak végre:
+## <a name="configure-hello-todolistapi-project-tooacquire-and-send-hello-azure-ad-token"></a>Hello ToDoListAPI projekt tooacquire konfigurálása és hello Azure AD-jogkivonat küldése
+Ez a szakasz a következő feladatok hello:
 
-* Adja hozzá a kódot a középső réteg API-alkalmazás, amely az Azure AD alkalmazás hitelesítő adatainak használatával egy jogkivonat és a HTTP-kérések küldése az adatréteg API-alkalmazását.
-* A hitelesítő adatokat kell beolvasni az Azure AD.
-* Adja meg a hitelesítő adatokat az Azure App Service futásidejű környezeti beállításokban a középső rétegbeli API-alkalmazás. 
+* Adja hozzá a kódot hello középső rétegbeli API-alkalmazás, amely az Azure AD alkalmazás hitelesítő adatok tooacquire jogkivonatot használja, és a HTTP-kérelmek toohello API-alkalmazás adatrétegét küldése.
+* Hello hitelesítő adatokat kell beolvasni az Azure AD.
+* Adja meg a hello hitelesítő adatait az Azure App Service futásidejű környezeti beállításokban hello középső rétegbeli API-alkalmazás. 
 
-### <a name="configure-the-todolistapi-project-to-acquire-and-send-the-azure-ad-token"></a>A beszerzést, mind az Azure AD-jogkivonat küldése a ToDoListAPI projekt konfigurálása
-A következő módosításokat a ToDoListAPI projekt, a Visual Studio.
+### <a name="configure-hello-todolistapi-project-tooacquire-and-send-hello-azure-ad-token"></a>Hello ToDoListAPI projekt tooacquire konfigurálása és hello Azure AD-jogkivonat küldése
+Ellenőrizze a következő hello ToDoListAPI projektre a Visual Studio változásai hello.
 
-1. Állítsa vissza az összes lévő kódot az *ServicePrincipal.cs* fájlt.
+1. Állítsa vissza az összes hello hello kód *ServicePrincipal.cs* fájlt.
    
-    Ez egy, a kódot, amelyeket a .NET-hez készült adal-t használ az Azure AD tulajdonosi jogkivonat.  Több konfigurációs értékeket, amelyek akkor lesznek állítva az Azure futtatókörnyezetben később használ. A kód itt látható: 
+    Ez a .NET tooacquire hello Azure AD tulajdonosi jogkivonatot az adal-t használó hello kódot.  Több konfigurációs értékeket fogja beállított hello Azure futtatókörnyezetben később használ. Az alábbiakban hello kódot: 
    
         public static class ServicePrincipal
         {
@@ -175,38 +175,38 @@ A következő módosításokat a ToDoListAPI projekt, a Visual Studio.
             }
         }
    
-    **Megjegyzés:** ezt a kódot az adal-t kér .NET NuGet-csomagot (Microsoft.IdentityModel.Clients.ActiveDirectory), amely a projekt már telepítve van. Ez a projekt teljesen új hozott létre, ha kellene telepíteni ezt a csomagot. Ez a csomag automatikusan nincs telepítve az API app – új projekt sablonban.
-2. A *tartományvezérlők/ToDoListController*, állítsa vissza a kód a `NewDataAPIClient` módszer, amelynek kiegészíti a jogkivonattal a HTTP-kérelmek engedélyezési fejlécében.
+    **Megjegyzés:** ezt a kódot hello adal-t kér .NET NuGet-csomagot (Microsoft.IdentityModel.Clients.ActiveDirectory), amely hello projekt már telepítve van. Ez a projekt teljesen új hozott létre, ha a csomag tooinstall kellene lennie. Ez a csomag nem automatikusan hello API app – új projekt sablon telepíti.
+2. A *tartományvezérlők/ToDoListController*, állítsa vissza a hello hello kód `NewDataAPIClient` hello authorization fejlécet hello token tooHTTP kérelmek hozzáadó metódust.
    
         client.HttpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", ServicePrincipal.GetS2SAccessTokenForProdMSA().AccessToken);
-3. Telepítse a ToDoListAPI projektet. (Kattintson a jobb gombbal a projektre, majd kattintson az **közzététel > Közzététel**.)
+3. Hello ToDoListAPI projekt telepítése. (Kattintson a jobb gombbal a hello projektet, majd kattintson az **közzététel > Közzététel**.)
    
-    A Visual Studio telepíti a projektet, és a webes alkalmazás alap URL-cím egy böngészőablakban megnyitja. Ez azt mutatja majd 403-as hibalap, ez nem jelent problémát, a Web API alap URL-címet egy böngészőben nyissa tett kísérlet.
-4. Zárja be a böngészőt.
+    Visual Studio telepíti hello projektet, és megnyitja a böngésző toohello webes alkalmazás alap URL-címet. Ez azt mutatja majd 403-as hiba lap, egy kísérlet toogo tooa Web API alap URL-CÍMÉT a böngésző normális.
+4. Bezárás hello böngésző.
 
 ### <a name="get-azure-ad-configuration-values"></a>Az Azure AD konfigurációs értékek beolvasása
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com/), és **Azure Active Directory**.
-2. Az a **Directory** lapra, majd az AAD-bérlőt.
-3. Kattintson a **alkalmazások > a vállalat tulajdonában lévő alkalmazások**, majd kattintson a pipa jelre.
-4. Az alkalmazások listájának megtekintéséhez kattintson a Azure létrehozó meg, ha engedélyezte a hitelesítési ToDoListDataAPI (adatok réteg) API-alkalmazás nevét.
-5. Kattintson a **Configure** (Konfigurálás) lapra.
-6. Másolás a **ügyfél-azonosító** értékét, és mentse valahol beszerezheti a később. 
-7. A Azure klasszikus portál lépjen vissza a listája **a vállalat tulajdonában lévő alkalmazások**, és kattintson az AAD-alkalmazást, középső rétegbeli ToDoListAPI API-alkalmazás (hozta létre az előző oktatóanyag, nem az ebben az oktatóanyagban létrehozott egy).
-8. Kattintson a **Configure** (Konfigurálás) lapra.
-9. Másolás a **ügyfél-azonosító** értékét, és mentse valahol beszerezheti a később.
-10. A **kulcsok**, jelölje be **1 év** a a **időtartam kiválasztása** legördülő listából választhatja ki.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com/), nyissa meg túl**Azure Active Directory**.
+2. A hello **Directory** lapra, majd az AAD-bérlőt.
+3. Kattintson a **alkalmazások > a vállalat tulajdonában lévő alkalmazások**, majd kattintson a pipa hello.
+4. Az alkalmazások hello listában kattintson egy Azure hozott létre az Ön hitelesítési hello ToDoListDataAPI (adatok réteg) API-alkalmazás engedélyezésekor hello hello nevét.
+5. Kattintson a hello **konfigurálása** fülre.
+6. Másolás hello **ügyfél-azonosító** értékét, és mentse valahol beszerezheti a később. 
+7. Hello a klasszikus Azure portálon lépjen vissza toohello listája **a vállalat tulajdonában lévő alkalmazások**, és kattintson a hello AAD-alkalmazást, amelyet létrehozott hello középső rétegbeli ToDoListAPI API-alkalmazás (hello nem létrehozott hello előző oktatóanyagban hello egyetlen, ebben az oktatóanyagban létre).
+8. Kattintson a hello **konfigurálása** fülre.
+9. Másolás hello **ügyfél-azonosító** értékét, és mentse valahol beszerezheti a később.
+10. A **kulcsok**, jelölje be **1 év** hello a **időtartam kiválasztása** legördülő listából választhatja ki.
 11. Kattintson a **Save** (Mentés) gombra.
     
      ![Alkalmazás-kulcs létrehozása](./media/app-service-api-dotnet-service-principal-auth/genkey.png)
-12. Másolja ki a kulcs értékét, és mentse valahol beszerezheti a később.
+12. Másolja ki hello kulcs értékét, és mentse valahol beszerezheti a később.
     
      ![Új alkalmazás kulcs másolása](./media/app-service-api-dotnet-service-principal-auth/genkeycopy.png)
 
-### <a name="configure-azure-ad-settings-in-the-middle-tier-api-apps-runtime-environment"></a>A középső réteg API-alkalmazásának futtatókörnyezetben az Azure AD-beállítások konfigurálása
-1. Lépjen a [Azure-portálon](https://portal.azure.com/), majd keresse meg a **API-alkalmazás** panel, amelyen a TodoListAPI (középső réteg) projekt API-alkalmazás.
+### <a name="configure-azure-ad-settings-in-hello-middle-tier-api-apps-runtime-environment"></a>Hello középső réteg API app futtatókörnyezetben az Azure AD-beállítások konfigurálása
+1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com/), és navigáljon a toohello **API-alkalmazás** panel, amelyen hello TodoListAPI (középső réteg) projekt hello API-alkalmazás.
 2. Kattintson a **Settings > Application Settings** (Beállítások > Alkalmazásbeállítások) lehetőségre.
-3. Az a **Alkalmazásbeállítások** területen írja be a következő kulcsok és értékek:
+3. A hello **Alkalmazásbeállítások** területen írja be a következő hello kulcsok és értékek:
    
    | **Kulcs** | IDA: hatóság |
    | --- | --- |
@@ -215,70 +215,70 @@ A következő módosításokat a ToDoListAPI projekt, a Visual Studio.
    
    | **Kulcs** | IDA: ClientId |
    | --- | --- |
-   | **Érték** |A hívó alkalmazás (középső réteg - ToDoListAPI) ügyfél-azonosítója |
+   | **Érték** |Ügyfél-azonosítója (középső réteg - ToDoListAPI) alkalmazás hívása hello |
    | **Példa** |960adec2-b74a-484A-960adec2-b74a-484A |
    
    | **Kulcs** | IDA: ClientSecret |
    | --- | --- |
-   | **Érték** |A hívó alkalmazás (középső réteg - ToDoListAPI) Alkalmazáskulcs |
+   | **Érték** |Az alkalmazás (középső réteg - ToDoListAPI) hívása hello Alkalmazáskulcs |
    | **Példa** |e65e8fc9-5f6b-48e8-e65e8fc9-5f6b-48e8 |
    
    | **Kulcs** | IDA: erőforrás |
    | --- | --- |
-   | **Érték** |A hívott alkalmazás ügyfél-azonosító (adatrétegbeli - ToDoListDataAPI) |
+   | **Érték** |Hello néven alkalmazás ügyfél-azonosítója (adatrétegbeli - ToDoListDataAPI) |
    | **Példa** |e65e8fc9-5f6b-48e8-e65e8fc9-5f6b-48e8 |
    
-    **Megjegyzés:**: A `ida:Resource`, a hívott alkalmazást kell használnia **ügyfél-azonosító** és nem a **App ID URI**.
+    **Megjegyzés:**: A `ida:Resource`, ellenőrizze, hogy az alkalmazás neve hello használata **ügyfél-azonosító** és nem a **App ID URI**.
    
-    `ida:ClientId`és `ida:Resource` eltérő értékek ehhez az oktatóanyaghoz, mert használata külön az Azure AD applicaations a középső réteg és az adatszint. Ha egyetlen használta az Azure AD-alkalmazást a hívó API-alkalmazás és a védett API-alkalmazás, használhatja ugyanazt az értéket mindkét `ida:ClientId` és `ida:Resource`.
+    `ida:ClientId`és `ida:Resource` különböző értékeket ehhez az oktatóanyaghoz mert használata külön az Azure AD applicaations hello középső réteg és adatréteg. Ha egyetlen használta az Azure AD alkalmazás hívja az API-alkalmazás és hello hello védett API-alkalmazást, használja ugyanezt az értéket a mindkét hello `ida:ClientId` és `ida:Resource`.
    
-    A kód ConfigurationManager beolvasni ezeket az értékeket, így azok tárolható, a projekt Web.config fájlban, vagy az Azure futtatókörnyezetben használja. Az ASP.NET-alkalmazások futása közben az Azure App Service-ben, a környezet beállítások automatikusan felülbírálhatják a beállításokat a Web.config fájlból. A tesztkörnyezet beállításainak vannak általában egy [biztonságát módot a Web.config fájlban képest bizalmas adatokat tárol](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
+    hello kód használ ConfigurationManager tooget ezeket az értékeket, így azok a hello projekt Web.config fájlban, vagy hello Azure futtatókörnyezetben tárolható. Az ASP.NET-alkalmazások futása közben az Azure App Service-ben, a környezet beállítások automatikusan felülbírálhatják a beállításokat a Web.config fájlból. A tesztkörnyezet beállításainak vannak általában egy [bizalmas adatok biztonságosabb módon toostore képest tooa Web.config fájl](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
 4. Kattintson a **Save** (Mentés) gombra.
    
     ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-dotnet-service-principal-auth/appsettings.png)
 
-### <a name="test-the-application"></a>Az alkalmazás tesztelése
-1. Nyissa meg böngészőben az AngularJS előtér-webalkalmazás HTTPS URL-címét.
-2. Kattintson a **To Do List** lapra, és jelentkezzen be az Azure AD-bérlő a felhasználó hitelesítő adataival. 
-3. Adja hozzá a Tennivalólista elemein, hogy az alkalmazás működésének ellenőrzéséhez.
+### <a name="test-hello-application"></a>Hello alkalmazás tesztelése
+1. Nyissa meg böngészőben toohello hello AngularJS előtér-webalkalmazás HTTPS URL-CÍMÉT.
+2. Kattintson a hello **tooDo lista** lapra, és jelentkezzen be az Azure AD-bérlő a felhasználó hitelesítő adataival. 
+3. Vegye fel a tennivalók elemek tooverify hello alkalmazás működik.
    
-    ![Tennivalók listája lap](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
+    ![tooDo lista lap](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
    
-    Ha az alkalmazás a várt módon nem működik, gondosan ellenőrizze a megadott Azure-portálon beállítások. Ha a beállítások csak akkor lehet helyes jelenik meg, tekintse meg a [hibaelhárítás](#troubleshooting) szakasz az oktatóanyag későbbi részében.
+    Ha hello alkalmazás a várt módon nem működik, gondosan ellenőrizze a megadott Azure-portálon hello hello-beállítások. Ha hello beállítások jelennek meg a megfelelő toobe, lásd: hello [hibaelhárítás](#troubleshooting) szakasz az oktatóanyag későbbi részében.
 
-## <a name="protect-the-api-app-from-browser-access"></a>Böngésző-hozzáférés elleni védelmének az API-alkalmazás
-A jelen oktatóanyag egy külön létrehozott ToDoListDataAPI (adatok réteg) API-alkalmazás az Azure AD-alkalmazás. Most láthatta, ha az App Service egy AAD-alkalmazást hoz létre, mert oly módon, amely lehetővé teszi az API-alkalmazás URL-címet egy böngészőben nyissa, és jelentkezzen be egy felhasználó beállítja az AAD-alkalmazást. Ez azt jelenti, lehetséges, hogy a felhasználó az Azure AD-bérlőn, nem csak egy egyszerű szolgáltatásnév, az API eléréséhez. 
+## <a name="protect-hello-api-app-from-browser-access"></a>Böngésző-hozzáférés elleni védelmének hello API-alkalmazás
+A jelen oktatóanyag egy külön létrehozott hello ToDoListDataAPI (adatok réteg) API-alkalmazás az Azure AD-alkalmazás. Most láthatta, amikor az App Service hoz létre egy AAD-alkalmazást, mert olyan módon, amely lehetővé teszi, hogy egy felhasználó toogo toohello API-alkalmazás URL-cím, egy böngésző és a napló a konfigurálja hello AAD-alkalmazást. Ez azt jelenti, lehetséges, hogy a felhasználó az Azure AD-bérlőn, nem csak egy egyszerű szolgáltatásnév, tooaccess hello API. 
 
-Ha meg szeretné akadályozni, hogy a böngésző-hozzáférés a védett API-alkalmazás programozás nélkül, módosíthatja a **válasz URL-CÍMEN** az AAD-alkalmazást, hogy eltér az API-alkalmazás alap URL. 
+Ha azt szeretné tooprevent böngésző-hozzáférés nélküli programozás hello a védett API-alkalmazás, módosíthatja a hello **válasz URL-CÍMEN** hello AAD-alkalmazást úgy, hogy az eltérő hello API-alkalmazás alap URL. 
 
 ### <a name="disable-browser-access"></a>Böngésző-hozzáférés letiltása
-1. A klasszikus portálon **konfigurálása** lapján az AAD-alkalmazást, amely a TodoListService lett létrehozva, módosítsa a **válasz URL-CÍMEN** úgy, hogy egy érvényes URL-címet, de nem az API-alkalmazás URL-cím mezőben.
+1. Hello klasszikus portál **konfigurálása** hello AAD-alkalmazást, amely az hello TodoListService készült lapján, módosítsa a hello hello értéket **válasz URL-CÍMEN** úgy, hogy egy érvényes URL-címet, de nem hello API alkalmazás mezőben URL-CÍME.
 2. Kattintson a **Save** (Mentés) gombra.
 
 ### <a name="verify-browser-access-no-longer-works"></a>Ellenőrizze a böngésző-hozzáférés nem működik.
-Korábban ellenőrizte, hogy lépjen az API-alkalmazás URL-CÍMÉT a böngésző egyéni felhasználói hitelesítő adatokkal való bejelentkezés. Ebben a szakaszban, ellenőrizze, hogy ez nem lehetséges. 
+Korábban ellenőrizte, hogy lépjen toohello API-alkalmazás URL-CÍMÉT a böngésző egyéni felhasználói hitelesítő adatokkal való bejelentkezés. Ebben a szakaszban, ellenőrizze, hogy ez nem lehetséges. 
 
-1. Egy új böngészőablakban újra az URL-címet a API-alkalmazás.
-2. Jelentkezzen be, amikor a rendszer erre kéri.
-3. Bejelentkezés sikeresen befejeződik, de egy hibalap vezet.
+1. Egy új böngészőablakban nyissa meg újra toohello hello API-alkalmazás URL-CÍMÉT.
+2. Ha a napló toodo úgy kéri.
+3. Bejelentkezés sikeresen befejeződik, de tooan hibalap vezet.
    
-    Az AAD-alkalmazást, hogy a felhasználók az AAD-bérlőben nem jelentkezzen be és érhetik el az API-t egy beállított. Az API-alkalmazás továbbra is elérheti, ha a szolgáltatás egyszerű token, ellenőrizheti a webalkalmazás URL-címen, és vegye fel a további Tennivalólista elemein.
+    Hello AAD-alkalmazást, hogy a felhasználók az AAD-bérlőt hello nem jelentkezzen be és érhetik el hello API egy beállított. API-alkalmazás hello szolgáltatás egyszerű jogkivonat használatával, amely toohello webes alkalmazás URL-CÍMÉT is, és vegye fel a további tennivaló ellenőrizheti továbbra is elérheti.
 
-## <a name="restrict-access-to-a-particular-service-principal"></a>Egy adott szolgáltatás egyszerű való hozzáférés korlátozása
-Jelenleg, bármely hívó, amely egy jogkivonatot kérhet egy felhasználó vagy az Azure AD-bérlőben egyszerű meghívhatja a TodoListDataAPI (adatok réteg) API-alkalmazásba. Győződjön meg arról, hogy csak az adatréteg API-alkalmazásának elfogadja a hívásokat a TodoListAPI (középső réteg) API-alkalmazást, és csak egy adott szolgáltatás egyszerű kívánt. 
+## <a name="restrict-access-tooa-particular-service-principal"></a>Hozzáférés tooa adott szolgáltatás egyszerű korlátozása
+Jelenleg, bármely hívó, amely egy jogkivonatot kérhet egy felhasználó vagy az Azure AD-bérlőben egyszerű meghívhatja hello TodoListDataAPI (adatok réteg) API-alkalmazást. Érdemes lehet toomake meg arról, hogy hello API-alkalmazás adatrétegét csak hívások hello TodoListAPI (középső réteg) API-alkalmazást, és csak egy adott szolgáltatás egyszerű fogad el. 
 
-Ezek a korlátozások érvényesítése kódrészletet adhat hozzá a `appid` és `objectidentifier` jogcímet a bejövő hívások.
+Ezek a korlátozások is hozzáadhat kód toovalidate hello hozzáadásával `appid` és `objectidentifier` jogcímet a bejövő hívások.
 
-Ebben az oktatóanyagban a kódot, amely ellenőrzi az alkalmazás és szolgáltatás egyszerű azonosító közvetlenül a tartományvezérlő műveletek a put.  Alternatívák egy egyéni használandó `Authorize` attribútumot, vagy az ellenőrzés elvégzéséhez az indítási feladatütemezések (pl. OWIN köztes). Az utóbbi példáért lásd: [a mintaalkalmazás](https://github.com/mohitsriv/EasyAuthMultiTierSample/blob/master/MyDashDataAPI/Startup.cs). 
+Ebben az oktatóanyagban hello kódot, amely ellenőrzi az alkalmazás és szolgáltatás egyszerű azonosító közvetlenül a tartományvezérlő műveletek a put.  Alternatívák toouse egyéni `Authorize` attribútum vagy toodo az ellenőrzés az a indítási sorozatok (pl. OWIN köztes). Ez utóbbi hello példáért lásd: [a mintaalkalmazás](https://github.com/mohitsriv/EasyAuthMultiTierSample/blob/master/MyDashDataAPI/Startup.cs). 
 
-Az alábbi módosításokat végezni, a TodoListDataAPI projektet.
+Ellenőrizze a következő módosításokat toohello TodoListDataAPI projektet hello.
 
-1. Nyissa meg a *Controllers/TodoListController.cs* fájlt.
-2. Állítsa vissza a sorok beállított `trustedCallerClientId` és `trustedCallerServicePrincipalId`.
+1. Nyissa meg hello *Controllers/TodoListController.cs* fájlt.
+2. Állítsa vissza a beállított hello sorok `trustedCallerClientId` és `trustedCallerServicePrincipalId`.
    
         private static string trustedCallerClientId = ConfigurationManager.AppSettings["todo:TrustedCallerClientId"];
         private static string trustedCallerServicePrincipalId = ConfigurationManager.AppSettings["todo:TrustedCallerServicePrincipalId"];
-3. Állítsa vissza a kódot a CheckCallerId metódusban. Ez a metódus neve elején. minden műveleti módszer a vezérlőben. 
+3. Állítsa vissza a hello kód hello CheckCallerId metódust. Ez a módszer minden műveletmetódus hello vezérlőben hello elején nevezik. 
    
         private static void CheckCallerId()
         {
@@ -286,27 +286,27 @@ Az alábbi módosításokat végezni, a TodoListDataAPI projektet.
             string currentCallerServicePrincipalId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
             if (currentCallerClientId != trustedCallerClientId || currentCallerServicePrincipalId != trustedCallerServicePrincipalId)
             {
-                throw new HttpResponseException(new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized, ReasonPhrase = "The appID or service principal ID is not the expected value." });
+                throw new HttpResponseException(new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized, ReasonPhrase = "hello appID or service principal ID is not hello expected value." });
             }
         }
-4. Telepítse újra a ToDoListDataAPI projektet az Azure App Service.
-5. A böngészőben nyissa meg az AngularJS előtérbeli webes alkalmazás HTTPS URL-CÍMÉT, és a kezdőlapján kattintson a **To Do List** fülre.
+4. Telepítse újra a hello ToDoListDataAPI projektet tooAzure App Service.
+5. A böngészőben nyissa meg toohello AngularJS előtér webalkalmazás HTTPS URL-címet, és a hello kezdőlapján kattintson a hello **tooDo lista** fülre.
    
-    Az alkalmazás nem működik, mert a háttérben hívások nem működnek. Az új kódot tényleges appid és típusinformáció ellenőrzi, de még nem rendelkezik a megfelelő értékek kereséséhez, ellen. A böngésző fejlesztői eszközök konzol jelenti, hogy a kiszolgáló HTTP 401-es hibát ad vissza.
+    hello alkalmazás nem működik, mert toohello vissza befejezéséhez hívás sikertelen. Új kód hello tényleges appid és típusinformáció ellenőrzi, de még nem kapott hello helyes az értékük toocheck elleni őket. a jelentés hello böngésző fejlesztői eszközök konzol hello kiszolgálón HTTP 401-es hibát adott vissza.
    
     ![Hiba történt a fejlesztői eszközök konzol](./media/app-service-api-dotnet-service-principal-auth/webapperror.png)
    
-    A következő lépésekben konfigurál a várt értékeket.
-6. Az Azure AD-alkalmazást, a TodoListWebApp projekthez az Azure AD PowerShell, a szolgáltatás egyszerű értékének beolvasása.
+    Az alábbi lépésekkel hello konfigurálja hello várt értékeket.
+6. Az Azure AD PowerShell, a beolvasása hello szolgáltatás hello értékét egyszerű hello hello TodoListWebApp projekthez létrehozott Azure AD-alkalmazást.
    
-    a. Azure PowerShell telepítése és csatlakozás az előfizetéshez kapcsolatos útmutatásért lásd: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
+    a. Útmutatást tooinstall Azure PowerShell és a csatlakozás tooyour előfizetés, lásd: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
    
-    b. Szolgáltatás résztvevők listájának lekéréséhez hajtható végre a `Login-AzureRmAccount` parancsot, majd a `Get-AzureRmADServicePrincipal` parancsot.
+    b. szolgáltatás résztvevők listájának tooget hajtható végre hello `Login-AzureRmAccount` parancsot, és ezután hello `Get-AzureRmADServicePrincipal` parancsot.
    
-    c. Az ObjectId azonosító található a szolgáltatás egyszerű a TodoListAPI alkalmazás, és mentse egy helyre másolhatja később.
-7. Az Azure portálon keresse meg az API-t telepítette, a ToDoListDataAPI projektet az API-alkalmazás panelen.
+    c. Hello objectid keresése hello szolgáltatás egyszerű hello TodoListAPI alkalmazás, és mentse egy helyre másolhatja később.
+7. A hello Azure-portálon keresse meg az API-alkalmazás paneljének toohello a hello API-alkalmazás telepített hello ToDoListDataAPI projektet.
 8. Kattintson a **beállítások > Alkalmazásbeállítások**.
-9. Az a **Alkalmazásbeállítások** területen írja be a következő kulcsok és értékek:
+9. A hello **Alkalmazásbeállítások** területen írja be a következő hello kulcsok és értékek:
    
    | **Kulcs** | ToDo:TrustedCallerServicePrincipalId |
    | --- | --- |
@@ -315,37 +315,37 @@ Az alábbi módosításokat végezni, a TodoListDataAPI projektet.
    
    | **Kulcs** | ToDo:TrustedCallerClientId |
    | --- | --- |
-   | **Érték** |Alkalmazás - átmásolva a TodoListAPI az Azure AD alkalmazás hívása ügyfél-azonosítója |
+   | **Érték** |Alkalmazás - hello TodoListAPI az Azure AD alkalmazás átmásolva hívása ügyfél-azonosítója |
    | **Példa** |960adec2-b74a-484A-960adec2-b74a-484A |
 10. Kattintson a **Save** (Mentés) gombra.
     
      ![Kattintson a Save (Mentés) gombra.](./media/app-service-api-dotnet-service-principal-auth/trustedcaller.png)
-11. A böngészőben lépjen vissza a webes alkalmazás URL-címet, és a kezdőlapján kattintson a **To Do List** fülre.
+11. A böngészőben, térjen vissza a toohello webes alkalmazás URL-CÍMÉT, és a hello kezdőlapján kattintson a hello **tooDo lista** fülre.
     
-     Ezúttal az alkalmazás megfelelően működik-e mivel a megbízható hívó alkalmazás és szolgáltatás egyszerű azonosító a várt értékeket.
+     Az idő hello alkalmazás megfelelően működik-e mert hello megbízható hívó alkalmazás és szolgáltatás egyszerű azonosító hello várt értékek.
     
-     ![Tennivalók listája lap](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
+     ![tooDo lista lap](./media/app-service-api-dotnet-service-principal-auth/mvchome.png)
 
-## <a name="building-the-projects-from-scratch"></a>Teljesen új projektek felépítése
-A két Web API-projektek használatával létrehozott a **Azure API App** projektek sablon és az alapértelmezett értékek vezérlő lecserélését egy ToDoList tartományvezérlőre. Az Azure AD szolgáltatás egyszerű jogkivonatokat a ToDoListAPI projektet az beszerzése a [Active Directory Authentication Library (ADAL) .NET-keretrendszerhez készült](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) NuGet-csomag lett telepítve.
+## <a name="building-hello-projects-from-scratch"></a>Teljesen új hello projektek felépítése
+hello két Web API-projektet hello használatával létrehozott **Azure API App** projektek sablon és a ToDoList vezérlő tagjára hello alapértelmezett értékek vezérlő. Az beszerzése az Azure AD szolgáltatás egyszerű jogkivonatok hello ToDoListAPI projektben, hello [Active Directory Authentication Library (ADAL) .NET-keretrendszerhez készült](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) NuGet-csomag lett telepítve.
 
-Hozzon létre egy AngularJS egyoldalas alkalmazást a Web API háttérből például a ToDoListAngular kapcsolatos információkért lásd: [beavatkozás nélküli a labor: egy egyetlen oldal alkalmazás (SPA) az ASP.NET Web API és Angular.js Build](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs). Az Azure AD hitelesítési kód adásával kapcsolatos információkért lásd: [biztonságossá tétele AngularJS egyetlen oldal alkalmazások az Azure ad-val](../active-directory/active-directory-devquickstarts-angular.md).
+Információ a túl hozzon létre egy AngularJS egyoldalas alkalmazást a Web API háttérből például a ToDoListAngular, lásd: [beavatkozás nélküli a labor: egy egyetlen oldal alkalmazás (SPA) az ASP.NET Web API és Angular.js Build](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs). További információ tooadd az Azure AD hitelesítési kódot, lásd: [biztonságossá tétele AngularJS egyetlen oldal alkalmazások az Azure ad-val](../active-directory/active-directory-devquickstarts-angular.md).
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 [!INCLUDE [troubleshooting](../../includes/app-service-api-auth-troubleshooting.md)]
 
-* Győződjön meg arról, hogy azt ne tévessze össze ToDoListAPI (középső réteg) és a ToDoListDataAPI (adatrétegbeli). Például ebben az oktatóanyagban, hitelesítés hozzáadása az adatréteg API-alkalmazását, **, de az alkalmazás kulcsot kell származnia ahhoz az Azure AD-alkalmazás, amelyet a középső réteg API-alkalmazásának létrehozott**.
+* Győződjön meg arról, hogy azt ne tévessze össze ToDoListAPI (középső réteg) és a ToDoListDataAPI (adatrétegbeli). Például ebben az oktatóanyagban hozzáadhat hitelesítési toohello API-alkalmazás adatrétegét, **hello Alkalmazáskulcs hello Azure AD-alkalmazást, amelyet létrehozott hello középső rétegbeli API-alkalmazást kell származnia, de**.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez az utolsó oktatóanyaga, amely az API Apps adatsorozat. 
+Ez az API Apps adatsorozat hello hello utolsó oktatóanyaga. 
 
-Azure Active Directoryval kapcsolatos további információkért lásd a következőket.
+Azure Active Directoryval kapcsolatos további információkért tekintse meg a következő erőforrások hello.
 
 * [Az Azure AD fejlesztői útmutatója](http://aka.ms/aaddev)
 * [Az Azure AD-forgatókönyvek](http://aka.ms/aadscenarios)
 * [Azure AD-minták](http://aka.ms/aadsamples)
   
-    A [WebApp-WebAPI-OAuth2-AppIdentity-DotNet](http://github.com/AzureADSamples/WebApp-WebAPI-OAuth2-AppIdentity-DotNet) minta hasonlít megjelenő elemek ebben az oktatóanyagban, de az App Service hitelesítés nélkül.
+    Hello [WebApp-WebAPI-OAuth2-AppIdentity-DotNet](http://github.com/AzureADSamples/WebApp-WebAPI-OAuth2-AppIdentity-DotNet) minta hasonlít toowhat jelenik meg ebben az oktatóanyagban, de az App Service hitelesítés nélkül.
 
-Más módokon is telepíthet a Visual Studio-projektek API-alkalmazások esetén, vagy a Visual Studio használatával kapcsolatos információk [telepítés automatizálásáról](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) a egy [Forráskezelő rendszerből](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control), lásd: [központi telepítése egy Azure App Service-alkalmazást](../app-service-web/web-sites-deploy.md).
+Más módon információt a Visual Studio toodeploy tooAPI alkalmazások, projektek, vagy a Visual Studio használatával [telepítés automatizálásáról](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) a egy [Forráskezelő rendszerből](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control), lásd: [hogyan toodeploy egy Azure App Service alkalmazás](../app-service-web/web-sites-deploy.md).
 

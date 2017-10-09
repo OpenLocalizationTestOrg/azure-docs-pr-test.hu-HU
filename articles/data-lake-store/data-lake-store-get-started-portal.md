@@ -1,6 +1,6 @@
 ---
-title: "A Data Lake Store használatának első lépései az Azure Portalon | Microsoft Docs"
-description: "Data Lake Store-fiók létrehozása és alapszintű műveletek végrehajtása a Data Lake Store-ban az Azure Portallal"
+title: "az Azure portál tooget aaaUse Data Lake Store használatába |} Microsoft Docs"
+description: "Hello Azure portál toocreate egy Data Lake Store-fiókot használja, és alapszintű műveletek végrehajtása a Data Lake Store hello"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/06/2017
 ms.author: nitinme
-ms.openlocfilehash: fa13266993017374ba49709f8e22fbe6b03a28c7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6bb3413f00bfa4393f08aed18bc1d5f8a2f28fc5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-data-lake-store-using-the-azure-portal"></a>Az Azure Data Lake Store használatának első lépései az Azure Portal használatával
+# <a name="get-started-with-azure-data-lake-store-using-hello-azure-portal"></a>Ismerkedés az Azure Data Lake Store használatának hello Azure-portálon
 > [!div class="op_single_selector"]
-> * [Portal](data-lake-store-get-started-portal.md)
+> * [Portál](data-lake-store-get-started-portal.md)
 > * [PowerShell](data-lake-store-get-started-powershell.md)
 > * [.NET SDK](data-lake-store-get-started-net-sdk.md)
 > * [Java SDK](data-lake-store-get-started-java-sdk.md)
@@ -33,43 +33,43 @@ ms.lasthandoff: 08/18/2017
 >
 > 
 
-Ismerje meg, hogyan hozhat létre Azure Data Lake Store-fiókot az Azure Portal használatával, illetve hogyan végezhet el olyan alapvető műveleteket, mint például a mappák létrehozása, adatfájlok le- és feltöltése, a fiók törlése stb. További információkat [az Azure Data Lake Store áttekintésében](data-lake-store-overview.md) olvashat.
+Megtudhatja, hogyan toouse hello Azure portál toocreate egy Azure Data Lake Store-fiókot, és alapvető műveleteket, mint például mappák létrehozása, és feltöltése adatfájlok le, a fiók törlése stb. További információkat [az Azure Data Lake Store áttekintésében](data-lake-store-overview.md) olvashat.
 
-Az alábbi két videó ugyanazt az információt tartalmazza, mint a cikkben szereplő leírás:
+a következő két videók hello tartalmazhat hello ugyanazokat az információkat, ebben a cikkben leírtak szerint:
 
 * [Data Lake Store-fiók létrehozása](https://mix.office.com/watch/1k1cycy4l4gen)
-* [Adatkezelés a Data Lake Store-ban az Adatkezelő használatával](https://mix.office.com/watch/icletrxrh6pc)
+* [Adatkezelés a Data Lake Store hello adatkezelő használatával](https://mix.office.com/watch/icletrxrh6pc)
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez a következő elemek hello kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="create-an-azure-data-lake-store-account"></a>Azure Data Lake Store-fiók létrehozása
 
-1. Jelentkezzen be az új [Azure Portalra](https://portal.azure.com).
-2. Kattintson a **NEW** (új) **Data + Storage** (Adatok és tárolás), majd az **Azure Data Lake Store** elemre. Olvassa el az **Azure Data Lake Store** panelen látható információkat, majd kattintson a panel bal alsó sarkában található **Create** (Létrehozás) elemre.
-3. Az **Új Data Lake Store** panelen adja meg az értékeket az alábbi képernyőfelvételen látható módon:
+1. Jelentkezzen be az új toohello [Azure-portálon](https://portal.azure.com).
+2. Kattintson a **NEW** (új) **Data + Storage** (Adatok és tárolás), majd az **Azure Data Lake Store** elemre. Hello hello olvasni **Azure Data Lake Store** panelt, és kattintson **létrehozása** hello bal alsó sarkában hello panelen található.
+3. A hello **új Data Lake Store** panelen adjon meg hello értékeket, ahogy az alábbi képernyőfelvétel a hello:
    
     ![Új Azure Data Lake Store-fiók létrehozása](./media/data-lake-store-get-started-portal/ADL.Create.New.Account.png "Új Azure Data Lake Store-fiók létrehozása")
    
-   * **Név**. Adja meg a Data Lake Store-fiók egyedi nevét.
-   * **Előfizetés**. Válassza ki az előfizetést, amelyhez létre kíván hozni egy új Data Lake Store-fiókot.
-   * **Erőforráscsoport**. Válasszon ki egy meglévő erőforráscsoportot, vagy válassza a **Create new** (Új létrehozása) elemre, ha szeretne létrehozni egyet. Az erőforráscsoport egy tároló, amely alkalmazásokhoz kapcsolódó erőforrásokat tárol. További információk: [Erőforráscsoportok az Azure-ban](../azure-resource-manager/resource-group-overview.md#resource-groups).
-   * **Hely**: Válassza ki, hol szeretné létrehozni a Data Lake Store-fiókot.
+   * **Név**. Adjon meg egy egyedi nevet hello Data Lake Store-fiók.
+   * **Előfizetés**. Válassza ki a használt toocreate új Data Lake Store-fiók kívánt hello előfizetést.
+   * **Erőforráscsoport**. Válasszon ki egy meglévő erőforráscsoportot, vagy válassza ki a hello **hozzon létre új** beállítás toocreate egyet. Az erőforráscsoport egy tároló, amely alkalmazásokhoz kapcsolódó erőforrásokat tárol. További információk: [Erőforráscsoportok az Azure-ban](../azure-resource-manager/resource-group-overview.md#resource-groups).
+   * **Hely**: jelöljön ki egy helyet, ahová toocreate hello Data Lake Store-fiók.
    * **Titkosítási beállítások**. Három beállítás érhető el:
      
      * **A titkosítás letiltása**.
-     * **Azure Data Lake által kezelt kulcsok használata**.  Ha azt szeretné, hogy az Azure Data Lake Store kezelje a titkosítási kulcsokat.
-     * **Azure Key Vault-kulcsok kiválasztása**. Kiválaszthat egy meglévő Azure Key Vault-tárolót, vagy létrehozhat egy újat. Az Azure Key Vaultban lévő kulcsok használatához engedélyeket kell rendelnie az Azure Data Lake Store-fiókhoz az Azure Key Vault elérése érdekében. Az utasításokért lásd [az engedélyek az Azure Key Vaulthoz történő hozzárendelését](#assign-permissions-to-azure-key-vault) ismertető cikket.
+     * **Azure Data Lake által kezelt kulcsok használata**.  Ha azt szeretné, az Azure Data Lake Store toomanage a titkosítási kulcsok.
+     * **Azure Key Vault-kulcsok kiválasztása**. Kiválaszthat egy meglévő Azure Key Vault-tárolót, vagy létrehozhat egy újat. a kulcstároló toouse hello kulcsokat, hozzá kell rendelnie hello tooaccess hello Azure Key Vault Azure Data Lake Store-fiók engedélyeit. Hello útmutatásért lásd: [engedélyek tooAzure Key Vault hozzárendelése](#assign-permissions-to-azure-key-vault).
        
         ![Data Lake Store-titkosítás](./media/data-lake-store-get-started-portal/adls-encryption-2.png "Data Lake Store-titkosítás")
        
-        Kattintson az **OK** gombra a **Titkosítási beállítások** panelen.
+        Kattintson a **OK** a hello **titkosítási beállítások** panelen.
 
         További információkat [az adatok az Azure Data Lake Store-ban történő titkosítását](./data-lake-store-encryption.md) ismertető cikkben talál.
 
-4. Kattintson a **Create** (Létrehozás) gombra. Ha úgy döntött, hogy rögzíti a fiókot az irányítópulton, visszakerül az irányítópultra, ahol láthatja a Data Lake Store-fiók üzembe helyezésének folyamatát. A Data Lake Store-fiók üzembe helyezése után megjelenik a fiókpanel.
+4. Kattintson a **Create** (Létrehozás) gombra. Ha úgy dönt, hogy toopin hello fiók toohello irányítópult, visszakerül toohello irányítópultot, és láthatja a Data Lake Store-fiók kiépítés hello előrehaladását. Egyszer hello Data Lake Store-fiók üzembe helyezése hello fiók panelen megjelenik.
 
 Az Azure Resource Manager-sablonok használatával is létrehozhat Data Lake Store-fiókokat. Ezek a sablonok az [Azure gyors üzembehelyezési sablonokból](https://azure.microsoft.com/resources/templates/?term=data+lake+store) érhetők el:
 
@@ -77,56 +77,56 @@ Az Azure Resource Manager-sablonok használatával is létrehozhat Data Lake Sto
 - A Data Lake Store adattitkosításának használatával: [Azure Data Lake Store-fiók üzembe helyezése titkosítással (Data Lake)](https://azure.microsoft.com/resources/templates/101-data-lake-store-encryption-adls/).
 - Az Azure Key Vault adattitkosításának használatával: [Azure Data Lake Store-fiók üzembe helyezése titkosítással (Key Vault)](https://azure.microsoft.com/resources/templates/101-data-lake-store-encryption-key-vault/).
 
-### <a name="assign-permissions-to-azure-key-vault"></a>Engedélyek hozzárendelése az Azure Key Vaulthoz
-Ha az Azure Key Vaultban lévő kulcsokkal konfigurálta a titkosítást a Data Lake Store-fiókban, konfigurálnia kell a Data Lake Store-fiók és az Azure Key Vault-fiók közötti hozzáférést. Ehhez kövesse az alábbi lépéseket.
+### <a name="assign-permissions-to-azure-key-vault"></a>Engedélyek tooAzure Key Vault hozzárendelése
+Ha az Azure Key Vault tooconfigure titkosítási kulcsokat a Data Lake Store-fiók hello, konfigurálnia kell a hozzáférés hello Data Lake Store-fiók és hello Azure Key Vault fiók között. Hajtsa végre a következő lépéseket toodo így hello.
 
-1. Ha az Azure Key Vault kulcsait használta, a Data Lake Store panele felül egy figyelmeztetést jelenít meg. Kattintson a figyelmeztetésre a **Key Vault-engedélyek konfigurálása** panel megnyitásához.
+1. Ha használta az Azure Key Vault hello kulcsokat, hello Data Lake Store-fiók paneljén hello figyelmeztetést jelenít meg hello tetején. Kattintson a hello figyelmeztetés tooopen hello **kulcsot tároló engedélyek konfigurálása** panelen.
    
     ![Data Lake Store-titkosítás](./media/data-lake-store-get-started-portal/adls-encryption-3.png "Data Lake Store-titkosítás")
-2. A panelen két lehetőség szerepel a hozzáférés konfigurálásához.
+2. hello két beállítások tooconfigure hozzáférés megjelenik.
    
-   * Az első lehetőségnél kattintson az **Engedélyezés** gombra a hozzáférés konfigurálásához. Az első lehetőség csak akkor engedélyezett, ha a Data Lake Store-t létrehozó felhasználó egyben az Azure Key Vault rendszergazdája is.
-   * A másik lehetőség a panelen megjelenő PowerShell parancsmag futtatása. Az Azure Key Vault tulajdonosának kell lennie, vagy képesnek kell lennie engedélyeket hozzárendelni az Azure Key Vaulton. A parancsmag futtatása után térjen vissza a panelre, és kattintson az **Engedélyezés** gombra a hozzáférés konfigurálásához.
+   * Hello első lehetőség, kattintson **Grant engedéllyel** tooconfigure hozzáférést. hello első lehetőség engedélyezve van, csak ha hello felhasználó által létrehozott hello Data Lake Store-fiók is hello Azure Key Vault egy rendszergazda.
+   * hello másik lehetőség egy toorun hello PowerShell parancsmag hello panelen jelenik meg. Hello képességét toogrant engedélyekkel rendelkezzen az Azure Key Vault hello vagy toobe hello tulajdonosa hello Azure Key Vault szükséges. Hello parancsmag futtatása után térjen vissza toohello panelt, és kattintson a **engedélyezése** tooconfigure hozzáférést.
 
 ## <a name="createfolder"></a>Mappák létrehozása az Azure Data Lake Store-fiókban
-A Data Lake Store-fiókjában mappákat hozhat létre az adatok kezelésére és tárolására.
+Mappák létrehozása a Data Lake Store-fiók toomanage alatt, és adatok tárolásához.
 
-1. Nyissa meg a létrehozott Data Lake Store-fiókot. A bal oldali ablaktáblában kattintson a **Browse** (Tallózás), **Data Lake Store** elemre, majd a Data Lake Store panelen kattintson a fiók nevére, amelyben mappákat kíván létrehozni. Ha rögzítette a fiókot a kezdőpulton, kattintson a fiók csempéjére.
+1. Nyissa meg a létrehozott hello Data Lake Store-fiókot. Hello bal oldali ablaktáblában kattintson **Tallózás**, kattintson a **Data Lake Store**, majd hello Data Lake Store panelen, kattintson a toocreate mappák kérünk hello fióknevet. Ha rögzítette hello fiók toohello kezdőpulton, kattintson a fiók csempéjére.
 2. A Data Lake Store-fiók panelén kattintson a **Data Explorer** (Adatkezelő) elemre.
    
     ![Mappák létrehozása a Data Lake Store-fiókban](./media/data-lake-store-get-started-portal/ADL.Create.Folder.png "Mappák létrehozása a Data Lake Store-fiókban")
-3. A Data Lake Store-fiók panelén kattintson a **New Folder** (Új mappa) elemre, adjon nevet az új mappának, majd kattintson az **OK** gombra.
+3. A Data Lake Store-fiók panelen kattintson a **új mappa**, írja be a hello új mappa nevét, és kattintson **OK**.
    
     ![Mappák létrehozása a Data Lake Store-fiókban](./media/data-lake-store-get-started-portal/ADL.Folder.Name.png "Mappák létrehozása a Data Lake Store-fiókban")
    
-    Az újonnan létrehozott mappa megjelenik az **Adatkezelő** panelen lévő listában. Bármilyen szinten létrehozhat beágyazott mappákat.
+    az újonnan létrehozott hello mappa hello szerepel **adatkezelő** panelen. Bármilyen szinten létrehozhat beágyazott mappákat.
    
     ![Mappák létrehozása a Data Lake-fiókban](./media/data-lake-store-get-started-portal/ADL.New.Directory.png "Mappák létrehozása a Data Lake-fiókban")
 
-## <a name="uploaddata"></a>Adatok feltöltése az Azure Data Lake Store-fiókba
-Adatait közvetlenül, gyökérszinten is feltöltheti az Azure Data Lake Store-fiókba, vagy a fiókon belül létrehozott mappába. Az alábbi képernyőfelvételen látható lépésekkel feltölthet egy fájlt egy almappába az **Adatkezelő** panelről. A képernyőfelvételen a fájl az útkövetésben jelölt almappába lesz feltöltve (vörös téglalappal jelölve).
+## <a name="uploaddata"></a>Töltse fel az adatok tooAzure Data Lake Store-fiók
+Feltöltheti az adatok tooan közvetlenül gyökérmappában hello szint vagy tooa hello fiókon belül létrehozott Azure Data Lake Store-fiók. A hello képernyőképe, a következő kövesse hello lépéseket tooupload fájl tooa almappa hello **adatkezelő** panelen. A képernyőfelvételen a hello fájl feltöltött tooa almappa (vörös téglalappal jelölt) hello útkövetését látható.
 
-Ha feltölthető mintaadatokra van szüksége, használhatja az [Azure Data Lake Git-tárában](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData) található **Ambulance Data** mappát.
+Néhány példa adatok tooupload keres, ha kaphat a hello **Ambulance Data** hello mappát [Azure Data Lake Git-tárház](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData).
 
 ![Adatok feltöltése](./media/data-lake-store-get-started-portal/ADL.New.Upload.File.png "Adatok feltöltése")
 
-## <a name="properties"></a>A tárolt adatokra vonatkozó tulajdonságok és műveletek
-Kattintson az újonnan hozzáadott fájlra a **Properties** (Tulajdonságok) panel megnyitásához. Ezen a panelen érhetők el a fájlhoz kapcsolódó tulajdonságok és a rajta a panelben elvégezhető műveletek. Másolhatja az Azure Data Lake Store-fiókban lévő fájl teljes elérési útját is, amely az alábbi képernyőfelvételen vörös téglalappal van jelölve:
+## <a name="properties"></a>Tulajdonságok és műveletek hello a tárolt adatok
+Kattintson a hello újonnan hozzáadott fájlra tooopen hello **tulajdonságok** panelen. hello fájl- és hello műveleteket hajthat végre hello fájl társított hello tulajdonságok ezen a panelen érhetők el. Hello teljes elérési útja toofile is másolhatja a Azure Data Lake Store-fiókban, piros hello mezőjében a következő képernyőkép hello kiemelve:
 
-![Az adatok tulajdonságai](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "Az adatok tulajdonságai")
+![Hello adatok tulajdonságainak](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "hello adatok tulajdonságai")
 
-* Kattintson a **Preview** (Előnézet) elemre a fájl előnézetének közvetlenül a böngészőből történő megtekintéséhez. Az előnézet formátumát is meghatározhatja. Kattintson a **Preview** (Előnézet), majd a **Format** (Formátum) elemre a **File Preview** (Fájl előnézete) panelen, és a **File Preview Format** (Fájl előnézetének formátuma) panelen adja meg az olyan beállításokat, mint a megjelenítendő sorok száma, a használni kívánt kódolás és elválasztók stb.
+* Kattintson a **előzetes** toosee hello fájl közvetlenül hello böngészőből előnézetét. Hello hello előnézet formátumát is megadhat. Kattintson a **előzetes**, kattintson **formátum** hello a **fájljának előnézete** panelt, és a hello **File Preview Format** panelen adja meg a hello beállítások, például sorok toodisplay számának kódolás toouse, elválasztó karakter toouse, stb.
   
   ![A fájl előnézetének formátuma](./media/data-lake-store-get-started-portal/ADL.File.Preview.png "A fájl előnézetének formátuma")
-* Kattintson a **Download** (Letöltés) elemre a fájl letöltéséhez a számítógépére.
-* Kattintson a **Rename file** (Fájl átnevezése) elemre a fájl átnevezéséhez.
-* Kattintson a **Delete file** (Fájl törlése) elemre a fájl törléséhez.
+* Kattintson a **letöltése** toodownload hello fájl tooyour számítógép.
+* Kattintson a **átnevezése fájl** toorename hello fájlt.
+* Kattintson a **törölje a(z)** toodelete hello fájlt.
 
 ## <a name="secure-your-data"></a>Az adatok védelme
-Az Azure Active Directory és a hozzáférés-vezérlés (ACLs) segítségével gondoskodhat az Azure Data Lake Store-fiókban tárolt adatok védelméről. Az erre vonatkozó utasításokért lásd: [Az adatok védelme az Azure Data Lake Store-ban](data-lake-store-secure-data.md).
+Az Azure Active Directory és a hozzáférés-vezérlés (ACLs) segítségével az Azure Data Lake Store-fiókban tárolt hello adatok biztonságát. Útmutatást, lásd: toodo [adatok védelme az Azure Data Lake Store](data-lake-store-secure-data.md).
 
 ## <a name="delete-azure-data-lake-store-account"></a>Az Azure Data Lake Store-fiók törlése
-Az Azure Data Lake Store-fiók törléséhez kattintson a **Delete** (Törlés) elemre a Data Lake Store panelen. A művelet megerősítéséhez a rendszer a törölni kívánt fiók nevének megadását kéri. Adja meg a fiók nevét, majd kattintson a **Delete** (Törlés) gombra.
+toodelete az Azure Data Lake Store-fiók, a Data Lake Store panelen kattintson a **törlése**. tooconfirm hello művelet, lesz toodelete kívánja hello fiók felszólító tooenter hello nevét. Írja be a hello hello fiók nevét, és kattintson **törlése**.
 
 ![Data Lake-fiók törlése](./media/data-lake-store-get-started-portal/ADL.Delete.Account.png "Data Lake-fiók törlése")
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás VirtualNetworkCombo felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Network.VirtualNetworkCombo felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás VirtualNetworkCombo felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Network.VirtualNetworkCombo felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 8bb255b76ac5c3de570fa569a1cfb3ee953f9687
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b0fa5360d93306f7a814723f77e42540bdaaa9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftnetworkvirtualnetworkcombo-ui-element"></a>Microsoft.Network.VirtualNetworkCombo felhasználói felületi elem
 Egy új vagy meglévő virtuális hálózat kiválasztásához vezérlők egy csoportja. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
@@ -25,8 +25,8 @@ Egy új vagy meglévő virtuális hálózat kiválasztásához vezérlők egy cs
 ## <a name="ui-sample"></a>Felhasználói felület minta
 ![Microsoft.Network.VirtualNetworkCombo](./media/managed-application-elements/microsoft.network.virtualnetworkcombo.png)
 
-- A felső Drótvázdiagram, az a felhasználó kiválasztotta egy új virtuális hálózat, a felhasználó minden alhálózat nevét és címét előtag szabhatja testre. Alhálózatok konfigurálása ebben az esetben nem kötelező megadni.
-- Az alsó Drótvázdiagram a felhasználó kiválasztotta meglévő virtuális hálózat, így a felhasználó a központi telepítési sablont igényel minden egyes alhálózatot kell társítani egy létező alhálózatot. Alhálózatok konfigurálása ebben az esetben szükség.
+- Hello felső Drótvázdiagram, a hello felhasználói kiválasztotta az új virtuális hálózat, így hello felhasználói testre szabhatja az egyes alhálózatok nevét és címét előtag. Alhálózatok konfigurálása ebben az esetben nem kötelező megadni.
+- A hello alsó Drótvázdiagram hello felhasználói kiválasztotta a meglévő virtuális hálózat, a hello felhasználói kell társítani, minden alhálózati hello központi telepítési sablont megköveteli-e a tooan létező alhálózatot. Alhálózatok konfigurálása ebben az esetben szükség.
 
 ## <a name="schema"></a>Séma
 ```json
@@ -82,17 +82,17 @@ Egy új vagy meglévő virtuális hálózat kiválasztásához vezérlők egy cs
 ```
 
 ## <a name="remarks"></a>Megjegyzések
-- Ha meg van adva, az első mozaikként, átfedés nélkül cím előtag méretű `defaultValue.addressPrefixSize` a felhasználó az előfizetéshez létező virtuális hálózatok automatikusan alapján történik.
-- Az alapértelmezett érték `defaultValue.name` és `defaultValue.addressPrefixSize` van **null**.
-- `constraints.minAddressPrefixSize`meg kell adni. Meglévő virtuális hálózatok egy kisebb, mint a megadott érték címtartománnyal rendelkező kijelölésnél érhetők el.
+- Ha meg van adva, hello első mozaikként, átfedés nélkül címelőtag méretű `defaultValue.addressPrefixSize` hello felhasználó az előfizetéshez létező virtuális hálózatok automatikusan alapján történik.
+- az alapértelmezett érték hello `defaultValue.name` és `defaultValue.addressPrefixSize` van **null**.
+- `constraints.minAddressPrefixSize`meg kell adni. Az-címtér kisebb, mint hello megadott érték nem lehet kiválasztani a meglévő virtuális hálózatok.
 - `subnets`meg kell adni, és `constraints.minAddressPrefixSize` meg kell adni az egyes alhálózatokon.
-- Amikor új virtuális hálózat létrehozása minden alhálózati cím előtag alapján van kiszámítva automatikusan a virtuális hálózat címelőtagjához és a megfelelő `addressPrefixSize`.
+- Amikor új virtuális hálózat létrehozása minden alhálózati cím előtag alapján van kiszámítva automatikusan hello virtuális hálózat címelőtagjához és a megfelelő `addressPrefixSize`.
 - Ha egy meglévő virtuális hálózat, kisebb, mint a megfelelő alhálózatok `constraints.minAddressPrefixSize` kijelölés nem érhetők el. Továbbá ha meg van adva, alhálózatok, amelyek nem tartalmaznak legalább `minAddressCount` elérhető címei nem lehet kiválasztani.
-Az alapértelmezett érték **0**. Győződjön meg arról, hogy a rendelkezésre álló címek összefüggő, adja meg a **igaz** a `requireContiguousAddresses`. Az alapértelmezett érték **igaz**.
+hello alapértelmezett értéke **0**. amely a rendelkezésre álló címek hello tooensure összefüggő, adja meg **igaz** a `requireContiguousAddresses`. hello alapértelmezett értéke **igaz**.
 - A meglévő virtuális hálózat alhálózatok létrehozása nem támogatott.
-- Ha `options.hideExisting` van **igaz**, a felhasználó egy meglévő virtuális hálózat nem választható. Az alapértelmezett érték **hamis**.
+- Ha `options.hideExisting` van **igaz**, hello felhasználói egy meglévő virtuális hálózat nem választható. hello alapértelmezett értéke **hamis**.
 
-## <a name="sample-output"></a>Minta kimenet
+## <a name="sample-output"></a>Példa kimenet
 ```json
 {
   "name": "vnet01",
@@ -115,6 +115,6 @@ Az alapértelmezett érték **0**. Győződjön meg arról, hogy a rendelkezésr
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

@@ -1,5 +1,5 @@
 ---
-title: Mi az Azure Machine Learning Studio? | Microsoft Docs
+title: aaaWhat az Azure Machine Learning Studio? | Microsoft Docs
 description: "Az Azure ML Studio áttekintése. Az Azure ML Studio olyan, egérrel kezelhető eszköz, amellyel egy használatra kész algoritmus- és modultárból gyorsan felépíthetők a modellek."
 keywords: azure machine learning,azure ml, ml studio
 services: machine-learning
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 70a1d0acb8ec9bbb591f696281ea5e975b443a15
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a25f2d9e75d088a37930de98240c6e14c9567fa4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-machine-learning-studio"></a>Mi az Azure Machine Learning Studio?
-A Microsoft Azure Machine Learning Studio olyan, az együttműködést támogató, egérrel kezelhető eszköz, amellyel az adataihoz prediktív elemzési megoldások hozhatók létre, tesztelhetők és helyezhetők üzembe. A Machine Learning Studio a modelleket webszolgáltatásként teszi közzé, amelyeket az egyéni alkalmazások vagy az Excel és más üzletiintelligencia-eszközök egyszerűen felhasználhatnak.
+A Microsoft Azure Machine Learning Studio egy olyan együttműködést támogató, egérrel húzási és elengedési eszköz használhatja toobuild, tesztelését és rendszerbe adataihoz prediktív elemzési megoldások. A Machine Learning Studio a modelleket webszolgáltatásként teszi közzé, amelyeket az egyéni alkalmazások vagy az Excel és más üzletiintelligencia-eszközök egyszerűen felhasználhatnak.
 
 A Machine Learning Studio találkozási pontot biztosít az adatelemzés, a prediktív elemzés, a felhőerőforrások és az Ön adatai számára.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="the-machine-learning-studio-interactive-workspace"></a>A Machine Learning Studio interaktív munkaterülete
-A prediktív elemzési modellek létrehozásához általában egy vagy több forrásból származó adatokat veszünk alapul, különböző adatkezelési és statisztikai függvények felhasználásával átalakítjuk őket, majd eredményhalmazt hozunk létre. Az ilyen modellek fejlesztése iteratív folyamat. A különböző függvényeket és paramétereket addig módosítjuk, az eredményeket addig közelítjük, amíg úgy nem véljük, hogy jól betanított, hatékony modellel rendelkezünk.
+## <a name="hello-machine-learning-studio-interactive-workspace"></a>hello Machine Learning Studio interaktív munkaterülete
+a prediktív elemzési modellek toodevelop, általában használja adatok egy vagy több forrásból, átalakítás és elemzése adatokat veszünk különböző adatkezelési és statisztikai függvények és az eredmények eredményhalmazt. Az ilyen modellek fejlesztése iteratív folyamat. Addig módosítjuk hello különböző függvényeket és paramétereket, az eredményeket addig közelítjük, amíg úgy nem véljük, hogy rendelkezik-e a betanított, hatékony modellel rendelkezünk.
 
-Az **Azure Machine Learning Studio** interaktív, grafikus munkaterületet nyújt, amelyen könnyedén létrehozhatók, tesztelhetők és fejleszthetők a prediktív elemzési modellek. Az ***adathalmazokat*** és elemzési ***modulokat*** egy interaktív ***vászonra*** húzhatja, és összekapcsolhatja őket a Machine Learning Studio eszközben futtatható kísérletekké. A modell felépítésének fejlesztéséhez szerkesztheti a kísérletet, szükség esetén mentheti egy másolatát, majd újrafuttathatja. Amikor készen áll, a ***tanítási kísérletet*** átalakíthatja ***prediktív kísérletté***, majd ***közzéteheti*** webszolgáltatásként, hogy mások is hozzáférjenek.
+**Az Azure Machine Learning Studio** által biztosított egy interaktív, grafikus munkaterületet tooeasily létrehozása, tesztelése és a prediktív elemzési modellek többször. Ön fogd és vidd ***adatkészletek*** és elemzések ***modulok*** egy interaktív vászonra csatlakoztatja őket együtt tooform egy ***kísérletezhet***, amely futtatja a Machine Learning Studio. a modell tervezésével tooiterate, akkor hello kísérletet, mentse el szükség esetén szerkessze, és indítsa újra. Ha készen áll, alakíthatja a ***tanítási kísérletet*** tooa ***prediktív kísérletté***, és tegye közzé azt egy ***webszolgáltatás*** , hogy elérhető legyen a modell mások számára.
 
-A prediktív elemzési modell összeállításához nincs szükség programozásra, csupán az adathalmazok és a modulok grafikus összekapcsolására.
+Nincs szükség programozásra, csupán grafikus összekapcsolására a prediktív elemzési modell az adathalmazokat és modulokat tooconstruct van.
 
 > [!TIP]
-> Ha szeretne egy letölthető és kinyomtatható diagramot a Machine Learning Studio funkcióiról, tekintse meg [Az Azure Machine Learning Studio funkcióit bemutató diagram](machine-learning-studio-overview-diagram.md) című cikket.
+> Lásd a toodownload és nyomtatási ábrázoló diagram, amely áttekintést nyújt a Machine Learning Studio funkcióiról hello [Azure Machine Learning Studio képességeit áttekintő diagram](machine-learning-studio-overview-diagram.md).
 > 
 > 
 
 ![Az Azure ML Studio diagramja: kísérletek létrehozása, adatok beolvasása számos forrásból, pontozott adatok és modellek írása.][ml-studio-overview]
 
 ## <a name="get-started-with-machine-learning-studio"></a>A Machine Learning Studio használatának első lépései
-Amikor először belép a [Machine Learning Studio](https://studio.azureml.net) felületére, a **Kezdőlap** oldal jelenik meg. Innen kiindulva megtekintheti a dokumentációt, valamint videókat, webes előadások és más hasznos forrásokat érhet el.
+Amikor először beírja [Machine Learning Studio](https://studio.azureml.net) hello látja **Home** lap. Innen kiindulva megtekintheti a dokumentációt, valamint videókat, webes előadások és más hasznos forrásokat érhet el.
 
-Kattintson a bal felső menüre, ![Menü](media/machine-learning-what-is-ml-studio/menu.png) amelyben számos lehetőséget fog látni.
+Hello bal felső menüben ![Menü](media/machine-learning-what-is-ml-studio/menu.png) amelyben számos lehetőséget fog látni.
 
 ### <a name="cortana-intelligence"></a>Cortana Intelligence
-Kattintson a **Cortana Intelligence** elemre, és megnyílik a [Cortana Intelligence Suite](https://www.microsoft.com/cloud-platform/cortana-intelligence-suite) kezdőlapja. A Cortana Intelligence Suite egy teljes mértékben felügyelt big data-feldolgozó és összetett elemzéseket végző csomag, amelynek segítségével az adatait intelligens műveletekké alakíthatja. A teljes dokumentációt, valamint az ügyfelek beszámolóit a csomag honlapján találja.
+Kattintson a **Cortana Intelligence** és fog tenni toohello kezdőlapján hello [Cortana Intelligence Suite](https://www.microsoft.com/cloud-platform/cortana-intelligence-suite). hello Cortana Intelligence Suite egy teljes körűen felügyelt big Data típusú adatok, és az adatok analytics suite tootransform speciális intelligens működésbe. Lásd: hello Suite kezdőlap teljes dokumentációja, beleértve az ügyfél szövegek.
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Két lehetőség érhető el: a **Kezdőlap**, vagyis a kiindulási oldal, valamint a **Studio**.
+Itt, két lehetőség **Home**, hello lap eredeti állapotába, és **Studio**.
 
-Kattintson a **Studio** elemre, és megnyílik az **Azure Machine Learning Studio**. A rendszer felkéri, hogy jelentkezzen be a Microsoft-fiókjával, illetve a munkahelyi vagy iskolai fiókjával. Miután bejelentkezett, bal oldalon az alábbi lapokat fogja látni:
+Kattintson a **Studio** és fog tenni toohello **Azure Machine Learning Studio**. Először meg kell adnia a Microsoft-fiókját, vagy a munkahelyi vagy iskolai fiókjával toosign. Miután bejelentkezett, megjelenik a következő lapokon hello bal oldali hello:
 
 * **PROJEKTEK** – Az egyes projekteket alkotó kísérletek, adatkészletek, jegyzetek és egyéb erőforrások gyűjteményei
 * **KÍSÉRLETEK** – A létrehozott és futtatott vagy vázlatként mentett kísérletek
@@ -61,52 +61,52 @@ Kattintson a **Studio** elemre, és megnyílik az **Azure Machine Learning Studi
 * **NOTEBOOKOK** – A létrehozott Jupyter notebookok
 * **ADATHALMAZOK** – A Studióba feltöltött adathalmazok
 * **BETANÍTOTT MODELLEK** – A kísérletek során betanított és a Studio eszközbe mentett kísérletek
-* **BEÁLLÍTÁSOK** – A fiók és az erőforrások konfigurálására szolgáló beállítások gyűjteménye
+* **BEÁLLÍTÁSOK** -beállítások használható tooconfigure fiókja és -erőforrások gyűjteménye.
 
 ### <a name="gallery"></a>Katalógus
-Kattintson a **Katalógus** lapra, és megnyílik a **[Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/)**. A Gallery olyan hely, ahol az adatelemzők és fejlesztők közössége megoszthatja a Cortana Intelligence Suite összetevői használatával létrehozott megoldásokat.
+Kattintson a **gyűjtemény** és fog tenni toohello  **[Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/)**. hello gyűjtemény egy olyan hely, ahol az adatelemzők és fejlesztők közösségi megosztás hello Cortana Intelligence Suite összetevői használatával létrehozott megoldásokat.
 
-Erről további információkat a [Megoldások megosztása és felfedezése a Cortana Intelligence Galleryben](machine-learning-gallery-how-to-use-contribute-publish.md) című cikkben talál.
+Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery hello megoldások](machine-learning-gallery-how-to-use-contribute-publish.md).
 
 ## <a name="components-of-an-experiment"></a>A kísérletek összetevői
-A kísérletek adathalmazokból állnak, amelyek adatokat szolgáltatnak az elemzési modulok számára; az elemzési modulok pedig összekapcsolódva prediktív elemzési modellt alkotnak. Az érvényes kísérletek a következő jellemzőkkel rendelkeznek:
+Egy adathalmazokból állnak, amelyek biztosítanak az adatok tooanalytical modulokat, amelyek tooconstruct prediktív elemzési modellek. Az érvényes kísérletek a következő jellemzőkkel rendelkeznek:
 
-* A kísérlet tartalmaz legalább egy adathalmazt és egy modult
-* Az adathalmazok csak a modulokhoz csatlakoztathatók
-* A modulok csatlakoztathatók adathalmazokhoz és más modulokhoz is
-* A modulok összes bemeneti portjának rendelkeznie kell valamilyen kapcsolattal az adatfolyamhoz
+* hello kísérlet tartalmaz legalább egy adathalmazt és egy modult
+* Lehet, hogy adatkészletek csatlakoztatott csak toomodules
+* Lehet, hogy modulok csatlakoztatott tooeither adathalmazokhoz és más modulokhoz
+* Az összes bemeneti portok modulok rendelkeznie kell néhány kapcsolat toohello adatok folyamata
 * Minden modul összes szükséges paraméterét meg kell adni
 
-A kísérleteket létrehozhatja nulláról, vagy egy meglévő mintakísérletet sablonként használva További információkért lásd: [Copy example experiments to create new machine learning experiments](machine-learning-sample-experiments.md) (Új Machine Learning-kísérletek létrehozása példakísérletek másolásával).
+A kísérleteket létrehozhatja nulláról, vagy egy meglévő mintakísérletet sablonként használva További információkért lásd: [Copy példa kísérleteket toocreate új gépi tanulási kísérletekhez](machine-learning-sample-experiments.md).
 
 Egy egyszerű kísérlet létrehozására láthat példát az [Egyszerű kísérlet létrehozása az Azure Machine Learning Studio eszközben](machine-learning-create-experiment.md) című cikkben.
 
 A prediktív elemzési megoldások létrehozásának részletesebb leírásáért tekintse meg a [Prediktív megoldás kifejlesztése az Azure Machine Learning segítségével](machine-learning-walkthrough-develop-predictive-solution.md) című cikket.
 
 ### <a name="datasets"></a>Adathalmazok
-Az adathalmaz olyan adatokból áll, amelyeket feltöltöttek a Machine Learning Studio eszközben, hogy fel lehessen őket használni a modellezési folyamatban. A Machine Learning Studio tartalmaz néhány mintaadathalmazt, amelyekkel kísérletezhet, és szükség esetén további adathalmazokat is feltölthet. Néhány példa a mintaadathalmazokra:
+Az adathalmaz olyan ennyi ideig feltöltött tooMachine Learning Studióban, hogy a folyamat modellezési hello is használható. Számos mintaként használható adathalmazt megtalálhatóak a Machine Learning Studio a tooexperiment, és szükség esetén további adathalmazokat is feltölthet. Néhány példa a mintaadathalmazokra:
 
 * **Különböző autók fogyasztási adatai** – Hengerszám, lóerő stb. alapján azonosított autók üzemanyag-fogyasztási adatai.
 * **Mellrákkal kapcsolatos adatok** – Mellrák-diagnosztikai adatok.
 * **Erdőtüzek adatai** – Az Északkelet-Portugáliában előfordult erdőtüzek kiterjedése.
 
-A kísérlet létrehozása során a vászon bal oldalán megjelenő adathalmazlistából választhat.
+A kísérlet létrehozása választhat adatkészletek rendelkezésre hello listája toohello maradt a vásznon a hello.
 
-A Machine Learning Studio mintaadathalmazainak listájáért tekintse meg a [Mintaadatkészletek használata az Azure Machine Learning Studio eszközben](machine-learning-use-sample-datasets.md) című cikket.
+A Machine Learning Studio mintaadathalmazainak listájáért lásd: [hello mintaadatkészletek használata az Azure Machine Learning Studióban](machine-learning-use-sample-datasets.md).
 
 ### <a name="modules"></a>Modulok
-A modulok az adatokon végezhető algoritmusok. A Machine Learning Studio számos modult tartalmaz, amelyek az adatbeviteli függvényektől a betanítási, pontozási és ellenőrzési folyamatokig terjednek. Néhány példa a mellékelt modulokra:
+A modulok az adatokon végezhető algoritmusok. A Machine Learning Studio számos modult adatok érkező funkciók tootraining, pontozási és ellenőrzési folyamatok közötti rendelkezik. Néhány példa a mellékelt modulokra:
 
-* [Convert to ARFF][convert-to-arff] (Átalakítás ARFF-formátumba) – Szerializált .NET-adathalmazok átalakítása attribútum-relációs fájlformátumra (ARFF).
+* [Átalakítás tooARFF] [ convert-to-arff] -konvertálja a .NET szerializált adatkészlet-kapcsolat tooAttribute fájlformátumra (ARFF).
 * [Compute Elementary Statistics][elementary-statistics] (Alapvető statisztikai számítások) – Alapvető statisztikai számítások, például átlag, szórás stb. kiszámítása.
 * [Linear Regression][linear-regression] (Lineáris regresszió) – Online, grádiens módszeren alapuló lineáris regressziós modell létrehozása.
 * [Score Model][score-model] (Pontszámmodell) – Betanított osztályozási vagy regressziós modell pontozása.
 
-A kísérlet létrehozása során a vászon bal oldalán megjelenő modullistából választhat.  
+A kísérlet létrehozása választhat modullistából hello listája toohello maradt a vásznon a hello.  
 
-A modul rendelkezhet a belső algoritmusok konfigurálásához használható paraméterek készletével. Amikor kiválaszt egy modult a vásznon, a modul paraméterei megjelennek a **Tulajdonságok** panelen a vászontól jobbra. A modell hangolásához módosíthatja a paramétereket a panelen.
+A modul rendelkezhet, amelyeket felhasználhat tooconfigure hello belső algoritmusok paraméterek. Amikor kiválaszt egy modult a vásznon a hello, hello modul paraméterei megjelennek-e hello **tulajdonságok** ablaktábla toohello jog a vásznon a hello. Módosíthatja az adott ablaktábla tootune hello paraméterek a modell.
 
-A rendelkezésre álló gépi tanulási algoritmusok hatalmas katalógusában való eligazodást segíti az [Algoritmusok kiválasztása a Microsoft Azure Machine Learning szolgáltatáshoz](machine-learning-algorithm-choice.md) című fejezet.
+Való eligazodást segíti hello gazdag tára álló gépi tanulási algoritmusok érhető el, lásd: [hogyan toochoose algoritmusok használata a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
 
 ## <a name="deploying-a-predictive-analytics-web-service"></a>A prediktív elemzési webszolgáltatások telepítése
 Ha elkészült a prediktív elemzési modell, közvetlenül a Machine Learning Studio eszközből üzembe helyezheti webszolgáltatásként. A folyamattal kapcsolatos további információkért tekintse meg az [Azure Machine Learning webszolgáltatás üzembe helyezése](machine-learning-publish-a-machine-learning-web-service.md) című cikket.

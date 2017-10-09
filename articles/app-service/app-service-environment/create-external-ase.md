@@ -1,6 +1,6 @@
 ---
-title: "Külső Azure App Service-környezet létrehozása"
-description: "Ismerteti, hogyan hozzon létre egy App Service-környezet egy alkalmazás vagy önálló létrehozása során"
+title: "aaaCreate külső Azure App Service-környezet"
+description: "Azt ismerteti, hogyan toocreate közben App Service-környezet létrehozása egy alkalmazás vagy önálló"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: 2dfe531facbe84aac65c5f787851c015de719fee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f8619534ddd889ea65063733ac6ec11b206e799c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-external-app-service-environment"></a>Külső App Service-környezet létrehozása #
 
-Az Azure App Service Environment-környezet az Azure App Service egy Azure virtuális hálózatot (VNet) lévő alhálózatot történő központi telepítését. Két módon telepítheti az App Service-környezetek (ASE):
+Az Azure App Service Environment-környezet az Azure App Service egy Azure virtuális hálózatot (VNet) lévő alhálózatot történő központi telepítését. Nincsenek két módon toodeploy az App Service-környezetek (ASE):
 
 - A virtuális IP-címre a külső IP-cím, egy külső ASE gyakran nevezik.
-- A virtuális IP-címre a belső IP-címet gyakran nevezik egy ILB ASE, mert a belső végpont nem egy belső terheléselosztón (ILB).
+- Hello VIP, a belső IP-cím, az úgynevezett egy ILB ASE mert hello belső végpont egy belső terheléselosztón (ILB).
 
-Ez a cikk bemutatja, hogyan hozzon létre egy külső ASE. A ASE áttekintését lásd: [az App Service Environment bemutatása][Intro]. Egy ILB ASE létrehozásával kapcsolatos további információkért lásd: [létrehozása és használata egy ILB ASE][MakeILBASE].
+Ez a cikk bemutatja, hogyan toocreate egy külső ASE. Hello ASE áttekintését lásd: [egy bevezető toohello App Service Environment-környezet][Intro]. Hogyan toocreate egy ILB ASE, tekintse meg az információkat [létrehozása és használata egy ILB ASE][MakeILBASE].
 
 ## <a name="before-you-create-your-ase"></a>A ASE létrehozása előtt ##
 
-Miután létrehozta a ASE, nem módosítható a következő:
+Miután létrehozta a ASE, hello következő nem módosíthatja:
 
 - Hely
 - Előfizetés
@@ -40,90 +40,90 @@ Miután létrehozta a ASE, nem módosítható a következő:
 - Alhálózat mérete
 
 > [!NOTE]
-> Ha egy virtuális hálózat kiválasztása, és adjon meg egy alhálózatot, győződjön meg arról, hogy elég nagy ahhoz, hogy megfeleljen a jövőbeli növekedésre. Azt javasoljuk, hogy a méretet `/25` 128-címekkel.
+> Ha egy virtuális hálózat kiválasztása, és adjon meg egy alhálózatot, győződjön meg arról, hogy elég nagy tooaccommodate jövőbeli növekedésre. Azt javasoljuk, hogy a méretet `/25` 128-címekkel.
 >
 
-## <a name="three-ways-to-create-an-ase"></a>Három módon hozhat létre egy ASE ##
+## <a name="three-ways-toocreate-an-ase"></a>Háromféleképpen toocreate egy ASE ##
 
-Hozzon létre egy ASE három módja van:
+Három módon toocreate egy ASE van:
 
-- **Az App Service-csomag létrehozása során**. Ezzel a módszerrel hoz létre a ASE és az App Service-csomag egy lépésben.
-- **Önálló műveletként**. Ez a módszer hoz létre önálló ASE, ez az egy a lapokat ASE. Ez a módszer az egy speciális folyamat egy ASE létrehozásához. Használhat egy ILB egy ASE létrehozásához.
+- **Az App Service-csomag létrehozása során**. Ez a módszer egy lépésben hello ASE és hello App Service-csomagot hoz létre.
+- **Önálló műveletként**. Ez a módszer hoz létre önálló ASE, ez az egy a lapokat ASE. Ez a módszer egy speciális folyamat toocreate egy ASE. Használata egy ASE toocreate egy Példánynak.
 - **Az Azure Resource Manager sablon**. Ez a módszer van a tapasztalt felhasználók számára. További információkért lásd: [egy ASE létrehozása sablonból][MakeASEfromTemplate].
 
-Egy külső ASE rendelkezik nyilvános virtuális IP-címhez, ami azt jelenti, hogy az összes HTTP/HTTPS-forgalmat a ASE található alkalmazásokra mutató találatok internetről elérhető IP-címet. Egy ASE egy ILB a rendelkezik a ASE használják az alhálózat IP-címeit. A-Példánynak környezetben futó alkalmazások nem közvetlenül elérhetővé tenni az interneten.
+Egy külső ASE rendelkezik nyilvános virtuális IP-címhez, ami azt jelenti, hogy minden HTTP/HTTPS-forgalom toohello alkalmazás hello ASE a találatok internetről elérhető IP-címet. Egy ASE egy ILB rendelkező rendelkezik hello alhálózati hello ASE által használt IP-címeit. hello ILB Service-környezetben üzemeltetett alkalmazásokhoz nem kitett közvetlenül toohello internet.
 
 ## <a name="create-an-ase-and-an-app-service-plan-together"></a>Hozzon létre egy ASE és az App Service-csomag együtt ##
 
-Az App Service-csomag egy olyan tároló, az alkalmazások. Ha alkalmazást hoz létre az App Service-ben, akkor válasszon, vagy hozzon létre az App Service-csomag. A tároló modell környezetek tartsa App Service-csomagok, és az App Service-csomagok tárolására az alkalmazások.
+App Service-csomag hello egy olyan tároló, az alkalmazások. Ha alkalmazást hoz létre az App Service-ben, akkor válasszon, vagy hozzon létre az App Service-csomag. hello tároló modell környezetek tartsa App Service-csomagok, és az App Service-csomagok tárolására az alkalmazások.
 
-Egy ASE létrehozása, az App Service-csomag létrehozása során:
+toocreate egy ASE az App Service-csomag létrehozása során:
 
-1. Az a [Azure-portálon](https://portal.azure.com/), jelölje be **új** > **Web + mobil** > **webalkalmazás**.
+1. A hello [Azure-portálon](https://portal.azure.com/), jelölje be **új** > **Web + mobil** > **webalkalmazás**.
 
     ![Webalkalmazás létrehozása][1]
 
-2. Válassza ki előfizetését. Az alkalmazás és a ASE azonos előfizetések jönnek létre.
+2. Válassza ki előfizetését. hello app valamint hello ASE hoz létre a hello azonos előfizetések.
 
-3. Válasszon ki vagy hozzon létre egy erőforráscsoportot. Az erőforráscsoportok egységként kezelheti a kapcsolódó Azure-erőforrások. Erőforráscsoportok is hasznosak, ha az alkalmazások szerepköralapú hozzáférés-vezérlés szabályok létrehozása. További információkért lásd: a [Azure Resource Manager áttekintése][ARMOverview].
+3. Válasszon ki vagy hozzon létre egy erőforráscsoportot. Az erőforráscsoportok egységként kezelheti a kapcsolódó Azure-erőforrások. Erőforráscsoportok is hasznosak, ha az alkalmazások szerepköralapú hozzáférés-vezérlés szabályok létrehozása. További információkért lásd: hello [Azure Resource Manager áttekintése][ARMOverview].
 
-4. Az App Service-csomagot, majd válassza ki és **hozzon létre új**.
+4. Hello App Service-csomagra, majd válassza ki és **hozzon létre új**.
 
     ![Új App Service-csomag][2]
 
-5. Az a **hely** legördülő listában válassza ki a régió, ahol szeretné létrehozni a ASE. Ha egy meglévő ASE, egy új ASE nem jön létre. Az App Service-csomag a kiválasztott ASE jön létre. 
+5. A hello **hely** legördülő listából válassza ki, ahová toocreate hello ASE válassza hello régió. Ha egy meglévő ASE, egy új ASE nem jön létre. App Service-csomag hello hello kiválasztott ASE jön létre. 
 
-6. Válassza ki **tarifacsomag**, és válasszon a **elszigetelt** termékváltozatok árképzési. Ha úgy dönt, egy **elszigetelt** SKU kártya és olyan helyre, amely nem egy ASE, egy új ASE azon a helyen jön létre. Válassza ki a megkezdéséhez hozzon létre egy ASE, **válasszon**. A **elszigetelt** SKU csak egy mértékéig párhuzamosan érhető el. Is nem használhatja semmilyen más árképzési SKU-környezetben eltérő **elszigetelt**.
+6. Válassza ki **tarifacsomag**, és válassza ki az egyiket hello **elszigetelt** termékváltozatok árképzési. Ha úgy dönt, egy **elszigetelt** SKU kártya és olyan helyre, amely nem egy ASE, egy új ASE azon a helyen jön létre. Válassza ki a toostart hello folyamat toocreate egy ASE **válasszon**. Hello **elszigetelt** SKU csak egy mértékéig párhuzamosan érhető el. Is nem használhatja semmilyen más árképzési SKU-környezetben eltérő **elszigetelt**.
 
     ![Tarifacsomag kiválasztása][3]
 
-7. Adja meg a ASE nevét. Ez a név az alkalmazások megcímezhető neve szerepel. Ha a név a hajlamosnak _appsvcenvdemo_, a tartománynév *. appsvcenvdemo.p.azurewebsites.net*. Ha nevű alkalmazást hoz létre *mytestapp*, megcímezhető: mytestapp.appsvcenvdemo.p.azurewebsites.net. A névben szóköz nem használható. Használhatnak nagybetűket, ha a tartománynév ilyen nevű kisbetűs teljes verzióját.
+7. Adja meg a ASE hello nevét. Ez a név hello megcímezhető nevét az alkalmazások használatos. Ha hello ASE hello neve _appsvcenvdemo_, hello tartománynév *. appsvcenvdemo.p.azurewebsites.net*. Ha nevű alkalmazást hoz létre *mytestapp*, megcímezhető: mytestapp.appsvcenvdemo.p.azurewebsites.net. Szóköz hello nevében nem használható. Ha használhatnak nagybetűket, hello tartománynév hello teljes kis verziója ugyanez a neve.
 
     ![Új App Service-csomag neve][4]
 
-8. Adja meg az Azure virtuális hálózati adatait. Válassza ki vagy **új** vagy **válasszon meglévő**. Kiválaszthatja azokat egy meglévő virtuális hálózatot áll rendelkezésre, csak ha egy virtuális hálózat szerepel a kiválasztott régióban. Ha **hozzon létre új**, adjon meg egy nevet a virtuális hálózat. Ilyen nevű új erőforrás-kezelő VNet létrejön. A címterület használ `192.168.250.0/23` a kiválasztott régióban. Ha **meglévő**, kell:
+8. Adja meg az Azure virtuális hálózati adatait. Válassza ki vagy **új** vagy **válasszon meglévő**. hello beállítás tooselect egy meglévő virtuális hálózatot áll rendelkezésre, csak akkor, ha egy virtuális hálózat rendelkezik hello a kiválasztott régióban. Ha **hozzon létre új**, adjon meg egy nevet a virtuális hálózat hello. Ilyen nevű új erőforrás-kezelő VNet létrejön. Hello címterület használ `192.168.250.0/23` hello a kiválasztott régióban. Ha **meglévő**, kell:
 
-    a. A virtuális hálózat címterülete, akkor válassza, ha egynél több.
+    a. Hello virtuális hálózat címterülete, akkor válassza, ha egynél több.
 
     b. Adjon meg egy új alhálózat neve.
 
-    c. Adja meg az alhálózat. *Ne felejtse el kiválasztásához elég nagy a ASE jövőbeli növekedésének megfelelően.* Ajánlott `/25`, amely 128-címekkel rendelkezik, és kezelni tud a maximális méretű ASE. Nem ajánlott `/28`, például mert csak 16 címek érhetők el. Infrastruktúra legalább öt címet használ. Az egy `/28` alhálózathoz folyamatban hagyta a 11 példányok maximális skálázás.
+    c. Válassza ki a hello alhálózati hello méretét. *Ne felejtse el egy méretének elég nagy tooaccommodate jövőbeli növekedésének megfelelően a ASE tooselect.* Ajánlott `/25`, amely 128-címekkel rendelkezik, és kezelni tud a maximális méretű ASE. Nem ajánlott `/28`, például mert csak 16 címek érhetők el. Infrastruktúra legalább öt címet használ. Az egy `/28` alhálózathoz folyamatban hagyta a 11 példányok maximális skálázás.
 
-    d. Válassza ki azt az alhálózati IP-címtartomány.
+    d. Válassza ki a hello alhálózat IP-címtartományt.
 
-9. Válassza ki **létrehozása** a ASE létrehozásához. Ez a folyamat is létrehoz az App Service-csomag és az alkalmazás. A ASE App Service-csomagot, és az alkalmazás a ugyanahhoz az előfizetéshez és is a ugyanabban az erőforráscsoportban vannak. Ha a ASE kell egy külön erőforráscsoportot, vagy ha egy ILB ASE van szüksége, létrehozásához hajtsa végre a lépéseket egy ASE önmagában.
+9. Válassza ki **létrehozása** toocreate hello ASE. A folyamat is hello App Service-csomag és hello alkalmazást hoz létre. hello ASE, az App Service-csomag, és az alkalmazás összes alatt állnak hello ugyanahhoz az előfizetéshez, és emellett a hello azonos erőforráscsoportot. Ha a ASE kell egy külön erőforráscsoportot, vagy ha egy ILB ASE van szüksége, kövesse a hello lépéseket toocreate egy ASE önmagában.
 
 ## <a name="create-an-ase-by-itself"></a>Hozzon létre egy ASE önmagában ##
 
-Ha létrehoz egy ASE önálló, lejárt, semmi nem azt. Egy üres ASE továbbra is azt eredményezi azok háromszorosa infrastruktúra havi járnak. Kövesse az alábbi lépéseket egy ILB egy ASE létrehozásához, vagy hozzon létre egy ASE saját erőforráscsoportban. Miután létrehozta a ASE, létrehozhat alkalmazások azt a szokásos folyamat használatával. Jelölje ki az új ASE helyeként.
+Ha létrehoz egy ASE önálló, lejárt, semmi nem azt. Egy üres ASE továbbra is azt eredményezi azok háromszorosa hello infrastruktúra havi járnak. Kövesse ezeket lépéseket toocreate egy ASE egy ILB az vagy egy ASE toocreate saját erőforráscsoportban. Miután létrehozta a ASE, létrehozhat alkalmazások azt hello szokásos folyamat használatával. Válassza ki az új ASE hello helyként.
 
-1. Keresse meg az Azure piactérről **App Service Environment-környezet**, vagy válasszon **új** > **webes mobil** > **App Service Környezet**. 
+1. Keresési hello Azure piactérre **App Service Environment-környezet**, vagy válasszon **új** > **webes mobil** > **App Service Környezet**. 
 
-2. Adja meg a ASE nevét. Ez a név a ASE létrehozott alkalmazások szolgál. Ha a név *mynewdemoase*, altartománynév van *. mynewdemoase.p.azurewebsites.net*. Ha nevű alkalmazást hoz létre *mytestapp*, megcímezhető: mytestapp.mynewdemoase.p.azurewebsites.net. A névben szóköz nem használható. Nagybetűs karaktereket használ, ha a tartománynév neve kisbetűs teljes verzióját. Egy ILB használatakor a ASE neve nem szerepel a altartomány, de ehelyett explicit módon megadott ASE létrehozása során.
+2. Adja meg a ASE hello nevét. Ez a név hello ASE létrehozott hello alkalmazásokhoz használható. Ha hello neve *mynewdemoase*, hello altartománynév van *. mynewdemoase.p.azurewebsites.net*. Ha nevű alkalmazást hoz létre *mytestapp*, megcímezhető: mytestapp.mynewdemoase.p.azurewebsites.net. Szóköz hello nevében nem használható. Ha használhatnak nagybetűket, hello tartománynév hello teljes kis verziója hello nevét. Egy ILB használatakor a ASE neve nem szerepel a altartomány, de ehelyett explicit módon megadott ASE létrehozása során.
 
     ![ASE elnevezése][5]
 
-3. Válassza ki előfizetését. Ez az előfizetés fontos is, amelyek a ASE összes alkalmazást. A ASE nem helyezhető el, amely egy másik előfizetésben található a Vneten belül.
+3. Válassza ki előfizetését. Ez az előfizetés esetében is hello hello ASE összes alkalmazást használni. A ASE nem helyezhető el, amely egy másik előfizetésben található a Vneten belül.
 
-4. Válassza ki vagy adja meg egy új erőforráscsoportot. Az erőforráscsoport a ASE használt azonosnak kell lennie egy, a virtuális hálózat szolgál. Ha egy meglévő virtuális hálózatot választ ki, az erőforráscsoport kiválasztása a ASE a módosul, a virtuális hálózat megfelelően. *Egy erőforráscsoport, amely eltér a virtuális hálózat erőforráscsoport a Resource Manager-sablon egy ASE hozhatja létre.* Egy ASE létrehozása sablonból: [App Service-környezet létrehozása sablonból][MakeASEfromTemplate].
+4. Válassza ki vagy adja meg egy új erőforráscsoportot. a ASE használt hello erőforráscsoport hello azonos egy, a virtuális hálózat használt kell lennie. Ha egy meglévő Vnetet, hello erőforráscsoport kiválasztása a ASE a frissített tooreflect-e, a virtuális hálózat. *Egy erőforráscsoport, amely nem azonos a hello VNet erőforráscsoportot, egy Resource Manager-sablon egy ASE hozhatja létre.* egy ASE toocreate sablonból, lásd: [App Service-környezet létrehozása sablonból][MakeASEfromTemplate].
 
     ![Erőforráscsoport kiválasztása][6]
 
 5. Válassza ki a virtuális hálózat és a helyet. Hozzon létre új virtuális hálózatot, vagy válasszon egy meglévő virtuális hálózatot: 
 
-    * Ha új virtuális hálózatot választja, megadhatja a nevét és helyét. Az új VNet rendelkezik, a cím tartomány 192.168.250.0/23 és alapértelmezett nevű alhálózat. Az alhálózat 192.168.250.0/24 típusúként van definiálva. Egy erőforrás-kezelő virtuális hálózat jelölhet ki. A **VIP típus** kijelölés határozza meg, ha a ASE közvetlenül elérhető az internetről (külső), vagy ha egy ILB használ. A beállításokkal kapcsolatos további információkért lásd: [létrehozása és használata az App Service-környezet belső terheléselosztót][MakeILBASE]. 
+    * Ha új virtuális hálózatot választja, megadhatja a nevét és helyét. hello új virtuális hálózat tartozik hello cím tartomány 192.168.250.0/23 és alapértelmezett nevű alhálózat. hello alhálózati 192.168.250.0/24 típusúként van definiálva. Egy erőforrás-kezelő virtuális hálózat jelölhet ki. Hello **VIP típus** kijelölés határozza meg, ha a ASE közvetlenül elérhető az internet (külső) hello, vagy ha egy ILB használ. További információ a kapcsolókról, toolearn lásd [létrehozása és használata az App Service-környezet belső terheléselosztót][MakeILBASE]. 
 
-      * Ha **külső** a a **VIP típus**, kiválaszthatja, hogy hány külső IP-címeket a rendszer IP-alapú SSL célokra jön létre. 
+      * Ha **külső** hello a **VIP-típus**, kiválaszthatja az IP-címeket hány külső hello rendszere IP-alapú SSL célokra jön létre. 
     
-      * Ha **belső** a a **VIP típus**, meg kell adnia a tartományt, amelyikhez a ASE használja. Egy ASE egy virtuális hálózat által használt nyilvános és magánhálózati címtartományai történő telepítése. Egy nyilvános-címtartománnyal rendelkező egy Vnetet használatához szüksége időben a VNet létrehozásához. 
+      * Ha **belső** a hello **VIP típus**, meg kell adnia a ASE használó hello tartományhoz. Egy ASE egy virtuális hálózat által használt nyilvános és magánhálózati címtartományai történő telepítése. egy Vnetet egy nyilvános-címtartománnyal rendelkező toouse, meg kell toocreate hello VNet időben. 
     
-    * Ha egy meglévő virtuális hálózatot választ, egy új alhálózat létre van hozva a ASE létrehozásakor. *Nem használhat egy korábban létrehozott alhálózati a portálon. Létrehozhat egy ASE egy létező alhálózatot a Resource Manager-sablon használatakor.* Egy ASE létrehozása sablonból: [egy App Service Environment-környezet létrehozása sablonból][MakeASEfromTemplate].
+    * Ha egy meglévő virtuális hálózatot választ, egy új alhálózat létre van hozva hello ASE létrehozásakor. *Nem használhat egy korábban létrehozott alhálózati hello portálon. Létrehozhat egy ASE egy létező alhálózatot a Resource Manager-sablon használatakor.* egy ASE toocreate sablonból, lásd: [egy App Service Environment-környezet létrehozása sablonból][MakeASEfromTemplate].
 
 ## <a name="app-service-environment-v1"></a>App Service-környezet v1 ##
 
-Továbbra is létrehozhat az első verzió App Service Environment-környezet (ASEv1) példányát. A folyamat elindításához keresése a piactéren **App Service Environment-környezet v1**. A ASE hoz létre az Ön által létrehozott az önálló ASE azonos módon. Amikor elkészült, a ASEv1 van két előtér-webkiszolgálóinak és két alkalmazottak. A ASEv1 az előtér-webkiszolgálóinak és alkalmazottak kell kezelni. Azok még nem automatikusan az App Service-csomagok létrehozásakor. Az előtér-webkiszolgálóinak működjön, és a HTTP/HTTPS-végpontnak, és a munkavállalók forgalmat küldeni. A munkavállalók a szerepköröket, amelyek az alkalmazások tárolására. Az előtér-webkiszolgálóinak és alkalmazottak mennyiségét a ASE létrehozása után módosíthatja. 
+App Service Environment-környezet (ASEv1) első verziójában hello példányait továbbra is létrehozhatja. amely feldolgozza, a keresési hello piactér toostart a **App Service Environment-környezet v1**. Hello hello ASE hoz létre, hogy hozzon létre hello önálló ASE azonos módon. Amikor elkészült, a ASEv1 van két előtér-webkiszolgálóinak és két alkalmazottak. A ASEv1 hello előtér-webkiszolgálóinak és alkalmazottak kell kezelni. Azok még nem automatikusan az App Service-csomagok létrehozásakor. hello előtér-webkiszolgálóinak hello HTTP/HTTPS-végpontként személyekről, és a forgalom küldése toohello munkavállalók. hello munkavállalók hello szerepkör, az alkalmazásokat futtató is. A ASE létrehozása után módosíthatja is az előtér-webkiszolgálóinak és alkalmazottak hello mennyisége. 
 
-ASEv1 kapcsolatos további információkért lásd: [az App Service Environment-környezet v1 bemutatása][ASEv1Intro]. További információ a méretezés, kezelésére és ASEv1, figyelés: [az App Service-környezetek konfigurálása][ConfigureASEv1].
+toolearn ASEv1, kapcsolatos további információkért lásd: [bemutatása toohello App Service Environment-környezet v1][ASEv1Intro]. További információ a méretezés, kezelésére és ASEv1, figyelés: [hogyan tooconfigure az App Service-környezetek][ConfigureASEv1].
 
 <!--Image references-->
 [1]: ./media/how_to_create_an_external_app_service_environment/createexternalase-create.png

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Mobile Engagement Android SDK-integráció"
+title: "Mobile Engagement Android SDK-integráció aaaAzure"
 description: "Legújabb frissítések és az Azure Mobile Engagement Android SDK eljárásai"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,14 +14,14 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 27190b54fc2b3b5c77b5f0a02273883e36ceaf1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6085a9ba90b713235e0aae99759597af9db77865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sdk-content"></a>Az SDK-tartalom
-Ez a dokumentum, és a tartalom az SDK-archívum ismerteti.
+Ez a dokumentum, és ismerteti a hello SDK archív hello tartalmát.
 
 `mobile-engagement-VERSION.jar`
 
@@ -31,7 +31,7 @@ Ez a dokumentum, és a tartalom az SDK-archívum ismerteti.
 
 `res`mappa
 
-> Engagement Reach SDK-erőforrások (rajzolható és az alkalmazások szerepeltetendő fájlokat elrendezés).
+> Engagement Reach SDK-erőforrások (rajzolható és elrendezés fájlok tooinclude az alkalmazásokban).
 > 
 > 
 
@@ -39,15 +39,15 @@ Ez a dokumentum, és a tartalom az SDK-archívum ismerteti.
 
 > Engagement SDK forráskódot.
 > 
-> Vegye figyelembe, hogy a szolgáltatás a források nem tartoznak (`com.microsoft.azure.engagement.service.EngagementService` és a hozzá kapcsolódó forrás fájlok).
+> Vegye figyelembe, hogy hello források hello szolgáltatás nem része (`com.microsoft.azure.engagement.service.EngagementService` és a hozzá kapcsolódó forrás fájlok).
 > 
 > 
 
 `documentation.html`
 
-> Az SDK-val letöltött verziójának a dokumentációjában helyen parancsikon.
+> Egy helyi toohello dokumentáció hely megfelelő toohello letöltött hello SDK verzióját.
 > 
 > 
 
-Egyéb fájlok a szoftverlicencek másolatát.
+Egyéb fájlok hello szoftverlicencek másolatát.
 

@@ -1,6 +1,6 @@
 ---
-title: "Jogkivonat-alapú (HTTP/2) hitelesítési apns az Azure Notification hubs használatával |} Microsoft Docs"
-description: "Ez a témakör azt ismerteti, hogyan használhatók ki az új jogkivonat hitelesítési apns"
+title: "az Azure Notification Hubs apns aaaToken-alapú (HTTP/2) hitelesítési |} Microsoft Docs"
+description: "Ez a témakör ismerteti, hogyan tooleverage hello apns új tokent használó hitelesítés"
 services: notification-hubs
 documentationcenter: .net
 author: kpiteira
@@ -13,67 +13,67 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: kapiteir
-ms.openlocfilehash: 5a21bcd9f12fc3f96b17a556ba15526c35ababe2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3353d7f16033ce0b68edec9ee9aeb98f47faa1fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="token-based-http2-authentication-for-apns"></a>Az APNS-jogkivonatalapú (HTTP/2) hitelesítés
 ## <a name="overview"></a>Áttekintés
-Ez a cikk részletezi az új APNS HTTP/2 protokoll használata hitelesítési token módszer.
+Ez a cikk részletesen, hogyan toouse hello új APNS HTTP/2-protokoll jogkivonat-alapú hitelesítés.
 
-Az új protokollal főbb előnyei a következők:
--   Jogkivonatok létrehozásához viszonylag teljesen szabad (tanúsítványok képest)
+hello fő előnyei a hello új protokoll a következők:
+-   Jogkivonatok létrehozásához viszonylag teljesen szabad (összehasonlított toocertificates)
 -   Nincs több lejárati dátumokat – jogkörrel rendelkezik arra a hitelesítési tokenek és a visszavont tanúsítványok ellenőrzése
--   Legfeljebb 4 KB-os mostantól lehet hasznos adat található
+-   Másolatot too4 KB mostantól lehet hasznos adat található
 - Szinkron visszajelzés
--   A legújabb protokoll Apple – tanúsítványok továbbra is használhatják a bináris protokoll, amely meg van jelölve érvénytelenítése
+-   A legújabb protokoll Apple – tanúsítványok továbbra is használhatják a hello bináris protokoll, amely meg van jelölve érvénytelenítése
 
 Ez új mechanizmus használatával is végrehajtható két lépésben néhány perc múlva:
-1.  A szükséges adatok lekérését az Apple Developer-fiók portálon
-2.  Az új információkkal az értesítési központ konfigurálása
+1.  Hello szükséges adatok lekérését hello Apple Developer-fiók portáljára
+2.  Az értesítési központ konfigurálása hello új adatokkal
 
-A Notification Hubs mostantól az új hitelesítési rendszere az apns-sel használni minden beállítás. 
+A Notification Hubs mostantól minden set toouse hello új hitelesítési rendszere az apns-sel. 
 
 Vegye figyelembe, hogy a beállítást, ha áttelepítette az APNS tanúsítvány hitelesítő adatait:
-- a token tulajdonságok felülírni a tanúsítványt a rendszerben,
-- de az alkalmazás továbbra is problémamentesen értesítéseket.
+- hello token tulajdonságok felülírni a tanúsítványt a rendszerben,
+- de az alkalmazás továbbra is tooreceive értesítések zökkenőmentesen.
 
 ## <a name="obtaining-authentication-information-from-apple"></a>Hitelesítési adatok beszerzése az Apple-től
-Jogkivonat-alapú hitelesítés engedélyezéséhez a következő tulajdonságok Apple Developer fiókjából kell:
+tooenable jogkivonat-alapú hitelesítés kell hello Apple Developer fiókjából következő tulajdonságai:
 ### <a name="key-identifier"></a>Kulcsazonosító
-A kulcsazonosító érhető el az Apple Developer-fiók "Kulcsok" oldaláról
+az Apple fejlesztői fiókban hello "Kulcsok" oldalról hello kulcsazonosító érhető el
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/obtaining-auth-information-from-apple.png)
 
 ### <a name="application-identifier--application-name"></a>Alkalmazásazonosító & alkalmazás nevét
-Az alkalmazás nevét a fejlesztői fiók App IDs oldalon keresztül érhető el. 
+hello alkalmazásnév hello App IDs lapján hello fejlesztői fiókjába keresztül érhető el. 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-name.png)
 
-Az alkalmazásazonosító a tagság részleteit megjelenítő oldalon a fejlesztői fiókban keresztül érhető el.
+hello alkalmazásazonosító hello tagsági részleteit megjelenítő oldalra hello fejlesztői fiókjába keresztül érhető el.
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-id.png)
 
 
 ### <a name="authentication-token"></a>Hitelesítési jogkivonata
-A hitelesítési jogkivonat letölthető az alkalmazás jogkivonat létrehozása után. Hogyan hozza létre a jogkivonatot a részletekért tekintse meg a [az Apple fejlesztői dokumentációját](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65).
+hello hitelesítésére szolgáló jogkivonat letölthető az alkalmazás jogkivonat létrehozása után. Hogyan toogenerate Ez a token, a részletekért tekintse meg túl[az Apple fejlesztői dokumentációját](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65).
 
-## <a name="configuring-your-notification-hub-to-use-token-based-authentication"></a>Jogkivonat-alapú hitelesítés használata az értesítési központ konfigurálása
-### <a name="configure-via-the-azure-portal"></a>Az Azure-portál konfigurálása
-Ahhoz, hogy a jogkivonat alapú hitelesítés a portálon, jelentkezzen be az Azure-portálon, majd nyissa meg az értesítési központba > értesítési szolgáltatások > APNS panel. 
+## <a name="configuring-your-notification-hub-toouse-token-based-authentication"></a>A notification hub toouse-jogkivonat-alapú hitelesítés konfigurálása
+### <a name="configure-via-hello-azure-portal"></a>Hello Azure-portálon keresztül konfigurálása
+tooenable jogkivonat-alapú hitelesítés hello portál, Azure-portálon toohello bejelentkezés, és folytassa a tooyour értesítési központ > értesítési szolgáltatások > APNS panel. 
 
-Új tulajdonság – *hitelesítési mód*. Token kijelölésével a központ frissítése az összes releváns token tulajdonság.
+Új tulajdonság – *hitelesítési mód*. Kiválasztása a Token lehetővé teszi a tooupdate a központ az összes hello vonatkozó token tulajdonság.
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/azure-portal-apns-settings.png)
 
-- Adja meg az Apple fejlesztői fiókját lekért tulajdonságait 
+- Adja meg az Apple developer-fiók lekért hello tulajdonságait 
 - Válassza ki az alkalmazás módot (éles vagy védőfal) 
-- Kattintson a Mentés az APN szolgáltatás hitelesítő adatait. 
+- Kattintson a Mentés tooupdate APN szolgáltatás hitelesítő adatait. 
 
 ### <a name="configure-via-management-api-rest"></a>(REST) API Management szolgáltatáson keresztül konfigurálása
 
-Használhatja a [felügyeleti API-k](https://msdn.microsoft.com/library/azure/dn495827.aspx) jogkivonat-alapú hitelesítés használata az értesítési központ frissítése.
-Attól függően, hogy az alkalmazás, konfigurálja a védőfal vagy üzemi alkalmazások (Apple Developer fiókjához megadott) használja a megfelelő végpont közül:
+Használhatja a [felügyeleti API-k](https://msdn.microsoft.com/library/azure/dn495827.aspx) tooupdate a notification hub toouse-jogkivonat-alapú hitelesítést.
+Attól függően, hogy konfigurálja a hello alkalmazás egy védőfal vagy éles alkalmazás (az Apple fejlesztői fiókban megadva) használja a megfelelő végpont hello közül:
 
 - A védőfal végpont: [https://api.development.push.apple.com:443/3/eszköz](https://api.development.push.apple.com:443/3/device)
 - Éles végpont: [https://api.push.apple.com:443/3/eszköz](https://api.push.apple.com:443/3/device)
@@ -83,7 +83,7 @@ Attól függően, hogy az alkalmazás, konfigurálja a védőfal vagy üzemi alk
 > 
 > 
 
-Íme egy példa a központ frissítése a jogkivonat-alapú hitelesítéssel PUT kérelmet:
+Íme egy példa a PUT kérés tooupdate jogkivonat-alapú hitelesítéssel hub:
 
 
         PUT https://{namespace}.servicebus.windows.net/{Notification Hub}?api-version=2017-04
@@ -100,10 +100,10 @@ Attól függően, hogy az alkalmazás, konfigurálja a védőfal vagy üzemi alk
           }
         
 
-### <a name="configure-via-the-net-sdk"></a>Konfigurálja a .NET SDK használatával
-A központ használandó jogkivonat-alapú hitelesítés használatával konfigurálhatja a [legújabb ügyfél SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8). 
+### <a name="configure-via-hello-net-sdk"></a>Hello .NET SDK használatával konfigurálása
+A központ toouse jogkivonat-alapú hitelesítés használatával konfigurálhatja a [legújabb ügyfél SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8). 
 
-Íme egy helyes használatát bemutató példát:
+Íme egy hello helyes használatát bemutató példát:
 
 
         NamespaceManager nm = NamespaceManager.CreateFromConnectionString(_endpoint);
@@ -111,10 +111,10 @@ A központ használandó jogkivonat-alapú hitelesítés használatával konfigu
         string keyId = "YOUR KEY ID HERE";
         string appName = "YOUR APP NAME HERE";
         string appId = "YOUR APP ID HERE";
-        NotificationHubDescription desc = new NotificationHubDescription("PATH TO YOUR HUB");
+        NotificationHubDescription desc = new NotificationHubDescription("PATH tooYOUR HUB");
         desc.ApnsCredential = new ApnsCredential(token, keyId, appId, appName);
         desc.ApnsCredential.Endpoint = @"https://api.development.push.apple.com:443/3/device";
         nm.UpdateNotificationHubAsync(desc);
 
-## <a name="reverting-to-using-certificate-based-authentication"></a>Visszatérés a Tanúsítványalapú hitelesítés használatával
-Bármikor visszatérhet előző módszerrel, és átadja a tanúsítványt a jogkivonat tulajdonságok helyett a Tanúsítványalapú hitelesítés használatával. A művelet felülírja a korábban tárolt hitelesítő adatokat.
+## <a name="reverting-toousing-certificate-based-authentication"></a>Visszaállítási toousing Tanúsítványalapú hitelesítés
+Visszaállíthatja bármely idő toousing tanúsítványalapú hitelesítési helyett hello token tulajdonságok bármelyik előző metódus és sikeres hello tanúsítvány használatával. Korábban, hogy a művelet felülírja a hello tárolt hitelesítő adatokat.

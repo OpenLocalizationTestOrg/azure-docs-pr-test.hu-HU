@@ -1,6 +1,6 @@
 ---
-title: "Apache Kafka témakörök - Azure HDInsight tükrözésének |} Microsoft Docs"
-description: "Útmutató Apache Kafka tükrözési szolgáltatás használatával egy replikát készít egy HDInsight-fürt Kafka karbantartása másodlagos fürtre témakörök tükrözése révén."
+title: "aaaMirror Apache Kafka témakörök - Azure HDInsight |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Apache Kafka tükrözési funkció toomaintain egy replikát készít egy HDInsight-fürt Kafka témakörök tooa másodlagos fürt tükrözése révén."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,176 +15,176 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/13/2017
 ms.author: larryfr
-ms.openlocfilehash: e418cb01e1a9168e3662e8d6242903e052b6047b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5ace0251d7402d4d7d9b28726e253ce7091a87ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-mirrormaker-to-replicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>MirrorMaker segítségével replikálni, Apache Kafka témakörök Kafka a HDInsight (előzetes verzió)
+# <a name="use-mirrormaker-tooreplicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>A HDInsight (előzetes verzió) Kafka MirrorMaker tooreplicate Apache Kafka témakörök használata
 
-Útmutató Apache Kafka tükrözési szolgáltatás használatával kapcsolatos témakörök replikálása egy másodlagos fürthöz. Tükrözés folyamatos folyamatként lefutott, és áttelepítése módszerként időnként használt adatokat az egyik fürtről a másikra.
+Ismerje meg, hogyan toouse Apache Kafka a tükrözést a szolgáltatás tooreplicate témakörök tooa másodlagos fürt. Tükrözés folyamatos folyamatként lefutott, és áttelepítése módszerként időnként használt adatokat egy fürt tooanother.
 
-Ebben a példában a Tükrözés történő replikálásához használt témakörök két HDInsight-fürtök között. Mindkét fürtről egy Azure virtuális hálózat ugyanabban a régióban van.
+Ebben a példában a tükrözés jelenleg használt tooreplicate témakörök két HDInsight-fürtök között. Mindkét fürt szerepelnek a hello egy Azure virtuális hálózat ugyanabban a régióban.
 
 > [!WARNING]
-> Tükrözés nem tekinthető hibatűrést eléréséhez eszközként. Az eltolás egy témakör elemekre különböznek a forrás és cél fürtök, így nem tudják használni a két azonos értelemben.
+> Tükrözés nem kell tekinteni a azt jelenti, hogy tooachieve hibatűrést. hello eltolási tooitems egy témakör különböznek hello forrás és cél fürtök, így nem tudják használni hello két azonos értelemben.
 >
-> Ha a hibatűrés replikációs a témakörök a fürtön belül kell beállítani. További információkért lásd: [Ismerkedjen meg a HDInsight Kafka](hdinsight-apache-kafka-get-started.md).
+> Ha aggódik hibatűrést, a fürtön belül kell beállítani a replikációs hello témaköröket. További információkért lásd: [Ismerkedjen meg a HDInsight Kafka](hdinsight-apache-kafka-get-started.md).
 
 ## <a name="how-kafka-mirroring-works"></a>Tükrözés Kafka működése
 
-Tükrözés működik a MirrorMaker eszközzel (Apache Kafka része) a témakörök a kiindulási fürt bejegyzéseit használnak, és ezután hozzon létre egy helyi példány a célfürtön. MirrorMaker használ egy (vagy több) *fogyasztók* , olvassa el a forrás-fürtből, és egy *készítő* , amely a helyi (cél) fürt ír.
+Tükrözési works hello MirrorMaker eszköz (Apache Kafka része) tooconsume használatával rögzíti a kiindulási fürt hello témaköröktől, és létrehozhat egy helyi példány hello cél fürtön. MirrorMaker használ egy (vagy több) *fogyasztók* hello forrásfürt, olvasó és egy *készítő* , írja az toohello (cél) helyi fürt.
 
-Az alábbi ábra a tükrözés folyamatát mutatja be:
+a következő diagram hello hello tükrözés folyamatát mutatja be:
 
-![A tükrözési folyamat diagramja](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
+![Hello tükrözés folyamat diagramja](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
 
-A HDInsight Apache Kafka nem biztosít hozzáférést a Kafka szolgáltatáshoz a nyilvános interneten keresztül. Kafka gyártók vagy a fogyasztók a Kafka fürt csomópontja azonos Azure virtuális hálózaton kell lennie. Ehhez a példához mindkét a Kafka forrás és cél fürtök Azure virtuális hálózat található. Az alábbi ábra bemutatja, hogyan kommunikációs a fürtök között zajló kommunikációról:
+A HDInsight Apache Kafka nem biztosít hozzáférést toohello Kafka szolgáltatás képest hello nyilvános internethez. Kafka gyártók vagy fogyasztók kell hello hello Kafka fürtben csomópontként hello azonos Azure virtuális hálózatban. Ehhez a példához hello Kafka forrás és a cél fürtök találhatók egy Azure virtuális hálózatra. a következő ábra azt mutatja be, hogyan kommunikációs hello fürtök között zajló kommunikációról hello:
 
 ![Egy Azure virtuális hálózatban fürtök forrás és cél Kafka ábrája](./media/hdinsight-apache-kafka-mirroring/spark-kafka-vnet.png)
 
-Lehet, hogy a forrás és cél fürtök különböző csomópontok és a partíciók számának, és a témakörök belül eltolások különböző is. A kulcs értékét, particionálás, amellyel tükrözés tart fenn, így sorrendje a kulcs alapú megőrződik.
+csomópontok és a partíciók száma hello hello forrás és cél fürtök eltérhet, és eltolások hello témakörök belül különböző is. Particionálás, amellyel kulcsérték hello tükrözés tart fenn, így sorrendje megőrződik kulcs alapú.
 
 ### <a name="mirroring-across-network-boundaries"></a>Hálózati határokon keresztül történő tükrözés
 
-Különböző hálózatokon Kafka fürtök közötti tükrözésének van szüksége, ha van a következő szempontokat:
+Különböző hálózatokon Kafka fürtök közötti toomirror van szüksége, ha nincsenek további szempontokról a következő hello:
 
-* **Átjárók**: A hálózatok tudjanak kommunikálni a TCPIP szinten kell lennie.
+* **Átjárók**: hello hálózatok: hello TCPIP szint képes toocommunicate kell lennie.
 
-* **Nevek feloldása**: Kafka a fürt minden egyes hálózati segítségével hostnames csatlakozni egymáshoz képesnek kell lennie. A tartománynévrendszer (DNS) kiszolgáló minden más hálózataihoz kérelmek továbbítása konfigurált hálózati elképzelhető, hogy szükség.
+* **Nevek feloldása**: az egyes hálózati fürtök Kafka hello segítségével hostnames kell lennie más képes tooconnect tooeach. Ez lehet szükség, a tartománynévrendszer (DNS) kiszolgáló, amely minden egyes hálózati beállítva tooforward kérelmek toohello más hálózatokkal.
 
-    A automatikus DNS, a hálózati megadott helyett egy Azure virtuális hálózat létrehozásakor meg kell adnia egy egyéni DNS-kiszolgáló és a kiszolgáló IP-címét. A virtuális hálózat létrehozása után, majd hozzon létre egy Azure virtuális gép által használt IP-címet, majd telepítenie és konfigurálnia kell DNS szoftver rajta.
+    Hello hálózattal hello automatikus DNS megadott helyett egy Azure virtuális hálózat létrehozásakor meg kell adnia egy egyéni DNS-kiszolgáló és a hello kiszolgáló IP-címe hello. Után a rendszer létrehozta a virtuális hálózati hello, majd hozzon létre egy Azure virtuális gép által használt IP-címet, majd telepítenie és konfigurálnia kell DNS szoftver rajta.
 
     > [!WARNING]
-    > Hozzon létre, és az egyéni DNS-kiszolgáló konfigurálása a HDInsight a virtuális hálózaton történő telepítése előtt. A HDInsight a konfigurált virtuális hálózat DNS-kiszolgáló használatára szükség további beállításokra van.
+    > Hozzon létre és hello egyéni DNS-kiszolgáló konfigurálása a virtuális hálózati hello HDInsight telepítése előtt. A HDInsight toouse hello DNS-kiszolgálóhoz konfigurált virtuális hálózati hello szükség további beállításokra van.
 
 A két Azure virtuális hálózatokhoz csatlakozó további információkért lásd: [VNet – VNet-kapcsolatot konfiguráló](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md).
 
 ## <a name="create-kafka-clusters"></a>Kafka fürtök létrehozása
 
-Létrehozhat egy Azure virtuális hálózatra, és manuálisan fürtök Kafka, célszerűbb Azure Resource Manager sablonnal. Az alábbi lépések segítségével egy Azure virtuális hálózat és két Kafka fürt központi telepítése az Azure-előfizetéshez.
+Létrehozhat egy Azure virtuális hálózatra, és manuálisan fürtök Kafka, akkor könnyebb toouse Azure Resource Manager-sablonok. Használja a következő lépéseket toodeploy hello Azure virtuális hálózat és két Kafka fürtök tooyour Azure-előfizetés.
 
-1. A következő gomb segítségével jelentkezzen be az Azure-ba, és nyissa meg a sablon az Azure portálon.
+1. A tooAzure gomb toosign és hello Azure-portál megnyitása hello sablon hello használata.
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
-    Az Azure Resource Manager sablon itt található: **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**.
+    hello Azure Resource Manager sablon itt található: **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**.
 
     > [!WARNING]
-    > A HDInsightban futó Kafka platform rendelkezésre állásának biztosításához fürtjének legalább három feldolgozó csomópontot kell tartalmaznia. Ez a sablon a három munkavégző csomópontokhoz tartalmaz Kafka fürtöt hoz létre.
+    > a HDInsight Kafka tooguarantee rendelkezésre állását, a fürt tartalmaznia kell legalább három munkavégző csomópontokhoz. Ez a sablon a három munkavégző csomópontokhoz tartalmaz Kafka fürtöt hoz létre.
 
-2. A következő információk segítségével a feltöltik a **egyéni telepítési** panel:
+2. Információk toopopulate hello tételek követően hello használata hello **egyéni telepítési** panel:
     
     ![HDInsight egyéni központi telepítés](./media/hdinsight-apache-kafka-mirroring/parameters.png)
     
-    * **Erőforráscsoport**: hozzon létre egy csoportot, vagy válasszon egy meglévőt. Ez a csoport tartalmazza a HDInsight-fürthöz.
+    * **Erőforráscsoport**: hozzon létre egy csoportot, vagy válasszon egy meglévőt. Ez a csoport hello HDInsight-fürtöt tartalmaz.
 
-    * **Hely**: Adjon meg egy földrajzilag Önhöz legközelebb eső helyet.
+    * **Hely**: Válasszon egy helyet a földrajzi elhelyezkedés alapján Bezárás tooyou.
      
-    * **Fürt neve kiinduló**: Ez az érték használható alap neveként a Kafka fürtök számára. Ha például **hdi** nevű fürtök létrehozása **forrás-hdi** és **cél-hdi**.
+    * **Fürt neve kiinduló**: Ez az érték neveként hello alapszintű hello Kafka fürtök használható. Ha például **hdi** nevű fürtök létrehozása **forrás-hdi** és **cél-hdi**.
 
-    * **A fürt bejelentkezési felhasználónevét**: A rendszergazda felhasználóneve a forrás és cél Kafka fürtök.
+    * **A fürt bejelentkezési felhasználónevét**: hello rendszergazda felhasználóneve hello forrás és cél Kafka fürtök.
 
-    * **A fürt bejelentkezési jelszó**: a forrás- és a rendszergazdai jelszóval Kafka fürtök.
+    * **A fürt bejelentkezési jelszó**: hello rendszergazdai jelszóval hello forrás és cél Kafka fürtök.
 
-    * **SSH-felhasználónév**: az SSH-felhasználó a forrás és cél Kafka fürtök létrehozása.
+    * **SSH-felhasználónév**: hello SSH felhasználói toocreate hello forrás és cél Kafka fürtök.
 
-    * **SSH-jelszónak**: a forrás- és az SSH-felhasználó jelszavát Kafka fürtök.
+    * **SSH-jelszónak**: hello jelszó hello SSH hello forrás és cél Kafka fürtök.
 
-3. Olvassa el a **feltételek és kikötések**, majd válassza ki **elfogadom a feltételeket és a fenti feltételek**.
+3. Olvasási hello **feltételek és kikötések**, majd válassza ki **toohello feltételek és kikötések fenti elfogadom**.
 
-4. Végül ellenőrizze **rögzítés az irányítópulton** majd **beszerzési**. A fürt létrehozása nagyjából 20 percet vesz igénybe.
+4. Végül ellenőrizze **PIN-kód toodashboard** majd **beszerzési**. Körülbelül 20 percet toocreate hello fürtök szükséges.
 
-Az erőforrások létrehozása után, ekkor megnyílik egy panel, ahhoz az erőforráscsoporthoz, amely tartalmazza a fürtök és a webes irányítópult.
+Létrehozása után a hello erőforrásokat, átirányított tooa panel hello fürtök és a webes irányítópult tartalmazó erőforráscsoport hello áll.
 
-![A virtuális hálózat és a fürtök erőforráscsoport panel](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
+![Erőforráscsoport panel hello vnet és fürtök](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
 
 > [!IMPORTANT]
-> Figyelje meg, hogy a HDInsight-fürtök neve **forrás-BASENAME** és **cél-BASENAME**, ahol BASENAME a sablonhoz megadott név. Ezeket a neveket a későbbi lépésekben használja, a fürtök történő csatlakozás során.
+> Figyelje meg, hogy vannak-e a HDInsight-fürtök hello hello nevei **forrás-BASENAME** és **cél-BASENAME**, ahol BASENAME toohello sablon megadott hello nevét. Ezeket a neveket használja a későbbi lépésekben toohello fürtök kapcsolódáskor.
 
 ## <a name="create-topics"></a>Hozzon létre kapcsolatos témakörök
 
-1. Csatlakozás a **forrás** fürtön SSH használatával:
+1. Csatlakozás toohello **forrás** fürtön SSH használatával:
 
     ```bash
     ssh sshuser@source-BASENAME-ssh.azurehdinsight.net
     ```
 
-    Cserélje le **sshuser** az a fürt létrehozásakor használt SSH-felhasználónév. Cserélje le **BASENAME** a fürt létrehozásakor használt alap névvel.
+    Cserélje le **sshuser** a hello hello fürt létrehozásakor használt SSH-felhasználónév. Cserélje le **BASENAME** hello fürt létrehozásakor használt hello Alap nevű.
 
     További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az alábbi parancsokkal a Zookeeper állomások találhatók a kiindulási fürt:
+2. Használjon hello következő toofind hello Zookeeper állomások hello forrásfürt parancsokat:
 
     ```bash
     # Install jq if it is not installed
     sudo apt -y install jq
-    # get the zookeeper hosts for the source cluster
+    # get hello zookeeper hosts for hello source cluster
     export SOURCE_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
     
-    Replace `$PASSWORD` with the password for the cluster.
+    Replace `$PASSWORD` with hello password for hello cluster.
 
-    Replace `$CLUSTERNAME` with the name of the source cluster.
+    Replace `$CLUSTERNAME` with hello name of hello source cluster.
 
-3. To create a topic named `testtopic`, use the following command:
+3. toocreate a topic named `testtopic`, use hello following command:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 2 --partitions 8 --topic testtopic --zookeeper $SOURCE_ZKHOSTS
     ```
 
-3. A következő parancs használatával győződjön meg arról, hogy létrejött-e a következő témakörben:
+3. A következő parancs tooverify, amely a témakör hello használata hello jött létre:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper $SOURCE_ZKHOSTS
     ```
 
-    A válaszban `testtopic`.
+    hello válaszban `testtopic`.
 
-4. A Zookeeper állomás kapcsolatos információ megtekintéséhez használja a következő (a **forrás**) fürt:
+4. Használjon hello tooview hello Zookeeper állomás adatokat a következő (hello **forrás**) fürt:
 
     ```bash
     echo $SOURCE_ZKHOSTS
     ```
 
-    Ez hasonló ad vissza adatokat a következő szöveget:
+    Ez visszaadja a szöveg a következő információk hasonló toohello:
 
     `zk0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181`
 
-    Mentse ezt az információt. A következő szakaszban használatban van.
+    Mentse ezt az információt. A következő szakaszban hello szolgál.
 
 ## <a name="configure-mirroring"></a>Konfigurálja a tükrözés
 
-1. Csatlakozás a **cél** a fürt egy másik SSH-munkamenetet használatával:
+1. Csatlakozás toohello **cél** a fürt egy másik SSH-munkamenetet használatával:
 
     ```bash
     ssh sshuser@dest-BASENAME-ssh.azurehdinsight.net
     ```
 
-    Cserélje le **sshuser** az a fürt létrehozásakor használt SSH-felhasználónév. Cserélje le **BASENAME** a fürt létrehozásakor használt alap névvel.
+    Cserélje le **sshuser** a hello hello fürt létrehozásakor használt SSH-felhasználónév. Cserélje le **BASENAME** hello fürt létrehozásakor használt hello Alap nevű.
 
     További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az alábbi parancs segítségével hozzon létre egy `consumer.properties` fájlt, amely azt ismerteti, hogyan kommunikáljon a **forrás** fürt:
+2. Használjon hello következő parancsot a toocreate egy `consumer.properties` fájlt, amely ismerteti, hogyan toocommunicate a hello **forrás** fürt:
 
     ```bash
     nano consumer.properties
     ```
 
-    Használja a következő szöveget a tartalmát a `consumer.properties` fájlt:
+    Szöveg hello hello tartalmát, a következő használatát hello `consumer.properties` fájlt:
 
     ```yaml
     zookeeper.connect=SOURCE_ZKHOSTS
     group.id=mirrorgroup
     ```
 
-    Cserélje le **SOURCE_ZKHOSTS** adataival a Zookeeper állomások a **forrás** fürt.
+    Cserélje le **SOURCE_ZKHOSTS** a hello Zookeeper hello adatait tároló **forrás** fürt.
 
-    Ez a fájl olvasásához a forrás Kafka fürt fogyasztói információkat ismerteti. További információk a fogyasztói konfigurációhoz, lásd: [fogyasztói Configs](https://kafka.apache.org/documentation#consumerconfigs) kafka.apache.org címen.
+    Ez a fájl hello fogyasztói információk toouse írja le, Kafka fürt hello forrásból olvasásakor. További információk a fogyasztói konfigurációhoz, lásd: [fogyasztói Configs](https://kafka.apache.org/documentation#consumerconfigs) kafka.apache.org címen.
 
-    Mentse a fájlt, használja a **Ctrl + X**, **Y**, majd **Enter**.
+    toosave hello fájl használata **Ctrl + X**, **Y**, majd **Enter**.
 
-3. Mielőtt konfigurálná a termelő kommunikáló Miután a célfürtöt, keresse meg az átvitelszervező-állomás a **cél** fürt. A következő parancsok használatával ezek az információk beolvasása:
+3. Mielőtt konfigurálná a kommunikáló hello készítő hello cél fürttel, keresse meg hello broker állomások a hello **cél** fürt. A következő parancsok tooretrieve hello ezeket az információkat használhatja:
 
     ```bash
     sudo apt -y install jq
@@ -192,50 +192,50 @@ Az erőforrások létrehozása után, ekkor megnyílik egy panel, ahhoz az erőf
     echo $DEST_BROKERHOSTS
     ```
 
-    Cserélje le `$PASSWORD` a fürt bejelentkezési fiók (felügyeleti) jelszavával.
+    Cserélje le `$PASSWORD` hello bejelentkezési fiók (felügyeleti) jelszóval hello fürthöz.
 
-    Cserélje le `$CLUSTERNAME` a célfürt nevével.
+    Cserélje le `$CLUSTERNAME` hello célfürtöt hello nevére.
 
-    Ezek a parancsok adatokat ad vissza a következőhöz hasonló:
+    Ezek a parancsok információk hasonló toohello következő vissza:
 
         wn0-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn1-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092
 
-4. Használja a következő létrehozásához egy `producer.properties` fájlt, amely azt ismerteti, hogyan kommunikáljon a **cél** fürt:
+4. A következő toocreate használata hello egy `producer.properties` fájlt, amely ismerteti, hogyan toocommunicate hello a **cél** fürt:
 
     ```bash
     nano producer.properties
     ```
 
-    Használja a következő szöveget a tartalmát a `producer.properties` fájlt:
+    Szöveg hello hello tartalmát, a következő használatát hello `producer.properties` fájlt:
 
     ```yaml
     bootstrap.servers=DEST_BROKERS
     compression.type=none
     ```
 
-    Cserélje le **DEST_BROKERS** az előző lépésben broker adataival.
+    Cserélje le **DEST_BROKERS** hello előző lépésben hello broker adatokkal.
 
     További információk készítő konfigurációs, lásd: [készítő Configs](https://kafka.apache.org/documentation#producerconfigs) kafka.apache.org címen.
 
 ## <a name="start-mirrormaker"></a>Indítsa el a MirrorMaker
 
-1. Az SSH-kapcsolatot a a **cél** fürt esetén a MirrorMaker folyamat a következő paranccsal:
+1. Az SSH-kapcsolat toohello hello **cél** fürt esetén a következő parancs toostart hello MirrorMaker folyamat hello használata:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config consumer.properties --producer.config producer.properties --whitelist testtopic --num.streams 4
     ```
 
-    Ebben a példában használt paraméterek a következők:
+    Ebben a példában használt hello paraméterek a következők:
 
-    * **--consumer.config**: felhasználói tulajdonságokat tartalmazó fájlt határozza meg. Ezek a tulajdonságok hozhatók létre, amely olvassa be az ügyféllel a *forrás* Kafka fürt.
+    * **--consumer.config**: hello fájlt, amelyben felhasználói tulajdonságok adja meg. Ezek a tulajdonságok, amelyek hello olvassa be az ügyféllel használt toocreate *forrás* Kafka fürt.
 
-    * **--producer.config**: készítő tulajdonságokat tartalmazó fájlt határozza meg. Ezek a tulajdonságok hozhatók létre, ír termelő a *cél* Kafka fürt.
+    * **--producer.config**: készítő tulajdonságokat tartalmazó hello fájlt adja meg. Ezek a Tulajdonságok használt toocreate írja az toohello termelő *cél* Kafka fürt.
 
-    * **--az engedélyezett**: replikáló MirrorMaker a forrás-fürtről a cél-témakörök listáját.
+    * **--az engedélyezett**: hello forrás fürt toohello cél a replikáló MirrorMaker témakörök listáját.
 
-    * **--num.streams**: létrehozásához fogyasztói szálak száma.
+    * **--num.streams**: hello fogyasztói szálak toocreate száma.
 
- Rendszerindításkor MirrorMaker adatait adja vissza az alábbihoz hasonló:
+ Rendszerindításkor MirrorMaker információkat a következő szöveg hasonló toohello adja vissza:
 
     ```json
     {metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-3, security.protocol=PLAINTEXT}{metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-0, security.protocol=PLAINTEXT}
@@ -243,20 +243,20 @@ Az erőforrások létrehozása után, ekkor megnyílik egy panel, ahhoz az erőf
     metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-1, security.protocol=PLAINTEXT}
     ```
 
-2. Az SSH-kapcsolatot a a **forrás** fürt esetén az alábbi parancs segítségével indítsa el a gyártó és üzenetek küldése a következő témakörben:
+2. Az SSH-kapcsolat toohello hello **forrás** fürt, használja a következő parancs toostart termelő hello és üzenetek toohello témakör küldeni:
 
     ```bash
     SOURCE_BROKERHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")' | cut -d',' -f1,2`
     /usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list $SOURCE_BROKERHOSTS --topic testtopic
     ```
 
-    Cserélje le `$PASSWORD` a kiindulási fürt (rendszergazda) bejelentkezési jelszavával.
+    Cserélje le `$PASSWORD` hello forrás fürt hello (rendszergazda) bejelentkezési jelszóval.
 
-    Cserélje le `$CLUSTERNAME` a kiindulási fürt nevével.
+    Cserélje le `$CLUSTERNAME` hello forrásfürt hello nevére.
 
-     Amikor egy üres sort a kurzorral érkeznek, adja meg néhány szöveges üzeneteket. Ezek a témakör küldött a **forrás** fürt. Amikor végzett, **Ctrl + C** a gyártó folyamat befejezéséhez.
+     Amikor egy üres sort a kurzorral érkeznek, adja meg néhány szöveges üzeneteket. Ezek toohello témakör továbbküldené hello **forrás** fürt. Amikor végzett, **Ctrl + C** tooend hello készítő folyamat.
 
-3. Az SSH-kapcsolatot a a **cél** fürt esetén használjon **Ctrl + C** a MirrorMaker folyamat befejezéséhez. A következő parancsok segítségével ellenőrizze, hogy a `testtopic` témakör jött létre, és a tükör történő replikálása a tárolt adatokat a következő témakörben:
+3. Az SSH-kapcsolat toohello hello **cél** fürt esetén használjon **Ctrl + C** tooend hello MirrorMaker folyamat. Akkor használja hello következő parancsok tooverify adott hello `testtopic` témakör lett létrehozva, és tárolt adatokat hello témakör replikált toothis tükrözött:
 
     ```bash
     DEST_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
@@ -264,24 +264,24 @@ Az erőforrások létrehozása után, ekkor megnyílik egy panel, ahhoz az erőf
     /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $DEST_ZKHOSTS --topic testtopic --from-beginning
     ```
 
-    Cserélje le `$PASSWORD` a célfürt (rendszergazda) bejelentkezési jelszavával.
+    Cserélje le `$PASSWORD` hello cél fürt hello (rendszergazda) bejelentkezési jelszóval.
 
-    Cserélje le `$CLUSTERNAME` a célfürt nevével.
+    Cserélje le `$CLUSTERNAME` hello célfürtöt hello nevére.
 
-    Most már tartalmaz témakörök listáját `testtopic`, ami akkor jön létre, amikor MirrorMaster tükrözi a témakör a forrás-fürtről a célhelyre. A témakör sorból beolvasott üzenetekből ugyanazok a kiindulási fürt beírtak szerint.
+    hello témakörlistáját most már tartalmaz `testtopic`, ami akkor jön létre, amikor MirrorMaster tükrözi hello forrás fürt toohello cél hello témakört. hello témakör lekért köszönőüzenetei hello megegyeznek a megadott hello kiindulási fürt.
 
-## <a name="delete-the-cluster"></a>A fürt törlése
+## <a name="delete-hello-cluster"></a>Hello fürt törlése
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-A jelen dokumentumban leírt lépések az azonos Azure erőforráscsoport mindkét fürtöket létrehozni, mert az erőforráscsoportot az Azure portálon törölheti. Az erőforráscsoport törlése eltávolítja a következő Ez a dokumentum, az Azure-beli virtuális hálózatra és a fürt által használt tárfiók által létrehozott összes erőforrást.
+Mivel a jelen dokumentumban leírt lépések hello létrehozása a fürtök hello azonos Azure-erőforráscsoportot, törölheti a hello erőforráscsoportja hello Azure-portálon. Hello erőforráscsoport törlése eltávolítja a hozta létre a következő a dokumentum, hello Azure virtuális hálózat és tárfiók hello fürtök által használt összes erőforrást.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a dokumentumban megtanulhatta MirrorMaker Kafka fürt másolatának létrehozásához használja. Az alábbi hivatkozások segítségével felderíteni a más módon történő együttműködésre Kafka:
+Ebből a dokumentumból megtanulta, hogyan toouse MirrorMaker toocreate egy replikát készít egy Kafka fürt. Használja a következő hivatkozások toodiscover hello más módokon toowork Kafka:
 
 * [Apache Kafka MirrorMaker dokumentáció](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330) cwiki.apache.org címen.
 * [Ismerkedés az Apache Kafka a HDInsight-on](hdinsight-apache-kafka-get-started.md)
 * [Az Apache Spark használata a Kafkával a HDInsighton](hdinsight-apache-spark-with-kafka.md)
 * [Az Apache Storm használata a HDInsighton futó Kafkával](hdinsight-apache-storm-with-kafka.md)
-* [Csatlakozás a Kafkához Azure Virtual Networkön keresztül](hdinsight-apache-kafka-connect-vpn-gateway.md)
+* [Csatlakozás tooKafka egy Azure virtuális hálózaton keresztül](hdinsight-apache-kafka-connect-vpn-gateway.md)

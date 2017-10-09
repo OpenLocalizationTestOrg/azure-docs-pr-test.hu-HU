@@ -2,13 +2,13 @@
 
 Hozzon létre egy `sender.js` nevű JavaScript-fájlt.
 
-### <a name="add-the-relay-npm-package"></a>A Relay NPM-csomag hozzáadása
+### <a name="add-hello-relay-npm-package"></a>Hello továbbítási NPM csomag hozzáadása
 
 Futtassa az `npm install hyco-ws` parancsot a projektmappában lévő Csomópont parancssorból.
 
-### <a name="write-some-code-to-send-messages"></a>Írjon egy kódrészletet üzenetek küldéséhez
+### <a name="write-some-code-toosend-messages"></a>Írnia egy kódrészletet toosend üzenetek
 
-1. Adja hozzá a következő `constants` utasítást a `sender.js` fájl elejéhez.
+1. Adja hozzá a következő hello `constants` toohello felső részén hello `sender.js` fájlt.
    
     ```js
     const WebSocket = require('hyco-ws');
@@ -18,14 +18,14 @@ Futtassa az `npm install hyco-ws` parancsot a projektmappában lévő Csomópont
             output: process.stdout
         });;
     ```
-2. Adja hozzá a következő állandókat a `sender.js` fájlhoz a hibrid kapcsolat részleteivel. Cserélje le a zárójelben lévő helyőrzőket a hibrid gyűjtemény létrehozásakor beszerzett megfelelő értékekre.
+2. Adja hozzá a következő állandókat toohello hello `sender.js` hello hibrid kapcsolat részletek fájlban találhatók. Szögletes zárójelbe hello helyőrzőket cserélje le hello értékek hello hibrid kapcsolat létrehozása után kapott.
    
-   1. `const ns` – A Relay-névtér. Ügyeljen arra, hogy a teljes névtérnevet használja, például: `{namespace}.servicebus.windows.net`.
-   2. `const path` – A hibrid kapcsolat neve.
-   3. `const keyrule` – Az SAS-kulcs neve.
-   4. `const key` – Az SAS-kulcs értéke.
+   1. `const ns`-Továbbítási névtér hello. Lehet, hogy toouse hello teljesen minősített névtér neve; például `{namespace}.servicebus.windows.net`.
+   2. `const path`-hello hibrid kapcsolat hello nevét.
+   3. `const keyrule`-hello hello SAS-kulcs neve.
+   4. `const key`-hello SAS-kulcs értékét.
 
-3. Adja a következő kódot a `sender.js` fájlhoz:
+3. Adja hozzá a következő kód toohello hello `sender.js` fájlt:
    
     ```js
     WebSocket.relayedConnect(

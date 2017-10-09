@@ -1,6 +1,6 @@
 ---
-title: "Forgatókönyvek és példák előfizetés irányításhoz |} Microsoft Docs"
-description: "Azure-előfizetés-szabályozás megvalósításához a gyakori forgatókönyvek megvalósításához példákat."
+title: "aaaScenarios és példák előfizetés irányításhoz |} Microsoft Docs"
+description: "Példákat mutat be, hogy hogyan tooimplement Azure-előfizetés irányítás szabhatják."
 services: azure-resource-manager
 documentationcenter: na
 author: rdendtler
@@ -14,114 +14,114 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: rodend;karlku;tomfitz
-ms.openlocfilehash: 14ec59087b0aede76a18034f5aa93cb6ecd67a7e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f750e834519c8e64f57f87e2067801feb38b5c29
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>Az Azure enterprise scaffold implementációi
-Ez a témakör példák hogyan vállalati kapcsolatos ajánlások is létrehozható egy [Azure enterprise scaffold](resource-manager-subscription-governance.md). Gyakori helyzetek ajánlott eljárásai bemutatják egy kitalált, Contoso nevű vállalat használ.
+Ez a témakör példák hogyan vállalati hello javaslatok is létrehozható egy [Azure enterprise scaffold](resource-manager-subscription-governance.md). Contoso tooillustrate gyakorlati tanácsok szabhatják nevű fiktív vállalat használ.
 
 ## <a name="background"></a>Háttér
-Contoso egy olyan világszerte ellátási lánc megoldásokat biztosít az ügyfelek a "Szoftver szolgáltatásként" modell csomagolt modellre a vállalat helyszíni telepítve.  Ők fejlesztik ki szoftver jelentős fejlesztési adatközpontok India, az Amerikai Egyesült Államok és Kanada között a világ körüli.
+Contoso a ellátási lánc megoldást nyújt a "Szoftver szolgáltatásként" modell tooa csomagolt modell ügyfelek világszerte vállalat a helyszíni telepítve.  Ők fejlesztik ki szoftver hello földgömb rendelkező jelentős fejlesztési adatközpontok között India, hello az Amerikai Egyesült Államok és Kanada között.
 
-A vállalat ISV része több független részlegek termékek kezelése jelentős üzleti van osztva. Minden részleg rendelkezik, saját fejlesztők számára, a termék kezelők és a fejlesztők.
+hello ISV része hello vállalati több független részlegek termékek kezelése jelentős üzleti van osztva. Minden részleg rendelkezik, saját fejlesztők számára, a termék kezelők és a fejlesztők.
 
-A vállalati informatikai szolgáltatások (ETS) részleg központi informatikai képességet biztosít, és ahol üzleti egységek tárolására az alkalmazások több adatközpontok kezeli. Az adatközpontok kezelése, valamint a ETS szervezet biztosít, és kezeli (például az e-mailek és webhelyek) központi együttműködés és a hálózati vagy a telefonos szolgáltatások. Akkor is kisebb részlegek műveleti személyzet nem rendelkező ügyfélkapcsolati munkaterhelések kezelése.
+hello vállalati informatikai szolgáltatások (ETS) részleg központi informatikai képességet biztosít, és ahol üzleti egységek tárolására az alkalmazások több adatközpontok kezeli. Hello adatközpontok kezelése, valamint a hello ETS szervezet biztosítja, és a központosított együttműködés (például az e-mailek és webhelyek) és a hálózati vagy a telefonos szolgáltatások kezeli. Akkor is kisebb részlegek műveleti személyzet nem rendelkező ügyfélkapcsolati munkaterhelések kezelése.
 
-Ez a témakör a következő személyeknek használt:
+Ez a témakör a következő személyeknek hello használt:
 
-* Dave a ETS Azure rendszergazda.
-* Alice Contoso igazgató a fejlesztés ellátási lánc részleg.
+* Dave hello ETS Azure rendszergazda.
+* Alice Contoso igazgató a fejlesztési hello ellátási lánc üzleti egység.
 
-Contoso kell hozhat létre egy üzleti alkalmazást és egy ügyfélkapcsolati alkalmazást. Az alkalmazások futtatásához Azure határozott. Dave beolvassa a [előíró előfizetés irányítás](resource-manager-subscription-governance.md) témakör, és készen áll a a ajánlások megvalósításával.
+Contoso kell toobuild egy sor üzleti alkalmazás és egy ügyfélkapcsolati alkalmazást. Határozott toorun hello alkalmazások az Azure-on. Dave beolvassa hello [előíró előfizetés irányítás](resource-manager-subscription-governance.md) témakör, most már készen áll a tooimplement hello javaslatokat, és.
 
 ## <a name="scenario-1-line-of-business-application"></a>1. forgatókönyv: üzleti alkalmazás
-A Contoso egy forrás kód kezelő rendszer (Bitbucketből) keresztül történik a fejlesztők által használandó fejleszt.  Az alkalmazás infrastruktúra használ szolgáltatásként (IaaS) futtató, és a webkiszolgálók és adatbázis-kiszolgáló áll. Fejlesztők fejlesztői környezetükben lévő kiszolgálók eléréséhez, de nem a kiszolgálók az Azure-ban való hozzáférésre van szükségük. Contoso ETS kívánja az alkalmazás tulajdonos és a csoport, az alkalmazás kezeléséhez. Az alkalmazás csak akkor közben a Contoso vállalati hálózaton. Dave kell kötnie az előfizetés ehhez az alkalmazáshoz. Az előfizetés is tárolni fogja más fejlesztéssel kapcsolatos szoftver a jövőben.  
+A Contoso egy forrás kód felügyeleti rendszer (Bitbucketből) toobe hello world keresztül a fejlesztők által használt fejleszt.  hello alkalmazás infrastruktúra használ szolgáltatásként (IaaS) futtató, és a webkiszolgálók és adatbázis-kiszolgáló áll. A fejlesztők fejlesztői környezetükben lévő kiszolgálók eléréséhez, de nem kell hozzáféréskor toohello kiszolgálók az Azure-ban. Contoso ETS tooallow hello alkalmazás tulajdonos és a team toomanage hello alkalmazás kívánja. hello alkalmazás csak akkor közben a Contoso vállalati hálózaton. Dave tooset hello előfizetés mentése az alkalmazás igényeinek. hello előfizetés más fejlesztéssel kapcsolatos szoftver a jövőbeli hello is üzemelteti.  
 
 ### <a name="naming-standards--resource-groups"></a>Elnevezési szabályai & erőforráscsoportok
-Dave támogatja a fejlesztők által az üzleti egységek közösen használt eszközök egy előfizetést hoz létre. Ezután létre kell hoznia kifejező nevet (a az alkalmazás és a hálózatok) előfizetésbe és erőforráscsoportba csoportjai számára. Létrehoz a következő előfizetés és az erőforrás-csoportok:
+Dave toosupport fejlesztői eszközök, amelyek minden hello üzleti egységek közösen használnak egy előfizetést hoz létre. Ezután igényeihez toocreate kifejező nevet hello előfizetésre és -erőforráscsoportok (hello alkalmazás és hello hálózatok). A következő előfizetés és az erőforrás-csoportok hello hoz:
 
 | Elem | Név | Leírás |
 | --- | --- | --- |
 | Előfizetés |Contoso ETS DeveloperTools éles |Támogatja a közös fejlesztői eszközök |
-| Erőforráscsoport |rgBitBucket |Tartalmazza az alkalmazások webalkalmazás-kiszolgáló és adatbázis-kiszolgáló |
-| Erőforráscsoport |rgCoreNetworks |A virtuális hálózatok és a webhelyek közötti átjáró kapcsolat tartalmazza |
+| Erőforráscsoport |rgBitBucket |Hello alkalmazás web server és adatbázis-kiszolgálót tartalmaz |
+| Erőforráscsoport |rgCoreNetworks |Hello virtuális hálózatok és a pont-pont gateway-kapcsolatot tartalmazza |
 
 ### <a name="role-based-access-control"></a>Szerepköralapú hozzáférés-vezérlés
-Miután létrehozta az előfizetést, Dave biztosítani szeretné, hogy a megfelelő csapat és alkalmazástulajdonosok érhetik el az erőforrásaikat. Dave felismeri, hogy egyes csapatok különböző követelményekkel rendelkezik. Ezután a csoportokat, amelyek a Contoso a helyszíni Active Directory (AD) az Azure Active Directoryval szinkronizált használja, és biztosítja a hozzáférést a csoportok a megfelelő szintű.
+Miután létrehozta az előfizetést, Dave azt szeretné, hogy a megfelelő csapat hello tooensure és alkalmazástulajdonosok férhet hozzá az erőforrásokhoz. Dave felismeri, hogy egyes csapatok különböző követelményekkel rendelkezik. Ezután a Contoso a helyszíni Active Directory (AD) tooAzure Active Directory szinkronizált hello csoportok használja, és hello megfelelő szintű hozzáférés toohello csoportok.
 
-Dave rendeli hozzá az előfizetés a következő szerepkörök:
+Dave rendeli hozzá a következő szerepkörök hello előfizetés hello:
 
-| Szerepkör | Rendelt | Leírás |
+| Szerepkör | Hozzárendelt túl| Leírás |
 | --- | --- | --- |
 | [Tulajdonos](../active-directory/role-based-access-built-in-roles.md#owner) |Contoso-azonosító a felügyelt AD |Ez az azonosító csak a Contoso-Identity Management eszközzel idő szerinti (JIT) hozzáférési vezérli, és biztosítja, hogy teljesen naplózza az előfizetés tulajdonosa hozzáférést. |
-| [Biztonsági kezelője](../active-directory/role-based-access-built-in-roles.md#security-manager) |Adatvédelmi és kockázatkezelési felügyeleti részleg |Ez a szerepkör lehetővé teszi, hogy a felhasználók az Azure Security Center és az erőforrások állapotának. |
-| [Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md#network-contributor) |Hálózati adapterek |Ez a szerepkör lehetővé teszi, hogy a Contoso-hálózati adapterek a webhelyek közötti VPN és a virtuális hálózatok kezeléséhez. |
-| *Egyéni szerepkör* |Alkalmazás tulajdonosa |Dave szerepet hoz létre, amely lehetővé teszi az erőforráscsoporton belül erőforrásainak módosítása. További információkért lásd: [egyéni szerepkörök az Azure RBAC](../active-directory/role-based-access-control-custom-roles.md) |
+| [Biztonsági kezelője](../active-directory/role-based-access-built-in-roles.md#security-manager) |Adatvédelmi és kockázatkezelési felügyeleti részleg |Ehhez a szerepkörhöz felhasználók toolook hello Azure Security Center: és hello erőforrások hello állapotának teszi lehetővé. |
+| [Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md#network-contributor) |Hálózati adapterek |Ez a szerepkör lehetővé teszi, hogy a Contoso-hálózati team toomanage hello hely tooSite VPN és virtuális hálózatok hello. |
+| *Egyéni szerepkör* |Alkalmazás tulajdonosa |Dave szerepet hoz létre, amely engedélyezi a hello képességét toomodify erőforrások hello erőforráscsoporton belül. További információkért lásd: [egyéni szerepkörök az Azure RBAC](../active-directory/role-based-access-control-custom-roles.md) |
 
 ### <a name="policies"></a>Házirendek
-Dave az előfizetésben szereplő erőforrások kezeléséhez a következő követelményekkel rendelkezik:
+Dave hello előfizetési erőforrások kezeléséhez szükséges a következő hello rendelkezik:
 
-* A fejlesztői eszközök támogatják a fejlesztők keresztül történik, mert azt nem szeretné, hogy erőforrásokat hozzon létre bármely régióban felhasználó számára. Azonban hogy tudnia kell, ahol erőforrások jönnek létre.
-* Érintett költséggel. Ezért azt szeretné, hogy ezáltal megakadályozhatja, hogy a alkalmazástulajdonosok feleslegesen költséges virtuális gépek létrehozását.  
-* Ez az alkalmazás számos üzleti egységek fejlesztők is kiszolgál, mert szeretné az egyes erőforrások az üzleti egység és a kérelem tulajdonossal rendelkező címke. Ezek a címkék használatával ETS a megfelelő csoportokkal is kiszámlázni.
+* Hello Fejlesztőeszközök a fejlesztők közötti hello world támogatásához, mert azt nem szeretné tooblock felhasználók erőforrásokat hozzon létre bármely régióban. Azonban szükség tooknow, ahol erőforrások jönnek létre.
+* Érintett költséggel. Ezért azt szeretné, hogy tooprevent alkalmazástulajdonosok feleslegesen költséges virtuális gépeket hozzon létre.  
+* Ez az alkalmazás számos üzleti egységek fejlesztők is kiszolgál, mert azt szeretné, hogy tootag az egyes erőforrások hello üzleti egység és a kérelem tulajdonossal rendelkező. Ezek a címkék használatával ETS hello megfelelő csapat is kiszámlázni.
 
-A következő hoz [erőforrás-kezelő házirendek](resource-manager-policy.md):
+Hello következő hoz [erőforrás-kezelő házirendek](resource-manager-policy.md):
 
 | Mező | Következmény | Leírás |
 | --- | --- | --- |
-| location |Naplózási |Naplózási bármely régióban erőforrás létrehozása |
+| location |Naplózási |Hello erőforrások bármely régióban hello létrehozás naplózása |
 | type |Megtagadása |G sorozatú virtuális gépek létrehozását megtagadása |
 | tags |Megtagadása |Igényelnek az alkalmazás tulajdonosa címke |
 | tags |Megtagadása |Költség center címke megkövetelése |
-| tags |hozzáfűzése |A címke neve hozzáfűzése **részleghez** értéke pedig **ETS** az összes erőforráshoz |
+| tags |hozzáfűzése |A címke neve hozzáfűzése **részleghez** értéke pedig **ETS** tooall erőforrások |
 
 ### <a name="resource-tags"></a>Az erőforráscímkék
-Dave tisztában van azzal, hogy ő rendelkeznie kell a számlázási azonosíthatja a költségközpont BitBucket végrehajtásához meg. Emellett Dave szeretné tudni, hogy az erőforrások ETS birtokló.
+Dave tisztában van azzal, hogy ő kell toohave hello számlázási tooidentify hello költségközpont egyedi információkat hello BitBucket végrehajtásához. Emellett a Dave összes hello ETS birtokló erőforrások tooknow szeretne.
 
-Adja a következő [címkék](resource-group-using-tags.md) erőforráscsoportok és erőforrásokhoz.
+Hello következő hozzáad [címkék](resource-group-using-tags.md) toohello erőforráscsoportok és erőforrásokat.
 
 | A címke neve | Címke |
 | --- | --- |
-| ApplicationOwner |Ezt az alkalmazást kezelő személy neve. |
-| CostCenter |A költségközpont Azure fogyasztásához fizeti csoport. |
-| Részleghez |**ETS** (az üzleti egység az előfizetéshez tartozó) |
+| ApplicationOwner |Ezt az alkalmazást kezelő hello személy hello neve. |
+| CostCenter |a költségközpont hello hello csoport, amely az Azure-használatát hello fizeti. |
+| Részleghez |**ETS** (hello társított részleg hello előfizetés) |
 
 ### <a name="core-network"></a>Központi hálózat
-A Contoso ETS információk adatvédelmi és kockázatkezelési vezetőség ellenőrzi, hogy Dave által javasolt tervezi helyezze át az alkalmazást az Azure-bA. Győződjön meg arról, hogy az alkalmazás nem kommunikál az internettel szeretnék.  Dave is rendelkezik, amely a későbbiekben csak az Azure-ba kerül fejlesztői alkalmazások. Ezekhez az alkalmazásokhoz igényelnek közös felületek.  Ezek a követelmények teljesítéséhez szolgáltat belső és külső virtuális hálózatokat egyaránt, és korlátozhatja a hozzáférést hálózati biztonsági csoport.
+hello adatvédelmi és kockázatkezelési ügyfélfelügyeleti csapata ellenőrzi, hogy Dave tartozó adatokat javasolt Contoso ETS toomove hello alkalmazás tooAzure megtervezése. Szeretnék tooensure, amely hello alkalmazás nincs felfedve toohello internet.  Dave is rendelkezik, amely a jövőbeni hello lesz áthelyezett tooAzure fejlesztői alkalmazások. Ezekhez az alkalmazásokhoz igényelnek közös felületek.  toomeet ezeknek a követelményeknek, szolgáltat belső és külső virtuális hálózatok és a hálózati biztonsági csoport toorestrict hozzáférést.
 
-Létrehoz a következőket:
+A következő erőforrások hello hoz:
 
 | Erőforrástípus | Név | Leírás |
 | --- | --- | --- |
-| Virtual Network |vnInternal |A Bitbucketből alkalmazással használja, és ExpressRoute keresztül csatlakozik, a Contoso vállalati hálózathoz.  Egy alhálózat (sbBitBucket) biztosít egy adott IP-címtér az alkalmazást. |
+| Virtual Network |vnInternal |Hello BitBucket alkalmazást használni, és ExpressRoute tooContoso vállalati hálózaton keresztül kapcsolódik.  Egy alhálózat (sbBitBucket) biztosít egy adott IP-címtér hello alkalmazást. |
 | Virtual Network |vnExternal |Jövőbeli nyilvánosan elérhető végpontok igénylő alkalmazások esetén érhető el. |
-| Hálózati biztonsági csoport |nsgBitBucket |Biztosítja, hogy a támadási felületet, a munkaterhelés minimalizálható a csak a 443-as porton az alhálózat ahol az alkalmazás él (sbBitBucket) kapcsolatok engedélyezése. |
+| Hálózati biztonsági csoport |nsgBitBucket |Biztosítja, hogy hello csak a 443-as port hello alhálózati hello alkalmazás él, ahol (sbBitBucket) kapcsolatok így minimalizálható a munkaterhelés támadási felületét. |
 
 ### <a name="resource-locks"></a>Erőforrás zárolások feloldása
-Dave felismeri, hogy a Contoso vállalati hálózati kapcsolat a belső virtuális hálózathoz védeni kell a wayward parancsfájlok vagy véletlen törlés.
+Dave felismeri, hogy hello kapcsolatot a Contoso vállalati hálózat toohello belső virtuális hálózatról védeni kell a wayward parancsfájlok vagy véletlen törlés.
 
-A következő hoz [erőforrás zárolási](resource-group-lock-resources.md):
+Hello következő hoz [erőforrás zárolási](resource-group-lock-resources.md):
 
 | Zárolás típusa | Erőforrás | Leírás |
 | --- | --- | --- |
-| **CanNotDelete** |vnInternal |Megakadályozza, hogy a felhasználók törlése a virtuális hálózat vagy az alhálózatot, de nem akadályozza meg az új alhálózat hozzáadása. |
+| **CanNotDelete** |vnInternal |A felhasználó nem törlése hello virtuális hálózat és alhálózat, de nem akadályozza meg az új alhálózatok hello hozzáadását. |
 
 ### <a name="azure-automation"></a>Azure Automation
-Dave automatizálható az alkalmazás nem rendelkezik. Bár a létrehozott egy Azure Automation-fiók, akkor nem kezdetben használja ezt a.
+Dave rendelkezik semmi tooautomate ehhez az alkalmazáshoz. Bár a létrehozott egy Azure Automation-fiók, akkor nem kezdetben használja ezt a.
 
 ### <a name="azure-security-center"></a>Azure Security Center
-Contoso informatikai szolgáltatások kezelésében gyorsan azonosíthatja és fenyegetések kezelni kell. Akkor is szeretnék megismerni, hogy milyen problémákat előfordulhat, hogy létezik.  
+A Contoso informatikai szolgáltatások kezelésében kell tooquickly azonosítására és fenyegetések kezelésére. Akkor is érdemes toounderstand milyen problémákat létezhet.  
 
-Ezek a követelmények teljesítéséhez, Dave lehetővé teszi, hogy a [az Azure Security Center](../security-center/security-center-intro.md), és a biztonsági szerepkör hozzáférést biztosít.
+toofulfill ezeket a követelményeket, Dave lehetővé teszi, hogy hello [az Azure Security Center](../security-center/security-center-intro.md), és biztosítja a hozzáférés toohello biztonságkezelő szerepkör.
 
 ## <a name="scenario-2-customer-facing-app"></a>2. forgatókönyv: ügyfélkapcsolati alkalmazás
-Az üzleti vezetőségének munkáját segítik a ellátási lánc részleg azonosította a Contoso-ügyfelek növeléséhez hűség kártyával különböző lehetőségek. Ágnes team létre kell hoznia ezt az alkalmazást, és úgy dönt, hogy Azure növeli az üzleti igények kielégítéséhez képesek. Alice a fejlesztés, és az alkalmazás működtetéséhez két előfizetések konfigurálása ETS Dave működik.
+hello üzleti vezetőségi hello ellátási lánc üzleti egység hűség kártyával észlelt különböző lehetőségek tooincrease engagement Contoso-ügyfelekkel. Ágnes team létre kell hoznia ezt az alkalmazást, és úgy dönt, hogy Azure növeli a képes toomeet hello az üzleti igényeknek. Alice az ETS tooconfigure két előfizetések fejleszt, és az alkalmazás működtetéséhez Dave működik.
 
 ### <a name="azure-subscriptions"></a>Azure-előfizetések
-Dave jelentkezik be az Azure-vállalati portálra, és láthatja, hogy az ellátási lánc osztály már létezik.  Azonban mivel ebben a projektben az első alkalmazásfejlesztési projekt az ellátási lánc csoport az Azure-ban, a Dave felismeri Ágnes fejlesztői csapat az új fiók szükséges.  Ezután a csapata számára "R & D" fiókot hoz létre, és hozzáférést rendel Alice. Alice jelentkezik be az Azure-portálon, és létrehoz két előfizetések: egyet a fejlesztési kiszolgáló és egy ahhoz, hogy az üzemi kiszolgálók tárolásához.  A korábban létrehozott elnevezési szabályai ő követ, amikor a következő előfizetések létrehozása:
+Dave jelentkezik be toohello Azure vállalati portálon, és láthatja, hogy hello ellátási lánc osztály már létezik.  Azonban mivel ez a projekt hello első alkalmazásfejlesztési projekt hello ellátási lánc csoport az Azure-ban, a Dave felismeri hello szükségességét Ágnes fejlesztői csapat új fiókot.  Ezután hello "R & D" fiókot a csapata számára hoz létre, és hozzáférést tooAlice rendeli hozzá. Alice hello Azure-portálon keresztül jelentkezik be, és létrehoz két előfizetések: egy toohold hello fejlesztési és egy toohold hello éles kiszolgálók.  Korábban létrehozott hello elnevezési szabályai ő követ, amikor a következő előfizetések hello létrehozása:
 
 | Előfizetés használata | Név |
 | --- | --- |
@@ -129,71 +129,71 @@ Dave jelentkezik be az Azure-vállalati portálra, és láthatja, hogy az ellát
 | Éles |SupplyChain műveletek LoyaltyCard éles |
 
 ### <a name="policies"></a>Házirendek
-Dave és Alice ismertetik az alkalmazást, és azonosíthatja, hogy az alkalmazás csak szolgál az Észak-amerikai régió ügyfelek.  Alice és csapata tervez használni az Azure alkalmazás Service-környezet és az Azure SQL az alkalmazás létrehozására. Előfordulhat, hogy a fejlesztés során a virtuális gépek létrehozásához szükséges.  Alice szeretne arról, hogy a fejlesztők a vizsgálatát, és vizsgálja meg a problémákat anélkül, hogy a ETS húzza szükséges erőforrásokat.
+Dave és Alice hello alkalmazás tárgyalja, és azonosíthatja, hogy az alkalmazás csak szolgál hello Észak-amerikai régió ügyfelek.  Alice és csapata megtervezése toouse Azure alkalmazás Service-környezet és az Azure SQL toocreate hello alkalmazás. A fejlesztés során szükségük toocreate virtuális gépek.  Ágnes azt szeretné, hogy a fejlesztők hello erőforrásait tartalmazó tooexplore kell, és vizsgálja meg a problémákat anélkül, hogy a ETS húzza tooensure.
 
-Az a **fejlesztési előfizetés**, hoznak létre a következő házirendet:
-
-| Mező | Következmény | Leírás |
-| --- | --- | --- |
-| location |Naplózási |Naplózási bármely régióban erőforrások létrehozását. |
-
-Ezek korlátozza a termékváltozat fejlesztési hozhat létre a felhasználó milyen típusú, és címkék nem igényelnek erőforrás-csoportok vagy-erőforrások.
-
-Az a **éles előfizetés**, akkor hozza létre a következő házirendeket:
+A hello **fejlesztési előfizetés**, hoznak létre a következő házirend hello:
 
 | Mező | Következmény | Leírás |
 | --- | --- | --- |
-| location |Megtagadása |Tagadja meg minden olyan erőforrásnál, az USA adatközpontok kívül létrehozását. |
+| location |Naplózási |Naplózási hello létrehozása hello erőforrások bármely régióban. |
+
+Ezek nem korlátozzák a felhasználó hozhat létre a fejlesztési sku hello típusú, és nem igényelnek címkék erőforráscsoport-sablonok és erőforrások.
+
+A hello **éles előfizetés**, hoznak létre a következő házirendek hello:
+
+| Mező | Következmény | Leírás |
+| --- | --- | --- |
+| location |Megtagadása |Megtagadási hello USA adatközpontok kívül semmilyen erőforráshoz hello létrehozását. |
 | tags |Megtagadása |Igényelnek az alkalmazás tulajdonosa címke |
 | tags |Megtagadása |Részleg címke igényelnek. |
-| tags |hozzáfűzése |Címke hozzáfűzése minden erőforráscsoportban, amely jelzi, éles környezetben. |
+| tags |hozzáfűzése |Hozzáfűzendő címke tooeach erőforráscsoport, amely jelzi, éles környezetben. |
 
-Ezek korlátozza a termékváltozat éles hozhat létre a felhasználó milyen típusú.
+Ezek egy felhasználó létrehozhatja éles környezetben sku hello típusú nem korlátozzák.
 
 ### <a name="resource-tags"></a>Az erőforráscímkék
-Dave tisztában van azzal, hogy ő rendelkeznie kell a megfelelő üzleti azonosítására a számlázási és a tulajdonosi információk. Az erőforráscsoport-sablonok és erőforrások erőforráscímkék kiadásként definiálja.
+Dave tisztában van azzal, hogy ő kell toohave konkrét információk tooidentify hello megfelelő üzleti csoportok a számlázási és tulajdonjogát. Az erőforráscsoport-sablonok és erőforrások erőforráscímkék kiadásként definiálja.
 
 | A címke neve | Címke |
 | --- | --- |
-| ApplicationOwner |Ezt az alkalmazást kezelő személy neve. |
-| Szervezeti egység |A költségközpont Azure fogyasztásához fizeti csoport. |
-| EnvironmentType |**Éles** (annak ellenére, hogy az előfizetése **éles** nevét, ennek a címkének lehetővé teszi a könnyebbé teszi a beazonosítást kezelőkonzoljából nézve a portál vagy a számlázási erőforrások.) |
+| ApplicationOwner |Ezt az alkalmazást kezelő hello személy hello neve. |
+| Szervezeti egység |a költségközpont hello hello csoport, amely az Azure-használatát hello fizeti. |
+| EnvironmentType |**Éles** (annak ellenére, hogy előfizetése hello **éles** hello nevét, ennek a címkének lehetővé teszi a könnyebbé teszi a beazonosítást erőforrások hello portálon vagy hello számlázási megtekintve.) |
 
 ### <a name="core-networks"></a>Alapvető hálózat
-A Contoso ETS információk adatvédelmi és kockázatkezelési vezetőség ellenőrzi, hogy Dave által javasolt tervezi helyezze át az alkalmazást az Azure-bA. Győződjön meg arról, hogy a hűség Card alkalmazást megfelelően elkülönített és védett, egy Szegélyhálózaton hálózati szeretnék.  Ez a követelmény teljesítéséhez Dave és Alice hozzon létre egy külső virtuális hálózatot és a hálózati biztonsági csoport különítheti el a hűség Card alkalmazást, a Contoso vállalati hálózatról.  
+hello adatvédelmi és kockázatkezelési ügyfélfelügyeleti csapata ellenőrzi, hogy Dave tartozó adatokat javasolt Contoso ETS toomove hello alkalmazás tooAzure megtervezése. Szeretnék, hogy hűség Card alkalmazást hello tooensure megfelelően megtalálása és védett, egy Szegélyhálózaton hálózati.  toofulfill ezt a követelményt, Dave és Alice hozzon létre egy külső virtuális hálózatot és egy hálózati biztonsági csoport tooisolate hello hűség Card alkalmazást hello Contoso vállalati hálózatról.  
 
-Az a **fejlesztési előfizetés**, hogy létre:
-
-| Erőforrástípus | Név | Leírás |
-| --- | --- | --- |
-| Virtual Network |vnInternal |A Contoso hűség kártya fejlesztőkörnyezet szolgál, és ExpressRoute keresztül csatlakozik, a Contoso vállalati hálózathoz. |
-
-Az a **éles előfizetés**, hoznak létre:
+A hello **fejlesztési előfizetés**, hoznak létre:
 
 | Erőforrástípus | Név | Leírás |
 | --- | --- | --- |
-| Virtual Network |vnExternal |A hűség Card alkalmazást használja, és nem közvetlenül kapcsolódó Contoso ExpressRoute. Kód kerül a forráskód rendszeren keresztül közvetlenül a PaaS szolgáltatások. |
-| Hálózati biztonsági csoport |nsgBitBucket |Biztosítja, hogy a támadási felületet, a munkaterhelés minimalizálható a csak a TCP 443-as porton az adathoz kötött kommunikáció engedélyezése.  Contoso is vizsgálja a további védelem webalkalmazási tűzfal használata. |
+| Virtual Network |vnInternal |Hello Contoso hűség kártya fejlesztőkörnyezet szolgál, és ExpressRoute tooContoso vállalati hálózaton keresztül kapcsolódik. |
+
+A hello **éles előfizetés**, hoznak létre:
+
+| Erőforrástípus | Név | Leírás |
+| --- | --- | --- |
+| Virtual Network |vnExternal |Hello hűség Card alkalmazást használja, és nem csatlakozik közvetlenül tooContoso tartozó ExpressRoute. A forráskód rendszeren keresztül fejlesztőre kódot közvetlenül az toohello PaaS szolgáltatások. |
+| Hálózati biztonsági csoport |nsgBitBucket |Biztosítja, hogy hello csak így tesz lehetővé az adathoz kötött kommunikációs TCP 443-as minimalizálható a munkaterhelés támadási felületét.  Contoso is vizsgálja a további védelem webalkalmazási tűzfal használata. |
 
 ### <a name="resource-locks"></a>Erőforrás zárolások feloldása
-Dave és Alice révén, és úgy dönt, hogy az erőforrás zárolások hozzáadása a a kulcsfontosságú erőforrások során egy errant kód leküldéses véletlen törlésének megakadályozása a környezetben.
+Dave és Alice révén, és döntse el, a kulcsfontosságú erőforrások hello a hello környezet tooprevent véletlen törlés során egy errant kód leküldéses tooadd erőforrás zárolását.
 
-Akkor hozzon létre a következő zárolási:
+Akkor hozzon létre hello zárolást a következő:
 
 | Zárolás típusa | Erőforrás | Leírás |
 | --- | --- | --- |
-| **CanNotDelete** |vnExternal |Megakadályozhatja, hogy a felhasználók a törlése a virtuális hálózat vagy az alhálózatot. A zárolás nem akadályozza meg az új alhálózat hozzáadása. |
+| **CanNotDelete** |vnExternal |Törölje a virtuális hálózati hello vagy alhálózatok személyek tooprevent. hello zárolása nem akadályozza meg a hello hozzáadása új alhálózatokat. |
 
 ### <a name="azure-automation"></a>Azure Automation
-Alice és a fejlesztői csapat rendelkezik az ehhez az alkalmazáshoz a környezete kezeléséhez alapos runbookok. A runbookok lehetővé teszi az alkalmazás és más DevOps feladatok csomópontok hozzáadása vagy törlése.
+Alice és a fejlesztői csapat kiterjedt runbookok toomanage hello környezettel az alkalmazás rendelkezik. runbookokat hello hello és törléséről a csomópontok hello alkalmazás és más DevOps feladatok teszik lehetővé.
 
-Ezek a runbookok használatához engedélyezze [Automation](../automation/automation-intro.md).
+toouse ezeknél a runbookoknál engedélyezése [Automation](../automation/automation-intro.md).
 
 ### <a name="azure-security-center"></a>Azure Security Center
-Contoso informatikai szolgáltatások kezelésében gyorsan azonosíthatja és fenyegetések kezelni kell. Akkor is szeretnék megismerni, hogy milyen problémákat előfordulhat, hogy létezik.  
+A Contoso informatikai szolgáltatások kezelésében kell tooquickly azonosítására és fenyegetések kezelésére. Akkor is érdemes toounderstand milyen problémákat létezhet.  
 
-Ezek a követelmények teljesítéséhez, Dave lehetővé teszi, hogy az Azure Security Center. Ezután biztosítja, hogy az Azure Security Center által figyelt az erőforrásokat, és a DevOps és biztonsági csoportok hozzáférést biztosít.
+toofulfill ezeknek a követelményeknek, Dave lehetővé teszi, hogy az Azure Security Center. Ezután biztosítja, hogy a hello Azure Security Center által figyelt hello erőforrások, és hozzáférést biztosít a toohello DevOps és biztonsági csoportok.
 
 ## <a name="next-steps"></a>Következő lépések
-* Resource Manager-sablonok létrehozásával kapcsolatos további tudnivalókért lásd: [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](resource-manager-template-best-practices.md).
+* toolearn Resource Manager-sablonok létrehozásával kapcsolatban lásd: [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](resource-manager-template-best-practices.md).
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI parancsfájl-Get Azure Cosmos DB kapcsolati karakterlánc MongoDB-alkalmazásokhoz |} Microsoft Docs"
+title: "aaaAzure CLI parancsfájl-Get Azure Cosmos DB kapcsolati karakterlánc MongoDB-alkalmazásokhoz |} Microsoft Docs"
 description: "Az Azure CLI parancsfájl minta - Get Azure Cosmos DB kapcsolati karakterlánc MongoDB-alkalmazásokhoz"
 services: cosmos-db
 documentationcenter: cosmosdb
@@ -16,27 +16,27 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 06/02/2017
 ms.author: mimig
-ms.openlocfilehash: 916c92cab39306352fdf9dff0e0685fd61832d16
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9b0a4bf020039c9bf9554b4199a279622c15a15d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-an-azure-cosmos-db-connection-string-for-mongodb-apps-using-the-azure-cli"></a>Egy Azure Cosmos DB kapcsolati karakterlánc beolvasása a MongoDB-alkalmazásokhoz az Azure parancssori felület használatával
+# <a name="get-an-azure-cosmos-db-connection-string-for-mongodb-apps-using-hello-azure-cli"></a>Egy Azure Cosmos DB kapcsolati karakterlánc beolvasása MongoDB alkalmazások hello Azure parancssori felület használatával
 
-Ez a minta lekérdezi egy Azure Cosmos DB kapcsolati karakterláncot a MongoDB-alkalmazásokhoz az Azure parancssori felület használatával. 
+Ez a minta lekérdezi egy Azure Cosmos DB kapcsolati karakterlánc hello Azure CLI-t használó MongoDB-alkalmazásokat. 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/cosmosdb/secure-cosmosdb-get-mongodb-connection-string/secure-cosmosdb-get-mongodb-connection-string.sh?highlight=36-39 "MongoDB alkalmazások első Azure Cosmos DB kapcsolati karakterlánca")]
+[!code-azurecli-interactive[main](../../../cli_scripts/cosmosdb/secure-cosmosdb-get-mongodb-connection-string/secure-cosmosdb-get-mongodb-connection-string.sh?highlight=36-39 "Get Azure Cosmos DB connection string for MongoDB apps")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot és a vele társított összes erőforrást.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport és a vele társított összes erőforrást.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
@@ -44,17 +44,17 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
 | [az csoport létrehozása](https://docs.microsoft.com/cli/azure/group#create) | Az összes erőforrás tároló erőforrás csoportot hoz létre. |
 | [az cosmosdb frissítés](https://docs.microsoft.com/cli/azure/cosmosdb#update) | Egy Azure Cosmos DB fiók frissíti. |
-| [az cosmosdb lista-kapcsolat-karakterlánc](https://docs.microsoft.com/cli/azure/cosmosdb#list-connection-strings) | A kapcsolati karakterlánc lekérdezi a fiókhoz.|
+| [az cosmosdb lista-kapcsolat-karakterlánc](https://docs.microsoft.com/cli/azure/cosmosdb#list-connection-strings) | Hello fiók hello kapcsolati karakterlánc beolvasása.|
 | [az csoport törlése](https://docs.microsoft.com/cli/azure/group#delete) | Egy olyan erőforráscsoport, beleértve az összes beágyazott erőforrások törlése. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További Azure Cosmos DB CLI parancsfájl minták megtalálhatók a [Azure Cosmos DB CLI dokumentáció](../cli-samples.md).
+További Azure Cosmos DB CLI parancsfájl minták hello található [Azure Cosmos DB CLI dokumentáció](../cli-samples.md).

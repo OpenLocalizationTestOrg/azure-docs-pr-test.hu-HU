@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Fabric-fürt a tanúsítványok használata a Windows biztonságos |} Microsoft Docs"
-description: "Ez a cikk ismerteti az önálló vagy titkos, valamint az ügyfelek előbb és a fürtön belüli kommunikáció biztonságossá tételére."
+title: "aaaSecure egy Azure Service Fabric fürt Tanúsítványos használata Windows rendszeren |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toosecure kommunikációs belül hello önálló vagy titkos, valamint az ügyfelek és a hello fürt közötti fürt."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dekapur
-ms.openlocfilehash: 71ece1e43cc3c4ac3350cd59633065de06672420
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f0d411963615349a84edfc8125dec4ee5908f146
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-standalone-cluster-on-windows-using-x509-certificates"></a>Önálló fürtben, X.509-tanúsítványokat használ a Windows biztonságos
-A cikk ismerteti a különálló Windows fürt, a különböző csomópontok közötti kommunikáció védelméhez, valamint hogy használatával hitelesíti az ügyfeleket ehhez a fürthöz csatlakozik használ X.509 tanúsítvány. Ez biztosítja, hogy az csak a hitelesített felhasználóknak a fürthöz, a központilag telepített alkalmazások és felügyeleti feladatok elvégzésére.  Tanúsítvány biztonsági engedélyezni kell a fürt a fürt létrehozásakor.  
+Ez a cikk ismerteti, hogyan toosecure hello közötti kommunikáció hello a különálló Windows-fürt különböző csomópontok módjáról, valamint tooauthenticate csatlakozó-ügyfeleket toothis fürt X.509-tanúsítványokat használ. Ez biztosítja, amelyek csak a jogosult felhasználók férhetnek hello fürt hello központilag telepített alkalmazások, és felügyeleti feladatok elvégzésére.  Tanúsítvány biztonsági engedélyezni kell a fürt hello hello fürt létrehozásakor.  
 
 A fürt biztonsági például-csomópontok biztonsági, az ügyfél-csomópont biztonsági és a szerepköralapú hozzáférés-vezérlés további információkért lásd: [fürtök biztonsági forgatókönyveinek](service-fabric-cluster-security.md).
 
 ## <a name="which-certificates-will-you-need"></a>Tanúsítványok kell?
-Kezdő-és [a különálló fürt csomag](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) a fürtben található csomópontok egyikére. A letöltött csomagban található egy **ClusterConfig.X509.MultiMachine.json** fájlt. Nyissa meg a fájlt, és tekintse át a szakasz **biztonsági** alatt a **tulajdonságok** szakasz:
+toostart, [hello önálló fürt csomag](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) hello fürtben található csomópontok a tooone. Hello a letöltött csomag, megtalálja a **ClusterConfig.X509.MultiMachine.json** fájlt. Nyissa meg hello fájlt, és tekintse át az hello területén **biztonsági** alatt hello **tulajdonságok** szakasz:
 
 ```JSON
 "security": {
-    "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
+    "metadata": "hello Credential type X509 indicates this is cluster is secured using X509 Certificates. hello thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
     "ClusterCredentialType": "X509",
     "ServerCredentialType": "X509",
     "CertificateInformation": {
@@ -94,28 +94,28 @@ Kezdő-és [a különálló fürt csomag](service-fabric-cluster-creation-for-wi
 },
 ```
 
-Ez a szakasz ismerteti a tanúsítványokat, amelyekre szüksége van a különálló Windows-fürt biztonságossá tételéhez. Megadása esetén a fürt tanúsítvány, állítsa be a **ClusterCredentialType** való  _**X509**_. Külső kapcsolatok kiszolgálói tanúsítványának megadása esetén, állítsa be a **ServerCredentialType** való  _**X509**_. Bár nem kötelező, ajánlott mindkét ezek a tanúsítványok megfelelően védett fürt rendelkezik. Ha ezeket az értékeket állít *X509* akkor is meg kell adnia a megfelelő tanúsítványok és a Service Fabric kivételt jelez. Bizonyos esetekben előfordulhat, hogy csak szeretne megadni a _ClientCertificateThumbprints_ vagy _ReverseProxyCertificate_. Ezek a forgatókönyvek kell nem állíthatja _ClusterCredentialType_ vagy _ServerCredentialType_ való _X509_.
+Ez a szakasz ismerteti, amelyekre szüksége van a különálló Windows-fürt védelmét biztosító hello tanúsítványokat. Megadása esetén a fürt tanúsítvány, állítsa be hello **ClusterCredentialType** too_**X509**_. Külső kapcsolatok kiszolgálói tanúsítványának megadása esetén, állítsa be a hello **ServerCredentialType** túl_**X509**_. Bár nem kötelező, az ajánlott toohave mindkét ezek a tanúsítványok megfelelően védett fürt. Ha túl állítsa be ezeket az értékeket*X509* , majd a megfelelő tanúsítványok hello, vagy a Service Fabric rendszer kivételt jelez is meg kell adnia. Bizonyos esetekben előfordulhat, hogy csak szeretné toospecify hello _ClientCertificateThumbprints_ vagy _ReverseProxyCertificate_. Ezek a forgatókönyvek kell nem állíthatja _ClusterCredentialType_ vagy _ServerCredentialType_ too_X509_.
 
 
 > [!NOTE]
-> A [ujjlenyomat](https://en.wikipedia.org/wiki/Public_key_fingerprint) tanúsítvány elsődleges azonosítója. Olvasási [hogyan lehet lekérni a tanúsítvány ujjlenyomata](https://msdn.microsoft.com/library/ms734695.aspx) tudja meg a létrehozott tanúsítványok ujjlenyomatát.
+> A [ujjlenyomat](https://en.wikipedia.org/wiki/Public_key_fingerprint) hello elsődleges identitás-tanúsítvány. Olvasási [hogyan tanúsítvány ujjlenyomata tooretrieve](https://msdn.microsoft.com/library/ms734695.aspx) toofind ki az Ön által létrehozott hello tanúsítványok hello ujjlenyomata.
 > 
 > 
 
-Az alábbi táblázat a tanúsítványok, a fürt beállítása lesz szükség:
+hello következő tábla hello-tanúsítványokat sorolja fel a fürt beállítása lesz szükség:
 
 | **CertificateInformation beállítás** | **Leírás** |
 | --- | --- |
-| ClusterCertificate |Tesztelési környezetben ajánlott. Ez a tanúsítvány szükséges a fürt a csomópontok közötti kommunikáció biztonságossá tételére. Frissítés két különböző tanúsítványok, egy elsődleges és másodlagos használható. Állítsa be az elsődleges tanúsítvány ujjlenyomatát a **ujjlenyomat** szakaszt, és hogy a másodlagos a **ThumbprintSecondary** változók. |
-| ClusterCertificateCommonNames |Az éles környezetben ajánlott. Ez a tanúsítvány szükséges a fürt a csomópontok közötti kommunikáció biztonságossá tételére. Egy vagy két fürt közös kiszolgálótanúsítvány-nevek is használhatja. |
-| ServerCertificate |Tesztelési környezetben ajánlott. Ezt a tanúsítványt az ügyfél áll rendelkezésre, ha csatlakozik a fürthöz. Kényelmi célokat szolgál, ha szeretné, használja ugyanazt a tanúsítványt a *ClusterCertificate* és *ServerCertificate*. Frissítés két különböző kiszolgálói tanúsítványok, egy elsődleges és másodlagos használható. Állítsa be az elsődleges tanúsítvány ujjlenyomatát a **ujjlenyomat** szakaszt, és hogy a másodlagos a **ThumbprintSecondary** változók. |
-| ServerCertificateCommonNames |Az éles környezetben ajánlott. Ezt a tanúsítványt az ügyfél áll rendelkezésre, ha csatlakozik a fürthöz. Kényelmi célokat szolgál, ha szeretné, használja ugyanazt a tanúsítványt a *ClusterCertificateCommonNames* és *ServerCertificateCommonNames*. Használhat egy vagy két kiszolgálótanúsítványok köznapi neve. |
-| ClientCertificateThumbprints |Ez olyan tanúsítványokat, amelyek a hitelesített ügyfelek telepíteni szeretné. Akkor segítségével számos különböző ügyfél-tanúsítványok engedélyezi a hozzáférést a fürthöz használni kívánt számítógépeken telepítve van. Állítsa be a minden tanúsítvány ujjlenyomatát a **CertificateThumbprint** változó. Ha a **IsAdmin** való *igaz*, majd az ügyfél és a tanúsítvány telepítve van-e is tegye a rendszergazda a fürt felügyeleti tevékenységek. Ha a **IsAdmin** van *hamis*, az ügyfél és a tanúsítvány csak a felhasználói hozzáférési jogosultságokat, általában csak olvasható engedélyezett műveleteket hajthatja végre. További információk a szerepkörök [szerepköralapú hozzáférés-vezérlést (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac) |
-| ClientCertificateCommonNames |Az első ügyféltanúsítványt köznapi nevének beállítása a **CertificateCommonName**. A **CertificateIssuerThumbprint** az ujjlenyomat van, ezt a tanúsítványt kibocsátó. Olvasási [tanúsítványok használata](https://msdn.microsoft.com/library/ms731899.aspx) további információkat a gyakori nevei és a kibocsátó. |
-| ReverseProxyCertificate |Tesztelési környezetben ajánlott. Ez az egy nem kötelező tanúsítvány, amely meg, hogy szeretné-e biztonságos a [fordított Proxy](service-fabric-reverseproxy.md). Ellenőrizze, hogy reverseProxyEndpointPort a NodeType tulajdonságok értéke van beállítva, ha ezt a tanúsítványt használ. |
-| ReverseProxyCertificateCommonNames |Az éles környezetben ajánlott. Ez az egy nem kötelező tanúsítvány, amely meg, hogy szeretné-e biztonságos a [fordított Proxy](service-fabric-reverseproxy.md). Ellenőrizze, hogy reverseProxyEndpointPort a NodeType tulajdonságok értéke van beállítva, ha ezt a tanúsítványt használ. |
+| ClusterCertificate |Tesztelési környezetben ajánlott. Ez a tanúsítvány szükséges toosecure hello kommunikációs fürt hello csomópontok között. Frissítés két különböző tanúsítványok, egy elsődleges és másodlagos használható. Hello elsődleges tanúsítvány ujjlenyomata hello beállított hello **ujjlenyomat** szakasz és az hello a másodlagos hello **ThumbprintSecondary** változók. |
+| ClusterCertificateCommonNames |Az éles környezetben ajánlott. Ez a tanúsítvány szükséges toosecure hello kommunikációs fürt hello csomópontok között. Egy vagy két fürt közös kiszolgálótanúsítvány-nevek is használhatja. |
+| ServerCertificate |Tesztelési környezetben ajánlott. Ez a tanúsítvány toohello ügyfél áll rendelkezésre, amikor tooconnect toothis fürt. Kényelmi célokat szolgál, dönthet úgy, toouse ugyanaz a tanúsítvány hello *ClusterCertificate* és *ServerCertificate*. Frissítés két különböző kiszolgálói tanúsítványok, egy elsődleges és másodlagos használható. Hello elsődleges tanúsítvány ujjlenyomata hello beállított hello **ujjlenyomat** szakasz és az hello a másodlagos hello **ThumbprintSecondary** változók. |
+| ServerCertificateCommonNames |Az éles környezetben ajánlott. Ez a tanúsítvány toohello ügyfél áll rendelkezésre, amikor tooconnect toothis fürt. Kényelmi célokat szolgál, dönthet úgy, toouse ugyanaz a tanúsítvány hello *ClusterCertificateCommonNames* és *ServerCertificateCommonNames*. Használhat egy vagy két kiszolgálótanúsítványok köznapi neve. |
+| ClientCertificateThumbprints |Ez olyan tanúsítványok, amelyet az tooinstall hitelesített hello ügyfeleken. Számos különböző ügyfél-tanúsítványok telepítve, amelyet az tooallow hozzáférés toohello fürt hello gépen lehet. Minden tanúsítvány ujjlenyomata hello beállított hello **CertificateThumbprint** változó. Ha hello **IsAdmin** túl*igaz*, majd hello ügyfél telepítve van-e a tanúsítvánnyal is tegye a rendszergazda hello fürt felügyeleti tevékenységek. Ha hello **IsAdmin** van *hamis*, ezzel a tanúsítvánnyal hello ügyfél csak az engedélyezett felhasználói hozzáférési jogosultságokat, általában csak olvasható hello műveleteket tudják végrehajtani. További információk a szerepkörök [szerepköralapú hozzáférés-vezérlést (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac) |
+| ClientCertificateCommonNames |Set hello köznapi neve hello első ügyféltanúsítvány hello **CertificateCommonName**. Hello **CertificateIssuerThumbprint** hello ujjlenyomata a tanúsítvány kiállítója hello van. Olvasási [tanúsítványok használata](https://msdn.microsoft.com/library/ms731899.aspx) tooknow további információk a gyakori nevei és hello kibocsátó. |
+| ReverseProxyCertificate |Tesztelési környezetben ajánlott. Ez az egy nem kötelező tanúsítvány, amely meg, ha azt szeretné, toosecure a [fordított Proxy](service-fabric-reverseproxy.md). Ellenőrizze, hogy reverseProxyEndpointPort a NodeType tulajdonságok értéke van beállítva, ha ezt a tanúsítványt használ. |
+| ReverseProxyCertificateCommonNames |Az éles környezetben ajánlott. Ez az egy nem kötelező tanúsítvány, amely meg, ha azt szeretné, toosecure a [fordított Proxy](service-fabric-reverseproxy.md). Ellenőrizze, hogy reverseProxyEndpointPort a NodeType tulajdonságok értéke van beállítva, ha ezt a tanúsítványt használ. |
 
-Íme példa fürtkonfiguráció, ahol a fürt, a kiszolgáló és az ügyfél tanúsítványok vannak-e megadva. Ne feledje, hogy a fürt / server / reverseProxy tanúsítványok, ujjlenyomat és köznapi név nem engedélyezett cert ugyanolyan együtt konfigurálni.
+Itt található példa fürtkonfiguráció ahol hello fürt, a kiszolgáló és az ügyfél tanúsítványok vannak-e megadva. Ne feledje, hogy a fürt / server / reverseProxy tanúsítványok, ujjlenyomat és köznapi név nem engedélyezett toobe konfigurálva együtt hello azonos tanúsítványtípus.
 
  ```JSON
  {
@@ -124,14 +124,14 @@ Az alábbi táblázat a tanúsítványok, a fürt beállítása lesz szükség:
     "apiVersion": "2016-09-26",
     "nodes": [{
         "nodeName": "vm0",
-        "metadata": "Replace the localhost below with valid IP address or FQDN",
+        "metadata": "Replace hello localhost below with valid IP address or FQDN",
         "iPAddress": "10.7.0.5",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r0",
         "upgradeDomain": "UD0"
     }, {
         "nodeName": "vm1",
-        "metadata": "Replace the localhost with valid IP address or FQDN",
+        "metadata": "Replace hello localhost with valid IP address or FQDN",
         "iPAddress": "10.7.0.4",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r1",
@@ -139,21 +139,21 @@ Az alábbi táblázat a tanúsítványok, a fürt beállítása lesz szükség:
     }, {
         "nodeName": "vm2",
         "iPAddress": "10.7.0.6",
-        "metadata": "Replace the localhost with valid IP address or FQDN",
+        "metadata": "Replace hello localhost with valid IP address or FQDN",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r2",
         "upgradeDomain": "UD2"
     }],
     "properties": {
         "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "FileShare",
         "IsEncrypted": "false",
         "connectionstring": "c:\\ProgramData\\SF\\DiagnosticsStore"
         }
         "security": {
-            "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
+            "metadata": "hello Credential type X509 indicates this is cluster is secured using X509 Certificates. hello thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
             "ClusterCredentialType": "X509",
             "ServerCredentialType": "X509",
             "CertificateInformation": {
@@ -217,46 +217,46 @@ Az alábbi táblázat a tanúsítványok, a fürt beállítása lesz szükség:
 
 ## <a name="certificate-roll-over"></a>Tanúsítvány váltása
 Tanúsítvány egyszerű neve helyett ujjlenyomat használatakor felett tanúsítványt összegző konfigurációs Fürtfrissítés nem igényel.
-Ha felett tanúsítványt összegző szerint kibocsátó váltása, tartsa a régi kibocsátó cert a CERT tárolja az új kibocsátó tanúsítvány telepítése után legalább 2 órát.
+Ha felett tanúsítványt összegző szerint kibocsátó váltása, ne hello régi kibocsátó cert hello tanúsítványtároló hello új kibocsátó tanúsítvány telepítése után legalább 2 órát.
 
-## <a name="acquire-the-x509-certificates"></a>Szerezzen be X.509-tanúsítványokat
-A fürtön belüli kommunikáció védelméhez, először a fürtcsomópontok esetén, X.509-tanúsítványokat szerezzenek be. Továbbá a jogosult felhasználók vagy gépek fürthöz kapcsolat korlátozására, szüksége lesz beszerzése és az ügyfél gépek tanúsítványok telepítése.
+## <a name="acquire-hello-x509-certificates"></a>Szerezzen be hello X.509-tanúsítványokat
+hello fürtön belüli kommunikáció toosecure, akkor először tooobtain X.509-tanúsítványokat a fürtcsomópontok esetén. Emellett toolimit kapcsolat toothis fürt tooauthorized gépek/felhasználók esetén szeretne tooobtain kell majd hello ügyfélszámítógépeknél tanúsítványok telepítése.
 
-Termelési számítási feladatokhoz futtató fürtök esetén használjon egy [tanúsítvány hitelesítésszolgáltatói (CA)](https://en.wikipedia.org/wiki/Certificate_authority) védelméhez a fürt X.509 tanúsítvány aláírására használatos. Ezek a tanúsítványok beszerzéséről további információkért látogasson el [hogyan: tanúsítvány beszerzése](http://msdn.microsoft.com/library/aa702761.aspx).
+Termelési számítási feladatokhoz futtató fürtök esetén használjon egy [tanúsítvány hitelesítésszolgáltatói (CA)](https://en.wikipedia.org/wiki/Certificate_authority) X.509 tanúsítvány toosecure hello fürt aláírva. Ezek a tanúsítványok beszerzéséről részletekért lépjen túl[hogyan: tanúsítvány beszerzése](http://msdn.microsoft.com/library/aa702761.aspx).
 
-Tesztelési célokra használó fürtök esetén dönthet úgy, önaláírt tanúsítvány használatára.
+Tesztelési célokra használó fürtök esetén dönthet úgy toouse egy önaláírt tanúsítványt.
 
 ## <a name="optional-create-a-self-signed-certificate"></a>Választható lehetőség: Hozzon létre egy önaláírt tanúsítványt
-Egy módja megfelelően védett önaláírt tanúsítványt létrehozni a *CertSetup.ps1* parancsfájl a könyvtárban, a Service Fabric SDK mappában *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\ Biztonságos*. Szerkessze a fájlt a tanúsítványhoz tartozó alapértelmezett nevének módosításához (kívánt érték *CN = ServiceFabricDevClusterCert*). Futtassa ezt a parancsfájlt, `.\CertSetup.ps1 -Install`.
+Egyirányú toocreate egy önaláírt tanúsítványt megfelelően védett toouse hello *CertSetup.ps1* hello könyvtárban hello Service Fabric SDK mappában parancsfájl *C:\Program Files\Microsoft SDKs\Service Fabric\ ClusterSetup\Secure*. Szerkessze a fájlt toochange hello alapértelmezett hello tanúsítvány neve (hello értéket keresi *CN = ServiceFabricDevClusterCert*). Futtassa ezt a parancsfájlt, `.\CertSetup.ps1 -Install`.
 
-Exportálja a tanúsítványt egy PFX-fájl jelszóval védett. Először kapnak a tanúsítvány ujjlenyomatát. Az a *Start* menü, futtassa a *számítógép-tanúsítványok kezelése*. Keresse meg a **helyi számítógép személyes** mappa és a Keresés az imént tanúsítvány létrehozása. Kattintson duplán a tanúsítványra megnyitásához, jelölje be a *részletek* lapra, és görgessen le a *ujjlenyomat* mező. A szóközök eltávolítása után a PowerShell-parancsot, másolja az ujjlenyomat értékét.  Módosítsa a `String` a védelmét, és futtassa a következő PowerShell megfelelő biztonságos jelszó értéket:
+Mostantól exportálhatja hello tooa PFX tanúsítványfájl jelszóval védett. Először kapnak hello hello tanúsítvány ujjlenyomata. A hello *Start* menü, futtassa a hello *számítógép-tanúsítványok kezelése*. Keresse meg a toohello **helyi számítógép személyes** létrehozott mappa és a keresés hello csak tanúsítvány meg. Kattintson duplán a hello tanúsítvány tooopen azt, jelölje be hello *részletek* lapot, és görgessen lefelé toohello *ujjlenyomat* mező. Hello ujjlenyomat értékét másolja az alábbi PowerShell-paranccsal hello hello szóközök eltávolítása után.  Változás hello `String` tooa megfelelő biztonságos jelszó tooprotect értékét, és futtassa a következő PowerShell hello:
 
 ```powershell   
 $pswd = ConvertTo-SecureString -String "1234" -Force –AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\<Thumbprint> | Export-PfxCertificate -FilePath C:\mypfx.pfx -Password $pswd
 ```
 
-A Részletek területen találja a számítógépen telepített tanúsítvány futtathatja a következő PowerShell-parancsot:
+hello telepített tanúsítványok toosee hello részleteit a gép akkor is futtatható a következő PowerShell-paranccsal hello:
 
 ```powershell
 $cert = Get-Item Cert:\LocalMachine\My\<Thumbprint>
 Write-Host $cert.ToString($true)
 ```
 
-Azt is megteheti, ha Azure-előfizetéssel rendelkezik, kövesse a szakasz [tanúsítványok hozzáadása a Key Vault](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault).
+Azt is megteheti, ha Azure-előfizetéssel, hajtsa végre a hello szakasz [tanúsítványok tooKey tároló hozzáadása](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault).
 
-## <a name="install-the-certificates"></a>A tanúsítványok telepítése
-Miután (oka) t, telepítheti azokat a fürtcsomópontokon. A csomópontok kell rendelkeznie a legújabb Windows PowerShell 3.x rajtuk. Ismételje meg ezeket a lépéseket minden csomóponton, a fürt és a kiszolgáló és az összes másodlagos tanúsítványokat kell.
+## <a name="install-hello-certificates"></a>Hello tanúsítványok telepítése
+Miután (oka) t, telepítheti azokat hello fürtcsomópontokon. A csomópontok kell toohave legújabb Windows PowerShell hello 3.x rajtuk. Szüksége lesz toorepeat ezeket a lépéseket minden csomóponton, a fürt és a kiszolgáló és az összes másodlagos tanúsítványokat.
 
-1. A .pfx fájl átmásolása a csomópont.
-2. Nyissa meg rendszergazdaként a PowerShell ablakot, és írja be a következő parancsokat. Cserélje le a *$pswd* a, melyek a tanúsítvány létrehozásához használt jelszó. Cserélje le a *$PfxFilePath* a teljes elérési útját a .pfx másolja ezt a csomópontot.
+1. Másolás hello .pfx (oka) t toohello csomópont.
+2. Nyissa meg rendszergazdaként a PowerShell ablakot, és írja be a következő parancsok hello. Cserélje le a hello *$pswd* hello jelszó, amellyel toocreate ezt a tanúsítványt. Cserélje le a hello *$PfxFilePath* hello .pfx másolt toothis csomópont hello a teljes elérési úttal.
    
     ```powershell
     $pswd = "1234"
     $PfxFilePath ="C:\mypfx.pfx"
     Import-PfxCertificate -Exportable -CertStoreLocation Cert:\LocalMachine\My -FilePath $PfxFilePath -Password (ConvertTo-SecureString -String $pswd -AsPlainText -Force)
     ```
-3. Most beállítása az ezt a tanúsítványt, hogy a Service Fabric folyamat, amely a hálózati szolgáltatás fiók alatt fut, használhatja a következő parancsfájl futtatásával. Adja meg az ujjlenyomatot, a tanúsítványt és a "Hálózati szolgáltatás" a szolgáltatás fiók. Ellenőrizheti, hogy a tanúsítvány az ACL-ek nyissa meg a tanúsítvány helyesen *Start* > *számítógép-tanúsítványok kezelése* és megnézi *feladataival*  >  *Titkos kulcsok kezelése*.
+3. Most beállítása a hello ezt a tanúsítványt, hogy hello Service Fabric folyamat, amely hello hálózati szolgáltatás fiók alatt fut, használhatja a következő parancsfájl hello futtatásával. Adja meg a hello tanúsítványt és a "Hálózati szolgáltatás" hello szolgáltatásfiók hello ujjlenyomatot. A hozzáférés-vezérlési listák hello hello tanúsítvány helyesek hello tanúsítványt megnyitásával ellenőrizheti *Start* > *számítógép-tanúsítványok kezelése* és megnézi *feladatok*  >  *Titkos kulcsok kezelése*.
    
     ```powershell
     param
@@ -272,54 +272,54 @@ Miután (oka) t, telepítheti azokat a fürtcsomópontokon. A csomópontok kell 
    
     $cert = Get-ChildItem -Path cert:\LocalMachine\My | Where-Object -FilterScript { $PSItem.ThumbPrint -eq $pfxThumbPrint; }
    
-    # Specify the user, the permissions and the permission type
+    # Specify hello user, hello permissions and hello permission type
     $permission = "$($serviceAccount)","FullControl","Allow"
     $accessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permission
    
-    # Location of the machine related keys
+    # Location of hello machine related keys
     $keyPath = Join-Path -Path $env:ProgramData -ChildPath "\Microsoft\Crypto\RSA\MachineKeys"
     $keyName = $cert.PrivateKey.CspKeyContainerInfo.UniqueKeyContainerName
     $keyFullPath = Join-Path -Path $keyPath -ChildPath $keyName
    
-    # Get the current acl of the private key
+    # Get hello current acl of hello private key
     $acl = (Get-Item $keyFullPath).GetAccessControl('Access')
    
-    # Add the new ace to the acl of the private key
+    # Add hello new ace toohello acl of hello private key
     $acl.SetAccessRule($accessRule)
    
-    # Write back the new acl
+    # Write back hello new acl
     Set-Acl -Path $keyFullPath -AclObject $acl -ErrorAction Stop
    
-    # Observe the access rights currently assigned to this certificate.
+    # Observe hello access rights currently assigned toothis certificate.
     get-acl $keyFullPath| fl
     ```
-4. Ismételje meg a fenti lépéseket minden kiszolgálói tanúsítvány. A lépések segítségével telepítse az ügyféltanúsítványokat az engedélyezi a hozzáférést a fürthöz használni kívánt gépekre.
+4. Ismételje meg a hello felett minden egyes kiszolgáló-tanúsítvány. Használhatja ezen lépések tooinstall hello ügyféltanúsítványok hello gépeken, amelyet az tooallow hozzáférés toohello fürt.
 
-## <a name="create-the-secure-cluster"></a>A biztonságos fürt létrehozása
-Beállítása után a **biztonsági** szakasza a **ClusterConfig.X509.MultiMachine.json** fájl, folytathatja a [a fürt létrehozása](service-fabric-cluster-creation-for-windows-server.md#createcluster) szakasz a csomópontok és a különálló fürt létrehozásához. Fontos, hogy a **ClusterConfig.X509.MultiMachine.json** fájl a fürt létrehozása során. Például a parancs nézhet ki például a következőket:
+## <a name="create-hello-secure-cluster"></a>Hello biztonságos fürt létrehozása
+Hello konfigurálása után **biztonsági** hello szakasza **ClusterConfig.X509.MultiMachine.json** fájl, a Folytatás túl[a fürt létrehozása](service-fabric-cluster-creation-for-windows-server.md#createcluster) szakasz tooconfigure hello csomópontot, majd hozzon létre hello önálló fürtöt. Ne feledje toouse hello **ClusterConfig.X509.MultiMachine.json** fájl hello fürt létrehozása során. A parancs például hello következő látható:
 
 ```powershell
 .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
-Miután a fürt sikeresen fut, és a hitelesített ügyfelek csatlakoznak, hogy a telepítő a biztonságos önálló Windows, kövesse a szakasz [csatlakozás PowerShell használatával biztonságos fürthöz](service-fabric-connect-to-secure-cluster.md#connectsecurecluster) a csatlakozáshoz. Példa:
+Ha biztonságos hello önálló Windows sikeresen fut a fürt és telepítő hitelesített ügyfelek tooconnect tooit hello hajtsa végre az hello szakasz [Connect tooa biztonságos fürt PowerShell-lel](service-fabric-connect-to-secure-cluster.md#connectsecurecluster) tooconnect tooit. Példa:
 
 ```powershell
 $ConnectArgs = @{  ConnectionEndpoint = '10.7.0.5:19000';  X509Credential = $True;  StoreLocation = 'LocalMachine';  StoreName = "MY";  ServerCertThumbprint = "057b9544a6f2733e0c8d3a60013a58948213f551";  FindType = 'FindByThumbprint';  FindValue = "057b9544a6f2733e0c8d3a60013a58948213f551"   }
 Connect-ServiceFabricCluster $ConnectArgs
 ```
 
-Ezt követően futtathatja más PowerShell-parancsok használata ehhez a fürthöz. Például [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode.md?view=azureservicefabricps) való megjelenítéséhez a biztonságos fürt a csomópontok listáját.
+Ezt követően futtathatja más PowerShell-parancsok toowork a fürthöz. Például [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode.md?view=azureservicefabricps) tooshow a biztonságos fürtön található csomópontok listáját.
 
 
-Távolítsa el a fürtöt, a csomópont a fürt, amelybe letöltötte a Service Fabric-csomag csatlakozzon, nyisson meg egy parancssort, és keresse meg a csomag mappát. Most futtassa a következő parancsot:
+tooremove hello fürt, csatlakozás hello fürt, amelybe letöltötte a Service Fabric-csomag hello toohello csomópont, nyisson meg egy parancssort, és keresse meg a toohello csomagmappáihoz. Most futtassa a következő parancs hello:
 
 ```powershell
 .\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
 > [!NOTE]
-> Tanúsítvány nem megfelelő konfigurációs megakadályozhatja, hogy a fürt üzembe helyezése során várható. Önálló biztonsági problémák elemzéséhez, tekintse meg a megjelenítő eseménycsoportban *alkalmazási és Szolgáltatásnaplójában* > *Microsoft-Service Fabric*.
+> Tanúsítvány nem megfelelő konfigurációs megakadályozhatja, hogy a hello fürt üzembe helyezése során várható. tooself-biztonsági problémák elemzéséhez, tekintse meg a megjelenítő eseménycsoportban *alkalmazási és Szolgáltatásnaplójában* > *Microsoft-Service Fabric*.
 > 
 > 
 

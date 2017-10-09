@@ -1,6 +1,6 @@
 ---
-title: "Twilio használ hang, a VoIP és az SMS-üzenetkezelés az Azure-ban"
-description: "Útmutató a telefonhívás, és a Twilio API szolgáltatás SMS üzenet küldése az Azure-on. A Kódminták a Node.js-ben."
+title: "aaaUsing Twilio a hang, a VoIP és az SMS-üzenetkezelés az Azure-ban"
+description: "Ismerje meg, hogyan toomake telefonhívást, majd küldje el a SMS üzenet hello Twilio API szolgáltatásban az Azure-on. A Kódminták a Node.js-ben."
 services: 
 documentationcenter: nodejs
 author: devinrader
@@ -14,61 +14,61 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: wpickett
-ms.openlocfilehash: 44ec97812130d41d75be98fc8e2d846b7cb5c913
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c44d60e217fcdf51e69fd2a8197f979afbb507a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-twilio-for-voice-voip-and-sms-messaging-in-azure"></a>Twilio használ hang, a VoIP és az SMS-üzenetkezelés az Azure-ban
-Ez az útmutató bemutatja, hogyan kommunikálni Twilio és az Azure-on node.js alkalmazásokat lehet készíteni.
+Ez az útmutató bemutatja, hogyan toobuild alkalmazásokat, amelyek kommunikálni Twilio és a node.js az Azure-on.
 
 <a id="whatis"/>
 
 ## <a name="what-is-twilio"></a>Mi az, hogy a Twilio?
-Twilio egy API-platform, amely megkönnyíti a fejlesztők és telefonhívásokat fogadja, küldése és a szöveges üzeneteket, és beágyazási böngészőalapú és natív mobil alkalmazásokba VoIP hívása. Most röviden ismerteti ennek működéséről belevágna előtt.
+Twilio egy API-platform, amely megkönnyíti a fejlesztők toomake és telefonhívásokat fogadja, küldése és a szöveges üzeneteket, és beágyazási böngészőalapú és natív mobil alkalmazásokba VoIP hívása. Most röviden ismerteti ennek működéséről belevágna előtt.
 
 ### <a name="receiving-calls-and-text-messages"></a>Hívások és a szöveges üzenetek fogadása
-Twilio lehetővé teszi a fejlesztők számára [programozható telefonszámok beszerzési] [ purchase_phone] való küldenie és fogadnia hívások és a szöveges üzenetek is használható. Ha a Twilio-számnak fogad egy bejövő hívás vagy szöveges, Twilio elküld a webes alkalmazás egy HTTP POST vagy GET kérés, kéri a hívást vagy SMS kezeléséről további tájékoztatást. A kiszolgáló válaszol a Twilio tartozó HTTP-kérelem [TwiML][twiml], egyszerű hívás vagy SMS kezelésére vonatkozó útmutatást tartalmazó XML-címkék-készlettel. Kis türelmet a TwiML példái lesz látható.
+Twilio lehetővé teszi a fejlesztők túl[programozható telefonszámok beszerzési] [ purchase_phone] amely lehet használt tooboth és küldésére és fogadására hívások szöveges üzeneteket. Amikor Twilio-számnak fogad egy bejövő hívás vagy szöveges, Twilio küld a webes alkalmazás egy HTTP POST vagy GET kérés kéri a hogyan toohandle hello hívást vagy SMS utasításokat. A kiszolgáló válaszol a tooTwilio tartozó HTTP-kérelem [TwiML][twiml], egy utasításokat tartalmazó XML-címkék egyszerű készlete toohandle hívás vagy szöveges. Kis türelmet a TwiML példái lesz látható.
 
 ### <a name="making-calls-and-sending-text-messages"></a>Hívások és a szöveges üzenetek küldése
-HTTP-kérelmekre, így a Twilio webszolgáltatási API, fejlesztők szöveges üzenetek küldéséhez vagy kimenő telefonhívást kezdeményezni. Kimenő hívások a fejlesztői is meg kell adnia egy URL-címet, amely visszaadja az TwiML című cikkben talál útmutatást a kimenő hívás kezelésére, amennyiben van csatlakoztatva.
+Azáltal, hogy a HTTP-kérelmek toohello Twilio webszolgáltatási API, fejlesztők szöveges üzenetek küldéséhez vagy kimenő telefonhívást kezdeményezni. Kimenő hívások hello fejlesztői is meg kell adnia egy URL-címet, amely visszaadja az TwiML utasításokat hogyan toohandle hello kimenő hívása után van csatlakoztatva.
 
 ### <a name="embedding-voip-capabilities-in-ui-code-javascript-ios-or-android"></a>VoIP képességek beágyazása a felhasználói felület kódot (JavaScript, iOS vagy Android)
-Twilio biztosít egy ügyféloldali SDK, amely bármely asztali böngészőben, iOS-alkalmazás vagy Android-alkalmazás lehet kikapcsolni, a VoIP-telefont. Ebben a cikkben tárgyaljuk használata VoIP hívja a böngészőben. Kívül a *Twilio JavaScript SDK* a böngésző fut, a kiszolgálóoldali alkalmazás (a node.js-alkalmazás) kell használni egy "funkció token" kiadni a JavaScript-ügyfél. További VoIP használata node.js [a Twilio-fejlesztői blog][voipnode].
+Twilio biztosít egy ügyféloldali SDK, amely bármely asztali böngészőben, iOS-alkalmazás vagy Android-alkalmazás lehet kikapcsolni, a VoIP-telefont. Ebben a cikkben tárgyaljuk hogyan toouse VoIP hello böngészőben hívja. A hozzáadása toohello *Twilio JavaScript SDK* hello böngésző fut, a kiszolgálóoldali alkalmazás (a node.js-alkalmazás) használt tooissue egy "funkció token" toohello JavaScript ügyfél kell lennie. További VoIP használata node.js [hello Twilio fejlesztői blog][voipnode].
 
 <a id="signup"/>
 
 ## <a name="sign-up-for-twilio-microsoft-discount"></a>Regisztrálás a Twilio (a Microsoft kedvezményes)
-Twilio-szolgáltatások használatához először [egy fiók][signup]. Microsoft Azure-ügyfelek kap egy különös kedvezményes - [ügyeljen arra, hogy itt regisztrálhat][signup]!
+Twilio-szolgáltatások használatához először [egy fiók][signup]. Microsoft Azure-ügyfelek kap egy különös kedvezményes - [kell itt meg arról, hogy toosign][signup]!
 
 <a id="azuresite"/>
 
 ## <a name="create-and-deploy-a-nodejs-azure-website"></a>Létrehozhat és telepíthet egy node.js Azure-webhely
-A következő szüksége lesz egy Azure-on futó node.js-webhelyet hoz létre. [Ezzel a hivatalos dokumentációját a következő helyen található][azure_new_site]. Magas szinten, akkor lesz kell a következő módon:
+Ezt követően kell toocreate egy Azure-on futó node.js webhelyet. [hello dokumentációs ehhez a következő helyen található][azure_new_site]. Magas szinten akkor lesz aki hello következő:
 
 * Regisztrál az Azure-fiók esetén, ha még nem rendelkezik már
-* Új webhely létrehozása az Azure felügyeleti konzolját használja
+* Hello Azure felügyeleti konzol toocreate új webhely használatával
 * Forrás-vezérlés támogatásának (indulunk követte git) hozzáadása
 * A fájl létrehozásakor a következő `server.js` az egyszerű node.js-webalkalmazás
-* Az Azure-bA az egyszerű alkalmazás üzembe helyezéséhez
+* Ez egyszerű alkalmazás tooAzure telepítése
 
 <a id="twiliomodule"/>
 
-## <a name="configure-the-twilio-module"></a>A Twilio-modul konfigurálása
-Megkezdődik a következő azt írni egy egyszerű node.js-alkalmazást, amely a Twilio API-t használja. Az első lépések, igazolnia kell a Twilio-fiók hitelesítő adatainak konfigurálása.
+## <a name="configure-hello-twilio-module"></a>Hello Twilio-modul konfigurálása
+A következő lesz az első lépések toowrite hello Twilio API használatát egy egyszerű node.js-alkalmazás, amely lehetővé teszi. Az első lépések, igazolnia kell tooconfigure a Twilio-fiók hitelesítő adatait.
 
 ### <a name="configuring-twilio-credentials-in-system-environment-variables"></a>Rendszerszintű környezeti változókat a Twilio-hitelesítő adatok konfigurálása
-Ahhoz, hogy a Twilio-háttér elleni hitelesített kéréseket, igazolnia kell a fiók SID azonosítója és a hitelesítési jogkivonat, mely a felhasználónevet és jelszót a Twilio-fiókjában funkciót. A legbiztonságosabb konfigurálásukkal használható az Azure-ban a csomópont modullal módja keresztül rendszerszintű környezeti változókat, amelyek közvetlenül az Azure felügyeleti konzolon állíthatja be.
+A sorrend hitelesített toomake kéréseket a meghatározott hello Twilio-háttér igazolnia kell a fiók SID azonosítója és a hitelesítési jogkivonat, mely funkciót hello felhasználónevet és jelszót a Twilio-fiókjában. hello legbiztonságosabb módja tooconfigure ezek hello csomópont modul az Azure-ban való használatra van keresztül rendszerszintű környezeti változókat, amelyek közvetlenül hello Azure felügyeleti konzolon állíthatja be.
 
-Jelölje ki a node.js-webhelyet, és kattintson a "Beállítása" hivatkozásra.  Ha görgessen lefelé kissé a folyamatot, akkor jelenik meg egy olyan területre, amelyen meg a konfigurációs tulajdonságok az alkalmazáshoz.  Adja meg a Twilio-fiók hitelesítő adatait ([megtalálható-e a Twilio-konzol][twilio_console]) látható - ügyeljen arra, hogy azok neve `TWILIO_ACCOUNT_SID` és `TWILIO_AUTH_TOKEN`, illetve:
+Jelölje ki a node.js-webhelyet, és hello "Beállítása" hivatkozásra.  Ha görgessen lefelé kissé a folyamatot, akkor jelenik meg egy olyan területre, amelyen meg a konfigurációs tulajdonságok az alkalmazáshoz.  Adja meg a Twilio-fiók hitelesítő adatait ([megtalálható-e a Twilio-konzol][twilio_console]) látható – győződjön meg arról, hogy tooname őket `TWILIO_ACCOUNT_SID` és `TWILIO_AUTH_TOKEN`, illetve:
 
 ![Az Azure felügyeleti konzol][azure-admin-console]
 
-Miután konfigurálta a változókat, indítsa újra az alkalmazást az Azure-konzolon.
+Miután konfigurálta a változókat, indítsa újra az alkalmazás hello Azure-konzolon.
 
-### <a name="declaring-the-twilio-module-in-packagejson"></a>A Twilio-modul a Package.JSON kódjában deklaráló
-Következő lépésként létre kell hoznunk egy package.json kezelheti a csomópont modul függőségek keresztül [npm]. Ugyanazon a szinten az `server.js` létrehozott fájlt a *Azure/node.js* oktatóanyag, hozzon létre egy fájlt `package.json`.  Ez a fájl helye a következő:
+### <a name="declaring-hello-twilio-module-in-packagejson"></a>Deklaráló package.json hello Twilio-modulja
+A következő igazolnia kell a package.json toomanage toocreate a csomópont modul függőségek keresztül [npm]. Hello: azonos szinten, hello `server.js` hello létrehozott fájl *Azure/node.js* oktatóanyag, hozzon létre egy fájlt `package.json`.  Ez a fájl helye hello következő:
 
 ```json
 {
@@ -89,12 +89,12 @@ Következő lépésként létre kell hoznunk egy package.json kezelheti a csomó
 }
 ```
 
-Ez a twilio-modul deklarál, egy függőségi, valamint a népszerű [webes keretrendszer Express] [ express] és a EJS sablon motor.  Rendben most azt Mindennel - most kódírást!
+Ez azt deklarálja hello twilio-modul, egy függőségi, valamint a hello népszerű [webes keretrendszer Express] [ express] és hello EJS sablon motor.  Rendben most azt Mindennel - most kódírást!
 
 <a id="makecall"/>
 
 ## <a name="make-an-outbound-call"></a>Egy kimenő hívást
-Hozzon létre helyezi el a szám választjuk hívás egyszerű űrlapot. Nyissa meg `server.js`, és írja be a következő kódot. Megjegyzés: Ha "CHANGE_ME" - felirat látható az azure-webhely neve nincs put:
+Hozzon létre egy egyszerű űrlapot választjuk hívás tooa több helyezi el. Nyissa meg `server.js`, és írja be a kódját a következő hello. Vegye figyelembe, ha "CHANGE_ME" - hello a azure webhely neve nincs put felirat látható:
 
 ```javascript
 // Module dependencies
@@ -123,35 +123,35 @@ if (app.get('env') !== 'production') {
   app.use(errorHandler());
 }
 
-// Render an HTML user interface for the application's home page
+// Render an HTML user interface for hello application's home page
 app.get('/', (request, response) => response.render('index'));
 
-// Handle the form POST to place a call
+// Handle hello form POST tooplace a call
 app.post('/call', (request, response) => {
   var client = twilio(accountSid, authToken);
 
   client.makeCall({
-    // make a call to this number
+    // make a call toothis number
     to:request.body.number,
 
-    // Change to a Twilio number you bought - see:
+    // Change tooa Twilio number you bought - see:
     // https://www.twilio.com/console/phone-numbers/incoming
     from:'+15558675309',
 
     // A URL in our app which generates TwiML
-    // Change "CHANGE_ME" to your app's name
+    // Change "CHANGE_ME" tooyour app's name
     url:'https://CHANGE_ME.azurewebsites.net/outbound_call'
   }, () => {
-      // Go back to the home page
+      // Go back toohello home page
       response.redirect('/');
   });
 });
 
-// Generate TwiML to handle an outbound call
+// Generate TwiML toohandle an outbound call
 app.post('/outbound_call', (request, response) => {
   var twiml = new twilio.TwimlResponse();
 
-  // Say a message to the call's receiver
+  // Say a message toohello call's receiver
   twiml.say('hello - thanks for checking out Twilio and Azure', {
       voice:'woman'
   });
@@ -166,7 +166,7 @@ app.listen(app.get('port'), function(){
 });
 ```
 
-Ezután hozzon létre egy könyvtárat `views` - belül ebben a könyvtárban, hozzon létre egy fájlt `index.ejs` a következő tartalommal:
+Ezután hozzon létre egy könyvtárat `views` - belül ebben a könyvtárban, hozzon létre egy fájlt `index.ejs` a tartalom a következő hello:
 
 ```html
 <!DOCTYPE html>
@@ -182,64 +182,64 @@ Ezután hozzon létre egy könyvtárat `views` - belül ebben a könyvtárban, h
   <form action="/call" method="POST">
       <input placeholder="Enter a phone number" name="number"/>
       <br/>
-      <input type="submit" value="Call the number above"/>
+      <input type="submit" value="Call hello number above"/>
   </form>
 </body>
 </html>
 ```
 
-Most a webhely telepítése az Azure-ba, és nyissa meg az új kezdőlapja. A szövegmezőbe írja be a megadott telefonszámot, és a felhívja a Twilio több képesnek kell lennie!
+Most a webhely tooAzure telepítése, és nyissa meg az új kezdőlapja. Legyen képes tooenter hello szövegmezőben a telefonszámát, és hívás fogadása a Twilio-számot!
 
 <a id="sendmessage"/>
 
 ## <a name="send-an-sms-message"></a>SMS küldése
-Most állítsa be a felhasználói felület és az űrlap logika kezelése szöveges üzenetet küldeni. Nyissa meg `server.js`, és adja hozzá a következő kódot után utolsó hívása `app.post`:
+Most állítsa be a felhasználói felület és az űrlap logika toosend kezelése szöveges üzenetet. Nyissa meg `server.js`, és adja hozzá a kód túl hello utolsó hívása után következő hello`app.post`:
 
 ```javascript
 app.post('/sms', (request, response) => {
   const client = twilio(accountSid, authToken);
 
   client.sendSms({
-      // send a text to this number
+      // send a text toothis number
       to:request.body.number,
 
       // A Twilio number you bought - see:
       // https://www.twilio.com/console/phone-numbers/incoming
       from:'+15558675309',
 
-      // The body of the text message
+      // hello body of hello text message
       body: request.body.message
 
   }, () => {
-      // Go back to the home page
+      // Go back toohello home page
       response.redirect('/');
   });
 });
 ```
 
-A `views/index.ejs`, egy másik űrlapon egy számot és egy szöveges üzenetet küldeni az elsőt a hozzáadása:
+A `views/index.ejs`, adja hozzá egy másik űrlapon hello először egy toosubmit a szám és a szöveges üzenet:
 
 ```html
 <form action="/sms" method="POST">
   <input placeholder="Enter a phone number" name="number"/>
   <br/>
-  <input placeholder="Enter a message to send" name="message"/>
+  <input placeholder="Enter a message toosend" name="message"/>
   <br/>
-  <input type="submit" value="Send text to the number above"/>
+  <input type="submit" value="Send text toohello number above"/>
 </form>
 ```
 
-Hozza létre újra az alkalmazás az Azure-ba, és meg kell küldeni, amelyek kialakításához, és saját kezűleg (vagy bármely legközelebbi ismerősei) tartalmazó szöveges üzenetet küldjön!
+Hozza létre újra az alkalmazás tooAzure, és képes toosubmit alkotnak, és saját kezűleg (vagy bármely legközelebbi ismerősei) tartalmazó szöveges üzenetet küldjön kell!
 
 <a id="nextsteps"/>
 
 ## <a name="next-steps"></a>Következő lépések
-Most megtanulta, node.js és Twilio kommunikáló alkalmazások használatának alapjaival. De ezek a példák alig ideiglenes a felületet, hogy a Twilio és node.js lehetséges. Twilio használata node.js további információkért tekintse meg a következőket:
+Most megtanulta, node.js és Twilio toobuild alkalmazások kommunikáló hello alapjait. De ezek a példák alig ideiglenes hello felületet, hogy a Twilio és node.js lehetséges. Twilio használata node.js további információkért tekintse meg a következő erőforrások hello:
 
 * [Hivatalos modul docs][docs]
 * [Node.js-alkalmazások a VoIP-oktatóanyag][voipnode]
 * [Votr - egy valós idejű SMS szavazás alkalmazás a node.js és CouchDB (három rész)][votr]
-* [A böngészőben a node.js pár programozás][pair]
+* [A node.js hello böngészőben pár programozás][pair]
 
 Reméljük, node.js és Twilio támadásoknak Azure kedvelt!
 

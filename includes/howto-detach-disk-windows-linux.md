@@ -1,39 +1,39 @@
-Ha már nincs szüksége egy virtuális géphez csatolt adatlemezre, könnyedén leválaszthatja. Ha leválaszt egy lemezt, azzal eltávolítja azt a virtuális gépről, de nem törli az Azure Storage-fiókból.
+Ha már nincs szüksége, amely virtuális géphez csatolt tooa adatlemezt, könnyen leválasztás. A lemez leválasztása hello lemez eltávolítása a hello virtuális gépről, de nem hello lemez törlése hello Azure storage-fiók.
 
-Ha ismét használni szeretné a lemezen lévő adatokat, újból csatolhatja ugyanahhoz vagy egy másik virtuális géphez.  
+Ha újra toouse hello meglévő hello a lemezen lévő adatokat, akkor is csatlakoztassa újra toohello ugyanahhoz a virtuális géphez, vagy egy másikra.  
 
 > [!NOTE]
-> Az operációsrendszer-lemez leválasztásához előbb törölnie kell a virtuális gépet.
+> operációsrendszer-lemez toodetach, először toodelete hello virtuális gépet.
 >
 
-## <a name="find-the-disk"></a>A lemez megkeresése
-Ha nem tudja a lemez nevét, vagy szeretné ellenőrizni a leválasztás előtt, kövesse a következő lépéseket.
+## <a name="find-hello-disk"></a>Hello lemez található
+Ha nem tudja hello neve lemez hello vagy tooverify szeretné azt előtt válassza le azt, kövesse az alábbi lépéseket.
 
-1. Jelentkezzen be az [Azure Portal](https://portal.azure.com).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
 
-2. Kattintson a **Virtual Machines** lehetőségre, majd válassza ki a megfelelő virtuális gépet.
+2. Kattintson a **virtuális gépek**, és ezután válasszon hello megfelelő méretű.
 
-3. Kattintson a virtuális gép irányítópultjának bal szélén, a **Beállítások** területen a **Lemezek** elemre.
+3. Kattintson a **lemezek** mentén hello bal szélétől hello virtuális gép irányítópult, a **beállítások**.
 
- A virtuális gép irányítópultja felsorolja a csatlakoztatott lemezek nevét és típusát. Ez a képernyő például egy virtuális gépet jelenít meg egy operációsrendszer-lemezzel és egy adatlemezzel:
+ hello virtuális gép irányítópult hello neve és a csatlakoztatott lemezek típusú sorolja fel. Ez a képernyő például egy virtuális gépet jelenít meg egy operációsrendszer-lemezzel és egy adatlemezzel:
 
     ![Adatlemez megkeresése](./media/howto-detach-disk-windows-linux/vmwithdisklist.png)
 
-## <a name="detach-the-disk"></a>A lemez leválasztása
-1. Az Azure Portalon kattintson a **Virtuális gépek** lehetőségre, majd kattintson annak a virtuális gépnek a nevére, amelyen a leválasztani kívánt adatok vannak.
+## <a name="detach-hello-disk"></a>Hello lemez leválasztása
+1. A hello Azure-portálon, kattintson az **virtuális gépek**, majd kattintson a hello virtuális gépekről, amelyek azt szeretné, hogy toodetach hello adatlemez hello neve.
 
-2. Kattintson a virtuális gép irányítópultjának bal szélén, a **Beállítások** területen a **Lemezek** elemre.
+2. Kattintson a **lemezek** mentén hello bal szélétől hello virtuális gép irányítópult, a **beállítások**.
 
-3. Kattintson a leválasztani kívánt lemezre.
+3. Kattintson a kívánt toodetach hello lemezre.
 
-  ![A leválasztani kívánt lemez azonosítása](./media/howto-detach-disk-windows-linux/disklist.png)
+  ![Hello lemez toodetach azonosítása](./media/howto-detach-disk-windows-linux/disklist.png)
 
-4. A parancssoron kattintson a **Leválasztás** elemre.
+4. Hello parancssávon kattintson **leválasztási**.
 
-  ![A leválasztási parancs megkeresése](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
+  ![Keresse meg a hello parancs leválasztása](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
 
-5. A megerősítés ablakban kattintson az **Igen** gombra a lemez leválasztásához.
+5. Hello ablak, kattintson **Igen** toodetach hello lemez.
 
-  ![A lemez leválasztásának megerősítése](./media/howto-detach-disk-windows-linux/confirmdetach.png)
+  ![Erősítse meg a hello lemez leválasztása](./media/howto-detach-disk-windows-linux/confirmdetach.png)
 
-A lemez a tárolóban marad, de már nincs virtuális géphez csatlakoztatva.
+hello lemez tárolási megmarad, de már nem csatlakoztatott tooa virtuális gépet.

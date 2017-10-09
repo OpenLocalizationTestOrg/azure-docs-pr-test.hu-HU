@@ -1,6 +1,6 @@
 ---
-title: "Tartalom a Microsoft PlayReady vagy Apple FairPlay - Azure HLS védelme |} Microsoft Docs"
-description: "Ez a témakör áttekintést nyújt, és dinamikusan titkosítani a HTTP-Live Streaming (HLS) Apple FairPlay az Azure Media Services használatát ismerteti. Azt is bemutatja, hogyan használja a Media Services licenctovábbítási szolgáltatása képes biztosítani a FairPlay-licenc ügyfelek számára."
+title: aaaProtect HLS tartalmakat a Microsoft PlayReady vagy Apple FairPlay - Azure |} Microsoft Docs
+description: "Ez a témakör áttekintést nyújt, és bemutatja, hogyan toouse Azure Media Services toodynamically titkosítani a HTTP-Live Streaming (HLS) az Apple FairPlay. Azt is bemutatja, hogyan toouse hello Media Services licenc kézbesítési szolgáltatás toodeliver FairPlay-licenc tooclients."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,152 +14,152 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 895d6307b1cef74e195cc2ffd8dbef4196e97b1f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 91ca451e3e7bf0da1d74dac4c99180f08f39e4ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a>A tartalom Apple FairPlay vagy a Microsoft PlayReady HLS védelme
-Az Azure Media Services lehetővé teszi, hogy dinamikusan titkosítani a HTTP-Live Streaming (HLS) a következő formátum használatával:  
+Az Azure Media Services lehetővé teszi, hogy Ön toodynamically titkosítani a HTTP-Live Streaming (HLS) a következő formátumok hello segítségével:  
 
 * **AES-128 boríték tiszta kulcsot**
 
-    A teljes rendszer használatával titkosítja a **AES-128 CBC** mód. Az adatfolyam visszafejtése natív módon támogatott iOS és OS X-lejátszót. További információkért lásd: [AES-128 használata a dinamikus titkosítás és a kulcs kézbesítési szolgáltatás](media-services-protect-with-aes128.md).
+    hello teljes adatrészlet használatával titkosítja hello **AES-128 CBC** mód. hello adatfolyam hello visszafejtése natív módon támogatott iOS és OS X-lejátszót. További információkért lásd: [AES-128 használata a dinamikus titkosítás és a kulcs kézbesítési szolgáltatás](media-services-protect-with-aes128.md).
 * **Apple FairPlay**
 
-    Az egyes video- és minták segítségével lettek titkosítva a **AES-128 CBC** mód. **FairPlay Streaming** (FPS) integrálva van az eszköz-operációsrendszerek, iOS és az Apple TV natív támogatását. OS x Safari FPS használatával a titkosított adathordozó-bővítmények (EME) felület támogatása lehetővé teszi.
+    egyes videó hello és hang minták hello segítségével lettek titkosítva **AES-128 CBC** mód. **FairPlay Streaming** (FPS) integrálva van hello eszköz-operációsrendszerek, iOS és az Apple TV natív támogatását. OS x Safari FPS hello titkosított adathordozó-bővítmények (EME) felület támogatása használatával lehetővé teszi.
 * **Microsoft PlayReady**
 
-Az alábbi képen látható a **HLS + FairPlay vagy PlayReady a dinamikus titkosítás** munkafolyamat.
+hello következő kép bemutatja hello **HLS + FairPlay vagy PlayReady a dinamikus titkosítás** munkafolyamat.
 
 ![A dinamikus titkosítás munkafolyamat diagramja](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
 
-Ez a témakör bemutatja, hogyan használja a Media Services dinamikus titkosítást az Apple FairPlay HLS tartalmaihoz. Azt is bemutatja, hogyan használja a Media Services licenctovábbítási szolgáltatása képes biztosítani a FairPlay-licenc ügyfelek számára.
+Ez a témakör bemutatja, hogyan toouse Media Services toodynamically titkosítani az Apple FairPlay HLS tartalmaihoz. Azt is bemutatja, hogyan toouse hello Media Services licenc kézbesítési szolgáltatás toodeliver FairPlay-licenc tooclients.
 
 > [!NOTE]
-> Ha szeretné titkosítani a HLS a PlayReady, szeretné hozzon létre egy közös tartalomkulcsot, és rendelje hozzá azt az objektumot. Azt is konfigurálnia kell a tartalomkulcs hitelesítési szabályzatának, a [segítségével PlayReady a dynamic common encryption](media-services-protect-with-drm.md).
+> Ha is szeretné tooencrypt a HLS tartalom a PlayReady, toocreate közös tartalomkulcs kell, és rendelje hozzá azt az objektumot. A is kell tooconfigure hello tartalomkulcs hitelesítési szabályzatának, [segítségével PlayReady a dynamic common encryption](media-services-protect-with-drm.md).
 >
 >
 
 ## <a name="requirements-and-considerations"></a>Követelmények és szempontok
 
-A következőkre szükség FairPlay titkosított HLS továbbítására, és képes biztosítani a FairPlay-licenc Media Services használata közben:
+hello következő szükség, a Media Services toodeliver titkosított HLS integrált FairPlay és toodeliver FairPlay-licenc használata esetén:
 
   * Egy Azure-fiók. További részletek: [Ingyenes Azure-próbafiók](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
-  * Egy Media Services-fiók. Szeretne létrehozni egyet, lásd: [hozzon létre egy Azure Media Services-fiók az Azure portál használatával](media-services-portal-create-account.md).
+  * Egy Media Services-fiók. toocreate, lásd: [hello Azure-portál használatával Azure Media Services-fiók létrehozása](media-services-portal-create-account.md).
   * A regisztráció [Apple fejlesztési Program](https://developer.apple.com/).
-  * Apple szükséges a tartalom tulajdonosa az beszerzése a [központi telepítési csomag](https://developer.apple.com/contact/fps/). Adja meg, hogy már megvalósította a kulcs biztonsági modul (KSM) a Media Services, és a végső FPS csomag kérelmet. A végső FPS csomagban hitelesítésszolgáltató létrehozása, és szerezze be a titkos kulcs (?) utasításokat is. Kérje meg FairPlay konfigurálására használt.
+  * Apple szükséges hello tartalom tulajdonosa tooobtain hello [központi telepítési csomag](https://developer.apple.com/contact/fps/). Adja meg, hogy már megvalósította a kulcs biztonsági modul (KSM) a Media Services, és, hogy a kért hello végső FPS csomag. Nincsenek a végső FPS toogenerate hitelesítő csomagot, majd az beszerzése hello utasításait hello alkalmazás titkos kulcs (KÉRJEN). Kérje meg tooconfigure FairPlay használja.
   * Az Azure Media Services .NET SDK-verzió **3.6.0** vagy újabb.
 
-A következő műveleteket kell állítani a Media Services kulcs kézbesítési oldalon:
+a Media Services kulcs kézbesítési oldalon dolgok következő hello kell beállítani:
 
-  * **Alkalmazás Cert (AC)**: egy .pfx-fájl, amely tartalmazza a titkos kulcsot. A fájl létrehozásához, és a titkosítás jelszóval.
+  * **Alkalmazás Cert (AC)**: Ez az hello titkos kulcsot tartalmazó .pfx fájlt. A fájl létrehozásához, és a titkosítás jelszóval.
 
-       A kulcs továbbítási szabályzatban konfigurálásakor meg kell adnia, hogy a jelszó és a .pfx fájl Base64 formátumban.
+       A kulcs továbbítási szabályzatban konfigurálásakor meg kell adnia a jelszót és hello .pfx fájlt Base64 formátumban.
 
-      A következő lépések azt ismertetik, hogyan FairPlay .pfx tanúsítványfájl létrehozására:
+      hello lépések azt mutatják be, hogyan toogenerate .pfx tanúsítvány FairPlay fájlt:
 
     1. A https://slproweb.com/products/Win32OpenSSL.html OpenSSL telepíteni.
 
-        Nyissa meg azt a mappát, amelyben a FairPlay tanúsítvány és egyéb Apple kézbesítette fájlokat is.
-    2. Futtassa az alábbi parancsot a parancssorból. A .cer fájl konvertál egy .pem fájlt.
+        Nyissa meg a toohello mappára, ahol hello FairPlay tanúsítvány és egyéb fájlokat, az Apple által szállított.
+    2. Futtassa a parancsot követő hello parancssorból hello. Ez a hello .cer fájl tooa .pem-fájlokat alakítja át.
 
         "C:\OpenSSL-Win32\bin\openssl.exe" x509-der tájékoztatja-a fairplay.cer-fairplay-out.pem kimenő
-    3. Futtassa az alábbi parancsot a parancssorból. A titkos kulcsot tartalmazó .pfx fájlba alakítja a .pem fájl. OpenSSL majd felkéri, a .pfx fájlhoz tartozó jelszót.
+    3. Futtassa a parancsot követő hello parancssorból hello. Hello .pem fájl tooa .pfx fájl alakítja hello titkos kulccsal. hello jelszót hello .pfx fájl majd OpenSSL: kérte.
 
         "C:\OpenSSL-Win32\bin\openssl.exe" pkcs12-exportálása - kimenő fairplay-out.pfx-inkey privatekey.pem-fairplay-out.pem - passin file:privatekey-pem-pass.txt a
-  * **Alkalmazás Cert jelszó**: A jelszót a .pfx fájl létrehozásához.
-  * **Alkalmazás Cert jelszó azonosítója**: a jelszó, hogyan azok feltölteni más Media Services kulcsok hasonló kell feltöltenie. Használja a **ContentKeyType.FairPlayPfxPassword** Felsorolásérték lekérni a Media Services-azonosító. Ez akkor szükséges a kulcs kézbesítési házirend-beállításként belül használja.
-  * **IV**: egy véletlenszerű érték 16 bájt. Meg kell egyeznie a iv az adategység továbbítási házirendjét. Ön hozza létre a iv, és mindkét helyen elhelyezi: az adategység továbbítási házirendjét és a kulcs kézbesítési házirend-beállításként.
-  * **Kérje meg**: Ez a kulcs érkezik, ha a hitelesítésszolgáltató létrehozásakor az Apple fejlesztői portáljáról használatával. Minden egyes fejlesztői csapat egyedi KÉRJEN fog kapni. A KÉRJEN másolatának mentése, és tárolja biztonságos helyen. Szüksége lesz, kérje meg a Media Services később FairPlayAsk konfigurálása.
-  * **Kérje meg azonosító**: Ez az azonosító kapjuk meg, kérje meg a Media Services feltöltésekor. Kérje meg a kell feltöltenie az **ContentKeyType.FairPlayAsk** számbavételi érték. Ennek eredményeképpen a Media Services Azonosítót ad vissza, és azt kell használni, ha a beállítás a kulcs kézbesítési házirend-beállításként.
+  * **Alkalmazás Cert jelszó**: hello jelszót a .pfx fájl hello létrehozásához.
+  * **Alkalmazás Cert jelszó azonosítója**: hello jelszó, hasonló toohow azokat más Media Services kulcsok töltse fel kell tölteni. Használjon hello **ContentKeyType.FairPlayPfxPassword** felsorolási érték tooget hello Media Services-azonosító. Ez a szükséges toouse belül hello kulcs kézbesítési házirend-beállításként.
+  * **IV**: egy véletlenszerű érték 16 bájt. Meg kell egyeznie a hello objektumtovábbítási szabályzat iv hello. Létrehozhat hello iv, és mindkét helyen elhelyezi: hello adategység továbbítási házirendjét és hello kulcs kézbesítési házirend-beállításként.
+  * **Kérje meg**: Ez a kulcs érkezik hello hitelesítő hello Apple Developer portálon keresztül generálásakor. Minden egyes fejlesztői csapat egyedi KÉRJEN fog kapni. Hello KÉRJEN másolatának mentése, és tárolja biztonságos helyen. Később szüksége lesz tooconfigure KÉRJEN FairPlayAsk tooMedia szolgáltatásként.
+  * **Kérje meg azonosító**: Ez az azonosító kapjuk meg, kérje meg a Media Services feltöltésekor. Kérje meg a hello kell feltöltenie **ContentKeyType.FairPlayAsk** számbavételi érték. Hello, így hello Media Services Azonosítót ad vissza, és azt, hogy mit kell használni, amikor hello kulcs kézbesítési házirend beállítást.
 
-A következő műveleteket kell beállítania a FPS ügyféloldali:
+hello következőket kell beállítania a hello FPS ügyféloldali:
 
-  * **Alkalmazás Cert (AC)**: egy.cer/.der fájl, amely tartalmazza a nyilvános kulcsot, amely néhány hasznos titkosítására használja az operációs rendszer. A Media Services kell tudnia, vagy mert a Windows Media Player van szükség. A kulcs kézbesítési szolgáltatás visszafejti a megfelelő titkos kulccsal.
+  * **Alkalmazás Cert (AC)**: egy.cer/.der fájl, amely hello nyilvános kulcsot, mely hello operációs rendszere tooencrypt néhány hasznos tartalmaz. A Media Services tooknow információt kell, mert a hello player miatt szükséges. hello kulcs kézbesítési szolgáltatás visszafejti hello megfelelő titkos kulccsal.
 
-FairPlay titkosított adatfolyam lejátszását, első lekérni egy valódi kérje meg, és majd a valódi tanúsítvány jön létre. A folyamat minden három részből hoz létre:
+tooplay biztonsági FairPlay titkosított adatfolyam, első lekérni egy valódi kérje meg, és majd a valódi tanúsítvány jön létre. A folyamat minden három részből hoz létre:
 
   * .der fájl
   * .pfx-fájlt
-  * a .pfx jelszavát
+  * hello .pfx jelszavát
 
-A következő ügyfelek támogatják a HLS **AES-128 CBC** titkosítási: OS X, az Apple TV IOS Safari böngésző.
+hello következő ügyfelek támogatják a HLS **AES-128 CBC** titkosítási: OS X, az Apple TV IOS Safari böngésző.
 
 ## <a name="configure-fairplay-dynamic-encryption-and-license-delivery-services"></a>FairPlay dinamikus titkosítás és licenc licenctovábbítási szolgáltatások konfigurálása
-Az alábbi lépések általános FairPlay a eszközök védelmére, a Media Services licenctovábbítási szolgáltatása segítségével, valamint a dinamikus titkosítás használatával.
+Az alábbiakban hello általános lépéseket a FairPlay eszközök védelmének hello Media Services licenctovábbítási szolgáltatása segítségével, valamint a dinamikus titkosítás használatával.
 
-1. Hozzon létre egy eszközt, és a fájlok feltöltése az objektumba.
-2. Az adaptív sávszélességű MP4 típusú beállításkészlettel fájlt tartalmazó objektum kódolása.
-3. Hozzon létre egy tartalomkulcsot, és társítsa a kódolt objektumhoz.  
-4. Konfigurálja a tartalomkulcs hitelesítési szabályzatát. Adja meg az alábbiakat:
+1. Hozzon létre egy eszközt, és a fájlok feltöltése hello objektumba.
+2. Hello eszköz, amely tartalmazza a hello fájl toohello adaptív sávszélességű MP4 típusú beállításkészlettel kódolása.
+3. Hozzon létre egy tartalomkulcsot, és társítsa a kódolt hello eszköz.  
+4. Hello tartalomkulcs hitelesítési szabályzatának konfigurálása. Adja meg a hello következő beállításokat:
 
-   * A kézbesítési módszert (ebben az esetben az FairPlay).
-   * FairPlay házirend-beállítások konfigurálása. FairPlay konfigurálásával kapcsolatos részletekért lásd: a **ConfigureFairPlayPolicyOptions()** módszer az alábbi minta.
+   * hello kézbesítési módszert (ebben az esetben az FairPlay).
+   * FairPlay házirend-beállítások konfigurálása. További részletekért tooconfigure FairPlay, lásd: hello **ConfigureFairPlayPolicyOptions()** hello minta az alábbi metódust.
 
      > [!NOTE]
-     > Általában célszerű FairPlay házirend beállításainak konfigurálása csak egyszer, mert csak egy hitelesítő és egy KÉRJEN egy készletét van.
+     > Általában érdemes választani tooconfigure FairPlay házirend beállításai csak egyszer, mert csak egy hitelesítő és egy KÉRJEN egy készletét van.
      >
      >
    * Korlátozások (nyitott vagy token).
-   * A kulcs kézbesítési típust, amely meghatározza, hogyan a kulcs kézbesítve lenne az ügyfél-specifikus adatait.
-5. Konfigurálja az adategység továbbítási házirendjét. A továbbítási szabályzat konfigurációjához tartalmazza:
+   * Információt adott toohello kulcs kézbesítési típust, amely meghatározza, hogyan hello kulcs toohello ügyfél kerül-e.
+5. Hello objektumtovábbítási szabályzat konfigurálása. hello továbbítási szabályzat konfigurációjához tartalmazza:
 
-   * A továbbítási protokoll (HLS).
-   * A dinamikus titkosítás (közös CBC titkosítás) típusú.
-   * A licenc licenckérési URL-cím.
+   * hello objektumtovábbítási protokoll (HLS).
+   * a dinamikus titkosítás (közös CBC titkosítás) hello típusa.
+   * hello licenc licenckérési URL-cím.
 
      > [!NOTE]
-     > Ha azt szeretné, hogy FairPlay és egy másik digitális tartalomvédelmi (DRM) rendszeren titkosított adatfolyam, hogy külön továbbítási házirendjeit konfigurálnia:
+     > Ha azt szeretné, hogy toodeliver FairPlay és egy másik digitális tartalomvédelmi (DRM) rendszeren titkosított adatfolyam, tooconfigure külön továbbítási házirendjeit van:
      >
-     > * Egy IAssetDeliveryPolicy konfigurálása a dinamikus adaptív Streameléshez HTTP (DASH) a Common Encryption (CENC) (PlayReady + Widevine), és a PlayReady Smooth keresztül
-     > * Egy másik IAssetDeliveryPolicy HLS FairPlay konfigurálása
+     > * Egy IAssetDeliveryPolicy tooconfigure dinamikus adaptív Streameléshez HTTP (DASH) a Common Encryption (CENC) (PlayReady + Widevine), és zökkenőmentes a Playreadyvel
+     > * Egy másik IAssetDeliveryPolicy tooconfigure a HLS FairPlay
      >
      >
-6. Hozzon létre egy OnDemand-lokátort a streamelési URL-cím beszerzése.
+6. Hozzon létre egy OnDemand-lokátor tooget egy adatfolyam-továbbítási URL-címet.
 
 ## <a name="use-fairplay-key-delivery-by-player-apps"></a>FairPlay kulcs kézbesítési player alkalmazások használatát
-Az IOS SDK player alkalmazásokat fejleszthet. Nem fogja tudni FairPlay tartalom lejátszása, be kell megvalósítani a licenc exchange protokoll. Ez a protokoll Apple nincs megadva. Esetén a minden alkalmazás kulcs kézbesítési kérelem küldése. A Media Services FairPlay kulcs kézbesítési szolgáltatás vár a SPC lesz üzenetként www-form-url kódolt feladás egy vagy több, a következő formában:
+Player alkalmazásokat fejleszthet hello iOS SDK használatával. toobe képes tooplay FairPlay tartalmat, hogy tooimplement hello licenc exchange protokoll. Ez a protokoll Apple nincs megadva. Már be tooeach alkalmazást hogyan toosend kulcs kézbesítési kéri. Media Services FairPlay kulcs kézbesítési szolgáltatás hello hello SPC toocome www-form-url kódolt feladás egy vagy több üzenetet, a következő képernyő hello várja:
 
     spc=<Base64 encoded SPC>
 
 > [!NOTE]
-> Az Azure Media Player FairPlay lejátszás kívül a mezőben nem támogatja. Ahhoz, hogy FairPlay lejátszás MAC OS x, szerezze be a minta player az Apple developer-fiók.
+> Az Azure Media Player nem támogatja a FairPlay lejátszás hello kezdő verzióról. MAC OS x, tooget FairPlay lejátszás hello minta player szerzi be hello Apple developer-fiók.
 >
 >
 
 ## <a name="streaming-urls"></a>Adatfolyam-továbbítási URL-címek
-Ha az objektum egynél több DRM lett titkosítva, egy titkosítási címke használjon az adatfolyam-továbbítási URL-cím: (formátum = "m3u8-aapl" titkosítási = "xxx").
+Ha az objektum egynél több DRM lett titkosítva, a streamelési URL-cím hello egy titkosítási címke használja: (formátum = "m3u8-aapl" titkosítási = "xxx").
 
-A következők érvényesek:
+a következő szempontok hello vonatkoznak:
 
 * Csak nulla vagy egy titkosítási típus adható meg.
-* A titkosítási típus nem kell az URL-cím adható meg, ha csak egy titkosítási alkalmazta az eszközhöz.
-* A titkosítási típus-és nagybetűket.
-* A következő titkosítási típusok adhatók meg:  
+* hello titkosítási típus toobe hello URL-címben megadott, ha csak egy titkosítási lett alkalmazott toohello eszköz nem rendelkezik.
+* hello titkosítási típus-és nagybetűket.
+* a következő típusú titkosítás hello adható meg:  
   * **cenc**: Common encryption (PlayReady vagy Widevine)
   * **cbcs-aapl**: FairPlay
   * **CBC**: AES envelope titkosítás
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-1. Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
-2. Adja hozzá a következő elemeket az app.config fájlban megadott **appSettings** szakaszhoz:
+1. A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
+2. Adja hozzá a következő elemek túl hello**appSettings** az app.config fájlban meghatározott:
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ## <a name="example"></a>Példa
 
-A következő példa bemutatja teszi a Media Services használatát a FairPlay titkosított tartalom. Ez a funkció az Azure Media Services SDK bevezetett a .NET-hez 3.6.0 verziója. 
+a következő minta hello hello képességét toouse Media Services toodeliver FairPlay titkosított tartalom mutatja be. Ez a funkció a .NET-hez verzió 3.6.0 bevezetett hello Azure Media Services SDK-t. 
 
-Írja felül a Program.cs fájlban található kódot az itt látható kóddal.
+Írja felül a Program.cs fájlban hello kód hello kód itt látható.
 
 >[!NOTE]
->A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Ha mindig ugyanazokat a napokat/hozzáférési engedélyeket használja (például olyan keresők szabályzatait, amelyek hosszú ideig érvényben maradnak, vagyis nem feltöltött szabályzatokat), a szabályzatazonosítónak is ugyanannak kell lennie. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
+>A különböző AMS-szabályzatok (például a Locator vagy a ContentKeyAuthorizationPolicy) esetében a korlát 1 000 000 szabályzat. Használjon hello azonos házirend-azonosítója mindig használata hello azonos nap / hozzáférési engedélyek, például a lokátorokat, amelyek a helyen tervezett tooremain hosszú ideje (nem feltöltés házirendek) házirendek. További információ [ebben](media-services-dotnet-manage-entities.md#limit-access-policies) a témakörben érhető el.
 
-Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön által használt mappákra mutassanak.
+Győződjön meg arról, hogy tooupdate változók toopoint toofolders ahol a bemeneti fájlok találhatók.
 
     using System;
     using System.Collections.Generic;
@@ -178,7 +178,7 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -215,7 +215,7 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonCBCTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("FairPlay License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay));
             Console.WriteLine();
 
@@ -238,13 +238,13 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
@@ -312,7 +312,7 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
                         "ContentKey",
                         ContentKeyType.CommonEncryptionCbcs);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -352,7 +352,7 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -388,7 +388,7 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -397,20 +397,20 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
 
         private static string ConfigureFairPlayPolicyOptions()
         {
-            // For testing you can provide all zeroes for ASK bytes together with the cert from Apple FPS SDK.
-            // However, for production you must use a real ASK from Apple bound to a real prod certificate.
+            // For testing you can provide all zeroes for ASK bytes together with hello cert from Apple FPS SDK.
+            // However, for production you must use a real ASK from Apple bound tooa real prod certificate.
             byte[] askBytes = Guid.NewGuid().ToByteArray();
             var askId = Guid.NewGuid();
-            // Key delivery retrieves askKey by askId and uses this key to generate the response.
+            // Key delivery retrieves askKey by askId and uses this key toogenerate hello response.
             IContentKey askKey = _context.ContentKeys.Create(
                         askId,
                         askBytes,
                         "askKey",
                         ContentKeyType.FairPlayASk);
 
-            //Customer password for creating the .pfx file.
-            string pfxPassword = "<customer password for creating the .pfx file>";
-            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key to generate the response.
+            //Customer password for creating hello .pfx file.
+            string pfxPassword = "<customer password for creating hello .pfx file>";
+            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key toogenerate hello response.
             var pfxPasswordId = Guid.NewGuid();
             byte[] pfxPasswordBytes = System.Text.Encoding.UTF8.GetBytes(pfxPassword);
             IContentKey pfxPasswordKey = _context.ContentKeys.Create(
@@ -419,11 +419,11 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
                         "pfxPasswordKey",
                         ContentKeyType.FairPlayPfxPassword);
 
-            // iv - 16 bytes random value, must match the iv in the asset delivery policy.
+            // iv - 16 bytes random value, must match hello iv in hello asset delivery policy.
             byte[] iv = Guid.NewGuid().ToByteArray();
 
-            //Specify the .pfx file created by the customer.
-            var appCert = new X509Certificate2("path to the .pfx file created by the customer", pfxPassword, X509KeyStorageFlags.Exportable);
+            //Specify hello .pfx file created by hello customer.
+            var appCert = new X509Certificate2("path toohello .pfx file created by hello customer", pfxPassword, X509KeyStorageFlags.Exportable);
 
             string FairPlayConfiguration =
             Microsoft.WindowsAzure.MediaServices.Client.FairPlay.FairPlayConfiguration.CreateSerializedFairPlayOptionConfiguration(
@@ -457,12 +457,12 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
 
             FairPlayConfiguration configFP = JsonConvert.DeserializeObject<FairPlayConfiguration>(kdOption.KeyDeliveryConfiguration);
 
-            // Get the FairPlay license service URL.
+            // Get hello FairPlay license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay);
 
-            // The reason the below code replaces "https://" with "skd://" is because
-            // in the IOS player sample code which you obtained in Apple developer account,
-            // the player only recognizes a Key URL that starts with skd://.
+            // hello reason hello below code replaces "https://" with "skd://" is because
+            // in hello IOS player sample code which you obtained in Apple developer account,
+            // hello player only recognizes a Key URL that starts with skd://.
             // However, if you are using a customized player,
             // you can choose whatever protocol you want.
             // For example, "https".
@@ -480,22 +480,22 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
             AssetDeliveryProtocol.HLS,
             assetDeliveryPolicyConfiguration);
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -506,12 +506,12 @@ Módosítsa úgy a változókat, hogy a bemeneti fájlok tárolásához Ön ált
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 

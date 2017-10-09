@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> Előfordulhat, hogy az eszközazonosító látható az ügyfélszolgálat számára és a hibaelhárításhoz gyűjtött naplókban, ezért ügyeljen arra, hogy az elnevezésekor ne adjon meg bizalmas adatokat.
+> hello eszköz azonosító esetleg mások is láthatják hello naplókban összegyűjtött ügyfél-támogatási és hibaelhárítási, ezért győződjön meg arról, hogy tooavoid elnevezése során bizalmas információk.
 >

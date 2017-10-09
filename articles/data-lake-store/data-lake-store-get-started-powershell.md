@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Store használatának első lépései PowerShell használatával | Microsoft Docs"
-description: "Data Lake Store-fiók létrehozása és alapszintű műveletek végrehajtása az Azure PowerShell használatával"
+title: "aaaUse PowerShell tooget Azure Data Lake Store használatába |} Microsoft Docs"
+description: "Használja az Azure PowerShell toocreate Data Lake Store-fiók és alapszintű műveletek végrehajtása"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 23c9aaa089251bff5132652475f4daadc2c128fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c958bfd63e412ec0b0a4113a149f61aee026bc4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-azure-powershell"></a>Az Azure Data Lake Store használatának első lépései az Azure PowerShell használatával
 > [!div class="op_single_selector"]
@@ -33,24 +33,24 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Ismerje meg, hogyan hozhat létre Azure Data Lake Store-fiókot az Azure PowerShell használatával, illetve hogyan végezhet el olyan alapvető műveleteket, mint például a mappák létrehozása, adatfájlok le- és feltöltése, a fiók törlése stb. További információk a Data Lake Store-ról: [Overview of Data Lake Store](data-lake-store-overview.md) (A Data Lake Store áttekintése).
+Ismerje meg, hogyan toouse Azure PowerShell toocreate egy Azure Data Lake tárolásához fiók és alapvető műveleteket, mint például mappák létrehozása, és feltöltése adatfájlok le, a fiók törlése stb. További információk a Data Lake Store-ról: [Overview of Data Lake Store](data-lake-store-overview.md) (A Data Lake Store áttekintése).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* Az **Azure PowerShell 1.0-s vagy újabb verziója**. Lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
+* Az **Azure PowerShell 1.0-s vagy újabb verziója**. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
 
 ## <a name="authentication"></a>Authentication
-Ez a cikk egy egyszerűbb, a Data Lake Store-ral történő hitelesítési módszert használ, ahol meg kell adnia az Azure-fiókjához tartozó hitelesítő adatokat. Ezután a Data Lake Store-fiókhoz és a fájlrendszerhez való hozzáférés szintje a bejelentkezett felhasználó hozzáférési szintjétől függ. Azonban a Data Lake Store-ral más módokon is lehet hitelesíteni. Ezek a következők: **végfelhasználói hitelesítés** vagy **szolgáltatások közötti hitelesítés**. Útmutatás a hitelesítéshez és további tudnivalók a [Végfelhasználói hitelesítés](data-lake-store-end-user-authenticate-using-active-directory.md) vagy a [Szolgáltatások közötti hitelesítés](data-lake-store-authenticate-using-active-directory.md) című témakörben.
+Ez a cikk egy egyszerűbb hitelesítési módszert alkalmaz a Data Lake Store felszólító tooenter az Azure-fiók hitelesítő adatokat használ. hello hozzáférési szint tooData Lake Store fiók és a fájl rendszer majd hello hozzáférési szint a bejelentkezett felhasználó hello szabályozza. Van azonban más megoldások jól tooauthenticate a Data Lake Store, mint amelyek **végfelhasználói hitelesítési** vagy **szolgáltatások közötti hitelesítési**. További információt és útmutatást tooauthenticate, lásd: [végfelhasználói hitelesítési](data-lake-store-end-user-authenticate-using-active-directory.md) vagy [szolgáltatások közötti hitelesítési](data-lake-store-authenticate-using-active-directory.md).
 
 ## <a name="create-an-azure-data-lake-store-account"></a>Azure Data Lake Store-fiók létrehozása
-1. Nyisson meg egy új Windows PowerShell ablakot, és adja meg az alábbi kódrészletet az Azure-fiókba való bejelentkezéshez, az előfizetés beállításához és a Data Lake Store-szolgáltató regisztrálásához. Győződjön meg arról, hogy az előfizetés rendszergazdájaként/tulajdonosaként jelentkezik be, amikor a rendszer erre kéri:
+1. Az asztalon nyisson meg egy új Windows PowerShell ablakot, és adja meg a következő kódrészletet toolog az Azure-fiók tooyour hello hello előfizetés beállítása és hello Data Lake Store-szolgáltató regisztrálása. Amikor felszólító toolog, győződjön meg arról, hogy jelentkezik be a rendelkezésre álló hello előfizetés rendszergazdájaként/tulajdonosaként:
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Login-AzureRmAccount
 
-        # List all the subscriptions associated to your account
+        # List all hello subscriptions associated tooyour account
         Get-AzureRmSubscription
 
         # Select a subscription
@@ -64,138 +64,138 @@ Ez a cikk egy egyszerűbb, a Data Lake Store-ral történő hitelesítési móds
         New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
 
     ![Azure-erőforráscsoport létrehozása](./media/data-lake-store-get-started-powershell/ADL.PS.CreateResourceGroup.png "Azure-erőforráscsoport létrehozása")
-3. Hozzon létre egy Azure Data Lake Store-fiókot. A megadott név csak kisbetűket és számokat tartalmazhat.
+3. Hozzon létre egy Azure Data Lake Store-fiókot. megadott hello neve csak kisbetűket és számokat tartalmazhat.
 
         $dataLakeStoreName = "<your new Data Lake Store name>"
         New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
 
     ![Azure Data Lake Store-fiók létrehozása](./media/data-lake-store-get-started-powershell/ADL.PS.CreateADLAcc.png "Azure Data Lake Store-fiók létrehozása")
-4. Ellenőrizze, hogy a fiók létrehozása sikeres volt-e.
+4. Győződjön meg arról, hogy hello fiók sikeresen létrejött.
 
         Test-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
 
-    A kimenet értéke **True** (Igaz) kell, hogy legyen.
+    a Ez lehet kimeneti hello **igaz**.
 
 ## <a name="create-directory-structures-in-your-azure-data-lake-store"></a>Könyvtárstruktúrák létrehozása az Azure Data Lake Store-ban
-Az Azure Data Lake Store-fiókjában könyvtárakat hozhat létre az adatok kezelésére és tárolására.
+Könyvtárak létrehozása az Azure Data Lake Store-fiók toomanage alatt, és adatok tárolásához.
 
 1. Adjon meg egy gyökérkönyvtárat.
 
         $myrootdir = "/"
-2. Hozzon létre egy új könyvtárat **mynewdirectory** néven a megadott gyökérkönyvtárban.
+2. Hozzon létre egy új könyvtárat **mynewdirectory** hello megadott legfelső szintű.
 
         New-AzureRmDataLakeStoreItem -Folder -AccountName $dataLakeStoreName -Path $myrootdir/mynewdirectory
-3. Ellenőrizze, hogy az új könyvtár létrehozása sikeres volt-e.
+3. Ellenőrizze, hogy új hello könyvtárba sikeresen létrehozva.
 
         Get-AzureRmDataLakeStoreChildItem -AccountName $dataLakeStoreName -Path $myrootdir
 
-    A következőhöz hasonló kimenetnek kell megjelennie:
+    Hello hasonló kimenetnek kell megjelennie:
 
     ![A könyvtár ellenőrzése](./media/data-lake-store-get-started-powershell/ADL.PS.Verify.Dir.Creation.png "A könyvtár ellenőrzése")
 
-## <a name="upload-data-to-your-azure-data-lake-store"></a>Fájlok feltöltése az Azure Data Lake Store-ba
-Az adatait feltöltheti közvetlenül a Data Lake Store-ba gyökérszinten, vagy a fiókon belül létrehozott könyvtárba. Az alábbi részletek bemutatják, hogyan tölthet fel néhány adatot az előző szakaszban létrehozott könyvtárba (**mynewdirectory**).
+## <a name="upload-data-tooyour-azure-data-lake-store"></a>Adatok tooyour Azure Data Lake Store feltöltése
+Az adatok tooData Lake Store közvetlenül gyökérkönyvtárában hello szint vagy tooa hello fiókon belül létrehozott feltölthet. hello alábbi kódtöredékek bemutatják, hogyan tooupload néhány minta toohello adatkönyvtára (**mynewdirectory**) hello előző szakaszban létrehozott.
 
-Ha feltölthető mintaadatokra van szüksége, használhatja az [Azure Data Lake Git-tárában](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData) található **Ambulance Data** mappát. Töltse le a fájlt, és tárolja a számítógépén egy helyi könyvtárban (pl. C:\sampledata).
+Néhány példa adatok tooupload keres, ha kaphat a hello **Ambulance Data** hello mappát [Azure Data Lake Git-tárház](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData). Töltse le a hello fájlt, és a számítógépre, például C:\sampledata\ egy helyi könyvtárban tárolja.
 
     Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "C:\sampledata\vehicle1_09142014.csv" -Destination $myrootdir\mynewdirectory\vehicle1_09142014.csv
 
 
 ## <a name="rename-download-and-delete-data-from-your-data-lake-store"></a>A Data Lake Store-ban lévő adatok átnevezése, letöltése és törlése
-Fájlok átnevezéséhez használja a következő parancsot:
+toorename egy fájl a következő parancs hello használata:
 
     Move-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $myrootdir\mynewdirectory\vehicle1_09142014.csv -Destination $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv
 
-Fájlok letöltéséhez használja a következő parancsot:
+toodownload egy fájl a következő parancs hello használata:
 
     Export-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv -Destination "C:\sampledata\vehicle1_09142014_Copy.csv"
 
-Fájlok törléséhez használja a következő parancsot:
+toodelete egy fájl a következő parancs hello használata:
 
     Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv
 
-Ha a rendszer rákérdez, írja be az **Y** karaktert az elem törléséhez. Ha több fájlt kíván törölni, megadhatja az összes elérési utat, vesszővel elválasztva.
+Amikor a rendszer kéri, adja meg a **Y** toodelete hello elemet. Ha több fájl toodelete, megadhatja az összes hello elérési utat, vesszővel elválasztva.
 
     Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014.csv, $myrootdir\mynewdirectoryvehicle1_09142014_Copy.csv
 
 ## <a name="delete-your-azure-data-lake-store-account"></a>Az Azure Data Lake Store-fiók törlése
-Az alábbi parancs segítségével törölheti a Data Lake Store-fiókját.
+A következő parancs toodelete hello a Data Lake Store-fiókot használni.
 
     Remove-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
 
-Ha a rendszer rákérdez, írja be az **Y** karaktert a fiók törléséhez.
+Amikor a rendszer kéri, adja meg a **Y** toodelete hello fiók.
 
 ## <a name="performance-guidance-while-using-powershell"></a>Teljesítménnyel kapcsolatos útmutató a PowerShell használata során
 
-Alább azon legfontosabb beállítások láthatók, amelyek megfelelő hangolásával a legjobb teljesítmény érhető el, miközben a PowerShellt használja a Data Lake Store-ral való munkavégzés során:
+Az alábbiakban hello legfontosabb beállítások, amelyek lehetnek bennünket tooget hello lehető legjobb teljesítményt PowerShell toowork a Data Lake Store használata során:
 
 | Tulajdonság            | Alapértelmezett | Leírás |
 |---------------------|---------|-------------|
-| PerFileThreadCount  | 10      | Ez a paraméter lehetővé teszi a párhuzamos szálak számának megadását az egyes fájlok fel- vagy letöltéséhez. Ez a szám a fájlonként maximálisan lefoglalható szálakat jelenti, azonban a forgatókönyvtől függően előfordulhat, hogy kevesebb szálat kap (ha például, egy 1 KB-os fájlt tölt fel, akkor is csak egy szálat kap, ha 20-at kér).  |
-| ConcurrentFileCount | 10      | Ez a paraméter kifejezetten a mappák fel- és letöltéséhez kapcsolódik. Ez a paraméter határozza meg az egyidejűleg fel- vagy letölthető fájlok számát. Ez a szám az adott időpontban egyidejűleg fel- vagy letölthető fájlok maximális számát jelenti, azonban a forgatókönyvtől függően előfordulhat, hogy kisebb egyidejűséget kap (ha például két fájlt tölt fel, akkor is csak két egyidejű fájlfeltöltést kap, ha 15-öt kér). |
+| PerFileThreadCount  | 10      | Ez a paraméter lehetővé teszi toochoose hello száma párhuzamos szálainak vagy minden fájl feltöltése. Ez a szám hello maximális szálak / fájl felosztható jelöli, de kevesebb szálak kaphat a forgatókönyvtől függően (pl. egy 1 KB fájlt feltölteni, ha elérhetővé válik egy szálat még akkor is, ha 20 szálak fel).  |
+| ConcurrentFileCount | 10      | Ez a paraméter kifejezetten a mappák fel- és letöltéséhez kapcsolódik. Ez a paraméter meghatározza, hogy hello száma párhuzamos feltöltött, illetve letöltött fájlokat. Ez a szám hello feltöltött, illetve egy időben letöltött egyidejű fájlok maximális számát jelöli, de kevesebb párhuzamossági kaphat a forgatókönyvtől függően (pl. két fájlt feltölteni, ha két egyidejű fájlfeltöltéseket kapja, még akkor is, ha meg kell kérni. 15). |
 
 **Példa**
 
-Ezzel a paranccsal fájlokat tölthet le az Azure Data Lake Store-ból a felhasználó helyi lemezére fájlonként 20 szálat és 100 egyidejű fájlt használva.
+Ez a parancs letölti a fájlokat az Azure Data Lake Store toohello felhasználói helyi meghajtóról 20 szálak számát, és 100 egyidejű fájlokat használja.
 
     Export-AzureRmDataLakeStoreItem -AccountName <Data Lake Store account name> -PerFileThreadCount 20-ConcurrentFileCount 100 -Path /Powershell/100GB/ -Destination C:\Performance\ -Force -Recurse
 
-### <a name="how-do-i-determine-the-value-to-set-for-these-parameters"></a>Hogyan határozhatom meg a paraméterek számára beállítandó értéket?
+### <a name="how-do-i-determine-hello-value-tooset-for-these-parameters"></a>Hogyan állapítható meg e paraméterek hello érték tooset?
 
 Az alábbiakban olvashat némi útmutatást ezzel kapcsolatban.
 
-* **1. lépés: A teljes szálszám meghatározása** – Kezdje a használni kívánt szálak teljes számának kiszámításával. Általánosságban 6 szálat használjon minden egyes fizikai maghoz.
+* **1. lépés: Hello teljes szálak számának meghatározása** -kiszámításának hello teljes szál száma toouse el. Általánosságban 6 szálat használjon minden egyes fizikai maghoz.
 
         Total thread count = total physical cores * 6
 
     **Példa**
 
-    Tételezzük fel, hogy egy 16 maggal rendelkező D14 VM-en futtatja a PowerShell-parancsokat.
+    Feltéve, hogy futtatja a hello PowerShell-parancsok D14 VM 16 maggal rendelkező
 
         Total thread count = 16 cores * 6 = 96 threads
 
 
-* **2. lépés: A PerFileThreadCount kiszámítása** – A PerFileThreadCount számítását fájlok mérete alapján végezzük. A 2,5 GB-nál kisebb fájlok esetén ezt a paramétert nem kell módosítani, mert az alapértelmezett érték (10) elegendő. A 2,5 GB-nál nagyobb fájlok esetén az első 2,5 GB-nál 10 szálat kell használnia alapként, és a fájlméret minden további 256 MB-os növekedése után 1 szálat kell hozzáadni. Ha olyan mappát másol, amelyben nagyon eltérő méretű fájlok találhatók, érdemes hasonló fájlméret alapján csoportosítani a fájlokat. Az eltérő fájlméretek az optimálisnál kisebb teljesítménnyel járhatnak. Ha nem lehetséges a hasonló fájlméret alapján történő csoportosítás, akkor a PerFileThreadCount értékét a legnagyobb fájlméret alapján kell beállítani.
+* **2. lépés: Kiszámításához PerFileThreadCount** -azt a PerFileThreadCount hello fájlok hello méretének kiszámításához. 2.5 GB-nál kisebb fájlok esetében nincs nincs szükség toochange ennek a paraméternek, mert hello alapértelmezett 10 is elegendő. 2.5 GB-nál nagyobb méretű fájlokhoz 10 szálat hello alapja hello első 2,5 GB, és a fájlméret 1 szál minden további 256 MB-os növekedést hozzáadása kell használnia. Ha olyan mappát másol, amelyben nagyon eltérő méretű fájlok találhatók, érdemes hasonló fájlméret alapján csoportosítani a fájlokat. Az eltérő fájlméretek az optimálisnál kisebb teljesítménnyel járhatnak. Ha ez nem lehetséges toogroup hasonló méretűek, célszerű PerFileThreadCount hello legnagyobb mérete alapján.
 
-        PerFileThreadCount = 10 threads for the first 2.5GB + 1 thread for each additional 256MB increase in file size
+        PerFileThreadCount = 10 threads for hello first 2.5GB + 1 thread for each additional 256MB increase in file size
 
     **Példa**
 
-    Ha feltételezzük, hogy 100 fájllal rendelkezik, amelyek mérete 1 és 10 GB között változik, akkor a 10 GB-os fájlt, mint legnagyobb méretű fájlt használjuk a számításban, ami az alábbiakban látható.
+    Ha pedig az 1 GB-os too10GB közötti 100 fájlokat, használjuk hello 10 GB-os, hello legnagyobb fájlméret egyenlet, amely hasonló hello olvashatók.
 
         PerFileThreadCount = 10 + ((10GB - 2.5GB) / 256MB) = 40 threads
 
-* **3. lépés: A ConcurrentFilecount kiszámítása** – Használja a teljes szálszámot és a PerFileThreadCount értékét a ConcurrentFileCount kiszámításához az alábbi egyenlet alapján.
+* **3. lépés: Kiszámításához ConcurrentFilecount** -használata hello teljes szálak száma és PerFileThreadCount toocalculate ConcurrentFileCount alapján a következő egyenlet hello.
 
         Total thread count = PerFileThreadCount * ConcurrentFileCount
 
     **Példa**
 
-    Az eddig használt példaértékek alapján
+    A jelenleg használt hello példa értékek alapján
 
         96 = 40 * ConcurrentFileCount
 
-    Tehát a **ConcurrentFileCount** értéke **2,4**, amelyet kerekíthetünk **2**-re.
+    Igen **ConcurrentFileCount** van **2.4**, amely azt is túl kerekítése**2**.
 
 ### <a name="further-tuning"></a>További hangolás
 
-Elképzelhető, hogy további hangolásra lesz szüksége, mert különböző fájlméretekkel kell dolgoznia. A fenti számítás jól működik, ha az összes, vagy legalábbis a legtöbb fájl nagyobb méretű, és közelebb van a 10 GB-os mérethez. Ha ehelyett sok különböző, nagyon eltérő méretű fájllal rendelkezik, akkor csökkentheti a PerFileThreadCount értékét. A PerFileThreadCount értékének csökkentésével, növelhetjük a ConcurrentFileCount értékét. Ha tehát feltételezzük, hogy a legtöbb fájlunk kisebb, az 5 GB-os tartományba eső mérettel rendelkezik, akkor újra végrehajthatjuk a számítást:
+Lehet szükség, mert a fájl mérete toowork számos további hangolása. számítási fent hello jól vagy hello fájlok nagyobb és szorosabb toohello 10 GB-os tartomány működik. Ha ehelyett sok különböző, nagyon eltérő méretű fájllal rendelkezik, akkor csökkentheti a PerFileThreadCount értékét. Hello PerFileThreadCount csökkentésével ConcurrentFileCount növelheti azt. Ezért, ha feltételezzük, hogy a fájlok többsége kisebb hello 5GB közé, az alábbiakat tehetjük újra a számítás elvégzése:
 
     PerFileThreadCount = 10 + ((5GB - 2.5GB) / 256MB) = 20
 
-A **ConcurrentFileCount** értéke így 96/20, ami 4,8-del egyenlő, kerekítve pedig **4** lesz.
+Igen **ConcurrentFileCount** most 96/20, amely 4.8, kerekíti túl**4**.
 
-A beállítások hangolását a **PerFileThreadCount** értékének növelésével vagy csökkentésével folytathatja a fájlméretek eloszlásától függően.
+A Folytatás tootune ezek a beállítások módosításával hello **PerFileThreadCount** felfelé és lefelé attól függően, a fájlméret hello terjesztése.
 
 ### <a name="limitation"></a>Korlátozás
 
-* **A fájlok száma kisebb, mint a ConcurrentFileCount értéke**: Ha a feltölteni kívánt fájlok száma kisebb a **ConcurrentFileCount** kiszámított értékének, akkor csökkentse a **ConcurrentFileCount** értékét úgy, hogy az egyenlő legyen a fájlok számával. A fennmaradó szálakat a **PerFileThreadCount** értékének a növelésére használhatja.
+* **A fájlok száma nem éri el ConcurrentFileCount**: Ha a feltölteni kívánt fájlok hello száma értéke kisebb a hello **ConcurrentFileCount** számolt ki, majd csökkentse  **ConcurrentFileCount** toobe egyenlő toohello azon fájlok száma. Használhat a fennmaradó szálak tooincrease **PerFileThreadCount**.
 
-* **Túl sok szál**: Ha túlságosan megnöveli a szálszámot a fürt méretének növelése nélkül, az rosszabb teljesítménnyel járhat. Versengési problémák adódhatnak, ha kontextusváltás történik a CPU-n.
+* **Túl sok szál**: Ha növeli a szál száma túl sok, a fürtméret növelése nélkül, a teljesítmény csökkenését hello kockázatát futtatja. Lehet versengés problémák váltáskor környezet – a hello CPU.
 
-* **Elégtelen egyidejűség**: Ha az egyidejűség nem elégséges, lehet, hogy túl kicsi a fürt. A fürtben növelheti a csomópontok számát, ami több egyidejűséget biztosít.
+* **Nincs elegendő feldolgozási**: Ha hello CONCURRENCY paraméterének értéke nem megfelelő, akkor előfordulhat, hogy a fürt túl kicsi. A fürtben, ez több egyidejű hello csomópontok száma növelhető.
 
-* **Szabályozási hibák**: Elképzelhető, hogy szabályozási hibákat tapasztal, ha az egyidejűség túl magas. Ha szabályozás hibák merülnek fel, csökkentse az egyidejűséget vagy lépjen kapcsolatba velünk.
+* **Szabályozási hibák**: Elképzelhető, hogy szabályozási hibákat tapasztal, ha az egyidejűség túl magas. Ha Ön hibák szabályozás, meg kell csökkentse hello párhuzamossági vagy, lépjen velünk kapcsolatba.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Biztonságos adattárolás a Data Lake Store-ban](data-lake-store-secure-data.md)

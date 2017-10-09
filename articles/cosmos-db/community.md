@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Cosmos DB közösségi, híreket és események |} Microsoft Docs"
-description: "Csatlakozás az Azure Cosmos DB közösségi létre kapcsolatokat, kihasználhatják a munkáját, és élesítés ismereteit."
+title: "aaaAzure Cosmos DB közösségi, híreket és események |} Microsoft Docs"
+description: "Csatlakozás hello Azure Cosmos DB közösségi toobuild kapcsolatok, kihasználhatják a munkahelyi és élesítés ismereteit."
 services: cosmos-db
 documentationcenter: 
 author: aliuy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
-ms.openlocfilehash: 4be7f077fa5bc03531baf2443c663f1d8bc4a1c8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 953518ad336e484fd8bc82ceb8e218eec4144030
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="community-portal"></a>Közösségi portál
 ## <a name="community-spotlight"></a>Közösségi spotlight
-Ossza meg velünk lépteti elő a projektet! Jelenjen meg nekünk a Soft projekt dolgozunk a Azure Cosmos DB, a DocumentDB-készlet a következő generációja, és azt segítenek a Prof megosztása a világ. A projekt elküldeni, küldjön egy e-mail címen: [ askcosmosdb@microsoft.com ](mailto:askcosmosdb@microsoft.com).
+Ossza meg velünk lépteti elő a projektet! Hello Soft projekt dolgozunk a Azure Cosmos DB, hello következő generációja hello DocumentDB verem megjelenítése számunkra, és azt segítenek a Prof megosztása hello world. toosubmit a projekthez, küldjön egy e-mail címen: [ askcosmosdb@microsoft.com ](mailto:askcosmosdb@microsoft.com).
 
 ### <a name="documentdb-lumenize"></a>a documentdb-lumenize
 *Endre Maccherone által*
@@ -34,7 +34,7 @@ Jelölje ki a [GitHub](https://github.com/lmaccherone/documentdb-lumenize) és [
 ### <a name="documentdb-studio"></a>A DocumentDB Studio
 *Ming Liu által*
 
-Egy ügyfél felügyeleti viewer/explorer az Azure Cosmos DB DocumentDB API-szolgáltatás.
+Egy ügyfél felügyeleti viewer/explorer hello Azure Cosmos DB DocumentDB API szolgáltatás.
 
 Jelölje ki a [GitHub](https://github.com/mingaliu/DocumentDBStudio).
 
@@ -48,38 +48,38 @@ Jelölje ki a [GitHub](https://github.com/a8m/doqmentdb) és [npm](https://www.n
 ### <a name="typescript-api"></a>Géppel API
 *Jelmer Cormont által*
 
-A Node.js-ügyfél géppel írt csomagolásának (működik a egyszerű JavaScript túl). Támogatja a `async/await` és egy egyszerűsített API-t.
+Hello Node.js ügyfél géppel írt csomagolásának (működik a egyszerű JavaScript túl). Támogatja a `async/await` és egy egyszerűsített API-t.
 
 Jelölje ki a [GitHub](https://github.com/jcormont/documentdb-typescript) és [npm](https://www.npmjs.com/package/documentdb-typescript).
 
 ### <a name="swagger-rest-api-for-documentdb"></a>A swagger REST API-t a documentdb-hez
 *Howard Edidin által*
 
-Egy Azure Cosmos DB REST API Swagger fájl, amely a DocumentDB API-t, amely az API-alkalmazások egyszerűen telepíthető.
+Egy Azure Cosmos DB REST API Swagger fájl, amely hello DocumentDB API, amely az API-alkalmazások egyszerűen telepíthető.
 
 Jelölje ki a [GitHub](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi).
 
 ### <a name="fluent-plugin-documentdb"></a>Folyékonyan beszél beépülő modul documentdb
 *Yoichi Kawasaki által*
 
-Folyékonyan beszél beépülő modul documentdb egy Fluentd beépülő modul a Azure Cosmos DB DocumentDB API írása.
+Folyékonyan beszél beépülő modul documentdb egy Fluentd beépülő modul a tooAzure Cosmos DB DocumentDB API írása.
 
 Jelölje ki a [GitHub](https://github.com/yokawasa/fluent-plugin-documentdb) és [rubygems](https://rubygems.org/gems/fluent-plugin-documentdb).
 
 *Az Azure Cosmos DB projektek több nyílt forráskódú található [GitHub](https://github.com/search?p=4&q=documentdb&type=Repositories).*
 
 ## <a name="news-blogs-and-articles"></a>Híreket, blogok és cikkek
-Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő [a blog](https://azure.microsoft.com/blog/tag/documentdb/).
+Akkor is naprakész legyen hello legújabb Azure Cosmos DB híreket és a szolgáltatások következő [a blog](https://azure.microsoft.com/blog/tag/documentdb/).
 
 **Közösségi bejegyzéseket:**
 
-* [**Tilos a társadalombiztosítási**](https://medium.com/@Ealsur/a-journey-to-social-c47636bf25c9#.an669sx41) - *Matías Quaranta által* 
+* [**Egy út tooSocial**](https://medium.com/@Ealsur/a-journey-to-social-c47636bf25c9#.an669sx41) - *Matías Quaranta által* 
 * [**Az Azure DocumentDB protokoll támogatása a képen a vizsgálat Sitecore a mongodb**](https://alwaysupalwayson.blogspot.ca/2016/05/azure-documentdb-protocol-support-for.html) - *Mathieu Benoit által* 
 * [**A DocumentDB közösségi fog**](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/03/15/going-social-with-documentdb/) - *Matías Quaranta által*
 * [**UWP, az Azure App Services és a DocumentDB leves: fénykép megosztóalkalmazást**](https://blogs.windows.com/buildingapps/2016/03/17/uwp-azure-app-services-and-documentdb-soup-a-photo-sharing-app/) - *Eric Langland által*
-* [**A naplók gyűjtésére Folyékonyan beszél beépülő modul documentdb használatával Azure documentdb**](http://unofficialism.info/posts/collecting-logs-into-azure-documentdb-using-fluent-plugin-documentdb/) - *Yoichi Kawasaki által*
-* [**A DocumentDB javított változat rész 1/2 – az elméleti**](https://peterintheazuresky.wordpress.com/2016/02/19/documentdb-revisited-part-12-the-theory/) - *Peter Mannerhult által*
-* [**Mi a kedvelt és az Azure documentdb közkedvelt**](http://blog.falafel.com/4-what-to-love-and-hate-about-azures-documentdb/) - *George Saadeh által*
+* [**A DocumentDB Folyékonyan beszél beépülő modul documentdb használatával tooAzure naplók gyűjtésére**](http://unofficialism.info/posts/collecting-logs-into-azure-documentdb-using-fluent-plugin-documentdb/) - *Yoichi Kawasaki által*
+* [**A DocumentDB javított változat rész 1/2 – hello elméletben**](https://peterintheazuresky.wordpress.com/2016/02/19/documentdb-revisited-part-12-the-theory/) - *Peter Mannerhult által*
+* [**Milyen toolove és az Azure documentdb gyűlöl**](http://blog.falafel.com/4-what-to-love-and-hate-about-azures-documentdb/) - *George Saadeh által*
 * [**Az Azure DocumentDB kiszolgálóoldali parancsfájl-kezelési**](https://www.simple-talk.com/cloud/cloud-data/azure-documentdb-server-side-scripting/) - *Robert Sheldon által*
 * [**A DocumentDB adatokat az Azure Stream Analytics gyűjtése**](http://janatdevelopment.com/2015/12/11/documentdb-as-a-data-sink-for-azure-stream-analytics/?utm_source=twitterfeed&utm_medium=twitter) - *Jan Hentschel által*
 * [**Az Azure Search indexelők – DocumentDB-lekérdezések (spanyol)**](http://www.ealsur.com.ar/wp/index.php/2015/11/19/azure-search-indexers-documentdb-queries/) - *Matthias Quaranta által*
@@ -87,14 +87,14 @@ Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő
 * [**Adatpont - Aurelia megfelel-e a DocumentDB: Egy Matchmaker út**](https://msdn.microsoft.com/magazine/mt620011.aspx) - *Ágnes Lerman által*
 * [**Szolgáltatott infrastruktúra kód és a folyamatos üzembe egy Node.js + az Azure DocumentDB megoldás**](http://www.talmeida.net/blog/2015/10/26/infrastructure-as-code-and-continuous-deployment-of-a-nodejs-azure-documentdb-solution) - *Thiago Almedia által*
 * [**Ezért a DocumentDb Szabálykészletében üzleti egyes projektek**](http://www.iquestllc.com/blogs/read/405/why-documentdb-makes-good-business-sense-for-some-projects) - *Samuel Uresin által*
-* [**Az Azure DocumentDB fejlesztési áthelyezése előre – az ügyfél-osztály (1/2.) teljes körű fejlesztésével (japán)**](http://beachside.hatenablog.com/entry/2015/10/01/202734) - *Atsushi Yokohama által*
-* [**Fontos, ha az Azure DocumentDB (japán) használatával**](http://beachside.hatenablog.com/entry/2015/10/01/202734) - *Atsushi Yokohama által*
+* [**Az Azure DocumentDB fejlesztési áthelyezése előre – hello ügyfélosztályt (1/2.) teljes körű fejlesztésével (japán)**](http://beachside.hatenablog.com/entry/2015/10/01/202734) - *Atsushi Yokohama által*
+* [**Azure DocumentDB (japán) használata esetén szükséges tooknow**](http://beachside.hatenablog.com/entry/2015/10/01/202734) - *Atsushi Yokohama által*
 * [**Adatpont - áttekintése a Microsoft Azure DocumentDB**](https://msdn.microsoft.com/magazine/mt147238.aspx) - *Ágnes Lerman által*
 * [**A DocumentDB használatával F #**](https://jamessdixon.wordpress.com/2014/12/30/using-documentdb-with-f/) - *Jamie Dixon által*
 * [**A DocumentDB naplók elemzése alkalmazás**](http://vincentlauzon.com/2015/09/06/analysing-application-logs-with-documentdb/) - *Vincent-Philippe Lauzon által*
 * [**Az Azure DocumentDB – idő biztonsági mentései pont**](http://softwarejuancarlos.com/2015/09/06/azure-documentdb-point-in-time-backups/) - *Juan Carlos Sanchez által*
 
-*Rendelkezik egy blogbejegyzést, kódminta vagy esettanulmány szeretné megosztani? [Ossza meg velünk](mailto:askcosmosdb@microsoft.com)!*
+*Rendelkezik egy blogbejegyzést, kódminta, vagy esettanulmány tooshare szeretné? [Ossza meg velünk](mailto:askcosmosdb@microsoft.com)!*
 
 ## <a name="events-and-recordings"></a>Események és felvételek
 ### <a name="recent-and-upcoming-events"></a>Legutóbbi és a jövőbeni események
@@ -103,7 +103,7 @@ Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő
 |[Dél-hogy Codecamp: NoSQL .NET-fejlesztők a 10 perc alatt az Azure documentdb használatával](http://www.fladotnet.com/codecamp/Agenda.aspx)| [Santosh Hari](https://twitter.com/_s_hari)|Davie, FL|2017. március 11.|[#sflcc](https://twitter.com/search?q=%23sflcc&ref_src=twsrc%5Etfw)|
 |[Székesfehérvári Codecamp: NoSQL .NET-fejlesztők a 10 perc alatt az Azure documentdb használatával](http://orlandocodecamp.com/Sessions/Details/20)| [Santosh Hari](https://twitter.com/_s_hari)|Sanford, FL|2017. április 8.|[#OrlandoCC](https://twitter.com/hashtag/OrlandoCC?src=hash&ref_src=twsrc%5Etfw)|
 |[Globális Azure Bootcamp: Kiszolgáló nélküli számítástechnikai az Azure Functions és a DocumentDB az Azure-ban](https://www.eventbrite.com/e/2017-global-azure-bootcamp-atlanta-usa-tickets-31817713638)| [Josh Lane](https://twitter.com/jplane)|Atlanta –, ám|2017. április 22.|[#GlobalAzure](https://twitter.com/hashtag/GlobalAzure?src=hash)|
-|[NDC Olso 2017: Az Azure DocumentDB - valószínűleg nem használ (még) ajánlott NoSQL-adatbázis](http://ndcoslo.com/talk/azure-cosmos-db-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|Olso, Norvégia|2017. június 14.|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
+|[NDC Olso 2017: Az Azure DocumentDB - hello legjobb NoSQL adatbázis, valószínűleg nem használ (még)](http://ndcoslo.com/talk/azure-cosmos-db-the-best-nosql-database-youre-probably-not-using-yet/)|[Josh Lane](https://twitter.com/jplane)|Olso, Norvégia|2017. június 14.|[#ndcoslo](https://twitter.com/search?q=%23ndcoslo)|
 
 *Azt és beszéljen vagy esemény üzemeltető? [Ossza meg velünk](mailto:askcosmosdb@microsoft.com) hogyan tudunk segíteni!*
 
@@ -112,7 +112,7 @@ Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő
 | --- | --- | --- | --- | --- |
 |[Az ignite Ausztrália: Hello DocumentDB: Azure gyors és tartozó blazing bolygónk méretű NoSQL-adatbázis](https://msftignite.com.au/sessions/session-details/2115/hello-documentdb-azures-blazing-fast-planetscale-nosql-database-da224) | [Andrew Liu](https://twitter.com/aliuy8)|Queensland, Ausztrália|Szerda. február 15, 2017|Azonnali|
 |[Az ignite Ausztrália: Részletesen az Azure documentdb használatával: particionálás, a adatok modellezést és a földrajzi régiók közötti replikáció](https://msftignite.com.au/sessions/session-details/2116/a-deepdive-with-azure-documentdb-partitioning-data-modelling-and-geo-replication-da335b) | [Andrew Liu](https://twitter.com/aliuy8)|Queensland, Ausztrália|2017. február 16.|Azonnali|
-| Wintellect webinar: Azure DocumentDB An bemutatása| [Josh Lane](https://twitter.com/jplane)|Online|2017. január 12 1 pm EST|[Az Azure DocumentDB: A felhő által biztosított, földrajzi méretezhető, nosql típusú Superweapon... A egyszerű Láthatáron elrejtése](https://www.youtube.com/watch?v=uVcWgIYtBoc)|
+| Wintellect webinar: Bevezetés tooAzure DocumentDB| [Josh Lane](https://twitter.com/jplane)|Online|2017. január 12 1 pm EST|[Az Azure DocumentDB: A felhő által biztosított, földrajzi méretezhető, nosql típusú Superweapon... A egyszerű Láthatáron elrejtése](https://www.youtube.com/watch?v=uVcWgIYtBoc)|
 | [Csatlakozás; 2016](https://connectevent.microsoft.com/) |[Kirill Gavrylyuk](https://twitter.com/kirillg_msft) |Budapest |2016 novemberétől kezdve 16 18. |[Csatlakozás a Channel 9; videók](https://channel9.msdn.com/Events/Connect) |
 | [Beruházási város .NET-felhasználók csoport](http://www.meetup.com/tally-dot-net/events/233768568/) |[Santosh Hari](https://twitter.com/_s_hari)|Tallahassee, FL |2016. november 3. |n/a |
 | [Az ignite 2016](https://myignite.microsoft.com/sessions?q=documentdb) |A DocumentDB csapata |Atlanta –, ám |2016 szeptemberétől kezdve 26-30 |[Diavetítés](http://www.slideshare.net/aliuy/pass-summit-2016-azure-documentdb-a-deep-dive-into-advanced-features) |
@@ -140,10 +140,10 @@ Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő
 | [SQL szombat #444 - Kansas város 2015](http://www.sqlsaturday.com/444/Sessions/Details.aspx?sid=38576) |Jeff Renz |Kansas város, MO |2015. október 3. |n/a |
 | [SQL szombat #429 - hatálybalépéséig 2015](http://www.sqlsaturday.com/429/Sessions/Details.aspx?sid=36089) |Leonard Lobel |Hatálybalépéséig, Portugália |2015. október 3. |n/a |
 | [AzureCon](https://azure.microsoft.com/azurecon/) |David Makogon, Ryan Crawcour, John Macintyre |Virtuális esemény |2015. szeptember 29. |[Adatok és analitikák Azure platformon](https://channel9.msdn.com/events/Microsoft-Azure/AzureCon-2015/ACON207) [a documentdb-ben NoSQL-adatokkal végzett munka](https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON338) |
-| [SQL szombat #434 - Holland 2015](http://www.sqlsaturday.com/434/Sessions/Details.aspx?sid=36413) |Leonard Lobel |Utrecht, Hollandia |2015. szeptember 26. |[Bevezetés az Azure documentdb használatával](https://channel9.msdn.com/Blogs/Azure/SQL-Saturday-Holland-2015-Introduction-to-Azure-DocumentDB) |
+| [SQL szombat #434 - Holland 2015](http://www.sqlsaturday.com/434/Sessions/Details.aspx?sid=36413) |Leonard Lobel |Utrecht, Hollandia |2015. szeptember 26. |[Bevezetés tooAzure DocumentDB](https://channel9.msdn.com/Blogs/Azure/SQL-Saturday-Holland-2015-Introduction-to-Azure-DocumentDB) |
 | [SQL szombat #441 - jelenti 2015](http://www.sqlsaturday.com/441/Sessions/Details.aspx?sid=39191) |Jeff Renz |Jelenti, CO |2015. szeptember 19. |n/a |
 | [Meetup: San Francisco Bay terület Azure fejlesztők](http://www.meetup.com/bayazure/events/223943785/) |Andrew Liu |San Francisco, CA |2015. szeptember 15. |n/a |
-| [Megfelel Fehéroroszországból Azure felhasználói csoport létrehozása](https://www.facebook.com/events/786540124800276/) |Alex Zyl |Minszk, Fehéroroszországból |2015. szeptember 9. |[A DocumentDB koncepció áttekintése, konzisztenciaszintek, horizontális stratégiák bemutatása](https://www.youtube.com/watch?v=Uc_qwWzJKH8) |
+| [Megfelel Fehéroroszországból Azure felhasználói csoport létrehozása](https://www.facebook.com/events/786540124800276/) |Alex Zyl |Minszk, Fehéroroszországból |2015. szeptember 9. |[Bevezetés tooDocumentDB koncepció áttekintése, konzisztenciaszintek, horizontális stratégiák](https://www.youtube.com/watch?v=Uc_qwWzJKH8) |
 | [NoSQL Now!](http://nosql2015.dataversity.net/) |David Makogon, Ryan Crawcour |San Jose, CA |18-20, 2015. augusztus |n/a |
 | [@ScaleBudapest](http://www.atscaleconference.com/) |Dharma Shukla |Budapesti, WA |2015. június 17. |[Az Azure documentdb használatával indexelő sémát független](https://www.youtube.com/watch?v=VJQ_5qFFVP4) |
 | [Műszaki frissítési 2015](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015) |Bruno Lopes |Lisszabon, Portugália |2015. június 15-én |[A DocumentDB 101](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015/DPDEV01) |
@@ -155,63 +155,63 @@ Maradhat, ha a legújabb Azure Cosmos DB hírek és szolgáltatások következő
 | [DevIntersection](https://devintersection.com/) |Andrew Liu |Scottsdale, AZ |18-21, 2015. május |n/a |
 | [Meetup: Budapest Web App fejlesztők csoport](http://www.meetup.com/Seattle-Web-App-Developers-Group/events/220591071/) |Andrew Liu |Budapesti, WA |2015. május 14. |n/a |
 | [Az ignite](http://ignite.microsoft.com/) |Andrew Hoh, John Macintyre |Chicago, Illinois |4-8, 2015. május |[Válassza ki a legújabb a DocumentDB videó](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-select-latest-from-microsoft-azure-documentdb/) [DocumentDB és az Azure HDInsight: együtt jobb videó](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-microsoft-azure-documentdb-and-azure-hdinsight-better-together/) |
-| [Build 2015](http://www.buildwindows.com/) |Ryan Crawcour |San Francisco, CA |Április 29-2015. május 1. |[Build a következő nagy dolog Azure NoSQL szolgáltatással: a DocumentDB](https://channel9.msdn.com/Events/Build/2015/2-729) |
+| [Build 2015](http://www.buildwindows.com/) |Ryan Crawcour |San Francisco, CA |Április 29-2015. május 1. |[Build hello Azure nosql-alapú szolgáltatás a következő nagy dolog: DocumentDB](https://channel9.msdn.com/Events/Build/2015/2-729) |
 | [Globális Azure Bootcamp 2015 - Spanyolország](http://azurebootcamp.es/) |Luis Ruiz Pavon Roberto GONZALES |Madrid, Spanyolország |2015. április 25. |[#DEAN DocumentDB + Express + AngularJS + Azure-on futó NodeJS](https://channel9.msdn.com/events/Developers-Spain-Events/Global-Azure-Bootcamp-2015/DEAN-DocumentDB--Express--AngularJS--NodeJS-running-on-Azure) |
 | [Meetup: Az Azure felhasználói csoport Dánia](http://www.meetup.com/Azure-Usergroup-Denmark/events/221026670/) |Christian Holm Diget |Koppenhága, Dánia |2015. április 16. |n/a |
 | [Meetup: Charlotte Microsoft-felhő](http://www.meetup.com/Charlotte-Microsoft-Cloud/events/221503519/) |János Rance |Charlotte, NC |2015. április 8. |n/a |
 | [SQL szombat #375 - szilícium Valley 2015](http://www.sqlsaturday.com/375/Sessions/Details.aspx?sid=15289) |IKE Ellis |Hegyi nézet, CA |2015. március 28. |n/a |
 | [Meetup: Isztambuli Azure Meetup](http://www.meetup.com/istanbul-azure-meetup/events/220325538/) |Daron Yondem |Isztambuli, török |2015. március 7. |n/a |
 | [Meetup: nagy tavakat terület .net felhasználói csoport](http://www.meetup.com/Great-Lakes-Area-NET-User-Group-MIGANG/events/220364576/) |Michael Collier |Southfield, MI |2015. február 18. |n/a |
-| [TechX Azure](https://www.youtube.com/channel/UCDRlI2E4z5qmHsBXTrFOE2Q) |Magnus Mårtensson |Stockholm, svéd |28-29, 2015. januári |[A DocumentDB az új NoSQL választás a felhőben Azure-ban](https://www.youtube.com/watch?v=Hw7hDYoChNI) |
+| [TechX Azure](https://www.youtube.com/channel/UCDRlI2E4z5qmHsBXTrFOE2Q) |Magnus Mårtensson |Stockholm, svéd |28-29, 2015. januári |[A DocumentDB hello felhőalapú Azure hello új nosql-alapú megoldással](https://www.youtube.com/watch?v=Hw7hDYoChNI) |
 
 ### <a name="videos-and-podcasts"></a>Podcastok és videók
 | Megjelenítés | Beszélő | Dátum | Epizód |
 | --- | --- | --- | --- |
 | Azure Friday |Kirill Gavrylyuk |2016. október 31-ig. |[Újdonságok az Azure DocumentDB?](https://channel9.msdn.com/Shows/Azure-Friday/AzureFridayNewinDocumentDB) |
-| 9. csatornán: Microsoft + nyílt forráskódú |Jose Miguel Parrella |2016. április 14. |[Az Azure-ban Bitnami, a Virtuálisgép-méretezési készlet és a DocumentDB DEAN a KÖZÉPÉRTÉK a](https://channel9.msdn.com/Blogs/Open/From-MEAN-to-DEAN-in-Azure-with-Bitnami-VM-Scale-Sets-and-DocumentDB) |
+| 9. csatornán: Microsoft + nyílt forráskódú |Jose Miguel Parrella |2016. április 14. |[Az átlagos tooDEAN Bitnami, a Virtuálisgép-méretezési készlet és a DocumentDB az Azure-ban](https://channel9.msdn.com/Blogs/Open/From-MEAN-to-DEAN-in-Azure-with-Bitnami-VM-Scale-Sets-and-DocumentDB) |
 | Wired2WinWebinar |Sai Sankar Kunnathukuzhiyil |2016. március 9. |[Az Azure documentdb használatával megoldások fejlesztése](https://www.youtube.com/watch?v=xKttEwXv_bs) |
 | Integráció felhasználói csoport |Han Wong |2016. február 17. |[Elemezze, és nem relációs adatok ábrázolása a DocumentDB + a Power bi-ban](http://www.integrationusergroup.com/analyze-visualize-non-relational-data-documentdb-power-bi/) |
-| Az Azure Podcast |Méretezés Teeter |2016. január 14. |[Epizód 110: A DocumentDB használatával & keresést](http://azpodcast.azurewebsites.net/post/Episode-110-Using-DocumentDB-Search) |
-| 9. csatornán: Modern alkalmazások |Tara Shankar Jana |2016. december 13. |[A modern megközelítés érdekében az alkalmazásokban lévő adatok számára](https://channel9.msdn.com/Series/Modern-Applications/Take-a-modern-approach-to-data-in-your-apps) |
+| hello Azure Podcast |Méretezés Teeter |2016. január 14. |[Epizód 110: A DocumentDB használatával & keresést](http://azpodcast.azurewebsites.net/post/Episode-110-Using-DocumentDB-Search) |
+| 9. csatornán: Modern alkalmazások |Tara Shankar Jana |2016. december 13. |[A modern megközelítés toodata az alkalmazások a hálózatról](https://channel9.msdn.com/Series/Modern-Applications/Take-a-modern-approach-to-data-in-your-apps) |
 | NinjaTips |Miguel Quintero |2015. december 10. |[DocumentDB - Un vistazo általános](https://channel9.msdn.com/Series/Ninja-Tips/31-NinjaTips-Desarrollo-DocumentDB-1-Vistazo-general) |
 | Integráció felhasználói csoport |Howard Edidin |2015. október 5. |[Az Azure DocumentDB az egészségügyi integráció](http://www.integrationusergroup.com/?event=azure-documentdb-and-biztalk) |
 | DX Olaszország - #TecHeroes |Alessandro Melchiori |2015. október 2. |[#TecHeroes - DocumentDB](https://channel9.msdn.com/Shows/TecHeroes/TecHeroes-DocumentDB) |
 | A Microsoft Cloud megjelenítése - Podcast |Andrew Liu |2015. szeptember 30. |[Epizód 099 - Andrew Liu az Azure documentdb használatával](http://www.microsoftcloudshow.com/podcast/Episodes/099-azure-documentdb-with-andrew-liu) |
 | .NET sziklák!  -Podcast |Ryan Crawcour |2015. szeptember 29. |[A DocumentDB Ryan CrawCour adatok](https://www.dotnetrocks.com/?show=1197) |
 | Közzétett adatok |Ryan Crawcour |2015. szeptember 28. |[Mi az az Azure documentdb használatával új GA óta](https://channel9.msdn.com/Shows/Data-Exposed/Whats-New-with-Azure-DocumentDB-Since-GA) |
-| Az Azure Podcast |Méretezés Teeter |2015. szeptember 17. |[Epizód 94: azpodcast.com ismételt-architektúra](http://azpodcast.azurewebsites.net/post/Episode-94-azpodcastcom-re-architecture) |
+| hello Azure Podcast |Méretezés Teeter |2015. szeptember 17. |[Epizód 94: azpodcast.com ismételt-architektúra](http://azpodcast.azurewebsites.net/post/Episode-94-azpodcastcom-re-architecture) |
 | Felhő tartalma |Ryan Crawcour |2015. szeptember 4. |[Epizód 185: Ryan CrawCour DocumentDB frissítések](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-185-DocDB-Updates-with-Ryan-CrawCour) |
 | CodeChat 033 |Greg Doerr |2015. július 28. |[Az Azure DocumentDB Greg Doerr](https://channel9.msdn.com/Shows/codechat/033) |
-| Nosql-alapú központi |Képeznie Wilder |2015. május 25. |[Golf követése – áttekintő videó való fölött AngularJS, WebApi 2 és a DocumentDB-webalkalmazás létrehozása.](http://www.nosqlcentral.net/Story/Details/videos/kahanu/1-documentdb-golf-tracker-overview) |
+| Nosql-alapú központi |Képeznie Wilder |2015. május 25. |[Például a golfhoz kapcsolódó követése – hogyan áttekintő videó toobuild fölött AngularJS, WebApi 2 és a DocumentDB egy webalkalmazást.](http://www.nosqlcentral.net/Story/Details/videos/kahanu/1-documentdb-golf-tracker-overview) |
 | A memóriában technológiák FÁZIS virtuális fejezet |Stephen Baron |2015. május 25. |[Hello DocumentDB](https://www.youtube.com/watch?v=itFXQCd9-dI) |
 | Közzétett adatok |Ryan Crawcour |2015. április 8. |[A DocumentDB általános rendelkezésre állás és új!](https://channel9.msdn.com/Shows/Data-Exposed/DocumentDB-General-Availability-and-Whats-New) |
 | Közzétett adatok |Andrew Liu |2015. március 17. |[Java SDK a documentdb-hez](https://channel9.msdn.com/Shows/Data-Exposed/Java-SDK-for-DocumentDB) |
 | #DevHangout |Gustavo Alzate Sandoval |2015. márciusi 11 |[A DocumentDB, la kiinduló de datos NoSql de Microsoft Azure](https://www.youtube.com/watch?v=8Ud3jB8KOBA) |
-| Adatok architektúra virtuális fejezet FÁZIS |IKE Ellis |2015. február 25. |[A DocumentDB bemutatása](https://www.youtube.com/watch?v=7BQYdFUkz6s) |
+| Adatok architektúra virtuális fejezet FÁZIS |IKE Ellis |2015. február 25. |[Bevezetés tooDocumentDB](https://www.youtube.com/watch?v=7BQYdFUkz6s) |
 
 ### <a name="online-classes"></a>Online osztályok
 | Learning partner | Leírás |
 | --- | --- |
-| [![Microsoft Virtual Academy Oktatóanyaga](./media/community/mva.png)](https://mva.microsoft.com/en-US/training-courses/azure-documentdb-planetscale-nosql-16847) |[**A Microsoft Virtual Academy** ](https://mva.microsoft.com/en-US/training-courses/azure-documentdb-planetscale-nosql-16847) , akik építhető Azure DocumentDB képzési kínál. |
-| [![Pluralsight](./media/community/pluralsight.png)](http://www.pluralsight.com/courses/azure-documentdb-introduction) |[**Pluralsight** ](http://www.pluralsight.com/courses/azure-documentdb-introduction) amely a Microsoft Azure képzési kínál. Az MSDN-előfizetők kedvezményesen vehetik igénybe a Microsoft Azure-ral kapcsolatos képzési lehetőségeket. |
+| [![Microsoft Virtual Academy Oktatóanyaga](./media/community/mva.png)](https://mva.microsoft.com/en-US/training-courses/azure-documentdb-planetscale-nosql-16847) |[**A Microsoft Virtual Academy** ](https://mva.microsoft.com/en-US/training-courses/azure-documentdb-planetscale-nosql-16847) Azure DocumentDB építhető hello személyek tanítás kínálja. |
+| [![Pluralsight](./media/community/pluralsight.png)](http://www.pluralsight.com/courses/azure-documentdb-introduction) |[**Pluralsight** ](http://www.pluralsight.com/courses/azure-documentdb-introduction) amely a Microsoft Azure képzési kínál. Ha az MSDN-előfizető, használja az előnyöket tooaccess Microsoft Azure-képzés. |
 | [![OpsGility](./media/community/opsgility.png)](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) |[**OpsGility** ](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) részletes műszaki képzési biztosít a Microsoft Azure-on. Oktató által vezetett helyszíni képzés és elismert szaktekintélyek által tartott online tanfolyamok. |
 
 ## <a name="discussion"></a>Az ismertető
 ### <a name="twitter"></a>Twitter
-Kövessen minket a twitteren [ @DocumentDB ](https://twitter.com/DocumentDB) és naprakész a legújabb beszélgetéshez a [#DocumentDB](https://twitter.com/hashtag/DocumentDB) hashtaggel történő.
+Kövessen minket a twitteren [ @DocumentDB ](https://twitter.com/DocumentDB) hello legújabb beszélgetéshez a hello toodate fel, és [#DocumentDB](https://twitter.com/hashtag/DocumentDB) hashtaggel történő.
 
 ### <a name="online-forums"></a>Online fórumok
 | Fórum szolgáltató | Leírás |
 | --- | --- |
 | [![StackOverflow](./media/community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-documentdb) |Egy nyelvtől független szerkeszteni t használó programozók számára kérdés és válasz hely elősegítése érdekében. Kövesse a címke: [azure-documentdb](http://stackoverflow.com/questions/tagged/azure-documentdb) |
 
-## <a name="contact-the-team"></a>Forduljon a csoporthoz
+## <a name="contact-hello-team"></a>Kapcsolattartási hello csapata
 ![Csoport](./media/community/team.png)
 
-Műszaki segítségre van? Kérdése van? Szeretné megtudni, hogy hogy NoSQL remekül beválik, ha meg-e? Egy 1:1 Csevegés közvetlenül a DocumentDB mérnöki csapatával az küld nekünk ütemezhet egy [e-mail](mailto:askcosmosdb@microsoft.com) vagy tweeting nekünk az [ @DocumentDB ](https://twitter.com/DocumentDB).
+Műszaki segítségre van? Kérdése van? Szeretné megtudni, hogy hogy NoSQL remekül beválik, ha meg-e? Egy 1:1 Csevegés közvetlenül a DocumentDB mérnöki csapathoz hello küld nekünk ütemezhet egy [e-mail](mailto:askcosmosdb@microsoft.com) vagy tweeting nekünk az [ @DocumentDB ](https://twitter.com/DocumentDB).
 
 ## <a name="open-source-projects"></a>Nyílt forráskódú projekteket
-Ezek a projektek aktívan az Azure DocumentDB csoport, a nyílt forráskódú Közösség együttműködve által fejlesztett.
+Ezek a projektek aktívan a nyílt forráskódú Közösség együttműködve hello Azure DocumentDB csapata által fejlesztett.
 
 ### <a name="sdks"></a>SDK-k
 | Platform | GitHub | Csomag |
@@ -228,7 +228,7 @@ Ezek a projektek aktívan az Azure DocumentDB csoport, a nyílt forráskódú K�
 | Az adatáttelepítési eszköz |[Azure-documentdb-datamigrationtool](https://github.com/Azure/azure-documentdb-datamigrationtool) |[A Microsoft letöltőközpontból](http://www.microsoft.com/download/details.aspx?id=46436) |
 
 ## <a name="azure-cosmos-db-wizards"></a>Az Azure Cosmos DB varázslók
-Az Azure Cosmos DB varázslók közösségi vezetők, akik korábban bemutatott egy példázó előfizetési mások a legtöbbet hozhatja ki a felhasználói élmény Azure Cosmos DB, az Azure DocumentDB következő generációja elősegítése. A közösségi és az Azure Cosmos DB csapat a kivételes golgotavirág valós tudásuk és technikai segítséget osztoznak.
+Az Azure Cosmos DB varázslók közösségi vezetők, akik korábban bemutatott egy mások lekérése a következő előfizetési toohelping hello legtöbb kívül az Azure Cosmos DB, a élményt hello Azure DocumentDB következő generációja. Azok a kivételes golgotavirág valós tudásuk és technikai segítséget hello Közösséggel és a megosztott hello Azure Cosmos DB csapattal.
 
 | Varázsló | Kép |
 | --- | --- |
@@ -241,5 +241,5 @@ Az Azure Cosmos DB varázslók közösségi vezetők, akik korábban bemutatott 
 |  [Santosh Hari](https://twitter.com/_s_hari) |[![Santosh Hari](./media/community/wizard-santosh-hari.jpg)](https://twitter.com/_s_hari) |
 | [Matías Quaranta](https://twitter.com/ealsur) |[![Matías Quaranta](./media/community/wizard-matias-quaranta.jpg)](https://twitter.com/ealsur) |
 
-Szeretne egy Azure Cosmos DB varázslót? Bár nem javasolt csatlakozás egy varázsló, azt értékelje ki a feltételek néhány online fórumok StackOverflow és MSDN; például egy kijelölt személy hozzájárulások gyakorolt hatása wikikre és online tartalom; Konferencia- és felhasználói csoportok; podcastok, webhelyek, blogok és közösségi; és a cikkek és -könyvekkel. Saját magának vagy valaki más által is megadjuk [küld nekünk e-mailt](mailto:askcosmosdb@microsoft.com).
+Egy Azure Cosmos DB varázsló toobecome szeretné? Bár nem javasolt csatlakozás egy varázsló, azt kiértékelése hello feltételek közé egy kijelölt személy hozzájárulások tooonline fórumok például StackOverflow és MSDN; hatásai hello wikikre és online tartalom; Konferencia- és felhasználói csoportok; podcastok, webhelyek, blogok és közösségi; és a cikkek és -könyvekkel. Saját magának vagy valaki más által is megadjuk [küld nekünk e-mailt](mailto:askcosmosdb@microsoft.com).
 

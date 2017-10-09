@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablon struktúra és szintaxis |} Microsoft Docs"
-description: "A struktúra és az Azure Resource Manager-sablonok deklaratív JSON-szintaxis használatával tulajdonságait ismerteti."
+title: "aaaAzure Resource Manager sablon struktúra és szintaxis |} Microsoft Docs"
+description: "Hello struktúra és az Azure Resource Manager-sablonok deklaratív JSON-szintaxis használatával tulajdonságait ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/14/2017
 ms.author: tomfitz
-ms.openlocfilehash: dc9b64062d7f68c83aa090eec96744819a5ca423
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b0709852f8777c91cc1704d6bca16257a017d515
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-the-structure-and-syntax-of-azure-resource-manager-templates"></a>A struktúra és az Azure Resource Manager-sablonok szintaxisát ismertetése
-Ez a témakör ismerteti az Azure Resource Manager sablon szerkezete. Azt mutatja be a különböző szakaszokat, egy sablon és az elérhető tulajdonságok köre szakaszt. A sablon JSON és összeállítani az üzemelő példány értékeit használó kifejezéseket tartalmaz. A sablonok létrehozásának részletes oktatóanyaga, lásd: [az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md).
+# <a name="understand-hello-structure-and-syntax-of-azure-resource-manager-templates"></a>Hello struktúra és az Azure Resource Manager-sablonok szintaxisát ismertetése
+Ez a témakör ismerteti az Azure Resource Manager sablon hello szerkezete. Azt mutatja be a különböző szakaszaiban hello egy sablon és hello elérhető tulajdonságok köre szakaszt. hello sablon JSON és, hogy tooconstruct értékeket is használhat az üzembe helyezéshez kifejezések áll. A sablonok létrehozásának részletes oktatóanyaga, lásd: [az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md).
 
 ## <a name="template-format"></a>Sablon formátumban
-A legegyszerűbb struktúra, a sablon a következő elemeket tartalmazza:
+A legegyszerűbb szerkezetét egy sablon tartalmazza a következő elemek hello:
 
 ```json
 {
@@ -39,14 +39,14 @@ A legegyszerűbb struktúra, a sablon a következő elemeket tartalmazza:
 
 | Elem neve | Szükséges | Leírás |
 |:--- |:--- |:--- |
-| $schema |Igen |A JSON-fájl, amely leírja a sablon nyelvi verzióját helye. Az előző példában is látható URL-CÍMÉT használja. |
-| contentVersion |Igen |A sablon (például 1.0.0.0) verzióját. Bármely érték biztosíthat ehhez az elemhez. A sablon eszközzel való telepítésekor ez az érték segítségével győződjön meg arról, hogy a megfelelő sablon használatban van-e. |
-| Paraméterek |Nem |Amikor központi telepítés végrehajtása testre szabhatja az erőforrások telepítése által biztosított értéket. |
-| változók |Nem |A sablon JSON-töredék, egyszerűbbé teheti a sablonnyelvi kifejezéseket használt értékek. |
+| $schema |Igen |Hello JSON séma-fájl helyét, amely leírja a hello hello sablon nyelvi verzióját. A fenti példa hello látható hello URL-címet használja. |
+| contentVersion |Igen |Hello sablon (például 1.0.0.0) verzióját. Bármely érték biztosíthat ehhez az elemhez. Erőforrások hello sablonnal való telepítésekor, az érték lehet használt toomake arra, hogy hello a megfelelő sablon használja. |
+| paraméterek |Nem |Értékek által biztosított, ha a központi telepítés végrehajtása toocustomize erőforrások telepítése. |
+| változók |Nem |Hello toosimplify sablon sablonnyelvi kifejezéseket JSON szilánkok használt értékek. |
 | Erőforrások |Igen |Telepített vagy frissített erőforráscsoportban erőforrástípusok esetében. |
 | kimenetek |Nem |A telepítés utáni visszaadott értékek. |
 
-Minden elem beállítható tulajdonságokat tartalmaz. A következő példa a teljes szintaxissal sablon tartalmazza:
+Minden elem beállítható tulajdonságokat tartalmaz. a következő példa hello sablon hello teljes szintaxisát tartalmazza:
 
 ```json
 {
@@ -62,7 +62,7 @@ Minden elem beállítható tulajdonságokat tartalmaz. A következő példa a te
             "minLength": <minimum-length-for-string-or-array>,
             "maxLength": <maximum-length-for-string-or-array-parameters>,
             "metadata": {
-                "description": "<description-of-the parameter>" 
+                "description": "<description-of-hello parameter>" 
             }
         }
     },
@@ -117,14 +117,14 @@ Minden elem beállítható tulajdonságokat tartalmaz. A következő példa a te
 }
 ```
 
-Azt vizsgálja meg a sablon a témakör későbbi részében részletesebben részeit.
+Azt vizsgálja meg a témakör későbbi részében részletesebben hello sablon hello szakaszait.
 
 ## <a name="expressions-and-functions"></a>Kifejezések és funkciók
-A sablon alapvető szintaxisa a JSON-NÁ. Azonban kifejezések és a funkciók bővíthetik a JSON a sablonon belül elérhető értékek.  Kifejezések íródtak belül JSON szövegkonstansok amelynek első és utolsó karaktere a szögletes: `[` és `]`, illetve. A kifejezés értéke legyen kiértékelve a sablon telepítésekor. Megírva egy szöveges karakterlánc, amíg értékeli a kifejezés eredménye lehet eltérő típusú JSON, például a tömb vagy egész, attól függően, hogy a tényleges kifejezést.  Indítsa el a zárójel szövegkonstansnak rendelkeznie `[`, de nem rendelkezik azt kifejezésként értelmezi, adja hozzá a karakterlánc elindítani egy extra zárójel `[[`.
+hello alapszintű hello sablon szintaxisa JSON. Kifejezések és a funkciók kiterjesztése hello JSON értékek belül hello sablon érhető el.  Kifejezések íródtak belül JSON szövegkonstansok amelynek első és utolsó karaktere hello zárójelek közé: `[` és `]`, illetve. hello érték hello kifejezés kiértékelése hello sablon telepítésekor. Megírva egy szöveges karakterlánc, miközben hello eredménye hello kifejezés kiértékelése lehet eltérő típusú JSON, például a tömb vagy egész, attól függően, hogy hello tényleges kifejezést.  szövegkonstansnak indítsa el a zárójel toohave `[`, de nem rendelkezik az kifejezésként értelmezi, a felesleges zárójel toostart hello karakterlánc hozzáadása `[[`.
 
-Általában használ kifejezések funkciók konfigurálása a központi telepítési műveleteinek elvégzéséhez. Csak a például a JavaScript, függvényhívások-ként formázott `functionName(arg1,arg2,arg3)`. A pont és a [index] operátorok használatával tulajdonságok hivatkozik.
+Általában akkor használják kifejezések funkciók tooperform műveletekkel hello telepítési konfigurálásához. Csak a például a JavaScript, függvényhívások-ként formázott `functionName(arg1,arg2,arg3)`. Tulajdonságok hello pont és a [index] operátorok használatával hivatkozik.
 
-A következő példa bemutatja, hogyan hozhat létre értékek több funkciók használandó:
+hello a következő példa bemutatja, hogyan több működik térített toouse értékeket:
 
 ```json
 "variables": {
@@ -134,12 +134,12 @@ A következő példa bemutatja, hogyan hozhat létre értékek több funkciók h
 }
 ```
 
-Sablon funkciók teljes listáját lásd: [Azure Resource Manager sablonfüggvényei](resource-group-template-functions.md). 
+Hello a sablon funkciók teljes listáját, lásd: [Azure Resource Manager sablonfüggvényei](resource-group-template-functions.md). 
 
 ## <a name="parameters"></a>Paraméterek
-A sablon a Paraméterek szakaszban adja meg az erőforrások telepítése során is bemeneti értékeket. A paraméterértékek lehetővé teszik a központi telepítés testreszabása egy adott környezetben (például a fejlesztői, tesztelési és éles) is lefednek értékek megadásával. A sablon a paraméterek megadása nem szükséges, de a paraméterek nélkül a sablon mindig központilag ugyanazon a nevét, helyét és tulajdonságok ugyanazokat az erőforrásokat.
+Hello paraméterek szakaszban hello sablon megadhatja, mely értékei telepítésekor szövegszerkesztőben hello erőforrásokat. A paraméterértékek lehetővé teszik a toocustomize hello telepítési egy adott környezetben (például a fejlesztői, tesztelési és éles) is lefednek értékek megadásával. Nincs tooprovide paramétereket a sablonban, de a paraméterek nélkül a sablon mindig központilag hello ugyanazokat az erőforrásokat a hello azonos nevek, helyek és -tulajdonságokat.
 
-Megadhatja az alábbi szerkezettel paramétereket:
+A következő struktúra hello definiálhatja a paramétereket:
 
 ```json
 "parameters": {
@@ -152,7 +152,7 @@ Megadhatja az alábbi szerkezettel paramétereket:
         "minLength": <minimum-length-for-string-or-array>,
         "maxLength": <maximum-length-for-string-or-array-parameters>,
         "metadata": {
-            "description": "<description-of-the parameter>" 
+            "description": "<description-of-hello parameter>" 
         }
     }
 }
@@ -160,17 +160,17 @@ Megadhatja az alábbi szerkezettel paramétereket:
 
 | Elem neve | Szükséges | Leírás |
 |:--- |:--- |:--- |
-| parameterName |Igen |A paraméter neve. Egy érvényes JavaScript-azonosítónak kell lennie. |
-| type |Igen |A paraméter értékének típusa. A táblázat után engedélyezett típusokkal listája látható. |
-| DefaultValue érték |Nem |A paraméternek, ha nincs érték megadva, a paraméter alapértelmezett értéke. |
-| Storageaccount_accounttype |Nem |Győződjön meg arról, hogy a megfelelő érték van megadva a paraméter megengedett értékei tömbje. |
-| A MinValue |Nem |A minimális int típusú paraméterekhez, ez az érték értéke között lehet. |
-| MaxValue |Nem |A maximális int típusú paraméterekhez, ez az érték értéke között lehet. |
-| a minLength |Nem |A minimális string, secureString és array típusú paraméterekhez, ez az érték hossza határokat is beleértve. |
-| MaxLength |Nem |A string, secureString és array típusú paraméterekhez, ez az érték hossza legfeljebb határokat is beleértve. |
-| Leírás |Nem |A paraméter, akkor jelenik meg, a felhasználók számára a portálon keresztül leírása. |
+| parameterName |Igen |Hello paraméter neve. Egy érvényes JavaScript-azonosítónak kell lennie. |
+| type |Igen |Hello paraméter értékének típusa. Engedélyezett típusokkal hello listáját lásd a táblázat után. |
+| DefaultValue érték |Nem |Hello paraméter, ha nincs érték megadva hello paraméter alapértelmezett értéke. |
+| Storageaccount_accounttype |Nem |Engedélyezett értékek hello paraméter toomake, hogy hello jobb oldali értéktengely rendelkezik tömbje. |
+| A MinValue |Nem |hello minimális int típusú paraméterekhez, ez az érték értéke között lehet. |
+| MaxValue |Nem |hello maximális int típusú paraméterekhez, ez az érték értéke között lehet. |
+| a minLength |Nem |hello minimális string, secureString és array típusú paraméterekhez, ez az érték hossza határokat is beleértve. |
+| MaxLength |Nem |hello maximális string, secureString és array típusú paraméterekhez, ez az érték hossza határokat is beleértve. |
+| leírás |Nem |Hello paraméter, amely leírása toousers hello portálon jelenik meg. |
 
-Az engedélyezett típusokkal és az értékek a következők:
+hello engedélyezett típusokkal és értékek a következők:
 
 * **karakterlánc**
 * **secureString**
@@ -180,19 +180,19 @@ Az engedélyezett típusokkal és az értékek a következők:
 * **secureObject**
 * **a tömb**
 
-Nem kötelező paraméter adja meg, adja meg a DefaultValue érték (üres is lehet). 
+toospecify választható, mert egy paraméter adja meg a DefaultValue érték (üres is lehet). 
 
-A paraméter neve a sablon, amely megfelel a paramétert a parancsba a sablon telepítéséhez ad meg, ha nincs megadta kapcsolatos lehetséges egyértelműek. Erőforrás-kezelő Ez zavart megszünteti a utótag hozzáadásával **FromTemplate** a sablon paraméterhez. Például, ha nevű paraméter **ResourceGroupName** a sablonban ütközik a **ResourceGroupName** paramétere a [új-AzureRmResourceGroupDeployment ](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) parancsmag. A telepítés során kéri adjon meg egy értéket a **ResourceGroupNameFromTemplate**. Ez zavart ne általában a nem paraméterek telepítési műveleteihez használt paraméterek megegyező névvel.
+A paraméter neve a sablon megfelelő hello parancs toodeploy hello sablon egyik paraméterének ad meg, ha nincs megadta hello értékek lehetséges egyértelműek. Erőforrás-kezelő hello utótag hozzáadásával oldja fel a félreértések **FromTemplate** toohello sablonparaméter. Például, ha nevű paraméter **ResourceGroupName** a sablonban ütközik hello **ResourceGroupName** hello paraméterének [ Új AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) parancsmag. A telepítés során áll felszólító tooprovide értéket **ResourceGroupNameFromTemplate**. Ez zavart ne általában a nem azonos nevet telepítési műveleteihez használt paraméterekként hello paramétereket.
 
 > [!NOTE]
-> A jelszó, kulcsokat és más titkos adatokat kell használni a **secureString** típusa. A JSON-objektumból átadni a bizalmas adatokat, ha a **secureObject** típusa. Sablonparaméterek secureString vagy secureObject típusú erőforrások telepítése után nem lehet olvasni. 
+> Jelszavak, kulcsokat és más titkos adatokat kell használni a hello **secureString** típusa. Ha JSON-objektum átadni a bizalmas adatokat, használja a hello **secureObject** típusa. Sablonparaméterek secureString vagy secureObject típusú erőforrások telepítése után nem lehet olvasni. 
 > 
-> Az üzembe helyezési előzményeket a következő bejegyzést például egy karakterláncot és objektumot, de nem a secureString és secureObject értékét jeleníti meg.
+> Például hello hello üzembe helyezési előzményeket a következő bejegyzés mutatja egy karakterláncot és objektumot, de nem a secureString és secureObject hello értékkel.
 >
 > ![központi telepítés értékek megjelenítése](./media/resource-group-authoring-templates/show-parameters.png)  
 >
 
-A következő példa bemutatja, hogyan paraméterek megadásához:
+a következő példa azt mutatja meg hogyan hello toodefine paraméterek:
 
 ```json
 "parameters": {
@@ -230,12 +230,12 @@ A következő példa bemutatja, hogyan paraméterek megadásához:
 }
 ```
 
-A telepítés során az értékek a bemeneti tudnivalókat [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md). 
+Hogyan tooinput hello paraméter értékei üzembe helyezése során, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md). 
 
 ## <a name="variables"></a>Változók
-A változók szakaszban, a sablon egész érték, amely használható hozhat létre. Nem kell meghatároznia a változót, de azok gyakran leegyszerűsítheti a sablon csökkentésével összetett kifejezések.
+Hello a változók szakaszban, a sablon egész érték, amely használható hozhat létre. Nem kell toodefine változók, de azok gyakran leegyszerűsítheti a sablon csökkentésével összetett kifejezések.
 
-Megadhatja a változókat és az alábbi szerkezettel:
+A következő struktúra hello adja meg a változókat:
 
 ```json
 "variables": {
@@ -246,7 +246,7 @@ Megadhatja a változókat és az alábbi szerkezettel:
 }
 ```
 
-A következő példa bemutatja, hogyan adhat meg egy változót összeállított paraméter két érték közül:
+a következő példa azt mutatja meg hogyan hello toodefine paraméter két érték közül összeállított változó:
 
 ```json
 "variables": {
@@ -254,7 +254,7 @@ A következő példa bemutatja, hogyan adhat meg egy változót összeállított
 }
 ```
 
-A következő példa bemutatja egy változó, amely egy összetett JSON-típus, és a változókat, amelyek más változók össze:
+hello következő példában egy változó, amely egy összetett JSON-típus, és a változókat, amelyek más változók össze:
 
 ```json
 "parameters": {
@@ -284,9 +284,9 @@ A következő példa bemutatja egy változó, amely egy összetett JSON-típus, 
 ```
 
 ## <a name="resources"></a>Erőforrások
-Erőforrások területen adja meg az erőforrások telepítése vagy frissítése. Ez a szakasz kérheti le bonyolult, mert ismernie kell a típusok esetében helyez üzembe adja meg a megfelelő értékeket. Az erőforrás-specifikus értékeket (apiVersion, típusa és tulajdonságait) meg kell adnia, lásd: [meghatározhatja az erőforrásokat az Azure Resource Manager sablonokban](/azure/templates/). 
+Hello erőforrások szakaszában vannak telepítve, vagy frissített hello erőforrások határozza meg. Ez a szakasz kérheti le bonyolult, mert ismernie kell a hello meg kell adnia tett tooprovide hello megfelelő értékeket. Tekintse meg a hello erőforrás-specifikus értékeket (apiVersion, típusa és tulajdonságait), hogy kell-e tooset [meghatározhatja az erőforrásokat az Azure Resource Manager sablonokban](/azure/templates/). 
 
-Meghatározhatja az erőforrások az alábbi szerkezettel:
+Erőforrások a következő struktúra hello határozhat meg:
 
 ```json
 "resources": [
@@ -329,19 +329,19 @@ Meghatározhatja az erőforrások az alábbi szerkezettel:
 
 | Elem neve | Szükséges | Leírás |
 |:--- |:--- |:--- |
-| Az állapot | Nem | Logikai érték, amely azt jelzi, hogy telepítve van-e az erőforrás. |
-| apiVersion |Igen |Az erőforrás létrehozásához használt a REST API verziója. |
-| type |Igen |Az erőforrás típusát. Ezt az értéket az erőforrás-szolgáltató és az erőforrástípus névtere kombinációja (például **Microsoft.Storage/storageAccounts**). |
-| név |Igen |Az erőforrás nevét. A név URI összetevő korlátozások RFC3986 definiált kell követnie. Emellett Azure-szolgáltatások elérhetővé tenni az erőforrásnév kívül felek ellenőrzése a nevét, győződjön meg arról, hogy nincs egy másik identitás hamisításának kísérlet. |
-| location |Változó |Támogatja a megadott erőforráscsoport földrajzi elhelyezkedését. Kiválaszthatja a rendelkezésre álló helyeken, de általában érdemes válasszon egyet, amelynek mérete megközelítőleg a felhasználók. Általában is érdemes helyezendő erőforrásokat, amelyek ugyanabban a régióban kapcsolatba egymással. A legtöbb erőforrás szükséges egy helyre, de néhány típust (például egy szerepkör-hozzárendelés) igényel egy helyre. Lásd: [erőforrás hely beállítása az Azure Resource Manager sablonokban](resource-manager-template-location.md). |
-| tags |Nem |Az erőforrás társított címkékkel. Lásd: [címkével olyan erőforrásokat az Azure Resource Manager sablonokban](resource-manager-template-tags.md). |
-| Megjegyzések |Nem |A Megjegyzések a a sablonban lévő erőforrások dokumentálása |
-| Másolás |Nem |Ha egynél több példány van szükség, az olyan erőforrások száma létrehozásához. Az alapértelmezett mód párhuzamos. Adja meg a soros módban, ha nem szeretné, hogy az összes vagy egy időben üzembe helyezendő erőforrásokat. További információkért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md). |
-| dependsOn |Nem |Ehhez az erőforráshoz központi telepítése előtt telepíteni kell erőforrások. Erőforrás-kezelő kiértékeli az erőforrások közti függőségeket, és telepíti azokat a megfelelő sorrendben. Ha nincsenek függő erőforrások, párhuzamos központi telepítés. Az érték lehet egy vesszővel elválasztott lista erőforrás nevét vagy egyedi erőforrás-azonosítók. Ez a sablon üzembe helyezett erőforrások csak felsorolása Erőforrások, amelyek nincsenek meghatározva a sablonban már léteznie kell. Kerülje a szükségtelen függőségek hozzáadásával még a központi telepítés lassú, és hozzon létre körkörös függőségi viszony. A beállítás függőségek útmutatást lásd: [függőségek meghatározása az Azure Resource Manager-sablonok](resource-group-define-dependencies.md). |
-| properties |Nem |Erőforrás-specifikus konfigurációs beállításokat. A tulajdonságok értékeit ugyanazok, mint a REST API művelet (PUT metódust) létrehozni az erőforrást a kérés törzsében meg az értékeket. Egy tulajdonság több példányát létrehozni egy másolatot tömb is megadható. További információkért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md). |
-| Erőforrások |Nem |A múltbeli erőforrástól függő gyermekszintű erőforrása. Csak olyan típusú erőforrások a szülő erőforrás sémája által számukra engedélyezett. A gyermek-erőforrás teljesen minősített típusú tartalmaz szülő erőforrástípusra, például **Microsoft.Web/sites/extensions**. A szülő erőforrás függőség nem utal. Függőséget explicit módon meg kell adni. |
+| Az állapot | Nem | Logikai érték, amely azt jelzi, hogy telepítve van-e a hello erőforrás. |
+| apiVersion |Igen |Hello REST API toouse hello erőforrás létrehozásához verzióját. |
+| type |Igen |Hello erőforrás típusát. Az értéket nem hello névtér hello erőforrás-szolgáltató és hello erőforrástípus kombinációja (például **Microsoft.Storage/storageAccounts**). |
+| név |Igen |Hello erőforrás neve. hello neve URI összetevő korlátozások RFC3986 definiált kell követnie. Emellett Azure-szolgáltatások hello erőforrás neve toooutside felek visszaállítását érvényesítése hello neve toomake rá, hogy ez nem egy kísérlet toospoof másik identitást. |
+| location |Változó |A megadott erőforrás hello támogatott földrajzi-helyét. Kiválaszthatja hello elérhető helyek valamelyikén, de általában teszi logika toopick tartalmazó Bezárás tooyour felhasználók. Általában is érdemes tooplace erőforrások adatcserét a hello azonos régióban. A legtöbb erőforrás szükséges egy helyre, de néhány típust (például egy szerepkör-hozzárendelés) igényel egy helyre. Lásd: [erőforrás hely beállítása az Azure Resource Manager sablonokban](resource-manager-template-location.md). |
+| tags |Nem |Hello erőforrás társított címkékkel. Lásd: [címkével olyan erőforrásokat az Azure Resource Manager sablonokban](resource-manager-template-tags.md). |
+| Megjegyzések |Nem |A Megjegyzések a hello erőforrások a sablonban dokumentálása |
+| Másolás |Nem |Ha egynél több példány van szükség, hello erőforrások toocreate száma. hello alapértelmezett módja párhuzamos. Adja meg a soros módban, ha nem szeretné, hogy az összes vagy erőforrások toodeploy hello: hello ugyanannyi időt vesz igénybe. További információkért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md). |
+| dependsOn |Nem |Ehhez az erőforráshoz központi telepítése előtt telepíteni kell erőforrások. Erőforrás-kezelő erőforrások közti függőségeket hello kiértékeli, és telepíti azokat a megfelelő sorrendben hello. Ha nincsenek függő erőforrások, párhuzamos központi telepítés. hello érték lehet egy vesszővel elválasztott lista erőforrás nevét vagy egyedi erőforrás-azonosítók. Ez a sablon üzembe helyezett erőforrások csak felsorolása Erőforrások, amelyek nincsenek meghatározva a sablonban már léteznie kell. Kerülje a szükségtelen függőségek hozzáadásával még a központi telepítés lassú, és hozzon létre körkörös függőségi viszony. A beállítás függőségek útmutatást lásd: [függőségek meghatározása az Azure Resource Manager-sablonok](resource-group-define-dependencies.md). |
+| properties |Nem |Erőforrás-specifikus konfigurációs beállításokat. hello tulajdonságok értékeinek hello vannak hello azonos hello REST API művelet (PUT metódust) toocreate hello erőforrás hello kérés törzsében meg hello értékként. A másolási tömb toocreate tulajdonság több példányát is megadhatja. További információkért lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md). |
+| Erőforrások |Nem |Múltbeli hello erőforrástól függő gyermekszintű erőforrása. Csak olyan típusú erőforrások hello séma hello szülő erőforrás által számukra engedélyezett. hello teljesen minősített típusú hello gyermek erőforrás tartalmaz hello szülő erőforrástípusra, például **Microsoft.Web/sites/extensions**. Hello szülő erőforrás függőség nem utal. Függőséget explicit módon meg kell adni. |
 
-A források szakaszában üzembe helyezendő erőforrásokat tömbjét tartalmazza. Az egyes erőforrások belül is meghatározhat gyermekerőforrásait tömbjét. Ezért a források szakaszában eredményezhet. a struktúra, például:
+hello források szakaszában hello erőforrások toodeploy tömbjét tartalmazza. Az egyes erőforrások belül is meghatározhat gyermekerőforrásait tömbjét. Ezért a források szakaszában eredményezhet. a struktúra, például:
 
 ```json
 "resources": [
@@ -367,7 +367,7 @@ A források szakaszában üzembe helyezendő erőforrásokat tömbjét tartalmaz
 
 Gyermek erőforrások meghatározása kapcsolatos további információkért lásd: [Resource Manager-sablon nevét és típusát gyermek erőforrás beállított](resource-manager-template-child-resource.md).
 
-A **feltétel** elem határozza meg, hogy telepítve van-e az erőforrás. Ez az elem értéke IGAZ vagy hamis oldja fel. Például adja meg, hogy telepítve van-e a egy új tárfiókot, használja:
+Hello **feltétel** elem határozza meg, hogy telepítve van-e a hello erőforrás. hello érték ehhez az elemhez oldja fel a tootrue vagy HAMIS eredményt ad. Például toospecify hogy telepít egy új tárfiókot, a rendszer használni:
 
 ```json
 {
@@ -386,7 +386,7 @@ A **feltétel** elem határozza meg, hogy telepítve van-e az erőforrás. Ez az
 
 Például egy új vagy meglévő erőforrást használ, tekintse meg a [új vagy meglévő feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).
 
-Adja meg, hogy egy virtuális gép telepítve van-e a jelszó vagy SSH-kulcsot, adja meg a virtuális gép két verziója a sablonban és a használata **feltétel** használati megkülönböztetéséhez. Egy paraméter meghatározza, hogy mely forgatókönyv telepítését továbbítani.
+toospecify egy virtuális gép telepítve van a jelszóval vagy SSH-kulcsban, hogy adjon meg hello virtuális gép két verziója a sablon és -felhasználási **feltétel** toodifferentiate használat. A paraméter meghatározza, hogy mely a forgatókönyv toodeploy továbbítja.
 
 ```json
 {
@@ -429,12 +429,12 @@ Adja meg, hogy egy virtuális gép telepítve van-e a jelszó vagy SSH-kulcsot, 
 }
 ``` 
 
-Például egy jelszó vagy SSH-kulcs használatával a virtuális gép telepítése, lásd: [felhasználónév és SSH feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
+Például a jelszóval vagy SSH-kulcs toodeploy virtuális gép, [felhasználónév és SSH feltétel sablon](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
 
 ## <a name="outputs"></a>kimenetek
-A kimenetek szakaszban adja meg központi telepítéséből a visszaadott érték. Visszaadhatja például az URI telepített erőforrások eléréséhez.
+Hello kimenetek szakaszban adja meg központi telepítéséből a visszaadott érték. Például visszaadhatja hello URI tooaccess üzembe helyezett erőforrás.
 
-A következő példa egy kimeneti definíciója szerkezetét mutatja:
+hello alábbi példa bemutatja egy kimeneti definíciója hello szerkezete:
 
 ```json
 "outputs": {
@@ -447,11 +447,11 @@ A következő példa egy kimeneti definíciója szerkezetét mutatja:
 
 | Elem neve | Szükséges | Leírás |
 |:--- |:--- |:--- |
-| outputName |Igen |A kimeneti érték nevét. Egy érvényes JavaScript-azonosítónak kell lennie. |
-| type |Igen |A kimeneti érték típusa. Kimeneti értékek támogatásához sablon bemeneti paraméterként. |
+| outputName |Igen |Hello kimeneti érték nevét. Egy érvényes JavaScript-azonosítónak kell lennie. |
+| type |Igen |Hello kimeneti érték típusa. Kimeneti értékek hello azonos sablon bemeneti paraméterként típusokat támogatja. |
 | érték |Igen |Amely értékeli ki, és kimeneti értéket adja vissza a sablonnyelvi kifejezés. |
 
-A következő példa bemutatja a kimenetek szakaszban visszaadott érték.
+hello következő példa bemutatja a hello kimenetek szakaszban visszaadott érték.
 
 ```json
 "outputs": {
@@ -466,7 +466,7 @@ A kimeneti használatáról további információk: [állapotát az Azure Resour
 
 ## <a name="template-limits"></a>Sablon korlátok
 
-A sablon 1 MB-nál, és minden paraméterfájl 64 KB méretének korlátozására. 1 MB-os korlát vonatkozik a sablon a végső állapot után kiterjedt ismétlődő erőforrás-definíciókban és változók és a paraméterek értékeit. 
+Hello méretének korlátozása a a sablon too1 MB, és minden paraméter fájl too64 KB. hello 1 MB-os korlát vonatkozik toohello végső állapot hello sablon, miután kiterjedt ismétlődő erőforrás-definíciókban és változók és a paraméterek értékeit. 
 
 Emellett korlátozva:
 
@@ -476,10 +476,10 @@ Emellett korlátozva:
 * 64 kimeneti értékek
 * egy sablon kifejezés 24,576 karakter
 
-Néhány sablon korlátot azért lépheti túl a beágyazott sablon használatával. További információkért lásd: [kapcsolt sablonok használata az Azure-erőforrások telepítésekor](resource-group-linked-templates.md). A paraméterek, változók vagy kimenetek számának csökkentése érdekében kombinálható egy objektum több értéket. További információkért lásd: [paraméterekként objektumok](resource-manager-objects-as-parameters.md).
+Néhány sablon korlátot azért lépheti túl a beágyazott sablon használatával. További információkért lásd: [kapcsolt sablonok használata az Azure-erőforrások telepítésekor](resource-group-linked-templates.md). tooreduce hello száma paramétereket, változók vagy kimenetek, kombinálható több értéket egy objektumot. További információkért lásd: [paraméterekként objektumok](resource-manager-objects-as-parameters.md).
 
 ## <a name="next-steps"></a>Következő lépések
-* A különböző megoldástípusokhoz használható teljes sablonok megtekintéséhez lásd: [Azure gyorsindítási sablonok](https://azure.microsoft.com/documentation/templates/).
-* A sablonon belül használhatja a functions szolgáltatással kapcsolatos részletekért lásd: [Azure Resource Manager Sablonfüggvényei](resource-group-template-functions.md).
-* Egyesítenie több sablon üzembe helyezése során, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Szükség lehet egy másik erőforráscsoportban található erőforrások használatával. Ez a forgatókönyv nem közös, ha a storage-fiókok vagy több erőforrás csoporttal megosztott virtuális hálózatok. További információkért lásd: a [resourceId függvény](resource-group-template-functions-resource.md#resourceid).
+* tooview teljes sablonok számos különböző típusú megoldások, lásd: hello [Azure gyors üzembe helyezési sablonokat](https://azure.microsoft.com/documentation/templates/).
+* Használhatja a sablonon belül a hello functions szolgáltatással kapcsolatos részletekért lásd: [Azure Resource Manager Sablonfüggvényei](resource-group-template-functions.md).
+* toocombine több sablon telepítése során lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* Szükség lehet toouse belül egy másik erőforráscsoportban található erőforráshoz. Ez a forgatókönyv nem közös, ha a storage-fiókok vagy több erőforrás csoporttal megosztott virtuális hálózatok. További információkért lásd: hello [resourceId függvény](resource-group-template-functions-resource.md#resourceid).

@@ -2,41 +2,41 @@
 
 ### <a name="install-raspbian"></a>Raspbian telepítése
 
-Ha ez az első alkalommal használja a málna Pi, telepítendő a Raspbian operációs rendszer NOOBS használja a csomag tartalmazza az SD-kártyára. A [málna Pi szoftver útmutató] [ lnk-install-raspbian] ismerteti, hogyan lehet a málna Pi operációs rendszer telepítéséhez. Ez az oktatóanyag feltételezi, hogy telepítette a Raspbian operációs rendszer a málna Pi.
+Ha ez hello első alkalommal használja a málna Pi, meg kell tooinstall hello Raspbian operációs rendszer NOOBS SD-kártyán hello hello Kit része. Hello [málna Pi szoftver útmutató] [ lnk-install-raspbian] ismerteti, hogyan tooinstall a málna Pi operációs rendszerének. Ez az oktatóanyag feltételezi, hogy telepítette a málna Pi hello Raspbian operációs rendszer.
 
 > [!NOTE]
-> Az SD-kártya szerepel a [a Microsoft Azure IoT Starter Kit málna Pi 3] [ lnk-starter-kits] már rendelkezik telepített NOOBS. Indítsa el a málna Pi a kártyáról, és a Raspbian operációs rendszer telepítése.
+> hello található hello SD-kártyát [a Microsoft Azure IoT Starter Kit málna Pi 3] [ lnk-starter-kits] már rendelkezik telepített NOOBS. Rendszerindító hello málna Pi a kártyáról, és válassza ki a tooinstall hello Raspbian operációs rendszer.
 
-A hardver-telepítés befejezéséhez kell:
+toocomplete hello hardverbeállításokat, kell:
 
-- Csatlakoztassa a málna Pi Kit része tápegység.
-- A málna Pi csatlakoznak a hálózathoz, a csomag tartalmazza az Ethernet-kábelen keresztül. Másik lehetőségként beállíthatja [vezeték nélküli kapcsolat] [ lnk-pi-wireless] a málna pi.
+- Csatlakoztassa a málna Pi toohello tápegység hello Kit része.
+- Csatlakoztassa a málna Pi tooyour hálózati kábellel hello Ethernet az Kit része. Másik lehetőségként beállíthatja [vezeték nélküli kapcsolat] [ lnk-pi-wireless] a málna pi.
 
-Ezzel befejezte a málna pi a hardverbeállításokat.
+Ezzel befejezte a málna pi hello hardverbeállításokat.
 
-### <a name="sign-in-and-access-the-terminal"></a>Bejelentkezhet és elérheti a Terminálszolgáltatások
+### <a name="sign-in-and-access-hello-terminal"></a>Bejelentkezhetnek és elérhetik a hello Terminálszolgáltatások
 
-A Terminálszolgáltatások tesztkörnyezetben, a málna Pi eléréséhez két lehetőség közül választhat:
+Két beállítások tooaccess terminál környezettel rendelkezik a málna Pi meg:
 
-- Ha a figyelő a málna Pi csatlakoztatott és a billentyűzeten, használhatja a Raspbian grafikus felhasználói felület egy terminálablakot eléréséhez.
+- Ha a billentyűzet és csatlakoztatott tooyour málna Pi figyelése, használhatja a hello Raspbian grafikus felhasználói Felülettel tooaccess egy terminálablakot.
 
-- A parancssorban meg az SSH használata a asztali gépen málna Pi eléréséhez.
+- Hozzáférés hello parancs vonalát. az SSH használata a asztali gépen málna Pi.
 
-#### <a name="use-a-terminal-window-in-the-gui"></a>A grafikus felhasználói felületen terminálablakot használni
+#### <a name="use-a-terminal-window-in-hello-gui"></a>A grafikus felhasználói Felülettel hello terminálablakot használni
 
-Az alapértelmezett Raspbian a hitelesítő adatok felhasználónév **pi** és a jelszó **málna**. A tálcán a grafikus felhasználói felületén, elindíthatja a **Terminálszolgáltatások** segédprogram használatával egy figyelőt a ikon.
+hello alapértelmezett Raspbian a hitelesítő adatok felhasználónév **pi** és a jelszó **málna**. Hello tálcán hello grafikus felhasználói Felülettel, elindíthatja a hello **Terminálszolgáltatások** segédprogram használatával egy figyelő hello ikon.
 
 #### <a name="sign-in-with-ssh"></a>SSH bejelentkezés
 
-SSH használható parancssori hozzáférést a málna Pi. A cikk [SSH (Secure Shell)] [ lnk-pi-ssh] útmutatás a málna Pi SSH konfigurálása, valamint csatlakozhat a [Windows] [ lnk-ssh-windows] vagy [ Linux és Mac OS][lnk-ssh-linux].
+Parancssori hozzáférést tooyour málna Pi SSH használható. hello cikk [SSH (Secure Shell)] [ lnk-pi-ssh] ismerteti, hogyan tooconfigure a málna Pi az SSH és hogyan tooconnect a [Windows] [ lnk-ssh-windows] vagy [Linux és Mac OS][lnk-ssh-linux].
 
 Jelentkezzen be a felhasználónevet **pi** és a jelszó **málna**.
 
 #### <a name="optional-share-a-folder-on-your-raspberry-pi"></a>Választható lehetőség: A málna Pi a mappa megosztása
 
-Ha szükséges érdemes lehet a málna Pi a mappa megosztása az asztali környezetet. A mappa megosztása lehetővé teszi az előnyben részesített asztali szövegszerkesztővel (például [Visual Studio Code](https://code.visualstudio.com/) vagy [Sublime Text](http://www.sublimetext.com/)) a málna Pi használata helyett a fájlok szerkesztésére `nano` vagy `vi`.
+Ha szükséges érdemes lehet tooshare egy mappát a málna Pi a az asztali környezetet. A mappa megosztása lehetővé teszi, hogy Ön toouse az előnyben részesített asztali szövegszerkesztőben (például [Visual Studio Code](https://code.visualstudio.com/) vagy [Sublime Text](http://www.sublimetext.com/)) használata helyett a málna Pi tooedit fájlok `nano` vagy `vi`.
 
-A Windows mappa megosztásához a málna Pi Samba kiszolgáló konfigurálása. Másik megoldásként használhatja a beépített [SFTP](https://www.raspberrypi.org/documentation/remote-access/) kiszolgáló az asztalon egy SFTP-ügyféllel.
+tooshare egy mappát a Windows hello málna Pi Samba kiszolgáló konfigurálása. Másik megoldásként használhatja a hello beépített [SFTP](https://www.raspberrypi.org/documentation/remote-access/) kiszolgáló az asztalon egy SFTP-ügyféllel.
 
 [lnk-install-raspbian]: https://www.raspberrypi.org/learning/software-guide/quickstart/
 [lnk-pi-wireless]: https://www.raspberrypi.org/documentation/configuration/wireless/README.md

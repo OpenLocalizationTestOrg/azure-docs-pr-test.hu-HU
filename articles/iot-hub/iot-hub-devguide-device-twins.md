@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub eszköz twins megértése |} Microsoft Docs"
-description: "Fejlesztői útmutató - használata eszköz twins állapotot és a konfigurációs adatokat az IoT-központ és az eszközök közötti szinkronizálása"
+title: "aaaUnderstand Azure IoT Hub eszköz twins |} Microsoft Docs"
+description: "Fejlesztői útmutató - eszköz használata twins toosynchronize állapotot és a konfigurációs adatokat az IoT-központ és az eszközök között"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,54 +15,54 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: elioda
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b316aa419d558547f90a914a22fb29935076de21
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7dade18665108ed352ff3d18e864dc34f451bbf6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-use-device-twins-in-iot-hub"></a>Ismertetés és az IoT Hub eszköz twins használata
 ## <a name="overview"></a>Áttekintés
-*Eszköz twins* tárolása eszköz állapota (a metaadatok, a konfigurációk és a feltételek) JSON-dokumentumok vannak. Az IoT Hub a rácsatlakoztatott minden egyes eszközhöz fenntart egy ikereszközt. Ez a cikk ismerteti:
+*Eszköz twins* tárolása eszköz állapota (a metaadatok, a konfigurációk és a feltételek) JSON-dokumentumok vannak. Az IoT-központ továbbra is fennáll, az egyes eszközök, hogy tooIoT központi csatlakozás egy eszköz iker. Ez a cikk ismerteti:
 
-* Az eszköz iker szerkezete: *címkék*, *kívánt* és *tulajdonságok jelentett*, és
-* Eszköz twins eszközeinek alkalmazásait és hátsó akkor ér véget végezhető műveletek.
+* hello eszköz iker szerkezete hello: *címkék*, *kívánt* és *tulajdonságok jelentett*, és
+* hello eszközeinek alkalmazásait és hátsó végpontok eszköz twins hajthat végre műveleteket.
 
 > [!NOTE]
-> Eszköz twins jelenleg csak a MQTT protokollal IoT-központ csatlakozó eszközökön érhető el. Tekintse meg a [MQTT támogatási] [ lnk-devguide-mqtt] miként a meglévő eszköz alkalmazásának módját MQTT használatára.
+> Eszköz twins jelenleg csak az eszközök, tooIoT központi csatlakozás elérhető hello MQTT protokoll használatával. Tekintse meg a toohello [MQTT támogatási] [ lnk-devguide-mqtt] a cikk útmutatást tooconvert meglévő eszköz alkalmazás toouse MQTT.
 > 
 > 
 
-### <a name="when-to-use"></a>A következő esetekben használja
+### <a name="when-toouse"></a>Ha toouse
 Az eszköz twins használja:
 
-* A felhőben tárolt eszközre vonatkozó metaadatok. Például a központi telepítési helye a Eladóautomata.
-* A jelentés aktuális állapotadatokat például a rendelkezésre álló lehetőségek és az eszköz alkalmazás állapotának. Például egy eszköz csatlakozik az IoT hub cellás over vagy Wi-Fi.
-* Hosszan futó munkafolyamatok közötti eszközalkalmazás és háttér-alkalmazás állapotának szinkronizálása. Például a megoldás biztonsági end határozza meg az új belső vezérlőprogram verziójának telepítéséhez, és az eszköz alkalmazás jelentés a frissítési folyamat különböző szakaszaiban.
+* Hello felhőben tárolt az eszközre vonatkozó metaadatok. Például hello egy Eladóautomata telepítési helyét.
+* A jelentés aktuális állapotadatokat például a rendelkezésre álló lehetőségek és az eszköz alkalmazás állapotának. Például egy eszköz csatlakoztatott tooyour IoT-központ cellás over vagy Wi-Fi.
+* A szinkronizálás hello állapotának hosszan futó munkafolyamatok eszközalkalmazás és háttér-alkalmazás között. Például hello megoldás biztonsági end megadja új belső vezérlőprogram verziója tooinstall hello és hello eszköz alkalmazás jelentések hello hello frissítési folyamat különböző szakaszaiban.
 * Az eszköz metaadatait, konfigurációs vagy az állapot lekérdezése.
 
-Tekintse meg [eszközről a felhőbe kommunikációs útmutatást] [ lnk-d2c-guidance] jelentett tulajdonságok, az eszköz a felhőbe küldött üzeneteket vagy a fájl feltöltése útmutatót.
-Tekintse meg [felhő eszközre kommunikációs útmutatást] [ lnk-c2d-guidance] kívánt tulajdonságokkal, a közvetlen módszerek és a felhő-eszközre küldött üzenetek útmutatót.
+Tekintse meg a túl[eszközről a felhőbe kommunikációs útmutatást] [ lnk-d2c-guidance] jelentett tulajdonságok, az eszköz a felhőbe küldött üzeneteket vagy a fájl feltöltése útmutatót.
+Tekintse meg a túl[felhő eszközre kommunikációs útmutatást] [ lnk-c2d-guidance] kívánt tulajdonságokkal, a közvetlen módszerek és a felhő-eszközre küldött üzenetek útmutatót.
 
 ## <a name="device-twins"></a>Eszköz twins
 Eszköz twins eszközzel kapcsolatos adatok tárolására, amelyek:
 
-* Eszköz- és biztonsági végpontok használatával szinkronizálhatja a eszköz feltételek és a konfiguráció.
-* A megoldás háttérrendszeréhez segítségével lekérdezés és a cél hosszú futású műveleteket.
+* Eszköz- és biztonsági végpontok toosynchronize eszköz feltételek és a konfigurációs használhatja.
+* hello megoldás háttérrendszerének tooquery használhatja és cél hosszú futású műveleteket.
 
-Egy eszköz iker életciklusát kapcsolódik a megfelelő [eszközidentitás][lnk-identity]. Eszköz twins implicit létrehozása és törlése, amikor egy új eszközidentitás jön létre, vagy az IoT-központ törölt.
+egy eszköz iker hello életciklusát kapcsolódó toohello megfelelő [eszközidentitás][lnk-identity]. Eszköz twins implicit létrehozása és törlése, amikor egy új eszközidentitás jön létre, vagy az IoT-központ törölt.
 
 Egy eszköz iker tartalmazó JSON-dokumentumhoz:
 
-* **Címkék**. A JSON-dokumentum, amely a megoldás háttérrendszeréhez olvasni és írni egy része. Címkék nem láthatók az eszközön futó alkalmazások.
-* **Szükségeskonfiguráció-tulajdonságok**. Eszközök konfigurálása és a feltételek szinkronizálásához használt jelentett tulajdonságok együtt. Kívánt tulajdonságok csak akkor állítható vissza a megoldás end, és az eszköz alkalmazás által is olvasható. Az eszköz alkalmazás is a kívánt tulajdonságokkal változásainak valós időben értesítést.
-* **Tulajdonságok jelentett**. Eszközök konfigurálása és feltételek szinkronizálásához használni kívánt tulajdonságokkal együtt. Jelentett tulajdonságok csak az eszköz alkalmazás által állítható be és olvashatók és a megoldás háttérrendszeréhez kellettek.
+* **Címkék**. Hello JSON-dokumentum, amely a megoldás háttérrendszeréhez hello szakasz is olvasni és írni. Címkék olyan nem látható toodevice alkalmazások.
+* **Szükségeskonfiguráció-tulajdonságok**. Használható együtt a jelentésben szereplő tulajdonságok toosynchronize eszközök konfigurációját és a feltételek. Kívánt tulajdonságok csak akkor állítható vissza hello megoldás end és hello eszközalkalmazás tudja olvasni. hello eszközalkalmazás is szükséges hello tulajdonságok változásainak valós időben értesítést.
+* **Tulajdonságok jelentett**. Használható együtt a kívánt tulajdonságokkal toosynchronize eszközök konfigurációját és a feltételek. Jelentett tulajdonságok csak hello eszköz alkalmazás által állítható be és olvashatók és hello megoldás háttérrendszerének kellettek.
 
-Emellett az eszköz iker JSON-dokumentum gyökerébe tartalmazza a megfelelő eszközidentitás tárolja a csak olvasható tulajdonságok a [identitásjegyzékhez][lnk-identity].
+Emellett hello azon hello eszköz iker JSON-dokumentum tartalmaz hello megfelelő eszközidentitás hello tárolja a csak olvasható tulajdonságok hello [identitásjegyzékhez][lnk-identity].
 
 ![][img-twin]
 
-A következő példa bemutatja egy eszköz iker JSON-dokumentum:
+a következő példa hello egy eszköz iker JSON-dokumentum jeleníti meg:
 
         {
             "deviceId": "devA",
@@ -100,18 +100,18 @@ A következő példa bemutatja egy eszköz iker JSON-dokumentum:
             }
         }
 
-A legfelső szintű objektum, a rendszer tulajdonságai, és a tárolóobjektumok `tags` és mindkét `reported` és `desired` tulajdonságok. A `properties` tároló néhány írásvédett elemet tartalmaz (`$metadata`, `$etag`, és `$version`) ismertetett a [eszköz iker metaadatok] [ lnk-twin-metadata] és [egyidejű hozzáférések optimista] [ lnk-concurrency] szakaszok.
+A legfelső szintű objektum hello hello rendszer tulajdonságai, és a tárolóobjektumok `tags` és mindkét `reported` és `desired` tulajdonságok. Hello `properties` tároló néhány írásvédett elemet tartalmaz (`$metadata`, `$etag`, és `$version`) hello ismertetett [eszköz iker metaadatok] [ lnk-twin-metadata] és [ Egyidejű hozzáférések optimista] [ lnk-concurrency] szakaszok.
 
 ### <a name="reported-property-example"></a>Jelentett tulajdonság – példa
-Az előző példában az eszköz iker tartalmaz egy `batteryLevel` az eszköz alkalmazás által jelentett tulajdonság. Ez a tulajdonság lekérdezése, és az utolsó jelentett akkumulátor szint alapján eszközökön működik lehetővé teszi. További példák lehetnek az alkalmazás jelentéskészítési eszköz eszközképességek vagy kapcsolati lehetőségek.
+Hello előző példában hello eszköz iker tartalmaz egy `batteryLevel` hello eszköz alkalmazás által jelentett tulajdonság. Ez a tulajdonság lehetővé teszi lehetséges tooquery, és a hello utolsó jelentett akkumulátor szint alapján eszközökön működik. További példák lehetnek hello app jelentéskészítési eszköz eszközképességek vagy kapcsolati beállításokat.
 
 > [!NOTE]
-> Jelentett tulajdonságok forgatókönyvek, amelyben az utolsó ismert tulajdonság értéke a megoldás háttérrendszeréhez iránt érdeklődik egyszerűsítése érdekében. Használjon [eszköz a felhőbe küldött üzeneteket] [ lnk-d2c] hogy kell-e a megoldás háttérrendszeréhez telemetriát eseménysorozat időbélyegzővel, például a time series formájában feldolgozni.
+> Jelentett tulajdonságok forgatókönyvek, ahol hello megoldás háttérrendszerének utolsó ismert tulajdonság értékének hello iránt érdeklődik egyszerűsítése érdekében. Használjon [eszköz a felhőbe küldött üzeneteket] [ lnk-d2c] hogy hello megoldás háttérrendszerének tooprocess telemetriát eseménysorozat időbélyegzővel, például a time series hello formában kell-e.
 
 ### <a name="desired-property-example"></a>Kívánt tulajdonság – példa
-Az előző példában a `telemetryConfig` eszköz iker szükséges, és a jelentett tulajdonságok szinkronizálni a telemetria-konfigurációt, az eszköz a megoldás háttérrendszeréhez, és az eszköz alkalmazás által használt. Példa:
+Hello előző példában hello `telemetryConfig` eszköz iker szükséges, és a jelentésben szereplő tulajdonságok ehhez az eszközhöz hello megoldás háttérrendszerének és hello eszköz toosynchronize hello telemetriai Alkalmazáskonfiguráció által használt. Példa:
 
-1. A megoldás háttérrendszeréhez állítja be a kívánt tulajdonságot a szükségeskonfiguráció-értékkel. Ez a dokumentum a kívánt tulajdonság értéke:
+1. hello megoldás háttérrendszerének szükséges hello tulajdonság szükséges hello konfigurációs érték beállítása. Szükségeskonfiguráció-hello tulajdonságkészlet hello dokumentum hello része a következő:
    
         ...
         "desired": {
@@ -121,7 +121,7 @@ Az előző példában a `telemetryConfig` eszköz iker szükséges, és a jelent
             ...
         },
         ...
-2. Az eszköz alkalmazásának a változás azonnal, ha létrejött a kapcsolat, vagy első újbóli értesítést kap. Az eszköz alkalmazás majd jelentést készít a frissített konfigurációt (vagy egy hiba feltétel használatával a `status` tulajdonság). A jelentésben szereplő tulajdonságok része a következő:
+2. hello eszközalkalmazás hello változás azonnal, ha csatlakoztatva, vagy a hello először csatlakoztassa értesítést kap. hello eszközalkalmazás majd jelentést készít hello frissített konfigurációs (vagy hello segítségével hibaállapotot `status` tulajdonság). Itt hello hello része jelentett tulajdonságok:
    
         ...
         "reported": {
@@ -132,20 +132,20 @@ Az előző példában a `telemetryConfig` eszköz iker szükséges, és a jelent
             ...
         }
         ...
-3. A megoldás háttérrendszeréhez nyomon követheti a konfigurációs művelet eredménye számos eszközön, az [lekérdezése] [ lnk-query] eszköz twins.
+3. hello megoldás háttérrendszerének nyomon követheti hello eredményeit hello konfigurációs műveletet több eszközön, az [lekérdezése] [ lnk-query] eszköz twins.
 
 > [!NOTE]
-> Az előző kódtöredékek példák, olvashatóságát, egyik módja egy eszköz konfigurálásának és annak állapotát kódolása optimalizálva. Az IoT-központ nem ír elő egy adott séma, az eszköz iker szükséges, és az eszköz twins tulajdonságok jelentett.
+> hello előző kódtöredékek példák, olvashatóságát, egyirányú tooencode optimalizálva, egy eszköz konfigurálásának és annak állapotát. Az IoT-központ nem ír elő egy adott séma hello eszköz iker szükséges, és jelentett hello eszköz twins-tulajdonságokat.
 > 
 > 
 
-Twins segítségével szinkronizálása hosszú ideig futó műveletek, például a belső vezérlőprogram-frissítésekre. Szinkronizálja, és nyomon követéséhez egy hosszú ideig futó művelet az eszközön tulajdonságok használatával további információkért lásd: [használata szükséges eszközök tulajdonságok][lnk-twin-properties].
+Twins toosynchronize hosszú ideig futó műveletek, például a belső vezérlőprogram-frissítésekre is használhatja. További információ a hogyan toouse tulajdonságok toosynchronize és egy hosszú ideig futó művelet az eszközön, nyomon követése: [használata szükséges tulajdonságok tooconfigure eszközök][lnk-twin-properties].
 
 ## <a name="back-end-operations"></a>Háttér-műveletek
-A megoldás háttérrendszeréhez a használatával a következő atomi műveletek, HTTP Protokollon keresztül elérhetővé tett eszközök iker működik:
+hello megoldás háttérrendszerének működik hello eszköz iker hello atomi műveletek HTTP Protokollon keresztül elérhetővé a következő használatával:
 
-1. **Id eszköz két lekérni**. Ez a művelet adja vissza a eszköz két dokumentumot, beleértve a címkék, és szükség esetén jelentette, és a rendszer tulajdonságai.
-2. **Részlegesen frissítse az eszköz iker**. Ez a művelet lehetővé teszi, hogy a megoldás háttérrendszeréhez részben frissíteni a címkék vagy egy eszköz iker kívánt tulajdonságokat. A részleges frissítés, amely ad hozzá vagy bármilyen tulajdonságot JSON-dokumentumként van kifejezve. Tulajdonságok beállítása `null` törlődnek. Az alábbi példa hoz létre egy új kívánt tulajdonság értéke `{"newProperty": "newValue"}`, felülírja a meglévő értéket az `existingProperty` rendelkező `"otherNewValue"`, és eltávolítja a `otherOldProperty`. Nincs más módosításai meglévő kívánt tulajdonságok vagy a címkék:
+1. **Id eszköz két lekérni**. Ez a művelet visszaadja jelentett hello eszköz két dokumentumot, beleértve a címkék, és szükség esetén, és a rendszer tulajdonságai.
+2. **Részlegesen frissítse az eszköz iker**. Ez a művelet lehetővé teszi a hello megoldás háttér toopartially frissítés hello címkék vagy egy eszköz iker kívánt tulajdonságokat. hello részleges frissítés, amely ad hozzá vagy bármilyen tulajdonságot JSON-dokumentumként van kifejezve. Tulajdonság értéke túl`null` törlődnek. hello alábbi példa létrehoz egy új kívánt tulajdonság értékű `{"newProperty": "newValue"}`, felülírja a meglévő értéke hello `existingProperty` rendelkező `"otherNewValue"`, és eltávolítja a `otherOldProperty`. Nincs más módosításai szükséges tooexisting tulajdonságok vagy a címkék:
    
         {
             "properties": {
@@ -158,29 +158,29 @@ A megoldás háttérrendszeréhez a használatával a következő atomi művelet
                 }
             }
         }
-3. **Cserélje ki a kívánt tulajdonságokkal**. Ez a művelet lehetővé teszi, hogy a megoldás háttérrendszeréhez teljesen felülírja az összes meglévő kívánt tulajdonságokat, és helyettesítse be az új JSON-dokumentum `properties/desired`.
-4. **Cserélje le a címkék**. Ez a művelet lehetővé teszi, hogy a megoldás háttérrendszeréhez teljesen felülírja az összes meglévő címkék és helyettesítse be az új JSON-dokumentum `tags`.
-5. **A két értesítéseket**. Ez a művelet lehetővé teszi, hogy a megoldás háttérrendszeréhez értesíti, ha a két módosul. Ehhez az IoT-megoldásból egy útvonal létrehozása és kell beállítani az adatforrás egyenlő *twinChangeEvents*. Alapértelmezés szerint nincs iker értesítések küldése általában olyan, ez azt jelenti, hogy, hogy nincs ilyen útvonal létezik-e előre. Ha a módosítási aránya túl magas, vagy más okok miatt, például a belső hibák, az IoT Hub el tudja küldeni csak egy értesítést, amely tartalmazza az összes módosítást. Ezért, ha az alkalmazásnak megbízható vizsgálati és naplózási az összes köztes állapotok, majd továbbra is ajánlott D2C üzenetek használata. A két üzenet tulajdonságait és a szövegtörzs tartalmaz.
+3. **Cserélje ki a kívánt tulajdonságokkal**. Ez a művelet lehetővé teszi, hogy hello megoldás háttér toocompletely felülírja a meglévő kívánt összes tulajdonság és helyettesítse be az új JSON-dokumentum `properties/desired`.
+4. **Cserélje le a címkék**. Ez a művelet lehetővé teszi, hogy hello megoldás háttér toocompletely felülírja a meglévő található összes kódcímkének és helyettesítse be az új JSON-dokumentum `tags`.
+5. **A két értesítéseket**. Ez a művelet lehetővé teszi, hogy a hello megoldás háttér toobe értesíti, ha a hello iker módosul. toodo Igen, az IoT-megoldásból toocreate útvonal és kell tooset hello adatforrás értéke túl*twinChangeEvents*. Alapértelmezés szerint nincs iker értesítések küldése általában olyan, ez azt jelenti, hogy, hogy nincs ilyen útvonal létezik-e előre. Ha hello módosítási aránya túl magas, vagy egyéb okból, például a belső hibák, hello IoT-központ, amely tartalmazza az összes módosítás csak egy értesítést küldhet. Ezért, ha az alkalmazásnak megbízható vizsgálati és naplózási az összes köztes állapotok, majd továbbra is ajánlott D2C üzenetek használata. hello iker üzenet tulajdonságait és a szövegtörzs tartalmaz.
 
     - Tulajdonságok
 
     | Név | Érték |
     | --- | --- |
     $content-típus | application/json |
-    $iothub-enqueuedtime |  Ha az értesítés küldése idő |
+    $iothub-enqueuedtime |  Ha hello értesítés küldése idő |
     $iothub-üzenet-forrás | twinChangeEvents |
     $content-kódolás | az UTF-8 |
-    deviceId | Az eszköz azonosítója |
+    deviceId | Hello eszköz azonosítója |
     hubName | Az IoT-központ nevét |
     operationTimestamp | [ISO8601] művelet időbélyegzője |
     IOT hubbal-üzenet-séma | deviceLifecycleNotification |
     opType | "replaceTwin" vagy "updateTwin" |
 
-    Üzenet Rendszertulajdonságok fűzve előtagként a `'$'` szimbólum.
+    Üzenet Rendszertulajdonságok fűzve előtagként hello `'$'` szimbólum.
 
     - Törzs
         
-    Ez a szakasz a kettős módosításokat tartalmazza JSON formátumban. Ugyanazt a formátumot használja, a javítás, azzal a különbséggel, hogy minden iker szakasz tartalmazhat: címkék, properties.reported, properties.desired és, hogy az tartalmazza-e a "$metadata" elemek. Például:
+    Ez a szakasz a JSON formátumban minden hello iker módosításait tartalmazza. Hello formátuma azonos azt használja, mint a javítások, hello különbséggel, hogy minden iker szakasz tartalmazhat: címkék, properties.reported, properties.desired és hello "$metadata" elemet tartalmaz. Például:
     ```
     {
         "properties": {
@@ -200,38 +200,38 @@ A megoldás háttérrendszeréhez a használatával a következő atomi művelet
     }
     ``` 
 
-Az előző műveletei támogatják [egyidejű hozzáférések optimista] [ lnk-concurrency] , és van szüksége a **ServiceConnect** engedéllyel, akkor az a [biztonsági] [ lnk-security] cikk.
+Összes hello támogatása az előző operations [egyidejű hozzáférések optimista] [ lnk-concurrency] és hello szükséges **ServiceConnect** engedéllyel, a hello [biztonsági ] [ lnk-security] cikk.
 
-Ezek a műveletek mellett a megoldás háttérrendszeréhez is:
+Ezenkívül toothese műveletek, hello megoldás biztonsági célból is:
 
-* Az eszköz twins használata az SQL-szerű lekérdezése [IoT-központ lekérdezési nyelv][lnk-query].
+* Hello eszköz twins hello segítségével lekérdezési SQL-szerű [IoT-központ lekérdezési nyelv][lnk-query].
 * Műveletek végzése eszköz twins használatával nagy mennyiségű [feladatok][lnk-jobs].
 
 ## <a name="device-operations"></a>Eszköz műveletek
-Az eszköz alkalmazás végez műveleteket ezeken az eszköz a két használatával a következő atomi műveletek:
+hello eszközalkalmazás működik hello eszköz iker hello atomi műveletek a következő használatával:
 
-1. **A két eszköz beolvasása**. Ez a művelet a két eszköz dokumentumát adja vissza (beleértve a címkék és a szükséges, a jelentett és a rendszer tulajdonságai) a jelenleg csatlakoztatott eszköz.
-2. **Részlegesen a jelentett tulajdonságainak frissítése**. Ez a művelet lehetővé teszi, hogy a jelenleg csatlakoztatott eszköz jelentett tulajdonságait részleges frissítése. Ez a művelet formátuma JSON frissítés, hogy a megoldás biztonsági egy részleges frissítés kívánt tulajdonságok felhasználását.
-3. **Figyelje meg a kívánt tulajdonságokkal**. A jelenleg csatlakoztatott eszközre választhat, ha értesítést szeretne kapni a kívánt tulajdonságokkal frissítések akkor fordulhat elő. Az eszköz megkapja a frissítés (teljes vagy részleges csere) hajtja végre a megoldás háttérrendszeréhez ugyanolyan formában.
+1. **A két eszköz beolvasása**. Ez a művelet hello eszköz két dokumentumot ad vissza, (beleértve a címkék és a szükséges, a jelentett és a rendszer tulajdonságai) a hello a jelenleg csatlakoztatott eszköz.
+2. **Részlegesen a jelentett tulajdonságainak frissítése**. A művelet lehetővé teszi, hogy hello részleges frissítés hello a jelentett hello jelenleg csatlakoztatott eszköz tulajdonságait. A művelet által használt hello azonos JSON frissíteni, hogy hello megoldás hátsó felhasználását egy részleges frissítés kívánt tulajdonságok formátumban.
+3. **Figyelje meg a kívánt tulajdonságokkal**. hello jelenleg csatlakoztatott eszközön választható toobe fordulhat elő, akkor a frissítés szükséges toohello tulajdonságai értesítést. hello eszköz megkapja hello hello megoldás háttérrendszerének hajtja végre a frissítést (teljes vagy részleges csere) ugyanolyan formában.
 
-Az előző működéséhez szükségesek a **DeviceConnect** engedéllyel, akkor az a [biztonsági] [ lnk-security] cikk.
+Az összes fenti műveletek hello hello szükséges **DeviceConnect** engedéllyel, a hello [biztonsági] [ lnk-security] cikk.
 
-A [Azure IoT-eszközök SDK-k] [ lnk-sdks] megkönnyítik a fenti műveleteket az sok nyelvekhez és platformokhoz használatára. További információ az IoT-központ primitívek kívánt tulajdonságokkal szinkronizálás részleteit található [eszköz újracsatlakozás folyamat][lnk-reconnection].
+Hello [Azure IoT-eszközök SDK-k] [ lnk-sdks] révén könnyen toouse hello megelőző sok nyelvekhez és platformokhoz műveletek. További információ az IoT-központ primitívek kívánt tulajdonságokkal szinkronizálás hello részleteit található [eszköz újracsatlakozás folyamat][lnk-reconnection].
 
 > [!NOTE]
-> Eszköz twins jelenleg csak a MQTT protokollal IoT-központ csatlakozó eszközökön érhető el.
+> Eszköz twins jelenleg csak az eszközök, tooIoT központi csatlakozás elérhető hello MQTT protokoll használatával.
 > 
 > 
 
 ## <a name="reference-topics"></a>Referencia-témaköreit:
-A következő témaköröket további tudnivalókat az IoT hub hozzáférést biztosítanak.
+hello következő referencia-témakörökre biztosít ellenőrző hozzáférés tooyour IoT-központ további információt.
 
 ## <a name="tags-and-properties-format"></a>Címkék és a Tulajdonságok
-Címkék, kívánt és jelentett tulajdonságainak JSON-objektumok a következő korlátozásokkal:
+Címke, és a jelentett kívánt tulajdonság található a következő korlátozások hello JSON-objektumok:
 
 * A JSON-objektumok összes kulcsai kis-és nagybetűket 64 bájt UTF-8 UNICODE karakterláncokat. Engedélyezett karakterek kizárása UNICODE vezérlőkaraktereket (szegmensek C0 és C1), és `'.'`, `' '`, és `'$'`.
-* JSON-objektumok összes értéke lehet a következő JSON-típusok: boolean, számot, karakterlánc, objektum. Tömbök használata nem megengedett.
-* Címkék, kívánt és jelentett tulajdonságok minden JSON-objektumok maximális mélysége 5 rendelkezhet. Például a következő objektum érvénytelen:
+* A következő JSON típusok hello hasznos lehet a JSON-objektumok szereplő összes érték: boolean, számot, karakterlánc, objektum. Tömbök használata nem megengedett.
+* Címkék, kívánt és jelentett tulajdonságok minden JSON-objektumok maximális mélysége 5 rendelkezhet. Például a következő objektum hello érvénytelen:
 
         {
             ...
@@ -254,12 +254,12 @@ Címkék, kívánt és jelentett tulajdonságainak JSON-objektumok a következő
 * Az összes karakterlánc-érték nagyobb, mint 512 bájt hosszúságú lehet.
 
 ## <a name="device-twin-size"></a>Eszköz iker mérete
-Az IoT-központ kikényszeríti egy 8 KB-os méret korlátozás értékeit `tags`, `properties/desired`, és `properties/reported`, kivéve a csak olvasható elemeket.
-A méret számított leltár szerint UNICODE kivételével minden karakter karakterek (szegmensek C0 és C1) és a lemezterület ellenőrzése `' '` amikor megjelenik egy karakterlánc-konstansra kívül.
-Az IoT-központ hibával elutasítja a összes művelet lenne növelje a mérete meghaladja a közzétett dokumentumokat.
+Az IoT-központ kikényszeríti egy 8 KB-os méret korlátozás hello értékeit `tags`, `properties/desired`, és `properties/reported`, kivéve a csak olvasható elemeket.
+hello mérete számított leltár szerint UNICODE kivételével minden karakter karakterek (szegmensek C0 és C1) és a lemezterület ellenőrzése `' '` amikor megjelenik egy karakterlánc-konstansra kívül.
+Az IoT-központ volna nagyítása hello hello meghaladja a dokumentumok összes művelet elutasítja hiba történt.
 
 ## <a name="device-twin-metadata"></a>Eszköz iker metaadatok
-Az IoT-központ tárolja a minden JSON-objektumból, az eszköz a két utolsó frissítésének időbélyeg szükséges tulajdonságok jelentett. Az időbélyeg helyi időre UTC és kódolású a [ISO8601] formátum `YYYY-MM-DDTHH:MM:SS.mmmZ`.
+Az IoT-központ tárolja a hello időbélyeg hello minden JSON-objektumból, az eszköz a két utolsó frissítésének szükséges tulajdonságok jelentett. hello időbélyegeket UTC és hello kódolású [ISO8601] formátum `YYYY-MM-DDTHH:MM:SS.mmmZ`.
 Példa:
 
         {
@@ -305,49 +305,49 @@ Példa:
             ...
         }
 
-Ezek az információk megőrzése érdekében távolítsa el a objektum kulcsok frissítések tartják minden szinten (nem csak a JSON struktúrában leaves).
+Ez az információ minden szintű (ne csak hello levelek, JSON struktúrában hello) toopreserve frissítések objektum bejegyzéseinek eltávolítása kell tartani.
 
 ## <a name="optimistic-concurrency"></a>Egyidejű hozzáférések optimista
 Címkék, szükséges, és a Tulajdonságok jelentett összes támogatási hozzáférések optimista.
-Címkék rendelkezik egy ETag megfelelően [RFC7232], amely jelzi, hogy a címke JSON-megjelenítés. A megoldás háttérrendszeréhez feltételes frissítési műveletek ETag-EK használatával biztosítják a konzisztenciát.
+Címkék rendelkezik egy ETag megfelelően [RFC7232], amely JSON-megjelenítés hello címke jelöli. A feltételes frissítési műveletekben hello megoldás háttér tooensure konzisztencia az ETag-EK is használhatja.
 
-Eszköz iker szükséges, és a Tulajdonságok jelentett ETag-EK nem rendelkezik, de rendelkezik egy `$version` érték, amely garantáltan növekményes. Ehhez hasonlóan az egy ETag-gel, a verziója használható a frissítési entitás frissítések konzisztencia érvényesítéséhez. Például egy eszköz alkalmazás jelentett tulajdonság vagy a megoldás háttérrendszeréhez kívánt tulajdonság.
+Eszköz iker szükséges, és a Tulajdonságok jelentett ETag-EK nem rendelkezik, de rendelkezik egy `$version` érték, amely garantáltan toobe növekményes. Hasonlóképpen tooan ETag, hello verzió frissítése fél tooenforce konzisztencia frissítések hello használható. Például egy eszköz-alkalmazás egy jelentett tulajdonság vagy hello megoldás háttérrendszerének kívánt tulajdonság.
 
-Verziók is hasznosak, ha (például az eszköz alkalmazás tartják be a kívánt tulajdonságokkal) observing ügynök fajok között egy lekérése művelet eredményét, és a frissítési értesítést kell feloldani. A szakasz [eszköz újracsatlakozás folyamat] [ lnk-reconnection] nyújt részletesebb információt.
+Verziók is hasznosak, ha (például hello eszközalkalmazás szükséges hello tulajdonságok betartásával) observing ügynök fajok lekérése művelet eredménye hello és frissítési értesítést között kell feloldani. a szakasz hello [eszköz újracsatlakozás folyamat] [ lnk-reconnection] nyújt részletesebb információt.
 
 ## <a name="device-reconnection-flow"></a>Eszköz újracsatlakozás folyamata
-Az IoT-központ nem őrzi meg a kívánt tulajdonságokkal frissítési értesítések leválasztott eszközökhöz. Ez azt jelenti, hogy egy eszköz, amely kapcsolódik a teljes kívánt tulajdonságokat tartalmazó dokumentum, frissítési értesítések való előfizetés mellett kell olvasni. Frissítési értesítések és a teljes visszaállításhoz közötti fajok lehetőséget biztosítani a következő folyamatot kell biztosítani:
+Az IoT-központ nem őrzi meg a kívánt tulajdonságokkal frissítési értesítések leválasztott eszközökhöz. Ez azt jelenti, hogy a csatlakozó eszköz hello teljes kívánt tulajdonságokat tartalmazó dokumentum, a frissítési értesítések továbbá toosubscribing kell olvasni. Frissítési értesítések és a teljes visszaállításhoz közötti fajok hello lehetőséget biztosítani, a következő folyamat hello biztosítani kell:
 
-1. Eszköz alkalmazásának csatlakozik az IoT-központ.
+1. Eszköz alkalmazásának tooan IoT-központ csatlakozik.
 2. Eszköz alkalmazás frissítési értesítések előfizet a kívánt tulajdonságokat.
-3. Eszköz alkalmazás lekéri a teljes dokumentumot a kívánt tulajdonságokat.
+3. Eszköz alkalmazás lekéri a hello teljes dokumentumot a kívánt tulajdonságokat.
 
-Az eszköz alkalmazás figyelmen kívül hagyhatja az összes értesítésben `$version` kisebb vagy egyenlő, mint a teljes lekérdezése dokumentum verziója. Ez a megközelítés lehetőség, mert az IoT-központ biztosítja, hogy verziók mindig növelhető.
+hello eszközalkalmazás figyelmen kívül hagyhatja az összes értesítésben `$version` kisebb vagy egyenlő, mint hello teljes lekérdezése dokumentum hello verzióját. Ez a megközelítés lehetőség, mert az IoT-központ biztosítja, hogy verziók mindig növelhető.
 
 > [!NOTE]
-> Ezt a tagot már megvalósította a [Azure IoT-eszközök SDK-k][lnk-sdks]. Ez a megnevezés akkor hasznos, csak akkor, ha az eszköz alkalmazás az Azure IoT-eszközök SDK-k nem használható, és programot kell közvetlenül a MQTT felületet.
+> A működési elvet tagot már megvalósította a hello [Azure IoT-eszközök SDK-k][lnk-sdks]. A leírást akkor hasznos, csak akkor, ha hello eszköz alkalmazás az Azure IoT-eszközök SDK-k nem használható, és közvetlenül kell program hello MQTT felületet.
 > 
 > 
 
 ## <a name="additional-reference-material"></a>További referenciaanyag
-Az IoT Hub fejlesztői útmutató más hivatkozás témaköröket tartalmazza:
+Más hello IoT Hub fejlesztői útmutató hivatkozási témaköröket tartalmazza:
 
-* A [IoT-központok végpontjai] [ lnk-endpoints] a cikk ismerteti a különböző végpontok, amelyek minden egyes IoT-központ elérhetővé teszi a futásidejű és felügyeleti műveletek.
-* A [sávszélesség-szabályozási és kvóták] [ lnk-quotas] a cikk ismerteti a kvótákat, az IoT-központ szolgáltatás és a sávszélesség-szabályozási viselkedését történik, ha a szolgáltatás használatához.
-* A [Azure IoT-eszközök és szolgáltatások SDK] [ lnk-sdks] cikk felsorolja a különböző nyelvi használhatja az eszköz és a szolgáltatás alkalmazások gondoskodnak az IoT hubbal fejlesztésekor SDK-k.
-* A [IoT-központ lekérdezési nyelv eszköz twins, feladatok és üzenet útválasztási] [ lnk-query] a cikk ismerteti az IoT-központ lekérdezési nyelv segítségével IoT Hub eszköz twins és feladatok kapcsolatos adatok lekérését.
-* A [IoT Hub MQTT támogatási] [ lnk-devguide-mqtt] cikkben olvashat az IoT-Központ támogatja a MQTT protokollt.
+* Hello [IoT-központok végpontjai] [ lnk-endpoints] cikkből hello minden egyes IoT-központ elérhetővé teszi a futásidejű és felügyeleti műveletek különböző végpontokhoz.
+* Hello [sávszélesség-szabályozási és kvóták] [ lnk-quotas] cikkből hello kvóták toohello IoT-központ szolgáltatás és szabályozási viselkedés tooexpect hello hello szolgáltatás használatakor.
+* Hello [Azure IoT-eszközök és szolgáltatások SDK] [ lnk-sdks] cikk listák hello használhatja az eszköz és a szolgáltatás alkalmazások gondoskodnak az IoT hubbal való fejlesztésekor SDK különböző nyelvi csomagok.
+* Hello [IoT-központ lekérdezési nyelv eszköz twins, feladatok és üzenet útválasztási] [ lnk-query] cikkből hello tooretrieve IoT Hub-ből származó adataival az eszköz twins és feladatok is használhatja az IoT-központ lekérdezési nyelv .
+* Hello [IoT Hub MQTT támogatási] [ lnk-devguide-mqtt] cikk hello MQTT protokoll IoT Hub-támogatással kapcsolatos további információkat tartalmazza.
 
 ## <a name="next-steps"></a>Következő lépések
-Most már rendelkezik megismerte eszköz twins, előfordulhat, hogy érdeklődik a következő IoT Hub fejlesztői útmutató témakörei:
+Most eszköz twins megismerte esetleg érdekli hello IoT Hub fejlesztői útmutató témakörei a következő:
 
 * [Az eszközön közvetlen metódus][lnk-methods]
 * [Több eszközön feladatok ütemezése][lnk-jobs]
 
-Ha azt szeretné, hogy próbálja ki azokat a jelen cikkben ismertetett fogalmakat, esetleg érdekli az IoT-központ anyagra:
+Ha szeretné tootry meg néhány ebben a cikkben ismertetett hello fogalmakat, esetleg az IoT-központ oktatóanyagok következő hello iránt érdeklődik:
 
-* [A két eszköz használata][lnk-twin-tutorial]
-* [A két eszköztulajdonságok használata][lnk-twin-properties]
+* [Hogyan toouse hello eszköz iker][lnk-twin-tutorial]
+* [Hogyan toouse eszköz iker tulajdonságai][lnk-twin-properties]
 
 <!-- links and images -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure CLI parancsfájl minta - társ két virtuális hálózatok |} Microsoft Docs"
+title: "aaaAzure CLI parancsfájl minta - partnert két virtuális hálózatok |} Microsoft Docs"
 description: "Az Azure CLI parancsfájl minta - társ két virtuális hálózatok"
 services: virtual-network
 documentationcenter: virtual-network
@@ -15,15 +15,15 @@ ms.tgt_pltfrm:
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: kumud
-ms.openlocfilehash: a2b8fda288072e2fb0087988bbd68d3e4d9031d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54dabb2b9e05951d10f1b6b4f61ca592ce11d364
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="peer-two-virtual-networks"></a>A két partner virtuális hálózatok
 
-Ezt a parancsfájlt hoz létre, és összeköti a két virtuális hálózatokat az ugyanabban a régióban trhough az Azure-hálózatot. A parancsfájl futtatása után létrehozhat egy társviszony-létesítés virtuális hálózatok között.
+Ezt a parancsfájlt hoz létre, és csatlakozik a hello két virtuális hálózat ugyanabban a régióban trhough hello Azure-hálózatot. Hello parancsprogram futtatása után létrehozhat egy társviszony-létesítés virtuális hálózatok között.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -32,11 +32,11 @@ Ezt a parancsfájlt hoz létre, és összeköti a két virtuális hálózatokat 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/virtual-network/peer-two-virtual-networks/peer-two-virtual-networks.sh "partnert két hálózat")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-network/peer-two-virtual-networks/peer-two-virtual-networks.sh "Peer two networks")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A következő parancsot az erőforráscsoport, virtuális gép és az összes kapcsolódó erőforrások eltávolítása.
+Futtassa a következő parancs tooremove hello erőforráscsoport, virtuális gép és minden kapcsolódó erőforrások hello.
 
 ```azurecli
 az group delete --name myResourceGroup --yes
@@ -44,7 +44,7 @@ az group delete --name myResourceGroup --yes
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat egy erőforráscsoport, virtuális gép és minden kapcsolódó erőforrás létrehozásához. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok toocreate egy erőforráscsoport, a virtuális gép hello, és az összes kapcsolódó erőforrásokat. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -55,6 +55,6 @@ A parancsfájl a következő parancsokat egy erőforráscsoport, virtuális gép
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További hálózati CLI parancsfájl minták megtalálhatók a [Azure hálózati áttekintés dokumentáció](../cli-samples.md).
+További hálózati CLI parancsfájl minták hello található [Azure hálózati áttekintés dokumentáció](../cli-samples.md).

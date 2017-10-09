@@ -1,6 +1,6 @@
 ---
-title: "A kezelt alkalmazások Azure áttekintése |} Microsoft Docs"
-description: "A fogalmakat ismerteti az Azure által felügyelt alkalmazások"
+title: "a kezelt alkalmazások az Azure aaaOverview |} Microsoft Docs"
+description: "Hello fogalmakat ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,32 +10,32 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/09/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: 7ace8e1ea8038e0748bfed00c0cc0a4fa340588b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2fd1844a442515f4492c890c9798073475a66f88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-managed-applications-overview"></a>Az Azure kezelt alkalmazások – áttekintés
 
-Azure használó szállítók is megoldásokat nyújtsanak a világ különböző ügyfeleknek. Az Azure piactér egy gyűjteménye, amely a belső és külső gyártóktól származó összetett, multiresource sablonok több száz áll. Az ügyfelek percnél, telepítheti és indíthatja platform (PaaS) vagy szoftver, mint egy szolgáltatott szoftverként (SaaS) alkalmazások. 
+Azure használó szállítók kínálhat megoldások toocustomers hello world körül. Az Azure piactér egy gyűjteménye, amely a belső és külső gyártóktól származó összetett, multiresource sablonok több száz áll. Az ügyfelek percnél, telepítheti és indíthatja platform (PaaS) vagy szoftver, mint egy szolgáltatott szoftverként (SaaS) alkalmazások. 
 
-Bár a piactér az ügyfelek számára, hogy gyorsan üzembe helyezhet egy ajánlat nagyszerű lehetőséget nyújt, az ügyfél felelős karbantartásáért, valamint a megoldás frissítése. A virtuális gép lemezképének számlázási túl szállítók nem díjat számítanak ügyfelek számára az alkalmazás használatát. Ezenkívül szállítók nem hogy felhasználók módosítsák a kritikus alkalmazás-erőforrásokat. Szállítókkal is nem blokkolják a hozzáférést egy alkalmazást alkotó szellemi tulajdonhoz. Azure kezelt alkalmazások megoldásokat biztosítanak a problémák. 
+Bár hello piactér nagyszerű lehetőséget biztosít az ügyfelek tooquickly egy ajánlat, a rendszer hello ügyfél felelős karbantartásáért, valamint a hello megoldás frissítése. Hello virtuális gép lemezképének számlázási túl szállítók nem díjat számítanak ügyfelek hello használata az alkalmazások számára. Ezenkívül szállítók nem hogy felhasználók módosítsák a kritikus alkalmazás-erőforrásokat. A szállítók nem blokkolható hozzáférés toointellectual tulajdonságot, amely az alkalmazás. Azure kezelt alkalmazások megoldásokat biztosítanak a problémák. 
 
-Kezelt alkalmazás hasonlít a piactéren, és egy fő különbség a megoldássablon. A kezelt alkalmazás az erőforrások törlődnek a szállító által kezelt az erőforráscsoporthoz. Az erőforráscsoport megtalálható-e az ügyfél előfizetését, de a gyártó által készített bérlői identitás hozzáfér az erőforráscsoportot.
+Egy felügyelt alkalmazást egy fő különbség a piactér, hello hasonló tooa megoldássablonban. A kezelt alkalmazás a kiépített tooa erőforráscsoport hello szállító által kezelt áll hello erőforrás. hello erőforráscsoport hello ügyfél előfizetésben, de hello gyártója által biztosított bérlői identitás hozzáférés toohello erőforráscsoportot.
 
 ## <a name="advantages-of-managed-applications"></a>Felügyelt alkalmazások előnyei
 
-Felügyelt szolgáltató (MSPs) ISV-k, és a vállalati központi informatikai csapatoknak kezelt alkalmazások használatával megoldásokat a piactér vagy a szolgáltatáskatalógus keresztül. Bár az ügyfelek ezeket az előfizetéseket a kezelt alkalmazások telepítéséhez, karbantartásához, frissítéséhez vagy szolgáltatás őket nincs. Szállítókkal kezelését, és az alkalmazások támogatását, mert az ügyfelek ezeket az alkalmazásokat kezeléséhez az alkalmazás-specifikus tartomány Tudásbázis fejlesztéséhez nem rendelkezik. Az ügyfelek automatikusan szerezheti be az alkalmazás frissítései nem kell foglalkoznia a hibaelhárítás és az alkalmazásokkal kapcsolatos problémák diagnosztizálásához.
+Felügyelt szolgáltató (MSPs) ISV-k, és a vállalati központi informatikai csapatoknak használhatja a kezelt alkalmazások toodeliver megoldások hello piactér vagy szolgáltatáskatalógus hello. Bár az ügyfelek központi telepítése az előfizetések felügyelt alkalmazást, nem rendelkeznek toomaintain, frissíteni vagy szolgáltatás őket. Szállítók kezelését, és hello alkalmazások támogatását, mert az ügyfelek nem rendelkezik toodevelop alkalmazásspecifikus tartomány Tudásbázis toomanage ezeket az alkalmazásokat. Az ügyfelek is automatikusan megszerezze alkalmazás hello kell tooworry hibaelhárítási és hello alkalmazásokkal kapcsolatos problémák diagnosztizálásával kapcsolatos nélkül.
 
-A szállítók és szolgáltatók kezelt alkalmazások infrastruktúra és a szoftver a piactéren keresztül eladásra csatornát létrehozni. Felügyelt alkalmazások is lehetőséget nyújtanak a szolgáltatások és működési támogatás csatlakoztatása az Azure-ügyfél. A szállítók is kiszámlázni ügyfelek az Azure számlázási rendszer használatával. Ezek sablonok segítségével központilag telepített alkalmazások életciklusának kezelését. Ezek a megoldások olyan önálló és lezárt az ügyfélnek, a szállítók is magas színvonalú szolgáltatásokat nyújthatnak. Ez a megközelítés PaaS és a Szolgáltatottszoftver-szállítók előnyökkel jár. Emellett segít vállalati központi platform csoportok és rendszerintegrátorok (SIs) csomag, és a megoldások értékesítik szeretnék.
+A szállítók és szolgáltatók kezelt alkalmazások hozzon létre egy csatorna toosell infrastruktúra és a szoftver hello piactéren keresztül. Felügyelt alkalmazások is adjon meg egy módon tooattach szolgáltatások és működési támogatással rendelkező ügyfelek válaszidejével tooAzure. A szállítók is kiszámlázni ügyfelek hello Azure számlázási rendszer használatával. Sablonok toomanage hello életciklusát központilag telepített alkalmazások is használják. Ezek a megoldások önálló és lezárt toohello-ügyfelekre, a szállítók is magas színvonalú szolgáltatásokat nyújthatnak. Ez a megközelítés PaaS és a Szolgáltatottszoftver-szállítók előnyökkel jár. Emellett segít vállalati központi platform csoportok és rendszerintegrátorok (SIs) ki szeretné, hogy toopackage, és a megoldások értékesítik.
 
 ## <a name="managed-application-types"></a>Kezelt alkalmazás típusa
 Kezelt alkalmazások az Azure két típus térjen: szolgáltatáskatalógus és a piactéren.
  
 ### <a name="service-catalog"></a>Service Catalog  
 
-A szolgáltatáskatalógus az ügyfelek egy katalógust a szervezet munkatársai által használt Azure jóváhagyott megoldások hozhat létre. Ilyen karbantartása megoldások katalógus akkor hasznos, központi informatikai csapata hozza létre a a vállalatok számára. Ezek segítségével a katalógus közben megoldásokat biztosítanak a szervezetek számára, győződjön meg arról, hogy bizonyos szervezeti szabványoknak való megfelelés. Ezek szabályozhatja, frissítése és ezek az alkalmazások karbantartása. Az alkalmazottak a katalógus segítségével könnyen felfedezheti az alkalmazásokat, amelyek az informatikai részleg által jóváhagyott és ajánlott széles skáláját. Az ügyfelek hozza létre őket a szolgáltatáskatalógus felügyelt alkalmazásokat láthatják. Is láthatják a kezelt alkalmazások, amelyek a szervezet más munkatársainak velük.
+A szolgáltatáskatalógus hello az ügyfelek egy katalógust a szervezet munkatársai által használt Azure toobe jóváhagyott megoldások hozhatnak létre. Ilyen karbantartása megoldások katalógus akkor hasznos, központi informatikai csapata hozza létre a a vállalatok számára. Hello katalógus tooensure szabványoknak való megfelelés bizonyos szervezeti használhatnak, amíg megoldásokat biztosítanak a szervezetek számára. Ezek szabályozhatja, frissítése és ezek az alkalmazások karbantartása. Az alkalmazottak használhatnak hello katalógus tooeasily hello gazdag készletét, amely ajánlott, és az informatikai részleg által jóváhagyott alkalmazások felderítésére. Az ügyfelek hozza létre őket hello szolgáltatáskatalógus felügyelt alkalmazásokat láthatják. Is láthatják hello felügyelt alkalmazások a szervezet megosztása őket, hogy mások.
  
 További információ a szolgáltatáskatalógus kezelt alkalmazás közzététele: [létrehozása és a szolgáltatáskatalógus kezelt alkalmazás közzététele](managed-application-publishing.md).
  
@@ -43,39 +43,39 @@ További információ a szolgáltatási katalógus által felügyelt alkalmazás
  
 ### <a name="marketplace"></a>Piactér
 
-Kezelt alkalmazások az Azure-portálon a piactéren keresztül érhetők el. Miután a szállító közzéteszi ezeket az alkalmazásokat, azok elérhetők a cégen belül vagy kívül egy szervezet felhasználásához. Ezzel a megközelítéssel MSPs ISV-k és SIs kínálhat megoldásuk összes Azure-ügyfél. Az ügyfelek élvezheti a megismeréséhez, és a megoldások karbantartása fektetnek ezeket nem kell összetett megoldások segítségével. 
+Felügyelt alkalmazások hello piactér a hello Azure-portálon keresztül érhetők el. Miután hello szállító közzéteszi ezeket az alkalmazásokat, azok elérhetők a cégen belül vagy kívül egy szervezet tooconsume. Ezzel a megközelítéssel MSPs ISV-k és SIs kínálhat a megoldások tooall Azure-ügyfél. Az ügyfelek beolvasása hello előnye, hogy ezek nélkül hello kell tooinvest megismeréséhez és hello megoldások fenntartása összetett megoldás használata. 
 
-Jelenleg közzétevők elérhetővé teheti az ajánlatok egy kezelt alkalmazást, vagy a megoldássablon, amely nem rendelkezik felügyelt. A kezelt alkalmazás közzététele a fő összetevők közé tartoznak, a sablon és a felhasználói felület definition fájlt. A sablonfájl kiépített erőforrásokat ismerteti. A felhasználói felület csomagdefiníciós fájl ismerteti, hogyan jelennek meg a portál az ezekhez az erőforrásokhoz történő üzembe helyezéséhez szükséges adatokat. A szükséges fájlok csomagolva egy .zip fájlt, és a feltöltése a közzétételi portálon keresztül.
+Jelenleg közzétevők elérhetővé teheti az ajánlatok egy kezelt alkalmazást, vagy a megoldássablon, amely nem rendelkezik felügyelt. hello fő összetevőit kezelt alkalmazás közzététele hello sablonfájl és hello felhasználói felület csomagdefiníciós fájl tartalmazza. hello sablonfájl hello erőforrások kiépített ismerteti. hello felhasználói felület csomagdefiníciós fájl ismerteti, hogyan hello szükséges bemeneti ezekhez az erőforrásokhoz történő üzembe helyezéséhez hello portálon jelennek meg. hello szükséges fájlok csomagolva egy .zip fájlt, és a feltöltése hello közzétételi portálon keresztül.
  
-További információ a piactéren kezelt alkalmazás közzététele: [Azure felügyelt alkalmazások a piactéren](managed-application-author-marketplace.md).
+További információ a felügyelt alkalmazási toohello piactér közzététele: [Azure felügyelt alkalmazások a piactér hello](managed-application-author-marketplace.md).
 
-További információ a piactérről kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactéren](managed-application-consume-marketplace.md).
+További információ a piactér hello a kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactér hello](managed-application-consume-marketplace.md).
 
 ## <a name="key-concepts"></a>Fő fogalmak
 
 ### <a name="managed-resource-group"></a>Felügyelt erőforráscsoport
-A felügyelt erőforráscsoport, ahol az Azure erőforrások a sablonban kiépített jönnek létre. Például ha a készülék használatával hozzon létre egy tárfiókot, az erőforráscsoport a tárolási fiók erőforrás. A készülék erőforrás nem tartalmaz.
+hello felügyelt erőforráscsoport egy adott összes hello Azure hello sablonban kiépített erőforrások jönnek létre. Például ha hello készülék használt toocreate egy tárfiókot, ez az erőforráscsoport hello tárolási fiók erőforrás tartalmazza. Hello készülék erőforrás nem tartalmaz.
 
 ### <a name="appliance-package"></a>Készülék csomag
-A közzétevő a sablonfájlokat importálni és a createUIDefinition fájlt tartalmazó csomagot hoz létre. Pontosabban a következő fájlokat tartalmazza:
+hello publisher hello sablonfájlokat és hello createUIDefinition fájlt tartalmazó csomagot hoz létre. Pontosabban a következő fájlok hello tartalmazza:
 
-- **applianceMainTemplate.json**: Ez a sablon fájl határozza meg a készülék által kiépített összes erőforrást. Ezt a fájlt egy olyan rendszeres sablon fájl erőforrások létrehozására szolgál.
+- **applianceMainTemplate.json**: A sablonfájl hello készülék által kiépített hello erőforrások meghatározása. Ezt a fájlt egy olyan rendszeres sablon fájl toocreate erőforrások használatban van.
 
-- **MainTemplate.json**: Ez a sablon fájl határozza meg a készülék erőforrás (Microsoft.Solutions/appliances). Egy kulcstulajdonsággal ehhez az erőforráshoz a ManagedResourceGroupId. Ez a tulajdonság azt jelzi, hogy melyik erőforráscsoport a tényleges erőforrások applianceMainTemplate.json definiált futtatására szolgál.
+- **MainTemplate.json**: Ez a sablonfájl hello készülék erőforrás (Microsoft.Solutions/appliances) határozza meg. Egy kulcstulajdonsággal ehhez az erőforráshoz a ManagedResourceGroupId. Ez a tulajdonság azt jelzi, melyik erőforráscsoport használt toohost hello tényleges erőforrások applianceMainTemplate.json definiált.
 
-- **applianceCreateUIDefinition.json**: Ez a fájl ismerteti, hogyan megjelenítése a felhasználói felület a sablonban definiált paraméterek szükséges.
+- **applianceCreateUIDefinition.json**: Ez a fájl ismerteti, hogyan hello hello sablon hello paraméterek szükséges felhasználói felület megjelenítése.
 
 ### <a name="authorization"></a>Engedélyezés
-A közzétevő a szállító által az ügyfél nevében az erőforrások kezeléséhez szükséges engedélyeket kell adnia. Ezt az engedélyt a felügyelt erőforrások csoportra vonatkozik. Állítsa be a következő értékeket:
+hello publisher hello ügyfél nevében hello szállító toomanage hello erőforrások szükséges hello engedélyek kell megadnia. Ez az engedély toohello felügyelt erőforráscsoport vonatkozik. Állítsa be a következő értékek hello:
 
-- **PrincipalID**: a felhasználó, csoport vagy alkalmazás, amelynek hozzáférési jogot a felügyelt erőforráscsoportot az Azure Active Directory (Azure AD) azonosítója. Ez az azonosító a közzétevő bérlőhöz tartozik.
+- **PrincipalID**: hello hello felhasználó, csoport vagy toogrant hozzáférés toohello felügyelt erőforráscsoport által használt alkalmazás Azure Active Directory (Azure AD) azonosítója. Ez az azonosító toohello közzétevő-bérlő tartozik.
 
-- **Roledefinitionid-értékkel**: az előző egyszerű azonosító rendelt szerepkör az Azure AD azonosítója A beépített szerepköralapú hozzáférés-vezérlés szerepköreinek a közzétevő bérlői bármelyike lehet. További információkért lásd: [átruházásához hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
+- **Roledefinitionid-értékkel**: hello hello szerepkörrel toohello megelőző egyszerű azonosító az Azure AD-azonosítója Beépített szerepköralapú hozzáférés-vezérlés szerepköreinek hello hello publisher bérlői bármelyike lehet. További információkért lásd: [átruházásához hozzáférés-vezérlés beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Felügyelt alkalmazások közzétételéhez a piactéren kapcsolatos információkért lásd: [Azure felügyelt alkalmazások a piactéren](managed-application-author-marketplace.md).
-* További információ a piactérről kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactéren](managed-application-consume-marketplace.md).
+* Közzétételi kezelt alkalmazások toohello piactér kapcsolatos információkért lásd: [Azure felügyelt alkalmazások a piactér hello](managed-application-author-marketplace.md).
+* További információ a piactér hello a kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactér hello](managed-application-consume-marketplace.md).
 * További információ a szolgáltatáskatalógus kezelt alkalmazás közzététele: [létrehozása és a szolgáltatáskatalógus kezelt alkalmazás közzététele](managed-application-publishing.md).
 * További információ a szolgáltatási katalógus által felügyelt alkalmazások felhasználása: [felhasználását a szolgáltatási katalógus által felügyelt alkalmazások](managed-application-consumption.md).
-* A felhasználói felület csomagdefiníciós fájl létrehozásához lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* a felhasználói felület csomagdefiníciós fájl toocreate lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).

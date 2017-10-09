@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Analytics U-SQL kognitív képességek segítségével |} Microsoft Docs"
-description: "Az eszközintelligencia kognitív képességek használata U-SQL-ben"
+title: "Azure Data Lake Analytics U-SQL kognitív aaaUsing képességei |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello eszközintelligencia U-SQL kognitív képességek"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: f77329f9838d6e824afa7234de90f62257a004de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9ac71f490e929070fa0e72b93c3ffdb1ab243b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-get-started-with-the-cognitive-capabilities-of-u-sql"></a>Oktatóanyag: Ismerkedés a U-SQL kognitív lehetőségeinek
+# <a name="tutorial-get-started-with-hello-cognitive-capabilities-of-u-sql"></a>Oktatóanyag: Megismerkedés a U-SQL hello kognitív képességei
 
-A fejlesztők kognitív képességet biztosít a U-SQL helyezze az eszközintelligencia a big Data típusú adatok programok telepítése és használata. A teljes folyamat egyszerű:
+A U-SQL kognitív képességek lehetővé fejlesztők toouse eszközintelligencia be a big Data típusú adatok programok. az egyszerű folyamat hello:
 
-* A referencia szerelvény utasítás használható a U-SQL parancsfájl kognitív funkciók lehetővé tétele
-* A folyamat során a rendszer kognitív lehetőségek hívása 
+* Hello referencia szerelvény utasítás tooenable hello kognitív funkciók használata hello U-SQL-parancsfájl
+* Hello folyamat művelet hívására toouse hello kognitív képességek 
 
 ## <a name="imaging-scenarios"></a>Képkezelő forgatókönyvek
 
 ### <a name="example-image-tagging"></a>Példa: Kép címkézése
 
-A következő példa bemutatja a lemezkép-készítési képességek objektumok azonosíthatók a képek egy végpontok közötti használatát.
+a következő példa hello képességek toodetect objektumok képek imaging hello egy végpont használatát mutatja be.
 
     REFERENCE ASSEMBLY ImageCommon;
     REFERENCE ASSEMBLY FaceSdk;
@@ -44,7 +44,7 @@ A következő példa bemutatja a lemezkép-készítési képességek objektumok 
         FROM @"/images/{FileName:*}.jpg"
         USING new Cognition.Vision.ImageExtractor();
 
-    // Extract the number of objects on each image and tag them 
+    // Extract hello number of objects on each image and tag them 
     @objects =
         PROCESS @imgs 
         PRODUCE FileName,
@@ -120,7 +120,7 @@ Tegyük fel, amely "A War és a nyugodt maradhat" áll bemeneti tudunk Leo Tolst
                 Text
         USING new Cognition.Text.KeyPhraseExtractor();
 
-    // Tokenize the key phrases.
+    // Tokenize hello key phrases.
     @kpsplits =
         SELECT No,
             Year,

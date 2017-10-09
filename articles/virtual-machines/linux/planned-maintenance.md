@@ -1,5 +1,5 @@
 ---
-title: "Linux virtuális gépek Azure-ban frissítéseinek és karbantartás |} Microsoft Docs"
+title: "aaaMaintenance és frissítések Linux virtuális gépek Azure-ban |} Microsoft Docs"
 description: "Az Azure-ban futó Linux virtuális gépek frissítéseinek és karbantartási áttekintése."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 08/14/2017
 ms.author: zivr
-ms.openlocfilehash: 6ead5f0b6a065710a70f1e44d9672c6d8cc4c1e2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b5fcf0211971a56ca04f4327a322dfc2e2c0941a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="planned-maintenance-for-linux-virtual-machines"></a>A Linux virtuális gépek tervezett karbantartás 
 
@@ -27,5 +27,5 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="next-steps"></a>Következő lépések
 
-A [Azure metaadat-szolgáltatás](instance-metadata-service.md) lehetővé teszi a virtuális gép az Azure-ban tárolt információk felderítéséhez. 
+Hello [Azure metaadat-szolgáltatás](instance-metadata-service.md) lehetővé teszi a virtuális gép Azure-ban üzemeltetett toodiscover adatait. 
 

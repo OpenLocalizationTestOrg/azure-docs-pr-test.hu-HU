@@ -1,6 +1,6 @@
 ---
-title: "A GitHub-tárházban kapcsolódó webalkalmazás üzembe helyezése |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablon használatával webalkalmazás üzembe helyezése a GitHub-tárházban projektet tartalmaz."
+title: "a webes alkalmazás, amely aaaDeploy kapcsolódó tooa GitHub-tárházban |} Microsoft Docs"
+description: "Használja az Azure Resource Manager sablon toodeploy egy webalkalmazást, a GitHub-tárházban projektet tartalmaz."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
-ms.openlocfilehash: 77064802814296d0c21f004534e4264d2f97252e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b23416c4c06a60991517e6ee4cd82bebc5a9d73
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-web-app-linked-to-a-github-repository"></a>A GitHub-tárházban kapcsolódó webalkalmazás üzembe helyezése
-Ebben a témakörben, megtudhatja, hogyan egy Azure Resource Manager-sablon, amely telepít egy webalkalmazást, amely csatolva van egy GitHub-tárházban a projekt létrehozásához. Megtudhatja, hogyan határozza meg, mely erőforrásokat központilag telepíti, és hogyan adhat meg a paramétereket, amelyek megadott, amikor a központi telepítés végrehajtása. Ez a sablont használhatja a saját környezeteiben, vagy testre is szabhatja a saját követelményeinek megfelelően.
+# <a name="deploy-a-web-app-linked-tooa-github-repository"></a>A webes alkalmazás kapcsolódó tooa GitHub-tárházban telepítése
+Ebben a témakörben megismerheti, hogyan toocreate egy Azure Resource Manager-sablon, amely webes alkalmazás központi telepítését végző kapcsolódó tooa projektre a GitHub-tárházban. Megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet igényeinek.
 
 Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Tekintse meg a teljes sablon [Web App csatolt GitHub sablonhoz](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).
+Hello teljes sablon, lásd: [Web App csatolt tooGitHub sablon](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.json).
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-deploy"></a>Mit fog üzembe helyezni
-Ezzel a sablonnal a projektből a Githubon kódot tartalmazó webalkalmazás üzembe helyezése.
+Ezzel a sablonnal a projektből a Githubon hello kódot tartalmazó webalkalmazás üzembe helyezése.
 
-Az automatikus üzembe helyezéshez kattintson az alábbi gombra:
+toorun telepítési hello automatikusan, kattintson a következő gombra hello:
 
-[![Üzembe helyezés az Azure-ban](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/app-service-web-arm-from-github-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-github-deploy%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>Paraméterek
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 ### <a name="repourl"></a>repoURL
-A projekt telepítése tartalmazó GitHub-tárházban URL-CÍMÉT. Ez a paraméter alapértelmezett értéket tartalmaz, de ez az érték csak olyan bemutatják a tárház URL-CÍMÉT adja meg. Is használhatja ezt az értéket, a sablon tesztelése során, de a rendszer szeretne biztosítani a saját tárház URL-CÍMÉT az a sablon használatakor.
+hello hello projekt toodeploy tartalmazó GitHub-tárház URL-címe Ez a paraméter alapértelmezett értéket tartalmaz, de ez az érték csak a megfelelő tooshow, hogyan tooprovide hello tárház URL-CÍMÉT. Ezt az értéket is használhatja, ha a tesztelés hello sablon, de érdemes tooprovide hello URL-cím a tárház az hello sablon használatakor.
 
     "repoURL": {
         "type": "string",
@@ -48,23 +48,23 @@ A projekt telepítése tartalmazó GitHub-tárházban URL-CÍMÉT. Ez a paramét
     }
 
 ### <a name="branch"></a>Fiókiroda
-A tárház az alkalmazás telepítése során használandó helyezendő ága. Az alapértelmezett érték a főadatbázis, de megadhatja a telepíteni kívánt tárházban bármely ág nevét.
+hello a ága hello tárház toouse hello alkalmazás központi telepítésekor. hello alapértelmezett értéke fő, de megadhat bármilyen ág hello tárházban hello nevét, hogy kívánja-e toodeploy.
 
     "branch": {
         "type": "string",
         "defaultValue": "master"
     }
 
-## <a name="resources-to-deploy"></a>Üzembe helyezendő erőforrások
+## <a name="resources-toodeploy"></a>Erőforrások toodeploy
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 ### <a name="web-app"></a>Webalkalmazás
-Létrehozza a webalkalmazást, amely csatolva van a projektet a Githubról. 
+A Githubon csatolt toohello projekt hello webalkalmazás hoz létre. 
 
-A nevet a webalkalmazás keresztül megadnia a **siteName** paraméter, és a web app használatával helye a **siteLocation** paraméter. Az a **dependsOn** elem, a sablon határozza meg a webalkalmazás az üzemeltetési terv szolgáltatástól függ. Mivel a üzemeltetési terv függ, a webes alkalmazás nem jön létre, amíg a üzemeltetési terv létrehozása befejeződött. A **dependsOn** elem csak használatával adja meg a telepítési sorrendet. Ha nem jelöli be a üzemeltetési terv függ a webes alkalmazást, Azure Resource Manager megkísérli mindkét erőforrás létrehozása egy időben, és hiba jelenhet meg, ha a webalkalmazás létrehozása előtt a üzemeltetési terv.
+Hello webalkalmazás keresztül hello hello nevének megadása **siteName** paraméter és a webalkalmazás hello keresztül hello hello hely **siteLocation** paraméter. A hello **dependsOn** elem, hello sablon meghatározása hello webalkalmazás szerint üzemeltetési terv hello szolgáltatás függ. Mivel üzemeltetési terv hello függ, hello webalkalmazás nem jön létre, amíg hello üzemeltetési terv létrehozása befejeződött. Hello **dependsOn** eleme csak a felhasznált toospecify telepítési sorrenddel. Ha nem jelöli be hello webes alkalmazást hello üzemeltetési terv függ, Azure Resource Manager megkísérli toocreate mindkét erőforrás: hello azonos idő, és egy hibaüzenet jelenik Ha hello webalkalmazás üzemeltetési terv hello előtt hozza létre.
 
-A webes alkalmazás is van egy gyermek erőforrás, amelyet a **erőforrások** az alábbi szakasz. A gyermek-erőforrás határozza meg a projekt telepítik a webalkalmazás verziókövetését. A sablonban a verziókezelőt egy adott GitHub-tárházban van csatolva. A GitHub-tárházban van definiálva a kód **"RepoUrl": "https://github.com/davidebbo-test/Mvc52Application.git"** , előfordulhat, hogy kódolnia a tárház URL-CÍMÉT Ha azt szeretné, amely többször telepít egy sablon létrehozása a projekt közben igénylő paraméterek minimális száma.
-Rögzített megadás a tárház URL-CÍMÉT, helyett paraméter hozzáadása a tárház URL-címhez és használja ezt az értéket a a **RepoUrl** tulajdonság.
+hello webes alkalmazás is van egy gyermek erőforrás, amelyet a **erőforrások** az alábbi szakasz. A gyermek-erőforrás hello projekt telepítik hello webalkalmazás verziókövetését határozza meg. A sablonban hello verziókezelő rendszer csatolt tooa adott GitHub-tárházban. hello GitHub-tárházban hello kódra van definiálva **"RepoUrl": "https://github.com/davidebbo-test/Mvc52Application.git"** kódolnia hello tárház URL-cím lehet, ha azt szeretné, hogy a sablont, amely többször telepíti toocreate egy egyetlen projekt közben igénylő hello paraméterek minimális száma.
+Rögzített megadás helyett hello tárház URL-CÍMÉT, a paraméter hozzáadása hello tárház URL-címhez, és használja ezt az értéket hello **RepoUrl** tulajdonság.
 
     {
       "apiVersion": "2015-08-01",
@@ -94,7 +94,7 @@ Rögzített megadás a tárház URL-CÍMÉT, helyett paraméter hozzáadása a t
       ]
     }
 
-## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
+## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -109,7 +109,7 @@ Rögzített megadás a tárház URL-CÍMÉT, helyett paraméter hozzáadása a t
     az group deployment create -g {resource-group-name} --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json --parameters '@azuredeploy.parameters.json'
 
 > [!NOTE] 
-> A paraméterek JSON-fájl tartalmát, lásd: [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).
+> Hello paraméterek JSON-fájl tartalmát, lásd: [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-github-deploy/azuredeploy.parameters.json).
 >
 >
 

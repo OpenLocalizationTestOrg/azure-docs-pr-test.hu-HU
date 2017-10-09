@@ -1,0 +1,2 @@
+## <a name="additional-resources"></a>További források
+Rugalmas adatbáziseszközöket még nem használ? Tekintse meg a [Getting Started Guide](../articles/sql-database/sql-database-elastic-scale-get-started.md).  A kérdésekhez, lépjen kapcsolatba a hello toous [SQL-adatbázis fórum](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted) a funkciókra vonatkozó kérések, adjon hozzá toohello [SQL adatbázis-visszajelzési fórumon](https://feedback.azure.com/forums/217321-sql-database/).

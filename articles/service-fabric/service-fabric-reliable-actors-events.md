@@ -1,6 +1,6 @@
 ---
-title: "Aktor-alapú Azure mikroszolgáltatások események |} Microsoft Docs"
-description: "A Service Fabric Reliable Actors események bemutatása."
+title: "az aktor-alapú Azure mikroszolgáltatások aaaEvents |} Microsoft Docs"
+description: "A Service Fabric Reliable Actors tooevents bemutatása."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: d936670c548ff709fc2e935d3f28d94e4bde8a04
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51e41c35441a5fea508138968b36a35f0ba6699
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-events"></a>Szereplő események
-Szereplő események teszik lehetővé a szereplő lehető legjobb értesítések küldése az ügyfelek számára. Szereplő események szereplő ügyfél kommunikációhoz, és a aktor szereplő kommunikáció nem használható.
+Szereplő események olyan módon toosend legjobb értesítések hello szereplő toohello ügyfelek számára. Szereplő események szereplő ügyfél kommunikációhoz, és a aktor szereplő kommunikáció nem használható.
 
-Az alábbi kódtöredékek bemutatják, hogyan az alkalmazásban szereplő események használatára.
+hello következő hogyan kódot részletek megjelenítése toouse szereplő események az alkalmazásban.
 
-Adja meg, amely leírja a szereplő által közzétett események illesztőfelület. Ez az interfész típusból kell származtatni a `IActorEvents` felületet. Az argumentumok a módszerek [adategyezmény-szerializálható](service-fabric-reliable-actors-notes-on-actor-type-serialization.md). A módszerek void értéket kell visszaadnia, és eseményként értesítések egy- és a lehető legkedvezőbb módon.
+Adja meg, amely leírja a hello aktor által közzétett hello események illesztőfelület. Ez az interfész típusból kell származtatni hello `IActorEvents` felületet. hello argumentumok hello módszerek [adategyezmény-szerializálható](service-fabric-reliable-actors-notes-on-actor-type-serialization.md). hello módszerek void értéket kell visszaadnia, és eseményként értesítések egy- és a lehető legkedvezőbb módon.
 
 ```csharp
 public interface IGameEvents : IActorEvents
@@ -39,7 +39,7 @@ public interface GameEvents implements ActorEvents
     void gameScoreUpdated(UUID gameId, String currentScore);
 }
 ```
-Az aktor felületen aktor által közzétett események deklarálható.
+Hello szereplő hello szereplő felületen által közzétett hello események deklarálható.
 
 ```csharp
 public interface IGameActor : IActor, IActorEventPublisher<IGameEvents>
@@ -57,7 +57,7 @@ public interface GameActor extends Actor, ActorEventPublisherE<GameEvents>
     CompletableFuture<String> getGameScore();
 }
 ```
-Az ügyféloldalon az eseménykezelő megvalósítása.
+Hello ügyféloldalon hello eseménykezelő megvalósítása.
 
 ```csharp
 class GameEventsHandler : IGameEvents
@@ -78,7 +78,7 @@ class GameEventsHandler implements GameEvents {
 }
 ```
 
-Az ügyfélen a közzétevő az esemény szereplő proxy létrehozására és az események előfizetni.
+Hello ügyfélen hozzon létre egy proxy toohello szereplő hello esemény közzétevő és tooits események előfizetés.
 
 ```csharp
 var proxy = ActorProxy.Create<IGameActor>(
@@ -93,9 +93,9 @@ GameActor actorProxy = ActorProxyBase.create<GameActor>(GameActor.class, new Act
 return ActorProxyEventUtility.subscribeAsync(actorProxy, new GameEventsHandler());
 ```
 
-Esetén a feladatátvétel a szereplő előfordulhat, hogy átadja egy másik folyamat vagy a csomópont. Az aktor proxy az aktív előfizetések kezeli, és automatikusan újra előfizet rájuk. Az újbóli előfizetési időköz keresztül szabályozhatja a `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API. Mondhatja, használja a `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.
+Feladatátvétel hello esetben hello szereplő előfordulhat, hogy feladatátvételt tooa másik folyamat vagy csomópont. hello szereplő proxy hello aktív előfizetések kezeli, és automatikusan újra előfizet rájuk. Hello újbóli előfizetési időköz hello segítségével szabályozhatja `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API. toounsubscribe, használjon hello `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.
 
-Az aktor egyszerűen közzététele az eseményeket, akkor fordulhat elő. Az esemény-előfizetők esetén, a gyakrabban futtatókörnyezet fogja őket az értesítés elküldéséhez.
+A hello szereplő egyszerűen tegye közzé hello események, akkor fordulhat elő. Ha vannak előfizetők toohello esemény, hello szereplője futásidejű fogja őket hello értesítés küldése.
 
 ```csharp
 var ev = GetEvent<IGameEvents>();

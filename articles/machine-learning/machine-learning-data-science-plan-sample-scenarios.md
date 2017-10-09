@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Machine Learning speciális elemzésekre forgatókönyveinek |} Microsoft Docs"
-description: "Válassza ki a megfelelő forgatókönyvek speciális az Team tudományos folyamat a prediktív elemzés megteheti."
+title: "Speciális elemzés forgatókönyvek az Azure Machine Learning aaaIdentify |} Microsoft Docs"
+description: "Válassza ki a megfelelő forgatókönyvek hello speciális hello csapat az tudományos folyamata a prediktív elemzés megteheti."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: fe4f74f2e0602d13eedb6ca186480291a9a5724f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 52c6bb10d6df4f640a4f66cf17cf4993cc1067b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scenarios-for-advanced-analytics-in-azure-machine-learning"></a>Speciális elemzési forgatókönyvek az Azure Machine Learning rendszerben
-Ez a cikk ismerteti a különböző minta adatforrások és a cél-szolgáltatásokat, amelyek kezelhetik a [Team adatok tudományos folyamat (TDSP)](data-science-process-overview.md). A TDSP munkacsoportok számára az intelligens alkalmazások rendszeres megközelítését ismerteti. Az itt bemutatott esetekben bemutatják lehetőségeit adatok feldolgozása a munkafolyamatban, amely a adatjellemzők, az adatforrás helyének és a cél tárházak találhatók, az Azure-ban függ.
+Ez a cikk ismerteti a minta adatforrások és a cél-szolgáltatásokat, amelyek kezelhetik hello hello számos [Team adatok tudományos folyamat (TDSP)](data-science-process-overview.md). hello TDSP rendszeres megközelítését ismerteti a csapatok toocollaborate az intelligens alkalmazások létrehozásához. Itt bemutatott hello forgatókönyvek bemutatására használható lehetőségekről hello adatfeldolgozási munkafolyamat szerelvényfájljaitól hello adatjellemzők, a Forráshelyek és a cél tárházak találhatók, az Azure-ban.
 
-A **döntési fa** a kiválasztása a mintaforgatókönyvek megfelelő az adatok és a cél számára jelenik meg az utolsó szakaszban.
+Hello **döntési fa** a hello szituáció, amely megfelelő-e az adatok és a cél kiválasztása számára jelenik meg a hello utolsó szakaszában.
 
 > [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 > 
 > 
 
-A következő szakaszok mindegyikének megadja egy mintaforgatókönyv. Az egyes forgatókönyvek esetében, egy lehetséges adattudomány vagy speciális elemzésekre folyamata és a támogató Azure-erőforrások találhatók.
+A következő szakaszok hello mindegyikét megadja egy mintaforgatókönyv. Az egyes forgatókönyvek esetében, egy lehetséges adattudomány vagy speciális elemzésekre folyamata és a támogató Azure-erőforrások találhatók.
 
 > [!NOTE]
-> **Az összes a következő esetekben kell:**
+> **Az összes hello a következő esetekben kell:**
 > <br/>
 > 
 > * [A storage-fiók létrehozása](../storage/common/storage-create-storage-account.md)
@@ -41,25 +41,25 @@ A következő szakaszok mindegyikének megadja egy mintaforgatókönyv. Az egyes
 > 
 > 
 
-## <a name="smalllocal"></a>A forgatókönyv \#1: kicsi, közepes méretű táblázatos adatkészlet egy helyi fájlok
-![Kis-és közepes méretű helyi fájlok][1]
+## <a name="smalllocal"></a>A forgatókönyv \#1: kicsi toomedium táblázatos adatkészlet egy helyi fájlok
+![Kis toomedium helyi fájlok][1]
 
 #### <a name="additional-azure-resources-none"></a>További Azure-erőforrások: nincs
-1. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
+1. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
 2. Töltse fel a DataSet adatkészlet.
 3. Hozzon létre egy Azure Machine Learning kísérlet folyamat feltöltött adatkészlet(ek) kezdve.
 
-## <a name="smalllocalprocess"></a>A forgatókönyv \#2: kis, közepes méretű DataSet feldolgozást igénylő helyi fájlok
-![Kis-és közepes méretű helyi fájlok feldolgozása][2]
+## <a name="smalllocalprocess"></a>A forgatókönyv \#2: a helyi fájlok feldolgozást igénylő kis toomedium adatkészlet
+![Kis toomedium helyi fájlok feldolgozása][2]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (IPython Notebook kiszolgáló)
 1. Hozzon létre egy Azure virtuális gépen futó IPython Notebook.
-2. Adatok feltöltése egy Azure storage-tárolóhoz.
+2. Töltse fel az adatok tooan az Azure storage-tároló.
 3. Előre feldolgozzák a, és az adatok elérése az Azure storage tárolóból IPython Notebook adatait.
-4. Alakítsa át adatokat a tisztítás, táblázatos formában.
+4. Alakítsa át az adatokat toocleaned, táblázatos formában.
 5. Az Azure-blobokat átalakított adatok mentése.
-6. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-7. Az adatokat olvasni az Azure-blobokat használ a [és adatokat importálhat] [ import-data] modul.
+6. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+7. Hello adatokat olvasni az Azure BLOB hello segítségével [és adatokat importálhat] [ import-data] modul.
 8. Hozzon létre egy Azure Machine Learning kísérlet folyamat feldolgozott adatkészlet(ek) kezdve.
 
 ## <a name="largelocal"></a>A forgatókönyv \#3: a helyi fájloknak, Azure-Blobokkal célzó nagy adatkészlet
@@ -67,132 +67,132 @@ A következő szakaszok mindegyikének megadja egy mintaforgatókönyv. Az egyes
 
 #### <a name="additional-azure-resources-azure-virtual-machine-ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (IPython Notebook kiszolgáló)
 1. Hozzon létre egy Azure virtuális gépen futó IPython Notebook.
-2. Adatok feltöltése egy Azure storage-tárolóhoz.
+2. Töltse fel az adatok tooan az Azure storage-tároló.
 3. Előre feldolgozzák, és az adatok elérése az Azure-blobokat IPython Notebook adatait.
-4. Alakítsa át adatokat a tisztítás, táblázatos formában, szükség esetén.
+4. Ha szükséges. az átalakító adatok toocleaned, táblázatos formában.
 5. Adatokba, és szükség szerint funkciók létrehozása.
 6. Bontsa ki a kis és közepes méretű mintáját.
-7. Mentse a mintaadatokat az Azure-blobokat.
-8. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-9. Az adatokat olvasni az Azure-blobokat használ a [és adatokat importálhat] [ import-data] modul.
+7. Az Azure-blobokat mintát hello adatok mentése.
+8. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+9. Hello adatokat olvasni az Azure BLOB hello segítségével [és adatokat importálhat] [ import-data] modul.
 10. Build Azure Machine Learning kísérlet folyamata feldolgozott adatkészlet(ek) kezdve.
 
-## <a name="smalllocaltodb"></a>A forgatókönyv \#4: kis, közepes méretű DataSet helyi fájlok, SQL Server egy Azure virtuális gép célzó
-![Kis-és közepes méretű helyi fájlok az Azure SQL Adatbázishoz][4]
+## <a name="smalllocaltodb"></a>A forgatókönyv \#4: a helyi fájlok, SQL Server egy Azure virtuális gép célzó kis toomedium adatkészlet
+![Kis toomedium helyi fájlok tooSQL DB az Azure-ban][4]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (SQL Server / IPython Notebook kiszolgáló)
 1. Hozzon létre egy Azure virtuális gépen fut az SQL-kiszolgáló + IPython Notebookot.
-2. Adatok feltöltése egy Azure storage-tárolóhoz.
+2. Töltse fel az adatok tooan az Azure storage-tároló.
 3. Előre feldolgozzák, és az Azure storage tárolóban IPython Notebook használatával adatait.
-4. Alakítsa át adatokat a tisztítás, táblázatos formában, szükség esetén.
-5. Adatok mentése a virtuális gép helyi fájlok (IPython Notebook a virtuális gép fut, helyi meghajtók tekintse meg a VM-meghajtók).
-6. Egy Azure virtuális Gépen futó SQL Server-adatbázis az adatok betöltése.
+4. Ha szükséges. az átalakító adatok toocleaned, táblázatos formában.
+5. Adatok tooVM helyi fájlokat (IPython Notebook fut a virtuális gép tudnivalókat a helyi meghajtókra tooVM meghajtókat).
+6. Terheléselosztási adatok tooSQL Server-adatbázis egy Azure virtuális gépen.
    
    A beállítás \#1: SQL Server Management Studio használatával.
    
-   * Jelentkezzen be az SQL Server rendszerű virtuális Géphez
+   * Bejelentkezési tooSQL kiszolgálói virtuális gép
    * Futtassa az SQL Server Management Studio eszközt.
    * Adatbázis és a célként megadott táblák létrehozása.
-   * Használja a tömeges importálásához módszerek a virtuális gép helyi fájlok az adatok betöltésére.
+   * Hello tömeges egyikét módszerek tooload hello adatok importálása a virtuális gép helyi fájlokból.
    
    A beállítás \#2: használatával IPython Notebook – közepes és nagyobb adatkészletek esetében nem ajánlott
    
    <!-- -->    
-   * A virtuális gép az SQL Server eléréséhez használja az ODBC kapcsolati karakterlánc.
+   * ODBC kapcsolati karakterlánc tooaccess SQL Server használata virtuális gépeken.
    * Adatbázis és a célként megadott táblák létrehozása.
-   * Használja a tömeges importálásához módszerek a virtuális gép helyi fájlok az adatok betöltésére.
-7. Adatokba, és szolgáltatások igény szerint. Ne feledje, hogy a szolgáltatások nem kell az adatbázis táblázatokban materializált. Csak jegyezze fel a szükséges lekérdezést kell létrehoznia őket.
+   * Hello tömeges egyikét módszerek tooload hello adatok importálása a virtuális gép helyi fájlokból.
+7. Adatokba, és szolgáltatások igény szerint. Vegye figyelembe, hogy hello szolgáltatások nem szükséges a hello adatbázistáblák materializált toobe. Csak vegye figyelembe a hello szükséges lekérdezés toocreate őket.
 8. Döntse el, az adatok mintájának méretét, ha szükséges, és/vagy a szükséges.
-9. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-10. Közvetlenül olvassák be az adatokat az SQL Server használja a [és adatokat importálhat] [ import-data] modul. Illessze be a szükséges lekérdezést, mely bontja ki a mezőket, szolgáltatások létrehozza, és minták adatok közvetlenül szükség esetén a [és adatokat importálhat] [ import-data] lekérdezés.
+9. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+10. Olvasási hello adatok közvetlenül a hello hello használata az SQL Server [és adatokat importálhat] [ import-data] modul. Beillesztés hello szükséges lekérdezés mezők, amely szolgáltatások hoz létre, és minták adatokat, ha közvetlenül a hello szükséges [és adatokat importálhat] [ import-data] lekérdezés.
 11. Build Azure Machine Learning kísérlet folyamata feldolgozott adatkészlet(ek) kezdve.
 
 ## <a name="largelocaltodb"></a>A forgatókönyv \#5: a helyi fájlok nagy dataset cél SQL Server Azure virtuális gépen
-![Nagy helyi fájlok az Azure SQL Adatbázishoz][5]
+![Nagy helyi fájlok tooSQL DB az Azure-ban][5]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (SQL Server / IPython Notebook kiszolgáló)
 1. Hozzon létre egy Azure virtuális gépen futó SQL Server IPython Notebook kiszolgáló.
-2. Adatok feltöltése egy Azure storage-tárolóhoz.
+2. Töltse fel az adatok tooan az Azure storage-tároló.
 3. (Választható) Előre feldolgozzák és adatait.
    
    a.  Előre feldolgozzák és adatait IPython jegyzetfüzet adatok elérése az Azure-ból
    
        blobs.
    
-   b.  Alakítsa át adatokat a tisztítás, táblázatos formában, szükség esetén.
+   b.  Ha szükséges. az átalakító adatok toocleaned, táblázatos formában.
    
-   c.  Adatok mentése a virtuális gép helyi fájlok (IPython Notebook a virtuális gép fut, helyi meghajtók tekintse meg a VM-meghajtók).
-4. Egy Azure virtuális Gépen futó SQL Server-adatbázis az adatok betöltése.
+   c.  Adatok tooVM helyi fájlokat (IPython Notebook fut a virtuális gép tudnivalókat a helyi meghajtókra tooVM meghajtókat).
+4. Terheléselosztási adatok tooSQL Server-adatbázis egy Azure virtuális gépen.
    
-   a.  Bejelentkezés az SQL Server rendszerű virtuális Géphez.
+   a.  Bejelentkezési tooSQL kiszolgálói virtuális gép.
    
    b.  Ha az adatok nem már mentve, adatfájlok le az Azure-ból
    
-       storage container to local-VM folder.
+       storage container toolocal-VM folder.
    
    c.  Futtassa az SQL Server Management Studio eszközt.
    
    d.  Adatbázis és a célként megadott táblák létrehozása.
    
-   e.  Használja a tömeges importálásához módszerek az adatok betöltésére.
+   e.  Hello tömeges egyikét módszerek tooload hello adatok importálása.
    
-   f.  Ha táblákra szükség, illesztések elősegítésére indexek létrehozása.
+   f.  Ha táblákra szükség, hozzon létre indexek tooexpedite illesztéseket.
    
    > [!NOTE]
-   > Nagy adatmennyiség gyorsabb betöltését, javasolt, hogy a particionált táblák létrehozása, és tömeges az adatimportálás párhuzamosan. További információkért lásd: [párhuzamos importálhat SQL particionált táblák](machine-learning-data-science-parallel-load-sql-partitioned-tables.md).
+   > Nagy adatmennyiség gyorsabb betöltését, ajánlott particionált táblák létrehozása, és tömeges hello adatokat importálhat párhuzamosan. További információkért lásd: [párhuzamos importálhat tooSQL particionált táblák](machine-learning-data-science-parallel-load-sql-partitioned-tables.md).
    > 
    > 
-5. Adatokba, és szolgáltatások igény szerint. Ne feledje, hogy a szolgáltatások nem kell az adatbázis táblázatokban materializált. Csak jegyezze fel a szükséges lekérdezést kell létrehoznia őket.
+5. Adatokba, és szolgáltatások igény szerint. Vegye figyelembe, hogy hello szolgáltatások nem szükséges a hello adatbázistáblák materializált toobe. Csak vegye figyelembe a hello szükséges lekérdezés toocreate őket.
 6. Döntse el, az adatok mintájának méretét, ha szükséges, és/vagy a szükséges.
-7. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-8. Közvetlenül olvassák be az adatokat az SQL Server használja a [és adatokat importálhat] [ import-data] modul. Illessze be a szükséges lekérdezést, mely bontja ki a mezőket, szolgáltatások létrehozza, és minták adatok közvetlenül szükség esetén a [és adatokat importálhat] [ import-data] lekérdezés.
+7. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+8. Olvasási hello adatok közvetlenül a hello hello használata az SQL Server [és adatokat importálhat] [ import-data] modul. Beillesztés hello szükséges lekérdezés mezők, amely szolgáltatások hoz létre, és minták adatokat, ha közvetlenül a hello szükséges [és adatokat importálhat] [ import-data] lekérdezés.
 9. Egyszerű Azure Machine Learning kísérlet folyamata feltöltött dataset kezdődően
 
 ## <a name="largedbtodb"></a>A forgatókönyv \#6: nagy adatkészlet egy SQL Server adatbázis a helyszínen, célzás SQL Server egy Azure virtuális gépen
-![Nagy SQL DB a helyszínen az Azure SQL Adatbázishoz][6]
+![Nagy SQL-adatbázis a helyszíni tooSQL DB az Azure-ban][6]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (SQL Server / IPython Notebook kiszolgáló)
 1. Hozzon létre egy Azure virtuális gépen futó SQL Server IPython Notebook kiszolgáló.
-2. Használja az adatok exportálása az adatok exportálása az SQL Server memóriaképek módszerek.
+2. Használja az adatok hello módszerek tooexport hello adatok exportálása az SQL Server toodump fájlok.
    
    > [!NOTE]
-   > Ha úgy dönt, hogy minden adat áthelyezése a helyszíni adatbázis, a teljes adatbázis áthelyezése az Azure SQL Server-példány (gyorsabb) alternatív módszert. Hagyja ki a lépéseket, exportálhatja az adatokat hozzon létre adatbázis, és a céladatbázis adatok betöltése vagy importálása, és kövesse az alternatív módszert.
+   > Ha úgy dönt, toomove hello helyszíni adatbázisban, egy másik (gyorsabb) metódus toomove hello adatbázis teljes toothe SQL Server-példányra az Azure-ban minden adatát. Hello lépéseket tooexport adatok kihagyása, adatbázis, és a betöltés/importálási adatok toohello céladatbázis létrehozása, és kövesse a hello alternatív módszert.
    > 
    > 
-3. Biztonsági másolat fájlok feltöltése az Azure storage tárolóba.
-4. Egy Azure virtuális gépen futó SQL Server-adatbázishoz az adatok betöltésére.
+3. Töltse fel a memóriakép fájlokhoz tooAzure tároló.
+4. Betöltési hello adatok tooa SQL Server-adatbázis egy Azure virtuális gépet futtat.
    
-   a.  Bejelentkezés az SQL Server virtuális gép.
+   a.  Bejelentkezési toohello SQL Server virtuális gép.
    
-   b.  Adatfájlok le az Azure storage-tárolójából a helyi-VM mappába.
+   b.  Adatfájlok le az Azure storage tároló toohello helyi-VM mappából.
    
    c.  Futtassa az SQL Server Management Studio eszközt.
    
    d.  Adatbázis és a célként megadott táblák létrehozása.
    
-   e.  Használja a tömeges importálásához módszerek az adatok betöltésére.
+   e.  Hello tömeges egyikét módszerek tooload hello adatok importálása.
    
-   f.  Ha táblákra szükség, illesztések elősegítésére indexek létrehozása.
+   f.  Ha táblákra szükség, hozzon létre indexek tooexpedite illesztéseket.
    
    > [!NOTE]
-   > A nagy méretű gyorsabb betöltése particionált táblák létrehozása, és tömeges adatimportálás párhuzamosan. További információkért lásd: [párhuzamos importálhat SQL particionált táblák](machine-learning-data-science-parallel-load-sql-partitioned-tables.md).
+   > Nagy adatmennyiség gyorsabb betöltését, hozzon létre a particionált táblákat és toobulk hello és adatokat importálhat párhuzamosan. További információkért lásd: [párhuzamos importálhat tooSQL particionált táblák](machine-learning-data-science-parallel-load-sql-partitioned-tables.md).
    > 
    > 
-5. Adatokba, és szolgáltatások igény szerint. Ne feledje, hogy a szolgáltatások nem kell az adatbázis táblázatokban materializált. Csak jegyezze fel a szükséges lekérdezést kell létrehoznia őket.
+5. Adatokba, és szolgáltatások igény szerint. Vegye figyelembe, hogy hello szolgáltatások nem szükséges a hello adatbázistáblák materializált toobe. Csak vegye figyelembe a hello szükséges lekérdezés toocreate őket.
 6. Döntse el, az adatok mintájának méretét, ha szükséges, és/vagy a szükséges.
-7. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-8. Közvetlenül olvassák be az adatokat az SQL Server használja a [és adatokat importálhat] [ import-data] modul. Illessze be a szükséges lekérdezést, mely bontja ki a mezőket, szolgáltatások létrehozza, és minták adatok közvetlenül szükség esetén a [és adatokat importálhat] [ import-data] lekérdezés.
+7. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+8. Olvasási hello adatok közvetlenül a hello hello használata az SQL Server [és adatokat importálhat] [ import-data] modul. Beillesztés hello szükséges lekérdezés mezők, amely szolgáltatások hoz létre, és minták adatokat, ha közvetlenül a hello szükséges [és adatokat importálhat] [ import-data] lekérdezés.
 9. Egyszerű Azure Machine Learning kísérlet folyamata feltöltött dataset kezdve.
 
-### <a name="alternate-method-to-copy-a-full-database-from-an-on-premises--sql-server-to-azure-sql-database"></a>Alternatív módszert egy helyi SQL Server az Azure SQL Database egy teljes adatbázis másolása
-![Válassza le a helyi adatbázis és az Azure SQL-adatbázis csatlakoztatása][7]
+### <a name="alternate-method-toocopy-a-full-database-from-an-on-premises--sql-server-tooazure-sql-database"></a>Alternatív módszert toocopy a teljes adatbázis egy helyi SQL Server tooAzure SQL-adatbázis
+![Válassza le a helyi adatbázis, és csatlakoztassa tooSQL DB az Azure-ban][7]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>További Azure-erőforrások: Azure virtuális gép (SQL Server / IPython Notebook kiszolgáló)
-A teljes SQL Server-adatbázist az SQL Server virtuális gépen replikálni, másolja egy adatbázis egy hálózatihely-kiszolgáló a a másikra, feltéve, hogy az adatbázis átmenetileg offline állapotú lehet tenni. Ehhez az SQL Server Management Studio Object Explorer vagy a megfelelő Transact-SQL-parancsok használatával.
+tooreplicate hello teljes SQL Server-adatbázishoz az SQL Server virtuális gép, másolja egy adatbázist a hálózatihely-kiszolgáló egy tooanother, feltéve, hogy hello az adatbázis átmenetileg offline állapotú átvihető. Ez az SQL Server Management Studio Object Explorerben hello, vagy hello egyenértékű Transact-SQL-parancsok használatával teheti meg.
 
-1. Válassza le a forráshely adatbázisához. További információkért lásd: [egy adatbázis leválasztásához](https://technet.microsoft.com/library/ms191491\(v=sql.110\).aspx).
-2. A Windows Explorer vagy a Windows parancssori ablakban másolja a adatbázisát fájl vagy fájlokat és a naplófájl vagy naplófájlok az SQL Server virtuális gépen, az Azure-ban a célhelyre.
-3. A másolt fájlok csatolása a célként megadott SQL Server-példány. További információkért lásd: [adatbázis csatolása](https://technet.microsoft.com/library/ms190209\(v=sql.110\).aspx).
+1. Hello forrás helyen hello adatbázis leválasztásához. További információkért lásd: [egy adatbázis leválasztásához](https://technet.microsoft.com/library/ms191491\(v=sql.110\).aspx).
+2. Windows Explorer vagy a Windows parancssori ablakban a Másolás hello adatbázisfájl vagy a fájl és a naplófájl vagy a fájlok toohello célhelyet az SQL Server Azure-ban hello le.
+3. Hello másolt fájlok toohello cél SQL Server-példányhoz csatolja. További információkért lásd: [adatbázis csatolása](https://technet.microsoft.com/library/ms190209\(v=sql.110\).aspx).
 
 [Helyezze át egy adatbázis használatával válassza le, és csatolja (Transact-SQL)](https://technet.microsoft.com/library/ms187858\(v=sql.110\).aspx)
 
@@ -208,46 +208,46 @@ A teljes SQL Server-adatbázist az SQL Server virtuális gépen replikálni, má
    
        blobs.
    
-   b.  Alakítsa át adatokat a tisztítás, táblázatos formában, szükség esetén.
+   b.  Ha szükséges. az átalakító adatok toocleaned, táblázatos formában.
    
-   c.  Adatok mentése a virtuális gép helyi fájlok (IPython Notebook a virtuális gép fut, helyi meghajtók tekintse meg a VM-meghajtók).
-4. Az alapértelmezett tároló, a Hadoop-fürt a 2. lépésben kiválasztott feltölteni az adatokat.
-5. Az Azure HDInsight Hadoop-fürt Hive database adatok betöltése.
+   c.  Adatok tooVM helyi fájlokat (IPython Notebook fut a virtuális gép tudnivalókat a helyi meghajtókra tooVM meghajtókat).
+4. Töltse fel az adatok toohello alapértelmezett tároló hello Hadoop-fürt a hello 2.
+5. Terheléselosztási adatok tooHive adatbázis Azure HDInsight Hadoop-fürt.
    
-   a.  Jelentkezzen be a Hadoop-fürt átjárócsomópontjához
+   a.  Jelentkezzen be toohello hello Hadoop-fürt átjárócsomópontjához
    
-   b.  Nyissa meg a Hadoop parancssort.
+   b.  Hello Hadoop parancssor megnyitásához.
    
-   c.  Adja meg a Hive gyökérkönyvtár parancs `cd %hive_home%\bin` Hadoop parancssor futtatása.
+   c.  Adja meg a Hive gyökérkönyvtár hello parancs `cd %hive_home%\bin` Hadoop parancssor futtatása.
    
-   d.  Adatbázis és a táblák létrehozásához a Hive-lekérdezések futtatása, és az adatok betöltése az blob storage Hive táblákat.
+   d.  Futtassa a hello Hive-lekérdezések toocreate adatbázis és a táblák, és adatok betöltése az blob storage-tooHive táblákat.
    
    > [!NOTE]
-   > Ha az adatok nagy, a felhasználók létrehozhatják a Hive tábla partíciókat. Ezt követően a felhasználók használhatják a `for` hurok a Hadoop parancssori az átjárócsomópont az adatok betöltése a Hive tábla particionálva partíció által az.
+   > Ha hello adatok nagy, a felhasználók létrehozhatják hello Hive tábla partíciókat. Ezt követően a felhasználók használhatják a `for` hello átjárócsomópont tooload adatok hello Hive tábla particionálva partíció által a Hadoop parancssori hello hurkot.
    > 
    > 
-6. Adatokba, és szükség esetén a Hadoop parancssori funkciók létrehozása. Ne feledje, hogy a szolgáltatások nem kell az adatbázis táblázatokban materializált. Csak jegyezze fel a szükséges lekérdezést kell létrehoznia őket.
+6. Adatokba, és szükség esetén a Hadoop parancssori funkciók létrehozása. Vegye figyelembe, hogy hello szolgáltatások nem szükséges a hello adatbázistáblák materializált toobe. Csak vegye figyelembe a hello szükséges lekérdezés toocreate őket.
    
-   a.  Jelentkezzen be a Hadoop-fürt átjárócsomópontjához
+   a.  Jelentkezzen be toohello hello Hadoop-fürt átjárócsomópontjához
    
-   b.  Nyissa meg a Hadoop parancssort.
+   b.  Hello Hadoop parancssor megnyitásához.
    
-   c.  Adja meg a Hive gyökérkönyvtár parancs `cd %hive_home%\bin` Hadoop parancssor futtatása.
+   c.  Adja meg a Hive gyökérkönyvtár hello parancs `cd %hive_home%\bin` Hadoop parancssor futtatása.
    
-   d.  A Hadoop parancssor az a Hive-lekérdezések futtatása az adatokba, és szükség szerint funkciók létrehozása a Hadoop-fürt központi csomópontján.
-7. Ha szükséges, és/vagy szükséges, példa a az adatok az Azure Machine Learning Studióban.
-8. Jelentkezzen be a [Azure Machine Learning Studio](https://studio.azureml.net/).
-9. Olvassa el az adatok közvetlenül a `Hive Queries` használatával a [és adatokat importálhat] [ import-data] modul. Illessze be a szükséges lekérdezést, mely bontja ki a mezőket, szolgáltatások létrehozza, és minták adatok közvetlenül szükség esetén a [és adatokat importálhat] [ import-data] lekérdezés.
+   d.  A hello átjárócsomópontjához hello Hadoop-fürt tooexplore hello adatokat a Hadoop parancssor futtatása a hello Hive-lekérdezéseket, és igény szerint funkciók létrehozása.
+7. Ha szükséges, és/vagy szükséges, mintát hello adatok toofit az Azure Machine Learning Studióban.
+8. Jelentkezzen be toohello [Azure Machine Learning Studio](https://studio.azureml.net/).
+9. Hello adatok közvetlenül olvassák be hello `Hive Queries` hello segítségével [és adatokat importálhat] [ import-data] modul. Beillesztés hello szükséges lekérdezés mezők, amely szolgáltatások hoz létre, és minták adatokat, ha közvetlenül a hello szükséges [és adatokat importálhat] [ import-data] lekérdezés.
 10. Egyszerű Azure Machine Learning kísérlet folyamata feltöltött dataset kezdve.
 
 ## <a name="decisiontree"></a>A forgatókönyv kiválasztása döntési fája
 - - -
-Az alábbi ábra a fent leírt forgatókönyvek és a speciális Analytics folyamat és a technológia választások kattintva az egyes részletezett forgatókönyv foglalja össze. Vegye figyelembe, hogy az adatok feldolgozása, a feltárása, a szolgáltatás műszaki osztály és a mintavételi is igénybe vehet egy vagy több módszer/környezet – a forrás, a köztes, és/vagy a cél környezetekben – helyezze, és szükség szerint ismételt folytathatja. A diagram csak néhány lehetséges adatfolyamok szemléltetésére szolgál, és nem biztosít teljes körű enumerálást.
+hello következő diagram foglalja össze a fent leírt hello forgatókönyvek és hello Advanced Analytics folyamat és a technológia választások tévő tooeach részletezett hello forgatókönyvek. Vegye figyelembe, hogy az adatok feldolgozása, a feltárása, a szolgáltatás műszaki osztály és a mintavételi is igénybe vehet egy vagy több metódus/környezeti – hello forrás, a köztes, és/vagy a cél környezetekben – helyezze, és szükség szerint ismételt folytathatja. hello diagram csak néhány lehetséges adatfolyamok szemléltetésére szolgál, és nem biztosít teljes körű enumerálást.
 
 ![A minta DS folyamat bemutató forgatókönyvek][8]
 
 ### <a name="advanced-analytics-in-action-examples"></a>Speciális elemzés a művelet példák
-Végpontok közötti Azure Machine Learning forgatókönyvek alkalmazó szoftverbiztonsági a Advanced Analytics folyamat és a nyilvános adatkészleteket használó technológia lásd:
+A végpont Azure Machine Learning forgatókönyvek alkalmazó szoftverbiztonsági hello Advanced Analytics folyamat és a technológia használatával nyilvános adatkészleteket, lásd:
 
 * [Vonja össze az adatokat tudományos folyamat működés közben: SQL Server használatával](machine-learning-data-science-process-sql-walkthrough.md).
 * [Vonja össze az adatokat tudományos folyamat működés közben: HDInsight Hadoop-fürtök használata](machine-learning-data-science-process-hive-walkthrough.md).

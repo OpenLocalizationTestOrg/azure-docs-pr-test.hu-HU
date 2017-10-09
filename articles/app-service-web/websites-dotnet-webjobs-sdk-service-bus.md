@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Service Bus használata a WebJobs SDK-val"
-description: "Ismerje meg, hogyan használható az Azure Service Bus-üzenetsorok és témakörök a WebJobs SDK-val."
+title: aaaHow toouse Azure Service Bus hello WebJobs SDK a
+description: "Ismerje meg, hogyan toouse Azure Service Bus-üzenetsorok és témakörök a hello WebJobs SDK."
 services: app-service\web, service-bus
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 7cec03cae5d20d1ead9eb24e99415c33d8b76f05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb801a9320a20c276da4f48c8941c09d3f09bb1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-service-bus-with-the-webjobs-sdk"></a>Az Azure Service Bus használata a WebJobs SDK-val
+# <a name="how-toouse-azure-service-bus-with-hello-webjobs-sdk"></a>Hogyan toouse Azure Service Bus a hello WebJobs SDK
 ## <a name="overview"></a>Áttekintés
-Ez az útmutató C# mintakódok bemutatják, hogyan indítható el egy folyamatot, az Azure Service Bus-üzenet fogadásakor. A kód minták használata [WebJobs SDK](websites-dotnet-webjobs-sdk.md) verzió 1.x.
+Ez az útmutató C# kódot, hogy hogyan minták tootrigger egy folyamatot, az Azure Service Bus-üzenet fogadásakor. hello kód minták használata [WebJobs SDK](websites-dotnet-webjobs-sdk.md) verzió 1.x.
 
-Az útmutató azt feltételezi, hogy tudja [hogyan webjobs-feladat-projekt létrehozása a Visual Studio kapcsolati karakterláncok a tárfiókhoz adott pontra](websites-dotnet-webjobs-sdk-get-started.md).
+hello az útmutató feltételezi, hogy tudja [hogyan toocreate egy webjobs-feladat projektet, a Visual Studio kapcsolati karakterláncok adott pont tooyour tárfiók](websites-dotnet-webjobs-sdk-get-started.md).
 
-A kódrészleteket csak megjelenítése funkciók, nem a kódot, amely létrehozza a `JobHost` objektum ebben a példában látható módon:
+hello kódtöredékek csak megjelenítése funkciók nem hello hello létrehozó kód mellől `JobHost` objektum ebben a példában látható módon:
 
 ```
 public class Program
@@ -41,12 +41,12 @@ public class Program
 }
 ```
 
-A [teljes Service Bus-példakód](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) az azure-webjobs-sdk-minták tárházban github.com van.
+A [teljes Service Bus-példakód](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) hello azure-webjobs-sdk-minták tárházban github.com van.
 
 ## <a id="prerequisites"></a>Előfeltételek
-Telepítenie kell a Service Bus dolgozni a [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet-csomag mellett a többi WebJobs SDK-csomagot. 
+toowork Service Bus az informatikai részleg tooinstall hello [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet csomag továbbá toohello többi WebJobs SDK-csomagot. 
 
-Akkor is, a tárolási kapcsolati karakterláncok mellett AzureWebJobsServiceBus kapcsolati karakterlánc beállítása.  Ehhez a `connectionStrings` szakaszt az App.config fájl, a következő példában látható módon:
+Továbbá toohello tárolási kapcsolati karakterláncok tooset hello AzureWebJobsServiceBus kapcsolati karakterláncot is.  Ezt megteheti hello `connectionStrings` hello App.config fájl, ahogy az alábbi példa hello szakaszában:
 
         <connectionStrings>
             <add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
@@ -54,20 +54,20 @@ Akkor is, a tárolási kapcsolati karakterláncok mellett AzureWebJobsServiceBus
             <add name="AzureWebJobsServiceBus" connectionString="Endpoint=sb://[yourServiceNamespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[yourKey]"/>
         </connectionStrings>
 
-Egy minta-projektet, amely tartalmazza a Service Bus kapcsolati karakterlánc beállítása az App.config fájlban, lásd: [példa Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus). 
+Egy minta-projektet, amely tartalmazza az hello Service Bus kapcsolati karakterlánc beállítása hello App.config fájlban, lásd: [példa Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus). 
 
-A kapcsolati karakterlánc is megadható az Azure futtatókörnyezetben, amely majd felülírja az App.config beállításokat, az Azure rendszerben; a webjobs-feladat futtatásakor További információkért lásd: [Ismerkedés a WebJobs SDK-val](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account).
+hello kapcsolati karakterláncok is megadható hello Azure futtatókörnyezetben, amely majd felülírja a hello App.config beállításokat, az Azure rendszerben; hello webjobs-feladat futtatásakor További információkért lásd: [Ismerkedés a WebJobs SDK hello](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account).
 
-## <a id="trigger"></a>Események indítása a következő függvényt egy Service Bus-üzenetsor fogadásakor.
-Egy függvényt, amely a WebJobs SDK meghívja a várólista-üzenet fogadásakor használja a `ServiceBusTrigger` attribútum. Az attribútum konstruktora paramétert, és kérdezze le a várólista nevét adja meg.
+## <a id="trigger"></a>Hogyan tootrigger egy függvényt, amikor egy Service Bus feldolgozási sor üzenetet érkezett
+toowrite egy függvényt, amely a WebJobs SDK hello meghívja a várólista-üzenet fogadásakor, használja a hello `ServiceBusTrigger` attribútum. az attribútum konstruktora hello paramétert hello várólista toopoll hello nevét adja meg.
 
 ### <a name="how-servicebustrigger-works"></a>ServiceBusTrigger működése
-Az SDK üzenetet kap `PeekLock` mód és a hívások `Complete` az üzenetet, ha a függvény futtatása sikeresen befejeződött, vagy a hívások `Abandon` Ha a parancs nem működik. Ha a függvény futásakor hosszabb, mint a `PeekLock` automatikusan megújítják időtúllépés, a zárolás.
+hello SDK üzenetet kap a `PeekLock` mód és a hívások `Complete` üdvözlőüzenetére Ha hello függvény futtatása sikeresen befejeződött, vagy a hívások `Abandon` hello függvény meghibásodásakor. Ha hello függvény futásakor hello hosszabb `PeekLock` időkorlát, hello zárolása automatikusan megújítják.
 
-A Service Bus saját poison várólista kezelését, amely nem lehet ellenőrizni, és nem állította be a WebJobs SDK végzi. 
+A Service Bus saját nem ellenőrzött vagy hello WebJobs SDK által konfigurált poison várólista kezelését végzi. 
 
 ### <a name="string-queue-message"></a>Karakterlánc üzenetsor
-Az alábbi példakód egy üzenetsor-üzenetet, amely tartalmazza a karakterláncot, és írja a karakterlánc a WebJobs SDK irányítópult olvassa be.
+hello alábbi kódminta olvassa be, amely tartalmazza a karakterláncot, majd beírja hello karakterlánc toohello WebJobs SDK irányítópult várólista üzenet.
 
         public static void ProcessQueueMessage([ServiceBusTrigger("inputqueue")] string message, 
             TextWriter logger)
@@ -75,20 +75,20 @@ Az alábbi példakód egy üzenetsor-üzenetet, amely tartalmazza a karakterlán
             logger.WriteLine(message);
         }
 
-**Megjegyzés:** egy alkalmazás, amely nem használja a WebJobs SDK létrehozásakor az üzenetsor-üzeneteket, feltétlenül állítson be [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) a "text/plain".
+**Megjegyzés:** létrehozásakor hello üzenetsor-üzeneteket egy alkalmazás, amely nem használja a WebJobs SDK hello, győződjön meg arról, hogy tooset [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) túl "text/plain".
 
 ### <a name="poco-queue-message"></a>POCO üzenetsor
-Az SDK automatikusan deszerializálni a egy üzenetsor-üzenetet, amely tartalmazza egy POCO JSON [(egyszerű régi CLR objektum](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) típus. A következő példakód olvas egy üzenetsor-üzenetet, amely tartalmaz egy `BlobInformation` objektum, amely rendelkezik egy `BlobName` tulajdonság:
+hello SDK automatikusan deszerializálni a egy üzenetsor-üzenetet, amely tartalmazza egy POCO JSON [(egyszerű régi CLR objektum](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) típus. hello alábbi kódminta olvas egy üzenetsor-üzenetet, amely tartalmaz egy `BlobInformation` objektum, amely rendelkezik egy `BlobName` tulajdonság:
 
         public static void WriteLogPOCO([ServiceBusTrigger("inputqueue")] BlobInformation blobInfo,
             TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-A Kódminták bemutatja, hogyan tulajdonságainak a POCO használhatja a blobok és táblák ugyanabban a függvényben, tekintse meg a [tárolási várólisták verziója, ez a cikk](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs).
+Hogyan hello POCO toowork blobok és táblák toouse tulajdonságainak hello azonos megjelenítő mintakódok működik, tekintse meg a hello [tárolási várólisták verziója, ez a cikk](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs).
 
-Ha a kódot, amely az üzenetsor-üzenetet hoz létre a WebJobs SDK nem használ, akkor a kódot az alábbi példához hasonló:
+Ha a várólista üdvözlőüzenetére létrehozó kód hello WebJobs SDK nem használ, akkor a kód hasonló toohello a következő példa:
 
         var client = QueueClient.CreateFromConnectionString(ConfigurationManager.ConnectionStrings["AzureWebJobsServiceBus"].ConnectionString, "blobadded");
         BlobInformation blobInformation = new BlobInformation () ;
@@ -96,13 +96,13 @@ Ha a kódot, amely az üzenetsor-üzenetet hoz létre a WebJobs SDK nem használ
         client.Send(message);
 
 ### <a name="types-servicebustrigger-works-with"></a>Típusok ServiceBusTrigger együttműködik
-Emellett `string` és POCO típusok, használhatja a `ServiceBusTrigger` attribútum egy bájttömböt vagy egy `BrokeredMessage` objektum.
+Módosításokon kívül `string` és POCO típusok hello használhatja `ServiceBusTrigger` attribútum egy bájttömböt vagy egy `BrokeredMessage` objektum.
 
-## <a id="create"></a>A Service Bus-üzenetsor-üzeneteket létrehozása
-Egy függvényt, amely létrehoz egy új várólista-üzenet használata írni a `ServiceBus` attribútumot, és adja át a várólista neve, hogy az attribútum konstruktora. 
+## <a id="create"></a>Hogyan toocreate Service Bus várólistára üzenetek
+egy függvényt, amely létrehoz egy új sor üzenetet toowrite hello használata `ServiceBus` attribútum számára pedig hello várólista neve toohello attribútumok konstruktorában. 
 
 ### <a name="create-a-single-queue-message-in-a-non-async-function"></a>Egyetlen üzenetsor nem aszinkron függvény létrehozása
-Az alábbi példakód egy kimeneti paraméter használatával hozzon létre egy új üzenetet a várólistában, ugyanahhoz a tartalomhoz, mint az üzenet érkezett a várólista "inputqueue" nevű, "outputqueue" nevű.
+a következő példakód hello egy új üzenet hello várólista neve "outputqueue" hello "inputqueue" nevű hello várólista fogadott üzenet hello ugyanaz, mint a tartalom a kimeneti paraméter toocreate használja.
 
         public static void CreateQueueMessage(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -111,17 +111,17 @@ Az alábbi példakód egy kimeneti paraméter használatával hozzon létre egy 
             outputQueueMessage = queueMessage;
         }
 
-A kimeneti paraméter egyetlen üzenetsor létrehozásához a következő típusok egyike lehet:
+egyetlen üzenetsor létrehozásához hello kimeneti paraméter hello a következő típusok egyike lehet:
 
 * `string`
 * `byte[]`
 * `BrokeredMessage`
 * A szerializálható POCO típus, amely adhat meg. Automatikusan szerializálható JSON-ként.
 
-POCO típusú paraméterrel egy üzenetsor mindig létrejön, amikor befejeződik a függvény; a paraméterek egyike null értékű, ha az SDK-t egy NULL értékű lesz vissza, ha az üzenet fogadása és deszerializálni üzenetsor-üzenetet hoz létre. A más típusú Ha a paraméter null értékű nincs üzenetsor jön létre.
+POCO típusú paraméterrel egy üzenetsor mindig létrejön, amikor befejeződik hello függvény; hello paraméterek egyike null értékű, ha hello SDK egy NULL értékű lesz vissza, ha az üdvözlőüzenetére fogad és deszerializálni üzenetsor-üzenetet hoz létre. Az egyéb hello, ha hello paraméterek egyike null értékű nincs várólista üzenet jön létre.
 
 ### <a name="create-multiple-queue-messages-or-in-async-functions"></a>Hozzon létre több üzenetek vagy aszinkron függvény
-Több üzenetet létrehozásához használja a `ServiceBus` rendelkező attribútum `ICollector<T>` vagy `IAsyncCollector<T>`, ahogy az az alábbi példakód:
+toocreate több üzenetet hello használata `ServiceBus` rendelkező attribútum `ICollector<T>` vagy `IAsyncCollector<T>`, ahogy az alábbi példakód hello:
 
         public static void CreateQueueMessages(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -133,10 +133,10 @@ Több üzenetet létrehozásához használja a `ServiceBus` rendelkező attribú
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-Minden várólista üzenet jön létre azonnal amikor a `Add` metódust.
+Minden várólista-üzenet létrehozásakor a rendszer azonnal hello `Add` metódust.
 
-## <a id="topics"></a>Service Bus-üzenettémakörök használata
-Az SDK-t meghívó, ha egy üzenet érkezik egy Service Bus-témakörbe függvényt használja a `ServiceBusTrigger` attribútumot a konstruktort témakör és előfizetés nevét, a következő kód mintában látható módon:
+## <a id="topics"></a>Hogyan toowork a Service Bus-témakörök
+toowrite hello SDK függvény meghívja a Service Bus-témakörbe üzenet fogadásakor, használja a hello `ServiceBusTrigger` hello konstruktort témakör és előfizetés nevét, ahogy az alábbi példakód hello attribútum:
 
         public static void WriteLog([ServiceBusTrigger("outputtopic","subscription1")] string message,
             TextWriter logger)
@@ -144,32 +144,32 @@ Az SDK-t meghívó, ha egy üzenet érkezik egy Service Bus-témakörbe függvé
             logger.WriteLine("Topic message: " + message);
         }
 
-Hozzon létre egy üzenetet a témakör a, használja a `ServiceBus` attribútum használata a várólistacímke ugyanúgy témakör néven.
+egy üzenettémakört, használjon hello üzenet toocreate `ServiceBus` attribútum egy témakör neve hello az azonos módon a várólistacímke együtt használja azt.
 
 ## <a name="features-added-in-release-11"></a>1.1-es verzióban hozzáadott funkciók
-A következő funkciók 1.1-es verzióban lettek hozzáadva:
+a következő funkciók hello 1.1-es verzióban lettek hozzáadva:
 
 * A részletes üzenetek feldolgozási keresztül testreszabásának engedélyezése `ServiceBusConfiguration.MessagingProvider`.
-* `MessagingProvider`a Service Bus testreszabása támogatja `MessagingFactory` és `NamespaceManager`.
-* A `MessageProcessor` stratégia mintát lehetővé teszi egy várólista/témakör processzort.
+* `MessagingProvider`támogatja a Service Bus hello testreszabása `MessagingFactory` és `NamespaceManager`.
+* A `MessageProcessor` stratégia mintát lehetővé teszi a várólista/témakör / processzort toospecify.
 * Üzenet feldolgozása párhuzamossági alapértelmezés szerint támogatott. 
 * Egyszerű testreszabás `OnMessageOptions` keresztül `ServiceBusConfiguration.MessageOptions`.
-* Engedélyezése [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) meg kell adni a `ServiceBusTriggerAttribute` / `ServiceBusAttribute` (a forgatókönyvekhez, amelyekben előfordulhat, hogy nem jogosultságaik kezelését). Vegye figyelembe, hogy Azure webjobs-feladatok nem sikerült automatikusan kiépíteni a nem létező üzenetsorok és témakörök AccessRights kezelése nélkül.
+* Engedélyezése [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) megadott toobe `ServiceBusTriggerAttribute` / `ServiceBusAttribute` (a forgatókönyvekhez, amelyekben előfordulhat, hogy nem jogosultságaik kezelését). Ne feledje, hogy Azure webjobs-feladatok nem tooautomatically kiépítése nem létező üzenetsorok és témakörök AccessRights kezelése nélkül.
 
-## <a id="queues"></a>A tároló – útmutató a várólisták cikkben említett kapcsolódó témakörök
-Nem adott Service Bus WebJobs SDK-forgatókönyvekkel kapcsolatos további információkért lásd: [Azure a queue storage használata a WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+## <a id="queues"></a>Hello tárolási várólisták hogyan-tooarticle hatálya kapcsolódó témakörök
+Nem adott tooService Bus, lásd: WebJobs SDK-forgatókönyvekkel kapcsolatos információk [hogyan toouse Azure várólista tároló hello WebJobs SDK a](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-A cikkben szereplő témakörök a következők:
+A cikkben szereplő témakörök hello alábbiakat foglalja magába:
 
 * Aszinkron funkciók
 * Több példánya
 * Biztonságos leállításának
-* Egy függvény törzséhez a WebJobs SDK attribútumok használata
-* Az SDK-kapcsolati karakterláncok beállítása a kódban
+* Egy függvény törzséhez hello a WebJobs SDK attribútumok használata
+* A kód hello SDK kapcsolati karakterláncok beállítása
 * Értékek beállítása a WebJobs SDK konstruktorparaméterek kódot
 * Manuálisan kezdeményezi egy függvény
 * Naplók írása
 
 ## <a id="nextsteps"></a> Következő lépések
-Ez az útmutató nyújtott mintakódok, amelyek bemutatják, hogyan kezeli az Azure Service Bus használata gyakori forgatókönyvei. Azure webjobs-feladatok és a WebJobs SDK használatával kapcsolatos további információkért lásd: [Azure webjobs-feladatok ajánlott erőforrások](http://go.microsoft.com/fwlink/?linkid=390226).
+Ez az útmutató nyújtott a kódot, hogy hogyan minták toohandle gyakori forgatókönyvei Azure Service Bus használata. További információ a hogyan toouse Azure webjobs-feladatok és a WebJobs SDK hello: [Azure webjobs-feladatok ajánlott erőforrások](http://go.microsoft.com/fwlink/?linkid=390226).
 

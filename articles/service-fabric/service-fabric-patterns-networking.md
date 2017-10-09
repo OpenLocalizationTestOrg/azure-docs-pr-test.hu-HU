@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric hálózatkezelés mintái |} Microsoft Docs"
-description: "A Service Fabric és a fürt létrehozása az Azure hálózati szolgáltatások segítségével közös hálózati mintákat ismerteti."
+title: "az Azure Service Fabric aaaNetworking minták |} Microsoft Docs"
+description: "Általános hálózati mintákat ismerteti a Service Fabric és hogyan toocreate egy fürt Azure hálózati szolgáltatások segítségével."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/16/2017
 ms.author: ryanwi
-ms.openlocfilehash: 126637002b24391058fb702227a570aa0b58c1d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5973e3f9917076c6a36e71443ec256e0f414ff87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-networking-patterns"></a>A Service Fabric hálózati minták
-Az Azure Service Fabric-fürt integrálhatja más Azure hálózati szolgáltatásokkal. Ebben a cikkben azt mutatja be az alábbi szolgáltatásokat használó fürtök létrehozásához:
+Az Azure Service Fabric-fürt integrálhatja más Azure hálózati szolgáltatásokkal. Ebben a cikkben megmutatjuk, hogyan toocreate fürtök, hogy a következő funkciók használata hello:
 
 - [Meglévő virtuális hálózathoz vagy alhálózathoz](#existingvnet)
 - [Statikus nyilvános IP-cím](#staticpublicip)
 - [Csak belső terheléselosztó](#internallb)
 - [Belső és külső terheléselosztó](#internalexternallb)
 
-A Service Fabric-szabványos virtuálisgép-méretezési csoportban lévő fut. Olyan funkciót, melyekkel egy virtuálisgép-méretezési csoportban lévő, használhatja a Service Fabric-fürt. Az Azure Resource Manager-sablonok a virtuálisgép-méretezési csoportok és a Service Fabric hálózati szakasza esetén azonosak. Miután telepít egy meglévő virtuális hálózatot, is könnyen más hálózati funkciókat, például Azure ExpressRoute, Azure VPN Gateway, a hálózati biztonsági csoporthoz és virtuális hálózati társviszony-létesítés tartalmaznia.
+A Service Fabric-szabványos virtuálisgép-méretezési csoportban lévő fut. Olyan funkciót, melyekkel egy virtuálisgép-méretezési csoportban lévő, használhatja a Service Fabric-fürt. hálózati szakaszait hello hello Azure Resource Manager-sablonok a virtuálisgép-méretezési csoportok és a Service Fabric esetén azonosak. Miután telepítette a meglévő virtuális hálózat tooan,-e más könnyen tooincorporate hálózati funkciók, például Azure ExpressRoute, Azure VPN Gateway, a hálózati biztonsági csoporthoz és virtuális hálózati társviszony-létesítés.
 
-A Service Fabric rendszer más hálózati szolgáltatások egyik tulajdonsága az egyedi. A [Azure-portálon](https://portal.azure.com) belső módon használja a Service Fabric erőforrás-szolgáltató hívása fürthöz csomópontokat és alkalmazások adatainak beolvasása. A Service Fabric erőforrás-szolgáltató nyilvánosan elérhető bejövő kell elérnie a felügyeleti végpont HTTP-átjáró port (19080, alapértelmezés szerint a port). [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) használ a felügyeleti végpont a fürt kezeléséhez. A Service Fabric erőforrás-szolgáltató ezen a porton lekérdezés adatait a fürt is használja az Azure portálon megjelenítéséhez. 
+A Service Fabric rendszer más hálózati szolgáltatások egyik tulajdonsága az egyedi. Hello [Azure-portálon](https://portal.azure.com) belsőleg használt hello Service Fabric erőforrás szolgáltató toocall tooa fürt tooget csomópontok és alkalmazásokkal kapcsolatos információkat. hello Service Fabric erőforrás-szolgáltató nyilvánosan elérhető befelé toohello HTTP átjáró port (19080, alapértelmezés szerint a port) hello felügyeleti végpont igényel. [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) hello felügyeleti végpont toomanage a fürt által használt. hello Service Fabric erőforrás-szolgáltató is használja ezt a fürtöt, az Azure-portálon hello toodisplay port tooquery információt. 
 
-Ha port 19080 nem érhető el a Service Fabric erőforrás-szolgáltató, egy üzenet, például *csomópont nem található* megjelenik a portálon, és megjelenik a a csomópont- és alkalmazás listája üres. Ha azt szeretné, hogy a fürt az Azure portálon, a terheléselosztó fel kell fednie egy nyilvános IP-címet, és a hálózati biztonsági csoport engedélyeznie kell a bejövő portot 19080 adatforgalmat. A telepítő nem felel meg a követelménynek, ha az Azure-portál nem jelenik meg a fürt állapota.
+Port 19080 hello Service Fabric erőforrás-szolgáltató nem érhető el, ha egy üzenetet, például *csomópont nem található* megjelenik hello portálon, és megjelenik a a csomópont- és alkalmazás lista üres. Ha toosee lévő hello Azure-portálon, a terheléselosztó fel kell fednie egy nyilvános IP-címet, és a hálózati biztonsági csoport engedélyeznie kell a bejövő portot 19080 adatforgalmat. A telepítő nem felel meg a követelménynek, hello Azure-portálon nem jelennek meg a fürt hello állapotát.
 
 ## <a name="templates"></a>Sablonok
 
-Az összes Service Fabric-sablonok vannak [egyik letöltendő fájl](https://msdnshared.blob.core.windows.net/media/2016/10/SF_Networking_Templates.zip). Meg kell telepíteni, a sablonok – a következő PowerShell-parancsok használatával. Ha telepíti a meglévő Azure virtuális hálózat vagy a statikus nyilvános IP-sablont, először olvassa el a [telepítő kezdeti](#initialsetup) című szakaszát.
+Az összes Service Fabric-sablonok vannak [egyik letöltendő fájl](https://msdnshared.blob.core.windows.net/media/2016/10/SF_Networking_Templates.zip). Meg kell tudni toodeploy hello sablont,-hello a következő PowerShell-parancsok használatával. Központi telepítése hello meglévő Azure-beli virtuális hálózatra-sablon vagy hello statikus nyilvános IP-sablont, elolvashatja hello [telepítő kezdeti](#initialsetup) című szakaszát.
 
 <a id="initialsetup"></a>
 ## <a name="initial-setup"></a>Kezdeti telepítés
 
 ### <a name="existing-virtual-network"></a>Meglévő virtuális hálózat
 
-A következő példában először nevű ExistingRG-hálózatok, a meglévő virtuális hálózat a **ExistingRG** erőforráscsoportot. Az alhálózat neve alapértelmezett. Ezek az alapértelmezett erőforrások jönnek létre, ha az Azure-portál használatával hozzon létre egy szabványos virtuális gépet (VM). Létrehozhatja a virtuális hálózati és alhálózati nélkül a virtuális gép létrehozása, de a fő céllal, a fürt hozzáadása egy meglévő virtuális hálózathoz hálózati kapcsolatot biztosít a többi virtuális gépekhez. A virtuális gép létrehozása biztosít a meglévő virtuális hálózat általában használatáról jó példa. Ha a Service Fabric-fürt csak egy belső elosztott terhelésű, a nyilvános IP-cím nélkül is használhatja a virtuális gép és a nyilvános IP-cím a biztonságos *mezőben jump*.
+A következő példa hello, először egy meglévő virtuális hálózat neve ExistingRG-vnet, a hello **ExistingRG** erőforráscsoportot. hello alhálózati alapértelmezett neve. Ezeket az alapértelmezett erőforrásokat hello Azure portál toocreate szabványos virtuális gép (VM) használatakor jönnek létre. Sikerült létrehozni a hello virtuális hálózati és alhálózati hello virtuális gép létrehozása nélkül, de hello fő célja egy fürt tooan meglévő virtuális hálózat hozzáadása tooprovide hálózati kapcsolat tooother virtuális gépeket. Virtuális gép létrehozása hello jó példán meglévő virtuális hálózat általában használatáról. Ha a Service Fabric-fürt használja csak a belső terheléselosztók, egy nyilvános IP-cím nélkül használhatja hello a virtuális gép és a nyilvános IP-cím, egy biztonságos *mezőben jump*.
 
 ### <a name="static-public-ip-address"></a>Statikus nyilvános IP-cím
 
-Egy statikus nyilvános IP-cím általában egy dedikált erőforrást, amely a virtuális gép vagy a virtuális gépek hozzá van rendelve külön kezelnek. Azt ki van építve a dedikált hálózati erőforráscsoportban (azaz a Service Fabric-fürt erőforrás csoportosítás maga nem). Hozzon létre egy statikus nyilvános IP-cím nevű staticIP1 azonos ExistingRG az erőforráscsoporthoz tartozik, az Azure portálon vagy a PowerShell használatával:
+Egy statikus nyilvános IP-cím általában egy dedikált erőforrás hello VM vagy a virtuális gépek hozzá van rendelve a külön-külön kezelhető. Még lett beállítva a dedikált hálózati erőforráscsoportban (fürterőforrás-csoportként megakadályozását tooin hello Service Fabric maga). Hozzon létre egy statikus nyilvános IP-címet a hello staticIP1 nevű azonos ExistingRG erőforráscsoport hello Azure-portálon vagy a PowerShell használatával:
 
 ```powershell
 PS C:\Users\user> New-AzureRmPublicIpAddress -Name staticIP1 -ResourceGroupName ExistingRG -Location westus -AllocationMethod Static -DomainNameLabel sfnetworking
@@ -73,12 +73,12 @@ DnsSettings              : {
 
 ### <a name="service-fabric-template"></a>A Service Fabric-sablon
 
-A cikkben szereplő példák használjuk a Service Fabric template.json. A szabványos portál varázsló segítségével a sablon letöltéséről a portálon, a fürt létrehozása előtt. Is használhatja a sablont a [sablon gyűjtemény](https://azure.microsoft.com/en-us/documentation/templates/?term=service+fabric), például a [öt csomópontból Service Fabric-fürt](https://azure.microsoft.com/en-us/documentation/templates/service-fabric-unsecure-cluster-5-node-1-nodetype/).
+A cikkben szereplő példák hello hello Service Fabric template.json használjuk. Hello szabványos portál varázsló toodownload hello sablon hello portálról is használhat, a fürt létrehozása előtt. Is használhatja hello sablonok valamelyikét hello [sablon gyűjtemény](https://azure.microsoft.com/en-us/documentation/templates/?term=service+fabric), például a hello [öt csomópontból Service Fabric-fürt](https://azure.microsoft.com/en-us/documentation/templates/service-fabric-unsecure-cluster-5-node-1-nodetype/).
 
 <a id="existingvnet"></a>
 ## <a name="existing-virtual-network-or-subnet"></a>Meglévő virtuális hálózathoz vagy alhálózathoz
 
-1. Módosítsa a alhálózati paramétert a meglévő alhálózat nevét, és adja hozzá a két új paramétert a meglévő virtuális hálózat hivatkozni:
+1. Hello alhálózati toohello paraméternév hello meglévő alhálózat módosítása, és adja hozzá a két új paramétereket tooreference hello meglévő virtuális hálózat:
 
     ```
         "subnet0Name": {
@@ -106,7 +106,7 @@ A cikkben szereplő példák használjuk a Service Fabric template.json. A szabv
     ```
 
 
-2. Módosítsa a `vnetID` változó, mutasson a meglévő virtuális hálózathoz:
+2. Változás hello `vnetID` változó toopoint toohello meglévő virtuális hálózat:
 
     ```
             /*old "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",*/
@@ -143,7 +143,7 @@ A cikkben szereplő példák használjuk a Service Fabric template.json. A szabv
     },*/
     ```
 
-4. A virtuális hálózaton megjegyzésbe a `dependsOn` attribútumának `Microsoft.Compute/virtualMachineScaleSets`, így nem függ egy új virtuális hálózat létrehozása:
+4. Hello hello virtuális hálózatban megjegyzésbe `dependsOn` attribútumának `Microsoft.Compute/virtualMachineScaleSets`, így nem függ egy új virtuális hálózat létrehozása:
 
     ```
     "apiVersion": "[variables('vmssApiVersion')]",
@@ -157,27 +157,27 @@ A cikkben szereplő példák használjuk a Service Fabric template.json. A szabv
 
     ```
 
-5. A sablon telepítéséhez:
+5. Hello sablon üzembe helyezése:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkingexistingvnet -Location westus
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkingexistingvnet -TemplateFile C:\SFSamples\Final\template\_existingvnet.json
     ```
 
-    A központi telepítést követően a virtuális hálózat tartalmaznia kell az új virtuális gépek méretezési csoportjának virtuális gépeket. A virtuális gép méretezési készlet csomóponttípus meg kell jelennie a meglévő virtuális hálózat és alhálózat. Is használhatja Remote Desktop Protocol (RDP) a virtuális Gépet, amely már szerepel a virtuális hálózat eléréséhez, és Pingelje meg az új állítsa be a virtuális gépek:
+    A központi telepítést követően tartalmaznia kell a virtuális hálózat hello új méretezési virtuális gépeket. hello virtuális gép méretezési készlet csomóponttípus hello meglévő virtuális hálózat és alhálózat kell megjelennie. Remote Desktop Protocol (RDP) tooaccess hello virtuális Gépet, amely már szerepel a virtuális hálózati hello is használhatja, és tooping hello új méretezési virtuális gépek:
 
     ```
     C:>\Users\users>ping 10.0.0.5 -n 1
     C:>\Users\users>ping NOde1000000 -n 1
     ```
 
-Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://github.com/gbowerman/azure-myriad/tree/master/existing-vnet).
+Egy másik példa, lásd: [, amely nem adott tooService háló](https://github.com/gbowerman/azure-myriad/tree/master/existing-vnet).
 
 
 <a id="staticpublicip"></a>
 ## <a name="static-public-ip-address"></a>Statikus nyilvános IP-cím
 
-1. Adja hozzá a statikus IP meglévő erőforráscsoport neve, a neve és a teljesen minősített tartománynevét (FQDN) paramétereinek:
+1. Adja hozzá a statikus IP-erőforráscsoport nevét és teljes tartománynevét (FQDN) meglévő hello hello neve paramétereinek:
 
     ```
     "existingStaticIPResourceGroup": {
@@ -191,7 +191,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
     }
     ```
 
-2. Távolítsa el a `dnsName` paraméter. (A statikus IP-cím már szerepel ilyen.)
+2. Távolítsa el a hello `dnsName` paraméter. (hello statikus IP-cím már szerepel ilyen.)
 
     ```
     /*
@@ -201,7 +201,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
     */
     ```
 
-3. Egy változó való hivatkozáshoz a meglévő statikus IP-cím hozzáadása:
+3. Egy változó tooreference hello meglévő statikus IP-cím hozzáadása:
 
     ```
     "existingStaticIP": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('existingStaticIPResourceGroup'), '/providers/Microsoft.Network/publicIPAddresses/', parameters('existingStaticIPName'))]",
@@ -229,7 +229,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
     }, */
     ```
 
-5. Az IP-cím a megjegyzésbe a `dependsOn` attribútumának `Microsoft.Network/loadBalancers`, így nem függ egy új IP-cím létrehozása:
+5. Hello IP-címet hello megjegyzésbe `dependsOn` attribútumának `Microsoft.Network/loadBalancers`, így nem függ egy új IP-cím létrehozása:
 
     ```
     "apiVersion": "[variables('lbIPApiVersion')]",
@@ -243,7 +243,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
     "properties": {
     ```
 
-6. Az a `Microsoft.Network/loadBalancers` erőforrás, módosítsa a `publicIPAddress` eleme `frontendIPConfigurations` való hivatkozáshoz helyett egy újonnan létrehozott egy létező statikus IP-cím:
+6. A hello `Microsoft.Network/loadBalancers` erőforrás, a módosítás hello `publicIPAddress` eleme `frontendIPConfigurations` tooreference hello helyett egy újonnan létrehozott egy létező statikus IP-cím:
 
     ```
                 "frontendIPConfigurations": [
@@ -259,7 +259,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
                     ],
     ```
 
-7. Az a `Microsoft.ServiceFabric/clusters` erőforrás, a módosítás `managementEndpoint` a statikus IP-címet a DNS teljes Tartományneve számára. Ha egy biztonságos fürtöt használ, ellenőrizze, hogy megváltoztatja *http://* való *https://*. (Vegye figyelembe, hogy ez a lépés csak a Service Fabric-fürtök vonatkozik. Ha egy virtuálisgép-méretezési csoport használja, kihagyhatja ezt a lépést.)
+7. A hello `Microsoft.ServiceFabric/clusters` erőforrás, a módosítás `managementEndpoint` toohello hello statikus IP-cím DNS teljes Tartományneve. Ha egy biztonságos fürtöt használ, ellenőrizze, hogy megváltoztatja *http://* túl*https://*. (Vegye figyelembe, hogy ez a lépés csak tooService Fabric-fürtök vonatkozik-e. Ha egy virtuálisgép-méretezési csoport használja, kihagyhatja ezt a lépést.)
 
     ```
                     "fabricSettings": [],
@@ -267,7 +267,7 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
                     "managementEndpoint": "[concat('http://',parameters('existingStaticIPDnsFQDN'),':',parameters('nt0fabricHttpGatewayPort'))]",
     ```
 
-8. A sablon telepítéséhez:
+8. Hello sablon üzembe helyezése:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkingstaticip -Location westus
@@ -279,14 +279,14 @@ Egy másik példa, lásd: [, amely nem a Service Fabric jellemző](https://githu
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkingstaticip -TemplateFile C:\SFSamples\Final\template\_staticip.json -existingStaticIPResourceGroup $staticip.ResourceGroupName -existingStaticIPName $staticip.Name -existingStaticIPDnsFQDN $staticip.DnsSettings.Fqdn
     ```
 
-A központi telepítést követően láthatja, hogy a terheléselosztó van kötve a nyilvános statikus IP-cím az egyéb erőforráscsoportból. A Service Fabric ügyfél-csatlakozási végpont és [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) végpont pontot a DNS FQDN a statikus IP-cím.
+Telepítés után ellenőrizheti, hogy a terheléselosztó-e a kötött toohello nyilvános statikus IP-cím a hello másik erőforráscsoportban. a Service Fabric ügyfél-csatlakozási végpont hello és [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) végpont pont toohello hello statikus IP-cím DNS teljes Tartományneve.
 
 <a id="internallb"></a>
 ## <a name="internal-only-load-balancer"></a>Csak belső terheléselosztó
 
-Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alapértelmezett sablon lecseréli egy csak belső terheléselosztót. Az Azure-portál és a Service Fabric erőforrás-szolgáltató megvalósítását lásd: az előző szakaszban.
+Ebben a forgatókönyvben egy csak belső terheléselosztó hello külső terheléselosztó hello alapértelmezett Service Fabric sablon lecseréli. Hello Azure-portál és a Service Fabric erőforrás-szolgáltató hello megvalósítását lásd: hello megelőző szakasz.
 
-1. Távolítsa el a `dnsName` paraméter. (Nincs rá szükség.)
+1. Távolítsa el a hello `dnsName` paraméter. (Nincs rá szükség.)
 
     ```
     /*
@@ -296,7 +296,7 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
     */
     ```
 
-2. Szükség esetén egy statikus kiosztási módszerrel használatakor is hozzáadhat egy statikus IP-cím paraméter. Ha egy dinamikus elosztási módszert használ, nem szükséges ehhez a lépéshez.
+2. Szükség esetén egy statikus kiosztási módszerrel használatakor is hozzáadhat egy statikus IP-cím paraméter. Ha egy dinamikus elosztási módszert használ, nem kell toodo ezt a lépést.
 
     ```
             "internalLBAddress": {
@@ -327,7 +327,7 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
     }, */
     ```
 
-4. Távolítsa el az IP-cím `dependsOn` attribútumának `Microsoft.Network/loadBalancers`, így nem függ egy új IP-cím létrehozása. Adja hozzá a virtuális hálózatot `dependsOn` attribútumon, mert a terheléselosztó most a virtuális hálózati alhálózat függ:
+4. Távolítsa el a hello IP-cím `dependsOn` attribútumának `Microsoft.Network/loadBalancers`, így nem függ egy új IP-cím létrehozása. Adja hozzá a virtuális hálózati hello `dependsOn` attribútumon, mert hello terheléselosztó most hello virtuális hálózati alhálózat hello függ:
 
     ```
                 "apiVersion": "[variables('lbApiVersion')]",
@@ -340,7 +340,7 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
                 ],
     ```
 
-5. Módosítsa a terheléselosztó `frontendIPConfigurations` beállítása a használatával egy `publicIPAddress`, alhálózat használatát és `privateIPAddress`. `privateIPAddress`egy előre meghatározott statikus belső IP-címet használja. A dinamikus IP-cím használatára, távolítsa el a `privateIPAddress` elemet, és módosítsa `privateIPAllocationMethod` való **dinamikus**.
+5. Hello terheléselosztójának módosítása `frontendIPConfigurations` beállítása a használatával egy `publicIPAddress`, toousing alhálózat és `privateIPAddress`. `privateIPAddress`egy előre meghatározott statikus belső IP-címet használja. dinamikus IP-címnek, toouse eltávolítása hello `privateIPAddress` elemet, és módosítsa `privateIPAllocationMethod` túl**dinamikus**.
 
     ```
                 "frontendIPConfigurations": [
@@ -361,7 +361,7 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
                     ],
     ```
 
-6. Az a `Microsoft.ServiceFabric/clusters` erőforrás, a módosítás `managementEndpoint` úgy, hogy a belső terheléselosztó-címén mutasson. Ha biztonságos-fürtöt használ, ellenőrizze, hogy megváltoztatja *http://* való *https://*. (Vegye figyelembe, hogy ez a lépés csak a Service Fabric-fürtök vonatkozik. Ha egy virtuálisgép-méretezési csoport használja, kihagyhatja ezt a lépést.)
+6. A hello `Microsoft.ServiceFabric/clusters` erőforrás, a módosítás `managementEndpoint` toopoint toohello belső terheléselosztói címet. Ha biztonságos-fürtöt használ, ellenőrizze, hogy megváltoztatja *http://* túl*https://*. (Vegye figyelembe, hogy ez a lépés csak tooService Fabric-fürtök vonatkozik-e. Ha egy virtuálisgép-méretezési csoport használja, kihagyhatja ezt a lépést.)
 
     ```
                     "fabricSettings": [],
@@ -369,7 +369,7 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
                     "managementEndpoint": "[concat('http://',reference(variables('lbID0')).frontEndIPConfigurations[0].properties.privateIPAddress,':',parameters('nt0fabricHttpGatewayPort'))]",
     ```
 
-7. A sablon telepítéséhez:
+7. Hello sablon üzembe helyezése:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkinginternallb -Location westus
@@ -377,16 +377,16 @@ Ebben a forgatókönyvben a külső terheléselosztóhoz, a Service Fabric alap�
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkinginternallb -TemplateFile C:\SFSamples\Final\template\_internalonlyLB.json
     ```
 
-A központi telepítést követően a terheléselosztó a statikus 10.0.0.250 magánhálózati IP-címet használ. Ha egy másik gép ugyanazon virtuális hálózatban, lépjen a belső [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) végpont. Figyelje meg, hogy a terheléselosztó mögött a csomópontok egyikét csatlakozik.
+A központi telepítést követően a terheléselosztó hello titkos statikus 10.0.0.250 IP-címet használja. Ha egy másik gép ugyanazon virtuális hálózatban, elvégezheti a belső toohello [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) végpont. Vegye figyelembe, hogy csatlakozik-e tooone hello csomópontok hello terheléselosztó mögött.
 
 <a id="internalexternallb"></a>
 ## <a name="internal-and-external-load-balancer"></a>Belső és külső terheléselosztó
 
-Ebben a forgatókönyvben a meglévő egycsomópontos típus külső terheléselosztó kezdődnie, és vegye fel a csomópont ugyanolyan belső terheléselosztót. A háttér-port, egy háttér címkészletet csatolva csak egyetlen terheléselosztót is hozzárendelhető. Válassza ki, mely terheléselosztót kapnak az alkalmazás portok, valamint mely terheléselosztót fog rendelkezni a felügyeleti végpontok (portok 19000 és 19080). Ha a felügyeleti végpontok a belső terheléselosztón, tartsa szem előtt a Service Fabric-erőforrás a cikkben korábban tárgyalt szolgáltató korlátozások. A példában használjuk, a felügyeleti végpontok maradnak a külső terheléselosztóhoz. Emellett adjon hozzá egy port 80 alkalmazás portot, és helyezze el a belső terheléselosztó.
+Ebben a forgatókönyvben hello meglévő egycsomópontos típus külső terheléselosztó kezdődnie, és adja hozzá a belső terheléselosztók hello az azonos csomóponttípus. A háttér-port csatolt tooa háttér-címkészlet csak tooa egyetlen terheléselosztóhoz rendelhetők hozzá. Válassza ki, mely terheléselosztót kapnak az alkalmazás portok, valamint mely terheléselosztót fog rendelkezni a felügyeleti végpontok (portok 19000 és 19080). Ha hello felügyeleti végpontok hello belső terheléselosztón, tartsa szem előtt tartva hello Service Fabric-erőforrás szolgáltató korlátozások hello cikkben korábban ismertetett. Hello példában használjuk hello felügyeleti végpontok hello külső terheléselosztó maradnak. Is adjon hozzá egy port 80 alkalmazás portot, és helyezze el hello belső terheléselosztót.
 
-A két csomóponttípus fürtben egy csomópont típus a külső terheléselosztóhoz. A második csomópont típus esetén a belső terheléselosztón. A két csomóponttípus-fürtöt használ, a portál által létrehozott két csomóponttípus sablonban (Ez a két terheléselosztók), a második terheléselosztó átvált belső terheléselosztót. További információkért lásd: a [csak belső terheléselosztó](#internallb) szakasz.
+A két csomóponttípus fürtben egy csomópont típus hello külső terheléselosztóhoz. hello más típusú csomópont értéke hello belső terheléselosztón. két csomóponttípus fürt, a hello portál által létrehozott két csomóponttípus sablon (Ez a két terheléselosztók) toouse hello második load balancer tooan belső terheléselosztó váltani. További információkért lásd: hello [csak belső terheléselosztó](#internallb) szakasz.
 
-1. Adja hozzá a statikus belső load balancer IP-cím paraméter. (Egy dinamikus IP-cím használatához kapcsolódó megjegyzések, tekintse meg a cikk korábbi szakaszaiban.)
+1. Adja hozzá a hello statikus belső load balancer IP-cím paraméter. (Megjegyzések kapcsolódó toousing dinamikus IP-címnek, tekintse meg a cikk korábbi szakaszaiban.)
 
     ```
             "internalLBAddress": {
@@ -397,7 +397,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
 
 2. Adja hozzá az alkalmazás 80-as port paramétert.
 
-3. Belső a meglévő hálózati változók, másolja és illessze be a hozzáadni, majd adja meg a "-Int" nevét:
+3. tooadd belső hello meglévő változók, hálózati másolja és illessze be a, és adja hozzá "-Int" toohello nevét:
 
     ```
     /* Add internal load balancer networking variables */
@@ -410,7 +410,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
             /* Internal load balancer networking variables end */
     ```
 
-4. Ha először a portál által létrehozott sablon, amely alkalmazás 80-as portot használja, a portál alapértelmezett sablon hozzáadása AppPort1 (80-as port) a külső terheléselosztóhoz. Ebben az esetben távolítsa el a külső terheléselosztó AppPort1 `loadBalancingRules` és mintavételek menüpontban, így adhat hozzá a belső terheléselosztó:
+4. Ha először hello portál által létrehozott sablont, amely az alkalmazás 80-as portot használja, hello alapértelmezett portálsablon hozzáadja AppPort1 (80-as port) hello külső terheléselosztóhoz. Ebben az esetben távolítsa el a AppPort1 hello külső terheléselosztó `loadBalancingRules` és mintavételek menüpontban, így hozzáadhatja azt toohello belső terheléselosztó:
 
     ```
     "loadBalancingRules": [
@@ -432,7 +432,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
                 },
                 "protocol": "tcp"
             }
-        } /* Remove AppPort1 from the external load balancer.
+        } /* Remove AppPort1 from hello external load balancer.
         {
             "name": "AppPortLBRule1",
             "properties": {
@@ -472,7 +472,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
                 "port": "[parameters('nt0fabricHttpGatewayPort')]",
                 "protocol": "tcp"
             }
-        } /* Remove AppPort1 from the external load balancer.
+        } /* Remove AppPort1 from hello external load balancer.
         {
             "name": "AppPortProbe1",
             "properties": {
@@ -487,14 +487,14 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
     "inboundNatPools": [
     ```
 
-5. Adja hozzá egy második `Microsoft.Network/loadBalancers` erőforrás. A belső terheléselosztó létrehozott hasonló a [csak belső terheléselosztó](#internallb) szakaszában, de használja a "-Int" terheléselosztó változók betölteni, és megvalósítja az csak az alkalmazás 80-as porton. Ez eltávolítja `inboundNatPools`, hogy továbbra is RDP-végpontot a nyilvános terheléselosztó. Az RDP a belső terheléselosztón, helyezze `inboundNatPools` a külső terheléselosztóhoz, a belső terheléselosztóhoz:
+5. Adja hozzá egy második `Microsoft.Network/loadBalancers` erőforrás. A jelek hasonló toohello belső terheléselosztó hello létrehozott [csak belső terheléselosztó](#internallb) szakaszában, de használja hello "-Int" terheléselosztó változók, és megvalósít csak hello alkalmazás 80-as porton. Ez eltávolítja `inboundNatPools`, nyilvános terheléselosztót hello tookeep RDP végpontja. RDP hello belső terheléselosztón, helyezze `inboundNatPools` hello külső load balancer toothis belső terheléselosztó:
 
     ```
-            /* Add a second load balancer, configured with a static privateIPAddress and the "-Int" load balancer variables. */
+            /* Add a second load balancer, configured with a static privateIPAddress and hello "-Int" load balancer variables. */
             {
                 "apiVersion": "[variables('lbApiVersion')]",
                 "type": "Microsoft.Network/loadBalancers",
-                /* Add "-Internal" to the name. */
+                /* Add "-Internal" toohello name. */
                 "name": "[concat('LB','-', parameters('clusterName'),'-',parameters('vmNodeType0Name'), '-Internal')]",
                 "location": "[parameters('computeLocation')]",
                 "dependsOn": [
@@ -508,7 +508,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
                         {
                             "name": "LoadBalancerIPConfig",
                             "properties": {
-                                /* Switch from Public to Private IP address
+                                /* Switch from Public tooPrivate IP address
                                 */
                                 "publicIPAddress": {
                                     "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(parameters('lbIPName'),'-','0'))]"
@@ -529,7 +529,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
                         }
                     ],
                     "loadBalancingRules": [
-                        /* Add the AppPort rule. Be sure to reference the "-Int" versions of backendAddressPool, frontendIPConfiguration, and the probe variables. */
+                        /* Add hello AppPort rule. Be sure tooreference hello "-Int" versions of backendAddressPool, frontendIPConfiguration, and hello probe variables. */
                         {
                             "name": "AppPortLBRule1",
                             "properties": {
@@ -551,7 +551,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
                         }
                     ],
                     "probes": [
-                    /* Add the probe for the app port. */
+                    /* Add hello probe for hello app port. */
                     {
                             "name": "AppPortProbe1",
                             "properties": {
@@ -572,7 +572,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
             },
     ```
 
-6. A `networkProfile` a a `Microsoft.Compute/virtualMachineScaleSets` erőforrás, a belső háttér-címkészlet hozzáadása:
+6. A `networkProfile` a hello `Microsoft.Compute/virtualMachineScaleSets` erőforrás, hello belső háttér-címkészlet hozzáadása:
 
     ```
     "loadBalancerBackendAddressPools": [
@@ -586,7 +586,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
     ],
     ```
 
-7. A sablon telepítéséhez:
+7. Hello sablon üzembe helyezése:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkinginternalexternallb -Location westus
@@ -594,7 +594,7 @@ A két csomóponttípus fürtben egy csomópont típus a külső terheléseloszt
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkinginternalexternallb -TemplateFile C:\SFSamples\Final\template\_internalexternalLB.json
     ```
 
-A központi telepítést követően az erőforráscsoportban két terheléselosztók tekintheti meg. Ha tallózással azokat a terheléselosztókat, megtekintheti a nyilvános IP cím és felügyeleti végpontok (19000 és 19080 portok) a nyilvános IP-címet hozzárendelni. A statikus belső IP-cím és az alkalmazás végponton (80-as port) a belső terheléselosztó rendelt is látható. Mindkét terheléselosztók használja a virtuális gép méretezési készlet háttér-készlethez.
+A központi telepítést követően megtekintheti a két terheléselosztók hello erőforráscsoportban. Ha tallózással hello terheléselosztók, láthatja a hello nyilvános IP-cím és a felügyeleti végpontok (portok 19000 és 19080) hozzárendelt toohello nyilvános IP-cím. Is láthatóvá hello statikus belső IP cím és az alkalmazás végpont (80-as port) hozzárendelt toohello belső terheléselosztó. Mindkét betölteni egy terheléselosztó használata hello ugyanazon virtuálisgép-méretezési csoport háttér-készlet.
 
 ## <a name="next-steps"></a>Következő lépések
 [Fürt létrehozása](service-fabric-cluster-creation-via-arm.md)

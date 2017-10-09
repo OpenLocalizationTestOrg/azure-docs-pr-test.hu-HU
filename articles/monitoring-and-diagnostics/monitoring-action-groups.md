@@ -1,6 +1,6 @@
 ---
-title: "Az Azure portálon művelet csoportok létrehozása és kezelése |} Microsoft Docs"
-description: "Útmutató az Azure portálon művelet csoportok létrehozásához és kezeléséhez."
+title: "aaaCreate és hello Azure-portálon művelet csoportok kezelése |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és hello Azure-portálon művelet csoportok kezelése."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: ancav
-ms.openlocfilehash: ea15705bf02d9773507c6cb59f2da4c1dd0f9d77
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 97e0b22bea7787fff6856f895a7e6256c177efd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-action-groups-in-the-azure-portal"></a>Az Azure portálon művelet csoportok létrehozása és kezelése
+# <a name="create-and-manage-action-groups-in-hello-azure-portal"></a>Az Azure-portálon hello művelet csoportok létrehozása és kezelése
 ## <a name="overview"></a>Áttekintés ##
-Ez a cikk bemutatja, hogyan az Azure portálon művelet csoportok létrehozásához és kezeléséhez.
+Ez a cikk bemutatja, hogyan toocreate és hello Azure-portálon művelet csoportok kezelése.
 
-A művelet csoportok konfigurálható azon műveletek listáját. Ezek a csoportok majd használható napló tevékenységriasztásokat definiálásakor. Ezek a csoportok majd minden egyes napló figyelmeztetés a meghatározásához, biztosítva, hogy ugyanazokat a műveleteket a rendszer minden alkalommal, amikor a tevékenység napló figyelmeztetés felhasználhatók.
+A művelet csoportok konfigurálható azon műveletek listáját. Ezek a csoportok majd használható napló tevékenységriasztásokat definiálásakor. Ezek a csoportok majd minden egyes napló figyelmeztetés a meghatározásához, győződjön meg arról, hogy ugyanazon műveleteket hajtja végre hello figyelmeztetés a naplófájl minden egyes indításakor hello felhasználhatók.
 
-Egy legfeljebb 10 minden művelet típusú lehet. Egyes műveletek során a következő tulajdonságok tevődik össze:
+Egy művelet típusonkénti too10 legfeljebb tartalmazhat. Egyes műveletek során a következő tulajdonságok hello tevődik össze:
 
-* **Név**: a művelet csoporton belül egyedi azonosítója.  
+* **Név**: hello művelet csoporton belül egyedi azonosítója.  
 * **Művelet típusa**: SMS küldése, küldjön egy e-mailt, vagy hívja a webhook.  
-* **Részletek**: A megfelelő telefonszám, számot, e-mail címét vagy webhook URI.
+* **Részletek**: hello a megfelelő telefonszám, e-mail címét vagy webhook URI.
 
-Művelet csoportok konfigurálása Azure Resource Manager-sablonok használatával kapcsolatos információkért lásd: [művelet csoport Resource Manager-sablonok](monitoring-create-action-group-with-resource-manager-template.md).
+Információ toouse Azure Resource Manager sablonok tooconfigure művelet csoportok: [művelet csoport Resource Manager-sablonok](monitoring-create-action-group-with-resource-manager-template.md).
 
-## <a name="create-an-action-group-by-using-the-azure-portal"></a>Egy művelet csoport létrehozása az Azure-portál használatával ##
-1. Az a [portal](https://portal.azure.com), jelölje be **figyelő**. A **figyelő** panel összes figyelési beállítások és adatok az egyik nézetben összesíti.
+## <a name="create-an-action-group-by-using-hello-azure-portal"></a>Egy művelet csoport létrehozása hello Azure-portál használatával ##
+1. A hello [portal](https://portal.azure.com), jelölje be **figyelő**. Hello **figyelő** panel összes figyelési beállítások és adatok az egyik nézetben összesíti.
 
-    ![A "Figyelés" szolgáltatás](./media/monitoring-action-groups/home-monitor.png)
-2. Az a **tevékenységnapló** szakaszban jelölje be **művelet csoportok**.
+    ![hello "Figyelés" szolgáltatás](./media/monitoring-action-groups/home-monitor.png)
+2. A hello **tevékenységnapló** szakaszban jelölje be **művelet csoportok**.
 
-    ![A "Művelet csoportok" lap](./media/monitoring-action-groups/action-groups-blade.png)
-3. Válassza ki **művelet csoport hozzáadása**, és töltse ki a mezőket.
+    ![hello "Művelet csoportok" lap](./media/monitoring-action-groups/action-groups-blade.png)
+3. Válassza ki **művelet csoport hozzáadása**, és töltse ki hello mezőket.
 
-    ![A "Művelet csoport hozzáadása" parancs](./media/monitoring-action-groups/add-action-group.png)
-4. Adjon meg egy nevet a a **művelet csoportnév** mezőbe, majd írjon be egy nevet a **rövid név** mezőbe. A rövid nevét használja a teljes műveletet csoport neve helyett amikor ez a csoport értesítések küldése.
+    ![hello "Művelet csoport hozzáadása" parancs](./media/monitoring-action-groups/add-action-group.png)
+4. Adjon meg egy nevet a hello **művelet csoportnév** mezőbe, majd írjon be egy nevet a hello **rövid név** mezőbe. hello rövid nevét helyett egy teljes művelet felügyeleticsoport-nevet használja, ha ez a csoport értesítések küldése.
 
-      ![A művelet csoport hozzáadása"párbeszédpanel](./media/monitoring-action-groups/action-group-define.png)
+      ![hello a művelet csoport hozzáadása"párbeszédpanel](./media/monitoring-action-groups/action-group-define.png)
 
-5. A **előfizetés** a jelenlegi előfizetés autofills mezőben. Ez az előfizetés, amelyben a művelet csoport mentett lesz.
+5. Hello **előfizetés** a jelenlegi előfizetés autofills mezőben. Ez az előfizetés egy hello mely hello művelet csoport menti.
 
-6. Válassza ki a **erőforráscsoport** az a művelet csoport mentve.
+6. Jelölje be hello **erőforráscsoport** mely hello művelet csoport-t menti.
 
 7. Adja meg azon műveletek listáját, adja meg a minden egyes művelethez:
 
@@ -58,19 +58,19 @@ Művelet csoportok konfigurálása Azure Resource Manager-sablonok használatáv
 
     b. **Művelet típusa**: válassza ki az SMS, e-mailek vagy webhook.
 
-    c. **Részletek**: a művelet típusa alapján, adjon meg egy telefonszám, e-mail címét vagy webhook URI.
+    c. **Részletek**: hello művelet típusa alapján, adjon meg egy telefonszámot, az e-mail címet, illetve a webhook URI.
 
-8. Válassza ki **OK** a művelet csoport létrehozásához.
+8. Válassza ki **OK** toocreate hello művelet csoport.
 
 ## <a name="manage-your-action-groups"></a>A művelet csoportok kezelése ##
-Egy művelet csoport létrehozása után is látható, az a **művelet csoportok** szakasza a **figyelő** panelen. Válassza ki a kezelni kívánt:
+Egy művelet csoport létrehozása után is látható a hello **művelet csoportok** hello szakasza **figyelő** panelen. Válassza ki hello művelet csoportot, hogy toomanage:
 
 * Adja hozzá, szerkeszthet és eltávolíthat műveletek.
-* A művelet csoport törlése.
+* Hello művelet csoport törlése.
 
 ## <a name="next-steps"></a>Következő lépések ##
 * További információ [SMS riasztási viselkedés](monitoring-sms-alert-behavior.md).  
-* Szerezzen egy [megismerni a műveletnapló riasztási webhook séma](monitoring-activity-log-alerts-webhook.md).  
+* Szerezzen egy [hello műveletnapló riasztási webhook séma megismerni](monitoring-activity-log-alerts-webhook.md).  
 * További információ [sebességkorlátozást](monitoring-alerts-rate-limiting.md) értesítésekről. 
-* Első egy [tevékenység napló riasztások áttekintése](monitoring-overview-alerts.md), és megtudhatja, hogyan szeretné megkapni a riasztásokat.  
-* Megtudhatja, hogyan [riasztások konfigurálása, ha az állapotfigyelő szolgáltatáshoz értesítést visszaküldi](monitoring-activity-log-alerts-on-service-notifications.md).
+* Lekérése egy [tevékenység napló riasztások áttekintése](monitoring-overview-alerts.md), és megtudhatja, hogyan tooreceive riasztásokat.  
+* Ismerje meg, hogyan túl[riasztások konfigurálása, ha az állapotfigyelő szolgáltatáshoz értesítést visszaküldi](monitoring-activity-log-alerts-on-service-notifications.md).

@@ -1,6 +1,6 @@
 ---
-title: "A Cortana Intelligence Gallery iparág-specifikus megoldások |} Microsoft Docs"
-description: "A Cortana Intelligence Gallery iparági megoldások felderítése."
+title: "aaaCortana Intelligence Gallery iparág-specifikus megoldások |} Microsoft Docs"
+description: "A Cortana Intelligence Gallery hello iparági megoldások felderítése."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 34fe6e3f29529a51a73a2f44f06e0cfe02f505ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc85190012121d072938008acfba5fff5595b507
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-industry-specific-solutions-in-the-cortana-intelligence-gallery"></a>A Cortana Intelligence Gallery iparág-specifikus megoldások felderítése
+# <a name="discover-industry-specific-solutions-in-hello-cortana-intelligence-gallery"></a>A Cortana Intelligence Gallery hello iparág-specifikus megoldások felderítése
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="industry-specific-cortana-intelligence-solutions"></a>Iparág-specifikus Cortana Intelligence megoldások
-A  **[iparágakban](https://gallery.cortanaintelligence.com/industries)**  szakasz a tár összegyűjti az adott ilyen iparágakban, mint a különböző erőforrások
+A  **[iparágakban](https://gallery.cortanaintelligence.com/industries)**  hello gyűjtemény szakasza egyesíti, amelyek adott toosuch iparágakban, mint a különböző erőforrások
 
 * [Kereskedelmi](https://gallery.cortanaintelligence-int.com/industries/retail) -kereskedelmi megoldások, például az értékesítés előrejelzés, a felhasználói forgalom becslése, és a fájlrendszersérülések árképzési modellekkel.
 * [A gyártási](https://gallery.cortanaintelligence-int.com/industries/manufacturing) - gyártási például berendezések karbantartási előrejelző és az előrejelzés energia árak megoldások keresése.
 * [Banki](https://gallery.cortanaintelligence-int.com/industries/banking) - megoldások, például a hitelkockázat előrejelzése banki keresés kockázat és online csalás figyelését.
 * [Egészségügy](https://gallery.cortanaintelligence-int.com/industries/healthcare) -egészségügyi megoldások, például elleni észlelésére, és kórháznak readmissions előrejelzésére található.
 
-Ilyen erőforrások többek között a kísérleteket, egyéni modulokat, API-k, gyűjtemények és bármely más gyűjteményelemek, melyek segíthetnek az iparág dolgozunk jellemző megoldások fejlesztése.
+Ilyen erőforrások többek között a kísérleteket, egyéni modulokat, API-k, gyűjtemények és bármely más gyűjteménye, melyek segíthetnek elemek fejlesztése megoldások adott toohello iparági dolgozunk.
 
 ## <a name="discover"></a>Ismertetők
- Tallózzon az iparág-specifikus megoldás a katalógusban, nyissa meg a [gyűjtemény](http://gallery.cortanaintelligence.com), mutasson az egérrel a **iparágakban** felső részén a galéria kezdőlapjára, egy adott iparági szegmens, vagy válasszon **nézet összes** az Áttekintés lap minden iparágak számára.
+ hello iparág-specifikus megoldások hello gyűjteménye, nyissa meg hello keresztül toobrowse [gyűjtemény](http://gallery.cortanaintelligence.com), mutasson az egérrel a **iparágakban** tetején hello hello galéria kezdőlapjára, válasszon egy adott iparági szegmens Válassza ki vagy **nézet összes** toosee összes iparágak számára egy – áttekintés oldalra.
 
- Minden iparági lapon megjeleníti, hogy iparági társított legnépszerűbb gyűjteményelemet.
-Kattintson a **láthatja az összes** az iparág-specifikus erőforrások megtekintése a gyűjteményben.
-Ezen a lapon keresse meg a gyűjtemény összes erőforrása. Is kereshet; ehhez válassza a bal felső belépés keresési feltételek és a szűrési feltételeket.
+ Minden iparági lapon hello legnépszerűbb gyűjteményelemek adott iparági társított listáját jeleníti meg.
+Kattintson a **láthatja az összes** összes hello iparág-specifikus erőforrások tooview hello gyűjteménye.
+Ezen a lapon böngészhet a hello gyűjtemény összes hello erőforrása. Is kereshet hello lap hello balra a szűrési feltételeket kiválasztásával, és a belépés keresőkifejezéseket hello felső.
 
 ![Ez az elem megosztása ismerősök](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Adja hozzá a saját megjegyzéseit](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
- Kattintson a gyűjteményelem további információt a cikk Részletek lap megnyitásához.
+ Kattintson a Galériabeli elemet tooopen hello elem részleteit megjelenítő oldalon olvashat.
 
-**[UGRÁS A A GYŰJTEMÉNY >>](http://gallery.cortanaintelligence.com)**
+**[IGÉNYBE ME toohello GYŰJTEMÉNY >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure tároló példányok útmutató – Azure tároló beállításjegyzék előkészítése |} Microsoft Docs"
+title: "aaaAzure tároló példányok oktatóanyag – Azure tároló beállításjegyzék előkészítése |} Microsoft Docs"
 description: "Azure tároló példányok útmutató – Azure tároló beállításjegyzék előkészítése"
 services: container-instances
 documentationcenter: 
@@ -17,62 +17,62 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: cc96ba9f5abd45a7503ba3327b30e1f809391384
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2525626125740c3c861fad36aad207d0b587ff54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-use-azure-container-registry"></a>Üzembe helyezés és használat Azure tároló beállításjegyzék
 
-Ez az egy háromrészes oktatóanyag második rész. Az a [előző lépésben](./container-instances-tutorial-prepare-app.md), a tároló-lemezkép létrejött egy egyszerű webes alkalmazáshoz írt [Node.js](http://nodejs.org). Ez a kép ebben az oktatóanyagban a rendszer előkészítésre továbbít egy Azure-tároló beállításjegyzék. A tároló kép nem hozott létre, ha vissza [oktatóanyag 1 – tároló kép létrehozása](./container-instances-tutorial-prepare-app.md). 
+Ez az egy háromrészes oktatóanyag második rész. A hello [előző lépésben](./container-instances-tutorial-prepare-app.md), a tároló-lemezkép létrejött egy egyszerű webes alkalmazáshoz írt [Node.js](http://nodejs.org). Ebben az oktatóanyagban a kép tooan Azure tároló beállításjegyzék fejlesztőre. Hello tároló kép nem hozott létre, ha vissza túl[oktatóanyag 1 – tároló kép létrehozása](./container-instances-tutorial-prepare-app.md). 
 
-Az Azure-tároló beállításjegyzék egy Azure-alapú, személyes beállításjegyzék Docker-tároló lemezképek. Ez az oktatóanyag végigvezeti Azure tároló beállításjegyzék-példány telepítését, valamint a végez leküldést a tároló-lemezkép. Befejeződött a lépések az alábbiak:
+hello Azure tároló beállításjegyzék egy Azure-alapú, személyes beállításjegyzék Docker-tároló lemezképek. Ez az oktatóanyag végigvezeti Azure tároló beállításjegyzék-példány telepítését, valamint egy tároló kép tooit kérdez le. Befejeződött a lépések az alábbiak:
 
 > [!div class="checklist"]
 > * Egy Azure-tároló beállításjegyzék-példány telepítése
 > * Azure-tároló beállításjegyzék címkézési tároló képe
-> * Azure-tároló beállításjegyzék Rendszerkép feltöltése
+> * Kép tooAzure tároló beállításjegyzék feltöltése
 
-A következő útmutatókból telepít a tároló a személyes beállításjegyzékből Azure tároló példányok.
+A következő útmutatókból hello tároló a személyes beállításjegyzék tooAzure tároló példányok a telepítése.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez az oktatóanyag megköveteli, hogy futnak-e az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
+Ez az oktatóanyag megköveteli, hogy verzióját hello Azure CLI 2.0.4 vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli).
 
 ## <a name="deploy-azure-container-registry"></a>Telepítse az Azure tároló beállításjegyzék
 
 Egy Azure-tároló beállításjegyzék való telepítésekor, először egy erőforráscsoportot. Egy Azure-erőforráscsoportot gyűjteményei logikai mely Azure az erőforrások telepítése és kezelése.
 
-Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal. Ebben a példában az erőforráscsoport neve *myResourceGroup* jön létre a *eastus* régióban.
+Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. Ebben a példában az erőforráscsoport neve *myResourceGroup* jön létre az hello *eastus* régióban.
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Hozzon létre egy Azure-tárolóba beállításjegyzéket a [az acr létrehozása](/cli/azure/acr#create) parancsot. Egy tároló beállításjegyzék neve **egyedinek kell lennie**. A következő példában használjuk a neve *mycontainerregistry082*.
+Hozzon létre egy Azure-tárolóba beállításjegyzék hello [az acr létrehozása](/cli/azure/acr#create) parancsot. egy tároló beállításjegyzék hello neve **egyedinek kell lennie**. A következő példa hello, hello nevét használjuk *mycontainerregistry082*.
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name mycontainerregistry082 --sku Basic --admin-enabled true
 ```
 
-Ez az oktatóanyag a többi, egész használjuk `<acrname>` a tároló neve választott számára.
+Ebben az oktatóanyagban hello részeinek, egész használjuk `<acrname>` a hello beállításjegyzék Tárolónév választott helyőrzőként.
 
 ## <a name="container-registry-login"></a>Tároló beállításjegyzék bejelentkezés
 
-A ACR példányát előtt képek rá kell bejelentkezni. Használja a [az acr bejelentkezési](https://docs.microsoft.com/en-us/cli/azure/acr#login) parancs használatával végrehajtani a műveletet. Meg kell adnia az egyedi név, a tároló beállításjegyzék létrehozásakor.
+Be kell jelentkeznie tooyour ACR példány képek tooit előtt. Használjon hello [az acr bejelentkezési](https://docs.microsoft.com/en-us/cli/azure/acr#login) toocomplete hello művelet parancsot. Tooprovide hello egyedi adott név toohello tároló beállításjegyzék létrehozásakor van szüksége.
 
 ```azurecli
 az acr login --name <acrName>
 ```
 
-A parancs visszaadja a "Sikeres bejelentkezés" üzenet, amint befejeződött.
+hello parancs visszaadja a "Sikeres bejelentkezés" üzenet, amint befejeződött.
 
 ## <a name="tag-container-image"></a>Címke tároló kép
 
-A titkos beállításjegyzékből tároló lemezkép telepítéséhez, a lemezkép kell címkézését a `loginServer` nevét a beállításjegyzékben.
+a tároló lemezkép titkos beállításjegyzékből toodeploy, hello lemezképet kell hello címkéjű toobe `loginServer` hello beállításjegyzék neve.
 
-Lemezképek aktuális listájának megtekintéséhez használja a `docker images` parancsot.
+az aktuális képek, használjon hello listáját toosee `docker images` parancsot.
 
 ```bash
 docker images
@@ -85,19 +85,19 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 aci-tutorial-app             latest              5c745774dfa9        39 seconds ago       68.1 MB
 ```
 
-Ahhoz, hogy a loginServer nevét, a következő parancsot.
+tooget hello loginServer neve, futtassa a következő parancs hello.
 
 ```azurecli
 az acr show --name <acrName> --query loginServer --output table
 ```
 
-Címke a *aci-oktatóanyag – alkalmazás* a tároló beállításjegyzék loginServer lemezkép. Továbbá adja hozzá `:v1` , a lemezkép neve végén. Ezt a címkét azt jelzi, hogy a lemezkép verziószámát.
+Címke hello *aci-oktatóanyag – alkalmazás* hello loginServer hello tároló beállításjegyzék lemezkép. Továbbá adja hozzá `:v1` hello lemezképnév toohello végét. Ezt a címkét azt jelzi, hogy hello lemezkép verziószámát.
 
 ```bash
 docker tag aci-tutorial-app <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-Miután megjelölve, futtassa az `docker images` ellenőrzése a műveletet.
+Miután megjelölve, futtassa az `docker images` tooverify hello műveletet.
 
 ```bash
 docker images
@@ -111,11 +111,11 @@ aci-tutorial-app                                          latest              5c
 mycontainerregistry082.azurecr.io/aci-tutorial-app        v1                  a9dace4e1a17        7 minutes ago       68.1 MB
 ```
 
-## <a name="push-image-to-azure-container-registry"></a>Azure-tároló beállításjegyzék leküldéses kép
+## <a name="push-image-tooazure-container-registry"></a>Leküldéses kép tooAzure tároló beállításjegyzék
 
-Leküldéses a *aci-oktatóanyag – alkalmazás* kép a beállításjegyzékhez.
+Hello leküldéses *aci-oktatóanyag – alkalmazás* kép toohello beállításjegyzék.
 
-Az alábbi példa használatával, a tároló loginServer neve cserélje le a környezetből loginServer.
+Hello Tárolónév beállításjegyzék loginServer használja a következő példa hello, cserélje le a környezetből hello loginServer.
 
 ```bash
 docker push <acrLoginServer>/aci-tutorial-app:v1
@@ -123,7 +123,7 @@ docker push <acrLoginServer>/aci-tutorial-app:v1
 
 ## <a name="list-images-in-azure-container-registry"></a>Azure-tároló beállításjegyzék lemezképek felsorolása
 
-Olyan lemezképkészlet, amellyel az Azure-tárolóba beállításjegyzék értesítését listájához való visszatéréshez felhasználói a [az acr tárház lista](/cli/azure/acr/repository#list) parancsot. A parancs frissíti a tároló neve.
+tooreturn tooyour Azure-tárolóba beállításjegyzék felhasználói hello értesítését lemezképeket listája [az acr tárház lista](/cli/azure/acr/repository#list) parancsot. Hello parancs hello Tárolónév beállításjegyzék frissítése.
 
 ```azurecli
 az acr repository list --name <acrName> --output table
@@ -137,7 +137,7 @@ Result
 aci-tutorial-app
 ```
 
-A címkék azokba megtekintéséhez használja a [az acr tárház megjelenítése-címkék](/cli/azure/acr/repository#show-tags) parancsot.
+Majd egy adott lemezkép toosee hello címkék hello [az acr tárház megjelenítése-címkék](/cli/azure/acr/repository#show-tags) parancsot.
 
 ```azurecli
 az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
@@ -153,14 +153,14 @@ v1
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az oktatóanyag egy Azure-tároló beállításjegyzék Azure tároló példányok való használatra készült, és a tároló kép leküldött volt. A következő lépéseket hajtotta végre:
+Az oktatóanyag egy Azure-tároló beállításjegyzék Azure tároló példányok való használatra készült, és hello tároló kép leküldött volt. befejeződtek a hello a következő lépéseket:
 
 > [!div class="checklist"]
 > * Egy Azure-tároló beállításjegyzék-példány telepítése
 > * Azure-tároló beállításjegyzék címkézési tároló képe
-> * Azure-tároló beállításjegyzék Rendszerkép feltöltése
+> * Kép tooAzure tároló beállításjegyzék feltöltése
 
-A következő oktatóanyag az Azure-ban Azure tároló példányok a tároló telepítésével kapcsolatos további továbblépés.
+Előzetes toohello oktatóanyag következő toolearn hello tároló tooAzure Azure tároló példányok használatával telepítéséről.
 
 > [!div class="nextstepaction"]
-> [Azure-tároló példányok – tárolók üzembe helyezése](./container-instances-tutorial-deploy-app.md)
+> [Tárolók tooAzure tároló példányok telepítése](./container-instances-tutorial-deploy-app.md)

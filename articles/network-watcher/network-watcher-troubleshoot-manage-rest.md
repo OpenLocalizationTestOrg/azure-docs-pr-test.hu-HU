@@ -1,6 +1,6 @@
 ---
-title: "Virtuális hálózati átjáró és az Azure hálózati figyelőt - REST használó kapcsolatok hibáinak elhárítása |} Microsoft Docs"
-description: "Ezen a lapon ismerteti a virtuális hálózati átjárók és az Azure hálózati figyelőt használatával REST-kapcsolatok hibáinak elhárítása"
+title: "Virtuális hálózati átjáró aaaTroubleshoot és kapcsolatok használata Azure hálózati figyelőt - REST |} Microsoft Docs"
+description: "Ezen a lapon azt ismerteti, hogyan REST-tootroubleshoot virtuális hálózati átjárók és az Azure hálózati figyelőt használatával kapcsolatokhoz"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/19/2017
 ms.author: gwallace
-ms.openlocfilehash: bc61be74d85a309c158716460b918baaf4fa94dc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cc89b46643fdbfefe53727b45d6b7d06914b58a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-virtual-network-gateway-and-connections-using-azure-network-watcher"></a>Virtuális hálózati átjáró és az Azure hálózati figyelőt alkalmazó kapcsolatok hibáinak elhárítása
 
 > [!div class="op_single_selector"]
-> - [Portal](network-watcher-troubleshoot-manage-portal.md)
+> - [Portál](network-watcher-troubleshoot-manage-portal.md)
 > - [PowerShell](network-watcher-troubleshoot-manage-powershell.md)
 > - [CLI 1.0](network-watcher-troubleshoot-manage-cli-nodejs.md)
 > - [CLI 2.0](network-watcher-troubleshoot-manage-cli.md)
 > - [REST API](network-watcher-troubleshoot-manage-rest.md)
 
-Hálózati figyelőt sok képességeket biztosít, a hálózati erőforrások az Azure-ban ismertetése vonatkozik. Ezek a képességek egyik erőforrás hibaelhárítás. Erőforrások hibaelhárítása hívható a portálon, a PowerShell, a CLI vagy a REST API-n keresztül. Meghívásakor, a hálózati figyelőt megvizsgálja a virtuális hálózati átjáró vagy a kapcsolat állapotát, és visszaadja az eredményekről.
+Hálózati figyelőt számos lényeges képességét biztosítja, felügyeletében toounderstanding a hálózati erőforrások az Azure-ban. Ezek a képességek egyik erőforrás hibaelhárítás. Erőforrások hibaelhárítása hívható hello portál, a PowerShell, a CLI vagy a REST API-n keresztül. Meghívásakor, a hálózati figyelőt megvizsgálja a virtuális hálózati átjáró vagy a kapcsolat hello állapotát, és adja vissza az eredményekről.
 
-Ez a cikk végigvezeti Önt a különböző felügyeleti feladatok, amelyek erőforrás hibaelhárítási aktuálisan elérhető.
+Ez a cikk végigvezeti a erőforrás hibaelhárítási aktuálisan elérhető különböző felügyeleti feladatok hello.
 
 - [**A virtuális hálózati átjáró hibaelhárítása**](#troubleshoot-a-virtual-network-gateway)
 - [**Végezzen hibaelhárítást a kapcsolaton**](#troubleshoot-connections)
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
+ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient)
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 Látogasson el a támogatott átjáró típusok, listája [támogatott átjárótípusok](network-watcher-troubleshoot-overview.md#supported-gateway-types).
 
 ## <a name="overview"></a>Áttekintés
 
-Hálózati figyelő hibaelhárítási lehetővé teszi a virtuális hálózati átjárók és kapcsolatok felmerülő problémák hibaelhárításához. Ha a kérelem a hibakeresési erőforrás, a naplók kérdez le, és megvizsgálja. Ha vizsgálat befejeződött, a rendszer visszairányítja az eredményeket. A hibaelhárítás API-kérések hosszúak futó kérések, amelyek vissza eredményt több percbe is beletelhet. Naplók egy tárolót, a storage-fiókok vannak tárolva.
+Hálózati figyelő hibaelhárítási hello lehetőséget nyújt a virtuális hálózati átjárók és kapcsolatok felmerülő problémák hibaelhárításához. Ha a kérelem toohello erőforrás hibakeresési, naplók kérdez le, és megvizsgálja. Ha vizsgálat befejeződött, hello eredmény akkor minősül. hello hibaelhárítása API kérelmek hosszúak futó kérelmek, amihez több több percig tooreturn eredményt. Naplók egy tárolót, a storage-fiókok vannak tárolva.
 
 ## <a name="log-in-with-armclient"></a>Jelentkezzen be ARMClient
 
@@ -57,9 +57,9 @@ armclient login
 ## <a name="troubleshoot-a-virtual-network-gateway"></a>A virtuális hálózati átjáró hibaelhárítása
 
 
-### <a name="post-the-troubleshoot-request"></a>POST kérelem kapcsolatos problémák elhárítása
+### <a name="post-hello-troubleshoot-request"></a>POST hello kérelem hibáinak elhárítása
 
-Az alábbi példában egy virtuális hálózati átjáró állapotának lekérdezése.
+a következő példa lekérdezések hello állapotát a virtuális hálózati átjáró hello.
 
 ```powershell
 
@@ -84,12 +84,12 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${NWresourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/troubleshoot?api-version=2016-03-30 "
 ```
 
-Mivel ez a művelet hosszú fut, a művelet és az URI lekérdezése, az eredmény eredmény abban az esetben a válaszfejlécet látható módon a következő választ az URI:
+Mivel ez a művelet hosszú fut, URI hello hello művelet lekérdezi és hello URI hello eredménye az eredmény abban az esetben hello válaszfejléc hello válasz a következő ábrán:
 
 **Fontos értékek**
 
-* **Azure-aszinkron műveletek** – Ez a tulajdonság tartalmazza az URI-lekérdezés az aszinkron művelet hibáinak elhárítása
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Azure-aszinkron műveletek** – Ez a tulajdonság tartalmazza hello URI tooquery hello aszinkron művelet hibáinak elhárítása
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -109,15 +109,15 @@ Date: Thu, 12 Jan 2017 18:32:01 GMT
 null
 ```
 
-### <a name="query-the-async-operation-for-completion"></a>A lekérdezés az aszinkron művelet befejezésére
+### <a name="query-hello-async-operation-for-completion"></a>Lekérdezési hello aszinkron művelet befejezésére
 
-A művelet URI lekérdezési használhatja a műveletnek az előrehaladását, az alábbi példában látható módon:
+Hello műveletek URI tooquery használhatja hello művelet előrehaladását hello hello a következő példában látható módon:
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operations/8a1167b7-6768-4ac1-85dc-703c9c9b9247?api-version=2016-03-30"
 ```
 
-Bemutatja, amíg a művelet van folyamatban, a válasz **esetbejegyzések** az alábbi példában látható módon:
+Amíg hello művelet van folyamatban, hello válasz látható **esetbejegyzések** hello a következő példában látható módon:
 
 ```json
 {
@@ -125,7 +125,7 @@ Bemutatja, amíg a művelet van folyamatban, a válasz **esetbejegyzések** az a
 }
 ```
 
-A művelet befejezésekor állapota **sikeres**.
+Hello művelet esetén teljes hello állapotmódosítások túl**sikeres**.
 
 ```json
 {
@@ -133,15 +133,15 @@ A művelet befejezésekor állapota **sikeres**.
 }
 ```
 
-### <a name="retrieve-the-results"></a>Az eredmények visszakeresésére
+### <a name="retrieve-hello-results"></a>Hello eredmények beolvasásához
 
-Miután visszaadott állapotát **sikeres**, a GET metódust hívni az operationresult adatokat a URI-t az eredmények visszakeresésére.
+Hello állapot visszaadása van **sikeres**, a GET metódust hívni hello operationresult adatokat a URI tooretrieve hello eredmények.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/8a1167b7-6768-4ac1-85dc-703c9c9b9247?api-version=2016-03-30"
 ```
 
-A következő válaszok tipikus csökkent választ adott vissza, amikor egy átjáró hibaelhárítási eredmények lekérdezéséről példák. Lásd: [az eredmények ismertetése](#understanding-the-results) pontosítása a válaszban szereplő tulajdonságok jelenti az eléréséhez.
+hello következő válaszok példák egy tipikus csökkent válasza hello eredménye egy átjáró hibaelhárítási lekérdezésekor. Lásd: [hello eredmények ismertetése](#understanding-the-results) tooget tisztázása milyen hello tulajdonságai a hello válasz közepét.
 
 ```json
 {
@@ -152,15 +152,15 @@ A következő válaszok tipikus csökkent választ adott vissza, amikor egy átj
     {
       "id": "PlatformInActive",
       "summary": "We are sorry, your VPN gateway is in standby mode",
-      "detail": "During this time the gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This is a transient state while the Azure platform is being updated.",
+      "detail": "During this time hello gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This is a transient state while hello Azure platform is being updated.",
       "recommendedActions": [
         {
-          "actionText": "If the condition persists, please try resetting your Azure VPN gateway",
+          "actionText": "If hello condition persists, please try resetting your Azure VPN gateway",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
-          "actionUriText": "resetting the VPN Gateway"
+          "actionUriText": "resetting hello VPN Gateway"
         },
         {
-          "actionText": "If your VPN gateway isn't up and running by the expected resolution time, contact support",
+          "actionText": "If your VPN gateway isn't up and running by hello expected resolution time, contact support",
           "actionUri": "http://azure.microsoft.com/support",
           "actionUriText": "contact support"
         }
@@ -172,7 +172,7 @@ A következő válaszok tipikus csökkent választ adott vissza, amikor egy átj
       "detail": "There aren't any known Azure platform problems affecting this VPN Connection",
       "recommendedActions": [
         {
-          "actionText": "If you are still experience problems with the VPN gateway, please try resetting the VPN gateway.",
+          "actionText": "If you are still experience problems with hello VPN gateway, please try resetting hello VPN gateway.",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
           "actionUriText": "resetting VPN gateway"
         },
@@ -190,7 +190,7 @@ A következő válaszok tipikus csökkent választ adott vissza, amikor egy átj
 
 ## <a name="troubleshoot-connections"></a>Kapcsolatok hibáinak elhárítása
 
-A következő példa egy kapcsolat állapotának lekérdezése.
+a következő példa lekérdezések hello kapcsolat állapotának hello.
 
 ```powershell
 
@@ -213,14 +213,14 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 ```
 
 > [!NOTE]
-> A hibaelhárítás művelet nem futtatható párhuzamosan kapcsolatot és a megfelelő átjárók. A művelet elvégzése után az előző erőforrás futtatására.
+> hello hibaelhárítása művelet nem futtatható egyidejűleg kapcsolatot és a megfelelő átjárók. hello műveletet kell végeznie az előzetes toorunning azt hello előző erőforráson.
 
-Mivel ez egy hosszú ideig futó tranzakció a válaszfejlécet látható módon a következő válasz a lekérdezésre, a művelet és az eredmény URI-JÁNAK URI adott vissza:
+Mivel ez egy hosszú ideig futó tranzakció hello válaszfejléc, hello válasz a következő ábrán hello URI hello művelet és hello URI hello eredmény lekérdezése adott vissza:
 
 **Fontos értékek**
 
-* **Azure-aszinkron műveletek** – Ez a tulajdonság tartalmazza az URI-lekérdezés az aszinkron művelet hibáinak elhárítása
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Azure-aszinkron műveletek** – Ez a tulajdonság tartalmazza hello URI tooquery hello aszinkron művelet hibáinak elhárítása
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -240,15 +240,15 @@ Date: Thu, 12 Jan 2017 18:32:01 GMT
 null
 ```
 
-### <a name="query-the-async-operation-for-completion"></a>A lekérdezés az aszinkron művelet befejezésére
+### <a name="query-hello-async-operation-for-completion"></a>Lekérdezési hello aszinkron művelet befejezésére
 
-A művelet URI lekérdezési használhatja a műveletnek az előrehaladását, az alábbi példában látható módon:
+Hello műveletek URI tooquery használhatja hello művelet előrehaladását hello hello a következő példában látható módon:
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operations/843b1c31-4717-4fdd-b7a6-4c786ca9c501?api-version=2016-03-30"
 ```
 
-Bemutatja, amíg a művelet van folyamatban, a válasz **esetbejegyzések** az alábbi példában látható módon:
+Amíg hello művelet van folyamatban, hello válasz látható **esetbejegyzések** hello a következő példában látható módon:
 
 ```json
 {
@@ -256,7 +256,7 @@ Bemutatja, amíg a művelet van folyamatban, a válasz **esetbejegyzések** az a
 }
 ```
 
-A művelet végeztével állapota **sikeres**.
+Hello művelet befejeződése után hello állapota túl**sikeres**.
 
 ```json
 {
@@ -264,17 +264,17 @@ A művelet végeztével állapota **sikeres**.
 }
 ```
 
-A következő válaszok példák vissza, ha a kapcsolat hibaelhárítási eredmények lekérdezéséről tipikus választ.
+hello következő válaszok példák vissza, ha a kapcsolat hibaelhárítási hello eredmények lekérdezéséről tipikus választ.
 
-### <a name="retrieve-the-results"></a>Az eredmények visszakeresésére
+### <a name="retrieve-hello-results"></a>Hello eredmények beolvasásához
 
-Miután visszaadott állapotát **sikeres**, a GET metódust hívni az operationresult adatokat a URI-t az eredmények visszakeresésére.
+Hello állapot visszaadása van **sikeres**, a GET metódust hívni hello operationresult adatokat a URI tooretrieve hello eredmények.
 
 ```powershell
 armclient get "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Network/locations/westcentralus/operationResults/843b1c31-4717-4fdd-b7a6-4c786ca9c501?api-version=2016-03-30"
 ```
 
-A következő válaszok példák vissza, ha a kapcsolat hibaelhárítási eredmények lekérdezéséről tipikus választ.
+hello következő válaszok példák vissza, ha a kapcsolat hibaelhárítási hello eredmények lekérdezéséről tipikus választ.
 
 ```json
 {
@@ -285,16 +285,16 @@ A következő válaszok példák vissza, ha a kapcsolat hibaelhárítási eredm�
     {
       "id": "PlatformInActive",
       "summary": "We are sorry, your VPN gateway is in standby mode",
-      "detail": "During this time the gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This 
-is a transient state while the Azure platform is being updated.",
+      "detail": "During this time hello gateway will not initiate or accept VPN connections with on premises VPN devices or other Azure VPN Gateways. This 
+is a transient state while hello Azure platform is being updated.",
       "recommendedActions": [
         {
-          "actionText": "If the condition persists, please try resetting your Azure VPN gateway",
+          "actionText": "If hello condition persists, please try resetting your Azure VPN gateway",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
-          "actionUriText": "resetting the VPN gateway"
+          "actionUriText": "resetting hello VPN gateway"
         },
         {
-          "actionText": "If your VPN Connection isn't up and running by the expected resolution time, contact support",
+          "actionText": "If your VPN Connection isn't up and running by hello expected resolution time, contact support",
           "actionUri": "http://azure.microsoft.com/support",
           "actionUriText": "contact support"
         }
@@ -306,7 +306,7 @@ is a transient state while the Azure platform is being updated.",
       "detail": "There aren't any known Azure platform problems affecting this VPN Connection",
       "recommendedActions": [
         {
-          "actionText": "If you are still experience problems with the VPN gateway, please try resetting the VPN gateway.",
+          "actionText": "If you are still experience problems with hello VPN gateway, please try resetting hello VPN gateway.",
           "actionUri": "https://azure.microsoft.com/en-us/documentation/articles/vpn-gateway-resetgw-classic/",
           "actionUriText": "resetting VPN gateway"
         },
@@ -321,12 +321,12 @@ is a transient state while the Azure platform is being updated.",
 }
 ```
 
-## <a name="understanding-the-results"></a>Az eredmények ismertetése
+## <a name="understanding-hello-results"></a>Hello eredmények ismertetése
 
-A művelet szöveg általános útmutatást biztosít a probléma megoldására. Is művelet az a probléma, ha egy hivatkozás által biztosított további útmutatást. Abban az esetben nincs további útmutatás, ha a válasz biztosít nyissa meg a támogatási esetet URL-címét.  A válasz és tartalmát képező tulajdonságaival kapcsolatos további információkért látogasson el a [hálózati figyelő hibaelhárítása – áttekintés](network-watcher-troubleshoot-overview.md)
+hello művelet szöveg hogyan tooresolve hello probléma nyújt általános útmutatást. Is művelet az hello probléma, ha egy hivatkozás által biztosított további útmutatást. Hello esetében nincs további útmutatás, ahol hello választ biztosít hello URL-cím tooopen támogatási esetet.  Hello választ, és mi tartozik hello tulajdonságainak kapcsolatos további információkért látogasson el [hálózati figyelő hibaelhárítása – áttekintés](network-watcher-troubleshoot-overview.md)
 
-A fájlok letöltését az azure storage-fiókok útmutatásért tekintse meg [az Azure Blob storage .NET használatának első lépései](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Egy másik eszköz, amely használható a Tártallózó. Tártallózó további információt itt található: a következő hivatkozásra: [Tártallózó](http://storageexplorer.com/)
+A fájlok letöltését az azure storage-fiókok útmutatásért tekintse meg túl[az Azure Blob storage .NET használatának első lépései](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Egy másik eszköz, amely használható a Tártallózó. Tártallózó további információt itt található: a következő hivatkozás hello: [Tártallózó](http://storageexplorer.com/)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha a beállítások módosítása, hogy stop VPN-kapcsolatot, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) nyomon követheti a hálózati biztonsági csoport és a biztonsági szabályok, amelyek lehet, hogy a szóban forgó.
+Ha a beállítások módosítása, hogy stop VPN-kapcsolatot, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) hello hálózati biztonsági csoport és a biztonsági szabályokat, amelyek lehet, hogy a szóban forgó tootrack.

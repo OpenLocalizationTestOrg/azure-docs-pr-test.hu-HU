@@ -1,6 +1,6 @@
 ---
-title: "Az Azure felhőalapú rendszerhéj (előzetes verzió) ablakban |} Microsoft Docs"
-description: "Útmutató az Azure felhőalapú rendszerhéj ablakát."
+title: "aaaUsing hello Azure Cloud rendszerhéj (előzetes verzió) ablakban |} Microsoft Docs"
+description: "A forgatókönyv hello Azure Cloud rendszerhéj ablakát."
 services: 
 documentationcenter: 
 author: jluk
@@ -14,45 +14,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: juluk
-ms.openlocfilehash: a47961dfdaf178a6b793bd68105d9792a9275bb3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 571db3c8e177799a9e05f38a7cf8d2a4d5f8c8de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-cloud-shell-window"></a>Az Azure felhőalapú rendszerhéj ablakát használatával
+# <a name="using-hello-azure-cloud-shell-window"></a>Hello Azure Cloud rendszerhéj ablakát használatával
 
-Ez a dokumentum ismerteti, hogyan a felhő rendszerhéj ablakát.
+Ez a dokumentum azt ismerteti, hogyan toouse hello felhő rendszerhéj ablakát.
 
 ## <a name="concurrent-sessions"></a>Egyidejű munkamenetek
-Felhő rendszerhéj lehetővé teszi több egyidejű munkamenetek különböző böngészőlapokon távfelügyeletét minden munkamenet nem létezik-e külön Bash folyamatban.
-Ha most kilép egy munkamenet, ügyeljen arra, hogy minden munkamenet ablak lépni, minden folyamat függetlenül fut, de ugyanazon a számítógépen futnak.
+Minden munkamenet tooexist Bash különálló folyamatként tételével a felhő rendszerhéj lehetővé teszi több egyidejű munkamenetek különböző böngészőlapokon.
+Ha most kilép a munkamenet meg arról, hogy minden munkamenet ablakból tooexit minden folyamat függetlenül fut, bár a számítógépen futnak, hello azonos gépen.
 
 ## <a name="restart-cloud-shell"></a>Indítsa újra a felhő rendszerhéj
 ![](media/recycle.png)
 > [!WARNING]
 > Felhő rendszerhéj újraindítása alaphelyzetbe állítja a gép állapotát, és semmilyen fájl nem őrződik meg a fájl megosztási el fog veszni.
 
-* Kattintson az újraindítás ikonra egy új felhőalapú rendszerhéj környezetben fogadni az eszköztáron.
+* Kattintson a hello újraindítás ikonjára hello eszköztár tooreceive egy új felhőalapú rendszerhéj-környezetben.
 
 ## <a name="minimize--maximize-cloud-shell-window"></a>Kis méret & felhő rendszerhéj ablakának teljes méretűre állítása
 ![](media/minmax.png)
-* Kattintson a kis méret ikonra a felső sarkában az ablak elrejtéséhez. Kattintson a felhő rendszerhéj ismét az ikonra kattintva felfedése.
-* Kattintson a teljes méret ikonra beállítása ablakban maximális magasságát. Ablak visszaállítása eredeti méretének, kattintson a visszaállítás.
+* Hello kattintson hello ikonra minimalizálása érdekében jobb oldalán hello ablak toohide felső azt. Kattintson a felhő rendszerhéj ikon hello újra toounhide.
+* Kattintson a hello ikon tooset ablak toomax magassága maximalizálása érdekében. toorestore ablak tooprevious mérete, kattintson a Visszaállítás gombra.
 
 ## <a name="copy-and-paste"></a>Másolás és beillesztés
-* Windows: `Ctrl-insert` másolása és `Shift-insert` beilleszteni. Kattintson a jobb gombbal a legördülő másolja és illessze be is engedélyezheti.
+* Windows: `Ctrl-insert` toocopy és `Shift-insert` toopaste. Kattintson a jobb gombbal a legördülő másolja és illessze be is engedélyezheti.
   * A FireFox vagy IE nem támogatja a vágólapra engedélyek megfelelően.
-* Mac OS: `Cmd-c` másolása és `Cmd-v` beilleszteni. Kattintson a jobb gombbal a legördülő másolja és illessze be is engedélyezheti.
+* Mac OS: `Cmd-c` toocopy és `Cmd-v` toopaste. Kattintson a jobb gombbal a legördülő másolja és illessze be is engedélyezheti.
 
 ## <a name="resize-cloud-shell-window"></a>Felhő rendszerhéj ablakát átméretezése
-* Kattintással és húzással a felső szegélyéhez, hogy az eszköztár felfelé vagy lefelé méretezze át a felhő rendszerhéj ablakát.
+* Kattintással és húzással hello eszköztár felső széle hello felfelé vagy lefelé tooresize hello felhő rendszerhéj ablakát.
 
 ## <a name="scrolling-text-display"></a>A görgethető szöveg megjelenítése
-* Görgessen az egérrel és touchpad terminál szöveg áthelyezése.
+* Görgessen az egeret vagy touchpad toomove terminál szóra.
 
 ## <a name="exit-command"></a>Kilépés paranccsal
-Futó `exit` megszakítja az aktív munkamenetet. Alapértelmezés szerint ez a viselkedés beavatkozás nélkül 20 perc után következik be.
+Futó `exit` hello aktív munkamenet leállítása. Alapértelmezés szerint ez a viselkedés beavatkozás nélkül 20 perc után következik be.
 
 ## <a name="next-steps"></a>Következő lépések
 [Felhő rendszerhéj gyors üzembe helyezés](quickstart.md)

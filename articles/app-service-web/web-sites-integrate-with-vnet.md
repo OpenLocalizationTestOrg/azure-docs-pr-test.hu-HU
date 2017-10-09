@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazások integrálása az Azure virtuális hálózat"
-description: "Bemutatja, hogyan csatlakozzon az Azure App Service alkalmazás egy új vagy meglévő Azure virtuális hálózat"
+title: "egy Azure virtuális hálózatra alkalmazás aaaIntegrate"
+description: "Bemutatja, hogyan tooconnect egy alkalmazást az Azure App Service tooa új vagy meglévő Azure virtuális hálózat"
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: ccompy
-ms.openlocfilehash: 61508f759cad92a8c17d72a5d68fb54994c393bc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a93c504481400245b02220b541a008a7c874d10a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-your-app-with-an-azure-virtual-network"></a>Az alkalmazás integrálása az Azure virtuális hálózat
-Ez a dokumentum az Azure App Service virtuális hálózati integráció funkció használatát ismerteti és bemutatja, hogyan állíthatja be az alkalmazásokkal [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714). Ha ismeri az Azure virtuális hálózatokról (Vnetekről), ez az a képesség, amely lehetővé teszi egy nem internetes routeable hálózat elérését Ön szabályozza az Azure-erőforrások számos helyezendő. Ezek a hálózatok csatlakozhat a helyszíni VPN technológiáin különböző hálózatokhoz. Többet szeretne megtudni az Azure Virtual Network, indítsa el az adatok itt: [Azure virtuális hálózat áttekintése][VNETOverview]. 
+Ez a dokumentum bemutatja hello Azure App Service virtuális hálózati integráció szolgáltatást, és bemutatja, hogyan tooset azt másolatot az alkalmazásokkal [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714). Ha ismeri az Azure virtuális hálózatokról (Vnetekről), ez az a képesség, amely lehetővé teszi az Azure-erőforrások, amelyek nem internetes routeable hálózatban számos elérhető tooplace. Ezek a hálózatok majd lehet csatlakoztatott tooyour a helyszíni hálózatokban VPN technológiáin számos használatát. További Azure virtuális hálózatokról, toolearn hello információkat itt kezdődik: [Azure virtuális hálózat áttekintése][VNETOverview]. 
 
-Az Azure App Service rendelkezik két űrlap. 
+hello Azure App Service rendelkezik két űrlap. 
 
-1. A több-bérlős rendszereket, amelyek támogatják a díjszabások teljes skáláját
-2. Az App Service-környezet (ASE) prémium funkció, amely telepíti azokat a virtuális hálózat. 
+1. hello teljes körű díjszabások támogató hello több-bérlős rendszerek
+2. hello App Service-környezet (ASE) premium szolgáltatás, amely telepíti azokat a virtuális hálózat. 
 
-Ez a dokumentum végighalad a virtuális integráció és nem App Service Environment-környezet. Ha azt szeretné, további információt a ASE funkció, indítsa el az információkat itt: [App Service Environment bemutatása][ASEintro].
+Ez a dokumentum végighalad a virtuális integráció és nem App Service Environment-környezet. Ha azt szeretné, hogy hello ASE funkcióval kapcsolatban további toolearn, indítsa el a hello információkat itt: [App Service Environment bemutatása][ASEintro].
 
-Virtuális integráció a webes alkalmazás hozzáférést biztosít a virtuális hálózatán lévő erőforrásokat, de nem személyes hozzáférési jogot a webalkalmazás a virtuális hálózathoz. Titkos hozzáférés utal, hogy az alkalmazás csak egy privát hálózatról, mint az Azure virtuális hálózat belül érhető el. Titkos hozzáférés csak érhető el egy konfigurált egy belső Load Balancer (ILB) rendelkező mértékéig. Egy ILB ASE használata részletesen, kezdje Itt a cikk: [létrehozása és használata egy ILB ASE][ILBASE]. 
+Virtuális integráció a webes alkalmazás hozzáférés tooresources biztosít a virtuális hálózat, de nem biztosít a privát hozzáférést tooyour webalkalmazás hello virtuális hálózatról. Személyes hozzáférés hivatkozik toomaking az alkalmazás csak egy privát hálózatról, mint az Azure virtuális hálózat belül érhető el. Titkos hozzáférés csak érhető el egy konfigurált egy belső Load Balancer (ILB) rendelkező mértékéig. Egy ILB ASE használata részletesen, kezdje itt hello cikk: [létrehozása és használata egy ILB ASE][ILBASE]. 
 
-Egy gyakori forgatókönyv, ahol a VNet integrációs használna adatbázis vagy az Azure virtuális hálózat a virtuális gépen futó webes szolgáltatás a webes alkalmazás hozzáférést tesz lehetővé a rendszer. A VNet integrációja nem kell tenni egy nyilvános végpontot, az alkalmazások a virtuális gép azonban is használja helyette a saját nem internetes elérhető címet. 
+Egy gyakori forgatókönyv, ahol a VNet integrációs használna a webes alkalmazás tooa adatbázis vagy az Azure virtuális hálózat a virtuális gépen futó webes szolgáltatás hozzáférést tesz lehetővé a rendszer. A virtuális hálózat integrációja nem kell az alkalmazások tooexpose egy nyilvános végpontot a virtuális gépen, de hello nem internetes irányítható Magáncímeket is használja. 
 
-A virtuális hálózat integrációs szolgáltatás számára:
+hello VNet integrációs szolgáltatás számára:
 
 * a Standard, Premium vagy terv árképzési elszigetelt igényel 
 * Klasszikus vagy erőforrás-kezelő virtuális hálózat együttműködik 
 * támogatja a TCP és UDP
 * Webes, mobil és API-alkalmazások esetében működik
-* lehetővé teszi egy alkalmazás egyszerre csak 1 VNet való kapcsolódáshoz
-* lehetővé teszi, hogy az egy App Service-csomag integrációját legfeljebb öt Vnetek 
-* lehetővé teszi, hogy ugyanazt a virtuális hálózatot, több alkalmazást az App Service-csomag által használt
-* egy miatt a szolgáltatásiszint-szerződést 99,9 %-os SLA támogatja a virtuális hálózat átjáróval
+* lehetővé teszi, hogy egy alkalmazás tooconnect tooonly 1 VNet egyszerre
+* lehetővé teszi a toofive Vnetek toobe integrálva van a egy App Service-csomag 
+* lehetővé teszi, hogy egy App Service-csomag több alkalmazások által használt azonos virtuális hálózaton toobe hello
+* támogatja az egy 99,9 %-os SLA miatt toohello SLA hello hálózatok átjáró
 
 Néhány dolgot virtuális integráció nem támogatja, többek között:
 
@@ -53,53 +53,53 @@ Néhány dolgot virtuális integráció nem támogatja, többek között:
 * személyes hozzáférés
 
 ### <a name="getting-started"></a>Bevezetés
-Az alábbiakban tartsa szem előtt a webalkalmazást egy virtuális hálózathoz való csatlakozás előtt a következőkre:
+Az alábbiakban néhány dolgot tookeep szem előtt a webes alkalmazás tooa virtuális hálózati csatlakozás előtt:
 
-* Virtuális integráció csak olyan alkalmazások működik egy **szabványos**, **prémium**, vagy **elszigetelt** árképzési terv. Ha a funkció engedélyezéséhez, majd App Service-csomag skálázása egy nem támogatott díjszabási csomaggal az alkalmazások kapcsolata megszakad a Vnetek használják a. 
-* Ha a cél virtuális hálózat már létezik, pont-pont VPN engedélyezve van a dinamikus útválasztási átjáróval, mielőtt csatlakozhat egy alkalmazáshoz kell rendelkeznie. Ha az átjáró statikus útválasztással van konfigurálva, nem engedélyezhető a pont-pont virtuális magánhálózati (VPN).
-* A virtuális hálózat, az App Service Plan(ASP) ugyanahhoz az előfizetéshez kell lennie. 
-* Az alkalmazásokat, amelyekbe beépül az egy Vnetet a DNS-ben, hogy a virtuális hálózat megadott használja.
-* Alapértelmezés szerint az integrációs alkalmazások csak útvonal-forgalmat a virtuális hálózat a virtuális hálózat definiált útvonalak alapján történő. 
+* Virtuális integráció csak olyan alkalmazások működik egy **szabványos**, **prémium**, vagy **elszigetelt** árképzési terv. Ha hello funkció engedélyezéséhez, majd méretezni az App Service-csomag tooan nem támogatott az alkalmazások terv árképzési elveszítheti a kapcsolatok toohello Vnetek használják. 
+* Ha a cél virtuális hálózat már létezik, pont-pont VPN engedélyezve van egy dinamikus útválasztási átjáró, mielőtt azok csatlakoztatott tooan app kell rendelkeznie. Ha az átjáró statikus útválasztással van konfigurálva, nem engedélyezhető a pont-pont virtuális magánhálózati (VPN).
+* hello virtuális hálózaton kell lennie a hello az App Service Plan(ASP) tárolóként ugyanazt az előfizetést. 
+* hello alkalmazásokat, amelyekbe beépül az egy Vnetet hello megadott, hogy a vnet DNS használja.
+* Alapértelmezés szerint az integrációs alkalmazások csak útvonal-forgalmat a virtuális hálózat a virtuális hálózat definiált hello útvonalak alapján történő. 
 
 ## <a name="enabling-vnet-integration"></a>Virtuális integráció engedélyezése
-Ez a dokumentum arra irányul, elsősorban az virtuális integráció az Azure portál használatával. Az alkalmazás PowerShell-lel rendelkező virtuális integráció engedélyezéséhez kövesse az utasításokat itt: [az alkalmazás csatlakoztatása a virtuális hálózat a PowerShell használatával][IntPowershell].
+Ez a dokumentum elsősorban a hello Azure-portál használatával virtuális integráció kialakításával foglalkozik. tooenable virtuális integráció saját alkalmazással powershellel, kövesse az itt hello utasításait: [PowerShell használatával kapcsolódnak a app tooyour virtuális hálózat][IntPowershell].
 
-Lehetősége van az alkalmazás egy új vagy meglévő virtuális hálózathoz csatlakozni. Ha létrehoz egy új hálózati integráció részeként, mellett csak a VNet létrehozása, a dinamikus útválasztó átjáró meg előre konfigurálva, és pont hely VPN engedélyezve van. 
+Hello beállítás tooconnect rendelkezik az app tooa új vagy meglévő virtuális hálózat. Ha létrehoz egy új hálózati integráció részeként, majd továbbá toojust létrehozása hello VNet dinamikus útválasztó átjáró meg előre beállított, amely pont tooSite VPN engedélyezve van. 
 
 > [!NOTE]
 > Egy új virtuális hálózati integráció konfigurálásához több percet is igénybe vehet. 
 > 
 > 
 
-Virtuális integráció engedélyezéséhez nyissa meg az alkalmazás beállításait, és válassza a hálózat. A felhasználói felület, a megnyitott három hálózatkezelési lehetőségeket kínál. Ez az útmutató csak érintetlen virtuális integráció be, ha hibrid kapcsolatok és az App Service Environment-környezetek ismertetése a dokumentum későbbi szakaszában. 
+tooenable virtuális integráció, nyissa meg az alkalmazás beállításait, és válassza a hálózat. felhasználói felület, a megnyitott hello három hálózatkezelési lehetőségeket kínál. Ez az útmutató csak érintetlen virtuális integráció be, ha hibrid kapcsolatok és az App Service Environment-környezetek ismertetése a dokumentum későbbi szakaszában. 
 
-Ha az alkalmazás van nem a megfelelő árképzési terv, a felhasználói felület lehetővé teszi a nagyobb tarifacsomagot az Ön által választott tervezi méretezni.
+Ha az alkalmazás nem a megfelelő terv árképzési hello, hello felhasználói felület lehetővé teszi tooscale a terv tooa magasabb árképzési terv az Ön által választott.
 
 ![][1]
 
 ### <a name="enabling-vnet-integration-with-a-pre-existing-vnet"></a>Egy már meglévő virtuális hálózaton VNet-integráció engedélyezése
-A virtuális hálózat integrációs felhasználói felület lehetővé teszi a Vnetek listájából válassza ki. A hagyományos Vneteket jelezve, hogy például a Word "Klasszikus" zárójelek között a virtuális hálózat neve mellett. A lista rendezett-úgy, hogy az erőforrás-kezelő Vnetek vannak felsorolva. Az ábrán a lent látható módon tekintheti meg, hogy csak egy virtuális hálózat választható ki. Több oka, hogy a virtuális hálózat is jelenítette meg többek között:
+hello virtuális integráció felhasználói felület lehetővé teszi a Vnetek listájából tooselect. a hagyományos Vneteket hello jelezve, hogy ilyen hello Word "Klasszikus" zárójelek következő toohello VNet neve. hello lista rendezett úgy, hogy a hello erőforrás-kezelő Vnetek először. A hello kép alábbi értékekre, akkor látható, hogy csak egy virtuális hálózat választható ki. Több oka, hogy a virtuális hálózat is jelenítette meg többek között:
 
-* egy másik előfizetésben található, amely a fiókjának van hozzáférési joga van a virtuális hálózat
-* a virtuális hálózat nem rendelkezik pont kompatibilis helyhez
-* a virtuális hálózat nem rendelkezik egy dinamikus útválasztási átjáró
+* hello virtuális hálózat egy másik előfizetésben található, amely a fiókjának van hozzáférési joga van
+* hello virtuális hálózat nem rendelkezik pont tooSite engedélyezve
+* hello virtuális hálózat nem rendelkezik egy dinamikus útválasztási átjáró
 
 ![][2]
 
-Ahhoz, hogy integrációs egyszerűen kattintson a integrálni kívánt VNet. Miután kiválasztotta a virtuális hálózat, az alkalmazás automatikusan újraindul a módosítások életbe léptetéséhez. 
+tooenable integrációs egyszerűen kattintson a hello kívánja toointegrate a virtuális hálózat. Miután kiválasztotta a virtuális hálózat hello, az alkalmazás hello módosítások tootake hatás automatikusan újraindul. 
 
-##### <a name="enable-point-to-site-in-a-classic-vnet"></a>A hely egy klasszikus virtuális pont engedélyezése
-Ha a virtuális hálózat nem kell egy átjárót, és helyhez ponttal rendelkezik, akkor rendelkezik, amely beállításához először. Ehhez a klasszikus virtuális hálózatot, nyissa meg a [Azure-portálon] [ AzurePortal] és jelenítse meg a virtuális Networks(classic) listáját. Itt kattintson a kívánt integrálása, majd kattintson a nagy jelölését a VPN-kapcsolatok nevű Essentials a hálózaton. Itt hozhat létre a VPN és a van arra is, akkor hozzon létre egy átjáró mutasson. Az átjáró létrehozása révén helyhez halad át a pont után körülbelül 30 percet, mielőtt kész van. 
+##### <a name="enable-point-toosite-in-a-classic-vnet"></a>A klasszikus virtuális pont tooSite engedélyezése
+Ha a virtuális hálózat nem kell egy átjárót, és pont tooSite rendelkezik, akkor rendelkezik tooset, hogy naprakész első. toodo ezt a klasszikus virtuális hálózatot, nyissa meg toohello [Azure-portálon] [ AzurePortal] és elindítani a virtuális Networks(classic) hello listája. Itt kattintson a toointegrate ki, majd kattintson a hello nagy jelölését a VPN-kapcsolatok nevű Essentials hello hálózaton. Itt hozhat létre a pont toosite VPN és van arra is, akkor hozzon létre. Az átjáró létrehozása révén hello pont toosite lépéseinek után körülbelül 30 percet, mielőtt kész is. 
 
 ![][8]
 
-##### <a name="enabling-point-to-site-in-a-resource-manager-vnet"></a>Egy erőforrás-kezelő virtuális hely pont engedélyezése
-Egy erőforrás-kezelő virtuális hálózat egy átjáró és egy helyhez pontot konfigurál, használhatja vagy a PowerShell megfelelően Itt [PowerShell virtuális hálózat egy pont – hely kapcsolat beállítása] [ V2VNETP2S] , vagy használja az Azure-portálon dokumentált Itt [egy Vnetet az Azure portál használatával egy pont – hely kapcsolat beállítása][V2VNETPortal]. Ez a funkció végrehajtásához a felhasználói felület még nem érhető el. Vegye figyelembe, hogy kell-e a hely konfigurációjának pont olyan tanúsítványokat hoznak létre. Ez a rendszer automatikusan konfigurálja a webalkalmazás csatlakozhat a virtuális hálózat. 
+##### <a name="enabling-point-toosite-in-a-resource-manager-vnet"></a>Egy erőforrás-kezelő virtuális pont tooSite engedélyezése
+egy erőforrás-kezelő virtuális hálózatot az átjáró és pont tooSite tooconfigure, vagy a PowerShell segítségével dokumentált módon Itt [pont – hely kapcsolat tooa virtuális hálózat konfigurálása PowerShell-lel] [ V2VNETP2S] vagy használjon hello Azure-portálon dokumentált Itt [konfigurálása egy pont – hely kapcsolat tooa virtuális hálózat használatával hello Azure-portálon][V2VNETPortal]. hello felhasználói felület tooperform Ez a funkció még nem érhető el. Ne feledje, hogy toocreate tanúsítványok hello pont tooSite konfigurációhoz. Ez automatikusan konfigurálja a webalkalmazás toohello VNet csatlakoztatásakor. 
 
 ### <a name="creating-a-pre-configured-vnet"></a>Egy előre konfigurált virtuális hálózat létrehozása
-Ha szeretne létrehozni egy új virtuális hálózat átjáróként konfigurált és a pont-pont, a felhasználói felület hálózati App Service rendelkezik a funkció a teendő, de csak egy erőforrás-kezelő virtuális hálózat. Ha szeretne egy klasszikus virtuális hálózatot hozzon létre egy átjáró és a pont-pont, akkor szüksége ehhez manuálisan a hálózat felhasználói felületen keresztül. 
+Ha azt szeretné, toocreate egy új Vnetet, amelynek része egy átjáró és a pont-hely, majd hello felhasználói felület hálózati App Service rendelkezik hello funkció toodo adott, de csak egy erőforrás-kezelő virtuális hálózat számára. Ha toocreate egy klasszikus virtuális hálózatot egy átjáró és a pont-pont, akkor szüksége toodo ez manuálisan hello hálózatkezelés felhasználói felületen keresztül. 
 
-Hozzon létre egy erőforrás-kezelő virtuális hálózat virtuális integráció felületről, egyszerűen válassza **új virtuális hálózat létrehozása** , és adja meg a:
+toocreate egy erőforrás-kezelő virtuális hálózat hello virtuális integráció felhasználói felületén keresztül egyszerűen válassza **új virtuális hálózat létrehozása** , és adja meg a:
 
 * Virtuális hálózat neve
 * Virtuális hálózat címterülete
@@ -108,177 +108,177 @@ Hozzon létre egy erőforrás-kezelő virtuális hálózat virtuális integráci
 * Átjáró címterülete
 * Pont-pont címterülete
 
-Ha azt szeretné, hogy ez a virtuális hálózat bármely más hálózatokhoz, majd ne válassza háttérszínnek IP-címtartomány átfedésben az ezekhez a hálózatokhoz. 
+Ha a virtuális hálózat tooconnect tooany más hálózatokkal, majd ne válassza háttérszínnek IP-címtartomány átfedésben az ezekhez a hálózatokhoz. 
 
 > [!NOTE]
-> Erőforrás-kezelő VNet létrehozása egy átjáró körülbelül 30 percet vesz igénybe, és jelenleg nem integrálható a virtuális hálózat az alkalmazást. Az átjáró a virtuális hálózat létrejötte után kell térjen vissza az alkalmazás virtuális integráció felhasználói felület, és válassza ki az új Vnetet.
+> Erőforrás-kezelő VNet létrehozása egy átjáró körülbelül 30 percet vesz igénybe, és jelenleg nem hello virtuális hálózat és az alkalmazás integrációjához. Hello átjáróval a virtuális hálózat létrejötte után kell toocome hátsó tooyour app virtuális integráció felhasználói felület, és válassza ki az új Vnetet.
 > 
 > 
 
 ![][3]
 
-Az Azure Vnetekhez általában jönnek létre magánhálózati címek. A virtuális integráció alapértelmezés szerint a szolgáltatás a virtuális hálózat be ezeket az IP-címtartományok bármely adatforgalmat irányítja. A privát IP-címtartományok a következők:
+Az Azure Vnetekhez általában jönnek létre magánhálózati címek. Alapértelmezett hello virtuális integráció által a szolgáltatás a virtuális hálózat be ezeket az IP-címtartományok bármely adatforgalmat irányítja. hello privát IP-címtartományok a következők:
 
-* -Ez megegyezik a 10.0.0.0 - 10.0.0.0/8 10.255.255.255
-* -Ez megegyezik a 172.16.0.0 - 172.16.0.0/12 172.31.255.255 
-* -Ez megegyezik a 192.168.0.0 - 192.168.0.0/16 192.168.255.255
+* -Ez van hello azonos 10.0.0.0 típusúként - 10.0.0.0/8 10.255.255.255
+* -Ez van hello ugyanaz, mint 172.16.0.0 - 172.16.0.0/12 172.31.255.255 
+* -Ez van hello ugyanaz, mint 192.168.0.0 - 192.168.0.0/16 192.168.255.255
 
-A virtuális hálózat címterületen belülre kell CIDR-formátumban kell megadni. Ha nincs tisztában a CIDR-formátumban, egy határozható meg a címblokkok IP-cím és a hálózati maszk jelölő egész. Egy rövid összefoglaló vegye figyelembe, hogy 10.1.0.0/24 256 címet és 10.1.0.0/25 lenne 128 címek. Egy IPv4-cím egy /32 csak 1 cím lenne. 
+hello VNet címterület CIDR-formátumban megadott toobe kell. Ha nincs tisztában a CIDR-formátumban, a rendszer a címterületet IP-címet és egy egész számot jelölő hello hálózati maszk megadásának módszer. Egy rövid összefoglaló vegye figyelembe, hogy 10.1.0.0/24 256 címet és 10.1.0.0/25 lenne 128 címek. Egy IPv4-cím egy /32 csak 1 cím lenne. 
 
-Ha itt a DNS-kiszolgáló adatait, majd, hogy be van állítva a virtuális hálózat. VNet létrehozása után szerkesztheti ezt az információt a VNet felhasználói felületéről. Ha módosítja a DNS a vnet, akkor szüksége szinkronizálási hálózati művelet végrehajtására.
+Ha az itt beállított hello DNS-kiszolgáló adatait, majd, hogy be van állítva a virtuális hálózat. VNet létrehozása után szerkesztheti ezt az információt hello VNet felhasználói felületéről. Ha megváltoztatja hello a hello virtuális hálózat DNS-kiszolgálón, akkor szüksége tooperform egy szinkronizálási hálózati művelet.
 
-Amikor létrehoz egy klasszikus virtuális hálózatot a virtuális integráció felhasználói felület használatával, hozna létre egy Vnetet az alkalmazás ugyanabban az erőforráscsoportban. 
+Amikor létrehoz egy klasszikus virtuális hálózat hello virtuális integráció felhasználói felület használatával, olyan hoz létre egy Vnetet a hello ugyanabban az erőforráscsoportban az alkalmazáshoz. 
 
-## <a name="how-the-system-works"></a>A rendszer működése
-Ez a funkció a színfalak pont – hely típusú VPN-technológia az alkalmazás csatlakozni a virtuális hálózat felett hoz létre. Az Azure App Service alkalmazások is rendelkeznek egy több-bérlős rendszer-architektúra, amely kizárja a Vneten belül közvetlenül egy alkalmazás kiépítés módon történik a virtuális gépek. Pont-pont technológia építve azt csak a virtuális gépek üzemeltetési az alkalmazáshoz való hálózati hozzáférés korlátozásához. A hálózati hozzáférés tovább korlátozza az alkalmazás állomásokhoz érdekében, hogy az alkalmazások csak a hálózatok, amelyeknél megadta, hogy hozzáférjenek. 
+## <a name="how-hello-system-works"></a>Hello rendszer működése
+Hello színfalak Ez a szolgáltatás épít, pont-hely típusú VPN-technológia tooconnect felett az alkalmazás tooyour virtuális hálózat. Az Azure App Service alkalmazások is rendelkeznek egy több-bérlős rendszer-architektúra, amely kizárja a Vneten belül közvetlenül egy alkalmazás kiépítés módon történik a virtuális gépek. Pont-pont technológia építve jelenleg korlátozza a hálózati hozzáférés toojust hello virtuálisgép üzemeltetési hello app. Hozzáférés toohello hálózati tovább korlátozza ilyen alkalmazás csomópontokon, hogy az alkalmazások csak férjenek hozzá, hogy konfigurálja azokat tooaccess hello hálózatok. 
 
 ![][4]
 
-Ha a virtuális hálózati DNS-kiszolgáló még nincs konfigurálva, az alkalmazás kell IP-címek használatát a virtuális hálózat az erőforrás elérésére. IP-címet használja, ne feledje, hogy a fő előnye, hogy ez a funkció, hogy lehetővé teszi a magánhálózaton belül a személyes címek használatához. Ha az alkalmazás használatára a nyilvános IP-címek a virtuális gépek közül legalább egy, és nem használják a virtuális hálózat integrációs szolgáltatás számára, és megfelelően kommunikálnak az interneten keresztül.
+Ha virtuális hálózati DNS-kiszolgáló még nincs konfigurálva, az alkalmazás toouse IP-címek tooreach erőforrás a virtuális hálózat hello kell. IP-címet használja, ne feledje, hogy hello fő előnye, hogy ezt a szolgáltatást, hogy lehetővé teszi a magánhálózaton belül toouse hello Magáncímeket. Ha beállított toouse be az alkalmazás nyilvános IP-címek a virtuális gépek egyik ezután hello VNet integrációs szolgáltatás számára nem használt és keresztül kommunikáló hello az interneten.
 
-## <a name="managing-the-vnet-integrations"></a>A virtuális integráció kezelése
-Csatlakoztatása és leválasztása a virtuális hálózatba van az alkalmazás szintjén. Hatással lehet a virtuális integráció több alkalmazás között olyan ASP szinten. A felhasználói felületen, az alkalmazás szintjén látható Részletek kaphat, ha a virtuális hálózaton. Ugyanazokat az információkat a legtöbb is látható, az ASP szintjén. 
+## <a name="managing-hello-vnet-integrations"></a>Hello virtuális integráció kezelése
+képes tooconnect hello, vagy válassza le a virtuális hálózat van az alkalmazás szintjén tooa. Hatással lehet a virtuális integráció hello több alkalmazás között olyan ASP szinten. Hello hello alkalmazási szintű látható felhasználói felület, a részletek kaphat, ha a virtuális hálózaton. A legtöbb hello ugyanazokat az információkat is látható: hello ASP szint. 
 
 ![][5]
 
-A hálózati szolgáltatás állapota lapon látható, ha az alkalmazás csatlakozik-e a virtuális hálózat. Ha a virtuális hálózat átjáró bármilyen oknál fogva nem működik, majd ez látható, nincs csatlakoztatva. 
+Hello hálózati funkció állapota lapon látható, ha az alkalmazás-e a csatlakoztatott tooyour virtuális hálózat. Ha a virtuális hálózat átjáró bármilyen oknál fogva nem működik, majd ez látható, nincs csatlakoztatva. 
 
-Most már rendelkezik az alkalmazás szintű VNet integrációs felhasználói felülete megegyezik a részletes információkat az ASP kap érhető el információ. Az alábbiakban azokat a cikkeket:
+hello információk szintű virtuális integráció felhasználói felület hello alkalmazásban most már elérhető tooyou hello azonos hello részletes információk hello ASP kap. Az alábbiakban azokat a cikkeket:
 
-* Virtuális hálózat neve – Ez a hivatkozás megnyitja az Azure virtuális hálózat felhasználói felület
-* Hely - ez tükrözi a virtuális hálózat helyét. A virtuális hálózat egy másik helyen integrálása lehetőség.
-* Tanúsítványállapot - tanúsítványok használatával teszi biztonságossá a VPN-kapcsolatot az alkalmazás és a virtuális hálózat között van. Ez a teszt, azok szinkronban tükrözi.
-* Az átjáró állapotának - az átjárók kell le valamilyen okból majd az alkalmazás nem fér hozzá a virtuális hálózaton lévő erőforrások. 
-* Virtuális címterület - Ez az a Vnethez tartozó IP-címterület. 
-* Mutasson a hely címterület - Ez az a hely IP-címtér a Vnethez tartozó pontot. Az alkalmazás megjeleníti az IP-címek, ez a címtartomány a érkező kommunikációt. 
-* Hely és hely címterület - helyek közötti VPN segítségével csatlakozzon a virtuális hálózat, a helyszíni erőforrásokhoz vagy más virtuális hálózatba. Kell, akkor az IP-címtartományok meghatározott VPN-kapcsolat itt látható konfigurálva.
+* Virtuális hálózat neve – Ez a hivatkozás megnyitja hello Azure-beli virtuális hálózat felhasználói felület
+* Hely – a virtuális hálózat helyét hello tükrözi. A virtuális hálózaton, egy másik helyen lehetséges toointegrate.
+* Tanúsítványállapot - használt tanúsítványok toosecure hello VPN-kapcsolat hello alkalmazás és hello VNet között van. Ez egy teszt tooensure szinkronban a tükrözi.
+* Az átjáró állapotának - az átjárók kell le valamilyen okból majd az alkalmazás nem fér hozzá hello virtuális hálózaton lévő erőforrások. 
+* Virtuális címterület - Ez az IP-címterület hello a Vnethez tartozó. 
+* Pont tooSite címterület - hello pont toosite IP-címtér a Vnethez tartozó azt. Az alkalmazás látható hello a címterületen belüli IP-címek egyikét érkező kommunikációt. 
+* Hely toosite címterület - hely tooSite VPN tooconnect használhatja a VNet tooyour helyszíni erőforrásokhoz vagy tooother virtuális hálózat. Kell majd hello IP-címtartományok meghatározott VPN-kapcsolat itt látható konfigurált.
 * DNS-kiszolgálók – Ha a virtuális hálózaton konfigurált DNS-kiszolgálók és az itt felsorolt.
-* Az a virtuális hálózatba irányított - ott IP-címek, a virtuális hálózat van definiálva a következő útválasztási IP-címeket, és itt ezeket a címeket megjelenítése listáját. 
+* IP-címek irányított toohello VNet – a virtuális hálózat van definiálva a következő útválasztási IP-címek listáját, és ezekre a címekre találat. 
 
-Az egyetlen elvégezhető az alkalmazás virtuális integráció nézetében művelet az alkalmazás bontja a virtuális hálózat jelenleg csatlakoztatva van. Ez egyszerűen kattintson Disconnect tetején. Ez a művelet nem módosítja a virtuális hálózat. A virtuális hálózat és a konfigurációját, beleértve az átjárók változatlan marad. Ha ezután törölni kívánja a virtuális hálózat, először törli az erőforrást, beleértve az átjárók a szeretné. 
+hello egyetlen művelet elvégezhető hello app virtuális integráció nézetében toodisconnect az alkalmazását hello virtuális hálózat jelenleg csatlakoztatva van. Ez egyszerűen kattintson leválasztása hello felső toodo. Ez a művelet nem módosítja a virtuális hálózat. hello virtuális hálózat és a konfiguráció, beleértve az hello átjárók változatlan marad. Majd toodelete a VNet, akkor kell toofirst delete hello-erőforrásokat hello átjárók beleértve. 
 
-Az App Service-csomag nézet számos további műveletek. Is hozzáférés másképp mint az alkalmazásból. Elérni az ASP hálózat felhasználói felületén nyissa meg az ASP felhasználói felületi és görgessen le. Van egy felhasználói felületi elem nevű hálózati szolgáltatás állapotát. Egyes kisebb adatok körül virtuális integráció biztosít. A felhasználói felület kattintva megnyílik a hálózati szolgáltatás állapot felhasználói felületi. Majd kattintson a "Kattintson ide kezelése", ha a felhasználói felület, amely tartalmazza a virtuális hálózat integrációja az ASP a nyílik meg.
+App Service-csomag nézet hello számos további műveletek. Is hozzáférés másképp mint hello alkalmazásból. tooreach hello ASP hálózat felhasználói felületén nyissa meg az ASP felhasználói felületi és görgetve. Van egy felhasználói felületi elem nevű hálózati szolgáltatás állapotát. Egyes kisebb adatok körül virtuális integráció biztosít. Ez a felhasználói felület a kattintva megnyithatja a hálózati szolgáltatás állapot felhasználói felületi hello. Ha, majd kattintson a "kattintson ide toomanage", hello felhasználói felület, amely tartalmazza az ASP a VNet Integrációk megnyitja hello.
 
 ![][6]
 
-Az ASP helye kezelőkonzoljából nézve a Vnetek integrációhoz helyeinek megjegyezhető helyes. Ha a virtuális hálózat egy másik helyen valószínűleg sokkal tekintse meg a késési problémák szempontjából. 
+hello hello ASP helye jó tooremember kezelőkonzoljából nézve hello integrációhoz Vnetek hello helyét. Virtuális hálózat hello van egy másik helyen elkülönítésével sokkal nagyobb eséllyel toosee késési problémák szempontjából. 
 
-A Vnetek integrálva a hány Vnetek egy emlékeztető, az alkalmazások integrálva vannak az ASP és hány, akkor is. 
+hello Vnetek integrálva a hány Vnetek egy emlékeztető, az alkalmazások integrálva vannak az ASP és hány, akkor is. 
 
-Minden egyes virtuális hálózaton hozzáadott részleteinek megjelenítéséhez kattintson a virtuális hálózaton szüksége. Mellett, amely korábban feljegyzett részleteket is megtekintheti az ASP, hogy a VNet-t használó alkalmazások listáját. 
+toosee részleteit hozzá minden egyes virtuális hálózaton, a virtuális hálózat érdekli hello parancsot. Továbbá, amely korábban feljegyzett toohello részletek megtekintheti egy alkalmazáslistájából hello az ASP által használt, hogy a virtuális hálózat. 
 
-Műveletek tekintetében nincsenek két elsődleges műveletet. Az egyik az alkalmazás azokat a virtuális hálózat elhagyó forgalomra meghajtó útvonalakat hozzáadását. A második műveletet azt a képességet, tanúsítványok és a hálózati adatok szinkronizálása.
+Illetően tooactions hiba a két elsődleges műveletek. hello először hello képességét tooadd útvonalakat, amelyek az alkalmazás azokat a virtuális hálózat elhagyó forgalomra meghajtó. hello második művelete hello képességét toosync tanúsítványokat és a hálózat adatait.
 
 ![][7]
 
-**Útválasztás** , a virtuális hálózat definiált útvonalak irányítja a forgalmat a virtuális hálózat az alkalmazásból történő alkalmazott korábban feljegyzett. Ahol az ügyfelek további kimenő adatforgalmat küldjön egy alkalmazás a virtuális hálózat és a számukra ezt a képességet szeretnék valósul meg, ha nincsenek olyan néhány felhasználását. Mi történik a forgalmat, követően, hogy hogyan konfigurálja az ügyfél az a virtuális hálózat legfeljebb. 
+**Útválasztás** korábban feljegyzett határozzák meg a virtuális hálózat hello útvonalakat a rendszer irányítja a forgalmat a virtuális hálózat az alkalmazásból történő alkalmazott. Abban az esetben, ha az ügyfelek, ahová az alkalmazásokból kimenő forgalom további toosend hello virtuális hálózat és a számukra megadott ezt a képességet, nincsenek néhány felhasználását. Mi történik a toohello forgalom követően, hogy működik-e toohow hello ügyfél konfigurálja a virtuális hálózat. 
 
-**Tanúsítványok** a tanúsítvány állapotát tükrözi a ellenőrzés által végzett az App Service ellenőrzése, hogy a tanúsítványok, amelyeket a VPN-kapcsolat használatával hoztuk továbbra is megfelelőek. Virtuális integráció engedélyezve van, majd ha ez az első integráció, hogy a virtuális hálózatba érkezett az ASP, az alkalmazások nincs a szükséges exchange a tanúsítványok a kapcsolati védelme érdekében. A tanúsítványok együtt azt lekérése a DNS-konfiguráció, útvonalakat és más hasonló dolgot a hálózati leíró.
-Ha ezeket a tanúsítványokat vagy hálózati adatok módosul, akkor szüksége "Sync hálózat" gombra. **Megjegyzés:**: "Sync hálózat" kattintva, majd a rövid kimaradásokat okozhat az alkalmazás és a virtuális hálózat közötti kapcsolat. Az alkalmazás nem indítják újra, amíg a kapcsolat megszakadása okozhat a funkciót nem webhelyét megfelelően. 
+**Tanúsítványok** hello tanúsítvány állapotát tükrözi egy App Service toovalidate, hogy a VPN-kapcsolat hello használunk hello tanúsítványok továbbra is megfelelőek hello által végzett ellenőrzést. Ha virtuális integráció engedélyezve van, majd ha hello első integrációs toothat VNet az ASP, az alkalmazások a nincs tanúsítványok tooensure hello biztonsági hello kapcsolat szükséges exchange. Hello tanúsítványok mellett azt lekérése hello DNS-konfiguráció, útvonalakat és más hasonló dolgot hello hálózati leíró.
+Ha ezeket a tanúsítványokat vagy hálózati adatok módosul, akkor szüksége tooclick "Sync hálózat". **Megjegyzés:**: "Sync hálózat" kattintva, majd a rövid kimaradásokat okozhat az alkalmazás és a virtuális hálózat közötti kapcsolat. Az alkalmazás nem indítják újra, amíg a kapcsolat megszakadása hello okozhat a hely toonot függvény megfelelően. 
 
 ## <a name="accessing-on-premises-resources"></a>Hozzáférés a helyszíni erőforrások
-A virtuális hálózat integrációs szolgáltatás előnyei egyik, ha a virtuális hálózat csatlakozik a helyi hálózati helyek közötti VPN-nel rendelkező, majd az alkalmazások hozzáférhetnek a helyszíni erőforrások az alkalmazásból. Ennek ellenére előfordulhat, hogy módosítania a helyszíni VPN-átjáró felé mutató útvonalakat a hely IP-pont között. Ha először be, a webhelyek közötti VPN használatával konfigurálja a parancsfájlok beállítása kell útvonalakat, beleértve a hely VPN. Ha a webhelyek közötti VPN létrehozása után a pontok hozzá hely típusú VPN, akkor szüksége az útvonalak manuális frissítésével. Ez a részletes átjárón eltérők lehetnek, és a dokumentum nem ismerteti. 
+Hello VNet integrációs szolgáltatás előnyei hello egyike, hogy ha a virtuális hálózat csatlakozik tooyour helyszíni egy hely tooSite VPN hálózat és az alkalmazások is rendelkeznek tooyour az alkalmazásból a helyszíni erőforrások eléréséhez. A toowork a tooupdate szükség lehet, ha a helyszíni VPN átjáró hello irányítja a pont tooSite IP-címtartomány. Hello hely tooSite VPN először beállítását hello parancsfájlok használja a rendszer tooconfigure azt útvonalakat, beleértve a pont tooSite VPN-érdemes beállítania. Ha a hely tooSite VPN létrehozása után hozzáadhat hello pont tooSite VPN, akkor szüksége tooupdate hello útvonalak manuálisan. Hogyan toodo átjárón eltérők lehetnek, és nem az itt ismertetett az adatokat. 
 
 > [!NOTE]
-> A virtuális hálózat integrációs szolgáltatás számára nem integrálható egy Vnetet, amely rendelkezik egy ExpressRoute-átjárót egy alkalmazást. Akkor is, ha az ExpressRoute-átjárót konfigurált [párhuzamos módban] [ VPNERCoex] a virtuális integráció nem működik. Ha egy ExpressRoute-kapcsolaton keresztül erőforrások eléréséhez szükséges, akkor is használhat egy [App Service Environment-környezet][ASE], amelyen fut a virtuális hálózat.
+> hello VNet integrációs szolgáltatás számára nem integrálható egy Vnetet, amely rendelkezik egy ExpressRoute-átjárót egy alkalmazást. Akkor is, ha hello ExpressRoute-átjárót úgy van konfigurálva, a [párhuzamos módban] [ VPNERCoex] hello virtuális integráció nem működik. Ha tooaccess erőforrásoknak ExpressRoute kapcsolat van szüksége, akkor is használhat egy [App Service Environment-környezet][ASE], amelyen fut a virtuális hálózat.
 > 
 > 
 
 ## <a name="pricing-details"></a>Díjszabás részletei
-Van néhány apró kell ügyelnie, ha a virtuális hálózat integrációs szolgáltatás számára a díjszabás. Ez a funkció használatához 3 kapcsolódó díjakat van:
+Van néhány apró kell ügyelnie, ha a hello VNet integrációs szolgáltatás díjszabása. Nincsenek 3 kapcsolódó díjakat toohello használatára:
 
 * Az ASP árképzési szint követelmények
 * Adatátviteli költségek
 * VPN-átjáró költségeket.
 
-Az alkalmazások között használhatják ezt a szolgáltatást akkor kell Standard vagy prémium szintű App Service-csomag. További információt itt azok a költségek is olvashat: [App Service szolgáltatás díjszabása][ASPricing]. 
+Az alkalmazások toobe képes toouse az ezzel a funkcióval szükségük toobe Standard vagy prémium szintű App Service-csomag. További információt itt azok a költségek is olvashat: [App Service szolgáltatás díjszabása][ASPricing]. 
 
-Hely VPN-hálózatokhoz módjának pont vannak kezelve, mindig van kimenő adatok járnak a virtuális integráció kapcsolaton keresztül akkor is, ha a virtuális hálózat ugyanabban az adatközpontban. Mik azok a ezeket a költségeket megtekintéséhez tekintse meg itt: [adatok átvitele Díjszabásának részleteit][DataPricing]. 
+Lejáró toohello módon pont tooSite kezeli, VPN, mindig van járnak a kimenő adatok a virtuális integráció kapcsolaton keresztül akkor is, ha hello VNet a hello azonos adatközpontba. toosee mi ezeket a költségeket, itt tekintse meg: [adatok átvitele Díjszabásának részleteit][DataPricing]. 
 
-Az utolsó elem a virtuális hálózat átjáró költségét. Ha máshová, például a helyek közötti VPN átjáró nincs szüksége, majd fizet átjárók virtuális integráció funkciójának támogatásához. Részletek érhetők el a költségekre itt: [VPN-átjáró árképzési][VNETPricing]. 
+utolsó hello elem-hello VNet átjárók hello költségét. Ha nincs szüksége hello átjárók valami mást, például a webhely tooSite VPN, majd fizet átjárók toosupport hello VNet integrációs szolgáltatás számára. Részletek érhetők el a költségekre itt: [VPN-átjáró árképzési][VNETPricing]. 
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Bár a funkció egyszerűen állíthat be, hogy nem jelenti azt, hogy a felhasználói élmény lesz-e szabad probléma. A kívánt végpont elérésével kapcsolatos problémák kell észlel néhány segédprogram segítségével ellenőrizze az alkalmazás-konzol közötti kapcsolatot. Nincsenek két konzol feladatait is használhatja. A Kudu konzolról van, és a másik pedig a konzolt, amely az Azure portálon érhető el. Az alkalmazásból a Kudu konzol eléréséhez nyissa meg az eszközök -> Kudu. Ez megegyezik a [sitename] címen. scm.azurewebsites.net. Ha egyszerűen nyit, nyissa meg a hibakeresési konzoljára. Az Azure-portál központi konzolon, majd a alkalmazás segítségével nyissa meg eszközök konzol ->. 
+Hello szolgáltatás egyszerű tooset működik-e, amíg, hogy nem jelenti azt, hogy a felhasználói élmény lesz-e szabad probléma. A kívánt végpont elérésével kapcsolatos problémák kell észlel néhány tootest kapcsolat hello app konzol használható eszközöket. Nincsenek két konzol feladatait is használhatja. Egyik hello Kudu konzolról, más hello hello konzolt, amely az Azure-portálon hello érhető el. tooget toohello Kudu konzol az alkalmazásból lépjen a tooTools Kudu ->. Ez van hello ugyanaz, mint túl fog [sitename]. scm.azurewebsites.net. Amennyiben az adott megnyílik egyszerűen lépjen toohello hibakeresési konzol külön-külön tooget toohello majd az alkalmazásból az Azure portál központi konzolon nyissa meg a tooTools konzol ->. 
 
 #### <a name="tools"></a>Eszközök
-Az eszköz pingelést, nslookup és tracert a konzollal biztonsági korlátozások miatt nem fognak működni. Töltse ki a "void" ott lett hozzáadva két külön eszközök. DNS-funkcióinak teszteléséhez hozzáadott egy nameresolver.exe nevű eszköz. A szintaxis a következő:
+hello eszköz pingelést, nslookup és tracert hello konzollal toosecurity korlátozások miatt nem fognak működni. Nincs toofill hello void már hozzáadott két külön eszközök. Rendelés tootest DNS funkcióinak hozzáadott egy nameresolver.exe nevű eszköz. hello szintaxisa:
 
     nameresolver.exe hostname [optional: DNS Server]
 
-Nameresolver segítségével ellenőrizze a gazdagép neve, amely az alkalmazás függ. Ezzel a módszerrel tesztelheti Ha semmit a DNS-beli rosszul konfigurálva van, vagy lehet, hogy nem fér hozzá a DNS-kiszolgáló.
+Az alkalmazás függ nameresolver toocheck hello állomásnevek is használhatja. Ezzel a módszerrel tesztelheti Ha semmit a DNS-beli rosszul konfigurálva van, vagy esetleg nem rendelkezik hozzáféréssel tooyour DNS-kiszolgáló.
 
-A következő eszköz lehetővé teszi TCP-kapcsolat állomás és port kombinációjához tesztelésére. Ez az eszköz tcpping.exe nevezik, és a szintaxis a következő:
+hello következő eszköz lehetővé teszi a TCP-kapcsolat tooa állomás és port kombinációja tootest. Ez az eszköz tcpping.exe nevezik, és hello szintaxisa:
 
     tcpping.exe hostname [optional: port]
 
-A tcpping segédprogram jelzi, hogy ha érhető el egy adott állomás és port. Csak megmutatja sikeres ha: egy alkalmazás a következőnél: az állomás és port kombinációját, és a hálózati hozzáférés az alkalmazásból a megadott állomás és port.
+hello tcpping segédprogram jelzi, hogy ha érhető el egy adott állomás és port. Csak megmutatja sikeres ha: egy alkalmazás a következőnél: hello állomás és port kombinációja, és a hálózati hozzáférés az alkalmazás toohello megadott állomás és port.
 
-#### <a name="debugging-access-to-vnet-hosted-resources"></a>Virtuális hálózat eléréséhez hibakeresés üzemeltetett erőforrásokhoz
-Számos dolgot, amely megakadályozhatja, hogy az alkalmazás egy adott állomás és port elérését. A legtöbbször ennek három művelet egyike:
+#### <a name="debugging-access-toovnet-hosted-resources"></a>Hibakeresési hozzáférés tooVNet üzemeltetett erőforrásokhoz
+Számos dolgot, amely megakadályozhatja, hogy az alkalmazás egy adott állomás és port elérését. A legtöbb hello idő három lehetőség közül:
 
-* **A módon van egy tűzfal** Ha tűzfal módon, hogy elért a TCP időtúllépési. Ebben az esetben ez 21 másodperc. Kapcsolat tesztelése a tcpping eszközzel. TCP-időtúllépések tűzfalak túl sok dolgot oka az lehet, de kezdeni. 
-* **Nem érhető el DNS** a DNS-időtúllépési érték egy DNS-kiszolgálón három másodperc. Ha két DNS-kiszolgálók, az időtúllépési érték 6 másodperc. Nameresolver segítségével megtekintheti, hogy működik-e a DNS. Ne felejtse el, nem használhatja az nslookup, amely nem használja a DNS, a virtuális hálózat van konfigurálva.
-* **Érvénytelen P2S IP-címtartomány** a hely IP-címtartomány pontot kell lennie az RFC 1918 privát IP-címtartományok (10.0.0.0-10.255.255.255 / 172.16.0.0-172.31.255.255 / 192.168.0.0-192.168.255.255). Ha a tartomány IP-címeket használ, amely kívül, dolgot nem fognak működni. 
+* **Van egy tűzfal hello módon** Ha tűzfal hello módon, hogy elért hello TCP időtúllépési. Ebben az esetben ez 21 másodperc. Hello tcpping eszköz tootest kapcsolatot használjon. TCP-időtúllépések lehet, hogy túl tűzfalak toomany dolog, de kezdeni. 
+* **Nem érhető el DNS** hello DNS időtúllépési érték egy DNS-kiszolgálón három másodperc. Ha két DNS-kiszolgálók, a hello időtúllépési érték 6 másodperc. Nameresolver toosee használja, ha a DNS nem működik. Ne felejtse el, nem használhatja az nslookup nem használó hello DNS, a virtuális hálózat van konfigurálva.
+* **Érvénytelen P2S IP-címtartomány** hello pont toosite IP-címtartomány van szüksége az RFC 1918 hello privát IP-címtartományok toobe (10.0.0.0-10.255.255.255 / 172.16.0.0-172.31.255.255 / 192.168.0.0-192.168.255.255). Ha hello tartományon kívül, amely IP-címeket használ, dolgot nem fognak működni. 
 
-Ha ezen elemekre nem válaszolja meg a problémát, keresse meg az egyszerű többek között az első: 
+Ha ezen elemekre nem válaszolja meg a problémát, keresse meg hello egyszerű többek között az első: 
 
-* Az átjáró, hogy fel a portálon megjelenítése nem?
+* Nem hello átjáró megjelenítése, hogy másolatot hello portálon?
 * Tanúsítványok, hogy szinkronban jelennek?
-* Birtokában bárki változtatta meg a hálózati konfigurációt a érintett ASP "Sync hálózat" nélkül? 
+* Birtokában bárki változtatta hello hálózati konfigurációt a "Sync hálózat" az érintett hello ASP nélkül? 
 
-Ha az átjáró nem működik, majd hálózatra kell kapcsolni, készítsen biztonsági másolatot. Ha a tanúsítványok nincsenek szinkronban, nyissa meg a virtuális integráció ASP nézetbe, és kattintson a "Sync hálózat". Ha azt gyanítja, hogy az a VNet konfigurációját végzett változás történt, és azt nem történt szinkronizálás üzembe helyezése az ASP, majd nyissa meg az ASP a VNet-integráció nézetében, és kattintson a "Sync hálózat" csak ne feledje, a rövid kimaradásokat ennek hatására az alkalmazások és a VNet-kapcsolatot. 
+Ha az átjáró nem működik, majd hálózatra kell kapcsolni, készítsen biztonsági másolatot. Ha a tanúsítványok nincsenek szinkronban, majd nyissa meg a virtuális hálózat integráció toohello ASP nézetében, és kattintson a "Sync hálózat". Ha azt gyanítja, hogy történt a módosítások tooyour VNet konfigurációját, és azt nem történt szinkronizálás üzembe helyezése az ASP, majd nyissa meg a virtuális hálózat integráció toohello ASP nézetében, és kattintson a "Sync hálózat" csak ne feledje, a rövid kimaradásokat ennek hatására az alkalmazások és a VNet-kapcsolatot . 
 
-Ha, amely minden rendben, akkor meg kell ásva egy kicsit:
+Ha, amely minden rendben, akkor szüksége a mélyebb bit toodig:
 
-* Vannak-e bármilyen más alkalmazások virtuális integráció ugyanazon virtuális erőforrások eléréséhez? 
-* Lehet, a app konzolon és használni tcpping a Vneten található más erőforrások eléréséhez? 
+* Rendszer nincs bármely más alkalmazások virtuális integráció tooreach erőforrások hello ugyanazt a virtuális hálózatot? 
+* Akkor megnyithatja toohello app konzol és a Vneten belül az összes erőforrását tcpping tooreach használja? 
 
-Ha a fentiek közül egyik sem teljesül, majd a virtuális integráció rendben, és a probléma valahol máshol. Ez azért, ahol lekérdezi több kihívást számít, mivel nincs egyszerű mód miért nem éri el a gazdagép és a portszám megjelenítéséhez. Okai a következők:
+Ha a fenti hello bármelyike igaz, majd virtuális integráció finom pedig hello probléma valahol máshol. Ez azért, ahol nyer toobe több kérést, mert nincs egyszerű módszer toosee, miért nem éri el a gazdagép és a portszám. Hello okok a következők:
 
-* a tűzfal elérésének megakadályozásához, az alkalmazás port az a hely IP-címtartomány ponton az állomás rendelkezik. Alhálózatok gyakran meghaladó nyilvános hozzáférés szükséges.
+* a számítógépen egy tűzfal hozzáférési toohello alkalmazás port az a pont toosite IP-tartomány megakadályozza a gazdagépen. Alhálózatok gyakran meghaladó nyilvános hozzáférés szükséges.
 * a célállomás nem működik
 * az alkalmazás nem működik
-* a megfelelő IP- vagy állomásnév volt
-* az alkalmazás a várttól mint egy másik portot figyeli. Ellenőrizheti ezt állapotra vált, hogy a gazdagép-kiszolgálóra, és használja a "netstat – aon" cmd parancssorából. Ez azt jelenti, melyik folyamat azonosítója melyik portot figyeli. 
-* a hálózati biztonsági csoportok oly módon, hogy azok tagadni a hozzáférést az alkalmazás-állomás és port az a hely IP-címtartomány ponton vannak konfigurálva.
+* hello megfelelő IP-cím vagy állomásnév volt
+* az alkalmazás a várttól mint egy másik portot figyeli. Ellenőrizheti ezt állapotra vált, hogy a gazdagép-kiszolgálóra, és használja a "netstat – aon" hello cmd parancssorból. Ez azt jelenti, melyik folyamat azonosítója melyik portot figyeli. 
+* a hálózati biztonsági csoportok állíthatók be oly módon, hogy megakadályozzák, hogy a hozzáférés tooyour alkalmazás állomás és port az a pont toosite IP-címtartomány
 
-Ne feledje, hogy nem tudja milyen IP-a pont számára, hogy az alkalmazás fogja használni, engedélyeznie kell a hozzáférést a teljes tartományon a hely IP-címtartományt. 
+Ne feledje, hogy milyen IP-nem ismeri a az alkalmazás által használt, ezért meg kell tooallow a hozzáférést a teljes tartomány hello pont tooSite IP-címtartományban. 
 
 További hibakeresési lépések az alábbiak:
 
-* Jelentkezzen be egy másik virtuális gép a Vnetben, és próbálja meg elérni a erőforrás állomás: port onnan. Nincsenek az egyes TCP ping segédprogramokat használhatja erre a célra, vagy még akkor is használhatja a telnet, ha szükséges. Itt célja csak annak megállapítása, hogy kapcsolódási hiba az adott virtuális Gépről. 
-* elindítani egy alkalmazás egy másik virtuális Gépet és a vizsgálati hozzáférést adott állomás és port az alkalmazásból a konzolról
+* Jelentkezzen be másik virtuális gép a virtuális hálózaton, és megpróbál tooreach található az erőforrás-állomás: port onnan. Nincsenek az egyes TCP ping segédprogramokat használhatja erre a célra, vagy még akkor is használhatja a telnet, ha szükséges. hello itt célja egyszerűen toodetermine kapcsolat nincs az adott virtuális Gépről. 
+* egy másik virtuális Gépen lévő alkalmazás elindítani és hozzáférési toothat állomás és port hello konzolról a alkalmazás tesztelése
 
 #### <a name="on-premises-resources"></a>A helyszíni erőforrások ####
-Ha az alkalmazás nem érhető el a helyszíni erőforrások, ellenőrizni kell elsőként, ha érhető el erőforrás a Vneten belül. Biztosan működik, ha megpróbál elérni a helyszíni alkalmazást egy virtuális Gépet a Vneten belül. A telnet vagy a TCP ping segédprogramot használhatja. A virtuális Gépet a helyi erőforrás nem érhető el, majd győződjön meg arról, hogy működik-e a helyek közötti VPN-kapcsolatot. Hogy működik, majd ellenőrizze a ugyanazokat a műveleteket, valamint a helyszíni átjáró konfigurációs és állapotadatainak korábban feljegyzett. 
+Ha az alkalmazás nem érhető el a helyszíni erőforrások, hello először is ellenőrizni kell, ha érhető el erőforrás a Vneten belül. Ha biztosan működik, próbálja tooreach hello a helyszíni alkalmazások hello virtuális hálózatot a virtuális gép alapján. A telnet vagy a TCP ping segédprogramot használhatja. A virtuális Gépet a helyi erőforrás nem érhető el, majd győződjön meg arról, hogy működik-e a hely tooSite VPN-kapcsolatot. Ha működik, akkor ellenőrizze a hello, valamint hello helyszíni átjáró konfigurációs és állapotadatainak korábban feljegyzett ugyanazokat a műveleteket. 
 
-Ha a virtuális hálózat most méretű képes elérni a helyszíni rendszer, de az alkalmazás nem, akkor a hiba oka valószínűleg egy, a következő:
+Ha a virtuális hálózat most méretű képes elérni a helyszíni rendszer, de az alkalmazás nem tudja majd hello oka valószínűleg egy olyan hello következő:
 
-* az útvonalakat a hely IP-címtartományai a helyszíni átjáró pontot tartalmazó nincs konfigurálva
-* a hálózati biztonsági csoportok blokkolják a hozzáférést a hely IP-címtartomány pont
-* a helyszíni tűzfalak blokkolják a hely IP-címtartomány a pont-forgalom
-* egy felhasználó definiált Route(UDR) vannak a virtuális hálózat, amely megakadályozza, hogy a pont helyrendszer-alapú forgalmat a helyszíni hálózat elérése
+* az útvonalak nincs konfigurálva vannak a pont toosite IP-címtartományai a helyszíni átjáró
+* a hálózati biztonsági csoportok blokkolják a hozzáférést a pont tooSite IP-címtartomány
+* a helyszíni tűzfalak blokkolják a forgalmat a pont tooSite IP-címtartomány
+* a felhasználó definiált Route(UDR) vannak a virtuális hálózat, amely megakadályozza az a pont tooSite alapú forgalom elérje a helyszíni hálózatot
 
 ## <a name="hybrid-connections-and-app-service-environments"></a>Hibrid kapcsolatok és az App Service-környezetek
-Nincsenek három szolgáltatást, amely a virtuális hálózaton található erőforrások elérésének lehetővé tétele. Ezek a következők:
+Nincsenek három szolgáltatást, amelyek lehetővé teszik az üzemeltetett tooVNet erőforrások eléréséhez. Ezek a következők:
 
 * Virtuális integráció
 * Hibrid kapcsolatok
 * App Service-környezetek
 
-Hibrid kapcsolatok szükséges a hibrid kapcsolat Manager(HCM) meghívta a hálózat továbbító ügynök telepítését. A HCM képesnek kell lennie az Azure-bA és az alkalmazás kapcsolódni. Ez a megoldás különösen nagy, például a helyi hálózat egy távoli hálózatról, vagy akár egy másik felhőben tárolt hálózati, mert nem szükséges az interneten elérhető végponton. A HCM csak akkor fut, a Windows, illetve azt, hogy a magas rendelkezésre állás biztosításához futtató legfeljebb öt példányok. Hibrid kapcsolatok csak akkor, ha TCP támogatja, és minden egyes HC végpont meg kell egyeznie a megadott állomás: port kombinációjához. 
+Hibrid kapcsolatok tooinstall nevű hibrid kapcsolat Manager(HCM) hello a hálózaton lévő továbbító ügynök szükséges. hello HCM kell toobe képes tooconnect tooAzure, és tooyour alkalmazás. Ez a megoldás különösen nagy, például a helyi hálózat egy távoli hálózatról, vagy akár egy másik felhőben tárolt hálózati, mert nem szükséges az interneten elérhető végponton. hello HCM csak akkor fut, a Windows, illetve azt, hogy toofive példány tooprovide magas rendelkezésre állású fut be. Hibrid kapcsolatok csak az, ha TCP támogatja, és minden egyes HC végpont toomatch tooa adott állomás: port kombinációja. 
 
-Az App Service Environment-környezet funkció lehetővé teszi a virtuális hálózat az Azure App Service egy példánya futtatásához. Ez lehetővé teszi, hogy az alkalmazások az Azure-erőforrások bármely további lépések nélkül a virtuális hálózat. Az App Service-környezetek egyéb előnyeit, hogy használható-alapú Dv2 munkavállalók 14 GB RAM Memóriát. Egy másik előnye, hogy a rendszer az igényeknek méretezheti. A több-bérlős környezetekben, ahol az ASP legfeljebb 20 példányok, eltérően-környezetben méretezheti legfeljebb 100 ASP példányok. Egy mértékéig, amely a virtuális hálózat integrációja nem kap a dolog, hogy az App Service-környezetek együttműködik az ExpressRoute VPN. 
+hello App Service Environment-környezet funkcióval toorun hello Azure App Service egy példánya a Vneten belül. Ez lehetővé teszi, hogy az alkalmazások az Azure-erőforrások bármely további lépések nélkül a virtuális hálózat. Néhány hello az App Service-környezetek egyéb előnyeit rendszer használható alapú Dv2 dolgozók mentése too14 GB RAM memóriával. Egy másik előnye, hogy méretezheti hello rendszer toomeet igényeinek. Hello több-bérlős környezetekben, ahol az ASP korlátozott too20 példányok, eltérően-környezetben költenie too100 ASP példányok. Egy mértékéig, amely a virtuális hálózat integrációja nem kap hello dolog, hogy az App Service-környezetek együttműködik az ExpressRoute VPN. 
 
-Míg néhány eset átfedés használja, a szolgáltatás egyik cserélje le a többi. Ismerete, hogy mely szolgáltatásokat szeretné igénybe van kötve az igényeinek. Példa:
+Míg néhány eset átfedés használja, a szolgáltatás egyik lecserélheti hello bármelyikét mások. Milyen szolgáltatás toouse ismerete kapcsolt tooyour igényeinek. Példa:
 
-* Ha a fejlesztők és egyszerűen szeretne futtatni egy helyet az Azure-ban, és annak érik el az adatbázist a munkaállomáson a saját számítógépéről, a legegyszerűbb dolog használata hibrid kapcsolatok. 
-* Ha olyan nagy szervezethez, amely fel szeretné függeszteni számos webtulajdonaiban a nyilvános felhő, és kezelheti őket a saját hálózati, majd nyissa meg az App Service-környezet szeretné. 
-* Ha az App Service számos üzemeltetett alkalmazások és egyszerűen szeretné, hogy a virtuális hálózaton lévő erőforrások eléréséhez, majd virtuális integráció nyissa meg a módja. 
+* Ha a fejlesztők és egyszerűen szeretné, hogy toorun egy helyet az Azure-ban, és rendelkezik az elérni hello adatbázist hello munkaállomáson a saját számítógépéről, akkor hello legegyszerűbb dolog toouse hibrid kapcsolatok. 
+* Ha olyan nagy szervezethez, amely a tooput szeretne nagyszámú webtulajdonaiban hello nyilvános felhőben, és kezelheti őket a saját hálózati, majd szeretné az App Service Environment-környezet hello toogo. 
+* Ha az App Service számos üzemeltetett alkalmazások és egyszerűen szeretné, hogy a virtuális hálózat tooaccess erőforrásokat, majd virtuális integráció hello módon toogo. 
 
-A használati esetek túl van néhány egyszerűség kapcsolatos szempontjai. Ha a virtuális hálózat már csatlakoztatva van a helyszíni hálózathoz, majd ezzel a virtuális integráció vagy az App Service-környezetek egyszerű módja a helyi erőforrást. Másrészt a virtuális hálózat nincs csatlakoztatva a helyszíni hálózat majd esetén a virtuális hálózaton, és a telepítés a HCM összehasonlítása a helyek közötti virtuális magánhálózat beállításához sokkal több terhelése. 
+Hello használat esetén túl van néhány egyszerűség kapcsolatos szempontjai. Ha a virtuális hálózat már csatlakoztatva van tooyour a helyszíni hálózat, majd a virtuális integráció használatával, vagy az App Service-környezetek egyszerűen tooconsume a helyszíni erőforrások. A hello ugyanakkor, ha a virtuális hálózat nem tooyour a helyszíni hálózat csatlakozik, akkor célszerű további általános tooset be egy webhely toosite a virtuális hálózaton a VPN és a telepítés hello HCM összehasonlítása nagy. 
 
-A funkcionális eltérések túl van vannak is árképzési eltéréseket. Az App Service Environment-környezet jellemzője, a prémium szolgáltatásajánlat de kínál a legtöbb hálózati konfigurációs lehetőségek mellett nagyszerű szolgáltatásokat. Virtuális integráció Standard vagy prémium ASP használható, és biztonságosan fogyassza az erőforrásokat a vnetben a több-bérlős App Service a tökéletes megoldás. Hibrid kapcsolatok jelenleg a fiók, amely szinteken, indítsa el a szabad és majd beolvasni a fokozatosan drágább szükséges memóriamennyiség alapján BizTalk függ. Sok hálózatokon keresztül működik, ha ismét, nincs más szolgáltatás például a hibrid kapcsolatok, amelyek lehetővé teszik a is több mint 100 elkülönülő hálózatokon lévő erőforrások eléréséhez. 
+Túl hello funkcionális eltérések, nincs vannak is árképzési eltéréseket. hello App Service Environment-környezet szolgáltatása a prémium szintű szolgáltatásajánlat ajánlatok hello azonban a legtöbb hálózati konfigurációs lehetőségek továbbá tooother különleges szolgáltatásait. Virtuális integráció Standard vagy prémium ASP használható, és biztonságosan fogyassza az erőforrásokat a hello több-bérlős App Service a Vnetben tökéletes megoldás. Hibrid kapcsolatok jelenleg egy fiókot, amely start szabad, majd fokozatosan drágább beolvasása szintek alapján kell hello összeg BizTalk függ. Tooworking, ha sok hálózatokon keresztül származik, amikor nincs más szolgáltatás például a hibrid kapcsolatok, amelyek lehetővé teszik a tooaccess erőforrásokat is több mint 100, különálló hálózatokból. 
 
 <!--Image references-->
 [1]: ./media/web-sites-integrate-with-vnet/vnetint-upgradeplan.png

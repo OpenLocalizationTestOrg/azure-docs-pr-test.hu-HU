@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás Azure IoT - lecke 1 Arduino: (macOS) eszközök beszerzése |} Microsoft Docs"
-description: "Töltse le és telepítse a szükséges eszközök és szoftverek Adafruit lágyított M0 Wi-Fi első minta alkalmazásához macOS."
+title: "Csatlakozás Arduino tooAzure IoT - lecke 1: eszközök (macOS) beszerzése |} Microsoft Docs"
+description: "Töltse le és hello szükséges eszközök és szoftverek hello első mintaalkalmazás Adafruit lágyított M0 Wi-Fi telepítéséhez macOS."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: a6dc2555367e5fe530b3acde1f1f04ac442fb638
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5fd306fecd7259fb8f1e99d76282a1e464c4d4f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-macos-1010"></a>Eszközök beszerzése (macOS 10.10)
+# <a name="get-hello-tools-macos-1010"></a>Hello eszközök (macOS 10.10) beolvasása
 > [!div class="op_single_selector"]
 > * [Windows 7 vagy újabb][windows]
 > * [Ubuntu 16.04][ubuntu]
@@ -31,64 +31,64 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="what-you-will-do"></a>Mit fog
 
-A fejlesztői eszközök és a szoftver a Adafruit lágyított M0 Wi-Fi Arduino kártya első mintaalkalmazás letöltése. 
+Hello Fejlesztőeszközök és hello szoftver hello a Adafruit lágyított M0 Wi-Fi Arduino kártya első mintaalkalmazás letöltése. 
 
-Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshooting].
+Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshooting].
 
 > [!NOTE]
-> Bár a programozási nyelv, a fő logikájának Arduino, Node.js eszközök szerepelnek a megszerzett létrehozásához és központi telepítéséhez alkalmazásokat.
+> Bár programozási nyelv hello fő logikájának hello Arduino, Node.js eszközök hello során tapasztalatokat toobuild használt alkalmazások és központi telepítésekor minta.
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
 
-* Hogyan kell telepíteni a Git és Node.js.
-  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk a mintaalkalmazás Git tárolja.
+* Hogyan tooinstall a Git szoftver, Node.js.
+  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk hello-mintaalkalmazás Git tárolja.
   * [NODE.js](https://nodejs.org/en/) van a JavaScript futásidejű és gazdag csomag-ökoszisztéma.
-* Hogyan további Node.js fejlesztői eszközök telepítése az NPM segítségével.
-  * A Node.js minimálisan szükséges verziója a 4.5-ös LTS.
-  * [NPM](https://www.npmjs.com) a csomag kezelők, a Node.js egyike.
+* Hogyan toouse NPM tooinstall további Node.js fejlesztői eszközök.
+  * hello minimálisan szükséges verziója Node.js 4.5-ös LTS.
+  * [NPM](https://www.npmjs.com) egyike hello Node.js csomag feletteseit.
 
 ## <a name="what-you-need"></a>Mi szükséges
-A művelet elvégzéséhez szüksége lesz:
-* A fejlesztői eszközök és a szoftverfrissítések letöltése az internethez.
+toocomplete ennél a műveletnél, szüksége lesz:
+* Az Internet kapcsolat toodownload hello Fejlesztőeszközök és hello szoftver.
 * MacOS Yosemite (10.10) futtató Mac vagy újabb.
 
 ## <a name="install-git-and-nodejs"></a>Telepítse a Git szoftver, Node.js
-A Git szoftver, Node.js telepítéséhez használja a [Homebrew](http://brew.sh) segédprogramja csomag a következő lépések végrehajtásával:
+tooinstall Git és a Node.js, használja a hello [Homebrew](http://brew.sh) segédprogramja csomag a következő lépések végrehajtásával:
 
-1. Telepítse a Homebrew. Ha már telepített Homebrew, folytassa a 2.
+1. Telepítse a Homebrew. Ha már telepített Homebrew, nyissa meg toostep 2.
 
-   1. Nyomja le az `Cmd + Space` , és írja be `Terminal` egy terminált megnyitásához.
-   2. Futtassa az alábbi parancsot:
+   1. Nyomja le az `Cmd + Space` , és írja be `Terminal` tooopen egy terminált.
+   2. Futtassa a következő parancs hello:
 
       ```bash
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       ```
-2. Telepítse a Git és a Node.js, a következő parancs futtatásával:
+2. Telepítse a Git és Node.js hello a következő parancs futtatásával:
 
    ```bash
    brew install node git
    ```
 
 ## <a name="install-additional-nodejs-development-tools"></a>További Node.js fejlesztői eszközök telepítése
-Használjon [gulp.js](http://gulpjs.com) a Arduino táblán a minta-alkalmazás központi telepítésének automatizálásához.
+Használjon [gulp.js](http://gulpjs.com) hello minta alkalmazás tooyour Arduino board tooautomate hello központi telepítését.
 
-Telepítés `gulp`, `device-discovery-cli` a terminálban a következő parancs futtatásával:
+Telepítés `gulp`, `device-discovery-cli` hello hello terminálban parancs a következő futtatásával:
 
 ```bash
 sudo npm install -g gulp device-discovery-cli
 ```
 
-Ha problémák macOS Node.js és a további fejlesztői eszközök telepítése, lásd: a [hibaelhárítási útmutatója] [ troubleshooting] gyakori problémák megoldásainak.
+Ha problémák macOS Node.js és a további fejlesztői eszközök telepítése, lásd: hello [hibaelhárítási útmutatója] [ troubleshooting] a megoldások toocommon problémákat.
 
 ## <a name="install-visual-studio-code"></a>Visual Studio Code telepítése
-[Töltse le](https://code.visualstudio.com/docs/setup/osx) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A mintakód szerkesztése a szerkesztő használata az oktatóanyag későbbi részében.
+[Töltse le](https://code.visualstudio.com/docs/setup/osx) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A szerkesztő később hello oktatóanyag tooedit hello mintakód használható.
 
 ## <a name="summary"></a>Összefoglalás
-A szükséges fejlesztői eszközök és az első mintaalkalmazás szoftver telepítése. A következő feladata a létrehozásához, telepítéséhez és futtassa a mintaalkalmazást a Arduino táblán.
+Szükséges hello fejlesztői eszközök és szoftverek hello első mintaalkalmazás telepítése. hello tovább feladat toocreate, telepítheti, és futtassa a hello mintaalkalmazást a Arduino táblán.
 
 ## <a name="next-steps"></a>Következő lépések
-[A villogási alkalmazás létrehozását és telepítését][create-and-deploy-the-blink-application]
+[Hello villogási alkalmazás létrehozását és telepítését][create-and-deploy-the-blink-application]
 <!-- Images and links -->
 
 [windows]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-get-the-tools-win32.md

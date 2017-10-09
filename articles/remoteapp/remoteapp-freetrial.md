@@ -1,6 +1,6 @@
 ---
-title: Az Azure RemoteApp 30 napos ingyenes |} Microsoft Docs
-description: "Tekintse meg az Azure RemoteApp 30 napos ingyenes próbaidőszakot."
+title: "Azure RemoteApp 30 napos próbaverziója aaaFree |} Microsoft Docs"
+description: Tekintse meg az Azure RemoteApp hello 30 napos ingyenes.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 1df0ba7204570d9687713ca11ce864ddf4e301c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03b881abeba3f00fc8bf79932060a75d47f2e0fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="free-30-day-trial-of-azure-remoteapp"></a>Az Azure RemoteApp 30 napos ingyenes próbaverzió
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Ha rendelkezik Azure-előfizetéssel, próbálkozzon a [Azure RemoteApp 30 napig szabad](https://www.remoteapp.windowsazure.com/en/tour.aspx). Indításához egyszerűen jelentkezzen be az Azure felügyeleti portálján, navigáljon az Azure RemoteApp csomóponttól, és majd hozzon létre egy gyűjteményt. Ez remek módja a teljes felügyeleti tapasztalhat az Azure RemoteApp fizetett előfizetéssé átalakítása előtt kipróbálására.  
+Ha rendelkezik Azure-előfizetéssel, próbálkozzon a [Azure RemoteApp 30 napig szabad](https://www.remoteapp.windowsazure.com/en/tour.aspx). toostart, egyszerűen csak jelentkezzen be Azure felügyeleti portálon toohello, keresse meg a toohello Azure RemoteApp csomóponttól, és ezután hozzon létre egy gyűjteményt. Ez az egy kiváló módja tootest meghajtó hello teljes körű rendszergazdai élmény fizetős Azure RemoteApp-előfizetés tooa átalakítás előtt.  
 
-A próbaverziót használja, hozzon létre két gyűjteményeket gyűjtemény korlát 10 felhasználóval. Nincsenek egyéb korlátozások is. A próbaverziójáról a fizetős verzióra, bármikor válthat. 30 nap elteltével a gyűjtemények letiltott állapotú kerül, ha fizetett előfizetéssé átalakítása nem.
+A próbaverziót használja, hozzon létre két gyűjteményeket gyűjtemény korlát 10 felhasználóval. Nincsenek egyéb korlátozások is. A próba-előfizetéssel bármikor tooa válthat. 30 nap eltelte után a gyűjtemények állapotba kerülnek letiltott toopaid előfizetés nem át.
 
 > [!NOTE]
-> Az Azure garantált szolgáltatási szintje nem vonatkozik a próbaverziót használja létrehozott gyűjtemény.  
+> hello Azure garantált szolgáltatási szintje nem felel meg a próba-módban létrehozott toocollections.  
 > 
 > 
 
-Nem várhat? Egy rövid videót való [felhő központi telepítés](https://azure.microsoft.com/documentation/videos/azure-remoteapp-cloud-deployment-overview/).
+Nem várhat? Videót tekintené gyors hogyan túl[felhő központi telepítés](https://azure.microsoft.com/documentation/videos/azure-remoteapp-cloud-deployment-overview/).
 
-A kapott a következő visszajelzést? A kérdések [a fórumain](https://feedback.azure.com/forums/247748-azure-remoteapp/). Ha rendelkezik egy [az Azure támogatási terv](https://azure.microsoft.com/support/plans/), elküldheti a támogatási esetet. Mindenki elküldheti a visszajelzését a a [visszajelzési fórumon](https://feedback.azure.com/forums/247748-azure-remoteapp/).  
+A kapott a következő visszajelzést? POST kérdésekre túl[fórumain hello](https://feedback.azure.com/forums/247748-azure-remoteapp/). Ha rendelkezik egy [az Azure támogatási terv](https://azure.microsoft.com/support/plans/), elküldheti a támogatási esetet. Mindenki elküldheti a visszajelzését a a [visszajelzési fórumon](https://feedback.azure.com/forums/247748-azure-remoteapp/).  
 

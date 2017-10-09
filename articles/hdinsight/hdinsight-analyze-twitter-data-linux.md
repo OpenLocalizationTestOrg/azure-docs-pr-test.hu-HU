@@ -1,6 +1,6 @@
 ---
-title: "Az Apache Hive - Azure HDInsight Twitter-adatok elemzése |} Microsoft Docs"
-description: "Megtudhatja, hogyan használja a use Hive és a hdinsight Hadoop nyers TWitter-adatok átalakítása kereshető Hive táblákat."
+title: az Apache Hive - Azure HDInsight Twitter-adatok aaaAnalyze |} Microsoft Docs
+description: "Ismerje meg, hogyan toouse használatát Hive és a Hadoop HDInsight tootransform nyers TWitter-adatok kereshető Hive táblába."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,32 +16,32 @@ ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: b8656123fa9c5158f366872ab050f370080ec18a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 02c4d027c7bbf390ac1c3724c14f8d549ea5195e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-twitter-data-using-hive-and-hadoop-on-hdinsight"></a>A HDInsight Hive és a Hadoop használatával Twitter-adatok elemzése
 
-Útmutató Apache Hive segítségével folyamat Twitter-adatok. Twitter-felhasználók, akik a legtöbb Twitter-üzeneteket, amelyek tartalmaznak egy adott szó küldött listája eredménye.
+Megtudhatja, hogyan toouse Apache Hive tooprocess Twitter-adatok. hello eredménye küldi hello legtöbb Twitter-üzeneteket, amelyek tartalmaznak egy adott szó Twitter felhasználók listáját.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések a HDInsight 3.6 teszteltük.
+> Ebben a dokumentumban hello lépéseket a HDInsight 3.6 teszteltük.
 >
-> A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-## <a name="get-the-data"></a>Az adatok lekérése
+## <a name="get-hello-data"></a>Hello adatok beolvasása
 
-Twitter lehetővé teszi a [minden tweetet adatainak](https://dev.twitter.com/docs/platform-objects/tweets) JavaScript Object Notation (JSON)-dokumentumként egy REST API-n keresztül. [OAuth](http://oauth.net) az API-hitelesítés szükséges.
+Twitter lehetővé teszi a tooretrieve hello [minden tweetet adatainak](https://dev.twitter.com/docs/platform-objects/tweets) JavaScript Object Notation (JSON)-dokumentumként egy REST API-n keresztül. [OAuth](http://oauth.net) hitelesítési toohello API szükséges.
 
 ### <a name="create-a-twitter-application"></a>Twitter-alkalmazás létrehozása
 
-1. Egy webböngészőből, jelentkezzen be [https://apps.twitter.com/](https://apps.twitter.com/). Kattintson a **előfizetési most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.
+1. Egy webböngészőből bejelentkezés túl[https://apps.twitter.com/](https://apps.twitter.com/). Kattintson a hello **előfizetési most** hivatkozásra, ha egy Twitter-fiók nem rendelkezik.
 
 2. Kattintson a **új alkalmazás létrehozása**.
 
-3. Adja meg **neve**, **leírás**, **webhely**. Hogy fel egy URL-címet a **webhely** mező. A következő táblázatban néhány példa értékeket:
+3. Adja meg **neve**, **leírás**, **webhely**. Biztosíthatja, hogy be egy URL-címet hello **webhely** mező. hello a következő táblázatban néhány példa értékek toouse jeleníti meg:
 
    | Mező | Érték |
    |:--- |:--- |
@@ -51,24 +51,24 @@ Twitter lehetővé teszi a [minden tweetet adatainak](https://dev.twitter.com/do
 
 4. Ellenőrizze **Igen, elfogadom**, és kattintson a **az Twitter-alkalmazás létrehozása**.
 
-5. Kattintson a **engedélyek** fülre. Az alapértelmezett engedély **csak olvasható**.
+5. Kattintson a hello **engedélyek** külön-külön hello alapértelmezett engedély **csak olvasható**.
 
-6. Kattintson a **kulcsok és a hozzáférési jogkivonatok** fülre.
+6. Kattintson a hello **kulcsok és a hozzáférési jogkivonatok** fülre.
 
 7. Kattintson a **a hozzáférési jogkivonat létrehozása**.
 
-8. Kattintson a **teszt OAuth** a lap jobb felső sarkában.
+8. Kattintson a **teszt OAuth** hello oldal jobb felső sarkában hello.
 
 9. Írja le **kulcsa**, **felhasználói titok**, **hozzáférési jogkivonat**, és **Access token titkos**.
 
 ### <a name="download-tweets"></a>Töltse le a Twitter-üzenetek
 
-A következő Python kódját letölti a 10 000 Twitter-üzeneteket Twitter, és mentse őket nevű fájl **tweets.txt**.
+Python kódját a következő hello 10 000 Twitter-üzeneteket tölti le, a Twitter és mentse őket tooa fájlt **tweets.txt**.
 
 > [!NOTE]
-> Az alábbi lépéseket kell végrehajtani a HDInsight-fürt, óta Python már telepítve van.
+> a lépéseket követve hello hello HDInsight-fürt vannak végrehajtani, mert a Python már telepítve van.
 
-1. Csatlakozzon SSH-val a HDInsight-fürthöz:
+1. Csatlakozzon az SSH használatával toohello HDInsight-fürt:
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -76,7 +76,7 @@ A következő Python kódját letölti a 10 000 Twitter-üzeneteket Twitter, és
 
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-3. Az alábbi parancsokkal telepítéséhez [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2), és más szükséges csomagokat:
+3. Használjon hello következő parancsok tooinstall [Tweepy](http://www.tweepy.org/), [Progressbar](https://pypi.python.org/pypi/progressbar/2.2), és más szükséges csomagokat:
 
    ```bash
    sudo apt install python-dev libffi-dev libssl-dev
@@ -89,13 +89,13 @@ A következő Python kódját letölti a 10 000 Twitter-üzeneteket Twitter, és
    pip install tweepy progressbar pyOpenSSL requests[security]
    ```
 
-4. Az alábbi parancs segítségével hozzon létre egy fájlt **gettweets.py**:
+4. Használjon hello következő parancsot a toocreate nevű fájlt **gettweets.py**:
 
    ```bash
    nano gettweets.py
    ```
 
-5. Használja a következő szöveget a tartalmát a **gettweets.py** fájlt:
+5. Szöveg hello hello tartalmát, a következő használatát hello **gettweets.py** fájlt:
 
    ```python
    #!/usr/bin/python
@@ -112,29 +112,29 @@ A következő Python kódját letölti a 10 000 Twitter-üzeneteket Twitter, és
    access_token='Your access token'
    access_token_secret='Your access token secret'
 
-   #The number of tweets we want to get
+   #hello number of tweets we want tooget
    max_tweets=10000
 
-   #Create the listener class that receives and saves tweets
+   #Create hello listener class that receives and saves tweets
    class listener(StreamListener):
-       #On init, set the counter to zero and create a progress bar
+       #On init, set hello counter toozero and create a progress bar
        def __init__(self, api=None):
            self.num_tweets = 0
            self.pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=max_tweets).start()
 
        #When data is received, do this
        def on_data(self, data):
-           #Append the tweet to the 'tweets.txt' file
+           #Append hello tweet toohello 'tweets.txt' file
            with open('tweets.txt', 'a') as tweet_file:
                tweet_file.write(data)
-               #Increment the number of tweets
+               #Increment hello number of tweets
                self.num_tweets += 1
-               #Check to see if we have hit max_tweets and exit if so
+               #Check toosee if we have hit max_tweets and exit if so
                if self.num_tweets >= max_tweets:
                    self.pbar.finish()
                    sys.exit(0)
                else:
-                   #increment the progress bar
+                   #increment hello progress bar
                    self.pbar.update(self.num_tweets)
            return True
 
@@ -142,68 +142,68 @@ A következő Python kódját letölti a 10 000 Twitter-üzeneteket Twitter, és
        def on_error(self, status):
            print status
 
-   #Get the OAuth token
+   #Get hello OAuth token
    auth = OAuthHandler(consumer_key, consumer_secret)
    auth.set_access_token(access_token, access_token_secret)
-   #Use the listener class for stream processing
+   #Use hello listener class for stream processing
    twitterStream = Stream(auth, listener())
    #Filter for these topics
    twitterStream.filter(track=["azure","cloud","hdinsight"])
    ```
 
     > [!IMPORTANT]
-    > Cserélje le a helyőrzőket a következő elemek a twitter-alkalmazás adatait:
+    > Cserélje le a helyőrző szöveg hello hello elemek hello információkkal a twitter-alkalmazás a következő:
     >
     > * `consumer_secret`
     > * `consumer_key`
     > * `access_token`
     > * `access_token_secret`
 
-6. Használjon **Ctrl + X**, majd **Y** fájl mentéséhez.
+6. Használjon **Ctrl + X**, majd **Y** toosave hello fájlt.
 
-7. Az alábbi parancs segítségével futtassa a fájlt, és töltse le a Twitter-üzeneteket:
+7. Használja a következő parancs toorun hello fájl hello, és töltse le a Twitter-üzeneteket:
 
     ```bash
     python gettweets.py
     ```
 
-    Egy folyamatjelző jelenik meg. A Twitter-üzeneteket letöltöttként megszámlálja akár 100 %.
+    Egy folyamatjelző jelenik meg. Akkor számít fel too100 % hello Twitter-üzeneteket letöltődnek.
 
    > [!NOTE]
-   > Ha a folyamatjelző ahhoz, hogy hosszú ideig tart, módosítania kell a szűrő nyomon követéséhez trendekkel kapcsolatos témakörök. Ha sok Twitter-üzeneteket a témakör a szűrőben lévő, gyorsan megjeleníthet a szükséges 10000 Twitter-üzeneteket.
+   > Ha hello folyamatjelző sáv tooadvance hosszú ideig tart, módosítania kell a hello szűrő tootrack trendekkel témaköröket. Ha a szűrőben lévő hello témakör számos Twitter-üzeneteket, gyorsan kaphat hello szükséges 10000 Twitter-üzeneteket.
 
-### <a name="upload-the-data"></a>Az adatok feltöltése
+### <a name="upload-hello-data"></a>Hello adatok feltöltése
 
-Az adatok feltöltése a HDInsight-tárolóba, használja a következő parancsokat:
+tooupload hello tooHDInsight adattárolás, a következő parancsok használata hello:
 
    ```bash
    hdfs dfs -mkdir -p /tutorials/twitter/data
    hdfs dfs -put tweets.txt /tutorials/twitter/data/tweets.txt
 ```
 
-Ezek a parancsok a fürt összes csomópontja által elérhető helyen tárolja az adatokat.
+Ezek a parancsok hello adatok hello fürt összes csomópontja által elérhető helyen tárolja.
 
-## <a name="run-the-hiveql-job"></a>A HiveQL feladat futtatása
+## <a name="run-hello-hiveql-job"></a>Hello HiveQL feladat futtatása
 
-1. Az alábbi parancs segítségével hozzon létre egy HiveQL utasításokat tartalmazó fájlt:
+1. A következő parancs toocreate HiveQL utasításokat tartalmazó fájl hello használata:
 
    ```bash
    nano twitter.hql
    ```
 
-    A fájl tartalmát a következő szöveg használata:
+    Szöveg hello hello fájl tartalmát, a következő hello használata:
 
    ```hiveql
    set hive.exec.dynamic.partition = true;
    set hive.exec.dynamic.partition.mode = nonstrict;
    -- Drop table, if it exists
    DROP TABLE tweets_raw;
-   -- Create it, pointing toward the tweets logged from Twitter
+   -- Create it, pointing toward hello tweets logged from Twitter
    CREATE EXTERNAL TABLE tweets_raw (
        json_response STRING
    )
    STORED AS TEXTFILE LOCATION '/tutorials/twitter/data';
-   -- Drop and recreate the destination table
+   -- Drop and recreate hello destination table
    DROP TABLE tweets;
    CREATE TABLE tweets
    (
@@ -238,8 +238,8 @@ Ezek a parancsok a fürt összes csomópontja által elérhető helyen tárolja 
        profile_image_url STRING,
        json_response STRING
    );
-   -- Select tweets from the imported data, parse the JSON,
-   -- and insert into the tweets table
+   -- Select tweets from hello imported data, parse hello JSON,
+   -- and insert into hello tweets table
    FROM tweets_raw
    INSERT OVERWRITE TABLE tweets
    SELECT
@@ -299,16 +299,16 @@ Ezek a parancsok a fürt összes csomópontja által elérhető helyen tárolja 
    WHERE (length(json_response) > 500);
    ```
 
-2. Nyomja le az ENTER **Ctrl + X**, majd nyomja le az **Y** fájl mentéséhez.
-3. A következő paranccsal futtassa a HiveQL a fájlban található:
+2. Nyomja le az ENTER **Ctrl + X**, majd nyomja le az **Y** toosave hello fájlt.
+3. A következő parancs toorun hello HiveQL hello fájlban lévő hello használata:
 
    ```bash
    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i twitter.hql
    ```
 
-    Ez a parancs futtatható a a **twitter.hql** fájlt. Miután a lekérdezés befejeződött, megjelenik egy `jdbc:hive2//localhost:10001/>` kérdés.
+    Ez a parancs futtatása hello hello **twitter.hql** fájlt. Miután hello lekérdezés befejeződött, megjelenik egy `jdbc:hive2//localhost:10001/>` kérdés.
 
-4. Beeline parancssorába a következő lekérdezés segítségével győződjön meg arról, hogy adatok importálása:
+4. Hello beeline parancssorból lekérdezés tooverify adatok importálása a következő hello használata:
 
    ```hiveql
    SELECT name, screen_name, count(1) as cc
@@ -318,11 +318,11 @@ Ezek a parancsok a fürt összes csomópontja által elérhető helyen tárolja 
        ORDER BY cc DESC LIMIT 10;
    ```
 
-    A lekérdezés által visszaadott legfeljebb 10 Twitter-üzeneteket, amelyek tartalmazzák a word **Azure** az az üzenet szövege.
+    A lekérdezés által visszaadott legfeljebb 10 Twitter-üzeneteket, amelyek tartalmazzák a hello word **Azure** az üdvözlő üzenet szövegét.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Rendelkezik megtudta, hogyan egy strukturálatlan JSON adatkészlet átalakítása strukturált Hive táblákat. A HDInsight Hive kapcsolatos további tudnivalókért tekintse meg a következő dokumentumokat:
+Megtanulta, hogyan tootransform egy strukturálatlan JSON strukturált Hive tábla a DataSet adatkészlet. toolearn Hive hdinsight, kapcsolatos további információkért tekintse meg a következő dokumentumok hello:
 
 * [Első lépései a hdinsight eszközzel](hdinsight-hadoop-linux-tutorial-get-started.md)
 * [HDInsight eszközzel repülési késleltetés adatok elemzése](hdinsight-analyze-flight-delay-data-linux.md)

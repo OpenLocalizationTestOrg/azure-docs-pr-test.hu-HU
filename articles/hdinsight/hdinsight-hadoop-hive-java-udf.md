@@ -1,6 +1,6 @@
 ---
-title: "Java felhasználói függvény (UDF) a Hive HDInsight - Azure |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF), amely kompatibilis a struktúra. Ebben a példában UDF alakít egy szöveges karakterláncot kisbetűssé táblájában."
+title: "aaaJava felhasználói függvény (UDF) a Hive HDInsight - Azure |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate Java-alapú felhasználói függvény (UDF), amely kompatibilis a struktúra. Ez a példa UDF szöveges karakterláncok toolowercase táblázatát alakítja át."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 481d234eaf88bdb210821084ee4154159470eda0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 392b4cfb73299d2f6c1e8e825a4201b48d501388
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>Egy Java használni a Hive HDInsight UDF
 
-Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF), amely kompatibilis a struktúra. Ebben a példában a Java UDF alakítja át a táblázatokat szöveges karakterláncok minden-kisbetűs karaktereket.
+Ismerje meg, hogyan toocreate Java-alapú felhasználói függvény (UDF), amely kompatibilis a struktúra. hello Java UDF ebben a példában egy tábla szöveges karakterláncok tooall-kisbetűs karaktereket alakítja át.
 
 ## <a name="requirements"></a>Követelmények
 
 * HDInsight-fürtök 
 
     > [!IMPORTANT]
-    > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-    A legtöbb ebben a dokumentumban a lépések mindkét Windows és Linux-alapú fürtökön. A lefordított UDF feltöltése a fürthöz, majd futtassa a lépéseire azonban jellemzőek Linux-alapú fürtökön. Információk a Windows-alapú fürtökön használható hivatkozásokkal.
+    A legtöbb ebben a dokumentumban a lépések mindkét Windows és Linux-alapú fürtökön. Hello használt lépéseket tooupload hello fordítása azonban UDF toohello fürt és az adott tooLinux-alapú fürtök futtatja. A Windows-alapú fürtökön használható tooinformation hivatkozásokkal.
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 8 vagy újabb (vagy egy azzal egyenértékű, például OpenJDK)
 
@@ -41,24 +41,24 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
 * Szöveg- vagy Java IDE
 
     > [!IMPORTANT]
-    > Ha egy Windows-ügyfélen a Python-fájlokat hoz létre, egy sor befejezési LF használó szerkesztővé kell használnia. Ha nem biztos abban, hogy a szerkesztő LF vagy CRLF használja-e, tekintse meg a [hibaelhárítás](#troubleshooting) szakasz lépései a CR karakter eltávolítása.
+    > Hello egy Windows ügyfél Python-fájlok létrehozása, ha egy sor befejezési LF használó szerkesztővé kell használnia. Ha nem biztos abban, hogy a szerkesztő LF vagy CRLF használja-e, tekintse meg a hello [hibaelhárítás](#troubleshooting) a lépésekkel eltávolítása a CR karakter hello szakasz.
 
 ## <a name="create-an-example-java-udf"></a>Hozzon létre egy Java UDF példa 
 
-1. A parancssorból használja a következő új Maven-projekt létrehozása:
+1. A parancssorból a következő új Maven-projektté toocreate hello használata:
 
     ```bash
     mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=ExampleUDF -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
    > [!NOTE]
-   > Ha PowerShell használ, a paraméterek idézőjelbe kell helyezni. Például: `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`.
+   > Ha a PowerShell használata esetén hello paraméterek idézőjelbe kell helyezni. Például: `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`.
 
-    Ezzel a paranccsal létrejön egy nevű könyvtár **exampleudf**, amely tartalmazza a Maven project.
+    Ezzel a paranccsal létrejön egy nevű könyvtár **exampleudf**, amely tartalmazza a hello Maven project.
 
-2. A projekt létrehozása után törölje a **exampleudf/src/test** a projekt részeként létrehozott címtárakat.
+2. Hello projekt létrehozása, törlése hello **exampleudf/src/test** hello projekt részeként létrehozott címtárakat.
 
-3. Nyissa meg a **exampleudf/pom.xml**, és cserélje le a meglévő `<dependencies>` bejegyzés van a következő XML:
+3. Megnyitás hello **exampleudf/pom.xml**, és cserélje le a meglévő hello `<dependencies>` hello XML a következő bejegyzést:
 
     ```xml
     <dependencies>
@@ -77,9 +77,9 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
     </dependencies>
     ```
 
-    Ezek a bejegyzések adja meg a Hadoop és a Hive HDInsight 3.5 részét képező verzióját. A Hadoop és a Hive HDInsight megadott verzióin információt a [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md) dokumentum.
+    Ezek a bejegyzések adja meg a Hadoop és a Hive HDInsight 3.5 mellékelt hello verzióját. A Hadoop és a Hive hdinsight kapott hello hello verzióin információt [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md) dokumentum.
 
-    Adja hozzá a `<build>` előtt szakasz a `</project>` sort a fájl végén. Ez a szakasz a következő XML kell tartalmaznia:
+    Adja hozzá a `<build>` előtt hello szakasz `</project>` sor hello fájl hello végén. Ez a szakasz a következő XML hello kell tartalmaznia:
 
     ```xml
     <build>
@@ -133,13 +133,13 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
     </build>
     ```
 
-    Ezek a bejegyzések meghatározhatja, hogyan kell a projekt felépítéséhez. Pontosabban a verzióját a projekt használó Java és hogyan hozhat létre egy uberjar a fürt üzembe helyezése.
+    Ezek a bejegyzések határozza meg, hogyan toobuild hello projekt. Java, amely a projekt által használt hello pontosabban hello verzióját, és hogyan toobuild egy uberjar telepítési toohello fürthöz.
 
-    Mentse a fájlt, miután a módosítások lettek bevezetve.
+    Miután hello módosításokat végzett, mentse a hello fájlt.
 
-4. Nevezze át **exampleudf/src/main/java/com/microsoft/examples/App.java** való **ExampleUDF.java**, majd nyissa meg a fájlt a szerkesztőben.
+4. Nevezze át **exampleudf/src/main/java/com/microsoft/examples/App.java** túl**ExampleUDF.java**, majd nyissa meg a szerkesztőben hello fájlt.
 
-5. Cserélje le a tartalmát a **ExampleUDF.java** a következő fájlt, majd mentse a fájlt.
+5. Cserélje le a hello hello tartalmát **ExampleUDF.java** hello következő fájlt, majd mentse hello fájlt.
 
     ```java
     package com.microsoft.examples;
@@ -148,45 +148,45 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
     import org.apache.hadoop.hive.ql.exec.UDF;
     import org.apache.hadoop.io.*;
 
-    // Description of the UDF
+    // Description of hello UDF
     @Description(
         name="ExampleUDF",
-        value="returns a lower case version of the input string.",
+        value="returns a lower case version of hello input string.",
         extended="select ExampleUDF(deviceplatform) from hivesampletable limit 10;"
     )
     public class ExampleUDF extends UDF {
         // Accept a string input
         public String evaluate(String input) {
-            // If the value is null, return a null
+            // If hello value is null, return a null
             if(input == null)
                 return null;
-            // Lowercase the input string and return it
+            // Lowercase hello input string and return it
             return input.toLowerCase();
         }
     }
     ```
 
-    Ez a kód egy UDF fogad el egy olyan karakterláncértéket, és a karakterlánc kis verziójának visszaadó valósítja meg.
+    Ez a kód egy karakterlánc-érték fogad, és hello karakterlánc kisbetűs verzióját visszaadó UDF valósítja meg.
 
-## <a name="build-and-install-the-udf"></a>Hozza létre és telepítse az UDF-ben
+## <a name="build-and-install-hello-udf"></a>Hozza létre és hello UDF telepítése
 
-1. A következő paranccsal fordításához és az UDF csomag:
+1. A következő parancs toocompile hello használja, és hello UDF csomag:
 
     ```bash
     mvn compile package
     ```
 
-    Ez a parancs létrehozza, és az UDF-csomagok a `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` fájlt.
+    Ez a parancs létrehozza és csomagok hello UDF-ben történő hello `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` fájlt.
 
-2. Használja a `scp` parancs a fájl átmásolása a HDInsight-fürthöz.
+2. Használjon hello `scp` parancs toocopy hello fájl toohello HDInsight-fürthöz.
 
     ```bash
     scp ./target/ExampleUDF-1.0-SNAPSHOT.jar myuser@mycluster-ssh.azurehdinsight
     ```
 
-    Cserélje le `myuser` a fürthöz SSH felhasználói fiókkal. Cserélje le `mycluster` a fürt nevéhez. Ha a jelszót biztonságos SSH-fiókjának biztonságát, a jelszó megadására kéri. Ha a tanúsítványt használja, előfordulhat, hogy szüksége a `-i` paraméterrel adhatja meg a titkos kulcs fájlja.
+    Cserélje le `myuser` a hello SSH felhasználói fiók a fürt számára. Cserélje le `mycluster` hello fürt névvel. Ha a jelszó toosecure hello SSH-fiókjának, felszólító tooenter hello jelszó áll. Ha a tanúsítványt használja, szükség lehet a toouse hello `-i` paraméter toospecify hello titkos kulcs fájlja.
 
-3. Csatlakozzon a fürthöz SSH használatával.
+3. Csatlakozzon az SSH használatával toohello fürt.
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
@@ -194,23 +194,23 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
 
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-4. Az SSH-munkamenetet másolja a jar-fájlra HDInsight-tárolóba.
+4. Hello SSH-munkamenetet másolja a hello jar fájlok tooHDInsight tárolására.
 
     ```bash
     hdfs dfs -put ExampleUDF-1.0-SNAPSHOT.jar /example/jars
     ```
 
-## <a name="use-the-udf-from-hive"></a>Az UDF-ben a Hive használata
+## <a name="use-hello-udf-from-hive"></a>A Hive hello UDF használata
 
-1. A következő segítségével indítsa el a Beeline ügyfél az SSH-munkamenetet.
+1. A következő toostart hello Beeline ügyfél hello SSH-munkamenetből hello használja.
 
     ```bash
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
     ```
 
-    A parancs feltételezi, hogy használja-e a rendszer az alapértelmezett **admin** a bejelentkezési fiók a fürt számára.
+    A parancs feltételezi, hogy használja-e hello alapértelmezett **admin** hello bejelentkezési fiók a fürt számára.
 
-2. Miután a kiszolgálófarmban lévő a `jdbc:hive2://localhost:10001/>` kéri, írja be a következő Hive UDF és közzétenni függvényében.
+2. Miután megérkezik a hello `jdbc:hive2://localhost:10001/>` parancssorba írja be a következő tooadd hello UDF tooHive hello és közzétenni függvényében.
 
     ```hiveql
     ADD JAR wasb:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
@@ -218,15 +218,15 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
     ```
 
     > [!NOTE]
-    > Ez a példa feltételezi, hogy a fürt tárolóhelyét alapértelmezett Azure Storage. Ha a fürt helyette használja a Data Lake Store, módosítsa a `wasb:///` egy érték `adl:///`.
+    > Ez a példa feltételezi, hogy Azure Storage alapértelmezett hello fürt tárolóhelyét. Ha a fürt helyette használja a Data Lake Store, módosítsa a hello `wasb:///` érték túl`adl:///`.
 
-3. Az UDF segítségével olvassa be az táblából kisbetű karakterláncok értékeket átalakítani.
+3. Egy tábla toolower eset karakterláncok lekért hello UDF tooconvert értékeket használja.
 
     ```hiveql
     SELECT tolower(deviceplatform) FROM hivesampletable LIMIT 10;
     ```
 
-    Ez a lekérdezés kiválasztja az eszköz platformjától (Android, Windows, iOS, stb.) a táblából, alakítsa át a alacsonyabb eset, és majd megjeleníti a karakterlánc. A kimenet az alábbihoz hasonló jelenik meg:
+    Ez a lekérdezés választják ki hello eszközplatform (Android, Windows, iOS, stb.) hello táblából, alakítsa át a hello karakterlánc toolower eset, majd megjeleníteni azokat. hello eredmény jelenik meg a következő szöveg hasonló toohello:
 
         +----------+--+
         |   _c0    |
@@ -245,6 +245,6 @@ Megtudhatja, hogyan hozzon létre egy Java-alapú felhasználói függvény (UDF
 
 ## <a name="next-steps"></a>Következő lépések
 
-Más módokon történő együttműködésre a Hive, lásd: [használata a HDInsight Hive](hdinsight-use-hive.md).
+Más módokon toowork a Hive, lásd: [használata a HDInsight Hive](hdinsight-use-hive.md).
 
-Hive User-Defined funkciók további információkért lásd: [Hive operátor és a felhasználó által definiált függvényeket](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) szakaszt a Hive wiki az Apache.org webhelyen.
+Hive User-Defined funkciók további információkért lásd: [Hive operátor és a felhasználó által definiált függvényeket](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) szakasz hello Hive wiki az Apache.org webhelyen.

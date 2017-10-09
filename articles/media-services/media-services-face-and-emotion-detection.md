@@ -1,6 +1,6 @@
 ---
-title: "Arcfelismerés és az Azure Media Analytics Érzelemfelismerési észlelése |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan lapokat és az Azure Media Analytics érzelmek észleléséhez."
+title: "aaaDetect Arcfelismerés és az Azure Media Analytics Érzelemfelismerési |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan toodetect néz és az Azure Media Analytics érzelmek."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,45 +14,45 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: d7f3bc6c0d21db7adbb0c16c752d4ce49e99da5a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f58d81d82dde08a694cdb4d92c6bab6a40a9c157
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="detect-face-and-emotion-with-azure-media-analytics"></a>Arcfelismerés és az Azure Media Analytics Érzelemfelismerési észlelése
 ## <a name="overview"></a>Áttekintés
-A **Azure Media Arcfelismerési érzékelő** media processzor (MP) lehetővé teszi a száma, nyomon követésére típusú áthelyezések, és akkor is fel tudja mérni a célközönség részvételét és reakciót arcfelismerést kifejezések keresztül. Ez a szolgáltatás két funkciókat tartalmazza: 
+Hello **Azure Media Arcfelismerési érzékelő** media processzor (MP) lehetővé teszi a toocount, nyomon követése típusú áthelyezések, és még a mérőműszer célközönség részvételét és reakciót arcfelismerést kifejezések keresztül. Ez a szolgáltatás két funkciókat tartalmazza: 
 
 * **Arcfelismerési észlelése**
   
-    Arcfelismerési észlelési talál, és nyomon követi a videó emberi lapjaira. Több lapokat észlelhető, és ezt követően nyomon követheti az adott vissza egy JSON-fájlban ideje és helye metaadatokkal körül, mozgás. Nyomon követése, során a program megpróbálja adjon egységes azonosító ugyanazon felületére, amíg a személy van Navigálás a képernyőn, még akkor is, ha kényszerítő vagy röviden hagyja a keret.
+    Arcfelismerési észlelési talál, és nyomon követi a videó emberi lapjaira. Több lapokat észlelhető, és ezt követően nyomon követhetők egy JSON-fájl által visszaadott hello ideje és helye metaadatokkal körül, mozgás. Nyomon követése, során a program megpróbálja toogive egy egységes azonosító toohello azonos szembesülhetnek, amíg hello személy van Navigálás a képernyőn, még akkor is, ha kényszerítő vagy röviden hagyja hello keret.
   
   > [!NOTE]
-  > Ez a szolgáltatás nem végez arcfelismerést. Személy elhagyja a keret vagy a válik fedhetik túl hosszú kap egy új Azonosítót amikor azok tér vissza.
+  > Ez a szolgáltatás nem végez arcfelismerést. Személy hello keret hagyja, vagy a válik fedhetik túl hosszú kap egy új Azonosítót amikor azok tér vissza.
   > 
   > 
 * **Érzelemfelismerés**
   
-    Érzelemfelismerés Arcfelismerési észlelési adathordozó-processzor elemzés több érzelmi attribútum vissza a lapok észlel, például Boldogsága, sadness, félelem, utasítás és egyéb választható összetevőként. 
+    Érzelemfelismerés hello Arcfelismerési észlelési Media processzor ad vissza elemzés több érzelmi attribútum hello lapok észlel, például Boldogsága, sadness, félelem, utasítás és egyéb választható összetevőként. 
 
-A **Azure Media Arcfelismerési érzékelő** felügyeleti csomag jelenleg előzetes verzió.
+Hello **Azure Media Arcfelismerési érzékelő** felügyeleti csomag jelenleg előzetes verzió.
 
-Ez a témakör kapcsolatos részleteket nyújt **Azure Media Arcfelismerési érzékelő** és a .NET-keretrendszerhez készült Media Services SDK-val való használatát ismerteti.
+Ez a témakör kapcsolatos részleteket nyújt **Azure Media Arcfelismerési érzékelő** és bemutatja, hogyan toouse a Media Services SDK for .NET.
 
 ## <a name="face-detector-input-files"></a>A bemeneti fájlok érzékelő szembesülhetnek
-Videofájlok lejátszását. Jelenleg a következő formátumok használhatók: MP4 MOV és WMV.
+Videofájlok lejátszását. Jelenleg a következő formátumok hello támogatottak: MP4 MOV és WMV.
 
 ## <a name="face-detector-output-files"></a>Szembesülhetnek érzékelő kimeneti fájlok
-A tapasztalt felderítését és a nyomon követési API magas pontosság arcfelismerési hely észlelési és követési, amely észlelni tudja a videó legfeljebb 64 emberi lapok biztosít. Elülső lapok nyújtanak a legjobb eredmények elérése érdekében, közben ügyféloldali lapok és kis (legfeljebb 24 x 24 képpont) lapok nem feltétlenül legpontosabb.
+hello arcfelismerési felderítését és a nyomon követési API biztosít magas pontosság arcfelismerési hely felderítését és a nyomkövetési, amely észlelni tudja a too64 emberi lapokat a videó be. Elülső lapok hello legjobb eredmények elérése érdekében ügyféloldali lapokat és kis lapok közben adja meg (kevesebb, mint vagy egyenlő too24x24 képpont) nem lehet olyan pontos.
 
-Az észlelt és a nyomon követett lapok koordináták (bal, felső, szélességét és magasságát) küld vissza a rendszer jelzi a lapok képpont, valamint egy oldallal azonosítószámát, jelezve, hogy egyes követését a lemezkép helyét. Arcfelismerési azonosítószámát nagyon eséllyel fordulnak elő a elülső arcfelismerési ellopása vagy átfedésben vannak a keretében körülmények alaphelyzetbe néhány első hozzárendelt több azonosítók egyének eredményez.
+hello észlelt és a nyomon követett lapokat a rendszer visszairányítja koordináták (bal, felső, szélességét és magasságát) jelző hello kép képpontban lapok hello helyét, valamint egy oldallal azonosító szám, amely jelzi, hello az, hogy egyes követését. Arcfelismerési azonosítószámát esetén körülmények nagyon eséllyel fordulnak elő tooreset hello elülső arcfelismerési elvesztése vagy átfedésben hello keretében, néhány első hozzárendelt több azonosítók egyének eredményez.
 
-## <a id="output_elements"></a>A kimeneti JSON-fájl elemeinek
+## <a id="output_elements"></a>Hello kimeneti JSON-fájl elemeinek
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
-Arcfelismerési érzékelő (ahol az események törik fel, ha túl nagy elérték) töredezettsége (ahol a metaadatokat az időalapú adattömbök is osztható fel és letöltheti a csak találja), és a szegmentálási technikák használja. Néhány egyszerű számítások segítségével átalakíthatja az adatokat. Például, ha egy esemény használatába 6300 (ticks), egy időskálára 2997 (ticks/másodperc), és a 29,97 (keret/mp), majd képkockasebességhez:
+Arcfelismerési érzékelő (ahol hello események törik fel, ha túl nagy elérték) töredezettsége (ahol az időalapú adattömbök hello metaadatait is osztható fel és letöltheti a csak találja), és a szegmentálási technikák használja. Néhány egyszerű számítások segítségével hello adatok. Például, ha egy esemény használatába 6300 (ticks), egy időskálára 2997 (ticks/másodperc), és a 29,97 (keret/mp), majd képkockasebességhez:
 
 * Start/időskálára = 2.1 másodperc
 * X Framerate másodperc 63 keretek =
@@ -62,7 +62,7 @@ Arcfelismerési érzékelő (ahol az események törik fel, ha túl nagy elért�
 [A bemeneti videó](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>A feladat konfigurációja (beállítás)
-A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell adnia egy konfigurációs készletet. A következő konfigurációs készlet folyamat csak arcfelismerési észlelése.
+A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell adnia egy konfigurációs készletet. a következő konfigurációs készlet hello folyamat csak arcfelismerési észlelése.
 
     {
       "version":"1.0",
@@ -77,7 +77,7 @@ A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell
 | Mód |Gyors - feldolgozása gyors sebességét, de kevésbé pontos (alapértelmezett).|
 
 ### <a name="json-output"></a>JSON kimeneti
-A következő példa a JSON-kimenetét csonkolódott.
+a következő példa a JSON-kimenetét hello csonkolódott.
 
     {
     "version": 1,
@@ -131,7 +131,7 @@ A következő példa a JSON-kimenetét csonkolódott.
 [A bemeneti videó](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>A feladat konfigurációja (beállítás)
-A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell adnia egy konfigurációs készletet. A következő konfigurációs beállítás határozza meg a érzelemfelismerés alapján JSON létrehozásához.
+A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell adnia egy konfigurációs készletet. a következő konfigurációs készlet hello toocreate JSON hello érzelemfelismerés alapján határozza meg.
 
     {
       "version": "1.0",
@@ -147,11 +147,11 @@ A feladat létrehozásakor **Azure Media Arcfelismerési érzékelő**, meg kell
 | Attribútum neve | Leírás |
 | --- | --- |
 | Mód |Lapok: Csak szembesülhetnek észlelése.<br/>PerFaceEmotion: Visszatérési érzelemfelismerési egymástól függetlenül az egyes arcfelismerési észlelése.<br/>AggregateEmotion: Minden lap keretében átlagos érzelemfelismerési visszatérési értékei. |
-| AggregateEmotionWindowMs |Ha a kiválasztott AggregateEmotion módot használja. Megadja azt az időtartamot, ezredmásodpercben minden összesített eredmény létrehozásához használt videó. |
-| AggregateEmotionIntervalMs |Ha a kiválasztott AggregateEmotion módot használja. Itt adhatja meg, milyen gyakorisággal összesített eredmények eredményezett. |
+| AggregateEmotionWindowMs |Ha a kiválasztott AggregateEmotion módot használja. Adja meg videó használt tooproduce hello hosszát minden összesített eredmény. |
+| AggregateEmotionIntervalMs |Ha a kiválasztott AggregateEmotion módot használja. Határozza meg, milyen gyakoriság tooproduce összesített eredmények. |
 
 #### <a name="aggregate-defaults"></a>Összesített alapértelmezései
-Alább összesített ablakot, és időköz beállítások értékei használata ajánlott. AggregateEmotionWindowMs hosszabb, mint AggregateEmotionIntervalMs kell lennie.
+Alább javasoltak hello összesítő és időköz beállítások értékeit. AggregateEmotionWindowMs hosszabb, mint AggregateEmotionIntervalMs kell lennie.
 
 || Alapértelmezett (s) | Min(s) | Max(s) |
 |--- | --- | --- | --- |
@@ -313,26 +313,26 @@ Alább összesített ablakot, és időköz beállítások értékei használata 
                  "fear": 0,
 
 ## <a name="limitations"></a>Korlátozások
-* A támogatott bemeneti videó formátumnak tartalmaznia kell MP4 MOV és WMV.
-* A észlelhető arcfelismerési mérete tartománya 24 x 24 a 2048 x 2048 képpontban megadva. A tartományon kívül esik a lapok nem fogja észlelni.
-* Minden egyes videó visszaadott oldalak maximális számának 64 esetén.
-* Bizonyos lapok műszaki akadályok; miatt nem észlelhető például a nagyon nagy arcfelismerési szögek (head-jelentő), és nagy hangelnyelés. Elülső és közelében elülső lapok van a legjobb eredmények elérése érdekében.
+* hello támogatott bemeneti videó formátumnak tartalmaznia kell MP4 MOV és WMV.
+* hello észlelhető arcfelismerési mérete tartománya 24 x 24 too2048x2048 képpont. hello lapokat a tartományon kívül nem fogja észlelni.
+* Minden videó visszaadott lapok maximális számát hello esetén 64.
+* Bizonyos lapok tootechnical kihívást; miatt nem észlelhető például a nagyon nagy arcfelismerési szögek (head-jelentő), és nagy hangelnyelés. Elülső és közelében elülső lapok rendelkezik hello legjobb eredmények elérése érdekében.
 
 ## <a name="net-sample-code"></a>.NET mintakód
 
-A következő program bemutatja hogyan:
+hello következő program bemutatja hogyan:
 
-1. Hozzon létre egy eszközt, és adathordozó-fájl feltöltése az objektumba.
-2. Hozzon létre egy feladatot a következő json-készletet tartalmazó konfigurációs fájl alapján arcfelismerési észlelési feladatokkal. 
+1. Hozzon létre egy eszközt, és töltse fel a médiafájl hello objektumba.
+2. Hozzon létre egy feladatot a json-készlet a következő hello tartalmazó konfigurációs fájl alapján arcfelismerési észlelési feladatokkal. 
    
         {
             "version": "1.0"
         }
-3. A kimeneti JSON-fájlok letöltésére. 
+3. Hello kimeneti JSON-fájlok letöltéséhez. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Példa
 
@@ -363,17 +363,17 @@ A következő program bemutatja hogyan:
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run the FaceDetection job.
+                // Run hello FaceDetection job.
                 var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
                                             @"C:\supportFiles\FaceDetection\config.json");
 
-                // Download the job output asset.
+                // Download hello job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
             }
 
             static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload the input media file to storage.
+                // Create an asset and upload hello input media file toostorage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Face Detection Input Asset",
                     AssetCreationOptions.None);
@@ -381,38 +381,38 @@ A következő program bemutatja hogyan:
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Face Detection Job");
 
-                // Get a reference to Azure Media Face Detector.
+                // Get a reference tooAzure Media Face Detector.
                 string MediaProcessorName = "Azure Media Face Detector";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from the specified file.
+                // Read configuration from hello specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with the encoding details, using a string preset.
+                // Create a task with hello encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Face Detection Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify the input asset.
+                // Specify hello input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset to contain the results of the job.
+                // Add an output asset toocontain hello results of hello job.
                 task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
 
-                // Use the following event handler to check job progress.  
+                // Use hello following event handler toocheck job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch the job.
+                // Launch hello job.
                 job.Submit();
 
-                // Check job execution and wait for job to finish.
+                // Check job execution and wait for job toofinish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, the event handling
+                // If job state is Error, hello event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

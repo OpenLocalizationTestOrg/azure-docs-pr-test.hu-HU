@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight Linux fürtökön Presto telepítése |} Microsoft Docs"
-description: "Megtudhatja, hogyan telepíthetők Presto és Airpal Parancsfájlműveletek Linux-alapú HDInsight Hadoop-fürtök."
+title: aaaInstall Presto Azure HDInsight Linux clusters |} Microsoft Docs
+description: "Ismerje meg, hogyan tooinstall Presto és Airpal a Linux-alapú HDInsight Hadoop-fürtök Parancsfájlműveletek használatával."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -14,45 +14,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: nitinme
-ms.openlocfilehash: 406ef84e72d253fec51a0b37c48f326dafd511b6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d54d0efc3e5fdc6f5a8d3a94ad2f61d16df24c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-and-use-presto-on-hdinsight-hadoop-clusters"></a>Telepítheti és használhatja Presto HDInsight Hadoop-fürtök
 
-Ebben a témakörben elsajátíthatja, hogyan telepítse Presto a HDInsight Hadoop-fürtök parancsfájlművelet. Is megismerheti, hogyan Airpal telepítsen egy meglévő Presto HDInsight-fürtre.
+Ebben a témakörben elsajátíthatja, hogyan tooinstall Presto a HDInsight Hadoop-fürtök parancsfájlművelet használatával. Azt is megtudhatja, hogyan tooinstall Airpal egy meglévő Presto HDInsight-fürtre.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések szükséges egy **HDInsight 3.5 Hadoop-fürt** , amely Linux használ. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További információkért lásd: [HDInsight-verziókról](hdinsight-component-versioning.md).
+> hello jelen dokumentumban leírt lépések szükséges egy **HDInsight 3.5 Hadoop-fürt** , amely Linux használ. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További információkért lásd: [HDInsight-verziókról](hdinsight-component-versioning.md).
 
 ## <a name="what-is-presto"></a>Mi az az Presto?
-[Presto](https://prestodb.io/overview.html) egy gyors elosztott SQL lekérdezési motor a big data. Presto alkalmas adatmennyiségig interaktív lekérdezése. Presto, és hogyan működnek együtt a-összetevők további információkért lásd: [Presto fogalmak](https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/overview/concepts.rst).
+[Presto](https://prestodb.io/overview.html) egy gyors elosztott SQL lekérdezési motor a big data. Presto alkalmas adatmennyiségig interaktív lekérdezése. Presto, és hogyan működnek együtt hello összetevők további információkért lásd: [Presto fogalmak](https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/overview/concepts.rst).
 
 > [!WARNING]
-> A HDInsight-fürt összetevői teljes mértékben támogatottak, és a Microsoft Support fog help elkülönítésére, és ezeket az összetevőket kapcsolatos problémák megoldásához.
+> Hello HDInsight-fürt összetevői teljes mértékben támogatottak, és a Microsoft Support fog tooisolate segítségével, és a kapcsolódó toothese összetevők problémák megoldásához.
 > 
-> Egyéni összetevők, például Presto, minden üzleti szempontból ésszerű terméktámogatási segítséget nyújtanak a probléma további hibaelhárításához. A probléma megoldását, vagy kéri fel, a nyílt forráskódú technológiák, ahol a részletes segítséget, hogy a technológiát található elérhető csatorna végezhetnek eredményezhet. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
+> Egyéni összetevők, például Presto, minden üzleti szempontból ésszerű támogatási toohelp fogadni, toofurther hello problémával kapcsolatos hibaelhárítás elősegítéséhez. Hello probléma megoldását, vagy kérni a tooengage elérhető csatorna az hello megnyitja részletes segítséget, hogy a technológiát találhatók technológiák eredményezhet. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
 > 
 > 
 
 
 ## <a name="install-presto-using-script-action"></a>Parancsfájl műveletével Presto telepítése
 
-Ez a szakasz útmutatásai parancsfájlpélda használatával, ha az új fürt létrehozása az Azure portál használatával. 
+Ez a szakasz útmutatás hogyan toouse hello parancsfájlpélda használatával új fürt létrehozásakor hello Azure-portálon. 
 
-1. Indítsa el a fürt kiépítése a lépések segítségével [Provision Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md). Győződjön meg arról, hogy a fürt használata a **egyéni** fürt létrehozási folyamata. Győződjön meg arról, hogy a fürt létrehozása megfelel-e az alábbi követelményeknek.
+1. Fürt elkezdhessen a hello lépések segítségével [Provision Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md). Ellenőrizze, hogy hello segítségével hello fürtöt hoz létre **egyéni** fürt létrehozási folyamata. Gondoskodnia kell arról, létrehozhat hello fürthöz megfelel-e hello követelményeknek.
 
     a. A 3.5-ös verziója HDInsight Hadoop-fürttel kell lennie.
 
-    b. Azure Storage azt kell használnia, mint a tárolót. Presto használatával olyan fürtön, a tárolási lehetőség az Azure Data Lake Store használó még nem támogatott. 
+    b. Azure Storage azt kell használnia, mint hello adattár. Presto használatával olyan fürtön, használó Azure Data Lake Store hello tárolási lehetőség még nem támogatott. 
 
     ![Egyéni beállítások használata a HDInsight-fürt létrehozása](./media/hdinsight-hadoop-install-presto/hdinsight-install-custom.png)
 
-2. Az a **speciális beállítások** panelen válassza **Parancsfájlműveletek**, és az alábbi adatokat:
+2. A hello **speciális beállítások** panelen válassza **Parancsfájlműveletek**, és adja meg az alábbi részleteket hello:
    
-   * **NÉV**: Adja meg a parancsfájlművelet rövid nevét.
+   * **NÉV**: Adjon meg egy rövid nevet hello parancsfájlművelet.
    * **Bash-szkript URI azonosítója**: `https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installpresto.sh`
    * **HEAD**: ezt a beállítást
    * **MUNKAVÉGZŐ**: ezt a beállítást
@@ -60,27 +60,27 @@ Ez a szakasz útmutatásai parancsfájlpélda használatával, ha az új fürt l
    * **PARAMÉTEREK**: ezt a mezőt hagyja üresen
 
 
-3. Alján a **Parancsfájlműveletek** panelen kattintson a **válasszon** gombra kattintva mentse a konfigurációt. Végül kattintson a **válasszon** gomb alján a **speciális beállítások** panelt, és mentse a konfigurációs adatokat.
+3. Hello hello alján **Parancsfájlműveletek** panelen hello kattintson **válasszon** gombok toosave hello beállítása. Végül kattintson a hello **válassza** hello hello alján gomb **speciális beállítások** panel toosave hello konfigurációs adatait.
 
-4. Továbbra is a fürt kiépítése a [Provision Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md).
+4. Kiépítés hello fürt, a folytatáshoz [Provision Linux-alapú HDInsight-fürtök](hdinsight-hadoop-create-linux-clusters-portal.md).
 
     > [!NOTE]
-    > Az Azure PowerShell, az Azure parancssori felület, a HDInsight .NET SDK vagy Azure Resource Manager-sablonok Parancsfájlműveletek alkalmazandó is használható. Már fut a fürtök Parancsfájlműveletek is alkalmazhat. További információkért lásd: [testreszabása HDInsight-fürtök parancsfájlműveletekkel](hdinsight-hadoop-customize-cluster-linux.md).
+    > Az Azure PowerShell, a hello Azure parancssori felület, a hello HDInsight .NET SDK vagy az Azure Resource Manager-sablonok is használt tooapply Parancsfájlműveletek. A futó fürtök parancsfájl műveletek tooalready is alkalmazhat. További információkért lásd: [testreszabása HDInsight-fürtök parancsfájlműveletekkel](hdinsight-hadoop-customize-cluster-linux.md).
     > 
     > 
 
 ## <a name="use-presto-with-hdinsight"></a>Presto használata a hdinsight eszközzel
 
-A következő lépésekkel Presto a HDInsight-fürtök használata után telepítette, akkor a fent leírt lépésekkel.
+Hajtsa végre a fent ismertetett lépéseket hello segítségével telepítése után a következő lépéseket toouse Presto a HDInsight-fürtök hello.
 
-1. Csatlakozzon SSH-val a HDInsight-fürthöz:
+1. Csatlakozzon az SSH használatával toohello HDInsight-fürt:
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
    
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
      
 
-2. Indítsa el a következő parancsot a Presto rendszerhéj.
+2. Indítsa el a hello Presto rendszerhéj hello a következő parancs használatával.
    
         presto --schema default
 
@@ -88,7 +88,7 @@ A következő lépésekkel Presto a HDInsight-fürtök használata után telepí
    
         select count (*) from hivesampletable;
    
-    Alapértelmezés szerint [Hive](https://prestodb.io/docs/current/connector/hive.html) és [TPCH](https://prestodb.io/docs/current/connector/tpch.html) csatlakozók a Presto már be van állítva. Hive összekötő használatát a alapértelmezés szerint telepített Hive telepítés Hive összes táblájának automatikusan láthatók lesznek a Presto van konfigurálva.
+    Alapértelmezés szerint [Hive](https://prestodb.io/docs/current/connector/hive.html) és [TPCH](https://prestodb.io/docs/current/connector/tpch.html) csatlakozók a Presto már be van állítva. Hive összekötő konfigurált toouse hello alapértelmezés szerint telepített Hive telepítési, így a Hive táblák összes hello Presto automatikusan látható lesz.
 
     A Presto használatát egy részletes ismertetését lásd: [Presto dokumentáció](https://prestodb.io/docs/current/index.html).
 
@@ -96,19 +96,19 @@ A következő lépésekkel Presto a HDInsight-fürtök használata után telepí
 
 [Airpal](https://github.com/airbnb/airpal#airpal) Presto van egy nyílt forráskódú webes lekérdezési felületet. A Airpal további információkért lásd: [Airpal dokumentáció](https://github.com/airbnb/airpal#airpal).
 
-Ebben a szakaszban úgy tekintünk lépéseit **Airpal telepíthető a edgenode** egy HDInsight Hadoop-fürt, amelyen már megtalálható a Presto telepítve. Ez biztosítja, hogy a Airpal webes lekérdezési felületet az interneten keresztül elérhető legyen.
+Ebben a szakaszban úgy tekintünk hello lépéseket túl**Airpal telepíthető hello edgenode** egy HDInsight Hadoop-fürt, amelyen már megtalálható a Presto telepítve. Ez biztosítja, hogy hello Airpal webes lekérdezés illesztő elérhető hello interneten keresztül.
 
-1. A HDInsight-fürt Presto telepített headnode csatlakozni SSH használatával:
+1. SSH használatával csatlakozzon a toohello headnode Presto telepített hello HDInsight-fürt:
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
    
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Miután csatlakozott, a következő parancsot.
+2. Miután csatlakozott, futtassa a következő parancs hello.
 
         sudo slider registry  --name presto1 --getexp presto 
    
-    A következőhöz hasonló kimenetnek kell megjelennie:
+    Hello hasonló kimenetnek kell megjelennie:
 
         {
             "coordinator_address" : [ {
@@ -117,64 +117,64 @@ Ebben a szakaszban úgy tekintünk lépéseit **Airpal telepíthető a edgenode*
                 "updatedTime" : "Mon Apr 03 20:13:41 UTC 2017"
         } ]
 
-3. A kimenetben jegyezze fel az értéket a **érték** tulajdonság. Szüksége lesz a fürt edgenode Airpal telepítése közben. A fenti kimenetben, amelyre szüksége lesz értéke **10.0.0.12:9090**.
+3. A hello kimenet, vegye figyelembe a hello hello értéke **érték** tulajdonság. Szüksége lesz a hello fürt edgenode Airpal telepítése közben. Hello kimenetéről fent hello érték, amelyre szüksége lesz az **10.0.0.12:9090**.
 
-4. A sablon  **[Itt](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2Fpresto-hdinsight%2Fmaster%2Fairpal-deploy.json)**  egy HDInsight-fürt edgenode létrehozásához, és adja meg az értékeket, az alábbi képernyőfelvételen látható módon.
+4. Hello sablon használata  **[Itt](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2Fpresto-hdinsight%2Fmaster%2Fairpal-deploy.json)**  toocreate egy HDInsight fürt edgenode, és adjon meg hello értékeket, ahogy az alábbi képernyőfelvétel a hello.
 
     ![HDInsight telepítés Airpal Presto fürtön](./media/hdinsight-hadoop-install-presto/hdinsight-install-airpal.png)
 
 5. Kattintson a **Purchase** (Vásárlás) gombra.
 
-6. Miután a módosításai érvényesek lesznek a fürtkonfiguráció, a Airpal webes felülete az alábbi lépéseket követve végezheti el.
+6. Hello módosítások alkalmazott toohello fürtkonfiguráció, után a hello Airpal webes felület hello lépések használatával végezheti el.
 
-    a. A fürt paneljén kattintson **alkalmazások**.
+    a. Hello-fürt panelén kattintson **alkalmazások**.
 
     ![HDInsight indítási Airpal Presto fürtön](./media/hdinsight-hadoop-install-presto/hdinsight-presto-launch-airpal.png)
 
-    b. Az a **telepített alkalmazások** panelen kattintson a **Portal** airpal ellen.
+    b. A hello **telepített alkalmazások** panelen kattintson a **Portal** airpal ellen.
 
     ![HDInsight indítási Airpal Presto fürtön](./media/hdinsight-hadoop-install-presto/hdinsight-presto-launch-airpal-1.png)
 
-    c. Amikor a rendszer kéri, írja be a HDInsight Hadoop-fürt létrehozásakor megadott rendszergazdai hitelesítő adatokat.
+    c. Amikor a rendszer kéri, adja meg a hello rendszergazdai hitelesítő adataival megadott hello HDInsight Hadoop-fürt létrehozása során.
 
 ## <a name="customize-a-presto-installation-on-hdinsight-cluster"></a>A HDInsight-fürt Presto telepítés testreszabása
 
-A frissítés telepítése után Presto egy HDInsight Hadoop-fürt, testre szabhatja a telepítést, a módosítások például memória-beállítások frissítése, módosítsa az összekötők stb. Ehhez kövesse az alábbi lépéseket.
+Presto egy HDInsight Hadoop-fürt telepítése után hello telepítési toomake módosítások – például a frissítés memóriabeállításait testreszabása, módosítsa az összekötők stb. Hajtsa végre a következő lépéseket toodo így hello.
 
-1. A HDInsight-fürt Presto telepített headnode csatlakozni SSH használatával:
+1. SSH használatával csatlakozzon a toohello headnode Presto telepített hello HDInsight-fürt:
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
    
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. A konfigurációs módosításokat a fájlban `/var/lib/presto/presto-hdinsight-master/appConfig-default.json`. Presto konfiguráció további információkért lásd: [YARN-alapú fürtök Presto konfigurációs](https://prestodb.io/presto-yarn/installation-yarn-configuration-options.html).
+2. A konfigurációs módosításokat hello fájlban `/var/lib/presto/presto-hdinsight-master/appConfig-default.json`. Presto konfiguráció további információkért lásd: [YARN-alapú fürtök Presto konfigurációs](https://prestodb.io/presto-yarn/installation-yarn-configuration-options.html).
 
-3. Állítsa le és kill Presto aktuális futó példányát.
+3. Állítsa le és hello aktuális futó példányát Presto kill.
 
         sudo slider stop presto1 --force
         sudo slider destroy presto1 --force
 
-4. Egy új példányát Presto kezdje a Testreszabás.
+4. Egy új példányát Presto kezdődnie hello testreszabása.
 
        sudo slider create presto1 --template /var/lib/presto/presto-hdinsight-master/appConfig-default.json --resources /var/lib/presto/presto-hdinsight-master/resources-default.json
 
-5. Várjon, amíg az új példány készen áll, és jegyezze fel az presto koordinátorának címe.
+5. Várjon, amíg hello új példány toobe készen áll, és jegyezze fel a presto koordinátorának címe.
 
 
        sudo slider registry --name presto1 --getexp presto
 
 ## <a name="generate-benchmark-data-for-hdinsight-clusters-that-run-presto"></a>Teljesítményteszt adatok Presto futtató HDInsight-fürtök létrehozása
 
-TPC-DS iparági szabvány sok döntési támogatási rendszerek, beleértve a big data-rendszereket teljesítményének méréséhez. Segítségével Presto a HDInsight-fürtökön hozhat létre adatokat, és összehasonlítja azt a saját HDInsight teljesítményteszt adataival kiértékeléséhez. További információkért lásd: [Itt](https://github.com/hdinsight/tpcds-datagen-as-hive-query/blob/master/README.md).
+TPC-DS hello iparági szabvány sok döntési támogatási rendszerek, beleértve a big data-rendszereket hello teljesítményének méréséhez. HDInsight-fürtök toogenerate adatok Presto használatát, és értékelje ki, hogyan összehasonlítja saját HDInsight teljesítményteszt adatokkal. További információkért lásd: [Itt](https://github.com/hdinsight/tpcds-datagen-as-hive-query/blob/master/README.md).
 
 
 
 ## <a name="see-also"></a>Lásd még:
-* [Telepítheti és használhatja a HDInsight-fürtök Hue](hdinsight-hadoop-hue-linux.md). Hue webes felhasználói felület, amellyel könnyedén hozhat létre, futtassa, és mentse a Pig és Hive-feladatok, valamint keresse meg az alapértelmezett storage a HDInsight fürt.
+* [Telepítheti és használhatja a HDInsight-fürtök Hue](hdinsight-hadoop-hue-linux.md). Hue webes felhasználói felületén, így könnyen toocreate, futtassa az és mentse a Pig és Hive-feladatok, is, keresse meg hello alapértelmezett storage a HDInsight-fürthöz.
 
-* [Giraph telepíthető a HDInsight-fürtök](hdinsight-hadoop-giraph-install-linux.md). A HDInsight Hadoop-fürtök Giraph telepítése a fürt testreszabási használatával. Giraph lehetővé teszi a végrehajtását diagramfeldolgozás Hadoop használatával, és az Azure HDInsight használható.
+* [Giraph telepíthető a HDInsight-fürtök](hdinsight-hadoop-giraph-install-linux.md). Fürt testreszabási tooinstall Giraph a HDInsight Hadoop-fürtök használata. Giraph lehetővé teszi a Hadoop használatával tooperform diagramfeldolgozás, és az Azure HDInsight használható.
 
-* [Solr telepíthető a HDInsight-fürtök](hdinsight-hadoop-solr-install-linux.md). A HDInsight Hadoop-fürtök Solr telepítése a fürt testreszabási használatával. Solr tárolt adatok hatékony keresési műveletek végrehajtását teszi lehetővé.
+* [Solr telepíthető a HDInsight-fürtök](hdinsight-hadoop-solr-install-linux.md). Fürt testreszabási tooinstall Solr a HDInsight Hadoop-fürtök használata. Solr lehetővé teszi tooperform hatékony keresési műveletek tárolt adatokat.
 
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md

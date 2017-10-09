@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Linux virtuális gép képek kapcsolatos |} Microsoft Docs"
+title: "az Azure-ban lemezképek Linux virtuális gép aaaAbout |} Microsoft Docs"
 description: "További tudnivalók az Azure virtuális gépekkel Linux lemezképek használata."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2016
 ms.author: cynthn
-ms.openlocfilehash: 187642db18806f4034dcecf4c25b5c71028fdfe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f03078cd4c2700782b74452324c964357288b7ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-images-for-linux-virtual-machines"></a>A Linux virtuális gépek képek kapcsolatos
 > [!IMPORTANT]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja. A Resource Manager modellt használó képek kapcsolatos információkért lásd: [Itt](../cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja. Képek hello Resource Manager-modell használatával kapcsolatos információkért lásd: [Itt](../cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-classic-about-images](../../../../includes/virtual-machines-common-classic-about-images.md)]
 
 ## <a name="working-with-images"></a>Lemezképek használata
-Az Azure parancssori felület (CLI) Mac, Linux és Windows használatával a rendelkezésre álló lemezképek kezelése az Azure-előfizetéshez. Is használhatja az Azure-portálon egyes kép feladatokhoz, de a parancssorban esetén több lehetősége is van.
+Használhat hello Azure parancssori felület (CLI) Mac, Linux és Windows toomanage hello képek elérhető tooyour Azure-előfizetés. Is használhatja hello Azure-portálon egyes kép feladatokhoz, de hello parancssor futtatása esetén több lehetősége is van.
 
-Az eszközök segítségével, tekintse meg a [közös Azure parancssori felület parancsait Linux és Mac](../cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Hello eszközök használata című részben talál példákat [közös Azure parancssori felület parancsait Linux és Mac](../cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="next-steps"></a>Következő lépések
 Emellett [a saját Rendszerkép feltöltése](create-upload-vhd.md).

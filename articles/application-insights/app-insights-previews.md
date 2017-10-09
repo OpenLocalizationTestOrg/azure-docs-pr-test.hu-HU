@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights előzetes beállítása |} Microsoft Docs"
-description: "Az Azure Application Insights fejlesztői csapat megtörténik a bevezetése az új felhasználói élményeinek. Mely új felhasználói élményeinek meg kívánja tekinteni az Azure-portálon állíthatja be."
+title: "Azure Application Insights aaaSet preview beállításainak |} Microsoft Docs"
+description: "hello Azure Application Insights fejlesztői csapat megtörténik a bevezetése az új felhasználói élményeinek. Az Azure-portálon hello mely kívánt új felhasználói élményeinek toopreview állíthatja be."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,23 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/1/2017
 ms.author: bwren
-ms.openlocfilehash: 03b69f68911a79adeab1d29f868d26653d6a7ac0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 04a1d763bd706a9cc050d72512a8ca405f980dc4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="preview-upcoming-changes-to-azure-application-insights"></a>Előzetes jövőbeni változtatásokról Azure Application insights szolgáltatással 
+# <a name="preview-upcoming-changes-tooazure-application-insights"></a>Közelgő előzetes tooAzure Application Insights módosítása 
 
-Az Application Insights gyakran feloldja a új szolgáltatások. Ha azt szeretné, hogy ezek a fejlesztések előzetes megtekintéséhez, regisztrálhat az Application Insights előnézeti panelen.  A fejlesztői csapat elérhetővé az új funkciók az előzetes verziójú funkciók korlátozott alapon őket az összes felhasználóra feloldása előtt. 
+Az Application Insights gyakran feloldja a új szolgáltatások. Ha azt szeretné, hogy ezek a fejlesztések toosee előnézete, regisztrálhat hello Application Insights előnézeti panelen.  hello fejlesztői csapat elérhetővé az új funkciók az előzetes verziójú funkciók korlátozott alapon címek felszabadításával azok újból tooall felhasználók előtt. 
 
-A következő kép bemutatja, hogyan az előzetes beállítások megadása.
+hello következő kép bemutatja, hogyan tooset preview igényeinek.
 
 ![Application Insights előnézeti panelen](./media/app-insights-preview/preview.png)
 
 ## <a name="set-preferences"></a>Beállítások megadása
 
-Az előnézeti panelen kiválaszthatja a következő beállítások érhetők el, amikor megjelenik az előzetes verziójú funkciók.
+Hello előnézeti panelen, amikor megjelenik az előzetes verziójú funkciók beállításait a következő hello választhat.
 
 - Mindig: Látni Preview észlel, amint érhetők el.
 - Automatikus: Látni Preview során lép fel, hogy a Microsoft azt javasolja, hogy a fiókhoz. 

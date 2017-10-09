@@ -1,6 +1,6 @@
 ---
-title: "Terheléselosztó terjesztési mód konfigurálása |} Microsoft Docs"
-description: "Az Azure terheléselosztási terheléselosztó mód támogatására forrás IP-kapcsolat konfigurálása"
+title: "Terheléselosztó mód aaaConfigure |} Microsoft Docs"
+description: "Hogyan tölthető be a tooconfigure Azure terheléselosztó terjesztési mód toosupport forrás IP-kapcsolat"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 4cb000c8ee1bb2e267dc0813dab23a77a46080ce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e745240b733ffc07928d8ed0ae097785ad4f412e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-the-distribution-mode-for-load-balancer"></a>A telepítési mód konfigurálása a terheléselosztó
+# <a name="configure-hello-distribution-mode-for-load-balancer"></a>Hello terjesztési mód konfigurálása a terheléselosztó
 
 ## <a name="hash-based-distribution-mode"></a>Kivonat-alapú terjesztési mód
 
-Az alapértelmezett algoritmus egy 5 rekordos (forrás IP-címe, a forrásport, cél IP-címe, cél port protokolltípus) kivonatoló forgalom hozzárendelése elérhető kiszolgálón. Csak egy átviteli munkamenet belül tölcsérútvonalak biztosít. A datacenter IP-címet (DIP) példányt az elosztott terhelésű végpont mögött ugyanabban a munkamenetben csomagokat a rendszer kéri. Amikor az ügyfél egy új munkamenet indítása azonos a forrás IP-cím, a forrásport módosításai, és a forgalmat egy másik DIP végpont gomba.
+hello alapértelmezett forgalomelosztási algoritmusa egy 5 rekordos (forrás IP-címe, a forrásport, cél IP-címe, cél port protokolltípus) toomap forgalom tooavailable kiszolgálók kivonat. Csak egy átviteli munkamenet belül tölcsérútvonalak biztosít. Az azonos munkamenet hello csomagok azonos datacenter IP (DIP) példány mögött hello elosztott terhelésű végpont toohello irányítja. Hello ügyfél indulásakor az új munkamenet hello azonos forrás IP-címe, hello forrásport változik, és leállítja a hello forgalom toogo tooa különböző DIP végpont.
 
 ![a kivonat-alapú terheléselosztó](./media/load-balancer-distribution-mode/load-balancer-distribution.png)
 
@@ -31,37 +31,37 @@ Az alapértelmezett algoritmus egy 5 rekordos (forrás IP-címe, a forrásport, 
 
 ## <a name="source-ip-affinity-mode"></a>Forrás IP-affinitási módja
 
-Forrás IP-kapcsolat (más néven munkamenet affinitás vagy ügyfél IP-kapcsolat) nevű egy másik terjesztési módban van. Az Azure Load Balancer beállítható úgy, hogy a 2-rekordot (forrás IP-címe, cél IP-cím), vagy a 3-rekordot (forrás IP-címe, cél IP-címe, protokoll) használatával forgalom leképezése az elérhető kiszolgálókhoz. Forrás IP-cím affinitás használatával ugyanarra az ügyfélszámítógépre által kezdeményezett kapcsolatokat a azonos DIP végpont kerül.
+Forrás IP-kapcsolat (más néven munkamenet affinitás vagy ügyfél IP-kapcsolat) nevű egy másik terjesztési módban van. Azure Load Balancer lehet konfigurált toouse (forrás IP-címe, cél IP-cím) 2-rekordot, vagy a 3-rekordot (forrás IP-címe, cél IP-címe, protokoll) toomap forgalom toohello elérhető kiszolgálón. Forrás IP-cím affinitás használatával kapcsolatok által kezdeményezett hello azonos ügyfélszámítógép kerül toohello azonos DIP végpont.
 
-A következő ábra szemlélteti a 2-rekordot konfiguráció. Figyelje meg, hogyan a 2-rekordot a terheléselosztó virtuális géphez 1 (VM1), amely ezután a biztonsági vm2 virtuális gépnek és VM3 keresztül futtatja.
+a következő diagram hello 2-rekordot konfigurációt mutatja be. Figyelje meg, hogyan hello 2-rekordot hello terhelés terheléselosztó toovirtual gép 1 (VM1) majd biztonsági mentést készített vm2 virtuális gépnek és VM3 keresztül futtatja.
 
 ![munkamenet-kapcsolatot](./media/load-balancer-distribution-mode/load-balancer-session-affinity.png)
 
 2. ábra – 2-rekordot terjesztési
 
-Forrás IP-kapcsolatot az Azure Load Balancer és a távoli asztal (RD) átjáró közötti inkompatibilitás megoldja. Most már egy távoli asztali átjáró farm egyetlen felhőszolgáltatásban hozhat létre.
+Forrás IP-kapcsolat megoldja inkompatibilitás hello Azure Load Balancer és a távoli asztal (RD) átjáró között. Most már egy távoli asztali átjáró farm egyetlen felhőszolgáltatásban hozhat létre.
 
-Egy másik felhasználási forgatókönyve az media feltöltés, ahol az adatfeltöltés UDP keresztül történik, de a vezérlő vezérlősík sorrendekben TCP:
+Egy másik felhasználási forgatókönyve az media feltöltés ahol hello adatfeltöltés UDP keresztül történik, de hello vezérlő vezérlősík sorrendekben TCP:
 
-* Egy ügyfél először indít el egy TCP-munkamenet az elosztott terhelésű nyilvános cím, lekérdezi átirányítja egy adott DIP, ez a csatorna marad aktív, a kapcsolat állapotának figyeléséhez
-* Az azonos új UDP munkamenet által kezdeményezett a azonos nyilvános elosztott terhelésű végponthoz ügyfélszámítógép, az itt elvárás, hogy ezt a kapcsolatot is irányítja a rendszer az azonos DIP-végponthoz, a korábbi TCP-kapcsolatot, hogy az adathordozó feltöltése hajtható végre a magas teljesítmény a vezérlőcsatorna TCP keresztül is megőrzésével.
+* Egy ügyfél először indít el egy elosztott terhelésű toohello nyilvános cím TCP-munkamenet, lekérdezi az adott DIP, ez a csatorna irányított tooa bal aktív toomonitor hello kapcsolati állapota
+* Hello ugyanarra az ügyfélszámítógépre van az új UDP munkamenetet kezdeményezett toohello azonos terhelésű nyilvános végpontot, hello itt elvárás, hogy ez a kapcsolat nem is irányított toohello azonos DIP végpont, hello előző TCP-kapcsolatot, hogy az adathordozó feltöltése lehet magas teljesítmény végrehajtott egy vezérlőcsatorna TCP keresztül is megőrzésével.
 
 > [!NOTE]
-> Egy elosztott terhelésű készlet megváltozásakor (eltávolítása, vagy a virtuális gépek hozzáadása), az ügyfélkérelmek terjesztését van recomputed. Új kapcsolatokat a meglévő ügyfelek ugyanarra a kiszolgálóra végződik nem függ. Emellett forrás IP-cím terjesztési affinitású alkalmazásakor az egyenlőtlen terjesztési forgalom. Proxy mögött futó ügyfelek lehet tekinteni egy egyedi ügyfél-alkalmazás.
+> Egy megváltozásakor elosztott terhelésű készlet (eltávolítása vagy a virtuális gépek hozzáadása), az ügyfélkérelmek hello terjesztési recomputed van. Nem függhet új kapcsolatokat a meglévő ügyfelek végződik hello azonos kiszolgálón. Emellett forrás IP-cím terjesztési affinitású alkalmazásakor az egyenlőtlen terjesztési forgalom. Proxy mögött futó ügyfelek lehet tekinteni egy egyedi ügyfél-alkalmazás.
 
 ## <a name="configuring-source-ip-affinity-settings-for-load-balancer"></a>Forrás IP-cím kapcsolat beállításainak konfigurálását a terheléselosztó
 
-A virtuális gépek a PowerShell segítségével időtúllépési beállítások módosítása:
+A virtuális gépek használhatja a PowerShell toochange időtúllépés beállítása:
 
-Egy Azure-végpont hozzáadása a virtuális gép, és állítsa be a terheléselosztó terheléselosztási mód
+Adja hozzá az Azure-végpont tooa virtuális gépet, és állítsa be a terheléselosztó terheléselosztási mód
 
 ```powershell
 Get-AzureVM -ServiceName mySvc -Name MyVM1 | Add-AzureEndpoint -Name HttpIn -Protocol TCP -PublicPort 80 -LocalPort 8080 –LoadBalancerDistribution sourceIP | Update-AzureVM
 ```
 
-2-rekordot (forrás IP-címe, cél IP-cím) terheléselosztási, 3-rekordot (forrás IP-címe, cél IP-címe, protokoll) terheléselosztás, és nincs sourceIPProtocol Ha azt szeretné, hogy az alapértelmezett viselkedés 5 rekordos terheléselosztás sourceIP loadbalancerdistribution-beállításokat állítható be.
+2-rekordot (forrás IP-címe, cél IP-cím) terheléselosztási, 3-rekordot (forrás IP-címe, cél IP-címe, protokoll) terheléselosztás, és nincs sourceIPProtocol Ha azt szeretné, hogy hello alapértelmezett viselkedését, 5 rekordos terheléselosztás toosourceIP loadbalancerdistribution-beállításokat állítható be.
 
-Egy végpont terjesztési mód terheléselosztó lekéréséhez használja a következő:
+A következő tooretrieve egy végpont terjesztési mód terheléselosztó hello használata:
 
     PS C:\> Get-AzureVM –ServiceName MyService –Name MyVM | Get-AzureEndpoint
 
@@ -83,19 +83,19 @@ Egy végpont terjesztési mód terheléselosztó lekéréséhez használja a kö
     IdleTimeoutInMinutes : 15
     LoadBalancerDistribution : sourceIP
 
-Ha a loadbalancerdistribution-beállításokat elem nem található a Azure Load balancer az alapértelmezett 5 rekordos algoritmust használ.
+Ha nincs megadva hello loadbalancerdistribution-beállításokat elem hello Azure terheléselosztó hello alapértelmezett 5 rekordos algoritmust használ.
 
-### <a name="set-the-distribution-mode-on-a-load-balanced-endpoint-set"></a>A telepítési módja egy elosztott terhelésű végpont készletének van beállítva
+### <a name="set-hello-distribution-mode-on-a-load-balanced-endpoint-set"></a>Hello egy elosztott terhelésű végpont készletének a telepítési mód beállítása
 
-Ha a végpont egy elosztott terhelésű végpont készletének részét képezik, a telepítési mód az elosztott terhelésű végpont készletének be kell állítani:
+Ha a végpont egy elosztott terhelésű végpont készletének részét képezik, hello mód hello elosztott terhelésű végpont készletének be kell állítani:
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName MyService -LBSetName LBSet1 -Protocol TCP -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 –LoadBalancerDistribution sourceIP
 ```
 
-### <a name="cloud-service-configuration-to-change-distribution-mode"></a>Felhőalapú szolgáltatás konfigurációja terjesztési módjának megváltoztatása
+### <a name="cloud-service-configuration-toochange-distribution-mode"></a>Felhőalapú szolgáltatás konfigurációs toochange mód
 
-A felhőalapú szolgáltatásnak a frissítésére kihasználhatja az Azure SDK for .NET 2.5-ös (hogy mikorra várható novemberben). Cloud Services végpont beállításait a .csdef történnek. A terheléselosztási mód terheléselosztó Felhőszolgáltatások központi telepítés frissítéséhez, a központi telepítés frissítésének megadása kötelező.
+Kihasználhatja a hello Azure SDK-t a .NET 2.5-ös (toobe novemberben kiadott) tooupdate a felhőalapú szolgáltatás. A Felhőszolgáltatások végpontbeállításokat hello .csdef történnek. Rendelés tooupdate hello terheléselosztási terheléselosztó mód Felhőszolgáltatások központi telepítés a központi telepítés frissítésének szükség.
 Itt látható egy példa .csdef változásokat a végpont beállításait:
 
 ```xml
@@ -118,9 +118,9 @@ Itt látható egy példa .csdef változásokat a végpont beállításait:
 
 ## <a name="api-example"></a>API-példa
 
-Terheléselosztó terheléselosztási a szolgáltatáskezelő API használatával konfigurálható. Ne felejtse el hozzáadni a `x-ms-version` fejléc értéke verzió `2014-09-01` vagy újabb verzióját.
+Hello terheléselosztó terheléselosztási hello service management API használatával konfigurálható. Győződjön meg arról, hogy tooadd hello `x-ms-version` fejléc értéke tooversion `2014-09-01` vagy újabb verzióját.
 
-### <a name="update-the-configuration-of-the-specified-load-balanced-set-in-a-deployment"></a>A konfiguráció egy központi telepítésben megadott elosztott terhelésű készlet frissítése
+### <a name="update-hello-configuration-of-hello-specified-load-balanced-set-in-a-deployment"></a>Központi telepítés hello megadott hello konfigurálása elosztott terhelésű készlet frissítése
 
 #### <a name="request-example"></a>Kérelem – példa
 
@@ -145,7 +145,7 @@ Terheléselosztó terheléselosztási a szolgáltatáskezelő API használatáva
       </InputEndpoint>
     </LoadBalancedEndpointList>
 
-A értéke loadbalancerdistribution-beállításokat lehet sourceIP 2-rekordot kapcsolat, a 3-rekordot kapcsolatára sourceIPProtocol vagy nincs (nincs kapcsolat. azaz 5 rekordos)
+hello értéke loadbalancerdistribution-beállításokat lehet sourceIP 2-rekordot kapcsolat, a 3-rekordot kapcsolatára sourceIPProtocol vagy nincs (nincs kapcsolat. azaz 5 rekordos)
 
 #### <a name="response"></a>Válasz
 

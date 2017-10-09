@@ -1,6 +1,6 @@
 ---
-title: "A felhőalapú szolgáltatás szerepkörök újrahasznosítása általános okok |} Microsoft Docs"
-description: "A felhőalapú szolgáltatás egyik szerepköre, hirtelen újraindul jelentős állásidőt okozhat. Az alábbiakban néhány gyakori problémákat, melyek a szerepkörök újrahasznosítását, amelyek segítségével csökkentheti az állásidőt."
+title: "aaaCommon okai Felhőszolgáltatási szerepkörök újrahasznosítása |} Microsoft Docs"
+description: "A felhőalapú szolgáltatás egyik szerepköre, hirtelen újraindul jelentős állásidőt okozhat. Az alábbiakban néhány gyakori problémákat okozhat a szerepkörök toobe felhasználását, amelyek segítségével csökkentheti az állásidőt."
 services: cloud-services
 documentationcenter: 
 author: simonxjx
@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: e55009c72b977ee4a30f6c71043bde483849f78f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8fa152b33d2b22a8a02f834d4bc38519b4272f7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="common-issues-that-cause-roles-to-recycle"></a>Gyakori hibák, melyek a szerepkörök újrahasznosítását okozzák
-Ez a cikk ismerteti az alkalmazástelepítéssel kapcsolatos problémák gyakori okai és hibaelhárítási tippek a problémák elhárításához. Arra utal, hogy probléma van az alkalmazás akkor, ha a szerepkör példánya nem indul el, vagy azt a inicializálása, foglalt és leállítása állapotok közötti ciklusok.
+# <a name="common-issues-that-cause-roles-toorecycle"></a>Gyakori hibák, melyek a szerepkörök toorecycle
+Ez a cikk ismerteti az egyes hello jellemző okai az alkalmazástelepítéssel kapcsolatos problémák és toohelp hibaelhárítási tippek a probléma megoldásához. Arra utal, hogy probléma van egy alkalmazás esetén hello szerepkörpéldányt toostart sikertelen lesz, vagy azt ciklusok hello inicializálása, foglalt és leállítása állapotok között.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="missing-runtime-dependencies"></a>Hiányzó futásidejű függőségek
-Ha az alkalmazás szerepet bármely szerelvény, amely nem része a .NET-keretrendszer vagy az Azure felügyelt kódtárára, explicit módon bele kell ezt a szerelvényt az alkalmazáscsomagot. Ne feledje, hogy más Microsoft-keretrendszer nem érhető el az Azure-on alapértelmezés szerint. Ha a szerepkör ilyen keretrendszer támaszkodik, hozzá kell adnia az alkalmazáscsomag e szerelvényeket.
+Ha az alkalmazás szerepkör támaszkodik, amely nem része a hello szerelvények .NET-keretrendszer vagy hello Azure felügyelt kódtárára, explicit módon szerepelnie kell, hogy a szerelvény hello alkalmazáscsomagot. Ne feledje, hogy más Microsoft-keretrendszer nem érhető el az Azure-on alapértelmezés szerint. Ha a szerepkör ilyen keretrendszer támaszkodik, hozzá kell adni ezeket szerelvények toohello alkalmazáscsomagot.
 
-Mielőtt felépítéséhez és az alkalmazás becsomagolása, ellenőrizze a következőket:
+Mielőtt felépítéséhez és az alkalmazás becsomagolása, ellenőrizze a hello következőket:
 
-* Ha a Visual studio segítségével, győződjön meg arról, a **másolása helyi** tulajdonsága **igaz** minden hivatkozott szerelvény a projekt, amely nem része az Azure SDK-t vagy a .NET-keretrendszer.
-* Győződjön meg arról, hogy a web.config fájl nem hivatkozik a fordítási elemben nem használt szerelvényeket.
-* A **Build művelet** minden .cshtml fájl van állítva **tartalom**. Ez biztosítja, hogy a fájlok megfelelően fog megjelenni a csomagot, és lehetővé teszi, hogy más hivatkozott fájlok megjelennek a csomag.
+* Ha a Visual studio segítségével, győződjön meg arról, hogy hello **másolása helyi** tulajdonsága túl**igaz** minden hivatkozott szerelvény, amely nem része a hello Azure SDK célverzióját, vagy hello .NET-keretrendszer.
+* Győződjön meg arról, hogy a web.config fájl hello nem hivatkozik hello fordítási elemben nem használt szerelvényeket.
+* Hello **Build művelet** minden .cshtml a fájl túl van beállítva**tartalom**. Ez biztosítja, hogy hello fájlok hello csomag megfelelően jelenik-e, és lehetővé teszi, hogy más fájlok hivatkozott tooappear hello csomagban.
 
 ## <a name="assembly-targets-wrong-platform"></a>Szerelvény célok nem megfelelő platformon
 Azure egy 64 bites környezetben. Emiatt Azure .NET-szerelvényt a 32 bites cél számára nem fog működni.
 
 ## <a name="role-throws-unhandled-exceptions-while-initializing-or-stopping"></a>Szerepkör nem kezelt kivételek inicializálása vagy leállítása közben jelez.
-A módszerek által okozott kivételek a [RoleEntryPoint] osztály, amely tartalmazza a [OnStart], [OnStop], és [futtatása] módszereket, nem kezelt kivételek. Nem kezelt kivétel lép fel az alábbi módszerek egyikét, ha a szerepkör indul újra. Ha ismételten újrahasznosítása a szerepkör, előfordulhat, hogy kell egy nem kezelt kivétel kiváltása minden alkalommal, amikor megkísérli elindítani.
+Hello hello módszerek által okozott kivételek [RoleEntryPoint] osztály, amely tartalmazza a hello [OnStart], [OnStop], és [futtatása]módszereket, nem kezelt kivételek. Ha nem kezelt kivétel lép fel, ezek közül, hello szerepkör indul újra. Ha ismételten újrahasznosítása hello szerepkör, előfordulhat, hogy kell egy nem kezelt kivétel kiváltása minden alkalommal, amikor megkísérli toostart.
 
 ## <a name="role-returns-from-run-method"></a>Szerepkör vissza Run metódus
-A [futtatása] metódus az célja, hogy határozatlan ideig futnak. Ha a kód felülírja a [futtatása] metódust, akkor kell alvó határozatlan ideig. Ha a [futtatása] metódus ad vissza, a szerepkör újraindul.
+Hello [futtatása] metódus tervezett toorun határozatlan ideig. Ha a kód felülírja hello [futtatása] metódust, akkor kell alvó határozatlan ideig. Ha hello [futtatása] metódus ad vissza, hello szerepkör újraindul.
 
 ## <a name="incorrect-diagnosticsconnectionstring-setting"></a>Helytelen DiagnosticsConnectionString beállítása
-Ha az alkalmazás Azure Diagnostics használja, a szolgáltatás konfigurációs fájlban kell megadnia a `DiagnosticsConnectionString` konfigurációs beállítás. Ez a beállítás a tárfiók HTTPS-kapcsolat szabad megadni az Azure-ban.
+Ha az alkalmazás Azure Diagnostics használja, a szolgáltatás konfigurációs fájlja hello kell megadnia `DiagnosticsConnectionString` konfigurációs beállítás. Ez a beállítás adjon meg egy HTTPS-kapcsolat tooyour storage-fiókot az Azure-ban.
 
-Annak érdekében, hogy a `DiagnosticsConnectionString` beállítás helyességéről, csak az alkalmazáscsomag telepítheti az Azure-ba, ellenőrizze a következőket:  
+tooensure, amely a `DiagnosticsConnectionString` érték helyes-e az alkalmazás csomag tooAzure központi telepítése előtt, ellenőrizze a következőket hello:  
 
-* A `DiagnosticsConnectionString` pontok beállítása az Azure-ban egy érvényes tárfiókot.  
-  Alapértelmezés szerint ez a beállítás mutat az emulált tárfiókot, explicit módon kell változtatni ezt a beállítást, mielőtt a alkalmazáscsomag telepítése. Ha nem módosítja ezt a beállítást, a rendszer kivételt hoz létre, amikor a szerepkör példánya megkísérli a diagnosztikai figyelő elindítása. Ez a szerepkör példánya határozatlan ideig újrahasznosítása okozhatja.
-* A kapcsolati karakterlánc szerepel a következő [formátum](../storage/common/storage-configure-connection-string.md). (A protokollt meg kell adni, HTTPS.) Cserélje le *MyAccountName* a tárfiók nevével és *MyAccountKey* a hozzáférési kulccsal:    
+* Hello `DiagnosticsConnectionString` tooa érvényes tárfiókot pontok beállítása az Azure-ban.  
+  Alapértelmezés szerint ez a beállítás, explicit módon kell változtatni ezt a beállítást, mielőtt a alkalmazáscsomag telepítése mutat emulált toohello storage-fiók esetén. Ha nem módosítja ezt a beállítást, a rendszer kivételt hoz létre, amikor hello szerepkörpéldányt próbál toostart hello diagnosztikai figyelő. Emiatt a hello szerepkör példány toorecycle határozatlan ideig.
+* hello kapcsolati karakterláncban megadott hello következő [formátum](../storage/common/storage-configure-connection-string.md). (protokoll hello meg kell adni, HTTPS.) Cserélje le *MyAccountName* hello nevet a tárfiók, és *MyAccountKey* a hozzáférési kulccsal:    
 
         DefaultEndpointsProtocol=https;AccountName=MyAccountName;AccountKey=MyAccountKey
 
-  Ha az alkalmazás Azure-eszközök a Microsoft Visual Studio használatával fejleszt, a tulajdonságlapok segítségével értékre állítja.
+  Ha az alkalmazás Azure-eszközök a Microsoft Visual Studio használatával fejleszt, használható hello tulajdonság lapok tooset ezt az értéket.
 
 ## <a name="exported-certificate-does-not-include-private-key"></a>Exportált tanúsítvány nem tartalmazza a titkos kulcs
-A webes szerepkör alatt SSL futtatásához győződjön meg arról, hogy saját exportált felügyeleti tanúsítványát tartalmazza a titkos kulcsot. Ha használja a *Windows tanúsítványkezelő* exportálja a tanúsítványt, ügyeljen arra, hogy válassza ki **Igen** a a **a titkos kulcs exportálását választom** lehetőséget. A tanúsítványt a PFX-formátum, ami a jelenleg támogatott csak formátumot kell exportálni.
+a webes szerepkör alatt SSL toorun, győződjön meg arról, hogy saját exportált felügyeleti tanúsítványát tartalmazza-e a titkos kulcs hello. Hello használatakor *Windows tanúsítványkezelő* tooexport hello tanúsítvány, lehet, hogy tooselect **Igen** a hello **hello titkos kulcs exportálása** lehetőséget. hello PFX formátumban hello csak formátum jelenleg támogatott hello tanúsítványt kell exportálni.
 
 ## <a name="next-steps"></a>Következő lépések
 További [cikkek hibaelhárítási](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services) felhőszolgáltatásai számára.

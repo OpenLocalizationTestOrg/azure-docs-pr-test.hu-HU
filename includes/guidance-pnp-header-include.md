@@ -1,0 +1,1 @@
+![minták és gyakorlatok](media/guidance-pnp-include/pnp-logo.png)

@@ -1,0 +1,12 @@
+
+
+Az Azure tooprovide használnak egy új virtuális gép operációs rendszerrel. A képfájl is szükség lehet egy vagy több adatlemezek. Több forrásból képek érhetők el:
+
+* Az Azure kínál hello képek [piactér](https://azure.microsoft.com/gallery/virtual-machines/). Nem találhatók a Windows Server újabb verzióit és azokat a terjesztéseket hello Linux operációs rendszer. Néhány képet, olyan alkalmazások, például az SQL Server is tartalmazhat. MSDN előnyök és hozzáférési tooadditional képeket MSDN használatalapú fizetés előfizetők.
+* hello nyílt forráskódú közösségi kínál keresztül [VM raktár számára](http://vmdepot.msopentech.com/List/Index).
+* Is tárolására és az Azure, a saját rendszerképek használatával rögzítése képként használatra meglévő Azure virtuális gépként, vagy egy kép feltöltésével.
+
+## <a name="about-vm-images-and-os-images"></a>Virtuálisgép-lemezképek és operációsrendszer-lemezképek
+Kétféle típusú képek használható az Azure-ban: *Virtuálisgép-lemezkép* és *operációsrendszer-lemezképek*. A Virtuálisgép-lemezkép az operációs rendszer tartalmazza, és az összes lemez tooa virtuális gép csatlakoztatva, hello kép létrehozásakor. A Virtuálisgép-lemezkép típus hello újabb kép. Előtt a Virtuálisgép-rendszerképek jelentek meg, az Azure-ban kép lehet, csak egy általánosított operációs rendszer, és nem további lemezek. A Virtuálisgép-lemezkép általánosított operációs rendszert tartalmazó alapvetően hello ugyanaz, mint a kép, hello operációsrendszer-lemezképek hello eredeti típusát.
+
+Készíthet a saját lemezképek, a virtuális gépeknek az Azure-ban, vagy máshol futtató virtuális gép alapján, másolja, és töltse fel. Ha egynél több virtuális gép használni kívánt toouse egy kép toocreate, tooprepare kell azt lemezkép normalizálása azt használni. Windows kiszolgálói lemezkép toocreate, futtatási hello Sysprep parancsot hello server toogeneralize azt előtt hello .vhd fájl feltöltése. A Sysprep kapcsolatos részletekért lásd: [hogyan tooUse Sysprep: Bevezetés](http://go.microsoft.com/fwlink/p/?LinkId=392030) és [Sysprep támogatási kiszolgálói szerepköre tekintetében](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles). Készítsen biztonsági másolatot hello VM a Sysprep futtatása előtt. A Linux-lemezkép létrehozásának terjesztési függ. Általában toorun parancsokat, amelyek adott toohello terjesztési, és futtassa a hello Azure Linux ügynök szükséges.

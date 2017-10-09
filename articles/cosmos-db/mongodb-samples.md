@@ -1,6 +1,6 @@
 ---
-title: "MongoDB API-k segítségével az Azure Cosmos DB alkalmazás létrehozása |} Microsoft Docs"
-description: "Ez az oktatóanyag az Azure Cosmos DB API-k használatával mongodb egy online adatbázist hoz létre."
+title: "MongoDB API-k toobuild Azure Cosmos DB alkalmazás aaaUse |} Microsoft Docs"
+description: "Ez az oktatóanyag adatbázist hoz létre online mongodb hello Azure Cosmos DB API-k használatával."
 keywords: "mongodb-példák"
 services: cosmos-db
 author: AndrewHoh
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: anhoh
-ms.openlocfilehash: 433d2e585c884a10e7e923a0b27c179a95410d01
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 09be4362fe3aac02e0163325f958210be9598383
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-an-azure-cosmos-db-api-for-mongodb-app-using-nodejs"></a>Egy Azure Cosmos DB létrehozása: API-t a MongoDB-alkalmazásokhoz Node.js használatával
 > [!div class="op_single_selector"]
@@ -32,16 +32,16 @@ ms.lasthandoff: 08/03/2017
 >  
 >
 
-Ez a példa bemutatja, hogyan hozhat létre egy Azure Cosmos DB: API-t a MongoDB-Konzolalkalmazás Node.js segítségével.
+Ez a példa bemutatja, hogyan toobuild egy Azure Cosmos DB: API-t a MongoDB-Konzolalkalmazás Node.js segítségével.
 
-Ebben a példában használatához az alábbiak szükségesek:
+toouse ebben a példában kell:
 
 * [Hozzon létre](create-mongodb-dotnet.md#create-account) egy Azure Cosmos DB: API-t a MongoDB-fiók.
 * A MongoDB beolvasása [kapcsolati karakterlánc](connect-mongodb-account.md) információkat.
 
-## <a name="create-the-app"></a>Az alkalmazás létrehozása
+## <a name="create-hello-app"></a>Hello-alkalmazás létrehozása
 
-1. Hozzon létre egy *app.js* fájl és másolja és illessze be az alábbi kódot.
+1. Hozzon létre egy *app.js* fájlt, és illessze be az alábbi kód hello & másolása.
 
     ```nodejs
     var MongoClient = require('mongodb').MongoClient;
@@ -66,7 +66,7 @@ Ebben a példában használatához az alábbiak szükségesek:
             "address": { "country": "USA", "state": "WA", "city": "Seattle" }
         }, function(err, result) {
         assert.equal(err, null);
-        console.log("Inserted a document into the families collection.");
+        console.log("Inserted a document into hello families collection.");
         callback();
     });
     };
@@ -122,7 +122,7 @@ Ebben a példában használatához az alábbiak szükségesek:
     });
     ```
 
-2. A következő változók módosítása a *app.js* fiókbeállításokban / fájl (keresése a [kapcsolati karakterlánc](connect-mongodb-account.md)):
+2. Módosítsa a következő változók hello hello *app.js* fiókbeállításokban / fájl (További információ hogyan toofind a [kapcsolati karakterlánc](connect-mongodb-account.md)):
    
     ```nodejs
     var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10255/?ssl=true';
@@ -131,4 +131,4 @@ Ebben a példában használatához az alábbiak szükségesek:
 3. Nyissa meg kedvenc terminálját, és futtassa **npm mongodb--telepítése Mentés**, majd futtassa az alkalmazás a **csomópont app.js**
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [MongoChef használja](mongodb-mongochef.md) együtt az Azure Cosmos DB: API-t a MongoDB-fiók.
+* Ismerje meg, hogyan túl[MongoChef használja](mongodb-mongochef.md) együtt az Azure Cosmos DB: API-t a MongoDB-fiók.

@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonsági csoportok Azure hálózati figyelőt a naplózás folyamata bemutatása |} Microsoft Docs"
-description: "Ez a lap ismerteti, hogyan NSG folyamata naplók Azure hálózati figyelőt szolgáltatása"
+title: "a hálózati biztonsági csoportok az Azure hálózati figyelőt aaaIntroduction tooflow naplózási |} Microsoft Docs"
+description: "Ez a lap azt ismerteti, hogyan toouse NSG folyamata naplózza az Azure hálózati figyelőt szolgáltatása"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: b7a9162d6c6219b6b1c51a49cd34b9616e9d3e8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da85e946147b14717144cb47d1c742057c6dfa24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-flow-logging-for-network-security-groups"></a>A hálózati biztonsági csoportok folyamata naplózási bemutatása
+# <a name="introduction-tooflow-logging-for-network-security-groups"></a>Hálózati biztonsági csoportok tooflow naplózását bemutatása
 
-Hálózati biztonsági csoport folyamat egyik funkciója, amely lehetővé teszi, hogy tekintse meg a hálózati biztonsági csoporton keresztül bemenő és kimenő IP-forgalom hálózati figyelőt feldolgozásra. A folyamat naplók json formátumban vannak megírva, és a kimenő és bejövő forgalom alapon egy szabályt, a hálózati adapter a folyamat vonatkozik, a folyamat (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), 5 rekordos információk megjelenítése, és ha a forgalom lett engedélyez vagy tilt.
+Hálózati biztonsági csoport folyamat egyik funkciója, amely lehetővé teszi az IP-bemenő és kimenő forgalmat a hálózati biztonsági csoporton keresztül tooview információt hálózati figyelőt feldolgozásra. A folyamat naplók json formátumban vannak megírva, és megjelenítése a kimenő és bejövő adatfolyamok / szabály alapján, hello NIC hello folyamata vonatkozik, 5 rekordos információ hello folyamata (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), és ha hello forgalom engedélyezve lett, vagy megtagadva.
 
 ![Attribútumfolyam naplók – áttekintés][1]
 
-Attribútumfolyam naplózza a cél hálózati biztonsági csoportok, amíg azok nem azonos a többi naplófájlt jelenik meg. Attribútumfolyam naplófájljainak tárolása csak egy tárfiókon belül, majd a naplózás elérési út a következő példában látható módon:
+Attribútumfolyam naplózza a cél hálózati biztonsági csoportok, amíg azok nem jelennek meg hello ugyanaz, mint a hello további naplófájlokat. Csak egy tárfiók és a következő hello naplózási elérési út belül folyamata naplófájljainak tárolása a hello a következő példában látható módon:
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-Az azonos megőrzési házirendek, a többi naplófájlt látott folyamata naplók vonatkoznak. Naplók rendelkezik egy megőrzési házirend – 365 nap beállítható az 1 nap. Ha nincs beállítva adatmegőrzési szabály, a naplók megőrzése korlátlan időre szól.
+hello ugyanaz, mint a többi naplófájlt adatmegőrzési alkalmazni a naplókat tooflow. Naplók esetében 1 nap too365 nap beállítható adatmegőrzési rendelkezik. Ha nincs megadva adatmegőrzési, hello naplók végtelen karbantartása.
 
 ## <a name="log-file"></a>Naplófájl
 
-Attribútumfolyam naplók több tulajdonságokkal rendelkezik. Az alábbi lista a NSG folyamata napló belül visszaadott tulajdonságainak listája:
+Attribútumfolyam naplók több tulajdonságokkal rendelkezik. hello alábbi lista a következő hello tulajdonságok belül hello NSG folyamata napló visszaadott lista tartalmazza:
 
-* **idő** - idő, amikor az esemény
+* **idő** – hello esemény naplózásának ideje
 * **Rendszerazonosító** -hálózati biztonsági csoport erőforrás azonosítóját.
-* **kategória** -kategória az eseményről, a rendszer mindig kell NetworkSecurityGroupFlowEvent
-* **ResourceId** -erőforrás-azonosító, az NSG
+* **kategória** -hello kategória hello esemény, a rendszer mindig kell NetworkSecurityGroupFlowEvent
+* **ResourceId** -erőforrás-azonosítót az hello NSG hello
 * **operationName** -mindig NetworkSecurityGroupFlowEvents
-* **Tulajdonságok** -áramlását tulajdonságainak gyűjteménye
-    * **Verzió** -az egymást követő esemény séma verziószáma
+* **Tulajdonságok** -hello folyamat tulajdonságainak gyűjteménye
+    * **Verzió** -hello egymást követő esemény séma verziószáma
     * **adatfolyamok** -adatfolyamok gyűjteménye. Ez a tulajdonság különböző szabályok több bejegyzést tartalmaz
-        * **a szabály** -a adatfolyamok találhatók a szabály
+        * **a szabály** -mely hello adatfolyamok megjelennek szabály
             * **adatfolyamok** -adatfolyamok gyűjteménye
-                * **Mac** – a hálózati Adaptert a virtuális gép, ahol a folyamat gyűjtése történt a MAC-címe
-                * **flowTuples** -karakterlánc, amely a folyamat rekord vesszővel tagolt formátumú több tulajdonságait tartalmazza
-                    * **Időbélyeg** -ezt az értéket van, akkor, ha a folyamat történt UNIX EPOCH formátumban
-                    * **Forrás IP-címe** -a forrás IP-címe
-                    * **Cél IP** -a cél IP-címe
-                    * **Forrásport** -forrásport
-                    * **Célport** -Port cél
-                    * **Protokoll** -megadott protokollal a folyamatot. Érvényes értékek a következők **T** TCP-hez és **U** UDP-hez
-                    * **Forgalom bonyolódjon** -a forgalom áramlását irányát. Érvényes értékek a következők **I** bejövő és **O** a kimenő.
+                * **Mac** -hello hello NIC hello VM, ahol hello folyamata gyűjtése történt a MAC-címe
+                * **flowTuples** -hello folyamata rekordot vesszővel tagolt formátumú több tulajdonságait tartalmazó karakterlánc
+                    * **Időbélyeg** -Ez az érték esetén időbélyegzőjét hello hello folyamat történt UNIX EPOCH formátumban
+                    * **Forrás IP-címe** – hello forrás IP-címe
+                    * **Cél IP** -hello cél IP-címe
+                    * **Forrásport** – hello forrásport
+                    * **Célport** -hello célport
+                    * **Protokoll** -protokoll hello áramlás hello. Érvényes értékek a következők **T** TCP-hez és **U** UDP-hez
+                    * **Forgalom bonyolódjon** -hello hello adatforgalmat irányát. Érvényes értékek a következők **I** bejövő és **O** a kimenő.
                     * **Forgalom** – akár forgalom lett engedélyez vagy tilt. Érvényes értékek a következők **A** engedélyezett, és **D** a megtagadva.
 
 
-Egy folyamat napló példát a következő: Ahogy látja, kövesse az előző szakaszban leírt keresésitulajdonság-lista több rekordot. 
+hello az alábbiakban látható egy példa egy folyamat napló. Az alábbi hello előző szakaszban leírt hello keresésitulajdonság-lista több rekordot látható. 
 
 > [!NOTE]
-> A flowTuples tulajdonság értékei egy vesszővel elválasztott listában.
+> Hello flowTuples tulajdonság értékei egy vesszővel elválasztott listában.
  
 ```json
 {
@@ -102,7 +102,7 @@ Egy folyamat napló példát a következő: Ahogy látja, kövesse az előző sz
 
 ## <a name="next-steps"></a>Következő lépések
 
-Attribútumfolyam naplók engedélyezése ellátogatva [naplózás engedélyezésével Flow](network-watcher-nsg-flow-logging-portal.md).
+Ismerje meg, hogy miként naplózza az tooenable folyamat ellátogatva [naplózás engedélyezésével Flow](network-watcher-nsg-flow-logging-portal.md).
 
 Látogasson el az NSG-naplózás megismerése [elemzések a hálózati biztonsági csoportokkal (NSG-k) jelentkezzen](../virtual-network/virtual-network-nsg-manage-log.md).
 

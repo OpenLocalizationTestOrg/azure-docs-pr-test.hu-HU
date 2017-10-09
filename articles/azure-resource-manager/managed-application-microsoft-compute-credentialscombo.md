@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás CredentialsCombo felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Compute.CredentialsCombo felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás CredentialsCombo felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Compute.CredentialsCombo felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 254f383ee6f7cb9f7051fa135d85319a22c3c369
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d44a3929ebb7a5ff78b72f9eaeb6e52b098e266f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcomputecredentialscombo-ui-element"></a>Microsoft.Compute.CredentialsCombo felhasználói felületi elem
 A Windows és Linux jelszavak és a nyilvános SSH-kulcsok beépített érvényesítéssel vezérlők egy csoportja. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
@@ -26,7 +26,7 @@ A Windows és Linux jelszavak és a nyilvános SSH-kulcsok beépített érvénye
 ![Microsoft.Compute.CredentialsCombo](./media/managed-application-elements/microsoft.compute.credentialscombo.png)
 
 ## <a name="schema"></a>Séma
-Ha `osPlatform` van **Windows**, majd a következő séma szolgál:
+Ha `osPlatform` van **Windows**, majd hello következő sémát használja:
 ```json
 {
   "name": "element1",
@@ -41,7 +41,7 @@ Ha `osPlatform` van **Windows**, majd a következő séma szolgál:
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false
@@ -51,7 +51,7 @@ Ha `osPlatform` van **Windows**, majd a következő séma szolgál:
 }
 ```
 
-Ha `osPlatform` van **Linux**, majd a következő séma szolgál:
+Ha `osPlatform` van **Linux**, majd hello következő sémát használja:
 ```json
 {
   "name": "element1",
@@ -70,7 +70,7 @@ Ha `osPlatform` van **Linux**, majd a következő séma szolgál:
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false,
@@ -83,13 +83,13 @@ Ha `osPlatform` van **Linux**, majd a következő séma szolgál:
 
 ## <a name="remarks"></a>Megjegyzések
 - `osPlatform`meg kell adni, és lehet **Windows** vagy **Linux**.
-- Ha `constraints.required` értéke **igaz**, majd a jelszó vagy SSH nyilvános kulcs szövegmezőkben sikeresen érvényesíthető értékeket szabad tartalmaznia. Az alapértelmezett érték **igaz**.
-- Ha `options.hideConfirmation` értéke **igaz**, majd erősítse meg a jelszót a második szöveges jelölőnégyzet be van-e rejtve. Az alapértelmezett érték **hamis**.
-- Ha `options.hidePassword` értéke **igaz**, majd a jelszó-hitelesítés használatára van-e rejtve. Használat csak akkor, ha `osPlatform` van **Linux**. Az alapértelmezett érték **hamis**.
-- Az engedélyezett jelszavak további korlátait használatával valósítható a `customPasswordRegex` tulajdonság. A karakterlánc a `customValidationMessage` akkor látható, ha a jelszó egyéni érvényesítése sikertelen. Az alapértelmezett érték a tulajdonságot is **null**.
+- Ha `constraints.required` értéke túl**igaz**, majd hello jelszó vagy SSH nyilvános kulcs szövegmezőkben sikeresen értékek toovalidate kell tartalmaznia. hello alapértelmezett értéke **igaz**.
+- Ha `options.hideConfirmation` értéke túl**igaz**, akkor hello második szövegmező hello jelszó megerősítése el van rejtve. hello alapértelmezett értéke **hamis**.
+- Ha `options.hidePassword` értéke túl**igaz**, majd hello beállítás toouse jelszó-hitelesítés van-e rejtve. Használat csak akkor, ha `osPlatform` van **Linux**. Az alapértelmezett érték **hamis**.
+- További korlátozza a hello engedélyezett jelszavak hello segítségével végrehajtható `customPasswordRegex` tulajdonság. a karakterlánc hello `customValidationMessage` akkor látható, ha a jelszó egyéni érvényesítése sikertelen. hello alapértelmezett mindkét tulajdonság értéke **null**.
 
-## <a name="sample-output"></a>Minta kimenet
-Ha `osPlatform` van **Windows**, vagy a felhasználó által megadott helyett nyilvános SSH-kulcs jelszót, majd a következő kimeneti várt:
+## <a name="sample-output"></a>Példa kimenet
+Ha `osPlatform` van **Windows**, vagy hello felhasználó által megadott helyett nyilvános SSH-kulcs jelszót, majd hello következő kimeneti várt:
 
 ```json
 {
@@ -98,7 +98,7 @@ Ha `osPlatform` van **Windows**, vagy a felhasználó által megadott helyett ny
 }
 ```
 
-Ha a felhasználó által megadott nyilvános SSH-kulcsot, a következő kimeneti várhatóan:
+Ha hello felhasználó által megadott nyilvános SSH-kulcsot, majd hello következő kimeneti várt:
 ```json
 {
   "authenticationType": "sshPublicKey",
@@ -107,6 +107,6 @@ Ha a felhasználó által megadott nyilvános SSH-kulcsot, a következő kimenet
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

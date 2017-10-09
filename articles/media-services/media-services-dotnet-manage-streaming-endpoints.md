@@ -1,6 +1,6 @@
 ---
-title: "Adatfolyam-végpontokat kezelheti a .NET SDK-val. | Microsoft Docs"
-description: "Ez a témakör azt ismerteti, hogyan adatfolyam-végpontokat kezelheti a az Azure-portálon."
+title: "adatfolyam-végpontok .NET SDK-val aaaManage. | Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan toomanage streamvégpontok a hello Azure-portálon."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 2f4f464f8604b6f453d6b50b736c6a3a889a3408
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30c092a8ebf4e2b2902392f4cf98f46d812ccdbc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-streaming-endpoints-with-net-sdk"></a>.NET SDK-val adatfolyam-továbbítási végpontok kezelése
 
 >[!NOTE]
->Mindenképpen tekintse át a [áttekintése](media-services-streaming-endpoints-overview.md) témakör. Ezenkívül tekintse át a [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
+>Győződjön meg arról, hogy tooreview hello [áttekintése](media-services-streaming-endpoints-overview.md) témakör. Ezenkívül tekintse át a [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
 
-Ebben a témakörben a kód bemutatja, hogyan hajtsa végre a következő feladatokat az Azure Media Services .NET SDK használatával:
+Ebben a témakörben hello kód bemutatja, hogyan toodo hello a következő feladatok segítségével hello Azure Media Services .NET SDK:
 
-- Vizsgálja meg az alapértelmezett streamvégpontból.
+- Vizsgálja meg a hello alapértelmezett streamvégpontra.
 - Új streamvégpont létrehozása/felvétele.
 
-    Érdemes több adatfolyam-továbbítási végpontok is, ha azt tervezi, hogy a különböző tartalomtovábbító vagy a CDN és a közvetlen hozzáférést.
+    Érdemes lehet toohave több adatfolyam-továbbítási végpontok Ha azt tervezi, hogy toohave különböző tartalomtovábbító vagy a CDN és a közvetlen hozzáférést.
 
     > [!NOTE]
     > Csak számlázása, amikor a Streamvégpontot futó állapotban van.
     
-- Az adatfolyam-továbbítási végpontjának frissítése.
+- Adatfolyam-továbbítási végpontra hello frissítése.
     
-    Ellenőrizze, hogy Update() függvény.
+    Győződjön meg arról, hogy toocall hello Update() függvény.
 
-- Az adatfolyam-továbbítási végpontjának törlése.
+- Adatfolyam-továbbítási végpontra hello törlése.
 
     >[!NOTE]
-    >Az alapértelmezett streamvégpontból nem lehet törölni.
+    >hello alapértelmezett streamvégpontból nem lehet törölni.
 
-A streamvégpont méretezése kapcsolatos információkért lásd: [ez](media-services-portal-scale-streaming-endpoints.md) témakör.
+Hogyan tooscale hello streamvégpont kapcsolatos információkért lásd: [ez](media-services-portal-scale-streaming-endpoints.md) témakör.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="add-code-that-manages-streaming-endpoints"></a>Adja hozzá a kódot, amely adatfolyam-továbbítási végpontok kezelése
     
-Cserélje le a Program.cs lévő kódot az alábbi kódra:
+Cserélje le a hello Program.cs hello kód hello a következő kódot:
 
     using System;
     using System.Configuration;
@@ -65,7 +65,7 @@ Cserélje le a Program.cs lévő kódot az alábbi kódra:
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =

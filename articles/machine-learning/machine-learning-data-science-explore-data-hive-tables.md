@@ -1,5 +1,5 @@
 ---
-title: "A Hive-lekérdezéseket a Hive táblák adatokba |} Microsoft Docs"
+title: "a Hive-lekérdezéseket a Hive táblák aaaExplore adatok |} Microsoft Docs"
 description: "A Hive-lekérdezésekkel Hive táblák adatokba."
 services: machine-learning
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 67a33a9abc3d3dcdd2fc7205e11feff97e3582a3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2ede3d41682aa08ced19284f7a83ec95e0c2a93a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-hive-tables-with-hive-queries"></a>A Hive-táblákban tárolt adatok megismerése Hive-lekérdezésekkel
-Ez a dokumentum minta Hive parancsfájlok, amely segítségével a Hive táblák egy HDInsight Hadoop-fürt adatokba nyújt.
+Ez a dokumentum minta Hive parancsfájlokat egy HDInsight Hadoop-fürt Hive táblák használt tooexplore adatait tartalmazza.
 
-A következő **menü** eszközök segítségével áttekintheti az különböző tárolási környezetekben adatokat leíró témakörökre mutató hivatkozásokat tartalmaz.
+hello következő **menü** hivatkozásokat tartalmaz, amelyek ismertetik, hogyan toouse eszközök különböző tárolási környezetekben tooexplore adatait tootopics.
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
@@ -31,18 +31,18 @@ A következő **menü** eszközök segítségével áttekintheti az különböz�
 Ez a cikk feltételezi, hogy rendelkezik:
 
 * Egy Azure storage-fiók létrehozása. Ha módosítania kell az utasításokat, lásd: [egy Azure Storage-fiók létrehozása](../storage/common/storage-create-storage-account.md#create-a-storage-account)
-* A HDInsight szolgáltatásban egy testreszabott Hadoop-fürt üzembe helyezve. Ha módosítania kell az utasításokat, lásd: [testreszabása Azure HDInsight Hadoop-fürtök az Advanced Analytics](machine-learning-data-science-customize-hadoop-cluster.md).
-* Az adatok az Azure HDInsight Hadoop-fürtök Hive táblák fel lett töltve. Ha még nem, kövesse az utasításokat a [létrehozása és az adatok betöltése a Hive táblák](machine-learning-data-science-move-hive-tables.md) feltölteni az adatokat a Hive táblák először.
-* Engedélyezve van a fürt távoli eléréséhez. Ha módosítania kell az utasításokat, lásd: [a Head csomópont a Hadoop-fürt eléréséhez](machine-learning-data-science-customize-hadoop-cluster.md#headnode).
-* Ha útmutatást nyújt a Hive-lekérdezések van szüksége, tekintse meg [hogyan küldhetnek Hive-lekérdezések](machine-learning-data-science-move-hive-tables.md#submit)
+* A testre szabott Hadoop-fürt a HDInsight-szolgáltatás hello kiépítve. Ha módosítania kell az utasításokat, lásd: [testreszabása Azure HDInsight Hadoop-fürtök az Advanced Analytics](machine-learning-data-science-customize-hadoop-cluster.md).
+* hello már feltöltött tooHive táblák az Azure HDInsight Hadoop-fürtök. Ha még nem, kövesse a hello utasításait [létrehozása és a betöltés tooHive adattáblák](machine-learning-data-science-move-hive-tables.md) tooupload adatok tooHive először táblázatot.
+* Engedélyezett távoli hozzáférési toohello fürt. Ha módosítania kell az utasításokat, lásd: [hozzáférés hello Head csomópont a Hadoop-fürt](machine-learning-data-science-customize-hadoop-cluster.md#headnode).
+* Ha útmutatást szeretne toosubmit Hive-lekérdezéseket, lásd: [hogyan tooSubmit Hive-lekérdezések](machine-learning-data-science-move-hive-tables.md#submit)
 
 ## <a name="example-hive-query-scripts-for-data-exploration"></a>Példa Hive lekérdezés parancsfájlok adatok feltárása
-1. A szám megfigyelések partíciónként`SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
-2. Napi megfigyeléseket szám`SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
-3. A szintek kategorikus oszlopban beolvasása  
+1. Partíciónként megfigyelések hello számbavétele`SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
+2. Napi megfigyeléseket hello számbavétele`SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
+3. Hello szintek kategorikus oszlopban beolvasása  
     `SELECT  distinct <column_name> from <databasename>.<tablename>`
-4. A szintek számának beolvasása a kombinációja kategorikus kétoszlopos`SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
-5. A numerikus oszlopok terjesztése beolvasása  
+4. Hello szintek száma kombinációja kategorikus kétoszlopos lekérése`SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
+5. Hello terjesztési numerikus oszlopok az beszerzése  
     `SELECT <column_name>, count(*) from <databasename>.<tablename> group by <column_name>`
 6. Rekordok kinyerése két tábla illesztése
    
@@ -72,5 +72,5 @@ Ez a cikk feltételezi, hogy rendelkezik:
             ON a.<common_columnname1>=b.<common_columnname1> and a.<common_columnname2>=b.<common_columnname2>
 
 ## <a name="additional-query-scripts-for-taxi-trip-data-scenarios"></a>A taxi út adatáttelepítések esetében a lekérdezés további parancsfájlok
-Példák az adott lekérdezések [NYC Taxi út adatok](http://chriswhong.com/open-data/foil_nyc_taxi/) forgatókönyvek is szerepelnek [GitHub-tárházban](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts). Ezeket a lekérdezéseket már rendelkezik az adatok séma van megadva, és készen áll elküldésre váró futtatásához.
+Példák a lekérdezések, amelyek adott túl[NYC Taxi út adatok](http://chriswhong.com/open-data/foil_nyc_taxi/) forgatókönyvek is szerepelnek [GitHub-tárházban](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts). Ezeket a lekérdezéseket már adatok séma van megadva, és készen áll a toobe benyújtott toorun.
 

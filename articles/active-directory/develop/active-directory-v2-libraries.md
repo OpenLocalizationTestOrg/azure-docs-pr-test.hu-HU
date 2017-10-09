@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory v2.0 hitelesítési kódtárai |} Microsoft Docs"
-description: "Kompatibilis ügyfél függvénytárainak és a server köztes könyvtárak, és a kapcsolódó könyvtár, a forrás és a minták mutató hivatkozásokat, az Azure Active Directory v2.0-végponttól."
+title: "aaaAzure Active Directory v2.0 hitelesítési kódtárai |} Microsoft Docs"
+description: "Kompatibilis ügyfél függvénytárainak és a server köztes könyvtárak, és a kapcsolódó könyvtár, a forrás és a minták mutató hivatkozásokat, hello Azure Active Directory v2.0-végpontra."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,45 +15,45 @@ ms.workload: identity
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: c8dc0fab1a4da2bf9ae1463cb5e17fc2c2b12e5c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7affdaac3a087b951d54d96fa68edde2a065172
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-v20-authentication-libraries"></a>Azure Active Directory v2.0 hitelesítési kódtárai
-Az Azure Active Directory (Azure AD) v2.0-végpontra a szabványos OAuth 2.0 és az OpenID Connect 1.0 protokoll támogatja. A Microsoft és más szervezetek különböző szalagtárak használhatja a v2.0-végponttal.
+hello Azure Active Directory (Azure AD) v2.0-végponttól hello szabványos OAuth 2.0 és az OpenID Connect 1.0 protokoll támogatja. A Microsoft és más szervezetek különböző szalagtárak hello v2.0-végponttól használható.
 
-A v2.0-végpontra használó alkalmazás építésekor azt javasoljuk, hogy használja-e a szalagtár szerepel, amely szerint hajtsa végre a biztonságos fejlesztési Életciklussal (SDL) módszer, például protokoll tartomány szakértők [a Microsoftkövet][Microsoft-SDL]. Ha úgy dönt, hogy az aktuális-kód támogatása a protokollokat, ajánlott hajtsa végre az SDL módszert és figyelmesen elolvassa a biztonsági szempontok a a szabványoknak specifikációi minden protokollhoz.
+Hello v2.0-végponttól használó alkalmazás építésekor azt javasoljuk, hogy használja-e a szalagtár szerepel, amely szerint hajtsa végre a biztonságos fejlesztési Életciklussal (SDL) módszer, például protokoll tartomány szakértők [hello egy Microsoftkövet.] [Microsoft-SDL]. Ha hello protokollok toohand-kód támogatása mellett dönt, ajánlott hajtsa végre az SDL módszert, és figyeljen toohello biztonsági szempontok a hello szabványoknak specifikációi minden protokollhoz.
 
 ## <a name="types-of-libraries"></a>Szalagtárak típusai
 Az Azure AD v2.0 könyvtárak két tárolóhelytípussal működik:
 
-* **Ügyféloldali kódtáraknál**. Natív ügyfelek és kiszolgálók hozzáférési jogkivonatok erőforrás, például a Microsoft Graph hívásakor használható klienskódtárak segítségével.
-* **Kiszolgáló köztes szalagtárak**. A felhasználói bejelentkezés server köztes könyvtárak használó webalkalmazások. Webes API-k server köztes könyvtárak segítségével ellenőrizheti azokat vagy egyéb kiszolgálók natív ügyfelek által küldött jogkivonatokat.
+* **Ügyféloldali kódtáraknál**. Natív ügyfelek és kiszolgálók használja az ügyfél szalagtárak tooget hozzáférési jogkivonatok erőforrás, például a Microsoft Graph hívásakor.
+* **Kiszolgáló köztes szalagtárak**. A felhasználói bejelentkezés server köztes könyvtárak használó webalkalmazások. Webes API-k használata a kiszolgáló köztes szalagtárak toovalidate jogkivonatok natív ügyfelek vagy más kiszolgálók által küldött.
 
 ## <a name="library-support"></a>Szalagtár támogatása
-Szabványokkal kompatibilis függvénytárat, kiválaszthatja a v2.0-végpontra használatakor, mert fontos tudni, hogy önállóan hol találhatnak támogatásához. Problémák, illetve funkciókra vonatkozó kérések library Code lépjen kapcsolatba a szalagtár tulajdonos. A problémák és a Szolgáltatásoldali protokoll megvalósítása a funkciókra vonatkozó kérések lépjen kapcsolatba a Microsofttal.
+Hello v2.0-végponttal való használatakor dönthet úgy szabványokkal kompatibilis függvénytárat, benne, ezért fontos tooknow ahol toogo támogatásához. Problémákat és funkciókra vonatkozó kérések library Code lépjen kapcsolatba hello könyvtár tulajdonosa. A problémák és a Szolgáltatásoldali protokollmegvalósítás hello szolgáltatás kéréseket lépjen kapcsolatba a Microsofttal.
 
 Szalagtárak térjen két támogatási kategóriák:
 
 * **A Microsoft által támogatott**. A Microsoft javítások biztosít ezekhez a könyvtárakhoz, és végzett SDL megfelelő gondossággal az ezekhez a könyvtárakhoz.
-* **Kompatibilis**. A Microsoft ezeket a kódtárakat tesztelve az alapvető forgatókönyv és megerősítette, hogy működnek-e a v2.0-végponttal. A Microsoft nem biztosít javítását, ezeket a kódtárakat, és nem végrehajtva ezeket a könyvtárakat áttekintése. A könyvtár nyílt forráskódú projekt problémákat és funkciókra vonatkozó kérések legyenek irányítva.
+* **Kompatibilis**. A Microsoft ezeket a kódtárakat tesztelve az alapvető forgatókönyv és megerősítette, hogy működnek-e a hello v2.0-végponttól. A Microsoft nem biztosít javítását, ezeket a kódtárakat, és nem végrehajtva ezeket a könyvtárakat áttekintése. Problémákat és funkciókra vonatkozó kérések irányított toohello könyvtár nyílt forráskódú projekt kell lennie.
 
-Szalagtár szerepel, amely a v2.0-végpontra a listája tekintse meg a következő szakasz ebben a cikkben.
+Szalagtár szerepel, amely a v2.0-végponttól hello listáját lásd: hello következő szakasz ebben a cikkben.
 
 
 ## <a name="microsoft-supported-client-libraries"></a>A Microsoft által támogatott ügyfél-függvénytárak
 
 > [!IMPORTANT]
-> A MSAL preview könyvtárak olyan éles környezetben használható. Nyújtunk a azonos szintű terméktámogatást et ezekhez a könyvtárakhoz mint mi a jelenlegi üzemi függvénytárak (ADAL). Az előzetes azt is módosíthatja a MSAL API-t, a belső gyorsítótár formátumot, és a más mechanizmusok ezeket a könyvtárakat értesítés nélkül, amely együtt a hibajavításokat és a szolgáltatásokat érintő fejlesztések érvénybe szükséges. Ez hatással lehet az alkalmazás. Például a gyorsítótár-formátum módosítva lett hatással lehet a felhasználók számára, például kelljen jelentkezzen be újra. Egy API-módosítást szükség lehet, hogy frissítse a kódot. Azt adja meg az általános rendelkezésre állási kiadásban lesz kérjük, frissítse az általánosan rendelkezésre álló verzióra hat hónapban, amikor előnézete használatával készítettek alkalmazásokként kódtár verziója előfordulhat, hogy nem fog működni.
+> hello MSAL preview könyvtárak olyan éles környezetben használható. Nyújtunk hello azonos szintű támogatja ezeket a kódtárakat, mint mi a jelenlegi üzemi függvénytárak (ADAL). Hello előzetes biztosítjuk előfordulhat, hogy a módosítások toohello MSAL API belső formátumban, és más mechanizmusok ezeket a könyvtárakat értesítés nélkül, amely akkor lesz szükséges tootake együtt a hibajavításokat és a szolgáltatásokat érintő fejlesztések. Ez hatással lehet az alkalmazás. Például a formátum módosítása toohello gyorsítótár hatással lehet a felhasználók számára, például az eszközjelszó őket újra a toosign. Egy API-módosítást, tooupdate lehet szükség a kódot. Nyújtunk hello általánosan rendelkezésre álló kiadási fog kérjük, tooupdate toohello általánosan rendelkezésre álló verzió hat hónapban, amikor előnézete használatával készítettek alkalmazásokként kódtár verziója már nem működnek.
 
 | Platform | Részletes ismertetés | Letöltés | Forráskód | Minta | Referencia
 | --- | --- | --- | --- | --- | --- |
 | .NET ügyfél, a Windows Store UWP, Xamarin iOS és Android rendszerhez | MSAL .NET (előzetes verzió) |[NuGet](https://www.nuget.org/packages/Microsoft.Identity.Client) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) | [Egy asztali alkalmazás](guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro.md) |  |
 | JavaScript | MSAL.js (előzetes verzió) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [Egyetlen alkalmazás](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2) |  |
 | iOS, macOS | MSAL (előzetes verzió) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) | [iOS-alkalmazás](https://github.com/Azure-Samples/active-directory-msal-ios-swift) |  |
-| Android | MSAL (előzetes verzió) | [A központi tárházban](https://repo1.maven.org/maven2/com/microsoft/identity/client/msal/) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-android) | [Android-alkalmazás](guidedsetups/active-directory-mobileanddesktopapp-android-intro.md) | [JavaDocs](http://javadoc.io/doc/com.microsoft.identity.client/msal) |
+| Android | MSAL (előzetes verzió) | [hello központi tárházban](https://repo1.maven.org/maven2/com/microsoft/identity/client/msal/) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-android) | [Android-alkalmazás](guidedsetups/active-directory-mobileanddesktopapp-android-intro.md) | [JavaDocs](http://javadoc.io/doc/com.microsoft.identity.client/msal) |
 
 ## <a name="microsoft-supported-server-middleware-libraries"></a>A Microsoft által támogatott server köztes könyvtárak
 
@@ -78,12 +78,12 @@ Szalagtár szerepel, amely a v2.0-végpontra a listája tekintse meg a következ
 | Platform | Szalagtár neve | Tesztelt verziója | Forráskód | Minta |
 |:---:|:---:|:---:|:---:|:---:|
 | Java | [Scribe Java scribejava](https://github.com/scribejava/scribejava) | [3.2.0 verzió](https://github.com/scribejava/scribejava/releases/tag/scribejava-3.2.0) | [ScribeJava](https://github.com/scribejava/scribejava/archive/scribejava-3.2.0.zip) | |
-| PHP | [A PHP Liga oauth2-ügyfél](https://github.com/thephpleague/oauth2-client) | [1.4.2 verziója](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [az oauth2-ügyfél](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | |
+| PHP | [hello PHP Liga oauth2-ügyfél](https://github.com/thephpleague/oauth2-client) | [1.4.2 verziója](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [az oauth2-ügyfél](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | |
 | Python-Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |[Webalkalmazás](https://github.com/Azure-Samples/active-directory-python-flask-graphapi-web-v2) |
 | Ruby |[OmniAuth](https://github.com/omniauth/omniauth/wiki) |omniauth:1.3.1</br>omniauth-oauth2:1.4.0 |[OmniAuth](https://github.com/omniauth/omniauth)</br>[OmniAuth OAuth2](https://github.com/intridea/omniauth-oauth2) |  |
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
-Az Azure AD v2.0-végpontra vonatkozó további információkért lásd: a [az Azure AD app model v2.0 áttekintése][AAD-App-Model-V2-Overview].
+Hello Azure AD v2.0-végpontra vonatkozó további információkért lásd: hello [az Azure AD app model v2.0 áttekintése][AAD-App-Model-V2-Overview].
 
 <!--Image references-->
 

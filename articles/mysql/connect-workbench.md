@@ -1,6 +1,6 @@
 ---
-title: "Azure-adatbázis csatlakoztatni a MySQL a MySQL munkaterület |} Microsoft Docs"
-description: "A gyors üzembe helyezés lépései MySQL munkaterület való kapcsolódás és lekérdezés az Azure-adatbázis adatait a MySQL használatára."
+title: "A MySQL munkaterület MySQL-adatbázis tooAzure kapcsolati |} Microsoft Docs"
+description: "A gyors üzembe helyezés biztosít hello lépéseket toouse MySQL munkaterület Azure-adatbázis tooconnect és lekérdezés adatait MySQL."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,44 +10,44 @@ ms.service: mysql-database
 ms.custom: mvc
 ms.topic: article
 ms.date: 08/23/2017
-ms.openlocfilehash: 20a1f31ce42abb924504c4008f85420fc49aec89
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c64fcb9bb99ba06aa3a95eec420d5d5ef4a31d14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-mysql-workbench-to-connect-and-query-data"></a>MySQL az Azure-adatbázishoz: MySQL-munkaterület használata kapcsolódási és lekérdezési adatok
-A gyors üzembe helyezés mutatja be a MySQL munkaterület alkalmazással MySQL egy Azure-adatbázishoz való kapcsolódáshoz. 
+# <a name="azure-database-for-mysql-use-mysql-workbench-tooconnect-and-query-data"></a>MySQL az Azure-adatbázishoz: használata MySQL munkaterület tooconnect és lekérdezési adatok
+A gyors üzembe helyezés bemutatja, hogyan tooconnect tooan Azure adatbázis MySQL használatára vonatkozó hello MySQL munkaterület alkalmazás. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a rövid útmutatóban a következő útmutatók valamelyikében létrehozott erőforrásokat használunk kiindulási pontként:
+A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyikével létrehozott hello erőforrást használ:
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure CLI használatával](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 ## <a name="install-mysql-workbench"></a>Telepítse a MySQL munkaterület
-Töltse le és telepítse a MySQL munkaterület a számítógépen található [a MySQL webhely](https://dev.mysql.com/downloads/workbench/).
+Töltse le és telepítse a MySQL munkaterület a számítógépen található [hello MySQL webhely](https://dev.mysql.com/downloads/workbench/).
 
 ## <a name="get-connection-information"></a>Kapcsolatadatok lekérése
-Kérje le a MySQL-hez készült Azure Database-hez való csatlakozáshoz szükséges kapcsolatadatokat. Ehhez szükség lesz a teljes kiszolgálónévre és bejelentkezési hitelesítő adatokra.
+MySQL hello kapcsolat szükséges információkat tooconnect toohello Azure adatbázis beolvasása. Teljesen minősített kiszolgáló nevét és a bejelentkezési hitelesítő adatokat hello van szüksége.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
 
-2. Az Azure Portal bal oldali menüjében kattintson az **Összes erőforrás** lehetőségre, és keressen rá a létrehozott kiszolgálóra, például **myserver4demo**.
+2. A hello Azure-portálon a bal oldali menüből, kattintson az **összes erőforrás** , és keressen a létrehozott, például a hello server **myserver4demo**.
 
-3. Kattintson a kiszolgálónévre.
+3. Hello kiszolgáló nevére kattint.
 
-4. Válassza a kiszolgáló **tulajdonságlapját**. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**.
+4. Jelölje be hello server **tulajdonságok** lap. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**.
 
  ![Azure-adatbázis MySQL kiszolgálónév](./media/connect-workbench/1-server-properties-name-login.png)
  
-5. Amennyiben elfelejtette a kiszolgálója bejelentkezési adatait, lépjen az **Áttekintés** oldalra, ahol kikeresheti a kiszolgáló-rendszergazda bejelentkezési nevét, valamint szükség esetén új jelszót kérhet.
+5. Ha elfelejti a kiszolgálói bejelentkezési adatok, keresse meg a toohello **áttekintése** tooview hello kiszolgálói rendszergazda bejelentkezési név lapon, és ha szükséges, állítsa vissza a hello jelszót.
 
-## <a name="connect-to-the-server-using-mysql-workbench"></a>Csatlakozzon a kiszolgálóhoz, MySQL munkaterület használatával 
-Kapcsolódás az Azure MySQL-kiszolgálóhoz a MySQL Workbench GUI eszköz használatával:
+## <a name="connect-toohello-server-using-mysql-workbench"></a>Csatlakoztassa a kiszolgálót MySQL munkaterület használatával toohello 
+tooconnect tooAzure MySQL kiszolgáló grafikus felhasználói Felülettel hello eszközzel MySQL-munkaterületet:
 
-1.  A MySQL munkaterület lkalmazás a számítógépen. 
+1.  Indítsa el a hello MySQL munkaterület alkalmazás a számítógépre. 
 
-2.  A **új kapcsolat beállítása** párbeszédpanelen adja meg a következő adatokat a **paraméterek** lapon:
+2.  A **új kapcsolat beállítása** párbeszédpanelen adja meg a következő információ a hello hello **paraméterek** lapon:
 
     ![új kapcsolat beállítása](./media/connect-workbench/2-setup-new-connection.png)
 
@@ -55,26 +55,26 @@ Kapcsolódás az Azure MySQL-kiszolgálóhoz a MySQL Workbench GUI eszköz haszn
     |---|---|---|
     |   Kapcsolat neve | Bemutató kapcsolat | Adjon meg egy címkét a kapcsolathoz. |
     | Kapcsolati módszer | Standard (TCP/IP) | A Standard (TCP/IP) elégséges. |
-    | Gazdanév | *kiszolgáló neve* | Adja meg azt a kiszolgálónevet, amelyet korábban a MySQL-hez készült Azure-adatbázis létrehozásakor használt. Az itt látható példakiszolgáló a myserver4demo.mysql.database.azure.com. Használja a teljes tartománynevet (\*.mysql.database.azure.com), ahogyan az a példában látható. Ha nem emlékszik a kiszolgáló nevére, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit.  |
-    | Port | 3306 | A MySQL-hez készült Azure-adatbázishoz való csatlakozáskor mindig a 3306-os portot használja. |
-    | Felhasználónév |  *kiszolgáló-rendszergazdai bejelentkezési név* | Írja be a kiszolgáló-rendszergazdai bejelentkezési felhasználónevet, amelyet korábban a MySQL-hez készült Azure-adatbázis létrehozásakor adott meg. A példában szereplő felhasználónév a következő: myadmin@myserver4demo. Ha nem emlékszik a felhasználónévre, a kapcsolati adatok lekéréséhez kövesse az előző szakasz lépéseit. A formátum *username@servername*.
-    | Jelszó | az ön jelszava | Kattintson a **Store tárolóban...**  gombra kattintva mentse a jelszót. |
+    | Gazdanév | *kiszolgáló neve* | Adja meg a hello kiszolgálónév hello Azure adatbázis MySQL a korábban létrehozott használt. Az itt látható példakiszolgáló a myserver4demo.mysql.database.azure.com. Hello teljesen minősített tartománynevét használja (\*. mysql.database.azure.com) hello példában látható módon. Kövesse hello hello előző szakasz tooget hello kapcsolati adatokat, ha nem emlékszik a kiszolgáló nevét.  |
+    | Port | 3306 | Mindig használjon port 3306 MySQL adatbázis tooAzure kapcsolódáskor. |
+    | Felhasználónév |  *kiszolgáló-rendszergazdai bejelentkezési név* | Írja be a hello server admin bejelentkezési felhasználónevének megadni, ha az Azure-adatbázis hello MySQL a korábban létrehozott. A példában szereplő felhasználónév a következő: myadmin@myserver4demo. Ha nem emlékszik hello felhasználónév, kövesse a hello előző szakasz tooget hello kapcsolatadatok hello lépéseit. hello formátuma  *username@servername* .
+    | Jelszó | az ön jelszava | Kattintson a **Store tárolóban...**  gomb toosave hello jelszót. |
 
-3.   Kattintson a **Kapcsolat tesztelése** lehetőségre, hogy tesztelje, minden paraméter helyesen lett-e konfigurálva. 
+3.   Kattintson a **kapcsolat tesztelése** tootest, ha az összes paraméter megfelelően vannak konfigurálva. 
 
-4.   Kattintson a **OK** a kapcsolat mentéséhez. 
+4.   Kattintson a **OK** toosave hello kapcsolat. 
 
-5.   A lista tartalmazza a **MySQL kapcsolatok**, kattintson a csempére a kiszolgáló megfelelő, és várja meg a-kapcsolatot.
+5.   A hello listája **MySQL kapcsolatok**, hello megfelelő tooyour mozaikkiszolgálóról kattintson, majd várja meg a létrehozott hello kapcsolat toobe.
 
 6.   Új SQL lapon nyílik meg egy üres szerkesztő, ahová beírhatja a lekérdezéseket.
 
     > [!NOTE]
-    > Alapértelmezés szerint az SSL-kapcsolat biztonsági szükséges, és a MySQL-kiszolgálóhoz tartozó Azure-adatbázis érvényes. Általában nem SSL-tanúsítványokkal nincs szükség további konfigurációra a MySQL-munkaterület a kiszolgálóhoz való csatlakozás. Az SSL további információkért lásd: [konfigurálása az SSL-kapcsolatot az alkalmazásokhoz való biztonságos kapcsolódás Azure-adatbázis a MySQL](./howto-configure-ssl.md).  Ha le kell tiltania az SSL, látogasson el az Azure-portálon, és a kapcsolat biztonsági lap a kényszerítéséhez SSL-kapcsolat váltógomb letiltásához kattintson.
+    > Alapértelmezés szerint az SSL-kapcsolat biztonsági szükséges, és a MySQL-kiszolgálóhoz tartozó Azure-adatbázis érvényes. Általában nem SSL-tanúsítványokkal nincs szükség további konfigurációra MySQL munkaterület tooconnect tooyour kiszolgáló. Az SSL további információkért lásd: [konfigurálása az SSL-kapcsolat az alkalmazás toosecurely a MySQL adatbázis tooAzure kapcsolati](./howto-configure-ssl.md).  Ha toodisable SSL van szüksége, látogasson el a hello Azure-portálon, és kattintson hello kapcsolat biztonsági lap toodisable hello kényszerítése SSL kapcsolat váltása gombra.
 
 ## <a name="create-a-table-insert-data-read-data-update-data-delete-data"></a>Hozzon létre egy táblát, adatokat beszúrni, olvassa el az adatok, adatainak frissítése, adatok törlése
-1. Másolja, és a mintakódot az SQL mutatja be a mintaadatokat egy üres SQL fülre.
+1. Másolja és mintakódot hello SQL egy üres SQL lapon tooillustrate néhány adatot.
 
-    Ez a kód egy quickstartdb nevű üres adatbázist hoz létre, és majd a készlet nevű minta táblázat létrehozása. Ezután néhány sor beilleszti beolvassa a sorokat. Módosítja az adatokat az update utasításban a, és olvassa be újra a sorokat. Végül azt töröl egy sort, és olvassa be újra a sorokat.
+    Ez a kód egy quickstartdb nevű üres adatbázist hoz létre, és majd a készlet nevű minta táblázat létrehozása. Néhány sor beszúrása, majd hello sorok beolvasása. Módosítja az update utasításban hello adatok, és olvasási műveletek hello sorok újra. Végül azt töröl egy sort, és olvassa be újra hello sorokat.
     
     ```sql
     -- Create a database
@@ -101,15 +101,15 @@ Kapcsolódás az Azure MySQL-kiszolgálóhoz a MySQL Workbench GUI eszköz haszn
     SELECT * FROM inventory;
     ```
 
-    A képernyőfelvételen látható az SQL-kódot SQL munkaterület és a kimeneti után futott.
+    képernyőfelvétel a hello szemléltet hello SQL-kódot SQL munkaterület és hello kimenet után futott.
     
-    ![MySQL munkaterület SQL lapon SQL példakód futtatása](media/connect-workbench/3-workbench-sql-tab.png)
+    ![MySQL munkaterület SQL lapon toorun SQL mintakód](media/connect-workbench/3-workbench-sql-tab.png)
 
-2. Mintát szeretné futtatni az SQL-kódot, kattintson az eszköztár lightening bolt ikonra a **SQL fájl** fülre.
-3. Figyelje meg, a három lapokra eredményez a **eredmény rács** szakasz az oldal közepén. 
-4. Figyelje meg a **kimeneti** lista az oldal alján. Minden parancs állapota látható. 
+2. toorun hello minta SQL-kódot, kattintson a hello hello eszköztárán bolt ikonra könnyítve hello **SQL fájl** fülre.
+3. Figyelje meg, hello három lapokra eredményez hello **eredmény rács** hello lap hello középső részében. 
+4. Értesítés hello **kimeneti** lista alján hello hello. az egyes parancsok hello állapota jelenik meg. 
 
-Most hogy MySQL MySQL munkaterület használata az Azure-adatbázis csatlakozott, és lekérdezte az adatokat az SQL-nyelv használatával.
+Most akkor tooAzure adatbázis csatlakozott a MySQL MySQL munkaterület használatával, és felhasználói adatok hello SQL-nyelv használatával.
 
 ## <a name="next-steps"></a>Következő lépések
 > [!div class="nextstepaction"]

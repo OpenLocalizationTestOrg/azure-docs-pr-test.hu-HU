@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager-sablonok exportálása | Microsoft Docs"
-description: "Az Azure Resource Manager használatával sablonokat exportálhat létező erőforráscsoportokból."
+title: Azure Resource Manager-sablon aaaExport |} Microsoft Docs
+description: "Használja az Azure Resource Manager tooexport egy sablon, egy meglévő erőforráscsoportot."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/06/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1801ef47e5b182e0bcd5b23970a2999633b4a852
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94daa4812da2fec705044ca31c8e74e6d59bd53f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-an-azure-resource-manager-template-from-existing-resources"></a>Azure Resource Manager-sablonok exportálása létező erőforrásokból
-Ebből a cikkből megtudja, hogyan exportálhatja az előfizetéshez tartozó meglévő erőforrások Resource Manager-sablonjait. A létrejött sablonnal jobban megértheti a sablon szintaxisát.
+Ebből a cikkből megismerheti, hogyan tooexport a Resource Manager-sablon a meglévő erőforrást az előfizetésében. A létrehozott sablon toogain sablon szintaxisáról jobb megértése is használhatja.
 
-Kétféleképpen exportálhat sablont:
+Nincsenek két módon tooexport sablont:
 
-* Exportálhatja az **üzembe helyezéshez is használt tényleges sablont**. Ebben az esetben az exportált sablon pontosan úgy tartalmazza a különböző paramétereket és változókat, ahogy azok az eredeti sablonban szerepeltek. Ez a megközelítés akkor lehet hasznos, ha a portálon keresztül helyezte üzembe az erőforrásokat, és látni szeretné a sablont ezen erőforrások létrehozásához. Ez a sablon azonnal használható. 
-* A másik megoldás, hogy úgy exportálja a **létrejött sablont, hogy az az erőforráscsoport aktuális állapotát tükrözze**. Ebben az esetben az exportált sablon nem az üzembe helyezéshez használt sablonon alapul. A rendszer ehelyett új sablont hoz létre az erőforráscsoport aktuális állapota alapján. Az exportált sablon számos nem módosítható értéket tartalmaz, és valószínűleg kevesebb paraméter található benne, mint amennyit általában használni szokott. Ez a megközelítés akkor lehet hasznos, ha az üzembe helyezés után módosította az erőforráscsoportot. Ez a sablon általában módosításokat igényel, mielőtt használható lenne.
+* Exportálhatja a hello **tényleges központi telepítéshez használt sablon**. hello exportált sablon tartalmaz minden hello paraméterek és változók pontosan úgy, mint ahogy az eredeti sablon hello. Ez a módszer akkor hasznos, ha az erőforrások hello portálon keresztül telepített, és szeretné toosee hello sablon toocreate ezeket az erőforrásokat. Ez a sablon azonnal használható. 
+* Exportálhatja egy **létrehozott sablont, amely hello hello erőforráscsoport aktuális állapotát jeleníti meg**. hello exportált sablon nem alapul, amely a központi telepítéshez használt sablonokat. Ehelyett az alkalmazás létrehozza a sablont, amely hello erőforráscsoportban található egy pillanatfelvétel. hello exportált sablonjának sok változtatható értékek és valószínűleg nem annyi megadott paraméterek általában határozzák meg. Ezt a módszert akkor hasznos, ha a telepítés utáni hello erőforráscsoport módosította. Ez a sablon általában módosításokat igényel, mielőtt használható lenne.
 
-Ebben a témakörben mind a két megoldást bemutatjuk a portálon keresztül.
+Ez a témakör bemutatja a mindkét megközelítés hello portálon keresztül.
 
 ## <a name="deploy-resources"></a>Erőforrások üzembe helyezése
-Először helyezzünk üzembe erőforrásokat az Azure-ra, amelyeket aztán sablonként exportálhat. Ha már rendelkezik olyan erőforráscsoporttal az előfizetésében, amelyet sablonként szeretne exportálni, kihagyhatja ezt a szakaszt. A cikk többi része feltételezi, hogy üzembe helyezte az ebben a szakaszban látható webalkalmazást és SQL-adatbázist. Ha másik megoldást használ, a lépések kissé eltérők lehetnek, de a sablonok exportálásának lépései azonosak. 
+Kezdjük használható sablonként exportálási erőforrások tooAzure telepítésével. Ha már van erőforráscsoport, amelyet az tooexport tooa sablon előfizetését, ez a szakasz kihagyhatja. hello a cikk hátralévő része azt feltételezi, hogy telepítette hello web app és az SQL-adatbázis megoldás ebben a szakaszban látható. Ha egy másik megoldás használja, a felhasználói élmény kissé eltérőek lehetnek, de tooexport sablon vannak hello lépéseket hello azonos. 
 
-1. Az [Azure Portalon](https://portal.azure.com) válassza az **Új** lehetőséget.
+1. A hello [Azure-portálon](https://portal.azure.com), jelölje be **új**.
    
       ![új kiválasztása](./media/resource-manager-export-template/new.png)
-2. Keressen a **webalkalmazás + SQL** kifejezésre, és válassza ki azt az elérhető lehetőségek közül.
+2. Keresse meg **webes alkalmazás + SQL** , és jelölje ki a hello rendelkezésre álló lehetőségek közül.
    
       ![webalkalmazás és SQL keresése](./media/resource-manager-export-template/webapp-sql.png)
 
@@ -44,83 +44,83 @@ Először helyezzünk üzembe erőforrásokat az Azure-ra, amelyeket aztán sabl
 
       ![létrehozás kiválasztása](./media/resource-manager-export-template/create.png)
 
-4. Adja meg a webalkalmazás és az SQL-adatbázis szükséges értékeit. Kattintson a **Létrehozás** gombra.
+4. Adja meg szükség hello hello web app és az SQL-adatbázis. Kattintson a **Létrehozás** gombra.
 
       ![web és SQL érték megadása](./media/resource-manager-export-template/provide-web-values.png)
 
-Az üzembe helyezés egy percig is eltarthat. Az üzembe helyezés befejezése után az előfizetése már tartalmazza a megoldást.
+hello telepítési egy percet is igénybe vehet. Hello központi telepítés befejezése után az előfizetése tartalmazza majd hello megoldás.
 
 ## <a name="view-template-from-deployment-history"></a>Sablon megtekintése az üzembehelyezési előzményekből
-1. Nyissa meg az új erőforráscsoport paneljét. Figyelje meg, hogy a panelen a legutóbbi üzembe helyezés részletes adatai láthatók. Kattintson erre a hivatkozásra.
+1. Nyissa meg toohello erőforráscsoport panel az új erőforráscsoport számára. Figyelje meg, hogy hello hello utolsó telepítési hello eredménye megjelenik. Kattintson erre a hivatkozásra.
    
       ![erőforráscsoport panel](./media/resource-manager-export-template/select-deployment.png)
-2. Megjelennek a csoport üzembe helyezési előzményei. Az Ön esetében valószínűleg csak egyetlen üzembe helyezés látható a panelen. Válassza ki ezt a telepítést.
+2. Megjelenik egy hello csoport telepítéseinek előzményei. Az Ön hello panel valószínűleg csak egy központi telepítési sorolja fel. Válassza ki ezt a telepítést.
    
      ![legutóbbi telepítés](./media/resource-manager-export-template/select-history.png)
-3. A panelen megjelenik az üzembe helyezés összegzése. Az összegzés tartalmazza a telepítés, valamint annak műveleteinek állapotát, és a paraméterek számára megadott értékeket. Az üzembe helyezéshez használt sablon megtekintéséhez válassza a **Sablon megtekintése** lehetőséget.
+3. hello panel hello telepítés összegzését jeleníti meg. összefoglaló hello hello hello központi telepítés állapotát, valamint műveleteket és hello paramétereinek megadott értékeket tartalmazza. hello központi telepítését, jelölje be a használt toosee hello sablon **sablon megtekintése**.
    
      ![telepítés összegzésének megtekintése](./media/resource-manager-export-template/view-template.png)
-4. A Resource Manager az alábbi hét fájlt kéri le:
+4. Erőforrás-kezelő kéri le a következő hét fájlok meg hello:
    
-   1. **Sablon** – A megoldás infrastruktúráját meghatározó sablon. A tárfiók a portálon keresztül történő létrehozásakor a Resource Manager egy sablon használatával telepítette azt, és elmentette ezt a sablont későbbi felhasználás céljából.
-   2. **Paraméterek** – Az értékek az üzembe helyezés során történő megadásához szükséges paraméterfájl. Ez tartalmazza az első üzembe helyezés során megadott értékeket. Ezek bármelyike módosítható a sablon újbóli telepítése során.
-   3. **CLI** – A sablon üzembe helyezéséhez használható Azure CLI-parancsfájl.
-   3. **CLI 2.0** – A sablon üzembe helyezéséhez használható Azure CLI-szkriptfájl.
-   4. **PowerShell** – A sablon üzembe helyezéséhez használható Azure PowerShell-parancsfájl.
-   5. **.NET** – A sablon üzembe helyezéséhez használható .NET-osztály.
-   6. **Ruby** – A sablon üzembe helyezéséhez használható Ruby-osztály.
+   1. **Sablon** -hello sablont, amely meghatározza a megoldás hello infrastruktúra. Hello portálon keresztül hello storage-fiók létrehozásakor a Resource Manager egy sablon toodeploy használt, és elmentette ezt a sablont későbbi felhasználás céljából.
+   2. **Paraméterek** -egy paraméterfájl használható toopass értékek a telepítés során. Hello első telepítés során megadott hello értékeket tartalmaz. Módosíthatja a következő értékek hello sablon újratelepítésekor.
+   3. **Parancssori felület** -Azure parancssori felület (CLI) parancsfájl toodeploy hello sablon használható.
+   3. **Parancssori felület 2.0** -Azure parancssori felület (CLI) parancsfájl toodeploy hello sablon használható.
+   4. **PowerShell** -toodeploy hello sablon használható az Azure PowerShell-parancsfájlt.
+   5. **.NET** -toodeploy hello sablon használhatja A .NET-osztályt.
+   6. **Ruby** – használható toodeploy hello sablon, A Ruby osztály.
       
-      A fájlok a panelen található hivatkozásokon keresztül érhetők el. Alapértelmezés szerint a panelben a sablon jelenik meg.
+      hello fájlok található hivatkozásokon keresztül érhetők hello panel között. Alapértelmezés szerint hello panel hello sablon jeleníti meg.
       
        ![sablon megtekintése](./media/resource-manager-export-template/see-template.png)
       
-Ez maga a sablon, amelyet a webalkalmazás és az SQL-adatbázis létrehozásához használt. Figyelje meg, hogy a benne szereplő paraméterek különböző értékek megadását is lehetővé teszik az üzembe helyezés során. A sablonok struktúrájával kapcsolatos további információk: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+Ez a sablon hello tényleges sablont toocreate használni, a web app és az SQL-adatbázis. Figyelje meg, amelyek lehetővé teszik a telepítés során eltérő értékeket tooprovide paramétert tartalmaz. toolearn hello a sablonok struktúrájával kapcsolatos, kapcsolatos további információkért lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
 
-## <a name="export-the-template-from-resource-group"></a>Az erőforráscsoport sablonjának exportálása
-Ha manuálisan módosította az erőforrásokat, vagy több üzemelő példányban adott hozzá erőforrásokat, az üzembe helyezés előzményeiből a sablonok lekérése nem tükrözi az erőforráscsoport aktuális állapotát. Ez a szakasz bemutatja, hogyan exportálhat az erőforráscsoport aktuális állapotát tükröző sablont. 
+## <a name="export-hello-template-from-resource-group"></a>Erőforráscsoport hello-sablonok exportálása
+Ha Ön rendelkezik manuálisan az erőforrások új és módosított erőforrások több telepítések esetén, egy sablon lekérése hello üzembe helyezési előzményeket nem tükrözi hello hello erőforráscsoport aktuális állapotát. Ez a szakasz bemutatja, hogyan tooexport a sablont, amely tükrözi hello hello erőforráscsoport aktuális állapotát. 
 
 > [!NOTE]
 > Több mint 200 erőforrással rendelkező erőforráscsoport esetében nem exportálhat sablont.
 > 
 > 
 
-1. Az egyes erőforráscsoportok sablonjának megtekintéséhez válassza az **Automation-szkript** lehetőséget.
+1. az egy erőforráscsoport, jelölje be a tooview hello sablon **automatizálási parancsfájl**.
    
       ![erőforráscsoportok exportálása](./media/resource-manager-export-template/select-automation.png)
    
-     A Resource Manager kiértékeli az erőforráscsoportban lévő erőforrásokat, és létrehoz egy sablont ezekhez az erőforrásokhoz. A sablonexportálási funkciót nem támogatja az összes erőforrástípus. Előfordulhat, hogy egy hibaüzenet jelenik meg, amely arról tájékoztatja, hogy az exportálás során probléma merült fel. Ezeket a hibákat [Az exportálással kapcsolatos problémák megoldása](#fix-export-issues) című részben szereplő információk segítségével oldhatja meg.
-2. Ismét megjelenik a megoldás újbóli üzembe helyezéséhez használható hat fájl. De ezúttal a sablon némileg eltérően jelenik meg. Figyelje meg, hogy a létrejött sablon kevesebb paramétert tartalmaz, mint az előző szakasz sablonja. Ezenkívül sok érték (például a hely és a termékváltozat) paraméterértékek fogadása helyett nem módosíthatóként jelenik meg ebben a sablonban. A sablon újbóli használata előtt érdemes lehet szerkeszteni a sablont, hogy jobban kihasználja a paraméterekben rejlő lehetőségeket. 
+     Erőforrás-kezelő hello erőforrások hello erőforráscsoportban kiértékeli, és létrehoz egy sablont az erőforrásokhoz. Nem minden erőforrástípusok hello sablon függvényt. Arról, hogy nincs-e probléma hello exportálási hiba jelenhet meg. Megtudhatja, hogyan toohandle azokat problémáinak hello [javítás exportálási problémák](#fix-export-issues) szakaszban.
+2. Ismét megjelenik hello hat fájlok használható tooredeploy hello megoldás. Azonban az idő hello sablon kicsit más. Figyelje meg, hogy a létrehozott sablon hello paramétert tartalmaz, kevesebb mint hello sablon az előző szakaszban. Hello értékeket (például a hely és SKU értékek) számos is változtatható egy paraméterérték elfogadása helyett ezt a sablont. Mielőtt Ez a sablon újbóli felhasználása, érdemes lehet tooedit hello sablon toomake jobb paraméterek használatával. 
    
-3. Van néhány további lehetőség is arra, hogy továbbra is ezzel a sablonnal dolgozzon. Letöltheti a sablont, és dolgozhat rajta helyben egy JSON-szerkesztővel. Mentheti a sablont a saját tárába, és a portálon keresztül dolgozhat rajta.
+3. Ezzel a sablonnal toowork folyamatos vonatkozó beállítások közül több lehetősége van. Hello sablon letöltése, és dolgozhat rajta egy JSON-szerkesztővel helyileg. Vagy hello tooyour Sablonkönyvtár mentheti, és dolgozhat rajta hello portálon keresztül.
    
-     Ha járatos egy JSON-szerkesztő, például a [VS Code](https://code.visualstudio.com/) vagy a [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) használatában, érdemes a sablont helyileg letölteni, és az adott szerkesztőt használni. Ha helyben kíván dolgozni, válassza a **Letöltés** lehetőséget.
+     Ha részeként például egy JSON-szerkesztő segítségével [Visual STUDIO Code](https://code.visualstudio.com/) vagy [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md), előfordulhat, hogy inkább hello sablont helyben letöltését és a szerkesztő használatát. toowork helyileg, jelölje be **letöltése**.
    
       ![sablon letöltése](./media/resource-manager-export-template/download-template.png)
    
-     Ha nem állította be a JSON-szerkesztőt, inkább a portálon keresztül szerkessze a sablont. A témakör további részében azt feltételezzük, hogy mentette a sablont a saját tárába a portálon. Azonban ugyanazon szintaxismódosításokat végezheti el a sablonon a JSON-szerkesztőben helyileg és a portálon keresztül egyaránt. Ha a portálon keresztül dolgozna, válassza a **Hozzáadás a dokumentumtárhoz** lehetőséget.
+     Ha beállította a JSON-szerkesztővel, előfordulhat, hogy inkább hello portálon keresztül hello sablon szerkesztése. hello a témakör további részei azt feltételezi, hogy a mentett hello tooyour Sablonkönyvtár hello portálon. Azonban ügyeljen a hello azonos szintaxis toohello sablon vált, hogy helyileg dolgozik, egy JSON-szerkesztő vagy hello portálon keresztül. hello portálon keresztül toowork válasszon **toolibrary hozzáadása**.
    
-      ![hozzáadás a dokumentumtárhoz](./media/resource-manager-export-template/add-to-library.png)
+      ![toolibrary hozzáadása](./media/resource-manager-export-template/add-to-library.png)
    
-     Egy sablonnak a dokumentumtárhoz való hozzáadásakor adja meg a sablon nevét és leírását. Ezt követően válassza a **Mentés** lehetőséget.
+     Egy Sablonkönyvtár toohello hozzáadásakor adjon hello sablon nevét és leírását. Ezt követően válassza a **Mentés** lehetőséget.
    
      ![sablon értékeinek megadása](./media/resource-manager-export-template/save-library-template.png)
-4. Egy, a saját tárába mentett sablon megtekintéséhez válassza a **További szolgáltatások** lehetőséget, írja be a **Sablonok** szöveget az eredmények szűréséhez, majd válassza a **Sablonok** elemet.
+4. Válasszon egy sablont a könyvtárban menteni tooview **további szolgáltatások**, típus **sablonok** toofilter eredményeket, jelölje be **sablonok**.
    
       ![sablonok keresése](./media/resource-manager-export-template/find-templates.png)
-5. Válassza mentett nevű sablont.
+5. Válassza ki a mentett hello nevű hello sablont.
    
       ![sablon kiválasztása](./media/resource-manager-export-template/select-saved-template.png)
 
-## <a name="customize-the-template"></a>A sablon testreszabása
-Az exportált sablon jól működik, ha ugyanazt a webalkalmazást és SQL-adatbázist szeretné létrehozni mindegyik üzemelő példányhoz. A Resource Manager által nyújtott lehetőségek azonban lehetővé teszik, hogy a sablonokat rugalmasabb módon helyezze üzembe. Ez a cikk bemutatja, hogyan adhat paramétereket az adatbázis rendszergazdai nevéhez és jelszavához. Ugyanezzel a módszerrel láthatja el további rugalmassággal a sablon más értékeit.
+## <a name="customize-hello-template"></a>Hello sablon testreszabása
+elfogadható, ha azt szeretné, hogy toocreate hello azonos web app és minden üzembe helyezés SQL-adatbázis hello exportált sablon működik. A Resource Manager által nyújtott lehetőségek azonban lehetővé teszik, hogy a sablonokat rugalmasabb módon helyezze üzembe. Ez a cikk bemutatja, hogyan hello tooadd paramétereinek adatbázis-rendszergazdai nevet és jelszót. Használhatja a azonos megközelítés tooadd nagyobb rugalmasságot hello sablon más értékekre.
 
-1. A sablon testreszabásához válassza a **Szerkesztés** lehetőséget.
+1. toocustomize hello sablon, jelölje be **szerkesztése**.
    
      ![sablon megjelenítése](./media/resource-manager-export-template/select-edit.png)
-2. Válassza ki a sablont.
+2. Válassza ki a hello sablont.
    
      ![sablon szerkesztése](./media/resource-manager-export-template/select-added-template.png)
-3. A telepítés során meghatározni kívánt értékek megadásához adja a következő két paramétert a sablon **paraméterek** szakaszához:
+3. toobe képes toopass hello értékeket, hogy a telepítés során toospecify érdemes adja hozzá a következő két paraméterek toohello hello **paraméterek** hello sablon szakaszában:
 
    ```json
    "administratorLogin": {
@@ -131,7 +131,7 @@ Az exportált sablon jól működik, ha ugyanazt a webalkalmazást és SQL-adatb
    },
    ```
 
-4. Az új paraméterek használatához cserélje le az SQL-kiszolgáló definícióját az **erőforrások** szakaszban. Figyelje meg, hogy az **administratorLogin** és az **administratorLoginPassword** most paraméterértékeket használ.
+4. toouse hello új paramétereket, cserélje le a hello hello SQL server-definíció **erőforrások** szakasz. Figyelje meg, hogy az **administratorLogin** és az **administratorLoginPassword** most paraméterértékeket használ.
 
    ```json
    {
@@ -151,28 +151,28 @@ Az exportált sablon jól működik, ha ugyanazt a webalkalmazást és SQL-adatb
    },
    ```
 
-6. Amikor befejezte a sablon szerkesztését, kattintson az **OK** gombra.
-7. Kattintson a **Mentés** gombra a sablon módosításainak mentéséhez.
+6. Válassza ki **OK** Ha elkészült a szerkesztési hello sablont.
+7. Válassza ki **mentése** toosave hello módosítások toohello sablont.
    
      ![sablon mentése](./media/resource-manager-export-template/save-template.png)
-8. A frissített sablon újbóli üzembe helyezéséhez válassza a **Telepítés** lehetőséget.
+8. tooredeploy frissítése hello sablon, jelölje be **telepítés**.
    
      ![sablon üzembe helyezése](./media/resource-manager-export-template/redeploy-template.png)
-9. Adja meg a paraméterértékeket, és válassza ki azt az erőforráscsoportot, amelybe az erőforrásokat üzembe kívánja helyezni.
+9. Adja meg a paraméter értékét, és válasszon ki egy erőforrás csoport toodeploy hello erőforrást.
 
 
 ## <a name="fix-export-issues"></a>Az exportálással kapcsolatos problémák megoldása
-A sablonexportálási funkciót nem támogatja az összes erőforrástípus. A probléma megoldásához adja hozzá ismét manuálisan a hiányzó erőforrásokat a sablonhoz. A hibaüzenetben szerepelnek a nem exportálható erőforrástípusok. Ezt az erőforrástípust a [Sablonreferenciában](/azure/templates/) találja. Ha például manuálisan szeretne hozzáadni egy virtuális hálózati átjárót, lásd a [Microsoft.Network/virtualNetworkGateways sablonreferenciát](/azure/templates/microsoft.network/virtualnetworkgateways).
+Nem minden erőforrástípusok hello sablon függvényt. a probléma manuálisan tooresolve adja hozzá a hiányzó erőforrást hello újra üzembe a sablont. hello hibaüzenet hello típusok nem exportálhatók tartalmazza. Ezt az erőforrástípust a [Sablonreferenciában](/azure/templates/) találja. Például toomanually virtuális hálózati átjáró hozzáadása című [Microsoft.Network/virtualNetworkGateways sablonra való hivatkozást](/azure/templates/microsoft.network/virtualnetworkgateways).
 
 > [!NOTE]
-> Az exportálási hibák csak akkor lépnek fel, ha az erőforráscsoportból, és nem az üzembe helyezési előzmények közül végez exportálást. Ha a legutóbbi üzembe helyezés pontosan tükrözi az erőforráscsoport aktuális állapotát, érdemes az erőforráscsoport helyett az üzembe helyezési előzmények közül elvégezni a sablon exportálását. Csak akkor exportáljon az erőforráscsoportból, ha olyan módosításokat végzett rajta, amelyeket nem lehet egyetlen sablonnal definiálni.
+> Az exportálási hibák csak akkor lépnek fel, ha az erőforráscsoportból, és nem az üzembe helyezési előzmények közül végez exportálást. Ha a legutóbbi telepítés pontosan hello hello erőforráscsoport aktuális állapotát jeleníti meg, exportálnia kell hello sablon hello üzembe helyezési előzményeket és nem hello erőforráscsoportból. Ha hajtott végre módosításokat toohello erőforráscsoport egyetlen sablonban nem meghatározott csak exportálja az erőforráscsoport.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Megtanulta, hogyan exportálhat sablonokat a portálon létrehozott erőforrásokból.
+Megtanulta, hogyan tooexport hello portálon létrehozott erőforrásokból sablont.
 
 * Sablont a [PowerShell](resource-group-template-deploy.md), az [Azure parancssori felülete](resource-group-template-deploy-cli.md) vagy a [REST API](resource-group-template-deploy-rest.md) használatával helyezhet üzembe.
-* A sablonok PowerShellen keresztül történő exportálásával kapcsolatos információk: [Az Azure PowerShell használata Azure Resource Managerrel](powershell-azure-resource-manager.md).
-* A sablonok az Azure parancssori felületen keresztül történő exportálásával kapcsolatos információk: [A Mac, Linux és Windows eszközökhöz készült Azure CLI használata az Azure Resource Manager eszközzel](xplat-cli-azure-resource-manager.md).
+* Hogyan tooexport egy sablon PowerShell használatával: toosee [az Azure PowerShell használata Azure Resource Managerrel](powershell-azure-resource-manager.md).
+* Hogyan tooexport egy sablont az Azure parancssori felületen keresztül: toosee [használata hello Azure parancssori felület Mac, Linux és a Windows Azure Resource Manager](xplat-cli-azure-resource-manager.md).
 

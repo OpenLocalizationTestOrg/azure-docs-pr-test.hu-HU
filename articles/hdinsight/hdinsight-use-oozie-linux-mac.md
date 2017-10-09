@@ -1,6 +1,6 @@
 ---
-title: "Linux-alapú hdinsight Hadoop Oozie munkafolyamatok használata |} Microsoft Docs"
-description: "Linux-alapú HDInsight Hadoop Oozie használja. Megtudhatja, hogyan határozza meg az Oozie munkafolyamat, valamint az Oozie feladat elküldéséhez."
+title: "Linux-alapú HDInsight Hadoop Oozie munkafolyamatok aaaUse |} Microsoft Docs"
+description: "Linux-alapú HDInsight Hadoop Oozie használja. Megtudhatja, hogyan toodefine egy Oozie munkafolyamatot, és az Oozie feladat elküldéséhez."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: larryfr
-ms.openlocfilehash: e3206078e451aefe02689bfb61ce22a20dd0fa70
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb5682837543312621e3424b7a9341b5d2a00bf8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-on-linux-based-hdinsight"></a>Határozza meg, és egy munkafolyamat futtatása a Linux-alapú HDInsight Hadoop Oozie használata
+# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-on-linux-based-hdinsight"></a>Hadoop toodefine Oozie használjon, és a Linux-alapú HDInsight munkafolyamat futtatása
 
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-Útmutató Apache Oozie használata a HDInsight Hadoop. Apache Oozie egy munkafolyamat/koordinációs rendszer, amely a Hadoop-feladatokat kezeli. Oozie integrálva van a Hadoop-veremmel, és támogatja a következő feladatokat:
+Megtudhatja, hogyan toouse Hadoop on HDInsight az Apache Oozie. Apache Oozie egy munkafolyamat/koordinációs rendszer, amely a Hadoop-feladatokat kezeli. Oozie hello Hadoop-veremmel integrálva van, és a következő feladatok hello támogatja:
 
 * Apache MapReduce
 * Apache Pig
 * Apache Hive
 * Apache Sqoop
 
-Oozie is használható, például Java programok vagy héjparancsfájlok ütemezésére rendszerspecifikus feladatok ütemezése
+Oozie akkor is, amelyek adott tooa rendszer, például Java programok vagy héjparancsfájlok ütemezésére használt tooschedule feladatok
 
 > [!NOTE]
-> A munkafolyamatok és a HDInsight együttes meghatározásához másik lehetőség is Azure Data Factory. Azure Data Factory kapcsolatos további információkért lásd: [használja a Pig és a Data Factory Hive][azure-data-factory-pig-hive].
+> A munkafolyamatok és a HDInsight együttes meghatározásához másik lehetőség is Azure Data Factory. További információ az Azure Data Factory toolearn lásd [használja a Pig és a Data Factory Hive][azure-data-factory-pig-hive].
 
 > [!IMPORTANT]
 > Oozie nincs engedélyezve a HDInsight-tartományhoz.
@@ -46,64 +46,64 @@ Oozie is használható, például Java programok vagy héjparancsfájlok ütemez
 * **HDInsight-fürtök**: lásd: [HDInsight Linux első lépések](hdinsight-hadoop-linux-tutorial-get-started.md)
 
   > [!IMPORTANT]
-  > A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="example-workflow"></a>Példa-munkafolyamat
 
-A munkafolyamat a dokumentumban használt két műveleteket tartalmaz. Műveletek végezhetők a definíciók feladatok, például a Hive, a Sqoop, a MapReduce vagy a másik folyamat fut:
+a dokumentumban használt hello munkafolyamat két műveleteket tartalmaz. Műveletek végezhetők a definíciók feladatok, például a Hive, a Sqoop, a MapReduce vagy a másik folyamat fut:
 
 ![Munkafolyamat diagramja][img-workflow-diagram]
 
-1. A Hive művelet a futás bejegyzéseit kibontása a HiveQL-parancsfájlt a **hivesampletable** HDInsight része. Minden egyes soraiban levő adatok egy adott mobileszközről meglátogatása ismerteti. A rekord formátumban jelenik meg az alábbihoz hasonló:
+1. A Hive művelet a futás HiveQL-parancsfájlt tooextract rögzíti a hello **hivesampletable** HDInsight része. Minden egyes soraiban levő adatok egy adott mobileszközről meglátogatása ismerteti. hello rekord formátuma a következő szöveg hasonló toohello jelenik meg:
 
         8       18:54:20        en-US   Android Samsung SCH-i500        California     United States    13.9204007      0       0
         23      19:19:44        en-US   Android HTC     Incredible      Pennsylvania   United States    NULL    0       0
         23      19:19:46        en-US   Android HTC     Incredible      Pennsylvania   United States    1.4757422       0       1
 
-    Ebben a dokumentumban használt Hive-parancsfájl megjeleníti az egyes platformokon (például Android vagy iPhone) teljes látogatások, és a számát, az új Hive tábla tárolja.
+    hello ebben a dokumentumban használt Hive-parancsfájl megjeleníti az egyes platformokon (például Android vagy iPhone) hello teljes látogatások alkalmával, és hello számok tooa új Hive tábla tárolja.
 
     További információ a Hive-ról: [A Hive használata a HDInsightban][hdinsight-use-hive].
 
-2. A Sqoop művelet a tartalmát az új Hive tábla exportálása egy Azure SQL adatbázis egyik táblája. További információ a Sqoop: [Hadoop Sqoop használata a hdinsightban][hdinsight-use-sqoop].
+2. A Sqoop művelet hello hello új Hive tábla tooa-táblázat tartalmának Azure SQL adatbázis exportálja. További információ a Sqoop: [Hadoop Sqoop használata a hdinsightban][hdinsight-use-sqoop].
 
 > [!NOTE]
-> Tekintse meg a HDInsight-fürtökön támogatott Oozie verziók [What's new in HDInsight által biztosított Hadoop-fürt verziók][hdinsight-versions].
+> Tekintse meg a HDInsight-fürtökön támogatott Oozie verziók [What's new in HDInsight által biztosított hello Hadoop-fürt verziók][hdinsight-versions].
 
-## <a name="create-the-working-directory"></a>A munkakönyvtár létrehozása
+## <a name="create-hello-working-directory"></a>Hozzon létre hello munkakönyvtár
 
-Oozie vár egy feladatot, amely ugyanabban a könyvtárban kell tárolni szükséges erőforrásokat. Ez a példa **wasb: / / / oktatóanyagok/useoozie**. A következő paranccsal ez, és az adatok könyvtárat, amely tárolja az ezen munkafolyamat által létrehozott új Hive tábla létrehozásához:
+Oozie vár a feladat toobe tárolt hello azonos szükséges erőforrások könyvtár. Ez a példa **wasb: / / / oktatóanyagok/useoozie**. Használja a következő parancs toocreate hello ez, és hello adatok könyvtárat, amely a hello a munkafolyamat által létrehozott új Hive tábla tárolja:
 
 ```
 hdfs dfs -mkdir -p /tutorials/useoozie/data
 ```
 
 > [!NOTE]
-> A `-p` paraméter okoz az összes könyvtár elérési útját hozható létre. A **adatok** által használt adatok tárolására használt könyvtárat a **useooziewf.hql** parancsfájl.
+> Hello `-p` paraméter hello elérési toobe létrehozott összes könyvtár okoz. Hello **adatok** könyvtár hello által használt használt toohold adatok **useooziewf.hql** parancsfájl.
 
-Is futtassa a következő parancsot, amely biztosítja, hogy a Oozie megszemélyesíthet-e a felhasználói fiók Hive és a Sqoop feladat futtatásakor. Cserélje le **felhasználónév** a bejelentkezési névvel:
+A következő parancsot, amely biztosítja, hogy a Oozie megszemélyesíthet-e a felhasználói fiók Hive és a Sqoop feladat futtatásakor hello is futtathatja. Cserélje le **felhasználónév** a bejelentkezési névvel:
 
 ```
 sudo adduser USERNAME users
 ```
 
 > [!NOTE]
-> A hibákat, a felhasználó már tagja figyelmen kívül hagyhatja a `users` csoport.
+> Hibák figyelmen kívül hagyhatja, hogy hello a felhasználó tagja már hello `users` csoport.
 
 ## <a name="add-a-database-driver"></a>Egy adatbázis-illesztőprogram hozzáadása
 
-Mivel ez a munkafolyamat Sqoop használ az adatok exportálása az SQL Database, meg kell adnia egy példányát az SQL-adatbázis felvegye használt JDBC-illesztőt. Az alábbi parancs segítségével másolja azt a munkakönyvtárat:
+Mivel ez a munkafolyamat Sqoop tooexport adatok tooSQL adatbázist használ, meg kell adnia, hello JDBC-illesztőt másolatát tootalk tooSQL adatbázis használja. Használjon hello parancs toocopy következő azt toohello munkakönyvtár:
 
 ```
 hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 ```
 
-Ha a munkafolyamat más erőforrások, például a MapReduce-alkalmazást tartalmazó jar használ, adja hozzá ezeket az erőforrásokat, valamint kellene.
+Ha a munkafolyamat más erőforrások, például a MapReduce-alkalmazást tartalmazó jar, kellene tooadd ezeket az erőforrásokat is.
 
-## <a name="define-the-hive-query"></a>A Hive-lekérdezés megadása
+## <a name="define-hello-hive-query"></a>Hello Hive-lekérdezés megadása
 
-A következő lépésekkel HiveQL-parancsfájlt, amely meghatározza az Oozie-munkafolyamat a dokumentum későbbi szakaszában a lekérdezés létrehozásához.
+A következő HiveQL-parancsfájlt, amely meghatározza az Oozie-munkafolyamat a dokumentum későbbi szakaszában a lekérdezés lépéseket toocreate hello használata.
 
-1. Csatlakozzon a fürthöz SSH használatával. A következő parancsot az használatának példája a `ssh` parancsot. Cserélje le __felhasználónév__ a fürthöz az SSH felhasználóval. Cserélje le __CLUSTERNAME__ a HDInsight-fürt nevét.
+1. Csatlakozzon az SSH használatával toohello fürt. hello parancsban látható egy példa hello segítségével `ssh` parancsot. Cserélje le __felhasználónév__ hello fürt hello SSH felhasználóval. Cserélje le __CLUSTERNAME__ hello nevű hello HDInsight-fürt.
 
     ```
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -111,13 +111,13 @@ A következő lépésekkel HiveQL-parancsfájlt, amely meghatározza az Oozie-mu
 
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Az SSH-kapcsolat alkalmazás-fájl létrehozásához a következő parancsot:
+2. Hello SSH-kapcsolat alkalmazás a következő parancs toocreate fájl hello:
 
     ```
     nano useooziewf.hql
     ```
 
-3. Megnyílik a nano szerkesztő, ha a fájl tartalmát a következő lekérdezés használata:
+3. Amikor megnyílik a hello nano szerkesztő, használja a lekérdezés hello hello fájl tartalmát, a következő hello:
 
     ```hiveql
     DROP TABLE ${hiveTableName};
@@ -126,39 +126,39 @@ A következő lépésekkel HiveQL-parancsfájlt, amely meghatározza az Oozie-mu
     INSERT OVERWRITE TABLE ${hiveTableName} SELECT deviceplatform, COUNT(*) as count FROM hivesampletable GROUP BY deviceplatform;
     ```
 
-    Nincsenek a parancsfájl használt két változót:
+    Nincsenek hello parancsfájl használt két változót:
 
-    * **{hiveTableName} $**: hozható létre a tábla nevét tartalmazza
+    * **{hiveTableName} $**: hello tábla toobe létrehozott hello nevét tartalmazza
 
-    * **{hiveDataFolder} $**: a tábla az adatforrás adatfájljainak tárolási helyét tartalmazza
+    * **{hiveDataFolder} $**: hello hely toostore hello adatfájlok hello tábla tartalmaz
 
-    A munkafolyamat-definíciós fájl (ebben az oktatóanyagban workflow.xml) továbbítja ezeket az értékeket a HiveQL-parancsfájlt futás közben
+    hello munkafolyamat csomagdefiníciós fájl (ebben az oktatóanyagban workflow.xml) továbbítja ezeket az értékeket toothis HiveQL-parancsfájlt futás közben
 
-4. Zárja be a szerkesztőt, nyomja le a Ctrl-X. Amikor a rendszer kéri, válassza ki a **Y** mentse a fájlt, majd használja **Enter** használata a **useooziewf.hql** fájl nevét.
+4. tooexit hello szerkesztő, nyomja le a Ctrl-X. Amikor a rendszer kéri, válassza ki a **Y** toosave hello fájlt, majd használja **Enter** toouse hello **useooziewf.hql** fájl nevét.
 
-5. Másolja az alábbi parancsokkal **useooziewf.hql** való **wasb:///tutorials/useoozie/useooziewf.hql**:
+5. Használjon hello következő parancsok toocopy **useooziewf.hql** túl**wasb:///tutorials/useoozie/useooziewf.hql**:
 
     ```
     hdfs dfs -put useooziewf.hql /tutorials/useoozie/useooziewf.hql
     ```
 
-    Ezek a parancsok tárolja a **useooziewf.hql** a fürt a HDFS-kompatibilis tároló fájlt.
+    Ezek a parancsok tárolására hello **useooziewf.hql** hello fürt hello HDFS-kompatibilis tároló fájlt.
 
-## <a name="define-the-workflow"></a>Adja meg a munkafolyamat
+## <a name="define-hello-workflow"></a>Adja meg a hello munkafolyamat
 
-Oozie munkafolyamatok definíciók hPDL (az XML folyamat Definition Language) nyelven íródtak. Az alábbi lépések segítségével határozza meg a munkafolyamat:
+Oozie munkafolyamatok definíciók hPDL (az XML folyamat Definition Language) nyelven íródtak. A következő lépéseket toodefine hello munkafolyamat hello használata:
 
-1. A következő utasítás használatával hozzon létre és szerkeszthet egy új fájlt:
+1. A következő utasítás toocreate hello használja, és szerkeszthet egy új fájlt:
 
     ```
     nano workflow.xml
     ```
 
-2. Megnyílik a nano szerkesztő, miután adja meg a következő XML fájl tartalma:
+2. Ha hello nano szerkesztő nyit, adja meg a hello XML hello fájl tartalmát, a következő:
 
     ```xml
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start to = "RunHiveScript"/>
+        <start too= "RunHiveScript"/>
         <action name="RunHiveScript">
         <hive xmlns="uri:oozie:hive-action:0.2">
             <job-tracker>${jobTracker}</job-tracker>
@@ -209,55 +209,55 @@ Oozie munkafolyamatok definíciók hPDL (az XML folyamat Definition Language) ny
     </workflow-app>
     ```
 
-    A munkafolyamatban meghatározott két tevékenységek vannak:
+    Nincsenek definiált hello munkafolyamat két műveleteket:
 
-   * **RunHiveScript**: Ez a művelet az indítási műveletet, és futtatja a **useooziewf.hql** Hive parancsprogram
+   * **RunHiveScript**: Ez a művelet hello indítási műveletet, és futtatja a hello **useooziewf.hql** Hive parancsprogram
 
-   * **RunSqoopExport**: Ez a művelet exportálja az adatokat az SQL Database szolgáltatásba Sqoop a Hive-parancsfájl alapján létrehozott. Ez a művelet csak akkor fut, ha a **RunHiveScript** művelet befejeződött.
+   * **RunSqoopExport**: Ez a művelet exportálja hello adatok hello Hive parancsfájl tooSQL alapján létrehozott adatbázis-Sqoop használatával. Ez a művelet csak akkor fut, ha hello **RunHiveScript** művelet befejeződött.
 
-     A munkafolyamat rendelkezik több bejegyzést, például a `${jobTracker}`. Ezek a bejegyzések feladatdefinícióban használt értékek helyett. A feladat meghatározása a jelen dokumentum jön létre.
+     hello munkafolyamat rendelkezik több bejegyzést, például a `${jobTracker}`. Ezek a bejegyzések a hello feladatdefinícióban használt értékek helyett. hello feladat meghatározása a jelen dokumentum jön létre.
 
-     Azt is vegye figyelembe a `<archive>sqljdbc4.jar</arcive>` a Sqoop szakasz bejegyzése. Ez a bejegyzés arra utasítja az Oozie elérhetővé ebből az archívumból Sqoop számára ez a művelet futtatásakor.
+     Megjegyzés: hello is `<archive>sqljdbc4.jar</arcive>` hello Sqoop szakasz bejegyzést. Ez a bejegyzés utasítja Oozie toomake ebből az archívumból érhető el a Sqoop Ez a művelet futtatásakor.
 
-3. Használja a Ctrl-X, majd **Y** és **Enter** fájl mentéséhez.
+3. Használja a Ctrl-X, majd **Y** és **Enter** toosave hello fájlt.
 
-4. Másolja az alábbi parancs segítségével a **workflow.xml** fájl **/tutorials/useoozie/workflow.xml**:
+4. Használjon hello következő parancsot a toocopy hello **workflow.xml** fájl túl**/tutorials/useoozie/workflow.xml**:
 
     ```
     hdfs dfs -put workflow.xml /tutorials/useoozie/workflow.xml
     ```
 
-## <a name="create-the-database"></a>Az adatbázis létrehozása
+## <a name="create-hello-database"></a>Hello adatbázis létrehozása
 
-Az Azure SQL adatbázis létrehozásához kövesse a [SQL-adatbázis létrehozása](../sql-database/sql-database-get-started.md) dokumentum. Az adatbázis létrehozásakor `oozietest` az adatbázis neve. Is jegyezze fel az adatbázis-kiszolgáló nevét.
+egy Azure SQL Database toocreate kövesse hello hello [SQL-adatbázis létrehozása](../sql-database/sql-database-get-started.md) dokumentum. Hello adatbázis létrehozásakor `oozietest` hello adatbázis neve. Továbbá jegyezze fel a hello hello adatbázis-kiszolgáló nevét.
 
-### <a name="create-the-table"></a>A tábla létrehozása
+### <a name="create-hello-table"></a>Hello tábla létrehozása
 
 > [!NOTE]
-> Számos módon hozzon létre egy táblát az SQL-adatbázishoz való kapcsolódáshoz. Az alábbi lépéseket használata [FreeTDS](http://www.freetds.org/) a a HDInsight-fürthöz.
+> Nincsenek számos módon tooconnect tooSQL adatbázis toocreate egy tábla. a következő lépéseket használata hello [FreeTDS](http://www.freetds.org/) hello HDInsight-fürtök.
 
 
-1. A következő paranccsal FreeTDS a HDInsight-fürt telepítése:
+1. Parancs tooinstall FreeTDS következő hello HDInsight-fürt hello használata:
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-2. Egyszer FreeTDS telepítve van, ezért a korábban létrehozott SQL Database-kiszolgálóhoz való kapcsolódáshoz a következő paranccsal:
+2. Amennyiben telepítve van a FreeTDS, használja a következő parancs tooconnect toohello SQL-adatbáziskiszolgáló korábban létrehozott hello:
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <sqlLogin> -P <sqlPassword> -p 1433 -D oozietest
     ```
 
-    A kimenet az alábbihoz hasonló jelenhet meg:
+    Kimeneti hasonló toohello a következő szöveg jelenik meg:
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set to oozietest
+        Default database being set toooozietest
         1>
 
-3. : A `1>` kéri, adja meg a következő sorokat:
+3. A hello `1>` kéri, adja meg az alábbi hello:
 
     ```
     CREATE TABLE [dbo].[mobiledata](
@@ -268,35 +268,35 @@ Az Azure SQL adatbázis létrehozásához kövesse a [SQL-adatbázis létrehozá
     GO
     ```
 
-    Ha a `GO` utasításban is meg kell adni, az előző utasítások kiértékelése. Ezekre az utasításokra, hozzon létre egy táblát nevű **mobiledata** a munkafolyamat által használt.
+    Ha hello `GO` utasításban is meg kell adni, hello előző utasítás kiértékelése. Ezekre az utasításokra, hozzon létre egy táblát nevű **mobiledata** hello munkafolyamat által használt.
 
-    A következő segítségével győződjön meg arról, hogy a tábla jött létre:
+    A következő tooverify, amelyek a tábla hello használata hello jött létre:
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    A kimenet az alábbihoz hasonló jelenik meg:
+    Kimeneti hasonló toohello a következő szöveg jelenik meg:
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     oozietest       dbo     mobiledata      BASE TABLE
     ```
 
-4. Adja meg `exit` , a `1>` Rákérdezés a tsql segédprogram kilép.
+4. Adja meg `exit` : hello `1>` tooexit hello tsql segédprogram kérni.
 
-## <a name="create-the-job-definition"></a>A feladat definíciójának létrehozása
+## <a name="create-hello-job-definition"></a>Hello feladatdefiníció létrehozása
 
-A feladat definíciójához hol található a workflow.xml ismerteti. Azt is ismerteti, hol található egyéb fájlok (például useooziewf.hql.) a munkafolyamat által használt Azt is meghatározza az értékek tulajdonságok a munkafolyamaton belül használt, és a kapcsolódó fájlokat.
+hello feladatdefiníció írja le, ahol toofind hello workflow.xml. Azt is bemutatja where toofind más hello munkafolyamat (például useooziewf.hql.) által használt fájlokat Azt is meghatározza hello értékek tulajdonságok hello munkafolyamaton belül használt, és a kapcsolódó fájlokat.
 
-1. A következő paranccsal alapértelmezett tárterület teljes címét. Ez a cím néhány percet szerepel a konfigurációs fájlban:
+1. A következő parancs tooget hello teljes címe hello alapértelmezett tárolási hello használata. Ez a cím néhány percet szerepel hello konfigurációs fájlban:
 
     ```
     sed -n '/<name>fs.default/,/<\/value>/p' /etc/hadoop/conf/core-site.xml
     ```
 
-    Ez a parancs információkat ad vissza a következő XML-hasonló:
+    Ez a parancs visszaadja az adatokat hasonló toohello XML a következő:
 
     ```xml
     <name>fs.defaultFS</name>
@@ -304,29 +304,29 @@ A feladat definíciójához hol található a workflow.xml ismerteti. Azt is ism
     ```
 
     > [!NOTE]
-    > Ha a HDInsight-fürt Azure a tárolót használja az alapértelmezett tárolóként a `<value>` elem tartalma kezdődnie `wasb://`. Ha az Azure Data Lake Store használata esetén kezdődik `adl://`.
+    > Ha a HDInsight-fürt hello Azure Storage hello alapértelmezett tárolóként használ, hello `<value>` elem tartalma kezdődnie `wasb://`. Ha az Azure Data Lake Store használata esetén kezdődik `adl://`.
 
-    Menti a `<value>` elem, mert használatban van a következő lépéseket.
+    Mentés hello hello tartalmát `<value>` elem, mert a hello lépések használatban van.
 
-2. A következő paranccsal lekérni a fürt headnode teljes Tartományneve. Ezt az információt a Hadoopból címet a fürtnek szolgál:
+2. A következő parancs tooget hello fürt headnode teljes Tartományneve hello használata. Ez az információ hello JobTracker címet hello fürtnek szolgál:
 
     ```
     hostname -f
     ```
 
-    Ez hasonló ad vissza adatokat a következő szöveget:
+    Ez visszaadja a szöveg a következő információk hasonló toohello:
 
     ```hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net```
 
-    A Hadoopból használt port 8050,, így a Hadoopból használt a teljes címet van `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.
+    hello hello JobTracker használt port 8050, így a Hadoopból hello hello teljes címe toouse van `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.
 
-3. Az Oozie feladat definition konfiguráció létrehozásához használja a következőket:
+3. A következő toocreate hello Oozie feladat definition konfigurációs hello használata:
 
     ```
     nano job.xml
     ```
 
-4. Amikor megnyílik a nano szerkesztő, használja a következő XML, a fájl tartalmát:
+4. Amikor megnyílik a hello nano szerkesztő, használja a hello XML hello hello fájl tartalmát, a következő:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -389,72 +389,72 @@ A feladat definíciójához hol található a workflow.xml ismerteti. Azt is ism
     </configuration>
     ```
 
-   * Cserélje le az összes példányát  **wasb://mycontainer@mystorageaccount.blob.core.windows.net**  alapértelmezett tárolási korábban fogadott értékkel.
+   * Cserélje le az összes példányát  **wasb://mycontainer@mystorageaccount.blob.core.windows.net**  alapértelmezett tárolási korábban fogadott hello értékkel.
 
      > [!WARNING]
-     > Ha az elérési út egy `wasb` elérési útja, a teljes elérési útja kell használnia. Nem rövidíthető úgy, hogy csak `wasb:///`.
+     > Ha hello elérési út egy `wasb` elérési útja, hello teljes elérési útja kell használnia. Nem rövidíthető az toojust `wasb:///`.
 
-   * Cserélje le **JOBTRACKERADDRESS** korábban fogadott JobTracker/ResourceManager címmel.
-   * Cserélje le **Saját_név** a bejelentkezési névvel a HDInsight-fürthöz.
-   * Cserélje le **kiszolgálónév**, **adminLogin**, és **adminPassword** és az Azure SQL Database vonatkozó információkat.
+   * Cserélje le **JOBTRACKERADDRESS** a korábban fogadott JobTracker/ResourceManager cím hello.
+   * Cserélje le **sajatNev** hello HDInsight-fürthöz, a bejelentkezési névvel.
+   * Cserélje le **kiszolgálónév**, **adminLogin**, és **adminPassword** hello információkkal, illetve az Azure SQL Database adatbázishoz.
 
-     A legtöbb a fájlban található információ a workflow.xml vagy ooziewf.hql fájlokat (például ${nameNode}.) a használt értékek feltöltésére használt eszköz
+     A legtöbb hello információkat ebben a fájlban használt toopopulate hello értékek fájlokban használt hello workflow.xml vagy ooziewf.hql (például ${nameNode}.)
 
      > [!NOTE]
-     > A **oozie.wf.application.path** a bejegyzés határozza meg, hol található a workflow.xml fájl, a feladat futott, amely tartalmazza a munkafolyamat.
+     > Hello **oozie.wf.application.path** a bejegyzés határozza meg, ha a feladat futott toofind hello workflow.xml fájl, amely tartalmazza a hello munkafolyamat.
 
-5. Használja a Ctrl-X, majd **Y** és **Enter** fájl mentéséhez.
+5. Használja a Ctrl-X, majd **Y** és **Enter** toosave hello fájlt.
 
-## <a name="submit-and-manage-the-job"></a>Küldje el, majd a feladatok kezelése
+## <a name="submit-and-manage-hello-job"></a>Küldje el, majd hello feladat kezelése
 
-Az alábbi lépéseket az Oozie-parancs segítségével küldje el, majd a fürt Oozie munkafolyamatok kezelése. A Oozie parancs nem egy egyszerű felületen keresztül a [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
+hello lépések használata hello Oozie parancs toosubmit és kezelése Oozie munkafolyamatok hello fürtön. hello Oozie parancs egy egyszerű felületen keresztül hello [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
 
 > [!IMPORTANT]
-> Az Oozie-paranccsal, ha a HDInsight headnode a teljes Tartománynevét kell használnia. Ez a teljes tartománynév csak az elérhető a fürtből, vagy ha a fürt egy Azure virtuális hálózat ugyanazon a hálózaton lévő más gépekkel.
+> Hello Oozie parancs használata esetén a hello FQDN a hello HDInsight headnode kell használnia. Ez a teljes tartománynév csak elérhető hello fürtből, vagy ha hello fürt hello a más számítógépről egy Azure virtuális hálózat ugyanazon a hálózaton.
 
 
-1. Használja a következő beszerzése az Oozie-szolgáltatás URL-címe:
+1. A következő tooobtain hello URL-cím toohello Oozie szolgáltatás hello használata:
 
     ```
     sed -n '/<name>oozie.base.url/,/<\/value>/p' /etc/oozie/conf/oozie-site.xml
     ```
 
-    Ez adatait adja vissza. a következő XML-hasonló:
+    Ez visszaad információk hasonló toohello XML a következő:
 
     ```xml
     <name>oozie.base.url</name>
     <value>http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie</value>
     ```
 
-    A `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` részére az URL-CÍMÉT az Oozie paranccsal.
+    Hello `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` részét hello URL-cím toouse hello Oozie parancsot a rendszer.
 
-2. Használja a következő környezeti változó létrehozása az URL-cím, így nem kell minden parancs típusról:
+2. Következő hello URL toocreate egy környezeti változó, így nem kell tootype használata hello azt minden parancs:
 
     ```
     export OOZIE_URL=http://HOSTNAMEt:11000/oozie
     ```
 
-    Cserélje le a korábban kapott egy URL-CÍMÉT.
-3. A feladat elküldéséhez használja a következő:
+    Cserélje le egy korábban fogadott hello hello URL-CÍMÉT.
+3. A következő toosubmit hello feladat hello használata:
 
     ```
     oozie job -config job.xml -submit
     ```
 
-    Ez a parancs betölti a feladat adatait **job.xml** , és elküldi Oozie, de nem futtatja a programot.
+    A parancs betölt hello feladat adatait **job.xml** és elküldi tooOozie, de nem futtatható biztosítja.
 
-    A parancs után ez a feladat Azonosítóját kell visszaadnia. Például: `0000005-150622124850154-oozie-oozi-W`. Ezt az Azonosítót a feladat kezelésére szolgál.
+    Hello parancs után az hello feladat hello Azonosítóját kell visszaadnia. Például: `0000005-150622124850154-oozie-oozi-W`. Ez az azonosító is használt toomanage hello feladat.
 
-4. A következő parancsot a feladat állapotának megtekintése:
+4. A következő parancs hello hello feladat hello állapotának megjelenítése:
 
     ```
     oozie job -info <JOBID>
     ```
 
     > [!NOTE]
-    > Cserélje le `<JOBID>` az előző lépés eredményeképpen visszakapott azonosítóval.
+    > Cserélje le `<JOBID>` hello az azonosító hello előző lépés eredményeképpen visszakapott.
 
-    Ez hasonló ad vissza adatokat a következő szöveget:
+    Ez visszaadja a szöveg a következő információk hasonló toohello:
 
     ```
     Job ID : 0000005-150622124850154-oozie-oozi-W
@@ -473,33 +473,33 @@ Az alábbi lépéseket az Oozie-parancs segítségével küldje el, majd a fürt
     ------------------------------------------------------------------------------------------------------------------------------------
     ```
 
-    Ez a feladat állapota `PREP`. Ez az állapot azt jelzi, hogy a feladat lett létrehozva, de nem lett elindítva.
+    Ez a feladat állapota `PREP`. Ez azt jelzi, hogy hello feladat lett létrehozva, de nem indult el.
 
-5. Az alábbi parancs segítségével indítsa el a feladatot:
+5. A következő parancs toostart hello feladat hello használata:
 
     ```
     oozie job -start JOBID
     ```
 
     > [!NOTE]
-    > Cserélje le `<JOBID>` korábban visszaadott azonosítóval.
+    > Cserélje le `<JOBID>` hello az azonosító adott vissza korábban.
 
-    Ez a parancs után ellenőrizze az állapot, ha egy futó állapotban van, és információk jelennek-e a feladat a műveletekhez.
+    Ha hello állapotát a parancs után ellenőrizze, hogy futó állapotban van, és hello feladat hello műveleteire vonatkozó információk jelennek.
 
-6. A feladat sikeres befejeződése után ellenőrizheti, hogy az adatok jön létre, és az SQL-adatbázis táblája exportált a következő parancsokkal:
+6. Hello feladat sikeres befejeződése után ellenőrizheti, hogy hello adatok jött létre, és toohello SQL-adatbázis táblája hello a következő parancsok futtatásával exportált:
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D oozietest
     ```
 
-    : A `1>` kéri, adja meg a következő lekérdezést:
+    A hello `1>` kéri, adja meg a következő lekérdezés hello:
 
     ```
     SELECT * FROM mobiledata
     GO
     ```
 
-    A visszakapott információk hasonlít a következő szöveget:
+    hello adatokat adott vissza a következő szöveg hasonló toohello:
 
         deviceplatform  count
         Android 31591
@@ -510,79 +510,79 @@ Az alábbi lépéseket az Oozie-parancs segítségével küldje el, majd a fürt
         Windows Phone   1791
         (6 rows affected)
 
-A Oozie parancs további információkért lásd: [Oozie parancssori eszköz](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).
+Hello Oozie parancs további információkért lásd: [Oozie parancssori eszköz](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).
 
 ## <a name="oozie-rest-api"></a>Oozie REST API-n
 
-Az Oozie REST API lehetővé teszi a saját buildet Oozie együtt használható. HDInsight Oozie REST API használatával kapcsolatos információk a következők:
+hello Oozie REST API toobuild lehetővé teszi a saját eszközök Oozie együtt használható. Az alábbiakban hello HDInsight hello Oozie REST API használatával kapcsolatos információkat:
 
-* **URI**: A REST API érhetők el, a fürtön kívüli`https://CLUSTERNAME.azurehdinsight.net/oozie`
+* **URI**: hello REST API-n elérhető külső hello fürthöz`https://CLUSTERNAME.azurehdinsight.net/oozie`
 
-* **Hitelesítési**: az a fürt HTTP-fiókkal (rendszergazda) és a jelszó API hitelesítését. Példa:
+* **Hitelesítési**: toohello API hello fürt HTTP-fiókkal (rendszergazda) és a jelszó hitelesítéséhez. Példa:
 
     ```
     curl -u admin:PASSWORD https://CLUSTERNAME.azurehdinsight.net/oozie/versions
     ```
 
-További információ az Oozie REST API használatával, lásd: [Oozie webszolgáltatási API-ra](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
+Hello Oozie REST API használatával kapcsolatos további információkért lásd: [Oozie webszolgáltatási API-ra](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
 
 ## <a name="oozie-web-ui"></a>Oozie webes felhasználói felület
 
-A Oozie webes felhasználói felület révén Oozie feladatok állapotának webes képet a fürtön. A webes felhasználói felület lehetővé teszi a következőket:
+hello Oozie webes felhasználói felület révén Oozie feladatok állapotának hello webes képet hello fürtön. hello webes felhasználói felület lehetővé teszi a következő információ tooview hello:
 
 * Feladat állapota
 * Feladatdefiníció
 * Konfiguráció
-* A műveletek a feladat grafikonja
-* A feladat naplók
+* Hello műveletek hello feladat grafikonja
+* Naplók hello feladat
 
 Műveletek a feladat részleteit is megtekintheti.
 
-Szeretne használni az Oozie webes felhasználói felületén, tegye a következőket:
+tooaccess hello Oozie webes felhasználói felületén, a következő lépéseket hello használata:
 
-1. A HDInsight-fürthöz SSH-alagút létrehozása. További információ: a [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
+1. Hozzon létre egy SSH-alagút toohello HDInsight-fürthöz. További információ: hello [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
 
-2. Ha alagút létrejött, nyissa meg az Ambari webes felhasználói felület a böngészőben. Az URI-azonosítója az Ambari hely **https://CLUSTERNAME.azurehdinsight.net**. Cserélje le **CLUSTERNAME** nevű, a Linux-alapú HDInsight-fürthöz.
+2. Ha alagút létrejött, a böngészőben nyissa meg a hello Ambari webes felhasználói felület. hello URI hello Ambari hely van **https://CLUSTERNAME.azurehdinsight.net**. Cserélje le **CLUSTERNAME** hello nevet, a Linux-alapú HDInsight-fürthöz.
 
-3. Válassza ki a lap bal oldalán, **Oozie**, majd **Gyorshivatkozások**, és végül **Oozie webes felhasználói felületén**.
+3. Válassza ki a hello bal oldalán található hello, **Oozie**, majd **Gyorshivatkozások**, és végül **Oozie webes felhasználói felületén**.
 
-    ![a menük képe](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
+    ![hello menük képe](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
 
-4. Az Oozie webes felhasználói felületének alapértelmezett futó munkafolyamat-feladatok megjelenítése. Minden munkafolyamat-feladatok megtekintéséhez válasszon **összes feladat**.
+4. hello Oozie webes felhasználói felületének alapértelmezett toodisplaying rendszert futtató munkafolyamat-feladatokat. toosee összes munkafolyamat-feladatokat, válassza ki **összes feladat**.
 
     ![Minden feladat jelenik meg](./media/hdinsight-use-oozie-linux-mac/ooziejobs.png)
 
-5. Jelölje ki a feladatot a feladattal kapcsolatos további információk megjelenítéséhez.
+5. Válassza ki a feladat tooview hello feladat további információt.
 
     ![Feladatinformáció](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. A Feladatinformáció lapján tekintheti meg alapvető feladatinformációkat és az egyes műveletek a feladatban található. Használja a füleket felső megtekintheti a feladatdefiníció, feladat konfigurációs hozzáférés a Job Log vagy egy irányított aciklikus diagramhoz (DAG) a feladat megtekintése.
+6. Hello Feladatinformáció lapján tekintheti meg egyszerű feladat információi és hello egyes műveletek hello feladat. Hello lapok használatával megtekintheti hello felső feladatdefiníció, konfigurációs feladatok, hozzáférési hello Job Log hello, vagy egy irányított aciklikus diagramhoz (DAG) hello feladat megtekintése.
 
-   * **Job Log**: válassza ki a **GetLogs** gombra kattint, hogy a feladat összes naplójának beolvasása, vagy használja a **keresési szűrőt adjon meg** mező naplók szűrése
+   * **Job Log**: Select hello **GetLogs** tooget hello feladathoz tartozó összes naplófájlt, illetve programmal hello **keresési szűrőt adjon meg** toofilter naplók mezőben
 
        ![Feladat-napló](./media/hdinsight-use-oozie-linux-mac/joblog.png)
 
-   * **JobDAG**: az adatbázis-elérhetőségi csoport az adatelérési utak venni a munkafolyamaton keresztül egy grafikus áttekintése
+   * **JobDAG**: hello DAG hello adatelérési utak hello munkafolyamaton keresztül végrehajtott grafikus áttekintése
 
        ![Feladat DAG](./media/hdinsight-use-oozie-linux-mac/jobdag.png)
 
-7. A műveletek egyikének kiválasztásával a **Feladatinformáció** információk a művelet lapon megjelenik. Válassza például a **RunHiveScript** művelet.
+7. Egy hello művelet kijelölésével hello **Feladatinformáció** lapon megjelenik információk hello a művelethez. Válassza például a hello **RunHiveScript** művelet.
 
     ![A művelet adatai](./media/hdinsight-use-oozie-linux-mac/action.png)
 
-8. Megtekintheti a részleteket a művelet, például egy hivatkozást a **konzol URL-címe**. Ez a hivatkozás segítségével JobTracker tekintse meg a feladathoz.
+8. Láthatja a részletes hello műveletben, például egy hivatkozás toohello **konzol URL-címe**. Ez a hivatkozás használt tooview JobTracker információk hello feladat lehet.
 
 ## <a name="scheduling-jobs"></a>Feladatütemezés
 
-A koordinátor lehetővé teszi, hogy adja meg egy kezdő, záró és feladatok előfordulási gyakoriságát. A munkafolyamat ütemezését megadásához tegye a következőket:
+hello koordinátor lehetővé teszi az start, záró és előfordulási gyakoriságát feladatok toospecify. toodefine hello munkafolyamat, a lépéseket követve használata hello ütemezés szerint:
 
-1. Használja a következő nevű fájl létrehozása **coordinator.xml**:
+1. A következő toocreate nevű fájl használatát hello **coordinator.xml**:
 
     ```
     nano coordinator.xml
     ```
 
-    A fájl tartalmát a következő XML-kód használata:
+    Hello XML hello hello fájl tartalmát, a következő használja:
 
     ```xml
     <coordinator-app name="my_coord_app" frequency="${coordFrequency}" start="${coordStart}" end="${coordEnd}" timezone="${coordTimezone}" xmlns="uri:oozie:coordinator:0.4">
@@ -595,33 +595,33 @@ A koordinátor lehetővé teszi, hogy adja meg egy kezdő, záró és feladatok 
     ```
 
     > [!NOTE]
-    > A `${...}` változók futásidőben feladatdefinícióban értékek helyett. A változók az alábbiak:
+    > Hello `${...}` változók futásidőben hello feladatdefiníció értékek helyett. hello változók az alábbiak:
     >
-    > * `${coordFrequency}`: A feladat példányt futtatva között eltelt idő.
-    > ** `${coordStart}`: A feladat kezdési időpontja.
-    > * `${coordEnd}`: A feladat befejezési időpontja.
-    > * `${coordTimezone}`: Koordinátor feladatok vannak rögzített időzónában nem nyári időszámításra (általában képviseli UTC használatával). Ez az időzóna kezeli a "Oozie feldolgozási időzónában."
-    > * `${wfPath}`: Az a workflow.xml elérési útja.
+    > * `${coordFrequency}`: Az hello feladat futó példányait között eltelt idő.
+    > ** `${coordStart}`: hello feladat kezdési időpontja.
+    > * `${coordEnd}`: hello feladat befejezési időpontja.
+    > * `${coordTimezone}`: Koordinátor feladatok vannak rögzített időzónában nem nyári időszámításra (általában képviseli UTC használatával). Ez az időzóna kezeli hello "Oozie feldolgozási időzóna."
+    > * `${wfPath}`: hello elérési toohello workflow.xml.
 
-2. Mentse a fájlt, használja a Ctrl-X, **Y**, és **Enter**.
+2. toosave hello fájl létrehozásához használja a Ctrl-X, **Y**, és **Enter**.
 
-3. Az alábbi parancs segítségével másolja a fájlt a feladat munkakönyvtára:
+3. A következő parancs toocopy hello fájl toohello munkakönyvtár megadása a feladat hello használata:
 
     ```
     hadoop fs -put coordinator.xml /tutorials/useoozie/coordinator.xml
     ```
 
-4. A következő használatával módosíthatja a **job.xml** fájlt:
+4. A következő toomodify hello használata hello **job.xml** fájlt:
 
     ```
     nano job.xml
     ```
 
-    A következő módosításokat:
+    Hajtsa végre a következő módosításokat hello:
 
-   * Kérje meg a koordinátor-fájl helyett a munkafolyamat futtatásához oozie, módosítsa `<name>oozie.wf.application.path</name>` való `<name>oozie.coord.application.path</name>`.
+   * tooinstruct oozie toorun hello koordinátor fájl helyett hello munkafolyamat, módosítás `<name>oozie.wf.application.path</name>` túl`<name>oozie.coord.application.path</name>`.
 
-   * Beállítása a `workflowPath` használják a koordinátor adja hozzá a következő XML változó:
+   * tooset hello `workflowPath` hello koordinátor által használt változó hozzáadása a következő XML hello:
 
         ```xml
         <property>
@@ -630,9 +630,9 @@ A koordinátor lehetővé teszi, hogy adja meg egy kezdő, záró és feladatok 
         </property>
         ```
 
-       Cserélje le a `wasb://mycontainer@mystorageaccount.blob.core.windows` más bejegyzések a job.xml fájlban megadott értéknek szöveget.
+       Cserélje le a hello `wasb://mycontainer@mystorageaccount.blob.core.windows` hello értékkel más bejegyzések hello job.xml fájlban használt szöveg.
 
-   * A start, végfelhasználók és a koordinátor gyakorisága megadásához adja hozzá a következő XML:
+   * toodefine hello start, záró és hello koordinátor gyakorisága adja hozzá a következő XML hello:
 
         ```xml
         <property>
@@ -656,89 +656,89 @@ A koordinátor lehetővé teszi, hogy adja meg egy kezdő, záró és feladatok 
         </property>
         ```
 
-       Ezek az értékek értékre van állítva a kezdési időpont 12:00 PM előfordulhat, hogy 10, 2017, 2017. május 12. a befejezési idő. Ez a feladat futtatása naponta intervallumát. A gyakoriság értéke (percben), így 24 óra x 60 perc = 1440 perc. Végezetül UTC időzóna van beállítva.
+       Ezek az értékek beállítása hello kezdési idő too12: 00 PM 2017. Előfordulhat, hogy 10., a befejezési idő tooMay 12, hello 2017. Ez a feladat futtatása naponta hello intervallumát. hello gyakorisága (percben), akkor úgy 24 óra x 60 perc = 1440 perc. Végezetül hello időzóna tooUTC van beállítva.
 
-5. Használja a Ctrl-X, majd **Y** és **Enter** fájl mentéséhez.
+5. Használja a Ctrl-X, majd **Y** és **Enter** toosave hello fájlt.
 
-6. A feladat futtatásához a következő paranccsal:
+6. toorun hello feladat, a következő parancs használata hello:
 
     ```
     oozie job -config job.xml -run
     ```
 
-    Ez a parancs küldi el, és elindítja a feladatot.
+    Ez a parancs küldi el, és elindítja hello feladatot.
 
-7. Ha látogasson el a Oozie webes felhasználói Felületet, és válassza a **koordinátor feladatok** lapon megjelenik az alábbi képen hasonló adatokat:
+7. Ha látogasson el a hello Oozie webes felhasználói felületén, és válassza ki a hello **koordinátor feladatok** lapon látható információk hasonló toohello kép a következő:
 
     ![koordinátor feladatok lap](./media/hdinsight-use-oozie-linux-mac/coordinatorjob.png)
 
-    A **következő Materialization** -bejegyzése tartalmazza a feladat fut. a következő újraindításkor.
+    Hello **következő Materialization** -bejegyzése tartalmazza hello, amikor legközelebb hello feladat futtatása.
 
-8. Hasonló a korábbi munkafolyamat-feladatot, válassza ki a projekt tételt a webes felhasználói felület megjeleníti az információkat a feladat:
+8. Hasonló toohello korábbi munkafolyamat-feladat, kiválasztja hello feladat bejegyzés hello webes felhasználói felület hello feladattal kapcsolatos információkat jeleníti meg:
 
     ![Koordinátor Feladatinformáció](./media/hdinsight-use-oozie-linux-mac/coordinatorjobinfo.png)
 
     > [!NOTE]
-    > Ez a rendszerkép csak a feladat sikeres futtatása az ütemezett munkafolyamaton belül nem az egyéni műveletek jeleníti meg. Amely megtekintéséhez válasszon a **művelet** bejegyzéseket.
+    > Ez a rendszerkép csak hello feladat sikeres futtatása ütemezett hello munkafolyamaton belül nem az egyéni műveletek jeleníti meg. Ezt követően válasszon ki egy hello toosee **művelet** bejegyzéseket.
 
     ![A művelet adatai](./media/hdinsight-use-oozie-linux-mac/coordinatoractionjob.png)
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 
-A Oozie felhasználói felület lehetővé teszi Oozie naplókat. A munkafolyamat által elindított MapReduce-feladatok JobTracker naplókat mutató hivatkozásokat is tartalmaz. A minta hibaelhárítási kell lennie:
+hello Oozie felhasználói felület lehetővé teszi a tooview Oozie naplókat. Hivatkozások tooJobTracker naplók hello munkafolyamat indította MapReduce-feladatok is tartalmaz. hibaelhárítási hello mintát kell lennie:
 
-1. Tekintse meg a feladatot Oozie webes felhasználói felületén.
+1. Hello feladat megtekintése Oozie webes felhasználói felületén.
 
-2. Ha egy hiba vagy egy adott művelet sikertelen, válassza ki a művelet, ha a **hibaüzenet** mező további információkat tartalmazza a hiba esetén.
+2. Ha egy hiba vagy egy adott művelet sikertelen, válassza ki a művelet toosee hello, ha hello **hibaüzenet** mező hello hiba nyújt részletesebb információt.
 
-3. Ha elérhető, a művelet az URL-CÍMÉT segítségével további részleteket (például a Hadoopból naplók) a művelet.
+3. Ha elérhető, használja hello művelet tooview hello URL-CÍMÉT (például a Hadoopból naplók) további részleteket hello a művelethez.
 
-A következő bizonyos hibákat tapasztalhat, és azok megoldását.
+hello az alábbiakban felmerülhet, bizonyos hibákat, és hogyan tooresolve őket.
 
 ### <a name="ja009-cannot-initialize-cluster"></a>JA009: Nem lehet inicializálni a fürt
 
-**A jelenség**: A feladat állapota **FELFÜGGESZTETT**. A feladat részleteinek megjelenítése a RunHiveScript állapotának **START_MANUAL**. A művelet kiválasztása a következő hibaüzenetet jeleníti meg:
+**A jelenség**: hello túl a feladat állapotának megváltozásakor**FELFÜGGESZTETT**. Hello feladat részleteinek megjelenítése hello RunHiveScript állapotának **START_MANUAL**. Látható értesítések valamelyikének kiválasztásakor hello művelet a következő hibaüzenet hello:
 
     JA009: Cannot initialize Cluster. Please check your configuration for map
 
-**OK**: A WASB használt címek a **job.xml** fájl nem tartalmaz, a tároló vagy a tárfiók nevét. A WASB cím formátumban kell megadni `wasb://containername@storageaccountname.blob.core.windows.net`.
+**OK**: hello WASB címekre hello **job.xml** fájl tartalmaz hello tároló vagy a tárfiók nevét. hello WASB cím formátumban kell megadni `wasb://containername@storageaccountname.blob.core.windows.net`.
 
-**Megoldási**: módosítsa a WASB címeket, a feladat használja.
+**Megoldási**: hello feladat által használt hello WASB címek módosítása.
 
-### <a name="ja002-oozie-is-not-allowed-to-impersonate-ltuser"></a>JA002: Oozie nem lehet megszemélyesíteni &lt;felhasználó >
+### <a name="ja002-oozie-is-not-allowed-tooimpersonate-ltuser"></a>JA002: A Oozie nem engedélyezett a tooimpersonate &lt;felhasználó >
 
-**A jelenség**: A feladat állapota **FELFÜGGESZTETT**. A feladat részleteinek megjelenítése a RunHiveScript állapotának **START_MANUAL**. A művelet kiválasztása jeleníti meg a következő hibaüzenet:
+**A jelenség**: hello túl a feladat állapotának megváltozásakor**FELFÜGGESZTETT**. Hello feladat részleteinek megjelenítése hello RunHiveScript állapotának **START_MANUAL**. A következő hibaüzenet hello hello művelet kiválasztása jeleníti meg:
 
-    JA002: User: oozie is not allowed to impersonate <USER>
+    JA002: User: oozie is not allowed tooimpersonate <USER>
 
-**OK**: jelenlegi engedélybeállítások nem teszik lehetővé az Oozie megszemélyesíthet-e a megadott felhasználói fiók.
+**OK**: aktuális engedély-beállítások nem teszik lehetővé az Oozie tooimpersonate hello adott felhasználói fiókot.
 
-**Megoldási**: Oozie megszemélyesíteni a felhasználók számára engedélyezett a **felhasználók** csoport. Használja a `groups USERNAME` megtekintéséhez a csoportokat, amelyek a felhasználói fiók tagja. Ha a felhasználó nem tagja a **felhasználók** csoportjában vegye fel a felhasználót a csoportba a következő paranccsal:
+**Megoldási**: Oozie tooimpersonate felhasználók engedélyezett hello **felhasználók** csoport. Használjon hello `groups USERNAME` , amely a felhasználói fiók hello toosee hello csoportok tagja. Ha hello felhasználó nem tagja hello **felhasználók** csoportjában a következő parancs toohello tooadd hello felhasználócsoport hello használata:
 
     sudo adduser USERNAME users
 
 > [!NOTE]
-> HDInsight felismeri, hogy a felhasználó hozzáadta-e a csoport több percig is eltarthat.
+> HDInsight felismeri, hogy a felhasználó hello hozzáadott toohello csoport több percig is eltarthat.
 
 ### <a name="launcher-error-sqoop"></a>Hiba (Sqoop) indítója
 
-**A jelenség**: A feladat állapota **KILLED**. A feladat részleteinek megjelenítése a RunSqoopExport állapotának **hiba**. A művelet kiválasztása jeleníti meg a következő hibaüzenet:
+**A jelenség**: hello túl a feladat állapotának megváltozásakor**KILLED**. Hello feladat részleteinek megjelenítése hello RunSqoopExport állapotának **hiba**. A következő hibaüzenet hello hello művelet kiválasztása jeleníti meg:
 
     Launcher ERROR, reason: Main class [org.apache.oozie.action.hadoop.SqoopMain], exit code [1]
 
-**OK**: Sqoop nem tudja betölteni az adatbázis eléréséhez szükséges adatbázis-illesztőprogramját.
+**OK**: Sqoop értéke nem lehet tooload hello illesztőprogram szükséges tooaccess hello adatbázist.
 
-**Megoldási**: amikor egy Oozie-feladat a Sqoop használ, meg kell adni a feladat által használt adatbázis illesztőprogram más erőforrások (például a workflow.xml). Az adatbázis-illesztőprogramját tartalmazó archív is hivatkozhat a `<sqoop>...</sqoop>` a workflow.xml szakasza.
+**Megoldási**: Sqoop egy Oozie feladatból használatakor meg kell adni hello adatbázis illesztőprogram hello más erőforrások (például a hello workflow.xml) hello feladat használja. Hello archív hello adatbázis illesztőprogram hello tartalmazó is hivatkozni `<sqoop>...</sqoop>` hello workflow.xml szakasza.
 
-Például a feladat ebben a dokumentumban, akkor használja az alábbi lépéseket:
+Például hello feladat ebben a dokumentumban, használja a következő lépéseket hello:
 
-1. Másolja a sqljdbc4.1.jar fájlt a /tutorials/useoozie könyvtár:
+1. Másolja a hello sqljdbc4.1.jar toohello /tutorials/useoozie könyvtára:
 
     ```
     hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /tutorials/useoozie/sqljdbc41.jar
     ```
 
-2. Módosítsa a következő XML-kód hozzáadása a fenti új sor workflow.xml `</sqoop>`:
+2. Módosítsa a hello workflow.xml tooadd hello XML a fenti új sor a következő `</sqoop>`:
 
     ```xml
     <archive>sqljdbc41.jar</archive>
@@ -746,7 +746,7 @@ Például a feladat ebben a dokumentumban, akkor használja az alábbi lépések
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban megtanulta, hogyan adhat meg egy Oozie munkafolyamat és az Oozie-feladat futtatása. A HDInsight használata kapcsolatos további tudnivalókért tekintse meg a következő cikkeket:
+Ebben az oktatóanyagban, megtudta, hogyan toodefine egy Oozie munkafolyamat és hogyan toorun egy Oozie feladat. További információk a HDInsight, használata toolearn lásd: a következő cikkek hello:
 
 * [Időalapú Oozie-koordinátor használata a hdinsight eszközzel][hdinsight-oozie-coordinator-time]
 * [Hdinsight Hadoop-feladatokat az adatok feltöltése][hdinsight-upload-data]

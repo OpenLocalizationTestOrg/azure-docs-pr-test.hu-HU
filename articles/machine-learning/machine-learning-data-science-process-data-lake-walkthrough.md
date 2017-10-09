@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Data Lake méretezhető Adattudomány: egy végpontok közötti forgatókönyv |} Microsoft Docs"
-description: "Hogyan használható az Azure Data Lake adatok feltárása és bináris osztályozás feladatok végrehajtására a dataset."
+description: "Hogyan toouse Azure Data Lake toodo adatok feltárása és bináris osztályozás a dataset feladatok."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/30/2017
 ms.author: bradsev;weig
-ms.openlocfilehash: 34fbe99572b4a6cee73de6ae5412a0ec09dd1ccc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8b05457ae7045a7aaed350a7502469f2247161e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scalable-data-science-with-azure-data-lake-an-end-to-end-walkthrough"></a>Az Azure Data Lake méretezhető Adattudomány: egy végpont forgatókönyv
-Ez a bemutató ismerteti az Azure Data Lake használata az adatok feltárása és a bináris osztályozási feladatok NYC taxi út mintán és díjszabás előre jelezni, hogy tipp fizeti a jegy ára adatkészlet. Az végigvezeti a lépéseken, a [Team adatok tudományos folyamat](http://aka.ms/datascienceprocess), végpontok, tanítási modell az adatgyűjtést, majd egy webszolgáltatás, amely közzéteszi a modell a központi telepítéshez.
+Ez a bemutató ismerteti, hogyan toouse Azure Data Lake toodo adatok feltárása és a bináris osztályozási feladatok hello NYC mintában taxiköltség út és a jegy ára dataset toopredict tipp egy jegy ára fizeti lesz-e. Az végigvezeti hello a hello [Team adatok tudományos folyamat](http://aka.ms/datascienceprocess), végpontok, az adatok megszerzése toomodel képzési, és egy webszolgáltatás, amelyet hello modell közzéteszi toohello telepítését.
 
 ### <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
-A [Microsoft Azure Data Lake](https://azure.microsoft.com/solutions/data-lake/) összes funkciókkal rendelkeznek, könnyebben adatszakértőkön szükséges adatok mérete, alakzat és sebesség tárolására, és elvégezheti az adatok feldolgozása, speciális elemzés és költséghatékony magas méretezhetőség modellezési gépi tanulás.   Kell fizetnie a feladatonként, csak akkor, ha ténylegesen feldolgozott adatokat. Az Azure Data Lake Analytics U-SQL, az egy nyelv, amely méretezhető biztosításához a C# kifejezőerejével SQL deklaratív természetét keveri elosztott lekérdezés funkció. Ez lehetővé teszi a strukturálatlan adatok feldolgozása olvasáskor séma alkalmazásával, egyéni logika és a felhasználó által megadott funkciókat (UDF), és bővítési részletes szabályozhatják, hogyan hajthat végre léptékű engedélyezéséhez. U-SQL mögött tervezési alapvetően kapcsolatos további információkért lásd: [Visual Studio által írt blogbejegyzés](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/).
+Hello [Microsoft Azure Data Lake](https://azure.microsoft.com/solutions/data-lake/) szükséges toomake összes hello képességekkel rendelkezik egyszerűen az adatok kutatók toostore adatok bármely méretét, az alakzat és a sebesség és a tooconduct adatfeldolgozás, speciális elemzés és a machine learning modellezési magas méretezhetőség költséghatékony módon.   Kell fizetnie a feladatonként, csak akkor, ha ténylegesen feldolgozott adatokat. Az Azure Data Lake Analytics U-SQL, az, hogy színátmenet hello deklaratív természetét a C# tooprovide méretezhető hello kifejezőerejével SQL nyelvű elosztott lekérdezés funkció. Tooprocess lehetővé teszi a séma alkalmazásával olvasható, a strukturálatlan adatok beszúrása egyéni logika és a felhasználó által definiált működik (UDF), és tartalmazza a bővítési tooenable finom nyomtatott szabályozhatják, hogyan tooexecute méretekben. toolearn hello tervezési alapvetően mögött U-SQL, kapcsolatos további információkért lásd: [Visual Studio által írt blogbejegyzés](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/).
 
 A Data Lake Analytics kulcseleme a Cortana Analytics Suite csomagnak is, emellett az Azure SQL Data Warehouse, a Power BI és a Data Factory szolgáltatásokkal is együttműködik. Ez lehetővé teszi egy teljes felhőalapú big Data típusú adatok és a speciális elemzési platformot.
 
-Ez a forgatókönyv megkezdése az Előfeltételek és a Data Lake Analytics az tudományos folyamat, és hogyan telepítheti azokat alkotó feladatok elvégzéséhez szükséges erőforrások ismertetésével. Ezután a U-SQL használatával adatfeldolgozási lépéseit sorolja fel, és arra a következtetésre jut jelenít meg a Python és a Hive használata Azure Machine Learning Studio létrehozásához és telepítéséhez a prediktív modellek. 
+Ez a forgatókönyv megkezdése toocomplete hello szükséges feladatok Data Lake Analytics hello adatok tudományos folyamat alkotó, és milyen erőforrásokat és hello Előfeltételek ismertetésével tooinstall őket. Ezután U-SQL használatával hello adatfeldolgozási lépéseit sorolja fel, és arra a következtetésre jut jelenít meg hogyan toouse Python és az Azure Machine Learning Studio toobuild struktúra és üzembe prediktív modelleket hello. 
 
 ### <a name="u-sql-and-visual-studio"></a>U-SQL és a Visual Studio
-Ez a forgatókönyv az adatkészlet feldolgozása U-SQL parancsfájl szerkesztése a Visual Studio használatát javasolja. A U-SQL-parancsfájlok ismerteti, és egy különálló fájlban megadott. A folyamat választásával dolgozhat fel, felfedezése és az adatok mintavétele tartalmazza. Azt is bemutatja, hogyan U-SQL parancsfájl alapú végezzen Azure-portálról. Hive táblák hoz létre az épület és a bináris osztályozási modell Azure Machine Learning Studio telepítési társított HDInsight-fürtök az adatokat.  
+Ez a forgatókönyv azt javasolja, hogy a Visual Studio tooedit U-SQL parancsfájlok tooprocess hello adatkészlet. hello U-SQL-parancsfájlok ismerteti, és egy különálló fájlban megadott. hello folyamat választásával dolgozhat fel, felfedezése és hello az adatok mintavétele tartalmazza. Azt is bemutatja, hogyan toorun egy U-SQL parancsfájl-alapú hello Azure-portál a feladat. Hive táblák hello adatok egy társított HDInsight fürt toofacilitate hello épület és a központi telepítés egy bináris besorolási modell az Azure Machine Learning Studióban jön létre.  
 
 ### <a name="python"></a>Python
-Ez a forgatókönyv bemutatja, hogyan létrehozásához és telepítéséhez használja a Python Azure Machine Learning Studio prediktív modellek szakasz is tartalmaz.  Jupyter notebook a Python parancsfájlokkal, ezeket a lépéseket, a folyamat a nyújtunk. A notebook néhány további szolgáltatás mérnöki lépéseket és -modellek konstrukció például multiclass besorolás és a bináris osztályozási modell itt vázolt mellett modellezési regressziós kódját tartalmazza. A regresszió feladata más tip szolgáltatások alapján tipp mennyisége előre jelezni. 
+Ez a forgatókönyv is egy szakaszt tartalmaz, amely bemutatja, hogyan toobuild és központi telepítése a Python használata az Azure Machine Learning Studio prediktív modellt.  Jupyter notebook hello Python parancsfájlokkal, ezeket a lépéseket, a folyamat a nyújtunk. hello notebook néhány további szolgáltatás mérnöki lépéseit, valamint a például a multiclass besorolást és a modellezési továbbá toohello bináris osztályozási modell itt vázolt regressziós modell konstrukció kódot tartalmazza. hello regressziós feladat érték toopredict hello hello tipp más tip szolgáltatások alapján. 
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Az Azure Machine Learning Studio létrehozásához és telepítéséhez a prediktív modellek szolgál. Ebben az esetben két módszer használatával: első Python-parancsfájlok majd Hive táblák HDInsight (Hadoop) fürtökön.
+Az Azure Machine Learning Studio használt toobuild és üzembe prediktív modelleket hello. Ebben az esetben két módszer használatával: első Python-parancsfájlok majd Hive táblák HDInsight (Hadoop) fürtökön.
 
 ### <a name="scripts"></a>Parancsprogramok
-A bemutatóban szereplő eljárásokat csak az egyszerű lépéseket. Letöltheti a teljes **U-SQL parancsfájl** és **Jupyter Notebook** a [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
+A bemutatóban szereplő eljárásokat csak hello egyszerű lépéseket. Letöltheti a teljes hello **U-SQL parancsfájl** és **Jupyter Notebook** a [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ezek a témakörök elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ezek a témakörök megkezdése előtt hello következő kell rendelkeznie:
 
 * Azure-előfizetés. Ha még nem rendelkezik egy, lásd: [beolvasása az Azure ingyenes próbaverzió](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * [Ajánlott] A Visual Studio 2013 vagy újabb verzió. Ha még nem rendelkezik ilyen verziójú telepítve, akkor egy ingyenes közösségi verziója letölthető a [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 > [!NOTE]
-> Visual Studio helyett is használhatja az Azure portál elküldeni az Azure Data Lake-lekérdezéseket. Erre a Visual Studio úgy is, és a portál című részben található útmutatást lesz elérhető **feldolgozni az adatokat az U-SQL**. 
+> Visual Studio helyett hello Azure Portal toosubmit Azure Data Lake-lekérdezéseket is használhatja. Hogyan toodo, a Visual Studio- és kilépéskor egyaránt hello portal hello szakaszában jelenik meg a Microsoft szükséges műveleteket **feldolgozni az adatokat az U-SQL**. 
 > 
 > 
 
 
 ## <a name="prepare-data-science-environment-for-azure-data-lake"></a>Azure Data Lake data tudományos környezet előkészítése
-Ez a forgatókönyv az adatok tudományos környezet előkészítése, hozzon létre a következőket:
+tooprepare hello adatok tudományos környezetben ennél a bemutatónál hozza létre a következő erőforrások hello:
 
 * Az Azure Data Lake Store-(ADLS) 
 * Az Azure Data Lake Analytics (ADLA)
@@ -63,47 +63,47 @@ Ez a forgatókönyv az adatok tudományos környezet előkészítése, hozzon l�
 * Azure Machine Learning Studio-fiók
 * Az Azure Data Lake Tools for Visual Studio (ajánlott)
 
-Ez a szakasz útmutatást létrehozásával egyes ezeket az erőforrásokat. Ha úgy dönt, hogy a Hive táblák használata az Azure Machine Learning, Python, helyett egy modell összeállításához is szüksége lesz (Hadoop) HDInsight-fürtök kiépítéséhez. Az alternatív eljárás a megfelelő részben leírt.
+Ez a szakasz útmutatás toocreate minden erőforrásainak. Ha úgy dönt, toouse Hive táblák Azure Machine Learning segítségével, Python, a modell toobuild helyett tooprovision (Hadoop) HDInsight-fürtök is szüksége lesz. Az alternatív eljárás hello megfelelő részben leírt.
 
 
 > [!NOTE]
-> A **Azure Data Lake Store** is létrehozható, vagy külön-külön vagy létrehozásakor a **Azure Data Lake Analytics** az alapértelmezett tárolóként. Ezek külön-külön az alábbi erőforrások mindegyikének létrehozására vonatkozó utasításokat hivatkozott, de a Data Lake-tárfiókot kell nem kell külön hoz létre.
+> Hello **Azure Data Lake Store** is létrehozható, vagy külön-külön vagy hello létrehozásakor **Azure Data Lake Analytics** hello alapértelmezett tárolóként. Ezek külön-külön az alábbi erőforrások mindegyikének létrehozására vonatkozó utasításokat hivatkozott, de hello Data Lake-tárfiókot kell nem kell külön hoz létre.
 >
 > 
 
 ### <a name="create-an-azure-data-lake-store"></a>Hozzon létre egy Azure Data Lake Store
 
 
-Hozzon létre egy ADLS a a [Azure-portálon](http://portal.azure.com). További információkért lásd: [HDInsight-fürtök létrehozása az Azure portál használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md). Ügyeljen arra, hogy a fürt AAD-identitása beállítása a **DataSource** panel a **opcionális konfigurációs** panel leírt van. 
+Hozzon létre egy ADLS a hello [Azure Portal](http://portal.azure.com). További információkért lásd: [HDInsight-fürtök létrehozása az Azure portál használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md). Meg arról, hogy tooset hello a fürt AAD-identitása hello fel kell **DataSource** panelen található hello **opcionális konfigurációs** panel leírt van. 
 
  ![3](./media/machine-learning-data-science-process-data-lake-walkthrough/3-create-ADLS.PNG)
 
 ### <a name="create-an-azure-data-lake-analytics-account"></a>Azure Data Lake Analytics-fiók létrehozása
-Az ADLA-fiók létrehozása a [Azure Portal](http://portal.azure.com). További információkért lásd: [oktatóanyag: Ismerkedés az Azure Data Lake Analytics Azure portál használatával](../data-lake-analytics/data-lake-analytics-get-started-portal.md). 
+ADLA-fiók létrehozása a hello [Azure Portal](http://portal.azure.com). További információkért lásd: [oktatóanyag: Ismerkedés az Azure Data Lake Analytics Azure portál használatával](../data-lake-analytics/data-lake-analytics-get-started-portal.md). 
 
  ![4](./media/machine-learning-data-science-process-data-lake-walkthrough/4-create-ADLA-new.PNG)
 
 ### <a name="create-an-azure-blob-storage-account"></a>Egy Azure Blob storage-fiók létrehozása
-Hozzon létre egy Azure Blob storage-fiókot az a [Azure Portal](http://portal.azure.com). További információkért lásd: a hozzon létre egy tárolási fiók szakasz [tudnivalók az Azure storage-fiókok](../storage/common/storage-create-storage-account.md).
+Egy Azure Blob storage-fiók létrehozása hello [Azure Portal](http://portal.azure.com). További információkért lásd: hello hozzon létre egy tárfiókot című [tudnivalók az Azure storage-fiókok](../storage/common/storage-create-storage-account.md).
 
  ![5](./media/machine-learning-data-science-process-data-lake-walkthrough/5-Create-Azure-Blob.PNG)
 
 ### <a name="set-up-an-azure-machine-learning-studio-account"></a>Az Azure Machine Learning Studio fiók beállítása
-Jelentkezzen be- / az Azure Machine Learning Studio a a [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) lap. Kattintson a **az induláshoz** gombra, majd válassza a "Szabad munkaterület" vagy "Szabványos munkaterület". Ezt követően lesz az Azure ML Studio létrehozása a mintakísérletek használatával.  
+Jelentkezzen be- / az Azure Machine Learning Studio a hello [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) lap. Kattintson a hello **az induláshoz** gombra, majd válassza a "Szabad munkaterület" vagy "Szabványos munkaterület". Ezt követően az Azure ML Studio képes toocreate kísérletek fogja.  
 
 ### <a name="install-azure-data-lake-tools-recommended"></a>Telepítheti az Azure Data Lake Tools [ajánlott]
 Azure Data Lake Tools telepítése a Visual Studio verziójának [Azure Data Lake Tools for Visual Studio](https://www.microsoft.com/download/details.aspx?id=49504).
 
  ![6](./media/machine-learning-data-science-process-data-lake-walkthrough/6-install-ADL-tools-VS.PNG)
 
-A telepítés sikeres befejezése után nyissa meg a Visual Studio. A Data Lake lapon a menü felső részén kell megjelennie. Az Azure-erőforrások meg kell jelennie a bal oldali panelen történő bejelentkezéskor be Azure-fiókjába.
+Hello telepítés sikeres befejezése után nyissa meg a Visual Studio. Hello Data Lake lapon hello menü hello felső kell megjelennie. Az Azure-erőforrások meg kell jelennie a hello bal oldali panelen történő bejelentkezéskor be Azure-fiókjába.
 
  ![7](./media/machine-learning-data-science-process-data-lake-walkthrough/7-install-ADL-tools-VS-done.PNG)
 
-## <a name="the-nyc-taxi-trips-dataset"></a>A NYC Taxi Utazgatással adatkészlet
-Az itt használt adatkészlet nyilvánosan elérhető dataset--a [NYC Taxi Utazgatással dataset](http://www.andresmh.com/nyctaxitrips/). A NYC Taxi út tartalmaz körülbelül 20GB tömörített CSV-fájlok (tömörítetlen ~ 48GB), minden út kifizette több mint 173 millió egyedi való adatváltások számát és a vitel rögzítése. Minden út rekord tartalmazza a felvétel és Gyűjtőtár helyeket és időpontokat, anonimizált rejthetők el (illesztőprogram) licencszám, és a medallion (taxi tartozó egyedi azonosító) számát. Az adatok minden való adatváltások számát ismerteti az év 2013, és minden hónap a következő két adatkészletet találhatók:
+## <a name="hello-nyc-taxi-trips-dataset"></a>hello NYC Taxi Utazgatással adatkészlet
+hello itt használtuk adatkészlet nyilvánosan elérhető dataset – hello [NYC Taxi Utazgatással dataset](http://www.andresmh.com/nyctaxitrips/). hello NYC Taxi út adatok körülbelül 20GB tömörített CSV-fájlok (~ 48GB tömörítetlen) áll, több mint 173 millió rögzítése egyéni utak és hello turistajegyek esetében minden út kifizette. Minden út rekord hello felvétel és Gyűjtőtár helyeket tartalmaz, és időpontokat, anonimizált adatokon alapul (illesztőprogram) licencszám ellophatja, és hello medallion (taxi tartozó egyedi azonosító) száma. hello adatok hello évben 2013 hozzá van rendelve minden való adatváltások számát, és megtalálható a következő két adatkészletet havonta hello:
 
-* A "trip_data" CSV út részletek, például a utasok, a felvételi és dropoff pontok, út időtartama és út hossza tartalmazza. Íme néhány példa rekordok:
+* hello "trip_data" CSV út részleteit, például a utasok, a felvételi és dropoff pontok, út időtartama és út hossza tartalmazza. Íme néhány példa rekordok:
   
        medallion,hack_license,vendor_id,rate_code,store_and_fwd_flag,pickup_datetime,dropoff_datetime,passenger_count, trip_time_in_secs,trip_distance,pickup_longitude,pickup_latitude,dropoff_longitude,dropoff_latitude
        89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,1,N,2013-01-01 15:11:48,2013-01-01 15:18:10,4,382,1.00,-73.978165,40.757977,-73.989838,40.751171
@@ -111,7 +111,7 @@ Az itt használt adatkészlet nyilvánosan elérhető dataset--a [NYC Taxi Utazg
        0BD7C8F5BA12B88E0B67BED28BEA73D8,9FD8F69F0804BDB5549F40E9DA1BE472,CMT,1,N,2013-01-05 18:49:41,2013-01-05 18:54:23,1,282,1.10,-74.004707,40.73777,-74.009834,40.726002
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:54:15,2013-01-07 23:58:20,2,244,.70,-73.974602,40.759945,-73.984734,40.759388
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:25:03,2013-01-07 23:34:24,1,560,2.10,-73.97625,40.748528,-74.002586,40.747868
-* A "trip_fare" CSV a jegy ára kifizette minden út, például a fizetési mód, jegy ára összeg, emelt díjas és adókat, tippeket és autópályadíjak, és a teljes összeg fizetős részleteit tartalmazza. Íme néhány példa rekordok:
+* hello "trip_fare" CSV hello jegy ára minden út, például a fizetési módot, jegy ára összeg, emelt díjas és, tippeket és autópályadíjakra, és kifizetett hello teljes összeg kifizette részleteit tartalmazza. Íme néhány példa rekordok:
   
        medallion, hack_license, vendor_id, pickup_datetime, payment_type, fare_amount, surcharge, mta_tax, tip_amount, tolls_amount, total_amount
        89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,2013-01-01 15:11:48,CSH,6.5,0,0.5,0,0,7
@@ -120,10 +120,10 @@ Az itt használt adatkészlet nyilvánosan elérhető dataset--a [NYC Taxi Utazg
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:54:15,CSH,5,0.5,0.5,0,0,6
        DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:25:03,CSH,9.5,0.5,0.5,0,0,10.5
 
-Egyedi kulcs út csatlakozni\_adatok és út\_jegy ára tevődnek össze a következő három mezőt: medallion, rejthetők el\_licenc és a felvételi\_dátum és idő. A nyers CSV-fájlok elérhetők a nyilvános Azure storage-blobba. Ezt az összekapcsolást a U-SQL-parancsfájlt a rendszer a [út és a jegy ára csatlakozás](#join) szakasz.
+hello egyedi kulcs toojoin út\_adatok és út\_jegy ára tevődnek össze a következő három mezőt hello: medallion, rejthetők el\_licenc és a felvételi\_datetime. egy nyilvános Azure storage-blob hello nyers CSV-fájlok elérhetők. U-SQL parancsfájl hello ezt az összekapcsolást érték a hello [út és a jegy ára csatlakozás](#join) szakasz.
 
 ## <a name="process-data-with-u-sql"></a>A U-SQL adatok feldolgozása
-Az adatok feldolgozása ebben a szakaszban ismertetett feladatok választásával dolgozhat fel, minőségi ellenőrzése, felfedezése és az adatok mintavétele. Is megmutatjuk, hogyan csatlakoztathatók a út és a jegy ára. A végső szakaszban futtatási megjelenik egy U-SQL parancsfájl feladatot az Azure-portálon. Az alábbiakban minden alszakasz mutató hivatkozásokat:
+hello adatfeldolgozási ebben a szakaszban ismertetett feladatok választásával dolgozhat fel, minőségi ellenőrzése, felfedezése és hello az adatok mintavétele. Is megmutatjuk, hogyan toojoin út és a jegy ára tábla. hello végső szakasz futtatási bemutatja a U-SQL parancsfájl feladatot hello Azure-portálon. Az alábbiakban hivatkozások tooeach alszakasz:
 
 * [Adatfeldolgozást: nyilvános blob adatainak olvasása](#ingest)
 * [Adatminőségi ellenőrzése](#quality)
@@ -132,21 +132,21 @@ Az adatok feldolgozása ebben a szakaszban ismertetett feladatok választásáva
 * [Adat-mintavételezésre](#sample)
 * [U-SQL feladatok futtatása](#run)
 
-A U-SQL-parancsfájlok ismerteti, és egy különálló fájlban megadott. Letöltheti a teljes **U-SQL-parancsfájlok** a [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
+hello U-SQL-parancsfájlok ismerteti, és egy különálló fájlban megadott. Letöltheti a teljes hello **U-SQL-parancsfájlok** a [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough).
 
-U-SQL, nyissa meg a Visual Studio, végrehajtásához kattintson **fájl--> Új projekt-->**, válassza a **U-SQL projekt**, a nevet, és mentse azt egy mappát.
+tooexecute U-SQL, nyissa meg a Visual Studio, kattintson a **fájl--> Új projekt-->**, válassza a **U-SQL projekt**, a nevet, és mentse tooa mappa.
 
 ![8](./media/machine-learning-data-science-process-data-lake-walkthrough/8-create-USQL-project.PNG)
 
 > [!NOTE]
-> Akkor lehet végrehajtani a U-SQL Visual Studio helyett az Azure portál használatával. Keresse meg az Azure Data Lake Analytics-erőforrás a portálon, és közvetlenül, az alábbi ábrán szemléltetett lekérdezések.
+> Már lehetséges toouse hello Azure Portal tooexecute U-SQL Visual Studio helyett. Keresse meg az Azure Data Lake Analytics-erőforrás toohello hello portálon, és közvetlenül, a következő ábra hello illusztrált lekérdezések.
 > 
 > 
 
 ![9](./media/machine-learning-data-science-process-data-lake-walkthrough/9-portal-submit-job.PNG)
 
 ### <a name="ingest"></a>Adatfeldolgozást: A nyilvános blob adatainak olvasása
-Az adatok az Azure-blobot a helyét hivatkozott  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**  és használatával kiolvasható **Extractors.Csv()**. Helyettesítse a saját tároló nevének és a tárfiók nevét az alábbi parancsfájlok a container_name@blob_storage_account_name wasb címe. Mivel a fájl nevét a ugyanazt a formátumot, használhatjuk **út\_data_ {\*\}.csv** összes 12 út fájl olvasásához. 
+hello adatok Azure blob hello hello helyét hivatkozott  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**  és használatával kiolvasható **Extractors.Csv()**. Helyettesítse a saját tároló nevének és a tárfiók nevét az alábbi parancsfájlok a container_name@blob_storage_account_name hello wasb címét. Mivel ugyanazt a formátumot a hello fájlneveket, használhatjuk **út\_data_ {\*\}.csv** tooread összes 12 út fájl. 
 
     ///Read in Trip data
     @trip0 =
@@ -169,7 +169,7 @@ Az adatok az Azure-blobot a helyét hivatkozott  **wasb://container_name@blob_st
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-Mivel az első sorban fejlécek, kell a távolítsa el a fejlécek típusú oszlopokat átalakítása megfelelő néhányat a meglévők közül. Azt is, vagy mentse a feldolgozott adatok Azure Data Lake Storage használatával **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_ vagy az Azure Blob storage-fiók használatával  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** . 
+Mivel hello első sorában fejlécek, azt kell tooremove hello fejlécek, és oszloptípus átalakítása megfelelő néhányat a meglévők közül. Azt a mentés elvégezhető feldolgozott hello tooAzure Data Lake Storage használatával végzett **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_ vagy tooAzure Blob-tároló fiók használatával  **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** . 
 
     // change data types
     @trip =
@@ -191,28 +191,28 @@ Mivel az első sorban fejlécek, kell a távolítsa el a fejlécek típusú oszl
     FROM @trip0
     WHERE medallion != "medallion";
 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @trip   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_trip.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_trip.csv"
     USING Outputters.Csv(); 
 
-    ////Output data to blob
+    ////Output data tooblob
     OUTPUT @trip   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_trip.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_trip.csv"
     USING Outputters.Csv();  
 
-Hasonlóképpen a jegy ára adathalmaz elolvashatják azt. Kattintson a jobb gombbal az Azure Data Lake Store, ha szeretné, nézze meg az adatok **Azure Portal--> adatkezelő** vagy **Fájlkezelőben** Visual studióban. 
+Hasonlóképpen azt olvasási hello jegy ára adathalmaz. Kattintson a jobb gombbal az Azure Data Lake Store, választhatja az adatok toolook **Azure Portal adatkezelő-->** vagy **Fájlkezelőben** Visual studióban. 
 
  ![10](./media/machine-learning-data-science-process-data-lake-walkthrough/10-data-in-ADL-VS.PNG)
 
  ![11](./media/machine-learning-data-science-process-data-lake-walkthrough/11-data-in-ADL.PNG)
 
 ### <a name="quality"></a>Adatminőségi ellenőrzése
-Miután út és a jegy ára az olvasott, adatminőségi ellenőrzése a következő módon teheti meg. Az eredményül kapott CSV-fájlok Azure Blob storage-vagy Azure Data Lake Store lehet. 
+Miután út és a jegy ára az olvasott, adatminőségi ellenőrzése a következő módon hello végezhető. CSV-fájlok eredő hello kimeneti tooAzure Blob-tároló vagy az Azure Data Lake Store lehet. 
 
-Keresse meg és medallions egyedi száma medallions száma:
+Keresse meg medallions hello száma és medallions egyedi száma:
 
-    ///check the number of medallions and unique number of medallions
+    ///check hello number of medallions and unique number of medallions
     @trip2 =
         SELECT
         medallion,
@@ -228,7 +228,7 @@ Keresse meg és medallions egyedi száma medallions száma:
         FROM @trip2
         GROUP BY pickup_month;
         OUTPUT @ex_1   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_1.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_1.csv"
     USING Outputters.Csv(); 
 
 Keresse meg azokat, amelyek 100-nál több utazgatással kellett medallions:
@@ -242,7 +242,7 @@ Keresse meg azokat, amelyek 100-nál több utazgatással kellett medallions:
         GROUP BY medallion
         HAVING COUNT(medallion) > 100;
         OUTPUT @ex_2   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_2.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_2.csv"
     USING Outputters.Csv(); 
 
 Található érvénytelen rekordokat pickup_longitude tekintetében:
@@ -254,7 +254,7 @@ Található érvénytelen rekordokat pickup_longitude tekintetében:
         WHERE
         pickup_longitude <- 90 OR pickup_longitude > 90;
         OUTPUT @ex_3   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_3.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_3.csv"
     USING Outputters.Csv(); 
 
 Az egyes változók hiányzó értékeinek megkeresése:
@@ -274,15 +274,15 @@ Az egyes változók hiányzó értékeinek megkeresése:
         FROM @res
         GROUP BY vendor_id;
     OUTPUT @trip_summary6
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_16.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_16.csv"
     USING Outputters.Csv();
 
 
 
 ### <a name="explore"></a>Az adatok feltárása
-Tehetünk ennek néhány adatfeltárás megértéséhez az adatok eléréséhez.
+Tehetünk ennek néhány adatok feltárása tooget hello adatok jobb megértése.
 
-Formabontó és nem Formabontó utak terjesztési keresése:
+Hello terjesztési Formabontó és nem Formabontó utak keresése:
 
     ///tipped vs. not tipped distribution
     @tip_or_not =
@@ -296,10 +296,10 @@ Formabontó és nem Formabontó utak terjesztési keresése:
         FROM @tip_or_not
         GROUP BY tipped;
         OUTPUT @ex_4   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_4.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_4.csv"
     USING Outputters.Csv(); 
 
-Tipp összeg lezárási értékekkel terjesztési található: 0,5,10 és 20 dollár.
+Tipp összeg lezárási értékekkel hello terjesztési található: 0,5,10 és 20 dollár.
 
     //tip class/range distribution
     @tip_class =
@@ -312,7 +312,7 @@ Tipp összeg lezárási értékekkel terjesztési található: 0,5,10 és 20 dol
         FROM @tip_class
         GROUP BY tip_class;
         OUTPUT @ex_5   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_5.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_5.csv"
     USING Outputters.Csv(); 
 
 Keresse meg a út távolság alapvető statisztikai adatait tartalmazza:
@@ -328,10 +328,10 @@ Keresse meg a út távolság alapvető statisztikai adatait tartalmazza:
         FROM @trip
         GROUP BY vendor_id;
     OUTPUT @trip_summary4
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_14.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_14.csv"
     USING Outputters.Csv();
 
-A százalékos érték út távolság keresése:
+Hello százalékos érték út távolság keresése:
 
     // find percentiles of trip_distance
     @trip_summary3 =
@@ -342,7 +342,7 @@ A százalékos érték út távolság keresése:
         FROM @trip;
        // group by vendor_id;
     OUTPUT @trip_summary3
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_13.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_13.csv"
     USING Outputters.Csv(); 
 
 
@@ -360,18 +360,18 @@ A százalékos érték út távolság keresése:
     ON   (t.medallion == f.medallion AND t.hack_license == f.hack_license AND t.pickup_datetime == f.pickup_datetime)
     WHERE   (pickup_longitude != 0 AND dropoff_longitude != 0 );
 
-    //// output to blob
+    //// output tooblob
     OUTPUT @model_data_full   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_full_data.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_full_data.csv"
     USING Outputters.Csv(); 
 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @model_data_full   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_7_full_data.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_7_full_data.csv"
     USING Outputters.Csv(); 
 
 
-Az egyes utas száma a rekordok, átlagos tipp összeg, tipp összeg varianciáját, Formabontó utazgatással százaléka számának kiszámítása.
+Az egyes utas száma kiszámítása hello rekordok, átlagos tipp összeg, tipp összeg varianciáját, százalékos aránya Formabontó való adatváltások számát.
 
     // contigency table
     @trip_summary8 =
@@ -384,12 +384,12 @@ Az egyes utas száma a rekordok, átlagos tipp összeg, tipp összeg varianciáj
         FROM @model_data_full
         GROUP BY passenger_count;
         OUTPUT @trip_summary8
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_17.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_17.csv"
     USING Outputters.Csv();
 
 
 ### <a name="sample"></a>Adat-mintavételezésre
-Először igazolnia véletlenszerűen válassza ki az adatok 0,1 % a táblázatból illesztett:
+Először igazolnia véletlenszerűen választ ki 0,1 % hello adatok hello illesztett táblából:
 
     //random select 1/1000 data for modeling purpose
     @addrownumberres_randomsample =
@@ -403,7 +403,7 @@ Először igazolnia véletlenszerűen válassza ki az adatok 0,1 % a táblázatb
     WHERE rownum % 1000 == 0;
 
     OUTPUT @model_data_random_sample_1_1000   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_random_1_1000.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_7_random_1_1000.csv"
     USING Outputters.Csv(); 
 
 Majd végezzük rétegzett mintavételi bináris változó tip_class szerint:
@@ -418,44 +418,44 @@ Majd végezzük rétegzett mintavételi bináris változó tip_class szerint:
     SELECT *
     FROM @addrownumberres_stratifiedsample
     WHERE rownum % 1000 == 0;
-    //// output to blob
+    //// output tooblob
     OUTPUT @model_data_stratified_sample_1_1000   
-    TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_9_stratified_1_1000.csv"
+    too"wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_ex_9_stratified_1_1000.csv"
     USING Outputters.Csv(); 
-    ////output data to ADL
+    ////output data tooADL
     OUTPUT @model_data_stratified_sample_1_1000   
-    TO "swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_9_stratified_1_1000.csv"
+    too"swebhdfs://data_lake_storage_name.azuredatalakestore.net/nyctaxi_folder/demo_ex_9_stratified_1_1000.csv"
     USING Outputters.Csv(); 
 
 
 ### <a name="run"></a>U-SQL feladatok futtatása
-Ha a U-SQL-parancsfájlok szerkesztésének befejezése után küldheti el ezeket a kiszolgálóhoz, az Azure Data Lake Analytics-fiókkal. Kattintson a **Data Lake**, **feladat elküldése**, jelölje be a **Analytics-fiók**, válassza ki **párhuzamossági**, és kattintson a **küldje el a következőt** gombra.  
+Amikor befejezte a U-SQL-parancsfájlok szerkesztésével, elküldheti azokat toohello server az Azure Data Lake Analytics-fiókkal. Kattintson a **Data Lake**, **feladat elküldése**, jelölje be a **Analytics-fiók**, válassza ki **párhuzamossági**, és kattintson a **küldje el a következőt** gombra.  
 
  ![12](./media/machine-learning-data-science-process-data-lake-walkthrough/12-submit-USQL.PNG)
 
-Ha a feladat sikeresen megfelelést, a feladat állapotának figyeléséhez a Visual Studio fog megjelenni. Miután a feladat befejezése után történik, még akkor is a feladat végrehajtási folyamatának visszajátszásos és kideríti, hogy a szűk keresztmetszetek lépéseket a feladat hatékonyság növelése érdekében. A U-SQL-feladatok állapotának ellenőrzése az Azure-portálon is választhatja.
+Amikor hello feladat sikeresen megfelelést, a feladat állapotának hello jelenik meg a Visual Studio figyelésre. Után hello feladat befejezése után történik, akkor még a visszajátszás hello feladat végrehajtási folyamatának, és megtudhatja, hello bottleneck lépéseket tooimprove a feladat hatékonyságát. Portál toocheck hello a U-SQL feladatok állapotának tooAzure is választhatja.
 
  ![13](./media/machine-learning-data-science-process-data-lake-walkthrough/13-USQL-running-v2.PNG)
 
  ![14](./media/machine-learning-data-science-process-data-lake-walkthrough/14-USQL-jobs-portal.PNG)
 
-Most már ellenőrizheti a kimeneti fájlok az Azure Blob-tároló vagy Azure portálon. A következő lépésben a modellezési a rétegzett mintaadatok azt fogja használni.
+Most már ellenőrizheti a hello kimeneti fájlok az Azure Blob-tároló vagy Azure portálon. A következő lépésben hello modellezési műanyaggal rétegezett hello mintaadatok azt fogja használni.
 
  ![15](./media/machine-learning-data-science-process-data-lake-walkthrough/15-U-SQL-output-csv.PNG)
 
  ![16](./media/machine-learning-data-science-process-data-lake-walkthrough/16-U-SQL-output-csv-portal.PNG)
 
 ## <a name="build-and-deploy-models-in-azure-machine-learning"></a>Hozza létre és telepítheti az Azure Machine Learning modellek
-Bemutatjuk, két lehetőség érhető el, hogy az Azure Machine Learning segítségével olvasnak be adatokat hozhat létre és 
+Bemutatjuk, két lehetőség érhető el az Ön toopull adatokat az Azure Machine Learning toobuild és 
 
-* Az első lehetőség, használhatja a mintaadatokat, amely egy Azure Blob írt (a a **adat-mintavételezésre** fenti lépés), és Python létrehozásához és telepítéséhez az Azure Machine Learning modellek. 
-* A második lehetőség az adatait az Azure Data Lake közvetlenül a Hive-lekérdezések használatával. Ez a beállítás megköveteli, hogy hozzon létre egy új HDInsight-fürtöt, vagy használja egy meglévő HDInsight-fürt, ahol a Hive táblák mutasson-e az NY Taxi adatokat az Azure Data Lake Storage.  Mindkét ezek a beállítások az alábbi arról lesz szó. 
+* Hello első lehetőség, használhatja az Azure Blob tooan írt mintát hello adatokat (a hello **adat-mintavételezésre** fenti lépést) használ a Python toobuild és központi telepítése az Azure Machine Learning modellek. 
+* A második lehetőség hello adatait hello Azure Data Lake közvetlenül a Hive-lekérdezések használatával. Ez a beállítás megköveteli, hogy hozzon létre egy új HDInsight-fürtöt, vagy használja egy meglévő HDInsight-fürtre, ahol hello Hive táblák pont toohello NY Taxi adatokat az Azure Data Lake Storage.  Mindkét ezek a beállítások az alábbi arról lesz szó. 
 
-## <a name="option-1-use-python-to-build-and-deploy-machine-learning-models"></a>1. lehetőség: A gép tanulási modelljeit használja Python létrehozásához és telepítéséhez
-Létrehozásához, és központi telepítéséhez a machine learning modellek pythonos környezetekben, a Jupyter Notebook létrehozása a helyi számítógépen vagy az Azure Machine Learning Studióban. A Jupyter Notebook megadott [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough) vizsgálatát, adatok, a szolgáltatás mérnöki csapathoz, a modellezési és a központi telepítés megjelenítése a teljes kódját tartalmazza. Ez a cikk megmutatjuk, ebben az esetben a modellezési és a központi telepítés. 
+## <a name="option-1-use-python-toobuild-and-deploy-machine-learning-models"></a>1. lehetőség: Használata Python toobuild és központi telepítése a machine learning modellek
+toobuild és machine learning modellek pythonos környezetekben, a rendszer a Jupyter Notebook létrehozása, a helyi számítógépen vagy az Azure Machine Learning Studióban. hello Jupyter Notebook megadott [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/AzureDataLakeWalkthrough) tartalmaz hello teljes kód tooexplore, adatok, a szolgáltatás mérnöki csapathoz, a modellezési és a központi telepítés megjelenítése. Ez a cikk megmutatjuk, ebben az esetben a hello modellezési és a központi telepítés. 
 
 ### <a name="import-python-libraries"></a>Python könyvtárak importálása
-A minta futtatásához Jupyter Notebook vagy a Python parancsfájlt, a következő csomagok szükségesek Python. Az AzureML Notebook szolgáltatást használja, ha ezeket a csomagokat előre telepített törölték.
+A sorrend toorun hello minta Jupyter Notebook vagy hello Python-parancsfájl, hello következő Python csomagok szükségesek. Hello AzureML Notebook szolgáltatást használja, ha ezeket a csomagokat előre telepített törölték.
 
     import pandas as pd
     from pandas import Series, DataFrame
@@ -478,7 +478,7 @@ A minta futtatásához Jupyter Notebook vagy a Python parancsfájlt, a következ
     from azureml import services
 
 
-### <a name="read-in-the-data-from-blob"></a>A blob adatainak olvasása
+### <a name="read-in-hello-data-from-blob"></a>A blob adatait hello olvasása
 * Kapcsolati karakterlánc   
   
         CONTAINERNAME = 'test1'
@@ -491,7 +491,7 @@ A minta futtatásához Jupyter Notebook vagy a Python parancsfájlt, a következ
         t1 = time.time()
         data = blob_service.get_blob_to_text(CONTAINERNAME,BLOBNAME).split("\n")
         t2 = time.time()
-        print(("It takes %s seconds to read in "+BLOBNAME) % (t2 - t1))
+        print(("It takes %s seconds tooread in "+BLOBNAME) % (t2 - t1))
   
   ![17](./media/machine-learning-data-science-process-data-lake-walkthrough/17-python_readin_csv.PNG)    
 * Oszlop neveket adhat hozzá és különálló oszlopok
@@ -500,7 +500,7 @@ A minta futtatásához Jupyter Notebook vagy a Python parancsfájlt, a következ
         'passenger_count','trip_time_in_secs','trip_distance','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude',
         'payment_type', 'fare_amount', 'surcharge', 'mta_tax', 'tolls_amount',  'total_amount', 'tip_amount', 'tipped', 'tip_class', 'rownum']
         df1 = pd.DataFrame([sub.split(",") for sub in data], columns = colnames)
-* Egyes oszlopok sorrendjének megváltoztatásához az numerikus
+* Egyes oszlopok toonumeric módosítása
   
         cols_2_float = ['trip_time_in_secs','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude',
         'fare_amount', 'surcharge','mta_tax','tolls_amount','total_amount','tip_amount', 'passenger_count','trip_distance'
@@ -509,13 +509,13 @@ A minta futtatásához Jupyter Notebook vagy a Python parancsfájlt, a következ
             df1[col] = df1[col].astype(float)
 
 ### <a name="build-machine-learning-models"></a>Machine learning modellek létrehozása
-Itt azt a előre jelezni, hogy egy út Formabontó-e, vagy nem egy bináris osztályozási modell létrehozása. A Jupyter Notebook a található egyéb két modell: multiclass besorolási és regressziós modell.
+Itt azt hozzon létre egy bináris osztályozási modell toopredict, hogy egy út Formabontó van, vagy nem. A Jupyter Notebook hello található egyéb két modell: multiclass besorolási és regressziós modell.
 
-* Először hozzon létre üres változók használható scikit kell – ismerje meg, modellek
+* Először igazolnia kell toocreate dummy változók scikit használt-modellek tudnivalók
   
         df1_payment_type_dummy = pd.get_dummies(df1['payment_type'], prefix='payment_type_dummy')
         df1_vendor_id_dummy = pd.get_dummies(df1['vendor_id'], prefix='vendor_id_dummy')
-* A modellezési adatok kerete létrehozása
+* Adatok kerete hello modellezési létrehozása
   
         cols_to_keep = ['tipped', 'trip_distance', 'passenger_count']
         data = df1[cols_to_keep].join([df1_payment_type_dummy,df1_vendor_id_dummy])
@@ -555,7 +555,7 @@ Itt azt a előre jelezni, hogy egy út Formabontó-e, vagy nem egy bináris oszt
        ![c2](./media/machine-learning-data-science-process-data-lake-walkthrough/c2-py-logit-evaluation.PNG)
 
 ### <a name="build-web-service-api-and-consume-it-in-python"></a>Webszolgáltatási API létrehozása és a Python szokásokra is
-Szeretnénk azok a gépi tanulási modell, miután be lett építve. A bináris logisztikai modell itt példaként használjuk. Győződjön meg arról, hogy a scikit-további 0.15.1 verziója a helyi gépen. Nem kell foglalkoznia ez vagy Azure ML studio szolgáltatás használatakor.
+Szeretnénk toooperationalize hello gépi tanulási modell, miután be lett építve. Hello bináris logisztikai modell itt példaként használjuk. Győződjön meg arról, hogy hello scikit-további 0.15.1 verziója a helyi gépen. A tooworry nincs Azure ML studio szolgáltatás használatakor.
 
 * A munkaterület hitelesítő adatait az Azure ML studio beállítások megkeresése Az Azure Machine Learning Studióban, kattintson a **beállítások** --> **neve** --> **engedélyezési jogkivonatok**. 
   
@@ -585,32 +585,32 @@ Szeretnénk azok a gépi tanulási modell, miután be lett építve. A bináris 
         @services.returns(float)
         def NYCTAXIPredictor(trip_distance, passenger_count, payment_type_dummy_CRD, payment_type_dummy_CSH,payment_type_dummy_DIS, payment_type_dummy_NOC, payment_type_dummy_UNK, vendor_id_dummy_CMT, vendor_id_dummy_VTS ):
             pass
-* Webszolgáltatási API hívása. Várnia kell, 5-10 másodperc az előző lépés után.
+* Webszolgáltatási API hívása. Hogy toowait hello előző lépés után 5-10 másodperc.
   
         NYCTAXIPredictor(1,2,1,0,0,0,0,0,1)
   
        ![c4](./media/machine-learning-data-science-process-data-lake-walkthrough/c4-call-API.PNG)
 
 ## <a name="option-2-create-and-deploy-models-directly-in-azure-machine-learning"></a>2. lehetőség: Hozzon létre, és közvetlenül az Azure Machine Learning modellek telepítése
-Az Azure Machine Learning Studio lehet adatokat olvasni közvetlenül az Azure Data Lake Store, és akkor hozhat létre és telepíthet a modellek használható. Ezt a módszert használja, amely az Azure Data Lake Store mutat Hive táblát használ. Ehhez szükséges, hogy egy külön Azure HDInsight-fürt üzembe helyezve, az a Hive tábla létrehozása. A következő szakaszok bemutatják, hogyan ehhez. 
+Az Azure Machine Learning Studio képes adatokat közvetlenül olvassák be az Azure Data Lake Store majd használt toocreate kell és modellek. Ez a módszer olyan Hive táblát, amely a hello Azure Data Lake Store használja. Ehhez szükséges, hogy egy külön Azure HDInsight-fürt üzembe, mely hello Hive tábla létre van hozva. a következő szakaszok megjelenítése hogyan hello toodo ez. 
 
 ### <a name="create-an-hdinsight-linux-cluster"></a>HDInsight Linux-fürtök létrehozása
-(Linux) HDInsight-fürtök létrehozása a [Azure-portálon](http://portal.azure.com). További információkért lásd: a **HDInsight-fürtök létrehozása az Azure Data Lake Store-hozzáféréssel rendelkező** szakasz [HDInsight-fürtök létrehozása az Azure portál használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+HDInsight-fürtök (Linux) készíteni hello [Azure Portal](http://portal.azure.com). További információkért lásd: hello **HDInsight-fürtök létrehozása a hozzáférés tooAzure Data Lake Store** szakasz [HDInsight-fürtök létrehozása az Azure portál használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 
  ![18](./media/machine-learning-data-science-process-data-lake-walkthrough/18-create_HDI_cluster.PNG)
 
 ### <a name="create-hive-table-in-hdinsight"></a>Hdinsight Hive tábla létrehozásához
-Most már tudjuk létrehozni a Hive táblák a HDInsight-fürtjéhez az előző lépésben az Azure Data Lake Store-ban tárolt adatok használhatók az Azure Machine Learning Studióban. Nyissa meg az imént létrehozott HDInsight-fürthöz. Kattintson a **beállítások** --> **tulajdonságok** --> **fürt AAD-identitása** --> **ADLS-hozzáférés**, győződjön meg arról, hogy az Azure Data Lake Store-fiók kerül a listában az olvasási, írási és végrehajtási jogokat. 
+Most már tudjuk létrehozni a Hive táblák toobe hello HDInsight-fürtjéhez hello adataihoz az Azure Data Lake Store hello előző lépésben az Azure Machine Learning Studióban használt. Nyissa meg toohello most hozott létre HDInsight-fürthöz. Kattintson a **beállítások** --> **tulajdonságok** --> **fürt AAD-identitása** --> **ADLS-hozzáférés**, Ellenőrizze, hogy az Azure Data Lake Store-fiók fel van véve hello lista olvasási, írási és végrehajtási jogokat. 
 
  ![19](./media/machine-learning-data-science-process-data-lake-walkthrough/19-HDI-cluster-add-ADLS.PNG)
 
-Kattintson a **irányítópult** mellett a **beállítások** gombra, és egy ablakban jelenik meg. Kattintson a **Hive View** a jobb felső sarkában, és a lap jelenik meg a **Lekérdezésszerkesztő**.
+Kattintson a **irányítópult** következő toohello **beállítások** gombra, és egy ablakban jelenik meg. Kattintson a **Hive View** hello jobb felső sarkában hello lapot, és a következő látható: hello **Lekérdezésszerkesztő**.
 
  ![20](./media/machine-learning-data-science-process-data-lake-walkthrough/20-HDI-dashboard.PNG)
 
  ![21](./media/machine-learning-data-science-process-data-lake-walkthrough/21-Hive-Query-Editor-v2.PNG)
 
-Illessze be a következő Hive parancsfájlok tábla létrehozásához. Adatforrás helye a ily módon az Azure Data Lake Store-dokumentáció: **adl://data_lake_store_name.azuredatalakestore.net:443/mappanév/Fájlnév**.
+Illessze be a következő Hive parancsfájlok toocreate hello egy tábla. hello adatforrás helye a ily módon az Azure Data Lake Store-dokumentáció: **adl://data_lake_store_name.azuredatalakestore.net:443/mappanév/Fájlnév**.
 
     CREATE EXTERNAL TABLE nyc_stratified_sample
     (
@@ -643,46 +643,46 @@ Illessze be a következő Hive parancsfájlok tábla létrehozásához. Adatforr
     LOCATION 'adl://data_lake_storage_name.azuredatalakestore.net:443/nyctaxi_folder/demo_ex_9_stratified_1_1000_copy.csv';
 
 
-A lekérdezés után jelenik meg az eredmények ehhez hasonló:
+Hello lekérdezés végeztével ilyen hello eredmény jelenik meg:
 
  ![22](./media/machine-learning-data-science-process-data-lake-walkthrough/22-Hive-Query-results.PNG)
 
 ### <a name="build-and-deploy-models-in-azure-machine-learning-studio"></a>Hozza létre és telepítheti az Azure Machine Learning Studióban modellek
-A Microsoft most már készen áll létrehozásához és telepítéséhez modell, amely képes-e a tipp van fizetős Azure Machine Learning segítségével. A bináris osztályozási használható készen áll a rétegzett mintaadatok (tipp vagy sem) a probléma. A prediktív modellek multiclass besorolás (tip_class) és regressziós (tip_amount) használatával is beépített és az Azure Machine Learning Studio telepített, de itt csak megmutatjuk, hogyan legyen kezelve az esetben a bináris osztályozási modell használatával.
+Azt most már készen áll a toobuild, és telepítsék a modell, amely képes-e a tipp van fizetős Azure Machine Learning segítségével. hello rétegzett mintaadatok kész, a bináris osztályozási használt toobe (tipp vagy sem) a probléma. hello multiclass besorolásával (tip_class) prediktív modellek és regressziós (tip_amount) is a beépített és az Azure Machine Learning Studio telepített, de itt csak megmutatjuk, hogyan hello bináris osztályozási modell toohandle hello nagybetűk használata.
 
-1. Az Azure gépi tanulás használatával az adatok beolvasása a **és adatokat importálhat** modul érhető el a **bemeneti és kimeneti** szakasz. További információkért lásd: a [és adatokat importálhat modul](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) referencialapja.
-2. Válassza ki **Hive-lekérdezések** , a **adatforrás** a a **tulajdonságok** panel.
-3. Illessze be a következő Hive parancsfájl a **adatbázis-lekérdezés Hive** szerkesztő
+1. Hello adatok beolvasása az Azure ml hello segítségével **és adatokat importálhat** modul hello elérhető **bemeneti és kimeneti** szakasz. További információkért lásd: hello [és adatokat importálhat modul](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) referencialapja.
+2. Válassza ki **Hive-lekérdezések** , hello **adatforrás** a hello **tulajdonságok** panel.
+3. A következő Hive parancsfájl hello Beillesztés hello **adatbázis-lekérdezés Hive** szerkesztő
    
         select * from nyc_stratified_sample;
-4. Adja meg az URI a HDInsight-fürt (Ez található az Azure portálon), a Hadoop hitelesítő adatokat, a helyét, valamint kimeneti adatokat az Azure storage fiók nevét vagy kulcstároló neve.
+4. Adja meg a hello URI a HDInsight-fürt (Ez található az Azure portálon), a Hadoop hitelesítő adatokat, a hely a kimeneti adatok és az Azure storage fiók nevét vagy kulcstároló neve.
    
    ![23](./media/machine-learning-data-science-process-data-lake-walkthrough/23-reader-module-v3.PNG)  
 
-Egy bináris osztályozási kísérlet adatok beolvasása a Hive tábla példa az alábbi ábrán.
+Egy bináris osztályozási kísérletet, adatok beolvasása a Hive tábla példa hello az alábbi ábra az.
 
  ![24](./media/machine-learning-data-science-process-data-lake-walkthrough/24-AML-exp.PNG)
 
-A kísérlet létrehozása után kattintson **webes szolgáltatások beállítása** --> **prediktív webszolgáltatás**
+Hello kísérlet létrehozása után kattintson **webes szolgáltatások beállítása** --> **prediktív webszolgáltatás**
 
  ![25](./media/machine-learning-data-science-process-data-lake-walkthrough/25-AML-exp-deploy.PNG)
 
-Az automatikusan létrehozott futtatásához kattintson a Befejezés után, pontozási kísérletet, **webes szolgáltatás telepítése**
+Automatikusan létrehozott futtatási hello pontozási kísérlet, a Befejezés után kattintson **webes szolgáltatás telepítése**
 
  ![26](./media/machine-learning-data-science-process-data-lake-walkthrough/26-AML-exp-deploy-web.PNG)
 
-A webes szolgáltatás irányítópultját hamarosan fog megjelenni:
+hello webes szolgáltatás irányítópultját hamarosan fog megjelenni:
 
  ![27](./media/machine-learning-data-science-process-data-lake-walkthrough/27-AML-web-api.PNG)
 
 ## <a name="summary"></a>Összefoglalás
-Ez a forgatókönyv végrehajtásával létrehozott egy adatok tudományos környezet méretezhető végpontok közötti megoldások Azure Data Lake készítéséhez. Ebben a környezetben használt elemzése a nagy nyilvános adatkészlet véve azt a tudományos folyamat, a modell képzés útján, majd a központi telepítéshez a modell webszolgáltatásként adatgyűjtést kanonikus lépésein. U-SQL használatával feldolgozni, vizsgálatát, és az az adatokat. Python és a Hive használt Azure Machine Learning Studio build és üzembe prediktív modelleket.
+Ez a forgatókönyv végrehajtásával létrehozott egy adatok tudományos környezet méretezhető végpontok közötti megoldások Azure Data Lake készítéséhez. Ebben a környezetben használt tooanalyze véve a hello kanonikus lépéseit az adatgyűjtést keresztül modell betanítási adatok tudományos folyamat, hello a nagy nyilvános adatbázisból lett, és hogy hello toohello telepítését majd modell webszolgáltatásként. U-SQL használt tooprocess volt, és fel az hello adatokat. Python és a Hive az Azure Machine Learning Studio toobuild alkalmazott, és üzembe prediktív modelleket.
 
 ## <a name="whats-next"></a>A következő lépések
-A képzési terv a [Team adatok tudományos folyamat (TDSP)](http://aka.ms/datascienceprocess) a speciális elemzés folyamat egyes lépéseit ismertető témakörökre mutató hivatkozásokat tartalmaz. Nincsenek felsorolva a forgatókönyvek sorozata a [Team adatok tudományos folyamat forgatókönyvek](data-science-process-walkthroughs.md) oldal, amely megjelenítve a különböző prediktív elemzési forgatókönyvekben erőforrások és szolgáltatások használata:
+a képzési hello a [Team adatok tudományos folyamat (TDSP)](http://aka.ms/datascienceprocess) leíró egyes hivatkozások tootopics advanced analytics folyamat hello lépést biztosítja. Nincsenek felsorolva hello a forgatókönyvek több [Team adatok tudományos folyamat forgatókönyvek](data-science-process-walkthroughs.md) hogyan lapon adott showcase toouse erőforrások és szolgáltatások a prediktív elemzés különféle helyzetekben:
 
-* [Az Team tudományos folyamat működés közben: az SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md)
-* [A művelet az Team tudományos folyamat: HDInsight Hadoop-fürtök használata](machine-learning-data-science-process-hive-walkthrough.md)
-* [Az Team tudományos folyamat: SQL Server használata](machine-learning-data-science-process-sql-walkthrough.md)
-* [A Spark on Azure HDInsight használatának adatok tudományos folyamat áttekintése](machine-learning-data-science-spark-overview.md)
+* [hello Team adatok tudományos folyamat működés közben: az SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md)
+* [hello Team adatok tudományos folyamat működés közben: HDInsight Hadoop-fürtök használata](machine-learning-data-science-process-hive-walkthrough.md)
+* [hello csapat az tudományos folyamata: SQL Server használata](machine-learning-data-science-process-sql-walkthrough.md)
+* [Az Azure HDInsight Spark hello adatok tudományos folyamat használatának áttekintése](machine-learning-data-science-spark-overview.md)
 

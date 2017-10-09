@@ -1,6 +1,6 @@
 ---
-title: "Megtekintése és használata a virtuális gép Azure Resource Manager-sablonnal |} Microsoft Docs"
-description: "Az Azure Resource Manager-sablon a virtuális gép használata a többi virtuális gép létrehozása"
+title: "aaaView és egy virtuális gép Azure Resource Manager-sablonnal |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure Resource Manager sablon egy virtuális gép toocreate más virtuális gépek"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: tarcher
-ms.openlocfilehash: 12cdb61667f77215c894800d5c439235e767a26b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b79f7eb4171793681a0b654e6e72a83191c76bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-a-virtual-machines-azure-resource-manager-template"></a>A virtuális gép Azure Resource Manager sablon használata
 
-Ha hoz létre egy virtuális gép (VM) a DevTest Labs szolgáltatásban keresztül a [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040), megtekintheti az Azure Resource Manager-sablon, mielőtt mentené a virtuális Gépet. A sablon majd használható alapjaként, ugyanazokkal a beállításokkal további tesztlabor virtuális gépek létrehozásához.
+Ha hoz létre egy virtuális gép (VM) a DevTest Labs szolgáltatásban keresztül hello [Azure-portálon](http://go.microsoft.com/fwlink/p/?LinkID=525040), megtekintheti a hello Azure Resource Manager sablon hello virtuális gép mentése előtt. hello sablon majd használható egy alap toocreate több tesztlabor virtuális gépek hello ugyanazokat a beállításokat.
 
-Ez a cikk ismerteti a Resource Manager-sablon megtekintése a virtuális gép létrehozásakor és központi telepítése úgy, hogy később automatizálhatja az azonos virtuális gép létrehozását.
+Ez a cikk ismerteti, hogyan tooview hello-e Resource Manager-sablon a virtuális gépek létrehozásakor, és hogyan toodeploy az újabb tooautomate létrehozását hello azonos virtuális gép.
 
 ## <a name="multi-vm-vs-single-vm-resource-manager-templates"></a>Több virtuális Gépre kiterjedő és single-virtuális gép Resource Manager-sablonok
-Virtuális gépek létrehozása a DevTest Labs szolgáltatásban Resource Manager-sablon használatával két módja van: kiépíteni a Microsoft.DevTestLab/labs/virtualmachines erőforrás vagy a Microsoft.Commpute/virtualmachines erőforrás kiépítéséhez. Minden olyan más esetekben használható, és különböző engedély szükséges.
+Két módon toocreate virtuális gépek a DevTest Labs szolgáltatásban a Resource Manager sablonnal: hello Microsoft.DevTestLab/labs/virtualmachines erőforrás kiépítése, vagy hello Microsoft.Commpute/virtualmachines erőforrás kiépítéséhez. Minden olyan más esetekben használható, és különböző engedély szükséges.
 
-- Resource Manager-sablonok, amelyek Microsoft.DevTestLab/labs/virtualmachines erőforrás típusa (a "resource" tulajdonságban a sablon) hozhat létre egyéni labor virtuális gépeken. Minden virtuális gép akkor jön létre csak egy elemet a DevTest Labs szolgáltatásban virtuális gépek listában:
+- Resource Manager-sablonok, amelyek Microsoft.DevTestLab/labs/virtualmachines erőforrás típusa (a hello "erőforrás" tulajdonságban hello sablon) hozhat létre egyéni labor virtuális gépeken. Minden virtuális gép ezután megjelenik hello DevTest Labs szolgáltatásban virtuális gépek listája egyetlen elemként:
 
-   ![Egyetlen elem DevTest Labs szolgáltatásban virtuális gépek, virtuális gépek listája](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-item.png)
+   ![Egyetlen elem hello DevTest Labs szolgáltatásban virtuális gépek listában, virtuális gépek listája](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-item.png)
 
-   Az ilyen típusú Resource Manager-sablon az Azure PowerShell-paranccsal helyezhetők **New-AzureRmResourceGroupDeployment** vagy az Azure CLI paranccsal **az csoport központi telepítésének létrehozása**. Az rendszergazdai engedélyekkel kell rendelkeznie, így a DevTest Labs szolgáltatásban felhasználói szerepkörrel felruházott felhasználók nem végezhető el a központi telepítés. 
+   A Resource Manager-sablon típusának keresztül hello Azure PowerShell-paranccsal helyezhetők **New-AzureRmResourceGroupDeployment** vagy az Azure CLI parancs hello **az csoport központi telepítésének létrehozása** . Rendszergazdai jogosultságokkal van szükség, tehát a DevTest Labs szolgáltatásban felhasználói szerepkörrel felruházott felhasználók nem hello telepítés végrehajtása. 
 
-- Resource Manager-sablonok, amelyek Microsoft.Compute/virtualmachines erőforrás típusa, egy egyetlen környezetben listájában DevTest Labs szolgáltatásban virtuális gépek több virtuális gép építhető ki:
+- Resource Manager-sablonok, amelyek Microsoft.Compute/virtualmachines erőforrás típusa építhető ki több virtuális gép, egy egyetlen környezet hello DevTest Labs szolgáltatásban virtuális gépek listája:
 
-   ![Egyetlen elem DevTest Labs szolgáltatásban virtuális gépek, virtuális gépek listája](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-environment.png)
+   ![Egyetlen elem hello DevTest Labs szolgáltatásban virtuális gépek listában, virtuális gépek listája](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-environment.png)
 
-   Virtuális gépek ugyanabban a környezetben együtt kezelheti, és az azonos életciklussal megosztani. DevTest Labs szolgáltatásban felhasználói szerepkörrel felruházott felhasználók használja ezeket a sablonokat, mindaddig, amíg a rendszergazda úgy állította be a labor ily módon tesztkörnyezetek hozhatók létre.
+   Virtuális gépek ugyanabban a környezetben együtt kezelheti hello és megosztás hello azonos életciklussal. DevTest Labs szolgáltatásban felhasználói szerepkörrel felruházott felhasználók használja ezeket a sablonokat, mindaddig, amíg hello rendszergazda úgy konfigurálta a hello labor ily módon tesztkörnyezetek hozhatók létre.
 
-Ez a cikk fennmaradó Mirosoft.DevTestLab/labs/virtualmachines használó Resource Manager-sablonok ismerteti. Ezek használhatók labor rendszergazdák által automatizálhatja a labor virtuális gép létrehozása (például claimable virtuális gépek) és a mesterlemez (például a lemezkép gyári).
+hello a cikk hátralévő része a Resource Manager-sablonok Mirosoft.DevTestLab/labs/virtualmachines használó ismerteti. A tesztlabor rendszergazdák tooautomate tesztlabor virtuális gép létrehozása (például claimable virtuális gépek) és a mesterlemez (például a lemezkép gyári) által használt.
 
-[Ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) kínál számos irányelvek és hozhat létre Azure Resource Manager-sablonok, amely javaslatokat is megbízható és könnyen használható.
+[Ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) sok útmutatást és javaslatokat toohelp kínál, amelyek megbízható és könnyű toouse Azure Resource Manager-sablonokat hoz létre.
 
 ## <a name="view-and-save-a-virtual-machines-resource-manager-template"></a>Megtekintése és a virtuális gép Resource Manager-sablon mentése
-1. Kövesse a [az első virtuális gép létrehozása egy tesztkörnyezetben](devtest-lab-create-first-vm.md) egy virtuális gép létrehozásának megkezdéséhez.
-1. Adja meg a szükséges adatokat a virtuális gép, és adja hozzá a virtuális gép kívánt összetevőihez.
-1. A konfigurálás beállítások ablak alján válassza **nézet ARM-sablon**.
+1. Hajtsa végre a hello készítésével [az első virtuális gép létrehozása egy tesztkörnyezetben](devtest-lab-create-first-vm.md) toobegin hoz létre virtuális gépet.
+1. Adja meg a virtuális gép hello szükséges információkat, és adja hozzá a virtuális gép kívánt összetevőihez.
+1. Hello konfigurálása beállítások ablak hello alján válassza **nézet ARM-sablon**.
 
    ![Nézet ARM-sablon gomb](./media/devtest-lab-use-arm-template/devtestlab-lab-view-rm-template.png)
-1. Másolja ki és mentse a Resource Manager-sablon létrehozni egy másik virtuális gépet későbbi használatra.
+1. Másolja ki és mentse a hello Resource Manager sablon toouse újabb toocreate egy másik virtuális géphez.
 
-   ![Későbbi használatra menti Resource manager-sablon](./media/devtest-lab-use-arm-template/devtestlab-lab-copy-rm-template.png)
+   ![Resource manager sablon toosave későbbi használatra](./media/devtest-lab-use-arm-template/devtestlab-lab-copy-rm-template.png)
 
-A Resource Manager-sablon mentése után frissítenie kell a sablon a Paraméterek szakaszban előtt is használhatja. Létrehozhat egy parameter.json, amely csak a paraméterek kívül a tényleges Resource Manager sablon testreszabása. 
+Hello Resource Manager-sablon mentése után frissítenie kell hello paraméterek szakaszban hello sablon használata előtt. Létrehozhat egy parameter.json, amely csak hello paraméterek kívül hello tényleges Resource Manager sablon testreszabása. 
 
 ![A JSON-fájl használatával paramétereket testreszabása](./media/devtest-lab-use-arm-template/devtestlab-lab-custom-params.png)
 
-## <a name="deploy-a-resource-manager-template-to-create-a-vm"></a>Virtuális gép létrehozása egy Resource Manager-sablon üzembe helyezése
-Miután a Resource Manager-sablon mentése, és igény szerint testreszabott, használhatja automatizálhatja a virtuális gép létrehozását. [A Resource Manager-sablonok és Azure PowerShell erőforrások telepítése](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy) Azure PowerShell használata a Resource Manager-sablonok az erőforrások telepítése az Azure-bA. [Erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy-cli) Azure CLI használata a Resource Manager-sablonok az erőforrások telepítése az Azure-bA.
+## <a name="deploy-a-resource-manager-template-toocreate-a-vm"></a>A Resource Manager sablon toocreate egy virtuális gép telepítése
+Miután a Resource Manager-sablon mentése, és igény szerint testreszabott, használhatja tooautomate Virtuálisgép létrehozásához. [Erőforrások a Resource Manager-sablonok és Azure PowerShell telepítése](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy) ismerteti, hogyan toouse Azure PowerShell, a Resource Manager sablonok toodeploy az erőforrások tooAzure. [Erőforrások a Resource Manager-sablonok és az Azure parancssori felület telepítése](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy-cli) ismerteti, hogyan toouse Azure parancssori felület a Resource Manager sablonok toodeploy az erőforrások tooAzure.
 
 > [!NOTE]
-> Csak a tesztkörnyezet tulajdonosa engedélyekkel rendelkező felhasználó Azure PowerShell használatával létrehozhat egy Resource Manager-sablon virtuális gépeket. Ha a virtuális gép létrehozása egy Resource Manager-sablonnal automatizálni kívánt és a felhasználói engedélyek csak van, használja a [ **az tesztlabor virtuális gép létrehozása** parancsot a CLI](https://docs.microsoft.com/cli/azure/lab/vm#create).
+> Csak a tesztkörnyezet tulajdonosa engedélyekkel rendelkező felhasználó Azure PowerShell használatával létrehozhat egy Resource Manager-sablon virtuális gépeket. Ha azt szeretné, hogy tooautomate virtuális gép létrehozása egy Resource Manager-sablon használatával, és a felhasználói engedélyek csak rendelkezik, használhatja a hello [ **az tesztlabor virtuális gép létrehozása** parancsot a hello CLI](https://docs.microsoft.com/cli/azure/lab/vm#create).
 
 ### <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [virtuális Gépre kiterjedő környezetek létrehozása a Resource Manager-sablonok](devtest-lab-create-environment-from-arm.md).
-* További gyors üzembe helyezési Resource Manager-sablonok a DevTest Labs automatizálásra megismerkedhet a [nyilvános DevTest Labs GitHub-tárház](https://github.com/Azure/azure-quickstart-templates).
+* Ismerje meg, hogyan túl[virtuális Gépre kiterjedő környezetek létrehozása a Resource Manager-sablonok](devtest-lab-create-environment-from-arm.md).
+* További gyors üzembe helyezési Resource Manager-sablonok a DevTest Labs automatizálásához áttekintheti az hello [nyilvános DevTest Labs GitHub-tárház](https://github.com/Azure/azure-quickstart-templates).

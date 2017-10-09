@@ -1,6 +1,6 @@
 ---
-title: "Webalkalmazási tűzfal - Azure Application Gateway konfigurálása |} Microsoft Docs"
-description: "Ez a cikk útmutatást webalkalmazási tűzfal egy új vagy meglévő Alkalmazásátjáró használatának módjáról."
+title: "aaaConfigure webalkalmazási tűzfal - Azure Application Gateway |} Microsoft Docs"
+description: "Ez a cikk hogyan toostart használatával webalkalmazási tűzfal a meglévő vagy új Alkalmazásátjáró nyújt útmutatást."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/20/2017
 ms.author: gwallace
-ms.openlocfilehash: ac6c629ceaf1a8036643f593ce3d7ef9ea096ef8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d5354984760ceab12ed49efa9e18836e9f1d3c96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-web-application-firewall-on-a-new-or-existing-application-gateway-with-azure-cli"></a>Webalkalmazási tűzfal konfigurálása egy új vagy meglévő Alkalmazásátjáró Azure parancssori felülettel
 
@@ -27,32 +27,32 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell](application-gateway-web-application-firewall-powershell.md)
 > * [Azure CLI](application-gateway-web-application-firewall-cli.md)
 
-Útmutató a webes alkalmazás engedélyezve van a tűzfal Alkalmazásátjáró létrehozása vagy meglévő Alkalmazásátjáró webalkalmazási tűzfal hozzáadása.
+Ismerje meg, hogyan toocreate webalkalmazási tűzfal engedélyezve van az Alkalmazásátjáró, vagy adja hozzá a webes alkalmazás tűzfal tooan meglévő Alkalmazásátjáró.
 
-A webes alkalmazás tűzfalat (WAF) Azure Application Gateway webalkalmazások védje a közös web-alapú támadások, például az SQL-injektálás, a többhelyes parancsfájlok futtatására és a munkamenet kihasználásának.
+hello webalkalmazási tűzfal (waf-ot) az Azure alkalmazás átjáró webalkalmazások védje a közös web-alapú támadások, például az SQL-injektálás, a többhelyes parancsfájlok futtatására és a munkamenet kihasználásának.
 
-Az Azure Application Gateway egy 7. rétegbeli terheléselosztó. Feladatátvételt és teljesítményalapú útválasztást biztosít a HTTP-kérelmek számára különböző kiszolgálók között, függetlenül attól, hogy a felhőben vagy a helyszínen vannak. Alkalmazásátjáró biztosít számos alkalmazás kézbesítési vezérlő (LÉPETT) szolgáltatást HTTP beleértve betöltése terheléselosztási, a cookie-alapú munkamenet-kapcsolatot, és a secure sockets layer (SSL)-kiszervezés el egyéni állapotteljesítmény, többhelyes támogatása, és sok más. Támogatott funkció teljes listájának megkereséséhez látogasson el a: [Alkalmazásátjáró áttekintése](application-gateway-introduction.md).
+Az Azure Application Gateway egy 7. rétegbeli terheléselosztó. Akár hello felhőalapú vagy helyszíni biztosít feladatátvételt, HTTP-kérelmek teljesítmény-útválasztási különböző kiszolgálók között. Alkalmazásátjáró biztosít számos alkalmazás kézbesítési vezérlő (LÉPETT) szolgáltatást HTTP beleértve betöltése terheléselosztási, a cookie-alapú munkamenet-kapcsolatot, és a secure sockets layer (SSL)-kiszervezés el egyéni állapotteljesítmény, többhelyes támogatása, és sok más. támogatott szolgáltatások teljes listáját toofind látogassa meg: [Alkalmazásátjáró áttekintése](application-gateway-introduction.md).
 
-A következő cikk bemutatja hogyan [webalkalmazási tűzfal hozzáadása egy meglévő Alkalmazásátjáró](#add-web-application-firewall-to-an-existing-application-gateway) és [webalkalmazási tűzfal használó Alkalmazásátjáró létrehozása](#create-an-application-gateway-with-web-application-firewall).
+hello következő a cikk bemutatja, hogyan túl[hozzáadása a webes alkalmazás tűzfal tooan meglévő Alkalmazásátjáró](#add-web-application-firewall-to-an-existing-application-gateway) és [webalkalmazási tűzfal használó Alkalmazásátjáró létrehozása](#create-an-application-gateway-with-web-application-firewall).
 
 ![a forgatókönyv kép][scenario]
 
-## <a name="prerequisite-install-the-azure-cli-20"></a>Előfeltétel: Az Azure parancssori felület 2.0 telepítése
+## <a name="prerequisite-install-hello-azure-cli-20"></a>Előfeltétel: Hello Azure CLI 2.0 telepítése
 
-Ebben a cikkben szereplő lépések végrehajtásához kell [telepítse az Azure parancssori felület Mac, Linux és Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+tooperform hello ebben a cikkben ismertetett visszaállítási lépésekkel, túl kell[hello Azure parancssori felület Mac, Linux és Windows (Azure CLI) telepítése](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="waf-configuration-differences"></a>WAF konfigurációs különbségek
 
-Ha mindenképpen olvassa el [hozzon létre egy alkalmazást az Azure parancssori felület](application-gateway-create-gateway-cli.md), hogy tudomásul veszi, hogy a Termékváltozat-beállítások konfigurálása az Alkalmazásátjáró létrehozása. WAF Alkalmazásátjáró a Termékváltozat konfigurálásakor adja meg a további beállításokat tartalmazza. Nincsenek további módosítások, amely akkor adja meg az Alkalmazásátjáró magát a.
+Ha mindenképpen olvassa el [hozzon létre egy alkalmazást az Azure parancssori felület](application-gateway-create-gateway-cli.md), tisztában hello SKU beállítások tooconfigure Alkalmazásátjáró létrehozása során. WAF biztosít a további beállítások toodefine Alkalmazásátjáró hello SKU konfigurálásakor. Nincsenek további módosítások, amely akkor adja meg a hello Alkalmazásátjáró magát.
 
 | **Beállítás** | **Részletek**
 |---|---|
-|**Termékváltozat** |Egy normál Alkalmazásátjáró nélkül WAF támogatja **szabványos\_kis**, **szabványos\_Közepes**, és **szabványos\_nagy**méretét. A WAF bevezetése esetén két további SKU, **WAF\_Közepes** és **WAF\_nagy**. WAF kis alkalmazásátjárót nem támogatott.|
-|**Mód** | Ez a beállítás akkor WAF módját. két érték engedélyezett **észlelési** és **megelőzési**. Ha WAF észlelési mód van beállítva, minden fenyegetések naplófájl vannak tárolva. Megelőzési módban eseményeket naplózza, de a támadó 403-as jogosulatlan választ kap az Alkalmazásátjáró.|
+|**Termékváltozat** |Egy normál Alkalmazásátjáró nélkül WAF támogatja **szabványos\_kis**, **szabványos\_Közepes**, és **szabványos\_nagy**méretét. WAF hello bevezetését, a esetén két további SKU, **WAF\_Közepes** és **WAF\_nagy**. WAF kis alkalmazásátjárót nem támogatott.|
+|**Mód** | Ez a beállítás akkor WAF hello módját. két érték engedélyezett **észlelési** és **megelőzési**. Ha WAF észlelési mód van beállítva, minden fenyegetések naplófájl vannak tárolva. Megelőzési módban eseményeket naplózza, de hello támadó 403-as jogosulatlan választ kap hello Alkalmazásátjáró.|
 
-## <a name="add-web-application-firewall-to-an-existing-application-gateway"></a>Webalkalmazási tűzfal hozzáadása egy meglévő Alkalmazásátjáró
+## <a name="add-web-application-firewall-tooan-existing-application-gateway"></a>Webes alkalmazás tűzfal tooan meglévő Alkalmazásátjáró hozzáadása
 
-A következő parancsot egy meglévő szabványos Alkalmazásátjáró WAF engedélyezett Alkalmazásátjáró változik.
+hello egy meglévő szabványos alkalmazás tooa WAF engedélyezett alkalmazás átjárók kövesse a parancs végrehajtása.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -64,11 +64,11 @@ az network application-gateway waf-config set \
   --resource-group "AdatumAppGatewayRG"
 ```
 
-Ez a parancs frissíti az Alkalmazásátjáró webalkalmazási tűzfal. Látogasson el [átjáró Alkalmazásdiagnosztika](application-gateway-diagnostics.md) annak megértése, hogyan az Alkalmazásátjáró a naplók megtekintéséhez. WAF biztonsági jellege miatt naplók kell tudni, hogy a biztonságot, a webalkalmazások rendszeresen vizsgálni.
+Ez a parancs webalkalmazási tűzfal hello Alkalmazásátjáró frissítése. Látogasson el [átjáró Alkalmazásdiagnosztika](application-gateway-diagnostics.md) toounderstand, hogy miként naplózza az tooview az alkalmazás átjáró. WAF toohello biztonsági jellege miatt naplók kell toobe rendszeresen ellenőrizni a webalkalmazások toounderstand hello biztonsági állapotát.
 
 ## <a name="create-an-application-gateway-with-web-application-firewall"></a>Webalkalmazási tűzfal Alkalmazásátjáró létrehozása
 
-A következő parancsot egy Application Gateway webalkalmazási tűzfal hoz létre.
+a következő parancs hello Alkalmazásátjáró webalkalmazási tűzfal hoz létre.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -95,11 +95,11 @@ az network application-gateway create \
 ```
 
 > [!NOTE]
-> Az alapszintű webes alkalmazás tűzfal konfigurációját létre alkalmazásátjárót védelmet CRS 3.0-val van állítva.
+> Hello alapvető webalkalmazás tűzfal konfigurációjának létre alkalmazásátjárót védelmet CRS 3.0-val van állítva.
 
 ## <a name="get-application-gateway-dns-name"></a>Az Application Gateway DNS-nevének beszerzése
 
-Az átjáró létrehozása után a következő lépés a kommunikációra szolgáló előtér konfigurálása. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. Ha szeretné, hogy a végfelhasználók elérjék az Application Gatewayt, használjon egy Application Gateway nyilvános végpontjára mutató CNAME-rekordot. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). Egy olyan CNAME rekordot konfigurálásához részleteit az Alkalmazásátjáró és a társított IP-/ DNS-nevét, a PublicIPAddress elem csatolva az Alkalmazásátjáró beolvasása. Az Application Gateway DNS-nevének használatával létrehozhat egy CNAME rekordot, amely a két webalkalmazást erre a DNS-névre irányítja. Az A-bejegyzések használata nem javasolt, mivel a virtuális IP-cím változhat az Application Gateway újraindításakor.
+Hello átjáró létrehozása után hello következő lépésre tooconfigure hello előtér-kommunikációhoz. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. tooensure a végfelhasználók is találati hello Alkalmazásátjáró, egy olyan CNAME rekordot is használt toopoint toohello nyilvános végpontot hello Alkalmazásátjáró. [Egyéni tartománynév konfigurálása az Azure-ban](../cloud-services/cloud-services-custom-domain-name-portal.md). egy olyan CNAME rekordot tooconfigure hello Alkalmazásátjáró és a társított IP-/ DNS-nevét, hello PublicIPAddress elem csatolt toohello Alkalmazásátjáró részleteit beolvasása. hello alkalmazás átjáró DNS-névnek kell lennie a használt toocreate egy olyan CNAME rekordot pontok hello két webes alkalmazások toothis DNS-név. A-rekordok hello használata nem javasolt, mert hello VIP módosíthatja az Alkalmazásátjáró újra kell indítani.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -147,6 +147,6 @@ az network public-ip show \
 
 ## <a name="next-steps"></a>Következő lépések
 
-WAF szabályok testreszabása ellátogatva: [testre szabhatja a webes alkalmazás tűzfalszabályok keresztül az Azure CLI 2.0](application-gateway-customize-waf-rules-cli.md).
+Ismerje meg, hogyan toocustomize WAF szabályok ellátogatva: [testre szabhatja a webes alkalmazás tűzfalszabályok keresztül hello Azure CLI 2.0](application-gateway-customize-waf-rules-cli.md).
 
 [scenario]: ./media/application-gateway-web-application-firewall-cli/scenario.png

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Factory MapReduce Program meghívása"
-description: "Megtudhatja, hogyan MapReduce programok futtatásával Azure HDInsight-fürtök az egy az Azure data factory feldolgozni az adatokat."
+title: az Azure Data Factory MapReduce Program aaaInvoke
+description: "Ismerje meg, hogyan tooprocess adatokat az Azure HDInsight MapReduce programok futtatásával egy az Azure data factory a fürtön."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: 55fc2196cb4ba50eced4a463914ae188217d0fed
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 448ef93a10bd97e7ecd4be4f04f88f8a05decc1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-mapreduce-programs-from-data-factory"></a>Az adat-előállító MapReduce programok meghívása
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,30 +33,30 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md)
 > * [.NET egyéni tevékenység](data-factory-use-custom-activities.md)
 
-A HDInsight MapReduce művelethez egy adat-előállítóban [csővezeték](data-factory-create-pipelines.md) MapReduce programok végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény szerinti](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, a [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és a támogatott átalakítása tevékenységek általános áttekintést.
+HDInsight MapReduce művelethez egy adat-előállítóban hello [folyamat](data-factory-create-pipelines.md) MapReduce programok végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, hello [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és hello támogatott átalakítása tevékenységek általános áttekintést.
 
 > [!NOTE] 
-> Ha most ismerkedik az Azure Data Factory, olvassa végig [Bevezetés az Azure Data Factory](data-factory-introduction.md) hajtsa végre az oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt.  
+> Ha új tooAzure adat-előállítót, olvassa végig [Data Factory bemutatása tooAzure](data-factory-introduction.md) és hello oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt.  
 
 ## <a name="introduction"></a>Bevezetés
-Egy folyamatot egy az Azure data factory az adatokat a csatolt tárolószolgáltatások csatolt számítási szolgáltatások használatával dolgozza fel. Ha minden tevékenység egyedi feldolgozása műveletet hajt végre tevékenységek sorrendje tartalmaz. Ez a cikk ismerteti a használata a HDInsight MapReduce művelethez.
+Egy folyamatot egy az Azure data factory az adatokat a csatolt tárolószolgáltatások csatolt számítási szolgáltatások használatával dolgozza fel. Ha minden tevékenység egyedi feldolgozása műveletet hajt végre tevékenységek sorrendje tartalmaz. Ez a cikk ismerteti a HDInsight MapReduce művelethez hello segítségével.
 
 Lásd: [Pig](data-factory-pig-activity.md) és [Hive](data-factory-hive-activity.md) Pig/Hive futtatásával kapcsolatos részletekért parancsfájlok a Windows/Linux-alapú HDInsight fürt egy láncból tevékenységek HDInsight a Pig és a Hive használatával. 
 
 ## <a name="json-for-hdinsight-mapreduce-activity"></a>A HDInsight MapReduce művelethez JSON
-A HDInsight tevékenység JSON-definícióban: 
+A HDInsight tevékenység hello JSON-definícióból hello: 
 
-1. Állítsa be a **típus** , a **tevékenység** való **HDInsight**.
-2. Adja meg az osztály nevét **osztálynév** tulajdonság.
-3. Adja meg az elérési útját a JAR-fájlra, beleértve a fájlnevet **jarfilepath tulajdonságot** tulajdonság.
-4. Adja meg a társított szolgáltatás, az Azure Blob Storage, amely tartalmazza a JAR-fájlra hivatkozó **jarLinkedService** tulajdonság.   
-5. Adja meg a MapReduce programhoz tartozó argumentumai a **argumentumok** szakasz. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a a MapReduce keretrendszer. A MapReduce argumentumok argumentumok megkülönböztetéséhez érdemes beállítás és value elemeit is argumentumként a következő példában látható módon (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll).
+1. Set hello **típus** a hello **tevékenység** túl**HDInsight**.
+2. Adja meg a hello osztály hello nevét **osztálynév** tulajdonság.
+3. Adja meg a hello elérési toohello JAR-fájlra beleértve a fájlnevet hello **jarfilepath tulajdonságot** tulajdonság.
+4. Adja meg, amely tartalmazza a hello JAR-fájlt az Azure Blob Storage toohello kapcsolódó hello szolgáltatás **jarLinkedService** tulajdonság.   
+5. Adja meg a hello MapReduce program argumentumai hello **argumentumok** szakasz. Futásidőben, néhány további argumentumok látja (például: mapreduce.job.tags) a hello MapReduce keretrendszer. toodifferentiate az argumentumok hello MapReduce argumentumokkal, érdemes lehetőség és value elemeit is argumentumként látható módon a következő példa hello (- s,--bemeneti,--kimeneti stb., amelyet közvetlenül az értékeik lehetőség áll).
 
     ```JSON   
     {
         "name": "MahoutMapReduceSamplePipeline",
         "properties": {
-            "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix to determine the similarity between 2 items",
+            "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix toodetermine hello similarity between 2 items",
             "activities": [
                 {
                     "type": "HDInsightMapReduce",
@@ -97,7 +97,7 @@ A HDInsight tevékenység JSON-definícióban:
                         "interval": 1
                     },
                     "name": "MahoutActivity",
-                    "description": "Custom Map Reduce to generate Mahout result",
+                    "description": "Custom Map Reduce toogenerate Mahout result",
                     "linkedServiceName": "HDInsightLinkedService"
                 }
             ],
@@ -106,16 +106,16 @@ A HDInsight tevékenység JSON-definícióban:
         }
     }
     ```
-Bármely MapReduce jar-fájlra a HDInsight-fürtök futtatásához használhatja a HDInsight MapReduce művelethez. A következő minta JSON-definícióban adatcsatorna a HDInsight konfigurálta egy olyan Mahout JAR-fájlt.
+Hello HDInsight MapReduce művelethez toorun használhatja a MapReduce jar-fájlt egy HDInsight-fürt. Hello következő minta JSON-definícióból adatcsatorna, HDInsight tevékenység hello toorun Mahout JAR fájl beállítva.
 
 ## <a name="sample-on-github"></a>Mintát a Githubon
-Letöltheti a minta használata a HDInsight MapReduce tevékenységet: [Data Factory minták a Githubon](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample).  
+HDInsight MapReduce művelethez hello használatához minta letöltheti a: [Data Factory minták a Githubon](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample).  
 
-## <a name="running-the-word-count-program"></a>A Word-Count futtatása
-Ebben a példában az adatcsatorna a térkép vagy csökkentse a szószámot programot futtatja az Azure HDInsight-fürt.   
+## <a name="running-hello-word-count-program"></a>Hello szószámot programot futtat
+Ebben a példában hello csővezeték hello térkép vagy csökkentse a szószámot program Azure HDInsight-fürtön található fut.   
 
 ### <a name="linked-services"></a>Kapcsolódó szolgáltatások
-Először hozzon létre az Azure Storage Azure data factoryval való az Azure HDInsight-fürt által használt csatolásához összekapcsolt szolgáltatás. Ha Ön másolja és illessze be az alábbi kód, ne felejtse el lecserélni **fióknév** és **fiókkulcs** nevű és kulcsát az Azure Storage. 
+Először hozzon létre egy kapcsolódó szolgáltatás toolink hello hello Azure HDInsight fürt toohello az Azure data factory által használt Azure Storage. Ha Ön másolja és illessze be a következő kód hello, ne feledje tooreplace **fióknév** és **fiókkulcs** hello nevű és kulcsát az Azure Storage. 
 
 #### <a name="azure-storage-linked-service"></a>Azure Storage társított szolgáltatás
 
@@ -132,7 +132,7 @@ Először hozzon létre az Azure Storage Azure data factoryval való az Azure HD
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Az Azure HDInsight társított szolgáltatás
-Ezután hozzon létre egy Azure HDInsight-fürtjéhez csatolása az Azure data factory társított szolgáltatás. Ha Ön másolja és illessze be az alábbi kód, cserélje le **HDInsight-fürt neve** nevű, a HDInsight-fürtöt, és a felhasználói nevet és jelszót értékek módosítása.   
+Ezután létrehozhat egy kapcsolódó szolgáltatás toolink az Azure HDInsight fürt toohello az Azure data factory. Ha Ön másolja és illessze be a következő kód hello, cserélje le **HDInsight-fürt neve** hello nevet, a HDInsight-fürtöt, és a felhasználói nevet és jelszót értékek módosítása.   
 
 ```JSON
 {
@@ -151,7 +151,7 @@ Ezután hozzon létre egy Azure HDInsight-fürtjéhez csatolása az Azure data f
 
 ### <a name="datasets"></a>Adathalmazok
 #### <a name="output-dataset"></a>Kimeneti adatkészlet
-Ebben a példában az adatcsatorna nem veszi a bemeneti adatok. Egy kimeneti adatkészlet állít be a HDInsight MapReduce művelethez. Ez az adatkészlet csak egy üres adatkészlet szükséges ahhoz, hogy az adatcsatorna ütemezés meghajtó.  
+Ebben a példában hello folyamat nem veszi a bemeneti adatok. Megadhat egy kimeneti adatkészletet hello HDInsight MapReduce művelethez. Ez az adatkészlet csak egy üres adathalmazt, amelyet szükséges toodrive hello csővezeték ütemezés.  
 
 ```JSON
 {
@@ -176,23 +176,23 @@ Ebben a példában az adatcsatorna nem veszi a bemeneti adatok. Egy kimeneti ada
 ```
 
 ### <a name="pipeline"></a>Folyamat
-Ebben a példában az adatcsatorna csak egy tevékenység, amelynek típusa van: HDInsightMapReduce. A JSON-ban fontos tulajdonságai vannak: 
+hello csővezeték ebben a példában csak egy tevékenység, amelynek típusa van: HDInsightMapReduce. Hello JSON hello fontos tulajdonságai vannak: 
 
 | Tulajdonság | Megjegyzések |
 |:--- |:--- |
-| type |A típus értékre kell állítani **HDInsightMapReduce**. |
-| Osztálynév |Az osztály neve: **wordcount** |
-| jarfilepath tulajdonságot |Az osztály tartalmazó jar-fájlt elérési útja. Ha Ön másolja és illessze be az alábbi kód, ne feledje módosítani a fürt nevét. |
-| jarLinkedService |Az Azure tárolás társított szolgáltatása, amely tartalmazza a jar-fájlra. A társított szolgáltatás a tárolót a HDInsight-fürthöz társított hivatkozik. |
-| Argumentumok |A wordcount program két argumentumot, bemeneti és egy kimeneti vesz igénybe. A bemeneti fájl a davinci.txt fájlt. |
-| frequency/interval |Ezek a tulajdonságok értékeit felel meg a kimeneti adatkészletet. |
-| linkedServiceName |a csatolt HDInsight-szolgáltatás volt korábban létrehozott hivatkozik. |
+| type |hello típusa túl be kell állítani**HDInsightMapReduce**. |
+| Osztálynév |Hello osztály neve: **wordcount** |
+| jarfilepath tulajdonságot |Elérési út toohello jar-fájlt tartalmazó hello osztály. Ha Ön másolja és illessze be a következő kód hello, ne feledje toochange hello hello fürt nevét. |
+| jarLinkedService |Az Azure tárolás társított szolgáltatása, amely tartalmazza a hello jar-fájlra. A társított szolgáltatás toohello tárolási hello HDInsight-fürthöz társított hivatkozik. |
+| Argumentumok |hello wordcount program két argumentumot, bemeneti és egy kimeneti vesz igénybe. a bemeneti fájl hello hello davinci.txt fájl. |
+| frequency/interval |hello ezen tulajdonságok megegyeznek hello kimeneti adatkészletet. |
+| linkedServiceName |toohello kapcsolódó HDInsight-szolgáltatás volt korábban létrehozott hivatkozik. |
 
 ```JSON
 {
     "name": "MRSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run the Word Count Program",
+        "description": "Sample Pipeline tooRun hello Word Count Program",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -230,7 +230,7 @@ Ebben a példában az adatcsatorna csak egy tevékenység, amelynek típusa van:
 ```
 
 ## <a name="run-spark-programs"></a>Spark programok futtatása
-A MapReduce tevékenység használatával Spark-programokat futtathat a HDInsight Spark-fürtökön. A részletekért lásd: [Invoke Spark programs from Azure Data Factory](data-factory-spark.md) (Spark-programok meghívása az Azure Data Factory-ból).  
+A HDInsight Spark-fürt a MapReduce tevékenység toorun Spark programokat is használhat. A részletekért lásd: [Invoke Spark programs from Azure Data Factory](data-factory-spark.md) (Spark-programok meghívása az Azure Data Factory-ból).  
 
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456

@@ -1,5 +1,5 @@
 ---
-title: "Az adatkezelési átjáró kibocsátási megjegyzései |} Microsoft Docs"
+title: "Az adatkezelési átjáró aaaRelease megjegyzései |} Microsoft Docs"
 description: "Adatok adatkezelési átjáró címe kibocsátási megjegyzései"
 services: data-factory
 author: nabhishek
@@ -14,16 +14,16 @@ ms.topic: article
 ms.date: 06/19/2017
 ms.author: abnarain
 published: True
-ms.openlocfilehash: c052d7e9f757164429ce867201b96305e405dce9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3165d7537410a0531e0bb7f7fe584767f9155574
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="release-notes-for-data-management-gateway"></a>Az adatkezelési átjáró kibocsátási megjegyzései
-A modern Adatintegráció kapcsolatban felmerülő kihívások egyik áthelyezni az adatokat a helyszíni felhőbe érkező vagy oda irányuló. Adat-előállító lehetővé teszi, hogy ez az integráció az adatkezelési átjáró, amely egy olyan ügynök, hogy a helyszíni hibrid adatátvitel engedélyezése telepítheti.
+Modern Adatintegráció hello kapcsolatban felmerülő kihívások egyik toomove adatok tooand a helyszíni toocloud. Adat-előállító lehetővé teszi, hogy ez az integráció az adatkezelési átjáró, amely egy olyan ügynök, hogy a helyszíni tooenable hibrid adatmozgás telepítheti.
 
-Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes információkat a következő cikkekben talál:
+Tekintse meg a következő cikkekben további információk az adatkezelési átjáró hello és hogyan toouse azt:
 
 *  [Adatkezelési átjáró](data-factory-data-management-gateway.md)
 *  [Adatok áthelyezése között a helyszíni és felhőalapú Azure Data Factory használatával](data-factory-move-data-between-onprem-and-cloud.md)
@@ -32,9 +32,9 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 ## <a name="current-version-21063477"></a>AKTUÁLIS VERZIÓ (2.10.6347.7)
 
 ### <a name="enhancements-"></a>Továbbfejlesztett-
-- Is hozzáadhat DNS-bejegyzések engedélyezése helyett engedélyezési lista a service bus összes Azure IP-címet a tűzfal (ha szükséges). Azure-portál is megtalálhatja a megfelelő DNS-bejegyzés (Data Factory -> "Fejlesztés és üzembe helyezés" -> "Átjárók" -> "serviceUrls" (a JSON-ban)
+- Is hozzáadhat engedélyezése helyett a DNS-bejegyzések toowhitelist szolgáltatásbusz összes Azure IP-címet a tűzfal (ha szükséges). Azure-portál is megtalálhatja a megfelelő DNS-bejegyzés (Data Factory -> "Fejlesztés és üzembe helyezés" -> "Átjárók" -> "serviceUrls" (a JSON-ban)
 - HDFS-összekötő mostantól támogatja a nyilvános önaláírt tanúsítványt azáltal, hogy SSL-ellenőrzésének kihagyására.
-- Rögzített: Problémát átjáró kapcsolat nélküli (miatt az óra eltérésére) frissítése közben.
+- Rögzített: Problémát átjáró kapcsolat nélküli (miatt tooclock döntés) frissítése közben.
 
 
 
@@ -42,12 +42,12 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 
 ## <a name="2963132"></a>2.9.6313.2
 ### <a name="enhancements-"></a>Továbbfejlesztett-
--   Is hozzáadhat DNS-bejegyzések az engedélyezett engedélyezése helyett a Service Bus összes Azure IP-címet a tűzfal (ha szükséges). Itt további részleteket.
--   Adatok másolása egyetlen blokkot és a blob akár 4.75 TB-ig, amely az a maximális támogatott fájlméret blokkblob most is. (a korábbi korlát 195 GB volt).
+-   Is hozzáadhat engedélyezése helyett a DNS-bejegyzések toowhitelist Service Bus összes Azure IP-címet a tűzfal (ha szükséges). Itt további részleteket.
+-   Ekkor átmásolhatja too4.75 TB, amely az blokkblob hello maximális támogatott fájlméret fel egyetlen blokkblob vagy származó adatokat. (a korábbi korlát 195 GB volt).
 -   Rögzített: Kívüli memória probléma során több kisebb fájlt kicsomagolás másolási tevékenység során.
--   Rögzített: Indexe kívül tartomány probléma másolása egy helyi SQL Server idempotencia szolgáltatással Document DB rendszerbe.
+-   Rögzített: Indexe kívül tartomány probléma Document DB rendszerbe tooan másolása a helyszíni SQL Server idempotencia szolgáltatással.
 -   Rögzített: SQL-karbantartási parancsprogramot nem működik a helyszíni SQL Server a másolása varázsló segítségével.
--   Rögzített: Végén területtel rendelkező oszlopnév nem működik a másolási tevékenység.
+-   Rögzített: Hello végén területtel rendelkező oszlopnév nem működik a másolási tevékenység.
 
 ## <a name="28662833"></a>2.8.66283.3
 ### <a name="enhancements-"></a>Továbbfejlesztett-
@@ -71,58 +71,58 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 
 ## <a name="2561641"></a>2.5.6164.1
 ### <a name="enhancements"></a>Fejlesztések
-- Hatékonyabb és megbízhatóbb átjáró regisztrációs élmény-most átjáró regisztráció során, így gyorsabban tapasztalhat a regisztrációs folyamat állapota tudja követni.
-- Növekedés az átjáró visszaállítása folyamat -, de ilyenkor is helyreállíthatók az átjáró, még akkor is, ha nem rendelkezik az átjáró biztonságimásolat-fájl ezzel a frissítéssel. Ehhez szükség lenne állíthatja vissza a társított szolgáltatás hitelesítő adatait a portálon.
+- Hatékonyabb és megbízhatóbb átjáró regisztrációs élmény-most követheti a folyamat állapota teszi gyorsabban élmény hello regisztrációs hello átjáró regisztrációs folyamat során.
+- Növekedés az átjáró visszaállítása folyamat -, de ilyenkor is helyreállíthatók az átjáró, még akkor is, ha nem rendelkezik hello átjáró biztonságimásolat-fájl ezzel a frissítéssel. Ez megköveteli tooreset csatolt szolgáltatás hitelesítő adatait a portálon.
 - Hiba a javítás.
 
 ## <a name="2461511"></a>2.4.6151.1
 
 ### <a name="whats-new"></a>Újdonságok
 
-- Most már az adatforrás hitelesítő adatainak helyileg tárolhatja. Az azonosító adatok titkosítása. Az adatforrás hitelesítő adatai állíthatók helyre, és a biztonságimásolat-fájl, amely a jelenlegi átjárót, az összes helyszíni exportálható segítségével visszaállítani.
+- Most már az adatforrás hitelesítő adatainak helyileg tárolhatja. hello azonosító adatok titkosítása. hello adatforrás hitelesítő adatai állíthatók helyre, és hello biztonságimásolat-fájl, amely a meglévő átjáró, minden helyszíni hello exportálható segítségével visszaállítani.
 
 ### <a name="enhancements-"></a>Továbbfejlesztett-
 
 - Hatékonyabb és megbízhatóbb átjáró regisztrációs felületet.
-- Az automatikus észlelés quotechar tulajdonság-konfiguráció támogatása másolása varázsló a szöveges formátumú, és átfogó formátum észlelési pontosságának javítása.
+- Az automatikus észlelés quotechar tulajdonság-konfiguráció támogatása másolása varázsló a szöveges formátumú, és javíthatja a hello teljes formázza az észlelési pontosságát.
 
 ## <a name="2361002"></a>2.3.6100.2
 
 - Támogatja a helyszíni fájlrendszer és a HDFS firstRowAsHeader és SkipLineCount az automatikus észlelés szövegfájlok másolása varázsló.
-- A hálózati kapcsolatot az átjáró és a Service Bus stabilitásának javítása
+- Átjáró és a Service Bus közötti hálózati kapcsolat hello stabilitásának javítása
 - Néhány hibajavítások
 
 
 ## <a name="2260721"></a>2.2.6072.1
 
-*  Az átjáró konfigurációkezelőjének használatával az átjáró HTTP-proxy beállítást támogatja. Ha konfigurálva, Azure Blob, az Azure Table, az Azure Data Lake és a Document DB rendszerbe HTTP-proxyn keresztül érhetők el.
-*  Támogatja a fejléc kezelése a szöveges, /, az Azure Blob, az Azure Data Lake Store, az adatok másolásakor helyszíni fájlrendszer, és a helyszíni HDFS.
-*  Az adatok másolása hozzáfűző Blob és a már támogatott Blokkblob együtt az oldalakra vonatkozó Blob támogatja.
-*  Bevezet egy új az átjáró állapotának **Online (korlátozott)**, ami azt jelenti, hogy működik-e az átjáró fő funkcióit kivéve másolása varázsló interaktív művelet támogatása.
-*  Fokozza a megbízhatóságát, az átjáró regisztrálása regisztrációs kulccsal.
+*  Támogatja a HTTP-proxy hello átjáró konfigurációkezelőjének használatával hello átjáró beállítását. Ha konfigurálva, Azure Blob, az Azure Table, az Azure Data Lake és a Document DB rendszerbe HTTP-proxyn keresztül érhetők el.
+*  Támogatja a fejléc kezelése a szöveges, az adatok másolásakor / tooAzure Blob, az Azure Data Lake Store, helyszíni fájlrendszer és a helyszíni HDFS.
+*  Az adatok másolása hozzáfűző Blob és az oldalakra vonatkozó Blob együtt hello már támogatja a Blokkblob támogatott.
+*  Bevezet egy új az átjáró állapotának **Online (korlátozott)**, ami azt jelenti, hogy hello hello átjáró fő funkcióit működik, kivéve másolása varázsló hello interaktív művelet támogatása.
+*  Fokozza a hello megbízhatóságát, átjáró regisztrálása regisztrációs kulccsal.
 
 ## <a name="216040"></a>2.1.6040.
 
-*  DB2 illesztőprogram most már szerepel az átjárótelepítési csomag. Nem kell külön telepíteni.
-*  DB2-illesztőprogram mostantól támogatja a z/OS- és a DB2 i (AS / 400) együtt a már támogatott platformon (Linux, Unix és a Windows).
+*  DB2 illesztőprogram most hello átjárótelepítési csomag tartalmazza. Nem kell tooinstall, külön-külön.
+*  DB2-illesztőprogram mostantól támogatja a z/OS- és a DB2 i (AS / 400) együtt hello platformon már támogatott (Linux, Unix, és a Windows).
 *  A cél- és a helyszíni adattárolókhoz Azure Cosmos DB használatával támogatja
-*  Támogatja az adatok másolásának/cold/használt adatok rétegére való blob-tároló már támogatott általános célú tárfiók együtt.
-*  Lehetővé teszi a helyszíni SQL Server távoli bejelentkezési jogokkal átjárón keresztül csatlakozni.  
+*  Hello együtt a/toocold/közbeni blob-tároló adatok másolása már támogatja az általános célú tárfiók támogatott.
+*  Lehetővé teszi a tooconnect tooon helyszíni SQL Server távoli bejelentkezési jogokkal átjárón keresztül.  
 
 ## <a name="2060131"></a>2.0.6013.1
 
-*  Kiválaszthatja a nyelvet/kulturális környezet manuális telepítése során egy átjáró által használt.
+*  Hello nyelvi/kulturális környezet toobe manuális telepítése során egy átjáró által használt választhatja ki.
 
-*  Ha az átjáró nem várt módon működik, dönthet úgy, az elmúlt hét napban átjáró naplókat küldeni a Microsoftnak a problémát a hibaelhárítás elősegítése érdekében. Ha az átjáró nem csatlakozik a felhőszolgáltatáshoz, dönthet úgy, mentse, és átjáró naplók archiválása.  
+*  Átjáró nem várt módon működik, beállíthatja a elmúlt hét napban tooMicrosoft toofacilitate hibaelhárítási hello probléma toosend átjáró naplói. Ha az átjáró nincs csatlakoztatva toohello felhőalapú szolgáltatás, toosave választhat, és archiválja az átjáró naplói.  
 
 *  Felhasználói felület fejlesztései az átjáró a configuration manager:
 
-    *  Adja meg az átjáró állapotának több látható a kezdőlap.
+    *  Adja meg az átjáró állapotának több látható a hello Kezdőlap lap.
 
     *  Átszervezett és egyszerűsített szabályozza.
 
-    *  Adatok másolása egy tárolási használatával a [kódmentes másolási preview eszköz](data-factory-copy-data-wizard-tutorial.md). Lásd: [előkészített másolási](data-factory-copy-activity-performance.md#staged-copy) részleteiről a szolgáltatás általában.
-*  Az adatkezelési átjáró érkező adatokat a helyszíni SQL Server adatbázis-ről Azure Machine Learning is használhatja.
+    *  Adatok másolása egy tárolóhely-hello [kódmentes másolási preview eszköz](data-factory-copy-data-wizard-tutorial.md). Lásd: [előkészített másolási](data-factory-copy-activity-performance.md#staged-copy) részleteiről a szolgáltatás általában.
+*  Az adatkezelési átjáró tooingress adatok közvetlenül a helyi SQL Server adatbázis Azure Machine Learning is használhatja.
 
 *  Teljesítménnyel kapcsolatos fejlesztések
 
@@ -134,9 +134,9 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 
 ## <a name="11159181"></a>1.11.5918.1
 
-*  Az adatátjáró eseménynaplójában maximális mérete 1 MB, 40 MB-ra nőtt.
+*  Hello adatátjáró eseménynaplójában maximális mérete 1 MB too40 MB nőtt.
 
-*  Egy figyelmeztető párbeszédpanel jelenik meg, abban az esetben, ha újraindítás szükséges átjáró automatikus frissítés során. Ha szeretné, indítsa újra a jobb oldali majd vagy újabb.
+*  Egy figyelmeztető párbeszédpanel jelenik meg, abban az esetben, ha újraindítás szükséges átjáró automatikus frissítés során. Kiválaszthatja a toorestart jobbra, majd vagy újabb.
 
 *  Abban az esetben, ha az automatikus frissítés nem sikerül, a gateway installer háromszor a maximális automatikus frissítési újrapróbálkozik.
 
@@ -156,8 +156,8 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 
 *  Nulla touch automatikus frissítési funkció
 *  Az átjáró állapotának mutatók új tálcaikon
-*  Az ügyfél képes "Frissítés most"
-*  Frissítés időpontjának ütemezése meg
+*  Képes túl "frissítés most" hello ügyfélről
+*  Képes tooset frissítés időpontjának ütemezése
 *  PowerShell-parancsfájl az elvégezte az automatikus frissítés be-és kikapcsolása
 *  JSON-formátum támogatása  
 *  Teljesítménnyel kapcsolatos fejlesztések
@@ -237,12 +237,12 @@ Az adatkezelési átjáró, és hogy miképpen lehet vele kapcsolatos részletes
 ### <a name="1454921"></a>1.4.5492.1
 
 *  Egyesített bináris, amely támogatja a Microsoft Azure Data Factory és az Office 365 Power BI szolgáltatásokat
-*  Pontosítsa a konfigurációs UI felületen és a regisztrációs folyamat
+*  Pontosítsa a hello konfigurációs UI felületen és a regisztrációs folyamat
 *  Az Azure Data Factory – Azure bemenő és kimenő támogatja az SQL Server-adatforrás
 
 ### <a name="1253031"></a>1.2.5303.1
 
-*  További időigényes adatforrás-kapcsolatok támogatásához időtúllépés problémának a megoldásához.
+*  Javítsa ki a időtúllépési problémát toosupport több időigényes adatforrásához való kapcsolódáshoz.
 
 ### <a name="1155268"></a>1.1.5526.8
 

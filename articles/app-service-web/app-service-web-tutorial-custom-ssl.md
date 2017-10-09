@@ -1,6 +1,6 @@
 ---
-title: "Egy meglévő egyéni SSL-tanúsítvány kötését az Azure Web Apps |} Microsoft Docs"
-description: "Ismerkedjen meg az egyéni SSL-tanúsítványt kötni a webalkalmazást, mobil-háttéralkalmazás vagy az Azure App Service API-alkalmazás."
+title: "aaaBind egy meglévő egyéni SSL-tanúsítvány tooAzure webalkalmazások |} Microsoft Docs"
+description: "Ismerje meg tootoobind, egy egyéni SSL tanúsítvány tooyour webalkalmazás, mobil-háttéralkalmazás vagy az Azure App Service API-alkalmazásba."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 06/23/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 15c31ae5451a31dff2df08047ee43e75edacc127
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3503ba9f96c8ea8d18451e8bf9a9b441797ef44d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-an-existing-custom-ssl-certificate-to-azure-web-apps"></a>Egy meglévő egyéni SSL-tanúsítvány kötését az Azure Web Apps
+# <a name="bind-an-existing-custom-ssl-certificate-tooazure-web-apps"></a>Egy meglévő egyéni SSL tanúsítvány tooAzure webalkalmazások kötése
 
-Az Azure Web Apps jól skálázható, önálló javítási a webhelyszolgáltató biztosít. Az oktatóanyag bemutatja, hogyan lehet kötést létrehozni egy egyéni SSL-tanúsítványt a megbízható hitelesítésszolgáltatótól származó megvásárolt [Azure Web Apps](app-service-web-overview.md). Amikor végzett, akkor képes lesz a webalkalmazás a HTTPS-végpont az egyéni DNS-tartomány eléréséhez.
+Az Azure Web Apps jól skálázható, önálló javítási a webhelyszolgáltató biztosít. Az oktatóanyag bemutatja, hogyan toobind egyéni SSL tanúsítvány, amikor egy megbízható hitelesítésszolgáltatótól származó túl vásárolt[Azure Web Apps](app-service-web-overview.md). Amikor végzett, be fog tudni tooaccess: a webalkalmazás HTTPS-végpont hello az egyéni DNS-tartományt.
 
 ![Egyéni SSL-tanúsítvánnyal webalkalmazás](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
@@ -31,72 +31,72 @@ Eben az oktatóanyagban az alábbiakkal fog megismerkedni:
 
 > [!div class="checklist"]
 > * Frissítse az alkalmazás tarifacsomag kiválasztása
-> * Az egyéni SSL-tanúsítvány kötését az App Service
+> * Az egyéni SSL-tanúsítvány tooApp szolgáltatás kötése
 > * Az alkalmazás HTTPS kényszerítése
 > * SSL-tanúsítvány kötés parancsfájlokkal automatizálhatja
 
 > [!NOTE]
-> Ha egy egyéni SSL-tanúsítvány beszerzése van szüksége, közvetlenül lekérni egy Azure-portálon, és kösse a webes alkalmazást. Kövesse a [App Service-tanúsítványokkal oktatóanyag](web-sites-purchase-ssl-web-site.md).
+> Tooget egy egyéni SSL-tanúsítványra van szükség, ha közvetlenül lekérni egy-egy hello Azure-portálon, és kösse tooyour webalkalmazás. Hajtsa végre a hello [App Service-tanúsítványokkal oktatóanyag](web-sites-purchase-ssl-web-site.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 - [Az App Service-alkalmazás létrehozása](/azure/app-service/)
-- [Egy egyéni DNS-nevet a webalkalmazás hozzárendelését](app-service-web-tutorial-custom-domain.md)
+- [Egy egyéni DNS nevét tooyour webalkalmazás leképezése](app-service-web-tutorial-custom-domain.md)
 - Szerezzen be egy megbízható hitelesítésszolgáltatótól származó SSL-tanúsítvány
 
 <a name="requirements"></a>
 
 ### <a name="requirements-for-your-ssl-certificate"></a>Az SSL-tanúsítványra vonatkozó követelményekről
 
-Az App Service tanúsítványt használ, a tanúsítványt a következő követelményeknek kell megfelelniük:
+toouse egy tanúsítványt az App Service-ben, hello tanúsítvány összes hello követelményeknek kell megfelelniük:
 
 * Megbízható hitelesítésszolgáltató által aláírt
 * Jelszóval védett PFX-fájlba exportált
 * Titkos kulcs legalább 2048 bit hosszúságú tartalmazza
-* A tanúsítványlánc összes köztes tanúsítvány tartalmazza
+* Hello tanúsítványláncában szereplő összes köztes tanúsítvány tartalmazza
 
 > [!NOTE]
-> **Elliptikus görbe alapú titkosítást (ECC) tanúsítványok** App Service képes együttműködni, de ez a cikk nem vonatkozik. A hitelesítésszolgáltató használni a pontos lépések az ECC-tanúsítványokkal létrehozásához.
+> **Elliptikus görbe alapú titkosítást (ECC) tanúsítványok** App Service képes együttműködni, de ez a cikk nem vonatkozik. A hello szövegéről toocreate ECC tanúsítványokat a hitelesítésszolgáltató működik.
 
 ## <a name="prepare-your-web-app"></a>A webes alkalmazás előkészítése
 
-Egy egyéni SSL-tanúsítványt kötni a webalkalmazás a [App Service-csomag](https://azure.microsoft.com/pricing/details/app-service/) szerepelnie kell a **alapvető**, **szabványos**, vagy **prémium** réteg. Ezt a lépést akkor győződjön meg arról, hogy a webalkalmazás van a támogatott az IP-címek.
+toobind egyéni SSL-tanúsítvány tooyour web app alkalmazásban a [App Service-csomag](https://azure.microsoft.com/pricing/details/app-service/) hello kell **alapvető**, **szabványos**, vagy **prémium** réteg. Ezt a lépést akkor győződjön meg arról, hogy a webalkalmazás a hello támogatott IP-címek.
 
-### <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+### <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Nyissa meg az [Azure portált](https://portal.azure.com).
+Nyissa meg hello [Azure-portálon](https://portal.azure.com).
 
-### <a name="navigate-to-your-web-app"></a>Keresse meg a webalkalmazás
+### <a name="navigate-tooyour-web-app"></a>Keresse meg a tooyour webalkalmazás
 
-Kattintson a bal oldali menü **alkalmazásszolgáltatások**, majd kattintson a webalkalmazás nevét.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson a webalkalmazás hello nevét.
 
 ![Webalkalmazás kiválasztása](./media/app-service-web-tutorial-custom-ssl/select-app.png)
 
-A webalkalmazás kezelése lapon rendelkezik ki.  
+Hello kezelése lapon webalkalmazás rendelkezik ki.  
 
-### <a name="check-the-pricing-tier"></a>Ellenőrizze az árképzési szint
+### <a name="check-hello-pricing-tier"></a>IP-címek hello ellenőrzése
 
-A bal oldali navigációs sáv a weblap app, görgessen a **beállítások** válassza ki azt **vertikális felskálázás (App Service-csomag)**.
+A weblap app hello bal oldali navigációs, görgessen toohello **beállítások** válassza ki azt **vertikális felskálázás (App Service-csomag)**.
 
 ![Méretezett menü](./media/app-service-web-tutorial-custom-ssl/scale-up-menu.png)
 
-Győződjön meg arról, hogy a webalkalmazás nem szerepel a **szabad** vagy **megosztott** réteg. A webalkalmazás jelenlegi rétegtől ki van jelölve, egy kékkel által.
+Ellenőrizze, hogy a webalkalmazás nem hello toomake **szabad** vagy **megosztott** réteg. A webalkalmazás jelenlegi rétegtől ki van jelölve, egy kékkel által.
 
 ![Ellenőrizze a tarifacsomag](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-Egyéni SSL nem támogatja a **szabad** vagy **megosztott** réteg. Ha vertikális felskálázás van szüksége, kövesse a következő szakaszban. Ellenkező esetben zárja be a **válasszon tarifacsomagot** lapon, és folytassa a [töltse fel, és az SSL-tanúsítvány kötését](#upload).
+Egyéni SSL nem támogatja a hello **szabad** vagy **megosztott** réteg. Ha be kell tooscale, kövesse hello hello következő szakaszban található lépéseket. Ellenkező esetben zárja be a hello **válasszon tarifacsomagot** lapon, és hagyja ki túl[töltse fel, és az SSL-tanúsítvány kötését](#upload).
 
 ### <a name="scale-up-your-app-service-plan"></a>Vertikális felskálázás App Service-csomag
 
-Válasszon egyet a a **alapvető**, **szabványos**, vagy **prémium** rétegek.
+Válasszon ki egy hello **alapvető**, **szabványos**, vagy **prémium** rétegek.
 
 Kattintson a **Kiválasztás** gombra.
 
 ![Tarifacsomag kiválasztása](./media/app-service-web-tutorial-custom-ssl/choose-pricing-tier.png)
 
-Amikor megjelenik a következő értesítés, a méretezési művelet befejeződött.
+Amikor megjelenik a következő értesítési hello, hello skálázási művelet be nem fejeződött.
 
 ![Vertikális felskálázás értesítés](./media/app-service-web-tutorial-custom-ssl/scale-notification.png)
 
@@ -104,15 +104,15 @@ Amikor megjelenik a következő értesítés, a méretezési művelet befejeződ
 
 ## <a name="bind-your-ssl-certificate"></a>Az SSL-tanúsítvány kötése
 
-Készen áll az SSL-tanúsítvány feltöltése a webalkalmazáshoz.
+Akkor van kész tooupload az SSL-tanúsítvány tooyour webalkalmazás.
 
 ### <a name="merge-intermediate-certificates"></a>Köztes tanúsítványok egyesítése
 
-Ha a hitelesítésszolgáltató lehetővé teszi több tanúsítvány a tanúsítványlánc, kell egyesíteni, a tanúsítványok sorrendben. 
+Ha a hitelesítésszolgáltató lehetővé teszi több tanúsítvány hello tanúsítványlánc, toomerge hello tanúsítványok sorrendben kell. 
 
-Ehhez nyissa meg a minden tanúsítvány kapott egy szövegszerkesztőben. 
+toodo minden nyitott Ez a tanúsítvány is egy szövegszerkesztőben. 
 
-Az egyesített tanúsítvány, nevű fájl létrehozása _mergedcertificate.crt_. Egy szövegszerkesztőben másolja az egyes tanúsítványok tartalmat a fájlba. A tanúsítványok sorrendje a következő sablon kell hasonlítania:
+Hello egyesített tanúsítvány nevű fájl létrehozása _mergedcertificate.crt_. Egy szövegszerkesztőben másolja az egyes tanúsítványok hello tartalmat a fájlba. a tanúsítványok hello sorrendjét a következő sablon hello kell hasonlítania:
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -132,99 +132,99 @@ Az egyesített tanúsítvány, nevű fájl létrehozása _mergedcertificate.crt_
 -----END CERTIFICATE-----
 ```
 
-### <a name="export-certificate-to-pfx"></a>Tanúsítvány exportálása PFX
+### <a name="export-certificate-toopfx"></a>Tanúsítvány tooPFX exportálása
 
-Az egyesített SSL-tanúsítvány exportálása a titkos kulccsal, a tanúsítvány kérelmezéséhez során létrejött.
+Exportálja az egyesített SSL-tanúsítvány hello titkos kulccsal, a tanúsítvány kérelmezéséhez során létrejött.
 
-Ha a tanúsítvány kérelmezéséhez OpenSSL használatával jön létre, majd hozott létre a titkos kulcs fájlja. Exportálja a tanúsítványt PFX, futtassa a következő parancsot. Cserélje le a helyőrzőket  _&lt;titkos kulcsfájl >_ és  _&lt;egyesített-tanúsítványfájl >_.
+Ha a tanúsítvány kérelmezéséhez OpenSSL használatával jön létre, majd hozott létre a titkos kulcs fájlja. tooexport a tanúsítvány tooPFX, futtassa a következő parancs hello. Cserélje le a helyőrzőket hello  _&lt;titkos kulcsfájl >_ és  _&lt;egyesített-tanúsítványfájl >_.
 
 ```
 openssl pkcs12 -export -out myserver.pfx -inkey <private-key-file> -in <merged-certificate-file>  
 ```
 
-Amikor a rendszer kéri, adja meg az exportálási jelszó. Ezt a jelszót fog használni, amikor az SSL-tanúsítvány feltöltése az App Service később.
+Amikor a rendszer kéri, adja meg az exportálási jelszó. Ezt a jelszót fog használni, az SSL tanúsítvány tooApp szolgáltatás később feltöltésekor.
 
-Ha az IIS vagy _Certreq.exe_ létrehozni a tanúsítványkérelmet, telepítse a tanúsítványt a helyi számítógépen, majd [exportálja a tanúsítványt PFX](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx).
+Ha az IIS vagy _Certreq.exe_ toogenerate a tanúsítványkérelmet, a telepítés hello tanúsítvány tooyour helyi számítógép, majd [hello tanúsítvány tooPFX exportálása](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx).
 
 ### <a name="upload-your-ssl-certificate"></a>Az SSL-tanúsítvány feltöltése
 
-Az SSL-tanúsítvány feltöltése, kattintson a **SSL-tanúsítványok** a bal oldali navigációs webalkalmazás.
+tooupload az SSL-tanúsítvány, kattintson a **SSL-tanúsítványok** a bal oldali navigációs webalkalmazás hello.
 
 Kattintson a **-tanúsítvány feltöltése**.
 
-A **PFX-tanúsítványfájlt**, válassza ki a PFX-fájlt. A **tanúsítványjelszavas**, írja be a PFX-fájl exportálása során létrehozott jelszót.
+A **PFX-tanúsítványfájlt**, válassza ki a PFX-fájlt. A **tanúsítványjelszavas**, típus hello hello PFX-fájl exportálása során létrehozott jelszót.
 
 Kattintson a **Feltöltés** gombra.
 
 ![Tanúsítvány feltöltése](./media/app-service-web-tutorial-custom-ssl/upload-certificate.png)
 
-App Service befejezése után a tanúsítvány feltöltése megjelenik a **SSL-tanúsítványok** lap.
+Megjelenik az App Service befejezése után a tanúsítvány feltöltése hello **SSL-tanúsítványok** lap.
 
 ![A tanúsítvány feltöltése](./media/app-service-web-tutorial-custom-ssl/certificate-uploaded.png)
 
 ### <a name="bind-your-ssl-certificate"></a>Az SSL-tanúsítvány kötése
 
-Az a **SSL-kötések** kattintson **kötés hozzáadása**.
+A hello **SSL-kötések** kattintson **kötés hozzáadása**.
 
-Az a **hozzá SSL-kötés** lapon, a legördülő lista, és válassza ki a tartomány nevét biztonságos, valamint a használni kívánt tanúsítványt.
+A hello **hozzá SSL-kötés** lapján hello legördülő listák megnyílásának tooselect hello tartomány neve toosecure, valamint hello tanúsítvány toouse.
 
 > [!NOTE]
-> Ha a tanúsítvány feltöltött, de nem jelenik meg a tartomány nevét a **állomásnév** legördülő menüből, próbálja meg frissíteni a böngésző lapot.
+> Ha a tanúsítvány feltöltött, de nem látja a hello hello tartomány neve **állomásnév** legördülő menüből, próbálja meg frissíteni hello böngésző lapot.
 >
 >
 
-A **SSL típus**, válassza ki, hogy használja-e  **[kiszolgálónév jelzése (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)**  vagy IP-alapú SSL.
+A **SSL típus**, jelölje be e toouse  **[kiszolgálónév jelzése (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)**  vagy IP-alapú SSL.
 
-- **Az SNI-alapú SSL** -több SNI-alapú SSL-kötések adhatók hozzá. Ez a beállítás lehetővé teszi, hogy a biztonságos több tartományt a azonos IP-címhez több SSL-tanúsítvány. (Beleértve az Internet Explorer, Chrome, Firefox és Opera) a legtöbb modern böngésző támogatja az SNI (átfogóbb böngésző információt, [kiszolgálónév jelzése](http://wikipedia.org/wiki/Server_Name_Indication)).
-- **IP-alapú SSL** -csak egy IP-alapú SSL-kötés adhatók hozzá. Ez a beállítás lehetővé teszi, hogy a biztonságos egy dedikált nyilvános IP-cím csak egyetlen SSL-tanúsítvány. Több tartomány biztonságos, biztosítania kell őket az összes SSL-tanúsítvánnyal. Ez a lehetőség a hagyományos SSL-kötés.
+- **Az SNI-alapú SSL** -több SNI-alapú SSL-kötések adhatók hozzá. Ez a beállítás lehetővé teszi több SSL-tanúsítványok toosecure hello a több tartományt ugyanazon IP-címet. (Beleértve az Internet Explorer, Chrome, Firefox és Opera) a legtöbb modern böngésző támogatja az SNI (átfogóbb böngésző információt, [kiszolgálónév jelzése](http://wikipedia.org/wiki/Server_Name_Indication)).
+- **IP-alapú SSL** -csak egy IP-alapú SSL-kötés adhatók hozzá. Ez a beállítás lehetővé teszi, hogy csak egy SSL-tanúsítvány toosecure egy dedikált nyilvános IP-címet. toosecure több tartomány, biztosítania kell őket minden használatával hello egy SSL-tanúsítvány. Ez a lehetőség hello hagyományos SSL-kötés.
 
 Kattintson a **kötés hozzáadása**.
 
 ![SSL-tanúsítvány kötésének létrehozása](./media/app-service-web-tutorial-custom-ssl/bind-certificate.png)
 
-App Service befejezése után a tanúsítvány feltöltése megjelenik a **SSL-kötések** szakaszok.
+Megjelenik az App Service befejezése után a tanúsítvány feltöltése hello **SSL-kötések** szakaszok.
 
-![A webes alkalmazás kötött tanúsítvány](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
+![A kötött tanúsítvány tooweb alkalmazás](./media/app-service-web-tutorial-custom-ssl/certificate-bound.png)
 
 ## <a name="remap-a-record-for-ip-ssl"></a>Adja meg újból egy rekordot az IP-SSL
 
-Ha IP-alapú SSL nem adja meg a web app alkalmazásban, folytassa a [teszt a HTTPS-t az egyéni tartomány](#test).
+Ha a webalkalmazáson belüli IP-alapú SSL nem adja meg, hagyja ki túl[teszt a HTTPS-t az egyéni tartomány](#test).
 
 Alapértelmezés szerint a webalkalmazás egy megosztott nyilvános IP-címet használja. IP-alapú SSL tanúsítvány kötése, az App Service létrehoz egy új, dedikált IP-címet a webes alkalmazást.
 
-Ha a webes alkalmazás egy A rekordot van leképezve, a tartomány rendszerleíró adatbázis frissítése az új, dedikált IP-címmel.
+Ha egy A rekord tooyour webalkalmazás leképezett, a tartomány rendszerleíró adatbázis frissítése az új, dedikált IP-címmel.
 
-A webalkalmazás **egyéni tartomány** lap tartalmát az új, dedikált IP-címmel. [Az IP-cím másolása](app-service-web-tutorial-custom-domain.md#info), majd [megfelelteti az A rekord](app-service-web-tutorial-custom-domain.md#map-an-a-record) ezt új IP-címet.
+A webalkalmazás **egyéni tartomány** lap tartalmát hello új, dedikált IP-címmel. [Az IP-cím másolása](app-service-web-tutorial-custom-domain.md#info), majd [újramegfeleltetése hello rekord](app-service-web-tutorial-custom-domain.md#map-an-a-record) toothis új IP-címet.
 
 <a name="test"></a>
 
 ## <a name="test-https"></a>Teszt HTTPS
 
-Ehhez marad most csak a győződjön meg arról, hogy HTTPS működik-e az egyéni tartományhoz. A különböző böngészők, keresse meg a `https://<your.custom.domain>` megtekintéséhez, hogy kész a webalkalmazás működik.
+Most már elhagyta toodo csak a toomake meg arról, hogy HTTPS működik-e az egyéni tartományhoz. A különböző böngészők, tallózással keresse meg túl`https://<your.custom.domain>` toosee, amely kész a webalkalmazás működik.
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
 > [!NOTE]
 > Ha a webes alkalmazást ad meg a tanúsítvány érvényesítési hibákat, valószínűleg egy önaláírt tanúsítványt használ.
 >
-> Ha nem, a helyzet, előfordulhat, hogy kilépett azokat a köztes tanúsítványokat amikor exportálta a tanúsítványt a PFX-fájlba.
+> Ha ez nem hello eset, akkor előfordulhat, hogy kimaradt köztes tanúsítványa a toohello PFX-tanúsítványfájlt exportálásakor.
 
 <a name="bkmk_enforce"></a>
 
 ## <a name="enforce-https"></a>HTTPS kényszerítése
 
-Alkalmazás szolgáltatásnak nincs *nem* kényszerítése a HTTPS-t, így bárki, aki továbbra is elérheti a HTTP-n keresztül webalkalmazás. A webalkalmazás HTTPS kényszerítéséhez a átdolgozás szabály megadása a _web.config_ fájl a webalkalmazás. App Service használja ezt a fájlt, a nyelvi keretrendszerébe webalkalmazás függetlenül.
+Alkalmazás szolgáltatásnak nincs *nem* kényszerítése a HTTPS-t, így bárki, aki továbbra is elérheti a HTTP-n keresztül webalkalmazás. a webalkalmazás HTTPS tooenforce átdolgozás szabály megadása a hello _web.config_ fájl a webalkalmazás. App Service ezt a fájlt, függetlenül a webalkalmazás hello nyelvi keretrendszert használja.
 
 > [!NOTE]
-> Kérelmek átirányítása nyelvspecifikus van. ASP.NET MVC használhatja a [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) helyett a módosítsa úgy a szabály a szűrő _web.config_.
+> Kérelmek átirányítása nyelvspecifikus van. ASP.NET MVC használható hello [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) helyett hello módosítsa úgy a szabály a szűrő _web.config_.
 
-Ha a .NET-fejlesztők, ezzel a fájllal viszonylag tisztában kell lennie. A megoldás gyökérkönyvtárában van.
+Ha a .NET-fejlesztők, ezzel a fájllal viszonylag tisztában kell lennie. A megoldás hello gyökérkönyvtárában van.
 
 Azt is megteheti Ha a PHP, Node.js, Python vagy Java fejleszt, esély van jelenleg ezt a fájlt az Ön nevében létrehozott App Service-ben.
 
-A webalkalmazás FTP végponthoz kapcsolódni a megadott utasítások szerint [telepítse az alkalmazást az Azure App Service segítségével FTP/S](app-service-deploy-ftp.md).
+Csatlakozás tooyour web app FTP végpont: hello utasításokat követve [telepítheti az alkalmazást tooAzure használatával az FTP/S App Service](app-service-deploy-ftp.md).
 
-Ez a fájl megtalálható _/home/site/wwwroot_. Ha nem, hozzon létre egy _web.config_ ebben a mappában van a következő XML-fájlt:
+Ez a fájl megtalálható _/home/site/wwwroot_. Ha nem, hozzon létre egy _web.config_ fájl a mappában, amelynek a következő XML hello:
 
 ```xml   
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,19 +247,19 @@ Ez a fájl megtalálható _/home/site/wwwroot_. Ha nem, hozzon létre egy _web.c
 </configuration>
 ```
 
-Egy létező _web.config_ fájlt, másolja a teljes `<rule>` az elem a _web.config_tartozó `configuration/system.webServer/rewrite/rules` elemet. Ha nincsenek más `<rule>` elemeinek a _web.config_, helyezze a másolt `<rule>` elem előtt a másik `<rule>` elemek.
+Egy létező _web.config_ fájlt, másolja a hello teljes `<rule>` az elem a _web.config_tartozó `configuration/system.webServer/rewrite/rules` elemet. Ha nincsenek más `<rule>` elemeinek a _web.config_, másolt sor hello `<rule>` elem előtt más hello `<rule>` elemek.
 
-Ez a szabály egy HTTP 301 (Állandó átirányítás) és a HTTPS protokoll ad vissza, amikor a felhasználó egy HTTP-kérelem esetén a webalkalmazáshoz. Például az átirányítja a `http://contoso.com` való `https://contoso.com`.
+Ez a szabály olyan HTTP 301 (Állandó átirányítás) toohello HTTPS protokollt adja vissza, amikor hello felhasználó esetén egy HTTP-kérelem tooyour webalkalmazás. Például az átirányítja a `http://contoso.com` túl`https://contoso.com`.
 
-Az IIS URL-újraíró modult további információkért tekintse meg a [URL-újraíró](http://www.iis.net/downloads/microsoft/url-rewrite) dokumentációját.
+Hello IIS URL-újraíró modult további információkért lásd: hello [URL-újraíró](http://www.iis.net/downloads/microsoft/url-rewrite) dokumentációját.
 
 ## <a name="enforce-https-for-web-apps-on-linux"></a>A Web Apps Linux HTTPS kényszerítése
 
-Linux alkalmazás-szolgáltatásnak nincs *nem* kényszerítése a HTTPS-t, így bárki, aki továbbra is elérheti a HTTP-n keresztül webalkalmazás. A webalkalmazás HTTPS kényszerítéséhez a átdolgozás szabály megadása a _.htaccess_ fájl a webalkalmazás. 
+Linux alkalmazás-szolgáltatásnak nincs *nem* kényszerítése a HTTPS-t, így bárki, aki továbbra is elérheti a HTTP-n keresztül webalkalmazás. a webalkalmazás HTTPS tooenforce átdolgozás szabály megadása a hello _.htaccess_ fájl a webalkalmazás. 
 
-A webalkalmazás FTP végponthoz kapcsolódni a megadott utasítások szerint [telepítse az alkalmazást az Azure App Service segítségével FTP/S](app-service-deploy-ftp.md).
+Csatlakozás tooyour web app FTP végpont: hello utasításokat követve [telepítheti az alkalmazást tooAzure használatával az FTP/S App Service](app-service-deploy-ftp.md).
 
-A _/home/site/wwwroot_, hozzon létre egy _.htaccess_ fájl a következő kóddal:
+A _/home/site/wwwroot_, hozzon létre egy _.htaccess_ hello kód a következő fájlt:
 
 ```
 RewriteEngine On
@@ -267,15 +267,15 @@ RewriteCond %{HTTP:X-ARR-SSL} ^$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
-Ez a szabály egy HTTP 301 (Állandó átirányítás) és a HTTPS protokoll ad vissza, amikor a felhasználó egy HTTP-kérelem esetén a webalkalmazáshoz. Például az átirányítja a `http://contoso.com` való `https://contoso.com`.
+Ez a szabály olyan HTTP 301 (Állandó átirányítás) toohello HTTPS protokollt adja vissza, amikor hello felhasználó esetén egy HTTP-kérelem tooyour webalkalmazás. Például az átirányítja a `http://contoso.com` túl`https://contoso.com`.
 
 ## <a name="automate-with-scripts"></a>Parancsfájlok automatizálásához
 
-Automatizálható SSL-kötések a webalkalmazás, parancsfájlok, használja a [Azure CLI](/cli/azure/install-azure-cli) vagy [Azure PowerShell](/powershell/azure/overview).
+Automatizálható SSL-kötések parancsfájlok, a webalkalmazás hello segítségével [Azure CLI](/cli/azure/install-azure-cli) vagy [Azure PowerShell](/powershell/azure/overview).
 
 ### <a name="azure-cli"></a>Azure CLI
 
-A következő parancsot az exportált PFX-fájlt feltölti, és az ujjlenyomat beolvasása.
+a következő parancs hello exportált PFX-fájlt feltölti, valamint lekéri a hello ujjlenyomata.
 
 ```bash
 thumbprint=$(az appservice web config ssl upload \
@@ -287,7 +287,7 @@ thumbprint=$(az appservice web config ssl upload \
     --output tsv)
 ```
 
-Az alábbi parancs hozzáadja az SNI-alapú SSL-kötést, az előző parancs ujjlenyomatának használatával.
+hello alábbi parancs hozzáadja az SNI-alapú SSL-kötést, hello ujjlenyomata hello előző parancs segítségével.
 
 ```bash
 az appservice web config ssl bind \
@@ -299,7 +299,7 @@ az appservice web config ssl bind \
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-A következő parancsot az exportált PFX-fájlt feltölti, és hozzáadja az SNI-alapú SSL-kötést.
+hello következő parancsot az exportált PFX-fájlt feltölti és hozzáadja az SNI-alapú SSL-kötést.
 
 ```PowerShell
 New-AzureRmWebAppSSLBinding `
@@ -317,11 +317,11 @@ Ez az oktatóanyag bemutatta, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 > * Frissítse az alkalmazás tarifacsomag kiválasztása
-> * Az egyéni SSL-tanúsítvány kötését az App Service
+> * Az egyéni SSL-tanúsítvány tooApp szolgáltatás kötése
 > * Az alkalmazás HTTPS kényszerítése
 > * SSL-tanúsítvány kötés parancsfájlokkal automatizálhatja
 
-A következő oktatóanyag megtudhatja, hogyan használható az Azure Content Delivery Network továbblépés.
+Hogyan előzetes toohello következő útmutató toolearn toouse Azure Content Delivery Network.
 
 > [!div class="nextstepaction"]
-> [A Content Delivery Network (CDN) hozzáadása az Azure App Service](app-service-web-tutorial-content-delivery-network.md)
+> [Adja hozzá a Content Delivery Network (CDN) tooan Azure App Service](app-service-web-tutorial-content-delivery-network.md)

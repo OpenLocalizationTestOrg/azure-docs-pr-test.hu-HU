@@ -1,6 +1,6 @@
 ---
-title: "Váratlan jóváhagyási kérése az alkalmazás történő bejelentkezéskor |} Microsoft Docs"
-description: "Amikor egy felhasználó láthatja a jóváhagyási kérése integrálva van, akkor nem várt az Azure AD alkalmazás hibaelhárítása"
+title: "bejelentkezés tooan alkalmazás aaaUnexpected beleegyezést kérő üzenete |} Microsoft Docs"
+description: "Hogyan tootroubleshoot, amikor a felhasználó megkeresheti a jóváhagyási kérése az alkalmazás integrálva van az Azure AD, akkor nem várt"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,38 +13,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: e5b823e1251a7221f73efe6838d439f827f9665d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 32b7a5e6256faee0dcfe2e1644da3d3428812d35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="unexpected-consent-prompt-when-signing-in-to-an-application"></a>Váratlan beleegyezést kérő üzenete alkalmazáshoz való bejelentkezéskor
+# <a name="unexpected-consent-prompt-when-signing-in-tooan-application"></a>Váratlan beleegyezést kérő üzenete tooan alkalmazás bejelentkezéskor
 
-Számos alkalmazás, amelyekbe beépül az Azure Active Directory futtatásához különböző erőforrásokhoz engedély szükséges. Ha ezeket az erőforrásokat is integrálva vannak az Azure Active Directoryval, azok eléréséhez engedélyek, van szükség az Azure AD hozzájárulási keretrendszer használatával. 
+Számos alkalmazás, amelyekbe beépül az Azure Active Directory szükséges engedélyek toovarious a rendelés toorun. Ezeket az erőforrásokat is az Azure Active Directoryval integrált, amikor azok van szükség a hello Azure AD használatával engedélyek tooaccess hozzájárulás keretrendszer. 
 
-Az eredmény hozzájárulás kérése alatt jelenik meg, az első alkalommal való használatakor egy alkalmazás, amely gyakran műveletet egyszer kell elvégezni. 
+Az eredmény egy beleegyezést kérő üzenete alatt jelenik meg, hello első alkalommal való használatakor egy alkalmazás, amely gyakran műveletet egyszer kell elvégezni. 
 
 ## <a name="scenarios-in-which-users-see-consent-prompts"></a>Forgatókönyvek, amelyben a felhasználók látni hozzájárulás kérdések
 
 További útmutatást a különböző forgatókönyvekben várhatók:
 
-* Az alkalmazás által igényelt engedélykészletüket módosult.
+* szükséges hello alkalmazás engedélyeiről hello készlete megváltozott.
 
-* A felhasználó, aki eredetileg átadni kívánt hozzájárult e az alkalmazás nem rendszergazda, és most már egy másik (nem rendszergazda) felhasználó használ az alkalmazás első alkalommal.
+* hello felhasználó, aki eredetileg átadni kívánt hozzájárult e toohello alkalmazás nem rendszergazda, és most egy másik (nem rendszergazda) felhasználó által használt hello alkalmazás hello az első alkalommal.
 
-* A felhasználó, aki eredetileg átadni kívánt hozzájárult e az alkalmazás egy rendszergazda, de azok nem volt hozzájárulás olyan a teljes szervezet nevében.
+* hello felhasználó, aki eredetileg átadni kívánt hozzájárult e toohello alkalmazás rendszergazda volt, de azok nem volt hozzájárulás olyan hello teljes szervezet nevében.
 
-* Az alkalmazás által használt [növekményes és dinamikus hozzájárulási](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-compare#incremental-and-dynamic-consent) után hozzájárulási kezdetben nyert további engedélyek kéréséhez. Ez gyakran használják, amikor az alkalmazás további választható funkciók mellett alapterv működéséhez szükséges engedélyek szükségesek.
+* hello alkalmazás használ [növekményes és dinamikus hozzájárulási](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-compare#incremental-and-dynamic-consent) toorequest további engedélyek hozzájárulási kezdetben nyert után. Ez gyakran használják, amikor az alkalmazás további választható funkciók mellett alapterv működéséhez szükséges engedélyek szükségesek.
 
 * Hozzájárulás kezdetben átadása után visszavonták.
 
-* A fejlesztőnek az alkalmazást egy beleegyezést kérő üzenete megkövetelése minden alkalommal, amikor a rendszer konfigurált (Megjegyzés: Ez nem ajánlott).
+* hello fejlesztői hello alkalmazás toorequire egy beleegyezést kérő üzenete van beállítva, minden alkalommal, amikor a rendszer (Megjegyzés: Ez nem ajánlott).
 
 ## <a name="next-steps"></a>Következő lépések
 
 -   [Alkalmazások, engedélyek és az Azure Active Directoryban (1.0-s verziójú végpont) hozzájárulás](https://docs.microsoft.com/azure/active-directory/active-directory-apps-permissions-consent)
 
--   [Hatókörök, engedélyek és az Azure Active Directoryban (v2.0-végponttól) hozzájárulás](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)
+-   [Hatókörök, engedélyek és az Azure Active Directoryban (v2.0-végponttól) hello hozzájárulás](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)
 
 

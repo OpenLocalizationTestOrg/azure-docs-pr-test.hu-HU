@@ -1,12 +1,12 @@
-Fontos fontos megjegyezni, hogy egy rendelkezésre állási csoport figyelőjének beállítása az Azure-ban két módja van. A módszer a figyelő létrehozásakor használja az Azure terheléselosztó a következő típusban eltérőek lehetnek. Az alábbi táblázat a különbségeket ismerteti:
+Fontos, hogy van két módon tooconfigure egy rendelkezésre állási csoport figyelőjének Azure toorealize. hello módja nem egyezik a hello típusú hello figyelő létrehozásakor használja az Azure terheléselosztóhoz. a következő táblázat hello hello különbségeket mutatja be:
 
 | Terheléselosztó típusa | Megvalósítás | A következő esetekben használja: |
 | --- | --- | --- |
-| **Külső** |Használja a *nyilvános virtuális IP-cím* a felhőalapú szolgáltatás, amely a virtuális gépek (VM) üzemelteti. |A figyelő a virtuális hálózaton, beleértve az internetről kívül az eléréséhez szükséges. |
-| **Belső** |Használja az *belső terheléselosztó* a magán-címet a figyelőhöz. |A figyelőt csak az azonos virtuális hálózaton belül érheti el. A hozzáférés a hibrid környezetek telephelyek közötti VPN tartalmazza. |
+| **Külső** |Felhasználási hello *nyilvános virtuális IP-cím* hello felhőalapú szolgáltatás, amely hello virtuális gépek (VM) üzemelteti. |A külső hello virtuális hálózatról, többek között a hello Internet tooaccess hello figyelő van szüksége. |
+| **Belső** |Használja az *belső terheléselosztó* hello figyelő titkos címével. |Van-e hozzáférési hello figyelő csak hello belül azonos virtuális hálózatban. A hozzáférés a hibrid környezetek telephelyek közötti VPN tartalmazza. |
 
 > [!IMPORTANT]
-> Egy figyelő, amely a felhőalapú szolgáltatás nyilvános VIP (külső terheléselosztó), amennyiben az ügyfél használ, a figyelő, és adatbázisokat azonos Azure-régióban, után nem számítunk kilépő díjakat. Ellenkező esetben a figyelő a visszaadott adatok tekinthető kimenő, és normál adatátvitel ütemben fel van töltve. 
+> A figyelő az, hogy hello felhőalapú szolgáltatás nyilvános VIP (külső terheléselosztó), lehető leghosszabbak hello ügyfél, a figyelő és az adatbázisok szerepelnek használ hello azonos Azure-régió, után nem számítunk kilépő díjakat. Ellenkező esetben bármely az adatok visszaadásához hello keresztül figyelő kilépő minősül, és normál adatátvitel ütemben fel van töltve. 
 > 
 > 
 

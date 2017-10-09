@@ -1,29 +1,29 @@
-Most, hogy hozzáadta egy eseményindítót, idejének módosításával az eseményindító által generált adatok érdekes. Kövesse a fenti lépésekkel felvette a a **SFTP - kivonat mappa** művelet. A meghatározott feltételek teljesülése esetén ez a művelet ki a fájl tartalmát. 
+Most, hogy egy eseményindítót, az idő toodo valami érdekes hello eseményindító által létrehozott hello adatokkal hozzáadását. Kövesse ezeket a lépéseket tooadd egy hello **SFTP - kivonat mappa** művelet. Ez a művelet egy fájl tartalmának hello ki definiált hello feltételek teljesülése esetén. 
 
-Szerint konfigurálhatja ezt a műveletet, akkor adja meg a következő információkat. Megfigyelheti, hogy a rendszer az egyes tulajdonságok az új fájl bemeneteként az eseményindító által létrehozott könnyen használható adatokat:
+tooconfigure hello Ez a művelet, szüksége lesz a következő információ tooprovide hello. Megfigyelheti, hogy a rendszer az új fájl hello hello tulajdonságok bemeneteként hello eseményindító által létrehozott egyszerű toouse adatokat:
 
 | SFTP - kivonat mappa tulajdonság | Leírás |
 | --- | --- |
-| Forrás archív fájl elérési útja |Ez az, hogy a fájl kibontása közben elérési útját. Válassza ki azt a tokenek egy korábbi műveletet, vagy keresse meg a SFTP-kiszolgáló található a fájl elérési útját. |
-| A célmappa útvonala |Ez az az elérési utat, ahol kell helyezni a kibontott fájlokat. Válassza ki azt a tokenek egy korábbi művelet, mintha a elérési utat vagy keresse meg a SFTP-kiszolgáló, és válasszon ki egy útvonalat. |
-| Felülírja? |Azt jelzi, ha megtalálható-e a kibontott fájllal azonos nevű fájl a célmappa elérési útja, ha a meglévő fájlt, vagy nem írható felül. |
+| Forrás archív fájl elérési útja |Ez a hello elérési hello fájl kibontása közben. Válassza ki a hello jogkivonatok korábbi művelet található, vagy keresse meg a hello SFTP server toofind hello fájl elérési útját. |
+| A célmappa útvonala |Ez a hello elérési utat, ahol hello kibontott fájlok kerülnek. Válassza ki a hello jogkivonatok található egy korábbi művelet, mintha a hello cél elérési útja vagy hello SFTP server navigálhat, és válasszon ki egy útvonalat. |
+| Felülírja? |Azt jelzi, ha egy fájlt, mely hello azonos neve hello kibontott fájl található a hello célmappa elérési útja, ha hello létező fájl vagy nem írható felül. |
 
-Lássunk neki a fájlok kibontásához, ha a korábban meghatározott feltétel művelettel *igaz*. 
+Lássunk neki hello művelet tooextract hello fájlok hozzáadása, ha korábban meghatározott hello feltétel értéke túl*igaz*. 
 
 1. Válassza ki **művelet hozzáadása**.        
    ![SFTP művelet feltétel kép 6](./media/connectors-create-api-sftp/condition-6.png)   
-2. Válassza ki a **SFTP - kivonat mappa** művelet      
+2. Jelölje be hello **SFTP - kivonat mappa** művelet      
    ![SFTP művelet feltétel kép 7](./media/connectors-create-api-sftp/condition-7.png)   
 3. Válassza ki **forrás archív fájl elérési útja**              
    ![SFTP művelet feltétel kép 9](./media/connectors-create-api-sftp/condition-9.png)   
-4. Válassza ki a **fájl elérési útját** token. Ez azt jelzi, hogy használni kívánt fájl elérési útját a fájlt, amely az eseményindító található a forrás archív fájl elérési útja.           
+4. Jelölje be hello **fájl elérési útját** token. Ez azt jelzi, hogy hello fájl elérési útját hello található mint hello forrás archív fájl elérési útja eseményindító hello használt.           
    ![SFTP művelet feltétel kép 10](./media/connectors-create-api-sftp/condition-10.png)   
 5. Válassza ki **célmappa elérési útja**           
    ![SFTP művelet feltétel kép 11](./media/connectors-create-api-sftp/condition-11.png)   
-6. Válassza ki a **fájl elérési útját** token. Ez azt jelzi, hogy használni kívánt fájl elérési útját a fájlt, amely az eseményindító található elérési utat a kibontott fájlok.   
-7. Adja meg *\ExtractedFile* a a **a célmappa útvonala** vezérlő. Ehhez a fájl elérési útja lexikális elem szerepel a célként megadott mappa elérési útja vezérlő után.         
+6. Jelölje be hello **fájl elérési útját** token. Ez azt jelzi, hogy hello fájl elérési útját hello hello kibontott fájlok hello cél elérési útjaként található eseményindító hello használt.   
+7. Adja meg *\ExtractedFile* a hello **a célmappa útvonala** vezérlő. Ehhez a célként megadott mappa elérési útja vezérlő hello hello fájl elérésiút-token után.         
    ![SFTP művelet feltétel kép 12](./media/connectors-create-api-sftp/condition-12.png)   
-8. Adja meg *igaz* a a **felülírása?* vezérlő annak jelzésére, hogy a meglévő fájlok felül, ha azok a néven a kibontott fájlokat kell-e.      
+8. Adja meg *igaz* a hello **felülírása?* vezérlő tooindicate, amely a meglévő fájlok felülírt lehetnek, ha azonos nevet, amint hello hello kibontott fájlokat.      
    ![SFTP művelet feltétel kép 13](./media/connectors-create-api-sftp/condition-13.png)   
-9. Mentse a módosításokat a munkafolyamat  
+9. Hello módosítások tooyour munkafolyamat mentése  
 

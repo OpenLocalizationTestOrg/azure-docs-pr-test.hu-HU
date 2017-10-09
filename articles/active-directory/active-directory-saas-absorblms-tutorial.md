@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált felvegye LMS |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és felvegye LMS között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és felvegye LMS között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,122 +14,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: jeedes
-ms.openlocfilehash: 3c68c3ac7d6be593476d419f8c015931b206eead
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a140a78a3a9474a6372a3ad4fb8251bd2452c990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-absorb-lms"></a>Oktatóanyag: Azure Active Directoryval integrált felvegye LMS
 
-Ebben az oktatóanyagban elsajátíthatja felvegye LMS integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Absorb LMS az Azure Active Directoryval (Azure AD).
 
-Felvegye LMS integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Felvegye LMS integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, hogy felvegye LMS hozzáféréssel rendelkező Azure AD-ben
-- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a felvegye LMS (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooAbsorb LMS rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooAbsorb LMS (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg. [Alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow SaaS alkalmazásintegráció az Azure AD-vel kapcsolatos további részletekért lásd:. [Alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integrációs felvegye LMS konfigurálni, kell a következő elemek:
+tooconfigure felvegye LMS az Azure AD integrálása, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - Egy felvegye LMS egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből felvegye LMS hozzáadása
+1. Hello gyűjteményből felvegye LMS hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-absorb-lms-from-the-gallery"></a>A gyűjteményből felvegye LMS hozzáadása
-Az, hogy felvegye LMS az Azure ad integrálása megadásához kell hozzáadnia LMS felvegye a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-absorb-lms-from-hello-gallery"></a>Hello gyűjteményből felvegye LMS hozzáadása
+tooconfigure hello integrációja LMS felvegye a tooAzure AD, meg kell tooadd Absorb LMS hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**Adja hozzá a LMS felvegye a gyűjteményből, hajtsa végre az alábbi lépéseket:**
+**tooadd Absorb LMS hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
-    ![Az Azure Active Directory gomb][1]
+    ![hello Azure Active Directory gomb][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
-    ![A vállalati alkalmazások panel][2]
+    ![hello vállalati alkalmazások panel][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
-    ![Az új alkalmazás gomb][3]
+    ![hello új alkalmazás gomb][3]
 
-4. Írja be a keresőmezőbe, **felvegye LMS**, jelölje be **felvegye LMS** eredmény panelen kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+4. Hello keresési mezőbe, írja be a **felvegye LMS**, jelölje be **felvegye LMS** eredmény panelen kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
-    ![Az eredménylistában LMS felvegye](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_addfromgallery.png)
+    ![LMS felvegye a hello eredményeinek listája](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 
 Ebben a szakaszban konfigurálhatja, és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon." nevű tesztfelhasználó alapján felvegye LMS
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó LMS felvegye a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a felvegye LMS közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói LMS felvegye a tooa felhasználó az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello LMS felvegye a hivatkozás kapcsolatának kell toobe létrejött.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** LMS felvegye a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** LMS felvegye a.
 
-Az Azure AD egyszeri bejelentkezést a felvegye LMS tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés felvegye LMS-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Hozzon létre egy felvegye LMS tesztfelhasználó](#create-an-absorb-lms-test-user)**  - való egy megfelelője a Britta Simon LMS felvegye, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Rendelje hozzá az Azure AD-teszt felhasználó](#assign-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configure-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Hozzon létre egy Azure AD-teszt felhasználó](#create-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Hozzon létre egy felvegye LMS tesztfelhasználó](#create-an-absorb-lms-test-user)**  -toohave egy megfelelője a Britta Simon a LMS felvegye, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Rendelje hozzá az Azure AD hello tesztfelhasználó](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#test-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az felvegye LMS alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az felvegye LMS alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés LMS felvegye, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezés LMS felvegye a hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **felvegye LMS** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **felvegye LMS** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés kapcsolat konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés párbeszédpanel](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_samlbase.png)
 
-3. Az a **felvegye LMS tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **felvegye LMS tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Felvegye LMS tartomány és az URL-címek egyetlen bejelentkezés információk](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_url.png)
 
-    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://<subdomain>.myabsorb.com/Account/SAML`
+    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<subdomain>.myabsorb.com/Account/SAML`
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://<subdomain>.myabsorb.com/Account/SAML`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<subdomain>.myabsorb.com/Account/SAML`
      
     > [!NOTE] 
-    > Ezek az értékek nincsenek tényleges. Frissítheti ezeket az értékeket a tényleges azonosítója és a válasz URL-CÍMEN. Ügyfél [LMS ügyfél felvegye támogatási csoport](https://www.absorblms.com/support) beolvasni ezeket az értékeket. 
+    > Ezek az értékek nincsenek hello valós. Frissítheti ezeket az értékeket hello tényleges azonosítója és a válasz URL-címmel. Ügyfél [LMS ügyfél felvegye támogatási csoport](https://www.absorblms.com/support) tooget ezeket az értékeket. 
 
-4. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
 
-    ![A tanúsítvány letöltési hivatkozását](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_certificate.png) 
+    ![hello tanúsítvány letöltési hivatkozását](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_certificate.png) 
 
 6. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés Mentés gombra konfigurálása](./media/active-directory-saas-absorblms-tutorial/tutorial_general_400.png)
     
-7. A a **felvegye LMS konfigurációs** kattintson **felvegye LMS konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out és SAML-alapú egyszeri bejelentkezés szolgáltatás URL-címe** a a **rövid összefoglaló szakasz.**
+7. A hello **felvegye LMS konfigurációs** területén kattintson **felvegye LMS konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out és SAML-alapú egyszeri bejelentkezés szolgáltatás URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Felvegye LMS konfiguráció](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_configure.png) 
 
-8. Egy másik webes böngészőablakban jelentkezzen be a felvegye LMS vállalati webhely rendszergazdaként.
+8. Egy másik webes böngészőablakban jelentkezzen tooyour felvegye LMS vállalati hely rendszergazdaként.
 
-9. Kattintson a **fiók ikon** rendszergazdai kapcsolaton. 
+9. Kattintson a hello **fiók ikon** hello rendszergazdai kapcsolaton. 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-absorblms-tutorial/1.png)
 
@@ -137,23 +137,23 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-absorblms-tutorial/2.png)
     
-11. Kattintson a **felhasználók** fülre.
+11. Kattintson a hello **felhasználók** fülre.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-absorblms-tutorial/3.png)
 
-12. Hajtsa végre a következő lépéseket az egyszeri bejelentkezés konfigurációs mezők eléréséhez:
+12. Hajtsa végre a következő lépéseket tooaccess hello egyszeri bejelentkezés konfigurációs mezők hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-absorblms-tutorial/4.png)
 
-    a. Válassza ki a megfelelő **mód**.
+    a. Jelölje be hello megfelelő **mód**.
 
-    b. Nyissa meg a Jegyzettömbben, Azure-portálról letöltött tanúsítvány eltávolítása a **---BEGIN CERTIFICATE---** és **---vége tanúsítvány---** címkét, és illessze be a maradék tartalmat a **kulcs** szövegmező.
+    b. Nyissa meg hello hello Azure-portálon a Jegyzettömbben a letöltött tanúsítvány eltávolítása hello **---BEGIN CERTIFICATE---** és **---vége tanúsítvány---** címkét, és illessze be a fennmaradó hello Hello **kulcs** szövegmező.
     
-    c. Az a **azonosítóját megadó tulajdonságot**, válassza ki a megfelelő attribútumot, amely már konfigurálta a felhasználói azonosítóként (például, ha a userprinciplename az Azure AD-van kiválasztva, majd a felhasználónév itt választott lenne.) az Azure AD-ben
+    c. A hello **azonosítóját megadó tulajdonságot**, válassza ki a megfelelő attribútumot, amely konfigurált az hello (például ha hello userprinciplename az Azure AD-van kiválasztva, majd a felhasználónév itt választott lenne.) az Azure AD a felhasználói azonosító hello hello
 
-    d. Az a **bejelentkezési URL-cím**, illessze be a **"SAML-alapú egyszeri bejelentkezési URL-címe"** másolta az érték a **bejelentkezés konfigurálása** ablakot, az Azure-portálon.
+    d. A hello **bejelentkezési URL-cím**, illessze be a hello **"SAML-alapú egyszeri bejelentkezési URL-címe"** hello a másolt érték **bejelentkezés konfigurálása** ablakot, hello Azure-portálon.
 
-    e. Az a **kijelentkezési URL-cím**, illessze be a **"Sign-Out URL-címe"** másolta az érték a **bejelentkezés konfigurálása** ablakot, az Azure-portálon.
+    e. A hello **kijelentkezési URL-cím**, illessze be a hello **"Sign-Out URL-címe"** hello a másolt érték **bejelentkezés konfigurálása** ablakot, hello Azure-portálon.
 
 13. Engedélyezése **"Csak engedélyezése Egyszeri bejelentkezéshez"**.
 
@@ -162,54 +162,54 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 14. Kattintson a **"Mentés".**
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
 
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Hozzon létre egy Azure AD-teszt felhasználó][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
-    ![Az Azure Active Directory gomb](./media/active-directory-saas-absorblms-tutorial/create_aaduser_01.png) 
+    ![hello Azure Active Directory gomb](./media/active-directory-saas-absorblms-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
-    ![A "felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-absorblms-tutorial/create_aaduser_02.png) 
+    ![hello "Felhasználók és csoportok" és "Minden felhasználó" hivatkozások](./media/active-directory-saas-absorblms-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
-    ![A Hozzáadás gombra.](./media/active-directory-saas-absorblms-tutorial/create_aaduser_03.png) 
+    ![hello Hozzáadás gomb](./media/active-directory-saas-absorblms-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
-    ![A felhasználó párbeszédpanel](./media/active-directory-saas-absorblms-tutorial/create_aaduser_04.png) 
+    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-absorblms-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
 
 ### <a name="create-an-absorb-lms-test-user"></a>Hozzon létre egy felvegye LMS tesztfelhasználó számára
 
-Ahhoz, hogy felvegye LMS jelentkezzenek be az Azure AD-felhasználók, akkor ki kell építenie a LMS befogadására.  
+az Azure AD tooenable felhasználók toolog tooAbsorb LMS, a ezeket ki kell építenie a tooAbsorb LMS.  
 LMS felvegye a kiépítés kézi tevékenység.
 
-**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
+**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
 
-1. Jelentkezzen be rendszergazdaként a felvegye LMS vállalati webhely.
+1. Jelentkezzen be tooyour felvegye LMS vállalati hely rendszergazdaként.
 
 2. Kattintson a **felhasználók** fülre.
 
     ![Felkérése](./media/active-directory-saas-absorblms-tutorial/absorblms_users.png)
 
-3. Kattintson a **felhasználók** alatt a **felhasználók** fülre.
+3. Kattintson a **felhasználók** alatt hello **felhasználók** fülre.
 
     ![Felkérése](./media/active-directory-saas-absorblms-tutorial/absorblms_userssub.png)
 
@@ -217,49 +217,49 @@ LMS felvegye a kiépítés kézi tevékenység.
 
     ![Felkérése](./media/active-directory-saas-absorblms-tutorial/absorblms_createuser.png)
 
-5. Az a **felhasználó hozzáadása** lapon, a következő lépésekkel:
+5. A hello **felhasználó hozzáadása** lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Felkérése](./media/active-directory-saas-absorblms-tutorial/user.png)
 
-    a. Az a **Keresztnév** szövegmezőben, az első típusnév Britta hasonlóan.
+    a. A hello **Keresztnév** szövegmező, például Britta hello első neve.
 
-    b. Az a **Vezetéknév** szövegmező, írja be például a Simon utolsó nevét.
+    b. A hello **Vezetéknév** szövegmezőhöz hello utolsó típusnév Simon hasonlóan.
     
-    c. Az a **felhasználónév** szövegmező, írja be a felhasználónevet, például a Britta Simon.
+    c. A hello **felhasználónév** szövegmező, például Britta Simon hello felhasználó neve.
 
-    d. Az a **jelszó** szövegmező, írja be a Britta Simon tartozó jelszót.
+    d. A hello **jelszó** szövegmezőhöz Britta Simon típus hello jelszavát.
 
-    e. Az a **jelszó megerősítése** szövegmezőhöz ugyanazt a jelszót.
+    e. A hello **jelszó megerősítése** szövegmezőhöz típus hello ugyanazt a jelszót.
     
     f. Ügyeljen rá **aktív**.   
 
 6. Kattintson a **"Mentés".**
  
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés felvegye LMS Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooAbsorb LMS megadásával engedélyeznie.
 
-![A felhasználói szerepkör hozzárendelése][200]
+![Hello felhasználói szerepkör hozzárendelése][200]
 
-**Britta Simon hozzárendelése LMS felvegye, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooAbsorb LMS, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **felvegye LMS**.
+2. Hello alkalmazások listában válassza ki a **felvegye LMS**.
 
-    ![Az alkalmazások listáját a felvegye LMS hivatkozás](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_app.png) 
+    ![hello felvegye LMS hivatkozásra hello alkalmazások listája](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][202] 
+    ![hello "Felhasználók és csoportok" hivatkozásra.][202] 
 
 4. Kattintson a **Hozzáadás** gombra. Válassza ki **felhasználók és csoportok** a **hozzáadása hozzárendelés** párbeszédpanel.
 
-    ![A hozzárendelés hozzáadása panelen][203]
+    ![hello hozzárendelés hozzáadása panelen][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -267,13 +267,13 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Kattintson a hozzáférési panelen felvegye LMS csempére, meg fogja lekérni automatikusan bejelentkezett felvegye LMS Alkalmazásmódosítások. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](https://msdn.microsoft.com/library/dn308586).
+Hello LMS felvegye a hozzáférési Panel hello csempén kattintson automatikusan bejelentkezett tooyour felvegye LMS alkalmazás fog megjelenni. A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](https://msdn.microsoft.com/library/dn308586).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: Key Vault titkos Resource Manager-sablonnal |} Microsoft Docs
-description: "Bemutatja, hogyan adhatók át a titkos kulcs kulcstároló paraméterként üzembe helyezése során."
+title: "aaaKey tároló titkos Resource Manager-sablonnal |} Microsoft Docs"
+description: "Bemutatja, hogyan toopass egy titkos kulcsból érkező tároló paraméterként üzembe helyezése során."
 services: azure-resource-manager,key-vault
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1ca72599e67e79d42a3d430dbb13e89ea7265334
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0bb7760c95b3b4ef34c9e5cc2e3421be56b5e5e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-key-vault-to-pass-secure-parameter-value-during-deployment"></a>Továbbítsa biztonságos paraméter értékét a telepítés során a Key Vault használatával
+# <a name="use-key-vault-toopass-secure-parameter-value-during-deployment"></a>Key Vault toopass biztonságos paraméter értékét használja a központi telepítése során
 
-Adjon át egy biztonságos értéket (például jelszót) paraméterként központi telepítése során kell, ha az érték le egy [Azure Key Vault](../key-vault/key-vault-whatis.md). A kulcstartó és a paraméter-fájlban a titkos kulcs Vezérlőpultjának kikeresheti az értéket. Az érték sosem hagyja, mert csak hivatkoznak a kulcstartót azonosítóját. Nem kell manuálisan adja meg az értékét a titkos kulcsot minden alkalommal, amikor az erőforrások telepítése. A key vault létezhet, mint az erőforráscsoportot, hogy telepít egy másik előfizetésben. A key vault hivatkozik, akkor adja meg az előfizetés-azonosító.
+Központi telepítése során egy paraméterként kell toopass (például jelszót) egy biztonságos értékre, hello értéket le egy [Azure Key Vault](../key-vault/key-vault-whatis.md). Hello érték hello kulcstartó és a paraméter-fájlban a titkos kulcs hivatkozó lekérni. hello érték sosem hagyja, mivel csak hivatkoznak a kulcstartót azonosítóját. Nem kell toomanually meg hello hello titkos kulcsot minden egyes telepítéshez hello erőforrásokat. hello kulcstároló mint hello erőforráscsoport esetében helyez üzembe egy másik előfizetést is szerepel. Való hivatkozáskor hello kulcstároló, tartalmaz-e hello előfizetés-azonosító.
 
-A kulcstartó létrehozásakor állítsa be a *enabledForTemplateDeployment* tulajdonságot *igaz*. Ez az érték true értékre állításával lehetővé hozzáférési Resource Manager-sablonok alapján a telepítés során.  
+Hello kulcstartó létrehozásakor állítsa hello *enabledForTemplateDeployment* tulajdonság túl*igaz*. Az érték tootrue beállításával, hozzáférést engedélyez a Resource Manager-sablonok központi telepítése során.  
 
 ## <a name="deploy-a-key-vault-and-secret"></a>Telepítsen egy kulcstartót és a titkos kulcs
 
-A kulcstartó és a titkos kulcs létrehozásához használja az Azure parancssori felület vagy a PowerShell. Figyelje meg, hogy a key vault sablon-üzembehelyezés engedélyezve van. 
+Kulcstároló toocreate és a titkos kulcsot, használja az Azure parancssori felület vagy a PowerShell. Figyelje meg, hogy hello kulcstároló sablon-üzembehelyezés engedélyezve van. 
 
 Azure CLI esetén használja az alábbi parancsot:
 
@@ -53,14 +53,14 @@ $secretvalue = ConvertTo-SecureString $password -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue $secretvalue
 ```
 
-## <a name="enable-access-to-the-secret"></a>A titkos kulcs hozzáférésének engedélyezése
+## <a name="enable-access-toohello-secret"></a>Engedélyezze a hozzáférést toohello titkos kulcs
 
-Függetlenül attól, hogy egy új kulcstartó vagy egy meglévő, győződjön meg arról, hogy a sablon telepítése a felhasználó hozzáférhet-e a titkos kulcsot. A felhasználónak, a titkos kulcs hivatkozó sablonok telepítésével kell rendelkeznie a `Microsoft.KeyVault/vaults/deploy/action` a key vault engedély. A [tulajdonos](../active-directory/role-based-access-built-in-roles.md#owner) és [közreműködő](../active-directory/role-based-access-built-in-roles.md#contributor) szerepkörök is engedélyezik a hozzáférést. Létrehozhat egy [egyéni szerepkör](../active-directory/role-based-access-control-custom-roles.md) , amely engedélyt ad a, és adja hozzá a felhasználót a szerepkörhöz. A felhasználó egy szerepkörhöz történő hozzáadásával kapcsolatos további információkért lásd: [felhasználó hozzárendelése az Azure Active Directory rendszergazdai szerepkörök](../active-directory/active-directory-users-assign-role-azure-portal.md).
+Függetlenül attól, hogy egy új kulcstartó vagy egy meglévő, győződjön meg arról, hello sablon telepítése hello felhasználó hozzáférhet hello titkos kulcsot. a titkos kulcs hivatkozó sablonok telepítésével hello felhasználónak rendelkeznie kell hello `Microsoft.KeyVault/vaults/deploy/action` hello kulcstároló engedély. Hello [tulajdonos](../active-directory/role-based-access-built-in-roles.md#owner) és [közreműködő](../active-directory/role-based-access-built-in-roles.md#contributor) szerepkörök is engedélyezik a hozzáférést. Létrehozhat egy [egyéni szerepkör](../active-directory/role-based-access-control-custom-roles.md) , amely engedélyt ad a és hello felhasználói toothat szerepkört. További információ a felhasználói tooa szerepkör hozzáadása: [a felhasználó az Azure Active Directoryban tooadministrator szerepkörök hozzárendelése](../active-directory/active-directory-users-assign-role-azure-portal.md).
 
 
 ## <a name="reference-a-secret-with-static-id"></a>Hivatkozás statikus azonosítójú titkos kulcs
 
-A sablont, amely megkapja a kulcstartót titkos kulcs olyan, mint a többi sablont. Mivel ez **a paraméter fájlban, nem a sablon a key vault hivatkozik.** Például a következő sablon telepít egy SQL-adatbázis, amely egy rendszergazdai jelszót tartalmaz. A password paraméter értéke egy biztonságos karakterláncot kell megadnia. De a sablon nem adja meg, ha ezt az értéket származik.
+hello sablont, amely megkapja a kulcstartót titkos kulcs olyan, mint a többi sablont. Mivel ez **hello kulcstároló hello paraméter fájlban, nem hello sablon hivatkozik.** Például a következő sablon hello telepíti egy rendszergazdai jelszót tartalmazó SQL-adatbázis. hello a password paraméter értéke tooa biztonságos karakterláncot kell megadnia. De hello sablon nem adja meg, ha ezt az értéket származik.
 
 ```json
 {
@@ -146,7 +146,7 @@ A sablont, amely megkapja a kulcstartót titkos kulcs olyan, mint a többi sablo
 }
 ```
 
-Most a fenti sablon paraméter fájl létrehozása. A paraméterfájl adja meg a sablon a paraméter neve megegyezik-e paraméter. A paraméterérték használatával hivatkozik a key vault a titkos kulcsot. A titkos kulcsot úgy, hogy a key vault erőforrás-azonosítója és a titkos kulcs neve hivatkozik. A következő példában a kulcstartót titkos kulcs már léteznie kell, és adjon meg statikus értéket az erőforrás-azonosítóhoz.
+Most létre sablon megelőző hello paraméter fájlt. Hello paraméterfájl adja meg egy paraméter, amely megfelel a hello paraméter hello sablonban hello neve. Hello paraméter értéke lásd a hello kulcstároló titkos hello. Hello titkos hello kulcstároló hello erőforrás-azonosítója és hello neve hello titok átadásával hivatkozik. A következő példa hello hello kulcstároló titkos kulcs már léteznie kell, és statikus értéket adja meg az erőforrás-azonosítóhoz.
 
 ```json
 {
@@ -194,9 +194,9 @@ Most a fenti sablon paraméter fájl létrehozása. A paraméterfájl adja meg a
 
 ## <a name="reference-a-secret-with-dynamic-id"></a>Dinamikus azonosítójú titkos kulcs hivatkozik
 
-Az előző szakaszban bemutatta, hogyan felelt meg a kulcstartót titkos kulcsot egy statikus erőforrás azonosítója. Azonban bizonyos esetekben kell kulcstároló titkos kulcs eltérő az aktuális telepítés alapján hivatkozik. Ebben az esetben nem lehet szigorú kódot az erőforrás-azonosítója a paraméterfájlban. Sajnos nem lehet dinamikusan létrehozhat az erőforrás-azonosítója a paraméterfájlban mert sablon kifejezések nem megengedettek a paraméterfájlban.
+hello előző szakaszban bemutatta, hogyan toopass egy statikus erőforrás-azonosító hello kulcs tároló titkos kulcsot. Azonban bizonyos esetekben kell tooreference kulcstároló titkos kulcs eltérő hello jelenlegi üzemelő példány alapján. Ebben az esetben nem lehet hello paraméterfájl kódolnia hello erőforrás-azonosító. Sajnos nem lehet dinamikusan létrehozhat hello erőforrás-azonosító hello paraméterek fájlban mert sablon kifejezésekben nem engedélyezettek a hello paraméterfájl.
 
-Lehet dinamikusan létrehozni a kulcstartó titkos kulcs az erőforrás-azonosító, át kell helyezni az erőforrás, amelyet a titkos kulcsot egy beágyazott sablonba. A fő sablonban a beágyazott sablon hozzáadása, és adjon át egy paraméter, amely tartalmazza a dinamikusan generált erőforrás-azonosító.
+toodynamically hello erőforrás-azonosító kulcstároló titkos kulcs létrehozása, hello erőforrás, amelyet a beágyazott sablonba hello titkos kulcsot kell áthelyeznie. A fő sablonban hello beágyazott sablon hozzáadása, és adjon át egy paraméter, amely tartalmazza a dinamikusan generált hello erőforrás-azonosító.
 
 ```json
 {

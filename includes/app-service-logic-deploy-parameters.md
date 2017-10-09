@@ -1,12 +1,12 @@
-Az Azure Resource Managerrel meghatározhatja a sablon üzembe helyezésekor megadandó értékek paramétereit. A sablon nevű paraméterek szakaszban, amely tartalmazza az összes paraméter értékét tartalmazza.
-Meg kell határozni egy paramétert ezeket az értékeket, amelyek a projekt telepít vagy telepít, hogy a környezet alapján változhatnak. Az értékeket, amelyeket a rendszer mindig ugyanaz maradjon paraméterek nem határoznak meg. Minden paraméter értéke szolgál a sablon határozza meg az erőforrásokat, vannak-e telepíteni. 
+Az Azure Resource Manager paraméterek megadása értékek keresi toospecify hello sablon telepítésekor. hello sablon tartalmazza az összes hello paraméterértékek nevű paraméterek szakaszban.
+Ezeket az értékeket, amelyek eltérőek a hello projektet telepít vagy alapján hello környezet esetében helyez üzembe egy paramétert meg kell határozni. Paraméterek nem adják meg, az értékek, amelyek mindig maradnak hello azonos. Minden paraméter értéke hello sablon toodefine hello erőforrásokat, amelyek telepítéséhez használatos. 
 
-Ha paraméterek megadása a **Storageaccount_accounttype** mezőben adja meg, mely felhasználó értékekkel biztosíthat a telepítés során. Használja a **defaultValue** mezőben rendelhet értéket a paraméternek, ha nincs érték megadva üzembe helyezése során.
+Paraméterek definiálásakor használja hello **Storageaccount_accounttype** mező toospecify, amely a felhasználó értékek biztosíthat a telepítés során. Használjon hello **defaultValue** mező tooassign érték toohello paraméter, ha nincs érték megadva üzembe helyezése során.
 
-Azt ismerteti, egyes paramétereket a sablonban.
+Azt ismerteti, minden paraméter hello sablonban.
 
 ### <a name="logicappname"></a>logicAppName
-A logikai alkalmazás létrehozása neve.
+hello logic app toocreate hello neve.
 
     "logicAppName": {
         "type": "string"

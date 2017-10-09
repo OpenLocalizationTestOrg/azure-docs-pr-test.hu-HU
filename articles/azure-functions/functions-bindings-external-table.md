@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Functions külső táblakötéssel (előzetes verzió) |} Microsoft Docs"
+title: "aaaAzure funkciók külső táblakötéssel (előzetes verzió) |} Microsoft Docs"
 description: "A külső tábla kötések az Azure Functions használatával"
 services: functions
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: alkarche
-ms.openlocfilehash: 716438e5ea490f6716999813112305499dbe61a8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bf19d7d377232edc91087d5f4110602bb82c67ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-external-table-binding-preview"></a>Az Azure Functions külső táblakötéssel (előzetes verzió)
-Ez a cikk bemutatja, hogyan kezelheti a Szolgáltatottszoftver-szolgáltatók (például a Sharepoint, a Dynamics) táblázatos adatok a függvényen belül beépített definiált kötésekkel. Az Azure Functions bemeneti és kimeneti kötések támogatja a külső táblákhoz.
+Ez a cikk bemutatja, hogyan toomanipulate táblázatos adatok SaaS szolgáltatók (például a Sharepoint, a Dynamics) olyan beépített kötések a függvényen belül. Az Azure Functions bemeneti és kimeneti kötések támogatja a külső táblákhoz.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 ## <a name="api-connections"></a>API-kapcsolatok
 
-Tábla kötések használja ki a 3. fél Szolgáltatottszoftver-szolgáltatók való hitelesítéshez szükséges külső API-kapcsolatokat. 
+Tábla kötések külső API kapcsolatok tooauthenticate 3. fél Szolgáltatottszoftver-szolgáltatókkal használja ki. 
 
-A kötés hozzárendelésekor új API-kapcsolatot létrehozni, vagy belül ugyanabban az erőforráscsoportban meglévő API-kapcsolat használata
+A kötés hozzárendelésekor új API-kapcsolatot létrehozni, vagy belül hello meglévő API-kapcsolat használata ugyanabban az erőforráscsoportban
 
 ### <a name="supported-api-connections-tables"></a>Támogatott API-kapcsolatok (tábla) s
 
@@ -62,14 +62,14 @@ A kötés hozzárendelésekor új API-kapcsolatot létrehozni, vagy belül ugyan
 1. A forgatókönyv `Experimental`  >  `ExternalTable-CSharp` sablon > hozzon létre egy új `External Table connection` 
  ![bemeneti sablon kiválasztása](./media/functions-bindings-storage-table/create-template-table.jpg)
 1. Válassza ki azt a Szolgáltatottszoftver-szolgáltatót > Válassza ki vagy hozzon létre kapcsolatot ![konfigurálása Szolgáltatottszoftver-kapcsolat](./media/functions-bindings-storage-table/authorize-API-connection.jpg)
-1. Válassza ki az API-kapcsolatot > a függvény létrehozása ![tábla függvény létrehozása](./media/functions-bindings-storage-table/table-template-options.jpg)
+1. Válassza ki az API-kapcsolatot > hello függvény létrehozása ![tábla függvény létrehozása](./media/functions-bindings-storage-table/table-template-options.jpg)
 1. Válassza ki`Integrate` > `External Table`
-    1. Állítsa be a kapcsolatot a céloldali tábla használja. Ezek a beállítások nagyon Szolgáltatottszoftver-szolgáltatók között lesz. -E az alábbi vázlat [adatforrás-beállítások](#datasourcesettings)
+    1. A céloldali tábla hello kapcsolat toouse konfigurálása Ezek a beállítások nagyon Szolgáltatottszoftver-szolgáltatók között lesz. -E az alábbi vázlat [adatforrás-beállítások](#datasourcesettings)
 ![konfigurálása tábla](./media/functions-bindings-storage-table/configure-API-connection.jpg)
 
 ## <a name="usage"></a>Használat
 
-Ebben a példában az azonosító, a Vezetéknév és a Vezetéknév oszlopokat "Ügyfél" nevű tábla kapcsolódik. A kód a Contact entitásokat a táblázat sorolja fel, és a vezeték- és keresztneveket naplózza.
+Ebben a példában a "Ügyfél" nevű azonosítót, Utónév és Vezetéknév oszlopokkal tooa táblázat kapcsolatot. hello kód hello Contact entitásokat hello táblázat sorolja fel, és a naplók hello vezeték- és keresztneveket.
 
 ### <a name="bindings"></a>Kötések
 ```json
@@ -95,9 +95,9 @@ Ebben a példában az azonosító, a Vezetéknév és a Vezetéknév oszlopokat 
 ```
 `entityId`a tábla kötések üresnek kell lennie.
 
-`ConnectionAppSettingsKey`az Alkalmazásbeállítás, amely tárolja az API-kapcsolati karakterlánc azonosítja. Az Alkalmazásbeállítás automatikusan létrejön, amikor hozzáadja az API-kapcsolat az integráció felhasználói felületén.
+`ConnectionAppSettingsKey`hello Alkalmazásbeállítás hello API kapcsolati karakterlánc tároló azonosítja. hello Alkalmazásbeállítás automatikusan jön létre az API-k felvételekor hello kapcsolat integrálható a felhasználói felület.
 
-A táblázatos összekötő adatkészletek biztosít, és minden egyes táblát tartalmaz. Az alapértelmezett adatkészlet neve nem "alapértelmezett". A DataSet adatkészlet és a táblázat a különböző Szolgáltatottszoftver-szolgáltatók címeit az alábbiak:
+A táblázatos összekötő adatkészletek biztosít, és minden egyes táblát tartalmaz. hello hello alapértelmezett adatkészlet értéke "alapértelmezett". a DataSet adatkészlet és a táblázat a különböző Szolgáltatottszoftver-szolgáltatók hello címeinek az alábbiak:
 
 |összekötő|Adatkészlet|Tábla|
 |:-----|:---|:---| 
@@ -107,7 +107,7 @@ A táblázatos összekötő adatkészletek biztosít, és minden egyes táblát 
 |**Excel**|Excel-fájl|Lap 
 
 <!--
-See the language-specific sample that copies the input file to the output file.
+See hello language-specific sample that copies hello input file toohello output file.
 
 * [C#](#incsharp)
 * [Node.js](#innodejs)
@@ -125,7 +125,7 @@ using System;
 using Microsoft.Azure.ApiHub;
 
 //Variable name must match column type
-//Variable type is dynamically bound to the incoming data
+//Variable type is dynamically bound toohello incoming data
 public class Contact
 {
     public string Id { get; set; }
@@ -135,7 +135,7 @@ public class Contact
 
 public static async Task Run(string input, ITable<Contact> table, TraceWriter log)
 {
-    //Iterate over every value in the source table
+    //Iterate over every value in hello source table
     ContinuationToken continuationToken = null;
     do
     {   
@@ -172,7 +172,7 @@ module.exports = function(context) {
 
 ### <a name="sql-server"></a>SQL Server
 
-A parancsfájl létrehozása és feltöltése az ügyfél tábla nem éri el. dataSetName az "alapértelmezett".
+parancsfájl toocreate hello és tölthet hello ügyfél tábla nem éri el. dataSetName az "alapértelmezett".
 
 ```sql
 CREATE TABLE Contact
@@ -192,7 +192,7 @@ GO
 ```
 
 ### <a name="google-sheets"></a>Google Táblázatok
-A Google Docs, hozzon létre egy táblázatot nevű `Contact`. Az összekötő számolótábla megjelenítési név nem használható. A belső nevét (félkövér) kell használható dataSetName, például: `docs.google.com/spreadsheets/d/`  **`1UIz545JF_cx6Chm_5HpSPVOenU4DZh4bDxbFgJOSMz0`**  adja hozzá az oszlopnevek `Id`, `LastName`, `FirstName` első sorának, majd töltse fel a következő sorokban adatokat.
+A Google Docs, hozzon létre egy táblázatot nevű `Contact`. hello összekötő hello számolótábla megjelenítési név nem használható. hello belső nevét (félkövér) kell toobe használt dataSetName, mint például: `docs.google.com/spreadsheets/d/`  **`1UIz545JF_cx6Chm_5HpSPVOenU4DZh4bDxbFgJOSMz0`**  hello oszlopnevek hozzáadása `Id`, `LastName`, `FirstName` toohello első sor, majd az adatok feltöltése további sorokat.
 
 ### <a name="salesforce"></a>Salesforce
 dataSetName az "alapértelmezett".

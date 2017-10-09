@@ -1,6 +1,6 @@
 ---
-title: "Háttér-szolgáltatásaihoz ügyfél használatával biztonságos tanúsítványhitelesítés - Azure API Management |} Microsoft Docs"
-description: "Megtudhatja, mennyire biztonságos a háttér-szolgáltatásaihoz ügyféltanúsítvány-alapú hitelesítés használata az Azure API Management."
+title: "ügyféltanúsítvány-alapú hitelesítés - Azure API Management használata aaaSecure háttér-szolgáltatásaihoz |} Microsoft Docs"
+description: "Ismerje meg, hogy a toosecure háttér-szolgáltatásaihoz ügyfél használatával hogyan Tanúsítványalapú hitelesítés az Azure API Management."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 2ebe71c96fd9076a48f689041634dbd23d3d8414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 565bb61044fed1158944202c36e8abe30edf5729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>Az Azure API Management tanúsítványhitelesítés biztonságossá tétele a háttér-szolgáltatásaihoz ügyfél használatával
-API-kezelés lehetővé teszi a biztonságos hozzáférés a háttér-szolgáltatásra, az API-k az ügyféltanúsítványok. Ez az útmutató bemutatja az API-közzétevő portálon tanúsítványok kezelése és konfigurálása egy API-t egy tanúsítványt a háttér-szolgáltatás elérésére használhat.
+# <a name="how-toosecure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>Hogyan tanúsítvány toosecure háttér-szolgáltatásaihoz ügyfél-hitelesítés az Azure API Management
+Az API Management biztosít az ügyféltanúsítványok hello funkció toosecure toohello háttér-szolgáltatás, az API-k. Ez az útmutató bemutatja, hogyan toomanage tanúsítványok hello API publisher portálon, és hogyan tooconfigure az API-k toouse egy tanúsítvány tooaccess a háttér-szolgáltatás.
 
-Tanúsítványok, az API Management REST API használatával történő kezelésével kapcsolatos információkért lásd: [Azure API Management REST API tanúsítvány entitás][Azure API Management REST API Certificate entity].
+Tanúsítványok hello API Management REST API használatával történő kezelésével kapcsolatos információkért lásd: [Azure API Management REST API tanúsítvány entitás][Azure API Management REST API Certificate entity].
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez az útmutató bemutatja, hogyan konfigurálhatja az API Management szolgáltatáspéldány ügyféltanúsítvány-alapú hitelesítés használatát a háttér-szolgáltatás számára az API-k eléréséhez. Ez a témakör a lépések végrehajtása előtt rendelkeznie kell a háttér-szolgáltatás ügyféltanúsítvány-alapú hitelesítés beállítása ([konfigurálása az Azure Websitesra tanúsítványhitelesítés tekintse meg a cikk][to configure certificate authentication in Azure WebSites refer to this article]), és a tanúsítvány feltöltése az API Management publisher portálon a tanúsítvány és a jelszó hozzáféréssel rendelkeznek.
+Ez az útmutató bemutatja, hogyan tooconfigure az API Management szolgáltatás példány toouse ügyfél tanúsítvány hitelesítési tooaccess hello háttér-szolgáltatást egy API-t. Következő hello ebben a témakörben ismertetett visszaállítási lépésekkel, mielőtt a háttér-szolgáltatás ügyféltanúsítvány-alapú hitelesítés beállítása rendelkeznie kell ([toothis cikk tekintse meg a hitelesítés az Azure Websitesra tooconfigure tanúsítvány] [ tooconfigure certificate authentication in Azure WebSites refer toothis article]), és hozzáférést toohello tanúsítvány és hello hello-tanúsítvány feltöltése hello API Management publisher Portal jelszó.
 
 ## <a name="step1"></a>Egy ügyfél-tanúsítvány feltöltése
-Első lépésként kattintson a **Közzétevő portál** elemre az API Management szolgáltatás Azure Portalján. Ezzel továbblép az API Management közzétevő portáljára.
+tooget elindítani, kattintson a **Publisher portal** a hello Azure portál, az API Management szolgáltatás. Ezzel megnyitná toohello API Management publisher portálon.
 
 ![API-közzétevő portál][api-management-management-console]
 
-> Ha még nem hozott létre API Management szolgáltatáspéldányt, tekintse meg az [Ismerkedés az Azure API Management szolgáltatással][Get started with Azure API Management] oktatóanyag [API Management szolgáltatáspéldány létrehozása][Create an API Management service instance] című szakaszát.
+> Ha még nem hozott létre az API Management szolgáltatáspéldány, lásd: [hozzon létre egy API-kezelés szolgáltatás példányt] [ Create an API Management service instance] a hello [Ismerkedés az Azure API Management] [ Get started with Azure API Management] oktatóanyag.
 > 
 > 
 
-Kattintson a **biztonsági** a a **API Management** menüt, és kattintson **ügyféltanúsítványok**.
+Kattintson a **biztonsági** a hello **API Management** hello balra, majd kattintson a menü **ügyféltanúsítványok**.
 
 ![Ügyféltanúsítványok][api-management-security-client-certificates]
 
-Töltsön fel új tanúsítványt, kattintson a **feltöltés tanúsítvány**.
+egy új tanúsítvány tooupload kattintson **feltöltés tanúsítvány**.
 
 ![Tanúsítvány feltöltése][api-management-upload-certificate]
 
-Keresse meg a tanúsítványt, és írja be a jelszót a tanúsítványhoz.
+Keresse meg a tooyour tanúsítványt, és adja meg hello jelszó hello tanúsítvány.
 
-> A tanúsítványnak kell lennie a **.pfx** formátumban. Önaláírt tanúsítványok használata engedélyezett.
+> hello tanúsítványnak kell lennie a **.pfx** formátumban. Önaláírt tanúsítványok használata engedélyezett.
 > 
 > 
 
 ![Tanúsítvány feltöltése][api-management-upload-certificate-form]
 
-Kattintson a **feltöltése** töltse fel a tanúsítványt.
+Kattintson a **feltöltése** tooupload hello tanúsítványt.
 
-> A tanúsítvány jelszava most van hitelesítve. Ha az nem megfelelő egy hibaüzenet jelenik meg.
+> hello tanúsítvány jelszava most van hitelesítve. Ha az nem megfelelő egy hibaüzenet jelenik meg.
 > 
 > 
 
 ![A tanúsítvány feltöltése][api-management-certificate-uploaded]
 
-A tanúsítvány a feltöltést követően megjelenik az **ügyféltanúsítványok** fülre. Ha több tanúsítvány, akkor a tulajdonos jegyezze fel, vagy az ujjlenyomat az utolsó négy számjegyét, válassza ki a tanúsítványt egy API-t a tanúsítványok, konfigurálásakor, az alábbi szabályozott módon használt [átjáró hitelesítéshez használandó ügyféltanúsítványt API konfigurálása] [ Configure an API to use a client certificate for gateway authentication] szakasz.
+Hello tanúsítványt a feltöltést követően megjelenő hello **ügyféltanúsítványok** fülre. Ha több tanúsítvány, jegyezze fel a hello tulajdonos, vagy utolsó négy számjegyét hello ujjlenyomat, amelyek használt tooselect hello tanúsítvány konfigurálása az API toouse tanúsítványokat, amikor hello alábbi szabályozott módon hello [konfigurálása egy API toouse ügyféltanúsítványt az átjáró hitelesítési] [ Configure an API toouse a client certificate for gateway authentication] szakasz.
 
-> Kapcsolja ki a tanúsítványlánc érvényesítése használata esetén például egy önaláírt tanúsítványt, kövesse a lépéseket, ez a GYIK ismertetett [elem](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end).
+> tanúsítványlánc érvényesítése, például egy önaláírt tanúsítvány használata esetén ki tooturn lépésekkel hello Ez a GYIK ismertetett [elem](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end).
 > 
 > 
 
 ## <a name="step1a"></a>Egy ügyfél-tanúsítvány törlése
-Törli a tanúsítványt, kattintson a **törlése** mellett a kívánt tanúsítványt.
+toodelete egy tanúsítványt, kattintson a **törlése** hello kívánt tanúsítvány mellett.
 
 ![Tanúsítvány törlése][api-management-certificate-delete]
 
-Kattintson a **Igen, törölje azt** megerősítéséhez.
+Kattintson a **Igen, törölje azt** tooconfirm.
 
 ![Törlés megerősítése][api-management-confirm-delete]
 
-Ha a tanúsítvány egy API-t használja, majd egy figyelmeztetés képernyő jelenik meg. A tanúsítvány törlése el kell távolítani a tanúsítványt bármely olyan API-, a használatára konfigurált.
+Ha hello tanúsítvány egy API-t használja, majd egy figyelmeztetés képernyő jelenik meg. toodelete hello tanúsítvány hello távolítsa el a tanúsítvány minden API-, amelyek a konfigurált toouse azt.
 
 ![Törlés megerősítése][api-management-confirm-delete-policy]
 
-## <a name="step2"></a>Átjáró hitelesítéshez használandó ügyféltanúsítványt API konfigurálása
-Kattintson a **API-k** a a **API Management** a bal oldali menüben kattintson a kívánt API nevére, majd kattintson a **biztonsági** fülre.
+## <a name="step2"></a>Egy API toouse ügyféltanúsítványt az átjáró hitelesítés konfigurálása
+Kattintson a **API-k** a hello **API Management** hello menüjének balra kattintson a kívánt hello API hello neve, és hello kattintson **biztonsági** fülre.
 
 ![API-biztonsági][api-management-api-security]
 
-Válassza ki **ügyféltanúsítványok** a a **hitelesítő adatokkal rendelkező** legördülő listából.
+Válassza ki **ügyféltanúsítványok** a hello **hitelesítő adatokkal rendelkező** legördülő listából.
 
 ![Ügyféltanúsítványok][api-management-mutual-certificates]
 
-A kívánt tanúsítvány kiválasztása a **ügyféltanúsítvány** legördülő listából. Ha több tanúsítvány vessen egy pillantást a megfelelő tanúsítványt a tulajdonos vagy az ujjlenyomat az előző szakaszban leírtaknak megfelelően utolsó négy számjegyét.
+Válassza ki a kívánt tanúsítványt hello hello **ügyféltanúsítvány** legördülő listából. Ha több tanúsítvány hello tulajdonos tekintse meg, vagy hello utolsó négy számjegyét hello ujjlenyomat hello előző szakasz toodetermine hello megfelelő tanúsítvány leírtaknak megfelelően.
 
 ![Tanúsítvány kiválasztása][api-management-select-certificate]
 
-Kattintson a **mentése** menteni a konfiguráció módosítását az API-hoz.
+Kattintson a **mentése** toosave hello konfigurációs módosítás toohello API.
 
-> Ez a változás a következő időponttól érvényes azonnal, és az adott API műveletek hívások a tanúsítványt használni kívánt telefonszámot a háttér-kiszolgálón.
+> Ez a változás a következő időponttól érvényes azonnal, és használja az adott API toooperations hívások hello tanúsítvány tooauthenticate hello háttér-kiszolgálón.
 > 
 > 
 
 ![API-módosítások mentése][api-management-save-api]
 
-> Egy tanúsítványt egy API-t az átjáró a háttér-szolgáltatás hitelesítéséhez megadása esetén a szabályzat részévé válik, hogy az API-hoz, és tekintheti meg a Helyicsoportházirend-szerkesztő.
+> Egy tanúsítványt egy API-t az átjáró hello háttér-szolgáltatás hitelesítésének megadása esetén hello házirend részévé válik, hogy az API-hoz, és megtekinthetők az hello Helyicsoportházirend-szerkesztő.
 > 
 > 
 
 ![Tanúsítványszabályzat][api-management-certificate-policy]
 
 ## <a name="next-steps"></a>Következő lépések
-Biztonságossá tehető a háttérszolgáltatás, például HTTP alap vagy megosztott titkos hitelesítés, a további információk: a következő videó.
+A más módon toosecure HTTP alap vagy megosztott titkos hitelesítést, például a háttérszolgáltatás című cikkben olvashat bővebben a következő videó hello.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Last-mile-Security/player]
 > 
@@ -130,10 +130,10 @@ Biztonságossá tehető a háttérszolgáltatás, például HTTP alap vagy megos
 
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -142,13 +142,13 @@ Biztonságossá tehető a háttérszolgáltatás, például HTTP alap vagy megos
 
 [Azure API Management REST API Certificate entity]: http://msdn.microsoft.com/library/azure/dn783483.aspx
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[to configure certificate authentication in Azure WebSites refer to this article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
+[tooconfigure certificate authentication in Azure WebSites refer toothis article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
 
 [Prerequisites]: #prerequisites
 [Upload a client certificate]: #step1
 [Delete a client certificate]: #step1a
-[Configure an API to use a client certificate for gateway authentication]: #step2
-[Test the configuration by calling an operation in the Developer Portal]: #step3
+[Configure an API toouse a client certificate for gateway authentication]: #step2
+[Test hello configuration by calling an operation in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
 

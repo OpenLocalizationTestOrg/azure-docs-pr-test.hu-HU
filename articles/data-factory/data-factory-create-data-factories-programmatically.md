@@ -1,6 +1,6 @@
 ---
-title: "Adatok folyamatok létrehozása az Azure .NET SDK használatával |} Microsoft Docs"
-description: "Megtudhatja, hogyan programozott módon létrehozása, felügyelete és kezelése az Azure adat-előállítók Data Factory SDK használatával."
+title: "aaaCreate adatok folyamatok Azure .NET SDK használatával |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooprogrammatically létrehozásához, figyeléséhez és felügyeletéhez Azure adat-előállítók Data Factory SDK használatával."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 9d9dac75321c5d4e079f49320d9b7c6f56e48754
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 190b5f99edbb3c27e1e8efb8990b9e601b22458f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a>Hozzon létre, felügyelete és kezelése az Azure Data Factory .NET SDK használatával Azure adat-előállítók
 ## <a name="overview"></a>Áttekintés
-Hozzon létre, figyelése és kezelése az Azure adat-előállítók programozott módon a Data Factory .NET SDK használatával. A cikkben egy forgatókönyv, amelyeket követve hozzon létre egy minta .NET konzolalkalmazást, amely létrehoz és egy adat-előállító figyeli. 
+Hozzon létre, figyelése és kezelése az Azure adat-előállítók programozott módon a Data Factory .NET SDK használatával. A cikkben egy forgatókönyv, amelyeket követve toocreate minta .NET-Konzolalkalmazás, amely létrehoz és egy adat-előállító figyeli. 
 
 > [!NOTE]
-> Ez a cikk nem tárgyalja a Data Factory teljes .NET API-ját. Lásd: [Data Factory .NET API-referencia](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) .NET API-t a Data Factory átfogó dokumentációját. 
+> Ez a cikk nem foglalkozik az összes hello Data Factory .NET API. Lásd: [Data Factory .NET API-referencia](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) .NET API-t a Data Factory átfogó dokumentációját. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Visual Studio 2012, 2013 vagy 2015
 * Töltse le és telepítse [Azure .NET SDK](http://azure.microsoft.com/downloads/).
-* Azure PowerShell. Kövesse a [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása) cikkben foglalt utasításokat az Azure PowerShell telepítéséhez a számítógépre. Az Azure PowerShellt egy Azure Active Directory-alkalmazás létrehozására fogjuk használni.
+* Azure PowerShell. Kövesse az utasításokat [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) tooinstall Azure PowerShell, a számítógépen a következő cikket. Használhatja az Azure PowerShell toocreate egy Azure Active Directory-alkalmazást.
 
 ### <a name="create-an-application-in-azure-active-directory"></a>Alkalmazás létrehozása az Azure Active Directoryban
-Hozzon létre egy Azure Active Directory-alkalmazást, hozza létre az alkalmazás szolgáltatásnevét, és rendelje hozzá a **Data Factory közreműködője** szerepkört.
+Hozzon létre egy Azure Active Directory-alkalmazás, hello alkalmazás szolgáltatásnevet létrehozni, és rendelje hozzá toohello **Data Factory közreműködői** szerepkör.
 
 1. Indítsa el a **PowerShellt**.
-2. Futtassa a következő parancsot, és adja meg az Azure Portalra való bejelentkezéshez használt felhasználónevet és jelszót.
+2. Futtassa a következő parancs hello, és írja be a hello felhasználónevet és jelszót toosign használhatja a toohello Azure-portálon.
 
     ```PowerShell
     Login-AzureRmAccount
     ```
-3. Futtassa a következő parancsot a fiókhoz tartozó előfizetések megtekintéséhez.
+3. Futtassa a következő parancs tooview hello minden hello előfizetés ehhez a fiókhoz.
 
     ```PowerShell
     Get-AzureRmSubscription
     ```
-4. Futtassa a következő parancsot a használni kívánt előfizetés kiválasztásához. A **&lt;NameOfAzureSubscription**&gt; helyére írja be Azure-előfizetése nevét.
+4. Futtassa a következő parancs tooselect hello előfizetést, amelyet a toowork hello. Cserélje le  **&lt;NameOfAzureSubscription** &gt; hello nevet, az Azure-előfizetéshez.
 
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
 
    > [!IMPORTANT]
-   > Írja le a parancs kimenetében szereplő **SubscriptionId** és **TenantId** paraméter értékét.
+   > Jegyezze fel **SubscriptionId** és **TenantId** a parancs hello kimenetből.
 
-5. Hozzon létre egy **ADFTutorialResourceGroup** nevű Azure-erőforráscsoportot. Ehhez futtassa a következő parancsot a PowerShellben.
+5. Hozzon létre egy Azure erőforráscsoport nevű **ADFTutorialResourceGroup** a következő parancsot a hello PowerShell hello futtatásával.
 
     ```PowerShell
     New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
 
-    Ha az erőforráscsoport már létezik, adja meg, hogy frissítse azt a rendszer (Y), vagy hagyja változatlanul (N).
+    Ha hello erőforráscsoportban már létezik, akkor adja meg, hogy tooupdate (Y), vagy legyen (n).
 
-    Ha másik erőforráscsoportot használ, használja ehelyett saját erőforráscsoportja nevét, amikor az oktatóanyag az ADFTutorialResourceGroup csoportra utal.
+    Ha egy másik erőforráscsoportban található használja, ebben az oktatóanyagban kell toouse hello ADFTutorialResourceGroup helyett az erőforráscsoport nevét.
 6. Hozzon létre egy Azure Active Directory-alkalmazást.
 
     ```PowerShell
     $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFDotNetWalkthroughApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfdotnetwalkthroughapp.org/example" -Password "Pass@word1"
     ```
 
-    Ha az alábbi hiba jelenik meg, adjon meg egy másik URL-címet, és futtassa ismét a parancsot.
+    Ha hiba történt a következő hello, adjon meg egy másik URL-címet, majd futtassa újra hello parancsot.
     
     ```PowerShell
-    Another object with the same value for property identifierUris already exists.
+    Another object with hello same value for property identifierUris already exists.
     ```
-7. Hozza létre az AD-szolgáltatásnevet.
+7. Hello AD szolgáltatásnevet létrehozni.
 
     ```PowerShell
     New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
     ```
-8. Adja hozzá a szolgáltatásnevet a **Data Factory közreműködője** szerepkörhöz.
+8. Adja hozzá a szolgáltatás egyszerű toohello **Data Factory közreműködői** szerepkör.
 
     ```PowerShell
     New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
     ```
-9. Szerezze be az alkalmazásazonosítót.
+9. Első hello azonosítót.
 
     ```PowerShell
     $azureAdApplication 
     ```
-    Írja le az alkalmazásazonosítót (a parancs kimenetében szereplő applicationID paraméter értéke).
+    Jegyezze fel hello Alkalmazásazonosítót (applicationID) hello kimenetből.
 
 A fenti lépések elvégzésével beszereztük az alábbi négy értéket:
 
 * Bérlőazonosító
 * Előfizetés azonosítója
 * Alkalmazásazonosító
-* Jelszó (az első parancsnál adtuk meg)
+* Jelszó (hello első parancsban megadott)
 
 ## <a name="walkthrough"></a>Útmutatás
-A forgatókönyv hoz létre egy adat-előállító egy folyamatot, amely tartalmazza a másolási tevékenység. A másolási tevékenység során másol adatokat az Azure blob storage a mappa ugyanazon a blob Storage tárolóban egy másik mappába. 
+Hello forgatókönyv akkor hozzon létre egy adat-előállító egy folyamatot, amely tartalmazza a másolási tevékenység. hello másolási tevékenység adatainak másolása az Azure blob storage tooanother mappában a hello mappából azonos blob-tároló. 
 
-A másolási tevékenység végzi az adatok továbbítását az Azure Data Factoryban. A tevékenységet egy globálisan elérhető szolgáltatás működteti, amely biztonságos, megbízható és skálázható módon másolja az adatokat a különböző adattárak között. A Másolás tevékenységgel kapcsolatos részletekért tekintse meg a [Data Movement Activities](data-factory-data-movement-activities.md) (Adattovábbítási tevékenységek) című cikket.
+hello másolási tevékenység hello adatmozgás Azure Data Factory hajt végre. hello tevékenység egy globálisan elérhető szolgáltatás közötti biztonságos, megbízható és skálázható módon különböző adattárolókhoz másolhatja van-e kapcsolva. Lásd: [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) szóló cikkben olvashat hello másolási tevékenység.
 
 1. Hozzon létre egy a C# nyelvet használó .NET-konzolalkalmazást a Visual Studio 2012/2013/2015 segítségével.
    1. Indítsa el a **Visual Studio** 2012/2013/2015-at.
-   2. Kattintson a **File** (Fájl) menüre, mutasson a **New** (Új) elemre, és kattintson a **Project** (Projekt) lehetőségre.
+   2. Kattintson a **fájl**, pont túl**új**, és kattintson a **projekt**.
    3. Bontsa ki a **Sablonok** lehetőséget, és válassza a **Visual C#** lehetőséget. Ebben az útmutatóban a C#-t fogjuk használni, de bármelyik más .NET-nyelv is alkalmazható.
-   4. A projekttípusok jobb oldalon megjelenő listájában válassza a **Konzolalkalmazás** elemet.
-   5. A Név mezőbe írja be: **DataFactoryAPITestApp**.
-   6. A Hely mezőbe írja be: **C:\ADFGetStarted**.
-   7. A projekt létrehozásához kattintson az **OK** gombra.
-2. Kattintson az **Eszközök** elemre, mutasson a **NuGet Package Manager** (NuGet-csomagkezelő) lehetőségre, majd kattintson a **Package Manager Console** (Csomagkezelő konzol) elemre.
-3. A **Csomagkezelő konzolban** hajtsa végre a következő lépéseket:
-   1. A Data Factory-csomag telepítéséhez futtassa az alábbi parancsot: `Install-Package Microsoft.Azure.Management.DataFactories`
-   2. Futtassa a következő parancsot az Azure Active Directory-csomag telepítéséhez (használja az Active Directory API-t a kódban): `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
-4. Cserélje le a tartalmát **App.config** fájlt a projektben a következő tartalommal: 
+   4. Válassza ki **Konzolalkalmazás** jobb hello projekttípusok hello listája.
+   5. Adja meg **DataFactoryAPITestApp** a hello nevét.
+   6. Válassza ki **C:\ADFGetStarted** hello hely számára.
+   7. Kattintson a **OK** toocreate hello projekt.
+2. Kattintson a **eszközök**, pont túl**NuGet-Csomagkezelő**, és kattintson a **Csomagkezelő konzol**.
+3. A hello **Csomagkezelő konzol**, hello a következő lépéseket:
+   1. Futtassa a következő parancs tooinstall adat-előállító csomag hello:`Install-Package Microsoft.Azure.Management.DataFactories`
+   2. Futtassa a következő parancs tooinstall Azure Active Directory csomagot (Active Directory API-t használja a hello kódban) hello:`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
+4. Cserélje le a hello tartalmát **App.config** hello a projekt hello tartalom a következő fájlt: 
     
     ```xml
     <?xml version="1.0" encoding="utf-8" ?>
@@ -127,14 +127,14 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
             <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
 
             <add key="ApplicationId" value="your application ID" />
-            <add key="Password" value="Password you used while creating the AAD application" />
+            <add key="Password" value="Password you used while creating hello AAD application" />
             <add key="SubscriptionId" value= "Subscription ID" />
             <add key="ActiveDirectoryTenantId" value="Tenant ID" />
         </appSettings>
     </configuration>
     ```
-5. Az App.Config fájlban frissítse az értékeket  **&lt;Alkalmazásazonosító&gt;**,  **&lt;jelszó&gt;**,  **&lt;előfizetés Azonosító&gt;**, és  **&lt;bérlői azonosító&gt;**  saját értékekkel.
-6. Adja hozzá a következő **használatával** utasítást, hogy a **Program.cs** fájlt a projektben.
+5. Hello App.Config fájlban frissítse az értékeket  **&lt;Alkalmazásazonosító&gt;**,  **&lt;jelszó&gt;**,  **&lt; Előfizetés-azonosító&gt;**, és  **&lt;bérlői azonosító&gt;**  saját értékekkel.
+6. Adja hozzá a következő hello **használatával** utasítások toohello **Program.cs** fájl hello projektben.
 
     ```csharp
     using System.Configuration;
@@ -150,15 +150,15 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
     ```
-6. Adja hozzá az alábbi kódot, amellyel létrehoz egy példányt a **DataPipelineManagementClient** osztályból a **Main** metódusban. Ezzel az objektummal adat-előállítót, társított szolgáltatást, bemeneti és kimeneti adatkészleteket és egy adatcsatornát is létrehozhat. Ezenfelül ez az objektum használható az adatkészlet szeleteinek figyelése a futtatókörnyezetben.
+6. Adja hozzá a következő kódot, amely létrehoz egy új hello **DataPipelineManagementClient** osztály toohello **fő** metódust. Egy adat-előállító, csatolt szolgáltatásként, bemeneti és kimeneti adatkészletek és egy folyamatot ezen objektum toocreate használhatja. Az objektum toomonitor szeletek a DataSet adatkészlet futtatás közben is használ.
 
     ```csharp
     // create data factory management client
 
-    //IMPORTANT: specify the name of Azure resource group here
+    //IMPORTANT: specify hello name of Azure resource group here
     string resourceGroupName = "ADFTutorialResourceGroup";
 
-    //IMPORTANT: the name of the data factory must be globally unique.
+    //IMPORTANT: hello name of hello data factory must be globally unique.
     // Therefore, update this value. For example:APITutorialFactory05122017
     string dataFactoryName = "APITutorialFactory";
 
@@ -172,10 +172,10 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
     ```
 
    > [!IMPORTANT]
-   > A **resourceGroupName** érték helyére írja be saját Azure-erőforráscsoportja nevét. Egy erőforrás csoport használatával hozhat létre a [New-használják](/powershell/module/azurerm.resources/new-azurermresourcegroup) parancsmag.
+   > Cserélje le a hello értékének **resourceGroupName** hello nevet, az Azure-erőforráscsoportot. Létrehozhat egy olyan erőforráscsoport, hello segítségével [New-használják](/powershell/module/azurerm.resources/new-azurermresourcegroup) parancsmag.
    >
-   > Módosítsa úgy az adat-előállító nevét (dataFactoryName), hogy az egyedi legyen. Az adat-előállító nevének globálisan egyedinek kell lennie. A Data Factory-összetevők elnevezési szabályait a [Data Factory - Naming Rules](data-factory-naming-rules.md) (Data Factory – Elnevezési szabályok) című témakörben találhatja.
-7. Adja hozzá az alábbi kódot, amely létrehozza az **adat-előállítót** a **Main** metódusban.
+   > Frissítés hello data factory (dataFactoryName) toobe egyedi neve. Hello adat-előállító nevét globálisan egyedinek kell lennie. A Data Factory-összetevők elnevezési szabályait a [Data Factory - Naming Rules](data-factory-naming-rules.md) (Data Factory – Elnevezési szabályok) című témakörben találhatja.
+7. Adja hozzá a kódot, amely létrehozza a következő hello egy **adat-előállító** toohello **fő** metódust.
 
     ```csharp
     // create a data factory
@@ -192,7 +192,7 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         }
     );
     ```
-8. Adja hozzá az alábbi kódot, amely létrehozza az **Azure Storage-társított szolgáltatást** a **Main** metódusban.
+8. Adja hozzá a kódot, amely létrehozza a következő hello egy **Azure Storage társított szolgáltatásnak** toohello **fő** metódust.
 
    > [!IMPORTANT]
    > A **storageaccountname** és az **accountkey** értékek helyére írja be Azure Storage-tárfiókja nevét, illetve kulcsát.
@@ -214,11 +214,11 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         }
     );
     ```
-9. Adja hozzá az alábbi kódot, amely létrehozza a **bemeneti és kimeneti adatkészleteket** a **Main** metódusban.
+9. Adja hozzá a kódot, amely létrehozza a következő hello **bemeneti és kimeneti adatkészletek** toohello **fő** metódust.
 
-    A **FolderPath** a bemeneti blob értékre van állítva a **adftutorial /** ahol **adftutorial** neve, a blob Storage tárolóban. Ha ez a tároló nem létezik az Azure blob Storage tárolóban, a tároló létrehozása ezen a néven: **adftutorial** és a szöveges fájl feltöltése a tárolóba.
+    Hello **FolderPath** hello bemeneti blob túl van-e állítva a**adftutorial /** ahol **adftutorial** hello név hello tároló a blob Storage tárolóban. Ha ez a tároló nem létezik az Azure blob Storage tárolóban, a tároló létrehozása ezen a néven: **adftutorial** , és töltse fel a szöveges fájl toohello tárolót.
 
-    A kimeneti BLOB FolderPath értékre van állítva: **adftutorial/apifactoryoutput / {szelet}** ahol **szelet** értékének dinamikusan kiszámítását **SliceStart** () minden szelet dátum idejű Start.)
+    hello FolderPath hello a kimeneti blob értékre van állítva: **adftutorial/apifactoryoutput / {szelet}** ahol **szelet** dinamikusan számított alapján hello érték **SliceStart**(Indítás ideje minden szelet.)
 
     ```csharp
     // create input and output datasets
@@ -294,9 +294,9 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         }
     });
     ```
-10. Adja hozzá az alábbi kódot, amely **létrehozza és aktiválja az adatcsatornát** a **Main** metódusban. Az adatcsatorna **CopyActivity** paraméterrel meghatározott másolási tevékenysége a **BlobSource** értékét használja forrásként, és a **BlobSink** értékét fogadóként.
+10. Adja hozzá a következő hello-kód **hoz létre, és aktiválja az adatcsatorna** toohello **fő** metódust. Az adatcsatorna **CopyActivity** paraméterrel meghatározott másolási tevékenysége a **BlobSource** értékét használja forrásként, és a **BlobSink** értékét fogadóként.
 
-    A másolási tevékenység végzi az adatok továbbítását az Azure Data Factoryban. A tevékenységet egy globálisan elérhető szolgáltatás működteti, amely biztonságos, megbízható és skálázható módon másolja az adatokat a különböző adattárak között. A Másolás tevékenységgel kapcsolatos részletekért tekintse meg a [Data Movement Activities](data-factory-data-movement-activities.md) (Adattovábbítási tevékenységek) című cikket.
+    hello másolási tevékenység hello adatmozgás Azure Data Factory hajt végre. hello tevékenység egy globálisan elérhető szolgáltatás közötti biztonságos, megbízható és skálázható módon különböző adattárolókhoz másolhatja van-e kapcsolva. Lásd: [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) szóló cikkben olvashat hello másolási tevékenység.
 
     ```csharp
     // create a pipeline
@@ -315,7 +315,7 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
             {
                 Description = "Demo Pipeline for data transfer between blobs",
     
-                // Initial value for pipeline's active period. With this, you won't need to set slice status
+                // Initial value for pipeline's active period. With this, you won't need tooset slice status
                 Start = PipelineActivePeriodStartTime,
                 End = PipelineActivePeriodEndTime,
     
@@ -354,7 +354,7 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         }
     });
     ```
-12. A kimeneti adatkészlet adatszeletének állapotának lekéréséhez adja hozzá az alábbi kódot a **Main** metódushoz. Ez a minta a várt egyetlen szelet van.
+12. Adja hozzá a következő kód toohello hello **fő** metódus tooget hello állapotát egy adatszelet hello a kimeneti adatkészlet. Ez a minta a várt egyetlen szelet van.
 
     ```csharp
     // Pulling status within a timeout threshold
@@ -363,8 +363,8 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
     
     while (DateTime.Now - start < TimeSpan.FromMinutes(5) && !done)
     {
-        Console.WriteLine("Pulling the slice status");
-        // wait before the next status check
+        Console.WriteLine("Pulling hello slice status");
+        // wait before hello next status check
         Thread.Sleep(1000 * 12);
     
         var datalistResponse = client.DataSlices.List(resourceGroupName, dataFactoryName, Dataset_Destination,
@@ -389,13 +389,13 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         }
     }
     ```
-13. **(választható)**  Futtatásához lekérni egy adatszelet részleteit az alábbi kódot a **fő** metódust.
+13. **(választható)**  Hozzáadás hello következő kódot a adatok szelet toohello futtatása tooget részleteit **fő** metódust.
 
     ```csharp
     Console.WriteLine("Getting run details of a data slice");
     
-    // give it a few minutes for the output slice to be ready
-    Console.WriteLine("\nGive it a few minutes for the output slice to be ready and press any key.");
+    // give it a few minutes for hello output slice toobe ready
+    Console.WriteLine("\nGive it a few minutes for hello output slice toobe ready and press any key.");
     Console.ReadKey();
     
     var datasliceRunListResponse = client.DataSliceRuns.List(
@@ -418,10 +418,10 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         Console.WriteLine("ErrorMessage: \t{0}", run.ErrorMessage);
     }
     
-    Console.WriteLine("\nPress any key to exit.");
+    Console.WriteLine("\nPress any key tooexit.");
     Console.ReadKey();
     ```
-14. Adja hozzá a **Main** metódushoz szükséges alábbi segédmetódust a **Program** osztályhoz. Ez a módszer egy párbeszédpanelt, amely, amely lehetővé teszi, hogy biztosítható a POP **felhasználónév** és **jelszó** , amelyekkel jelentkezzen be Azure-portálon.
+14. Adja hozzá a következő hello segítő módszerének hello **fő** metódus toohello **Program** osztály. Ez a módszer egy párbeszédpanelt, amely, amely lehetővé teszi, hogy biztosítható a POP **felhasználónév** és **jelszó** használt toolog tooAzure portálon.
 
     ```csharp
     public static async Task<string> GetAuthorizationHeader()
@@ -437,29 +437,29 @@ A másolási tevékenység végzi az adatok továbbítását az Azure Data Facto
         if (result != null)
             return result.AccessToken;
 
-        throw new InvalidOperationException("Failed to acquire token");
+        throw new InvalidOperationException("Failed tooacquire token");
     }
     ```
 
-15. A Megoldáskezelőben bontsa ki a projekt: **DataFactoryAPITestApp**, kattintson a jobb gombbal **hivatkozások**, és kattintson a **hivatkozás hozzáadása**. Jelölje be a jelölőnégyzetet `System.Configuration` szerelvény, és kattintson **OK**.
-15. Hozza létre a konzolalkalmazást. Kattintson a menü **Fordítás** elemére, majd a **Megoldás fordítása** lehetőségre.
-16. Győződjön meg arról, hogy van legalább egy fájlt a adftutorial tárolóban az Azure blob storage. Ha nem, hozzon létre Emp.txt fájlt a Jegyzettömbben az alábbi tartalommal, és töltse fel a adftutorial tároló.
+15. A Solution Explorer hello, bontsa ki a hello projekt: **DataFactoryAPITestApp**, kattintson a jobb gombbal **hivatkozások**, és kattintson a **hivatkozás hozzáadása**. Jelölje be a jelölőnégyzetet `System.Configuration` szerelvény, és kattintson **OK**.
+15. Hello Konzolalkalmazás létrehozása. Kattintson a **Build** hello menüre, majd a **megoldás fordítása**.
+16. Győződjön meg arról, hogy van legalább egy fájlt hello adftutorial tárolóban az Azure blob storage. Ha nem, hozzon létre Emp.txt fájlt a Jegyzettömbben a következő hello tartalom, és töltse fel az toohello adftutorial tároló.
 
     ```
     John, Doe
     Jane, Doe
     ```
-17. Futtassa le a mintát, ehhez kattintson a menü **Hibakeresés** -> **Hibakeresés indítása** elemére. Ha megjelenik a **Getting run details of a data slice** (Adatszelet futtatási adatainak lekérése) felirat, várjon néhány percet, majd nyomja le az **ENTER** billentyűt.
-18. Az Azure Portalon ellenőrizze, hogy az **APITutorialFactory** nevű adat-előállító létrejött-e az alábbi összetevőkkel:
+17. Futtassa a hello minta kattintva **Debug** -> **Start Debugging** hello menüben. Amikor megjelenik a hello **első futtatása egy adatszelet részleteit**, várjon néhány percet, és nyomja le az **ENTER**.
+18. Használja az Azure portál tooverify hello adott hello adat-előállító **APITutorialFactory** jön létre a következő összetevők hello:
     * Társított szolgáltatás: **AzureStorageLinkedService**
     * Adatkészlet: **DatasetBlobSource** és **DatasetBlobDestination**.
     * Adatcsatorna: **PipelineBlobSample**
-19. Győződjön meg arról, hogy a kimeneti fájl jön létre a **apifactoryoutput** mappájában a **adftutorial** tároló.
+19. Győződjön meg arról, hogy a kimeneti fájl létrejött-e hello **apifactoryoutput** hello mappájában **adftutorial** tároló.
 
 ## <a name="get-a-list-of-failed-data-slices"></a>Hibás adatszeletek listájának lekérdezése 
 
 ```csharp
-// Parse the resource path
+// Parse hello resource path
 var ResourceGroupName = "ADFTutorialResourceGroup";
 var DataFactoryName = "DataFactoryAPITestApp";
 
@@ -496,6 +496,6 @@ while (response != null);
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A következő példa egy folyamatot, amely másol adatokat az Azure blob storage egy Azure SQL Database .NET SDK használatával létrehozásához lásd: 
+Tekintse meg a következő példa egy folyamatot, amely másol adatokat az Azure blob storage tooan Azure SQL-adatbázis .NET SDK használatával létrehozásához hello: 
 
-- [Hozzon létre egy folyamatot, a Blob Storage az SQL Database-adatok másolása](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [A folyamat toocopy Blob Storage tooSQL adatbázis létrehozása](data-factory-copy-activity-tutorial-using-dotnet-api.md)

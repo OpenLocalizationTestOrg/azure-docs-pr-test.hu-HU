@@ -1,6 +1,6 @@
 ---
-title: "Az adatkezelési átjáró elhárítása |} Microsoft Docs"
-description: "Tippek az adatkezelési átjáró kapcsolatos problémák elhárítása érdekében."
+title: "aaaTroubleshoot az adatkezelési átjáró problémák |} Microsoft Docs"
+description: "Tippek tootroubleshoot problémák kapcsolódó tooData adatkezelési átjáró biztosít."
 services: data-factory
 author: nabhishek
 manager: jhubbard
@@ -14,275 +14,275 @@ ms.topic: article
 ms.date: 07/27/2017
 ms.author: abnarain
 published: True
-ms.openlocfilehash: b8e50a4e3c0b9c535ccc2344ff22261a356d5acc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 85dacc8a1e8d574d6e7d5b556c995cebdc148fde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-issues-with-using-data-management-gateway"></a>Az adatkezelési átjáró használata közben felmerülő hibák elhárítása
 Ez a cikk tájékoztatást nyújt az adatkezelési átjáró használatával kapcsolatos hibák elhárításához.
 
 > [!NOTE]
-> Tekintse meg a [az adatkezelési átjáró](data-factory-data-management-gateway.md) cikk az átjáró kapcsolatos részletes információkat. Tekintse meg a [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) áthelyezése adatok egy helyi SQL Server-adatbázis a Microsoft Azure Blob storage az átjáró használatával kapcsolatos általános bemutatóért cikkében.
+> Lásd: hello [az adatkezelési átjáró](data-factory-data-management-gateway.md) cikk hello átjáró kapcsolatos részletes információkat. Lásd: hello [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) adatok áthelyezése egy helyi SQL Server adatbázis tooMicrosoft Azure Blob Storage tárolóban hello átjáró használatával kapcsolatos általános bemutatóért cikkében.
 >
 >
 
-## <a name="failed-to-install-or-register-gateway"></a>Nem sikerült telepíteni vagy az átjáró regisztrálása
+## <a name="failed-tooinstall-or-register-gateway"></a>Nem sikerült tooinstall vagy regisztrálni átjáró
 ### <a name="1-problem"></a>1. Probléma
-Megjelenik a hibaüzenet, amikor telepítése és regisztrálása az átjáró, az átjáró telepítési fájl letöltése során.
+Megjelenik a hibaüzenet, amikor telepítése és regisztrálása az átjáró pontosabban hello átjáró telepítési fájl letöltése során.
 
-`Unable to connect to the remote server". Please check your local settings (Error Code: 10003).`
+`Unable tooconnect toohello remote server". Please check your local settings (Error Code: 10003).`
 
 #### <a name="cause"></a>Ok
-A gép, amelyen az átjáró telepítéséhez kívánt letöltőközpontból az átjáró legújabb telepítési fájlját a hálózati probléma miatt nem sikerült.
+hello gép tooinstall hello átjáró próbált toodownload hello legújabb átjáró telepítési fájlját a letöltőközpontból hello tooa hálózati probléma miatt nem sikerült.
 
 #### <a name="resolution"></a>Megoldás:
-Ellenőrizze a tűzfal proxykiszolgáló beállításait megtekintéséhez, hogy a beállítások tiltsák le a hálózati kapcsolat a számítógépről a [letöltőközpontból](https://download.microsoft.com/), frissítse a beállításokat, és ennek megfelelően.
+A tűzfal-proxy kiszolgáló beállítások toosee ellenőrizheti, hogy hello-beállítások le hello hálózati kapcsolat a hello számítógép toohello [letöltőközpontból](https://download.microsoft.com/), hello-beállítások frissítése, és ennek megfelelően.
 
-Azt is megteheti, letöltheti a legújabb átjárót telepítőfájlja a [letöltőközpontból](https://www.microsoft.com/download/details.aspx?id=39717) más számítógépeken, amelyek hozzáférhetnek a letöltőközpontból. A telepítőfájl másolja az átjáró gazdaszámítógépet, majd futtassa azt manuálisan kell telepíteni, és frissítheti az átjárót.
+Alternatív megoldásként letöltheti hello telepítőfájlja legújabb átjáró hello hello [letöltőközpontból](https://www.microsoft.com/download/details.aspx?id=39717) hello letöltőközpontból hozzáférő más számítógépeken. Ezután a másolási hello installer fájl toohello átjáró állomás, és futtassa manuálisan tooinstall és frissítés hello átjáró.
 
 ### <a name="2-problem"></a>2. Probléma
-Ezt a hibaüzenetet látja, ha telepít egy átjárót kattintva végrehajtani kívánt **telepíthető közvetlenül a számítógépen** az Azure portálon.
+Ezt a hibaüzenetet látja, amikor egy átjáró tooinstall kattintva végrehajtani kívánt **telepíthető közvetlenül a számítógépen** a hello Azure-portálon.
 
 `Error:  Abort installing a new gateway on this computer because this computer has an existing installed gateway and a computer without any installed gateway is required for installing a new gateway.`  
 
 #### <a name="cause"></a>Ok
-Átjáró már telepítve van a számítógépen.
+Átjáró hello számítógépen már telepítve van.
 
 #### <a name="resolution"></a>Megoldás:
-Távolítsa el a gépen a jelenlegi átjárót, majd kattintson a **telepíthető közvetlenül a számítógépen** újra hivatkozásra.
+Távolítsa el a meglévő átjáró hello hello gépen, és kattintson a hello **telepíthető közvetlenül a számítógépen** újra hivatkozásra.
 
 ### <a name="3-problem"></a>3. Probléma
 Ez a hiba jelenhet meg, amikor egy új átjáró regisztrálása.
 
-`Error: The gateway has encountered an error during registration.`
+`Error: hello gateway has encountered an error during registration.`
 
 #### <a name="cause"></a>Ok
-Ez az üzenet a következő okok valamelyike láthatja:
+Láthatja, hogy ez az üzenet hello a következő okok valamelyike miatt:
 
-* Az átjáró kulcsát formátuma érvénytelen.
-* Az átjáró kulcsát érvénytelenné vált.
-* Az átjáró kulcsát újra lett létrehozza a rendszer a portálról.  
+* hello átjárókulcs hello formátuma érvénytelen.
+* hello átjárókulcs érvénytelenné vált.
+* hello átjárókulcs újra lett létrehozza a rendszer hello portálról.  
 
 #### <a name="resolution"></a>Megoldás:
-Győződjön meg arról, hogy használ-e a megfelelő átjárókulcsot, amit a portálon. Ha szükséges, a kulcs újragenerálása és a kulcs segítségével regisztrálja az átjárót.
+Győződjön meg arról, hogy használ-e hello jobb átjárókulcs hello portálról. Ha szükséges, a kulcs újragenerálása és hello kulcs tooregister hello átjáró használatára.
 
 ### <a name="4-problem"></a>4. Probléma
-Átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
+Hello átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
 
-`Error: The content or format of the gateway key "{gatewayKey}" is invalid, please go to azure portal to create one new gateway or regenerate the gateway key.`
+`Error: hello content or format of hello gateway key "{gatewayKey}" is invalid, please go tooazure portal toocreate one new gateway or regenerate hello gateway key.`
 
 
 
 ![Tartalom és a kulcs formátuma érvénytelen](media/data-factory-troubleshoot-gateway-issues/invalid-format-gateway-key.png)
 
 #### <a name="cause"></a>Ok
-A tartalom vagy a bemeneti átjárókulcs formátuma nem megfelelő. Egyik oka lehet, hogy a kulcsot csak egy részét átmásolva a portálon, vagy érvénytelen kulcsot használ.
+hello tartalom vagy hello bemeneti átjárókulcs formátuma nem megfelelő. Hello okok valamelyike miatt lehet, hogy a másolt hello kulcs egy részének hello portálról, vagy érvénytelen kulcsot használ.
 
 #### <a name="resolution"></a>Megoldás:
-Hozzon létre egy átjáró kulcsot a portálon, és használja a Másolás gombra a teljes kulcsot másolja. Illessze be az ablakot, hogy regisztrálja az átjárót majd.
+Hozzon létre egy átjáró kulcsot hello portálon, és hello Másolás gombra toocopy hello teljes kulcsot használ. Illessze be az ablakot tooregister hello átjáró majd.
 
 ### <a name="5-problem"></a>5. Probléma
-Átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
+Hello átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
 
-`Error: The gateway key is invalid or empty. Specify a valid gateway key from the portal.`
+`Error: hello gateway key is invalid or empty. Specify a valid gateway key from hello portal.`
 
 ![Átjáró kulcsa érvénytelen vagy üres:](media/data-factory-troubleshoot-gateway-issues/gateway-key-is-invalid-or-empty.png)
 
 #### <a name="cause"></a>Ok
-Az átjáró kulcsát újra lett létrehozva. vagy az átjáró törölve lett az Azure portálon. Akkor is előfordulhat, ha az adatkezelési átjáró beállítása nincs legújabb.
+hello átjárókulcs újra lett létrehozva. vagy hello átjáró törölve lett az hello Azure-portálon. Akkor is előfordulhat, ha nincs legújabb hello az adatkezelési átjáró beállítása.
 
 #### <a name="resolution"></a>Megoldás:
-Ellenőrizze, hogy ha a telepítő az adatkezelési átjáró legújabb verziója, a Microsoft a legújabb verzió található [letöltőközpontból](https://go.microsoft.com/fwlink/p/?LinkId=271260).
+Ellenőrizze, hogy ha hello az adatkezelési átjáró telepítő hello legújabb verzióját, a hello Microsoft hello legújabb verziója található [letöltőközpontból](https://go.microsoft.com/fwlink/p/?LinkId=271260).
 
-Ha a beállítás jelenlegi / legújabb és átjáró még létezik a portálon, újragenerálja az átjáró kulcsát az Azure-portálon használ a Másolás gombra a teljes kulcsot másolja, és majd illessze be az ablakot, hogy regisztrálja az átjárót. Ellenkező esetben hozza létre újra az átjárót, és kezdje újra a folyamatot.
+Beállítás aktuális / legújabb és átjáró még létezik a portálon, ha az Azure-portálon hello hello átjáró kulcs újragenerálása és hello Másolás gombra toocopy hello teljes kulcsot használ, és majd illessze be az ablakot tooregister hello átjáró. Ellenkező esetben hozza létre újra a hello átjáró, és kezdje újra a folyamatot.
 
 ### <a name="6-problem"></a>6. Probléma
-Átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
+Hello átjáró regisztrálásakor még a következő hibaüzenet jelenhet meg.
 
-`Error: Gateway has been online for a while, then shows “Gateway is not registered” with the status “Gateway key is invalid”`
+`Error: Gateway has been online for a while, then shows “Gateway is not registered” with hello status “Gateway key is invalid”`
 
 ![Átjáró kulcsa érvénytelen vagy üres:](media/data-factory-troubleshoot-gateway-issues/gateway-not-registered-key-invalid.png)
 
 #### <a name="cause"></a>Ok
-Ez a hiba akkor fordulhat elő, mert az átjáró törölve lett, vagy a kapcsolódó átjárókulcs újra lett létrehozva..
+Ez a hiba akkor fordulhat elő, mert hello átjáró törölve lett vagy hello társított átjárókulcs újra lett létrehozva..
 
 #### <a name="resolution"></a>Megoldás:
-Ha az átjáró törölve lett, hozza létre újból az átjárót a portál, kattintson a **regisztrálása**, a kulcs másolása a portálról, illessze be és próbálja meg regisztrálni az átjárót.
+Ha hello átjáró törölve lett, hozza létre újból hello átjáró hello portálról, kattintson a **regisztrálása**, hello kulcs másolása hello portálról, illessze be és próbálja meg tooregister hello átjáró.
 
-Ha az átjáró még létezik, de a kulcsot újra lett létrehozva., az új kulcs segítségével regisztrálja az átjárót. Ha még nem rendelkezik a kulcsot, újragenerálja a kulcsot újra a portálról.
+Ha hello átjáró még létezik, de a kulcsot újra lett létrehozva., hello új kulcs tooregister hello átjáró használatára. Ha nem rendelkezik hello kulccsal, generálja újra hello kulcsot újra hello portálról.
 
 ### <a name="7-problem"></a>7. Probléma
-Átjáró regisztrálásakor van szükség lehet a tanúsítvány elérési útja és a jelszó megadását.
+Amikor egy átjáró regisztrálás szükség lehet tooenter elérési útját és a jelszó tanúsítványt.
 
 ![Adja meg a tanúsítvány](media/data-factory-troubleshoot-gateway-issues/specify-certificate.png)
 
 #### <a name="cause"></a>Ok
-Az átjáró más gépeken előtt regisztrálva van. Átjáró, a kezdeti regisztráció során egy titkosítási tanúsítvány nincs hozzárendelve az átjárót. A tanúsítvány lehet önálló az átjáró által generált, vagy a felhasználó által megadott.  Ezzel a tanúsítvánnyal az adattár (társított szolgáltatás) hitelesítő adatok titkosításához.  
+hello átjáró előtt más gépeken regisztrálva van. Hello kezdeti regisztrációs átjáró, során hello átjáró társítva lett egy titkosítási tanúsítványt. hello tanúsítványt kell önálló hello átjáró által létrehozott vagy hello felhasználó által megadott.  Ez a tanúsítvány használt tooencrypt hello adattár (társított szolgáltatás) hitelesítő adatait.  
 
 ![Tanúsítvány exportálása](media/data-factory-troubleshoot-gateway-issues/export-certificate.png)
 
-Az átjáró másik gazdaszámítógépet visszaállításakor a regisztrációs varázsló megkérdezi, a tanúsítvány visszafejtése a korábban a tanúsítvánnyal titkosított hitelesítő adatokat.  Ez a tanúsítvány nélkül nem tudja visszafejteni a hitelesítő adatokat az új átjáró, és az új átjáró társított későbbi másolási tevékenység végrehajtások meghiúsul.  
+Ha hello átjárót egy másik gazdaszámítógépet, hello regisztrációs varázsló megkérdezi, hogy a tanúsítvány toodecrypt korábban hitelesítő adatok a titkosított visszaállítása a tanúsítvánnyal.  Ez a tanúsítvány nélkül hello hitelesítő adatok nem tudja visszafejteni hello új átjáró, és az új átjáró társított későbbi másolási tevékenység végrehajtások sikertelen lesz.  
 
 #### <a name="resolution"></a>Megoldás:
-Ha exportálta a hitelesítési tanúsítványt az eredeti átjáró gépen használatával a **exportálása** gombra a **beállítások** az adatkezelési átjáró konfigurációkezelőjének lapon, a tanúsítvány használatára itt.
+Ha exportálása hello hitelesítő adatainak tanúsítványa hello eredeti átjáró gépen hello segítségével **exportálása** hello gombjára **beállítások** az adatkezelési átjáró konfigurációkezelőjének lapján hello használata Itt szerepel tanúsítvány.
 
-Ebben a szakaszban nem hagyható ki, amikor egy átjáró helyreállítása. Ha a tanúsítvány hiányzik, törölje az átjárót a portálról, és hozza létre az új átjáró szüksége.  Emellett frissítse az átjáró által ismét be kell írni a hitelesítő adataik kapcsolódó összes társított szolgáltatások.
+Ebben a szakaszban nem hagyható ki, amikor egy átjáró helyreállítása. Ha hello tanúsítványa hiányzik, toodelete hello átjáró hello portálról kell, és hozza létre az új átjárón.  Emellett frissítse az összes társított szolgáltatások, amelyek kapcsolódó toohello átjáró által ismét be kell írni a hitelesítő adataikat.
 
 ### <a name="8-problem"></a>8. Probléma
-A következő hibaüzenet jelenhet meg.
+Hello a következő hibaüzenet jelenhet meg.
 
-`Error: The remote server returned an error: (407) Proxy Authentication Required.`
+`Error: hello remote server returned an error: (407) Proxy Authentication Required.`
 
 #### <a name="cause"></a>Ok
-Ez a hiba történik, ha az átjáró egy olyan környezetben, szükséges a HTTP-proxy elérni az internetes erőforrásokhoz, vagy a proxy hitelesítési jelszó megváltozik, de nem frissül megfelelően a átjáróban.
+Ez a hiba történik, ha az átjáró egy olyan környezetben, szükséges egy HTTP-proxy tooaccess internetes erőforrásokhoz, vagy a proxy hitelesítési jelszó megváltozik, de nem frissül megfelelően a átjáróban.
 
 #### <a name="resolution"></a>Megoldás:
-Kövesse az utasításokat a [Proxy server szempontjai](#proxy-server-considerations) Ez a szakasz a következő cikket, és konfigurálja a proxybeállításokat az adatkezelési átjáró konfigurációkezelőjének.
+Hello hello utasításait követve [Proxy server szempontjai](#proxy-server-considerations) Ez a szakasz a következő cikket, és konfigurálja a proxybeállításokat az adatkezelési átjáró konfigurációkezelőjének.
 
 ## <a name="gateway-is-online-with-limited-functionality"></a>Átjáró korlátozott funkciójú online állapotban
 ### <a name="1-problem"></a>1. Probléma
-Az átjáró állapotának online, az korlátozott funkciókkal láthatja.
+Hello átjáró hello állapotának online, az korlátozott funkciókkal láthatja.
 
 #### <a name="cause"></a>Ok
-Megjelenik az átjáró állapotának online korlátozott szolgáltatásokkal a következő okok valamelyike:
+Látni hello átjáró hello állapotának az online korlátozott funkciójú hello a következő okok valamelyike miatt:
 
-* Átjáró nem tud kapcsolódni a felhőalapú szolgáltatás Azure Service Buson keresztül.
-* A felhőalapú szolgáltatás nem tud kapcsolódni a Service Buson keresztül átjáró.
+* Átjáró nem tud csatlakozni a toocloud szolgáltatás Azure Service Buson keresztül.
+* A felhőalapú szolgáltatás nem tud kapcsolódni a toogateway Service Buson keresztül.
 
-Ha az átjáró online korlátozott szolgáltatásokkal, nem feltétlenül a Data Factory másolása varázsló használatával hozzon létre az adatok másolása, vagy a helyszíni adattárolókhoz adatok folyamatok. A probléma megoldásához használhatja Data Factory Editor a portálon, a Visual Studio vagy az Azure PowerShell.
+Ha hello átjáró korlátozott funkciójú online állapotban, nem feltétlenül tudja toouse hello Data Factory másolása varázsló toocreate adatok adatcsatornákat az adatok tooor másolását a helyszíni adattárolókhoz. A probléma megoldásához használhatja Data Factory Editor hello portálon, a Visual Studio vagy Azure PowerShell.
 
 #### <a name="resolution"></a>Megoldás:
-A probléma feloldása (online korlátozott funkciójú) azon alapul, hogy az átjáró nem tud csatlakozni a felhőalapú szolgáltatás vagy a más módon. A következő szakaszokban ezek a megoldások.
+A probléma feloldása (online korlátozott funkciójú) alapuló e hello átjáró nem connect toohello felhőalapú szolgáltatás, vagy más módon hello. a következő szakaszok hello adja meg, hogy ezek a megoldások.
 
 ### <a name="2-problem"></a>2. Probléma
-Az alábbi hibaüzenet látható.
+Lásd a következő hiba hello.
 
-`Error: Gateway cannot connect to cloud service through service bus`
+`Error: Gateway cannot connect toocloud service through service bus`
 
-![Átjáró felhőalapú szolgáltatás nem tud kapcsolódni.](media/data-factory-troubleshoot-gateway-issues/gateway-cannot-connect-to-cloud-service.png)
+![Átjáró toocloud szolgáltatás nem tud csatlakozni.](media/data-factory-troubleshoot-gateway-issues/gateway-cannot-connect-to-cloud-service.png)
 
 #### <a name="cause"></a>Ok
-Átjáró nem tud kapcsolódni a Service Buson keresztül a felhőalapú szolgáltatáshoz.
+Átjáró nem tud csatlakozni a felhőalapú szolgáltatás toohello Service Buson keresztül.
 
 #### <a name="resolution"></a>Megoldás:
-Kövesse az alábbi lépéseket követve az átjáró online:
+Kövesse a lépéseket tooget hello átjáró újra online:
 
-1. IP-címet az átjáró számítógépe és a vállalati tűzfalon kimenő szabályok engedélyezése. Található IP-címek a Windows Eseménynapló (ID == 401): kísérlet történt olyan módon, a hozzáférési engedélyeket XX tiltott hozzáférés. A(Z) XX. A(Z) XX. XX:9350.
-* Proxybeállítások konfigurálása az átjárón. Tekintse meg a [Proxy server szempontjai](#proxy-server-considerations) című szakaszban talál információt.
-* Engedélyezze a kimenő portok 5671 és 9350 – 9354-es mindkét a Windows tűzfal az átjáró gépen és a vállalati tűzfalon. Tekintse meg a [portok és a tűzfalon](#ports-and-firewall) című szakaszban talál információt. Ez a lépés nem kötelező, de a teljesítmény okokból ajánlott.
+1. IP-cím engedélyezése a hello átjárót futtató gép és a vállalati tűzfal hello kimenő szabályok. IP-címeket a Windows Eseménynapló hello található (azonosító == 401): kísérlet történt egy szoftvercsatorna tooaccess végrehajtott oly módon, a hozzáférési engedélyeket XX tiltott. A(Z) XX. A(Z) XX. XX:9350.
+* Proxybeállítások konfigurálása hello átjárón. Lásd: hello [Proxy server szempontjai](#proxy-server-considerations) című szakaszban talál információt.
+* Kimenő portok 5671 és 9350 – 9354-es a hello átjáró gépen és a vállalati tűzfal hello mindkét hello Windows tűzfal engedélyezése. Lásd: hello [portok és a tűzfalon](#ports-and-firewall) című szakaszban talál információt. Ez a lépés nem kötelező, de a teljesítmény okokból ajánlott.
 
 ### <a name="3-problem"></a>3. Probléma
-Az alábbi hibaüzenet látható.
+Lásd a következő hiba hello.
 
-`Error: Cloud service cannot connect to gateway through service bus.`
+`Error: Cloud service cannot connect toogateway through service bus.`
 
 #### <a name="cause"></a>Ok
 Egy átmeneti hiba történt a hálózati kapcsolatot.
 
 #### <a name="resolution"></a>Megoldás:
-Kövesse az alábbi lépéseket követve az átjáró online:
+Kövesse a lépéseket tooget hello átjáró újra online:
 
-1. Várjon néhány percig, a kapcsolatot a rendszer automatikusan helyreállítja a eltűnt a hiba esetén.
-* Ha a probléma továbbra is fennáll, indítsa újra az átjáró szolgáltatást.
+1. Várjon néhány percig, hello kapcsolatot a rendszer automatikusan helyreállítja a eltűnt hello hiba esetén.
+* Ha hello hiba továbbra is fennáll, indítsa újra a hello átjáró szolgáltatást.
 
-## <a name="failed-to-author-linked-service"></a>Nem sikerült a társított szolgáltatás létrehozásához
+## <a name="failed-tooauthor-linked-service"></a>Sikertelen tooauthor társított szolgáltatás
 ### <a name="problem"></a>Probléma
-Ez a hiba jelenhet meg a portálon hitelesítőadat-kezelő segítségével adjon meg egy új társított szolgáltatás hitelesítő adatait, vagy egy meglévő kapcsolt szolgáltatás hitelesítő adatait megkísérlésekor.
+Ez a hiba jelenhet meg próbálja toouse hitelesítőadat-kezelő hello portál tooinput hitelesítő adatait, egy új kapcsolódó szolgáltatás, vagy egy meglévő társított szolgáltatást a hitelesítő adatok frissítésekor.
 
-`Error: The data store '<Server>/<Database>' cannot be reached. Check connection settings for the data source.`
+`Error: hello data store '<Server>/<Database>' cannot be reached. Check connection settings for hello data source.`
 
-Amikor megjelenik ez a hiba, a beállítások lapon az adatkezelési átjáró konfigurációkezelőjének nézhet ki például az alábbi képernyőfelvételen.
+Ha ezt a hibaüzenetet látja, hello beállítások lapon az adatkezelési átjáró konfigurációkezelőjének nézhet ki például a következő képernyőkép hello.
 
 ![Adatbázis nem érhető el](media/data-factory-troubleshoot-gateway-issues/database-cannot-be-reached.png)
 
 #### <a name="cause"></a>Ok
-Az SSL-tanúsítvány előfordulhat, hogy már megszakadt az átjáró számítógépén. Az átjáró-számítógép nem tudja betölteni a jelenleg használt tanúsítvány az SSL-titkosítást. Az eseménynaplóban, az alábbihoz hasonló hibaüzenetet is megjelenhet.
+hello SSL-tanúsítvány előfordulhat, hogy rendelkezik elveszett hello-átjáró számítógépén. hello átjáró-számítógép hello jelenleg használt tanúsítványt az SSL-titkosítás nem tölthető be. Hibaüzenet, amely a következő üzenet hasonló toohello hello eseménynaplójában is megjelenhet.
 
- `Unable to get the gateway settings from cloud service. Check the gateway key and the network connection. (Certificate with thumbprint cannot be loaded.)`
+ `Unable tooget hello gateway settings from cloud service. Check hello gateway key and hello network connection. (Certificate with thumbprint cannot be loaded.)`
 
 #### <a name="resolution"></a>Megoldás:
-Kövesse az alábbi lépéseket a probléma megoldásához:
+Kövesse a lépéseket toosolve hello probléma:
 
 1. Indítsa el az adatkezelési átjáró Konfigurációkezelőjében.
-2. Váltás a **beállítások** fülre.  
-3. Kattintson a **módosítása** gombra kattintva módosíthatja az SSL-tanúsítvány.
+2. Váltás toohello **beállítások** fülre.  
+3. Kattintson a hello **módosítás** gomb toochange hello SSL-tanúsítvány.
 
    ![Módosítás tanúsítvány gombra](media/data-factory-troubleshoot-gateway-issues/change-button-ssl-certificate.png)
-4. Jelöljön ki új tanúsítványt, az SSL-tanúsítvány. Bármely Ön által létrehozott SSL-tanúsítvány vagy bármely szervezeti is használhatja.
+4. Jelöljön ki új tanúsítványt, hello SSL-tanúsítvány. Bármely Ön által létrehozott SSL-tanúsítvány vagy bármely szervezeti is használhatja.
 
    ![Adja meg a tanúsítvány](media/data-factory-troubleshoot-gateway-issues/specify-http-end-point.png)
 
 ## <a name="copy-activity-fails"></a>Másolási tevékenység sikertelen lesz.
 ### <a name="problem"></a>Probléma
-Bizonyára észrevette, hogy a következő "UserErrorFailedToConnectToSqlserver" hiba a portál folyamat beállítása után.
+Bizonyára észrevette, hogy egy folyamat hello portálon beállítása után a következő "UserErrorFailedToConnectToSqlserver" hiba hello.
 
-`Error: Copy activity encountered a user error: ErrorCode=UserErrorFailedToConnectToSqlServer,'Type=Microsoft.DataTransfer.Common.Shared.HybridDeliveryException,Message=Cannot connect to SQL Server`
+`Error: Copy activity encountered a user error: ErrorCode=UserErrorFailedToConnectToSqlServer,'Type=Microsoft.DataTransfer.Common.Shared.HybridDeliveryException,Message=Cannot connect tooSQL Server`
 
 #### <a name="cause"></a>Ok
 Ez akkor fordulhat elő különböző okokból, és a megoldás ennek megfelelően változik.
 
 #### <a name="resolution"></a>Megoldás:
-Engedélyezi az kimenő TCP-kapcsolatok az adatkezelési átjáró ügyféloldali TCP/1433-as porton keresztül egy SQL-adatbázishoz szeretne csatlakozni.
+Kimenő TCP-kapcsolatok engedélyezése az adatkezelési átjáró ügyféloldali hello TCP/1433-as porton keresztül tooan SQL-adatbázis csatlakoztatása előtt.
 
-Ha a céladatbázis Azure SQL-adatbázis, ellenőrizze az SQL-kiszolgáló a tűzfal beállításai Azure is.
+Ha hello céladatbázis Azure SQL-adatbázis, ellenőrizze az SQL-kiszolgáló a tűzfal beállításai Azure is.
 
-A következő részben a helyszíni adattárolóihoz létrehozott kapcsolat ellenőrzéséhez.
+Tekintse meg a következő szakasz tootest hello kapcsolat toohello helyszíni adattár hello.
 
 ## <a name="data-store-connection-or-driver-related-errors"></a>Az adattároló csatlakozási vagy kapcsolatos hibák
-Ha adatok tárolásához a kapcsolódáshoz vagy az illesztőprogram-kapcsolatos hibákat, kövesse az alábbi lépéseket:
+Ha adatok tárolásához a kapcsolódáshoz vagy az illesztőprogram-kapcsolatos hibákat, végezze el a lépéseket követve hello:
 
-1. Indítsa el az adatkezelési átjáró Konfigurációkezelőjét az átjárót működtető gépen.
-2. Váltás a **diagnosztika** fülre.
-3. A **kapcsolat tesztelése**, az átjáró csoport értékek hozzáadásához.
-4. Kattintson a **teszt** megjelenítéséhez, ha csatlakozhat a helyszíni adatforráshoz az átjárót működtető gépen a kapcsolati adatokat, és a hitelesítő adatok használatával. Amennyiben a kapcsolat tesztelése az illesztő telepítése után is sikertelen, indítsa újra az átjárót, hogy az érvényesítse a legutóbbi módosítást.
+1. Indítsa el az adatkezelési átjáró konfigurációkezelőjének hello-átjáró számítógépén.
+2. Váltás toohello **diagnosztika** fülre.
+3. A **kapcsolat tesztelése**, hello átjáró csoport értékek hozzáadásához.
+4. Kattintson a **teszt** toosee toohello tudja csatlakoztatni a helyszíni adatforrás hello átjáró gépről hello kapcsolati adatokat és hitelesítő adatok használatával. Hello kapcsolat tesztelése az illesztőprogram telepítése után továbbra is sikertelen, ha újraindítás hello átjáró azt toopick hello legújabb módosítás mentése.
 
 ![Kapcsolat tesztelése a Diagnosztika lap](media/data-factory-troubleshoot-gateway-issues/test-connection-in-diagnostics-tab.png)
 
 ## <a name="gateway-logs"></a>Átjáró naplói
-### <a name="send-gateway-logs-to-microsoft"></a>Átjáró naplókat küldeni a Microsoftnak
-Amikor kapcsolatba lép a Microsoft Support átjáró problémák hibaelhárításával kapcsolatos, a program kérheti megosztani az átjáró naplói. Az átjáró számára készült kötelező átjáró naplók és a két gombra történő kattintás az adatkezelési átjáró konfigurációkezelőjének is megoszthatja.    
+### <a name="send-gateway-logs-toomicrosoft"></a>Átjáró naplók tooMicrosoft küldése
+Amikor kapcsolatba lép a Microsoft Support tooget segítséget átjáró problémák elhárításához, megadását tooshare az átjáró naplói. Hello kiadás hello átjáró, a szükséges átjáró naplók és a két gombra történő kattintás az adatkezelési átjáró konfigurációkezelőjének is megoszthatja.    
 
-1. Váltás a **diagnosztika** az adatkezelési átjáró konfigurációkezelőjének fülre.
+1. Váltás toohello **diagnosztika** az adatkezelési átjáró konfigurációkezelőjének fülre.
 
     ![Felügyeleti átjáró Diagnostics lapon](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-diagnostics-tab.png)
-2. Kattintson a **naplók küldése** a következő párbeszédpanel megjelenítéséhez.
+2. Kattintson a **naplók küldése** toosee hello a következő párbeszédpanel megnyitásához.
 
     ![Felügyeleti átjáró küldése adatnaplók](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-dialog.png)
-3. (Választható) Kattintson a **naplók megtekintése** áttekintéséhez naplózza az esemény viewer.
-4. (Választható) Kattintson a **adatvédelmi** áttekintése a Microsoft web services adatvédelmi nyilatkozatát.
-5. Ha elégedett a feltöltés, kattintson a kívánt esetén **naplók küldése** ténylegesen a naplók az elmúlt hét napban a Microsoftnak küldendő hibaelhárításhoz. Az alábbi képernyőfelvételen látható módon kell megjelennie a küldési-naplók művelet állapotát.
+3. (Választható) Kattintson a **naplók megtekintése** tooreview hello eseménynaplóban naplózza.
+4. (Választható) Kattintson a **adatvédelmi** tooreview Microsoft web services adatvédelmi nyilatkozatát.
+5. Ha elégedett a tooupload kapcsolatos esetén, kattintson a **naplók küldése** tooactually hello elmúlt hét napban tooMicrosoft hibaelhárítási hello naplókat küldeni. Ahogy az alábbi képernyőfelvétel a hello hello küldési-naplók művelet hello állapotának kell megjelennie.
 
     ![Adatok felügyeleti átjáró küldése naplózza állapota](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-status.png)
-6. A művelet befejezése után megjelenik egy párbeszédpanel az alábbi képernyőfelvételen látható módon.
+6. Hello művelet befejezése után, párbeszédpanel jelenik meg a látható módon a következő képernyőkép hello.
 
     ![Adatok felügyeleti átjáró küldése naplózza állapota](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-result.png)
-7. Mentse a **azonosítója** és ossza meg a Microsoft Support. A jelentés Azonosítót az átjáró naplók hibaelhárítási feltöltött kereséséhez használható.  A jelentés Azonosítót is a menti viewer.  Az eseményazonosító "25" megtekintésével megtalálja, és ellenőrizze a dátum és idő.
+7. Mentse a hello **azonosítója** és ossza meg a Microsoft Support. hello azonosítója használt toolocate hello átjáró naplók hibaelhárítási feltöltött.  hello azonosítója hello eseménynaplójában is menti.  Hello eseményazonosító "25" megtekintésével megtalálja, és ellenőrizze a hello dátuma és időpontja.
 
     ![Adatok felügyeleti átjáró küldése naplózza az azonosítója](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-report-id.png)    
 
 ### <a name="archive-gateway-logs-on-gateway-host-machine"></a>Az átjáró állomás számítógépén archív-átjáró naplói
 Léteznek olyan forgatókönyvek, ahol átjáró problémák vannak, és közvetlenül nem osztható meg átjáró naplói:
 
-* Manuálisan telepítse az átjárót, és regisztrálja az átjárót.
-* Próbálja meg regisztrálni az átjárót az adatkezelési átjáró konfigurációkezelőjének újragenerált kulccsal.
-* Próbálja meg elküldeni a naplókat, és nem lehet csatlakozni az átjáró gazdaszolgáltatás.
+* Manuálisan telepítse hello átjárót, és hello átjáró regisztrálása.
+* Az adatkezelési átjáró konfigurációkezelőjének újragenerált kulccsal tooregister hello átjáró meg.
+* Toosend naplók meg, és nem lehet csatlakozni a hello átjáró gazdaszolgáltatás.
 
-Ezek a forgatókönyvek az átjáró naplói elmentse egy zip-fájlt, és ossza meg, amikor a Microsoft támogatási szolgálatához. Például ha arra vonatkozó hibaüzenetet kap, amíg az átjáró, regisztrálnia jelenik meg az alábbi képernyőfelvételen.   
+Ezek a forgatókönyvek az átjáró naplói elmentse egy zip-fájlt, és ossza meg, amikor a Microsoft támogatási szolgálatához. Például ha arra vonatkozó hibaüzenetet kap, amíg hello átjáró mint regisztrálnia jelenik meg a következő képernyőkép hello.   
 
 ![Felügyeleti átjáró regisztrációs hiba](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-registration-error.png)
 
-Kattintson a **átjáró naplók archiválása** csatolása archivált, és mentse a naplókat, és majd a zip-fájl megosztása a Microsoft támogatási szolgálatához.
+Kattintson a hello **átjáró naplók archiválása** tooarchive hivatkozásra, és mentse a naplókat, és majd hello zip-fájl megosztása a Microsoft támogatási szolgálatához.
 
 ![Felügyeleti átjáró archív adatnaplók](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-archive-logs.png)
 
 ### <a name="locate-gateway-logs"></a>Keresse meg az átjáró naplói
-A Windows eseménynaplóiban keresse meg a részletes átjáró naplóadatok találja.
+Részletes átjáró napló információt hello Windows eseménynaplóiban talál.
 
 1. A Windows indítása **Eseménynapló**.
-2. Keresse meg a naplókat a **alkalmazás- és szolgáltatásnaplók** > **az adatkezelési átjáró** mappát.
+2. Keresse meg a naplókat a hello **alkalmazás- és szolgáltatásnaplók** > **az adatkezelési átjáró** mappát.
 
- Átjáró kapcsolatos problémák elhárításakor még keressen szintű hibaesemények az Eseménynapló viewer.
+ Átjáró kapcsolatos problémák elhárításakor még szintű hibaesemények hello eseménynaplójában keresse meg.
 
 ![Az adatkezelési átjáró naplózza az eseménynaplóban](media/data-factory-troubleshoot-gateway-issues/gateway-logs-event-viewer.png)

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure figyelő partner Integrációk |} Microsoft Docs"
+title: "aaaAzure figyelő partner Integrációk |} Microsoft Docs"
 description: "Tudnivalók Azure figyelő partnerek, és hogyan férhet hozzá a velük a termék dokumentációját."
 author: johnkemnetz
 manager: orenr
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/16/2017
 ms.author: johnkem
-ms.openlocfilehash: 46b6ec12655b64b8fce6e103d5d71a4e8021890e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: df3af300bff702c49b1ce66216bc44670ac11938
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-partner-integrations"></a>Az Azure figyelő partner integrációja
 | Partnerek |  |  |
@@ -30,83 +30,83 @@ ms.lasthandoff: 08/18/2017
 | [! [Partner embléma] [sciencelogic-embléma] <br/> **ScienceLogic**][sciencelogic-anchor] | [! [Partner embléma] [splunk-embléma] <br/> **Splunk**][splunk-anchor] | [! [Partner embléma] [sumologic-embléma] <br/> **Sumo logika**][sumologic-anchor] | |
 
 ## <a name="alertlogic-log-manager"></a>AlertLogic naplókezelő
-Riasztási logika naplókezelő gyűjti a virtuális gép, az alkalmazás és az Azure platform naplók biztonsági elemzés és megőrizni, beleértve az Azure tevékenységnapló az Azure-figyelő API-n keresztül.  Az adatok malfeasance észlelésére, és a megfelelőségi követelményeknek.
+Riasztási logika naplókezelő biztonsági elemzés és megőrizni, többek között a hello Azure tevékenységnapló keresztül hello Azure figyelő API naplókat VM, az alkalmazás és az Azure platform gyűjti.  Ezekkel az információkkal már használt toodetect malfeasance és megfeleljenek a megfelelőségi követelmények.
 
-[Nyissa meg a dokumentációban találhatók.][alertlogic-doc]
+[Nyissa meg toohello dokumentációját.][alertlogic-doc]
 
 ## <a name="appdynamics"></a>AppDynamics
-AppDynamics alkalmazásteljesítmény-felügyeleti (APM) lehetővé teszi az alkalmazástulajdonosok gyorsan szűk keresztmetszetek hibakeresésre, és az Azure környezetben futó alkalmazások teljesítményének optimalizálásához. AppDynamics APM egy zökkenőmentesen részét képező Azure piactér és elérhető Microsoft Azure Queue Azure Cloud Services (PaaS) (beleértve a webes és feldolgozói szerepkörök), virtuális gépek (IaaS), távoli szolgáltatás észlelése (a Microsoft Azure Service Bus), monitor Távoli Microsoft Azure-szolgáltatások (az Azure Blob), az Azure üzenetsorának (Microsoft Service Bus), adattárolás, Microsoft Azure Blob Storage tárolóban.
+AppDynamics alkalmazásteljesítmény-felügyeleti (APM) lehetővé teszi, hogy alkalmazás tulajdonosok toorapidly szűk keresztmetszetek hibaelhárításához, és az Azure környezetben futó alkalmazások hello teljesítményének optimalizálásához. AppDynamics APM egy zökkenőmentesen részét képező Azure piactér és elérhető Microsoft Azure Queue Azure Cloud Services (PaaS) (beleértve a webes és feldolgozói szerepkörök), virtuális gépek (IaaS), távoli szolgáltatás észlelése (a Microsoft Azure Service Bus), monitor Távoli Microsoft Azure-szolgáltatások (az Azure Blob), az Azure üzenetsorának (Microsoft Service Bus), adattárolás, Microsoft Azure Blob Storage tárolóban.
 
-[Nyissa meg a dokumentációban találhatók.][appdynamics-doc]
+[Nyissa meg toohello dokumentációját.][appdynamics-doc]
 
 ## <a name="atlassian-jira"></a>Atlassian JIRA
 A riasztások figyelése Azure JIRA jegyek hozhat létre.
 
-[Nyissa meg a dokumentációban találhatók.][atlassian-doc]
+[Nyissa meg toohello dokumentációját.][atlassian-doc]
 
 ## <a name="circonus"></a>Circonus
-Circonus egy figyelési mikroszolgáltatások létrehozására és a helyszíni vagy SaaS telepítési készült elemzés platform. A teljes automatable API-központú platformját több méretezhető, és megbízhatóbb, mint a rendszer figyeli. Fejlett DevOps követelményeinek, Circonus nyújt PERCENTILIS értesítések, diagramokat, irányítópultok és gépi tanulásra intelligence, amelyek lehetővé teszik az üzleti optimalizálás. Circonus figyeli a Microsoft Azure felhőben lévő erőforrások és a valós idejű alkalmazások. Circonus segítségével gyűjt, és nyomon követheti a metrikákat a változók szeretné mérni a az erőforrások és alkalmazások. Circonus az Azure erőforrás-használat, az alkalmazások teljesítményének és működési állapotát rendszerszintű láthatósága kapnak.
+Circonus egy figyelési mikroszolgáltatások létrehozására és a helyszíni vagy SaaS telepítési készült elemzés platform. A teljes automatable API-központú platformját több méretezhető, és megbízhatóbb, mint a rendszer figyeli. Fejlett DevOps hello követelményeinek, Circonus nyújt PERCENTILIS értesítések, diagramokat, irányítópultok és gépi tanulásra intelligence, amelyek lehetővé teszik az üzleti optimalizálás. Circonus figyeli a Microsoft Azure felhőben lévő erőforrások és a valós idejű alkalmazások. Használhatja a Circonus toocollect és nyomon követése metrikák hello változók toomeasure esetén kívánja az erőforrásokhoz és alkalmazásokhoz. Circonus az Azure erőforrás-használat, az alkalmazások teljesítményének és működési állapotát rendszerszintű láthatósága kapnak.
 
-[Nyissa meg a dokumentációban találhatók.][circonus-doc]
+[Nyissa meg toohello dokumentációját.][circonus-doc]
 
 ## <a name="cloudhealth"></a>CloudHealth
-Egyesítése, és a felhő egy súlyos időt és pénzt takaríthatnak parancsfájlkezelő platform automatizálásához. Unparalleled látható, intuitív optimalizálása és Sziklaszilárd irányítás eljárásokat CloudHealth felhőfelügyelet az újradefiniálás. A Cloudhealth platform lehetővé teszi a vállalatok és a felhő befektetések visszatérési maximalizálása és biztosnak költség, a használati, a teljesítmény és a biztonsági MSPs.
+Egyesítése, és a felhő egy beépített platform toosave súlyos időt és pénzt automatizálásához. Unparalleled látható, intuitív optimalizálása és Sziklaszilárd irányítás eljárásokat CloudHealth felhőfelügyelet az újradefiniálás. hello Cloudhealth platform lehetővé teszi a vállalatok és MSPs toomaximize felhő befektetések vissza, és abban döntéseket költség, a használati, a teljesítmény és a biztonsági.
 
 [tudj meg többet.][cloudhealth-doc]
 
 ## <a name="cloudmonix"></a>CloudMonix
 CloudMonix figyelés, az automation és a Microsoft Azure platform öngyógyító szolgáltatást kínál.
 
-[Nyissa meg a dokumentációban találhatók.][cloudmonix-doc]
+[Nyissa meg toohello dokumentációját.][cloudmonix-doc]
 
 ## <a name="cloudyn"></a>Cloudyn
-Cloudyn kezeli, és optimalizálja a többplatformos, segítségével teljes mértékben vegye figyelembe a lehetséges felhő vállalatok hibrid felhőben történő alkalmazáshoz. A Szolgáltatottszoftver-megoldást nyújt, használat, a teljesítmény és a költség, elemzések és intelligens optimalizálása és a felhő irányítás végrehajthatóként javaslatok alapján kialakulhat láthatósága. Cloudyn lehetővé teszi, hogy az elszámolási kötelezettségéről szóló pontos jóváírással és a hierarchikus költség foglalási felügyeleti keresztül. Cloudyn integrált Azure figyelési így biztosíthatja az elemzések és végrehajthatóként javaslatok az Azure-telepítés optimalizálása érdekében.
+Cloudyn kezeli, és optimalizálja a többplatformos, hibrid felhő központi telepítések toohelp vállalatok teljes mértékben vegye figyelembe a felhő lehetséges. hello Szolgáltatottszoftver-megoldást nyújt, használat, a teljesítmény és a költség, elemzések és intelligens optimalizálása és a felhő irányítás végrehajthatóként javaslatok alapján kialakulhat láthatósága. Cloudyn lehetővé teszi, hogy az elszámolási kötelezettségéről szóló pontos jóváírással és a hierarchikus költség foglalási felügyeleti keresztül. Cloudyn integrálva van az Azure-figyeléssel a rendelés tooprovide insights, és a végrehajthatóként javaslatok sorrendet toooptimize az Azure-telepítés.
 
-[Nyissa meg a dokumentációban találhatók.][cloudyn-doc]
+[Nyissa meg toohello dokumentációját.][cloudyn-doc]
 
 ## <a name="datadog"></a>Datadog
-Datadog a szolgáltatás a felhőméretű alkalmazások figyelése a világ bevezető összegyűjtésével a adatok a kiszolgálók, adatbázisok, eszközök és szolgáltatások van a teljes verem egyesített nézetét. Ezek a képességek egy Szolgáltatottszoftver-alapú adatok analytics platformon, amely lehetővé teszi az együttműködés elősegítése érdekében az állásidő elkerülése, teljesítménybeli problémák megoldásához, és győződjön meg arról, hogy fejlesztésére és üzembe ciklusok idővel Befejezés fejlesztői és Ops csoportok állnak rendelkezésre. Datadog és Azure integrálásával gyűjtése és megtekintheti a metrikák kezelését az infrastruktúrában, összefüggéseket VM metrikák alkalmazásszintű metrikákat, és részletekbe és a metrikákat, tetszőleges kombinációjával tulajdonságok és egyéni címkék vizuális.
+Datadog felhőméretű alkalmazások, a szolgáltatás figyelése hello world bevezető összegyűjtésével a adatokat a kiszolgáló, adatbázisok, eszközök, és a teljes verem egyesítve láthassák toopresent szolgáltatások. Ezeket a képességeket a Szolgáltatottszoftver-alapú adatok analytics platform, amely lehetővé teszi a fejlesztői és Ops csapatok toowork elősegítése érdekében a tooavoid állásidő, teljesítménybeli problémák megoldásához, és győződjön meg arról, hogy a fejlesztési és telepítési ciklusok Befejezés időben vannak. Datadog és Azure integrálásával gyűjtése és megtekintheti a metrikák kezelését az infrastruktúrában, összefüggéseket VM metrikák alkalmazásszintű metrikákat, és részletekbe és a metrikákat, tetszőleges kombinációjával tulajdonságok és egyéni címkék vizuális.
 
-[Nyissa meg a dokumentációban találhatók.][datadog-doc]
+[Nyissa meg toohello dokumentációját.][datadog-doc]
 
 ## <a name="dynatrace"></a>Dynatrace
-A Dynatrace OneAgent jól integrálható az Azure virtuális gépek és alkalmazásszolgáltatások az Azure-bővítményt mechanizmus révén. Ezzel a módszerrel Dynatrace OneAgent gyűjthet gazdagépek, hálózati és szolgáltatásokra vonatkozó teljesítménymutatók. Csak a metrikák megjelenítése mellett az Dynatrace visualizes környezetek-végpontok, megjeleníti a tranzakciók ügyféloldali az adatbázis-réteghez. AI-alapú korrelációs a problémákat, és teljesen integrált gyökér--okát, beleértve a kódot és -adatbázis szintű betekintést metódus győződjön sokkal könnyebb hibaelhárítás és a teljesítmény optimalizálása.
+hello Dynatrace OneAgent jól integrálható az Azure virtuális gépek és alkalmazásszolgáltatások hello Azure-bővítményt mechanizmus segítségével. Ezzel a módszerrel Dynatrace OneAgent gyűjthet gazdagépek, hálózati és szolgáltatásokra vonatkozó teljesítménymutatók. Csak a metrikák megjelenítése mellett az Dynatrace visualizes környezetek-végpontok, megjelenítő hello ügyfél oldalán toohello Adatbázisréteg tranzakciókat. AI-alapú korrelációs a problémákat, és teljesen integrált gyökér--okát, beleértve a kódot és -adatbázis szintű betekintést metódus győződjön sokkal könnyebb hibaelhárítás és a teljesítmény optimalizálása.
 
-[Nyissa meg a dokumentációban találhatók.][dynatrace-doc]
+[Nyissa meg toohello dokumentációját.][dynatrace-doc]
 
 ## <a name="newrelic"></a>NewRelic
 [tudj meg többet.][newrelic-doc]
 
 ## <a name="opsgenie"></a>OpsGenie
-OpsGenie úgy működik, mint egy kézbesítő az Azure által generált riasztások esetében. OpsGenie meghatározza, hogy a megfelelő értesítendő személyeket és az ütemezések a készenléti és azok következményeinek, alapján, amely értesíti őket e-mailek, a szöveges üzenetek (SMS), a telefonhívások használva leküldéses értesítések. Egyszerűen Azure észlelt problémákkal kapcsolatos riasztásokat állít elő, és OpsGenie biztosítja a megfelelő személyeknek dolgoznak őket.
+OpsGenie úgy működik, mint egy kézbesítő hello riasztások jönnek létre az Azure-ban. OpsGenie határozza meg, amely értesíti őket a telefonos ütemezések és azok következményeinek, alapján hello megfelelő személyeknek toonotify használatával az e-mailek, a szöveges üzenetek (SMS), a telefonhívások, leküldéses értesítések. Egyszerűen Azure észlelt problémákkal kapcsolatos riasztásokat állít elő, és OpsGenie biztosítja a megfelelő személyeknek hello dolgoznak őket.
 
-[Nyissa meg a dokumentációban találhatók.][opsgenie-doc]
+[Nyissa meg toohello dokumentációját.][opsgenie-doc]
 
 ## <a name="pagerduty"></a>PagerDuty
-PagerDuty, a vezető incidenskezelés megoldás kiváló támogatást nyújt az Azure-riasztások nyújtott mérőszámokat. Napjainkban PagerDuty mostantól támogatja a értesítések Azure riasztások, értesítések automatikus skálázási és napló események naplózása mellett az Azure szolgáltatások platform szintű metrikák értesítések. Az ilyen fejlesztések felhasználók láthatóság növelésével az alapszintű Azure Platform adjon lemezt, és engedélyezze azokat PagerDuty tartozó incidensek kezelési lehetőségeket biztosít a valós idejű válasz teljes körű kihasználása érdekében. A kibontott Azure-integráció webhookokkal, amely lehetővé teszi a gyors és egyszerű telepítés és a testreszabás használatával lehetséges legyen.
+PagerDuty, incident management megoldás, ami hello kiváló támogatást nyújt az Azure-riasztások nyújtott mérőszámokat. Napjainkban PagerDuty mostantól támogatja a értesítések Azure riasztások, értesítések automatikus skálázási és napló események naplózása, a platform-szintű mérőszámokat az Azure-szolgáltatások hozzáadásával toonotifications. Az ilyen fejlesztések ad felhasználók láthatóság növelésével hello core Azure Platform engedélyezze azokat tootake teljes mértékben PagerDuty tartozó incidensek kezelési lehetőségeket biztosít a valós idejű válasz. A kibontott Azure-integráció webhookokkal, amely lehetővé teszi a gyors és egyszerű telepítés és a testreszabás használatával lehetséges legyen.
 
-[Nyissa meg a dokumentációban találhatók.][pagerduty-doc]
+[Nyissa meg toohello dokumentációját.][pagerduty-doc]
 
 ## <a name="sciencelogic"></a>ScienceLogic
-ScienceLogic nyújt, a következő generációs informatikai szolgáltatás megbízhatósági platform minden műszaki bárhol kezeléséhez.  A platformfüggetlen ScienceLogic nyújt, a méretezés, a biztonsági, az automatizálás és a rugalmasság egyszerűsíteni a nagy mennyiségű informatikai erőforrásra, szolgáltatások és alkalmazások, amelyek állandó mozgó kezelése egyre bővülő feladatát.  A ScienceLogic platform illesztő a Microsoft Azure-ban Azure API-kat használ.  ScienceLogic betekintést nyújt a valós idejű a Azure-szolgáltatásokhoz és erőforrásokhoz, ha valami nem működik, és megoldhatja gyorsabban tudja. Azure kezelheti a többi és center rendszerek és szolgáltatások mellett is.
+ScienceLogic nyújt hello következő generációs informatikai szolgáltatás megbízhatósági platform minden műszaki bárhol kezeléséhez.  A platformfüggetlen ScienceLogic nyújt, hello méretezési, a biztonsági, az automatizálás és a rugalmasság szükséges toosimplify hello informatikai erőforrások, szolgáltatások és állandó mozgásérzékelési található alkalmazások kezelése a egyre bővülő feladatát.  hello ScienceLogic platform Azure API-k toointerface használja a Microsoft Azure-ban.  ScienceLogic betekintést nyújt a valós idejű a Azure-szolgáltatásokhoz és erőforrásokhoz, ha valami nem működik, és megoldhatja gyorsabban tudja. Azure kezelheti a többi és center rendszerek és szolgáltatások mellett is.
 
 [tudj meg többet.][sciencelogic-doc]
 
 ## <a name="azure-monitor-add-on-for-splunk"></a>Splunk Azure figyelő bővítménye
-Az Azure-figyelő bővítmény Splunk a [érhető el itt a Splunkbase](https://splunkbase.splunk.com/app/3534/).
+hello Azure figyelő bővítménye Splunk van [Splunkbase hello itt elérhető](https://splunkbase.splunk.com/app/3534/).
 
-[Nyissa meg a dokumentációban találhatók.][splunk-doc]
+[Nyissa meg toohello dokumentációját.][splunk-doc]
 
 ## <a name="sumo-logic"></a>Sumo logika
-Sumo logika egy olyan biztonságos, a felhő-natív, gép adatok analytics szolgáltatás, valós idejű, a folyamatos eszközintelligencia továbbítása a strukturált, félig strukturált és strukturálatlan adatokat a teljes alkalmazás életciklusa és a verem. A világ minden táján 1000-nél több ügyfél Sumo logika elemzés és elemzések létre, a futtatja, és a biztonságos a modern alkalmazások és a felhőalapú infrastruktúrák támaszkodnak. Sumo logikával az ügyfelek kapnak annak érdekében, a shift folyamatos innováció, hogy egy több-bérlős, szolgáltatás-modell előnye versenyelőnyt, az üzleti értéket és a növekedési növelése.
+Sumo logika egy olyan biztonságos, a felhő-natív, gép adatok analytics szolgáltatás, valós idejű, a folyamatos eszközintelligencia kézbesítéséhez strukturált, félig strukturált és strukturálatlan adatokat a teljes alkalmazás-életciklus hello és a verem. Több mint 1000 ügyfél körül hello földgömb hello elemzés és elemzések toobuild, fut, és biztonságos a modern alkalmazások és a felhőalapú infrastruktúrák Sumo logika támaszkodnak. Sumo logikával ügyfél ettől kezdve egy több-bérlős, szolgáltatás-modell előnye tooaccelerate a shift toocontinuous innováció versenyelőnyt, az üzleti értéket és a növekedési növelése.
 
 [tudj meg többet.][sumologic-doc]
 
 ## <a name="next-steps"></a>Következő lépések
 * [További tudnivalók az Azure-figyelő](monitoring-overview.md)
-* [A REST API használatával hozzáférést metrikák](monitoring-rest-api-walkthrough.md)
-* [A műveletnapló harmadik fél szolgáltatás adatfolyam](monitoring-stream-activity-logs-event-hubs.md)
-* [Az adatfolyam a diagnosztikai naplókat a harmadik fél szolgáltatás](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Hozzáférés metrikák hello REST API használatával](monitoring-rest-api-walkthrough.md)
+* [Az adatfolyam hello tevékenységnapló tooa harmadik féltől származó szolgáltatás](monitoring-stream-activity-logs-event-hubs.md)
+* [Adatfolyam-diagnosztikai naplók tooa harmadik féltől származó szolgáltatás](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 
 <!--Partner Anchors-->
 [alertlogic-anchor]: #alertlogic-log-manager "AlertLogic"

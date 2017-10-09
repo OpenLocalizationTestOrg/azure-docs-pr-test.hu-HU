@@ -1,6 +1,6 @@
 ---
-title: "A Data Lake Store adatok elemzése a Power BI használatával |} Microsoft Docs"
-description: "Azure Data Lake Store-ban tárolt adatok elemzésére a Power BI használatával"
+title: "a Power BI használatával a Data Lake Store aaaAnalyze adatok |} Microsoft Docs"
+description: "A Power BI tooanalyze adataihoz az Azure Data Lake Store használatára"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 0cf7e385ef2edd650479e120f52469bc6632f2eb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a1bfa80fd1b0dda59b7eaaae9ca1585ba42783e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-data-in-data-lake-store-by-using-power-bi"></a>A Data Lake Store adatok elemzése a Power BI használatával
-Ebben a cikkben megtudhatja a Power BI Desktop segítségével elemezheti és az Azure Data Lake Store-ban tárolt adatok megjelenítése.
+Ebben a cikkben megtudhatja, hogyan toouse Power BI Desktop tooanalyze és az Azure Data Lake Store-ban tárolt adatok megjelenítése.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* **Azure Data Lake Store-fiók**. Kövesse [Az Azure Data Lake Store használatának első lépései az Azure Portal használatával](data-lake-store-get-started-portal.md) című témakör utasításait. Ez a cikk feltételezi, hogy már létrejött egy Data Lake Store-fiókot, úgynevezett **mybidatalakestore**, és fel kell tölteni egy minta adatfájl (**Drivers.txt**) azt. Ezt a mintafájlt letölthető [Azure Data Lake Git-tárház](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt).
+* **Azure Data Lake Store-fiók**. Hajtsa végre a hello található utasítások segítségével: [Ismerkedés az Azure Data Lake Store használatának hello Azure Portal](data-lake-store-get-started-portal.md). Ez a cikk feltételezi, hogy már létrejött egy Data Lake Store-fiókot, úgynevezett **mybidatalakestore**, és fel kell tölteni egy minta adatfájl (**Drivers.txt**) tooit. Ezt a mintafájlt letölthető [Azure Data Lake Git-tárház](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt).
 * **A Power BI Desktopban**. Letöltheti ezt a [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=45331). 
 
 ## <a name="create-a-report-in-power-bi-desktop"></a>Hozzon létre egy jelentést a Power BI Desktop
 1. Indítsa el a Power BI Desktop a számítógépen.
-2. Az a **Home** menüszalag, kattintson a **adatok beolvasása**, és kattintson a több. Az a **adatok beolvasása** párbeszédpanel, kattintson a **Azure**, kattintson a **Azure Data Lake Store**, és kattintson a **Connect**.
+2. A hello **Home** menüszalag, kattintson a **adatok beolvasása**, és kattintson a több. A hello **adatok beolvasása** párbeszédpanel, kattintson a **Azure**, kattintson a **Azure Data Lake Store**, és kattintson a **Connect**.
    
-    ![Data Lake Store-csatlakozás](./media/data-lake-store-power-bi/get-data-lake-store-account.png "Data Lake Store-csatlakozás")
-3. Ha megjelenik egy párbeszédpanel, az összekötő fázisban vannak fejlesztés alatt álló kapcsolatos, dönthet, hogy továbbra is.
-4. Az a **Microsoft Azure Data Lake Store** párbeszédpanelen adja meg a Data Lake Store-fiók URL-CÍMÉT, és kattintson **OK**.
+    ![Csatlakozás tooData Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account.png "Connect tooData Lake Store")
+3. Ha megjelenik egy párbeszédpanel fázisban vannak fejlesztés alatt álló hello connector névjegye, használatának toocontinue.
+4. A hello **Microsoft Azure Data Lake Store** párbeszédpanelen adjon meg hello URL-cím tooyour Data Lake Store-fiókot, és kattintson **OK**.
    
     ![A Data Lake Store URL-cím](./media/data-lake-store-power-bi/get-data-lake-store-account-url.png "a Data Lake Store URL-címe")
-5. A következő párbeszédpanelen, kattintson a **bejelentkezés** való bejelentkezés Data Lake Store-fiókba. A szervezete bejelentkezési oldalára irányítja. Kövesse az utasításokat bejelentkezni a fiókjába.
+5. Hello következő párbeszédpanelen, kattintson a **bejelentkezés** toosign be Data Lake Store-fiókba. Fogja átirányítani tooyour szervezete bejelentkezési oldalára. Hajtsa végre a hello kér toosign hello figyelembe.
    
     ![Jelentkezzen be a Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-signin.png "jelentkezzen be a Data Lake Store")
 6. Miután sikeresen bejelentkezett, kattintson **Connect**.
    
-    ![Data Lake Store-csatlakozás](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "Data Lake Store-csatlakozás")
-7. A következő párbeszédpanel a fájlt a Data Lake Store-fiók feltöltött jeleníti meg. Ellenőrizze az adatokat, majd kattintson **terhelés**.
+    ![Csatlakozás tooData Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-connect.png "Connect tooData Lake Store")
+7. hello tovább párbeszédpanel hello fájl jeleníti meg, hogy a feltöltött tooyour Data Lake Store-fiók. Ellenőrizze a hello adatait, majd kattintson **terhelés**.
    
     ![Adatok betöltése az Data Lake Store](./media/data-lake-store-power-bi/get-data-lake-store-account-load.png "adatok betöltése a Data Lake Store-ból")
-8. Miután az adatok sikeresen betöltve a Power bi-ba, a következő mezők megjelenik-e a **mezők** fülre.
+8. Miután hello adatok sikeresen betöltve a Power bi-ba, látni fogja a következő hello mezőinek hello **mezők** fülre.
    
     ![Importált mezők](./media/data-lake-store-power-bi/imported-fields.png "importált mezők")
    
-    Azonban megjelenítheti és elemezheti az adatokat, hogy azt inkább az adatok a következő mezők kiszolgálónként
+    Azonban toovisualize és hello adatok elemzésére, azt inkább hello adatok toobe, amely a következő mezők hello száma
    
     ![Szükségeskonfiguráció-mezők](./media/data-lake-store-power-bi/desired-fields.png "szükséges mezők")
    
-    A következő lépésekben frissítjük a lekérdezés konvertálni az importált adatokat a kívánt formátumban.
-9. Az a **Home** menüszalag, kattintson a **szerkesztése lekérdezések**.
+    A következő lépések hello frissítjük hello lekérdezés tooconvert hello importált adatok hello kívánt formátumban.
+9. A hello **Home** menüszalag, kattintson a **szerkesztése lekérdezések**.
    
     ![Szerkessze a lekérdezések](./media/data-lake-store-power-bi/edit-queries.png "lekérdezések szerkesztése")
-10. A lekérdezés-szerkesztő alatt a **tartalom** oszlopban kattintson **bináris**.
+10. A Lekérdezésszerkesztő, hello alatt hello **tartalom** oszlopban kattintson **bináris**.
     
     ![Szerkessze a lekérdezések](./media/data-lake-store-power-bi/convert-query1.png "lekérdezések szerkesztése")
-11. A fájl ikonjára, látni fogja a **Drivers.txt** feltöltött fájl. Kattintson jobb gombbal a fájlra, és kattintson a **CSV**.    
+11. A fájl ikon, hello jelölő **Drivers.txt** feltöltött fájl. Kattintson a jobb gombbal a hello fájlt, és kattintson a **CSV**.    
     
     ![Szerkessze a lekérdezések](./media/data-lake-store-power-bi/convert-query2.png "lekérdezések szerkesztése")
-12. Alább látható módon kimenetnek kell megjelennie. Az adatok segítségével képi megjelenítéseket készíthet formátumú most érhető el.
+12. Alább látható módon kimenetnek kell megjelennie. Az adatok már használható toocreate képi megjelenítések formátumban elérhető.
     
     ![Szerkessze a lekérdezések](./media/data-lake-store-power-bi/convert-query3.png "lekérdezések szerkesztése")
-13. Az a **Home** menüszalag, kattintson a **zárja be, és alkalmazni**, és kattintson a **zárja be, és alkalmazni**.
+13. A hello **Home** menüszalag, kattintson a **zárja be, és alkalmazni**, és kattintson a **zárja be, és alkalmazni**.
     
     ![Szerkessze a lekérdezések](./media/data-lake-store-power-bi/load-edited-query.png "lekérdezések szerkesztése")
-14. Ha a lekérdezés frissül, a **mezők** lap megjeleníti a képi megjelenítéshez tartozó elérhető új mezők.
+14. Miután hello lekérdezés frissül, hello **mezők** látható hello elérhető a képi megjelenítéshez tartozó új mezők.
     
     ![Mezők frissítése](./media/data-lake-store-power-bi/updated-query-fields.png "mezők frissítése")
-15. Ossza meg velünk az illesztőprogramokat egy adott országban az egyes városban képviselő kördiagram létrehozása. Ehhez az szükséges, adja meg a következő beállításokat.
+15. Ossza meg velünk hozzon létre egy kördiagram toorepresent hello illesztőprogramok egy adott országban minden város. toodo, ügyeljen a következő beállításokat hello.
     
-    1. A képi megjelenítések lapján kattintson a tortadiagram a szimbólum.
+    1. Hello képi megjelenítések lapján kattintson a kördiagram hello szimbólum.
        
         ![A tortadiagram létrehozása](./media/data-lake-store-power-bi/create-pie-chart.png "kördiagram létrehozása")
-    2. Az oszlop használni fogjuk **oszlop 4** (a város neve) és **oszlop 7** (ország neve). Ezekben az oszlopokban a húzza **mezők** beállítást **képi megjelenítések** lapon a lent látható módon.
+    2. hello oszlopok fogjuk toouse vannak **oszlop 4** (hello város neve) és **oszlop 7** (hello ország neve). Ezekben az oszlopokban a húzza **mezők** túl lapon**képi megjelenítések** lapon a lent látható módon.
        
         ![Képi megjelenítéseket készíthet](./media/data-lake-store-power-bi/create-visualizations.png "képi megjelenítéseket készíthet")
-    3. A tortadiagram például az alábbihoz kell hasonlítania.
+    3. hello kördiagram például hello alábbihoz kell hasonlítania.
        
         ![A tortadiagram](./media/data-lake-store-power-bi/pie-chart.png "képi megjelenítéseket készíthet")
-16. Egy adott országban szintű Lapszűrők való kiválasztással most már megtekintheti a kijelölt ország minden városban illesztőprogramok száma. Például az a **képi megjelenítések** lap **szintű szűrők lapon**, jelölje be **brazíliai**.
+16. Egy adott országban hello szintű Lapszűrők való kiválasztással most már megtekintheti a hello illesztőprogramok száma az egyes kiválasztott hello ország város. Például az hello **képi megjelenítések** lap **szintű szűrők lapon**, jelölje be **brazíliai**.
     
     ![Válassza ki a ország](./media/data-lake-store-power-bi/select-country.png "ország kiválasztása")
-17. A tortadiagram automatikusan frissül az illesztőprogramok megjelenő Brazília a város tartozik.
+17. hello kördiagram automatikusan frissített toodisplay hello illesztőprogramja hello városokat Brazília.
     
     ![Illesztőprogramok országban](./media/data-lake-store-power-bi/driver-per-country.png "országonkénti illesztőprogramok")
-18. Az a **fájl** menüben kattintson a **mentése** a képi megjelenítés egy Power BI Desktop-fájlba menti.
+18. A hello **fájl** menüben kattintson a **mentése** toosave hello képi megjelenítés Power BI Desktop-fájlként.
 
-## <a name="publish-report-to-power-bi-service"></a>Jelentés közzététele a Power BI-ban
-Miután létrehozta a képi megjelenítések a Power BI Desktopban, megoszthatja azt másokkal a Power BI szolgáltatásba történő közzétételével. Ehhez útmutatást lásd: [a Power BI Desktop közzététele](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/).
+## <a name="publish-report-toopower-bi-service"></a>A jelentés tooPower BI-ban közzététele
+Ha a Power BI Desktopban létrehozott hello képi megjelenítéseket, megoszthatja azt másokkal történő közzétételével toohello Power BI-ban. Útmutatást, lásd: toodo [a Power BI Desktop közzététele](https://powerbi.microsoft.com/documentation/powerbi-desktop-upload-desktop-files/).
 
 ## <a name="see-also"></a>Lásd még:
 * [Adatok elemzése a Data Lake Analytics használatával a Data Lake Store az](../data-lake-analytics/data-lake-analytics-get-started-portal.md)

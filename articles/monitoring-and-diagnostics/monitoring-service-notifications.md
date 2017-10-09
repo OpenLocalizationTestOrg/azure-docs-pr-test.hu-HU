@@ -1,6 +1,6 @@
 ---
-title: "Mik azok a szolgáltatás állapotával kapcsolatos értesítésekre |} Microsoft Docs"
-description: "Szolgáltatás állapotával kapcsolatos értesítésekre engedélyezi, hogy a szolgáltatás állapotának üzenetek közzététele a Microsoft Azure által megtekintéséhez."
+title: "aaaWhat a szolgáltatás állapotával kapcsolatos értesítésekre |} Microsoft Docs"
+description: "Szolgáltatás állapotával kapcsolatos értesítésekre engedélyezése tooview szolgáltatás állapotának üzenetek közzététele a Microsoft Azure által."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: d85281c02b792921f12cc62e6d60bef3e7c13b3f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6f2fe72154c3e80d85062655c49dd1799b718e3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-health-notifications"></a>Szolgáltatás állapotával kapcsolatos értesítésekre
 ## <a name="overview"></a>Áttekintés
 
-Ez a cikk bemutatja, hogyan megtekintéséhez az Azure portál használatával a szolgáltatás állapotával kapcsolatos értesítésekre.
+Ez a cikk bemutatja, hogyan tooview szolgáltatás állapotával kapcsolatos értesítésekre használatával hello Azure-portálon.
 
-Szolgáltatás állapotával kapcsolatos értesítésekre engedélyezi, hogy a szolgáltatás állapotának üzenet, ami hatással lehet az erőforrásokat az előfizetéshez tartozó Azure-csapat által közzétett megtekintése. Ezek az értesítések tevékenység alárendelt osztályát alkalmazásnapló-események, és a tevékenység napló panel is található. Szolgáltatás állapotával kapcsolatos értesítésekre tájékoztató vagy hajtható végre attól függően, hogy az osztály is lehet.
+Szolgáltatás állapotával kapcsolatos értesítésekre, tooview szolgáltatás állapotának üzenetek engedélyezése hello Azure-csapat, ami hatással lehet az előfizetéshez tartozó hello erőforrások tett közzé. Ezek az értesítések tevékenység alárendelt osztályát alkalmazásnapló-események, és hello tevékenység napló panel is található. Szolgáltatás állapotával kapcsolatos értesítésekre tájékoztató vagy hajtható végre attól függően, hogy hello osztály is lehet.
 
 A szolgáltatás állapotával kapcsolatos értesítésekre öt osztályait van:  
 
-- **Beavatkozás szükséges:** időről időre azt tapasztalhatja, valami szokatlan fordulhat elő, a fiókban. Előfordulhat, hogy az Ön ennek orvoslása érdekében kell. Meg kell végrehajtani a műveleteket vagy részletező értesítést kapni, vagy kérje az Azure mérnöki vagy a támogatási tájékoztatást.  
-- **Támogatott helyreállítási:** olyan esemény történt, és a mérnökök megerősítette, hogy továbbra is problémát hatása. Mérnöki csapathoz kell Önnek közvetlenül a szolgáltatások kerüljön visszaállítása.  
-- **Incidens:** esemény érintő szolgáltatás egy vagy több erőforrást az előfizetésében jelenleg érinti.  
-- **Karbantartás:** ezt az egy értesítést a tájékoztat a tervezett karbantartások tevékenység, amely hatással lehet az előfizetéshez tartozó erőforrások közül legalább egyet.  
-- **Információ:** az idő időre is küldünk értesítéseket meg, amely növelheti az erőforrás-használat lehetséges optimalizálásokat kapcsolatos Önnek egy kommunikáljon.  
+- **Beavatkozás szükséges:** az idő tootime azt tapasztalhatja, valami szokatlan fordulhat elő, a fiókban. Előfordulhat, hogy szeretnénk az Ön tooremedy toowork ez. Kapni fog egy értesítést vagy tootake kell hello műveletek részletező vagy részletes információt a toocontact Azure mérnöki vagy támogatja.  
+- **Támogatott helyreállítási:** olyan esemény történt, és a mérnökök megerősítette, hogy továbbra is problémát hatása. Mérnöki csapathoz toowork Önnek kell közvetlenül toobring a szolgáltatások toorestoration.  
+- **Incidens:** esemény érintő szolgáltatás egy vagy több hello erőforrást az előfizetésében jelenleg érinti.  
+- **Karbantartás:** ezt az egy értesítést a tájékoztat a tervezett karbantartások tevékenység, amely hatással lehet az előfizetéshez tartozó hello erőforrások közül legalább egyet.  
+- **Információ:** az idő tootime is kapni, hogy egy kommunikáljon tooyou kapcsolatos lehetséges optimalizálást, amelyek hozzájárulhatnak a erőforrás hasznosíthatóságát javítják értesítések.  
 - **Biztonsági:** sürgős biztonsági az Azure-on futó solution(s) vonatkozó információkat.
 
-Minden szolgáltatás állapotának értesítés fogja hajtani a hatókör és az erőforrások hatással van. Részletek tartalmazza:
+Minden szolgáltatás állapotának értesítés fogja hajtani részletek hello hatókör és a hatás tooyour erőforrástól függ. Részletek tartalmazza:
 
 Tulajdonság neve | Leírás
 -------- | -----------
-csatornák | A következő értékek egyike: "Rendszergazda", "Művelet"
-correlationId | Az általában egy GUID, amely a karakterlánc-formátum. Ugyanaz a uber művelet tartozik, amely az események az azonos correlationId általában megosztani.
-eventDataId | Az esemény egyedi azonosítója
-EventName | Az esemény címe
-szint | Az esemény szintje. A következő értékek egyikét: "Kritikus", "Error", "Figyelmeztetés", "Tájékoztató" és "Részletes"
-resourceProviderName | Az erőforrás-szolgáltató az érintett erőforrás neve
-a resourceType| Az erőforrástípust az érintett erőforrás
-a részállapot | Általában a megfelelő REST HTTP-állapotkód: hívja, de más a részállapot, például a gyakori értékek leíró karakterláncok is használható: OK (HTTP-állapotkód:: 200), létrehozott (HTTP-állapotkód:: 201-es), fogadja el (HTTP-állapotkód:: 202), nem tartalom (HTTP-állapotkód: 204), hibás kérés (HTTP-állapotkód:: 400), nem található (HTTP-állapotkód: 404-es), ütközés (HTTP-állapotkód: : 409), belső kiszolgálóhiba (HTTP-állapotkód: 500), a Service nem érhető el (HTTP-állapotkód: 503-as), átjáró időtúllépése (HTTP-állapotkód: 504).
-eventTimestamp | Az esemény az esemény megfelelő a kérés feldolgozása az Azure-szolgáltatás által kiváltott idejét jelző időbélyegző.
-submissionTimestamp |   Az esemény váltak elérhetővé lekérdezése idejét jelző időbélyegző.
-subscriptionId | Az Azure-előfizetés, amelyben ez az esemény naplózásának
-status | A művelet állapotát leíró karakterlánc. Néhány gyakori értékek a következők: folyamatban van, sikeres, sikertelen, aktív, a lépések megoldva.
-operationName | A művelet neve.
+csatornák | Hello a következő értékek egyike: "Rendszergazda", "Művelet"
+correlationId | Az általában egy GUID Azonosítót a hello karakterlánc-formátum. Események, amelyek azonos uber művelet általában megosztása toohello tartozik azonos correlationId hello.
+eventDataId | Egy esemény hello egyedi azonosítója
+EventName | Hello cím hello esemény
+szint | Hello esemény szintje. Hello a következő értékek egyikét: "Kritikus", "Error", "Figyelmeztetés", "Tájékoztató" és "Részletes"
+resourceProviderName | Hello hello erőforrás-szolgáltató neve érintett erőforrás
+a resourceType| hello típusú erőforrás hello az érintett erőforrás
+a részállapot | Általában hello REST-hívást megfelelő hello HTTP-állapotkód, de más a részállapot, például a gyakori értékek leíró karakterláncok is használható: OK (HTTP-állapotkód: 200), létrehozott (HTTP-állapotkód: 201-es), elfogadott (HTTP-állapotkód: 202), nincs tartalom (HTTP Állapotkód: 204), hibás kérelem (HTTP-állapotkód: 400), nem található (HTTP-állapotkód: 404), ütközés (HTTP-állapotkód: 409), belső kiszolgálóhiba (HTTP-állapotkód: 500), a Service nem érhető el (HTTP-állapotkód: 503-as), átjáró időtúllépése (HTTP-állapotkód: 504).
+eventTimestamp | Hello esemény lett létrehozva, amikor hello Azure szolgáltatás feldolgozása hello idejét jelző időbélyegző megfelelő hello esemény kérelmet.
+submissionTimestamp |   Hello esemény váltak elérhetővé lekérdezése idejét jelző időbélyegző.
+subscriptionId | Azure-előfizetés, amelyben ez az esemény naplózásának hello
+status | Hello művelet hello állapotát leíró karakterlánc. Néhány gyakori értékek a következők: folyamatban van, sikeres, sikertelen, aktív, a lépések megoldva.
+operationName | Hello művelet neve.
 category | "ServiceHealth"
-resourceId | Erőforrás-azonosító az érintett erőforrás.
-Properties.Title | Ez a kommunikáció honosított címét. Angol az alapértelmezett nyelv.
-Properties.Communication | A HTML-kódot szolgáltatással való kommunikációhoz honosított részleteit. Angol az alapértelmezett beállítás.
+resourceId | Erőforrás-azonosítója, hello érintett erőforrás.
+Properties.Title | Ez a kommunikáció hello honosított címét. Angol hello alapértelmezett nyelvét.
+Properties.Communication | honosított hello részletei hello kommunikáció a HTML-kódot. Angol hello alapértelmezett beállítás.
 Properties.incidentType | A lehetséges értékek: AssistedRecovery, ActionRequired, információk, incidens, karbantartási, biztonsági
-Properties.trackingId | Ez az esemény társítva van az incidens azonosítja. Ezzel az incidensekhez kapcsolódó eseményeket összefüggéseket.
-Properties.impactedServices | Az escape-karakterrel megjelölt JSON-blob a szolgáltatások és az incidens által érintett területek leíró. Szolgáltatások listáját, amelyek mindegyike rendelkezik egy szolgáltatásnév és ImpactedRegions, amelyek mindegyikének a RegionName listáját.
-Properties.defaultLanguageTitle | A kommunikáció, angol nyelven
-Properties.defaultLanguageContent | A kommunikáció vagy a html-kódot, vagy az egyszerű szöveg angol nyelven
+Properties.trackingId | Az eseményhez kapcsolódó hello incidens azonosítja. Használja az toocorrelate hello események kapcsolódó tooan esemény.
+Properties.impactedServices | Az escape-karakterrel megjelölt JSON-blob hello szolgáltatások és hello incidens által érintett területek leíró. Szolgáltatások listáját, amelyek mindegyike rendelkezik egy szolgáltatásnév és ImpactedRegions, amelyek mindegyikének a RegionName listáját.
+Properties.defaultLanguageTitle | hello kommunikációs angol nyelven
+Properties.defaultLanguageContent | hello kommunikációs html-kódot vagy egyszerű szöveg angol nyelven
 Properties.Stage | AssistedRecovery, a ActionRequired, a információkat, az incidensek, a biztonsági a lehetséges értékek: aktív, amelyek megoldva. A karbantartás vannak: aktív, tervezett, esetbejegyzések, visszavonva, Rescheduled, megoldva, kész
-Properties.communicationId | A kommunikáció ezt az eseményt hozzá rendelve.
+Properties.communicationId | hello kommunikációs ezt az eseményt hozzá rendelve.
 
 
-## <a name="viewing-your-service-health-notifications-in-the-azure-portal"></a>A szolgáltatás állapotával kapcsolatos értesítésekre jeleníti meg az Azure-portálon
-1.  Az a [portal](https://portal.azure.com), keresse meg a **figyelő** szolgáltatás
+## <a name="viewing-your-service-health-notifications-in-hello-azure-portal"></a>A szolgáltatás állapotával kapcsolatos értesítésekre tekinti meg hello Azure-portálon
+1.  A hello [portal](https://portal.azure.com), keresse meg a toohello **figyelő** szolgáltatás
 
     ![Figyelés](./media/monitoring-service-notifications/home-monitor.png)
-2.  Kattintson a **figyelő** elemmel nyithatja meg a a figyelő panelen. Ez a panel egyetlen, összevont nézetben jeleníti meg az összes figyelési beállítást és adatot. A panel az első alkalommal a **Tevékenységnapló** területet megjelenítve nyílik meg.
+2.  Kattintson a hello **figyelő** beállítás tooopen hello figyelő panel be. Ez a panel egyetlen, összevont nézetben jeleníti meg az összes figyelési beállítást és adatot. Először megnyitja a toohello **tevékenységnapló** szakasz.
 
 3.  Most kattintson a **szolgáltatáshoz értesítést** szakasz
 
     ![Figyelés](./media/monitoring-service-notifications/service-health-summary.png)
-4.  Az egyes megtekintheti annak további részleteit a sor elemek
+4.  Kattintson bármelyik hello sor elemek tooview további részletek
 
-5. Kattintson a **+ Hozzáadás tevékenység napló riasztási** művelet értesítéseket annak érdekében, hogy az ilyen típusú jövőbeli szolgáltatási értesítésekhez értesítést kap. További riasztások konfigurálása a szolgáltatáshoz értesítést a [kattintson ide](monitoring-activity-log-alerts-on-service-notifications.md)
+5. Kattintson a hello **+ Hozzáadás tevékenység napló riasztási** művelet tooreceive értesítések tooensure értesítés jelenik meg az ilyen típusú jövőbeli szolgáltatási értesítésekhez. a riasztások konfigurálása a szolgáltatáshoz értesítést további toolearn [kattintson ide](monitoring-activity-log-alerts-on-service-notifications.md)
 
 ## <a name="next-steps"></a>További lépések:
 Fogadási [riasztási értesítések, amikor az állapotfigyelő szolgáltatáshoz értesítést](monitoring-activity-log-alerts-on-service-notifications.md) van közzétéve.  

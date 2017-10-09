@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure HDInsight Spark-fürt interaktív lekérdezések futtatására |} Microsoft Docs"
-description: "HDInsight Spark rövid útmutató az Apache Spark-fürtök HDInsightban történő létrehozásáról."
+title: "egy Azure HDInsight Spark-fürt aaaRun interaktív lekérdezések |} Microsoft Docs"
+description: "Hogyan toocreate az Apache Spark on hdinsight fürt a HDInsight Spark gyorsindítási."
 keywords: "spark gyorsútmutató,interaktív spark,interaktív lekérdezés,hdinsight spark,azure spark"
 services: hdinsight
 documentationcenter: 
@@ -16,68 +16,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: nitinme
-ms.openlocfilehash: ada1c3d1482c68834dbbf5eabbd045a7e0c01f9f
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 3864eba50eb3828a9ecb657ded88080e1974585f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-interactive-queries-on-an-hdinsight-spark-cluster"></a>Interaktív lekérdezések futtatására egy HDInsight Spark-fürt
 
-Ebben a cikkben segítségével Jupyter notebook interaktív Spark SQL-lekérdezések futtatása Spark-fürt. Jupyter notebook egy webböngésző-alapú alkalmazás, amely a konzol alapú interaktivitási élményének kibővíti az interneten. További információkért lásd: [a Jupyter notebook](http://jupyter-notebook.readthedocs.io/en/latest/notebook.html).
+Ebben a cikkben a Jupyter notebook toorun interaktív Spark SQL lekérdezések Spark-fürt használatára. Jupyter notebook egy webböngésző-alapú alkalmazás, amely kiterjeszti a hello interaktivitási élményének Konzolalapú toohello webes. További információkért lásd: [hello Jupyter notebook](http://jupyter-notebook.readthedocs.io/en/latest/notebook.html).
 
-A jelen oktatóanyag esetében használja a **PySpark** interaktív Spark SQL-lekérdezés futtatása a Jupyter notebook a kernel. A HDInsight-fürtökön Jupyter notebookok is támogatja a két más kernelek - **PySpark3** és **Spark**. További információ a kernelek, és a használatának előnyeit **PySpark**, lásd: [használata Jupyter notebook kernelek az Apache Spark hdinsight-fürtök](hdinsight-apache-spark-jupyter-notebook-kernels.md).
+Ebben az oktatóanyagban hello használata **PySpark** kernel a hello Jupyter notebook toorun egy interaktív Spark SQL-lekérdezésben. A HDInsight-fürtökön Jupyter notebookok is támogatja a két más kernelek - **PySpark3** és **Spark**. További információ a hello kernelek és hello előnyei a **PySpark**, lásd: [használata Jupyter notebook kernelek az Apache Spark hdinsight-fürtök](hdinsight-apache-spark-jupyter-notebook-kernels.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * **Egy Azure HDInsight Spark-fürt**. Útmutatásért lásd: [Apache Spark-fürt létrehozása az Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
 
-## <a name="create-a-jupyter-notebook-to-run-interactive-queries"></a>Interaktív lekérdezések futtatása Jupyter notebook létrehozása
+## <a name="create-a-jupyter-notebook-toorun-interactive-queries"></a>Jupyter notebook toorun interaktív lekérdezések létrehozása
 
-Lekérdezések futtatása, amely elérhető a fürthöz rendelt tárolási alapértelmezés szerint mintaadatok használjuk. Azonban meg kell először adott adatok betöltése az Spark, a dataframe. Miután a dataframe, rajta a Jupyter notebook használatával lekérdezéseket is futtathat. Ebben a szakaszban, olvassa el:
+toorun lekérdezések használjuk a mintaadatok, akkor hello-fürthöz tartozó hello Storage alapértelmezés szerint. Azonban meg kell először adott adatok betöltése az Spark, a dataframe. Miután hello dataframe, lekérdezéseket is futtathat a hello Jupyter notebook használatával. Ebben a szakaszban, olvassa el:
 
 * A Spark dataframe minta adatkészlet regisztrálásához.
-* A dataframe kapcsolatos lekérdezések futtatása.
+* Hello dataframe kapcsolatos lekérdezések futtatása.
 
-1. Nyissa meg az [Azure portált](https://portal.azure.com/). Ha rögzítette a fürtöt az irányítópulton, a fürt paneljének megnyitásához kattintson a fürt csempéjére az irányítópulton.
+1. Nyissa meg hello [Azure-portálon](https://portal.azure.com/). Ha toopin hello fürt toohello irányítópult választotta, kattintson a hello fürt csempe hello irányítópult toolaunch hello fürt paneljén.
 
-    Ha nem rögzítette a fürtöt az irányítópulton, a bal oldali panelen kattintson a **HDInsight-fürtök** elemre, majd a létrehozott fürtre.
+    Ha nem volt rögzíti hello fürt toohello irányítópult, hello bal oldali ablaktáblában kattintson **a HDInsight-fürtök**, majd kattintson a létrehozott hello fürt.
 
-3. A **Gyorshivatkozások** menüben kattintson a **Fürt irányítópultjai** lehetőségre, majd a **Jupyter Notebook** elemre. Ha a rendszer felkéri rá, adja meg a fürthöz tartozó rendszergazdai hitelesítő adatokat.
+3. A **Gyorshivatkozások** menüben kattintson a **Fürt irányítópultjai** lehetőségre, majd a **Jupyter Notebook** elemre. Ha a rendszer kéri, adja meg hello fürt hello rendszergazdai hitelesítő adataival.
 
-   ![A Jupyter notebook megnyitása interaktív Spark SQL-lekérdezés futtatásához](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-start-jupyter-interactive-spark-sql-query.png "A Jupyter notebook megnyitása interaktív Spark SQL-lekérdezés futtatásához")
+   ![Nyissa meg Jupyter notebook toorun interaktív Spark SQL-lekérdezés](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-start-jupyter-interactive-spark-sql-query.png "nyitott Jupyter notebook toorun interaktív Spark SQL-lekérdezés")
 
    > [!NOTE]
-   > A fürthöz tartozó Jupyter notebookot az alábbi URL-cím böngészőben történő megnyitásával is elérheti. Cserélje le a **CLUSTERNAME** elemet a fürt nevére:
+   > A fürt URL-címet a böngészőben a következő megnyitásakor hello által hello Jupyter notebook is elérhetők. Cserélje le **CLUSTERNAME** hello néven a fürt:
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    >
    >
 3. Hozzon létre egy notebookot. Kattintson a **New** (Új), majd a **PySpark** elemre.
 
-   ![Jupyter notebook létrehozása interaktív Spark SQL-lekérdezés futtatásához](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-create-jupyter-interactive-Spark-SQL-query.png "Jupyter notebook létrehozása interaktív Spark SQL-lekérdezés futtatásához")
+   ![A Jupyter notebook toorun interaktív Spark SQL-lekérdezés létrehozása](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-create-jupyter-interactive-Spark-SQL-query.png "a Jupyter notebook toorun interaktív Spark SQL-lekérdezés létrehozása")
 
-   Az új notebook létrejött, és Untitled(Untitled.pynb) néven nyílt meg.
+   Új notebook létrejött, és hello nevű Untitled(Untitled.pynb).
 
-4. Ha a felső részen a notebook nevére kattint, megadhat egy könnyen megjegyezhető nevet.
+4. Hello notebook neve hello tetején kattintson, és adja meg egy rövid nevet, ha szeretné.
 
-    ![A Jupyter notebook elnevezése, amelyből interaktív Spark lekérdezést futtat](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-jupyter-notebook-name.png "A Jupyter notebook elnevezése, amelyből interaktív Spark lekérdezést futtat")
+    ![Adjon meg egy nevet hello Jupter notebook toorun interaktív Spark-lekérdezést](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-jupyter-notebook-name.png "adjon meg egy nevet hello Jupter notebook toorun interaktív Spark lekérdezése")
 
-5. Illessze be a következő kódot egy üres cellába, majd nyomja le a **SHIFT + ENTER** billentyűkombinációt annak futtatásához. A kód importálja az alábbi forgatókönyvhöz szükséges típusokat:
+5. Beillesztés hello következő kód egy üres cellába, és nyomja le az **SHIFT + ENTER** toorun hello kódot. hello kód importálja az ehhez a forgatókönyvhöz szükséges hello típusok:
 
         from pyspark.sql.types import *
 
-    Mivel a notebook PySpark kernel használatával jött létre, explicit módon semmilyen tartalmat nem kell létrehozni. Az első kódcella futtatásakor a Spark- és Hive-környezetek automatikusan létrejönnek.
+    Mivel a notebook PySpark kernelt hello hozott létre, nem kell toocreate semmilyen tartalmat explicit módon. hello Spark és Hive-környezetek automatikusan létrejönnek hello első kódcella futtatásakor.
 
     ![Az interaktív Spark SQL-lekérdezés állapota](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-interactive-spark-query-status.png "Az interaktív Spark SQL-lekérdezés állapota")
 
-    Minden alkalommal, amikor a Jupyterben interaktív lekérdezést futtat, a webböngésző ablakának címsorában **(Foglalt)** állapot jelenik meg a notebook neve mellett. A jobb felső sarokban lévő **PySpark** felirat mellett ekkor egy teli kör is megjelenik. A feladat befejezése után ez a jel üres körre változik.
+    Minden alkalommal, amikor az interaktív lekérdezések futtatása a Jupyter, a webböngésző ablakának címsorában látható egy **(foglalt)** állapot hello notebook neve mellett. Egy teli kör következő toohello is látni **PySpark** hello jobb felső sarokban lévő szöveg. Hello feladat befejezése után tooa jel üres körre változik.
 
-6. A Spark-fürt betölteni az adatokat, mielőtt tudassa velünk keresse meg a pillanatképe. Ebben az oktatóanyagban használt mintaadatok érhető el az összes HDInsight Spark-fürtök a CSV-fájlként **\HdiSamples\HdiSamples\SensorSampleData\hvac\hvac.csv**. Az adatok egy épületet hőmérséklet változatait rögzíti. Az alábbiakban az adatok első néhány sor.
+6. Mielőtt hello adatok betölthető Spark-fürt, tudassa velünk keresse meg a pillanatképe. hello ebben az oktatóanyagban használt mintaadatok érhető el az összes HDInsight Spark-fürtök a CSV-fájlként **\HdiSamples\HdiSamples\SensorSampleData\hvac\hvac.csv**. hello adatok hello hőmérséklet változata épület rögzíti. Az alábbiakban hello hello adatok első néhány sor.
 
     ![Az adatok interaktív Spark SQL-lekérdezés pillanatkép](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-spark-sample-data-interactive-spark-sql-query.png "pillanatkép adatok interaktív Spark SQL-lekérdezés")
 
-6. Hozzon létre egy dataframe és egy ideiglenes tábla (**hvac**) a következő kód futtatásával. Ebben az oktatóanyagban nem létrehozni az oszlopokat az ideiglenes tábla át a nyers adatok CSV képest. 
+6. Hozzon létre egy dataframe és egy ideiglenes tábla (**hvac**) a következő kód hello futtatásával. Ebben az oktatóanyagban nem létrehozni minden hello oszlopok hello ideiglenes tábla hello CSV nyersadatok összehasonlított toohello oszlopként. 
 
         # Create an RDD from sample data
         hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
@@ -85,36 +85,36 @@ Lekérdezések futtatása, amely elérhető a fürthöz rendelt tárolási alap�
         # Create a schema for our data
         Entry = Row('Date', 'Time', 'TargetTemp', 'ActualTemp', 'BuildingID')
 
-        # Parse the data and create a schema
+        # Parse hello data and create a schema
         hvacParts = hvacText.map(lambda s: s.split(',')).filter(lambda s: s[0] != 'Date')
         hvac = hvacParts.map(lambda p: Entry(str(p[0]), str(p[1]), int(p[2]), int(p[3]), int(p[6])))
         
-        # Infer the schema and create a table       
+        # Infer hello schema and create a table       
         hvacTable = sqlContext.createDataFrame(hvac)
         hvacTable.registerTempTable('hvactemptable')
         dfw = DataFrameWriter(hvacTable)
         dfw.saveAsTable('hvac')
 
-7. A tábla létrehozása után az adatok interaktív lekérdezés futtatása a következő kódot használja.
+7. Hello tábla létrehozása után interaktív lekérdezés futtatása hello adatokat, használja a következő kód hello.
 
         %%sql
         SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
 
-   Mivel PySpark kernelt használ, most közvetlenül futtathat interaktív SQL-lekérdezést az imént létrehozott **hvac** ideiglenes táblán, a `%%sql` funkció használatával. A `%%sql` funkcióval, illetve a PySpark kernellel elérhető egyéb funkciókkal kapcsolatos további információkat [A Spark HDInsight-fürtökkel használt Jupyter notebookokban elérhető kernelek](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic) című részben talál.
+   Mivel PySpark kernelt használ, akkor most közvetlenül futtathat SQL interaktív lekérdezés hello ideiglenes táblán **hvac** hello segítségével létrehozott `%%sql` magic. Hello kapcsolatos további információk `%%sql` magic és hello PySpark kernellel elérhető egyéb magics [Spark HDInsight-fürtökkel használt Jupyter notebookokban elérhető kernelek](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic).
 
-   Alapértelmezés szerint az alábbi táblázatos kimenet jelenik meg.
+   a következő táblázatos kimenet hello alapértelmezés szerint megjelenik.
 
      ![Az interaktív Spark-lekérdezési eredmény táblázati kimenete](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-interactive-spark-query-result.png "Az interaktív Spark-lekérdezési eredmény táblázati kimenete")
 
-    Az eredményeket egyéb megjelenítési formákban is megtekintheti. Az azonos kimenethez tartozó területgrafikon például az alábbihoz hasonlóan fog kinézni.
+    Hello eredményeket egyéb megjelenítési formákban is megtekintheti. Például tartozó területgrafikon hello azonos kimenethez hello következő jelenne meg.
 
     ![Az interaktív Spark-lekérdezési eredmény területgrafikonja](./media/hdinsight-apache-spark-load-data-run-query/hdinsight-interactive-spark-query-result-area-chart.png "Az interaktív Spark-lekérdezési eredmény területgrafikonja")
 
-9. Az alkalmazás futtatása után állítsa le a notebookot a fürt erőforrásainak felszabadítása érdekében. Ehhez a notebook **File** (Fájl) menüjében kattintson a **Close and Halt** (Bezárás és leállítás) elemre.
+9. Hello notebook toorelease hello fürterőforrások leállítása hello alkalmazást futtató befejezése után. toodo Igen, a hello **fájl** hello notebook menüjében kattintson **zárja be és Halt**.
 
 ## <a name="next-step"></a>Következő lépés
 
-Ebben a cikkben megtanulta, interaktív lekérdezések futtatása Spark Jupyter notebook használatával. A következő cikk megjelenítéséhez, hogyan lehet-e a Spark regisztrált adatok lekért olyan BI analytics eszközt, például a Power bi-ban és a Tableau továbblépés. 
+Az e cikkben megtanulta, hogyan meg interaktív lekérdezések toorun Spark Jupyter notebook használatával. Előzetes toohello hogyan kell húzni Spark regisztrált hello adatok tovább cikk toosee olyan BI analytics eszközt, például a Power bi-ban és a Tableau. 
 
 > [!div class="nextstepaction"]
 >[Adatok képi megjelenítés eszközökkel rendelkező Azure HDInsight Spark BI](hdinsight-apache-spark-use-bi-tools.md)

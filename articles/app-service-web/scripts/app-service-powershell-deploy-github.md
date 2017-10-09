@@ -1,5 +1,5 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - webalkalmazás létrehozása és központi telepítése a Githubból kód |} Microsoft Docs"
+title: "aaaAzure PowerShell parancsfájl minta - webalkalmazás létrehozása és központi telepítése a Githubból kód |} Microsoft Docs"
 description: "Az Azure PowerShell-parancsfájl minta - webalkalmazás létrehozása és központi telepítése a Githubból kódot"
 services: app-service\web
 documentationcenter: 
@@ -15,25 +15,25 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 1f7fc21dc12c334f5d347ae9918bd62945bede64
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9a28f9cb01b71c86fa0a3f1d0a6761fc3d45d43b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-web-app-and-deploy-code-from-github"></a>A webalkalmazás létrehozása és telepítése a Githubból kód
 
 Ez a parancsfájlpélda hoz létre egy webalkalmazást az App Service azok kapcsolódó erőforrásait, és majd központilag telepíti a webes alkalmazás kód egy nyilvános GitHub-adattár (folyamatos üzembe helyezés) nélkül. Lásd a GitHub-telepítéshez olyan folyamatos üzembe helyezés, [webalkalmazás létrehozása a folyamatos üzembe helyezés a Githubról](app-service-powershell-continuous-deployment-github.md).
 
-Szükség esetén telepítse az Azure PowerShell található utasítás használatával a [Azure PowerShell útmutató](/powershell/azure/overview). Is kell a webes alkalmazás kódot tartalmazó GitHub-tárházban mutató hivatkozást.
+Szükség esetén telepítse az Azure PowerShell használatával hello utasítás található hello hello [Azure PowerShell útmutató](/powershell/azure/overview). Is kell a hivatkozás tooGitHub tárház hello web app kódot tartalmazó.
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/app-service/deploy-github/deploy-github.ps1?highlight=1-2 "webalkalmazás létrehozása és központi telepítése a Githubból kódot")]
+[!code-powershell[main](../../../powershell_scripts/app-service/deploy-github/deploy-github.ps1?highlight=1-2 "Create a web app and deploy code from GitHub")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, a web app és az összes kapcsolódó erőforrások.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport, a web app és az összes kapcsolódó erőforrások.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -41,7 +41,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -52,6 +52,6 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-Azure App Service Web Apps további Azure Powershell-példák találhatók a [Azure PowerShell-példák](../app-service-powershell-samples.md).
+Azure App Service Web Apps további Azure Powershell-példák találhatók hello [Azure PowerShell-példák](../app-service-powershell-samples.md).

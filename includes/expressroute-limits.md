@@ -1,5 +1,5 @@
 #### <a name="expressroute-limits"></a>Az ExpressRoute-korlátok
-A következő korlátozások vonatkoznak az ExpressRoute-erőforrások előfizetésenként.
+a következő korlátozások hello tooExpressRoute erőforrások előfizetésenként alkalmazni.
 
 | Erőforrás | Alapértelmezett korlát |
 | --- | --- |

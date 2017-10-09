@@ -1,6 +1,6 @@
 ---
-title: "A forrás és cél Hyper-V replikáció egy másodlagos helyre, az Azure Site Recovery beállítása |} Microsoft Docs"
-description: "Ismerteti, hogyan kell beállítani a forrás és cél Hyper-V virtuális gépek replikálása az Azure Site Recovery másodlagos VMM-hely."
+title: "hello forrás és cél Hyper-V replikáció tooa másodlagos hely az Azure Site Recovery aaaSet |} Microsoft Docs"
+description: "Leírja, hogyan tooset akár hello forrás és cél mikor toosecondary VMM hely Hyper-V virtuális gépek replikálása az Azure Site Recovery szolgáltatással."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: 07135e9b5e619971a59cc22ec68a0a4e8bcaabe1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 451cb4413ca5c09777a7faf512b1c8ea43e695f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-6-set-up-the-replication-source-and-target"></a>6. lépés: A replikáció forrás- és a cél beállítása
+# <a name="step-6-set-up-hello-replication-source-and-target"></a>6. lépés: Állítson be hello replikációs forrása és célja
 
 
-Miután létrehozta a Recovery Services tároló VMM egy másodlagos helyre, amelynek a Hyper-V replikáció [Azure Site Recovery](site-recovery-overview.md), ez a cikk használatával a forrás és cél replikációs helyek beállítása. 
+A Recovery Services létrehozása után a Hyper-V replikáció tooa VMM másodlagos hely, tároló [Azure Site Recovery](site-recovery-overview.md), ez a cikk tooset elhasználja hello forrás és cél replikációs helyét. 
 
-A cikk elolvasása után felmerülő megjegyzéseit alul vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
-
-
+A cikk elolvasása után fűzhetnek bármely hello lap alján, vagy a hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-the-source-environment"></a>A forráskörnyezet beállítása
 
-Az Azure Site Recovery Provider telepítése a VMM-kiszolgálókon, és Fedezze fel, és regisztrálja a kiszolgálót a tárolóban.
+
+## <a name="set-up-hello-source-environment"></a>Hello forráskörnyezet beállítása
+
+Hello Azure Site Recovery Provider telepítése a VMM-kiszolgálókon, és Fedezze fel, és regisztrálja a kiszolgálókat hello tárolóban.
 
 1. Kattintson a **1. lépés: infrastruktúra előkészítése** > **forrás**.
 
     ![A forrás beállítása](./media/vmm-to-vmm-walkthrough-source-target/goals-source.png)
-2. A **Forrás előkészítése** ablakban kattintson a **+ VMM** gombra a VMM-kiszolgálók felvételéhez.
+2. A **forrás előkészítése**, kattintson a **+ VMM** tooadd egy VMM-kiszolgáló.
 
     ![A forrás beállítása](./media/vmm-to-vmm-walkthrough-source-target/set-source1.png)
-3. A **kiszolgáló hozzáadása**, ellenőrizze, hogy **System Center VMM-kiszolgáló** megjelenik **kiszolgálótípus** , és hogy a VMM-kiszolgáló megfelel-e a [Előfeltételek](#prerequisites).
-4. Töltse le az Azure Site Recovery Provider telepítőfájlját.
-5. Töltse le a regisztrációs kulcsot. Erre a telepítő futtatása során lesz szükség. A kulcs a generálásától számított öt napig érvényes.
+3. A **kiszolgáló hozzáadása**, ellenőrizze, hogy **System Center VMM-kiszolgáló** megjelenik **kiszolgálótípus** és, hogy hello VMM-kiszolgáló megfelel-e hello [Előfeltételek](#prerequisites).
+4. Töltse le a hello Azure Site Recovery Provider telepítőfájlját.
+5. Hello regisztrációs kulcs letöltése. Erre a telepítő futtatása során lesz szükség. hello kulcs a generálásától öt napig esetén érvényes.
 
     ![A forrás beállítása](./media/vmm-to-vmm-walkthrough-source-target/set-source3.png)
-6. Telepítse az Azure Site Recovery Providert a VMM-kiszolgálóra. Nem kell explicit módon a Hyper-V gazdakiszolgálókra telepít semmit.
+6. Hello Azure Site Recovery Provider telepítése hello VMM-kiszolgálón. Nem kell tooexplicitly telepít semmit a Hyper-V gazdakiszolgálókra.
 
 
-## <a name="install-the-azure-site-recovery-provider"></a>Az Azure Site Recovery Provider telepítése
+## <a name="install-hello-azure-site-recovery-provider"></a>Hello Azure Site Recovery Provider telepítése
 
-1. Futtassa a Providert telepítőfájl minden VMM-kiszolgálón. Ha a VMM fürtben lett telepítve, tegye a következőket telepíti először listájában:
-    -  Telepítse a szolgáltató aktív csomópontra, és fejezze be a telepítést, a VMM-kiszolgáló regisztrálása a tárolóban lévő állapottal.
-    - Ezután telepítse a szolgáltatót a többi csomóponton. Fürtcsomópontok összes futtassa a szolgáltató azonos verziója.
-2. A telepítő néhány előfeltétel-ellenőrzéseket futtatja, és a VMM szolgáltatás engedélyt kér. A VMM szolgáltatás automatikusan újraindul a telepítő befejezése után. Ha telepíti a VMM-fürthöz, megkéri a fürtszerepkör leállítása.
-3. A **Microsoft Update**, lapon kérheti a adja meg, hogy szolgáltató frissítések telepítve vannak-e a Microsoft Update-szabályzatnak megfelelően.
-4. A **telepítési**, fogadja el vagy módosítsa az alapértelmezett telepítési hely, és kattintson a **telepítése**.
+1. Futtassa a szolgáltató telepítőfájl hello minden VMM-kiszolgálón. Ha a VMM fürtben lett telepítve, tegye a hello hello amikor először telepíti a következő:
+    -  Hello szolgáltató telepíthető az aktív csomópont, és a Befejezés hello telepítési tooregister hello VMM-kiszolgáló hello tárolóban.
+    - Ezután telepítse hello szolgáltató hello más csomópontokra. Fürtcsomópontok fusson összes hello hello szolgáltató azonos verziója.
+2. A telepítő néhány előfeltétel-ellenőrzéseket futtatja, és kéri engedély toostop hello a VMM szolgáltatást. a VMM szolgáltatás hello automatikusan újraindul a telepítő befejezése után. Ha telepíti a VMM-fürthöz, Ön felszólító toostop hello fürtszerepkört.
+3. A **Microsoft Update**, dönthet úgy is toospecify a frissítéseket a Microsoft Update-szabályzatnak megfelelően van.
+4. A **telepítési**, fogadja el vagy módosítsa a hello alapértelmezett telepítési hely, és kattintson **telepítése**.
 
     ![Telepítés helye](./media/vmm-to-vmm-walkthrough-source-target/provider-location.png)
-5. Kattintson a telepítés befejezése után **regisztrálása** regisztrálni a kiszolgálót a tárolóban lévő állapottal.
+5. Kattintson a telepítés befejezése után **regisztrálása** tooregister hello server hello tárolóban lévő állapottal.
 
     ![Telepítés helye](./media/vmm-to-vmm-walkthrough-source-target/provider-register.png)
-6. A **Tároló neve** résznél ellenőrizze a tároló nevét, amelyben a kiszolgálót regisztrálni fogja. Kattintson a *Tovább* gombra.
+6. A **tároló neve**, ellenőrizze, melyik hello a kiszolgálót regisztrálni fogja hello tároló hello nevére. Kattintson a *Tovább* gombra.
 
     ![Kiszolgáló regisztrációja](./media/vmm-to-vmm-walkthrough-source-target/vaultcred.png)
-7. A **internetkapcsolat**, adja meg, hogy a VMM-kiszolgálón futó provider hogyan csatlakozzon az Azure-bA.
+7. A **internetkapcsolat**, adja meg, hogy hello VMM-kiszolgálón futó hello provider hogyan csatlakozzon a tooAzure.
 
     ![Internetbeállítások](./media/vmm-to-vmm-walkthrough-source-target/proxydetails.png)
 
-   - Megadhatja, hogy a szolgáltató közvetlenül az internethez, vagy egy proxyn keresztül kell-e csatlakozni.
+   - Megadhatja a hello szolgáltatót közvetlenül toohello csatlakoznia internetes, vagy egy proxyn keresztül.
    - Adja meg a proxybeállításokat, ha szükséges.
-   - A proxyt használ, ha a VMM RunAs-fiókot (DRAProxyAccount) jön létre automatikusan a megadott proxy hitelesítő adatok használatával. Állítsa be úgy a proxykiszolgálót, hogy ez a fiók elvégezhesse a hitelesítést. A RunAs fiók beállításait módosíthatja a VMM-konzol > **beállítások** > **biztonsági** > **futtató fiókok**. Indítsa újra a VMM szolgáltatást módosításainak frissítésére.
-8. A **Regisztrációs kulcs** résznél válassza ki az Azure Site Recoveryből letöltött, majd a VMM-kiszolgálóra másolt kulcsot.
-9. A titkosítási beállítást csak akkor használja a rendszer, amikor a VMM-felhőkben található Hyper-V virtuális gépeket az Azure-ba replikálja. Másodlagos helyre történő replikáláskor a beállítást nem használja a rendszer.
-10. A **Kiszolgáló neve** mezőben adjon meg egy, a tárolóban regisztrált VMM-kiszolgálót azonosító rövid nevet. Fürtkonfiguráció használata esetén adja meg a VMM-fürtszerepkör nevét.
-11. A **Synchronize cloud metaadatok**, adja meg, hogy a VMM-kiszolgálón futó összes felhő metaadatait szinkronizálni a tárolóval szeretné. Ezt a műveletet kiszolgálónként csak egyszer szükséges elvégezni. Ha nem kívánja az összes felhő szinkronizálásához, hagyja bejelölve ezt a beállítást, és szinkronizálja egyenként a felhő tulajdonságai a VMM-konzolon.
-12. A folyamat befejezéséhez kattintson a **Next** (Tovább) gombra. A regisztrációt követően az Azure Site Recovery lekéri a metaadatokat VMM-kiszolgálóról. A kiszolgáló ezt követően megjelenik a tároló **Kiszolgálók** lapjának **VMM-kiszolgálók** lapján.
+   - Ha proxyt használ, a VMM RunAs-fiókot (DRAProxyAccount) jön létre, megadott hello használatával automatikusan proxy hitelesítő adatokat. Hello-proxy kiszolgáló konfigurálása, így a fiók elvégezhesse a hitelesítést. hello RunAs-fiók beállításait módosíthatja hello VMM-konzol > **beállítások** > **biztonsági** > **futtató fiókok**. Indítsa újra a hello a VMM szolgáltatás tooupdate módosításait.
+8. A **regisztrációs kulcs**, jelölje be az Azure Site Recoveryből letöltött, és másolja a toohello VMM-kiszolgáló hello kulcs.
+9. hello titkosítási beállítást csak akkor használja, ha a Hyper-V virtuális gépek a VMM-felhők tooAzure replikál. Ha tooa másodlagos helyre replikál nem használható.
+10. A **kiszolgálónév**, adjon meg egy rövid nevet tooidentify hello VMM-kiszolgáló hello tárolóban lévő állapottal. Adja meg a fürt konfigurációjába hello VMM-fürtszerepkör nevét.
+11. A **Synchronize cloud metaadatok**, jelölje be, hogy a VMM-kiszolgálón hello hello tárolóban futó összes felhő toosynchronize metaadatok szeretné-e. Ez a művelet csak egyszer minden kiszolgálón toohappen van szüksége. Ha az összes felhő toosynchronize nem szeretné, hagyja bejelölve ezt a beállítást, és szinkronizálja egyenként a hello felhőtulajdonságok hello VMM-konzolon.
+12. Kattintson a **következő** toocomplete hello folyamat. A regisztrációt követően az Azure Site Recovery által lekéri metaadatait hello VMM-kiszolgálóról. hello kiszolgáló megjelenik a hello **VMM-kiszolgálókon** hello lapján **kiszolgálók** lap hello tárolóban lévő állapottal.
 
     ![Kiszolgáló](./media/vmm-to-vmm-walkthrough-source-target/provider13.png)
-13. Miután a kiszolgáló elérhető, a Site Recovery konzolján a **forrás** > **forrás előkészítése** válassza ki a VMM-kiszolgálót, és válassza ki a felhőt, amelyben a Hyper-V gazdagépen helyezkedik el. Ezután kattintson az **OK** gombra.
+13. Miután hello kiszolgáló elérhető hello Site Recovery konzolján, a **forrás** > **forrás előkészítése** hello VMM kiszolgálót válassza ki, melyik hello Hyper-V állomás válassza hello felhő. Ezután kattintson az **OK** gombra.
 
-A provider a parancssorból is telepíthető:
+Hello szolgáltató hello parancssorból is telepíthető:
 
 [!INCLUDE [site-recovery-rw-provider-command-line](../../includes/site-recovery-rw-provider-command-line.md)]
 
 
-## <a name="set-up-the-target-environment"></a>A célkörnyezet beállítása
+## <a name="set-up-hello-target-environment"></a>Hello célkörnyezet beállítása
 
-Válassza ki a cél VMM-kiszolgáló és a felhő:
+Hello cél VMM-kiszolgáló és a felhő kiválasztása:
 
-1. Kattintson a **infrastruktúra előkészítése** > **cél**, és válassza ki a használni kívánt cél VMM-kiszolgálóval.
-2. Felhők a kiszolgálón, amely szinkronizálva legyenek a Site Recovery jelenik meg. Válassza ki a megcélzott felhőt.
+1. Kattintson a **infrastruktúra előkészítése** > **cél**, és válassza hello cél VMM-kiszolgálónak toouse.
+2. Felhők hello kiszolgálón, amely szinkronizálva legyenek a Site Recovery jelenik meg. Válassza ki a hello megcélzott felhőt.
 
    ![cél](./media/vmm-to-vmm-walkthrough-source-target/target-vmm.png)
 
@@ -98,4 +98,4 @@ Válassza ki a cél VMM-kiszolgáló és a felhő:
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ugrás a [7. lépés: hálózatleképezés konfigurálása](vmm-to-vmm-walkthrough-network-mapping.md).
+Nyissa meg túl[7. lépés: hálózatleképezés konfigurálása](vmm-to-vmm-walkthrough-network-mapping.md).

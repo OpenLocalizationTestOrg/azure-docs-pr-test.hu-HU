@@ -16,86 +16,86 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: ba7b36e654aa0bf3b74d42a2b0ae96ae2a9b6241
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: af65b9be1e00c2819431694a5b0064b97b9e1867
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-options-for-azure-ad-password-management"></a>Jelentéskészítési lehetőségek az Azure AD-jelszókezelés
 
-Telepítés a számos szervezet szeretnék tudni, hogyan, vagy ha az önkiszolgáló jelszó-Változtatási valóban használatban van. Az Azure AD biztosít, amelyek segítenek használatával, előre összeállított jelentéseket, és ha megfelelően rendelkezik licenccel, kérdések megválaszolása jelentéskészítési szolgáltatások lehetővé teszik egyéni lekérdezések létrehozása.
+Központi telepítés a számos szervezet hogyan szeretné tooknow, vagy ha SSPR valóban használja fel. Az Azure AD jelentéskészítési funkciókat, amelyek segítségével tooanswer kérdések segítenek konzerv jelentéseket biztosít, és ha megfelelően rendelkezik licenccel, lehetővé teszi az toocreate egyéni lekérdezéseket.
 
-Az alábbi kérdések is válaszolhatók meg az [Azure-portálon] jelentéseket (https://portal.azure.com/).
+hello következő tud válaszolni kérdéseket jelentésekben szereplő hello [Azure-portálon] (https://portal.azure.com/).
 
 > [!NOTE]
-> Kell [egy globális rendszergazda](active-directory-assign-admin-roles.md#assign-or-remove-administrator-roles) és kell hagyniuk az ezeket az adatokat a jelentéskészítési lapon vagy a napló naplók legalább egyszer felkeresésével összegyűjteni a szervezet nevében. Így, amíg adatok nem lesznek összegyűjtve a szervezet számára
+> Kell [egy globális rendszergazda](active-directory-assign-admin-roles.md#assign-or-remove-administrator-roles) és kell részt az ezzel a szervezet nevében összegyűjtött adatok toobe által meghívott hello lapon vagy a napló reporting naplózza legalább egyszer. Így, amíg adatok nem lesznek összegyűjtve a szervezet számára
 
 * Jelszó alaphelyzetbe állítása hányan regisztrált?
 * Aki regisztrálva van a jelszó alaphelyzetbe állítása?
 * Milyen adatokat próbál regisztrálni személyek?
-* Hányan visszaállíthassák a jelszavukat, az elmúlt hét napban?
-* Mik a leggyakoribb módszerek felhasználók vagy rendszergazdák visszaállíthassák a jelszavukat használja?
-* Mik azok a gyakori problémák felhasználók vagy rendszergazdák arcfelismerési a jelszó alaphelyzetbe állítása?
+* Hányan az elmúlt hét napban hello jelszavak alaphelyzetbe?
+* Mik azok a hello leggyakrabban használt módszerek felhasználók vagy rendszergazdák használja tooreset jelszavukat?
+* Mik a közös állít felhasználók vagy rendszergazdák arc, toouse jelszó alaphelyzetbe állítása közben?
 * Milyen a rendszergazdák gyakran alaphelyzetbe állítja saját jelszavukat?
 * A gyanús tevékenységeket, a jelszó alaphelyzetbe állítása folyamatban van?
 
-## <a name="how-to-view-password-management-reports-in-the-azure-portal"></a>Az Azure portálon jelszó jelentések megtekintése
+## <a name="how-tooview-password-management-reports-in-hello-azure-portal"></a>Hogyan tooview jelszókezelés jelentései hello Azure-portálon
 
-Az Azure portál felhasználói élmény megtekintéséhez a jelszó alaphelyzetbe állítása egy továbbfejlesztett módja van, és a jelszó-visszaállítási regisztrációs tevékenység.  Kövesse az alábbi lépéseket a jelszó alaphelyzetbe állítása és a jelszó alaphelyzetbe állítása regisztrációs események kereséséhez:
+Hello Azure portál felhasználói élmény, a továbbfejlesztett módon tooview jelszó alaphelyzetbe állítása és a jelszó alaphelyzetbe állítása regisztrációs tevékenység van.  Kövesse az alábbi toofind hello jelszó alaphelyzetbe állítása és a jelszó alaphelyzetbe állítása regisztrációs események hello lépéseket:
 
-1. Navigáljon a [ **portal.azure.com**](https://portal.azure.com)
-2. Kattintson a **további szolgáltatások** fő az Azure portál bal oldali navigációs menü
-3. Keresse meg **Azure Active Directory** a szolgáltatások listájában, és jelölje ki
-4. Kattintson a **felhasználók és csoportok** az Azure Active Directory navigációs menü
-5. Kattintson a **naplók** navigációs elem a felhasználók és csoportok navigációs menüjében. Megjelenik az összes szemben a címtárban szereplő összes felhasználó bekövetkező események naplózása. Ez a nézet összes a jelszóval kapcsolatos eseményeket, is végezhet.
-6. Ez a nézet csak a jelszó-átállítási kapcsolódó események szűréséhez kattintson a **szűrő** gomb a panel tetején.
-7. Az a **szűrő** menüben válassza a **kategória** legördülő menüből, és módosítsa úgy, hogy a **önkiszolgáló jelszókezelés** kategória típusa.
-8. Opcionálisan tovább szűkítheti a listában válassza ki az adott **tevékenység** érdekli
+1. Keresse meg a túl[**portal.azure.com**](https://portal.azure.com)
+2. Kattintson a hello **további szolgáltatások** hello fő az Azure portál bal oldali navigációs menü
+3. Keresse meg **Azure Active Directory** a hello szolgáltatások listájában, és jelölje ki
+4. Kattintson a **felhasználók és csoportok** hello Azure Active Directory navigációs menü
+5. Kattintson a hello **naplók** navigációs elem hello felhasználók és csoportok navigációs menüjében. Megjelenik az összes hello naplózási eseményekből a címtárban szereplő összes hello felhasználó ellen. A nézet toosee összes hello jelszó-események, is végezhet.
+6. toofilter a nézet tooonly hello jelszó-átállítási kapcsolódó események, kattintson a hello **szűrő** hello panel felső hello gombra.
+7. A hello **szűrő** menü, jelölje be hello **kategória** legördülő menüből, és módosítsa úgy toohello **önkiszolgáló jelszókezelés** kategória típusa.
+8. Nem kötelező további hello szűrőlista hello specifikus kiválasztásával **tevékenység** érdekli
 
-## <a name="how-to-retrieve-password-management-events-from-the-azure-ad-reports-and-events-api"></a>Hogyan lehet lekérni a jelszó felügyeleti események az Azure AD-jelentések és események API
+## <a name="how-tooretrieve-password-management-events-from-hello-azure-ad-reports-and-events-api"></a>Hogyan tooretrieve jelszó felügyeleti események hello Azure AD-jelentéseket és események API
 
-Az Azure AD-jelentések és események API támogatja az összes, a jelszó alaphelyzetbe állítása és a jelszó alaphelyzetbe állítása szóregisztrációs jelentéseket szereplő adatok beolvasása. Ez az API használatával letöltheti az egyes jelszó alaphelyzetbe állítása, és a jelszó-változtatási regisztrációs események az integráció a jelentéskészítő technológiával az Ön által választott.
+hello Azure AD-jelentéseket és események API támogatja a jelszó alaphelyzetbe állítása és a jelszó alaphelyzetbe állítása szóregisztrációs jelentéseket szereplő összes hello adatok beolvasása. Ez az API használatával letöltheti az egyes jelszó alaphelyzetbe állítása és jelszó-változtatási regisztrációs események az integráció a technológia a kiválasztott jelentési hello.
 
-### <a name="how-to-get-started-with-the-reporting-api"></a>Első lépések a reporting API-hoz
+### <a name="how-tooget-started-with-hello-reporting-api"></a>Hogyan a tooget hello reporting API használatába
 
-Ezek az adatok eléréséhez meg kell írnia egy kis alkalmazás vagy a parancsfájl azt lekérése a kiszolgálóról. [Útmutató az Azure AD Reporting API használatába](active-directory-reporting-api-getting-started.md).
+tooaccess ezeket az adatokat kell toowrite egy kis alkalmazást vagy parancsfájl-tooretrieve azt a kiszolgálóink. [Ismerje meg, hogyan tooget használatába hello Azure AD jelentéskészítési API](active-directory-reporting-api-getting-started.md).
 
-Ha már van egy működő parancsfájl, ezután érdemes vizsgálja meg az esetek teljesítéséhez kérheti le a jelszó alaphelyzetbe állítása és nyilvántartási események.
+Ha már van egy működő parancsfájl, érdemes tooexamine hello jelszó alaphelyzetbe állítása és nyilvántartási események olvashatók be toomeet a forgatókönyvek mellett.
 
-* [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent): az elérhető oszlopok listája, a jelszó-átállítási események
-* [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent): az elérhető oszlopok listája, a jelszó-átállítási regisztráció események
+* [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent): hello elérhető oszlopok listája, a jelszó-átállítási események
+* [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent): hello elérhető oszlopok listája, a jelszó-átállítási regisztráció események
 
 ### <a name="reporting-api-data-retrieval-limitations"></a>Jelentéskészítési API adatok lekérését korlátozásai
 
-Jelenleg az Azure AD-jelentések és események API lekérdezi legfeljebb **75,000 események** , a [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent) és [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent) típusok átfedés a **utolsó 30 nap**.
+Jelenleg az Azure AD-jelentések hello és események API túl veszi fel**75,000 események** a hello [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent) és [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent) típusok , hello átfedés **utolsó 30 nap**.
 
-Ha szeretné beolvasni, vagy ez az ablak adatok tárolására, javasoljuk, hogy külső adatbázis megőrzése, és a eltéréseit – eredményező lekérdezni az API-val. Azt javasoljuk, hogy ezek az adatok beolvasása SSPR segítségével a szervezet indításakor megkezdéséhez, megőrizni a külsőleg, és majd továbbra is nyomon követheti az eltérések ettől kezdve.
+Ha tooretrieve kell, vagy ez az ablak adatok tárolására, javasoljuk, hogy külső adatbázis megőrzése, és hello API tooquery hello eltérések eredményező használatával. Azt javasoljuk, ezek az adatok beolvasása SSPR indíthatja a szervezetében, megőrizni a külsőleg, és folytassa előre tootrack hello eltérések ettől toobegin.
 
-## <a name="how-to-download-password-reset-registration-events-quickly-with-powershell"></a>Jelszó alaphelyzetbe állítása regisztrációs események gyorsan PowerShell letöltése
+## <a name="how-toodownload-password-reset-registration-events-quickly-with-powershell"></a>Hogyan toodownload jelszó-változtatási regisztrációs események gyorsan a PowerShell használatával
 
-Az Azure AD-jelentések és események API közvetlenül használata mellett is használhatja az alábbi PowerShell-parancsfájl használatával legutóbbi regisztrációs események a címtárban. Ez akkor hasznos, ha meg szeretné tekinteni, akik nemrég regisztrálva van, vagy győződjön meg arról, hogy a várt módon jelentkezett-e a jelszó alaphelyzetbe állítása bevezetést szeretné.
+Továbbá toousing hello Azure AD-jelentéseket és események API közvetlenül, a PowerShell parancsfájl toorecent regisztrációs események alatt hello is használhatja a címtárban. Ez akkor hasznos, ha azt szeretné, hogy toosee, akik mostanában regisztrálva van, vagy szeretné például, hogy a jelszó-átállítási bevezetés tooensure várt folyamatban van.
 
 * [Az Azure AD SSPR regisztrációs tevékenység PowerShell-parancsfájl](https://gallery.technet.microsoft.com/scriptcenter/azure-ad-self-service-e31b8aee)
 
 ### <a name="description-of-report-columns-in-azure-portal"></a>Azure-portálon jelentés oszlopok leírása
 
-Az alábbi lista ismerteti részletesen jelentés oszlopainak mindegyike:
+hello alábbi lista ismerteti részletesen hello jelentés oszlopainak mindegyike:
 
-* **Felhasználói** – kísérletet a jelszó alaphelyzetbe állítása regisztrációs műveletet.
-* **Szerepkör** – a szerepkört a felhasználó a címtárban.
-* **Dátum és idő** – a dátum és idő a kísérlet.
-* **Adatok regisztrált** – milyen hitelesítési adatokat, a felhasználó által megadott során jelszó-átállítási regisztrációk.
+* **Felhasználói** – hello felhasználó, aki kísérlet történt a jelszó alaphelyzetbe állítása a regisztrációs műveletet.
+* **Szerepkör** – hello szerepkör hello felhasználó hello könyvtárban.
+* **Dátum és idő** – hello dátum és idő hello kísérlet.
+* **Adatok regisztrált** – milyen hitelesítési adatok hello felhasználó által megadott során jelszó-átállítási regisztrációk.
 
 ### <a name="description-of-report-values-in-azure-portal"></a>Azure-portálon jelentés értékek leírása
 
-A következő táblázat ismerteti a különböző minden egyes oszlophoz engedélyezett értékek:
+hello következő táblázat minden egyes oszlophoz engedélyezett hello különböző értékeket:
 
 | Oszlop | Megengedett értékek és azok jelentését |
 | --- | --- |
-| Regisztrált adatok |**Másodlagos e-mail-címet** – a felhasználó másodlagos e-mail vagy hitelesítési e-mail használt hitelesítéséhez<p><p>**Irodai telefon**– hitelesítéséhez használt felhasználói irodai telefon<p>**Mobiltelefon** -használt felhasználói mobiltelefonszám vagy a hitelesítéshez megadott telefonját hitelesítéséhez<p>**Biztonsági kérdések** – felhasználó hitelesítéséhez a biztonsági kérdések használt<p>**A fenti (például másodlagos E-mail + mobiltelefon) kombinációja** – akkor fordul elő, amikor 2 kapu házirend van megadva, és melyik két módszert használja a felhasználó mutatja a hitelesítéshez a jelszó-változtatási kérelmet. |
+| Regisztrált adatok |**Másodlagos e-mail-címet** – használt felhasználó másodlagos e-mail vagy hitelesítési e-mail tooauthenticate<p><p>**Irodai telefon**– a felhasználó használt office phone tooauthenticate<p>**Mobiltelefon** -felhasználó használt mobiltelefonját vagy hitelesítési phone tooauthenticate<p>**Biztonsági kérdések** – felhasználói használt biztonsági kérdések tooauthenticate<p>**Hello fölött (például a másodlagos E-mail + a mobiltelefon) kombinációja** – 2 kapu házirend van megadva, és bemutatja, melyik két módszer hello használt felhasználói tooauthentication következik be a jelszó-változtatási kérelmet. |
 
-## <a name="view-password-reset-activity-in-the-classic-portal"></a>Nézet jelszó-visszaállítási tevékenység a klasszikus portál
+## <a name="view-password-reset-activity-in-hello-classic-portal"></a>Nézet jelszó-visszaállítási tevékenység hello klasszikus portál
 
 Ez a jelentés tartalmazza az összes jelszó alaphelyzetbe állítása, amely a szervezet történt kísérlet.
 
@@ -105,173 +105,173 @@ Ez a jelentés tartalmazza az összes jelszó alaphelyzetbe állítása, amely a
 
 ### <a name="description-of-report-columns-in-azure-classic-portal"></a>A klasszikus Azure portálon jelentés oszlopok leírása
 
-Az alábbi lista ismerteti részletesen jelentés oszlopainak mindegyike:
+hello alábbi lista ismerteti részletesen hello jelentés oszlopainak mindegyike:
 
-1. **Felhasználói** – kísérletet a jelszó alaphelyzetbe állítása (a felhasználói azonosító mező megadni, ha a felhasználó rendelkezik a jelszó alaphelyzetbe állítása alapján) műveletet.
-2. **Szerepkör** – a szerepkört a felhasználó a címtárban.
-3. **Dátum és idő** – a dátum és idő a kísérlet.
-4. **Módszerek használható** – ez használt a felhasználói hitelesítési módszerek alaphelyzetbe állítja a műveletet.
-5. **Eredmény** – az eredmény a jelszó alaphelyzetbe állítása a műveletet.
-6. **Részletek** – miért a jelszó-átállítási részleteit az értéket, ugyanúgy eredményezett.  Is tartalmaz a megoldás lépéseket hiba megoldásához is igénybe vehet.
+1. **Felhasználói** – hello felhasználó, aki kísérlet történt a jelszó alaphelyzetbe állítása (ha hello felhasználói jelszó tooreset megadott hello felhasználói azonosító mező alapján) műveletet.
+2. **Szerepkör** – hello szerepkör hello felhasználó hello könyvtárban.
+3. **Dátum és idő** – hello dátum és idő hello kísérlet.
+4. **Módszerek használható** – hitelesítési módszerek hello használt felhasználói a visszaállítási műveletet.
+5. **Eredmény** – hello eredményét hello jelszó alaphelyzetbe állítása a műveletet.
+6. **Részletek** – hello részleteit miért hello jelszó-átállítási ugyanúgy hello értéket eredményezett.  Is tartalmaz a megoldás lépéseket vehet tooresolve, akkor nem várt hiba történt.
 
 ### <a name="description-of-report-values-in-azure-classic-portal"></a>A jelentés értékeket a klasszikus Azure portálon leírása
 
-A következő táblázat ismerteti a különböző minden egyes oszlophoz engedélyezett értékek:
+hello következő táblázat minden egyes oszlophoz engedélyezett hello különböző értékeket:
 
 | Oszlop | Megengedett értékek és azok jelentését |
 | --- | --- |
-| Használt módszerek |**Másodlagos e-mail-címet** – a felhasználó másodlagos e-mail vagy hitelesítési e-mail használt hitelesítéséhez<p>**Irodai telefon** – hitelesítéséhez használt felhasználói irodai telefon<p>**Mobiltelefon** – használt felhasználói mobiltelefonszám vagy a hitelesítéshez megadott telefonját hitelesítéséhez<p>**Biztonsági kérdések** – felhasználó hitelesítéséhez a biztonsági kérdések használt<p>**A fenti (például másodlagos E-mail + mobiltelefon) kombinációja** – akkor fordul elő, amikor 2 kapu házirend van megadva, és melyik két módszert használja a felhasználó mutatja a hitelesítéshez a jelszó-változtatási kérelmet. |
-| eredménye |**Elhagyott** – felhasználói jelszó-visszaállítás elindult, de le félúton helyezkedjenek el keresztül nélkül befejezése<p>**Blokkolt** – felhasználói fiók segítségével, hogy a jelszó-visszaállítás miatt kísérlet a jelszó alaphelyzetbe állítása a lapon miatt sikertelen volt, vagy egyetlen jelszó kapu visszaállítása egy 24 órás időtartamon belül túl sokszor<p>**Visszavont** – felhasználói jelszó-visszaállítás elindult, de majd kattintott a Mégse gombra a részben módon a munkamenet megszakítása <p>**Rendszergazda-e kommunikálni** – felhasználói probléma volt a munkamenetben, hogy nem oldható fel, így a felhasználó helyett befejezési "Forduljon a rendszergazdához" hivatkozásra kattint a jelszó-átállítási folyamata<p>**Nem sikerült** – felhasználó nem tudta állítani a jelszót, valószínűleg, mert a felhasználó nem lett konfigurálva ahhoz, hogy a szolgáltatás (például nem licenc, hiányzó hitelesítési adatokat, jelszó által kezelt helyszíni, de visszaírás le van tiltva).<p>**Sikeres** – jelszó-visszaállítás sikeres volt. |
+| Használt módszerek |**Másodlagos e-mail-címet** – használt felhasználó másodlagos e-mail vagy hitelesítési e-mail tooauthenticate<p>**Irodai telefon** – a felhasználó használt office phone tooauthenticate<p>**Mobiltelefon** – a felhasználó használt mobiltelefonját vagy hitelesítési phone tooauthenticate<p>**Biztonsági kérdések** – felhasználói használt biztonsági kérdések tooauthenticate<p>**Hello fölött (például a másodlagos E-mail + a mobiltelefon) kombinációja** – 2 kapu házirend van megadva, és bemutatja, melyik két módszer hello használt felhasználói tooauthentication következik be a jelszó-változtatási kérelmet. |
+| eredménye |**Elhagyott** – felhasználói jelszó-visszaállítás elindult, de le félúton helyezkedjenek el keresztül nélkül befejezése<p>**Blokkolt** – felhasználói fiók volt megakadályozta abban toouse jelszó-visszaállítás miatt tooattempting toouse hello jelszó alaphelyzetbe állítása lap, vagy egyetlen jelszó kapu visszaállítása egy 24 órás időtartamon belül túl sokszor<p>**Visszavont** – felhasználói jelszó-visszaállítás elindult, de rákattintva hello Mégse gomb toocancel hello munkamenet részben módon keresztül <p>**Rendszergazda-e kommunikálni** – felhasználói probléma volt a munkamenetben, hogy nem oldható fel, így hello felhasználó helyett befejezési hello "Forduljon a rendszergazdához" hivatkozásra kattint hello jelszó-átállítási folyamata<p>**Nem sikerült** – felhasználó nem volt képes tooreset jelszót, valószínűleg hello felhasználói nem kellett konfigurált toouse hello szolgáltatást (például nem licenc, hiányzó hitelesítési adatokat, jelszó által kezelt helyszíni, de visszaírás le van tiltva).<p>**Sikeres** – jelszó-visszaállítás sikeres volt. |
 | Részletek |Az alábbi táblázatban találja |
 
 ### <a name="allowed-values-for-details-column"></a>Engedélyezett részletek oszlop értékei
 
-Alább pedig akkor is várhatnak, amikor jelszó segítségével alaphelyzetbe állítja a tevékenységgel kapcsolatos jelentés eredménytípusai:
+Az alábbiakban olvashat tevékenységgel kapcsolatos jelentés használatával hello jelszó alaphelyzetbe állítása során előfordulhat, hogy várt eredménytípusai hello listát:
 
 | Részletek | Eredménytípus |
 | --- | --- |
-| Az e-mail-hitelesítés kihagyásának lehetőségét befejezése után elhagyott felhasználó |Elhagyott |
-| A mobileszköz SMS-hitelesítés kihagyásának lehetőségét befejezése után elhagyott felhasználó |Elhagyott |
-| A mobileszköz beszédfelismerési hívás ellenőrzési lehetőséggel befejezése után elhagyott felhasználó |Elhagyott |
-| Az office hang hívás ellenőrzési lehetőséggel befejezése után elhagyott felhasználó |Elhagyott |
-| A felhasználó elhagyott után a beállítás befejezése a biztonsági kérdésekre. |Elhagyott |
+| A felhasználó próbálkozás után hello e-mail ellenőrzési módszert befejezése |Elhagyott |
+| A felhasználó próbálkozás után hello mobil SMS ellenőrzési módszert befejezése |Elhagyott |
+| A felhasználó próbálkozás után hello mobileszköz beszédfelismerési hívás ellenőrzési módszert befejezése |Elhagyott |
+| A felhasználó próbálkozás után hello office hang hívás ellenőrzési módszert befejezése |Elhagyott |
+| A felhasználó próbálkozás hello biztonsági kérdések beállítás befejezése után |Elhagyott |
 | A felhasználó próbálkozás után a felhasználói azonosító megadása |Elhagyott |
-| Az e-mail-hitelesítés kihagyásának lehetőségét elindítása után elhagyott felhasználó |Elhagyott |
-| A mobileszköz SMS-hitelesítés kihagyásának lehetőségét elindítása után elhagyott felhasználó |Elhagyott |
-| A mobileszköz beszédfelismerési hívás ellenőrzési lehetőséggel elindítása után elhagyott felhasználó |Elhagyott |
-| A felhasználó próbálkozás után az office hang hívás ellenőrzési lehetőséggel indítása |Elhagyott |
-| A felhasználó elhagyott után kezdve a biztonsági kérdések beállítás |Elhagyott |
+| A felhasználó próbálkozás után hello e-mail ellenőrzési módszert indítása |Elhagyott |
+| A felhasználó próbálkozás után hello mobil SMS ellenőrzési módszert indítása |Elhagyott |
+| A felhasználó próbálkozás után hello mobileszköz beszédfelismerési hívás ellenőrzési módszert indítása |Elhagyott |
+| A felhasználó próbálkozás után hello office hang hívás ellenőrzési módszert indítása |Elhagyott |
+| A felhasználó próbálkozás után hello biztonsági kérdések beállítás indítása |Elhagyott |
 | A felhasználó egy új jelszót kiválasztása előtt félbehagyná |Elhagyott |
 | A felhasználó egy új jelszót kijelölés közben félbehagyná |Elhagyott |
 | Felhasználói megadott túl sok érvénytelen SMS ellenőrző kódok kezelésére, és blokkolva van, 24 óra |Letiltva |
 | Felhasználó túl sokszor próbált meg mobiltelefonszám ellenőrzése a hang, és blokkolva van, 24 óra |Letiltva |
 | Felhasználó túl sokszor próbált meg office Telefonszám ellenőrzése a hang, és blokkolva van, 24 óra |Letiltva |
-| Felhasználó biztonsági kérdések megválaszolása túl sokszor próbált és blokkolva van, 24 óra |Letiltva |
-| Felhasználó Telefonszám ellenőrzése a túl sokszor próbált és blokkolva van, 24 óra |Letiltva |
-| A felhasználó megszakította, mielőtt átadná szükséges hitelesítési módszerek |Törölve |
+| Felhasználó túl sokszor próbált meg tooanswer biztonsági kérdéseit, és 24 órán keresztül le van tiltva |Letiltva |
+| Felhasználó túl sokszor próbált meg tooverify egy telefonszámot, és 24 órán keresztül le van tiltva |Letiltva |
+| A felhasználó megszakította, mielőtt átadná hello szükséges hitelesítési módszerek |Törölve |
 | A felhasználó megszakította az új jelszó elküldése előtt |Törölve |
-| Felhasználó rendszergazda után próbálkozzon az e-mailek ellenőrzési módszerrel érhető el. |Kapcsolat rendszergazda |
-| Felhasználó rendszergazda a mobileszköz SMS-hitelesítés kihagyásának lehetőségét tett kísérlet után érhető el. |Kapcsolat rendszergazda |
-| Felhasználó rendszergazda után próbálkozzon a mobileszköz beszédfelismerési hívás ellenőrzési módszerrel érhető el. |Kapcsolat rendszergazda |
-| Felhasználó rendszergazda után próbálkozzon az office hang hívás ellenőrzési módszerrel érhető el. |Kapcsolat rendszergazda |
-| Felhasználói rendszergazda után próbálkozzon a biztonsági kérdés ellenőrzése beállítás érhető el. |Kapcsolat rendszergazda |
-| Jelszó alaphelyzetbe állítása nem engedélyezett a felhasználó számára. Jelszó alaphelyzetbe állítása, az a probléma megoldásához konfigurálása lapon engedélyezése |Nem sikerült |
-| Felhasználó nem rendelkezik licenccel. A felhasználó a probléma megoldásához hozzáadhat licenc |Nem sikerült |
-| A felhasználó megpróbálta alaphelyzetbe állítani egy eszközről anélkül, hogy a cookie-k engedélyezve |Nem sikerült |
-| Felhasználói fiók rendelkezik definiált megfelelő hitelesítési módszereket. A probléma megoldásához hitelesítési adatokkal |Nem sikerült |
-| Jelszó a helyszínen felügyelt. Engedélyezheti a Jelszóvisszaírást a probléma megoldásához |Nem sikerült |
+| Felhasználói rendszergazda után próbálkozzon hello e-mail ellenőrzési lehetőség érhető el. |Kapcsolat rendszergazda |
+| Felhasználó rendszergazda után próbálkozzon hello mobil SMS ellenőrzési lehetőség érhető el. |Kapcsolat rendszergazda |
+| Felhasználó rendszergazda után próbálkozzon hello mobileszköz beszédfelismerési hívás ellenőrzési lehetőség érhető el. |Kapcsolat rendszergazda |
+| Felhasználó rendszergazda után próbálkozzon hello office hang hívás ellenőrzési lehetőség érhető el. |Kapcsolat rendszergazda |
+| Felhasználó rendszergazda próbált hello biztonsági kérdés ellenőrzése beállítás után érhető el. |Kapcsolat rendszergazda |
+| Jelszó alaphelyzetbe állítása nem engedélyezett a felhasználó számára. Jelszó alaphelyzetbe állítása a hello engedélyezése beállítás lapon tooresolve |Nem sikerült |
+| Felhasználó nem rendelkezik licenccel. Ez a licenc toohello felhasználói tooresolve adhat hozzá |Nem sikerült |
+| A felhasználó egy eszközről tooreset próbált nélkül cookie-k engedélyezve |Nem sikerült |
+| Felhasználói fiók rendelkezik definiált megfelelő hitelesítési módszereket. Hitelesítési adatai tooresolve felvétele |Nem sikerült |
+| Jelszó a helyszínen felügyelt. Engedélyezheti a Jelszóvisszaírást tooresolve Ez |Nem sikerült |
 | Nem sikerült elérni a helyszíni jelszó alaphelyzetbe állítása szolgáltatással. A szinkronizálási számítógépen az eseménynaplóban |Nem sikerült |
-| Hiba történt miközben a felhasználó alaphelyzetbe állítása a helyszíni jelszót. A szinkronizálási számítógépen az eseménynaplóban |Nem sikerült |
-| A felhasználó nincs a jelszó alaphelyzetbe állítása felhasználók csoport tagja. Ez a felhasználó hozzáadása a csoporthoz, a probléma megoldásához. |Nem sikerült |
-| Jelszó alaphelyzetbe állítása le van tiltva ennél a bérlőnél a teljes mértékben. Lásd: [Itt](http://aka.ms/ssprtroubleshoot) a probléma megoldásához. |Nem sikerült |
+| Hello helyszíni jelszó alaphelyzetbe állítása során hiba történt. A szinkronizálási számítógépen az eseménynaplóban |Nem sikerült |
+| A felhasználó nincs hello jelszó alaphelyzetbe állítása felhasználók csoport tagja. Adja hozzá a felhasználó toothat csoport tooresolve ezt. |Nem sikerült |
+| Jelszó alaphelyzetbe állítása le van tiltva ennél a bérlőnél a teljes mértékben. Lásd: [Itt](http://aka.ms/ssprtroubleshoot) tooresolve ez. |Nem sikerült |
 | Felhasználó sikeresen a jelszó alaphelyzetbe állítása |Sikeres |
 
 ## <a name="self-service-password-management-activity-types"></a>Önkiszolgáló jelszókezelés tevékenységtípusok
 
-A következő típusú tevékenységek szerepelnek a **önkiszolgáló jelszókezelés** naplózási esemény kategóriát.  Az alábbiak szerint egyes leírását.
+a következő típusú tevékenységek hello jelennek meg hello **önkiszolgáló jelszókezelés** naplózási esemény kategória.  Az alábbiak szerint egyes leírását.
 
-* [**Önkiszolgáló jelszóváltoztatás blokkolva** ](#activity-type-blocked-from-self-service-password-reset) -azt jelzi, hogy egy felhasználó a jelszó alaphelyzetbe állítása, vagy egy adott kapu használni, egy telefonszám ellenőrzése 24 órában teljes 5-nél több alkalommal megpróbálta.
-* [**Módosítsa jelszavát (önkiszolgáló)** ](#activity-type-change-password-self-service) -azt jelzi, a felhasználó elvégzett önkéntes, vagy (mert a lejárati) kényszerített a jelszó módosítása.
-* [**Jelszó-átállítási (amelyeket a rendszergazda)** ](#activity-type-reset-password-by-admin) -azt jelzi, hogy a rendszergazda végre az Azure-portálról egy felhasználó nevében új jelszót.
-* [**Jelszó-átállítási (önkiszolgáló)** ](#activity-type-reset-password-self-service) -azt jelzi, hogy a felhasználó alaphelyzetbe állítása sikeresen megtörtént a jelszavukat a [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com).
-* [**Az önkiszolgáló jelszó-átállítási folyamata tevékenység folyamatban** ](#activity-type-self-serve-password-reset-flow-activity-progress) -minden adott lépésre, a felhasználó végighalad (például a hitelesítési kapu átadja a jelszó alaphelyzetbe állítása) azt jelzi, mert része a jelszó alaphelyzetbe állítási eljárás.
-* [**Felhasználói fiók (önkiszolgáló) feloldása** ](#activity-type-unlock-user-account-self-service) -azt jelzi, hogy a felhasználó sikeresen feloldotta az Active Directory-fiókjában a jelszó alaphelyzetbe állításával a [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com) alaphelyzetbe állítása funkció nélkül is feloldhatják az AD-fiókkal.
-* [**A felhasználó önkiszolgáló jelszó-visszaállításhoz regisztrálva** ](#activity-type-user-registered-for-self-service-password-reset) -azt jelzi, hogy a felhasználó regisztrálva van-e a szükséges információkat szeretne a jelenleg megadott tenant jelszó-visszaállítási házirend megfelelően jelszó visszaállítása.
+* [**Önkiszolgáló jelszóváltoztatás blokkolva** ](#activity-type-blocked-from-self-service-password-reset) -azt jelzi, hogy egy felhasználó próbált tooreset jelszót, egy adott kapu használja, vagy egy telefonszám ellenőrzése 24 órában teljes 5-nél több alkalommal.
+* [**Módosítsa jelszavát (önkiszolgáló)** ](#activity-type-change-password-self-service) -azt jelzi, a felhasználó önkéntes végre, vagy a kényszerített (esedékes tooexpiry) a jelszó módosítása.
+* [**Jelszó-átállítási (amelyeket a rendszergazda)** ](#activity-type-reset-password-by-admin) -azt jelzi, hogy a rendszergazda végre az Azure-portálon hello egy felhasználó nevében új jelszót.
+* [**Jelszó-átállítási (önkiszolgáló)** ](#activity-type-reset-password-self-service) -azt jelzi, hogy a felhasználó sikeresen hello a jelszó visszaállítása [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com).
+* [**Az önkiszolgáló jelszó-átállítási folyamata tevékenység folyamatban** ](#activity-type-self-serve-password-reset-flow-activity-progress) -minden felhasználó végighalad (például a hitelesítési kapu átadja a jelszó alaphelyzetbe állítása) meghatározott lépés azt jelzi, része hello jelszó alaphelyzetbe állítási eljárás szerint.
+* [**Felhasználói fiók (önkiszolgáló) feloldása** ](#activity-type-unlock-user-account-self-service) -azt jelzi, hogy a felhasználó sikeresen feloldotta az Active Directory-fiókjában hello a jelszó alaphelyzetbe állításával [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com) használatával hello AD-fiókot zárolásának feloldása nélkül alaphelyzetbe állítása lehetőséget.
+* [**A felhasználó önkiszolgáló jelszó-visszaállításhoz regisztrálva** ](#activity-type-user-registered-for-self-service-password-reset) -azt jelzi, hogy a felhasználó regisztrálva van-e minden szükséges hello információk toobe képes tooreset megfelelően hello jelszavukat aktuálisan megadott bérlői jelszó-visszaállítási házirend.
 
 ### <a name="activity-type-blocked-from-self-service-password-reset"></a>Tevékenységtípus: az önkiszolgáló jelszó-visszaállítás blokkolva
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – annak jelzése, egy rendszergazda felhasználó megpróbálta jelszó alaphelyzetbe állítása, vagy egy adott kapu használni, Telefonszám ellenőrzése a 24 órában teljes 5-nél több alkalommal.
-* **Tevékenység Aktor** -lett halmozódni végrehajtása további felhasználó visszaállítási műveletről. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -lett halmozódni végrehajtása további felhasználó visszaállítási műveletről. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – jelzi a felhasználó próbált tooreset jelszót, vagy egy adott kapu használni, egy telefonszám ellenőrzése 24 órában teljes 5-nél több alkalommal.
+* **Tevékenység Aktor** -végrehajtása további lett halmozódni hello felhasználó visszaállítási műveletről. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -végrehajtása további lett halmozódni hello felhasználó visszaállítási műveletről. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
-  * _Sikeres_ -azt jelzi, hogy a felhasználó lett halmozódni hajt végre semmilyen további alaphelyzetbe állítását, próbálja meg semmilyen további hitelesítési módszerek, vagy minden további telefonszámok érvényesítése a következő 24 órában.
+  * _Sikeres_ -azt jelzi, hogy a felhasználó lett halmozódni hajt végre semmilyen további alaphelyzetbe állítását, próbálja meg semmilyen további hitelesítési módszerek, vagy ellenőrizze minden további telefonszámainak hello 24 órán át.
 * **Tevékenység állapota a hiba oka** – nem alkalmazható
 
 ### <a name="activity-type-change-password-self-service"></a>Tevékenységtípus: jelszó módosítása (önkiszolgáló)
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – azt jelzi, a felhasználó elvégzett önkéntes, vagy (mert a lejárati) kényszerített a jelszó módosítása.
-* **Tevékenység Aktor** -felhasználó módosítani a jelszavát. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -felhasználó módosítani a jelszavát. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – azt jelzi, a felhasználó önkéntes végre, vagy a kényszerített (esedékes tooexpiry) a jelszó módosítása.
+* **Tevékenység Aktor** -hello felhasználó, aki módosítani a jelszavát. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -hello felhasználó, aki módosítani a jelszavát. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
   * _Sikeres_ -azt jelzi, hogy a felhasználó sikeresen módosította a jelszavát
-  * _Hiba_ -azt jelzi, hogy a felhasználó nem sikerült módosítani a jelszavát. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát.
+  * _Hiba_ -azt jelzi, hogy a felhasználó nem tudta toochange a jelszavát. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt.
 * **Tevékenység állapota a hiba oka** - 
-  * _FuzzyPolicyViolationInvalidPassword_ – a felhasználó jelszavát, amely automatikusan lett-e tiltani miatt a Microsoft tiltott jelszó észlelés találja túl köznapi vagy különösen gyenge választotta.
+  * _FuzzyPolicyViolationInvalidPassword_ -hello felhasználó megadott jelszó, amely automatikusan lett-e tiltani tooMicrosoft által tiltott jelszó észlelés találja toobe túl köznapi vagy különösen gyenge miatt.
 
 ### <a name="activity-type-reset-password-by-admin"></a>Tevékenységtípus: jelszó-átállítási (amelyeket a rendszergazda)
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – azt jelzi, hogy a rendszergazda végre az Azure-portálról egy felhasználó nevében új jelszót.
-* **Tevékenység Aktor** – a rendszergazda, aki önkiszolgáló a jelszó-változtatási egy másik felhasználó vagy rendszergazda nevében. Kell lennie, vagy egy globális rendszergazda, jelszókezelő, felhasználó, vagy segélyszolgálat rendszergazdája.
-* **Tevékenység cél** – a felhasználó, akinek a jelszó alaphelyzetbe állítása. Felhasználó vagy egy másik, rendszergazdai lehet.
+* **Tevékenység leírásában** – azt jelzi, hogy a rendszergazda végre az Azure-portálon hello egy felhasználó nevében új jelszót.
+* **Tevékenység Aktor** -hello jelszó alaphelyzetbe állítása, egy másik felhasználó vagy rendszergazda nevében végző hello rendszergazda. Kell lennie, vagy egy globális rendszergazda, jelszókezelő, felhasználó, vagy segélyszolgálat rendszergazdája.
+* **Tevékenység cél** -hello felhasználó, amelynek a jelszó alaphelyzetbe állítása. Felhasználó vagy egy másik, rendszergazdai lehet.
 * **Engedélyezett tevékenység állapotai**
   * _Sikeres_ -azt jelzi, hogy egy rendszergazda alaphelyzetbe állítása sikeresen megtörtént a jelszó
-  * _Hiba_ -azt jelzi, hogy egy rendszergazda a jelszó módosítása sikertelen volt. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát.
+  * _Hiba_ -azt jelzi, hogy egy rendszergazda nem tudta toochange egy felhasználó jelszavát. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt.
 
 ### <a name="activity-type-reset-password-self-service"></a>Tevékenységtípus: jelszó-átállítási (önkiszolgáló)
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – annak jelzése, a felhasználó alaphelyzetbe állítása sikeresen megtörtént a jelszavukat a [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com).
-* **Tevékenység Aktor** -jelszó visszaállítása felhasználó. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -jelszó visszaállítása felhasználó. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – azt jelzi, hogy a felhasználó sikeresen hello a jelszó visszaállítása [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com).
+* **Tevékenység Aktor** -jelszó visszaállítása hello felhasználó. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -jelszó visszaállítása hello felhasználó. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
   * _Sikeres_ -azt jelzi, hogy a felhasználó alaphelyzetbe állítása sikeresen megtörtént a saját jelszavát
-  * _Hiba_ -azt jelzi, hogy a felhasználók a saját jelszó visszaállítása sikertelen. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát.
+  * _Hiba_ -azt jelzi, hogy a felhasználó nem tudta tooreset a saját jelszavát. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt.
 * **Tevékenység állapota a hiba oka** -
-  * _FuzzyPolicyViolationInvalidPassword_ – a rendszergazdai jelszó, amely automatikusan lett-e tiltani miatt a Microsoft tiltott jelszó észlelés találja túl köznapi vagy különösen gyenge kiválasztva.
+  * _FuzzyPolicyViolationInvalidPassword_ -Üdvözöljük a rendszergazdákat kijelölt jelszó, amely automatikusan lett-e tiltani tooMicrosoft által tiltott jelszó észlelés találja toobe túl köznapi vagy különösen gyenge miatt.
 
 ### <a name="activity-type-self-serve-password-reset-flow-activity-progress"></a>Tevékenységtípus: önkiszolgáló szolgálnak a jelszó alaphelyzetbe állítása folyamata tevékenység folyamatban
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – azt jelzi, a felhasználó végighalad (például a hitelesítési kapu átadja a jelszó alaphelyzetbe állítása), mert része a jelszó alaphelyzetbe állítási eljárás adott lépésre.
-* **Tevékenység Aktor** -jelszó részét végző felhasználó visszaállítása folyamata. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -jelszó részét végző felhasználó visszaállítása folyamata. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – azt jelzi, a felhasználó végighalad (például a hitelesítési kapu átadja a jelszó alaphelyzetbe állítása), része hello jelszó alaphelyzetbe állítási eljárás adott lépésre.
+* **Tevékenység Aktor** -hello jelszó részét hello felhasználó visszaállítása folyamata. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -hello jelszó részét hello felhasználó visszaállítása folyamata. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
-  * _Sikeres_ -azt jelzi, hogy a felhasználó sikeresen befejezte a jelszóvisszaállítási folyamatot az adott lépésre.
-  * _Hiba_ -azt jelzi, hogy egy adott lépésre a jelszó alaphelyzetbe állítása nem sikerült folyamat. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát.
+  * _Sikeres_ -azt jelzi, hogy a felhasználó sikeresen befejezte egy adott lépésre a hello jelszóvisszaállítási folyamatot.
+  * _Hiba_ -azt jelzi, hogy egy adott lépésre hello jelszó alaphelyzetbe állítása nem sikerült folyamat. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt.
 * **Engedélyezett tevékenység állapotának oka**
   * Lásd az alábbi táblázatban [minden engedélyezett visszaállítási tevékenység állapotának oka](#allowed-values-for-details-column)
 
 ### <a name="activity-type-unlock-user-account-self-service"></a>Tevékenységtípus: felhasználói fiók (önkiszolgáló) feloldása
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – annak jelzése nyitása sikeresen megtörtént az Active Directory-fiókot a felhasználó a jelszó alaphelyzetbe állításával a [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com) alaphelyzetbe állítása funkció nélkül is feloldhatják az AD-fiókkal.
-* **Tevékenység Aktor** -felhasználó nélkül a jelszó alaphelyzetbe állításával a fiók zárolását. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -felhasználó nélkül a jelszó alaphelyzetbe állításával a fiók zárolását. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – azt jelzi, hogy a felhasználó sikeresen feloldotta az Active Directory-fiókjában hello a jelszó alaphelyzetbe állításával [Azure AD-jelszó-változtatási portál](https://passwordreset.microsoftonline.com) visszaállítása nélkül is feloldhatják hello AD fiók használatával a szolgáltatás.
+* **Tevékenység Aktor** -hello felhasználó, aki a fiók zárolását nélkül a jelszó alaphelyzetbe állításával. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -hello felhasználó, aki a fiók zárolását nélkül a jelszó alaphelyzetbe állításával. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
   * _Sikeres_ -azt jelzi, hogy a felhasználók a saját fiókjuk nyitása sikeresen megtörtént
-  * _Hiba_ -azt jelzi, hogy a felhasználó nem tudta feloldhatja a fiók zárolását. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát.
+  * _Hiba_ -azt jelzi, hogy a felhasználó nem tudta toounlock fiókjuk. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt.
 
 ### <a name="activity-type-user-registered-for-self-service-password-reset"></a>Tevékenységtípus: felhasználó regisztrált az önkiszolgáló jelszóváltoztatáshoz
 
-Az alábbi lista ismerteti ennek a tevékenységnek a részletei:
+hello a következő lista ismerteti ennek a tevékenységnek a részletei:
 
-* **Tevékenység leírásában** – azt jelzi, hogy a felhasználó regisztrálva van-e a szükséges információkat szeretne a jelenleg megadott tenant jelszó-visszaállítási házirend megfelelően jelszó visszaállítása. 
-* **Tevékenység Aktor** -jelszó alaphelyzetbe állítása regisztrált felhasználó. A felhasználó vagy egy rendszergazda is lehet.
-* **Tevékenység cél** -jelszó alaphelyzetbe állítása regisztrált felhasználó. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység leírásában** – azt jelzi, hogy a felhasználó regisztrálva van-e minden szükséges hello információk toobe képes tooreset megfelelően hello jelszavukat aktuálisan megadott bérlői jelszó-visszaállítási házirend. 
+* **Tevékenység Aktor** -hello regisztrált felhasználó folyamatos jelszó-visszaállításhoz. A felhasználó vagy egy rendszergazda is lehet.
+* **Tevékenység cél** -hello regisztrált felhasználó folyamatos jelszó-visszaállításhoz. A felhasználó vagy egy rendszergazda is lehet.
 * **Engedélyezett tevékenység állapotai**
-  * _Sikeres_ -azt jelzi, a felhasználó sikerült regisztrálni a jelszó alaphelyzetbe állítása, az aktuális nyilatkozatnak. 
-  * _Hiba_ -azt jelzi, hogy a felhasználó nem tudta regisztrálni a jelszó-visszaállításhoz. Tulajdonsági lehetővé teszi, hogy a **tevékenység állapotának oka** kategória további információt a hiba okát. Megjegyzés: Ez nem jelenti a felhasználó számára, hogy azok nem fejeződött be a regisztrációs folyamat csak a saját jelszavát. Ha nem ellenőrzött adatok a fiókra, amely a megfelelő (például egy telefonszámot, amelyet a rendszer nem érvényesíti), annak ellenére, hogy nem ellenőrizte, hogy ez a telefonszám, továbbra is használhatják a jelszó alaphelyzetbe állításához. További információkért lásd: [mi történik, ha a felhasználó regisztrál?](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#what-happens-when-a-user-registers)
+  * _Sikeres_ -azt jelzi, a felhasználók jelszó-változtatási hello aktuális nyilatkozatnak regisztrálása sikeres volt. 
+  * _Hiba_ -azt jelzi, a felhasználó nem sikerült tooregister jelszó-visszaállításhoz. Gombra kattintva hello sor lehetővé teszi a toosee hello **tevékenység állapotának oka** kategória toolearn többet miért hello hiba történt. Megjegyzés: Ez nem jelenti a felhasználó nem tooreset van a saját jelszavát, csak, hogy azok nem fejeződött be hello regisztrációs folyamat során. Ha nem ellenőrzött adatok a fiókra, amely a megfelelő (például egy telefonszámot, amelyet a rendszer nem érvényesíti), annak ellenére, hogy nem ellenőrizte, hogy ez a telefonszám, továbbra is használhatják azt tooreset a jelszavát. További információkért lásd: [mi történik, ha a felhasználó regisztrál?](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#what-happens-when-a-user-registers)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi hivatkozásokat követve az Azure AD jelszóátállításáról olvashat további információkat.
+a következő hivatkozások hello adja meg a jelszó alaphelyzetbe állítása, az Azure AD használatával kapcsolatos további információk
 
-* [A felhasználó felügyeleti naplók helyi](https://portal.azure.com/#blade/Microsoft_AAD_IAM/UserManagementMenuBlade/Audit) - lépjen közvetlenül a bérlő felhasználók kezelése a naplók
+* [Helyi toouser felügyeleti naplók](https://portal.azure.com/#blade/Microsoft_AAD_IAM/UserManagementMenuBlade/Audit) - lépjen közvetlenül tooyour bérlői felhasználói felügyeleti naplók
 * [**Gyors üzembe helyezés**](active-directory-passwords-getting-started.md) – Percek alatt üzembe helyezheti az Azure AD önkiszolgáló jelszókezelőjét. 
 * [**Licencelés**](active-directory-passwords-licensing.md) – Az Azure AD licencelésének konfigurálása.
-* [**Adatok**](active-directory-passwords-data.md) – A szükséges adatok megismerése, és az adatok használata a rendszer jelszókezelésre.
-* [**Bevezetés**](active-directory-passwords-best-practices.md) – Az SSPR funkció tervezése és üzembe helyezése a felhasználók számára az itt található útmutató segítségével.
-* [**Testreszabás**](active-directory-passwords-customize.md) – Az SSPR-felület megjelenésének és működésének testre szabása a cége számára.
-* [**Részletes műszaki bemutatás**](active-directory-passwords-how-it-works.md) – Egy pillantás a függöny mögé, hogy megértse, hogyan is működik.
-* [**Gyakori kérdések**](active-directory-passwords-faq.md) – Hogyan? Hogy miért? Mi? Hová? Ki? Mikor? – Válaszok olyan kérdésekre, amiket mindig is fel akart tenni
-* [**Hibaelhárítás**](active-directory-passwords-troubleshoot.md) – Ismerje meg, hogyan oldhat meg általános, az SSPR működése során jelentkező hibákat.
+* [**Adatok** ](active-directory-passwords-data.md) - szükséges hello adatok megismeréséhez, és hogyan használja fel azokat a jelszókezelés
+* [**Bevezetés** ](active-directory-passwords-best-practices.md) -megtervezése és telepítése az önkiszolgáló jelszó-Változtatási tooyour felhasználók hello útmutatást itt talál
+* [**Testre szabhatja** ](active-directory-passwords-customize.md) -testreszabása, önkiszolgáló jelszó-Változtatási élményt a vállalata hello hello megjelenését és működését.
+* [**Műszaki mélyreható** ](active-directory-passwords-how-it-works.md) -mögött hello függöny toounderstand nyissa meg annak működéséről
+* [**Gyakori kérdések**](active-directory-passwords-faq.md) – Hogyan? Hogy miért? Mi? Hová? Ki? Mikor? -Válaszok mindig kívánta tooask tooquestions
+* [**Hibaelhárítás** ](active-directory-passwords-troubleshoot.md) -megtudhatja, hogyan tooresolve közös állít ki, hogy az önkiszolgáló jelszó-Változtatási látható
 * [**Szabályzat**](active-directory-passwords-policy.md) – Megismerheti és beállíthatja az Azure AD jelszószabályzatait.

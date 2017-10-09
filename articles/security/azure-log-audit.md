@@ -1,6 +1,6 @@
 ---
-title: "Azure-naplózás és a naplózás |} Microsoft Docs"
-description: "További tudnivalók arról, hogyan használja a naplózási adatokat az alkalmazással kapcsolatos részletes dcu."
+title: "Naplózás és a naplózás aaaAzure |} Microsoft Docs"
+description: "Ismerje meg, hogyan használja a naplózási adatok toogain mélyebben elemezheti az alkalmazással kapcsolatos."
 services: security
 documentationcenter: na
 author: UnifyCloud
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
-ms.openlocfilehash: 9e5c929251259a86944121e504dc033bc99e3bc4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0e817b071962ad9bef6250267092b5f9282bc7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-logging-and-auditing"></a>Az Azure naplózása és naplózás
 ## <a name="introduction"></a>Bevezetés
 ### <a name="overview"></a>Áttekintés
-Segít a jelenlegi és jövőbeli Azure-ügyfél megismeréséhez és a különböző biztonsági képességeivel érhető el, és az Azure platformra körülvevő, Microsoft fejlesztett ki több tanulmányok, biztonsági áttekintése, ajánlott eljárások és Ellenőrzőlisták. A témakörök között körének és mélysége, és rendszeresen frissülnek. Ez a dokumentum a sorozat része a következő absztrakt szakaszban foglaltak szerint.
+tooassist jelenlegi és jövőbeli Azure-ügyfél megismeréséhez és használatához hello különböző biztonsági lehetőségeinek és körülvevő hello Azure Platform, Microsoft kifejlesztette egy sorozatát tanulmányok, biztonsági áttekintése, ajánlott eljárások és ellenőrzőlistákat. hello témakörök tartomány körének és mélysége, és rendszeresen frissülnek. Ez a dokumentum a sorozat része a következő absztrakt szakasz hello foglalja össze.
 ### <a name="azure-platform"></a>Az Azure Platform
-Azure olyan nyitott és rugalmas felhőszolgáltatási platform, amely támogatja a operációs rendszerek, programozási nyelvek, keretrendszerek, eszközök, adatbázisok és eszközök legszélesebb kiválasztása.
+Azure olyan nyitott és rugalmas felhőszolgáltatási platform, amely támogatja az operációs rendszerek, programozási nyelvek, keretrendszerek, eszközök, adatbázisok és eszközök hello legszélesebb kiválasztása.
 
 Megteheti például a következőt:
 -   Futtassa a Linux-tárolók Docker-integráció.
@@ -34,85 +34,85 @@ Megteheti például a következőt:
 
 -   Build vissza-végpontok iOS, Android és Windows eszközökhöz.
 
-Azure nyilvános felhőjében services támogatja a fejlesztők milliói technológiát és informatikai szakemberek számára már alapulnak, és megbízható.
+Nyilvános Azure felhőszolgáltatások hello azonos technológiák több millió fejlesztők és informatikai szakemberek számára már alapulnak, és megbízható támogatja.
 
-Létrehozása vagy áttelepítése informatikai eszközök, a felhőbeli szolgáltató meg vannak támaszkodva az alkalmazások és a szolgáltatások és a biztonsági a felhő alapú eszközök kezelésére adathordozóira vezérlők adatok védelme érdekében, hogy szervezete képességek.
+Amikor létrehozása, vagy telepíthet át informatikai eszközök, a felhőbeli szolgáltató, akkor vannak hagyatkoznia adott szervezet képességek tooprotect az alkalmazások és adatok hello szolgáltatások és a hello toomanage hello biztonsági a felhő alapú eszközök biztosítanak.
 
-Az Azure infrastruktúráját úgy tervezték, hogy képes legyen ügyfelek millióit egyidejűleg kiszolgáló alkalmazásokat üzemeltetni, és olyan megbízható alapot nyújtson, amely megfelel a vállalatok biztonsági igényeinek. Számos konfigurálható biztonsági beállítással is rendelkezik, amelyek testreszabásával a különböző környezetek egyedi követelményeinek megfelelő biztonsági megoldások alakíthatók ki. Ez a dokumentum segítségével megfelel a fenti követelményeknek.
+Azure infrastruktúrája hello létesítmény tooapplications felhasználók millióit egyidejűleg üzemeltetéséhez a készült, és amelyen vállalatok számára is saját igényeihez biztonsági megbízható alaprendszert biztosít. Emellett Azure tesz lehetővé az konfigurálható biztonsági beállítások és hello képességét toocontrol széles köréről őket, hogy a biztonsági toomeet hello egyéni követelményeinek a központi telepítések szabhatja testre. Ez a dokumentum segítségével megfelel a fenti követelményeknek.
 
 ### <a name="abstract"></a>Absztrakt
-Naplózás és a biztonsággal kapcsolatos eseményeket, és a kapcsolódó riasztásokat naplózása egy hatékony data protection stratégiában fontos összetevői. A biztonsági naplók és jelentések elektronikus rekord gyanús tevékenységek és észlelni a lehetséges, hogy sikeres vagy megkísérelt külső behatolást vagy a biztonság a hálózati, valamint a belső támadásokkal jelző minták segítséget nyújtanak. Naplózás segítségével felhasználói tevékenység, a dokumentum előírásoknak való megfelelés figyelése, hajtsa végre a törvényszéki elemzések végrehajtásakor, és több. Riasztások biztosítanak az azonnali értesítések biztonsági események bekövetkezésekor.
+Naplózás és a biztonsággal kapcsolatos eseményeket, és a kapcsolódó riasztásokat naplózása egy hatékony data protection stratégiában fontos összetevői. A biztonsági naplók és jelentések elektronikus rekord gyanús tevékenységek és észlelni a lehetséges, hogy sikeres vagy megkísérelt külső behatolást vagy a biztonság hello hálózati, valamint a belső támadásokkal jelző minták segítséget nyújtanak. Naplózási toomonitor felhasználói tevékenységgel, a dokumentum előírásoknak való megfelelés, hajtsa végre a törvényszéki elemzések végrehajtásakor, és több. Riasztások biztosítanak az azonnali értesítések biztonsági események bekövetkezésekor.
 
-Microsoft Azure-szolgáltatások és termékek biztosít konfigurálható biztonsági naplózás és a naplózási beállítások segítségével azonosíthatja a biztonsági házirendeket és mechanizmusokat hiányosságait, és oldja meg ezeket hézagok problémák megelőzése érdekében. Microsoft-szolgáltatások biztosítják az egyes (és néhány esetben az összes) az alábbiak közül: központi monitorozása, naplózási és elemzési rendszerek folyamatos egyrészt; időszerű riasztások; és, hogyan kezelheti a nagy mennyiségű információ eszközök és szolgáltatások által létrehozott jelentéseket.
+Microsoft Azure-szolgáltatások és termékek nyújtanak konfigurálható a biztonsági naplózás, és a naplózási beállítások toohelp azonosíthatja a biztonsági házirendeket és mechanizmusokat hiányosságait, és ezek hézagok toohelp cím megelőzheti a megszegése. Microsoft-szolgáltatások biztosítják az egyes (és egyes esetekben az összes) az alábbi beállítások hello: központi monitorozása, naplózási és elemzési rendszerek tooprovide folyamatos látható; időszerű riasztások; és kezelheti az eszközöket és a szolgáltatások által generált adatokat nagy mennyiségű hello jelentések toohelp.
 
-Microsoft Azure naplóadatokat biztonsági incidens és az esemény felügyeleti SIEM-rendszerek elemzés céljából exportálhatja és külső naplózási megoldásokkal integrálható.
+Microsoft Azure naplóadatokat lehet exportált tooSecurity elemzéshez incidens és az esemény felügyeleti SIEM-rendszerek, és külső naplózási megoldásokkal integrálható.
 
-E tanulmány bevezetője létrehozásakor, gyűjtése és elemzése az Azure-platformon futó szolgáltatások biztonsági naplókat, és segíthet biztonsági betekintést nyerhet az Azure-környezetekhez. Ez a dokumentum körét korlátozódik, alkalmazások és szolgáltatások beépített és az Azure-ban telepített.
+E tanulmány bevezetője létrehozásakor, gyűjtése és elemzése az Azure-platformon futó szolgáltatások biztonsági naplókat, és segíthet biztonsági betekintést nyerhet az Azure-környezetekhez. Ez a dokumentum hello köre korlátozott tooapplications és beépített és az Azure-ban telepített szolgáltatások.
 
 > [!Note]
 > Bizonyos ajánlások található a megnövekedett adat-, hálózati vagy számítási erőforrások használatát eredményezi, és növelheti a licencek vagy előfizetések költségeit.
 
 ## <a name="types-of-logs-in-azure"></a>Az Azure-ban naplók típusait
-Sok áthelyezése alkotórészek összetettek a felhőalapú alkalmazásokhoz. Naplók adja meg, győződjön meg arról, hogy az alkalmazás marad fel adatokat és kifogástalan állapotban futnak. Emellett segít, hogy ki a lehetséges problémák stave és a múltbeli kiépítettektől eltérő hibakeresést. Naplózási adatok segítségével emellett az alkalmazással kapcsolatos átfogó megismerésében. Ezt az információt nyújt segítséget az alkalmazások teljesítményének vagy karbantartási követelmények, vagy, amelyek egyébként kézi beavatkozás műveletek automatizálására.
+Sok áthelyezése alkotórészek összetettek a felhőalapú alkalmazásokhoz. Naplók adatok tooensure, hogy az alkalmazás be, és megfelelő állapotban fut adja meg. Emellett segít, toostave ki a lehetséges problémák és a múltbeli kiépítettektől eltérő hibakeresést. Emellett az alkalmazással kapcsolatos naplózási adatok toogain mélyebben elemezheti is használhatja. Ezt az információt tooimprove alkalmazásteljesítmény vagy karbantartási követelmények segítségével, vagy, amelyek egyébként kézi beavatkozás műveletek automatizálására.
 
 Azure kiterjedt naplózás minden Azure Service eredményez. Ezek a naplók szerint vannak kategóriába, ezek a típusok fő szerint:
--   **Ellenőrzés/management-naplók** adhat az Azure Resource Manager LÉTREHOZNI, UPDATE és DELETE műveletek láthatósága. [Az Azure tevékenységi naplóit](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) példa az ilyen típusú napló.
+-   **Ellenőrzés/management-naplók** átláthatóvá hello az Azure Resource Manager LÉTREHOZNI, UPDATE és DELETE műveletek. [Az Azure tevékenységi naplóit](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) példa az ilyen típusú napló.
 
--   **Adatok sík naplók** adhat az Azure-Erőforrás kihasználtsága részeként kiváltott események láthatósága. Az ilyen típusú napló többek között a Windows-esemény rendszer, biztonság, és alkalmazás jelentkezik be egy virtuális gép és a [diagnosztikai naplók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) Azure figyelő konfigurálva
+-   **Adatok sík naplók** adjon meg egy Azure-erőforrás hello használata részeként kiváltott hello események láthatósága. Az ilyen típusú napló példák hello Windows-esemény rendszer, biztonság, és egy virtuális gép és a hello alkalmazásnaplók [diagnosztikai naplók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) Azure figyelő konfigurálva
 
 
 -   **A feldolgozott események** elemzett eseményeket/riasztásokat feldolgozott információkat az Ön nevében. Példa ilyen típusú [Azure Security Center riasztásait](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts) ahol [az Azure Security Center](https://docs.microsoft.com/azure/security-center/security-center-intro) feldolgozása és az előfizetés elemzése és tömör biztonsági riasztások
 
-A következő táblázat felsorolja az Azure-ban elérhető naplók legfontosabb típusú.
+hello következő táblázatban a lista egyik legfontosabb típusú az Azure-ban elérhető naplók.
 
 | Napló kategória | Napló típusa | A tanúsítványalgoritmusok | Integráció |
 | ------------ | -------- | ------ | ----------- |
-|[Tevékenység-naplók](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|Az Azure Resource Manager-erőforrás vezérlő-vezérlősík események| Adja meg az erőforrást az előfizetésében a végrehajtott műveletek betekintést.| REST-API & [Azure figyelője](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|
-|[Az Azure diagnosztikai naplók](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|a következő előfizetés erőforrásait Azure Resource Manager működésével kapcsolatos gyakori adatok|   Adja meg, hogy az erőforrás maga végrehajtott műveletek betekintést| Az Azure figyelő [adatfolyam](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|
+|[Tevékenység-naplók](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|Az Azure Resource Manager-erőforrás vezérlő-vezérlősík események| Adja meg a erőforrást az előfizetésében végrehajtott műveletek hello betekintést.|   REST-API & [Azure figyelője](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|
+|[Az Azure diagnosztikai naplók](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|az Azure Resource Manager erőforrások előfizetés hello műveletekre vonatkozó gyakori adatok| Adja meg, hogy az erőforrás maga végrehajtott műveletek betekintést| Az Azure figyelő [adatfolyam](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|
 |[Az AAD-jelentés](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-reporting-azure-portal)|Naplók és jelentések|Felhasználói bejelentkezési tevékenységek & rendszer tevékenység szereplő felhasználók és csoportok kezelése|[Graph API](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-graph-api-quickstart)|
-|[Virtuális gép & Cloud Services csomag](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics-storage)|Windows-Eseménynapló és a Linux rendszernaplójába bejegyzett|  Rendszeradatok és a virtuális gépek a naplózási adatokat rögzíti, és átviszi az adatok az Ön által választott tárolási figyelembe.|   Windows használatával [ÜVEGVATTA](https://docs.microsoft.com/en-us/azure/azure-diagnostics) (a Windows Azure diagnosztikai tárolási) és a Linux Azure a Teljesítményfigyelőben|
-|[Storage Analytics](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/storage-analytics)|Tárolási naplózási és mérőszámok-adatokat biztosít a storage-fiók|Betekintést nyújt tárolni kívánt nyomkövetési kérelmek elemezheti a használati trendeket, és a storage-fiók problémák elemzéséhez.|  REST API-t vagy a [ügyféloldali kódtár](https://msdn.microsoft.com/en-us/library/azure/mt347887.aspx)|
+|[Virtuális gép & Cloud Services csomag](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics-storage)|Windows-Eseménynapló és a Linux rendszernaplójába bejegyzett|  Rögzíti a rendszer és naplózási adatok hello virtuális gépeken, és átviszi az adatok az Ön által választott tárolási figyelembe.| Windows használatával [ÜVEGVATTA](https://docs.microsoft.com/en-us/azure/azure-diagnostics) (a Windows Azure diagnosztikai tárolási) és a Linux Azure a Teljesítményfigyelőben|
+|[Storage Analytics](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/storage-analytics)|Tárolási naplózási és mérőszámok-adatokat biztosít a storage-fiók|Betekintést nyújt tárolni kívánt nyomkövetési kérelmek elemezheti a használati trendeket, és a storage-fiók problémák elemzéséhez.|  REST API vagy hello [ügyféloldali kódtár](https://msdn.microsoft.com/en-us/library/azure/mt347887.aspx)|
 |[NSG-t (hálózati biztonsági csoport) folyamat Naplók](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview)|JSON formátumban jeleníti meg a bejövő és kimenő forgalom / szabály alapon és|IP-bemenő és kimenő forgalom keresztül a hálózati biztonsági csoportok adatainak megtekintése|[Hálózati figyelőt](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview)|
 |[Application insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview)|Naplók, kivételeket és egyéni diagnosztika|  Alkalmazásteljesítmény-felügyeleti (APM) alkalmazásszolgáltatás webfejlesztőknek, több platformon.| REST API-t [a Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-azure-and-power-bi/)|
 |Adatok feldolgozása / biztonsági riasztás| Az Azure Security Center riasztást, OMS-riasztás| Biztonsági adatokat és a riasztásokat.|   REST API-k, JSON|
 
 ### <a name="activity-log"></a>Tevékenységnapló
-A [Azure tevékenységnapló](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs), az erőforrást az előfizetésében a végrehajtott műveletek betekintést nyújt. A műveletnapló korábban hívták "Naplófájlok" vagy "Működési Logs", mivel a rendszer jelzi [vezérlő-vezérlősík események](https://driftboatdave.com/2016/10/13/azure-auditing-options-for-your-custom-reporting-needs/) az előfizetésekhez. A tevékenység-naplót használó, meghatározhatja a "mi, ki, és mikor" az esetleges írási műveleteket (PUT, POST, Törlés) végzett az erőforrást az előfizetésében. A művelet és az egyéb kapcsolódó tulajdonságainak állapotának értelmezni is lehet. A műveletnapló nem tartalmaz (GET) olvasási műveletek.
+Hello [Azure tevékenységnapló](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs), erőforrást az előfizetésében a végrehajtott műveletek hello betekintést nyújt. hello tevékenységnapló korábban hívták "Naplófájlok" vagy "Működési Logs", mivel a rendszer jelzi [vezérlő-vezérlősík események](https://driftboatdave.com/2016/10/13/azure-auditing-options-for-your-custom-reporting-needs/) az előfizetésekhez. Az hello tevékenységnapló is meghatározható hello "mi, ki, és mikor" az esetleges írási műveleteket (PUT, POST, Törlés) végzett hello erőforrást az előfizetésében. Hello művelet és egyéb kapcsolódó tulajdonságainak hello állapotának értelmezni is lehet. hello tevékenységnapló nem tartalmaz (GET) olvasási műveletek.
 
-Itt PUT, POST, törölje az összes az írási műveletek tevékenységnapló tartalmaz arról, hogy az erőforrások hivatkozik. Használhatja például a tevékenységi naplóit található hiba esetén végzett hibaelhárításhoz vagy hogyan a szervezet egy felhasználó módosította a következő erőforrás figyelésére.
+Itt PUT, POST, törlési hivatkozik tooall hello írási műveletek tevékenységnapló hello erőforrásait tartalmazza. Például használhatja hello tevékenység naplók toofind hibaelhárítása során hiba vagy toomonitor hogyan a szervezet egy felhasználó módosította a következő erőforrás.
 
 ![Tevékenységnapló](./media/azure-log-audit/azure-log-audit-fig1.png)
 
 
-Események kérhetnek le az Azure portál használatával tevékenységnapló [CLI](https://docs.microsoft.com/azure/storage/storage-azure-cli), PowerShell-parancsmagok és [Azure figyelő REST API](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-rest-api-walkthrough). Tevékenységi naplóit rendelkezik 19 napos adatmegőrzési időtartam.
+Események beolvasható a tevékenységnapló hello Azure-portál használatával [CLI](https://docs.microsoft.com/azure/storage/storage-azure-cli), PowerShell-parancsmagok és [Azure figyelő REST API](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-rest-api-walkthrough). Tevékenységi naplóit rendelkezik 19 napos adatmegőrzési időtartam.
 
 Integrációs feladatokhoz
 -   [E-mailben vagy webhook riasztás létrehozása, amely elindítja a tevékenységnapló esemény.](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-auditlog-to-webhook-email)
 
--   [Az Eseményközpontok felé adatfolyamként](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs) egy külső szolgáltatás vagy az egyéni elemzési megoldások, például a Power bi szempontjából.
+-   [Az Event Hubs tooan adatfolyamként](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs) egy külső szolgáltatás vagy az egyéni elemzési megoldások, például a Power bi szempontjából.
 
--   A Power bi használatával elemezze a [Power bi tartalomcsomag.](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)
+-   Elemezze a Power bi használatával hello [Power bi tartalomcsomag.](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)
 
--   [Mentse a Tárfiók archív vagy manuális ellenőrzést.](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-activity-log) Megadhatja a napló-profilok használatával megőrzési időtartama (napokban).
+-   [Mentse ezt a Tárfiókot tooa archív vagy manuális ellenőrzést.](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-activity-log) Hello megőrzési ideje (nap) napló-profilok használatával adhatja meg.
 
--   Lekérdezi, és tekintse meg az Azure-portálon.
+-   Lekérdezés, és megtekintheti az hello Azure-portálon.
 
 -   Lekérdezése a PowerShell-parancsmag, a parancssori felületen vagy a REST API-t.
 
--   A műveletnapló napló profilokkal való exportálás [Analytics jelentkezzen](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview).
+-   Hello tevékenységnapló napló profilokkal túl exportálása[Analytics jelentkezzen](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview).
 
-Használhatja a storage-fiókok vagy [event hub névtér](https://docs.microsoft.com/azure/event-hubs/event-hubs-resource-manager-namespace-event-hub-enable-archive) a rendszer egy kibocsátás bejelentkezési ugyanahhoz az előfizetéshez. A beállítás konfiguráló felhasználónak rendelkeznie kell a megfelelő [RBAC](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) mindkét előfizetéshez való hozzáférés
+Használhatja a storage-fiókok vagy [event hub névtér](https://docs.microsoft.com/azure/event-hubs/event-hubs-resource-manager-namespace-event-hub-enable-archive) , amely nincs a hello ugyanahhoz az előfizetéshez, mint egy kibocsátás napló hello. hello beállítás konfiguráló hello felhasználónak rendelkeznie kell a megfelelő hello [RBAC](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) tooboth előfizetések eléréséhez
 ### <a name="azure-diagnostic-logs"></a>Az Azure diagnosztikai naplók
-Az Azure diagnosztikai naplók erőforrás a művelet részletes, gyakori adatokat biztosító erőforrás által kibocsátott. Ezek a naplók tartalmának függ a erőforrástípus (például [Windows rendszer-eseménynaplói](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events)diagnosztikai napló egy kategóriát vannak a virtuális gépek és [blob, table és a várólista naplók](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) diagnosztikai naplókat a további kategóriája Storage-fiókok) és erőforrást az előfizetésében a végrehajtott műveletek betekintést nyújt tevékenységnapló különböznek.
+Az Azure diagnosztikai naplók hello művelet erőforrás gazdag, gyakori adatokat biztosító erőforrás által kibocsátott. Ezek a naplók tartalmának hello függ a erőforrástípus (például [Windows rendszer-eseménynaplói](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events)diagnosztikai napló egy kategóriát vannak a virtuális gépek és [blob, table és a várólista naplók](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) diagnosztikai naplók kategóriája storage-fiókok) és Miben különböznek a hello tevékenységnapló, amely a erőforrást az előfizetésében végrehajtott műveletek hello betekintést nyújt.
 
 ![Az Azure diagnosztikai naplók](./media/azure-log-audit/azure-log-audit-fig2.png)
 
 Az Azure diagnosztikai naplókat kínál több konfigurációs beállítások, amely, Azure-portálon PowerShell, a parancssori felület (CLI) és a REST API használatával.
 
 **Integrációs feladatokhoz**
--   Mentse azokat egy [Tárfiók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-diagnostic-logs) naplózási vagy manuális ellenőrzést. A diagnosztikai beállítások használatával megőrzési időtartama (napokban) is megadhat.
+-   Mentse őket tooa [Tárfiók](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-diagnostic-logs) naplózási vagy manuális ellenőrzést. Hello megőrzési ideje (nap) hello diagnosztikai beállítások használatával adhatja meg.
 
--   [Az adatfolyamot őket a Event Hubs](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs) adatfeldolgozást egy külső szolgáltatás vagy az egyéni elemzési megoldások többek között a [Power bi.](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
+-   [Adatfolyam-őket tooEvent hubok](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs) adatfeldolgozást egy külső szolgáltatás vagy az egyéni elemzési megoldások többek között a [Power bi.](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
 
 -   Elemezheti őket a [OMS szolgáltatáshoz.](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview)
 
@@ -146,9 +146,9 @@ Az Azure diagnosztikai naplókat kínál több konfigurációs beállítások, a
 |Service Bus|[Az Azure Service Bus diagnosztikai naplók](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-diagnostic-logs)|Microsoft.ServiceBus/namespaces|OperationalLogs|
 
 ### <a name="azure-active-directory-reporting"></a>Az Azure Active Directory Reporting
-Az Azure Active Directory (Azure AD) biztonsági, naplózási és tevékenységjelentéseket biztosít a címtárához. A [Azure Active Directory naplózási jelentés](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-guide) segítségével az ügyfelek azonosításához, amely az Azure Active Directoryban történt a privilegizált műveletekhez. A privilegizált műveletekhez tartalmazza az illetéktelen módosítások (például a szerepkör létrehozása vagy a jelszó alaphelyzetbe állítása), változó Csoportházirend konfigurálásának (például jelszóházirendek) és (például tartomány-összevonási beállításai módosításának) directory konfigurációjának módosításai.
+Az Azure Active Directory (Azure AD) biztonsági, naplózási és tevékenységjelentéseket biztosít a címtárához. Hello [Azure Active Directory naplózási jelentés](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-guide) segítségével az ügyfelek az Azure Active Directoryban történt tooidentify privilegizált műveleteket. A privilegizált műveletekhez változásokat jogosultságszint-emelés (például a szerepkör létrehozása vagy a jelszó alaphelyzetbe állítása), házirend-konfigurációt (például jelszóházirendek) vagy módosításokat toodirectory konfigurációját (például toodomain összevonási beállításainak módosítása) módosítása.
 
-A jelentések az esemény nevét, a szereplő ki hajtotta végre a műveletet, a cél erőforráson hatással a módosítás dátuma és időpontja (UTC) adja meg a naplórekordot. Az ügyfelek képesek naplózási események listájának beolvasása az Azure Active Directory keresztül a [Azure-portálon](https://portal.azure.com/)leírtak szerint [megtekintése a vizsgálati naplókban](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-azure-portal). A benne foglalt jelentések listája:
+hello jelentések hello naplórekordot hello eseménynév, hello szereplő hello művelet, hello változás, és hello dátuma és időpontja (UTC) által érintett hello célerőforrása elvégző adja meg. Azokat a felhasználókat, a naplózott események az Azure Active Directory hello keresztül képes tooretrieve hello listáját [Azure-portálon](https://portal.azure.com/)leírtak szerint [megtekintése a vizsgálati naplókban](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-azure-portal). Itt olvashat egy listát hello jelentéseket tartalmazza:
 
 | Biztonsági jelentések | Tevékenységjelentések | Naplózási jelentések |
 | :--------------- | :--------------- | :------------ |
@@ -162,17 +162,17 @@ A jelentések az esemény nevét, a szereplő ki hajtotta végre a műveletet, a
 ||Jelszó-visszaállítási regisztrációs tevékenységjelentés||
 ||Jelszó-visszaállítási tevékenység|||
 
-Ezeket az adatokat az alkalmazások, például a SIEM rendszerek, naplózási és üzleti intelligencia eszközök hasznos lehet. Az Azure AD-jelentéskészítés API-k REST-alapú API-kon keresztül biztosítják az adatok szoftveres hozzáférését. Ezek hívása [API-k](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-api-getting-started) különböző programozási nyelveket és eszközökön.
+Ezek a jelentések adatainak hello lehet hasznos tooyour alkalmazások, például a SIEM-rendszerekről, naplózási és üzleti intelligencia eszközök. hello Azure AD jelentéskészítési API-k olyan programozott hozzáférés toohello adatokat REST-alapú API-készlet. Ezek hívása [API-k](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-api-getting-started) különböző programozási nyelveket és eszközökön.
 
-Az Azure AD naplózási jelentés események kerülnek 180 napig tart.
+Hello Azure AD naplózási jelentés események kerülnek 180 napig tart.
 
 > [!Note]
 > A jelentésekre megőrzési kapcsolatos további információkért lásd: [Azure Active Directory jelentés adatmegőrzési szabályai.](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-retention)
 
-Az ügyfelek a naplóesemények tárolásához hosszabb megőrzési ideig iránt érdeklődik, a Reporting API segítségével rendszeresen lekéréses [naplózása](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-audit-events) külön adattárba.
+Az ügyfelek a naplóesemények tárolásához hosszabb megőrzési ideig iránt érdeklődik, hello Reporting API lehet tooregularly lekéréses használt [naplózása](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-audit-events) külön adattárba.
 
 ### <a name="virtual-machine-logs-using-azure-diagnostics"></a>Virtuális gép naplók Azure Diagnostics használatával
-[Az Azure Diagnostics](https://docs.microsoft.com/azure/azure-diagnostics) a képesség, amely lehetővé teszi a telepített alkalmazás diagnosztikai adatok gyűjtésére Azure-ban. Számos különböző forrásokból származó használja a diagnosztika bővítményét. A rendszer jelenleg támogatott [Azure Cloud Service webes és feldolgozói szerepkörök](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me),
+[Az Azure Diagnostics](https://docs.microsoft.com/azure/azure-diagnostics) hello képesség, amely lehetővé teszi a központilag telepített alkalmazás vonatkozó diagnosztikai adatok gyűjtésére hello Azure-ban. Számos különböző forrásokból származó hello diagnosztika bővítmény is használhatja. A rendszer jelenleg támogatott [Azure Cloud Service webes és feldolgozói szerepkörök](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me),
 
 ![Virtuális gép naplók Azure Diagnostics használatával](./media/azure-log-audit/azure-log-audit-fig3.png)
 
@@ -180,24 +180,24 @@ Az ügyfelek a naplóesemények tárolásához hosszabb megőrzési ideig iránt
 
 Engedélyezheti a Azure diagnosztikai egy virtuális gép használata a következő:
 
--   Tekintse meg a Visual Studio használatával [nyomkövetési Azure virtuális gépeken való használata a Visual Studio](https://docs.microsoft.com/azure/vs-azure-tools-debug-cloud-services-virtual-machines)
+-   Tekintse meg a Visual Studio használatával [használja a Visual Studio tootrace Azure virtuális gépek](https://docs.microsoft.com/azure/vs-azure-tools-debug-cloud-services-virtual-machines)
 
 -   [Egy Azure virtuális gép távolról az Azure Diagnostics beállítása](https://docs.microsoft.com/azure/virtual-machines-dotnet-diagnostics)
 
--   [Azure virtuális gépeken diagnosztika beállítása a PowerShell használatával](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-ps-extensions-diagnostics?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+-   [Használjon PowerShell tooset diagnosztika mentése Azure virtuális gépeken](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-ps-extensions-diagnostics?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 -   [Windows virtuális gép létrehozása a figyelési és -diagnosztika Azure Resource Manager-sablon](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-extensions-diagnostics-template?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="storage-analytics"></a>Storage Analytics
-[Az Azure Storage Analytics](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics) elvégzi a naplózási, és adja meg a tárfiók metrikák adatait. Ezekkel az adatokkal kérések követhetők nyomon, elemezhetők a használati trendek és diagnosztizálni lehet a tárfiókokkal kapcsolatos problémákat. Storage Analytics naplózási érhető el a [Blob, Queue és Table szolgáltatások.](https://docs.microsoft.com/azure/storage/storage-introduction) Storage Analytics egy társzolgáltatás sikeres és sikertelen kérelmekkel kapcsolatos részletes információkat naplózza.
+[Az Azure Storage Analytics](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics) elvégzi a naplózási, és adja meg a tárfiók metrikák adatait. Használja a tootrace kérelmek, használati trendeket elemzése és a storage-fiók eseményadatokat. Storage Analytics naplózási érhető el a hello [Blob, Queue és Table szolgáltatások.](https://docs.microsoft.com/azure/storage/storage-introduction) Tárolási analitika sikeres és sikertelen kérelmek tooa storage szolgáltatással kapcsolatos részletes információkat naplózza.
 
-Ezeket az információkat egyes kérelmeket a figyelheti és egy tárolási szolgáltatással kapcsolatos problémák diagnosztizálásához használható. Kérelmek is be vannak jelentkezve a legjobb alapul. Naplóbejegyzéseket jönnek létre, csak ha nincs a szolgáltatási végpont ellen. Például ha a tárfiók tevékenység rendelkezik-e a Blob végpontja, de nem a tábla- vagy várólista végpontját csak naplózza vonatkozó a Blob szolgáltatás jön létre.
+Ezeket az információkat csak használt toomonitor egyes kérelmeket és egy társzolgáltatás toodiagnose problémákat. Kérelmek is be vannak jelentkezve a legjobb alapul. Naplóbejegyzéseket jönnek létre, csak ha nincs hello szolgáltatás végpontjának ellen. Például ha a tárfiók tevékenység rendelkezik-e a Blob végpontja, de nem a tábla- vagy várólista végpontját csak naplózza vonatkozó toohello Blob szolgáltatás jön létre.
 
-A tárolási analitika használatához engedélyeznie kell azt egyedileg minden egyes figyelni kívánt szolgáltatás. Engedélyezheti a a [Azure-portálon](https://portal.azure.com/); további információkért lásd: [figyelése egy tárfiókot az Azure portálon.](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) Tárolási analitika programozott módon a REST API vagy ügyfélkódtár keresztül is engedélyezheti. A szolgáltatás tulajdonságainak beállítása művelet segítségével tárolási analitika külön-külön engedélyezni az egyes szolgáltatásokhoz.
+Tárolási analitika toouse, engedélyeznie kell azt egyedileg minden egyes szolgáltatás toomonitor keresi. Engedélyezheti a hello [Azure-portálon](https://portal.azure.com/); további információkért lásd: [a tárfiók hello Azure-portálon a figyelheti.](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) Tárolási analitika programozott módon hello REST API-n keresztül vagy hello ügyféloldali kódtár is engedélyezheti. Hello szolgáltatás tulajdonságainak beállítása művelet tooenable tárolási analitika külön-külön használni minden szolgáltatáshoz.
 
-Az összesített adatok tárolását a jól ismert blob (naplózás), és jól ismert táblában (a metrika), előfordulhat, hogy elérhetők, a Blob és Table szolgáltatások API-k használatával.
+hello összesített adatokat tárolja egy jól ismert blob (naplózás), és jól ismert táblában (a metrika), előfordulhat, hogy elérhetők, hello Blob és Table szolgáltatások API-k használatával.
 
-Tárolási analitika rendelkezzen, amely független a tárfiók teljes korlátját tárolt adatok mennyisége a 20-TB-os korlátot. Minden naplója [blokkblobokat](https://docs.microsoft.com/azure/storage/storage-analytics) $logs nevű tároló, amely jönnek létre automatikusan tárolási analitika engedélyezve van a tárfiók.
+Tárolási analitika hello hello teljes korlátját a tárfiók független tárolt adatok mennyisége rendelkezik a 20-TB-os korlátot. Minden naplója [blokkblobokat](https://docs.microsoft.com/azure/storage/storage-analytics) $logs nevű tároló, amely jönnek létre automatikusan tárolási analitika engedélyezve van a tárfiók.
 
 > [!Note]
 > A számlázással és az adatmegőrzési házirendek további információkért lásd: [tárolási analitika és számlázási.](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-and-billing)
@@ -205,7 +205,7 @@ Tárolási analitika rendelkezzen, amely független a tárfiók teljes korlátj�
 > [!Note]
 > A tárfiókok korlátai további információkért lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak.](https://docs.microsoft.com/azure/storage/storage-scalability-targets)
 
-A következő típusú hitelesített vagy névtelen kérelmeket a rendszer naplózza.
+a következő típusú hitelesített és névtelen kérelmet hello naplózza.
 
 
 
@@ -214,33 +214,33 @@ A következő típusú hitelesített vagy névtelen kérelmeket a rendszer napl�
 | Sikeres kérelmei | Sikeres kérelmei |
 |Sikertelen kérelmek, beleértve az időtúllépés, a sávszélesség-szabályozás, hálózati, engedélyezési és egyéb hibák | Egy közös hozzáférésű Jogosultságkód (SAS), például és a sikertelen kérelmek használatával |
 | Egy közös hozzáférésű Jogosultságkód (SAS), például és a sikertelen kérelmek használatával |Az ügyfél és kiszolgáló egyaránt időtúllépési hibák |
-|   Az analitikai adatok kérelmek |    Sikertelen GET kérelmek 304 (nem módosított). Hibakód: |
-| Tárolási analitika, például a napló létrehozásakor vagy törlésekor, kérelmét a rendszer nem naplózza. A naplózott adatok teljes listáját részletes ismertetését lásd: a [Storage Analytics naplózott műveletekkel és az állapotüzenetek](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) és [Storage Analytics naplóformátumban](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format) témaköröket. | Minden más sikertelen névtelen kérelmek nem naplózza a rendszer. A naplózott adatok teljes listáját részletes ismertetését lásd: a [Storage Analytics naplózott műveletekkel és az állapotüzenetek](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) és [Storage Analytics naplóformátumban](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format). |
+|   Kérelmek tooanalytics adatok |    Sikertelen GET kérelmek 304 (nem módosított). Hibakód: |
+| Tárolási analitika, például a napló létrehozásakor vagy törlésekor, kérelmét a rendszer nem naplózza. Hello naplózott adatok teljes listáját a rendszer részletes ismertetését lásd: hello [Storage Analytics naplózott műveletekkel és az állapotüzenetek](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) és [Storage Analytics naplóformátumban](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format) témaköröket. | Minden más sikertelen névtelen kérelmek nem naplózza a rendszer. Hello naplózott adatok teljes listáját a rendszer részletes ismertetését lásd: hello [Storage Analytics naplózott műveletekkel és az állapotüzenetek](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) és [Storage Analytics naplóformátumban](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format). |
 
 ### <a name="azure-networking-logs"></a>Az Azure hálózati naplók
 Hálózati naplózás és figyelés az Azure-ban átfogó, és ismerteti a két kategóriába sorolhatók:
 
--   [Hálózati figyelő](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-watcher) -forgatókönyv-alapú hálózatfigyelési által biztosított szolgáltatások a hálózati figyelőt. A szolgáltatás része a csomagrögzítéssel, a következő ugrás, az IP-adatfolyam győződjön meg arról, biztonsági csoport megtekintése, NSG folyamata naplókat. Forgatókönyv szintű figyelési jeleníti meg egy végpontok közötti hálózati erőforrások ellentétben egyes hálózati erőforrás-figyelése.
+-   [Hálózati figyelő](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-watcher) -forgatókönyv-alapú hálózatfigyelési által biztosított hello szolgáltatások a hálózati figyelőt. A szolgáltatás része a csomagrögzítéssel, a következő ugrás, az IP-adatfolyam győződjön meg arról, biztonsági csoport megtekintése, NSG folyamata naplókat. Forgatókönyv szintű figyelési jeleníti meg egy záró tooend ezzel szemben tooindividual hálózati erőforrás figyelési hálózati erőforrásokhoz.
 
--   [Erőforrás-figyelés](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-resource-level-monitoring) -erőforrás-szintű figyelés négy szolgáltatások diagnosztikai naplók, metrikák, hibaelhárítási és erőforrás állapota áll. Ezek a szolgáltatások a hálózati erőforrás szintjén épülnek.
+-   [Erőforrás-figyelés](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-resource-level-monitoring) -erőforrás-szintű figyelés négy szolgáltatások diagnosztikai naplók, metrikák, hibaelhárítási és erőforrás állapota áll. Ezek a szolgáltatások beépített hello hálózati erőforrás szinten.
 
 ![Az Azure hálózati naplók](./media/azure-log-audit/azure-log-audit-fig4.png)
 
-Hálózati figyelőt olyan regionális szolgáltatás, amely lehetővé teszi, hogy figyelése és diagnosztizálása szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Hálózati diagnosztika és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és információt kaphat a hálózathoz, az Azure-ban.
+Hálózati figyelőt regionális szolgáltatás, amely lehetővé teszi, hogy Ön toomonitor és diagnosztizálásához szintjén feltételek egy hálózati forgatókönyv, hogy, és az Azure-ból. Hálózati diagnosztikai és a képi megjelenítés eszközök is elérhetők a hálózati figyelőt segítenek megérteni, diagnosztizálása és szerezhet insights tooyour hálózati az Azure-ban.
 
-**NSG Flow naplózási** -folyamat naplókat a hálózati biztonsági csoportok lehetővé teszik a engedélyezett vagy megtagadott a csoport biztonsági szabályai forgalmi naplók rögzítése. A folyamat naplók JSON formátumban vannak megírva, és a kimenő és bejövő forgalom alapon egy szabályt, a hálózati adapter a folyamat vonatkozik, a folyamat (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), 5 rekordos információk megjelenítése, és ha a forgalom lett engedélyez vagy tilt.
+**NSG Flow naplózási** -folyamat a hálózati biztonsági csoportok naplóiban toocapture naplók kapcsolódó tootraffic, amelyek számára engedélyezett vagy megtagadott hello szabályok hello csoportban. A folyamat naplók JSON formátumban vannak megírva, és megjelenítése a kimenő és bejövő adatfolyamok / szabály alapján, hello NIC hello folyamata vonatkozik, 5 rekordos információ hello folyamata (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), és ha hello forgalom engedélyezve lett, vagy megtagadva.
 
 ### <a name="network-security-group-flow-logging"></a>Hálózati biztonsági csoport folyamata naplózás
 
-[Hálózati biztonsági csoport folyamata naplók](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) azon szolgáltatása, amely lehetővé teszi, hogy tekintse meg a hálózati biztonsági csoporton keresztül bemenő és kimenő IP-forgalom hálózati figyelőt. A folyamat naplók JSON formátumban vannak megírva, és a kimenő és bejövő forgalom alapon egy szabályt, a hálózati adapter a folyamat vonatkozik, a folyamat (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), 5 rekordos információk megjelenítése, és ha a forgalom lett engedélyez vagy tilt.
+[Hálózati biztonsági csoport folyamata naplók](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) azon szolgáltatása, amely lehetővé teszi az IP-bemenő és kimenő forgalmat a hálózati biztonsági csoporton keresztül tooview információt hálózati figyelőt. A folyamat naplók JSON formátumban vannak megírva, és megjelenítése a kimenő és bejövő adatfolyamok / szabály alapján, hello NIC hello folyamata vonatkozik, 5 rekordos információ hello folyamata (forrás vagy a cél IP-, forrás vagy a cél Port protokoll), és ha hello forgalom engedélyezve lett, vagy megtagadva.
 
-Attribútumfolyam naplózza a cél hálózati biztonsági csoportok, amíg azok nem azonos a többi naplófájlt jelenik meg. Attribútumfolyam naplók csak egy tárfiókon belül tárolják.
+Attribútumfolyam naplózza a cél hálózati biztonsági csoportok, amíg azok nem jelennek meg hello ugyanaz, mint a hello további naplófájlokat. Attribútumfolyam naplók csak egy tárfiókon belül tárolják.
 
-Az azonos megőrzési házirendek, a többi naplófájlt látott folyamata naplók vonatkoznak. Naplók rendelkezik egy megőrzési házirend – 365 nap beállítható az 1 nap. Ha nincs beállítva adatmegőrzési szabály, a naplók megőrzése korlátlan időre szól.
+hello ugyanaz, mint a többi naplófájlt adatmegőrzési alkalmazni a naplókat tooflow. Naplók esetében 1 nap too365 nap beállítható adatmegőrzési rendelkezik. Ha nincs megadva adatmegőrzési, hello naplók végtelen karbantartása.
 
 **Diagnosztikai naplók**
 
-Rendszeres és önkéntes események hálózati erőforrások által létrehozott, és a storage-fiókok, egy Eseményközpontba vagy Naplóelemzési küldött bejelentkezve. Ezek a naplók erőforrás állapotának betekintést. Ezek a naplók eszközöket, például a Power BI és a Naplóelemzési tekintheti meg. Diagnosztikai naplók megtekintése megismeréséhez látogasson el [Naplóelemzési.](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics)
+Rendszeres és önkéntes események hálózati erőforrások által létrehozott, és a storage-fiókok, az Event Hubs vagy Naplóelemzési tooan küldött bejelentkezve. Ezek a naplók erőforrás állapotának hello betekintést. Ezek a naplók eszközöket, például a Power BI és a Naplóelemzési tekintheti meg. Hogyan tooview diagnosztikai naplók, látogasson el toolearn [Naplóelemzési.](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics)
 
 ![Diagnosztikai naplók](./media/azure-log-audit/azure-log-audit-fig5.png)
 
@@ -249,38 +249,38 @@ Diagnosztikai naplók érhetők el [terheléselosztó](https://docs.microsoft.co
 Hálózati figyelőt biztosít a diagnosztikai naplók megtekintése. Ez a nézet az összes hálózati erőforrások, amelyek támogatják a diagnosztikai naplózás tartalmazza. Ebben a nézetben engedélyezése, és tiltsa le a hálózati erőforrások egyszerűen és gyorsan.
 
 
-Megelőző naplózási képességeket, valamint a hálózati figyelőt jelenleg a következő képességekkel rendelkezik:
-- [Topológia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview) -a különböző csatlakozás és egy erőforráscsoportban található hálózati erőforrások egymáshoz rendelését hálózati szintű nézetét jeleníti meg.
+Továbbá toopreceding naplózási képességeket hálózati figyelőt a következő képességeket hello jelenleg rendelkezik:
+- [Topológia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview) -biztosít a hálózati szintű áttekintés ábrázoló hello különböző csatlakozás és egy erőforráscsoportban található hálózati erőforrások egymáshoz rendelését.
 
-- [Változó csomagrögzítéssel](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview) -csomagadatok mindkét virtuális gép rögzíti. Speciális szűrési beállítások, például fel idő beállítása és korlátozások méretezés finomhangolható vezérlők meg a indít. A csomagadatok a blob-tárolóban, vagy a helyi lemezen .cap formátumban tárolható.
+- [Változó csomagrögzítéssel](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview) -csomagadatok mindkét virtuális gép rögzíti. Speciális szűrési beállítások és finomhangolható vezérlők, például képes tooset alatt álló időt, majd méret korlátozások biztosítanak, versatility.hello csomag adatokat tárolhatja a blob-tárolóban, vagy a helyi lemezen hello .cap formátumban.
 
--   [IP-folyamata ellenőrzi](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview) -ellenőrzést, ha egy csomag engedélyezett vagy megtagadott folyamata adatokat 5 rekordos csomag paraméterek (cél IP-címe, forrás IP-címe, Célport, Forrásport és protokoll) alapján. Ha a csomag megtagadta a biztonsági csoport, a szabály és a csoportot, amely a csomag megtagadva ad vissza.
+-   [IP-folyamata ellenőrzi](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview) -ellenőrzést, ha egy csomag engedélyezett vagy megtagadott folyamata adatokat 5 rekordos csomag paraméterek (cél IP-címe, forrás IP-címe, Célport, Forrásport és protokoll) alapján. Ha egy biztonsági csoportot megtagadta a hello csomagot, hello szabály és a csoportot, amely hello csomagok megtagadva ad vissza.
 
--   [Következő Ugrás](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview) -határozza meg a következő ugrás a csomagok továbbítása az Azure hálózati háló, így lehetővé teszi bármely diagnosztizálása nincs megfelelően konfigurálva a felhasználó által definiált útvonalak.
+-   [Következő Ugrás](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview) -hello a következő ugrás a csomagok irányítása a hello Azure hálózati háló, amely lehetővé teszi, toodiagnose minden helytelenül konfigurált felhasználó által definiált útvonalak határozza meg.
 
--   [Biztonsági csoport megtekintése](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview) -a hatékony és alkalmazott biztonsági szabályokat, amelyek érvényesek a virtuális gép lekérdezi.
+-   [Biztonsági csoport megtekintése](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview) -hello hatékony és alkalmazott szabályokat, amelyek érvényesek a virtuális gép lekérdezi.
 
--   [Virtuális hálózati átjáró és a kapcsolat hibaelhárítási](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest) -lehetővé teszi a virtuális hálózati átjárók és kapcsolatok hibáinak elhárítása.
+-   [Virtuális hálózati átjáró és a kapcsolat hibaelhárítási](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest) -hello képességét tootroubleshoot biztosít virtuális hálózati átjárók és kapcsolatok.
 
--   [Előfizetési korlátozásait a hálózati](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-subscription-limits) -lehetővé teszi a hálózati erőforrás-használati korlátozások megtekintéséhez.
+-   [Előfizetési korlátozásait a hálózati](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-subscription-limits) -lehetővé teszi tooview hálózati erőforrás-használati korlátozások.
 
 ### <a name="application-insight"></a>Application insights
 
-[Az Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) egy bővíthető alkalmazásteljesítmény-felügyeleti (APM) szolgáltatás webfejlesztőknek, több platformon. Az élő webalkalmazásának figyelésére használhatja. Automatikus észlelése a teljesítményanomáliákat. Hatékony elemzőeszközöket tartalmaz, amelyek segítenek a problémák felismerésében, és annak a megértésében, hogy a felhasználók mire használják ténylegesen az alkalmazást.
+[Az Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) egy bővíthető alkalmazásteljesítmény-felügyeleti (APM) szolgáltatás webfejlesztőknek, több platformon. Ezzel toomonitor élő webalkalmazásokat. Automatikus észlelése a teljesítményanomáliákat. Ez magában foglalja a hatékony analytics eszközök toohelp problémákat és a felhasználók számára ténylegesen elvégezni az alkalmazás toounderstand diagnosztizálásához.
 
- Úgy tervezték, hogy használatával folyamatosan javíthassa a teljesítményt és a használhatóságot.
+ Úgy van kialakítva, hogy folyamatosan teljesítményük és használhatóságuk javításában toohelp.
 
- Sokféle platform alkalmazásaival együttműködik, ilyen többek között a .NET, a Node.js és a J2EE platform helyszíni vagy felhőbeli tárolás esetén is. Integrálható a devOps folyamat, és a csatlakozási pontok különböző fejlesztői eszközök rendelkezik.
+ Az alkalmazások működését platformokon, beleértve a .NET, Node.js és J2EE számos, a helyben tárolt vagy hello felhőben. Integrálható a devOps folyamat, és a csatlakozási pontok toovarious Fejlesztőeszközök rendelkezik.
 
 ![Application insights](./media/azure-log-audit/azure-log-audit-fig6.png)
 
-A fejlesztőcsapatoknak készült Application Insights segít az adott alkalmazás teljesítményének megismerésében, valamint abban, hogy a felhasználók miként használják az alkalmazást. A szolgáltatás az alábbiakat figyeli:
+Az Application Insights hello fejlesztőcsoportunk, hogy tudomásul veszi, hogyan működik-e az alkalmazást, és hogyan használatos toohelp célja. A szolgáltatás az alábbiakat figyeli:
 
 -   **Kérések sebessége, válaszidők és hibaarányok** – megtudhatja, hogy mely lapok, mely napszakokban a legnépszerűbbek, és hol találhatók a felhasználók. Megtekintheti, hogy mely lapok teljesítenek a legjobban. Ha több kérés esetén a válaszidők és a hibaarányok értéke megnő, valószínűleg erőforrás-gazdálkodási hibáról van szó.
 
 -   **Függőségi értékek, válaszidők és hibaarányok** – megtudhatja, hogy mely külső szolgáltatások okoznak lassulást.
 
--   **Kivételek** - elemezheti az összesített statisztikák, vagy válasszon olyan specifikus példányai, és elemezze a veremkivonatot és a kapcsolódó kérések. A kiszolgálói és a böngészői kivételekről egyaránt készül jelentés.
+-   **Kivételek** - elemzése hello összesített statisztikák, vagy válasszon olyan specifikus példányai, és elemezze a hello veremkiíratási adataival és a kapcsolódó kérések. A kiszolgálói és a böngészői kivételekről egyaránt készül jelentés.
 
 -   **Lapmegtekintések és betöltési teljesítmény** – a felhasználói böngészők jelentése alapján készül.
 
@@ -294,63 +294,63 @@ A fejlesztőcsapatoknak készült Application Insights segít az adott alkalmaz�
 
 -   Alkalmazásból származó **nyomkövetési naplók diagnosztikája** – megállapíthatja a nyomkövetési események és a kérések korrelációját.
 
--   **Egyéni események és metrikák**, amelyeket saját kezűleg helyezhet el az ügyfél vagy a kiszolgáló kódjában, és ezáltal üzleti eseményeket követhet (például eladott tételek vagy megnyert játékok).
+-   **Egyéni események és metrikák** hogy írni saját kezűleg hello ügyfél vagy kiszolgáló-kódban, tootrack üzleti események például elemek értékesített vagy megnyert játékok.
 
 **Integrációs feladatokhoz és a leírás listája:**
 
 | Integrációs feladatokhoz | Leírás |
 | --------------------- | :---------- |
-|[Alkalmazás-hozzárendelés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-app-map)|Az alkalmazás összetevői, alapvető metrikákkal és riasztásokkal.||
+|[Alkalmazás-hozzárendelés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-app-map)|az alkalmazás metrikáit és a riasztások hello összetevői.||
 |[Diagnosztikai keresési például adatok](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-diagnostic-search)| Események keresése és szűrése, például kérések, kivételek, függőségi hívások, naplókivonatok és lapmegtekintések.||
 |[Összesített adatai a Metrikaböngészőben](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-metrics-explorer)|Összesített adatok – például kérés- és hibaarányok, valamint kivételek, válaszidők és lapbetöltési idők – böngészése, szűrése és szegmentálása.||
-|[Irányítópultok](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards#dashboards)|Különböző erőforrásokból származó adatokat fűzhet össze és oszthat meg másokkal. Kiváló megoldás több összetevőből álló alkalmazások, valamint csoportszobában való folyamatos megjelenítés esetén.||
-|[Élő Stream metrikák](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-live-stream)|Új buildverzió telepítésekor közel valós idejű teljesítménymutatókat figyelhet, és meggyőződhet arról, hogy minden megfelelő módon működik-e.||
+|[Irányítópultok](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards#dashboards)|Különböző erőforrásokból származó adatokat fűzhet össze és oszthat meg másokkal. Nagy több összetevőt alkalmazások, valamint a folyamatos megjelenítési hello team helyiségben.||
+|[Élő Stream metrikák](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-live-stream)|Amikor telepít egy új buildverziót, tekintse meg a közel valós idejű teljesítmény mutatók toomake meg arról, hogy minden megfelelően működik-e.||
 |[Elemzés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics)|A hatékony lekérdezési nyelvnek köszönhetően válaszokat kaphat az alkalmazás teljesítményére és használatára vonatkozó legégetőbb kérdésekre.||
-|[Automatikus és manuális riasztások](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-alerts)|Az automatikus riasztások alkalmazkodnak az alkalmazás normál telemetriai mintáihoz, és a riasztásokat a szokásos mintán kívüli események váltják ki. Riasztásokat állíthat be az egyéni vagy normál metrikák adott szintjeire is.||
-|[Visual Studio](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-visual-studio)|A kódban tekintheti meg a teljesítményadatokat. A hívásláncokból a kódba ugorhat.||
+|[Automatikus és manuális riasztások](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-alerts)|Riasztások automatikus igazítja tooyour alkalmazás normál mintákat keressen az eseményindító és telemetriai adatokat, amikor szükség van kívül hello szokásos mintát. Riasztásokat állíthat be az egyéni vagy normál metrikák adott szintjeire is.||
+|[Visual Studio](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-visual-studio)|Lásd: teljesítményadatokat hello kódban. Nyissa meg a toocode híváslánc megjelenik az.||
 |[Power BI](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-power-bi)|Integrálhatja a használati metrikákat más üzleti intelligenciával.||
-|[REST API](https://dev.applicationinsights.io/)|Kód írásával lekérdezéseket futtathat a metrikákhoz és a nyers adatokhoz kapcsolódóan.||
-|[Folyamatos exportálás](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-telemetry)|Amikor megérkeznek, tömeges Storage nyers adatainak exportálását.||
+|[REST API](https://dev.applicationinsights.io/)|Írhat kódot toorun lekérdezések a metrikák és a nyers adatok.||
+|[Folyamatos exportálás](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-telemetry)|A nyers adatok toostorage exportálásakor tömeges, amikor megérkeznek.||
 
 ### <a name="azure-security-center-alerts"></a>Azure Security Center riasztásait
-[Az Azure Security Center](https://docs.microsoft.com/azure/security-center/security-center-intro) automatikusan gyűjti, elemzi és integrálja az Azure-erőforrások, a hálózati és az összekapcsolt partneri megoldások, például tűzfal és az endpoint protection megoldások, hamis valós fenyegetések észlelése és naplóadatait figyelmeztetéséket. A Security Centerben megtekinthető a rangsorolt biztonsági riasztások listája, ezenkívül a probléma gyors vizsgálatára vonatkozó információk és a támadás elhárításával kapcsolatos javaslatok is megjelennek.
+[Az Azure Security Center](https://docs.microsoft.com/azure/security-center/security-center-intro) automatikusan gyűjti, elemzi, és integrálja az Azure-erőforrások, hello és hálózati összekapcsolt partneri megoldások, például tűzfal és az endpoint protection megoldások, toodetect valós fenyegetések naplóadatait és csökkentése a vakriasztások. A rangsorolt biztonsági riasztások listája látható a Security Center együtt hello tooquickly szükséges információk vizsgálata hello probléma és módjára vonatkozó javaslatokkal tooremediate támadás.
 
-A Security Center fenyegetésészlelése úgy működik, hogy automatikusan összegyűjti a biztonsági információkat az Azure-erőforrásokból, a hálózatból és a csatlakoztatott partneri megoldásokból. A fenyegetések azonosításához elemzi ezeket az információkat, és gyakran megvizsgálja a különböző forrásokból származó adatok közötti összefüggéseket. A Security Center prioritás szerinti sorolja be a biztonsági riasztásokat, és javaslatokat tesz a fenyegetés kiiktatására.
+A Security Center fenyegetésészlelés működik, automatikusan az Azure-erőforrások, hello és hálózati összekapcsolt partnermegoldások a biztonsági információk begyűjtése. Ezt az információt, gyakran adatok az adatokat több forrásból tooidentify fenyegetések megvizsgálja. Biztonsági riasztások a Security Center kerülnek előrébb, valamint javaslatokat a hogyan tooremediate hello fenyegetést.
 
 ![Azure Security Center](./media/azure-log-audit/azure-log-audit-fig7.png)
 
-A Security Center olyan fejlett biztonsági elemzéseket alkalmaz, amelyek messze túlmutatnak az aláírás-alapú megközelítéseken. A nagyméretű eredményeket és [gépi tanulás](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) technológiák alkalmazott események kiértékelni között a teljes felhőháló – lehetetlen manuális módszer segítségével, és előrejelzésére szolgáló észlelése a támadások alakulását. Ezek a biztonsági elemzések a következők:
+A Security Center olyan fejlett biztonsági elemzéseket alkalmaz, amelyek messze túlmutatnak az aláírás-alapú megközelítéseken. A nagyméretű eredményeket és [gépi tanulás](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) technológiák által alkalmazott tooevaluate események hello teljes felhőbeli háló – lenne lehetetlen tooidentify manuális módszer segítségével, és hello előrejelzésére szolgáló észlelése támadások alakulását. Ezek a biztonsági elemzések a következők:
 
--   **Integrált fenyegetésfelderítési adataival:** ismert ezeken keresi a Microsoft-termékek és a szolgáltatások, a Microsoft Digital Crimes Unit (DCU), a Microsoft biztonsági válasz Center (MSRC), a külső hírcsatornák globális fenyegetésfelderítési adataival alkalmazásával.
+-   **Integrált fenyegetésfelderítési adataival:** megkeresi az ismert ezeken a Microsoft termékeinek és szolgáltatásainak, globális fenyegetésfelderítési adataival alkalmazásával hello Microsoft Digital Crimes Unit (DCU), hello Microsoft biztonsági válasz Center (MSRC), és a külső hírcsatornák.
 
--   **Viselkedéselemzés:** kártékony felderítéséhez ismert mintákat vonatkozik.
+-   **Viselkedéselemzés:** ismert mintákat toodiscover rosszindulatú viselkedést alkalmazza.
 
--   **Anomáliadetektálás:** tömörítés funkció használatával létrehozza a korábbi alapvető statisztikai adatainak összegyűjtése. Jelzi a meghatározott alapkonfigurációktól való olyan eltéréseket, amelyek potenciális támadásként értelmezhetők.
+-   **Anomáliadetektálás:** statisztikai profilkészítési toobuild korábbi alapkonfigurációt használ. A létrehozott alapkonfigurációkat tooa potenciális támadási felület tartó eltéréseket riasztást küld.
 
 
-Számos biztonsági műveletek és incidensekre adott reakciók csapatok támaszkodnak biztonsági adatai és az esemény felügyeleti SIEM-megoldás triaging és biztonsági riasztások kivizsgálásának kiindulási pontként. Az Azure naplóelemzés integráció az ügyfelek szinkronizálása a Security Center riasztásait és a virtuális gép biztonsági eseményeket, a naplóelemzési vagy SIEM-megoldás közel valós idejű Azure Diagnostics és az Azure-beli Auditnaplók által gyűjtött.
+Számos biztonsági műveletek és incidensekre adott reakciók csapatok támaszkodniuk biztonsági adatai és az esemény felügyeleti SIEM-megoldás a kiindulási pontjaként triaging és biztonsági riasztások kivizsgálásának hello. Az Azure naplóelemzés integráció az ügyfelek szinkronizálása a Security Center riasztásait és a virtuális gép biztonsági eseményeket, a naplóelemzési vagy SIEM-megoldás közel valós idejű Azure Diagnostics és az Azure-beli Auditnaplók által gyűjtött.
 
 
 ## <a name="log-analytics"></a>Log Analytics
 
-A Naplóelemzési rendszer szolgáltatása [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) , amely segít összegyűjti és elemzi az adatok a felhőben lévő erőforrások által létrehozott és a helyszíni környezetben. Ez lehetővé teszi az integrált keresés és egyéni irányítópultok segítségével könnyen elemezni több millió rekordot a számítási feladatok és a kiszolgálók fizikai helytől függetlenül valós idejű elemzése.
+A Naplóelemzési rendszer szolgáltatása [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) , amely segít összegyűjti és elemzi az adatok a felhőben lévő erőforrások által létrehozott és a helyszíni környezetben. Ez lehetővé teszi az integrált keresés valós idejű elemzése, és egyéni irányítópultok tooreadily elemezni több millió rekordot a számítási feladatok és a kiszolgálók fizikai helytől függetlenül.
 
 ![Log Analytics](./media/azure-log-audit/azure-log-audit-fig8.png)
 
-Log Analytics center, az OMS-tárházban, amely Azure felhőben szolgáltatott van. Az adatok a csatlakozó forrásokból kerülnek be a tárházba az adatforrások konfigurálása és a megoldások előfizetésbe való felvétele révén. Az adatforrások és megoldások egyaránt különböző rekordtípusokat fognak létrehozni, amelyek saját tulajdonsághalmazzal rendelkeznek, de mégis elemezhetők együtt a tárházra irányuló lekérdezésekben. Ez lehetővé teszi, hogy ugyanazokat az eszközöket és módszereket használva dolgozzon a különböző források által gyűjtött különböző típusú adatokkal.
+Center Log Analytics hello hello OMS tárház, amely hello Azure felhőben található. Adatgyűjtés történő hello tárházba csatlakoztatott adatforrások konfigurálását az adatforrások és hozzáadását megoldások tooyour előfizetés. Az adatforrások és a megoldások egyes létrehoz különböző rekordtípusokat, saját tulajdonságokat rendelkeznie, de előfordulhat, hogy továbbra is elemezheti együtt lekérdezések toohello tárházban. Ez lehetővé teszi a különböző típusú adatok azonos eszközök és módszerek toowork különböző forrásokból gyűjtött toouse hello.
 
-A csatlakoztatott források azok a számítógépek és egyéb erőforrások, amelyek Log Analytics által összegyűjtött adatokat generálnak. Ilyen lehet például a telepített ügynökök [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-windows-agents) és [Linux](https://docs.microsoft.com/azure/log-analytics/log-analytics-linux-agents) közvetlenül csatlakozó számítógépek vagy az ügynökök [System Center Operations Manager csatlakoztatott felügyeleti csoport.](https://docs.microsoft.com/azure/log-analytics/log-analytics-om-agents) A Naplóelemzési is gyűjthet adatokat [az Azure storage.](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage)
+Csatlakoztatott adatforrások hello számítógépeket és más erőforrásokat, amelyek létrehozzák a Naplóelemzési által gyűjtött adatokat is. Ilyen lehet például a telepített ügynökök [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-windows-agents) és [Linux](https://docs.microsoft.com/azure/log-analytics/log-analytics-linux-agents) közvetlenül csatlakozó számítógépek vagy az ügynökök [System Center Operations Manager csatlakoztatott felügyeleti csoport.](https://docs.microsoft.com/azure/log-analytics/log-analytics-om-agents) A Naplóelemzési is gyűjthet adatokat [az Azure storage.](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage)
 
-[Adatforrások](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources) alatt az egyes csatlakoztatott forrásokból gyűjtött adatok különböző fajtáit értjük. Ez magában foglalja az események és [teljesítményadatokat](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-performance-counters) a [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events) és adatforrások, például mellett a Linux-ügynökök [IIS-napló](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-iis-logs), és [egyéni szöveges naplók.](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-custom-logs) Konfigurálhatja az összegyűjteni kívánt egyes adatforrásokat, és a konfiguráció automatikusan érvénybe lép minden egyes csatlakoztatott forráson.
+[Adatforrások](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources) hello különböző típusú minden csatlakoztatott forrásból származó adatokat. Ez magában foglalja az események és [teljesítményadatokat](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-performance-counters) a [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events) és hozzáadását toosources többek között a Linux-ügynökök [IIS-napló](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-iis-logs), és [egyéni szöveges naplók.](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-custom-logs) Beállíthatja, hogy azt szeretné, hogy toocollect és hello konfigurációs automatikusan kézbesített tooeach csatlakoztatott adatforrás minden adatforrás.
 
 A négy különböző módon [naplókat és az Azure-szolgáltatások metrikáját gyűjtése:](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage)
-1.  Az Azure diagnostics (diagnosztika a következő táblázatban) szolgáltatáshoz közvetlen
+1.  Az Azure diagnostics közvetlen tooLog Analytics (diagnosztika a következő táblázat hello)
 
-2.  Az Azure storage (az alábbi táblázatban tároló) szolgáltatáshoz Azure diagnostics
+2.  Az Azure diagnostics tooAzure tárolási tooLog Analytics (a következő táblázat hello tároló)
 
-3.  Az Azure-szolgáltatásokhoz (Összekötők a következő táblázatban) összekötők
+3.  Az Azure-szolgáltatásokhoz (Összekötők a következő táblázat hello) összekötők
 
-4.  Az adatgyűjtésre és majd visszaküldeni az adatok Naplóelemzési (az alábbi táblázatban és szolgáltatásokról, amelyek nem szerepelnek a listán az üres), parancsfájlok
+4.  A Naplóelemzési (üres a következő táblázat hello és szolgáltatásokról, amelyek nem szerepelnek a listán) a toocollect, majd a post-adatokat parancsfájlok
 
 | Szolgáltatás | Erőforrás típusa | Logs | Mérőszámok | Megoldás |
 | :------ | :------------ | :--- | :------ | :------- |
@@ -386,11 +386,11 @@ A négy különböző módon [naplókat és az Azure-szolgáltatások metrikáj�
 
 
 ## <a name="log-integration-with-on-premises-siem-systems"></a>A helyszíni SIEM-rendszerekről napló integrációja
-[Azure naplóelemzés integrációs](https://www.microsoft.com/download/details.aspx?id=53324) lehetővé teszi, hogy az Azure-erőforrások a nyers napló, a helyszíni integrálhatja **biztonsági adatai és az esemény felügyeleti SIEM-rendszerek**.
+[Azure naplóelemzés integrációs](https://www.microsoft.com/download/details.aspx?id=53324) lehetővé teszi a nyers napló toointegrate, az Azure-erőforrások helyszíni tooyour **biztonsági adatai és az esemény felügyeleti SIEM-rendszerek**.
 
 ![Napló-integráció](./media/azure-log-audit/azure-log-audit-fig9.png)
 
-Azure naplóelemzés integrációs Azure Diagnostics gyűjti össze a Windows (ÜVEGVATTA) virtuális gépeket, Azure tevékenységi naplóit, az Azure Security Center riasztásokat, és az Azure erőforrás-szolgáltató naplózza. Ez az integráció biztosítja, új, egységesített irányítópult minden Ez az eszköz, a helyszínen vagy a felhőben, így összesíteni, összefüggéseket, elemezheti, és a biztonsági események riasztás.
+Azure naplóelemzés integrációs Azure Diagnostics gyűjti össze a Windows (ÜVEGVATTA) virtuális gépeket, Azure tevékenységi naplóit, az Azure Security Center riasztásokat, és az Azure erőforrás-szolgáltató naplózza. Ezt az integrációt biztosít egy új, egységesített irányítópult minden Ez az eszköz, a helyszíni vagy felhőben hello összesíteni, összefüggéseket, elemezheti, és a biztonsági események riasztás.
 
 
 
@@ -405,34 +405,34 @@ Azure Security Center riasztásait, az Azure diagnosztikai naplók és az Azure 
 |VM-naplók|   Igen keresztül továbbított események, és nem JSON keresztül|
 
 
-Az alábbi táblázat ismerteti, a napló kategória és a SIEM-integráció részletei.
+hello következő táblázat ismerteti az hello napló kategória és SIEM-integráció részletei.
 
 [Ismerkedés az Azure naplóelemzés integrációs](https://docs.microsoft.com/azure/security/security-azure-log-integration-get-started) - oktatóanyag bemutatja, hogyan telepítése az Azure naplóelemzés integráció és integrálása az Azure ÜVEGVATTA storage naplókat, Azure tevékenységi naplóit, az Azure Security Center riasztásait és az Azure Active Directory naplók.
 
 Integrációs feladatokhoz
 
--   [Partner konfigurációs lépések](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – ebben a blogbejegyzésben bemutatja, hogyan használható Splunk, HP ArcSight és az IBM QRadar partneri megoldások Azure naplóelemzés-integráció konfigurálása.
+-   [Partner konfigurációs lépések](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – ebben a blogbejegyzésben bemutatja, hogyan tooconfigure Azure naplófájl-integráció toowork Splunk, HP ArcSight és az IBM QRadar partneri megoldások.
 
 -   [Gyakori kérdések (GYIK) integrációs Azure naplóelemzés](https://docs.microsoft.com/azure/security/security-azure-log-integration-faq) -Ez gyakran ismételt kérdések Azure naplóelemzés integrációs kapcsolatos kérdésekre ad választ.
 
--   [A Security Center integrálása az Azure-ral riasztások jelentkezzen integrációs](https://docs.microsoft.com/azure/security-center/security-center-integrating-alerts-with-log-integration) – Ez a dokumentum ismerteti a Security Center riasztásait, valamint virtuális gép biztonsági események log analyticshez vagy SIEM-megoldás az Azure Diagnostics és az Azure-beli Auditnaplók által gyűjtött szinkronizálására.
+-   [A Security Center integrálása az Azure-ral riasztások jelentkezzen integrációs](https://docs.microsoft.com/azure/security-center/security-center-integrating-alerts-with-log-integration) – Ez a dokumentum bemutatja, hogyan toosync Security Center riasztást küld, és a virtuális gép biztonsági eseményeket a naplóelemzési az Azure Diagnostics és az Azure-beli Auditnaplók által gyűjtött vagy SIEM-megoldás.
 
 ## <a name="next-steps"></a>Következő lépések
 
 - [Audit és naplózás](https://www.microsoft.com/trustcenter/security/auditingandlogging)
 
-Adatok védelme a láthatóság fenntartásával, és gyorsan időben történő biztonsági riasztásokra való reagálásról
+Adatok védelme által látható karbantartásáért, valamint a válaszol gyorsan tootimely biztonsági riasztások
 
 - [A biztonsági naplózás és a naplófájl naplózási Azure-ban](https://azure.microsoft.com/resources/videos/security-logging-and-audit-log-collection/)
 
-Ki kell kényszerítenie az Azure-példányokon győződjön meg arról, hogy milyen beállításokat a megfelelő biztonsági gyűjtenek, és auditnaplókat.
+Milyen beállításokat tooenforce toomake meg arról, hogy az Azure-példányokon gyűjtött hello megfelelő biztonsági és auditnaplókat.
 
 - [Webhelycsoport naplózási beállításainak konfigurálása](https://support.office.com/article/Configure-audit-settings-for-a-site-collection-A9920C97-38C0-44F2-8BCB-4CF1E2AE22D2?ui=&rs=&ad=US)
 
-Egy rendszergazdát egy kérheti le az adott felhasználó által végrehajtott műveletek előzményeit és az egy adott dátumtartományon belül alatt végrehajtott műveleteket előzményeit is lekérhet. 
+Egy rendszergazdát egy le egy adott felhasználó által végrehajtott műveletek hello előzményeit, és hello előzményeit egy adott dátumtartományon belül alatt végrehajtott műveleteket is kérheti le. 
 
-- [A naplófájlban keresse az Office 365 biztonsági és megfelelőségi központ](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=&rs=&ad=US)
+- [Hello napló keresése hello Office 365 biztonsági és megfelelőségi központ](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=&rs=&ad=US)
 
-Egy használhatja az Office 365 biztonsági és megfelelőségi központ a felhasználó és rendszergazda tevékenységének megtekintéséhez az Office 365 szervezet egyesített napló.
+Egy használható hello Office 365 biztonsági és megfelelőségi központ toosearch hello egyesített naplózási napló tooview felhasználói és rendszergazdai tevékenység az Office 365-szervezetet.
 
 

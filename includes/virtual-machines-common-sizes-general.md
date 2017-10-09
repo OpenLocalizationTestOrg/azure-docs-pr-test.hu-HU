@@ -1,19 +1,19 @@
 
 <!-- A-series, Av2-series, D-series, Dv2-series, DS-series*, DSv2-series* -->
 
-- Az A- és az Av2-sorozat virtuális gépei különféle hardvertípusokon és processzorokon helyezhetőek üzembe. A méretük a hardvernek megfelelően szabályozott, hogy egyenletes processzorteljesítményt nyújtsanak a futó példány számára, a futtató hardvertől függetlenül. Az adott méretet futtató fizikai hardver meghatározásához kérdezze le a virtuális hardvert a virtuális gépen belülről.
+- A-sorozatú hello és Av2 sorozatú virtuális gépek is telepíthető a különböző hardvertípusok, és a processzorok. hello mérete folyamatban van, hello hardver, egységes processzorteljesítmény toooffer, függetlenül a telepítették hello hardver-példányt futtató hello alapján. toodetermine hello fizikai hardver ekkora telepítve lekérdezés hello virtuális hardver a virtuális gép hello belül.
 
-- A D-sorozat virtuális gépei nagyobb számítási teljesítményt és ideiglenes lemezteljesítményt igénylő alkalmazások futtatására lettek kialakítva. A D-sorozat virtuális gépei gyorsabb processzorokat, nagyobb vCPU-nkénti memóriaarányt, valamint az ideiglenes lemezteljesítményhez SSD meghajtókat kínálnak. Részletekért lásd az Azure blogon megjelent bejelentést [a D-sorozat új virtuális gépméreteit](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/) ismertető bejegyzésben.
+- D sorozatú virtuális gépek rendszer nagyobb számítási teljesítményt és a ideiglenes lemezek igény tervezett toorun alkalmazás. D sorozatú virtuális gépek hello mennyiségű ideiglenes lemezes gyorsabb processzorok, memória-vCPU magasabb arány és egy SSD-meghajtót (SSD) adja meg. További információkért lásd: hello közlemény a hello Azure blog [D sorozatú új virtuálisgép-méretek](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/).
 
-- A Dv2-sorozat az eredeti D-sorozat újabb verziója, amely nagyobb teljesítményű processzorokat kínál. A Dv2-sorozathoz használt processzor mintegy 35%-kal gyorsabb, mint a D-sorozathoz használt processzorok. A legújabb generációs 2,4 GHz-es Intel Xeon® E5-2673 v3 (Haswell) processzoron alapul, és a teljesítménye az Intel Turbo Boost Technology 2.0 alkalmazásával akár 3,1 GHz-re is növelhető. A Dv2-sorozat ugyanolyan memória- és lemezkonfigurációkban érhető el, mint a D-sorozat.
+- Dv2-sorozat, utólagos toohello eredeti D sorozat nagyobb teljesítményű CPU szolgáltatásokat. hello Dv2-sorozat CPU pedig körülbelül 35 % gyorsabb, mint az hello D sorozatú Processzor. Alapul hello legújabb generációját 2,4 GHz-es Intel Xeon® E5-2673 v3 (Haswell) processzor, és a hello Intel Turbo program technológia 2.0, lépjen be too3.1 GHz-es. hello Dv2-sorozat rendelkezik hello memóriát és lemezterületet ugyanazokat a konfigurációkat, a D sorozat hello.
 
-- Az alapszintű rétegméretek elsődlegesen a fejlesztési számítási feladatokhoz és olyan egyéb alkalmazásokhoz valók, amelyekhez nincs szükség terheléselosztásra, automatikus skálázásra vagy memóriaigényes virtuális gépekre. Az éles környezetekhez jobban megfelelő virtuálisgép-méretekkel kapcsolatos információért tekintse meg a (Virtuális gépek méretei)[virtual-machines-size-specs.md], a virtuális gépek díjszabásával kapcsolatban pedig [A virtuális gépek díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/)című szakaszt.
+- hello alapvető a rétegek méretének összege elsősorban a fejlesztés munkaterhelések és más alkalmazásokat, amelyek nem igényelnek terheléselosztás, automatikus skálázás vagy memóriaigényes virtuális gépek. Az éles környezetekhez jobban megfelelő virtuálisgép-méretekkel kapcsolatos információért tekintse meg a (Virtuális gépek méretei)[virtual-machines-size-specs.md], a virtuális gépek díjszabásával kapcsolatban pedig [A virtuális gépek díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/)című szakaszt.
 
 ## <a name="dsv3-series"></a>Dsv3-sorozat
 
 ACU: 160–190
 
-A Dsv3-sorozat méretei a 2,3 GHz-es Intel XEON ® E5-2673 v4 (Broadwell) processzoron alapulnak, amelynek az órajele akár 3,5 GHz-re is növelhető az Intel Turbo Boost Technology 2.0 alkalmazásával, valamint prémium szintű tárolás használatára is képes. A Dsv3-sorozat méretei vCPU, memória és ideiglenes tárterület kombinációját nyújtják a legtöbb éles számítási feladathoz.
+Hello alapuló Dsv3-sorozat méretek 2.3 GHz-es Intel XEON® E5-2673 v4 (Broadwell) processzor és is Intel Turbo program technológia 2.0-s és 3.5-ös GHz elérése és prémium szintű Storage. hello Dsv3-sorozat méretek vCPU, a memória és a legtöbb termelési számítási feladatokhoz ideiglenes tárolási kínálnak.
 
 
 | Méret             | vCPU | Memória: GiB | Ideiglenes tárterület (SSD) GiB | Adatlemezek max. száma | Maximális gyorsítótárazott és ideiglenes tárolóteljesítmény: IOPS/MBps (gyorsítótár mérete GiB-ban) | Max. gyorsítótárazás nélküli lemezteljesítmény: IOPS/MBps | Hálózati adapterek max. száma / várt hálózati teljesítmény (Mbps) |
@@ -28,9 +28,9 @@ A Dsv3-sorozat méretei a 2,3 GHz-es Intel XEON ® E5-2673 v4 (Broadwell) proces
 
 ACU: 160–190
 
-A Dv3-sorozat méretei a 2,3 GHz-es Intel XEON ® E5-2673 v4 (Broadwell) processzoron alapulnak, amelynek az órajele akár 3,5 GHz-re is növelhető az Intel Turbo Boost Technology 2.0 alkalmazásával. A Dv3-sorozat méretei vCPU, memória és ideiglenes tárterület kombinációját nyújtják a legtöbb éles számítási feladathoz.
+Hello alapuló Dv3-sorozat méretek 2.3 GHz-es Intel XEON® E5-2673 v4 (Broadwell) processzor és Intel Turbo program technológia 2.0-s és 3.5-ös GHz érhető el. hello Dv3-sorozat méretek vCPU, a memória és a legtöbb termelési számítási feladatokhoz ideiglenes tárolási kínálnak.
 
-Az adatlemezes tárolást a virtuális gépektől függetlenül számlázzuk. Prémium szintű tárolólemezek használatához Dsv3-méreteket vegyen igénybe. A Dsv3-méretek díjszabása és számlázási mérőszámai megegyeznek a Dv3-sorozatéval. 
+Az adatlemezes tárolást a virtuális gépektől függetlenül számlázzuk. toouse prémium tárolólemezek hello Dsv3 méretű használata. hello tarifa- és számlázási mérőszámok Dsv3 méretű hello ugyanaz, mint a Dv3-sorozat történik. 
 
 
 | Méret            | vCPU | Memória: GiB | Ideiglenes tárterület (SSD) GiB | Adatlemezek max. száma | Ideiglenes tárterület maximális teljesítménye: IOPS / Olvasási MBps / Írási MBps | Hálózati adapterek max. száma/hálózati sávszélesség |
@@ -129,10 +129,10 @@ ACU: 50–100
 | Standard_A7 |8 |56 |605 |16 |16x500 |4 / 2000 |
 <br>
 
-*Az A0 méret esetében a fizikai hardvernek az ideálisnál több előfizetést kell kezelnie. Ennek az egy méretnek az esetében a többi felhasználói üzemelő példány befolyásolhatja a futó számítási feladat teljesítményét. A relatív teljesítmény várható alapértéke az alábbiak szerint alakul, hozzávetőleg 15 százalékos varianciával.
+* hello A0 méretű túlzott előfizetett hello fizikai hardveren. Csak a meghatározott méretet, a többi felhasználói telepítés hatással lehet a futó számítási feladatok teljesítményére hello. hello relatív teljesítménye tulajdonos tooan hozzávetőleges variancia 15 százalékos várt hello alapjául az alábbiakban leírt.
 
 ### <a name="standard-a0---a4-using-cli-and-powershell"></a>Standard A0–A4, CLI és PowerShell használatával
-A klasszikus üzemi modellben egyes virtuálisgép-méretek neve eltérő a CLI-ben és a PowerShellben:
+Hello klasszikus üzembe helyezési modellel néhány virtuális gép mérete nevet némileg eltérnek a parancssori felület és a PowerShell:
 
 * A Standard_A0 neve ExtraSmall 
 * A Standard_A1 neve Small

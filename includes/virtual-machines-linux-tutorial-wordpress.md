@@ -1,14 +1,14 @@
 ## <a name="install-wordpress"></a>WordPress telepítése
 
-Ha ki szeretné próbálni a Jegyzettömböt, a minta-alkalmazások telepítése. Tegyük fel, a következő lépéseket a nyílt forráskódú telepítése [WordPress](https://wordpress.org/) platform webhelyek és blogok létrehozásához. Más munkaterhelésekhez, próbálja meg a következők [Drupal](http://www.drupal.org) és [Moodle](https://moodle.org/). 
+Ha azt szeretné, tootry a Jegyzettömböt, a minta-alkalmazások telepítése. Tegyük fel, a lépéseket követve hello telepítése hello nyílt forráskódú [WordPress](https://wordpress.org/) platform toocreate webhelyek és blogok. Egyéb munkaterhelések tootry tartalmaznak [Drupal](http://www.drupal.org) és [Moodle](https://moodle.org/). 
 
-A WordPress-telepítő a koncepció igazolása szolgál. További információk és éles telepítési beállításait, a [WordPress dokumentáció](https://codex.wordpress.org/Main_Page). 
+A WordPress-telepítő a koncepció igazolása szolgál. További információk és éles telepítési beállításai: hello [WordPress dokumentáció](https://codex.wordpress.org/Main_Page). 
 
 
 
-### <a name="install-the-wordpress-package"></a>A WordPress telepítéséhez
+### <a name="install-hello-wordpress-package"></a>Hello WordPress csomag telepítése
 
-Futtassa az alábbi parancsot:
+Futtassa a következő parancs hello:
 
 ```bash
 sudo apt install wordpress
@@ -16,12 +16,12 @@ sudo apt install wordpress
 
 ### <a name="configure-wordpress"></a>A WordPress konfigurálása
 
-WordPress MySQL és a PHP használatára konfigurálja. Nyisson meg egy szövegszerkesztőt, az Ön által választott, és a fájl létrehozásához a következő parancsot `/etc/wordpress/config-localhost.php`:
+WordPress toouse MySQL és a PHP konfigurálásához. Futtassa a következő parancs tooopen hello egy tetszőleges szövegszerkesztőben, és hozzon létre hello fájlt `/etc/wordpress/config-localhost.php`:
 
 ```bash
 sudo sensible-editor /etc/wordpress/config-localhost.php
 ```
-Másolja a következő sorokat a fájlt, és az adatbázis-jelszót *yourPassword* (hagyja változatlanul más értékek). Ezután mentse a fájlt.
+Másolás hello következő sorok toohello fájl, és az adatbázis-jelszót *yourPassword* (hagyja változatlanul más értékek). Mentse a hello fájlt.
 
 ```php
 <?php
@@ -33,33 +33,33 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 ```
 
-Egy munkakönyvtárba, hozzon létre egy szövegfájlt `wordpress.sql` a WordPress-adatbázis konfigurálása: 
+Egy munkakönyvtárba, hozzon létre egy szövegfájlt `wordpress.sql` tooconfigure hello WordPress adatbázis: 
 
 ```bash
 sudo sensible-editor wordpress.sql
 ```
 
-Adja hozzá a következő parancsokat, és az adatbázis-jelszót *yourPassword* (hagyja változatlanul más értékek). Ezután mentse a fájlt.
+Adja hozzá a következő parancsokat, és az adatbázis-jelszót hello *yourPassword* (hagyja változatlanul más értékek). Mentse a hello fájlt.
 
 ```sql
 CREATE DATABASE wordpress;
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
 ON wordpress.*
-TO wordpress@localhost
+toowordpress@localhost
 IDENTIFIED BY 'yourPassword';
 FLUSH PRIVILEGES;
 ```
 
 
-A következő parancsot az adatbázis létrehozásához:
+Futtassa a következő parancs toocreate hello adatbázis hello:
 
 ```bash
 cat wordpress.sql | sudo mysql --defaults-extra-file=/etc/mysql/debian.cnf
 ```
 
-A parancs befejezése után törölje a fájlt `wordpress.sql`.
+Hello parancs befejezése után törölje hello fájlt `wordpress.sql`.
 
-Helyezze át a WordPress telepítése a web server dokumentumgyökér:
+Helyezze át a hello WordPress telepítése toohello web server dokumentumgyökér:
 
 ```bash
 sudo ln -s /usr/share/wordpress /var/www/html/wordpress
@@ -67,6 +67,6 @@ sudo ln -s /usr/share/wordpress /var/www/html/wordpress
 sudo mv /etc/wordpress/config-localhost.php /etc/wordpress/config-default.php
 ```
 
-Most már a WordPress beállításának befejezése és közzététele a platformon. Nyisson meg egy böngészőt, és navigáljon `http://yourPublicIPAddress/wordpress`. Helyettesítse be a virtuális gép nyilvános IP-címét. Ez a rendszerkép hasonlóan kell kinéznie.
+Most hello WordPress beállításának befejezése és közzététele hello platformon. Nyisson meg egy böngészőt, és nyissa meg túl`http://yourPublicIPAddress/wordpress`. Helyettesítse be a virtuális gép hello nyilvános IP-címét. Az alábbihoz hasonló toothis kép.
 
 ![WordPress telepítése oldal](./media/virtual-machines-linux-tutorial-wordpress/wordpressstartpage.png)

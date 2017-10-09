@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric beépülő modul az Eclipse-hez | Microsoft Docs"
-description: "Bevezetés az Eclipse Service Fabric beépülő moduljának használatába."
+title: "a Service Fabric Eclipse beépülő modul aaaAzure |} Microsoft Docs"
+description: "Ismerkedés a Service Fabric beépülő modul hello az eclipse-ben."
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/21/2016
 ms.author: saysa
-ms.openlocfilehash: 98c1b99972b9ad7a396d72b98e727286f6822e42
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4ba5a28a6282387249a2bd4e62314e891ff04162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-plug-in-for-eclipse-java-application-development"></a>Az Eclipse Service Fabric beépülő moduljának Java alkalmazásfejlesztése
-Az Eclipse a Java-fejlesztők által leggyakrabban használt integrált fejlesztőkörnyezetek (IDE-k) közé tartozik. Ebben a cikkben azt ismertetjük, hogyan állíthatja be az Eclipse fejlesztői környezetet az Azure Service Fabrickel való használathoz. Megtudhatja, hogyan telepítheti a Service Fabric beépülő modult, hogyan hozhat létre Service Fabric-alkalmazást, és hogyan helyezhet üzembe Service Fabric-alkalmazásokat helyi vagy távoli Service Fabric-fürtön az Eclipse Neonon.
+Az eclipse-ben, hello legszélesebb körben használt egyik integrált fejlesztési környezetekben (IDEs) Java-fejlesztők számára. Ez a cikk azt ismerteti hogyan tooset az Eclipse fejlesztői környezetet toowork Azure Service Fabric fel. Ismerje meg, hogyan tooinstall hello Service Fabric beépülő modul, a Service Fabric-alkalmazás létrehozása, és a Service Fabric application tooa helyi vagy távoli Service Fabric-fürt üzembe az Eclipse Neonfény.
 
-## <a name="install-or-update-the-service-fabric-plug-in-in-eclipse-neon"></a>A Service Fabric beépülő modul telepítése vagy frissítése az Eclipse Neonon
-Telepíthet egy Service Fabric beépülő modult az Eclipse-en. A beépülő modul segíthet leegyszerűsíteni a Java-szolgáltatások létrehozásának és üzembe helyezésének folyamatát.
+## <a name="install-or-update-hello-service-fabric-plug-in-in-eclipse-neon"></a>Telepítse vagy frissítse a hello Service Fabric Eclipse Neonfény beépülő modulja
+Telepíthet egy Service Fabric beépülő modult az Eclipse-en. beépülő modul hello megkönnyítheti hello folyamat létrehozása és a Java-szolgáltatások telepítése.
 
-1.  Gondoskodjon róla, hogy az Eclipse Neon és a Buildship legújabb verziója (1.0.17-es vagy újabb) legyen telepítve:
-    -   A telepített összetevők verziójának ellenőrzéséhez az Eclipse Neonban lépjen a **Help** > **Installation Details** (Súgó, Telepítés részletei) területre.
-    -   A Buildship frissítéséért lásd: [Eclipse Buildship: Eclipse Plug-ins for Gradle][buildship-update] (Eclipse Buildship: Eclipse beépülő modulok a Gradle-hez).
-    -   Az Eclipse Neon frissítéseinek kereséséhez és telepítéséhez lépjen a **Help** > **Check for Updates** (Súgó, Frissítések keresése) területre.
+1.  Gondoskodjon arról, hogy Eclipse Neonfény hello legújabb verzióját és hello Buildship legújabb verziójának telepítése (1.0.17 vagy újabb verzió):
+    -   toocheck hello verziók telepített összetevőket, az Eclipse Neonfény, nyissa meg túl**súgó** > **telepítésének részletei**.
+    -   tooupdate Buildship, lásd: [Eclipse Buildship: Eclipse beépülő modulokat Gradle][buildship-update].
+    -   a toocheck és telepítse a frissítéseket az Eclipse Neonfény, nyissa meg túl**súgó** > **frissítések keresése**.
 
-2.  A Service Fabric beépülő modul telepítéséhez az Eclipse Neonban lépjen a **Help** > **Install New Software** (Súgó, Új szoftver telepítése) területre.
-  1.    A **Work with** mezőbe írja be a **http://dl.microsoft.com/eclipse** címet.
+2.  túl nyissa meg a Service Fabric beépülő modulja, Eclipse Neonfény tooinstall hello**súgó** > **új szoftverek telepítése**.
+  1.    A hello **együttműködve** adja meg a **http://dl.microsoft.com/eclipse**.
   2.    Kattintson az **Add** (Hozzáadás) parancsra.
 
          ![Az Eclipse Neon Service Fabric beépülő modulja][sf-eclipse-plugin-install]
-  3.    Válassza ki a Service Fabric beépülő modult, majd kattintson a **Next** (Tovább) gombra.
-  4.    Végezze el a telepítés lépéseit, majd fogadja el a Microsoft szoftverlicenc-szerződését.
+  3.    Válassza ki a hello Service Fabric beépülő modult, és kattintson a **következő**.
+  4.    Hello telepítési lépéseket, és fogadja el a hello Microsoft szoftverlicenc-szerződést.
 
-Ha a Service Fabric beépülő modul már telepítve van, győződjön meg arról, hogy a legújabb verzióval rendelkezik. Az elérhető frissítések kereséséhez lépjen a **Help** > **Installation Details** (Súgó, Telepítés részletei) területre. A telepített beépülő modulok listájában válassza ki a Service Fabric elemet, majd kattintson az **Update** (Frissítés) parancsra. A rendszer telepíti az elérhető frissítéseket.
+Ha már hello Service Fabric beépülő modul telepítve van, győződjön meg arról, hogy rendelkezik-e hello legújabb verziójára. túl nyissa meg az elérhető frissítések toocheck**súgó** > **telepítésének részletei**. A telepített beépülő modulok hello listájában válassza ki a Service Fabric, és kattintson **frissítés**. A rendszer telepíti az elérhető frissítéseket.
 
 > [!NOTE]
-> Ha a Service Fabric beépülő modul telepítése vagy frissítése túl lassú, azt az Eclipse valamelyik beállítása okozhatja. Az Eclipse metaadatokat gyűjt az Eclipse-példányhoz regisztrált frissítési helyek összes módosításáról. Ahhoz, hogy fel tudja gyorsítani a Service Fabric beépülő modul frissítéseinek keresési és telepítési folyamatát, lépjen az **Available Software Sites** (Elérhető szoftverhelyek) területre. Törölje az összes hely jelölőnégyzetét a Service Fabric beépülő modul helyére (http://dl.microsoft.com/eclipse/azure/servicefabric) mutató jelölőnégyzet kivételével.
+> Ha telepítésekor vagy frissítésekor a Service Fabric beépülő modul hello lassú, tooan Eclipse beállítás miatt lehet. Eclipse metaadatok gyűjti az Eclipse-példány regisztrált összes módosítások tooupdate helyeken. hello folyamat keresése és telepítése a Service Fabric beépülő modul frissítés toospeed lépjen túl**elérhető szoftverek helyek**. Törölje az hello jelölőnégyzetet egy mutat, toohello Service Fabric beépülő modul helye (http://dl.microsoft.com/eclipse/azure/servicefabric) hello kivételével minden webhelyére vonatkozóan.
 
 ## <a name="create-a-service-fabric-application-in-eclipse"></a>Service Fabric-alkalmazás létrehozása az Eclipse-ben
 
-1.  Az Eclipse Neonban lépjen a **File** > **New** > **Other** (Fájl, Új, Egyéb) lehetőségre. Válassza a **Service Fabric Project** (Service Fabric-projekt) lehetőséget, majd kattintson a **Next** (Tovább) gombra.
+1.  Az Eclipse Neonfény, nyissa meg túl**fájl** > **új** > **más**. Válassza a **Service Fabric Project** (Service Fabric-projekt) lehetőséget, majd kattintson a **Next** (Tovább) gombra.
 
     ![Service Fabric – Új projekt, 1. oldal][create-application/p1]
 
@@ -54,15 +54,15 @@ Ha a Service Fabric beépülő modul már telepítve van, győződjön meg arró
 
     ![Service Fabric – Új projekt, 2. oldal][create-application/p2]
 
-3.  A sablonok listájában válassza a **Service Template** (Szolgáltatássablon) elemet. Válassza ki a szolgáltatássablon típusát (Actor, Stateless, Container, Guest Binary – aktor, állapot nélküli, tároló, vendég bináris), majd kattintson a **Next** (Tovább) gombra.
+3.  Válassza a sablonok hello lista **Szolgáltatássablon**. Válassza ki a szolgáltatássablon típusát (Actor, Stateless, Container, Guest Binary – aktor, állapot nélküli, tároló, vendég bináris), majd kattintson a **Next** (Tovább) gombra.
 
     ![Service Fabric – Új projekt, 3. oldal][create-application/p3]
 
-4.  Adja meg a szolgáltatás nevét és a szolgáltatás részleteit, majd kattintson a **Finish** (Befejezés) gombra.
+4.  Adja meg a hello szolgáltatás nevét és részletes ismertetése, és kattintson **Befejezés**.
 
     ![Service Fabric – Új projekt, 4. oldal][create-application/p4]
 
-5. Az első Service Fabric-projekt létrehozásakor az **Open Associated Perspective** (Társított perspektíva megnyitása) párbeszédpanelen kattintson a **Yes** (Igen) gombra.
+5. Amikor az első Service Fabric-projektet hoz létre a hello **nyissa meg a társított perspektíva** párbeszédpanel, kattintson a **Igen**.
 
     ![Service Fabric – Új projekt, 5. oldal][create-application/p5]
 
@@ -76,77 +76,77 @@ Ha a Service Fabric beépülő modul már telepítve van, győződjön meg arró
 
     ![Service Fabric – helyi menü][publish/RightClick]
 
-2. Az almenüben válassza ki a kívánt beállítást:
-    -   Az alkalmazás tisztítás nélküli kiépítéséhez kattintson a **Build Application** (Alkalmazás buildelése) parancsra.
-    -   Az alkalmazás tiszta buildjének kiépítéséhez kattintson a **Rebuild Application** (Alkalmazás újrabuildelése) parancsra.
-    -   A kiépített összetevők törléséhez az alkalmazásból kattintson a **Clean Application** (Alkalmazás tisztítása) parancsra.
+2. Hello almenü válassza ki a kívánt hello beállítást:
+    -   toobuild hello alkalmazás nélkül a tisztítás, kattintson a **Build alkalmazás**.
+    -   hello alkalmazás össze toodo kattintson **újraépítése alkalmazás**.
+    -   a beépített összetevőihez tooclean hello alkalmazást kattintson **tiszta alkalmazás**.
 
 3.  Ebből a menüből üzembe helyezheti vagy közzéteheti az alkalmazását, illetve visszavonhatja annak üzembe helyezését:
-    -   A helyi fürtre való üzembe helyezéshez kattintson a **Deploy Application** (Alkalmazás üzembe helyezése) parancsra.
-    -   A **Publish Application** (Alkalmazás közzététele) párbeszédpanelen válasszon egy közzétételi profilt:
+    -   toodeploy tooyour helyi fürthöz, és kattintson a **alkalmazás központi telepítése**.
+    -   A hello **alkalmazás közzététele** párbeszédpanelen jelölje ki a közzétételi profilt:
         -  **Local.json**
         -  **Cloud.json**
 
-     Ezek a JavaScript Object Notation (JSON-) fájlok a helyi vagy a felhőbeli (Azure-) fürthöz való csatlakozáshoz szükséges információk (például csatlakozási végpontok és biztonsági információk) tárolására szolgálnak.
+     A JavaScript Object Notation (JSON) fájlok (például kapcsolati végpontok és biztonsági információk) helyi szükséges tooconnect tooyour vagy Azure-felhőbe információk tárolására.
 
   ![A Service Fabric közzétételi menüje][publish/Publish]
 
-A Service Fabric-alkalmazások üzembe helyezésének másik módszere, ha Eclipse futtatási konfigurációkat használ.
+Egy másik módja toodeploy a Service Fabric-alkalmazás Eclipse használatával fut konfigurációkat.
 
-  1.    Lépjen a **Run** > **Run Configurations** (Futtatás, Konfigurációk futtatása) területre.
-  2.    A **Gradle Project** (Gradle-projekt) területen válassza a **ServiceFabricDeployer** futtatási konfigurációt.
-  3.    A jobb oldali ablaktáblán, az **Arguments** (Argumentumok) lapon a **publishProfile** értékeként válassza a **local** (helyi) vagy a **cloud** (felhő) értéket.  Az alapértelmezett érték a **local** (helyi). Távoli vagy felhőalapú fürtbe végzett üzembe helyezéshez válassza a **cloud** (felhő) értéket.
-  4.    Ahhoz, hogy a megfelelő információk legyenek betöltve a közzétételi profilokba, szükség szerint szerkessze a **Local.json** vagy a **Cloud.json** fájlt. Hozzáadhat vagy frissíthet végpontrészleteket és biztonsági hitelesítő adatokat.
-  5.    Győződjön meg arról, hogy a **Working Directory** (Munkakönyvtár) az üzembe helyezni kívánt alkalmazásra mutat. Az alkalmazás módosításához kattintson a **Workspace** (Munkaterület) gombra, és válassza ki a kívánt alkalmazást.
+  1.    Nyissa meg túl**futtatása** > **konfigurációk futtatása**.
+  2.    A **Gradle projekt**, jelölje be hello **ServiceFabricDeployer** futtassa konfigurációt.
+  3.    Hello jobb oldali ablaktáblában lévő hello **argumentumok** lapon, a **publishProfile**, jelölje be **helyi** vagy **felhő**.  hello alapértelmezett érték a **helyi**. távoli toodeploy tooa vagy felhő fürthöz, jelölje be **felhő**.
+  4.    profilok közzététele, a Szerkesztés, hogy a nem üres-e a megfelelő információkat hello hello tooensure **Local.json** vagy **Cloud.json** igény szerint. Hozzáadhat vagy frissíthet végpontrészleteket és biztonsági hitelesítő adatokat.
+  5.    Győződjön meg arról, hogy **munkakönyvtár** toodeploy kívánt toohello alkalmazás mutat. toochange hello alkalmazás, kattintson a hello **munkaterület** gombra, és válassza ki a kívánt hello alkalmazás.
   6.    Kattintson az **Apply** (Alkalmaz), majd a **Run** (Futtatás) gombra.
 
-Néhány másodpercen belül megtörténik az alkalmazás felépítése és üzembe helyezése. Az üzembe helyezés állapotát a Service Fabric Explorerben követheti nyomon.  
+Néhány másodpercen belül megtörténik az alkalmazás felépítése és üzembe helyezése. A Service Fabric Explorerben hello központi telepítési állapot figyelése  
 
-## <a name="add-a-service-fabric-service-to-your-service-fabric-application"></a>Service Fabric-szolgáltatás hozzáadása a Service Fabric-alkalmazáshoz
+## <a name="add-a-service-fabric-service-tooyour-service-fabric-application"></a>A Service Fabric-szolgáltatás tooyour Service Fabric-alkalmazás hozzáadása
 
-Ha Service Fabric-szolgáltatást szeretne hozzáadni egy meglévő Service Fabric-alkalmazáshoz, végezze el a következő lépéseket:
+a Service Fabric szolgáltatás tooan meglévő Service Fabric-alkalmazás, tooadd hello lépéseket követve:
 
-1.  Kattintson a jobb gombbal a projektre, amelyhez hozzá szeretne adni egy szolgáltatást, majd kattintson a **Service Fabric** elemre.
+1.  Kattintson a jobb gombbal hello projekt tooadd szeretné, hogy a szolgáltatás számára, és kattintson a **Service Fabric**.
 
     ![Service Fabric – Szolgáltatás hozzáadása, 1. oldal][add-service/p1]
 
-2.  Kattintson az **Add Service Fabric Service** (Service Fabric-szolgáltatás hozzáadása) parancsra, és végezze el a szolgáltatás hozzáadásának lépéseit.
-3.  Válassza ki a projekthez hozzáadni kívánt szolgáltatássablont, majd kattintson a **Next** (Tovább) gombra.
+2.  Kattintson a **Fabric-szolgáltatás hozzáadása**, és a lépéseket tooadd készletét teljes hello toohello szolgáltatásprojektet.
+3.  Jelölje be hello Szolgáltatássablon tooadd tooyour projektet, és kattintson a **következő**.
 
     ![Service Fabric – Szolgáltatás hozzáadása, 2. oldal][add-service/p2]
 
-4.  Adja meg a szolgáltatás nevét (és a többi szükséges adatot), majd kattintson az **Add Service** (Szolgáltatás hozzáadása) gombra.  
+4.  Írjon be hello szolgáltatás neve (és más részleteket, igény szerint), és kattintson a hello **hozzáadása szolgáltatás** gombra.  
 
     ![Service Fabric – Szolgáltatás hozzáadása, 3. oldal][add-service/p3]
 
-5.  A szolgáltatás hozzáadása után a teljes projektstruktúra a következőhöz hasonlóan néz ki:
+5.  Hello szolgáltatás hozzáadása után a projekt általános struktúra a következő projekt hasonló toohello néz ki:
 
     ![Service Fabric – Szolgáltatás hozzáadása, 4. oldal][add-service/p4]
 
 ## <a name="edit-manifest-versions-of-your-service-fabric-java-application"></a>A Service Fabric Java-alkalmazás jegyzékverzióinak szerkesztése
 
-Jegyzékverziók szerkesztéséhez kattintson jobb gombbal a projektre, majd a legördülő menüből válassza a **Service Fabric** alatt az **Edit Manifest Versions...** (Jegyzékverziók szerkesztése) pontot. A varázslóval frissítheti az alkalmazásjegyzék, szolgáltatásjegyzék, valamint a **Code** (Kód-), **Config** (Konfigurációs-) és **Data** (Adat-) csomagok verzióit.
+tooedit jegyzék verziók, kattintson jobb gombbal a hello projektet, nyissa meg túl**Service Fabric** válassza **Manifest verziók szerkesztése...**  hello menü legördülő menüből. Hello varázslóban, frissítheti az hello jegyzék a jegyzék, szolgáltatás alkalmazásjegyzék és verziók hello a **kód**, **Config** és **adatok** csomagok.
 
-Ha bejelöli az **Automatically update application and service versions** (Alkalmazás- és szolgáltatás-verziók automatikus frissítése) lehetőséget, akkor a verziófrissítéskor a jegyzékverziók is automatikusan frissülnek. Ha például előre bejelöli a jelölőnégyzetet, majd 0.0.0-ról 0.0.1-re frissíti a **Code** verzióját és a **Finish** gombra kattint, akkor a szolgáltatásjegyzék és alkalmazásjegyzék verziója is automatikusan 0.0.1-re frissül.
+Ha hello beállítást **automatikus frissítése az alkalmazás és szolgáltatás verziók** és majd frissítés, majd hello jegyzék verziók automatikusan frissül. például toogive, kiválaszthatja hello jelölőnégyzetet, majd a frissítés hello verziójának **kód** 0.0.0 verziójában too0.0.1, majd kattintson a **Befejezés**, majd szolgáltatás a fürtjegyzék verziója és az alkalmazás jegyzékében verzió too0.0.1 automatikusan frissítve lesz.
 
 ## <a name="upgrade-your-service-fabric-java-application"></a>A Service Fabric Java-alkalmazásának frissítése
 
-Frissítési forgatókönyv esetén tegyük fel, hogy az **App1** projektet hozta létre a Service Fabric beépülő modullal az Eclipse-ben. A projektet a beépülő modullal helyezte üzembe a **fabric:/App1Application** nevű alkalmazás létrehozásához. Az alkalmazás típusa **App1AppicationType**, a verziója pedig 1.0. A rendelkezésre állás megszakítása nélkül szeretné frissíteni az alkalmazást.
+A frissítési esetben mondja ki a létrehozott hello **App1** projektben hello Service Fabric az Eclipse beépülő modul segítségével. Telepítette azt beépülő modul toocreate hello segítségével nevű alkalmazást **fabric: / App1Application**. hello alkalmazástípus **App1AppicationType**, és a hello alkalmazás verziója 1.0. Most szeretné tooupgrade az alkalmazás rendelkezésre állásának megszakítása nélkül.
 
-Először végezzen módosítást az alkalmazáson, majd építse újra a módosított szolgáltatást. Frissítse a módosított szolgáltatás jegyzékfájlját (ServiceManifest.xml) a szolgáltatás frissített verzióival (és a megfelelő Code, Config vagy Data értékkel). Módosítsa az alkalmazás jegyzékfájlját is (ApplicationManifest.xml) az alkalmazás frissített verziószámával és a módosított szolgáltatással.  
+Először a beállítások módosításait tooyour alkalmazás, és majd újraépítése a módosított hello szolgáltatást. Frissítés hello szolgáltatás jegyzékfájl (ServiceManifest.xml) módosított frissítése hello verzióival hello szolgáltatás (és kód, konfigurációs vagy vonatkozó adatokat). Is módosítsa a hello alkalmazás jegyzékfájlja (ApplicationManifest.xml) frissítése hello verziószámú hello alkalmazáshoz, és hello módosított szolgáltatás.  
 
-Ha az Eclipse Neonnal szeretné frissíteni az alkalmazást, létrehozhat egy duplikált futtatási konfigurációs profilt, amelyet aztán szükség szerint az alkalmazás frissítésére használhat.
+tooupgrade az alkalmazás Eclipse Neonfény használatával, hozhat létre egy duplikált futtatási konfigurációs profilt. Ezt követően tooupgrade használni az alkalmazást igény szerint.
 
-1.  Lépjen a **Run** > **Run Configurations** (Futtatás, Konfigurációk futtatása) területre. A bal oldali ablaktáblában kattintson a **Gradle Project** (Gradle-projekt) bal oldalán található kis nyílra.
+1.  Nyissa meg túl**futtatása** > **konfigurációk futtatása**. Hello bal oldali ablaktáblában kattintson a hello kis nyílra toohello bal oldalán **Gradle projekt**.
 2.  Kattintson a jobb gombbal a **ServiceFabricDeployer** elemre, majd válassza a **Duplicate** (Megkettőzés) parancsot. Adjon egy új nevet a konfigurációnak, például **ServiceFabricUpgrader**.
-3.  A jobb oldali ablaktáblán, az **Arguments** (Argumentumok) lapon módosítsa a **-Pconfig='deploy'** értéket **-Pconfig='upgrade'** értékre, majd kattintson az **Apply** (Alkalmaz) gombra.
+3.  Hello jobb oldali panelen, a hello **argumentumok** lapján módosítsa **- Pconfig = "telepítése"** túl**- Pconfig = a "frissítés"**, és kattintson a **alkalmaz**.
 
-Ez a folyamat olyan futtatási konfigurációs profilt hoz létre és ment el, amellyel bármikor frissítheti az alkalmazást. Az alkalmazás jegyzékfájljából a legújabb frissített alkalmazástípus-verziót is lekéri.
+Ez a folyamat hoz létre, és futtassa a konfigurációs profil mentése használhat bármilyen idő tooupgrade az alkalmazást. Azt is lekérése hello legújabb frissített alkalmazástípus verziója hello Alkalmazásjegyzék-fájl.
 
-Az alkalmazás frissítése eltarthat néhány percig. Az alkalmazás frissítésének folyamatát a Service Fabric Explorerben követheti nyomon.
+hello alkalmazás frissítése néhány percet vesz igénybe. A Service Fabric Explorerben hello az alkalmazásfrissítés figyelheti.
 
-## <a name="migrating-old-service-fabric-java-applications-to-be-used-with-maven"></a>A Mavennel használni kívánt régi Service Fabric Java-alkalmazások migrálása
-Nemrégiben áthelyeztük a Service Fabric Java-kódtárakat a Service Fabric Java SDK-ból a Mavenen futó adattárba. Az Eclipse-szel létrehozott új alkalmazások a legfrissebb projekteket hozzák létre (amelyek képesek együttműködni a Mavennel), a meglévő állapotmentes vagy aktor Service Fabric Java-alkalmazások pedig, amelyek korábban a Service Fabric Java SDK-t használták, frissíthetők a Mavenben található Service Fabric Java-függőségek használatára. Kövesse az [itt](service-fabric-migrate-old-javaapp-to-use-maven.md) felsorolt lépéseket, ha biztosítani kívánja, hogy a régebbi alkalmazásaik együttműködjenek a Mavennel.
+## <a name="migrating-old-service-fabric-java-applications-toobe-used-with-maven"></a>Service Fabric Java-alkalmazások régi toobe Maven használt áttelepítése
+A Service Fabric Java SDK tooMaven tárházat nemrég került át Service Fabric Java szalagtárak. Amíg hello használata az eclipse-ben létrehozhat új alkalmazások legújabb frissített projektek (Ez az a Maven képes toowork) hoz létre, frissítheti a meglévő Service Fabric állapot nélküli vagy szereplő Java-alkalmazások, amelyek hello Service Fabric Java SDK használata korábbi, toouse hello Service Fabric Java függőségek a Mavenben. Kövesse az említett hello lépéseket [Itt](service-fabric-migrate-old-javaapp-to-use-maven.md) tooensure Maven együttműködve biztosítja a régebbi alkalmazásokat.
 
 <!-- Images -->
 

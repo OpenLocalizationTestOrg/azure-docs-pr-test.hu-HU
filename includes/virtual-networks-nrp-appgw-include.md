@@ -1,14 +1,14 @@
 ## <a name="application-gateway"></a>Application Gateway
-Alkalmazásátjáró egy Azure által kezelt HTTP terheléselosztási réteg 7 terheléselosztás megoldást biztosít. Alkalmazás terheléselosztás lehetővé teszi, hogy az a HTTP-alapú hálózati forgalom-útválasztási szabályok használatát. 
+Alkalmazásátjáró egy Azure által kezelt HTTP terheléselosztási réteg 7 terheléselosztás megoldást biztosít. Alkalmazás terheléselosztás engedélyezése hello útválasztási szabályokat a HTTP-alapú hálózati forgalma. 
 <BR>
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| **backendaddresspools készletek** |A háttér-kiszolgálók IP-címek listáját. A felsorolt IP-címek vagy a virtuális hálózati alhálózat kell tartoznia, vagy egy nyilvános IP-cím/VIP vagy a magánhálózati IP-címe legyen. |
-| **backendHttpSettingsCollection** |Minden készlethez beállítások, például a portot, a protokoll és a cookie-alapú kapcsolat van. Ezek a beállítások a készletben vannak kötve, és a készletben lévő összes kiszolgálót is vonatkozik |
-| **frontendports portok** |Ez a port nem a nyilvános portot nyit meg az Alkalmazásátjáró. Forgalom találatok ezt a portot, és az egyik a háttérkiszolgálók átirányítja beolvasása |
-| **httpListeners** |Figyelő rendelkezik egy elülső rétegbeli portot, a protokollt (Http vagy Https, amelyek kis-és nagybetűket), és az SSL-tanúsítvány neve (ha az SSL beállításának kiszervezése) |
-| **requestroutingrules szabályok** |A szabály a figyelőt van kötve, és a háttér kiszolgálókészlet befejezését, majd határozza meg, amely vissza end kiszolgálókészlet kell irányítani a forgalmat. Jelenleg csak a ciklikus multiplexelés szerint működik |
+| **backendaddresspools készletek** |IP-címek hello háttér kiszolgálók hello listáját. hello IP-címek felsorolt toohello virtuális hálózati alhálózat vagy kell tartoznia, vagy egy nyilvános IP-cím/VIP vagy a magánhálózati IP-címe legyen. |
+| **backendHttpSettingsCollection** |Minden készlethez beállítások, például a portot, a protokoll és a cookie-alapú kapcsolat van. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók |
+| **frontendports portok** |Ez a port nem hello nyilvános portot nyit meg hello Alkalmazásátjáró. Forgalom találatok ezt a portot, és lekérdezi átirányítja tooone hello háttér-kiszolgálók |
+| **httpListeners** |Figyelő rendelkezik egy elülső rétegbeli portot, a protokollt (Http vagy Https, amelyek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának kiszervezése) |
+| **requestroutingrules szabályok** |hello szabály hello figyelő és hello server háttérkészlethez van kötve, és határozza meg, melyik háttér címkészletet hello forgalom legyenek irányítva. Jelenleg csak a ciklikus multiplexelés szerint működik |
 
 Példa: egy alkalmazás átjáró Json-sablont:
 
@@ -19,14 +19,14 @@ Példa: egy alkalmazás átjáró Json-sablont:
         "location": {
           "type": "string",
           "metadata": {
-            "description": "Location to deploy to"
+            "description": "Location toodeploy to"
           }
         },
         "addressPrefix": {
           "type": "string",
           "defaultValue": "10.0.0.0/16",
           "metadata": {
-            "description": "Address prefix for the Virtual Network"
+            "description": "Address prefix for hello Virtual Network"
           }
         },
         "subnetPrefix": {

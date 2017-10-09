@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure AD-alapú hitelesítés az Azure portál használatával |} Microsoft Docs"
-description: "Útmutató: Azure Active Directory (Azure AD-) hitelesítést használ az Azure Media Services API eléréséhez használja az Azure-portálon."
+title: "aaaGet használatába az Azure AD-alapú hitelesítés hello Azure-portál használatával |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Azure portál tooaccess Azure Active Directory (Azure AD) hitelesítési tooconsume hello Azure Media Services API."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -13,40 +13,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: juliako
-ms.openlocfilehash: 829e0759f8aeb8758f6b8895b88b60b66ffb22ed
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 497ad1806b3fd1262802adefb6e12b65ee9f2d61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-ad-authentication-by-using-the-azure-portal"></a>Ismerkedés az Azure AD-alapú hitelesítés az Azure portál használatával
+# <a name="get-started-with-azure-ad-authentication-by-using-hello-azure-portal"></a>Ismerkedés az Azure AD-alapú hitelesítés hello Azure-portál használatával
 
-Útmutató az Azure portál Azure Active Directory (Azure AD-) hitelesítés az Azure Media Services API eléréséhez elérésére használhat.
+Ismerje meg, hogyan toouse hello Azure portál tooaccess Azure Active Directory (Azure AD) hitelesítési tooaccess hello Azure Media Services API.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 - Egy Azure-fiók. Ha nincs fiókja, kezdje egy [Azure ingyenes próbát](https://azure.microsoft.com/pricing/free-trial/). 
-- Egy Media Services-fiók. További információkért lásd: [Azure Media Services-fiók létrehozása az Azure-portál használatával](media-services-portal-create-account.md).
-- Győződjön meg arról, hogy tekintse át a [eléréséhez Azure Media Services API-t az Azure AD hitelesítési áttekintés](media-services-use-aad-auth-to-access-ams-api.md). 
+- Egy Media Services-fiók. További információkért lásd: [Azure Media Services-fiók létrehozása hello Azure-portál használatával](media-services-portal-create-account.md).
+- Ellenőrizze, hogy tekintse át a hello [eléréséhez Azure Media Services API-t az Azure AD hitelesítési áttekintés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 Az Azure AD-alapú hitelesítés használatakor az Azure Media Services hitelesítési két lehetőség közül választhat:
 
-- **Felhasználó hitelesítése**. Hitelesítés a személy, aki használja az alkalmazás interakciót Media Services-erőforrásokkal. Az interaktív alkalmazás először kell kérni a felhasználót a hitelesítő adatokat. Példa: egy kódolási feladatok figyelése, vagy live streaming jogosult felhasználók által használt felügyeleti konzol alkalmazást. 
+- **Felhasználó hitelesítése**. Egy Media Services-erőforrásokkal hello app toointeract használó felhasználó hitelesítéséhez. hello interaktív alkalmazás először kell hello felhasználók hitelesítő adatainak kéréséhez. Például egy engedéllyel rendelkező felhasználók toomonitor kódolási feladatok által használt felügyeleti konzol alkalmazás vagy élő adatfolyam. 
 - **Szolgáltatás egyszerű hitelesítési**. A szolgáltatás hitelesítéséhez. Ezt a hitelesítési módszert gyakran használó alkalmazások olyan alkalmazások, amelyeket démon szolgáltatások, a középső rétegbeli szolgáltatások vagy az ütemezett feladatok futtatása: webalkalmazások, függvény alkalmazások, a logic apps, API-k vagy egy mikroszolgáltatási.
 
 > [!IMPORTANT]
-> A Media Services jelenleg az Azure hozzáférés-vezérlés szolgáltatásmodell-hitelesítés. Azonban a 2018. június 1 elavulttá válik hozzáférés-vezérlés engedélyt. Azt javasoljuk, hogy telepítse át az Azure AD hitelesítési modell lehető legrövidebb időn belül.
+> Jelenleg a Media Services hello Azure Access Control service hitelesítési modellt támogatja. Azonban a 2018. június 1 elavulttá válik hozzáférés-vezérlés engedélyt. Azt javasoljuk, hogy az áttelepített toohello az Azure AD hitelesítési modell lehető legrövidebb időn belül.
 
-## <a name="select-the-authentication-method"></a>A hitelesítési módszer kiválasztása
+## <a name="select-hello-authentication-method"></a>Hello hitelesítési módszer kiválasztása
 
-1. Az a [Azure-portálon](https://portal.azure.com/), válassza ki a Media Services-fiókját.
-2. Válassza ki a Kapcsolódás a Media Services API.
+1. A hello [Azure-portálon](https://portal.azure.com/), válassza ki a Media Services-fiókját.
+2. Adja meg, hogyan tooconnect toohello Media Services API.
 
     ![Válassza ki a csatlakozási módszer lapja](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started01.png)
 
 ## <a name="user-authentication"></a>Felhasználóhitelesítés
 
-A Media Services API segítségével csatlakozni a felhasználói hitelesítést választja, az ügyfélalkalmazás van szüksége, kérje az Azure AD jogkivonatban az alábbi paraméterekkel rendelkezik:  
+tooconnect toohello Media Services API használatával hello felhasználói hitelesítést választja, hello ügyfélalkalmazás kell toorequest az Azure AD jogkivonatban hello rendelkezik a következő paramétereket:  
 
 * Azure AD-bérlő végpont
 * A Media Services erőforrás URI azonosítója
@@ -54,60 +54,60 @@ A Media Services API segítségével csatlakozni a felhasználói hitelesítést
 * Media Services (natív) alkalmazás átirányítási URI 
 * Erőforrás URI azonosítója a többi Media Services szolgáltatásokhoz
 
-Kaphat az értékeket a paraméterek a **Media Services API és a felhasználói hitelesítés** lap. 
+Ezek a paraméterek a hello kaphat hello értékek **Media Services API és a felhasználói hitelesítés** lap. 
 
 ![Csatlakozás a felhasználói hitelesítés lap](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started02.png)
 
-A Media Services Microsoft .NET SDK használatával kapcsolódik a Media Services API-t, ha a szükséges értékeket rendelkezésére álljanak a SDK részeként. További információkért lásd: [elérni az Azure Media Services API a .NET hitelesítés használata az Azure AD](media-services-dotnet-get-started-with-aad.md).
+Ha toohello Media Services API hello Media Services Microsoft .NET SDK használatával, a hello szükséges értékei elérhető tooyou hello SDK részeként. További információkért lásd: [használja az Azure AD hitelesítési tooaccess hello Azure Media Services API a .NET](media-services-dotnet-get-started-with-aad.md).
 
-Ha nem használja a Media Services .NET SDK ügyfél, manuálisan kell létrehoznia az Azure AD-jogkivonatkérelem a korábban tárgyalt paraméterek használatával. További információkért lásd: [hogyan használható az Azure AD Authentication Library az Azure AD-token beszerzése](../active-directory/develop/active-directory-authentication-libraries.md).
+Ha ügyfél-hello Media Services .NET SDK nem használ, manuálisan kell létrehoznia az Azure AD-jogkivonatkérelem taglaltak hello paraméterek használatával. További információkért lásd: [hogyan toouse hello Azure AD Authentication Library tooget hello Azure AD-jogkivonat](../active-directory/develop/active-directory-authentication-libraries.md).
 
 ## <a name="service-principal-authentication"></a>Egyszerű szolgáltatásnév hitelesítése
 
-Csatlakozás a Media Services API a szolgáltatás egyszerű lehetőséget, a középső rétegbeli (webes API-t vagy webalkalmazás) kell kérjen egy Azure AD-tokent, amely a következő paraméterekkel rendelkezik:  
+tooconnect toohello Media Services API használatával hello szolgáltatás egyszerű beállítás, a középső rétegbeli (webes API-t vagy webalkalmazás) kell toorequest az Azure AD jogkivonatban hello rendelkezik a következő paramétereket:  
 
 * Azure AD-bérlő végpont
 * A Media Services erőforrás URI azonosítója 
 * Erőforrás URI azonosítója a többi Media Services szolgáltatásokhoz
-* Az Azure AD alkalmazás értékeket: a **ügyfél-azonosító** és **ügyfélkulcs**
+* Az Azure AD alkalmazás értékek: hello **ügyfél-azonosító** és **ügyfélkulcs**
 
-Kaphat az értékeket a paraméterek a **kapcsolódás a Media Services API-t a szolgáltatás egyszerű** lap. Ezen a lapon hozzon létre egy új Azure AD-alkalmazást, vagy válasszon ki egy meglévőt. Miután kiválasztotta az Azure AD-alkalmazáshoz, az ügyfél-azonosítót (Alkalmazásazonosító), és az ügyfél titkos (kulcs) értékek generálásához. 
+Ezek a paraméterek a hello kaphat hello értékek **tooMedia szolgáltatások API kapcsolattartásnak szolgáltatás egyszerű** lap. Használja az oldal toocreate egy új Azure AD-alkalmazást vagy tooselect egy meglévőt. Miután kiválasztotta a hello Azure AD-alkalmazáshoz, hello ügyfél-azonosítót (Alkalmazásazonosító), és hello ügyfél titkos (kulcs) értékek generálásához. 
 
 ![Csatlakozás szolgáltatás egyszerű lap](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started04.png)
 
-Ha a **egyszerű** panel nyílik meg, az első Azure AD-alkalmazás, amely megfelel a következő elemet:
+Ha hello **egyszerű** panel nyílik meg, a kiválasztott hello első Azure AD alkalmazás, amely megfelel a következő feltételek hello:
 
 - Egy regisztrált Azure AD-alkalmazást.
-- A fiók közreműködői vagy Owner Role-Based hozzáférés-vezérlés engedéllyel rendelkezik.
+- Hello fiók közreműködői vagy Owner Role-Based hozzáférés-vezérlés engedéllyel rendelkezik.
 
-Miután hoz létre, vagy válasszon ki egy Azure AD-alkalmazást, hozhat létre, és másolja át egy ügyfélkulcsot (kulcs) és az ügyfél-azonosító (Alkalmazásazonosító). A titkos ügyfélkulcs és ügyfél-azonosító eléréséhez az ebben a forgatókönyvben token szükségesek.
+Miután hoz létre, vagy válasszon ki egy Azure AD-alkalmazást, hozzon létre és másolja át egy ügyfélkulcsot (kulcs), és hello ügyfél-azonosító (Alkalmazásazonosító). hello ügyfél titkos kulcs és az ügyfél-azonosító szükséges tooget hello hozzáférési jogkivonat ebben a forgatókönyvben is.
 
-Ha nem rendelkezik engedélyekkel az Azure AD-alkalmazásai létrehozására a tartományban, a panel az Azure AD alkalmazás vezérlők nem láthatók, és megjelenik egy figyelmeztető üzenet.
+Ha nem rendelkezik engedélyekkel toocreate Azure AD alkalmazásaiban abban a tartományban, hello Azure AD alkalmazás vezérlők hello panelről nem láthatók, és megjelenik egy figyelmeztető üzenet.
 
-Ha a Media Services .NET SDK használatával kapcsolódik a Media Services API-t, tekintse meg [elérni az Azure Media Services API a .NET hitelesítés használata az Azure AD](media-services-dotnet-get-started-with-aad.md).
+Ha toohello Media Services API hello Media Services .NET SDK használatával, lásd: [használja az Azure AD hitelesítési tooaccess hello Azure Media Services API a .NET](media-services-dotnet-get-started-with-aad.md).
 
-Ha nem használ a Media Services .NET SDK ügyfél, manuálisan kell létrehoznia egy Azure AD-jogkivonatkérelem, a korábban tárgyalt paraméterek használatával. További információkért lásd: [hogyan használható az Azure AD Authentication Library az Azure AD-token beszerzése](../active-directory/develop/active-directory-authentication-libraries.md).
+Ha nem használ hello Media Services .NET ügyfél SDK, manuálisan kell létrehoznia egy Azure AD-jogkivonatkérelem, azt a korábbiakban említettük hello paraméterek használatával. További információkért lásd: [hogyan toouse hello Azure AD Authentication Library tooget hello Azure AD-jogkivonat](../active-directory/develop/active-directory-authentication-libraries.md).
 
-### <a name="get-the-client-id-and-client-secret"></a>Az ügyfél-azonosító és a titkos ügyfélkódot beolvasása
+### <a name="get-hello-client-id-and-client-secret"></a>Hello ügyfél azonosító és az ügyfél titkos kulcs beszerzése
 
-Válasszon ki egy meglévő Azure AD-alkalmazást, vagy hozzon létre egy újat választja, a következő gombok jelennek meg:
+Miután kiválasztott egy meglévő Azure AD-alkalmazáshoz vagy select hello beállítás toocreate egy új, a következő gombok hello jelennek meg:
 
 ![Engedélyek és kezelés alkalmazás gomb kezelése](./media/media-services-portal-get-started-with-aad/media-services-portal-manage.png)
 
-Az Azure AD alkalmazás panel megnyitásához kattintson **alkalmazás kezeléséhez**. Az a **alkalmazás kezeléséhez** panelen kaphat az alkalmazás ügyfél-azonosító (Alkalmazásazonosító). Egy ügyfélkulcsot (kulcs) létrehozásához, jelölje be **kulcsok**.
+tooopen hello Azure AD-alkalmazás paneljén kattintson **alkalmazás kezeléséhez**. A hello **alkalmazás kezeléséhez** panelen kaphat a hello alkalmazás ügyfél-Azonosítóját (Alkalmazásazonosító). a titkos ügyfélkulcsot (kulcs), jelölje be toogenerate **kulcsok**.
 
 ![Alkalmazás panel kulcsok beállítás kezelése](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started06.png) 
 
-### <a name="manage-permissions-and-the-application"></a>Engedélyek és az alkalmazás kezelése
+### <a name="manage-permissions-and-hello-application"></a>Engedélyek és hello alkalmazás kezelése
 
-Miután kiválasztotta az Azure AD-alkalmazás, kezelheti az alkalmazás és az engedélyek. Más alkalmazások elérése az Azure AD alkalmazás beállításához kattintson **kezeli az engedélyeket**. A fájlkezelési feladatok, például megváltoztatni a kulcsok és a válasz URL-címek, illetve módosíthatja az alkalmazás jegyzékében, kattintson a **alkalmazás kezeléséhez**.
+Miután kiválasztotta a hello Azure AD-alkalmazást, kezelheti a hello alkalmazás és az engedélyek. tooset mentése az Azure AD alkalmazás tooaccess más alkalmazásokat, kattintson a **kezeli az engedélyeket**. A felügyeleti feladatokat, például megváltoztatni a kulcsok és a válasz URL-címek vagy tooedit hello alkalmazás jegyzékfájlja, kattintson a **alkalmazás kezeléséhez**.
 
-### <a name="edit-the-apps-settings-or-manifest"></a>Az alkalmazás beállításainak módosítása vagy manifest
+### <a name="edit-hello-apps-settings-or-manifest"></a>Hello alkalmazás beállításait vagy manifest
 
-Az alkalmazás beállításai vagy jegyzékfájl szerkesztéséhez kattintson **alkalmazás kezeléséhez**.
+tooedit hello alkalmazás beállításai vagy jegyzékfájl, kattintson a **alkalmazás kezeléséhez**.
 
 ![Alkalmazások lap kezelése](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started05.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ismerkedés a [fájlok feltöltése a fiókjához](media-services-portal-upload-files.md).
+Ismerkedés a [fájlok feltöltése a tooyour fiók](media-services-portal-upload-files.md).

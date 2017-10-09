@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Blob storage endpoint az egyéni tartománynév beállítása |} Microsoft Docs"
-description: "Az Azure portál segítségével a saját kanonikus név (CNAME) van leképezve a Blob storage endpoint az Azure Storage-fiók."
+title: "egy egyéni tartománynevet a Azure Blob storage-végponthoz aaaConfigure |} Microsoft Docs"
+description: "Az Azure portál toomap hello saját kanonikus név (CNAME) toohello Blob storage endpoint használja egy Azure Storage-fiókot."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: marsma
-ms.openlocfilehash: 67a197ffa04d284e9251d7f79b36a86d03637fd9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: bfee6d28039f389ba2e2ed6b28d43894b6e15469
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-custom-domain-name-for-your-blob-storage-endpoint"></a>Egyéni tartományév konfigurálása a Blob Storage-végponthoz
 
-A blob az Azure storage-fiók adataihoz fér hozzá az egyéni tartománynév konfigurálása Az alapértelmezett végpont Blob Storage `<storage-account-name>.blob.core.windows.net`. Ha leképez egy egyéni tartomány és altartomány például **www.contoso.com** a tárolási blob végpontja fiók számára, a felhasználók is tud majd, hogy a tartomány a tárfiókban lévő Blobadatok eléréséhez.
+A blob az Azure storage-fiók adataihoz fér hozzá az egyéni tartománynév konfigurálása alapértelmezett végpont hello a Blob Storage `<storage-account-name>.blob.core.windows.net`. Ha leképez egy egyéni tartomány és altartomány például **www.contoso.com** toohello blob végpont a tárfiók, a felhasználók ezután hozzáférhetnek blob-, hogy a tartomány a tárfiókban lévő adatokat.
 
 > [!IMPORTANT]
-> Az Azure Storage nem még natív módon támogatja a HTTPS az egyéni tartományokat. Jelenleg is [használja az Azure CDN blobokhoz való hozzáférést az egyéni tartomány HTTPS-KAPCSOLATON keresztül](storage-https-custom-domain-cdn.md).
+> Az Azure Storage nem még natív módon támogatja a HTTPS az egyéni tartományokat. Jelenleg is [hello Azure CDN tooaccess blobok használja az egyéni tartomány HTTPS-KAPCSOLATON keresztül](storage-https-custom-domain-cdn.md).
 >
 
-Az alábbi táblázat néhány minta URL-címéből nevű tárfiók lévő Blobadatok **mystorageaccount**. Az egyéni tartomány regisztrálva van a tárfiók **www.contoso.com**:
+hello következő táblázatban a blob adatok nevű tárfiók néhány minta URL-címek **mystorageaccount**. az egyéni tartomány hello regisztrálva hello storage-fiók **www.contoso.com**:
 
 | Erőforrás típusa | Alapértelmezett URL-címe | Az egyéni tartomány URL-címe |
 | --- | --- | --- |
@@ -38,87 +38,87 @@ Az alábbi táblázat néhány minta URL-címéből nevű tárfiók lévő Bloba
 
 ## <a name="direct-vs-intermediary-domain-mapping"></a>Közvetlen és köztes tartomány leképezése
 
-Az egyéni tartomány mutasson a tárfiók a blob végpontja két módja van: közvetlen CNAME mapping, és használja a *asverify* közvetítő altartomány.
+Az egyéni tartomány toohello blob végpont a tárfiók két módon toopoint nincsenek: közvetlen leképezése és hello használata CNAME *asverify* közvetítő altartomány.
 
 ### <a name="direct-cname-mapping"></a>Közvetlen CNAME-leképezés
 
-Az első és a legegyszerűbb, metódus, amely leképezhető az egyéni tartomány és altartomány közvetlenül a blob végpontja kanonikus név (CNAME) rekord létrehozásához. Egy olyan CNAME rekordot az egy tartomány neve rendszer (DNS) szolgáltatása a céltartományra a forrástartomány van leképezve. Ebben az esetben a forrástartomány a saját egyéni tartomány és altartomány, például *www.contoso.com*. A célként megadott tartomány pedig a Blob-szolgáltatásvégpont, például *mystorageaccount.blob.core.windows.net*.
+hello első, és a legegyszerűbb, metódus, amely hozzárendeli az egyéni tartomány és altartomány közvetlen toohello blob-végpont kanonikus név (CNAME) rekord toocreate. Egy olyan CNAME rekordot az egy tartomány nevét (DNS) rendszer szolgáltatása rendeli hozzá a forrás tartományi tooa cél tartományhoz. Ebben az esetben hello forrástartomány a saját egyéni tartomány és altartomány, például *www.contoso.com*. hello cél tartománya a Blob-szolgáltatásvégpont, például  *mystorageaccount.BLOB.Core.Windows.NET*.
 
-A közvetlen módszer tárgyalja [regisztrálni az egyéni tartománynév](#register-a-custom-domain).
+hello közvetlen módszer tárgyalja [regisztrálni az egyéni tartománynév](#register-a-custom-domain).
 
 ### <a name="intermediary-mapping-with-asverify"></a>A köztes leképezési *asverify*
 
-A második módszer is használja a CNAME-rekordot, de először alkalmazza az állásidő elkerülése érdekében az Azure-ban felismerhető különleges altartomány: **asverify**.
+hello második módszer is használja a CNAME-rekordot, de először alkalmazza a ismeri fel az Azure tooavoid állásidő különleges altartomány: **asverify**.
 
-Az egyéni tartomány hozzárendelését a blob végponthoz rövid idő alatt a tartomány állásidő is eredményezhettek, miközben regisztrál vele a [Azure-portálon](https://portal.azure.com). Ha az egyéni tartomány jelenleg támogat az alkalmazás a szolgáltatásiszint-szerződés (SLA), amelyhez az állásidő, akkor is használhatja az Azure *asverify* altartomány egy köztes regisztrációs lépés. Ez a köztes lépés biztosítja, hogy a felhasználók csak a tartomány eléréséhez, amíg a DNS-hozzárendelése kerül sor.
+hello folyamat leképezésének az egyéni tartomány tooa blob végpont eredményezhet hello tartomány állásidő rövid idő alatt közben próbál regisztrálni hello [Azure-portálon](https://portal.azure.com). Ha az egyéni tartomány jelenleg támogat az alkalmazás a szolgáltatásiszint-szerződés (SLA), amelyhez az állásidő, akkor használhatja a hello Azure *asverify* altartomány egy köztes regisztrációs lépés. Ez a köztes lépés biztosítja a felhasználók addig, a tartomány képes tooaccess amíg hello Rendelje hozzá kerül sor.
 
-A köztes metódus tárgyalja [regisztráljon egy egyéni tartomány a *asverify* altartomány](#register-a-custom-domain-using-the-asverify-subdomain).
+hello közvetítő metódus tárgyalja [hello segítségével egyéni tartományt regisztrálása *asverify* altartomány](#register-a-custom-domain-using-the-asverify-subdomain).
 
 ## <a name="register-a-custom-domain"></a>Az egyéni tartománynév regisztrálása
-Ez az eljárás segítségével regisztrálja az egyéni tartomány, ha kérdése nincs folyamatban röviden nem érhető el, hogy a felhasználók tartománnyal kapcsolatos információk, vagy ha az egyéni tartomány jelenleg nem üzemeltet egy alkalmazást.
+Használja az eljárás tooregister az egyéni tartomány Ha kérdése nincs folyamatban röviden nem érhető el tooyour felhasználók hello tartománnyal kapcsolatos információk, vagy ha az egyéni tartomány jelenleg nem üzemeltet egy alkalmazást.
 
-Ha az egyéni tartomány jelenleg támogat, amelyek nem rendelkeznek leállási kérelmet, hajtsa végre az ismertetett módon [regisztráljon egy egyéni tartomány a *asverify* altartomány](#register-a-custom-domain-using-the-asverify-subdomain).
+Ha az egyéni tartomány jelenleg támogat, amelyek nem rendelkeznek leállási kérelmet, hajtsa végre a hello eljárásban ismertetett [hello segítségével egyéni tartományt regisztrálása *asverify* altartomány](#register-a-custom-domain-using-the-asverify-subdomain).
 
-Állítson be egy egyéni tartománynevet, új CNAME rekordot kell létrehoznia a DNS-ben. A CNAME rekordot a tartománynévhez tartozó alias határozza meg. Ebben az esetben azt rendeli hozzá az egyéni tartomány címét a tárfiók a Blob storage endpoint.
+tooconfigure egy egyéni tartománynevet, a új CNAME rekordot kell létrehoznia a DNS-ben. hello CNAME rekordot a tartománynévhez tartozó alias határozza meg. Ebben az esetben azt a maps az egyéni tartomány toohello Blob storage endpoint a tárfiók hello címét.
 
-Általában a tartomány DNS-beállítások a tartományregisztráló webhelyen keresztül kezelheti. Minden tartományregisztráló egy CNAME rekordot a telepítésükhöz hasonló, csak metódust tartalmaz, azonban a koncepció azonos. Néhány alapvető tartomány regisztrációs csomagok nem képes DNS-konfiguráció, így előfordulhat, hogy frissítse a tartomány regisztrációs csomagot a CNAME rekord létrehozása előtt kell.
+Általában a tartomány DNS-beállítások a tartományregisztráló webhelyen keresztül kezelheti. Minden tartományregisztráló egy CNAME rekordot a telepítésükhöz hasonló, csak metódust tartalmaz, de hello koncepció van hello azonos. Néhány alapvető tartomány regisztrációs csomagok nem képes DNS-konfiguráció, így tooupgrade szükség lehet a tartomány regisztrációs csomagot hello CNAME rekord létrehozása előtt.
 
-1. Keresse meg a storage-fiókot a [Azure-portálon](https://portal.azure.com).
-1. A **BLOB szolgáltatás** menü paneljén válassza **egyéni tartomány** megnyitásához a *egyéni tartomány* panelen.
-1. Jelentkezzen be a tartományregisztrálójához webhelyre, és a DNS kezelése lapon. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
-1. Keresse meg a CNAME-rekordok kezelésére szolgáló felületet. Lehet, hogy egy speciális beállítások lapot, és keresse meg a szavakat **CNAME**, **Alias**, vagy **altartományok**.
-1. Új CNAME rekordot kell létrehozni, és adja meg például egy altartomány alias **www** vagy **fényképek**. Adja meg egy állomásnevet, amely a Blob-szolgáltatásvégpont, formátumú **mystorageaccount.blob.core.windows.net** (ahol *mystorageaccount* a tárfiók neve). Az állomásnév használandó #1 elem jelenik meg a *egyéni tartomány* paneljén a [Azure-portálon](https://portal.azure.com).
-1. A szövegmezőben meg a *egyéni tartomány* paneljén a [Azure-portálon](https://portal.azure.com), adja meg az egyéni tartomány, beleértve az altartomány nevét. Ha a tartomány például **contoso.com** és a altartomány alias **www**, adja meg **www.contoso.com**. Ha a altartomány **fényképek**, adja meg **photos.contoso.com**. Az altartomány van *szükséges*.
-1. Válassza ki **mentése** a a *egyéni tartomány* panelt, és regisztrálja az egyéni tartomány. Ha a regisztráció sikeres, látni fogja, hogy a tárfiók sikeresen frissült a portál értesítései.
+1. Keresse meg a storage-fiókot tooyour hello [Azure-portálon](https://portal.azure.com).
+1. A **BLOB szolgáltatás** hello menü paneljén válassza **egyéni tartomány** tooopen hello *egyéni tartomány* panelen.
+1. Jelentkezzen be tooyour tartomány regisztráló webhelyén, és lépjen toohello lapra DNS kezeléséhez. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
+1. Hello szakaszban található CNAME kezeléséhez. Valószínűleg toogo tooan speciális beállításai oldal és hello szavakat keresi **CNAME**, **Alias**, vagy **altartományok**.
+1. Új CNAME rekordot kell létrehozni, és adja meg például egy altartomány alias **www** vagy **fényképek**. Adja meg egy állomásnevet, amely a Blob-szolgáltatásvégpont, hello formátumban **mystorageaccount.blob.core.windows.net** (ahol *mystorageaccount* hello a tárfiók neve). hello #1 elem megjelenik hello állomás neve toouse *egyéni tartomány* hello paneljén [Azure-portálon](https://portal.azure.com).
+1. Hello szövegmezőben a hello *egyéni tartomány* hello paneljén [Azure-portálon](https://portal.azure.com), adja meg az egyéni tartomány, beleértve a hello altartomány hello nevét. Ha a tartomány például **contoso.com** és a altartomány alias **www**, adja meg **www.contoso.com**. Ha a altartomány **fényképek**, adja meg **photos.contoso.com**. hello altartomány van *szükséges*.
+1. Válassza ki **mentése** a hello *egyéni tartomány* panel tooregister az egyéni tartomány. Ha hello regisztráció sikeres, látni fogja, hogy a tárfiók sikeresen frissült a portál értesítései.
 
-Az új CNAME-rekord propagálása DNS-en keresztül, amennyiben a felhasználók megtekintéséhez Blobadatok az egyéni tartomány, feltéve, hogy a megfelelő engedélyek lettek.
+Miután az új CNAME-rekord propagálása DNS-en keresztül, a felhasználók tekintheti meg Blobadatok az egyéni tartomány mindaddig, amíg hello megfelelő engedélyek lettek.
 
-## <a name="register-a-custom-domain-using-the-asverify-subdomain"></a>Regisztráljon egy egyéni tartomány a *asverify* altartomány
-Ezzel az eljárással regisztrálja az egyéni tartomány az egyéni tartomány van jelenleg támogatása az SLA-t, amely megköveteli, hogy az alkalmazás előfordulhatnak állásidő nélkül. Hozzon létre egy CNAME REKORDOT, mely az `asverify.<subdomain>.<customdomain>` való `asverify.<storageaccount>.blob.core.windows.net`, előre regisztrálhatja a tartomány az Azure-ral. Ezután létrehozhat egy második CNAME REKORDOT, mely az `<subdomain>.<customdomain>` való `<storageaccount>.blob.core.windows.net`, amikor az egyéni tartomány forgalmat a rendszer kéri a blob-végpontot.
+## <a name="register-a-custom-domain-using-hello-asverify-subdomain"></a>Regisztrálja a hello segítségével egyéni tartományt *asverify* altartomány
+Ez az eljárás tooregister használja az egyéni tartomány az egyéni tartomány van jelenleg támogatása az SLA-t, amely megköveteli, hogy az alkalmazás előfordulhatnak állásidő nélkül. Hozzon létre egy CNAME REKORDOT, mely az `asverify.<subdomain>.<customdomain>` túl`asverify.<storageaccount>.blob.core.windows.net`, előre regisztrálhatja a tartomány az Azure-ral. Ezután létrehozhat egy második CNAME REKORDOT, mely az `<subdomain>.<customdomain>` túl`<storageaccount>.blob.core.windows.net`, ekkor a forgalom tooyour egyéni tartomány lesz irányított tooyour blob végpontja.
 
-A **asverify** altartomány altartománya különleges ismeri az Azure-ban. Által fertőző `asverify` saját altartomány, hogy az egyéni tartomány felismerje a tartomány DNS-rekordját módosítása nélkül Azure engedélyezése. Ha módosítja a tartomány DNS-bejegyzést, azt kell hozzárendelni a blob végpontja állásidő nélkül.
+Hello **asverify** altartomány altartománya különleges ismeri az Azure-ban. Által fertőző `asverify` tooyour saját altartomány, engedélyezi az Azure toorecognize az egyéni tartomány hello tartomány DNS-rekordot hello módosítása nélkül. Hello tartomány DNS-rekordot hello módosításakor lesz csatlakoztatott toohello blob végpont állásidő nélkül.
 
-1. Keresse meg a storage-fiókot a [Azure-portálon](https://portal.azure.com).
-1. A **BLOB szolgáltatás** menü paneljén válassza **egyéni tartomány** megnyitásához a *egyéni tartomány* panelen.
-1. Jelentkezzen be a DNS-szolgáltatónál webhelyre, és a DNS kezelése lapon. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
-1. Keresse meg a CNAME-rekordok kezelésére szolgáló felületet. Lehet, hogy egy speciális beállítások lapot, és keresse meg a szavakat **CNAME**, **Alias**, vagy **altartományok**.
-1. Új CNAME rekordot kell létrehozni, és adjon meg egy altartomány alias, amely tartalmazza a *asverify* altartomány. Például **asverify.www** vagy **asverify.photos**. Adja meg egy állomásnevet, amely a Blob-szolgáltatásvégpont, formátumú **asverify.mystorageaccount.blob.core.windows.net** (ahol **mystorageaccount** a tárfiók neve). Az állomásnév használandó #2 elemét jelenik meg a *egyéni tartomány* paneljén a [Azure-portálon](https://portal.azure.com).
-1. A szövegmezőben meg a *egyéni tartomány* paneljén a [Azure-portálon](https://portal.azure.com), adja meg az egyéni tartomány, beleértve az altartomány nevét. Nem tartalmaznak *asverify*. Ha a tartomány például **contoso.com** és a altartomány alias **www**, adja meg **www.contoso.com**. Ha a altartomány **fényképek**, adja meg **photos.contoso.com**. Az altartomány szükség.
-1. Válassza ki a **CNAME rekord közvetett ellenőrzésének használata** jelölőnégyzetet.
-1. Válassza ki **mentése** a a *egyéni tartomány* panelt, és regisztrálja az egyéni tartomány. Ha a regisztráció sikeres, megjelenik a portál értesítései figyelmezteti a felhasználókat arra, hogy a tárfiók sikeresen megtörtént. Ezen a ponton az egyéni tartomány ellenőrzése után az Azure-ban, de a forgalmat a tartományhoz nem még routedevent irányítása a tárfiókhoz.
-1. A DNS-szolgáltatónál webhely adja vissza, és hozzon létre egy másik olyan CNAME rekordot, amely a altartomány van leképezve a Blob-szolgáltatásvégpont. Adja meg az altartományt, mint például **www** vagy **fényképek** (nélkül a *asverify*), és az állomásnevet, **mystorageaccount.blob.core.windows.net** (ahol **mystorageaccount** a tárfiók neve). Az ebben a lépésben az egyéni tartomány regisztrálása sikeresen befejeződött.
-1. Végül, törölheti a létrehozott tartalmazó CNAME rekordot a **asverify** altartomány, mert csak egy közvetítő lépéseként szükséges volt.
+1. Keresse meg a storage-fiókot tooyour hello [Azure-portálon](https://portal.azure.com).
+1. A **BLOB szolgáltatás** hello menü paneljén válassza **egyéni tartomány** tooopen hello *egyéni tartomány* panelen.
+1. Jelentkezzen be tooyour DNS-szolgáltatónál webhely, és lépjen toohello lapra DNS kezeléséhez. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
+1. Hello szakaszban található CNAME kezeléséhez. Valószínűleg toogo tooan speciális beállításai oldal és hello szavakat keresi **CNAME**, **Alias**, vagy **altartományok**.
+1. Új CNAME rekordot kell létrehozni, és adjon meg egy altartomány alias, amely tartalmazza az hello *asverify* altartomány. Például **asverify.www** vagy **asverify.photos**. Adja meg egy állomásnevet, amely a Blob-szolgáltatásvégpont, hello formátumban **asverify.mystorageaccount.blob.core.windows.net** (ahol **mystorageaccount** hello a tárfiók neve). hello állomás neve toouse megjelenik hello #2 elemét *egyéni tartomány* hello paneljén [Azure-portálon](https://portal.azure.com).
+1. Hello szövegmezőben a hello *egyéni tartomány* hello paneljén [Azure-portálon](https://portal.azure.com), adja meg az egyéni tartomány, beleértve a hello altartomány hello nevét. Nem tartalmaznak *asverify*. Ha a tartomány például **contoso.com** és a altartomány alias **www**, adja meg **www.contoso.com**. Ha a altartomány **fényképek**, adja meg **photos.contoso.com**. hello altartomány szükség.
+1. Jelölje be hello **CNAME rekord közvetett ellenőrzésének használata** jelölőnégyzetet.
+1. Válassza ki **mentése** a hello *egyéni tartomány* panel tooregister az egyéni tartomány. Sikeres hello regisztráció esetén megjelenik a portál értesítései figyelmezteti a felhasználókat arra, hogy a tárfiók sikeresen megtörtént. Ezen a ponton az egyéni tartomány ellenőrzése után az Azure-ban, de forgalom tooyour tartomány még nem továbbítása tooyour tárfiók.
+1. Térjen vissza a tooyour DNS-szolgáltatónál webhelyet, és hozzon létre egy másik olyan CNAME rekordot, amely leképezhető a altartomány tooyour Blob-szolgáltatásvégpont. Például adja meg, mint hello altartomány **www** vagy **fényképek** (hello nélkül *asverify*), és az állomásnév szerint hello  **mystorageaccount.BLOB.Core.Windows.NET** (ahol **mystorageaccount** hello a tárfiók neve). Az ebben a lépésben az egyéni tartomány hello regisztrálása sikeresen befejeződött.
+1. Végül, törölheti a hello CNAME rekordot tartalmazó hello létrehozott **asverify** altartomány, mert csak egy közvetítő lépéseként szükséges volt.
 
-Az új CNAME-rekord propagálása DNS-en keresztül, amennyiben a felhasználók megtekintéséhez Blobadatok az egyéni tartomány, feltéve, hogy a megfelelő engedélyek lettek.
+Miután az új CNAME-rekord propagálása DNS-en keresztül, a felhasználók tekintheti meg Blobadatok az egyéni tartomány mindaddig, amíg hello megfelelő engedélyek lettek.
 
 ## <a name="test-your-custom-domain"></a>Az egyéni tartomány tesztelése
 
-Erősítse meg az egyéni tartomány valóban van leképezve a Blob-szolgáltatásvégpont, hozzon létre egy blobot a tárfiókon belül nyilvános tárolókban lévő. Ezt követően egy webböngészőben URI a következő formátumban eléréséhez használja a blob:
+az egyéni tartomány tooconfirm valóban leképezve tooyour Blob-szolgáltatásvégpont, hozzon létre egy blobot a tárfiókon belül nyilvános tárolókban lévő. Ezt követően webböngészőben, használja a következő formátum tooaccess hello blob hello URI:
 
 `http://<subdomain.customdomain>/<mycontainer>/<myblob>`
 
-Például előfordulhat, hogy használja a következő URI-azonosítója egy webes űrlap eléréséhez a **myforms** tárolóhoz a **photos.contoso.com** egyéni altartomány:
+Például előfordulhat, hogy használja a következő URI tooaccess hello webes űrlap hello **myforms** hello tárolóhoz **photos.contoso.com** egyéni altartomány:
 
 `http://photos.contoso.com/myforms/applicationform.htm`
 
 ## <a name="deregister-a-custom-domain"></a>Az egyéni tartománynév regisztrációjának törléséhez
 
-Megszüntetni az egyéni tartományt a Blob storage-végponthoz, a következő eljárások egyikét használhatja.
+a Blob storage-végponthoz, az egyéni tartománynév tooderegister hello a következő eljárások egyikét használhatja.
 
 ### <a name="azure-portal"></a>Azure Portal
 
-Az alábbi parancs eltávolítja az egyéni tartomány beállítása az Azure portálon:
+Hello Azure portál tooremove hello egyéni tartomány beállításban hello következőket hajthatja végre:
 
-1. Keresse meg a storage-fiókot a [Azure-portálon](https://portal.azure.com).
-1. A **BLOB szolgáltatás** menü paneljén válassza **egyéni tartomány** megnyitásához a *egyéni tartomány* panelen.
-1. Az egyéni tartománynevet tartalmazó szövegmező tartalmának törlése.
-1. Válassza ki a **Mentés** gombot.
+1. Keresse meg a storage-fiókot tooyour hello [Azure-portálon](https://portal.azure.com).
+1. A **BLOB szolgáltatás** hello menü paneljén válassza **egyéni tartomány** tooopen hello *egyéni tartomány* panelen.
+1. Az egyéni tartománynevet tartalmazó hello szövegmező egyértelmű hello tartalmát.
+1. Jelölje be hello **mentése** gombra.
 
-Ha az egyéni tartomány sikeresen el lett távolítva, látni fogja a portál értesítései figyelmezteti a felhasználókat arra, hogy a tárfiók sikeresen megtörtént.
+Amikor hello egyéni tartomány sikeresen el lett távolítva, látni fogja a portál értesítései figyelmezteti a felhasználókat arra, hogy a tárfiók sikeresen megtörtént.
 
 ### <a name="azure-cli-20"></a>Azure CLI 2.0
 
-Használja a [az tárolási fiók frissítés](https://docs.microsoft.com/cli/azure/storage/account#update) CLI parancsot, és adjon meg üres karakterláncot (`""`) az a `--custom-domain` argumentum értéke egy egyéni tartományregisztrációs eltávolítása.
+Használjon hello [az storage-fiók mentése](https://docs.microsoft.com/cli/azure/storage/account#update) CLI parancsot, és adjon meg üres karakterláncot (`""`) a hello `--custom-domain` argumentum értéke tooremove egyéni tartományregisztrációs.
 
 * A parancs formátuma:
 
@@ -140,7 +140,7 @@ Használja a [az tárolási fiók frissítés](https://docs.microsoft.com/cli/az
 
 ### <a name="powershell"></a>PowerShell
 
-Használja a [Set-AzureRmStorageAccount](/powershell/module/azurerm.storage/set-azurermstorageaccount) PowerShell-parancsmag és egy üres karakterláncot kell megadni (`""`) az a `-CustomDomainName` argumentum értéke egy egyéni tartományregisztrációs eltávolítása.
+Használjon hello [Set-AzureRmStorageAccount](/powershell/module/azurerm.storage/set-azurermstorageaccount) PowerShell-parancsmag, és adja meg egy üres karakterlánc (`""`) a hello `-CustomDomainName` argumentum értéke tooremove egyéni tartományregisztrációs.
 
 * A parancs formátuma:
 
@@ -161,5 +161,5 @@ Használja a [Set-AzureRmStorageAccount](/powershell/module/azurerm.storage/set-
   ```
 
 ## <a name="next-steps"></a>Következő lépések
-* [Az Azure Content Delivery Network (CDN) végpont rendelni egy egyéni tartományt](../../cdn/cdn-map-content-to-custom-domain.md)
-* [Az Azure CDN használatával blobokhoz való hozzáférést az egyéni tartomány HTTPS-KAPCSOLATON keresztül](storage-https-custom-domain-cdn.md)
+* [Egy egyéni tartomány tooan Azure Content Delivery Network (CDN) végpontjának leképezése](../../cdn/cdn-map-content-to-custom-domain.md)
+* [Hello Azure CDN tooaccess blobs használata az egyéni tartomány HTTPS-KAPCSOLATON keresztül](storage-https-custom-domain-cdn.md)

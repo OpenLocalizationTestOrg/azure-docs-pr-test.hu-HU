@@ -1,0 +1,1 @@
+Szükség esetén telepítse hello Azure PowerShell modul hello található hello utasításokat követve [Azure PowerShell útmutató](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/), majd futtassa `Login-AzureRmAccount` toocreate Azure kapcsolatot. Is toohave egy nevű nyilvános SSH-kulcsot kell `id_rsa.pub` a felhasználói profil hello .ssh könyvtárban.

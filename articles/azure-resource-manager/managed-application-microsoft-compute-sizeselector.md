@@ -1,6 +1,6 @@
 ---
-title: "Az Azure által felügyelt alkalmazás SizeSelector felhasználói felületi elem |} Microsoft Docs"
-description: "A témakör ismerteti a Microsoft.Compute.SizeSelector felhasználói felületi elem Azure által felügyelt alkalmazások"
+title: "aaaAzure felügyelt alkalmazás SizeSelector felhasználói felületi elem |} Microsoft Docs"
+description: "Hello Microsoft.Compute.SizeSelector felhasználói felületi elem ismerteti az Azure által felügyelt alkalmazások"
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: e54962f73028ada258a7faef271d66f0fbcef649
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d93306135d9c6f9a83692766ce1ca7ea2b688086
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoftcomputesizeselector-ui-element"></a>Microsoft.Compute.SizeSelector felhasználói felületi elem
 Egy vagy több virtuálisgép-példányok méretét kiválasztására szolgáló vezérlő. Ez az elem használata során [Azure által felügyelt alkalmazások létrehozására](managed-application-publishing.md).
@@ -53,20 +53,20 @@ Egy vagy több virtuálisgép-példányok méretét kiválasztására szolgáló
 ```
 
 ## <a name="remarks"></a>Megjegyzések
-- `recommendedSizes`tartalmaznia kell legalább egy méretét. Az első ajánlott mérete alapértelmezés szerint használt.
-- Ha az ajánlott méretet a kiválasztott helyen nem érhető el, a mérete automatikusan a rendszer kihagyja. Ehelyett a következő ajánlott méret szolgál.
-- Nincs megadva a tetszőleges méretű a `constraints.allowedSizes` rejtett, és nincs megadva a tetszőleges méretű `constraints.excludedSizes` látható.
-`constraints.allowedSizes`és `constraints.excludedSizes` mindkettő nem kötelező, de nem használható egyszerre. Az elérhető méretek listáját meghívásával lehet meghatározni [érhető el virtuális gépek méretét az előfizetéshez listában](/rest/api/compute/virtualmachines/virtualmachines-list-sizes-region).
-- `osPlatform`meg kell adni, és lehet **Windows** vagy **Linux**. Határozza meg a virtuális gépek hardverköltségek szolgál.
-- `imageReference`Nincs megadva a belső lemezképek, de a megadott külső képek. A virtuális gépek szoftverek költségeit meghatározására szolgál.
-- `count`az elem a megfelelő szorzószáma beállítására használatos. Egy állandó érték, például támogatja **2**, vagy egy másik elem dinamikus értéket, például `[steps('step1').vmCount]`. Az alapértelmezett érték **1**.
+- `recommendedSizes`tartalmaznia kell legalább egy méretét. hello először ajánlott méret hello alapértelmezésben szerepel.
+- Ha az ajánlott mérete hello kiválasztott helyen nem érhető el, hello mérete automatikusan a rendszer kihagyja. Ehelyett hello következő ajánlott méret szolgál.
+- Nincs megadva a hello bármilyen méretű `constraints.allowedSizes` rejtett, és nincs megadva a tetszőleges méretű `constraints.excludedSizes` jelenik meg.
+`constraints.allowedSizes`és `constraints.excludedSizes` mindkettő nem kötelező, de nem használható egyszerre. elérhető méretek listáját hello meghívásával lehet meghatározni [érhető el virtuális gépek méretét az előfizetéshez listában](/rest/api/compute/virtualmachines/virtualmachines-list-sizes-region).
+- `osPlatform`meg kell adni, és lehet **Windows** vagy **Linux**. Hogy toodetermine hello hardverköltségek hello virtuális gépek használják.
+- `imageReference`Nincs megadva a belső lemezképek, de a megadott külső képek. Hogy toodetermine hello származó szoftverek költségeit hello virtuális gépek használják.
+- `count`használt tooset hello megfelelő szorzószáma hello elem van. Egy állandó érték, például támogatja **2**, vagy egy másik elem dinamikus értéket, például `[steps('step1').vmCount]`. hello alapértelmezett értéke **1**.
 
-## <a name="sample-output"></a>Minta kimenet
+## <a name="sample-output"></a>Példa kimenet
 ```json
 "Standard_D1"
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Felügyelt alkalmazások bemutatása, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
-* A bevezetést UI-definíciók létrehozásáról lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Egy bevezető toomanaged alkalmazások, lásd: [Azure kezelt alkalmazás – áttekintés](managed-application-overview.md).
+* Egy bevezető toocreating UI-definíciók, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Általános tulajdonságok felhasználói felületi elemei ismertetését lásd: [CreateUiDefinition elemek](managed-application-createuidefinition-elements.md).

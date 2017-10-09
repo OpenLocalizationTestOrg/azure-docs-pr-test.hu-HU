@@ -1,6 +1,6 @@
 ---
-title: "Az Azure HDInsight az Apache Spark-fürt erőforrásainak kezelése |} Microsoft Docs"
-description: "Megtudhatja, hogyan használja a jobb teljesítmény érdekében az Azure HDInsight Spark-fürtjei erőforrásainak kezelése."
+title: "aaaManage erőforrásokat az Apache Spark on Azure HDInsight fürt |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse a jobb teljesítmény érdekében az Azure HDInsight Spark-fürtjei erőforrásainak kezelése."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,138 +16,138 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: nitinme
-ms.openlocfilehash: 952fa15162a40bccb3f8c7a88508556757ca6675
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e18682a24f77494db884105f9db03c0a350ddad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-resources-for-apache-spark-cluster-on-azure-hdinsight"></a>Az Azure HDInsight az Apache Spark-fürt erőforrásainak kezelése 
 
-Ebben a cikkben megtudhatja, hogyan Ambari felhasználói felületén YARN felhasználói felületen, például csatolók eléréséhez, és a Spark-előzmények kiszolgáló a Spark-fürthöz társított. Is megtudhatja, hogyan az optimális teljesítmény érdekében a fürt konfigurálásának hangolását.
+Ebben a cikkben megtudhatja, hogyan tooaccess hello felületek, például a Ambari felhasználói felület, a YARN felhasználói felületen és a Spark előzmények Server hello a Spark-fürthöz kapcsolódó. Azt is megtudhatja, hogyan tootune hello fürtkonfiguráció az optimális teljesítmény kapcsolatos.
 
 **Előfeltételek:**
 
-Az alábbiakkal kell rendelkeznie:
+Hello következő kell rendelkeznie:
 
 * Azure-előfizetés. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * A HDInsight az Apache Spark-fürt. Útmutatásért lásd: [létrehozása az Apache Spark on Azure hdinsight clusters](hdinsight-apache-spark-jupyter-spark-sql.md).
 
-## <a name="how-do-i-launch-the-ambari-web-ui"></a>Hogyan indítsa el az Ambari webes felhasználói felületén?
-1. Az [Azure portál](https://portal.azure.com/) kezdőpultján kattintson a Spark-fürthöz tartozó csempére (ha rögzítette azt a kezdőpulton). A fürtöt a következő helyről is megkeresheti: **Browse All (Összes tallózása)** > **HDInsight Clusters** (HDInsight-fürtök).
-2. A Spark-fürt panelén kattintson **irányítópult**. Amikor a rendszer kéri, adja meg a rendszergazdai hitelesítő adatokat a Spark-fürtön.
+## <a name="how-do-i-launch-hello-ambari-web-ui"></a>Hogyan indítsa el az Ambari webes felhasználói felületén hello?
+1. A hello [Azure Portal](https://portal.azure.com/), hello kezdőpulton, kattintson a Spark-fürt hello csempére (ha toohello kezdőpulton rögzítette azt). Tooyour fürt alapján is megtalálhatja **összes tallózása** > **a HDInsight-fürtök**.
+2. Hello Spark-fürt panelén kattintson **irányítópult**. Amikor a rendszer kéri, adja meg hello Spark-fürt hello rendszergazdai hitelesítő adataival.
 
     ![Indítsa el az Ambari](./media/hdinsight-apache-spark-resource-manager/hdinsight-launch-cluster-dashboard.png "erőforrás-kezelő indítása")
-3. Az Ambari webes felhasználói felületén ez kell elindítani, alább látható módon.
+3. Ez kell hello Ambari webes felhasználói felületén, nyissa meg alább látható módon.
 
     ![Ambari webes felhasználói felület](./media/hdinsight-apache-spark-resource-manager/ambari-web-ui.png "Ambari webes felhasználói felület")   
 
-## <a name="how-do-i-launch-the-spark-history-server"></a>Hogyan indítsa el a Spark-előzmények kiszolgáló?
-1. Az [Azure portál](https://portal.azure.com/) kezdőpultján kattintson a Spark-fürthöz tartozó csempére (ha rögzítette azt a kezdőpulton).
-2. A fürt paneljén alatt **Gyorshivatkozások**, kattintson a **fürt irányítópult**. Az a **fürt irányítópult** panelen kattintson a **Spark előzmények Server**.
+## <a name="how-do-i-launch-hello-spark-history-server"></a>Hogyan indítsa el a Spark előzmények Server hello?
+1. A hello [Azure Portal](https://portal.azure.com/), hello kezdőpulton, kattintson a Spark-fürt hello csempére (ha toohello kezdőpulton rögzítette azt).
+2. Hello a fürt paneljén a **Gyorshivatkozások**, kattintson a **fürt irányítópult**. A hello **fürt irányítópult** panelen kattintson a **Spark előzmények Server**.
 
     ![Spark előzmények Server](./media/hdinsight-apache-spark-resource-manager/launch-history-server.png "Spark előzmények kiszolgáló")
 
-    Amikor a rendszer kéri, adja meg a rendszergazdai hitelesítő adatokat a Spark-fürtön.
+    Amikor a rendszer kéri, adja meg hello Spark-fürt hello rendszergazdai hitelesítő adataival.
 
-## <a name="how-do-i-launch-the-yarn-ui"></a>Hogyan indítsa el a Yarn felhasználói felületen?
-A Spark-fürtön a jelenleg futó alkalmazások figyeléséhez használhatja a YARN felhasználói felületen.
+## <a name="how-do-i-launch-hello-yarn-ui"></a>Hogyan indítsa el a Yarn felhasználói felületen hello?
+Hello YARN felhasználói felületen toomonitor alkalmazások hello Spark-fürt a jelenleg futó is használhatja.
 
-1. A fürt paneljén kattintson **fürt irányítópult**, és kattintson a **YARN**.
+1. Hello-fürt panelén kattintson **fürt irányítópult**, és kattintson a **YARN**.
 
     ![Indítsa el a YARN felhasználói felületen](./media/hdinsight-apache-spark-resource-manager/launch-yarn-ui.png)
 
    > [!TIP]
-   > Másik lehetőségként is indítja el a YARN felhasználói felületen a az Ambari felhasználói Felületéről. Indítsa el az Ambari felhasználói felületén, a fürt paneljén kattintson a **fürt irányítópult**, és kattintson a **HDInsight fürt irányítópult**. Az Ambari felhasználói felületén kattintson **YARN**, kattintson a **Gyorshivatkozások**, kattintson az aktív erőforrás-kezelő, majd **erőforrás-kezelő felhasználói felületén**.
+   > Másik lehetőségként is elindíthatja a hello YARN felhasználói felületen a hello Ambari felhasználói felület. toolaunch hello Ambari felhasználói felületén, a hello-fürt panelén kattintson **fürt irányítópult**, és kattintson a **HDInsight fürt irányítópult**. A hello Ambari felhasználói felület, kattintson az **YARN**, kattintson a **Gyorshivatkozások**, kattintson hello aktív erőforrás-kezelő, majd **erőforrás-kezelő felhasználói felületén**.
    >
    >
 
-## <a name="what-is-the-optimum-cluster-configuration-to-run-spark-applications"></a>Mi az optimális fürtkonfiguráció Spark-alkalmazások futtatásához?
-A három legfontosabb paraméterek alkalmazás követelményeitől függően a Spark-konfigurációhoz használható `spark.executor.instances`, `spark.executor.cores`, és `spark.executor.memory`. Egy művelettípus végrehajtója az a folyamat egy Spark-alkalmazáshoz elindítva. A munkavégző csomópont fut, és az alkalmazás feladatokat hajthat végre felelős. Az alapértelmezett számú végrehajtója és a végrehajtó használatos egyes fürtök a feldolgozó csomópontok és a munkavégző csomópont méretének száma alapján van kiszámítva. Ezek tárolják `spark-defaults.conf` központi fürtcsomópontokon.
+## <a name="what-is-hello-optimum-cluster-configuration-toorun-spark-applications"></a>Mi az a hello optimális fürt konfigurációs toorun Spark-alkalmazások?
+hello három fő, amely nem használható alkalmazás követelményeitől függően Spark konfigurációs paraméterei `spark.executor.instances`, `spark.executor.cores`, és `spark.executor.memory`. Egy művelettípus végrehajtója az a folyamat egy Spark-alkalmazáshoz elindítva. Hello munkavégző csomóponton fut, és hello feladatokat hello alkalmazás felelős toocarry. hello alapértelmezett száma végrehajtója és az egyes fürtökön hello végrehajtó mérete alapján van kiszámítva munkavégző csomópontokhoz és hello munkavégző csomópont méretének hello száma. Ezek tárolják `spark-defaults.conf` hello központi fürtcsomóponton.
 
-A három konfigurációs paraméterek beállítható, hogy a fürt szintjén (az a fürtön futó összes alkalmazást), vagy minden egyes alkalmazáshoz adható meg.
+hello három konfigurációs paraméterek konfigurálható szintjén hello fürt (hello fürtön futó összes alkalmazást), vagy minden egyes alkalmazáshoz adható meg.
 
-### <a name="change-the-parameters-using-ambari-ui"></a>Az Ambari felületen paraméterek módosítása
-1. Az Ambari felhasználói felületén kattintson a **Spark**, kattintson a **Configs**, majd bontsa ki a **egyéni spark-alapértelmezett**.
+### <a name="change-hello-parameters-using-ambari-ui"></a>Ambari felületen hello paraméterek módosítása
+1. Hello Ambari felhasználói felületén kattintson **Spark**, kattintson a **Configs**, majd bontsa ki a **egyéni spark-alapértelmezett**.
 
     ![A megadott paraméterek Ambari használatával](./media/hdinsight-apache-spark-resource-manager/set-parameters-using-ambari.png)
-2. Az alapértelmezett értékek megfelelőek 4 Spark-alkalmazások egyidejű futtatását a fürt hozzá. Is módosítások ezeket az értékeket a felhasználói felület, a lent látható módon.
+2. hello alapértelmezett értékei jó toohave 4 Spark-alkalmazások hello fürt egyidejű futtatását. Is módosítások ezeket az értékeket hello felhasználói felület, a lent látható módon.
 
     ![A megadott paraméterek Ambari használatával](./media/hdinsight-apache-spark-resource-manager/set-executor-parameters.png)
-3. Kattintson a **mentése** menteni a konfigurációs módosításait. A lap tetején kérni fogja az érintett szolgáltatások újraindítására. Kattintson a **indítsa újra a**.
+3. Kattintson a **mentése** toosave hello konfigurációs módosításokat. Hello hello oldal tetején, kérni fogja az összes hello toorestart érintett szolgáltatások. Kattintson a **indítsa újra a**.
 
     ![Szolgáltatások újraindítása](./media/hdinsight-apache-spark-resource-manager/restart-services.png)
 
-### <a name="change-the-parameters-for-an-application-running-in-jupyter-notebook"></a>Jupyter notebook alkalmazás paramétereinek módosítása
-Az alkalmazások a Jupyter notebook, használhatja a `%%configure` magic a konfigurációs módosításokat. Ideális esetben meg kell nyitnia a változások az alkalmazást, mielőtt újra lefuttatja az első kódcella elején. Ez biztosítja, hogy a konfiguráció alkalmazása a Livy munkamenethez, ha végrehajtásakor létrejön. Ha módosítani szeretné a konfigurációt az alkalmazásban egy későbbi időpontban szeretné, használnia kell a `-f` paraméter. Azonban, ennek során az alkalmazás az összes folyamatban lévő el fog veszni.
+### <a name="change-hello-parameters-for-an-application-running-in-jupyter-notebook"></a>Jupyter notebook alkalmazás hello paramétereinek módosítása
+Az alkalmazások hello Jupyter notebook, hello használhatja `%%configure` magic toomake hello konfigurációs módosításokat. Ideális esetben meg kell nyitnia a változások hello alkalmazást, mielőtt újra lefuttatja az első kódcella hello elején. Ez biztosítja, hogy a hello konfigurálása alkalmazott toohello Livy munkamenet, amikor lekérdezi a létrehozott. Ha azt szeretné, hogy toochange hello konfigurációs hello alkalmazásban egy későbbi időpontban, használnia kell a hello `-f` paraméter. Azonban így minden hello az előrehaladás végrehajtásával alkalmazás elvesznek.
 
-Az alábbi kódrészletben láthatja, Jupyter alkalmazás konfigurációjának módosítása.
+az alábbi hello kódrészletben láthatja, hogyan toochange hello Jupyter egy alkalmazáskészlet konfigurációját.
 
     %%configure
     {"executorMemory": "3072M", "executorCores": 4, "numExecutors":10}
 
-Konfigurációs paraméterek a JSON karakterláncként kell átadnia, és későbbinek kell lennie a következő sorban a Bűvös példa oszlopában látható módon.
+Konfigurációs paraméterek a JSON karakterláncként kell átadnia, és későbbinek kell lennie hello következő sorban hello magic hello példa oszlopban látható.
 
-### <a name="change-the-parameters-for-an-application-submitted-using-spark-submit"></a>A paraméterekkel rendelkező kérelem használata spark-nyújt módosítása
-A következő parancs a példa bemutatja, hogyan módosíthatja a konfigurációs paraméterek használatával küldött kötegelt alkalmazások `spark-submit`.
+### <a name="change-hello-parameters-for-an-application-submitted-using-spark-submit"></a>Változás hello paramétereinek használatával kérelem spark-elküldése
+A következő parancs példája hogyan toochange hello konfigurációs paraméterek használatával küldött kötegelt alkalmazások `spark-submit`.
 
-    spark-submit --class <the application class to execute> --executor-memory 3072M --executor-cores 4 –-num-executors 10 <location of application jar file> <application parameters>
+    spark-submit --class <hello application class tooexecute> --executor-memory 3072M --executor-cores 4 –-num-executors 10 <location of application jar file> <application parameters>
 
-### <a name="change-the-parameters-for-an-application-submitted-using-curl"></a>A cURL használatával kérelem paramétereinek módosítása
-A következő parancs a példa bemutatja, hogyan módosíthatja a konfigurációs paraméterek használata cURL használatával küldött kötegelt alkalmazáshoz.
+### <a name="change-hello-parameters-for-an-application-submitted-using-curl"></a>Hello használata cURL használatával kérelem paramétereinek módosítása
+A következő parancs példája hogyan toochange hello konfigurációs paraméterek használata cURL használatával küldött kötegelt alkalmazáshoz.
 
-    curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<the application class to execute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
+    curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<hello application class tooexecute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
 
 ### <a name="how-do-i-change-these-parameters-on-a-spark-thrift-server"></a>Hogyan változtathatom meg ezeket a paramétereket a Spark Thrift-kiszolgáló?
-A Spark Thrift-kiszolgáló JDBC-/ ODBC hozzáférést biztosít a Spark-fürt és Spark SQL-lekérdezések használatával. Eszközök, például a Power BI-ban Tableau stb. ODBC protokoll segítségével kommunikálnak a Spark Thrift-kiszolgáló Spark SQL-lekérdezések végrehajtása a Spark-alkalmazásként. Spark-fürt létrehozásakor a Spark Thrift-kiszolgáló két példánya indulnak el, egy központi a csomópontokra. Minden egyes Spark Thrift-kiszolgáló a Spark-alkalmazásként a YARN felhasználói felületen látható.
+A Spark Thrift-kiszolgáló JDBC-/ ODBC hozzáférés tooa Spark-fürt és használt tooservice Spark SQL-lekérdezések. Eszközök, például a Power BI-ban Tableau stb. ODBC protokoll toocommunicate használata Spark Thrift-kiszolgáló tooexecute Spark SQL-lekérdezések a Spark-alkalmazásként. Spark-fürt létrehozásakor hello Spark Thrift-kiszolgáló indulnak el, egy minden átjárócsomópont két példánya. Minden egyes Spark Thrift-kiszolgáló látható hello YARN felhasználói felületen a Spark-alkalmazásként.
 
-A Spark Thrift-kiszolgáló használ a Spark dinamikus végrehajtó foglalási, így a `spark.executor.instances` nem használatos. Ehelyett használja a Spark Thrift-kiszolgáló `spark.dynamicAllocation.minExecutors` és `spark.dynamicAllocation.maxExecutors` a végrehajtó számának megadásához. A konfigurációs paraméterek `spark.executor.cores` és `spark.executor.memory` végrehajtó méretének szolgál. Ezek a paraméterek módosíthatja a lent látható módon.
+A Spark Thrift-kiszolgáló által használt dinamikus végrehajtó foglalási Spark, és ezért hello `spark.executor.instances` nem használatos. Ehelyett használja a Spark Thrift-kiszolgáló `spark.dynamicAllocation.minExecutors` és `spark.dynamicAllocation.maxExecutors` toospecify hello végrehajtó száma. konfigurációs paraméterek hello `spark.executor.cores` és `spark.executor.memory` van használt toomodify hello végrehajtó méretét. Ezek a paraméterek módosíthatja a lent látható módon.
 
-* Bontsa ki a **spark-thrift-sparkconf speciális** a paraméterek frissítéséhez kategória `spark.dynamicAllocation.minExecutors`, `spark.dynamicAllocation.maxExecutors`, és `spark.executor.memory`.
+* Bontsa ki a hello **spark-thrift-sparkconf speciális** kategória tooupdate hello paraméterek `spark.dynamicAllocation.minExecutors`, `spark.dynamicAllocation.maxExecutors`, és `spark.executor.memory`.
 
     ![A Spark thrift-kiszolgáló konfigurálása](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-1.png)    
-* Bontsa ki a **spark-thrift-sparkconf egyéni** frissíteni a paraméter kategória `spark.executor.cores`.
+* Bontsa ki a hello **spark-thrift-sparkconf egyéni** kategória tooupdate hello paraméter `spark.executor.cores`.
 
     ![A Spark thrift-kiszolgáló konfigurálása](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-2.png)
 
-### <a name="how-do-i-change-the-driver-memory-of-the-spark-thrift-server"></a>Hogyan változtathatom meg a illesztőprogram memóriát a Spark Thrift-kiszolgáló?
-A Spark Thrift-kiszolgáló illesztőprogram memória van konfigurálva 25 %-át az átjárócsomópont RAM memória méretét, feltéve, az átjárócsomópont összesített RAM mérete 14GB-nál nagyobb. Az Ambari felhasználói felület segítségével módosíthatja az illesztőprogram memóriakövetelménye alább látható módon.
+### <a name="how-do-i-change-hello-driver-memory-of-hello-spark-thrift-server"></a>Hogyan változtathatom meg a Spark Thrift-kiszolgáló hello hello illesztőprogram memória?
+A Spark Thrift-kiszolgáló illesztőprogram memóriát hello teljes RAM hello átjárócsomópont mérete 14GB-nál nagyobb hello átjárócsomópont RAM mérete, a konfigurált too25 % kerül. Hello Ambari felhasználói felület toochange hello illesztőprogram memóriakövetelménye, használhatja a lent látható módon.
 
-* Az Ambari felhasználói felületén kattintson a **Spark**, kattintson a **Configs**, bontsa ki a **spark-env speciális**, és adja meg a következő **spark_thrift_cmd_opts**.
+* Hello Ambari felhasználói felületén kattintson **Spark**, kattintson **Configs**, bontsa ki **spark-env speciális**, és adja meg a hello érték **spark_thrift_cmd_opts**.
 
     ![A Spark thrift-kiszolgáló RAM konfigurálása](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-ram.png)
 
-## <a name="i-do-not-use-bi-with-spark-cluster-how-do-i-take-the-resources-back"></a>BI nem Spark-fürt használata. Hogyan tudom vissza igénybe az erőforrásokat?
-Spark dinamikus foglalási használjuk, mert az csak thrift-kiszolgáló által felhasznált erőforrások a két alkalmazás főkiszolgálók erőforrásokat. Ezeket az erőforrásokat visszaigénylésének le kell állítania a Thrift-kiszolgáló szolgáltatás fut a fürtön.
+## <a name="i-do-not-use-bi-with-spark-cluster-how-do-i-take-hello-resources-back"></a>BI nem Spark-fürt használata. Hogyan tudom vissza igénybe hello erőforrásokat?
+Spark dinamikus foglalási használjuk, mivel hello csak thrift-kiszolgáló által felhasznált erőforrások hello két alkalmazás főkiszolgálók hello erőforrásait. Ezeket az erőforrásokat le kell állítania hello hello fürt Thrift-kiszolgáló szolgáltatás tooreclaim.
 
-1. Az Ambari felhasználói felületén, a bal oldali ablaktáblán kattintson **Spark**.
-2. A következő oldalon kattintson **Spark Thrift kiszolgálók**.
+1. Hello Ambari UI hello bal oldali ablaktáblában kattintson **Spark**.
+2. A következő lapon hello kattintson **Spark Thrift kiszolgálók**.
 
     ![Indítsa újra a thrift-kiszolgáló](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-1.png)
-3. Meg kell jelennie a két headnodes, amelyen fut a Spark Thrift-kiszolgáló. Kattintson a headnodes.
+3. Hello két headnodes mely hello Spark Thrift-kiszolgáló fut. kell megjelennie. Kattintson az egyik hello headnodes.
 
     ![Indítsa újra a thrift-kiszolgáló](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-2.png)
-4. A következő lap felsorolja az adott headnode futó összes szolgáltatás. A listában kattintson a legördítő gomb melletti Spark Thrift-kiszolgáló, majd **leállítása**.
+4. hello következő lap felsorolja az adott headnode futó összes hello szolgáltatást. Hello listából kattintson hello legördülő gomb következő tooSpark Thrift-kiszolgáló, majd **leállítása**.
 
     ![Indítsa újra a thrift-kiszolgáló](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-3.png)
-5. Ismételje meg ezeket a lépéseket a más headnode, valamint a.
+5. Ismételje meg ezeket a lépéseket a hello más headnode is.
 
-## <a name="my-jupyter-notebooks-are-not-running-as-expected-how-can-i-restart-the-service"></a>A Jupyter notebookok nem elvárt módon futnak. Hogyan újraindíthatja a szolgáltatást?
-Indítsa el az Ambari webes felhasználói felületén, ahogy fent látható. Kattintson a bal oldali navigációs ablak **Jupyter**, kattintson a **szolgáltatás műveletek**, és kattintson a **indítsa újra az összes**. A Jupyter szolgáltatás elindítja az összes headnodes.
+## <a name="my-jupyter-notebooks-are-not-running-as-expected-how-can-i-restart-hello-service"></a>A Jupyter notebookok nem elvárt módon futnak. Hogyan újraindíthatja hello szolgáltatást?
+Indítsa el a hello Ambari webes felhasználói felületén, ahogy fent látható. Hello bal oldali navigációs ablaktáblán kattintson **Jupyter**, kattintson a **szolgáltatás műveletek**, és kattintson a **indítsa újra az összes**. Hello Jupyter szolgáltatás elindítja az összes hello headnodes.
 
     ![Restart Jupyter](./media/hdinsight-apache-spark-resource-manager/restart-jupyter.png "Restart Jupyter")
 
 ## <a name="how-do-i-know-if-i-am-running-out-of-resources"></a>Hogyan állapítható meg, hogy ha erőforrások fut-e?
-A Yarn felhasználói felületének indítása, a fentiek szerint. Fürt metrikáinak tábla a képernyő fölött, ellenőrizze az értékeket **használt memória** és **memória teljes** oszlopok. Ha a 2 érték rendkívül szoros, a nem feltétlenül elegendő erőforrás a következő alkalmazás indításához. Ugyanez érvényes a **VCores használt** és **VCores összesen** oszlopok. Is, a fő nézetben, ha egy alkalmazás tartózkodott a **elfogadott** állapotát, és nem változik a **futtató** sem **sikertelen** állapotba kerül, ennek oka is lehet utal, hogy nem sikerül elindítani erőforrásokkal.
+Indítsa el a hello Yarn felhasználói felületen, a fentiek szerint. Fürt metrikáinak tábla fölött üdvözlő képernyőt, ellenőrizze az értékeket **használt memória** és **memória teljes** oszlopok. Hello 2 értékei rendkívül szoros, ha a nem feltétlenül elegendő erőforrást toostart hello tovább alkalmazás. hello Ugyanez vonatkozik toohello **VCores használt** és **VCores összesen** oszlopok. Is, hello fő nézetben, ha egy alkalmazás tartózkodott a **elfogadott** állapotát, és nem változik a **futtató** sem **sikertelen** állapotba kerül, ez arra utal, hogy is lehet hogy nem elég erőforrások toostart kap.
 
     ![Resource Limit](./media/hdinsight-apache-spark-resource-manager/resource-limit.png "Resource Limit")
 
-## <a name="how-do-i-kill-a-running-application-to-free-up-resource"></a>Hogyan kill a szabadítson fel erőforrás egy futó alkalmazást?
-1. A Yarn felhasználói felületen, a bal oldali panelen kattintson a **futtató**. Határozza meg az alkalmazás szakítva, és kattintson a futó alkalmazások listájában, a **azonosító**.
+## <a name="how-do-i-kill-a-running-application-toofree-up-resource"></a>Hogyan kill futó alkalmazás toofree erőforrást?
+1. A Yarn felhasználói felületen, hello hello bal oldali panelen, kattintson **futtató**. A futó alkalmazások hello listában határozza meg a hello alkalmazás toobe leállítása, majd kattintson a hello **azonosító**.
 
     ![Az App1 Kill](./media/hdinsight-apache-spark-resource-manager/kill-app1.png "App1 leállítása")
 
-2. Kattintson a **Kill alkalmazás** jobb felső sarokban, majd kattintson **OK**.
+2. Kattintson a **Kill alkalmazás** hello jobb felső sarokban, majd kattintson **OK**.
 
     ![Kill App2](./media/hdinsight-apache-spark-resource-manager/kill-app2.png "App2 leállítása")
 
@@ -157,7 +157,7 @@ A Yarn felhasználói felületének indítása, a fentiek szerint. Fürt metrik�
 ### <a name="for-data-analysts"></a>Az adatok elemző
 
 * [Spark és Machine Learning: A Spark on HDInsight használata az épület-hőmérséklet elemzésére HVAC-adatok alapján](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [A webhelynapló elemzése a Spark on HDInsight használatával](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 * [Az Application Insights telemetriai adatainak elemzése a Spark on HDInsight használatával](hdinsight-spark-analyze-application-insight-logs.md)
 * [Az Azure HDInsight Spark Caffe elosztott mély tanulási használata](hdinsight-deep-learning-caffe-spark.md)
@@ -166,10 +166,10 @@ A Yarn felhasználói felületének indítása, a fentiek szerint. Fürt metrik�
 
 * [Önálló alkalmazás létrehozása a Scala használatával](hdinsight-apache-spark-create-standalone-application.md)
 * [Feladatok távoli futtatása Spark-fürtön a Livy használatával](hdinsight-apache-spark-livy-rest-interface.md)
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark Scala-alkalmazások létrehozásához és elküldéséhez](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Toocreate IntelliJ IDEA HDInsight-eszközei beépülő használja, és küldje el a Spark Scala-alkalmazások](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására](hdinsight-apache-spark-eventhub-streaming.md)
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark-alkalmazások távoli hibaelhárításához](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [IntelliJ IDEA toodebug Spark-alkalmazások HDInsight-eszközei beépülő távolról használni](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Zeppelin notebookok használata Spark-fürttel HDInsighton](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Jupyter notebookokhoz elérhető kernelek a HDInsight Spark-fürtjében](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Külső csomagok használata Jupyter notebookokkal](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [A Jupyter telepítése a számítógépre, majd csatlakozás egy HDInsight Spark-fürthöz](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Jupyter telepítse a számítógépre, és csatlakozzon a HDInsight Spark-fürt tooan](hdinsight-apache-spark-jupyter-notebook-install-locally.md)

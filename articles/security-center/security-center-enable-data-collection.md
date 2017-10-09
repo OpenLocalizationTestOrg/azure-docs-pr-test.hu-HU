@@ -1,6 +1,6 @@
 ---
-title: "Az adatgyűjtést az Azure Security Centerben |} Microsoft Docs"
-description: " Megtudhatja, hogyan szeretné az adatgyűjtést az Azure Security Centerben. "
+title: "aaaEnable adatgyűjtést az Azure Security Centerben |} Microsoft Docs"
+description: " Megtudhatja, hogyan tooenable adatgyűjtést az Azure Security Centerben. "
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: 7e9ad8cd8c77c57c37dc208b86b3727a4e1dc7b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78bbf9a3d852095e2a1387c1606ff4bbb778a0dd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-data-collection-in-azure-security-center"></a>Az adatgyűjtést az Azure Security Centerben
 
 > [!NOTE]
-> 2017 júniusának elejétől kezdve a Security Center a Microsoft Monitoring Agent használatával gyűjti össze és tárolja az adatokat. További tudnivalókért lásd: [Azure Security Center Platform áttelepítési](security-center-platform-migration.md). A jelen cikkben található információk a Security Center a Microsoft Monitoring Agentre való váltás után elérhető funkcióit ismertetik.
+> Korai. június 2017 verziótól kezdve a Security Center használnak hello Microsoft Monitoring Agent toocollect, illetve adatainak tárolásához. több, lásd: toolearn [Azure Security Center Platform áttelepítési](security-center-platform-migration.md). a cikkben szereplő információkat hello Security Center funkció átmenet toohello Microsoft Monitoring Agent után jelöli.
 >
 >
 
-A Security Center adatokat gyűjt a virtuális gépekről a biztonsági állapotuk értékeléséhez, a biztonsági javaslatok létrehozásához és a fenyegetésekkel kapcsolatos riasztásokhoz. Amikor először nyitja meg a Security Center, lehetősége van az előfizetés virtuális gépeinek gyűjtésének engedélyezése. Adatok gyűjtése nem engedélyezett, ha a Security Center javasolja, hogy kapcsolja be az adatgyűjtést az adott előfizetéshez tartozó biztonsági házirend.
+A Security Center adatokat gyűjti össze a virtuális gépek (VM) tooassess biztonsági állapotukra, adja meg a biztonsági javaslatok és riasztást küldjön, toothreats. A Security Center első megnyitásakor hello beállítás tooenable adatok gyűjtése az összes virtuális gép van az előfizetésben. Adatok gyűjtése nem engedélyezett, ha a Security Center javasolja, hogy kapcsolja be az adatgyűjtést az adott előfizetéshez tartozó hello biztonsági házirend.
 
-Adatgyűjtés engedélyezve van, a Security Center kiosztja a Microsoft Monitoring Agent összes meglévő támogatott az Azure virtuális gépek és a létrehozott újakat. A Microsoft Monitoring Agent ellenőrzi a különböző biztonsági konfigurációkat. Az operációs rendszer ezenkívül Eseménynapló eseményeinek riasztást. A gyűjtött adatok például a következők: az operációs rendszer típusa és verziója, az operációs rendszer naplói (Windows-eseménynaplók), a futó folyamatok, a gép neve, az IP-címek, a bejelentkezett felhasználó és a bérlő azonosítója. A Microsoft Monitoring Agent beolvassa az eseménynapló-bejegyzések és konfigurációkat, és másolja az adatokat a munkaterületre elemzés céljából. A Microsoft Monitoring Agent összeomlási memóriaképek is másolja a munkaterületre.
+Adatgyűjtés engedélyezve van, a Security Center rendelkezések hello Microsoft Monitoring Agent összes meglévő támogatott az Azure virtuális gépek és a létrehozott újakat. a Microsoft Monitoring Agent hello ellenőrzi a különböző biztonsági konfigurációkat. Emellett a hello operációs rendszer Eseménynapló eseményeinek riasztást. A gyűjtött adatok például a következők: az operációs rendszer típusa és verziója, az operációs rendszer naplói (Windows-eseménynaplók), a futó folyamatok, a gép neve, az IP-címek, a bejelentkezett felhasználó és a bérlő azonosítója. hello Microsoft Monitoring Agent olvassa be az eseménynapló-bejegyzések és konfigurációkat, és másolja a hello adatok tooyour munkaterület elemzés céljából. Microsoft Monitoring Agent hello átmásolja összeomlási kiírt fájlok tooyour munkaterületen.
 
-Ha a Security Center az ingyenes csomagot használ, letilthatja a virtuális gépek adatok gyűjtése által a biztonsági szabályzatban adatok gyűjtésének kikapcsolása. Adatgyűjtés letiltása korlátozza a biztonsági vizsgálatok során a virtuális géphez. További tudnivalókért lásd: [adatok gyűjtésének letiltása](#disabling-data-collection). Virtuálisgép-lemez pillanatfelvételek és összetevő gyűjtemény engedélyezve van, akkor is, ha az adatok gyűjtése le van tiltva. Adatgyűjtés a Standard szint a Security Center előfizetések szükség.
+Ha hello ingyenes szint a Security Center használ, letilthatja a virtuális gépek adatok gyűjtése kikapcsolásával adatgyűjtés hello biztonsági házirendben. Adatgyűjtés letiltása korlátozza a biztonsági vizsgálatok során a virtuális géphez. több, lásd: toolearn [adatok gyűjtésének letiltása](#disabling-data-collection). Virtuálisgép-lemez pillanatfelvételek és összetevő gyűjtemény engedélyezve van, akkor is, ha az adatok gyűjtése le van tiltva. Adatgyűjtés a Security Center szabványos szintjének hello előfizetések szükség.
 
 > [!NOTE]
 > További tudnivalók a Security Center szabad és Standard [tarifacsomagok](security-center-pricing.md).
 >
 >
 
-## <a name="implement-the-recommendation"></a>A javaslat megvalósítása
+## <a name="implement-hello-recommendation"></a>Hello javaslat megvalósítása
 
 > [!NOTE]
-> Ez a dokumentum egy üzembe helyezést szemléltető példa segítségével mutatja be a szolgáltatást. Ez a dokumentum nem tartalmaz lépésenkénti útmutatót.
+> Ez a dokumentum hello szolgáltatás telepítését bemutató példát használatával vezet be. Ez a dokumentum nem tartalmaz lépésenkénti útmutatót.
 >
 >
 
-1. Az a **javaslatok** panelen válassza **az adatgyűjtést az előfizetések**.  Ekkor megnyílik a **bekapcsolni az adatgyűjtést** panelen.
+1. A hello **javaslatok** panelen válassza **az adatgyűjtést az előfizetések**.  Ekkor megnyílik a hello **bekapcsolni az adatgyűjtést** panelen.
    ![Javaslatok panel][2]
-2. Az a **bekapcsolni az adatgyűjtést** panelen jelölje ki az előfizetését. A **biztonsági házirend** adott előfizetéshez tartozó panel nyílik meg.
-3. Az a **biztonsági házirend** panelen válassza **a** alatt **adatgyűjtés** az automatikus naplógyűjtéshez. Az előfizetés bekapcsolásával adatok gyűjtemény kiosztja a monitorozási bővítményt összes jelenlegi és új támogatott virtuális gépek.
+2. A hello **bekapcsolni az adatgyűjtést** panelen jelölje ki az előfizetését. Hello **biztonsági házirend** adott előfizetéshez tartozó panel nyílik meg.
+3. A hello **biztonsági házirend** panelen válassza **a** alatt **adatgyűjtés** tooautomatically naplógyűjtéshez. Hello előfizetés összes jelenlegi és az új adatok gyűjtemény rendelkezések hello bővítmény figyelését bekapcsolásával támogatja a virtuális gépek.
 4. Kattintson a **Mentés** gombra.
 5. Kattintson az **OK** gombra.
 
 ## <a name="disabling-data-collection"></a>Adatgyűjtés letiltása
-Ha a Security Center az ingyenes csomagot használ, letilthatja a adatgyűjtést bármikor a virtuális gépek által a biztonsági szabályzatban adatok gyűjtésének kikapcsolása. Adatgyűjtés a Standard szint a Security Center előfizetések szükség.
+Ha hello ingyenes szint a Security Center használ, letilthatja a adatgyűjtés a virtuális gépekről bármikor kikapcsolásával adatgyűjtés hello biztonsági házirendben. Adatgyűjtés a Security Center szabványos szintjének hello előfizetések szükség.
 
-1. Lépjen vissza a **Security Center** panelhez, és válassza a **házirend** csempére. Ekkor megnyílik a **biztonsági szabályzat – szabályzat definiálása előfizetésenként** panelen.
-   ![Válassza ki a házirend csempe][5]
-2. Az a **biztonsági szabályzat – szabályzat definiálása előfizetésenként** panelen válassza ki az előfizetést, amelyet meg kíván kapcsolni az adatgyűjtést.
-3. A **biztonsági házirend** adott előfizetéshez tartozó panel nyílik meg.  Válassza ki **ki** adatgyűjtés alapján.
-4. Válassza ki **mentése** a felső szalagon.
+1. Térjen vissza a toohello **Security Center** panel megnyitásához, és jelölje be hello **házirend** csempére. Ekkor megnyílik a hello **biztonsági szabályzat – szabályzat definiálása előfizetésenként** panelen.
+   ![Hello házirend csempe kiválasztása][5]
+2. A hello **biztonsági szabályzat – szabályzat definiálása előfizetésenként** panelen, jelölje be hello előfizetés, hogy kívánja-e toodisable adatgyűjtés.
+3. Hello **biztonsági házirend** adott előfizetéshez tartozó panel nyílik meg.  Válassza ki **ki** adatgyűjtés alapján.
+4. Válassza ki **mentése** hello felső szalagon.
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a cikk bemutatta megvalósításához a Security Center ajánlás "Adatgyűjtés engedélyezése." A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
+Ez a cikk bemutatta, hogyan tooimplement hello Security Center ajánlás "Enable adatgyűjtés." További információ a Security Center toolearn hello következő lásd:
 
-* [Biztonsági szabályzatok beállítása az Azure Security Centerben](security-center-policies.md) – Ez a cikk bemutatja, hogyan konfigurálhat biztonsági házirendeket Azure-előfizetései és -erőforráscsoportjai számára.
+* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md) – megtudhatja, hogyan tooconfigure biztonsági házirendek az Azure-előfizetések és az erőforráscsoportokat.
 * [Biztonsági javaslatok kezelése az Azure Security Center](security-center-recommendations.md) – megtudhatja, miként könnyítik meg a javaslatok az Azure-erőforrások védelme.
-* [Biztonsági állapotmonitorozás az Azure Security Centerben](security-center-monitoring.md) – Útmutató az Azure-erőforrások állapotának monitorozásához.
-* [Biztonsági riasztások kezelése és reagálás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
-* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md) – Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
+* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md)– megtudhatja, hogyan toomonitor hello az Azure-erőforrások állapotát.
+* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md)– megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
+* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md) – megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
 - [Az Azure Security Center adatainak biztonsági](security-center-data-security.md) -megtudhatja, hogyan adatok felügyelt és a Security Center védelmét.
-* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
-* [Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – Tájékozódás az Azure biztonságával kapcsolatos legfrissebb hírekről és információkról.
+* [Azure Security Center: GYIK](security-center-faq.md)– gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/)– hello legújabb Azure biztonsági hírek és információ lekérése.
 
 <!--Image references-->
 [2]: ./media/security-center-enable-data-collection/recommendations.png

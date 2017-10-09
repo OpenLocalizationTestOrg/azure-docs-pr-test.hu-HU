@@ -1,6 +1,6 @@
 ---
-title: "Hogyan telefonhívás a Twilio (.NET) |} Microsoft Docs"
-description: "Útmutató a telefonhívás, és a Twilio API szolgáltatás SMS üzenet küldése az Azure-on. Kódminták .NET."
+title: "aaaHow toomake telefonhívást a Twilio (.NET) |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomake telefonhívást, majd küldje el a SMS üzenet hello Twilio API szolgáltatásban az Azure-on. Kódminták .NET."
 services: 
 documentationcenter: .net
 author: devinrader
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/04/2016
 ms.author: microsofthelp@twilio.com
-ms.openlocfilehash: 0899a49cbfda775017dab7fc6d8963bbeb86d74c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 857d89961c563a51fef944f4a72828036af79b43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-make-a-phone-call-using-twilio-in-a-web-role-on-azure"></a>Hogyan telefonhívás Twilio webes szerepkörrel rendelkező Azure használatával
-Ez az útmutató bemutatja, hogyan Twilio használata Azure-ban üzemeltetett weblapok hívásakor. Az eredményül kapott alkalmazás felszólítja a felhasználót egy hívás a megadott és az üzenet, az alábbi képernyőfelvételen látható módon.
+# <a name="how-toomake-a-phone-call-using-twilio-in-a-web-role-on-azure"></a>Hogyan toomake egy telefonhívási Twilio webes szerepkörrel rendelkező Azure használatával
+Ez az útmutató ismerteti, hogyan toouse Twilio toomake weblapról hívás Azure-ban üzemeltetett. hello eredményül kapott alkalmazás kérdéseket hello felhasználói toomake hívás hello adott számát és az üzenet, ahogy az alábbi képernyőfelvétel a hello.
 
 ![Azure hívás űrlap Twilio- és ASP.NET használatával][twilio_dotnet_basic_form]
 
 ## <a name="twilio-prereqs"></a>Előfeltételek
-Szüksége lesz a kódot használja ebben a témakörben érdekében tegye a következőket:
+Szüksége lesz a toodo hello következő toouse hello kód ebben a témakörben:
 
-1. Szerezzen be egy Twilio-fiókja és a hitelesítési jogkivonat a a [Twilio-konzol][twilio_console]. A regisztráció megkezdéséhez Twilio, [https://www.twilio.com/try-twilio][try_twilio]. Kiértékelheti a díjszabás [http://www.twilio.com/pricing][twilio_pricing]. Az API-t Twilio által biztosított kapcsolatos információkért lásd: [http://www.twilio.com/voice/api][twilio_api].
-2. Adja hozzá a *Twilio .NET kódtár* a webes szerepkör. Lásd: **a Twilio-kódtárak hozzáadása a webes szerepkör projekt**, ez a témakör későbbi részében.
+1. Szerezzen be egy Twilio-fiókja és a hitelesítési jogkivonat a hello [Twilio-konzol][twilio_console]. tooget használatába Twilio, jelentkezzen a [https://www.twilio.com/try-twilio][try_twilio]. Kiértékelheti a díjszabás [http://www.twilio.com/pricing][twilio_pricing]. Hello Twilio által nyújtott API kapcsolatos információkért lásd: [http://www.twilio.com/voice/api][twilio_api].
+2. Adja hozzá a hello *Twilio .NET kódtár* tooyour webes szerepkör. Lásd: **tooadd hello Twilio szalagtárak tooyour webes szerepkör projekt**, ez a témakör későbbi részében.
 
 Meg kell ismernie az alapvető létrehozása [webes szerepkör Azure][azure_webroles_get_started].
 
 ## <a name="howtocreateform"></a>Útmutató: a következő hívással webes űrlap létrehozása
-<a id="use_nuget"></a>A Twilio-kódtárak hozzáadása a webes szerepkör projekt:
+<a id="use_nuget"></a>tooadd hello Twilio szalagtárak tooyour webes szerepkör projekt:
 
 1. Nyissa meg a megoldást a Visual Studióban.
 2. Kattintson a jobb gombbal **hivatkozások**.
 3. Kattintson a **NuGet-csomagok kezelése**.
 4. Kattintson a **Online**.
-5. Online keresőmezőbe, írja be a *twilio*.
-6. Kattintson a **telepítése** a Twilio-csomagra.
+5. Hello online a keresőmezőbe írja be a *twilio*.
+6. Kattintson a **telepítése** hello Twilio-csomag.
 
-A következő kód bemutatja, hogyan hozzon létre egy webes űrlap egy hívás a felhasználói adatok beolvasása. Ebben a példában egy ASP.NET webes szerepkör nevű **TwilioCloud** jön létre.
+hello a következő kód bemutatja, hogyan toocreate egy webes űrlap tooretrieve felhasználó adatai a következő hívással. Ebben a példában egy ASP.NET webes szerepkör nevű **TwilioCloud** jön létre.
 
 ```aspx
 <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.master"
@@ -69,8 +69,8 @@ A következő kód bemutatja, hogyan hozzon létre egy webes űrlap egy hívás 
 </asp:Content>
 ```
 
-## <a id="howtocreatecode"></a>Útmutató: a kód a híváshoz létrehozása
-Az alábbi kód, amely nevezzük, amikor a felhasználó befejezi az űrlapot, a hívás-üzenetet hoz létre, és állít elő, a hívást. Ebben a példában a kódot az űrlap gomb onclick eseménykezelőjét futtatásához. (Twilio-fiókja és -hitelesítési token helyett a rendelt helyőrző értékeket használja `accountSID` és `authToken` az alábbi kódban.)
+## <a id="howtocreatecode"></a>Hogyan: hello kód toomake hello hívás létrehozása
+hello alábbi kód, amely hello felhasználói befejezéséről hello űrlap nevezik, hívás üdvözlőüzenetére hoz létre és hello hívás állít elő. Ebben a példában a hello kód hello űrlap hello onclick eseménykezelő hello gomb futtatásához. (Twilio-fiókja és -hitelesítési token helyett túl hozzárendelt hello helyőrző értékeket használja`accountSID` és `authToken` a hello kódot.)
 
 ```csharp
 using System;
@@ -98,14 +98,14 @@ namespace WebRole1
             // Call porcessing happens here.
 
             // Use your account SID and authentication token instead of
-            // the placeholders shown here.
+            // hello placeholders shown here.
             var accountSID = "ACNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
             var authToken =  "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
 
-            // Instantiate an instance of the Twilio client.
+            // Instantiate an instance of hello Twilio client.
             TwilioClient.Init(accountSID, authToken);
 
-            // Retrieve the account, used later to retrieve the
+            // Retrieve hello account, used later tooretrieve the
             var account = AccountResource.Fetch(accountSID);
 
             this.varDisplay.Items.Clear();
@@ -117,24 +117,24 @@ namespace WebRole1
             }
             else
             {
-                // Retrieve the values entered by the user.
-                var to = PhoneNumber(this.toNumber.Text);
+                // Retrieve hello values entered by hello user.
+                var too= PhoneNumber(this.toNumber.Text);
                 var from = new PhoneNumber("+14155992671");
                 var myMessage = this.message.Text;
 
-                // Create a URL using the Twilio message and the user-entered
-                // text. You must replace spaces in the user's text with '%20'
-                // to make the text suitable for a URL.
+                // Create a URL using hello Twilio message and hello user-entered
+                // text. You must replace spaces in hello user's text with '%20'
+                // toomake hello text suitable for a URL.
                 var url = $"http://twimlets.com/message?Message%5B0%5D={myMessage.Replace(" ", "%20")}";
                 var twimlUri = new Uri(url);
 
-                // Display the endpoint, API version, and the URL for the message.
+                // Display hello endpoint, API version, and hello URL for hello message.
                 this.varDisplay.Items.Add($"Using Twilio endpoint {
                 }");
                 this.varDisplay.Items.Add($"Twilioclient API Version is {apiVersion}");
-                this.varDisplay.Items.Add($"The URL is {url}");
+                this.varDisplay.Items.Add($"hello URL is {url}");
 
-                // Place the call.
+                // Place hello call.
                 var call = CallResource.create(to, from, url: twimlUri);
                 this.varDisplay.Items.Add("Call status: " + call.Status);
             }
@@ -143,22 +143,22 @@ namespace WebRole1
 }
 ```
 
-A rendszer telefonhívást indít, és a Twilio-végpont, API-verzió és az állapot jelenik meg. Az alábbi képernyőfelvételen látható minta futtató kimenetét.
+hello kezdeményezték, és hello Twilio-végpont, API-verziót és hello hívás állapotát megjeleníti. hello képernyőképe látható kimeneti következő egy minta futtatásához.
 
 ![Azure hívási válasz Twilio-és ASP.NET][twilio_dotnet_basic_form_output]
 
 További információ a TwiML található [http://www.twilio.com/docs/api/twiml][twiml]. További információ a &lt;szóbeli&gt; és egyéb Twilio művelet található a [http://www.twilio.com/docs/api/twiml/say][twilio_say].
 
 ## <a id="nextsteps"></a>Következő lépések
-Ez a kód Twilio használatát az ASP.NET webes szerepkör Azure alapvető funkciókat mutatjuk be lett megadva. Mielőtt telepítené az Azure éles környezetben, érdemes lehet további hibakezelés vagy egyéb szolgáltatások. Példa:
+Ez a kód lett megadva tooshow Ön alapvető funkciókat Twilio ASP.NET webes szerepkört az Azure használatával. Mielőtt éles környezetben tooAzure, érdemes lehet tooadd további hibakezelés és egyéb szolgáltatások esetében. Példa:
 
-* Egy webes űrlap használata helyett használhat Azure Blob-tároló vagy egy Azure SQL Database-példányt a telefonszámok tárolja, és hívja meg a szöveg. További információ a Blobs használata az Azure-ban: [az Azure Blob storage szolgáltatás használata a .NET][howto_blob_storage_dotnet]. SQL-adatbázis használatával kapcsolatos információkért lásd: [hogyan használható az Azure SQL Database .NET-alkalmazások][howto_sql_azure_dotnet].
-* Használhat `RoleEnvironment.getConfigurationSettings` beolvasni a Twilio Fiókazonosítót és a hitelesítési token a központi telepítés konfigurációs beállításai, bekódolásának az űrlapon szereplő értékek helyett. További információ a `RoleEnvironment` osztály című [Microsoft.WindowsAzure.ServiceRuntime Namespace][azure_runtime_ref_dotnet].
-* Olvassa el a Twilio biztonsági irányelvek a [https://www.twilio.com/docs/security][twilio_docs_security].
+* Egy webes űrlap használata helyett sikerült Azure Blob-tároló vagy egy Azure SQL Database példány toostore telefonszámokat, és hívja szöveg. További információ a Blobs használata az Azure-ban: [hogyan toouse hello Azure Blob storage szolgáltatást a .NET][howto_blob_storage_dotnet]. SQL-adatbázis használatával kapcsolatos információkért lásd: [hogyan toouse Azure SQL-adatbázis a .NET-alkalmazások][howto_sql_azure_dotnet].
+* Használhat `RoleEnvironment.getConfigurationSettings` tooretrieve hello Twilio Fiókazonosítót és a hitelesítési token a központi telepítés konfigurációs beállítások, az űrlap hello értékei rögzített megadás helyett. További információ a hello `RoleEnvironment` osztály című [Microsoft.WindowsAzure.ServiceRuntime Namespace][azure_runtime_ref_dotnet].
+* Olvassa el a hello Twilio biztonsági előírásait a [https://www.twilio.com/docs/security][twilio_docs_security].
 * További információ a Twilio [https://www.twilio.com/docs][twilio_docs].
 
 ## <a name="seealso"></a>Lásd még:
-* [Az Azure-ból a hang- és SMS képességeinek Twilio használata](twilio-dotnet-how-to-use-for-voice-sms.md)
+* [Hogyan toouse Twilio hang- és SMS képességeinek az Azure-ból](twilio-dotnet-how-to-use-for-voice-sms.md)
 
 [twilio_console]: https://www.twilio.com/console
 [twilio_pricing]: http://www.twilio.com/pricing

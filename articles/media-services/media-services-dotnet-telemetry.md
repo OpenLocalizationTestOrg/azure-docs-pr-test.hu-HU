@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Services telemetriai konfigurálása a .NET |} Microsoft Docs"
-description: "Ez a cikk bemutatja, hogyan használható az Azure Media Services telemetriai .NET SDK használatával."
+title: Azure Media Services .NET telemetriai adatok aaaConfiguring |} Microsoft Docs
+description: "Ez a cikk bemutatja, hogyan toouse hello Azure Media Services telemetriai .NET SDK használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-net"></a>A .NET Azure Media Services telemetriai konfigurálása
 
-Ez a témakör általános lépéseket, amelyek lehet, hogy a .NET SDK használatával Azure Media Services (AMS) telemetriai konfigurálásakor. 
+Ez a témakör általános lépéseket, amelyek esetleg hello Azure Media Services (AMS) telemetriai .NET SDK használatával konfigurálásakor. 
 
 >[!NOTE]
->Mi részletes leírását az AMS telemetriai adatok és hogyan szokásokra is, lásd: a [áttekintése](media-services-telemetry-overview.md) témakör.
+>A hello részletesen ismerteti, mit AMS telemetriai adatokat, és hogyan tooconsume, lásd: hello [áttekintése](media-services-telemetry-overview.md) témakör.
 
-Használatba vehetné a telemetriai adatokat a következő módszerek valamelyikével:
+Használatba vehetné a telemetriai adatokat a következő módokon hello egyikében:
 
-- Olvassa el az adatokat közvetlenül az Azure Table Storage (pl. tárhely SDK használatával). A telemetriai adatokat tároló tábla ismertetését lásd: a **telemetriai adatokat fel** a [ez](https://msdn.microsoft.com/library/mt742089.aspx) témakör.
+- Olvassa el az adatokat közvetlenül az Azure Table Storage (pl. a hello Storage szolgáltatás SDK használatával). Telemetriai adatok tárolási táblák hello ismertetését lásd: hello **telemetriai adatokat fel** a [ez](https://msdn.microsoft.com/library/mt742089.aspx) témakör.
 
 Vagy
 
-- Használja a támogatási szolgálathoz a Media Services .NET SDK tárolási adatok olvasásához. Ez a témakör bemutatja a telemetriai adatokat a megadott AMS-fiók engedélyezése és az Azure Media Services .NET SDK használatával metrikák lekérdezése.  
+- Hello-támogatás a Media Services .NET SDK hello tárolási adatok olvasásához. Ez a témakör bemutatja, hogyan tooenable telemetriai adat hello megadott AMS-fiók, és hogyan tooquery hello metrikák használatával hello Azure Media Services .NET SDK-t.  
 
 ## <a name="configuring-telemetry-for-a-media-services-account"></a>Telemetria a Media Services-fiók konfigurálása
 
-A következő lépésekre van szükség telemetriai engedélyezése:
+hello következő lépésekre szükséges tooenable telemetriai:
 
-- A Media Services-fiókhoz csatolva a tárfiók hitelesítő adatainak lekérése. 
-- Az értesítési végpont létrehozásához **EndPointType** beállítása **AzureTable** és a tárolási tábla mutató endPointAddress.
+- Hello hello tárolási kapcsolódó számla toohello Media Services-fiók hitelesítő adatainak beolvasása. 
+- Az értesítési végpont létrehozásához **EndPointType** túl beállítása**AzureTable** és endPointAddress toohello tárolási tábla mutat.
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- Figyelési konfiguráció létrehozása a figyelni kívánt szolgáltatások beállításait. Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat. 
+- Figyelési konfiguráció létrehozása beállítások hello szolgáltatási azt szeretné, hogy toomonitor. Legfeljebb egy engedélyezett figyelési konfigurációs beállításokat. 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -62,15 +62,15 @@ További információ a fogyasztó telemetriai adatokat: [ez](media-services-tel
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-1. Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+1. A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
-2. Adja hozzá a következő elem **appSettings** az app.config fájlban meghatározott:
+2. Adja hozzá a következő elem túl hello**appSettings** az app.config fájlban meghatározott:
 
     <add key="StorageAccountName" value="storage_name" />
  
 ## <a name="example"></a>Példa  
     
-A következő példa bemutatja, telemetriai adatokat a megadott AMS-fiók engedélyezése és az Azure Media Services .NET SDK használatával metrikák lekérdezése.  
+hello a következő példa bemutatja, hogyan tooenable telemetriai adat hello megadott AMS-fiók, és hogyan tooquery hello metrikák használatával hello Azure Media Services .NET SDK.  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ A következő példa bemutatja, telemetriai adatokat a megadott AMS-fiók enged�
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))

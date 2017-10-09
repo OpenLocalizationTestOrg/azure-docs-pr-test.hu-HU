@@ -1,5 +1,5 @@
 ---
-title: "Állítson be egy SQL Server virtuális gépet IPython Notebook kiszolgálóként |} Microsoft Docs"
+title: "egy SQL Server virtuális gép IPython Notebook kiszolgálóként aaaSet |} Microsoft Docs"
 description: "Állítsa be adatok tudományos rendelkező virtuális gép az SQL Server és IPython kiszolgáló."
 services: machine-learning
 documentationcenter: 
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: xibingao;bradsev
-ms.openlocfilehash: 8a151a6a15d4d000a774e3ec4e38bfa0e58ca33b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee83d1d5de671d9817c1bc1abd6b4f9c256dde8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-an-azure-sql-server-virtual-machine-as-an-ipython-notebook-server-for-advanced-analytics"></a>Azure SQL Server virtuális gép beállítása IPython Notebook-kiszolgálóként a speciális elemzésekhez
-Ez a témakör azt ismerteti, hogyan felkészítse és konfigurálja az SQL Server virtuális gép tudományos adatok felhőalapú környezetben üzemel, használható. A Windows rendszerű virtuális gép támogatási eszközöket, például a IPython Notebook, Azure Tártallózó, és AzCopy, valamint más hasznos adatokat tudományos projektek a segédeszközök van konfigurálva. Az Azure Tártallózó és AzCopy, például módszereket biztosítanak az kényelmes feltölteni az adatokat az Azure blob storage a helyi számítógépről, vagy a blob storage-ból tölthetik le a helyi számítógépen.
+Ez a témakör bemutatja, hogyan tooprovision, és konfigurálja az SQL Server virtuális gép toobe a felhőalapú adatokat tudományos környezet részeként használatos. támogató eszközöket, például a IPython Notebook, Azure Tártallózó, és AzCopy, valamint más hasznos adatokat tudományos projektek a segédeszközök hello Windows rendszerű virtuális gép van beállítva. Az Azure Tártallózó és AzCopy, például módszereket biztosítanak az kényelmes tooupload adatok tooAzure blob storage-ának a helyi számítógépen vagy toodownload azt tooyour helyi számítógép blobtárolóból.
 
-A virtuális gép az Azure számos olyan rendszerkép található, amely tartalmazza a Microsoft SQL Server rendelkezik. Az adattárolási igényeinek megfelelő SQL Server virtuális gép lemezképének kiválasztása. Ajánlott lemezképeket a következők:
+hello Azure virtuális gép számos olyan rendszerkép található, amely tartalmazza a Microsoft SQL Server rendelkezik. Az adattárolási igényeinek megfelelő SQL Server virtuális gép lemezképének kiválasztása. Ajánlott lemezképeket a következők:
 
-* SQL Server 2012 SP2 Enterprise a kis-és közepes méretű adatok mérete
-* SQL Server 2012 SP2 Enterprise optimalizálva DataWarehousing munkaterhelések nagy a nagyon nagy méretű adatok mérete
+* SQL Server 2012 SP2 Enterprise kis toomedium adatok mérete
+* SQL Server 2012 SP2 Enterprise optimalizálva nagy toovery nagy adatmennyiség DataWarehousing munkaterhelések
   
   > [!NOTE]
-  > SQL Server 2012 SP2 Enterprise kép **nem tartalmazza az adatlemezt**. Akkor adja hozzá és/vagy csatlakoztassa egy vagy több virtuális merevlemezeket az adatok tárolásához. Egy Azure virtuális gép létrehozásakor rendelkezik egy a C meghajtó leképezve az operációs rendszerhez és lemezt ideiglenes leképezve a D meghajtóra. Ne használja a D meghajtó adatainak tárolásához. Foglalja, csak az átmeneti tárolási biztosít. Kínál nincs redundancia vagy a biztonsági mentést, mert az nem található az Azure storage.
+  > SQL Server 2012 SP2 Enterprise kép **nem tartalmazza az adatlemezt**. Meg kell tooadd, illetve egy vagy több virtuális merevlemezek toostore csatolja az adatok. Egy Azure virtuális gép létrehozásakor rendelkezik, és egy ideiglenes leképezve toohello D meghajtó hello leképezett operációs rendszer toohello C meghajtó lemezt. Ne használjon hello D meghajtó toostore adatokat. Hello név azt jelenti, mert csak az átmeneti tárolási biztosít. Kínál nincs redundancia vagy a biztonsági mentést, mert az nem található az Azure storage.
   > 
   > 
 
-## <a name="Provision"></a>A klasszikus Azure portál csatlakozni, és az SQL Server rendszerű virtuális gép
-1. Jelentkezzen be a [a klasszikus Azure portálon](http://manage.windowsazure.com/) a fiókjával.
+## <a name="Provision"></a>Csatlakozás toohello klasszikus Azure portálon, és az SQL Server rendszerű virtuális gép
+1. Jelentkezzen be toohello [a klasszikus Azure portálon](http://manage.windowsazure.com/) a fiókjával.
    Ha nem rendelkezik Azure-fiókkal, az [Azure ingyenes próbát](https://azure.microsoft.com/pricing/free-trial/) biztosít.
-2. Kattintson a klasszikus Azure portálon, a weblap bal alsó **+ új**, kattintson a **számítási**, kattintson a **virtuális gép**, és kattintson a **FROM GYŰJTEMÉNY**.
-3. Az a **hozzon létre egy virtuális gépet** lapon válasszon ki egy virtuális gép lemezképet tartalmazó SQL Server-adatok igényei szerint, és kattintson a jobb alsó sarkában az oldal tovább nyílra. A támogatott SQL Server-rendszerképeit Azure a legfrissebb információkért lásd: [Ismerkedés az SQL Server Azure virtuális gépek](http://go.microsoft.com/fwlink/p/?LinkId=294720) a témakör a [SQL Server Azure virtuális gépek](http://go.microsoft.com/fwlink/p/?LinkId=294719) dokumentációkészlet.
+2. Hello klasszikus Azure portálon, a hello weblapon hello jobb alsó sarkában kattintson **+ új**, kattintson a **számítási**, kattintson a **virtuális gép**, és kattintson a **FROM GYŰJTEMÉNYELEM**.
+3. A hello **hozzon létre egy virtuális gépet** lapon válasszon ki egy virtuális gép lemezképet tartalmazó SQL Server-adatok igényei szerint, és kattintson a jobb alsó sarkában hello lap hello tovább nyílra. Hello naprakész információkat hello támogatott Azure SQL Server-lemezképek, a következő témakörben: [Ismerkedés az SQL Server Azure virtuális gépek](http://go.microsoft.com/fwlink/p/?LinkId=294720) hello témakörében [SQL Server Azure virtuális gépek](http://go.microsoft.com/fwlink/p/?LinkId=294719) dokumentációkészlet.
    
    ![Válassza ki az SQL Server rendszerű virtuális Géphez][1]
-4. Az első **virtuálisgép-konfiguráció** lapján adja meg a következő információkat:
+4. A hello első **virtuálisgép-konfiguráció** lapján adja meg a következő információkat:
    
    * Adjon meg egy **virtuális gép neve**.
-   * Az a **új FELHASZNÁLÓNEVET** mezőbe, a virtuális gép helyi rendszergazdai fiók egyedi felhasználói típusnév.
-   * Az a **új jelszó** mezőbe írjon be egy erős jelszót. További információkért lásd az [erős jelszavak](http://msdn.microsoft.com/library/ms161962.aspx) létrehozását ismertető cikket.
-   * Az a **jelszó megerősítése** mezőbe írja be ismét a jelszót.
-   * Válassza ki a megfelelő **mérete** a legördülő listából.
+   * A hello **új FELHASZNÁLÓNEVET** mezőben, egyedi felhasználónév típus hello virtuális gép helyi rendszergazdai fiók.
+   * A hello **új jelszó** mezőbe írjon be egy erős jelszót. További információkért lásd az [erős jelszavak](http://msdn.microsoft.com/library/ms161962.aspx) létrehozását ismertető cikket.
+   * A hello **jelszó megerősítése** mezőbe írja be ismét hello jelszót.
+   * Jelölje be hello megfelelő **mérete** hello a legördülő listából.
      
      > [!NOTE]
-     > A virtuális gép méretét a kiépítés során van megadva: A2 érték a termelési számítási feladatokhoz ajánlott legkisebb méretét. A virtuális gép ajánlott minimális mérete A3 használata esetén az SQL Server Enterprise Edition. Válassza ki a A3 vagy újabb SQL Server Enterprise Edition használatakor. Válassza ki a A4 tranzakciós munkaterhelések lemezképek SQL Server 2012 vagy 2014 Enterprise optimalizált használata esetén.
-     > Válassza ki a A7 Data Warehousing munkaterhelések lemezképek SQL Server 2012 vagy 2014 Enterprise optimalizált használata esetén. A kiválasztott méret konfigurálhatja az adatlemezek számának korlátozása. A rendelkezésre álló virtuálisgép-méretek és a virtuális gépekhez csatolható adatlemezek száma legfrissebb információkért lásd: [Azure virtuálisgép-méretek](http://msdn.microsoft.com/library/azure/dn197896.aspx). Díjszabási információkért lásd: [virtuális Macines árképzési](https://azure.microsoft.com/pricing/details/virtual-machines/).
+     > hello mérete hello virtuális gép kiépítése során van megadva: A2 mérete hello legkisebb üzemi terhelés esetén. A virtuális gép ajánlott minimális mérete A3 használata esetén az SQL Server Enterprise Edition. Válassza ki a A3 vagy újabb SQL Server Enterprise Edition használatakor. Válassza ki a A4 tranzakciós munkaterhelések lemezképek SQL Server 2012 vagy 2014 Enterprise optimalizált használata esetén.
+     > Válassza ki a A7 Data Warehousing munkaterhelések lemezképek SQL Server 2012 vagy 2014 Enterprise optimalizált használata esetén. kiválasztott hello méret konfigurálhatja az adatlemezek számának korlátozása. Hogy csatolhat a tooa virtuális gép elérhető virtuálisgép-méretek és adatlemezek száma hello legfrissebb információkért lásd: [Azure virtuálisgép-méretek](http://msdn.microsoft.com/library/azure/dn197896.aspx). Díjszabási információkért lásd: [virtuális Macines árképzési](https://azure.microsoft.com/pricing/details/virtual-machines/).
      > 
      > 
    
-   Kattintson a Tovább nyílra alsó folytatja.
+   Kattintson a Tovább nyílra hello hello alsó jobb toocontinue.
    
    ![Virtuálisgép-konfiguráció][2]
-5. A második **virtuálisgép-konfiguráció** lapon, hálózati, tárolási és rendelkezésre állás erőforrásait:
+5. A hello második **virtuálisgép-konfiguráció** lapon, hálózati, tárolási és rendelkezésre állás erőforrásait:
    
-   * Az a **Felhőszolgáltatás** válassza **hozzon létre egy új felhőalapú szolgáltatás**.
-   * Az a **felhőalapú szolgáltatás DNS-név** , hogy ő maga befejeződne formátumban nevét, adja meg egy DNS-nevet az Ön által választott első része **TESTNAME.cloudapp.net**
-   * Az a **régió/AFFINITÁS csoport/virtuális hálózati** mezőben válasszon ki egy régiót, ahol a virtuális lemezképet fog üzemelni.
-   * Az a **Tárfiók**, válasszon egy meglévő tárfiókot, vagy válasszon ki egy automatikusan létrehozott másikat.
-   * Az a **rendelkezésre ÁLLÁSI csoport** mezőben válassza **(nincs)**.
-   * Olvassa el és fogadja el a díjszabási információkat.
-6. A a **VÉGPONTOK** területen kattintson az üres legördülő **neve**, és válassza ki **MSSQL** írja be az adatbázismotor példánya portjának száma (**1433-as** az alapértelmezett példány).
+   * A hello **Felhőszolgáltatás** válassza **hozzon létre egy új felhőalapú szolgáltatás**.
+   * A hello **felhőalapú szolgáltatás DNS-név** , hogy ő maga befejeződne formátumú nevét adja meg a hello első része egy DNS-nevet az Ön által választott **TESTNAME.cloudapp.net**
+   * A hello **régió/AFFINITÁS csoport/virtuális hálózati** mezőben válasszon ki egy régiót, ahol a virtuális lemezképet fog üzemelni.
+   * A hello **Tárfiók**, válasszon egy meglévő tárfiókot, vagy válasszon ki egy automatikusan létrehozott másikat.
+   * A hello **rendelkezésre ÁLLÁSI csoport** mezőben válassza **(nincs)**.
+   * Olvassa el, és fogadja el a hello díjszabási információkat.
+6. A hello **VÉGPONTOK** a hello üres legördülő lista alatt kattintson **neve**, és válassza ki **MSSQL** írja be az adatbázis-kezelő (hellopéldányánakhelloportszám**1433** hello alapértelmezett példány).
 7. Az SQL Server virtuális gép is lehetnek egy IPython Notebook kiszolgálóra, amely egy későbbi lépésben lesz konfigurálva.
-   Adjon hozzá egy új végpontot adja meg a portot használ a IPython Notebook kiszolgálóhoz. Írjon be egy nevet a **neve** oszlop, válassza ki a portszámot az Ön által választott, a nyilvános port és 9999 a magánhálózati port.
+   Adjon hozzá egy új végpont toospecify hello port toouse a IPython Notebook kiszolgáló. Adjon meg egy nevet a hello **neve** oszlop, válassza ki a portszámot az Ön által választott hello nyilvános port és 9999 hello magánhálózati port.
    
-   Kattintson a Tovább nyílra alsó folytatja.
+   Kattintson a Tovább nyílra hello hello alsó jobb toocontinue.
    
    ![Válassza ki az MSSQL és IPython portok][3]
-8. Fogadja el az alapértelmezett **telepítése Virtuálisgép-ügynök** beállítás be van jelölve, majd kattintson a a jelet a jobb alsó sarkában a varázsló befejezi a virtuális gép létesítésének folyamatát kell használnia.
+8. Fogadja el az alapértelmezett hello **telepítése Virtuálisgép-ügynök** beállítás be van jelölve, majd kattintson a hello hello be hello jobb alsó sarkában hello varázsló toocomplete hello virtuális gép üzembe helyezési folyamat.
    
    `![Virtuális gép végső beállítások][4]
-9. Várjon, amíg a Azure előkészíti a virtuális gép. Várt végezze el a virtuális gép állapota:
+9. Várjon, amíg a Azure előkészíti a virtuális gép. Várt hello virtuális gép állapota tooproceed keresztül:
    
    * (Kiépítése) indítása
    * Leállítva
@@ -83,66 +83,66 @@ A virtuális gép az Azure számos olyan rendszerkép található, amely tartalm
    * Futó (kiépítése)
    * Fut
 
-## <a name="RemoteDesktop"></a>Nyissa meg a virtuális gép használata a távoli asztal és a telepítés befejezéséhez
-1. Ha kiépítése befejeződött, kattintson az IRÁNYÍTÓPULT-oldalon Ugrás a virtuális gép nevére. Kattintson a lap alján **Connect**.
-2. Válassza ki a Windows távoli asztal programmal rpd fájl megnyitásához (`%windir%\system32\mstsc.exe`).
-3. : A **Windows biztonsági** párbeszédpanelen adja meg a jelszót a helyi rendszergazdai fiók, amelyet a korábbi lépésben.
-   (Előfordulhat, hogy kérni ellenőrizze a hitelesítő adatokat a virtuális gép.)
-4. Jelentkezzen be a virtuális gépre, először néhány folyamat befejeződik, beleértve a telepítés asztali, Windows-frissítések, és a Windows kezdeti konfigurációs feladatok (sysprep) megvalósításának esetleg. A Windows sysprep befejezése után az SQL Server telepítése konfigurációs feladatokat hajtja végre. Ezek a feladatok okozhat néhány percet várnia, amíg a művelet befejeződik. `SELECT @@SERVERNAME`nem adhat vissza a megfelelő nevet, mindaddig, amíg az SQL Server telepítése befejeződik, és az SQL Server Management Studio nem lehet a start lap visable.
+## <a name="RemoteDesktop"></a>Nyissa meg a hello virtuális gép használata a távoli asztal és a telepítés befejezéséhez
+1. Kiépítés befejeztével kattintson a virtuális gép toogo toohello IRÁNYÍTÓPULT-oldalon hello név. Hello a hello lap alján, kattintson **Connect**.
+2. Válassza a tooopen hello rpd fájl hello Windows távoli asztal programmal (`%windir%\system32\mstsc.exe`).
+3. A hello **Windows biztonsági** párbeszédpanelen adja meg a helyi rendszergazdai fiók, amelyet a korábbi lépésben hello jelszó.
+   (Megadását hello virtuális gép tooverify hello hitelesítő adatokkal.)
+4. hello első bejelentkezéskor toothis virtuális gépen több folyamatok esetleg toocomplete, beleértve a asztali, Windows-frissítések és hello Windows kezdeti konfigurációs feladatok (sysprep) megvalósításának. A Windows sysprep befejezése után az SQL Server telepítése konfigurációs feladatokat hajtja végre. Ezek a feladatok okozhat néhány percet várnia, amíg a művelet befejeződik. `SELECT @@SERVERNAME`nem adhat vissza hello helyes nevét, csak az SQL Server telepítése befejeződik, és SQL Server Management Studio nem lehet visable hello start lap.
 
-A virtuális géphez a Windows távoli asztal csatlakozás után a virtuális gép bármely más számítógépre hasonlóan működik. Csatlakozás az SQL Server Management Studio (a virtuális gépen futó) az SQL Server alapértelmezett példányát a szokásos módon.
+Ha a Windows távoli asztal csatlakoztatott toohello virtuális gép, hello virtuális gép működik sokkal, mint bármely más számítógépre. Csatlakozás az SQL Server Management Studio (hello virtuális gépen futó) SQL Server alapértelmezett példánya toohello hello a szokásos módon.
 
 ## <a name="InstallIPython"></a>IPython jegyzetfüzet és egyéb támogató eszközök telepítése
-Az új SQL Server virtuális gép IPython Notebook kiszolgálóként, és további támogató eszközök telepítése, ilyen AzCopy, Azure Tártallózó, hasznos adatok tudományos Python-csomagokat, és mások konfigurálásához Önnek egy különös testreszabási parancsfájl valósul meg. Telepítése:
+tooconfigure az új SQL Server virtuális gép tooserve egy IPython Notebook-kiszolgálóval, és telepítése további támogató eszközök ilyen AzCopy, Azure Tártallózó, hasznos adatok tudományos Python-csomagokat, és mások számára, egy speciális testreszabás parancsfájl tooyou biztosítja. tooinstall:
 
-1. Kattintson a jobb gombbal a **Windows Start** ikonra, majd **parancssor (rendszergazda)**
-2. Másolja a következő parancsokat, és illessze be a parancssorba.
+1. Kattintson a jobb gombbal hello **Windows Start** ikonra, majd **parancssor (rendszergazda)**
+2. A következő parancsok hello másolása és beillesztése hello parancssorban.
   
         set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
         @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(%script%))"
-3. Amikor a rendszer kéri, adja meg egy tetszőleges jelszót a IPython Notebook számára.
-4. A testreszabási parancsfájl automatizálja a telepítés utáni számos eljárást, többek között:
+3. Amikor a rendszer kéri, adja meg egy tetszőleges jelszót hello IPython Notebook kiszolgáló.
+4. hello testreszabási parancsfájl automatizálja a telepítés utáni számos eljárást, többek között:
     * Telepítési és beállítási IPython Notebook kiszolgáló
-    * TCP-portok megnyitása a Windows tűzfal a korábban létrehozott végpontok:
+    * TCP-portok megnyitása a korábban létrehozott hello végpontok hello Windows tűzfalon:
     * A távoli SQL Server-kapcsolathoz
     * A kiszolgáló távoli kapcsolatot IPython Notebook
     * A minta IPython jegyzetfüzet és SQL-parancsfájlok beolvasása
     * Letölti és telepíti a hasznos adatok tudományos Python-csomagok
     * Letöltése és telepítése az Azure-eszközök például az AzCopy és Azure Tártallózó  
     <br>
-5. Előfordulhat, hogy hozzáférési és IPython Notebook használatával URL-cím a helyi vagy távoli böngészők-ről futtatva `https://<virtual_machine_DNS_name>:<port>`, ahol a virtuális gép kiépítése során kiválasztott IPython nyilvános portot.
-6. IPython Notebook server a háttérben szolgáltatásként fut, és automatikusan újraindul a virtuális gép újraindításakor.
+5. Előfordulhat, hogy hozzáférési és IPython Notebook futtatása minden böngészőből helyi vagy távoli hello URL-cím használatával `https://<virtual_machine_DNS_name>:<port>`, ahol hello IPython nyilvános portot hello virtuális gép kiépítése során kiválasztott.
+6. IPython Notebook server a háttérben szolgáltatásként fut, és automatikusan újraindul hello virtuális gép újraindításakor.
 
 ## <a name="Optional"></a>Adatlemez csatolása igény szerint
-Ha a Virtuálisgép-lemezkép nem tartalmazza az adatlemezek, azaz, a C meghajtó (operációsrendszer-lemez) és a D meghajtó (ideiglenes lemez), lemezek kell hozzáadnia az adatokat egy vagy több lemezt az adatok tárolásához. A Virtuálisgép-lemezkép az SQL Server 2012 SP2 Enterprise optimalizálva DataWarehousing munkaterhelések előre konfigurált SQL Server adatainak és naplókönyvtárainak fájlok további lemezzel rendelkezik.
+Ha a Virtuálisgép-lemezkép nem tartalmazza az adatlemezek, azaz, a C meghajtó (operációsrendszer-lemez) és a D meghajtó (ideiglenes lemez), lemezek egy tooadd van szüksége, vagy további adatok lemezek toostore adatait. hello Virtuálisgép-lemezkép az SQL Server 2012 SP2 Enterprise optimalizálva DataWarehousing munkaterhelések előre konfigurált SQL Server adatainak és naplókönyvtárainak fájlok további lemezzel rendelkezik.
 
 > [!NOTE]
-> Ne használja a D meghajtó adatainak tárolásához. Foglalja, csak az átmeneti tárolási biztosít. Kínál nincs redundancia vagy a biztonsági mentést, mert az nem található az Azure storage.
+> Ne használjon hello D meghajtó toostore adatokat. Hello név azt jelenti, mert csak az átmeneti tárolási biztosít. Kínál nincs redundancia vagy a biztonsági mentést, mert az nem található az Azure storage.
 > 
 > 
 
-További adatlemezt csatolni, kövesse a témakörben ismertetett [hogyan lehet adatlemezt csatolni egy Windows rendszerű virtuális gép](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json), amely végigvezeti Önt keresztül:
+tooattach adatlemeznek, kövesse az ismertetett lépések hello [hogyan tooAttach egy adatlemez tooa Windows rendszerű virtuális gép](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json), amely végigvezeti Önt keresztül:
 
-1. Üres lemez(ek) csatolása a virtuális gép kiépítése a korábbi lépések
-2. A virtuális gép új lemez(ek) inicializálása
+1. A korábbi lépések kiépített üres lemez(ek) toohello virtuális gép csatlakoztatása
+2. Új lemez(ek) hello hello virtuális gépen inicializálása
 
-## <a name="SSMS"></a>SQL Server Management Studio csatlakozhat, és a vegyes módú hitelesítés engedélyezése
-Az SQL Server Adatbázismotor nem használhatja a Windows-hitelesítést egy tartománykörnyezet nélkül. Ha az Adatbázismotorhoz egy másik számítógépről szeretne csatlakozni, konfigurálja az SQL Servert vegyes módú hitelesítéshez. A vegyes módú hitelesítés az SQL Server-hitelesítést és a Windows-hitelesítést is lehetővé teszi. SQL-hitelesítési mód van szükség ahhoz, hogy közvetlenül az SQL Server virtuális gép adatbázisból származó adatok a [Azure Machine Learning Studio](https://studio.azureml.net) az adatok importálása modullal.
+## <a name="SSMS"></a>Csatlakozás tooSQL Server Management Studio eszközt, és kevert módú hitelesítés engedélyezése
+SQL Server adatbázismotor hello nem használható Windows-hitelesítés nélkül tartományi környezetben. tooconnect toohello adatbázismotor egy másik számítógépről, SQL Server konfigurálása a vegyes módú hitelesítést. A vegyes módú hitelesítés az SQL Server-hitelesítést és a Windows-hitelesítést is lehetővé teszi. SQL-hitelesítési mód által előírt sorrendben tooingest adatoknak közvetlenül az SQL Server virtuális gép adatbázisok a [Azure Machine Learning Studio](https://studio.azureml.net) hello adatokat importálhat modullal.
 
-1. A virtuális géphez csatlakozik a távoli asztal használatával, használja a Windows **keresési** ablaktábla és a típus **SQL Server Management Studio** (SMSS). Ide kattintva elindíthatja az SQL Server Management Studio (SSMS). Érdemes lehet mutató parancsikont az asztalon későbbi használatra SSMS.
+1. Távoli asztal használatával csatlakoztatott toohello a virtuális gépet, miközben használja a hello Windows **keresési** ablaktábla és a típus **SQL Server Management Studio** (SMSS). Kattintson a toostart hello SQL Server Management Studio (SSMS). Érdemes lehet egy helyi tooSSMS tooadd az asztalon későbbi használatra.
    
    ![Indítsa el a szolgáltatáshoz az SSMS][5]
    
-   A Management Studio első megnyitásakor annak létre kell hoznia a felhasználó Management Studio-környezetét. Ez eltarthat néhány pillanatig.
-2. Megnyitásakor, a Management Studio megadja a **kapcsolódás a kiszolgálóhoz** párbeszédpanel megnyitásához. Az a **kiszolgálónév** mezőbe írja be az Object Explorer az adatbázismotorhoz való csatlakozáshoz a virtuális gép nevét.
-   (A virtuális gép neve helyett használhatja **(helyi)** vagy egy egyetlen időszak, mint a **kiszolgálónév**. Válassza ki **Windows-hitelesítés**, és hagyja  ***a\_VM\_neve*\\a\_helyi\_rendszergazda** a a **felhasználónév** mezőbe. Kattintson a **Connect** (Csatlakozás) gombra.
+   hello azt hello felhasználók Management Studio környezet létre kell hoznia a Management Studio első megnyitásakor. Ez eltarthat néhány pillanatig.
+2. Megnyitásakor, a Management Studio hello megadja **tooServer csatlakozás** párbeszédpanel megnyitásához. A hello **kiszolgálónév** mezőjébe hello virtuális gép tooconnect toohello adatbázismotor hello Object Explorer hello nevét.
+   (Hello virtuális gép neve helyett használhatja **(helyi)** vagy egy egyetlen időszak hello **kiszolgálónév**. Válassza ki **Windows-hitelesítés**, és hagyja  ***a\_VM\_neve*\\a\_helyi\_rendszergazda**  a hello **felhasználónév** mezőbe. Kattintson a **Connect** (Csatlakozás) gombra.
    
-   ![Csatlakozás kiszolgálóhoz][6]
+   ![Csatlakozás tooServer][6]
    
    <br>
    
    > [!TIP]
-   > Az SQL Server hitelesítési mód a Windows beállításjegyzék-kulcs módosítás vagy az SQL Server Management Studio használatával módosíthatja. Használja a beállításjegyzék-módosítás-hitelesítés üzemmód módosítása, indítsa el a **új lekérdezés** , és hajtsa végre a következő parancsfájlt:
+   > Hello SQL Server hitelesítési mód a Windows beállításjegyzék-kulcs módosítás vagy hello SQL Server Management Studio használatával módosíthatja. toochange hitelesítési mód használata hello beállításjegyzék kulcsváltozás, kezdő egy **új lekérdezés** , majd hajtsa végre a következő parancsfájl hello:
    > 
    > 
    
@@ -152,24 +152,24 @@ Az SQL Server Adatbázismotor nem használhatja a Windows-hitelesítést egy tar
        EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'LoginMode', REG_DWORD, 2
        go
 
-    Az SQL Server management Studio használatával-hitelesítés üzemmód módosítása:
+    toochange hello hitelesítési mód az SQL Server management Studio használatával:
 
-1. A **SQL Server Management Studio Object Explorerben**, kattintson a jobb gombbal a (a virtuális gép neve) SQL Server-példány nevét, és kattintson a **tulajdonságok**.
+1. A **SQL Server Management Studio Object Explorerben**, kattintson a jobb gombbal az SQL Server (hello virtuális gép neve) hello-példány nevét, és kattintson a **tulajdonságok**.
    
    ![Kiszolgáló tulajdonságai][7]
-2. A **Biztonság** lap **Kiszolgálóhitelesítés** területén válassza az **SQL Server és Windows-hitelesítési mód** lehetőséget, majd kattintson az **OK** gombra.
+2. A hello **biztonsági** lap **kiszolgálóhitelesítés**, jelölje be **SQL Server és a Windows-hitelesítés üzemmód**, és kattintson a **OK** .
    
    ![A hitelesítési mód kiválasztása][8]
-3. Az a **SQL Server Management Studio** párbeszédpanel, kattintson a **OK** lehet visszaigazolni az a követelmény, indítsa újra az SQL Server.
+3. A hello **SQL Server Management Studio** párbeszédpanel, kattintson a **OK** lehet visszaigazolni hello követelmény toorestart SQL Server.
 4. A **Object Explorer**, kattintson a jobb gombbal a kiszolgáló, és kattintson a **indítsa újra a**. (Ha az SQL Server Agent fut, azt is újra kell indítani.)
    
    ![Újraindítás][9]
-5. Az a **SQL Server Management Studio** párbeszédpanel, kattintson a **Igen** gombra kattintva elfogadja, hogy szeretné-e indítania az SQL Server.
+5. A hello **SQL Server Management Studio** párbeszédpanel, kattintson a **Igen** gombra kattintva elfogadja, amelyet az SQL Server toorestart.
 
 ## <a name="Logins"></a>SQL Server-hitelesítési bejelentkezési létrehozása
-Ha az Adatbázismotorhoz egy másik számítógépről szeretne csatlakozni, létre kell hoznia legalább egy SQL Server hitelesítési bejelentkezést.  
+tooconnect toohello adatbázismotor egy másik számítógépről, létre kell hoznia legalább egy SQL Server-hitelesítési bejelentkezési névként.  
 
-Új SQL Server bejelentkezési programozott módon hozható létre vagy az SQL Server Management Studio használatával. Hozzon létre új rendszergazda felhasználó SQL-hitelesítéshez a programozott módon, indítsa el a **új lekérdezés** , és hajtsa végre a következő parancsfájlt. Cserélje le < új felhasználónevet\> és < Új jelszó\> a választható *felhasználónév* és *jelszó*. 
+Létrehozhat új SQL Server bejelentkezési programozott módon, vagy SQL Server Management Studio használatával hello. programozott módon, indítsa el az SQL-hitelesítéshez új rendszergazda felhasználó toocreate egy **új lekérdezés** , majd hajtsa végre a következő parancsfájl hello. Cserélje le < új felhasználónevet\> és < Új jelszó\> a választható *felhasználónév* és *jelszó*. 
 
     USE master
     go
@@ -181,83 +181,83 @@ Ha az Adatbázismotorhoz egy másik számítógépről szeretne csatlakozni, lé
     EXEC sp_addsrvrolemember @loginame = N'<new user name>', @rolename = N'sysadmin';
 
 
-(A minta kód kikapcsolja házirend ellenőrzése és a jelszó lejárati) szükség szerint, állítsa be a jelszóházirend. További információ az SQL Server-bejelentkezésekről: [Bejelentkezés létrehozása](http://msdn.microsoft.com/library/aa337562.aspx).  
+Szükség szerint állítsa be a hello jelszóházirend (házirend ellenőrzése és a jelszó lejárati kikapcsolja hello mintakód). További információ az SQL Server-bejelentkezésekről: [Bejelentkezés létrehozása](http://msdn.microsoft.com/library/aa337562.aspx).  
 
-Az SQL Server Management Studio használatával új SQL Server bejelentkezési azonosítók létrehozása:
+toocreate új SQL Server bejelentkezési hello SQL Server Management Studio használatával:
 
-1. A **SQL Server Management Studio Object Explorerben**, bontsa ki a mappát, amelyben szeretné létrehozni az új bejelentkezési adatait a server-példány.
-2. Kattintson a jobb gombbal a **biztonsági** mappára, mutasson a **új**, és válassza ki **bejelentkezési...** .
+1. A **SQL Server Management Studio Object Explorerben**, bontsa ki a kívánt toocreate hello új bejelentkezés hello server-példány hello mappa.
+2. Kattintson a jobb gombbal hello **biztonsági** mappára, mutasson túl**új**, és válassza ki **bejelentkezési...** .
    
    ![Új bejelentkezés][10]
-3. A **Bejelentkezés – Új** párbeszédpanel **Általános** lapján adja meg az új felhasználó nevét a **Bejelentkezési név** mezőben.
+3. A hello **- új bejelentkezés** párbeszédpanel hello **általános** lapján adja meg hello hello új felhasználó hello **bejelentkezési név** mezőbe.
 4. Kattintson az **SQL Server-hitelesítés** lehetőségre.
-5. A **Jelszó** mezőbe írja be az új felhasználó jelszavát. Adja meg újra a jelszót a **Jelszó megerősítése** mezőben.
-6. Házirend-beállításokban jelszó összetettségét és kényszerítési megköveteléséhez **jelszó házirend** (ajánlott). Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
-7. Házirend-beállításokban jelszó lejáratának megköveteléséhez **kényszerítése a jelszó lejárati** (ajánlott). Kényszerítése jelszóházirend meg kell adni ahhoz, hogy ezt a jelölőnégyzetet. Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
-8. Válassza ki, hogy a felhasználó számára hozzon létre egy új jelszót az első alkalommal való használatakor a bejelentkezés után, **kell változtatni a jelszót a következő bejelentkezésekor** (ajánlott, ha ehhez a bejelentkezéshez van, hogy valaki más használja. Ha a bejelentkezés saját használatra, ne válassza ezt a lehetőséget.) Kényszerítése jelszólejárati meg kell adni ahhoz, hogy ezt a jelölőnégyzetet. Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
-9. Az **Alapértelmezett adatbázis** listából válasszon ki egy alapértelmezett adatbázist a bejelentkezéshez. Az alapértelmezett beállítás a **master**. Ha még nem hozott létre egy felhasználói adatbázist, hagyja meg a **master** beállítást.
-10. Az a **alapértelmezett nyelv** listában, hagyja **alapértelmezett** értékeként.
+5. A hello **jelszó** mezőbe írja be a jelszót hello új felhasználó. Adjon meg, hogy a jelszó újra hello **jelszó megerősítése** mezőbe.
+6. házirend jelszóbeállításokat tooenforce összetettségét és kényszerítési, válassza ki **jelszó házirend** (ajánlott). Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
+7. házirend jelszóbeállításokat tooenforce lejáratának, válassza ki **kényszerítése a jelszó lejárati** (ajánlott). Jelszó házirend kell kijelölt tooenable ezt a jelölőnégyzetet. Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
+8. tooforce hello felhasználói toocreate hello először a bejelentkezés után új jelszót használja, válasszon **kell változtatni a jelszót a következő bejelentkezésekor** (ajánlott, ha a bejelentkezési adatai valaki másnak toouse. Ha hello bejelentkezési saját használatra, ne válassza ezt a lehetőséget.) Jelszó lejárata kényszerítése kell kijelölt tooenable ezt a jelölőnégyzetet. Ez az alapértelmezett lehetőség, ha SQL Server-hitelesítés van kiválasztva.
+9. A hello **alapértelmezett adatbázis** listára, válassza ki az alapértelmezett adatbázis hello bejelentkezési azonosítóhoz. **fő** hello alapértelmezett ezt a beállítást. Ha még nem hozott létre a felhasználói adatbázis, hagyja üresen ezt a túl beállítása**fő**.
+10. A hello **alapértelmezett nyelv** listában, hagyja **alapértelmezett** hello értékként.
     
     ![Bejelentkezési tulajdonságok][11]
-11. Ha ez az első létrehozott bejelentkezése, célszerű lehet SQL Server-rendszergazdaként megadnia a bejelentkezést. Ebben az esetben a **Kiszolgálói szerepkörök** lapon jelölje be a **sysadmin** jelölőnégyzetet.
+11. Ha ez hello első bejelentkezés hoz létre, érdemes lehet kijelölni ehhez a bejelentkezéshez egy SQL Server rendszergazdájához. Ebben az esetben a **Kiszolgálói szerepkörök** lapon jelölje be a **sysadmin** jelölőnégyzetet.
     
     > [!IMPORTANT]
-    > A sysadmin rögzített kiszolgálói szerepkör tagjai teljes vezérlést kapnak az Adatbázismotor felett. Biztonsági okokból ügyeljen korlátozására, ez a szerepkör tagjának kell lennie.
+    > Hello SysAdmin (rendszergazda) rögzített kiszolgálói szerepkör tagjai rendelkeznek a teljes körű vezérlést biztosítanak hello adatbázismotor. Biztonsági okokból ügyeljen korlátozására, ez a szerepkör tagjának kell lennie.
     > 
     > 
     
     ![sysadmin][12]
 12. Kattintson az OK gombra.
 
-## <a name="DNS"></a>Határozza meg a virtuális gép DNS-neve
-Ha egy másik számítógépről szeretne az SQL Server Adatbázismotorhoz csatlakozni, ismernie kell a virtuális gép Tartománynév-szolgáltatójának (DNS) nevét.
+## <a name="DNS"></a>Határozza meg a virtuális gép hello hello DNS-neve
+tooconnect toohello SQL Server adatbázismotorhoz egy másik számítógépről, ismernie kell a tartománynévrendszer (DNS) hello hello virtuális gép nevét.
 
-(Az internet ezzel a névvel azonosítja a virtuális gépet. Az IP-címet is használhatja, azonban az megváltozhat, ha az Azure erőforrásokat helyez át redundancia vagy karbantartás miatt. A DNS-név mindig stabil, mivel átirányítható egy új IP-címre.)
+(Ez a hello neve hello internet által használt tooidentify hello virtuális gépet. Hello IP-címet is használhat, de hello IP-cím változhat, amikor Azure redundancia vagy karbantartás erőforrásokat helyez át. hello DNS-neve lesz stabil, mert azok tooa új IP-cím átirányítva.)
 
-1. A klasszikus Azure-portálon (vagy az előző lépésben), válassza ki a **virtuális gépek**.
-2. Az a **VIRTUÁLISGÉP-példányok** lap a **DNS-név** oszlop, a Keresés és a másolása a virtuális gépet, amely akkor jelenik meg a DNS-nevét utasításnak **http://**. (A felhasználói felülete nem jelenik meg a teljes nevet, de a kattintson a jobb gombbal, és válassza a másolás.)
+1. A klasszikus Azure portál hello (vagy hello előző lépésben), válassza ki a **virtuális gépek**.
+2. A hello **VIRTUÁLISGÉP-példányok** lap hello **DNS-név** oszlop, a Keresés és a példány hello DNS-név hello virtuális géphez, amely akkor jelenik meg utasításnak **http://**. (hello felhasználói felülete nem jelenik meg hello teljes nevet, de a kattintson a jobb gombbal, és válassza a másolás.)
 
-## <a name="cde"></a>Csatlakozás az adatbázismotorhoz való csatlakozáshoz egy másik számítógépről
-1. Nyissa meg az SQL Server Management Studio alkalmazást egy internethez csatlakozó számítógépen.
-2. A a **kapcsolódás a kiszolgálóhoz** vagy **kapcsolódás az adatbázismotorhoz** párbeszédpanel a **kiszolgálónév** formátumban adja meg a DNS-neve, a virtuális gép (az előző feladatban meghatározott) és egy nyilvános végpontot portszámot *DNSName, portszám* például **tutorialtestVM.cloudapp.net,57500**.
-3. A **Hitelesítés** mezőben válassza az **SQL Server-hitelesítés** lehetőséget.
-4. A **Bejelentkezés** mezőbe írja be egy korábbi feladatban létrehozott bejelentkezés nevét.
-5. A **Jelszó** mezőbe írja be a korábbi feladatban létrehozott bejelentkezés jelszavát.
+## <a name="cde"></a>Adatbázis-kezelő toohello Csatlakozás másik számítógépről
+1. Egy számítógép csatlakozik a toohello internet, nyissa meg az SQL Server Management Studio eszközt.
+2. A hello **tooServer csatlakozás** vagy **tooDatabase motor csatlakozás** párbeszédpanel hello **kiszolgálónév** mezőbe írja be a virtuális gép (meghatározott hello hello DNS-neve előző tevékenység) és egy nyilvános végpontot portszámot hello formátumban *DNSName, portszám* például **tutorialtestVM.cloudapp.net,57500**.
+3. A hello **hitelesítési** mezőben válassza **SQL Server-hitelesítés**.
+4. A hello **bejelentkezési** be, olyan bejelentkezési azonosítót, egy korábbi feladatban létrehozott hello nevét.
+5. A hello **jelszó** mezőbe, írja be a jelszót hello az Ön által létrehozott korábbi feladat hello bejelentkezési adatokat.
 6. Kattintson a **Connect** (Csatlakozás) gombra.
 
-## <a name="amlconnect"></a>Csatlakozzon az adatbázismotorhoz való csatlakozáshoz az Azure gépi tanulás
-Az Team tudományos folyamat későbbi szakaszában fogja használni a [Azure Machine Learning Studióban](https://studio.azureml.net) létrehozásához és telepítéséhez a machine learning modellek. Az SQL Server virtuális gép adatbázis betöltési közvetlenül az Azure Machine Learning képzési vagy pontozási, használja a **és adatokat importálhat** az új modul [Azure Machine Learning Studio](https://studio.azureml.net) kipróbálásához. Ez a témakör további részleteket a csapat az tudományos folyamata útmutatóban található hivatkozásokon keresztül is tartalmazza. Bevezetésért lásd: [Mi az Azure Machine Learning Studio?](machine-learning-what-is-ml-studio.md).
+## <a name="amlconnect"></a>Adatbázis-kezelő toohello csatlakozzon az Azure Machine Learning
+Hello Team adatok tudományos folyamat későbbi szakaszában, hello segítségével [Azure Machine Learning Studióban](https://studio.azureml.net) toobuild és központi telepítése a machine learning modellek. az SQL Server virtuális gép adatbázisok közvetlenül az Azure Machine Learning képzési vagy pontozási, tooingest adatait használja hello **és adatokat importálhat** modul az új [Azure Machine Learning Studio](https://studio.azureml.net) kipróbálásához. Ez a témakör hello Team adatok tudományos folyamat útmutató hivatkozások segítségével további részleteket is tartalmazza. Bevezetésért lásd: [Mi az Azure Machine Learning Studio?](machine-learning-what-is-ml-studio.md).
 
-1. Az a **tulajdonságok** ablaktábláján a [és adatokat importálhat modul](https://msdn.microsoft.com/library/azure/dn905997.aspx), jelölje be **Azure SQL Database** a a **adatforrás** legördülő listából.
-2. Az a **adatbázis-kiszolgáló neve** szöveget adja meg`tcp:<DNS name of your virtual machine>,1433`
-3. Adja meg az SQL felhasználónevet a **kiszolgáló felhasználói fiók nevét** szövegmezőben.
-4. Adja meg az sql-felhasználó jelszót a **kiszolgáló felhasználói fiók jelszavát** szövegmezőben.
+1. A hello **tulajdonságok** hello panelén [és adatokat importálhat modul](https://msdn.microsoft.com/library/azure/dn905997.aspx), jelölje be **Azure SQL Database** a hello **adatforrás** legördülő listából.
+2. A hello **adatbázis-kiszolgáló neve** szöveget adja meg`tcp:<DNS name of your virtual machine>,1433`
+3. Adja meg hello SQL-felhasználó nevét a hello **kiszolgáló felhasználói fiók nevét** szövegmezőben.
+4. Adja meg a hello sql jelszó hello **kiszolgáló felhasználói fiók jelszavát** szövegmezőben.
    
    ![Az Azure Machine Learning-adatok beolvasása][13]
 
 ## <a name="shutdown"></a>Leállítás és felszabadítani a virtuális gép, ha nincsenek használatban
-Azure virtuális gépeken árú **csak a valóban használt funkciókért kell fizetnie, amennyit**. Győződjön meg arról, hogy meg vannak nem kiszámlázott amikor nem használja a virtuális gépet, hogy rendelkezik kell lennie a **leállítva (Deallocated)** állapotát.
+Azure virtuális gépeken árú **csak a valóban használt funkciókért kell fizetnie, amennyit**. nem éppen tooensure számlázva, amikor nem használja a virtuális gépet, rendelkezik toobe hello **leállítva (Deallocated)** állapotát.
 
 > [!NOTE]
-> A virtuális gép leállítása belül (a Windows energiagazdálkodási lehetőségek használatával), a virtuális gép le van állítva, de továbbra is lefoglalt. Győződjön meg arról, hogy még nem kiszámlázott, hogy minden esetben állítsa le a virtuális gépek a [klasszikus Azure portál](http://manage.windowsazure.com/). vagy a PowerShell parancsfelület ShutdownRoleOperation parancsával, amelynek a PostShutdownAction argumentumában a StoppedDeallocated értéket kell ehhez megadni.
+> Hello virtuális gép leállítása belül (a Windows energiagazdálkodási lehetőségek használatával), hello virtuális gép le van állítva, de továbbra is lefoglalt. Ön éppen nem kiszámlázott, tooensure minden esetben állítsa le a virtuális gépek hello [klasszikus Azure portál](http://manage.windowsazure.com/). Hello Powershellen keresztül VM meghívásával ShutdownRoleOperation amelyeknél "PostShutdownAction" értéke túl is leállíthatja "StoppedDeallocated".
 > 
 > 
 
-A Leállítás utáni állapotot és a virtuális gép felszabadítása:
+tooshutdown és hello virtuális gép felszabadítása:
 
-1. Jelentkezzen be a [klasszikus Azure portál](http://manage.windowsazure.com/) a fiókjával.  
-2. Válassza ki **virtuális gépek** bal oldali navigációs sávján.
-3. A virtuális gépek listájának megtekintéséhez kattintson a virtuális gép nevére, majd nyissa meg a **IRÁNYÍTÓPULT** lap.
-4. Kattintson a lap alján **LEÁLLÍTÁSI**.
+1. Jelentkezzen be toohello [klasszikus Azure portál](http://manage.windowsazure.com/) a fiókjával.  
+2. Válassza ki **virtuális gépek** hello bal oldali navigációs sávon a.
+3. A virtuális gépek hello listájában kattintson a virtuális gépet, majd lépjen toohello hello név **IRÁNYÍTÓPULT** lap.
+4. Hello a hello lap alján, kattintson **LEÁLLÍTÁSI**.
 
 ![Virtuális gép leállítása][15]
 
-A virtuális gép lesz felszabadítása. lehetséges, de nem törlődnek. A klasszikus Azure-portálon bármikor előfordulhat, hogy indítsa újra a virtuális gép.
+hello virtuális gép lesz felszabadítása. lehetséges, de nem törlődnek. A klasszikus Azure portál hello bármikor előfordulhat, hogy indítsa újra a virtuális gép.
 
-## <a name="your-azure-sql-server-vm-is-ready-to-use-whats-next"></a>Az Azure SQL Server virtuális gép készen áll a használatra: következő?
-A virtuális gép már a adatok tudományos gyakorlatokban használatra kész. A virtuális gép is az Azure Machine Learning és a Team adatok tudományos folyamat (TDSP) feltárása és feldolgozására, az adatok és más feladatok együtt IPython Notebook kiszolgálóként használatra kész.
+## <a name="your-azure-sql-server-vm-is-ready-toouse-whats-next"></a>Az Azure SQL Server virtuális gép készen áll a toouse: következő?
+A virtuális gép már készen áll a toouse az adatok tudományos gyakorlatokban. hello virtuális gép is az Azure Machine Learning és hello Team adatok tudományos folyamat (TDSP) egy IPython Notebook kiszolgálóként hello feltárása és az adatok feldolgozására és más feladatok együtt használatra kész.
 
-A következő lépéseket az adatok tudományos folyamatban vannak leképezve a a [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) , HDInsight, a folyamat az adatok áthelyezése, illetve mintát, hogy az adatokat az Azure Machine Learning tanulva előkészítésekor lépéseket is lehetnek.
+hello hello tudományos folyamata a következő lépések vannak leképezve a hello [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) , HDInsight, a folyamat az adatok áthelyezése, illetve az Azure Machine learning hello adatokból előkészítésekor minta ott lépéseket is lehetnek. Learning.
 
 [1]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/selectsqlvmimg.png
 [2]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/4vm-config.png

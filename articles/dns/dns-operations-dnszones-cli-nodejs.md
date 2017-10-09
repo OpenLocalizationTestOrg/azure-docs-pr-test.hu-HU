@@ -1,6 +1,6 @@
 ---
-title: "Az Azure DNS - Azure CLI 1.0 DNS-zónák kezelése |} Microsoft Docs"
-description: "DNS-zónák Azure CLI 1.0 használatával kezelheti. Ez a cikk bemutatja, hogyan frissítése, törlése és a DNS-zóna létrehozása az Azure DNS szolgáltatásra."
+title: "az Azure CLI 1.0 - az Azure DNS-zónák aaaManage DNS |} Microsoft Docs"
+description: "DNS-zónák Azure CLI 1.0 használatával kezelheti. Ez a cikk bemutatja, hogyan tooupdate, törlése és a DNS-zóna létrehozása az Azure DNS szolgáltatásra."
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,28 +13,28 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/21/2016
 ms.author: gwallace
-ms.openlocfilehash: 588c87749f049eff5b9e0729f6769c8367ba41e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb9790cc46626ef7f38a43edb57511104fe6057e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-dns-zones-in-azure-dns-using-the-azure-cli-10"></a>Az Azure DNS az Azure CLI 1.0 használata DNS-zónák kezelése
+# <a name="how-toomanage-dns-zones-in-azure-dns-using-hello-azure-cli-10"></a>Hogyan toomanage DNS-zónák az Azure DNS használatával hello Azure CLI 1.0
 
 > [!div class="op_single_selector"]
-> * [Portal](dns-operations-dnszones-portal.md)
+> * [Portál](dns-operations-dnszones-portal.md)
 > * [PowerShell](dns-operations-dnszones.md)
 > * [Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md)
 > * [Azure CLI 2.0](dns-operations-dnszones-cli.md)
 
-Ez az útmutató bemutatja, hogyan kezelheti a DNS-zónák platformfüggetlen Azure CLI 1.0 elérhető a Windows, Mac és Linux. Emellett kezelhetők a DNS-zónák használatával [Azure PowerShell](dns-operations-dnszones.md) vagy az Azure-portálon.
+Ez az útmutató bemutatja, hogyan toomanage a DNS-zóna számára elérhető a Windows, Mac és Linux hello platformfüggetlen 1.0, az Azure CLI segítségével. Emellett kezelhetők a DNS-zónák használatával [Azure PowerShell](dns-operations-dnszones.md) vagy hello Azure-portálon.
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
 
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-* [Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez.
-* [Azure CLI 2.0](dns-operations-dnszones-cli.md) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
+* [Az Azure CLI 1.0](dns-operations-dnszones-cli-nodejs.md) -hello klasszikus és resource management üzembe helyezési modellel a parancssori felületen.
+* [Az Azure CLI 2.0](dns-operations-dnszones-cli.md) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell.
 
 ## <a name="introduction"></a>Bevezetés
 
@@ -44,7 +44,7 @@ A következő CLI-verziók egyikével elvégezheti a feladatot:
 
 ## <a name="getting-help"></a>Segítségkérés
 
-Indítsa el az Azure DNS-vonatkozó összes CLI 1.0 parancsok `azure network dns`. Súgó áll rendelkezésre egyes parancs használatával a `--help` beállítás (rövid alak `-h`).  Példa:
+TooAzure DNS vonatkozó összes CLI 1.0 parancsok kezdődnie `azure network dns`. Minden egyes parancsnál hello segítségével érhető el súgó `--help` beállítás (rövid alak `-h`).  Példa:
 
 ```azurecli
 azure network dns -h
@@ -54,17 +54,17 @@ azure network dns zone create -h
 
 ## <a name="create-a-dns-zone"></a>DNS-zóna létrehozása
 
-A DNS-zóna az `azure network dns zone create` parancs használatával hozható létre. További segítségért lásd: `azure network dns zone create -h`.
+A DNS-zóna létrehozása hello használatával `azure network dns zone create` parancsot. További segítségért lásd: `azure network dns zone create -h`.
 
-Az alábbi példa létrehoz egy DNS-zónát *contoso.com* erőforráscsoportban nevű *MyResourceGroup*:
+hello alábbi példa létrehoz egy DNS-zónát *contoso.com* nevű hello erőforráscsoportban *MyResourceGroup*:
 
 ```azurecli
 azure network dns zone create MyResourceGroup contoso.com
 ```
 
-### <a name="to-create-a-dns-zone-with-tags"></a>A DNS-zónát címkékkel létrehozása
+### <a name="toocreate-a-dns-zone-with-tags"></a>egy DNS-zónát címkékkel toocreate
 
-A következő példa bemutatja, hogyan hozzon létre egy DNS-zónát és két [Azure Resource Manager címkéket](dns-zones-records.md#tags), *project = demo* és *env = test*, segítségével a `--tags` paraméter ( rövid alak `-t`):
+hello következő példa bemutatja, hogyan toocreate DNS zónát, és két [Azure Resource Manager címkéket](dns-zones-records.md#tags), *project = demo* és *env = test*, hello segítségével `--tags` a paraméter (rövid alak `-t`):
 
 ```azurecli
 azure network dns zone create MyResourceGroup contoso.com -t "project=demo";"env=test"
@@ -72,19 +72,19 @@ azure network dns zone create MyResourceGroup contoso.com -t "project=demo";"env
 
 ## <a name="get-a-dns-zone"></a>A DNS-zóna beolvasása
 
-A DNS-zónák lekéréséhez használja `azure network dns zone show`. További segítségért lásd: `azure network dns zone show -h`.
+használja a DNS-zónák tooretrieve `azure network dns zone show`. További segítségért lásd: `azure network dns zone show -h`.
 
-Az alábbi példában a DNS-zóna adja vissza *contoso.com* és kapcsolódó adataik erőforráscsoportból *MyResourceGroup*. 
+hello következő példa eredménye hello DNS-zóna *contoso.com* és kapcsolódó adataik erőforráscsoportból *MyResourceGroup*. 
 
 ```azurecli
 azure network dns zone show MyResourceGroup contoso.com
 ```
 
-A következő példa a válasz.
+a következő példa hello hello válasz.
 
 ```
 info:    Executing command network dns zone show
-+ Looking up the dns zone "contoso.com"
++ Looking up hello dns zone "contoso.com"
 data:    Id                              : /subscriptions/.../contoso.com
 data:    Name                            : contoso.com
 data:    Type                            : Microsoft.Network/dnszones
@@ -100,20 +100,20 @@ data:    Tags                            : project=demo;env=test
 info:    network dns zone show command OK
 ```
 
-Megjegyzés: a DNS-rekordokat nem által visszaadott `azure network dns zone show`. A DNS-rekordok listában használja `azure network dns record-set list`.
+Megjegyzés: a DNS-rekordokat nem által visszaadott `azure network dns zone show`. toolist DNS-rekordokat, használjon `azure network dns record-set list`.
 
 
 ## <a name="list-dns-zones"></a>Lista DNS-zónák
 
-Operációs rendszer DNS-zónák, használjon `azure network dns zone list`. További segítségért lásd: `azure network dns zone list -h`.
+DNS-zónák tooenumerate, használjon `azure network dns zone list`. További segítségért lásd: `azure network dns zone list -h`.
 
-Adja meg az erőforráscsoport csak az erőforráscsoporton belül zónák sorolja fel:
+Megadását hello erőforráscsoport hello erőforráscsoporton belül zónák sorolja fel:
 
 ```azurecli
 azure network dns zone list MyResourceGroup
 ```
 
-Az előfizetés minden zóna az erőforráscsoport kihagyásával sorolja fel:
+Hello erőforráscsoport kihagyásával hello előfizetés minden zóna tartalmazza:
 
 ```azurecli
 azure network dns zone list 
@@ -121,11 +121,11 @@ azure network dns zone list
 
 ## <a name="update-a-dns-zone"></a>A DNS-zóna frissítéséhez
 
-DNS-zóna erőforráshoz módosítás használatával `azure network dns zone set`. További segítségért lásd: `azure network dns zone set -h`.
+DNS-zóna erőforrásrekordok végezhetők változások tooa `azure network dns zone set`. További segítségért lásd: `azure network dns zone set -h`.
 
-Ez a parancs frissíti a DNS-rekordhalmazok a zónán belül (lásd: [kezelése DNS-rekordok hogyan](dns-operations-recordsets-cli-nodejs.md)). Csak a zóna erőforrás maga tulajdonságainak frissítésére szolgál. Ezeket a tulajdonságokat a rendszer jelenleg csak a [Azure Resource Manager "címke"](dns-zones-records.md#tags) a zóna erőforrás.
+Ez a parancs frissíti hello DNS-rekordhalmazok hello zónán belül (lásd: [hogyan tooManage DNS-rekordok](dns-operations-recordsets-cli-nodejs.md)). Csak használt tooupdate tulajdonságok hello zóna erőforrás maga is. Ezek a tulajdonságok jelenleg korlátozott toohello [Azure Resource Manager "címke"](dns-zones-records.md#tags) hello zóna erőforrás.
 
-A következő példa bemutatja, hogyan a címke van megadva a DNS-zónák frissítéséhez. A meglévő címkék megadott helyett.
+hello következő példa bemutatja, hogyan tooupdate hello címkéket a DNS-zóna. hello meglévő címkék helyébe hello érték van megadva.
 
 ```azurecli
 azure network dns zone set MyResourceGroup contoso.com -t "team=support"
@@ -136,13 +136,13 @@ azure network dns zone set MyResourceGroup contoso.com -t "team=support"
 DNS-zónák törölhetők segítségével `azure network dns zone delete`. További segítségért lásd: `azure network dns zone delete -h`.
 
 > [!NOTE]
-> Is egy DNS-zóna törlésével törli az összes DNS-rekordokat a zónán belül. Ez a művelet nem vonható vissza. Ha a DNS-zóna használatban van, a zóna szolgáltatásokat sikertelen lesz a zóna törlődik.
+> A DNS-zónák törlésekor a hello zónán belül minden DNS-rekordokat is törlődnek. Ez a művelet nem vonható vissza. Hello DNS-zóna van használatban, ha hello zóna használó szolgáltatások nem indulnak hello zóna törlésekor.
 >
->A zóna véletlen törlés elleni védelem érdekében, lásd: [hogyan védi a DNS-zónák és rekordok](dns-protect-zones-recordsets.md).
+>a zóna véletlen törlése ellen tooprotect lásd: [hogyan tooprotect DNS zónák, valamint megjegyzi](dns-protect-zones-recordsets.md).
 
-Ez a parancs felszólítja megerősítést kér. A választható `--quiet` váltás (rövid alak `-q`) letiltja a parancssorhoz.
+Ez a parancs felszólítja megerősítést kér. nem kötelező hello `--quiet` váltás (rövid alak `-q`) mellőzi a parancssorhoz.
 
-A következő példa bemutatja, hogyan törölni a zónát *contoso.com* erőforráscsoportból *MyResourceGroup*.
+hello következő példa bemutatja, hogyan toodelete hello zóna *contoso.com* erőforráscsoportból *MyResourceGroup*.
 
 ```azurecli
 azure network dns zone delete MyResourceGroup contoso.com
@@ -150,7 +150,7 @@ azure network dns zone delete MyResourceGroup contoso.com
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan [rekordhalmazokat és rekordokat kezelése](dns-getstarted-create-recordset-cli-nodejs.md) a DNS-zónában.
+Ismerje meg, hogyan túl[rekordhalmazokat és rekordokat kezelése](dns-getstarted-create-recordset-cli-nodejs.md) a DNS-zónában.
 
-Megtudhatja, hogyan [tartomány delegálása az Azure DNS-](dns-domain-delegation.md).
+Ismerje meg, hogyan túl[delegálása a tartományi tooAzure DNS](dns-domain-delegation.md).
 

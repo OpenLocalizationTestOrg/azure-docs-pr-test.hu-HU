@@ -1,19 +1,19 @@
 ## <a name="extended-iot-scenarios"></a>Bővített IoT-forgatókönyvek
 
-Más Azure-szolgáltatásokat és -eszközöket is használhat. Miután csatlakoztatta eszközét az IoT Hubhoz, további forgatókönyveket tekinthet át, amelyek más Azure-eszközöket és -szolgáltatásokat használnak:
+Más Azure-szolgáltatásokat és -eszközöket is használhat. Ha az eszköz tooIoT központi csatlakozás, ismerje meg a további helyzeteket is, amelyek a más Azure-eszközök és szolgáltatások:
 
 | Forgatókönyv                                                   | Azure-szolgáltatás vagy -eszköz              |
 |----------------------------------------------------------- |------------------------------------|
 | [IoT Hub-üzenetek kezelése][Mg_IoT_Hub_Msg]                  | iothub-explorer eszköz               |
 | [IoT-eszközök felügyelete][Mg_IoT_Dv]                        | iothub-explorer eszköz               |
-| [IoT Hub-üzenetek mentése Azure-tárolóba][Sv_IoT_Msg_Stor]  | Azure Table Storage                |
+| [Az IoT-központ üzenetek tooAzure tárolási mentése][Sv_IoT_Msg_Stor]  | Azure Table Storage                |
 | [Érzékelőadatok megjelenítése][Vis_Data]                          | Microsoft Power BI, Azure Web Apps |
 | [Időjárás-előrejelzés érzékelőadatokkal][Weather_Forecast]      | Azure Machine Learning             |
 | [Rendellenességek automatikus észlelése és reagálás][Anomaly_Detect] | Azure Logic Apps                   |
 
 ## <a name="next-steps"></a>Következő lépések
 
-Miután végrehajtotta ezeket az oktatóanyagokat, az IoT Hub képességeiről továbbiakat a [fejlesztői útmutatóból][lnk-dev-guide] tudhat meg. További oktatóanyagokat az [Útmutató][lnk-how-to] részben találhat.
+Ezek az oktatóanyagok befejezése után, IoT hub képességei hello hello további felfedezheti [– útmutató fejlesztőknek][lnk-dev-guide]. További oktatóanyagok hello található [útmutató] [ lnk-how-to] szakasz.
 
 
 [Mg_IoT_Hub_Msg]: ../articles/iot-hub/iot-hub-explorer-cloud-device-messaging.md

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Stream Analytics JavaScript felhasználó által definiált függvények |} Microsoft Docs"
+title: "aaaAzure Stream Analytics JavaScript-a felhasználó által definiált függvények |} Microsoft Docs"
 description: "Hajtsa végre a felhasználó által definiált függvények JavaScript speciális lekérdezési mechanika"
 keywords: "JavaScript, felhasználó által definiált feladatokat az UDF-ben"
 services: stream-analytics
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: e4a9e6c7078031240c22a51378c0459426b7f626
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 28eeb8f6437c23989e8887687b950361fed4414c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stream-analytics-javascript-user-defined-functions"></a>Az Azure Stream Analytics JavaScript felhasználó által definiált függvények
-Az Azure Stream Analytics a felhasználó által definiált függvények JavaScript nyelven írt támogatja. A gazdag készlete **karakterlánc**, **RegExp szolgáltatást**, **matematikai**, **tömb**, és **dátum** módszerek a JavaScript a Stream Analytics-feladatok úgy válnak egyre könnyebben létrehozása összetett adatátalakítást biztosít.
+Az Azure Stream Analytics a felhasználó által definiált függvények JavaScript nyelven írt támogatja. A hello széles skáláját **karakterlánc**, **RegExp szolgáltatást**, **matematikai**, **tömb**, és **dátum** módszereket, amelyek JavaScript biztosít, a Stream Analytics-feladatok összetett adatátalakítást könnyebb toocreate válik.
 
 ## <a name="javascript-user-defined-functions"></a>Felhasználó által definiált függvények JavaScript
-Felhasználó által definiált függvények JavaScript támogatja állapot nélküli, csak számítási skaláris függvények, amelyek nem igényelnek külső kapcsolatot. Egy függvény visszatérési értéke csak a skaláris (önálló) érték lehet. Miután hozzáadta a JavaScript felhasználó által definiált függvény egy feladatot, a funkció használata bárhol a lekérdezésben, például a beépített skaláris függvényt.
+Felhasználó által definiált függvények JavaScript támogatja állapot nélküli, csak számítási skaláris függvények, amelyek nem igényelnek külső kapcsolatot. hello visszatérési érték egy függvény csak a skaláris (önálló) érték lehet. Miután egy felhasználó által definiált függvény JavaScript tooa feladat, hello funkció használata bárhol hello a lekérdezésben, például a beépített skaláris függvényt.
 
 Az alábbiakban néhány forgatókönyv, ahol hasznosak lehetnek felhasználó által definiált függvények JavaScript:
 * Elemzés és kezelésére, amelyek reguláris kifejezés funkciók, például karakterláncok **Regexp_Replace()** és **Regexp_Extract()**
@@ -37,31 +37,31 @@ A következőkben, amely a Stream Analytics egy JavaScript felhasználó által 
 * Hajtsa végre az egyéni esemény szerializálás vagy a bemenetek/kimenetek deszerializálási
 * Egyéni összesítések létrehozása
 
-Bár a Funkciók, például **Date.GetDate()** vagy **Math.random()** nem blokkolja a funkciók-definícióban az használatuk kerülendő. Ezek a funkciók **nem** ugyanazt az eredményt adja vissza, minden egyes keresheti őket, és az Azure Stream Analytics szolgáltatás nem őrzi meg a napló, a függvény meghívásához, és adott vissza eredményt. Ha a függvény különböző eredményt adja vissza, az azonos esemény, ismételhetőség nem garantált a feladat újraindításakor, akkor vagy a Stream Analytics szolgáltatás.
+Bár a Funkciók, például **Date.GetDate()** vagy **Math.random()** nem tiltanak hello funkciók meghatározása, az használatuk kerülendő. Ezek a funkciók **nem** visszatérési hello azonos eredményeképpen minden alkalommal, amikor keresheti őket, és hello Azure Stream Analytics szolgáltatás nem őrzi meg a napló, a függvény meghívásához, és adott vissza eredményt. Ha egy olyan függvényt ad vissza különböző eredménye a hello azonos események, ismételhetőség nem garantált a feladat újraindításakor, illetve hello Stream Analytics szolgáltatás.
 
-## <a name="add-a-javascript-user-defined-function-in-the-azure-portal"></a>A JavaScript felhasználó által definiált függvény hozzáadása az Azure-portálon
-Hozzon létre egy egyszerű JavaScript felhasználó által definiált függvényt a meglévő Stream Analytics-feladat, hajtsa végre ezeket a lépéseket:
+## <a name="add-a-javascript-user-defined-function-in-hello-azure-portal"></a>Adja hozzá a JavaScript felhasználó által definiált függvény hello Azure-portálon
+egy egyszerű JavaScript felhasználó által definiált függvény alapján egy meglévő Stream Analytics-feladat toocreate hajtsa végre ezeket a lépéseket:
 
-1.  Az Azure-portálon keresse meg a Stream Analytics-feladat.
+1.  Hello Azure-portálon keresse meg a Stream Analytics-feladat.
 2.  A **feladat TOPOLÓGIA**, válassza ki a függvényt. Megjelenik a funkciók listája üres.
-3.  Hozzon létre egy új felhasználó által definiált függvényt, jelölje be **Hozzáadás**.
-4.  Az a **új függvény** panelen a **függvénytípus**, jelölje be **JavaScript**. Egy alapértelmezett függvény sablon megjelenik a szerkesztőt.
-5.  Az a **UDF alias**, adja meg **hex2Int**, és az alábbiak szerint módosítsa a függvény végrehajtása:
+3.  Válasszon egy új felhasználó által definiált függvény toocreate **Hozzáadás**.
+4.  A hello **új függvény** panelen a **függvénytípus**, jelölje be **JavaScript**. Alapértelmezett függvény sablon hello szerkesztő jelenik meg.
+5.  A hello **UDF alias**, adja meg **hex2Int**, és módosítsa az alábbiak szerint hello függvény végrehajtása:
 
     ```
-    // Convert Hex value to integer.
+    // Convert Hex value toointeger.
     function main(hexValue) {
         return parseInt(hexValue, 16);
     }
     ```
 
-6.  Kattintson a **Mentés** gombra. A függvény függvények listája jelenik meg.
-7.  Jelölje be az új **hex2Int** működik, és ellenőrizze a függvény definícióját. Minden függvényeknek a **UDF** előtagot function aliasra. Kell *előtag* függvény hívható a Stream Analytics-lekérdezés. Ebben az esetben hívható **UDF.hex2Int**.
+6.  Kattintson a **Mentés** gombra. A függvény funkciók hello listája jelenik meg.
+7.  Jelölje be új hello **hex2Int** működik, és ellenőrizze hello függvény definícióját. Minden függvényeknek a **UDF** előtag hozzáadott toohello függvény aliasa. Túl kell*hello előtagot tartalmaz* hello függvény hívható a Stream Analytics-lekérdezés. Ebben az esetben hívható **UDF.hex2Int**.
 
 ## <a name="call-a-javascript-user-defined-function-in-a-query"></a>A JavaScript felhasználói függvényt hívni a lekérdezésben
 
-1. A lekérdezés-szerkesztő a **feladat TOPOLÓGIA**, jelölje be **lekérdezés**.
-2.  Szerkessze a lekérdezést, és majd hívja meg a felhasználó által definiált függvényt, ehhez hasonló:
+1. Hello lekérdezésben-szerkesztőben a **feladat TOPOLÓGIA**, jelölje be **lekérdezés**.
+2.  Szerkessze a lekérdezést, és majd hello felhasználói függvényt hívni, ehhez hasonló:
 
     ```
     SELECT
@@ -73,8 +73,8 @@ Hozzon létre egy egyszerű JavaScript felhasználó által definiált függvén
         InputStream
     ```
 
-3.  A minta adatfájl feltöltése, kattintson a jobb gombbal a projekt bemeneti.
-4.  Válassza ki a lekérdezés teszteléséhez **tesztelése**.
+3.  tooupload hello mintaadatfájlokat, kattintson a jobb gombbal hello feladat bemenet.
+4.  tootest a select lekérdezés **teszt**.
 
 
 ## <a name="supported-javascript-objects"></a>Támogatott JavaScript-objektumok
@@ -82,16 +82,16 @@ Az Azure Stream Analytics JavaScript felhasználó által definiált függvénye
 
 ### <a name="stream-analytics-and-javascript-type-conversion"></a>A Stream Analytics és a JavaScript adattípus átalakítása
 
-A típusokat, hogy a Stream Analytics lekérdezési nyelv és a JavaScript-támogatás különbségek vannak. Ez a táblázat felsorolja az átalakítás leképezéseket a kettő között:
+Hello típusokat támogató hello Stream Analytics lekérdezési nyelv és a JavaScript különbségek vannak. Ez a táblázat közötti két hello hello átalakítás leképezéseket:
 
 Stream Analytics | JavaScript
 --- | ---
-bigint | Szám (JavaScript csak jelenthet egész számok legfeljebb pontosan 2 ^ 53)
+bigint | Szám (JavaScript csak jelenthet egész számok felfelé tooprecisely 2 ^ 53)
 Dátum és idő | Dátum (JavaScript csak támogatja ezredmásodperc)
 Dupla | Szám
 típus: nvarchar(max) | Karakterlánc
 rekord | Objektum
-A tömb | A tömb
+Tömb | Tömb
 NULL ÉRTÉKŰ | NULL értékű
 
 
@@ -100,22 +100,22 @@ Az alábbiakban a JavaScript-Stream Analytics-átalakításhoz:
 
 JavaScript | Stream Analytics
 --- | ---
-Szám | Bigint (Ha a szám kerek és a hosszú között. A MinValue és a hosszú. MaxValue; Ellenkező esetben dupla)
+Szám | Bigint (ha hello szám kerek és a hosszú között. A MinValue és a hosszú. MaxValue; Ellenkező esetben dupla)
 Dátum | Dátum és idő
 Karakterlánc | típus: nvarchar(max)
 Objektum | rekord
-A tömb | A tömb
+Tömb | Tömb
 NULL, nem definiált | NULL ÉRTÉKŰ
 Bármely más típusból (például egy függvény vagy hiba) | Nem támogatott (futásidejű hibát eredményez)
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-A JavaScript futásidejű hibák végzetes minősülnek, és a műveletnapló keresztül illesztett. Beolvassa a naplót, az Azure-portálon keresse meg a feladatot, és válassza ki **tevékenységnapló**.
+A JavaScript futásidejű hibák végzetes minősülnek, és keresztül hello tevékenységnapló illesztett. tooretrieve hello napló hello Azure-portálon, nyissa meg tooyour feladatot, és válasszon **tevékenységnapló**.
 
 
 ## <a name="other-javascript-user-defined-function-patterns"></a>Más JavaScript felhasználó által definiált függvény minták
 
-### <a name="write-nested-json-to-output"></a>Beágyazott JSON kimeneti írása
-Ha a követési feldolgozási lépést, amely a Stream Analytics-feladatot, kimeneti használja bemeneti adatként, és a JSON formátumban van szükség, írhat a kimeneti JSON karakterláncnak. A következő példa hívások a **JSON.stringify()** függvény a bemeneti minden név/érték párok csomag, majd írja őket a kimeneti egyetlen karakterlánc értéket.
+### <a name="write-nested-json-toooutput"></a>Beágyazott JSON toooutput írása
+Ha a követési feldolgozási lépést, amely a Stream Analytics-feladatot, kimeneti használja bemeneti adatként, és a JSON formátumban van szükség, egy JSON-karakterlánc toooutput lehet írni. hello a következő példában meghívja a hello **JSON.stringify()** toopack hello minden név-érték pár adjon meg, és ezután írja őket a kimeneti egyetlen karakterlánc értéket működik.
 
 **JavaScript felhasználó által definiált függvény definíciója:**
 
@@ -142,7 +142,7 @@ FROM
 Segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Következő lépések
-* [Az Azure Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [A Stream Analytics bemutatása tooAzure](stream-analytics-introduction.md)
 * [Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)
 * [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)
 * [Az Azure Stream Analytics lekérdezési nyelvi referencia](https://msdn.microsoft.com/library/azure/dn834998.aspx)

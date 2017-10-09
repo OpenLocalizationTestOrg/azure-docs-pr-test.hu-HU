@@ -1,6 +1,6 @@
 ---
-title: "Kulcs tároló .NET 2.x API kibocsátási megjegyzései |} Microsoft Docs"
-description: ".NET-fejlesztők számára a kód API-t fogja használni az Azure Key Vault"
+title: "aaaKey tároló .NET 2.x API kibocsátási megjegyzései |} Microsoft Docs"
+description: ".NET-fejlesztők számára az API toocode fogja használni az Azure Key Vault"
 services: key-vault
 author: BrucePerlerMS
 manager: mbaldwin
@@ -13,63 +13,63 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/02/2017
 ms.author: bruceper
-ms.openlocfilehash: c5b5fd7f16faf17d16ecc82269fb1264adf4dd06
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d95b84cf73c155f117f37e93893f27b02a75855c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-net-20---release-notes-and-migration-guide"></a>Az Azure Key Vault .NET 2.0 – kibocsátási megjegyzések és az áttelepítési útmutató
-A következő notes és útmutatókat is Azure Key Vault .NET dolgozó fejlesztők számára / C# könyvtár. Az áttérést az 1.0-s verziója a 2.0-s verzióját, a frissítések száma végzett áttelepítés munkahelyi ahhoz, hogy igénybe vehesse az funkciók javításai, és kiegészítéseit, mint a beállítást, a kódban szükség teszi **Key Vault tanúsítványok** támogatja.
+hello következő notes és útmutatókat is Azure Key Vault .NET dolgozó fejlesztők számára / C# könyvtár. Hello áttűnés hello 1.0-s verzió toohello 2.0-s verziójáról, a frissítések száma végzett áttelepítés munkahelyi ahhoz, hogy a hello funkciók javításai toobenefit a kódban szükség és kiegészítéseit, mint szolgáltatás teszi **Key Vault tanúsítványok** támogatja.
 
 ## <a name="key-vault-certificates"></a>Key Vault tanúsítványok
 
-Key Vault tanúsítványok támogatás lehetővé teszi a x509 vezetése a tanúsítványok és az alábbiak egyike:  
+Key Vault tanúsítványok támogatás lehetővé teszi a x509 vezetése a tanúsítványok és a következő viselkedés hello:  
 
-* Lehetővé teszi, hogy a tanúsítvány tulajdonosa hozzon létre egy tanúsítványt, vagy a meglévő tanúsítvány importálása a Key Vault létrehozási folyamata keresztül. Mindkét önaláírt és a hitelesítésszolgáltató tanúsítványokat jön létre.
-* Lehetővé teszi, hogy a Key Vault tanúsítvány tulajdonosa biztonságos tárolása és kezelése X509 végrehajtásához tanúsítványok és titkos kulcs adatai közötti interakció nélkül.  
-* Lehetővé teszi, hogy a tanúsítvány tulajdonosának egy házirendet, amely arra utasítja a Key Vault kezeléséhez az életciklus-tanúsítvány létrehozásához.  
-* Lehetővé teszi, hogy a tanúsítvány tulajdonos kapcsolattartási kapcsolatos adatok megadása az értesítéshez életciklus-események lejárati és a tanúsítvány megújítása.  
+* Lehetővé teszi, hogy a tanúsítvány tulajdonos toocreate egy tanúsítványt, vagy egy meglévő tanúsítvány importálása hello keresztül a Key Vault létrehozási folyamata. Mindkét önaláírt és a hitelesítésszolgáltató tanúsítványokat jön létre.
+* Lehetővé teszi, hogy a Key Vault tanúsítvány tulajdonosa tooimplement biztonságos tárolása és kezelése X509 tanúsítványok és titkos kulcs adatai közötti interakció nélkül.  
+* Lehetővé teszi, hogy a tanúsítvány tulajdonos toocreate egy házirendet, amely arra utasítja a Key Vault toomanage hello életciklus-tanúsítványt.  
+* Lehetővé teszi a tanúsítvány tulajdonosainak tooprovide értesítési kapcsolatos információkat életciklus-események lejárati és a tanúsítvány megújítása.  
 * Támogatja az automatikus megújítását a kiválasztott kiállítók - Key Vault partner X509 szolgáltatók tanúsítvány / hitelesítésszolgáltatók.
   
-  * Megjegyzés: - nem közösen szolgáltatók/hitelesítésszolgáltatók is használhatók, de nem támogatja az automatikus megújítási szolgáltatást.
+  * Megjegyzés: - nem közösen szolgáltatók/hitelesítésszolgáltatók is használhat, de nem fogja támogatni a hello automatikus megújítási szolgáltatást.
 
 ## <a name="net-support"></a>.NET-támogatás
 
-* **A .NET 4.0** az Azure Key Vault .NET 2.0-s verziója nem támogatja vagy C# könyvtár
-* **A .NET core** az Azure Key Vault .NET 2.0-s verziója támogatja / C# könyvtár
+* **A .NET 4.0** hello Azure Key Vault .NET hello 2.0-s verziója nem támogatott / C# könyvtár
+* **A .NET core** hello Azure Key Vault .NET hello 2.0-s verzióját támogatja / C# könyvtár
 
 ## <a name="namespaces"></a>Névterek
 
-* A névtér **modellek** változtatják **Microsoft.Azure.KeyVault** való **Microsoft.Azure.KeyVault.Models**.
-* A **Microsoft.Azure.KeyVault.Internal** névtér megszakad.
-* Az Azure SDK függőségek névtér nem változtatják **Hyak.Common** és **Hyak.Common.Internals** való **Microsoft.Rest** és **Microsoft.Rest.Serialization**
+* a névtér hello **modellek** változtatják **Microsoft.Azure.KeyVault** túl**Microsoft.Azure.KeyVault.Models**.
+* Hello **Microsoft.Azure.KeyVault.Internal** névtér megszakad.
+* hello Azure SDK függőségek névtér nem változtatják **Hyak.Common** és **Hyak.Common.Internals** túl**Microsoft.Rest** és  **Microsoft.Rest.Serialization**
 
 ## <a name="type-changes"></a>Módosításai
 
-* *Titkos kulcs* változott *SecretBundle*
-* *Szótár* változott *IDictionary*
-* *Lista<T>, string []* változott *IList elemet.<T>*
-* *NextList* változott *NextPageLink*
+* *Titkos kulcs* túl megváltozott*SecretBundle*
+* *Szótár* túl megváltozott*IDictionary*
+* *Lista<T>, string []* túl megváltozott*IList elemet.<T>*
+* *NextList* túl megváltozott *NextPageLink*
 
 ## <a name="return-types"></a>Visszatérési típusokat
 
 * **KeyList** és **SecretList** visszaadható *IPage<T>*  helyett *ListKeysResponseMessage*
-* A létrehozott **BackupKeyAsync** visszaadható *BackupKeyResult* tartalmazó *érték* (biztonsági másolat blob). A metódus burkolása előtt, és csak a értéket ad vissza.
+* generált hello **BackupKeyAsync** visszaadható *BackupKeyResult* tartalmazó *érték* (biztonsági másolat blob). Hello előtt metódus burkolt és adatszolgáltató egyetlen hello érték volt.
 
 ## <a name="exceptions"></a>Kivételek
 
-* *KeyVaultClientException* változott *KeyVaultErrorException*
-* Hiba a szolgáltatás változtatják *kivétel. Hiba* való *kivétel. Body.Error.Message*.
-* További információ eltávolítja a hibaüzenetet **[JsonExtensionData]**.
+* *KeyVaultClientException* túl megváltozott*KeyVaultErrorException*
+* hello szolgáltatás hiba változtatják *kivétel. Hiba* túl*kivétel. Body.Error.Message*.
+* További információ távolítva hello hibaüzenetet **[JsonExtensionData]**.
 
 ## <a name="constructors"></a>Konstruktorok
 
-* Elfogadása helyett egy *HttpClient* konstruktor argumentumként, a konstruktor csak fogad *HttpClientHandler* vagy *DelegatingHandler []*.
+* Elfogadása helyett egy *HttpClient* konstruktor argumentumként hello konstruktor csak fogad *HttpClientHandler* vagy *DelegatingHandler []*.
 
 ## <a name="downloaded-packages"></a>A letöltött csomagok
 
-Ha egy ügyfél a Kulcstárolónak függőséget feldolgozása folyamatban van a következő volt lesznek letöltve
+Amikor egy ügyfél feldolgozása folyamatban van egy függőséget meg Key Vault hello következő letöltött
 
 ### <a name="previous-package-list"></a>Előző csomaglista
 
@@ -91,19 +91,19 @@ Ha egy ügyfél a Kulcstárolónak függőséget feldolgozása folyamatban van a
 ## <a name="class-changes"></a>Osztály változások
 
 * **UnixEpoch** osztály el lett távolítva.
-* **Base64UrlConverter** osztály neve módosult az **Base64UrlJsonConverter**
+* **Base64UrlConverter** osztály túl a rendszer átnevezi**Base64UrlJsonConverter**
 
 ## <a name="other-changes"></a>Az egyéb módosítások
 
-* A konfiguráció KV művelet újrapróbálkozási házirend átmeneti hibáiról már támogatja az API ezen verziójára.
+* Hello konfiguráció KV művelet újrapróbálkozási házirend átmeneti hibáiról már támogatja az toothis hello API verziója.
 
 ## <a name="microsoftazuremanagementkeyvault-nuget"></a>Microsoft.Azure.Management.KeyVault NuGet
 
-* A művelet által visszaadott egy *tároló*, a visszatérési típusa történt egy osztály, amely egy tároló tulajdonság található. A visszatérési típus már *tároló*.
+* A visszaadott hello műveletek egy *tároló*, hello visszatérési típusa történt egy osztály, amely egy tároló tulajdonság található. hello visszatérési típus már *tároló*.
 * *PermissionsToKeys* és *PermissionsToSecrets* most már *Permissions.Keys* és *Permissions.Secrets*
-* Néhány, a visszatérési típusok változtatást a vezérlő-vezérlősík is vonatkozik.
+* Néhány hello visszatérési típusok módosítások toohello vezérlő-vezérlősík is.
 
 ## <a name="microsoftazurekeyvaultextensions-nuget"></a>Microsoft.Azure.KeyVault.Extensions NuGet
 
-* A csomag megszakad legfeljebb **Microsoft.Azure.KeyVault.Extensions** és **Microsoft.Azure.KeyVault.Cryptography** a titkosítási műveletek.
+* hello csomag rendszer darabolja túl**Microsoft.Azure.KeyVault.Extensions** és **Microsoft.Azure.KeyVault.Cryptography** hello titkosítási műveletek.
 

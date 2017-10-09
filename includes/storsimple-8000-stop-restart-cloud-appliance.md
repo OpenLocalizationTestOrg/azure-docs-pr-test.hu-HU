@@ -1,9 +1,9 @@
-#### <a name="to-stop-and-start-a-cloud-appliance"></a>Felhőalapú készülék leállítása és indítása
+#### <a name="toostop-and-start-a-cloud-appliance"></a>toostop és a felhő készülék start
 
-1. Felhőalapú készülék leállításához lépjen a felhőalapú berendezéshez tartozó virtuális gépre.
+1. egy felhőalapú készülék toostop nyissa meg a felhő alapplatformjaként VM toohello.
     ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart1.png)
 
-2. A parancssávon kattintson a **Leállítás** elemre.
+2. Hello parancssávon kattintson **leállítása**.
 
     ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart2.png)
 
@@ -11,27 +11,27 @@
 
     ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart3.png)
 
-4. A leállított virtuális gépeket a rendszer felszabadítja. Amíg a felhőalapú készülék leállítása folyamatban van, az állapota **Felszabadítás**. A felhőalapú készülék leállítás utáni állapota **Leállítva (felszabadítva)**.
+4. A leállított virtuális gépeket a rendszer felszabadítja. Hello felhő készülék leáll, miközben állapotú-e **Deallocating**. Hello felhő készülék leállítása után állapotú-e **leállítva (felszabadítva)**.
 
     ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart4.png)
 
-5. Ha a virtuális gép leállt, kattintson a **Start** gombra (amikor a gomb elérhetővé válik) a virtuális gép elindításához. A felhőalapú készülék elindulás utáni állapota **Elindítva**.
+5. Amikor egy virtuális gép le van állítva, kattintson a **Start** (gomb használhatóvá váljon) toostart hello virtuális gép. Miután hello felhő készülék elindult, állapotú-e **elindítva**.
 
     ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart5.png)
 
-A felhőalapú készülékeket az alábbi parancsmagok segítségével állíthatja le és indíthatja el.
+A következő parancsmagok toostop hello használja, és indítsa el a felhő alapplatformjaként.
 
 `Stop-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
 `Start-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
-#### <a name="to-restart-a-cloud-appliance"></a>Felhőalapú készülék újraindítása
+#### <a name="toorestart-a-cloud-appliance"></a>a felhő készülék toorestart
 
-Felhőalapú készülék újraindításához lépjen a felhőalapú berendezéshez tartozó virtuális gépre. A parancssávon kattintson az **Újraindítás** elemre. A rendszer kérésére erősítse meg az újraindítást. Ha a felhőalapú készülék használatra kész, az eszköz állapota **Fut**.
+egy felhőalapú készülék toorestart nyissa meg a felhő alapplatformjaként VM toohello. Hello parancssávon kattintson **indítsa újra a**. Amikor a rendszer kéri, erősítse meg a hello újraindítás. Hello felhő készüléknek meg toouse készen áll, amikor állapotú-e **futtató**.
 
 ![StorSimple Cloud Appliance virtuális gépe](./media/storsimple-8000-stop-restart-cloud-appliance/sca-stop-restart6.png)
 
-A felhőalapú készüléket az alábbi parancsmaggal indíthatja újra.
+A következő parancsmag toorestart egy felhőalapú készülék hello használata.
 
 `Restart-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 

@@ -1,4 +1,4 @@
-A következő legfőbb problémákat is megoldhatja a problémát. Hibaelhárítás indítása, tekintse át az alábbi lépéseket:
+hello következő legfőbb problémákat is megoldhatja a problémát. toostart hibaelhárítási, tekintse át ezeket a lépéseket:
 
-- [A fürt nem támogatja a kért Virtuálisgép-méret](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
-- [A fürt nem rendelkezik szabad erőforrást](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)
+- [hello fürt nem támogatja a kért Virtuálisgép-méretet hello](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
+- [hello fürtnek nincs szabad erőforrást](../articles/virtual-machines/windows/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)

@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció SilkRoad élettartama Suite |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és SilkRoad élettartama Suite között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és SilkRoad élettartama Suite között."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,133 +14,133 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/10/2017
 ms.author: jeedes
-ms.openlocfilehash: ecf4e31ecea00d003fc47ea4cebb781ca58957f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 07367282ab42b7332f166d64743b4b447aec4935
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-silkroad-life-suite"></a>Oktatóanyag: Azure Active Directory-integráció SilkRoad élettartama csomaggal
-Ez az oktatóanyag célja SilkRoad élettartama Suite integrálása az Azure Active Directory (Azure AD) mutatjuk be. 
+hello Ez az oktatóanyag célja tooshow, hogyan toointegrate SilkRoad élettartama Suite az Azure Active Directoryval (Azure AD). 
 
-SilkRoad élettartama Suite integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja: 
+SilkRoad élettartama Suite integrálása az Azure AD lehetővé teszi a következő előnyöket hello: 
 
-* Megadhatja a SilkRoad élettartama Suite hozzáféréssel rendelkező Azure AD-ben 
-* Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a SilkRoad élettartama Suite egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
+* Megadhatja a hozzáférés tooSilkRoad élettartama Suite rendelkező Azure AD-ben 
+* Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSilkRoad élettartama Suite egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az Azure AD-integráció konfigurálása SilkRoad élettartama csomaggal, a következőkre van szükség:
+tooconfigure az Azure AD-integrációs SilkRoad élettartama csomaggal, a következő elemek hello kell:
 
 * Az Azure AD szolgáltatásra
 * Egy SilkRoad élettartama Suite SSO előfizetés engedélyezése
 
 >[!NOTE]
->Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben. 
+>tootest hello lépéseit az oktatóanyag, ne használja éles környezetben. 
 > 
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 * Ne használja az éles környezetben, ha ez nem szükséges.
 * Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, beszerezheti a [egy hónapos próbaverzió](https://azure.microsoft.com/pricing/free-trial/). 
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ez az oktatóanyag célja ahhoz, hogy az Azure AD SSO teszteléséhez tesztkörnyezetben.
+hello Ez az oktatóanyag célja tooenable meg tootest Azure AD SSO tesztkörnyezetben.
 
-Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből SilkRoad élettartama csomag hozzáadása 
+1. Hello gyűjteményből SilkRoad élettartama csomag hozzáadása 
 2. Azure AD egyszeri bejelentkezés tesztelése és konfigurálása
 
-## <a name="add-silkroad-life-suite-from-the-gallery"></a>A gyűjteményből SilkRoad élettartama csomag hozzáadása
-Az Azure AD integrálása a SilkRoad élettartama Suite konfigurálásához kell hozzáadnia SilkRoad élettartama Suite a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="add-silkroad-life-suite-from-hello-gallery"></a>Adja hozzá a SilkRoad élettartama Suite hello gyűjteményből
+tooconfigure hello integrációja SilkRoad élettartama Suite az Azure AD-be, meg kell tooadd SilkRoad élettartama Suite hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből SilkRoad élettartama Suite hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd SilkRoad élettartama Suite hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**. 
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**. 
    
     ![Active Directory][1]
 
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
 
-3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
+3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
    
     ![Alkalmazások][2]
 
-4. Kattintson a **Hozzáadás** az oldal alján.
+4. Kattintson a **Hozzáadás** hello lap hello alján.
    
     ![Alkalmazások][3]
 
-5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
+5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
    
     ![Alkalmazások][4]
 
-6. Írja be a keresőmezőbe, **SilkRoad élettartama Suite**.
+6. Hello keresési mezőbe, írja be a **SilkRoad élettartama Suite**.
    
     ![Alkalmazások][5]
 
-7. Az eredmények ablaktáblájában válassza **SilkRoad élettartama Suite**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
+7. Hello eredmények ablaktábláján jelöljön ki **SilkRoad élettartama Suite**, és kattintson a **Complete** tooadd hello alkalmazás.
    
     ![Alkalmazások][50]
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
-Ez a szakasz célja bemutatják a Azure AD SSO SilkRoad élettartama Suite "Britta Simon" nevű tesztfelhasználó alapján tesztelése és konfigurálása.
+hello ebben a szakaszban célja tooshow hogyan tooconfigure és tesztelési Azure AD SSO élettartama Suite SilkRoad alapján "Britta Simon" nevű tesztfelhasználó.
 
-Az egyszeri bejelentkezés működjön az Azure AD tudnia kell, a partner felhasználó SilkRoad élettartama csomagban található egy olyan felhasználó számára az Azure ad-ben van. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó SilkRoad élettartama csomagban található hivatkozás kapcsolatának kell létrehozni.
+Az SSO toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó SilkRoad élettartama Suite tooan felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello SilkRoad élettartama csomagban található hivatkozás kapcsolatának kell toobe létrejött.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** SilkRoad élettartama csomagban található.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** SilkRoad élettartama csomagban található.
 
-Az Azure AD az egyszeri bejelentkezés SilkRoad élettartama Suite tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és tesztelése az Azure AD az egyszeri bejelentkezés SilkRoad élettartama csomaggal, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[SilkRoad élettartama Suite tesztfelhasználó létrehozása](#creating-a-silkroad-life-suite-test-user)**  - való egy megfelelője a Britta Simon SilkRoad élettartama csomag, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[SilkRoad élettartama Suite tesztfelhasználó létrehozása](#creating-a-silkroad-life-suite-test-user)**  -toohave Britta Simon SilkRoad élettartama Suite, amely az Azure AD csatolt toohello ábrázolása rá, hogy valami.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
-Ez a szakasz célja engedélyezze az Azure AD egyszeri Bejelentkezést a klasszikus Azure portálon és egyszeri bejelentkezés konfigurálása az SilkRoad élettartama Suite alkalmazásban.
+hello ebben a szakaszban célja a klasszikus Azure portálon hello Azure AD SSO tooenable és tooconfigure SSO élettartama Suite SilkRoad alkalmazásában.
 
-**Konfigurálja az Azure AD az egyszeri bejelentkezés SilkRoad élettartama csomaggal, hajtsa végre az alábbi lépéseket:**
+**tooconfigure az Azure AD az egyszeri bejelentkezés SilkRoad élettartama csomaggal, hajtsa végre a lépéseket követve hello:**
 
-1. Bejelentkezés a SilkRoad vállalati webhely rendszergazdaként. 
+1. Bejelentkezés tooyour SilkRoad vállalati hely rendszergazdaként. 
 
   >[!NOTE] 
-  > A Microsoft Azure AD-összevonás konfigurálása az SilkRoad élettartama Suite hitelesítési alkalmazáshoz való hozzáférési, forduljon SilkRoad támogatási vagy az Ön SilkRoad szolgáltatások képviselőjével.
+  > tooobtain hozzáférés toohello SilkRoad élettartama Suite hitelesítési kérelmet a Microsoft Azure AD-összevonás konfigurálása forduljon SilkRoad támogatási vagy az Ön SilkRoad szolgáltatások képviselőjével.
   > 
 
-2. Ugrás a **szolgáltató**, és kattintson a **összevonási részletek**. 
+2. Nyissa meg túl**szolgáltató**, és kattintson a **összevonási részletek**. 
    
     ![Az Azure AD-egyszeri bejelentkezés][10] 
 
-3. Kattintson a **töltse le az összevonási metaadatok**, majd mentse a metaadatok fájlt a számítógépen.
+3. Kattintson a **töltse le az összevonási metaadatok**, majd mentse a hello metaadatait tartalmazó fájl a számítógépen.
    
     ![Az Azure AD-egyszeri bejelentkezés][11] 
 
-4. A klasszikus Azure portálon a a **SilkRoad élettartama Suite** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezéshez** párbeszédpanel.
+4. A klasszikus Azure portálon, a hello hello **SilkRoad élettartama Suite** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezéshez**  párbeszédpanel.
    
     ![Egyszeri bejelentkezés konfigurálása][6] 
 
-5. Az a **hová bejelentkezni SilkRoad élettartama Suite felhasználók** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **tovább**.
+5. A hello **hogyan szeretné tooSilkRoad élettartama Suite a felhasználók toosign** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
    
     ![Az Azure AD-egyszeri bejelentkezés][7] 
 
-6. Az a **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, a következő lépésekkel:
+6. A hello **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Az Azure AD-egyszeri bejelentkezés][8]   
- 1. Az a **URL-cím bejelentkezési** szövegmező, írja be az URL-címet használják-e a felhasználók bejelentkezés SilkRoad élettartama Suite webhelyekhez (pl.: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).  
- 2. Nyissa meg a letöltött **Silkroad** metaadatait tartalmazó fájl. 
- 3. Keresse meg a **AssertionConsumerService** címkét, és másolja a **hely** attribútum.         
+ 1. A hello **URL-cím bejelentkezési** szövegmező, a felhasználók toosign tooyour SilkRoad élettartama Suite webhely által használt típus hello URL (pl.: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).  
+ 2. Nyissa meg hello letöltött **Silkroad** metaadatait tartalmazó fájl. 
+ 3. Keresse meg a hello **AssertionConsumerService** címkét, majd a Másolás hello **hely** attribútum.         
    
     ![Az Azure AD-egyszeri bejelentkezés][21] 
- 4. Illessze be az érték a **válasz URL-CÍMEN** szövegmező.  
+ 4. Hello értéket beilleszteni hello **válasz URL-CÍMEN** szövegmező.  
  5. Kattintson a **Tovább** gombra.
 
-6. Az a **konfigurálhatja az egyszeri bejelentkezés SilkRoad élettartama Suite** lapon, a következő lépésekkel:
+6. A hello **konfigurálhatja az egyszeri bejelentkezés SilkRoad élettartama Suite** lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Az Azure AD-egyszeri bejelentkezés][9]  
- 1. Kattintson a letöltés tanúsítványt, és mentse a fájlt a számítógépen.  
+ 1. Kattintson a letöltés tanúsítványt, és mentse a hello fájlt a számítógépen.  
  2. Kattintson a **Tovább** gombra.
 
 7. Az a **SilkRoad** alkalmazás, kattintson a **hitelesítési források**.
@@ -151,122 +151,122 @@ Ez a szakasz célja engedélyezze az Azure AD egyszeri Bejelentkezést a klasszi
    
     ![Az Azure AD-egyszeri bejelentkezés][13] 
 
-9. Az a **hitelesítési forrás hozzáadása** területen tegye a következőket: 
+9. A hello **hitelesítési forrás hozzáadása** csoportjában hajtsa végre az alábbi lépésekkel hello: 
    
     ![Az Azure AD-egyszeri bejelentkezés][14]  
- 1. A **beállítás 2 - metaadatfájl**, kattintson a **Tallózás** feltölteni a fájlt a letöltött metaadat.  
+ 1. A **beállítás 2 - metaadatfájl**, kattintson a **Tallózás** tooupload hello letöltött metaadatait tartalmazó fájl.  
  2. Kattintson a **fájladatok használatával hozzon létre identitásszolgáltató**.
 
-10. Az a **hitelesítési források** kattintson **szerkesztése**. 
+10. A hello **hitelesítési források** kattintson **szerkesztése**. 
     
      ![Az Azure AD-egyszeri bejelentkezés][15] 
 
-11. Az a **szerkesztése hitelesítési forrás** párbeszédpanelen hajtsa végre a következő lépéseket: 
+11. A hello **szerkesztése hitelesítési forrás** párbeszédpanelen hajtsa végre az alábbi lépésekkel hello: 
     
      ![Az Azure AD-egyszeri bejelentkezés][16] 
  1. Mint **engedélyezve**, jelölje be **Igen**.   
- 2. Az a **IdP leírás** szövegmező, adja meg a konfiguráció leírása (pl.: *Azure AD SSO*).  
- 3. Az a **IdP neve** szövegmező, írja be a konfigurációs adott nevét (pl.: *Azure SP*).  
+ 2. A hello **IdP leírás** szövegmező, adja meg a konfiguráció leírása (pl.: *Azure AD SSO*).  
+ 3. A hello **IdP neve** szövegmező, írja be, amelyek adott tooyour konfiguráció nevét (pl.: *Azure SP*).  
  4. Kattintson a **Save** (Mentés) gombra.
 
 12. Tiltsa le a többi hitelesítési forrást. 
     
      ![Az Azure AD-egyszeri bejelentkezés][17]
 
-13. A klasszikus Azure portálon a a **az egyszeri bejelentkezés megerősítő** kattintson **következő**.  
+13. A klasszikus Azure portálon, a hello hello **az egyszeri bejelentkezés megerősítő** lapján kattintson **következő**.  
     
      ![Az Azure AD-egyszeri bejelentkezés][18]
 
-14. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
+14. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.
     
      ![Az Azure AD-egyszeri bejelentkezés][19]
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz célja a tesztfelhasználó létrehozása a klasszikus Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon neve a klasszikus Azure portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][20]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_09.png)  
 
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
 
-3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
+3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_03.png) 
 
-4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**. 
+4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**. 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_04.png) 
 
-5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel: 
+5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_05.png)  
  1. A felhasználó típusát válassza ki az új felhasználót a szervezetében.  
- 2. A felhasználó nevében **szövegmező**, típus **BrittaSimon**. 
+ 2. A felhasználónév hello **szövegmező**, típus **BrittaSimon**. 
  3. Kattintson a **Tovább** gombra.
 
-6. Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel: 
+6. A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello: 
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_06.png)  
- 1. Az a **Utónév** szövegmezőhöz típus **Britta**.    
- 2. Az a **Vezetéknév** szövegmezőhöz típusa, **Simon**. 
- 3. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**. 
- 4. Az a **szerepkör** listáról válassza ki **felhasználói**.
+ 1. A hello **Utónév** szövegmezőhöz típus **Britta**.    
+ 2. A hello **Vezetéknév** szövegmezőhöz típusa, **Simon**. 
+ 3. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**. 
+ 4. A hello **szerepkör** listáról válassza ki **felhasználói**.
  5. Kattintson a **Tovább** gombra.
 
-7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_07.png) 
 
-8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
+8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_08.png)  
- 1. Jegyezze fel az értéket a **új jelszó**. 
+ 1. Írja le hello hello értékének **új jelszó**. 
  2. Kattintson a **Befejezés** gombra.   
 
 ### <a name="create-a-silkroad-life-suite-test-user"></a>SilkRoad élettartama Suite tesztfelhasználó létrehozása
-Ez a szakasz célja Britta Simon SilkRoad élettartama Suite nevű felhasználót létrehozni. Britta tartozó egyszeri bejelentkezési Azonosítóval kell rendelkeznie (más néven egy *AuthParam*), amely megfelel a Britta **emailaddress** Azure AD-ben.
+hello ebben a szakaszban célja toocreate Britta Simon SilkRoad élettartama Suite nevű felhasználó. Britta tartozó egyszeri bejelentkezési Azonosítóval kell rendelkeznie (hívják tooas egy *AuthParam*), amely megfelel a Britta **emailaddress** Azure AD-ben.
 
-**A felhasználó Britta Simon SilkRoad élettartama Suite nevű létrehozásához hajtsa végre az alábbi lépéseket:**
+**toocreate Britta Simon meghívta SilkRoad élettartama Suite, a felhasználó hajtsa végre a lépéseket követve hello:**
 
-- Kérje meg a SilkRoad élettartama Suite támogatási csoport, amely rendelkezik felhasználó létrehozásához **egyszeri bejelentkezési azonosító** attribútum értéke megegyezik a **emailaddress** a Britta Simon Azure AD-ben.
+- Kérje meg a SilkRoad élettartama Suite támogatási csoport toocreate, amely rendelkezik a felhasználó **egyszeri bejelentkezési azonosító** attribútum hello ugyanaz, mint hello érték **emailaddress** a Britta Simon Azure AD-ben.
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
-Ez a szakasz célja Britta Simon Azure SSO saját hozzáférést biztosít SilkRoad élettartama Suite által használandó engedélyezéséhez.
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
+hello ebben a szakaszban célja tooenable Britta Simon toouse Azure SSO saját hozzáférés tooSilkRoad élettartama Suite megadásával.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése SilkRoad élettartama Suite, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooSilkRoad élettartama Suite, hajtsa végre a lépéseket követve hello:**
 
-1. A klasszikus Azure portálon, a könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
+1. A hello Azure klasszikus portál tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
    
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **SilkRoad élettartama Suite**.
+2. Hello alkalmazások listában válassza ki a **SilkRoad élettartama Suite**.
    
     ![Felhasználó hozzárendelése][202] 
 
-3. Kattintson a felső menüben **felhasználók**.
+3. Hello hello felső menüben kattintson a **felhasználók**.
    
     ![Felhasználó hozzárendelése][203] 
 
-4. A felhasználók listában válassza ki a **Britta Simon**.
+4. Hello felhasználók listában válassza ki a **Britta Simon**.
 
-5. Kattintson az alsó eszköztár **hozzárendelése**.
+5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
    
     ![Felhasználó hozzárendelése][205]
 
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
-Ez a szakasz célja a hozzáférési panelen az Azure AD SSO-konfigurációjának tesztelése.  
+hello ebben a szakaszban célja tootest hozzáférési Panel az Azure AD SSO konfigurációs használatával hello.  
 
-Ha a hozzáférési panelen SilkRoad élettartama Suite csempére kattint, meg kell beolvasása automatikusan bejelentkezett az SilkRoad élettartama Suite alkalmazására.
+Ha a hozzáférési Panel hello hello SilkRoad élettartama Suite csempe gombra kattint, automatikusan bejelentkezett tooyour SilkRoad élettartama Suite alkalmazás szerezheti be.
 
 ## <a name="additional-resources"></a>További források
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

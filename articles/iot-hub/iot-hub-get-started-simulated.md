@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés a szimulált eszköz csatlakozik Azure IoT Hub |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre a szimulált az IoT-eszközök, és csatlakoztassa őket az Azure IoT Hub. Az eszközök küldhet az IoT-központ és az Iot-központ telemetriai figyelheti és az eszközök kezeléséhez."
+title: "Ismerkedés a szimulált eszköz tooAzure IoT-központ csatlakozás |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate szimulált az IoT-eszközök, és csatlakoztassa őket az IoT-központ tooAzure. Az eszközök küldhet telemetriai tooIoT központ és az Iot-központ figyelheti és az eszközök kezeléséhez."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: 436b3057509a831837159e814490959a2d7455a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9b76477d12c853abd93aa96043417a013daaef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-with-simulated-devices-tutorials"></a>Az Azure IoT Hub szimulált eszköz oktatóanyagok az első lépései
 
-Ezek az oktatóanyagok bemutatják a Azure IoT-központ és az eszköz SDK-k. Az oktatóanyagok általános IoT-forgatókönyvek esetén az IoT-központ funkcióinak bemutatása foglalkozik. Az oktatóanyagok bemutatják, hogyan kombinálhatók az IoT-központ más Azure-szolgáltatások és eszközök nagyobb teljesítményű az IoT-megoldások létrehozásához is. A következő táblázatban található az oktatóanyagok bemutatják a szimulált az IoT-eszközök létrehozásához.
+Ezek az oktatóanyagok tooAzure IoT Hub és hello eszköz SDK-k bevezetése. hello oktatóanyagok általános IoT forgatókönyvek toodemonstrate hello képességeket IoT hub foglalkozik. hello oktatóanyagokat is bemutatják, hogyan-toocombine más Azure IoT hubot szolgáltatásokat és eszközöket több toobuild hatékony IoT-megoldásokhoz. hello a következő táblázatban felsorolt hello oktatóprogramok bemutatják, hogyan toocreate szimulált az IoT-eszközök.
 
 | Programozási nyelv |
 |----------------------|
@@ -31,7 +31,7 @@ Ezek az oktatóanyagok bemutatják a Azure IoT-központ és az eszköz SDK-k. Az
 | [NODE.js][Sim_Nd]    |
 | [Python][Sim_Pyth]   |
 
-Emellett az IoT-átjáró használatával szimulált eszközök csatlakoztatása az IoT hub engedélyezése.
+Továbbá az IoT-peremhálózati átjáró szimulált tooenable eszközök tooconnect tooyour IoT-központ is használhatja.
 
 | Programozási nyelv | Platform           |
 |----------------------|------------------- |

@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 812641a3e4d5bf496d81b036d326595c5722b7fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f2085283649eadd3c9e89f708b0eecf10b2d7d70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="administer-dns-on-an-azure-ad-domain-services-managed-domain"></a>Felügyelni a DNS a az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz
-Az Azure Active Directory tartományi szolgáltatások magában foglalja a DNS-feloldás biztosít a felügyelt tartományra (tartománynév feloldásával) DNS-kiszolgálóval. Alkalmanként esetleg DNS konfigurálása a felügyelt tartományra. Szükség lehet, a tartományhoz nem csatlakozó gépek DNS-rekordok létrehozása, konfigurálása a terheléselosztók virtuális IP-címet, vagy a telepítés külső DNS-továbbítók. Ezért a "AAD DC rendszergazdák" csoportba tartozó felhasználók kapnak a felügyelt tartományra DNS felügyeleti jogosultságokkal.
+Az Azure Active Directory tartományi szolgáltatások hello felügyelt tartomány DNS-feloldását biztosító (tartománynév feloldásával) DNS-kiszolgáló tartalmazza. Alkalmanként szükség lehet tooconfigure DNS hello által felügyelt tartományon. A gépeket, amelyek nem tartományhoz csatlakoztatott toohello, a terheléselosztók virtuális IP-címek konfigurálásához, vagy a telepítés külső DNS-továbbítók szükség lehet toocreate DNS-rekordokat. Emiatt toohello "AAD DC rendszergazdák" csoportba tartozó felhasználók kapnak DNS felügyeleti jogosultságokkal hello felügyelt tartományon.
 
 ## <a name="before-you-begin"></a>Előkészületek
-A cikkben szereplő feladatok elvégzéséhez szüksége:
+a cikkben szereplő tooperform hello feladatok lesz szüksége:
 
 1. Egy érvényes **Azure-előfizetés**.
 2. Egy **Azure AD-címtár** -vagy egy helyszíni címtár vagy egy csak felhőalapú directory szinkronizálva.
-3. **Azure AD tartományi szolgáltatások** az Azure AD-címtár engedélyezni kell. Ha még nem tette meg, az összes ismertetett feladatok végrehajtásával a [első lépések útmutató](active-directory-ds-getting-started.md).
-4. A **tartományhoz csatlakoztatott virtuális gép** , amelyből az Azure AD tartományi szolgáltatások által kezelt tartomány felügyelete. Ha egy virtuális gép nem rendelkezik, a című cikkben ismertetett összes feladatok végrehajtásával [egy Windows rendszerű virtuális gép csatlakoztatása felügyelt tartományhoz](active-directory-ds-admin-guide-join-windows-vm.md).
-5. A hitelesítő adatait kell egy **az "AAD DC rendszergazdák" csoportba tartozó felhasználói fiók** a könyvtárban, a felügyelt tartományok DNS felügyeletéhez.
+3. **Azure AD tartományi szolgáltatások** hello Azure Active directory engedélyezni kell. Ha még nem tette meg, kövesse a hello ismertetett feladatok hello [első lépések útmutató](active-directory-ds-getting-started.md).
+4. A **tartományhoz csatlakoztatott virtuális gép** amely felügyelhető a hello Azure AD tartományi szolgáltatások által felügyelt tartományokhoz. Ha egy virtuális gép nem rendelkezik, hajtsa végre a hello a című cikkben ismertetett feladatok hello [tartományhoz egy Windows virtuális gép tooa felügyelt](active-directory-ds-admin-guide-join-windows-vm.md).
+5. Hello hitelesítő adatait kell egy **felhasználói fiókhoz tartozó toohello "AAD DC rendszergazdák" csoport** a könyvtárban, a felügyelt tartományok DNS tooadminister.
 
 <br>
 
-## <a name="task-1---provision-a-domain-joined-virtual-machine-to-remotely-administer-dns-for-the-managed-domain"></a>1. feladat – rendszerű távoli felügyelete a felügyelt tartomány DNS-tartományhoz virtuális gép
-Az Azure AD tartományi szolgáltatások felügyelt tartományok kezelheti távolról már ismerős eszközökkel Active Directory felügyeleti például az Active Directory felügyeleti központ (ADAC) vagy AD PowerShell segítségével. Hasonlóképpen a felügyelt tartományra DNS használatával lehet felügyelni távolról a DNS-kiszolgáló felügyeleti eszközei.
+## <a name="task-1---provision-a-domain-joined-virtual-machine-tooremotely-administer-dns-for-hello-managed-domain"></a>1 - Provision egy tartományhoz csatlakoztatott virtuális gép tooremotely feladat DNS hello által kezelt tartomány felügyelete
+Az Azure AD tartományi szolgáltatások felügyelt tartományok kezelheti távolról már ismerős eszközökkel Active Directory felügyeleti például az Active Directory felügyeleti központ (ADAC) vagy AD PowerShell hello. Ehhez hasonlóan hello által kezelt tartomány DNS felügyelhető távolról a hello DNS-kiszolgáló felügyeleti eszközök segítségével.
 
-Az Azure AD-címtár rendszergazdái nem jogosult csatlakozni a távoli asztalon keresztül a felügyelt tartományra tartományvezérlők. A "AAD DC rendszergazdák" csoportba DNS felügyelheti a felügyelt tartomány tagja egy Windows Server-ügyfél számítógépről távolról DNS-kiszolgáló eszközeivel felügyelt tartományok. DNS-kiszolgáló eszközök a Távoli kiszolgálófelügyelet eszközei (RSAT) választható szolgáltatás Windows Server és a felügyelt tartományhoz csatlakozó ügyfélgépek részeként telepíthető.
+Az Azure AD-címtár rendszergazdái nem rendelkezik jogosultságokkal tooconnect toodomain tartományvezérlők hello által kezelt tartomány távoli asztalon keresztül. A Windows Server-ügyfél számítógépről, amely felügyelt tartományhoz csatlakoztatott toohello távolról DNS-kiszolgáló eszközeivel felügyelt tartományok DNS hello "AAD DC rendszergazdák" csoportba felügyelheti. DNS-kiszolgáló eszközök hello távoli kiszolgáló felügyeleti eszközei (RSAT) választható szolgáltatás a Windows Server részeként telepíthető, és ügyfélgépek felügyelt toohello tartományhoz csatlakozott.
 
-Az első feladata a Windows Server rendszerű virtuális gép, amely a felügyelt tartományhoz csatlakozik. Útmutatásért tekintse meg a című cikk [Windows Server virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md).
+hello első feladat tooprovision egy Windows Server virtuális gépre, amelyik illesztett toohello által kezelt tartomány. Útmutatásért tekintse meg a toohello cikk címe [csatlakozás egy Windows Server virtuális gép tooan Azure AD tartományi szolgáltatások által kezelt tartomány](active-directory-ds-admin-guide-join-windows-vm.md).
 
-## <a name="task-2---install-dns-server-tools-on-the-virtual-machine"></a>2. feladat – telepítés DNS-kiszolgáló eszközök a virtuális gépen
-Telepítéséhez hajtsa végre a következő lépéseket a DNS-felügyeleti eszközök a tartományhoz csatlakoztatott virtuális gépen. További információ a [telepítéséről és használatáról a Távoli kiszolgálófelügyelet eszközei](https://technet.microsoft.com/library/hh831501.aspx), tekintse meg a TechNet webhelyén.
+## <a name="task-2---install-dns-server-tools-on-hello-virtual-machine"></a>2. feladat – telepítés DNS-kiszolgáló eszközök hello virtuális gépen
+Hajtsa végre a következő lépések tooinstall hello DNS felügyeleti eszközök hello tartományhoz csatlakoztatott virtuális gépen hello. További információ a [telepítéséről és használatáról a Távoli kiszolgálófelügyelet eszközei](https://technet.microsoft.com/library/hh831501.aspx), tekintse meg a TechNet webhelyén.
 
-1. Navigáljon a **virtuális gépek** csomópont a klasszikus Azure portálon. Válassza ki a virtuális gépet, az 1. feladatban létrehozott, és kattintson a **Connect** a parancssávon az ablak alján.
+1. Keresse meg a túl**virtuális gépek** hello a klasszikus Azure portálon csomópontja. Válassza ki az 1. feladatban létrehozott hello virtuális gépet, és kattintson a **Connect** hello parancssávon hello ablak hello alján.
 
-    ![Windows virtuális géphez](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
-2. A klasszikus portál felszólítja, hogy a fájl megnyitása vagy mentése egy, a virtuális géphez való kapcsolódáshoz használt ".rdp" kiterjesztéssel. Kattintson a fájl letöltése után.
-3. Bejelentkezés a parancssorba az "AAD DC rendszergazdák" csoportba tartozó felhasználói hitelesítő adatokat használja. Például használjuk "bob@domainservicespreview.onmicrosoft.com" esetünkben.
-4. A kezdőképernyőről nyissa meg a **Kiszolgálókezelő**. Kattintson a **szerepkörök és szolgáltatások hozzáadása** a Kiszolgálókezelő ablakban központi panelén.
+    ![Csatlakoztassa tooWindows virtuális gépet](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
+2. hello klasszikus portál felszólítja tooopen vagy ".rdp" kiterjesztésű fájl, amely használt tooconnect toohello virtuális gép. Kattintson a hello fájl letöltése után.
+3. A parancssorból hello bejelentkezési hello toohello "AAD DC rendszergazdák" csoportba tartozó felhasználó hitelesítő adatait használja. Például használjuk "bob@domainservicespreview.onmicrosoft.com" esetünkben.
+4. Hello kezdőképernyőről nyissa meg a **Kiszolgálókezelő**. Kattintson a **szerepkörök és szolgáltatások hozzáadása** hello központi ablaktáblájában hello Kiszolgálókezelő.
 
     ![Indítsa el a Kiszolgálókezelőt a virtuális gépen](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager.png)
-5. Az a **előkészületek** oldalán a **hozzáadása szerepkörök és szolgáltatások varázsló**, kattintson a **következő**.
+5. A hello **előkészületek** hello oldalán **hozzáadása szerepkörök és szolgáltatások varázsló**, kattintson a **következő**.
 
     ![Mielőtt elkezdené lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-begin.png)
-6. Az a **telepítési típus** lapon, hagyja a **szerepköralapú vagy szolgáltatásalapú telepítés** beállítás be van jelölve, és kattintson **következő**.
+6. A hello **telepítési típus** lapján hello hagyja **szerepköralapú vagy szolgáltatásalapú telepítés** beállítás be van jelölve, és kattintson **következő**.
 
     ![Telepítés típusa lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-type.png)
-7. Az a **kiszolgáló kiválasztása** lapon válassza ki az aktuális virtuális gépet a kiszolgálókészletből, és kattintson a **következő**.
+7. A hello **kiszolgáló kiválasztása** lapon, válassza ki a hello aktuális virtuális gépet hello kiszolgálókészletből, és kattintson **következő**.
 
     ![Kiszolgáló kiválasztása lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-server.png)
-8. Az a **kiszolgálói szerepkörök** kattintson **következő**. Azt e lap kihagyása, mert jelenleg nem telepít szerepköröket a kiszolgálón.
-9. Az a **szolgáltatások** lap gombra, bontsa ki a **távoli kiszolgálófelügyelet eszközei** csomópontra majd bontsa ki a **szerepkör-felügyeleti eszközök** csomópont. Válassza ki **DNS-kiszolgálói eszközök** szolgáltatás szerepkör-felügyeleti eszközök a listából.
+8. A hello **kiszolgálói szerepkörök** kattintson **következő**. Azt e lap kihagyása, mert jelenleg nem telepít szerepköröket hello kiszolgálón.
+9. A hello **szolgáltatások** tooexpand hello kattintson **távoli kiszolgálófelügyelet eszközei** csomópontot, majd a tooexpand hello **szerepkör-felügyeleti eszközök** csomópont. Válassza ki **DNS-kiszolgálói eszközök** szerepkör-felügyeleti eszközök listájából hello szolgáltatást.
 
     ![Szolgáltatások lapon](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-dns-tools.png)
-10. Az a **megerősítő** kattintson **telepítése** a DNS-kiszolgáló eszközök szolgáltatás telepítése a virtuális gépen. Ha a szolgáltatás telepítése sikeresen befejeződött, kattintson **Bezárás** való kilépéshez a **szerepkörök és szolgáltatások hozzáadása** varázsló.
+10. A hello **megerősítő** kattintson **telepítése** tooinstall hello DNS-kiszolgáló eszközök szolgáltatás hello virtuális gépen. Ha a szolgáltatás telepítése sikeresen befejeződött, kattintson **Bezárás** tooexit hello **szerepkörök és szolgáltatások hozzáadása** varázsló.
 
     ![Jóváhagyás lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-dns-confirmation.png)
 
-## <a name="task-3---launch-the-dns-management-console-to-administer-dns"></a>3. feladat – indítsa el a DNS-kezelő konzol DNS felügyeletéhez
-Most, hogy a DNS-kiszolgálói eszközök összetevő telepítve van a tartományhoz csatlakoztatott virtuális gép, azt a DNS-eszközök segítségével felügyelheti a DNS a felügyelt tartományra.
+## <a name="task-3---launch-hello-dns-management-console-tooadminister-dns"></a>A feladat 3 - indítási hello DNS felügyeleti konzol tooadminister DNS
+Most, hogy hello DNS-kiszolgálói eszközök összetevő telepítve van a tartományhoz csatlakoztatott virtuális gép hello, a hello DNS eszközök tooadminister DNS hello által felügyelt tartományon is használjuk.
 
 > [!NOTE]
-> Ahhoz, hogy adminisztrálja a felügyelt tartomány DNS "AAD DC rendszergazdák" csoport tagjának lennie kell.
+> Toobe hello "AAD DC rendszergazdák" csoport, tooadminister DNS hello felügyelt tartomány tagjának kell.
 >
 >
 
-1. A kezdőképernyőről kattintson **felügyeleti eszközök**. Megjelenik a **DNS** konzol telepítve legyen a virtuális gépen.
+1. Hello kezdőképernyőről kattintson **felügyeleti eszközök**. Megtekintheti az hello **DNS** konzol hello virtuális gépre telepítve.
 
     ![Felügyeleti eszközök – DNS-konzol](./media/active-directory-domain-services-admin-guide/install-rsat-dns-tools-installed.png)
-2. Kattintson a **DNS** elindíthatja a DNS-kezelőben.
-3. A a **kapcsolódás a DNS-kiszolgáló** párbeszédpanel, kattintson az lehetőségre című **a következő számítógép**, és írja be a DNS-tartománynév, a felügyelt tartomány (például "contoso100.com").
+2. Kattintson a **DNS** toolaunch hello DNS-kezelőben.
+3. A hello **tooDNS kiszolgáló csatlakozzon** párbeszédpanelen című hello lehetőségre **számítógépre következő hello**, és írja be a DNS-tartománynevet hello hello felügyelt tartomány (például "contoso100.com").
 
-    ![DNS-konzol - csatlakozás tartományhoz](./media/active-directory-domain-services-admin-guide/dns-console-connect-to-domain.png)
-4. A DNS-konzol kapcsolódik a felügyelt tartományra.
+    ![DNS-konzol - csatlakozás toodomain](./media/active-directory-domain-services-admin-guide/dns-console-connect-to-domain.png)
+4. DNS-konzol hello toohello felügyelt tartományhoz csatlakozik.
 
     ![DNS-konzol - tartomány felügyelete](./media/active-directory-domain-services-admin-guide/dns-console-managed-domain.png)
-5. A DNS-konzol segítségével most adja hozzá a virtuális hálózat, amelyen engedélyezve van a AAD tartományi szolgáltatásokra belüli számítógépek DNS-bejegyzéseket.
+5. Most már használhatja hello DNS konzol tooadd DNS-bejegyzések hello virtuális hálózatot, amelyben engedélyezve van a AAD tartományi szolgáltatásokra belül olyan számítógépekhez.
 
 > [!WARNING]
-> Ügyeljen arra, hogy a DNS-felügyeleti eszközök segítségével felügyelt tartomány DNS felügyeletekor. Győződjön meg arról, hogy **törölni vagy módosítani a beépített DNS-rekordokat, a tartomány tartományi szolgáltatások által használt**. Beépített DNS-rekordok közé tartozik a tartomány DNS-rekordokat, a névkiszolgáló rekordjait és a DC helyen használt egyéb rögzíti. Ha módosítja ezeket a rekordokat, a tartományi szolgáltatások a virtuális hálózaton megszakadnak.
+> Ügyeljen, amikor a DNS felügyelete hello felügyelt tartomány DNS-felügyeleti eszközök segítségével. Győződjön meg arról, hogy **törölni vagy módosítani a hello beépített DNS-rekordok hello tartomány tartományi szolgáltatások által használt**. Beépített DNS-rekordok közé tartozik a tartomány DNS-rekordokat, a névkiszolgáló rekordjait és a DC helyen használt egyéb rögzíti. Ha módosítja ezeket a rekordokat, a tartományi szolgáltatások hello virtuális hálózaton megszakadnak.
 >
 >
 
-Tekintse meg a [DNS-eszközök a következő cikket a TechNet webhelyén](https://technet.microsoft.com/library/cc753579.aspx) DNS kezelésével kapcsolatos további információt.
+Lásd: hello [DNS-eszközök a következő cikket a TechNet webhelyén](https://technet.microsoft.com/library/cc753579.aspx) DNS kezelésével kapcsolatos további információt.
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 * [Azure AD tartományi szolgáltatások – első lépések útmutató](active-directory-ds-getting-started.md)
-* [Windows Server virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
+* [Csatlakozás egy Windows Server virtuális gép tooan Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
 * [Azure AD tartományi szolgáltatások által kezelt tartomány felügyelete](active-directory-ds-admin-guide-administer-domain.md)
 * [A DNS-felügyeleti eszközök](https://technet.microsoft.com/library/cc753579.aspx)

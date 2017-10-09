@@ -1,6 +1,6 @@
 ---
-title: "Egy Azure Cosmos DB kapcsolódó Azure-függvény létrehozása |} Microsoft Docs"
-description: "Az Azure CLI-parancsfájlt minták –, amely egy Azure Cosmos DB csatlakozik Azure-függvény létrehozása"
+title: "egy Azure-függvény, amely a tooan Azure Cosmos DB aaaCreate |} Microsoft Docs"
+description: "Az Azure CLI-parancsfájlt minta - tooan Azure Cosmos DB kapcsolódó Azure-függvény létrehozása"
 services: functions
 documentationcenter: functions
 author: rachelappel
@@ -16,41 +16,41 @@ ms.workload:
 ms.date: 04/20/2017
 ms.author: rachelap
 ms.custom: mvc
-ms.openlocfilehash: ba7e934f71824493f29b001cea6dd1c567ef3414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fbc1ebec2dfd480e0cf3ca64f9febcec8af9a04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-function-that-connects-to-an-azure-cosmos-db"></a>Hozzon létre egy Azure-függvény, amely egy Azure Cosmos DB csatlakozik
+# <a name="create-an-azure-function-that-connects-tooan-azure-cosmos-db"></a>Egy Azure-függvény, amely a tooan Azure Cosmos DB létrehozása
 
-Ez a parancsfájlpélda hoz létre egy Azure-függvény alkalmazást, és egy Azure Cosmos DB adatbázishoz kapcsolódik.
+Ez a parancsfájlpélda hoz létre egy Azure-függvény alkalmazást, és tooan Azure Cosmos DB adatbázishoz kapcsolódik.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-Ez a minta egy Azure-függvény alkalmazást hoz létre, és Alkalmazásbeállítások ad hozzá egy Cosmos DB végpont és a hozzáférési kulcsot.
+Ez a minta létrehoz egy Azure-függvény alkalmazást, és hozzáadja egy Cosmos DB végpont és a hozzáférési kulcs tooapp beállításait.
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh ", amely egy Azure Cosmos DB csatlakozik Azure-függvény létrehozása")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh "Create an Azure Function that connects tooan Azure Cosmos DB")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, és az összes kapcsolódó erőforrásokat.
+Hello parancsfájl minta futtatása után hello kövesse parancs lehet használt tooremove hello erőforráscsoportban, és az összes kapcsolódó erőforrásokat.
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [az bejelentkezés](https://docs.microsoft.com/cli/azure/#login) | Bejelentkezés az Azure-bA. |
+| [az bejelentkezés](https://docs.microsoft.com/cli/azure/#login) | Bejelentkezési tooAzure. |
 | [az csoport létrehozása](https://docs.microsoft.com/cli/azure/group#create) | Hozzon létre egy erőforráscsoportot, amelynek a helye |
 | [az storage-fiók létrehozása](https://docs.microsoft.com/cli/azure/storage/account) | Create a storage account |
 | [az functionapp létrehozása](https://docs.microsoft.com/cli/azure/functionapp#create) | Hozzon létre egy új funkció alkalmazást |
@@ -59,9 +59,9 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További Azure Functions CLI parancsfájl minták megtalálhatók a [dokumentáció az Azure Functions](../functions-cli-samples.md).
+További Azure Functions CLI parancsfájl minták hello található [dokumentáció az Azure Functions](../functions-cli-samples.md).
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service Web Apps Java-alkalmazás hozzáadása"
-description: "Ez az oktatóanyag bemutatja, hogyan lap vagy az Azure App Service Web Apps, amely már használatára van konfigurálva a Java-példány alkalmazás hozzáadása."
+title: "a Java-alkalmazás tooAzure App Service Web Apps aaaAdd"
+description: "Az oktatóanyag bemutatja, hogyan tooadd egy lap vagy az alkalmazás tooyour példányát az Azure App Service Web Apps már konfigurálva toouse Java."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,33 +14,33 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: c28e7c499ed02b759df580f4b14a971b6aec5b67
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2feb464b2933921ad2887779a6b7589634e2e2f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-java-application-to-azure-app-service-web-apps"></a>Az Azure App Service Web Apps Java-alkalmazás hozzáadása
-Amennyiben Ön inicializálta a Java-webalkalmazás a [Azure App Service] [ Azure App Service] dokumentált [Java-webalkalmazás létrehozása az Azure App Service](web-sites-java-get-started.md), feltöltheti az alkalmazást úgy, hogy az a WAR a **webapps** mappa.
+# <a name="add-a-java-application-tooazure-app-service-web-apps"></a>A Java-alkalmazás tooAzure App Service Web Apps hozzáadása
+Amennyiben Ön inicializálta a Java-webalkalmazás a [Azure App Service] [ Azure App Service] dokumentált [Java-webalkalmazás létrehozása az Azure App Service](web-sites-java-get-started.md), feltöltheti az alkalmazást úgy, hogy a WAR a hello **webapps** mappa.
 
-A navigációs elérési útját a **webapps** mappa alapján hogyan lehet beállítani a Web Apps példány eltér.
+navigációs elérési toohello hello **webapps** mappa alapján hogyan lehet beállítani a Web Apps példány eltér.
 
-* Ha az Azure piactéren elérési útját használatával állítsa be a webalkalmazás a **webapps** mappa van a képernyőn **d:\home\site\wwwroot\bin\application\_server\webapps**, ahol **alkalmazás\_server** van érvényben a kiszolgáló nevét a Web Apps példányát. 
-* Ha az Azure-alapú konfigurációs UI, az elérési útját használatával állítsa be a webalkalmazás a **webapps** mappa van a képernyőn **d:\home\site\wwwroot\webapps**. 
+* Ha a webalkalmazás beállítása hello Azure piactér használatával, elérési út toohello hello **webapps** mappa hello formában van **d:\home\site\wwwroot\bin\application\_server\webapps**, ahol **alkalmazás\_server** hello név hello alkalmazáskiszolgáló érvényben a Web Apps példányát. 
+* Ha a webalkalmazás beállítása hello Azure konfigurációs felhasználói felület használatával, elérési út toohello hello **webapps** mappa hello formában van **d:\home\site\wwwroot\webapps**. 
 
-Megjegyzés: használható verziókezelő töltse fel az alkalmazás vagy a weblapokat, beleértve a [folyamatos integrációt](app-service-continuous-deployment.md). FTP egyben a beállítás a az alkalmazás vagy a weblapok; feltöltése FTP keresztül az alkalmazások telepítésével kapcsolatos további információkért lásd: [telepítse az alkalmazást az Azure App Service].
+Vegye figyelembe, hogy forrás vezérlő tooupload használhatja, az alkalmazás vagy a weblapokat, beleértve a [folyamatos integrációt](app-service-continuous-deployment.md). FTP egyben a beállítás a az alkalmazás vagy a weblapok; feltöltése FTP keresztül az alkalmazások telepítésével kapcsolatos további információkért lásd: [telepítheti az alkalmazást tooAzure App Service].
 
-Webalkalmazások Tomcat Megjegyzés: Miután a WAR-fájlt, a feltöltött a **webapps** mappa, a Tomcat alkalmazáskiszolgáló észleli, hogy hozzáadását, és automatikusan betölti azt. Vegye figyelembe, hogy a gyökérkönyvtárba másolt fájlok (eltérő WAR-fájl), a kiszolgáló kell újra kell indítani azokat a fájlokat használja. A Tomcat Java-webalkalmazások Azure-on futó autoload funkcionalitása alapján hozzáadott új WAR-fájlt, vagy új fájlok vagy könyvtárak hozzáadni a **webapps** mappa. 
+Webalkalmazások Tomcat Megjegyzés: Miután a WAR-fájl toohello feltöltött **webapps** mappa, hello Tomcat alkalmazáskiszolgáló észleli, hogy hozzáadását, és automatikusan betölti azt. Vegye figyelembe, hogy ha toohello gyökérkönyvtár (eltérő WAR-fájlt) fájlokat másolja, hello alkalmazáskiszolgáló kell toobe indítani, hogy ezeket a fájlokat használja. hello autoload funkció hello Tomcat Java web Apps Azure-on futó alapul hozzáadott új WAR-fájlt, vagy új fájlok vagy mappák hozzáadása a toohello **webapps** mappa. 
 
 <a name="see-also"></a>
 
 ## <a name="see-also"></a>Lásd még:
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból].
 
 [Application-insights-App-insights-Java-Get-Started](../application-insights/app-insights-java-get-started.md)
 
 <!-- URL List -->
 
-[Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
+[Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[telepítse az alkalmazást az Azure App Service]: ./web-sites-deploy.md
+[telepítheti az alkalmazást tooAzure App Service]: ./web-sites-deploy.md

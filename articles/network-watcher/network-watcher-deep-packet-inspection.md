@@ -1,6 +1,6 @@
 ---
-title: "Az Azure hálózati figyelőt Csomagvizsgálat |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan mély Csomagvizsgálat begyűjti a virtuális gép hálózati figyelőt segítségével"
+title: "Azure hálózati figyelőt aaaPacket vizsgálatának |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse hálózati figyelőt tooperform mély Csomagvizsgálat begyűjti a virtuális gép"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 91c47bb8922a9be21dff72e7cf64b29b14a36e9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4aeddcd482edc4df3d63e87b5c4b0788c540850b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="packet-inspection-with-azure-network-watcher"></a>Az Azure hálózati figyelőt Csomagvizsgálat
 
-Csomag rögzítése az szolgáltatásával hálózati figyelőt, kezdeményezzen, és az Azure virtuális gépeken a portálról, PowerShell parancssori felület, és az SDK-t és a REST API-n keresztül szoftveresen rögzítésekre munkameneteket kezelhessen. Csomagrögzítéssel lehetővé teszi az információk könnyen használható formátumban szintű csomagadatok igénylő forgatókönyvek kezeléséhez. Kihasználva ingyenesen elérhető eszközök az adatok vizsgálata, és a virtuális gépek küldött kommunikációs vizsgálja meg, és betekintést nyerhet a hálózati forgalom. Néhány példa-használati csomag rögzítési adatok többek között: hálózati vagy alkalmazás problémákat vizsgálja, hálózati visszaélés és a behatolás kísérletek észlelése vagy előírásoknak való megfelelés karbantartása. Ebben a cikkben megmutatjuk, hogyan kattintva megnyithatja a csomag rögzítési hálózati figyelő által biztosított népszerű nyílt forráskódú eszköz használatával. Példa bemutatja, hogyan kapcsolat késleltetése kiszámításához, azonosítani a rendellenes forgalom, és vizsgálja meg a hálózati statisztikákat is lesz elérhető.
+A szolgáltatással hello csomagok rögzítése a hálózati figyelőt, kezdeményezzen, és rögzíti munkameneteket kezelhessen a portálról hello PowerShell parancssori felület, és szoftveres hello SDK keresztül Azure virtuális gépeken és a REST API-t. Csomagrögzítéssel lehetővé teszi csomagadatok szintű hello információk könnyen használható formátumban igénylő tooaddress helyzeteket. Ingyenesen elérhető eszközök tooinspect hello adatok kihasználva, vizsgálja meg a virtuális gépek tooand küldött kommunikációra, és betekintést nyerhet a hálózati forgalmat. Néhány példa-használati csomag rögzítési adatok többek között: hálózati vagy alkalmazás problémákat vizsgálja, hálózati visszaélés és a behatolás kísérletek észlelése vagy előírásoknak való megfelelés karbantartása. Ebben a cikkben megmutatjuk, hogyan tooopen csomag rögzítési fájlt által biztosított hálózati figyelőt népszerű nyílt forráskódú eszköz használatával. Hogyan toocalculate egy kapcsolat késleltetése azonosítani a rendellenes forgalom, és vizsgálja meg a hálózati statisztika bemutató példák azt is nyújt.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez a cikk a korábban futtatott egy csomagrögzítéssel végighalad az néhány előre konfigurált forgatókönyvet. Ezek a forgatókönyvek a csomagrögzítéssel megtekintésével elérhető képességek mutatják be. Ez a forgatókönyv használ [WireShark](https://www.wireshark.org/) a csomagrögzítéssel vizsgálata.
+Ez a cikk a korábban futtatott egy csomagrögzítéssel végighalad az néhány előre konfigurált forgatókönyvet. Ezek a forgatókönyvek a csomagrögzítéssel megtekintésével elérhető képességek mutatják be. Ez a forgatókönyv használ [WireShark](https://www.wireshark.org/) tooinspect hello csomagrögzítéssel.
 
-Ez a forgatókönyv azt feltételezi, hogy a virtuális gépen már futott egy csomagrögzítéssel. Megtudhatja, hogyan hozzon létre egy csomagot rögzítési látogasson el a [kezelése csomagrögzítéseket a portál](network-watcher-packet-capture-manage-portal.md) vagy látogasson el a többi [kezelése Csomagrögzítéseket REST API](network-watcher-packet-capture-manage-rest.md).
+Ez a forgatókönyv azt feltételezi, hogy a virtuális gépen már futott egy csomagrögzítéssel. hogyan keresse fel a csomagrögzítéssel toocreate toolearn [kezelése csomagrögzítéseket hello portal](network-watcher-packet-capture-manage-portal.md) vagy látogasson el a többi [kezelése Csomagrögzítéseket REST API](network-watcher-packet-capture-manage-rest.md).
 
 ## <a name="scenario"></a>Forgatókönyv
 
@@ -38,9 +38,9 @@ Ebben a forgatókönyvben azt:
 
 ## <a name="calculate-network-latency"></a>Kiszámítja a hálózati késés
 
-Ebben a forgatókönyvben megmutatjuk, hogyan kell megtekinteni a Transmission Control Protocol (TCP) témakör két végpontok közötti előforduló kezdeti oda-vissza időt (RTT).
+Ebben a forgatókönyvben megmutatjuk, hogyan tooview hello kezdeti oda-vissza időt (RTT) a Transmission Control Protocol (TCP) témakör két végpontok közötti lépett fel.
 
-Ha a TCP-kapcsolat létrejött, az első három az kapcsolatban küldött csomagok járjon el egy mintát, más néven a háromutas kézfogás. Az első két a kézfogás, az eredeti kérést az ügyfél és a kiszolgáló válaszára küldött csomagok megvizsgálásával azt is kiszámíthatja a késés, ha létrejött a kapcsolat. Ez a késés hivatkozik, az oda-vissza időt (RTT). A TCP protokoll és a három kézfogás további információt talál a következő erőforrás. https://support.microsoft.com/en-us/help/172983/Explanation-of-the-three-Way-Handshake-via-TCP-IP
+Ha a TCP-kapcsolat létrejött, hello hello kapcsolatban küldött első három csomagok járjon el a mintát gyakran említett tooas hello háromutas kézfogás. A kézfogás, az eredeti kérést hello ügyfélről és hello kiszolgáló válaszára küldi hello első két csomagok megvizsgálásával azt is kiszámíthatja hello késleltetés, ha létrejött a kapcsolat. Ez a késés hivatkozott tooas hello oda-vissza időt (RTT). Tekintse meg a következő erőforrás toohello hello TCP protokollt és hello háromutas kézfogás további információt. https://support.microsoft.com/en-us/help/172983/Explanation-of-the-three-Way-Handshake-via-TCP-IP
 
 ### <a name="step-1"></a>1. lépés
 
@@ -48,83 +48,83 @@ Indítsa el a WireShark
 
 ### <a name="step-2"></a>2. lépés
 
-Betöltési a **.cap** a csomagrögzítéssel a fájlt. Ez a fájl megtalálható a blob mentik el a helyileg a virtuális gépen, attól függően, hogyan konfigurálta.
+Betöltési hello **.cap** a csomagrögzítéssel a fájlt. Ez a fájl megtalálható hello blob mentik el a helyileg a hello virtuális gép, attól függően, hogyan konfigurálta.
 
 ### <a name="step-3"></a>3. lépés
 
-A kezdeti oda-vissza időt (RTT) megtekintéséhez TCP témák, azt fogja csak megtekintik a TCP-kézfogás részt vevő első két csomagok. Azt fogja használni a három kézfogás, az első két csomagok amelyek [SZIN], [SZIN, Nyugtázási] csomagok. A TCP-fejlécében beállítású néven szerepelnek. A kézfogás [ACK]-csomagját, az utolsó csomag nem használható ebben a forgatókönyvben. A [SZIN] csomagot az ügyfél által küldött. Miután érkezik a kiszolgáló küldi [Nyugtázási] az ügyféltől a SZIN befogadására jóváhagyva. Kihasználva a tényt, hogy a kiszolgáló válaszát igényel csekély terhelést, azt kiszámítása a RTT idő kivonja a [SZIN, Nyugtázási] csomag érkezett az ügyfél által a [SZIN] csomagot az ügyfél által küldött.
+tooview hello kezdeti oda-vissza időt (RTT) TCP témák, azt fogja csak megtekintik hello első két csomagok hello TCP kézfogás részt. Azt fogja használni hello első két csomagok hello háromutas kézfogás, amelyek hello [SZIN], [SZIN, Nyugtázási] csomagok. A TCP-fejlécben hello beállítású néven szerepelnek. utolsó csomag hello hello kézfogás, hello [Nyugtázási] csomagot nem használható ebben a forgatókönyvben. [SZIN] hello csomagok hello ügyfél által küldött. Miután érkezik a hello a kiszolgáló elküldi a hello [Nyugtázási] csomag hello SZIN fogadása hello ügyfél jóváhagyva. Hello tényt, hogy a hello kiszolgáló válaszára csekély terhelés igényel, ami, azt kiszámításához hello [SZIN, Nyugtázási] csomag hello idő [SZIN] csomag fogadta hello ügyfél hello idő kivonásával RTT hello ügyfél által küldött hello.
 
 WireShark használatával Ez az érték kiszámítása nekünk.
 
-Könnyebb megtekintéséhez az első két csomagokat a TCP háromutas kézfogás, WireShark által biztosított szűrési képesség felhasznál azt.
+toomore könnyen hozzáférhető a hello első két csomagok hello TCP háromutas kézfogás, azt felhasznál hello WireShark által biztosított képesség szűrést.
 
-A szűrni WireShark, bontsa ki a "Transmission Control Protocol" szegmens egy [SZIN] csomag, a rögzítés, és vizsgálja meg a beállítású, az TCP-fejlécben.
+tooapply hello szűrő WireShark, bontsa ki a hello "Transmission Control Protocol" szegmens egy [SZIN] csomag, a rögzítés, és vizsgálja meg a TCP-fejlécben hello hello beállítású.
 
-Mivel azt szeretnék szűrhet minden [SZIN] és [SZIN, Nyugtázási] csomagok jelzők a cofirm, hogy a szinkronizálás a mi bit értéke 1, majd kattintson a jobb gombbal a szin bites, a szűrő -> kijelölt -> alkalmaz.
+Mivel azt keresett toofilter összes [SZIN] és [SZIN, Nyugtázási] csomagok jelzők a cofirm hello szin bitet too1, majd kattintson a jobb gombbal a hello szin bit, a szűrő -> kijelölt -> alkalmaz.
 
 ![7. ábra][7]
 
 ### <a name="step-4"></a>4. lépés
 
-Most, hogy a ablakot, csak a [SZIN] bittel csomagok szűrését, egyszerűen kiválaszthatja beszélgetések érdekli a kezdeti RTT megtekintéséhez. Egyszerűen tekintse meg a RTT WireShark egyszerűen kattintson a legördülő listában megjelölt "SEQ/Nyugtázási" elemzés. Ekkor megjelenik a RTT jelenik meg. Ebben az esetben a RTT 0.0022114 másodperc, vagy 2.211 ms volt.
+Most, hogy hello ablak tooonly lásd a csomagok szűrését hello [SZIN] bitje, egyszerűen kiválaszthatja tooview érdekli beszélgetések hello kezdeti RTT. Egy egyszerű módon tooview hello RTT a WireShark egyszerűen kattintson a "SEQ/Nyugtázási" elemzés megjelölve hello legördülő. Ekkor megjelenik a hello RTT jelenik meg. Ebben az esetben a hello RTT 0.0022114 másodperc, vagy 2.211 ms volt.
 
 ![8. ábra][8]
 
 ## <a name="unwanted-protocols"></a>Nem kívánt protokollok
 
-Akkor is számos olyan alkalmazás, az Azure-ban telepített virtuálisgép-példányon futnak. Ezek az alkalmazások számos kommunikálni a hálózaton keresztül, akár Ön engedélye nélkül. Csomagrögzítéssel tárolásához a hálózati kommunikációt használ, azt is vizsgálja ki hogyan alkalmazás vannak a hálózaton van szó, és keresse meg az esetleges problémákat.
+Akkor is számos olyan alkalmazás, az Azure-ban telepített virtuálisgép-példányon futnak. Ezek az alkalmazások számos kommunikációhoz hello hálózaton, akár az Ön engedélye nélkül. Csomag rögzítési toostore hálózati kommunikációra használja, azt is vizsgálja ki hogyan alkalmazás hello hálózaton beszélünk, és keresse meg az esetleges problémákat.
 
 Ebben a példában egy korábbi tanulmányozzák csomagrögzítéssel nemkívánatos protokollok, amelyek nem hitelesített kommunikáció a számítógépen futó valamelyik alkalmazás futott.
 
 ### <a name="step-1"></a>1. lépés
 
-Kattintson az előző példában a azonos rögzítési használatával **statisztika** > **protokoll hierarchia**
+Azonos rögzítése hello előző esetben kattintson a használatával hello **statisztika** > **protokoll hierarchia**
 
 ![protokoll hierarchia menü][2]
 
-A protokoll hierarchia ablak. Ez a nézet a rögzítési munkamenet és a protokollal fogadott és küldött csomagok száma során használt összes protokollok listáját jeleníti meg. Ez a nézet a nem kívánt hálózati forgalmat a virtuális gépek vagy a hálózaton kereséshez hasznos lehet.
+hello protokoll hierarchia ablak. Ez a nézet az összes hello protokoll hello rögzítési munkamenet és hello csomagok számának, valamint küldött és fogadott hello protokollok használata során használt listáját tartalmazza. Ez a nézet a nem kívánt hálózati forgalmat a virtuális gépek vagy a hálózaton kereséshez hasznos lehet.
 
 ![protokoll hierarchia megnyitása][3]
 
-Mint az alábbi képernyőfelvételen látható, hiba történt a forgalmat a társ-társ fájlmegosztás használt BitTorrent protokoll segítségével. Rendszergazdaként nem várható, hogy BitTorrent forgalom az adott virtuális gépeken. Most már tisztában legyen a forgalom, akkor eltávolíthatja a társ-társ szoftver, a virtuális gépen telepített, vagy az adatforgalmat, a hálózati biztonsági csoportok vagy egy tűzfal. Emellett előfordulhat, hogy en csomag rögzítésekre fussanak ütemezés szerint, ezért tekintse át a protokoll használatát a virtuális gépeken rendszeresen. Az azure-ban a hálózati feladatok automatizálása a például a Microsoft [az azure Automation szolgáltatásban, a hálózati erőforrások figyelése](network-watcher-monitor-with-azure-automation.md)
+Ahogy az alábbi képernyőfelvétel-készítés hello látja, történt hello BitTorrent protokoll, amely társ toopeer fájlmegosztás használó forgalom. Rendszergazdaként nem várható toosee BitTorrent forgalom az adott virtuális gépeken. Most már tisztában legyen a forgalmat, akkor eltávolíthatja hello társ toopeer szoftver van telepítve a virtuális gép vagy blokk hello forgalom hálózati biztonsági csoportok vagy egy tűzfal kezelését. Emellett előfordulhat, hogy választja toorun csomag rögzítésekre ütemezés szerint, áttekintheti hello protokoll használatát rendszeresen a virtuális gépeken. Hogyan tooautomate hálózati feladatainak azure látogasson el a példa [az azure Automation szolgáltatásban, a hálózati erőforrások figyelése](network-watcher-monitor-with-azure-automation.md)
 
 ## <a name="finding-top-destinations-and-ports"></a>Felső a célok és portok keresése
 
-A típusú forgalom, a végpontok és a portok keresztül érkezett megértése, egy fontos figyelés vagy hibaelhárítási alkalmazások és a hálózati erőforrásokhoz. A fenti csomag rögzítési fájlt használ, azt is gyorsan ismerje meg a virtuális gép kommunikál a felső célhelyekre és a portok kihasználtságának.
+Hello típusú forgalom ismertetése, hello végpontok, és hello portokon keresztül érkezett egy fontos figyelés vagy hibaelhárítási alkalmazások és a hálózati erőforrásokhoz. A fenti csomag rögzítési fájlt használ, azt gyorsan tanul hello legfontosabb célok a virtuális gép kommunikál, és hello kihasználtságának portok.
 
 ### <a name="step-1"></a>1. lépés
 
-Kattintson az előző példában a azonos rögzítési használatával **statisztika** > **IPv4 statisztika** > **a célok és portok**
+Használatával hello azonos rögzítése hello előző esetben kattintson a **statisztika** > **IPv4 statisztika** > **a célok és portok**
 
 ![csomag rögzítési ablak][4]
 
 ### <a name="step-2"></a>2. lépés
 
-Reméljük, az eredményeket egy sor feladat keresztül, mivel nincsenek 111 porton több kapcsolatot. A leggyakrabban használt port lett 3389-es, vagyis a távoli asztal, és a fennmaradó RPC dinamikus portok.
+Reméljük, hello eredmények keresztül egy vonal jelöli, történt több kapcsolatot 111 porton. hello leggyakrabban használt port lett 3389-es, vagyis a távoli asztal, és hello fennmaradó RPC dinamikus portok.
 
-Ez az adatforgalom azt jelentheti, semmi sem, de napjainkban a portot, amelyet a sok kapcsolattal lett megadva, és a rendszergazda számára ismeretlen.
+Ez az adatforgalom azt jelentheti, semmi sem, de napjainkban ismeretlen toohello rendszergazda, és sok kapcsolatokhoz használt portot.
 
 ![5. ábra][5]
 
 ### <a name="step-3"></a>3. lépés
 
-Most, hogy azt szűrheti, hogy a port alapján a rögzítési hely port kívüli azt észlelte.
+Most, hogy a hely port kívüli azt észlelte azt a rögzítési hello port alapján szűrhetők.
 
-A szűrő ebben a forgatókönyvben a következő lesz:
+hello szűrő ebben a forgatókönyvben a következő lesz:
 
 ```
 tcp.port == 111
 ```
 
-Azt adja meg a fenti szűrő szöveget, a szűrő szövegmezőben, majd nyomja le adjon meg.
+Azt adja meg a fenti hello szűrő szöveget, hello szűrő szövegmezőben, majd nyomja le adjon meg.
 
 ![6. ábra][6]
 
-A találatokban láthatja az összes forgalom érkezik a helyi virtuális gép ugyanazon az alhálózaton. Ha még nem tudjuk miért jelentkezik a forgalmat, azt további vizsgálhatja meg a csomagok és meghatározni, miért azt, hogy így hívásokat a 111 porton. Az információ azt is elvégezheti a szükséges műveleteket.
+Hello találatokban láthatja az összes hello forgalom helyi virtuális gépről érkező hello ugyanazon az alhálózaton. Ha még nem tudjuk miért jelentkezik a forgalmat, azt további vizsgálhatja hello csomagok toodetermine miért azt, hogy így hívásokat a 111 porton. Ezt az információt a Microsoft hello megfelelő lépéseket is tarthat.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Látogasson el a hálózati figyelőt más diagnosztikai szolgáltatásainak bemutatása [Azure hálózatfigyelési áttekintése](network-watcher-monitoring-overview.md)
+Ismerje meg, körülbelül hello látogasson el a hálózati figyelőt más diagnosztikai funkcióit [Azure hálózatfigyelési áttekintése](network-watcher-monitoring-overview.md)
 
 [1]: ./media/network-watcher-deep-packet-inspection/figure1.png
 [2]: ./media/network-watcher-deep-packet-inspection/figure2.png

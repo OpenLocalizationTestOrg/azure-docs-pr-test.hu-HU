@@ -1,31 +1,31 @@
-A .NET-alkalmazások képesek használni a **StackExchange.Redis** gyorsítótárügyfelet, amely a Visual Studióban konfigurálható a gyorsítótár-ügyfélalkalmazások konfigurálását leegyszerűsítő NuGet-csomagokkal. 
+.NET-alkalmazásokban használható hello **StackExchange.Redis** gyorsítótárügyfél, a Visual Studio NuGet-csomagot, amely leegyszerűsíti a hello konfigurációs gyorsítótár ügyfélalkalmazások használatával állítható be. 
 
 > [!NOTE]
-> További információkat a [StackExchange.Redis](http://github.com/StackExchange/StackExchange.Redis) github-oldalon és a [StackExchange.Redis gyorsítótárügyfél dokumentációjában](http://github.com/StackExchange/StackExchange.Redis#documentation) talál.
+> További információkért lásd: hello [StackExchange.Redis](http://github.com/StackExchange/StackExchange.Redis) github lap és hello [StackExchange.Redis gyorsítótár ügyfél dokumentáció](http://github.com/StackExchange/StackExchange.Redis#documentation).
 > 
 > 
 
-Egy ügyfélalkalmazás a Visual Studióban a StackExchange.Redis NuGet-csomag használatával történő konfigurálásához kattintson a jobb gombbal a projektre a **Solution Explorer** (Megoldáskezelő) felületén, majd válassza a **Manage NuGet Packages** (NuGet-csomagok kezelése) lehetőséget. 
+tooconfigure egy ügyfélalkalmazást, a Visual Studio használatával hello StackExchange.Redis NuGet-csomagot, kattintson a jobb gombbal a projekt hello **Megoldáskezelőben** válassza **NuGet-csomagok kezelése**. 
 
 ![NuGet-csomagok kezelése](media/redis-cache-configure-stackexchange-redis-nuget/redis-cache-manage-nuget-menu.png)
 
-Írja be a **StackExchange.Redis** vagy a **StackExchange.Redis.StrongName** kifejezést a keresőmezőbe, az eredmények közül válassza ki a kívánt verziót, majd kattintson az **Install** (Telepítés) gombra.
+Típus **StackExchange.Redis** vagy **StackExchange.Redis.StrongName** szöveg hello keresőmezőbe, válassza ki a kívánt verziójával hello hello eredmények közül, majd kattintson **telepítése**.
 
 > [!NOTE]
-> Ha inkább a **StackExchange.Redis** ügyfélkönyvtár erős elnevezésű verzióját kívánja használni, válassza a **StackExchange.Redis.StrongName**, ellenkező esetben pedig a **StackExchange.Redis** lehetőséget.
+> Ha inkább toouse hello erős névvel ellátott verziója **StackExchange.Redis** ügyféloldali kódtár válassza **StackExchange.Redis.StrongName**; ellenkező esetben válassza **StackExchange.Redis**.
 > 
 > 
 
 ![StackExchange.Redis NuGet-csomag](media/redis-cache-configure-stackexchange-redis-nuget/redis-cache-stackexchange-redis.png)
 
-A NuGet-csomag letölti és hozzáadja az ügyfélalkalmazás számára szükséges szerelvényhivatkozásokat az Azure Redis Cache a StackExchange.Redis gyorsítótárügyféllel történő eléréséhez.
+hello NuGet csomag tölti le, és hozzáadja a hello szükséges összeállítási referenciát az ügyfél alkalmazás tooaccess Azure Redis Cache hello StackExchange.Redis gyorsítótár-ügyféllel.
 
 > [!NOTE]
-> Ha a projektet korábban a StackExchange.Redis használatára konfigurálta, a **NuGet-csomagkezelőben** ellenőrizheti, hogy elérhető-e új frissítés a csomaghoz. A StackExchange.Redis NuGet-csomag frissített verzióit a **NuGet-csomagkezelő** ablakában az **Updates** (Frissítések) elemre kattintva érheti el és telepítheti. Ha a StackExchange.Redis NuGet-csomaghoz elérhetővé válik egy frissítés, frissítheti a projektjét is, hogy az a csomag frissített verzióját használja.
+> Ha korábban már konfigurálta a projekt toouse StackExchange.Redis, ellenőrizze, hogy frissítéseket toohello csomagot hello **NuGet Package Manager**. a toocheck és telepítse a frissített verziói hello StackExchange.Redis NuGet-csomagot, kattintson **frissítések** a hello hello **NuGet-Csomagkezelő** ablak. Ha egy frissítés toohello StackExchange.Redis NuGet-csomag nem érhető el, frissítheti a projekt toouse hello frissített verziója.
 > 
 > 
 
-Úgy is telepítheti a StackExchange.Redis NuGet csomagot, hogy a **NuGet Package Manager** (NuGet-csomagkezelő) > **Package Manager Console** (Csomagkezelő konzol) elemre kattint a **Tools** (Eszközök) menüben, és a következő parancsot futtatja a **Package Manager Console** (Csomagkezelő konzol) ablakból.
+Hello StackExchange.Redis NuGet-csomag kattintva is telepíthet **NuGet-Csomagkezelő**, **Csomagkezelő konzol** a hello **eszközök** menüt, és futó hello parancs követően – hello **Csomagkezelő konzol** ablak.
     
 ```
 Install-Package StackExchange.Redis

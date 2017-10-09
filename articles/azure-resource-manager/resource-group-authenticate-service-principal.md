@@ -1,6 +1,6 @@
 ---
-title: "Azure-alkalmazás identitását létrehozása a PowerShell használatával |} Microsoft Docs"
-description: "Ismerteti, hogyan hozzon létre egy Azure Active Directory-alkalmazást és egy egyszerű szolgáltatást, és a szerepköralapú hozzáférés-vezérléssel erőforrásokhoz való hozzáférés engedélyezése az Azure PowerShell használatával. Azt mutatja, hogyan alkalmazás jelszóval vagy tanúsítvánnyal hitelesítheti."
+title: "az Azure PowerShell-alkalmazás identitását aaaCreate |} Microsoft Docs"
+description: "Ismerteti, hogyan szabályozza a toouse Azure PowerShell toocreate egy Azure Active Directory-alkalmazás és szolgáltatás egyszerű, és azt keresztül férnek hozzá tooresources szerepkörön alapuló hozzáférés biztosítása. Azt illusztrálja, hogyan tooauthenticate alkalmazás jelszóval vagy tanúsítvánnyal."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 55e83b0742652abbb42100a11a468bc13a7a8aed
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c534360799b590054a051e4426e5e27dccb559b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-powershell-to-create-a-service-principal-to-access-resources"></a>Szolgáltatásnév létrehozása erőforrások eléréséhez az Azure PowerShell használatával
+# <a name="use-azure-powershell-toocreate-a-service-principal-tooaccess-resources"></a>A szolgáltatás egyszerű tooaccess erőforrásainak használatához az Azure PowerShell toocreate
 
-Ha egy alkalmazás vagy parancsfájlt, amely erőforrások hozzáférésre van szüksége, állítsa be az alkalmazás identitást, és hitelesítsék az alkalmazást a saját hitelesítő adatokkal. Ezzel az identitással egyszerű szolgáltatás néven ismert. Ez a megközelítés lehetővé teszi:
+Ha egy alkalmazás vagy parancsfájlt, amelyet a tooaccess erőforrások, hello alkalmazás identitás beállítása, és hitelesíteni hello alkalmazást a saját hitelesítő adatokkal. Ezzel az identitással egyszerű szolgáltatás néven ismert. Ez a megközelítés lehetővé teszi:
 
-* Engedélyek hozzárendelése saját engedélyek eltérő alkalmazás identitását. Ezek az engedélyek általában korlátozódik, hogy mit az alkalmazás kell tennie.
+* Engedélyek hozzárendelése saját engedélyek eltérő toohello identitását. Ezek az engedélyek általában korlátozott tooexactly milyen hello alkalmazásnak kell toodo.
 * A tanúsítvány használata a hitelesítéshez, egy felügyelet nélküli parancsfájl végrehajtása közben.
 
-Ez a témakör bemutatja, hogyan használható [Azure PowerShell](/powershell/azure/overview) mindent, amire szüksége, az alkalmazás futtatásához a saját hitelesítő adatait és identitás beállítása.
+Ez a témakör bemutatja, hogyan toouse [Azure PowerShell](/powershell/azure/overview) tooset másolatot minden olyan alkalmazás toorun alatt a saját hitelesítő adatokat és -identitás van szüksége.
 
 ## <a name="required-permissions"></a>Szükséges engedélyek
-Ez a témakör befejezéséhez megfelelő engedélyekkel kell rendelkeznie az Azure Active Directory és az Azure-előfizetésében is. Pontosabban kell lennie az Azure Active Directory-alkalmazás létrehozása, és a szolgáltatás egyszerű hozzárendelése egy szerepkörhöz. 
+toocomplete Ez a témakör megfelelő engedélyekkel kell rendelkeznie az Azure Active Directory és az Azure-előfizetésében is. Pontosabban tudja toocreate hello Azure Active Directory az alkalmazásban, és hello szolgáltatás egyszerű tooa szerepkör hozzárendelése. 
 
-A legegyszerűbben a portálon ellenőrizheti, hogy rendelkezik-e megfelelő jogosultságokkal. Lásd: [szükséges engedély ellenőrzése](resource-group-create-service-principal-portal.md#required-permissions).
+hello legegyszerűbb módja toocheck hello portálon keresztül van a fiók rendelkezik-e megfelelő engedélyekkel. Lásd: [szükséges engedély ellenőrzése](resource-group-create-service-principal-portal.md#required-permissions).
 
-Most folytassa a szakasz a hitelesítéséhez:
+A következő lépésben tooa szakasz a hitelesítéséhez:
 
 * [jelszó](#create-service-principal-with-password)
 * [önaláírt tanúsítvány](#create-service-principal-with-self-signed-certificate)
@@ -42,17 +42,17 @@ Most folytassa a szakasz a hitelesítéséhez:
 
 ## <a name="powershell-commands"></a>PowerShell-parancsok
 
-Egy egyszerű beállításához használhatja:
+egy egyszerű szolgáltatás tooset, használhatja:
 
 | Parancs | Leírás |
 | ------- | ----------- | 
 | [Új AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) | Létrehoz egy Azure Active Directory szolgáltatás egyszerű |
-| [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) | A megadott RBAC szerepkört rendel hozzá a megadott rendszerbiztonsági tag, a megadott hatókörben. |
+| [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) | Rendel hello RBAC szerepkör toohello megadott egyszerű megadva, a hello: a megadott hatókörben. |
 
 
 ## <a name="create-service-principal-with-password"></a>Egyszerű szolgáltatásnév létrehozása jelszóval
 
-Hozzon létre egy egyszerű szolgáltatást a közreműködő szerepkört az előfizetés, használja: 
+toocreate hello közreműködő szerepkört az előfizetéséhez, a szolgáltatásnevet használja: 
 
 ```powershell
 Login-AzureRmAccount
@@ -61,18 +61,18 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-A példa alvó állapotban van, várja meg, hogy az új szolgáltatáshoz Azure Active Directory teljes propagálása egyszerű 20 másodpercig. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} rendszerbiztonsági tag nem létezik a címtárban."
+hello példa alvó állapotba kerül 20 másodperc tooallow némi időbe, hello új szolgáltatás egyszerű toopropagate egész Azure Active Directoryban. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} egyszerű hello könyvtárban nem létezik."
 
-A következő parancsfájl lehetővé teszi az alapértelmezett előfizetés nem határoz meg, és a szerepkör-hozzárendelés újrapróbálkozik, ha a hiba akkor fordul elő:
+hello következő parancsfájl lehetővé teszi toospecify eltérő hello alapértelmezett előfizetési hatókört, és az újrapróbálkozások hello szerepkör-hozzárendelés, ha a hiba akkor fordul elő:
 
 ```powershell
 Param (
 
- # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ # Use tooset scope tooresource group. If no value is provided, scope is set toosubscription.
  [Parameter(Mandatory=$false)]
  [String] $ResourceGroup,
 
- # Use to set subscription. If no value is provided, default subscription is used. 
+ # Use tooset subscription. If no value is provided, default subscription is used. 
  [Parameter(Mandatory=$false)]
  [String] $SubscriptionId,
 
@@ -105,7 +105,7 @@ Param (
  }
 
  
- # Create Service Principal for the AD app
+ # Create Service Principal for hello AD app
  $ServicePrincipal = New-AzureRMADServicePrincipal -DisplayName $ApplicationDisplayName -Password $Password
  Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
 
@@ -113,7 +113,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -121,24 +121,24 @@ Param (
  }
 ```
 
-Néhány elemet a parancsfájllal kapcsolatos figyelembe venni:
+Néhány elemet toonote hello parancsfájl kapcsolatban:
 
-* Az identitás hozzáférést biztosít az alapértelmezett előfizetés, nem kell megadnia a ResourceGroup vagy a SubscriptionId paraméterek.
-* Itt adhatja meg, a ResourceGroup paraméter csak korlátozhatja azon szerepkör-hozzárendelés erőforráscsoporthoz.
-*  Ebben a példában hozzáadja a közreműködő szerepkört az egyszerű szolgáltatás. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
-* A parancsfájl alvó állapotban van, várja meg, hogy az új szolgáltatáshoz Azure Active Directory teljes propagálása egyszerű 15 másodpercig. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} rendszerbiztonsági tag nem létezik a címtárban."
-* Ha a szolgáltatás egyszerű hozzáférést biztosít a további előfizetések vagy erőforráscsoportok kell futtatni a `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
+* toogrant hello identitás hozzáférés toohello alapértelmezett előfizetést, akkor nem kell tooprovide ResourceGroup vagy a SubscriptionId paraméterek.
+* Adja meg a hello ResourceGroup paraméter csak akkor, ha azt szeretné, hogy toolimit hello hatókör hello szerepkör hozzárendelése tooa erőforráscsoport.
+*  Ebben a példában hello szolgáltatás egyszerű toohello közreműködői szerepkör hozzáadása. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
+* hello parancsfájl alvó állapotban marad, a 15 másodperces tooallow némi időbe, hello új szolgáltatás egyszerű toopropagate egész Azure Active Directory. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} egyszerű hello könyvtárban nem létezik."
+* Ha toogrant hello szolgáltatás egyszerű hozzáférés toomore előfizetések vagy erőforráscsoportok van szüksége, futtassa a hello `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
 
 
 ### <a name="provide-credentials-through-powershell"></a>Adjon meg hitelesítő adatokat a PowerShell segítségével
-Most kell jelentkezzen be az alkalmazás műveletek végrehajtásához. A felhasználó nevét, használja a `ApplicationId` , amelyet az alkalmazás hozott létre. A jelszót a fiók létrehozásakor megadott használja. 
+Most van szüksége a toolog hello alkalmazás tooperform műveletként. Hello felhasználónévvel, használja a hello `ApplicationId` hello alkalmazáshoz létrehozott. Hello jelszót egy hello fiók létrehozásakor megadott hello használata. 
 
 ```powershell   
 $creds = Get-Credential
 Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId {tenant-id}
 ```
 
-A bérlő azonosítója nincs különbözőnek számítanak, így közvetlenül a parancsfájlban beágyazása. Ha szeretné beolvasni a bérlő Azonosítóját, használja:
+hello Bérlőazonosító nincs különbözőnek számítanak, így közvetlenül a parancsfájlban beágyazása. Ha tooretrieve hello Bérlőazonosító van szüksége, használja:
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
@@ -146,7 +146,7 @@ A bérlő azonosítója nincs különbözőnek számítanak, így közvetlenül 
 
 ## <a name="create-service-principal-with-self-signed-certificate"></a>Egyszerű szolgáltatásnév létrehozása önaláírt tanúsítvánnyal
 
-Egy szolgáltatásnevet létrehozni az önaláírt tanúsítványt és a közreműködő szerepkört az előfizetés, használja: 
+toocreate egy önaláírt tanúsítványt és hello közreműködő szerepkört az előfizetés szolgáltatásnevet használja: 
 
 ```powershell
 Login-AzureRmAccount
@@ -158,18 +158,18 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-A példa alvó állapotban van, várja meg, hogy az új szolgáltatáshoz Azure Active Directory teljes propagálása egyszerű 20 másodpercig. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} rendszerbiztonsági tag nem létezik a címtárban."
+hello példa alvó állapotba kerül 20 másodperc tooallow némi időbe, hello új szolgáltatás egyszerű toopropagate egész Azure Active Directoryban. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} egyszerű hello könyvtárban nem létezik."
 
-A következő parancsfájl lehetővé teszi az alapértelmezett előfizetés nem határoz meg, és a szerepkör-hozzárendelés újrapróbálkozik, ha a hiba akkor fordul elő. Azure PowerShell 2.0 a Windows 10 vagy Windows Server 2016 kell rendelkeznie.
+hello következő parancsfájl lehetővé teszi toospecify eltérő hello alapértelmezett előfizetési hatókört, és az újrapróbálkozások hello szerepkör-hozzárendelés, ha a hiba akkor fordul elő. Azure PowerShell 2.0 a Windows 10 vagy Windows Server 2016 kell rendelkeznie.
 
 ```powershell
 Param (
 
- # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ # Use tooset scope tooresource group. If no value is provided, scope is set toosubscription.
  [Parameter(Mandatory=$false)]
  [String] $ResourceGroup,
 
- # Use to set subscription. If no value is provided, default subscription is used. 
+ # Use tooset subscription. If no value is provided, default subscription is used. 
  [Parameter(Mandatory=$false)]
  [String] $SubscriptionId,
 
@@ -208,7 +208,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -216,22 +216,22 @@ Param (
  }
 ```
 
-Néhány elemet a parancsfájllal kapcsolatos figyelembe venni:
+Néhány elemet toonote hello parancsfájl kapcsolatban:
 
-* Az identitás hozzáférést biztosít az alapértelmezett előfizetés, nem kell megadnia a ResourceGroup vagy a SubscriptionId paraméterek.
-* Itt adhatja meg, a ResourceGroup paraméter csak korlátozhatja azon szerepkör-hozzárendelés erőforráscsoporthoz.
-* Ebben a példában hozzáadja a közreműködő szerepkört az egyszerű szolgáltatás. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
-* A parancsfájl alvó állapotban van, várja meg, hogy az új szolgáltatáshoz Azure Active Directory teljes propagálása egyszerű 15 másodpercig. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} rendszerbiztonsági tag nem létezik a címtárban."
-* Ha a szolgáltatás egyszerű hozzáférést biztosít a további előfizetések vagy erőforráscsoportok kell futtatni a `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
+* toogrant hello identitás hozzáférés toohello alapértelmezett előfizetést, akkor nem kell tooprovide ResourceGroup vagy a SubscriptionId paraméterek.
+* Adja meg a hello ResourceGroup paraméter csak akkor, ha azt szeretné, hogy toolimit hello hatókör hello szerepkör hozzárendelése tooa erőforráscsoport.
+* Ebben a példában hello szolgáltatás egyszerű toohello közreműködői szerepkör hozzáadása. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
+* hello parancsfájl alvó állapotban marad, a 15 másodperces tooallow némi időbe, hello új szolgáltatás egyszerű toopropagate egész Azure Active Directory. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} egyszerű hello könyvtárban nem létezik."
+* Ha toogrant hello szolgáltatás egyszerű hozzáférés toomore előfizetések vagy erőforráscsoportok van szüksége, futtassa a hello `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
 
-Ha Ön **nem rendelkeznek Windows 10 vagy Windows Server 2016 Technical Preview**, le kell töltenie a [önaláírt tanúsítvány generátor](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) Microsoft Script Center. Bontsa ki a tartalmát, és importálni kell a parancsmagot.
+Ha Ön **nem rendelkeznek Windows 10 vagy Windows Server 2016 Technical Preview**, toodownload hello kell [önaláírt tanúsítvány generátor](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) Microsoft Script Center. Bontsa ki a tartalmát, és hello parancsmag kell importálni.
 
 ```powershell  
 # Only run if you could not use New-SelfSignedCertificate
 Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
 ```
   
-A parancsfájl helyettesítse be a tanúsítvány előállításához a következő két sorral.
+Hello parancsfájlban helyettesítse be a következő két sorok toogenerate hello tanúsítvány hello.
   
 ```powershell
 New-SelfSignedCertificateEx  -StoreLocation CurrentUser -StoreName My -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
@@ -239,7 +239,7 @@ $cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'C
 ```
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>Adja meg a tanúsítvány automatikus PowerShell-parancsfájl segítségével
-Amikor jelentkezik be, és egy egyszerű szolgáltatást, meg kell adnia annak a könyvtárnak a bérlő azonosítója az AD-alkalmazás. A bérlő az Azure Active Directory példánya. Ha több előfizetéssel rendelkezik, akkor használhatja:
+Amikor jelentkezik be, és egy egyszerű szolgáltatást, az AD-alkalmazás kell tooprovide hello bérlőazonosító hello könyvtár. A bérlő az Azure Active Directory példánya. Ha több előfizetéssel rendelkezik, akkor használhatja:
 
 ```powershell
 Param (
@@ -258,20 +258,20 @@ Param (
  Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
 ```
 
-Az alkalmazás azonosítója és a bérlő azonosítója nem különbség, így közvetlenül a parancsfájlban beágyazhatók. Ha szeretné beolvasni a bérlő Azonosítóját, használja:
+hello alkalmazás és bérlő-azonosító nem különbség, így közvetlenül a parancsfájlban beágyazhatók. Ha tooretrieve hello Bérlőazonosító van szüksége, használja:
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 ```
 
-Ha szeretné beolvasni az alkalmazás Azonosítóját, használja:
+Ha tooretrieve hello Alkalmazásazonosítót kell használni:
 
 ```powershell
 (Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
 ```
 
 ## <a name="create-service-principal-with-certificate-from-certificate-authority"></a>Egyszerű szolgáltatásnév létrehozása hitelesítésszolgáltatótól származó tanúsítvánnyal
-Egy hitelesítésszolgáltató által kiadott tanúsítvánnyal történő egyszerű szolgáltatásnév létrehozása, használja a következő parancsfájlt:
+egy tanúsítványt egy hitelesítésszolgáltatótól toocreate szolgáltatás egyszerű, a következő parancsfájl használata hello toouse:
 
 ```powershell
 Param (
@@ -311,7 +311,7 @@ Param (
  $Retries = 0;
  While ($NewRole -eq $null -and $Retries -le 6)
  {
-    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    # Sleep here for a few seconds tooallow hello service principal application toobecome active (should only take a couple of seconds normally)
     Sleep 15
     New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $ServicePrincipal.ApplicationId | Write-Verbose -ErrorAction SilentlyContinue
     $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $ServicePrincipal.ApplicationId -ErrorAction SilentlyContinue
@@ -321,15 +321,15 @@ Param (
  $NewRole
 ```
 
-Néhány elemet a parancsfájllal kapcsolatos figyelembe venni:
+Néhány elemet toonote hello parancsfájl kapcsolatban:
 
-* Az előfizetés hozzáférés hatókörét.
-* Ebben a példában hozzáadja a közreműködő szerepkört az egyszerű szolgáltatás. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
-* A parancsfájl alvó állapotban van, várja meg, hogy az új szolgáltatáshoz Azure Active Directory teljes propagálása egyszerű 15 másodpercig. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} rendszerbiztonsági tag nem létezik a címtárban."
-* Ha a szolgáltatás egyszerű hozzáférést biztosít a további előfizetések vagy erőforráscsoportok kell futtatni a `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
+* Hozzáférési hatókörrel rendelkező toohello előfizetés.
+* Ebben a példában hello szolgáltatás egyszerű toohello közreműködői szerepkör hozzáadása. Más szerepköreivel kapcsolatban, tekintse meg a [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
+* hello parancsfájl alvó állapotban marad, a 15 másodperces tooallow némi időbe, hello új szolgáltatás egyszerű toopropagate egész Azure Active Directory. Ha a parancsfájl nem elegendő ideig kell várni, megjelenik egy üzenet szerint: "PrincipalNotFound: {azonosítójú} egyszerű hello könyvtárban nem létezik."
+* Ha toogrant hello szolgáltatás egyszerű hozzáférés toomore előfizetések vagy erőforráscsoportok van szüksége, futtassa a hello `New-AzureRMRoleAssignment` parancsmagot újra különböző hatóköröket.
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>Adja meg a tanúsítvány automatikus PowerShell-parancsfájl segítségével
-Amikor jelentkezik be, és egy egyszerű szolgáltatást, meg kell adnia annak a könyvtárnak a bérlő azonosítója az AD-alkalmazás. A bérlő az Azure Active Directory példánya.
+Amikor jelentkezik be, és egy egyszerű szolgáltatást, az AD-alkalmazás kell tooprovide hello bérlőazonosító hello könyvtár. A bérlő az Azure Active Directory példánya.
 
 ```powershell
 Param (
@@ -354,13 +354,13 @@ Param (
  Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
 ```
 
-Az alkalmazás azonosítója és a bérlő azonosítója nem különbség, így közvetlenül a parancsfájlban beágyazhatók. Ha szeretné beolvasni a bérlő Azonosítóját, használja:
+hello alkalmazás és bérlő-azonosító nem különbség, így közvetlenül a parancsfájlban beágyazhatók. Ha tooretrieve hello Bérlőazonosító van szüksége, használja:
 
 ```powershell
 (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 ```
 
-Ha szeretné beolvasni az alkalmazás Azonosítóját, használja:
+Ha tooretrieve hello Alkalmazásazonosítót kell használni:
 
 ```powershell
 (Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
@@ -368,57 +368,57 @@ Ha szeretné beolvasni az alkalmazás Azonosítóját, használja:
 
 ## <a name="change-credentials"></a>Hitelesítő adatok módosítása
 
-Az AD-alkalmazás, vagy a biztonsági sérülés vagy a hitelesítő adatok érvényessége miatt a hitelesítő adatok módosításához használja a [Remove-AzureRmADAppCredential](/powershell/resourcemanager/azurerm.resources/v3.3.0/remove-azurermadappcredential) és [New-AzureRmADAppCredential](/powershell/module/azurerm.resources/new-azurermadappcredential) parancsmagok.
+AD-alkalmazás, vagy a biztonsági sérülés vagy a hitelesítő adatok érvényessége miatt toochange hello hitelesítő adatait használja hello [Remove-AzureRmADAppCredential](/powershell/resourcemanager/azurerm.resources/v3.3.0/remove-azurermadappcredential) és [New-AzureRmADAppCredential](/powershell/module/azurerm.resources/new-azurermadappcredential) parancsmagok.
 
-Az alkalmazás hitelesítő adatok eltávolításához használja:
+tooremove minden hello hitelesítő alkalmazás esetén használja:
 
 ```powershell
 Remove-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -All
 ```
 
-A jelszó hozzáadásához használja:
+a jelszó tooadd használja:
 
 ```powershell
 New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -Password p@ssword!
 ```
 
-Tanúsítvány érték hozzáadása, hozzon létre egy önaláírt tanúsítványt, ebben a témakörben ismertetett módon. Ezután használja:
+tooadd tanúsítvány értéket, hozzon létre egy önaláírt tanúsítványt, ebben a témakörben ismertetett módon. Ezután használja:
 
 ```powershell
 New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
 ```
 
-## <a name="save-access-token-to-simplify-log-in"></a>Egyszerűbbé teheti a bejelentkezést a hozzáférési token mentése
-Adja meg a szolgáltatás egyszerű hitelesítő adatokat, minden alkalommal, amikor jogcímadatokat kell-e jelentkezni elkerüléséhez mentheti a hozzáférési jogkivonat.
+## <a name="save-access-token-toosimplify-log-in"></a>Mentse a hozzáférési token toosimplify jelentkezzen be
+tooavoid hello szolgáltatás egyszerű hitelesítő adatok minden alkalommal, amikor a toolog szükséges, mentheti hello hozzáférési jogkivonat.
 
-Az aktuális jogkivonat használni egy későbbi munkamenetben, mentse a profilt.
+toouse hello aktuális hozzáférési jogkivonat egy újabb munkamenetben hello profilt menthet.
    
 ```powershell
 Save-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 ```
    
-Nyissa meg a profilt, és vizsgálja meg annak tartalmát. Figyelje meg, hogy az tartalmazza-e olyan hozzáférési jogkivonatot. Manuálisan a bejelentkezés újra helyett egyszerűen betölteni a profilt.
+Nyissa meg a hello-profil, és vizsgálja meg annak tartalmát. Figyelje meg, hogy az tartalmazza-e olyan hozzáférési jogkivonatot. Manuálisan a bejelentkezés újra helyett egyszerűen hello-profil betöltése.
    
 ```powershell
 Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 ```
 
 > [!NOTE]
-> A hozzáférési jogkivonat lejár, így csak a működik a mentett profil használatával mindaddig, amíg a lexikális elem érvénytelen.
+> hello hozzáférési jogkivonat lejár, így csak a működik a mentett profil használatával mindaddig, amíg hello lexikális elem érvénytelen.
 >  
 
-Azt is megteheti hívhat meg REST műveleteinek-e jelentkezni a powershellből. A hitelesítési válaszra kérheti le a hozzáférési jogkivonat más műveletek való használatra. Lásd a példát a hozzáférési jogkivonat beolvasása REST műveleteinek figyelőn, [generálása egy hozzáférési jogkivonat](resource-manager-rest-api.md#generating-an-access-token).
+Azt is megteheti hívhat meg a PowerShell toolog REST műveletek. Hello hitelesítési választ, a hozzáférési jogkivonat hello használható egyéb műveletek kérheti le. Például egy hello hozzáférési jogkivonat beolvasása REST műveleteinek figyelőn, lásd: [generálása egy hozzáférési jogkivonat](resource-manager-rest-api.md#generating-an-access-token).
 
 ## <a name="debug"></a>Hibakeresés
 
-Egy egyszerű szolgáltatás létrehozása során felmerülő hibák a következők:
+Egy egyszerű szolgáltatás létrehozásakor a következő hibák hello merülhetnek fel:
 
-* **"Authentication_Unauthorized"** vagy **"előfizetést az adott környezetben található."** – Ezt a hibaüzenetet látja, ha a fiók nem rendelkezik a [szükséges engedélyek](#required-permissions) az Azure Active Directory regisztrálnia az alkalmazást. Általában ezt a hibát látva az Azure Active Directoryban csak rendszergazda felhasználók regisztrálhatják az alkalmazásokat, és a fiók nincs a rendszergazda segítségét. Kérje a rendszergazdától, vagy rendeljen Önhöz egy rendszergazdai szerepkört, vagy lehetővé teszi a felhasználók alkalmazásokat regisztrálni.
+* **"Authentication_Unauthorized"** vagy **"előfizetést hello a környezetben található."** – Ezt a hibaüzenetet látja, ha a fiók nem rendelkezik hello [szükséges engedélyek](#required-permissions) a hello Azure Active Directory tooregister egy alkalmazást. Általában ezt a hibát látva az Azure Active Directoryban csak rendszergazda felhasználók regisztrálhatják az alkalmazásokat, és a fiók nincs a rendszergazda segítségét. Kérje a rendszergazda tooeither rendelje hozzá, akkor tooan rendszergazdai szerepkör, illetve tooenable felhasználók tooregister alkalmazások.
 
-* A fiók **"nem jogosult a műveletre"Microsoft.Authorization/roleAssignments/write"hatókörben"/Subscriptions/ {guid}"."**  -Ezt a hibaüzenetet látja, ha a fiók nem rendelkezik megfelelő engedélyekkel a szerepkör hozzárendelése identitást. Kérje meg a előfizetési rendszergazda, akkor a felhasználói hozzáférés adminisztrátora szerepkörbe való felvételre.
+* A fiók **"Nincs engedély tooperform művelet"Microsoft.Authorization/roleAssignments/write"hatókörben"/Subscriptions/ {guid}"."**  -Ezt a hibaüzenetet látja, ha a fiók nem rendelkezik elegendő engedélyekkel tooassign egy szerepkör tooan identitást. Kérje meg az előfizetés rendszergazdája tooadd meg tooUser hozzáférési rendszergazdai szerepkört.
 
 ## <a name="sample-applications"></a>Mintaalkalmazások
-Az alkalmazás a különböző platformokat, a bejelentkezés kapcsolatos információkért lásd:
+Különböző platformokon keresztül hello alkalmazásként naplózás kapcsolatos információkért lásd:
 
 * [.NET](/dotnet/azure/dotnet-sdk-azure-authenticate?view=azure-dotnet)
 * [Java](/java/azure/java-sdk-azure-authenticate)
@@ -427,8 +427,8 @@ Az alkalmazás a különböző platformokat, a bejelentkezés kapcsolatos inform
 * [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
 ## <a name="next-steps"></a>Következő lépések
-* Az alkalmazás integrálása az Azure erőforrások kezeléséhez részletes lépéseiért lásd: [fejlesztői útmutató az Azure Resource Manager API-val engedélyezési](resource-manager-api-authentication.md).
+* Az alkalmazás integrálása az Azure erőforrások kezeléséhez részletes lépéseiért lásd: [– fejlesztői útmutató tooauthorization hello Azure Resource Manager API-val rendelkező](resource-manager-api-authentication.md).
 * Egy részletes ismertetése az alkalmazások és szolgáltatásnevekről [alkalmazás és szolgáltatás egyszerű objektumok](../active-directory/active-directory-application-objects.md). 
 * Azure Active Directory-hitelesítéssel kapcsolatos további információkért lásd: [hitelesítési forgatókönyvek az Azure AD](../active-directory/active-directory-authentication-scenarios.md).
-* Elérhető műveleteket, lehet megadott vagy megtagadta a felhasználók listáját lásd: [Azure Resource Manager erőforrás-szolgáltató műveletek](../active-directory/role-based-access-control-resource-provider-operations.md).
+* Az elérhető műveleteket, lehet megadott vagy toousers megtagadva listájáért lásd: [Azure Resource Manager erőforrás-szolgáltató műveletek](../active-directory/role-based-access-control-resource-provider-operations.md).
 

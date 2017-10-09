@@ -1,6 +1,6 @@
 ---
-title: "Hogyan működik a helyszíni gépek replikációja egy másodlagos helyszíni helyre az Azure Site Recoveryben? | Microsoft Docs"
-description: "Ez a cikk áttekintést ad a helyszíni virtuális gépek és fizikai kiszolgálók másodlagos helyre történő, az Azure Site Recovery szolgáltatással végzett replikálásakor használt összetevőkről és architektúráról."
+title: "aaaHow nem a helyi gép replikációs tooa másodlagos helyszíni hely munka az Azure Site Recovery? | Microsoft Docs"
+description: "Ez a cikk áttekintése összetevők és architektúra használható, ha replikálása a helyszíni virtuális gépek és fizikai kiszolgálók tooa másodlagos hely hello Azure Site Recovery szolgáltatásban."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,93 +14,93 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/29/2017
 ms.author: raynew
-ms.openlocfilehash: fca95c63964b955db7ddfbe53250702cc8af122e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 097a3f43446fec69ed7f9e0b7f11e8d11f41cc6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-does-on-premises-machine-replication-to-a-secondary-site-work-in-site-recovery"></a>Hogyan működik a helyszíni gépek replikációja egy másodlagos helyre a Site Recoveryben?
+# <a name="how-does-on-premises-machine-replication-tooa-secondary-site-work-in-site-recovery"></a>Hogyan nem helyszíni a gép replikációs tooa másodlagos hely munka a Site Recovery?
 
-Ez a cikk bemutatja a helyszíni virtuális gépek és fizikai kiszolgálók Azure-ba történő, az [Azure Site Recovery](site-recovery-overview.md) szolgáltatással végzett replikálásakor használt összetevőket és folyamatokat.
+Ez a cikk ismerteti a hello összetevők és a folyamatok replikálása esetén a helyszíni virtuális gépek és fizikai kiszolgálók tooAzure hello segítségével [Azure Site Recovery](site-recovery-overview.md) szolgáltatás.
 
-A következőket replikálhatja egy másodlagos helyszíni helyre:
+A következő tooa másodlagos helyszíni helyre hello replikálhatja:
 - System Center Virtual Machine Manager-felhőkben (VMM-felhőkben) felügyelt helyszíni Hyper-V virtuális gépek, Hyper-V virtuális gépek Hyper-V fürtökön és különálló gazdagépek.
 - Helyszíni VMware virtuális gépek és Windows/Linux fizikai kiszolgálók. Ebben az esetben a replikációt a Scout kezeli.
 
-Megjegyzéseit a cikk alján, vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
+Ez a cikk vagy hello hello alsó megjegyzések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-## <a name="replicate-hyper-v-vms-to-a-secondary-on-premises-site"></a>Hyper-V virtuális gépek replikálása másodlagos helyszíni helyre
+## <a name="replicate-hyper-v-vms-tooa-secondary-on-premises-site"></a>Hyper-V virtuális gépek tooa másodlagos helyszíni helyre replikálni.
 
 
 ### <a name="architectural-components"></a>Az architektúra összetevői
 
-A következőkre lesz szüksége a Hyper-V-alapú virtuális gépek egy másodlagos helyre való replikálásához.
+Ez a Hyper-V virtuális gépek tooa másodlagos helyre replikálni kell.
 
 **Összetevő** | **Hely** | **Részletek**
 --- | --- | ---
 **Azure** | Ehhez szüksége lesz egy Microsoft-fiókra. |
-**VMM-kiszolgáló** | Javasoljuk, hogy legyen egy VMM-kiszolgáló az elsődleges helyen, és egy a másodlagos helyen | Mindegyik VMM-kiszolgálónak csatlakoznia kell az internethez.<br/><br/> Minden kiszolgálón legyen legalább egy VMM-magánfelhő beállított Hyper-V-kapacitásprofillal.<br/><br/> Telepítse az Azure Site Recovery Providert a VMM-kiszolgálóra. A Provider az interneten keresztül koordinálja és valósítja meg a Site Recovery szolgáltatással történő replikációt. A Provider és az Azure közötti kommunikáció biztonságos, titkosított csatornákon történik.
-**Hyper-V kiszolgáló** |  Legalább egy Hyper-V gazdakiszolgáló az elsődleges és a másodlagos VMM-felhőkben.<br/><br/> A kiszolgálóknak csatlakozniuk kell az internethez.<br/><br/> A rendszer LAN vagy VPN hálózaton keresztül replikálja az adatokat az elsődleges és másodlagos Hyper-V gazdakiszolgálók között Kerberos vagy tanúsítványalapú hitelesítés használatával.  
-**Hyper-V virtuális gépek** | A forrás Hyper-V gazdakiszolgálón található. | A forrás gazdakiszolgálókon legalább egy replikálni kívánt virtuális gépnek kell futnia.
+**VMM-kiszolgáló** | Azt javasoljuk, hogy a VMM-kiszolgáló hello elsődleges hely és egy-egy hello másodlagos helyen | Minden VMM-kiszolgálóhoz csatlakoztatott toohello kell lennie internetes.<br/><br/> Minden kiszolgálónak rendelkeznie kell legalább egy VMM-magánfelhőt, a Hyper-V hello funkció készletet.<br/><br/> Hello Azure Site Recovery Provider telepítése hello VMM-kiszolgálón. hello szolgáltató koordinálja és hello keresztül koordinálja a replikáció a Site Recovery szolgáltatás hello internet. Hello szolgáltató és az Azure közötti kommunikáció biztonságos és titkosított.
+**Hyper-V kiszolgáló** |  Egy vagy több Hyper-V gazdakiszolgálók hello elsődleges és másodlagos VMM-felhőkben.<br/><br/> Kiszolgálók csatlakoztatott toohello kell lennie internetes.<br/><br/> Adatait hello elsődleges és másodlagos Hyper-V gazdakiszolgálók közötti hello LAN-vagy VPN-és a Kerberos- vagy Tanúsítványalapú hitelesítés használatával replikálja a rendszer.  
+**Hyper-V virtuális gépek** | Hello forrás Hyper-V gazdagép-kiszolgálón található. | hello forrás gazdagép-kiszolgálón legalább egy virtuális gép, amelyet az tooreplicate kell rendelkeznie.
 
 ### <a name="replication-process"></a>Replikációs folyamat
 
-1. Beállítja az Azure-fiókot.
+1. Hello Azure-fiók beállítása.
 2. Létrehoz egy replikációsszolgáltatás-tárolót a Site Recoveryhez, és konfigurálja a tároló beállításait, például:
 
-    - A replikációs forrást és célt (elsődleges és másodlagos helyek).
-    - Az Azure Site Recovery Provider és a Microsoft Azure Recovery Services ügynök telepítése. A Provider VMM-kiszolgálókon, az ügynök pedig az egyes Hyper-V gazdagépeken van telepítve.
-    - Létrehoz egy replikációs házirendet a forrás VMM-felhőhöz. A házirendet ezután a rendszer minden, a felhőben lévő gazdagépen található virtuális gépre alkalmazza.
-    - Engedélyezi a replikációt a Hyper-V virtuális gépek számára. A kezdeti replikálás a replikációs házirend beállításainak megfelelően történik.
-4. Az adatváltozásokat a rendszer nyomon követi, és a változáskülönbözetek replikálása a kezdeti replikálás befejezése után kezdődik meg. Az elemek nyomon követett módosításait a rendszer .hrl fájlokban tárolja.
-5. Egy teszt feladatátvétel futtatásával ellenőrzi, hogy minden jól működik-e.
+    - hello replikációs forrása és célja (elsődleges és másodlagos helyek).
+    - Hello Azure Site Recovery Provider és hello Microsoft Azure Recovery Services Agent ügynök telepítése. hello szolgáltató VMM-kiszolgálókon, és minden Hyper-V gazdagépen hello ügynök van telepítve.
+    - Létrehoz egy replikációs házirendet a forrás VMM-felhőhöz. hello házirend alkalmazott tooall hello felhőben állomáson található virtuális gépek.
+    - Engedélyezi a replikációt a Hyper-V virtuális gépek számára. Kezdeti replikáció hello replikációs házirend-beállításoknak megfelelően.
+4. Adatok változásait követi, és a különbözeti replikáció vált toobegins, hello kezdeti replikáció befejezését követően. Az elemek nyomon követett módosításait a rendszer .hrl fájlokban tárolja.
+5. A teszt feladatátvételi toomake meg arról, hogy futtatása minden működik.
 
-**1. ábra: VMM és VMM közötti replikáció**
+**1. ábra: A VMM tooVMM replikáció**
 
-![Két helyszíni hely közötti replikálás](./media/site-recovery-components/arch-onprem-onprem.png)
+![A helyszíni tooon helyszíni](./media/site-recovery-components/arch-onprem-onprem.png)
 
 ### <a name="failover-and-failback-process"></a>Feladatátvételi és feladat-visszavételi folyamat
 
-1. Futtathat tervezett vagy nem tervezett [feladatátvételt](site-recovery-failover.md) a helyszíni helyek között. Ha tervezett feladatátvételt végez, a forrás virtuális gépek leállnak, így nincs adatvesztés.
-2. Elvégezheti egy gép feladatátadását, de létrehozhat több gép összehangolt feladatátadását tartalmazó [helyreállítási terveket](site-recovery-create-recovery-plans.md) is.
-4. Ha elvégez egy nem tervezett feladatátvételt egy másodlagos helyre, a feladatátvétel után a másodlagos hely gépei nem engedélyezettek védelemhez vagy replikáláshoz. Ha tervezett feladatátvételt futtatott, a feladatátvétel után a másodlagos hely gépei védettek lesznek.
-5. Ekkor véglegesíti a feladatátvételt, hogy hozzáférhessen a replika virtuális gép számítási feladataihoz.
-6. Amikor az elsődleges hely újra elérhetővé válik, fordított replikálást hajt végre a másodlagos helyről az elsődleges helyre való replikáláshoz. A fordított replikáció során a virtuális gépek védett állapotba kerülnek, de a másodlagos adatközpont marad továbbra is az aktív hely.
-7. Ha azt szeretné, hogy újra az elsődleges hely legyen az aktív hely, kezdeményezzen egy tervezett feladatátvételt a másodlagos helyről az elsődleges helyre, majd hajtson végre ismét fordított replikálást.
+1. Futtathat tervezett vagy nem tervezett [feladatátvételt](site-recovery-failover.md) a helyszíni helyek között. Ha a tervezett feladatátvétel végrehajtása, majd a forrás virtuális gépeket állítsa le az tooensure adatvesztés nélküli.
+2. Egyetlen gép feladatátvételt, vagy hozzon létre [helyreállítási tervek](site-recovery-create-recovery-plans.md) tooorchestrate több gép feladatátvétele.
+4. Ha egy nem tervezett feladatátvétel tooa másodlagos hely hello feladatátvevő gépekhez hello másodlagos helyen nincsenek engedélyezve a védelem vagy replikáció után hajtható végre. Ha egy tervezett feladatátvételt hello feladatátvétel után már futott, védett gépek hello másodlagos helyen.
+5. Ezt követően véglegesítse a hello feladatátvételi toostart elérése során hello munkaterhelés VM hello replikából.
+6. Az elsődleges hely újra nem érhető el, akkor hello másodlagos hely toohello elsődleges a visszirányú replikálás tooreplicate kezdeményezni. Visszirányú replikálás során hello virtuális gépek kerülnek egy védett állapotban, de hello másodlagos adatközpontba még mindig aktív hely hello.
+7. toomake hello elsődleges hely aktív helyre hello újra, elindít egy tervezett feladatátvételt a másodlagos tooprimary, egy másik visszirányú replikálás követ.
 
 
 
 
-## <a name="replicate-vmware-vmsphysical-servers-to-a-secondary-site"></a>VMware virtuális gépek/fizikai kiszolgálók replikálása másodlagos helyre
+## <a name="replicate-vmware-vmsphysical-servers-tooa-secondary-site"></a>VMware virtuális gépek/fizikai kiszolgálók tooa másodlagos helyre replikálni.
 
-A VMware-alapú virtuális gépeket és a fizikai kiszolgálókat az InMage Scout használatával replikálhatja egy másodlagos helyre a következő architektúra-összetevők használatával:
+VMware virtuális gépek vagy fizikai kiszolgálók tooa másodlagos hely InMage Scout segédprogramot, az az architektúra összetevőket használva használja replikálja:
 
 
 ### <a name="architectural-components"></a>Az architektúra összetevői
 
 **Összetevő** | **Hely** | **Részletek**
 --- | --- | ---
-**Azure** | InMage Scout. | Az InMage Scout beszerzéséhez Azure-előfizetésre van szüksége.<br/><br/> Miután létrehozott egy Site Recovery-tárolót, töltse le az InMage Scoutot, és telepítse a legújabb frissítéseket az üzembe helyezés előkészítéséhez.
-**Folyamatkiszolgáló** | Az elsődleges helyen található | Helyezze üzembe a folyamatkiszolgálót, amely kezeli az adatok gyorsítótárazását, tömörítését és optimalizálását.<br/><br/> Ezenfelül ez az összetevő kezeli a Unified Agent ügynöknek a védeni kívánt gépekre történő leküldéses telepítését.
-**Konfigurációs kiszolgáló** | A másodlagos helyen található | A konfigurációs kiszolgáló végzi az üzemelő példány felügyeleti webhelyen vagy a vContinuum-konzolban végzett felügyeletét, konfigurálását és megfigyelését.
-**vContinuum-kiszolgáló** | Választható. Ugyanoda kell telepíteni, mint a konfigurációs kiszolgálót. | Ez az összetevő elérhetővé tesz egy konzolt, amelyről felügyelheti és figyelheti a védett környezetet.
-**Fő célkiszolgáló** | A másodlagos helyen található | A fő célkiszolgáló tárolja a replikált adatokat. Ez fogadja a folyamatkiszolgáló által küldött adatokat, létrehozza a replika gépet a másodlagos helyen, és tárolja az adatmegőrzési pontokat.<br/><br/> Az, hogy hány fő célkiszolgálóra van szükség, attól függ, hogy hány gépnek kíván védelmet biztosítani.<br/><br/> Ha vissza szeretné adnia a feladatokat az elsődleges helynek, azon is szüksége lesz egy fő célkiszolgálóra. A Unified Agent ügynök nincs telepítve ezen a kiszolgálón.
-**VMware ESX/ESXi- és vCenter-kiszolgáló** |  A virtuális gépek ESX-/ESXi-gazdagépeken futnak. A gazdagépeket egy vCenter-kiszolgáló felügyeli | A VMware virtuális gépek replikálásához VMware-infrastruktúrára van szükség.
-**Virtuális gépek/fizikai kiszolgálók** |  A replikálni kívánt VMware virtuális gépeken és fizikai kiszolgálókon telepített Unified Agent. | Ez az ügynök valósítja meg az összetevők közötti kommunikációt.
+**Azure** | InMage Scout. | tooobtain Azure-előfizetés szükséges, InMage Scout segédprogramot.<br/><br/> Miután létrehozta a Recovery Services-tároló, InMage Scout segédprogramot letölteni, és telepítse a legújabb frissítések tooset hello hello központi telepítése szükséges.
+**Folyamatkiszolgáló** | Az elsődleges helyen található | Hello folyamat server toohandle gyorsítótárazás, tömörítés és adatok optimalizálása telepít.<br/><br/> Kezeli a Unified Agent ügynököt toomachines tooprotect kívánt hello leküldéses telepítését is.
+**Konfigurációs kiszolgáló** | A másodlagos helyen található | hello konfigurációs kiszolgáló kezeli, konfigurálása és a központi telepítés, figyelheti vagy hello felügyeleti weblapon vagy hello vContinuum-konzol használatával.
+**vContinuum-kiszolgáló** | Választható. Hello telepített azonos hello konfigurációs kiszolgálón és helyen. | Ez az összetevő elérhetővé tesz egy konzolt, amelyről felügyelheti és figyelheti a védett környezetet.
+**Fő célkiszolgáló** | Az adott hello másodlagos helyen található | hello fő célkiszolgáló tárolja a replikált adatokat. Az adatokat fogad az hello folyamatkiszolgáló, létrehozza a replika gépet hello másodlagos helyen, és hello adatmegőrzési pontokat tárolja.<br/><br/> hello száma fő célkiszolgálóra van szükség a gépeket lát el védelemmel hello száma függ.<br/><br/> Ha azt szeretné, hogy toofail hátsó toohello elsődleges webhely, túl kell egy fő célkiszolgálóra van. hello Unified Agent telepítve van ezen a kiszolgálón.
+**VMware ESX/ESXi- és vCenter-kiszolgáló** |  A virtuális gépek ESX-/ESXi-gazdagépeken futnak. A gazdagépeket egy vCenter-kiszolgáló felügyeli | A VMware infrastructure tooreplicate VMware virtuális gépek van szüksége.
+**Virtuális gépek/fizikai kiszolgálók** |  Az ügynök telepítve a VMware virtuális gépek és fizikai kiszolgálók tooreplicate egységes. | hello ügynök valósítja meg az összes hello összetevők közötti kommunikációt.
 
 
 ### <a name="replication-process"></a>Replikációs folyamat
 
-1. Állítsa be mindkét oldalon az összetevőkiszolgálókat (konfigurációs, folyamat- és fő célkiszolgáló), majd telepítse a replikálni kívánt gépekre a Unified Agent ügynököt.
-2. A kezdeti replikációt követően a gépek ügynökei továbbítják a változásreplikálás módosításait a folyamatkiszolgálónak.
-3. A folyamatkiszolgáló optimalizálja az adatokat, majd átviszi őket a másodlagos hely fő célkiszolgálójára. A replikációs folyamatot a konfigurációs kiszolgáló kezeli.
+1. Állítson be hello összetevőkiszolgálókat (konfigurációs, folyamat, a fő célkiszolgáló) minden helyen, és hello egyesített ügynök telepíthető, amelyet az tooreplicate gépek.
+2. Kezdeti replikálás után hello ügynök minden egyes számítógépen különbözeti replikáció módosítások toohello folyamatkiszolgáló küld.
+3. hello folyamatkiszolgáló optimalizálja a hello adatokat, és átadja toohello fő célkiszolgáló hello másodlagos helyen. hello konfigurációs kiszolgáló kezeli hello replikáció folyamatban.
 
-**2. ábra: VMware és VMware közötti replikáció**
+**2. ábra: VMware tooVMware replikáció**
 
-![VMware és VMware közötti replikáció](./media/site-recovery-components/vmware-to-vmware.png)
+![VMware tooVMware](./media/site-recovery-components/vmware-to-vmware.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-A [támogatási mátrix](site-recovery-support-matrix-to-sec-site.md) áttekintése
+Felülvizsgálati hello [támogatási mátrix](site-recovery-support-matrix-to-sec-site.md)

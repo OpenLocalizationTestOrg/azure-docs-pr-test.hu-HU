@@ -1,6 +1,6 @@
 ---
-title: "Django és SQL Database az Azure-ban, Python Tools 2.2 for Visual Studio alkalmazással"
-description: "Ismerje meg, amely tárolja az adatokat egy SQL-adatbázispéldány Django-webalkalmazás létrehozása a Python Tools for Visual Studio segítségével, és központilag telepítenie kell az Azure App Service Web Apps."
+title: "aaaDjango és a Python Tools 2.2 for Visual Studio Azure SQL Database"
+description: "Ismerje meg, hogyan toouse hello Python Tools Visual Studio toocreate egy Django-webalkalmazás, amely egy SQL-adatbázispéldány adatait tárolja, és telepítse azt tooAzure App Service Web Apps."
 services: app-service\web
 tags: python
 documentationcenter: python
@@ -15,22 +15,22 @@ ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: huvalo
-ms.openlocfilehash: 65b59dee2b7bddca77d31c692dab713c68d67e24
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5b2ef4f3292e7df85007465c5394c8660a7d231
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="django-and-sql-database-on-azure-with-python-tools-22-for-visual-studio"></a>Django és SQL Database az Azure-ban, Python Tools 2.2 for Visual Studio alkalmazással
-Ebben az oktatóanyagban fogjuk használni [a Python Tools for Visual Studio] hozhat létre egy egyszerű szavazások webalkalmazás használja a PTVS-minta sablonok egyikét. Ez az oktatóanyag is rendelkezésre áll, mint egy [videó](https://www.youtube.com/watch?v=ZwcoGcIeHF4).
+Ebben az oktatóanyagban fogjuk használni [a Python Tools for Visual Studio] toocreate egy egyszerű lekérdezi a web app használatával hello PTVS minta sablonok egyikét. Ez az oktatóanyag is rendelkezésre áll, mint egy [videó](https://www.youtube.com/watch?v=ZwcoGcIeHF4).
 
-A Microsoft megtanulhatja, hogyan használható az Azure-platformon futó SQL-adatbázis SQL-adatbázis használata a webalkalmazás konfigurálása és közzététele a webalkalmazás a [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
+Azt megtanulhatja, hogyan toouse SQL adatbázis Azure-platformon futó, hogyan tooconfigure hello web app toouse SQL-adatbázis, és hogyan a toopublish hello webalkalmazás túl[Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Tekintse meg a [Python fejlesztői központ] további fejlesztését ismertető cikkeket az Azure App Service Web Apps használatával Bottle PTVS, a Flask és a Django webes keretrendszerek, az Azure Table Storage, a MySQL és az SQL-adatbázis-szolgáltatás. Az App Service-t tárgyaló jelen cikkben szereplő lépések hasonlóak az [Azure Cloud Services] fejlesztése esetében használtakhoz.
+Lásd: hello [Python fejlesztői központ] további fejlesztését ismertető cikkeket az Azure App Service Web Apps használatával Bottle PTVS, a Flask és a Django webes keretrendszerek, az Azure Table Storage, a MySQL és az SQL-adatbázis-szolgáltatás. Amíg ez a cikk foglalkozik az App Service, hello lépések hasonlóak fejlesztésekor [Azure Felhőszolgáltatások].
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Visual Studio 2015
-* [Python 2.7, 32 bites]
+* [Python 2.7 32 bites]
 * [Python Tools 2.2 for Visual Studio]
 * [Python Tools 2.2 for Visual Studio Samples VSIX]
 * [Azure SDK Tools for VS 2015]
@@ -39,30 +39,30 @@ Tekintse meg a [Python fejlesztői központ] további fejlesztését ismertető 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 >
 >
 
-## <a name="create-the-project"></a>A projekt létrehozása
-Ebben a szakaszban létrehozunk egy Visual Studio-projekt mintasablon használatával. Azt a virtuális környezetet hozhat létre, és telepíti a szükséges csomagokat. Létrehozunk egy helyi adatbázist az sqlite használatával. Ezt követően helyileg fogja futtatni a webalkalmazást.
+## <a name="create-hello-project"></a>Hello projekt létrehozása
+Ebben a szakaszban létrehozunk egy Visual Studio-projekt mintasablon használatával. Azt a virtuális környezetet hozhat létre, és telepíti a szükséges csomagokat. Létrehozunk egy helyi adatbázist az sqlite használatával. Majd hello webalkalmazás helyileg helyszínekről futtassuk.
 
 1. A Visual Studio felületén válassza a **File** (Fájl), **New Project** (Új projekt) lehetőséget.
-2. A [Python Tools 2.2 for Visual Studio Samples VSIX] projektsablonjai a **Python**, **Példák** elem alatt érhetők el. Válassza a **Polls Django Web Project** (Szavazási Django webes projekt) lehetőséget, majd kattintson az OK gombra a projekt létrehozásához.
+2. a hello projektsablonjai hello [Python Tools 2.2 for Visual Studio Samples VSIX] alatt érhetők el **Python**, **minták**. Válassza ki **Polls Django Web Project** , és kattintson az OK toocreate hello projekt.
 
-     ![A New Project (Új projekt) párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsDjangoNewProject.png)
-3. A rendszer fel fogja kérni külső csomagok telepítésére. Válassza az **Install into a virtual environment** (Telepítés virtuális környezetbe) lehetőséget.
+     ![Új projekt párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsDjangoNewProject.png)
+3. Külső csomagok felszólító tooinstall lesz. Válassza az **Install into a virtual environment** (Telepítés virtuális környezetbe) lehetőséget.
 
      ![Az External Packages (Külső csomagok) párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsDjangoExternalPackages.png)
-4. Alapszintű értelmezőként válassza ki a **Python 2.7** alkalmazást.
+4. Válassza ki **Python 2.7** , hello alapszintű értelmezőt.
 
      ![Az Add Virtual Environment (Virtuális környezet hozzáadása) párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsCommonAddVirtualEnv.png)
-5. A **Megoldáskezelő** felületén kattintson a jobb gombbal a projektcsomópontra, majd válassza a **Python**, végül pedig a **Django Migrate** lehetőséget.  Ezután válassza a **Django Create Superuser** elemet.
-6. Ekkor megnyílik a Django felügyeleti konzol, majd sqlite-adatbázis jön létre a projektmappában. Kövesse az utasításokat a felhasználó létrehozásához.
-7. Győződjön meg arról, hogy működik-e az alkalmazás billentyűkombináció lenyomásával <kbd>F5</kbd>.
-8. Kattintson a felső rész navigációs sávján található **Log in** (Bejelentkezés) gombra.
+5. A **Megoldáskezelőben**jobb gombbal a projektcsomópontra hello, és válassza ki **Python**, majd válassza ki **Django áttelepítése**.  Ezután válassza a **Django Create Superuser** elemet.
+6. Ez a Django felügyeleti konzol megnyitásához, és hello projektmappa sqlite-adatbázis létrehozása. Hajtsa végre a hello kér toocreate a felhasználó.
+7. Győződjön meg arról, hogy működik-e hello alkalmazás billentyűkombináció lenyomásával <kbd>F5</kbd>.
+8. Kattintson a **jelentkezzen be** a hello navigációs sáv hello tetején.
 
      ![Webböngésző](./media/web-sites-python-ptvs-django-sql/PollsDjangoCommonBrowserLocalMenu.png)
-9. Adja meg azon felhasználó hitelesítő adatait, amelyeket az adatbázis szinkronizálásakor hozott létre.
+9. Adja meg hello hitelesítő hello Ön által létrehozott felhasználót hello adatbázis szinkronizálásakor.
 
      ![Webböngésző](./media/web-sites-python-ptvs-django-sql/PollsDjangoCommonBrowserLocalLogin.png)
 10. Kattintson a **Create Sample Polls** (Mintaszavazások létrehozása) gombra.
@@ -73,29 +73,29 @@ Ebben a szakaszban létrehozunk egy Visual Studio-projekt mintasablon használat
       ![Webböngésző](./media/web-sites-python-ptvs-django-sql/PollsDjangoSqliteBrowser.png)
 
 ## <a name="create-a-sql-database"></a>SQL-adatbázis létrehozása
-Az adatbázis mi létrehozunk egy Azure SQL-adatbázis.
+Hello adatbázishoz mi létrehozunk egy Azure SQL-adatbázis.
 
 Ezeket a lépéseket követve létrehozhat egy adatbázist.
 
-1. Jelentkezzen be a [Azure-portálon].
-2. A navigációs ablaktábla alján kattintson **új**. , kattintson a **adatok + tárolás** > **SQL-adatbázis**.
-3. Konfigurálja az új SQL-adatbázis egy új erőforráscsoport létrehozásával, és válassza ki a megfelelő helyet.
-4. Az SQL-adatbázis létrehozása után kattintson **Megnyitás Visual Studio** az adatbázis paneljén.
+1. Jelentkezzen be a hello [Azure Portal].
+2. Hello navigációs ablaktábla hello alul kattintson **új**. , kattintson a **adatok + tárolás** > **SQL-adatbázis**.
+3. Konfigurálása új SQL-adatbázis hello hozzon létre egy új erőforráscsoportot, és válassza ki a megfelelő helyet hello.
+4. Hello SQL-adatbázis létrehozása után kattintson **Megnyitás Visual Studio** hello adatbázis paneljén.
 5. Kattintson a **úgy konfigurálni a tűzfalat**.
-6. A a **tűzfalbeállítások** panelen fel egy tűzfalszabályt a **KEZDŐ IP-** és **záró IP-Címnél** állítsa be a fejlesztési számítógépén a nyilvános IP-címére. Kattintson a **Save** (Mentés) gombra.
+6. A hello **tűzfalbeállítások** panelen fel egy tűzfalszabályt a **KEZDŐ IP-** és **záró IP-Címnél** toohello nyilvános IP-cím a fejlesztési számítógép beállítása. Kattintson a **Save** (Mentés) gombra.
 
-   Ez lehetővé teszi kapcsolatok az adatbázis-kiszolgáló a fejlesztői gépen.
-7. Vissza az adatbázis paneljén kattintson **tulajdonságok**, majd kattintson a **adatbázis-kapcsolati karakterláncok megjelenítése**.
-8. Használja a Másolás gombra, írja be az értéket a **ADO.NET** a vágólapon.
+   Ez lehetővé teszi kapcsolatok toohello adatbázis-kiszolgálójának a fejlesztési számítógépén.
+7. Hello adatbázis paneljén kattintson **tulajdonságok**, majd kattintson a **adatbázis-kapcsolati karakterláncok megjelenítése**.
+8. Hello Másolás gombra tooput hello érték **ADO.NET** hello vágólapra.
 
-## <a name="configure-the-project"></a>A projekt konfigurálása
-Ebben a szakaszban a webalkalmazást az imént létrehozott SQL database szolgáltatást használna konfigurálását végezzük el. SQL-adatbázisok használja djangóval szükséges további Python-csomagokat is telepítjük. Ezt követően helyileg fogja futtatni a webalkalmazást.
+## <a name="configure-hello-project"></a>Hello projekt konfigurálása
+Ez a szakasz a webes alkalmazás toouse hello SQL adatbázis imént létrehozott konfigurálását végezzük el. További Python csomagok szükséges toouse SQL adatbázisok telepítjük a django alkalmazással is. Majd hello webalkalmazás helyileg helyszínekről futtassuk.
 
-1. A Visual Studio felületén nyissa meg a **settings.py** fájlt a *ProjectName* mappából. Ideiglenesen illessze be a kapcsolati karakterláncot a szerkesztőbe. A kapcsolati karakterlánc formátuma a következő:
+1. A Visual Studióban nyissa meg a **settings.py**, a hello *projektnév* mappát. Ideiglenesen illessze be a hello kapcsolati karakterláncot, hello-szerkesztőben. hello kapcsolati karakterlánc: a következő formátumban:
 
        Server=<ServerName>,<ServerPort>;Database=<DatabaseName>;User ID=<UserName>;Password={your_password_here};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
 
-Definíciójának szerkesztése `DATABASES` a fenti értékeket szeretné használni.
+Hello definíciójának szerkesztése `DATABASES` toouse hello fenti alapértékeket.
 
         DATABASES = {
             'default': {
@@ -112,42 +112,42 @@ Definíciójának szerkesztése `DATABASES` a fenti értékeket szeretné haszn�
             }
         }
 
-1. A Solution Explorer (Megoldáskezelő) **Python Environments** (Python-környezetek) területén kattintson a jobb gombbal a virtuális környezetre, majd válassza az **Install Python Package** (Python-csomag telepítése) lehetőséget.
-2. Telepítse a `pyodbc` csomagot a **pip** használatával.
+1. A Megoldáskezelőben a **Python-környezetek**, kattintson a jobb gombbal a hello virtuális környezetre, és válassza ki **Python-csomag telepítése**.
+2. Hello telepítéséhez `pyodbc` használatával **pip**.
 
      ![Telepítse a Python-csomag párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsDjangoSqlInstallPackagePyodbc.png)
-3. Telepítse a `django-pyodbc-azure` csomagot a **pip** használatával.
+3. Hello telepítéséhez `django-pyodbc-azure` használatával **pip**.
 
      ![Telepítse a Python-csomag párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsDjangoSqlInstallPackageDjangoPyodbcAzure.png)
-4. A **Megoldáskezelő** felületén kattintson a jobb gombbal a projektcsomópontra, majd válassza a **Python**, végül pedig a **Django Migrate** lehetőséget.  Ezután válassza a **Django Create Superuser** elemet.
+4. A **Megoldáskezelőben**jobb gombbal a projektcsomópontra hello, és válassza ki **Python**, majd válassza ki **Django áttelepítése**.  Ezután válassza a **Django Create Superuser** elemet.
 
-   Ekkor létrejön az előző szakaszban létrehozott SQL-adatbázis tábláit. Kövesse az utasításokat, nem kell megegyeznie a felhasználónak az első szakaszban létrehozott sqlite-adatbázis a felhasználó létrehozásához.
-5. Futtassa az alkalmazást az `F5` billentyű lenyomásával. A létrehozása **létrehozása Sample Polls** és a szavazás során elküldött adatok mintaszavazások az SQL-adatbázisban.
+   Ezzel létrehoz hello táblák hello előző szakaszban létrehozott hello SQL-adatbázis. Hajtsa végre a hello kér toocreate egy felhasználó, aki nem rendelkezik toomatch hello felhasználói hello első szakaszban létrehozott hello sqlite-adatbázis.
+5. Futtassa az alkalmazást hello `F5`. A létrehozása **létrehozása Sample Polls** és hello szavazás során elküldött adatok mintaszavazások hello SQL-adatbázis.
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>A webalkalmazás közzététele az Azure App Service szolgáltatásban
-Az Azure .NET SDK egyszerű módot nyújt a webkiszolgáló webalkalmazás telepítése az Azure App Service Web Apps biztosít.
+## <a name="publish-hello-web-app-tooazure-app-service"></a>Hello web app tooAzure App Service közzététele
+hello Azure .NET SDK-t biztosít egy egyszerűen toodeploy a webes web app tooAzure App Service Web Apps.
 
-1. A **Solution Explorer** (Megoldáskezelő) felületén kattintson a jobb gombbal a projektcsomópontra, majd válassza a **Publish** (Közzététel) lehetőséget.
+1. A **Megoldáskezelőben**jobb gombbal a projektcsomópontra hello, és válassza ki **közzététel**.
 
      ![A Publish Web (Webes közzététel) párbeszédpanel](./media/web-sites-python-ptvs-django-sql/PollsCommonPublishWebSiteDialog.png)
 2. Kattintson a **Microsoft Azure Web Apps** lehetőségre.
-3. A **New** (Új) gombra kattintva hozzon létre egy új webalkalmazást.
-4. Töltse ki a következő mezőket és kattintson a **létrehozása**.
+3. Kattintson a **új** toocreate egy új webalkalmazást.
+4. Töltse ki a következő mezők hello **létrehozása**.
 
    * **A webalkalmazás neve**
    * **App Service-csomag**
    * **Erőforráscsoport**
    * **Régió**
-   * Hagyja változatlanul a **Database server** (Adatbázis-kiszolgáló) **No database** (Nincs adatbázis) beállítását
+   * Hagyja **adatbázis-kiszolgáló** túl beállítása**adatbázis**
 5. Fogadja el az összes többi alapértelmezett értéket, majd kattintson a **Publish** (Közzététel) gombra.
-6. A webböngészőjében automatikusan a közzétett webalkalmazás nyílik meg. A webes alkalmazás megfelelően működik, használatával kell megjelennie a **SQL** Azure-platformon futó adatbázis.
+6. A böngésző automatikusan toohello a közzétett webalkalmazás nyílik meg. Megtekintheti az hello web app működő elvárás hello segítségével **SQL** Azure-platformon futó adatbázis.
 
    Gratulálunk!
 
      ![Webböngésző](./media/web-sites-python-ptvs-django-sql/PollsDjangoAzureBrowser.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Kövesse az alábbi hivatkozásokat tudjon meg többet a Python Tools for Visual Studio, a Django és SQL-adatbázis.
+Hajtsa végre a Python-eszközökkel kapcsolatos további hivatkozások toolearn a Visual Studio, a Django és SQL-adatbázis.
 
 * [Python Tools for Visual Studio – dokumentáció]
   * [Webes projektek]
@@ -157,19 +157,19 @@ Kövesse az alábbi hivatkozásokat tudjon meg többet a Python Tools for Visual
 * [SQL Database]
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!--Link references-->
 [Python fejlesztői központ]: /develop/python/
-[Azure Cloud Services]: ../cloud-services/cloud-services-python-ptvs.md
+[Azure Felhőszolgáltatások]: ../cloud-services/cloud-services-python-ptvs.md
 
 <!--External Link references-->
-[Azure-portálon]: https://portal.azure.com
+[Azure Portal]: https://portal.azure.com
 [a Python Tools for Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 for Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Python Tools 2.2 for Visual Studio Samples VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Azure SDK Tools for VS 2015]: http://go.microsoft.com/fwlink/?LinkId=518003
-[Python 2.7, 32 bites]: http://go.microsoft.com/fwlink/?LinkId=517190
+[Python 2.7 32 bites]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python Tools for Visual Studio – dokumentáció]: http://aka.ms/ptvsdocs
 [Remote Debugging on Microsoft Azure]: http://go.microsoft.com/fwlink/?LinkId=624026 (Távoli hibakeresés a Microsoft Azure-ban)
 [Webes projektek]: http://go.microsoft.com/fwlink/?LinkId=624027

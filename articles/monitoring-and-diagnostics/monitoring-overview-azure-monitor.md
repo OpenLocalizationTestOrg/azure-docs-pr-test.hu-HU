@@ -1,5 +1,5 @@
 ---
-title: "Az Azure áttekintés |} Microsoft Docs"
+title: "aaaAzure – áttekintés |} Microsoft Docs"
 description: "Az Azure adatokat gyűjt a riasztások, webhookokkal, automatikus skálázás és automatizálás statisztikák. A cikk is kilistázza más Microsoft-figyelési lehetőségek."
 author: rboucher
 manager: carmonm
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/12/2017
 ms.author: robb
-ms.openlocfilehash: 619a004b9aff99be68988e1f7be3ccad400a8a0e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ffa304e7b158f0fceb7f60ab88fab291976aa0e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-azure-monitor"></a>Az Azure figyelő áttekintése
-Ez a cikk áttekintést nyújt az Azure-figyelő szolgáltatás a Microsoft Azure-ban. Azt ismerteti, milyen Azure figyelő nem, és ez a témakör további információkra mutató hivatkozások használata az Azure-figyelő.  Videó tetszés szerint tekintse meg a következő lépéseket hivatkozások Ez a cikk alján. 
+Ez a cikk áttekintést hello szolgáltatás Azure figyelése a Microsoft Azure-ban. Azt ismerteti, milyen Azure figyelő nem, és ismerteti a mutatók tooadditional toouse Azure figyelő.  Videó tetszés szerint: következő lépések kapcsolatok Ez a cikk hello alján. 
 
 ## <a name="why-monitor-your-application-or-system"></a>Az alkalmazás vagy a rendszer miért figyelése
-Sok áthelyezése alkotórészek összetettek a felhőalapú alkalmazásokhoz. Győződjön meg arról, hogy az alkalmazás marad be adatokat, és megfelelő állapotban fut figyelés nyújt. Emellett segít, hogy ki a lehetséges problémák stave és a múltbeli kiépítettektől eltérő hibakeresést. Figyelési adatok segítségével emellett az alkalmazással kapcsolatos átfogó megismerésében. Ezt az információt nyújt segítséget az alkalmazások teljesítményének vagy karbantartási követelmények, vagy, amelyek egyébként kézi beavatkozás műveletek automatizálására.
+Sok áthelyezése alkotórészek összetettek a felhőalapú alkalmazásokhoz. Figyelési adatok tooensure, hogy az alkalmazás be és a megfelelő állapotban fut biztosít. Emellett segít, toostave ki a lehetséges problémák és a múltbeli kiépítettektől eltérő hibakeresést. Emellett az alkalmazással kapcsolatos figyelési adatok toogain mélyebben elemezheti is használhatja. Ezt az információt tooimprove alkalmazásteljesítmény vagy karbantartási követelmények segítségével, vagy, amelyek egyébként kézi beavatkozás műveletek automatizálására.
 
 
 ## <a name="azure-monitor-and-microsofts-other-monitoring-products"></a>Azure figyelése és a Microsoft által a más figyelési termékek
-Az Azure biztosít alapszintű infrastruktúra metrikák és a naplókat a legtöbb Microsoft Azure-szolgáltatások. Azure-szolgáltatásokat, nincs még vannak-e az adatok Azure monitorra tesz, nem a jövőben.
+Az Azure biztosít alapszintű infrastruktúra metrikák és a naplókat a legtöbb Microsoft Azure-szolgáltatások. Azure-szolgáltatásokat, nincs még vannak-e az adatok Azure monitorra tesz ott hello jövőbeli.
 
 A Microsoft azonban további termékek és szolgáltatások, amelyek további figyelési funkciókat biztosítanak a fejlesztők számára, a DevOps vagy a informatikai Ops, amelyek is a helyszíni telepítésekre. Áttekintése és ismertetése, hogy ezek a különböző termékek és szolgáltatások együttműködni, lásd: [figyelése a Microsoft Azure-ban](monitoring-overview.md).
 
@@ -36,14 +36,14 @@ A Microsoft azonban további termékek és szolgáltatások, amelyek további fi
 
 ![Figyelés és a diagnosztika nem számítási erőforrások modellje](./media/monitoring-overview-azure-monitor/Monitoring_Azure_Resources-compute_v6.png)
 
-A számítási szolgáltatások közé tartoznak az 
+hello számítási szolgáltatások közé tartoznak az 
 - Cloud Services 
 - Virtuális gépek 
 - Virtuálisgép-méretezési csoportok 
 - Service Fabric
 
 ### <a name="application---diagnostics-logs-application-logs-and-metrics"></a>Alkalmazás - diagnosztikai naplók, alkalmazásnaplók és metrikák
-Alkalmazások a számítási modellben a vendég operációs rendszer felett futhatnak. Azok a naplók és a metrikák a saját engedélykészleteiket hozható létre. Azure figyelése az Azure diagnostics bővítmény (Windows vagy Linux) a legtöbb alkalmazás szintű metrikák és naplók összegyűjtésére támaszkodik. A típusok a következők
+Alkalmazások hello számítási modellt a vendég operációs rendszer hello felett futhatnak. Azok a naplók és a metrikák a saját engedélykészleteiket hozható létre. Az Azure figyelő hello Azure diagnostics bővítmény (Windows vagy Linux) toocollect támaszkodik, a legtöbb alkalmazás szintű metrikák és a naplókat. hello típusai
 
 * Teljesítményszámlálók
 * Alkalmazás-naplók
@@ -54,13 +54,13 @@ Alkalmazások a számítási modellben a vendég operációs rendszer felett fut
 * Összeomlási memóriaképek
 * Ügyfél hibanaplókat
 
-A diagnosztika bővítményt nélküli például CPU-használat csak néhány metrikák érhetők el. 
+Nélkül hello diagnosztika kiterjesztéssel például a Processzor kihasználtsága csak néhány metrikák érhetők el. 
 
 ### <a name="host-and-guest-vm-metrics"></a>Gazdagép és Vendég virtuális gép
-A fent felsorolt számítási erőforrásokat tartalmaz, dedikált gazdagép VM és a vendég operációs rendszer léphetnek kapcsolatba az. A virtuális gép gazdagépről, illetve a vendég operációs rendszer olyan legfelső szintű virtuális gép és a Vendég virtuális Gépen a Hyper-V hipervizort modell egyenértékű. Mindkét gyűjteni a processzorhasználatról. Diagnosztikai naplók a vendég operációs rendszer is gyűjtheti.   
+hello korábban felsorolt számítási erőforrásokat tartalmaz, dedikált gazdagép VM és a vendég operációs rendszer léphetnek kapcsolatba az. hello állomást a virtuális Gépet és a vendég operációs rendszer olyan hello egyenértékű a legfelső szintű virtuális gép és a Vendég virtuális Gépen hello Hyper-V hipervizort modellben. Mindkét gyűjteni a processzorhasználatról. Diagnosztikai naplók a hello vendég operációs rendszer is gyűjtheti.   
 
 ### <a name="activity-log"></a>Tevékenységnapló
-Az erőforrás által az Azure-infrastruktúra kapcsolatos kereshet a tevékenységnapló (korábbi nevén az operatív vagy a vizsgálati naplók) kapcsolatos információt. A napló tartalmaz információkat, például az időpontokat, amikor erőforrások létrehozásakor vagy megsemmisül.  További információkért lásd: [tevékenységnapló áttekintése](monitoring-overview-activity-logs.md). 
+Az Azure-infrastruktúra hello szerinti erőforrásokra vonatkozó kereshet hello tevékenységnapló (korábbi nevén az operatív vagy a vizsgálati naplók) kapcsolatos információt. hello napló tartalmaz információkat, például az időpontokat, amikor erőforrások létrehozásakor vagy megsemmisül.  További információkért lásd: [tevékenységnapló áttekintése](monitoring-overview-activity-logs.md). 
 
 ## <a name="monitoring-sources---everything-else"></a>Figyelési - minden más forrásokból
 
@@ -68,24 +68,24 @@ Az erőforrás által az Azure-infrastruktúra kapcsolatos kereshet a tevékenys
 
 
 ### <a name="resource---metrics-and-diagnostics-logs"></a>Erőforrás - metrikák és diagnosztikai naplókat
-Az erőforrástípus függően változhat a gyűjthető metrikák és diagnosztikai naplókat. Például webalkalmazások nyújt információkat a lemez I/O- és százalék. Ezek a metrikák egy Service Bus-üzenetsorba, amelyek például a várólista mérete és üzenet átviteli metrikák biztosítja a nem léteznek. Az egyes erőforrások gyűjthető metrikák listája megtalálható [metrikák támogatott](monitoring-supported-metrics.md). 
+Gyűjthető metrikák és diagnosztikai naplók hello erőforrástípus függően változhat. Például a Web Apps nyújt statisztikai adatokat a lemez IO hello és a Processzor százalékban. Ezek a metrikák egy Service Bus-üzenetsorba, amelyek például a várólista mérete és üzenet átviteli metrikák biztosítja a nem léteznek. Az egyes erőforrások gyűjthető metrikák listája megtalálható [metrikák támogatott](monitoring-supported-metrics.md). 
 
 ### <a name="host-and-guest-vm-metrics"></a>Gazdagép és Vendég virtuális gép
 Nincs feltétlenül az erőforrás és egy adott gazdagép vagy Vendég virtuális gép közötti leképezéseket 1:1, metrikák nem érhetők el.
 
 ### <a name="activity-log"></a>Tevékenységnapló
-A műveletnapló számára ugyanúgy számítási erőforrásokat.  
+hello tevékenységnapló van hello ugyanaz, mint a számítási erőforrásokat.  
 
 ## <a name="uses-for-monitoring-data"></a>A figyelési adatok használ
-Miután az adatgyűjtés Azure figyelő vele a következő teheti
+Miután az adatgyűjtés teheti hello Azure figyelőben azt követően
 
 ### <a name="route"></a>Útválasztás
-Más helyekre, valós idejű figyelési adatok is folyamatos átviteléhez.
+Valós idejű figyelési adatok tooother helye is adatfolyam.
 
 Példák erre vonatkozóan:
 
-- Küldése az Application Insights részére, hogy használhassa a gazdagabb képi megjelenítés és -elemző eszközökkel.
-- Az Event Hubs küldeni, a külső eszközök irányíthatja. 
+- Küldési tooApplication Insights, hogy használhassa a gazdagabb képi megjelenítés és -elemző eszközökkel.
+- Küldése tooEvent hubok, így irányíthatja a toothird gyártású eszközöknek. 
 
 ### <a name="store-and-archive"></a>Tároló kapcsolatos és archiválási
 Néhány figyelési adatok már tárolt és elérhető az Azure-figyelő a beállított időn. 
@@ -93,43 +93,43 @@ Néhány figyelési adatok már tárolt és elérhető az Azure-figyelő a beál
 - Tevékenység naplóbejegyzések 90 napig tárolja. 
 - Diagnosztikai naplók egyáltalán nem tárolja. 
 
-Ha azt szeretné, hosszabb, mint a fent felsorolt időszakok adatok tárolására, Azure-tárolóra is használhatja. Figyelési adatok a storage-fiókot egy be megőrzési házirend alapján állapotban van. Akkor kell fizetnie az adatokat az Azure storage foglal helyet. 
+Ha hosszabb, mint hello toostore adatok fent felsorolt időszak szerint, egy Azure tárolót is használhatja. Figyelési adatok a storage-fiókot egy be megőrzési házirend alapján állapotban van. Az adatok foglalja el az Azure storage hello terület hello toopay rendelkeznek. 
 
-Ezek az adatok használatának néhány módjai:
+Néhány módon toouse ezeket az adatokat:
 
 - Miután írt, akkor is más eszközök belüli és kívüli Azure olvasni és feldolgozni azt.
-- Módosítsa a adatmegőrzési huzamosabb ideig tartson meg adatok a felhőben és helyileg egy helyi archív adatok letöltése.  
-- Az Azure storage határozatlan ideig archiválási célokból hagyja az adatokat. 
+- Hello adatletöltéshez helyileg a helyi archívum létrehozása, vagy módosítsa a adatmegőrzési hello felhő tookeep adatok huzamosabb ideig.  
+- Az Azure storage határozatlan ideig archiválási célokból hello adatokat hagyja. 
 
 ### <a name="query"></a>Lekérdezés
-A Azure REST API, kereszt platform parancssori felület (CLI) parancsok, PowerShell-parancsmagokkal vagy a .NET SDK használatával érik el az adatokat a rendszer vagy az Azure storage
+Hello Azure figyelő REST API-t többplatformos parancssori felület (CLI) parancsok, PowerShell-parancsmagok is használhatja, vagy hello .NET SDK tooaccess adatok hello hello rendszeren és az Azure storage
 
 Példák erre vonatkozóan:
 
 * Írt egyéni figyelési alkalmazás adatainak lekérése
-* Egyéni lekérdezések és adatok elküldi egy külső alkalmazás.
+* Egyéni lekérdezéseket, és elküldi az adatokat tooa külső alkalmazást.
 
 ### <a name="visualize"></a>Vizualizálás
-A figyelési adatok grafikus és diagramok megjelenítése könnyebben megtalálhat gyorsabb, mint maga az adat között trendeket.  
+A figyelési adatok grafikus és diagramok megjelenítése segít trendek gyorsabb, mint maga hello adatok között található.  
 
 Néhány képi megjelenítés módszerek a következők:
 
-* Az Azure Portal használata
-* Az Azure Application Insights útvonal adatai
-* A Microsoft PowerBI útvonal adatai
-* Az adatok egy külső képi megjelenítés eszköz használatával, vagy élő adatfolyam-útvonalat, vagy azzal, hogy az eszköz olvasni az Azure storage archívumból
+* Hello Azure portál használata
+* Útvonal adatok tooAzure Application insights szolgáltatással
+* Útvonal adatok tooMicrosoft Power BI
+* Vagy útvonal hello tooa külső képi megjelenítés eszköz használatával végzett élő adatfolyam, vagy azzal, hogy hello eszköz olvassa el az Azure storage archívumból
 
 
 ### <a name="automate"></a>Automatizálás
-Figyelési logika eseményindító riasztások vagy akár egész folyamatok is használhatja. Példák erre vonatkozóan:
+Figyelési adatok tootrigger riasztások, vagy akár egész folyamatok. Példák erre vonatkozóan:
 
-* Használja az automatikus skálázás számítási példányokért adatok felfelé vagy lefelé a alkalmazásterhelés alapján.
+* Ezen adatok tooautoscale számítási példányokért felfelé vagy lefelé a alkalmazásterhelés alapján.
 * E-mailek küldése metrika ebbe a előre meghatározott küszöbértéket.
-* Hívja a webalkalmazás URL-CÍMÉT (webhook) egy művelet végrehajtása egy Azure-on kívüli rendszerben
-* Elindít egy forgatókönyvet az Azure Automation szolgáltatásbeli bármely különböző feladatok végrehajtásához
+* Egy Azure-on kívüli rendszer egy webes URL-címe (webhook) tooexecute művelet hívás
+* A különböző feladatok elindít egy forgatókönyvet az Azure Automation szolgáltatásbeli tooperform
 
 ## <a name="methods-of-accessing-azure-monitor"></a>Azure-figyelő elérésének módszerek
-Általánosságban elmondható kezelheti az adatok követési, Útválasztás és lekérése a következő módszerek egyikét használva. Nem minden módszerek állnak rendelkezésre az összes műveletek vagy adattípusokat.
+Általánosságban elmondható kezelheti az adatok követési, Útválasztás és hello a következő módszerek egyikével lekérése. Nem minden módszerek állnak rendelkezésre az összes műveletek vagy adattípusokat.
 
 * [Azure Portal](https://portal.azure.com)
 * [PowerShell](insights-powershell-samples.md)  
@@ -141,8 +141,8 @@ Figyelési logika eseményindító riasztások vagy akár egész folyamatok is h
 További információ
 - Csak az Azure-figyelő a video-útmutatót érhető el:  
 [Ismerkedés az Azure figyelő](https://channel9.msdn.com/Blogs/Azure-Monitoring/Get-Started-with-Azure-Monitor). Egy további olyan forgatókönyvekben, ahol ugyanúgy használhatók Azure figyelő ismertető videó megtalálható [megismerkedhet a Microsoft Azure-figyelés és diagnosztika](https://channel9.msdn.com/events/Ignite/2016/BRK2234) és [ignite-on 2016 videó az Azure-figyelő](https://myignite.microsoft.com/videos/4977)
-- Futtassa az Azure-figyelő felületen [Ismerkedés az Azure-figyelő](monitoring-get-started.md)
-- Állítsa be a [Azure Diagnostics bővítmények](../azure-diagnostics.md) Ha a felhőalapú szolgáltatás, a virtuális gépet, a problémák diagnosztizálásához kívánt virtuális gép skálázása beállítása, vagy a Service Fabric-alkalmazás.
-- [Az Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) Ha kívánt diagnosztikai problémák az App Service Web app alkalmazásban.
+- Futtassa a hello Azure figyelő felületen [Ismerkedés az Azure-figyelő](monitoring-get-started.md)
+- Hello beállítása [Azure Diagnostics bővítmények](../azure-diagnostics.md) Ha kívánt toodiagnose problémák a felhőalapú szolgáltatás, a virtuális gépet, a virtuális gép skálázása beállítása, vagy a Service Fabric-alkalmazás.
+- [Az Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) Ha toodiagnostic problémák az App Service Web app alkalmazásban.
 - [Hibaelhárítás az Azure Storage](../storage/common/storage-e2e-troubleshooting.md) Storage Blobs, a táblák és a várólisták használata
-- [Naplófájl Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) és a [Operations Management Suite szolgáltatásban](https://www.microsoft.com/oms/)
+- [Naplófájl Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) és hello [Operations Management Suite szolgáltatásban](https://www.microsoft.com/oms/)

@@ -1,6 +1,6 @@
 ---
-title: "A forrás és cél a fizikai kiszolgáló replikáció az Azure szolgáltatásban az Azure Site Recovery beállítása |} Microsoft Docs"
-description: "A forrás és cél beállítások megadása az Azure Site Recovery szolgáltatásban az Azure storage fizikai kiszolgálók replikálása ismertetett lépéseket foglalja"
+title: "hello forrás és cél a fizikai kiszolgáló replikációs tooAzure az Azure Site Recovery aaaSet |} Microsoft Docs"
+description: "Összefoglalja a hello lépéseket tooset hello Azure Site Recovery szolgáltatás a fizikai kiszolgálók tooAzure tárhely replikálás forrás- és beállításainak mentése"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: e89bbf5a2c1d71852e49da43d3106a05ebfc28a8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e75ef23174d77509bf54380eba8f251a7337a45f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-7-set-up-the-source-and-target-for-physical-server-replication-to-azure"></a>7. lépés: A forrás- és a cél a fizikai kiszolgáló replikáció az Azure beállítása
+# <a name="step-7-set-up-hello-source-and-target-for-physical-server-replication-tooazure"></a>7. lépés: Hello forrása és célja a fizikai kiszolgáló replikációs tooAzure beállítása
 
-A cikk ismerteti a forrás és cél beállítások konfigurálása, ha a helyszíni fizikai kiszolgálók replikálása Azure-ba, használja a [Azure Site Recovery](site-recovery-overview.md) szolgáltatás az Azure portálon.
+Ez a cikk ismerteti, hogyan tooconfigure forrás és cél beállításai replikálása esetén a helyszíni fizikai kiszolgálók tooAzure használatával hello [Azure Site Recovery](site-recovery-overview.md) szolgáltatással hello Azure-portálon.
 
-Ebben a cikkben, vagy az alsó megjegyzések és kérdéseket küldje a [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ez a cikk vagy a hello hello alsó megjegyzések és kérdések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-the-source-environment"></a>A forráskörnyezet beállítása
+## <a name="set-up-hello-source-environment"></a>Hello forráskörnyezet beállítása
 
-Állítsa be a konfigurációs kiszolgáló, regisztrálja őket a tárolóban, és a gépek észlelése.
+Hello konfigurációs kiszolgáló, és regisztrálja azt hello tárolóban gépek észlelése.
 
 1. Kattintson a **helyreállítási hely** > **1. lépés: infrastruktúra előkészítése** > **forrás**.
 2. Ha nem rendelkezik a konfigurációs kiszolgáló, kattintson a **+ konfigurációs kiszolgáló**.
 3. A **kiszolgáló hozzáadása**, ellenőrizze, hogy **konfigurációs kiszolgáló** megjelenik **kiszolgálótípus**.
-4. Töltse le a Site Recovery az egységes telepítő telepítőfájlját.
-5. Töltse le a tárolóregisztrációs kulcsot. Ez szükséges az egységes telepítő futtatásakor. A kulcs a generálásától számított öt napig érvényes.
+4. Töltse le a hello Site Recovery az egységes telepítő telepítőfájlját.
+5. Hello tárolóbeli regisztrációs kulcs letöltése. Ez szükséges az egységes telepítő futtatásakor. hello kulcs a generálásától öt napig esetén érvényes.
 
    ![A forrás beállítása](./media/vmware-walkthrough-source-target/set-source2.png)
 
 
-## <a name="register-the-configuration-server-in-the-vault"></a>Regisztrálja a konfigurációs kiszolgálót a tárolóban
+## <a name="register-hello-configuration-server-in-hello-vault"></a>Hello tároló hello konfigurációs kiszolgáló regisztrálása
 
-Tegye a következőket előtt indítsa el, majd az egységes telepítőjének futtatásával telepítse a konfigurációs kiszolgáló, a folyamatkiszolgáló és a fő célkiszolgáló. A videó VMware virtuális gép Azure replikációs összetevők beállításának a módját ismerteti. Azonban ugyanazt a folyamatot nem érvényes Azure-replikációs szolgáltatására való fizikai kiszolgálóra.
+Tegye hello következő előtt indítsa el, majd futtassa az egységes telepítő tooinstall hello konfigurációs kiszolgáló, hello folyamatkiszolgáló és fő célkiszolgáló hello. videó hello VMware virtuális gép tooAzure replikációs hello összetevőket beállításának a módját ismerteti. Azonban hello ugyanazt a folyamatot nem érvényes a fizikai kiszolgáló tooAzure replikációs.
 
-- A konfigurációs kiszolgálón VM, győződjön meg arról, hogy a rendszer órája szinkronizálva van a [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Meg kell felelnie. Ha az előtérben 15 perc vagy mögött található, a telepítés meghiúsulhat.
-- Futtassa a telepítőt a helyi rendszergazda, a konfigurációs kiszolgáló gépen.
-- Győződjön meg arról, hogy a TLS 1.0 engedélyezve van a virtuális Gépen.
+- Hello konfigurációs kiszolgálón VM, győződjön meg arról, hogy hello rendszeróra szinkronizálva van a [kiszolgálót](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Meg kell felelnie. Ha az előtérben 15 perc vagy mögött található, a telepítés meghiúsulhat.
+- Futtassa a telepítőt a helyi rendszergazda, a hello konfigurációs kiszolgáló számítógépén.
+- Győződjön meg arról, hogy a TLS 1.0 engedélyezve van a virtuális gép hello.
 
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> A konfigurációs kiszolgáló is telepíthető [a parancssorból](http://aka.ms/installconfigsrv).
+> hello konfigurációs kiszolgálón is telepíthető [hello parancssorból](http://aka.ms/installconfigsrv).
 
 
 
 
-## <a name="set-up-the-target-environment"></a>A célkörnyezet beállítása
+## <a name="set-up-hello-target-environment"></a>Hello célkörnyezet beállítása
 
-A célkörnyezet beállítása előtt győződjön meg arról, hogy az Azure storage-fiók és a virtuális hálózat beállítása.
+Hello célkörnyezet beállítása előtt győződjön meg arról, hogy az Azure storage-fiók és a virtuális hálózat beállítása.
 
-1. Kattintson az **Infrastruktúra előkészítése** > **Cél** elemre, majd válassza ki a használni kívánt Azure-előfizetést.
+1. Kattintson a **infrastruktúra előkészítése** > **cél**, és válassza ki a kívánt toouse Azure-előfizetés hello.
 2. Adja meg-e a cél telepítési modell a Resource Manager-alapú, vagy a klasszikus.
 3. A Site Recovery ellenőrzi, hogy rendelkezik-e legalább egy kompatibilis Azure-tárfiókkal és -hálózattal.
 
    ![cél](./media/physical-walkthrough-source-target/gs-target.png)
 
-4. Ha még nem hozott létre a storage-fiók vagy a hálózaton, kattintson a **+ tárfiók** vagy **+ hálózat**, az erőforrás-kezelő fiók létrehozása vagy szövegközi hálózati.
+4. Ha még nem hozott létre a storage-fiók vagy a hálózaton, kattintson a **+ tárfiók** vagy **+ hálózat**, egy erőforrás-kezelő fiók vagy a hálózati beágyazott toocreate.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ugrás a [8. lépés: a replikációs házirend beállítása](physical-walkthrough-replication.md)
+Nyissa meg túl[8. lépés: a replikációs házirend beállítása](physical-walkthrough-replication.md)

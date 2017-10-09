@@ -1,6 +1,6 @@
 ---
-title: "Használja az Azure Machine Learning webszolgáltatás-paramétereket |} Microsoft Docs"
-description: "Hogyan használható az Azure Machine Learning webszolgáltatás-paramétereket a webszolgáltatás elérésekor a modell működésének módosítása céljából."
+title: "Azure Machine Learning webszolgáltatás-paramétereket aaaUse |} Microsoft Docs"
+description: "Hogyan toouse Azure Machine Learning webszolgáltatás-paramétereket toomodify hello viselkedését a modell, hello webszolgáltatás történő hozzáféréskor."
 services: machine-learning
 documentationcenter: 
 author: raymondlaghaeian
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye
-ms.openlocfilehash: 482726c1dae5385964e08b720e529817d5907537
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 214711eb819a6cea34db905abdf015da11e846d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-machine-learning-web-service-parameters"></a>Az Azure Machine Learning webszolgáltatás paramétereinek használata
-Az Azure Machine Learning webszolgáltatás közzététele, amely konfigurálható paraméterekkel lehetővé tevő modulokat tartalmaz a kísérlet hozta létre. Bizonyos esetekben érdemes lehet a modul megváltozzon, miközben fut a webes szolgáltatás. *Webszolgáltatási paramétereket* engedélyezi, hogy a feladat végrehajtásához. 
+Az Azure Machine Learning webszolgáltatás közzététele, amely konfigurálható paraméterekkel lehetővé tevő modulokat tartalmaz a kísérlet hozta létre. Bizonyos esetekben érdemes lehet toochange hello modul viselkedés hello webes szolgáltatás futása közben. *Webszolgáltatási paramétereket* toodo lehetővé teszi ezt a feladatot. 
 
-Ilyenek például beállítását a [és adatokat importálhat] [ reader] modul, hogy a felhasználó a közzétett webes szolgáltatás adhat meg egy másik adatforráshoz, a webszolgáltatás elérésekor. Vagy konfigurálása a [adatok exportálása] [ writer] modul, hogy egy másik cél adható meg. Más például bitjei számának módosítása a [Szolgáltatáskivonatolás] [ feature-hashing] modul vagy száma szükséges szolgáltatásokat a [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] modul. 
+Ilyenek például hello beállítását [és adatokat importálhat] [ reader] modul hello felhasználó hello a közzétett webes szolgáltatás, megadhat egy másik adatforráshoz hello webszolgáltatás elérésekor. Vagy hello konfigurálása [adatok exportálása] [ writer] modul, hogy egy másik cél adható meg. Más például hello bitjei hello számának módosítása [Szolgáltatáskivonatolás] [ feature-hashing] hello kívánt funkcióinak modul vagy hello száma [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] modul. 
 
-Állítsa be a webszolgáltatás-paramétereket, és rendelje hozzá őket egy vagy több modulja paraméter a kísérletben, és megadhatja, hogy azok kötelező vagy választható. A felhasználó a webszolgáltatás lehet majd adja meg ezeket a paramétereket, amikor azok a webszolgáltatás hívására. 
+Állítsa be a webszolgáltatás-paramétereket, és rendelje hozzá őket egy vagy több modulja paraméter a kísérletben, és megadhatja, hogy azok kötelező vagy választható. hello webszolgáltatás hello felhasználói is majd adja meg ezeket a paramétereket, amikor azok hello webszolgáltatás hívására. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="how-to-set-and-use-web-service-parameters"></a>Állítsa be, és webszolgáltatás-paramétereket használata
-A webszolgáltatási paraméter a paraméter egy modul melletti ikonra kattint, majd válassza a "Web service paraméter beállítása" határozza meg. Ez létrehoz egy új webszolgáltatási paraméter, és kapcsolódik az adott modul paraméter. Majd amikor a webes szolgáltatás, a felhasználó érték adható meg a webszolgáltatási paraméter, illetve az alkalmazásának a modul paraméterhez.
+## <a name="how-tooset-and-use-web-service-parameters"></a>Hogyan tooset és -felhasználási webszolgáltatás-paramétereket
+A webszolgáltatási paraméter hello ikon következő toohello paraméter egy modul kattintva, majd válassza a "Web service paraméter beállítása" határozza meg. Ez létrehoz egy új webszolgáltatási paraméter, és kapcsolódik az toothat modul paraméter. Ezt követően amikor hello webszolgáltatás, hello felhasználó megadhatja a hello webszolgáltatási paraméter értékét, és alkalmazott toohello modul paramétere.
 
-A webszolgáltatási paraméter határozza meg, miután a rendelkezésére áll a kísérletben más modul paraméter. Egy webszolgáltatási egy modul egy paraméterének társított paraméter megadása esetén használható, hogy ugyanazon webszolgáltatási paraméter bármely más modul mindaddig, amíg a paraméter a ugyanolyan típusú értéket vár. Például ha a webszolgáltatási paraméter egy numerikus értéket, majd csak használat modul paraméter, amely egy numerikus értéket várt. A felhasználó a webes szolgáltatás paraméter beállít egy értéket, akkor lépnek érvénybe az összes társított modul paraméterei.
+A webszolgáltatási paraméter határozza meg, ha elérhető tooany más modul paraméter hello kísérletben. Egy webszolgáltatási egy modul egy paraméterének társított paraméter megadása esetén használható, hogy ugyanazon webszolgáltatási paraméter bármely más modul mindaddig, amíg hello paraméter hello ugyanilyen típusú értéket vár. Például ha hello webszolgáltatási paraméter egy numerikus érték, majd csak használat modul paraméter, amely egy numerikus értéket várt. Hello felhasználó hello webszolgáltatási paraméter értéket állít be, akkor lesz társított alkalmazott tooall modul paraméterei.
 
-Eldöntheti, hogy a webes paraméter alapértelmezett értéket adjon meg. Ha így tesz, a paraméter megadása esetén a felhasználó a webszolgáltatás nem kötelező. Ha nem ad meg alapértelmezett értéket, majd a felhasználó szükséges adjon meg egy értéket, ha hozzáfér a webes szolgáltatás.
+Eldöntheti, hogy egy alapértelmezett tooprovide hello webszolgáltatási paraméter értékét. Ha, majd hello paraméter megadása nem kötelező hello felhasználó hello webszolgáltatás. Ha nem ad meg alapértelmezett értéket, majd hello felhasználó esetén szükséges tooenter értéket hello webszolgáltatás érhető el.
 
-A webszolgáltatás API dokumentációja tartalmaz adatokat a szolgáltatás felhasználó programozott módon megadása a webszolgáltatási paraméter, a webszolgáltatás elérésekor.
+hello hello webszolgáltatás API dokumentációja tartalmaz adatokat hello webes szolgáltatás felhasználó hogyan toospecify hello webszolgáltatási paraméter programozott módon hello webszolgáltatás való hozzáféréskor.
 
 > [!NOTE]
-> Az API dokumentációjának klasszikus webszolgáltatáshoz keresztül valósul meg a **API súgólap** hivatkozásra a webszolgáltatás **IRÁNYÍTÓPULT** a Machine Learning Studióban. Egy új webszolgáltatás-bővítmény API dokumentációjában keresztül valósul meg a [Azure Machine Learning webszolgáltatások](https://services.azureml.net/Quickstart) portált a **felhasználás** és **Swagger API** a Web pages a szolgáltatás.
+> API-JÁNAK dokumentációja hello a klasszikus webszolgáltatás hello keresztül valósul meg **API súgólap** hello webszolgáltatás hivatkozásra **IRÁNYÍTÓPULT** a Machine Learning Studióban. hello API-JÁNAK dokumentációja, az új webszolgáltatás hello keresztül valósul meg [Azure Machine Learning webszolgáltatások](https://services.azureml.net/Quickstart) hello portált **felhasználás** és **Swagger API** lapok: az a webes szolgáltatás.
 > 
 > 
 
 ## <a name="example"></a>Példa
-Tegyük fel, tételezzük fel, hogy az a kísérlet van egy [adatok exportálása] [ writer] modul, amely adatokat küld az Azure blob Storage tárolóban. A webszolgáltatási nevű, "Blob elérési út" paraméter fogunk meghatározni, amely lehetővé teszi, hogy a szolgáltatás felhasználó elérési útjának módosítása a blob-tároló, a szolgáltatás elérésekor.
+Tegyük fel, tételezzük fel, hogy az a kísérlet van egy [adatok exportálása] [ writer] modul által küldött adatokat tooAzure blob Storage tárolóban. A webszolgáltatási nevű, "Blob elérési út" paraméter fogunk meghatározni, amely lehetővé teszi, hogy hello webes szolgáltatás felhasználói toochange hello elérési toohello a blob storage hello szolgáltatás elérésekor.
 
-1. A Machine Learning Studióban, kattintson a [adatok exportálása] [ writer] modul rá kattintva jelölje ki. A Tulajdonságok panelen jobb oldalán a kísérletvászonra tulajdonságai jelennek meg.
-2. Adja meg a tárolási típusát:
+1. A Machine Learning Studióban, kattintson a hello [adatok exportálása] [ writer] modul tooselect azt. A Tulajdonságok hello tulajdonságai panelen toohello sarkában hello kísérletvászonra láthatók.
+2. Adja meg a hello tárolási típusát:
    
    * A **adja meg az adatok cél**, jelölje be az "Azure Blob Storage".
    * A **adja meg a hitelesítési típus**, jelölje be az "Account".
-   * Írja be az Azure blob storage fiók adatait. 
+   * Hello Azure blob storage hello fiók adatainak megadása. 
      <p />
-3.Kattintson a jobb oldalán ikonra a **elérési útját a blob-tároló paraméter-tól kezdődően**. Néz ki:
+3.Kattintson a hello ikon toohello sarkában hello **tároló paraméter tooblob kezdetű elérési**. Néz ki:
    
    ![Webes szolgáltatás paraméter ikon][icon]
    
    Válassza ki a "Web service paraméter beállítása".
    
-   Bejegyzés hozzáadása az **webszolgáltatás-paramétereket** "Blob-tároló kezdetű elérési" nevű Tulajdonságok ablaktábla alján. Ez az a webszolgáltatási paraméter, amelyik most már a társított [adatok exportálása] [ writer] modul paraméter.
-4. Nevezze át a webes paraméter, kattintson a nevére, írja be a "Blob path", és nyomja le a **Enter** kulcs. 
-5. A webszolgáltatási paraméter alapértelmezett értéke megadásához kattintson az ikonra a nevétől jobbra, válassza a "Megadása az alapértelmezett érték", adjon meg egy értéket (például "container1/output1.csv"), és nyomja le az ENTER a **Enter** kulcs.
+   Bejegyzés hozzáadása az **webszolgáltatás-paramétereket** hello tulajdonságok panelen az hello "elérési út tooblob kezdődő neveket tároló" hello alján. Ez a hello webszolgáltatási paraméter, amelyik most már a társított [adatok exportálása] [ writer] modul paraméter.
+4. toorename webszolgáltatási paraméter hello kattintson hello nevét, adja meg a "Blob elérési út", és nyomja le az ENTER hello **Enter** kulcs. 
+5. tooprovide hello webszolgáltatási paraméter, az alapértelmezett értéket hello ikon toohello hello neve sarkában kattintson, válassza a "Megadása az alapértelmezett érték", adjon meg egy értéket (például "container1/output1.csv"), és nyomja le az ENTER hello **Enter** kulcs.
    
    ![Webszolgáltatási paraméter][parameter]
 6. Kattintson a **Run** (Futtatás) parancsra. 
-7. Kattintson a **webes szolgáltatás telepítése** válassza **webes szolgáltatás telepítése [klasszikus]** vagy **[Új] webes szolgáltatás telepítése** a webszolgáltatás telepítése.
+7. Kattintson a **webes szolgáltatás telepítése** válassza **webes szolgáltatás telepítése [klasszikus]** vagy **[Új] webes szolgáltatás telepítése** toodeploy hello webes szolgáltatás.
 
 > [!NOTE] 
-> Egy új webszolgáltatás-bővítmény telepítése, megfelelő engedélyekkel kell rendelkeznie, amelyhez az előfizetést, a webszolgáltatás telepítése. További információ: [kezelése az Azure Machine Learning webszolgáltatások portál használatával egy webszolgáltatás-bővítmény](machine-learning-manage-new-webservice.md). 
+> toodeploy egy új webszolgáltatás-bővítmény, megfelelő engedélyekkel kell rendelkeznie a hello előfizetés toowhich meg hello webes szolgáltatás telepítéséhez. További információ: [egy webszolgáltatás-bővítmény hello Azure Machine Learning webszolgáltatások portálon kezelheti](machine-learning-manage-new-webservice.md). 
 
-A felhasználó a webszolgáltatás most adhatja meg az új cél a [adatok exportálása] [ writer] modul a webszolgáltatáshoz való hozzáféréskor.
+hello felhasználói hello webszolgáltatás most adja meg a hello új célhelyét [adatok exportálása] [ writer] modul hello webszolgáltatás való hozzáféréskor.
 
 ## <a name="more-information"></a>További információ
-Részletes példa, tekintse meg a [webszolgáltatás-paramétereket](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) bejegyzést a [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx).
+Részletes példa, lásd: hello [webszolgáltatás-paramétereket](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) hello bejegyzést [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx).
 
-A Machine Learning webszolgáltatás elérése további információkért lásd: [hogyan kell használni az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
+A Machine Learning webszolgáltatás elérése további információkért lásd: [hogyan tooconsume az Azure Machine Learning Web service](machine-learning-consume-web-services.md).
 
 <!-- Images -->
 [icon]: ./media/machine-learning-web-service-parameters/icon.png

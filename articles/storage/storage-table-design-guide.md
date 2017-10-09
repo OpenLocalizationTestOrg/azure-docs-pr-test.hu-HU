@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Storage táblázat kialakítási útmutató |} Microsoft Docs"
+title: "aaaAzure tárolási tábla tervezési útmutatója |} Microsoft Docs"
 description: "A Tervező méretezhető és Performant táblák Azure Table Storage-ban"
 services: storage
 documentationcenter: na
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 02/28/2017
 ms.author: jahogg
-ms.openlocfilehash: 5ddb234cc97b3113ec865f97195c871b9f2f40d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bbac5e83fe994c1ba1408dd43367fbcfca6a2148
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-table-design-guide-designing-scalable-and-performant-tables"></a>Az Azure Storage táblázat kialakítási Útmutató: Méretezhető tervezésével és Performant táblák
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
-A Tervező méretezhető és performant táblák, például a teljesítmény, méretezhetőség és költség tényező figyelembe kell vennie. Ha korábban létrehozott sémák a relációs adatbázisok, ezeket a szempontokat ismerős lehet, de amíg vannak bizonyos az az Azure Table storage modell és a relációs modellek közötti Hasonlóságok, is számos fontos különbségek vannak. Ezek a különbségek általában nagyon különböző kialakításokról, előfordulhat, hogy keresse meg a counter-intuitive vagy valaki ismeri a relációs adatbázisok nem megfelelő, de amelyek tegye célszerű jó például az Azure Table szolgáltatás egy NoSQL kulcs-érték tároló tervezésekor vezethet. A Tervező különbségek számos módon változik meg a tényt, hogy a Table szolgáltatás célja, hogy az entitások (relációs adatbázis-terminológia sorainak) vagy olyan adatkészletekhez, amelyek rendkívül nagy tranzakció kötetek támogatnia kell az adatok több milliárd tartalmazó felhőméretű alkalmazások támogatását: ezért figyelembe kell vennie eltérően, hogyan tárolja az adatait, és a Table szolgáltatás működésének megismerése. Egy jól kidolgozott NoSQL-adattár engedélyezheti a megoldás méretezése sokkal tovább (és alacsonyabb költségekkel) mint olyan megoldás, amely egy relációs adatbázist használ. Az útmutató az alábbi témakörök segítségével.  
+méretezhető toodesign és performant táblák, például a teljesítmény, méretezhetőség és költség tényező figyelembe kell vennie. Korábban létrehozott sémák a relációs adatbázisok, ha ezeket a szempontokat kell-e a megszokott tooyou, de amíg vannak bizonyos az hello Azure Table storage modell és a relációs modellek közötti Hasonlóságok, is számos fontos eltéréseket. Ezek a különbségek általában toovery különböző kialakításokról, előfordulhat, hogy ismeri a relációs adatbázisok counter-intuitive vagy rossz toosomeone keresse meg, de amelyek tegye célszerű jó egy NoSQL kulcs-érték tároló hello Azure Table szolgáltatás például tervezésekor vezethet. A Tervező különbségek számos módon változik meg hello arra, hogy hello Table szolgáltatás, amely tartalmazhat egy entitások (relációs adatbázis-terminológia sorainak) az adatok, vagy olyan adatkészletekhez, amelyek támogatnia kell a nagyon nagy tervezett toosupport felhőméretű alkalmazások tranzakció kötetek: így kell toothink másképp kapcsolatos hogyan tárolja az adatait, és hello Table szolgáltatás működésének megismerése. Egy jól kidolgozott NoSQL-adattár engedélyezheti a megoldás tooscale sokkal tovább (és alacsonyabb költségekkel) mint olyan megoldás, amely egy relációs adatbázist használ. Az útmutató az alábbi témakörök segítségével.  
 
-## <a name="about-the-azure-table-service"></a>Az Azure Table szolgáltatással kapcsolatos
-Ez a szakasz azt mutatja be néhány fő funkciója a Table szolgáltatás szempontjából különösen teljesítményének és méretezhetőségének tervezése. Ha most ismerkedik az Azure Storage és a Table szolgáltatás, elolvashatja [Microsoft Azure Storage bemutatása](storage-introduction.md) és [Ismerkedés az Azure Table Storage használatának .NET](storage-dotnet-how-to-use-tables.md) további része a cikk elolvasása előtt. Bár ez az útmutató célja azoknak a Table szolgáltatásban, ez magában foglalja a néhány semmiről nem kell az Azure üzenetsor és a Blob szolgáltatás, és hogyan használhatja őket a megoldás a Table szolgáltatás együtt.  
+## <a name="about-hello-azure-table-service"></a>Kapcsolatos hello Azure Table szolgáltatás
+Ez a szakasz néhány hello fő szolgáltatásainak hello Table szolgáltatás teljesítményének és méretezhetőségének különösen fontos toodesigning mutatja be. Ha új tooAzure tárolási és hello Table szolgáltatás, elolvashatja [Azure Storage bemutatása tooMicrosoft](storage-introduction.md) és [Ismerkedés az Azure Table Storage használatának .NET](storage-dotnet-how-to-use-tables.md) hello többi elolvasása előtt a cikk. Hello Ez az útmutató elsősorban hello Table szolgáltatás, bár ez magában foglalja a néhány leírását az Azure Queue hello Blob, és szolgáltatások hogyan használhatja őket a megoldás a Table szolgáltatás hello együtt.  
 
-Mi az a Table szolgáltatás? Előfordulhat, hogy a neve alapján várt, a Table szolgáltatás táblázatos formátumú adatok használ. A ismertetésében a tábla minden egyes sorára jelöli egy entitás, és az oszlopok tárolja, hogy az entitás tulajdonságait. Minden entitás egy kulcspárra van szüksége, egyedi azonosításához, és a Timestamp típusú oszlop, amely a Table szolgáltatás segítségével nyomon követheti az entitás legutóbbi frissítése (Ez automatikusan megtörténik, és adjon meg egy tetszőleges értéket nem lehet felülírni a Timestamp típusú manuálisan). A Table szolgáltatás az utolsó módosításának időbélyegző (LMT) egyidejű hozzáférések optimista kezelésére használ.  
+Mi az az hello Table szolgáltatás? Hello neve alapján várt, módon hello Table szolgáltatás használ a toostore táblázatos formátumú adatok. Hello ismertetésében hello tábla minden egyes sorára entitás jelöli, és hello oszlopok tároló hello adott entitás tulajdonságait. Minden entitás rendelkezik kulcsok toouniquely két azonosítását, és egy Timestamp típusú oszlop, amely a Table szolgáltatás hello tootrack használja, amikor hello entitás utolsó frissítésének (Ez automatikusan megtörténik, és adjon meg egy tetszőleges értéket nem lehet felülírni hello időbélyeg manuálisan). Table szolgáltatás hello a last-modified időbélyeg (LMT) toomanage egyidejű hozzáférések optimista használja.  
 
 > [!NOTE]
-> A Table szolgáltatás REST API-műveleteket is vissza egy **ETag** érték, amely azt a last-modified időbélyeg (LMT) származik. Ebben a dokumentumban lesz a kifejezéseket használjuk ETag és LMT azonos értelemben mert ugyanazokat az alapul szolgáló adatokat hivatkoznak.  
+> hello tábla szolgáltatás REST API-műveleteket is vissza egy **ETag** osztályból származik hello last-modified időbélyeg (LMT) értéket. Ebben a dokumentumban használjuk hello kifejezések ETag és LMT azonos értelemben mert toohello vonatkoznak ugyanazt az alapul szolgáló adatokat.  
 > 
 > 
 
-Az alábbi példában egy egyszerű Táblatervezés alkalmazott és részleg entitások tárolásához. Ez a kialakítás egyszerű számos az útmutató későbbi részében látható példája alapul.  
+hello alábbi példában egy egyszerű táblázat kialakítási toostore alkalmazott és részleg entitásokat. Ez a kialakítás egyszerű hello példák az útmutató későbbi részében látható számos alapul.  
 
 <table>
 <tr>
@@ -125,82 +125,82 @@ Az alábbi példában egy egyszerű Táblatervezés alkalmazott és részleg ent
 </table>
 
 
-Az eddigi Ez hasonlít nagyon a egy relációs adatbázisban a legfőbb különbségek a kötelező oszlopok, és ugyanabban a táblában több entitástípusok tárolásának képessége. Emellett egyes többek között a felhasználó által definiált tulajdonságok **Keresztnév** vagy **kora** adattípusú, például az egész szám vagy karakterlánc, csak, például egy relációs adatbázisban oszlop. Bár eltérően egy relációs adatbázisban, a Table szolgáltatás séma nélküli jellege azt jelenti, hogy a tulajdonság nem szükséges minden entitáshoz ugyanolyan adattípusúak. Összetett adattípusú egy adott tulajdonságra vannak tárolva, például a JSON- vagy XML-szerializált formátum kell használnia. A table szolgáltatás például a támogatott adattípusok, támogatott dátumtartományok, elnevezési szabályok és mérete megkötések kapcsolatos további információkért lásd: [ismertetése a Table szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).
+Az eddigi ez keresése nagyon hasonló tooa tábla egy relációs adatbázisban hello kulcs eltérésekkel alatt hello kötelező oszlopok és hello képességét toostore több entitás típusok a hello ugyanabban a táblában. Emellett egyes hello felhasználói tulajdonságok például **Keresztnév** vagy **kora** adattípusú, például az egész szám vagy karakterlánc, csak, például egy relációs adatbázisban oszlop. Bár eltérően egy relációs adatbázisban, hello séma nélküli jellege hello tábla szolgáltatás azt jelenti, hogy a tulajdonság nem szükséges hello azonos adattípus minden entitáshoz. toostore összetett adattípusú egyetlen tulajdonsággal, például a JSON- vagy XML-szerializált formátum kell használnia. Hello tábla szolgáltatás például a támogatott adattípusok, támogatott dátumtartományok, elnevezési szabályok és mérete megkötések kapcsolatos további információkért lásd: [ismertetése hello tábla szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).
 
-Mivel látni fogja, a választott **PartitionKey** és **RowKey** jó Táblatervezés alapvető. Minden entitás egy táblázatban tárolja rendelkeznie kell egy egyedi kombinációja **PartitionKey** és **RowKey**. Csakúgy, mint a kulcsokat egy relációs adatbázis tábláinak a **PartitionKey** és **RowKey** értékek egy fürtözött index, amely lehetővé teszi, hogy a gyors look-ups indexelt; azonban a Table szolgáltatás nem hoz létre az bármely másodlagos indexek, és így ezek a csak két az indexelt tulajdonságok (néhány későbbi mintázatokat megjelenítése hogyan oldható meg a nyilvánvaló korlátozás).  
+Mivel látni fogja, a választott **PartitionKey** és **RowKey** alapvető toogood Táblatervezés van. Minden entitás egy táblázatban tárolja rendelkeznie kell egy egyedi kombinációja **PartitionKey** és **RowKey**. Csakúgy, mint a kulcsokat egy relációs adatbázis tábláinak, hello **PartitionKey** és **RowKey** értékei indexelt toocreate egy fürtözött indexet, amely lehetővé teszi, hogy a gyors look-ups; azonban hello Table szolgáltatás nem hoz létre bármelyik másodlagos indexek, így ezek a hello csak két indexelt tulajdonságok (néhány későbbi hello minták megjelenítése hogyan oldható meg a nyilvánvaló korlátozás).  
 
-Egy tábla egy vagy több partíció épül fel, és látni fogja, a tervezési döntéseit számos lesz körül kiválasztása megfelelő **PartitionKey** és **RowKey** a megoldás optimalizálása érdekében. A megoldás csak egyetlen tábla összes, a partíciók szervezve entitásokat tartalmazó sikerült alkotják, de általában egy megoldás több táblák esetében. Táblázatok segítséget logikailag rendezheti az entitások, a hozzáférés-vezérlési listák segítségével adataihoz való hozzáférés kezeléséhez nyújt segítséget, és egyetlen tárolási művelettel teljes táblázat elvetné.  
+Egy tábla egy vagy több partíció épül fel, és mivel látni fogja, hello számos tervezési döntések körül megfelelő választás lehet lesz **PartitionKey** és **RowKey** toooptimize a megoldás. A megoldás csak egyetlen tábla összes, a partíciók szervezve entitásokat tartalmazó sikerült alkotják, de általában egy megoldás több táblák esetében. Táblázatok segítséget toologically rendezheti az entitások, amelyekkel kezelheti a hozzáférést toohello használatával végzett hozzáférés-vezérlési listák és egyetlen tárolási művelettel teljes táblázat elvetné.  
 
 ### <a name="table-partitions"></a>Táblapartíciók
-A fiók neve, a tábla nevét és **PartitionKey** együtt azonosíthatja a partíción belül a társzolgáltatás, ahol a table szolgáltatás tárolja az entitás. Amellett, hogy az entitások címzési séma része, a partíciók az egyes tranzakciókra vonatkozóan hatókör meghatározása (lásd: [entitás csoport tranzakciók](#entity-group-transactions) alább), és hogyan méretezze át a table szolgáltatás alapját. További információk a partíciókon: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md).  
+hello fiók nevét, a tábla neve és **PartitionKey** hello partíción belül hol tárolja az hello table szolgáltatás a hello entitás hello társzolgáltatás együtt azonosításához. Amellett, hogy a címzési séma entitások hello részét, partíciók tranzakciók hatókör meghatározása (lásd: [entitás csoport tranzakciók](#entity-group-transactions) alább), és hogyan hello table szolgáltatás méretezi űrlap hello alapját. További információk a partíciókon: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md).  
 
-A Table szolgáltatásban, az egyes csomópontok szolgáltatások egy vagy több befejezéseként partíciókat és a szolgáltatás méretezik dinamikus terheléselosztás partíciók csomópontjai között. Egy csomópont terhelésnek van kitéve, ha a table szolgáltatás is *vágási* a partíciók száma a tartományon, más csomópontok csomópont által kiszolgált; enyhül forgalmat, ha a szolgáltatás képes *egyesítési* csendes csomópontjáról partíció tartományok biztonsági alakzatot egyetlen csomópont.  
+A Table szolgáltatás hello, az egyes csomópontok szolgáltatások egyik, vagy több partíció befejeződését, és méretezik service dinamikus terheléselosztás hello partíciók csomópontjai között. Ha egy csomópont terhelésnek van kitéve, hello table szolgáltatás is *vágási* partíciók hello számos különböző csomópontokon, a csomópont által kiszolgált; forgalom enyhül, amikor hello szolgáltatást is *egyesítési* hello partíció találhatók csendes csomópontok biztonsági alakzatot egyetlen csomópont.  
 
-További információ a belső részleteit a Table szolgáltatás, és ebben az esetben a szolgáltatás kezeli a partíciók, hogyan talál a [Microsoft Azure Storage: A magas rendelkezésre álló felhőalapú tárolási szolgáltatásba az erős konzisztencia](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx).  
+További információ a hello hello belső részleteit Table szolgáltatás, és különösen hello szolgáltatás kezeli a partíciókat, hogy olvassa hello papír [Microsoft Azure Storage: A magas rendelkezésre álló felhőalapú tárolási szolgáltatásba az erős konzisztencia](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx).  
 
 ### <a name="entity-group-transactions"></a>Entitás csoport tranzakciók
-A Table szolgáltatásban entitás csoport tranzakciók (EGTs) atomi frissítések végrehajtásához a több egység közötti csak beépített mechanizmus. EGTs is nevezzük *kötegelt tranzakciókat* bizonyos dokumentációkban. EGTs csak működhessenek entitások tárolt partícióra (ugyanazzal a partíciókulccsal egy adott táblában megosztás), így bármikor atomi tranzakciós viselkedését kell gondoskodnia kell arról, hogy ezeket az entitásokat tartalmazó partícióra vannak több egység közötti. Ez gyakran az több entitástípusok megőrzi a ugyanahhoz a táblához (és a partíció) található, és több tábla nem használ másik entitástípusok okát. Egyetlen EGT legfeljebb 100 entitást is működik.  Ha több egyidejű EGTs is fontos, hogy ezek EGTs működés nem lehetséges, amelyek közösek a EGTs között, mivel ellenkező esetben feldolgozása késleltethető entitások feldolgozásra.
+A Table szolgáltatás hello entitás csoport tranzakciók (EGTs) csak beépített mechanizmus hello atomi frissítések végrehajtásához a több egység közötti. EGTs megtalálhatók hivatkozott tooas *kötegelt tranzakciókat* bizonyos dokumentációkban. EGTs csak működhessenek hello tárolt entitásokat tartalmazó partícióra (megosztás hello egy adott táblában azonos partíciós kulcs), így bármikor atomi tranzakciós viselkedés szüksége több egység közötti tartozó entitásokból hello tooensure kell egyazon partícióra kerüljenek. Ez gyakran az több entitástípusok megőrzi hello azonos tábla (és particionálhatja) található, és több tábla nem használ másik entitástípusok okát. Egyetlen EGT legfeljebb 100 entitást is működik.  Ha több egyidejű EGTs fontos tooensure feldolgozása van e EGTs nem működik, amelyek közösek a EGTs között, mivel ellenkező esetben feldolgozása késleltethető entitások.
 
-EGTs is vezethet, hogy kipróbálhassa a Tervező egy potenciális kompromisszum: több partíciót használata növeli a méretezhetőség, az alkalmazás Azure-csomópontokon keresztüli kérelmek terheléselosztási további lehetőségekkel rendelkezik, de ez korlátozhatja a lehetőségét, mert az alkalmazás atomi tranzakciók elvégzéséhez, és erős konzisztenciát biztosít az adatok karbantartása. Emellett nincsenek egyedi méretezhetőségi célok javasoljuk, hogy előfordulhat, hogy korlátozza az egyetlen csomópont számíthat tranzakciók átviteli szinten: az Azure storage-fiókok és a table szolgáltatás vonatkozó méretezhetőségi célok kapcsolatos további információkért lásd: [Az azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md). A jelen útmutató későbbi szakaszok tárgyalják különböző kialakítási stratégiák, amelyek segítenek kompromisszumot alakítson ki például a kezelése, és hogyan érdemes ismertetik a partíciós kulcs, az ügyfélalkalmazás a meghatározott követelmények alapján kiválaszthatja.  
+EGTs is vezethet a potenciális kompromisszum a tooevaluate kialakításában: több partíciót használata megnöveli a hello méretezhetőség, az alkalmazás Azure-csomópontokon keresztüli kérelmek terheléselosztási további lehetőségekkel rendelkezik, de ez korlátozhatja a hello az alkalmazás tooperform atomi tranzakciók azon képessége, és erős konzisztenciát biztosít az adatok karbantartása. Emellett nincsenek egyedi méretezhetőségi célok javasoljuk, hogy előfordulhat, hogy korlátozza az egyetlen csomópont számíthat tranzakciók hello átviteli szintű hello: További információ az Azure storage-fiókok és hello tábla hello méretezhetőségi célok szolgáltatás című [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md). A jelen útmutató későbbi szakaszok tárgyalják különböző kialakítási stratégiák, amelyek segítenek kezelni például ez kompromisszumot és ismertetik, hogyan lehet a legjobban toochoose a partíciós kulcs hello meghatározott követelmények alapján az ügyfélalkalmazás.  
 
 ### <a name="capacity-considerations"></a>A kapacitás kapcsolatos szempontok
-Az alábbi táblázat tartalmaz néhány érdemes figyelembe vennie, amikor tervezésekor a Table szolgáltatás megoldás értékek:  
+hello alábbi táblázat tartalmaz néhány hello kulcsértékei toobe tudomást amikor tervezésekor a Table szolgáltatás megoldás:  
 
 | Az Azure storage-fiók teljes kapacitás | 500 TB |
 | --- | --- |
-| Egy Azure storage-fiókot a táblák száma |Csak a tárfiók kapacitásának korlátozva |
-| Egy tábla partíciók száma |Csak a tárfiók kapacitásának korlátozva |
-| Partíció entitástartományának száma |Csak a tárfiók kapacitásának korlátozva |
-| Az egyes entitás mérete |Legfeljebb 255 tulajdonságok legfeljebb 1 MB (beleértve a **PartitionKey**, **RowKey**, és **időbélyeg**) |
-| A méret a **PartitionKey** |A karakterlánc legfeljebb 1 KB méretű |
-| A méret a **RowKey** |A karakterlánc legfeljebb 1 KB méretű |
-| Egy entitás csoport tranzakció mérete |Egy tranzakció legfeljebb 100 entitást tartalmazhat, és a tartalom 4 MB-nál kevesebb kell lennie. Egy EGT csak frissíthető entitás egyszer. |
+| Egy Azure storage-fiókot a táblák száma |Csak hello tárfiók hello kapacitásának korlátozva |
+| Egy tábla partíciók száma |Csak hello tárfiók hello kapacitásának korlátozva |
+| Partíció entitástartományának száma |Csak hello tárfiók hello kapacitásának korlátozva |
+| Az egyes entitás mérete |Legfeljebb 255 tulajdonságok legfeljebb too1 MB (beleértve a hello **PartitionKey**, **RowKey**, és **időbélyeg**) |
+| Hello mérete **PartitionKey** |Egy karakterlánc too1 KB méretű mentése |
+| Hello mérete **RowKey** |Egy karakterlánc too1 KB méretű mentése |
+| Egy entitás csoport tranzakció mérete |Egy tranzakció legfeljebb 100 entitást tartalmazhat, és hello hasznos lehet kisebb, mint 4 MB-nál. Egy EGT csak frissíthető entitás egyszer. |
 
-További információkért lásd: [ismertetése a Table szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).  
+További információkért lásd: [ismertetése hello tábla szolgáltatás adatmodell](http://msdn.microsoft.com/library/azure/dd179338.aspx).  
 
 ### <a name="cost-considerations"></a>Költség kapcsolatos szempontok
-A TABLE storage költségei viszonylag alacsonyak, de a Table szolgáltatás használó megoldások próbaidőszakában részeként tartalmaznia kell a kapacitás és a tranzakciók mennyisége költség becslése. Azonban számos forgatókönyvben denormalizált vagy ismétlődő adatok tárolására javítása érdekében a teljesítmény vagy a méretezhetőség miatt a megoldás nem egy érvényes megközelítés érvénybe. Az árazással kapcsolatos további információkért lásd: [Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).  
+A TABLE storage költségei viszonylag alacsonyak, de költség becslése mindkét kapacitás használati és hello tranzakciók mennyisége a hello Table szolgáltatás használó megoldások próbaidőszakában részeként tartalmaznia kell. Azonban számos forgatókönyvben denormalizált vagy ismétlődő adatok tárolását rendelés tooimprove hello teljesítmény vagy a méretezhetőség miatt a megoldás nem egy érvényes megközelítés tootake. Az árazással kapcsolatos további információkért lásd: [Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).  
 
 ## <a name="guidelines-for-table-design"></a>Táblatervezés vonatkozó irányelvek
-A listák összesítésének néhány a kulcs irányelveket kell figyelembe venni a táblák tervezése során, és ez az útmutató foglalkozni fog velük az összes későbbi részében részletesebben. Ezeket az irányelveket nagyon eltérnek a általában végrehajtania a relációs adatbázis tervezési irányelveket.  
+A listák összesítésének néhány hello kulcs irányelveket kell figyelembe venni a táblák tervezése során, és ez az útmutató foglalkozni fog velük az összes későbbi részében részletesebben. Ezeket az irányelveket nagyon eltérnek általában végrehajtania a relációs adatbázis-tervező hello irányelveket.  
 
-A Table szolgáltatás megoldás kell tervezése *olvasási* hatékony:
+A Table szolgáltatás megoldás toobe tervezése *olvasási* hatékony:
 
-* ***Tervezze meg az olvasási műveleteket alkalmazásokban lekérdezése.*** A táblák tervezésekor gondolja át a lekérdezések (különösen a várakozási bizalmas is), amely, végrehajtja a véleménye hogyan frissíti az entitások előtt. Ez általában annak az eredménye a hatékony és performant megoldás.  
-* ***Adja meg a lekérdezések PartitionKey és RowKey is.*** *Mutasson a lekérdezések* például ezek azok a leghatékonyabb tábla szolgáltatás lekérdezéseket.  
-* ***Érdemes tárolni a duplikált entitásokat.*** A TABLE storage olcsó, érdemes a ugyanaz az entitás tárolni többször (különböző kulccsal rendelkező) a hatékonyabb lekérdezések engedélyezéséhez.  
-* ***Vegye figyelembe az adatok denormalizing.*** A TABLE storage olcsó ezért fontolja meg az adatok denormalizing. Összegző entitások például tárolja, hogy az összesített adatok lekérdezések csak egyetlen entitáshoz eléréséhez szükséges.  
-* ***Használja az összetett kulcs értékeket.*** A csak akkor kulcsokban **PartitionKey** és **RowKey**. Például összetett kulcsértékei használatával engedélyezze a másodlagos kulccsal elérési utakat a részére.  
-* ***Lekérdezés vetítéshez használni.*** Válassza ki a szükséges mezők lekérdezésekkel a hálózati átvitel adatmennyiség csökkentése érdekében.  
+* ***Tervezze meg az olvasási műveleteket alkalmazásokban lekérdezése.*** A táblák tervezésekor gondolniuk hello lekérdezéseket (különösen hello késés bizalmas is), amely, végrehajtja a véleménye hogyan frissíti az entitások előtt. Ez általában annak az eredménye a hatékony és performant megoldás.  
+* ***Adja meg a lekérdezések PartitionKey és RowKey is.*** *Mutasson a lekérdezések* például ezek a hello leghatékonyabb tábla szolgáltatás lekérdezéseket.  
+* ***Érdemes tárolni a duplikált entitásokat.*** A TABLE storage olcsó ezért fontolja meg több alkalommal (különböző kulccsal rendelkező) ugyanaz az entitás tárolása hello tooenable hatékonyabb lekérdezések.  
+* ***Vegye figyelembe az adatok denormalizing.*** A TABLE storage olcsó ezért fontolja meg az adatok denormalizing. Összegző entitások például tárolja, hogy a lekérdezések összesített adatok csak egyetlen entitáshoz tooaccess kell.  
+* ***Használja az összetett kulcs értékeket.*** hello csak akkor kulcsokban **PartitionKey** és **RowKey**. Például használja az összetett kulcs értékeket tooenable másodlagos kulccsal elérési útvonalak tooentities.  
+* ***Lekérdezés vetítéshez használni.*** Válassza ki a csak a szükséges mezők hello lekérdezésekkel hello hálózati átvitel adatok mennyisége hello csökkentése érdekében.  
 
-A Table szolgáltatás megoldás kell tervezése *írási* hatékony:  
+A Table szolgáltatás megoldás toobe tervezése *írási* hatékony:  
 
-* ***Ne hozzon létre a gyakran használt adatok partíciókat.*** Válassza ki a kulcsokat, amelyek lehetővé teszik, hogy a kérelmek elosztva idő minden helyen több partíciót.  
-* ***Kerülje a forgalmat a teljesítményt.*** Elfogadható időn keresztül a forgalom sima, és elkerülheti a forgalmat a teljesítményt.
-* ***Feltétlenül ne hozzon létre egy külön táblázat az egyes entitás.*** Ha atomi tranzakciók entitástípusok között, több entitás típusaival tárolhat partícióra ugyanabban a táblában.
-* ***Fontolja meg a maximális átviteli sebesség kell elérni.*** Kell figyelembe vennie a méretezhetőségi célok a Table szolgáltatás, és győződjön meg arról, hogy a tervező nem okoz Önnek, hogy azokat.  
+* ***Ne hozzon létre a gyakran használt adatok partíciókat.*** Válassza ki, amelyek lehetővé teszik toospread kulcsok a kérelmek közötti idő minden helyen több partíciót.  
+* ***Kerülje a forgalmat a teljesítményt.*** Hello forgalom sima ésszerű meghatározott időtartam során rendelkezésre, és elkerülheti a forgalmat a teljesítményt.
+* ***Feltétlenül ne hozzon létre egy külön táblázat az egyes entitás.*** Ha atomi tranzakciók entitástípusok között, tárolhat több entitás típusaival azonos hello partíciójához hello ugyanabban a táblában.
+* ***Vegye figyelembe a hello maximális átviteli sebesség kell elérni.*** Kell figyelembe vennie a Table szolgáltatás hello hello méretezhetőségi célok, és győződjön meg arról, hogy a tervező nem miatt a tooexceed őket.  
 
 Ez az útmutató olvasás példák, amelyek a gyakorlatban az összes alapelvek jelenik meg.  
 
 ## <a name="design-for-querying"></a>Tervezési lekérdezése
-TABLE szolgáltatási megoldások intenzív, írási intenzív vagy a két vegyesen olvashatók. Ez a szakasz a Table szolgáltatás az olvasási műveletek hatékonyan támogatásához tervezése során figyelembe kell vennie a következőket összpontosít. A Tervező, támogatja a hatékony olvassa el az operations általában is hatékony az írási műveletek. Van azonban az írási műveletek, a következő szakaszban tárgyalt tervezésekor figyelembe kell vennie további szempontok [adatmódosítás kialakítása](#design-for-data-modification).
+TABLE szolgáltatási megoldások intenzív, írási intenzív vagy hello két vegyesen olvashatók. Ez a szakasz összpontosít hello dolgot toobear szem előtt, a Table szolgáltatás toosupport hatékonyan olvasási műveletek tervezése során. A Tervező, támogatja a hatékony olvassa el az operations általában is hatékony az írási műveletek. Van azonban további szempontok toobear figyelembe amikor designing toosupport írási műveleteket, hello a következő szakaszban tárgyalt [adatmódosítás kialakítása](#design-for-data-modification).
 
-Ahhoz, hogy hatékonyan-adatok olvasása a Table szolgáltatás megoldás tervezése az jó kiindulási pont, kérje meg a "milyen lekérdezések alkalmazás kell végrehajtani a szükséges adatokat lekérdezni a Table szolgáltatás?"  
+A Table szolgáltatás megoldás tooenable tervezéséhez jó kiindulási pont tooread adatok hatékonyan tooask "milyen lekérdezések fogja a szükséges tooexecute tooretrieve hello alkalmazásadatok a Table szolgáltatás hello kell?"  
 
 > [!NOTE]
-> A Table szolgáltatás fontos beolvasni a Tervező megfelelő előre mert bonyolult és költséges később módosítható. Például egy relációs adatbázisban is gyakran lehet cím teljesítményproblémák egyszerűen, amelyet indexek hozzáadása egy meglévő adatbázist: Ez a lehetőség nem érhető a Table szolgáltatással.  
+> Table szolgáltatás hello, fontos tooget hello megfelelő kialakítás előre mert bonyolult és költséges toochange később. Például egy relációs adatbázisban, gyakran egyszerűen hozzáadásával lehetséges tooaddress teljesítményproblémák indexeli a meglévő adatbázis tooan: Ez a lehetőség nem érhető a Table szolgáltatás hello.  
 > 
 > 
 
-Ez a szakasz meg kell oldania a táblák lekérdezése tervezésekor kulcs témákra összpontosít. Ebben a szakaszban szereplő témakörök az alábbiak:
+Ez a szakasz hello kapcsolatos problémák meg kell oldania a táblák lekérdezése tervezésekor összpontosít. Ebben a szakaszban ismertetett hello témaköröket tartalmazza:
 
 * [Hogy a választott PartitionKey és RowKey milyen hatással van a teljesítmény-küszöbérték](#how-your-choice-of-partitionkey-and-rowkey-impacts-query-performance)
 * [Egy megfelelő PartitionKey kiválasztása](#choosing-an-appropriate-partitionkey)
-* [A Table szolgáltatás lekérdezések optimalizálása](#optimizing-queries-for-the-table-service)
-* [A Table szolgáltatás az adatok rendezése](#sorting-data-in-the-table-service)
+* [A Table szolgáltatás hello lekérdezések optimalizálása](#optimizing-queries-for-the-table-service)
+* [A Table szolgáltatás hello adatok rendezése](#sorting-data-in-the-table-service)
 
 ### <a name="how-your-choice-of-partitionkey-and-rowkey-impacts-query-performance"></a>Hogy a választott PartitionKey és RowKey milyen hatással van a teljesítmény-küszöbérték
-Az alábbi példák azt feltételezik, hogy a table szolgáltatás a következő struktúrával alkalmazott entitások tárolja (a példák a legtöbb hagyja ki ezt a **időbélyeg** jobb érthetőség kedvéért bizonyos tulajdonság):  
+hello alábbi példák azt feltételezik hello table szolgáltatás alkalmazott entitások tárolja a struktúra a következő hello (hello példák a legtöbb hagyja el a hello **időbélyeg** jobb érthetőség kedvéért bizonyos tulajdonság):  
 
 | *Oszlop neve* | *Adattípus* |
 | --- | --- |
@@ -211,123 +211,123 @@ Az alábbi példák azt feltételezik, hogy a table szolgáltatás a következő
 | **Kora** |Egész szám |
 | **E-mail cím** |Karakterlánc |
 
-A korábbi szakaszban [Azure Table szolgáltatás áttekintése](#overview) néhány szolgáltatását az Azure Table szolgáltatás, amely közvetlenül befolyásolják a lekérdezéshez tervezéséről foglalja össze. Ezek a Table szolgáltatás Lekérdezéstervezés vonatkozó általános irányelveket eredményez. Vegye figyelembe, hogy a Table szolgáltatásból REST API-t a további tudnivalókat lásd az alábbi példákban szereplő szűrőszintaxisának [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
+a szakasz korábbi hello [Azure Table szolgáltatás áttekintése](#overview) néhány hello funkciói a hello Azure Table szolgáltatás, amely közvetlenül befolyásolják a lekérdezéshez tervezéséről foglalja össze. Ezek a következő általános irányelveket a Table szolgáltatás Lekérdezéstervezés hello eredményez. Vegye figyelembe, hogy az alábbi hello a példákban szereplő hello szűrőszintaxisának hello Table szolgáltatás REST API-t a további tudnivalókat lásd a [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
 
-* A ***pont lekérdezés*** a leghatékonyabb keresési használatára, és nagy mennyiségű keresések vagy a legkisebb mértékű késleltetést igénylő keresések használandó ajánlott. Ilyen lekérdezést az indexek segítségével egyedi entitás nagyon hatékonyan mindkét megadásával keresse meg a **PartitionKey** és **RowKey** értékeket. Például: $filter = (PartitionKey eq 'Értékesítés') és (RowKey eq '2')  
-* Második legjobb van egy ***értéktartomány lekérdezésének*** , amely használja a **PartitionKey** és a szűrők számos **RowKey** egynél több entitáskészlet visszaadandó értékek száma. A **PartitionKey** érték azonosít egy adott partícióra, és a **RowKey** értékek azonosítsa az adott partíció entitástartományának részhalmazát. Például: $filter = "Értékesítési és RowKey ge" PartitionKey eq és RowKey lt jelzést "  
-* Harmadik legjobb van egy ***partíció vizsgálata*** , amely használja a **PartitionKey** és olyan nem kulcs tulajdonsága, és hogy a szűrők térhetnek vissza egy entitást. A **PartitionKey** érték egy adott partícióra azonosítja, és a tulajdonság értékek válassza ki az adott partíció entitást egy részéhez. Például: $filter PartitionKey eq "Értékesítési" és a Vezetéknév eq 'Smith' =  
-* A ***tábla vizsgálata*** nem tartalmazza a **PartitionKey** és nem nagyon hatékony, mivel az összes pedig a hozzá tartozó entitások az a táblázat partíciókat keresi. A táblázatbeolvasás, függetlenül a szűrő használja-e hajtja végre a **RowKey**. Például: $filter Vezetéknév eq "János" =  
-* Több entitás visszaadó lekérdezések Alapértelmezések rendezve **PartitionKey** és **RowKey** sorrendje. Az ügyfél entitást keresésére átrendezésével elkerüléséhez válassza ki a **RowKey** , amely meghatározza, hogy a leggyakrabban használt rendezési sorrend.  
+* A ***pont lekérdezés*** hello leghatékonyabb keresési toouse, és nagy mennyiségű keresések vagy a legkisebb mértékű késleltetést igénylő keresések használt toobe ajánlott. Ilyen lekérdezés nagyon hatékonyan az hello indexek toolocate egyedi entitás használhatja mindkettő hello megadásával **PartitionKey** és **RowKey** értékeket. Például: $filter = (PartitionKey eq 'Értékesítés') és (RowKey eq '2')  
+* Második legjobb van egy ***értéktartomány lekérdezésének*** hello használó **PartitionKey** és a szűrők számos **RowKey** értékek tooreturn egynél több entitás. Hello **PartitionKey** érték azonosítja az egy adott partícióra, és a hello **RowKey** értékek azonosítása hello entitások az adott partíció egy részét. Például: $filter = "Értékesítési és RowKey ge" PartitionKey eq és RowKey lt jelzést "  
+* Harmadik legjobb van egy ***partíció vizsgálata*** hello használó **PartitionKey** és olyan nem kulcs tulajdonsága, és hogy a szűrők térhetnek vissza egy entitást. Hello **PartitionKey** érték egy adott partícióra azonosítja, és hello tulajdonság értékei válassza ki az adott partíció hello entitásának egy részéhez. Például: $filter PartitionKey eq "Értékesítési" és a Vezetéknév eq 'Smith' =  
+* A ***tábla vizsgálata*** nem tartalmazza a hello **PartitionKey** és nem nagyon hatékony, mivel az összes pedig a táblázatban a megfelelő entitások hello partíciókat keresi. A táblázatbeolvasás, függetlenül attól, hogy a szűrő-e használja a hello hajtja végre **RowKey**. Például: $filter Vezetéknév eq "János" =  
+* Több entitás visszaadó lekérdezések Alapértelmezések rendezve **PartitionKey** és **RowKey** sorrendje. tooavoid keresésére átrendezésével hello entitásának hello ügyfél, válassza ki a **RowKey** hello leggyakrabban használt rendezési sorrend meghatározó.  
 
-Vegye figyelembe, hogy használja az "**vagy**" alapján egy szűrő meghatározására **RowKey** értéket egy partíció vizsgálati eredményeket, majd egy értéktartomány lekérdezésének nem számít. Ezért kerülje el a lekérdezéseket, szűrők, mint amelyekkel: $filter = PartitionKey eq 'Értékesítés' és (RowKey eq "121" vagy "322" RowKey eq)  
+Vegye figyelembe, hogy használja az "**vagy**" szűrő alapján toospecify **RowKey** értéket egy partíció vizsgálati eredményeket, majd egy értéktartomány lekérdezésének nem számít. Ezért kerülje el a lekérdezéseket, szűrők, mint amelyekkel: $filter = PartitionKey eq 'Értékesítés' és (RowKey eq "121" vagy "322" RowKey eq)  
 
-Az ügyféloldali kódot, amely hatékony-lekérdezéseket hajt végre a Storage ügyféloldali kódtár használatával című részben talál példákat:  
+Az ügyféloldali kódot hello a Storage ügyféloldali kódtára tooexecute hatékony lekérdezések használó című részben talál példákat:  
 
-* [A Storage ügyféloldali kódtár segítségével pont lekérdezése](#executing-a-point-query-using-the-storage-client-library)
+* [A Storage ügyféloldali kódtára hello segítségével pont lekérdezése](#executing-a-point-query-using-the-storage-client-library)
 * [LINQ használatával több entitás beolvasásakor](#retrieving-multiple-entities-using-linq)
 * [Kiszolgálóoldali leképezése](#server-side-projection)  
 
-Ügyféloldali kódot, amelyet kezelni ugyanabban a táblában tárolt több entitás típusokat tud példákért lásd:  
+Példák ügyféloldali kódot, amelyet több entitás kezelni tud a típusok tárolt hello azonos táblázatban, lásd:  
 
 * [Heterogén entitástípusok használata](#working-with-heterogeneous-entity-types)  
 
 ### <a name="choosing-an-appropriate-partitionkey"></a>Egy megfelelő PartitionKey kiválasztása
-A választott **PartitionKey** kell terheléselosztást kell EGTs (konzisztencia biztosításához) használatát teszi lehetővé a követelménnyel szemben az entitások szét több partíciót (méretezhető megoldás biztosításához).  
+A választott **PartitionKey** kell egyensúlyba hello kell tooenables hello használata EGTs (tooensure konzisztencia) hello követelmény toodistribute szemben az entitások több partíciót (tooensure méretezhető megoldás).  
 
-Egy rendkívüli az entitások sikerült egyetlen partícióra vannak tárolva, de ez korlátozottá teheti méretezhetőségét a megoldás, és akadályozzák a table szolgáltatás terheléselosztásához kérelmek igényt. A rendkívüli egy entitás partíció található, amely magas szinten méretezhető lenne és amely lehetővé teszi a table szolgáltatás terheléselosztási kérésekre, de amelyek volna újrafelhasználásának megtiltása entitás csoport tranzakciók száma tárolhatja.  
+Egy rendkívüli az entitások sikerült egyetlen partícióra vannak tárolva, de ez korlátozhatja a megoldás hello méretezhetőséget, és szeretné, hogy hello table szolgáltatás nem tudja tooload-egyenleg kérelmek. A hello más extreme tárolhatja partíciónként, amely magas szinten méretezhető lenne, és lehetővé teszi a hello tábla szolgáltatáskérések tooload elosztani a kéréseket, de amelyek akadályozzák meg entitás csoport tranzakciók használatával egy entitást.  
 
-Az ideális **PartitionKey** , amely lehetővé teszi, hogy használni lehessen a hatékony lekérdezések és annak biztosítása érdekében, a megoldás méretezhető elegendő partíciókkal rendelkezik, amelyek egyike. Általában találja, hogy az entitások lesz-e az entitások elosztja elegendő partíciók megfelelő tulajdonság.
+Az ideális **PartitionKey** , amely lehetővé teszi toouse hatékony lekérdezések és a megoldás megfelelő partíciók tooensure rendelkező méretezhető. Általában találja, hogy az entitások lesz-e az entitások elosztja elegendő partíciók megfelelő tulajdonság.
 
 > [!NOTE]
-> A rendszer, hogy a felhasználók vagy az alkalmazottak kapcsolatos információkat tárolja, például UserID lehet egy jó PartitionKey. Előfordulhat, hogy több entitás, amely egy adott felhasználói azonosítóját használják a partíciós kulcs. Minden entitás, amely a felhasználó adatait tárolja egyetlen partícióra vannak csoportosítva, és ezért ezeket az entitásokat elérhetők entitás csoport tranzakciók, miközben továbbra is magas szinten méretezhető.
+> A rendszer, hogy a felhasználók vagy az alkalmazottak kapcsolatos információkat tárolja, például UserID lehet egy jó PartitionKey. Előfordulhat, hogy több entitás, amely egy adott felhasználói azonosítóját használják hello partíciós kulcs. Minden entitás, amely a felhasználó adatait tárolja egyetlen partícióra vannak csoportosítva, és ezért ezeket az entitásokat elérhetők entitás csoport tranzakciók, miközben továbbra is magas szinten méretezhető.
 > 
 > 
 
-A választott további szempontot **PartitionKey** hogyan meg fog beszúrási, frissítési és törlési entitások kapcsolódó: című [adatmódosítás kialakítása](#design-for-data-modification) alatt.  
+Nincsenek további szempontok a választott **PartitionKey** toohow fog beszúrási, frissítési és törlési entitások kapcsolódó: hello című [adatmódosítás kialakítása](#design-for-data-modification) alatt.  
 
-### <a name="optimizing-queries-for-the-table-service"></a>A Table szolgáltatás lekérdezések optimalizálása
-A Table szolgáltatás automatikusan indexeli az entitások használata a **PartitionKey** és **RowKey** egy fürtözött index, ezért az oka, hogy a lekérdezések pont értékei a leghatékonyabb használatára. Van azonban nem indexei eltérő a fürtözött index a a **PartitionKey** és **RowKey**.
+### <a name="optimizing-queries-for-hello-table-service"></a>A Table szolgáltatás hello lekérdezések optimalizálása
+Table szolgáltatás hello automatikusan elvégzi az entitások hello segítségével **PartitionKey** és **RowKey** értékeket egy fürtözött index, ezért hello oka, hogy a pont lekérdezések vannak hello leghatékonyabb toouse . Van azonban nem fürtözött index hello hello eltérő indexei **PartitionKey** és **RowKey**.
 
-Sok ahhoz, hogy az entitások több feltétel alapján keresési kell megfelelnie. Például az e-mailek alapján alkalmazott entitások keresése Alkalmazottazonosító vagy vezetéknevét. A szakasz a következő minták [táblázat kialakítási minta](#table-design-patterns) követelmény az ilyen típusú cím, és azt a tényt, hogy a Table szolgáltatás nem nyújt másodlagos indexek körül módon ismertetik:  
+Sok meg kell felelnie a követelmények tooenable keresési entitások több feltétel alapján. Például az e-mailek alapján alkalmazott entitások keresése Alkalmazottazonosító vagy vezetéknevét. következő hello szakasz minták hello [táblázat kialakítási minta](#table-design-patterns) követelmény az ilyen típusú cím és megkerülő megoldásának végrehajtásához hello tényt, hogy hello Table szolgáltatás nem nyújt másodlagos indexek módjait ismerteti:  
 
-* [Intra-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) -tárolja a több másolatot minden entitás használatával különböző **RowKey** engedélyezése gyors és hatékony keresések és másodlagos rendezési sorrend különböző használatával (a partícióra) értékek **RowKey** értékeket.  
-* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) - értékekkel különböző RowKey külön partíciók vagy külön táblázatban gyors engedélyezése minden entitás több példányát tárolja, és a különböző rendelésekhatékonykereséstésamásodlagosrendezésisorrend**RowKey** értékeket.  
-* [Index entitások mintát](#index-entities-pattern) -index entitások entitások listájának visszaadó hatékony keresések engedélyezése karbantartása.  
+* [Intra-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) -tárolja a több másolatot minden entitás használatával különböző **RowKey** értékek (hello a partícióra) tooenable gyors és hatékony keresést és a másodlagos rendezési sorrend rendelések használatával különböző **RowKey** értékeket.  
+* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) – minden értékekkel különböző RowKey külön partíciók vagy külön táblázatban tooenable gyors entitás több példányát tárolja, és a különböző rendelésekhatékonykereséstésamásodlagosrendezésisorrend**RowKey** értékeket.  
+* [Index entitások mintát](#index-entities-pattern) -index entitások tooenable hatékony keresések entitások listájának visszaadó karbantartása.  
 
-### <a name="sorting-data-in-the-table-service"></a>A Table szolgáltatás az adatok rendezése
-A Table szolgáltatás adja vissza növekvő sorrendben rendezve entitások **PartitionKey** és a majd **RowKey**. Ezek a kulcsok karakterlánc-értékek és numerikus értékek megfelelően rendezése érdekében kell alakíthatja át őket egy rögzített hosszúságú és nulla kitölti őket. Például, ha az alkalmazott azonosítóérték használja a **RowKey** megadott egész szám, alkalmazottazonosító átalakíthatja **123** való **00000123**.  
+### <a name="sorting-data-in-hello-table-service"></a>A Table szolgáltatás hello adatok rendezése
+Table szolgáltatás hello növekvő sorrendben rendezve entitásokat ad vissza **PartitionKey** és a majd **RowKey**. Ezek a kulcsok karakterlánc-értékek és tooensure, amely numerikus érték rendezése megfelelően kell tooa rögzített hosszúságú alakíthatja át őket, és nulla kitölti őket. Például ha hello alkalmazott azonosító értékét használja hello **RowKey** megadott egész szám, alkalmazottazonosító átalakíthatja **123** túl**00000123**.  
 
-Számos alkalmazás más-más sorrendben rendezett adatok használata követelményekkel rendelkezik: az alkalmazottak például rendezést a neve vagy való csatlakozás dátumát. A szakasz a következő minták [táblázat kialakítási minta](#table-design-patterns) számára, hogy a rendezési sorrend a entitások hogyan cím:  
+Számos alkalmazás toouse adatok más-más sorrendben rendezve követelményekkel rendelkezik: az alkalmazottak például rendezést a neve vagy való csatlakozás dátumát. következő hello szakasz minták hello [táblázat kialakítási minta](#table-design-patterns) hogyan tooalternate sorrendjét az entitások cím:  
 
-* [Helyen belüli-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) - különböző RowKey értékei alapján (a partícióra) gyors engedélyezése minden entitás több példányát tárolja, és hatékony keresést és a másodlagos rendezési sorrend rendelések különböző RowKey értékek használatával.  
-* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) – minden külön táblázatban külön partíciók különböző RowKey értékek segítségével engedélyezi a gyors entitás több példányát tárolja, és hatékony keresést és a másodlagos rendezési sorrend rendelések különböző RowKey értékek használatával .
-* [Napló végéről mintát](#log-tail-pattern) -beolvasni a  *n*  partíció legutóbb hozzáadott entitások egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
+* [Intra-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) -minden különböző RowKey értékekkel entitás több példányát tárolja (hello a partícióra) tooenable gyors és hatékony keresést és a másodlagos rendezési sorrend rendelések különböző RowKey értékek használatával.  
+* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) – minden különböző RowKey érték használatát külön táblázatban tooenable külön partíciók gyors entitás több példányát tárolja, és hatékony keresést és a másodlagos rendezési sorrend rendelések különböző RowKey használatával értékek.
+* [Napló végéről mintát](#log-tail-pattern) -lekérése hello  *n*  entitások legutóbb hozzáadott tooa partíció használatával egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
 
 ## <a name="design-for-data-modification"></a>Adatmódosítás kialakítása
-Ez a szakasz a beszúrások, a frissítések optimalizálása kialakítási szempontjai összpontosít, és törli. Néhány esetben szüksége lesz a kompromisszum terveket, terveket, hasonlóan a relációs adatbázisok terveket (bár a Tervező kompromisszumot kezelésére szolgáló módszerek optimalizálás adatok módosítása ellen lekérdezése optimalizálása közötti kiértékelése különböző egy relációs adatbázisban). A szakasz [táblázat kialakítási minta](#table-design-patterns) néhány részletes kialakítási minta a Table szolgáltatás ismerteti, és kiemeli a néhányat ezek kompromisszumot. A gyakorlatban találja, hogy az entitás lekérdezése optimalizált sok tervek is alkalmas entitások módosítása.  
+Ez a szakasz hello kialakítási szempontjai a beszúrások, a frissítések optimalizálása összpontosít, és törli. Néhány esetben szüksége lesz a tooevaluate hello kompromisszum közötti terveket, terveket, hasonlóan a relációs adatbázisok terveket (bár hello technikák kezelésére szolgáló hello tervezési optimalizálás adatok módosítása ellen lekérdezése optimalizálása kompromisszumot eltérő módon jelennek meg a relációs). a szakasz hello [táblázat kialakítási minta](#table-design-patterns) néhány részletes tervminták hello Table szolgáltatás ismerteti, és kiemeli a néhányat ezek kompromisszumot. A gyakorlatban találja, hogy az entitás lekérdezése optimalizált sok tervek is alkalmas entitások módosítása.  
 
-### <a name="optimizing-the-performance-of-insert-update-and-delete-operations"></a>A teljesítmény optimalizálása a beszúrási, frissítési és törlési műveletek
-Frissíteni vagy törölni egy entitást, meg kell tudni használatával azonosíthassák a **PartitionKey** és **RowKey** értékeket. Ebben a tekintetben a választott **PartitionKey** és **RowKey** az entitások módosítása nyújtanak hasonló feltételek pont lekérdezések támogatja, mert a szervezetek, mint a azonosítani szeretné az Ön választása lehető leghatékonyabb módon. Nem használni kívánt nem elég hatékony partíció vagy tábla vizsgálat entitás található felderítéséhez a **PartitionKey** és **RowKey** értékek frissíteni vagy törölni kell.  
+### <a name="optimizing-hello-performance-of-insert-update-and-delete-operations"></a>Hello teljesítmény optimalizálása a beszúrási, frissítési és törlési műveletek
+tooupdate vagy törölni egy entitást, tooidentify képesnek kell lennie az hello segítségével **PartitionKey** és **RowKey** értékeket. Ebben a tekintetben a választott **PartitionKey** és **RowKey** entitások módosítását érdemes követnie a hasonló feltételek tooyour választott toosupport lekérdezések mutasson, mivel tooidentify szervezetek, mint a lehető leghatékonyabb módon. Nem szeretné, hogy egy hatékony partíció vagy tábla vizsgálat toolocate rendelés toodiscover hello egy entitás toouse **PartitionKey** és **RowKey** értékek tooupdate kell, vagy törölje azt.  
 
-A szakasz a következő minták [táblázat kialakítási minta](#table-design-patterns) cím optimalizálása a teljesítmény vagy a beszúrási, frissítési és törlési műveletek:  
+következő hello szakasz minták hello [táblázat kialakítási minta](#table-design-patterns) cím optimalizálás hello teljesítmény vagy a beszúrási, frissítési és törlési műveletek:  
 
-* [Nagy mennyiségű törlése mintát](#high-volume-delete-pattern) -a nagyszámú entitások törlésének engedélyezése a entitásokhoz egyidejű törlésre tárolása saját különálló táblában; a tábla törlésével törli az entitásokat.  
-* [Adatsorozat adatmintát](#data-series-pattern) -tároló teljes adatsorok egyetlen entitás minimalizálása érdekében elvégezte kérelmek számát jelenti.  
-* [Széles entitások mintát](#wide-entities-pattern) -használjon több fizikai entitás legfeljebb 252 tulajdonságot rendelkező logikai entitás tárolására.  
-* [Nagy entitások mintát](#large-entities-pattern) -blob-tároló használjon nagy tulajdonságértékek tárolásához.  
+* [Nagy mennyiségű törlése mintát](#high-volume-delete-pattern) -Enable hello törlésének nagyszámú egyidejű törlésre entitásokhoz hello tárolása saját külön táblázatban entitások; hello tábla törlésével hello entitások törlésére.  
+* [Adatsorozat adatmintát](#data-series-pattern) -tároló teljes adatsorozat elvégezte kérelmek egyetlen entitás toominimize hello számos.  
+* [Széles entitások mintát](#wide-entities-pattern) -több fizikai entitások toostore logikai entitás legfeljebb 252 tulajdonságot használja.  
+* [Nagy entitások mintát](#large-entities-pattern) -blob storage toostore nagy tulajdonság értékek használata.  
 
 ### <a name="ensuring-consistency-in-your-stored-entities"></a>A tárolt entitásokat következetes biztosítása
-A más kulcsfontosságú tényező, amely befolyásolja a választott módosítása optimalizálási kulcsok, hogyan biztosíthatja a atomi tranzakciók használatával. Csak használhat egy EGT az entitásokat tartalmazó partícióra tárolt való működésre.  
+más kulcsfontosságú tényező, amely befolyásolja a kulcsokat a választott érték módosítása optimalizálása hello hogyan tooensure konzisztencia atomi tranzakciók használatával. Csak egy EGT toooperate használhatja hello tárolt entitásokat tartalmazó partícióra.  
 
-A szakasz a következő minták [táblázat kialakítási minta](#table-design-patterns) cím konzisztencia kezelése:  
+következő hello szakasz minták hello [táblázat kialakítási minta](#table-design-patterns) cím konzisztencia kezelése:  
 
-* [Intra-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) -tárolja a több másolatot minden entitás használatával különböző **RowKey** engedélyezése gyors és hatékony keresések és másodlagos rendezési sorrend különböző használatával (a partícióra) értékek **RowKey** értékeket.  
-* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) - értékekkel különböző RowKey külön partíciók vagy külön táblázatban gyors engedélyezése minden entitás több példányát tárolja, és a különböző rendelésekhatékonykereséstésamásodlagosrendezésisorrend**RowKey** értékeket.  
+* [Intra-partíció másodlagos index mintát](#intra-partition-secondary-index-pattern) -tárolja a több másolatot minden entitás használatával különböző **RowKey** értékek (hello a partícióra) tooenable gyors és hatékony keresést és a másodlagos rendezési sorrend rendelések használatával különböző **RowKey** értékeket.  
+* [Másodlagos helyek közötti partíció index mintát](#inter-partition-secondary-index-pattern) – minden értékekkel különböző RowKey külön partíciók vagy külön táblázatban tooenable gyors entitás több példányát tárolja, és a különböző rendelésekhatékonykereséstésamásodlagosrendezésisorrend**RowKey** értékeket.  
 * [Idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) -engedélyezni a idővel konzisztenssé partícióhatárok vagy tárolási rendszer határok Azure üzenetsorok használatával.
-* [Index entitások mintát](#index-entities-pattern) -index entitások entitások listájának visszaadó hatékony keresések engedélyezése karbantartása.  
-* [Denormalization mintát](#denormalization-pattern) -egyesítése kapcsolódó adatok együtt az egyetlen entitás ahhoz, hogy beolvasni az összes adatot a hibaérzékeny pontok lekérdezéssel van szüksége.  
-* [Adatsorozat adatmintát](#data-series-pattern) -tároló teljes adatsorok egyetlen entitás minimalizálása érdekében elvégezte kérelmek számát jelenti.  
+* [Index entitások mintát](#index-entities-pattern) -index entitások tooenable hatékony keresések entitások listájának visszaadó karbantartása.  
+* [Denormalization mintát](#denormalization-pattern) -egyesítése kapcsolódó adatok együtt egy egyetlen entitás tooenable a tooretrieve, az összes hello egyetlen pont lekérdezéssel szükséges adatokat.  
+* [Adatsorozat adatmintát](#data-series-pattern) -tároló teljes adatsorozat elvégezte kérelmek egyetlen entitás toominimize hello számos.  
 
-Entitás csoport tranzakciókkal kapcsolatos információkért lásd: a szakasz [entitás csoport tranzakciók](#entity-group-transactions).  
+Entitás csoport tranzakciókkal kapcsolatos információkért lásd: hello szakasz [entitás csoport tranzakciók](#entity-group-transactions).  
 
 ### <a name="ensuring-your-design-for-efficient-modifications-facilitates-efficient-queries"></a>A módosítások hatékony kialakítása biztosítása elősegíti a hatékony lekérdezések
-Sok esetben egy tervezési módosítások hatékony, de hatékony lekérdező eredményez kell mindig mérlegelje, hogy ez a helyzet az adott forgatókönyv szerint. A szakasz a minták némelyike [táblázat kialakítási minta](#table-design-patterns) explicit módon értékeli az kérdez le, és módosítja az entitások közötti kompromisszumot, és hogy mindig figyelembe kell vennie a művelet típusonkénti darabszámot.  
+Sok esetben egy tervezési módosítások hatékony, de hatékony lekérdező eredményez kell mindig mérlegelje, hogy az adott forgatókönyv szerint hello eset. Néhány hello minták hello szakaszban [táblázat kialakítási minta](#table-design-patterns) kérdez le, és módosítja az entitások közötti kompromisszumot explicit módon kiértékeléséhez és hello számát az egyes művelet mindig kell figyelembe.  
 
-A szakasz a következő minták [táblázat kialakítási minta](#table-design-patterns) hatékony lekérdezések tervezése és kialakítása hatékony adatok módosítása a közötti kompromisszumot cím:  
+következő hello szakasz minták hello [táblázat kialakítási minta](#table-design-patterns) hatékony lekérdezések tervezése és kialakítása hatékony adatok módosítása a közötti kompromisszumot cím:  
 
-* [Összetett kulcs mintát](#compound-key-pattern) – használható összetett **RowKey** értékek kapcsolódó adatok egyetlen pont lekérdezéssel talált ügyfél engedélyezése.  
-* [Napló végéről mintát](#log-tail-pattern) -beolvasni a  *n*  partíció legutóbb hozzáadott entitások egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
+* [Összetett kulcs mintát](#compound-key-pattern) – használható összetett **RowKey** értékek tooenable egy ügyfél toolookup kapcsolódó adatok egyetlen pont lekérdezéssel.  
+* [Napló végéről mintát](#log-tail-pattern) -lekérése hello  *n*  entitások legutóbb hozzáadott tooa partíció használatával egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
 
 ## <a name="encrypting-table-data"></a>Tábla adatok titkosítása
-A .NET Azure Storage ügyféloldali kódtár támogatja a titkosítást a karakterlánc az Entitástulajdonságok szúrhatók be, és cserélje le a műveletek. A titkosított karakterláncok tárolja a szolgáltatás bináris tulajdonságként, és telepítésekké lesznek átalakítva vissza karakterláncok a visszafejtés után.    
+hello .NET Azure Storage ügyféloldali kódtár által támogatott titkosítási insert karakterlánc entitás tulajdonságait, és cserélje le a műveleteket. Titkosított hello karakterláncok bináris tulajdonságként hello szolgáltatásban tárolja, és a visszafejtés után hátsó toostrings telepítésekké lesznek átalakítva.    
 
-Táblák, a titkosítási házirenden kívül a felhasználók fiók kell adnia a titkosítani kell. Ezt megteheti megadásával vagy (az POCO entitások, amelyek a TableEntity) [EncryptProperty] attribútum vagy egy titkosítási feloldó lehetőségek. Egy titkosítási feloldó egy delegált veszi a partíciós kulcs, sorkulcsot és tulajdonság nevét, és logikai érték beolvasása, amely jelzi, hogy a tulajdonság titkosítani kell-e. Titkosítás során az ügyféloldali kódtár döntse el, hogy a tulajdonság titkosítani kell-e az átvitel közbeni írása során fogja használni ezt az információt. A delegált is körül hogyan tulajdonságok vannak titkosítva logika lehetőségét biztosítja. (Például, ha X, majd titkosítása A tulajdonság; ellenkező esetben a Tulajdonságok A és b titkosítása) Vegye figyelembe, hogy nincs szükség arra, hogy ezek az információk olvasása vagy entitás lekérdezése közben.
+A táblák, továbbá toohello titkosítási házirendnek, felhasználók meg kell adnia hello tulajdonságok toobe titkosítva. Ezt megteheti megadásával vagy (az POCO entitások, amelyek a TableEntity) [EncryptProperty] attribútum vagy egy titkosítási feloldó lehetőségek. Egy titkosítási feloldó egy delegált veszi a partíciós kulcs, sorkulcsot és tulajdonság nevét, és logikai érték beolvasása, amely jelzi, hogy a tulajdonság titkosítani kell-e. Titkosítás során hello ügyféloldali kódtár fogja használni a információk toodecide e tulajdonság titkosítani toohello vezetékes írása közben. hello delegált is körül hogyan tulajdonságok vannak titkosítva logika hello lehetőségét biztosítja. (Például, ha X, majd titkosítása A tulajdonság; ellenkező esetben a Tulajdonságok A és b titkosítása) Vegye figyelembe, hogy az nem szükséges tooprovide ezen információ olvasása vagy entitás lekérdezése közben.
 
-Vegye figyelembe, hogy a merge jelenleg nem támogatott. Mivel a Tulajdonságok részhalmazát, előfordulhat, hogy korábban használatával titkosított egy másik kulcsot, egyszerűen csak az új tulajdonságok egyesítése és a metaadatok frissítése adatok elvesztését eredményezi. Az egyesítés vagy megköveteli a már meglévő entitás olvasni a szolgáltatás további szolgáltatás-hívások, vagy tulajdonságonként egy új kulcsot használ, amelyek mindegyikét nem alkalmasak a teljesítményre vonatkozó megfontolásból.     
+Vegye figyelembe, hogy a merge jelenleg nem támogatott. Mivel a Tulajdonságok részhalmazát, előfordulhat, hogy korábban használatával titkosított egy másik kulcsot, egyszerűen hello új tulajdonságok egyesítése és hello metaadatainak frissítése adatok elvesztését eredményezi. Így további service hívásai tooread hello már meglévő entitás hello szolgáltatást, vagy tulajdonságonként egy új kulcsot használ, amelyek mindegyikét nem alkalmasak a teljesítményre vonatkozó megfontolásból vagy egyesítés van szükség.     
 
 További információ a táblabeli adatok titkosítása: [ügyféloldali titkosítás és a Microsoft Azure tárolás az Azure Key Vault](storage-client-side-encryption.md).  
 
 ## <a name="modelling-relationships"></a>Kapcsolatok modellezésére
-A Tervező összetett rendszerek kulcsfontosságú lépés létrehozási modelleket tartomány. Általában a modellezési folyamat segítségével azonosíthatja a entitásokat és a köztük lévő viszonyt is egyik módja az üzleti tartomány megértéséhez, valamint a tervezési, a rendszer tájékoztatja. Ez a szakasz összpontosít hogyan tudja lefordítani néhány a közös kapcsolattípusok tartomány modellek mintájára a Table szolgáltatás található. Egy logikai adatmodell-leképezés egy fizikai alapú NoSQL-adatmodellhez folyamat nagyon eltér a relációs tervezése során használt. Relációs adatbázisok terv általában azt feltételezi, hogy a normalizálási adatfeldolgozás minimalizálja a redundancia – és a deklaratív lekérdező képessége, hogy hogyan végrehajtásának az adatbázis működésének kivonatolja optimalizálva.  
+Összetett rendszerek hello tervezési kulcsfontosságú lépés létrehozási modelleket tartomány. Általában folyamat tooidentify entitások modellezés hello használata, hello kapcsolatai őket egy módon toounderstand hello üzleti tartományhoz, majd értesíteni kell a hello tervezési a rendszer. Ez a szakasz összpontosít hogyan tudja lefordítani néhány hello közös kapcsolattípusok tartomány modellek toodesigns a Table szolgáltatás hello található. egy logikai adatmodell tooa fizikai alapú NoSQL-adatmodell-leképezés hello folyamat nagyon eltér a relációs tervezése során használt. Relációs adatbázisok terv általában azt feltételezi, hogy a normalizálási adatfeldolgozás minimalizálja a redundancia – és egy deklaratív lekérdező képesség, amely a kivonatok hogyan hello hello adatbázis működésének végrehajtásának optimalizálva.  
 
 ### <a name="one-to-many-relationships"></a>Egy-a-többhöz kapcsolatok
-Egy-a-többhöz kapcsolatok üzleti tartomány objektumok közötti nagyon gyakran előfordulnak: például egy részleg rendelkezik sok alkalmazott. Többféleképpen is egy-a-többhöz kapcsolatok szolgáltatásban a tábla minden egyes az előnyei és hátrányai, amely fontos lehet az adott forgatókönyv megvalósításához.  
+Egy-a-többhöz kapcsolatok üzleti tartomány objektumok közötti nagyon gyakran előfordulnak: például egy részleg rendelkezik sok alkalmazott. Hello tábla minden egyes rendelkező szolgáltatás előnyei és hátrányai, lehet, hogy megfelelő toohello adott forgatókönyv számos módon tooimplement egy-a-többhöz kapcsolatok találhatók.  
 
-Vegye figyelembe a példa egy nagy több nemzeti vállalat osztályai és ahol minden részlege rendelkezik sok alkalmazott, és minden alkalmazott, egy adott részleg társított alkalmazott entitások tízezreit tartalmazó. Egy megoldás, külön részleg és az alkalmazott entitások, például a tároló:  
+Vegye figyelembe a hello példa egy nagy több nemzeti vállalat osztályai és ahol minden részlege rendelkezik sok alkalmazott, és minden alkalmazott, egy adott részleg társított alkalmazott entitások tízezreit tartalmazó. Egy megoldás, toostore külön részleg és az alkalmazott entitások, például ezek:  
 
 ![][1]
 
-Ez a példa bemutatja egy implicit egy-a-többhöz kapcsolat alapján típusa közötti a **PartitionKey** érték. Minden részleghez rendelkezhet sok alkalmazott.  
+Ez a példa bemutatja egy implicit egy-a-többhöz kapcsolat hello alapján hello típus között **PartitionKey** érték. Minden részleghez rendelkezhet sok alkalmazott.  
 
-Ez a példa egy szervezeti egység és a kapcsolódó alkalmazott entitásokat is tartalmazó partícióra szerepel. Megadhatja, hogy a különböző entitástípusok különböző partíciók, táblák, vagy még akkor is, storage-fiókok használandó.  
+Ebben a példában is látható egy szervezeti egység és a kapcsolódó alkalmazott entitásának hello egyazon partícióra kerüljenek. Megadhatja, hogy toouse különböző partíciók, táblák vagy hello különböző entitástípusok még tárfiókját.  
 
-Egy másik módszert is, hogy az adatok denormalize és csak alkalmazott entitások denormalizált részleg adatokkal a következő példában látható módon tárolja. Adott esetben ez a megközelítés denormalizált nem lehet a legjobb lehet módosítani a részleg vezetője részleteit, mert ehhez frissítenie kell az osztály minden alkalmazott számára, ha.  
+Egy másik módszert is van, az adatok és áruházbeli csak alkalmazott entitások denormalizált részleg adatokkal toodenormalize vagy hello a következő példában látható. Adott esetben ez a megközelítés denormalizált nem lehet ajánlott hello Ha egy követelmény toobe képes toochange hello részleteit a részleg vezetője mivel toodo ez tooupdate minden alkalmazott hello részleg van szüksége.  
 
 ![][2]
 
-További információkért lásd: a [Denormalization mintát](#denormalization-pattern) című útmutatóban.  
+További információkért lásd: hello [Denormalization mintát](#denormalization-pattern) című útmutatóban.  
 
-Az alábbi táblázat foglalja össze, és az egyes az alkalmazottak és a részleg entitások, amelyek egy-a-többhöz tárolását a fent vázolt módszerekkel. Emellett érdemes milyen gyakran várható a különböző műveletek végrehajtásához: elfogadható kell rendelkeznie, amely tartalmaz egy drága művelet, ha ez a művelet csak akkor fordul elő, a ritkán lehet.  
+hello következő táblázat összefoglalja hello előnyei és hátrányai minden alkalmazott, és a részleg entitások, amelyek egy-a-többhöz tárolását a fent vázolt hello módszerekkel. Érdemes azt is, hogy várhatóan milyen gyakran tooperform különféle műveletek: lehet, hogy elfogadható toohave, olcsóbbá műveletet tartalmaz, ha ez a művelet csak akkor fordul elő, a ritkán kialakítást.  
 
 <table>
 <tr>
@@ -340,14 +340,14 @@ Az alábbi táblázat foglalja össze, és az egyes az alkalmazottak és a rész
 <td>
 <ul>
 <li>A részleg entitás egyetlen művelettel frissítheti.</li>
-<li>Egy EGT használatával biztosítja az egységességet, ha egy szervezeti egység módosítása követelmény amikor Ön frissítés/Beszúrás/törlés alkalmazott entitás. Például ha a részlegszintű alkalmazott száma minden részleg számára.</li>
+<li>Egy EGT toomaintain konzisztencia használhatja, ha egy követelmény toomodify egy részleg entitás amikor Ön frissítés/Beszúrás/törlés alkalmazott entitás. Például ha a részlegszintű alkalmazott száma minden részleg számára.</li>
 </ul>
 </td>
 <td>
 <ul>
-<li>Az alkalmazottak és a bizonyos ügyfél tevékenységek egy részleg entitást szeretne.</li>
-<li>Tárolási műveletekre kerül sor a partícióra. A magas tranzakció kötetek Ez azt eredményezheti, interaktív terület.</li>
-<li>Egy alkalmazott egy új osztály használatával egy EGT nem helyezhető át.</li>
+<li>Szükség lehet tooretrieve mind az alkalmazott, és a részleg entitás bizonyos ügyfél tevékenységek.</li>
+<li>Tárolási műveletekre kerül sor a hello azonos partíció. A magas tranzakció kötetek Ez azt eredményezheti, interaktív terület.</li>
+<li>Egy alkalmazott tooa új osztály használatával egy EGT nem helyezhető át.</li>
 </ul>
 </td>
 </tr>
@@ -356,14 +356,14 @@ Az alábbi táblázat foglalja össze, és az egyes az alkalmazottak és a rész
 <td>
 <ul>
 <li>A részleg entitás vagy az alkalmazott entitás egyetlen művelettel frissítheti.</li>
-<li>A magas tranzakció kötetek ez elősegítheti a terhelés elosztva több partíciót.</li>
+<li>A magas tranzakció kötetek, ez segíthet terjedésének hello betöltése között több partíciót.</li>
 </ul>
 </td>
 <td>
 <ul>
-<li>Az alkalmazottak és a bizonyos ügyfél tevékenységek egy részleg entitást szeretne.</li>
-<li>Nem használhat EGTs biztosítja az egységességet amikor akkor frissítés/Beszúrás/Törlés az alkalmazottak és a frissítés részleget. Például frissítése folyamatban van egy szervezeti egységben egy alkalmazott száma.</li>
-<li>Egy alkalmazott egy új osztály használatával egy EGT nem helyezhető át.</li>
+<li>Szükség lehet tooretrieve mind az alkalmazott, és a részleg entitás bizonyos ügyfél tevékenységek.</li>
+<li>Nem használhat EGTs toomaintain konzisztencia amikor Ön frissítés/Beszúrás/Törlés az alkalmazottak és a frissítési részleget. Például frissítése folyamatban van egy szervezeti egységben egy alkalmazott száma.</li>
+<li>Egy alkalmazott tooa új osztály használatával egy EGT nem helyezhető át.</li>
 </ul>
 </td>
 </tr>
@@ -371,96 +371,96 @@ Az alábbi táblázat foglalja össze, és az egyes az alkalmazottak és a rész
 <td>Az egyetlen entitás típusa denormalize</td>
 <td>
 <ul>
-<li>Az egy kérelemhez szükséges összes információ kérheti le.</li>
+<li>Az egy kérelemhez szükséges összes hello információkat kérheti le.</li>
 </ul>
 </td>
 <td>
 <ul>
-<li>Biztosítja az egységességet, ha a szervezeti adatok (Ez akkor miatt frissítenie kell egy osztály minden alkalmazott) kell drága lehet.</li>
+<li>Költséges toomaintain konzisztencia lehet, ha (Ez igényelnének, tooupdate egy osztály összes hello alkalmazott) tooupdate részleg információra van szüksége.</li>
 </ul>
 </td>
 </tr>
 </table>
 
-Hogyan választja ezeket a beállításokat, és mely előnyének és hátrányának jelentős, függ az adott alkalmazás forgatókönyvek között. Például milyen gyakran tegye módosítása részleg entitások; szükség van a további részlegre vonatkozó információkat; az alkalmazott lekérdezés milyen közel legyenek, a partíciók vagy a tárfiók a méretezhetőségének korlátai?  
+Hogyan választja, ezeket a beállításokat, és amely hello szakemberek között, és hátrányának legjelentősebb, amelyek az adott alkalmazás forgatókönyvek függ. Például milyen gyakran tegye módosítása részleg entitások; szükség van hello kiegészítő részlegre vonatkozó információkat; az alkalmazott lekérdezés milyen közel vannak, a partíciók vagy a tárfiók toohello méretezhetőségének korlátai?  
 
 ### <a name="one-to-one-relationships"></a>-Az-egyhez kapcsolat
-Tartomány modellek egy az egyhez típusú entitások közötti kapcsolatok is tartalmazhat. Kell megvalósítani a Table szolgáltatás egy az egyhez kapcsolat, a két kapcsolódó entitás csatolása, ha vissza mindkét kell is ki kell választania. Ez a hivatkozás lehet implicit, egy egyezmény értékek alapján, vagy explicit hivatkozás formájában elhelyezésével **PartitionKey** és **RowKey** értékek az entitásban, a kapcsolódó entitás. E tárolja a kapcsolódó entitásokból partícióra tárgyalását című [egy-a-többhöz kapcsolatok](#one-to-many-relationships).  
+Tartomány modellek egy az egyhez típusú entitások közötti kapcsolatok is tartalmazhat. Ha egy az egyhez kapcsolat a Table szolgáltatás hello tooimplement van szüksége, is választania kell hogyan toolink hello-e két kapcsolódó entitás újból tooretrieve is. Ez a hivatkozás lehet implicit, egy egyezmény hello értékek alapján, vagy explicit hivatkozás tárolása hello formája **PartitionKey** és **RowKey** minden entitás tooits szereplő értékek kapcsolódó entitás. E hello tárolja az információt a kapcsolódó entitás a hello partícióra, hello című [egy-a-többhöz kapcsolatok](#one-to-many-relationships).  
 
-Vegye figyelembe, hogy nincsenek-e is vezethet, hogy egy az egyhez kapcsolat megvalósíthatja a Table szolgáltatás megvalósítási szempontokat:  
+Vegye figyelembe, hogy nincsenek-e is vezethet, tooimplement-az-egyhez kapcsolat hello tábla szolgáltatás megvalósítási szempontot:  
 
 * Nagy entitások kezelése (további információkért lásd: [nagy entitások mintát](#large-entities-pattern)).  
 * A végrehajtási hozzáférés-vezérlést (további információkért lásd: [megosztott hozzáférési aláírásokkal-hozzáférés szabályozásáról](#controlling-access-with-shared-access-signatures)).  
 
-### <a name="join-in-the-client"></a>Az ügyfél csatlakozott
-Bár vannak lehetőségek kapcsolatok modellezésére a Table szolgáltatásban, érdemes nem elfelejti, hogy a két elsődleges oka a Table szolgáltatás használatára vonatkozó-e a méretezhetőséget és teljesítményt nyújt. Ha meg vannak modellezés több kapcsolatot, amelyek veszélyeztetik a teljesítmény és méretezhetőség a megoldás, kérdezze meg saját kezűleg esetén az adatok minden olyan kapcsolat létrehozásához rendszerbe tábla szükséges. Előfordulhat, hogy a tervezési és javítását célzó méretezhetőségét és teljesítményét a megoldás, ha az ügyfélalkalmazást, hajtsa végre a szükséges illesztések.  
+### <a name="join-in-hello-client"></a>Hello ügyfél csatlakozott
+Bár a Table szolgáltatás hello módon toomodel kapcsolatokat, kell nem elfelejti, hogy hello két elsődleges hello Table szolgáltatás használatára vonatkozó okai méretezhetőséget és teljesítményt nyújt. Ha meg vannak modellezés több kapcsolatot, amelyek veszélyeztetik hello teljesítményét és méretezhetőségét, a megoldás, kérdezze meg saját kezűleg szükséges toobuild esetén az összes hello adatok kapcsolatok tábla rendszerbe. Előfordulhat, hogy képes toosimplify hello tervezési kell és hello méretezhetőség és a megoldás teljesítményének javítása, ha az ügyfélalkalmazást, hajtsa végre a szükséges illesztések.  
 
-Például ha adatokat tartalmaznak, amelyek nem változik gyakran nagyon kis táblákhoz, majd után lekérdezhetik ezeket az adatokat többször is gyorsítótárazása azt az ügyfélen. Ennek elkerülése érdekében ismételt használatával ugyanazokat az adatokat beolvasni. A példákban azt kell venni, a jelen útmutató kis szervezet szervezeti egységek készletét valószínű, hogy rövid, és módosítsa a ritkán így egy jó jelölt az ügyfélalkalmazás tölthetik le egyszer adatok és a gyorsítótár, keresse meg a adatok.  
+Például ha adatokat tartalmaznak, amelyek nem változik gyakran nagyon kis táblákhoz, majd után lekérdezhetik ezeket az adatokat többször is hello ügyfélen gyorsítótárazása azt. Ennek elkerülése érdekében ismételt használatával tooretrieve hello ugyanazokat az adatokat. Azt kell venni, a jelen útmutató hello példákban hello kis szervezet szervezeti egységek lesz valószínűleg toobe kis és ritkán így egy jó jelölt az ügyfélalkalmazás tölthetik le egyszer adatok és a gyorsítótár, keresse meg a adatok módosítása.  
 
 ### <a name="inheritance-relationships"></a>Öröklődés kapcsolatok
-Ha az ügyfélalkalmazást használ, amely egy üzleti entitásokat képviselő öröklési kapcsolatban részét osztályok, egyszerűen a a Table szolgáltatásban entitásokból maradnak meg. Például lehetséges, hogy az ügyfél alkalmazásban megadott üzenetosztályának beolvasása a következő funkciócsoport ahol **személy** absztrakt osztály.
+Ha az ügyfél alkalmazás osztályok az öröklési kapcsolat toorepresent üzleti entitásokat részét alkotó készlete, egyszerűen a ezeket a Table szolgáltatás hello entitások maradnak meg. Például lehetséges, hogy az ügyfél alkalmazásban megadott készlete a következő hello ahol **személy** absztrakt osztály.
 
 ![][3]
 
-A Table szolgáltatásban entitások használata, hogy a hely egyetlen személy tábla használatával két konkrét osztályok példányai is továbbra is fennáll:  
+A Table szolgáltatás segítségével, hogy a hely egyetlen személy tábla használatával hello tényleges osztály két hello példányai is továbbra is fennáll:  
 
 ![][4]
 
-További információt az Ügyfélkód ugyanabban a táblában a több entitás, című [használata heterogén entitástípusok](#working-with-heterogeneous-entity-types) Ez az útmutató későbbi. Ez az Ügyfélkód entitástípus felismerése példákat tartalmaz.  
+Ugyanaz a tábla az Ügyfélkód hello több entitástípusok kezelésével kapcsolatos további információkért lásd: hello szakasz [használata heterogén entitástípusok](#working-with-heterogeneous-entity-types) című útmutatóban. Ez példákat hogyan toorecognize hello az Ügyfélkód entity Type típusként.  
 
 ## <a name="table-design-patterns"></a>Táblázat kialakítási minták
-A korábbi szakaszokban láthatta, néhány részletes beszélgetéseket optimalizálása a Táblatervezés mindkét lekérése során Entitásadatok lekérdezésekkel és beszúrását, frissítését és entitás adatok törlése. Ez a szakasz ismerteti az egyes mintázatok megfelelő Table szolgáltatási megoldások való használatra. Ezenkívül láthatja, hogyan meg is gyakorlatilag cím egyes problémák és kompromisszumot alakítson ki az útmutatóban korábban következik be. Az alábbi ábra a különböző minták kapcsolatai foglalja össze:  
+A korábbi szakaszokban néhány hogyan toooptimize a táblázat kialakítási mindkét lekérése entitás adatok lekérdezésekkel és beszúrni, frissítése és törlése Entitásadatok kapcsolatos részletes beszélgetéseket láthatta. Ez a szakasz ismerteti az egyes mintázatok megfelelő Table szolgáltatási megoldások való használatra. Ezenkívül láthatja, hogyan meg is gyakorlatilag cím egyes hello problémák és kompromisszumot alakítson ki az útmutatóban korábban következik be. hello következő diagram foglalja hello kapcsolatai hello különböző minták:  
 
 ![][5]
 
-A minta térkép fent néhány minták (kék) és a jelen útmutatóban leírt elleni minták (narancs) közötti kapcsolatokat mutatja be. Természetesen nincsenek sok más mintákat, amelyek érdemes figyelembe véve. Például a Table szolgáltatás azon kulcsfontosságú forgatókönyvek egyike használatára a [materializált nézet mintát](https://msdn.microsoft.com/library/azure/dn589782.aspx) a a [parancs lekérdezés felelősségi elkülönítése (CQRS)](https://msdn.microsoft.com/library/azure/jj554200.aspx) mintát.  
+hello mintát térkép fent néhány minták (kék) és a jelen útmutatóban leírt elleni minták (narancs) közötti kapcsolatokat mutatja be. Természetesen nincsenek sok más mintákat, amelyek érdemes figyelembe véve. Például hello főbb forgatókönyvek a Table szolgáltatás egyik toouse hello [materializált nézet mintát](https://msdn.microsoft.com/library/azure/dn589782.aspx) a hello [parancs lekérdezés felelősségi elkülönítése (CQRS)](https://msdn.microsoft.com/library/azure/jj554200.aspx) mintát.  
 
 ### <a name="intra-partition-secondary-index-pattern"></a>Helyen belüli-partíció másodlagos index minta
-Több másolatot minden entitás használatával különböző tárolására **RowKey** értékeket (a partícióra) engedélyezése gyors és hatékony keresések és a másodlagos rendezési sorrend különböző **RowKey** értékeket. Példányok közötti frissítéseket is konzisztens EGT tartozó használatával.  
+Több másolatot minden entitás használatával különböző tárolására **RowKey** értékek (hello a partícióra) segítségével különböző rendelések tooenable gyors és hatékony keresést és a másodlagos rendezési sorrend **RowKey** értékek. Példányok közötti frissítéseket is konzisztens EGT tartozó használatával.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-A Table szolgáltatás automatikusan elvégzi a segítségével a **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy hatékonyan végez ezeket az értékeket entitást lekérdezni egy ügyfélalkalmazást. Például a lent látható módon táblaszerkezet, ügyfélalkalmazás használatával pont lekérdezés egy adott alkalmazott bejegyzés lekérdezésére a részleg neve és az alkalmazott azonosítója (a **PartitionKey** és **RowKey** értékek). Egy ügyfél is kérje le az entitásokat alkalmazottazonosító belül minden részleg szerint rendezve.
+Table szolgáltatás hello automatikusan elvégzi a hello segítségével **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy egy ügyfél alkalmazás tooretrieve egy entitás hatékonyan végez ezeket az értékeket. Például a lent látható módon hello táblaszerkezet, ügyfélalkalmazás használatával egy pont lekérdezés tooretrieve alkalmazott entitás hello részleg neve és hello alkalmazott azonosítója (hello **PartitionKey** és  **RowKey** értékek). Egy ügyfél is kérje le az entitásokat alkalmazottazonosító belül minden részleg szerint rendezve.
 
 ![][6]
 
-Ha is érdemes lehet egy másik tulajdonság, például az e-mail cím alapján alkalmazott entitás megkeresni a kevésbé hatékony partíció ellenőrzések keres kell használnia. Ennek oka az, a table szolgáltatás nem adja meg a másodlagos kulcsot. Ezenkívül nincs lehetőség az alkalmazottakat, mint egy másik sorrendbe rendezve kéréséhez **RowKey** sorrendje.  
+Ha szeretné, hogy toobe képes toofind hello egy másik tulajdonság értéke, például az e-mail cím alapján alkalmazott entitás egy kevésbé hatékony partíció vizsgálat toofind egyezés kell használnia. Ennek az az oka hello table szolgáltatás nem biztosít a másodlagos kulcsot. Emellett nincs nincs lehetőség toorequest az alkalmazottakat, mint egy másik sorrendbe rendezve **RowKey** sorrendje.  
 
 #### <a name="solution"></a>Megoldás
-Másodlagos indexek hiánya megoldása érdekében minden egyes másolataihoz, a különböző entitás több példányát is tárolhatja **RowKey** érték. Ha egy entitás tárolja az alább látható struktúrákat, e-mail címét vagy az alkalmazott azonosítója alapján alkalmazott entitások hatékonyan kérheti le. Az előtag értékei a **RowKey**, "empid_" és "email_" lehetővé teszi egyetlen alkalmazott vagy alkalmazottak számos lekérdezése a számos különböző e-mail címek vagy alkalmazott-azonosítók használatával.  
+másodlagos indexek hello hiánya körül toowork, minden egyes másolataihoz, a különböző entitás több példányát tárolhatja **RowKey** érték. Ha egy entitás tárolja az alább látható hello struktúrák, e-mail cím vagy az alkalmazott azonosítója alapján alkalmazott entitások hatékonyan kérheti le. hello előtag értékeinek hello **RowKey**, "empid_" és "email_" lehetővé teszik a tooquery egyetlen alkalmazott vagy alkalmazottak számos e-mail címek vagy alkalmazott azonosítók használatával.  
 
 ![][7]
 
-Az alábbi két feltételeket (egy keresésekor által alkalmazott- és egy keresése e-mail cím alapján) is adja meg a pont lekérdezéseket:  
+a következő két szűrési feltételeket (egy keresésekor által alkalmazott azonosítója, a másik e-mail cím alapján keresése) hello is adja meg a pont lekérdezéseket:  
 
 * $filter = (PartitionKey eq 'Értékesítés') és (RowKey eq "empid_000223")  
 * $filter = (PartitionKey eq 'Értékesítés') és (RowKey eq 'email_jonesj@contoso.com")  
 
-Ha alkalmazott entitástartományának kérdezze le, megadhatja a alkalmazott azonosítója sorrendbe rendezve tartománya vagy egy tartományt, a megfelelő előtaggal rendelkező entitások lekérdezésével e-mail cím sorrendbe rendezve a **RowKey**.  
+Ha alkalmazott entitástartományának kérdezze le, megadhatja a alkalmazott azonosítója sorrendbe rendezve tartománya vagy egy tartományt a hello hello a megfelelő előtaggal rendelkező entitások lekérdezésével e-mail cím sorrendbe rendezve **RowKey**.  
 
-* Az alkalmazottak található a tartomány 000100 való 000199 használatban alkalmazott azonosítóval rendelkező az értékesítési osztályon: $filter = (PartitionKey eq 'Értékesítés') és (RowKey ge "empid_000100") és (RowKey le "empid_000199")  
-* Az alkalmazottak található az értékesítési osztályon kezdve "a" használja e-mail címmel rendelkező: $filter = (PartitionKey eq 'Értékesítés') és (RowKey ge "email_a") és (RowKey lt "email_b")  
+* toofind összes hello hello értékesítési részleg a hello tartomány 000100 too000199 alkalmazott azonosítójú munkavállalók: $filter = (PartitionKey eq 'Értékesítés') és (RowKey ge "empid_000100") és (RowKey le "empid_000199")  
+* összes hello értékesítési osztályon dolgozók hello hello kezdve e-mail címmel rendelkező toofind levél "a" használja: $filter = (PartitionKey eq 'Értékesítés') és (RowKey ge "email_a") és (RowKey lt "email_b")  
   
-  Vegye figyelembe, hogy a Table szolgáltatásból REST API-t a további tudnivalókat lásd a fenti példákban használt szűrőszintaxisának [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
+  Vegye figyelembe, hogy a fenti példákban hello használt hello szűrőszintaxisának hello Table szolgáltatás REST API-t a további tudnivalókat lásd a [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* A TABLE storage viszonylag olcsó használatára, így költség növeli a duplikált adatok tárolására nem szabad jelentős probléma. Azonban kell kiértékelésének eredménye mindig a tervező a várható tárolási szükségletek költségeinek, és csak hozzá az ügyfélalkalmazást hajtja végre a lekérdezéseket kettős bejegyzés.  
-* Mivel a másodlagos index entitások az eredeti entitásokat tartalmazó partícióra vannak tárolva, ellenőrizze, hogy nem haladhatja meg a a méretezhetőségi célok, az egyes partíciók.  
-* Beállíthatja, hogy az ismétlődő entitások egymással konzisztenssé i frissíteni az entitást két példányával EGTs használatával. Ez azt jelenti, hogy ugyanazon partíció egy entitás összes másolatát tárolja. További információkért tekintse meg a szakasz [entitás csoport tranzakciók használatával](#entity-group-transactions).  
-* A használt érték a **RowKey** minden egyes entitásnál egyedinek kell lennie. Érdemes lehet összetett kulcs értékeket.  
-* Kitöltési szerepel benne numerikus érték a **RowKey** (például a alkalmazottazonosító 000223), lehetővé teszi, hogy javítsa ki, rendezési és szűrési alapján felső és alsó határait.  
-* Nem feltétlenül kell ismétlődő az entitás tulajdonságait. Például ha a lekérdezések, hogy a Keresés az entitásokat, az e-mail cím a **RowKey** soha nem kell az alkalmazott életkora, ezeket az entitásokat eredményezhet. az alábbi szerkezettel:
+* A TABLE storage viszonylag olcsó toouse, így a terhelést növelni az ismétlődő adatok tárolására költség hello nem lehet fő szempont. Azonban kell kiértékelésének eredménye mindig a várható tárolási szükségletek előkészítését hello költség, és csak hozzá kettős bejegyzés toosupport hello lekérdezések végrehajtja az ügyfélalkalmazást.  
+* Mivel hello másodlagos index entitások hello azonos hello eredeti entitásként partíció található, ellenőrizze, hogy nem haladhatja meg a hello méretezhetőségi célok az egyes partíciók.  
+* Beállíthatja, hogy az ismétlődő entitások egymással konzisztenssé EGTs tooupdate hello két példányban hello entitás i használatával. Ez azt jelenti, hogy egy entitás összes másolatát tárolja hello egyazon partícióra kerüljenek. További információkért lásd: hello szakasz [entitás csoport tranzakciók használatával](#entity-group-transactions).  
+* hello használt érték hello **RowKey** minden egyes entitásnál egyedinek kell lennie. Érdemes lehet összetett kulcs értékeket.  
+* Kitöltési hello szerepel benne numerikus érték **RowKey** (például hello alkalmazottazonosító 000223), lehetővé teszi, hogy javítsa ki, rendezési és szűrési alapján felső és alsó határait.  
+* Nem feltétlenül kell tooduplicate az entitás összes hello tulajdonságait. Például ha hello lekérdezéseiben, amelyeket keresési hello entitásnak hello segítségével e-mail-címre a hello **RowKey** soha nem kell hello alkalmazott életkora, ezeket az entitásokat hello struktúra a következő lehet:
 
 ![][8]
 
-* Általában jobb megoldás, az ismétlődő adatokat tárolhatnak, és győződjön meg arról, hogy egyetlen lekérdezést, a szükséges összes adatot kérheti le egy lekérdezés használata egy entitás, majd egy másikat talált a szükséges adatok kereséséhez.  
+* Általában jobb toostore ismétlődő adatokat, és győződjön meg arról, hogy egyetlen lekérdezést a szükséges összes hello adatok kérheti le, mint toouse egy lekérdezést toolocate entitás és egy másik toolookup hello szükséges adatokat.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ezt a mintát használja, ha az ügyfélalkalmazást kérje le az entitásokat, különböző kulccsal, számos használatát, ha az ügyfél eltérő rendezési sorrend entitásának lekérése, valamint olyan esetben minden entitás egyedi értékeket számos segítségével azonosíthatja. Azonban ügyelnie kell, hogy Ön nem lépik túl a partíció méretezhetőségének korlátai a különböző entitás keresések végrehajtásakor **RowKey** értékeket.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ezt a mintát használja, ha az ügyfélalkalmazást számos különböző kulcsok használatát, ha az ügyfélnek kell eltérő rendezési sorrend tooretrieve entitásának tooretrieve entitásokat, és ahol minden entitás egyedi értékeket számos segítségével azonosíthatja. Azonban ügyelnie kell, hogy Ön nem lépik túl hello partíció méretezhetőségi korlátok különböző hello segítségével entitás keresések végrehajtásakor **RowKey** értékeket.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Másodlagos helyek közötti partíció index minta](#inter-partition-secondary-index-pattern)
 * [Összetett kulcs minta](#compound-key-pattern)
@@ -468,51 +468,51 @@ A következő mintákat és útmutatókat is megfelelő ebben a mintában végre
 * [Heterogén entitástípusok használata](#working-with-heterogeneous-entity-types)
 
 ### <a name="inter-partition-secondary-index-pattern"></a>Másodlagos helyek közötti partíció index minta
-Több másolatot minden entitás használatával különböző tárolására **RowKey** értékek a különböző partíciók, vagy a külön táblázatokat engedélyezése gyors és hatékony keresések és a másodlagos rendezési sorrend különböző **RowKey** értékeket.  
+Több másolatot minden entitás használatával különböző tárolására **RowKey** külön partíciók vagy külön táblázatban tooenable gyors és hatékony keresést és a másodlagos rendezési sorrend használatával különböző értékek **RowKey**értékeket.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-A Table szolgáltatás automatikusan elvégzi a segítségével a **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy hatékonyan végez ezeket az értékeket entitást lekérdezni egy ügyfélalkalmazást. Például a lent látható módon táblaszerkezet, ügyfélalkalmazás használatával pont lekérdezés egy adott alkalmazott bejegyzés lekérdezésére a részleg neve és az alkalmazott azonosítója (a **PartitionKey** és **RowKey** értékek). Egy ügyfél is kérje le az entitásokat alkalmazottazonosító belül minden részleg szerint rendezve.  
+Table szolgáltatás hello automatikusan elvégzi a hello segítségével **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy egy ügyfél alkalmazás tooretrieve egy entitás hatékonyan végez ezeket az értékeket. Például a lent látható módon hello táblaszerkezet, ügyfélalkalmazás használatával egy pont lekérdezés tooretrieve alkalmazott entitás hello részleg neve és hello alkalmazott azonosítója (hello **PartitionKey** és  **RowKey** értékek). Egy ügyfél is kérje le az entitásokat alkalmazottazonosító belül minden részleg szerint rendezve.  
 
 ![][9]
 
-Ha is érdemes lehet egy másik tulajdonság, például az e-mail cím alapján alkalmazott entitás megkeresni a kevésbé hatékony partíció ellenőrzések keres kell használnia. Ennek oka az, a table szolgáltatás nem adja meg a másodlagos kulcsot. Ezenkívül nincs lehetőség az alkalmazottakat, mint egy másik sorrendbe rendezve kéréséhez **RowKey** sorrendje.  
+Ha szeretné, hogy toobe képes toofind hello egy másik tulajdonság értéke, például az e-mail cím alapján alkalmazott entitás egy kevésbé hatékony partíció vizsgálat toofind egyezés kell használnia. Ennek az az oka hello table szolgáltatás nem biztosít a másodlagos kulcsot. Emellett nincs nincs lehetőség toorequest az alkalmazottakat, mint egy másik sorrendbe rendezve **RowKey** sorrendje.  
 
-Ezeket az entitásokat tranzakciókról nagyon nagy mennyiségű rendszer előrejelző, és szeretné, hogy a Table szolgáltatás szabályozása az ügyfél kockázatának minimalizálása érdekében.  
+Ezeket az entitásokat tranzakciókról nagyon nagy mennyiségű rendszer előrejelző, és szeretné, hogy hello Table szolgáltatás szabályozása az ügyfél toominimize hello kockázatát.  
 
 #### <a name="solution"></a>Megoldás
-Másodlagos indexek hiánya megkerüléséhez tárolhat több másolatot minden példány használatával minden entitás különböző **PartitionKey** és **RowKey** értékeket. Ha egy entitás tárolja az alább látható struktúrákat, e-mail címét vagy az alkalmazott azonosítója alapján alkalmazott entitások hatékonyan kérheti le. Az előtag értékei a **PartitionKey**, "empid_" és "email_" engedélyezi, hogy melyik index lekérdezéshez használni kívánt azonosításához.  
+másodlagos indexek hello hiánya körül toowork, több másolatot minden entitás, minden példány használatával különböző tárolhatja **PartitionKey** és **RowKey** értékeket. Ha egy entitás tárolja az alább látható hello struktúrák, e-mail cím vagy az alkalmazott azonosítója alapján alkalmazott entitások hatékonyan kérheti le. hello előtag értékeinek hello **PartitionKey**, "empid_" és "email_" lehetővé teszik a index, amely tooidentify toouse szeretné, hogy egy lekérdezéshez.  
 
 ![][10]
 
-Az alábbi két feltételeket (egy keresésekor által alkalmazott- és egy keresése e-mail cím alapján) is adja meg a pont lekérdezéseket:  
+a következő két szűrési feltételeket (egy keresésekor által alkalmazott azonosítója, a másik e-mail cím alapján keresése) hello is adja meg a pont lekérdezéseket:  
 
 * $filter = (PartitionKey eq ' empid_Sales") és (RowKey eq"000223")
 * $filter = (PartitionKey eq ' email_Sales") és (RowKey eq 'jonesj@contoso.com")  
 
-Ha alkalmazott entitástartományának kérdezze le, megadhatja a alkalmazott azonosítója sorrendbe rendezve tartománya vagy egy tartományt, a megfelelő előtaggal rendelkező entitások lekérdezésével e-mail cím sorrendbe rendezve a **RowKey**.  
+Ha alkalmazott entitástartományának kérdezze le, megadhatja a alkalmazott azonosítója sorrendbe rendezve tartománya vagy egy tartományt a hello hello a megfelelő előtaggal rendelkező entitások lekérdezésével e-mail cím sorrendbe rendezve **RowKey**.  
 
-* Az alkalmazottak az értékesítési osztályon az alkalmazott ID tartományban található **000100** való **000199** alkalmazott azonosítója sorrendben használja rendezve: $filter = (PartitionKey eq ' empid_Sales") és (RowKey ge"000100") és (RowKey le "000199")  
-* Az alkalmazottak az értékesítési részleg kezdetű "a" e-mail cím sorrendben használja rendezett e-mail címmel rendelkező kereséséhez: $filter = (PartitionKey eq ' email_Sales") és (RowKey ge"a") és (RowKey lt"b")  
+* összes alkalmazottja hello toofind hello értékesítési részleg hello közé alkalmazott azonosítójú **000100** túl**000199** alkalmazott azonosítója sorrendben használja rendezve: $filter = (PartitionKey eq ' empid_Sales") és (RowKey ge" 000100') és (RowKey le "000199")  
+* toofind hello értékesítési részleg a rendezett "a" karakterlánccal kezdődik e-mail címmel rendelkező összes hello alkalmazott e-mail cím sorrendben használja: $filter = (PartitionKey eq ' email_Sales") és (RowKey ge"a") és (RowKey lt"b")  
 
-Vegye figyelembe, hogy a Table szolgáltatásból REST API-t a további tudnivalókat lásd a fenti példákban használt szűrőszintaxisának [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
+Vegye figyelembe, hogy a fenti példákban hello használt hello szűrőszintaxisának hello Table szolgáltatás REST API-t a további tudnivalókat lásd a [lekérdezés entitások](http://msdn.microsoft.com/library/azure/dd179421.aspx).  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Hálózati adaptere esetében megtarthatja az ismétlődő entitások idővel konzisztenssé egymással használatával a [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) az elsődleges és másodlagos index entitások fenntartásához.  
-* A TABLE storage viszonylag olcsó használatára, így költség növeli a duplikált adatok tárolására nem szabad jelentős probléma. Azonban kell kiértékelésének eredménye mindig a tervező a várható tárolási szükségletek költségeinek, és csak hozzá az ügyfélalkalmazást hajtja végre a lekérdezéseket kettős bejegyzés.  
-* A használt érték a **RowKey** minden egyes entitásnál egyedinek kell lennie. Érdemes lehet összetett kulcs értékeket.  
-* Kitöltési szerepel benne numerikus érték a **RowKey** (például a alkalmazottazonosító 000223), lehetővé teszi, hogy javítsa ki, rendezési és szűrési alapján felső és alsó határait.  
-* Nem feltétlenül kell ismétlődő az entitás tulajdonságait. Például ha a lekérdezések, hogy a Keresés az entitásokat, az e-mail cím a **RowKey** soha nem kell az alkalmazott életkora, ezeket az entitásokat eredményezhet. az alábbi szerkezettel:
+* Hálózati adaptere esetében megtarthatja az ismétlődő entitások idővel konzisztenssé egymással hello segítségével [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) toomaintain hello elsődleges és másodlagos index entitásokat.  
+* A TABLE storage viszonylag olcsó toouse, így a terhelést növelni az ismétlődő adatok tárolására költség hello nem lehet fő szempont. Azonban kell kiértékelésének eredménye mindig a várható tárolási szükségletek előkészítését hello költség, és csak hozzá kettős bejegyzés toosupport hello lekérdezések végrehajtja az ügyfélalkalmazást.  
+* hello használt érték hello **RowKey** minden egyes entitásnál egyedinek kell lennie. Érdemes lehet összetett kulcs értékeket.  
+* Kitöltési hello szerepel benne numerikus érték **RowKey** (például hello alkalmazottazonosító 000223), lehetővé teszi, hogy javítsa ki, rendezési és szűrési alapján felső és alsó határait.  
+* Nem feltétlenül kell tooduplicate az entitás összes hello tulajdonságait. Például ha hello lekérdezéseiben, amelyeket keresési hello entitásnak hello segítségével e-mail-címre a hello **RowKey** soha nem kell hello alkalmazott életkora, ezeket az entitásokat hello struktúra a következő lehet:
   
   ![][11]
-* Érdemes jellemzően ismétlődő adatokat tárolhatnak, és győződjön meg arról, hogy egyetlen lekérdezést egy lekérdezési használata a másodlagos index, míg a másik keresési a szükséges adatok használatát az elsődleges index entitás található a szükséges összes adatot kérheti le.  
+* Általában jobb toostore ismétlődő adatokat, és győződjön meg arról, hogy minden hello a szükséges adatok egyetlen lekérdezést, mint egy entitás használatával toouse egy lekérdezést toolocate hello másodlagos index kérheti le, és egy másik toolookup hello hello elsődleges index szükséges adatok.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ezt a mintát használja, ha az ügyfélalkalmazást kérje le az entitásokat, különböző kulccsal, számos használatát, ha az ügyfél eltérő rendezési sorrend entitásának lekérése, valamint olyan esetben minden entitás egyedi értékeket számos segítségével azonosíthatja. Ezt a mintát használja, ha el szeretné kerülni, a partíció méretezhetőségének korlátai meghaladja a különböző entitás keresések végrehajtásakor **RowKey** értékeket.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ezt a mintát használja, ha az ügyfélalkalmazást számos különböző kulcsok használatát, ha az ügyfélnek kell eltérő rendezési sorrend tooretrieve entitásának tooretrieve entitásokat, és ahol minden entitás egyedi értékeket számos segítségével azonosíthatja. Ebben a mintában használja, ha azt szeretné, hogy hello partíció méretezhetőségi korlátok meghaladja a különböző hello segítségével entitás keresések végrehajtásakor tooavoid **RowKey** értékeket.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Idővel konzisztenssé tranzakciók minta](#eventually-consistent-transactions-pattern)  
 * [Helyen belüli-partíció másodlagos index minta](#intra-partition-secondary-index-pattern)  
@@ -524,118 +524,118 @@ A következő mintákat és útmutatókat is megfelelő ebben a mintában végre
 Engedélyezze a idővel konzisztenssé viselkedés partícióhatárok vagy tárolási rendszer határok az Azure-üzenetsorok használatával.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-EGTs atomi tranzakciók engedélyezhető a kiszolgálók közötti ugyanazzal a partíciós kulccsal rendelkező entitásokat. A teljesítmény és méretezhetőség érdekében dönthet külön partíciók vagy egy különálló tárhelyet rendszer konzisztencia-követelményekkel rendelkező entitások tárolására: ilyen esetben nem használhat EGTs biztosítja az egységességet. Például lehetséges, hogy követelmény a végleges konzisztencia közötti karbantartása:  
+EGTs atomi tranzakciók engedélyezése között, amelyek közös hello több entitás ugyanazzal a partíciókulccsal. A teljesítmény és méretezhetőség érdekében dönthet úgy, hogy külön partíciók vagy egy különálló tárhelyet rendszer konzisztencia-követelményekkel rendelkező entitások toostore: ilyen esetben EGTs toomaintain konzisztencia nem használható. Például lehetséges, hogy egy követelmény toomaintain végleges konzisztencia között:  
 
-* Az entitások tárolva két különböző partíciók ugyanabban a táblában, a különböző táblák, a másik tárfiókokban.  
-* A Table szolgáltatásban tárolni entitás és a Blob szolgáltatásban tárolt blob.  
-* A Table szolgáltatás és a fájl a fájlrendszerben tárolt entitás.  
-* A Table szolgáltatásban az entitást áruházra még indexelése az Azure Search szolgáltatás használatával.  
+* Két különböző partíciók hello tárolt entitásokat azonos tábla, a különböző táblák, a különböző tárfiókokban.  
+* Egy entitás hello Table szolgáltatás tárolja, és a blob hello Blob szolgáltatásban tárolja.  
+* Egy entitás tárolt hello Table szolgáltatás és a fájl a fájlrendszerben.  
+* Egy entitás hello Table szolgáltatás tárolása, még indexelt hello Azure Search szolgáltatás használatával.  
 
 #### <a name="solution"></a>Megoldás
 Azure üzenetsorok használata esetén alkalmazhat olyan megoldás, amely továbbítja a végleges konzisztencia két vagy több partíciót, vagy tárolási rendszerek között.
-Ezt a módszert mutatja be, során feltételezzük, hogy archiválja a régi alkalmazott entitások tennie követelmény. Régi alkalmazott entitások ritkán a rendszer megkérdezi, és olyan tevékenységet, amely az aktuális alkalmazottak kezelésére ki kell zárni. Ez a követelmény végrehajtásához aktív alkalmazottak tárolja a **aktuális** tábla és a régi alkalmazottak a **archív** tábla. Egy alkalmazott archiválásához törlését a vállalat, a **aktuális** tábla, és adja hozzá az entitás a **archív** táblában, de nem használható egy EGT két művelet végrehajtásához. Annak elkerülése érdekében okozó hiba jelenik meg egy entitás mindkét vagy egyiket se táblázatokban, az archiválási művelet idővel konzisztenssé kell lennie. A következő Szekvenciadiagram ebben a műveletben lépéseit mutatja be. Kivétel elérési utak, a következő szöveg a biztosított további információkhoz juthat.  
+tooillustrate ez közelítse, során feltételezzük, hogy egy követelmény toobe képes tooarchive régi alkalmazott entitásokat. Régi alkalmazott entitások ritkán a rendszer megkérdezi, és olyan tevékenységet, amely az aktuális alkalmazottak kezelésére ki kell zárni. tooimplement hello aktív tárolja ezt a követelményt **aktuális** tábla és a régi dolgozók hello **archív** tábla. Egy alkalmazott archiválás szükséges toodelete hello entitásának hello **aktuális** tábla, és adja hozzá a hello entitás toohello **archív** táblában, de nem használható egy EGT tooperform két művelet. tooavoid hello kockázata, hogy hibát okoz, egy entitás tooappear mindkét vagy egyiket se táblák, hello archiválási művelet idővel konzisztenssé kell lennie. hello következő Szekvenciadiagram lépéseit sorolja fel hello ebben a műveletben. Kivétel elérési utak, a következő hello szöveg biztosított további információkhoz juthat.  
 
 ![][12]
 
-Üzenet helyez el egy Azure-üzenetsorba, ebben a példában alkalmazott #456 archiválására az ügyfél kezdeményez az archiválási művelet. A feldolgozói szerepkör kérdezze le a várólista új üzenetek; Ha talál egyet, kiolvassa az üzenetet, és egy rejtett másolatot elhagyja a várólistán. A feldolgozói szerepkör ezután lekéri az entitást egy példányát a **aktuális** table, a másolja a **archív** tábla, és végül törli az eredeti a **aktuális** tábla. Végül ha nincs hiba az előző lépésekben vannak, a feldolgozói szerepkör törli az rejtett üzenetet az üzenetsorból.  
+Egy Azure-üzenetsorba, ez például tooarchive alkalmazotti #456 helyez el egy üzenetet az ügyfél hello archiválási művelet kezdeményez. A feldolgozói szerepkör kérdezze le az új üzenetek; hello várólista Ha talál egyet, üdvözlőüzenetére olvas, és hagyja rejtett másolatot hello a várakozási. hello feldolgozói szerepkör ezután lekéri hello entitás másolatát hello **aktuális** table, szúrja be a másolási hello **archív** tábla, és törli hello hello az eredeti **aktuális**tábla. Végül ha nincs hiba hello előző lépéseiből, hello feldolgozói szerepkör törli rejtett üdvözlőüzenetére hello üzenetsorból.  
 
-Ebben a példában a 4. lépés szúr be az alkalmazott a **archív** tábla. Az alkalmazott a Blob szolgáltatás blob vagy egy fájl a fájlrendszerben hozzáadhatja azt.  
+Ebben a példában a 4. lépés hello alkalmazott illeszt hello **archív** tábla. Hello alkalmazott tooa blob a Blob szolgáltatás hello vagy annak egy fájljához hozzáadhatja, a fájlrendszer.  
 
 #### <a name="recovering-from-failures"></a>Végezze el a hibák
-Fontos, hogy lépéseket műveleteknek **4** és **5** kell *idempotent* abban az esetben a feldolgozói szerepkör újra kell indítani az archiválási művelet. Ha használ a Table szolgáltatás lépés **4** kell használnia az "insert vagy cserélje le a" művelet; lépés **5** kell használnia egy "törlése, ha létezik-e" az ügyféloldali kódtár használata a műveletet. Ha egy másik tárolási rendszert használ, egy megfelelő idempotent műveletet kell használnia.  
+Fontos, hogy hello lépéseket az operations **4** és **5** kell lennie *idempotent* abban az esetben hello feldolgozói szerepkör kell toorestart hello archiválási művelet. Ha hello Table szolgáltatás lépés az **4** kell használnia az "insert vagy cserélje le a" művelet; lépés **5** kell használnia egy "törlése, ha létezik-e" hello ügyféloldali kódtár használata a műveletet. Ha egy másik tárolási rendszert használ, egy megfelelő idempotent műveletet kell használnia.  
 
-Ha a feldolgozói szerepkör soha nem fejeződik be a lépés **6**, majd után egy időtúllépési az üzenet ismét megjelenik a várólistán, készen áll arra, hogy újból feldolgozza, próbáljon a feldolgozói szerepkör esetében. A feldolgozói szerepkör ellenőrizheti, hogy hányszor egy üzenetet a várólistában lett, olvassa el, és ha szükséges, ez a jelző külön várólista küldésével egy "elhalt" üzenet, hogy meg lehessen vizsgálni. Várólista-üzenetek olvasásához és a dequeue számának ellenőrzése kapcsolatos további információkért lásd: [üzeneteket beolvasni](https://msdn.microsoft.com/library/azure/dd179474.aspx).  
+Ha hello feldolgozói szerepkör soha nem fejeződik be a lépés **6**, majd hello időtúllépési üzenet ismét megjelenik, hello várólista után készen áll a hello feldolgozói szerepkör tootry tooreprocess azt. hello feldolgozói szerepkör ellenőrizheti egy hello várólista olvasták futtatásainak számát, és szükség esetén egy "poison" üzenetet, hogy meg lehessen vizsgálni tooa elküldésével jelző külön várólista. További információ az üzenetek olvasásakor és hello ellenőrzése created száma, lásd: [üzeneteket beolvasni](https://msdn.microsoft.com/library/azure/dd179474.aspx).  
 
-A tábla- és várólista szolgáltatásokból hibák átmeneti hibák, és az ügyfélalkalmazás tartalmaznia kell a megfelelő újrapróbálkozási logika kezelni azokat.  
+Bizonyos hibák hello tábla és a Queue szolgáltatások átmeneti hibák, és az ügyfélalkalmazás tartalmaznia kell a megfelelő újrapróbálkozási logika toohandle őket.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Ez a megoldás elkülönítési tranzakció nem ad meg. Például egy ügyfél olvasható a **aktuális** és **archív** táblák, ha a feldolgozói szerepkör lépések között **4** és **5**, és tekintse meg egy az adatok inkonzisztens nézetét. Vegye figyelembe, hogy az adatok konzisztens idővel.  
-* Lehet, hogy-e 4. és 5 idempotent végleges konzisztencia biztosításához.  
-* A megoldás több várólisták és feldolgozópéldányok szerepkör segítségével méretezhető.  
+* Ez a megoldás elkülönítési tranzakció nem ad meg. Például egy ügyfél olvasható hello **aktuális** és **archív** állapotában hello feldolgozói szerepkör lépések között táblák **4** és **5**, és tekintse meg egy hello adatok inkonzisztens nézetét. Vegye figyelembe, hogy hello adatok konzisztens idővel.  
+* Meg arról, hogy 4. és 5 rendelés tooensure végleges konzisztencia az idempotent kell lennie.  
+* Több várólisták és feldolgozópéldányok szerepkör segítségével méretezhető hello megoldás.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ebben a mintában használja, ha azt szeretné, amely szerepel a különböző partíciók, illetve olyan táblázatok entitások közötti végleges konzisztencia biztosításához. Ebben a mintában biztosíthatja a végleges műveletekhez a tábla és a Blob szolgáltatás és más nem Azure Storage között adatforrások, például az adatbázis vagy a fájlrendszer terjeszthetők ki.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ezt a mintát használja, ha azt szeretné, hogy a végleges konzisztencia tooguarantee entitás, amely szerepel a különböző partíciók, illetve olyan táblázatok között. A minta tooensure végleges konzisztencia műveletekhez kiterjesztése hello tábla és hello Blob szolgáltatás és más Azure Storage adatforrások, például az adatbázis vagy hello fájlrendszer.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Entitás csoport tranzakciók](#entity-group-transactions)  
 * [Egyesítés vagy cseréje](#merge-or-replace)  
 
 > [!NOTE]
-> Ha a tranzakció elkülönítési fontos, hogy a megoldás, vegye figyelembe a táblák lehetővé váljon EGTs újratervezése.  
+> Ha a tranzakció elkülönítési fontos tooyour megoldás, érdemes lehet a táblák tooenable újratervezése toouse EGTs meg.  
 > 
 > 
 
 ### <a name="index-entities-pattern"></a>Index entitások minta
-Ahhoz, hogy térjen vissza az entitások listák hatékony kereséseket index entitások karbantartása.  
+Index entitások tooenable hatékony keresések entitások listájának visszaadó karbantartása.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-A Table szolgáltatás automatikusan elvégzi a segítségével a **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy egy entitás hatékonyan pont lekérdezéssel lekérni ügyfélalkalmazást. Például használja az alábbi táblázat szerkezetét, ügyfélalkalmazás hatékonyan alkalmazott entitás használatával lekérhető a részleg neve és az alkalmazott azonosítója (a **PartitionKey** és **RowKey**).  
+Table szolgáltatás hello automatikusan elvégzi a hello segítségével **PartitionKey** és **RowKey** értékeket. Ez lehetővé teszi, hogy egy ügyfél alkalmazás tooretrieve hatékonyan pont lekérdezéssel entitás. Például alább látható hello táblaszerkezet használ, egy ügyfélalkalmazás hatékonyan alkalmazott entitás használatával lekérhető hello részleg neve és hello alkalmazott azonosítója (hello **PartitionKey** és **RowKey** ).  
 
 ![][13]
 
-Ha szeretné tenni a vezetéknevét, például egy másik nem egyedi tulajdonság alapján alkalmazott entitások listájának beolvasása a kevésbé hatékony partíció ellenőrzések található egyező helyett index kereshető azokat közvetlenül kell használnia. Ennek oka az, a table szolgáltatás nem adja meg a másodlagos kulcsot.  
+Ha toobe képes tooretrieve alkalmazott entitások listájának hello egy másik nem egyedi tulajdonság értéke, például a vezetéknevét, alapján is érdemes használnia kell a kevésbé hatékony partíció toofind egyező vizsgálata helyett egy index toolook azokat fel közvetlenül. Ennek az az oka hello table szolgáltatás nem biztosít a másodlagos kulcsot.  
 
 #### <a name="solution"></a>Megoldás
-Vezetéknév keresési engedélyezze a fent látható entitás struktúrával, kezelnie kell az alkalmazott azonosítók listája. Szeretné beolvasni a alkalmazott entitások egy adott nevű utolsó, például a János, ha először keresse meg az alkalmazott azonosítók listáját János a Vezetéknév, az alkalmazottak számára, és az majd lekérheti az alkalmazott entitásokból. Az alkalmazott azonosítók listájának tárolására három fő lehetőség áll rendelkezésre:  
+tooenable keresési alkalmazott azonosítók listájának kezelnie kell a fent látható hello entitás struktúrájú utolsó név szerint. Ha azt szeretné, hogy tooretrieve hello alkalmazott entitások egy adott nevű utolsó, például a János, először keresse meg az alkalmazott azonosítók hello listáját János a Vezetéknév, az alkalmazottak számára, és az majd lekérheti az alkalmazott entitásokból. Hello alkalmazott azonosítók listájának tárolására három fő lehetőség áll rendelkezésre:  
 
 * A blob storage használata.  
-* Hozzon létre indexet entitások az alkalmazott entitásokat tartalmazó partícióra.  
+* Hozzon létre indexet entitások azonos partícióazonosító hello alkalmazott entitásként hello.  
 * Hozzon létre indexet entitások külön partíció vagy tábla.  
 
 <u>#1. lehetőség: Használja a blob storage</u>  
 
-Az első lehetőség létrehoz minden egyedi Vezetéknév, és minden egyes blob tárolóban blob listáját a **PartitionKey** (osztály) és **RowKey** adott Vezetéknév rendelkező alkalmazottak (alkalmazott azonosítója) értékeit. Adja hozzá, vagy egy alkalmazott törlésekor biztosítania kell, hogy idővel konzisztenssé váljanak a alkalmazott entitások a megfelelő blob tartalma.  
+Hello első lehetőség, létrehoz egy blob minden egyedi Vezetéknév, és minden egyes blob tárolóban hello listája **PartitionKey** (osztály) és **RowKey** (alkalmazott azonosítója) értékeit, amely utoljára rendelkező alkalmazottak név. Adja hozzá, vagy egy alkalmazott törlésekor biztosítania kell, hogy hello hello vonatkozó blob tartalma idővel konzisztenssé váljanak hello alkalmazott entitásokat.  
 
-<u>#2. lehetőség:</u> ugyanazon partíció index entitások létrehozása  
+<u>#2. lehetőség:</u> a Create index entitásokat tartalmazó partícióra hello  
 
-A második lehetőség használja a következő adatok tárolására szolgáló index entitás:  
+Hello második lehetőség használja a következő adatok hello tárolására szolgáló index entitás:  
 
 ![][14]
 
-A **EmployeeIDs** tárolt utolsó nevű tulajdonsága tartalmazza az alkalmazottak számára alkalmazott azonosítók listáját a **RowKey**.  
+Hello **EmployeeIDs** hello tárolt hello utolsó nevű tulajdonsága tartalmazza az alkalmazottak számára alkalmazott azonosítók listájának **RowKey**.  
 
-Az alábbi lépéseket kell követnie, amikor a hozzáadni kívánt új alkalmazott a második lehetőség használata vázoltuk. Ebben a példában azt ad hozzá egy alkalmazott azonosítója 000152 és a Vezetéknév János az értékesítési részleg:  
+hello lépései hello folyamat felvételekor új alkalmazott hello második lehetőség használata ajánlott. Ebben a példában azt ad hozzá egy alkalmazott azonosítója 000152 és a Vezetéknév János hello értékesítési részleg:  
 
-1. Az index bejegyzés lekérdezésére egy **PartitionKey** "Értékesítési" értéket, és a **RowKey** érték "János." Mentse ezt az entitást a 2. lépésben használandó ETag címkét.  
-2. Hozzon létre egy entitás-csoport tranzakció (Ez azt jelenti, hogy a kötegelt művelet), amely az új alkalmazottak entitás beszúrása (**PartitionKey** "Értékesítési" érték és **RowKey** "000152" értéket), és frissíti az index entitás (**PartitionKey** "Értékesítési" értéket, és **RowKey** "János" érték) az új alkalmazottazonosító ad hozzá a EmployeeIDs mező listáján. Entitás csoport tranzakciókkal kapcsolatos további információkért lásd: [entitás csoport tranzakciók](#entity-group-transactions).  
-3. Ha az entitás csoport tranzakció (valaki más csak módosította az index entitás) egyidejű hozzáférések optimista hiba miatt nem sikerül, akkor szüksége az 1. lépés: újra újrakezdéshez.  
+1. Hello index entitás beolvasni egy **PartitionKey** érték az "Értékesítési" és a hello **RowKey** érték "János." Ez entity toouse az ETag hello mentése a 2.  
+2. Hozzon létre egy entitás csoport tranzakció (Ez azt jelenti, hogy a kötegelt művelet) hello új alkalmazott entitás beszúrása (**PartitionKey** "Értékesítési" érték és **RowKey** "000152" értéket), és a frissítések hello index entitás ( **PartitionKey** "Értékesítési" érték és **RowKey** "János" értékre) hello EmployeeIDs mezőben hello új alkalmazott azonosítója toohello lista hozzáadásával. Entitás csoport tranzakciókkal kapcsolatos további információkért lásd: [entitás csoport tranzakciók](#entity-group-transactions).  
+3. Ha hello entitás csoport tranzakció (valaki más csak módosította hello index entitás) egyidejű hozzáférések optimista hiba miatt nem sikerül, akkor szüksége toostart keresztül 1. lépés: újra.  
 
-Egy alkalmazott törlése, a második lehetőség használata hasonló megközelítése is használhatja. Egy alkalmazott Vezetéknév módosítása nem kicsit bonyolultabb, mert szüksége lesz egy entitás csoport tranzakció, amely három entitások frissíti hajtható végre: az alkalmazott, a régi vezetékneve index entitás, és a index entitás az új utolsó nevét. Minden entitás optimista konkurenciát alkalmazott frissítések végrehajtásához használhatja ETag értékek beolvasása érdekében módosítások végrehajtása előtt be kell olvasni.  
+Használhat egy hasonló megközelítés toodeleting egy alkalmazott hello második lehetőség használata. Egy alkalmazott Vezetéknév módosítása nem kicsit bonyolultabb, mert szüksége lesz egy entitás csoport tranzakció, amely három entitások frissíti tooexecute: hello alkalmazott entitás hello index entitás hello régi Vezetéknév és hello index entitás hello új utolsó neve. Minden entitás módosítása előtt sorrendben tooretrieve hello ETag érték majd használható tooperform hello frissítések optimista konkurenciát alkalmazott be kell olvasni.  
 
-Az alábbi lépéseket kell követnie, amikor meg kell keresnie egy osztály adott utolsó nevű az alkalmazottak, a második lehetőség használata vázoltuk. Ebben a példában azt keressük az értékesítési részleg utolsó nevű János az alkalmazottak:  
+hello lépései hello folyamat, ha egy osztály adott utolsó nevű alkalmazottait hello toolook hello második lehetőség használata ajánlott. Ebben a példában is szívesen látjuk hello értékesítési részleg utolsó nevű János alkalmazottait hello:  
 
-1. Az index bejegyzés lekérdezésére egy **PartitionKey** "Értékesítési" értéket, és a **RowKey** érték "János."  
-2. Elemezni alkalmazott a EmployeeIDs mezőben azonosítók listáját.  
-3. Ha további információ az egyes ezeknek a dolgozóknak (például az e-mail címmel) van szüksége, lekéri az egyes használatával alkalmazott entitások **PartitionKey** "Értékesítési" értéket, és **RowKey** közötti értéket a 2. lépésben beolvasott alkalmazottak listája.  
+1. Hello index entitás beolvasni egy **PartitionKey** érték az "Értékesítési" és a hello **RowKey** érték "János."  
+2. Elemezni hello alkalmazott hello EmployeeIDs mezőben azonosítók listáját.  
+3. Ha további információ az egyes ezeknek a dolgozóknak (például az e-mail címmel) van szüksége, lekéri az egyes hello alkalmazott entitások használatával **PartitionKey** "Értékesítési" értéket, és **RowKey** közötti értéket 2. lépésben beolvasott alkalmazottak hello listája.  
 
 <u>#3. lehetőség:</u> index entitások külön partíció vagy tábla létrehozása  
 
-A harmadik lehetőség használja a következő adatok tárolására szolgáló index entitás:  
+Hello harmadik beállítás használja a következő adatok hello tárolására szolgáló index entitás:  
 
 ![][15]
 
-A **EmployeeIDs** tárolt utolsó nevű tulajdonsága tartalmazza az alkalmazottak számára alkalmazott azonosítók listáját a **RowKey**.  
+Hello **EmployeeIDs** hello tárolt hello utolsó nevű tulajdonsága tartalmazza az alkalmazottak számára alkalmazott azonosítók listájának **RowKey**.  
 
-A harmadik beállítással biztosítja az egységességet, mert az index entitások az alkalmazott entitások külön partícióra EGTs nem használható. Ellenőrizze, hogy idővel konzisztenssé váljanak a alkalmazott entitások-e az index entitásokat.  
+Hello harmadik beállítás EGTs toomaintain konzisztencia nem használható, mert a hello alkalmazott entitásokból külön partícióra vannak hello index entitásokat. Ellenőrizze, hogy idővel konzisztenssé váljanak hello alkalmazott entitások-e hello index entitásokat.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Ehhez a megoldáshoz szükségesek egyező entitást lekérdezni legalább két lekérdezést: egyet az index entitásokat a listájának lekérdezése **RowKey** értékek, majd beolvasni a listában szereplő lekérdezések.  
-* Fényében, hogy az egyes entitásnak van a maximális méret 1 MB, #2 és a megoldás #3 lehetőség feltételezik, hogy bármely adott Vezetéknév alkalmazott azonosítóinak listáját soha nem 1 MB-nál nagyobb. Ha alkalmazott azonosítók listáját mérete 1 MB-nál nagyobbnak kell lennie, #1. lehetőség és az index adatokat a blob Storage tárolóban tárolja.  
-* #2. beállítás (EGTs használ hozzáadása és az alkalmazottak törlése és módosítása az alkalmazott Vezetéknév kezeléséhez) ki kell értékelnie, ha a tranzakciók mennyisége fog megközelíti a méretezhetőségének korlátai egy adott partíció. Ha ez a helyzet, fontolja meg egy idővel konzisztenssé megoldás (#1. lehetőség vagy #3. lehetőség), amely várólisták használja a frissítés-kérelmeket kezelnek, és lehetővé teszi, hogy az index entitások az alkalmazott entitások külön partícióra.  
-* Ebben a megoldásban #2. lehetőség azt feltételezi, hogy szeretné-e kereshet meg egy részleg vezetéknév: például szeretné beolvasni az alkalmazottakat az értékesítési részleg János utolsó néven. Ha szeretné tudni nevű utolsó János a teljes szervezeten belül minden alkalmazott kereshet, #1. lehetőség vagy a #3. lehetőség használatával.
-* Megvalósíthat egy várólista-alapú megoldás, amely a végleges konzisztencia biztosítja (lásd a [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) további részletekért).  
+* Ehhez a megoldáshoz szükségesek entitások megfelelő legalább két lekérdezést tooretrieve: egy tooquery hello index entitások tooobtain hello listája **RowKey** értéket, majd ezután lekérdezi tooretrieve hello listán szereplő minden egyes entitásnál.  
+* Fényében, hogy egyes entitás a maximális méret 1 MB, #2. lehetőség van, és a #3. lehetőség hello megoldásban azt feltételezik, hogy hello listája bármely adott Vezetéknév alkalmazott azonosítóinak mindig 1 MB-nál nagyobb. Ha alkalmazott azonosítók listáját hello 1 MB-nál nagyobb valószínűséggel toobe, #1. lehetőség és hello index adatokat a blob Storage tárolóban tárolja.  
+* #2. beállítás (EGTs toohandle hozzáadása és az alkalmazottak törlése és módosítása az alkalmazott Vezetéknév használatával) ki kell értékelnie, ha tranzakciók mennyisége hello megközelítést alkalmaz majd hello méretezhetőségi korlátok egy adott partíció. Ha ez helyzet hello, fontolja meg egy idővel konzisztenssé (#1. lehetőség vagy #3. lehetőség) által használt megoldás várólisták toohandle hello frissítés kér, és lehetővé teszi, hogy a hogy toostore az index entitások a hello alkalmazott entitásokból külön partícióra.  
+* #2. lehetőség a megoldás feltételezi, hogy toolook fel egy részleg utolsó nevű: például azt szeretné, hogy tooretrieve az alkalmazottak a Vezetéknév János hello értékesítési részleg listáját. Ha azt szeretné, hogy képes toolook toobe hello alkalmazottait nevű utolsó János hello teljes szervezeten belül, #1. lehetőség vagy a #3. lehetőség használatával.
+* Megvalósíthat egy várólista-alapú megoldás, amely a végleges konzisztencia biztosítja (lásd: hello [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) további részletekért).  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ezt a mintát használja, ha meg szeretné megkeresni az, hogy minden közös közös tulajdonság értéke, például minden alkalmazott Vezetéknév János a entitások készletének.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ezt a mintát használja, ha azt szeretné, hogy az, hogy minden közös közös tulajdonság értéke, például minden alkalmazott Vezetéknév hello János a entitások készletének toolookup.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Összetett kulcs minta](#compound-key-pattern)  
 * [Idővel konzisztenssé tranzakciók minta](#eventually-consistent-transactions-pattern)  
@@ -643,230 +643,230 @@ A következő mintákat és útmutatókat is megfelelő ebben a mintában végre
 * [Heterogén entitástípusok használata](#working-with-heterogeneous-entity-types)  
 
 ### <a name="denormalization-pattern"></a>Denormalization minta
-Együtt kapcsolódó adatok egyesítése egyetlen entitás ahhoz, hogy beolvasni az összes adatot a hibaérzékeny pontok lekérdezéssel van szüksége.  
+Egyesíthet egy egyetlen entitás tooenable együtt a kapcsolódó adatokat tooretrieve, az összes hello egyetlen pont lekérdezéssel szükséges adatokat.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egy relációs adatbázisban akkor általában normalizálása az adatok eltávolítása a lekérdezéseiben, amelyeket adatainak lekérése több táblából származó ismétlődést. Ha normalizálása az adatok Azure-táblákban, meg kell győződnie több kiszolgálókkal való adatváltások számát az ügyfélről a kiszolgálónak a kapcsolódó adatok beolvasása. Például a táblázat szerkezetét alábbi értékekre, akkor a két adatváltások beolvasni egy részleg részleteit kell: egyet a részleg entitás, amely tartalmazza a kezelő azonosítója és a kezelő részletek alkalmazott entitás lehívása majd egy másik kérelem beolvasása.  
+Egy relációs adatbázisban akkor általában szabványosíthatja a lekérdezéseiben, amelyeket adatainak lekérése több táblából származó adatok tooremove ismétlődést. Ha normalizálása az adatok Azure-táblákban, meg kell nyitnia a hello ügyfél toohello server tooretrieve több kiszolgálókkal való adatváltások számát a kapcsolódó adatokat. Például az alábbi értékekre, akkor hello táblaszerkezet kell két kerekíteni utazgatással tooretrieve hello részleteit egy részleg: egy toofetch hello részleg entitás, amely tartalmazza egy alkalmazott hello kezelő azonosítója, és a majd egy másik kérelem toofetch hello kezelő részletek az entitás.  
 
 ![][16]
 
 #### <a name="solution"></a>Megoldás
-Helyett két külön entitás tárolni az adatokat, az adatok denormalize, és a részleg entitás megőrzi a manager részletei. Példa:  
+Helyett két külön entitás hello adatok tárolását, denormalize hello adatokat, és megőrzi hello manager részletei hello részleg entitásban. Példa:  
 
 ![][17]
 
-Ezekkel a tulajdonságokkal tárolt részleg entitásokkal kapcsolatos pont lekérdezéssel részleget szükséges összes információt most le.  
+Ezekkel a tulajdonságokkal tárolt részleg entitásokkal kapcsolatos pont lekérdezéssel részleget szükséges összes hello információt most le.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Van néhány költsége terhet kétszer néhány adatainak tárolásához. A teljesítmény előny (kevesebb kéréseket a tárolási szolgáltatásba) általában ez fontosabb, mint a tárolási költségeket marginális növekedése (és az ehhez kapcsolódó költséget részben eltolva csökkentése szüksége van egy részleg részleteinek beolvasása tranzakciók száma ).  
-* A kezelők vonatkozó információt tároló két entitások konzisztencia kell fenntartani. Egy atomi tranzakción belül több entitás frissítése EGTs használatával kezelni tud a konzisztencia problémát: Ebben az esetben a részleg, és a alkalmazott entitás részleg kezelőjének partícióra tárolják.  
+* Van néhány költsége terhet kétszer néhány adatainak tárolásához. hello teljesítménynövekedést (kevesebb kérelmek toohello társzolgáltatás eredő) általában ez fontosabb, mint hello marginális növekedése tárolási költségek (és az ehhez kapcsolódó költséget részben az eltolás tranzakciók száma hello csökkenése toofetch hello részletek megkövetelése a részleg).  
+* Meg kell egységesíthetők hello hello két entitások kezelők adatainak tárolására. Kezelheti hello konzisztencia probléma EGTs tooupdate használatával egy atomi tranzakción belül több entitás: Ebben az esetben hello részleg entitás és hello alkalmazott entitás hello részleg Manager tárolja hello egyazon partícióra kerüljenek.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ebben a mintában használja, ha gyakran kell a kapcsolódó tudnivalókat. Ebben a mintában csökkenti az ügyfél biztosítsa a szükséges adatok beolvasásához lekérdezések száma.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ebben a mintában akkor használja, ha gyakran kell toolook kapcsolódó adatokat. Ebben a mintában csökkenti az ügyfél biztosítsa tooretrieve hello adatokat igényel lekérdezések hello száma.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Összetett kulcs minta](#compound-key-pattern)  
 * [Entitás csoport tranzakciók](#entity-group-transactions)  
 * [Heterogén entitástípusok használata](#working-with-heterogeneous-entity-types)
 
 ### <a name="compound-key-pattern"></a>Összetett kulcs minta
-Használjon összetett **RowKey** értékek kapcsolódó adatok egyetlen pont lekérdezéssel talált ügyfél engedélyezése.  
+Használjon összetett **RowKey** értékek tooenable egy ügyfél toolookup kapcsolódó adatok egyetlen pont lekérdezéssel.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egy relációs adatbázisban hogy a rendszer teljesen illesztések lekérdezésekben használatához kapcsolódó adatok kódrészletek vissza az ügyfélnek egyetlen lekérdezést természetes. Például használhatja a alkalmazottazonosító megkeresheti a kapcsolódó entitásokból, melyek teljesítményét, és tekintse át az adatokat azt listáját.  
+Egy relációs adatbázisban elég természetes toouse illesztések lekérdezésekben tooreturn kapcsolatos adatok toohello ügyfél egyetlen lekérdezést adatot. Például használhatja a hello alkalmazott azonosítója toolook kapcsolódó entitásokból, melyek teljesítményét, és tekintse át az adatokat azt listája.  
 
-Tegyük fel, a Table szolgáltatás használatával az alábbi szerkezettel alkalmazott entitások tárolja:  
+Tegyük fel, alkalmazott entitások hello Table szolgáltatás a következő struktúra hello segítségével tárolja:  
 
 ![][18]
 
-Szükség értékelést, és a teljesítmény évente az alkalmazott működött a szervezet számára vonatkozó előzményadatok tárolja, és érhetik el ezeket az információkat évente kell. Egy elem egy másik tábla tárolja az alábbi szerkezettel rendelkező entitások létrehozásához:  
+Szükség toostore előzményadatokat tooreviews vonatkozó és teljesítmény minden év hello alkalmazott működött a szervezet számára, és toobe képes tooaccess évente ezekre az információkra szüksége. Egy beállítás toocreate van egy másik tábla entitások tárolja a struktúra a következő hello:  
 
 ![][19]
 
-Figyelje meg, hogy ezt a módszert is dönthet, hogy néhány adat (például a Keresztnév és Vezetéknév) ismétlődő ahhoz, hogy az egy kérelemhez adatok beolvasása az új entitásban. Azonban az erős konzisztencia nem fenntartása, mivel a két entitások frissítésére i egy EGT nem használható.  
+Figyelje meg, hogy ennek közelítse meg dönthet tooduplicate egyes információk (például a Keresztnév és Vezetéknév) hello új entitás tooenable meg tooretrieve az adatok egy kérelemhez. Azonban az erős konzisztencia nem fenntartása, mivel egy EGT tooupdate hello két entitás i nem használható.  
 
 #### <a name="solution"></a>Megoldás
-Egy új entitástípus tárolása az eredeti tábla entitások használata az alábbi szerkezettel:  
+Egy új entitástípus tárolása az eredeti entitások használata hello struktúra a következő táblában:  
 
 ![][20]
 
-Értesítés az **RowKey** mostantól az alkalmazott azonosítója és az év, amely lehetővé teszi az alkalmazott beolvasásához, és ellenőrizze az adatokat egyetlen entitás egyetlen kérelmet tartalmazó felülvizsgálati adatok összetett kulcs.  
+Figyelje meg, hogyan hello **RowKey** most egy összetett kulcs áll hello alkalmazott- és hello év, amely lehetővé teszi hello felülvizsgálati adatok tooretrieve hello alkalmazott teljesítményét, és ellenőrizze az adatokat egyetlen entitás egyetlen kérelmet tartalmazó.  
 
-A következő példa bemutatja, hogyan kérheti le a felülvizsgálati adatok (például alkalmazott 000123 az értékesítési részleg) egy alkalmazott:  
+hello a következő példa bemutatja, hogyan kérheti le minden hello felülvizsgálati adatokat (például alkalmazott 000123 hello kereskedelmi osztály) egy alkalmazott:  
 
 $filter = (PartitionKey eq 'Értékesítés') és (RowKey ge "empid_000123") és (RowKey lt "empid_000124") & $select = RowKey, Manager értékelése, társ értékelése, megjegyzések  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Könnyen értelmezhető megfelelő elválasztó karaktert kell használnia a **RowKey** érték: például **000123_2012**.  
-* Ehhez az entitáshoz kapcsolódó adatokat tartalmaznak az azonos alkalmazott, ami azt jelenti, EGTs segítségével karbantartása erős konzisztenciát végző más entitásokkal partícióra is tárolja.
-* Akkor érdemes megfontolni, hogy milyen gyakran fogja kérdezni az adatokat a megállapításához, hogy ez a minta megfelelő.  Például ha az felülvizsgálati ritkán, és a főbb alkalmazotti adatok gyakran férnek hozzá legyen őket, különálló entitások.  
+* Így könnyen tooparse hello megfelelő elválasztó karaktert kell használnia **RowKey** érték: például **000123_2012**.  
+* Ehhez az entitáshoz is tárolja hello megegyezik más személyként hello kapcsolódó adatok tartalmazó partíció ugyanaz az alkalmazott, ami azt jelenti, EGTs toomaintain az erős konzisztencia is használhatja.
+* Akkor érdemes megfontolni, hogy milyen gyakran fogja kérdezni hello adatok toodetermine, hogy megfelelő-e ezt a mintát.  Például ha éri el ritkán hello tekintse át adatokat, és hello fő alkalmazott adatok gyakran külön entitásokként kell tárolni.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ebben a mintában használatára kell tárolni egy vagy több kapcsolódó entitások lekérdezett gyakran.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ebben a mintában használatára kell toostore egy vagy több kapcsolódó entitások lekérdezett gyakran.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Entitás csoport tranzakciók](#entity-group-transactions)  
 * [Heterogén entitástípusok használata](#working-with-heterogeneous-entity-types)  
 * [Idővel konzisztenssé tranzakciók minta](#eventually-consistent-transactions-pattern)  
 
 ### <a name="log-tail-pattern"></a>Napló végéről minta
-Beolvasni a  *n*  partíció legutóbb hozzáadott entitások egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
+Hello beolvasása  *n*  entitások legutóbb hozzáadott tooa partíció használatával egy **RowKey** érték, amely fordított dátum és idő sorrendben rendezi.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-A közös vonatkozó követelmény akkor állítható vissza a legutóbb létrehozott entitások, például a tíz legújabb kiadás az alkalmazottak által küldött jogcímek. Táblázat a támogatási lekérdezi egy **$top** lekérdezési művelet vissza az első  *n*  egy entitás: az utolsó n entitások vissza egy készlet nincs egyenértékű lekérdezési művelet.  
+A közös vonatkozó követelmény akkor kell tudni tooretrieve utoljára létrehozott hello entitások, például hello tíz legújabb kiadás jogcímek az alkalmazottak által küldött. Táblázat a támogatási lekérdezi egy **$top** először lekérdezési művelet tooreturn hello  *n*  egy entitás: nincs egyenértékű lekérdezési művelet tooreturn hello utolsó n entitások van egy.  
 
 #### <a name="solution"></a>Megoldás
-Az entitások használatával tárolja a **RowKey** , hogy természetes rendezi fordított dátum/idő ahhoz, így a legutóbbi bejegyzés használatával, mindig az első egy a táblázatban.  
+Tároló hello entitások használatával egy **RowKey** , hogy természetes névkeresési rendezések dátum/idő rendelés használatával, ezért a legutóbbi bejegyzés hello mindig hello hello táblázat első szerkezetével.  
 
-Például nem fogja tudni kérik le az alkalmazottak által küldött tíz legújabb kiadás jogcímeket, használhatja a fordított osztásjelek származó az aktuális dátum/idő értékkel. A következő C# kódminta jeleníti meg a megfelelő "fordított ticks" értéket a létrehozásának egyik módja egy **RowKey** , amely a legújabb rendezi a legrégebbi:  
+Például toobe képes tooretrieve hello által alkalmazott tíz legújabb kiadás jogcímeket, egy fordított osztásjelek származó értékkel hello aktuális dátum és idő is használhatja. hello alábbi C# kódminta látható egyirányú toocreate megfelelő "fordított ticks" értéket egy **RowKey** , hogy a legrégebbi hello legutóbbi toohello rendezi:  
 
 `string invertedTicks = string.Format("{0:D19}", DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks);`  
 
-Is vissza a dátum idő értéknek megfelelően a következő kódot:  
+Is vissza toohello dátum idő érték a következő kód hello használata:  
 
 `DateTime dt = new DateTime(DateTime.MaxValue.Ticks - Int64.Parse(invertedTicks));`  
 
-A lekérdezés így néz ki:  
+hello lekérdezés így néz ki:  
 
 `https://myaccount.table.core.windows.net/EmployeeExpense(PartitionKey='empid')?$top=10`  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Annak érdekében, hogy a karakterlánc rendezi a várt módon nullából kezdő fordított osztásjelek értékének kell írni.  
-* A partíció szinten vonatkozó méretezhetőségi célok tisztában kell lennie. Legyen óvatos nem interaktív terület partíciókat.  
+* Kell írni, hello fordított osztásjelek érték nullából vezető tooensure hello karakterláncértéket rendezi a várt módon.  
+* Hello méretezhetőségi célok partíció hello szinten tisztában kell lennie. Legyen óvatos nem interaktív terület partíciókat.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ebben a mintában felhasználhatja hozzá kell férnie a fordított dátum/idő sorrend, illetve ha a közelmúltban felvett entitások eléréséhez szükséges szerepelnek.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Használja ezt a mintát Ha tooaccess entitások fordított dátum/idő sorrendben kell, vagy ha tooaccess hello legutóbb kell entitások hozzá.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Illesztenie elleni mintát hozzáfűzése](#prepend-append-anti-pattern)  
 * [Entitások beolvasása](#retrieving-entities)  
 
 ### <a name="high-volume-delete-pattern"></a>Nagy mennyiségű delete minta
-Az entitások nagy mennyiségű törlésének engedélyezése a entitásokhoz egyidejű törlésre tárolása saját külön táblázatban; a tábla törlésével törli az entitásokat.  
+A saját külön táblázatban szereplő összes hello entitás egyidejű törlésre elhelyezésével nagyszámú entitások hello törlésének engedélyezése hello entitások hello tábla törlésével törli.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Számos alkalmazás törlése a régi adatokat, amely már nem elérhető egy ügyfélalkalmazást, vagy az alkalmazás rendelkezik archivált más adattárolóra. Általában azonosíthatja az ilyen adatokat a dátum: például, hogy egy követelmény, törlendő rekordok, amelyek több mint 60 napos bejelentkezési kérelmek.  
+Számos alkalmazás törölje a régi adatokat, amelyek már nincs szüksége a toobe elérhető tooa ügyfélalkalmazást, vagy hello alkalmazás rendelkezik archivált tooanother adathordozóra. Általában azonosíthatja az ilyen adatokat a dátum: például, hogy egy követelmény toodelete rögzíti, amelyek több mint 60 napos bejelentkezési kérelmek.  
 
-Egy lehetséges tervezési, hogy a dátum és idő, a bejelentkezési kérelem a használja a **RowKey**:  
+Egy lehetséges tervezési toouse hello dátuma és időpontja hello bejelentkezési kérelem hello **RowKey**:  
 
 ![][21]
 
-Ez a megközelítés partíció elérési pontokhoz való elkerülhető, mert az alkalmazás beszúrása, és minden felhasználóhoz külön partícióra bejelentkezési entitások törlésére. Azonban ez a megközelítés lehet költséges és időigényes Ha sok entitást mivel először végre kell hajtania a táblázatbeolvasás ahhoz, hogy törli a entitások azonosítása, és törölnie kell minden egyes régi entitás. Vegye figyelembe, hogy adatváltások számát csökkentheti a kiszolgálóra, törölje a régi entitások több törlési kérelmek kötegelés történő EGTs szükséges.  
+Ez a megközelítés partíció elérési pontokhoz való elkerülhető, mert hello alkalmazás beszúrása, és minden felhasználóhoz külön partícióra bejelentkezési entitások törlésére. Azonban előfordulhat, hogy ez a megközelítés költséges és sok időt vesz igénybe Ha sok entitást mivel tooperform először egy tábla vizsgálata a rendelés tooidentify összes hello entitások toodelete, és törölnie kell minden egyes régi entitás. Vegye figyelembe, hogy csökkentheti hello adatváltások toohello szükséges kiszolgáló toodelete hello régi entitások száma több törlési kérelmek kötegelés EGTs be.  
 
 #### <a name="solution"></a>Megoldás
-Egy külön táblázattal minden nap a bejelentkezési kísérletek. A fenti entitás tervező segítségével elkerülése csatlakozási pontokhoz entities beszúrt, és most már egyszerűen törlése egy tábla minden nap adott esetben régi entitások törlése (egyetlen tárhelyművelettel) keresése és több száz és egyéni több ezer törlése helyett bejelentkezési entitások minden nap.  
+Egy külön táblázattal minden nap a bejelentkezési kísérletek. Használhatja a hello entitás tervezési fent tooavoid elérési pontokhoz való beszúrt entitásokat, és most már egyszerűen törlése egy tábla minden nap adott esetben régi entitások törlése (egyetlen tárhelyművelettel) keresése és több száz és több ezer törlése helyett Egyéni bejelentkezési entitások minden nap.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Támogatja a Tervező más módon, az alkalmazás fogja használni az adatok, például adott entitások kapcsolódik-e más adatok, vagy előállítása összesített adatát keresésekor?  
+* Támogatja a Tervező más módszereket, az alkalmazás fogja hello adatok, például az adott entitások kapcsolódik-e más adatok, vagy előállítása összesített adatát keresésekor?  
 * Nem a Tervező elkerülése interaktív területek új entitások beszúráskor?  
-* A késleltetés várható, ha azt szeretné, hogy a tábla néven törlése után újból. Érdemes mindig használjon egyedi tábla neve.  
-* Várt néhány szabályozás első használata alkalmával érdemes egy új tábla a Table szolgáltatás Tanulja meg a hozzáférési minták, és a partíciók elosztja a csomópontok között. Milyen gyakran kell létrehoznia az új táblákat vegye figyelembe.  
+* A késleltetés, ha azt szeretné, hogy tooreuse hello azonos várt azt törlését követően a tábla neve. Jobb tooalways használjon egyedi tábla neve is.  
+* Várt néhány szabályozás első használata alkalmával érdemes egy új tábla hello Table szolgáltatás hello hozzáférési minták megtanulja, és hello partíciók elosztja a csomópontok között. Meg kell figyelembe vennie, milyen gyakran toocreate új táblákat.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Ezt a mintát használja, ha az entitásokat, törölnie kell az egyszerre nagy mennyiségű van.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Ebben a mintában használni, ha nagyszámú törölnie kell a hello entitások ugyanannyi időt vesz igénybe.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Entitás csoport tranzakciók](#entity-group-transactions)
 * [Entitások módosítása](#modifying-entities)  
 
 ### <a name="data-series-pattern"></a>Adatsorozat adatmintát
-Tároló teljes adatsorok egyetlen entitás minimalizálása érdekében elvégezte kérelmek számát jelenti.  
+Tároló teljes adatsorok egy egyetlen entitás toominimize hello kérelemszámot elvégezte.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egy általános forgatókönyv van az alkalmazás számára az adatok általában szükséges egyszerre beolvasandó sorozatát tárolja. Például az alkalmazás előfordulhat, hogy minden alkalmazott óránként küld hány Csevegési üzeneteket rögzíti, és majd használja az információt megrajzolásához hány üzenetek minden felhasználóhoz az előző 24 óra során küldött. Lehet, hogy egy tervezési tárolni 24 entitások minden alkalmazott számára:  
+Egy általános forgatókönyv egy alkalmazás toostore adatokat, hogy általában tooretrieve egyszerre több. Például az alkalmazás előfordulhat, hogy minden alkalmazott óránként küld hány Csevegési üzeneteket rögzíti, és aztán a információk tooplot minden felhasználó keresztül küldött üzenetek számának hello előző 24 óra. Lehet, hogy egy Tervező toostore 24 entitások minden alkalmazott számára:  
 
 ![][22]
 
-Ezzel a kialakítással egyszerűen keresse meg és frissítése minden alkalmazott számára, amikor az alkalmazás az üzenet számérték frissíteni kell az entitás módosítására. Azonban a tevékenység diagram megrajzolásához az előző 24 órával kapcsolatos információk lekéréséhez be 24 entitások kell olvasni.  
+Ezzel a kialakítással egyszerűen keresse meg és hello entitás tooupdate hello alkalmazásnak kell tooupdate hello üzenet számérték minden alkalmazott frissítésére. Azonban tooretrieve hello információk tooplot előző 24 óra hello hello tevékenységét diagramot, 24 entitások be kell olvasni.  
 
 #### <a name="solution"></a>Megoldás
-Külön tulajdonsággal a következő tervezési használatával tárolja az üzenetek száma óránként:  
+Tervezési egy külön tulajdonság toostore hello üzenetek száma a következő minden hello használata:  
 
 ![][23]
 
-Ezzel a kialakítással használhatja a partícióegyesítési művelet az üzenetek száma az alkalmazott frissíteni az adott időpont. Most kérheti le az összes kérelem használatával egyetlen entitás diagram megrajzolásához szükséges információkat.  
+Ezzel a kialakítással használható egy merge művelet tooupdate hello üzenetek száma egy alkalmazott egy adott egy óra. Most tooplot hello diagram kérelmet használatával egyetlen entitás szükséges összes hello információkat kérheti le.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Ha a teljes adatsor nem fér el egyetlen entitás (egy entitás legfeljebb 252 tulajdonságot is rendelkeznek), például blob alternatív adattár használata.  
-* Ha egy entitás frissítése egyszerre több ügyfélnek, akkor használja a **ETag** egyidejű hozzáférések optimista végrehajtásához. Ha sok ügyfél, magas versengés tapasztalhatja.  
+* Ha a teljes adatsor nem fér el egyetlen entitás (a egy entitás legfeljebb too252 tulajdonságok tartalmazhat), például blob alternatív adattár használata.  
+* Ha egy entitás frissítése egyszerre több ügyfélnek, szüksége lesz a toouse hello **ETag** tooimplement egyidejű hozzáférések optimista. Ha sok ügyfél, magas versengés tapasztalhatja.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Akkor használja ezt a mintát, ha kell frissíteni, és az egyes entitáshoz kapcsolódó adatsor beolvasása.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Használja ezt a mintát, ha a tooupdate kell, és az egyes entitáshoz kapcsolódó adatsor beolvasása.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Nagy entitások minta](#large-entities-pattern)  
 * [Egyesítés vagy cseréje](#merge-or-replace)  
-* [Idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) (ha tárolja az adatsorozat blob)  
+* [Idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) (ha tárolja hello adatsorozat blob)  
 
 ### <a name="wide-entities-pattern"></a>Széles entitások minta
-Használni több fizikai entitás legfeljebb 252 tulajdonságot rendelkező logikai entitás tárolni.  
+Több fizikai entitások toostore logikai entitás legfeljebb 252 tulajdonságot használja.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egyes entitás legfeljebb 252 tulajdonságot (kivéve a kötelező tulajdonságai) állhat, és nem tárolható 1 MB-nál több adatok összesen. Egy relációs adatbázisban általában számíthat round semmilyen határnak sor mérete hozzáadása egy új tábla és a közöttük 1-1 kapcsolatot.  
+Egyes entitás legfeljebb 252 tulajdonságot (kivéve a hello kötelező Rendszertulajdonságok) állhat, és nem 1 MB-nál több adat tárolása összesen. Egy relációs adatbázisban általában számíthat round bármely sor mérete hello vonatkozó korlátozások hozzáadása egy új tábla és a közöttük 1-1 kapcsolatot.  
 
 #### <a name="solution"></a>Megoldás
-A Table szolgáltatás több entitás legfeljebb 252 tulajdonságot az egyetlen nagy üzleti objektumot képviselő tárolhatja. Például ha szeretné tárolni az elmúlt 365 napban minden alkalmazott által küldött IM üzenetek száma számát, a következő kialakítás ezért más sémák használ, két olyan entitásra használhatja:  
+Hello Table szolgáltatás használ, több entitások toorepresent legfeljebb 252 tulajdonságot az egyetlen nagy üzleti objektumot is tárolhatók. Például ha azt szeretné, hogy toostore hello IM üzenetek száma küld minden alkalmazott hello az elmúlt 365 napban számát, a következő kialakítás ezért más sémák használ, két olyan entitásra hello használhatja:  
 
 ![][24]
 
-Ha olyan módosítást igénylő frissítése mindkét entitások, hogy továbbra is szinkronizálja egymással kell egy EGT is használhatja. Ellenkező esetben egy egyetlen egyesítési művelet használatával frissítse az üzenetek száma egy adott napjára. Az adatok beolvasása egyetlen alkalmazott be kell olvasni mindkét entitások, amely két hatékony kérelmekre is elvégezhető a **PartitionKey** és egy **RowKey** érték.  
+Ha van szüksége, amely mindkét entitások tookeep őket szinkronizálja egymással frissíteni kell az toomake egy EGT is használhatja. Ellenkező esetben egy adott napon egy egyetlen egyesítési művelet tooupdate hello üzenetek száma is használhatja. be kell olvasni mindkét entitások, amely egyaránt két hatékony kérelmek teheti adott alkalmazott összes hello adatok tooretrieve egy **PartitionKey** és egy **RowKey** érték.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* A teljes logikai entitás beolvasásakor magában foglalja a legalább két storage-tranzakció: egy minden fizikai bejegyzés lekérdezésére.  
+* A teljes logikai entitás beolvasásakor magában foglalja a legalább két storage-tranzakció: egy tooretrieve fizikai entitás.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Használja ezt a mintát mikor kell entitások, amelynek méretét vagy a tulajdonságok száma meghaladja az egyes entitásnál a Table szolgáltatásban tárolni.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Használja ezt a mintát, ha a szükséges toostore entitások, amelynek méretét vagy a tulajdonságok száma meghaladja a hello korlátok hello található egyes entitás Table szolgáltatás.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Entitás csoport tranzakciók](#entity-group-transactions)
 * [Egyesítés vagy cseréje](#merge-or-replace)
 
 ### <a name="large-entities-pattern"></a>Nagy entitások minta
-A blob storage használatával nagy tulajdonságértékek tárolja.  
+A blob storage toostore nagy tulajdonságértékek használja.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egyes entitás nem 1 MB-nál több adat tárolása összesen. Ha egy vagy több, a tulajdonság tárolja az értékeket, amelyek a teljes mérete meghaladja ezt az értéket az entitás, a teljes entitás nem tárolja a Table szolgáltatás.  
+Egyes entitás nem 1 MB-nál több adat tárolása összesen. Ha egy vagy több, a tulajdonság tárolja az értékeket, amelyeket az entitás tooexceed hello teljes mérete okozza ezt az értéket, a Table szolgáltatás hello hello teljes entitás nem tárolhat.  
 
 #### <a name="solution"></a>Megoldás
-Ha az entitás meghaladja mérete 1 MB, mert egy vagy több tulajdonságának nagy mennyiségű adatot tartalmaz, adatok tárolása a Blob szolgáltatás, és majd tárolja a blob címét az entitásban található egy tulajdonság. Például egy alkalmazott fénykép a blob Storage tárolóban tárolja és tárolására is használható a fénykép mutató hivatkozást a **fénykép** tulajdonság az alkalmazott entitás:  
+Az entitás meghaladja mérete 1 MB, mert egy vagy több tulajdonságának nagy mennyiségű adatot tartalmaz, ha a Blob szolgáltatás hello tárolják az adatokat és tárolására is használható majd hello blob hello címe hello entitásban tulajdonsággal. Például egy alkalmazott hello fénykép tárolni a blob Storage tárolóban, és hivatkozás toohello fénykép tárolása hello **fénykép** tulajdonság az alkalmazott entitás:  
 
 ![][25]
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Az entitás a Table szolgáltatás és az adatokat a Blob szolgáltatás közötti végleges konzisztencia fenntartása érdekében használja a [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) az entitások fenntartásához.
-* Legalább két storage-tranzakció teljes entitásnak beolvasása foglalja magában: egyet az entitás és egyet a blob adatainak beolvasása.  
+* hello adatok hello Blob szolgáltatás, és a Table szolgáltatás hello hello entitás közötti toomaintain a végleges konzisztencia hello használata [idővel konzisztenssé tranzakciók mintát](#eventually-consistent-transactions-pattern) toomaintain az entitások.
+* Legalább két storage-tranzakció teljes entitásnak beolvasása foglalja magában: egy tooretrieve hello entitás és egy tooretrieve hello blob-adatokat.  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-Használja ezt a mintát, ha a kell entitások, amelyek mérete meghaladja az egyes entitásnál a Table szolgáltatásban tárolni.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+Használja ezt a mintát, ha a toostore entitások, amelyek mérete meghaladja a hello korlátok hello Table szolgáltatás található egyes entitás van szüksége.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Idővel konzisztenssé tranzakciók minta](#eventually-consistent-transactions-pattern)  
 * [Széles entitások minta](#wide-entities-pattern)
@@ -874,80 +874,80 @@ A következő mintákat és útmutatókat is megfelelő ebben a mintában végre
 <a name="prepend-append-anti-pattern"></a>
 
 ### <a name="prependappend-anti-pattern"></a>Víruskereső mintát illesztenie hozzáfűzése
-Méretezhetőség fokozása, ha nagyszámú Beszúrások által a Beszúrás több partíciót keresztül terjednek.  
+Méretezhetőség javítása, ha nagyszámú Beszúrások által hello Beszúrások több partíciót keresztül terjednek.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Fertőző vagy entitások hozzáfűzi a tárolt entitásokat általában az alkalmazás új entitásokat ad hozzá az első vagy utolsó partíció partíciók több eredményez. Ebben az esetben egy adott időpontban Beszúrások mindegyikét történnek az egyazon partícióra kerüljenek, létrehozása, amely megakadályozza a table szolgáltatás betöltési eseménybeszúrások terheléselosztás több csomópont között, és ami miatt az alkalmazás elérte a méretezhetőségi célok az interaktív terület a partíció. Például, ha az alkalmazottak által elérhető naplók hálózati és az erőforrás alkalmazás, majd egy entitás struktúra alább látható módon eredményezhet a forgalmas adattömbök váljon, ha a tranzakciók mennyisége eléri a méretezhetőség célja a jelenlegi órán partíció egy egyes partíció:  
+Fertőző vagy entitások tooyour tárolt entitásokat általában fűznek eredményezi hello alkalmazás új entitások toohello először hozzáadásával vagy a partíciók több partíció utolsó. Ebben az esetben hello beszúrása egy adott időpontban mind a hello létrehozása, amely megakadályozza, hogy a table szolgáltatás hello terheléselosztás interaktív terület partícióra beszúrása több csomópont között zajló, és ami miatt a kérelem toohit hello méretezhetőség célok partíció. Például ha egy alkalmazásnál naplók hálózati és az erőforrás elérhető alkalmazottai, majd egy entitás struktúra alább látható módon eredményezhet hello jelenlegi órán partíció egy interaktív terület váljon, ha hello tranzakciók mennyisége eléri hello méretezhetőség célja az egyes partíció:  
 
 ![][26]
 
 #### <a name="solution"></a>Megoldás
-A következő alternatív entitás struktúra bármely adott partíció interaktív terület elkerülhető az alkalmazás naplók eseményként is:  
+hello következő alternatív entitás struktúra elkerülhető bármely adott partíció interaktív terület hello alkalmazás naplók eseményként is:  
 
 ![][27]
 
-Figyelje meg, az ebben a példában hogyan mindkét a **PartitionKey** és **RowKey** összetett kulcs. A **PartitionKey** a részleg és az alkalmazott azonosítóját használja a naplózás szét több partíciót.  
+Az ebben a példában láthatja, hogyan mindkét hello **PartitionKey** és **RowKey** összetett kulcs. Hello **PartitionKey** használ hello részleg és az alkalmazott azonosítója toodistribute hello naplózási egyszerre több partíciót.  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Ebben a mintában megvalósításához meghatározásakor, vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok meghatározásakor hello hogyan tooimplement ebben a mintában:  
 
-* Támogatja az alternatív struktúra, amely hatékonyan létrehozása a gyakran használt adatok partíciók a Beszúrás az ügyfélalkalmazás lekérdezések?  
-* A tranzakciók várható mennyisége azt jelenti, hogy valószínűleg, az egyes partíciók a méretezhetőségi célok eléréséhez, és a tároló szolgáltatás által szabályozott kell?  
+* Biztosítja hello alternatív struktúra, amellyel elkerülhető a gyakran használt adatok partíciók beszúrása a hatékony támogatási hello lekérdezések létrehozásáról az ügyfélalkalmazást lesz?  
+* A tranzakciók várható mennyisége azt jelenti, hogy valószínűleg tooreach hello méretezhetőségi célok az egyes partíciók és hello tároló szolgáltatás által szabályozott kell?  
 
-#### <a name="when-to-use-this-pattern"></a>Mikor érdemes használni ezt a mintát
-A víruskereső prepend hozzáfűzése minta elkerülése a tranzakciók mennyisége valószínű, hogy a társzolgáltatás általi szabályozás, amikor hozzáfér a gyakran használt adatok partíció eredményez.  
+#### <a name="when-toouse-this-pattern"></a>Ha toouse ezt a mintát
+A tranzakciók mennyisége esetén a sávszélesség-szabályozás hello tároló szolgáltatás által a gyakran használt adatok partíció elérésekor valószínűleg tooresult, ne hello illesztenie hozzáfűzése elleni mintát.  
 
 #### <a name="related-patterns-and-guidance"></a>Útmutató és a kapcsolódó minták
-A következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
+hello következő mintákat és útmutatókat is megfelelő ebben a mintában végrehajtása során:  
 
 * [Összetett kulcs minta](#compound-key-pattern)  
 * [Napló végéről minta](#log-tail-pattern)  
 * [Entitások módosítása](#modifying-entities)  
 
 ### <a name="log-data-anti-pattern"></a>Napló elleni adatmintát
-Általában kell használnia a Blob szolgáltatás helyett a Table szolgáltatás naplózási adatok tárolására.  
+Hello Blob szolgáltatás általában helyett hello tábla toostore Szolgáltatásnapló-adatait kell használni.  
 
 #### <a name="context-and-problem"></a>A környezetben, és probléma
-Egy gyakori használati eset, a naplózási adatokat beolvasni a kijelölt naplóbejegyzések adott dátum/idő köre: például keresendő összes hiba és kritikus üzeneteihez, az alkalmazás a rendszer 15:04 és 15:06 egy adott dátumon között. Nem szeretné, hogy a dátum és idő a naplóüzenet segítségével határozza meg a napló entitásokat mentése partíció:, amely az okozza, a működés közbeni partíció egy adott időpontban a napló entitások aliashoz ugyanaz **PartitionKey** érték (lásd: a a szakasz [elleni mintát Prepend hozzáfűzése](#prepend-append-anti-pattern)). Például egy naplófájlüzenetre a következő entitás sémát eredményezi egy gyakran használt adatok partíció, mert az alkalmazás összes naplóüzenetek ír a partíció az aktuális dátum és az óra:  
+Egy közös használati eset, a naplóadatok tooretrieve a kijelölt naplóbejegyzések adott dátum/idő köre: például azt szeretné, hogy az összes hiba és a kritikus üzeneteihez, az alkalmazás a rendszer 15:04 és 15:06 egy adott dátumon közötti hello toofind. Nem szeretné, hogy toouse hello dátum és idő hello napló üzenet toodetermine hello partíció napló entitásokat mentése:, hogy a működés közbeni partíció eredményez, mert az adott időpontban hello napló entitásokhoz aliashoz hello azonos **PartitionKey** érték (hello című [elleni mintát Prepend hozzáfűzése](#prepend-append-anti-pattern)). Például a következő entitás sémája egy naplófájlüzenetre hello okozza, a működés közbeni partíció hello alkalmazás írja az összes naplóüzenetek toohello partíció az aktuális dátumot és az óra hello:  
 
 ![][28]
 
-Ebben a példában a **RowKey** tartalmazza a dátum és idő a naplóüzenet annak érdekében, hogy naplóüzenetek kell tárolni, dátum/idő sorrendbe rendezve, és egy üzenetazonosítója abban az esetben, ha több naplóüzenetek megosztása azonos dátumát és idejét.  
+Ebben a példában hello **RowKey** tartalmazza hello dátuma és időpontja hello napló üzenet tooensure, hogy naplóüzenetek kell tárolni, dátum/idő sorrendbe rendezve, és egy üzenetazonosítója abban az esetben, ha több naplóüzenetek megosztása hello azonos dátum és idő.  
 
-Egy másik megoldás, használatához egy **PartitionKey** , amely biztosítja, hogy az alkalmazás írja az üzenetek között számos különböző partíciókat. Például ha a napló-üzenet forrása üzenetek szét sok partíciót lehetőséget biztosít, a következő entitás séma használhatja:  
+Egy másik megoldás, toouse egy **PartitionKey** , amely biztosítja, hogy hello alkalmazás írja az üzenetek között számos különböző partíciókat. Például hello forrás hello naplóüzenet lehetővé teszi az olyan módon toodistribute üzenetek sok partíciót, használhatja a következő entitás séma hello:  
 
 ![][29]
 
-A probléma a séma azonban, hogy egy adott időtartam összes a naplózott üzeneteket beolvasni akkor kell megkeresni minden partíció a táblában.
+Ebben a sémában hello probléma azonban, hogy az összes naplózott üzeneteket az adott időtartama kell megkeresni hello tooretrieve minden partíció hello táblában.
 
 #### <a name="solution"></a>Megoldás
-Az előző szakaszban kiemeli a problémát, a Table szolgáltatás használatakor a naplóbejegyzések és a javasolt a két, nem megfelelő, a terveinek tárolásához. Naplóüzenetek; írása gyenge teljesítményt veszélye kiemelt partíció vezetett egy megoldást a más megoldás eredményezett gyenge lekérdezési teljesítmény megvizsgálja az adott ideig üzeneteket beolvasni a táblázatban minden partíció követelmény miatt. A BLOB storage ilyen esetben jobb megoldást kínál, és ez az az Azure Storage Analytics tárolja a naplózási adatokat gyűjt.  
+hello előző szakasz kiemelt hello probléma toouse közben a Table szolgáltatás toostore naplóbejegyzések hello és javasolt két, nem megfelelő, tervez. Egy megoldás vezetett tooa működés közbeni partíció hello kockázata, gyenge teljesítményt naplóüzenetek; írása hello más megoldás, így gyenge lekérdezési teljesítmény miatt hello követelmény tooscan minden partíció hello tábla tooretrieve naplózott üzeneteket az adott időtartama. A BLOB storage ilyen esetben jobb megoldást kínál, és az Azure Storage Analytics tárolók hello naplóadatokat összegyűjti.  
 
-Ez a szakasz ismerteti, hogyan tárolási analitika napló adatot tárol a blob storage szemléltetésére ezt a módszert, amely általában szerint kíván lekérdezni tartomány adatainak tárolásához.  
+Ez a szakasz ismerteti, hogyan tárolási analitika napló adatot tárol a blob storage általában tartomány lekérdező megközelítés toostoring adatot szemléltetésére.  
 
-Tárolási analitika naplóüzenetek több blobok tagolt formátumban tárolja. A tagolt formátumú megkönnyíti, hogy a napló üzenetben az adatok egy ügyfél alkalmazáshoz.  
+Tárolási analitika naplóüzenetek több blobok tagolt formátumban tárolja. hello tagolt formátumú megkönnyíti, hogy az ügyfél tooparse hello alkalmazásadatok hello napló üzenetben.  
 
-Tárolási analitika elnevezési szabályait, amely lehetővé teszi a blob található blobok (vagy blobok), amelyek tartalmazzák a naplófájlüzeneteket keresést, amelynek használja. Például a "queue/2014/07/31/1800/000001.log" nevű blob a queue szolgáltatás a kezdő pozíció: 31 2014. július 18:00 óra kapcsolódó naplóüzenetek tartalmazza. A "000001" azt jelzi, hogy ez az első naplófájlja erre az időszakra. Tárolási analitika az első és utolsó naplóüzenetek a blob metaadatai részeként fájlban tárolja az időbélyegeket is rögzíti. Az API a blob storage lehetővé teszi, hogy blobok keresse meg a tartománynév előtagján alapuló tároló: keresse meg a kezdődő 18:00 órára várólistára naplózási adatokat tartalmazó összes BLOB, használja az előtag "várólista/2014/07/31/1800."  
+Tárolási analitika blobot, amely lehetővé teszi toolocate hello blob (vagy bináris objektumok) keres, amelynek hello üzeneteket tartalmazó elnevezési konvenciót használ. Például a "queue/2014/07/31/1800/000001.log" nevű blob naplóüzenetek toohello queue szolgáltatás indítása 31 2014. július 18:00 órakor hello óráig is tartalmazza. hello "000001" jelzi, hogy a hello első naplófájl ebben az időszakban. Tárolási analitika hello időbélyegeket hello az első rögzíti, és a legutóbbi a hello blob metaadatai részeként hello fájlban tárolt üzenetek naplózása. a blob storage lehetővé teszi, hogy blobok keresse meg a tartománynév előtagján alapuló tároló API hello: toolocate valamennyi hello BLOB várólista tartalmazó naplózni az adatokat hello óráig 18:00-tól kezdve, használhatja a hello előtag "várólista/2014/07/31/1800."  
 
-Storage Analytics pufferek üzenetek naplózása belső majd rendszeres időközönként frissíti a megfelelő blob vagy hoz létre egy újat a legújabb naplóbejegyzéseket tranzakcióköteghez. Ez csökkenti azt végezze el a blob szolgáltatás írási műveletek számát.  
+Tárolási analitika belső napló üzeneteket pufferel, és rendszeres időközönként frissíti a megfelelő blob hello, vagy létrehoz egy új-es hello legújabb naplóbejegyzéseket a. Ez hello szám csökkenti az írások toohello blob szolgáltatás kell végrehajtania.  
 
-Egy hasonló megoldás webkiszolgálókból a saját alkalmazásban, meg kell fontolnia és megbízhatóság (írása minden naplóbejegyzés a blob storage módon történik, akkor) és méretezhetőség (pufferelés az alkalmazás és az írás a frissítések közötti kompromisszum kezelése azokat a blob-tároló kötegekben).  
+Egy hasonló megoldás webkiszolgálókból a saját alkalmazásban, meg kell fontolnia hogyan toomanage hello (írása minden naplók bejegyzés tooblob tárolásához, akkor történik) megbízhatóság és a költségek és a méretezhetőség között (frissítések pufferelés az alkalmazás és rögzíti őket tooblob tárolási kötegekben).  
 
 #### <a name="issues-and-considerations"></a>Problémákat és szempontok
-Módjának napló adatok tárolására, vegye figyelembe a következő szempontokat:  
+Hello követő pontokat, hogyan toostore naplózni meghatározásakor vegye figyelembe:  
 
 * Ha létrehoz egy Táblatervezés, amellyel elkerülhető a potenciális kiemelt partíciók, előfordulhat, hogy nem férhet hozzá a naplóadatok hatékonyan.  
-* Egy ügyfél naplóadatokat feldolgozni, gyakran kell sok rekord betöltése.  
+* tooprocess adatok naplózása, az ügyfél gyakran kell tooload sok rekord.  
 * Bár gyakran felépítése naplóadatokat, a blob storage egy jobb megoldás lehet.  
 
 ### <a name="implementation-considerations"></a>Megvalósítási kapcsolatos szempontok
-Ez a szakasz ismerteti a szempontokat tartalmaz, amelyek a korábbi szakaszokban ismertetett mintázatokat bevezetésekor figyelembe kell vennie néhány. Ez a szakasz a legtöbb a Storage ügyféloldali kódtára (verziója 4.3.0 időpontjában írása) használó C# nyelven írt példák használja.  
+Ez a szakasz ismerteti néhány hello szempontok toobear figyelembe hello fentebbi szakaszokban leírt hello minták bevezetésekor. Ez a szakasz a legtöbb a Storage ügyféloldali kódtára (verzió: 4.3.0 írásának hello időpontjában) hello használó C# nyelven írt példák használja.  
 
 ### <a name="retrieving-entities"></a>Entitások beolvasása
-A szakaszban bemutatott [lekérdezése tervezési](#design-for-querying), a legtöbb hatékony Ez egy pont lekérdezés. Azonban bizonyos esetekben szükség lehet lekérdezni a több entitás. Ez a szakasz ismerteti az egyes közös megközelítés beolvasása a Storage ügyféloldali kódtár segítségével.  
+Hello szakaszban leírtaknak megfelelően [lekérdezése tervezési](#design-for-querying), hello leghatékonyabb Ez egy pont lekérdezés. Azonban bizonyos esetekben szükség lehet tooretrieve több entitás. Ez a témakör néhány gyakori megközelítések tooretrieving entitás hello Storage ügyféloldali kódtár segítségével.  
 
-#### <a name="executing-a-point-query-using-the-storage-client-library"></a>A Storage ügyféloldali kódtár segítségével pont lekérdezése
-Pont lekérdezés végrehajtása legegyszerűbb módja a használja a **beolvasása** művelet tábla, ahogy az az alábbi C# kódrészletet, amely lekéri az entitás egy **PartitionKey** érték "Értékesítési" és a  **RowKey** "212" érték:  
+#### <a name="executing-a-point-query-using-hello-storage-client-library"></a>A Storage ügyféloldali kódtára hello segítségével pont lekérdezése
+hello legegyszerűbb módja tooexecute pont lekérdezés toouse hello **beolvasása** művelet táblázatban látható módon hello következő C# kódrészletet, amely lekéri az entitás egy **PartitionKey** érték "értékesítési" és a  **RowKey** "212" érték:  
 
 ```csharp
 TableOperation retrieveOperation = TableOperation.Retrieve<EmployeeEntity>("Sales", "212");
@@ -959,10 +959,10 @@ if (retrieveResult.Result != null)
 }  
 ```
 
-Figyelje meg, hogyan ebben a példában vár az entitás típusa lekérdezi **EmployeeEntity**.  
+Figyelje meg, hogyan vár az ebben a példában a hello entitás lekérdezi a toobe típusú **EmployeeEntity**.  
 
 #### <a name="retrieving-multiple-entities-using-linq"></a>LINQ használatával több entitás beolvasásakor
-A Storage ügyféloldali kódtára a LINQ használatával, és a lekérdezés megadásával több entitás le egy **ahol** záradékban. Egy táblázatbeolvasás elkerülése érdekében meg kell adnia a **PartitionKey** érték WHERE záradék, és ha lehetséges a **RowKey** érték tábla és a partíció vizsgálatok elkerülése érdekében. A table szolgáltatás támogatja a korlátozott számú összehasonlító operátorok (nagyobb, mint, nagyobb vagy egyenlő, kevesebb mint, kisebb vagy egyenlő, egyenlő, és nem egyenlő) használható a where záradékban. A következő C# kódrészletet megállapítja az alkalmazottak, amelynek utolsó neve kezdődik, "B" (feltéve, hogy a **RowKey** vezetékneve tárolja) az értékesítési részleg (feltéve, hogy a **PartitionKey** tárolja a osztály neve):  
+A Storage ügyféloldali kódtára a LINQ használatával, és a lekérdezés megadásával több entitás le egy **ahol** záradékban. tooavoid egy táblázatbeolvasás, meg kell adnia hello **PartitionKey** hello értéket ahol záradék, és ha lehetséges hello **RowKey** tooavoid tábla és a partíció vizsgálatok érték. hello table szolgáltatás támogatja a korlátozott számú összehasonlító operátorok (nagyobb, mint, nagyobb vagy egyenlő, kevesebb mint, kisebb vagy egyenlő, egyenlő, és nem egyenlő) toouse hello ahol záradékban. hello következő C# kódrészletet talál minden hello alkalmazott amelynek utolsó neve kezdődik, "B" (feltéve, hogy hello **RowKey** tárolók hello Vezetéknév) hello értékesítési osztályon (feltéve, hogy hello **PartitionKey** tárolja a hello részleg neve):  
 
 ```csharp
 TableQuery<EmployeeEntity> employeeQuery = employeeTable.CreateQuery<EmployeeEntity>();
@@ -974,9 +974,9 @@ var query = (from employee in employeeQuery
 var employees = query.Execute();  
 ```
 
-Figyelje meg, hogyan a lekérdezés határoz meg, mindkét egy **RowKey** és egy **PartitionKey** jobb teljesítmény érdekében.  
+Figyelje meg, hogyan hello lekérdezés határoz meg, mindkét egy **RowKey** és egy **PartitionKey** tooensure jobb teljesítmény érdekében.  
 
-Az alábbi példakód mutatja Folyékonyan beszél API használatával egyenértékű funkciókat (További információ a Folyékonyan beszél API-k általában: [Folyékonyan beszél API tervezéséhez gyakorlati tanácsok](http://visualstudiomagazine.com/articles/2013/12/01/best-practices-for-designing-a-fluent-api.aspx)):  
+hello alábbi példakód mutatja hello Folyékonyan beszél API-jával funkciókat (További információ a Folyékonyan beszél API-k általában: [Folyékonyan beszél API tervezéséhez gyakorlati tanácsok](http://visualstudiomagazine.com/articles/2013/12/01/best-practices-for-designing-a-fluent-api.aspx)):  
 
 ```csharp
 TableQuery<EmployeeEntity> employeeQuery = new TableQuery<EmployeeEntity>().Where(
@@ -996,18 +996,18 @@ var employees = employeeTable.ExecuteQuery(employeeQuery);
 ```
 
 > [!NOTE]
-> A minta ágyazza több **CombineFilters** , melyek a szűrési feltételek.  
+> hello minta ágyazza több **CombineFilters** módszerek tooinclude hello három szűrési feltételeket.  
 > 
 > 
 
 #### <a name="retrieving-large-numbers-of-entities-from-a-query"></a>Egy lekérdezés által nagyszámú entitások beolvasása
-Az optimális lekérdezési alapuló egyéni entitást adja vissza egy **PartitionKey** érték és egy **RowKey** érték. Azonban bizonyos esetekben előfordulhat, hogy ad vissza a sok entitásokat tartalmazó partícióra vagy akár több partíciók számára.  
+Az optimális lekérdezési alapuló egyéni entitást adja vissza egy **PartitionKey** érték és egy **RowKey** érték. Azonban bizonyos esetekben előfordulhat, hogy egy követelmény tooreturn hello azonos particionálása, vagy akár több partícióról származó sok entitásokat.  
 
-Ilyen esetekben mindig teljes tesztelje az alkalmazás teljesítményét.  
+Ilyen esetekben mindig teljes mértékben az alkalmazás teljesítményének hello kell tesztelni.  
 
-Egy lekérdezést hajtanak a table szolgáltatás térhetnek vissza egy adott időpontban legfeljebb 1000 entitásokat, és előfordulhat, hogy öt másodpercenként legfeljebb hajtható végre. Ha az eredménykészlet 1000-nél több entitásokat tartalmaz, ha a lekérdezés nem fejeződött be 5 másodpercen belül, vagy ha a lekérdezés áthalad a partíció határán, a Table szolgáltatás a folytatási kód ahhoz, hogy az ügyfélalkalmazás igényelni az entitások következő készletét adja vissza. Hogyan folytatási jogkivonatok munkahelyi kapcsolatos további információkért lásd: [lekérdezés időkorlátja és tördelési](http://msdn.microsoft.com/library/azure/dd135718.aspx).  
+Egy lekérdezést hajtanak hello table szolgáltatás térhetnek vissza egy adott időpontban legfeljebb 1000 entitásokat, és előfordulhat, hogy öt másodpercenként legfeljebb hajtható végre. Ha hello eredménykészlet 1000-nél több entitásokat tartalmaz, ha hello lekérdezés nem fejeződött be 5 másodpercen belül, vagy ha hello lekérdezés áthalad hello partíció határán, Table szolgáltatás hello folytatási token tooenable hello ügyfél alkalmazás toorequest köszönésére az entitások készletének tovább. Hogyan folytatási jogkivonatok munkahelyi kapcsolatos további információkért lásd: [lekérdezés időkorlátja és tördelési](http://msdn.microsoft.com/library/azure/dd135718.aspx).  
 
-A Storage ügyféloldali kódtár használ, ha azt automatikusan kezelik a folytatási jogkivonatok meg, az entitásokat ad vissza a Table szolgáltatásból. A következő C# kódminta a Storage ügyféloldali kódtár segítségével automatikusan kezeli a folytatási jogkivonatokat, ha a table szolgáltatás visszaadja azokat a válasz:  
+A Storage ügyféloldali kódtára hello használ, ha azt kezelni tud a automatikusan folytatási jogkivonatok meg, akkor ad vissza entitásokat hello Table szolgáltatás. hello alábbi C# kódminta hello Storage ügyféloldali kódtár segítségével automatikusan kezeli a folytatási jogkivonatok Ha hello table szolgáltatás visszaadja azokat választ:  
 
 ```csharp
 string filter = TableQuery.GenerateFilterCondition(
@@ -1022,7 +1022,7 @@ foreach (var emp in employees)
 }  
 ```
 
-A következő C#-kódban explicit módon kezeli a folytatási jogkivonatokat:  
+a következő C#-kódban hello folytatási jogkivonatok explicit módon kezeli:  
 
 ```csharp
 string filter = TableQuery.GenerateFilterCondition(
@@ -1044,25 +1044,25 @@ do
 } while (continuationToken != null);  
 ```
 
-Jogkivonatok segítségével képes folytatási explicit módon, megadhatja, ha az alkalmazás kéri le a következő szegmensnél az adatok. Például ha az ügyfélalkalmazást lehetővé teszi, hogy a felhasználók a táblában tárolt entitásokat között, a felhasználó dönthet nem között, az alkalmazás csak használna a folytatási kód beolvasása a Tovább gombra a lekérdezés által lekért összes entitás szegmenseket, mikor a felhasználó a jelenlegi szegmens összes entitást lapozást kellett befejeződött. Ez a megközelítés azzal számos előnnyel jár:  
+Jogkivonatok segítségével képes folytatási explicit módon, megadhatja, ha az alkalmazás lekéri a következő szegmens hello adatok. Például ha az ügyfélalkalmazást lehetővé teszi, hogy a felhasználók toopage keresztül hello entitások egy táblázatban tárolja, a felhasználó dönthet nem keresztül, az alkalmazás csak használna a folytatási token tooretrieve hello mellett hello lekérdezés lekéri az összes hello entitások toopage szegmens befejezésekor hello felhasználói kellett hello aktuális szegmensben lévő összes hello entitás lapozást. Ez a megközelítés azzal számos előnnyel jár:  
 
-* Ez lehetővé teszi, hogy korlátozza az adatok beolvasása a Table szolgáltatásból, és a hálózaton keresztül áthelyeznie.  
-* Lehetővé teszi a .NET aszinkron IO végrehajtásához.  
-* Ez lehetővé teszi, hogy szerializálni a folytatási kód állandó tárhelyre, így egy alkalmazás összeomlása esetén is.  
+* Lehetővé teszi a Table szolgáltatás hello adatok tooretrieve toolimit hello mennyiségét és hello hálózati átvitele.  
+* Ez lehetővé teszi, hogy Ön tooperform aszinkron IO a .NET.  
+* Lehetővé teszi a tooserialize hello folytatási token toopersistent tárolási így hello egy alkalmazás összeomlása esetén is.  
 
 > [!NOTE]
-> A folytatási kód általában 1000 entitásokat tartalmazó szegmens adja vissza, bár kevesebb lehet. Ez is így, ha a lekérdezés visszaadja a bejegyzések számának korlátozása **érvénybe** vissza az első n entitásokat, a keresési feltételeknek megfelelő: a table szolgáltatás térhetnek vissza egy szegmenst mentén rendelkező n entitások nem lépi-e a a folytatási ahhoz, hogy a többi entitások beolvasása.  
+> A folytatási kód általában 1000 entitásokat tartalmazó szegmens adja vissza, bár kevesebb lehet. Ez helyzet is hello Ha csak a lekérdezés visszaadja a bejegyzések száma hello **érvénybe** tooreturn hello első n entitások a keresési feltételeknek eleget tevő: hello table szolgáltatás térhetnek vissza egy szegmenst mentén n entitások nem lépi-e a folytatási token tooenable meg tooretrieve hello fennmaradó entitásokat.  
 > 
 > 
 
-A következő C# kód bemutatja, hogyan lehet módosítani egy szegmens belül visszaadott entitások száma:  
+hello következő C# kód bemutatja, hogyan entitások száma toomodify hello visszaadott szegmens belül:  
 
 ```csharp
 employeeQuery.TakeCount = 50;  
 ```
 
 #### <a name="server-side-projection"></a>Kiszolgálóoldali leképezése
-Egy entitás legfeljebb 255 jellemzőkkel rendelkezik, és legfeljebb 1 MB méretű lehet. Ha a tábla lekérdezése, és kérje le az entitásokat, nem feltétlenül kell a tulajdonságok, és elkerülheti a adatátvitel feleslegesen (a késés és a költségek csökkentése érdekében). Kiszolgálóoldali leképezése vihet át kell tulajdonságait. A következő példa egy lekéri csak a **E-mail** tulajdonság (valamint **PartitionKey**, **RowKey**, **időbélyeg**, és **ETag**) az a lekérdezés által kiválasztott entitások.  
+Egyetlen entitás be too255 tulajdonságait és a too1 MB méretű lehet. Hello tábla lekérdezése, és kérje le az entitásokat, előfordulhat, hogy nem kell minden hello tulajdonság, és elkerülheti a feleslegesen adatátvitel (toohelp késés és csökkentése költség). Kiszolgálóoldali leképezése tootransfer csak hello tulajdonságok kell használhatók. hello következő példája lekéri csak hello **E-mail** tulajdonság (valamint **PartitionKey**, **RowKey**, **időbélyeg**, és  **ETag**) a kijelölt hello lekérdezésével hello entitásokból.  
 
 ```csharp
 string filter = TableQuery.GenerateFilterCondition(
@@ -1078,30 +1078,30 @@ foreach (var e in entities)
 }  
 ```
 
-Értesítés az **RowKey** érték érhető el annak ellenére, hogy azt meg beolvasandó tulajdonságként listája nem tartalmazott.  
+Figyelje meg, hogyan hello **RowKey** érték érhető el annak ellenére, hogy az nem tartalmazott tulajdonságokat tooretrieve hello listája.  
 
 ### <a name="modifying-entities"></a>Entitások módosítása
-A Storage ügyféloldali kódtár lehetővé teszi a Beszúrás, törlésével és entitások frissítése a table szolgáltatásban tárolt entitásokat módosítását. EGTs segítségével több insert, update és delete műveletek segítségével csökkentheti a szükséges adatváltások számát kötegelt és a megoldás a teljesítmény javításához.  
+a Storage ügyféloldali kódtára hello lehetővé teszi, hogy a toomodify, az entitások hello table szolgáltatás tárolva, hogy beszúrása törlés és frissítési entitások. Több insert, update és delete művelet adatváltások száma együtt tooreduce hello szükséges, és a megoldás hello teljesítményének növelése a EGTs toobatch használható.  
 
-Fontos megjegyezni, hogy a kivételek, amikor a Storage ügyféloldali kódtár végrehajt egy EGT általában az index az entitás, ami miatt sikertelen a kötegelt tartalmazza. Ez akkor hasznos, ha EGTs kód hibakeresés alatt.  
+Fontos megjegyezni, hogy a kivételek végrehajtásakor a Storage ügyféloldali kódtár hello egy EGT általában hello index hello entitás, ami miatt a hello kötegelt toofail tartalmazza. Ez akkor hasznos, ha EGTs kód hibakeresés alatt.  
 
 Azt is figyelembe kell venni, hogyan a kialakítás befolyásolja, miként kezeli az ügyfélalkalmazást a feldolgozási mód és a frissítési művelet.  
 
 #### <a name="managing-concurrency"></a>Párhuzamossági kezelése
-Alapértelmezés szerint a table szolgáltatás megvalósítja az optimista feldolgozási ellenőrzi az egyes entitásokat szintjén **beszúrása**, **egyesítése**, és **törlése** műveletek, bár ez az ügyfél számára a table szolgáltatás ellenőrzés elkerülésére lehetőség. Hogyan kezeli a table szolgáltatás a feldolgozási kapcsolatos további információkért lásd: [egyidejűségi kezelése a Microsoft Azure Storage](storage-concurrency.md).  
+Alapértelmezés szerint hello table szolgáltatás megvalósítja az optimista feldolgozási ellenőrzi az egyes entitások hello szinten **beszúrása**, **egyesítése**, és **törlése** műveletek Bár lehetséges a table szolgáltatás toobypass ellenőrzést egy ügyfél tooforce hello. Hogyan kezeli a hello table szolgáltatás az egyidejű kapcsolatos további információkért lásd: [egyidejűségi kezelése a Microsoft Azure Storage](storage-concurrency.md).  
 
 #### <a name="merge-or-replace"></a>Egyesítés vagy cseréje
-A **cserélje le** metódusában a **TableOperation** mindig a felváltja a Table szolgáltatásban teljes entitásnak osztály. Ha nem adja meg a tulajdonság a kérelemben szereplő tulajdonság a tárolt entitás létezik, a kérelem tulajdonság eltávolítja a tárolt entitás. Hacsak nem szeretné tulajdonság explicit módon eltávolítása egy tárolt entitás, meg kell adnia minden tulajdonsághoz a kérelemben.  
+Hello **cserélje le** hello metódusában **TableOperation** mindig a felváltja hello teljes entitásnak a Table szolgáltatás hello osztály. Ha nem adja meg a tulajdonság hello kérelem során ez a tulajdonság tárolja hello entitásban található, a hello kérelem hello tulajdonságot tárolt entitás eltávolítja. Kivéve, ha azt szeretné, hogy egy tulajdonság explicit módon tárolt entitásból tooremove, meg kell adnia minden tulajdonsághoz hello kérelemben.  
 
-Használhatja a **egyesítése** metódusában a **TableOperation** osztály, amely a Table szolgáltatás helyzet frissíthető entitás küldött adatmennyiség csökkentése érdekében. A **egyesítése** módszer semmilyen tulajdonságot a tárolt entitás lecseréli a kérelemben szereplő entitásból tulajdonságértékek, de érintetlenül hagyja a tárolt entitás bármelyik tulajdonságot, amelyek nem szerepelnek a kérelmet. Ez akkor hasznos, ha nagy entitások és csak a kérelem tulajdonságok kis számú frissíteni kell.  
+Használhatja a hello **egyesítése** hello metódusában **TableOperation** osztály tooreduce hello adatmennyiséget, hogy küldjön toohello Table szolgáltatás Ha azt szeretné, hogy tooupdate entitás. Hello **egyesítése** metódus bármelyik tulajdonságot tárolt hello entitás cseréli a tulajdonságértékek hello entitásból hello kérelemben szereplő, de ép leaves hello bármelyik tulajdonságot tárolja hello kérelemben szereplő nem entitás. Ez akkor hasznos, ha nagy entitásokat, és csak a kérelemben tulajdonságok kis számú tooupdate kell.  
 
 > [!NOTE]
-> A **cserélje le** és **egyesítése** módszer sem jár sikerrel, ha az entitás nem létezik. Alternatív megoldásként használhatja a **InsertOrReplace** és **InsertOrMerge** módszereket, amelyek új entitás létrehozása, ha még nem létezik.  
+> Hello **cserélje le** és **egyesítése** módszer sem jár sikerrel, ha hello entitás nem létezik. Alternatív megoldásként használhatja hello **InsertOrReplace** és **InsertOrMerge** módszereket, amelyek új entitás létrehozása, ha még nem létezik.  
 > 
 > 
 
 ### <a name="working-with-heterogeneous-entity-types"></a>Heterogén entitástípusok használata
-A Table szolgáltatás egy *séma nélküli* tábla tároló, amely azt jelenti, hogy egyetlen tábla tud tárolni a Tervező nagyfokú rugalmasságot biztosít több típusú entitásokat. Az alábbi példában látható egy tábla dolgozó és a részleg entitások tárolására:  
+Table szolgáltatás hello van egy *séma nélküli* tábla tároló, amely azt jelenti, hogy egyetlen tábla tud tárolni a Tervező nagyfokú rugalmasságot biztosít több típusú entitásokat. hello alábbi példában látható módon egy tábla dolgozó és a részleg entitások tárolására:  
 
 <table>
 <tr>
@@ -1190,10 +1190,10 @@ A Table szolgáltatás egy *séma nélküli* tábla tároló, amely azt jelenti,
 </tr>
 </table>
 
-Vegye figyelembe, hogy minden egyes szervezet továbbra is rendelkeznie kell **PartitionKey**, **RowKey**, és **időbélyeg** értékeket, de rendelkezhetnek bármely tulajdonságkészletbe. Ezenkívül nincs mit entitás típusát jelzi, kivéve, ha úgy dönt, hogy valahol az információk tárolására. Az entitástípus azonosítására szolgáló két lehetőség áll rendelkezésre:  
+Vegye figyelembe, hogy minden egyes szervezet továbbra is rendelkeznie kell **PartitionKey**, **RowKey**, és **időbélyeg** értékeket, de rendelkezhetnek bármely tulajdonságkészletbe. Ezenkívül nincs tooindicate hello típusú entitás, kivéve, ha úgy dönt, toostore valahol ezt az információt. Azonosítsa a hello entitástípus két lehetőség áll rendelkezésre:  
 
-* Az entitástípus illesztenie a **RowKey** (vagy esetleg a **PartitionKey**). Például **EMPLOYEE_000123** vagy **DEPARTMENT_SALES** , **RowKey** értékeket.  
-* Egy külön tulajdonsággal entitástípus jegyezze fel az alábbi táblázatban látható módon.  
+* Hello entitás típusa toohello illesztenie **RowKey** (vagy valószínűleg hello **PartitionKey**). Például **EMPLOYEE_000123** vagy **DEPARTMENT_SALES** , **RowKey** értékeket.  
+* Használjon egy külön tulajdonság toorecord hello entitástípus hello az alábbi táblázatban ismertetett módon.  
 
 <table>
 <tr>
@@ -1290,23 +1290,23 @@ Vegye figyelembe, hogy minden egyes szervezet továbbra is rendelkeznie kell **P
 </tr>
 </table>
 
-Az első a beállítást, az entitás prepending a **RowKey**, akkor hasznos, ha lehetséges, hogy két különböző típusú előfordulhat, hogy entitásnak azonos kulcs értéke. Azt is csoportokat együtt a partíció az azonos típusú entitásokat.  
+hello első lehetőség, fertőző hello entitás típusa toohello **RowKey**, akkor hasznos, ha lehetséges, hogy két különböző típusú lehet, hogy entitásnak hello ugyanaz a kulcs értékét. Azt is csoportok hello hello partíció együtt azonos adja meg az entitásokat.  
 
-Az ebben a szakaszban bemutatott eljárások gyakran a vitafórum [öröklési kapcsolatok](#inheritance-relationships) korábbi szakaszában az útmutatóban [kapcsolatok modellezésére](#modelling-relationships).  
+hello ebben a szakaszban bemutatott eljárások különösen fontos toohello vitafórum [öröklési kapcsolatok](#inheritance-relationships) hello szakaszában az útmutató korábbi [kapcsolatok modellezésére](#modelling-relationships).  
 
 > [!NOTE]
-> Érdemes lehet például egy verziószámot ügyfél alkalmazások POCO objektumok fejlődnek, és különböző verziói együttműködve entitás típus értéke.  
+> Érdemes egy verziószámot hello entitás típusú érték tooenable ügyfél alkalmazások tooevolve POCO objektumok kell, és különböző verzióival működnek.  
 > 
 > 
 
-Ez a szakasz többi néhány a Storage ügyféloldali kódtára a funkciója, amely ugyanabban a táblában a több entitás munka megkönnyítése ismerteti.  
+hello hátralévő részét ez a szakasz ismerteti, néhány hello szolgáltatást, amelyek egyszerűbbé teszik a több entitástípusok hello használata azonos hello a Storage ügyféloldali kódtára a táblában.  
 
 #### <a name="retrieving-heterogeneous-entity-types"></a>Heterogén entitástípusok beolvasása
-A Storage ügyféloldali kódtár használ, az entitástípusok több három beállításai lesz.  
+A Storage ügyféloldali kódtára hello használ, az entitástípusok több három beállításai lesz.  
 
-Ha tudja, hogy az entitás egy adott tárolt típusú **RowKey** és **PartitionKey** érték található, akkor megadhatja az entitás típusa, ha a bejegyzés lekérdezésére, ahogy az előző két példán típusú entitásokat beolvasása az **EmployeeEntity**: [a Storage ügyféloldali kódtár segítségével pont lekérdezése](#executing-a-point-query-using-the-storage-client-library) és [beolvasása a LINQ használatával több entitás](#retrieving-multiple-entities-using-linq).  
+Ha tudja, hogy egy adott tárolt hello entitások hello típusú **RowKey** és **PartitionKey** értékeket, majd megadhat hello entitástípus, amikor hello entitás visszaállíthatja az előző két hello példákban típusú entitásokat beolvasása, amely **EmployeeEntity**: [hello Storage ügyféloldali kódtár segítségével pont lekérdezése](#executing-a-point-query-using-the-storage-client-library) és [LINQhasználatávaltöbbentitásbeolvasásakor](#retrieving-multiple-entities-using-linq).  
 
-A második lehetőség a **DynamicTableEntity** típusú (egy tulajdonságcsomagot) helyett egy konkrét POCO entitástípus (ezt a lehetőséget is javíthatja a teljesítményt, mert nincs szükség szerializálása és deszerializálása .NET típusú entitás). A következő C#-kódban potenciálisan eltérő típusú entitásokat táblából, de mint minden entitásokat ad vissza **DynamicTableEntity** példányok. Ezután a **EntityType** tulajdonság minden entitás típusának meghatározására:  
+hello második lehetőség toouse hello **DynamicTableEntity** típusú (egy tulajdonságcsomagot) helyett egy konkrét POCO entitás típusa (ezt a lehetőséget is is teljesítményének javítása, mert nincs szükség tooserialize és hello entitás túl deszerializálni. NETTÓ esetében). a következő C#-kódban potenciálisan hello különböző típusú entitásokat hello táblából, de mint minden entitásokat ad vissza **DynamicTableEntity** példányok. Ezután hello **EntityType** toodetermine hello tulajdonságtípus minden entitás:  
 
 ```csharp
 string filter = TableQuery.CombineFilters(
@@ -1339,9 +1339,9 @@ if (e.Properties.TryGetValue("EntityType", out entityTypeProperty))
 }  
 ```
 
-Vegye figyelembe, hogy beolvasni más tulajdonságokat kell használnia a **TryGetValue** metódust a **tulajdonságok** tulajdonsága a **DynamicTableEntity** osztály.  
+Vegye figyelembe, hogy tooretrieve egyéb tulajdonságok hello kell használnia **TryGetValue** hello metódusa **tulajdonságok** hello tulajdonságának **DynamicTableEntity** osztály.  
 
-Egy harmadik lehetőség egy kombinálhatja a használatával a **DynamicTableEntity** típust és egy **EntityResolver** példány. Ez lehetővé teszi, hogy oldja fel ugyanabban a lekérdezésben többféle POCO. Ebben a példában a **EntityResolver** delegált használ a **EntityType** tulajdonság használatával tudja megkülönböztetni a két típusú entitás, amely a lekérdezés visszaadja. A **megoldásához** módszert használ a **feloldó** megoldásához delegált **DynamicTableEntity** a példányok **TableEntity** példányok.  
+A harmadik lehetőség hello segítségével toocombine **DynamicTableEntity** típust és egy **EntityResolver** példány. Ez lehetővé teszi tooresolve toomultiple POCO típusainak hello ugyanabban a lekérdezésben. Ebben a példában hello **EntityResolver** delegált használ hello **EntityType** tulajdonság toodistinguish közötti hello két típusú entitás, amely hello lekérdezés értéket ad vissza. Hello **megoldásához** metódusnak hello **feloldó** tooresolve delegálása **DynamicTableEntity** túl példányok**TableEntity** példányok.  
 
 ```csharp
 EntityResolver<TableEntity> resolver = (pk, rk, ts, props, etag) =>
@@ -1386,7 +1386,7 @@ foreach (var e in entities)
 ```
 
 #### <a name="modifying-heterogeneous-entity-types"></a>Heterogén entitástípusok módosítása
-Nem kell tudni, hogy milyen típusú entitás törli-e, és mindig ismeri a jogi, amikor a meghajtóba. Használhat azonban **DynamicTableEntity** típus frissíthető entitás, anélkül, hogy tudnák típusára és egy POCO entitásosztályt használata nélkül. A következő példakód egyetlen entitás kéri le, és ellenőrzi a **EmployeeCount** tulajdonság létezik-e frissítése előtt.  
+Egy entitás toodelete tooknow hello típusú és hello típusú entitás mindig jelzi, ha azt nem kell. Használhat azonban **DynamicTableEntity** írja be a tooupdate entitást, anélkül, hogy tudnák típusára és egy POCO entitásosztályt használata nélkül. hello alábbi kódminta egyetlen entitás kéri le, és ellenőrzi hello **EmployeeCount** tulajdonság létezik-e frissítése előtt.  
 
 ```csharp
 TableResult result =
@@ -1405,23 +1405,23 @@ employeeTable.Execute(TableOperation.Merge(department));
 ```
 
 ### <a name="controlling-access-with-shared-access-signatures"></a>Megosztott hozzáférési aláírásokkal-hozzáférés szabályozásáról
-Közös hozzáférésű Jogosultságkód (SAS) jogkivonatok segítségével engedélyezheti az ügyfélalkalmazások (és módosításához lekérdezése) táblaentitásokat közvetlenül nem közvetlenül a table szolgáltatás hitelesítéshez szükséges. Nincsenek általában három fő előnyei a SAS használatával az alkalmazásban:  
+Használhat közös hozzáférésű Jogosultságkód (SAS) tokenek tooenable ügyfél alkalmazások toomodify (és lekérdezése) táblaentitásokat közvetlenül hello kell tooauthenticate közvetlenül az hello table szolgáltatás nélkül. Nincsenek általában három fő előnnyel jár toousing SAS az alkalmazásban:  
 
-* Nem kell terjeszteni a tárfiók kulcsára egy nem biztonságos platformon (például egy mobileszköz) annak érdekében, hogy adott eszköz eléréséhez, és módosítsa a Table szolgáltatás szerepelnek.  
-* Kiürítési egy része az, hogy a webes és feldolgozói szerepkörök hajtsa végre az entitások ügyfél eszközök, például a végfelhasználói számítógépek és mobileszközök kezeléséhez.  
-* Hozzárendelhet egy korlátozott, és idő korlátozott engedélyekkel (például a csak olvasási hozzáféréssel egy adott erőforráshoz való engedélyezése) ügyfél számára.  
+* Nem kell toodistribute tárhelyét rendelés tooallow kulcs tooan nem biztonságos platform (például egy mobileszköz) fiók adott eszköz tooaccess, és módosítsa a Table szolgáltatás hello szerepelnek.  
+* A web is kiszervezése egy része hello és feldolgozói szerepkörök hajtsa végre az entitások tooclient eszközök, például a végfelhasználói számítógépek és mobileszközök kezeléséhez.  
+* Hozzárendelhet egy korlátozott, és időt korlátozott engedélyek tooa ügyfél (például így csak olvasási hozzáféréssel toospecific erőforrások) készletét.  
 
-A Table szolgáltatás SAS-tokenje használatával kapcsolatban további információkért lásd: [használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md).  
+SAS-tokenje hello Table szolgáltatás használatával kapcsolatban további információkért lásd: [használatával megosztott hozzáférési aláírásokkal (SAS)](storage-dotnet-shared-access-signature-part-1.md).  
 
-Azonban továbbra is kell létrehoznia, amely adja meg a table szolgáltatás entitást ügyfélalkalmazás SAS-tokenje: akkor tegye ezt egy olyan környezetben, a tárfiókok kulcsait biztonságos hozzáféréssel rendelkezik. Egy webes vagy feldolgozói szerepkör általában a rendszer az SAS-jogkivonatokat hoz létre, és letöltheti az ügyfélalkalmazások számára az entitások hozzáférést igénylő használják. Mivel nincs még egy terhelés létrehozásakor, és kézbesíti SAS-tokenje az ügyfelek számára, hogyan lehet a legjobban érdemes lehet csökkenteni a terhelést, különösen a nagy mennyiségű forgatókönyvek részt.  
+Azonban továbbra is kell létrehoznia, amely adja meg egy ügyfél toohello alkalmazásentitásokat a table szolgáltatás hello hello SAS-tokenje: akkor tegye ezt, amely rendelkezik biztonságos hozzáférés tooyour tárfiókkulcsok környezetben. Általában egy webes vagy feldolgozói szerepkör toogenerate hello SAS jogkivonatokat, és letöltheti toohello ügyfélalkalmazások elérő tooyour entitások kell használni. Mivel nincs még egy terhelés létrehozása és SAS-jogkivonatok tooclients kézbesítéséhez részt, vegye figyelembe a legjobb módja tooreduce Ez a terhelés, különösen a nagy mennyiségű forgatókönyvek.  
 
-Úgy is, amely hozzáférést biztosít egy tábla az entitások egy részét a SAS-token létrehozásához. Alapértelmezés szerint egy SAS-jogkivonat teljes táblát hoz létre, de akkor is meg, hogy a SAS-jogkivonat való hozzáférés engedélyezése vagy számos **PartitionKey** értékeket, vagy számos **PartitionKey** és **RowKey** értékeket. Akkor célszerű használni, úgy, hogy minden felhasználó SAS-jogkivonat csak lehetővé teszi őket elérését a saját részére a table szolgáltatás egyes felhasználókat a rendszer az SAS-tokenje létrehozásához.  
+Már lehetséges toogenerate egy SAS-jogkivonatot, hogy a hozzáférési tooa részhalmazát hello entitások egy táblázatban. Alapértelmezés szerint a teljes táblázat egy SAS-jogkivonat létrehozása, de azt is lehetséges toospecify adott hello SAS token grant hozzáférés tooeither a számos **PartitionKey** értékeket, vagy számos **PartitionKey** és  **RowKey** értékeket. Akkor érdemes választania toogenerate SAS-tokenje egyedi számára a rendszer úgy, hogy minden felhasználó SAS-jogkivonat csak engedélyezi tootheir saját entitások hello a table szolgáltatás.  
 
 ### <a name="asynchronous-and-parallel-operations"></a>Aszinkron és párhuzamos műveletek
 A kérelmek több partíciót között vannak oszlik, feltéve aszinkron vagy párhuzamos lekérdezések használatával is javítható az átviteli sebesség és az ügyfél válaszképességét.
-Például lehetséges, hogy két vagy több szerepkör feldolgozópéldányok párhuzamosan a táblák elérése. Adott partíciók-készletek felelős az egyes feldolgozói szerepkörök rendelkezik, vagy egyszerűen több feldolgozói szerepkör példánya lehet, minden egyes érhessék el az egy tábla minden egyes partícióra.  
+Például lehetséges, hogy két vagy több szerepkör feldolgozópéldányok párhuzamosan a táblák elérése. Sikerült partíciók adott készleteinek felelős az egyes feldolgozói szerepköröket használ, vagy egyszerűen a feldolgozói szerepkör több példánya, minden egyes képes tooaccess rendelkezik az összes hello partíciókat egy táblázat.  
 
-Belül egy ügyfél példány aszinkron módon tárolási műveletek végrehajtásával javíthatja a teljesítményt. A Storage ügyféloldali kódtár egyszerűen aszinkron lekérdezések és módosításokat írni. Például előfordulhat, hogy a kiindulási pont a szinkron módszer, amely lekéri az alábbi C#-kódban látható módon egy partíció összes entitásának:  
+Belül egy ügyfél példány aszinkron módon tárolási műveletek végrehajtásával javíthatja a teljesítményt. a Storage ügyféloldali kódtára hello segítségével könnyen toowrite aszinkron lekérdezések és módosításokat. Például előfordulhat, hogy a kiindulási pont hello szinkron módszer, amely lekéri a egy partíció összes hello entitások, ahogy az alábbi C#-kódban hello:  
 
 ```csharp
 private static void ManyEntitiesQuery(CloudTable employeeTable, string department)
@@ -1446,7 +1446,7 @@ private static void ManyEntitiesQuery(CloudTable employeeTable, string departmen
 }  
 ```
 
-Könnyen módosíthatja ezt a kódot, hogy a lekérdezés aszinkron módon az alábbiak szerint:  
+Ez a kód hello lekérdezés aszinkron módon fut, könnyen módosíthatja:  
 
 ```csharp
 private static async Task ManyEntitiesQueryAsync(CloudTable employeeTable, string department)
@@ -1470,16 +1470,16 @@ private static async Task ManyEntitiesQueryAsync(CloudTable employeeTable, strin
 }  
 ```
 
-A aszinkron példában láthatja a szinkron verziójáról az alábbi módosításokat:  
+A aszinkron példában látható hello következő hello szinkron verziójáról módosításai:  
 
-* A metódus-aláírás mostantól tartalmazza a **aszinkron** módosító és értéket ad vissza egy **feladat** példány.  
-* Hívása helyett a **ExecuteSegmented** metódusának segítéségével lekérheti az eredményeket, most metódus meghívja a **ExecuteSegmentedAsync** metódus, és használja a **await** módosító eredmények aszinkron beolvasásához.  
+* hello metódus-aláírás mostantól tartalmazza a hello **aszinkron** módosító és értéket ad vissza egy **feladat** példány.  
+* Helyett hívó hello **ExecuteSegmented** metódus tooretrieve eredményeket, hello metódus most hívások hello **ExecuteSegmentedAsync** metódus és felhasználási hello **await** módosító tooretrieve aszinkron eredmény.  
 
-Az ügyfélalkalmazás a metódus hívása többször (a különböző értékekkel a **részleg** paraméter), és minden egyes lekérdezés külön szálban futtatandó.  
+hello ügyfélalkalmazás a metódus hívása többször (hello különböző értékekkel **részleg** paraméter), és minden egyes lekérdezés külön szálban futtatandó.  
 
-Vegye figyelembe, hogy van-e nem aszinkron verziója a **Execute** metódust a **TableQuery** osztálynál, mert a **IEnumerable** illesztőfelület nem támogatja a aszinkron enumerálása.  
+Vegye figyelembe, hogy van-e nem hello aszinkron verziója **Execute** metódus a hello **TableQuery** osztálynál, mert hello **IEnumerable** illesztőfelület nem támogatja a aszinkron enumerálása.  
 
-Helyezze, frissítése, és aszinkron módon entitások törlésére. Az alábbi C# példában egy egyszerű, a szinkron módszer szúrható be, illetve alkalmazott entitás cseréje:  
+Helyezze, frissítése, és aszinkron módon entitások törlésére. a következő példa C# hello egy egyszerű, a szinkron módszer tooinsert jeleníti meg, vagy alkalmazott entitás cseréje:  
 
 ```csharp
 private static void SimpleEmployeeUpsert(CloudTable employeeTable,
@@ -1491,7 +1491,7 @@ private static void SimpleEmployeeUpsert(CloudTable employeeTable,
 }  
 ```
 
-Könnyen módosíthatja ezt a kódot, hogy a frissítés aszinkron módon az alábbiak szerint:  
+Ez a kód könnyen módosíthatja, így hello frissítés aszinkron módon fut:  
 
 ```csharp
 private static async Task SimpleEmployeeUpsertAsync(CloudTable employeeTable,
@@ -1503,17 +1503,17 @@ private static async Task SimpleEmployeeUpsertAsync(CloudTable employeeTable,
 }  
 ```
 
-A aszinkron példában láthatja a szinkron verziójáról az alábbi módosításokat:  
+A aszinkron példában látható hello következő hello szinkron verziójáról módosításai:  
 
-* A metódus-aláírás mostantól tartalmazza a **aszinkron** módosító és értéket ad vissza egy **feladat** példány.  
-* Hívása helyett a **Execute** metódushívások az entitás-, a metódus most frissíteni a **ExecuteAsync** metódus, és használja a **await** módosító eredmények beolvasásához aszinkron módon.  
+* hello metódus-aláírás mostantól tartalmazza a hello **aszinkron** módosító és értéket ad vissza egy **feladat** példány.  
+* Helyett hívó hello **Execute** metódus tooupdate hello entitás, hello metódus most hívások hello **ExecuteAsync** metódus és felhasználási hello **await** módosító tooretrieve aszinkron módon annak az eredménye.  
 
-Az ügyfélalkalmazás ehhez hasonló több aszinkron metódus meghívása, és minden metódushívás külön szálban futtatandó.  
+hello ügyfélalkalmazás ehhez hasonló több aszinkron metódus meghívása, és minden metódushívás külön szálban futtatandó.  
 
 ### <a name="credits"></a>Kreditek
-Örömmel vesszük az Azure-csapat a hozzájárulásuk következő tagjai szeretnénk: Dominic Betts, Jason Hogg, Jean Ghanem, Jai Haridas, Jeff Irwin, Vamshidhar Kommineni, Vinay Shah Serdar Ozler, valamint a Microsoft DX Tom Hollander. 
+A következő hello hozzájárulásuk Azure-csapat tagjai toothank hello tapasztalatairól: Dominic Betts, Jason Hogg, Jean Ghanem, Jai Haridas, Jeff Irwin, Vamshidhar Kommineni, Vinay Shah Serdar Ozler, valamint a Microsoft DX Tom Hollander. 
 
-Azt is szeretne felülvizsgálati ciklus során a következő Microsoft MVP meg az értékes visszajelzés Köszönjük: Igor Papirov és Edward Bakker.
+Azt is szeretné, Microsoft MVP tekintse meg az értékes visszajelzést való felülvizsgálati ciklus során toothank hello: Igor Papirov és Edward Bakker.
 
 [1]: ./media/storage-table-design-guide/storage-table-design-IMAGE01.png
 [2]: ./media/storage-table-design-guide/storage-table-design-IMAGE02.png

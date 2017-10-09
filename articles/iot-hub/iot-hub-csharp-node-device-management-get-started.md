@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub kezelés (.NET/csomópont) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub kezelés távoli eszköz újraindítás kezdeményezése. Az Azure IoT-eszközök SDK for Node.js használatával valósítja meg a szimulált eszköz alkalmazást, amely közvetlen módszer és a Azure IoT szolgáltatást a service-alkalmazást, amely hívja meg a közvetlen módszer végrehajtásához .NET SDK tartalmazza."
+title: "aaaGet Azure IoT Hub kezelés (.NET/csomópont) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz felügyeleti tooinitiate egy távoli eszköz újraindul. Hello Azure IoT-eszközök SDK használata Node.js tooimplement a szimulált eszköz alkalmazást, amely magában foglalja a közvetlen módszer és hello Azure IoT szolgáltatás SDK .NET tooimplement, amely hello közvetlen metódust hívja service-alkalmazást."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
-ms.openlocfilehash: d97fc5493570985f94c23032c870628d6a089dcd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ea6d50dfac1c222d7836e3bf5503c6c9b8c89dfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-management-netnode"></a>Ismerkedés az Eszközfelügyelet (.NET/csomópont)
 
@@ -26,43 +26,43 @@ ms.lasthandoff: 08/18/2017
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Az Azure-portál használatával létrehoz egy IoT-központot, és az IoT hub hozzon létre egy eszközidentitás.
-* Létrehoz egy szimulált eszköz alkalmazást, amely tartalmazza a közvetlen módszer, amely az eszköz újraindul. Közvetlen módszerek a felhőből hívják.
-* A .NET-Konzolalkalmazás, amely behívja az újraindítás közvetlen módszer a szimulált eszköz alkalmazás keresztül az IoT hub létrehozása.
+* Az Azure portál toocreate az IoT-központ hello használata, és az IoT hub hozzon létre egy eszközidentitás.
+* Létrehoz egy szimulált eszköz alkalmazást, amely tartalmazza a közvetlen módszer, amely az eszköz újraindul. Közvetlen módszerek hello felhőből hívják.
+* Hozzon létre egy .NET-Konzolalkalmazás, amely behívja hello újraindítás közvetlen módszer az IoT hub keresztül hello szimulált eszköz alkalmazásban.
 
-Ez az oktatóanyag végén akkor egy Node.js Konzolalkalmazás eszköz és a .NET (C#) háttér-Konzolalkalmazás:
+Ez az oktatóanyag végén hello hogy egy Node.js Konzolalkalmazás eszköz és a .NET (C#) háttér-Konzolalkalmazás:
 
-**dmpatterns_getstarted_device.js**, amely kapcsolódik az IoT hub korábban létrehozott eszköz identitású kap egy újraindítás közvetlen módszer, szimulálja a fizikai számítógép újraindítása, és jelentést az idő az utolsó újraindítás.
+**dmpatterns_getstarted_device.js**, amely kapcsolódik tooyour IoT-központ hello eszközidentitás, korábban létrehozott kap egy újraindítás közvetlen módszer, fizikai újraindítás szimulálja, és hello idő az utolsó újraindítás hello jelentéseket.
 
-**TriggerReboot**, amely közvetlen metódus meghívja a szimulált eszköz alkalmazás jeleníti meg a választ, és jeleníti meg a frissített jelentett tulajdonságok.
+**TriggerReboot**, amely meghívja a közvetlen módszer hello szimulált eszköz alkalmazásban jeleníti meg a hello választ, és megjeleníti hello frissítése jelentett tulajdonságok.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * Visual Studio 2015 vagy Visual Studio 2017.
-* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan telepítse a Node.js-ebben az oktatóanyagban a Windows vagy Linux.
+* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall Node.js ebben az oktatóanyagban a Windows vagy Linux.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>Az eszközön, a közvetlen módszer használatával távoli újraindítás eseményindító
-Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) közvetlen metódussal eszköz távoli újraindítást kezdeményezett hoz létre. Az alkalmazás számára az eszköz legutóbbi újraindítás eszköz iker lekérdezések használ.
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a>Eseményindító közvetlen metódussal hello eszközön távoli újraindítás
+Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) közvetlen metódussal eszköz távoli újraindítást kezdeményezett hoz létre. hello alkalmazás eszköz iker lekérdezések toodiscover hello legutóbbi újraindítás használ, az eszköznek.
 
-1. A Visual Studióban adjon hozzá egy Visual C# Windows klasszikus asztalialkalmazás-projektet az új megoldáshoz a **Console App (.NET Framework)** (Konzolalkalmazás (.NET-keretrendszer)) projektsablonnal. A Microsoft .NET-keretrendszer 4.5.1-es vagy újabb verzióját használja. Nevet a projektnek **TriggerReboot**.
+1. A Visual Studio, a Visual C# klasszikus Windows asztal projekt tooa új megoldás hozzáadása hello segítségével **Konzolalkalmazás (.NET-keretrendszer)** projektsablon. Győződjön meg arról, hogy hello .NET-keretrendszer 4.5.1 vagy újabb. Név hello projekt **TriggerReboot**.
 
     ![Új Visual C# Windows klasszikus asztalialkalmazás-projekt][img-createapp]
 
-2. A Megoldáskezelőben kattintson a jobb gombbal a **TriggerReboot** projektre, és kattintson a **NuGet-csomagok kezelése**.
-3. A **NuGet Package Manager** (NuGet-csomagkezelő) ablakban válassza a **Browse** (Tallózás) lehetőséget, keresse meg a **microsoft.azure.devices** csomagot, válassza a **Install** (Telepítés) lehetőséget a **Microsoft.Azure.Devices** csomag telepítéséhez, és fogadja el a használati feltételeket. Ez az eljárás letölti és telepíti az [Azure IoT Service SDK][lnk-nuget-service-sdk] (Azure IoT szolgáltatás SDK) NuGet-csomagot és annak függőségeit, valamint hozzáad egy rá mutató hivatkozást is.
+2. A Megoldáskezelőben kattintson a jobb gombbal hello **TriggerReboot** projektre, és kattintson a **NuGet-csomagok kezelése**.
+3. A hello **NuGet-Csomagkezelő** ablakban válassza ki **Tallózás**, keressen **microsoft.azure.devices**, jelölje be **telepítése** tooinstall Hello **Microsoft.Azure.Devices** csomagot, majd fogadja el hello használati feltételeket. Ez az eljárás tölti le, telepíti, és hozzáad egy hivatkozást toohello [Azure IoT szolgáltatás SDK] [ lnk-nuget-service-sdk] NuGet csomag és annak függőségeit.
 
     ![NuGet Package Manager (NuGet-csomagkezelő) ablak][img-servicenuget]
-4. Adja hozzá a következő `using` utasításokat a **Program.cs** fájl elejéhez:
+4. Adja hozzá a következő hello `using` hello hello tetején utasítások **Program.cs** fájlt:
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-5. Adja hozzá a **Program** osztályhoz a következő mezőket: Cserélje le a helyőrző értékét az előző szakaszban és a céleszköz létrehozott központ IoT-központ kapcsolati karakterlánccal.
+5. Adja hozzá a következő mezők toohello hello **Program** osztály. Hello helyőrző értékét lecserélheti egy IoT-központ kapcsolati karakterlánc az előző szakaszban hello és hello céleszköz létrehozott hello központ hello.
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -70,7 +70,7 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) közvetlen me
         static JobClient jobClient;
         static string targetDevice = "{deviceIdForTargetDevice}";
         
-6. Adja hozzá a következő metódust a **Program** osztály.  Ezt a kódot az eszköz iker lekérdezi az újraindítás eszköz, és kiírja a jelentésben szereplő tulajdonságok.
+6. Adja hozzá a következő metódus toohello hello **Program** osztály.  A kód beolvassa hello eszköz iker az eszköz- és kimenetekkel hello újraindítás hello jelentett tulajdonságait.
    
         public static async Task QueryTwinRebootReported()
         {
@@ -78,7 +78,7 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) közvetlen me
             Console.WriteLine(twin.Properties.Reported.ToJson());
         }
         
-7. Adja hozzá a következő metódust a **Program** osztály.  Ez a kód indít el az újraindítást követően az eszközön, a közvetlen módszer használatával.
+7. Adja hozzá a következő metódus toohello hello **Program** osztály.  Ez a kód hello újraindítás közvetlen metódussal hello eszközön kezdeményezi.
 
         public static async Task StartReboot()
         {
@@ -91,35 +91,35 @@ Ebben a szakaszban egy .NET-Konzolalkalmazás (használatával C#) közvetlen me
             Console.WriteLine("Invoked firmware update on device.");
         }
 
-7. Végül adja a következő sorokat a **Main** metódushoz:
+7. Végül adja hozzá a következő sorokat toohello hello **fő** módszert:
    
         registryManager = RegistryManager.CreateFromConnectionString(connString);
         StartReboot().Wait();
         QueryTwinRebootReported().Wait();
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
         
-8. A megoldás felépítéséhez.
+8. Hello megoldás felépítéséhez.
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
 Ez a szakasz tartalma
 
-* Egy Node.js-konzolalkalmazást hoz létre, amely a felhő által meghívott közvetlen metódusra válaszol
+* Hozzon létre egy Node.js-Konzolalkalmazás, amely válaszol a hello felhő által meghívott tooa közvetlen módszer
 * A szimulált eszköz újraindítását eseményindító
-* A jelentésben szereplő tulajdonságok használatával engedélyezhető az eszköz iker lekérdezések azonosíthatja azokat az eszközöket, és ha tartanak újraindítása után
+* Használjon hello jelentett tulajdonságok tooenable eszköz iker lekérdezések tooidentify eszközök, és ha azok utolsó újraindítása
 
-1. Hozzon létre egy új üres nevű **manageddevice**.  A **manageddevice** mappában hozzon létre egy package.json fájlt úgy, hogy beírja a következő parancsot a parancssorba.  Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **manageddevice**.  A hello **manageddevice** mappa, hozzon létre egy package.json fájlt a következő parancsot a parancssorba hello segítségével.  Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. Parancsot a parancssorba a a **manageddevice** mappa telepítéséhez a következő parancsot a **azure iot-eszközök** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt** csomag:
+2. A parancssorban hello **manageddevice** mappa, futtassa a következő parancs tooinstall hello hello **azure iot-eszközök** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt**csomag:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy új **dmpatterns_getstarted_device.js** fájlt a **manageddevice** mappa.
-4. Adja hozzá a következő "szükséges" utasítások elején a **dmpatterns_getstarted_device.js** fájlt:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **dmpatterns_getstarted_device.js** hello fájlban **manageddevice** mappa.
+4. Adja hozzá a hello következő "megkövetelése a" hello hello indításkor állapotkimutatások **dmpatterns_getstarted_device.js** fájlt:
    
     ```
     'use strict';
@@ -127,27 +127,27 @@ Ez a szakasz tartalma
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. Adjon hozzá egy **connectionString** változót, és ezzel hozzon létre egy **Ügyfél** példányt.  Cserélje le a kapcsolati karakterlánc az eszköz kapcsolati karakterláncot.  
+5. Adja hozzá a **connectionString** változó, és toocreate használni egy **ügyfél** példány.  Hello kapcsolati karakterláncot cserélje le a eszköz kapcsolati karakterláncát.  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
-6. Az eszközön a közvetlen módszer végrehajtásához a következő függvény hozzáadása
+6. Adja hozzá a következő függvény tooimplement hello közvetlen módszer hello eszközön hello
    
     ```
     var onReboot = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, 'Reboot started', function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
-        // Report the reboot before the physical restart
+        // Report hello reboot before hello physical restart
         var date = new Date();
         var patch = {
             iothubDM : {
@@ -174,7 +174,7 @@ Ez a szakasz tartalma
         console.log('Rebooting!');
     };
     ```
-7. Adja hozzá a következő kódot az IoT hub a kapcsolat megnyitásához, és indítsa el a közvetlen módszer figyelő:
+7. Adja hozzá a hello következő code tooopen hello kapcsolat tooyour IoT-központot, és indítsa el a hello közvetlen módszer figyelő:
    
     ```
     client.open(function(err) {
@@ -186,23 +186,23 @@ Ez a szakasz tartalma
         }
     });
     ```
-8. Mentse és zárja be a **dmpatterns_getstarted_device.js** fájlt.
+8. Mentse és zárja be a hello **dmpatterns_getstarted_device.js** fájlt.
    
 > [!NOTE]
-> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban újrapróbálkozási házirendeket is meg kell valósítania (például egy exponenciális leállítást) a [tranziens hibakezelést][lnk-transient-faults] ismertető MSDN-cikkben leírtak szerint.
+> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási házirendek (például az exponenciális leállítási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
-Most már készen áll az alkalmazások futtatására.
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
+Most már áll készen toorun hello alkalmazásokat.
 
-1. A parancssorban a **manageddevice** mappa, a következő parancsot a rendszer újraindítása közvetlen módszer figyelését.
+1. Parancssorba hello hello **manageddevice** mappa, futtassa a következő parancs toobegin figyeli a hello újraindítás közvetlen módszer hello.
    
     ```
     node dmpatterns_getstarted_device.js
     ```
-2. Futtassa a C# Konzolalkalmazás **TriggerReboot**. Kattintson a jobb gombbal a **TriggerReboot** projektre, válassza **Debug**, majd válassza ki **Start új példány**.
+2. Futtatási hello C# Konzolalkalmazás **TriggerReboot**. Kattintson a jobb gombbal hello **TriggerReboot** projektre, válassza **Debug**, majd válassza ki **Start új példány**.
 
-3. A közvetlen módszer a konzolon eszköz válasz megjelenik.
+3. Hello eszköz válasz toohello közvetlen módszer hello konzolon láthatja.
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 
@@ -216,7 +216,7 @@ Most már készen áll az alkalmazások futtatására.
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure portal]: https://portal.azure.com/
-[Using resource groups to manage your Azure resources]: ../azure-portal/resource-group-portal.md
+[Using resource groups toomanage your Azure resources]: ../azure-portal/resource-group-portal.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md

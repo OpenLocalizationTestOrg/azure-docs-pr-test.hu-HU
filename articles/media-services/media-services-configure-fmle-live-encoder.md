@@ -1,6 +1,6 @@
 ---
-title: "A FMLE kódoló egyféle sávszélességű élő adatfolyamot küldeni |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan konfigurálhatja a Flash Media élő kódoló (FMLE) kódoló egyféle sávszélességű adatfolyamot küldeni AMS élő kódolásra képes csatornák."
+title: "aaaConfigure hello FMLE kódoló toosend egyféle sávszélességű élő adatfolyamot |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooconfigure hello Flash Media élő kódoló (FMLE) kódoló toosend egy egyféle sávszélességű adatfolyamot tooAMS képes csatornák az élő kódolás."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako;cenkdin;anilmur
-ms.openlocfilehash: e831048f34ecf6e89595adc4bfd58b5977e04bdb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 780d911c5186ec09c784264f9a0d0c3f8059d305
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-fmle-encoder-to-send-a-single-bitrate-live-stream"></a>Használja a FMLE kódoló egyféle sávszélességű élő adatfolyamot küldeni
+# <a name="use-hello-fmle-encoder-toosend-a-single-bitrate-live-stream"></a>Hello FMLE kódoló toosend egyféle sávszélességű élő adatfolyamot használata
 > [!div class="op_single_selector"]
 > * [FMLE](media-services-configure-fmle-live-encoder.md)
 > * [Élő elemi](media-services-configure-elemental-live-encoder.md)
@@ -29,50 +29,50 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Ez a témakör ismerteti, hogyan konfigurálható a [Flash Live Media Encoder](http://www.adobe.com/products/flash-media-encoder.html) (FMLE) kódoló egy egyfajta sávszélességű adatfolyamot AMS-csatorna is küldhet a valós idejű kódolásra engedélyezve vannak. További információk: [Az Azure Media Services segítségével élő kódolásra képes csatornák használata](media-services-manage-live-encoder-enabled-channels.md)
+Ez a témakör bemutatja, hogyan tooconfigure hello [Flash Live Media Encoder](http://www.adobe.com/products/flash-media-encoder.html) (FMLE) kódoló toosend egyszeres sávszélességű adatfolyam-tooAMS élő kódolásra képes csatornák. További információkért lásd: [csatornák használata, hogy vannak engedélyezve tooPerform élő kódolás az Azure Media Services](media-services-manage-live-encoder-enabled-channels.md).
 
-Ez az oktatóanyag bemutatja, hogyan kezelheti az Azure Media Services (AMS) Azure Media Services Explorer (AMSE) eszközzel. Ez az eszköz csak a Windows rendszerű Számítógépeken fut. Ha Mac vagy Linux, létrehozásához használja az Azure-portálon [csatornák](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel) és [programok](media-services-portal-creating-live-encoder-enabled-channel.md).
+Ez az oktatóanyag bemutatja, hogyan toomanage Azure Media Services (AMS) Azure Media Services Explorer (AMSE) eszközzel. Ez az eszköz csak a Windows rendszerű Számítógépeken fut. Ha Mac vagy Linux, használja az Azure portál toocreate hello [csatornák](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel) és [programok](media-services-portal-creating-live-encoder-enabled-channel.md).
 
-Vegye figyelembe, hogy ez az oktatóanyag leírja AAC használatával. Azonban az FMLE nem támogatja az AAC alapértelmezés szerint. Vásároljon egy beépülő modul a AAC kódolás például MainConcept kellene: [AAC beépülő modul](http://www.mainconcept.com/products/plug-ins/plug-ins-for-adobe/aac-encoder-fmle.html)
+Vegye figyelembe, hogy ez az oktatóanyag leírja AAC használatával. Azonban az FMLE nem támogatja az AAC alapértelmezés szerint. Kellene toopurchase AAC kódolási beépülő modul például MainConcept: [AAC beépülő modul](http://www.mainconcept.com/products/plug-ins/plug-ins-for-adobe/aac-encoder-fmle.html)
 
 ## <a name="prerequisites"></a>Előfeltételek
 * [Azure Media Services-fiók létrehozása](media-services-portal-create-account.md)
 * Gondoskodjon arról, hogy fut egy adatfolyam-végpontot. További információkért lásd: [adatfolyam-továbbítási végpontok kezelése egy Media Services-fiók](media-services-portal-manage-streaming-endpoints.md)
-* Telepítse a legújabb verzióját a [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) eszköz.
-* Indítsa el az eszközt, és csatlakozzon az AMS-fiók.
+* Hello hello legújabb verziójának telepítéséhez [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) eszköz.
+* Hello eszköz indítása, és csatlakozzon a tooyour AMS-fiók.
 
 ## <a name="tips"></a>Tippek
 * Amikor csak lehetséges, hardveresen rögzített beállítású internetkapcsolat használatának.
-* Jó tapasztalatok sávszélesség-követelményekkel meghatározásakor, hogy az adatfolyam-továbbítási bitrates duplán. Ez nem kötelezők, ez segít csökkenteni a hálózati torlódás hatását.
+* Jó tapasztalatok sávszélesség-követelményekkel meghatározásakor streaming bitrates toodouble hello. Ez nem kötelezők, ez segít csökkenteni hello hatását a hálózati torlódás.
 * Ha szoftverrel kódolók, zárja be az el a felesleges programokat.
 
 ## <a name="create-a-channel"></a>Csatorna létrehozása
-1. Az AMSE eszköz navigáljon a **Live** lapot, és a csatorna területen kattintson a jobb gombbal. Válassza ki **csatorna létrehozása...** a menüből.
+1. Hello AMSE eszköz, lépjen a toohello **Live** lapot, és hello csatorna területen kattintson a jobb gombbal. Válassza ki **csatorna létrehozása...** hello menüből.
 
     ![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle1.png)
 
-2. Adjon meg egy csatorna nevét, a Leírás mezőt nem kötelező megadni. A csatorna beállítások területen válassza a **szabványos** az élő kódolás lehetőségnél a bemeneti protokoll beállítása **RTMP**. A többi beállítás, hagyhatja.
+2. Adjon meg egy csatorna nevét hello Leírás mezőt nem kötelező megadni. A csatorna beállítások területen válassza a **szabványos** hello élő kódolás beállítást, a hello a bemeneti protokoll beállítása túl**RTMP**. A többi beállítás, hagyhatja.
 
-    Győződjön meg arról, hogy a **most indítsa el az új csatorna** van kiválasztva.
+    Győződjön meg arról, hogy hello **Start hello új csatorna most** van kiválasztva.
 
 3. Kattintson a **csatornát létrehozni**.
 
    ![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle2.png)
 
 > [!NOTE]
-> A csatorna mindaddig elindításához 20 percet is igénybe vehet.
+> hello csatorna mindaddig toostart 20 percet is igénybe vehet.
 >
 >
 
-A csatorna indítása közben is [a kódoló](media-services-configure-fmle-live-encoder.md#configure_fmle_rtmp).
+Hello csatorna indítása közben is [hello kódoló konfigurálása](media-services-configure-fmle-live-encoder.md#configure_fmle_rtmp).
 
 > [!IMPORTANT]
 > Vegye figyelembe, hogy a számlázás indul, amint csatorna kész állapotba kerül. További információkért lásd: [csatorna állapotok](media-services-manage-live-encoder-enabled-channels.md#states).
 >
 >
 
-## <a id=configure_fmle_rtmp></a>A FMLE kódoló
-Ebben az oktatóanyagban a következő kimeneti beállításokat használják. Ez a szakasz a további konfigurációs lépések részletesebben ismerteti.
+## <a id=configure_fmle_rtmp></a>Hello FMLE kódoló konfigurálása
+Az oktatóanyag hello következő kimeneti beállításokat használ. Ez a szakasz többi hello részletes konfigurációs lépéseit ismerteti.
 
 **Videó**:
 
@@ -89,9 +89,9 @@ Ebben az oktatóanyagban a következő kimeneti beállításokat használják. E
 * Mintavételi gyakoriság: 44,1 kHz
 
 ### <a name="configuration-steps"></a>Konfigurációs lépések
-1. Keresse meg a Flash Media élő kódoló (FMLE) a gép, használja a kapcsolat.
+1. Keresse meg a Flash Media élő kódoló (FMLE) csatoló használt hello gépen toohello.
 
-    Az objektumfelület beállítások egy fő lapján. Kérjük, szánjon jegyezze fel a következő beállítások használatába streaming FMLE használata ajánlott.
+    hello objektumfelület beállítások egy fő lapján. Adjon jegyezze fel a hello következő ajánlott beállítások tooget használatába streaming FMLE használatával.
 
    * Formátum: H.264 képkockasebessége: 30,00
    * Bemeneti mérete: 1280 x 720
@@ -99,69 +99,69 @@ Ebben az oktatóanyagban a következő kimeneti beállításokat használják. E
 
      ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle3.png)
 
-     Amikor források segítségével váltakozó, kérjük, pipa "összefűzés lehetőség" beállítás
-2. Válassza ki a csavarkulcsot ábrázoló ikon formátum, a további beállítások:
+     Amikor források segítségével váltakozó, kérjük, pipa hello "összefűzés lehetőség" beállítás
+2. Jelölje be hello csavarkulcsot ábrázoló ikon következő tooFormat, ezeket a további beállításokat kell lennie:
 
    * Profil: fő
    * Szint: 4.0
    * Keyframe gyakorisága: 2 másodpercben
 
      ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle4.png)
-3. Állítsa be a következő fontos hang beállítást:
+3. Állítsa be a következő fontos hang beállítás hello:
 
    * Formátum: AAC
    * Mintavételi gyakoriság: 44100 Hz
    * Átviteli sebesség: 192 Kbit/s
 
      ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle5.png)
-4. A csatorna Get bemeneti URL-cím ahhoz, hogy rendelje hozzá a FMLE **RTMP végpont**.
+4. Hello csatorna bemeneti URL-cím beszerzése a rendelés tooassign azt toohello FMLE **RTMP végpont**.
 
-    Lépjen vissza az AMSE eszköz, és a csatorna befejezési állapotát. Miután állapota megváltozott, a **indítása** való **futtató**, kaphat a bemeneti URL-CÍMÉT.
+    Keresse meg a visszafelé toohello AMSE eszköz, és ellenőrizze a hello csatorna befejezési állapotát. Miután hello állapota megváltozott **indítása** túl**futtató**, kaphat a hello megadott URL-cím.
 
-    Ha a csatorna fut, kattintson a jobb gombbal a csatorna neve, felett az egérmutatót navigáljon **vágólapra másolás bemeneti URL-cím** , és válassza **elsődleges bemeneti URL-cím**.  
+    Hello csatorna futtatásakor kattintson jobb gombbal a hello csatorna neve, a Navigálás le toohover keresztül **bemeneti URL-CÍMÉT tooclipboard** , és válassza **elsődleges bemeneti URL-cím**.  
 
     ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle6.png)
-5. Illessze be ezt az információt a **FMS URL-cím** output szakasz, és rendelje hozzá egy adatfolyam neve mezőben.
+5. Illessze be ezeket az információkat a hello **FMS URL-cím** hello output szakasz, és rendelje hozzá egy adatfolyam neve mezőjében.
 
     ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle7.png)
 
-    A további redundáns működéshez ismételje meg ezeket a lépéseket, a másodlagos bemeneti URL-címet.
+    További redundancia ismételje meg ezeket a lépéseket hello másodlagos bemeneti URL-cím.
 6. Kattintson a **Csatlakozás** gombra.
 
 > [!IMPORTANT]
-> Kattintás előtt **Connect**, akkor **kell** győződjön meg arról, hogy készen áll-e a csatornát.
-> Győződjön meg arról, hogy nem a csatorna üzemkész állapotban hagyja meg az adatcsatorna-> 15 percnél hosszabb ideig bemeneti hozzájárulás nélkül.
+> Kattintás előtt **Connect**, hogy **kell** győződjön meg arról, hogy készen áll-e hello csatorna.
+> Győződjön meg arról is, nem tooleave hello egy bemeneti hozzájárulás nélkül üzemkész állapotban csatorna hírcsatorna > 15 percnél hosszabb ideig.
 >
 >
 
 ## <a name="test-playback"></a>Teszt lejátszás
 
-Keresse meg az AMSE eszköz, és kattintson a jobb gombbal a csatornát kell tesztelni. A menüben rámutat **lejátszás az előzetes** válassza **Azure Media Player**.  
+Keresse meg a toohello AMSE eszköz, és kattintson a jobb gombbal hello csatorna toobe tesztelve. Hello menüben rámutat **lejátszás hello Preview** válassza **Azure Media Player**.  
 
     ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle8.png)
 
-Ha az adatfolyam a Windows Media player jelenik meg, majd a kódoló megfelelően van konfigurálva AMS való kapcsolódáshoz.
+Hello adatfolyam hello player jelenik meg, ha hello kódoló megfelelően konfigurált tooconnect tooAMS lett.
 
-Ha hibaüzenetet kap, a csatorna le kell állítani, és kódoló beállításai módosul. Tekintse meg a [hibaelhárítási](media-services-troubleshooting-live-streaming.md) témakör útmutatást.  
+Ha hibaüzenetet kap, hello csatorna toobe alaphelyzetbe állítása és a kódoló beállításait módosítani kell. Tekintse meg a hello [hibaelhárítási](media-services-troubleshooting-live-streaming.md) témakör útmutatást.  
 
 ## <a name="create-a-program"></a>Hozzon létre egy programot
-1. Miután csatorna lejátszás megerősítjük, hozzon létre egy programot. Az a **Live** az AMSE eszköz lapján, a program területen kattintson a jobb gombbal, és válassza ki **hozzon létre új Program**.  
+1. Miután csatorna lejátszás megerősítjük, hozzon létre egy programot. A hello **Live** hello AMSE eszköz lapon hello program területen kattintson a jobb gombbal, és válassza ki **hozzon létre új Program**.  
 
     ![fmle](./media/media-services-fmle-live-encoder/media-services-fmle9.png)
-2. A program neve, és szükség esetén módosítsa a **az archiválási időtartam** (amely alapértelmezés szerint 4 óra). Adja meg a tárolási helyet is, vagy hagyja meg az alapértelmezett.  
-3. Ellenőrizze a **indítsa el a Program most** mezőbe.
+2. Hello program neve, és ha szükséges, módosítsa a hello **az archiválási időtartam** (mely alapértelmezett too4 óra). Adjon meg olyan tárolási helyen vagy hagyja hello alapértelmezett is.  
+3. Ellenőrizze a hello **Start hello Program most** mezőbe.
 4. Kattintson a **hozzon létre programot**.  
 
     >[!NOTE]
     >Program létrehozása gyorsabb a csatorna létrehozása.
         
-5. Ha a program fut, erősítse meg a lejátszás jobb gombbal kattint rá a program, és lépjen az **lejátszás a programokról** és jelölje be **Azure Media Player**.  
-6. Ha megerősítette, kattintson a jobb gombbal a program újra, és válassza ki **a kimeneti URL-Címének másolása a vágólapra** (vagy az adatok lekérésére a **Program információk és beállítások** lehetőséget a menüből).
+5. Ha hello program fut, erősítse meg a lejátszás hello program jobb gombbal kattint rá, és a Navigálás túl**lejátszás hello programokról** és jelölje be **Azure Media Player**.  
+6. Ha megerősítette, hello program ismét kattintson jobb gombbal, majd válassza ki **hello kimeneti URL-cím tooClipboard másolja** (vagy az adatok lekérését hello **Program információk és beállítások** hello menüből beállítás).
 
-Az adatfolyam egy Player beágyazott, vagy olyan célközönségnek juttathatja el élő megtekintésre elosztott készen áll.  
+hello adatfolyama most már készen áll a player ágyazott toobe, és az elosztott tooan célközönség élő megtekintése.  
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Tekintse meg a [hibaelhárítási](media-services-troubleshooting-live-streaming.md) témakör útmutatást.
+Tekintse meg a hello [hibaelhárítási](media-services-troubleshooting-live-streaming.md) témakör útmutatást.
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

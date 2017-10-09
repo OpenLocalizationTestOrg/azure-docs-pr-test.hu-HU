@@ -1,6 +1,6 @@
 ---
-title: "Felhasználói profil sablonok az Azure API Management |} Microsoft Docs"
-description: "Ismerje meg, hogyan szabhatja testre a fejlesztői portálra az Azure API Management a felhasználói profil lapok tartalmát."
+title: "AAA \"felhasználói profil sablonok az Azure API Management |} Microsoft dokumentumok\""
+description: "Ismerje meg, hogyan toocustomize hello tartalma hello felhasználói profil lapok: az Azure API Management hello developer portálon."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 9a11bd5800068a5725ab2f099043993bff0b28d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f153b310221164809acf58e4af236928ceb41d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="user-profile-templates-in-azure-api-management"></a>Felhasználói profil sablonok az Azure API Management
-Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.  
+Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.  
   
- Ebben a szakaszban a sablonok engedélyezi, hogy testre szabhatja a fejlesztői portálra a felhasználói profil lapok tartalmát.  
+ Ebben a szakaszban hello sablonok lehetővé teszik hello felhasználói profil lapok tartalmát toocustomize hello hello developer portálon.  
   
 -   [Profil](#Profile)  
   
@@ -34,10 +34,10 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 -   [Fiók adatainak frissítése](#UpdateAccountInfo)  
   
 > [!NOTE]
->  Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat. Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat. A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt. Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg. A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="Profile"></a>Profil  
- A **profil** sablon lehetővé teszi a felhasználói profil szakaszában a felhasználó oldalon a fejlesztői portálra testreszabását.  
+ Hello **profil** sablon lehetővé teszi a toocustomize hello felhasználói profil szakasz hello felhasználói profil lap hello developer portálon.  
   
  ![Felhasználói profil lap](./media/api-management-user-profile-templates/APIM-User-Profile-Page.png "APIM felhasználói profil lap")  
   
@@ -99,21 +99,21 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ### <a name="data-model"></a>Adatmodell  
   
 > [!NOTE]
->  A [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztani az azonos adatmodellt, és a sablon azonos adatok fogadására.  
+>  Hello [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztása hello ugyanazokat az adatokat a modell, és fogadni hello sablon ugyanazokat az adatokat.  
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|Utónév|Karakterlánc|Az aktuális felhasználó utóneve.|  
-|Vezetéknév|Karakterlánc|Az aktuális felhasználó vezetékneve.|  
-|Cégnév|Karakterlánc|A vállalat nevét az aktuális felhasználó.|  
-|addresserEmail|Karakterlánc|Az aktuális felhasználó e-mail címét.|  
-|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-címe az aktuális felhasználó analytics megtekintéséhez.|  
-|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|Az aktuális felhasználó előfizetések.|  
-|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|Az alkalmazások, az aktuális felhasználó.|  
-|changePasswordUrl|Karakterlánc|A relatív URL-cím módosítása az aktuális felhasználói jelszavát.|  
-|changeNameOrEmailUrl|Karakterlánc|A relatív URL-címet nevének és e-mailek, az aktuális felhasználó.|  
-|canChangePassword|Logikai érték|Hogy az aktuális felhasználó is módosíthatják jelszavukat.|  
-|isSystemUser|Logikai érték|Az aktuális felhasználónak-e a beépített egyik tagja [csoportok](api-management-key-concepts.md#groups).|  
+|Utónév|Karakterlánc|Utónév hello aktuális felhasználó.|  
+|Vezetéknév|Karakterlánc|Hello aktuális felhasználó vezetékneve.|  
+|Cégnév|Karakterlánc|a vállalatnév hello hello aktuális felhasználó.|  
+|addresserEmail|Karakterlánc|Hello aktuális felhasználó e-mail címét.|  
+|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-cím tooview analytics hello aktuális felhasználó esetén.|  
+|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|hello előfizetések hello aktuális felhasználó.|  
+|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|hello alkalmazások hello aktuális felhasználó.|  
+|changePasswordUrl|Karakterlánc|hello relatív URL-cím toochange hello aktuális felhasználó jelszavát.|  
+|changeNameOrEmailUrl|Karakterlánc|hello relatív URL-cím toochange hello név és e-mail hello aktuális felhasználó.|  
+|canChangePassword|Logikai érték|E hello aktuális felhasználó megváltoztathatja a jelszavát.|  
+|isSystemUser|Logikai érték|Hello aktuális felhasználónak-e egyik hello beépített [csoportok](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -130,7 +130,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -153,7 +153,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -182,7 +182,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="Subscriptions"></a>Előfizetések  
- A **előfizetések** sablon lehetővé teszi a felhasználó oldalon a fejlesztői portálra előfizetések szakasza testreszabását.  
+ Hello **előfizetések** sablon lehetővé teszi a toocustomize hello előfizetések szakasza hello felhasználói profil oldal hello fejlesztői portálján.  
   
  ![A felhasználó előfizetéshez lap](./media/api-management-user-profile-templates/APIM-User-Subscription-Page.png "APIM felhasználói előfizetési lap")  
   
@@ -313,28 +313,28 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- Ez a sablon lehet, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Ez a sablon lehet, hogy használja a hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [előfizetés-Mégse](api-management-page-controls.md#subscription-cancel)  
   
 ### <a name="data-model"></a>Adatmodell  
   
 > [!NOTE]
->  A [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztani az azonos adatmodellt, és a sablon azonos adatok fogadására.  
+>  Hello [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztása hello ugyanazokat az adatokat a modell, és fogadni hello sablon ugyanazokat az adatokat.  
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|Utónév|Karakterlánc|Az aktuális felhasználó utóneve.|  
-|Vezetéknév|Karakterlánc|Az aktuális felhasználó vezetékneve.|  
-|Cégnév|Karakterlánc|A vállalat nevét az aktuális felhasználó.|  
-|addresserEmail|Karakterlánc|Az aktuális felhasználó e-mail címét.|  
-|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-címe az aktuális felhasználó analytics megtekintéséhez.|  
-|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|Az aktuális felhasználó előfizetések.|  
-|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|Az alkalmazások, az aktuális felhasználó.|  
-|changePasswordUrl|Karakterlánc|A relatív URL-cím módosítása az aktuális felhasználói jelszavát.|  
-|changeNameOrEmailUrl|Karakterlánc|A relatív URL-címet nevének és e-mailek, az aktuális felhasználó.|  
-|canChangePassword|Logikai érték|Hogy az aktuális felhasználó is módosíthatják jelszavukat.|  
-|isSystemUser|Logikai érték|Az aktuális felhasználónak-e a beépített egyik tagja [csoportok](api-management-key-concepts.md#groups).|  
+|Utónév|Karakterlánc|Utónév hello aktuális felhasználó.|  
+|Vezetéknév|Karakterlánc|Hello aktuális felhasználó vezetékneve.|  
+|Cégnév|Karakterlánc|a vállalatnév hello hello aktuális felhasználó.|  
+|addresserEmail|Karakterlánc|Hello aktuális felhasználó e-mail címét.|  
+|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-cím tooview analytics hello aktuális felhasználó esetén.|  
+|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|hello előfizetések hello aktuális felhasználó.|  
+|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|hello alkalmazások hello aktuális felhasználó.|  
+|changePasswordUrl|Karakterlánc|hello relatív URL-cím toochange hello aktuális felhasználó jelszavát.|  
+|changeNameOrEmailUrl|Karakterlánc|hello relatív URL-cím toochange hello név és e-mail hello aktuális felhasználó.|  
+|canChangePassword|Logikai érték|E hello aktuális felhasználó megváltoztathatja a jelszavát.|  
+|isSystemUser|Logikai érték|Hello aktuális felhasználónak-e egyik hello beépített [csoportok](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -351,7 +351,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -374,7 +374,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -403,7 +403,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="Applications"></a>Alkalmazások  
- A **alkalmazások** sablon lehetővé teszi a felhasználó oldalon a fejlesztői portálra előfizetések szakasza testreszabását.  
+ Hello **alkalmazások** sablon lehetővé teszi a toocustomize hello előfizetések szakasza hello felhasználói profil oldal hello fejlesztői portálján.  
   
  ![Felhasználói fiók alkalmazások lap](./media/api-management-user-profile-templates/APIM-User-Account-Applications-Page.png "APIM felhasználóifiók-alkalmazások lap")  
   
@@ -476,28 +476,28 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- Ez a sablon lehet, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Ez a sablon lehet, hogy használja a hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [alkalmazás-műveletek](api-management-page-controls.md#app-actions)  
   
 ### <a name="data-model"></a>Adatmodell  
   
 > [!NOTE]
->  A [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztani az azonos adatmodellt, és a sablon azonos adatok fogadására.  
+>  Hello [profil](#Profile), [alkalmazások](#Applications), és [előfizetések](#Subscriptions) sablonok megosztása hello ugyanazokat az adatokat a modell, és fogadni hello sablon ugyanazokat az adatokat.  
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|Utónév|Karakterlánc|Az aktuális felhasználó utóneve.|  
-|Vezetéknév|Karakterlánc|Az aktuális felhasználó vezetékneve.|  
-|Cégnév|Karakterlánc|A vállalat nevét az aktuális felhasználó.|  
-|addresserEmail|Karakterlánc|Az aktuális felhasználó e-mail címét.|  
-|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-címe az aktuális felhasználó analytics megtekintéséhez.|  
-|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|Az aktuális felhasználó előfizetések.|  
-|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|Az alkalmazások, az aktuális felhasználó.|  
-|changePasswordUrl|Karakterlánc|A relatív URL-cím módosítása az aktuális felhasználói jelszavát.|  
-|changeNameOrEmailUrl|Karakterlánc|A relatív URL-címet nevének és e-mailek, az aktuális felhasználó.|  
-|canChangePassword|Logikai érték|Hogy az aktuális felhasználó is módosíthatják jelszavukat.|  
-|isSystemUser|Logikai érték|Az aktuális felhasználónak-e a beépített egyik tagja [csoportok](api-management-key-concepts.md#groups).|  
+|Utónév|Karakterlánc|Utónév hello aktuális felhasználó.|  
+|Vezetéknév|Karakterlánc|Hello aktuális felhasználó vezetékneve.|  
+|Cégnév|Karakterlánc|a vállalatnév hello hello aktuális felhasználó.|  
+|addresserEmail|Karakterlánc|Hello aktuális felhasználó e-mail címét.|  
+|developersUsageStatisticsLinkk|Karakterlánc|Relatív URL-cím tooview analytics hello aktuális felhasználó esetén.|  
+|előfizetések|A gyűjtemény [előfizetés](api-management-template-data-model-reference.md#Subscription) entitásokat.|hello előfizetések hello aktuális felhasználó.|  
+|alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|hello alkalmazások hello aktuális felhasználó.|  
+|changePasswordUrl|Karakterlánc|hello relatív URL-cím toochange hello aktuális felhasználó jelszavát.|  
+|changeNameOrEmailUrl|Karakterlánc|hello relatív URL-cím toochange hello név és e-mail hello aktuális felhasználó.|  
+|canChangePassword|Logikai érték|E hello aktuális felhasználó megváltoztathatja a jelszavát.|  
+|isSystemUser|Logikai érték|Hello aktuális felhasználónak-e egyik hello beépített [csoportok](api-management-key-concepts.md#groups).|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -514,7 +514,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070001",  
             "ProductId": "57026e30de15d80041060001",  
             "ProductTitle": "Starter",  
-            "ProductDescription": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
+            "ProductDescription": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060001",  
             "State": "Active",  
             "DisplayName": "Starter  (default)",  
@@ -537,7 +537,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "Id": "57026e30de15d80041070002",  
             "ProductId": "57026e30de15d80041060002",  
             "ProductTitle": "Unlimited",  
-            "ProductDescription": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
+            "ProductDescription": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
             "ProductDetailsUrl": "/Products/57026e30de15d80041060002",  
             "State": "Active",  
             "DisplayName": "Unlimited  (default)",  
@@ -566,7 +566,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="UpdateAccountInfo"></a>Fiók adatainak frissítése  
- A **Uodate fiók adatainak** sablon teszi lehetővé testre szabhatja a **fiókadatok frissítése** oldal az developer portálon.  
+ Hello **Uodate fiók adatainak** sablon lehetővé teszi a toocustomize hello **fiókadatok frissítése** oldal hello developer portálon.  
   
  ![Felhasználói fiók adatai lap fejlesztői portál sablonok](./media/api-management-user-profile-templates/APIM-User-Account-Info-Page-Developer-Portal-Templates.png "APIM felhasználói fiók adatai lap fejlesztői portál sablonok")  
   
@@ -623,4 +623,4 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

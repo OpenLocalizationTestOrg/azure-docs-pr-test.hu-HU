@@ -1,6 +1,6 @@
 ---
-title: "Tárfiókok létrehozása, kezelése vagy törlése az Azure Portalon | Microsoft Docs"
-description: "Az Azure Portalon létrehozhat egy új tárfiókot, kezelheti a fiók hozzáférési kulcsait, vagy törölheti a tárfiókokat. Ismerje meg a standard és a prémium szintű tárfiókokat."
+title: "aaaHow toocreate, kezelése vagy törlése az Azure-portálon hello |} Microsoft Docs"
+description: "Hozzon létre egy új tárfiókot, a tárelérési kulcsok kezelése vagy törlése a hello Azure-portálon. Ismerje meg a standard és a prémium szintű tárfiókokat."
 services: storage
 documentationcenter: 
 author: robinsh
@@ -15,11 +15,11 @@ ms.topic: get-started-article
 f1_keywords: sql13.swb.windowsazurestorage.connect.f1
 ms.date: 01/23/2017
 ms.author: robinsh
-ms.openlocfilehash: 0a59bc29581b870d8aee07ed4e77df2be576361a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c11c6509e192170db4812f47c389fc1009b94daf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-azure-storage-accounts"></a>Tudnivalók az Azure Storage-fiókokról
 [!INCLUDE [storage-selector-portal-create-storage-account](../../includes/storage-selector-portal-create-storage-account.md)]
@@ -27,7 +27,7 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
 ## <a name="overview"></a>Áttekintés
-Az Azure Storage-fiók egy egyedi névteret biztosít az Azure Storage-adatobjektumok tárolásához és hozzáféréséhez. A tárfiókban lévő összes objektum számlázása együtt, csoportosan történik. Alapértelmezés szerint a fiókban tárolt adatok csak Ön, azaz a fiók tulajdonosa számára érhetőek el.
+Egy Azure storage-fiók egy egyedi névtér toostore biztosít, és az Azure Storage-adatobjektumok eléréséhez. A tárfiókban lévő összes objektum számlázása együtt, csoportosan történik. Alapértelmezés szerint hello a fiók adatai elérhető csak tooyou, hello fiók tulajdonosának.
 
 [!INCLUDE [storage-account-types-include](../../includes/storage-account-types-include.md)]
 
@@ -35,14 +35,14 @@ Az Azure Storage-fiók egy egyedi névteret biztosít az Azure Storage-adatobjek
 [!INCLUDE [storage-account-billing-include](../../includes/storage-account-billing-include.md)]
 
 > [!NOTE]
-> Azure virtuális gép létrehozásakor a rendszer automatikusan létrehoz egy tárfiókot az Ön számára a telepítés helyén, ha nem rendelkezik még tárfiókkal azon a helyen. Így nem szükséges a tárfiók létrehozásának alábbi lépéseit végrehajtania a virtuális gép lemezeihez. A tárfiók neve a virtuális gép nevén alapul. További részletek: [Azure Virtual Machines – dokumentáció](https://azure.microsoft.com/documentation/services/virtual-machines/).
+> Azure virtuális gép létrehozásakor a storage-fiók automatikusan létrejön, meg hello telepítési helyen Ha még nem rendelkezik egy tárfiókot az adott helyre. Így nem szükséges toofollow hello lépéseket alatti toocreate egy tárfiók a virtuális gépek lemezeit. a tárfiók neve hello hello virtuális gép neve alapul. Lásd: hello [Azure Virtual Machines – dokumentáció](https://azure.microsoft.com/documentation/services/virtual-machines/) további részleteket.
 > 
 > 
 
 ## <a name="storage-account-endpoints"></a>Tárfiókvégpontok
-Az Azure Storage szolgáltatásban tárolt minden egyes objektum egyedi URL-címmel rendelkezik. A tárfiók neve képezi a cím altartományát. Az altartomány és a tartomány a szolgáltatásra jellemző neve együtt alkotnak egy *végpontot* a tárfiók számára.
+Az Azure Storage szolgáltatásban tárolt minden egyes objektum egyedi URL-címmel rendelkezik. hello tárolási fiók neve űrlapok hello cím altartományát. hello altartomány és a tartomány nevét, amely egy adott tooeach szolgáltatás, kombinációja képezi egy *végpont* a tárfiók.
 
-Ha például a tárfiók neve *mystorageaccount*, a tárfiókhoz tartozó alapértelmezett végpontok a következők:
+Például, ha a tárfiók neve *mystorageaccount*, akkor a tárfiók hello alapértelmezett végpontok a következők:
 
 * Blob szolgáltatás: http://*mystorageaccount*.blob.core.windows.net
 * Table Service: http://*mystorageaccount*.table.core.windows.net
@@ -50,114 +50,114 @@ Ha például a tárfiók neve *mystorageaccount*, a tárfiókhoz tartozó alapé
 * File szolgáltatás: http://*mystorageaccount*.file.core.windows.net
 
 > [!NOTE]
-> A Blob Storage-fiók csak a Blob szolgáltatásvégpontot mutatja meg.
+> A Blob storage-fiók csak hello Blob-szolgáltatásvégpont tesz elérhetővé.
 > 
 > 
 
-A tárfiókban lévő objektumok eléréséhez szükséges URL-cím az objektum tárfiókbeli helyének a végponthoz való hozzáfűzésével épül fel. Például egy blobcím formátuma lehet a következő: http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*.
+a tárfiók eléréséhez szükséges hello URL hozzáfűzésével épül fel hello tárolási fiók toohello végpont hello objektum helyét. Például egy blobcím formátuma lehet a következő: http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*.
 
-Emellett konfigurálhat egy egyéni tartománynevet a tárfiókkal való használatra. A klasszikus tárfiókokkal kapcsolatos részletekért lásd: [Configure a custom domain Name for your Blob Storage Endpoint](storage-custom-domain-name.md) (Egyéni tartományév konfigurálása a Blob Storage-végponthoz). Resource Manager-tárfiókok esetén ez a képesség még nem lett hozzáadva az [Azure Portalhoz](https://portal.azure.com), de a PowerShell segítségével konfigurálhatja. További információ: [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) parancsmag.  
+A tárfiók egy egyéni tartomány nevét toouse is konfigurálható. A klasszikus tárfiókokkal kapcsolatos részletekért lásd: [Configure a custom domain Name for your Blob Storage Endpoint](storage-custom-domain-name.md) (Egyéni tartományév konfigurálása a Blob Storage-végponthoz). Erőforrás-kezelő storage-fiókok, ez a funkció még nem lett hozzáadva toohello [Azure-portálon](https://portal.azure.com) még, de a PowerShell segítségével konfigurálhatja. További információkért lásd: hello [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) parancsmag.  
 
 ## <a name="create-a-storage-account"></a>Create a storage account
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
-2. A Központ menüben válassza az **Új** -> **Tárolás** -> **Tárfiók** elemet.
-3. Adja meg a tárfiók nevét. Lásd a [Tárfiókvégpontok](#storage-account-endpoints) című részt azzal kapcsolatban, hogy a rendszer hogyan használja a tárfiók nevét az objektumok címzéséhez az Azure Storage-ban.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hello központ menüben válassza ki a **új** -> **tárolási** -> **tárfiók**.
+3. Adja meg a tárfiók nevét. Lásd: [tárfiókvégpontok](#storage-account-endpoints) a vonatkozó részletek hogyan hello tárfióknév használt tooaddress lesz-e az Azure Storage az objektumok.
    
    > [!NOTE]
    > A tárfiókok neve 3–24 karakter hosszúságú lehet, és csak számokból és kisbetűkből állhat.
    > 
-   > A tárfiók nevének egyedinek kell lennie az Azure rendszerben. Az Azure Portal jelzi, ha a választott tárfióknév már használatban van.
+   > A tárfiók nevének egyedinek kell lennie az Azure rendszerben. hello Azure-portál jelzi, ha a választ hello tárfióknév már használatban van.
    > 
    > 
-4. Adja meg a használni kívánt telepítési modellt: **Resource Manager** vagy **Klasszikus**. Az ajánlott telepítési modell a **Resource Manager**. További információ: [Understanding Resource Manager deployment and classic deployment](../azure-resource-manager/resource-manager-deployment-model.md) (A Resource Manager-telepítés és a klasszikus telepítés ismertetése).
+4. Adja meg a hello telepítési modell toobe használt: **erőforrás-kezelő** vagy **klasszikus**. **Erőforrás-kezelő** hello javasolt üzembe helyezési modellben. További információ: [Understanding Resource Manager deployment and classic deployment](../azure-resource-manager/resource-manager-deployment-model.md) (A Resource Manager-telepítés és a klasszikus telepítés ismertetése).
    
    > [!NOTE]
-   > Blob Storage-fiókok kizárólag a Resource Manager telepítési modell segítségével hozhatók létre.
+   > BLOB storage-fiókok csak hello Resource Manager telepítési modell segítségével hozhatók létre.
    > 
    > 
-5. Válassza ki a tárfiók típusát: **Általános célú** vagy **Blob Storage-fiók**. Az **Általános célú** típus az alapértelmezett.
+5. Válassza ki a tárfiók típusát hello: **általános célú** vagy **Blob-tároló**. **Általános célú** hello alapértelmezett.
    
-    Ha az **Általános célú** lehetőséget választotta, adja meg a teljesítményszintet: **Standard** vagy **Prémium**. Az alapértelmezett beállítás a **Standard**. A standard és a prémium szintű tárfiókokkal kapcsolatos további információ: [A Microsoft Azure Storage bemutatása](storage-introduction.md) és [Premium Storage: High-Performance Storage for Azure Virtual Machine Workloads](storage-premium-storage.md) (Premium Storage: Nagy teljesítményű tárterület az Azure virtuális gépek számítási feladataihoz).
+    Ha **általános célú** kiválasztva, majd adja meg a hello teljesítményszinttel: **szabványos** vagy **prémium**. hello alapértelmezett érték a **szabványos**. A standard és prémium szintű storage-fiókok további részletekért lásd: [Azure Storage bemutatása tooMicrosoft](storage-introduction.md) és [prémium szintű Storage: nagy teljesítményű tárolást Azure virtuális gépek terheléseihez](storage-premium-storage.md).
    
-    Ha a **Blob Storage** volt kiválasztva, adja meg a hozzáférési szintet: **gyakran használt adatok** vagy **ritkán használt adatok**. Az alapértelmezett réteg a **gyakran használt adatok**. További részletek: [Azure Blob Storage: Cool and Hot tiers](storage-blob-storage-tiers.md) (Azure Blob Storage: „ritkán használt adatok” és „gyakran használt adatok” hozzáférési szintek).
-6. Válassza ki a tárfiók replikációs beállítását: **LRS**, **GRS**, **RA-GRS** vagy **ZRS**. Az alapértelmezett beállítás az **RA-GRS**. Az Azure Storage replikálási beállításaival kapcsolatos további részletek: [Azure Storage replication](storage-redundancy.md) (Az Azure Storage replikációja).
-7. Válassza ki az előfizetést, amelyikben az új tárfiókot létre szeretné hozni.
+    Ha **Blob Storage** kiválasztva, majd adja meg a hello hozzáférési réteget: **gyakran használt adatok** vagy **lassú**. hello alapértelmezett érték a **gyakran használt adatok**. További részletek: [Azure Blob Storage: Cool and Hot tiers](storage-blob-storage-tiers.md) (Azure Blob Storage: „ritkán használt adatok” és „gyakran használt adatok” hozzáférési szintek).
+6. A beállításnak a hello replikációs hello tárfiók: **LRS**, **Georedundáns**, **RA-GRS**, vagy **ZRS**. hello alapértelmezett érték a **RA-GRS**. Az Azure Storage replikálási beállításaival kapcsolatos további részletek: [Azure Storage replication](storage-redundancy.md) (Az Azure Storage replikációja).
+7. Válassza ki a kívánt toocreate hello új tárfiók hello előfizetést.
 8. Adjon meg egy új erőforráscsoportot, vagy válasszon ki egy meglévőt. További információ az erőforráscsoportokkal kapcsolatban: [Az Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md).
-9. Válassza ki a tárfiók földrajzi helyét. Tekintse meg [Az Azure régiói](https://azure.microsoft.com/regions/#services) című lapot azzal kapcsolatban, hogy melyik régióban mely szolgáltatások érhetők el.
-10. Kattintson a **Létrehozás** parancsra a tárfiók létrehozásához.
+9. Válassza ki a tárfiók hello földrajzi helyét. Tekintse meg [Az Azure régiói](https://azure.microsoft.com/regions/#services) című lapot azzal kapcsolatban, hogy melyik régióban mely szolgáltatások érhetők el.
+10. Kattintson a **létrehozása** toocreate hello tárfiók.
 
 ## <a name="manage-your-storage-account"></a>A tárfiók kezelése
 ### <a name="change-your-account-configuration"></a>A fiókkonfiguráció módosítása
-A tárfiók létrehozása után módosíthatja annak konfigurációját, például a fiókhoz használt replikációs beállítást, vagy módosíthatja a Blob Storage-fiókhoz tartozó hozzáférési szintet. Az [Azure Portalon](https://portal.azure.com) lépjen a tárfiókhoz, keresse meg, és kattintson a **Konfiguráció** elemre a **BEÁLLÍTÁSOK** területen a fiók konfigurációjának megtekintéséhez és/vagy módosításához.
+A tárfiók létrehozása után módosíthatja annak konfigurációját, például hello fióknak vagy a Blob storage-fiók módosítása hello hozzáférési szint használt hello replikációs beállítás módosításával. A hello [Azure-portálon](https://portal.azure.com), keresse meg a tárfiók tooyour, a Keresés és a kattintson **konfigurációs** alatt **beállítások** tooview és/vagy módosítsa a hello konfigurációs.
 
 > [!NOTE]
-> A tárfiók létrehozásánál kiválasztott teljesítményszint függvényében előfordulhat, hogy bizonyos replikációs beállítások nem lesznek elérhetők.
+> Hello tárfiók létrehozásánál kiválasztott hello teljesítményszinttel, attól függően, hogy bizonyos replikációs beállítások nem érhetők el.
 > 
 > 
 
-A replikációs beállítás módosításával együtt a díjszabás is módosul. További részletek: [Az Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).
+Hello replikációs beállítás módosítása a díjszabás változik. További részletek: [Az Azure Storage szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/storage/).
 
-Blob Storage-fiókok esetén a hozzáférési szint módosítása a díjszabás módosításán felül további költségekkel járhat. További részletek: [Blob Storage-fiókok – Árak és számlázás](storage-blob-storage-tiers.md#pricing-and-billing).
+A BLOB storage-fiókok hello hozzáférési réteg módosítása járhat hello költségekkel továbbá toochanging a díjszabás is módosul. Tekintse meg a hello [Blob storage-fiókok – árak és számlázás](storage-blob-storage-tiers.md#pricing-and-billing) további részleteket.
 
 ### <a name="manage-your-storage-access-keys"></a>A tárelérési kulcsok kezelése
-Tárfiók létrehozásakor az Azure létrehoz két 512 bites tárelérési kulcsot, amelyek a hitelesítéshez használhatóak a tárfiók elérésekor. Azáltal, hogy az Azure két tárelérési kulcsot biztosít, lehetővé teszi a kulcsok újragenerálását anélkül, hogy megszakadna a társzolgáltatás vagy az ahhoz való hozzáférés.
+Amikor létrehoz egy tárfiókot, az Azure létrehoz két 512 bites tárelérési kulcsot, a hitelesítéshez használt hello tárfiók elérésekor. Két tárelérési kulcsot biztosít, Azure lehetővé teszi tooregenerate hello kulcsok megszakítás tooyour társzolgáltatás és toothat szolgáltatás nélkül.
 
 > [!NOTE]
-> Javasoljuk, hogy a tárelérési kulcsokat ne ossza meg senkivel. Ha a tárolási erőforrásokhoz az elérési kulcsok kiadása nélkül szeretné engedélyezni a hozzáférést, használhat *közös hozzáférésű jogosultságkódot*. A közös hozzáférésű jogosultságkód hozzáférést biztosít a fiókban lévő egyes erőforrásokhoz az Ön által meghatározott időtartamra és engedélyekkel. További információk: [Using Shared Access Signatures (SAS) (Közös hozzáférésű jogosultságkód (SAS) használata)](storage-dotnet-shared-access-signature-part-1.md)
+> Javasoljuk, hogy a tárelérési kulcsokat ne ossza meg senkivel. toopermit toostorage erőforrások eléréséhez a tárelérési kulcsok kiadása nélkül, használhatja a *közös hozzáférésű jogosultságkódot*. A közös hozzáférésű jogosultságkód hozzáférést tooa erőforrás fiókjában biztosít, Ön által meghatározott időtartamra és hello jogosultságokkal rendelkező. További információk: [Using Shared Access Signatures (SAS) (Közös hozzáférésű jogosultságkód (SAS) használata)](storage-dotnet-shared-access-signature-part-1.md)
 > 
 > 
 <a id="view-and-copy-storage-access-keys"/></a>
 #### <a name="view-and-copy-storage-access-keys"></a>A tárelérési kulcsok megtekintése és másolása
-Az [Azure Portalon](https://portal.azure.com) lépjen a tárfiókhoz, kattintson **Az összes beállítás** elemre, majd kattintson az **Elérési kulcsok** elemre a tárelérési kulcsok megtekintéséhez, másolásához és újragenerálásához. Az **Elérési kulcsok** panel is tartalmaz az elsődleges és másodlagos kulcsok segítségével előre konfigurált kapcsolati karakterláncokat, amelyeket az alkalmazásokban történő használat céljából másolhat.
+A hello [Azure-portálon](https://portal.azure.com)tooyour tárfiók lépjen, kattintson **összes beállítás** majd **hívóbetűk** tooview, másolása és a tárelérési kulcsok újragenerálása. Hello **hívóbetűk** panel is tartalmaz, hogy toouse másolhatja az alkalmazásokban az elsődleges és másodlagos kulcsok segítségével előre konfigurált kapcsolati karakterláncokat.
 
 #### <a name="regenerate-storage-access-keys"></a>Tárelérési kulcsok újragenerálása
-Javasoljuk, hogy rendszeres időközönként cserélje le tárfiókja elérési kulcsait tárolási kapcsolatai biztonságának megőrzése érdekében. A rendszer két tárelérési kulcsot biztosít, így az egyik kulcs újragenerálása esetén a másikkal közben fenntarthatja a tárfiók kapcsolatait.
+Azt javasoljuk, hogy módosítsa a hello hívóbetűk tooyour tárolási fiók rendszeresen toohelp garantálják a tárolási kapcsolatok biztonságát. Két tárelérési kulcsok vannak hozzárendelve, így akkor is fenntartható a kapcsolatok toohello tárfiók hello újragenerálja egyik kulcs segítségével más hozzáférési kulcsot.
 
 > [!WARNING]
-> A tárelérési kulcsok újragenerálása hatással lehet a szolgáltatásokra az Azure-ban, valamint a tárfióktól függő saját alkalmazásaira is. A tárfiók eléréséhez a tárelérési kulcsot használó összes ügyfelet frissíteni kell, hogy az új kulcsot használják.
+> A tárelérési kulcsok újragenerálása hatással lehet az Azure, valamint a saját alkalmazásai hello tárfiók függő szolgáltatások. Hello hozzáférési kulcs tooaccess hello tárfiókot használó összes ügyfelet frissített toouse hello új kulcsot kell lennie.
 > 
 > 
 
-**Médiaszolgáltatások** – Ha rendelkezik a tárfióktól függő médiaszolgáltatásokkal, újra kell szinkronizálnia a tárelérési kulcsokat a médiaszolgáltatással, miután újragenerálta azokat.
+**A Media services** -Ha a tárfiók függő media services, újra kell szinkronizálnia hello hívóbetűk a médiaszolgáltatással után hello kulcsok újragenerálása.
 
-**Alkalmazások** – Ha a tárfiókot használó webalkalmazásokkal vagy felhőszolgáltatásokkal rendelkezik, a kulcsok újragenerálásával elveszti a kapcsolatokat, kivéve, ha rotálja a kulcsokat.
+**Alkalmazások** – Ha a webes alkalmazások cloud services – hello tárolási fiók használatát, vagy megszakad a hello kapcsolatok Ha újragenerálja a kulcsokat, kivéve, ha rotálja a kulcsokat.
 
-**Tártallózók** – Ha bármilyen [tártallózó alkalmazást](storage-explorers.md) használ, valószínűleg frissítenie kell az alkalmazások által használt tárkulcsot.
+**Tártallózók** – Ha bármilyen [Tártallózó alkalmazást](storage-explorers.md), valószínűleg szüksége lesz az alkalmazások által használt kulcs tooupdate hello.
 
-A tárelérési kulcsok az alábbi folyamat végrehajtásával rotálhatóak:
+Hello folyamat végrehajtásával rotálhatóak a tárelérési kulcsok itt található:
 
-1. Frissítse a kapcsolati karakterláncokat az alkalmazás kódjában, hogy a tárfiók másodlagos elérési kulcsára hivatkozzanak.
-2. Generálja újra a tárfiók elsődleges elérési kulcsát. A **Tárelérési kulcsok** panelen kattintson az **1. kulcs újragenerálása** elemre, majd kattintson az **Igen** gombra annak megerősítéséhez, hogy egy új kulcsot kíván létrehozni.
-3. Frissítse a kapcsolati karakterláncokat a kódban, hogy az új elsődleges tárelérési kulcsra hivatkozzanak.
-4. Hasonló módon generálja újra a másodlagos elérési kulcsot.
+1. Hello kapcsolati karakterláncokat az alkalmazás kódja tooreference hello másodlagos elérési kulcsát hello storage-fiókjának frissítése.
+2. A tárfiók hello elsődleges elérési kulcs újragenerálása. A hello **hívóbetűk** panelen kattintson **újragenerálja Key1**, és kattintson a **Igen** , amelyet az új kulcs toogenerate tooconfirm.
+3. Hello kapcsolati karakterláncok a kód tooreference hello új elsődleges elérési kulcs frissítése.
+4. Kulcs újragenerálása hello másodlagos hozzáférés a hello azonos módon.
 
 ## <a name="delete-a-storage-account"></a>Tárfiók törlése
-A már nem használt tárfiókok eltávolításához lépjen az [Azure Portalra](https://portal.azure.com), és kattintson a **Törlés** gombra. A tárfiókkal együtt törlődik a teljes fiók, beleértve az abban lévő összes adatot is.
+tooremove egy tárfiókot, amely már nem használ, keresse meg a storage-fiókot toohello hello [Azure-portálon](https://portal.azure.com), és kattintson a **törlése**. A tárfiók törlése hello teljes fiók, beleértve az összes adat hello fiók törlése.
 
 > [!WARNING]
-> A törölt tárfiókokat nem lehet visszaállítani, és nem lehet a törlés előtt abban tárolt tartalmakat helyreállítani. A fiók törlése előtt készítsen biztonsági másolatot minden menteni kívánt tartalomról. Ez igaz a fiókban lévő összes erőforrásra is – ha töröl egy blobot, táblát, üzenetsort vagy fájlt, az véglegesen törölve lesz.
+> Nem lehetséges toorestore törölt tárfiókokat, vagy a törlés előtt abban tárolt hello tartalmakat bármelyikét beolvasása. Bármi is meg arról, hogy tooback kívánt toosave hello fiók törlése előtt. Ez is igaznak minden olyan erőforrásnál hello fiók – Ha töröl egy blob, table, várólista vagy fájlt, az véglegesen törlődni fog.
 > 
 > 
 
-Egy Azure virtuális géphez kapcsolódó tárfiók törléséhez először győződjön meg arról, hogy a virtuális gép lemezei törölve lettek. Ha először nem törli a virtuális gép lemezeit, akkor a tárfiók törlésének megkísérlésekor egy ehhez hasonló hibaüzenetet fog látni:
+a storage-fiók egy Azure virtuális géphez társított toodelete, akkor előbb ellenőrizze, hogy a virtuális gép lemezei törölve lett. Ha először nem törli a virtuális gépek lemezeit, majd tett kísérlet során toodelete a tárfiók jelenik meg egy ehhez hasonló hibaüzenetet küld:
 
-    Failed to delete storage account <vm-storage-account-name>. Unable to delete storage account <vm-storage-account-name>: 'Storage account <vm-storage-account-name> has some active image(s) and/or disk(s). Ensure these image(s) and/or disk(s) are removed before deleting this storage account.'.
+    Failed toodelete storage account <vm-storage-account-name>. Unable toodelete storage account <vm-storage-account-name>: 'Storage account <vm-storage-account-name> has some active image(s) and/or disk(s). Ensure these image(s) and/or disk(s) are removed before deleting this storage account.'.
 
-Ha a tárfiók a klasszikus telepítési modellt használja, akkor az [Azure Portalon](https://manage.windowsazure.com) az alábbi lépéseket követve távolíthatja el a virtuális gép lemezét:
+Ha hello tárfiók hello klasszikus telepítési modellt használ, eltávolíthatja hello az alábbi lépéseket követve hello virtuálisgép-lemez [Azure-portálon](https://manage.windowsazure.com):
 
-1. Nyissa meg a [klasszikus Azure-portált](https://manage.windowsazure.com).
-2. Lépjen a Virtuális gépek lapra.
-3. Kattintson a Lemezek fülre.
+1. Keresse meg a toohello [klasszikus Azure portálon](https://manage.windowsazure.com).
+2. Keresse meg a toohello virtuális gépek lapra.
+3. Kattintson a hello lemezek fülre.
 4. Válassza ki az adatlemezt, majd kattintson a Lemez törlése gombra.
-5. A lemezképek törléséhez lépjen a Lemezképek lapra, és törölje az összes, a fiókban tárolt lemezképet.
+5. toodelete lemezképeket, keresse meg a toohello lemezképek lapra, és törölje az összes hello fiókban tárolt lemezképet.
 
-További információ: [Azure Virtual Machines – dokumentáció](http://azure.microsoft.com/documentation/services/virtual-machines/).
+További információkért lásd: hello [Azure Virtual machines – dokumentáció](http://azure.microsoft.com/documentation/services/virtual-machines/).
 
 ## <a name="next-steps"></a>Következő lépések
-* A [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, önálló alkalmazás, amelynek segítségével vizuálisan dolgozhat Azure Storage-adatokkal Windows, macOS és Linux rendszereken.
+* [A Microsoft Azure Tártallózó](../vs-azure-tools-storage-manage-with-storage-explorer.md) egy ingyenes, különálló alkalmazás, amely lehetővé teszi toowork vizuálisan macOS, Linux és a Windows Azure Storage-adatokat a Microsoft.
 * [Azure Blob Storage: Cool and Hot tiers (Azure Blob Storage: „ritkán használt adatok” és „gyakran használt adatok” hozzáférési szintek)](storage-blob-storage-tiers.md)
 * [Azure Storage replication (Azure Storage replikáció)](storage-redundancy.md)
 * [Configure Azure Storage connection strings (Az Azure Storage kapcsolati karakterláncok konfigurálása)](storage-configure-connection-string.md)
-* [Adatátvitel az AzCopy parancssori segédprogrammal](storage-use-azcopy.md)
-* Látogasson el [az Azure Storage csapat blogjára](http://blogs.msdn.com/b/windowsazurestorage/).
+* [Adatátvitel az AzCopy parancssori segédprogram hello](storage-use-azcopy.md)
+* A Microsoft hello [Azure Storage csapat blogja](http://blogs.msdn.com/b/windowsazurestorage/).
 

@@ -1,6 +1,6 @@
 ---
-title: "Hálózati forgalmának mintáit nyílt forráskódú eszközök és az Azure hálózati figyelőt megjelenítése |} Microsoft Docs"
-description: "Ez a lap ismerteti Capanalysis megjelenítéséhez a virtuális gépek érkező vagy oda irányuló forgalmat hálózati figyelőt csomagrögzítéssel használata."
+title: "aaaVisualize hálózati forgalmának mintáit nyílt forráskódú eszközök és az Azure hálózati figyelőt |} Microsoft Docs"
+description: "Ez a lap ismerteti, hogyan toouse hálózati figyelőt csomag rögzítése a Capanalysis toovisualize forgalmi minták tooand a virtuális gépek."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: e27bb694d0cbcf1ff7c9d8ca4682a79c8b5c5cb1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fca9a226729162cd90d412c7b699ac54d2257a0d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="visualize-network-traffic-patterns-to-and-from-your-vms-using-open-source-tools"></a>Hálózati forgalmának mintáit felé és felől a virtuális gépek nyílt forráskódú eszközökkel megjelenítése
+# <a name="visualize-network-traffic-patterns-tooand-from-your-vms-using-open-source-tools"></a>Hálózati forgalmi minták tooand a virtuális gépek nyílt forráskódú eszközökkel megjelenítése
 
-Csomag rögzítésekre hajthat végre a hálózati vizsgálatokhoz és a mély Csomagvizsgálat hálózati adatokat tartalmaznak. Nincsenek sok megnyílik csomag rögzíti a hálózattal kapcsolatos dcu elemzéséhez használható forrás-eszközöket. Egy ilyen eszköz CapAnalysis, egy nyílt forráskódú csomag rögzítési képi megjelenítés eszköz. Gyorsan kapcsolattípusokból megoldások és a hálózaton belüli rendellenességeket elemzések hasznos eszközök csomag rögzítési adatok megjelenítése. Képi megjelenítések is biztosít egy ilyen insights megosztási egyszerűen felhasználhatóvá módon.
+Csomag rögzíti, amelyek lehetővé teszik a tooperform hálózati vizsgálatokhoz és a mély Csomagvizsgálat hálózati-adatokat tartalmaznak. Nincsenek sok megnyílik a hálózattal kapcsolatos tooanalyze csomag rögzítésekre toogain insights használható forrás-eszközöket. Egy ilyen eszköz CapAnalysis, egy nyílt forráskódú csomag rögzítési képi megjelenítés eszköz. Csomagadatok rögzítési megjelenítése módja a értékes tooquickly célosztályából insights megoldások és rendellenességek észlelését, a hálózaton belül. Képi megjelenítések is biztosít egy ilyen insights megosztási egyszerűen felhasználhatóvá módon.
 
-Azure hálózati figyelőt lehetővé teszi az értékes adatok rögzítéséhez azzal, hogy lehetővé teszi a végrehajtását csomag rögzíti a hálózaton. Ebben a cikkben nyújtunk, amelyekkel megjelenítheti és dcu-csomagból bemutatóért rögzíti CapAnalysis használata a hálózati figyelőt.
+Azure hálózati figyelőt biztosítja, hogy rögzíti az értékes adatok tooperform csomag lehetővé teszi toocapture hello a hálózaton. Ez a cikk azt ismertetik a hogyan toovisualize és nyereség információkat kaphat a csomag rögzíti a CapAnalysis használata a hálózati figyelőt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-Rendelkezik egy egyszerű webalkalmazást telepített egy Azure-ban jelenítheti meg a hálózati forgalmat, és gyorsan azonosíthatja a folyamat mintákat és bármely esetleges rendellenességeket nyílt forráskódú eszközök segítségével. A hálózati figyelőt szerezzen be hálózati környezete csomag rögzítőeszközt, és közvetlenül a tárfiók tárolja. CapAnalysis ezután a csomagrögzítéssel az közvetlenül a tárolási blobból betöltési és jelenítheti meg annak tartalmát.
+Egy egyszerű webalkalmazást telepítve van a virtuális gép az Azure kívánt toouse nyílt forráskódú eszközök toovisualize a hálózati forgalom tooquickly azonosítása folyamata mintákat és minden lehetséges rendellenességek észlelését. A hálózati figyelőt szerezzen be hálózati környezete csomag rögzítőeszközt, és közvetlenül a tárfiók tárolja. CapAnalysis majd hello csomagrögzítéssel közvetlenül hello tárolási blobból betöltési, és megjelenítheti annak tartalmát.
 
 ![forgatókönyv][1]
 
@@ -36,66 +36,66 @@ Rendelkezik egy egyszerű webalkalmazást telepített egy Azure-ban jelenítheti
 
 ### <a name="install-capanalysis"></a>CapAnalysis telepítése
 
-A virtuális gépen CapAnalysis telepítéséhez hivatkozhat a hivatalos utasításokat https://www.capanalysis.net/ca/how-to-install-capanalysis.
-Ahhoz, távolról fér hozzá CapAnalysis, igazolnia kell a nyissa meg a virtuális gép 9877 portjához új bejövő szabály hozzáadásával. A hálózati biztonsági szabályok létrehozásával kapcsolatban bővebben lásd [egy meglévő NSG-szabályok létrehozására](../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg). A szabály sikeres hozzáadása után kell tudni elérni a CapAnalysis`http://<PublicIP>:9877`
+tooinstall CapAnalysis virtuális gépen, olvassa el a toohello hivatalos utasításokat itt https://www.capanalysis.net/ca/how-to-install-capanalysis.
+Rendelés távolról fér hozzá CapAnalysis, igazolnia kell tooopen portjához 9877 a virtuális Gépet egy új bejövő szabály hozzáadásával. A hálózati biztonsági szabályok létrehozásával kapcsolatban bővebben lásd túl[egy meglévő NSG-szabályok létrehozására](../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg). Miután hello szabály sikeresen hozzá lett adva, képes tooaccess CapAnalysis kell-e a`http://<PublicIP>:9877`
 
-### <a name="use-azure-network-watcher-to-start-a-packet-capture-session"></a>Egy csomag rögzítési munkamenet elindításához használt Azure hálózati figyelőt
+### <a name="use-azure-network-watcher-toostart-a-packet-capture-session"></a>Használja az Azure hálózati figyelőt toostart csomagot munkamenet rögzítése
 
-Hálózati figyelő lehetővé teszi a csomagok és nyomon követheti a forgalom mindkét virtuális gép rögzítése. Olvassa el a következő utasításokat [kezelése csomagrögzítéseket hálózati figyelőt](network-watcher-packet-capture-manage-portal.md) egy csomag rögzítési munkamenet elindításához. A csomagrögzítéssel CapAnalysis érhető el, a tárolási blob is tárolható.
+Hálózati figyelő lehetővé teszi toocapture csomagok tootrack forgalom mindkét virtuális gép. Olvassa el a toohello található utasítások segítségével: [kezelése csomagrögzítéseket hálózati figyelőt](network-watcher-packet-capture-manage-portal.md) toostart csomag rögzítési munkamenet. A csomagrögzítéssel tárolhatja a tárolási blob toobe CapAnalysis érhetők el.
 
-### <a name="upload-a-packet-capture-to-capanalysis"></a>A csomagrögzítéssel CapAnalysis feltöltése
-A csomagrögzítéssel meghoznia hálózati figyelőt "Importálása az URL" lapján, és a tárolási blob mutató hivatkozás biztosítása a csomagrögzítéssel tároló közvetlenül feltölthet.
+### <a name="upload-a-packet-capture-toocapanalysis"></a>A csomag rögzítési tooCapAnalysis feltöltése
+A hálózati figyelőt hello "Importálása az URL" lapon és a tárolási blob hivatkozás toohello által végrehajtott hello csomagrögzítéssel tároló csomagrögzítéssel közvetlenül is feltölthet.
 
-Hivatkozás biztosítása CapAnalysis, ellenőrizze, SAS-jogkivonat hozzáfűzése a tárolási blob URL-CÍMÉT.  Ehhez a közös hozzáférésű jogosultságkód navigáljon a tárfiókból, jelölje ki az engedélyezett engedélyek és a SAS létre gombra kattintva hozzon létre egy tokent. A SAS-jogkivonat majd fűzze hozzá a csomag rögzítési tárolási blob URL-cím.
+Ha egy hivatkozás tooCapAnalysis biztosít, győződjön meg arról, hogy tooappend SAS-token toohello tárolási blob URL-címet.  toodo, keresse meg a tooShared hozzáférésű jogosultságkódot hello tárfiókból, engedélyezett engedélyek hello kijelölni, majd nyomja meg hello SAS létrehozása gomb toocreate jogkivonat. Majd fűzze hozzá a SAS token toohello csomag rögzítési tárolási blob URL-CÍMÉT.
 
-Az eredményül kapott URL-cím fog megjelenni ehhez hasonló: http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
+hello eredményül kapott URL-cím fog megjelenni ehhez hasonló: http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
 
 
 ### <a name="analyzing-packet-captures"></a>Rögzíti a elemzésekor csomag
 
-CapAnalysis jelenítheti meg a csomagrögzítéssel, minden olyan elemzés különböző szempontjából különböző lehetőséget kínál. A vizuális összesítések a hálózati forgalom trendjeinek megértését, és gyorsan direkt szokatlan tevékenység. Ezek a szolgáltatások néhány az alábbi listában láthatók:
+CapAnalysis kínál különböző beállítások toovisualize a csomagrögzítéssel, minden olyan elemzés különböző szempontjából. A vizuális összesítések a hálózati forgalom trendjeinek megértését, és gyorsan direkt szokatlan tevékenység. Ezek a szolgáltatások néhány hello a következő listában láthatók:
 
 1. Attribútumfolyam táblák
 
-    Ebben a táblázatban lehetővé teszi a csomagadatok, a tranzakciós társított időbélyegzőjét és a különböző protokollok, a folyamat, valamint a forrás és cél IP társított folyamatok listáját.
+    A táblázat által biztosított hello hello csomagadatok forgalmának listája, hello adatfolyamok társított időbélyeg hello és hello különböző protokollok társított hello folyamat, valamint a forrás és cél IP.
 
     ![capanalysis folyamat lap][5]
 
 1. Protokoll – áttekintés
 
-    Ezen az ablaktáblán lehetővé teszi, hogy gyorsan megtekintheti a különböző protokollok és földrajzi keresztüli hálózati forgalmat.
+    Ezen az ablaktáblán lehetővé teszi a tooquickly tekintse meg a hálózati forgalom hello terjesztési hello keresztül, különböző protokollok és földrajzi.
 
     ![capanalysis protokoll – áttekintés][6]
 
 1. Statisztika
 
-    Ezen az ablaktáblán lehetővé teszi a hálózati forgalom statisztikáit a következőképpen tekintheti – bájt küldött és protokollt használja a forrás és cél IP-címek, adatfolyamok mind a forrás és cél IP-címek, kapott különböző tranzakciók, és az adatfolyamok időtartama.
+    Ezen az ablaktáblán lehetővé teszi, hogy tooview hálózati forgalom statisztika – bájt küldött és protokollt használja a forrás és cél IP-címek, a folyamatok egyes hello forrás és cél IP-címek, kapott különböző tranzakciók, és az adatfolyamok hello időtartama.
 
     ![capanalysis statisztikák][7]
 
 1. geomap
 
-    Ezen az ablaktáblán biztosít a nézet a hálózati forgalom az egyes országok forgalom mennyiségét méretezhetők színeivel. Kiválaszthatja a kijelölt országok további folyamata statisztikákról, például az adatok küldése és fogadása szükséges a IP-címeket az adott ország arányát megtekintéséhez.
+    Ezen az ablaktáblán biztosít a nézet a hálózati forgalom az egyes országok forgalom mennyiségét toohello skálázás színeivel. Kiválaszthatja a kijelölt országok tooview további folyamata statisztikákról, például adatok küldése és fogadása szükséges a IP-címeket az adott ország hello részét.
 
     ![geomap][8]
 
 1. Szűrők
 
-    CapAnalysis biztosít az adott csomagok gyors elemzés szűrők. Például ha szeretné, a forgalom részhalmaz adott dcu protokoll által szűrje az adatokat.
+    CapAnalysis biztosít az adott csomagok gyors elemzés szűrők. Toofilter hello adatok például protokoll toogain adott áttekinthetik a forgalom részhalmaz szerint is választhat.
 
     ![szűrők][11]
 
-    Látogasson el [https://www.capanalysis.net/ca/#about](https://www.capanalysis.net/ca/#about) összes CapAnalysis képességeivel kapcsolatos további.
+    Látogasson el [https://www.capanalysis.net/ca/#about](https://www.capanalysis.net/ca/#about) összes CapAnalysis képességeivel kapcsolatos további toolearn.
 
 ## <a name="conclusion"></a>Összegzés
 
-Hálózati figyelőt csomag rögzítése funkció lehetővé teszi a hálózati Törvényszéki ellátásához, és jobb megértése érdekében a hálózati forgalom szükséges adatok rögzítéséhez. Ebben a forgatókönyvben azt lehet bemutatta, hogyan hálózati figyelőt csomagok készítését könnyen integrálható a nyílt forráskódú képi megjelenítés eszközök. Az adott nyílt forráskódú eszközökkel CapAnalysis például megjelenítheti a csomagok készítését, mély Csomagvizsgálat, és gyorsan azonosíthatja a trendeket belül a hálózati forgalmat.
+Hálózati figyelőt csomag rögzítése funkció lehetővé teszi a toocapture hello adatok szükséges tooperform hálózati Törvényszéki, és jobb megértése érdekében a hálózati forgalmat. Ebben a forgatókönyvben azt lehet bemutatta, hogyan hálózati figyelőt csomagok készítését könnyen integrálható a nyílt forráskódú képi megjelenítés eszközök. A nyílt forráskódú eszközök, például CapAnalysis toovisualize csomagok rögzíti, mély Csomagvizsgálat, és gyorsan azonosíthatja a trendeket belül a hálózati forgalmat.
 
 ## <a name="next-steps"></a>Következő lépések
 
-NSG folyamata naplók kapcsolatos további információkért látogasson el a [naplózza az NSG-folyamat](network-watcher-nsg-flow-logging-overview.md)
+További információ az NSG-folyamat naplók toolearn látogasson el [naplózza az NSG-folyamat](network-watcher-nsg-flow-logging-overview.md)
 
-Megtudhatja, hogyan jelenítheti meg az NSG folyamata naplók a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Ismerje meg, hogyan toovisualize az NSG-folyamat naplózza a Power BI ellátogatva [megjelenítése NSG forgalomáramlás naplók és a Power bi-ban](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 <!--Image references-->
 
 [1]: ./media/network-watcher-using-open-source-tools/figure1.png

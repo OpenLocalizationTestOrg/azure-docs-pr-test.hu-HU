@@ -1,6 +1,6 @@
 ---
-title: "A Linux webalkalmazásokkal Ruby-alkalmazás létrehozása |} Microsoft Docs"
-description: "Ismerje meg, az Azure web wpp Linux Ruby-alkalmazásai létrehozására."
+title: "a Web Apps Linux Ruby-alkalmazás aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, toocreate Ruby Azure web wpp Linux-alkalmazások."
 keywords: az Azure app service, a linux, a oss, a ruby
 services: app-service
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: wesmc;rachelap
-ms.openlocfilehash: 17f3f1a2122c508501134a0c43ab6abce412fb44
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 99ce3b5ee16703a147787387bb02973defce8190
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-ruby-app-with-web-apps-on-linux"></a>A Linux webalkalmazásokkal Ruby-alkalmazás létrehozása 
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás. A gyors üzembe helyezés bemutatja, hogyan hozzon létre egy alapszintű Ruby sínek alkalmazásra, majd telepítheti az Azure Linux webalkalmazásként.
+Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás. A gyors üzembe helyezés bemutatja, hogyan toocreate egy alapszintű Ruby sínek alkalmazásra, majd telepítenie kell azt tooAzure webalkalmazásként Linux rendszeren.
 
 ![A globális hello](./media/app-service-linux-ruby-get-started/hello-world-updated.png)
 
@@ -37,9 +37,9 @@ Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="download-the-sample"></a>A minta letöltése
+## <a name="download-hello-sample"></a>Hello minta letöltése
 
-Egy terminálablakot futtassa a következő parancsot a helyi számítógépen, a minta app tárház klónozása:
+Egy terminálablakot futtassa a következő parancs tooclone hello sample app tárház tooyour helyi számítógép hello:
 
 ```bash
 git clone https://github.com/Azure-Samples/ruby-docs-hello-world
@@ -47,24 +47,24 @@ git clone https://github.com/Azure-Samples/ruby-docs-hello-world
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-## <a name="run-the-application-locally"></a>Az alkalmazás helyi futtatása
+## <a name="run-hello-application-locally"></a>Hello alkalmazás helyileg történő futtatása
 
-Futtassa a sínek kiszolgáló ahhoz, hogy az alkalmazás működéséhez. Módosítsa a *hello életben* könyvtár, és a `rails server` indítja el a kiszolgálón.
+Ahhoz, hogy hello alkalmazás toowork hello sínek server fut. Toohello módosítása *hello életben* könyvtárra, és hello `rails server` indítása hello kiszolgáló parancsot.
 
 ```bash
 cd hello-world\bin
 rails server
 ```
     
-Nyissa meg webböngészővel, `http://localhost:3000` az alkalmazás helyi teszteléséhez.    
+A webböngészőben nyissa meg a túl`http://localhost:3000` tootest hello alkalmazás helyileg.  
 
 ![A globális hello](./media/app-service-linux-ruby-get-started/hello-world.png)
 
-## <a name="modify-app-to-display-welcome-message"></a>Módosítsa a alkalmazást az üdvözlő üzenet megjelenítése
+## <a name="modify-app-toodisplay-welcome-message"></a>Alkalmazás toodisplay üdvözlő üzenet módosítása
 
-Módosítsa az alkalmazás, így üdvözlő üzenet megjeleníti. Módosítsa az alkalmazás a tartományvezérlő, a rendszer visszaadja az üzenet HTML formátumban a böngészőben. 
+Módosítsa a hello alkalmazás, így üdvözlő üzenet megjeleníti. Változás hello alkalmazás vezérlő így HTML toohello böngészőként üdvözlőüzenetére adja vissza. 
 
-Nyissa meg *~/workspace/hello-world/app/controllers/application_controller.rb* szerkesztésre. Módosítsa a `ApplicationController` kikeresni a következő osztály, például a következő példakód:
+Nyissa meg *~/workspace/hello-world/app/controllers/application_controller.rb* szerkesztésre. Módosítsa a hello `ApplicationController` osztály toolook például a következő példakód hello:
 
   ```ruby
   class ApplicationController > ActionController :: base
@@ -75,7 +75,7 @@ Nyissa meg *~/workspace/hello-world/app/controllers/application_controller.rb* s
   end
   ```
 
-Az alkalmazás konfigurálva van. Nyissa meg webböngészővel, `http://localhost:3000` a legfelső szintű kezdőlapja megerősítéséhez.
+Az alkalmazás konfigurálva van. A webböngészőben nyissa meg a túl`http://localhost:3000` tooconfirm hello legfelső szintű kezdőlapja.
 
 ![Hello World konfigurálva](./media/app-service-linux-ruby-get-started/hello-world-configured.png)
 
@@ -83,32 +83,32 @@ Az alkalmazás konfigurálva van. Nyissa meg webböngészővel, `http://localhos
 
 ## <a name="create-a-ruby-web-app-on-azure"></a>Ruby-webalkalmazás létrehozása az Azure-on
 
-Használja a [az App Service-csomagot hozzon létre](https://docs.microsoft.com/cli/azure/appservice/plan#create) parancsot a webalkalmazás az app service-csomag létrehozásához. 
+Használjon hello [az App Service-csomagot hozzon létre](https://docs.microsoft.com/cli/azure/appservice/plan#create) parancs toocreate a webalkalmazás az app service-csomag. 
  
 ```azurecli-interactive
   az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --is-linux
 ```
 
-Ezt követően adja ki a [az webalkalmazás létrehozása](https://docs.microsoft.com/cli/azure/webapp) parancsot a webes alkalmazás, amely használja az újonnan létrehozott service-csomag létrehozásához. Figyelje meg, hogy a futtatókörnyezet értéke `ruby|2.3`. Ne felejtse el lecserélni `<app name>` egy egyedi alkalmazásnévvel rendelkező.
+Ezt követően adja ki a hello [az webalkalmazás létrehozása](https://docs.microsoft.com/cli/azure/webapp) parancs toocreate hello webes alkalmazás, amely az újonnan létrehozott hello service-csomagot használ. Figyelje meg, hogy hello futásidejű értéke túl`ruby|2.3`. Ne feledje tooreplace `<app name>` egy egyedi alkalmazásnévvel rendelkező.
 
 ```azurecli-interactive
   az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app name> --runtime "ruby|2.3" --deployment-local-git
 ```
 
-A webalkalmazás létrehozása után egy **áttekintése** a lap megtekintéséhez érhető el. Keresse meg azt. A következő kezdőkép lap jelenik meg:
+Hello webalkalmazás létrehozása után egy **áttekintése** lap elérhető tooview. Keresse meg a tooit. a következő kezdőkép lap hello jelenik meg:
 
 ![Kezdőkép lap](./media/app-service-linux-ruby-get-started/splash-page.png)
 
 
 ## <a name="deploy-your-application"></a>Az alkalmazás központi telepítése
 
-A Git segítségével az Azure Ruby alkalmazást telepíti. A webalkalmazás már konfigurált egy Git-telepítés. Visszaállíthatja a telepítés URL-CÍMÉT is kiállításával egy [az webalkalmazás központi telepítési](https://docs.microsoft.com/cli/azure/webapp/deployment) parancsot.  
+Git toodeploy hello Ruby alkalmazás tooAzure használja. hello webalkalmazás már konfigurált egy Git-telepítés. Hello telepítés URL-CÍMÉT kiállításával le egy [az webalkalmazás központi telepítési](https://docs.microsoft.com/cli/azure/webapp/deployment) parancsot.  
 
 ```bash
 az webapp deployment source show --name <app name> --resource-group myResourceGroup
 ```
 
-Figyelje meg, hogy a Git URL-cím formátuma a következő a webes alkalmazás neve alapján:
+Figyelje meg, hogy a Git URL-cím hello rendelkezik a webes alkalmazás neve alapján a következő hello:
 
 ```bash
 https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
@@ -116,7 +116,7 @@ https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
 
 [!INCLUDE [Clean-up section](../../includes/configure-deployment-user-no-h.md)]
 
-Az Azure webhelyének helyi alkalmazást telepíti a következő parancsok futtatásával:
+Futtassa a következő parancsok toodeploy hello helyi alkalmazás tooyour Azure-webhelyen hello:
 
 ```bash
 git remote add azure <Git deployment URL from above>
@@ -125,7 +125,7 @@ git commit -m "Initial deployment commit"
 git push azure master
 ```
 
-Győződjön meg arról, hogy a távoli üzembe helyezési műveleteinek sikeres jelentést. A parancsok a kimenet az alábbihoz hasonló termékek:
+Győződjön meg arról, hogy a hello távoli üzembe helyezési műveleteket sikeres jelentést. hello parancsok által előállított kimeneti hasonló toohello a következő szöveget:
 
 ```bash
 remote: Using sass-rails 5.0.6
@@ -136,18 +136,18 @@ remote: ~site/repository
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<your web app name>.scm.azurewebsites.net/<your web app name>.git
+toohttps://<your web app name>.scm.azurewebsites.net/<your web app name>.git
   579ccb....2ca5f31  master -> master
 myuser@ubuntu1234:~workspace/<app name>$
 ```
 
-A telepítés befejezése után indítsa újra a webes alkalmazást a központi telepítés használatával érvénybe a [az webalkalmazás újraindítása](https://docs.microsoft.com/cli/azure/webapp#restart) parancsban, ahogy az itt látható:
+Hello központi telepítés befejezése után indítsa újra a webes alkalmazás hello telepítési tootake hatás hello segítségével [az webalkalmazás újraindítása](https://docs.microsoft.com/cli/azure/webapp#restart) parancsban, ahogy az itt látható:
 
 ```azurecli-interactive 
 az webapp restart --name <app name> --resource-group myResourceGroup
 ```
 
-Keresse meg a helyet, és ellenőrizze az eredményt.
+Keresse meg a tooyour hely, és hello eredményeket.
 
 ```bash
 http://<your web app name>.azurewebsites.net
@@ -155,7 +155,7 @@ http://<your web app name>.azurewebsites.net
 ![frissített webalkalmazás](./media/app-service-linux-ruby-get-started/hello-world-updated.png)
 
 > [!NOTE]
-> Az alkalmazás újraindul, miközben megpróbálta keresse meg a hely HTTP-állapotkódot eredményez `Error 503 Server unavailable`. Teljes újraindítására néhány percig is eltarthat.
+> Hello alkalmazás újraindul, miközben kísérlet toobrowse hello webhely HTTP-állapotkódot eredményez `Error 503 Server unavailable`. Néhány percig is tarthat toofully újraindítás.
 >
 
 [!INCLUDE [Clean-up section](../../includes/cli-script-clean-up.md)]

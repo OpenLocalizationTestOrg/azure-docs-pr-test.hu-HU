@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre, és az Azure szolgáltatás katalógus által felügyelt alkalmazások közzététele |} Microsoft Docs"
-description: "Bemutatja, hogyan hozzon létre egy Azure által felügyelt alkalmazás, amely tagja a szervezet számára készült."
+title: "aaaCreate és az Azure szolgáltatás katalógus által felügyelt alkalmazások közzététele |} Microsoft Docs"
+description: "Bemutatja, hogyan toocreate az Azure által felügyelt alkalmazás, amelyet a szervezet tagjaira."
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,27 +10,27 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/23/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: 39b74984ec2f89ed39753963de7fe3ff79577c9e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 31f2f9e3b50f57dae7f4dcf2edefa7366bfff25c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-a-managed-application-for-internal-consumption"></a>A belső felhasználásához kezelt alkalmazás közzététele
 
-Létrehozhat és közzététele az Azure [kezelt alkalmazások](managed-application-overview.md) szolgálnak, hogy a szervezet tagjaira. Például hogy az informatikai részleg, amelyek biztosítják a vállalati szabványoknak való megfelelés felügyelt alkalmazások közzététele. A kezelt alkalmazások a szolgáltatáskatalógus, nem az Azure piactéren keresztül érhetők el.
+Létrehozhat és közzététele az Azure [kezelt alkalmazások](managed-application-overview.md) szolgálnak, hogy a szervezet tagjaira. Például hogy az informatikai részleg, amelyek biztosítják a vállalati szabványoknak való megfelelés felügyelt alkalmazások közzététele. A kezelt alkalmazások hello szolgáltatáskatalógus, nem hello Azure piactéren keresztül érhetők el.
 
-A szolgáltatáskatalógus a kezelt alkalmazás közzététele a következőket kell tennie:
+toopublish hello szolgáltatási katalógusa kezelt alkalmazás, kell:
 
-* Hozzon létre három sablon szükséges fájlokat tartalmazó .zip-csomagja.
-* Döntse el, mely felhasználó, csoport vagy alkalmazás hozzá kell férnie az erőforráscsoport, a felhasználó az előfizetéshez.
-* Hozzon létre a kezelt alkalmazás-definíciót, amely a .zip-csomagja mutat, és az identitás hozzáférést kér.
+* Hozzon létre egy hello három sablon szükséges fájlokat tartalmazó .zip-csomagja.
+* Döntse el, mely felhasználó, csoport vagy alkalmazás toohello erőforráscsoport hello felhasználó az előfizetéshez kell hozzáférni.
+* Hozzon létre felügyelt hello definíciót, amely toohello .zip-csomagja mutat, és hello identitás hozzáférést kér.
 
 ## <a name="create-a-managed-application-package"></a>Kezelt alkalmazás-csomag létrehozása
 
-Az első lépés, ha a három kötelező sablonfájlokat importálni. Mindhárom fájlt csomagot .zip fájlba, majd töltse fel az elérhető helyen, például egy tárfiókot. A kezelt alkalmazás definíciójának létrehozásakor hivatkozás átadása a .zip fájl.
+hello első lépéseként toocreate hello három szükséges sablont fájl. Mindhárom fájlt csomagot .zip fájlba, majd töltse fel az tooan elérhető helyre, például egy tárfiókot. A hivatkozás toothis .zip fájl létrehozása hello kezelt definíciót adja át.
 
-* **applianceMainTemplate.json**: ezt a fájlt a kezelt alkalmazás részeként határozza meg az Azure-erőforrások törlődnek. A sablon nem eltér a normál Resource Manager-sablon. Például egy tárfiókot, a kezelt alkalmazás létrehozásához applianceMainTemplate.json tartalmazza:
+* **applianceMainTemplate.json**: A fájl határozza meg a hello Azure által hello részeként telepített erőforrások felügyelt alkalmazást. hello sablon ugyanolyan helyzetet teremt, mint egy normál Resource Manager-sablon. Például egy tárfiókot, felügyelt alkalmazás segítségével toocreate, applianceMainTemplate.json tartalmazza:
 
   ```json
   {
@@ -58,17 +58,17 @@ Az első lépés, ha a három kötelező sablonfájlokat importálni. Mindhárom
   }
   ```
 
-* **mainTemplate.json**: felhasználók telepíteni ezt a sablont a kezelt alkalmazás létrehozásakor. Meghatározza a kezelt alkalmazás erőforrás, amely Microsoft.Solutions/appliances erőforrástípus. Ez a fájl tartalmazza a paraméterek applianceMainTemplate.json erőforrásokra van szüksége.
+* **mainTemplate.json**: felhasználók telepíteni ezt a sablont hello létrehozása kezelt alkalmazás. Azt határozza meg a felügyelt hello alkalmazás erőforrás Microsoft.Solutions/appliances erőforrástípus. Ez a fájl tartalmazza az összes hello paraméter applianceMainTemplate.json hello erőforrásokra van szüksége.
 
-  Ez a sablon két fontos tulajdonságok beállítása. Első, a **applianceDefinitionId** tulajdonság a kezelt alkalmazás-definíció azonosítója. A témakör későbbi részében hoz létre a definíciót. Ha az érték határozza meg, melyik előfizetésbe és erőforráscsoportba csoportot a kezelt alkalmazás-definíciók tárolására használandó. És meg kell határoznia egy nevet a definíciójának. Az azonosítója a következő formátumban:
+  Ez a sablon két fontos tulajdonságok beállítása. Első lépésként hello **applianceDefinitionId** tulajdonsága felügyelt hello definíciót hello azonosítója. A témakör későbbi részében hello definition hoz létre. Ha az érték, ha el kell döntenie, melyik előfizetés és az erőforrás csoport toouse tárolására hello kezelt alkalmazás-definíciók. És el kell döntenie, a hello definíciójának neve. hello azonosító hello formátumban van:
 
   `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Solutions/applianceDefinitions/<definition-name>`
 
-  Második, a **managedResourceGroupId** tulajdonság értéke a az erőforrás-csoport azonosítója, ahol az Azure-erőforrások jönnek létre. Ez az erőforráscsoport neve az értéket, vagy adjon meg egy nevet a felhasználó. Az azonosító formátuma:
+  Második, hello **managedResourceGroupId** tulajdonsága hello hello erőforrás-csoport azonosítója, ahol hello Azure-erőforrások jönnek létre. Ez az erőforráscsoport neve az értéket, vagy adjon meg egy nevet hello felhasználó. hello hello azonosító formátuma:
 
   `/subscriptions/<subscription-id>/resourceGroups/<resoure-group-name>`.
 
-  A következő példa bemutatja egy mainTemplate.json fájlt. Azt adja meg egy erőforráscsoportot a telepített erőforrások. A definíció azonosítója nevű definíció használatára van beállítva **storageApp** erőforráscsoportban nevű **managedApplicationGroup**. Ezek helyett különböző nevekkel. Adja meg a saját előfizetés-azonosító található a definíció azonosítóját.
+  a következő példa hello mainTemplate.json fájl jeleníti meg. Azt adja meg egy erőforráscsoportot hello telepített erőforrásokhoz. hello azonosító definíció nevű set toouse **storageApp** erőforráscsoportban nevű **managedApplicationGroup**. Ezen értékek toouse különböző nevét módosíthatja. Adja meg a saját előfizetés-azonosító a hello definíciójának azonosítója.
 
   ```json
   {
@@ -104,9 +104,9 @@ Az első lépés, ha a három kötelező sablonfájlokat importálni. Mindhárom
   }
   ```
 
-* **applianceCreateUiDefinition.json**: az Azure portál használja ezt a fájlt létrehozni a felhasználói felület, a felhasználók számára a kezelt alkalmazás létrehozása. Azt határozza meg, hogyan felhasználói adatbevitelt mindegyik paraméterhez. Beállítások is használhat, például a legördülő listából válassza ki, szövegmezőben, jelszó mezőbe, és más beviteli eszközök. A felhasználói felület csomagdefiníciós fájl egy felügyelt alkalmazás létrehozásához, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* **applianceCreateUiDefinition.json**: hello Azure-portálon használ a fájl toogenerate hello felhasználói felület létrehozó felhasználók a felügyelt alkalmazási hello. Azt határozza meg, hogyan felhasználói adatbevitelt mindegyik paraméterhez. Beállítások is használhat, például a legördülő listából válassza ki, szövegmezőben, jelszó mezőbe, és más beviteli eszközök. Hogyan toocreate egy felhasználói felületi csomagdefiníciós fájl egy felügyelt alkalmazáshoz: toolearn [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 
-  A következő példa bemutatja egy applianceCreateUiDefinition.json fájl, amely lehetővé teszi, hogy a felhasználók számára a tárolási fiók előtagja keresztül a szövegmezőben adja meg.
+  hello következő példa bemutatja egy applianceCreateUiDefinition.json fájl, amely lehetővé teszi, hogy a felhasználók toospecify hello tárolási fiók előtagja keresztül a szövegmezőben.
 
   ```json
   {
@@ -120,11 +120,11 @@ Az első lépés, ha a három kötelező sablonfájlokat importálni. Mindhárom
                 "type": "Microsoft.Common.TextBox",
                 "label": "Storage account name prefix",
                 "defaultValue": "storage",
-                "toolTip": "Provide a value that is used for the prefix of your storage account. Limit to 11 characters.",
+                "toolTip": "Provide a value that is used for hello prefix of your storage account. Limit too11 characters.",
                 "constraints": {
                     "required": true,
                     "regex": "^[a-z0-9A-Z]{1,11}$",
-                    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-11 characters long."
+                    "validationMessage": "Only alphanumeric characters are allowed, and hello value must be 1-11 characters long."
                 },
                 "visible": true
             }
@@ -137,19 +137,19 @@ Az első lépés, ha a három kötelező sablonfájlokat importálni. Mindhárom
   }
   ```
 
-Után készen áll a szükséges fájlokat, becsomagolja .zip-fájlként. A három fájlt kell a gyökérszinten .zip fájl. Ha azokat egy mappába helyezett, hibaüzenet arról, hogy a szükséges fájlok hiányoznak a kezelt alkalmazás definíciójának létrehozásakor. Töltse fel a csomag elérhető helyen a ahol képes használni. Ez a cikk fennmaradó azt feltételezi, hogy a .zip fájl megtalálható-e nyilvánosan elérhető tárolóra.
+Miután az összes szükséges hello fájlok készen áll, becsomagolja .zip-fájlként. hello három fájlt kell gyökérszinten hello hello .zip fájl. Ha azokat egy mappába helyezett, hibaüzenet hello létrehozása kezelt alkalmazás-definíciót, amely szerint az hello szükséges fájlok hiányoznak. Töltse fel a hello csomag tooan hozzáférhető hely, ahol képes használni. hello a cikk hátralévő része azt feltételezi, hogy hello .zip fájl megtalálható-e nyilvánosan elérhető tárolóra.
 
 ## <a name="create-an-azure-active-directory-user-group-or-application"></a>Egy Azure Active Directory felhasználói csoport vagy az alkalmazás létrehozása
 
-A második lépés a felhasználói csoport vagy az erőforrások kezelése az ügyfél nevében az alkalmazás kiválasztása. A felhasználói csoport vagy az alkalmazás engedélyekkel rendelkezzen a felügyelt erőforráscsoporthoz rendelt szerepkör alapján. A szerepkör lehet minden olyan beépített szerepköralapú hozzáférés-vezérlést (RBAC) szerepkört, például a tulajdonos vagy közreműködő szerepkörrel. Is egy adott felhasználó engedélyt adhat a erőforrások kezeléséhez, de általában ez az engedély hozzárendelése egy felhasználói csoportot. Hozzon létre egy új Active Directory-felhasználócsoportot, lásd: [hozzon létre egy csoportot, és tagokat vehet az Azure Active Directoryban](../active-directory/active-directory-groups-create-azure-portal.md).
+hello második lépésben tooselect felhasználói csoport vagy az alkalmazás hello erőforrások kezelése hello ügyfél nevében. A felhasználói csoport vagy az alkalmazás rendelkezik engedélyekkel hello felügyelt erőforrás csoport függően toohello szerepkör, amely hozzá van rendelve. hello szerepkör lehet minden olyan beépített szerepköralapú hozzáférés-vezérlést (RBAC) szerepkört, például a tulajdonos vagy közreműködő szerepkörrel. Is adhat egy adott felhasználó engedély toomanage hello erőforrásokat, de általában rendelje hozzá a engedély tooa felhasználói csoport. toocreate egy új Active Directory-felhasználócsoportot, lásd: [hozzon létre egy csoportot, és tagokat vehet az Azure Active Directoryban](../active-directory/active-directory-groups-create-azure-portal.md).
 
-Az Objektumazonosító, a felhasználói csoport számára az erőforrások kezelése van szüksége. A következő példa bemutatja, hogyan objektum lekérése a csoporthoz tartozó megjelenített név:
+Hello felhasználói csoport toouse hello Objektumazonosító szükséges hello erőforrások kezelése. hello a következő példa bemutatja, hogyan tooget hello Objektumazonosító hello csoport megjelenített neve:
 
 ```azurecli-interactive
 az ad group show --group exampleGroupName
 ```
 
-A példában a parancs a következő eredményt adja vissza:
+hello példaparancs adja vissza a következő kimeneti hello:
 
 ```azurecli
 {
@@ -161,22 +161,22 @@ A példában a parancs a következő eredményt adja vissza:
 }
 ```
 
-Az Objektumazonosító lekéréséhez használja:
+tooretrieve csak hello Objektumazonosító, használja:
 
 ```azurecli-interactive
 groupid=$(az ad group show --group exampleGroupName --query objectId --output tsv)
 ```
 
-## <a name="get-the-role-definition-id"></a>A szerepkör-definíció azonosítója beolvasása
+## <a name="get-hello-role-definition-id"></a>Szerepkör-definíció azonosítója hello beolvasása
 
-A következő lépésben azt szeretné, hogy hozzáférést biztosítson a felhasználó, a felhasználói csoport vagy az alkalmazás RBAC beépített szerepkör szerepkör-definíció azonosítója. Általában akkor használják a tulajdonos vagy közreműködő vagy olvasó szerepkört. A következő parancsot a szerepkör-definíció azonosítója lekérése a tulajdonosi szerepkört mutatja be:
+A következő lépésben az RBAC beépített szerepkör toogrant hozzáférés toohello felhasználó, a felhasználói csoport vagy az alkalmazás kívánt hello hello szerepkör-definíció azonosítója. Általában akkor használják, hello tulajdonos vagy közreműködő vagy olvasó szerepkört. a következő parancs hello bemutatja, hogyan tooget hello hello tulajdonosi szerepkör szerepkör-definíció azonosítója:
 
 
 ```azurecli-interactive
 az role definition list --name owner
 ```
 
-Ez a parancs a következő kimeneti adja vissza:
+Ez a parancs a következő kimeneti hello adja vissza:
 
 ```azurecli
 {
@@ -186,7 +186,7 @@ Ez a parancs a következő kimeneti adja vissza:
       "assignableScopes": [
         "/"
       ],
-      "description": "Lets you manage everything, including access to resources.",
+      "description": "Lets you manage everything, including access tooresources.",
       "permissions": [
         {
           "actions": [
@@ -202,13 +202,13 @@ Ez a parancs a következő kimeneti adja vissza:
 }
 ```
 
-A "name" tulajdonság az előző példából van szüksége. Most, hogy a tulajdonság le:
+A fenti példa hello hello "name" tulajdonság értékének hello van szüksége. Most, hogy a tulajdonság le:
 
 ```azurecli-interactive
 roleid=$(az role definition list --name Owner --query [].name --output tsv)
 ```
 
-## <a name="create-the-managed-application-definition"></a>A kezelt alkalmazás-definíció létrehozása
+## <a name="create-hello-managed-application-definition"></a>Hello felügyelt alkalmazás definíció létrehozása
 
 Ha még nem rendelkezik egy erőforráscsoportot a kezelt alkalmazás definícióját tárolásához, hozzon létre egyet:
 
@@ -216,7 +216,7 @@ Ha még nem rendelkezik egy erőforráscsoportot a kezelt alkalmazás definíci�
 az group create --name managedApplicationGroup --location westcentralus
 ```
 
-Most hozzon létre a kezelt alkalmazás definícióját erőforrást.
+Ezután hozzon létre hello felügyelt alkalmazás definícióját erőforrás.
 
 ```azurecli-interactive
 az managedapp definition create \
@@ -230,18 +230,18 @@ az managedapp definition create \
   --package-file-uri <uri-path-to-zip-file>
 ```
 
-Az előző példában használt paraméterek a következők:
+a fenti példa hello használt hello paraméterek a következők:
 
-* **Erőforráscsoport**: a kezelt alkalmazás definícióját létrehozási helyének erőforráscsoport nevét.
-* **zárolási szintű**: zárolási típusú helyezve a felügyelt erőforráscsoportot. Megakadályozza, hogy az ügyfél nemkívánatos műveleteket végez az erőforráscsoport. Csak olvasható jelenleg az egyetlen támogatott zárolási szint. Csak olvasható megadása esetén az ügyfél csak megtekintheti ezeket az erőforrásokat a felügyelt erőforráscsoportban található.
-* **engedélyek**: a résztvevő-azonosító és a szerepkör-definíció azonosítója, amely engedélyt ad a felügyelt erőforráscsoport segítségével mutatja be. Formátumban van megadva `<principalId>:<roleDefinitionId>`. Több érték is is meg kell adni ehhez a tulajdonsághoz. Ha több érték van szükség, akkor meg kell határozni a képernyőn `<principalId1>:<roleDefinitionId1> <principalId2>:<roleDefinitionId2>`. Több érték is szóközzel elválasztva.
-* **csomag – fájl-uri**: a kezelt alkalmazás csomagot, amely tartalmazza a sablonfájlokat importálni, amely lehet egy Azure Storage-blobba helyét.
+* **Erőforráscsoport**: hello nevét, ahol hello felügyelt definíciót hello erőforráscsoport létrejön.
+* **zárolási szintű**: hello felügyelt erőforráscsoport hello típusú zárolást helyezni. Megakadályozza, hogy hello ügyfél nemkívánatos műveleteket végez az erőforráscsoport. Jelenleg csak olvasható hello csak akkor támogatja a zárolási szint. Ha meg van határozva a csak olvasható, hello felhasználói csak olvashatók hello erőforrások hello felügyelt erőforráscsoportban található.
+* **engedélyek**: hello résztvevő-azonosító és hello szerepkör-definíció azonosítója, amelyek a felügyelt erőforrások toohello használt toogrant engedélycsoport ismerteti. Hello formátumban van megadva `<principalId>:<roleDefinitionId>`. Több érték is is meg kell adni ehhez a tulajdonsághoz. Ha több érték van szükség, akkor meg kell határozni hello formában `<principalId1>:<roleDefinitionId1> <principalId2>:<roleDefinitionId2>`. Több érték is szóközzel elválasztva.
+* **csomag – fájl-uri**: hello hello sablonfájlokat, amely lehet egy Azure Storage-blobot tartalmazó hello felügyelt alkalmazáscsomagot helyét.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Felügyelt alkalmazások bemutatása, lásd: [felügyelt használatát áttekintő cikkben](managed-application-overview.md).
-* A fájlok, tekintse meg a [felügyelt alkalmazás minták](https://github.com/Azure/azure-managedapp-samples/tree/master/samples).
+* Egy bevezető toomanaged alkalmazások, lásd: [felügyelt használatát áttekintő cikkben](managed-application-overview.md).
+* Hello fájlok, tekintse meg a [felügyelt alkalmazás minták](https://github.com/Azure/azure-managedapp-samples/tree/master/samples).
 * További információ a szolgáltatási katalógus által felügyelt alkalmazások felhasználása: [felhasználását a szolgáltatási katalógus által felügyelt alkalmazások](managed-application-consumption.md).
-* Felügyelt alkalmazások közzétételéhez az Azure piactéren kapcsolatos információkért lásd: [Azure felügyelt alkalmazások a piactéren](managed-application-author-marketplace.md).
-* További információ a piactérről kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactéren](managed-application-consume-marketplace.md).
-* A felhasználói felület csomagdefiníciós fájl egy felügyelt alkalmazás létrehozásához, lásd: [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Közzétételi kezelt alkalmazások toohello Azure piactér kapcsolatos információkért lásd: [Azure felügyelt alkalmazások a piactér hello](managed-application-author-marketplace.md).
+* További információ a piactér hello a kezelt alkalmazás felhasználása: [felhasználásához Azure felügyelt alkalmazások a piactér hello](managed-application-consume-marketplace.md).
+* Hogyan toocreate egy felhasználói felületi csomagdefiníciós fájl egy felügyelt alkalmazáshoz: toolearn [Ismerkedés a CreateUiDefinition](managed-application-createuidefinition-overview.md).

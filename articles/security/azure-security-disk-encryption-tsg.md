@@ -1,5 +1,5 @@
 ---
-title: "Azure lemez titkosítási hibaelhárítása |} Microsoft Docs"
+title: "Lemez titkosítási hibaelhárítási aaaAzure |} Microsoft Docs"
 description: "Ez a cikk hibaelhárítási tippek a Microsoft Azure lemez Encryption for Windows és Linux IaaS virtuális gépeket."
 services: security
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: devtiw
-ms.openlocfilehash: 5f482a92b8fcd71a1b767fcc5741bc57605997ea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2ecb8df1fb869e3bf8f3be4be4494e6485e75695
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-disk-encryption-troubleshooting-guide"></a>Azure Disk Encryption hibaelhárítási útmutatója
 
-Ez az útmutató informatikai (IT) szakemberek készült, információkat adatbiztonsági elemzők, és amelynek szervezetek Azure disk encryption használ, és útmutatást lemeztitkosítás hibaelhárítás kell felhő rendszergazdák kapcsolatos hiba lépett fel.
+Ez az útmutató informatikai (IT) szakemberek készült, információk biztonsági elemzőknek, és felhő rendszergazdák, amelynek a szervezet Azure disk encryption használ, és útmutatást tootroubleshoot lemez-titkosítást kell kapcsolatos hiba lépett fel.
 
 ## <a name="troubleshooting-linux-os-disk-encryption"></a>Hibaelhárítási Linux operációsrendszer-lemez titkosítása
 
-Linux operációsrendszer-lemez titkosítása az operációs rendszer meghajtó azt a teljes lemez titkosítása folyamatot futtatása előtt kell választania.   Ha nem tudja, egy hibaüzenet, a "nem tudta leválasztani után..." hibaüzenet valószínű.
+Linux operációsrendszer-lemez titkosítása operációs rendszer hello meghajtó előzetes toorunning kell választania azt a folyamatot, hello teljes lemez titkosítása.   Ha nem tudja, egy hibaüzenet, a "toounmount után nem sikerült..." a hibaüzenet valószínűleg toooccur.
 
-Ennek az oka valószínűleg, amikor az operációs rendszer lemeztitkosítás kísérletet egy virtuális gép célkörnyezet módosított vagy a támogatott készlet gyűjtemény lemezképből megváltozott.  A támogatott kép is zavarják a bővítmény leválasztása az operációs rendszer meghajtó eltéréseket közé:
+Ennek az oka valószínűleg, amikor az operációs rendszer lemeztitkosítás kísérletet egy virtuális gép célkörnyezet módosított vagy a támogatott készlet gyűjtemény lemezképből megváltozott.  Hello támogatott kép, amely zavarhatja a hello bővítmény képességét toounmount hello OS meghajtó eltéréseket közé:
 - Testreszabott lemezképeket, amelyek már nem felel meg egy támogatott fájlrendszeren és/vagy a particionálási sémát.
-- Alkalmazások, például víruskereső, Docker, SAP, MongoDB vagy az operációs rendszer titkosítási előtt futó Apache Cassandra testreszabott képeket.  Ezeket az alkalmazásokat nehezen leáll, és az operációs rendszer nyitott fájlok leíró megőrzését, ha a meghajtó nem, hibát okozó nem lehet.
-- Egyéni futtatott parancsfájlok, a zárja be a titkosítás lépéssel közelségi kapcsolat zavaró, és ez a hiba miatt idő. Ez akkor fordulhat elő, ha a Resource Manager-sablon meghatározása végrehajtása egyidejűleg több kiterjesztést, vagy ha egy egyéni parancsprogramok futtatására szolgáló bővítmény vagy egyéb művelet fut egyidejűleg a lemez titkosítása.   Szerializálása és elkülönítése lépéseket azzal megoldhatja a problémát.
-- SELinux titkosítás engedélyezése előtt nem lett letiltva, a leválasztási lépés sikertelen lesz.  SELinux titkosítási befejeződését követően lehet újra engedélyezni.
-- Ha az operációsrendszer-lemezképet használ egy LVM séma (bár korlátozott LVM adatok támogatása nem érhető el, az operációs rendszer LVM lemez nem)
+- Alkalmazások, például víruskereső, Docker, SAP, MongoDB vagy hello az operációs rendszer előzetes tooencryption futó Apache Cassandra testreszabott lemezképeket.  Ezek az alkalmazások nehéz tooterminate, és nyitott fájlok kezeli az operációs rendszer toohello meghajtó megőrzését, ha a hello meghajtó nem, hibát okozó nem lehet.
+- Egyéni futtatott parancsfájlok, a közelségi kapcsolat toohello titkosítási lépés zavaró, és ez a hiba miatt idő bezárásához. Ez akkor fordulhat elő, ha a Resource Manager-sablon meghatározása több bővítmények tooexecute egyszerre, vagy ha egy egyéni parancsprogramok futtatására szolgáló bővítmény vagy a másik művelet fut egyidejűleg toodisk titkosítás.   Szerializálása és lépéseket elkülönítése hello probléma esetleg elhárítható.
+- Ha SELinux nem lett letiltva előzetes tooenabling titkosítási, hello leválasztása lépés sikertelen lesz.  SELinux titkosítási befejeződését követően lehet újra engedélyezni.
+- Ha hello operációsrendszer-lemez egy LVM sémát használ (bár korlátozott LVM adatok támogatása nem érhető el, az operációs rendszer LVM lemez nem)
 - Ha minimális memória feltételeknek nem felel meg (az operációs rendszer lemeztitkosítás 7GB ajánlott)
 - Amikor adatokat /mnt/ könyvtár, vagy egymással (például /mnt/data1 /mnt/data2, /data3 + /data3/data4, stb.) úton csatlakoztatta a rekurzív módon lett volna
 - Ha más Azure Disk Encryption [Előfeltételek](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption) Linux nem felel meg
 
-## <a name="unable-to-encrypt"></a>Nem sikerült titkosítani a
+## <a name="unable-tooencrypt"></a>Nem lehet tooencrypt
 
-Néhány esetben az adatok titkosítása úgy tűnik, hogy "Az operációs rendszer lemezén lépések titkosítási" Beragadt Linux és SSH le van tiltva. Között a készlet gyűjtemény lemezkép 3-16 órát is igénybe vehet.  Ha multi-TB-os méret adatlemezt ad hozzá, a nap vehet igénybe. A Linux operációs rendszert futtató lemez titkosítási feladatütemezési ideiglenesen leválasztja az operációs rendszer meghajtó, és végrehajtja a titkosított állapotában tudják, mielőtt a teljes operációsrendszer-lemez blokkonként titkosítását.   Eltérően Azure Disk Encryption használatát a Windows Linux lemez titkosítása nem engedélyezi a virtuális gép egyidejű használatát amíg folyamatban van a titkosítás.  A teljesítményt nyújt a virtuális gép, például a lemez, hogy standard vagy prémium (SSD) tárhelyre, a tárfiók alapját mérete jelentős mértékben befolyásolhatja a teljes titkosítás szükséges időt.
+Bizonyos esetekben hello Linux lemeztitkosítás jelenik meg a "Az operációs rendszer lemeztitkosítás lépések" Beragadt toobe és SSH le van tiltva. A folyamat eltarthat egy készlet gyűjtemény rendszerképre 3-16 órás toocomplete között.  Ha multi-TB-os méret adatlemezt ad hozzá, hello folyamat napig is eltarthat. hello Linux operációs rendszert futtató lemez titkosítási feladatütemezési ideiglenesen leválasztja az operációs rendszer hello meghajtó, és végrehajtja blokkonként titkosítási hello teljes operációsrendszer-lemez, a titkosított állapotában tudják azt megelőzően.   Eltérően Azure Disk Encryption használatát a Windows, Linux lemez titkosítása nem egyidejű használatának engedélyezése hello VM amíg hello titkosítás folyamatban van.  hello teljesítményétől hello VM hello mérete hello lemez, és hogy hello tárfiók alapját standard vagy prémium (SSD) tárhelyre, például jelentős mértékben befolyásolhatja hello szükséges idő toocomplete titkosítás.
 
-Állapotának ellenőrzéséhez a Feladatnézetben mező által visszaadott a [Get-AzureRmVmDiskEncryptionStatus](https://docs.microsoft.com/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus) parancs lekérhető.   Az operációs rendszer meghajtó titkosított, miközben a virtuális gép egy karbantartási állapotba kerül, és SSH is le van tiltva fennakadást a folyamatban lévő folyamatban érdekében.  EncryptionInProgress titkosítás folyamatban, majd később egy VMRestartPending üzenet arra kéri a virtuális gép újraindítása az órákat közben az az idő, a legtöbb megjelenik.  Példa:
+toocheck állapot hello Feladatnézetben mező hello által visszaadott [Get-AzureRmVmDiskEncryptionStatus](https://docs.microsoft.com/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus) parancs lekérhető.   Amíg az operációs rendszer hello meghajtó titkosított, hello virtuális gép egy karbantartási állapotba kerül, és SSH is letiltott tooprevent bármely megszűnésének toohello folyamatban.  EncryptionInProgress készül hello többségének hello idő, amíg titkosítási van folyamatban, majd később több óráig arra kéri a virtuális gép toorestart hello VMRestartPending üzenetet.  Példa:
 
 
 ```
@@ -56,30 +56,30 @@ PS > Get-AzureRmVMDiskEncryptionStatus -ResourceGroupName $resourceGroupName -VM
 OsVolumeEncrypted          : VMRestartPending
 DataVolumesEncrypted       : Encrypted
 OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
-ProgressMessage            : OS disk successfully encrypted, please reboot the VM
+ProgressMessage            : OS disk successfully encrypted, please reboot hello VM
 ```
 
-Miután kell indítania a virtuális gép után a virtuális gép újraindítása, és egyúttal jogosultságot ad az újraindítás és a befejező lépései végezhető el a célszámítógépen 2-3 percet, állapotüzenetet jelzi, hogy a titkosítás végül befejeződött.   Ez az üzenet nem érhető el, ha a titkosított meghajtón az operációs rendszer várhatóan készen áll a használatra, és a virtuális gép is használható újra.
+Egyszer kéri a tooreboot hello virtuális gép, és hello virtuális gép újraindítása, és mivel a 2-3 percet hello újraindítás és a végső lépéseket toobe hello cél végre, miután hello állapot üzenet jelzi, hogy a titkosítás végül befejeződött.   Ez az üzenet nem érhető el, ha titkosított hello OS meghajtó le várt toobe készen áll, és a hello VM toobe használható újra.
 
-Azokban az esetekben, ahol az ebben a sorozatban nem fordult elő vagy ha rendszerindítási információk, állapotüzenetet vagy egyéb hiba mutatók jelentést, hogy az operációs rendszer titkosítási közepén Ez a folyamat (például ha a "nem sikerült leválasztani" hiba történt a jelen útmutatóban ismertetett) sikertelen volt, a ajánlott visszaállítani a virtuális Gépet a pillanatkép vagy azonnal titkosítási előtt készült biztonsági másolatok.  A következő kísérlet előtt javasolt ismételt kiértékelése a virtuális gép jellemzőit, és győződjön meg arról, hogy a szükséges előfeltételek maradéktalanul teljesülnek-e.
+Azokban az esetekben, ahol az ebben a sorozatban nem fordult elő vagy ha rendszerindítási információk, állapotüzenetet vagy egyéb hiba mutatók jelentést, hogy az operációs rendszer titkosítási hello középső (például ha a jelen útmutatóban ismertetett hello "sikertelen toounmount" hiba azért jelent meg), a folyamat sikertelen toorestore hello VM hátsó toohello pillanatkép vagy készült biztonsági másolatok közvetlenül megelőző tooencryption ajánlott.  Előzetes toohello következő kísérlet, akkor javasolt toore-értékelje ki a virtuális gép hello hello jellemzői, és győződjön meg arról, hogy a szükséges előfeltételek maradéktalanul teljesülnek-e.
 
 ## <a name="troubleshooting-azure-disk-encryption-behind-a-firewall"></a>Hibaelhárítás az Azure Disk Encryption tűzfal mögött
-Kapcsolat egy tűzfal, a proxy követelmény vagy a hálózati biztonsági csoport (NSG) beállításainak korlátozza, amikor a bővítmény hajthatnak végre a szükséges feladatok is működni.   Ez például a "Nem érhető el a virtuális Gépen a bővítmény állapotát" állapotüzenetek eredményezhet és várt esetekben nem sikerült befejezni.  A következő szakaszok rendelkezik néhány tűzfal kapcsolatos gyakori hibák, lehetséges, hogy vizsgálni.
+Ha kapcsolatot korlátozza egy tűzfal, a proxy követelmény vagy a hálózati biztonsági csoport (NSG) beállításainak hello képességét hello bővítmény tooperform szükséges feladatok is megszakad.   Ez például a "Hello virtuális gép nem érhető el a bővítmény állapotát" állapotüzenetek eredményezhet és várt forgatókönyvekben toofinish sikertelenek lesznek.  hello szakaszok rendelkezik néhány tűzfal kapcsolatos gyakori hibák, lehetséges, hogy vizsgálni.
 
 ### <a name="network-security-groups"></a>Network security groups (Hálózati biztonsági csoportok)
-A hálózati biztonsági csoport beállításai továbbra is engedélyeznie kell a végpontot a dokumentált hálózati konfigurációnak megfelelő [Előfeltételek](https://docs.microsoft.com/azure/security/azure-security-disk-encryption#prerequisites) a lemez titkosításához.
+A hálózati biztonsági csoport beállításai továbbra is engedélyeznie kell a hello végpont toomeet dokumentált hello hálózati konfiguráció [Előfeltételek](https://docs.microsoft.com/azure/security/azure-security-disk-encryption#prerequisites) a lemez titkosításához.
 
 ### <a name="azure-keyvault-behind-firewall"></a>Tűzfal mögött található Azure Keyvault
-A virtuális gép kulcstároló eléréséhez képesnek kell lennie. Tekintse meg a kulcs tartalék által kezelt tűzfalon keresztül hozzáférést nyújtani a [Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-access-behind-firewall) csapatával.
+hello méretű képes tooaccess kulcstároló kell lennie. Tekintse meg a hozzáférés tookey tartalék hello által kezelt tűzfal mögül tooguidance [Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-access-behind-firewall) csapatával.
 
 ### <a name="linux-package-management-behind-firewall"></a>Linux-csomag felügyeleti tűzfal mögött
-Futási időben Azure Disk Encryption Linux támaszkodik a cél terjesztési Csomagkezelő rendszeren titkosítás engedélyezése előtt szükséges előfeltételként szükséges összetevők telepítéséhez.  Ha a tűzfal beállításainak megakadályozza, hogy a virtuális gép igényt töltse le és telepítse ezeket az összetevőket, majd további hibák várható.    A lépések szerint konfigurálhatja ezt a terjesztési által változhat.  A Red Hat Ha a proxy szükség, győződjön meg arról, hogy előfizetés-kezelő és yum megfelelően vannak beállítva nélkülözhetetlen.  Lásd: [ez](https://access.redhat.com/solutions/189533) Red Hat támogatási cikk erről a témakörről.  
+Futási időben Azure Disk Encryption Linux hello cél terjesztési csomag felügyeleti rendszer tooinstall szükséges előfeltételként szükséges összetevők előzetes tooenabling titkosítási támaszkodik.  Ha a tűzfal beállításainak hello VM, hogy nem tud toodownload, és telepíti ezeket az összetevőket, majd további hibák várható.    hello lépéseket tooconfigure ez terjesztési változhat.  A Red Hat Ha a proxy szükség, győződjön meg arról, hogy előfizetés-kezelő és yum megfelelően vannak beállítva nélkülözhetetlen.  Lásd: [ez](https://access.redhat.com/solutions/189533) Red Hat támogatási cikk erről a témakörről.  
 
 ## <a name="troubleshooting-windows-server-2016-server-core"></a>Windows Server 2016 Server Core hibaelhárítása
 
-A Windows Server 2016 Server Core az a bdehdcfg összetevő nem áll rendelkezésre, alapértelmezés szerint. Ez az összetevő Azure Disk Encryption használata szükséges.
+A Windows Server 2016 Server Core az hello bdehdcfg összetevő nem áll rendelkezésre, alapértelmezés szerint. Ez az összetevő Azure Disk Encryption használata szükséges.
 
-A megoldás a probléma a c:\windows\system32 mappában, a Server Core-lemezkép a Windows Server 2016 Data Center VM fájlok másolása a következő 4:
+tooworkaround ezt a problémát, a következő 4 fájlok mappából egy Windows Server 2016 Data Center VM toohello c:\windows\system32 hello Server Core-lemezkép másolása hello:
 
 ```
 bdehdcfg.exe
@@ -88,13 +88,13 @@ bdehdcfglib.dll.mui
 bdehdcfg.exe.mui
 ```
 
-Ezután futtassa a következő parancsot:
+Ezután futtassa a következő parancs hello:
 
 ```
 bdehdcfg.exe -target default
 ```
 
-Ezzel létrehoz egy 550MB rendszerpartíció, és ezután a rendszer újraindítása után segítségével Diskpart ellenőrizze a kötetek, majd a folytatáshoz.  
+Ezzel létrehoz egy 550MB rendszerpartíció, és ezután a rendszer újraindítása után a Diskpart toocheck hello köteteket használ, és a folytatáshoz.  
 
 Példa:
 
@@ -108,7 +108,7 @@ DISKPART> list vol
   Volume 2     D   Temporary S  NTFS   Partition     13 GB  Healthy    Pagefile
 ```
 ## <a name="see-also"></a>Lásd még:
-Ebből a dokumentumból megismerte további információk az Azure disk encryption és elhárítása gyakori problémákat. Ez a szolgáltatás és a funkció kapcsolatos további információk:
+Ebből a dokumentumból megismerte kapcsolatos gyakori problémákat, az Azure disk encryption használatát, és hogyan tootroubleshoot. Ez a szolgáltatás és a funkció kapcsolatos további információk:
 
 - [Az Azure Security Centerben lemeztitkosítás alkalmazása](https://docs.microsoft.com/azure/security-center/security-center-apply-disk-encryption)
 - [Azure virtuális gép titkosítása](https://docs.microsoft.com/azure/security-center/security-center-disk-encryption)

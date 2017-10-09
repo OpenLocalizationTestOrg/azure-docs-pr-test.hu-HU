@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Batch CLI minták |} Microsoft Docs"
+title: "Kötegelt CLI minták aaaAzure |} Microsoft Docs"
 description: "Az Azure Batch CLI minták"
 services: batch
 documentationcenter: 
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: antisch
-ms.openlocfilehash: 51fd27536994ca36bf9559a780660c3a16bf30cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d700a6edebd35a3b2bb86926d1e57d4a33584b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-cli-samples"></a>Az Azure Batch CLI minták
 
 ## <a name="tutorials-with-sample-shell-scripts"></a>A minta PowerShell parancsfájloknál ad oktatóprogramok
 
-A következő táblázat az Azure parancssori felület használatával készített parancsfájlok, amelyek azt mutatják, a Batch szolgáltatás segítségével bash mutató hivatkozásokat tartalmaz.
+hello alábbi táblázat tartalmaz hivatkozásokat toobash parancsfájlokat hello Azure parancssori felület használatával készített bemutatása hello Batch szolgáltatás használatával.
 
 | Szkript | Megjegyzések |
 |---|---|
@@ -35,4 +35,4 @@ A következő táblázat az Azure parancssori felület használatával készíte
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).

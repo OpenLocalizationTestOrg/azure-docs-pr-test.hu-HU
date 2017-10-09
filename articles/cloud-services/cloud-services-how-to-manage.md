@@ -1,6 +1,6 @@
 ---
-title: "Általános felhő szolgáltatás kezelési feladatai (klasszikus) |} Microsoft Docs"
-description: "Útmutató: a klasszikus Azure portálon felhőszolgáltatások kezelése."
+title: "aaaCommon felhőalapú szolgáltatás kezelési feladatai (klasszikus) |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage cloud services – a hello a klasszikus Azure portálon."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,142 +14,142 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 2ee76dfcb579e53975b1f61a6590f8d78dc0961b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03b1d632f1480d0f65c87b7f8ffc747417acf7b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-cloud-services"></a>Cloud Services kezelése
+# <a name="how-toomanage-cloud-services"></a>TooManage Cloud Services
 > [!div class="op_single_selector"]
 > * [Azure Portal](cloud-services-how-to-manage-portal.md)
 > * [klasszikus Azure portál](cloud-services-how-to-manage.md)
 >
 >
 
-Az a **Felhőszolgáltatások** a klasszikus Azure portál területén portál, a szerepkör-szolgáltatás vagy a központi telepítés frissítése, üzemi szakaszos telepítés előléptetéséhez is erőforrások csatolása a felhőalapú szolgáltatás, hogy tekintse meg az erőforrás-függőségek és az erőforrások együtt méretezhető, és egy felhőalapú szolgáltatás, vagy a központi telepítés törlése.
+A hello **Felhőszolgáltatások** területén hello klasszikus Azure portál, lehet frissíteni a szerepkör-szolgáltatás vagy a központi telepítés, előléptetni egy szakaszos telepítés tooproduction, hivatkozás erőforrások tooyour felhőalapú szolgáltatás, így megtekintheti a hello erőforrás függőségek méretezési erőforrások hello együtt és egy felhőalapú szolgáltatás, vagy a központi telepítés törlése.
 
 ## <a name="how-to-update-a-cloud-service-role-or-deployment"></a>Hogyan: Felhő szerepkör-szolgáltatás vagy a központi telepítés
-Az alkalmazás kódjának a felhőszolgáltatás frissíteni kell, ha **frissítése** az irányítópulton **Felhőszolgáltatások** lapon vagy **példányok** lap. Egyetlen szerepkör vagy az összes szerepkör frissítheti. Szüksége lesz egy új service-csomag és a szolgáltatás konfigurációs fájl feltöltése.
+Ha tooupdate hello alkalmazáskód kell a felhőalapú szolgáltatás, akkor **frissítés** hello irányítópult **Felhőszolgáltatások** lapon vagy **példányok** lap. Egyetlen szerepkör vagy az összes szerepkör frissítheti. Egy új service-csomag tooupload és a szolgáltatás konfigurációs fájlja lesz szüksége.
 
-1. A a [a klasszikus Azure portálon](https://manage.windowsazure.com/), az irányítópult **Felhőszolgáltatások** lapon vagy **példányok** lapján kattintson **frissítés**.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com/), hello irányítópulton, **Felhőszolgáltatások** lapon vagy **példányok** lapján kattintson **frissítés**.
 
     ![UpdateDeployment](./media/cloud-services-how-to-manage/CloudServices_UpdateDeployment.png)
 
-2. A **üzemelő példány címkéje**, adjon meg egy nevet a központi telepítés (például mycloudservice4) azonosításához. Az üzemelő példány címkéje alatt található **gyors üzembe helyezési** az irányítópulton.
-3. A **csomag**, használjon **Tallózás** feltölteni a felhőszolgáltatás csomagfájlját (.cspkg).
-4. A **konfigurációs**, használjon **Tallózás** töltse fel a szolgáltatás konfigurációs (.cscfg) fájljában.
-5. A **szerepkör**, jelölje be **összes** Ha frissíti a felhőszolgáltatásban található összes szerepkör. Egyetlen szerepkör frissítést végez, hogy válassza ki a frissíteni kívánt szerepkört. Akkor is, ha egy adott szerepkör frissítése választja, a szolgáltatás konfigurációs fájljában lévő frissítések az összes szerepkör is vonatkozik.
-6. Ha a frissítés módosítja, a szerepkörök számának vagy a szerepkör méretét, jelölje be a **frissítés engedélyezése, ha a szerepkör méretét vagy a szerepkörök számának változik** jelölőnégyzetet ahhoz, hogy folytatja a frissítést.
+2. A **üzemelő példány címkéje**, adjon meg egy nevet tooidentify hello deployment (például mycloudservice4). Hello üzemelő példány címkéje alatt található **gyors üzembe helyezési** hello irányítópulton.
+3. A **csomag**, használjon **Tallózás** tooupload hello felhőszolgáltatás csomagfájlját (.cspkg).
+4. A **konfigurációs**, használjon **Tallózás** tooupload hello szolgáltatás konfigurációs fájlját (.cscfg).
+5. A **szerepkör**, jelölje be **összes** Ha azt szeretné, hogy tooupgrade hello az összes szerepkör felhőalapú szolgáltatás. egyetlen szerepkör tooperform frissítéséhez tooupdate kívánt válassza hello szerepkör. Akkor is, ha egy adott szerepkör tooupdate választja, hello hello szolgáltatás konfigurációs fájljában frissítései alkalmazott tooall szerepkörök.
+6. Ha hello a frissítés módosításai hello szerepkörök száma vagy hello méretének minden olyan szerepkört, jelölje be a hello **frissítés engedélyezése, ha a szerepkör méretét vagy a szerepkörök számának változik** jelölőnégyzetet tooenable hello frissítés tooproceed.
 
-    Vegye figyelembe, hogy a szerepkört (Ez azt jelenti, hogy a virtuális gép, amelyen a szerepkör példánya méret) vagy a szerepkörök számának méretének módosítása esetén minden egyes szerepkörpéldányt (virtuális gép) visszaállított kell lennie, és bármely helyi adatok elvesznek.
+    Vegye figyelembe, hogy ha egy szerepkört (Ez azt jelenti, hogy hello egy virtuális gép méretét, amelyen a szerepkör példánya) hello méretének módosítása vagy a szerepkörök számának hello, minden szerepkörpéldányt (virtuális gép) visszaállított kell lennie, és bármely helyi adatok elvesznek.
 
-7. Ha bármely szolgáltatás szerepkörök csak egy szerepkör példánya, válassza ki a **frissítése akkor is, ha egy vagy több szerepkör egyetlen példányt jelölőnégyzet tartalmaz** ahhoz, hogy a frissítés gombra.
+7. Ha bármely szolgáltatás szerepkörök csak egy szerepkör példánya, válassza ki a hello **frissítése akkor is, ha egy vagy több szerepkör egyetlen példányt jelölőnégyzet tartalmaz** tooenable hello frissítési tooproceed.
 
-    Azure is csak 99,95 % szolgáltatás rendelkezésre állásának biztosítása a felhőalapú szolgáltatás frissítése közben. Ha szerepkörönként legalább két szerepkörpéldányokat (virtuális gépek). Amely lehetővé teszi, hogy egy virtuális gép ügyfél kérelmek feldolgozásához, a másik frissítése közben.
+    Azure is csak 99,95 % szolgáltatás rendelkezésre állásának biztosítása a felhőalapú szolgáltatás frissítése közben. Ha szerepkörönként legalább két szerepkörpéldányokat (virtuális gépek). Amely lehetővé teszi, hogy egy virtuális gép tooprocess ügyfélkérelmek más hello frissítése közben.
 
-8. Kattintson a **OK** (jelölő) kattintva megkezdheti a szolgáltatás frissítése.
+8. Kattintson a **OK** (jelölő) toobegin hello szolgáltatás frissítése.
 
-## <a name="how-to-swap-deployments-to-promote-a-staged-deployment-to-production"></a>Hogyan: felcserélése előléptetése üzemi szakaszos telepítés központi telepítések
-Használjon **felcserélése** előléptetése üzemi felhőszolgáltatás átmeneti központi telepítését. Ha úgy dönt, hogy egy felhőalapú szolgáltatás új verziót telepíteni, tesztelése, és új kiadási tesztelése a felhőalapú szolgáltatás tesztelési környezetben, amíg az ügyfelek az aktuális kiadásban használ éles környezetben. Ha készen áll a előléptetése üzemi új kiadását, **felcserélése** Váltás az URL-címeket, amely két központi telepítését tárgyalja.
+## <a name="how-to-swap-deployments-toopromote-a-staged-deployment-tooproduction"></a>Hogyan: felcserélése központi telepítések toopromote egy szakaszos telepítés tooproduction
+Használjon **felcserélése** toopromote egy felhőalapú szolgáltatás tooproduction átmeneti központi telepítését. Ha úgy dönt, hogy toodeploy egy felhőalapú szolgáltatás új kiadását, tesztelése, és új kiadási tesztelése a felhőalapú szolgáltatás tesztelési környezetben, amíg a használják az ügyfelek a jelenlegi kiadásban hello éles környezetben. Amikor készen áll a toopromote hello új kiadási tooproduction, használja **felcserélése** tooswitch hello URL-címek alapján mely hello két központi telepítések tárgyalja.
 
-A központi telepítések kicserélheti a **Felhőszolgáltatások** lap vagy az irányítópulton.
+Hello telepítéseit kicserélheti **Felhőszolgáltatások** lap vagy hello irányítópult.
 
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**.
-2. A felhőalapú szolgáltatások, kattintson rá kattintva jelölje ki a felhőalapú szolgáltatáshoz.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**.
+2. A felhőszolgáltatások hello listájában kattintson a hello cloud service tooselect azt.
 3. Kattintson a **felcserélése**.
 
-    A következő megerősítő kérdés megjelenik.
+    hello következő megerősítési kérés nyílik meg.
 
     ![Cloud Services lapozófájl-kapacitás](./media/cloud-services-how-to-manage/CloudServices_Swap.png)
 
-4. Miután meggyőződött a központi telepítési információkat, kattintson a **Igen** felcserélni a központi telepítéseket.
+4. Miután meggyőződött hello információkat, kattintson a **Igen** tooswap hello központi telepítéseket.
 
-    A központi telepítés felcserélés gyorsan mert, hogy módosítja a virtuális IP-címek (VIP) a telepítések.
+    hello telepítési swap gyorsan mert megváltoztató egyedül hello hello virtuális IP-címek (VIP) hello telepítésekhez.
 
-    Számítási költségek csökkentése érdekében törölheti a központi telepítést az átmeneti, ha biztos benne, hogy az új éles környezet az elvárt módon működnek.
+    toosave számítási költségek, törölheti hello telepítését a hello átmeneti környezet, ha biztos benne, hogy hello új éles környezet az elvárt módon működnek.
 
 ### <a name="common-questions-about-swapping-deployments"></a>Központi telepítések csere kapcsolatos gyakori kérdésekre
 
-**Mik azok a telepítések csere előfeltételei**
+**Mik azok a telepítések csere hello előfeltételei**
 
 Nincsenek a sikeres telepítés swap két fő előfeltételei:
 
-- Ha szeretné használni az éles tárolóhelyre egy statikus IP-címet, kell lefoglalni egy a, valamint az átmeneti helyet. Ellenkező esetben a felcserélés sikertelen lesz.
+- Ha azt szeretné, hogy egy statikus IP-cím toouse a termelési aljzat, kell lefoglalni egy a, valamint az átmeneti helyet. Ellenkező esetben hello swap sikertelen lesz.
 
-- A szerepkörök az összes példányát futnia kell a felcserélés elvégzése előtt. Ellenőrizheti a klasszikus Azure portálon vagy a példány állapotának [a Get-AzureRole parancsot a Windows PowerShell](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0).
+- A szerepkörök az összes példányát kell futnia, hello swap elvégzése előtt. Ellenőrizheti, hogy a példány, a klasszikus Azure portálon hello vagy hello állapotának [Get-AzureRole parancs a Windows PowerShell hello](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0).
 
-Vegye figyelembe, hogy Vendég operációs rendszer frissítése és a szolgáltatás javító műveleteket is eredményezheti, hogy telepítési címek cseréje sikertelen lesz. Lásd: [felhőalapú szolgáltatás központi telepítési problémák elhárítása](cloud-services-troubleshoot-deployment-problems.md) további részleteket.
+Vegye figyelembe, hogy Vendég operációs rendszer frissítése és a szolgáltatás javító műveleteket is eredményezheti, hogy telepítési toofail cseréje. Lásd: [felhőalapú szolgáltatás központi telepítési problémák elhárítása](cloud-services-troubleshoot-deployment-problems.md) további részleteket.
 
 **A lapozófájl-kapacitás negatívan befolyásolja az alkalmazáshoz állásidő? Hogyan tudom kezelje azt?**
 
-Az utolsó szakaszban leírtak telepítési egy felcserélés általában nagyon gyorsan mert csak egy konfigurációs változásokat az Azure load balancer. Néhány esetben azonban képes tíz vagy több másodpercre és átmeneti kapcsolati hibákat eredményezhet. Hatása az ügyfelek számára korlátozása érdekében vegye fontolóra [ügyfél újrapróbálkozási logika](../best-practices-retry-general.md).
+Hello utolsó szakaszban leírtak telepítési egy felcserélés általában nagyon gyorsan mert csak egy hello Azure terheléselosztó a konfiguráció megváltozott. Néhány esetben azonban képes tíz vagy több másodpercre és átmeneti kapcsolati hibákat eredményezhet. toolimit hatás tooyour ügyfelek, vegye fontolóra [ügyfél újrapróbálkozási logika](../best-practices-retry-general.md).
 
-## <a name="how-to-link-a-resource-to-a-cloud-service"></a>Hogyan: erőforrás összekapcsolása egy felhőalapú szolgáltatás
-A felhőszolgáltatások és más erőforrások közötti függőségek megjelenítéséhez a felhőszolgáltatások összekapcsolhatók az Azure SQL Database példányaival, illetve tárfiókokkal. Hivatkozásra, és az erőforrások leválasztása a **kapcsolt erőforrásokban** lapon, és ezután a figyelheti a felhőalapú szolgáltatás irányítópultján. Ha kapcsolt tárfiókra monitoring bekapcsolva, a felhőalapú szolgáltatás irányítópultján kérelmek teljes száma a figyelheti meg.
+## <a name="how-to-link-a-resource-tooa-cloud-service"></a>Útmutató: egy erőforrás tooa felhőalapú szolgáltatás csatolása
+tooshow a felhőalapú szolgáltatás függőségek más erőforrások, az Azure SQL Database-példányt vagy egy tárolási fiók toohello felhőszolgáltatás is kapcsolhat. Hivatkozásra, és leválasztását hello erőforrások **kapcsolt erőforrásokban** lapon, és figyelheti a hello cloud service irányítópulton használatát. Ha kapcsolt tárfiókra monitoring bekapcsolva, kérelmek teljes száma a figyelheti hello felhőalapú szolgáltatás irányítópultját.
 
-Használjon **hivatkozás** egy új vagy meglévő SQL-adatbázis példányt, vagy a storage-fiók összekötése a felhőalapú szolgáltatás számára. Az adatbázis és a felhő szerepkör-szolgáltatás, amely a használja majd méretezheti a **méretezési** lap. (A storage-fiókok arányosan automatikusan a használati növekedése.) További információkért lásd: [egy felhőalapú szolgáltatás és a kapcsolt erőforrásokban méretezése](cloud-services-how-to-scale.md).
+Használjon **hivatkozás** toolink egy új vagy meglévő SQL-adatbázis példányt, vagy a tárolási fiók tooyour felhőalapú szolgáltatás. Hello adatbázis együtt hello felhő szerepkör-szolgáltatás, amely a hello használja majd méretezheti **méretezési** lap. (A storage-fiókok arányosan automatikusan a használati növekedése.) További információkért lásd: [hogyan tooScale egy felhőalapú szolgáltatás és a kapcsolt erőforrásokban](cloud-services-how-to-scale.md).
 
-Ezen kívül figyeléséhez, kezeléséhez, és az adatbázis méretezése a **adatbázisok** csomópont a klasszikus Azure portálon.
+Ezen kívül figyeléséhez, kezeléséhez, és hello hello adatbázis méretezése **adatbázisok** munkaterület hello a klasszikus Azure portálon.
 
-"Linking" erőforrás abban az értelemben nem az alkalmazás csatlakoztatása az erőforrás. Ha létrehoz egy új adatbázis használatával **hivatkozás**, adja hozzá a kapcsolati karakterláncokkal az alkalmazás kódjában, és frissítse a felhőszolgáltatás lesz szüksége. Is szüksége lehet felvenni a kapcsolati karakterláncokat, ha az alkalmazás erőforrást használ, a kapcsolt tárfiókra.
+"Linking" erőforrás abban az értelemben nem kapcsolatot az alkalmazás toohello erőforrás. Ha létrehoz egy új adatbázis használatával **hivatkozás**, tooadd hello kapcsolati karakterláncok tooyour alkalmazás kódja és majd frissítési hello felhőszolgáltatás lesz szüksége. Biztosítani kell tooadd kapcsolati karakterláncok, ha az alkalmazás erőforrást használ, a kapcsolt tárfiókra.
 
-Az alábbi eljárás ismerteti egy új SQL Database-példányt, a kiszolgálón telepítve egy új SQL-adatbázis, a felhőszolgáltatásokra hivatkozásra.
+a következő eljárás hello ismerteti, hogyan toolink egy új SQL Database-példányt telepítése egy új SQL-kiszolgálón, tooa felhőalapú szolgáltatás.
 
-### <a name="to-link-a-sql-database-instance-to-a-cloud-service"></a>Egy SQL-adatbázispéldány összekapcsolása egy felhőalapú szolgáltatás
-1. Az a [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**. Kattintson a nevére, a felhőalapú szolgáltatás, az irányítópult megnyitásához.
+### <a name="toolink-a-sql-database-instance-tooa-cloud-service"></a>egy SQL-adatbázis példány tooa felhőszolgáltatás toolink
+1. A hello [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**. Kattintson a hello cloud service tooopen hello irányítópult hello nevét.
 2. Kattintson a **kapcsolódó erőforrások**.
 
-    A **kapcsolt erőforrásokban** lap megnyitásakor.
+    Hello **kapcsolt erőforrásokban** lap megnyitásakor.
 
     ![LinkedResourcesPage](./media/cloud-services-how-to-manage/CloudServices_LinkedResourcesPage.png)
 
 3. Jelölje be az **erőforrás hivatkozás** vagy **hivatkozás**.
 
-    A **hivatkozás erőforrás** varázsló elindul.
+    Hello **hivatkozás erőforrás** varázsló elindul.
 
     ![Hivatkozás 1](./media/cloud-services-how-to-manage/CloudServices_LinkedResources_LinkPage1.png)
 
 4. Kattintson a **hozzon létre egy új erőforrást** vagy **csatolni a meglévő erőforrás**.
-5. Válassza ki a csatolni kívánt erőforrás típusát. Az a [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **SQL-adatbázis**. (Csak a klasszikus Azure portálon támogatja, a storage-fiók összekapcsolása egy felhőalapú szolgáltatás.)
-6. Az adatbázis-konfiguráció befejezéséhez kövesse az utasításokat a Súgó a **SQL-adatbázisok** területén a klasszikus Azure portálon.
+5. Válassza ki a hello típusú erőforrás toolink. A hello [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **SQL-adatbázis**. (Csak a klasszikus Azure portálon hello támogatja, a tárolási fiók tooa felhőszolgáltatást linking.)
+6. toocomplete hello adatbázis-konfiguráció, kövesse az utasításokat a hello súgójában **SQL-adatbázisok** hello a klasszikus Azure portálon területén.
 
-    Követheti, hogy az üzenet területen hivatkozási műveletnek az előrehaladását.
+    Követheti a művelet hello üzenet területen linking hello hello előrehaladását.
 
-    Ha linking befejeződött, a felhőalapú szolgáltatás irányítópultján csatolt erőforrás állapotának figyelheti meg. Csatolt SQL-adatbázis méretezésével kapcsolatos információkért lásd: [egy felhőalapú szolgáltatás és a kapcsolt erőforrásokban méretezése](cloud-services-how-to-scale.md).
+    Linking befejeződése után hello kapcsolódó erőforrás hello cloud service irányítópult hello állapotának figyelheti meg. Csatolt SQL-adatbázis méretezésével kapcsolatos információkért lásd: [hogyan tooScale egy felhőalapú szolgáltatás és a kapcsolt erőforrásokban](cloud-services-how-to-scale.md).
 
-### <a name="to-unlink-a-linked-resource"></a>A csatolt erőforrás leválasztása
-1. Az a [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**. Kattintson a nevére, a felhőalapú szolgáltatás, az irányítópult megnyitásához.
-2. Kattintson a **kapcsolt erőforrásokban**, majd válassza ki az erőforrás.
-3. Kattintson a **leválasztása**. Kattintson a **Igen** a megerősítést kérő.
+### <a name="toounlink-a-linked-resource"></a>a csatolt erőforrás toounlink
+1. A hello [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**. Kattintson a hello cloud service tooopen hello irányítópult hello nevét.
+2. Kattintson a **kapcsolt erőforrásokban**, majd válassza ki a hello erőforrás.
+3. Kattintson a **leválasztása**. Kattintson a **Igen** : hello rendszer felszólítsa a jóváhagyásra.
 
-    SQL-adatbázis leválasztása nincs hatása az adatbázis vagy az alkalmazás-kapcsolatok az adatbázisba. Addig kezelheti az adatbázishoz a **SQL-adatbázisok** területén a klasszikus Azure portálon.
+    SQL-adatbázis leválasztása hatástalan hello adatbázis vagy hello alkalmazás kapcsolatok toohello adatbázis. Továbbra is kezelheti a hello hello adatbázis **SQL-adatbázisok** hello a klasszikus Azure portálon területén.
 
 ## <a name="how-to-delete-deployments-and-a-cloud-service"></a>Útmutató: egy felhőalapú szolgáltatás és a központi telepítései törlése
 Egy felhőalapú szolgáltatás törlése előtt törölni kell minden meglévő telepítés.
 
-Számítási költségek csökkentése érdekében, hogy a várt módon működik-e az éles telepítési ellenőrzése után törölheti a tesztelési környezet. Akkor is, ha egy felhőalapú szolgáltatás nem fut áll szerepkörpéldányokat számlázott számítási költségeit.
+toosave számítási költségek, törölheti a tesztelési környezet, hogy a várt módon működik-e az éles telepítési ellenőrzése után. Akkor is, ha egy felhőalapú szolgáltatás nem fut áll szerepkörpéldányokat számlázott számítási költségeit.
 
-Az alábbi eljárás segítségével törölheti a központi telepítés vagy a felhőalapú szolgáltatás.
+A következő eljárás toodelete hello használja, a központi telepítés vagy a felhőalapú szolgáltatás.
 
-1. Az a [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**.
-2. Válassza ki a felhőszolgáltatást, és kattintson **törlése**. (Kiválasztásához felhőszolgáltatásban az irányítópult megnyitása nélkül kattintson bárhol cloud service bejegyzésben nevén kívül.)
+1. A hello [a klasszikus Azure portálon](http://manage.windowsazure.com/), kattintson a **Felhőszolgáltatások**.
+2. Válassza ki a hello felhőalapú szolgáltatás, és kattintson a **törlése**. (tooselect egy felhőalapú szolgáltatás hello az irányítópult megnyitása nélkül kattintson bárhová hello cloud service bejegyzésben hello nevén kívül.)
 
-    Ha egy telepítés átmeneti és üzemi, látni fogja a az ablak alján alábbihoz hasonló lehetőségeket gombot. A felhőalapú szolgáltatás törlése előtt törölni kell a meglévő telepítések.
+    Ha egy telepítés átmeneti és üzemi, megjelenik egy hello aljához hello ablakban a következő lehetőségek hasonló toohello gombot. Hello felhőalapú szolgáltatás törlése előtt törölni kell a meglévő telepítések.
 
     ![Menü törlése](./media/cloud-services-how-to-manage/CloudServices_DeleteMenu.png)
 
-3. A központi telepítés törléséhez kattintson **éles környezet törlése** vagy **átmeneti központi telepítés törlése**. A megerősítést kérő kattintson **Igen**.
-4. Ha le szeretné törölni a felhőszolgáltatást, ismételje meg a 3, ha szükséges, törölje a központi telepítést.
-5. A felhőalapú szolgáltatás törléséhez kattintson **törlése a felhőalapú szolgáltatás**. A megerősítést kérő kattintson **Igen**.
+3. toodelete a telepítést, kattintson a **éles környezet törlése** vagy **átmeneti központi telepítés törlése**. Ezután hello megerősítő kérdés, kattintson **Igen**.
+4. Ha azt tervezi, toodelete hello felhőalapú szolgáltatás, ismételje meg a 3, szükség esetén toodelete a másik telepítés.
+5. toodelete hello felhőalapú szolgáltatás, kattintson a **törlése a felhőalapú szolgáltatás**. Ezután hello megerősítő kérdés, kattintson **Igen**.
 
 > [!NOTE]
-> Ha részletes figyelését a felhőalapú szolgáltatás van konfigurálva, Azure nem törli a figyelési adatokat importáljon a tárfiókba törölje a felhőszolgáltatást. Szüksége lesz az adatok manuális törléséhez. Hol található a metrikák táblák kapcsolatos információkért lásd: "hogyan: részletes nyomon követési adatok a klasszikus Azure portálon kívül hozzáférés" a [figyelő felhőalapú szolgáltatások](cloud-services-how-to-monitor.md).
+> Ha részletes figyelését a felhőalapú szolgáltatás van konfigurálva, Azure hello figyelési adatok importáljon a tárfiókba, hello felhőszolgáltatás törlése nem törli. Manuálisan kell toodelete hello adatokat. Ha toofind hello metrikák táblák kapcsolatos információkért lásd: "How to: hello a klasszikus Azure portálon kívül részletes figyelési adatok eléréséhez" a [tooMonitor Cloud Services](cloud-services-how-to-monitor.md).
 >
 >
 
 ## <a name="next-steps"></a>Következő lépések
 * [A felhőalapú szolgáltatás általános konfigurációs](cloud-services-how-to-configure.md).
-* Megtudhatja, hogyan [felhőalapú szolgáltatás telepítése](cloud-services-how-to-create-deploy.md).
+* Ismerje meg, hogyan túl[felhőalapú szolgáltatás telepítése](cloud-services-how-to-create-deploy.md).
 * Konfigurálja a [egyéni tartománynév](cloud-services-custom-domain-name.md).
 * Konfigurálása [ssl-tanúsítványok](cloud-services-configure-ssl-certificate.md).

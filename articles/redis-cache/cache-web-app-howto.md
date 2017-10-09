@@ -1,6 +1,6 @@
 ---
-title: "Webalkalmazás létrehozása a Redis Cache használatával | Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre webalkalmazást a Redis Cache használatával"
+title: "a webes alkalmazás a Redis Cache aaaHow toocreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate a webes alkalmazás a Redis Cache segítségével"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 05/09/2017
 ms.author: sdanie
-ms.openlocfilehash: f23f71cc01eccf17d36885f786de9a7517606803
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3e6df97b06fdf9032570dc360944be4bd7715de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-web-app-with-redis-cache"></a>Webalkalmazás létrehozása a Redis Cache használatával
+# <a name="how-toocreate-a-web-app-with-redis-cache"></a>Hogyan toocreate a webes alkalmazás a Redis Cache segítségével
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,77 +30,77 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Ez az oktatóanyag bemutatja, hogyan hozhat létre és helyezhet üzembe egy ASP.NET-webalkalmazást az Azure App Service szolgáltatásban lévő webalkalmazásba a Visual Studio 2017 használatával. Ez a mintaalkalmazás a csoportstatisztikák adatbázisból származó listáját jeleníti meg, illetve az Azure Redis Cache használatának különböző módjait mutatja be a gyorsítótár adatainak tárolására és beolvasására. Az oktatóanyag befejezését követően egy olyan futó webalkalmazással fog rendelkezni, amely adatokat olvas be és ír egy adatbázisba, az Azure Redis Cache használatával lett optimalizálva, és az Azure-ban van üzemeltetve.
+Ez az oktatóanyag bemutatja, hogyan toocreate és egy ASP.NET alkalmazás tooa webes webalkalmazás telepítése az Azure App Service segítségével a Visual Studio 2017. hello mintaalkalmazás adatbázis team statisztikáit listáját jeleníti meg, és különböző módokon toouse Azure Redis Cache toostore jeleníti meg, és hello gyorsítótár adatainak lekérése. Hello oktatóanyag befejezésekor kell, hogy beolvassa és tooa adatbázis, az Azure Redis Cache optimalizált, fut, és az Azure-ban futó webalkalmazás.
 
 Az oktatóanyagból a következőket sajátíthatja el:
 
-* ASP.NET MVC 5 webalkalmazás létrehozása a Visual Studio használatával.
-* Adatbázisadatok elérése az Entity Framework használatával.
-* Az adatteljesítmény növelésének és az adatbázis-terhelés csökkentése az Azure Redis Cache használatával történő adattárolás és -beolvasás révén.
-* Egy rendezett Redis-készlet használata az 5 legjobb csoport lekérdezéséhez.
-* Azure-erőforrások kiépítése egy Resource Manager-sablont használó alkalmazás számára.
-* Alkalmazás közzététele az Azure-ban a Visual Studio használatával.
+* Hogyan toocreate egy ASP.NET MVC 5 webalkalmazást a Visual Studióban.
+* Hogyan tooaccess-adatbázisból egy entitás-keretrendszer használatával.
+* Hogyan tooimprove adatátvitelt, ami csökkenti az adatbázis betöltési tárolja és használja az Azure Redis Cache-adatok beolvasása.
+* Egy Redis toouse rendezését set tooretrieve hello felső 5 csoportok.
+* Hogyan tooprovision hello Azure-erőforrások hello alkalmazás Resource Manager-sablon használatával.
+* Hogyan toopublish hello alkalmazás tooAzure Visual Studio használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elvégzéséhez az alábbi előfeltételekkel kell rendelkeznie.
+toocomplete hello útmutató, rendelkeznie kell a következő előfeltételek hello.
 
 * [Azure-fiók](#azure-account)
-* [Visual Studio 2017 Azure SDK for .NET csomaggal](#visual-studio-2017-with-the-azure-sdk-for-net)
+* [Az Azure SDK for .NET hello Visual Studio 2017](#visual-studio-2017-with-the-azure-sdk-for-net)
 
 ### <a name="azure-account"></a>Azure-fiók
-Az oktatóanyag elvégzéséhez szüksége lesz egy Azure-fiókra. A következőket teheti:
+Egy Azure-fiók toocomplete hello oktatóanyag van szüksége. A következőket teheti:
 
-* [Nyisson egy ingyenes Azure-fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). Jóváírásokat kap, amelyeket fizetős Azure-szolgáltatások kipróbálására használhat fel. Még ha a keretét el is használta, továbbra is megtarthatja a fiókot, és használhatja az ingyenes szolgáltatásokat és lehetőségeket.
+* [Nyisson egy ingyenes Azure-fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). Amelyek lehetnek kimenő használt tootry fizetős Azure-szolgáltatások jóváírásokat kap. Hello jóváírásokat el is használta, után is megtarthatja hello fiókot, és ingyenes Azure-szolgáltatások és funkciók használatára.
 * [Aktiválja a Visual Studio előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero). Az MSDN-előfizetés minden hónapban biztosít Önnek krediteket, amelyekkel fizetős Azure-szolgáltatásokat használhat.
 
-### <a name="visual-studio-2017-with-the-azure-sdk-for-net"></a>Visual Studio 2017 Azure SDK for .NET csomaggal
-Az oktatóanyag a Visual Studio 2017-hez, valamint az [Azure SDK for .NET-hez](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools) készült. Az Azure SDK 2.9.5 a Visual Studio telepítőjének részét képezi.
+### <a name="visual-studio-2017-with-hello-azure-sdk-for-net"></a>Az Azure SDK for .NET hello Visual Studio 2017
+hello az oktatóanyag a Visual Studio 2017 számára íródott hello [Azure SDK for .NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools). hello Azure SDK 2.9.5 hello Visual Studio telepítő részét képezi.
 
-Ha a gépén a Visual Studio 2015 van telepítve, kövesse az [Azure SDK for .NET](../dotnet-sdk.md) 2.8.2 vagy újabb verzió oktatóanyagát. [Innen letöltheti a legfrissebb Azure SDK-t a Visual Studio 2015-höz](http://go.microsoft.com/fwlink/?linkid=518003). Ha a Visual Studio még nincs telepítve, a rendszer automatikusan telepíti azt, az SDK-val együtt. Egyes képernyők eltérhetnek a jelen oktatóanyag ábráin láthatóaktól.
+Ha Visual Studio 2015-öt, amelyeket követve hello hello oktatóanyag [Azure SDK for .NET](../dotnet-sdk.md) 2.8.2 vagy újabb. [Letöltési hello legfrissebb Azure SDK-t a Visual Studio 2015 Itt](http://go.microsoft.com/fwlink/?linkid=518003). Ha már nincs a Visual Studio automatikusan telepítve hello SDK. Néhány képernyő megjelenése hello ábrán látható módon az oktatóanyag eltérhet.
 
-Ha a számítógépén a Visual Studio 2013 van telepítve, [töltse le a legfrissebb Azure SDK for Visual Studio 2013 alkalmazást](http://go.microsoft.com/fwlink/?LinkID=324322). Egyes képernyők eltérhetnek a jelen oktatóanyag ábráin láthatóaktól.
+Ha a Visual Studio 2013 van, akkor [letöltési hello legfrissebb Azure SDK for Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322). Néhány képernyő megjelenése hello ábrán látható módon az oktatóanyag eltérhet.
 
-## <a name="create-the-visual-studio-project"></a>A Visual Studio-projekt létrehozása
+## <a name="create-hello-visual-studio-project"></a>Hello Visual Studio-projekt létrehozása
 1. Nyissa meg a Visual Studio alkalmazást, majd kattintson a **File** (File), **New** (Új), **Project** (Projekt) lehetőségre.
-2. Bontsa ki a **Visual C#** csomópontot a **Templates** (Sablonok) listában, válassza a **Cloud** (Felhő) lehetőséget, majd kattintson az **ASP.NET Web Application** (ASP.NET-webalkalmazás) elemre. Győződjön meg arról, hogy a **.NET Framework 4.5.2** vagy újabb keretrendszer van kiválasztva.  Írja be a **ContosoTeamStats** szöveget a **Name** (Név) szövegmezőbe, majd kattintson az **OK** gombra.
+2. Bontsa ki a hello **Visual C#** hello csomópontja **sablonok** listáról válassza ki **felhő**, és kattintson a **ASP.NET Web Application**. Győződjön meg arról, hogy a **.NET Framework 4.5.2** vagy újabb keretrendszer van kiválasztva.  Típus **ContosoTeamStats** történő hello **neve** szövegmezőben kattintson **OK**.
    
     ![Projekt létrehozása][cache-create-project]
-3. A projekt típusaként válassza az **MVC** lehetőséget. 
+3. Válassza ki **MVC** hello projekt típusként. 
 
-    Ellenőrizze, hogy az **Authentication** (Hitelesítés) beállításai között a **No Authentication** (Nincs hitelesítés) van megadva. A Visual Studio verziójától függően az alapértelmezett beállítás más lehet. A beállítás módosításához kattintson a **Change Authentication** (Hitelesítés módosítása) gombra, és válassza a **No Authentication** (Nincs hitelesítés) értéket.
+    Győződjön meg arról, hogy **nem hitelesítési** hello megadott **hitelesítési** beállításait. Attól függően, hogy a Visual Studio verziójának hello alapértelmezett számbavételekhez állítható be más toosomething. toochange, kattintson a **hitelesítés módosítása** válassza **nem hitelesítési**.
 
-    Ha a Visual Studio 2015-öt használja, törölje a **Host in the cloud** (Üzemeltetés a felhőben) jelölőnégyzet jelölését. Az oktatóanyag következő lépéseiben megismerkedhet az [Azure-erőforrások kiépítésével](#provision-the-azure-resources) és az [alkalmazások közzétételével az Azure-ban](#publish-the-application-to-azure). A **Host in the cloud** (Üzemeltetés a felhőben) jelölőnégyzet bejelölésével a Visual Studio felületéről egy App Service-webalkalmazás létrehozására itt láthat példát: [Ismerkedés a webalkalmazásokkal az Azure App Service-ben, az ASP.NET és a Visual Studio használatával](../app-service-web/app-service-web-get-started-dotnet.md).
+    Ha a Visual Studio 2015 együtt, törölje a jelet hello **hello felhőben lévő gazdagéphez** jelölőnégyzetet. Programra [rendelkezés hello Azure-erőforrások](#provision-the-azure-resources) és [hello alkalmazás tooAzure közzététele](#publish-the-application-to-azure) a későbbi lépésekben hello oktatóanyag. Példa egy App Service webalkalmazásba a Visual Studio eszközből kiépítés távozó **hello felhőben lévő gazdagéphez** be van jelölve, lásd: [Ismerkedés a webalkalmazásokkal az Azure App Service szolgáltatásban, az ASP.NET és a Visual Studio használatával](../app-service-web/app-service-web-get-started-dotnet.md).
    
     ![Projektsablon kiválasztása][cache-select-template]
-4. A projekt létrehozásához kattintson az **OK** gombra.
+4. Kattintson a **OK** toocreate hello projekt.
 
-## <a name="create-the-aspnet-mvc-application"></a>Az ASP.NET MVC alkalmazás létrehozása
-Az oktatóanyag ezen szakaszában egy olyan alapszintű alkalmazást fog létrehozni, amely adatbázisból olvas be és jelenít meg csoportstatisztikákat.
+## <a name="create-hello-aspnet-mvc-application"></a>Hello ASP.NET MVC alkalmazás létrehozása
+Ebben a szakaszban hello oktatóanyag létre fog hozni hello alapvető alkalmazás, amely olvas, és az adatbázis csoport statisztikáit jeleníti meg.
 
-* [Az Entity Framework NuGet-csomag hozzáadása](#add-the-entity-framework-nuget-package)
-* [Modell hozzáadása](#add-the-model)
-* [Vezérlő hozzáadása](#add-the-controller)
-* [A nézetek konfigurálása](#configure-the-views)
+* [Hello Entity Framework NuGet-csomag hozzáadása](#add-the-entity-framework-nuget-package)
+* [Hello modell hozzáadása](#add-the-model)
+* [Hello vezérlő hozzáadása](#add-the-controller)
+* [Hello nézetek konfigurálásához](#configure-the-views)
 
-### <a name="add-the-entity-framework-nuget-package"></a>Az Entity Framework NuGet-csomag hozzáadása
+### <a name="add-hello-entity-framework-nuget-package"></a>Hello Entity Framework NuGet-csomag hozzáadása
 
-1. Kattintson a **Tools** (Eszközök) menü **NuGet Package Manager** (NuGet-csomagkezelő), **Package Manager Console** (Csomagkezelő konzol) elemére.
-2. Futtassa a következő parancsot a **Csomagkezelő konzol** ablakából.
+1. Kattintson a **NuGet-Csomagkezelő**, **Csomagkezelő konzol** a hello **eszközök** menü.
+2. Futtatási hello következő parancsot a hello **Csomagkezelő konzol** ablak.
     
     ```
     Install-Package EntityFramework
     ```
 
-A csomaggal kapcsolatos további információt az [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet-oldalon talál.
+Ezzel a csomaggal kapcsolatos további információkért lásd: hello [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet lap.
 
-### <a name="add-the-model"></a>Modell hozzáadása
+### <a name="add-hello-model"></a>Hello modell hozzáadása
 1. Kattintson a jobb gombbal a **Models** (Modellek) elemre a **Solution Explorer** (Megoldáskezelő) területén, és válassza az **Add** (Hozzáadás), **Class** (Osztály) lehetőségeket. 
    
     ![Modell hozzáadása][cache-model-add-class]
-2. Az osztály neveként adja meg a `Team` nevet, majd kattintson az **Add** (Hozzáadás) gombra.
+2. Adja meg `Team` hello osztály nevét, majd kattintson **Hozzáadás**.
    
     ![Modellosztály hozzáadása][cache-model-add-class-dialog]
-3. A `Team.cs` fájl elején cserélje le a `using` utasításokat az alábbi `using` utasításokra.
+3. Cserélje le a hello `using` hello hello tetején utasítások `Team.cs` hello következőre fájl `using` utasításokat.
 
     ```c#
     using System;
@@ -110,7 +110,7 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
     ```
 
 
-1. Cserélje le a `Team` osztály definícióját az alábbi kódrészlettel, amely a `Team` osztály frissített definícióját, valamint néhány további Entity Framework-súgóosztályt tartalmaz. További információk a jelen oktatóanyagban használt, Code First nevű Entity Framework-megközelítésról: [Code First alkalmazása egy új adatbázisra](https://msdn.microsoft.com/data/jj193542).
+1. Cserélje le a hello hello definíciója `Team` a következő kódrészletet, amely tartalmaz egy frissített hello osztályt `Team` definícióját, valamint néhány más Entity Framework segítőosztályok osztályban. Hello kód első megközelítés tooEntity keretrendszer, amely ebben az oktatóanyagban használt további információkért lásd: [kód első tooa új adatbázis](https://msdn.microsoft.com/data/jj193542).
 
     ```c#
     public class Team
@@ -182,10 +182,10 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
     ```
 
 
-1. A **Solution Explorerben** (Megoldáskezelőben) kattintson duplán a **web.config** fájlra annak megnyitásához.
+1. A **Megoldáskezelőben**, kattintson duplán a **web.config** tooopen azt.
    
     ![Web.config][cache-web-config]
-2. Adja hozzá a következő `connectionStrings` szakaszt. A kapcsolati karakterlánc nevének meg kell egyeznie az Entity Framework-adatbáziskörnyezet osztályának nevével, amely a következő: `TeamContext`.
+2. Adja hozzá a következő hello `connectionStrings` szakasz. hello hello kapcsolati karakterlánc nevét meg kell egyeznie a hello Entity Framework adatbázis környezeti osztályt, amely van hello neve `TeamContext`.
 
     ```xml
     <connectionStrings>
@@ -193,7 +193,7 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
     </connectionStrings>
     ```
 
-    Hozzáadhatja az új `connectionStrings` szakaszt a `configSections` után, ahogyan az az alábbi példában látható.
+    Hozzáadhat új hello `connectionStrings` , hogy azt a következő szakasz `configSections`, ahogy az alábbi példa hello.
 
     ```xml
     <configuration>
@@ -208,23 +208,23 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
       ```
 
     > [!NOTE]
-    > A kapcsolati karakterlánc eltérő lehet az oktatóanyag elvégzéséhez használt Visual Studio- és SQL Server Express-verziótól függően. A web.config sablont úgy kell konfigurálni, hogy megfeleljen a telepítésnek, és tartalmazhat `Data Source` bejegyzéseket, mint a `(LocalDB)\v11.0` (az SQL Server Express 2012-ből) vagy a `Data Source=(LocalDB)\MSSQLLocalDB` (az SQL Server Express 2014 és újabb verziókból). További információ a kapcsolati karakterláncokról és az SQL Express-verziókról: [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb) .
+    > A kapcsolati karakterláncot a Visual Studio hello verziójától függően eltérő lehet, és az SQL Server Express edition használt toocomplete hello oktatóanyag. hello web.config sablon kell konfigurált toomatch a telepítést, és tartalmazhat `Data Source` bejegyzéseket, például `(LocalDB)\v11.0` (az SQL Server Express 2012-ben) vagy `Data Source=(LocalDB)\MSSQLLocalDB` (az SQL Server Express 2014 és újabb). További információ a kapcsolati karakterláncokról és az SQL Express-verziókról: [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb) .
 
-### <a name="add-the-controller"></a>Vezérlő hozzáadása
-1. A projekt létrehozásához nyomja le az **F6** billentyűt. 
-2. A **Solution Explorerben** (Megoldáskezelőben) kattintson a jobb gombbal a **Controllers** (Vezérlők) mappára, majd válassza az **Add** (Hozzáadás), **Controller** (Vezérlő) lehetőségeket.
+### <a name="add-hello-controller"></a>Hello vezérlő hozzáadása
+1. Nyomja le az **F6** toobuild hello projekt. 
+2. A **Megoldáskezelőben**, kattintson a jobb gombbal hello **tartományvezérlők** mappa, és válassza **Hozzáadás**, **vezérlő**.
    
     ![Vezérlő hozzáadása][cache-add-controller]
-3. Válassza az **MVC 5 Controller with views, using Entity Framework** (MVC 5 vezérlő nézetekkel, az Entity Framework használatával) lehetőséget, majd kattintson az **Add** (Hozzáadás) lehetőségre. Ha az **Add** (Hozzáadás) gombra kattintva a rendszer hibaüzenetet küld, győződjön meg arról, hogy a projekt létrehozása előzetesen megtörtént.
+3. Válassza az **MVC 5 Controller with views, using Entity Framework** (MVC 5 vezérlő nézetekkel, az Entity Framework használatával) lehetőséget, majd kattintson az **Add** (Hozzáadás) lehetőségre. Ha hibaüzenetet kap, miután rákattintott **Hozzáadás**, győződjön meg arról, hogy először rendelkezik beépített hello projekt.
    
     ![Vezérlőosztály hozzáadása][cache-add-controller-class]
-4. Válassza ki a **Team (ContosoTeamStats.Models)** elemet a **Model class** (Modellosztály) legördülő listából. Válassza ki a **TeamContext (ContosoTeamStats.Models)** elemet a **Adatkörnyezet osztálya** (Adatkörnyezet osztálya) legördülő listából. Írja be a `TeamsController` szöveget a **Controller** (Vezérlő) névmezőbe (ha az nincs automatikusan kitöltve). Kattintson az **Add** (Hozzáadás) gombra a vezérlőosztály létrehozásához és az alapértelmezett nézetek hozzáadásához.
+4. Válassza ki **Team (ContosoTeamStats.Models)** a hello **Model class** legördülő listából. Válassza ki **TeamContext (ContosoTeamStats.Models)** a hello **adatok környezetben osztály** legördülő listából. Típus `TeamsController` a hello **vezérlő** (Ha nem automatikusan a telepítéskor) szövegmezőben. Kattintson a **Hozzáadás** toocreate hello vezérlő osztályhoz, és adja hozzá a hello alapértelmezett nézeteket.
    
     ![Vezérlő konfigurálása][cache-configure-controller]
-5. A **Solution Explorerben** (Megoldáskezelőben) bontsa ki a **Global.asax** elemet, majd kattintson duplán a **Global.asax.cs** fájlra annak megnyitásához.
+5. A **Megoldáskezelőben**, bontsa ki a **Global.asax** duplán **Global.asax.cs** tooopen azt.
    
     ![Global.asax.cs][cache-global-asax]
-6. Adja hozzá a következő két `using` utasítást a fájl elejéhez, a többi `using` utasítás alá.
+6. Adja hozzá a következő két hello `using` hello fájlt az egyéb hello hello tetején utasítások `using` utasításokat.
 
     ```c#
     using System.Data.Entity;
@@ -232,7 +232,7 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
     ```
 
 
-1. Illessze az alábbi kódsort az `Application_Start` módszer végére.
+1. Adja hozzá a következő kódsort hello hello végén hello `Application_Start` metódust.
 
     ```c#
     Database.SetInitializer<TeamContext>(new TeamInitializer());
@@ -242,7 +242,7 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
 1. A **Solution Explorerben** (Megoldáskezelőben) bontsa ki az `App_Start` elemet, majd kattintson duplán a `RouteConfig.cs` elemre.
    
     ![RouteConfig.cs][cache-RouteConfig-cs]
-2. Cserélje le a `controller = "Home"` elemet a `RegisterRoutes` módszer alábbi kódjában a `controller = "Teams"` szövegre, a következő példán látható módon.
+2. Cserélje le `controller = "Home"` található a következő kódot a hello hello `RegisterRoutes` metódus `controller = "Teams"` a hello a következő példában látható módon.
 
     ```c#
     routes.MapRoute(
@@ -253,55 +253,55 @@ A csomaggal kapcsolatos további információt az [EntityFramework](https://www.
     ```
 
 
-### <a name="configure-the-views"></a>A nézetek konfigurálása
-1. A **Solution Explorerben** (Megoldáskezelőben) bontsa ki a **Views**(Nézetek), majd a **Shared** (Közös) mappát, és kattintson duplán a **_Layout.cshtml** fájlra. 
+### <a name="configure-hello-views"></a>Hello nézetek konfigurálásához
+1. A **Megoldáskezelőben**, bontsa ki a hello **nézetek** mappát, majd a hello **megosztott** mappára, majd kattintson duplán **_Layout.cshtml**. 
    
     ![_Layout.cshtml][cache-layout-cshtml]
-2. Az alábbi példában látható módon módosítsa a `title` elem tartalmát, majd cserélje le a `My ASP.NET Application` szöveget a `Contoso Team Stats` szövegre.
+2. Hello hello tartalmának módosítása `title` elem és a név felülírandó `My ASP.NET Application` rendelkező `Contoso Team Stats` a hello a következő példában látható módon.
 
     ```html
     <title>@ViewBag.Title - Contoso Team Stats</title>
     ```
 
 
-1. A `body` szakaszban frissítse az első `Html.ActionLink` utasítást, és cserélje le az `Application name` szöveget a `Contoso Team Stats` szövegre, majd a `Home` szöveget a `Teams` szövegre.
+1. A hello `body` szakaszban, először frissítse a hello `Html.ActionLink` utasítást, és cserélje ki `Application name` a `Contoso Team Stats` , és cserélje le `Home` rendelkező `Teams`.
    
    * Előtte: `@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })`
    * Utána: `@Html.ActionLink("Contoso Team Stats", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })`
      
      ![Kódmódosítások][cache-layout-cshtml-code]
-2. Az alkalmazás fordításához és futtatásához nyomja le a **Ctrl+F5** billentyűkombinációt. Az alkalmazás ezen verziója az eredményeket közvetlenül az adatbázisból olvassa ki. Figyelje meg, hogy az **Új létrehozása**, a **Szerkesztés**, a **Részletek**és a **Törlés** parancsok az **MVC 5 Controller with views, using Entity Framework** (MVC 5 vezérlő nézetekkel, az Entity Framework használatával) szerkezettel automatikusan bekerültek az alkalmazásba. Az oktatóanyag következő szakaszában az adatelérés optimalizálása és további alkalmazásszolgáltatások biztosítása érdekében el fogja végezni a Redis Cache hozzáadását.
+2. Nyomja le az **Ctrl + F5** toobuild, és futtassa hello alkalmazás. Hello alkalmazás ezen verziójára hello eredmények közvetlenül hello adatbázisából olvassa be. Megjegyzés: hello **hozzon létre új**, **szerkesztése**, **részletek**, és **törlése** műveleteket, amelyek automatikusan hozzáadott toohello alkalmazás hello **MVC 5 Controller nézetek, entitás-keretrendszer használatával** scaffold. Hello hello oktatóprogram következő szakaszában a Redis Cache toooptimize hello adatok eléréséhez, és adja meg a további funkciók toohello alkalmazás fogja hozzáadni.
 
 ![Kezdő szintű alkalmazás][cache-starter-application]
 
-## <a name="configure-the-application-to-use-redis-cache"></a>Az alkalmazás konfigurálása a Redis Cache használatára
-Az oktatóanyag jelen szakaszában el fogja végezni a mintaalkalmazás konfigurálását az Azure Redis Cache-példányból származó Contoso-csoportstatisztikák tárolására és beolvasására a [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) gyorsítótárügyfél használatával.
+## <a name="configure-hello-application-toouse-redis-cache"></a>Hello alkalmazás toouse Redis gyorsítótár konfigurálása
+Hello oktatóanyag ezen részében bemutatjuk hello minta alkalmazás toostore konfigurálása, Contoso team statisztika le az Azure Redis Cache példány hello segítségével [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) gyorsítótárügyfél.
 
-* [Az alkalmazás konfigurálása a StackExchange.Redis használatára](#configure-the-application-to-use-stackexchangeredis)
-* [A TeamsController osztály frissítése a gyorsítótárból vagy az adatbázisból eredmények visszaadásához](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
-* [A Létrehozás, Szerkesztés és Törlés módszerek frissítése a gyorsítótárral való együttműködéshez](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
-* [A Teams Index nézet frissítése a gyorsítótárral való együttműködéshez](#update-the-teams-index-view-to-work-with-the-cache)
+* [Hello alkalmazás toouse StackExchange.Redis konfigurálása](#configure-the-application-to-use-stackexchangeredis)
+* [Hello TeamsController osztály tooreturn eredményeinek hello gyorsítótár vagy hello adatbázis frissítése](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
+* [Hello létrehozása, szerkesztése, frissítse és módszerek toowork hello gyorsítótárával törlése](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
+* [Hello csapatok Index nézet toowork hello gyorsítótár frissítése](#update-the-teams-index-view-to-work-with-the-cache)
 
-### <a name="configure-the-application-to-use-stackexchangeredis"></a>Az alkalmazás konfigurálása a StackExchange.Redis használatára
-1. Ha egy ügyfélalkalmazást a StackExchange.Redis NuGet-csomaggal szeretne konfigurálni a Visual Studióban, kattintson a **Tools** (Eszközök) menü **NuGet Package Manager** (NuGet-csomagkezelő), **Package Manager Console** (Csomagkezelő konzol) elemére.
-2. Futtassa az alábbi parancsot a `Package Manager Console` ablakából.
+### <a name="configure-hello-application-toouse-stackexchangeredis"></a>Hello alkalmazás toouse StackExchange.Redis konfigurálása
+1. tooconfigure egy ügyfélalkalmazást, a Visual Studio használatával hello StackExchange.Redis NuGet-csomagot, kattintson a **NuGet-Csomagkezelő**, **Csomagkezelő konzol** a hello **Eszközök** menü.
+2. Futtatási hello következő parancsot a hello `Package Manager Console` ablak.
     
     ```
     Install-Package StackExchange.Redis
     ```
    
-    A NuGet-csomag letölti és hozzáadja az ügyfélalkalmazás számára szükséges szerelvényhivatkozásokat az Azure Redis Cache a StackExchange.Redis gyorsítótárügyféllel történő eléréséhez. Ha inkább a `StackExchange.Redis` ügyfélkönyvtár erős elnevezésű verzióját kívánja használni, telepítse a `StackExchange.Redis.StrongName` csomagot.
-3. A **Solution Explorerben** (Megoldáskezelőben) bontsa ki a **Controllers** (Vezérlők) mappát, majd kattintson duplán a **TeamsController.cs** fájlra annak megnyitásához.
+    hello NuGet csomag tölti le, és hozzáadja a hello szükséges összeállítási referenciát az ügyfél alkalmazás tooaccess Azure Redis Cache hello StackExchange.Redis gyorsítótár-ügyféllel. Ha inkább toouse hello erős névvel ellátott verziójának `StackExchange.Redis` ügyféloldali kódtár, a telepítés hello `StackExchange.Redis.StrongName` csomag.
+3. A **Megoldáskezelőben**, bontsa ki a hello **tartományvezérlők** mappa, és kattintson duplán **TeamsController.cs** tooopen azt.
    
     ![Csoportvezérlő][cache-teamscontroller]
-4. Adja hozzá az alábbi két `using` utasítást a **TeamsController.cs** fájlhoz.
+4. Adja hozzá a következő két hello `using` utasítások túl**TeamsController.cs**.
 
     ```c#   
     using System.Configuration;
     using StackExchange.Redis;
     ```
 
-5. Adja hozzá az alábbi két tulajdonságot a `TeamsController` osztályhoz.
+5. Adja hozzá a következő két tulajdonságok toohello hello `TeamsController` osztály.
 
     ```c#   
     // Redis Connection string info
@@ -320,9 +320,9 @@ Az oktatóanyag jelen szakaszában el fogja végezni a mintaalkalmazás konfigur
     }
     ```
 
-6. Hozzon létre egy `WebAppPlusCacheAppSecrets.config` nevű fájlt a számítógépen, majd mentse azt egy olyan helyre, amelyet a mintaalkalmazás forráskódja nem fog ellenőrizni, amennyiben úgy dönt, hogy valahol ellenőrizni kívánja azt. Jelen példában az `AppSettingsSecrets.config` fájl elérési útja: `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`.
+6. Hozzon létre egy fájlt a számítógépen nevű `WebAppPlusCacheAppSecrets.config` és helyezheti el egy olyan helyre, nem kell való bejelentkezésének hello forráskódját, a mintaalkalmazást döntse toocheck valahol legyen. Az ebben a példában hello `AppSettingsSecrets.config` a fájl `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`.
    
-    Módosítsa a `WebAppPlusCacheAppSecrets.config` fájlt, és adja hozzá az alábbi tartalmakat. Az alkalmazás helyi futtatásakor ezen információk az Azure Redis Cache-példányhoz történő kapcsolódáshoz lesznek felhasználva. Az oktatóanyag későbbi szakaszában egy Azure Redis Cache-példány létrehozását, valamint a gyorsítótár nevének és jelszavának módosítását fogja elvégezni. Ha nem tervezi az alkalmazás helyi futtatását, kihagyhatja ennek a fájlnak a létrehozását, illetve a fájlra hivatkozó következő lépéseket, mivel az Azure-on történő telepítéskor az alkalmazás a gyorsítótár csatlakoztatási információit a webalkalmazás beállításaiból kéri le, nem pedig ebből a fájlból. Mivel a `WebAppPlusCacheAppSecrets.config` nem települ az Azure-on az alkalmazással együtt, csak abban az esetben van rá szüksége, ha az alkalmazást helyileg kívánja futtatni.
+    Hello szerkesztése `WebAppPlusCacheAppSecrets.config` fájlt, és adja hozzá a tartalom a következő hello. Hello alkalmazás helyi futtatásához ezt az információt akkor használt tooconnect tooyour Azure Redis Cache példányt. Hello oktatóanyag későbbi részében fogja telepíteni az Azure Redis Cache példány, és hello gyorsítótár név és jelszó. Ha nem tervezi toorun hello mintaalkalmazás helyileg kihagyhatja ezt a fájlt hello létrehozását és hello későbbi lépésekben hello fájlt, mert amikor alkalmazást telepít központilag az tooAzure hello hivatkozó hello gyorsítótár kapcsolat adatait kérdezi le hello alkalmazás a beállítás hello Web App és nem az ebben a fájlban. Hello óta `WebAppPlusCacheAppSecrets.config` nincs telepítve az alkalmazással tooAzure, nem kell, kivéve, ha toorun hello alkalmazás helyi fog.
 
     ```xml
     <appSettings>
@@ -331,32 +331,32 @@ Az oktatóanyag jelen szakaszában el fogja végezni a mintaalkalmazás konfigur
     ```
 
 
-1. A **Solution Explorerben** (Megoldáskezelőben) kattintson duplán a **web.config** fájlra annak megnyitásához.
+1. A **Megoldáskezelőben**, kattintson duplán a **web.config** tooopen azt.
    
     ![Web.config][cache-web-config]
-2. Adja hozzá az alábbi `file` attribútumot az `appSettings` elemhez. Ha más fájlnevet vagy helyet használ, helyettesítse azokat a példában látható értékekkel.
+2. Adja hozzá a következő hello `file` toohello attribútum `appSettings` elemet. Ha egy másik fájlnevet vagy a hely, helyettesítse be ezeket az értékeket a hello ők hello példában látható módon.
    
    * Előtte: `<appSettings>`
    * Utána: ` <appSettings file="C:\AppSecrets\WebAppPlusCacheAppSecrets.config">`
      
-   Az ASP.NET futtatási környezet a külső fájl tartalmát egyesíti az `<appSettings>` elem kódjával. Ha a megadott fájl nem található, a futtatási környezet figyelmen kívül hagyja a fájlattribútumot. A titkos kulcsok (a gyorsítótárhoz tartozó kapcsolati karakterláncok) nem képezik részét az alkalmazás forráskódjának. A webalkalmazás Azure-on történő üzembe helyezésekor a `WebAppPlusCacheAppSecrests.config` fájl nem lesz telepítve (ez megfelel a szándékainknak). A titkos kulcsok megadására számos mód létezik az Azure-ban, ezek pedig ennek az oktatóanyagnak a későbbi lépéseiben automatikusan konfigurálva lesznek az [Azure-erőforrások kiépítésekor](#provision-the-azure-resources). További információk a titkos kulcsok használatáról az Azure-ban: [Ajánlott eljárások a jelszavak és egyéb érzékeny adatok telepítéséhez az ASP.NET és az Azure App Service szolgáltatásokban](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
+   hello ASP.NET futásidejű egyesíti hello külső hello markup hello a fájl tartalmát hello `<appSettings>` elemet. hello futásidejű figyelmen kívül hagyja hello attribútumot, ha hello megadott fájl nem található. A titkos kulcsokat (hello kapcsolati karakterlánc tooyour gyorsítótár), amelyek nem tartalmazzák a hello alkalmazás forráskódja hello. A webes alkalmazás tooAzure telepítésekor hello `WebAppPlusCacheAppSecrests.config` fájl nem telepíthető (Ez mit). Számos módon toospecify ezeknek a kulcsoknak az Azure-ban, és ebben az oktatóanyagban vannak konfigurálva automatikusan, amikor Ön [kiépítése hello Azure-erőforrások](#provision-the-azure-resources) oktatóanyag egy későbbi lépésben. A titkos kulcsok Azure használatáról további információk: [gyakorlati tanácsok a jelszavak és egyéb bizalmas adatok tooASP.NET és Azure App Service üzembe helyezésének](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
 
-### <a name="update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database"></a>A TeamsController osztály frissítése a gyorsítótárból vagy az adatbázisból eredmények visszaadásához
-Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárból is lekérdezhetők. A csapatstatisztikák a gyorsítótárban szerializált `List<Team>`, illetve (Redis adattípusok használatával) rendezett készlet formájában vannak tárolva. Rendezett készletből történő lekérdezéskor egyes, az összes vagy bizonyos feltételnek megfelelő elemek lekérésére van lehetőség. Jelen példában lekérdezünk egy rendezett készletet a győzelmek száma szerint rangsorolt 5 legjobb csapatra.
+### <a name="update-hello-teamscontroller-class-tooreturn-results-from-hello-cache-or-hello-database"></a>Hello TeamsController osztály tooreturn eredményeinek hello gyorsítótár vagy hello adatbázis frissítése
+Ez a példa team statisztika lekérhető hello adatbázisból vagy hello gyorsítótárból. Team statisztika, egy szerializált hello-gyorsítótárában vannak tárolva `List<Team>`, és is készletként rendezett Redis-adattípusok használatával. Rendezett készletből történő lekérdezéskor egyes, az összes vagy bizonyos feltételnek megfelelő elemek lekérésére van lehetőség. Ez a példa hello felső 5 csoportjai wins száma szerinti sorrendben rendezve hello beállítása lesz lekérdezése.
 
 > [!NOTE]
-> Az Azure Redis Cache használatához nem szükséges a csapatstatisztikák többféle formátumban történő elmentése a gyorsítótárban. Ez az oktatóanyag többféle formátumot használ az adatok gyorsítótárazásához használható különböző módszerek és adattípusok példáinak bemutatására.
+> Már nem szükséges toostore hello team statisztika hello rendelés toouse Azure Redis Cache-gyorsítótár több formátumban. Ez az oktatóanyag néhány használja több formátumok toodemonstrate hello különböző módokon és a különböző adattípusú toocache adatokat használhatja.
 > 
 > 
 
-1. Adja hozzá az alábbi `using` utasításokat a `TeamsController.cs` fájl elejéhez, a többi `using` utasítással együtt.
+1. Adja hozzá a következő hello `using` utasítások toohello `TeamsController.cs` hello tetején, az egyéb hello fájl `using` utasításokat.
 
     ```c#   
     using System.Diagnostics;
     using Newtonsoft.Json;
     ```
 
-2. Az aktuális `public ActionResult Index()` metódusmegvalósítást cserélje le az alábbi megvalósításra.
+2. Cserélje le a jelenlegi hello `public ActionResult Index()` hello végrehajtása a következő metódus végrehajtása.
 
     ```c#
     // GET: Teams
@@ -370,16 +370,16 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
                 PlayGames();
                 break;
 
-            case "clearCache": // Clear the results from the cache.
+            case "clearCache": // Clear hello results from hello cache.
                 ClearCachedTeams();
                 break;
 
-            case "rebuildDB": // Rebuild the database with sample data.
+            case "rebuildDB": // Rebuild hello database with sample data.
                 RebuildDB();
                 break;
         }
 
-        // Measure the time it takes to retrieve the results.
+        // Measure hello time it takes tooretrieve hello results.
         Stopwatch sw = Stopwatch.StartNew();
 
         switch(resultType)
@@ -388,15 +388,15 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
                 teams = GetFromSortedSet();
                 break;
 
-            case "teamsSortedSetTop5": // Retrieve the top 5 teams from the sorted set.
+            case "teamsSortedSetTop5": // Retrieve hello top 5 teams from hello sorted set.
                 teams = GetFromSortedSetTop5();
                 break;
 
-            case "teamsList": // Retrieve teams from the cached List<Team>.
+            case "teamsList": // Retrieve teams from hello cached List<Team>.
                 teams = GetFromList();
                 break;
 
-            case "fromDB": // Retrieve results from the database.
+            case "fromDB": // Retrieve results from hello database.
             default:
                 teams = GetFromDB();
                 break;
@@ -405,7 +405,7 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
         sw.Stop();
         double ms = sw.ElapsedTicks / (Stopwatch.Frequency / (1000.0));
 
-        // Add the elapsed time of the operation to the ViewBag.msg.
+        // Add hello elapsed time of hello operation toohello ViewBag.msg.
         ViewBag.msg += " MS: " + ms.ToString();
 
         return View(teams);
@@ -413,9 +413,9 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     ```
 
 
-1. Vegye fel az alábbi három módszert a `TeamsController` osztályba azon `playGames`, `clearCache`, és `rebuildDB` művelettípusok megvalósításához, amelyek az előző kódrészletben hozzáadott „switch” utasításból származnak.
+1. Adja hozzá a következő három módszer toohello hello `TeamsController` osztály tooimplement hello `playGames`, `clearCache`, és `rebuildDB` művelettípusok hello a Váltás hello előző kódrészletet hozzáadott utasítást.
    
-    Egy játékszezon szimulálásával a `PlayGames` módszer frissíti a csapatstatisztikákat, az eredményeket elmenti az adatbázisba, majd törli a gyorsítótárból a már elavult adatokat.
+    Hello `PlayGames` metódus hello team statisztika frissíti a játékok szezon szimulál menti hello eredmények toohello adatbázis és törlése hello most már elavult hello gyorsítótár adatait.
 
     ```c#
     void PlayGames()
@@ -434,13 +434,13 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     }
     ```
 
-    A `RebuildDB` módszer újrainicializálja az adatbázist az alapértelmezett csapatokkal, statisztikákat állít elő számukra, és törli a gyorsítótárból a már elavult adatokat.
+    Hello `RebuildDB` metódus újból inicializálja hello adatbázis hello alapértelmezett készletét, csoportok, a számukra statisztika hoz létre, és törlése hello most már elavult hello gyorsítótár adatait.
 
     ```c#
     void RebuildDB()
     {
         ViewBag.msg += "Rebuilding DB. ";
-        // Delete and re-initialize the database with sample data.
+        // Delete and re-initialize hello database with sample data.
         db.Database.Delete();
         db.Database.Initialize(true);
 
@@ -449,7 +449,7 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     }
     ```
 
-    A `ClearCachedTeams` módszer eltávolítja a gyorsítótárazott csapatstatisztikákat a gyorsítótárból.
+    Hello `ClearCachedTeams` metódus hello gyorsítótárból eltávolítja a gyorsítótárazott team statisztikai adatokkal.
 
     ```c#
     void ClearCachedTeams()
@@ -462,9 +462,9 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     ```
 
 
-1. Vegye fel az alábbi négy módszert a `TeamsController` osztályba a csapatstatisztikák gyorsítótárból és adatbázisból különböző módszerekkel történő lekérdezéséhez. Ezen módszerek mindegyike egy, a nézetben megjelenített `List<Team>` választ ad vissza.
+1. Adja hozzá a következő négy módszerek toohello hello `TeamsController` osztály tooimplement hello hello team statisztika lekérése hello gyorsítótár és hello adatbázis különféle módjait. Mindkét módszerhez ad vissza egy `List<Team>` hello nézet ezután megjelenik.
    
-    A `GetFromDB` módszer beolvassa a csapatstatisztikákat a gyorsítótárból.
+    Hello `GetFromDB` metódus olvassa be a hello team statisztika hello adatbázisból.
    
     ```c#
     List<Team> GetFromDB()
@@ -478,7 +478,7 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     }
     ```
 
-    A `GetFromList` módszer szerializált `List<Team>` formájában olvassa be a csapatstatisztikákat a gyorsítótárból. Gyorsítótár-tévesztés esetén a rendszer az adatbázisból olvassa be a statisztikákat, és azokat a gyorsítótárba menti a következő alkalomra. Jelen mintában a JSON.NET szerializálást alkalmazzuk a .NET-objektumok gyorsítótárba és gyorsítótárból történő szerializálására. További információk: [.NET-objektumokkal való munka az Azure Redis Cache-ben](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache).
+    Hello `GetFromList` metódus hello team statisztika beolvassa a gyorsítótárból, mint egy szerializált `List<Team>`. Gyorsítótár-tévesztései esetén hello team statisztika olvasni hello adatbázisból, és aztán hello gyorsítótár a következő alkalommal. Ez a példa használunk JSON.NET szerializálási tooserialize hello .NET objektumok tooand hello gyorsítótárból. További információkért lásd: [hogyan toowork a .NET-objektumokat az Azure Redis Cache](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache).
 
     ```c#
     List<Team> GetFromList()
@@ -499,21 +499,21 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
             // Get from database and store in cache
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results to cache. ";
+            ViewBag.msg += "Storing results toocache. ";
             cache.StringSet("teamsList", JsonConvert.SerializeObject(teams));
         }
         return teams;
     }
     ```
 
-    A `GetFromSortedSet` módszer beolvassa a csapatstatisztikákat egy gyorsítótárazott rendezett készletből. Gyorsítótár-tévesztés esetén a rendszer az adatbázisból olvassa be a statisztikákat, és azokat a gyorsítótárba menti, rendezett készletként.
+    Hello `GetFromSortedSet` metódus egy gyorsítótárazott rendezett készletből hello team statisztika olvassa be. Ha a gyorsítótár-tévesztései, hello team statisztika hello adatbázisból beolvasása és rendezett készletként hello gyorsítótárba.
 
     ```c#
     List<Team> GetFromSortedSet()
     {
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
-        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", order: Order.Descending);
         if (teamsSortedSet.Count() > 0)
         {
@@ -532,10 +532,10 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
             // Read from DB
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results to cache. ";
+            ViewBag.msg += "Storing results toocache. ";
             foreach (var t in teams)
             {
-                Console.WriteLine("Adding to sorted set: {0} - {1}", t.Name, t.Wins);
+                Console.WriteLine("Adding toosorted set: {0} - {1}", t.Name, t.Wins);
                 cache.SortedSetAdd("teamsSortedSet", JsonConvert.SerializeObject(t), t.Wins);
             }
         }
@@ -543,7 +543,7 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     }
     ```
 
-    A `GetFromSortedSetTop5` módszer beolvassa az 5 legjobb csapatot a gyorsítótárazott rendezett készletből. Első lépésben a `teamsSortedSet` kulcsot keresi meg a gyorsítótárban. Ha a kulcs nem található, a rendszer a `GetFromSortedSet` módszert hívja meg a csapatstatisztikák beolvasásához és azoknak a gyorsítótárban történő tárolásához. Ezt a gyorsítótárazott rendezett készlet lekérdezése követi, amely az 5 legjobb csapatot adja vissza.
+    Hello `GetFromSortedSetTop5` metódus hello felső 5 csapat a gyorsítótárazott hello rendezve set olvassa be. Hello gyorsítótárában keresi az hello hello meglétének ellenőrzésével kezdődik `teamsSortedSet` kulcs. Ha ez a kulcs nem található, hello `GetFromSortedSet` metódus tooread hello team statisztika nevezik, és a hello gyorsítótárban tárolja őket. A következő hello gyorsítótárazott rendezett állítsa le kell kérdezni hello felső 5 csoportjai visszaküldött.
 
     ```c#
     List<Team> GetFromSortedSetTop5()
@@ -551,19 +551,19 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
 
-        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         if(teamsSortedSet.Count() == 0)
         {
-            // Load the entire sorted set into the cache.
+            // Load hello entire sorted set into hello cache.
             GetFromSortedSet();
 
-            // Retrieve the top 5 teams.
+            // Retrieve hello top 5 teams.
             teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         }
 
         ViewBag.msg += "Retrieving top 5 teams from cache. ";
-        // Get the top 5 teams from the sorted set
+        // Get hello top 5 teams from hello sorted set
         teams = new List<Team>();
         foreach (var team in teamsSortedSet)
         {
@@ -573,14 +573,14 @@ Jelen példában a csapatstatisztikák az adatbázisból vagy a gyorsítótárb�
     }
     ```
 
-### <a name="update-the-create-edit-and-delete-methods-to-work-with-the-cache"></a>A Létrehozás, Szerkesztés és Törlés módszerek frissítése a gyorsítótárral való együttműködéshez
-A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok hozzáadásához, szerkesztéséhez és törléséhez. Egy csapat hozzáadását, szerkesztését vagy eltávolítását követően a gyorsítótárban található adatok elavulttá válnak. Jelen szakaszban ezen három módszer módosítását fogja elvégezni a gyorsítótárazott csapatok törlése érdekében, így a gyorsítótár szinkronizálva lesz az adatbázissal.
+### <a name="update-hello-create-edit-and-delete-methods-toowork-with-hello-cache"></a>Hello létrehozása, szerkesztése, frissítse és módszerek toowork hello gyorsítótárával törlése
+hello állványok kód lett létrehozva, mivel ez a minta része belefoglalja módszerek tooadd, szerkeszteni és törölni. Bármikor csoport hozzáadva, szerkesztésének vagy eltávolításának, hello adatok hello gyorsítótárában elavult válik. Ebben a szakaszban módosítania kell ezen három módszer tooclear hello csoportok gyorsítótárazza, így hello gyorsítótár nincs szinkronban a hello adatbázis nem lesz.
 
-1. Keresse meg a `Create(Team team)` módszert a `TeamsController` osztályban. Adjon hozzá hívást a `ClearCachedTeams` módszerhez, ahogy az az alábbi példában is látható.
+1. Keresse meg a toohello `Create(Team team)` metódus a hello `TeamsController` osztály. Adja hozzá a hívás toohello `ClearCachedTeams` módszer, ahogy az alábbi példa hello.
 
     ```c#
     // POST: Teams/Create
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -590,8 +590,8 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
         {
             db.Teams.Add(team);
             db.SaveChanges();
-            // When a team is added, the cache is out of date.
-            // Clear the cached teams.
+            // When a team is added, hello cache is out of date.
+            // Clear hello cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -601,11 +601,11 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
     ```
 
 
-1. Keresse meg a `Edit(Team team)` módszert a `TeamsController` osztályban. Adjon hozzá hívást a `ClearCachedTeams` módszerhez, ahogy az az alábbi példában is látható.
+1. Keresse meg a toohello `Edit(Team team)` metódus a hello `TeamsController` osztály. Adja hozzá a hívás toohello `ClearCachedTeams` módszer, ahogy az alábbi példa hello.
 
     ```c#
     // POST: Teams/Edit/5
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -615,8 +615,8 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
         {
             db.Entry(team).State = EntityState.Modified;
             db.SaveChanges();
-            // When a team is edited, the cache is out of date.
-            // Clear the cached teams.
+            // When a team is edited, hello cache is out of date.
+            // Clear hello cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -625,7 +625,7 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
     ```
 
 
-1. Keresse meg a `DeleteConfirmed(int id)` módszert a `TeamsController` osztályban. Adjon hozzá hívást a `ClearCachedTeams` módszerhez, ahogy az az alábbi példában is látható.
+1. Keresse meg a toohello `DeleteConfirmed(int id)` metódus a hello `TeamsController` osztály. Adja hozzá a hívás toohello `ClearCachedTeams` módszer, ahogy az alábbi példa hello.
 
     ```c#
     // POST: Teams/Delete/5
@@ -636,23 +636,23 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
         Team team = db.Teams.Find(id);
         db.Teams.Remove(team);
         db.SaveChanges();
-        // When a team is deleted, the cache is out of date.
-        // Clear the cached teams.
+        // When a team is deleted, hello cache is out of date.
+        // Clear hello cached teams.
         ClearCachedTeams();
         return RedirectToAction("Index");
     }
     ```
 
 
-### <a name="update-the-teams-index-view-to-work-with-the-cache"></a>A Teams Index nézet frissítése a gyorsítótárral való együttműködéshez
-1. A **Solution Explorer** (Megoldáskezelőben) bontsa ki a **Views** (Nézetek), majd a **Teams** (Csapatok) mappát, és kattintson duplán az **Index.cshtml** fájlra.
+### <a name="update-hello-teams-index-view-toowork-with-hello-cache"></a>Hello csapatok Index nézet toowork hello gyorsítótár frissítése
+1. A **Megoldáskezelőben**, bontsa ki a hello **nézetek** mappát, majd hello **csapatok** mappára, majd kattintson duplán **Index.cshtml**.
    
     ![Index.cshtml][cache-views-teams-index-cshtml]
-2. A fájl elején keresse meg az alábbi bekezdéselemet.
+2. Tetején hello hello fájlt keresse meg a következő bekezdésszöveg elem hello.
    
     ![Művelettábla][cache-teams-index-table]
    
-    Itt található az új csapat létrehozására szolgáló hivatkozás. Cserélje le a bekezdéselemet az alábbi táblával. Ez a tábla műveleti hivatkozásokkal rendelkezik egy új csapat létrehozása, egy új játékszezon lejátszása, a gyorsítótár kiürítése, a csapatok gyorsítótárból, több formátumban történő lekérdezése, a csapatok adatbázisból történő lekérdezése, valamint az adatbázis friss mintaadatokkal való újraépítése céljából.
+    Ez a hello hivatkozás toocreate egy új csoport. Cserélje le a következő táblázat hello hello bekezdésszöveg elem. Ez a táblázat egy-egy új szezon játékok, ha hello gyorsítótár kiürítése játszott új csoport létrehozása művelet mutató hivatkozásokat tartalmaz, hello csapatok lekérése hello gyorsítótár számos formátumban, hello csapatok lekérése hello adatbázis, majd újraépítése hello adatbázist friss mintaadatokkal.
 
     ```html
     <table class="table">
@@ -686,125 +686,125 @@ A szerkezeti kódot a rendszer ezen minta részeként állítja elő a csapatok 
     ```
 
 
-1. Görgessen lefelé az **Index.cshtml** fájl aljához, és vegye fel az alábbi `tr` elemet, így ez lesz a fájl utolsó táblájának utolsó sora.
+1. Görgessen toohello alsó részén hello **Index.cshtml** fájlt, és adja hozzá a következő hello `tr` elem úgy, hogy az utolsó sort hello hello utolsó tábla hello fájlban.
    
     ```html
     <tr><td colspan="5">@ViewBag.Msg</td></tr>
     ```
    
-    Ez a sor a `ViewBag.Msg` értékét jeleníti meg, amely az aktuális művelet állapotjelentését tartalmazza. A `ViewBag.Msg` beállítása az előző lépés egyik műveleti hivatkozására kattintva történhet.   
+    A sor hello értékét jeleníti meg `ViewBag.Msg` hello aktuális műveletekre vonatkozó jelentés, amely tartalmazza. Hello `ViewBag.Msg` hello előző lépésben hello művelet hivatkozásokra kattintva van beállítva.   
    
     ![Állapotüzenet][cache-status-message]
-2. A projekt létrehozásához nyomja le az **F6** billentyűt.
+2. Nyomja le az **F6** toobuild hello projekt.
 
-## <a name="provision-the-azure-resources"></a>Azure-erőforrások kiépítése
-Az alkalmazásnak az Azure-on történő üzemeltetéséhez először is létre kell hoznia az alkalmazás számára szükséges Azure-szolgáltatásokat. A jelen oktatóanyagban szereplő mintaalkalmazás az alábbi Azure-szolgáltatásokat használja.
+## <a name="provision-hello-azure-resources"></a>Kiépítés hello Azure-erőforrások
+toohost az alkalmazás az Azure-ban, akkor először engedélyeznie kell az alkalmazás által használt Azure szolgáltatással hello. Ebben az oktatóanyagban hello mintaalkalmazás hello Azure-szolgáltatások a következő használ.
 
 * Azure Redis Cache
 * App Service webalkalmazás
 * SQL Database
 
-Ezen szolgáltatások új vagy létező, szabadon választott erőforráscsoporton történő üzembe helyezéséhez kattintson az alábbi **Deploy to Azure** (Üzembe helyezés az Azure-ban) gombra.
+toodeploy ezen szolgáltatások tooa új vagy meglévő erőforráscsoport az Ön által választott, kattintson a következő hello **tooAzure telepítése** gombra.
 
-[![Deploy to Azure][deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
+[! [TooAzure központi telepítés] [deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
 
-Ez az **Deploy to Azure** (Üzembe helyezés az Azure-ban) gomb a [Webalkalmazás, Redis Cache és SQL Database egyidejű létrehozása](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure gyors üzembe helyezés](https://github.com/Azure/azure-quickstart-templates) sablonját használja ezen szolgáltatások kiépítéséhez, illetve az SQL Database kapcsolati karakterláncának megadásához és az Azure Redis Cache-kapcsolatikarakterlánc alkalmazás-beállításához.
+Ez **tooAzure telepítése** gomb használja hello [hozzon létre egy webalkalmazást és Redis Cache mellett egy SQL Databaset](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure gyors üzembe helyezési](https://github.com/Azure/azure-quickstart-templates) sablon tooprovision ezen szolgáltatások és a set hello hello SQL-adatbázis és hello Alkalmazásbeállítás hello Azure Redis Cache kapcsolati karakterlánc a kapcsolati karakterláncot.
 
 > [!NOTE]
 > Ha nincs Azure-fiókja, néhány perc alatt [létrehozhat egy ingyenes Azure-fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero).
 > 
 > 
 
-Az **Üzembe helyezés az Azure-ban** gombra kattintva megnyílik az Azure portál, majd elindul a sablonban megadott erőforrások létrehozásának folyamata.
+Gombra kattintva hello **tooAzure telepítése** gomb viszi toohello Azure-portálon, és kezdeményezi hello hello sablon által ismertetett hello erőforrásokat létrehozásának folyamatán.
 
-![Üzembe helyezés az Azure-ban][cache-deploy-to-azure-step-1]
+![TooAzure telepítése][cache-deploy-to-azure-step-1]
 
-1. Az **Alapok** szekcióban válassza ki a használni kívánt Azure-előfizetést, jelöljön ki egy meglévő erőforráscsoportot vagy hozzon létre egy újat, majd adja meg az erőforráscsoport helyét.
-2. A **Beállítások** részben adja meg az **rendszergazdai bejelentkezési nevet** (ne használja az **admin** kifejezést), a **rendszergazdai bejelentkezési jelszót** és az **adatbázisnevet**. A többi paraméter egy ingyenes App Service futtatási csomaghoz van konfigurálva, valamint alacsonyabb költségszint érhető el az SQL Database és az Azure Redis Cache esetében, amelyek nem részei az ingyenes szintnek.
+1. A hello **alapjai** szakaszt, válassza ki az Azure-előfizetés toouse hello, és válasszon ki egy meglévő erőforráscsoportot vagy hozzon létre egy újat, és adja meg az erőforráscsoport helye hello.
+2. A hello **beállítások** területén adja meg egy **rendszergazda bejelentkezési** (ne használjon **admin**), **rendszergazda bejelentkezési jelszó**, és  **Adatbázis neve**. hello más paramétereket van állítva egy ingyenes App Service üzemeltetési terv és az alacsonyabb költségű beállítások hello SQL Database és Azure Redis Cache, amelyek nem rendelkeznek egy ingyenes szint.
 
-    ![Üzembe helyezés az Azure-ban][cache-deploy-to-azure-step-2]
+    ![TooAzure telepítése][cache-deploy-to-azure-step-2]
 
-3. A kívánt beállítások konfigurálása után görgessen az oldal végére, olvassa el a feltételeket és kikötéseket, és pipálja ki az **Elfogadom a fenti feltételeket és kikötéseket** jelölőnégyzetet.
-4. Az erőforrások kiépítésének megkezdéséhez kattintson a **Vásárlás** gombra.
+3. Szükségeskonfiguráció-hello beállításainak konfigurálása után görgessen hello lap, olvasási hello feltételek és kikötések toohello végét, és ellenőrizze a hello **toohello feltételek és kikötések fenti elfogadom** jelölőnégyzetet.
+4. üzembe helyezési hello erőforrások toobegin, kattintson a **beszerzési**.
 
-Az üzembe helyezési folyamat előrehaladásának megtekintéséhez kattintson az értesítési ikonra, majd a **Központi telepítés elindítva** gombra.
+a telepítés előrehaladását tooview hello hello értesítés ikonra, majd kattintson **telepítése megkezdődött**.
 
 ![Központi telepítés elindítva][cache-deployment-started]
 
-A központi telepítés állapotát a **Microsoft.Template** panelen tekintheti meg.
+A központi telepítés hello állapotát megtekintheti a hello **Microsoft.Template** panelen.
 
-![Üzembe helyezés az Azure-ban][cache-deploy-to-azure-step-3]
+![TooAzure telepítése][cache-deploy-to-azure-step-3]
 
-A kiépítés után a Visual Studio felületéről közzéteheti alkalmazását az Azure-on.
+Ha kiépítése befejeződött, a Visual Studio alkalmazás tooAzure tehető közzé.
 
 > [!NOTE]
-> A kiépítési folyamat során esetlegesen jelentkező hibák a **Microsoft.Template** panelen jelennek meg. Gyakori hiba például az előfizetésenkénti túl sok SQL Server-példány és a túl sok Ingyenes App Service-futtatási csomag. A hibák elhárítása és a folyamat újraindítása a **Microsoft.Template** panel **Ismételt üzembe helyezés** elemére, vagy a jelen oktatóanyag **Üzembe helyezés az Azure-ban** gombjára kattintva végezhető el.
+> Bármely hello kiépítési folyamat során előforduló hibákat hello megjelenő **Microsoft.Template** panelen. Gyakori hiba például az előfizetésenkénti túl sok SQL Server-példány és a túl sok Ingyenes App Service-futtatási csomag. Javítsa ki a hibákat, és indítsa újra a hello folyamat kattintva **újratelepíteni** a hello **Microsoft.Template** panel vagy hello **tooAzure telepítése** ebben az oktatóanyagban gombra.
 > 
 > 
 
-## <a name="publish-the-application-to-azure"></a>Az alkalmazás közzététele az Azure-ban
-Az oktatóanyag ezen lépésben közzéteszi alkalmazását az Azure-ban, majd futtatja azt a felhőben
+## <a name="publish-hello-application-tooazure"></a>Hello alkalmazás tooAzure közzététele
+Ebben a lépésben hello oktatóanyag lesz hello alkalmazás tooAzure közzététele, majd futtassa azt hello felhő.
 
-1. Kattintson a jobb gombbal a Visual Studio **ContosoTeamStats** projektjére, majd válassza a **Publish** (Közzététel) lehetőséget
+1. Kattintson a jobb gombbal hello **ContosoTeamStats** a Visual Studio projekt, és válassza a **közzététel**.
    
     ![Közzététel][cache-publish-app]
 2. Kattintson a **Microsoft Azure App Service** lehetőségre, válassza a **Meglévő kiválasztása** elemet, majd kattintson a **Közzététel** gombra.
    
     ![Közzététel][cache-publish-to-app-service]
-3. Válassza ki az Azure-erőforrások létrehozásakor használt előfizetést, bontsa ki az erőforrásokat tartalmazó erőforráscsoportot, és válassza ki a kívánt webappot. Ha az **Üzembe helyezés az Azure-ban** gombot használta, a webalkalmazás neve a **webSite** kifejezéssel kezdődik, amit néhány további karakter követ.
+3. Válassza ki a hello hello erőforrásokat tartalmazó erőforráscsoport létrehozása hello Azure-erőforrások, bontsa ki, majd jelölje be hello szükségeskonfiguráció-webalkalmazás hello előfizetést. Ha hello **tooAzure telepítése** a webes alkalmazás neve kezdődik gomb **webhely** néhány további karakter követ.
    
     ![Webalkalmazás kiválasztása][cache-select-web-app]
-4. A közzétételi folyamat elindításához kattintson az **OK** gombra. A közzétételi folyamat néhány pillanat múlva befejeződik, és a elindul böngésző a futó mintaalkalmazással együtt. Ha érvényesítés vagy közzététel közben a rendszer DNS-hibát ad vissza, az alkalmazáshoz tartozó Azure-erőforrások kiépítési folyamata pedig csak az imént fejeződött be, várjon egy kicsit, és próbálkozzon újra.
+4. Kattintson a **OK** toobegin hello közzétételi folyamat. Néhány másodpercen belül hello közzétételi folyamat befejeződik, és egy böngészőben a mintaalkalmazás futtatása hello nincs elindítva. Ha ellenőrzéskor vagy közzététele a DNS a hibaüzenet, és hello létesítésének folyamatát kell használnia a hello hello alkalmazás Azure-erőforrások csak nemrég befejeződött, várjon egy kicsit, és próbálja meg újból.
    
     ![Gyorsítótár hozzáadva][cache-added-to-application]
 
-A mintaalkalmazás egyes műveleti hivatkozásait a következő táblázat ismerteti.
+hello következő táblázat ismerteti a hello mintaalkalmazás minden művelet hivatkozására.
 
 | Műveletek | Leírás |
 | --- | --- |
 | Új létrehozása |Létrehoz egy új csapatot. |
-| Szezon végigjátszása |Végigjátszik egy szezont, frissíti a csapatstatisztikákat, és törli a gyorsítótárból az elavult adatokat. |
-| Gyorsítótár ürítése |Törli a csapatstatisztikákat a gyorsítótárból. |
-| Lista a gyorsítótárból |Lekérdezi a csapatstatisztikákat a gyorsítótárból. Gyorsítótár-tévesztés esetén az adatbázisból tölti be a statisztikákat, és menti azt a gyorsítótárba a következő alkalomra. |
-| Rendezett készlet a gyorsítótárból |Lekérdezi a csapatstatisztikákat a gyorsítótárból egy rendezett készlet használatával. Gyorsítótár-tévesztés esetén az adatbázisból tölti be a statisztikákat, és menti azt a gyorsítótárba egy rendezett készlet használatával. |
-| Az 5 legjobb csapat a gyorsítótárból |Lekérdezi az 5 legjobb csapatot a gyorsítótárból egy rendezett készlet használatával. Gyorsítótár-tévesztés esetén az adatbázisból tölti be a statisztikákat, és menti azt a gyorsítótárba egy rendezett készlet használatával. |
-| Betöltés adatbázisból |Lekérdezi a csapatstatisztikákat az adatbázisból. |
-| Adatbázis újraépítése |Újraépíti az adatbázist, és ismét feltölti azt minta-csapatadatokkal. |
+| Szezon végigjátszása |A játékok, frissítés hello team statisztikák szezon lejátszása, és törölje minden elavult hello gyorsítótár csoport adatait. |
+| Gyorsítótár ürítése |Törölje a jelet hello team statisztikák hello gyorsítótárból. |
+| Lista a gyorsítótárból |Hello team statisztikák lekérése a hello gyorsítótárból. Ha a gyorsítótár-tévesztései, hello statisztikák betöltése hello adatbázisból, és menthet toohello gyorsítótár legközelebb. |
+| Rendezett készlet a gyorsítótárból |Hello team statisztikák lekérése hello gyorsítótár rendezett készletből. Ha a gyorsítótár-tévesztései, hello statisztikák betöltése hello adatbázisból, és rendezett készletből toohello gyorsítótár mentése. |
+| Az 5 legjobb csapat a gyorsítótárból |Hello felső 5 csapatok lekérése hello gyorsítótár rendezett készletből. Ha a gyorsítótár-tévesztései, hello statisztikák betöltése hello adatbázisból, és rendezett készletből toohello gyorsítótár mentése. |
+| Betöltés adatbázisból |Hello team statisztikák lekérése hello adatbázis. |
+| Adatbázis újraépítése |Hello adatbázis újraépítése, és töltse be újra a csapat mintaadatokkal. |
 | Szerkesztés / Részletek / Törlés |Szerkeszthet egy csapatot, megtekintheti annak részletes adatait, törölhet egy csapatot. |
 
-Kattintson néhány műveletre, és kísérletezzen az adatok különböző forrásokból történő lekérdezésével. Figyelje meg az adatbázisból és a gyorsítótárból történő adatlekérdezés különböző módjainak végrehajtásához szükséges időbeli eltéréseket.
+Kattintson a hello műveletek némelyike, és kísérletezzen hello különböző forrásokból származó hello adatok beolvasása. Nem hello különbségeit hello időt toocomplete hello hello adatok lekérése hello adatbázis és hello gyorsítótár különféle módjait.
 
-## <a name="delete-the-resources-when-you-are-finished-with-the-application"></a>Az erőforrások törlése az alkalmazás bezárását követően
-Ha befejezte az oktatóanyag mintaalkalmazásának használatát, a költség- és erőforrás-takarékosság érdekében törölheti az ott használt Azure-erőforrásokat. Ha a [Azure-erőforrások kiépítése](#provision-the-azure-resources) szakasz **Üzembe helyezés az Azure-ban** gombját használja, és valamennyi erőforrás azonos erőforráscsoportban található, az erőforráscsoport törlésével egy művelettel, együttesen is törölheti azokat.
+## <a name="delete-hello-resources-when-you-are-finished-with-hello-application"></a>Törli a hello erőforrást, amikor elkészült, hello alkalmazással
+Ha elkészült, hello oktatóanyag mintaalkalmazást, törölheti a hello Azure rendelés tooconserve költségeket, a használt erőforrások és erőforrásokat. Hello használatakor **tooAzure telepítése** hello gombjára [rendelkezés hello Azure-erőforrások](#provision-the-azure-resources) szakasz és az összes erőforrást tartalmaznak hello ugyanabban az erőforráscsoportban, törölheti azokat együtt egy a művelet hello erőforráscsoport törlésével.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com), és kattintson az **Erőforráscsoportok** elemre.
-2. Írja be az erőforráscsoport nevét az **Elemek szűrése...** szövegmezőbe.
-3. Kattintson az erőforráscsoporttól jobbra lévő **...** elemre.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) kattintson **erőforráscsoportok**.
+2. Az erőforráscsoport a hello hello nevét **elemek szűrése...**  szövegmező.
+3. Kattintson a **...**  toohello sarkában található az erőforráscsoport.
 4. Kattintson a **Törlés** gombra.
    
     ![Törlés][cache-delete-resource-group]
-5. Írja be az erőforráscsoport nevét, és kattintson a **Törlés** gombra.
+5. Hello nevét a erőforráscsoportban, és kattintson **törlése**.
    
     ![Törlés megerősítése][cache-delete-confirm]
 
-A rendszer néhány pillanaton belül törli az erőforráscsoportot és a benne foglalt erőforrásokat.
+Néhány perc múlva hello erőforrás után csoport és a benne lévő erőforrásokat törlődnek.
 
 > [!IMPORTANT]
-> Ügyeljen arra, hogy az erőforráscsoport törlése nem visszaállítható; az erőforráscsoport és a benne foglalt erőforrások véglegesen törlődnek. Figyeljen arra, hogy ne töröljön véletlenül erőforráscsoportot vagy erőforrásokat. Ha a jelen minta üzemeltetését végző erőforrásokat egy meglévő erőforráscsoportban hozta létre, az erőforrásokat külön-külön törölheti a megfelelő panelekről.
+> Vegye figyelembe, hogy egy erőforráscsoport törlése nem vonható vissza, és hogy hello erőforráscsoport és az összes hello-erőforrásokat véglegesen törlődnek. Győződjön meg arról, hogy nem véletlenül törli hello megfelelő erőforráscsoport és erőforrások. Ha ez a minta egy meglévő erőforráscsoportot belül üzemeltetéséhez hello erőforrások hozott létre, törölheti az egyes erőforrások egyenként a megfelelő panelt a.
 > 
 > 
 
-## <a name="run-the-sample-application-on-your-local-machine"></a>Mintaalkalmazás futtatása helyi gépen
-Az alkalmazás helyi számítógépen történő futtatásához egy olyan Azure Redis Cache-példányra van szükség, amelyen az adatok gyorsítótárazása elvégezhető. 
+## <a name="run-hello-sample-application-on-your-local-machine"></a>A helyi gépen hello mintaalkalmazás futtatása
+az Azure Redis Cache szükséges toorun hello alkalmazás helyben a számítógépre, mely toocache a példány adatait. 
 
-* Ha az alkalmazás Azure-on történő közzétételét az előző szakaszban leírt módon hajtotta végre, használhatja az abban a lépésben üzembe helyezett Azure Redis Cache-példányt.
-* Ha rendelkezik egy másik meglévő Azure Redis Cache-példánnyal, használhatja azt ezen minta helyi futtatásához.
-* Amennyiben létre kell hoznia egy Azure Redis Cache-példányt, ennek műveleti lépéseit megtalálja a [Gyorsítótár létrehozása](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache) részben.
+* Miután közzétette az alkalmazást tooAzure hello előző szakaszban leírtak szerint, ha e lépés során lett kiépítve hello Azure Redis Cache példány is használhatja.
+* Ha egy másik meglévő Azure Redis Cache példányt, használhatja a toorun Ez a minta helyileg.
+* Azure Redis Cache példány toocreate van szüksége, ha a hello lépések végrehajtásával [gyorsítótár létrehozásához](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
 
-A használni kívánt gyorsítótár kiválasztása vagy létrehozása után keresse meg azt az Azure portálon, majd kérje le a hozzá tartozó [állomásnév](cache-configure.md#properties) és [hívóbetű](cache-configure.md#access-keys) paramétereket. Útmutatásért lásd: [A Redis Cache-gyorsítótár beállításai](cache-configure.md#configure-redis-cache-settings).
+Miután kiválasztása vagy létrehozása hello gyorsítótár toouse, keresse meg a gyorsítótár toohello hello Azure-portálon, és hello beolvasása [állomásnév](cache-configure.md#properties) és [hívóbetűk](cache-configure.md#access-keys) a gyorsítótárhoz. Útmutatásért lásd: [A Redis Cache-gyorsítótár beállításai](cache-configure.md#configure-redis-cache-settings).
 
-1. A kívánt szerkesztővel nyissa meg a jelem oktatóanyag [Az alkalmazás konfigurálása a Redis Cache használatára](#configure-the-application-to-use-redis-cache) lépésében létrehozott `WebAppPlusCacheAppSecrets.config` fájlt.
-2. Módosítsa a `value` attribútumot, és cserélje le a `MyCache.redis.cache.windows.net` elemet a gyorsítótár [állomásnevével](cache-configure.md#properties), majd jelszóként adja meg a gyorsítótár [elsődleges vagy másodlagos kulcsát](cache-configure.md#access-keys).
+1. Nyissa meg hello `WebAppPlusCacheAppSecrets.config` hello során létrehozott fájl [hello alkalmazás toouse Redis gyorsítótár konfigurálása](#configure-the-application-to-use-redis-cache) . lépését Ez az oktatóanyag a választott szerkesztővel hello.
+2. Hello szerkesztése `value` attribútumot, és cserélje le `MyCache.redis.cache.windows.net` a hello [állomásnév](cache-configure.md#properties) a gyorsítótár, és adja meg vagy hello [elsődleges vagy másodlagos kulcsot](cache-configure.md#access-keys) a gyorsítótár hello jelszóként.
 
     ```xml
     <appSettings>
@@ -813,26 +813,26 @@ A használni kívánt gyorsítótár kiválasztása vagy létrehozása után ker
     ```
 
 
-1. Az alkalmazás futtatásához nyomja le a **Ctrl+F5** billentyűkombinációt.
+1. Nyomja le az **Ctrl + F5** toorun hello alkalmazás.
 
 > [!NOTE]
-> Vegye figyelembe, hogy mivel az alkalmazás (beleértve az adatbázist is) futtatása helyileg történik, a Redis Cache üzemeltetését pedig az Azure végzi, a gyorsítótár teljesítménye az adatbázisénál kisebbnek tűnhet. A legjobb teljesítmény érdekében az ügyfélalkalmazásnak és az Azure Redis Cache-példánynak azonos helyen kell lennie. 
+> Vegye figyelembe, hogy mivel hello alkalmazás, többek között a hello adatbázis helyben fut, és hello Redis gyorsítótárat üzemeltetni kívánja az Azure cache hello jelenhetnek meg toounder-hello adatbázis végrehajtani. A legjobb teljesítmény érdekében hello ügyfélalkalmazást és az Azure Redis Cache példány belül hello ugyanazon a helyen. 
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-* Az [ASP.NET MVC 5 – Első lépések](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) elvégzéséről további információkat az [ASP.NET](http://asp.net/) webhelyén talál.
-* További példák egy ASP.NET-webalkalmazás létrehozására az App Service szolgáltatásban: [Create and deploy an ASP.NET web app in Azure App Service](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service) (ASP.NET-webalkalmazás létrehozása és üzembe helyezése az Azure App Service szolgáltatásban) a [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [bemutatóból](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/).
-  * A HealthClinic.biz bemutató további gyors útmutatóit lásd: [Azure Developer Tools Quickstarts](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts) (Azure fejlesztői eszközök – gyors útmutatók).
-* Itt további információkat talál a jelen oktatóanyagban használt, [Code first to a new database](https://msdn.microsoft.com/data/jj193542) (Code First alkalmazása egy új adatbázisra) nevű Entity Framework-megközelítésról.
+* További információ [első ASP.NET MVC 5 használatába](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) a hello [ASP.NET](http://asp.net/) hely.
+* ASP.NET webalkalmazás létrehozása az App Service további példákért lásd [létrehozása és telepítése az Azure App Service ASP.NET webalkalmazás](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service) a hello [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [bemutató](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/).
+  * Tekintse meg a hello HealthClinic.biz bemutató további quickstarts [Azure fejlesztői eszközök Quickstarts](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts).
+* Tudjon meg többet a hello [kód első tooa új adatbázis](https://msdn.microsoft.com/data/jj193542) közelítse tooEntity ebben az oktatóanyagban használt keretrendszer.
 * További információ [az Azure App Service webalkalmazásairól](../app-service-web/app-service-web-overview.md).
-* Tudnivalók a gyorsítótár [figyeléséről](cache-how-to-monitor.md) az Azure portálon.
+* Ismerje meg, hogyan túl[figyelő](cache-how-to-monitor.md) saját gyorsítótárához az hello Azure-portálon.
 * Az Azure Redis Cache prémium funkcióinak megismerése
   
-  * [Adatmegőrzés konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz](cache-how-to-premium-persistence.md)
-  * [Fürtözés konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz](cache-how-to-premium-clustering.md)
-  * [Virtuális hálózat támogatásának konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz](cache-how-to-premium-vnet.md)
-  * További részletes információk a prémium gyorsítótárak méretével, teljesítményével és a sávszélességével kapcsolatban: [Azure Redis Cache – Gyakori kérdések](cache-faq.md#what-redis-cache-offering-and-size-should-i-use).
+  * [Hogyan tooconfigure megőrzését egy prémium szintű Azure Redis Cache](cache-how-to-premium-persistence.md)
+  * [Hogyan fürtözése a Premium Azure Redis Cache tooconfigure](cache-how-to-premium-clustering.md)
+  * [Hogyan támogatják a virtuális hálózati tooconfigure a Premium Azure Redis Cache](cache-how-to-premium-vnet.md)
+  * Lásd: hello [Azure Redis Cache – gyakori kérdések](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) méretét, az átviteli sebesség és a sávszélesség a prémium szintű gyorsítótárak kapcsolatos további részletekért.
 
 <!-- IMAGES -->
 [cache-starter-application]: ./media/cache-web-app-howto/cache-starter-application.png

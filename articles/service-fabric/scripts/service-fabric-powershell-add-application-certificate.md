@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - alkalmazás tanúsítvány hozzáadása a fürthöz |} Microsoft Docs"
-description: "Az Azure PowerShell-parancsfájl minták – az alkalmazás tanúsítványának felvétele a Service Fabric-fürt."
+title: "PowerShell parancsfájl minta - aaaAzure alkalmazás cert tooa fürt hozzáadása |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minták – az alkalmazás tanúsítvány tooa Service Fabric-fürt hozzáadása."
 services: service-fabric
 documentationcenter: 
 author: rwike77
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/20/2017
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 9ccd6bb0458bc03e52103fa70cad26bd6bf98bd5
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: aba62598e2e4775012f89b5070bef5e61aec64f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-an-application-certificate-to-a-service-fabric-cluster"></a>Az alkalmazás tanúsítványának felvétele a Service Fabric-fürt
+# <a name="add-an-application-certificate-tooa-service-fabric-cluster"></a>Az alkalmazás tanúsítvány tooa Service Fabric-fürt hozzáadása
 
-Ez a parancsfájlpélda létrehoz egy önaláírt tanúsítványt a megadott Azure-tárolóban, és a Service Fabric-fürt összes csomópontjára telepíti azt. A tanúsítvány is letölti egy helyi mappába. A letöltött tanúsítvány neve megegyezik a key vault a tanúsítvány neve. A paraméterek testreszabása, igény szerint.
+Ez a parancsfájlpélda hoz létre egy önaláírt tanúsítványt hello megadott az Azure key vault, és telepíti azt tooall hello Service Fabric-fürt csomópontja. hello tanúsítvány is letölti tooa helyi mappát. hello letöltött tanúsítvány hello neve van hello ugyanaz, mint a key vaultban hello hello tanúsítvány hello neve. Hello paraméterek testreszabása, igény szerint.
 
-Szükség esetén telepítse az Azure PowerShell található utasítás használatával a [Azure PowerShell útmutató](/powershell/azure/overview) , majd futtassa `Login-AzureRmAccount` kapcsolat létrehozása az Azure-ral. 
+Szükség esetén telepítse az Azure PowerShell használatával hello utasítás található hello hello [Azure PowerShell útmutató](/powershell/azure/overview) , majd futtassa `Login-AzureRmAccount` toocreate Azure kapcsolatot. 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "egy alkalmazás-tanúsítvány hozzáadása a fürthöz")]
+[!code-powershell[main](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "Add an application certificate tooa cluster")]
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-Ezt a parancsfájlt az alábbi parancsokat használja: minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello: hello tábla minden egyes parancsa toocommand adott dokumentáció hivatkozásokat tartalmaz.
 
 | Parancs | Megjegyzések |
 |---|---|
-| [Adja hozzá AzureRmServiceFabricApplicationCertificate](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | Új alkalmazás tanúsítvány hozzáadása a virtuálisgép-méretezési csoport a fürtöt alkotó.  |
+| [Adja hozzá AzureRmServiceFabricApplicationCertificate](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | Adjon hozzá egy új alkalmazás tanúsítvány toohello virtuálisgép-méretezési hello fürtöt alkotó.  |
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-Azure Service Fabric további Azure Powershell-példák találhatók a [Azure PowerShell-példák](../service-fabric-powershell-samples.md).
+Azure Service Fabric további Azure Powershell-példák találhatók hello [Azure PowerShell-példák](../service-fabric-powershell-samples.md).

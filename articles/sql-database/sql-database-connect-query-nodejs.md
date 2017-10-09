@@ -1,6 +1,6 @@
 ---
-title: "Node.js használata Azure SQL Database-adatbázis lekérdezéséhez | Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan használhatja a Node.js-t egy Azure SQL Database-adatbázishoz csatlakozó program létrehozásához, és hogyan hajthat végre lekérdezést Transact-SQL-utasításokkal."
+title: aaaUse Node.js tooquery Azure SQL Database |} Microsoft Docs
+description: "Ez a témakör bemutatja, hogyan toouse Node.js toocreate egy programot, amely kapcsolatot tooan Azure SQL Database és a lekérdezés Transact-SQL utasítás használatával."
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,50 +15,50 @@ ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 07/05/2017
 ms.author: carlrab
-ms.openlocfilehash: 1907a95df9132c059d7985b6d5cd913536bf3403
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3870130a486c218eafeb9cf792a4275de7fd6551
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-nodejs-to-query-an-azure-sql-database"></a>Node.js használata Azure SQL Database-adatbázis lekérdezéséhez
+# <a name="use-nodejs-tooquery-an-azure-sql-database"></a>Node.js tooquery Azure SQL-adatbázis használata
 
-Ez a gyors üzembehelyezési oktatóanyag ismerteti, hogyan használható a [Node.js](https://nodejs.org/en/) egy olyan program létrehozásához, amely Azure SQL Database-adatbázishoz csatlakozik, és hogyan lehet Transact-SQL-utasítások használatával adatokat lekérdezni.
+Gyors üzembe helyezési oktatóanyag bemutatja, hogyan toouse [Node.js](https://nodejs.org/en/) toocreate egy program tooconnect tooan Azure SQL adatbázis- és a Transact-SQL utasítás tooquery adatok felhasználásával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A gyors üzembehelyezési útmutató elvégzéséhez győződjön meg arról, hogy rendelkezik az alábbiakkal:
+toocomplete a gyors üzembe helyezési útmutató, győződjön meg arról, hogy a következő hello:
 
-- Azure SQL Database-adatbázis. Ez a rövid útmutató az alábbi rövid útmutatók egyikében létrehozott erőforrásokat használja: 
+- Azure SQL Database-adatbázis. A gyors üzembe helyezési hoznak létre az egyik a gyors üzembe helyezések hello erőforrást használ: 
 
    - [DB létrehozása – portál](sql-database-get-started-portal.md)
    - [DB létrehozása – CLI](sql-database-get-started-cli.md)
    - [DB létrehozása – PowerShell](sql-database-get-started-powershell.md)
 
-- A gyors üzembe helyezési útmutatóhoz használt számítógép nyilvános IP-címére vonatkozó [kiszolgálószintű tűzfalszabály](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).
+- A [kiszolgálószintű tűzfalszabály](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) hello nyilvános IP-cím hello számítógép használja a gyors üzembe helyezési útmutató.
 - Telepítette a Node.js-t és az operációs rendszerének megfelelő kapcsolódó szoftvereket.
-    - **MacOS**: Telepítse a Homebrew-t és a Node.js-t, majd telepítse az ODBC-illesztőt és az SQLCMD-t. Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/mac/).
-    - **Ubuntu**: Telepítse a Node.js-t, majd telepítse az ODBC-illesztőt és az SQLCMD-t. Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/ubuntu/).
-    - **Windows**: Telepítse a Chocolatey-t és a Node.js-t, majd telepítse az ODBC-illesztőt és az SQL CMD-t. Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/windows/).
+    - **MacOS**: Homebrew és a Node.js telepítése, és telepítse a hello ODBC-illesztőprogram és az Sqlcmd ESZKÖZRE. Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/mac/).
+    - **Ubuntu**: telepítse a Node.js, és telepítse a hello ODBC-illesztőprogram és az Sqlcmd ESZKÖZRE. Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/ubuntu/).
+    - **Windows**: Chocolatey és a Node.js telepítése, és telepítse a hello ODBC-illesztőprogram és az SQL cmd Lásd az [1.2 és 1.3 lépést](https://www.microsoft.com/sql-server/developer-get-started/node/windows/).
 
 ## <a name="sql-server-connection-information"></a>Az SQL-kiszolgáló kapcsolatadatai
 
-Kérje le az Azure SQL-adatbázishoz való csatlakozáshoz szükséges kapcsolatadatokat. A későbbi eljárásokban szüksége lesz a teljes kiszolgálónévre, az adatbázis nevére és a bejelentkezési adatokra.
+Hello kapcsolat szükséges információkat tooconnect toohello Azure SQL adatbázis beolvasása. Hello teljes kiszolgálónév, az adatbázisnév és a bejelentkezési adatok a következő eljárások hello kell.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. Válassza az **SQL-adatbázisok** elemet a bal oldali menüben, majd kattintson az új adatbázisra az **SQL-adatbázisok** oldalon. 
-3. Az adatbázis **Áttekintés** oldalán tekintse meg a teljes kiszolgálónevet, amint az az alábbi képen látható. Ha a mutatót a kiszolgáló neve fölé viszi, megjelenik a **Kattintson a másoláshoz** lehetőség. 
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. Válassza ki **SQL-adatbázisok** hello bal oldali menüben kattintson a hello adatbázis **SQL-adatbázisok** lap. 
+3. A hello **áttekintése** lap az adatbázishoz, tekintse át hello teljesen minősített kiszolgáló neve, ahogy az a következő kép hello. Hello server name toobring hello másolatot is mutat **toocopy kattintson** lehetőséget. 
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. Amennyiben elfelejtette Azure SQL Database-kiszolgálója bejelentkezési adatait, lépjen az SQL Database-kiszolgáló oldalára, és itt megtudhatja a kiszolgáló rendszergazdájának nevét, valamint szükség esetén visszaállíthatja a jelszót.
+4. Ha elfelejtette a hello bejelentkezési adatok az Azure SQL Database-kiszolgáló, keresse meg a toohello SQL adatbázis-kiszolgáló lapon tooview hello server admin neve és, ha szükséges, állítsa vissza a hello jelszót.
 
 > [!IMPORTANT]
-> Rendelkeznie kell egy tűzfalszabállyal azon számítógép nyilvános IP-címéhez, amelyen ezt az oktatóanyagot elvégzi. Ha más számítógépet használ, vagy más nyilvános IP-címe van, hozzon létre egy [kiszolgálószintű tűzfalszabályt az Azure Portalon](sql-database-get-started-portal.md#create-a-server-level-firewall-rule). 
+> Rendelkeznie kell egy tűzfalszabályt hello nyilvános IP-cím hello számítógép, amelyen ez az oktatóanyag végrehajtása helyen. Ha egy másik számítógépen vagy egy másik nyilvános IP-címet, hozzon létre egy [kiszolgálószintű tűzfal szabály használatával hello Azure-portálon](sql-database-get-started-portal.md#create-a-server-level-firewall-rule). 
 
 ## <a name="create-a-nodejs-project"></a>Node.js-projekt létrehozása
 
-Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Keresse meg a létrehozott mappát, és futtassa a következő parancsot:
+Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Keresse meg a létrehozott, és futtassa a következő parancs hello toohello mappába:
 
     
     npm init -y
@@ -66,17 +66,17 @@ Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Kere
     npm install async
     
 
-## <a name="insert-code-to-query-sql-database"></a>Kód beszúrása SQL-adatbázis lekérdezéséhez
+## <a name="insert-code-tooquery-sql-database"></a>Helyezze be a kódját tooquery SQL-adatbázis
 
 1. A fejlesztői környezetben vagy egy tetszőleges szövegszerkesztőben hozzon létre egy **sqltest.js** nevű új fájlt.
 
-2. Cserélje le a tartalmat a következő kódra, és adja meg a kiszolgáló és az adatbázis megfelelő adatait, valamint a felhasználót és a jelszót.
+2. Cserélje ki hello tartalmát hello az alábbi kód, és adja hozzá a megfelelő értékeket hello a kiszolgáló, az adatbázis, a felhasználó és a jelszavát.
 
    ```js
    var Connection = require('tedious').Connection;
    var Request = require('tedious').Request;
 
-   // Create connection to database
+   // Create connection toodatabase
    var config = 
       {
         userName: 'someuser', // update me
@@ -90,7 +90,7 @@ Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Kere
       }
    var connection = new Connection(config);
 
-   // Attempt to connect and execute queries if connection goes through
+   // Attempt tooconnect and execute queries if connection goes through
    connection.on('connect', function(err) 
       {
         if (err) 
@@ -105,7 +105,7 @@ Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Kere
     );
 
    function queryDatabase()
-      { console.log('Reading rows from the Table...');
+      { console.log('Reading rows from hello Table...');
 
           // Read all rows from table
         request = new Request(
@@ -126,23 +126,23 @@ Nyisson meg egy parancssort, és hozzon létre egy *sqltest* nevű mappát. Kere
       }
 ```
 
-## <a name="run-the-code"></a>A kód futtatása
+## <a name="run-hello-code"></a>Hello kód futtatása
 
-1. Futtassa az alábbi parancsokat a parancssorban:
+1. Hello parancssorban futtassa a következő parancsok hello:
 
    ```js
    node sqltest.js
    ```
 
-2. Győződjön meg arról, hogy a parancssori felület visszaadta az első 20 sort, majd zárja be az alkalmazásablakot.
+2. Győződjön meg arról, hogy hello felső 20 sorokat ad vissza, és zárja be hello alkalmazás ablak.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- További információ az [SQL Serverhez készült Microsoft Node.js-illesztőről](https://docs.microsoft.com/sql/connect/node-js/node-js-driver-for-sql-server/)
-- További információ [az Azure SQL Database-adatbázisokhoz való csatlakozásról és a .NET Core-ral való lekérdezésükről](sql-database-connect-query-dotnet-core.md) Windows/Linux/macOS rendszeren.  
-- További információ [a .NET Core használatának első lépéseiről Windows/Linux/macOS rendszeren a parancssorral](/dotnet/core/tutorials/using-with-xplat-cli).
-- További információ [az első Azure SQL Database-adatbázisának SSMS-sel való megtervezéséről](sql-database-design-first-database.md) és [az első Azure SQL Database-adatbázisának .NET-tel való megtervezéséről](sql-database-design-first-database-csharp.md).
-- További információ [az SSMS-hez való csatlakozásról és a lekérdezésről](sql-database-connect-query-ssms.md)
-- További információ [a Visual Studio Code-hoz való csatlakozásról és a lekérdezésről](sql-database-connect-query-vscode.md)
+- További tudnivalók: hello [Microsoft Node.js Driver for SQL Server](https://docs.microsoft.com/sql/connect/node-js/node-js-driver-for-sql-server/)
+- Ismerje meg, hogyan túl[kapcsolódás és lekérdezés az Azure SQL-adatbázis használata a .NET core](sql-database-connect-query-dotnet-core.md) a Windows/Linux/macOS.  
+- További tudnivalók [Ismerkedés a Windows/Linux/macOS hello parancssor használatával a .NET Core](/dotnet/core/tutorials/using-with-xplat-cli).
+- Ismerje meg, hogyan túl[tervezése az első Azure SQL-adatbázis SSMS használatával](sql-database-design-first-database.md) vagy [tervezése az első Azure SQL Database adatbázishoz .NET használatával](sql-database-design-first-database-csharp.md).
+- Ismerje meg, hogyan túl[kapcsolódás és lekérdezés ssms alkalmazásával](sql-database-connect-query-ssms.md)
+- Ismerje meg, hogyan túl[kapcsolódás és lekérdezés Visual Studio Code](sql-database-connect-query-vscode.md).
 
 

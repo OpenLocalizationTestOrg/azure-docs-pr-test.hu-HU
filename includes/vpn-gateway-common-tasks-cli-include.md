@@ -1,6 +1,6 @@
-### <a name="to-view-local-network-gateways"></a>Helyi hálózati átjárók megtekintése
+### <a name="tooview-local-network-gateways"></a>tooview helyi hálózati átjáró
 
-A helyi hálózati átjárók listájának megtekintéséhez használja az [az network local-gateway list](https://docs.microsoft.com/cli/azure/network/local-gateway#list) parancsot.
+hello helyi hálózati átjáró, hello használja listáját tooview [az hálózati helyi-átjáró lista](https://docs.microsoft.com/cli/azure/network/local-gateway#list) parancsot.
 
 ```azurecli
 az network local-gateway list --resource-group TestRG1
@@ -10,16 +10,16 @@ az network local-gateway list --resource-group TestRG1
 
 [!INCLUDE [modify-gateway-IP](vpn-gateway-modify-lng-gateway-ip-cli-include.md)]
 
-### <a name="to-verify-the-shared-key-values"></a>A megosztottkulcs-értékek ellenőrzése
+### <a name="tooverify-hello-shared-key-values"></a>tooverify hello megosztott kulcs értékeket
 
-Ellenőrizze, hogy a megosztott kulcs megegyezik-e a VPN-eszköze konfigurálásakor használt értékkel. Ha nem, futtassa a kapcsolatot újra az eszközből származó értékkel, vagy frissítse az eszközt a visszaadott értékkel. Az értékeknek meg kell egyezniük. A megosztott kulcs megtekintéséhez használja az [az network vpn-connection-list](https://docs.microsoft.com/cli/azure/network/vpn-connection#list) parancsot.
+Győződjön meg arról, hogy megosztott hello kulcsérték hello ugyanazt az értéket, amelyet a VPN-eszköz konfigurációjában használt. Ha nem, vagy futtassa újra hello értéket hello, vagy frissítés hello eszköz használata a hello visszatérési értéket hello hello kapcsolat. hello az értékeknek egyezniük kell. tooview hello megosztott kulcs, használjon hello [az hálózati vpn-kapcsolat-lista](https://docs.microsoft.com/cli/azure/network/vpn-connection#list).
 
 ```azurecli
 az network vpn-connection shared-key show --connection-name VNet1toSite2 --resource-group TestRG1
 ```
-### <a name="to-view-the-vpn-gateway-public-ip-address"></a>A VPN Gateway nyilvános IP-címének megtekintése
+### <a name="tooview-hello-vpn-gateway-public-ip-address"></a>tooview hello VPN-átjáró nyilvános IP-cím
 
-A virtuális hálózati átjáró IP-címét az [az network public-ip list](https://docs.microsoft.com/cli/azure/network/public-ip#list) paranccsal keresheti meg. Az olvashatóság érdekében a jelen példa kimenete táblázatos formában jeleníti meg a nyilvános IP-címek listáját.
+toofind hello nyilvános IP-címet a virtuális hálózati átjáró használata hello [az nyilvános ip-lista](https://docs.microsoft.com/cli/azure/network/public-ip#list) parancsot. Olvasás, ehhez a példához hello kimeneti rendszer formázott toodisplay hello táblázatos formátumú nyilvános IP-címeket.
 
 ```azurecli
 az network public-ip list --resource-group TestRG1 --output table

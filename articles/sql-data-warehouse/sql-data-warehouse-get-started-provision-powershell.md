@@ -1,5 +1,5 @@
 ---
-title: "SQL Data Warehouse létrehozása PowerShell használatával | Microsoft Docs"
+title: "az SQL Data Warehouse aaaCreate PowerShell használatával |} Microsoft Docs"
 description: "SQL Data Warehouse létrehozása PowerShell használatával"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: a763f1c600c1a3f37cb565a8eb7db3c3f27dcf75
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8af29ec285a11285785ab5474e4dfc8c36bc3ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-sql-data-warehouse-using-powershell"></a>SQL Data Warehouse létrehozása PowerShell használatával
 > [!div class="op_single_selector"]
@@ -29,15 +29,15 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Ebből a cikkből megtudhatja, hogyan hozható létre az SQL Data Warehouse a PowerShell használatával.
+Ez a cikk bemutatja, hogyan toocreate egy SQL Data Warehouse PowerShell használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A kezdéshez a következők szükségesek:
+tooget elindult, lesz szüksége:
 
-* **Azure-fiók**: A fiók létrehozásával kapcsolatban lásd: [Ingyenes Azure-fiók létrehozása][Azure Free Trial] vagy [Havi Azure-kredit a Visual Studio-előfizetőknek][MSDN Azure Credits].
-* **Azure SQL Server**: Az [Azure SQL Database-adatbázis létrehozása az Azure Portal használatával][Create an Azure SQL database in the Azure Portal] vagy az [Azure SQL Database-adatbázis létrehozása a PowerShell használatával][Create an Azure SQL database with PowerShell] című cikkekben talál további információt.
-* **Erőforráscsoport**: Használja ugyanazt az erőforráscsoportot, mint az Azure SQL-kiszolgáló, vagy tekintse át az [erőforráscsoportok létrehozásával foglalkozó](../azure-resource-manager/resource-group-portal.md) cikket.
-* **PowerShell 1.0.3-as vagy újabb verzió**: A verziószámot a **Get-Module -ListAvailable -Name Azure** futtatásával ellenőrizheti.  A legújabb verziót a [Microsoft Webplatform-telepítőből][Microsoft Web Platform Installer] telepítheti.  A legújabb verzió telepítésével kapcsolatban lásd: [How to install and configure Azure PowerShell][How to install and configure Azure PowerShell] (Az Azure PowerShell telepítése és konfigurálása).
+* **Azure-fiók**: keresse fel [Azure ingyenes próbaverzió] [ Azure Free Trial] vagy [MSDN Azure-Krediteket] [ MSDN Azure Credits] toocreate fiókkal.
+* **Azure SQL-kiszolgáló**: lásd: [Azure SQL-adatbázis létrehozása az Azure portál hello] [ Create an Azure SQL database in hello Azure Portal] vagy [Azure SQL-adatbázis létrehozása a PowerShell használatával] [ Create an Azure SQL database with PowerShell] további részleteket.
+* **Erőforráscsoport**: hello azonos erőforrás csoport és az Azure SQL server, vagy tekintse meg használjon [hogyan toocreate erőforráscsoport](../azure-resource-manager/resource-group-portal.md).
+* **PowerShell 1.0.3-as vagy újabb verzió**: A verziószámot a **Get-Module -ListAvailable -Name Azure** futtatásával ellenőrizheti.  a legújabb verzió hello telepíthető [Microsoft Webplatform-telepítő][Microsoft Web Platform Installer].  Hello legújabb verzió telepítésével kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt][How tooinstall and configure Azure PowerShell].
 
 > [!NOTE]
 > A SQL Data Warehouse létrehozása egy új számlázható szolgáltatás létrejöttét eredményezheti.  További információ a díjszabásról: [Az SQL Data Warehouse díjszabása][SQL Data Warehouse pricing].
@@ -46,17 +46,17 @@ A kezdéshez a következők szükségesek:
 
 ## <a name="create-a-sql-data-warehouse"></a>SQL Data Warehouse létrehozása
 1. Nyissa meg a Windows PowerShellt.
-2. A parancsmag futtatásával jelentkezzen be az Azure Resource Managerbe.
+2. Ez a parancsmag toologin tooAzure erőforrás-kezelő futtatni.
 
     ```Powershell
     Login-AzureRmAccount
     ```
-3. Válassza ki a jelenlegi munkamenethez használni kívánt előfizetést.
+3. Válassza ki a jelenlegi munkamenethez használni kívánt toouse hello előfizetést.
 
     ```Powershell
     Get-AzureRmSubscription    -SubscriptionName "MySubscription" | Select-AzureRmSubscription
     ```
-4. Hozza létre az adatbázist. Ebben a példában egy adatbázist hozunk létre „mynewsqldw” néven, „DW400” szintű szolgáltatási céllal az „sqldwserver1” elnevezésű kiszolgálóra, amely a „mywesteuroperesgp1” nevű erőforráscsoportban található.
+4. Hozza létre az adatbázist. Ebben a példában a "mynewsqldw", objektív szolgáltatásiszint "DW400", "sqldwserver1", amely "mywesteuroperesgp1" nevű erőforráscsoportban hello elnevezésű toohello server nevű adatbázist hoz létre.
 
    ```Powershell
    New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse" -CollationName "SQL_Latin1_General_CP1_CI_AS" -MaxSizeBytes 10995116277760
@@ -64,23 +64,23 @@ A kezdéshez a következők szükségesek:
 
 A szükséges paraméterek a következők:
 
-* **RequestedServiceObjectiveName**: A kért [DWU][DWU]-mennyiség.  A támogatott értékek a következők: DW100, DW200, DW300, DW400, DW500, DW600, DW1000, DW1200, DW1500, DW2000, DW3000 és DW6000.
-* **DatabaseName**: A létrehozandó SQL Data Warehouse neve.
-* **ServerName**: A létrehozás során használt kiszolgáló neve (V12-nek kell lennie).
-* **ResourceGroupName**: A használt erőforráscsoport.  Az előfizetésben elérhető erőforráscsoportok kereséséhez használja a Get-AzureResource parancsot.
-* **Edition**: Egy SQL Data Warehouse létrehozásához a „DataWarehouse” értéket kell megadni.
+* **RequestedServiceObjectiveName**: hello mennyisége [DWU] [ DWU] kért.  A támogatott értékek a következők: DW100, DW200, DW300, DW400, DW500, DW600, DW1000, DW1200, DW1500, DW2000, DW3000 és DW6000.
+* **DatabaseName**: hello SQL Data Warehouse létrehozása hello nevét.
+* **Kiszolgálónév**: hello hello kiszolgáló nevét, amely a létrehozásához használ (12-es kell lennie).
+* **ResourceGroupName**: A használt erőforráscsoport.  elérhető erőforráscsoportok toofind előfizetése használja a Get-azureresource parancsot.
+* **Edition**: kell lennie "DataWarehouse" toocreate SQL Data Warehouse.
 
 A választható paraméterek a következők:
 
-* **CollationName**: Ha nincs megadva, az alapértelmezett rendezés: SQL_Latin1_General_CP1_CI_AS.  Az adatbázisok rendezése nem módosítható.
-* **MaxSizeBytes**: Alapértelmezés szerint az adatbázisok maximális mérete 10 GB.
+* **%{Collationname/**: hello alapértelmezett rendezését, ha nincs megadva az SQL_Latin1_General_CP1_CI_AS.  Az adatbázisok rendezése nem módosítható.
+* **MaxSizeBytes**: hello alapértelmezett maximális adatbázis mérete 10 GB-os.
 
-A paraméterbeállításokkal kapcsolatos további információk: [New-AzureRmSqlDatabase][New-AzureRmSqlDatabase] és [Create Database (Azure SQL Data Warehouse)][Create Database (Azure SQL Data Warehouse)] (Adatbázis létrehozása (Azure SQL Data Warehouse)).
+További hello paraméter lehetőségekről további információkért lásd: [New-AzureRmSqlDatabase] [ New-AzureRmSqlDatabase] és [Create Database (Azure SQL Data Warehouse)][Create Database (Azure SQL Data Warehouse)].
 
 ## <a name="next-steps"></a>Következő lépések
-Miután az SQL Data Warehouse kiépítése befejeződött, [mintaadatokat tölthet be][loading sample data], vagy további részleteket tudhat meg a [fejlesztés][develop], [betöltés][load] vagy [áttelepítés][migrate] mikéntjéről.
+Miután befejezte az SQL Data Warehouse kiépítése azt szeretné, hogy tootry [mintaadatokat] [ loading sample data] vagy részleteket tudhat meg túl[fejlesztése] [ develop] , [betölteni][load], vagy [áttelepítése][migrate].
 
-Ha érdekli az SQL Data Warehouse programozott módon való kezelése, tekintse meg a [PowerShell-parancsmagok és a REST API-k][PowerShell cmdlets and REST APIs] használatával kapcsolatos cikkünket.
+Ha szeretné használni az toomanage SQL Data Warehouse programozott módon, tekintse meg a hogyan toouse [PowerShell-parancsmagok és a REST API-k][PowerShell cmdlets and REST APIs].
 
 <!--Image references-->
 
@@ -93,11 +93,11 @@ Ha érdekli az SQL Data Warehouse programozott módon való kezelése, tekintse 
 [PowerShell cmdlets and REST APIs]: ./sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: ../sql-database-configure-firewall-settings.md
 
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
-[how to create a SQL Data Warehouse from the Azure Portal]: ./sql-data-warehouse-get-started-provision.md
-[Create an Azure SQL database in the Azure Portal]: ../sql-database/sql-database-get-started.md
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[how toocreate a SQL Data Warehouse from hello Azure Portal]: ./sql-data-warehouse-get-started-provision.md
+[Create an Azure SQL database in hello Azure Portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-get-started-powershell.md
-[how to create a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
+[how toocreate a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
 
 <!--MSDN references-->
 [MSDN]: https://msdn.microsoft.com/library/azure/dn546722.aspx

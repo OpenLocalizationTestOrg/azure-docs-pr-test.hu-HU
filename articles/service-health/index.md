@@ -1,5 +1,5 @@
 ---
-title: "Azure Resource Health – oktatóanyagok | Microsoft Docs"
+title: "aaaAzure erőforrásállapot - oktatóanyag |} Microsoft Docs"
 description: 
 services: Resource health
 author: bernardm
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 07/07/2017
 ms.author: bernardm
-ms.openlocfilehash: 1452c1dd56829d162d464c4a359fa8c86ce74a6b
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 53a4c26c579a4201965add2117b5437c91fc8793
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-health-documentation"></a>Azure Service Health dokumentációja
 

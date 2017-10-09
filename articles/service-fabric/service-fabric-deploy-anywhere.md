@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric-fürtök létrehozása a Windows Server és Linux |} Microsoft Docs"
-description: "Futtassa a Windows Server és Linux, ami azt jelenti, képes lesz központi telepítéséhez és a Service Fabric alkalmazások üzemeltetését bárhol Service Fabric-fürtök futtathatja a Windows Server vagy Linux rendszerű."
+title: "a Windows Server és Linux aaaCreate Azure Service Fabric-fürtök |} Microsoft Docs"
+description: "Futtassa a Windows Server és Linux, ami azt jelenti, hogy a Service Fabric-fürtök fogja tudni toodeploy és a gazdagép Service Fabric-alkalmazások bárhol is futtathatja a Windows Server vagy Linux rendszerű."
 services: service-fabric
 documentationcenter: .net
 author: Chackdan
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/08/2017
 ms.author: chackdan
-ms.openlocfilehash: dcc7c088d7b6db7af334977315f122dca3c17f69
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 46d5f3d019339c57a0024f5a9d47d9018cca01a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-service-fabric-clusters-on-windows-server-or-linux"></a>Service Fabric-fürtök létrehozása a Windows Server vagy Linux
-Az Azure Service Fabric-fürt olyan hálózathoz csatlakozó virtuális vagy fizikai gépek, amelybe a mikroszolgáltatások telepíteni és felügyelni. Egy számítógép vagy virtuális Gépet, amely egy fürt része egy fürtcsomópont neve. Fürtök méretezhető, több ezer. Ha új csomópont hozzáadása a fürthöz, a Service Fabric újra egyensúlyba hozza a szolgáltatás partíció replikákat és a példányt a növekvő számának a csomópontok között. A teljes javítja az alkalmazások teljesítményéről, és csökkenti a versengés a memória a hozzáférést. Ha a fürt a csomópontok nem használ a hatékony, csökkentheti a fürtben található csomópontok számát. A Service Fabric újra újra egyensúlyba hozza a partíció replikákat és a példány között jobb kihasználása érdekében a hardver minden egyes csomóponton csomópontok csökkent száma.
+Az Azure Service Fabric-fürt olyan hálózathoz csatlakozó virtuális vagy fizikai gépek, amelybe a mikroszolgáltatások telepíteni és felügyelni. Egy számítógép vagy virtuális Gépet, amely egy fürt része egy fürtcsomópont neve. Fürt a csomópontok toothousands méretezheti. Ha új csomópontok toohello fürt, a Service Fabric újra egyensúlyba hozza hello szolgáltatás partíció replikák és példányok csomópontok száma nagyobb hello között. Általános javítja az alkalmazások teljesítménye, és csökkenti a versengés a hozzáférési toomemory. Hello fürt csomópontja hello hatékonyan nincsenek használatban, ha hello fürtben található csomópontok számának hello csökkenthető. A Service Fabric újra újra egyensúlyba hozza hello partíció replikákat, és példányok között csomópontok toomake száma csökkent hello jobban használja hello hardver minden egyes csomóponton.
 
-A Service Fabric lehetővé teszi, hogy a virtuális gépek vagy a Windows Server vagy Linux rendszerű számítógépeken a Service Fabric-fürtök létrehozásához. Ez azt jelenti, hogy tudja, telepítéséhez és a Service Fabric-alkalmazások futtatása bármely környezetben, összekapcsolt Windows Server vagy Linux rendszerű számítógépek esetében, a kell azt a helyszíni Microsoft Azure vagy bármely felhőalapú szolgáltatóhoz.
+A Service Fabric lehetővé teszi, hogy a virtuális gépek vagy a Windows Server vagy Linux rendszerű számítógépeken a Service Fabric-fürtök hello létrehozásához. Ez azt jelenti, hogy képes toodeploy, és a Service Fabric-alkalmazások futtatása bármely környezetben, összekapcsolt Windows Server vagy Linux rendszerű számítógépek esetében, akkor a helyszíni Microsoft Azure vagy bármely felhőalapú szolgáltatóhoz.
 
 ## <a name="create-service-fabric-clusters-on-azure"></a>Az Azure Service Fabric-fürtök létrehozása
-Fürt létrehozása az Azure-on keresztül egy erőforrás-modellje sablon vagy az Azure-portálon végezhető el. Olvasási [a Service Fabric-fürt létrehozása a Resource Manager-sablon használatával](service-fabric-cluster-creation-via-arm.md) vagy [a Service Fabric-fürt létrehozása az Azure portálról](service-fabric-cluster-creation-via-portal.md) további információt.
+Fürt létrehozása az Azure-on vagy erőforrás-modellje sablon vagy hello Azure-portálon keresztül végezhető el. Olvasási [a Service Fabric-fürt létrehozása a Resource Manager-sablon használatával](service-fabric-cluster-creation-via-arm.md) vagy [hello Azure-portálon a Service Fabric-fürt létrehozása](service-fabric-cluster-creation-via-portal.md) további információt.
 
 ## <a name="supported-operating-systems-for-clusters-on-azure"></a>Azure-fürtök támogatott operációs rendszerek
-Megtörténik az ilyen operációs rendszert futtató virtuális gépeken futó fürtök létrehozásához:
+Az ilyen operációs rendszert futtató virtuális gépeken futó képes toocreate fürtök áll:
 
 * Windows Server 2012 R2
 * Windows Server 2016 
 * Linux Ubuntu 16.04 (a nyilvános előzetes verzió) 
 
 ## <a name="create-service-fabric-standalone-clusters-on-premises-or-with-any-cloud-provider"></a>A Service Fabric önálló helyszíni fürtök létrehozása vagy bármely felhőalapú szolgáltatóhoz
-Service Fabric biztosít a telepítési csomagot hozhat létre önálló Service Fabric fürt helyszíni vagy bármely felhőalapú szolgáltató
+A Service Fabric egy telepítési csomagot biztosít, akkor toocreate különálló Service Fabric fürt a helyszíni vagy bármely felhőalapú szolgáltató
 
 A különálló service fabric beállításával kapcsolatos további információkat a Windows Server-fürtök, olvassa el a [Service Fabric-fürt létrehozása a Windows Server](service-fabric-cluster-creation-for-windows-server.md)
 
 ### <a name="any-cloud-deployments-vs-on-premises-deployments"></a>A felhő telepítések és a helyszíni központi telepítések összehasonlítása
-A Service Fabric-fürtöt létrehozni a helyszíni virtuális gépek vannak beállítva az Ön által választott bármely felhő fürt létrehozásának folyamatán hasonlít. A kezdeti a virtuális gépek kiépítésének lépéseit a felhőbeli szolgáltató vagy a helyszíni környezetben használt vonatkozik. Miután közöttük engedélyezett hálózati kapcsolattal rendelkező virtuális gépek halmaza, majd állítsa be a Service Fabric-csomag a lépéseket a fürt beállítások szerkesztése, és futtassa a fürt létrehozása és parancsfájlok azonosak. Ez biztosítja, hogy a Tudásbázis és üzemeltetése és kezelése a Service Fabric-fürtök élménye átruházható céloz meg új üzemeltetési környezetekben kiválasztásakor.
+hello a Service Fabric-fürt létrehozása a helyszínen történik, hasonló toohello folyamat a fürt létrehozása az Ön által választott bármely felhő virtuális gépek vannak beállítva. hello kezdeti lépéseket tooprovision hello virtuális gépek hello felhő szolgáltató vagy a helyszíni környezetben használt vonatkozik. Miután rendelkező virtuális gépek halmaza közöttük, engedélyezve van a hálózati kapcsolat hello lépéseket tooset hello Service Fabric-csomag mentése, hello fürt beállítások szerkesztése, majd futtatható hello fürt létrehozása és felügyeleti parancsfájlok megegyezik. Ez biztosítja, hogy a Tudásbázis és üzemeltetése és kezelése a Service Fabric-fürtök élménye átruházható tootarget új üzemeltetési környezetekben kiválasztásakor.
 
 ### <a name="benefits-of-creating-standalone-service-fabric-clusters"></a>Különálló Service Fabric-fürtök létrehozása előnyei
-* Szabadon válassza ki azt a felhő szolgáltatót a fürt üzemeltetéséhez.
-* A Service Fabric alkalmazásai, egyszer, is futtatható több üzemeltetési környezetekben, ahol minimális számára nincs változás.
-* A Service Fabric-alkalmazások ismerete a üzemeltetési környezetek másik végzi.
-* Működési élménye futtatásáért és felügyeletéért felelős a Service Fabric fürt végzi keresztül egyik környezetből a másikba.
+* Szabad toochoose áll a felhőbeli szolgáltató toohost a fürthöz.
+* Service Fabric alkalmazásai, egyszer, a minimális toono változások több üzemeltetési környezetekben is futtatható.
+* A Service Fabric-alkalmazások ismerete végzi, egy üzemeltetési környezet tooanother a.
+* Működési élménye futtatásáért és felügyeletéért felelős a Service Fabric-környezetek tooanother a fürtök keresztül végzi.
 * Széles körű felhasználói reach unbounded üzemeltetési környezet megkötések.
-* Megbízhatóság és a széles körű kimaradások elleni védelem egy további réteget létezik, mert áthelyezheti a szolgáltatások egy másik központi telepítési környezet egy blackout adatszolgáltató center és a felhő-e.
+* Megbízhatóság és a széles körű kimaradások elleni védelem egy további réteget létezik, mert hello szolgáltatások átvitele tooanother környezet, ha egy adott adatközpont vagy a felhőbeli szolgáltatónak van-e egy blackout.
 
 ## <a name="supported-operating-systems-for-standalone-clusters"></a>Támogatott operációs rendszerek különálló fürtök
-Megtörténik a fürtök létrehozását a virtuális gépek vagy ezek operációs rendszert futtató számítógépeken:
+A virtuális gépek vagy ezek operációs rendszert futtató számítógépek képesek toocreate fürtök áll:
 
 * Windows Server 2012 R2
 * Windows Server 2016 
 * Linux (hamarosan elérhető)
 
 ## <a name="advantages-of-service-fabric-clusters-on-azure-over-standalone-service-fabric-clusters-created-on-premises"></a>Különálló Service Fabric-fürtök keresztül Azure Service Fabric-fürtök előnyei helyszíni létrehozása
-A helyszíni előnyöket lehetőséget, így ha az adott funkciókra van szüksége a fürtöket futtató nincs Azure-on futó Service Fabric-fürtök biztosít, akkor javasoljuk, hogy az Azure-on futtatja. Az Azure a integráció más Azure-szolgáltatások és szolgáltatások, ami lehetővé teszi a műveletek és a fürt felügyeletének egyszerűbb és megbízhatóbb nyújtunk.
+Azure-on futó Service Fabric-fürtök előnyökkel felett hello helyszíni beállítást, így ha a fürtöket futtató az igény szerinti nem rendelkezik, majd javasoljuk, hogy az Azure-on futtatja. Az Azure a integráció más Azure-szolgáltatások és szolgáltatások, amely lehetővé teszi a műveletek és a felügyeleti fürt hello egyszerűbb és megbízhatóbb nyújtunk.
 
-* **Azure-portálon:** Azure-portálon megkönnyíti, hogy létrehozásához és kezeléséhez a fürtöket.
-* **Az Azure Resource Manager:** használja az Azure Resource Manager lehetővé teszi, hogy a egységet a fürt által használt erőforrások kezelésének és egyszerűbbé teszi a költségek nyomon követését és számlázási.
+* **Azure-portálon:** Azure-portálon teszi, hogy könnyen toocreate, és kezelheti a fürtöket.
+* **Az Azure Resource Manager:** használja az Azure Resource Manager lehetővé teszi, hogy egy egységként hello fürt által használt erőforrások kezelésének és egyszerűbbé teszi a költségek nyomon követését és számlázási.
 * **Service Fabric-fürt Azure erőforrásként** A Service Fabric-fürtöt egy ARM-erőforrás, így a mintának használhatjuk, mint amikor más ARM erőforrások az Azure-ban.
-* **Integráció az Azure infrastruktúra** Service Fabric koordinálja az alapul szolgáló Azure infrastruktúra az operációs rendszer, hálózati és más frissítés rendelkezésre állásának és megbízhatóságának az alkalmazások javítása érdekében.  
+* **Integráció az Azure infrastruktúra** Service Fabric koordinálja az alapul szolgáló Azure-infrastruktúra az operációs rendszer, hálózati, és más frissítések tooimprove rendelkezésre állási és az alkalmazások megbízhatóságát hello.  
 * **Diagnosztika:** Azure, az Azure diagnostics és Naplóelemzési nyújtunk integráció.
-* **Automatikus skálázással:** az Azure-fürtök esetén nyújtunk automatikus skálázás beépített funkcióval, virtuálisgép-méretezési csoportok-miatt. A helyszíni, vagy egyéb felhőalapú környezetben akkor hozhat létre a saját automatikus skálázás funkció vagy skálája a Service Fabric elérhetővé tévő API-k segítségével manuálisan fürtöket a méretezéshez.
+* **Automatikus skálázással:** az Azure-fürtök esetén nyújtunk miatt tooVirtual gép méretezési-csoportok beépített automatikus skálázás funkciót. A helyszíni, vagy egyéb felhőalapú környezetben rendelkezik toobuild saját automatikus skálázás funkció vagy skálája hello Service Fabric elérhetővé tévő API-k segítségével manuálisan fürtöket a méretezéshez.
 
 ## <a name="next-steps"></a>Következő lépések
 

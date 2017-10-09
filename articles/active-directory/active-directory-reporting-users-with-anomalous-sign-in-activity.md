@@ -1,5 +1,5 @@
 ---
-title: "Szokatlan bejelentkezési tevékenység rendelkező felhasználók"
+title: "rendellenes bejelentkezési tevékenységet aaaUsers"
 description: "Olyan jelentést, amely jelzi az összes felhasználói fiók, amelynek rendellenes bejelentkezési tevékenységet azonosították."
 services: active-directory
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: acba4a4d3fa589aa1846f63883e5482e60605b70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efc9e21cfc3156b345a84da7527bf749af2b563c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="users-with-anomalous-sign-in-activity"></a>Szokatlan bejelentkezési tevékenység rendelkező felhasználók
-Ez az egy összesítő jelentés, amely az alábbi jelentések a gyanús bejelentkezések:
+Ez az egy összesített jelentést, hogy gyanús bejelentkezések a következő jelentések hello:
 
 <ul><li>Az ismeretlen forrásból származó indított bejelentkezések</li>
 <li>Több hibát követő bejelentkezések</li>

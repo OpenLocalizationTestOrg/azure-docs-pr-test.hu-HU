@@ -1,22 +1,22 @@
-Egy címkét adhat hozzá egy erőforráscsoportba **azure védelmicsoport-készlet**. Ha az erőforráscsoport nem rendelkezik meglévő címkék, továbbítja a kódban.
+egy címke tooa erőforráscsoportot tooadd használja **azure védelmicsoport-készlet**. Ha hello erőforráscsoport nem rendelkezik meglévő címkék, adjon át hello címke.
 
 ```azurecli
 azure group set -n tag-demo-group -t Dept=Finance
 ```
 
-Címkék egész frissülnek. Ha szeretne egy címke hozzáadása egy meglévő címkék rendelkező erőforrás csoporthoz, adja át a címkék. 
+Címkék egész frissülnek. Ha azt szeretné, hogy a címke tooa erőforráscsoport, amelynek létező címkék tooadd, adja át az összes hello címkét. 
 
 ```azurecli
 azure group set -n tag-demo-group -t Dept=Finance;Environment=Production;Project=Upgrade
 ```
 
-Címkék nem örökli erőforrás egy erőforráscsoportban. Egy erőforrást egy címkét adhat hozzá, **azure erőforráskészlethez**. Az erőforrástípus hozzáadni a címkéhez való API verziószáma át. Ha beolvasása az API-verzió van szüksége, a következő paranccsal az erőforrás-szolgáltató állítja a típushoz:
+Címkék nem örökli erőforrás egy erőforráscsoportban. egy címke tooa erőforrás tooadd használja **azure erőforráskészlethez**. Hello hello erőforrástípus hello címkét felvenni kívánt API verziószámát adja át. Tooretrieve hello API verziójára van szükség, ha használja a következő parancs az erőforrás-szolgáltató hello hello típus állítja hello:
 
 ```azurecli
 azure provider show -n Microsoft.Storage --json
 ```
 
-Az eredményeket keresse meg a kívánt erőforrás-típus.
+Keresse meg szeretné hello erőforrástípus hello eredmény elérése érdekében.
 
 ```azurecli
 "resourceTypes": [
@@ -38,13 +38,13 @@ Most, adja meg az adott API-verzió, az erőforráscsoport neve, erőforrás nev
 azure resource set -g tag-demo-group -n storagetagdemo -r Microsoft.Storage/storageAccounts -t Dept=Finance -o 2016-01-01
 ```
 
-Címkék közvetlenül erőforrások és csoportok léteznek. A meglévő címkék megtekintéséhez beolvasása erőforráscsoport és az erőforrások **azure-csoportok megjelenítése**.
+Címkék közvetlenül erőforrások és csoportok léteznek. toosee hello meglévő címkéket, az erőforráscsoportot és az erőforrások lekérése **azure-csoportok megjelenítése**.
 
 ```azurecli
 azure group show -n tag-demo-group --json
 ```
 
-Ami az erőforráscsoportot, többek között az alkalmazott címkéket kapcsolatos metaadatokat adja vissza.
+Amely hello erőforráscsoport, beleértve bármilyen alkalmazott címkék tooit kapcsolatos metaadatokat adja vissza.
 
 ```azurecli
 {
@@ -63,25 +63,25 @@ Ami az erőforráscsoportot, többek között az alkalmazott címkéket kapcsola
 }
 ```
 
-Megtekintheti egy adott erőforráshoz címkék használatával **azure-erőforrás megjelenítése**.
+Megtekintheti egy adott erőforráshoz hello címkék használatával **azure-erőforrás megjelenítése**.
 
 ```azurecli
 azure resource show -g tag-demo-group -n storagetagdemo -r Microsoft.Storage/storageAccounts -o 2016-01-01 --json
 ```
 
-Egy címke az összes erőforrást lekéréséhez használja:
+tooretrieve címke értékű, minden hello erőforrás használata:
 
 ```azurecli
 azure resource list -t Dept=Finance --json
 ```
 
-A címkeérték erőforráscsoportok lekéréséhez használja:
+tooretrieve címke értékű, minden hello erőforráscsoportok használja:
 
 ```azurecli
 azure group list -t Dept=Finance
 ```
 
-A meglévő címkéket az előfizetés a következő paranccsal tekintheti meg:
+A parancs a következő hello hello meglévő címkék az előfizetésében tekintheti meg:
 
 ```azurecli
 azure tag list

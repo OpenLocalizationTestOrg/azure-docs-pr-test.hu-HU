@@ -1,6 +1,6 @@
 ---
-title: "Jelszó alaphelyzetbe állítása, az Azure Active Directoryban |} Microsoft Docs"
-description: "Ismerteti az Azure Active Directoryban a felhasználó jelszavának visszaállítása"
+title: az Azure Active Directoryban alaphelyzetbe aaaPassword |} Microsoft Docs
+description: "Azt ismerteti, hogyan tooreset hello Azure Active Directoryban egy felhasználó jelszavát"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,36 +16,36 @@ ms.date: 06/27/2017
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8e7c38c7f0d40a310dd0b6bd0e866d2d55115550
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4bb201803ffc50bcc937a309ae4f0d613da2ae4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="reset-the-password-for-a-user-in-azure-active-directory"></a>Az Azure Active Directoryban a felhasználó jelszavának visszaállítása
+# <a name="reset-hello-password-for-a-user-in-azure-active-directory"></a>A felhasználó az Azure Active Directoryban hello jelszó visszaállítása
 > [!div class="op_single_selector"]
 > * [Azure Portal](active-directory-users-reset-password-azure-portal.md)
 > * [klasszikus Azure portál](active-directory-create-users-reset-password.md)
 >
 >
 
-## <a name="how-to-reset-the-password-for-a-user"></a>A felhasználó jelszavának alaphelyzetbe állítása
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** a szövegmezőbe, majd válassza ki azt a **Enter**.
+## <a name="how-tooreset-hello-password-for-a-user"></a>Hogyan tooreset hello egy felhasználó jelszavát
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** hello szövegmezőbe, és válassza ki **Enter**.
 
    ![Nyitó felhasználók kezelése](./media/active-directory-users-reset-password-azure-portal/create-users-user-management.png)
-3. Az a **felhasználók és csoportok** panelen válassza **felhasználók**.
+3. A hello **felhasználók és csoportok** panelen válassza **felhasználók**.
 
-   ![A felhasználók panel megnyitása](./media/active-directory-users-reset-password-azure-portal/create-users-open-users-blade.png)
-4. A **Felhasználók és csoportok – Felhasználók** panelen válasszon ki egy felhasználót a listából.
-5. A kiválasztott felhasználó paneljén válassza az **Áttekintés** elemet, majd a parancssávon válassza ki a **Jelszó alaphelyzetbe állítása** parancsot.
+   ![Nyitó hello felhasználók panel](./media/active-directory-users-reset-password-azure-portal/create-users-open-users-blade.png)
+4. A hello **felhasználók és csoportok - felhasználók** panelen válassza ki a megfelelő felhasználói hello listából.
+5. A kiválasztott felhasználó hello hello panelen válassza ki a **áttekintése**, majd a hello parancssávon válassza **jelszó-átállítási**.
 
-    ![A jelszó alaphelyzetbe állítása paranccsal](./media/active-directory-users-reset-password-azure-portal/create-users-reset-password-command.png)
-6. Az a **jelszó-átállítási** panelen válassza **jelszó-átállítási**.
+    ![Jelszó parancs hello kiválasztásával alaphelyzetbe állítása](./media/active-directory-users-reset-password-azure-portal/create-users-reset-password-command.png)
+6. A hello **jelszó-átállítási** panelen válassza **jelszó-átállítási**.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Felhasználó hozzáadása](active-directory-users-create-azure-portal.md)
-* [Felhasználó hozzárendelése egy szerepkörhöz az Azure AD-ben](active-directory-users-assign-role-azure-portal.md)
+* [Egy felhasználó tooa szerepkör hozzárendelése az Azure AD-ben](active-directory-users-assign-role-azure-portal.md)
 * [A felhasználó munkahelyi adatainak módosítása](active-directory-users-work-info-azure-portal.md)
 * [Felhasználói profilok kezelése](active-directory-users-profile-azure-portal.md)
 * [Felhasználó törlése az Azure AD-ben](active-directory-users-delete-user-azure-portal.md)

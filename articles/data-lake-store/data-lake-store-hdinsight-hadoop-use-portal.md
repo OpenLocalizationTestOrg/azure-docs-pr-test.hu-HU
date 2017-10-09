@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight-fürtök létrehozása a Data Lake Store az Azure-portál használatával |} Microsoft Docs"
-description: "Az Azure-portál használatával hozzon létre, és a HDInsight-fürtök használata az Azure Data Lake Store"
+title: "a Data Lake Store aaaUse hello Azure portál toocreate Azure HDInsight-fürtök |} Microsoft Docs"
+description: "Az Azure portál toocreate hello igénybe, valamint a HDInsight-fürtök az Azure Data Lake Store"
 services: data-lake-store,hdinsight
 documentationcenter: 
 author: nitinme
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/14/2017
 ms.author: nitinme
-ms.openlocfilehash: 9dd56efb89e07ea61ae431d1ea2accd721cd6502
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f23113d444a3c5a01894dba29f75f3621b2d16bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-hdinsight-clusters-with-data-lake-store-by-using-the-azure-portal"></a>A HDInsight-fürtök létrehozása a Data Lake Store az Azure-portál használatával
+# <a name="create-hdinsight-clusters-with-data-lake-store-by-using-hello-azure-portal"></a>A HDInsight-fürtök létrehozása a Data Lake Store hello Azure-portál használatával
 > [!div class="op_single_selector"]
-> * [Az Azure Portal használata](data-lake-store-hdinsight-hadoop-use-portal.md)
+> * [Hello Azure portál használata](data-lake-store-hdinsight-hadoop-use-portal.md)
 > * [A PowerShell (az alapértelmezett tároló)](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
 > * [Használja a Powershellt (tárhely)](data-lake-store-hdinsight-hadoop-use-powershell.md)
 > * [Erőforrás-kezelő használata](data-lake-store-hdinsight-hadoop-use-resource-manager-template.md)
 >
 >
 
-Útmutató egy HDInsight-fürt létrehozása az Azure Data Lake Store-fiók az alapértelmezett tároló vagy egy további tárhely az Azure-portál használatával. Annak ellenére, hogy a további tárhely nem kötelező megadni egy HDInsight-fürtöt, javasoljuk, hogy az üzleti adatok tárolása a további tárfiókok.
+Ismerje meg, hogyan toouse hello Azure portál toocreate egy HDInsight-fürtöt az Azure Data Lake Store-fiók hello alapértelmezett tároló vagy egy további tárterületet. Annak ellenére, hogy a további tárhely nem kötelező megadni egy HDInsight-fürt, akkor ajánlott toostore hello további tárfiókokat az üzleti adatokat.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ez az oktatóanyag megkezdése előtt győződjön meg arról, hogy teljesítette az alábbi követelményeknek:
+Ez az oktatóanyag megkezdése előtt győződjön meg arról, hogy teljesítette-követelményeknek hello:
 
-* **Azure-előfizetés**. Ugrás a [beolvasása az Azure ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
-* **Egy Azure Data Lake Store-fiók**. Kövesse az utasításokat a [Ismerkedés az Azure Data Lake Store az Azure portál használatával](data-lake-store-get-started-portal.md). A fiók is létre kell hoznia egy legfelső szintű mappát.  Ebben az oktatóanyagban egy legfelső szintű mappa neve a __/fürtök__ szolgál.
-* **Egy Azure Active Directory szolgáltatás egyszerű**. Ez az oktatóanyag útmutatás az Azure Active Directory (Azure AD) egyszerű szolgáltatás létrehozása. Azonban szeretne létrehozni egy egyszerű szolgáltatást, akkor az Azure AD rendszergazdai jogokkal kell rendelkeznie. Ha Ön rendszergazda, hagyja ki ezt az előfeltételt, és az oktatóanyag folytatásához.
+* **Azure-előfizetés**. Nyissa meg túl[beolvasása az Azure ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
+* **Egy Azure Data Lake Store-fiók**. Kövesse az utasításokat hello [hello Azure-portál használatával Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md). Hello fiók is létre kell hoznia egy legfelső szintű mappát.  Ebben az oktatóanyagban egy legfelső szintű mappa neve a __/fürtök__ szolgál.
+* **Egy Azure Active Directory szolgáltatás egyszerű**. Ez az oktatóanyag útmutatás toocreate egy egyszerű szolgáltatást az Azure Active Directory (Azure AD). Azonban toocreate egy egyszerű szolgáltatást, kell lennie az Azure AD-rendszergazda. Ha Ön rendszergazda, akkor hagyja ki ezt az előfeltételt, és folytassa a hello oktatóanyag.
 
     >[!NOTE]
-    >Létrehozhat egy szolgáltatás egyszerű csak akkor, ha az Azure AD-rendszergazdaként. Az Azure AD rendszergazdának létre kell hoznia egy szolgáltatás egyszerű HDInsight-fürtök létrehozása a Data Lake Store előtt. Emellett a szolgáltatás egyszerű kell létrehozni a tanúsítvánnyal részben ismertetett módon [hozzon létre egy egyszerű tanúsítvány](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-self-signed-certificate).
+    >Létrehozhat egy szolgáltatás egyszerű csak akkor, ha az Azure AD-rendszergazdaként. Az Azure AD rendszergazdának létre kell hoznia egy szolgáltatás egyszerű HDInsight-fürtök létrehozása a Data Lake Store előtt. Emellett hello szolgáltatás egyszerű kell létrehozni a tanúsítvánnyal részben ismertetett módon [hozzon létre egy egyszerű tanúsítvány](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-self-signed-certificate).
     >
 
 ## <a name="create-an-hdinsight-cluster"></a>HDInsight-fürtök létrehozása
 
-Ebben a szakaszban egy HDInsight-fürtöt az alapértelmezett vagy a további tárhely Data Lake Store-fiókok létrehozása. Ez a cikk csak a Data Lake Store-fiókok konfigurálása része foglalkozik.  Az általános fürt létrehozása információkat és eljárásokat, [Hadoop létrehozása a HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).
+Ebben a szakaszban egy HDInsight-fürt hello alapértelmezett, vagy további tárterület hello Data Lake Store-fiókok létrehozása. Ez a cikk csak a Data Lake Store-fiókok konfigurálása hello része foglalkozik.  Hello általános fürt létrehozása információkat és eljárásokat, [Hadoop létrehozása a HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).
 
 ### <a name="create-a-cluster-with-data-lake-store-as-default-storage"></a>Fürt létrehozása a Data Lake Store alapértelmezett tárolóként
 
-**A HDInsight-fürt létrehozása az egy Data Lake Store az alapértelmezett tárfiók**
+**toocreate egy HDInsight-fürtöt egy Data Lake Store hello alapértelmezett tárolási fiók**
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Hajtsa végre a [fürtöket létrehozni](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters) az általános létrehozásával kapcsolatos információkat a HDInsight-fürtök.
-3. A a **tárolási** panel alatt **elsődleges tárolási típus**, jelölje be **Data Lake Store**, és írja be a következő információkat:
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hajtsa végre a [fürtöket létrehozni](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters) hello általános információk a HDInsight-fürtök létrehozása.
+3. A hello **tárolási** panelen, a **elsődleges tárolótípus**, jelölje be **Data Lake Store**, majd adja meg a következő információ hello:
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.adls.storage.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.adls.storage.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
     - **Válassza ki Data Lake Store-fiók**: Válasszon egy meglévő Data Lake Store-fiókot. Egy meglévő Data Lake Store-fiókot kell megadni.  Lásd: [Előfeltételek](#prereuisites).
-    - **Elérési útjának gyökeréhez**: Adjon meg útvonalat, ahol a fürt fájlokat vannak-e tárolni. Képernyőképen látható, a rendszer __/fürtök/myhdiadlcluster/__, amelyben a __/fürtök__ mappának léteznie kell, és a portál létrehoz egyet *myhdicluster* mappa.  A *myhdicluster* a fürt neve.
-    - **Data Lake Store hozzáférés**: konfigurálja a hozzáférést a Data Lake Store-fiók és a HDInsight-fürt között. Útmutatásért lásd: [konfigurálása Data Lake Store hozzáférés](#configure-data-lake-store-access).
-    - **További tárfiókok**: a fürthöz tartozó fiókok hozzáadása Azure Storage-fiókokról további tárolóként. Hozzáadandó további Data Lake tárolók végezhető el a fürt engedélyeket ad a további Data Lake Store-fiók adatait az elsődleges tárolási típus, egy Data Lake Store-fiók konfigurálása közben. Lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](#configure-data-lake-store-access).
+    - **Elérési útjának gyökeréhez**: Adjon meg útvonalat, ahol hello fürt-specifikus fájlok toobe tárolja. Hello képernyőképe, a rendszer __/fürtök/myhdiadlcluster/__, mely hello a __/fürtök__ mappának léteznie kell, és hello portál létrehoz egyet *myhdicluster* mappa.  Hello *myhdicluster* hello fürtnév.
+    - **Data Lake Store hozzáférés**: hello Data Lake Store-fiók és a HDInsight-fürt közötti elérésének konfigurálása. Útmutatásért lásd: [konfigurálása Data Lake Store hozzáférés](#configure-data-lake-store-access).
+    - **További tárfiókok**: hello fürt fiókok hozzáadása Azure Storage-fiókokról további tárolóként. tooadd további Data Lake tárolók hello fürt engedélyeket ad a további Data Lake Store-fiók adatainak hello elsődleges tárolási típus, egy Data Lake Store-fiók konfigurálása során végezhető el. Lásd: [A Data Lake Store-hoz történő hozzáférés konfigurálása](#configure-data-lake-store-access).
 
-4. A a **Data Lake Store hozzáférés**, kattintson a **kiválasztása**, majd folytassa a fürt létrehozása a [Hadoop létrehozása a HDInsight-fürtök](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md).
+4. A hello **Data Lake Store hozzáférés**, kattintson **kiválasztása**, majd folytassa a fürt létrehozása a [Hadoop létrehozása a HDInsight-fürtök](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md).
 
 
 ### <a name="create-a-cluster-with-data-lake-store-as-additional-storage"></a>A fürt létrehozása a Data Lake Store további tárhely
 
-Az alábbi utasításokat egy HDInsight-fürtöt hozzon létre egy Azure Storage-fiókot az alapértelmezett tárolóként, és további tárterületként egy Data Lake Store-fiókot.
-**A HDInsight-fürt létrehozása az egy Data Lake Store az alapértelmezett tárfiók**
+hello alábbi utasítások alapján hozzon létre egy HDInsight-fürtöt egy Azure Storage-fiók hello alapértelmezett tárolóként, és további tárterületként egy Data Lake Store-fiókot.
+**toocreate egy HDInsight-fürtöt egy Data Lake Store hello alapértelmezett tárolási fiók**
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Hajtsa végre a [fürtöket létrehozni](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters) az általános létrehozásával kapcsolatos információkat a HDInsight-fürtök.
-3. A a **tárolási** panel alatt **elsődleges tárolási típus**, jelölje be **Azure Storage**, és írja be a következő információkat:
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hajtsa végre a [fürtöket létrehozni](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md#create-clusters) hello általános információk a HDInsight-fürtök létrehozása.
+3. A hello **tárolási** panelen, a **elsődleges tárolótípus**, jelölje be **Azure Storage**, majd adja meg a következő információ hello:
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
-    - **Kijelöléséről**: használja a következő lehetőségek egyikét:
+    - **Kijelöléséről**: hello a következő lehetőségek valamelyikével:
 
-        * A storage-fiók, amely az Azure-előfizetéshez része, adja meg **a saját előfizetések**, majd válassza ki a tárfiók.
-        * A storage-fiók, amely az Azure-előfizetéshez kívül esik, jelölje be a **hozzáférési kulcs**, és adja meg a külső tárfiók adatait.
+        * toospecify egy tárfiókot, amely része az Azure-előfizetéshez, válasszon **a saját előfizetések**, majd válassza ki a tárfiók hello.
+        * toospecify kívül az Azure-előfizetéshez, jelölje be a tárfiók **hozzáférési kulcs**, majd adja meg a tárfiók kívül hello hello adatait.
 
-    - **Alapértelmezett tároló**: használja az alapértelmezett értéket, vagy adja meg saját nevét.
+    - **Alapértelmezett tároló**: vagy hello alapértelmezett értéket használja, vagy adja meg saját nevét.
 
-    - További tárfiókok: a további tárhely további Azure Storage-fiókokat hozzáadni.
-    - Data Lake Store hozzáférés: konfigurálja a hozzáférést a Data Lake Store-fiók és a HDInsight-fürt között. Útmutatásért lásd: [konfigurálása Data Lake Store hozzáférés](#configure-data-lake-store-access).
+    - További tárfiókok: hello további tárhely további Azure Storage-fiókokat hozzáadni.
+    - Data Lake Store hozzáférés: hello Data Lake Store-fiók és a HDInsight-fürt közötti elérésének konfigurálása. Útmutatásért lásd: [konfigurálása Data Lake Store hozzáférés](#configure-data-lake-store-access).
 
 ## <a name="configure-data-lake-store-access"></a>Data Lake Store-hozzáférés konfigurálása 
 
@@ -91,122 +91,122 @@ Ebben a szakaszban egy Azure Active Directory szolgáltatás egyszerű HDInsight
 
 ### <a name="specify-a-service-principal"></a>Adjon meg egy szolgáltatásnevet
 
-Azure-portálról egy meglévő egyszerű szolgáltatást használja, vagy hozzon létre egy újat.
+Az Azure-portálon hello használjon egy meglévő egyszerű szolgáltatást, vagy hozzon létre egy újat.
 
-**Egy egyszerű szolgáltatás létrehozása az Azure-portálon**
+**toocreate egy egyszerű szolgáltatást hello Azure-portálon**
 
-1. Kattintson a **Data Lake Store hozzáférés** a Store panelen.
-2. Az a **Data Lake Store hozzáférés** panelen kattintson a **hozzon létre új**.
-3. Kattintson a **egyszerű**, majd kövesse az útmutatást követve hozzon létre egy egyszerű szolgáltatást.
-4. Ha úgy dönt, hogy a későbbiekben használni, töltse le a tanúsítványt. A tanúsítvány letöltése akkor hasznos, ha további HDInsight-fürtök létrehozásakor az azonos egyszerű szolgáltatás használni szeretne.
+1. Kattintson a **Data Lake Store hozzáférés** hello Store panelen.
+2. A hello **Data Lake Store hozzáférés** panelen kattintson a **hozzon létre új**.
+3. Kattintson a **egyszerű**, és kövesse a hello utasításokat toocreate egy egyszerű szolgáltatást.
+4. Hello tanúsítvány letöltése, ha úgy dönt, hogy toouse azt újra a jövőbeli hello. Letöltés hello tanúsítvány akkor hasznos, ha azt szeretné, hogy toouse hello azonos szolgáltatás egyszerű, amikor további HDInsight-fürtök létrehozásához.
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.2.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.2.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
-4. Kattintson a **hozzáférés** a mappa hozzáférés konfigurálásához.  Lásd: [fájl engedélyeit](#configure-file-permissions).
+4. Kattintson a **hozzáférés** tooconfigure hello mappákhoz való hozzáférést.  Lásd: [fájl engedélyeit](#configure-file-permissions).
 
 
-**Egy meglévő egyszerű Azure-portálról használata**
+**toouse egy meglévő egyszerű szolgáltatásnév a hello Azure-portálon**
 
 1. Kattintson a **Data Lake Store hozzáférés**.
-1. Az a **Data Lake Store hozzáférés** panelen kattintson a **meglévő**.
+1. A hello **Data Lake Store hozzáférés** panelen kattintson a **meglévő**.
 2. Kattintson a **egyszerű**, majd válassza ki a szolgáltatásnevet. 
-3. Töltse fel a kijelölt szolgáltatás egyszerű társított tanúsítvány (.pfx-fájl), és írja be a tanúsítvány jelszavát.
+3. Töltse fel a kijelölt szolgáltatás egyszerű társított hello tanúsítvány (.pfx-fájl), és írja be a hello tanúsítvány jelszavát.
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
-4. Kattintson a **hozzáférés** a mappa hozzáférés konfigurálásához.  Lásd: [fájl engedélyeit](#configure-file-permissions).
+4. Kattintson a **hozzáférés** tooconfigure hello mappákhoz való hozzáférést.  Lásd: [fájl engedélyeit](#configure-file-permissions).
 
 
 ### <a name="configure-file-permissions"></a>Fájl-engedélyek konfigurálása
 
-A konfigurálható eltér attól függően, hogy a rendszer fiókot használja az alapértelmezett tároló vagy egy további tárhely-fiókot:
+hello konfigurálása eltér attól függően, hogy hello fiókjával hello alapértelmezett tároló vagy egy további storage-fiókot:
 
 - Alapértelmezett tárolójaként használni kívánt
 
-    - a Data Lake Store-fiók gyökérszinten engedély
-    - a HDInsight-fürt tároló gyökérszinten engedély. Például a __/fürtök__ az oktatóanyag korábbi részében használt mappát.
+    - a gyökérszinten hello hello Data Lake Store-fiókot az engedélyt
+    - engedély gyökérszinten hello a hello HDInsight-fürt tárolására. Például hello __/fürtök__ hello az oktatóanyag korábbi részében használt mappát.
 - További tárterületként használata
 
-    - A a mappákat, ahol kell fájl hozzáférési engedély.
+    - A hello mappákat, ahol kell fájl hozzáférési engedélyt.
 
-**A Data Lake Store fiók gyökérszinten engedély hozzárendelése**
+**a Data Lake Store-fiók gyökérszinten hello tooassign engedély**
 
-1. A a **Data Lake Store hozzáférés** panelen kattintson a **hozzáférés**. A **válassza ki a fájl engedélyeit** panel már meg van nyitva. Felsorolja az előfizetés összes Data Lake Store-fiók.
-2. Vigye (ne kattintson) az egér, a jelölőnégyzet látható, hogy a Data Lake Store-fiók neve alatt jelölje be a jelölőnégyzetet.
+1. A hello **Data Lake Store hozzáférés** panelen kattintson a **hozzáférés**. Hello **válassza ki a fájl engedélyeit** panel már meg van nyitva. Felsorolja az összes hello Data Lake Store-fiók az előfizetéshez.
+2. Vigye (ne kattintson) hello egér keresztül hello hello toomake hello jelölőnégyzet látható, majd válassza ki a jelölőnégyzetet hello Data Lake Store-fiók nevét.
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
   Alapértelmezés szerint __OLVASÁSI__, __írási__, és __EXECUTE__ lehetőségek egyaránt be vannak jelölve.
 
-3. Kattintson a **válasszon** az oldal alján.
-4. Kattintson a **futtatása** rendelhet hozzá.
+3. Kattintson a **válasszon** a hello hello lap alján.
+4. Kattintson a **futtatása** tooassign engedéllyel.
 5. Kattintson a **Done** (Kész) gombra.
 
-**A HDInsight fürt gyökérszinten engedély hozzárendelése**
+**a HDInsight fürt gyökérszinten hello tooassign engedély**
 
-1. A a **Data Lake Store hozzáférés** panelen kattintson a **hozzáférés**. A **válassza ki a fájl engedélyeit** panel már meg van nyitva. Felsorolja az előfizetés összes Data Lake Store-fiók.
-1. Az a **válassza ki a fájl engedélyeit** panelen kattintson a Data Lake Store nevét, a benne lévő tartalom megjelenítése.
-2. Válassza ki a HDInsight-fürt tárológyökérhez a mappa a bal oldali jelölőnégyzet bejelölésével. A képernyőfelvételen megfelelően korábban, a fürt tárológyökérhez van __/fürtök__ kiválasztása a Data Lake Store alapértelmezett tárolóként közben megadott mappában.
-3. Beállítja az engedélyeket a mappához.  Alapértelmezés szerint olvasási, írási és végrehajtási lehetőségek egyaránt be vannak jelölve.
-4. Kattintson a **válasszon** az oldal alján.
+1. A hello **Data Lake Store hozzáférés** panelen kattintson a **hozzáférés**. Hello **válassza ki a fájl engedélyeit** panel már meg van nyitva. Felsorolja az összes hello Data Lake Store-fiók az előfizetéshez.
+1. A hello **válassza ki a fájl engedélyeit** paneljén kattintson hello Data Lake Store nevét tooshow benne lévő tartalom.
+2. Jelölje ki a hello HDInsight fürt tárológyökérhez hello bal oldali hello mappa hello jelölőnégyzet bejelölésével. Hello fürt tárológyökérhez van toohello képernyőképe alapján történik a korábbi, __/fürtök__ alapértelmezett tárolóként hello Data Lake Store kijelölés közben megadott mappában.
+3. Hello mappa hello engedélyeket.  Alapértelmezés szerint olvasási, írási és végrehajtási lehetőségek egyaránt be vannak jelölve.
+4. Kattintson a **válasszon** a hello hello lap alján.
 5. Kattintson a **Run** (Futtatás) parancsra.
 6. Kattintson a **Done** (Kész) gombra.
 
-Ha a Data Lake Store további tárolóként használ, hozzá kell rendelnie engedély csak a HDInsight-fürt eléréséhez használni kívánt mappákat. Például az alábbi képernyőképen kívánja megadni a hozzáférést csak a **hdiaddonstorage** mappát a Data Lake Store-fiók.
+Ha a Data Lake Store további tárolóként használ, hozzá kell rendelnie engedély csak hello mappák, amelyet a HDInsight-fürt hello tooaccess. Például az alábbi hello képernyőképet, kívánja megadni a hozzáférést csak túl**hdiaddonstorage** mappát a Data Lake Store-fiók.
 
-![Szolgáltatás egyszerű engedélyek hozzárendelése a HDInsight-fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3-1.png "szolgáltatás egyszerű engedélyek hozzárendelése a HDInsight-fürt")
+![Rendelje hozzá a szolgáltatás egyszerű engedélyek toohello HDInsight-fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3-1.png "hozzárendelése szolgáltatás egyszerű engedélyek toohello HDInsight-fürt")
 
 
 ## <a name="verify-cluster-set-up"></a>Ellenőrizze a fürt beállítása
 
-A fürt telepítés befejezése után, a fürt paneljén, ellenőrizze az eredményeket valamelyike vagy mindegyike a következő lépések végrehajtásával:
+Hello fürt telepítés befejezése után, a hello fürt paneljén, ellenőrizze az eredményeket valamelyike vagy mindegyike hello lépések végrehajtásával:
 
-* Győződjön meg arról, hogy a társított tárolót a fürt a Data Lake Store-fiók, amely a megadott, kattintson a **tárfiókok** a bal oldali ablaktáblán.
+* a társított tárolási hello hello fürt hello Data Lake Store-fiók, amely a megadott érték, kattintson a tooverify **Storage-fiókok** hello bal oldali ablaktáblán.
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.6-1.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.6-1.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
-* Győződjön meg arról, hogy a szolgáltatás egyszerű megfelelően a HDInsight-fürthöz társított, kattintson a **Data Lake Store hozzáférés** a bal oldali ablaktáblán.
+* amely a szolgáltatás egyszerű hello tooverify tartozik megfelelő hello HDInsight-fürt, kattintson a **Data Lake Store hozzáférés** hello bal oldali ablaktáblán.
 
-    ![HDInsight-fürthöz Hozzáadás egyszerű](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.6.png "Hozzáadás szolgáltatás egyszerű HDInsight-fürthöz")
+    ![Hozzáadás szolgáltatás egyszerű tooHDInsight fürt](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.6.png "Hozzáadás szolgáltatás egyszerű tooHDInsight fürt")
 
 
 ## <a name="examples"></a>Példák
 
-Után a tárolására állította be a fürt a Data Lake Store, tekintse meg ezekben a példákban a HDInsight-fürt használata a Data Lake Store-ban tárolt adatok elemzésére.
+Után a tárolására állította be a Data Lake Store hello fürt, tekintse meg a toothese példák hogyan toouse HDInsight fürt tooanalyze hello Data Lake Store-ban tárolt adatokat.
 
 ### <a name="run-a-hive-query-against-data-in-a-data-lake-store-as-primary-storage"></a>Hive-lekérdezések futtatása egy Data Lake Store-ban adatok alapján (elsődleges tárolóként)
 
-Hive-lekérdezések futtatásához használja a Hive-nézetek felület az Ambari portálon. Ambari Hive-nézetek használata, lásd: [Hive nézet használata a hadooppal a Hdinsightban](../hdinsight/hdinsight-hadoop-use-hive-ambari-view.md).
+Hive-lekérdezések toorun hello Hive nézetek illesztőfelületet hello Ambari portálon használja. Hogyan toouse Ambari Hive megtekinti, lásd: [használata hello a HDInsight Hadoop Hive nézet](../hdinsight/hdinsight-hadoop-use-hive-ambari-view.md).
 
-Ha az egy Data Lake Store-adatokkal dolgozik, van néhány karakterláncok módosítása.
+Ha az egy Data Lake Store-adatokkal dolgozik, van néhány karakterláncok toochange.
 
-Ha használ, például a fürt, amelyet a Data Lake Store elsődleges tárolóként hozott létre az adatok elérési útja: *adl: / / < data_lake_store_account_name > /azuredatalakestore.net/path/to/file*. Táblázat létrehozása a Data Lake Store-fiókban tárolt adatok minta Hive-lekérdezések néz ki a következő utasítást:
+Ha használ, például a Data Lake Store elsődleges tárolóként létrehozott hello fürt hello elérési toohello adatok nem: *adl: / / < data_lake_store_account_name > /azuredatalakestore.net/path/to/file*. A Hive lekérdezés toocreate hello Data Lake Store-fiókban tárolt mintaadatokat egy táblát a következőképpen néz hello utasítás a következő:
 
     CREATE EXTERNAL TABLE websitelog (str string) LOCATION 'adl://hdiadlsstorage.azuredatalakestore.net/clusters/myhdiadlcluster/HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/'
 
 Leírása:
-* `adl://hdiadlstorage.azuredatalakestore.net/`a Data Lake Store-fiók gyökérkönyvtárában van.
-* `/clusters/myhdiadlcluster`a fürt adatait, amely a fürt létrehozásakor megadott gyökérkönyvtárában van.
-* `/HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/`az a hely a lekérdezésben használt minta-fájl.
+* `adl://hdiadlstorage.azuredatalakestore.net/`hello hello Data Lake Store-fiók gyökérkönyvtárában van.
+* `/clusters/myhdiadlcluster`hello fürt adatok hello fürt létrehozásakor megadott hello gyökérkönyvtárában van.
+* `/HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/`az hello hely hello minta fájl hello lekérdezésben használt.
 
 ### <a name="run-a-hive-query-against-data-in-a-data-lake-store-as-additional-storage"></a>Hive-lekérdezések futtatása egy Data Lake Store-ban adatok alapján (a további tárhely)
 
-Ha a fürt létrehozott Blob-tároló alapértelmezett tárolóként használ, a mintaadatok nem szerepel az Azure Data Lake Store további tárolására használt fiók. Ebben az esetben először átviteléhez a Blob storage a Data Lake Store az adatokat, és futtassa újra a lekérdezések, az előző példában látható módon.
+Ha létrehozott hello fürt Blob-tároló alapértelmezett tárolóként használ, hello mintaadatok nem szerepel hello további tárolóként használt Azure Data Lake Store-fiókot. Ebben az esetben először hello adatok átviteléhez a Blob storage toohello Data Lake Store, és futtassa újra hello lekérdezések, ahogy az előző példa hello.
 
-Az adatok másolása az Blob storage egy Data Lake Store további információkért lásd: a következő cikkeket:
+Hogyan toocopy adatokat a Blob storage tooa Data Lake tárolja a további információkért lásd: a következő cikkek hello:
 
-* [Ból a Distcp követve másolja át a adatok Azure Storage-BLOB és a Data Lake Store között](data-lake-store-copy-data-wasb-distcp.md)
-* [Adatok másolása az Azure Storage blobs Data Lake Store AdlCopy segítségével](data-lake-store-copy-data-azure-storage-blob.md)
+* [Azure Storage-BLOB és a Data Lake Store ból a Distcp toocopy adatok használata](data-lake-store-copy-data-wasb-distcp.md)
+* [A használandó AdlCopy toocopy adatok Azure Storage-blobok tooData Lake Store](data-lake-store-copy-data-azure-storage-blob.md)
 
 ### <a name="use-data-lake-store-with-a-spark-cluster"></a>Használjon Data Lake Store egy Spark-fürt
-Spark-fürt használatával a Data Lake Store-ban tárolt adatok a feladatok futtatása Spark. További információkért lásd: [adatelemzéshez a Data Lake Store használata a HDInsight Spark-fürt](../hdinsight/hdinsight-apache-spark-use-with-data-lake-store.md).
+Egy Spark-fürt toorun Spark feladatok egy Data Lake Store-ban tárolt adatokat is használhatja. További információkért lásd: [használata a HDInsight Spark fürt tooanalyze adatok a Data Lake Store](../hdinsight/hdinsight-apache-spark-use-with-data-lake-store.md).
 
 
 ### <a name="use-data-lake-store-in-a-storm-topology"></a>Használjon Data Lake Store a Storm-topológia
-A Data Lake Store az adatok írása a Storm-topológia a használhatja. Ez a forgatókönyv megvalósítható utasításokért lásd: [használata Azure Data Lake Store a HDInsight alatt futó Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md).
+A Storm-topológia a hello Data Lake Store toowrite adatokat is használhatja. Útmutatást tooachieve ebben az esetben lásd: [használata Azure Data Lake Store a HDInsight alatt futó Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md).
 
 ## <a name="see-also"></a>Lásd még:
-* [PowerShell: Data Lake Store használatára HDInsight-fürtök létrehozása](data-lake-store-hdinsight-hadoop-use-powershell.md)
+* [PowerShell: Hozzon létre egy HDInsight-fürt toouse Data Lake Store](data-lake-store-hdinsight-hadoop-use-powershell.md)
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx

@@ -1,7 +1,7 @@
-Pont – hely kapcsolat esetén a tanúsítvány nyilvános kulcs .cer fájl (nem a titkos kulcs) az Azure-bA feltölteni kívánt. A következő lépések segítenek a .cer fájl a önaláírt legfelső szintű tanúsítvány exportálása:
+Pont – hely kapcsolatok hello tanúsítvány nyilvános kulcs .cer fájl (nem hello titkos kulcs) feltöltött toobe tooAzure igényelnek. hello következő lépések segítenek a önaláírt legfelső szintű tanúsítvány hello .cer fájl exportálása:
 
-1. A .cer fájl tanúsítványból történő beszerzéséhez nyissa meg a **Felhasználói tanúsítványok kezelése** elemet. Keresse meg az önaláírt főtanúsítványt. Ezt általában a „Tanúsítványok – aktuális felhasználó\Személyes\Tanúsítványok” útvonalon érheti el. Ha megtalálta, kattintson rá a jobb egérgombbal. Kattintson a **Minden feladat**, majd az **Exportálás** elemre. Megnyílik a **Tanúsítványexportáló varázsló**.
-2. A varázslóban kattintson a **Tovább** gombra. Válassza a **Nem, nem akarom exportálni a titkos kulcsomat** lehetőséget, majd kattintson a **Tovább** gombra.
-3. Az **Exportfájlformátum** lapon válassza a **Base-64 kódolású X.509 (.CER)** lehetőséget, majd kattintson a **Tovább** gombra. 
-4. Az **Exportálandó fájl** lapon a **Tallózás** gombra kattintva keresse meg azt a helyet, ahová exportálni szeretné a tanúsítványt. A **Fájlnév** mezőben nevezze el a tanúsítványfájlt. Ezután kattintson a **Tovább** gombra.
-5. Kattintson a **Befejezés** gombra a tanúsítvány exportálásához. Látni **sikeres volt-e az exportálás**. A varázsló bezárásához kattintson az **OK** gombra.
+1. Nyissa meg a tooobtain hello tanúsítvány egy .cer fájlba **felhasználói tanúsítványok kezelése**. Keresse meg a hello önaláírt főtanúsítványt, általában a "Tanúsítványok - aktuális User\Personal\Certificates", és kattintson a jobb gombbal. Kattintson a **Minden feladat**, majd az **Exportálás** elemre. Ekkor megnyílik a hello **Tanúsítványexportáló varázsló**.
+2. Hello varázsló, kattintson **következő**. Válassza ki **nem, nem exportálja a titkos kulcs hello**, és kattintson a **következő**.
+3. A hello **Exportfájlformátum** lapon jelölje be **Base-64 kódolású X.509 (. CER).** , és kattintson a **következő**. 
+4. A hello **fájl tooExport**, **Tallózás** toohello hely toowhich szeretne tooexport hello tanúsítványt. A **Fájlnév**, neve hello tanúsítványfájlt. Ezután kattintson a **Tovább** gombra.
+5. Kattintson a **Befejezés** tooexport hello tanúsítványt. Látni **hello exportálás sikerült**. Kattintson a **OK** tooclose hello varázsló.

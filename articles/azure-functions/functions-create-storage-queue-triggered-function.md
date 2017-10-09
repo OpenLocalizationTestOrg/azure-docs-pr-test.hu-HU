@@ -1,6 +1,6 @@
 ---
-title: "Üzenetsorban lévő üzenetek által aktivált függvények létrehozása az Azure-ban | Microsoft Docs"
-description: "Használja az Azure Functions szolgáltatást olyan kiszolgáló nélküli függvények létrehozására, amelyeket az Azure Storage üzenetsorába elküldött üzenetek hívnak meg."
+title: "az Azure üzenetsor-üzeneteket által indított függvény aaaCreate |} Microsoft Docs"
+description: "Használja az Azure Functions toocreate egy kiszolgáló nélküli függvény, amelyet egy üzenetek által benyújtott tooan Azure Storage üzenetsorába."
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 92a03154bf5a8945e2de9606afd138803c76fafe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e9501ed336b502eaeee3fa62ec4ae085c76de0ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-triggered-by-azure-queue-storage"></a>Azure Storage-üzenetsor által aktivált függvény létrehozása
 
-Ismerje meg, hogyan hozhat létre az Azure Storage üzenetsorába küldött üzenetek által aktivált függvényt.
+Ismerje meg, hogyan toocreate üzenetek által elindított függvény benyújtott tooan Azure Storage üzenetsorába.
 
-![Tekintse meg a naplókban található üzeneteket.](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
+![Hello naplókban üzenet megtekintése.](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [Microsoft Azure Storage Explorer](http://storageexplorer.com/) letöltése és telepítése.
+- Töltse le és telepítse a hello [Microsoft Azure Tártallózó](http://storageexplorer.com/).
 
 - Azure-előfizetés. Ha még nincs előfizetése, hozzon létre egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F), mielőtt hozzákezd.
 
@@ -42,65 +42,65 @@ Ismerje meg, hogyan hozhat létre az Azure Storage üzenetsorába küldött üze
 
 ![A függvényalkalmazás elkészült.](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-Ezután létrehozhat egy függvényt az új függvényalkalmazásban.
+A függvény a következő alkalmazásban hello új függvény létrehozása.
 
 <a name="create-function"></a>
 
 ## <a name="create-a-queue-triggered-function"></a>Üzenetsor által aktivált függvény létrehozása
 
-1. Bontsa ki a függvényalkalmazást, és kattintson a **Függvények** elem melletti **+** gombra. Ha ez az első függvény a függvényalkalmazásban, jelölje ki az **Egyéni függvény** lehetőséget. Ez megjeleníti a függvénysablonok teljes készletét.
+1. Bontsa ki a függvény alkalmazást, majd kattintson a hello  **+**  gomb melletti túl**funkciók**. Ha ez az első függvényét hello az függvény alkalmazásban, válassza ki a **egyéni függvény**. Ez a függvény sablonok teljes készletének hello jeleníti meg.
 
-    ![Függvények gyors létrehozásának oldala az Azure Portalon](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
+    ![Gyors üzembe helyezés lap funkciók hello Azure-portálon](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
 
-2. Kattintson a választott nyelvhez tartozó **QueueTrigger** sablonra, és használja a táblázatban megadott beállításokat.
+2. Jelölje be hello **QueueTrigger** sablont a kívánt nyelvet, és a hello tábla hello-beállítások használata.
 
-    ![Hozza létre a tároló üzenetsora által aktivált függvényt.](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
+    ![Hello tárolási indított várólista-függvény létrehozása.](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
     
     | Beállítás | Ajánlott érték | Leírás |
     |---|---|---|
-    | **Üzenetsor neve**   | myqueue-items    | A tárfiókhoz csatlakoztatni kívánt üzenetsor neve. |
-    | **Tárfiók kapcsolata** | AzureWebJobStorage | Választhatja a függvényalkalmazás által már használt tárfiókkapcsolatot, vagy létrehozhat egy újat.  |
+    | **Üzenetsor neve**   | myqueue-items    | Hello neve várólista tooconnect tooin a tárfiók. |
+    | **Tárfiók kapcsolata** | AzureWebJobStorage | A függvény alkalmazás által már használt hello tárolási fiók kapcsolat használatát, vagy hozzon létre egy újat.  |
     | **A függvény neve** | Egyedi a függvényalkalmazásban | Az üzenetsor által aktivált függvény neve. |
 
-3. Kattintson a **Létrehozás** elemre a függvény létrehozásához.
+3. Kattintson a **létrehozása** toocreate a függvény.
 
-Ezután csatlakozzon az Azure Storage-fiókjához, és hozza létre a **myqueue-items** tárolót.
+A következő tooyour Azure Storage-fiók csatlakozzon, és hozzon létre hello **Várólista_neve-elemek** tároló várólista.
 
-## <a name="create-the-queue"></a>Az üzenetsor létrehozása
+## <a name="create-hello-queue"></a>Hello várólista létrehozása
 
-1. A függvényben kattintson az **Integráció** elemre, bontsa ki a **Dokumentáció** elemet, és másolja a **Fiók neve** és a **Fiók kulcsa** értéket. Ezekkel a hitelesítő adatokkal csatlakozhat a tárfiókhoz. Ha már csatlakozott a tárfiókjához, folytassa a 4. lépéssel.
+1. A függvényben kattintson az **Integráció** elemre, bontsa ki a **Dokumentáció** elemet, és másolja a **Fiók neve** és a **Fiók kulcsa** értéket. Ezen hitelesítő adatok tooconnect toohello tárfiókot használni. Ha a tárfiók már csatlakozott, hagyja ki a toostep 4.
 
-    ![Kérje le a tárfiókhoz való csatlakozáshoz szükséges hitelesítő adatokat.](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)v
+    ![Hello tárfiók kapcsolat hitelesítő adatainak lekéréséhez.](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)v
 
-1. Futtassa a [Microsoft Azure Storage Explorer](http://storageexplorer.com/) eszközt, kattintson a bal oldalon található csatlakozási ikonra, válassza a **Tárfiók nevének és kulcsának használata** lehetőséget, és kattintson a **Tovább** gombra.
+1. Hello futtatása [Microsoft Azure Tártallózó](http://storageexplorer.com/) eszköz, kattintson a hello hello bal oldali ikon csatlakozni, válassza a **használja a tárfiók nevét és a kulcs**, és kattintson a **következő**.
 
-    ![Futtassa a Storage Account Explorer eszközt.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
+    ![Hello fiók Tártallózó eszköz futtatásához.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
 
-1. Adja meg az 1. lépésben megállapított **Fiók neve** és **Fiók kulcsa** értéket, és kattintson a **Tovább**, majd a **Csatlakozás** gombra.
+1. Adja meg a hello **fióknév** és **fiókkulcs** 1. lépésben kattintson **következő** , majd **Connect**.
 
-    ![Adja meg a tároló hitelesítő adatait, és csatlakozzon.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
+    ![Adja meg hello tároló hitelesítő adatait, és csatlakozzon.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
 
-1. Bontsa ki a csatolt tárfiókot, kattintson a jobb gombbal az **Üzenetsorok** elemre, kattintson az **Üzenetsor létrehozása** elemre, írja be a `myqueue-items` értéket, és nyomja meg az Enter billentyűt.
+1. Bontsa ki a csatolt hello storage-fiókot, kattintson a jobb gombbal **várólisták**, kattintson a **létrehozás várólista**, típus `myqueue-items`, és nyomja meg az enter.
 
     ![Hozzon létre egy tárolási üzenetsort.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-create-queue.png)
 
-Az üzenetsor létrehozása után tesztelheti a függvényt úgy, hogy felvesz egy üzenetet az üzenetsorba.
+Most, hogy a tároló várólista, tesztelheti hello függvény toohello üzenet-várólista hozzáadásával.
 
-## <a name="test-the-function"></a>A függvény tesztelése
+## <a name="test-hello-function"></a>Hello függvény tesztelése
 
-1. Térjen vissza az Azure Portalra, keresse meg a függvényt, bontsa ki a **Naplók** elemet a lap alján, és győződjön meg arról, hogy a naplózási adatfolyam nincs leállítva.
+1. Vissza a hello Azure-portálon, a Tallózás tooyour függvény bontsa ki a hello **naplók** hello alján lévő hello lap, és győződjön meg arról, hogy a napló streaming nem szünetel.
 
 1. A Storage Explorerben bontsa ki a tárfiókot, az **Üzenetsorok**, majd az **üzenetsorelemek** elemet, és kattintson az **Üzenet hozzáadása** elemre.
 
-    ![Vegyen fel egy üzenetet az üzenetsorba.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
+    ![Adjon hozzá egy üzenetsor toohello.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
 
 1. Írja be a „Hello World!” üzenetet az **Üzenet szövege** mezőbe, és kattintson az **OK** gombra.
 
-1. Várjon néhány másodpercet, majd térjen vissza a függvény naplóihoz, és győződjön meg arról, hogy megtörtént az új üzenet olvasása az üzenetsorból.
+1. Várjon néhány másodpercet, majd lépjen vissza tooyour függvény naplókat, és győződjön meg arról, hogy új üdvözlőüzenetére kiolvasott hello várólista.
 
-    ![Tekintse meg a naplókban található üzeneteket.](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
+    ![Hello naplókban üzenet megtekintése.](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
 
-1. Térjen vissza a Storage Explorerbe, kattintson a **Frissítés** elemre, és ellenőrizze, hogy megtörtént-e az üzenet feldolgozása, és hogy el lett-e távolítva az üzenetsorból.
+1. Tártallózó, kattintson **frissítése** , és győződjön meg arról, hogy üdvözlőüzenetére feldolgozása megtörtént, és már nem hello várólista.
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
@@ -108,7 +108,7 @@ Az üzenetsor létrehozása után tesztelheti a függvényt úgy, hogy felvesz e
 
 ## <a name="next-steps"></a>Következő lépések
 
-Létrehozott egy függvényt, amely akkor fut, amikor üzenet felvétele történik a tárolási üzenetsorba.
+Létrehozott egy függvényt, amely egy üzenetet tooa storage üzenetsorába felvételekor futnak.
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 

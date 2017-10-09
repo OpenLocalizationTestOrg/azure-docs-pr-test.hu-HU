@@ -1,6 +1,6 @@
 ---
-title: "A Node.js Ismerkedés az Azure CDN SDK-val |} Microsoft Docs"
-description: "Node.js-alkalmazások kezelése az Azure CDN írásának ismertetése."
+title: "a Node.js hello Azure CDN SDK használatába aaaGet |} Microsoft Docs"
+description: "Megtudhatja, hogyan toowrite Node.js alkalmazások toomanage Azure CDN szolgáltatás használata."
 services: cdn
 documentationcenter: nodejs
 author: zhangmanling
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 46ae8cd9775432d126cbde856c1fb06ea319297e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c805e5fb8e0b471e8b248cb2f4b29efd6c85940
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-cdn-development"></a>Ismerkedés az Azure CDN-fejlesztéssel
 > [!div class="op_single_selector"]
@@ -27,34 +27,34 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Használhatja a [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) létrehozása és a CDN-profil és a végpontok automatizálására.  Ez az oktatóanyag bemutatja, hogyan kell létrehozni egy egyszerű Node.js-Konzolalkalmazás, azt mutatja be a rendelkezésre álló műveletek számos.  Ez az oktatóanyag nem célja, hogy a Node.js, részletesen leírja az Azure CDN SDK minden szempontját.
+Használhatja a hello [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn) tooautomate létrehozását és a CDN-profil és a végpontok.  Ez az oktatóanyag végigvezeti egy egyszerű Node.js-Konzolalkalmazás, azt mutatja be, hogy több hello elérhető műveletek hello létrehozását.  Ez az oktatóanyag van nem tervezett toodescribe minden szempontját hello Azure CDN SDK for Node.js részletesen.
 
-Az oktatóanyag elvégzéséhez, akkor már rendelkezik [Node.js](http://www.nodejs.org) **4.x.x** vagy újabb rendszerre telepített és konfigurált.  Használhat bármilyen szövegszerkesztővel, a Node.js-alkalmazás létrehozásához.  Ez az oktatóanyag írni használt [Visual Studio Code](https://code.visualstudio.com).  
+toocomplete ebben az oktatóanyagban érdemes már [Node.js](http://www.nodejs.org) **4.x.x** vagy újabb rendszerre telepített és konfigurált.  Használhatja a Node.js-alkalmazás toocreate kívánt szövegszerkesztőben.  toowrite ebben az oktatóanyagban használt [Visual Studio Code](https://code.visualstudio.com).  
 
 > [!TIP]
-> A [az oktatóanyagot befejezett projekt](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) letölthető az MSDN Webhelyén.
+> Hello [az oktatóanyagot befejezett projekt](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74) letölthető az MSDN Webhelyén.
 > 
 > 
 
 [!INCLUDE [cdn-app-dev-prep](../../includes/cdn-app-dev-prep.md)]
 
 ## <a name="create-your-project-and-add-npm-dependencies"></a>A projekt létrehozása és hozzáadása NPM függőségek
-Most, hogy előre létrehozott erőforráscsoport a CDN-profil és a CDN-profil és a csoporton belüli végpontok kezelése az Azure AD-alkalmazás engedélyt kap, nem lehet elindítani, az alkalmazás létrehozása.
+Most, hogy előre létrehozott erőforráscsoport a CDN-profilok és az Azure AD alkalmazás engedély toomanage CDN-profil és a csoporton belüli végpontok, nem lehet elindítani, az alkalmazás létrehozása.
 
-Hozzon létre egy mappát az alkalmazás tárolásához.  Az aktuális elérési úthoz, a Node.js eszközökkel konzolon az aktuális hely beállítása az új mappába, és a projekt inicializálása a következő futtatásával:
+Az alkalmazás egy mappában toostore létrehozása.  Az aktuális elérési úthoz hello Node.js eszközökkel konzolról állítsa be az aktuális hely toothis új mappát, és a projekt inicializálása a következő futtatásával:
 
     npm init
 
-Majd választhat a projekt inicializálása kérdések sorát teszi fel.  A **belépési pont**, ez az oktatóanyag használja *app.js*.  Az egyéb lehetőségek az alábbi példában látható.
+Ezután jelenik meg a kérdéseket tooinitialize sorozata a projekthez.  A **belépési pont**, ez az oktatóanyag használja *app.js*.  A következő példa hello a más lehetőségei tekintheti meg.
 
 ![NPM init kimeneti](./media/cdn-app-dev-node/cdn-npm-init.png)
 
-A projekt már inicializálva van egy *packages.json* fájlt.  A projekt üzemeltetéséhez kívánja használni az NPM csomagban foglalt Azure könyvtárak.  Az Azure-ügyfél futásidejű a Node.js (ms-rest-azure) és az Azure CDN ügyféloldali kódtára a Node.js (azure-arm-cd) fogjuk használni.  Szerint függőségeinek adjuk hozzá azokat a projekthez.
+A projekt már inicializálva van egy *packages.json* fájlt.  A projekt NPM csomagok szereplő Azure könyvtárak toouse lesz.  Hello Azure ügyfél futásidejű a Node.js (ms-rest-azure) és hello Azure CDN ügyféloldali kódtára a Node.js (azure-arm-cd) fogjuk használni.  Most adja hozzá ezek toohello projekt függőségek.
 
     npm install --save ms-rest-azure
     npm install --save azure-arm-cdn
 
-Miután végzett a csomagok telepítése, a *package.json* fájl ebben a példában (verzió: számok eltérőek lehetnek) hasonlóan kell kinéznie:
+Hello csomagok befejezése után telepíti, hello *package.json* fájl alábbihoz hasonló toothis példa (számok eltérő verzió):
 
 ``` json
 {
@@ -74,18 +74,18 @@ Miután végzett a csomagok telepítése, a *package.json* fájl ebben a példá
 }
 ```
 
-Végezetül a szövegszerkesztővel, hozzon létre egy üres szöveges fájlt, és mentse a projekt mappában gyökérmappájában *app.js*.  Most még készen kód írása.
+Végezetül a szövegszerkesztővel, hozzon létre egy üres szöveges fájlt, és mentse a projekt mappában hello gyökérmappájában *app.js*.  A rendszer most már készen áll a kód írása toobegin.
 
 ## <a name="requires-constants-authentication-and-structure"></a>Szükséges, állandók, hitelesítési és szerkezete
-A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető szerkezete.
+A *app.js* nyissa meg a szerkesztőben, folytassuk hello alapszintű struktúrát a program írása.
 
-1. Vegye fel a "szükséges" az NPM-csomagok tetején a következő:
+1. Adja hozzá a hello "szükséges" az NPM-csomagok hello felső hello alábbira:
    
     ``` javascript
     var msRestAzure = require('ms-rest-azure');
     var cdnManagementClient = require('azure-arm-cdn');
     ```
-2. Adja meg az egyes állandók a módszerek fogja használni kell.  Adja hozzá a következő.  Ügyeljen arra, hogy cserélje le a helyőrzőket, beleértve a  **&lt;csúcsos zárójelek&gt;**, igény szerint a saját értékekkel.
+2. Toodefine kell néhány állandók a módszerek fogja használni.  Adja hozzá a hello következő.  Lehet, hogy tooreplace hello helyőrzők, beleértve a hello  **&lt;csúcsos zárójelek&gt;**, igény szerint a saját értékekkel.
    
     ``` javascript
     //Tenant app constants
@@ -98,7 +98,7 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
     const resourceGroupName = "CdnConsoleTutorial";
     const resourceLocation = "<YOUR PREFERRED AZURE LOCATION, SUCH AS Central US>";
     ```
-3. Lesz ezután azt példányt létrehozni a CDN-felügyeleti ügyfél, és adjon neki a hitelesítő adatokat.
+3. Lesz a következő azt példányosítható hello CDN felügyeleti ügyfél, és adjon neki a hitelesítő adatokat.
    
     ``` javascript
     var credentials = new msRestAzure.ApplicationTokenCredentials(clientId, tenantId, clientSecret);
@@ -108,7 +108,7 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
     Ha egyéni felhasználói hitelesítést használ, két sort némileg eltérő fog kinézni.
    
    > [!IMPORTANT]
-   > Ha használja a kódmintában a felhasználói hitelesítés helyett egy egyszerű szolgáltatás kiválasztása.  Ügyeljen rá, és tartsa titokban az egyéni felhasználói hitelesítő adatait.
+   > Ha használja a kódmintában toohave egyes felhasználói hitelesítés helyett egy egyszerű szolgáltatás kiválasztása.  Gondos tooguard kell az egyéni felhasználói hitelesítő adatait, és tartsa titokban.
    > 
    > 
    
@@ -118,8 +118,8 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
     var cdnClient = new cdnManagementClient(credentials, subscriptionId);
     ```
    
-    Ügyeljen arra, hogy az elemek cseréje  **&lt;csúcsos zárójelek&gt;**  a megfelelő információkkal.  A `<redirect URI>`, használja az átirányítási URI-t az Azure ad-ben az alkalmazás regisztrálásakor megadott.
-4. A Node.js-Konzolalkalmazás lesz e parancssori paraméterek.  Most ellenőrzi, hogy legalább egy paramétert.
+    Lehet, hogy tooreplace hello elemeinek  **&lt;csúcsos zárójelek&gt;**  hello megfelelő információkat.  A `<redirect URI>`, hello átirányítási URI-t az Azure AD hello alkalmazás regisztrálásakor megadott használja.
+4. A Node.js-Konzolalkalmazás érintetlen tootake egyes parancssori paraméterek.  Most ellenőrzi, hogy legalább egy paramétert.
    
    ```javascript
    //Collect command-line parameters
@@ -133,7 +133,7 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
        process.exit(1);
    }
    ```
-5. Amely számos lehetőséget kínál, a program, ahol azt fiókirodai más funkciók alapján milyen paraméterek lettek átadva a fő részére.
+5. Amely számos lehetőséget kínál, a program, ahol azt fiókirodai, ki milyen paraméterek lettek átadva alapján tooother funkciók toohello fő részét.
    
     ```javascript
     switch(parms[0].toLowerCase())
@@ -159,7 +159,7 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
             process.exit(1);
     }
     ```
-6. A program több helyen igazolnia kell győződjön meg arról, hogy a megfelelő számú paraméter lett átadva, és néhány Súgó megjelenítése, ha megfelelő nem megfelelő.  Hozzon létre, amely függvényt.
+6. A program több helyen kell, hogy hello megfelelő számú paraméter lett átadva, és néhány Súgó megjelenítése, nem fogják látni megfelelő toomake.  Hozzon létre funkciók toodo, amely.
    
    ```javascript
    function requireParms(parmCount) {
@@ -197,7 +197,7 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
        }
    }
    ```
-7. Végezetül a fogjuk használni a CDN-felügyeleti ügyfél függvényei aszinkron, egy metódust kell meghívni, amikor kész van szükségük.  Ellenőrizze egy, a kimenet a CDN-felügyeleti ügyfél (ha van ilyen), és a szabályosan kilép a programból.
+7. Végezetül használni fogjuk hello CDN felügyeleti ügyfél hello funkciók aszinkron jellegűek, egy módszer toocall vissza, ha kész van szükségük.  Most Meggyőződünk tartalmazó hello kimeneti hello CDN felügyeleti ügyfél (ha van ilyen), és a hello program kilépésre.
    
     ```javascript
     function callback(err, result, request, response) {
@@ -211,10 +211,10 @@ A *app.js* nyissa meg a szerkesztőben, folytassuk a program írása alapvető s
     }
     ```
 
-Most, hogy a program alapvető szerkezete írása, azt a függvény hívása a paraméterek alapján kell létrehoznia.
+Most, hogy a program alapvető szerkezete hello írása, a Microsoft hello függvény hívása a paraméterek alapján kell létrehoznia.
 
 ## <a name="list-cdn-profiles-and-endpoints"></a>Lista CDN-profil és -végpontok
-Kezdjük kód a meglévő profilok és a végpontok listáját.  A kód megjegyzéseket adja meg a várt szintaxist, hogy tudjuk, ahol az egyes paramétereket kerül.
+Kezdjük kód toolist a meglévő profilok és a végpontok.  A kód megjegyzéseket, hogy tudjuk, ahol az egyes paramétereket kerül adja meg a várt hello szintaxist.
 
 ```javascript
 // list profiles
@@ -242,7 +242,7 @@ function cdnList(){
 ```
 
 ## <a name="create-cdn-profiles-and-endpoints"></a>CDN-profil és a végpontok létrehozása
-A Funkciók, profilok és a végpontok létrehozása a következő fog írni azt.
+A következő azt fog írni hello funkciók toocreate profilok és a végpontok.
 
 ```javascript
 function cdnCreate() {
@@ -294,7 +294,7 @@ function cdnCreateEndpoint() {
 ```
 
 ## <a name="purge-an-endpoint"></a>A végpont törlése
-Feltéve, hogy a végpont létrehozását, azt szeretnénk, előfordulhat, hogy a program végrehajtásához egy közös tevékenység a végpont tartalmának van kiürítése.
+Ha hello végpont létrejött, egy közös feladat, hogy a program célszerű lehet tooperform van végleges törlése a végpont tartalma.
 
 ```javascript
 // purge <profile name> <endpoint name> <path>
@@ -307,7 +307,7 @@ function cdnPurge() {
 ```
 
 ## <a name="delete-cdn-profiles-and-endpoints"></a>CDN-profil és a végpontok törlése
-Az utolsó függvény is végpontok és a profilok törlése.
+hello utolsó függvény is végpontok és a profilok törlése.
 
 ```javascript
 function cdnDelete() {
@@ -335,11 +335,11 @@ function cdnDelete() {
 }
 ```
 
-## <a name="running-the-program"></a>A program futtatása
-Most már a Node.js-program használatával a kedvenc hibakereső végezhetünk vagy a konzolon.
+## <a name="running-hello-program"></a>Hello programot futtat
+Most már a Node.js-program használatával a kedvenc hibakereső végezhetünk vagy hello konzolján.
 
 > [!TIP]
-> Visual Studio Code az hibakereső használata, ha szüksége a környezet kialakítása felelt meg a parancssori paraméterek.  A Visual Studio Code nem ez a **lanuch.json** fájlt.  Keresse meg nevű tulajdonság **argumentum** , és adja hozzá a karakterlánc-értékeket a paraméterek tömbje úgy, hogy hasonló: `"args": ["list", "profiles"]`.
+> Visual Studio Code az hibakereső használata, tooset lesz szüksége a környezet toopass hello parancssori paraméterek mentése.  A Visual Studio Code nem ez hello **lanuch.json** fájlt.  Keresse meg nevű tulajdonság **argumentum** és karakterlánc-értékeket a paraméterek tömbjét adja hozzá, úgy, hogy hasonló toothis: `"args": ["list", "profiles"]`.
 > 
 > 
 
@@ -360,11 +360,11 @@ Végezetül most törli a profilt.
 ![Profil törlése](./media/cdn-app-dev-node/cdn-delete-profile.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Ez a forgatókönyv a befejezett projekt megjelenítéséhez [a minta letöltéséhez](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).
+toosee befejeződött hello projektet ebben a forgatókönyvben a [hello minta letöltése](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74).
 
-Tekintse meg a referencia az Azure CDN SDK-ban a Node.js, tekintse meg a [hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).
+hello Azure CDN SDK for Node.js, a nézet hello toosee hello referencia [hivatkozás](http://azure.github.io/azure-sdk-for-node/azure-arm-cdn/latest/).
 
-További dokumentációjában talál az Azure SDK-val Node.js, tekintse meg a [hivatkozás teljes](http://azure.github.io/azure-sdk-for-node/).
+toofind további dokumentációiért hello Azure SDK for Node.js, a nézet hello [hivatkozás teljes](http://azure.github.io/azure-sdk-for-node/).
 
 A CDN erőforrások kezelése [PowerShell](cdn-manage-powershell.md).
 

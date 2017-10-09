@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - Azure CLI 2.0 elemzése |} Microsoft Docs"
-description: "Ez a cikk azt ismerteti, hogyan Azure CLI 2.0 használatával elemezheti a virtuális gépek biztonsági a biztonsági csoport megtekintése."
+title: "aaaAnalyze hálózati biztonság Azure hálózati figyelő biztonsági csoport láthassák - Azure CLI 2.0 |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toouse Azure CLI 2.0 tooanalyze a virtuális gépek biztonsági a biztonsági csoport megtekintése."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 1756e14819e3b7c79361c193413a1fcd7f24a4e6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 31a4cd628f54d7548f495251fd275f099e79a060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-azure-cli-20"></a>A biztonsági csoport megtekintése az Azure CLI 2.0 verziót használja a virtuális gép biztonsági elemzése
 
@@ -28,30 +28,30 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-security-group-view-cli.md)
 > - [REST API](network-watcher-security-group-view-rest.md)
 
-Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok virtuális gép által használt adja vissza. Ez a funkció akkor hasznos, naplózási és diagnosztizálhatja a hálózati biztonsági csoportok és annak érdekében, hogy folyamatban van a forgalom egy virtuális gépen konfigurált szabályok megfelelően engedélyez vagy tilt. Ebben a cikkben megmutatjuk, hogyan lehet lekérni a konfigurált és hatékony biztonsági szabályokat egy virtuális gép az Azure parancssori felület használatával
+Biztonsági csoport megtekintése konfigurált és hatékony hálózati biztonsági szabályok, amelyek a virtuális gép alkalmazott tooa adja vissza. Ez a funkció hasznos tooaudit és diagnosztizálhatja a hálózati biztonsági csoportok és a virtuális gépek tooensure forgalma konfigurált szabályok folyamatban van megfelelően engedélyez vagy tilt. Ebben a cikkben megmutatjuk, hogyan tooretrieve hello konfigurálva és hatékony biztonsági szabályok tooa virtuális gépet az Azure parancssori felület használatával
 
 
-Ez a cikk használja a következő generációs CLI a erőforrás management üzembe helyezési modellel, Azure CLI 2.0, elérhető a Windows, Mac és Linux.
+Ez a cikk használja a következő generációs CLI hello erőforrás management üzembe helyezési modelljével Azure CLI 2.0, elérhető a Windows, Mac és Linux.
 
-Ebben a cikkben szereplő lépések végrehajtásához kell [telepítse az Azure parancssori felület Mac, Linux és Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+tooperform hello ebben a cikkben ismertetett visszaállítási lépésekkel, túl kell[hello Azure parancssori felület Mac, Linux és Windows (Azure CLI) telepítése](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A forgatókönyv a cikkben szereplő lekérdezi a konfigurált és hatékony biztonsági szabályok egy adott virtuális géphez.
+a cikkben szereplő hello forgatókönyv lekéri a konfigurált hello és a hatékony biztonsági szabályok egy adott virtuális géphez.
 
 ## <a name="get-a-vm"></a>A virtuális gép beolvasása
 
-A virtuális gépek futtatásához szükséges a `vm list` parancsmag. A következő parancsot a virtuális gépek erőforráscsoportban sorolja fel:
+A virtuális gép szükség toorun hello `vm list` parancsmag. hello következő parancs kilistázza hello virtuális gépek erőforráscsoportban.
 
 ```azurecli
 az vm list -resource-group resourceGroupName
 ```
 
-Ha tudja, hogy a virtuális gépet, a `vm show` parancsmagot, hogy megkapja az erőforrás-azonosítót:
+Miután eldöntötte, hello virtuális gép, használhatja a hello `vm show` parancsmag tooget az erőforrás-azonosítót:
 
 ```azurecli
 az vm show -resource-group resourceGroupName -name virtualMachineName
@@ -59,15 +59,15 @@ az vm show -resource-group resourceGroupName -name virtualMachineName
 
 ## <a name="retrieve-security-group-view"></a>Biztonsági csoport nézet beolvasása
 
-A program a következő lépés a biztonsági csoport megtekintése eredménye.
+hello tovább tooretrieve hello biztonsági csoport megtekintése eredménye.
 
 ```azurecli
 az network watcher show-security-group-view --resource-group resourceGroupName --vm vmName
 ```
 
-## <a name="viewing-the-results"></a>Az eredmények megtekintése
+## <a name="viewing-hello-results"></a>Hello eredmények megtekintése
 
-A következő példa egy rövidített választ adott vissza eredményt. Az eredmények megjelenítése a hatékony és alkalmazott biztonsági szabályokat a virtuális gépen csoportok bontásban **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.
+hello következő példa egy rövidített választ hello eredményt adott vissza. hello eredményeket jelenít meg minden hello hatékony és alkalmazott biztonsági szabályokat csoportok bontásban hello virtuális gépen **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, és  **EffectiveSecurityRules**.
 
 ```json
 {
@@ -159,6 +159,6 @@ A következő példa egy rövidített választ adott vissza eredményt. Az eredm
 
 ## <a name="next-steps"></a>Következő lépések
 
-Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-nsg-auditing-powershell.md) megtudhatja, hogyan automatizálhatja a hálózati biztonsági csoportok érvényesítése.
+Látogasson el [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-nsg-auditing-powershell.md) toolearn hogyan hálózati biztonsági csoportok tooautomate érvényesítése.
 
-További információ a biztonsági szabályok látogasson el a hálózati erőforrások alkalmazott [biztonsági csoport megtekintése – áttekintés](network-watcher-security-group-view-overview.md)
+További tudnivalók hello biztonsági szabályokat alkalmazott tooyour hálózati erőforrások ellátogatva [biztonsági csoport megtekintése – áttekintés](network-watcher-security-group-view-overview.md)

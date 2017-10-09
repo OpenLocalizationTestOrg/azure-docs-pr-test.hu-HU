@@ -1,6 +1,6 @@
 ---
-title: "A táblázatos modellek létrehozása az Azure Analysis Services Web-tervezővel |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre egy Azure Analysis Services táblázatos modell a webalkalmazás-tervező használata Azure-portálon."
+title: "a táblázatos modellek hello Azure Analysis Services Web-tervezővel aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate az Azure Analysis Services táblázatos modell használatával hello webes Tervező Azure-portálon."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/21/2017
 ms.author: owend
-ms.openlocfilehash: bd58f1845dabf6afb47ce27236d14479677a8808
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a37b326b76c84fc3a4300827bc1c8706b0584701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-model-in-azure-portal"></a>A modell létrehozása Azure-portálon
 
-Az Azure Analysis Services-webalkalmazás designer (előzetes verzió) Azure-portálon szolgáltatás biztosítja az gyorsan és egyszerűen és szerkesztése a táblázatos modellek és lekérdezi a modell adatok jobb a böngészőben. 
+hello Azure Analysis Services web designer (előzetes verzió) szolgáltatás Azure-portálon egy gyorsan és egyszerűen elvégezhető toocreate biztosít, és szerkesztheti a táblázatos modellek és lekérdezés modell adatok jobb a böngészőben. 
 
-Ne feledje, a webes Designer **előzetes**. Új funkciók hozzáadott folyamatosan, kép, amíg a funkciók korlátozva. A speciális modell fejlesztéshez és teszteléshez érdemes használni a Visual Studio (SSDT) és az SQL Server Management Studio (SSMS).
+Ne feledje, a hello webes Tervező **előzetes**. Új funkciók hozzáadott összes hello idő, kép, amíg a funkciók korlátozva. A speciális modell fejlesztéshez és teszteléshez akkor a legjobb toouse Visual Studio (SSDT) és az SQL Server Management Studio (SSMS).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Egy, a Standard vagy fejlesztői réteg Azure Analysis Services-kiszolgálóhoz. A webalkalmazás-tervezővel létrehozott új modellek DirectQuery, csak ezek a rétegek támogatja.
+- Egy hello Standard vagy fejlesztői réteg: Azure Analysis Services-kiszolgálóhoz. Hello Web-tervezővel létrehozott új modellek DirectQuery, csak ezek a rétegek támogatja.
 - Egy Azure SQL Database, Azure SQL Data warehouse-bA vagy egy adatforrást a Power BI Desktop (.pbix) fájlt. A Power BI Desktop fájlok támogatása az Azure SQL Database, Azure SQL Data Warehouse, Oracle és Teradata adatforrások létrehozott új modellek.
-- Egy SQL Server-fiókkal és jelszóval csatlakozás az Azure SQL Database vagy az Azure SQL Data Warehouse-adatforrásokhoz.
+- Egy SQL Server fiókot és jelszót tooAzure SQL Database vagy az Azure SQL Data Warehouse adatforrások csatlakoztatásához.
 
-## <a name="to-create-a-new-tabular-model"></a>Egy új táblázatos modell létrehozása
+## <a name="toocreate-a-new-tabular-model"></a>egy új táblázatos modell toocreate
 
 1. A Server **áttekintése** panel > **webes Tervező**, kattintson a **nyitott**.
 
@@ -47,25 +47,25 @@ Ne feledje, a webes Designer **előzetes**. Új funkciók hozzáadott folyamatos
 
     ![Azure-portálon az új modell párbeszédpanel](./media/analysis-services-create-model-portal/aas-create-portal-new-model.png)
 
-4. A **Connect**, adja meg a kapcsolat tulajdonságait. Felhasználónév és jelszó SQL Server fióknak kell lennie.
+4. A **Connect**, adja meg a hello kapcsolat tulajdonságai. Felhasználónév és jelszó SQL Server fióknak kell lennie.
 
      ![Csatlakozás Azure-portálon párbeszédpanel](./media/analysis-services-create-model-portal/aas-create-portal-connect.png)
 
-5. A **táblák és nézetek**, válassza ki a modell tartalmazza, és kattintson a táblákat **létrehozása**. Egy kulcspár rendelkező táblák közötti kapcsolatok jönnek létre automatikusan.
+5. A **táblák és nézetek**, jelölje ki a hello táblák tooinclude a modell, és kattintson **létrehozása**. Egy kulcspár rendelkező táblák közötti kapcsolatok jönnek létre automatikusan.
 
      ![Válassza ki a táblák és nézetek](./media/analysis-services-create-model-portal/aas-create-portal-tables.png)
 
 Az új modell jelenik meg a böngészőben. Itt a következőket teheti:   
 
-- Query modelladatok húzzon mezőket a Lekérdezéstervezőben, és vegye fel a szűrőket.
+- Query modelladatok húzzon mezőket toohello Lekérdezéstervező, és vegye fel a szűrők.
 - Hozzon létre új mértékek táblában.
-- Módosítsa a modell metaadatait a json-szerkesztő segítségével.
-- Nyissa meg a modellt a Visual Studio (SSDT), a Power BI Desktop vagy az Excel.
+- Szerkessze a modell metaadatainak hello json-szerkesztő használatával.
+- Nyissa meg a hello modellt a Visual Studio (SSDT), a Power BI Desktop vagy az Excel.
 
 ![Válassza ki a táblák és nézetek](./media/analysis-services-create-model-portal/aas-create-portal-query.png)
 
 > [!NOTE]
-> Modell metaadatainak szerkesztése, illetve a böngészőben új mértékek létrehozása menti ezeket a módosításokat az Azure-ban a modellhez. Ha még dolgozik a modell SSDT, a Power BI Desktop vagy az Excel, a modell szinkronban kérheti le.
+> Modell metaadatainak szerkesztése, illetve a böngészőben új mértékek létrehozása az Azure-ban e módosítások tooyour modell menti. Ha még dolgozik a modell SSDT, a Power BI Desktop vagy az Excel, a modell szinkronban kérheti le.
 
 
 ## <a name="next-steps"></a>Következő lépések 

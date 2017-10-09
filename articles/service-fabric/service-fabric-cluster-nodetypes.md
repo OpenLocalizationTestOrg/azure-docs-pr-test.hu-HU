@@ -1,6 +1,6 @@
 ---
-title: "A Service Fabric csomóponttípusok és a Virtuálisgép-méretezési készlet |} Microsoft Docs"
-description: "Útmutatás a Service Fabric csomóponttípusok Virtuálisgép-méretezési készlet kapcsolódnak és hogyan távolról csatlakozni a Virtuálisgép-méretezési csoportban példányt vagy egy fürt csomópontja."
+title: "Háló aaaService csomóponttípusok és a Virtuálisgép-méretezési készlet |} Microsoft Docs"
+description: "Ismerteti, milyen kapcsolatban áll a Service Fabric csomóponttípusok tooVM méretezési csoportok és hogyan kapcsolódnak az tooremote a tooa Virtuálisgép-méretezési csoportban példányt vagy egy fürt csomópontja."
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/05/2017
 ms.author: chackdan
-ms.openlocfilehash: 3b1a22bb3653abb68fc73645ad2cb623fabc7736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 830ea2816f5864de146a77483c85de26f91c2425
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="the-relationship-between-service-fabric-node-types-and-virtual-machine-scale-sets"></a>A Service Fabric csomóponttípusok és a virtuálisgép-méretezési csoportok közötti kapcsolat
-Virtuálisgép-méretezési csoportok olyan Azure számítási erőforrás a telepíthetnek és kezelhetnek olyan virtuális gépek gyűjteménye. Minden csomópont-típus, a Service Fabric-fürt definiált egy külön Virtuálisgép-méretezési csoportban lett beállítva. Az egyes csomóponttípusok akár majd is méretezhető vagy rendelkezik egymástól függetlenül, a portok megnyitása más-más részhalmazához le, és különböző teljesítmény-mérőszámait lehet.
+# <a name="hello-relationship-between-service-fabric-node-types-and-virtual-machine-scale-sets"></a>a Service Fabric csomóponttípusok és a virtuálisgép-méretezési csoportok hello kapcsolata
+Virtuálisgép-méretezési csoportok olyan Azure számítási erőforrás toodeploy használja, és a virtuális gépek készletként gyűjteményeinek kezelését. Minden csomópont-típus, a Service Fabric-fürt definiált egy külön Virtuálisgép-méretezési csoportban lett beállítva. Az egyes csomóponttípusok akár majd is méretezhető vagy rendelkezik egymástól függetlenül, a portok megnyitása más-más részhalmazához le, és különböző teljesítmény-mérőszámait lehet.
 
-Az alábbi képernyőfelvételen látható egy fürt, amely két csomópont tartozik: előtér- és háttérszolgáltatások.  Minden csomópont az öt csomóponttal rendelkezik.
+képernyőfelvétel a következő hello mutatja egy fürt, amely két csomópont tartozik: előtér- és háttérszolgáltatások.  Minden csomópont az öt csomóponttal rendelkezik.
 
 ![Képernyőfelvétel egy fürt, amely két csomópont tartozik][NodeTypes]
 
-## <a name="mapping-vm-scale-set-instances-to-nodes"></a>Virtuálisgép-méretezési csoportban példányok leképezése-csomópontokra
-Ahogy fent látja, a Virtuálisgép-méretezési csoportban példányok indítsa el példányból 0 és be is megnőnek. A nevek számozására is megjelenik. Például a BackEnd_0 0 példánya a háttérrendszer Virtuálisgép-méretezési csoportban. Öt példánya, BackEnd_0, BackEnd_1, BackEnd_2, BackEnd_3 és BackEnd_4 az adott Virtuálisgép-méretezési csoportban van.
+## <a name="mapping-vm-scale-set-instances-toonodes"></a>Virtuálisgép-méretezési csoportban példányok toonodes leképezése
+Fent látható, hello Virtuálisgép-méretezési csoportban példányok példányt 0-tól kezdődnek, majd következik be. hello számozására hello neveket is megjelenik. Például BackEnd_0 háttér Virtuálisgép-méretezési csoportban hello 0-példány. Öt példánya, BackEnd_0, BackEnd_1, BackEnd_2, BackEnd_3 és BackEnd_4 az adott Virtuálisgép-méretezési csoportban van.
 
-Ha Ön növelheti a Virtuálisgép-méretezési csoportban egy új példány jön létre. Az új Virtuálisgép-méretezési csoportban példány általában lesz, a Virtuálisgép-méretezési csoportban neve + a következő példányok számát. A jelen példában BackEnd_5.
+Ha Ön növelheti a Virtuálisgép-méretezési csoportban egy új példány jön létre. hello új Virtuálisgép-méretezési csoportban példánynév hello Virtuálisgép-méretezési csoportban neve + hello következő példányszámának általában legyen. A jelen példában BackEnd_5.
 
-## <a name="mapping-vm-scale-set-load-balancers-to-each-node-typevm-scale-set"></a>Virtuálisgép-méretezési leképezési terheléselosztók csomópont típus/virtuális gépek méretezési beállítása
-Ha telepítette a fürtöt a portálról, vagy a minta Resource Manager-sablon, amely azt megadva, majd amikor egy erőforráscsoportba tartozó összes erőforrás listáját használja majd látni fogja az egyes Virtuálisgép-méretezési csoportban vagy csomópont azokat a terheléselosztókat.
+## <a name="mapping-vm-scale-set-load-balancers-tooeach-node-typevm-scale-set"></a>Méretezési betöltése hozzárendelése a virtuális gép egy terheléselosztó tooeach csomópont típus/VM méretezési
+Ha telepítette a fürt hello portálról, vagy hello minta Resource Manager-sablon, amely azt megadva, majd amikor egy erőforráscsoportba tartozó összes erőforrás listáját használja majd látni fogja az egyes Virtuálisgép-méretezési csoportban vagy csomópont hello terheléselosztók.
 
-A név lesz hasonlót: **LB -&lt;NodeType neve&gt;**. Például LB-sfcluster4doc-0, a képernyőfelvételen látható módon:
+hello neve volna hasonlót: **LB -&lt;NodeType neve&gt;**. Például LB-sfcluster4doc-0, a képernyőfelvételen látható módon:
 
 ![Erőforrások][Resources]
 
-## <a name="remote-connect-to-a-vm-scale-set-instance-or-a-cluster-node"></a>Távoli kapcsolódás egy Virtuálisgép-méretezési csoportban példányt vagy egy fürt csomópontja
-Minden csomópont-típus, egy fürt definiált egy külön Virtuálisgép-méretezési csoportban lett beállítva.  Ez azt jelenti, hogy azok a csomóponttípusok méretezhetők akár vagy egymástól függetlenül le, és különböző VM termékváltozatok teszik lehetővé. Egypéldányos virtuális gépeket, ellentétben a Virtuálisgép-méretezési csoport példányai nem kérdezhető le egy virtuális IP-címet saját. Ezért ez lehet egy kicsit kihívást keresett IP-címet és portot, amelyet segítségével távoli csatlakozás egy adott példányt.
+## <a name="remote-connect-tooa-vm-scale-set-instance-or-a-cluster-node"></a>Távoli kapcsolódás tooa Virtuálisgép-méretezési csoportban példányt vagy egy fürt csomópontja
+Minden csomópont-típus, egy fürt definiált egy külön Virtuálisgép-méretezési csoportban lett beállítva.  Megadhat az, hogy azt jelenti, hogy hello csomóponttípusok akár vagy egymástól függetlenül le, és különböző VM termékváltozatok teszik lehetővé. Egypéldányos virtuális gépeket, eltérően hello Virtuálisgép-méretezési csoport példányai nem kérdezhető le egy virtuális IP-címet saját. Így jelző bit lehet kihívást, ha a keresett IP cím és port használható tooremote csatlakozás tooa példány.
 
-Az alábbiakban a lépéseket, amelyeket követve derítheti fel azokat.
+Az alábbiakban hello lépések követésével toodiscover őket.
 
-### <a name="step-1-find-out-the-virtual-ip-address-for-the-node-type-and-then-inbound-nat-rules-for-rdp"></a>1. lépés: A virtuális IP-címet a csomóponttípus és bejövő NAT-szabályokat RDP megállapítása
-Ahhoz, hogy beolvasása, amely, le kell töltenie a bejövő NAT szabályok értékek az erőforrás-definíciójának részeként meghatározott **Microsoft.Network/loadBalancers**.
+### <a name="step-1-find-out-hello-virtual-ip-address-for-hello-node-type-and-then-inbound-nat-rules-for-rdp"></a>1. lépés: Hello csomóponttípus hello virtuális IP-címét, majd a bejövő forgalmat kezelő NAT-szabályokat RDP megállapítása
+A sorrend tooget, telepíteni kell, amely tooget hello bejövő forgalmat kezelő NAT szabályok hello erőforrás-definíció részeként meghatározott értékek **Microsoft.Network/loadBalancers**.
 
-A portálon lépjen a Load balancer paneljét, majd **beállítások**.
+Hello portálon lépjen toohello Load balancer panelen, majd **beállítások**.
 
 ![LBBlade][LBBlade]
 
-A **beállítások**, kattintson a **bejövő forgalmat kezelő NAT-szabályok**. Ez most nyújt az IP-címet és portot, amelyet segítségével távoli csatlakozás az első Virtuálisgép-méretezési csoportban példányhoz. Az alábbi képernyőképen látható, hogy a rendszer **104.42.106.156** és **3389-es**
+A **beállítások**, kattintson a **bejövő forgalmat kezelő NAT-szabályok**. Ez most által biztosított IP-cím és port használható tooremote hello toohello Virtuálisgép-méretezési csoportban elsőként csatlakoztassa. Hello alábbi képernyőképen látható, hogy a rendszer **104.42.106.156** és **3389-es**
 
 ![NATRules][NATRules]
 
-### <a name="step-2-find-out-the-port-that-you-can-use-to-remote-connect-to-the-specific-vm-scale-set-instancenode"></a>2. lépés: Kibővített a portot, amelynek távoli csatlakozás a megadott Virtuálisgép-méretezési csoportban példány/csomópont keresése
-A jelen dokumentum korábbi I arról volt szó, hogyan a Virtuálisgép-méretezési csoportban példányok hozzárendelését a csomópontok. Használjuk, amely mérje fel, a pontos port.
+### <a name="step-2-find-out-hello-port-that-you-can-use-tooremote-connect-toohello-specific-vm-scale-set-instancenode"></a>2. lépés: Hello port megtudhatja, hogy használhatja-e tooremote csatlakozás toohello adott Virtuálisgép-méretezési csoportban példány/csomópont
+A jelen dokumentum korábbi I arról volt szó, hogyan hello Virtuálisgép-méretezési csoportban példányok leképezése toohello csomópontok. Adott toofigure hello pontos port kimenő használjuk.
 
-A portok növekvő sorrendben a Virtuálisgép-méretezési csoportban példány foglal le. úgy, hogy a példában a FrontEnd csomóponttípus, a portok az egyes öt példánya a következő. most kell tennie, hogy a Virtuálisgép-méretezési csoportban példány azonosak maradjanak.
+hello portok hello Virtuálisgép-méretezési csoportban példány növekvő sorrendben foglal le. ezért a hello előtér csomóponttípus példában hello hello öt példányok mindegyikének portjait hello következő. Ön most kell toodo hello a Virtuálisgép-méretezési csoportban példány azonosak maradjanak.
 
 | **Virtuálisgép-méretezési készlet példány** | **Port** |
 | --- | --- |
@@ -69,46 +69,46 @@ A portok növekvő sorrendben a Virtuálisgép-méretezési csoportban példány
 | FrontEnd_4 |3393 |
 | FrontEnd_5 |3394 |
 
-### <a name="step-3-remote-connect-to-the-specific-vm-scale-set-instance"></a>3. lépés: Távoli csatlakozás a megadott Virtuálisgép-méretezési csoportban példányhoz
-Az alábbi képernyőfelvételen a távoli asztali kapcsolat a FrontEnd_1 való kapcsolódáshoz használni:
+### <a name="step-3-remote-connect-toohello-specific-vm-scale-set-instance"></a>3. lépés: Távoli csatlakozás toohello Virtuálisgép-méretezési csoportban példány
+Az alábbi képernyőképen hello használata a távoli asztali kapcsolat tooconnect toohello FrontEnd_1:
 
 ![RDP][RDP]
 
-## <a name="how-to-change-the-rdp-port-range-values"></a>Az RDP-port tartományértékeknek módosítása
+## <a name="how-toochange-hello-rdp-port-range-values"></a>Hogyan toochange hello RDP-portjára tartomány értékek
 ### <a name="before-cluster-deployment"></a>Fürttelepítés előtt
-Állítja be a fürt Resource Manager-sablonnal, megadhatja a tartomány a **inboundNatPools**.
+Hello fürt Resource Manager-sablonnal állít be, amikor megadhat hello tartomány hello **inboundNatPools**.
 
-Keresse fel az erőforrás-definíció **Microsoft.Network/loadBalancers**. Amely alatt a leírása található **inboundNatPools**.  Cserélje le a *frontendportrangestart értékénél* és *frontendportrangeend értékének* értékeket.
+Nyissa meg az erőforrás-definíció toohello **Microsoft.Network/loadBalancers**. Amely alatt található hello leírását **inboundNatPools**.  Cserélje le a hello *frontendportrangestart értékénél* és *frontendportrangeend értékének* értékeket.
 
 ![InboundNatPools][InboundNatPools]
 
 ### <a name="after-cluster-deployment"></a>Fürt telepítése után
-Ez egy kicsit bonyolultabb, és azt eredményezheti, a virtuális gépek újbóli felhasználását. Most fog Azure PowerShell használatával új értékeinek beállításához. Győződjön meg arról, hogy az Azure PowerShell 1.0-s vagy újabb verziója telepítve van-e a számítógépen. Ha nem ezt megelőzően, I erősen javasolt lépéseket a leírt [hogyan Azure PowerShell telepítése és konfigurálása.](/powershell/azure/overview)
+Ez egy kicsit bonyolultabb, és azt eredményezheti, hello virtuális gépek újbóli felhasználását. Most kell tooset Azure PowerShell használatával új értékeket. Győződjön meg arról, hogy az Azure PowerShell 1.0-s vagy újabb verziója telepítve van-e a számítógépen. Ha nem ezt megelőzően, I erősen javasolt lépéseket hello leírt [hogyan tooinstall Azure PowerShell és konfigurálása.](/powershell/azure/overview)
 
-Jelentkezzen be az Azure-fiókjával. Ha a PowerShell-parancs valamilyen okból nem sikerül, ellenőrizze az Azure PowerShell megfelelően telepítve van-e.
+Bejelentkezés tooyour Azure-fiók. Ha a PowerShell-parancs valamilyen okból nem sikerül, ellenőrizze az Azure PowerShell megfelelően telepítve van-e.
 
 ```
 Login-AzureRmAccount
 ```
 
-Futtassa a következő kapcsolatban a terheléselosztó és a leírást a értéke látható **inboundNatPools**:
+Futtassa a következő tooget adatok a terheléselosztón hello és hello leírását hello értéke látható **inboundNatPools**:
 
 ```
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load balancer name>
 ```
 
-Most már készen *frontendportrangeend értékének* és *frontendportrangestart értékénél* az értékeket.
+Most már készen *frontendportrangeend értékének* és *frontendportrangestart értékénél* toohello kívánt értékeket.
 
 ```
 $PropertiesObject = @{
     #Property = value;
 }
-Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG name> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load Balancer name> -ApiVersion <use the API version that get returned> -Force
+Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG name> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load Balancer name> -ApiVersion <use hello API version that get returned> -Force
 ```
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [A "Üzembe helyezés bárhol" szolgáltatás és az Azure által kezelt fürtökkel összehasonlítása áttekintése](service-fabric-deploy-anywhere.md)
+* [Hello "Bárhol rendszerbe állítás" szolgáltatás és az Azure által kezelt fürtökkel összehasonlítása áttekintése](service-fabric-deploy-anywhere.md)
 * [Fürtbiztonság](service-fabric-cluster-security.md)
 * [Service Fabric SDK és az első lépések](service-fabric-get-started.md)
 

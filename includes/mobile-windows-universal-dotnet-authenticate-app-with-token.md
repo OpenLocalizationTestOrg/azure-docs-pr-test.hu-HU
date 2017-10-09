@@ -1,25 +1,25 @@
 
-1. A MainPage.xaml.cs projekt fájlban adja hozzá a következő **használatával** utasításokat:
+1. A hello MainPage.xaml.cs projektfájlban, adja hozzá a hello következő **használatával** utasításokat:
    
         using System.Linq;        
         using Windows.Security.Credentials;
-2. Cserélje le a **AuthenticateAsync** metódus a következő kóddal:
+2. Cserélje le a hello **AuthenticateAsync** hello kód a következő metódust:
    
         private async System.Threading.Tasks.Task<bool> AuthenticateAsync()
         {
             string message;
             bool success = false;
    
-            // This sample uses the Facebook provider.
+            // This sample uses hello Facebook provider.
             var provider = MobileServiceAuthenticationProvider.Facebook;
    
-            // Use the PasswordVault to securely store and access credentials.
+            // Use hello PasswordVault toosecurely store and access credentials.
             PasswordVault vault = new PasswordVault();
             PasswordCredential credential = null;
    
             try
             {
-                // Try to get an existing credential from the vault.
+                // Try tooget an existing credential from hello vault.
                 credential = vault.FindAllByResource(provider.ToString()).FirstOrDefault();
             }
             catch (Exception)
@@ -29,15 +29,15 @@
    
             if (credential != null)
             {
-                // Create a user from the stored credentials.
+                // Create a user from hello stored credentials.
                 user = new MobileServiceUser(credential.UserName);
                 credential.RetrievePassword();
                 user.MobileServiceAuthenticationToken = credential.Password;
    
-                // Set the user from the stored credentials.
+                // Set hello user from hello stored credentials.
                 App.MobileService.CurrentUser = user;
    
-                // Consider adding a check to determine if the token is 
+                // Consider adding a check toodetermine if hello token is 
                 // expired, as shown in this post: http://aka.ms/jww5vp.
    
                 success = true;
@@ -47,11 +47,11 @@
             {
                 try
                 {
-                    // Login with the identity provider.
+                    // Login with hello identity provider.
                     user = await App.MobileService
                         .LoginAsync(provider);
    
-                    // Create and store the user credentials.
+                    // Create and store hello user credentials.
                     credential = new PasswordCredential(provider.ToString(),
                         user.UserId, user.MobileServiceAuthenticationToken);
                     vault.Add(credential);
@@ -72,13 +72,13 @@
             return success;
         }
    
-    Ezen verziója **AuthenticateAsync**, az alkalmazás megkísérli a tárolt hitelesítő adatok használatát a **PasswordVault** a szolgáltatás eléréséhez. Rendszeres bejelentkezés is történik, amikor nincs nem tárolt hitelesítő adatok.
+    Ezen verziója **AuthenticateAsync**, hello app megpróbál hello tárolt toouse hitelesítő adatok **PasswordVault** tooaccess hello szolgáltatást. Rendszeres bejelentkezés is történik, amikor nincs nem tárolt hitelesítő adatok.
    
    > [!NOTE]
-   > Előfordulhat, hogy egy gyorsítótárazott token lejárt, és jogkivonat lejáratáról is esetén fordul elő a hitelesítés után az alkalmazás használatban van. Annak megállapítása, ha a jogkivonat lejárt-e további tudnivalókért lásd: [lejárt a hitelesítési tokenek keressen](http://aka.ms/jww5vp). Lejáró jogkivonatok kapcsolatban a hitelesítési hibák kezelési megoldást, lásd: a feladás egy vagy több [gyorsítótárazáshoz és kezelése az Azure Mobile Services lejárt jogkivonatok felügyelt SDK](http://blogs.msdn.com/b/carlosfigueira/archive/2014/03/13/caching-and-handling-expired-tokens-in-azure-mobile-services-managed-sdk.aspx). 
+   > Előfordulhat, hogy egy gyorsítótárazott token lejárt, és jogkivonat lejáratáról is esetén fordul elő a hitelesítés után hello alkalmazás használatban van. Hogyan toodetermine a jogkivonat érvényessége lejárt, ha: toolearn [lejárt a hitelesítési tokenek keressen](http://aka.ms/jww5vp). A megoldás toohandling hitelesítési hibák kapcsolódó tooexpiring jogkivonatokat, lásd: hello utáni [gyorsítótárazáshoz és kezelése az Azure Mobile Services lejárt jogkivonatok felügyelt SDK](http://blogs.msdn.com/b/carlosfigueira/archive/2014/03/13/caching-and-handling-expired-tokens-in-azure-mobile-services-managed-sdk.aspx). 
    > 
    > 
-3. Indítsa újra az alkalmazást kétszer.
+3. Indítsa újra kétszer hello alkalmazást.
    
-    Figyelje meg, hogy az első indításkor, jelentkezzen be a szolgáltató újra szükség. Azonban a második újraindítás közben a gyorsítótárazott hitelesítő adatokat használja, és a bejelentkezési elmarad. 
+    Figyelje meg, hogy hello első indításkor, jelentkezzen be hello szolgáltató újra szükség. Azonban hello második újraindításkor hello gyorsítótárazott hitelesítő adatokat használja, és a bejelentkezési elmarad. 
 

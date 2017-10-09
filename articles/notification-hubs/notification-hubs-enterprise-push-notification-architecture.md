@@ -1,5 +1,5 @@
 ---
-title: "A Notification Hubs - vállalati leküldéses architektúrája"
+title: "aaaNotification Hubs - vállalati leküldéses architektúrája"
 description: "Útmutató az Azure Notification Hubs használatával vállalati környezetben"
 services: notification-hubs
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: ae7c1c9644ecfe7fe4ad6e332cc0683a3b5df22f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3afb83de1ba0882bf99e10f38cca40cb42d07a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enterprise-push-architectural-guidance"></a>Útmutató a vállalati leküldési architektúrákhoz
-A vállalatok ma egyre fokozatosan áthelyezése felé létrehozása vagy az alkalmazásokat a végfelhasználók számára (külső) vagy (belső) az alkalmazottak számára. Létező háttérrendszerek helyen kell azt Nagyszámítógépek vagy néhány LoB-alkalmazások, amelyek integrálni kell a mobilalkalmazás-architektúra rendelkeznek. Ez az útmutató előadás hogyan legjobb, ha ez az integráció ajánló lehetséges megoldás a gyakori forgatókönyvek.
+A vállalatok ma egyre fokozatosan áthelyezése vagy hello alkalmazottak (belső) létrehozásához vagy az alkalmazásokat a végfelhasználók számára (külső) felé. Létező háttérrendszerek helyen kell azt Nagyszámítógépek rendelkeznek, vagy bizonyos LoB-alkalmazások, amelyek kell integrálni hello mobilalkalmazás architektúra. Ez az útmutató előadás a legjobb módja toodo ezt az integrációt ajánló lehetséges megoldás toocommon forgatókönyvek.
 
-Gyakori követelmény van a leküldéses értesítések küldését a felhasználók számára a mobilalkalmazás keresztül, a háttér-rendszer egyik fontos esemény bekövetkezésekor. Például egy bank ügyfél, a bank banki alkalmazást az iPhone rendelkező szeretne értesítést tartozik szeretné tenni saját fiók vagy egy intranetes forgatókönyvet, ahol a pénzügyi részleg egy alkalmazott, a költségvetési jóváhagyást alkalmazások a Windows Phone rendelkező szeretné nem lehet egy bizonyos összeg felett Ha a jóváhagyási kérelem kapjuk egadott.
+Gyakori követelmény van a leküldéses értesítési toohello felhasználókon a mobilalkalmazás hello háttérrendszerek az egyik fontos esemény bekövetkezésekor. Például az iPhone hello banki banki alkalmazás rendelkező banki ügyfél szeretne toobe értesíti, ha tartozik történik egy saját fiókot vagy egy intranetes forgatókönyvet, ahol a pénzügyi részleg egy alkalmazott, a költségvetési jóváhagyást alkalmazások a Windows Phone rendelkező szeretne toobe bizonyos összeg felett értesíti, ha a jóváhagyási kérelem kapjuk.
 
-A banki vagy jóváhagyási feldolgozási valószínű, hogy néhány háttérrendszer, amely egy leküldéses a felhasználónak kell kezdeményeznie végezhető. Előfordulhat, hogy több ilyen kell az összes build az eseményt akkor váltja ki egy értesítést leküldéses megvalósítási logika ugyanolyan típusú háttér rendszereket. Itt összetettségét létrejönnie egy egyetlen leküldéses rendszert, ahol lehetséges, hogy a végfelhasználók számára különböző értesítések előfizetett és még akkor is előfordulhat, például intranet mobilalkalmazások esetében több mobilalkalmazások Ha az egyik több háttérrendszerek integrálása mobilalkalmazás előfordulhat, hogy értesítést szeretne kapni a több ilyen háttérrendszerek. A háttérrendszerek nem ismeri vagy tudniuk kell, hogy leküldéses szemantikáját/technológia, így a közös megoldást-ra volt egy összetevő, amely lekérdezi a háttérrendszerek bármely események számára, és a leküldéses üzenetek küldéséért felelős bevezetni a az ügyfél.
-Itt előadás egy használó Azure Service Bus - témakört/előfizetést modell, amely csökkenti a összetettségét a megoldás méretezhető tétele közben is jobb megoldás.
+hello banki vagy jóváhagyási feldolgozási valószínűleg toobe néhány háttér rendszert, amely egy leküldéses toohello felhasználónak kell kezdeményeznie végezheti el. Előfordulhat, hogy több ilyen háttér kell az összes build rendszereket hello logika tooimplement leküldéses ugyanolyan típusú, ha az eseményt akkor váltja ki egy értesítést. Itt hello összetettsége létrejönnie egy egyetlen leküldéses rendszert, ahol hello végfelhasználók előfordulhat, hogy előfizetett toodifferent értesítéseket, és lehet, hogy van még lehet például az intranet mobilalkalmazások hello esetben több mobilalkalmazások több háttérrendszerek integrálása egy mobilalkalmazás azt szeretné, ha több ilyen háttérrendszerek tooreceive értesítéseket. hello háttérrendszerek nem ismeri vagy kell tooknow leküldéses szemantikáját/technológia, így a közös megoldást-ra volt toointroduce kérdezze le az hello háttérrendszerek bármely események számára, és leküldéses köszönőüzenetei küldéséért felelős összetevő toohello ügyfél.
+Itt előadás egy használó Azure Service Bus - témakört/előfizetést modell, amely csökkenti a hello összetettsége hello megoldás méretezhető tétele közben is jobb megoldás.
 
-Ez a megoldás általános architektúrájának (több mobilalkalmazásokkal általános, de egyaránt alkalmazható, ha csak egy mobilalkalmazás)
+Ez hello általános architektúra hello megoldás (több mobilalkalmazásokkal általános, de egyaránt alkalmazható, ha csak egy mobilalkalmazás)
 
 ## <a name="architecture"></a>Architektúra
 ![][1]
 
-A kulcs darab a architekturális diagram Azure Service Bus, amely a témakörök/előfizetések programozási modellt biztosít (további sablonokat a [Service Bus Pub/Sub programozási]). A fogadó, amely ebben az esetben a mobil-háttéralkalmazást (általában [Azure Mobile Services mobilszolgáltatás], amely indít el a mobilalkalmazások leküldéses) kapott üzenetek közvetlenül a háttérrendszerről, de ehelyett egy köztes tudunk hardverabsztrakciós réteg által biztosított [Azure Service Bus] lehetővé teszi a mobil-háttéralkalmazást üzenetek fogadása egy vagy több háttérrendszerek. A Service Bus-témakörbe kell létrehozni az egyes a háttérrendszerek pl. fiók HR, pénzügyi, amelyek alapvetően "témakörök" iránt, amelyek indít el, leküldéses értesítést küldeni. A háttérrendszerek témákhoz üzenetet szeretne küldeni. A mobil-háttéralkalmazás kérhet le egy vagy több ilyen témakörök által a Service Bus-előfizetés létrehozása. Ez feljogosítja a mobil-háttéralkalmazást is megkapja az értesítéseket a megfelelő háttér rendszerből. Mobil-háttéralkalmazást továbbra is az üzeneteket az előfizetések és, amint egy üzenet érkezik, akkor kapcsolja vissza, és elküldi az értesítési központba értesítésként. A Notification hubs majd végül kézbesíti az üzenetet a mobilalkalmazásban. Úgy, hogy összesítse a legfontosabb összetevők, vezetünk be:
+a architekturális diagramja hello kulcs darab Azure Service Bus, amely a témakörök/előfizetések programozási modellt biztosít (további sablonokat a [Service Bus Pub/Sub programozási]). hello fogadó, amely ebben az esetben hello mobil-háttéralkalmazást (általában [Azure Mobile Services mobilszolgáltatás], amely indít el egy leküldéses toohello mobilalkalmazások) kapott üzenetek közvetlenül hello háttérrendszerek, de ehelyett tudunk egy köztes hardverabsztrakciós réteg által biztosított [Azure Service Bus] lehetővé teszi a mobil-háttéralkalmazást tooreceive üzeneteit egy vagy több háttérrendszerek. A Service Bus-témakörbe létre minden egyes hello háttér rendszerek pl. fiók HR, pénzügyi, amelyek alapvetően "témakörök" iránt, amelyek fogja elindítani leküldéses értesítéseket küldött üzenetek toobe toobe kell. hello háttérrendszerek üzenetet szeretne küldeni toothese témaköröket. A mobil-háttéralkalmazás fizethet tooone vagy több ilyen témakörök által a Service Bus-előfizetés létrehozása. Ez feljogosítja hello mobil-háttéralkalmazást tooreceive hello megfelelő háttérrendszer értesítéseinek. Mobil-háttéralkalmazást üzenetek toolisten folytatja az előfizetések és, amint egy üzenet érkezik, akkor kapcsolja vissza, és elküldi azt értesítési tooits értesítési központot. A Notification hubs felé kézbesíti hello üzenet toohello mobilalkalmazás. Ezért toosummarize hello legfontosabb összetevők, vezetünk be:
 
 1. A háttérrendszerek (LoB/örökölt rendszerek)
    * Service Bus-témakörbe létrehozása
@@ -41,47 +41,47 @@ A kulcs darab a architekturális diagram Azure Service Bus, amely a témakörök
 2. Mobil háttérszolgáltatás
    * Szolgáltatás-előfizetést hoz létre
    * Üzenet fogadása (a háttérrendszer)
-   * Értesítés küldése (az Azure Notification Hub) keresztül ügyfelek
+   * Elküldi az értesítést tooclients (az Azure Notification Hub) keresztül
 3. Mobilalkalmazás
    * Kap, és értesítést jelenít meg
 
 ### <a name="benefits"></a>Előnyei:
-1. A fogadó (app/mobilszolgáltatás Notification Hub használatával) és a feladó (háttérrendszerek) közötti leválasztásával lehetővé teszi, hogy további háttérrendszerek integrálva van a minimális módosítása.
-2. Így a több mobilalkalmazások tudnak majd egy vagy több háttérrendszerről származó események fogadására a forgatókönyvet.  
+1. hello szétválasztását hello fogadó (app/mobilszolgáltatás Notification Hub használatával) és a feladó (háttérrendszerek) lehetővé teszi, hogy további háttérrendszerek integrálva van a minimális módosítása.
+2. Így több mobilalkalmazások éppen egy vagy több háttérrendszerek képes tooreceive eseményeinek hello a forgatókönyvet.  
 
 ## <a name="sample"></a>Minta:
 ### <a name="prerequisites"></a>Előfeltételek
-El kell végeznie az alábbi oktatóanyagok megismerkednie a fogalmakat, valamint közös létrehozása és konfigurációs lépéseket:
+El kell végeznie az alábbi oktatóanyagok toofamiliarize hello fogalmait, valamint a gyakori létrehozása a & konfigurációs lépések hello:
 
-1. [Service Bus Pub/Sub programozási] -ebben a részben működik-e a Service Bus témakörök/előfizetések, részleteit tartalmazó témakörök/előfizetésekre, a névtér létrehozása hogyan üzeneteket fogadjon & küldése.
-2. [A Notification Hubs - oktatóanyag univerzális Windows-] -ezt ismerteti, hogyan állítson be egy Windows Áruházbeli alkalmazást és regisztrálja, és ezután kapni az értesítések a Notification Hubs használatával.
+1. [Service Bus Pub/Sub programozási] -ez magyarázattal hello részleteit működő Service Bus témakörök/előfizetések, hogyan toocreate névtér toocontain témakörök/előfizetések, hogyan toosend & üzeneteket fogadjon.
+2. [A Notification Hubs - oktatóanyag univerzális Windows-] -ismerteti, hogyan tooset be a Windows Áruházbeli alkalmazások és a Notification Hubs tooregister használja, és majd értesítéseket.
 
 ### <a name="sample-code"></a>Mintakód
-A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három összetevővel:
+hello teljes mintakód érhető el: [Notification Hub minták]. A oszlik három összetevővel:
 
 1. **EnterprisePushBackendSystem**
    
-    a. Ez a projekt használja a *WindowsAzure.ServiceBus* Nuget-csomag alapozva [Service Bus Pub/Sub programozási].
+    a. A projekt által használt hello *WindowsAzure.ServiceBus* Nuget-csomag alapozva [Service Bus Pub/Sub programozási].
    
-    b. Ez az egy egyszerű C# Konzolalkalmazás egy LoB szimulálására kezdeményező a mobilalkalmazás küldendő üzenet.
+    b. Ez az egy egyszerű C# konzol app toosimulate egy LoB rendszer kezdeményező hello üzenet toobe toohello mobilalkalmazás kézbesíteni.
    
         static void Main(string[] args)
         {
             string connectionString =
                 CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
    
-            // Create the topic where we will send notifications
+            // Create hello topic where we will send notifications
             CreateTopic(connectionString);
    
             // Send message
             SendMessage(connectionString);
         }
    
-    c. `CreateTopic`létrehozásához használt a Service Bus-témakörbe ahol üzenetet küldünk.
+    c. `CreateTopic`Ha az üzeneteket kapni fog van használt toocreate hello Service Bus-témakörbe.
    
         public static void CreateTopic(string connectionString)
         {
-            // Create the topic if it does not exist already
+            // Create hello topic if it does not exist already
    
             var namespaceManager =
                 NamespaceManager.CreateFromConnectionString(connectionString);
@@ -92,19 +92,19 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
             }
         }
    
-    d. `SendMessage`az üzenetek küldése a Service Bus-témakörbe szolgál. Itt azt egyszerűen küldenek véletlenszerű üzenetek készleteit a témakörhöz, rendszeres időközönként a minta céljából. Általában nem lesznek egy háttér-rendszert, amely üzenetet szeretne küldeni, ha az esemény akkor következik be.
+    d. `SendMessage`használt toosend hello üzenetek toothis Service Bus-témakörbe. Itt azt egyszerűen küldenek véletlenszerű üzenetek toohello témakör rendszeresen hello célra hello minta készlete. Általában nem lesznek egy háttér-rendszert, amely üzenetet szeretne küldeni, ha az esemény akkor következik be.
    
         public static void SendMessage(string connectionString)
         {
             TopicClient client =
                 TopicClient.CreateFromConnectionString(connectionString, sampleTopic);
    
-            // Sends random messages every 10 seconds to the topic
+            // Sends random messages every 10 seconds toohello topic
             string[] messages =
             {
                 "Employee Id '{0}' has joined.",
                 "Employee Id '{0}' has left.",
-                "Employee Id '{0}' has switched to a different team."
+                "Employee Id '{0}' has switched tooa different team."
             };
    
             while (true)
@@ -124,27 +124,27 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
         }
 2. **ReceiveAndSendNotification**
    
-    a. Ez a projekt használja a *WindowsAzure.ServiceBus* és *Microsoft.Web.WebJobs.Publish* Nuget a csomagok és alapuló [Service Bus Pub/Sub programozási].
+    a. A projekt által használt hello *WindowsAzure.ServiceBus* és *Microsoft.Web.WebJobs.Publish* Nuget a csomagok és alapuló [Service Bus Pub/Sub programozási].
    
-    b. Ez az egy másik C# konzolalkalmazást, amely jelenleg fut egy [Azure webjobs-feladat] mivel folyamatosan figyelni a LoB-/ háttérrendszerek üzeneteit futtatásához rendelkezik. Ez a mobil-háttéralkalmazást része lesz.
+    b. Ez az egy másik C# konzolalkalmazást, amely jelenleg fut egy [Azure webjobs-feladat] mert toorun folyamatosan rendelkezik a toolisten hello LoB-/ háttérrendszerek érkező üzenetek-e. Ez a mobil-háttéralkalmazást része lesz.
    
         static void Main(string[] args)
         {
             string connectionString =
                      CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
    
-            // Create the subscription which will receive messages
+            // Create hello subscription which will receive messages
             CreateSubscription(connectionString);
    
             // Receive message
             ReceiveMessageAndSendNotification(connectionString);
         }
    
-    c. `CreateSubscription`segítségével hozzon létre egy Service Bus-előfizetést, a témakör ahol a háttérrendszer fog üzeneteket küldeni. Attól függően, hogy az üzleti terület Ez az összetevő hoz létre egy vagy több előfizetés (pl. néhány lehetséges, hogy lehet üzenetek fogadása HR rendszer, egyes pénzügyi rendszer, és így tovább) kapcsolódó témakörök
+    c. `CreateSubscription`van használt toocreate hello a témakör a Service Bus előfizetést ahol hello háttérrendszer fog üzeneteket küldeni. Attól függően, hogy hello üzleti helyzethez Ez az összetevő hoz létre egy vagy több előfizetés (pl. néhány lehetséges, hogy lehet üzenetek fogadása HR rendszer, egyes pénzügyi rendszer, és így tovább) toocorresponding kapcsolatos témakörök
    
         static void CreateSubscription(string connectionString)
         {
-            // Create the subscription if it does not exist already
+            // Create hello subscription if it does not exist already
             var namespaceManager =
                 NamespaceManager.CreateFromConnectionString(connectionString);
    
@@ -154,11 +154,11 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
             }
         }
    
-    d. Az üzenet olvasni a témakör az előfizetést, és ha az olvasás sikeres majd kézműipari (forgatókönyvében a minta egy Windows natív bejelentési értesítés) értesítést a mobilalkalmazás használata Azure küldendő ReceiveMessageAndSendNotification szolgál Notification hubs használatával.
+    d. ReceiveMessageAndSendNotification hello témakör segítségével az általa használt tooread hello üzenetét, és ha olvasható hello sikeres majd kézműipari (a hello mintaforgatókönyv Windows natív bejelentési értesítés) értesítési küldött toobe toohello mobil az alkalmazás Azure Notification Hubs használatával.
    
         static void ReceiveMessageAndSendNotification(string connectionString)
         {
-            // Initialize the Notification Hub
+            // Initialize hello Notification Hub
             string hubConnectionString = CloudConfigurationManager.GetSetting
                     ("Microsoft.NotificationHub.ConnectionString");
             hub = NotificationHubClient.CreateClientFromConnectionString
@@ -170,7 +170,7 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
    
             Client.Receive();
    
-            // Continuously process messages received from the subscription
+            // Continuously process messages received from hello subscription
             while (true)
             {
                 BrokeredMessage message = Client.Receive();
@@ -204,24 +204,24 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
             await hub.SendWindowsNativeNotificationAsync(message);
         }
    
-    e. Közzététel ezt egy **webjobs-feladat**, a Visual Studio-megoldásban kattintson a jobb gombbal, és válassza ki **webjobs-feladat közzététel**
+    e. Közzététel ezt egy **webjobs-feladat**, kattintson jobb gombbal a hello megoldást a Visual Studióban, és válassza ki **webjobs-feladat közzététel**
    
     ![][2]
    
-    f. Válassza ki a közzétételi profilt, és hozzon létre egy új Azure-webhelyre, ha még nem létezik már fogja tárolni, amely a webjobs-feladat, és ha a webhely majd **közzététel**.
+    f. Válassza ki a közzétételi profilt, és hozzon létre egy új Azure-webhely, ha még nem létezik már fogja tárolni, amely a webjobs-feladat, és ha hello webhely majd **közzététel**.
    
     ![][3]
    
-    g. A "Folyamatos Futtatás" kell, hogy mikor jelentkezik be a feladat a [klasszikus Azure portál] látnia kell a következőhöz:
+    g. Hello feladat "Folyamatos Futtatás" toobe konfigurálja, hogy mikor jelentkezik be a toohello [klasszikus Azure portál] hello következő hasonlót kell megjelennie:
    
     ![][4]
 3. **EnterprisePushMobileApp**
    
-    a. Ez az egy Windows Áruházbeli alkalmazással, amely bejelentési értesítések fogadása a webjobs-feladat a mobil-háttéralkalmazást részeként fut, és megjeleníti azt. Ez a alapul [Notification Hubs - oktatóanyag univerzális Windows-].  
+    a. Ez az egy Windows Áruházbeli alkalmazással, amely bejelentési értesítéseket fogadni a mobil-háttéralkalmazást részeként hello webjobs-feladat futását, és megjeleníti azt. Ez a alapul [A Notification Hubs - oktatóanyag univerzális Windows-].  
    
-    b. Győződjön meg arról, hogy az alkalmazás engedélyezve van-e bejelentési értesítéseket fogadni.
+    b. Győződjön meg arról, hogy az alkalmazás engedélyezett tooreceive bejelentési értesítést.
    
-    c. Győződjön meg arról, hogy a következő Notification Hubs regisztrációs kód lett meghívva, az alkalmazás elindításához (miután kicserélte a *HubName* és *DefaultListenSharedAccessSignature*:
+    c. Győződjön meg arról, hogy a következő kódot a Notification Hubs regisztrációs hello: hello App elindításához lett meghívva (hello cseréje után *HubName* és *DefaultListenSharedAccessSignature*:
    
         private async void InitNotificationsAsync()
         {
@@ -230,7 +230,7 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
             var hub = new NotificationHub("[HubName]", "[DefaultListenSharedAccessSignature]");
             var result = await hub.RegisterNativeAsync(channel.Uri);
    
-            // Displays the registration ID so you know it was successful
+            // Displays hello registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
@@ -240,12 +240,12 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
         }
 
 ### <a name="running-sample"></a>A minta fut:
-1. Győződjön meg arról, hogy a webjobs-feladat sikeresen fut, és a "Folyamatos Futtatás" ütemezett.
-2. Futtassa a **EnterprisePushMobileApp** amely indul el a Windows áruház egy alkalmazásához.
-3. Futtassa a **EnterprisePushBackendSystem** konzolalkalmazást, amely szimulálni fogja a LoB háttér és küldésének megkezdése üzeneteket, és a következő megjelenő bejelentési értesítést kell megjelennie:
+1. Győződjön meg arról, hogy a webjobs-feladat sikeresen fut, valamint ütemezett, túl "folyamatos Futtatás".
+2. Futtassa a hello **EnterprisePushMobileApp** amely hello Windows Áruházbeli alkalmazás elindul.
+3. Futtassa a hello **EnterprisePushBackendSystem** konzolalkalmazást, amely szimulálni fogja hello LoB háttér és küldésének megkezdése üzeneteket, és szereplő hello hasonló bejelentési értesítést kell megjelennie:
    
     ![][5]
-4. Service Bus-témaköröktől, amely a Service Bus-előfizetések műveleteit a webes projekt által figyelt eredetileg elküldött üzenetek. Üzenet érkezett, miután értesítést létrejött, de a mobilalkalmazás küldött. A webjobs-feladat bejegyzéseit, amelyek a naplók hivatkozásra lépve, győződjön meg arról, hogy a feldolgozási keresztül meggyőződhet [klasszikus Azure portál] a webes projekt:
+4. hello eredetileg üzeneteket tooService Bus-témaköröktől, amely a Service Bus-előfizetések műveleteit a webes projekt által figyelt. Amennyiben az üzenet érkezett, egy értesítés létrejött, de toohello mobilalkalmazás küldött. A webjobs-feladat naplózza tooconfirm hello feldolgozása naplók hivatkozásra toohello váltáskor hello meggyőződhet [klasszikus Azure portál] a webes projekt:
    
     ![][6]
 
@@ -258,10 +258,10 @@ A teljes minta kódja megtalálható [Notification Hub minták]. A oszlik három
 [6]: ./media/notification-hubs-enterprise-push-architecture/WebJobsLog.png
 
 <!-- Links -->
-[Értesítési központ minták]: https://github.com/Azure/azure-notificationhubs-samples
-[Azure-Mobilszolgáltatásból]: http://azure.microsoft.com/documentation/services/mobile-services/
-[Az Azure Service Bus]: http://azure.microsoft.com/documentation/articles/fundamentals-service-bus-hybrid-solutions/
-[Service Bus Pub/Sub programozás]: http://azure.microsoft.com/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/
+[Notification Hub minták]: https://github.com/Azure/azure-notificationhubs-samples
+[Azure Mobile Services mobilszolgáltatás]: http://azure.microsoft.com/documentation/services/mobile-services/
+[Azure Service Bus]: http://azure.microsoft.com/documentation/articles/fundamentals-service-bus-hybrid-solutions/
+[Service Bus Pub/Sub programozási]: http://azure.microsoft.com/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/
 [Azure webjobs-feladat]: http://azure.microsoft.com/documentation/articles/web-sites-create-web-jobs/
-[A Notification Hubs - oktatóanyag univerzális Windows]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
-[Klasszikus Azure portál]: https://manage.windowsazure.com/
+[A Notification Hubs - oktatóanyag univerzális Windows-]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
+[klasszikus Azure portál]: https://manage.windowsazure.com/

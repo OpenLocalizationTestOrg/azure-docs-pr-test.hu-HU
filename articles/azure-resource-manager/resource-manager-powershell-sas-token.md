@@ -1,6 +1,6 @@
 ---
-title: "Az SAS-jogkivonat és PowerShell Azure-sablon üzembe helyezése |} Microsoft Docs"
-description: "Azure Resource Manager és az Azure PowerShell használatával telepítse az erőforrások az Azure által védett SAS-jogkivonat sablonból."
+title: "aaaDeploy SAS-jogkivonat és PowerShell Azure-sablonnal |} Microsoft Docs"
+description: "Azure Resource Manager és az Azure PowerShell toodeploy erőforrások tooAzure védett sablonból SAS-jogkivonatot használja."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1e3cea027b599e2b1af1ced0fdf14e2cc8a0db82
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b95e096591d6213f8ef79235c8cd85705c4b79ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-private-resource-manager-template-with-sas-token-and-azure-powershell"></a>Az SAS-jogkivonat és Azure PowerShell titkos Resource Manager-sablon üzembe helyezése
 
-Ha a sablon olyan tárfiókban található, korlátozza a hozzáférést a sablont, és adjon meg egy közös hozzáférésű jogosultságkód (SAS) token üzembe helyezése során. Ez a témakör ismerteti az Azure PowerShell használata a Resource Manager-sablonok központi telepítése során egy SAS-jogkivonat biztosításához. 
+A sablon olyan tárfiókban helyezkedik el, ha korlátozni a hozzáférést toohello sablon, és adjon meg egy közös hozzáférésű jogosultságkód (SAS) token üzembe helyezése során. Ez a témakör azt ismerteti, hogyan Resource Manager sablonok tooprovide egy SAS-jogkivonat üzembe helyezése során az Azure PowerShell toouse. 
 
-## <a name="add-private-template-to-storage-account"></a>A tárfiók saját sablon hozzáadása
+## <a name="add-private-template-toostorage-account"></a>Saját sablon toostorage fiók hozzáadása
 
-A sablonok hozzáadása egy tárfiókot, és hivatkozzon őket egy SAS-jogkivonat a telepítés során.
+A sablonok tooa tárfiók hozzáadása, és toothem csatolása a SAS-jogkivonat a telepítés során.
 
 > [!IMPORTANT]
-> Az alábbi lépéseket követve sablont tartalmazó blob elérhető, csak a fiók tulajdonosa. Amikor létrehoz egy SAS-jogkivonat a blob, a blob azonban, hogy az URI-azonosítójú bárki hozzáférhet. Ha egy másik felhasználó elfogja az URI, a felhasználó hozzáférjen a sablon lesz. A SAS-jogkivonat használatával egy jó módszer a sablonok való hozzáférés korlátozása, de kell nem tartalmazhat bizalmas adatok, például jelszavak közvetlenül a sablonban.
+> Hello alábbi lépéseket követve hello sablon tartalmazó hello blob elérhető tooonly hello fiók tulajdonosa. Amikor létrehoz egy SAS-jogkivonat hello blob, hello blob azonban, hogy az URI-azonosítójú elérhető tooanyone. Ha egy másik felhasználó elfogja hello URI, a felhasználó képes tooaccess hello sablont. SAS-token használatával korlátozza a hozzáférést tooyour sablonok egy jó módszer, de kell nem tartalmazhat bizalmas adatok, például jelszavak közvetlenül hello sablonban.
 > 
 > 
 
-Az alábbi példa állít be egy személyes fiók tárolót, és feltölti a sablont:
+hello alábbi példa egy személyes fiók tároló beállítja és feltölt egy sablont:
    
 ```powershell
 # create a storage account for templates
@@ -47,12 +47,12 @@ Set-AzureStorageBlobContent -Container templates -File c:\MyTemplates\storage.js
 ```
 
 ## <a name="provide-sas-token-during-deployment"></a>Adja meg a SAS-jogkivonat központi telepítése során
-A tárfiókban lévő titkos sablon telepítése, a SAS-token létrehozásához, és adja hozzá a sablon az URI azonosító. Állítsa be a lejárati időpont hagyjon elegendő időt a telepítés befejezéséhez.
+a storage-fiók titkos sablont toodeploy a SAS-token létrehozásához, és adja hozzá hello URI hello sablon. Hello lejárati idő tooallow elég toocomplete hello üzembe helyezés beállítása.
    
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name {your-unique-name}
 
-# get the URI with the SAS token
+# get hello URI with hello SAS token
 $templateuri = New-AzureStorageBlobSASToken -Container templates -Blob storage.json -Permission r `
   -ExpiryTime (Get-Date).AddHours(2.0) -FullUri
 
@@ -65,8 +65,8 @@ Például egy SAS-jogkivonat használatával a csatolt sablonokkal, [kapcsolt sa
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Megismerkedhet a sablonok központi telepítése, lásd: [erőforrások a Resource Manager-sablonok és Azure PowerShell telepítése](resource-group-template-deploy.md).
+* Egy bevezető toodeploying sablonok, lásd: [erőforrások a Resource Manager-sablonok és Azure PowerShell telepítése](resource-group-template-deploy.md).
 * Egy teljes parancsfájlt, amely telepít egy sablon, lásd: [sablonparancsfájlt erőforrás-kezelő telepítése](resource-manager-samples-powershell-deploy.md)
-* Sablon paraméterek megadásához tekintse meg a [sablonok készítése](resource-group-authoring-templates.md#parameters).
-* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
+* a sablon toodefine paraméterek lásd [sablonok készítése](resource-group-authoring-templates.md#parameters).
+* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
 

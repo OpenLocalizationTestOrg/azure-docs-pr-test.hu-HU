@@ -1,6 +1,6 @@
 ---
-title: Az Azure Service Fabric Linux |} Microsoft Docs
-description: "Service Fabric-fürtök Linux és a Java, ami azt jelenti, képes lesz központi telepítéséhez és Linux Java és a C# nyelven írt alkalmazások üzemeltetését a Service Fabric támogatja."
+title: a Service Fabric Linux aaaAzure |} Microsoft Docs
+description: "Service Fabric-fürtök támogatja a Linux és a Java, ami azt jelenti, hogy be tudja toodeploy és Linux Java és a C# nyelven írt alkalmazások üzemeltetését a Service Fabric fog."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: SubramaR
-ms.openlocfilehash: dddc9f698d9776999d406117b46285a0f90d9620
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca0e092b00faec560963c0d6cc379593d085f6a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-on-linux"></a>A Service Fabric Linux rendszeren
-Az előzetes verzióját a Service Fabric Linux lehetővé teszi, hogy hozhat létre, telepíthetnek és Linux magas rendelkezésre állású, nagymértékben méretezhető alkalmazásokat kezeléséhez, ugyanúgy, mint a Windows. A Service Fabric-keretrendszerek (Reliable Services és Reliable Actors) a C# (.NET Core) mellett a Linux Java nyelven érhetők el.  Is létrehozható [végrehajtható vendégszolgáltatások](service-fabric-deploy-existing-app.md) rendelkező bármilyen nyelven vagy keretrendszerben. Emellett az előzetes verziója is támogatja koordinálása Docker-tároló. Docker-tároló Vendég végrehajtható fájlok, illetve a Service Fabric-keretrendszert használó natív Service Fabric szolgáltatások futtathatók.
+hello előzetes verzióját a Service Fabric Linux lehetővé teszi a toobuild, telepítéséhez és felügyeletéhez a magas rendelkezésre állású, nagymértékben méretezhető alkalmazások Linux, ugyanúgy, mint Windows rendszeren. hello Service Fabric keretrendszerek (Reliable Services és Reliable Actors) érhetők el a Linux Java hozzáadása tooC # (.NET Core).  Is létrehozható [végrehajtható vendégszolgáltatások](service-fabric-deploy-existing-app.md) rendelkező bármilyen nyelven vagy keretrendszerben. Emellett a hello előzetes verziója is támogatja a koordinálása Docker-tároló. Docker-tároló Vendég végrehajtható fájlok, illetve hello Service Fabric-keretrendszert használó natív Service Fabric szolgáltatások futtathatók.
 
-A Service Fabric Linux fogalmilag Service Fabric Windows (kivéve az operációs rendszer jellemzőit és a támogatott programozási nyelvek). Így a legtöbb a [meglévő dokumentáció](http://aka.ms/servicefabricdocs) , ismerkedjen meg a technológia segítséget nyújt a vonatkozik.
+A Service Fabric Linux fogalmilag egyenértékű tooService Windows Fabric (kivéve az operációs rendszer jellemzőit és a támogatott programozási nyelvek). Így a legtöbb a [meglévő dokumentáció](http://aka.ms/servicefabricdocs) ismerkedhet meg vele hello technológia, segítve a vonatkozik.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Service-Fabric-Linux-Preview/player]
 >
 >
 
 ## <a name="supported-operating-systems-and-programming-languages"></a>Támogatott operációs rendszerek és programozási nyelvek
-A korlátozott előzetes verziója támogatja a többgépes fürtök mellett egy beépített fejlesztési fürtök létrehozásához az Ubuntu Server 16.04 futó Azure-ban. Az előzetes verziója támogatja a Reliable Actors és a megbízható állapotmentes szolgáltatások keretrendszerek Java és C# Vendég végrehajtható fájlok és a Docker-tároló koordinálása mellett.  
+korlátozott hello preview támogat hello létrehozása egy beépített fejlesztési fürtök emellett toomulti-gép fürtök Ubuntu Server 16.04 futó Azure-ban. hello Reliable Actors és megbízható állapotmentes szolgáltatások keretrendszerek Java és C# hozzáadása tooguest végrehajtható fájlok és a Docker-tároló koordinálása hello hello preview támogat.  
 
 > [!NOTE]
-> Megbízható gyűjtemények nem támogatottak a Linux még. Készenléti önmagában nem használhatók vagy - csak egy mezőt és az Azure Linux többgépes fürtök az előzetes verzió támogatott.
+> Megbízható gyűjtemények nem támogatottak a Linux még. Készenléti önmagában nem használhatók - vagy csak egy mezőt és az Azure Linux többgépes fürtök hello előzetes verzió támogatott.
 >
 >
 
 
 ## <a name="supported-tooling"></a>Támogatott tooling eszköz
-Az előzetes verziója támogatja a fürt Service Fabric parancssori felületen keresztül való együttműködéshez. Java-fejlesztők számára az integrációra az eclipse-ben és a Yeoman által biztosított Eclipse OSX és Linux rendszeren támogatott. Az os x-integráció a technikai részletek vagrant keresztül egy Linux virtuális gép használja. C#-fejlesztők számára Yeoman integrációja biztosítja alkalmazás sablonok létrehozásához.
+hello előzetes verziója támogatja a Service Fabric CLI hello fürtön való együttműködéshez. Java-fejlesztők számára az integrációra az eclipse-ben és a Yeoman által biztosított Eclipse OSX és Linux rendszeren támogatott. hello OSX integrációs hello technikai vagrant keresztül egy Linux virtuális gép használja. C#-fejlesztők számára toogenerate alkalmazássablonok Yeoman integrációja biztosítja.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Ismerkedjen meg a [Reliable Actors](service-fabric-reliable-actors-introduction.md) és [Reliable Services](service-fabric-reliable-services-introduction.md) keretrendszerek programozási
+* Ismerkedjen meg hello [Reliable Actors](service-fabric-reliable-actors-introduction.md) és [Reliable Services](service-fabric-reliable-services-introduction.md) keretrendszerek programozási
 * [A fejlesztőkörnyezet előkészítése Linuxon](service-fabric-get-started-linux.md)
 * [A fejlesztőkörnyezet előkészítése OSX-en](service-fabric-get-started-mac.md)
 * [Az első Service Fabric Java-alkalmazás létrehozása Linux rendszeren](service-fabric-create-your-first-linux-application-with-java.md)

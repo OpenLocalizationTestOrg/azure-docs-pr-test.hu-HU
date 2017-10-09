@@ -1,6 +1,6 @@
 ---
-title: "Az Azure RemoteApp kipróbálása az eszközén kevesebb mint 3 perc alatt | Microsoft Docs"
-description: "A szolgáltatás telepítése nélkül tesztelheti az Azure RemoteApp funkcióit."
+title: "Azure RemoteApp aaaTry eszközén kevesebb mint 3 perc alatt |} Microsoft Docs"
+description: "Hello szolgáltatás telepítése nélkül kipróbálása meg az Azure RemoteApp funkcióit."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 3373e37b8efb1bd7d9b7e6c4fb8d3db468c1ad02
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d1ef9aab67c82e6c5f5024226f4a5e42e8c55a87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="try-azure-remoteapp-on-your-device-in-3-minutes-or-less"></a>Az Azure RemoteApp kipróbálása az eszközén kevesebb mint 3 perc alatt
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Meg szeretné tekinteni az Azure RemoteAppot az eszközén? Ha van Microsoft-fiókja, 10 percre hozzáférhet a bemutató telepítéshez. Ezen elérhető az Office és néhány egyéb alkalmazás. Ez remek mód az Azure RemoteApp felhasználói élményének kipróbálására, kevesebb mint 3 perc alatt.
+Szeretné, hogy az eszközön az Azure RemoteApp toosee? Ha van Microsoft-fiókja, 10 percre hozzáférhet a bemutató telepítéshez. Ezen elérhető az Office és néhány egyéb alkalmazás. Ez az egy kiváló módja tootest meghajtó hello felhasználói élmény beállítása az Azure RemoteApp kevesebb mint 3 perc alatt.
 
 Felkeltettük az érdeklődését?
 
-1. Látogasson el a [http://remoteapp.azure.com](http://remoteapp.azure.com) webhelyre.
-2. Kattintson az **Install Client** (Ügyfél telepítése) elemre a jobb felső sarokban.  
-3. A rendszer automatikusan észleli az eszközét, és átirányítja az eszközhöz tartozó ügyfélhez. Telepítse az ügyfelet.
+1. Nyissa meg tootoo[http://remoteapp.azure.com](http://remoteapp.azure.com).
+2. Kattintson a **ügyfél telepítése** hello jobb felső sarkában található.  
+3. hello rendszer automatikusan észleli az eszközét, és a billentyűparanccsal léphet toohello az eszközhöz tartozó ügyfélhez. Hello ügyfél telepítéséhez.
 4. Térjen vissza a [http://remoteapp.azure.com](http://remoteapp.azure.com) webhelyre, és jelentkezzen be Microsoft-fiókjával.
 
 Most már elérheti az Azure RemoteAppban valós időben futó alkalmazásokat.
 
-Számít a véleménye. Minden munkamenet végén egy párbeszédablak jelenik meg, amelyen visszajelzést küldhet. Ha van néhány perce, ossza meg velünk gondolatait, és jelezze nekünk, ha szeretné, hogy a Microsoft felvegye Önnel a kapcsolatot további információk beszerzése érdekében.
+Számít a véleménye. Minden munkamenet végén hello egy párbeszédpanel megjelenik az Ön visszajelzését. Ha van néhány perce, ossza meg velünk gondolatait, és tudassa velünk, hogy szeretné-e Microsoft toocontact meg további információt.
 
 > [!NOTE]
-> Mivel ez egy felügyelt, bemutató használatra szánt környezet, nem engedélyeztük a külső internet-hozzáférést a közzétett bemutatóalkalmazásokban. Emiatt az OneDrive és a hasonló szolgáltatások nem érhetők el. Továbbá a vágólap megosztása (másolás és beillesztés), valamint az USB és a nyomtató átirányítása le van tiltva.  
+> Ez a bemutató használatra ellenőrzött környezetben, mert nem engedélyeztük külső internet access hello a közzétett bemutatóalkalmazásokban. Emiatt az OneDrive és a hasonló szolgáltatások nem érhetők el. Továbbá a vágólap megosztása (másolás és beillesztés), valamint az USB és a nyomtató átirányítása le van tiltva.  
 > 
 > 
 

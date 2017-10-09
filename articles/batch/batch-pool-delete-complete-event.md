@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch-készlet törlése befejeződésének eseményét. |} Microsoft Docs"
+title: "AAA \"Azure Batch-készlet törlése befejeződésének eseményét. |} Microsoft dokumentumok\""
 description: "Útmutató a Batch-készlet törlése befejeződésének eseményét."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 890f2ba7fda37060c56177868d6214d517d91831
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 494c371e48ebfb1bf3d2973a7401829a939ba141
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="pool-delete-complete-event"></a>Készlet törlés befejeződésének eseményét.
 
  Ez az esemény is ki lesz adva a készlet törlési művelet befejeződésekor.
 
- A következő példa bemutatja a készletben törlés befejeződésének eseményét törzsét.
+ hello következő példa bemutatja a készletben törlés befejeződésének eseményét hello törzsét.
 
 ```
 {
@@ -34,9 +34,9 @@ ms.lasthandoff: 07/11/2017
 
 |Elem|Típus|Megjegyzések|
 |-------------|----------|-----------|
-|id|Karakterlánc|A készlet azonosítóját.|
-|startTime|Dátum és idő|A készlet törlése indulásakor.|
-|Befejezés időpontja|Dátum és idő|Az az idő a készlet törlése befejeződött.|
+|id|Karakterlánc|hello készlet hello azonosítója.|
+|startTime|Dátum és idő|hello hello készlet törlése indulásakor.|
+|endTime|Dátum és idő|hello idő hello készlet törlése befejeződött.|
 
 ## <a name="remarks"></a>Megjegyzések
 Állapotok és hibakódok készlet átméretezés kapcsolatos további információkért lásd: [címkészlet törlése fiókból](https://docs.microsoft.com/rest/api/batchservice/delete-a-pool-from-an-account).

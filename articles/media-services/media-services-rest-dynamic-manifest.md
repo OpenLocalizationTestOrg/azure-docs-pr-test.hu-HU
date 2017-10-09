@@ -1,6 +1,6 @@
 ---
-title: "Szűrők létrehozása az Azure Media Services REST API-t |} Microsoft Docs"
-description: "Ez a témakör ismerteti, az ügyfél használhassa őket adott szakaszaival adatfolyam adatfolyam-szűrők létrehozásához. A Media Services dinamikus jegyzékfájlokban eléréséhez a szelektív streaming hoz létre."
+title: "az Azure Media Services REST API aaaCreating szűrők |} Microsoft Docs"
+description: "Ez a témakör ismerteti, hogyan toocreate szűrők, az ügyfél használhassa őket toostream konkrét szakaszokra az adatfolyam. A Media Services hoz létre dinamikus jegyzékfájlokban tooachieve a szelektív streaming."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako;cenkdin
-ms.openlocfilehash: 76d2721138668d9f0a908af3fa42840309b068ef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b5af3b193b35f22ac70887963c2f0a06b60bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-filters-with-azure-media-services-rest-api"></a>Szűrők létrehozásakor az Azure Media Services REST API-n
 > [!div class="op_single_selector"]
@@ -27,14 +27,14 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-2.11 kiadástól kezdve a Media Services lehetővé teszi az eszközök szűrőit. Ezek a szűrők, amelyek lehetővé teszik az ügyfelek akkor megteheti, többek között a kiszolgáló oldalán szabályok: lejátszás videó (és nem a teljes videó lejátszása) részt vagy a hang- és interpretációk, amelyet a felhasználói eszköz kezelni tud (és nem minden a interpretációk társított adategységet) csak egy részét. Ez a szűrés a eszközök archivált keresztül **dinamikus Manifest**khoz, az ügyfél kérésre videó adatfolyam jönnek létre a megadott szűrő alapján.
+2.11 kiadástól kezdve a Media Services lehetővé teszi az eszközök toodefine szűrők. Ezek a szűrők, amelyek lehetővé teszik az ügyfelek toochoose toodo többek között a kiszolgáló oldalán szabályok: lejátszás videó (lejátszása helyett hello teljes videó), csak egy részét, vagy adjon meg, hogy a felhasználói eszköz képes kezelni (hang- és interpretációk csak egy részét minden hello interpretációk helyett társított hello eszköz). Ez a szűrés a eszközök archivált keresztül **dinamikus Manifest**a megadott szűrő alapján létrehozott, a felhasználói kérelem toostream videó s.
 
-Részletesebb szűrőket és dinamikus Manifest kapcsolatos adatokat, lásd: [dinamikus jelentkezik áttekintése](media-services-dynamic-manifest-overview.md).
+Részletesebb információk kapcsolódó toofilters és dinamikus Manifest: [dinamikus jelentkezik áttekintése](media-services-dynamic-manifest-overview.md).
 
-Ez a témakör bemutatja, hogyan használható a REST API-k létrehozása, frissítése és törlése szűrők. 
+Ez a témakör bemutatja, hogyan toouse REST API-k toocreate, frissítési és törlési szűrők. 
 
-## <a name="types-used-to-create-filters"></a>-Szűrők létrehozásához használt
-A következő típusok használhatók szűrők létrehozásakor:  
+## <a name="types-used-toocreate-filters"></a>Toocreate szűrők használni
+hello következő típusok használhatók szűrők létrehozásakor:  
 
 * [Szűrő](https://docs.microsoft.com/rest/api/media/operations/filter)
 * [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
@@ -45,16 +45,16 @@ A következő típusok használhatók szűrők létrehozásakor:
 
 >A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Kapcsolódás a Media Services szolgáltatáshoz
+## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
 
-Az AMS API-hoz kapcsolódáshoz információkért lásd: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
+>Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
 
 ## <a name="create-filters"></a>Szűrők létrehozása
 ### <a name="create-global-filters"></a>Globális szűrők létrehozása
-Globális szűrőként létrehozásához használja a következő HTTP-kérelmek:  
+toocreate globális szűrőként, a következő HTTP-kérelmek hello használata:  
 
 #### <a name="http-request"></a>HTTP-kérelem
 Kérelem fejlécei
@@ -107,7 +107,7 @@ Kérés törzsében
     HTTP/1.1 201 Created 
 
 ### <a name="create-local-assetfilters"></a>Helyi AssetFilters létrehozása
-Egy helyi AssetFilter létrehozásához használja a következő HTTP-kérelmek:  
+egy helyi AssetFilter toocreate HTTP-kérelmekre a következő hello használata:  
 
 #### <a name="http-request"></a>HTTP-kérelem
 Kérelem fejlécei
@@ -159,8 +159,8 @@ Kérés törzsében
     . . . 
 
 ## <a name="list-filters"></a>Szűrők megjelenítése
-### <a name="get-all-global-filters-in-the-ams-account"></a>Minden globális beolvasása **szűrő**az AMS-fiók létrehozása
-A szűrők listában használja a következő HTTP-kérelmek: 
+### <a name="get-all-global-filters-in-hello-ams-account"></a>Minden globális beolvasása **szűrő**hello AMS-fiók létrehozása
+toolist szűrők, a következő HTTP-kérelmek hello használata: 
 
 #### <a name="http-request"></a>HTTP-kérelem
     GET https://media.windows.net/API/Filters HTTP/1.1 
@@ -197,12 +197,12 @@ A szűrők listában használja a következő HTTP-kérelmek:
 
 
 ## <a name="update-filters"></a>Frissítés szűrők
-Használjon javítás, PUT vagy egyesítési szűrő frissítése új tulajdonság értékekkel.  További információ ezekről a műveletekről: [javítás, PUT, EGYESÍTSE](http://msdn.microsoft.com/library/dd541276.aspx).
+Használjon javítás, PUT vagy EGYESÍTÉS tooupdate új tulajdonságértékek egy szűrő.  További információ ezekről a műveletekről: [javítás, PUT, EGYESÍTSE](http://msdn.microsoft.com/library/dd541276.aspx).
 
-Ha frissíti a szűrőt, legfeljebb 2 percet, hogy frissíti a szabályok streamvégpont is igénybe vehet. Ha a tartalom állítása és kiszolgálása között szűrővel (és proxyk és a CDN a gyorsítótárba helyezett gyorsítótárak), player hibák frissítése a szűrő eredményezhet. A gyorsítótár kiürítése után a szűrő frissítése érdekében ajánlott. Ha ezt a beállítást nem lehetséges, érdemes lehet egy másik szűrőt.  
+Ha frissíti a szűrőt, streaming endpoint toorefresh hello szabályok too2 percig is eltarthat. Ha hello tartalom állítása és kiszolgálása között szűrővel (és proxyk és a CDN a gyorsítótárba helyezett gyorsítótárak), player hibák frissítése a szűrő eredményezhet. Javasoljuk, tooclear hello gyorsítótár hello szűrő frissítése után. Ha ezt a beállítást nem lehetséges, érdemes lehet egy másik szűrőt.  
 
 ### <a name="update-global-filters"></a>Globális szűrők frissítése
-Globális szűrőként frissítéséhez használja a következő HTTP-kérelmek: 
+tooupdate globális szűrőként, a következő HTTP-kérelmek hello használata: 
 
 #### <a name="http-request"></a>HTTP-kérelem
 Kérelem fejlécei: 
@@ -242,7 +242,7 @@ A kérelem törzse:
     } 
 
 ### <a name="update-local-assetfilters"></a>Helyi AssetFilters frissítése
-A helyi szűrőt frissítéséhez használja a következő HTTP-kérelmek: 
+tooupdate helyi szűrőt, a következő HTTP-kérelmek hello használata: 
 
 #### <a name="http-request"></a>HTTP-kérelem
 Kérelem fejlécei: 
@@ -283,7 +283,7 @@ A kérelem törzse:
 
 ## <a name="delete-filters"></a>Szűrők törlése
 ### <a name="delete-global-filters"></a>Globális szűrők törlése
-Globális szűrőként törléséhez használja a következő HTTP-kérelmek:
+toodelete globális szűrőként, a következő HTTP-kérelmek hello használata:
 
 #### <a name="http-request"></a>HTTP-kérelem
     DELETE https://media.windows.net/api/Filters('GlobalFilter') HTTP/1.1 
@@ -297,7 +297,7 @@ Globális szűrőként törléséhez használja a következő HTTP-kérelmek:
 
 
 ### <a name="delete-local-assetfilters"></a>Helyi AssetFilters törlése
-Egy helyi AssetFilter törléséhez használja a következő HTTP-kérelmek:
+egy helyi AssetFilter toodelete HTTP-kérelmekre a következő hello használata:
 
 #### <a name="http-request"></a>HTTP-kérelem
     DELETE https://media.windows.net/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__LocalFilter') HTTP/1.1 
@@ -310,9 +310,9 @@ Egy helyi AssetFilter törléséhez használja a következő HTTP-kérelmek:
     Host: media.windows.net 
 
 ## <a name="build-streaming-urls-that-use-filters"></a>Build a streaming URL-szűrők használata
-Információ közzétételére, és az eszközök: [ügyfelek áttekintés a tartalom továbbítása](media-services-deliver-content-overview.md).
+Hogyan toopublish és kézbesítése az eszközök: kapcsolatos [tartalom továbbítása tooCustomers áttekintése](media-services-deliver-content-overview.md).
 
-A következő példák bemutatják, hogyan szűrők hozzáadása a streamelési URL-címeket.
+hello következő példák azt szemléltetik, hogyan tooadd szűrők tooyour streamelési URL-címek.
 
 **MPEG DASH** 
 

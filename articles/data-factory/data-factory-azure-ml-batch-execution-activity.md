@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre Azure Data Factory használatával prediktív adatok folyamatok |} Microsoft Docs"
-description: "Ismerteti, hogyan hozzon létre Azure Data Factory és az Azure Machine Learning a prediktív folyamatok létrehozása"
+title: "Azure Data Factory használatával aaaCreate prediktív adatok folyamatok |} Microsoft Docs"
+description: "Ismerteti, hogyan toocreate létre Azure Data Factory és az Azure Machine Learning a prediktív folyamatok"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: d8e2c9583fc909e4e015e2d40473d2754529d8ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 943210c28b1696e299ff9b7cc96369b95f182354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-predictive-pipelines-using-azure-machine-learning-and-azure-data-factory"></a>Hozzon létre prediktív folyamatok Azure Machine Learning és az Azure Data Factory használatával
 
@@ -37,51 +37,51 @@ ms.lasthandoff: 07/11/2017
 ## <a name="introduction"></a>Bevezetés
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-[Az Azure Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/) lehetővé teszi létrehozása, tesztelése és telepítése a prediktív elemzési megoldások. Magas szintű szempontból elkészült a három lépést:
+[Az Azure Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/) lehetővé teszi, hogy toobuild, tesztelését és rendszerbe prediktív elemzési megoldások. Magas szintű szempontból elkészült a három lépést:
 
-1. **Hozzon létre egy tanítási kísérletet**. Ebben a lépésben az Azure ML Studio úgy teheti meg. Az ML studio olyan együttműködési Látványelem-fejlesztési környezet, amelyekkel betanítása és tesztelése egy prediktív elemzési modell betanítási adatok használatával.
-2. **Alakítsa át egy prediktív kísérletté**. Miután a modell még betanítva meglévő adatokkal, és készen áll az új adatok pontozása céljából, előkészítése, és a kísérlet pontozó egyszerűsítésére.
-3. **A webszolgáltatás üzembe**. A pontozási kísérlet közzéteheti Azure webszolgáltatásként. Adatokat küldeni a modell a webes szolgáltatás végpontját keresztül, és fogadni eredmény előrejelzéseket eredete a modell.  
+1. **Hozzon létre egy tanítási kísérletet**. Ez a lépés hello Azure ML Studio úgy teheti meg. hello ML studio olyan együttműködési Látványelem-fejlesztési környezet tootrain használni, és tesztelje a prediktív elemzési modell betanítási adatok használatával.
+2. **Alakítsa át a tooa prediktív kísérletté**. Ha a modell még betanítva meglévő adatokkal, és készen áll a toouse azt tooscore új adatokat, előkészítéséhez és pontozó kísérletbe egyszerűsítésére.
+3. **A webszolgáltatás üzembe**. A pontozási kísérlet közzéteheti Azure webszolgáltatásként. Is tooyour adatmodell keresztül a webes szolgáltatás végpontját küldése és fogadása eredmény előrejelzéseket eredete hello modell.  
 
 ### <a name="azure-data-factory"></a>Azure Data Factory
-A Data Factory egy felhőalapú adatintegrációs szolgáltatás, amellyel előkészíthető és automatizálható az adatok **továbbítása** és **átalakítása**. Adatok integrációs megoldásokat Azure Data Factory használatával különböző adattárolókhoz származó adatok, átalakító/folyamat az adatokat, és az eredmény adatokat közzé az adattároló hozhat létre.
+Adat-előállító koordinálja és automatizálja a hello felhőalapú adatok integrációs szolgáltatás **adatátviteli** és **átalakítása** adatok. Adatok integrációs megoldásokat Azure Data Factory használatával is különböző adattárolókhoz származó adatok, átalakító/folyamat hello adatok és közzététele hello eredmény adatok toohello adattárolókhoz hozhat létre.
 
-A Data Factoryval az adatok továbbítására és átalakítására szolgáló adatfolyamatokat hozhat létre, majd ütemezés szerint futtathatja a folyamatot (óránként, napi, heti stb. gyakorisággal). Ezenkívül látványos vizualizációkkal jelenítheti meg az adatfolyamatok közötti leszármaztatási és függőségi kapcsolatokat, valamint egyetlen, egységesített nézetben figyelheti az összes folyamatot, így egyszerűen kiszűrheti a problémákat és beállíthatja a figyelési riasztásokat.
+Data Factory szolgáltatásnak lehetővé teszi, hogy helyezze át, és az adatok átalakítása toocreate adatok folyamatok, és futtassa a hello folyamatok meghatározott ütemezés szerint (óránként, naponta, hetente, stb.). Emellett biztosít gazdag képi megjelenítések toodisplay hello Leszármaztatás és az adatok folyamatok közti függőségeket és minden az adatok folyamatok egy egyetlen egyesítve láthassák tooeasily meghatározhatja problémák figyelése és beállítása a figyelési riasztásokat.
 
-Lásd: [Bevezetés az Azure Data Factory](data-factory-introduction.md) és [felépítheti első folyamatát](data-factory-build-your-first-pipeline.md) cikkeket, ha gyorsan az Azure Data Factory szolgáltatásban.
+Lásd: [Data Factory bemutatása tooAzure](data-factory-introduction.md) és [felépítheti első folyamatát](data-factory-build-your-first-pipeline.md) cikkek tooquickly hello Azure Data Factory szolgáltatásnak az első lépései.
 
 ### <a name="data-factory-and-machine-learning-together"></a>Adat-előállító és a gépi tanulás együtt
-Az Azure Data Factory lehetővé teszi, hogy könnyen létrehozhat egy közzétett használó folyamatok [Azure Machine Learning] [ azure-machine-learning] webszolgáltatás prediktív elemzéséhez. Használja a **kötegelt végrehajtási tevékenység** egy Azure Data Factory-folyamat a hívhat meg az Azure gépi tanulás webszolgáltatás számára a előrejelzéseket készítsen a kötegben lévő adatokat. Lásd: [meghívása az Azure gépi tanulás webszolgáltatás a kötegelt végrehajtási tevékenység](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) című szakaszban talál információt.
+Az Azure Data Factory lehetővé teszi, hogy Ön tooeasily hozzon létre egy közzétett használó folyamatok [Azure Machine Learning] [ azure-machine-learning] webszolgáltatás prediktív elemzéséhez. Hello segítségével **kötegelt végrehajtási tevékenység** egy Azure Data Factory-folyamat a hívhat meg az Azure ML web toomake előrejelzések kötegben hello adatokon. Lásd: [meghívása az Azure ML kötegelt végrehajtási tevékenység webes szolgáltatás használatával hello](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) című szakaszban talál információt.
 
-Az Azure ml kísérletek pontozási prediktív modelleket idővel kell kell retrained új bemeneti adatkészletek használata. A Data Factory-folyamat az Azure ML modellje is működik, az alábbi lépések végrehajtásával:
+Az idő múlásával hello prediktív modelleket hello Azure ML pontozási kísérletekben kell toobe retrained új bemeneti adatkészletek használata. A Data Factory-folyamat az Azure ML modellje is újratanítása hello lépések végrehajtásával:
 
-1. Tegye közzé a tanítási kísérletet (nem prediktív kísérletté) webszolgáltatásként. Az előző példában a webszolgáltatásként teszi közzé a prediktív kísérletté hasonló módon teheti meg ebben a lépésben az Azure ML Studio.
-2. Az Azure ML kötegelt végrehajtási tevékenység segítségével meghívni a webszolgáltatás a tanítási kísérletet. Alapvetően használhatja az Azure ML kötegelt végrehajtási tevékenység képzési webszolgáltatás és a pontozási webszolgáltatás meghívására.
+1. Tegye közzé a hello tanítási kísérletet (nem prediktív kísérletté) webszolgáltatásként. Ezt megteheti ezt a lépést, az Azure ML Studio hello úgy, ahogy tooexpose prediktív kísérletté hello előző forgatókönyvben webszolgáltatásként.
+2. Hello Azure ML kötegelt végrehajtási tevékenység tooinvoke hello webes szolgáltatás hello tanítási kísérletet segítségével. Alapvetően hello Azure ML kötegelt végrehajtási tevékenység tooinvoke webszolgáltatás képzési és a webszolgáltatás pontozási is használhatja.
 
-Miután elkészült, az átképezési, frissítése a pontozási webszolgáltatás (prediktív kísérletté webszolgáltatásként kitett) újonnan betanított modell használatával a **Azure ML Update Erőforrástevékenység**. Lásd: [modellek használata az Update-Erőforrástevékenység frissítése](data-factory-azure-ml-update-resource-activity.md) cikkben alább.
+Után átképezési befejezése, frissítse a webszolgáltatás (prediktív kísérletté webszolgáltatásként kitett) pontozási hello újonnan betanított modell hello segítségével hello **Azure ML Update Erőforrástevékenység**. Lásd: [modellek használata az Update-Erőforrástevékenység frissítése](data-factory-azure-ml-update-resource-activity.md) cikkben alább.
 
 ## <a name="invoking-a-web-service-using-batch-execution-activity"></a>Meghívja a webszolgáltatást kötegelt végrehajtási tevékenység
-Azure Data Factory használatával levezényelni adatmozgatást és a feldolgozás, és hajtsa végre az Azure Machine Learning segítségével kötegelt végrehajtáshoz. A legfelső szintű lépések a következők:
+Azure Data Factory tooorchestrate adatmozgatást és feldolgozási használja, és hajtsa végre az Azure Machine Learning kötegelt végrehajtását. Az alábbiakban hello legfelső szintű lépéseket:
 
-1. Hozzon létre egy Azure Machine Learning társított szolgáltatást. A következő értékek lesz szüksége:
+1. Hozzon létre egy Azure Machine Learning társított szolgáltatást. A következő értékek hello lesz szüksége:
 
-   1. **A kérelmi URI** a kötegelt végrehajtás API számára. A kérelem URI-CÍMÉN található kattintva a **KÖTEGELT végrehajtási** hivatkozás a szolgáltatások weblapon.
-   2. **Az API-kulcs** a közzétett Azure Machine Learning webszolgáltatás. Az API-kulcsot a webszolgáltatás, amelyet a közzétett kattintva találja.
-   3. Használja a **AzureMLBatchExecution** tevékenység.
+   1. **A kérelmi URI** hello kötegelt végrehajtási API számára. Hello kérelem URI-CÍMÉN található hello kattintva **KÖTEGELT végrehajtási** hello szolgáltatások weblap hivatkozásra.
+   2. **Az API-kulcs** a hello közzétett Azure Machine Learning webszolgáltatáshoz. Hello API-kulcs hello webszolgáltatás, amelyet a közzétett kattintva találja.
+   3. Használjon hello **AzureMLBatchExecution** tevékenység.
 
       ![Machine Learning irányítópult](./media/data-factory-azure-ml-batch-execution-activity/AzureMLDashboard.png)
 
       ![Kötegelt URI](./media/data-factory-azure-ml-batch-execution-activity/batch-uri.png)
 
-### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-to-data-in-azure-blob-storage"></a>Forgatókönyv: Kísérletek Web service bemenetek/kimenetek adataira az Azure Blob Storage használata
-Ebben a forgatókönyvben az Azure Machine Learning Web service lehetővé teszi az adatok segítségével az Azure blob Storage-fájlból való előrejelzéseket és az előrejelzés eredményt a blob Storage tárolóban. A következő JSON határozza meg a Data Factory-folyamathoz egy AzureMLBatchExecution tevékenységet. A tevékenység rendelkezik az adatkészlet **DecisionTreeInputBlob** bemenetként és **DecisionTreeResultBlob** kimeneteként. A **DecisionTreeInputBlob** átadása a webszolgáltatás által bemeneteként használja a **típus** JSON tulajdonság. A **DecisionTreeResultBlob** objektumnak átadott kimenetként a webszolgáltatás által használ a **webServiceOutputs** JSON tulajdonság.  
+### <a name="scenario-experiments-using-web-service-inputsoutputs-that-refer-toodata-in-azure-blob-storage"></a>Forgatókönyv: Kísérletek webes szolgáltatás bemenetek/kimenetek, tekintse meg az Azure Blob Storage toodata használatával
+Ebben a forgatókönyvben a hello Azure Machine Learning webszolgáltatás lehetővé teszi az adatok segítségével az Azure blob Storage-fájlból való előrejelzéseket, és hello előrejelzés eredmények hello blob Storage tárolóban tárolja. hello következő JSON határozza meg a Data Factory-folyamathoz egy AzureMLBatchExecution tevékenységet. hello tevékenység rendelkezik hello dataset **DecisionTreeInputBlob** bemenetként és **DecisionTreeResultBlob** hello output típusúként. Hello **DecisionTreeInputBlob** átadása egy bemeneti toohello webszolgáltatásként által hello segítségével **típus** JSON tulajdonság. Hello **DecisionTreeResultBlob** átadása egy kimeneti toohello webszolgáltatás által hello segítségével **webServiceOutputs** JSON tulajdonság.  
 
 > [!IMPORTANT]
-> Ha a webszolgáltatás több bemeneti vesz igénybe, használja a **webServiceInputs** tulajdonság használata helyett **típus**. Tekintse meg a [webszolgáltatás több bemeneti értéket igényel](#web-service-requires-multiple-inputs) szakasz egy példát a webServiceInputs tulajdonság használatával.
+> Ha hello webszolgáltatás több bemeneti vesz igénybe, használja a hello **webServiceInputs** tulajdonság használata helyett **típus**. Lásd: hello [webszolgáltatás több bemeneti értéket igényel](#web-service-requires-multiple-inputs) szakasz egy példát hello webServiceInputs tulajdonság használatával.
 >
-> Által hivatkozott adatkészletek a **típus**/**webServiceInputs** és **webServiceOutputs** tulajdonságok (a  **typeProperties**) is szerepelnie kell a tevékenység **bemenetek** és **kimenete**.
+> Hello által hivatkozott adatkészletek **típus**/**webServiceInputs** és **webServiceOutputs** tulajdonságok (a  **typeProperties**) is szerepelnie kell hello tevékenység **bemenetek** és **kimenete**.
 >
-> Az Azure ML kísérletben webszolgáltatás bemenetét és a kimeneti portok és a globális paraméterek alapértelmezett neve lehet ("input1", "input2"), amely testre szabható. WebServiceInputs, webServiceOutputs és globalParameters beállítások használt neveket pontosan egyeznie kell a kísérleti nevét. A minta-kérések forgalma a a várt leképezés ellenőrzése az Azure ML végpont kötegelt végrehajtási súgó lapon tekintheti meg.
+> Az Azure ML kísérletben webszolgáltatás bemenetét és a kimeneti portok és a globális paraméterek alapértelmezett neve lehet ("input1", "input2"), amely testre szabható. webServiceInputs, webServiceOutputs és globalParameters beállítások használt hello neveket hello kísérletekben hello neveket pontosan egyeznie kell. Az Azure ML végpont tooverify várt hello leképezés hello minta-kérések forgalma hello kötegelt végrehajtási súgó lapon tekintheti meg.
 >
 >
 
@@ -127,16 +127,16 @@ Ebben a forgatókönyvben az Azure Machine Learning Web service lehetővé teszi
 }
 ```
 > [!NOTE]
-> Csak be- és kimenetekkel a AzureMLBatchExecution tevékenység argumentumként átadhatók paraméterek a webszolgáltatással. Például a fenti JSON-részlet DecisionTreeInputBlob a AzureMLBatchExecution tevékenység, amelyet a rendszer továbbad a webszolgáltatás bemeneteként típus paraméteren keresztül bemenete.   
+> Csak be- és kimenetekkel hello AzureMLBatchExecution tevékenység paraméterek toohello webszolgáltatás argumentumként átadhatók. A fenti JSON részlet hello, például a DecisionTreeInputBlob egy bemeneti toohello AzureMLBatchExecution tevékenység, mint egy bemeneti toohello webszolgáltatás átadott típus paraméteren keresztül.   
 >
 >
 
 ### <a name="example"></a>Példa
-Ebben a példában a bemeneti és kimeneti adatok tárolásához Azure tárolást használ.
+A példa használja az Azure Storage toohold mindkét hello bemeneti és kimeneti adatokat.
 
-Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory] [ adf-build-1st-pipeline] oktatóanyag, mielőtt továbblépne ebben a példában keresztül. A Data Factory Editor használja ebben a példában az adat-előállító összetevők (társított szolgáltatások, adatkészleteket, adatcsatorna) létrehozásához.   
+Javasoljuk, hogy olvassa végig hello [felépítheti első folyamatát Data Factory] [ adf-build-1st-pipeline] oktatóanyag, mielőtt továbblépne ebben a példában keresztül. Ebben a példában hello Data Factory Editor toocreate adat-előállító összetevők (társított szolgáltatások, adatkészleteket, pipeline) használja.   
 
-1. Hozzon létre egy **társított szolgáltatás** a a **Azure Storage**. Ha a bemeneti és kimeneti fájlok eltérő tárfiókokból, két összekapcsolt szolgáltatások szüksége. Íme egy JSON-példa:
+1. Hozzon létre egy **társított szolgáltatás** a a **Azure Storage**. Ha hello bemeneti és kimeneti fájlok eltérő tárfiókokból, két összekapcsolt szolgáltatások szüksége. Íme egy JSON-példa:
 
     ```JSON
     {
@@ -149,7 +149,7 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
       }
     }
     ```
-2. Hozzon létre a **bemeneti** Azure Data Factory **dataset**. Néhány egyéb adat-előállító adatkészletek ellentétben ezek az adatkészletek tartalmaznia kell mindkét **folderPath** és **Fájlnév** értékeket. Particionálás segítségével minden egyes kötegelt végrehajtási (minden adatszelet) feldolgozni vagy tud létrehozni egyedi bemeneti és kimeneti fájlok miatt. Szükség lehet néhány felsőbb szintű tevékenység bemeneti átalakítása a CSV fájlformátum, és naplózza azt a tárfiókot az egyes szeletek tartalmazza. Ebben az esetben, nem tartalmazhat a **külső** és **externalData** látható a következő példa, és a DecisionTreeInputBlob beállításait egy másik tevékenység kimeneti adatkészlet lenne.
+2. Hozzon létre hello **bemeneti** Azure Data Factory **dataset**. Néhány egyéb adat-előállító adatkészletek ellentétben ezek az adatkészletek tartalmaznia kell mindkét **folderPath** és **Fájlnév** értékeket. Használhat particionálási toocause minden kötegelt végrehajtási (minden adatszelet) tooprocess vagy tud létrehozni egyedi bemeneti és kimeneti fájlok. Szükség lehet néhány felsőbb szintű tevékenység tootransform hello hello CSV-fájlformátumot bemeneteként, és helyezheti el hello tárfiókot az egyes szeletek tooinclude. Ebben az esetben nem tartalmazná hello **külső** és **externalData** látható példa, és a DecisionTreeInputBlob lenne hello kimeneti adatkészlet egy másik tevékenység a következő hello beállításait.
 
     ```JSON
     {
@@ -181,7 +181,7 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
     }
     ```
 
-    A bemeneti csv-fájlban a oszlop fejlécsor kell rendelkeznie. Ha használja a **másolási tevékenység** létrehozása/áthelyezése a fürt megosztott kötetei szolgáltatás a blob-tárolóba, célszerű a fogadó tulajdonság **blobWriterAddHeader** a **igaz**. Példa:
+    A bemeneti csv-fájlban hello oszlop fejlécsor kell rendelkeznie. Hello használata **másolási tevékenység** toocreate/move hello csv hello blob tárolóba, célszerű hello fogadó tulajdonság **blobWriterAddHeader** túl**igaz**. Példa:
 
     ```JSON
     sink:
@@ -191,8 +191,8 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
     }
     ```
 
-    A csv-fájl nem rendelkezik a fejlécsor, jelenhet meg a következő hibával: **hiba a tevékenység: Hiba történt a karakterlánc olvasásakor. Váratlan lexikális elem: StartObject. Elérési út ", 1. sor, 1 elhelyezése**.
-3. Hozzon létre a **kimeneti** Azure Data Factory **dataset**. A példa particionálás minden szelet végrehajtásra egyedi kimeneti elérési utat hoz létre. A particionálás nélkül a tevékenység felülírná a fájlt.
+    Hello csv-fájl nem rendelkezik hello fejlécsor, jelenhet meg a következő hiba hello: **hiba a tevékenység: Hiba történt a karakterlánc olvasásakor. Váratlan lexikális elem: StartObject. Elérési út ", 1. sor, 1 elhelyezése**.
+3. Hozzon létre hello **kimeneti** Azure Data Factory **dataset**. A példa particionálási toocreate egy egyedi kimeneti elérési út minden szelet végrehajtásra. Hello particionálás, nélkül hello tevékenység felülírná hello fájlt.
 
     ```JSON
     {
@@ -233,7 +233,7 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
       }
     }
     ```
-4. Hozzon létre egy **társított szolgáltatás** típusú: **AzureMLLinkedService**, az API-kulcsot biztosító, és a modell a kötegelt végrehajtás URL-cím.
+4. Hozzon létre egy **társított szolgáltatás** típusú: **AzureMLLinkedService**, hello API-kulcsot biztosító és modellhez tartozó kötegelt végrehajtás URL-CÍMÉT.
 
     ```JSON
     {
@@ -247,11 +247,11 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
       }
     }
     ```
-5. Végezetül szerzői a folyamat, amely tartalmazza egy **AzureMLBatchExecution** tevékenység. Futásidőben a folyamat a következő lépéseket végzi el:
+5. Végezetül szerzői a folyamat, amely tartalmazza egy **AzureMLBatchExecution** tevékenység. Futásidőben a folyamat hello a lépéseket követve hajtja végre:
 
-   1. A bemeneti fájl helyét lekérése a bemeneti adatkészletek.
-   2. Meghívja az Azure Machine Learning kötegelt végrehajtási API
-   3. A kötegelt végrehajtás kimenetének másolása a kimeneti adatkészlet megadott blob.
+   1. A bemeneti adatkészletek hello bemeneti fájl helye hello lekérése.
+   2. Meghívja a hello Azure Machine Learning kötegelt végrehajtási API
+   3. Másolja a kötegelt végrehajtási kimeneti toohello blob a kimeneti adatkészlet megadott hello.
 
       > [!NOTE]
       > AzureMLBatchExecution tevékenység állhat nulla vagy több be- és egy vagy több kimenetekkel.
@@ -300,24 +300,24 @@ Javasoljuk, hogy olvassa végig a [felépítheti első folyamatát Data Factory]
     }
     ```
 
-      Mindkét **start** és **end** időpontok szerepelnie kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41Z. A **end** idő megadása nem kötelező. Ha nem ad meg értéket a **end** tulajdonságot, akkor a program "**kezdés + 48 óra.**" A folyamat határozatlan ideig történő futtatásához adja meg a **9999-09-09** értéket az **end** (befejezés) tulajdonsághoz. A JSON-tulajdonságokkal kapcsolatos információkért lásd: [JSON Scripting Reference](https://msdn.microsoft.com/library/dn835050.aspx) (Referencia a JSON-parancsprogramokhoz).
+      Mindkét **start** és **end** időpontok szerepelnie kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41Z. Hello **end** idő megadása nem kötelező. Ha nem ad meg értéket a hello **end** tulajdonságot, akkor a program "**kezdés + 48 óra.**" toorun hello folyamat határozatlan ideig, adja meg **9999-09-09** hello hello értékként **end** tulajdonság. A JSON-tulajdonságokkal kapcsolatos információkért lásd: [JSON Scripting Reference](https://msdn.microsoft.com/library/dn835050.aspx) (Referencia a JSON-parancsprogramokhoz).
 
       > [!NOTE]
-      > Adja meg a AzureMLBatchExecution a megadott tevékenység nem kötelező megadni.
+      > A megadott hello AzureMLBatchExecution tevékenység megadása nem kötelező megadni.
       >
       >
 
-### <a name="scenario-experiments-using-readerwriter-modules-to-refer-to-data-in-various-storages"></a>Forgatókönyv: Kísérleteket, tekintse meg a különböző tárolók adatainak olvasási/írási modulok használata
-Azure ML kísérletek létrehozásakor egy másik gyakori forgatókönyv, ha írási és olvasási szerepkörökhöz modulok használják. Az olvasó modul használatával adatok betöltése az a kísérlet, és a író modul az adatok mentése a kísérletekből. Írási és olvasási szerepkörökhöz modullal kapcsolatos részletekért lásd: [olvasó](https://msdn.microsoft.com/library/azure/dn905997.aspx) és [író](https://msdn.microsoft.com/library/azure/dn905984.aspx) témakörök MSDN könyvtárában.     
+### <a name="scenario-experiments-using-readerwriter-modules-toorefer-toodata-in-various-storages"></a>Forgatókönyv: Kísérletek olvasási/írási modulok toorefer toodata különböző tárolók használata
+Egy másik forgatókönyve az Azure ML kísérletek létrehozásakor toouse írási és olvasási szerepkörökhöz modulok. hello olvasó modul kísérlet használt tooload adatokat, és hello író modul toosave adatok a kísérletekből. Írási és olvasási szerepkörökhöz modullal kapcsolatos részletekért lásd: [olvasó](https://msdn.microsoft.com/library/azure/dn905997.aspx) és [író](https://msdn.microsoft.com/library/azure/dn905984.aspx) témakörök MSDN könyvtárában.     
 
-Az írási és olvasási szerepkörökhöz modulok használata esetén ajánlott használni egy webszolgáltatási paraméter olvasási/írási modulok mindegyik tulajdonság. Ezek a paraméterek lehetővé teszik a adja meg a beállításokat futásidőben. Például egy olvasó modul, amely használja az Azure SQL Database segítségével létrehozhat egy kísérlet: XXX.database.windows.net. A webszolgáltatás telepítése után később engedélyezni kívánja a fogyasztók webszolgáltatás egy másik Azure SQL Server YYY.database.windows.net nevű megadásához. A webszolgáltatási paraméter segítségével engedélyezze ezt az értéket be kell állítani.
+Hello írási és olvasási szerepkörökhöz modulok használata esetén célszerű toouse olvasási/írási modulok minden egyes tulajdonság egy webszolgáltatási paraméter is. Ezek a paraméterek lehetővé teszik a tooconfigure hello értékek futásidőben. Például egy olvasó modul, amely használja az Azure SQL Database segítségével létrehozhat egy kísérlet: XXX.database.windows.net. Hello webszolgáltatás telepítése után szeretné tooenable hello fogyasztói hello web service toospecify egy másik Azure SQL Server YYY.database.windows.net hívása. Egy webes szolgáltatás paraméter tooallow a konfigurált érték toobe használható.
 
 > [!NOTE]
-> Webes szolgáltatás bemeneti és kimeneti eltérnek a webszolgáltatás-paramétereket. Az első esetben láthatta, hogyan egy bemeneti és kimeneti adható meg az Azure gépi tanulás webszolgáltatás. Ebben a forgatókönyvben a paraméternek az adott webszolgáltatás, amely megfelel az olvasási/írási modulok tulajdonságai át.
+> Webes szolgáltatás bemeneti és kimeneti eltérnek a webszolgáltatás-paramétereket. Hello első forgatókönyvben láthatta, hogyan egy bemeneti és kimeneti adható meg az Azure gépi tanulás webszolgáltatás. Ebben a forgatókönyvben át egy webszolgáltatás, amelyek megfelelnek az olvasási/írási modulok tooproperties paramétereit.
 >
 >
 
-Vizsgáljuk meg egy olyan helyzetben használhat webszolgáltatás-paramétereket. Egy telepített Azure Machine Learning webszolgáltatás, amelyet használ egy olvasó modul adatokat olvasni az adatforrásokat, Azure Machine Learning által támogatott egyik rendelkezik (például: Azure SQL Database). A kötegelt végrehajtás hajtja végre, az eredmények írt író modul (az Azure SQL Database) használatával.  Nincs a webszolgáltatás bemenetei és kimenetei a kísérletek vannak definiálva. Ebben az esetben ajánlott úgy beállítani, hogy az írási és olvasási szerepkörökhöz modulok vonatkozó webszolgáltatás-paramétereket. Ez a konfiguráció lehetővé teszi, hogy az olvasási/írási modulok kell konfigurálni a AzureMLBatchExecution tevékenység használatakor. Azt adja meg a webszolgáltatás-paramétereket a **globalParameters** a tevékenység JSON szakasz az alábbiak szerint.
+Vizsgáljuk meg egy olyan helyzetben használhat webszolgáltatás-paramétereket. Egy telepített Azure Machine Learning webszolgáltatás, amelyet egy olvasó modul tooread adatokat használ az Azure Machine Learning által támogatott adatforrások hello egyik rendelkezik (például: Azure SQL Database). Hello kötegelt végrehajtási hajtja végre, hello eredmények írt író modul (az Azure SQL Database) használatával.  Nincs a webszolgáltatás bemenetei és kimenetei hello kísérletek vannak definiálva. Ebben az esetben ajánlott, hogy konfigurálja a hello írási és olvasási szerepkörökhöz modulok vonatkozó webszolgáltatás-paramétereket. Ez a konfiguráció lehetővé teszi, hogy hello olvasási/írási modulok toobe az hello AzureMLBatchExecution tevékenység konfigurálva. Webszolgáltatás-paramétereket ad meg hello **globalParameters** hello tevékenység JSON szakasz az alábbiak szerint.
 
 ```JSON
 "typeProperties": {
@@ -328,7 +328,7 @@ Vizsgáljuk meg egy olyan helyzetben használhat webszolgáltatás-paramétereke
 }
 ```
 
-Is [Data Factory funkciók](data-factory-functions-variables.md) paraméterek szereplő értéket átadja a webes szolgáltatás, a következő példában látható módon:
+Is [Data Factory funkciók](data-factory-functions-variables.md) a sikeres hello értékeinek webszolgáltatás-paramétereket a hello a következő példában látható módon:
 
 ```JSON
 "typeProperties": {
@@ -339,14 +339,14 @@ Is [Data Factory funkciók](data-factory-functions-variables.md) paraméterek sz
 ```
 
 > [!NOTE]
-> A webszolgáltatás-paramétereket kis-és nagybetűket, ezért figyeljen oda arra, hogy a nevét adja meg, ha a tevékenység JSON egyeznek azokkal a webszolgáltatás által elérhetővé tett tárolókra.
+> Webszolgáltatás-paramétereket hello kis-és nagybetűket, ezért figyeljen oda arra, hogy hello hello tevékenységben megadott JSON megfelel hello hello webszolgáltatás által elérhetővé tett néhányat a meglévők közül.
 >
 >
 
-### <a name="using-a-reader-module-to-read-data-from-multiple-files-in-azure-blob"></a>Egy olvasó modul segítségével több fájlból az Azure Blob-adatok olvasása
-Big Data típusú adatok folyamatok a tevékenységeket, például a Pig és Hive is létrehozhat egy vagy több kimeneti fájlokat a bővítmények nincsenek. Például egy külső Hive tábla megadása esetén a külső Hive tábla adatai tárolhatja az Azure blob storage a következő név 000000_0 rendelkező. Kísérlet az olvasó modul segítségével több fájlok olvasását, és előrejelzéseket használhatja őket.
+### <a name="using-a-reader-module-tooread-data-from-multiple-files-in-azure-blob"></a>Az Azure Blob több fájlból egy olvasó modul tooread adatok használata
+Big Data típusú adatok folyamatok a tevékenységeket, például a Pig és Hive is létrehozhat egy vagy több kimeneti fájlokat a bővítmények nincsenek. Például egy külső Hive tábla megadásakor hello külső Hive tábla adatai hello tárolhatók az Azure blob storage a következő neve 000000_0 hello. Egy kísérletben tooread hello Adatolvasó modulja több fájlt használja, és előrejelzéseket használhatja őket.
 
-Az olvasó modul használata az Azure Machine Learning a kísérlet, a Azure Blob bemenetként is megadhat. A fájlok az Azure blob Storage tárolóban lehetnek a kimeneti fájlok (Példa: 000000_0), amely a HDInsight-on futó Pig és a Hive parancsfájlok hozzák létre. Az olvasó modul lehetővé teszi, hogy olvassa el a (nincs kiterjesztésű) fájlokat úgy konfigurálja a **elérési útját, tároló könyvtár/blob**. A **tároló elérési útja** mutat, a tároló és **könyvtár/blob** mutat, a következő ábrán látható módon a fájlokat tartalmazó mappát. A csillag Ez azt jelenti, hogy \*) **azt jelenti, hogy a tároló/mappában lévő összes fájl (Ez azt jelenti, hogy adatokat/aggregateddata/év 2014/hónap-6 = /\*)** olvassa el a kísérlet során.
+Az Azure Machine Learning kísérletben hello Adatolvasó modulja használatakor a Azure Blob bemenetként is megadhat. az Azure blob storage hello hello fájlok lehetnek a hello kimeneti fájlok (Példa: 000000_0), amely a HDInsight-on futó Pig és a Hive parancsfájlok hozzák létre. hello olvasó modul lehetővé teszi tooread fájlok (nincs) hello konfigurálásával **elérési toocontainer, könyvtár vagy blob**. Hello **elérési toocontainer** pontok toohello tároló és **könyvtár/blob** toofolder, ahogy az a következő kép hello hello fájlokat tartalmazó mutat. hello csillag, ez azt jelenti, hogy \*) **határozza meg, hogy az összes hello hello tároló/mappában található fájlokat (Ez azt jelenti, hogy adatokat/aggregateddata/év 2014/hónap-6 = /\*)** hello kísérlet részeként olvasható.
 
 ![Az Azure Blob tulajdonságai](./media/data-factory-create-predictive-pipelines/azure-blob-properties.png)
 
@@ -401,16 +401,16 @@ Az olvasó modul használata az Azure Machine Learning a kísérlet, a Azure Blo
 }
 ```
 
-A fenti JSON-példa:
+A fenti JSON példa hello:
 
-* A telepített Azure Machine Learning Web service olvasási/írási adatokat az vagy egy Azure SQL-adatbázis egy olvasó és író modul használatával. Ez a webszolgáltatás mutatja meg a következő négy paraméterek: adatbázis-kiszolgáló neve, a adatbázis neve, a kiszolgáló felhasználói fiók nevét és a kiszolgáló felhasználói fiók jelszavát.  
-* Mindkét **start** és **end** időpontok szerepelnie kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41Z. A **end** idő megadása nem kötelező. Ha nem ad meg értéket a **end** tulajdonságot, akkor a program "**kezdés + 48 óra.**" A folyamat határozatlan ideig történő futtatásához adja meg a **9999-09-09** értéket az **end** (befejezés) tulajdonsághoz. A JSON-tulajdonságokkal kapcsolatos információkért lásd: [JSON Scripting Reference](https://msdn.microsoft.com/library/dn835050.aspx) (Referencia a JSON-parancsprogramokhoz).
+* hello telepített Azure Machine Learning Web szolgáltatás használja az olvasót, és egy író modul tooread/adatok írása az / tooan Azure SQL Database. Ez a webszolgáltatás mutatja meg a következő négy paraméterek hello: adatbázis-kiszolgáló neve, a adatbázis neve, a kiszolgáló felhasználói fiók nevét és a kiszolgáló felhasználói fiók jelszavát.  
+* Mindkét **start** és **end** időpontok szerepelnie kell [ISO formátum](http://en.wikipedia.org/wiki/ISO_8601). Például: 2014-10-14T16:32:41Z. Hello **end** idő megadása nem kötelező. Ha nem ad meg értéket a hello **end** tulajdonságot, akkor a program "**kezdés + 48 óra.**" toorun hello folyamat határozatlan ideig, adja meg **9999-09-09** hello hello értékként **end** tulajdonság. A JSON-tulajdonságokkal kapcsolatos információkért lásd: [JSON Scripting Reference](https://msdn.microsoft.com/library/dn835050.aspx) (Referencia a JSON-parancsprogramokhoz).
 
 ### <a name="other-scenarios"></a>Egyéb forgatókönyvek
 #### <a name="web-service-requires-multiple-inputs"></a>Webszolgáltatás több bemeneti értéket igényel
-Ha a webszolgáltatás több bemeneti vesz igénybe, használja a **webServiceInputs** tulajdonság használata helyett **típus**. Által hivatkozott adatkészletek a **webServiceInputs** is szerepelnie kell a tevékenység **bemenetek**.
+Ha hello webszolgáltatás több bemeneti vesz igénybe, használja a hello **webServiceInputs** tulajdonság használata helyett **típus**. Hello által hivatkozott adatkészletek **webServiceInputs** is szerepelnie kell hello tevékenység **bemenetek**.
 
-Az Azure ML kísérletben webszolgáltatás bemenetét és a kimeneti portok és a globális paraméterek alapértelmezett neve lehet ("input1", "input2"), amely testre szabható. WebServiceInputs, webServiceOutputs és globalParameters beállítások használt neveket pontosan egyeznie kell a kísérleti nevét. A minta-kérések forgalma a a várt leképezés ellenőrzése az Azure ML végpont kötegelt végrehajtási súgó lapon tekintheti meg.
+Az Azure ML kísérletben webszolgáltatás bemenetét és a kimeneti portok és a globális paraméterek alapértelmezett neve lehet ("input1", "input2"), amely testre szabható. webServiceInputs, webServiceOutputs és globalParameters beállítások használt hello neveket hello kísérletekben hello neveket pontosan egyeznie kell. Az Azure ML végpont tooverify várt hello leképezés hello minta-kérések forgalma hello kötegelt végrehajtási súgó lapon tekintheti meg.
 
 ```JSON
 {
@@ -453,7 +453,7 @@ Az Azure ML kísérletben webszolgáltatás bemenetét és a kimeneti portok és
 ```
 
 #### <a name="web-service-does-not-require-an-input"></a>Webszolgáltatás nem szükséges bemeneti
-Az Azure ML kötegelt végrehajtási webszolgáltatások segítségével futtassa a munkafolyamatokat, például R vagy Python parancsfájlok, amelyekhez nem szükséges a bemeneti adatok. Vagy a kísérlet az olvasó modul, amely nem fedi fel minden GlobalParameters is megadhatók. Ebben az esetben a AzureMLBatchExecution tevékenység úgy lesz beállítva, az alábbiak szerint:
+Az Azure ML kötegelt végrehajtási webszolgáltatások lehet használt toorun munkafolyamatokat, például R vagy Python parancsfájlok, nem követelheti meg, amely a bemeneti adatok. Vagy hello kísérlet az olvasó modul, amely nem fedi fel minden GlobalParameters is megadhatók. Ebben az esetben hello AzureMLBatchExecution tevékenység úgy lesz beállítva, az alábbiak szerint:
 
 ```JSON
 {
@@ -480,7 +480,7 @@ Az Azure ML kötegelt végrehajtási webszolgáltatások segítségével futtass
 ```
 
 #### <a name="web-service-does-not-require-an-inputoutput"></a>Webszolgáltatás nem szükséges egy bemeneti/kimeneti
-Az Azure ML kötegelt végrehajtási webszolgáltatás esetleg nincs konfigurálva webszolgáltatás kimenetet. Ebben a példában nincs webszolgáltatás bemeneti vagy kimeneti, sem bármely GlobalParameters vannak konfigurálva. Még nincs konfigurálva a tevékenység, maga a kimenettel, de ez nem egy webServiceOutput van megadva.
+Azure ML kötegelt végrehajtási webszolgáltatás hello esetleg nincs konfigurálva webszolgáltatás kimenetet. Ebben a példában nincs webszolgáltatás bemeneti vagy kimeneti, sem bármely GlobalParameters vannak konfigurálva. Továbbra is maga hello tevékenység konfigurált kimenettel, de ez nem egy webServiceOutput van megadva.
 
 ```JSON
 {
@@ -503,8 +503,8 @@ Az Azure ML kötegelt végrehajtási webszolgáltatás esetleg nincs konfigurál
 },
 ```
 
-#### <a name="web-service-uses-readers-and-writers-and-the-activity-runs-only-when-other-activities-have-succeeded"></a>Webes szolgáltatás által használt olvasók és írók, és csak akkor, ha más tevékenységek sikeres volt a tevékenység fut
-Az Azure ML web service írási és olvasási szerepkörökhöz modulok vagy bármely GlobalParameters anélkül futtatásához is megadhatók. Azonban érdemes lehet hívások beágyazása a folyamat által használt adatkészlet függőségek meghívni a szolgáltatás csak akkor, ha egy fölérendelt feldolgozása befejeződött. Más műveleteket is el lehet indítani, a kötegelt végrehajtás ezzel a megközelítéssel befejezése után. Ebben az esetben is express nélkül elnevezési valamelyiket, a webszolgáltatás bemeneti vagy kimeneti tevékenység bemenetekhez és kimenetekhez, használja a függőségeket.
+#### <a name="web-service-uses-readers-and-writers-and-hello-activity-runs-only-when-other-activities-have-succeeded"></a>Webes szolgáltatás által használt olvasók és írók és hello tevékenység fut csak akkor, ha más tevékenységek sikeres volt
+hello Azure ML web service írási és olvasási szerepkörökhöz modulok vagy bármely GlobalParameters nélkül konfigurált toorun lehet. Azonban érdemes lehet Szolgáltatáshívások tooembed egy folyamatot, amely a dataset függőségek tooinvoke hello szolgáltatást használ, csak akkor, ha egy fölérendelt feldolgozása befejeződött. Más műveleteket is el lehet indítani, hello kötegelt végrehajtáshoz a ezzel a megközelítéssel befejeződése után. Ebben az esetben is express hello függőségek tevékenység bemenetekhez és kimenetekhez, használja valamelyiket, a webszolgáltatás bemeneti vagy kimeneti megadása nélkül.
 
 ```JSON
 {
@@ -535,33 +535,33 @@ Az Azure ML web service írási és olvasási szerepkörökhöz modulok vagy bá
 },
 ```
 
-A **takeaways** vannak:
+Hello **takeaways** vannak:
 
-* Ha a kísérlet végpont egy típus használ: egy blob-adathalmazra képviseli, és a tevékenység bemeneti és a típus tulajdonság tartalmazza. A típus tulajdonság nincs megadva.
-* Ha a kísérlet végpont használ webServiceOutput(s): blob adatkészletek képviseli, és tartalmazza a tevékenység kimeneteiből és webServiceOutputs tulajdonságában. A tevékenység kimenete és webServiceOutputs vannak leképezve a kísérletben minden kimeneti nevével. Ellenkező esetben a webServiceOutputs tulajdonság nincs megadva.
-* Ha a kísérlet végpont globalParameter(s) azt mutatja, a számukra tevékenység globalParameters tulajdonságában kulcs, érték párként. Ellenkező esetben a globalParameters tulajdonság nincs megadva. A kulcsokban kis-és nagybetűket. [Az Azure Data Factory funkciók](data-factory-functions-variables.md) értékek használható.
-* További adathalmazokat szerepelni fog a tevékenység bemenetei és kimenetei tulajdonságait, anélkül, hogy a tevékenység typeProperties hivatkozik rá. Ezek az adatkészletek szelet függőségek végrehajtását szabályozására, de a AzureMLBatchExecution tevékenység ellenkező esetben figyelmen kívül hagyja.
+* Ha a kísérlet végpont egy típus használ: egy blob-adathalmazra képviseli, és a hello tevékenység bemenetei és hello típus tulajdonság tartalmazza. Ellenkező esetben hello típus tulajdonság nincs megadva.
+* Ha a kísérlet végpont használ webServiceOutput(s): blob adatkészletek képviseli, és tartalmazza a hello tevékenység kimeneteiből és hello webServiceOutputs tulajdonságában. hello tevékenység kimenete és webServiceOutputs minden kimenetet hello kísérletben hello név szerint vannak leképezve. Ellenkező esetben hello webServiceOutputs tulajdonság nincs megadva.
+* Ha a kísérlet végpont globalParameter(s) azt mutatja, a számukra hello tevékenység globalParameters tulajdonságában kulcs, érték párként. Ellenkező esetben hello globalParameters tulajdonság nincs megadva. hello kulcsai kis-és nagybetűket. [Az Azure Data Factory funkciók](data-factory-functions-variables.md) hello értékek használható.
+* További adathalmazokat szerepelni fog hello tevékenység bemenetekhez és kimenetekhez tulajdonságait, a hello tevékenység typeProperties rendelés nélkül. Ezek az adatkészletek szelet függőségek végrehajtását szabályozására, de hello AzureMLBatchExecution tevékenység ellenkező esetben figyelmen kívül hagyja.
 
 
 ## <a name="updating-models-using-update-resource-activity"></a>A modellek használata az Update-Erőforrástevékenység frissítése
-Miután elkészült, az átképezési, frissítése a pontozási webszolgáltatás (prediktív kísérletté webszolgáltatásként kitett) újonnan betanított modell használatával a **Azure ML Update Erőforrástevékenység**. Lásd: [modellek használata az Update-Erőforrástevékenység frissítése](data-factory-azure-ml-update-resource-activity.md) cikkben alább.
+Után átképezési befejezése, frissítse a webszolgáltatás (prediktív kísérletté webszolgáltatásként kitett) pontozási hello újonnan betanított modell hello segítségével hello **Azure ML Update Erőforrástevékenység**. Lásd: [modellek használata az Update-Erőforrástevékenység frissítése](data-factory-azure-ml-update-resource-activity.md) cikkben alább.
 
 ### <a name="reader-and-writer-modules"></a>Olvasási és írási modulok
-Egy általános forgatókönyv webszolgáltatás-paramétereket az Azure SQL-olvasók és írók. Az olvasó modul az adatok betöltése az Azure Machine Learning Studio kívül adatszolgáltatásokból felügyeleti kísérlet szolgál. Az író modul az adatok mentése a kísérletekből az Azure Machine Learning Studio kívüli adatok szolgáltatások.  
+Egy általános forgatókönyv webszolgáltatás-paramétereket az Azure SQL-olvasók és írók hello használata. hello olvasó modul az Azure Machine Learning Studio kívül adatszolgáltatásokból felügyeleti kísérlet használt tooload adatokat. hello író modul az adatok felügyeleti szolgáltatás Azure Machine Learning Studio kívül a kísérletekből toosave adatokat.  
 
-Azure Blob vagy az Azure SQL olvasási/írási kapcsolatos részletekért lásd: [olvasó](https://msdn.microsoft.com/library/azure/dn905997.aspx) és [író](https://msdn.microsoft.com/library/azure/dn905984.aspx) témakörök MSDN könyvtárában. A példa az előző szakaszban használt Azure-Blob és az Azure Blob olvasási. Ez a szakasz ismerteti az Azure SQL-olvasó és az Azure SQL-író segítségével.
+Azure Blob vagy az Azure SQL olvasási/írási kapcsolatos részletekért lásd: [olvasó](https://msdn.microsoft.com/library/azure/dn905997.aspx) és [író](https://msdn.microsoft.com/library/azure/dn905984.aspx) témakörök MSDN könyvtárában. hello példa az előző szakaszban hello használt hello Azure Blob és Azure Blob. Ez a szakasz ismerteti az Azure SQL-olvasó és az Azure SQL-író segítségével.
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
-**K:** a big Data típusú adatok folyamatok által létrehozott több fájl van. A AzureMLBatchExecution tevékenység használatával a fájlok?
+**K:** a big Data típusú adatok folyamatok által létrehozott több fájl van. Használható összes hello fájljának hello AzureMLBatchExecution tevékenység toowork?
 
-**V:** Igen. Tekintse meg a **egy olvasó modul segítségével adatokat olvasni az Azure Blob több fájl** című szakaszban talál információt.
+**V:** Igen. Lásd: hello **használatával egy olvasó modul tooread adatok Azure BLOB több fájlból** című szakaszban talál információt.
 
 ## <a name="azure-ml-batch-scoring-activity"></a>Azure ML kötegelt pontozási tevékenység
-Ha használja a **AzureMLBatchScoring** tevékenység integrálása az Azure Machine Learning, azt javasoljuk, hogy használja-e a legújabb **AzureMLBatchExecution** tevékenység.
+Hello használata **AzureMLBatchScoring** tevékenység toointegrate Azure Machine Learning segítségével, azt javasoljuk, hogy használjon hello legújabb **AzureMLBatchExecution** tevékenység.
 
-A AzureMLBatchExecution tevékenység megjelent az Azure SDK és Azure PowerShell 2015. augusztus kiadásában.
+hello AzureMLBatchExecution tevékenység hello Azure SDK és Azure PowerShell 2015. augusztus kiadása be.
 
-Ha azt szeretné, hogy tovább használja a AzureMLBatchScoring tevékenység, továbbra is az egész ebben a szakaszban.  
+Ha azt szeretné, hogy az hello AzureMLBatchScoring tevékenység toocontinue, továbbra is egész ebben a szakaszban.  
 
 ### <a name="azure-ml-batch-scoring-activity-using-azure-storage-for-inputoutput"></a>Bemeneti/kimeneti az Azure Storage használata az Azure ML kötegelt pontozási tevékenység
 
@@ -601,7 +601,7 @@ Ha azt szeretné, hogy tovább használja a AzureMLBatchScoring tevékenység, t
 ```
 
 ### <a name="web-service-parameters"></a>Webszolgáltatás-paramétereket
-Adható meg érték a webszolgáltatás-paramétereket, vegye fel a **typeProperties** szakaszban a **AzureMLBatchScoringActivty** az adatcsatorna JSON szakasz a következő példában látható módon:
+Webszolgáltatás-paramétereket, toospecify értékeinek hozzáadása egy **typeProperties** szakasz toohello **AzureMLBatchScoringActivty** hello adatcsatorna JSON, ahogy az alábbi példa hello szakaszában:
 
 ```JSON
 "typeProperties": {
@@ -611,7 +611,7 @@ Adható meg érték a webszolgáltatás-paramétereket, vegye fel a **typeProper
     }
 }
 ```
-Is [Data Factory funkciók](data-factory-functions-variables.md) paraméterek szereplő értéket átadja a webes szolgáltatás, a következő példában látható módon:
+Is [Data Factory funkciók](data-factory-functions-variables.md) a sikeres hello értékeinek webszolgáltatás-paramétereket a hello a következő példában látható módon:
 
 ```JSON
 "typeProperties": {
@@ -622,7 +622,7 @@ Is [Data Factory funkciók](data-factory-functions-variables.md) paraméterek sz
 ```
 
 > [!NOTE]
-> A webszolgáltatás-paramétereket kis-és nagybetűket, ezért figyeljen oda arra, hogy a nevét adja meg, ha a tevékenység JSON egyeznek azokkal a webszolgáltatás által elérhetővé tett tárolókra.
+> Webszolgáltatás-paramétereket hello kis-és nagybetűket, ezért figyeljen oda arra, hogy hello hello tevékenységben megadott JSON megfelel hello hello webszolgáltatás által elérhetővé tett néhányat a meglévők közül.
 >
 >
 

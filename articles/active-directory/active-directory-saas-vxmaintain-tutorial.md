@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory integrálása vxMaintain |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és vxMaintain között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és vxMaintain között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: ad87534af448356b8cc80d8ddd278bfb8a9165e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 937ea276d898986fc5a953c96fddabdc8940309f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-integrate-azure-active-directory-with-vxmaintain"></a>Oktatóanyag: Azure Active Directory integrálása vxMaintain
 
-Ebben az oktatóanyagban elsajátíthatja vxMaintain integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate vxMaintain az Azure Active Directoryval (Azure AD).
 
 Ez az integráció kínál számos fontos előnnyel jár. A következőket teheti:
 
-- Ellenőrzés vxMaintain hozzáféréssel rendelkező Azure AD-ben.
-- Engedélyezze a felhasználóknak automatikusan jelentkezzen be az egyszeri bejelentkezés (SSO) vxMaintain az Azure AD-fiókok használatával.
-- A fiók egyetlen központi helyen kezelheti: az Azure-portálon.
+- Az Azure ad-ben rendelkező vezérlő toovxMaintain érhető el.
+- A felhasználók tooautomatically bejelentkezés toovxMaintain az egyszeri bejelentkezés (SSO) engedélyezése az Azure AD-fiókok használatával.
+- A fiók egyetlen központi helyen kezelheti: hello Azure-portálon.
 
-Az Azure AD SaaS alkalmazásintegráció kapcsolatos további információkért lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
+toolearn SaaS alkalmazásintegráció az Azure AD-vel kapcsolatos további információkért lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs vxMaintain, a következőkre van szükség:
+az Azure AD integrálása vxMaintain tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy vxMaintain előfizetés SSO engedélyezése
 
 > [!NOTE]
-> Ebben az oktatóanyagban tesztelésekor a lépéseket, azt javasoljuk, hogy nem használ egy éles környezetben.
+> Ebben az oktatóanyagban hello lépéseket tesztelésekor, azt javasoljuk, hogy nem használ egy éles környezetben.
 
-Ez az oktatóanyag lépéseit teszteléséhez hajtsa végre az ezek az ajánlások:
+Ebben az oktatóanyagban tootest hello lépéseit kövesse az alábbi ajánlásokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, akkor [egy hónapos próbaverzió beszerzése](https://azure.microsoft.com/pricing/free-trial/).
@@ -49,151 +49,151 @@ Ez az oktatóanyag lépéseit teszteléséhez hajtsa végre az ezek az ajánlás
 ## <a name="scenario-description"></a>Forgatókönyv leírása
 Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. 
 
-Ez az oktatóanyag ismerteti a forgatókönyv két fő építőelemeket áll:
+hello forgatókönyv, hogy ez az oktatóanyag bemutatja a két fő építőelemeket áll:
 
-* A gyűjteményből vxMaintain hozzáadása
+* Hello gyűjteményből vxMaintain hozzáadása
 * És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="add-vxmaintain-from-the-gallery"></a>Adja hozzá a vxMaintain a gyűjteményből
-Az Azure AD integrálása vxMaintain konfigurálásához kell hozzáadnia vxMaintain a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="add-vxmaintain-from-hello-gallery"></a>Adja hozzá a vxMaintain hello gyűjteményből
+az Azure AD-val vxMaintain tooconfigure hello integrálását, meg kell tooadd vxMaintain hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-A gyűjteményből vxMaintain hozzáadásához tegye a következőket:
+hello gyűjteményből tooadd vxMaintain hello a következő:
 
-1. Az a [Azure-portálon](https://portal.azure.com), a bal oldali panelen válassza ki a **Azure Active Directory** gombra. 
+1. A hello [Azure-portálon](https://portal.azure.com), a bal oldali ablaktáblán hello, válassza ki a hello **Azure Active Directory** gombra. 
 
-    ![Az Azure Active Directory gomb][1]
+    ![hello Azure Active Directory gomb][1]
 
 2. Válassza ki **vállalati alkalmazások** > **összes alkalmazás**.
 
-    ![A "Vállalati alkalmazások" ablak][2]
+    ![hello "Vállalati alkalmazások" ablak][2]
     
-3. Hozzáadhat egy alkalmazást, az a **összes alkalmazás** párbeszédpanelen jelölje ki **új alkalmazás**.
+3. az alkalmazás hello tooadd **összes alkalmazás** párbeszédpanelen jelölje ki **új alkalmazás**.
 
-    ![Az "új alkalmazás" gomb][3]
+    !["Az új alkalmazás" Hello gomb][3]
 
-4. Írja be a keresőmezőbe, **vxMaintain**.
+4. Hello keresési mezőbe, írja be a **vxMaintain**.
 
-    ![Az "Egyszeri bejelentkezés mód" legördülő lista](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_search.png)
+    ![hello "Egyszeri bejelentkezés mód" legördülő lista](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_search.png)
 
-5. Az eredmények listájában válassza **vxMaintain**, majd válassza ki **Hozzáadás**.
+5. Hello eredmények listában válassza ki a **vxMaintain**, majd válassza ki **Hozzáadás**.
 
-    ![A vxMaintain hivatkozás](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_addfromgallery.png)
+    ![hello vxMaintain hivatkozás](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 Ebben a szakaszban konfigurálása és tesztelése az Azure AD SSO vxMaintain "Britta Simon." nevű tesztfelhasználó alapján használatával
 
-Az egyszeri bejelentkezés működjön az Azure AD tudnia kell, a vxMaintain megfelelője az Azure AD-felhasználó számára. Ez azt jelenti, hogy az Azure AD-felhasználó és a megfelelő vxMaintain felhasználó közötti kapcsolat kapcsolatot kell létesítenie.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow hello vxMaintain megfelelőjére toohello Azure AD-felhasználó. Ez azt jelenti, hogy hello Azure AD-felhasználó és hello megfelelő vxMaintain felhasználó közötti kapcsolat kapcsolatot kell létesítenie.
 
-A hivatkozás kapcsolatot létesíteni, rendelje hozzá a vxMaintain **felhasználónév** érték, mint az Azure AD **felhasználónév** érték.
+tooestablish hello hivatkozás kapcsolat hozzárendelése hello vxMaintain **felhasználónév** érték, mint az Azure AD hello **felhasználónév** érték.
 
-Konfigurálása és tesztelése az Azure AD SSO vxMaintain használatával végezze el a következő építőelemeit.
+tooconfigure és tesztelése az Azure AD SSO vxMaintain, a következő építőelemeket teljes hello segítségével.
 
 ### <a name="configure-azure-ad-sso"></a>Az Azure AD-egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban is engedélyezheti Azure AD egyszeri bejelentkezés az Azure portálon és egyszeri bejelentkezés konfigurálása az vxMaintain alkalmazásban a következő módon:
+Ebben a szakaszban akkor is engedélyezze az Azure AD egyszeri Bejelentkezést a hello Azure-portálon és beállíthatja SSO vxMaintain alkalmazásában hello következő tevékenységek végrehajtásával:
 
-1. Az Azure portálon a a **vxMaintain** alkalmazás integrációs lapon jelölje be **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **vxMaintain** alkalmazás integrációs lapon jelölje be **egyszeri bejelentkezés**.
 
-    ![Az "Egyszeri bejelentkezés" parancs][4]
+    !["Egyszeri bejelentkezés" parancs hello][4]
 
-2. Is engedélyezhető az egyszeri bejelentkezés, a **egyszeri bejelentkezés mód** legördülő listában válassza **SAML-alapú bejelentkezés**.
+2. a hello SSO, tooenable **egyszeri bejelentkezés mód** legördülő listában válassza **SAML-alapú bejelentkezés**.
  
-    ![A "SAML-alapú bejelentkezés" parancs](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_samlbase.png)
+    ![hello "SAML-alapú bejelentkezés" parancs](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_samlbase.png)
 
-3. A **vxMaintain tartomány és az URL-címek**, tegye a következőket:
+3. A **vxMaintain tartomány és az URL-címek**, a következő hello:
 
-    ![A tartomány és az URL-címek szakasz vxMaintain](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_url.png)
+    ![hello vxMaintain tartomány és az URL-címek szakasz](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_url.png)
 
-    a. Az a **azonosító** mezőbe írjon be egy URL-címet, amely rendelkezik a következő szintaxist:`https://<company name>.verisae.com`
+    a. A hello **azonosító** mezőbe írja be egy URL-címet, amely rendelkezik hello szintaxisa a következő:`https://<company name>.verisae.com`
 
-    b. Az a **válasz URL-CÍMEN** mezőbe írjon be egy URL-címet, amely rendelkezik a következő szintaxist:`https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`
+    b. A hello **válasz URL-CÍMEN** mezőbe írja be egy URL-címet, amely rendelkezik hello szintaxisa a következő:`https://<company name>.verisae.com/DataNett/action/ssoConsume/mobile?_log=true`
 
     > [!NOTE] 
-    > Az előző értékei nem valódi. A tényleges azonosítójú frissítheti, illetve válasz URL-CÍMÉT. Szerezze be az értékeket, lépjen kapcsolatba a [vxMaintain támogatási csoport](http://www.verisae.com/contact-us).
+    > hello előző értékei nem valódi. Hello tényleges azonosítójú frissítheti, illetve válasz URL-CÍMÉT. tooobtain hello értékek kapcsolattartási hello [vxMaintain támogatási csoport](http://www.verisae.com/contact-us).
  
-4. A **SAML-aláíró tanúsítványa**, jelölje be **metaadatainak XML-kódja**, majd mentse a metaadat-fájlt a számítógépre.
+4. A **SAML-aláíró tanúsítványa**, jelölje be **metaadatainak XML-kódja**, majd mentse a hello metaadatok fájl tooyour számítógép.
 
-    ![A "SAML aláíró tanúsítvány" szakasz](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_certificate.png) 
+    ![hello "SAML aláíró tanúsítvány" szakasz](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_certificate.png) 
 
 5. Kattintson a **Mentés** gombra.
 
-    ![A Mentés gombra](./media/active-directory-saas-vxmaintain-tutorial/tutorial_general_400.png)
+    ![hello Mentés gombra](./media/active-directory-saas-vxmaintain-tutorial/tutorial_general_400.png)
 
-6. Konfigurálása **vxMaintain** SSO, küldjön a letöltött **metaadatainak XML-kódja** fájlt a [vxMaintain támogatási csoport](http://www.verisae.com/contact-us).
+6. tooconfigure **vxMaintain** SSO, letöltött küldési hello **metaadatainak XML-kódja** toohello fájl [vxMaintain támogatási csoport](http://www.verisae.com/contact-us).
 
 > [!TIP]
-> Állít be az alkalmazást, mert egy előző utasításait tömör verziója elolvashatja a [Azure-portálon](https://portal.azure.com). Miután hozzáadta az alkalmazásból a **Active Directory** > **vállalati alkalmazások** szakaszban jelölje be a **egyszeri bejelentkezés** lapot, és hozzáférhet a beágyazott dokumentáció a **konfigurációs** szakasz. 
+> Hello app állít be, mivel el tudja olvasni az utasításokat megelőző hello hello tömör verziójának [Azure-portálon](https://portal.azure.com). A hello hello alkalmazás hozzáadása után **Active Directory** > **vállalati alkalmazások** szakaszban, jelölje be hello **egyszeri bejelentkezés** fülre, és hozzáférést hello a beágyazott hello dokumentáció **konfigurációs** szakasz. 
 >
->A beágyazott dokumentáció szolgáltatással kapcsolatos további tudnivalókért lásd: [egyszeri bejelentkezéshez a vállalati alkalmazásokat kezeléséhez](https://go.microsoft.com/fwlink/?linkid=845985).
+>toolearn hello embedded dokumentációjából funkció, bővebben lásd: [egyszeri bejelentkezéshez a vállalati alkalmazásokat kezeléséhez](https://go.microsoft.com/fwlink/?linkid=845985).
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ez a szakasz az alábbi lépésekkel hoz létre tesztfelhasználó Britta Simon az Azure-portálon:
+Ebben a szakaszban Britta Simon tesztfelhasználó hello Azure-portálon létrehozhat hello következő tevékenységek végrehajtásával:
 
-![Az Azure AD-teszt felhasználó][100]
+![az Azure AD hello tesztfelhasználó számára][100]
 
-1. Az a **Azure-portálon**, a bal oldali panelen válassza ki a **Azure Active Directory** gombra.
+1. A hello **Azure-portálon**, a bal oldali ablaktáblán hello, válassza ki a hello **Azure Active Directory** gombra.
 
-    ![Az "Azure Active Directory" gomb](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_01.png) 
+    ![hello "Azure Active Directory" gomb](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_01.png) 
 
-2. Megjeleníti azoknak a felhasználóknak, keresse fel **felhasználók és csoportok** > **minden felhasználó**.
+2. túl nyissa meg azoknak a felhasználóknak, toodisplay**felhasználók és csoportok** > **minden felhasználó**.
     
-    ![A "Minden felhasználó" hivatkozásra](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)  
-    A **minden felhasználó** párbeszédpanel. 
+    ![hello "Minden felhasználó" hivatkozásra.](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_02.png)  
+    Hello **minden felhasználó** párbeszédpanel. 
 
-3. Lehetőségre a **felhasználói** párbeszédpanelen jelölje ki **Hozzáadás**.
+3. tooopen hello **felhasználói** párbeszédpanelen jelölje ki **Hozzáadás**.
  
-    ![A Hozzáadás gombra.](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_03.png) 
+    ![hello Hozzáadás gomb](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanelen tegye a következőket:
+4. A hello **felhasználói** párbeszédpanel mezőbe hello a következő:
  
-    ![A felhasználó párbeszédpanel](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_04.png) 
+    ![hello felhasználó párbeszédpanel](./media/active-directory-saas-vxmaintain-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** mezőbe írja be **BrittaSimon**.
+    a. A hello **neve** mezőbe írja be **BrittaSimon**.
 
-    b. Az a **felhasználónév** mezőbe írja be a tesztfelhasználó Britta Simon e-mail címét.
+    b. A hello **felhasználónév** mezőben, a teszt felhasználó Britta Simon típus hello e-mail címét.
 
-    c. Válassza ki a **megjelenítése jelszó** jelölje be a jelölőnégyzetet, és jegyezze fel az értéket, amelyet hozták létre a **jelszó** mezőbe.
+    c. Jelölje be hello **megjelenítése jelszó** jelölőnégyzetet, majd a Megjegyzés hello értéket hello okozó **jelszó** mezőbe.
 
     d. Kattintson a **Létrehozás** gombra.
  
 ### <a name="create-a-vxmaintain-test-user"></a>VxMaintain tesztfelhasználó létrehozása
 
-Ebben a szakaszban Britta Simon tesztfelhasználó vxMaintain hoz létre. Felhasználók hozzáadása a vxMaintain platform, dolgozni a [vxMaintain támogatási csoport](http://www.verisae.com/contact-us). Mielőtt használná az egyszeri Bejelentkezést, hozzon létre, és a felhasználók aktiválása.
+Ebben a szakaszban Britta Simon tesztfelhasználó vxMaintain hoz létre. hello vxMaintain platform, tooadd felhasználók dolgozni a [vxMaintain támogatási csoport](http://www.verisae.com/contact-us). Mielőtt használná az egyszeri Bejelentkezést, hozzon létre, és hello felhasználók aktiválása.
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban Azure SSO vxMaintain való hozzáférés biztosítása által használandó Britta Simon tesztfelhasználó engedélyezi. Ehhez tegye a következőket:
+Ebben a szakaszban a tesztfelhasználó Britta Simon toouse Azure SSO hozzáférés toovxMaintain megadásával engedélyeznie. toodo tehát hello a következő:
 
-![A megjelenítendő név listában a tesztfelhasználó számára][200] 
+![Teszt felhasználó hello megjelenítendő név listában][200] 
 
-1. Az Azure portálon **alkalmazások** megtekintéséhez lépjen **Directory** Nézet > **vállalati alkalmazások** > **összes alkalmazás**.
+1. Az Azure-portálon hello **alkalmazások** túl megtekintheti**Directory** Nézet > **vállalati alkalmazások** > **összes alkalmazás**.
 
-    ![Az "Összes alkalmazás" hivatkozásra][201] 
+    !["az összes alkalmazások" Hello][201] 
 
-2. Az a **alkalmazások** listáról válassza ki **vxMaintain**.
+2. A hello **alkalmazások** listáról válassza ki **vxMaintain**.
 
-    ![A vxMaintain hivatkozás](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_app.png) 
+    ![hello vxMaintain hivatkozás](./media/active-directory-saas-vxmaintain-tutorial/tutorial_vxmaintain_app.png) 
 
-3. A bal oldali panelen válassza ki a **felhasználók és csoportok**.
+3. Hello bal oldali ablaktáblában jelöljön ki **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][202] 
+    ![hello "Felhasználók és csoportok" hivatkozásra.][202] 
 
-4. Válassza ki **Hozzáadás** , majd a a **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
+4. Válassza ki **Hozzáadás** , majd a hello **hozzáadása hozzárendelés** ablaktáblán válassza előbb **felhasználók és csoportok**.
 
-    ![A "Felhasználók és csoportok" hivatkozásra][203]
+    ![hello "Felhasználók és csoportok" hivatkozásra.][203]
 
-5. A a **felhasználók és csoportok** párbeszédpanel a **felhasználók** listáról válassza ki **Britta Simon**, majd válassza ki a **válassza** gomb.
+5. A hello **felhasználók és csoportok** hello párbeszédpanel **felhasználók** listáról válassza ki **Britta Simon**, majd válassza ki a hello **válassza ki** gomb.
 
-7. Az a **hozzáadása hozzárendelés** párbeszédpanelen jelölje ki **hozzárendelése**.
+7. A hello **hozzáadása hozzárendelés** párbeszédpanelen jelölje ki **hozzárendelése**.
     
 ### <a name="test-your-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD SSO konfigurációját a hozzáférési Panel segítségével tesztelheti.
+Ebben a szakaszban az Azure AD SSO konfigurációs hello hozzáférési Panel segítségével tesztelheti.
 
-Válassza a **vxMaintain** csempe a hozzáférési panelen kell jelentkezhet be a vxMaintain alkalmazás automatikusan.
+Kiválasztásával hello **vxMaintain** csempe a hozzáférési Panel hello kell bejelentkezés tooyour vxMaintain alkalmazás automatikusan.
 
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="next-steps"></a>Következő lépések
 

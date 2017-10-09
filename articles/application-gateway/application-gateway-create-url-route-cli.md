@@ -1,6 +1,6 @@
 ---
-title: "URL-útválasztási szabályok - Azure CLI 2.0 használatával Alkalmazásátjáró létrehozása |} Microsoft Docs"
-description: "Ezen a lapon létrehozása, megadni az URL-útválasztási szabályok használata Azure Alkalmazásátjáró utasításokat tartalmazza."
+title: "Alkalmazásátjáró használatával URL-cím útválasztási szabályok - aaaCreate Azure CLI 2.0 |} Microsoft Docs"
+description: "Ezen a lapon nyújt útmutatást toocreate, Azure Alkalmazásátjáró használatával URL-útválasztási szabályok konfigurálása"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 958049830d6753ec26635f18f8f8b2fabdec0733
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 335b52be258945e1172eb0252b732e0e6ecb2ef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-using-path-based-routing-with-azure-cli-20"></a>Az Azure CLI 2.0 elérési alapú útválasztás használatával Alkalmazásátjáró létrehozása
 
@@ -26,48 +26,48 @@ ms.lasthandoff: 08/18/2017
 > * [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
 > * [Azure CLI 2.0](application-gateway-create-url-route-cli.md)
 
-URL-cím elérési út-alapú útválasztási lehetővé teszi a HTTP-kérések URL-címe alapján útvonalak hozzárendelni. Ellenőrzi, hogy nincs konfigurálva az URL-cím szerepel az Alkalmazásátjáró a háttér-készlet egy útvonalat, és elküldi a hálózati forgalom a meghatározott háttér-készlethez. URL-alapú útválasztási gyakori felhasználási-hoz való különböző háttér-kiszolgálófiók tartalom különböző érkező kérések elosztása.
+URL-cím elérési út-alapú útválasztási lehetővé teszi, hogy Ön tooassociate útvonalak HTTP-kérések hello URL-címe alapján. Ellenőrzi, hogy az útvonal tooa háttér-készlet hello URL-cím szerepel a hello Alkalmazásátjáró konfigurálva van, és elküldi a hello hálózati forgalom toohello definiált háttér-készlet. URL-alapú útválasztási gyakori felhasználási tooload-érkező kérések elosztása a különböző típusú tartalmakat toodifferent háttér-kiszolgálófiók készletek.
 
-Az Alkalmazásátjáró URL-alapú útválasztási vezet be egy új szabály típusa. Alkalmazásátjáró két szabály tartozik: alapvető és PathBasedRouting. Alapszintű szabály típusa mellett ciklikus multiplexelés terjesztési PathBasedRouting közben a háttér-készletek ciklikus multiplexelés szolgáltatást biztosít, is a kérelem URL-címének elérési út mintája figyelembe veszi a háttér-készlet kiválasztása során.
+Új szabály típusa tooapplication átjáró URL-alapú útválasztási vezet be. Alkalmazásátjáró két szabály tartozik: alapvető és PathBasedRouting. Alapszintű szabálytípus biztosít a ciklikus multiplexelés hello háttér-szolgáltatás a készletbe közben PathBasedRouting továbbá tooround multiplexelés terjesztési, a is hello kérelem URL-címének elérési út mintája figyelembe veszi a hello háttér-készlet kiválasztásakor.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A következő példában Application Gateway van szolgáltató contoso.com forgalmát a két háttér-kiszolgálófiók rendelkezik: egy alapértelmezett kiszolgálókészletet és egy kép kiszolgálókészlethez.
+A következő példa hello, Application Gateway van szolgáltató contoso.com forgalmát a két háttér-kiszolgálófiók rendelkezik: egy alapértelmezett kiszolgálókészletet és egy kép kiszolgálókészlethez.
 
-Kérések a http://contoso.com/image * legyenek átirányítva kép kiszolgálókészlethez (imagesBackendPool), ha az elérési út mintája nem egyezik, egy alapértelmezett kiszolgálókészletet (appGatewayBackendPool) van kiválasztva.
+Kérések a http://contoso.com/image * irányított tooimage kiszolgálókészlet (imagesBackendPool), ha hello elérési út mintája nem felel meg, egy alapértelmezett kiszolgálókészletet (appGatewayBackendPool) van kiválasztva.
 
 ![URL-cím útvonal](./media/application-gateway-create-url-route-cli/scenario.png)
 
-## <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Nyissa meg a **Microsoft Azure parancssori**, és jelentkezzen be. 
+Nyissa meg hello **Microsoft Azure parancssori**, és jelentkezzen be. 
 
 ```azurecli
 az login -u "username"
 ```
 
 > [!NOTE]
-> Is `az login` az eszköz bejelentkezéshez írja be a kódot, aka.ms/devicelogin igénylő kapcsoló nélkül.
+> Is `az login` az eszköz bejelentkezéshez írja be a kódot, aka.ms/devicelogin igénylő hello kapcsoló nélkül.
 
-Miután beírta a fenti példában, a kód valósul meg. Nyissa meg a böngészőben a bejelentkezési folyamat folytatásához https://aka.ms/devicelogin.
+Amennyiben az előző példa hello írja be, a kód valósul meg. Keresse meg a böngésző toocontinue hello bejelentkezési folyamat toohttps://aka.ms/devicelogin.
 
 ![cmd megjelenítő eszköz-bejelentkezés][1]
 
-A böngészőben írja be a kapott kódot. Ekkor megnyílik egy bejelentkezési oldalára.
+Hello böngészőben írja be a kapott hello kódot. Biztosan átirányított tooa bejelentkezési oldalára.
 
-![Írja be a kódját a böngésző][2]
+![böngésző tooenter kódot][2]
 
-Ha nincs megadva a kód be van jelentkezve, zárja be a böngészőt, és a forgatókönyv a folytatáshoz.
+Ha nincs megadva hello kód be van jelentkezve, Bezárás hello böngésző toocontinue hello forgatókönyv.
 
 ![sikeres volt][3]
 
-## <a name="add-a-path-based-rule-to-an-existing-application-gateway"></a>Elérési út alapú szabályokat adhat hozzá egy meglévő Alkalmazásátjáró
+## <a name="add-a-path-based-rule-tooan-existing-application-gateway"></a>Adja hozzá az elérési út alapú szabály tooan meglévő Alkalmazásátjáró
 
 Alkalmazásátjáró definiált elérésiút-szabály létrehozása
 
 ### <a name="create-a-new-back-end-pool"></a>Háttér-készlet létrehozása
 
-Alkalmazásbeállítás átjáró konfigurálása **imagesBackendPool** az elosztott terhelésű hálózati forgalmat a háttér-készletben. Ebben a példában beállítások különböző háttér-tárolókészlet az új háttér-készlet. Mindegyik háttérkészlet saját háttérkészlet-beállításokkal rendelkezhet.  A szabályok a háttérbeli HTTP-beállítások használatával irányítják a forgalmat a háttérkészlet megfelelő tagjaira. Ez határozza meg a protokoll és a forgalom a háttérrendszer a készlet tagjainak való küldés során használt port. A cookie-alapú munkameneteket szintén a háttérbeli HTTP-beállítások határozzák meg.  Ha engedélyezve van, a cookie-alapú munkamenet-affinitás az egyes csomagokhoz tartozó korábbi kéréseknek megfelelő háttérrendszerekre irányítja a forgalmat.
+Alkalmazásbeállítás átjáró konfigurálása **imagesBackendPool** hello terhelésű hálózati forgalmára hello háttér-készlet. Ebben a példában beállítások másik háttér címkészletet hello új háttér-készlet. Mindegyik háttérkészlet saját háttérkészlet-beállításokkal rendelkezhet.  Szabályok tooroute forgalom toohello megfelelő háttér a készlet tagjainak háttér HTTP-beállításokat használja. Ez határozza meg, hello protokoll és toohello háttér a készlet tagjainak forgalom küldéséhez használt port. A munkamenetek cookie-alapú is a backendhttpsettings osztályhoz hello határozza meg.  Ha engedélyezve van, a munkamenet cookie-alapú kapcsolat küld-e a forgalom toohello azonos háttér, egyes csomagok előző kérelmekben.
 
 ```azurecli-interactive
 az network application-gateway address-pool create \
@@ -79,7 +79,7 @@ az network application-gateway address-pool create \
 
 ### <a name="create-a-new-front-end-port"></a>Hozzon létre egy új előtér-port
 
-Konfigurálja az előtérbeli portot egy Application Gatewayhez. Az előtérbeli port konfigurációs objektumával egy figyelő meghatározza, melyik porton figyeli a forgalmat az Application Gateway a figyelőn.
+Hello előtér-port konfigurálása az Alkalmazásátjáró. hello előtér-port konfigurációs objektum használja egy figyelő toodefine melyik portot hello Alkalmazásátjáró figyeli a hello figyelő-forgalmat.
 
 ```azurecli-interactive
 az network application-gateway frontend-port create --port 82 --gateway-name AdatumAppGateway --resource-group myresourcegroup --name port82
@@ -87,20 +87,20 @@ az network application-gateway frontend-port create --port 82 --gateway-name Ada
 
 ### <a name="create-a-new-listener"></a>Hozzon létre egy új figyelőt
 
-Konfigurálja a figyelőt. Ebben a lépésben konfiguráljuk a figyelőt a bejövő hálózati forgalmat fogadó nyilvános IP-címhez és porthoz. Az alábbi példában a korábban konfigurált előtér-IP-konfiguráció, előtér-konfiguráció és a protokollt (http vagy https), és konfigurálja a figyelő. Ebben a példában a figyelő a HTTP-forgalom a nyilvános IP-címet, amely korábban a 82-es porton figyel.
+Hello figyelő konfigurálása. Ez a lépés konfigurál hello figyelő hello nyilvános IP-cím és port használt tooreceive bejövő hálózati forgalom. a következő példa hello hello korábban konfigurált előtér-IP-konfiguráció, előtér-konfiguráció és a protokollt (http vagy https), és konfigurálja a hello figyelő. Ebben a példában hello figyelő tooHTTP adatforgalmat hello nyilvános IP-címet, amely korábban a 82-es porton figyel.
 
 ```azurecli-interactive
 az network application-gateway http-listener create --name imageListener --frontend-ip appGatewayFrontendIP  --frontend-port port82 --resource-group myresourcegroup --gateway-name AdatumAppGateway
 ```
 
-### <a name="create-the-url-path-map"></a>Az URL-cím elérési út térkép létrehozásához
+### <a name="create-hello-url-path-map"></a>Hello URL-cím elérési út térkép létrehozásához
 
-A háttér-készletek az URL-cím szabály elérési útvonalainak konfigurálása. Ez a lépés konfigurál a relatív elérési utat határozza meg az URL-címet, és melyik háttér-készlet hozzá van rendelve, a bejövő forgalom kezeléséhez közötti leképezést Alkalmazásátjáró segítségével.
+URL-cím szabály útvonalak hello háttér-címkészletek konfigurálása. Ez a lépés konfigurál hello relatív elérési út átjáró toodefine hello alkalmazástársításhoz közötti URL-címet, és melyik háttér-készlet kap toohandle hello bejövő forgalom által használt.
 
 > [!IMPORTANT]
-> Egyes elérési utakat kell kezdődnie, /, és csak egy "\*" engedélyezett, a végén. Érvényes többek között az /xyz, /xyz* vagy/xyz / *. Az az elérési út matcher táplált a karakterlánc nem tartalmaz sem szöveges az első után "?" vagy "#", és ezek a karakterek nem engedélyezettek. 
+> Egyes elérési utakat kell kezdődnie / és hello egyetlen hely, ahol a "\*" engedélyezett, a hello végén. Érvényes többek között az /xyz, /xyz* vagy/xyz / *. hello toohello elérési matcher táplált karakterlánc nem tartalmaz sem szöveges hello után először "?" vagy "#", és ezek a karakterek nem engedélyezettek. 
 
-Az alábbi példa létrehoz egy szabály a "/ képek / *" Háttér "imagesBackendPool." elérési út adatforgalom Ez a szabály biztosítja, hogy az egyes URL-címek háttérkiszolgálóra továbbítódik. Például http://adatum.com/images/figure1.jpg kerül "imagesBackendPool." Ha az elérési út nem felel meg az előre definiált elérésiút-szabály, a szabály térkép konfiguráció is konfigurálja egy háttér címkészletet. Például http://adatum.com/shoppingcart/test.html kerül pool1, mint az alapértelmezett alkalmazáskészlet páratlan forgalom van definiálva.
+hello alábbi példa létrehoz egy szabály a "/ képek / *" elemzéshez forgalom tooback-end "imagesBackendPool." Ez a szabály biztosítja, hogy az egyes URL-címek forgalom irányított toohello háttér. Például http://adatum.com/images/figure1.jpg túl kerül "imagesBackendPool." Hello elérési út bármely hello előre definiált elérésiút-szabály nem megfelelő, ha a szabály térkép konfiguráció hello is konfigurálja egy háttér címkészletet. Például a http://adatum.com/shoppingcart/test.html toopool1 kerül, mint hello alapértelmezett alkalmazáskészlet páratlan forgalom van definiálva.
 
 ```azurecli-interactive
 az network application-gateway url-path-map create \
@@ -117,7 +117,7 @@ az network application-gateway url-path-map create \
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha azt szeretné, további információt a Secure Sockets Layer (SSL) kiszervezési, lásd: [konfigurálása az SSL-kiszervezés Alkalmazásátjáró](application-gateway-ssl-cli.md).
+Ha azt szeretné, hogy Secure Sockets Layer (SSL) kiszervezési kapcsolatos toolearn, [konfigurálása az SSL-kiszervezés Alkalmazásátjáró](application-gateway-ssl-cli.md).
 
 
 [scenario]: ./media/application-gateway-create-url-route-cli/scenario.png

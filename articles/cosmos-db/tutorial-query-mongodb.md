@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB: Hogyan lekérdezés a DocumentDB API használatával? | Microsoft Docs"
-description: "Ismerje meg, a DocumentDB API-t az Azure Cosmos DB lekérdezése"
+title: "A Cosmos DB Azure: Hogyan tooquery használatával hello DocumentDB API? | Microsoft Docs"
+description: "A DocumentDB API hello tooquery Azure Cosmos DB megismerése"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: feffc553a9aa931d96cec71c101674fce08a466b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3e5a49f7510942bcfb15330e5f86c5dd8b1e5d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-with-api-for-mongodb"></a>Azure Cosmos DB: Hogyan lekérdezni az API-JÁVAL a MongoDB?
+# <a name="azure-cosmos-db-how-tooquery-with-api-for-mongodb"></a>A Cosmos DB Azure: Hogyan tooquery mongodb API-t?
 
-Az Azure Cosmos DB [API-t a MongoDB](mongodb-introduction.md) támogatja [MongoDB rendszerhéj lekérdezések](https://docs.mongodb.com/manual/tutorial/query-documents/). 
+hello Azure Cosmos DB [API-t a MongoDB](mongodb-introduction.md) támogatja [MongoDB rendszerhéj lekérdezések](https://docs.mongodb.com/manual/tutorial/query-documents/). 
 
-Ez a cikk ismerteti a következő feladatokat: 
+Ez a cikk ismerteti a következő feladatok hello: 
 
 > [!div class="checklist"]
 > * A MongoDB-vel adatok lekérdezése
 
 ## <a name="sample-document"></a>A minta-dokumentum
 
-Ebben a cikkben a lekérdezések használja az alábbi minta-dokumentum.
+Ebben a cikkben hello lekérdezések használja a következő minta dokumentum hello.
 
 ```json
 {
@@ -64,7 +64,7 @@ Ebben a cikkben a lekérdezések használja az alábbi minta-dokumentum.
 ```
 ## <a id="examplequery1"></a>1. példa lekérdezés 
 
-A minta termékcsalád dokumentum fenti megadott, a következő lekérdezés adja vissza a dokumentumok Ha az azonosítót tartalmazó mezőt megegyezik `WakefieldFamily`.
+Hello következő lekérdezés megadott hello minta termékcsalád a dokumentum fenti, amelyekben hello id mezője megegyezik beolvasása hello dokumentumok `WakefieldFamily`.
 
 **Lekérdezés**
     
@@ -114,7 +114,7 @@ A minta termékcsalád dokumentum fenti megadott, a következő lekérdezés adj
 
 ## <a id="examplequery2"></a>Példalekérdezés 2 
 
-A következő lekérdezést a termékcsalád összes gyermekeit adja vissza. 
+hello következő lekérdezés az összes hello gyermekek hello termékcsalád adja vissza. 
 
 **Lekérdezés**
     
@@ -147,7 +147,7 @@ A következő lekérdezést a termékcsalád összes gyermekeit adja vissza.
 
 ## <a id="examplequery3"></a>Példalekérdezés 3 
 
-A következő lekérdezés a bejegyzett családok adja vissza. 
+hello tovább lekérdezés visszaadja az összes hello családok bejegyzett. 
 
 **Lekérdezés**
     
@@ -156,7 +156,7 @@ A következő lekérdezés a bejegyzett családok adja vissza.
 
 ## <a id="examplequery4"></a>Példalekérdezés 4
 
-A következő lekérdezés visszaadja az összes családok, amelyek nincsenek regisztrálva. 
+hello tovább lekérdezés visszaadja az összes hello családok, amelyek nincsenek regisztrálva. 
 
 **Lekérdezés**
     
@@ -200,7 +200,7 @@ A következő lekérdezés visszaadja az összes családok, amelyek nincsenek re
 
 ## <a id="examplequery5"></a>Példalekérdezés 5
 
-A következő lekérdezés adja vissza a families, amelyek nincsenek regisztrálva és állapot NY. 
+hello tovább lekérdezés adja vissza minden hello családok, amelyek nincsenek regisztrálva és állapot NY. 
 
 **Lekérdezés**
     
@@ -246,7 +246,7 @@ A következő lekérdezés adja vissza a families, amelyek nincsenek regisztrál
 
 ## <a id="examplequery6"></a>Példalekérdezés 6
 
-A következő lekérdezés értéket ad vissza, a családok ahol gyermekek besorolási 8.
+hello tovább lekérdezés visszaadja az összes hello családok gyermekek besorolási esetén 8.
 
 **Lekérdezés**
   
@@ -291,7 +291,7 @@ A következő lekérdezés értéket ad vissza, a családok ahol gyermekek besor
 
 ## <a id="examplequery7"></a>Példalekérdezés 7
 
-A következő lekérdezés adja vissza a families, ahol gyermekek tömb mérete 3.
+hello tovább lekérdezés visszaadja az összes hello családok ahol gyermekek tömb mérete 3.
 
 **Lekérdezés**
   
@@ -299,16 +299,16 @@ A következő lekérdezés adja vissza a families, ahol gyermekek tömb mérete 
 
 **Eredmények**
 
-Jelenleg nincs 2-nél több gyermekek visszatér nem járt eredménnyel. Csak akkor, ha a paraméter értéke 2 Ez a lekérdezés sikeresen befejeződik, és térjen vissza a teljes dokumentumot.
+Jelenleg nincs 2-nél több gyermekek visszatér nem járt eredménnyel. Csak akkor, ha a paraméter értéke 2 Ez a lekérdezés sikeresen befejeződik, és térjen vissza a teljes dokumentum hello.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők:
+Ebben az oktatóanyagban hello következő régebben már kötöttek:
 
 > [!div class="checklist"]
-> * Megtudta, hogyan lekérdezés MongoDB használatával 
+> * Megtudta, hogyan használja a MongoDB tooquery 
 
-Most már folytathatja a következő oktatóanyag megtudhatja, miként ossza el az adatokat globális.
+Most már folytathatja toohello következő útmutató toolearn hogyan toodistribute az adatok globálisan.
 
 > [!div class="nextstepaction"]
 > [Az adatok globálisan terjesztése](tutorial-global-distribution-documentdb.md)

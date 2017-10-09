@@ -1,7 +1,7 @@
 
-A témakör célja, hogy segítse a Notification Hubs szolgáltatás lehető leggyorsabb megismerését. Ebben a témakörben egy rendkívül egyszerű szórásos forgatókönyvpéldát mutatunk be, amellyel megismerhetők a Notification Hubs alapvető funkciói.
+hello Ez a témakör célja, gyorsan lehetséges a Notification Hubs használatának megkezdésében toohelp. Ez a témakör mutatja be, a Notification Hubs egy nagyon egyszerű küldési forgatókönyvet példa a rendelés tooconcentrate a hello alapvető fogalmait.
 
-Ha már ismeri a Notification Hubs funkcióit, választhat egy témakört a bal oldali navigációs sávon, vagy megtekintheti az ide tartozó hivatkozásokat a [További lépések](#next-steps) oldalon.
+Ha már ismeri a Notification hubs használatával, azt is szeretné tooselect egy másik témakörre hello bal oldali navigációs sávon, vagy lásd: hello ide tartozó hivatkozásokat a [további lépések](#next-steps).
 
-Visszajelzéseit komolyan vesszük. Ha bármilyen nehézségbe ütközik a témakör elvégzése közben, vagy javaslatai vannak, hogyan tehetjük jobbá a tartalmat, örömmel fogadjuk visszajelzéseit az oldal alján.
+Visszajelzéseit komolyan vesszük. Ha bármilyen nehézségbe ütközik a témakör, vagy javaslatai vannak, a tartalom javítása befejezése, azt fogadjuk visszajelzéseit hello lap hello alján.
 

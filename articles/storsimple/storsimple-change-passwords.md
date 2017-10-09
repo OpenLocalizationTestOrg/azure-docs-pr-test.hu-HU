@@ -1,6 +1,6 @@
 ---
-title: "StorSimple Device Manager keresztül jelszavak módosítása |} Microsoft Docs"
-description: "Ismerteti a StorSimple Manager szolgáltatás segítségével módosítsa a StorSimple Snapshot Manager és az eszköz rendszergazdai jelszót."
+title: "aaaChange jelszavak keresztül StorSimple Device Manager |} Microsoft Docs"
+description: "Ismerteti, hogyan toouse hello StorSimple Manager szolgáltatás toochange a StorSimple Snapshot Manager és az eszköz rendszergazdai jelszót."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: d890b59595628ca3eeff1df258847c2bb54d29ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2836eb4d3a05e1d2a5eeeeefe66c75f63ba38ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-change-your-storsimple-passwords"></a>A StorSimple Manager szolgáltatással a StorSimple-jelszavak módosítása
+# <a name="use-hello-storsimple-manager-service-toochange-your-storsimple-passwords"></a>Hello StorSimple Manager szolgáltatás toochange a StorSimple-jelszavak használata
 ## <a name="overview"></a>Áttekintés
-A klasszikus Azure portálon **konfigurálása** lap tartalmaz olyan módon konfigurálhatja újra a StorSimple eszközön a StorSimple Manager szolgáltatás által kezelt eszköz paramétereket. Ez az oktatóanyag azt ismerteti, hogyan használhatja a **konfigurálása** lapon az eszköz-rendszergazdai vagy a StorSimple Snapshot Manager jelszavának módosítása.
+a klasszikus Azure portálon hello **konfigurálása** lap tartalmaz olyan módon konfigurálhatja újra a StorSimple eszközön a StorSimple Manager szolgáltatás által kezelt összes hello eszköz paramétert. Ez az oktatóanyag azt ismerteti, hogyan használhatja a hello **konfigurálása** toochange lapon, az eszköz-rendszergazdai vagy a StorSimple Snapshot Manager jelszavát.
 
-## <a name="change-the-device-administrator-password"></a>Az eszköz rendszergazdai jelszavának módosítása
-Ha Windows PowerShell-felületet a StorSimple eszköz elérésére használja, meg kell adja meg az eszköz rendszergazdai jelszavát. Ha az első StorSimple eszköz regisztrálva van a szolgáltatásban, az alapértelmezett Ez az interfész jelszava *jelszó1*. Az adatok biztonsága érdekében szükségesek a regisztrációs folyamat végén jelszó módosításához. Ez a jelszó módosítása nélkül nem lépjen ki a regisztrációs folyamat során. További információkért lásd: [3. lépés: konfigurálja, és a Windows PowerShell segítségével az eszközt regisztrálni kell a StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+## <a name="change-hello-device-administrator-password"></a>Változás hello eszköz rendszergazdai jelszava
+Windows PowerShell felületet tooaccess hello StorSimple-eszköz használata esetén szükség tooenter egy eszköz rendszergazdai jelszava. Amikor hello első StorSimple eszköz regisztrálva van a szolgáltatásban, hello alapértelmezett Ez az interfész jelszava *jelszó1*. Hello biztonsági adatait, áll szükséges toochange ezt a jelszót hello regisztrációs folyamat hello végét. Ez a jelszó módosítása nélkül kilép nem hello regisztrációs folyamat során. További információkért lásd: [3. lépés: eszköz konfigurálása és regisztrálása hello a Windows PowerShell segítségével a StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-A jelszó, amelyet először a Windows PowerShell felületen regisztrálás során majd a klasszikus Azure portálon keresztül lehet módosítani. A következő lépésekkel módosíthatja az eszköz rendszergazdai jelszava.
+hello jelszó, amelyet először hello Windows PowerShell felületen regisztrálás során majd hello a klasszikus Azure portálon keresztül lehet módosítani. Hajtsa végre a következő lépéseket toochange hello eszköz rendszergazdai jelszava hello.
 
-#### <a name="to-change-the-device-administrator-password"></a>Az eszköz rendszergazdai jelszavának módosítása
-1. A klasszikus portálon kattintson **eszközök** > **konfigurálása** az eszközhöz.
-2. Görgessen le a **eszköz rendszergazdai jelszavát** szakasz. Adjon meg egy rendszergazdai jelszót, amely tartalmazza a 8-15 karakter. A jelszónak legalább 3 nagybetű, nagybetűk, numerikus és speciális karakterek kombinációjából kell lennie.
-3. Erősítse meg a jelszót.
-4. Kattintson a lap alján található **Mentés** gombra.
+#### <a name="toochange-hello-device-administrator-password"></a>toochange hello eszköz rendszergazdai jelszava
+1. Hello klasszikus portálon kattintson **eszközök** > **konfigurálása** az eszközhöz.
+2. Görgessen lefelé toohello **eszköz rendszergazdai jelszavát** szakasz. Adjon meg egy rendszergazdai jelszót, amely a 8 too15 karaktereket tartalmaz. hello jelszó 3 vagy több nagybetű, nagybetűk, numerikus és speciális karakterek kombinációjából kell lennie.
+3. Hello jelszót.
+4. Kattintson a **mentése** hello lap hello alján.
 
-Az eszköz rendszergazdai jelszava most frissíteni kell. A módosított jelszó használatával érhető el a Windows PowerShell illesztőfelülete.
+hello eszköz rendszergazdai jelszava most frissíteni kell. A módosított jelszó tooaccess hello Windows PowerShell-felületet is használhatja.
 
-## <a name="change-the-storsimple-snapshot-manager-password"></a>A StorSimple Snapshot Manager jelszavának módosítása
-A StorSimple Snapshot Manager szoftver a Windows-állomáson található, és lehetővé teszi a rendszergazdák számára, hogy helyi és felhőalapú pillanatfelvételek formájában kezeljék a StorSimple eszköz biztonsági mentéseit.
+## <a name="change-hello-storsimple-snapshot-manager-password"></a>Hello StorSimple Snapshot Manager jelszavának módosítása
+StorSimple Snapshot Manager szoftver a Windows-gazdagépen helyezkedik el, és lehetővé teszi, hogy a rendszergazdák a StorSimple eszköz hello formában a helyi és felhőbeli pillanatképeket toomanage biztonsági másolatait.
 
-Amikor konfigurál egy eszközt a StorSimple Snapshot Managerben, fog kérni fogja az eszköz IP-cím és a jelszót a tárolóeszköz hitelesítése kell megadniuk. Ez a jelszó van konfigurálva a Windows PowerShell felületen. További információkért lásd: [3. lépés: konfigurálja, és a Windows PowerShell segítségével az eszközt regisztrálni kell a StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+Amikor konfigurál egy eszközt a StorSimple Snapshot Managerben, kérni fogja tooprovide hello eszköz IP cím és jelszó tooauthenticate a tárolóeszköz. Ez a jelszó először konfigurálja a hello Windows PowerShell felületen keresztül. További információkért lásd: [3. lépés: eszköz konfigurálása és regisztrálása hello a Windows PowerShell segítségével a StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-A jelszó, amelyet először a Windows PowerShell felületen regisztrálás során módosíthatja a klasszikus portálon. A következő lépésekkel módosítsa a StorSimple Snapshot Manager jelszavát.
+hello jelszó, amelyet először hello Windows PowerShell felületen regisztrálás során majd hello klasszikus portálon keresztül lehet módosítani. Hajtsa végre a következő lépéseket toochange hello StorSimple Snapshot Manager jelszava hello.
 
-#### <a name="to-change-the-storsimple-snapshot-manager-password"></a>A StorSimple Snapshot Manager jelszavának módosítása
-1. A klasszikus portálon kattintson **eszközök** > **konfigurálása** az eszközhöz.
-2. Görgessen le a **StorSimple Snapshot Manager** szakasz. Adjon meg egy 14 vagy 15 karakter hosszú jelszót. Győződjön meg arról, hogy a jelszó tartalmazza-e a 3 vagy több nagybetű, nagybetűk, numerikus és speciális karaktert.
-3. Erősítse meg a jelszót.
-4. Kattintson a lap alján található **Mentés** gombra.
+#### <a name="toochange-hello-storsimple-snapshot-manager-password"></a>toochange hello StorSimple Snapshot Manager jelszava
+1. Hello klasszikus portálon kattintson **eszközök** > **konfigurálása** az eszközhöz.
+2. Görgessen lefelé toohello **StorSimple Snapshot Manager** szakasz. Adjon meg egy 14 vagy 15 karakter hosszú jelszót. Győződjön meg arról, hogy hello jelszó 3 vagy több nagybetű, nagybetűk, numerikus és speciális karaktert tartalmaz.
+3. Hello jelszót.
+4. Kattintson a **mentése** hello lap hello alján.
 
-A StorSimple Snapshot Manager jelszava most frissíteni kell.
+hello StorSimple Snapshot Manager jelszava most frissíteni kell.
 
 ## <a name="next-steps"></a>Következő lépések
 * További információ [StorSimple biztonsági](storsimple-security.md).
 * További információ [az eszköz konfigurációjának módosítása](storsimple-modify-device-config.md).
-* További információ [a StorSimple Manager szolgáltatás használata a StorSimple eszköz felügyeletéhez](storsimple-manager-service-administration.md).
+* További információ [használatával hello StorSimple Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-manager-service-administration.md).
 

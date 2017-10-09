@@ -1,6 +1,6 @@
 ---
-title: "A Git és az Azure-ban a Visual Studio Team Services folyamatos kézbesítési |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja a Visual Studio Team Services csapatprojektek Git automatikusan létrehozásához, és a webes alkalmazás funkció az Azure App Service vagy a felhőbeli szolgáltatások telepítéséhez használandó."
+title: "a Git és az Azure-ban a Visual Studio Team Services aaaContinuous kézbesítési |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure a Visual Studio Team Services team projects toouse Git tooautomatically és toohello webalkalmazás funkció az Azure App Service vagy a felhőbeli szolgáltatások üzembe."
 services: cloud-services
 documentationcenter: .net
 author: mlearned
@@ -14,178 +14,178 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: mlearned
-ms.openlocfilehash: f4f5f231536bc381d17898ff2c592be821168a65
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 936c42194f45be55597a77f9a3a6deb4480ed94b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="continuous-delivery-to-azure-using-visual-studio-team-services-and-git"></a>Folyamatos készregyártás az Azure-ban a Visual Studio Team Services-zel és a Gittel
-Visual Studio Team Services csapatprojektek segítségével egy Git-tárház gazdagépet a forráskódot, és automatikusan build és Azure web Apps alkalmazások központi telepítése vagy felhőalapú szolgáltatások, amikor egy véglegesítési leküldése a tárházban.
+# <a name="continuous-delivery-tooazure-using-visual-studio-team-services-and-git"></a>Folyamatos kézbesítési tooAzure Visual Studio Team Services és a Git használatával
+Használja a Visual Studio Team Services team projects toohost Git-tárház a forráskódot, és automatikusan build és tooAzure webes alkalmazások telepítését vagy felhőalapú szolgáltatások, amikor egy véglegesítési toohello tárház leküldéses.
 
-Visual Studio 2013 és az Azure SDK telepítve lesz szüksége. Ha még nem rendelkezik a Visual Studio 2013, töltse le kiválasztásával a **elkezdheti használni az ingyenes** hivatkozás [www.visualstudio.com](http://www.visualstudio.com). Az Azure SDK telepítése [Itt](http://go.microsoft.com/fwlink/?LinkId=239540).
+Visual Studio 2013 és Azure SDK telepítése hello lesz szüksége. Ha még nem rendelkezik a Visual Studio 2013, töltse le hello kiválasztásával **elkezdheti használni az ingyenes** hivatkozás [www.visualstudio.com](http://www.visualstudio.com). Telepítse az Azure SDK hello [Itt](http://go.microsoft.com/fwlink/?LinkId=239540).
 
 > [!NOTE]
-> Az oktatóanyag elvégzéséhez egy Visual Studio Team Services-fiók szükséges: is [ingyenes Visual Studio Team Services-fiók megnyitása](http://go.microsoft.com/fwlink/p/?LinkId=512979).
+> Ez az oktatóanyag kell egy Visual Studio Team Services-fiók toocomplete: is [ingyenes Visual Studio Team Services-fiók megnyitása](http://go.microsoft.com/fwlink/p/?LinkId=512979).
 > 
 > 
 
-Egy felhőalapú szolgáltatás automatikusan építsenek, és telepítse az Azure, a Visual Studio Team Services telepítéséhez kövesse az alábbi lépéseket.
+egy felhőalapú szolgáltatás tooautomatically mentése tooset build és tooAzure telepíteni a Visual Studio Team Services, kövesse az alábbi lépéseket.
 
 ## <a name="1-create-a-git-repository"></a>1: a Git-tárház létrehozása
-1. Ha még nem rendelkezik a Visual Studio Team Services-fiók, akkor kaphat egy [Itt](http://go.microsoft.com/fwlink/?LinkId=397665). A csapatprojekt létrehozásakor a forrásrendszerben vezérlő, válassza a Git. Kövesse az utasításokat a csapatprojekt Visual Studio csatlakozni.
-2. A **Team Explorer**, válassza ki a **klónozza a tárházat** hivatkozásra.
+1. Ha még nem rendelkezik a Visual Studio Team Services-fiók, akkor kaphat egy [Itt](http://go.microsoft.com/fwlink/?LinkId=397665). A csapatprojekt létrehozásakor a forrásrendszerben vezérlő, válassza a Git. Hajtsa végre a hello utasításokat tooconnect Visual Studio tooyour csapatprojektben.
+2. A **Team Explorer**, válassza ki a hello **klónozza a tárházat** hivatkozásra.
    
     ![][3]
-3. Adja meg a helyi másolat helyét, és válassza a **Klónozás** gombra.
+3. Adja meg a helyi példány hello hello helyét, és válassza a hello **Klónozás** gombra.
 
-## <a name="2-create-a-project-and-commit-it-to-the-repository"></a>2: projekt létrehozása és véglegesítheti a tárházban
-1. A **Team Explorer**, a a **megoldások** területen válassza ki a **új** hozzon létre egy új projektet a helyi tárházban mutató hivatkozást.
+## <a name="2-create-a-project-and-commit-it-toohello-repository"></a>2: projekt létrehozása és véglegesítheti toohello tárház
+1. A **Team Explorer**, a hello **megoldások** területen válassza ki a hello **új** toocreate egy új projektet hello helyi tárházban található hivatkozásra.
    
     ![][4]
-2. A bemutatóban szereplő lépéseket követve telepítheti a webes alkalmazás vagy a felhőszolgáltatás (Azure-alkalmazás). Hozzon létre egy új Azure Cloud Service-projektet, vagy egy új ASP.NET MVC projekt. Győződjön meg arról, hogy a projekt célozza a .NET-keretrendszer 4 vagy újabb. Egy felhőszolgáltatás-projekt létrehozásakor, adjon hozzá egy ASP.NET MVC webes és feldolgozói szerepkörök.
-   Ha szeretne létrehozni egy webalkalmazást, válassza ki azt a **ASP.NET Web Application** a project, és válassza a **MVC**. Lásd: [egy ASP.NET-webalkalmazás létrehozása az Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md) további információt.
-3. Nyissa meg a helyi menüben a megoldás, és válassza a **véglegesítése**.
+2. Webes alkalmazást telepít, vagy a bemutatóban szereplő lépések egy felhőalapú szolgáltatás (Azure-alkalmazás) a következő hello által. Hozzon létre egy új Azure Cloud Service-projektet, vagy egy új ASP.NET MVC projekt. Győződjön meg arról, hogy hello projekt célok hello .NET-keretrendszer 4 vagy újabb. Egy felhőszolgáltatás-projekt létrehozásakor, adjon hozzá egy ASP.NET MVC webes és feldolgozói szerepkörök.
+   Ha azt szeretné, hogy a webes alkalmazás toocreate, válassza ki azt a hello **ASP.NET Web Application** a project, és válassza a **MVC**. Lásd: [egy ASP.NET-webalkalmazás létrehozása az Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md) további információt.
+3. Nyissa meg a helyi menü hello hello megoldás, és válassza a **véglegesítése**.
    
     ![][7]
-4. Ha az első alkalommal a Visual Studio Team Services már használta a Git, szüksége arra, hogy néhány adatra, hogy azonosítsa magát a Gitben. Az a **függőben lévő módosítások** területén **Team Explorer**, adja meg a felhasználónevet és e-mail címét. Írjon megjegyzést a véglegesítés, és válassza ki a **véglegesítési** gombra.
+4. Ha hello első alkalommal a Visual Studio Team Services már használta a Git, szüksége lesz tooprovide néhány információt tooidentify saját kezűleg a Gitben. A hello **függőben lévő módosítások** területén **Team Explorer**, adja meg a felhasználónevet és e-mail címét. Írjon megjegyzést hello véglegesítési, és válassza a hello **véglegesítési** gombra.
    
     ![][8]
-5. Vegye figyelembe a beállításokat, vagy adott módosítások kizárja a verziókezelőbe mentésekor. Ha a szükséges módosításokat ki vannak zárva, válassza a **tartalmazza az összes**.
-6. Most már véglegesített a módosításokat a tárházba helyi példánya. Ezután szinkronizálhatja a kiszolgáló a módosításokat kiválasztásával a **szinkronizálási** hivatkozásra.
+5. Megjegyzés: hello beállítások tooinclude, vagy adott módosítások kizárása a verziókezelőbe mentésekor. Ha hello változik meg akarja ki vannak zárva, válassza a **tartalmazza az összes**.
+6. Megismerte a most már véglegesített hello hello tárház helyi példányának módosításait. Ezután szinkronizálhatja a módosításokat, hello kiszolgálóval hello kiválasztásával **szinkronizálási** hivatkozásra.
 
-## <a name="3-connect-the-project-to-azure"></a>3: a projekt csatlakozzon az Azure-bA
-1. Most, hogy az egyes forráskód azt a Visual Studio Team Services Git-tárház, készen áll a git-tárház csatlakozzon az Azure-bA.  Az a [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885), válassza ki a felhőalapú szolgáltatás, vagy a webes alkalmazás, vagy hozzon létre egy újat, válassza ki a + ikonra a lap alján maradt, és válassza **Felhőszolgáltatás** vagy **Web App** és majd **Gyorslétrehozás**.
+## <a name="3-connect-hello-project-tooazure"></a>3: hello projekt tooAzure csatlakozás
+1. Most, hogy az egyes forráskód azt a Visual Studio Team Services Git-tárház, tooconnect készen áll a git-tárház tooAzure.  A hello [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885), válassza ki a felhőalapú szolgáltatás, vagy a webes alkalmazás, vagy hozzon létre egy újat hello + balra hello le, majd válassza a ikonra kiválasztásával **Felhőszolgáltatás** vagy **webalkalmazás**, majd **Gyorslétrehozás**.
    
     ![][9]
-2. A felhőszolgáltatások, válassza ki a **Visual Studio Team Services való közzététel beállítása** hivatkozásra. A web Apps, válassza ki a **verziókövetésből üzembe helyezés beállítása** hivatkozásra.
+2. A felhőszolgáltatások, válassza ki a hello **Visual Studio Team Services való közzététel beállítása** hivatkozásra. A web Apps, válassza ki a hello **verziókövetésből üzembe helyezés beállítása** hivatkozásra.
    
     ![][10]
-3. A varázslóban a szövegmezőben írja be a Visual Studio Team Services-fiók nevét, és válassza ki a **engedélyezik most** hivatkozásra. Jelentkezzen be a kérheti.
+3. Hello varázslóban, írja be a Visual Studio Team Services-fiók nevét hello hello szövegmezőben, és válassza a hello **engedélyezik most** hivatkozásra. Előfordulhat, hogy a toosign kéri.
    
     ![][11]
-4. Az a **kapcsolatkérelem** előugró párbeszédpanelen válasszon **elfogadás** a csapatprojekt konfigurálása a Visual Studio Team Services Azure engedélyezése.
+4. A hello **kapcsolatkérelem** előugró párbeszédpanelen válasszon **elfogadás** tooauthorize a csapat projektre a Visual Studio Team Services, Azure tooconfigure.
    
     ![][12]
-5. Után engedélyezési sikeres, megjelenik egy legördülő listát, amely tartalmazza a Visual Studio Team Services csapatprojektek.  Válassza ki az előző lépésben létrehozott csapatprojekt nevét, és a varázsló a pipa gombra.
+5. Után engedélyezési sikeres, megjelenik egy legördülő listát, amely tartalmazza a Visual Studio Team Services csapatprojektek.  Válassza ki a csapatprojekt hello előző lépésekben létrehozott hello nevét, és válassza a hello varázsló pipa gombra.
    
     ![][13]
    
-    A véglegesítési leküldése a tárház legközelebb a Visual Studio Team Services elkészíti és a projekt telepítése az Azure-bA.
+    hello legközelebb leküldéses egy véglegesítési tooyour tárházat, a Visual Studio Team Services elkészíti és központi telepítése a projekt tooAzure.
 
 ## <a name="4-trigger-a-rebuild-and-redeploy-your-project"></a>4: egy újjáépítését indítja, és telepítse újra a projekthez
-1. A Visual Studióban nyissa meg a fájlt, és módosítsa úgy. Módosítsa a fájl például `_Layout.cshtml` a nézetek alatt\\egy MVC webes szerepkör megosztott mappába.
+1. A Visual Studióban nyissa meg a fájlt, és módosítsa úgy. Például a hello fájl módosítása `_Layout.cshtml` hello nézetek alapján\\egy MVC webes szerepkör megosztott mappába.
    
     ![][17]
-2. Szerkessze az előláb szövegét, a helyhez, és mentse a fájlt.
+2. Hello előláb szövegét hello hely szerkesztése, és mentse hello fájlt.
    
     ![][18]
-3. A **Megoldáskezelőben**, nyissa meg a helyi menüben a megoldás csomópont, projektcsomópontra vagy megváltozott, és válassza a fájl **véglegesítése**.
+3. A **Megoldáskezelőben**, hello helyi menü megnyitásához, az hello megoldás csomópont, projektcsomópontra vagy hello fájl módosult, és válassza a **véglegesítése**.
 4. Írja be a megjegyzést, és válassza a **véglegesítése**.
    
     ![][20]
-5. Válassza ki a **szinkronizálási** hivatkozásra.
+5. Válassza ki a hello **szinkronizálási** hivatkozásra.
    
     ![][38]
-6. Válassza ki a **leküldéses** a véglegesítési leküldése a Visual Studio Team Services-tárház mutató hivatkozást. (Is használhatja a **szinkronizálási** gombra kattintva a véglegesítések másolja a tárházba. A különbség az, hogy **szinkronizálási** is kéri le. a legutóbbi változtatásokat a tárházból.)
+6. Válassza ki a hello **leküldéses** toopush hivatkozásra a Visual Studio Team Services véglegesítési toohello tárházba. (Használhatja hello **szinkronizálási** toocopy a véglegesítések toohello tárház gombra. hello különbség az, hogy **szinkronizálási** is ponttá hello legutóbbi módosítások adattárból hello.)
    
     ![][39]
-7. Válassza ki a **otthoni** gombra kattintva visszatérhet a **Team Explorer** kezdőlapján.
+7. Válassza ki a hello **otthoni** gomb tooreturn toohello **Team Explorer** kezdőlapján.
    
     ![][21]
-8. Válasszon **buildek** megtekintéséhez a buildek folyamatban van.
+8. Válasszon **buildek** tooview hello buildek folyamatban van.
    
     ![][22]
    
     **Vonja össze az Explorer** jeleníti meg, hogy a bejelentkezés a build lett elindítva.
    
     ![][23]
-9. A build előrehaladtával a részletes napló megtekintéséhez kattintson duplán a a build folyamatban van.
-10. Bár a összeállítása folyamatban, tekintse meg a build-definíciót, amely jött létre, amikor a varázsló segítségével csatolja az Azure-bA.  Nyissa meg a helyi menüben a build definíciójához, és válassza a **Build definíciójának szerkesztése**.
+9. tooview részletes napló szerint hello létrehozása történik, kattintson duplán a hello összeállítása folyamatban hello nevére.
+10. Amíg hello build folyamatban, tekintse meg hello build-definíciót, amely során használt hello varázsló toolink tooAzure jött létre.  Hello build definíciójának hello helyi menü megnyitásához, és válassza a **Build definíciójának szerkesztése**.
     
     ![][25]
-11. Az a **eseményindító** lapon látni fogja, hogy a build definition létrehozásához, minden egyes bejelentkezéskor értéke alapértelmezés szerint. (Egy felhőalapú szolgáltatás, a Visual Studio Team Services alapszik, és automatikusan telepíti a főágba az átmeneti környezet. Továbbra is fennáll az élő webhelyet szeretne telepíteni egy manuális lépés elvégzéséhez. A webalkalmazás nem található a környezet előkészítési telepíti a főágba közvetlenül az élő webhelyet.
+11. A hello **eseményindító** lapon látni fogja, hogy hello build definíciója van megadva toobuild a minden bejelentkezés alapértelmezés szerint. (Egy felhőalapú szolgáltatás, a Visual Studio Team Services alapszik, és automatikusan átmeneti környezet hello főághoz toohello telepíti. Továbbra is meg kell toodo egy manuális lépés toodeploy toohello élő webhelyet. A webalkalmazás nem található a környezet előkészítési telepíti hello főághoz közvetlen toohello élő hely.
     
     ![][26]
-12. Az a **folyamat** lapon megtekintheti a telepítési környezet van beállítva a felhőalapú szolgáltatás, vagy a webes alkalmazás neve.
+12. A hello **folyamat** lapon látható hello környezet van beállítva a felhőalapú szolgáltatás, vagy a webes alkalmazás toohello nevét.
     
      ![][27]
-13. Adja meg a tulajdonságok értékeit, ha azt szeretné, hogy a különböző értékeket, mint az alapértelmezett beállításokat. Az Azure közzétételi tulajdonságok szerepelnek a **telepítési** szakaszt, és előfordulhat, hogy is be kell MSBuild paraméterek. Például a felhő service-projektet, adja meg a "Felhő" eltérő szolgáltatáskonfiguráció állítsa az MSbuild paramétereit `/p:TargetProfile=[YourProfile]` ahol *[YourProfile]* hasonló nevű szolgáltatás konfigurációs fájlok ServiceConfiguration. *YourProfile*.cscfg.
+13. Hello tulajdonságok értékeket megadni, ha azt szeretné, hogy a különböző hello alapértelmezett értékekkel. hello Azure közzétételi tulajdonságainak vannak hello **telepítési** szakaszt, és előfordulhat, hogy is kell tooset MSBuild paraméterek. Például egy felhőszolgáltatás-projekt toospecify eltérő "Felhő" szolgáltatáskonfiguráció található hello MSbuild paraméterek beállítása túl`/p:TargetProfile=[YourProfile]` ahol *[YourProfile]* hasonló nevű szolgáltatás konfigurációs fájlok ServiceConfiguration. *YourProfile*.cscfg.
     
-     Az alábbi táblázat a rendelkezésre álló tulajdonságok a **telepítési** szakasz:
+     hello alábbi táblázat tartalmazza hello rendelkezésre álló tulajdonságok hello **telepítési** szakasz:
     
     | Tulajdonság | Alapértelmezett érték |
     | --- | --- |
     | Nem megbízható tanúsítványok engedélyezése |Ha értéke HAMIS, a legfelső szintű hitelesítésszolgáltatóval SSL-tanúsítványokat kell aláírni. |
-    | Frissítés engedélyezése |Lehetővé teszi, hogy a központi telepítés helyett újat hoz létre egy meglévő üzemelő példány frissítése. Megőrzi az IP-címet. |
+    | Frissítés engedélyezése |Lehetővé teszi, hogy hello telepítési tooupdate létre egy új, hanem egy meglévő telepítését. Megőrzi a hello IP-címet. |
     | Ne törölje |Amennyiben az értéke igaz, ne írja felül a meglévő független telepítés (frissítés engedélyezett). |
-    | A telepítési beállítások elérési útja |A fájl elérési útját a .pubxml webes alkalmazások esetén a tárház gyökérkönyvtárában viszonyítva. Cloud services csomag figyelmen kívül hagyja. |
-    | SharePoint-környezet |Ugyanaz, mint a szolgáltatás nevét. |
-    | Az Azure-telepítés környezet |A webes alkalmazás vagy a felhőbeli szolgáltatás neve. |
+    | Elérési út tooDeployment beállítások |hello elérési tooyour .pubxml fájl egy webalkalmazás, hello tárház relatív toohello gyökérmappájában. Cloud services csomag figyelmen kívül hagyja. |
+    | SharePoint-környezet |hello hello szolgáltatás neve azonos. |
+    | Az Azure-telepítés környezet |hello webszolgáltatás alkalmazás vagy felhő neve. |
 14. Időpontig a build sikeresen meg kell adni.
     
      ![][28]
-15. Ha duplán kattint a build nevét, a Visual Studio megjeleníti a **Build összegzés**, többek között a vizsgálati eredmények tartozó egység teszt projektek.
+15. Ha duplán kattint a hello build nevét, a Visual Studio megjeleníti egy **Build összegzés**, többek között a vizsgálati eredmények tartozó egység teszt projektek.
     
      ![][29]
-16. Az a [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885), a tekintheti meg a társított központi telepítéshez a **központi telepítések** az átmeneti kiválasztásakor fülre.
+16. A hello [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885), hello tartozó központi telepítést megtekintheti a hello **központi telepítések** átmeneti környezet hello kiválasztásakor fülre.
     
      ![][30]
-17. Tallózással keresse meg a webhely URL-címe. A webes alkalmazás imént válassza a **Tallózás** a portál gombjára. Egy felhőalapú szolgáltatás, válassza az URL-címet a **gyors áttekintése** szakasza a **irányítópult** oldal, amely az átmeneti környezet látható.
+17. Keresse meg a tooyour webhelyének URL-címe. A webes alkalmazás imént válassza hello **Tallózás** hello portál gombjára. Egy felhőalapú szolgáltatás, válassza ki az hello URL-címet a hello **gyors áttekintése** hello szakasza **irányítópult** oldal, amely hello átmeneti környezet látható.
     
-    A folyamatos integrációt szolgáltatásokhoz központi telepítések alapértelmezés szerint az átmeneti környezetben kerülnek közzétételre. Ez módosítható úgy, hogy a **másik felhőalapú szolgáltatási környezet** tulajdonságot **éles**. Ez a webhely URL-címe is helyezi a felhőalapú szolgáltatás irányítópult-oldalon.
+    A folyamatos integrációt szolgáltatásokhoz központi telepítések közzétett toohello átmeneti környezet alapértelmezés szerint. Módosíthatja a hello beállítása **másik felhőalapú szolgáltatási környezet** tulajdonság túl**éles**. Itt található, ahol hello webhely URL-címe megtalálható-e hello felhőalapú szolgáltatás irányítópult-oldalon.
     
     ![][31]
     
-    Hogy láthatóvá váljon a futó helyet egy új böngészőlapon nyílik meg.
+    Egy új böngészőlapon nyílik tooreveal futó webhelyét.
     
     ![][32]
-18. Ha más módosítja a projekthez, több alkot, eseményindító, és akkor felhalmozódnak több központi telepítését. A legújabb egy aktív van megjelölve.
+18. Ha egyéb módosítások tooyour projekt, több alkot, eseményindító, és Ön felhalmozódnak több központi telepítését. hello legújabb egy aktív jelölésű.
     
     ![][33]
 
 ## <a name="5-redeploy-an-earlier-build"></a>5: telepítse újra egy korábbi verzióját
-Ez a lépés nem kötelező megadni. A klasszikus Azure portálon, válasszon egy korábbi üzemelő, és válassza a **újratelepíteni** való visszatekerés a webhely egy korábbi be. Vegye figyelembe, hogy ezzel a TFS-ben egy új példányt indít, és hozzon létre egy új központi telepítési előzményekben.
+Ez a lépés nem kötelező megadni. A klasszikus Azure portálon hello, egy korábbi üzemelő és kiválasztható **újratelepíteni** toorewind a hely tooan korábban be. Vegye figyelembe, hogy ezzel a TFS-ben egy új példányt indít, és hozzon létre egy új központi telepítési előzményekben.
 
 ![][34]
 
-## <a name="6-change-the-production-deployment"></a>6: módosítsa az éles környezet
-Ha készen áll, előléptetheti kiválasztásával az éles környezetbe átmeneti környezet **felcserélése** a klasszikus Azure portálon. Az újonnan telepített átmeneti környezet éles van előléptetve, és az előző éles környezetben, ha van ilyen, lesz egy átmeneti környezet. Az aktív központi telepítéssel üzemi és átmeneti környezetek eltérőek lehetnek, de az üzembe helyezési előzményeket legutóbbi buildek környezet függetlenül ugyanaz.
+## <a name="6-change-hello-production-deployment"></a>6: hello éles környezet módosítása
+Ha készen áll, előléptetheti kiválasztásával hello átmeneti toohello üzemi környezet **felcserélése** a hello a klasszikus Azure portálon. újonnan telepített hello átmeneti környezet előléptetett tooProduction, és hello előző éles környezetben, ha van ilyen, lesz egy átmeneti környezet. hello aktív központi telepítéssel hello üzemi és átmeneti környezetek eltérőek lehetnek, de hello üzembe helyezési előzményeket legutóbbi buildek van hello azonos környezetben függetlenül.
 
 ![][35]
 
 ## <a name="7-deploy-from-a-working-branch"></a>7: egy munkaágat a telepítése.
-Git használata esetén általában egy munkaágat a módosítások végrehajtása és a főágba integrálása, ha a fejlesztési elér egy állapotban. A fázisban a fejlesztési projekt érdemes létrehozásához és telepítéséhez a munkaágat az Azure-bA.
+Git használata esetén, általában egy munkaágat módosítsa, majd hello főághoz integrálása, amikor a fejlesztési eléri a állapotban. Fázisban hello fejlesztési projekt fogja toobuild szeretné és hello működő fiókirodai tooAzure telepítése.
 
-1. A **Team Explorer**, válassza ki a **Home** gombra, majd válassza ki a **ágak** gombra.
+1. A **Team Explorer**, válassza ki a hello **Home** gombra, majd kattintson a hello **ágak** gombra.
    
     ![][40]
-2. Válassza ki a **új fiókirodai** hivatkozásra.
+2. Válassza ki a hello **új fiókirodai** hivatkozásra.
    
     ![][41]
-3. Írja be a fiókiroda, például a "folyamatban"állapotra vált, a nevét, és válassza a **ág létrehozása**. Ezzel létrehoz egy új helyi ágat.
+3. Hello ág, például a "folyamatban"állapotra vált, hello nevét adja meg, és válassza a **ág létrehozása**. Ezzel létrehoz egy új helyi ágat.
    
     ![][42]
-4. A fiókirodai közzététele. Válassza ki a fiókiroda nevét a **közzé nem tett ágak**, és válassza a **közzététel**.
+4. Hello fiókirodai közzététele. Válasszon hello fiókirodai nevet a **közzé nem tett ágak**, és válassza a **közzététel**.
    
     ![][44]
-5. Alapértelmezés szerint csak a főágba változtatások folyamatos build indítható el. Egy munkaágat folyamatos buildet beállításához válassza ki a **buildek** lap **Team Explorer**, válassza **Build definíciójának szerkesztése**.
-6. Nyissa meg a **adatforrás-beállítások** fülre. A **folyamatos integrációt és build ágak figyelt**, válassza a **kattintson ide egy új sort ad hozzá a**.
+5. Alapértelmezés szerint csak akkor változik meg toohello főághoz eseményindító folyamatos build. fel egy munkaágat folyamatos buildet tooset válasszon hello **buildek** lap **Team Explorer**, és válassza **Build definíciójának szerkesztése**.
+6. Nyissa meg hello **adatforrás-beállítások** fülre. A **folyamatos integrációt és build ágak figyelt**, válassza a **kattintson ide egy új sor tooadd**.
    
     ![][47]
-7. Adja meg a létrehozott, például a refs fájlrendszer/fejek/működő ágat.
+7. Adja meg a létrehozott, például a refs fájlrendszer/fejek/működő hello ág.
    
     ![][48]
-8. Módosítja a kódban, nyissa meg a helyi menüben a módosított fájlt, és válassza **véglegesítése**.
+8. Olyan módosítást hello kódban, nyissa meg hello helyi menüje hello módosított fájlt, és válassza a **véglegesítése**.
    
     ![][43]
-9. Válassza ki a **szinkronizálatlan véglegesítések** hivatkozásra, és válassza ki a **szinkronizálási** gombra vagy a **leküldéses** másolja a módosításokat a munkaágat a Visual Studio Team Services példányát mutató hivatkozást.
+9. Válassza ki a hello **szinkronizálatlan véglegesítések** hivatkozásra, és válassza ki a hello **szinkronizálási** gombra való kattintást vagy hello **leküldéses** hivatkozás toocopy hello módosítja a Visual Studio hello munkaágat toohello példányát Team Services.
    
    ![][45]
-10. Keresse meg a **buildek** megtekintése és a munkaágat a build kiváltó csak kapott található.
+10. Keresse meg a toohello **buildek** megtekintése és hello munkaágat hello build kiváltó csak kapott található.
 
 ## <a name="next-steps"></a>Következő lépések
-A Git használata a Visual Studio Team Services további tippek további tudnivalókért lásd: [fejlesztése és megoszthatja a Visual Studio használatával Git kód](https://www.visualstudio.com/en-us/docs/git/share-your-code-in-git-vs-2017) és a Git-tárház, amely nem Visual Studio Team Services közzétételére által kezelt információk Az Azure, lásd: [folyamatos üzembe helyezés az Azure App Service](../app-service-web/app-service-continuous-deployment.md). A Visual Studio Team Services további információkért lásd: [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
+toolearn további tippek a Visual Studio Team Services, a Git használatával, lásd: [fejlesztése és megoszthatja a Visual Studio használatával Git kód](https://www.visualstudio.com/en-us/docs/git/share-your-code-in-git-vs-2017) és a Git-tárház, amely nem Visual Studio Team Services toopublish által kezelt információk tooAzure, lásd: [folyamatos üzembe helyezés tooAzure App Service](../app-service-web/app-service-continuous-deployment.md). A Visual Studio Team Services további információkért lásd: [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso-git/CreateTeamProjectInGit.PNG

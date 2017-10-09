@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés a queue storage és a Visual Studio a kapcsolódó szolgáltatások (az ASP.NET Core) |} Microsoft Docs"
-description: "Ismerkedés az Azure üzenetsor-kezelési tárolási az ASP.NET Core projekt, a Visual Studio használatával"
+title: "a queue storage és a Visual Studio (az ASP.NET Core) kapcsolódó szolgáltatások használatába aaaGet |} Microsoft Docs"
+description: "Hogyan tooget el az Azure üzenetsorának tárolást használó az ASP.NET Core projektre a Visual Studióban"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 4622496544ce6e1057ac68a2e9946917573e997e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 75adb7163827ab17ad89707051ff0e48dbae9c3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-queue-storage-and-visual-studio-connected-services-aspnet-core"></a>Ismerkedés a queue storage és a Visual Studio a kapcsolódó szolgáltatások (ASP.NET mag)
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez a cikk ismerteti az első lépések az Azure Queue storage segítségével a Visual Studio után készített vagy a Visual Studio használatával Azure-tárfiók az ASP.NET Core projekt hivatkozik **kapcsolódó szolgáltatások hozzáadása** párbeszédpanel. A **kapcsolódó szolgáltatások hozzáadása** műveletet a megfelelő NuGet-csomagok az Azure storage a projekt eléréséhez telepíti, és a tárfiók kapcsolati karakterlánca ad hozzá a projekt konfigurációs fájlokat.
+Ez a cikk ismerteti, hogyan tooget el az Azure Queue storage a Visual Studióban létrehozott vagy egy Azure storage-fiók ASP.NET Core projektben hivatkozott hello Visual Studio használatával után **kapcsolódó szolgáltatások hozzáadása** párbeszédpanel. Hello **kapcsolódó szolgáltatások hozzáadása** művelet hello megfelelő NuGet csomagjainak tooaccess az Azure storage telepíti a projekt és hello kapcsolati karakterláncot hozzáadja a hello tárolási fiók tooyour projekt konfigurációs fájlok.
 
-Azure a queue storage egy olyan szolgáltatás, amely elérhető bárhol a világon HTTP vagy HTTPS PROTOKOLLT használ, hitelesített hívásokon keresztül üzenetek nagy számban tárolásához. Egyetlen üzenetsor akár 64 kilobájt (KB) méretű lehet, és több millió üzenetet a tárfiók maximális kapacitásán tartalmazhat.
+Azure a queue storage egy olyan szolgáltatás, amely képes bárhonnan elérhetők a HTTP vagy HTTPS PROTOKOLLT használ, hitelesített hívásokon keresztül hello world üzenetek nagy számban tárolásához. Egyetlen üzenetsor mentése too64 kilobájt (KB) méretű lehet, és tartalmazhat több millió üzenetet toohello maximális kapacitásán belül a storage-fiók mentése.
 
-A kezdéshez, először hozzon létre egy Azure-üzenetsorba tárfiókba. Mutat be, hogyan várólista létrehozása a kódban. Is mutat be, hogyan hajthat végre alapszintű várólista műveletek, például a hozzáadása, módosítása, olvasása, és eltávolítása a üzenetsor-üzeneteket. A Kódminták C nyelven íródtak\# code, és használja az Azure Storage ügyféloldali kódtára a .NET-hez. ASP.NET kapcsolatos további információkért lásd: [ASP.NET](http://www.asp.net).
+tooget elindult, először egy Azure-üzenetsorba toocreate tárfiókba. Mutat be, hogyan toocreate kód üzenetsorból. Is mutat be, hogyan tooperform basic várólistára műveletek, például a hozzáadása, módosítása, olvasása, és eltávolítása az üzenetsor-üzeneteket. hello minták C nyelven íródtak\# code, és használja a hello Azure Storage ügyféloldali kódtára a .NET-hez. ASP.NET kapcsolatos további információkért lásd: [ASP.NET](http://www.asp.net).
 
-**Megjegyzés:** az ASP.NET Core hajtsa végre az Azure storage hívásainak API-k aszinkron. Lásd: [aszinkron programozás az Async és Await](http://msdn.microsoft.com/library/hh191443.aspx) további információt. Az alábbi kódot azt feltételezi, hogy aszinkron programozási módszerek vannak használatban.
+**Megjegyzés:** hello API-hívások tooAzure tárolási hajtsa végre az ASP.NET Core aszinkron. Lásd: [aszinkron programozás az Async és Await](http://msdn.microsoft.com/library/hh191443.aspx) további információt. az alábbi kód hello azt feltételezi, hogy aszinkron programozási módszerek vannak használatban.
 
 * Lásd: [Ismerkedés az Azure Queue storage használatának .NET](storage-dotnet-how-to-use-queues.md) további információt a sorok programozott módon kezelésére.
 * Lásd: [Storage-dokumentációt](https://azure.microsoft.com/documentation/services/storage/) Azure Storage kapcsolatos általános információkat.
@@ -38,73 +38,73 @@ A kezdéshez, először hozzon létre egy Azure-üzenetsorba tárfiókba. Mutat 
 * Lásd: [ASP.NET](http://www.asp.net) ASP.NET-alkalmazások programozásával kapcsolatos további információt.
 
 ## <a name="access-queues-in-code"></a>A kód várólisták elérése
-Fér hozzá az ASP.NET Core projektek várólistákat, is minden C# forrásfájlhoz, aki hozzáfér az Azure a queue storage a következő elemeket kell.
+az ASP.NET Core projektek tooaccess várólistákból, következőkre lesz szüksége tooinclude hello elemek tooany C# forrásfájl hozzáférő Azure várólista-tároló.
 
-1. Győződjön meg arról, hogy a névtér-deklarációk, a C# fájlban tetején az ezen **használatával** utasításokat.
+1. Győződjön meg arról, hogy a névtér-deklarációk hello hello C# fájlban hello tetején az ezen **használatával** utasításokat.
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Queue;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. Első egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A következő kód segítségével beolvasása a a tárolási kapcsolati karakterlánc és a tárfiók adatait az Azure-szolgáltatások konfigurációjából.
+2. Első egy **CloudStorageAccount** objektum, amely a tárfiók adatait jelöli. A következő kód tooget használata hello hello a tárolási kapcsolati karakterlánc és hello Azure szolgáltatáskonfiguráció tárfiók adatait.
    
          CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
            CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
-3. Első egy **CloudQueueClient** való hivatkozáshoz a várólista-objektumok a tárfiókban lévő objektum.  
+3. Első egy **CloudQueueClient** tooreference hello várólista-objektumok a tárfiókban lévő objektum.  
    
-        // Create the CloudQueueClient object for the storage account.
+        // Create hello CloudQueueClient object for hello storage account.
         CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-4. Első egy **CloudQueue** objektum való hivatkozáshoz egy konkrét várólistába helyezi.
+4. Első egy **CloudQueue** objektum tooreference egy konkrét várólistába helyezi.
    
-        // Get a reference to the CloudQueue named "messageQueue"
+        // Get a reference toohello CloudQueue named "messageQueue"
         CloudQueue messageQueue = queueClient.GetQueueReference("messageQueue");
 
-**Megjegyzés:** összes a fenti kódot a kód előtt használja a következő mintában.
+**Megjegyzés:** a következő minták hello az összes fenti kódot hello kód előtt hello használja.
 
 ### <a name="create-a-queue-in-code"></a>Várólista létrehozása a kódban
-Az Azure üzenetsor-kezelési létrehozása a kódban, csak adjon hozzá egy **CreateIfNotExistsAsync**.
+a kódban, az Azure üzenetsorának toocreate hello csak adjon hozzá egy túl**CreateIfNotExistsAsync**.
 
-    // Create the CloudQueue if it does not exist.
+    // Create hello CloudQueue if it does not exist.
     await messageQueue.CreateIfNotExistsAsync();
 
-## <a name="add-a-message-to-a-queue"></a>A várólista üzenet hozzáadása
-Üzenet beszúrása egy létező üzenetsorba, hozzon létre egy új **CloudQueueMessage** objektumot, majd hívja a **AddMessageAsync** metódust.
+## <a name="add-a-message-tooa-queue"></a>Egy üzenetsor tooa hozzáadása
+egy létező üzenetsorba, az üzenet tooinsert hozzon létre egy új **CloudQueueMessage** objektumot, majd hívás hello **AddMessageAsync** metódust.
 
 A **CloudQueueMessage** objektum vagy egy karakterláncból (UTF-8 formátumban), vagy egy bájttömböt hozható létre.
 
-Íme egy példa, amely beszúrja a "Hello, World" üzenet.
+Íme egy példa, ami üdvözlőüzenetére beszúrja a "Hello, World".
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     CloudQueueMessage message = new CloudQueueMessage("Hello, World");
     await messageQueue.AddMessageAsync(message);
 
 ## <a name="read-a-message-in-a-queue"></a>Olvassa el egy üzenetet a várólistában egyszerre várakozó
-Is bepillanthat, hogy egy sor elején található üzenetbe anélkül, hogy eltávolítaná az üzenetsorból meghívásával a **PeekMessageAsync** metódust.
+Eltávolítása hello által hívó hello anélkül is bepillanthat hello betekintés a várólista elejére hello **PeekMessageAsync** metódust.
 
-    // Peek the next message in the queue. 
+    // Peek hello next message in hello queue. 
     CloudQueueMessage peekedMessage = await messageQueue.PeekMessageAsync();
 
 
 ## <a name="read-and-remove-a-message-in-a-queue"></a>Olvassa el, és távolítsa el az üzenet a várólistában lévő
 A kód eltávolítása (created) egy üzenetet az üzenetsorból két lépésben.
 
-1. Hívás **GetMessageAsync** számára a következő üzenet jelenik meg a sorhoz. Az üzenet **GetMessageAsync** ebből a várólistából üzeneteket olvasó többi kód láthatatlanná válik. Alapértelmezés szerint az üzenet 30 másodpercig marad láthatatlan.
-2. Szeretné távolítani az üzenetet az üzenetsorból, hívja **DeleteMessageAsync**.
+1. Hívás **GetMessageAsync** tooget hello várólista következő üzenetére egy. Az üzenet **GetMessageAsync** láthatatlan tooany ebből a várólistából üzeneteket olvasó többi kód válik. Alapértelmezés szerint az üzenet 30 másodpercig marad láthatatlan.
+2. üdvözlőüzenetére eltávolítása hello várólista, hívás toofinish **DeleteMessageAsync**.
 
-Az üzenetek kétlépéses eltávolítása lehetővé teszi, hogy ha a kód hardver- vagy szoftverhiba miatt nem tud feldolgozni egy üzenetet, a kód egy másik példánya megkaphassa ugyanazt az üzenetet, és újra megpróbálkozhasson a feldolgozásával. A következő kódot a hívások **DeleteMessageAsync** jobb gombbal az üzenet feldolgozása után.
+A kétlépéses folyamat eltávolításával előállított üzenet biztosítja, hogy a kód meghibásodásakor tooprocess miatt toohardware vagy szoftver-hiba, a kód egy másik példánya üzenet kérheti le hello ugyanazt az üzenetet, és próbálkozzon újra. hello következő kódot a hívások **DeleteMessageAsync** jobb gombbal az üdvözlő üzenet feldolgozása után.
 
-    // Get the next message in the queue.
+    // Get hello next message in hello queue.
     CloudQueueMessage retrievedMessage = await messageQueue.GetMessageAsync();
 
-    // Process the message in less than 30 seconds.
+    // Process hello message in less than 30 seconds.
 
-    // Then delete the message.
+    // Then delete hello message.
     await messageQueue.DeleteMessageAsync(retrievedMessage);
 
 ## <a name="leverage-additional-options-for-dequeuing-messages"></a>Egyéb lehetőségek az üzenetek üzenetmozgatót
 Két módon szabhatja testre az üzenetek lekérését egy üzenetsorból.
-Az első lehetőség az üzenetkötegek (legfeljebb 32) lekérése. A második lehetőség az, hogy beállít egy hosszabb vagy rövidebb láthatatlansági időkorlátot, így a kódnak lehetősége van hosszabb vagy rövidebb idő alatt teljesen feldolgozni az egyes üzeneteket. Az alábbi példakód a **GetMessages** módszer segítségével egyszerre 20 üzenetet kér le. Ezután minden üzenetet feldolgoz egy **foreach** hurok segítségével. Azt is állítja be a láthatatlansági időkorlátot 5 perc minden egyes üzenet esetében. Vegye figyelembe, hogy minden üzenet egyszerre, indítsa el a 5 perc, miután 5 perccel átadott hívása után **GetMessages**, nem törölt üzenetek újra lesz látható.
+Először is kaphat az üzenetkötegek (felfelé too32). Második beállíthat egy hosszabb vagy rövidebb láthatatlansági időkorlátot, így a kódnak több vagy kevesebb idő toofully feldolgozni az egyes üzeneteket. hello alábbi példakód a **GetMessages** metódus tooget 20 üzenetek egy hívásban. Ezután minden üzenetet feldolgoz egy **foreach** hurok segítségével. Beállítja a hello láthatatlansági időtúllépés too5 percig, amíg minden üzenetet is. Vegye figyelembe, hogy hello 5 perc start összes üzenetek: hello azonos idő, így miután 5 perc telt hello hívása után túl**GetMessages**, nem törölt üzenetek újra lesz látható.
 
     // Retrieve 20 messages at a time, keeping those messages invisible for 5 minutes, 
     //   delete each message after processing.
@@ -115,39 +115,39 @@ Az első lehetőség az üzenetkötegek (legfeljebb 32) lekérése. A második l
         queue.DeleteMessage(message);
     }
 
-## <a name="get-the-queue-length"></a>Az üzenetsor hosszának lekérése
-Megbecsülheti egy üzenetsorban található üzenetek számát. A **FetchAttributes** módszert kéri a queue szolgáltatás olvashatók be a várólista attribútumai, az üzenetek száma. A **ApproximateMethodCount** tulajdonság által lekért legutóbbi értéket adja vissza a **FetchAttributes** metódus, a queue szolgáltatás hívása nélkül.
+## <a name="get-hello-queue-length"></a>Első hello várólistájának hossza
+A várólistában lévő üzenetek hello számának becslése kérheti le. A **FetchAttributes** módszert kéri hello queue szolgáltatás lekérdezni hello várólista attribútumokat, beleértve a hello üzenetek száma. Hello **ApproximateMethodCount** tulajdonság hello által lekért legutóbbi értéket adja vissza a **FetchAttributes** metódus hello queue szolgáltatás hívása nélkül.
 
-    // Fetch the queue attributes.
+    // Fetch hello queue attributes.
     messageQueue.FetchAttributes();
 
-    // Retrieve the cached approximate message count.
+    // Retrieve hello cached approximate message count.
     int? cachedMessageCount = messageQueue.ApproximateMessageCount;
 
-    // Display the number of messages.
+    // Display hello number of messages.
     Console.WriteLine("Number of messages in queue: " + cachedMessageCount);
 
-## <a name="use-the-async-await-pattern-with-common-queue-apis"></a>Az Async-Await mintázat használata közös várólista API-k
-Ez a példa bemutatja, hogyan használható az Async-Await mintázat a közös várólista API-k. A minta meghívja az adott módszerek aszinkron verzióját. Ez az aszinkron utáni javítás az egyes módszerek által látható. Egy aszinkron metódus használata esetén az Async-Await mintázat felfüggeszti helyi a hívás befejeződéséig. Ez a viselkedés lehetővé teszi, hogy az aktuális szál más a munkáját, amely segít a elkerülhetők a szűk keresztmetszetek, és növeli az alkalmazás általános válaszkészsége. Az Async-Await mintázat használatáról .NET a további részletekért lásd: [Async és Await (C# és Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)
+## <a name="use-hello-async-await-pattern-with-common-queue-apis"></a>Hello Async-Await mintázat használata közös várólista API-k
+Ez a példa bemutatja, hogyan toouse hello Async-Await mintázat a közös várólista API-k. hello minta hívások hello aszinkron verzióját módszerek megadott hello. Ez hello aszinkron utáni javítás az egyes módszerek által látható. Egy aszinkron metódus használata esetén hello Async-Await mintázat felfüggeszti helyi hello hívás befejeződéséig. Ez a viselkedés lehetővé teszi, hogy hello aktuális szál toodo más feladatok, amely segít a elkerülhetők a szűk keresztmetszetek, és növeli az alkalmazás általános válaszkészsége hello. További információk az Async-Await mintázat a .NET hello, lásd: [Async és Await (C# és Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)
 
-    // Create a message to add to the queue.
+    // Create a message tooadd toohello queue.
     CloudQueueMessage cloudQueueMessage = new CloudQueueMessage("My message");
 
-    // Async enqueue the message.
+    // Async enqueue hello message.
     await messageQueue.AddMessageAsync(cloudQueueMessage);
     Console.WriteLine("Message added");
 
-    // Async dequeue the message.
+    // Async dequeue hello message.
     CloudQueueMessage retrievedMessage = await messageQueue.GetMessageAsync();
     Console.WriteLine("Retrieved message with content '{0}'", retrievedMessage.AsString);
 
-    // Async delete the message.
+    // Async delete hello message.
     await messageQueue.DeleteMessageAsync(retrievedMessage);
     Console.WriteLine("Deleted message");
 ## <a name="delete-a-queue"></a>Üzenetsor törlése
-Egy üzenetsor és az összes benne foglalt üzenet törléséhez hívja meg a **Delete** módszert az üzenetsor-objektumhoz.
+toodelete várólista és köszönőüzenetei minden benne tárolt, hívja az **törlése** hello várólista-objektum metódust.
 
-    // Delete the queue.
+    // Delete hello queue.
     messageQueue.Delete();
 
 

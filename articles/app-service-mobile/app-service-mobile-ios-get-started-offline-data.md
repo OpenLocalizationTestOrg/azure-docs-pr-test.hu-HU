@@ -1,6 +1,6 @@
 ---
-title: "Az iOS-mobilalkalmazások kapcsolat nélküli szinkronizálás engedélyezése |} Microsoft Docs"
-description: "Ismerje meg az iOS-alkalmazások az Azure App Service mobile apps szolgáltatásban való gyorsítótár és a szinkronizálási kapcsolat nélküli használata."
+title: "aaaEnable kapcsolat nélküli szinkronizálás a mobil iOS-alkalmazások |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Azure App Service mobile apps szolgáltatásban toocache és szinkronizálási offline adatokat iOS-alkalmazások."
 documentationcenter: ios
 author: ggailey777
 manager: syntaxc4
@@ -14,57 +14,57 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 44c0d26b2d7d28322d436d4bda319d728c31a635
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 570ea7cf6694ab7317c977331038929b64508ad3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-offline-syncing-with-ios-mobile-apps"></a>Az iOS-mobilalkalmazások kapcsolat nélküli szinkronizálás engedélyezése
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag bemutatja, kapcsolat nélküli szinkronizálás a iOS rendszerhez készült Azure App Service Mobile Apps szolgáltatásának. A kapcsolat nélküli szinkronizálja végfelhasználókkal kezelheti a mobilalkalmazások megtekintését, vegye fel, és módosíthatják az adatokat, akkor is, ha nincs hálózati kapcsolat van. Változások a helyi adatbázisban tárolódnak. Miután az eszköz újra online állapotba kerül, a változások szinkronizálása megtörtént-e a távoli háttér.
+Ez az oktatóanyag ismerteti, kapcsolat nélküli szinkronizálás a hello Mobile Apps szolgáltatás az Azure App Service iOS-hez. A kapcsolat nélküli szinkronizálja végfelhasználókkal interakciót folytatni a mobilalkalmazás tooview, hozzáadhat és módosíthatják az adatokat, akkor is, ha nincs hálózati kapcsolat van. Változások a helyi adatbázisban tárolódnak. Miután hello eszköz újra online állapotba kerül, hello módosítások szinkronizálása megtörtént-e hello távoli háttérből.
 
-Ha ez a Mobile Apps első élményét, először ki az oktatóanyag [iOS-alkalmazás létrehozása]. Ha nem használja a letöltött gyors üzembe helyezési kiszolgálóprojektet, hozzá kell adnia a adatelérési bővítménycsomagok a projekthez. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható a .NET-háttérrendszer server SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Ha ez a Mobile Apps első élményét, először ki hello oktatóanyag [iOS-alkalmazás létrehozása]. Ha nem használja a letöltött hello gyors üzembe helyezési kiszolgálóprojektet, hozzá kell adnia a hello adatelérési kiegészítő csomagok tooyour projekt. Kiszolgáló bővítménycsomagok kapcsolatos további információkért lásd: [használható hello .NET háttérkiszolgáló SDK az Azure Mobile Apps a](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-A kapcsolat nélküli szinkronizálás szolgáltatással kapcsolatos további tudnivalókért lásd: [Mobile Apps az Offline adatszinkronizálás].
+toolearn hello kapcsolat nélküli szinkronizálás szolgáltatást, bővebben lásd: [Mobile Apps az Offline adatszinkronizálás].
 
-## <a name="review-sync"></a>Tekintse át az Ügyfélkód szinkronizálása
-A letöltött ügyfélprojekt a [iOS-alkalmazás létrehozása] oktatóanyag már kódot tartalmaz, amely támogatja a helyi adatok Core-alapú adatbázis kapcsolat nélküli szinkronizálás. Ez a szakasz foglalja az oktatóanyag kódot már tartalmát. A szolgáltatás elméleti áttekintését lásd: [Mobile Apps az Offline adatszinkronizálás].
+## <a name="review-sync"></a>Tekintse át a kód a hello ügyfél szinkronizálása
+a hello letöltött hello ügyfélprojekt [iOS-alkalmazás létrehozása] oktatóanyag már kódot tartalmaz, amely támogatja a helyi adatok Core-alapú adatbázis kapcsolat nélküli szinkronizálás. Ez a szakasz foglalja hello oktatóanyag kódot már tartalmát. Hello szolgáltatás elméleti áttekintését lásd: [Mobile Apps az Offline adatszinkronizálás].
 
-Mobile Apps az offline adatszinkronizálás szolgáltatásával, végfelhasználók használhatják a helyi adatbázis akkor is, ha a hálózat nem érhető el. Ezeket a szolgáltatásokat az alkalmazás használatához inicializálni a szinkronizálási kontextusában `MSClient` , és a helyi tárolójába hivatkozik. Ezt követően a tábla használatával hivatkozik a **MSSyncTable** felületet.
+A szolgáltatással hello offline Adatszinkronizálás a Mobile Apps, végfelhasználók kezelheti egy helyi adatbázist még nem érhető el hello hálózati esetén. toouse ezeket a szolgáltatásokat az alkalmazás inicializálása hello szinkronizálási kontextusában `MSClient` , és a helyi tárolójába hivatkozik. Ezt követően a tábla keresztül hello hivatkozik **MSSyncTable** felületet.
 
-A **QSTodoService.m** (Objective-C) vagy **ToDoTableViewController.swift** (Swift), figyelje meg, hogy a tag típusával **syncTable** van **MSSyncTable** . A szinkronizálási tábla felületet helyett használja a kapcsolat nélküli szinkronizálás **MSTable**. Szinkronizálási tábla használata esetén az összes művelet nyissa meg a helyi tárolójába, és csak a távoli háttérrendszerének integrációját explicit eseménylekérési és eseményküldési műveletek szinkronizálva.
+A **QSTodoService.m** (Objective-C) vagy **ToDoTableViewController.swift** (Swift), figyelje meg, hogy hello tag típusa hello **syncTable** van  **MSSyncTable**. A szinkronizálási tábla felületet helyett használja a kapcsolat nélküli szinkronizálás **MSTable**. A szinkronizálási tábla használatakor minden műveletet nyissa meg a helyi tárolójába toohello és csak hello távoli háttérrendszerének integrációját explicit leküldéses szinkronizálva, és műveletek lekéréses.
 
- A szinkronizálási hivatkozás beszerzéséhez használja a **syncTableWithName** metódusa `MSClient`. Kapcsolat nélküli szinkronizálásának eltávolításához használja **tableWithName** helyette.
+ egy hivatkozási tooa szinkronizálási tábla tooget hello használata **syncTableWithName** metódusa `MSClient`. tooremove kapcsolat nélküli szinkronizálás működését, használjon **tableWithName** helyette.
 
-Mielőtt bármely tábla művelet végrehajtható, a helyi tárolójába inicializálni kell. A megfelelő kód itt látható:
+Minden tábla műveletek elvégzése előtt hello helyi tároló inicializálni kell. Íme hello megfelelő kódot:
 
-* **Objective-C**. Az a **QSTodoService.init** módszert:
+* **Objective-C**. A hello **QSTodoService.init** módszert:
 
    ```objc
    MSCoreDataStore *store = [[MSCoreDataStore alloc] initWithManagedObjectContext:context];
    self.client.syncContext = [[MSSyncContext alloc] initWithDelegate:nil dataSource:store callback:nil];
    ```    
-* **SWIFT**. Az a **ToDoTableViewController.viewDidLoad** módszert:
+* **SWIFT**. A hello **ToDoTableViewController.viewDidLoad** módszert:
 
    ```swift
-   let client = MSClient(applicationURLString: "http:// ...") // URI of the Mobile App
+   let client = MSClient(applicationURLString: "http:// ...") // URI of hello Mobile App
    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
    self.store = MSCoreDataStore(managedObjectContext: managedObjectContext)
    client.syncContext = MSSyncContext(delegate: nil, dataSource: self.store, callback: nil)
    ```
-   Ez a módszer használatával hozza létre a helyi tárolójába a `MSCoreDataStore` felület, amely a Mobile Apps SDK biztosít. Azt is megteheti, megadhat egy másik helyi tároló alkalmazásával a `MSSyncContextDataSource` protokoll. Az is, az első paraméter **MSSyncContext** ütközés kezelő megadására szolgál. Mivel jelenleg átadott `nil`, azt lekérése sikertelen ütközés alapértelmezett ütközés kezelő.
+   Ez a módszer hello használatával hozza létre a helyi tárolójába `MSCoreDataStore` felület, amely a Mobile Apps SDK hello révén. Azt is megteheti, megadhat egy másik helyi tároló hello implementálásával `MSSyncContextDataSource` protokoll. Az első paraméter is, hello **MSSyncContext** használt toospecify ütközés kezelő van. Mivel jelenleg átadott `nil`, azt lekérése sikertelen ütközés hello alapértelmezett ütközés kezelő.
 
-Most tegyük a tényleges szinkronizálási művelet végrehajtására, és adatokat lekérni a távoli háttér:
+Most tegyük hello tényleges szinkronizálási műveletet végrehajtani, és az adatok beolvasása hello távoli háttérből:
 
-* **Objective-C**. `syncData`először leküldéses értesítések a módosításokat, és ekkor meghívja a **pullData** a távoli háttérből adatok eléréséhez. Viszont a **pullData** metódus lekéri az új lekérdezés adatokat:
+* **Objective-C**. `syncData`először leküldéses értesítések a módosításokat, és ekkor meghívja a **pullData** tooget adatok hello távoli háttérből. Viszont hello **pullData** metódus lekéri az új lekérdezés adatokat:
 
    ```objc
    -(void)syncData:(QSCompletionBlock)completion
    {
-       // Push all changes in the sync context, and then pull new data.
+       // Push all changes in hello sync context, and then pull new data.
        [self.client.syncContext pushWithCompletion:^(NSError *error) {
            [self logErrorIfNotNil:error];
            [self pullData:completion];
@@ -75,13 +75,13 @@ Most tegyük a tényleges szinkronizálási művelet végrehajtására, és adat
    {
        MSQuery *query = [self.syncTable query];
 
-       // Pulls data from the remote server into the local table.
-       // We're pulling all items and filtering in the view.
+       // Pulls data from hello remote server into hello local table.
+       // We're pulling all items and filtering in hello view.
        // Query ID is used for incremental sync.
        [self.syncTable pullWithQuery:query queryId:@"allTodoItems" completion:^(NSError *error) {
            [self logErrorIfNotNil:error];
 
-           // Lets the caller know that we have finished.
+           // Lets hello caller know that we have finished.
            if (completion != nil) {
                dispatch_async(dispatch_get_main_queue(), completion);
            }
@@ -100,18 +100,18 @@ Most tegyük a tényleges szinkronizálási művelet végrehajtására, és adat
 
           if error != nil {
               // A real application would handle various errors like network conditions,
-              // server conflicts, etc via the MSSyncContextDelegate
+              // server conflicts, etc via hello MSSyncContextDelegate
               print("Error: \(error!.description)")
 
-              // We will discard our changes and keep the server's copy for simplicity
+              // We will discard our changes and keep hello server's copy for simplicity
               if let opErrors = error!.userInfo[MSErrorPushResultKey] as? Array<MSTableOperationError> {
                   for opError in opErrors {
-                      print("Attempted operation to item \(opError.itemId)")
+                      print("Attempted operation tooitem \(opError.itemId)")
                       if (opError.operation == .Insert || opError.operation == .Delete) {
                           print("Insert/Delete, failed discarding changes")
                           opError.cancelOperationAndDiscardItemWithCompletion(nil)
                       } else {
-                          print("Update failed, reverting to server's copy")
+                          print("Update failed, reverting tooserver's copy")
                           opError.cancelOperationAndUpdateItem(opError.serverItem!, completion: nil)
                       }
                   }
@@ -122,35 +122,35 @@ Most tegyük a tényleges szinkronizálási művelet végrehajtására, és adat
    }
    ```
 
-Az Objective-C verzióban a `syncData`, első hívás **pushWithCompletion** sync-környezetében. Ez a módszer egy tagja `MSSyncContext` (és nem magára szinkronizálási táblázat), mert azt módosítások leküldéses értesítések összes táblák között. Csak azt jelzi, hogy helyi (CUD műveletek) révén valamilyen módon módosítva lett a kiszolgálón kerülnek. Ezután a segítő **pullData** neve, mely hívások **MSSyncTable.pullWithQuery** távoli adatok lekéréséhez és a helyi adatbázisban tárolja.
+Hello Objective-C verzióban a `syncData`, első hívás **pushWithCompletion** hello szinkronizálási környezetében. Ez a módszer egy tagja `MSSyncContext` (és nem hello szinkronizálási maga táblázat), mert azt módosítások leküldéses értesítések összes táblák között. Csak azt jelzi, hogy helyi (CUD műveletek) révén valamilyen módon módosítva lett toohello server küldése. Majd hello segítő **pullData** neve, mely hívások **MSSyncTable.pullWithQuery** tooretrieve távoli adatok és hello helyi adatbázisban tárolja.
 
-A Swift verziójában a leküldéses művelet volt nem feltétlenül szükséges, mert nincs nincs hívása **pushWithCompletion**. Ha a szinkronizálás a környezetben a következő táblázatban, amely egy leküldéses művelet függőben lévő módosításokat, lekéréses mindig kibocsát egy leküldéses először. Azonban ha több szinkronizálási tábla, célszerű explicit módon hívja az leküldéses annak biztosításához, hogy minden konzisztens kapcsolódó táblák között.
+Hello Swift verziójában, hello leküldéses művelet volt nem feltétlenül szükséges, mert nincs nincs hívás túl**pushWithCompletion**. Ha nincsenek függőben lévő módosítások hello szinkronizálási környezetben, amely egy leküldéses művelet hello tábla, lekéréses mindig kibocsát egy leküldéses először. Ha több szinkronizálási tábla, célszerű legjobb tooexplicitly hívást leküldéses tooensure porton nem konzisztens kapcsolódó táblák között.
 
-Az Objective-C és Swift verziók, használhatja a **pullWithQuery** adjon meg egy lekérdezést a rekordok szűrése a keresett metódust. Ebben a példában a lekérdezés lekéri a távoli minden rekordot `TodoItem` tábla.
+Hello Objective-C, mind a Swift verziók, használhatja a hello **pullWithQuery** metódus toospecify egy lekérdezés toofilter hello tooretrieve kívánt rekordokat. Ebben a példában a hello lekérdezés lekéri a távoli hello minden rekordot `TodoItem` tábla.
 
-A második paramétere **pullWithQuery** használt lekérdezés azonosító *növekményes szinkronizálás*. A növekményes szinkronizálás csak azt jelzi, hogy módosultak a rekord, a legutóbbi szinkronizálás óta lekéri `UpdatedAt` időbélyegzője (nevű `updatedAt` a helyi tárolóban levő.) A lekérdezés Azonosítóját, amely egyedi az alkalmazás minden logikai lekérdezés leíró karakterláncnak kell lennie. A növekményes szinkronizálás megadásának lehetőségét, adja át `nil` , a lekérdezés azonosítóját. Ezt a módszert potenciálisan nem hatékony, lehet, mert az összes rekord lévő összes lekéréses művelet lekérdezi.
+a második paraméter hello **pullWithQuery** használt lekérdezés azonosító *növekményes szinkronizálás*. A növekményes szinkronizálás csak azt jelzi, hogy hello utolsó szinkronizálás hello rekord óta módosultak lekéri `UpdatedAt` időbélyegzője (nevű `updatedAt` hello helyi tárban.) hello lekérdezés Azonosítóját, amely egyedi az egyes logikai lekérdezés leíró karakterláncnak kell lennie. az alkalmazás. tooopt kívül a növekményes szinkronizálás átadni `nil` , hello lekérdezés azonosítóját. Ezt a módszert potenciálisan nem hatékony, lehet, mert az összes rekord lévő összes lekéréses művelet lekérdezi.
 
-Az Objective-C alkalmazás szinkronizálásának módosítása vagy hozzáadása adatokat, amikor egy felhasználó a frissítési kézmozdulat végez, és indítsa el.
+hello Objective-C app szinkronizálásának módosítása vagy hozzáadása adatokat, amikor egy felhasználó hello frissítési kézmozdulat végez, és indítsa el a.
 
-A Swift app szinkronizálja, amikor a felhasználó hajt végre a frissítési hitelesítési mód, és indítsa el a.
+hello Swift app szinkronizálja, amikor hello felhasználó hello frissítési kézmozdulat hajt végre, és indítsa el a.
 
-Mivel az alkalmazás szinkronizálások mindig, amikor adatokat módosítva (Objective-C), vagy amikor az alkalmazás indítása (Objective-C és Swift), az alkalmazás azt feltételezi, hogy a felhasználó online. Egy későbbi szakasz ismerteti hogy frissíteni fogja az alkalmazást úgy, hogy a felhasználók akkor is, ha a kapcsolat nélküli szerkesztheti.
+Mivel hello app szinkronizálások, amikor az adatok módosítva (Objective-C), vagy amikor hello alkalmazás indítása (Objective-C és Swift), hello app azt feltételezi, hogy ez hello a felhasználó online állapotban. Egy későbbi szakasz ismerteti akkor frissíteni fogja hello alkalmazást úgy, hogy a felhasználók akkor is, ha a kapcsolat nélküli szerkesztheti.
 
-## <a name="review-core-data"></a>Tekintse át az alapvető adatokat az adatmodellbe
-Az alapvető offline adattár használata esetén meg kell adnia adott táblákat és a mezőket az adatmodellben. A mintaalkalmazás már tartalmazza a megfelelő formátumban az adatmodellt. Ez a szakasz azt bízná ezek a táblázatok használatával megjelenítendő is.
+## <a name="review-core-data"></a>Felülvizsgálati hello Core adatmodell
+Hello Core offline adattár használata esetén meg kell adnia adott táblákat és a mezőket az adatmodellben. hello mintaalkalmazás már tartalmazza a megfelelő formátumban hello adatmodellt. Ez a szakasz azt végezze el a táblák tooshow azok használata.
 
-Nyissa meg **QSDataModel.xcdatamodeld**. Négy táblázatokat--három, amelyeket az SDK-t használnak, a másik a tennivaló használt maguk elemei:
-  * MS_TableOperations: Nyomon követi a kiszolgálóval való szinkronizálásra elemeket.
+Nyissa meg **QSDataModel.xcdatamodeld**. Négy táblák definiált--három által használt hello SDK, és egy hello tennivaló használt elemet maguk:
+  * MS_TableOperations: Számok hello hello server szinkronizálva toobe elemeket.
   * MS_TableOperationErrors: Követi nyomon, hogy olyan hibákat, amelyek a kapcsolat nélküli szinkronizálás során kerül sor.
-  * MS_TableConfig: Nyomon követi az utolsó az idő az utolsó szinkronizálás művelet összes lekéréses műveletek frissítése.
-  * TodoItem: Tárolja a Tennivalólista elemein. A rendszer oszlopok **createdAt**, **updatedAt**, és **verzió** választható rendszer tulajdonságai vannak.
+  * MS_TableConfig: Nyomon követi az utolsó frissítés időpontja, utolsó szinkronizálási művelet hello összes lekéréses művelet hello.
+  * TodoItem: Hello Tennivalólista elemein tárolja. rendszer oszlopok hello **createdAt**, **updatedAt**, és **verzió** választható rendszer tulajdonságai vannak.
 
 > [!NOTE]
-> A Mobile Apps SDK fenntartja az oszlop neve kezdődik "**``**". A rendszer oszlopok csakis ne használja ezt az előtagot. Ellenkező esetben a nevének módosítva lett a távoli háttér használatakor.
+> hello Mobile Apps SDK fenntartja az oszlop neve kezdődik "**``**". A rendszer oszlopok csakis ne használja ezt az előtagot. Ellenkező esetben a nevének módosítva lett hello távoli háttér használatakor.
 >
 >
 
-A kapcsolat nélküli szinkronizálás szolgáltatás használatakor a három rendszertáblák és a tábla megadása.
+Hello kapcsolat nélküli szinkronizálás funkció használata esetén adja meg a hello három rendszertáblák és hello adattábla.
 
 ### <a name="system-tables"></a>Rendszertáblák
 
@@ -199,24 +199,24 @@ A kapcsolat nélküli szinkronizálás szolgáltatás használatakor a három re
 | id | Karakterlánc, kötelezőként megjelölt |elsődleges távoli tárolóban levő kulccsal. |
 | Végezze el | Logikai érték | Tennivalók elem mező |
 | Szöveg |Karakterlánc |Tennivalók elem mező |
-| createdAt | Dátum | (választható) Leképezve **createdAt** rendszer tulajdonság |
-| updatedAt | Dátum | (választható) Leképezve **updatedAt** rendszer tulajdonság |
-| Verzió | Karakterlánc | (választható) Ütközések, verzióra maps érzékeli |
+| createdAt | Dátum | (választható) Túl leképezhető**createdAt** rendszer tulajdonság |
+| updatedAt | Dátum | (választható) Túl leképezhető**updatedAt** rendszer tulajdonság |
+| Verzió | Karakterlánc | (választható) Használt toodetect ütközések, maps tooversion |
 
-## <a name="setup-sync"></a>Az alkalmazás szinkronizálási viselkedésének módosítása
-Ebben a szakaszban módosítani az alkalmazásnak, hogy nincs szinkronban az alkalmazás indítása vagy beszúrása, és ha a elemek frissítését. A szinkronizált csak akkor, ha a frissítés kézmozdulat gombra történik.
+## <a name="setup-sync"></a>Hello szinkronizálási megváltozzon hello alkalmazás
+Ebben a szakaszban módosítani hello alkalmazást, hogy nincs szinkronban az alkalmazás indítása vagy beszúrása, és ha a elemek frissítését. A szinkronizált csak hello frissítés kézmozdulat gomb végrehajtásakor.
 
 **Objective-C**:
 
-1. A **QSTodoListViewController.m**, módosítsa a **viewDidLoad** metódus hívása eltávolítása `[self refresh]` metódus végén. Az adatok a kiszolgálóval, az alkalmazás indítása most nincs szinkronizálva. Ehelyett azt szinkronizálva van a helyi tárolójába tartalmát.
-2. A **QSTodoService.m**, módosítsa a meghatározása `addItem` , hogy azt nem szinkronizálása után a cikk csatlakoztatva van. Távolítsa el a `self syncData` letiltása, és cserélje le a következő:
+1. A **QSTodoListViewController.m**, módosítsa a hello **viewDidLoad** metódus tooremove hello hívás túl`[self refresh]` hello metódus hello végén. Hello adatok hello Server alkalmazás indítása most nincs szinkronizálva. Ehelyett azt szinkronizálva van hello helyi tároló hello tartalmát.
+2. A **QSTodoService.m**, hello definíciójának módosítása `addItem` , hogy azt nem szinkronizálása után hello sort kell beszúrni. Távolítsa el a hello `self syncData` letiltása, és cserélje le a következő hello:
 
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
    }
    ```
-3. Módosítsa a meghatározása `completeItem` amint azt korábban említettük. A Tiltás feloldásához a `self syncData` , és cserélje le a következőre:
+3. Hello definíciójának módosítása `completeItem` amint azt korábban említettük. Távolítsa el a hello blokkja `self syncData` és cserélje le a következő hello:
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
@@ -225,17 +225,17 @@ Ebben a szakaszban módosítani az alkalmazásnak, hogy nincs szinkronban az alk
 
 **SWIFT**:
 
-A `viewDidLoad`, a **ToDoTableViewController.swift**, az alkalmazás indítása a szinkronizálás befejeződése látható itt, két sort megjegyzésbe. A cikk írásának időpontjában a Swift teendőlista alkalmazás nem frissíti a szolgáltatás valaki ad hozzá, vagy egy elem befejeződött. Frissíti a szolgáltatást csak az alkalmazás indítása.
+A `viewDidLoad`, a **ToDoTableViewController.swift**, hello két sort látható itt, az alkalmazás indítása szinkronizálása toostop megjegyzésbe. Írásának hello időpontban hello Swift teendőlista alkalmazás nem frissíthető hello szolgáltatást Ha valaki ad hozzá, vagy egy elem befejeződött. Hello szolgáltatást csak az alkalmazás indítása frissíti.
 
    ```swift
   self.refreshControl?.beginRefreshing()
   self.onRefresh(self.refreshControl)
 ```
 
-## <a name="test-app"></a>Az alkalmazás tesztelése
-Ebben a szakaszban csatlakozhat egy érvénytelen URL-CÍMÉT egy kapcsolat nélküli forgatókönyv szimulálásához. Amikor adatelemek, azok van használatban a helyi alapvető adatok tárolására, de azok még nincs szinkronizálva a mobilalkalmazás háttérrendszer működésében.
+## <a name="test-app"></a>Teszt hello alkalmazás
+Ebben a szakaszban tooan érvénytelen URL-cím toosimulate egy kapcsolat nélküli keresztül csatlakozni. Adatelemek hozzáadásakor azok által birtokolt hello a helyi alapvető adatok tárolására, de azok még nem szinkronizálta hello mobilalkalmazás háttérből.
 
-1. Módosítsa a mobilalkalmazás URL-címet a **QSTodoService.m** egy érvénytelen URL-címet, és futtassa ismét az alkalmazást:
+1. Módosítsa a hello mobilalkalmazás URL-címet **QSTodoService.m** tooan URL-cím érvénytelen, és újra futtatási hello alkalmazást:
 
    **Objective-C**. A QSTodoService.m:
    ```objc
@@ -245,33 +245,33 @@ Ebben a szakaszban csatlakozhat egy érvénytelen URL-CÍMÉT egy kapcsolat nél
    ```swift
    let client = MSClient(applicationURLString: "https://sitename.azurewebsites.net.fail")
    ```
-2. Adja hozzá az egyes Tennivalólista elemein. Lépjen ki a szimulátor (vagy kényszerített zárja be az alkalmazást), majd indítsa újra. Győződjön meg arról, hogy a változtatások megmaradnak.
+2. Adja hozzá az egyes Tennivalólista elemein. Lépjen ki a hello szimulátor (vagy a kényszerített bezárása hello alkalmazást), és indítsa újra. Győződjön meg arról, hogy a változtatások megmaradnak.
 
-3. A távoli tartalmának megtekintése **TodoItem** tábla:
-   * A Node.js háttérből, látogasson el a [Azure-portálon](https://portal.azure.com/) és kattintson a mobilalkalmazás háttér **könnyen táblák** > **TodoItem**.  
+3. Távoli hello hello tartalmának megtekintése **TodoItem** tábla:
+   * A Node.js háttérből, nyissa meg a toohello [Azure-portálon](https://portal.azure.com/) és kattintson a mobilalkalmazás háttér **könnyen táblák** > **TodoItem**.  
    * A .NET vissza az end, egy SQL-eszközt, például SQL Server Management Studio alkalmazást, vagy a többi ügyfél, például a Postman vagy a Fiddler használatával.  
 
-4. Ellenőrizze, hogy rendelkezik-e az új elemek *nem* lett-e szinkronizálva a kiszolgálóval.
+4. Ellenőrizze, hogy rendelkezik-e új elemek hello *nem* megtörtént szinkronizálta hello kiszolgáló.
 
-5. Az URL-CÍMÉT állítsa vissza a megfelelőre **QSTodoService.m**, és futtassa újra az alkalmazást.
+5. Változás hello URL-cím hátsó toohello javítsa ki, egy-egy **QSTodoService.m**, és futtassa újra hello alkalmazást.
 
-6. Hajtsa végre a frissítési kézmozdulat modulba húzza le az elemeket.  
+6. Hajtsa végre a hello frissítési kézmozdulat modulba húzza lefelé hello elemek listáját.  
 A folyamatban lévő léptető jelenik meg.
 
-7. Nézet a **TodoItem** újra adatokat. Az új és módosított Tennivalólista elemein meg kell jelennie.
+7. Nézet hello **TodoItem** újra adatokat. hello új és módosított Tennivalólista elemein meg kell jelennie.
 
 ## <a name="summary"></a>Összefoglalás
-A kapcsolat nélküli szinkronizálás szolgáltatást támogató használtuk az `MSSyncTable` felületet, és inicializálva `MSClient.syncContext` a helyi tárolójába. Ebben az esetben a helyi tárolójába lett egy alapvető adatok-alapú adatbázist.
+hello használtuk toosupport hello kapcsolat nélküli szinkronizálás szolgáltatás `MSSyncTable` felületet, és inicializálva `MSClient.syncContext` a helyi tárolójába. Ebben az esetben hello helyi tároló lett egy alapvető adatok-alapú adatbázist.
 
-A Core helyi tárolóban használatakor meg kell adnia a több táblákban a [javítsa ki a rendszer tulajdonságai](#review-core-data).
+A Core helyi tárolóban használatakor meg kell adnia a hello több táblákban [javítsa ki a rendszer tulajdonságai](#review-core-data).
 
-A normál létrehozása, olvasása, frissítése és törlése (CRUD) típusú műveletek mobilalkalmazások együttműködnek a szerint, ha az alkalmazás még a kapcsolat, de a műveletek fordulhat elő, a helyi tárolóban.
+hello normál létrehozása, olvasása, frissítése és törölhetők, (CRUD) típusú műveletek mobilalkalmazások együttműködnek a hello alkalmazás még a kapcsolat, de minden hello műveletet hello helyi tárolóban történik.
 
-Ha a helyi tárolójába szinkronizálja azt a kiszolgálóval, használtuk az **MSSyncTable.pullWithQuery** metódust.
+Ha azt a szinkronizált hello helyi tároló hello kiszolgálóval, használtuk hello **MSSyncTable.pullWithQuery** metódust.
 
 ## <a name="additional-resources"></a>További források
 * [Mobile Apps az Offline adatszinkronizálás]
-* [Felhő tartalma: Kapcsolat nélküli szinkronizálás az Azure Mobile Services] \(a videó kapcsolatos Mobile Services, de a Mobile Apps kapcsolat nélküli szinkronizálás működésének hasonló módon.\)
+* [Felhő tartalma: Kapcsolat nélküli szinkronizálás az Azure Mobile Services] \(videó hello kapcsolatos Mobile Services, de a Mobile Apps kapcsolat nélküli szinkronizálás működésének hasonló módon.\)
 
 <!-- URLs. -->
 

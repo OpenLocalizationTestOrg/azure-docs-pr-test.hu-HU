@@ -1,6 +1,6 @@
 ---
-title: "Közzétevő támogatási kapcsolatos gyakori hibák elhárítása |} Microsoft Docs"
-description: "Közzétevő támogatási kapcsolatos gyakori hibák elhárítása és hogyan kérhet támogatást ismertetése"
+title: "aaaHow tootroubleshoot közös közzétevő támogatási problémák esetére |} Microsoft Docs"
+description: "Hogyan tootroubleshoot közös közzétevő támogatási csoportjához állít ki, és hogyan támogatják a tooget ismertetése"
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: dcd87ae977d5b4b4a2353e446ab89ac81b239195
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2ee765f23f1d5db68006fd42aedf7d6e691360e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-troubleshoot-common-azure-marketplace-publisher-issues"></a>Azure piactér publisher kapcsolatos gyakori hibák elhárítása
-Ez a cikk azt ismerteti, hogyan oldható fel, vagy segítségre van szüksége néhány piactér szabhatják.
+# <a name="how-tootroubleshoot-common-azure-marketplace-publisher-issues"></a>Hogyan tootroubleshoot közös Azure piactér publisher problémák
+Ez a cikk azt ismerteti, hogyan tooresolve vagy a get-támogatás néhány gyakori piactér forgatókönyvek esetén.
 
 ## <a name="credits-and-refunds"></a>Kreditek és az visszatérítés
-Egyes esetekben szükség lehet követel vagy az ügyfél nevében visszatérítést igényelni.  Microsoft Support is help, győződjön meg arról, hogy az ügyfél és és visszatérítés kérelmek minősülnek, és, hogy a válasz az Ön számára biztosított során.
+Egyes esetekben szükség lehet toorequest követel vagy a visszatérítés az ügyfél nevében.  Microsoft Support is help, győződjön meg arról, hogy az ügyfél és és visszatérítés kérelmek minősülnek, és hogy választ biztosított tooyou során.
 
-A következő bemutatja, hogyan kérje meg a jóváírás vagy a visszatérítés az ügyfél nevében.
+hello következő bemutatja, hogyan toorequest a jóváírás vagy a visszatérítés az ügyfél nevében.
 
 > [!NOTE]
-> Ha egy ügyfél vagy Azure viszonteladóhoz kapcsolatba lép a Microsofttal egy ilyenre kéréséhez, az ugyanazon házirendek, amelyek az Azure-szolgáltatások nyújtásához használjuk fog érvénybe lépni. Ha a házirendek azt jelzi, hogy egy ilyenre miatt, fog proaktív kapni (és is engedélyezni szeretné, hogy a nevünkben ki) a ilyenre a felhasználói vagy Azure viszonteladóm. Ha a házirendek jelzi, hogy egy ilyenre esedékes, azt hívhat meg a felhasználói vagy Azure viszonteladóval közvetlenül kapcsolatba lépni.
+> Ha egy ügyfél vagy Azure viszonteladóhoz kapcsolatba lép a Microsoft toorequest egy ilyenre, fog érvénybe lépni hello ugyanazon házirendek, amelyek az Azure-szolgáltatások nyújtásához használjuk. A házirendek jelzik, hogy egy ilyenre esedékes, fog proaktív kapni (és engedélyeznie velünk tooissue az Ön nevében) a visszatérítés vagy jóváírás toohello felhasználói vagy Azure viszonteladóm. Ha a házirendek jelzi, hogy egy ilyenre esedékes, azt meghívhatja hello az ügyfél- vagy Azure viszonteladóhoz toocontact közvetlenül meg.
 >
 >
 
   ![1_RequestRefund][1]
 
-1. Keresse meg a támogatási lapok itt: [https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0& ccsid = 635562546535117884](https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884).
-2. Az a **problématípust** mezőben válassza **ügyfelek kezelése**.
-3. Az a **kategória** mezőben válassza **jóváhagyás vagy az ügyfél visszatérítést kérelem**.
+1. Keresse meg a toohello támogatási itt lapok: [https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0 & ccsid = 635562546535117884](https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884).
+2. A hello **problématípust** mezőben válassza **ügyfelek kezelése**.
+3. A hello **kategória** mezőben válassza **jóváhagyás vagy az ügyfél visszatérítést kérelem**.
 4. Kattintson a **indítási kérésre**.
 
    ![2_RequestRefund][2]
 
 1. Adja meg a kapcsolattartási adatokat.
-2. Az a **Mi az, hogy a probléma?** adja meg a következő adatokat:
+2. A hello **hello probléma újdonságai?** mezőbe írja be a következő információ hello:
 
-   * Az előfizetés-azonosító az érintett ügyfél
-   * Az ügyfél neve
-   * Mennyi a jóváírás legyen
-   * A jóváírás időtartama
-   * Az időtartam a számlázási dátuma
-   * A jóváírás oka
+   * hello előfizetés-azonosító hello az érintett ügyfél
+   * hello ügyfél neve
+   * Mennyi hello jóváírás legyen
+   * hello jóváírás hello időtartama
+   * az időtartam hello számlázási dátuma
+   * hello jóváírás hello oka
 
-Megkaptuk adatainak 24 órán belül ezután nyugtázási e-mailt fog kapni. Után döntést a kérés viszonyítva, értesítést kap a eredményéről.
+Megkaptuk adatainak 24 órán belül ezután nyugtázási e-mailt fog kapni. Után egy döntési kapcsolat tooyour kérelem, értesítést kap a hello eredménye.
 
 ## <a name="customer-subscription-validation"></a>Felhasználói előfizetés ellenőrzése
-Bizonyos esetekben előfordulhat, hogy érvényesítenie kell a előfizetés részletei egy, az ügyfelek. Ennek érdekében a Microsoft Support kérhetnek. Microsoft Support fog help annak ellenőrzéséhez, hogy egy előfizetés-azonosító és számlázási címét egy ismert ügyfél tartozik.
+Egyes esetekben szükség lehet az toovalidate hello előfizetés részletei egy, az ügyfelek. A Microsoft Support toohelp felveheti a kapcsolatot. Microsoft Support fog help, hogy egy előfizetés-azonosító és számlázási címét tartozik ismert felhasználói tooa tooconfirm.
 
   ![subscriptionvalidation][3]
 
 * Előfordulhat, hogy forduljon az ügyfél támogatás segítségét kéri.
-* Hogyan ellenőrizheti, hogy az ügyfél egy ajánlatot az eredeti ügyfél nem lehet felmérni.
-* Egy támogatási kérést kérjen felhasználói előfizetési érvényesítési bejelentkezhet.
-* Meg kell adnia egy ügyfél-előfizetése Azonosítóját és számlázási címét.
-* A Microsoft felveszi Önnel a számára, hogy a számlázási címét, és az előfizetés-azonosító számára ismert, erősítse meg a műveletet.
+* Nem lehet felmérni hogyan toovalidate, hogy az ügyfél egy ajánlatot az eredeti ügyfél-e.
+* A támogatási kérelem toorequest felhasználói előfizetési érvényesítési bejelentkezhet.
+* Szüksége lesz egy ügyfél-előfizetési Azonosítót tooprovide és számlázási címét.
+* A Microsoft felveszi Önnel, hogy hello számlázási címét, és az előfizetés-azonosító ismert toous tooprovide megerősítése.
 
 ## <a name="how-do-i-update-my-publisher-profile"></a>Hogyan frissíthetők a saját publisher profil?
-Ha szeretné frissíteni a közzétevő profilját, ehhez a Microsoft Dev Center keresztül:
+Ha be szeretné tooupdate a közzétevő, ehhez hello Microsoft Dev Center keresztül:
 
-**1. Jelentkezzen be a Windows Dev Center**.
+**1. Jelentkezzen be a Windows fejlesztői központ toohello**.
 
-* Nyisson meg egy új Chrome Incognito vagy Internet Explorer InPrivate-böngészés munkamenet győződjön meg arról, hogy még nem jelentkezett személyes fiókra.
-* Ugrás a [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
+* Nyissa meg a egy új Chrome Incognito vagy az Internet Explorer InPrivate-böngészés munkamenet tooensure, amelyet nem tooa személyes fiókkal bejelentkezve.
+* Nyissa meg túl[http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
 
 ![InPrivate-][4]
 
@@ -79,39 +79,39 @@ Ha szeretné frissíteni a közzétevő profilját, ehhez a Microsoft Dev Center
 
 ![bejelentkezés][5]
 
-**3. A "Segítsen megvédeni a fiókját" igazolásához**.
+**3. Igazolásához hello "Segítsen megvédeni a fiókját"**.
 
 > [!NOTE]
-> Használhatja a telefonszám vagy e-mail cím ellenőrzése.
+> Használhatja a telefonszámát vagy e-mail cím tooverify.
 >
 >
 
 ![protectacct][6]
 
-**4. Keresse meg a fiók adatait és elérhetőségi adatok**.
+**4. Keresse meg a tooAccount részletek és a kapcsolattartási adatok**.
 
 ![acctdetails][7]
 
 ## <a name="how-do-i-add-or-delete-an-administrator-from-my-publishing-account"></a>Hogyan hozzáadása vagy a rendszergazda töröl a közzétételi fiók?
 ![manageadmins][8]
 
-1. Keresse meg a közzétételi portálon.
+1. Keresse meg a toohello közzétételi Portáljára.
 2. Válassza ki **közzétevők**.
 3. Válassza ki **rendszergazdák**.
-4. Adja hozzá a társadminisztrátornak hozzáadni vagy eltávolítani kívánt e-mail címét.
+4. Hello társadminisztrátor tooadd szeretné, vagy távolítsa el az üdvözlő e-mail cím hozzáadásához.
 5. Kattintson a **Mentés** gombra.
 
 ## <a name="next-steps--other-support-queries"></a>További lépések: más támogatási lekérdezések
-A probléma a következő problémák jelentkezzen [https://portal.azure.com](https://portal.azure.com):
+Hello a következő problémák jelentkezzen egy problémáját [https://portal.azure.com](https://portal.azure.com):
 
 * Számlázási hiba jelentése?
 * I észrevette, hogy azok az eltérések a számlázással vagy használati utasításokban.
 * Segítségre van szükségem az ismertetése a számlázási utasítást.
 
-A következő problémák, hozzon létre egy támogatási kérést [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975):
+Hello az alábbi problémákat, hozzon létre egy támogatási kérést [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975):
 
 * Webszolgáltatások kezelése problémák vannak.
-* Hogyan változtathatom meg a értékesítő fiókkal társított Microsoft-fiókkal?
+* Hogyan változtathatom meg a értékesítő fiókkal társított hello Microsoft-fiókkal?
 
 [1]: ./media/marketplace-publishing-support-common-issues/requestrefund1.png
 [2]: ./media/marketplace-publishing-support-common-issues/requestrefund2.png

@@ -1,6 +1,6 @@
 ---
-title: "Követés sémák B2B X12 figyelési - Azure Logic Apps |} Microsoft Docs"
-description: "Követés sémák X12 használatával figyelheti az Azure-integráció fiókban tranzakciók B2B üzeneteit."
+title: "aaaX12 követési sémák B2B figyelés - Azure Logic Apps |} Microsoft Docs"
+description: "Az Azure-integráció fiókban tranzakcióról sémák toomonitor B2B üzenetek nyomon követése X12 használja."
 author: padmavc
 manager: anneta
 editor: 
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3782c0a76ea8728a146b3d73774f74c31187cbfd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed1b338730214dcae12c367ebff025d7122328fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="start-or-enable-tracking-of-x12-messages-to-monitor-success-errors-and-message-properties"></a>A figyelő sikeres, a hibák és az üzenet tulajdonságai üzenetek kezdő vagy X12 követését engedélyezése
-Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzleti vállalatközi (B2B) tranzakciók figyeléséhez nyújt segítséget:
+# <a name="start-or-enable-tracking-of-x12-messages-toomonitor-success-errors-and-message-properties"></a>Kezdeti vagy X12 engedélyezése követését üzenetek toomonitor sikeres, a hibák és az üzenet tulajdonságai
+Ezek sémák követési X12 is használhatja az Azure-integráció fiók toohelp az üzleti vállalatközi (B2B) tranzakciók figyelése:
 
 * X12 tranzakció követési séma beállítása
 * X12 tranzakció séma követési nyugtázási beállítása
@@ -68,18 +68,18 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
 | interchangeControlNumber | Karakterlánc | Interchange ellenőrző szám. (Választható) |
 | functionalGroupControlNumber | Karakterlánc | Funkcionális ellenőrző szám. (Választható) |
 | transactionSetControlNumber | Karakterlánc | Tranzakció ellenőrző szám beállítása. (Választható) |
 | correlationMessageId | Karakterlánc | Korrelációs azonosító. {AgreementName} kombinációja {*GroupControlNumber*} {TransactionSetControlNumber}. (Választható) |
 | messageType | Karakterlánc | A tranzakció állítsa be, vagy dokumentum típusa. (Választható) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező) |
-| isTechnicalAcknowledgmentExpected | Logikai érték | Hogy a műszaki nyugtázási konfigurálva van a X12 szerződést. (Kötelező) |
-| isFunctionalAcknowledgmentExpected | Logikai érték | Hogy a működési nyugtázási konfigurálva van a X12 szerződést. (Kötelező) |
-| needAk2LoopForValidMessages | Logikai érték | Hogy a AK2 hurok kell egy érvényes üzenetet. (Kötelező) |
-| segmentsCount | Egész szám | A X12 szegmenseinek száma tranzakció beállítása. (Választható) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező) |
+| isTechnicalAcknowledgmentExpected | Logikai érték | E hello műszaki nyugtázási hello X12 megállapodás van konfigurálva. (Kötelező) |
+| isFunctionalAcknowledgmentExpected | Logikai érték | E hello működési nyugtázási hello X12 megállapodás van konfigurálva. (Kötelező) |
+| needAk2LoopForValidMessages | Logikai érték | E hello AK2 hurok kell egy érvényes üzenetet. (Kötelező) |
+| segmentsCount | Egész szám | Hello X12 tranzakció készlet szegmensek száma. (Választható) |
 
 ## <a name="x12-transaction-set-acknowledgement-tracking-schema"></a>X12 tranzakció séma követési nyugtázási beállítása
 ````java
@@ -123,24 +123,24 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
-| interchangeControlNumber | Karakterlánc | A működési nyugtázási vezérlő száma Interchange. Értéke csak a küldő oldalon, ahol működési nyugtázása a küldött üzenet érkezett a tölti fel a partner. (Választható) |
-| functionalGroupControlNumber | Karakterlánc | A működési nyugtázási funkcionális csoport vezérlő száma. Értéke csak a küldő oldalon, ahol működési nyugtázása a küldött üzenet érkezett a tölti fel a partner. (Választható) |
-| isaSegment | Karakterlánc | ISA-szegmens az üzenet. Értéke csak a küldő oldalon, ahol működési nyugtázása a küldött üzenet érkezett a tölti fel a partner. (Választható) |
-| gsSegment | Karakterlánc | Az üzenet szegmens GS. Értéke csak a küldő oldalon, ahol működési nyugtázása a küldött üzenet érkezett a tölti fel a partner. (Választható) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
+| interchangeControlNumber | Karakterlánc | Interchange hello működési nyugtázási ellenőrzési számát. Értéke csak a hello küldési oldalon, ahol működési nyugtázás érkezett hello küldött üzenetek toopartner tölti fel. (Választható) |
+| functionalGroupControlNumber | Karakterlánc | Hello működési nyugtázási funkcionális csoport vezérlő száma. Értéke csak a hello küldési oldalon, ahol működési nyugtázás érkezett hello küldött üzenetek toopartner tölti fel. (Választható) |
+| isaSegment | Karakterlánc | ISA szegmens hello üzenet. Értéke csak a hello küldési oldalon, ahol működési nyugtázás érkezett hello küldött üzenetek toopartner tölti fel. (Választható) |
+| gsSegment | Karakterlánc | GS szegmens hello üzenet. Értéke csak a hello küldési oldalon, ahol működési nyugtázás érkezett hello küldött üzenetek toopartner tölti fel. (Választható) |
 | respondingfunctionalGroupControlNumber | Karakterlánc | Interchange ellenőrző szám válaszol. (Választható) |
-| respondingFunctionalGroupId | Karakterlánc | Funkcionális csoport azonosítója, amely AK101 a visszaigazolás válaszol. (Választható) |
+| respondingFunctionalGroupId | Karakterlánc | Válaszol funkcionális csoport azonosítója, amely a szolgáltatástérképek tooAK101 hello nyugtázási. (Választható) |
 | respondingtransactionSetControlNumber | Karakterlánc | Válaszol tranzakció ellenőrző szám beállítása. (Választható) |
-| respondingTransactionSetId | Karakterlánc | Válaszol tranzakció azonosítója, amely AK201 a visszaigazolás beállítása. (Választható) |
+| respondingTransactionSetId | Karakterlánc | Válaszol tranzakció azonosítója, amely a szolgáltatástérképek tooAK201 hello nyugtázási beállítása. (Választható) |
 | statusCode | Logikai érték | Tranzakció nyugtázási állapotkód beállítása. (Kötelező) |
 | segmentsCount | Enum | Nyugtázási állapotkódot. Két érték engedélyezett **elfogadott**, **elutasítva**, és **AcceptedWithErrors**. (Kötelező) |
-| processingStatus | Enum | A nyugtázási feldolgozási állapotát. Két érték engedélyezett **fogadott**, **Generated**, és **küldött**. (Kötelező) |
+| processingStatus | Enum | Hello nyugtázási feldolgozási állapotát. Két érték engedélyezett **fogadott**, **Generated**, és **küldött**. (Kötelező) |
 | correlationMessageId | Karakterlánc | Korrelációs azonosító. {AgreementName} kombinációja {*GroupControlNumber*} {TransactionSetControlNumber}. (Választható) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező) |
-| ak2Segment | Karakterlánc | A tranzakció, állítsa be a kapott funkcionális csoporton belüli nyugtázási. (Választható) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező) |
+| ak2Segment | Karakterlánc | A tranzakció belül kapott hello funkcionális csoport nyugtázási. (Választható) |
 | ak3Segment | Karakterlánc | A jelentés egy data szegmenséhez hibáit. (Választható) |
-| ak5Segment | Karakterlánc | A jelentés-e a tranzakciót, állítsa be a AK2 szegmensben lévő azonosított elfogadott vagy nem utasítható el, és ezért. (Választható) |
+| ak5Segment | Karakterlánc | A jelentés-e beállítva hello AK2 szegmensben lévő azonosított hello tranzakció elfogadott vagy nem utasítható el, és ezért. (Választható) |
 
 ## <a name="x12-interchange-tracking-schema"></a>X12 interchange követési séma
 ````java
@@ -180,12 +180,12 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
 | interchangeControlNumber | Karakterlánc | Interchange ellenőrző szám. (Választható) |
 | isaSegment | Karakterlánc | Üzenet ISA szegmens. (Választható) |
-| isTechnicalAcknowledgmentExpected | Logikai érték | Hogy a műszaki nyugtázási konfigurálva van a X12 szerződést. (Kötelező) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező) |
+| isTechnicalAcknowledgmentExpected | Logikai érték | E hello műszaki nyugtázási hello X12 megállapodás van konfigurálva. (Kötelező) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező) |
 | isa09 | Karakterlánc | X12 dokumentum cseréje dátum. (Választható) |
 | isa10 | Karakterlánc | A dokumentum interchange idő X12. (Választható) |
 | isa11 | Karakterlánc | X12 interchange vezérlő szabványok azonosítója. (Választható) |
@@ -229,12 +229,12 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
-| interchangeControlNumber | Karakterlánc | Interchange résztvevőitől kapott a műszaki nyugtázási ellenőrzési számát. (Választható) |
-| isaSegment | Karakterlánc | ISA szegmense, amely résztvevőitől kapott a műszaki nyugtázási. (Választható) |
-| respondingInterchangeControlNumber |Karakterlánc | A partnerek-tól kapott a műszaki nyugtázási ellenőrző szám Interchange. (Választható) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
+| interchangeControlNumber | Karakterlánc | Interchange hello műszaki nyugtázási résztvevőitől kapott ellenőrzési számát. (Választható) |
+| isaSegment | Karakterlánc | ISA szegmense hello műszaki nyugtázási résztvevőitől kapott. (Választható) |
+| respondingInterchangeControlNumber |Karakterlánc | Interchange hello műszaki nyugtázási résztvevőitől kapott az ellenőrző szám. (Választható) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező) |
 | statusCode | Enum | Interchange nyugtázási állapotkódot. Két érték engedélyezett **elfogadott**, **elutasítva**, és **AcceptedWithErrors**. (Kötelező) |
 | processingStatus | Enum | Nyugtázási állapota. Két érték engedélyezett **fogadott**, **Generated**, és **küldött**. (Kötelező) |
 | TA102 | Karakterlánc | Interchange dátum. (Választható) |
@@ -281,14 +281,14 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
 | interchangeControlNumber | Karakterlánc | Interchange ellenőrző szám. (Választható) |
 | functionalGroupControlNumber | Karakterlánc | Funkcionális ellenőrző szám. (Választható) |
 | gsSegment | Karakterlánc | Üzenet GS szegmens. (Választható) |
-| isTechnicalAcknowledgmentExpected | Logikai érték | Hogy a műszaki nyugtázási konfigurálva van a X12 szerződést. (Kötelező) |
-| isFunctionalAcknowledgmentExpected | Logikai érték | Hogy a működési nyugtázási konfigurálva van a X12 szerződést. (Kötelező) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező)|
+| isTechnicalAcknowledgmentExpected | Logikai érték | E hello műszaki nyugtázási hello X12 megállapodás van konfigurálva. (Kötelező) |
+| isFunctionalAcknowledgmentExpected | Logikai érték | E hello működési nyugtázási hello X12 megállapodás van konfigurálva. (Kötelező) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező)|
 | gs01 | Karakterlánc | Funkcionális kódját. (Választható) |
 | gs02 | Karakterlánc | Alkalmazás feladó kódot. (Választható) |
 | gs03 | Karakterlánc | Alkalmazás fogadó kódot. (Választható) |
@@ -335,24 +335,24 @@ Ezek az Azure-integráció fiókban sémák követési X12 segítségével üzle
 | senderIdentifier | Karakterlánc | Partner azonosítót elküldése. (Kötelező) |
 | receiverQualifier | Karakterlánc | A minősítő erőforráspartner kapnak. (Kötelező) |
 | receiverIdentifier | Karakterlánc | Partner azonosítót kapnak. (Kötelező) |
-| agreementName | Karakterlánc | A X12 nevét, amelyhez az üzenetek fakadó problémák megoldásával szerződést. (Választható) |
-| Iránya | Enum | Az üzenet folyamat iránya küld és fogad. (Kötelező) |
-| interchangeControlNumber | Karakterlánc | Interchange vezérlő száma, amely feltölti a küldési oldalon műszaki nyugtázási partnertől fogadásakor. (Választható) |
-| functionalGroupControlNumber | Karakterlánc | A műszaki nyugtázása, amely tölti fel a küldési oldalon, a műszaki nyugtázási partnertől fogadásakor funkcionális csoport vezérlő száma. (Választható) |
+| agreementName | Karakterlánc | Hello megállapodás toowhich köszönőüzenetei megoldott X12 neve. (Választható) |
+| Iránya | Enum | Hello üzenet folyamata, irányának küld és fogad. (Kötelező) |
+| interchangeControlNumber | Karakterlánc | Interchange vezérlő száma, amely tölti fel a küldési oldalon hello műszaki nyugtázási partnertől fogadásakor. (Választható) |
+| functionalGroupControlNumber | Karakterlánc | Funkcionális vezérlő csoportszámmal hello műszaki nyugtázása, amely feltölti az hello ügyféloldali küldése, ha a partnerek műszaki nyugtázás érkezett. (Választható) |
 | isaSegment | Karakterlánc | Interchange azonos szabályozza, hogy a számot, de csak bizonyos esetekben ki van töltve. (Választható) |
 | gsSegment | Karakterlánc | Ugyanaz, mint funkcionális csoport szabályozza, hogy a számot, de csak bizonyos esetekben ki van töltve. (Választható) |
-| respondingfunctionalGroupControlNumber | Karakterlánc | Az eredeti funkcionális csoport számát szabályozza. (Választható) |
-| respondingFunctionalGroupId | Karakterlánc | A nyugtázási funkcionális csoport AK101 leképezve azonosítóját. (Választható) |
-| isMessageFailed | Logikai érték | Hogy a X12 üzenetet nem sikerült. (Kötelező) |
+| respondingfunctionalGroupControlNumber | Karakterlánc | Hello eredeti funkcionális csoport számát szabályozza. (Választható) |
+| respondingFunctionalGroupId | Karakterlánc | A Maps tooAK101 a hello nyugtázási funkcionális azonosítót. (Választható) |
+| isMessageFailed | Logikai érték | E X12 üdvözlőüzenetére nem sikerült. (Kötelező) |
 | statusCode | Enum | Nyugtázási állapotkódot. Két érték engedélyezett **elfogadott**, **elutasítva**, és **AcceptedWithErrors**. (Kötelező) |
-| processingStatus | Enum | A nyugtázási feldolgozási állapotát. Két érték engedélyezett **fogadott**, **Generated**, és **küldött**. (Kötelező) |
+| processingStatus | Enum | Hello nyugtázási feldolgozási állapotát. Két érték engedélyezett **fogadott**, **Generated**, és **küldött**. (Kötelező) |
 | ak903 | Karakterlánc | Beérkezett tranzakció halmazok számát. (Választható) |
-| ak904 | Karakterlánc | Tranzakció karakterkészleteket elfogadják az azonosított funkcionális csoport. (Választható) |
-| ak9Segment | Karakterlánc | -E a funkcionális csoporttal, a AK1 szegmensben lévő elfogadott vagy nem utasítható el, és ezért. (Választható) |
+| ak904 | Karakterlánc | Tranzakció karakterkészleteket azonosított hello funkcionális csoportban fogadja. (Választható) |
+| ak9Segment | Karakterlánc | E hello funkcionális csoporttal hello AK1 szegmensben lévő elfogadott vagy nem utasítható el, és ezért. (Választható) |
 
 ## <a name="next-steps"></a>Következő lépések
 * További információ [B2B üzenetek figyelése](logic-apps-monitor-b2b-message.md).
 * További információ [AS2 követési sémák](../logic-apps/logic-apps-track-integration-account-as2-tracking-schemas.md).
 * További információ [egyéni sémák követési B2B](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md).
-* További tudnivalók [az Operations Management Suite-portálon B2B üzenetek nyomon követése](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
-* További információ a [vállalati integrációs csomag](../logic-apps/logic-apps-enterprise-integration-overview.md).  
+* További tudnivalók [hello Operations Management Suite portálját a B2B üzenetek nyomon követése](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
+* További tudnivalók hello [vállalati integrációs csomag](../logic-apps/logic-apps-enterprise-integration-overview.md).  

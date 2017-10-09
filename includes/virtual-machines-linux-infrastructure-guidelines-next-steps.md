@@ -1,4 +1,4 @@
-Irányelvek teljes sorozatát segít megérteni a rendszerbeli kiépítésének különböző kialakítási szempontok a az alkalmazás-infrastruktúra az Azure-ban:
+hello teljes sorozatát útmutatást, valamit megismerheti az összes hello különböző kialakítási szempontok a épület a az alkalmazás-infrastruktúra az Azure-ban:
 
 * [Azure-előfizetés és a fiókok irányelvek](../articles/virtual-machines/linux/infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure-infrastruktúra elnevezési irányelvek](../articles/virtual-machines/linux/infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

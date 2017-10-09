@@ -1,6 +1,6 @@
 ---
-title: "Hárítsa el az endpoint protection állapotát riasztások az Azure Security Centerben |} Microsoft Docs"
-description: "Ez a dokumentum azt ismerteti, hogyan valósítja meg az Azure Security Center ajánlás ** hárítsa el az Endpoint Protection állapotát riasztások **."
+title: "aaaResolve endpoint protection állapotát riasztások az Azure Security Centerben |} Microsoft Docs"
+description: "Ez a dokumentum bemutatja, hogyan tooimplement hello Azure Security Center javaslat ** hárítsa el az Endpoint Protection állapotát riasztások **."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/01/2016
 ms.author: terrylan
-ms.openlocfilehash: 5e6b136d6bd3b11fb82126d104fd0cb149255118
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9631d15aa1dfa9003d56332363ae7911061ed0b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resolve-endpoint-protection-health-alerts-in-azure-security-center"></a>Hárítsa el az endpoint protection állapotát riasztások az Azure Security Centerben
-Azure Security Center javasolni fogja megoldani az észlelt endpoint protection állapotát riasztások.  Biztonsági központ lehetővé teszi a virtuális gépek (VM), az endpoint protection hibáinak és hány hibák vannak.
+Azure Security Center javasolni fogja megoldani az észlelt endpoint protection állapotát riasztások.  Biztonsági központ lehetővé teszi virtuális gépek (VM) rendelkezik, az endpoint protection hibáinak és hány sikertelen toosee.
 
 > [!NOTE]
-> Ez a dokumentum egy üzembe helyezést szemléltető példa segítségével mutatja be a szolgáltatást. A dokumentum nem tartalmaz lépésenkénti útmutatót.
+> Ez a dokumentum hello szolgáltatás telepítését bemutató példát használatával vezet be. A dokumentum nem tartalmaz lépésenkénti útmutatót.
 > 
 > 
 
-## <a name="implement-the-recommendation"></a>A javaslat megvalósítása
-1. Az a **javaslatok panel**, jelölje be **hárítsa el az Endpoint Protection állapotát riasztások**.
+## <a name="implement-hello-recommendation"></a>Hello javaslat megvalósítása
+1. A hello **javaslatok panel**, jelölje be **hárítsa el az Endpoint Protection állapotát riasztások**.
    ![Endpoint Protection-állapotriasztások feloldása][1]
-2. Ekkor megnyílik a panel **Endpoint Protection hiba** amely felsorolja azokat a virtuális gépek hibák és a hibák száma az egyes virtuális gépek. Jelöljön ki egy virtuális Gépet a listából.
+2. Ekkor megnyílik hello panel **Endpoint Protection hiba** amely felsorolja azokat a virtuális gépek hibák és hello hibák száma az egyes virtuális gépek. Válassza ki a virtuális gépek hello listából.
    ![Az Endpoint protection hiba][2]
-3. A **hibák lista** ekkor megnyílik a kiválasztott virtuális géphez, hibák listáját megjelenítő panel. Válassza ki a hibát további a listából. Ekkor megnyílik egy panel a kijelölt hibával kapcsolatos információkat.
+3. A **hibák lista** megnyílik a hello kiválasztott VM hibák listáját megjelenítő panel. Válassza ki a hiba hello lista toolearn további. Ekkor megnyílik egy panel kijelölt hello a hibával kapcsolatos információkat.
    ![Hibák lista][3]
    ![esemény][4]
 
 ## <a name="see-also"></a>Lásd még:
-A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
+További információ a Security Center toolearn hello következő lásd:
 
-* [Biztonsági házirendek beállítása az Azure Security Centerben](security-center-policies.md) – Annak bemutatása, hogy miként konfigurálhat biztonsági házirendeket Azure-előfizetéseihez és az erőforráscsoportokhoz.
+* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md)– megtudhatja, hogyan tooconfigure biztonsági házirendek az Azure-előfizetések és az erőforráscsoportokat.
 * [Biztonsági javaslatok kezelése az Azure Security Centerben](security-center-recommendations.md) – Miként könnyítik meg a javaslatok az Azure-erőforrások védelmét?
-* [Biztonsági állapotmonitorozás az Azure Security Centerben](security-center-monitoring.md) – Útmutató az Azure-erőforrások állapotának monitorozásához.
-* [Biztonsági riasztások kezelése és reagálás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
-* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md) – Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
-* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
-* [Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – Tájékozódás az Azure biztonságával kapcsolatos legfrissebb hírekről és információkról.
+* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md)– megtudhatja, hogyan toomonitor hello az Azure-erőforrások állapotát.
+* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md)– megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
+* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md) – megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
+* [Azure Security Center: GYIK](security-center-faq.md)– gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/)– hello legújabb Azure biztonsági hírek és információ lekérése.
 
 <!--Image references-->
 [1]: ./media/security-center-resolve-endpoint-protection/resolve-endpoint-protection.png

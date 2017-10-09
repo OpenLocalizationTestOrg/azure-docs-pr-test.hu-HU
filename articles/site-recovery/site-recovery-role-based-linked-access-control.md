@@ -1,6 +1,6 @@
 ---
-title: "Szerepköralapú hozzáférés-vezérlés használatával kezelheti az Azure Site Recovery |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan alkalmazza, és szerepköralapú hozzáférés-vezérlést (RBAC) használata az Azure Site Recovery központi telepítések felügyeletéhez szükséges"
+title: "aaaUsing szerepköralapú hozzáférés-vezérlés toomanage Azure Site Recovery |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan tooapply és -felhasználási szerepköralapú hozzáférés-vezérlés (RBAC) toomanage az Azure Site Recovery-központitelepítések"
 services: site-recovery
 documentationcenter: 
 author: mayanknayar
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: manayar
-ms.openlocfilehash: 9dd74014bf05234a83c7678b67b42b96cd8b8d64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7b721090351e561b28317ccdcf0ff283e0b146ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-role-based-access-control-to-manage-azure-site-recovery-deployments"></a>Azure Site Recovery központi telepítések felügyeletéhez szükséges szerepköralapú hozzáférés-vezérlés használatával
+# <a name="use-role-based-access-control-toomanage-azure-site-recovery-deployments"></a>Szerepköralapú hozzáférés-vezérlés toomanage Azure Site Recovery központi telepítéssel
 
-Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletes hozzáférés-vezérlést biztosít az Azure-hoz. Az RBAC használata, feladatkörök elkülönítse a munkacsoporton belül, és csak különleges hozzáférési engedélyeket a felhasználóknak adott feladatok elvégzéséhez szükség szerint.
+Az Azure Szerepköralapú hozzáférés-vezérlés (RBAC) részletes hozzáférés-vezérlést biztosít az Azure-hoz. RBAC használata, feladatkörök elkülönítse a munkacsoporton belül, és csak adott hozzáférési engedélyek toousers szükséges tooperform adott feladat engedélyezése.
 
-Az Azure Site Recovery 3 beépített szerepkörök, amelyekkel szabályozhatja a Site Recovery felügyeleti műveleteket biztosít. A további [beépített Azure RBAC-szerepkörök](../active-directory/role-based-access-built-in-roles.md)
+Az Azure Site Recovery biztosít 3 beépített szerepkörök toocontrol Site Recovery felügyeleti műveleteket. A további [beépített Azure RBAC-szerepkörök](../active-directory/role-based-access-built-in-roles.md)
 
-* [Hely helyreállítási közreműködői](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor) -ezt a szerepkört minden Azure Site Recovery-műveleteket a Recovery Services-tároló kezeléséhez szükséges engedéllyel rendelkezik. Ezzel a szerepkörrel rendelkező felhasználók azonban nem létrehozása vagy Recovery Services-tároló törlése vagy más felhasználók hozzáférési jogosultságokat rendelhet hozzá. A szerepkör legmegfelelőbb vész helyreállítási rendszergazdák, akik engedélyezése és kezelése a esettől vész-helyreállítási az alkalmazások vagy a teljes szervezet számára.
-* [Helyreállítási operátor hely](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator) -ehhez a szerepkörhöz van engedélye végrehajtására és a feladatátvétel és a feladat-visszavétel operations manager. A felhasználói szerephez nem tudja engedélyezni vagy tiltsa le a replikációt, létrehozása vagy törlése a tárolóból, új infrastruktúra regisztrálása vagy más felhasználók hozzáférési jogosultságokat rendelhet hozzá. Ezt a szerepkört egy feladatátvételi virtuális gépek is vész helyreállítási kezelők a legalkalmasabb vagy alkalmazások, ha arra utasította az alkalmazástulajdonosok és a rendszergazdák egy tényleges vagy szimulált katasztrófa helyzetben, például egy vész-Helyreállítási részletezést. POST a katasztrófa feloldását, a vész-Helyreállítási operátor ismételt védelemmel láthatná és a feladat-visszavételt a virtuális gépek.
-* [Helyreállítási olvasó hely](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader) – Ez a szerepkör jogosult összes Site Recovery felügyeleti műveleteinek megtekintéséhez. Ezt a szerepkört olyan egy informatikai felügyeleti vezető, akik védelmi aktuális állapotának figyelése és támogatási jegyek ablakába, ha szükséges.
+* [Hely helyreállítási közreműködői](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor) – Ez a szerepkör rendelkezik minden engedélyek szükséges toomanage Azure Site Recovery-műveleteket a Recovery Services-tároló. Ezzel a szerepkörrel rendelkező felhasználók azonban nem létrehozása vagy Recovery Services-tároló törlése vagy a hozzáférési jogok tooother felhasználók hozzárendelése. Ezt a szerepkört olyan vész helyreállítási-rendszergazdák számára engedélyezheti és vészhelyreállítás az alkalmazások vagy a teljes szervezet számára hello esetben.
+* [Helyreállítási operátor hely](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator) – Ez a szerepkör engedélyek tooexecute és manager feladatátvétel és a feladat-visszavétel műveleteket tartalmazza. A felhasználói szerephez nem tudja engedélyezni vagy tiltsa le a replikációt, létrehozása vagy törlése a tárolóból, új infrastruktúra regisztrálása vagy hozzáférési jogok tooother felhasználók hozzárendelése. Ezt a szerepkört egy feladatátvételi virtuális gépek is vész helyreállítási kezelők a legalkalmasabb vagy alkalmazások, ha arra utasította az alkalmazástulajdonosok és a rendszergazdák egy tényleges vagy szimulált katasztrófa helyzetben, például egy vész-Helyreállítási részletezést. POST hello katasztrófa felbontása, hello vész-Helyreállítási operátor ismételt védelemmel láthatná, és a feladat-visszavételt a virtuális gépek hello.
+* [Hely helyreállítási olvasó](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader) -ezt a szerepkört engedélyek tooview összes Site Recovery felügyeleti műveleteket tartalmazza. Ezt a szerepkört olyan egy informatikai felügyeleti vezető, akik hello védelmi aktuális állapotának figyelése és támogatási jegyek ablakába, ha szükséges.
 
-Ha még nagyobb mértékben vezérelheti a saját szerepköröket definiál, lásd: hogyan [egyéni szerepkörök létrehozása](../active-directory/role-based-access-control-custom-roles.md) az Azure-ban.
+Ha saját szerepköröket még jobban kézben toodefine van szüksége, lásd: hogyan túl[egyéni szerepkörök létrehozása](../active-directory/role-based-access-control-custom-roles.md) az Azure-ban.
 
-## <a name="permissions-required-to-enable-replication-for-new-virtual-machines"></a>Új virtuális gépek replikáció engedélyezése szükséges engedélyek
-Ha Azure-bA az Azure Site Recovery segítségével új virtuális gép replikálódik, a kapcsolódó felhasználó a hozzáférési szintek érvényesítése annak érdekében, hogy a felhasználó rendelkezik-e a szükséges engedélyekkel a Site Recovery számára a megadott Azure-erőforrások használatára.
+## <a name="permissions-required-tooenable-replication-for-new-virtual-machines"></a>Engedélyek szükséges tooEnable új virtuális gépek replikálása
+Amikor új virtuális gép Azure Site Recovery segítségével replikált tooAzure, hello kapcsolódó felhasználói hozzáférési szintek-e érvényesített tooensure, amely a felhasználó hello hello szükséges engedélyek toouse hello Azure-erőforrások megadott tooSite helyreállítási.
 
-Ahhoz, hogy egy új virtuális gép replikálását, a felhasználóknak rendelkezniük kell:
-* A virtuális gép létrehozása a kijelölt erőforráscsoportban engedély
-* Engedéllyel a kiválasztott virtuális hálózatban lévő virtuális gép létrehozása
-* A kiválasztott tárolási fiók írásához engedély
+egy új virtuális gép replikációs tooenable, a felhasználóknak rendelkezniük kell:
+* Engedély toocreate hello kijelölt erőforráscsoporthoz tartozik, a virtuális gép
+* Engedély toocreate hello a kiválasztott virtuális hálózat a virtuális gép
+* Engedély toowrite toohello kijelölve tárfiók
 
-A felhasználó nem tudja befejezni a replikációt az új virtuális gépek a következő engedélyeket.
+A felhasználó számára a következő engedélyek toocomplete replikációs egy új virtuális gép hello szükséges.
 
 > [!IMPORTANT]
->Győződjön meg arról, hogy a megfelelő engedélyeket kerülnek-e a telepítési modell / (erőforrás-kezelő / klasszikus) erőforrás-telepítéshez használt.
+>Győződjön meg arról, hogy megfelelő engedélyeket / hello telepítési modell kerülnek (erőforrás-kezelő / klasszikus) erőforrás-telepítéshez használt.
 
 | **Erőforrás típusa** | **Telepítési modell** | **Engedély** |
 | --- | --- | --- |
@@ -73,11 +73,11 @@ A felhasználó nem tudja befejezni a replikációt az új virtuális gépek a k
 | Erőforráscsoport | Resource Manager | Microsoft.Resources/deployments/* |
 |  |  | Microsoft.Resources/subscriptions/resourceGroups/read |
 
-Fontolja meg a "Virtuális gép közreműködő" és "Klasszikus virtuális gép közreműködő" [beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md) a Resource Manager és klasszikus telepítési modellek kulcsattribútumokkal.
+Érdemes lehet hello "Virtuális gép közreműködő" és "Klasszikus virtuális gép közreműködő" [beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md) a Resource Manager és klasszikus telepítési modellek kulcsattribútumokkal.
 
 ## <a name="next-steps"></a>Következő lépések
-* [Szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md): az RBAC első lépései az Azure portálon.
-* Útmutató: a hozzáférés kezelése:
+* [Szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md): első lépések az RBAC a hello Azure-portálon.
+* Megtudhatja, hogyan toomanage elérni:
   * [PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md)
   * [Azure CLI](../active-directory/role-based-access-control-manage-access-azure-cli.md)
   * [REST API](../active-directory/role-based-access-control-manage-access-rest.md)

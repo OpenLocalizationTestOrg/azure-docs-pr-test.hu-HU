@@ -14,45 +14,45 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: c182cc2062ada40029504de5b2b64b021c614ce6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4a8f941c1e8e641384a9ee3a1149dabaaf9983cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-testability-scenarios-service-communication"></a>A Service Fabric tesztelhetőségi forgatókönyvek: kommunikációs szolgáltatás
-Mikroszolgáltatások létrehozására és természetesen az Azure Service Fabric architekturális stílusok szolgáltatásorientált felülete. Az elosztott-architektúrák típusai componentized mikroszolgáltatási alkalmazások általában több szolgáltatás egymással kapcsolatot igénylő álló. Még a legegyszerűbb esetben általában van legalább egy állapot nélküli webszolgáltatás és az állapot-nyilvántartó tárolási ADATSZOLGÁLTATÁSNÁL, amely kell kommunikálniuk.
+Mikroszolgáltatások létrehozására és természetesen az Azure Service Fabric architekturális stílusok szolgáltatásorientált felülete. Az elosztott-architektúrák típusai componentized mikroszolgáltatási alkalmazások általában több szolgáltatás igénylő tootalk tooeach más álló. Még akkor is, hello legegyszerűbb esetben általában van legalább egy állapot nélküli webszolgáltatás és egy állapotalapú tárolási szolgáltatás toocommunicate igénylő.
 
-Szolgáltatások közötti kommunikáció nem egy alkalmazást, az kritikus integrációs pont, mert minden egyes szolgáltatás elérhetővé teszi a távoli API más szolgáltatások. API határok olyan készlete, amelyek i/o általában végzett néhány eljárni, tesztelése és érvényesítési megfelelő mennyiségű igényel.
+Szolgáltatások közötti kommunikáció nem egy alkalmazást, az kritikus integrációs pont, mert minden egyes szolgáltatás elérhetővé teszi a távoli API tooother szolgáltatások. API határok olyan készlete, amelyek i/o általában végzett néhány eljárni, tesztelése és érvényesítési megfelelő mennyiségű igényel.
 
-Nincsenek abban az esetben, ha a szolgáltatás határok együtt vezetékes elosztott rendszer számos szempontok:
+Ha a szolgáltatás határok vezetékes együtt egy elosztott rendszerben, nincsenek számos szempontok toomake:
 
 * *Átviteli protokoll*. Fog alkalmazni a megnövekedett való együttműködés HTTP, vagy egy egyéni bináris protokoll maximális átviteli sebesség eléréséhez?
-* *Hibakezelés*. Állandó és átmeneti hibák kezelésének módját? Mi történik, ha a szolgáltatás egy másik csomópont?
-* *Időtúllépések és a késleltetés*. Állással alkalmazásokban hogyan minden szolgáltatási réteg kezelnek várakozási ideje a vermen keresztül, és a felhasználó számára?
+* *Hibakezelés*. Állandó és átmeneti hibák kezelésének módját? Mi történik, ha a szolgáltatás helyezi tooa másik csomópont?
+* *Időtúllépések és a késleltetés*. Állással alkalmazásokban hogyan minden szolgáltatási réteg kezelnek hello verem és toohello felhasználó késést?
 
-Hogy a Service Fabric által biztosított beépített szolgáltatás kommunikációs összetevők valamelyikét használja, vagy hoz létre a saját, a szolgáltatások közötti kapcsolat tesztelése fontos a rugalmasságot az alkalmazás biztosítja.
+Service Fabric által biztosított hello beépített szolgáltatás kommunikációs összetevők valamelyikét használja, vagy hoz létre a saját, kritikus tooensuring rugalmasságot az alkalmazás tesztelése a szolgáltatások közötti hello kapcsolati.
 
-## <a name="prepare-for-services-to-move"></a>Készítse elő a szolgáltatások áthelyezése
-Előfordulhat, hogy idővel Navigálás szolgáltatáspéldány. Ez akkor különösen igaz olyan esetben, ha vannak konfigurálva az optimális erőforrás egyéni szabott terheléselosztás betöltési metrikáit. A Service Fabric helyezi át a szolgáltatáspéldány azok rendelkezésre állásának maximalizálását frissítések, a feladatátvétel, a kibővített és a más elosztott rendszer élettartamuk során előforduló helyzetek esetén.
+## <a name="prepare-for-services-toomove"></a>Szolgáltatások toomove előkészítése
+Előfordulhat, hogy idővel Navigálás szolgáltatáspéldány. Ez akkor különösen igaz olyan esetben, ha vannak konfigurálva az optimális erőforrás egyéni szabott terheléselosztás betöltési metrikáit. A Service Fabric helyezi át a szolgáltatás példányok toomaximize a rendelkezésre állásuk frissítések, a feladatátvétel, a kibővített és a más elosztott rendszer hello élettartamuk során előforduló helyzetek esetén.
 
-Szolgáltatások Navigálás a fürt, mivel az ügyfelek és egyéb szolgáltatások szeretné kezelni a két forgatókönyv akkor kérdezze meg a szolgáltatás kell előkészíteni:
+Hello fürt Navigálás szolgáltatások, az ügyfelek és egyéb szolgáltatások kell előkészített toohandle két olyan eset, amikor azok beszélgetés tooa szolgáltatás:
 
-* A szolgáltatás példányt, vagy a partíció replika óta volt szó, ha azt át lett helyezve. Ez a szolgáltatási életciklus részét, és azt kell várt, és az alkalmazás élettartama során.
-* A szolgáltatás példányt, vagy a partíció replikája éppen áthelyezi. A szolgáltatás egyik csomópontról egy másikra feladatátvételi nagyon gyorsan Service Fabric történik, bár lehet késleltetést a rendelkezésre állási Ha ez az összetevő a szolgáltatás elindításához lassú.
+* hello szolgáltatás példányt, vagy a partíció replika óta hello legutóbbi tooit volt szó, akkor át lett helyezve. Ez a szolgáltatási életciklus részét, és várt toohappen kell az alkalmazás hello élettartama során.
+* hello szolgáltatás példányt, vagy a partíció replikája hello során. A szolgáltatás egy csomópont tooanother történő feladatátvételt nagyon gyorsan a Service Fabric, bár lehet késleltetést a rendelkezésre állási Ha hello kommunikációs összetevő a szolgáltatás lassú toostart.
 
-Ezek a forgatókönyvek szabályosan kezelése fontos smooth futó rendszer esetén. Ehhez a következőket kell figyelembe venni, hogy:
+Ezek a forgatókönyvek szabályosan kezelése fontos smooth futó rendszer esetén. toodo Igen, vegye figyelembe, hogy:
 
-* Minden szolgáltatás, amely képes csatlakozni egy *cím* (például a HTTP vagy a websocket elemek) figyelő. Ha egy szolgáltatáspéldány vagy partíció helyezi, a cím végpont változik. (Áthelyezi azt egy másik csomópont egy másik IP-címmel.) A beépített kommunikációs összetevők használata, azok újra feloldó szolgáltatás címek meg fogja kezelni.
-* Lehet, a szolgáltatás példány elindul felfelé a figyelő a szolgáltatás várakozási ideje ideiglenes növelése újra. Ez attól függ, hogy milyen gyorsan a szolgáltatás megjelenik-e a figyelő a szolgáltatáspéldány áthelyezése után.
-* A meglévő kapcsolatokat kell zárni, majd újra megnyitni a szolgáltatás egy új csomópont megnyitása után. Egy szabályos csomópont leállítása vagy újraindítása lehetővé teszi, hogy a meglévő kapcsolatok kell leállítása idő.
+* Minden szolgáltatás, amely csatlakoztatott toohas egy *cím* (például a HTTP vagy a websocket elemek) figyelő. Ha egy szolgáltatáspéldány vagy partíció helyezi, a cím végpont változik. (Tooa másik csomópont egy másik IP-címmel áthelyezi azt.) Hello beépített kommunikációs összetevők használata, azok újra feloldó szolgáltatás címek meg fogja kezelni.
+* Előfordulhat, a szolgáltatás késés hello szolgáltatás példány indításakor a figyelő mentése másként ideiglenes növelése újra. Ez attól függ, hogy milyen gyorsan hello szolgáltatás hello figyelő követően megnyílik hello szolgáltatáspéldány kerül.
+* A meglévő kapcsolatokat kell toobe zárva, és újra megnyitja a hello szolgáltatást egy új csomópont megnyitása után. Egy szabályos csomópont leállítása vagy újraindítása lehetővé teszi a meglévő kapcsolatok toobe leállítása ideje.
 
 ### <a name="test-it-move-service-instances"></a>Tesztelheti: szolgáltatáspéldány áthelyezése
-A Service Fabric tesztelhetőségi eszközök segítségével egy teszt forgatókönyv tesztelésére ezekben a helyzetekben különböző módon hozhat létre:
+A Service Fabric tesztelhetőségi eszközök segítségével hozhat létre egy tesztelési forgatókönyvhöz tootest ezekben a helyzetekben különböző módon:
 
 1. Helyezze át egy állapotalapú szolgáltatás elsődleges másodpéldány.
    
-    Az elsődleges másodpéldány állapotalapú szolgáltatási partíció áthelyezhető okból sem állhat. Ezzel a cél egy adott partícióra megtekintéséhez, hogy a szolgáltatások reagálnak az áthelyezés nagyon szabályozott módon elsődleges replikáját.
+    hello állapotalapú szolgáltatási partíció elsődleges replika áthelyezhető sem állhat okokra vezethető vissza. Használja a tootarget hello elsődleges másodpéldányának egy adott partícióra toosee hogyan helyezze át a szolgáltatások reagálni toohello nagyon szabályozott módon.
    
     ```powershell
    
@@ -61,9 +61,9 @@ A Service Fabric tesztelhetőségi eszközök segítségével egy teszt forgató
     ```
 2. Csomópont leállítása.
    
-    Egy csomópont leáll, amikor a Service Fabric helyez át valamennyi szolgáltatás példányainak és partíciók, melyeket a fürt más elérhető csomópontok közül a csomóponton. Ezzel a teszt olyan helyzet, ha egy csomópont a fürt és a szolgáltatáspéldány összes elvesztését, és ezen a csomóponton replikának történő áthelyezéséhez.
+    Ha egy csomópont leáll, a Service Fabric helyezi át az összes hello szolgáltatás példányok vagy azelőtt, hogy a csomópont tooone található partíciók hello más elérhető hello fürt csomópontja. Ez a helyzet, ha egy csomópontot a fürtről elvész, és minden hello szolgáltatás példányainak és ezen a csomóponton replikák rendelkezik, toomove tootest használja.
    
-    A PowerShell segítségével leállíthatja egy csomópont **Stop-ServiceFabricNode** parancsmagot:
+    Egy csomópont le is hello PowerShell használatával **Stop-ServiceFabricNode** parancsmagot:
    
     ```powershell
    
@@ -72,14 +72,14 @@ A Service Fabric tesztelhetőségi eszközök segítségével egy teszt forgató
     ```
 
 ## <a name="maintain-service-availability"></a>Szolgáltatás rendelkezésre állása karbantartása
-Platformként a Service Fabric célja, hogy a szolgáltatások magas rendelkezésre állás biztosításához. De szélsőséges esetben alapul szolgáló infrastruktúra problémákat is okozhatnak elérhetetlensége. Fontos túl tesztelése, forgatókönyvek esetén.
+Platformként a Service Fabric tervezett tooprovide magas rendelkezésre állású a szolgáltatásokat. De szélsőséges esetben alapul szolgáló infrastruktúra problémákat is okozhatnak elérhetetlensége. Ezek a forgatókönyvek esetén fontos tootest túl.
 
-Állapotalapú szolgáltatások a kvórum rendszerbe használja replikálja a magas rendelkezésre állás állapota. Ez azt jelenti, hogy a kvórum replikák kell írási műveletek végrehajtásához. Bizonyos ritkán előforduló esetekben, például a széles körű hardverhiba replikák kvórum nem érhetők el. Ezekben az esetekben pedig nem fogják tudni írási műveletek végrehajtására, de továbbra is lesz az olvasási műveletek végrehajtásához.
+Állapotalapú szolgáltatások egy kvórum-alapú rendszerállapot tooreplicate használja a magas rendelkezésre állás érdekében. Ez azt jelenti, hogy a replikákat másodlagosak kell toobe elérhető tooperform írási műveleteket. Bizonyos ritkán előforduló esetekben, például a széles körű hardverhiba replikák kvórum nem érhetők el. Ebben az esetben nem fogja tudni tooperform írási műveleteket, de továbbra is meg fogja tudni tooperform olvasási műveletek.
 
 ### <a name="test-it-write-operation-unavailability"></a>Tesztelheti: írási művelet elérhetetlensége
-A Service Fabric a tesztelhetőségi eszközök használatával helyezhet el a hibát, amely a kvórum elvesztése, mert egy tesztelési kapott. Bár az ilyen esetben nem ritka, fontos, hogy az ügyfelek és az állapotalapú service szolgáltatástól függő szolgáltatások előkészített kezelésére, ha azok nem hajtható végre írási kérelmeket szolgál, hogy amikor. Fontos továbbá, hogy az állapotalapú szolgáltatás felismeri ezt a lehetőséget, és lehet szabályosan tájékoztatni a hívóknak.
+A Service Fabric hello tesztelhetőségi eszközök használatával helyezhet el a hibát, amely a kvórum elvesztése, mert egy tesztelési kapott. Bár az ilyen esetben nem ritka, fontos, hogy az ügyfelek és a szolgáltatás, amely egy állapotalapú szolgáltatás függ toohandle olyan helyzetekben, ahol azok nem hajtható végre írási kérések tooit előkészítése. Fontos továbbá hello állapotalapú szolgáltatás felismeri ezt a lehetőséget, és lehet szabályosan tájékoztatni toocallers.
 
-A PowerShell használatával lehet szükség a kvórum elvesztése **Invoke-ServiceFabricPartitionQuorumLoss** parancsmagot:
+Hello PowerShell segítségével lehet szükség a kvórum elvesztése **Invoke-ServiceFabricPartitionQuorumLoss** parancsmagot:
 
 ```powershell
 
@@ -87,7 +87,7 @@ PS > Invoke-ServiceFabricPartitionQuorumLoss -ServiceName fabric:/Myapplication/
 
 ```
 
-Ebben a példában hivatott `QuorumLossMode` való `QuorumReplicas` annak jelzésére, hogy azt szeretnénk, hogy kvórum elvesztése nélkül összes replika le. Ezzel a módszerrel az olvasási műveletek is továbbra is lehetséges. Egy olyan forgatókönyvet, amikor nem érhető el egy teljes partíció teszteléséhez állíthat be erre a kapcsolóra `AllReplicas`.
+Ebben a példában hivatott `QuorumLossMode` túl`QuorumReplicas` tooindicate, amely azt szeretnénk, ha tooinduce kvórum elvesztése nélkül összes replika le. Ezzel a módszerrel az olvasási műveletek is továbbra is lehetséges. tootest olyan forgatókönyvekben, ahol egy teljes partíció nem érhető el, beállíthatja a kapcsoló túl`AllReplicas`.
 
 ## <a name="next-steps"></a>Következő lépések
 [További tudnivalók tesztelhetőségi műveletek](service-fabric-testability-actions.md)

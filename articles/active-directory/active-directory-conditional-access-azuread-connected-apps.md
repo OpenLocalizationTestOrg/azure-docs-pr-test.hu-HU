@@ -1,6 +1,6 @@
 ---
-title: "Azure feltételes hozzáférés SaaS-alkalmazásokhoz |} Microsoft Docs"
-description: "Feltételes hozzáférés az Azure AD lehetővé teszi, hogy alkalmazásonként többtényezős hitelesítést hozzáférési szabályok és a nem megbízható hálózaton felhasználók hozzáférésének blokkolása konfigurálhatja. "
+title: "Feltételes hozzáférés a Szolgáltatottszoftver-alkalmazásoknál aaaAzure |} Microsoft Docs"
+description: "Feltételes hozzáférés az Azure AD lehetővé teszi, hogy akkor tooconfigure a multi-factor authentication alkalmazás hozzáférési szabályok és hello képességét tooblock hozzáférés a felhasználók számára nem megbízható hálózaton. "
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,18 +14,18 @@ ms.topic: article
 ms.date: 06/07/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: efaa70467346e910a78a63d182041029bb34b1cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 69748014c0c8e266ba66562980c784aba4c68d80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-active-directory-conditional-access"></a>Azure Active Directory feltételes hozzáférés – első lépések
 Az Azure Active Directory feltételes hozzáférés a [SaaS](https://azure.microsoft.com/overview/what-is-saas/) alkalmazásokat és az Azure AD csatlakoztatott csoport, a hely és az alkalmazás érzékenysége alapján feltételes hozzáférést konfigurál apps segítségével. 
 
-Feltételes hozzáféréssel alkalmazás érzékenysége alapján többtényezős hitelesítés (MFA) hozzáférési szabályok alkalmazásonként állíthatja be. Alkalmazásonként többtényezős hitelesítés lehetővé teszi a felhasználók, akik nem megbízható hálózatokon hozzáférésének blokkolása. MFA szabályokat alkalmazhat az alkalmazáshoz, vagy csak a felhasználók számára megadott biztonsági csoportokban rendelt összes felhasználó.  Felhasználók kizárhatók a többtényezős hitelesítés követelménye, ha az alkalmazás érik el a belsejében a vállalati hálózaton található IP-címet.
+Feltételes hozzáféréssel alkalmazás érzékenysége alapján többtényezős hitelesítés (MFA) hozzáférési szabályok alkalmazásonként állíthatja be. Alkalmazásonként többtényezős Hitelesítést hello képességét tooblock hozzáférést biztosít a felhasználók számára, akik nem megbízható hálózatokon. Többtényezős hitelesítés szabályok tooall felhasználók vannak hozzárendelve toohello alkalmazás, vagy csak a felhasználók belül meghatározott biztonsági csoportok is alkalmazhatja.  Felhasználók kizárhatók hello többtényezős hitelesítés követelménye, ha hello alkalmazás hello vállalati hálózaton belül az IP-címről érik el.
 
-Ezek a képességek, amelyek az Azure Active Directory Premium-licencet vásárolt használó ügyfelek számára elérhető lesz.
+Ezek a képességek lesz elérhető toocustomers, amely Azure Active Directory Premium-licencet vásárolt.
 
 ## <a name="scenario-prerequisites"></a>A forgatókönyv előfeltételei
 * Az Azure Active Directory Premium licenc
@@ -33,57 +33,57 @@ Ezek a képességek, amelyek az Azure Active Directory Premium-licencet vásáro
 * Összevont bérlők használatához, hogy a multi-factor authentication engedélyezni kell.
 
 ## <a name="configure-per-application-access-rules"></a>Alkalmazás hozzáférési szabályok konfigurálása
-Ez a szakasz ismerteti az alkalmazás hozzáférési szabályok konfigurálása.
+Ez a szakasz ismerteti, hogyan férnek hozzá az alkalmazásokhoz tooconfigure szabályok.
 
-1. Jelentkezzen be a klasszikus Azure portálra egy olyan fiókkal, amely az Azure AD globális rendszergazda.
-2. A bal oldali panelen válassza az **Active Directory** elemet.
-3. A könyvtár lapon válassza ki a címtárát.
-4. Válassza ki a **alkalmazások** fülre.
-5. Válassza ki az alkalmazást, amely a szabályhoz lesznek beállítva.
-6. Válassza a **Konfigurálás** lapot.
-7. Görgessen le a hozzáférési szabályok szakaszban. Jelölje ki a kívánt hozzáférési szabályt.
-8. Adja meg a felhasználókat, a szabály vonatkozik.
-9. A házirend engedélyezéséhez jelölje ki **engedélyezve kell lennie a**.
+1. Jelentkezzen be toohello a klasszikus Azure portál, amely az Azure AD globális rendszergazda fiókkal.
+2. Hello bal oldali ablaktáblában jelölje ki **Active Directory**.
+3. Hello könyvtár lapján válassza ki a címtárát.
+4. Jelölje be hello **alkalmazások** fülre.
+5. A szabály hello válassza hello alkalmazás lesz beállítva.
+6. Jelölje be hello **konfigurálása** fülre.
+7. Görgessen lefelé toohello hozzáférési szabályok szakasz. Válassza ki a hello kívánt hozzáférési szabály.
+8. Adja meg a hello felhasználók hello szabály vonatkozik.
+9. Hello házirend engedélyezéséhez jelölje ki **toobe engedélyezve**.
 
 ## <a name="understanding-access-rules"></a>Hozzáférési szabályok ismertetése
-Ez a szakasz részletes leírást ad a hozzáférési szabályok támogatja az Azure feltételes alkalmazás-hozzáférés.
+Ez a szakasz részletes leírást ad hello hozzáférési szabályok Azure feltételes alkalmazás-hozzáférés hello támogatott.
 
-### <a name="specifying-the-users-the-access-rules-apply-to"></a>A felhasználók, a hozzáférési szabályok alkalmazása
-Alapértelmezés szerint a házirend az alkalmazáshoz hozzáféréssel rendelkező összes felhasználóra vonatkozni fognak. Azonban korlátozhatja is a szabályzatot a felhasználók számára, hogy a megadott biztonsági csoportok tagjai. A **csoport hozzáadása** gomb használatával válassza ki egy vagy több csoportok a csoport kiválasztása párbeszédpanel, amely a hozzáférési szabály vonatkozik. Ezen a párbeszédpanelen kijelölt csoportok törlése is használható. Ha a szabályok csoportjaira alkalmazhatók van kijelölve, a hozzáférési szabályok csak kényszeríti ki a felhasználók számára, amely a megadott biztonsági csoportok egyikéhez tartozik.
+### <a name="specifying-hello-users-hello-access-rules-apply-to"></a>Adja meg hello felhasználók hello hozzáférési szabályok alkalmazása
+Alapértelmezés szerint a hello szabályzat hatálya alá tooall felhasználóknak, akik számára access toohello alkalmazást. Azonban korlátozhatja is, amelyek tagjai a megadott hello hello házirend toousers biztonsági csoportokat. Hello **csoport hozzáadása** gomb használt tooselect egy vagy több olyan csoportot hello csoport kiválasztása párbeszédpanel, amely hello hozzáférési szabály vonatkozik. Ezen a párbeszédpanelen kijelölt használt tooremove csoportok is lehet. Ha hello szabályok kijelölt tooapply tooGroups, hello hozzáférési szabályok csak kényszeríti ki a felhasználók számára a megadott hello tooone tartozó biztonsági csoportokat.
 
-Biztonsági csoportok is explicit módon kizárhatók a házirend kiválasztásával a **kivéve** lehetőséget, és egy vagy több csoport megadása. Felhasználók, akik a csoport tagja a **kivéve** lista nem vesznek részt a multi-factor authentication követelményeinek, akkor is, ha tagja egy csoportnak, amelyre a hozzáférési szabály vonatkozik.
-Az alább látható hozzáférési szabály szükséges többtényezős hitelesítés használatára, az alkalmazáshoz való hozzáféréskor a vezetők csoport minden tagjára.
+Biztonsági csoportok is explicit módon kizárhatók hello házirend hello kiválasztásával **kivéve** lehetőséget, és egy vagy több csoport megadása. Felhasználók, akik a hello egy csoport tagjai **kivéve** lista csak akkor tulajdonos toohello multi-factor authentication követelményeinek, akkor is, ha tagja egy csoportnak, hogy hello hozzáférési szabály vonatkozik.
+hello hozzáférési szabály alább látható lesz, a felhasználóknak minden a hello vezetők csoport toouse multi-factor authentication hello alkalmazáshoz való hozzáféréskor.
 
 ![Feltételes hozzáférési szabályok a multi-factor Authentication szolgáltatás beállítása](./media/active-directory-conditional-access-azuread-connected-apps/conditionalaccess-saas-apps.png)
 
 ## <a name="conditional-access-rules-with-mfa"></a>Feltételes hozzáférési szabályai többtényezős hitelesítéssel
-Ha a felhasználó a felhasználói a multi-factor authentication szolgáltatás használatával lett konfigurálva, ezt a beállítást, a felhasználó a multi-factor Authentication hitelesítés szabályoknak az alkalmazás fogja össze. Ez azt jelenti, hogy a felhasználó a multi-factor authentication felhasználói konfigurált lesz szükség ahhoz, hogy többtényezős hitelesítést végezni, akkor is, ha az alkalmazáshoz a multi-factor authentication szabályok alól. További tudnivalók a többtényezős hitelesítés és az egyes felhasználók beállításait.
+Ha egy felhasználó hello felhasználói a multi-factor authentication szolgáltatás használatával lett konfigurálva, ezt a beállítást az hello felhasználói hello a multi-factor authentication szabályokkal hello alkalmazás fogja össze. Ez azt jelenti, hogy a felhasználó a multi-factor authentication felhasználói konfigurált lesz szükséges tooperform többtényezős hitelesítést, akkor is, ha az hello alkalmazáshoz a multi-factor authentication szabályok alól. További tudnivalók a többtényezős hitelesítés és az egyes felhasználók beállításait.
 
 ### <a name="access-rule-options"></a>Hozzáférési szabály beállítása
-A következő beállításokat támogatja:
+a következő beállítások hello támogatottak:
 
-* **Többtényezős hitelesítés megkövetelése**: A felhasználók, akiknek a hozzáférési szabályok vonatkoznak, az alkalmazást, amely a házirend érvényes elérése előtt teljes többtényezős hitelesítést lesz.
-* **Ha nem munkahelyi többtényezős hitelesítést**: egy felhasználó adatforrásból származó megbízható IP-címnek nem kell-e többtényezős hitelesítés. A többtényezős hitelesítési beállítások lapon konfigurálhatja a megbízható IP-címtartományok.
-* **Letiltja a hozzáférést, ha nem munkahelyi**: nem származik megbízható IP-címnek felhasználó le lesz tiltva. A többtényezős hitelesítési beállítások lapon konfigurálhatja a megbízható IP-címtartományok.
+* **Többtényezős hitelesítés megkövetelése**: toowhom hello hozzáférési szabályok vonatkoznak, hello felhasználók fognak szükséges toocomplete a multi-factor authentication ahhoz, hogy a házirend hello hello alkalmazás elérésének vonatkozik.
+* **Ha nem munkahelyi többtényezős hitelesítést**: egy olyan felhasználó, a megbízható IP-cím érkezik csak akkor szükséges tooperform többtényezős hitelesítést. hello megbízható IP-címtartományok hello többtényezős hitelesítési beállítások lapon konfigurálhatja.
+* **Letiltja a hozzáférést, ha nem munkahelyi**: nem származik megbízható IP-címnek felhasználó le lesz tiltva. hello megbízható IP-címtartományok hello többtényezős hitelesítési beállítások lapon konfigurálhatja.
 
 ### <a name="setting-rule-status"></a>A szabály állapotának beállítása
-Hozzáférési szabály állapota lehetővé teszi, hogy a szabályok be- és kikapcsolhatja. Ha a hozzáférési szabályok vannak kapcsolva, a multi-factor authentication követelményeinek nem lép életbe.
+Hozzáférési szabály állapota lehetővé teszi, hogy hello szabályok be- és kikapcsolhatja. Amikor hello hozzáférési szabályok vannak kapcsolva, hello többtényezős hitelesítésre vonatkozó követelmény nincs alkalmazva.
 
 ### <a name="access-rule-evaluation"></a>Hozzáférési szabály értékelése
-Hozzáférési szabályok van kiértékelve, amikor egy felhasználó egy összevont alkalmazás által használt OAuth 2.0-s, OpenID Connect, SAML és WS-Federation fér hozzá. Ezenkívül hozzáférési szabályok értékelésének az OAuth 2.0 és az OpenID Connect használja a frissítési jogkivonat olyan hozzáférési jogkivonatot. Házirend kiértékelése sikertelen lesz, amikor a frissítési token történik, ha a hiba **invalid_grant** adja vissza, ez azt jelzi, hogy a felhasználónak újra hitelesíteni az ügyfélnek van szüksége.
+Hozzáférési szabályok van kiértékelve, amikor egy felhasználó egy összevont alkalmazás által használt OAuth 2.0-s, OpenID Connect, SAML és WS-Federation fér hozzá. Ezenkívül hozzáférési szabályok értékelésének hello OAuth 2.0 és az OpenID Connect használata a frissítési token tooacquire olyan hozzáférési jogkivonatot. Házirend kiértékelése sikertelen a frissítési jogkivonat használata esetén, ha hiba hello **invalid_grant** adja vissza, ez azt jelzi, hogy hello felhasználói kell toore-toohello ügyfél hitelesítésére.
 
-### <a name="configure-federation-services-to-provide-multi-factor-authentication"></a>A többtényezős hitelesítés összevonási szolgáltatások konfigurálása
-Összevont bérlők MFA hajthatja végre az Azure Active Directory vagy a helyszíni AD FS-kiszolgálón.
+### <a name="configure-federation-services-tooprovide-multi-factor-authentication"></a>Összevonási szolgáltatások tooprovide többtényezős hitelesítés beállítása
+Összevont bérlők MFA hajthatja végre hello vagy Azure Active Directory által a helyszíni AD FS-kiszolgálón.
 
-Alapértelmezés szerint az MFA egy Azure Active Directory által üzemeltetett oldalon történik. Konfigurálhatja az MFA a helyszínen, a **– SupportsMFA** tulajdonság értékre kell állítani **igaz** az Azure Active Directoryban, az Azure AD-modullal a Windows PowerShell használatával.
+Alapértelmezés szerint az MFA egy Azure Active Directory által üzemeltetett oldalon történik. tooconfigure többtényezős hitelesítés a helyszíni hello **– SupportsMFA** tulajdonság túl be kell állítani**igaz** az Azure Active Directoryban, hello Azure AD-modul Windows PowerShell használatával.
 
-A következő példa bemutatja, hogyan engedélyezése a helyi multi-factor Authentication használatával a [Set-MsolDomainFederationSettings parancsmag](https://msdn.microsoft.com/library/azure/dn194088.aspx) a contoso.com tenant:
+hello következő példa bemutatja, hogyan tooenable helyszíni MFA hello segítségével [Set-MsolDomainFederationSettings parancsmag](https://msdn.microsoft.com/library/azure/dn194088.aspx) hello contoso.com tenant:
 
     Set-MsolDomainFederationSettings -DomainName contoso.com -SupportsMFA $true
 
-Ez a jelző mellett az összevont bérlői AD FS-példányt kell állítani a többtényezős hitelesítést végezni. Kövesse az utasításokat [üzembe helyezése az Azure multi-factor Authentication helyszíni](../multi-factor-authentication/multi-factor-authentication-get-started-server.md).
+Továbbá toosetting ezt a jelzőt, hello összevont bérlői AD FS-példányt kell tooperform a multi-factor authentication konfigurálva. Kövesse az utasításokat hello [üzembe helyezése az Azure multi-factor Authentication helyszíni](../multi-factor-authentication/multi-factor-authentication-get-started-server.md).
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
-* [Az Azure Active Directoryhoz csatlakoztatott Office 365 és az egyéb alkalmazások hozzáférésének biztonságossá tétele](active-directory-conditional-access.md)
+* [Az Active Directory tooAzure tooOffice 365 és az egyéb alkalmazások hozzáférésének biztonságossá tétele csatlakoztatva](active-directory-conditional-access.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 

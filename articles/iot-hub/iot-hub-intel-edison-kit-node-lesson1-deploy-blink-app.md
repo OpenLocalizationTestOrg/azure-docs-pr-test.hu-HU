@@ -1,6 +1,6 @@
 ---
-title: "Intel Edison (csomópont) csatlakozni az Azure IoT - 1. lecke: alkalmazás üzembe helyezése |} Microsoft Docs"
-description: "Klónozza a C mintaalkalmazást a Githubból, és futtassa a gulp az Intel Edison board az alkalmazás telepítéséhez. A mintaalkalmazás villogjon a kártyához csatlakoztatott két másodpercenként LED-jét."
+title: "Intel Edison (csomópont) tooAzure IoT - lecke 1 Kapcsolódás: alkalmazás üzembe helyezése |} Microsoft Docs"
+description: "Klónozza a C mintaalkalmazás hello a Githubból, és futtassa gulp toodeploy az alkalmazás tooyour Intel Edison board. A mintaalkalmazás villogjon hello csatlakoztatott LED toohello board két másodpercenként."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,34 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 8490fbbf14183432c665165412f00955d6323580
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bc03c7e45bd1ba9e9b2c8f2fec70a1be647e96b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a>A villogóalkalmazás elkészítése és üzembe helyezése
+# <a name="create-and-deploy-hello-blink-application"></a>Hello villogási alkalmazás létrehozását és telepítését
 ## <a name="what-you-will-do"></a>Mit fog
-Klónozza a C mintaalkalmazást a Githubból, és a segítségével gulp az Intel Edison minta alkalmazást telepíti. A mintaalkalmazás villogjon a kártyához csatlakoztatott két másodpercenként LED-jét. Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási][troubleshooting].
+Klónozza a C mintaalkalmazás hello a Githubból, és hello gulp eszköz toodeploy hello minta alkalmazás tooIntel Edison használja. hello mintaalkalmazás villogjon hello csatlakoztatott LED toohello board két másodpercenként. Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási][troubleshooting].
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
-* Hogyan telepítheti, és futtassa a mintaalkalmazást a Edison.
+* Hogyan toodeploy és futtatási hello mintaalkalmazást a Edison.
 
 ## <a name="what-you-need"></a>Mi szükséges
-Sikeresen végrehajtotta a következő műveleteket:
+Sikeresen végrehajtotta a következő műveletek hello:
 
 * [Állítsa be az eszközt][configure-your-device]
-* [Eszközök][get-the-tools]
+* [Hello eszközök beszerzése][get-the-tools]
 
-## <a name="open-the-sample-application"></a>Nyissa meg a mintaalkalmazás
-A mintaalkalmazás megnyitásához kövesse az alábbi lépéseket:
+## <a name="open-hello-sample-application"></a>Nyissa meg hello mintaalkalmazás
+tooopen hello mintaalkalmazást, kövesse az alábbi lépéseket:
 
-1. A Githubból a minta-tárház klónozása a következő parancs futtatásával:
+1. A Githubból hello minta tárház klónozása hello a következő parancs futtatásával:
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-node-edison-getting-started.git
    ```
-2. Nyissa meg a Visual Studio Code a mintaalkalmazást a következő parancsok futtatásával:
+2. Nyissa meg a Visual Studio Code hello mintaalkalmazás hello a következő parancsok futtatásával:
 
    ```bash
    cd iot-hub-node-edison-getting-started
@@ -54,27 +54,27 @@ A mintaalkalmazás megnyitásához kövesse az alábbi lépéseket:
 
    ![Tárház szerkezete][repo-structure]
 
-A fájl a `app` almappa is szabályozhatja a LED kódot tartalmazó kulcs forrásfájl.
+hello hello fájlban `app` almappa is hello kód toocontrol hello LED tartalmazó hello kulcs forrásfájl.
 
 ### <a name="install-application-dependencies"></a>Telepítse az alkalmazásfüggőségek
-A szalagtárak és egyéb modulok a következő parancs futtatásával kell a mintaalkalmazás telepítése:
+Hello szalagtárak és más modulok hello a következő parancs futtatásával kell hello mintaalkalmazás telepítése:
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a>Az eszköz kapcsolat konfigurálása
-Az eszköz kapcsolat konfigurálásához kövesse az alábbi lépéseket:
+## <a name="configure-hello-device-connection"></a>Hello eszköz kapcsolat konfigurálása
+tooconfigure hello eszköz kapcsolat, kövesse az alábbi lépéseket:
 
-1. Az eszköz konfigurációs fájl létrehozása a következő parancs futtatásával:
+1. Hello eszköz konfigurációs fájl létrehozása hello a következő parancs futtatásával:
 
    ```bash
    gulp init
    ```
 
-   A konfigurációs fájl `config-edison.json` felhasználói hitelesítő adatokkal kell bejelentkezni Edison tartalmazza. A felhasználói hitelesítő adatok memóriavesztés elkerülése érdekében a konfigurációs fájl jön létre, almappájában `.iot-hub-getting-started` az otthoni mappa a számítógépen.
+   hello konfigurációs fájl `config-edison.json` hello segítségével toolog tooEdison felhasználói hitelesítő adatokat tartalmaz. tooavoid hello szivárgásával járnak a felhasználói hitelesítő adatok, hello konfigurációs fájl jön létre hello almappájában `.iot-hub-getting-started` hello otthoni mappa a számítógépen.
 
-2. Nyissa meg a Visual Studio Code eszköz konfigurációs fájl a következő parancs futtatásával:
+2. Nyissa meg a Visual Studio Code hello eszköz konfigurációs fájl hello a következő parancs futtatásával:
 
    ```bash
    # For Windows command prompt
@@ -84,31 +84,31 @@ Az eszköz kapcsolat konfigurálásához kövesse az alábbi lépéseket:
    code ~/.iot-hub-getting-started/config-edison.json
    ```
 
-3. Cserélje le a helyőrző `[device hostname or IP address]` és `[device password]` a IP-címét és jelszavát, amely korábbi lecke jelölésű.
+3. Cserélje le a hello helyőrző `[device hostname or IP address]` és `[device password]` hello IP-címét és jelszavát, amely korábbi lecke jelölésű.
 
    ![Config.JSON](media/iot-hub-intel-edison-lessons/lesson1/vscode-config-mac.png)
 
-Gratulálunk! Sikeresen létrehozta a Edison első mintaalkalmazást.
+Gratulálunk! Sikeresen létrehozta a hello első mintaalkalmazás Edison.
 
-## <a name="deploy-and-run-the-sample-application"></a>Regisztrálhat és futtathat a mintaalkalmazás
+## <a name="deploy-and-run-hello-sample-application"></a>Regisztrálhat és futtathat hello mintaalkalmazás
 
-### <a name="deploy-and-run-the-sample-app"></a>Központi telepítése és a mintaalkalmazás futtatása
-Telepíthet, és futtassa a mintaalkalmazást a következő parancs futtatásával:
+### <a name="deploy-and-run-hello-sample-app"></a>Regisztrálhat és futtathat hello mintaalkalmazás
+Telepíthet, és futtassa a hello mintaalkalmazást hello a következő parancs futtatásával:
 
 ```bash
 gulp deploy && gulp run
 ```
 
-### <a name="verify-the-app-works"></a>Ellenőrizze az alkalmazás akkor működik
-A mintaalkalmazás automatikusan leáll, miután a LED villogjon-20 alkalommal a. Ha nem látja a LED villogó, tekintse meg a [hibaelhárítási útmutatója] [ troubleshooting] gyakori problémák megoldásainak.
+### <a name="verify-hello-app-works"></a>Ellenőrizze a hello az alkalmazás akkor működik
+hello mintaalkalmazás automatikusan leáll, miután hello LED villogjon-20 alkalommal a. Ha nem lát hello LED villogó, lásd: hello [hibaelhárítási útmutatója] [ troubleshooting] a megoldások toocommon problémákat.
 
 ![LED villogó][led-blinking]
 
 ## <a name="summary"></a>Összefoglalás
-A szükséges eszközök Edison használható telepítése és a LED villogni fog Edison a mintaalkalmazás telepítése. Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti Edison Azure IoT Hub az üzeneteket küldjön és fogadjon.
+A Edison hello szükséges eszközök toowork telepítése és telepített egy minta alkalmazás tooEdison tooblink hello LED-jét. Most hozzon létre, telepítheti, és futtassa egy másik olyan mintaalkalmazást, amely összeköti az IoT-központ toosend Edison tooAzure és üzeneteket fogadni.
 
 ## <a name="next-steps"></a>Következő lépések
-[Az Azure eszközök][get-the-azure-tools]
+[Első hello Azure-eszközök][get-the-azure-tools]
 
 <!-- Images and links -->
 

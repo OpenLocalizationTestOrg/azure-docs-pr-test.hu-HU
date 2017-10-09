@@ -1,11 +1,11 @@
-Az Azure-erőforrások címkézésével logikus elv mentén rendszerezheti azokat, kategóriák szerint. Minden címke egy névből és egy értékből áll. Alkalmazhatja például a „Környezet” nevet és az „Éles” értéket az összes éles üzemben használt erőforrásra. E nélkül a címke nélkül nehézségekbe ütközhet, ha meg szeretné állapítani, hogy az adott erőforrás fejlesztési, tesztelési vagy éles üzemi célokat szolgál. A „Környezet” és az „Éles” azonban csak például szolgál. Olyan neveket és értékeket adjon meg, amelyek az előfizetés rendszerezésének szempontjából célszerűek.
+Címkékkel tooyour Azure-erőforrások toologically kategóriák szerint rendszerezze őket. Minden címke egy névből és egy értékből áll. Alkalmazhat például hello neve "Környezet" és a hello érték "Éles" tooall hello erőforrások éles környezetben. E nélkül a címke nélkül nehézségekbe ütközhet, ha meg szeretné állapítani, hogy az adott erőforrás fejlesztési, tesztelési vagy éles üzemi célokat szolgál. A „Környezet” és az „Éles” azonban csak például szolgál. Hello és jelentéssel bírnak hello legtöbb rendszerezéséhez az előfizetés értékeket adhat meg.
 
-A címkék alkalmazása után az előfizetés összes erőforrását lekérheti az adott címke nevével és értékével. A címkékkel olyan kapcsolódó erőforrásokat is lekérhet, amelyek más erőforráscsoportokban találhatók. Ez a megoldás akkor hasznos, ha számlázás vagy felügyelet céljából kell rendszereznie erőforrásait.
+Címkék alkalmazása után minden hello erőforrások kérheti le az előfizetéshez, hogy a címke neve és értéke. Címkék engedélyezése, tooretrieve kapcsolódó erőforrásokat, amelyek a különböző erőforráscsoportokra találhatók. Ez a módszer akkor hasznos, ha tooorganize erőforrások számlázási vagy felügyeleti szüksége.
 
-Az alábbi korlátozások érvényesek a címkékre:
+a következő korlátozások hello tootags vonatkoznak:
 
-* Minden egyes erőforrás vagy erőforráscsoport legfeljebb 15 címkenév/érték párral rendelkezhet. A korlátozás csak a közvetlenül az erőforráscsoportra vagy erőforrásra alkalmazott címkékre érvényes. Az erőforráscsoportok sok olyan erőforrást tartalmazhatnak, amelyek mindegyike 15 címkenév/érték párral rendelkezik. 
-* A címke neve legfeljebb 512 karakter, a címke értéke pedig legfeljebb 256 karakter hosszúságú lehet. A tárfiókok esetében a címke neve legfeljebb 128 karakter, a címke értéke pedig legfeljebb 256 karakter hosszúságú lehet.
-* Az egyes erőforráscsoportokra alkalmazott címkéket nem öröklik az adott erőforráscsoportba tartozó erőforrások. 
+* Minden egyes erőforrás vagy erőforráscsoport legfeljebb 15 címkenév/érték párral rendelkezhet. Ez a korlátozás vonatkozik csak közvetlenül alkalmazható tootags toohello erőforráscsoport erőforrás. Az erőforráscsoportok sok olyan erőforrást tartalmazhatnak, amelyek mindegyike 15 címkenév/érték párral rendelkezik. 
+* hello címkenév korlátozott too512 karakterek, hello címke értéke pedig korlátozott too256 karaktereket. Storage-fiókok hello címkenév korlátozott too128 karakterek, hello címke értéke pedig korlátozott too256 karaktereket.
+* Az erőforráscsoport hello erőforrások nem örökli alkalmazott címkék toohello erőforráscsoportot. 
 
-Ha több mint 15 értéket kell társítania egy erőforráshoz, használjon JSON-karakterláncot a címke értékéhez. A JSON-karakterlánc sok olyan értéket tartalmazhat, amelyek egyetlen címkenévre vannak alkalmazva. Ez a cikk arra mutat be egy példát, hogyan rendelhető hozzá egy JSON-karakterlánc a címkéhez.
+Ha több mint 15 értékeket, hogy kell-e tooassociate erőforrással, használja a JSON karakterláncnak hello címke értéke. hello JSON-karakterláncban alkalmazott tooa egyetlen címke neve sok értékeket tartalmazhat. Ez a cikk egy JSON-karakterlánc toohello címke hozzárendelése példáját mutatja be.

@@ -1,6 +1,6 @@
 ---
-title: "Miniatűrök létrehozása a .NET-es Media Encoder Standard használatával"
-description: "Ez a témakör bemutatja, hogyan .NET használatával egy eszköz kódolni és indexképének létrehozására használnak Media Encoder Standard használatával egyszerre."
+title: "a .NET Media Encoder Standard használatával aaaHow toogenerate miniatűrök"
+description: "Ez a témakör bemutatja, hogyan toouse .NET tooencode egy eszköz és a hello indexképének létrehozására használnak Media Encoder Standard használatával egyszerre."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: juliako
-ms.openlocfilehash: 89d15cbdf71a140e78f34e07ff208776b7d4cab3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 23d3e4d9bf64a688d45499c045f19d2792167990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-generate-thumbnails-using-media-encoder-standard-with-net"></a>Miniatűrök létrehozása a .NET-es Media Encoder Standard használatával
+# <a name="how-toogenerate-thumbnails-using-media-encoder-standard-with-net"></a>Hogyan toogenerate miniatűrök .NET Media Encoder Standard használatával
 
-Használhatja Media Encoder Standard használatával hozzon létre egy vagy több miniatűrök a bemeneti videóhoz a [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), vagy [BMP](https://en.wikipedia.org/wiki/BMP_file_format) fájlformátumok lemezképet. Elküldheti a feladatokat, amelyek csak a képeket, vagy kombinálhatja a miniatűr generációs kódolással. Ez a témakör néhány minta XML és JSON miniatűr készletek ilyen forgatókönyvek esetén. A témakör végén van egy [példakód](#code_sample) , amely bemutatja, hogyan kódolási a feladatnak a Media Services .NET SDK használatával.
+Használhat Media Encoder Standard toogenerate egy vagy több miniatűrök a bemeneti videó [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), vagy [BMP](https://en.wikipedia.org/wiki/BMP_file_format) fájlformátumok lemezképet. Elküldheti a feladatokat, amelyek csak a képeket, vagy kombinálhatja a miniatűr generációs kódolással. Ez a témakör néhány minta XML és JSON miniatűr készletek ilyen forgatókönyvek esetén. Hello témakör hello végén van egy [példakód](#code_sample) , amely bemutatja, hogyan toouse hello Media Services .NET SDK tooaccomplish hello kódolási feladat.
 
-A minta készletek használt elemein további részletekért tekintse át [Media Encoder Standard séma](media-services-mes-schema.md).
+A minta készletek használt hello elemek további részletekért tekintse át [Media Encoder Standard séma](media-services-mes-schema.md).
 
-Mindenképpen tekintse át a [szempontok](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) szakasz.
+Győződjön meg arról, hogy tooreview hello [szempontok](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) szakasz.
 
 ## <a name="example--single-png-file"></a>Példa – egyetlen PNG-fájl
 
-A következő JSON és az XML-készlet feladatvégrehajtás egyetlen kimeneti PNG fájlok kívül az első néhány másodpercet a bemeneti videóhoz, ahol a kódolás lehetővé teszi a legjobb kísérlet egy "érdekes" keret keresése használható. Vegye figyelembe, hogy a kimeneti kép méretei állították be, hogy a 100 %, ami azt jelenti, ezek a dimenziók a bemeneti videó fog egyezni. Azt is fontos megjegyezni, hogyan "Kimenetek" a "Format" beállítást kell felel meg a "Kodekek" szakasz "PngLayers" használatát. 
+a következő JSON hello, és XML-készlet használt tooproduce egy egyetlen kimeneti PNG fájlt hello kívül néhány másodperc hello bemeneti videó, ahol hello kódoló lehetővé teszi a legjobb kísérlet egy "érdekes" keret keresése. Vegye figyelembe, hogy hello kimeneti kép méretei van állítva too100 %, ami azt jelenti, ezek fog egyezni a hello dimenziók hello bemeneti videó. Ügyeljen arra is, hogy a "Kimenetek" hello "Formátum" beállításra akkor szükség toomatch hello használata "PngLayers" hello "Kodekek" szakaszában. 
 
 ### <a name="json-preset"></a>JSON-készlet
 
@@ -82,7 +82,7 @@ A következő JSON és az XML-készlet feladatvégrehajtás egyetlen kimeneti PN
 
 ## <a name="example--a-series-of-jpeg-images"></a>JPEG-képek sorozata – – példa
 
-A következő JSON és az XML-készlet segítségével létrehoznak egy 10 kép időbélyegeket 5, %, 15 %,..., 95 %-a bemeneti ütemterv, ahol a képméret ilyen van megadva a negyedév, amely a bemeneti videó.
+a következő JSON hello, és XML-készlet használt tooproduce 5 %-os időbélyegeket 10 lemezképeit készlete 15 %,..., hello bemeneti ütemterv, ahol hello lemezkép mérete megadott toobe egy negyedév, hello bemeneti videó 95 %-át.
 
 ### <a name="json-preset"></a>JSON-készlet
 
@@ -138,7 +138,7 @@ A következő JSON és az XML-készlet segítségével létrehoznak egy 10 kép 
 
 ## <a name="example--one-image-at-a-specific-timestamp"></a>Példa – egy lemezképet egy adott időbélyeg
 
-A következő JSON és az XML-készletet, a 30 második be van jelölve a bemeneti videó egyetlen JPEG-képek létrehozására használható. Az előre definiált vár a bemeneti idő több mint 30 másodperc lehet (ellenkező esetben a feladat sikertelen lesz).
+JSON- és XML-készlet a következő hello használt tooproduce egy egyetlen hello képnek JPEG hello bemeneti videó megjelölni 30 másodperc is lehet. Az előre definiált vár hello bemeneti toobe több mint 30 másodperc az időtartam (más hello feladat sikertelen lesz).
 
 ### <a name="json-preset"></a>JSON-készlet
 
@@ -194,21 +194,21 @@ A következő JSON és az XML-készletet, a 30 második be van jelölve a bemene
 
 ## <a id="code_sample"></a>Példa – videó kódolása és miniatűr készítése
 
-Az alábbi példakód Media Services .NET SDK-t használja a következő feladatok végezhetők el:
+a következő példakód hello Media Services .NET SDK tooperform hello feladatok a következő használja:
 
 * Hozzon létre egy kódolási feladat.
-* A Media Encoder Standard encoder mutató hivatkozás beszerzése.
-* A készlet betöltéséhez [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) , amelyek tartalmazzák a kódolást és a miniatűrök létrehozásához szükséges információkat az adott néven beállítás. Ez mentheti [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) a fájl- és használja a következő kódot betölteni a fájlt.
+* Egy hivatkozási toohello Media Encoder Standard encoder beolvasása.
+* Betöltési hello beállított [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) hello kódolás beállított információk toogenerate miniatűrök igény szerint is tartalmaznak. Ez mentheti [XML](media-services-dotnet-generate-thumbnail-with-mes.md#xml) vagy [JSON](media-services-dotnet-generate-thumbnail-with-mes.md#json) a következő kód tooload hello fájl egy fájl és -felhasználási hello.
   
-        // Load the XML (or JSON) from the local file.
+        // Load hello XML (or JSON) from hello local file.
         string configuration = File.ReadAllText(fileName);  
-* Egy kódolási feladat hozzáadása a projekthez. 
-* Adja meg a bemeneti eszköz kódolni kell.
-* Hozzon létre egy kimeneti eszközt, amely tartalmazza majd a kódolt objektumhoz.
-* Adjon hozzá egy eseménykezelő, ellenőrizze a feladat előrehaladását.
-* A feladat elküldéséhez.
+* Adjon hozzá egy kódolási feladat toohello feladatban. 
+* Adjon meg bemeneti hello eszköz toobe kódolású.
+* Hozzon létre egy kimeneti eszköz, amely kódolású hello eszköz fogja tartalmazni.
+* Adjon hozzá egy esemény kezelő toocheck hello feladat előrehaladását.
+* Hello feladat küldése
 
-Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md) témakör utasításait a fejlesztési környezet beállítását ismerteti.
+Lásd: hello [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md) kapcsolatos utasításokat a témakör a fejlesztési környezet létrehozása tooset.
 
         using System;
         using System.Configuration;
@@ -221,7 +221,7 @@ Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-
         {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -245,7 +245,7 @@ Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the thumbnails.
+            // Encode and generate hello thumbnails.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -255,11 +255,11 @@ Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-
             {
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Load the XML (or JSON) from the local file.
+            // Load hello XML (or JSON) from hello local file.
             string configuration = File.ReadAllText("ThumbnailPreset_JSON.json");
 
             // Create a task
@@ -268,11 +268,11 @@ Tekintse meg a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-
                 configuration,
                 TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
                 AssetCreationOptions.None);
 
@@ -443,24 +443,24 @@ Séma kapcsolatos információkért lásd: [ez](https://msdn.microsoft.com/libra
     </Preset>
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-A következők érvényesek:
+a következő szempontok hello vonatkoznak:
 
-* Start/lépés/címtartomány explicit időbélyegeket használatát feltételezi, hogy a bemeneti forrás legalább 1 percnek hosszú.
+* Start/lépés/címtartomány explicit időbélyegeket hello használata feltételezi, hogy hello bemeneti forrás legalább 1 percnek hosszú.
 * JPG vagy Png/BmpImage rendelkezniük Start, lépés és karakterlánc-attribútumok tartomány – ezek úgy:
   
   * Ha nem negatív egész számokat, például azok veremkeret száma. "Start": "120"
-  * Ha kifejezett % utótaggal, pl. forrás időtartama viszonyítva. "Start": "15 %", vagy
+  * Ha kifejezett % utótaggal, pl. relatív toosource időtartama. "Start": "15 %", vagy
   * Ha óó: pp: kifejezett időbélyeg... formátumban. EG. "Start": "00: 01:00"
     
     Ön szabadon kombinálhatók jelölések, ha Ön adja.
     
-    Emellett Start is támogatja a speciális makró: {ajánlott}, amely kísérli meg meghatározni a tartalom "érdekes" első keretében: (lépés, és a tartomány figyelmen kívül lesznek hagyva Ha kezdő {legjobb} értékre van állítva)
+    Emellett Start is támogatja a speciális makró: {ajánlott}, amely megpróbál toodetermine hello első "érdekes" keret hello tartalom Megjegyzés: (lépés, és a tartomány figyelmen kívül lesznek hagyva Start túl beállításakor {legjobb})
   * Alapértelmezett: Start: {legjobb}
-* Kimeneti formátumot kell explicit módon meg kell adni az egyes képformátum: Jpg vagy Png/BmpFormat. Ha létezik, MES és így tovább a JpgFormat JpgVideo felel meg. OutputFormat bevezet egy új lemezkép-kodek adott makró: {Index}, mely rendelkeznie kell megjeleníteni az (egyszer és csak egyszer) kimeneti képformátum.
+* Kimeneti formátumot kell minden egyes képformátum explicit módon megadott toobe: Jpg vagy Png/BmpFormat. Ha létezik, a MES JpgVideo tooJpgFormat és így tovább fog egyezni. OutputFormat bevezet egy új lemezkép-kodek adott makró: {Index}, amely kell toobe jelen (egyszer és csak egyszer) kép kimeneti formátum.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ellenőrizheti a [folyamatban lévő feladat](media-services-check-job-progress.md) közben a kódolási feladat folyamatban.
+Ellenőrizheti a hello [folyamatban lévő feladat](media-services-check-job-progress.md) közben hello kódolási feladat folyamatban.
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

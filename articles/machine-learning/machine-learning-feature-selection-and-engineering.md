@@ -1,6 +1,6 @@
 ---
-title: "Mérnöki csapathoz és kiválasztása az Azure Machine Learning szolgáltatás |} Microsoft Docs"
-description: "Szolgáltatás kiválasztása és a szolgáltatás műszaki osztály ismerteti, és a gépi tanulás adatok javító folyamatának szerepkörük példákat."
+title: "aaaFeature termékgondozó csoportja és az Azure Machine Learning kiválasztása |} Microsoft Docs"
+description: "Szolgáltatás kiválasztása és a szolgáltatás műszaki osztály hello célját ismerteti, és hello adatok javító folyamat során a machine learning szerepkörük példákat."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -16,118 +16,118 @@ ms.date: 01/18/2017
 ms.author: zhangya;bradsev
 ROBOTS: NOINDEX
 redirect_url: machine-learning-data-science-create-features
-redirect_document_id: TRUE
-ms.openlocfilehash: 51a5d8fed492cb9301e048c2b6a721e4573a47d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: e3e59329bf46f334396f5975b4e656137362d7ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="feature-engineering-and-selection-in-azure-machine-learning"></a>Jellemzőkiválasztás és -kiemelés az Azure Machine Learningben
-Ez a témakör ismerteti a szolgáltatás termékgondozó csoportja és a gépi tanulás az adatok javító folyamatban szolgáltatásválasztást alkalmazásában. Azt mutatja be, hogy mi ezeket a folyamatokat tartalmaz, amely Azure Machine Learning Studio által biztosított példák felhasználásával.
+Ez a témakör ismerteti a szolgáltatás termékgondozó csoportja és a gépi tanulás hello adatok javító folyamat szolgáltatásválasztást hello alkalmazásában. Azt mutatja be, hogy mi ezeket a folyamatokat tartalmaz, amely Azure Machine Learning Studio által biztosított példák felhasználásával.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-A gépi tanulás használt betanítási adatok gyakran fejleszthető a kijelölés vagy a nyers adatokat gyűjt a szolgáltatások kibontásával. Példa egy visszafejtett szolgáltatás megtanulása besorolni a képek kézzel karaktereket környezetében: a nyers bit terjesztési adataiból összeállított bit sűrűségű térképre. Ez a térkép segítségével keresse meg a nyers terjesztési hatékonyabban széleit, a karaktereket.
+gépi tanulás használt hello betanítási adatok gyakran fejleszthető hello kijelölés vagy hello nyers adatokat gyűjt a szolgáltatások kibontásával. Egy visszafejtett szolgáltatás hello környezetében tanulási tooclassify hello képek kézzel karaktereket Mitől például bit sűrűségű térképre összeállított hello nyers bit terjesztési adatokból. Ez a térkép segítségével keresse meg a hello karakterek hello széleit hello nyers terjesztési hatékonyabban.
 
-Tervezett és a kiválasztott szolgáltatásokat a hatékonyabbá teheti a képzési folyamat, amely az adatok tartalmazzák a főbb információkat. Is javítják ezek a modellek power pontosan a bemeneti adatok osztályozására szolgáló, és több abroncsnyomásmérők erős előre jelezni az érdeklődési eredményeit. A szolgáltatás termékgondozó csoportja és a kijelölés kombinálhatja is annak a tanulási több számításilag tractable. Igen, javítja, és majd a szolgáltatások szükséges továbbá bármikor kalibrálhatja vagy a modell betanításához számának csökkentése. Matematikailag nyelven, a modell betanításához kijelölt szolgáltatások olyan minimális független változó, amely az adatok kombinációját ismertetik, és majd sikeresen az eredmények előrejelzése.
+Visszafejtett és a kiválasztott szolgáltatások hello hatékonyabbá teheti hello képzési folyamat, amely tooextract hello kulcsadatokat hello adatok tartalmazzák. Akkor is tovább fejlesztheti a modellek tooclassify hello bemeneti adatokat hello power pontosan és toopredict eredményeit megkeresheti az Önt érdeklő több abroncsnyomásmérők erős. A szolgáltatás termékgondozó csoportja és a kijelölés kombinálhatja is toomake hello tanulási több számításilag tractable. Szerint továbbfejlesztésének kezeli, és majd a szolgáltatások hello számának csökkentése szükséges toocalibrate vagy tanítási modell. Matematikailag beszéd hello szolgáltatások kijelölt tootrain hello modell olyan minimális hello adatok hello minták ismertetik, és majd sikeresen az eredmények előrejelzése független változók.
 
-A mérnöki és funkciók kiválasztása egy egy nagyobb folyamat része, amely általában négy lépésből áll:
+hello mérnöki és funkciók kiválasztása egy egy nagyobb folyamat része, amely általában négy lépésből áll:
 
 * Adatgyűjtés
 * Adatok továbbfejlesztése
 * Modell létrehozása
 * Utófeldolgozási
 
-Mérnöki és kijelölés jött létre az adatok a fejlesztés lépés gépi tanulás. Ez a folyamat három aspektusainak a célokra különböztethetők meg:
+Mérnöki csapathoz és kiválasztása jött létre hello adatok a fejlesztés gépi tanulás lépését. Ez a folyamat három aspektusainak a célokra különböztethetők meg:
 
-* **Az előzetes adatfeldolgozás**: Ez a folyamat megpróbálja győződjön meg arról, hogy az összegyűjtött adatok tiszta és konzisztens legyen. Ez magában foglalja a feladatokat, mint a integrálása több adatkészletek, hiányzó adatok kezelésére, kezelési tranzakciós szempontból inkonzisztens adatokat, és a adattípusokat.
-* **Jellemzőkiemelés**: Ez a folyamat megkísérli a meglévő nyers funkciókat az adatok további kapcsolódó szolgáltatások létrehozásához és a tanulási algoritmust előrejelzési teljesítményének növelése érdekében.
-* **Szolgáltatás kiválasztása**: Ez a folyamat kiválasztása a kulcs az eredeti adatok funkciók részéhez dimenzióinak, a képzési probléma csökkentése érdekében.
+* **Előtti adatfeldolgozási**: Ez a folyamat, amely az összegyűjtött adatok hello záma tooensure tiszta és konzisztens legyen. Ez magában foglalja a feladatokat, mint a integrálása több adatkészletek, hiányzó adatok kezelésére, kezelési tranzakciós szempontból inkonzisztens adatokat, és a adattípusokat.
+* **Jellemzőkiemelés**: Ez a folyamat megkísérli toocreate vonatkozó további funkciók hello adatok és tooincrease prediktív power toohello tanulási algoritmus a nyers funkciókat meglévő hello.
+* **Szolgáltatás kiválasztása**: Ez a folyamat kiválasztja az eredeti adatok szolgáltatások tooreduce hello dimenzióinak, hello képzési probléma hello kulcs részét.
 
-Ez a témakör csak a a szolgáltatás termékgondozó csoportja és a szolgáltatás kiválasztása szempontok az továbbfejlesztése folyamat tartalmazza. Az adatok előzetes feldolgozás lépésben további információkért lásd: [előzetesen feldolgozni az adatokat az Azure Machine Learning Studióban](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/).
+Ez a témakör csak a hello szolgáltatás termékgondozó csoportja és a szolgáltatás kiválasztása aspektusainak hello fejlesztés folyamata tartalmazza. Hello adatok előre feldolgozásra lépésben további információkért lásd: [előzetesen feldolgozni az adatokat az Azure Machine Learning Studióban](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/).
 
 ## <a name="creating-features-from-your-data--feature-engineering"></a>Szolgáltatások létrehozása az adatok--jellemzőkiemelés
-A betanítási adatok, amelyek mindegyike rendelkezik (változók vagy az oszlopokban tárolt mezők) funkciókat (rekordok vagy megfigyelések egy sor tárolt), például álló mátrix áll. A funkciók a kísérleti tervezési várhatóan írhatók le az adatok kombinációját. Bár a nyers adatok mezők számos közvetlenül szerepelhet a modell betanításához használandó kijelölt szolgáltatáskészlete, további visszafejtett szolgáltatások gyakran kell alakítható ki a nyers adatokat egy továbbfejlesztett tanítási adathalmazt létrehozása céljából a funkciókat.
+hello betanítási adatok, amelyek mindegyike rendelkezik (változók vagy az oszlopokban tárolt mezők) funkciókat (rekordok vagy megfigyelések egy sor tárolt), például álló mátrix áll. hello kísérleti tervezési hello funkciók várt toocharacterize hello minták hello adatokat. Bár a kijelölt funkcióhoz használt tootrain modell hello hello nyers adatok mezők közvetlenül tartalmazhat számos, további visszafejtett szolgáltatások gyakran kell hello nyers adatok toogenerate egy továbbfejlesztett tanítási adathalmazt hello szolgáltatásai értékekből összeállított toobe.
 
-Milyen funkciókat javítása érdekében az adathalmaz egy modell betanításakor létre kell hozni? Visszafejtett funkciókat, amelyek javítják a képzés információkkal jobban megkülönbözteti az adatok kombinációját. Az új szolgáltatások további információkkal egyértelműen rögzített nem várt vagy könnyen látható, az eredeti vagy meglévő készlet, de ez a folyamat történt egy kép. Megfelelő és hatékony döntések gyakran megkövetelik a néhány tartomány szakértői.
+Milyen funkciókat létre kell hozni tooenhance hello adatkészlet egy modell betanításakor? Továbbfejlesztett hello képzési visszafejtett szolgáltatások jobban különbséget tesz a hello adatok hello minták információkat tartalmaznak. Hello új szolgáltatások tooprovide további információkra, amely nem egyértelműen rögzített vagy könnyen látható, az eredeti hello vagy meglévő funkció, de ez a folyamat történt egy kép. Megfelelő és hatékony döntések gyakran megkövetelik a néhány tartomány szakértői.
 
-Azure Machine Learning segítségével indításakor a legegyszerűbb bonyolultnak Ez a folyamat konkrétan a Machine Learning Studióban biztosított minták használatával. Két példa a itt jelenik meg:
+Az Azure Machine Learning-től kezdődően esetén ez a folyamat konkrétan minták segítségével a Machine Learning Studióban megadott legegyszerűbb toograsp. Két példa a itt jelenik meg:
 
-* Egy regressziós példa ([kerékpárt bérlését száma előrejelzését](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) egy felügyelt kísérletben, ahol a cél értékek ismertek
+* Egy regressziós példa ([kerékpárt bérlését hello száma előrejelzését](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) egy felügyelt kísérletben, ahol hello célértékek ismertek
 * A szöveg-adatbányászati besorolás példa használatával [Szolgáltatáskivonatolás][feature-hashing]
 
 ### <a name="example-1-adding-temporal-features-for-a-regression-model"></a>1. példa: Egy regressziós modell historikus szolgáltatások hozzáadására
-Bemutatják, hogyan lehet szolgáltatásokat regressziós tevékenység tervezését, most használja a kísérlet "igény szerinti előrejelzéséhez kerékpárt" az Azure Machine Learning Studióban. Ehhez a kísérlethez célja előre jelezni a kerékpárt, ez azt jelenti, hogy annak bérlését belül egy adott hónap, nap, illetve órával száma terhelését. Az adatkészlet **kerékpárt bérleti UCI adatkészlet** szolgál a nyers bemeneti adatként.
+toodemonstrate tooengineer regressziós feladat funkciói hogyan most használja hello kísérlet "igény szerinti előrejelzéséhez kerékpárt" az Azure Machine Learning Studióban. hello ehhez a kísérlethez célja toopredict hello iránti igények hello kerékpárt, kerékpárt bérlését belül egy adott hónap, nap, illetve órával ez azt jelenti, hogy hello száma. hello adatkészlet **kerékpárt bérleti UCI adatkészlet** hello nyers bemeneti adatként szolgál.
 
-Adatkészlet fenntartja az Amerikai Egyesült Államokban Washingtoni kerékpárt bérleti hálózat beruházási Bikeshare vállalattól valós adatokon alapul. Az adathalmaz a számát jelöli az kerékpárt bérlését belül egy adott óra, nap, 2011 2012-re, és 17379 sorok és oszlopok 17 tartalmaz. A nyers szolgáltatáskészlete időjárási feltételek (hőmérséklet, páratartalom, szél sebesség) és a típus a nap (szünnap vagy hét napja) tartalmazza. A mező előre jelezni **cnt**, a szám, amely a kerékpárt bérlését jelöli egy adott órán belül, és, hogy címtartományok 1 977.
+Adatkészlet hello beruházási Bikeshare vállalati hello az Amerikai Egyesült Államok a Washingtoni bérleti kerékpárt hálózat által a valódi adatokon alapul. hello adatkészlet hello számát jelöli, kerékpárt bérlését belül egy adott óra, nap, 2011 too2012, és 17379 sorok és oszlopok 17 tartalmaz. hello nyers szolgáltatáskészlet időjárási feltételek (hőmérséklet, páratartalom, szél sebesség) és hello típusú hello nap (szünnap vagy hét napja) tartalmazza. hello mező toopredict van **cnt**, egy adott órán belül hello kerékpárt bérlését képviselő és 1 too977 találhatók, amely egy száma.
 
-Hatékony szolgáltatásai a betanítási adatok összeállításához, négy regressziós modell épülnek, az azonos algoritmussal, de négy különböző képzési adatkészletek. A négy adatkészletek nyers ugyanazon bemeneti adatait, de a szolgáltatások egyre több beállítása. Ezek a funkciók négy kategóriákba vannak csoportosítva:
+tooconstruct hatékony funkciók hello betanítási adatok, négy regressziós modell beépített hello segítségével ugyanazt az algoritmust, de négy különböző betanítási adatok állítja be. hello négy adatkészletek jelentik hello azonos nyers bemeneti adatokat, de a szolgáltatások egyre több beállítása. Ezek a funkciók négy kategóriákba vannak csoportosítva:
 
-1. A időjárási + szünnap + hétköznap = + hétvégi szolgáltatások előre jelezhető napi
-2. B = kerékpárt, amely minden az előző 12 óra volt bérelt száma
-3. C = kerékpárt, amely minden, az azonos órához az elmúlt 12 nap volt bérelt száma
-4. D = kerékpárt, amely minden az előző 12 hetes, az azonos órához és ugyanarra a napra esnek volt bérelt száma
+1. A időjárási + szünnap + hétköznap = + hétvégi szolgáltatások hello előre jelzett nap
+2. B = kerékpárt, amely az egyes hello volt bérelt előző 12 óra száma
+3. C = kerékpárt, amely volt bérelt minden hello hello előző 12 napjait azonos száma óránként
+4. D = kerékpárt, amely volt bérelt minden hello előző 12 hetes, hello azonos száma óra és hello ugyanarra a napra esnek
 
-A szolgáltatás egy, már szerepel az eredeti nyers adatok, amelyek mellett a másik három különböző szolgáltatások a műszaki osztály folyamat funkción keresztül jönnek létre. A szolgáltatás beállítva B rögzíti a kerékpárt legutóbbi terhelését. A szolgáltatás kerékpárt iránti igény beállítva C rögzíti, egy adott óra. A szolgáltatás adott óra és a hét napját adott D rögzítésekre iránti igények kerékpárt beállítva. Egyes képzési négy adatkészletek szolgáltatáskészletek tartalmaz egy, A + B, A + B + C és A + B + C + D rendre.
+Hello eredeti nyers adat már létezik, a szolgáltatás beállítása A mellett hello más három különböző szolgáltatások jönnek létre folyamat mérnöki hello funkción keresztül. A szolgáltatás B rögzítésekre hello legutóbbi igény szerint a hello kerékpárt beállítva. A szolgáltatás hello iránti igények kerékpárt beállítva C rögzíti, egy adott óra. A szolgáltatás adott óra és az adott hét napja, hello D rögzítésekre iránti igények kerékpárt beállítva. Egyes hello négy képzési adatkészletek szolgáltatáskészletek tartalmaz egy, A + B, A + B + C és A + B + C + D rendre.
 
-Az Azure Machine Learning kísérletben betanítási adatok négy halmazok keresztül adatkészletből Előfeldolgozott bemeneti négy ágak jöttek létre. A bal szélső fiókirodai kivételével minden ilyen ág tartalmaz egy [R-parancsfájl végrehajtása] [ execute-r-script] , amelyben egy származtatott (szolgáltatás B, C és beállítása D) szolgáltatások modul rendre össze, és hozzáfűzi a importált adatkészlet. A következő ábra bemutatja az R-parancsfájl, a második bal fiókiroda B készlet létrehozásához használt.
+Hello Azure Machine Learning kísérlet, a képzési adatok négy halmazok keresztül hello Előfeldolgozott bemeneti adatkészlet négy ágát jöttek létre. Minden ilyen ág tartalmaz hello bal szélső fiókirodai, kivéve egy [R-parancsfájl végrehajtása] [ execute-r-script] , amelyben egy származtatott (szolgáltatás B, C és beállítása D) szolgáltatások modul rendre össze, és hozzáfűzi toohello importált adatkészlet. hello a következő ábra azt mutatja be, hello R-parancsfájl toocreate szolgáltatáskészlet B használt hello második bal ágában.
 
 ![Szolgáltatás létrehozása](./media/machine-learning-feature-selection-and-engineering/addFeature-Rscripts.png)
 
-A következő táblázat összefoglalja a teljesítménymérési eredményeket négy modellek összehasonlítása. A legjobb eredmények elérése érdekében A + B + C látható funkcióihoz. Vegye figyelembe, hogy a Hibaarány csökken, amikor további szolgáltatáskészletek a betanítási adatok szerepelnek. Ez ellenőrzi a feltételezhető, hogy a B és C szolgáltatáskészletek biztosítson a regressziós feladat kapcsolatos további információt. A D szolgáltatáskészlete hozzáadása nem tűnik, hogy adja meg a Hibaarány további csökkentését.
+hello következő táblázat összefoglalja hello hello teljesítménymérési eredményeket hello négy modellek összehasonlítása. hello legjobb eredmények elérése érdekében A + B + C látható funkcióihoz. Vegye figyelembe, hogy hello Hibaarány csökken, amikor további szolgáltatáskészletek hello betanítási adatok szerepelnek. Ez ellenőrzi a, B és C további információkkal vonatkozó hello regressziós feladat szolgáltatáskészletek hello feltételezés. Hello D szolgáltatáskészlet hozzáadása nem tűnik tooprovide hello Hibaarány további csökkentését.
 
 ![A teljesítményeredmények összehasonlítása](./media/machine-learning-feature-selection-and-engineering/result1.png)
 
 ### <a name="example2"></a>2. példa: Szöveg adatbányászati szolgáltatások létrehozása
-Szöveg adatbányászati, például a besorolás és a céggel kapcsolatos véleményeket dokumentumelemzés kapcsolatos feladatok széles körben alkalmazása szolgáltatás mérnöki csapathoz. Például szeretné besorolni a dokumentumok számos kategóriába sorolhatók, amikor a tipikus feltételezi, a szavakat vagy kifejezéseket egy dokumentumot a kategóriába tartozik kevésbé valószínű egy másik dokumentum kategóriába. Más szóval a szó vagy kifejezés terjesztési gyakoriságát el tudja írhatók le másik dokumentum kategóriák. A szöveg adatbányászati alkalmazások a szolgáltatás műszaki osztály folyamat a szolgáltatásokat érintő szót vagy kifejezést gyakoriságot, mert egyes adatra szöveges-tartalom általában módon ellenőrizhető, hogy a bemeneti adatok létrehozásához szükséges.
+A szolgáltatás műszaki osztály széles körben alkalmazása feladatok kapcsolódó tootext adatbányászati, például a dokumentum besorolás és a céggel kapcsolatos véleményeket analysis. Például, ha azt szeretné, tooclassify dokumentumok számos kategóriába sorolhatók, egy tipikus feltételezi, hogy hello szavakat vagy kifejezéseket egy dokumentum kategória-e egy másik dokumentum kategóriában kevésbé valószínű toooccur. Más szóval hello szót vagy kifejezést terjesztési hello gyakorisága képes toocharacterize másik dokumentum kategóriák. A szöveg adatbányászati alkalmazások hello folyamat mérnöki szükséges toocreate hello szolgáltatásokat érintő szót vagy kifejezést gyakoriságot, mert egyes adatra szöveges-tartalom általában szolgál, bemeneti adatokat hello.
 
-Ez a feladat eléréséhez technika nevű *szolgáltatáskivonatolás* tetszőleges szöveg szolgáltatások hatékonyan ikonná indexek vonatkozik. Ahelyett, hogy egy adott index, a módszer funkciók úgy, hogy alkalmazza a kivonatoló függvényt a szolgáltatásokhoz, és segítségével a kivonati értékek indexek közvetlenül közötti társítás minden szöveges funkciót (szavakat vagy kifejezéseket).
+tooachieve ennek a feladatnak, elnevezésű technikát *szolgáltatáskivonatolás* van alkalmazott tooefficiently kapcsolja tetszőleges szöveg szolgáltatások az indexet. Helyett minden szöveges funkció (szavakat vagy kifejezéseket) tooa adott index, a módszer funkciók úgy, hogy alkalmazza a kivonatoló függvényt toohello szolgáltatásokat, és segítségével a kivonati értékek indexek közvetlenül társítása.
 
-Az Azure Machine Learning van egy [Szolgáltatáskivonatolás] [ feature-hashing] modul által létrehozott szót vagy kifejezést felhasználásokhoz. Az alábbi ábrán ez a modul használatával példáját mutatja be. A bemeneti adatkészlet két oszlopokat tartalmazza: a beállításnak 1 közötti könyv besorolása 5 és a tényleges tartalom áttekintése. Ez a cél [Szolgáltatáskivonatolás] [ feature-hashing] modul az új funkciók, amelyek megjelenítik a megfelelő szavakat vagy kifejezéseket a külön felülvizsgálati belül előfordulási gyakoriságát beolvasása. Ez a modul használatához kövesse az alábbi lépéseket kell:
+Az Azure Machine Learning van egy [Szolgáltatáskivonatolás] [ feature-hashing] modul által létrehozott szót vagy kifejezést felhasználásokhoz. hello alábbi ábrán ez a modul használatának példája. hello bemeneti adatkészlet két oszlopokat tartalmazza: hello könyv minősítés közötti 1 too5 és hello tényleges tekintse át a tartalom. hello célja [Szolgáltatáskivonatolás] [ feature-hashing] tooretrieve új funkciók, amelyek megjelenítik a hello előfordulási gyakoriságát hello megfelelő szavakat vagy kifejezéseket hello külön felülvizsgálati belül esik. toouse Ez a modul kell toocomplete hello a következő lépéseket:
 
-1. Jelölje ki az oszlopot, amely tartalmazza a beírt szöveg (**Col2** ebben a példában).
-2. Állítsa be *bitsize kivonatoláshoz* 8, ami azt jelenti, 2 ^ 8 = 256 szolgáltatások jönnek létre. A szöveg elkezdésekor majd kivonatolja 256 indexet. A paraméter *bitsize kivonatoláshoz* 1 és 31 tartományt. Ha a paraméter értéke nagyobb számot, a szavakat vagy kifejezéseket valószínűleg kevesebb az azonos indexbe tárolni.
-3. A paraméternek *N-g* 2. A bemeneti szöveg ez lekéri előfordulási gyakoriságát unigrams (egy mindegyik egyszavas szolgáltatás) és bigrams (egy szolgáltatás minden pár szomszédos szavak). A paraméter *N-g* 10, amely megadja, hogy a szolgáltatás szereplő szekvenciális szavak maximális száma 0-tól tartományait.  
+1. Jelölje be hello oszlop hello bemeneti szöveget tartalmazó (**Col2** ebben a példában).
+2. Állítsa be *bitsize kivonatoláshoz* too8, ami azt jelenti, 2 ^ 8 = 256 szolgáltatások jönnek létre. hello szó vagy kifejezés hello szöveg van majd kivonatolt too256 indexet. hello paraméter *bitsize kivonatoláshoz* 1 too31 tartományát. Ha hello paraméter értéke tooa nagyobb számú, hello szavak vagy kifejezések kevésbé valószínű toobe kivonatolja a hello azonos index.
+3. Hello paraméter *N-g* too2. Hello előfordulási gyakoriságát unigrams (egy szolgáltatás minden egyetlen szó) és bigrams (egy szolgáltatás minden pár szomszédos szó) kikeresi hello bemeneti szöveg. hello paraméter *N-g* tartományokat a 0 too10, amely megadja, hogy a szolgáltatás szerepel szekvenciális szavak toobe hello maximális számát.  
 
 ![A szolgáltatás kivonatoló modul](./media/machine-learning-feature-selection-and-engineering/feature-Hashing1.png)
 
-Az alábbi ábra bemutatja, hogyan meg az új szolgáltatásokat.
+hello. a következő ábra bemutatja, hogyan meg az új szolgáltatásokat.
 
 ![A szolgáltatás kivonatoló – példa](./media/machine-learning-feature-selection-and-engineering/feature-Hashing2.png)
 
 ## <a name="filtering-features-from-your-data--feature-selection"></a>Az adatok--szolgáltatás kiválasztása a szűrési funkciók
-*Szolgáltatás kiválasztása* képzési adatkészleteket prediktív modellezési feladatokhoz, mint az osztályozási vagy regressziós feladatok létrehozása gyakran alkalmazott folyamat. A cél, hogy az eredeti készlet, amely csökkenti a dimenziók a legszükségesebb funkciókat az eltérés alapján, az adatok maximális száma ábrázolásához használatával válassza ki a funkciók egy részét. A funkciók részhalmazát hozzá lesznek adva a modell betanításához csak szolgáltatásokat tartalmazza. Szolgáltatás kiválasztása a két fő célokra szolgál:
+*Szolgáltatás kiválasztása* egy folyamat, amely általában alkalmazott képzési adatkészleteket prediktív modellezési feladatokhoz, mint az osztályozási vagy regressziós feladatok toohello építése. hello célja tooselect hello szolgáltatás hello eredeti készlet, amely csökkenti a dimenziók használatával a legszükségesebb funkciókat toorepresent hello maximális mennyisége variancia hello adatok egy részét. A funkciók részhalmazát hello csak szolgáltatások része toobe tootrain hello modell tartalmaz. Szolgáltatás kiválasztása a két fő célokra szolgál:
 
 * Szolgáltatás kiválasztása gyakran növeli a besorolás pontossága nem számít, redundáns kiküszöbölése révén, vagy a szolgáltatások szorosan összefügg.
-* Szolgáltatás kiválasztása a számos funkciót tartalmaz, így hatékonyabb a modell képzési folyamat csökken. Ez különösen fontos a tanulókkal, amelyek például a támogatási vektoros gépek betanítása drága.
+* Szolgáltatás kiválasztása csökken hello néhány szolgáltatás, így hatékonyabb hello modell képzési folyamat. Ez különösen fontos, amelyek például a támogatási vektoros gépek költséges tootrain tanulókkal számára.
 
-Szolgáltatás kiválasztása a modell betanításához használandó adatkészlet szolgáltatásainak számának csökkentése érdekében kér, de azt nem általában hivatkozik kifejezés *granularitása csökkentése érdekében.* A szolgáltatás kiválasztási módszerek őket módosítása nélkül bontsa ki az adatokat az eredeti funkciók egy részéhez.  Granularitása csökkentési módszereket tervezni a visszafejtett funkciókra átalakíthatja az eredeti funkciók és így módosíthatja azokat. Granularitása csökkentési módszerek például egyszerű összetevő elemzés, kanonikus korrelációs elemzés és egyes érték felbontás ellen.
+Szolgáltatás kiválasztása tooreduce hello néhány szolgáltatás hello használt adatkészlet tootrain hello modellben kér, bár nincs általában említett tooby hello kifejezés *granularitása csökkentése érdekében.* A szolgáltatás kiválasztási módszerek őket módosítása nélkül bontsa ki az hello adatokat az eredeti funkciók egy részéhez.  Granularitása csökkentési módszereket tervezni a visszafejtett funkciókra átalakíthatja hello eredeti funkciók és így módosíthatja azokat. Granularitása csökkentési módszerek például egyszerű összetevő elemzés, kanonikus korrelációs elemzés és egyes érték felbontás ellen.
 
-Szolgáltatás kiválasztása módszerek olyan felügyelt környezetben egy széles körben alkalmazott kategória szűrő-alapú szolgáltatás kiválasztása. Értékelése az egyes szolgáltatások és a target attribútummal közötti összefüggést, ezek a módszerek pontszámot hozzárendelése az egyes szolgáltatások statisztikai mérték vonatkoznak. A szolgáltatások által a pontszám, amelyek megőrzésével, vagy egy adott funkcióhoz megszüntetésével küszöbértéke beállításához használhatja majd sorrendje. Ezek a módszerek használt statisztikai intézkedések például Pearson korrelációs kölcsönös információkat és a khi-négyzet vizsgálat.
+Szolgáltatás kiválasztása módszerek olyan felügyelt környezetben egy széles körben alkalmazott kategória szűrő-alapú szolgáltatás kiválasztása. Kiértékelésével hello korrelációs közötti minden egyes szolgáltatást és hello target attribútummal, ezek a módszerek a statisztikai mérték tooassign pontszám tooeach szolgáltatása alkalmazni. hello szolgáltatások majd szerinti sorrendben hello pontszám, amelynek segítségével tooset hello küszöbértéke tartása, vagy egy adott funkcióhoz megszüntetésével. Ezek a módszerek használt hello statisztikai intézkedések például Pearson korrelációs, a kölcsönös adatokat és a khi-négyzet teszt hello.
 
-Az Azure Machine Learning Studio modulok biztosít szolgáltatás kiválasztása. A következő ábrán látható, tartalmaz-e ezek a modulok [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] és [Fisher lineáris Discriminant elemzés] [ fisher-linear-discriminant-analysis].
+Az Azure Machine Learning Studio modulok biztosít szolgáltatás kiválasztása. Hello a következő ábrán az látható, ezek a modulok tartalmaznia kell [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] és [Fisher lineáris Discriminant elemzés] [ fisher-linear-discriminant-analysis].
 
 ![Szolgáltatás kiválasztása – példa](./media/machine-learning-feature-selection-and-engineering/feature-Selection.png)
 
-Tegyük fel például, a [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] modulját és a korábban leírt szöveg adatbányászati példában. Tegyük fel, hogy szeretné-e egy regressziós modell létrehozása 256 funkciókat keresztül létrehozása után a [Szolgáltatáskivonatolás] [ feature-hashing] modul, és hogy a válasz változó **Col1** és jelöli egy könyv felülvizsgálati minősítés beállításnak 1 és 5. Állítsa be **pontozási metódus funkció** való **Pearson korrelációs**, **céloszlop** való **Col1**, és **száma szükséges szolgáltatások** való **50**. A modul [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] majd létrejön egy adatokat tartalmazó együtt a target attribútummal 50 szolgáltatások **Col1**. Az alábbi ábra szemlélteti a ehhez a kísérlethez és a bemeneti paramétereket.
+Például, használja a hello [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] hello szöveg adatbányászati példában korábban leírt modul. Tegyük fel, amelyet egy regressziós modell toobuild 256 funkciókat keresztül hello létrehozása után [Szolgáltatáskivonatolás] [ feature-hashing] modul, és adott hello válasz változó **Col1**könyv jelölő tekintse át a minősítési 1 too5 kezdve. Állítsa be **pontozási metódus funkció** túl**Pearson korrelációs**, **céloszlop** túl**Col1**, és **száma szükséges szolgáltatások** túl**50**. hello modul [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] majd létrejön egy adatokat tartalmazó hello target attribútummal együtt 50 szolgáltatások **Col1**. hello alábbi ábra azt mutatja be hello folyamata a kísérlet, és hello bemeneti paraméterek.
 
 ![Szolgáltatás kiválasztása – példa](./media/machine-learning-feature-selection-and-engineering/feature-Selection1.png)
 
-Az alábbi ábrán az eredményül kapott adatkészletek. Egyes szolgáltatások program pontozza a mennyiségeket alapján a Pearson korrelációs és a target attribútummal között a **Col1**. A felső pontszámok funkcióinak tartanak.
+hello alábbi ábrán látható hello eredményül kapott adatkészletek. Egyes szolgáltatások program pontozza a mennyiségeket alapján hello Pearson korrelációs és hello között a target attribútummal **Col1**. a felső pontszámok hello funkcióinak használatát tartanak.
 
 ![Szűrő-alapú szolgáltatás kijelölés adatkészletek](./media/machine-learning-feature-selection-and-engineering/feature-Selection2.png)
 
-Az alábbi ábrán a megfelelő eredmények a kiválasztott funkciók.
+a következő ábra azt mutatja be hello hello megfelelő pontszámok kijelölt hello szolgáltatást.
 
 ![Kiválasztott összetevő pontszámok](./media/machine-learning-feature-selection-and-engineering/feature-Selection3.png)
 
-Ez alkalmazásával [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] modul, 50 kívüli 256 szolgáltatások van kiválasztva, mert a legtöbb funkciót tartozzanak a célváltozó **Col1**pontozási módszernek **Pearson korrelációs**.
+Ez alkalmazásával [szűrő-alapú szolgáltatás kiválasztása] [ filter-based-feature-selection] modul, 50 kívüli 256 szolgáltatások van kiválasztva, mert a legtöbb szolgáltatások szorosan összefügg az hello célváltozó hello **Oszlop1** hello pontozási módszer alapján **Pearson korrelációs**.
 
 ## <a name="conclusion"></a>Összegzés
-A szolgáltatás termékgondozó csoportja és a szolgáltatás kiválasztása készíti elő a betanítási adatok, a gépi tanulási modell fejlesztéskor gyakran végre két lépésben történik. Általában a szolgáltatás műszaki osztály további szolgáltatások létrehozásához először alkalmazzák, és majd a szolgáltatás kiválasztása a lépést nem számít, redundáns vagy magas kapcsolódó szolgáltatásokat nyújthatnak.
+A szolgáltatás termékgondozó csoportja és a szolgáltatás kiválasztása két lépést általában végre tooprepare hello betanítási adatok, a gépi tanulási modell felépítése közben. Általában szolgáltatás mérnöki alkalmazott első toogenerate további szolgáltatásokat, pedig majd hello szolgáltatás kiválasztási lépésében elvégezni tooeliminate irreleváns, redundáns vagy magas kapcsolódó funkciókat.
 
-Nincs mindig feltétlenül mérnöki vagy szolgáltatás szolgáltatásválasztást végrehajtásához. Hogy szükség van, vagy gyűjteni az adatokat, az algoritmus választja, és a cél a kísérlet függ.
+Nincs mindig feltétlenül tooperform szolgáltatás műszaki osztály vagy a szolgáltatás kiválasztása. E szükséges attól függ, hogy rendelkezik, vagy gyűjtése, hello algoritmust választja, és az hello kísérlet cél hello hello adatokat.
 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/

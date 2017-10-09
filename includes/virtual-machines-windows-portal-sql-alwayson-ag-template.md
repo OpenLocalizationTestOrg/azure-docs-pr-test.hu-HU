@@ -1,0 +1,2 @@
+Ez az oktatóanyag bemutatja, hogyan felépítése hello megoldást hello Azure-portálon. Ha érdekli a megoldás létrehozása sablon alapján, válassza ki a megfelelő sablon hello [Microsoft Azure GitHub-sablonok](http://github.com/Azure/azure-quickstart-templates). Hello [rendelkezésre állási csoport létrehozása az SQL Server 2014 replika virtuális gépek](http://github.com/Azure/azure-quickstart-templates/tree/master/sqlvm-alwayson-cluster) -sablon létrehozza a hello azonos megoldás, mint az oktatóanyag. 
+

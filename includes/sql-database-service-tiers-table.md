@@ -49,4 +49,4 @@ sql-database-service-tiers.md
 | Egyidejű munkamenetek maximális száma | 30000| 30000| 30000| 30000|
 |||||||
 
-\* Az adatbázisok maximális mérete az adatbázisban lévő adatok maximális méretére vonatkozik. 
+\*Maximális adatbázis mérete toohello hello adatok hello adatbázis maximális méretét jelenti. 

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Search Azure Blob Storage indexelése"
-description: "Útmutató: Azure Blob Storage indexelése és az Azure Search dokumentumok szöveg kinyerése"
+title: Azure Blob Storage az Azure Search aaaIndexing
+description: "Ismerje meg, hogyan tooindex Azure Blob Storage és hogyan nyerhet ki a szöveget az Azure Search dokumentumok"
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,17 +14,17 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/22/2017
 ms.author: eugenesh
-ms.openlocfilehash: 023c343122f872943fb3ab3eed7b4caedfae9ac4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1bdd34e66a4a9192ed88cacbc7b8456d0dcdfeb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-documents-in-azure-blob-storage-with-azure-search"></a>Az Azure Blob Storage tárolóban az Azure Search dokumentumok indexelő
-Ez a cikk bemutatja, hogyan használható az Azure Search index dokumentumok (például PDF-fájlok, a Microsoft Office-dokumentumok, és számos egyéb gyakori formátumok) az Azure Blob Storage tárolóban tárolja. Első lépésként beállítása és konfigurálása a blob indexelő használatának alapjait ismerteti. Ezt követően viselkedésmódok mélyebb feltárása kínál, és forgatókönyvek lehetséges hibát.
+Ez a cikk bemutatja, hogyan toouse Azure Search tooindex dokumentumok (például PDF-fájlok, a Microsoft Office-dokumentumok, és számos egyéb gyakori formátumok) Azure Blob storage-ban tárolt. Első lépésként beállítása és konfigurálása a blob indexelő hello alapjait ismerteti. Ezt követően kínál a mélyebb feltárása viselkedések és forgatókönyvek valószínűleg tooencounter áll.
 
 ## <a name="supported-document-formats"></a>A dokumentum formátumokat támogatja
-A blob indexelő lehet szöveg kinyerése a következő dokumentum formátumok:
+hello blob indexelő lehet szöveg kinyerése a következő dokumentum formátumok hello:
 
 * PDF
 * A Microsoft Office formátumok: DOCX/DOC, XLSX/XLS, PPTX/PPT, Adatköltségek (Outlook e-mailek)  
@@ -38,7 +38,7 @@ A blob indexelő lehet szöveg kinyerése a következő dokumentum formátumok:
 * CSV (lásd: [indexelő CSV-blobok](search-howto-index-csv-blobs.md) előzetes verziójú funkciók)
 
 > [!IMPORTANT]
-> Fürt megosztott kötetei szolgáltatás és a JSON-tömbök támogatása jelenleg előzetes verzió. Ezek a formátumok érhetők el, csak verziójával **2016 09-01. dátumú előnézeti** a REST API-t vagy a verziójával 2.x-előzetes verziójának a .NET SDK-val. Adjon ne feledje, az előzetes API-k tesztelésében és értékelésében készült, és nem használható üzemi környezetben.
+> Fürt megosztott kötetei szolgáltatás és a JSON-tömbök támogatása jelenleg előzetes verzió. Ezek a formátumok érhetők el, csak verziójával **2016 09-01. dátumú előnézeti** a REST API-t vagy a verziójával 2.x preview hello a .NET SDK hello. Adjon ne feledje, az előzetes API-k tesztelésében és értékelésében készült, és nem használható üzemi környezetben.
 >
 >
 
@@ -50,23 +50,23 @@ Beállíthat egy Azure Blob Storage indexelő használatával:
 * Az Azure Search [.NET SDK-val](https://aka.ms/search-sdk)
 
 > [!NOTE]
-> Egyes szolgáltatások (például mező leképezéseket) még nem állnak rendelkezésre a portálon, és programozott módon kell használni.
+> Egyes szolgáltatások (például mező leképezések) még nem állnak rendelkezésre a hello portálon, és programozási nyelven toobe rendelkezik.
 >
 >
 
-Itt bemutatjuk, a folyamat a REST API használatával.
+Itt bemutatjuk hello folyamata hello REST API használatával.
 
 ### <a name="step-1-create-a-data-source"></a>1. lépés:, Hozzon létre egy adatforrást
-Egy adatforrás indexelésre, az adatokat, és a házirendek hatékony azonosításához az adatoknak (új, módosított vagy törölt sorai) eléréséhez szükséges hitelesítő adatok megadása Egy adatforrás több indexelő ugyanazt a keresési szolgáltatást használhatják.
+Egy adatforrás határozza meg, mely adatokat tooindex, a szükséges hitelesítő adatokat tooaccess hello adatokat és a házirendek tooefficiently – hello adatokban (új, módosított vagy törölt sorai) a változásokat. Egy adatforrás használható által hello több indexelő ugyanaz a keresési szolgáltatáshoz.
 
-Az adatforrás blobindexelés, a következő kötelező tulajdonságok kell rendelkeznie:
+Hello adatforrás blobindexelés, a következő kötelező tulajdonság hello kell rendelkeznie:
 
-* **név** az adatforrás a keresőszolgáltatása belül egyedi neve.
+* **név** hello hello adatforrás belül a keresési szolgáltatás egyedi neve.
 * **típus** kell `azureblob`.
-* **hitelesítő adatok** nyújt a tárolási fiók kapcsolati karakterláncot, mint a `credentials.connectionString` paraméter. Lásd: [hitelesítő adatok megadása](#Credentials) alábbi részleteket.
-* **tároló** határozza meg a tárfiók egy tárolót. Alapértelmezés szerint valamennyi BLOB a tárolóban található lekérhető. Ha szeretné index blobot, amely egy adott virtuális könyvtár, megadhatja a nem kötelező könyvtárhoz **lekérdezés** paraméter.
+* **hitelesítő adatok** hello tárolási fiók kapcsolati karakterláncát, hello `credentials.connectionString` paraméter. Lásd: [hogyan toospecify hitelesítő adatok](#Credentials) alábbi részleteket.
+* **tároló** határozza meg a tárfiók egy tárolót. Alapértelmezés szerint valamennyi BLOB hello tárolóban található lekérhető. Ha csak egy adott virtuális könyvtár tooindex blobokat, megadhatja a használata nem kötelező hello könyvtárhoz **lekérdezés** paraméter.
 
-Adatforrás létrehozása:
+egy adatforrás toocreate:
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -79,26 +79,26 @@ Adatforrás létrehozása:
         "container" : { "name" : "my-container", "query" : "<optional-virtual-directory-name>" }
     }   
 
-Az adatforrás létrehozása API bővebben lásd: [adatforrás létrehozása](https://docs.microsoft.com/rest/api/searchservice/create-data-source).
+Hozzon létre adatforrást API hello bővebben lásd: [adatforrás létrehozása](https://docs.microsoft.com/rest/api/searchservice/create-data-source).
 
 <a name="Credentials"></a>
-#### <a name="how-to-specify-credentials"></a>Hitelesítő adatok megadása ####
+#### <a name="how-toospecify-credentials"></a>Hogyan toospecify hitelesítő adatok ####
 
-Megadhatja a hitelesítő adatokat a blob-tároló az alábbi módszerek valamelyikével:
+Megadhatja, hogy hello hitelesítő adatok hello blob tároló az alábbi módszerek valamelyikével:
 
-- **Teljes hozzáférés tárolási fiók kapcsolati karakterlánc**: `DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`. Letölthető a kapcsolati karakterláncot az Azure-portálon nyissa meg a storage-fiók panelen > Beállítások > kulcsok (a klasszikus tárfiókokkal) vagy a beállítások > hozzáférési kulcsokkal (az Azure Resource Manager storage-fiókok).
-- **Tárolási fiók közös hozzáférésű jogosultságkódot** (SAS) kapcsolódási karakterlánc: `BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl` a SAS van a listája, és meg kell-e olvasási engedéllyel a tárolók és objektumok (ebben az esetben blobok).
--  **Tároló közös hozzáférésű jogosultságkódot**: `ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl` a SAS van a listája, és meg kell-e olvasási engedéllyel a tárolóra.
+- **Teljes hozzáférés tárolási fiók kapcsolati karakterlánc**: `DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`. Letölthető hello kapcsolati karakterlánc hello Azure-portálon lépjen a storage-fiók panelen toohello > Beállítások > kulcsok (a klasszikus tárfiókokkal) vagy a beállítások > hozzáférési kulcsokkal (az Azure Resource Manager storage-fiókok).
+- **Tárolási fiók közös hozzáférésű jogosultságkódot** (SAS) kapcsolódási karakterlánc: `BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<hello signature>&spr=https&se=<hello validity end time>&srt=co&ss=b&sp=rl` hello SAS rendelkeznie kell a listában, és olvasási engedéllyel a tárolók és objektumok hello (ebben az esetben blobok).
+-  **Tároló közös hozzáférésű jogosultságkódot**: `ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<hello signature>&se=<hello validity end time>&sp=rl` hello SAS hello listában, és olvasási jogosultságokkal hello tároló kell rendelkeznie.
 
 További információt a tárhelyen megosztott hozzáférési aláírásokkal, lásd: [megosztott hozzáférési aláírásokkal használatával](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
 > [!NOTE]
-> Ha SAS-hitelesítő adatokat használ, akkor az adatforrás hitelesítő adatainak frissítése rendszeresen megújított aláírásokkal, hogy megakadályozza a lejárati idejük. Ha SAS-hitelesítőadatait lejár, az indexelő hasonló hibaüzenettel meghiúsul `Credentials provided in the connection string are invalid or have expired.`.  
+> Ha SAS-hitelesítő adatokat használ, akkor a lejárati idejük tooupdate hello az adatforrás hitelesítő adatainak rendszeres időközönként a megújított aláírások tooprevent. Ha SAS-hitelesítő adatok lejárnak, hello indexelő sikertelen lesz, és egy ehhez hasonló hibaüzenetet túl`Credentials provided in hello connection string are invalid or have expired.`.  
 
 ### <a name="step-2-create-an-index"></a>2. lépés: Az index létrehozása
-Az index a dokumentumban, attribútumok, megadja azokat a mezőket, és más, a keresés alakul szerkezetek tapasztalnak.
+hello index hello mezők egy dokumentumot, attribútumok, adja meg, és egyéb hoz létre, hogy alakzat hello keresési élményt biztosít.
 
-Hozzon létre egy kereshető indexet a következőképpen `content` mező a szöveg kibontani a blobok tárolására:   
+Itt hogyan toocreate egy index ugyanezzel a kereshető `content` toostore hello szöveg blobok kinyert mezőben:   
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -115,9 +115,9 @@ Hozzon létre egy kereshető indexet a következőképpen `content` mező a szö
 Indexek létrehozásával kapcsolatban bővebben lásd: [Index létrehozása](https://docs.microsoft.com/rest/api/searchservice/create-index)
 
 ### <a name="step-3-create-an-indexer"></a>3. lépés:, Hozzon létre egy indexelőt
-Az indexelő csatlakoznak az adatforrás egy cél search-index, és automatizálhatja az adatfrissítési ütemezés biztosít.
+Az indexelő csatlakoznak az adatforrás egy cél search-index, és egy tooautomate hello az Adatfrissítés ütemezéséről biztosít.
 
-Az index és az adatforrás létrehozása után készen áll az indexelő létrehozásához:
+Hello index és az adatforrás létrehozása után készen áll a toocreate hello indexelő Ön:
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -130,65 +130,65 @@ Az index és az adatforrás létrehozása után készen áll az indexelő létre
       "schedule" : { "interval" : "PT2H" }
     }
 
-Az indexelő minden két órában (ütemezési időköz értéke "PT2H") fog futni. Az indexelő 30 percenként "PT30M" intervallum be. A legrövidebb támogatott időköz értéke 5 perc. Az ütemezés nem kötelező – Ha nincs megadva, az indexelő futása csak egyszer, amikor létrejön. Azonban bármikor indexelő igény szerinti is futtathatja.   
+Az indexelő minden két órát fog futni (ütemezési időköz értéke túl "PT2H"). az indexelő toorun 30 percenként túl hello időköz beállítása "PT30M". hello legrövidebb támogatott időköz értéke 5 perc. hello ütemezésének megadása nem kötelező – Ha nincs megadva, az indexelő futása csak egyszer, amikor létrejön. Azonban bármikor indexelő igény szerinti is futtathatja.   
 
-Hozzon létre indexelő API további részletekért tekintse meg [létrehozása indexelő](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
+További részleteket a hello indexelő API létrehozása, tekintse meg [létrehozása indexelő](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
 
 ## <a name="how-azure-search-indexes-blobs"></a>Hogyan indexeli az Azure Search a blobok
 
-Attól függően a [indexelő konfigurációs](#PartsOfBlobToIndex), a blob indexelő indexelheti csak a tárolási metaadatok (akkor hasznos, ha csak az Ön számára legfontosabb a metaadatok, és nem szükséges a BLOB tartalmát indexelésre), tárolási és metaadatok, vagy egyaránt metaadatait és tartalmát szöveges tartalmat. Alapértelmezés szerint az indexelő metaadatok és a tartalmat bontja ki.
+Attól függően, hogy hello [indexelő konfigurációs](#PartsOfBlobToIndex), hello blob indexelő indexelheti csak a tárolási metaadatok (akkor hasznos, ha csak ítélt készül hello metaadatok, és nem szükséges tooindex hello BLOB tartalmát), tároló és a tartalom metaadatainak vagy mindkettő metaadatok és a szöveges tartalom. Alapértelmezés szerint a hello indexelő metaadatok és a tartalom kibontása.
 
 > [!NOTE]
-> Alapértelmezés szerint blobok JSON vagy a fürt megosztott kötetei szolgáltatás például tartalmazó strukturált indexeli, egyetlen adattömb szöveg. Ha azt szeretné, blobok JSON és a fürt megosztott kötetei szolgáltatás indexelésre strukturált módon, lásd: [indexelő JSON-blobok](search-howto-index-json-blobs.md) és [indexelő CSV-blobok](search-howto-index-csv-blobs.md) az előzetes funkciók.
+> Alapértelmezés szerint blobok JSON vagy a fürt megosztott kötetei szolgáltatás például tartalmazó strukturált indexeli, egyetlen adattömb szöveg. Ha tooindex-blobok JSON és a fürt megosztott kötetei szolgáltatás strukturált módon, lásd: [indexelő JSON-blobok](search-howto-index-json-blobs.md) és [indexelő CSV-blobok](search-howto-index-csv-blobs.md) az előzetes funkciók.
 >
 > Egy összetett vagy beágyazott dokumentum (például ZIP-archívum létrehozása, vagy egy Word-dokumentumot beágyazott Outlook e-mail mellékleteket tartalmazó) is indexelt egyetlen-dokumentumként.
 
-* A dokumentum a szöveges tartalom kibontása nevű mezőnek `content`.
+* hello szöveges hello dokumentum tartalmának kibontása nevű mezőnek `content`.
 
 > [!NOTE]
-> Az Azure Search korlátozza, hogy milyen mértékű szöveg bontja ki az árképzési szint függően: 32000 karakterek szabad réteg, 64 000 az alapszintű és a 4 millió Standard, a Standard S2 és a Standard S3 rétege számára. Az indexelő állapotválasz csonkolt dokumentumokra vonatkozó figyelmeztetés tartalmazza.  
+> Az Azure Search korlátozza attól függően, hogy az IP-címek hello bontja ki szöveg: 32000 karakterek szabad réteg, 64 000 az alapszintű és a 4 millió Standard, a Standard S2 és a Standard S3 rétege számára. Hello indexelő állapot válasz csonkolt dokumentumokra vonatkozó figyelmeztetés tartalmazza.  
 
-* A blob megtalálható a felhasználó által megadott metaadat-tulajdonságainak bármilyen kibontása pontosan.
-* Standard blob metaadat-tulajdonságainak ki kell olvasni a következő mezőibe:
+* E hello blob, a felhasználó által megadott metaadat-tulajdonságainak bármilyen kibontása pontosan.
+* Standard blob metaadat-tulajdonságainak ki kell olvasni a következő mezők hello:
 
-  * **metaadatok\_tárolási\_neve** (Edm.String) – a blob fájlnevét. Például ha egy blob /my-container/my-folder/subfolder/resume.pdf, ez a mező értéke `resume.pdf`.
-  * **metaadatok\_tárolási\_elérési** (Edm.String) – a teljes URI-azonosítója a blob, beleértve a tárfiók. Például: `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
-  * **metaadatok\_tárolási\_tartalom\_típus** (Edm.String) – a blob feltöltése használt kód által megadott tartalomtípus. Például: `application/octet-stream`.
-  * **metaadatok\_tárolási\_utolsó\_módosított** (Edm.DateTimeOffset) - utolsó módosítás a BLOB időbélyegző. Az Azure Search az időbélyegző módosított blobok elkerüléséhez követően a kezdeti indexelő újraindexelés mindent azonosítására használ.
+  * **metaadatok\_tárolási\_neve** (Edm.String) – hello hello blob fájlnevét. Például ha egy blob /my-container/my-folder/subfolder/resume.pdf, hello Ez a mező értéke `resume.pdf`.
+  * **metaadatok\_tárolási\_elérési** (Edm.String) – hello hello blob, beleértve a hello tárfiók teljes URI-címe. Például: `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
+  * **metaadatok\_tárolási\_tartalom\_típus** (Edm.String) - tartalomtípus meg van adva hello kóddal akkor tooupload hello blob használt. Például: `application/octet-stream`.
+  * **metaadatok\_tárolási\_utolsó\_módosított** (Edm.DateTimeOffset) - utolsó módosítás hello BLOB időbélyegző. Az Azure Search használja a Timestamp típusú megváltozott tooidentify blobokat, tooavoid újraindexelés mindent hello kezdeti indexelő után.
   * **metaadatok\_tárolási\_mérete** (Edm.Int64) - blob mérete bájtban.
-  * **metaadatok\_tárolási\_tartalom\_md5** (Edm.String) - MD5 kivonatoló a blobtartalom, ha elérhető.
-* Minden egyes dokumentum formátuma jellemző metaadat-tulajdonságainak ki kell olvasni a mezőkbe felsorolt [Itt](#ContentSpecificMetadata).
+  * **metaadatok\_tárolási\_tartalom\_md5** (Edm.String) - MD5 kivonatoló hello blobtartalom, ha elérhető.
+* Metaadatok tulajdonságok adott tooeach dokumentumformátum kibontása felsorolt hello mezőkbe [Itt](#ContentSpecificMetadata).
 
-Nem kell mezők a fenti tulajdonságokat a search-index – csak rögzíteni kell az alkalmazás tulajdonságait.
+Nem kell toodefine mezők az összes fent tulajdonságok hello a keresési index, mert csak rögzítése hello tulajdonságok van szüksége az alkalmazáshoz.
 
 > [!NOTE]
-> A meglévő index a mezőnevek gyakran, a dokumentum kibontási során mezőnevek eltérő lesz. Használhat **hozzárendelések mezőben** megfeleltetni az Azure Search a mezőnevek az search-index által biztosított nevei. Látni fogja a mező hozzárendelések alábbi példát.
+> Gyakran a meglévő index hello mezőnevek hello mezőnevek dokumentum kibontási során eltérő lesz. Használhat **hozzárendelések mezőben** toomap hello Azure Search toohello alkotó mezőnevek az search-index által megadott tulajdonságnév. Látni fogja a mező hozzárendelések alábbi példát.
 >
 >
 
 <a name="DocumentKeys"></a>
 ### <a name="defining-document-keys-and-field-mappings"></a>Dokumentum kulcsok és a mezők leképezésének meghatározása
-Az Azure Search a dokumentum kulcs egyedileg azonosít egy dokumentumot. Minden keresési index Edm.String típusú pontosan egy kulcsmező kell rendelkeznie. A kulcs mező kitöltése kötelező, minden egyes dokumentumhoz, hogy az index (ténylegesen az egyetlen mező) lett hozzáadva.  
+Az Azure Search hello dokumentum kulcs egyedileg azonosít egy dokumentumot. Minden keresési index Edm.String típusú pontosan egy kulcsmező kell rendelkeznie. hello kulcs mező kitöltése kötelező nyilvántartott egyes dokumentumok hozzáadott toohello index (ténylegesen hello csak kötelező mező).  
 
-Alaposan gondolja át melyik kibontott mezőt az index a következő kulcsmező kell hozzárendelését. A deduplikációra kijelölt a következők:
+Alaposan gondolja át melyik kibontott mezőt kell leképezni toohello kulcsmező az index. hello alternatívák::
 
-* **metaadatok\_tárolási\_neve** – Ez lehet hasznos jelöltként, de vegye figyelembe, hogy 1.) a nevek nem feltétlenül egyedi, előfordulhat, hogy blobok azonos nevű másik mappa, és a 2.) a neve, a dokumentum kulcsok, például kötőjelek érvénytelen karaktereket tartalmazhat. Akkor is foglalkozik érvénytelen karakterek használatával a `base64Encode` [leképezési függvény mezőben](search-indexer-field-mappings.md#base64EncodeFunction) – Ha így tesz, ne felejtse el a dokumentum kulcsok kódolására, amikor például a keresési meghívja átadja őket az API-ban. (Például a .NET használhatja a [UrlTokenEncode metódus](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx) erre a célra).
-* **metaadatok\_tárolási\_elérési** – a teljes elérési útja a biztosítja a egyediségi, de az elérési út mindenképpen tartalmaz `/` karakterek, amelyek [egy dokumentum kulcs érvénytelen](https://docs.microsoft.com/rest/api/searchservice/naming-rules).  A fenti, lehetősége van a kulcsok használatával kódolási a `base64Encode` [függvény](search-indexer-field-mappings.md#base64EncodeFunction).
-* Ha a fenti lehetőségek egyike sem tudja alkalmazni, a blobok is hozzáadhat egy egyéni metaadat-tulajdonságnak. Ezt a beállítást, azonban szükséges a blob feltöltési folyamat adott metaadat-tulajdonságnak hozzáadása az összes BLOB. Mivel a kulcsot kötelező tulajdonság, összes BLOB, amelyek nem rendelkeznek az adott tulajdonsághoz indexelése sikertelen lesz.
+* **metaadatok\_tárolási\_neve** – Ez lehet, hogy egy kényelmes jelölt, de vegye figyelembe, hogy 1) hello nevek nem feltétlenül egyedi, mivel előfordulhat, hogy különböző mappák neve azonos hello blobok és 2) hello neve karaktereket tartalmazhat, amelyek a dokumentum kulcsok, például kötőjelek érvénytelenek. Hello segítségével érvénytelen karaktereket az kezelését is `base64Encode` [leképezési függvény mezőben](search-indexer-field-mappings.md#base64EncodeFunction) – Ha így tesz, ne feledje tooencode dokumentum kulcsok, amikor például a keresési meghívja átadja őket az API-ban. (Például a .NET használható hello [UrlTokenEncode metódus](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx) erre a célra).
+* **metaadatok\_tárolási\_elérési** – hello teljes elérési útja a biztosítja a egyediségi, de hello elérési útját mindenképpen tartalmaz `/` karakterek, amelyek [egy dokumentum kulcs érvénytelen](https://docs.microsoft.com/rest/api/searchservice/naming-rules).  A fenti, lehetősége van hello hello kulcsok használatával hello kódolási `base64Encode` [függvény](search-indexer-field-mappings.md#base64EncodeFunction).
+* Ha a fenti hello lehetőségek egyike megfelelő Önnek, egy egyéni metaadat-tulajdonság toohello blobok is hozzáadhat. Ezt a beállítást, azonban szükséges a blob feltöltési folyamat tooadd adott metaadatok tulajdonság tooall blobokat. Hello kulcs értéke kötelezően megadandó tulajdonság, összes BLOB, amelyek nem rendelkeznek az adott tulajdonsághoz sikertelen lesz indexelve toobe.
 
 > [!IMPORTANT]
-> Ha az index a következő kulcsmező nem explicit leképezést, automatikusan használja-e Azure Search `metadata_storage_path` a kulcs és a base-64 kódolja kulcsértékei (a második lehetőség fenti).
+> Ha nincs explicit leképezés hello kulcsmező hello index, automatikusan használja-e Azure Search `metadata_storage_path` , és a base-64 hello kódolja kulcsértékei (hello második lehetőség fenti).
 >
 >
 
-Ehhez a példához most válassza ki a `metadata_storage_name` mezőt dokumentumkulcsként. Tételezzük is fel, hogy az index nevű kulcs mezőt tartalmaz `key` és mező `fileSize` a dokumentum méretének tárolásához. Hozzá kell fűznie a folyamatot a kívánt módon működjenek, adja meg a következő mező megfeleltetéseket létrehozásakor vagy frissítésekor az indexelő:
+Ehhez a példához tegyük válasszon hello `metadata_storage_name` hello dokumentum kulcsként mezőjét. Tételezzük is fel, hogy az index nevű kulcs mezőt tartalmaz `key` és mező `fileSize` hello dokumentum méretének tárolásához. a kívánt módon működjenek, a toowire folyamatot adja meg a következő mező hozzárendelések létrehozásakor vagy frissítésekor az indexelő hello:
 
     "fieldMappings" : [
       { "sourceFieldName" : "metadata_storage_name", "targetFieldName" : "key", "mappingFunction" : { "name" : "base64Encode" } },
       { "sourceFieldName" : "metadata_storage_size", "targetFieldName" : "fileSize" }
     ]
 
-Ennek érdekében minden együtt, és ez hogyan hozzáadhat mező leképezések és base 64 kódolás kulcsok a meglévő indexelőt engedélyezése:
+toobring az összes együtt, az alábbiakban hogyan adhat mező leképezések és engedélyezése base 64 kódolás kulcsok a meglévő indexelőt:
 
     PUT https://[service name].search.windows.net/indexers/blob-indexer?api-version=2016-09-01
     Content-Type: application/json
@@ -205,7 +205,7 @@ Ennek érdekében minden együtt, és ez hogyan hozzáadhat mező leképezések 
     }
 
 > [!NOTE]
-> Mező hozzárendelések kapcsolatos további információkért lásd: [Ez a cikk](search-indexer-field-mappings.md).
+> toolearn mezők leképezését kapcsolatos további információkért lásd: [Ez a cikk](search-indexer-field-mappings.md).
 >
 >
 
@@ -213,8 +213,8 @@ Ennek érdekében minden együtt, és ez hogyan hozzáadhat mező leképezések 
 ## <a name="controlling-which-blobs-are-indexed"></a>Mely blobok indexelt vezérlése
 Szabályozhatja, hogy mely blobok indexelt, és amely kimarad.
 
-### <a name="index-only-the-blobs-with-specific-file-extensions"></a>Csak a meghatározott fájlnév-kiterjesztésű blobok index
-Csak a fájlnév-kiterjesztések használatával adja meg a blobok indexelheti a `indexedFileNameExtensions` indexelő konfigurációs paraméter. Az érték a kívánt fájlkiterjesztéseket (a kezdő pont) vesszővel tagolt listáját tartalmazó karakterlánc. Például, hogy az index csak a. PDF és. Blobok DOCX, tegye a következőket:
+### <a name="index-only-hello-blobs-with-specific-file-extensions"></a>Csak hello blobok meghatározott fájlnév-kiterjesztések index
+Csak hello blobok hello fájlnévkiterjesztésekkel hello használatával megadja a indexelheti `indexedFileNameExtensions` indexelő konfigurációs paraméter. hello értéke a kívánt fájlkiterjesztéseket (a kezdő pont) vesszővel tagolt listáját tartalmazó karakterlánc. Például tooindex csak hello. PDF és. Blobok DOCX, tegye a következőket:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -226,7 +226,7 @@ Csak a fájlnév-kiterjesztések használatával adja meg a blobok indexelheti a
     }
 
 ### <a name="exclude-blobs-with-specific-file-extensions"></a>Blobok meghatározott fájlnév-kiterjesztésű kizárása
-Kizárhat meghatározott fájlnév-kiterjesztések blobok használatával indexelésének a `excludedFileNameExtensions` konfigurációs paraméter. Az érték a kívánt fájlkiterjesztéseket (a kezdő pont) vesszővel tagolt listáját tartalmazó karakterlánc. Például, hogy az összes blobot, kivéve az index a. PNG és. JPEG-bővítményeket, tegye a következőket:
+Kizárhat meghatározott fájlnév-kiterjesztések blobok hello segítségével indexelésének `excludedFileNameExtensions` konfigurációs paraméter. hello értéke a kívánt fájlkiterjesztéseket (a kezdő pont) vesszővel tagolt listáját tartalmazó karakterlánc. Például minden tooindex blobok a hello kivételével. PNG és. JPEG-bővítményeket, tegye a következőket:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -237,11 +237,11 @@ Kizárhat meghatározott fájlnév-kiterjesztések blobok használatával indexe
       "parameters" : { "configuration" : { "excludedFileNameExtensions" : ".png,.jpeg" } }
     }
 
-Ha mindkét `indexedFileNameExtensions` és `excludedFileNameExtensions` paraméterek szerepelnek, az Azure Search először ellenőrzi, hogy az `indexedFileNameExtensions`, majd a `excludedFileNameExtensions`. Ez azt jelenti, hogy ha ugyanazon fájl kiterjesztése könyvtárban található, akkor nem kerülnek bele az indexelő.
+Ha mindkét `indexedFileNameExtensions` és `excludedFileNameExtensions` paraméterek szerepelnek, az Azure Search először ellenőrzi, hogy az `indexedFileNameExtensions`, majd a `excludedFileNameExtensions`. Ez azt jelenti, hogy ha hello ugyanazon fájl kiterjesztése mindkét listája szerepel, akkor nem kerülnek bele az indexelő.
 
 ### <a name="dealing-with-unsupported-content-types"></a>Nem támogatott tartalomtípus kezelésével
 
-Alapértelmezés szerint a blob indexelője, amint fordul egy blobot a tartalom nem támogatott típust (például egy képet). Természetesen használhatja a `excludedFileNameExtensions` paraméter kihagyását bizonyos tartalomtípusokat. Azonban szükség lehet index blobok minden lehetséges tartalomtípusokat előre ismerete nélkül. Folytatni, amikor a rendszer észlelt egy nem támogatott tartalomtípus, állítsa be a `failOnUnsupportedContentType` konfigurációs paramétert `false`:
+Alapértelmezés szerint hello blob indexelője, amint fordul egy blobot a tartalom nem támogatott típust (például egy képet). Természetesen használhatja hello `excludedFileNameExtensions` bizonyos paraméter tooskip tartalomtípus. Azonban szükség lehet tooindex blobok összes hello lehetséges tartalomtípusok előre ismerete nélkül. Amikor a rendszer észlelt egy nem támogatott tartalomtípus, indexelő toocontinue hello beállítása `failOnUnsupportedContentType` konfigurációs paramétere túl`false`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -254,7 +254,7 @@ Alapértelmezés szerint a blob indexelője, amint fordul egy blobot a tartalom 
 
 ### <a name="ignoring-parsing-errors"></a>A rendszer figyelmen kívül hagyja az elemzési hibák
 
-Az Azure Search dokumentum kibontási logika nem tökéletes megoldás, ezért néha nem támogatott tartalomtípus dokumentumok például elemzésére. DOCX vagy. PDF-FÁJLT. Ha nem szeretné, hogy zavaró, ebben az esetben indexelő használatához állítsa be a `maxFailedItems` és `maxFailedItemsPerBatch` néhány ésszerű értéket konfigurációs paramétereket. Példa:
+Az Azure Search dokumentum kibontási logika nem tökéletes megoldás, ezért sikertelen lesz, néha tooparse dokumentumok tartalom típusa támogatott, például a. DOCX vagy. PDF-FÁJLT. Ha nem szeretné, hogy ebben az esetben indexelő toointerrupt hello, állítsa be a hello `maxFailedItems` és `maxFailedItemsPerBatch` konfigurációs paraméterek toosome ésszerű értékeket. Példa:
 
     {
       ... other parts of indexer definition
@@ -262,15 +262,15 @@ Az Azure Search dokumentum kibontási logika nem tökéletes megoldás, ezért n
     }
 
 <a name="PartsOfBlobToIndex"></a>
-## <a name="controlling-which-parts-of-the-blob-are-indexed"></a>A blob részeket indexelt vezérlése
+## <a name="controlling-which-parts-of-hello-blob-are-indexed"></a>Hello blob részeket indexelt vezérlése
 
-A blobok részeket indexelt segítségével szabályozhatja a `dataToExtract` konfigurációs paraméter. Ez a következő értékeket veheti:
+Hello blobok részeket indexelt hello segítségével szabályozhatja `dataToExtract` konfigurációs paraméter. A következő értékek hello is igénybe vehet:
 
-* `storageMetadata`-határozza meg, hogy csak a [szabványos blob tulajdonságait és a felhasználó által megadott metaadatok](../storage/blobs/storage-properties-metadata.md) indexelt.
-* `allMetadata`-határozza meg, hogy tárolási metaadatai és a [tartalomtípus adott metaadatokat](#ContentSpecificMetadata) kibontott tartalmat indexelt a blobból.
-* `contentAndMetadata`-határozza meg, hogy minden metaadat és a blob kinyert szöveges tartalom indexelt. Ez az alapértelmezett érték.
+* `storageMetadata`-határozza meg, hogy csak hello [szabványos blob tulajdonságait és a felhasználó által megadott metaadatok](../storage/blobs/storage-properties-metadata.md) indexelt.
+* `allMetadata`-határozza meg, hogy tárolási metaadatai és hello [tartalomtípus adott metaadatokat](#ContentSpecificMetadata) kibontott hello blobból tartalom indexelt.
+* `contentAndMetadata`-Adja meg a metaadatok és a szöveges tartalom hello blob kinyert indexelt. Ez az alapértelmezett érték hello.
 
-Például csak a tárolási metaadatok indexelése, használja:
+Például tooindex csak hello tárolási metaadatoknál használja:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -281,28 +281,28 @@ Például csak a tárolási metaadatok indexelése, használja:
       "parameters" : { "configuration" : { "dataToExtract" : "storageMetadata" } }
     }
 
-### <a name="using-blob-metadata-to-control-how-blobs-are-indexed"></a>A blob metaadatai használatával határozzák meg, hogyan blobok
+### <a name="using-blob-metadata-toocontrol-how-blobs-are-indexed"></a>Hogyan blobok indexelt blob metaadatai toocontrol használatával
 
-A fenti konfigurációs paraméterek összes BLOB vonatkozik. Egyes esetekben előfordulhat, hogy szeretne szabályozni hogyan *egyes blobok* indexelt. Ehhez adja hozzá a következő blob metaadatai tulajdonságok és értékek:
+a fent leírt hello konfigurációs paraméterek tooall blobok alkalmazni. Egyes esetekben érdemes lehet toocontrol hogyan *egyes blobok* indexelt. Ehhez adja hozzá a következő hello blob-metaadatok tulajdonságok és értékek:
 
 | Tulajdonság neve | Tulajdonság értéke | Magyarázat |
 | --- | --- | --- |
-| AzureSearch_Skip |"true" |Arra utasítja a blob indexelő teljesen kihagyja a blob. Sem a metaadatok, sem a tartalom kivonása kísérlet történik. Ez akkor hasznos, ha egy adott blob ismételten meghiúsul, és megszakítja az indexelési folyamat. |
-| AzureSearch_SkipContent |"true" |Ez megegyezik a `"dataToExtract" : "allMetadata"` ismertetett beállítás [fent](#PartsOfBlobToIndex) egy adott blob hatókörébe. |
+| AzureSearch_Skip |"true" |Arra utasítja a hello blob indexelő toocompletely skip hello blob. Sem a metaadatok, sem a tartalom kivonása kísérlet történik. Ez akkor hasznos, ha egy adott blob ismételten meghibásodik, és megszakítja hello indexelési folyamat. |
+| AzureSearch_SkipContent |"true" |Ez megegyezik a `"dataToExtract" : "allMetadata"` ismertetett beállítás [fent](#PartsOfBlobToIndex) hatókörön belüli tooa adott blob. |
 
 ## <a name="incremental-indexing-and-deletion-detection"></a>Növekményes indexelő és törlési észlelése
-Beállításakor egy blob indexelő ütemezés szerint futtatni, azt újra indexek csak a módosított blobok a blob alapján `LastModified` időbélyegző.
+Ha beállít egy blob indexelő toorun ütemezés szerint, azt újra indexek csak hello megváltozott blobot hello blob alapján `LastModified` időbélyegző.
 
 > [!NOTE]
-> Nem kell megadnia a módosítás szabályzat – növekményes indexelő engedélyezve van, automatikusan.
+> Nem rendelkezik toospecify egy módosítás szabályzat – növekményes indexelő engedélyezve van, automatikusan.
 
-Egy "helyreállítható törlésre" módszert használja, törlésével dokumentumok támogatása érdekében. Ha törli a végleges blobokat, megfelelő dokumentumok nem törlődik a search-index. Ehelyett kövesse az alábbi lépéseket:  
+toosupport törlése dokumentumok, a "soft törlés" módszert használja. Ha törli a végleges hello blobok, megfelelő dokumentumok nem törlődik hello search-index. Ehelyett használjon hello a következő lépéseket:  
 
-1. Egy egyéni metaadat-tulajdonságnak hozzáadása a blob jelzi az Azure Search logikailag el kell-e hagyni
-2. Az adatforrás egy helyreállítható törlési szabályzat konfigurálása
-3. Miután az indexelő feldolgozta-e a blobot (eredményobjektumokról az indexelő állapot API), a blob fizikailag törlése
+1. Adja hozzá az egyéni metaadat tulajdonság toohello blob tooindicate tooAzure keresési logikailag el kell-e hagyni
+2. Hello az adatforrás egy helyreállítható törlési szabályzat konfigurálása
+3. Hello indexelő hello blob (eredményobjektumokról hello indexelő állapot API) rendelkezik feldolgozását követően hello blob fizikailag törlése
 
-Például a következő házirendet úgy ítéli meg, egy blobot törölve lesz, ha olyan metadata tulajdonsággal rendelkezik `IsDeleted` értékű `true`:
+Például a következő házirend hello úgy ítéli meg, a blob toobe törölve, ha olyan metadata tulajdonsággal rendelkezik `IsDeleted` hello értékű `true`:
 
     PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2016-09-01
     Content-Type: application/json
@@ -322,10 +322,10 @@ Például a következő házirendet úgy ítéli meg, egy blobot törölve lesz,
 
 ## <a name="indexing-large-datasets"></a>Az indexelő nagy adatkészletek
 
-Blobok indexelő időigényes folyamat lehet. A több millió indexelésre blobok esetében esetben felgyorsíthatja az adatok particionálása és az adatok párhuzamos feldolgozásához használt több indexelők indexelő. Itt látható, hogyan állíthat be ezt:
+Blobok indexelő időigényes folyamat lehet. A blobok tooindex több millió esetében esetben felgyorsíthatja az adatok particionálása és párhuzamos használatával több indexelők tooprocess hello adatok indexelése. Itt látható, hogyan állíthat be ezt:
 
 - Az adatok particionálása több blob tárolók vagy virtuális mappák
-- Állítson be több Azure keresési adatforrások, egy tárolót vagy mappa egy. A blob mappára mutat, használja a `query` paraméter:
+- Állítson be több Azure keresési adatforrások, egy tárolót vagy mappa egy. toopoint tooa blob mappa, használjon hello `query` paraméter:
 
     ```
     {
@@ -336,20 +336,20 @@ Blobok indexelő időigényes folyamat lehet. A több millió indexelésre blobo
     }
     ```
 
-- Hozzon létre egy megfelelő indexelőt minden adatforrás. Az indexelő a azonos cél keresési indexe is mutathat.  
+- Hozzon létre egy megfelelő indexelőt minden adatforrás. Az összes hello indexelők is pont toohello azonos cél search-index.  
 
-- A szolgáltatás egy keresési egység egy indexelő futtathatja egy adott időpontban. Csak akkor hasznos, ha ténylegesen párhuzamos futtatása több indexelők létrehozása a fent leírt módon. Több indexelők párhuzamosan futó, nem megfelelő számú partíciókat és a replikák létrehozásával méretezése a keresési szolgáltatáshoz. Például ha a keresési szolgáltatás 6 keresési egységek (például 2 partíció x 3 replikák), majd 6 indexelők is futtatható egyidejűleg, egy six-fold az indexelési teljesítmény növekedését eredményezi. Méretezés és a kapacitástervezést kapcsolatos további információkért lásd: [erőforrás szintjeinek lekérdezési és indexelési munkaterhelések az Azure Search méretezése](search-capacity-planning.md).
+- A szolgáltatás egy keresési egység egy indexelő futtathatja egy adott időpontban. Csak akkor hasznos, ha ténylegesen párhuzamos futtatása több indexelők létrehozása a fent leírt módon. toorun párhuzamosan több indexelők kiterjesztése a keresőszolgáltatása megfelelő számú partíciót és a replikák létrehozásával. Például ha a keresési szolgáltatás 6 keresési egységek (például 2 partíció x 3 replikák), majd 6 indexelők is futtatható egyidejűleg, egy six-fold hello indexelési teljesítmény növekedését eredményezi. További információ a méretezés és a kapacitástervezést, toolearn lásd: [erőforrás szintjeinek lekérdezési és indexelési munkaterhelések az Azure Search méretezése](search-capacity-planning.md).
 
 ## <a name="indexing-documents-along-with-related-data"></a>Az indexelő dokumentumok kapcsolódó adatokkal együtt
 
-Érdemes lehet "összeállítása" dokumentumok az indexben több forrásból. Érdemes lehet például más Cosmos DB tárolt metaadatok blobok szöveg egyesíteni. Az indexelő API különböző indexelők együtt leküldéses segítségével még több részeiből dokumentumok keresése kialakításához. 
+Érdemes lehet túl "összeállítása" dokumentumok az indexben több forrásból. Például érdemes lehet blobok toomerge szöveg más Cosmos DB tárolt metaadatok. Leküldéses indexelési API különböző indexelők együtt túl kialakításához több részeiből dokumentumok keresése hello még akkor is használhatja. 
 
-Ennek működéséhez minden indexelők és más olyan összetevők kell kidolgozni a dokumentum kulcs. Részletes útmutató, tekintse meg a külső cikket: [dokumentumok egyesíthető más adatokat az Azure Search ](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html).
+A toowork összes indexelő és más olyan összetevők kell tooagree hello dokumentum kulcs. Részletes útmutató, tekintse meg a külső cikket: [dokumentumok egyesíthető más adatokat az Azure Search ](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html).
 
 <a name="IndexingPlainText"></a>
 ## <a name="indexing-plain-text"></a>Az indexelő egyszerű szöveg 
 
-Ha a blobok az azonos kódolással egyszerű szöveges tartalmaz, akkor jelentősen növelheti indexelési teljesítmény használatával **mód elemzése szöveg**. Szöveg elemzésekor mód használatához állítsa a `parsingMode` konfigurációs tulajdonság `text`:
+Összes blobok egyszerű szöveget tartalmazhat hello azonos kódolását, ha jelentősen növelheti az indexelő teljesítményét használatával **mód elemzése szöveg**. elemzési módot, set hello toouse szöveg `parsingMode` konfigurációs tulajdonság túl`text`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -360,7 +360,7 @@ Ha a blobok az azonos kódolással egyszerű szöveges tartalmaz, akkor jelentő
       "parameters" : { "configuration" : { "parsingMode" : "text" } }
     }
 
-Alapértelmezés szerint a `UTF-8` feltételezett kódolását. Egy másik kódolást megadásához használja a `encoding` konfigurációs tulajdonság: 
+Alapértelmezés szerint hello `UTF-8` feltételezett kódolását. egy másik kódolást toospecify hello használata `encoding` konfigurációs tulajdonság: 
 
     {
       ... other parts of indexer definition
@@ -370,7 +370,7 @@ Alapértelmezés szerint a `UTF-8` feltételezett kódolását. Egy másik kódo
 
 <a name="ContentSpecificMetadata"></a>
 ## <a name="content-type-specific-metadata-properties"></a>Tartalom típusra vonatkozó metaadatokhoz tulajdonságai
-Az alábbi táblázat foglalja össze az egyes végzett feldolgozás, és ismerteti az Azure Search által kibontott metaadat-tulajdonságainak.
+hello következő táblázat összefoglalja az egyes végzett feldolgozás, és Azure Search által kibontott hello metaadatok tulajdonságait ismerteti.
 
 | Dokumentum formátuma / tartalomtípus | Adott metaadatokat tartalomtípus-tulajdonságok | Feldolgozási részletek |
 | --- | --- | --- |
@@ -383,9 +383,9 @@ Az alábbi táblázat foglalja össze az egyes végzett feldolgozás, és ismert
 | PPTX (application/vnd.openxmlformats-officedocument.presentationml.presentation) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |Bontsa ki a szöveget, beleértve a beágyazott dokumentumok |
 | PPT (kérelem/vnd.ms-powerpoint) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |Bontsa ki a szöveget, beleértve a beágyazott dokumentumok |
 | ÜZENET (kérelem/vnd.ms-outlook) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` |Bontsa ki a szöveget, beleértve a mellékletek |
-| ZIP (kérelem/zip) |`metadata_content_type` |Az archívumban található összes dokumentum szöveg kinyerése |
+| ZIP (kérelem/zip) |`metadata_content_type` |Szöveg kinyerése hello archívumban található összes dokumentum |
 | XML (application/xml) |`metadata_content_type`</br>`metadata_content_encoding`</br> |XML-címke sáv és szöveg |
-| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |Szöveg<br/>Megjegyzés: Ha több dokumentum mező kinyerése JSON blob van szüksége, tekintse meg [indexelő JSON-blobok](search-howto-index-json-blobs.md) részletek |
+| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |Szöveg<br/>Megjegyzés: Ha több dokumentum mezőit a JSON blob tooextract van szüksége, tekintse meg [indexelő JSON-blobok](search-howto-index-json-blobs.md) részletek |
 | EML (üzenet/rfc822) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` |Bontsa ki a szöveget, beleértve a mellékletek |
 | RTF (kérelem/rtf) |`metadata_content_type`</br>`metadata_author`</br>`metadata_character_count`</br>`metadata_creation_date`</br>`metadata_page_count`</br>`metadata_word_count`</br> | Szöveg|
 | Egyszerű szöveges (egyszerű szöveg) |`metadata_content_type`</br>`metadata_content_encoding`</br> | Szöveg|

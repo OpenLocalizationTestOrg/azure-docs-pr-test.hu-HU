@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás a MySQL-hez készült Azure-adatbázishoz a Pythonnal | Microsoft Docs"
-description: "Ez a rövid útmutató számos Python-mintakódot biztosít, amelyekkel csatlakozhat a MySQL-hez készült Azure-adatbázishoz, illetve adatokat kérdezhet le róla."
+title: "A Python MySQL-adatbázis tooAzure kapcsolati |} Microsoft Docs"
+description: "A gyors üzembe helyezés biztosít több Python Kódminták MySQL Azure-adatbázis tooconnect és lekérdezés adatait is használhatja."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,79 +11,79 @@ ms.custom: mvc
 ms.devlang: python
 ms.topic: hero-article
 ms.date: 07/12/2017
-ms.openlocfilehash: 4c3a2e65b83fab6fe5b8b7778782a747bb5e9cf9
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9df5211adcab886a502fd138347aed8fb587cd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-python-to-connect-and-query-data"></a>A MySQL-hez készült Azure-adatbázis: Csatlakozás és adatlekérdezés a Python használatával
-Ez a rövid útmutató ismerteti, hogyan használható a [Python](https://python.org) a MySQL-hez készült Azure-adatbázishoz való csatlakozáshoz. Az SQL-utasítások használatával kérdez le, szúr be, frissít és töröl adatokat az adatbázisban a Mac OS, Ubuntu Linux és a Windows platformról. A jelen cikkben ismertetett lépések feltételezik, hogy Ön rendelkezik fejlesztési tapasztalatokkal a Python használatával kapcsolatosan, a MySQL-hez készült Azure-adatbázis használatában pedig még járatlan.
+# <a name="azure-database-for-mysql-use-python-tooconnect-and-query-data"></a>MySQL az Azure-adatbázishoz: használata Python tooconnect és lekérdezési adatok
+A gyors üzembe helyezés bemutatja, hogyan toouse [Python](https://python.org) tooconnect tooan MySQL az Azure-adatbázis. A Mac OS, az Ubuntu Linux és a Windows platformokon hello adatbázisban SQL utasítás tooquery, insert, update és adatok használ. Ez a cikk hello lépések azt feltételezik, ismeri a Python használatával történő fejlesztéséhez, és a rendszer új tooworking MySQL az Azure-adatbázissal.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a rövid útmutatóban a következő útmutatók valamelyikében létrehozott erőforrásokat használunk kiindulási pontként:
+A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyikével létrehozott hello erőforrást használ:
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure CLI használatával](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
-## <a name="install-python-and-the-mysql-connector"></a>A Python és a MySQL-összekötő telepítése
-Telepítse a [Pythont](https://www.python.org/downloads/) és a [Python MySQL-összekötőjét](https://dev.mysql.com/downloads/connector/python/) a saját gépére. Kövesse az egyes platformoknak megfelelő lépéseket:
+## <a name="install-python-and-hello-mysql-connector"></a>Telepítse a Python és hello MySQL-összekötő
+Telepítés [Python](https://www.python.org/downloads/) és hello [Python MySQL-összekötő](https://dev.mysql.com/downloads/connector/python/) a saját számítógépén. Attól függően, hogy a platform a hello lépésekkel:
 
 ### <a name="windows"></a>Windows
 1. Töltse le és telepítse a Python 2.7-es verziót a [python.org](https://www.python.org/downloads/windows/) webhelyről. 
-2. A parancssor elindításával ellenőrizze a Python telepítését. Futtassa a `C:\python27\python.exe -V` parancsot a nagybetűs V kapcsolóval a verziószám megtekintéséhez.
-3. Telepítse a MySQL a Python verziójának megfelelő Python-összekötőjét a [mysql.com](https://dev.mysql.com/downloads/connector/python/) webhelyről.
+2. Ellenőrizze a hello Python telepítését hello parancssorból indítsa el. Hello paranccsal `C:\python27\python.exe -V` hello nagybetűs V kapcsoló toosee hello verziószám használatával.
+3. A MySQL hello Python-összekötő telepítése [mysql.com](https://dev.mysql.com/downloads/connector/python/) Python megfelelő tooyour verziója.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
-1. A Linux (Ubuntu) rendszeren a Python általában az alapértelmezett telepítés részeként van telepítve.
-2. A bash rendszerhéj elindításával ellenőrizze a Python telepítését. Futtassa a `python -V` parancsot a nagybetűs V kapcsolóval a verziószám megtekintéséhez.
-3. A PIP telepítésének ellenőrzéséhez futtassa a `pip show pip -V` parancsot a verziószám megtekintéséhez. 
-4. A PIP szerepelhet a Python egyes verzióiban. Ha a PIP nincs telepítve, a [PIP] (https://pip.pypa.io/en/stable/installing/) csomagot a `sudo apt-get install python-pip` parancs futtatásával telepítheti.
-5. A PIP legújabb verziójára való frissítéshez futtassa a `pip install -U pip` parancsot.
-6. A PIP paranccsal telepítse a Python MySQL-összekötőjét és annak függőségeit:
+1. Linux (Ubuntu), a Python általában hello alapértelmezett telepítés részeként telepíthető.
+2. Ellenőrizze a hello Python telepítését hello rendszerhéjakba indításával. Hello paranccsal `python -V` hello nagybetűs V kapcsoló toosee hello verziószám használatával.
+3. Ellenőrizze a hello PIP telepítési hello futtatásával `pip show pip -V` toosee hello verziószám parancsot. 
+4. A PIP szerepelhet a Python egyes verzióiban. Ha a PIP nincs telepítve, előfordulhat, hogy telepítése hello [PIP] (https://pip.pypa.io/en/stable/installing/) csomag, a parancs futtatásával `sudo apt-get install python-pip`.
+5. Frissítés a PIP toohello legújabb verzió hello futtatásával `pip install -U pip` parancsot.
+6. Hello MySQL-összekötő telepítése a Python és annak függőségeit hello PIP parancs használatával:
 
    ```bash
    sudo pip install mysql-connector-python-rf
    ```
  
 ### <a name="macos"></a>MacOS
-1. A Mac OS rendszeren a Python általában az alapértelmezett telepítés részeként van telepítve.
-2. A bash rendszerhéj elindításával ellenőrizze a Python telepítését. Futtassa a `python -V` parancsot a nagybetűs V kapcsolóval a verziószám megtekintéséhez.
-3. A PIP telepítésének ellenőrzéséhez futtassa a `pip show pip -V` parancsot a verziószám megtekintéséhez.
-4. A PIP szerepelhet a Python egyes verzióiban. Ha a PIP nincs telepítve, telepítheti a [PIP](https://pip.pypa.io/en/stable/installing/) csomagot.
-5. A PIP legújabb verziójára való frissítéshez futtassa a `pip install -U pip` parancsot.
-6. A PIP paranccsal telepítse a Python MySQL-összekötőjét és annak függőségeit:
+1. A Mac OS Python általában telepítve hello alapértelmezett operációs rendszer telepítésének részeként.
+2. Ellenőrizze a hello Python telepítését hello rendszerhéjakba indításával. Hello paranccsal `python -V` hello nagybetűs V kapcsoló toosee hello verziószám használatával.
+3. Ellenőrizze a hello PIP telepítési hello futtatásával `pip show pip -V` toosee hello verziószám parancsot.
+4. A PIP szerepelhet a Python egyes verzióiban. Ha nincs telepítve a PIP, előfordulhat, hogy telepítése hello [PIP](https://pip.pypa.io/en/stable/installing/) csomag.
+5. Frissítés a PIP toohello legújabb verzió hello futtatásával `pip install -U pip` parancsot.
+6. Hello MySQL-összekötő telepítése a Python és annak függőségeit hello PIP parancs használatával:
 
    ```bash
    pip install mysql-connector-python-rf
    ```
 
 ## <a name="get-connection-information"></a>Kapcsolatadatok lekérése
-Kérje le a MySQL-hez készült Azure Database-hez való csatlakozáshoz szükséges kapcsolatadatokat. Ehhez szükség lesz a teljes kiszolgálónévre és bejelentkezési hitelesítő adatokra.
+MySQL hello kapcsolat szükséges információkat tooconnect toohello Azure adatbázis beolvasása. Teljesen minősített kiszolgáló nevét és a bejelentkezési hitelesítő adatokat hello van szüksége.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. Az Azure Portal bal oldali menüjében kattintson az **Összes erőforrás** lehetőségre, és keressen rá a létrehozott kiszolgálóra (például: **myserver4demo**).
-3. Kattintson a **myserver4demo** kiszolgálónévre.
-4. Válassza a kiszolgáló **tulajdonságlapját**. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. A hello Azure-portálon a bal oldali menüből, kattintson az **összes erőforrás** , és keresse meg rendelkezik gyűrött, például a hello kiszolgáló **myserver4demo**.
+3. Hello kiszolgáló nevére kattint **myserver4demo**.
+4. Jelölje be hello server **tulajdonságok** lap. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**.
  ![MySQL-hez készült Azure-adatbázis – Kiszolgáló-rendszergazdai bejelentkezés](./media/connect-python/1_server-properties-name-login.png)
-5. Amennyiben elfelejtette a kiszolgálója bejelentkezési adatait, lépjen az **Áttekintés** oldalra, ahol kikeresheti a kiszolgáló-rendszergazda bejelentkezési nevét, valamint szükség esetén új jelszót kérhet.
+5. Ha elfelejti a kiszolgálói bejelentkezési adatok, keresse meg a toohello **áttekintése** tooview hello kiszolgálói rendszergazda bejelentkezési név lapon, és ha szükséges, állítsa vissza a hello jelszót.
    
 
 ## <a name="run-python-code"></a>A Python-kód futtatása
-- Mentse a kódot egy szövegfájlba, és mentse a fájlt egy projektmappába .py kiterjesztéssel, például a C:\pythonmysql\createtable.py vagy /home/username/pythonmysql/createtable.py elérési úton.
-- A kód futtatásához nyissa meg a parancssort vagy a bash rendszerhéjat. Módosítsa a könyvtárat a projektmappájára: `cd pythonmysql`. Ezután írja be a python-parancsot, majd a fájlnevet (`python createtable.py`) az alkalmazás futtatásához. Ha a Windows operációs rendszeren nem található a python.exe, megadhatja a futtatható fájl teljes elérési útját, vagy a Python-útvonalat a path környezeti változóhoz adhatja. `C:\python27\python.exe createtable.py`
+- Hello kód beillesztése egy szövegfájlt, és mentse a hello fájlt a fájl kiterjesztése .py, például C:\pythonmysql\createtable.py vagy /home/username/pythonmysql/createtable.py projekt mappába
+- toorun hello kódot, indítsa el a hello parancssor, vagy a bash rendszerhéjat. Módosítsa a könyvtárat a projektmappájára: `cd pythonmysql`. Írja be hello python parancsot hello fájl neve követ `python createtable.py` toorun hello alkalmazás. A Windows operációs rendszer hello, python.exe nem található, ha, előfordulhat, hogy adjon meg hello teljes elérési útja toohello végrehajtható, vagy hello Python elérési út hozzáadása a hello path környezeti változóba. `C:\python27\python.exe createtable.py`
 
 ## <a name="connect-create-table-and-insert-data"></a>Csatlakozás, táblák létrehozása és adatok beszúrása
-Az alábbi kód használatával csatlakozhat a kiszolgálóhoz, hozhat létre táblát, és töltheti be az adatokat egy **INSERT** SQL-utasítással. 
+Használja hello alábbi tooconnect toohello server code, hozzon létre egy táblát, és hello használatával végzett betölteni egy **BESZÚRÁSA** SQL-utasításban. 
 
-A kódban a mysql.connector-kódtár lesz importálva. A [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvénnyel csatlakozhat a MySQL-hez készült Azure-adatbázishoz a config gyűjtemény [kapcsolati argumentumaival](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html). A kód egy kurzort használ a kapcsolaton, és a [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus hajtja végre az SQL-lekérdezést a MySQL-adatbázisban. 
+Hello kódban hello mysql.connector könyvtár importálva van. Hello [csatlakozás](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvény használt tooconnect tooAzure hello segítségével MySQL adatbázis [kapcsolat argumentumok](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello config gyűjteményben. hello használ a kurzor hello kapcsolaton, és [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus elindít hello MySQL-adatbázis SQL-lekérdezést. 
 
-Cserélje le a `host`, `user`, `password` és `database` paramétert azokkal az értékekkel, amelyeket a kiszolgáló és az adatbázis létrehozásakor adott meg.
+Cserélje le a hello `host`, `user`, `password`, és `database` paraméterek hello kiszolgáló és az adatbázis létrehozásakor adott hello értékekkel.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -97,7 +97,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -128,18 +128,18 @@ else:
   print("Done.")
 ```
 
-## <a name="read-data"></a>Adatok beolvasása
-A következő kóddal csatlakozhat, és beolvashatja az adatokat a **SELECT** SQL-utasítással. 
+## <a name="read-data"></a>Adatok olvasása
+Használjon hello alábbi code tooconnect, és hello adatok segítségével olvassa a **kiválasztása** SQL-utasításban. 
 
-A kódban a mysql.connector-kódtár lesz importálva. A [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvénnyel csatlakozhat a MySQL-hez készült Azure-adatbázishoz a config gyűjtemény [kapcsolati argumentumaival](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html). A kód egy kurzort használ a kapcsolaton, és a [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus hajtja végre az SQL-utasítást a MySQL-adatbázisban. Az adatsorokat a rendszer a [fetchall()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-fetchall.html) metódussal olvassa be. Az eredményhalmaz egy gyűjteménysorba kerül, és a sorokon történő végighaladásra egy „for” iterátor szolgál.
+Hello kódban hello mysql.connector könyvtár importálva van. Hello [csatlakozás](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvény használt tooconnect tooAzure hello segítségével MySQL adatbázis [kapcsolat argumentumok](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello config gyűjteményben. hello használ a kurzor hello kapcsolaton, és [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus elindít hello MySQL-adatbázis SQL-utasításban. hello adatsorok hello olvassa el [fetchall()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-fetchall.html) metódust. hello eredménykészlet tartják gyűjtemény egymás és egy iterátor használt tooloop: hello sorok fölé.
 
-Cserélje le a `host`, `user`, `password` és `database` paramétert azokkal az értékekkel, amelyeket a kiszolgáló és az adatbázis létrehozásakor adott meg.
+Cserélje le a hello `host`, `user`, `password`, és `database` paraméterek hello kiszolgáló és az adatbázis létrehozásakor adott hello értékekkel.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -153,7 +153,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -178,17 +178,17 @@ else:
 ```
 
 ## <a name="update-data"></a>Adatok frissítése
-A következő kód használatával csatlakozhat, és frissítheti az adatokat az **UPDATE** SQL-utasítással. 
+Használjon hello következő code tooconnect, és frissítse a hello adatok segítségével egy **frissítése** SQL-utasításban. 
 
-A kódban a mysql.connector-kódtár lesz importálva.  A [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvénnyel csatlakozhat a MySQL-hez készült Azure-adatbázishoz a config gyűjtemény [kapcsolati argumentumaival](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html). A kód egy kurzort használ a kapcsolaton, és a [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus hajtja végre az SQL-utasítást a MySQL-adatbázisban. 
+Hello kódban hello mysql.connector könyvtár importálva van.  Hello [csatlakozás](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvény használt tooconnect tooAzure hello segítségével MySQL adatbázis [kapcsolat argumentumok](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello config gyűjteményben. hello használ a kurzor hello kapcsolaton, és [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus elindít hello MySQL-adatbázis SQL-utasításban. 
 
-Cserélje le a `host`, `user`, `password` és `database` paramétert azokkal az értékekkel, amelyeket a kiszolgáló és az adatbázis létrehozásakor adott meg.
+Cserélje le a hello `host`, `user`, `password`, és `database` paraméterek hello kiszolgáló és az adatbázis létrehozásakor adott hello értékekkel.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -202,7 +202,7 @@ try:
    print("Connection established")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
+    print("Something is wrong with hello user name or password")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
@@ -210,7 +210,7 @@ except mysql.connector.Error as err:
 else:
   cursor = conn.cursor()
 
-  # Update a data row in the table
+  # Update a data row in hello table
   cursor.execute("UPDATE inventory SET quantity = %s WHERE name = %s;", (200, "banana"))
   print("Updated",cursor.rowcount,"row(s) of data.")
 
@@ -222,17 +222,17 @@ else:
 ```
 
 ## <a name="delete-data"></a>Adat törlése
-A következő kód használatával csatlakozhat, és eltávolíthatja az adatokat a **DELETE** SQL-utasítással. 
+Használjon hello alábbi code tooconnect, és távolítsa el az adatokat egy **törlése** SQL-utasításban. 
 
-A kódban a mysql.connector-kódtár lesz importálva.  A [connect()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvénnyel csatlakozhat a MySQL-hez készült Azure-adatbázishoz a config gyűjtemény [kapcsolati argumentumaival](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html). A kód egy kurzort használ a kapcsolaton, és a [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus hajtja végre az SQL-lekérdezést a MySQL-adatbázisban. 
+Hello kódban hello mysql.connector könyvtár importálva van.  Hello [csatlakozás](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysql-connector-connect.html) függvény használt tooconnect tooAzure hello segítségével MySQL adatbázis [kapcsolat argumentumok](https://dev.mysql.com/doc/connector-python/en/connector-python-connectargs.html) hello config gyűjteményben. hello használ a kurzor hello kapcsolaton, és [cursor.execute()](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-execute.html) metódus elindít hello MySQL-adatbázis SQL-lekérdezést. 
 
-Cserélje le a `host`, `user`, `password` és `database` paramétert azokkal az értékekkel, amelyeket a kiszolgáló és az adatbázis létrehozásakor adott meg.
+Cserélje le a hello `host`, `user`, `password`, és `database` paraméterek hello kiszolgáló és az adatbázis létrehozásakor adott hello értékekkel.
 
 ```Python
 import mysql.connector
 from mysql.connector import errorcode
 
-# Obtain connection string information from the portal
+# Obtain connection string information from hello portal
 config = {
   'host':'myserver4demo.mysql.database.azure.com',
   'user':'myadmin@myserver4demo',
@@ -246,7 +246,7 @@ try:
    print("Connection established.")
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password.")
+    print("Something is wrong with hello user name or password.")
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist.")
   else:
@@ -254,7 +254,7 @@ except mysql.connector.Error as err:
 else:
   cursor = conn.cursor()
 
-  # Delete a data row in the table
+  # Delete a data row in hello table
   cursor.execute("DELETE FROM inventory WHERE name=%(param1)s;", {'param1':"orange"})
   print("Deleted",cursor.rowcount,"row(s) of data.")
 

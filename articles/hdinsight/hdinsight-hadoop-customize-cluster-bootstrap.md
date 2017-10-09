@@ -1,6 +1,6 @@
 ---
-title: "Rendszerindítási - Azure HDInsight-fürtök testreszabása |} Microsoft Docs"
-description: "Ismerje meg, hogyan szabhatja testre a rendszerindítási HDInsight-fürtök."
+title: "HDInsight-fürtök bootstrap – Azure aaaCustomize |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocustomize HDInsight clusters rendszerindítási használatával."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c7a6fafa90eac66774d564c82c926c662baf784c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0029680fd1aa0e9e6aa9cdf667256c31b7ddc565
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-hdinsight-clusters-using-bootstrap"></a>Rendszerindítási HDInsight-fürtök testreszabása
 
-Egyes esetekben konfigurálni szeretné a konfigurációs fájlokat, többek között:
+Egyes esetekben kívánt tooconfigure hello konfigurációs fájlokat, többek között:
 
 * clusterIdentity.xml
 * Core-site.xml
@@ -42,7 +42,7 @@ Egyes esetekben konfigurálni szeretné a konfigurációs fájlokat, többek kö
 * webhcat-site.xml
 * yarn-site.xml
 
-Rendszerindítási használandó három módszer áll rendelkezésre:
+Nincsenek a rendszerindítási három módszer toouse:
 
 * Azure PowerShell használatával
 * A .NET SDK használata
@@ -50,12 +50,12 @@ Rendszerindítási használandó három módszer áll rendelkezésre:
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-Információk a HDInsight-fürt további összetevők telepítése során a létrehozásának idejét lásd:
+További összetevők telepítése HDInsight-fürt hello létrehozás közbeni információkért lásd:
 
 * [Script Action (Linux) HDInsight-fürtök testreszabása](hdinsight-hadoop-customize-cluster-linux.md)
 
 ## <a name="use-azure-powershell"></a>Azure PowerShell használatával
-A következő PowerShell-kódjába testreszabja a Hive-konfiguráció:
+a következő PowerShell-kódjába hello testreszabja a Hive-konfiguráció:
 
     # hive-site.xml configuration
     $hiveConfigValues = @{ "hive.metastore.client.socket.timeout"="90" }
@@ -80,19 +80,19 @@ A következő PowerShell-kódjába testreszabja a Hive-konfiguráció:
 
 PowerShell parancsfájl teljes működő található [függelék – A](#hdinsight-hadoop-customize-cluster-bootstrap.md/appx-a:-powershell-sample).
 
-**A módosítás ellenőrzése:**
+**tooverify hello módosítása:**
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Kattintson a bal oldali menü **a HDInsight-fürtök**. Ha nem látja, kattintson a **további szolgáltatások** első.
-3. Kattintson arra a fürtre, újonnan létrehozott a PowerShell-parancsfájl használatával.
-4. Kattintson a **irányítópult** az Ambari felhasználói felületének megnyitásához a panel tetején.
-5. Kattintson a **Hive** a bal oldali menüből.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hello bal oldali menüben kattintson **a HDInsight-fürtök**. Ha nem látja, kattintson a **további szolgáltatások** első.
+3. Kattintson az imént létrehozott hello PowerShell-parancsfájl használatával hello fürt.
+4. Kattintson a **irányítópult** hello panel tooopen hello tetején a hello Ambari felhasználói felület.
+5. Kattintson a **Hive** hello bal oldali menüből.
 6. Kattintson a **hiveserver2-n** a **összegzés**.
-7. Kattintson a **Configs** fülre.
-8. Kattintson a **Hive** a bal oldali menüből.
-9. Kattintson a **speciális** fülre.
+7. Kattintson a hello **Configs** fülre.
+8. Kattintson a **Hive** hello bal oldali menüből.
+9. Kattintson a hello **speciális** fülre.
 10. Görgessen le, majd bontsa ki a **hive-hely speciális**.
-11. Keressen **hive.metastore.client.socket.timeout** szakaszában.
+11. Keressen **hive.metastore.client.socket.timeout** hello szakaszban.
 
 Néhány más konfigurációs fájlokat testreszabásáról további minták:
 
@@ -111,7 +111,7 @@ Néhány más konfigurációs fájlokat testreszabásáról további minták:
 További információkért lásd: című Azim Uddin blog [testreszabása a HDInsight-fürt létrehozása](http://blogs.msdn.com/b/bigdatasupport/archive/2014/04/15/customizing-hdinsight-cluster-provisioning-via-powershell-and-net-sdk.aspx).
 
 ## <a name="use-net-sdk"></a>A .NET SDK használata
-Lásd: [fürtök létrehozása Linux-alapú hdinsight .NET SDK használatával](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap).
+Lásd: [létrehozása Linux-alapú fürtökön a Hdinsightban az hello .NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap).
 
 ## <a name="use-resource-manager-template"></a>Használja a Resource Manager-sablon
 A Resource Manager-sablon rendszerindítási is használhatja:
@@ -129,7 +129,7 @@ A Resource Manager-sablon rendszerindítási is használhatja:
 ![HDInsight Hadoop fürthöz bootstrap Azure Resource Manager sablon testreszabása](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 ## <a name="see-also"></a>Lásd még:
-* [Hdinsight Hadoop-fürtök létrehozása] [ hdinsight-provision-cluster] HDInsight-fürtök létrehozása más egyéni beállítások használatával kapcsolatos utasításokat tartalmazza.
+* [Hdinsight Hadoop-fürtök létrehozása] [ hdinsight-provision-cluster] hogyan toocreate egy HDInsight fürt más egyéni beállítások használatával kapcsolatos utasításokat tartalmazza.
 * [A HDInsight parancsfájlművelet-parancsfájlok fejlesztése][hdinsight-write-script]
 * [Telepítse, és válassza a Spark on HDInsight-fürtök][hdinsight-install-spark]
 * [Telepítheti és használhatja a HDInsight-fürtök R][hdinsight-install-r]
@@ -181,10 +181,10 @@ A PowerShell parancsfájl HDInsight-fürtöt hoz létre, és egy Hive-beállít�
     $ErrorActionPreference = "Stop"
 
     ####################################
-    # Connect to Azure
+    # Connect tooAzure
     ####################################
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
@@ -198,7 +198,7 @@ A PowerShell parancsfájl HDInsight-fürtöt hoz létre, és egy Hive-beállít�
         -Name  $resourceGroupName `
         -Location $location
 
-    Write-Host "Creating the default storage account and default blob container ..."  -ForegroundColor Green
+    Write-Host "Creating hello default storage account and default blob container ..."  -ForegroundColor Green
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
@@ -213,7 +213,7 @@ A PowerShell parancsfájl HDInsight-fürtöt hoz létre, és egy Hive-beállít�
                                     -StorageAccountKey $defaultStorageAccountKey
     New-AzureStorageContainer `
         -Name $defaultBlobContainerName `
-        -Context $defaultStorageContext #use the cluster name as the container name
+        -Context $defaultStorageContext #use hello cluster name as hello container name
 
     ####################################
     # Create a configuration object
@@ -249,7 +249,7 @@ A PowerShell parancsfájl HDInsight-fürtöt hoz létre, és egy Hive-beállít�
         -Config $config
 
     ####################################
-    # Verify the cluster
+    # Verify hello cluster
     ####################################
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
 

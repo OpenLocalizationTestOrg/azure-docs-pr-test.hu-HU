@@ -1,6 +1,6 @@
 ---
-title: "Speciális Media Encoder prémium munkafolyamat kódolás |} Microsoft Docs"
-description: "Útmutató a Media Encoder prémium munkafolyamat kódolása. Kódminták C# nyelven íródtak, és a Media Services SDK használata a .NET-hez."
+title: "Media Encoder prémium munkafolyamat kódolás aaaAdvanced |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooencode Media Encoder prémium a munkafolyamathoz. Kódminták C# nyelven íródtak, és a Media Services SDK hello használata a .NET-hez."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 2b03853bf07e05c07fd730d5e8a8563963887921
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5a1c3d019a5c8fbf9bda2da751a7eff4c4907d97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-encoding-with-media-encoder-premium-workflow"></a>Speciális Media Encoder prémium munkafolyamat kódolás
 > [!NOTE]
@@ -29,47 +29,47 @@ ms.lasthandoff: 08/29/2017
 Prémium szintű kódolás kérdéseket tesz fel a Microsoft.com mepd e-mail.
 
 ## <a name="overview"></a>Áttekintés
-A Microsoft Azure Media Services bevezeti a **Media Encoder prémium munkafolyamat** media processzor. A processzor ajánlatok előzetes lehetőségeket biztosít a prémium szintű igény szerinti munkafolyamatok kódolást.
+A Microsoft Azure Media Services bevezeti a hello **Media Encoder prémium munkafolyamat** media processzor. A processzor ajánlatok előzetes lehetőségeket biztosít a prémium szintű igény szerinti munkafolyamatok kódolást.
 
-A következő témakörök szerkezeti kapcsolatos részleteket **Media Encoder prémium munkafolyamat**:
+hello témakörök szerkezeti túl kapcsolatos részleteket**Media Encoder prémium munkafolyamat**:
 
-* [A Media Encoder prémium munkafolyamat által támogatott formátumok](media-services-premium-workflow-encoder-formats.md) – foglalkozik a fájl formázása és a kodek által támogatott **Media Encoder prémium munkafolyamat**.
-* [Áttekintés és az igény szerinti media kódolók Azure összehasonlítása](media-services-encode-asset.md) összehasonlítja a kódolási képességeit **Media Encoder prémium munkafolyamat** és **Media Encoder Standard**.
+* [Támogatott fájlformátumok által hello Media Encoder prémium munkafolyamat](media-services-premium-workflow-encoder-formats.md) – hello fájlformátumokat és a kodek által támogatott ismerteti **Media Encoder prémium munkafolyamat**.
+* [Áttekintés és az igény szerinti media kódolók Azure összehasonlítása](media-services-encode-asset.md) hasonlítja össze hello kódolási képességeit **Media Encoder prémium munkafolyamat** és **Media Encoder Standard**.
 
-Ez a témakör bemutatja, hogyan kell a kódolása **Media Encoder prémium munkafolyamat** .NET használatával.
+Ez a témakör bemutatja, hogyan rendelkező tooencode **Media Encoder prémium munkafolyamat** .NET használatával.
 
-Kódolási feladatok a **Media Encoder prémium munkafolyamat** külön konfigurációs fájlt, egy munkafolyamat-fájlnak nevezett igényelnek. Ezek a fájlok .workflow kiterjesztést és használatával hozhatók létre a [munkafolyamat-Tervező](media-services-workflow-designer.md) eszköz.
+Kódolási feladatok hello **Media Encoder prémium munkafolyamat** külön konfigurációs fájlt, egy munkafolyamat-fájlnak nevezett igényelnek. Ezek a fájlok .workflow kiterjesztést és hello használatával hozhatók létre [munkafolyamat-Tervező](media-services-workflow-designer.md) eszköz.
 
-Letöltheti az alapértelmezett munkafolyamat-fájlok [Itt](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows). A mappa is leírja, hogy ezeket a fájlokat tartalmazza.
+Is megkapható hello alapértelmezett munkafolyamat-fájlok [Itt](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows). hello mappa ezeket a fájlokat hello leírását is tartalmazza.
 
-A munkafolyamat-fájlokat kell fel kell tölteni a Media Services-fiók eszközként, és ez az eszköz a kódolási feladat a kell átadni.
+hello munkafolyamat fájlok feltöltése toobe tooyour Media Services-fiók eszközként kell, és ez az eszköz a kódolási feladat toohello kell átadni.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="encoding-example"></a>Kódolási – példa
 
-A következő példa bemutatja, hogyan rendelkező kódolni **Media Encoder prémium munkafolyamat**.
+hello következő példa bemutatja, hogyan rendelkező tooencode **Media Encoder prémium munkafolyamat**.
 
-A következő lépéseket kell végrehajtani:
+hello a következő lépéseket kell végrehajtani:
 
 1. Hozzon létre egy eszközt, és a munkafolyamat-fájl feltöltése.
 2. Hozzon létre egy eszközt, és a forrás-adathordozó fájl feltöltése.
-3. A "Media Encoder prémium Workflow" media processzor beolvasása.
+3. Hello "Media Encoder prémium Workflow" media processzor beolvasása.
 4. Hozzon létre egy feladatot, és egy feladatot.
 
-    A legtöbb esetben a konfiguráció a következő feladathoz karakterlánca üres (például az alábbi példában). Néhány speciális esetben (igénylő a futásidejű tulajdonságok beállítása dinamikusan) ebben az esetben meg kellene adnia a kódolási feladat XML-karakterlánc. Ilyen forgatókönyvek például a következők: egy átmeneti területre, párhuzamos vagy egymást követő adathordozók varrással, feliratozás létrehozása.
-5. Két bemeneti eszközök adja hozzá a feladatot.
+    A legtöbb esetben hello konfigurációs hello feladat karakterlánca üres (például az alábbi példa hello). Néhány speciális esetben (igénylő tootooset futásidejű tulajdonságok dinamikusan) ebben az esetben meg kellene adnia egy XML karakterlánc toohello kódolási feladat. Ilyen forgatókönyvek például a következők: egy átmeneti területre, párhuzamos vagy egymást követő adathordozók varrással, feliratozás létrehozása.
+5. Adja hozzá a két bemeneti eszközök toohello feladatot.
 
-    1. 1. – a munkafolyamat eszköz.
-    2. 2. – a video asset.
+    1. 1 – hello munkafolyamat eszköz.
+    2. 2. – hello video asset.
 
     >[!NOTE]
-    >A munkafolyamat eszköz hozzá kell adni a tevékenységhez, a media eszköz előtt.
-   A konfigurációs karakterláncból, a feladathoz üresnek kell lennie.
+    >hello munkafolyamat eszköz toohello feladat hello media eszköz előtt hozzá kell adni.
+   Ehhez a feladathoz hello konfigurációs karakterlánc üresnek kell lennie.
    
-6. A kódolási feladat elküldéséhez.
+6. Hello kódolási feladat küldése
 
         using System;
         using System.Linq;
@@ -136,42 +136,42 @@ A következő lépéseket kell végrehajtani:
                 {
                     // Declare a new job.
                     IJob job = _context.Jobs.Create("Premium Workflow encoding job");
-                    // Get a media processor reference, and pass to it the name of the
-                    // processor to use for the specific task.
+                    // Get a media processor reference, and pass tooit hello name of the
+                    // processor toouse for hello specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Premium Workflow");
 
-                    // Create a task with the encoding details, using a string preset.
+                    // Create a task with hello encoding details, using a string preset.
                     ITask task = job.Tasks.AddNew("Premium Workflow encoding task",
                         processor,
                         "",
                         TaskOptions.None);
 
-                    // Specify the input asset to be encoded.
+                    // Specify hello input asset toobe encoded.
                     task.InputAssets.Add(workflow);
                     task.InputAssets.Add(video); // we add one asset
-                                                 // Add an output asset to contain the results of the job.
+                                                 // Add an output asset toocontain hello results of hello job.
                                                  // This output is specified as AssetCreationOptions.None, which
-                                                 // means the output asset is not encrypted.
+                                                 // means hello output asset is not encrypted.
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
 
-                    // Use the following event handler to check job progress.  
+                    // Use hello following event handler toocheck job progress.  
                     job.StateChanged += new
                             EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                    // Launch the job.
+                    // Launch hello job.
                     job.Submit();
 
-                    // Check job execution and wait for job to finish.
+                    // Check job execution and wait for job toofinish.
                     Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
                     progressJobTask.Wait();
 
-                    // If job state is Error the event handling
+                    // If job state is Error hello event handling
                     // method for job progress should log errors.  Here we check
                     // for error state and exit if needed.
                     if (job.State == JobState.Error)
                     {
-                        throw new Exception("\nExiting method due to job error.");
+                        throw new Exception("\nExiting method due toojob error.");
                     }
 
                     return job.OutputMediaAssets[0];

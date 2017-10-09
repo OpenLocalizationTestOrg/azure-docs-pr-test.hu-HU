@@ -1,5 +1,5 @@
 ---
-title: Az Azure CDN POP-helyek |} Microsoft Docs
+title: CDN POP-helyek aaaAzure |} Microsoft Docs
 description: "Ez a témakör felsorolja az Azure CDN kapcsolódási pont helyeket."
 services: cdn
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 7c13931aa6d17036e59674cdd917e3ca221ac57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f10afb12c168aa610f996f1e49b0ef133f2236a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cdn-pop-locations"></a>Azure CDN POP-helyszínek
 Ez a témakör felsorolja az aktuális POP-helyek **Azure CDN Verizon** és **Akamai Azure CDN**.
@@ -26,7 +26,7 @@ Ez a témakör felsorolja az aktuális POP-helyek **Azure CDN Verizon** és **Ak
 > [!IMPORTANT]
 > \***Akamai Azure CDN** POP-helyek külön-külön nem kerül.  
 > 
-> Mindkét szolgáltató van a CDN-infrastruktúra létrehozásának különböző módon.  Azt javasoljuk, POP-helyek használatának mellőzését döntse el, hogy melyik Azure CDN termék használatára, és helyette fontolja meg a szolgáltatások és a végfelhasználói teljesítmény.  Tesztelje a teljesítményt, mindkét szolgáltatókkal kiválaszthatja a megfelelő Azure CDN termék a felhasználók számára. 
+> Mindkét szolgáltató van a CDN-infrastruktúra létrehozásának különböző módon.  Azt javasoljuk, POP-helyek toodecide használatának mellőzését mely Azure CDN termék toouse, és ehelyett fontolja meg a szolgáltatások és a végfelhasználói teljesítmény.  Mindkét szolgáltatók toochoose hello jobb Azure CDN termék a felhasználók számára a hello teljesítményének ellenőrzése. 
 > 
 > 
 
@@ -44,5 +44,5 @@ Ez a témakör felsorolja az aktuális POP-helyek **Azure CDN Verizon** és **Ak
 | Ausztrália és Új-Zéland |Melbourne, Ausztrália<br />Sydney, Ausztrália |**& #x 2713;**\* |
 
 ## <a name="see-also"></a>Lásd még:
-* [Az Azure CDN peremhálózati csomópontok API legújabb IP-címek lekérése engedélyezése](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
+* [Az Azure CDN peremhálózati csomópontok API tooget legújabb IP-címek engedélyezése](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
 

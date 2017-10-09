@@ -1,6 +1,6 @@
 ---
-title: "Hogyan használható az Azure Search .NET-alkalmazásból |} Microsoft Docs"
-description: "Azure Search .NET-alkalmazás használata"
+title: "aaaHow toouse Azure Search .NET-alkalmazásból |} Microsoft Docs"
+description: "Hogyan toouse Azure keresési .NET-alkalmazás"
 services: search
 documentationcenter: 
 author: brjohnstmsft
@@ -14,53 +14,53 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/22/2017
 ms.author: brjohnst
-ms.openlocfilehash: 552a7ab193e12d2e72da494166d774e974c85d47
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8e13fbe5549547d65941b856ce5a90611261388f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-search-from-a-net-application"></a>Azure Search .NET-alkalmazás használata
-Ez a cikk a forgatókönyv az első működik, és a rendszer a [Azure Search .NET SDK](https://aka.ms/search-sdk). A .NET SDK használatával valósít meg egy hatékony keresési élményt biztosít az alkalmazás Azure Search használatával.
+# <a name="how-toouse-azure-search-from-a-net-application"></a>Hogyan toouse Azure keresési .NET-alkalmazás
+Ez a cikk egy forgatókönyv tooget, a hello lépéseivel [Azure Search .NET SDK](https://aka.ms/search-sdk). Hello .NET SDK tooimplement egy gazdag is használhatja az Azure Search segítségével az alkalmazás nyújtotta adatkeresési élménybe.
 
-## <a name="whats-in-the-azure-search-sdk"></a>Mi az az Azure SDK keresése
-Az SDK-t tartalmaz egy ügyféloldali kódtár `Microsoft.Azure.Search`. Lehetővé teszi kezeli az indexek, az adatforrások és az indexelők, valamint feltöltése és dokumentumok kezeléséhez, és hajtsa végre a lekérdezéseket, anélkül, HTTP és a JSON részleteit kezelésére.
+## <a name="whats-in-hello-azure-search-sdk"></a>Mi az a hello az Azure Search SDK
+hello SDK áll egy ügyféloldali kódtár `Microsoft.Azure.Search`. Azt, toomanage lehetővé teszi, hogy az indexek, az adatforrások és az indexelők, valamint feltöltése és dokumentumok kezeléséhez, és hajtsa végre a lekérdezéseket, anélkül, hogy a HTTP és a JSON hello adatokkal toodeal.
 
-Az ügyféloldali kódtár határozza meg, például osztályok `Index`, `Field`, és `Document`, illetve műveletek, például `Indexes.Create` és `Documents.Search` a a `SearchServiceClient` és `SearchIndexClient` osztályok. Ezeket az osztályokat a következő névterek szerint vannak csoportosítva:
+hello ügyféloldali kódtár határozza meg, például osztályok `Index`, `Field`, és `Document`, illetve műveletek, például `Indexes.Create` és `Documents.Search` a hello `SearchServiceClient` és `SearchIndexClient` osztályok. Ezeket az osztályokat a következő névterek hello szerint vannak csoportosítva:
 
 * [Microsoft.Azure.Search](https://docs.microsoft.com/dotnet/api/microsoft.azure.search)
 * [Microsoft.Azure.Search.Models](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models)
 
-Az aktuális az Azure Search .NET SDK verziója most általánosan elérhető. Ha azt szeretné, vegye figyelembe a következő verziójára való visszajelzést, kérjük, látogasson el a [visszajelzés](https://feedback.azure.com/forums/263029-azure-search/).
+hello aktuális hello Azure Search .NET SDK verziója most általánosan elérhető. Ha azt szeretné, hogy tooprovide visszajelzést az USA tooincorporate hello következő verziójában, látogasson el a [visszajelzés](https://feedback.azure.com/forums/263029-azure-search/).
 
-Támogatja a .NET SDK `2016-09-01` , a [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/). Ebben a verzióban mostantól tartalmazza az egyéni lekérdezések és Azure-Blob és az Azure tábla indexelő támogatást. Az előzetes funkciók, amelyek *nem* verzióhoz, például az indexelés JSON és a CSV-fájlok támogatását szerepelnek [előzetes](search-api-2015-02-28-preview.md) és a régebbi elérhető [2.0-előzetes verzióját, a .NET SDK](https://aka.ms/search-sdk-preview).
+hello .NET SDK verziót támogatja `2016-09-01` a hello [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/). Ebben a verzióban mostantól tartalmazza az egyéni lekérdezések és Azure-Blob és az Azure tábla indexelő támogatást. Az előzetes funkciók, amelyek *nem* verzióhoz, például az indexelés JSON és a CSV-fájlok támogatását szerepelnek [előzetes](search-api-2015-02-28-preview.md) és régebbi hello keresztül elérhető [hello .NET SDK 2.0-előzetes verzióját ](https://aka.ms/search-sdk-preview).
 
-Ez az SDK nem támogatja a [felügyeleti műveletek](https://docs.microsoft.com/rest/api/searchmanagement/) például létrehozása és a keresési szolgáltatás méretezése és API-kulcsokat kezelése. Ha a keresési erőforrások kezelése a .NET-alkalmazás van szüksége, használhatja a [Azure Search .NET SDK-t felügyeleti](https://aka.ms/search-mgmt-sdk).
+Ez az SDK nem támogatja a [felügyeleti műveletek](https://docs.microsoft.com/rest/api/searchmanagement/) például létrehozása és a keresési szolgáltatás méretezése és API-kulcsokat kezelése. Ha toomanage kell a .NET-alkalmazás erőforrások keresése, használhatja a hello [Azure Search .NET SDK-t felügyeleti](https://aka.ms/search-mgmt-sdk).
 
-## <a name="upgrading-to-the-latest-version-of-the-sdk"></a>Az SDK legújabb verziójára
-Ha már használja az Azure Search .NET SDK régebbi verziója, és frissítse az általánosan elérhető új verzióra szeretné [Ez a cikk](search-dotnet-sdk-migration.md) ismerteti, hogyan.
+## <a name="upgrading-toohello-latest-version-of-hello-sdk"></a>Toohello hello SDK legújabb verziójának frissítése
+Ha már használja egy régebbi verzióját hello Azure Search .NET SDK-t, és azt szeretné, hogy tooupgrade toohello általánosan elérhető verziójának, [Ez a cikk](search-dotnet-sdk-migration.md) ismerteti, hogyan.
 
-## <a name="requirements-for-the-sdk"></a>Az SDK követelményei
+## <a name="requirements-for-hello-sdk"></a>Hello SDK követelményei
 1. A Visual Studio 2017.
-2. A saját Azure Search szolgáltatás. Az SDK használatához szüksége lesz a nevét, valamint a szolgáltatás egy vagy több API-kulcsokat. [A szolgáltatás létrehozása a portálon](search-create-service-portal.md) segít a fenti lépéseket.
-3. Töltse le az Azure Search .NET SDK [NuGet-csomag](http://www.nuget.org/packages/Microsoft.Azure.Search) a Visual Studio "Manage NuGet Packages" használatával. A csomag neve csak keressen `Microsoft.Azure.Search` NuGet.org meg.
+2. A saját Azure Search szolgáltatás. A sorrend toouse hello SDK szüksége lesz a hello a szolgáltatás nevét és egy vagy több API-kulcsokat. [Szolgáltatás létrehozása a portál hello](search-create-service-portal.md) segít a fenti lépéseket.
+3. Töltse le az Azure Search .NET SDK hello [NuGet-csomag](http://www.nuget.org/packages/Microsoft.Azure.Search) a Visual Studio "Manage NuGet Packages" használatával. Hello csomag neve csak keressen `Microsoft.Azure.Search` NuGet.org meg.
 
-Az Azure Search .NET SDK támogatja a .NET-keretrendszer 4.6 és a .NET Core célzó alkalmazásokat.
+hello Azure Search .NET SDK támogatja a .NET-keretrendszer 4.6 hello és a .NET Core célzó alkalmazásokat.
 
 ## <a name="core-scenarios"></a>Legfontosabb forgatókönyvek
-Számos szempontot következőket kell tennie az alkalmazás. Ez az oktatóanyag azt érintünk core forgatókönyvekben:
+Számos szempontot toodo szüksége lesz az alkalmazás. Ez az oktatóanyag azt érintünk core forgatókönyvekben:
 
 * Az index létrehozása
-* A dokumentumok index feltöltése
+* A dokumentumok hello index feltöltése
 * A teljes szöveges keresés és a szűrők használatával dokumentumok keresése
 
-Az alábbi mintakód bemutatja ezen. Szabadon használhatja a kódrészleteket a saját alkalmazásban.
+a következő hello mintakód ezen mutatja be. Érzi, hogy szabad toouse hello kódtöredékek a saját alkalmazásban.
 
 ### <a name="overview"></a>Áttekintés
-A mintaalkalmazás, azt fogja felfedezése létrehoz egy új "hotels" nevű index tölti fel az néhány dokumentumok, akkor néhány keresési lekérdezést hajt végre. A fő program, megjeleníti az általános folyamat a következő:
+hello azt fogja felfedezése mintaalkalmazás létrehoz egy új "hotels" nevű index tölti fel az néhány dokumentumok, akkor néhány keresési lekérdezést hajt végre. Hello fő program, amely itt található általános folyamata hello:
 
 ```csharp
-// This sample shows how to delete, create, upload documents and query an index
+// This sample shows how toodelete, create, upload documents and query an index
 static void Main(string[] args)
 {
     IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
@@ -83,17 +83,17 @@ static void Main(string[] args)
 
     RunQueries(indexClientForQueries);
 
-    Console.WriteLine("{0}", "Complete.  Press any key to end application...\n");
+    Console.WriteLine("{0}", "Complete.  Press any key tooend application...\n");
     Console.ReadKey();
 }
 ```
 
 > [!NOTE]
-> A jelen útmutatóban használt mintaalkalmazás teljes forráskódját a [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) webhelyén találja.
+> Hello teljes forráskód a lépésein végighaladva a használt hello mintaalkalmazásnak található [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo).
 > 
 >
 
-Végigvezetjük a lépésről lépésre. Először létre kell hozni egy új `SearchServiceClient`. Ez az objektum indexek kezelését teszi lehetővé. Egy kiszámításához meg kell adnia az Azure Search szolgáltatás neve, valamint az adminisztrációs API-kulcsot. Ezt az információt is megadhatja a `appsettings.json` fájlt a [mintaalkalmazás](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo).
+Végigvezetjük a lépésről lépésre. Először igazolnia kell, hogy új toocreate `SearchServiceClient`. Ez az objektum teszi lehetővé toomanage indexeket. Az egyik rendelés tooconstruct kell tooprovide az Azure Search szolgáltatás neve, valamint az adminisztrációs API-kulcsot. Ezt az információt is beírhatja hello `appsettings.json` hello fájljának [mintaalkalmazás](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo).
 
 ```csharp
 private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot configuration)
@@ -107,11 +107,11 @@ private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot 
 ```
 
 > [!NOTE]
-> Ha megad egy helytelen kulcsot (például egy lekérdezési kulcsot ahol egy adminisztrációs kulcsot volt szükség), a `SearchServiceClient` kivételhibát egy `CloudException` , a hiba üzenet "Tiltott" egy művelet metódust hívja meg, mint például az első alkalommal `Indexes.Create`. Ha ez történik, ellenőrizze az API-kulcsot.
+> Ha megad egy helytelen kulcsot (például egy lekérdezési kulcsot ahol egy adminisztrációs kulcsot volt szükség), hello `SearchServiceClient` kivételhibát egy `CloudException` hello hiba üzenet "Tiltott" hello, először egy művelet metódust hívja meg, például a `Indexes.Create`. Ilyen esetben tooyou gondosan ellenőrizze az API-kulcsot.
 > 
 > 
 
-A következő néhány sor metódushívások "Hotels" nevet adtuk, először törlése, ha már létezik egy index létrehozásához. Végigvezetjük ezen módszerek egy kicsit később.
+hello tovább néhány sor hívás módszerek toocreate index "Hotels" nevet adtuk, először törlése, ha már létezik. Végigvezetjük ezen módszerek egy kicsit később.
 
 ```csharp
 Console.WriteLine("{0}", "Deleting index...\n");
@@ -121,25 +121,25 @@ Console.WriteLine("{0}", "Creating index...\n");
 CreateHotelsIndex(serviceClient);
 ```
 
-Ezt követően kell kell feltöltenie. Ehhez fel kell egy `SearchIndexClient`. Az beszerzése utólag két módja van: hozhat létre, azt, vagy meghívásával `Indexes.GetClient` a a `SearchServiceClient`. Használjuk az utóbbi kényelmét szolgálja.
+A következő hello kell toobe feltöltve. toodo, fel kell egy `SearchIndexClient`. Nincsenek a két módon tooobtain egyik: hozhat létre, azt, vagy meghívásával `Indexes.GetClient` a hello `SearchServiceClient`. Ez utóbbi hello használjuk kényelmét szolgálja.
 
 ```csharp
 ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 ```
 
 > [!NOTE]
-> A keresőalkalmazásokban az indexkezelést és -feltöltést általában a keresési lekérdezésektől eltérő elem végzi. A `Indexes.GetClient` kényelmes megoldás az index feltöltésére, mivel így nem szükséges újabb `SearchCredentials` objektumot biztosítania. Ezt azon rendszergazdai kulcs átadásával hajtja végre, amelyet a `SearchServiceClient` elemnek az új `SearchIndexClient` objektumban történő létrehozásakor használt. A lekérdezéseket végrehajtó alkalmazás részeként azonban jobb megoldás a `SearchIndexClient` közvetlen létrehozása, így az egy rendszergazdai kulcs helyett lekérdezési kulcs formájában adható át. Ez a legalacsonyabb jogosultsági szint elvét konzisztens, és segít biztonságosabbá teszi az alkalmazás. További információk az adminisztrációs kulcsok és a lekérdezési kulcsok található [Itt](https://docs.microsoft.com/rest/api/searchservice/#authentication-and-authorization).
+> A keresőalkalmazásokban az indexkezelést és -feltöltést általában a keresési lekérdezésektől eltérő elem végzi. `Indexes.GetClient`előnyei index feltöltése, mert menti azt, hogy egy másik probléma hello `SearchCredentials`. Ennek érdekében átadásakor hello adminisztrációs kulcsot adott meg használt toocreate hello `SearchServiceClient` új toohello `SearchIndexClient`. Azonban hello része az alkalmazás, amely végrehajtja a lekérdezéseket, hogy a rendszer jobb toocreate hello `SearchIndexClient` közvetlenül, hogy egy lekérdezési kulcsot helyett egy adminisztrációs kulcsot is át. Ez a legalacsonyabb jogosultsági szint elve hello konzisztens, és segít toomake biztonságosabb az alkalmazás. További információk az adminisztrációs kulcsok és a lekérdezési kulcsok található [Itt](https://docs.microsoft.com/rest/api/searchservice/#authentication-and-authorization).
 > 
 > 
 
-Most, hogy egy `SearchIndexClient`, azt töltheti fel az index. Ez végigvezetjük később más módon történik.
+Most, hogy egy `SearchIndexClient`, hello index feltöltünk is. Ez végigvezetjük később más módon történik.
 
 ```csharp
 Console.WriteLine("{0}", "Uploading documents...\n");
 UploadDocuments(indexClient);
 ```
 
-Végül azt néhány keresési-lekérdezéseket hajt végre, és az eredmények megjelenítéséhez. Most használjuk a különböző `SearchIndexClient`:
+Végül azt néhány keresési-lekérdezéseket hajt végre, és hello eredmények megjelenítéséhez. Most használjuk a különböző `SearchIndexClient`:
 
 ```csharp
 ISearchIndexClient indexClientForQueries = CreateSearchIndexClient(configuration);
@@ -147,7 +147,7 @@ ISearchIndexClient indexClientForQueries = CreateSearchIndexClient(configuration
 RunQueries(indexClientForQueries);
 ```
 
-Most elindítjuk részletes bemutatása a `RunQueries` metódus később. Új kód `SearchIndexClient`:
+Most elindítjuk hello közelebbről `RunQueries` később metódust. Itt egy hello kód toocreate hello új `SearchIndexClient`:
 
 ```csharp
 private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot configuration)
@@ -160,9 +160,9 @@ private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot conf
 }
 ```
 
-Most használjuk a lekérdezési kulcs mivel jelenleg nem írási hozzáférésre van szüksége az index. Ezt az információt is megadhatja a `appsettings.json` fájlt a [mintaalkalmazás](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo).
+Most használjuk a lekérdezési kulcs óta nem kell írási hozzáférést toohello index. Ezt az információt is beírhatja hello `appsettings.json` hello fájljának [mintaalkalmazás](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo).
 
-Ha az alkalmazás futtatásához a egy érvényes szolgáltatásnevet és API-kulcsokat, a kimenet ehhez hasonló kell kinéznie:
+Ha az alkalmazás futtatásához a egy érvényes szolgáltatásnevet és API-kulcsokat, hello kimeneti kell néznek ki:
 
     Deleting index...
     
@@ -170,34 +170,34 @@ Ha az alkalmazás futtatásához a egy érvényes szolgáltatásnevet és API-ku
     
     Uploading documents...
     
-    Waiting for documents to be indexed...
+    Waiting for documents toobe indexed...
     
-    Search the entire index for the term 'budget' and return only the hotelName field:
+    Search hello entire index for hello term 'budget' and return only hello hotelName field:
     
     Name: Roach Motel
     
-    Apply a filter to the index to find hotels cheaper than $150 per night, and return the hotelId and description:
+    Apply a filter toohello index toofind hotels cheaper than $150 per night, and return hello hotelId and description:
     
     ID: 2   Description: Cheapest hotel in town
-    ID: 3   Description: Close to town hall and the river
+    ID: 3   Description: Close tootown hall and hello river
     
-    Search the entire index, order by a specific field (lastRenovationDate) in descending order, take the top two results, and show only hotelName and lastRenovationDate:
+    Search hello entire index, order by a specific field (lastRenovationDate) in descending order, take hello top two results, and show only hotelName and lastRenovationDate:
     
     Name: Fancy Stay        Last renovated on: 6/27/2010 12:00:00 AM +00:00
     Name: Roach Motel       Last renovated on: 4/28/1982 12:00:00 AM +00:00
     
-    Search the entire index for the term 'motel':
+    Search hello entire index for hello term 'motel':
     
     ID: 2   Base rate: 79.99        Description: Cheapest hotel in town     Description (French): Hôtel le moins cher en ville      Name: Roach Motel       Category: Budget        Tags: [motel, budget]   Parking included: yes   Smoking allowed: yes    Last renovated on: 4/28/1982 12:00:00 AM +00:00 Rating: 1/5     Location: Latitude 49.678581, longitude -122.131577
     
-    Complete.  Press any key to end application...
+    Complete.  Press any key tooend application...
 
-Ez a cikk végén az alkalmazás a teljes forráskód valósul meg.
+Ez a cikk végén hello hello teljes forráskód hello alkalmazás valósul meg.
 
-A következő most elindítjuk szorosabb meg az egyes módszerek által meghívott `Main`.
+A következő most elindítjuk által meghívott hello módszerek részletes bemutatása `Main`.
 
 ### <a name="creating-an-index"></a>Az index létrehozása
-Miután létrehozta a `SearchServiceClient`, a következő lépésként `Main` does esetén törlése a "Hotels nevű" index már létezik. Ezt a következő módszerrel:
+Létrehozása után egy `SearchServiceClient`, következő lépésként hello `Main` does van a delete hello "Hotels"nevű index, ha már létezik. Amely a következő metódus hello végzi el:
 
 ```csharp
 private static void DeleteHotelsIndexIfExists(SearchServiceClient serviceClient)
@@ -209,10 +209,10 @@ private static void DeleteHotelsIndexIfExists(SearchServiceClient serviceClient)
 }
 ```
 
-Ezt a módszert használja az adott `SearchServiceClient` ellenőrizze, hogy létezik-e az indexet, és ha igen, törölje azt.
+Ezt a módszert használja a megadott hello `SearchServiceClient` toocheck hello index létezik, és ha igen, törölje azt.
 
 > [!NOTE]
-> Ebben a cikkben a példakód az egyszerűség érdekében az Azure Search .NET SDK szinkron módszereit használja. Azt javasoljuk, hogy a méretezhetőség és a gyors válaszadás érdekében használja saját alkalmazásaiban az aszinkron módszereket. Például a metódusban használhat `ExistsAsync` és `DeleteAsync` helyett `Exists` és `Delete`.
+> hello példakódot ebben a cikkben az egyszerűség kedvéért hello hello Azure Search .NET SDK szinkron módszereit használja. Javasoljuk, hogy a saját alkalmazások tookeep hello aszinkron metódusok használja őket a méretezhető és rugalmas. Például a hello metódus fent, rendszerrel lehetett `ExistsAsync` és `DeleteAsync` helyett `Exists` és `Delete`.
 > 
 > 
 
@@ -231,17 +231,17 @@ private static void CreateHotelsIndex(SearchServiceClient serviceClient)
 }
 ```
 
-Ezzel a módszerrel hoz létre egy új `Index` listáját tartalmazó objektum `Field` objektumok sémájának definiálásához az új index. Egyes mezők nevét, adattípus és a keresés viselkedését meghatározó számos attribútum rendelkezik. A `FieldBuilder` osztály reflexió használatával létrehozhat egy `Field` objektumok nyilvános tulajdonságokat és az attribútumok megvizsgálásával az index az adott `Hotel` osztály modell. Részletes bemutatása lesz vesszük a `Hotel` osztály később.
+Ezzel a módszerrel hoz létre egy új `Index` listáját tartalmazó objektum `Field` hello séma hello új index definiáló objektumok. Egyes mezők nevét, adattípus és a keresés viselkedését meghatározó számos attribútum rendelkezik. Hello `FieldBuilder` osztály reflexiós toocreate listáját használja `Field` hello index megvizsgálásával objektumok hello nyilvános tulajdonságokat és a megadott hello attribútumait `Hotel` osztály modell. Hello közelebbről lesz vesszük `Hotel` osztály később.
 
 > [!NOTE]
-> Bármikor létrehozhat listájának `Field` objektumok közvetlenül helyett `FieldBuilder` szükség esetén. Például előfordulhat, hogy nem használni kívánt egy modellosztállyal, vagy használjon egy meglévő modell osztály nem kívánt attribútumok hozzáadásával módosítani szeretne.
+> Bármikor létrehozhat hello listája `Field` objektumok közvetlenül helyett `FieldBuilder` szükség esetén. Például kívánt toouse egy modellosztállyal, vagy egy meglévő modellosztállyal, hogy nem szeretné, hogy toomodify attribútumok hozzáadásával toouse szükség lehet.
 >
 > 
 
-Mezők mellett azt is megteheti pontozási profil, a javaslattevők vagy a CORS-beállítások az indexhez (ezek hiányoznak kivonatosan mutatja a mintából). Az Index objektum és a bennük foglalt részeit további információ található a [SDK referenciáit](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.index#microsoft_azure_search_models_index), valamint ennek a a [Azure Search REST API-referencia](https://docs.microsoft.com/rest/api/searchservice/).
+Ezenkívül toofields, azt is megteheti a pontozási profil, a javaslattevők vagy a CORS-beállítások toohello Index (ezek hiányoznak kivonatosan mutatja hello mintából). További információ a hello Index objektum és azok részlegei található hello [SDK referenciáit](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.index#microsoft_azure_search_models_index), valamint az hello [Azure Search REST API-referencia](https://docs.microsoft.com/rest/api/searchservice/).
 
-### <a name="populating-the-index"></a>Az index feltöltése
-A következő lépéssel `Main` az újonnan létrehozott index feltöltése. Ezt a következő metódust:
+### <a name="populating-hello-index"></a>Hello index feltöltése
+következő lépése hello `Main` toopopulate hello újonnan létrehozott index. Ez a módszer a következő hello történik:
 
 ```csharp
 private static void UploadDocuments(ISearchIndexClient indexClient)
@@ -282,7 +282,7 @@ private static void UploadDocuments(ISearchIndexClient indexClient)
         { 
             HotelId = "3", 
             BaseRate = 129.99,
-            Description = "Close to town hall and the river"
+            Description = "Close tootown hall and hello river"
         }
     };
 
@@ -294,39 +294,39 @@ private static void UploadDocuments(ISearchIndexClient indexClient)
     }
     catch (IndexBatchException e)
     {
-        // Sometimes when your Search service is under load, indexing will fail for some of the documents in
-        // the batch. Depending on your application, you can take compensating actions like delaying and
-        // retrying. For this simple demo, we just log the failed document keys and continue.
+        // Sometimes when your Search service is under load, indexing will fail for some of hello documents in
+        // hello batch. Depending on your application, you can take compensating actions like delaying and
+        // retrying. For this simple demo, we just log hello failed document keys and continue.
         Console.WriteLine(
-            "Failed to index some of the documents: {0}",
+            "Failed tooindex some of hello documents: {0}",
             String.Join(", ", e.IndexingResults.Where(r => !r.Succeeded).Select(r => r.Key)));
     }
 
-    Console.WriteLine("Waiting for documents to be indexed...\n");
+    Console.WriteLine("Waiting for documents toobe indexed...\n");
     Thread.Sleep(2000);
 }
 ```
 
-Ez a metódus négy részből áll. Az első létrehoz egy tömbjét `Hotel` objektumok feltölteni az index a bemeneti adatok erre a célra. Ezek az adatok nem változtatható az egyszerűség érdekében. A saját alkalmazásban az adatok valószínűleg határozza meg egy külső adatforrásból, például az SQL-adatbázis.
+Ez a metódus négy részből áll. hello először létrehoz egy tömbjét `Hotel` objektumok bemeneti adatok tooupload toohello indexben erre a célra. Ezek az adatok nem változtatható az egyszerűség érdekében. A saját alkalmazásban az adatok valószínűleg határozza meg egy külső adatforrásból, például az SQL-adatbázis.
 
-A második rész létrehoz egy `IndexBatch` tartalmazó a dokumentumokat. Megadja a kötegelt hoz létre, ebben az esetben meghívásával időpontjában alkalmazni kívánt műveletet `IndexBatch.Upload`. A kötegelt majd tölt fel az Azure Search-index által az a `Documents.Index` metódust.
+hello második rész létrehoz egy `IndexBatch` hello dokumentumokat tartalmazó. Megadhatja a kívánt tooapply toohello kötegelt hoz létre, ebben az esetben meghívásával hello időpontban hello művelet `IndexBatch.Upload`. hello kötegelt nem feltöltött toohello Azure Search-index által hello `Documents.Index` metódust.
 
 > [!NOTE]
-> Ebben a példában azt csak feltölteni dokumentumokat. Ha szeretne változtatások egyesítése a létező dokumentumok vagy törölhetnek dokumentumokat, létrehozhat meghívásával kötegek `IndexBatch.Merge`, `IndexBatch.MergeOrUpload`, vagy `IndexBatch.Delete` helyette. A kötegek különböző műveletei adjunk meghívásával `IndexBatch.New`, gyűjteménye, amely veszi `IndexAction` objektumok, amelyek arra utasítja a Azure Search a dokumentum az adott művelet végrehajtására. Minden egyes hozhat létre `IndexAction` saját műveletet a megfelelő metódus meghívásával `IndexAction.Merge`, `IndexAction.Upload`, és így tovább.
+> Ebben a példában azt csak feltölteni dokumentumokat. Ha meglévő vagy delete dokumentumokat toomerge változik, létrehozhat meghívásával kötegek `IndexBatch.Merge`, `IndexBatch.MergeOrUpload`, vagy `IndexBatch.Delete` helyette. A kötegek különböző műveletei adjunk meghívásával `IndexBatch.New`, gyűjteménye, amely veszi `IndexAction` objektumok, amelyek mindegyike közli az Azure Search tooperform a dokumentum egy adott művelethez. Minden egyes hozhat létre `IndexAction` saját műveletet hello megfelelő metódus meghívásával `IndexAction.Merge`, `IndexAction.Upload`, és így tovább.
 > 
 > 
 
-Ez a módszer harmadik része egy catch blokkba, amely kezeli az egyik fontos hiba esetében az indexeléshez. Ha az Azure Search-szolgáltatásnak nem sikerül indexelnie a kötegben szereplő fájlok valamelyikét, a `Documents.Index` rendszer `IndexBatchException` választ ad. Ez akkor történhet meg, ha olyankor végzi a dokumentumok indexelését, amikor a szolgáltatás nagy terhelés alatt áll. **Javasoljuk, hogy a kódban explicit módon kezelje ezt az esetet.** Azon dokumentumok esetében, ahol az indexelés meghiúsult, elhalaszthatja azt, majd később újra megpróbálkozhat az indexeléssel, vagy a mintának megfelelően naplózhatja azt, és folytathatja a munkáját, esetleg – az alkalmazás adatkonzisztencia-követelményeitől függően – más műveletbe kezdhet.
+hello harmadik ezt a módszert része egy catch blokkba, amely kezeli az egyik fontos hiba esetében az indexeléshez. Ha az Azure Search szolgáltatás sikertelen tooindex néhány hello hello kötegben, dokumentumok egy `IndexBatchException` által okozott `Documents.Index`. Ez akkor történhet meg, ha olyankor végzi a dokumentumok indexelését, amikor a szolgáltatás nagy terhelés alatt áll. **Javasoljuk, hogy a kódban explicit módon kezelje ezt az esetet.** Késleltetés, és próbálkozzon újra a sikertelen indexelési hello dokumentumok, vagy jelentkezzen és például hello minta nem, vagy valami mást, attól függően, hogy az alkalmazás konzisztenciájának követelményeinek elvégezhető folytatásához.
 
 > [!NOTE]
-> Használhatja a `FindFailedActionsToRetry` metódus csak egy korábbi hívás a sikertelen műveleteket tartalmazó új köteg összeállításához `Index`. A metódus dokumentált [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.indexbatchexception#Microsoft_Azure_Search_IndexBatchException_FindFailedActionsToRetry_Microsoft_Azure_Search_Models_IndexBatch_System_String_) , és annak megfelelően használatát tárgyalja [a StackOverflow](http://stackoverflow.com/questions/40012885/azure-search-net-sdk-how-to-use-findfailedactionstoretry).
+> Használhatja a hello `FindFailedActionsToRetry` tartalmazó új kötegelt metódus tooconstruct csak hello túl egy korábbi hívás sikertelen műveletek`Index`. hello metódus dokumentált [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.indexbatchexception#Microsoft_Azure_Search_IndexBatchException_FindFailedActionsToRetry_Microsoft_Azure_Search_Models_IndexBatch_System_String_) , és egy tooproperly használatának értékelése [a StackOverflow](http://stackoverflow.com/questions/40012885/azure-search-net-sdk-how-to-use-findfailedactionstoretry).
 >
 >
 
-Végezetül a `UploadDocuments` metódus késések két másodpercig. Az Azure Search-szolgáltatásban az indexelés aszinkron módon történik, így a mintaalkalmazásnak egy rövid ideig várnia kell, amíg a rendszer meggyőződik arról, hogy a dokumentum kereshető. Ilyen mértékű késleltetésre kizárólag demók, tesztek és mintaalkalmazások esetében van szükség.
+Végezetül hello `UploadDocuments` két másodpercen metódus késést. Indexelő történik aszinkron módon történik az Azure Search szolgáltatásban, így hello mintaalkalmazás kell toowait egy rövid időn belül tooensure, hogy a keresés hello dokumentumok is. Ilyen mértékű késleltetésre kizárólag demók, tesztek és mintaalkalmazások esetében van szükség.
 
-#### <a name="how-the-net-sdk-handles-documents"></a>A .NET SDK dokumentumkezelési módszere
-Megfordulhat a fejében, hogy miként képes az Azure Search .NET SDK felhasználó által meghatározott `Hotel` osztályhoz hasonló példányok feltöltésére az indexbe. A kérdés megválaszolásához, vizsgáljuk meg a `Hotel` osztály:
+#### <a name="how-hello-net-sdk-handles-documents"></a>Hogyan kezeli a .NET SDK hello a dokumentumok
+Előfordulhat, hogy lehet szeretné megtudni, hogy hogyan hello Azure Search .NET SDK például a felhasználói osztály példányainak képes tooupload `Hotel` toohello index. toohelp válaszolja meg, hogy a kérdést, nézzük hello `Hotel` osztály:
 
 ```csharp
 using System;
@@ -335,9 +335,9 @@ using Microsoft.Azure.Search.Models;
 using Microsoft.Spatial;
 using Newtonsoft.Json;
 
-// The SerializePropertyNamesAsCamelCase attribute is defined in the Azure Search .NET SDK.
-// It ensures that Pascal-case property names in the model class are mapped to camel-case
-// field names in the index.
+// hello SerializePropertyNamesAsCamelCase attribute is defined in hello Azure Search .NET SDK.
+// It ensures that Pascal-case property names in hello model class are mapped toocamel-case
+// field names in hello index.
 [SerializePropertyNamesAsCamelCase]
 public partial class Hotel
 {
@@ -382,47 +382,47 @@ public partial class Hotel
 }
 ```
 
-Az első szembetűnő dolog, hogy a `Hotel` minden egyes nyilvános tulajdonsága az indexdefiníció egy-egy mezőjének felel meg, egy lényeges különbséggel: a mezők neve minden esetben kisbetűvel, míg a `Hotel` nyilvános tulajdonságainak neve nagybetűvel kezdődik. Gyakran kerül sor erre olyan adatkötést végző .NET-alkalmazások esetében, ahol a célséma vezérlése az alkalmazás fejlesztőjének hatáskörén kívül esik. A .NET elnevezési irányelveinek megsértése helyett (a tulajdonságnevek kisbetűs megadásával), utasíthatja az SDK-t a tulajdonságnevek automatikus kisbetűs leképezésére a `[SerializePropertyNamesAsCamelCase]` attribútummal.
+hello először thing toonotice, hogy minden egyes nyilvános tulajdonsága `Hotel` felel meg a hello Indexdefiníció, de egy fontos különbséggel tooa mező: hello minden mező kezdetű névvel rendelkező visszaalakítja ("teve eset"), közben minden nyilvános hello neve a tulajdonság `Hotel` egy nagybetűt ("Pascal eset") kezdődik. Ez az a közös hajtható végre adatkötés, ahol hello cél séma az alkalmazásfejlesztő hello külső hello irányítását .NET-alkalmazások esetén. Ahelyett, hogy a tooviolate hello .NET irányelvek elnevezési azáltal, hogy a tulajdonság nevét teve eset, megadható, hogy a hello SDK toomap hello tulajdonság nevének toocamel-kódaláírásokra automatikusan hello `[SerializePropertyNamesAsCamelCase]` attribútum.
 
 > [!NOTE]
-> Az Azure Search .NET SDK a [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) könyvtárat használja az egyéni modellek JSON-ból és JSON-ba történő szerializálására és deszerializálására. A szerializálás szükség szerint testre szabható. További részletekért lásd: [JSON.NET az egyéni szerializálási](#JsonDotNet).
+> hello Azure Search .NET SDK-t használ a hello [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) könyvtár tooserialize és deszerializálható JSON formátumból az egyéni modell objektumok tooand. A szerializálás szükség szerint testre szabható. További részletekért lásd: [JSON.NET az egyéni szerializálási](#JsonDotNet).
 > 
 > 
 
-Figyelje meg, a második lépés olyan attribútumok, amelyek például `IsFilterable`, `IsSearchable`, `Key`, és `Analyzer` , amely minden egyes nyilvános tulajdonsága adja. Ezek az attribútumok hozzárendelését közvetlenül a [megfelelő attribútumok az Azure Search-index](https://docs.microsoft.com/rest/api/searchservice/create-index#request). A `FieldBuilder` osztály használja ezeket az index definícióját mező összeállításához.
+hello második lépésként toonotice hello attribútumok például `IsFilterable`, `IsSearchable`, `Key`, és `Analyzer` , amely minden egyes nyilvános tulajdonsága adja. Ezek az attribútumok hozzárendelését közvetlenül toohello [hello Azure Search-index megfelelő attribútumait](https://docs.microsoft.com/rest/api/searchservice/create-index#request). Hello `FieldBuilder` osztály hello index használja e tooconstruct mező definíciókat.
 
-A harmadik fontos dolog kapcsolatos a `Hotel` osztály az adattípusok a nyilvános tulajdonságainak. A .NET típusú ezeket a tulajdonságokat a megfelelő típusú az index definícióját a hozzárendelése. Például a rendszer a `Edm.String` típusú `Category` szöveges tulajdonságot a `category` mezőbe képezi le. Hasonló típusleképezés történik a `bool?` és `Edm.Boolean`, illetve a `DateTimeOffset?` és `Edm.DateTimeOffset` között is. A típusleképezés vonatkozó szabályainak dokumentációja az [Azure Search .NET SDK-referenciában](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations#Microsoft_Azure_Search_IDocumentsOperations_GetWithHttpMessagesAsync__1_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_Azure_Search_Models_SearchRequestOptions_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_List_System_String___System_Threading_CancellationToken_), a `Documents.Get` metódusnál található. A `FieldBuilder` osztály gondoskodik meg ezt a hozzárendelést, de továbbra is hasznos lehet megérteni, abban az esetben kell elhárítania a szerializálási probléma merül fel.
+hello kapcsolatos fontos dolog harmadik hello `Hotel` osztály hello adattípusok hello nyilvános tulajdonságainak. hello .NET ezeket a tulajdonságokat képezi le hello Indexdefiníció tootheir egyenértékű mező típusa. Például hello `Category` karakterlánc típusú tulajdonság leképezhető toohello `category` mező, amelynek a típusa `Edm.String`. Hasonló típusú hozzárendelés közötti `bool?` és `Edm.Boolean`, `DateTimeOffset?` és `Edm.DateTimeOffset`, stb. hello speciális szabályok a következő típusleképezéshez hello szerepelnek a hello `Documents.Get` metódus a hello [Azure Search .NET SDK hivatkozás](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations#Microsoft_Azure_Search_IDocumentsOperations_GetWithHttpMessagesAsync__1_System_String_System_Collections_Generic_IEnumerable_System_String__Microsoft_Azure_Search_Models_SearchRequestOptions_System_Collections_Generic_Dictionary_System_String_System_Collections_Generic_List_System_String___System_Threading_CancellationToken_). Hello `FieldBuilder` osztály gondoskodik meg ezt a hozzárendelést, de továbbra is lehet hasznos toounderstand arra az esetre kell tootroubleshoot szerializálási probléma merül fel.
 
-Ez nem tudják használni a saját osztályok-dokumentumokként működik mindkét irányban; Keresési eredmények beolvasásához is, és látható lesz a következő szakaszban az SDK-val automatikusan deszerializálni őket a kiválasztott típusú lehet.
+Ez lehetőséget toouse saját osztályok-dokumentumokként működik mindkét irányban; Keresési eredmények beolvasásához és is rendelkezik hello SDK automatikusan deszerializálni őket tooa típus az Ön által választott, a következő szakaszban hello lesz látható.
 
 > [!NOTE]
-> Az Azure Search .NET SDK támogatja a `Document` osztályt használó, dinamikus dokumentumtípusokat is, amely alatt a mezők neveinek értékekre történő kulcs/érték-leképezését értjük. Ez olyan helyzetekben hasznos, ha például a tervezés időpontjában az indexséma még nem ismert, illetve ha az adott modellosztályokhoz történő kötés nehézkes volna. Az SDK-ban lévő összes, dokumentumokkal foglalkozó módszer a `Document` osztállyal kompatibilis túlterhelésekkel rendelkezik, valamint olyan szigorú típusmegadású túlterhelésekkel, amelyek általános típusú paramétert vesznek fel. Csak az utóbbi használnak a mintakódot az oktatóanyag. A `Document` osztály örökli `Dictionary<string, object>`. Más részletei [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.document#microsoft_azure_search_models_document).
+> hello Azure Search .NET SDK-t is támogatja a hello segítségével dinamikusan gépelt dokumentumok `Document` osztályt, amely nevek toofield mezőértékek kulcs/érték hozzárendelése. Ez olyan esetekben hasznos, ha hello a sémát indexeli tervezéskor nem tudja, vagy ha kényelmetlen toobind toospecific modell osztályok lenne. Minden hello módszerek hello SDK a dokumentumok kezelése rendelkezik, amelyek használhatók a hello túlterhelések `Document` osztály, valamint az erős típusmegadású túlterhelések, amelyek általános típusú paramétert. Ez utóbbi csak hello hello mintakód ebben az oktatóanyagban használt. Hello `Document` osztály örökli `Dictionary<string, object>`. Más részletei [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.document#microsoft_azure_search_models_document).
 > 
 > 
 
 **Miért használjon nullázható adattípusokat?**
 
-Az Azure Search-indexre leképezést végző, saját modellosztályok létrehozásakor javasoljuk, hogy például a `bool` és `int` értéktípusok tulajdonságainak megadása nullázhatóként történjen (például `bool` helyett `bool?`). Nem nullázható tulajdonság használatakor **garantálnia** kell, hogy az index egyetlen dokumentuma sem tartalmaz az adott mezőben null értéket. Ennek kényszerítéséhez sem az SDK, sem az Azure Search szolgáltatás nem nyújt segítséget.
+A saját modell osztályok toomap tooan Azure Search-index tervezésekor ajánlott érték típusú tulajdonságok például deklaráló `bool` és `int` toobe nullázható (például `bool?` helyett `bool`). Ha egy nem nullázható tulajdonságot használja, akkor túl**garantálni** , hogy az indexben nem dokumentumok hello megfelelő mező null értéket tartalmaz. Hello SDK sem hello Azure Search szolgáltatás segítségével Ön tooenforce ez.
 
-Ennek nem csupán elméleti jelentősége van: képzeljünk el például egy olyan alkalmazási helyzetet, ahol egy `Edm.Int32` típusú, meglévő indexhez új mezőt kell hozzáadnunk. Az indexdefiníció frissítését követően ehhez a mezőhöz minden dokumentumban null érték tartozik (mivel az Azure Search szolgáltatásban az összes értéktípus nullázható). Ha ezt követően egy modellosztályt úgy alkalmaz, hogy ehhez a mezőhöz nem nullázható `int` tulajdonságot ad meg, a dokumentumok lekérdezésének megkísérlésekor egy ehhez hasonló `JsonSerializationException` választ kap:
+Ez nem csak egy elméleti szempont: képzelhető el, egy olyan forgatókönyvet, ahol hozzáadhat egy új tooan meglévő mezőindex, amely típusú `Edm.Int32`. Hello index definíciójának frissítése után összes dokumentumot lesz az új mező null értéket (mivel az Azure Search nullázható minden esetében). Ha az egy nem nullázható majd használja egy modell osztály `int` tulajdonság, mező, elérhetővé válik egy `JsonSerializationException` ez, például tooretrieve dokumentumok tett kísérlet során:
 
-    Error converting value {null} to type 'System.Int32'. Path 'IntValue'.
+    Error converting value {null} tootype 'System.Int32'. Path 'IntValue'.
 
 Ezért javasoljuk, hogy a modellosztályokban nullázható értéktípusokat használjon.
 
 <a name="JsonDotNet"></a>
 
 #### <a name="custom-serialization-with-jsonnet"></a>A JSON.NET egyedi szerializálás
-Az SDK JSON.NET szerializálása és deszerializálása dokumentumok használ. Testre szabhatja a szerializálás és szükség esetén meghatározhat egy saját deszerializálási `JsonConverter` vagy `IContractResolver` (lásd a [JSON.NET dokumentáció](http://www.newtonsoft.com/json/help/html/Introduction.htm) további részletekért). Ez akkor lehet hasznos, ha meg szeretné alkalmazkodnak az alkalmazás Azure Search és egyéb speciális forgatókönyvekhez használható modellt egy meglévő osztály. Például az egyedi szerializálás lehetővé teszi:
+hello SDK JSON.NET szerializálása és deszerializálása dokumentumok használ. Testre szabhatja a szerializálás és szükség esetén meghatározhat egy saját deszerializálási `JsonConverter` vagy `IContractResolver` (lásd: hello [JSON.NET dokumentáció](http://www.newtonsoft.com/json/help/html/Introduction.htm) további részletekért). Ez akkor lehet hasznos, ha azt szeretné, egy meglévő modellosztállyal tooadapt az alkalmazásból az Azure Search és egyéb speciális forgatókönyvekhez használható. Például az egyedi szerializálás lehetővé teszi:
 
 * Tartalmaznak, vagy zárja ki a modell osztály egyes tulajdonságai dokumentum mezői tárolt.
 * Képezze le a kódban nevei és az indexben mezőnevek között.
-* Hozzon létre egyéni attribútumok tulajdonságok hozzárendelése dokumentum mező használható.
+* Hozzon létre egyéni attribútumok csak tulajdonságok toodocument mezők leképezése is használható.
 
-Példák egyedi szerializálás egység tesztek végrehajtása az Azure Search .NET SDK a Githubon található. A jó kiindulási pont [Ez a mappa](https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/Search/Search.Tests/Tests/Models). Az egyéni szerializálási tesztek által használt osztályok tartalmaz.
+Egyedi szerializálás implementációi hello egység vizsgálatokra hello Azure Search .NET SDK a Githubon található. A jó kiindulási pont [Ez a mappa](https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/Search/Search.Tests/Tests/Models). Hello egyedi szerializálás tesztek által használt osztályok tartalmaz.
 
-### <a name="searching-for-documents-in-the-index"></a>Az indexelt dokumentumok keresése
-A mintaalkalmazás utolsó lépése, hogy az index egyes dokumentumok keresése. A következő metódus végzi ezt:
+### <a name="searching-for-documents-in-hello-index"></a>Hello index dokumentumok keresése
+hello mintaalkalmazás hello utolsó lépése a bizonyos dokumentumok hello index toosearch. a következő metódus hello hajtja végre ezt:
 
 ```csharp
 private static void RunQueries(ISearchIndexClient indexClient)
@@ -430,7 +430,7 @@ private static void RunQueries(ISearchIndexClient indexClient)
     SearchParameters parameters;
     DocumentSearchResult<Hotel> results;
 
-    Console.WriteLine("Search the entire index for the term 'budget' and return only the hotelName field:\n");
+    Console.WriteLine("Search hello entire index for hello term 'budget' and return only hello hotelName field:\n");
 
     parameters =
         new SearchParameters()
@@ -442,8 +442,8 @@ private static void RunQueries(ISearchIndexClient indexClient)
 
     WriteDocuments(results);
 
-    Console.Write("Apply a filter to the index to find hotels cheaper than $150 per night, ");
-    Console.WriteLine("and return the hotelId and description:\n");
+    Console.Write("Apply a filter toohello index toofind hotels cheaper than $150 per night, ");
+    Console.WriteLine("and return hello hotelId and description:\n");
 
     parameters =
         new SearchParameters()
@@ -456,8 +456,8 @@ private static void RunQueries(ISearchIndexClient indexClient)
 
     WriteDocuments(results);
 
-    Console.Write("Search the entire index, order by a specific field (lastRenovationDate) ");
-    Console.Write("in descending order, take the top two results, and show only hotelName and ");
+    Console.Write("Search hello entire index, order by a specific field (lastRenovationDate) ");
+    Console.Write("in descending order, take hello top two results, and show only hotelName and ");
     Console.WriteLine("lastRenovationDate:\n");
 
     parameters =
@@ -472,7 +472,7 @@ private static void RunQueries(ISearchIndexClient indexClient)
 
     WriteDocuments(results);
 
-    Console.WriteLine("Search the entire index for the term 'motel':\n");
+    Console.WriteLine("Search hello entire index for hello term 'motel':\n");
 
     parameters = new SearchParameters();
     results = indexClient.Documents.Search<Hotel>("motel", parameters);
@@ -481,16 +481,16 @@ private static void RunQueries(ISearchIndexClient indexClient)
 }
 ```
 
-Minden alkalommal, amikor végrehajtja a lekérdezést, ez a módszer először létrehoz egy új `SearchParameters` objektum. Ez például rendezési, szűrési, lapozás és értékkorlátozás a lekérdezés további beállítások megadására szolgál. Ezzel a módszerrel beállítás van a `Filter`, `Select`, `OrderBy`, és `Top` különböző lekérdezések tulajdonság. Minden a `SearchParameters` tulajdonságok szerepelnek [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.searchparameters).
+Minden alkalommal, amikor végrehajtja a lekérdezést, ez a módszer először létrehoz egy új `SearchParameters` objektum. Ez a használt toospecify további beállításokat, például a rendezési, szűrési, lapozás és értékkorlátozás hello lekérdezéshez. Ezzel a módszerrel hello beállítás van `Filter`, `Select`, `OrderBy`, és `Top` különböző lekérdezések tulajdonság. Minden hello `SearchParameters` tulajdonságok szerepelnek [Itt](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.searchparameters).
 
-A következő lépésre ténylegesen a keresési lekérdezés végrehajtásához. Ebben az esetben használja a `Documents.Search` metódust. Minden egyes lekérdezés esetén, azt át kívánja használni, mint a karakterlánc a keresési szöveget (vagy `"*"` nincs a keresési szöveget esetén), és a keresési paramétereket, korábban létrehozott. Azt is megadhatja, `Hotel` a típust paraméterként `Documents.Search`, amely közli a dokumentumok a keresési eredmények deszerializálása típusú objektumot az SDK `Hotel`.
+következő lépés hello tooactually hello keresési lekérdezés végrehajtása. Ebben az esetben hello segítségével `Documents.Search` metódust. Minden egyes lekérdezés esetén, azt át hello keresési szöveg toouse karakterláncként (vagy `"*"` nincs a keresési szöveget esetén), és keresse meg a korábban létrehozott paraméterek hello. Azt is megadhatja, `Hotel` a hello típust paraméterként `Documents.Search`, amely közli hello SDK toodeserialize dokumentumok hello keresési eredmények között a következő típusú objektumokat a `Hotel`.
 
 > [!NOTE]
-> További információ a keresési lekérdezés kifejezésszintaxist található [Itt](https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search).
+> Hello keresési lekérdezés kifejezés szintaxissal kapcsolatos további információ található [Itt](https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search).
 > 
 > 
 
-Végül minden egyes lekérdezés után ez a módszer telepítéseket összes a találat a keresési eredmények között, a konzol minden egyes dokumentum nyomtatása:
+Végül minden egyes lekérdezés után ez a módszer telepítéseket összes hello találat hello keresési eredmények között, minden egyes dokumentum toohello konzol nyomtatás:
 
 ```csharp
 private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
@@ -504,7 +504,7 @@ private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
 }
 ```
 
-Vegyük pedig egyes lekérdezések részletes bemutatása. Az első lekérdezés végrehajtása a kód itt látható:
+Vegyük pedig egyes hello lekérdezések részletes bemutatása. Hello kód tooexecute hello első lekérdezés a következő:
 
 ```csharp
 parameters =
@@ -518,11 +518,11 @@ results = indexClient.Documents.Search<Hotel>("budget", parameters);
 WriteDocuments(results);
 ```
 
-Ebben az esetben azt keresünk, amelyek megfelelnek a word "költségvetés" hotels, és azt szeretné, hogy vissza csak a szállodák neveket, leírtak szerint a `Select` paraméter. Az alábbi történik:
+Ebben az esetben azt keresünk, amelyek megfelelnek a hello word "költségvetés" hotels, és szeretnénk tooget vissza csak hello Szálloda nevek, hello által megadott `Select` paraméter. Az alábbiakban hello eredmények:
 
     Name: Roach Motel
 
-A következő azt szeretnénk, a szállodák egy éjszakánként sebessége kisebb, mint 150 $ található, és csak a szállodák Azonosítóját és a leírását adja vissza:
+Ezt követően azt szeretné, hogy egy éjszakánként sebessége kisebb, mint 150 $ toofind hello szállodák, és térjen vissza a csak a hello Szálloda azonosító és a Leírás:
 
 ```csharp
 parameters =
@@ -537,14 +537,14 @@ results = indexClient.Documents.Search<Hotel>("*", parameters);
 WriteDocuments(results);
 ```
 
-Ez a lekérdezés használ egy OData `$filter` kifejezését `baseRate lt 150`, a dokumentumok az indexben szűrése. További információk az OData-szintaxis, amely támogatja az Azure Search található [Itt](https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search).
+Ez a lekérdezés használ egy OData `$filter` kifejezését `baseRate lt 150`, toofilter hello dokumentumok hello index. További információk a hello, amely támogatja az Azure Search OData-szintaxis található [Itt](https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search).
 
-Az alábbiakban a lekérdezés eredményét:
+Az alábbiakban hello lekérdezési eredmények hello:
 
     ID: 2   Description: Cheapest hotel in town
-    ID: 3   Description: Close to town hall and the river
+    ID: 3   Description: Close tootown hall and hello river
 
-A következő szeretnénk keresse meg a felső két szállodák, amely rendelkezik lett utoljára felújított, és a szállodák nevét és az utolsó felújítás dátumának megjelenítése. A kód itt látható: 
+A következő szeretnénk toofind hello felső két szállodák, amely rendelkezik lett utoljára felújított, hello Szálloda neve és az utolsó felújítás dátumának megjelenítése. Íme hello kódot: 
 
 ```csharp
 parameters =
@@ -560,14 +560,14 @@ results = indexClient.Documents.Search<Hotel>("*", parameters);
 WriteDocuments(results);
 ```
 
-Ebben az esetben újra használjuk OData szintaxis adja meg a `OrderBy` paraméterként `lastRenovationDate desc`. Azt is beállíthatja `Top` 2. Győződjön meg arról, azt csak a felső két dokumentumok beolvasása. Előtt, hogy állítsa `Select` adhatja meg, melyik mezőkre vissza kell adni.
+Ebben az esetben újra használjuk OData szintaxis toospecify hello `OrderBy` paraméterként `lastRenovationDate desc`. Azt is beállíthatja `Top` too2 tooensure jelenleg csak a get hello felső két dokumentumokat. Előtt, hogy állítsa `Select` toospecify mezőket vissza kell adni.
 
-Az alábbi történik:
+Az alábbiakban hello eredmények:
 
     Name: Fancy Stay        Last renovated on: 6/27/2010 12:00:00 AM +00:00
     Name: Roach Motel       Last renovated on: 4/28/1982 12:00:00 AM +00:00
 
-Végül azt szeretnénk található összes szállodák, amelyek megfelelnek a "motel" szót:
+Végül azt szeretnénk toofind hello word "motel" megfelelő összes szállodák:
 
 ```csharp
 parameters = new SearchParameters();
@@ -576,14 +576,14 @@ results = indexClient.Documents.Search<Hotel>("motel", parameters);
 WriteDocuments(results);
 ```
 
-Az alábbiakban az eredményeket, amely az összes mezők szerepelhetnek, mivel jelenleg nem adta meg, és a `Select` tulajdonság:
+Az alábbiakban hello eredményeket, amely az összes mezők szerepelhetnek, mivel jelenleg nem adta meg a hello és `Select` tulajdonság:
 
     ID: 2   Base rate: 79.99        Description: Cheapest hotel in town     Description (French): Hôtel le moins cher en ville      Name: Roach Motel       Category: Budget        Tags: [motel, budget]   Parking included: yes   Smoking allowed: yes    Last renovated on: 4/28/1982 12:00:00 AM +00:00 Rating: 1/5     Location: Latitude 49.678581, longitude -122.131577
 
-Ez a lépés az oktatóanyag befejezése, de itt nem állnak le. **További lépések** Azure Search többet további forrásokat biztosít.
+Ez a lépés befejezése hello oktatóanyag, de itt nem állnak le. **További lépések** Azure Search többet további forrásokat biztosít.
 
 ## <a name="next-steps"></a>Következő lépések
-* Nézze át a [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) és a [REST API](https://docs.microsoft.com/rest/api/searchservice/) referenciáit.
+* Keresse meg a hivatkozásokat hello hello [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) és [REST API](https://docs.microsoft.com/rest/api/searchservice/).
 * A Tudásbázis keresztül elmélyítsék [videókat és más mintákat és oktatóanyagok](search-video-demo-tutorial-list.md).
-* Felülvizsgálati [elnevezési konvenciói](https://docs.microsoft.com/rest/api/searchservice/Naming-rules) további a különféle objektumok elnevezési szabályai.
+* Felülvizsgálati [elnevezési konvenciói](https://docs.microsoft.com/rest/api/searchservice/Naming-rules) különböző objektumok elnevezési toolearn hello szabályai.
 * Felülvizsgálati [a támogatott adattípusokat](https://docs.microsoft.com/rest/api/searchservice/Supported-data-types) az Azure Search.

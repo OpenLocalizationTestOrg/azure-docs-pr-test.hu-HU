@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure-ban automatikus skálázás |} Microsoft Docs"
-description: "Ismerje meg, hogy az erőforrás méretezése az Azure-ban."
+title: "az Azure-ban automatikus skálázás használatába aaaGet |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooscale az erőforrás az Azure-ban."
 author: rajram
 manager: rboucher
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: rajram
-ms.openlocfilehash: 68cb624b3ef4a77e7cfc949979e0b1949c2e5535
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6b3c3f4529018dcaf9691c538fec63dfbb3cea06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-autoscale-in-azure"></a>Ismerkedés az Azure-ban automatikus skálázás
-A cikkből megtudhatja, hogyan állíthat be az automatikus skálázási beállításai a Microsoft Azure-portálon az erőforrás.
+Ez a cikk ismerteti, hogyan tooset az automatikus skálázási beállításokat az erőforrás hello Microsoft Azure-portálon.
 
-Az Azure a figyelő automatikus skálázás csak a virtuálisgép-méretezési csoportok, felhőalapú szolgáltatások, Azure App Service-csomagokról és App Service-környezetek vonatkozik. 
+Az Azure a figyelő automatikus skálázási csak toovirtual gép méretezési csoportok, felhőalapú szolgáltatások, Azure App Service-csomagokról és App Service-környezetek vonatkozik. 
 
-## <a name="discover-the-autoscale-settings-in-your-subscription"></a>Az automatikus skálázási beállításokat az előfizetésében felderítése
-Is felderítheti, amelyek automatikus skálázás esetében alkalmazható Azure figyelőben összes erőforrást. Részletes útmutató a következő lépéseket használhatja:
+## <a name="discover-hello-autoscale-settings-in-your-subscription"></a>Hello automatikus skálázási beállításokat az előfizetésében felderítése
+Felderíthetők az összes hello erőforrásokat, amelynek automatikus skálázás alkalmazható Azure-figyelőben. Lépésenkénti útmutató lépéseit követve hello használata:
 
-1. Nyissa meg a [Azure-portálon.][1]
-2. Kattintson az Azure-figyelő ikonra a bal oldali ablaktáblán.
+1. Nyissa meg hello [Azure-portálon.][1]
+2. Kattintson a hello Azure figyelő ikonra hello bal oldali ablaktáblán.
   ![Nyissa meg az Azure-figyelő][2]
-3. Kattintson a **automatikus skálázás** megtekintéséhez, amelynek automatikus skálázás kell alkalmazni, és azok állapotának automatikus skálázás összes erőforrást.
+3. Kattintson a **automatikus skálázás** tooview mely automatikus skálázás összes hello erőforrásokat kell alkalmazni, a jelenlegi állapotuk automatikus skálázás együtt.
   ![Az Azure a figyelő automatikus skálázás felderítése][3]
 
-A keresőablak lefelé a listában hatókör legfelül segítségével válassza ki azokat az erőforrásokat egy adott erőforráscsoport, adott erőforrástípusokra, vagy egy adott erőforrás.
+Használhat hello keresőablak hello felső tooscope hello lista tooselect erőforrásokhoz egy adott erőforráscsoport, adott erőforrástípusokra, vagy egy adott erőforrás le.
 
-Minden erőforrás található az aktuális példányszám és az automatikus skálázás állapotát. Az automatikus skálázás állapota lehet:
+Az egyes erőforrások hello aktuális példányszám és hello automatikus skálázás állapot talál. hello automatikus skálázás állapota lehet:
 
 - **Nincs konfigurálva**: nincs engedélyezve automatikus skálázás még ennél az erőforrásnál.
 - **Engedélyezett**: automatikus skálázás engedélyezett ehhez az erőforráshoz.
@@ -44,84 +44,84 @@ Minden erőforrás található az aktuális példányszám és az automatikus sk
 
 ## <a name="create-your-first-autoscale-setting"></a>Az első automatikus skálázási beállítás létrehozása
 
-Most már halad át egy egyszerű lépésenkénti útmutató az első automatikus skálázási beállítás létrehozásához.
+Most már halad át egy egyszerű lépésenkénti útmutató toocreate az első automatikus skálázási beállítás.
 
-1. Nyissa meg a **automatikus skálázás** panel az Azure-figyelő, és válassza a skálázni kívánt erőforrás. (Az alábbi lépéseket használni a webalkalmazáshoz tartozó App Service-csomagot. Is [az első ASP.NET-webalkalmazás létrehozása az Azure-ban 5 perc múlva.] [4])
-2. Vegye figyelembe, hogy az aktuális példányszám 1. Kattintson a **engedélyezze az automatikus skálázás**.
+1. Nyissa meg hello **automatikus skálázás** panel az Azure-figyelő, és válassza ki a megjeleníteni kívánt tooscale erőforrás. (hello lépések használni a webalkalmazáshoz tartozó App Service-csomagot. Is [az első ASP.NET-webalkalmazás létrehozása az Azure-ban 5 perc múlva.] [4])
+2. Vegye figyelembe, hogy hello aktuális példányszám 1. Kattintson a **engedélyezze az automatikus skálázás**.
   ![Új webalkalmazás skálázási beállítást][5]
-3. Adjon meg egy nevet a skálázási beállítást, és kattintson **szabály hozzáadása**. Nyissa meg a figyelmeztetés a skálázási szabályhoz, amelyet a környezet ablaktáblán a jobb oldalon. Alapértelmezés szerint ez a beállítás méretezése a példányok száma 1, ha az erőforrás CPU aránya meghaladja a 70 %-os állítja be. Az alapértelmezett értéken hagyja, és kattintson a **Hozzáadás**.
+3. Adjon meg egy nevet hello skálázási beállítást, és kattintson **szabály hozzáadása**. Figyelje meg hello skálázási szabály beállítások hello jobb oldalán környezetben ablaktábla megnyitása. Alapértelmezés szerint ez a beállítás hello beállítás tooscale a példányok száma 1, ha hello processzorszázaléka hello erőforrás nagyobb, mint 70 százalék. Az alapértelmezett értéken hagyja, és kattintson a **Hozzáadás**.
   ![A webes alkalmazás skálázási beállítás létrehozása][6]
-4. Most létrehozott az első skálázási szabályhoz. Vegye figyelembe, hogy a UX ajánlott eljárások azt javasolja, és jelzi, hogy "javasoljuk, hogy van legalább egy skálázási szabály." Ehhez tegye a következőket:
+4. Most létrehozott az első skálázási szabályhoz. Vegye figyelembe, hogy UX azt javasolja, hogy ajánlott eljárásokat, és hogy hello "toohave ajánlott legalább egy skálázási szabály." toodo így:
   
     a. Kattintson a **szabály hozzáadása**. 
 
-    b. Állítsa be **operátor** való **kisebb, mint**.
+    b. Állítsa be **operátor** túl**kisebb, mint**.
 
-    c. Állítsa be **küszöbérték** való **20**.
+    c. Állítsa be **küszöbérték** túl**20**.
 
-    d. Állítsa be **művelet** való **számolva csökkentése**.
+    d. Állítsa be **művelet** túl**számolva csökkentése**.
 
    Most már rendelkeznie kell a skálázási beállítást, hogy méretezik out/méretezik a CPU-használat alapján.
    ![A skála CPU alapján][8]
 5. Kattintson a **Save** (Mentés) gombra.
 
-Gratulálunk! Most már sikeresen létrehozta a CPU-használat alapján a webalkalmazás automatikus skálázásra az első skálázási beállítást.
+Gratulálunk! Most már sikeresen létrehozta a CPU-használat alapján a webalkalmazás első skálázási beállítás tooautoscale.
 
 > [!NOTE] 
-> Ugyanezek a lépések Ismerkedjen meg a virtuálisgép-méretezési csoport vagy szerepkör-szolgáltatás a felhő vonatkoznak.
+> hello azonos lépésekre vonatkozó tooget lépések a virtuálisgép-méretezési készlet vagy a felhőbeli szerepkör-szolgáltatás.
 
 ## <a name="other-considerations"></a>Egyéb szempontok
 ### <a name="scale-based-on-a-schedule"></a>A skála a ütemezés szerint
-Mellett a skála alapján a CPU beállíthatja a skála eltérően a hét adott napjaira.
+Ezenkívül tooscale alapján a CPU, beállíthatja a skála másképp hello hét adott napjaira.
 
 1. Kattintson a **méretezési feltétel hozzáadása**.
-2. A skála mód és a szabályok beállítását megegyezik az alapértelmezett feltétel.
-3. Válassza ki **ismételje meg az adott napokra** az ütemezéshez.
-4. Válassza ki a nap és a kezdő/záró idő, amikor a skála feltétel alkalmazni kívánja a.
+2. Hello skála mód és hello szabályok beállítása az hello azonos hello alapértelmezett feltételként.
+3. Válassza ki **ismételje meg az adott napokra** hello ütemezéshez.
+4. Válassza ki a hello nap és hello kezdő/záró idő, amikor hello méretezési feltétel alkalmazni kívánja a.
 
 ![Skála feltétel ütemezésen alapuló][9]
 ### <a name="scale-differently-on-specific-dates"></a>Az adott dátumok másképp méretezése
-Skála alapján a CPU, mellett adhatja meg a skála másképp konkrét dátumokat.
+Továbbá a CPU-alapú tooscale, adhatja meg a skála másképp konkrét dátumokat.
 
 1. Kattintson a **méretezési feltétel hozzáadása**.
-2. A skála mód és a szabályok beállítását megegyezik az alapértelmezett feltétel.
-3. Válassza ki **adja meg a kezdő és záró dátum** az ütemezéshez.
-4. Válassza ki a kezdő és záró dátum és a kezdő/záró idő, amikor a skála feltétel alkalmazni kívánja a.
+2. Hello skála mód és hello szabályok beállítása az hello azonos hello alapértelmezett feltételként.
+3. Válassza ki **adja meg a kezdő és záró dátum** hello ütemezéshez.
+4. Jelölje ki a hello kezdő és záró dátumát és hello kezdő/záró időpontját amikor hello méretezési feltételt kell alkalmazni.
 
 ![Skála feltétel dátumok alapján][10]
 
-### <a name="view-the-scale-history-of-your-resource"></a>Az erőforrás méretezési előzményeinek megtekintése
-Amikor az erőforrás méretezése felfelé vagy lefelé, eseményt naplózott, a műveletnaplóban. Megtekintheti az erőforrás méretezési előzményeinek vonatkozóan az elmúlt 24 óra átvált a **futtatási előzményei** fülre.
+### <a name="view-hello-scale-history-of-your-resource"></a>Az erőforrás hello méretezési előzményeinek megtekintése
+Amikor az erőforrás méretezése felfelé vagy lefelé, eseményt naplózott, hello műveletnaplóban. Megtekintheti hello méretezési előzmények az erőforrás hello az elmúlt 24 óra toohello váltásával **futtatási előzményei** fülre.
 
 ![futtatási előzményei][11]
 
-Ha szeretné megtekinteni a teljes méretezési előzmények (90 nap), jelölje be **Ide kattintva további részleteket**. A műveletnapló nyílik meg, előre kiválasztott erőforrás és kategória automatikus skálázási.
+Ha azt szeretné, hogy tooview hello teljes méretezési előzmények (az akár too90 nap), jelölje be **ide toosee további részleteket**. hello tevékenységnapló nyílik meg, előre kiválasztott erőforrás és kategória automatikus skálázási.
 
-### <a name="view-the-scale-definition-of-your-resource"></a>A skála meghatározása az erőforrás megtekintéséhez
-Automatikus skálázás egy Azure Resource Manager szerinti erőforrás. Megtekintheti a skála definition a JSON-ban átvált a **JSON** fülre.
+### <a name="view-hello-scale-definition-of-your-resource"></a>Hello méretezési meghatározása az erőforrás megtekintéséhez
+Automatikus skálázás egy Azure Resource Manager szerinti erőforrás. Megtekintheti hello méretezési definition JSON toohello váltásával **JSON** fülre.
 
 ![Skála meghatározása][12]
 
 Módosíthatja a JSON-ban közvetlenül, ha szükséges. Ezek a változások azok mentése után jelenik meg.
 
 ### <a name="disable-autoscale-and-manually-scale-your-instances"></a>Tiltsa le az automatikus skálázás, és manuálisan méretezhető, a példányok
-Előfordulhat, hogy mikor szeretné letiltani az aktuális skálázási beállítást, és manuálisan méretezhető, az erőforrás.
+Előfordulhat, ha szeretné, hogy az aktuális skálázási beállítást toodisable, és manuálisan méretezhető, az erőforrás időpontokat.
 
-Kattintson a **letiltásával** gombra az oldal tetején.
+Kattintson a hello **letiltásával** hello felső gombra.
 ![Tiltsa le az automatikus skálázás][13]
 
 > [!NOTE] 
-> Ez a beállítás letiltja a konfigurációt. Azonban is vissza az automatikus skálázás megismételni engedélyezése után. 
+> Ez a beállítás letiltja a konfigurációt. Azonban is vissza tooit automatikus skálázás megismételni engedélyezése után. 
 
-Beállíthatja, hogy manuálisan méretezésére példányok száma.
+Beállíthatja, hogy szeretné-e tooscale toomanually példányok hello száma.
 
 ![Manuális méretezési készlet][14]
 
-Kattintva mindig visszatérhet automatikus skálázás **engedélyezze az automatikus skálázás** , majd **mentése**.
+Gombra kattintva térhet vissza tooAutoscale mindig **engedélyezze az automatikus skálázás** , majd **mentése**.
 
 ## <a name="next-steps"></a>Következő lépések
-- [Hozzon létre egy tevékenység napló riasztási előfizetés minden automatikus skálázási motor műveletek figyelése](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
-- [Hozzon létre egy tevékenység napló a riasztást az előfizetés az összes sikertelen automatikus skálázás méretezési-a/kibővített műveletek figyelése](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
+- [Hozzon létre egy tevékenység napló riasztási toomonitor az előfizetés minden automatikus skálázási motor műveletek](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [Hozzon létre egy tevékenység napló riasztási toomonitor az előfizetés az összes sikertelen automatikus skálázás méretezési-a/kibővített műveletek](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
 
 <!--Reference-->
 [1]:https://portal.azure.com

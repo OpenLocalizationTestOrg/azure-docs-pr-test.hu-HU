@@ -1,6 +1,6 @@
 ---
-title: "LDAP-hitelesítés és Azure MFA-kiszolgáló | Microsoft Docs"
-description: "Ez az Azure Multi-Factor Authentication-oldal segítséget nyújt az LDAP-hitelesítés és az Azure Multi-Factor Authentication-kiszolgáló telepítéséhez."
+title: "aaaLDAP hitelesítés és az Azure MFA kiszolgáló |} Microsoft Docs"
+description: "Ez az LDAP-hitelesítés és az Azure multi-factor Authentication kiszolgáló üzembe helyezése segít hello Azure multi-factor Authentication hitelesítési lapot."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: kgremban
-ms.openlocfilehash: 8f4d5f9e84ad7bb4fff501370036e7f0da589bf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 17a26b57dbf6afa2fcfdb3d19c5b5ba2987a9f79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ldap-authentication-and-azure-multi-factor-authentication-server"></a>LDAP-hitelesítés és az Azure multi-factor Authentication kiszolgáló
-Alapértelmezés szerint az Azure Multi-Factor Authentication-kiszolgáló úgy van konfigurálva, hogy a felhasználókat az Active Directoryból importálja vagy szinkronizálja. Azonban konfigurálható úgy különböző LDAP-címtárakhoz való kötésre is, például ADAM-címtárhoz vagy adott Active Directory-tartományvezérlőkhöz. LDAP keresztül könyvtár való csatlakozáskor az Azure multi-factor Authentication kiszolgáló a hitelesítés végrehajtásához LDAP-proxyként működhet. Ezenkívül lehetővé teszi, hogy az LDAP-kötést felhasználja RADIUS-célként az IIS-hitelesítést használó felhasználók előhitelesítésére illetve elsődleges hitelesítésre az Azure MFA felhasználói portálon.
+Alapértelmezés szerint hello Azure multi-factor Authentication kiszolgálón konfigurált tooimport vagy felhasználók Active Directory szinkronizálását. Azt azonban nem konfigurált toobind toodifferent LDAP-címtárak esetén például ADAM-címtárhoz vagy megadott Active Directory-tartományvezérlőhöz. Ha csatlakoztatott tooa directory LDAP keresztül, hello Azure multi-factor Authentication kiszolgáló működhet, és az LDAP-proxy tooperform hitelesítéseket. Azt is lehetővé teszi hello használata LDAP-kötés RADIUS-célként, előhitelesítés során a felhasználók az IIS-hitelesítést, vagy az elsődleges hitelesítéshez hello Azure multi-factor Authentication felhasználói portálon.
 
-Használja az Azure multi-factor Authentication LDAP-proxyként, helyezze az Azure multi-factor Authentication kiszolgáló között az LDAP-ügyfél (például a VPN-készülék, az alkalmazás) és az LDAP címtárkiszolgálón. Az Azure Multi-Factor Authentication-kiszolgálót úgy kell konfigurálni, hogy az ügyfélkiszolgálókkal és az LDAP-címtárral is kommunikáljon. Ebben a konfigurációban az Azure Multi-Factor Authentication-kiszolgáló fogadja az ügyfélkiszolgálóktól és alkalmazásoktól érkező LDAP-kéréseket, majd továbbítja őket a cél LDAP-címtárkiszolgálónak az elsődleges hitelesítő adatok ellenőrzéséhez. Ha az LDAP-címtár ellenőrzi az elsődleges hitelesítő adatait, Azure multi-factor Authentication második azonosító ellenőrzi és elküld egy választ, az LDAP-ügyfélnek. A teljes hitelesítés csak akkor lesz sikeres, ha az LDAP-kiszolgálón való hitelesítés és a kétlépéses hitelesítés is sikeres.
+Azure multi-factor Authentication LDAP-proxyként, toouse beszúrása hello Azure multi-factor Authentication kiszolgáló hello LDAP-ügyfél (például a VPN-készülék, az alkalmazás) és az LDAP-címtárkiszolgálóhoz hello között. hello Azure multi-factor Authentication kiszolgáló a hello ügyfélkiszolgálókkal, mind a hello LDAP-címtárhoz konfigurált toocommunicate kell lennie. Ebben a konfigurációban a hello Azure multi-factor Authentication kiszolgáló LDAP kérések ügyfél kiszolgálók és alkalmazások fogad, és továbbítja őket a toohello cél LDAP directory toovalidate hello elsődleges hitelesítő adatait. Ha az LDAP-címtár hello hello elsődleges hitelesítő adatok érvényesítése, Azure multi-factor Authentication második azonosító ellenőrzi és elküld egy választ hátsó toohello LDAP-ügyfél. hello teljes hitelesítés sikeres, csak akkor, ha a hello LDAP server-hitelesítés és a hello második lépés ellenőrzése sikertelen.
 
 ## <a name="configure-ldap-authentication"></a>LDAP-hitelesítés konfigurálása
-Az LDAP-hitelesítés konfigurálásához telepítse az Azure Multi-Factor Authentication-kiszolgálót egy Windows-kiszolgálón. Kövesse az alábbi eljárást:
+tooconfigure LDAP-hitelesítés, telepítés hello Azure multi-factor Authentication kiszolgáló a Windows server. A következő eljárás hello használata:
 
 ### <a name="add-an-ldap-client"></a>LDAP-ügyfél hozzáadása
 
-1. Válassza ki az Azure multi-factor Authentication kiszolgáló az LDAP-hitelesítés ikonra a bal oldali menüben.
-2. Jelölje be az **LDAP-hitelesítés engedélyezése** jelölőnégyzetet.
+1. Hello Azure multi-factor Authentication kiszolgáló válassza ki a hello LDAP-hitelesítés ikonra a bal oldali menü hello.
+2. Ellenőrizze a hello **LDAP-hitelesítés engedélyezése** jelölőnégyzetet.
 
    ![LDAP-hitelesítés](./media/multi-factor-authentication-get-started-server-ldap/ldap2.png)
 
-3. Az Ügyfelek lapon módosítsa a TCP-portot és az SSL-portot, ha az Azure Multi-Factor Authentication LDAP-szolgáltatását nem szabványos portokhoz szeretné kötni, hogy fogadni tudjon LDAP-kéréseket.
-4. Ha azt tervezi, az ügyfél LDAPS segítségével az Azure multi-factor Authentication kiszolgáló, az SSL-tanúsítvány MFA kiszolgáló ugyanazon a kiszolgálón telepítve kell. Kattintson a **Tallózás** mellett az SSL tanúsítvány mezőbe, és válassza ki a biztonságos kapcsolat használandó tanúsítványt.
+3. Hello ügyfelek lapon módosítsa a hello TCP-port és az SSL-port lehetőséget, ha hello Azure multi-factor Authentication LDAP szolgáltatás toonon szabványnak portok toolisten az LDAP-kérésekhez kell kötni.
+4. Ha azt tervezi, hogy a hello ügyfél toohello Azure multi-factor Authentication kiszolgáló LDAPS toouse, SSL-tanúsítványt kell telepíteni hello MFA kiszolgáló ugyanarra a kiszolgálóra. Kattintson a **Tallózás** következő toohello SSL tanúsítvány mezőbe, és válassza ki a tanúsítvány toouse hello biztonságos kapcsolat.
 5. Kattintson az **Add** (Hozzáadás) parancsra.
-6. Az LDAP-ügyfél hozzáadása párbeszédpanelen adja meg az IP-cím, a készülék, a kiszolgáló vagy az alkalmazás, amely hitelesíti a kiszolgáló és az alkalmazás neve (nem kötelező). Az alkalmazásnév az Azure Multi-Factor Authentication-jelentésekben jelenik meg, illetve megjelenhet az SMS-es vagy mobilalkalmazásos hitelesítési üzenetekben.
-7. Jelölje be a **Require Azure Multi-Factor Authentication user match** (Azure Multi-Factor Authentication felhasználói egyezés megkövetelése) jelölőnégyzetet, ha az összes felhasználót importálta vagy importálni fogja a kiszolgálóra, és kétlépéses hitelesítést alkalmaz rajtuk. Felhasználók jelentős számú nem még importálva lettek a kiszolgálón és/vagy nem érvényes a kétlépéses ellenőrzést, ha üresen hagyja a nincs bejelölve. Tekintse meg a multi-factor Authentication kiszolgáló súgófájl további információ a szolgáltatásról.
+6. A hello LDAP-ügyfél hozzáadása párbeszédpanelen adja meg a hello IP-cím hello átjárókészülék, a kiszolgáló vagy az alkalmazás, amely hitelesíti a toohello kiszolgáló és az alkalmazás neve (nem kötelező). hello alkalmazásnév Azure multi-factor Authentication-jelentésekben jelenik meg, és előfordulhat, hogy SMS vagy mobilalkalmazás hitelesítési üzenet jelenjen meg.
+7. Ellenőrizze a hello **Azure multi-factor Authentication felhasználói egyeztetés megkövetelése** mezőben, ha az összes felhasználót törölték, vagy importálja a hello kiszolgáló és a tulajdonos tootwo lépés ellenőrzése. Ha a felhasználók jelentős számú nem még importálva lettek hello kiszolgálón és/vagy nem érvényes a kétlépéses ellenőrzést, hagyja a mezőt hello nincs bejelölve. Hello MFA kiszolgáló súgófájlban további információért tekintse meg ezt a szolgáltatást.
 
-További LDAP-ügyfelek hozzáadásához ismételje meg ezeket a lépéseket.
+Ismételje meg a lépéseket tooadd további LDAP-ügyfél.
 
-### <a name="configure-the-ldap-directory-connection"></a>Az LDAP-címtár kapcsolatának konfigurálása
+### <a name="configure-hello-ldap-directory-connection"></a>Hello LDAP-címtár kapcsolat konfigurálása
 
-Ha az Azure Multi-Factor Authentication LDAP-hitelesítések fogadására van konfigurálva, a hitelesítéseket az LDAP-címtárnak kell proxykapcsolaton keresztül átadnia. Ezért a Cél lapon csak egyetlen, szürkén megjelenő lehetőség látható LDAP-cél használatához.
+Ha hello Azure multi-factor Authentication konfigurált tooreceive LDAP-hitelesítés, azt kell proxy e hitelesítések toohello LDAP-címtár. Ezért hello cél lap csak jelenít meg egyetlen szürkén jelenik meg a beállítás toouse egy LDAP-tárolóhoz.
 
-1. Az LDAP-címtár kapcsolatának konfigurálásához kattintson a **Címtár-integráció** ikonra.
-2. A Beállítások lapon jelölje be a **Megadott LDAP-konfiguráció használata** választógombot.
+1. tooconfigure hello LDAP-címtár kapcsolatot, kattintson a hello **címtár-integráció** ikonra.
+2. Hello beállítások lapon válassza ki a hello **adott LDAP-konfiguráció használata** választógombot.
 3. Válassza a **Szerkesztés…** elemet.
-4. Az LDAP-konfiguráció szerkesztése párbeszédpanelen adja meg az LDAP-címtárhoz való kapcsolódáshoz szükséges adatokat a mezőkben. A mezők leírását az Azure Multi-Factor Authentication-kiszolgáló súgófájljában találja.
+4. A hello LDAP-konfiguráció szerkesztése párbeszédpanelen hello mezőket a hello szükséges adatokat tooconnect toohello LDAP-címtár feltöltéséhez. Hello mezők leírását hello Azure multi-factor Authentication kiszolgáló súgófájl szerepelnek.
 
     ![Címtár-integráció](./media/multi-factor-authentication-get-started-server-ldap/ldap.png)
 
-5. Tesztelje az LDAP-kapcsolatot a **Tesztelés** gombra kattintva.
-6. Ha az LDAP-kapcsolat tesztelése sikeres volt, kattintson az **OK** gombra.
-7. Kattintson a **Szűrők** fülre. A kiszolgáló előre konfigurálva van a tárolók, biztonsági csoportok és felhasználók az Active Directoryból való betöltésére. Másik LDAP-címtárhoz való kötés esetén valószínűleg szerkesztenie kell a megjelenített szűrőket. A szűrőkkel kapcsolatos további információért kattintson a **Súgó** hivatkozásra.
-8. Kattintson az **Attribútumok** fülre. A kiszolgáló előre konfigurálva van az Active Directoryból származó attribútumok leképezésére.
-9. Másik LDAP-címtárhoz való kötéshez vagy az előre konfigurált attribútumleképezések módosításához kattintson a **Szerkesztés…** elemre
-10. Az Attribútumok szerkesztése párbeszédpanelen módosítsa az LDAP-attribútumleképezéseket a címtárra vonatkozóan. Az attribútumneveket beírhatja, vagy kiválaszthatja a mezők melletti **…** gombra kattintva. Az attribútumokkal kapcsolatos további információért kattintson a **Súgó** hivatkozásra.
-11. Kattintson az **OK** gombra.
-12. Kattintson a **Vállalati beállítások** ikonra, és válassza a **Felhasználónév feloldása** fület.
-13. Ha az Active Directoryhoz egy tartományhoz csatlakoztatott kiszolgálóról csatlakozik, hagyja bejelölve a **Windows biztonsági azonosítók (SID-k) használata a felhasználónevek egyeztetéséhez** választógombot. Egyéb esetben jelölje be az **Egyedi LDAP azonosító attribútum használata a felhasználónevek egyeztetéséhez** választógombot. 
+5. Hello LDAP-kapcsolat tesztelése gombra kattintva hello **teszt** gombra.
+6. Ha hello LDAP kapcsolat ellenőrzése sikeres volt, kattintson a hello **OK** gombra.
+7. Kattintson a hello **szűrők** külön-külön hello kiszolgáló, előre konfigurált tooload tárolók, biztonsági csoportok és felhasználók Active Directoryból. Ha kötés tooa másik LDAP-címtárhoz, valószínűleg szüksége tooedit hello szűrők jelenik meg. Kattintson a hello **súgó** szűrők további információ hivatkozásra.
+8. Kattintson a hello **attribútumok** külön-külön hello kiszolgáló előre konfigurált toomap attribútumok az Active Directoryból.
+9. Ha tooa különböző LDAP könyvtár vagy toochange hello előre megadott attribútum-leképezésekhez most kötést, kattintson a **szerkesztése...**
+10. Hello attribútumok szerkesztése párbeszédpanelen módosítsa a hello LDAP attribútum-leképezésekhez a címtárban. Attribútumnevek írt, vagy kiválasztott hello kattintva **...** következő tooeach mező gombra. Kattintson a hello **súgó** hivatkozás a további információkra attribútumok.
+11. Kattintson a hello **OK** gombra.
+12. Kattintson a hello **vállalati beállítások** ikonra, és jelölje be hello **felhasználónév-feloldás** fülre.
+13. Ha tooActive Directory kapcsolat egy tartományhoz csatlakoztatott kiszolgáló esetén hagyja hello **Windows biztonsági azonosítók (SID) az egyező felhasználónevekhez** kijelölt választógombot. Ellenkező esetben válassza a hello **LDAP egyedi azonosító attribútum használata a felhasználónevek egyeztetéséhez** választógombot. 
 
-Ha az **Egyedi LDAP azonosító attribútum használata a felhasználónevek egyeztetéséhez** lehetőséget bejelöli, az Azure Multi-Factor Authentication-kiszolgáló a felhasználóneveket megkísérli egy egyedi azonosítóvá feloldani az LDAP-címtárban. A rendszer végrehajt egy LDAP-keresést a Címtár-integráció -> Attribútumok lapon meghatározott felhasználónév-attribútumokon. Amikor egy felhasználó hitelesíti magát, a felhasználónév oldja fel a rendszer az LDAP-címtárban szereplő egyedi azonosítóra. Az egyedi azonosítót kell használni a felhasználó az Azure multi-factor Authentication adatfájlban egyeztetéséhez. Ez lehetővé teszi a nem betűérzékeny összehasonlítást, és a hosszú és rövid felhasználónév-formátumokat.
+Ha hello **LDAP egyedi azonosító attribútum használata a felhasználónevek egyeztetéséhez** választógomb meg van adva, hello Azure multi-factor Authentication kiszolgáló megkísérli tooresolve minden egyes username tooa szereplő egyedi azonosítóra hello LDAP-címtárhoz. Egy LDAP-keresés történik hello felhasználónév a címtár-integráció hello meghatározott attribútumok -> attribútumok lapon. A felhasználók hitelesítése, hello felhasználónév feloldása toohello hello LDAP-címtárban szereplő egyedi azonosítóra. egyező hello felhasználó hello Azure multi-factor Authentication adatfájlban hello egyedi azonosítót kell használni. Ez lehetővé teszi a nem betűérzékeny összehasonlítást, és a hosszú és rövid felhasználónév-formátumokat.
 
-Miután elvégezte ezeket a lépéseket, a multi-factor Authentication kiszolgáló LDAP hozzáférési kérelmeket a konfigurált ügyfelek a konfigurált portokat figyeli, és ezeket a kérelmeket, az LDAP-címtárhoz a hitelesítéshez a proxyként működő.
+Miután elvégezte ezeket a lépéseket, hello MFA kiszolgáló LDAP hozzáférési kérelmek hello hello konfigurált portokat a beállított figyeli az ügyfelek és tevékenységéért, azok proxy toohello LDAP-címtár hitelesítési kérelmek.
 
 ## <a name="configure-ldap-client"></a>LDAP-ügyfél konfigurálása
-Az LDAP-ügyfél konfigurálásához kövesse az alábbi útmutatást:
+tooconfigure hello LDAP-ügyfél, használja a hello irányelveket:
 
-* Konfigurálja a készüléket, kiszolgálót vagy alkalmazást, hogy úgy végezzen hitelesítést LDAP-n keresztül az Azure Multi-Factor Authentication-kiszolgálón, mintha az az Ön LDAP-címtára lenne. Használja ugyanazokat a beállításokat, amelyeket általában használna az LDAP-címtárához való közvetlen csatlakozáshoz, azonban az Azure Multi-Factor Authentication-kiszolgáló kiszolgálónevét vagy IP-címét adja meg.
-* Konfigurálja az LDAP-időtúllépés 30 – 60 másodperc, hogy a felhasználói hitelesítő adatokat az LDAP-címtár ellenőrzéséhez a második lépés ellenőrzés, azok választ kapnak, és az LDAP-hozzáférési kérelem válaszolni idő.
-* Ha LDAPS-t használ, az LDAP-lekérdezéseket kezdeményező készüléknek vagy kiszolgálónak meg kell bíznia az Azure Multi-Factor Authentication-kiszolgálón telepített SSL-tanúsítványban.
+* Konfigurálja a készülék, a kiszolgáló vagy az alkalmazás tooauthenticate Azure multi-factor Authentication kiszolgáló LDAP toohello keresztül, az LDAP-címtárral, mintha. Használjon hello azonos beállításokat, hogy szokásos módon használhatja tooconnect közvetlenül tooyour LDAP-címtárhoz, kivéve a hello kiszolgáló neve vagy IP-címet, amely lesz az Azure multi-factor Authentication kiszolgáló hello.
+* Hello LDAP időtúllépés too30-60 másodperc konfigurálja úgy, hogy az LDAP-címtár hello idő toovalidate hello felhasználó hitelesítő adatait, hello második lépés ellenőrzés, a válasz fogadása és toohello LDAP hozzáférési kérelem válaszol.
+* LDAPS használatakor hello berendezés vagy a kiszolgáló hello egy LDAP-lekérdezés végrehajtása meg kell bíznia hello SSL-tanúsítvány hello Azure multi-factor Authentication kiszolgáló telepíthető.
 

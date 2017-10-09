@@ -1,6 +1,6 @@
 ---
-title: "Data Lake Store érintő adatáttelepítések esetében |} Microsoft Docs"
-description: "Megérteni a különböző alkalmazási helyzetek és eszközök használatával, mely adatokra is okozhatnak, feldolgozása, letöltése és ábrázolt egy Data Lake Store-ban"
+title: "Data Lake Store érintő aaaData forgatókönyvek |} Microsoft Docs"
+description: "Megérteni a különböző alkalmazási helyzetek hello és eszközök használatával mely adatokra is okozhatnak, feldolgozása, letöltése és ábrázolt egy Data Lake Store-ban"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 2a2801e5c506dcc8aa9ca2ecd275b52c72d5fbbf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: caaa3979b8a2532089778c3e3db3c711714d3c42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-data-lake-store-for-big-data-requirements"></a>Azure Data Lake Store használatát a big Data típusú adatok követelmények
 Nagy adatfeldolgozási négy fő szakaszból áll:
 
 * Választásával dolgozhat fel nagy mennyiségű adat adatok tárolóba, valós idejű vagy kötegek
-* Az adatok feldolgozása
-* Az adatok letöltése
-* Az adatok megjelenítése
+* Hello adatainak feldolgozása
+* Hello adatok letöltése
+* Hello adatok megjelenítése
 
-Ebben a cikkben úgy tekintünk a szakaszok tekintetében az Azure Data Lake Store megtudhatja, hogy a beállítások és a big Data típusú adatok igényeknek megfelelő eszközöket is.
+Ebben a cikkben úgy tekintünk, ezek a szakaszok a tekintetben tooAzure Data Lake Store toounderstand hello beállításokat és eszközei elérhető toomeet a big Data típusú adatok igényeinek.
 
 ## <a name="ingest-data-into-data-lake-store"></a>A Data Lake Store betöltik az adatokat
-Ez a szakasz az adatok és a különböző módokon, amelyben el az adatok egy Data Lake Store figyelembe meghatározták a különböző forrásokból mutatja be.
+Ez a szakasz hello különböző forrásokból, amelyben el az adatok egy Data Lake Store figyelembe meghatározták adatok és hello különböző módokon mutatja be.
 
 ![A Data Lake Store betöltik az adatokat](./media/data-lake-store-data-scenarios/ingest-data.png "betöltik az adatokat a Data Lake Store")
 
 ### <a name="ad-hoc-data"></a>Ad hoc adatok
-Ez jelöli, amelyek kisebb adatkészletek prototípusának a big Data típusú adatok alkalmazás használja. Többféleképpen attól függően, hogy az adatforrás az alkalmi adatok választásával dolgozhat fel.
+Ez jelöli, amelyek kisebb adatkészletek prototípusának a big Data típusú adatok alkalmazás használja. Többféleképpen attól függően, hogy hello adatforrás hello alkalmi adatok választásával dolgozhat fel.
 
 | Adatforrás | Betöltési használatával |
 | --- | --- |
@@ -44,91 +44,91 @@ Ez jelöli, amelyek kisebb adatkészletek prototípusának a big Data típusú a
 | Az Azure Storage-Blobba |<ul> <li>[Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)</li> <li>[AdlCopy eszköz](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[HDInsight-fürtön futó ból a DistCp](data-lake-store-copy-data-wasb-distcp.md)</li> </ul> |
 
 ### <a name="streamed-data"></a>Adatfolyamként továbbított adatok
-Adatok, például alkalmazások, eszközök, érzékelőket és stb különböző forrásokból létrehozható jelképez. Ezek az adatok különböző eszközök által történő egy Data Lake Store meghatározták. Ezek az eszközök általában fog rögzítése és feldolgozni az adatokat az esemény által alapon valós idejű, majd írja be az események kötegekben a Data Lake Store, hogy azok további dolgozhatók fel.
+Adatok, például alkalmazások, eszközök, érzékelőket és stb különböző forrásokból létrehozható jelképez. Ezek az adatok különböző eszközök által történő egy Data Lake Store meghatározták. Ezek az eszközök általában fog rögzítése és az esemény által alapon hello adatok feldolgozása valós idejű, majd írja hello események kötegekben Data Lake Store az, hogy azok további dolgozhatók fel.
 
 Az alábbiakban eszközök közül választhat:
 
-* [Az Azure Stream Analytics](../stream-analytics/stream-analytics-data-lake-output.md) -események az Event Hubsban okozhatnak csak írható Azure Data Lake az Azure Data Lake Store kimeneti használatával.
-* [Az Azure HDInsight alatt futó Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md) -írhat adatok közvetlenül a Data Lake Store a Storm-fürtök.
-* [EventProcessorHost](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md) – események fogadásához az Event Hubs, és jegyezze Data Lake Store használatára a [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md).
+* [Az Azure Stream Analytics](../stream-analytics/stream-analytics-data-lake-output.md) -események az Event Hubsban okozhatnak csak írható tooAzure Data Lake az Azure Data Lake Store kimeneti használatával.
+* [Az Azure HDInsight alatt futó Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md) -adatokat írhatna közvetlen tooData Lake Store a hello Storm-fürt.
+* [EventProcessorHost](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md) – események fogadásához az Event Hubs, és ezután írják tooData Lake Store hello segítségével [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md).
 
 ### <a name="relational-data"></a>Relációs adatok
-A forrásadatok relációs adatbázisból. Egy meghatározott időtartam során rendelkezésre a relációs adatbázisok gyűjtése hatalmas mennyiségű adat, amely kulcs áttekintést adnak is, ha a big data-feldolgozási folyamaton keresztül. A következő eszközök segítségével ilyen adatok áthelyezése a Data Lake Store rendszerbe.
+A forrásadatok relációs adatbázisból. Egy meghatározott időtartam során rendelkezésre a relációs adatbázisok gyűjtése hatalmas mennyiségű adat, amely kulcs áttekintést adnak is, ha a big data-feldolgozási folyamaton keresztül. Is használhatja a következő eszközök toomove hello ilyen adatok Data Lake Store.
 
 * [Apache Sqoop](data-lake-store-data-transfer-sql-sqoop.md)
 * [Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)
 
 ### <a name="web-server-log-data-upload-using-custom-applications"></a>Web server naplóadatokat (a feltöltési egyéni alkalmazások használata)
-Ez a fajta adatkészlet kifejezetten feltüntettük mert web server napló adatok elemzése a big data-alkalmazások gyakori használati esetek és a naplófájlokat, és fel kell tölteni a Data Lake Store nagy méretű köteten kell. A következő eszközök bármelyikével használhatja a saját parancsfájlok vagy alkalmazások feltölteni az ilyen adatokat írni.
+Ez a fajta adatkészlet kifejezetten feltüntettük mert web server napló adatok elemzése a big data-alkalmazások gyakori használati eset, és megköveteli a naplófájl fájlok toobe nagy mennyiségű feltöltött toohello Data Lake Store. Használhatja a következő eszközök toowrite hello bármelyikét saját parancsfájlok vagy alkalmazások tooupload ezeket az adatokat.
 
 * [Az Azure platformfüggetlen parancssori felület 2.0](data-lake-store-get-started-cli-2.0.md)
 * [Azure PowerShell](data-lake-store-get-started-powershell.md)
 * [Az Azure Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md)
 * [Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)
 
-Web server napló adatfeltöltési, valamint a más típusú adatok (például közösségi hangulati elemek adatok) feltöltése akkor a saját egyéni parancsfájlok alkalmazások írni, mert azt a rugalmasságot biztosít az adatok feltöltése az összetevő a nagyobb big Data típusú adatok alkalmazás részeként jó módszer. Egyes esetekben ez a kód is igénybe vehet az űrlap egy parancsfájl vagy egy egyszerű parancssori segédprogrammal. Más esetekben a kód egy üzleti alkalmazás vagy megoldás nagy adatfeldolgozási integrálja használható.
+Web server napló adatfeltöltési, valamint a más típusú adatok (például közösségi hangulati elemek adatok) feltöltése, már jó közelítse toowrite saját egyéni parancsfájlok alkalmazások mert biztosít rugalmasságot tooinclude hello az adatok feltöltése részeként összetevő a nagyobb big Data típusú adatok alkalmazás. Egyes esetekben ez a kód hello űrlap egy parancsfájl vagy egy egyszerű parancssori segédprogram is eltarthat. Más esetekben a hello kód használt toointegrate nagy az adatfeldolgozás fel üzleti alkalmazás vagy megoldás lehet.
 
 ### <a name="data-associated-with-azure-hdinsight-clusters"></a>Társított alkalmazások Azure HDInsight-fürtök
-A legtöbb HDInsight-fürttípusok (Hadoop, HBase, Storm) Data Lake Store támogatják az adatok tárolási tára. A HDInsight-fürtök elérni az adatokat az Azure Storage Blobs (WASB). A jobb teljesítmény érdekében átmásolhatja az adatokat WASB be a fürthöz tartozó Data Lake Store-fiókba. A következő eszközök segítségével másolja az adatokat.
+A legtöbb HDInsight-fürttípusok (Hadoop, HBase, Storm) Data Lake Store támogatják az adatok tárolási tára. A HDInsight-fürtök elérni az adatokat az Azure Storage Blobs (WASB). A jobb teljesítmény érdekében átmásolhatja hello adatok WASB be hello-fürthöz tartozó Data Lake Store-fiókba. A következő eszközök toocopy hello adatok hello is használhatja.
 
 * [Apache ból a DistCp](data-lake-store-copy-data-wasb-distcp.md)
 * [AdlCopy szolgáltatás](data-lake-store-copy-data-azure-storage-blob.md)
 * [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)
 
 ### <a name="data-stored-in-on-premises-or-iaas-hadoop-clusters"></a>Tárolt adatokat a helyszíni vagy infrastruktúra-szolgáltatási Hadoop fürtök
-Nagy mennyiségű adat tárolható meglévő Hadoop-fürtök, helyi HDFS használatával gépeken. A Hadoop-fürtök egy helyi központi esetleg lehet, hogy az infrastruktúra-szolgáltatási fürtöt az Azure-on belül. Előfordulhat, hogy az ilyen adatok másolása az Azure Data Lake Store megközelítésre egyszeri vagy ismétlődő módon követelményeinek. Ennek eléréséhez használható különböző lehetőség áll rendelkezésre. Az alábbiakban olvashat egy listát alternatívák és a kapcsolódó kompromisszumot.
+Nagy mennyiségű adat tárolható meglévő Hadoop-fürtök, helyi HDFS használatával gépeken. hello Hadoop-fürtök egy helyi központi esetleg lehet, hogy az infrastruktúra-szolgáltatási fürtöt az Azure-on belül. Lehetnek követelmények toocopy ilyen adatok tooAzure Data Lake Store megközelítésre egyszeri vagy ismétlődő módon. Használható tooachieve ez különböző lehetőség áll rendelkezésre. Az alábbiakban olvashat egy listát alternatívák és hello tartozó kompromisszumot.
 
 | Módszer | Részletek | Előnyei | Megfontolandó szempontok |
 | --- | --- | --- | --- |
-| Adatok másolása közvetlenül a Hadoop-fürtök az Azure Data Lake Store az Azure Data Factory (ADF) használatával |[ADF HDFS adatforrásként támogatja.](../data-factory/data-factory-hdfs-connector.md) |ADF out-of-az-box támogatást biztosít az HDFS és első-végpontok kezelése és figyelése |Az adatkezelési átjáró telepített helyszíni vagy a az IaaS a fürt szükséges |
-| Adatok exportálása a Hadoop-fájlok formájában. Ezután másolja a fájlokat az Azure Data Lake Store megfelelő mechanizmussal. |Azure Data Lake Store használatával másolhat fájlokat: <ul><li>[Az Azure PowerShell, a Windows operációs rendszer](data-lake-store-get-started-powershell.md)</li><li>[Az Azure platformfüggetlen parancssori felület 2.0 a nem - Windows operációs rendszer](data-lake-store-get-started-cli-2.0.md)</li><li>Minden Data Lake Store SDK használatával egyéni alkalmazás</li></ul> |Gyors megkezdéséhez. Testre szabott feltöltések teheti |Folyamat, amely magában foglalja a több technológiák. Kezelési és figyelési eszközök testreszabott jellegéből időbeli kihívást kell nőhet |
-| Adatok másolása a Hadoop Azure Storage ból a Distcp segítségével. Majd adatok másolása az Azure Storage az Data Lake Store megfelelő mechanizmussal. |Az Azure Storage adatok másolása Data Lake Store használata: <ul><li>[Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)</li><li>[AdlCopy eszköz](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[A HDInsight-fürtökön futó Apache ból a DistCp](data-lake-store-copy-data-wasb-distcp.md)</li></ul> |Nyílt forráskódú eszközök is használhatók. |Folyamat, amely magában foglalja a több technológiák |
+| Használja az Azure Data Factory (ADF) toocopy adatokat közvetlenül a Hadoop fürtök tooAzure Data Lake Store |[ADF HDFS adatforrásként támogatja.](../data-factory/data-factory-hdfs-connector.md) |ADF out-of-az-box támogatást biztosít az HDFS és első-végpontok kezelése és figyelése |Az adatkezelési átjáró toobe helyszíni telepítésére van szükség vagy hello IaaS fürtben |
+| Adatok exportálása a Hadoop-fájlok formájában. Ezután másolja hello fájlok tooAzure Data Lake Store megfelelő mechanizmussal. |Másolhatja a fájlokat tooAzure Data Lake Store használata: <ul><li>[Az Azure PowerShell, a Windows operációs rendszer](data-lake-store-get-started-powershell.md)</li><li>[Az Azure platformfüggetlen parancssori felület 2.0 a nem - Windows operációs rendszer](data-lake-store-get-started-cli-2.0.md)</li><li>Minden Data Lake Store SDK használatával egyéni alkalmazás</li></ul> |Gyors tooget elindult. Testre szabott feltöltések teheti |Folyamat, amely magában foglalja a több technológiák. Kezelési és figyelési toobe kihívást nőhet hello eszközök testre szabott hello jellege megadott idő alatt |
+| Hadoop tooAzure tárolási ból a Distcp toocopy adatait használják. Ezután másolja át az Azure Storage tooData Lake Store megfelelő mechanizmussal adatokat. |Adatok másolása az Azure Storage tooData Lake Store használata: <ul><li>[Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)</li><li>[AdlCopy eszköz](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[A HDInsight-fürtökön futó Apache ból a DistCp](data-lake-store-copy-data-wasb-distcp.md)</li></ul> |Nyílt forráskódú eszközök is használhatók. |Folyamat, amely magában foglalja a több technológiák |
 
 ### <a name="really-large-datasets"></a>Valóban nagy adatkészletek
-Az adatkészleteket, amelyek között a több terabájt feltöltése, a fenti módszerek használatával néha lassú és költséges lehet. Ilyen esetben az alábbi beállítások közül is használhatja.
+Az adatkészleteket, amelyek között a több terabájt feltöltése, a fent leírt hello módszerekkel néha lassú és költséges lehet. Ilyen esetben az alábbi hello-beállítások is használhatja.
 
 * **Az Azure ExpressRoute segítségével**. Az Azure ExpressRoute lehetővé teszi az Azure adatközpontjaiban és az infrastruktúra közötti magánhálózati kapcsolatok létrehozása a helyszínen. Ez lehetővé teszi nagy mennyiségű adat átvitele egy megbízható beállítása. További információkért lásd: [Azure ExpressRoute dokumentációja](../expressroute/expressroute-introduction.md).
-* **Az adatok "Offline" feltöltése a**. Ha Azure ExpressRoute használata nem megvalósítható a bármilyen okból, [Azure Import/Export szolgáltatás](../storage/common/storage-import-export-service.md) szállítási merevlemez-meghajtók az adatait az Azure adatközpontba. Az adatok először tölt fel az Azure Storage blobs szolgáltatásban. Ezután [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md) vagy [AdlCopy eszköz](data-lake-store-copy-data-azure-storage-blob.md) adatok másolása az Azure Storage Blobs Data Lake Store-bA.
+* **Az adatok "Offline" feltöltése a**. Ha az Azure ExpressRoute használata nem megvalósítható a bármilyen okból, [Azure Import/Export szolgáltatás](../storage/common/storage-import-export-service.md) tooship merevlemez-meghajtók és az adatok tooan Azure-adatközpont. Az adatok első feltöltött tooAzure Storage Blobsba. Ezután [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md) vagy [AdlCopy eszköz](data-lake-store-copy-data-azure-storage-blob.md) toocopy adatok Azure Storage Blobs tooData Lake Store-ból.
 
   > [!NOTE]
-  > Amíg az Import/Export szolgáltatás, a fájlméret, a lemezeken, amelyek az Azure-adatközpontba történő használatával nem lehet nagyobb, mint 195 GB.
+  > Amíg Import/Export szolgáltatás használata hello, hello fájlméret a lemezeket, hogy a tooAzure adatok szolgáltatástól center hello nem lehet nagyobb, mint 195 GB.
   >
   >
 
 ## <a name="process-data-stored-in-data-lake-store"></a>Data Lake Store-ban tárolt adatok feldolgozása
-Az adatok elérhetővé válik a Data Lake Store is futtatása az adatok a támogatott big data-alkalmazások használatával. Jelenleg Azure HDInsight és az Azure Data Lake Analytics is használja a Data Lake Store-ban tárolt adatok adatok feladatok futtatásához.
+Hello adatok elérhetővé válik a Data Lake Store futtathatja elemzés, hogy az adatok hello támogatott big data-alkalmazások. Jelenleg a Data Lake Store hello adataihoz az Azure HDInsight és az Azure Data Lake Analytics toorun az elemzés feladatok is használhatja.
 
 ![Adatok elemzése az Data Lake Store](./media/data-lake-store-data-scenarios/analyze-data.png "elemezhetik a Data Lake Store-ban")
 
-A következő példákban is megtekinthetik.
+A következő példák hello is megtekinthetik.
 
 * [HDInsight-fürtök létrehozása a Data Lake Store tárolóként](data-lake-store-hdinsight-hadoop-use-portal.md)
 * [Az Azure Data Lake Analytics használata a Data Lake Store-ral](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 
 ## <a name="download-data-from-data-lake-store"></a>Töltse le az adatok Data Lake Store-ból
-Érdemes azt is, töltse le és tárolt adatok mozgatása az Azure Data Lake Store forgatókönyvek például:
+Előfordulhat, hogy szeretné, hogy toodownload, vagy tárolt adatok mozgatása az Azure Data Lake Store forgatókönyvek például:
 
-* Adatok áthelyezése az egyéb tárhelyek felületet a meglévő adatok feldolgozása kimenetátirányítási mechanizmusát használó műveletekről. Például előfordulhat, hogy áthelyezendő adatok Data Lake Store-ból az Azure SQL Database vagy a helyszíni SQL Server.
-* Adatok letöltése a helyi számítógép alkalmazás prototípusok felépítésekor IDE környezetben feldolgozásra.
+* Helyezze át az adatokat tooother adattárak toointerface a meglévő adatok feldolgozása kimenetátirányítási mechanizmusát használó műveletekről. Például akkor érdemes toomove Data Lake Store tooAzure SQL-adatbázis adatait vagy a helyszíni SQL Server.
+* Töltse le az adatok tooyour helyi számítógép alkalmazás prototípusok felépítésekor IDE környezetben feldolgozásra.
 
 ![Data Lake Store-ból adatokat kilépési](./media/data-lake-store-data-scenarios/egress-data.png "kilépési adatok Data Lake Store-ból")
 
-Ilyen esetben a következő beállítások bármelyikét használhatja:
+Ilyen esetekben hello a következő beállítások bármelyikét használhatja:
 
 * [Apache Sqoop](data-lake-store-data-transfer-sql-sqoop.md)
 * [Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)
 * [Apache ból a DistCp](data-lake-store-copy-data-wasb-distcp.md)
 
-Az alábbi eljárások segítségével a saját parancsfájl/alkalmazás adatok letöltése a Data Lake Store-ból.
+Használhatja a következő módszerek toowrite hello saját parancsprogram-alkalmazás toodownload adatok Data Lake Store-ból.
 
 * [Az Azure platformfüggetlen parancssori felület 2.0](data-lake-store-get-started-cli-2.0.md)
 * [Azure PowerShell](data-lake-store-get-started-powershell.md)
 * [Az Azure Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md)
 
 ## <a name="visualize-data-in-data-lake-store"></a>A Data Lake Store-adatok ábrázolása
-A szolgáltatások kombinációját hozhat létre a Data Lake Store-ban tárolt adatok vizuális ábrázolásai.
+Használhatja a szolgáltatások toocreate vizuális megjelenítésére Data Lake Store-ban tárolt adatok kombinációját.
 
 ![A Data Lake Store-adatok ábrázolása](./media/data-lake-store-data-scenarios/visualize-data.png "a Data Lake Store-adatok ábrázolása")
 
-* Megkezdheti a [Azure Data Factory Data Lake Store az Azure SQL Data Warehouse tárolt adatok mozgatása](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)
-* Ezt követően is [Power BI integrálása az Azure SQL Data Warehouse](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md) létrehozása az adatok vizuális ábrázolását.
+* Megkezdheti a [Data Lake Store tooAzure SQL Data Warehouse Azure Data Factory toomove adatait](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)
+* Ezt követően is [Power BI integrálása az Azure SQL Data Warehouse](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md) toocreate hello adatok vizuális ábrázolását.

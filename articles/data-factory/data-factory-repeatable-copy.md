@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Factory ismételhető másolása |} Microsoft Docs"
-description: "Megtanulhatja, hogyan ismétlődések annak ellenére, hogy a szelet, amely másolja az adatokat csak egyszer fut-e."
+title: "az Azure Data Factory aaaRepeatable másolása |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooavoid másolatot készít, annak ellenére, hogy a szelet, amely másolja az adatokat csak egyszer fut-e."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 5b88a235915bf35fec701eee4a5f80beb4a67632
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79a3fde2b700bf0a0e167479d6a86c5bee1bf7ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repeatable-copy-in-azure-data-factory"></a>Az Azure Data Factory ismételhető másolása
 
 ## <a name="repeatable-read-from-relational-sources"></a>A relációs források ismételhető Olvasás
-Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha győződjön meg arról, hogy ugyanazokat az adatokat olvasható függetlenül attól, hogy a szelet futtatása hány alkalommal kell.  
+Amikor az adatok másolása relációs adattároló, tartsa ismételhetőség szem előtt tartva tooavoid nem kívánt eredmények. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha van szüksége arról, hogy ugyanazokat az adatokat hello toomake hogyan olvasható függetlenül attól, hogy hányszor a szelet futtatása.  
  
 > [!NOTE]
-> A következő mintákat az Azure SQL, de bármilyen adattároló, amely támogatja a téglalap alakú adatkészletek vonatkoznak. Előfordulhat, hogy úgy, hogy a **típus** forrás- és a **lekérdezés** tulajdonság (például: lekérdezés helyett sqlReaderQuery) az adatok tárolásához.   
+> hello következő mintákat az Azure SQL azonban találhatók, amely támogatja a téglalap alakú adatkészletek alkalmazható tooany adattár. Előfordulhat, hogy tooadjust hello **típus** a forrás- és hello **lekérdezés** tulajdonság (például: lekérdezés helyett sqlReaderQuery) hello adatok tárolására.   
 
-Általában relációs áruházakból olvasásakor szeretne olvasni a csak az, hogy a szelet megfelelő adatokat. Ehhez úgy lenne a WindowStart és WindowEnd rendszerváltozók érhető el az Azure Data Factory használatával. Olvassa el a változók és az Azure Data Factory Itt a függvényt a [Azure Data Factory - funkciók és rendszerváltozók](data-factory-functions-variables.md) cikk. Példa: 
+Általában relációs áruházakból olvasásakor érdemes tooread toothat szelet megfelelő csak hello adatokat. Egy módon toodo így lenne hello WindowStart és WindowEnd rendszerváltozók érhető el az Azure Data Factory használatával. További információ a hello változók és függvényeket az Azure Data Factory itt hello [Azure Data Factory - funkciók és rendszerváltozók](data-factory-functions-variables.md) cikk. Példa: 
 
 ```json
 "source": {
@@ -35,9 +35,9 @@ Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa
     "sqlReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= \\'{0:yyyy-MM-dd HH:mm\\' AND timestampcolumn < \\'{1:yyyy-MM-dd HH:mm\\'', WindowStart, WindowEnd)"
 },
 ```
-Ez a lekérdezés a táblából MyTable (WindowStart -> WindowEnd) szelet időtartama tartományba eső adatok beolvasása. Futtassa újból a szelet mindig is biztosítja, hogy ugyanazokat az adatokat olvasható. 
+Ez a lekérdezés MyTable hello táblából (WindowStart -> WindowEnd) hello szelet időtartama közé eső adatok beolvasása. Futtassa újból a szeletet a is minden esetben gondoskodjon arról, hogy adott hello olvasható ugyanazokat az adatokat. 
 
-Más esetekben előfordulhat, hogy a teljes táblázat olvasni kíván, és az alábbiak szerint határozhatnak meg a sqlReaderQuery:
+Más esetekben lehet szeretnének tooread hello teljes táblázat és a következőképpen határozhatnak meg hello sqlReaderQuery:
 
 ```json
 "source": 
@@ -47,10 +47,10 @@ Más esetekben előfordulhat, hogy a teljes táblázat olvasni kíván, és az a
 },
 ```
 
-## <a name="repeatable-write-to-sqlsink"></a>SqlSink ismételhető írása
-Az adatok másolásakor **Azure SQL-/ SQL Server** az egyéb adattárakhoz ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében szükséges. 
+## <a name="repeatable-write-toosqlsink"></a>Ismételhető írási tooSqlSink
+Ha az adatok másolásának túl**Azure SQL-/ SQL Server** az egyéb adattárakhoz tookeep ismételhetőség a szem előtt tartva tooavoid kell nem kívánt eredmények. 
 
-Amikor adat másolása az Azure SQL-/ SQL Server-adatbázis, a másolási tevékenység hozzáfűzi adatokat a fogadó tábla alapértelmezés szerint. Tegyük fel például, adatokat másol egy Azure SQL-/ SQL Server-adatbázisban a következő táblázat két rekordokat tartalmazó CSV (vesszővel tagolt) fájlból. A szelet futtatásakor a két bejegyzés az SQL-tábla lesz másolva. 
+Adatok tooAzure SQL/SQL Server-adatbázis másolásakor hello másolási tevékenység hozzáfűzi toohello fogadó adattábla alapértelmezés szerint. Mondja ki másolja át adatokat a egy CSV (vesszővel tagolt) fájlt tartalmazó két rekordok toohello a következő táblázat egy Azure SQL-/ SQL Server-adatbázisban. A szelet futtatásakor hello két rekordok olyan másolt toohello SQL táblázat. 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -59,7 +59,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    2            2015-05-01 00:00:00
 ```
 
-Tegyük fel, hogy hiba található a forrásfájl és a mennyiséget le cső 2 4 frissítése. Az adatszelet manuálisan adott időszakra futtassa, ha talál fűzött Azure SQL-/ SQL Server-adatbázis két új bejegyzést. Ez a példa feltételezi, hogy rendelkezik-e az oszlopok a tábla egyik elsődleges kulcs megszorítását.
+Tegyük fel, hogy hiba található a forrásfájl és hello mennyiséget le cső 2 too4 frissítése. Ha hello adatszelet manuálisan adott időszakra Újrafuttatja, két új bejegyzést fűzött tooAzure SQL/SQL Server-adatbázis találhat. Ez a példa feltételezi, hogy nincs hello tábla oszlopainak hello rendelkezik-e hello elsődlegeskulcs-megkötés.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -70,10 +70,10 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Ez a viselkedés elkerülése érdekében meg kell adnia a UPSERT szemantikáját használja az alábbi két módszerek egyikét:
+tooavoid ezt a viselkedést kell toospecify UPSERT szemantikáját használja a következő két mechanizmus hello egyikét:
 
 ### <a name="mechanism-1-using-sqlwritercleanupscript"></a>1. módszer: sqlWriterCleanupScript használatával
-Használhatja a **sqlWriterCleanupScript** tulajdonság előtt a beillesztéssel szelet futtatásakor a fogadó tábla adatainak karbantartását. 
+Használhatja a hello **sqlWriterCleanupScript** tulajdonság tooclean mentése előtt hello adatok beszúrása szelet futtatásakor hello fogadó tábla adatait. 
 
 ```json
 "sink":  
@@ -83,7 +83,7 @@ Használhatja a **sqlWriterCleanupScript** tulajdonság előtt a beillesztéssel
 }
 ```
 
-A szelet futtatásakor a tisztítás parancsfájl futtatása először törli az adatokat, amely megfelel a szelet az SQL-táblából. A másolási tevékenység majd adatbeszúrást az SQL-tábla. A szelet akkor fut újra, ha a mennyiség frissül igény szerint.
+A szelet futtatásakor hello tisztítás parancsfájl futtatása első toodelete adat, amely megfelel a toohello szelet hello SQL-táblából. hello másolási tevékenység majd adatbeszúrást hello SQL táblázat. Hello szelet akkor fut újra, ha hello mennyiség frissül igény szerint.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -92,7 +92,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Tegyük fel, a strukturálatlan szélvédőmosó rekordot a rendszer eltávolítja az eredeti csv a. Majd futtassa újból a szeletet volna eredményt a következő: 
+Tegyük fel, hello strukturálatlan szélvédőmosó rekordot a rendszer eltávolítja a hello eredeti csv. Majd újrafuttatásakor valószínűleg megtörténik a hello szelet hozna hello eredménye a következő: 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -100,17 +100,17 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-A másolási tevékenység futott a karbantartási parancsprogramot a megfelelő adatokat, hogy a szelet törlése. Ezt követően a bemeneti olvasni a fürt megosztott kötetei szolgáltatás (amelyeket majd csak egy rekord) és a táblába beszúrt. 
+hello másolási tevékenység hello tisztítás parancsfájl toodelete hello megfelelő adatokat, hogy a szelet futott. Ezután hello bemeneti olvasni (amely csak egy bejegyzés majd tartalmazott) hello csv és illeszteni a hello tábla. 
 
 ### <a name="mechanism-2-using-sliceidentifiercolumnname"></a>2. módszer: sliceIdentifierColumnName használatával
 > [!IMPORTANT]
 > SliceIdentifierColumnName az Azure SQL Data Warehouse nem támogatott. 
 
-A második mechanizmus ismételhetőség eléréséhez van azzal, hogy a kijelölt oszlop (sliceIdentifierColumnName) a cél tábla. Ebben az oszlopban szeretne győződjön meg arról, a forrás és cél maradnak szinkronizált Azure Data Factory által használni. Ezt a módszert akkor működik, ha módosításával vagy a cél SQL tábla sémáját definiáló rugalmasságot. 
+hello második mechanizmus tooachieve ismételhetőség van azzal, hogy a kijelölt oszlop (sliceIdentifierColumnName) hello cél tábla. Ez az oszlop Azure Data Factory tooensure hello forrás és cél maradás szinkronizált használhatják. Ezt a módszert akkor működik, ha módosításával vagy hello cél SQL tábla sémáját definiáló rugalmasságot. 
 
-Ebben az oszlopban Azure Data Factory ismételhetőség célra használja, és a folyamat az Azure Data Factory nem módosítja séma a táblában. Ez a megközelítés használatának módja:
+Ez az oszlop Azure Data Factory ismételhetőség célra használja, és hello folyamat Azure Data Factory nem végzi a séma toohello tábla változik. Módon toouse ezt a módszert használja:
 
-1. Adja meg a típusú oszlop **bináris (32)** a célként megadott SQL-tábla. Ebben az oszlopban megkötés kell lennie. Ehhez a példához tegyük nevezze ebben az oszlopban AdfSliceIdentifier.
+1. Adja meg a típusú oszlop **bináris (32)** hello cél SQL táblázat. Ebben az oszlopban megkötés kell lennie. Ehhez a példához tegyük nevezze ebben az oszlopban AdfSliceIdentifier.
 
 
     Forrástábla:
@@ -132,7 +132,7 @@ Ebben az oszlopban Azure Data Factory ismételhetőség célra használja, és a
     )
     ```
 
-2. Használhatja a másolási tevékenység az alábbiak szerint:
+2. Használja az hello másolási tevékenység az alábbiak szerint:
    
     ```json
     "sink":  
@@ -143,12 +143,12 @@ Ebben az oszlopban Azure Data Factory ismételhetőség célra használja, és a
     }
     ```
 
-Az Azure Data Factory tölti fel. Ez az oszlop szerint annak érdekében, hogy a forrás és cél maradnak szinkronizált igényét. Az oszlop értékeinek kívül ebben a környezetben nem használható. 
+Az Azure Data Factory tölti fel ezt az oszlopot a szükség szerinti tooensure hello forrás és cél szinkronizált maradnak. az oszlop értékeinek hello kívül ebben a környezetben nem használható. 
 
-Hasonló mechanizmus 1, másolási tevékenység során automatikusan törli a szükségtelenné érkező SQL táblázat megadott szeletre vonatkozó adatokat. Majd adatok beszúrása a forráskiszolgálóról a céltábla. 
+Hasonló toomechanism 1, a másolási tevékenység során automatikusan törli a szükségtelenné megadott szelet a hello célhelyről SQL táblázat hello hello adatait. Toohello céltáblázatban forrásból származó adatok majd beszúrása. 
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse át a következő összekötő, amely annak teljes JSON-példák: 
+Tekintse át a következő összekötő cikket, amely a JSON-példák befejezéséhez hello: 
 
 - [Azure SQL Database](data-factory-azure-sql-connector.md)
 - [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md)

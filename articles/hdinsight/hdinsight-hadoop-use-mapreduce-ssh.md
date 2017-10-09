@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight - Azure Hadoop MapReduce és SSH kapcsolatot |} Microsoft Docs"
-description: "Útmutató az SSH használata a HDInsight Hadoop használatával MapReduce-feladatok futtatásához."
+title: "aaaMapReduce és a hadooppal a Hdinsightban - Azure SSH-kapcsolat |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse SSH toorun MapReduce feladatokat, a HDInsight Hadoop használatával."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: eaf6278f97cd5ddd7e049ff4745181f39d7949a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9626577687fc5cc119a39d65a9c45298f57f81c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-mapreduce-with-hadoop-on-hdinsight-with-ssh"></a>Az SSH hdinsight Hadoop MapReduce használata
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-Útmutató a HDInsight a Secure Shell (SSH) kapcsolatról MapReduce-feladatok elküldése.
+Ismerje meg, hogyan toosubmit MapReduce egy Secure Shell (SSH) kapcsolat tooHDInsight a feladatokat.
 
 > [!NOTE]
-> Ha már ismeri a Linux-alapú Hadoop-kiszolgálókat használ, de még nem ismeri a HDInsight, [Linux-alapú HDInsight tippek](hdinsight-hadoop-linux-information.md).
+> Ha már ismeri a Linux-alapú Hadoop használatával kiszolgálók, de új tooHDInsight, lásd: [Linux-alapú HDInsight tippek](hdinsight-hadoop-linux-information.md).
 
 ## <a id="prereq"></a>Előfeltételek
 
 * (A HDInsight Hadoop) a Linux-alapú HDInsight-fürt
 
   > [!IMPORTANT]
-  > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Egy SSH-ügyfél. További információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md)
 
 ## <a id="ssh"></a>Csatlakozzon SSH
 
-Csatlakozzon a fürthöz SSH használatával. A következő parancs például nevű fürthöz csatlakozó **myhdinsight**:
+Csatlakozzon az SSH használatával toohello fürt. Például a következő parancs hello csatlakozik nevű tooa fürt **myhdinsight**:
 
 ```bash
 ssh admin@myhdinsight-ssh.azurehdinsight.net
 ```
 
-**Ha egy tanúsítvány-kulcsot használ SSH hitelesítés**, adja meg a titkos kulcs helyét az ügyfélrendszeren szeretne:
+**Ha egy tanúsítvány-kulcsot használ SSH hitelesítés**, szükség lehet hello titkos kulcs toospecify hello helyét az ügyfél rendszerén, például:
 
 ```bash
 ssh -i ~/mykey.key admin@myhdinsight-ssh.azurehdinsight.net
 ```
 
-**Ha jelszót használhat SSH hitelesítés**, meg kell adnia a jelszót.
+**Ha jelszót használhat SSH hitelesítés**, tooprovide hello jelszót van szüksége.
 
 Az SSH és a HDInsight együttes használatával további információkért lásd: [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
 ## <a id="hadoop"></a>Hadoop-parancsok használata
 
-1. Miután csatlakozott a HDInsight-fürthöz, a következő parancs segítségével indítsa el a MapReduce feladatot:
+1. Után csatlakoztatott toohello HDInsight-fürtre, használja a következő parancs toostart MapReduce feladatot hello:
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/WordCountOutput
     ```
 
-    A paranccsal elindítja a `wordcount` osztályt, amely tartalmazza a `hadoop-mapreduce-examples.jar` fájlt. Használja a `/example/data/gutenberg/davinci.txt` bemeneti és kimeneti dokumentumot tárolódik `/example/data/WordCountOutput`.
+    A paranccsal elindítja hello `wordcount` osztályt, amelyet hello `hadoop-mapreduce-examples.jar` fájlt. Hello használ `/example/data/gutenberg/davinci.txt` bemeneti és kimeneti dokumentumot tárolódik `/example/data/WordCountOutput`.
 
     > [!NOTE]
-    > A MapReduce feladatot és a példaadatokat kapcsolatos további információkért lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md).
+    > A MapReduce feladatot és hello példa adatokkal kapcsolatos további információkért lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md).
 
-2. A feladat részletei bocsát ki, akkor feldolgozza, és olyan információkat ad vissza az alábbihoz hasonló a feladat befejezése után:
+2. hello feladat részletei bocsát ki, akkor feldolgozza, és információt hasonló toohello hello feladat befejezésekor a következő szöveget adja vissza:
 
         File Input Format Counters
         Bytes Read=1395666
         File Output Format Counters
         Bytes Written=337623
 
-3. A feladat befejezése után, használja a következő parancsot a kimeneti fájlok listázásához:
+3. Hello feladat befejezése után használja a következő parancs toolist hello kimeneti fájlok hello:
 
     ```bash
     hdfs dfs -ls /example/data/WordCountOutput
     ```
 
-    Ez a parancs két fájlt megjelenítése `_SUCCESS` és `part-r-00000`. A `part-r-00000` fájl tartalmazza a kimenet ehhez a feladathoz.
+    Ez a parancs két fájlt megjelenítése `_SUCCESS` és `part-r-00000`. Hello `part-r-00000` fájl tartalmazza a feladat hello kimenet.
 
     > [!NOTE]
-    > Bizonyos MapReduce-feladatok az eredmények lehet, hogy e osztani több **rész-r-###** fájlokat. Ha igen, használja a ### utótag fájlok sorrendjét.
+    > Bizonyos MapReduce-feladatok hello eredmények lehet, hogy e osztani több **rész-r-###** fájlokat. Ha igen, használjon hello ### utótag hello fájlok tooindicate hello sorrendjét.
 
-4. A kimenet megtekintéséhez használja a következő parancsot:
+4. tooview hello kimeneti, használja a következő parancs hello:
 
     ```bash
     hdfs dfs -cat /example/data/WordCountOutput/part-r-00000
     ```
 
-    Ez a parancs megjeleníti a szavakat, amelyek szerepelnek a **wasb://example/data/gutenberg/davinci.txt** fájl- és a szám, ahányszor minden szó történt. A következő szöveget a fájlban található adatok példája:
+    Ez a parancs szereplő hello szavak listáját jeleníti meg hello **wasb://example/data/gutenberg/davinci.txt** fájl- és hello száma minden szó történt. hello következő szövege hello tárolt adatokat használó hello fájlban egy példát:
 
         wreathed        3
         wreathing       1
@@ -107,7 +107,7 @@ Az SSH és a HDInsight együttes használatával további információkért lás
 
 ## <a id="summary"></a>Summary (Összefoglalás)
 
-Ahogy látja, a Hadoop parancsok MapReduce-feladatok futtatása a HDInsight-fürtöt, és nézze meg a feladat kimenetére egyszerűen adja meg.
+Ahogy látja, Hadoop parancsok egy egyszerűen toorun MapReduce-feladatok egy HDInsight-fürtöt, és a nézet hello feladatkiemenetét adja meg.
 
 ## <a id="nextsteps"></a>Következő lépések
 

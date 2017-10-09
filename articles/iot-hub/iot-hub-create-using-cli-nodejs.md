@@ -1,6 +1,6 @@
 ---
-title: "Létrehoz egy IoT-központot Azure CLI-vel (azure.js) |} Microsoft Docs"
-description: "Tudnivalók az Azure IoT-központ a platformok közötti Azure parancssori felület (azure.js) használatával."
+title: "az IoT-központ Azure CLI-vel (azure.js) aaaCreate |} Microsoft Docs"
+description: "Hogyan egy Azure IoT hub használatával toocreate hello platformfüggetlen Azure CLI (azure.js)."
 services: iot-hub
 documentationcenter: .net
 author: BeatriceOltean
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/04/2017
 ms.author: boltean
-ms.openlocfilehash: 5e37c6c5e8625ce446ab203f19f9a8b2f1cd5a46
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c2a7ea98500b0a0e55a39f4cdfea4605c92add94
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-azure-cli"></a>Létrehoz egy IoT-központot, az Azure parancssori felület használatával
+# <a name="create-an-iot-hub-using-hello-azure-cli"></a>Létrehoz egy IoT-központot hello Azure parancssori felület használatával
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>Bevezetés
 
-Azure parancssori felület (azure.js) létrehozását és kezelését a Azure IoT-központok programozott módon használhatja. Ez a cikk bemutatja, hogyan használható az Azure parancssori felület (azure.js) létrehoz egy IoT-központot.
+Használhatja az Azure parancssori felület (azure.js) toocreate és Azure IoT-központok programozott kezelését. Ez a cikk bemutatja, hogyan toouse hello Azure CLI (azure.js) toocreate egy IoT-központot.
 
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-* Az Azure CLI (azure.js) – a parancssori felületen a klasszikus és resource management üzembe helyezési modellel ebben a cikkben leírtak szerint.
-* [Az Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) - CLI következő generációs erőforrás felügyeleti telepítési modell.
+* Az Azure CLI (azure.js) – hello CLI hello klasszikus és resource management üzembe helyezési modellel ebben a cikkben leírtak szerint.
+* [Az Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) -hello következő generációs CLI hello erőforrás management üzembe helyezési modellben.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
-* [Az Azure CLI 0.10.4] [ lnk-CLI-install] vagy újabb. Ha már rendelkezik az Azure parancssori felület telepítve, az aktuális verzió parancsot a parancssorba a következő paranccsal ellenőrizheti:
+* [Az Azure CLI 0.10.4] [ lnk-CLI-install] vagy újabb. Ha már van telepítve az Azure parancssori felület hello, ellenőrzéséhez hello verziószámának hello parancssorban hello a következő parancsot:
 
 ```azurecli
 azure --version
 ```
 
 > [!NOTE]
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Azure Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). Az Azure CLI Azure Resource Manager módban kell lennie:
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Azure Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md). hello Azure CLI Azure Resource Manager módban kell lennie:
 >
 > ```azurecli
 > azure config mode arm
@@ -51,20 +51,20 @@ azure --version
 
 ## <a name="set-your-azure-account-and-subscription"></a>Az Azure-fiók és -előfizetés beállítása
 
-1. A parancssorba a következő parancs beírásával bejelentkezési azonosító:
+1. Hello parancssorba írja be a bejelentkezési hello a következő parancsot:
 
    ```azurecli
     azure login
    ```
 
-   A javasolt webböngésző és a kód segítségével hitelesíteni.
-1. Ha több Azure-előfizetéssel rendelkezik, a csatlakoztatása az Azure ad hozzáférést az összes Azure-előfizetést a hitelesítő adatok társított. Az Azure-előfizetések megtekintése és részre, ahol meghatározhatja azt, amelyiket a alapértelmezés szerint a parancs segítségével:
+   Hello javasolt webböngésző és kód tooauthenticate használja.
+1. Ha több Azure-előfizetéssel rendelkezik, csatlakozás tooAzure hozzáférést biztosít tooall hello Azure-előfizetéssel társított hitelesítő adatait. Megtekintheti hello Azure-előfizetések, és azok azonosítása, mely még hello alapértelmezés szerint hello parancs használatával:
 
    ```azurecli
     azure account list
    ```
 
-   Az előfizetési kontextust, amely alatt a parancsok használata a többi futtatni kívánt beállítása:
+   tooset hello előfizetési kontextust kérünk toorun hello többi hello parancsokat használja:
 
    ```azurecli
     azure account set <subscription name>
@@ -77,7 +77,7 @@ azure --version
    ```
 
 > [!TIP]
-> A cikk [Azure-erőforrások és csoportok kezelése az Azure parancssori felület használatával] [ lnk-CLI-arm] Azure-erőforrások kezelése az Azure parancssori felület használatával kapcsolatos további információk.
+> hello cikk [használja hello Azure CLI toomanage Azure erőforráscsoport-sablonok és erőforrások] [ lnk-CLI-arm] hogyan toouse hello Azure CLI toomanage Azure további információt nyújt erőforrások.
 
 ## <a name="create-an-iot-hub"></a>IoT Hub létrehozása
 
@@ -87,28 +87,28 @@ Kötelező paraméter:
 azure iothub create -g <resource-group> -n <name> -l <location> -s <sku-name> -u <units>
 ```
 
-* **Erőforráscsoport**. Az erőforráscsoport neve. A kis-és nagybetűket alfanumerikus, aláhúzásjelet, és kötőjelet tartalmazhat, 1-64 hossza érvénytelen.
-* **Név** Az IoT hub létrehozni neve. A kis-és nagybetűket alfanumerikus, aláhúzásjelet, és kötőjelet tartalmazhat, 3 – 50 hossza érvénytelen.
-* **hely**. A hely (azure régió/adatközpont) az IoT-központ telepítéséhez.
-* **Termékváltozat**. A termékváltozat, egyik neve: [F1, S1, S2, S3]. A legújabb teljes listája tekintse meg a tarifákat tartalmazó oldalt az IoT-központot.
-* **egységek**. A kiépített egységek száma. Tartományon: [1-1] F1: S1, S2 [1-200]: [1 – 10] S3. IoT Hub-egységek az összes üzenet számán és a, amelyhez csatlakozni eszközök számán alapulnak.
+* **Erőforráscsoport**. hello erőforráscsoport-név. kis-és nagybetűket alfanumerikus, aláhúzásjelet, és kötőjelet tartalmazhat, 1-64 hossza hello formátuma.
+* **Név** hello IoT hub toobe létrehozott hello neve. kis-és nagybetűket alfanumerikus, aláhúzásjelet, és kötőjelet tartalmazhat, hossza 3 – 50 hello formátuma.
+* **hely**. hello helye (azure régió/adatközpont) tooprovision hello IoT-központot.
+* **Termékváltozat**. hello sku, egyik hello neve: [F1, S1, S2, S3]. Hello legújabb teljes listáját tekintse meg a toohello IoT hub árképzést ismertető oldalra.
+* **egységek**. hello kiosztott egységek száma. Tartományon: [1-1] F1: S1, S2 [1-200]: [1 – 10] S3. IoT Hub-egységek alapuló tooconnect szeretné az összes üzenet számán és hello eszközök száma.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-Tekintse meg az összes paramétereinek létrehozása, használhatja a help paranccsal parancssorban:
+toosee összes hello létrehozásához rendelkezésre álló paramétereket, használhatja a hello súgó parancsot a parancssorba:
 
 ```azurecli
 azure iothub create -h
 ```
 
-Gyors példa: az IoT-központ létrehozásához nevű **exampleIoTHubName** erőforráscsoportban **exampleResourceGroup**, a következő parancsot:
+Gyors példa: az IoT-központ nevű toocreate **exampleIoTHubName** hello erőforráscsoportban **exampleResourceGroup**- ben futtassa hello következő parancsot:
 
 ```azurecli
 azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1 -u 1
 ```
 
 > [!NOTE]
-> Az Azure parancssori felület létrehozza az S1 Standard IoT-központ, amelynek kell fizetni. Az IoT hub törlése **exampleIoTHubName** használatával a következő parancsot:
+> Az Azure parancssori felület létrehozza az S1 Standard IoT-központ, amelynek kell fizetni. Törölheti a hello IoT-központ **exampleIoTHubName** használatával a következő parancsot:
 >
 > ```azurecli
 > azure iothub delete -g exampleResourceGroup -n exampleIoTHubName
@@ -116,13 +116,13 @@ azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az IoT-központ fejlesztésével kapcsolatos további tudnivalókért tekintse meg a következő cikket:
+IoT Hub, fejlesztésével kapcsolatos további toolearn lásd: hello a következő cikket:
 
 * [Az IoT-SDK][lnk-sdks]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
-* [Az IoT-központ kezelése az Azure portál használatával][lnk-portal]
+* [Az Azure portál toomanage IoT-központ hello használata][lnk-portal]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

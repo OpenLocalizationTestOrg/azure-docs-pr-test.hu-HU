@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Service Fabric esemény összesítési rendelkező EventFlow |} Microsoft Docs"
+title: "Service Fabric esemény összesítési rendelkező EventFlow aaaAzure |} Microsoft Docs"
 description: "További tudnivalók összesítésére és események gyűjtése EventFlow figyelési és diagnosztika Azure Service Fabric-fürt segítségével."
 services: service-fabric
 documentationcenter: .net
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 90d26a77b749e70de3a7d910f15820653e2ef39b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c0141d3ed72d835139250af3589e298fd22d8f89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-aggregation-and-collection-using-eventflow"></a>Esemény összevonásának és a gyűjtemény EventFlow használatával
 
-[Microsoft Diagnostics EventFlow](https://github.com/Azure/diagnostics-eventflow) irányíthatja a események csomópont egy vagy több figyelési célhelyre. Mivel a NuGet-csomagot a projekt része, EventFlow kód és a konfigurációs változatlan marad a szolgáltatás, így kiküszöböli a fentebb említett Azure Diagnostics kapcsolatos csomópontonként konfigurációs probléma. EventFlow belül a szolgáltatási folyamat fut, és a beállított kimenetek közvetlenül csatlakozik. A közvetlen kapcsolat miatt EventFlow használható Azure, a tároló és a helyszíni-szolgáltatási telepítéseket. Ügyeljen arra, ha futtatja EventFlow nagy sűrűségű helyzetekben, például a tárolóban lévő minden EventFlow folyamat ugyanis egy külső kapcsolatot. Így, ha több folyamatok működteti, több kimenő kapcsolatok! Ez nem mértékű problémát jelent a Service Fabric-alkalmazások esetében, mert az összes replika egy `ServiceType` futtatja ugyanabban a folyamatban, és a kimenő kapcsolatok számának korlátozása. EventFlow is kínál események szűrése, így csak a megadott szűrőnek megfelelő események kerülnek.
+[Microsoft Diagnostics EventFlow](https://github.com/Azure/diagnostics-eventflow) irányíthatja a csomópont tooone vagy további figyelési célok származó események. Mivel a NuGet-csomagot a projekt része, EventFlow kód és a konfiguráció változatlan marad hello szolgáltatást, a korábban említett Azure Diagnostics kapcsolatos hello csomópontonként konfigurációs probléma kiküszöbölése. EventFlow belül a szolgáltatási folyamat fut, és a konfigurált toohello kimenetek közvetlenül csatlakozik. Hello közvetlen kapcsolat, mert EventFlow használható Azure, a tároló és a helyszíni-szolgáltatási telepítéseket. Ügyeljen arra, ha futtatja EventFlow nagy sűrűségű helyzetekben, például a tárolóban lévő minden EventFlow folyamat ugyanis egy külső kapcsolatot. Így, ha több folyamatok működteti, több kimenő kapcsolatok! Ez nem mértékű problémát jelent a Service Fabric-alkalmazások esetében, mert az összes replika egy `ServiceType` futtassa a hello ugyanezt a folyamatot, és a kimenő kapcsolatok hello számának korlátozása. EventFlow is kínál események szűrése, így csak a hello megadott szűrőnek megfelelő hello események kerülnek.
 
 ## <a name="setting-up-eventflow"></a>EventFlow beállítása
 
-EventFlow bináris NuGet-csomagok készletként érhetők el. Service Fabric-szolgáltatás projektbe EventFlow hozzáadásához kattintson a jobb gombbal a projektre a Megoldáskezelőben, és válassza a "Manage NuGet packages". Váltson át a "Tallózás" fülre, és keresse meg "`Diagnostics.EventFlow`":
+EventFlow bináris NuGet-csomagok készletként érhetők el. tooadd EventFlow tooa Service Fabric-projekt hello projektre a Solution Explorer hello gombbal, és válassza a "Manage NuGet packages". Váltás toohello "Tallózás" fülre, és keressen a "`Diagnostics.EventFlow`":
 
 ![A Visual Studio NuGet-Csomagkezelő felhasználói felület EventFlow NuGet-csomagok](./media/service-fabric-diagnostics-event-aggregation-eventflow/eventflow-nuget.png)
 
-Látni fogja a különböző csomagok listája jelenik meg, az "A bemeneti" és "Kimeneti" címkével ellátott. EventFlow különböző különböző naplózási szolgáltatók és elemzőkkel támogatja. A szolgáltatásüzemeltetési EventFlow attól függően, hogy a forrás- és az alkalmazásnaplókat a megfelelő csomagokat kell tartalmaznia. A core ServiceFabric csomag mellett is szükség van legalább egy bemeneti és kimeneti konfigurálva. A exmaple a következő csomagok adhat hozzá Application insights szolgáltatásnak elküldött EventSource események:
+Látni fogja a különböző csomagok listája jelenik meg, az "A bemeneti" és "Kimeneti" címkével ellátott. EventFlow különböző különböző naplózási szolgáltatók és elemzőkkel támogatja. hello szolgáltatást üzemeltető EventFlow attól függően, hogy hello forrása és célja hello alkalmazásnaplók megfelelő csomagokat kell tartalmaznia. Ezenkívül toohello core ServiceFabric csomag is meg kell legalább egy bemeneti és kimeneti konfigurálva. Exmaple adhat hozzá a következő csomagok toosent EventSource események tooApplication Insights hello:
 
-* `Microsoft.Diagnostics.EventFlow.Input.EventSource`a szolgáltatás az EventSource osztályból származik, és a szabványos EventSources adatok rögzítéséhez *Microsoft-ServiceFabric-szolgáltatások* és *Microsoft-ServiceFabric-szereplője*)
-* `Microsoft.Diagnostics.EventFlow.Output.ApplicationInsights`(fogjuk küldeni a naplókat az Azure Application Insights-erőforrás)
-* `Microsoft.Diagnostics.EventFlow.ServiceFabric`(lehetővé teszi, hogy a Service Fabric szolgáltatáskonfiguráció EventFlow folyamat inicializálása és jelentéseket, a Service Fabric állapotjelentések diagnosztikai adatok küldésének problémákat)
+* `Microsoft.Diagnostics.EventFlow.Input.EventSource`hello szolgáltatást az EventSource osztályból származik, illetve a szabványos EventSources például toocapture adatok *Microsoft-ServiceFabric-szolgáltatások* és *Microsoft-ServiceFabric-szereplője*)
+* `Microsoft.Diagnostics.EventFlow.Output.ApplicationInsights`(fogjuk toosend hello naplók tooan Azure Application Insights-erőforrás)
+* `Microsoft.Diagnostics.EventFlow.ServiceFabric`(lehetővé teszi, hogy a Service Fabric szolgáltatáskonfiguráció hello EventFlow folyamat inicializálása és jelentéseket, a Service Fabric állapotjelentések diagnosztikai adatok küldésének problémákat)
 
 >[!NOTE]
->`Microsoft.Diagnostics.EventFlow.Input.EventSource`csomag igényli-e a projekt, amelyekre a .NET-keretrendszer 4.6-os vagy újabb. Ellenőrizze, hogy beállította a megfelelő célkeretrendszer a projekt tulajdonságait a csomag telepítése előtt.
+>`Microsoft.Diagnostics.EventFlow.Input.EventSource`csomag igényli-e hello szolgáltatás projekt tootarget .NET keretrendszer 4.6-os vagy újabb. Ellenőrizze, hogy beállította hello megfelelő célkeretrendszer a projekt tulajdonságait a csomag telepítése előtt.
 
-A csomagok telepítése után a következő lépés, hogy konfigurálja és EventFlow engedélyezése a szolgáltatásban.
+Ha minden hello csomagok telepítve van, a hello a következő lépés tooconfigure és EventFlow engedélyezése hello szolgáltatásban.
 
 ## <a name="configuring-and-enabling-log-collection"></a>Napló gyűjtésének engedélyezése és konfigurálása
-A EventFlow-feldolgozási folyamat felelős a naplókat küld a konfigurációs fájlban tárolt specifikáció készült. A `Microsoft.Diagnostics.EventFlow.ServiceFabric` a csomag telepíti a kiindulási EventFlow konfigurációs fájl `PackageRoot\Config` nevű megoldás mappa `eventFlowConfig.json`. A konfigurációs fájlnak kell módosítani kell az alapértelmezett szolgáltatás adatait `EventSource` osztály, és bármely más bemeneti adatokat szeretné konfigurálni, és küldhetnek adatokat a megfelelő helyre.
+a konfigurációs fájlban tárolt specifikáció hello EventFlow feldolgozási folyamat felelős hello naplók küldése készült. Hello `Microsoft.Diagnostics.EventFlow.ServiceFabric` a csomag telepíti a kiindulási EventFlow konfigurációs fájl `PackageRoot\Config` nevű megoldás mappa `eventFlowConfig.json`. A konfigurációs fájlnak kell hello alapértelmezett szolgáltatás adatait módosított toobe toocapture `EventSource` osztály, és bármely más bemeneti adatokat szeretné, hogy tooconfigure, és az adatok toohello megfelelő helyre küldeni.
 
-Íme egy minta *eventFlowConfig.json* a fent említett NuGet-csomagok alapján:
+Íme egy minta *eventFlowConfig.json* a fent említett hello NuGet-csomagok alapján:
 ```json
 {
   "inputs": [
@@ -53,7 +53,7 @@ A EventFlow-feldolgozási folyamat felelős a naplókat küld a konfigurációs 
       "sources": [
         { "providerName": "Microsoft-ServiceFabric-Services" },
         { "providerName": "Microsoft-ServiceFabric-Actors" },
-        // (replace the following value with your service's ServiceEventSource name)
+        // (replace hello following value with your service's ServiceEventSource name)
         { "providerName": "your-service-EventSource-name" }
       ]
     }
@@ -67,7 +67,7 @@ A EventFlow-feldolgozási folyamat felelős a naplókat küld a konfigurációs 
   "outputs": [
     {
       "type": "ApplicationInsights",
-      // (replace the following value with your AI resource's instrumentation key)
+      // (replace hello following value with your AI resource's instrumentation key)
       "instrumentationKey": "00000000-0000-0000-0000-000000000000"
     }
   ],
@@ -75,7 +75,7 @@ A EventFlow-feldolgozási folyamat felelős a naplókat küld a konfigurációs 
 }
 ```
 
-Szolgáltatás ServiceEventSource neve nem a név tulajdonságának értéke a `EventSourceAttribute` ServiceEventSource osztály. Az összes megadott a `ServiceEventSource.cs` fájl, amely a szolgáltatáskód hibáit része. Például a következő kódrészletet a neve, a ServiceEventSource: *értéket-Alkalmaz1-Stateless1*:
+szolgáltatás ServiceEventSource hello neve nem hello hello név tulajdonságának értéke hello `EventSourceAttribute` toohello ServiceEventSource osztály alkalmazza. Az összes megadott hello `ServiceEventSource.cs` fájlt, amely hello szolgáltatást kód része. Például a hello hello ServiceEventSource következő kód részlet hello neve nem *értéket-Alkalmaz1-Stateless1*:
 
 ```csharp
 [EventSource(Name = "MyCompany-Application1-Stateless1")]
@@ -85,11 +85,11 @@ internal sealed class ServiceEventSource : EventSource
 }
 ```
 
-Vegye figyelembe, hogy `eventFlowConfig.json` fájl szolgáltatás konfigurációs csomag része. A fájl módosításait a szolgáltatás a Service Fabric frissítési állapot-ellenőrzési eredményeire és automatikus visszaállítási, ha a frissítés nem sikerülne teljes vagy konfiguráció-csak frissítés tartalmazhat. További információkért lásd: [Service Fabric az alkalmazásfrissítés](service-fabric-application-upgrade.md).
+Vegye figyelembe, hogy `eventFlowConfig.json` fájl szolgáltatás konfigurációs csomag része. Módosítások toothis fájl tartalmazhat hello szolgáltatás teljes vagy konfiguráció-csak frissítések, tulajdonos tooService háló frissítési állapot-ellenőrzési eredményeire és automatikus visszaállítási sikertelen frissítése esetén. További információkért lásd: [Service Fabric az alkalmazásfrissítés](service-fabric-application-upgrade.md).
 
-A *szűrők* konfigurációs szakasza lehetővé teszi további, amelyet szeretne lépjen a EventFlow-feldolgozási folyamaton keresztül a kimenetek, lehetővé téve dobja el, és bizonyos információval adatok személyre szabására, vagy módosítsa a szerkezete a eseményadatok. A szűrés további információkért lásd: [EventFlow szűrők](https://github.com/Azure/diagnostics-eventflow#filters).
+Hello *szűrők* hello konfigurációs szakasza lehetővé teszi a toofurther hello információkat, amelyet toogo keresztül hello EventFlow csővezeték toohello kimenetek, hogy lehetővé teszi a toodrop testreszabása vagy bizonyos információkat tartalmaznak, illetve hello módosítása hello eseményadatok szerkezete. A szűrés további információkért lásd: [EventFlow szűrők](https://github.com/Azure/diagnostics-eventflow#filters).
 
-Az utolsó lépés, hogy a szolgáltatás indítási kódban található EventFlow csővezeték példányosítható `Program.cs` fájlt:
+hello utolsó lépés a szolgáltatás indítási kódban található tooinstantiate EventFlow csővezeték `Program.cs` fájlt:
 
 ```csharp
 using System;
@@ -106,7 +106,7 @@ namespace Stateless1
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        /// This is hello entry point of hello service host process.
         /// </summary>
         private static void Main()
         {
@@ -134,21 +134,21 @@ namespace Stateless1
 }
 ```
 
-Nevét paraméterként, a `CreatePipeline` metódusában a `ServiceFabricDiagnosticsPipelineFactory` neve a *állapotfigyelő entitás* képviselő a EventFlow napló adatgyűjtési folyamatot. Ezt a nevet használja, ha a EventFlow észlel, és hiba és jelenti a a Service Fabric állapotfigyelő alrendszer keresztül.
+a hello hello paraméterként átadott hello neve `CreatePipeline` hello metódusában `ServiceFabricDiagnosticsPipelineFactory` hello hello neve *állapotfigyelő entitás* képviselő hello EventFlow napló adatgyűjtési folyamat. Ezt a nevet használja, ha a EventFlow észlel, és hiba és jelenti a Service Fabric állapotfigyelő alrendszer hello keresztül.
 
-### <a name="using-service-fabric-settings-and-application-parameters-to-in-eventflowconfig"></a>A Service Fabric-beállítások és az alkalmazás paramétereit eventFlowConfig része
+### <a name="using-service-fabric-settings-and-application-parameters-tooin-eventflowconfig"></a>A Service Fabric-beállítások és az alkalmazás paraméterek tooin eventFlowConfig használatával
 
-EventFlow támogatja a Service Fabric-beállítások és alkalmazások paremeters EventFlow beállítások konfigurálása. Olvassa el a Service Fabric beállítások paraméterek értékek ezen különleges szintaxis használatával:
+EventFlow támogatja a Service Fabric-beállítások és alkalmazások paremeters tooconfigure EventFlow beállításainak használatával. Olvassa el a tooService háló beállítások paraméterek értékek ezen különleges szintaxis használatával:
 
 ```json
 servicefabric:/<section-name>/<setting-name>
 ``` 
 
-`<section-name>`a Service Fabric konfigurációs szakasz neve és `<setting-name>` adva egy EventFlow beállítás konfigurálásához használt konfigurációs beállítás. Olvassa el a további információt ebben az esetben lépjen [Service Fabric-beállítás- és alkalmazás támogatása](https://github.com/Azure/diagnostics-eventflow#support-for-service-fabric-settings-and-application-parameters).
+`<section-name>`a Service Fabric konfigurációs szakaszban hello hello neve és `<setting-name>` hello konfigurációs beállítás hello érték, amely lesz használt tooconfigure egy EventFlow beállítást biztosít. További kapcsolatos tooread toodo, lépjen túl[Service Fabric-beállítás- és alkalmazás támogatása](https://github.com/Azure/diagnostics-eventflow#support-for-service-fabric-settings-and-application-parameters).
 
 ## <a name="verification"></a>Ellenőrzés
 
-Indítsa el a szolgáltatást, és tekintse meg a hibakeresési Visual Studio kimeneti ablakában. A szolgáltatás az elindítása után jelenítse meg az megbizonyosodhat róla, hogy a szolgáltatás rekordot küld a kimeneti konfigurált. Nyissa meg az esemény elemzése és a képi megjelenítés platform, és győződjön meg arról, hogy a naplók megjelenítendő van elindítva (eltarthat néhány percig) fel.
+Indítsa el a szolgáltatást, és tekintse meg a hibakeresési hello Visual Studio kimeneti ablakában. Hello szolgáltatást az elindítása után jelenítse meg az megbizonyosodhat róla, hogy a szolgáltatás küld toohello kimeneti konfigurált rögzíti. Nyissa meg a tooyour esemény elemzése és a képi megjelenítés platformot, és győződjön meg arról, hogy a naplók van elindítva tooshow fel (eltarthat néhány percig).
 
 ## <a name="next-steps"></a>Következő lépések
 

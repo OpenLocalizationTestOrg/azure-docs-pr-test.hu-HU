@@ -1,11 +1,11 @@
 # Áttekintés
 ## [Mi az az Azure Multi-Factor Authentication?](multi-factor-authentication.md)
 ## [Működés](multi-factor-authentication-how-it-works.md)
-## [Az Azure MFA beszerzése](multi-factor-authentication-versions-plans.md)
+## [Hogyan tooget Azure MFA](multi-factor-authentication-versions-plans.md)
 
 # Bevezetés
-## [Az üzembe helyezés helyének kiválasztása](multi-factor-authentication-get-started.md)
-## [MFA üzemeltetése a felhőben](multi-factor-authentication-get-started-cloud.md)
+## [Válassza ki a helyét toodeploy](multi-factor-authentication-get-started.md)
+## [Többtényezős hitelesítés hello felhőben](multi-factor-authentication-get-started-cloud.md)
 ## [MFA helyszíni üzemeltetése](multi-factor-authentication-get-started-server.md)
 ## [MFA O365-felhasználók számára](https://support.office.com/article/Plan-for-multi-factor-authentication-for-Office-365-Deployments-043807b2-21db-4d5c-b430-c8a6dee0e6ba)
 ## [Ajánlott biztonsági eljárások](multi-factor-authentication-security-best-practices.md)
@@ -18,7 +18,7 @@
 #### [Speciális konfiguráció az NPS-bővítményhez](nps-extension-advanced-configuration.md)
 ### [Hitelesítési szolgáltató létrehozása](multi-factor-authentication-get-started-auth-provider.md)
 ### MFA helyszíni üzembe helyezése
-#### [A felhasználói portál telepítése](multi-factor-authentication-get-started-portal.md)
+#### [Hello felhasználói portál telepítése](multi-factor-authentication-get-started-portal.md)
 #### [Speciális VPN-konfigurációk](multi-factor-authentication-advanced-vpn-configurations.md)
 #### [Mobile App Web Service](multi-factor-authentication-get-started-server-webservice.md)
 #### [Magas rendelkezésre állás konfigurálása](mfa-server-high-availability.md)

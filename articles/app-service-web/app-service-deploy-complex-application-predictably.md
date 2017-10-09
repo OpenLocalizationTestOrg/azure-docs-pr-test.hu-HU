@@ -1,6 +1,6 @@
 ---
-title: "Kiosztását és telepítését mikroszolgáltatások kiszámítható módon tudja az Azure-ban"
-description: "Útmutató az Azure App Service egy egységként és kiszámítható módon JSON erőforrás csoport sablonok és a PowerShell-parancsprogramok használatával mikroszolgáltatások álló alkalmazás központi telepítése."
+title: "aaaProvision és kiszámítható módon tudja az Azure-ban mikroszolgáltatások telepítése"
+description: "Ismerje meg, hogyan toodeploy az alkalmazás összetevői mikroszolgáltatások létrehozására az Azure App Service egy egységként és kiszámítható módon JSON erőforrás csoport sablonok és a PowerShell-parancsfájlok használatával."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2016
 ms.author: cephalin
-ms.openlocfilehash: 844f42e61ba443a4b74a52f622113e87a7781913
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d32c2fc82a8b09e89224ec437e5819b65b2e9e78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-and-deploy-microservices-predictably-in-azure"></a>Kiosztását és telepítését mikroszolgáltatások kiszámítható módon tudja az Azure-ban
-Ez az oktatóanyag bemutatja, hogyan kiosztását és telepítését, az alkalmazás összetevői [mikroszolgáltatások](https://en.wikipedia.org/wiki/Microservices) a [Azure App Service](/services/app-service/) egyetlen egységként és kiszámítható módon JSON erőforrás csoport sablonok és a PowerShell-parancsfájlok használatával. 
+Ez az oktatóanyag bemutatja, hogyan tooprovision és telepítsen egy alkalmazást álló [mikroszolgáltatások](https://en.wikipedia.org/wiki/Microservices) a [Azure App Service](/services/app-service/) egyetlen egységként és JSON-erőforrás csoport sablonokkal kiszámítható módon és PowerShell-parancsprogramok. 
 
-Kiépítés és magas szintű alkalmazásokat, amelyek álló magas le mikroszolgáltatások, ismételhetőség és kiszámíthatóságot fontosságúak sikeres. [Az Azure App Service](/services/app-service/) lehetővé teszi a webalkalmazások, mobilalkalmazások, az API apps és a logic apps tartalmazó mikroszolgáltatások létrehozására. [Az Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) lehetővé teszi a mikroszolgáltatások kezelése egységként, például az adatbázis erőforrás-függőségek együtt, és a forrás-vezérlési beállításokkal. Most ilyen alkalmazás JSON sablonok és egyszerű PowerShell-parancsfájlok használatával is telepítheti. 
+Kiépítés, és jelentősen méretezhető alkalmazások épülnek, a magas leválasztott mikroszolgáltatások létrehozására, ismételhetőség és kiszámíthatóságot kritikus fontosságú toosuccess. [Az Azure App Service](/services/app-service/) lehetővé teszi a webalkalmazások, mobilalkalmazások, az API apps és a logic apps tartalmazó toocreate mikroszolgáltatások létrehozására. [Az Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) lehetővé teszi, hogy Ön toomanage összes hello mikroszolgáltatások egységként, erőforrás-függőségek, például az adatbázis és a forrás-vezérlési beállításokkal együtt. Most ilyen alkalmazás JSON sablonok és egyszerű PowerShell-parancsfájlok használatával is telepítheti. 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-do"></a>Mit fog
-Az oktatóanyagban a, amely tartalmazza az alkalmazás központi telepítése:
+A hello oktatóanyagban fogja központilag telepíteni az alkalmazást, amely tartalmazza:
 
 * Két webes alkalmazások (pl. két mikroszolgáltatások)
 * A háttérrendszer SQL-adatbázis
@@ -36,192 +36,192 @@ Az oktatóanyagban a, amely tartalmazza az alkalmazás központi telepítése:
 * Az Application insights, riasztások, automatikus skálázás beállításai
 
 ## <a name="tools-you-will-use"></a>Eszközök fogja használni
-Ebben az oktatóanyagban a következő eszközöket fogja használni. Mivel ez nem az eszközök átfogó leírást, fogom igazodnak-e a végpont forgatókönyv, és csak Önnek egy rövid bevezető minden, és hol találhatók további információk. 
+Ebben az oktatóanyagban a következő eszközök hello fogja használni. Mivel ez nem az eszközök átfogó leírást, I toostick toohello végpont forgatókönyv kattintok, és csak akkor adjon egy rövid bevezető tooeach és hol találhatók további információk. 
 
 ### <a name="azure-resource-manager-templates-json"></a>Az Azure Resource Manager-sablonokat (JSON)
-Minden alkalommal, amikor a webalkalmazás létrehozása az Azure App Service-ben, például Azure Resource Manager használ a JSON-sablon létrehozásához a teljes erőforráscsoport az összetevő-erőforrások. Egy összetett sablon, a [Azure piactér](/marketplace) hasonlóan a [méretezhető WordPress](/marketplace/partners/wordpress/scalablewordpress/) app lehetnek a MySQL-adatbázis, storage-fiókok, az App Service-csomag, a webes alkalmazás maga, a riasztási szabályok, beállítások, automatikus skálázási beállításokat, és több, és ezek a sablonok Powershellen keresztül rendelkezésre álló. További információkért töltse le és használja ezeket a sablonokat: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
+Minden alkalommal, amikor a webalkalmazás létrehozása az Azure App Service-ben, például Azure Resource Manager használ a JSON sablon toocreate hello teljes erőforráscsoport hello összetevő-erőforrások. Egy összetett sablon hello [Azure piactér](/marketplace) például hello [méretezhető WordPress](/marketplace/partners/wordpress/scalablewordpress/) app lehetnek hello MySQL-adatbázis, a storage-fiókok, a hello App Service-csomag, a hello webalkalmazás magát, a riasztási szabályok, az alkalmazás automatikus skálázási beállításokat, és további, és az összes ezen sablonok elérhető tooyou Powershellen keresztül. Hogyan toodownload és használja ezeket a sablonokat: kapcsolatos [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
 
-Az Azure Resource Manager-sablonok további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md)
+Hello Azure Resource Manager-sablonok további információkért lásd: [Azure Resource Manager sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md)
 
 ### <a name="azure-sdk-26-for-visual-studio"></a>Az Azure SDK 2.6 Visual Studio
-A legújabb SDK tartalmazza a Resource Manager sablon támogatja a JSON-szerkesztőben fejlesztései. Ennek használatával gyorsan hozzon létre egy erőforrás-sablon a teljesen, vagy nyisson meg egy meglévő JSON-sablon (például egy gyűjtemény letöltött sablon) módosításra, a paraméterek fájl feltöltéséhez, és az erőforráscsoport közvetlenül egy Azure-erőforráscsoport megoldás még akkor is telepíteni.
+hello legújabb SDK tartalmaz fejlesztéseket toohello Resource Manager sablon támogatási hello JSON-szerkesztőben. Használhatja a tooquickly egy erőforrás-sablon létrehozása új vagy nyissa meg a meglévő JSON-sablon (például egy gyűjtemény letöltött sablon) módosításra, hello paraméterek fájl feltöltéséhez, és még akkor is telepíteni hello erőforráscsoportot az Azure-ről Erőforráscsoport megoldás.
 
 További információkért lásd: [Azure SDK 2.6 a Visual Studio](https://azure.microsoft.com/blog/2015/04/29/announcing-the-azure-sdk-2-6-for-net/).
 
 ### <a name="azure-powershell-080-or-later"></a>Az Azure PowerShell 0.8.0 vagy újabb verzió
-0.8.0 verziójától kezdve az Azure PowerShell telepítése az Azure Resource Manager modul mellett az Azure-moduljának tartalmazza. Ez a modul parancsfájllal történő lehetővé teszi az erőforráscsoportok telepítését.
+0.8.0 verziójától kezdve hello Azure PowerShell telepítése tartalmazza hello Azure Resource Manager modul hozzáadása toohello Azure modul. Ez a modul lehetővé teszi az erőforráscsoportok tooscript hello központi telepítés.
 
 További információkért lásd: [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md)
 
 ### <a name="azure-resource-explorer"></a>Azure Resource Explorer
-Ez [preview eszköz](https://resources.azure.com) lehetővé teszi a JSON-definíciókat az előfizetését és az egyes erőforrások erőforráscsoportok vizsgálatát. Az eszköz szerkessze a JSON-definíciók egy erőforrást, az egész hierarchiát erőforrások törlése és létrehozni az új erőforrásokat.  Ez az eszköz könnyen elérhető információkat nagyon hasznos sablon létrehozásához, mert jeleníti meg, milyen tulajdonságok, meg kell adnia egy adott típusú erőforrás, a helyes az értékük, stb. Az erőforráscsoport a is létrehozhat a [Azure Portal](https://portal.azure.com/), majd vizsgálja meg a JSON-definíciói segítséget nyújtanak az erőforráscsoport templatize explorer eszközben.
+Ez [preview eszköz](https://resources.azure.com) lehetővé teszi az előfizetés és hello egyes erőforrások összes hello erőforráscsoport tooexplore hello JSON definícióit. Hello eszközében hello JSON-definíciók erőforrás szerkesztése, az egész hierarchiát erőforrások törlése, és hozzon létre új erőforrások.  hello információt azonnal elérhetők legyenek az eszköz nagyon hasznos sablon létrehozásához, mert jelzi, hogy mi szüksége tooset erőforrás használata, ha egy bizonyos típusú hello tulajdonságok javítsa ki az értékeket, stb. Az erőforráscsoport is létrehozhat a hello [Azure Portal](https://portal.azure.com/), majd vizsgálja meg a JSON-definíciói a hello explorer eszköz toohelp templatize hello erőforráscsoport.
 
-### <a name="deploy-to-azure-button"></a>Telepítse az Azure gomb
-Ha GitHub a verziókövetési rendszerrel használja, akkor lehet helyezni egy [az Azure gomb telepítéséhez](https://azure.microsoft.com/blog/2014/11/13/deploy-to-azure-button-for-azure-websites-2/) azokat a fontos. MD, amely lehetővé teszi a kulcsrakész központi telepítés felhasználói felület az Azure-bA. Ehhez minden egyszerű webalkalmazás, amíg egy teljes erőforráscsoport telepítése egy azuredeploy.json fájlt az adattár gyökérkönyvtárában elhelyezett engedélyezheti bővítheti. A JSON-fájl, amely tartalmazza az erőforrás-csoport sablon, használják az Azure gomb telepítéséhez az erőforráscsoport létrehozásához. Egy vonatkozó példáért lásd: a [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) mintát, amely ebben az oktatóanyagban használhatja.
+### <a name="deploy-tooazure-button"></a>TooAzure gomb telepítése
+Ha GitHub a verziókövetési rendszerrel használja, akkor lehet helyezni egy [telepítés tooAzure gomb](https://azure.microsoft.com/blog/2014/11/13/deploy-to-azure-button-for-azure-websites-2/) azokat a fontos. MD, amely lehetővé teszi egy kulcsrakész központi telepítés felhasználói felület tooAzure. Ehhez minden egyszerű webalkalmazás, amíg ez egy teljes erőforráscsoport telepítése tegyen egy azuredeploy.json fájlt az adattár gyökérkönyvtárában hello tooenable bővítheti. A JSON-fájl, amely tartalmazza a hello erőforrás csoport sablon, hello telepítés tooAzure gomb toocreate hello erőforráscsoport használják. Egy vonatkozó példáért lásd: hello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) mintát, amely ebben az oktatóanyagban használhatja.
 
-## <a name="get-the-sample-resource-group-template"></a>A minta erőforrás csoport sablon
-Most folytassuk a jobb oldali rá.
+## <a name="get-hello-sample-resource-group-template"></a>Hello minta erőforrás csoport sablon
+Most folytassuk a megfelelő tooit.
 
-1. Keresse meg a [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) App Service-mintát.
-2. A readme.md, kattintson **az Azure telepítéséhez**.
-3. Meg van-e a [telepítése-a-azure](https://deploy.azure.com) helyről, és kéri a felhasználótól, üzembe helyezéshez megadott paraméterek. Figyelje meg, hogy a mezők meg a tárház nevét és az egyes véletlenszerű karakterláncokat feltöltött. Ha azt szeretné, de a csak dolog, meg kell adni az SQL Server-rendszergazdai bejelentkezés és a jelszót, majd kattintson a mezők módosíthatja **következő**.
+1. Keresse meg a toohello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) App Service-mintát.
+2. A readme.md, kattintson **tooAzure telepítése**.
+3. Ön által végrehajtott toohello [telepítése-a-azure](https://deploy.azure.com) hely és ismételt tooinput üzembe helyezéshez megadott paraméterek. Figyelje meg, hogy hello mezők meg hello tárház nevét és az egyes véletlenszerű karakterláncokat feltöltött. Ha azt szeretné, de hello csak dolgot tooenter rendelkezik hello SQL Server-rendszergazdai bejelentkezés és hello jelszót, majd kattintson az összes hello mezőben módosíthatja **következő**.
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-1-deploybuttonui.png)
-4. Ezután kattintson **telepítés** a telepítés megkezdéséhez. Ha a folyamat befejezését fut, kattintson a http://todoapp*XXXX*. azurewebsites.net hivatkozás a telepített alkalmazás tallózással. 
+4. Ezután kattintson **telepítés** toostart hello telepítési folyamat. Ha hello folyamat toocompletion fut, kattintson a hello http://todoapp*XXXX*. azurewebsites.net hivatkozás toobrowse hello telepített alkalmazás. 
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-2-deployprogress.png)
    
-   A felhasználói felületen szeretné kissé lassú lehet, amikor először megnyitja a, mert az alkalmazások csak indítása, de meggyőzni a felhasználót saját kezűleg, hogy a rendszer egy teljesen működőképes alkalmazást.
-5. A telepítés lapon kattintson a **kezelése** hivatkozásra kattintva megtekintheti az új alkalmazás az Azure portálon.
-6. Az a **Essentials** legördülő menüben kattintson az erőforrás-csoport hivatkozásra. Ügyeljen arra is, hogy a webalkalmazás már kapcsolódik a GitHub-tárházban alatt **külső projekt**. 
+   felhasználói felület hello okozna kissé lassú, mert hello alkalmazásokat csak indítása, de meggyőzni a felhasználót saját kezűleg, hogy a rendszer egy teljesen működőképes alkalmazás először Tallózás tooit.
+5. Vissza a hello központi telepítése lap, kattintson a hello **kezelése** toosee hello új alkalmazás hello Azure portálon lévő hivatkozásra.
+6. A hello **Essentials** legördülő menüben hello erőforrás csoportjának hivatkozásra. Vegye figyelembe, hogy is, hogy hello webalkalmazás már csatlakozott a GitHub-tárházban toohello **külső projekt**. 
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-3-portalresourcegroup.png)
-7. Az erőforráscsoport panelen jegyezze fel, hogy nincsenek már két webes alkalmazások és az erőforráscsoport egy SQL-adatbázis.
+7. Hello erőforráscsoport panel jegyezze fel, hogy nincsenek már két webes alkalmazások és egy SQL-adatbázis hello erőforráscsoportban.
    
    ![](./media/app-service-deploy-complex-application-predictably/gettemplate-4-portalresourcegroupclicked.png)
 
-Minden, ami az imént látott néhány rövid percben egy teljes körűen rendszerbe állított két-mikroszolgáltatási alkalmazást, az összes összetevőt, függőségek, beállítások, adatbázis, és folyamatos közzétételét, a beállítási egy automatizált vezénylési az Azure Resource Manager. Összes Ez két dolgot végezhető el:
+Minden, ami az imént látott néhány rövid percben egy teljes körűen rendszerbe állított két-mikroszolgáltatási alkalmazást, az összes hello összetevők, függőségek, beállítások, adatbázis, és folyamatos közzétételét, a beállítási egy automatizált vezénylési az Azure Resource Manager. Összes Ez két dolgot végezhető el:
 
-* Az Azure gomb telepítéséhez
-* a tárház gyökérkönyvtárában azuredeploy.JSON
+* hello telepítés tooAzure gomb
+* azuredeploy.JSON hello tárház gyökérkönyvtárában
 
-Ez az alkalmazás telepítése több tíz, száz vagy ezer hányszor és minden alkalommal pontos megegyező konfigurációval rendelkezik. Az ismételhetőség és a hátránya kiszámíthatóságot lehetővé teszi nagy méretű alkalmazások központi telepítése az egyszerű és az vetett bizalmat.
+Ez az alkalmazás telepítése több tíz, száz vagy ezer hányszor és hello minden alkalommal pontos azonos konfigurációval rendelkezik. hello ismételhetőség és hello előreláthatóságának növelését ezt a módszert használja az egyszerűség és abban, hogy lehetővé teszi toodeploy jelentősen méretezhető alkalmazások.
 
 ## <a name="examine-or-edit-azuredeployjson"></a>Vizsgálja meg (vagy szerkesztése) AZUREDEPLOY. JSON-BAN
-Most nézzük hogyan a GitHub-tárházban be lett állítva. Az Azure .NET SDK-ban a JSON-szerkesztő használ, ha még nem telepítette a [Azure .NET SDK 2.6](/downloads/), most megtenni.
+Most nézzük hogyan hello GitHub-tárházban be lett állítva. Az Azure .NET SDK-t, hello hello JSON-szerkesztő használ, ha még nem telepítette a [Azure .NET SDK 2.6](/downloads/), most megtenni.
 
-1. Klónozott a [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) tárházat a kedvenc git eszköz használatával. Az alábbi képernyőképen I vagyok ezzel a csapat Explorerben a Visual Studio 2013.
+1. Klónozás hello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) tárházat a kedvenc git eszköz használatával. Hello a képernyőfelvételen látható az alábbi I vagyok ezzel a hello Team Explorert a Visual Studio 2013.
    
    ![](./media/app-service-deploy-complex-application-predictably/examinejson-1-vsclone.png)
-2. Az adattár gyökérkönyvtárában nyissa meg a Visual Studio azuredeploy.json. Ha nem látható a JSON-vázlat ablak, Azure .NET SDK-t telepíteni szeretné.
+2. Hello adattár gyökérkönyvtárában nyissa meg a Visual Studio azuredeploy.json. Ha nem látható hello JSON-vázlat ablak, tooinstall Azure .NET SDK-t kell.
    
    ![](./media/app-service-deploy-complex-application-predictably/examinejson-2-vsjsoneditor.png)
 
-Nem fogom JSON formátumban minden részletét leírására, de a [több erőforrások](#resources) szakasz az erőforrás csoport sablon nyelv tanulási mutató hivatkozásokat tartalmaz. Itt csak kattintok mutatjuk be, melyek segíthetnek az érdekes szolgáltatások érdekében, hogy saját egyéni sablon az alkalmazások telepítésének első lépései.
+Tudom vagyok nem folyamatos toodescribe hello JSON formátumban minden részletét, de hello [több erőforrások](#resources) szakasz hello erőforrás csoport sablon nyelvi tanulási mutató hivatkozásokat tartalmaz. Itt csak fogom tooshow meg hello érdekes funkciókat, amelyek segítenek érdekében, hogy saját egyéni sablon az alkalmazások telepítésének első lépései.
 
 ### <a name="parameters"></a>Paraméterek
-Tekintse meg a Paraméterek szakaszban, hogy ezek a paraméterek a legtöbb Mi a **az Azure telepítéséhez** gomb kéri a felhasználótól. A hely mögött a **az Azure telepítéséhez** gomb tölti fel a bemeneti felhasználói felület azuredeploy.json definiált paraméterek használatával. Ezek a paraméterek kifejezés egyaránt használatban az erőforrás-definíciókban, például erőforrásnevek, tulajdonságértékek stb.
+Tekintsen meg hello paraméterek szakaszban toosee, hogy-e a következő paraméterek legtöbb milyen hello **tooAzure telepítése** gomb tooinput kéri. hello hely mögött hello **tooAzure telepítése** gomb tölti fel a felhasználói felület hello bemeneti azuredeploy.json hello paraméterek használatával. Ezek a paraméterek kifejezés egyaránt használatban hello erőforrás-definíciókban, például erőforrásnevek, tulajdonságértékek stb.
 
 ### <a name="resources"></a>Erőforrások
-Az erőforrások csomópontjában tekintheti meg, hogy 4 legfelső szintű erőforrások vannak megadva, például egy SQL Server-példányt, az App Service-csomag és két webalkalmazások. 
+Hello erőforrások csomópontjában tekintheti meg, hogy 4 legfelső szintű erőforrások vannak megadva, például egy SQL Server-példányt, az App Service-csomag és két webalkalmazások. 
 
 #### <a name="app-service-plan"></a>App Service-csomag
-Kezdjük a JSON egyszerű gyökér szintű az erőforráshoz. A JSON-vázlat, kattintson az App Service-csomag nevű **[hostingPlanName]** jelölje ki a megfelelő JSON-kódot. 
+Kezdjük a hello JSON egyszerű gyökér szintű erőforrás. A JSON-vázlat hello, kattintson a hello App Service-csomag nevű **[hostingPlanName]** toohighlight hello megfelelő JSON-kódot. 
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-3-appserviceplan.png)
 
-Vegye figyelembe, hogy a `type` elem meghatározza azt a karakterláncot, az App Service-csomagot (meghívta a kiszolgálófarm egy hosszú, hosszú idő telt el), és más elemek és tulajdonságok kitölti a JSON-fájlban definiált paraméterek használatával, és ehhez az erőforráshoz nincsenek beágyazott erőforrásai.
+Vegye figyelembe, hogy hello `type` elem meghatározza hello karakterlánc egy App Service-csomagra (meghívta a kiszolgálófarm egy hosszú, hosszú idő telt el), és más elemek és tulajdonságok kitölti hello paraméterek hello JSON-fájl használatával, és ehhez az erőforráshoz nem rendelkezik a beágyazott erőforrások.
 
 > [!NOTE]
-> Azt is fontos megjegyezni, hogy értékének `apiVersion` közli az Azure melyik verzióját a REST API-t használja a JSON az erőforrás-definícióban, és hatással lehet a módját a erőforrás kell formázni belül a `{}`. 
+> Azt is fontos megjegyezni, hogy hello értékének `apiVersion` közli az Azure melyik verzióját hello REST API toouse hello JSON erőforrás-definíció, és hatással lehet a hogyan hello erőforrás kell formázni belül hello `{}`. 
 > 
 > 
 
 #### <a name="sql-server"></a>SQL Server
-Ezután kattintson az SQL Server erőforrás-nevű **SQLServer** a JSON-Vázlat.
+Ezután kattintson a hello SQL Server-erőforrást nevű **SQLServer** a JSON-vázlat hello.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-4-sqlserver.png)
 
-A kiemelt JSON-kódot kapcsolatos megjegyzések:
+A következő hello kapcsolatos megjegyzés hello kiemeli a JSON-kódot:
 
-* Paraméterek használata azt biztosítja, hogy a létrehozott erőforrások neve, konfigurálható úgy, hogy egymással konzisztenssé teszi őket.
-* Az SQL Server erőforrás két beágyazott erőforrások, akkor mindegyik rendelkezik-e meg más értéket `type`.
-* A beágyazott erőforrások belül `“resources”: […]`, ahol definiálva vannak az adatbázis és a tűzfalszabályokat, hogy egy `dependsOn` elem, amely meghatározza az erőforrás-azonosítója a gyökér szintű SQLServer erőforrás. Ez alapján Azure Resource Manager "ehhez az erőforráshoz, amely már léteznie kell, más erőforrás; létrehozása előtt Ha más erőforrás van definiálva a sablonban, majd hozza létre, hogy egy először".
+* paraméterek hello használata biztosítja a létrehozott hello erőforrások nevű és konfigurálva, hogy egymással konzisztenssé teszi őket.
+* hello SQLServer erőforrás két beágyazott erőforrások, akkor mindegyik rendelkezik-e meg más értéket `type`.
+* hello beágyazott erőforráshoz, `“resources”: […]`, ahol definiálva vannak hello adatbázis és hello tűzfalszabályok, rendelkezik egy `dependsOn` elem hello gyökér szintű SQLServer erőforrás hello erőforrás-azonosító. Ez alapján Azure Resource Manager "ehhez az erőforráshoz, amely már léteznie kell, más erőforrás; létrehozása előtt Ha más erőforrás hello sablonban van definiálva, és először hozza létre, hogy egy".
   
   > [!NOTE]
-  > Részletes információk használatáról a `resourceId()` működik, lásd: [Azure Resource Manager Sablonfüggvényei](../azure-resource-manager/resource-group-template-functions-resource.md#resourceid).
+  > Részletes információt toouse hello `resourceId()` működik, lásd: [Azure Resource Manager Sablonfüggvényei](../azure-resource-manager/resource-group-template-functions-resource.md#resourceid).
   > 
   > 
-* A hatását, hogy a `dependsOn` elem, hogy Azure Resource Manager tudhatja, mely erőforrásokat párhuzamosan lehet létrehozni és erőforrások egymás után létre kell hozni. 
+* hello hatásának hello `dependsOn` eleme, hogy Azure Resource Manager tudhatja, mely erőforrásokat párhuzamosan lehet létrehozni és erőforrások egymás után létre kell hozni. 
 
 #### <a name="web-app"></a>Webalkalmazás
-Most tegyük lépjen tovább a tényleges webes alkalmazásokat, amelyek bonyolultabb. Kattintson a [variables('apiSiteName')] webalkalmazás a JSON-vázlat jelölje ki a JSON-kódot. Láthatja, hogy dolgot első sokkal ennél is érdekesebb megoldást. Erre a célra I fog kommunikálni egyenként szolgáltatásairól:
+Most tegyük áthelyezése toohello tényleges webalkalmazásokban, amelyek bonyolultabb. Kattintson a webalkalmazás hello [variables('apiSiteName')] hello JSON-vázlat toohighlight a JSON-kódot. Láthatja, hogy dolgot első sokkal ennél is érdekesebb megoldást. Erre a célra I lesz beszélgetés egyenként hello szolgáltatásairól:
 
 ##### <a name="root-resource"></a>Legfelső szintű erőforrás
-A webalkalmazás két különböző erőforrások függ. Ez azt jelenti, hogy az Azure Resource Manager a webalkalmazás létrehozása, csak az App Service-csomag, mind az SQL Server-példány létrehozása után.
+hello webalkalmazás két különböző erőforrások függ. Ez azt jelenti, hogy Azure Resource Manager mindkét hello App Service-csomag és hello SQL Server-példány létrehozása után csak hello webes alkalmazást hoz létre.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-5-webapproot.png)
 
 ##### <a name="app-settings"></a>Alkalmazásbeállítások
-Az alkalmazás beállításait is meg van határozva egy beágyazott erőforrásként.
+hello Alkalmazásbeállítások egy beágyazott erőforrást is vannak meghatározva.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-6-webappsettings.png)
 
-Az a `properties` eleme `config/appsettings`, két Alkalmazásbeállítások formátumban van `“<name>” : “<value>”`.
+A hello `properties` eleme `config/appsettings`, két Alkalmazásbeállítások hello formátumban van `“<name>” : “<value>”`.
 
-* `PROJECT`van egy [KUDU beállítás](https://github.com/projectkudu/kudu/wiki/Customizing-deployments) , amely közli az Azure-telepítés mely projektek több projektet a Visual Studio-megoldásban. I bemutatja, hogyan később verziókezelő van konfigurálva, de mivel a ToDoApp kód több projektet a Visual Studio-megoldásban, igazolnia kell-e ezt a beállítást.
-* `clientUrl`rendszer egyszerűen egy beállítás, amely az alkalmazáskódban alkalmazás használ.
+* `PROJECT`van egy [KUDU beállítás](https://github.com/projectkudu/kudu/wiki/Customizing-deployments) , amely közli az Azure-telepítés mely projekt toouse több projektet a Visual Studio-megoldásban. I bemutatja, hogyan később verziókezelő van konfigurálva, de mivel hello ToDoApp kód több projektet a Visual Studio-megoldásban, igazolnia kell-e ezt a beállítást.
+* `clientUrl`rendszer egyszerűen egy adott hello alkalmazáskód beállítása alkalmazás használ.
 
 ##### <a name="connection-strings"></a>Kapcsolati karakterláncok
-A kapcsolati karakterláncok egy beágyazott erőforrást is vannak meghatározva.
+hello kapcsolati karakterláncok egy beágyazott erőforrást is vannak meghatározva.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-7-webappconnstr.png)
 
-Az a `properties` eleme `config/connectionstrings`, minden egyes kapcsolati karakterláncot is nevezünk név: érték pár, meghatározott formátumban `“<name>” : {“value”: “…”, “type”: “…”}`. Az a `type` elem, a lehetséges értékek: `MySql`, `SQLServer`, `SQLAzure`, és `Custom`.
+A hello `properties` eleme `config/connectionstrings`, minden egyes kapcsolati karakterláncot is nevezünk név: érték pár, az adott formátuma hello `“<name>” : {“value”: “…”, “type”: “…”}`. A hello `type` elem, a lehetséges értékek: `MySql`, `SQLServer`, `SQLAzure`, és `Custom`.
 
 > [!TIP]
-> A karakterláncot kapcsolattípusokat végleges listájának megtekintéséhez futtassa a következő parancsot az Azure PowerShell: \[Enum]::GetNames("Microsoft.WindowsAzure.Commands.Utilities.Websites.Services.WebEntities.DatabaseType")
+> Hello karakterláncot kapcsolattípusokat végleges listájának megtekintéséhez futtassa a következő parancs az Azure PowerShell hello: \[Enum]::GetNames("Microsoft.WindowsAzure.Commands.Utilities.Websites.Services.WebEntities.DatabaseType")
 > 
 > 
 
 ##### <a name="source-control"></a>A verziókövetési rendszerrel
-A verziókövetési beállítások is meg van határozva egy beágyazott erőforrásként. Az Azure Resource Manager használja ezt az erőforrást folyamatos közzétételének konfigurálása (szerint tekintse meg `IsManualIntegration` később) és is indítsa a telepítés automatikusan a JSON-fájl feldolgozása során az alkalmazás kódját.
+hello verziókövetési beállítások egy beágyazott erőforrást is vannak meghatározva. Az Azure Resource Manager használ a erőforrás tooconfigure folyamatos közzétételi (szerint tekintse meg `IsManualIntegration` később) és is tookick ki hello telepítését alkalmazáskód automatikusan hello hello JSON-fájl feldolgozása során.
 
 ![](./media/app-service-deploy-complex-application-predictably/examinejson-8-webappsourcecontrol.png)
 
-`RepoUrl`és `branch` közérthető intuitív kell lennie, és a Git-tárház és a közzététel az ág nevét kell mutatnia. Ebben az esetben ezek határozzák meg a bemeneti paraméterek. 
+`RepoUrl`és `branch` közérthető intuitív kell lennie, és toohello Git tárház hello nevét és a hello fiókirodai toopublish kell mutatnia. Ebben az esetben ezek határozzák meg a bemeneti paraméterek. 
 
-Vegye figyelembe, hogy a `dependsOn` elem, hogy a webes alkalmazás-erőforrást, mellett `sourcecontrols/web` is függ, `config/appsettings` és `config/connectionstrings`. Ennek az az oka után `sourcecontrols/web` van konfigurálva, az Azure telepítési folyamat automatikusan megpróbálja telepíteni, elkészítéséhez és indítsa el az alkalmazás kódját. Ezért a függőség beszúrása segítségével győződjön meg arról, hogy az alkalmazás fér hozzá a szükséges alkalmazás beállításait és a kapcsolati karakterláncokat az alkalmazás kódjának futtatása előtt. 
+Megjegyzés: a hello `dependsOn` elemhez tartozó, továbbá toohello a webes alkalmazás-erőforrást, `sourcecontrols/web` is függ, `config/appsettings` és `config/connectionstrings`. Ennek az az oka után `sourcecontrols/web` van konfigurálva, hello Azure telepítési folyamat automatikusan megpróbálja toodeploy, felépítéséhez, és hello alkalmazáskód elindításához. Ezért beszúrni a függőségi segítségével, győződjön meg arról, hogy hello alkalmazásnak hozzáférés szükséges toohello Alkalmazásbeállítások és kapcsolati karakterláncok hello alkalmazáskód futtatása előtt. 
 
 > [!NOTE]
-> Azt is fontos megjegyezni, hogy `IsManualIntegration` értéke `true`. Ez a tulajdonság oka szükség ebben az oktatóanyagban ténylegesen nem tulajdonosa a GitHub-tárházban, és így nem ténylegesen engedélyt ad a folyamatos közzétételének konfigurálása Azure [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) (azaz automatikus tárház frissítések továbbítása az Azure-bA). Használhatja az alapértelmezett érték `false` csak akkor, ha konfigurálta a tulajdonos GitHub-felhasználó hitelesítő adatait a megadott tárház a [Azure-portálon](https://portal.azure.com/) előtt. Ez azt jelenti Ha meg van adva verziókövetésének GitHub vagy BitBucket szereplő bármely alkalmazásra a [Azure Portal](https://portal.azure.com/) korábban, a felhasználó hitelesítő adatait, akkor Azure fogja a hitelesítő adatok megjegyzése és használata a jövőben telepít a GitHub vagy BitBucket bármely alkalmazás. Azonban ha ezt még nem végezte, telepítés JSON-sablon meghiúsul, ha Azure Resource Manager megpróbálja a webes alkalmazás verziókövetési beállítások konfigurálása, mert azt nem lehet bejelentkezni a GitHub vagy bitbucket szolgáltatásokkal a tárház tulajdonosát hitelesítő adatokkal.
+> Azt is fontos megjegyezni, hogy `IsManualIntegration` értéke túl`true`. Ez a tulajdonság oka szükség ebben az oktatóanyagban ténylegesen nem saját hello GitHub-tárházban, és így nem ténylegesen adjon engedélye tooAzure tooconfigure folyamatos közzététel [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) (pl. leküldéses automatikus tárház frissítések tooAzure). Hello alapértelmezett érték használható `false` hello megadott tárház csak akkor, ha hello tulajdonos GitHub hitelesítő adatait a hello konfigurált [Azure-portálon](https://portal.azure.com/) előtt. Ez azt jelenti Ha állította be forrás vezérlő tooGitHub vagy BitBucket hello bármely alkalmazás [Azure Portal](https://portal.azure.com/) korábban, a felhasználó hitelesítő adatait, akkor Azure lesz hello hitelesítő adatok megjegyzése és használhatja őket, amikor a bármely alkalmazás központi telepítése GitHub vagy bitbucket szolgáltatásokkal a jövőbeli hello. Azonban ha ezt még nem végezte, hello JSON-sablon telepítése sikertelen lesz Azure Resource Manager tooconfigure hello web app verziókövetési beállítások megpróbál, mert az nem lehet bejelentkezni a GitHub vagy BitBucket hello tárház tulajdonosát hitelesítő adatokkal.
 > 
 > 
 
-## <a name="compare-the-json-template-with-deployed-resource-group"></a>A JSON-sablon üzembe helyezett erőforrás csoporttal összehasonlítása
-Itt, lépjen a a webes alkalmazás összes paneleken keresztül a [Azure Portal](https://portal.azure.com/), azonban egy másik eszköz, amely nincs csak, akkor hasznos, ha több. Lépjen a [Azure erőforrás-kezelő](https://resources.azure.com) preview eszközt, amely lehetővé teszi az erőforráscsoportok JSON-ábrázolását előfizetése, a ténylegesen az Azure-háttérrendszernek léteznek. Megtekintheti, milyen az Azure-ban az erőforráscsoport JSON hierarchia megfelel-e a hierarchiában lévő a létrehozásához használt sablonfájl.
+## <a name="compare-hello-json-template-with-deployed-resource-group"></a>Hasonlítsa össze a telepített erőforráscsoporttal hello JSON-sablon
+Itt, lépjen a hello összes hello webes alkalmazás paneleken keresztül [Azure Portal](https://portal.azure.com/), de nincs egy másik eszköz, amely nincs csak, akkor hasznos, ha több. Nyissa meg toohello [Azure erőforrás-kezelő](https://resources.azure.com) preview eszközt, amely lehetővé teszi az összes hello erőforráscsoport JSON-ábrázolását előfizetése, a ténylegesen hello Azure-háttérrendszernek léteznek. Hogyan hello erőforráscsoport JSON hierarchia az Azure-ban megfelel a hello hierarchia által használt toocreate hello sablonfájl azt is láthatja.
 
-Például ha ugrani a [Azure erőforrás-kezelő](https://resources.azure.com) eszköz, és bontsa ki a Explorer csomópontokat, láthatom valahol az erőforráscsoport és a megfelelő erőforrástípusok szerint gyűjtött gyökér szintű erőforrások.
+Például ha haladhatok toohello tovább [Azure erőforrás-kezelő](https://resources.azure.com) eszköz és bontsa ki a hello explorer hello csomópontokat, láthatom valahol hello erőforráscsoport és a megfelelő erőforrástípusok szerint gyűjtött hello gyökér szintű erőforrások.
 
 ![](./media/app-service-deploy-complex-application-predictably/ARM-1-treeview.png)
 
-Ha a webes alkalmazás lebontva, webes alkalmazás konfigurációs adatait hasonló látni kell az alábbi képernyőfelvétel:
+Tooa webes alkalmazás részletező, ha el tudja toosee web app konfigurációs részletek hasonló toohello alábbi képernyőfelvételen:
 
 ![](./media/app-service-deploy-complex-application-predictably/ARM-2-jsonview.png)
 
-Ebben az esetben a beágyazott erőforrások kell rendelkeznie a nagyon hasonlít a JSON-sablon fájl a hierarchia, és az alkalmazásbeállítások, kapcsolati karakterláncok, stb., megfelelően a JSON ablaktáblán megjelennek kell megjelennie. Itt beállítások hiányában esetleg utalhatnak a JSON-fájl, és a JSON-sablon fájl hibaelhárításához nyújt segítséget.
+Ebben az esetben hello beágyazott erőforrások kell lennie a hierarchia nagyon hasonló toothose a JSON-sablon fájlban, és hello Alkalmazásbeállítások, kapcsolati karakterláncok, stb., megfelelően hello JSON ablaktáblán megjelennek kell megjelennie. hello hiányában beállítások itt is utalhatnak egy JSON-fájlt, és is segítséget nyújthatnak a JSON-sablon fájl.
 
-## <a name="deploy-the-resource-group-template-yourself"></a>Az erőforrás-csoport sablon saját kezűleg üzembe helyezése
-A **az Azure telepítéséhez** gomb nagy, de lehetővé teszi az erőforrás-csoport sablon azuredeploy.json telepítése csak akkor, ha már leküldött azuredeploy.json GitHub. Az Azure .NET SDK olyan bármely JSON-sablon fájl közvetlenül a helyi számítógépről telepíthető eszközöket is biztosít. Ehhez kövesse az alábbi lépéseket:
+## <a name="deploy-hello-resource-group-template-yourself"></a>Hello erőforrás csoport sablon magát üzembe helyezése
+Hello **tooAzure telepítése** gomb nagy, de lehetővé teszi toodeploy hello erőforrás csoport sablon az azuredeploy.json csak akkor, ha Ön már rendelkezik leküldött azuredeploy.json tooGitHub. hello Azure .NET SDK hello olyan eszközöket is biztosít az Ön toodeploy bármely JSON-sablon fájl közvetlenül a helyi számítógépről. toodo ezt, hajtsa végre hello az alábbi lépéseket:
 
 1. A Visual Studióban kattintson **fájl** > **új** > **projekt**.
 2. Kattintson a **Visual C#** > **felhő** > **Azure erőforráscsoport**, majd kattintson a **OK**.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-1-vsproject.png)
 3. A **Azure-sablon kiválasztása**, jelölje be **üres sablont** kattintson **OK**.
-4. Húzza az azuredeploy.json a **sablon** az új projekt mappájából.
+4. Azuredeploy.json húzza hello **sablon** az új projekt mappájából.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-2-copyjson.png)
-5. A Solution Explorerben nyissa meg a másolt azuredeploy.json.
-6. Csak az alábbiakban bemutatjuk, adjuk hozzá néhány szokásos Application Insights-erőforrást a JSON-fájlt, hogy kattintva **erőforrás hozzáadása**. Ha csak szeretné használni a JSON-fájl központi telepítése, ugorjon a telepítés lépéseit.
+5. A Solution Explorerben nyissa meg a másolt hello azuredeploy.json.
+6. Csak a hello szakét hello bemutató, adjuk hozzá néhány szokásos Application Insights erőforrások tooour JSON-fájl, kattintva **erőforrás hozzáadása**. Ha csak szeretné hello JSON-fájl központi telepítése, hagyja ki toohello telepítés lépéseit.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-3-newresource.png)
 7. Válassza ki **Application Insights Web Apps**, majd ellenőrizze, hogy egy meglévő App Service csomag és a webes alkalmazás van kiválasztva, és kattintson a **Hozzáadás**.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-4-newappinsight.png)
    
-   Most már képes lesz számos új forrásanyagokban talál, attól függően, hogy az erőforrás, és hogyan kezeli, vagy az App Service-csomagot, vagy a web app függőségekkel rendelkeznek. Ezeket az erőforrásokat a meglévő definíciót szerint nincsenek engedélyezve, és módosíthatja, hogy fog.
+   Most lesz képes toosee több lehet, hogy hello erőforrás és működése függ, függőségi viszonyban vannak vagy hello App Service-csomag vagy hello webalkalmazás. Ezeket az erőforrásokat a meglévő definíciót szerint nincsenek engedélyezve, és toochange fog, amely.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-5-appinsightresources.png)
-8. Kattintson a JSON-vázlat **appinsights által biztosított automatikus skálázás** jelölje ki a JSON-kódot. Ez az App Service-csomag méretezési beállítása.
-9. A kiemelt JSON-kódot, keresse meg a `location` és `enabled` tulajdonságok és -e meg őket alább látható módon.
+8. A JSON-vázlat hello, kattintson **appinsights által biztosított automatikus skálázás** toohighlight a JSON-kódot. Ez a beállítás az App Service-csomag skálázás hello.
+9. A hello kiemelt JSON-kódot, keresse meg a hello `location` és `enabled` tulajdonságok és -e meg őket alább látható módon.
    
    ![](./media/app-service-deploy-complex-application-predictably/deploy-6-autoscalesettings.png)
-10. Kattintson a JSON-vázlat **CPUHigh appinsights által biztosított** jelölje ki a JSON-kódot. Ez az értesítés.
-11. Keresse meg a `location` és `isEnabled` tulajdonságok és -e meg őket alább látható módon. Tegye meg ugyanezt a másik három riasztások (lila hagymák).
+10. A JSON-vázlat hello, kattintson **CPUHigh appinsights által biztosított** toohighlight a JSON-kódot. Ez az értesítés.
+11. Keresse meg a hello `location` és `isEnabled` tulajdonságok és -e meg őket alább látható módon. Hello azonos hello egyéb három értesítések (lila hagymák).
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-7-alerts.png)
-12. Most már készen áll központi telepítéséhez. Kattintson jobb gombbal a projektre, és válassza ki **telepítés** > **új központi telepítési**.
+12. Most már készen áll a toodeploy. Kattintson a jobb gombbal a hello projektet, és válassza ki **telepítés** > **új központi telepítési**.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-8-newdeployment.png)
 13. Ha még nem tette meg, jelentkezzen be az Azure-fiókjával.
@@ -229,38 +229,38 @@ A **az Azure telepítéséhez** gomb nagy, de lehetővé teszi az erőforrás-cs
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-9-deployconfig.png)
     
-    Most már képes lesz a sablonfájl töltött táblázatban definiált összes paraméterek szerkesztése. Alapértelmezett értékeket meghatározó paraméterek már rendelkezik az alapértelmezett értékekre, és a paraméterek, melyek meghatározzák az engedélyezett értékek listájának jelennek meg a legördülő lista.
+    Most már tudja tooedit összes hello paraméter töltött tábla hello sablon fájlban meghatározott lesz. Alapértelmezett értékeket meghatározó paraméterek már rendelkezik az alapértelmezett értékekre, és a paraméterek, melyek meghatározzák az engedélyezett értékek listájának jelennek meg a legördülő lista.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-10-parametereditor.png)
-15. Töltse ki a üres paramétereket, és a [ToDoApp GitHub-tárház címe](https://github.com/azure-appservice-samples/ToDoApp.git) a **repoUrl**. Kattintson a **mentése**.
+15. Töltse ki az összes hello üres paraméterek, és hello [ToDoApp GitHub-tárház címe](https://github.com/azure-appservice-samples/ToDoApp.git) a **repoUrl**. Kattintson a **mentése**.
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-11-parametereditorfilled.png)
     
     > [!NOTE]
-    > Automatikus skálázás egy olyan funkció érhető el **szabványos** réteg vagy magasabb és a terv szintű riasztások a nyújtott szolgáltatások **alapvető** szintjüket, vagy újabb rendszerre, akkor be kell állítania a **sku** paramétert **szabványos** vagy **prémium** láthatók a új App Insights erőforrások könnyű fel.
+    > Automatikus skálázás egy olyan funkció érhető el **szabványos** réteg vagy magasabb és a terv szintű riasztások a nyújtott szolgáltatások **alapvető** szintjüket, vagy újabb rendszerre, szüksége lesz tooset hello **sku** paraméter túl**szabványos** vagy **prémium** a rendezés toosee összes az új App Insights erőforrások könnyű fel.
     > 
     > 
-16. Kattintson a **telepítése**. Ha a kiválasztott **menthetik a jelszavakat**, a jelszót a rendszer menti a paraméter fájlban **egyszerű szöveges**. Ellenkező esetben kéri a jelszót a felhasználótól, a telepítési folyamat során.
+16. Kattintson a **telepítése**. Ha a kiválasztott **menthetik a jelszavakat**, hello jelszót a rendszer menti a hello paraméterfájl **egyszerű szöveges**. Ellenkező esetben meg kell adnia tooinput hello adatbázisjelszót.%n hello telepítési folyamat során.
 
-Készen is van. Most csatlakoznia kell a [Azure Portal](https://portal.azure.com/) és a [Azure erőforrás-kezelő](https://resources.azure.com) eszközt, amely az új riasztások és a JSON új automatikus skálázási beállításokat központilag telepített alkalmazás.
+Készen is van. Most már egyszerűen toogo toohello [Azure Portal](https://portal.azure.com/) és hello [Azure erőforrás-kezelő](https://resources.azure.com) eszköz toosee hello új riasztások és a hozzáadott automatikus skálázási beállítás tooyour JSON telepített alkalmazás.
 
-A jelen szakaszban szereplő lépéseket általában úgy hajthatja végre a következő:
+A jelen szakaszban szereplő lépéseket főként hello következő valósítható meg:
 
-1. A sablonfájl előkészítése
-2. A paraméterfájl használata a sablonfájl létrehozása
-3. A sablonfájl paraméter fájllal telepített
+1. Előkészített hello sablonfájl
+2. A paraméter fájl toogo létre hello sablonfájl
+3. Telepített hello sablonfájl hello paraméter fájllal
 
-Az utolsó lépés egyszerű PowerShell parancsmag végezhető el. Mi a Visual Studio az az alkalmazás telepítésekor nyerte megtekintéséhez nyissa meg a Scripts\Deploy-AzureResourceGroup.ps1. A kódot van, de csak fogom jelölje ki a megfelelő kódot kell telepítenie a sablonfájl paraméter fájllal.
+hello utolsó lépés egyszerű PowerShell parancsmag végezhető el. toosee Mi a Visual Studio az az alkalmazás, nyissa meg Scripts\Deploy-AzureResourceGroup.ps1 telepítésekor volt. A kódot van, de csak fogom toohighlight összes hello lényeges szükséges kód toodeploy hello sablonfájl hello paraméter fájllal.
 
 ![](./media/app-service-deploy-complex-application-predictably/deploy-12-powershellsnippet.png)
 
-Az utolsó parancsmag `New-AzureResourceGroup`, van, amely végrehajtja a műveletet. Ez bizonyítania kell Önnek, hogy, tooling segítségével, a rendszer viszonylag egyszerű kiszámítható módon tudja a felhő alkalmazás központi telepítése. Minden alkalommal, amikor az ugyanazon paraméter fájllal ugyanazt a sablont a futtatta a parancsmagot, ugyanazt az eredményt kapja fog.
+utolsó parancsmag hello `New-AzureResourceGroup`, egy hello művelet végrehajtja hello van. Ez bizonyítania kell, hogy, tooling hello segítségével, a rendszer viszonylag egyszerű toodeploy tooyou a cloud kiszámítható módon tudja az alkalmazás. A hello hello parancsmagot kell futtatnia minden alkalommal ugyanazt a sablont a hello azonos paraméterfájl, fog tooget hello ugyanazt az eredményt.
 
 ## <a name="summary"></a>Összefoglalás
-DevOps ismételhetőség és kiszámíthatóságot a sikeres telepítést mikroszolgáltatások álló nagy méretű kérelem kulccsal. Ebben az oktatóanyagban az Azure Resource Manager sablon használatával egyetlen erőforráscsoportként működnek az Azure két-mikroszolgáltatási alkalmazást telepített. Remélhetőleg az adott ahhoz, hogy indítsa el az alkalmazás az Azure-ban konvertálása a sablonba és kioszthatja és kiszámítható módon tudja központilag telepítenie kell a Tudásbázis. 
+DevOps ismételhetőség és kiszámíthatóságot kulcsok tooany sikeres alkalmazás központi telepítését egy nagy méretű álló mikroszolgáltatások létrehozására. Ebben az oktatóanyagban telepítette a két-mikroszolgáltatási alkalmazás tooAzure hello Azure Resource Manager-sablon használatával egyetlen erőforráscsoportként működnek. Remélhetőleg, az adott hello Tudásbázis van szükség az alkalmazás az Azure-ban konvertálása a sablonba rendelés toostart és kioszthatja és kiszámítható telepítheti azt. 
 
 ## <a name="next-steps"></a>Következő lépések
-Megtudhatja, hogyan [gyors módszereit, amelyek érvényesek, és folyamatosan tegye közzé a mikroszolgáltatások alkalmazást kihívásokra](app-service-agile-software-development.md) és a központi telepítési módszerek, például a speciális [flighting telepítési](app-service-web-test-in-production-controlled-test-flight.md) könnyen.
+Megtudhatja, hogyan túl[gyors módszereit, amelyek érvényesek, és folyamatosan tegye közzé a mikroszolgáltatások alkalmazást kihívásokra](app-service-agile-software-development.md) és a központi telepítési módszerek, például a speciális [flighting telepítési](app-service-web-test-in-production-controlled-test-flight.md) könnyen.
 
 <a name="resources"></a>
 

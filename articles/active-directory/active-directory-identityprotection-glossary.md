@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Active Directory-Identity Protection-szószedet |} Microsoft Docs"
+title: "Active Directory Identity Protection-szószedet aaaAzure |} Microsoft Docs"
 description: "Az Azure Active Directory-Identity Protection-szószedet"
 services: active-directory
 keywords: "az Azure active directory azonosító adatok védelmét, a cloud app discovery, alkalmazások, biztonság, kockázati, kockázati szint, biztonsági rést, biztonsági házirend, szószedet kezelése"
@@ -15,33 +15,33 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 2cf64925cff9a78cf83532a1cfd231f7a1d98304
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ff2e96d20e2a3f1df24b78e66be5a0c6807e60a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-identity-protection-glossary"></a>Az Azure Active Directory-Identity Protection-szószedet
 ### <a name="at-risk-user"></a>Fennáll a veszélye (felhasználó)
 A felhasználó egy vagy több aktív kockázati események. 
 
 ### <a name="atypical-sign-in-location"></a>Bejelentkezés szokatlan bejelentkezési helye
-A bejelentkezés, amely nincs az adott felhasználó, hasonló felhasználók vagy a bérlő a jellemző földrajzi helyről.
+A bejelentkezés, amely nincs a hello konkrét felhasználó, hasonló felhasználók vagy hello bérlői jellemző földrajzi helyről.
 
 ### <a name="azure-ad-identity-protection"></a>Azure AD Identity Protection
 A biztonsági modul az Azure Active Directoryban, amely a kockázati eseményekről és egy szervezet identitásait érintő lehetséges biztonsági rések egyesített nézetét biztosítja.
 
 ### <a name="conditional-access"></a>Feltételes hozzáférés
-Egy házirend erőforrásokhoz való hozzáférés biztosítása érdekében. Feltételes hozzáférési szabályai tárolódnak az Azure Active Directory és az erőforráshoz való hozzáférés megadása előtt az Azure AD értékeli ki.  Például a szabályok a következők történő hozzáférés a felhasználó helye alapján eszköz állapotát, vagy a felhasználó a hitelesítési módszert.
+A biztonságos hozzáférés tooresources egy házirendet. Feltételes hozzáférési szabályai hello Azure Active Directoryban tárolja, és az Azure AD hozzáférési toohello erőforrás megelőzően értékeli ki.  Például a szabályok a következők történő hozzáférés a felhasználó helye alapján eszköz állapotát, vagy a felhasználó a hitelesítési módszert.
 
 ### <a name="credentials"></a>Hitelesítő adatok
-Azonosításra és igazolása helyi való hozzáférés és a hálózati erőforrásokhoz való használt azonosító adatokat. A hitelesítő adatok többek között a felhasználónevek és jelszavak, az intelligens kártyák és a tanúsítványok.
+Azonosító és az azonosítót a használt toogain toolocal és a hálózati erőforrások eléréséhez igazolása tartalmaz információt. A hitelesítő adatok többek között a felhasználónevek és jelszavak, az intelligens kártyák és a tanúsítványok.
 
 ### <a name="event"></a>Esemény
 Az Azure Active Directoryban tevékenység egy olyan rekordot.
 
 ### <a name="false-positive-risk-event"></a>A vakriasztások (kockázat esemény)
-A kockázat eseményállapot manuálisan Identity Protection felhasználó, amely azt jelzi, hogy a kockázati esemény történt a vizsgált, és a kockázati események megjelölt helytelenül lett beállítva.
+A kockázat eseményállapot manuálisan Identity Protection felhasználó, jelezve, hogy hello kockázat esemény vizsgált lett, és a kockázati események megjelölt helytelenül lett beállítva.
 
 ### <a name="identity"></a>Identitás
 Személy vagy vállalat hitelesítést, például a jelszóval vagy tanúsítvánnyal feltétel alapján történő ellenőrizni kell.
@@ -50,88 +50,88 @@ Személy vagy vállalat hitelesítést, például a jelszóval vagy tanúsítvá
 Az AAD esemény Identity Protection által rendellenes tevékenységként lett megjelölve, és arra utalhat, hogy identitás feltörték.
 
 ### <a name="ignored-risk-event"></a>Figyelmen kívül hagyva (kockázat esemény)
-A kockázat eseményállapot állítsa be manuálisan egy Identity Protection felhasználónak, amely azt jelzi, hogy a kockázati esemény nélkül a szervizelési művelet befejeződik.
+A kockázat eseményállapot Identity Protection felhasználó, jelezve, hogy hello kockázat esemény le van zárva, a szervizelési műveletek nélkül manuálisan állítsa be.
 
 ### <a name="impossible-travel-from-atypical-locations"></a>Lehetetlen odautazás bejelentkezés szokatlan helyekről
-A kockázat ugyanaz a felhasználó két bejelentkezést észlelt, amennyiben legalább az egyik helyről a rendellenes bejelentkezési, és egyes esetekben a bejelentkezések közötti ideje rövidebb, mint a minimális időbe telne között fizikailag továbbítani által elindított esemény.  
+A kockázat hello ugyanahhoz a felhasználóhoz észlelt, amikor legalább az egyik van helyről a rendellenes bejelentkezési, és ha hello közötti hello bejelentkezések ideje rövidebb, mint a minimális hello idő két bejelentkezést időt vesz igénybe toophysically által elindított esemény haladnak, ezek között helyek.  
 
 ### <a name="investigation"></a>Vizsgálat
-A tevékenységek, a naplókat, és olyan releváns információkat eldöntheti, hogy szervizelési vagy enyhítési lépések szükségesek, a kockázat eseményhez kapcsolódó véleményezési eljárás megértéséhez, ha, és hogyan identitásának biztonsági szempontból sérült, és a sérült biztonságú identitás használatának megismerése.
+hello hello tevékenységek, a naplókat, és olyan releváns információkat véleményezési eljárás kapcsolódó tooa kockázat esemény toodecide szervizelési vagy enyhítési lépések szükségesek, hogy, megértéséhez Ha, és hogyan hello identitás biztonsági szempontból sérült, és megismerje hogyan hello sérült biztonságú azonosító lett megadva.
 
 ### <a name="leaked-credentials"></a>Kiszivárgott hitelesítő adatok
-A kockázat aktuális felhasználói hitelesítő adatok (felhasználónév és jelszó) találhatók, a kutatói által nyilvánosan sötét webes közzétéve által elindított esemény.
+A kockázat aktuális felhasználói hitelesítő adatok (felhasználónév és jelszó) találhatók által elindított esemény nyilvánosan hello sötét webes a kutatói által közzétett.
 
 ### <a name="mitigation"></a>Kezelés
-Egy műveletet korlátozható vagy kiküszöbölheti a támadó lehetőségét a sérült biztonságú identitás vagy az eszköz visszaállítja a identitás vagy az eszköz biztonságos kihasználásához. A megoldás nem oldja meg a identitás vagy az eszköz társított előző kockázati eseményekről.
+Egy művelet toolimit vagy hello azon képessége, egy támadó tooexploit egy sérült biztonságú identitás vagy az eszköz kiküszöbölése hello identitás vagy az eszköz tooa biztonságos állapot visszaállítása nélkül. A megoldás nem oldja meg a társított hello identitás vagy az eszköz korábbi kockázati eseményekről.
 
 ### <a name="multi-factor-authentication"></a>Multi-Factor Authentication
-A hitelesítési módszert, amelyhez két vagy több hitelesítési módszert, amelyek magukban foglalhatják valamit a felhasználó rendelkezik, ez a tanúsítvány; valamit a felhasználó ismer, például felhasználóneveket, jelszavakat vagy fázis kifejezések; fizikai attribútumait, például egy ujjlenyomat; és személyes attribútumait, például a személyes aláírás.
+A hitelesítési módszert, amelyhez két vagy több hitelesítési módszert, amelyek magukban foglalhatják valami hello felhasználó rendelkezik-e, ez a tanúsítvány; valami hello felhasználó ismer, például felhasználóneveket, jelszavakat vagy fázis kifejezések; fizikai attribútumait, például egy ujjlenyomat; és személyes attribútumait, például a személyes aláírás.
 
 ### <a name="offline-detection"></a>Kapcsolat nélküli észlelése
-A rendellenességek észlelését és az esemény például a bejelentkezési kísérlet kockázatát értékelése után a tényt, az esemény, amely már elvégzett észlelését.
+hello észlelési rendellenességek észlelését és az értékelés hello kockázatát az esemény például a bejelentkezési kísérlet után hello ténynek megfelelő esemény, amely már elvégzett.
 
 ### <a name="policy-condition"></a>Házirend feltétel
-Egy olyan biztonsági házirendet, amely meghatározza az entitások (csoportok, felhasználók, alkalmazások, eszközök, eszközök állapotai, IP-címtartományok, ügyféltípusokat) egy része szerepel a házirendben, illetve tiltani szeretné a azt.
+A biztonsági házirend hello entitások (csoportok, felhasználók, alkalmazások, eszközök, eszközök állapotai, IP-címtartományok, ügyféltípusokat) hello házirendben, illetve tiltani szeretné a azt meghatározó része.
 
 ### <a name="policy-rule"></a>Házirend szabályai
-Egy olyan biztonsági házirendet, amely leírja a körülmények között, indítsa el a szabályzatot, és a házirend kiváltásakor végrehajtott műveleteket részét.
+egy biztonsági házirendet, amely ismerteti, indítsa el hello házirend, és hello házirend kiváltásakor hello műveleteit hello körülmények hello részét.
 
 ### <a name="prevention"></a>Megelőzés
-Ahhoz, hogy a sérülés visszaélés identitás vagy eszköz a szervezet a művelet gyanús, vagy tudja, hogy utaló jeleket. Egy megelőzési művelet nem biztonságos, az eszköz vagy az identitás, és nem oldja meg az előző kockázati eseményekről.
+A művelet tooprevent kárt toohello munkahely visszaélés keresztül identitás vagy eszköz gyanús vagy sérült toobe tudja. Egy megelőzési művelet hello eszköz vagy identitás nem biztonságos, és nem oldja meg az előző kockázati eseményekről.
 
 ### <a name="privileged-user"></a>Kiemelt (felhasználó)
-Egy olyan felhasználó, a kockázat esemény időpontjában volt egy vagy több erőforrás állandó vagy ideiglenes rendszergazdai engedélyekkel az Azure Active Directoryban, például egy globális rendszergazda számlázási rendszergazda, a szolgáltatás-rendszergazdát, a felhasználó rendszergazda és a jelszókezelő. 
+Egy olyan felhasználó, a kockázat esemény hello idején volt állandó vagy ideiglenes rendszergazdai engedélyek tooone vagy további erőforrás az Azure Active Directoryban, például egy globális rendszergazda számlázási rendszergazda, a szolgáltatás-rendszergazdát, a felhasználó rendszergazda és a jelszó Rendszergazda. 
 
 ### <a name="real-time"></a>Valós idejű
 Tekintse meg a valós idejű észlelése.
 
 ### <a name="real-time-detection"></a>Valós idejű észlelése
-A tegye a rendellenességek észlelését és az esemény például a bejelentkezési kísérlet az esemény előtt kockázatbecslés engedélyezett a folytatáshoz.
+hello tegye a rendellenességek észlelését és az esemény például a bejelentkezési kísérlet hello esemény előtt hello kockázatbecslés tooproceed engedélyezett.
 
 ### <a name="remediated-risk-event"></a>Kijavítva (kockázat esemény)
-Azonosító adatok védelmét, a kockázat esemény a szabványos szervizelési művelet használata az ilyen típusú kockázat esemény lett kijavítva jelző által automatikusan beállított kockázati esemény állapota. Például amikor a felhasználó jelszavát, sok kockázati események, amelyek jelzik, hogy esetleges biztonsági sérülés esetén a korábbi jelszót vannak pótolja őket automatikusan.
+Azonosító adatok védelmét, jelezve, hogy hello kockázat esemény lett kijavítva hello szabványos szervizelési művelet használata az ilyen típusú kockázat esemény által automatikusan beállított kockázati esemény állapota. Például az hello felhasználó jelszavát, amikor sok kockázati események, amelyek jelzik, hogy hello korábbi jelszó biztonsági szempontból sérült rendszer automatikusan javítja.
 
 ### <a name="remediation"></a>Szervizkiszolgáló
-Egy műveletet, biztonságos identitás vagy egy eszköz, amely korábban gyanús vagy megsértik ismert. A javítási művelet visszaállítja a identitás vagy az eszköz biztonságos, és oldja fel a identitás vagy az eszköz társított előző kockázati eseményekről.
+Egy művelet toosecure identitás vagy egy eszköz, amely korábban gyanús vagy toobe ismert biztonsági sérülés esetén. A javítási művelet visszaállítja a hello identitás vagy az eszköz tooa biztonságos állapotát, és oldja fel az előző kockázati események társított hello identitás vagy az eszköz.
 
 ### <a name="resolved-risk-event"></a>Megoldott (kockázat esemény)
-A kockázat eseményállapot Identity Protection felhasználó manuálisan állítsa be, jelezve, hogy a felhasználó elvégez egy megfelelő szervizelési művelet kívül Identity Protection, és a kockázati esemény tekintendő zárva.
+Állítsa be manuálisan egy Identity Protection felhasználónak, jelezve, hogy hello felhasználó elvégez egy megfelelő szervizelési művelet kívül Identity Protection, és adott hello kockázat eseményt kell kezelni a kockázat eseményállapot zárva.
 
 ### <a name="risk-event-status"></a>Kockázati eseményállapot
-A kockázati események tulajdonságának, amely jelzi, hogy aktív-e az esemény, és ha bezárul, akkor lezárásának okát.
+A kockázati események tulajdonságának, amely jelzi, hogy aktív-e hello esemény, és ha bezárul, bezárása, hello okát.
 
 ### <a name="risk-event-type"></a>Kockázati esemény típusa
-A kockázat esemény, az esemény akkor, ha kockázatos okozó anomáliadetektálási típusának kategóriáját.
+Hello kategóriáját eseményt, hello esemény toobe tekinthető kockázatos okozó anomáliadetektálási hello típusú kockázatát.
 
 ### <a name="risk-level-risk-event"></a>Kockázati szint (kockázat esemény)
-Identity Protection felhasználók priorizálhatja azokat a műveleteket a kockázat esemény súlyossága megjelölése (magas, közepes vagy alacsony) tartanak a kockázatok csökkentése a szervezet számára. 
+Hello kockázat esemény toohelp Identity Protection felhasználók hello súlyossága megjelölése (magas, közepes vagy alacsony) rangsorolhatja hello műveletek tooreduce hello kockázati tootheir szervezet tartanak. 
 
 ### <a name="risk-level-sign-in"></a>Kockázati szint (bejelentkezés)
-Jelzése (magas, közepes vagy alacsony) annak a valószínűségét, hogy az egy adott bejelentkezés, valaki más próbál használni, a felhasználó identitását.
+Arra utal, hogy (magas, közepes vagy alacsony) hello valószínűségét, hogy az egy adott bejelentkezés, valaki más próbál toouse hello felhasználói azonosító.
 
 ### <a name="risk-level-user-compromise"></a>Kockázati szint (felhasználói sérült biztonság esetén)
-Jelzése (magas, közepes vagy alacsony) annak a valószínűségét, hogy identitás megtámadták.
+Arra utal, hogy (magas, közepes vagy alacsony) hello valószínűségét, hogy identitás megtámadták.
 
 ### <a name="risk-level-vulnerability"></a>Kockázati szint (biztonsági rés)
-A biztonsági rés priorizálhatja azokat a műveleteket Identity Protection felhasználók súlyossága megjelölése (magas, közepes vagy alacsony) tartanak a kockázatok csökkentése a szervezet számára.
+Hello biztonsági rés toohelp Identity Protection felhasználók hello súlyossága megjelölése (magas, közepes vagy alacsony) rangsorolhatja hello műveletek tooreduce hello kockázati tootheir szervezet tartanak.
 
 ### <a name="secure-identity"></a>Biztonságos (identitás)
-Például a jelszó módosítása vagy a gép, egy biztonsági szempontból sértetlen állapotának visszaállításához a potenciálisan veszélyeztetett identitás különösen szervizelési művelet végrehajtása.
+Például a jelszó módosítása vagy a gép, különösen a potenciálisan veszélyeztetett identitás biztonsági szempontból sértetlen tooan állapot toorestore szervizelési művelet végrehajtása.
 
 ### <a name="security-policy"></a>Biztonsági házirend
-Szabályok és az állapot gyűjteménye. Egy házirend entitások, például a felhasználók, csoportok, alkalmazások, eszközök, eszközök, eszköz állapotok, IP-címtartományok és Auth2.0 ügyféltípusokat alkalmazhatja. A házirend engedélyezve van, amikor a házirendben entitás erőforrás jogkivonatot ad ki lesznek kiértékelve.
+Szabályok és az állapot gyűjteménye. Egy házirend lehet például a felhasználók, csoportok, alkalmazások, eszközök, eszközök, eszköz állapotok, IP-címtartományok és Auth2.0 ügyféltípusokat alkalmazott tooentities. A házirend engedélyezve van, amikor egy entitás hello házirendben erőforrás jogkivonatot ad ki lesznek kiértékelve.
 
 ### <a name="sign-in-v"></a>Jelentkezzen be (v)
-A hitelesítés az identitás, az Azure Active Directoryban.
+tooauthenticate tooan identitás, az Azure Active Directoryban.
 
 ### <a name="sign-in-n"></a>Bejelentkezés (n)
-A folyamat vagy egy Azure Active Directory és az esemény, amely a művelet rögzíti a személyazonossága hitelesítésének művelettel.
+hello folyamat vagy egy Azure Active Directory és a hello esemény, amely a művelet rögzíti a személyazonossága hitelesítésének művelettel.
 
 ### <a name="sign-in-from-anonymous-ip-address"></a>Bejelentkezés a névtelen IP-cím
 A kockázat esemény után egy sikeres bejelentkezés névtelen proxy IP-címként azonosított IP-címről következik be.
 
 ### <a name="sign-in-from-infected-device"></a>Bejelentkezés a fertőzött eszköz
-A kockázat a bejelentkezés egy IP-címet, amelyről ismert, hogy az egy vagy több feltört eszközök, amelyek aktívan próbál kommunikálni egy botnetes kiszolgálóhoz használható származik által elindított esemény.
+A kockázat a bejelentkezés más néven toobe egy vagy több feltört eszközök, amelyek aktívan próbált botot kiszolgálóval toocommunicate által használt IP-cím származik által elindított esemény.
 
 ### <a name="sign-in-from-ip-address-with-suspicious-activity"></a>Jelentkezzen be a következő IP-gyanús tevékenység
 A kockázat az esemény akkor váltódik ki, miután egy sikeres bejelentkezés IP cím nagyszámú sikertelen bejelentkezési kísérlet között több felhasználói fiókot egy rövid időtartamra vonatkozóan.
@@ -143,7 +143,7 @@ A kockázat felhasználó sikeresen jelentkezik be egy új helyről (IP, széles
 Tekintse meg a kockázati szintjét (bejelentkezés)
 
 ### <a name="sign-in-risk-policy"></a>Bejelentkezési kockázat házirendnek
-Feltételes hozzáférési szabályzatot, amely egy adott jelentkezik be a kockázat és azok mérséklési előre meghatározott feltételt és a szabályok alapján alkalmazza.
+Feltételes hozzáférési szabályzatot, amely hello kockázati tooa adott bejelentkezés és azok mérséklési előre meghatározott feltételt és a szabályok alapján alkalmazza.
 
 ### <a name="user-compromise-risk"></a>Felhasználó biztonsági sérülés kockázata
 Tekintse meg a kockázati szintjét (felhasználói sérült biztonság esetén)
@@ -152,13 +152,13 @@ Tekintse meg a kockázati szintjét (felhasználói sérült biztonság esetén)
 Tekintse meg a kockázati szintjét (felhasználói sérült biztonság esetén).
 
 ### <a name="user-risk-policy"></a>Felhasználói kockázat házirendnek
-Feltételes hozzáférési szabályzatot, amely úgy ítéli meg, a bejelentkezés, és azok mérséklési előre meghatározott feltételt és a szabályok alapján alkalmazza.
+Feltételes hozzáférési szabályzatot, amely hello bejelentkezés úgy ítéli meg, és azok mérséklési előre meghatározott feltételt és a szabályok alapján alkalmazza.
 
 ### <a name="users-flagged-for-risk"></a>Kockázatosként megjelölt felhasználók
 Kockázati eseményekről, amelyek aktív vagy szervizelt rendelkező felhasználók
 
 ### <a name="vulnerability"></a>A biztonsági rés
-Egy konfigurációs vagy az Azure Active Directoryban, így ki vannak téve a biztonsági rések a könyvtár feltétel vagy fenyegetéseket.
+Egy konfigurációs vagy az Azure Active Directoryban, így hello directory ki vannak téve tooexploits vagy fenyegetések feltétel.
 
 ## <a name="see-also"></a>Lásd még:
 * [Az Azure Active Directory azonosító adatok védelmét](active-directory-identityprotection.md)

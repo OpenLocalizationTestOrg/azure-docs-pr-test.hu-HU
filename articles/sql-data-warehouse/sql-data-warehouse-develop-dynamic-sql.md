@@ -1,5 +1,5 @@
 ---
-title: Az SQL Data Warehouse dinamikus SQL |} Microsoft Docs
+title: az SQL Data Warehouse SQL aaaDynamic |} Microsoft Docs
 description: "Tippek az Azure SQL Data Warehouse adattárházzal történő, megoldások dinamikus SQL használatát."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 29228676373aee8dbc7b1b2a7d92ffc978333804
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d66eecb37621510f657d1ec9a2a935daaa16052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dynamic-sql-in-sql-data-warehouse"></a>Az SQL Data Warehouse dinamikus SQL
-Az SQL Data Warehouse alkalmazáskód fejlesztése során szükség lehet dinamikus sql segítségével rugalmas, általános és moduláris megoldásokat. SQL Data Warehouse jelenleg nem támogatja a blob adattípusokat. Ez a karakterlánc mérete korlátozhatja, blob típusok varchar(max) és a típus: nvarchar(max) típusok közé. Ha ezek a típusok már használta az alkalmazás kódjában, nagyon nagy karakterláncok felépítése közben, akkor a kód felosztása adattömböket, és a EXEC utasítás használata.
+Az SQL Data Warehouse, akkor előfordulhat, hogy alkalmazáskód fejlesztésekor kell toouse dinamikus sql toohelp kínálja rugalmas, általános és moduláris. SQL Data Warehouse jelenleg nem támogatja a blob adattípusokat. Ez lehet, hogy a karakterláncok hello méretének korlátozása a blob típusok varchar(max) és a típus: nvarchar(max) típusok közé. Ha ezek a típusok már használta az alkalmazás kódjában, nagyon nagy karakterláncok fejlesztéskor, szüksége lesz toobreak hello kód adattömbök és use hello EXEC utasítás helyette.
 
 Egy egyszerű példa:
 
@@ -34,10 +34,10 @@ DECLARE @sql_fragment1 VARCHAR(8000)=' SELECT name '
 EXEC( @sql_fragment1 + @sql_fragment2 + @sql_fragment3);
 ```
 
-Ha a karakterlánc rövid használhatja [sp_executesql] [ sp_executesql] normál.
+Ha hello karakterlánc rövid használhatja [sp_executesql] [ sp_executesql] normál.
 
 > [!NOTE]
-> Az utasítás dinamikus SQL végrehajtásra továbbra is minden TSQL-ellenőrzési szabályok érvényesek lesznek.
+> Az utasítás dinamikus SQL végrehajtásra is tulajdonos tooall TSQL ellenőrzési szabályok.
 > 
 > 
 

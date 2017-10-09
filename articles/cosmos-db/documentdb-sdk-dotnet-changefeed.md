@@ -1,6 +1,6 @@
 ---
-title: "Az Azure DocumentDB .NET SDK adatcsatorna processzor & erőforrások módosítása |} Microsoft Docs"
-description: "Tudnivalók a módosítás hírcsatorna processzor API és SDK kiadási dátum, használatból való kivonást dátumok és a DocumentDB .NET módosítás adatcsatorna-processzor SDK verziói között végrehajtott módosításokat."
+title: "aaaAzure DocumentDB .NET módosítás hírcsatorna processzor SDK & erőforrások |} Microsoft Docs"
+description: "Tudnivalók az hello módosítás hírcsatorna processzor API és az SDK, beleértve a kiadási dátum, a használatból való kivonást dátum és a DocumentDB .NET módosítás hírcsatorna processzor SDK hello verziói között végrehajtott módosítások."
 services: cosmos-db
 documentationcenter: .net
 author: ealsur
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: maquaran
-ms.openlocfilehash: 40c796bc5af1220c46950a6fac062ffdd243e59f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7c001cc77f41c01445fb53328e9d99fd3d312c58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="documentdb-net-change-feed-processor-sdk-download-and-release-notes"></a>A DocumentDB .NET módosítás adatcsatorna processzor SDK: Töltse le és a kibocsátási megjegyzések
 > [!div class="op_single_selector"]
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/18/2017
 
 <tr><td>**API-JÁNAK dokumentációja**</td><td>[Adatcsatorna processzor könyvtár API-referenciadokumentáció módosítása](/dotnet/api/microsoft.azure.documents.changefeedprocessor?view=azure-dotnet)</td></tr>
 
-<tr><td>**Első lépések**</td><td>[A DocumentDB módosítás hírcsatorna processzor .NET SDK használatába](change-feed.md)</td></tr>
+<tr><td>**Első lépések**</td><td>[Ismerkedés a DocumentDB módosítás hírcsatorna processzor .NET SDK hello](change-feed.md)</td></tr>
 
 <tr><td>**Aktuális támogatott keretrendszer**</td><td>[Microsoft .NET-keretrendszer 4.5](https://www.microsoft.com/download/details.aspx?id=30653)</td></tr>
 </table></br>
@@ -48,7 +48,7 @@ ms.lasthandoff: 08/18/2017
 ## <a name="release-notes"></a>Kibocsátási megjegyzések
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
-* A módosítás hírcsatorna feldolgozandó fennmaradó munka becsléséhez metódus hozzá.
+* A metódus tooobtain módosítás hírcsatorna hello feldolgozása fennmaradó munkahelyi toobe becsült hozzá.
 * Kompatibilis [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 1.13.2 verzió vagy újabb verzió.
 
 ### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
@@ -56,11 +56,11 @@ ms.lasthandoff: 08/18/2017
 * Kompatibilis [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) verziók 1.14.1 vagy régebbi verzió.
 
 ## <a name="release--retirement-dates"></a>Kiadás & használatból való kivonást dátumok
-Microsoft legalább értesítést küldenek **12 hónapon keresztül** SDK eltávolítása érdekében vagy újabb támogatott verzióra való áttérés előtt.
+Microsoft legalább értesítést küldenek **12 hónapon keresztül** előre kivonása az SDK-t rendelés toosmooth hello átmenet tooa vagy újabb támogatott verzióra.
 
-Új szolgáltatásait és funkcióit és optimalizálás csak hozzá az aktuális SDK, így javasoljuk, hogy mindig a legújabb SDK verzióra frissít legkorábban lehető. 
+Új szolgáltatásait és funkcióit és optimalizálás csak hozzáadott toohello aktuális SDK-t, így javasolt, hogy Ön mindig frissítési toohello SDK legújabb lehető leghamarabb. 
 
-A Cosmos DB kivont SDK használatával fog kell elutasította a szolgáltatás.
+A kérelem tooCosmos DB kivont SDK használatával a program elutasítja hello szolgáltatás.
 
 <br/>
 
@@ -74,5 +74,5 @@ A Cosmos DB kivont SDK használatával fog kell elutasította a szolgáltatás.
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Lásd még:
-A Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
+toolearn Cosmos DB kapcsolatos további információkért lásd: [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) szolgáltatás lapján. 
 

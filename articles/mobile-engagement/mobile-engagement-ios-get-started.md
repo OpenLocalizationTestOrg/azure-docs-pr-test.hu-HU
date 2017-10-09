@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure Mobile Engagement Objective C nyelven írt iOS-alkalmazásokkal való használatával | Microsoft Docs"
-description: "Ismerje meg, hogyan használható az Azure Mobile Engagement az iOS-alkalmazásokhoz kapcsolódó elemzések és leküldéses értesítések tekintetében."
+title: "aaaGet elindítva az Azure Mobile Engagement Objective C nyelven írt IOS |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Azure Mobile Engagement az elemzések és leküldéses értesítéseket az iOS-alkalmazásokhoz."
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,60 +14,60 @@ ms.devlang: objective-c
 ms.topic: hero-article
 ms.date: 07/17/2017
 ms.author: piyushjo
-ms.openlocfilehash: 1b87a2ebb35b31ee3d3139ecead6267e62eb1033
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 51a5013f23d2d04a7b9b30c83b47017898b2bb00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-ios-apps-in-objective-c"></a>Ismerkedés az Azure Mobile Engagement Objective C nyelven írt iOS-alkalmazásokkal való használatával
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-Ebben a témakörben elsajátíthatja, hogy miként használható az Azure Mobile Engagement az alkalmazás használatának megértéséhez, valamint leküldéses értesítések iOS-alkalmazásba történő küldéséhez a szegmentált felhasználók számára.
+Ez a témakör bemutatja, hogyan toouse Azure Mobile Engagement toounderstand az alkalmazás használatának és a küldési leküldéses értesítések toosegmented felhasználók tooan iOS-alkalmazás.
 Ebben az oktatóanyagban létrehoz egy üres iOS-alkalmazást, amely alapszintű adatokat gyűjt, és leküldéses értesítéseket fogad az Apple leküldéses értesítési rendszerének (APNS) használatával.
 
-Az oktatóanyaghoz az alábbiakra lesz szükség:
+Ez az oktatóanyag hello következő szükséges:
 
 * XCode 8, amely a MAC App Store áruházából telepíthető
-* a [Mobile Engagement iOS SDK]
+* Hello [a Mobile Engagement iOS SDK]
 
 Ennek az oktatóanyagnak az elvégzése előfeltétel minden további, iOS-alkalmazásokkal kapcsolatos Mobile Engagement-oktatóanyag elvégzéséhez.
 
 > [!NOTE]
-> Az oktatóanyag elvégzéséhez egy aktív Azure-fiókra lesz szüksége. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-ios-get-started).
+> toocomplete ebben az oktatóanyagban rendelkeznie kell egy aktív Azure-fiókra. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-ios-get-started).
 >
 >
 
 ## <a id="setup-azme"></a>A Mobile Engagement beállítása az iOS-alkalmazáshoz
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-Ez az oktatóanyag egy „alapszintű integrációt” mutat be, ami minimálisan szükséges az adatok gyűjtéséhez és leküldéses értesítés küldéséhez. A teljes integrációs dokumentáció itt található: [Mobile Engagement iOS SDK-integráció](mobile-engagement-ios-sdk-overview.md)
+## <a id="connecting-app"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
+Ez az oktatóanyag egy "alapszintű integrációt" mutat, amely minimális hello beállítása szükséges toocollect adatokat, és leküldéses értesítés küldéséhez. hello teljes integrációs dokumentáció itt található a hello [a Mobile Engagement iOS SDK-integráció](mobile-engagement-ios-sdk-overview.md)
 
-Létre fogunk hozni egy alapszintű alkalmazást az XCode segítségével az integráció bemutatásához.
+Létre fogunk hozni egy alapszintű alkalmazást az XCode toodemonstrate hello integráció.
 
 ### <a name="create-a-new-ios-project"></a>Új iOS-projekt létrehozása
 [!INCLUDE [Create a new iOS Project](../../includes/mobile-engagement-create-new-ios-app.md)]
 
-### <a name="connect-your-app-to-the-mobile-engagement-backend"></a>Az alkalmazás csatlakoztatása a Mobile Engagement háttérrendszeréhez
-1. Töltse le a [Mobile Engagement iOS SDK].
-2. Bontsa ki a .tar.gz fájlt a számítógép egyik mappájába.
-3. Kattintson jobb gombbal a projektre, majd válassza az **Add files to** (Fájlok hozzáadása ehhez:) elemet.
+### <a name="connect-your-app-toohello-mobile-engagement-backend"></a>Csatlakozás az alkalmazás toohello Mobile Engagement háttérrendszeréhez
+1. Töltse le a hello [a Mobile Engagement iOS SDK].
+2. Bontsa ki a hello. tar.gz fájlt a számítógép tooa mappájába.
+3. Kattintson a jobb gombbal a hello projektet, majd válassza ki **fájlok hozzáadása**.
 
     ![][1]
-4. Lépjen abba a mappába, ahová kibontotta az SDK-t, válassza ki az `EngagementSDK` mappát, kattintson a bal alsó sarokban található **Beállítások** elemre, és ellenőrizze, hogy az **Elemek másolása, ha szükséges** jelölőnégyzet és a célhoz tartozó jelölőnégyzet be van-e jelölve, majd kattintson az **OK** gombra.
+4. Keresse meg a toohello mappát, amelyikbe kibontotta hello SDK, válassza ki a hello `EngagementSDK` mappát, kattintson a **beállítások** a hello bal alsó sarokban található, és győződjön meg arról, hogy hello jelölőnégyzet **elemek másolása, szükség esetén** és hello a cél tartozó jelölőnégyzet be van jelölve, majd nyomja le az **OK**.
 
     ![][2]
-5. Nyissa meg a **Build Phases** (Összeállítási fázisok) lapot, majd a **Link Binary With Libraries** (Bináris összekapcsolása könyvtárakkal) menüben adja hozzá a keretrendszereket az alábbiakban láthatók szerint:
+5. Nyitott hello **Build fázisok** fülre, és a hello **bináris rendelkező Kódtárakon** menü hello keretrendszerek hozzáadása a lent látható módon:
 
     ![][3]
-6. Lépjen vissza az Azure Portalra az alkalmazás **Connection Info** (Kapcsolati adatok) lapjáról, és másolja a kapcsolati karakterláncot.
+6. Lépjen vissza az alkalmazás Azure-portálon toohello **Kapcsolatinformáció** lapjáról, és másolja hello kapcsolati karakterláncot.
 
     ![][4]
-7. Adja hozzá a következő kódsort az **AppDelegate.m** fájlhoz.
+7. Adja hozzá a következő kódsort hello a **AppDelegate.m** fájlt.
 
         #import "EngagementAgent.h"
-8. Illessze be a kapcsolati karakterláncot a `didFinishLaunchingWithOptions` delegáltba.
+8. Most illessze be a hello kapcsolati karakterláncot a hello `didFinishLaunchingWithOptions` delegálni.
 
         - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         {
@@ -75,15 +75,15 @@ Létre fogunk hozni egy alapszintű alkalmazást az XCode segítségével az int
               [EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];
               [...]
         }
-9. `setTestLogEnabled` egy választható utasítás, amely engedélyezi az SDK-naplókat a problémák azonosításához.
+9. `setTestLogEnabled`van egy választható utasítás, amely lehetővé teszi, hogy az SDK-naplókat meg tooidentify problémákat.
 
 ## <a id="monitor"></a>Valós idejű figyelés engedélyezése
-Az adatok küldésének megkezdéséhez és annak biztosításához, hogy a felhasználók aktívak, legalább egy képernyőt (tevékenységet) el kell küldenie a Mobile Engagement háttérrendszere számára.
+Rendelés toostart adatküldés és annak biztosítására, hogy hello felhasználók aktív, a el kell küldenie a Mobile Engagement háttérrendszeréhez legalább egy képernyőt (tevékenységet) toohello.
 
-1. Nyissa meg a **ViewController.h** fájlt, és importálja az **EngagementViewController.h** fájlt:
+1. Nyissa meg hello **ViewController.h** fájlt, és importálja **EngagementViewController.h**:
 
     `#import "EngagementViewController.h"`
-2. Cserélje le a **ViewController** felületének főosztályát az `EngagementViewController` fájllal:
+2. Cserélje le a hello hello szülőosztály **ViewController** felületének főosztályát `EngagementViewController`:
 
     `@interface ViewController : EngagementViewController`
 
@@ -91,25 +91,25 @@ Az adatok küldésének megkezdéséhez és annak biztosításához, hogy a felh
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>Leküldéses értesítések és alkalmazáson belüli üzenetek engedélyezése
-A Mobile Engagement lehetővé teszi a felhasználókkal folytatott interakciót és a felhasználók elérését a kampányok részeként megjelenő leküldéses értesítésekkel és alkalmazáson belüli üzenetekkel. Ez a modul REACH (Elérés) néven érhető el a Mobile Engagement portálon.
-Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
+Mobile Engagement lehetővé teszi a felhasználókkal toointeract és elérése révén a leküldéses értesítések és alkalmazáson belüli üzenetekkel hello kampányok. Ez a modul REACH neve hello a Mobile Engagement portálon.
+hello alábbi szakaszok állítják be az alkalmazás tooreceive őket.
 
-### <a name="enable-your-app-to-receive-silent-push-notifications"></a>Csendes leküldéses értesítések fogadásának engedélyezése az alkalmazásban
+### <a name="enable-your-app-tooreceive-silent-push-notifications"></a>Az alkalmazás tooreceive csendes leküldéses értesítések engedélyezése
 [!INCLUDE [mobile-engagement-ios-silent-push](../../includes/mobile-engagement-ios-silent-push.md)]
 
-### <a name="add-the-reach-library-to-your-project"></a>A Reach könyvtár hozzáadása a projekthez
+### <a name="add-hello-reach-library-tooyour-project"></a>Hello Reach könyvtár tooyour projekt hozzáadása
 1. Kattintson jobb gombbal a projektre.
 2. Válassza az **Add file to** (Fájl hozzáadása ehhez:) elemet.
-3. Lépjen abba a mappába, amelyben kibontotta az SDK-t.
-4. Jelölje ki az `EngagementReach` mappát.
+3. Keresse meg a toohello mappát, amelyikbe kibontotta hello SDK.
+4. Jelölje be hello `EngagementReach` mappát.
 5. Kattintson az **Add** (Hozzáadás) parancsra.
 
 ### <a name="modify-your-application-delegate"></a>Az alkalmazás delegáltjának módosítása
-1. Az **AppDeletegate.m** fájlban importálja az Engagement Reach modulját.
+1. Vissza a **AppDeletegate.m** fájlt, importálja hello Engagement Reach modulját.
 
         #import "AEReachModule.h"
         #import <UserNotifications/UserNotifications.h>
-2. Az `application:didFinishLaunchingWithOptions` módszerben hozzon létre egy Reach modult, és adja át azt az Engagement meglévő inicializációs sorának:
+2. Belső hello `application:didFinishLaunchingWithOptions` módszer, hozzon létre egy Reach modult, és adja át tooyour Engagement meglévő inicializációs sorának:
 
         - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
             AEReachModule * reach = [AEReachModule moduleWithNotificationIcon:[UIImage imageNamed:@"icon.png"]];
@@ -118,8 +118,8 @@ Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
             return YES;
         }
 
-### <a name="enable-your-app-to-receive-apns-push-notifications"></a>APNS leküldéses értesítések fogadásának engedélyezése az alkalmazásban
-1. Adja a következő sort az `application:didFinishLaunchingWithOptions` módszerhez:
+### <a name="enable-your-app-tooreceive-apns-push-notifications"></a>Az alkalmazás tooreceive APNS leküldéses értesítések engedélyezése
+1. Adja hozzá a következő sor toohello hello `application:didFinishLaunchingWithOptions` módszert:
 
         if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
         {
@@ -136,20 +136,20 @@ Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
         {
             [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
         }
-2. Adja hozzá a `application:didRegisterForRemoteNotificationsWithDeviceToken` módszert az alábbiak szerint:
+2. Adja hozzá a hello `application:didRegisterForRemoteNotificationsWithDeviceToken` módszert az alábbiak szerint:
 
         - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         {
              [[EngagementAgent shared] registerDeviceToken:deviceToken];
             NSLog(@"Registered Token: %@", deviceToken);
         }
-3. Adja hozzá a `didFailToRegisterForRemoteNotificationsWithError` módszert az alábbiak szerint:
+3. Adja hozzá a hello `didFailToRegisterForRemoteNotificationsWithError` módszert az alábbiak szerint:
 
         - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
         {
-           NSLog(@"Failed to get token, error: %@", error);
+           NSLog(@"Failed tooget token, error: %@", error);
         }
-4. Adja hozzá a `didReceiveRemoteNotification:fetchCompletionHandler` módszert az alábbiak szerint:
+4. Adja hozzá a hello `didReceiveRemoteNotification:fetchCompletionHandler` módszert az alábbiak szerint:
 
         - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
         {
@@ -159,7 +159,7 @@ Az alábbi szakaszok állítják be az alkalmazást a fogadásukra.
 [!INCLUDE [mobile-engagement-ios-send-push-push](../../includes/mobile-engagement-ios-send-push.md)]
 
 <!-- URLs. -->
-[Mobile Engagement iOS SDK]: http://aka.ms/qk2rnj
+[a Mobile Engagement iOS SDK]: http://aka.ms/qk2rnj
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-ios-get-started/xcode-add-files.png

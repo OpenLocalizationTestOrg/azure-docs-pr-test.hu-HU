@@ -1,6 +1,6 @@
 ---
-title: "Adja hozzá a Twilio-összekötő az Azure Logic apps |} Microsoft Docs"
-description: "A REST API-paraméterekkel rendelkező Twilio-összekötő áttekintése"
+title: "aaaAdd hello Twilio-összekötő az Azure Logic Apps alkalmazásait |} Microsoft Docs"
+description: "Hello Twilio-összekötő REST API-paraméterekkel rendelkező áttekintése"
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/19/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: a790ac51b0fea7e3fa379d20e0e094e7ce0d7696
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2b487f34bc76bee24b4237a71ee767d0d22ff7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-twilio-connector"></a>A Twilio-összekötő az első lépései
-A globális SMS, MMS és IP-üzeneteket küldjön és fogadjon Twilio csatlakozni. A Twilio a következőket teheti:
+# <a name="get-started-with-hello-twilio-connector"></a>Hello Twilio-összekötő az első lépései
+Csatlakozás tooTwilio toosend, és globális SMS, MMS és IP-üzeneteket fogadni. A Twilio a következőket teheti:
 
-* Az üzleti folyamat Twilio származó adatok alapján történő létrehozása. 
-* Egy üzenet, a lista üzenetek és a további műveleteket használni. Ezeket a műveleteket válaszol, és végezze el a kimeneti más műveletek érhető el. Például egy új Twilio-üzenetet kap, ha akkor igénybe ezt az üzenetet, és a Service Bus munkafolyamat használatával. 
+* Hozhat létre. az üzleti folyamat kap Twilio hello adatok alapján. 
+* Egy üzenet, a lista üzenetek és a további műveleteket használni. Ezeket a műveleteket válaszol, és végezze el hello kimeneti más műveletek érhető el. Például egy új Twilio-üzenetet kap, ha akkor igénybe ezt az üzenetet, és a Service Bus munkafolyamat használatával. 
 
 Hozzon létre egy logic app; első lépései Lásd: [logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-twilio"></a>Kapcsolatot létesíthet Twilio
-Ezt az összekötőt a logic apps hozzáadásakor adja meg a következő Twilio-értékeket:
+## <a name="create-a-connection-tootwilio"></a>Egy kapcsolat tooTwilio létrehozása
+Az összekötő tooyour a logic apps hozzáadásakor adja meg a Twilio-értékeket a következő hello:
 
 | Tulajdonság | Szükséges | Leírás |
 | --- | --- | --- |
 | Futtatófiók-Azonosítóvá |Igen |Írja be a Twilio-fiók Azonosítóját |
 | Hozzáférési jogkivonat |Igen |Adja meg a Twilio-hozzáférési jogkivonat |
 
-> [!INCLUDE [Steps to create a connection to Twilio](../../includes/connectors-create-api-twilio.md)]
+> [!INCLUDE [Steps toocreate a connection tooTwilio](../../includes/connectors-create-api-twilio.md)]
 > 
 > 
 
@@ -45,7 +45,7 @@ Ha a Twilio-hozzáférési jogkivonat nem rendelkezik, tekintse meg a [felhaszn�
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/twilio/).
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/twilio/).
 
 ## <a name="more-connectors"></a>További összekötők
-Lépjen vissza a [API-k lista](apis-list.md).
+Lépjen vissza toohello [API-k lista](apis-list.md).

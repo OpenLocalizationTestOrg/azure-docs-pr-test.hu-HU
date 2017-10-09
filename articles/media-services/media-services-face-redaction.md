@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Media Analytics lapok kivonása |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan kivonása az Azure media analytics lapokat."
+title: az Azure Media Analytics aaaRedact lapok |} Microsoft Docs
+description: "Ez a témakör bemutatja, hogyan tooredact előtt álló az Azure médiaelemzés használatával."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;
-ms.openlocfilehash: 747f3ae1a7484515083c590942de3da22568cd39
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f5688a8c6374151c526a9c702b904d8c3e46164
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics"></a>Az Azure Media Analytics lapok kivonása
 ## <a name="overview"></a>Áttekintés
-**Az Azure Media Redactor** van egy [Azure Médiaelemzés használatával](media-services-analytics-overview.md) media processzor (MP), amely a felhőben méretezhető arcfelismerési kivonási nyújt. Arcfelismerési kivonási lehetővé teszi, hogy a videó ahhoz, hogy a kijelölt személyeket felületei életlenítés módosíthatja. Érdemes lehet nyilvános biztonsági és hírek media helyzetekben használhatja a tapasztalt kivonási szolgáltatás. Több lapokat tartalmazó felvételei, néhány perc múlva a kivonás a manuálisan órát is igénybe vehet, de ezzel a szolgáltatással a tapasztalt kivonási folyamat néhány egyszerű lépésben szükséges. További információkért lásd: [ez](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
+**Az Azure Media Redactor** van egy [Azure Médiaelemzés használatával](media-services-analytics-overview.md) media processzor (MP), amely méretezhető arcfelismerési kivonási hello felhőben nyújt. Arcfelismerési kivonási lehetővé teszi, hogy Ön toomodify a rendelés tooblur felületei kijelölt személyek a videó. Érdemes lehet toouse hello arcfelismerési kivonási szolgáltatás nyilvános biztonsági és hírek media forgatókönyvekben. Több lapokat tartalmazó felvételei, néhány percet is igénybe vehet óra tooredact manuálisan, de a szolgáltatás hello arcfelismerési a kivonási folyamat néhány egyszerű lépésben szükséges. További információkért lásd: [ez](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
 
-Ez a témakör kapcsolatos részleteket nyújt **Azure Media Redactor** és a .NET-keretrendszerhez készült Media Services SDK-val való használatát ismerteti.
+Ez a témakör kapcsolatos részleteket nyújt **Azure Media Redactor** és bemutatja, hogyan toouse a Media Services SDK for .NET.
 
-A **Azure Media Redactor** felügyeleti csomag jelenleg előzetes verzió. Érhető el az összes Azure-régiók, valamint Amerikai Egyesült államokbeli kormányzati és Kína adatközpontokban. Ez az előnézet jelenleg díjmentesen. 
+Hello **Azure Media Redactor** felügyeleti csomag jelenleg előzetes verzió. Érhető el az összes Azure-régiók, valamint Amerikai Egyesült államokbeli kormányzati és Kína adatközpontokban. Ez az előnézet jelenleg díjmentesen. 
 
 ## <a name="face-redaction-modes"></a>Arcfelismerési kivonási módok
-Arcfelismerést kivonási működik található videó lapok észlelésére és nyomon követni a tapasztalt objektum mindkét előre és hátra időben, ugyanabból is homályos, a más szögek is. Automatizált kivonási folyamata bonyolult, és nem nem mindig által előállított 100 %-a kívánt kimeneti, ezért Media Analytics tartalmazza a több módon módosítani a végső kimenetet.
+Arcfelismerést kivonási works található videó lapok észlelésére, és nyomon követni a hello arcfelismerési objektumot is előre és hátra időben, hogy hello azonos egyéni is lehet homályos más szögek, valamint a. hello automatizált kivonási folyamat nagyon összetett és nem mindig készít 100 %-a kívánt kimeneti, emiatt Media Analytics tartalmazza a több módon toomodify hello végső kimenetet.
 
-Mellett a teljesen automatikus üzemmódban van, amely lehetővé teszi, hogy a kijelölés/inaktiválása-selection talált lapok keresztül azonosítók listáját a két-fázis munkafolyamat. Ellenőrizze a keret módosításának a felügyeleti csomag egy tetszőleges is, használja a metaadatfájl JSON formátumban. Ez a munkafolyamat oszlik **elemzés** és **Redact** módot. A két mód, amely mindkét feladat fut egy feladat; egyetlen menetben kombinálva Ebben a módban nevezik **kombinált**.
+Továbbá tooa teljesen automatikus üzemmódban van; nincs lehetővé teszi, hogy hello kijelölés/inaktiválása-selection talált lapok keresztül azonosítók listáját, amelyek a két-fázis munkafolyamat. Toomake keret módosításának hello felügyeleti csomag egy tetszőleges ugyancsak a metaadatfájl JSON formátumban. Ez a munkafolyamat oszlik **elemzés** és **Redact** módot. Kombinálhatja a két mód hello egyetlen menetben, amely mindkét feladat fut egy feladat; Ebben a módban nevezik **kombinált**.
 
 ### <a name="combined-mode"></a>Kombinált mód
 Ez a művelet létrehoz egy kivont mp4 automatikusan szükséges bemeneti manuális nélkül.
@@ -49,14 +49,14 @@ Ez a művelet létrehoz egy kivont mp4 automatikusan szükséges bemeneti manuá
 [Ez a videó megtekintése](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc6608001-e5da-429b-9ec8-d69d8f3bfc79%2Fdance_redacted.mp4)
 
 ### <a name="analyze-mode"></a>Mód elemzése
-A **elemzése** fázis a két-fázis munkafolyamat videó bemenetből fogad adatokat, és arcfelismerési helyek JSON fájlt hoz létre, és jpg lemezképek az egyes észlelt arcfelismerési.
+Hello **elemzése** hello két-fázis munkafolyamat menete videó bemenetből fogad adatokat, és arcfelismerési helyek JSON fájlt hoz létre, és jpg lemezképek az egyes észlelt arcfelismerési.
 
 | Fázis | Fájlnév | Megjegyzések |
 | --- | --- | --- |
 | Bemeneti eszköz |foo.bar |Videó WMV, MPV vagy MP4 formátumban |
 | Bemeneti config |Konfigurációs feladat az adott néven beállítás |{"version": "1.0', a"beállítások": {"mode":"elemezni"}} |
-| Kimeneti eszköz |foo_annotations.JSON |A jegyzet adatok arcfelismerési helyek JSON formátumban. Ez a felhasználó módosítása a mezőkbe határolókeret fellazítja szerkeszthető. Lásd az alábbi minta. |
-| Kimeneti eszköz |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |Az egyes levágott jpg arc, ahol a számot jelzi a felületen címkeazonosító észlelt |
+| Kimeneti eszköz |foo_annotations.JSON |A jegyzet adatok arcfelismerési helyek JSON formátumban. Ez módosítható használatával hello felhasználói toomodify hello fellazítja határolókeret jelölőnégyzetéből. Lásd az alábbi minta. |
+| Kimeneti eszköz |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |Az egyes levágott jpg arc, ahol hello számot jelzi hello címkeazonosító hello felületen észlelt |
 
 #### <a name="output-example"></a>Példa a kimenetre:
 
@@ -108,22 +108,22 @@ A **elemzése** fázis a két-fázis munkafolyamat videó bemenetből fogad adat
     … truncated
 
 ### <a name="redact-mode"></a>Mód kivonása
-A második fázis a munkafolyamat bemenetei, egyetlen eszköz kombinálni kell nagyobb számú vesz igénybe.
+második fázisában hello hello munkafolyamat egyetlen eszköz kombinálni kell felhasználandó nagyobb számú vesz igénybe.
 
-Ez magában foglalja a azonosítók lehetőséget, az eredeti video-, és a jegyzetek JSON listáját. Ebben a módban a jegyzetek a segítségével a bemeneti videóhoz a fellazítja.
+Ez magában foglalja a azonosítók tooblur, hello eredeti videó és hello jegyzetek JSON listáját. Ebben a módban a hello jegyzetek tooapply fellazítja hello bemeneti videóhoz használja.
 
-Az elemzési fázis kimenete nem tartalmazza az eredeti videó. A videó kell a Redact mód tevékenység bemeneti objektumba feltölthetők és az elsődleges fájl választotta.
+hello hello elemzési fázis kimenete nem tartalmaz hello eredeti videó. videó hello kell toobe hello Redact mód feladat hello bemeneti objektumba feltöltött és hello elsődleges fájl választotta.
 
 | Fázis | Fájlnév | Megjegyzések |
 | --- | --- | --- |
 | Bemeneti eszköz |foo.bar |Videó WMV, MPV vagy MP4 formátumban. Ugyanaz, mint 1. lépés videó. |
 | Bemeneti eszköz |foo_annotations.JSON |első lépése, opcionális módosításokkal jegyzetek metaadatfájl. |
-| Bemeneti eszköz |foo_IDList.txt (nem kötelező) |Választható új sor tagolt arcfelismerési kivonás azonosítók listája. Ha üresen hagyja a mezőt, ez minden életleníti. |
+| Bemeneti eszköz |foo_IDList.txt (nem kötelező) |Választható Sortöréssel elválasztott arcfelismerési azonosítók tooredact. Ha üresen hagyja a mezőt, ez minden életleníti. |
 | Bemeneti config |Konfigurációs feladat az adott néven beállítás |{"version": "1.0', a"beállítások": {"mode":"Kihagyás"}} |
 | Kimeneti eszköz |foo_redacted.mp4 |Videó fellazítja alkalmazott jegyzetek alapján |
 
 #### <a name="example-output"></a>Példa a kimenetre
-Ez a kiválasztott egy azonosítójú egy IDList kimenetét.
+Ez a kiválasztott egy azonosítójú egy IDList hello kimenete.
 
 [Ez a videó megtekintése](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
@@ -135,9 +135,9 @@ Példa foo_IDList.txt
 
 ## <a name="blur-types"></a>Életlenítés típusok
 
-A a **kombinált** vagy **Redact** mód közül választhat a bemeneti JSON-konfigurációs keresztül 5 különböző életlenítés módot: **alacsony**, **Med**, **magas**, **Debug**, és **fekete**. Alapértelmezés szerint **Med** szolgál.
+A hello **kombinált** vagy **Redact** módban keresztül hello JSON bemeneti konfigurációs választhat 5 különböző életlenítés módot: **alacsony**, **Med**, **Magas**, **Debug**, és **fekete**. Alapértelmezés szerint **Med** szolgál.
 
-A életlenítés típusú mintában találja.
+Hello mintái az alábbi típusok életlenítés találja.
 
 ### <a name="example-json"></a>JSON-NÁ. példa:
 
@@ -163,25 +163,25 @@ A életlenítés típusú mintában találja.
 
 ![Fekete](./media/media-services-face-redaction/blur5.png)
 
-## <a name="elements-of-the-output-json-file"></a>A kimeneti JSON-fájl elemeinek
+## <a name="elements-of-hello-output-json-file"></a>Hello kimeneti JSON-fájl elemeinek
 
-A kivonási MP magas pontosság arcfelismerési hely észleli és nyomon követése, mely legfeljebb 64 emberi lapok észlelheti a képkockák. Elülső lapok nyújtanak a legjobb eredmények elérése érdekében, közben ügyféloldali lapok és a kis (legfeljebb 24 x 24 képpont) lapok kihívást.
+hello kivonási felügyeleti csomag biztosít magas pontosság arcfelismerési hely felderítését és a nyomkövetési, amely észlelni tudja a too64 emberi lapok videó keret mentése. Elülső lapok hello legjobb eredmények elérése érdekében ügyféloldali lapokat és kis lapok közben adja meg (kevesebb mint vagy egyenlő too24x24 képpont) kihívást is.
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
 ## <a name="net-sample-code"></a>.NET mintakód
 
-A következő program bemutatja hogyan:
+hello következő program bemutatja hogyan:
 
-1. Hozzon létre egy eszközt, és adathordozó-fájl feltöltése az objektumba.
-2. Hozzon létre egy feladatot a következő json-készletet tartalmazó konfigurációs fájl alapján arcfelismerési kivonási feladatokkal. 
+1. Hozzon létre egy eszközt, és töltse fel a médiafájl hello objektumba.
+2. Hozzon létre egy feladatot a json-készlet a következő hello tartalmazó konfigurációs fájl alapján arcfelismerési kivonási feladatokkal. 
    
         {'version':'1.0', 'options': {'mode':'combined'}}
-3. A kimeneti JSON-fájlok letöltésére. 
+3. Hello kimeneti JSON-fájlok letöltéséhez. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Példa
 
@@ -197,7 +197,7 @@ A következő program bemutatja hogyan:
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -213,17 +213,17 @@ A következő program bemutatja hogyan:
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Run the FaceRedaction job.
+            // Run hello FaceRedaction job.
             var asset = RunFaceRedactionJob(@"C:\supportFiles\FaceRedaction\SomeFootage.mp4",
                         @"C:\supportFiles\FaceRedaction\config.json");
 
-            // Download the job output asset.
+            // Download hello job output asset.
             DownloadAsset(asset, @"C:\supportFiles\FaceRedaction\Output");
         }
 
         static IAsset RunFaceRedactionJob(string inputMediaFilePath, string configurationFile)
         {
-            // Create an asset and upload the input media file to storage.
+            // Create an asset and upload hello input media file toostorage.
             IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
             "My Face Redaction Input Asset",
             AssetCreationOptions.None);
@@ -231,38 +231,38 @@ A következő program bemutatja hogyan:
             // Declare a new job.
             IJob job = _context.Jobs.Create("My Face Redaction Job");
 
-            // Get a reference to Azure Media Redactor.
+            // Get a reference tooAzure Media Redactor.
             string MediaProcessorName = "Azure Media Redactor";
 
             var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-            // Read configuration from the specified file.
+            // Read configuration from hello specified file.
             string configuration = File.ReadAllText(configurationFile);
 
-            // Create a task with the encoding details, using a string preset.
+            // Create a task with hello encoding details, using a string preset.
             ITask task = job.Tasks.AddNew("My Face Redaction Task",
             processor,
             configuration,
             TaskOptions.None);
 
-            // Specify the input asset.
+            // Specify hello input asset.
             task.InputAssets.Add(asset);
 
-            // Add an output asset to contain the results of the job.
+            // Add an output asset toocontain hello results of hello job.
             task.OutputAssets.AddNew("My Face Redaction Output Asset", AssetCreationOptions.None);
 
-            // Use the following event handler to check job progress.  
+            // Use hello following event handler toocheck job progress.  
             job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-            // Launch the job.
+            // Launch hello job.
             job.Submit();
 
-            // Check job execution and wait for job to finish.
+            // Check job execution and wait for job toofinish.
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
             progressJobTask.Wait();
 
-            // If job state is Error, the event handling
+            // If job state is Error, hello event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

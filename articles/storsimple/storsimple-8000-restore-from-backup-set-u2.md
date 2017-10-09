@@ -1,6 +1,6 @@
 ---
-title: "Állítsa vissza egy kötetet biztonsági másolatból a StorSimple 8000 Series |} Microsoft Docs"
-description: "A StorSimple Device Manager szolgáltatás biztonságimásolat-katalógus a StorSimple-kötet visszaállítása egy biztonságimásolat-készlet használatát ismerteti."
+title: "a StorSimple 8000 Series biztonsági másolatból kötet aaaRestore |} Microsoft Docs"
+description: "Ismerteti, hogyan toouse hello StorSimple Device Manager szolgáltatás biztonságimásolat-katalógus toorestore a StorSimple-kötet a biztonságimásolat-készletből."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,132 +14,132 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/23/2017
 ms.author: alkohli
-ms.openlocfilehash: aff0710ead4f76bb80c38e2d88fe9cd3ce6a7b48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fe2e4c23a23c75ce4058a8531356c94c973c6f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-a-storsimple-volume-from-a-backup-set"></a>A StorSimple-kötet visszaállítása egy biztonságimásolat-készlet
 
 ## <a name="overview"></a>Áttekintés
 
-Ez az oktatóanyag leírja a visszaállítási műveletet végrehajtani a StorSimple 8000 series eszközt egy meglévő biztonságimásolat-készletből. Használja a **biztonságimásolat-katalógus** panel visszaállítási helyi kötet vagy a felhőbeli biztonsági mentését. A **biztonságimásolat-katalógus** csempe megjeleníti a biztonsági mentés, amely jönnek létre, ha manuális vagy automatikus biztonsági mentés készül. A biztonságimásolat-készletből való visszaállítás során a kötetet az azonnal, amíg az adatok letöltődik a háttérben.
+Ez az oktatóanyag leírja a StorSimple 8000 series eszközt egy meglévő biztonságimásolat-készletből végre hello visszaállítási műveletet. Használjon hello **biztonságimásolat-katalógus** panel toorestore helyi kötet vagy a felhőbeli biztonsági mentését. Hello **biztonságimásolat-katalógus** panelt jeleníti meg, amely jönnek létre, ha manuális vagy automatikus biztonsági mentés készül minden hello biztonsági mentés. biztonságimásolat-készletből hello visszaállítási folyamat során hello kötetet az azonnal, amíg az adatok hello háttér töltődik le.
 
-Alternatív módszert elindítani a visszaállítási, hogy lépjen **eszközök > [az eszköz] > kötetek**. Az a **kötetek** panelen válasszon ki egy kötetet, kattintson a jobb gombbal el a helyi menüt, és válassza ki a **visszaállítása**.
+Egy alternatív módszert toostart visszaállítási túl toogo**eszközök > [az eszköz] > kötetek**. A hello **kötetek** panelen válassza ki a kötetet, kattintson a jobb gombbal tooinvoke hello helyi menüt, és válassza ki **visszaállítása**.
 
 ## <a name="before-you-restore"></a>Mielőtt vissza tudná állítani
 
-A helyreállítás megkezdése előtt tekintse át az alábbi korlátozásokkal:
+A helyreállítás megkezdése előtt tekintse át a következő kikötésekkel hello:
 
-* **A kötet kell helyezze offline állapotba** – a kötet offline állapotba a gazdagép és az eszköz is igénybe vehet, még a visszaállítás elindítása előtt. Bár a visszaállítási művelet automatikusan kiválasztja a kötetet az eszközön, manuálisan kell hoznia az eszköz online a gazdagépen. Helyezheti a kötetet a gazdagépen, amint a kötet az eszköz online állapotban. (Nem kell várnia, amíg a visszaállítási művelet nem fejeződött.) Az eljárások, nyissa meg a [kötet offline állapotba](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline).
+* **Végre kell hajtania az hello kötet offline** – hello kötet offline igénybe mindkét hello gazdagépen, és eszköz hello hello visszaállítási művelet indítása előtt. Bár a hello visszaállítási művelet automatikusan kiválasztja a hello kötetet hello eszközön, manuálisan kell hoznia hello eszköz online hello gazdagépen. Helyezheti hello kötetet hello állomáson, amint hello kötet hello eszköz online állapotban. (Nem szükséges toowait hello visszaállítási művelet befejezéséig.) Az eljárások, nyissa meg túl[kötet offline állapotba](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline).
 
-* **Visszaállítás után kötettípus** – törölt kötetek visszaállítása a pillanatkép típusa alapján; ez azt jelenti, hogy volt helyileg rögzített kötetek visszaállítását végzi el a helyileg rögzített kötetekhez, és volt rétegzett kötetek visszaállítását végzi el a rétegzett kötetek.
+* **Visszaállítás után kötettípus** – törölt kötetek visszaállítása hello pillanatkép-hello típusú; Ez azt jelenti, hogy volt helyileg rögzített kötetek visszaállítását végzi el a helyileg rögzített kötetekhez, és volt rétegzett kötetek visszaállítását végzi el a rétegzett kötetek.
 
-    Meglévő kötetek a kötet aktuális használati típusú felülírja a pillanatkép tárolt típusát. Például ha egy köteten, ha a kötet típusa történt rétegzett, és (miatt egy átalakítási műveletet végeznie) mostantól helyileg rögzített kötet típusa történt egy pillanatképből, majd a kötet visszaállítja egy helyileg rögzített kötet. Hasonló módon ha meglévő helyileg rögzített kötet kibontva, ezt követően a hajt végre, amikor kisebb volt a kötet egy korábbi pillanatképből állítottak vissza, a helyreállított kötet megőrzik az aktuális kiterjesztett méretét.
+    Meglévő kötetek hello aktuális használat típusa hello kötet hello típus hello pillanatkép tárolt felülírja. Például ha (miatt tooa átalakítási műveletet végeznie), hogy kötettípus jelenleg helyileg rögzített kötet amikor hello kötet típusa történt rétegzett készült pillanatkép visszaállítása, majd hello kötet visszaállítja egy helyileg rögzített kötet. Hasonlóképpen ha meglévő helyileg rögzített kötet volt kibontva, és ezt követően a hajt végre, amikor hello kötet kisebb volt egy korábbi pillanatképből állítottak vissza hello visszaállított kötet megőrzik hello aktuális kiterjesztett méretét.
 
-    Nem konvertálható a kötet egy helyileg rögzített kötet rétegzett kötet, illetve a rétegzett kötetek helyileg rögzített kötet közben a kötet visszaállítása folyamatban van. Várjon, amíg a visszaállítás befejeződött, majd egy másik átválthat a kötetet. A kötet konvertálása kapcsolatos információkért látogasson el [kötet típusának módosítása](storsimple-8000-manage-volumes-u2.md#change-the-volume-type). 
+    A kötet nem alakítható át egy rétegzett kötet tooa helyileg rögzített kötet vagy egy helyileg rögzített kötet tooa a rétegzett kötet közben hello kötet visszaállítása folyamatban van. Várjon, amíg hello visszaállítási művelet befejeződik, majd átalakíthatja hello kötet tooanother típusa. A kötet konvertálása kapcsolatos információkért nyissa meg túl[hello kötet típusának módosítása](storsimple-8000-manage-volumes-u2.md#change-the-volume-type). 
 
-* **A kötet mérete megjelenik a visszaállított kötet** – Ez akkor fontos szempont, ha egy helyileg rögzített kötet (mert helyileg rögzített kötetekhez teljesen kiépített) törölt visszaállítását végzi. Győződjön meg arról, hogy van elegendő hely, mielőtt megkísérli visszaállítani egy korábban törölt helyileg rögzített kötet.
+* **hello kötetméretet tükrözi vissza hello kötet** – Ez akkor fontos szempont, ha egy helyileg rögzített kötet (mert helyileg rögzített kötetekhez teljesen kiépített) törölt visszaállítását végzi. Győződjön meg arról, hogy van elegendő hely, egy helyileg rögzített kötet korábban törölt toorestore megkísérlése előtt.
 
-* **A kötet nem terjeszthető ki, miközben visszaállítása folyamatban van** – Várjon, amíg a visszaállítási művelet befejezése előtt bontsa ki a kötetet. A kötet kiterjesztését kapcsolatos információkért látogasson el [kötet módosítása](storsimple-8000-manage-volumes-u2.md#modify-a-volume).
+* **A kötet nem terjeszthető ki, miközben visszaállítása folyamatban van** – hello visszaállítási művelet befejezése előtt tooexpand hello kötet várja. A kötet kiterjesztését kapcsolatos információkért nyissa meg túl[kötet módosítása](storsimple-8000-manage-volumes-u2.md#modify-a-volume).
 
-* **Végezheti el a biztonsági mentés során egy kötet visszaállítása** – az eljárások Ugrás [a StorSimple Device Manager szolgáltatás segítségével kezelheti a biztonsági mentési házirendeket](storsimple-8000-manage-backup-policies-u2.md).
+* **Végezheti el a biztonsági mentés során egy kötet visszaállítása** – az eljárások lépjen túl[hello StorSimple Device Manager szolgáltatás toomanage biztonsági mentési házirendek használata a](storsimple-8000-manage-backup-policies-u2.md).
 
-* **A visszaállítási művelet megszakíthatja** – Ha a kötet vissza lesz állítva a visszaállítási műveletet kezdeményezett előtti állapotba, majd szakítsa meg a visszaállítási feladat. Az eljárások, nyissa meg a [feladatok megszakítása](storsimple-8000-manage-jobs-u2.md#cancel-a-job).
+* **A visszaállítási művelet megszakíthatja** – Ha megszakítja hello visszaállítási feladat, majd hello kötet vissza lesz állítva hello visszaállítási műveletet kezdeményezett előtti toohello-állapotát. Az eljárások, nyissa meg túl[feladatok megszakítása](storsimple-8000-manage-jobs-u2.md#cancel-a-job).
 
 ## <a name="how-does-restore-work"></a>Hogyan állítsa vissza a munkahelyi
 
-4 vagy újabb frissítés rendszerű eszközöket a heatmap-alapú visszaállítási van megvalósítva. Mivel a gazdagép kéri, hogy érheti el az adatait elérni az eszközön, ezeket a kérelmeket a rendszer nyomon, és egy heatmap jön létre. Magas kérelmek aránya magasabb tűz az adattömbök eredményez, mivel alacsonyabb kérelmek aránya az eszköz az alsó tűz adattömböket. Az adatok legalább kétszer állapotúként kell megjelölni a kell elérnie _működés közbeni_. A fájl módosított is van megjelölve _működés közbeni_. Miután elindította a visszaállítás, az adatok proaktív hidratálásával történik a heatmap alapján. Verziók Update 4-nél korábbi adatok letöltődik alapuló hozzáférés csak visszaállítás során.
+4 vagy újabb frissítés rendszerű eszközöket a heatmap-alapú visszaállítási van megvalósítva. Hello állomás kérelmek tooaccess adatok hello eszköz éri el, mivel ezek a kérelmek nyomon követi, és egy heatmap jön létre. Magas kérelmek aránya magasabb tűz az adattömbök eredményez, mivel alacsonyabb kérelmek aránya az alsó tűz toochunks fordítja le. Hello adatok legalább kétszer toobe jelöléssel kell elérnie _működés közbeni_. A fájl módosított is van megjelölve _működés közbeni_. Miután elindította hello visszaállítás, az adatok proaktív hidratálásával történik hello heatmap alapján. Verziók Update 4-nél korábbi hello adatok letöltődik alapuló hozzáférés csak visszaállítás során.
 
-Az alábbi korlátozásokkal heatmap alapú visszaállítások vonatkoznak:
+a következő kikötésekkel hello tooheatmap alapú visszaállítások vonatkoznak:
 
 * Csak a rétegzett kötetek engedélyezve van a változáskövetés Heatmap, és helyileg rögzített kötetek nem támogatottak.
 
-* Heatmap-alapú visszaállítási nem támogatott, ha egy másik eszközre kötet klónozása. 
+* Heatmap-alapú visszaállítási nem támogatott, ha egy kötet tooanother eszköz Klónozás. 
 
-* Ha egy helyi visszaállítási, és egy helyi pillanatfelvétel állítani a kötet létezik-e az eszközön, majd azt nem rehydrate (mivel az adatok már helyileg nem érhető el). 
+* Ha egy helyi visszaállítási és hello eszközön létezik hello kötet toobe vissza egy helyi pillanatképet, majd azt nem rehydrate (mivel az adatok már helyileg nem érhető el). 
 
-* Alapértelmezés szerint történő visszaállításához, a rendszer kezdeményezett a rehidratálása feladatok proaktív rehydrate az adatokat a heatmap alapján. 
+* Alapértelmezés szerint történő visszaállításához, a rendszer kezdeményezett hello rehidratálása feladatok proaktív rehydrate hello heatmap az adatokat. 
 
-Az Update 4, Windows PowerShell-parancsmagok használhatók futó rehidratálása feladat lekérdezése rehidratálása feladatok megszakítása, és a rehidratálása feladat állapotának beolvasása.
+Update 4, a Windows PowerShell-parancsmagok is futó feladatok rehidratálása használt tooquery kell rehidratálása feladatok megszakítása és hello hello rehidratálása feladat állapotának beolvasása.
 
-* `Get-HcsRehydrationJob`– Ez a parancsmag a rehidratálása feladat állapotának beolvasása. Egy kötet egy egyetlen rehidratálása feladat elindul.
+* `Get-HcsRehydrationJob`– Ez a parancsmag hello hello rehidratálása feladat állapotának beolvasása. Egy kötet egy egyetlen rehidratálása feladat elindul.
 
-* `Set-HcsRehydrationJob`– Ez a parancsmag lehetővé teszi szüneteltetése, állítsa le, a rehidratálása feladat folytatódik, amint a rehidratálása folyamatban van.
+* `Set-HcsRehydrationJob`– Ez a parancsmag lehetővé teszi a toopause, folytatása hello rehidratálása feladat leállítása, ha hello rehidratálása van folyamatban.
 
-Rehidratálása parancsmagok további információkért látogasson el [Windows PowerShell parancsmag-referencia a StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
+A rehidratálása parancsmagok további információkért lépjen túl[Windows PowerShell parancsmag-referencia a StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
 
-Az automatikus rehdyration általában magasabb átmeneti olvasási teljesítmény várható. A tényleges magniutde fejlesztései számos tényező befolyásolja, például a hozzáférési mintázatát, adatmennyiség és adattípus függ. 
+Az automatikus rehdyration általában magasabb átmeneti olvasási teljesítmény várható. hello tényleges magniutde fejlesztései számos tényező befolyásolja, például a hozzáférési mintázatát, adatmennyiség és adattípus függ. 
 
-Szakítsa meg a rehidratálása feladatot, a PowerShell-parancsmagot is használhat. Ha végleg letiltja az összes jövőbeli visszaállítások rehidratálása feladataihoz [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md).
+egy rehidratálása feladat toocancel, hello PowerShell-parancsmagot is használhatja. Ha az összes jövőbeni visszaállítások hello toopermanently letiltása rehidratálása feladatok kívánja [forduljon a Microsoft Support](storsimple-8000-contact-microsoft-support.md).
 
-## <a name="how-to-use-the-backup-catalog"></a>A biztonsági mentési katalógus használata
+## <a name="how-toouse-hello-backup-catalog"></a>Hogyan toouse hello biztonságimásolat-katalógus
 
-A **biztonságimásolat-katalógus** panel biztosít egy lekérdezést, amely segít a megadásával szűkíthető, a biztonsági másolat beállítása. A biztonságimásolat-készletek, amelyek a rendszer beolvassa a következő paraméterek alapján szűrheti:
+Hello **biztonságimásolat-katalógus** panel biztosít egy lekérdezést, amely segít toonarrow a biztonságimásolat-készlet kiválasztása. Hello biztonságimásolat-készletek, amelyek a rendszer beolvassa a következő paraméterek hello alapján szűrheti:
 
-* **Időtartománynak** – a dátum és idő tartomány, a biztonságimásolat-készlet létrehozásakor.
-* **Eszköz** – az eszköz, amelyre a biztonságimásolat-készlet létrehozása.
-* **Biztonsági mentési házirend** vagy **kötet** – a biztonsági mentési házirend, vagy a kötet a biztonságimásolat-készlet társítva.
+* **Időtartománynak** – dátum és idő tartomány hello hello biztonságimásolat-készlet létrehozásakor.
+* **Eszköz** – hello eszköz mely hello a biztonságimásolat-készlet létrehozása.
+* **Biztonsági mentési házirend** vagy **kötet** – hello biztonsági mentési házirend, vagy a kötet a biztonságimásolat-készlet társítva.
 
-A szűrt biztonsági mentés majd megjelennének a következő attribútumok alapján:
+hello szűrt biztonságimásolat-készletek majd megjelennének hello a következő attribútumok alapján:
 
-* **Név** – a biztonsági mentési házirend, vagy a kötet a biztonságimásolat-készlet társított nevét.
-* **Típus** – biztonsági másolat beállítása helyi pillanatképeket és felhőalapú pillanatfelvételek. Egy helyi pillanatfelvétel minden kötet adatait az eszközön, helyileg tárolt biztonsági másolatot, mivel egy felhőalapú pillanatfelvétel hivatkozik a felhőben tárolt kötet adatok biztonsági mentését. Helyi pillanatképeket gyorsabb hozzáférést biztosít, mivel felhőalapú pillanatfelvételek az adatrugalmasság közül választ.
-* **Méret** – a biztonságimásolat-készlet tényleges méretének.
-* **A létrehozott** – a dátum és idő, amikor a biztonsági mentés készült. 
-* **Kötetek** -a biztonságimásolat-készlet társított kötetek számát.
-* **Kezdeményezett** – a biztonsági mentések kezdeményezheti automatikusan ütemezés szerint vagy manuálisan egy felhasználó által. (Használhatja a biztonsági mentési házirend ütemezett biztonsági mentéseket. Másik lehetőségként használhatja a **biztonsági másolatok készítéséhez** egy interaktív vagy igény szerinti biztonsági mentést a lehetőség.)
+* **Név** – hello hello biztonsági mentési házirend vagy a kötet társított hello biztonságimásolat-készlet neve.
+* **Típus** – biztonsági másolat beállítása helyi pillanatképeket és felhőalapú pillanatfelvételek. Egy helyi pillanatfelvétel a köteten tárolt összes adat helyileg hello eszköz, biztonsági másolatot, mivel egy felhőalapú pillanatfelvétel toohello az adatok biztonsági mentése kötet hello felhőben található. Helyi pillanatképeket gyorsabb hozzáférést biztosít, mivel felhőalapú pillanatfelvételek az adatrugalmasság közül választ.
+* **Méret** – hello hello biztonságimásolat-készlet tényleges mérete.
+* **A létrehozott** – hello dátum és idő, amikor hello létrehozásuk. 
+* **Kötetek** -hello hello biztonságimásolat-készlet társított kötetek számát.
+* **Kezdeményezett** – hello biztonsági mentések kezdeményezhetők, automatikusan a tooa ütemezés szerint vagy manuálisan felhasználója. (A biztonsági mentési házirend tooschedule biztonsági mentéseket is használható. Másik lehetőségként használhatja a hello **biztonsági másolatok készítéséhez** beállítás tootake egy interaktív vagy igény szerinti biztonsági mentést.)
 
-## <a name="how-to-restore-your-storsimple-volume-from-a-backup"></a>A StorSimple-kötet visszaállítása egy biztonsági másolatból
+## <a name="how-toorestore-your-storsimple-volume-from-a-backup"></a>Hogyan toorestore a StorSimple-kötet egy biztonsági másolatból
 
-Használhatja a **biztonságimásolat-katalógus** panelt, és a StorSimple-kötet visszaállítása egy adott biztonsági másolatból. Tartsa azonban szem előtt, kötet visszaállítása visszaállítja a kötet állapotát, mint amikor a biztonsági mentés készült. Bármely vettek fel a biztonsági mentési művelet után adatok elvesznek.
+Használhatja a hello **biztonságimásolat-katalógus** panel toorestore a StorSimple-kötet egy adott biztonsági másolatból. Ne feledje, azonban, hogy a kötet visszaállítja visszaállítása hello kötet toohello állapot, mint amikor hello a biztonsági mentés készült. Bármely hello biztonsági mentési művelet után felvett adatok elvesznek.
 
 > [!WARNING]
-> Egy biztonsági másolatból történő visszaállítását a rendszer lecseréli a meglévő kötetet a biztonsági mentésből. Ez után a biztonsági mentés készült írt adatok elvesztésével járhat.
+> Egy biztonsági másolatból történő visszaállítását lecseréli a meglévő kötetek hello hello biztonsági másolatból. Ezt követően hello a biztonsági mentés készült írt adatok hello adatvesztést okozhat.
 
 
-### <a name="to-restore-your-volume"></a>A kötet visszaállítása
-1. Nyissa meg a StorSimple eszköz Manager szolgáltatáshoz, és kattintson a **biztonságimásolat-katalógus**.
+### <a name="toorestore-your-volume"></a>toorestore a kötet
+1. Nyissa meg tooyour StorSimple Device Manager szolgáltatást, és kattintson a **biztonságimásolat-katalógus**.
 
 2. Válassza ki a biztonságimásolat-készletet a következőképpen:
    
-   1. Adja meg azt az időtartományt.
-   2. Válassza ki a megfelelő eszközt.
-   3. A legördülő listában válassza ki szeretne biztonsági másolatot az kötet vagy a biztonsági mentési házirend kiválasztásához.
-   4. Kattintson a **alkalmaz** a lekérdezés végrehajtásához.
+   1. Adjon meg hello időtartományt.
+   2. Válassza ki azt a hello megfelelő eszközt.
+   3. Hello legördülő listában válassza ki hello kötet vagy a biztonsági mentési házirendet hello biztonsági mentés, hogy kívánja-e tooselect.
+   4. Kattintson a **alkalmaz** tooexecute ezt a lekérdezést.
 
-    A biztonsági mentések társított a kijelölt kötetről, vagy a biztonsági mentési házirend megjelenjen-e a biztonságimásolat-készletek listájában.
+    hello hello kijelölt kötet vagy a biztonsági mentési házirenddel társított biztonsági másolatok meg kell jelennie hello listájában biztonsági mentés.
    
     ![Biztonságimásolat-készlet listája](./media/storsimple-8000-restore-from-backup-set-u2/bucatalog.png)     
      
-3. Bontsa ki a biztonságimásolat-készletet a társított kötetek megtekintéséhez. Ezek a kötetek offline állapotba kell helyezni a gazdagépet és az eszköz visszaállítani őket. A kötetek elérését a a **kötetek** panelen található az eszközre, majd kövesse a lépéseket [kötet offline állapotba](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline) offline állapotba.
+3. Bontsa ki a hello biztonságimásolat-készlet tooview hello társított kötetek. Ezek a kötetek offline állapotba kell helyezni a hello állomás és az eszköz visszaállítani őket. Hello hello köteteket hozzáférési **kötetek** az eszközt, és hajtsa végre hello panelen lévő lépéseket [kötet offline állapotba](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline) tootake offline állapotba.
    
    > [!IMPORTANT]
-   > Győződjön meg arról, hogy elvégezte a kötetek offline állapotba a gazdagépen, mielőtt az eszköz a kötetek offline állapotba. Ha a gazdagép nem hajtja végre a kötetek offline, potenciálisan előfordulhat, hogy sérült adatokat.
+   > Győződjön meg arról, hogy elvégezte hello kötetek offline hello gazdagépen először hello eszközön hello kötetek offline végrehajtása előtt. Ha nem hajtja végre hello kötetek offline hello állomáson, veremtúlcsordulást okozhat toodata sérülése.
    
-4. Lépjen vissza a **biztonságimásolat-katalógus** lapot, és válasszon egy biztonságimásolat-készlet. Kattintson a jobb gombbal, és a helyi menüből válassza **visszaállítása**.
+4. Keresse meg a visszafelé toohello **biztonságimásolat-katalógus** lapot, és válasszon egy biztonságimásolat-készlet. Kattintson a jobb gombbal, és hello helyi menüből válassza **visszaállítása**.
 
     ![Biztonságimásolat-készlet listája](./media/storsimple-8000-restore-from-backup-set-u2/restorebu1.png)
 
-5. Megerősítést kér bekéri. Tekintse át a helyreállítási adatokat, és jelölje be a megerősítő jelölőnégyzetet.
+5. Megerősítést kér bekéri. Felülvizsgálati hello adatok visszaállítására, és válassza a hello megerősítő jelölőnégyzetet.
    
     ![Jóváhagyás lap](./media/storsimple-8000-restore-from-backup-set-u2/restorebu2.png)
 
-7.  Kattintson a **visszaállítása**. Ez elindít egy visszaállítási feladatot, amely elérésével megtekintheti a **feladatok** lap.
+7.  Kattintson a **visszaállítása**. Ez elindít egy visszaállítási feladat, amelyet látni lehet hello elérésével **feladatok** lap.
 
     ![Jóváhagyás lap](./media/storsimple-8000-restore-from-backup-set-u2/restorebu5.png)
 
-8. A visszaállítás befejezése után ellenőrizze, hogy a köteteken a biztonsági mentésből kötetek helyett.
+8. Hello visszaállítás befejezése után ellenőrizze, hogy a kötetek hello tartalmát helyébe kötetek hello biztonsági másolatból.
 
 
-## <a name="if-the-restore-fails"></a>Ha a visszaállítás sikertelen
+## <a name="if-hello-restore-fails"></a>Ha hello visszaállítása sikertelen
 
-A visszaállítási művelet bármilyen okból nem sikerül riasztást kap. Ha ez történik, frissítse a biztonságimásolat-lista annak ellenőrzéséhez, hogy a biztonsági mentés továbbra is érvényes. Ha a biztonsági mentés érvényes, és a felhőből állítja vissza, majd kapcsolódási problémák előfordulhat, hogy okozza a problémát.
+Hello restore művelet sikertelen lesz a bármilyen okból riasztást kap. Ha ez történik, a frissítési hello biztonságimásolat-lista tooverify hello biztonsági mentési még mindig érvényes. Ha hello biztonsági mentés érvényes és hello felhőből állítja vissza, majd kapcsolódási problémák okozta hello probléma.
 
-A visszaállítási művelethez a kötet offline állapotba a gazdagépen, és próbálja megismételni a visszaállítási műveletet. Vegye figyelembe, hogy a kötet adatait a visszaállítási folyamat során végrehajtott módosításai elvesznek.
+toocomplete hello visszaállítási művelet, hello kötet offline érvénybe hello állomáson, majd próbálja megismételni hello visszaállítási műveletet. Vegye figyelembe, hogy a módosítások toohello kötetadatokról hello során végrehajtott visszaállítási folyamat el fog veszni.
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [kezelése StorSimple-köteteket](storsimple-8000-manage-volumes-u2.md).
-* Megtudhatja, hogyan [felügyelete a StorSimple eszközt a StorSimple Device Manager szolgáltatással](storsimple-8000-manager-service-administration.md).
+* Ismerje meg, hogyan túl[kezelése StorSimple-köteteket](storsimple-8000-manage-volumes-u2.md).
+* Ismerje meg, hogyan túl[használata hello StorSimple Device Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-8000-manager-service-administration.md).
 

@@ -13,7 +13,7 @@
 ## [Munkafolyamatok](expressroute-workflows.md)
 ## [Útválasztási követelmények](expressroute-routing.md)
 ## [QoS-követelmények](expressroute-qos.md)
-## [Információk a kapcsolatcsoportok módosításáról klasszikus üzemi modellből Resource Manager-alapú modellbe](expressroute-move.md)
+## [A klasszikus tooResource Manager Kapcsolatcsoportok áthelyezése](expressroute-move.md)
 
 # Útmutató
 ## Kapcsolatcsoport létrehozása és módosítása
@@ -24,7 +24,7 @@
 ### [Azure Portal](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
 ### [Azure CLI](howto-routing-cli.md)
-## Virtuális hálózat összekapcsolása egy ExpressRoute-kapcsolatcsoporttal
+## Hivatkozásra egy virtuális hálózati tooan ExpressRoute-kapcsolatcsoportot
 ### [Azure Portal](expressroute-howto-linkvnet-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-linkvnet-arm.md)
 ### [Azure CLI](howto-linkvnet-cli.md)
@@ -35,8 +35,8 @@
 ## Microsoft társviszony-létesítés útvonalszűrőinek konfigurálása
 ### [Azure Portal](how-to-routefilter-portal.md)
 ### [PowerShell](how-to-routefilter-powershell.md)
-## [Kapcsolatcsoportok módosítása klasszikusról Resource Manager-alapúra](expressroute-howto-move-arm.md)
-## [Kapcsolódó virtuális hálózatok áttelepítése klasszikus üzemi modellből Resource Manager-alapú modellbe](expressroute-migration-classic-resource-manager.md)
+## [Klasszikus tooResource Manager expressroute-kapcsolatcsoporthoz áthelyezése](expressroute-howto-move-arm.md)
+## [Klasszikus tooResource Manager át társított virtuális hálózatokat](expressroute-migration-classic-resource-manager.md)
 ## Útválasztó konfigurálása ExpressRoute-hoz
 ### [Útválasztó konfigurálása](expressroute-config-samples-routing.md)
 ### [Útválasztó-konfigurációs minták NAT-hoz](expressroute-config-samples-nat.md)
@@ -75,12 +75,12 @@
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
 ## [Előfizetés- és szolgáltatáskorlátok](../azure-subscription-service-limits.md?toc=%2fazure%2fexpressroute%2ftoc.json)
 ## [Videók](https://azure.microsoft.com/documentation/videos/index/?services=expressroute)
-### [Virtuális hálózati átjáró csatlakoztatása egy kapcsolatcsoporthoz](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
+### [Csatlakozás a virtuális hálózati átjáró tooa kapcsolat](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
 ### [Az ExpressRoute virtuális hálózati átjáróinak létrehozása](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-virtual-network/)
 ### [Az ExpressRoute virtuális hálózati átjáróinak létrehozása](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network/)
 ### [ExpressRoute-kapcsolatcsoport létrehozása](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit/)
 ### [A hálózati infrastruktúra fejlesztése a csatlakoztathatóság érdekében](https://go.microsoft.com/fwlink/p/?LinkId=615124)
-### [Magánhálózati társviszony-létesítés beállítása a kapcsolatcsoportokhoz](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
+### [Hogyan tooset magánhálózati társviszony-létesítés be a kapcsolat](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
 ### [Hibrid partneri viszonyok: Helyszíni forgatókönyvek engedélyezése](https://go.microsoft.com/fwlink/p/?LinkId=615125)
 ### [Microsoft társviszony-létesítés beállítása a kapcsolatcsoportokhoz](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-microsoft-peering-for-your-expressroute-circuit/)
 ### [Nyilvános társviszony-létesítés beállítása a kapcsolatcsoportokhoz](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-public-peering-for-your-expressroute-circuit/)

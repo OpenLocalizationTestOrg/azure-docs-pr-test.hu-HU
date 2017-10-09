@@ -1,6 +1,6 @@
 ---
-title: "A replikáció Azure az Azure Site Recovery segítségével Előfeltételek |} Microsoft Docs"
-description: "Ez a cikk összefoglalja az előfeltételeket virtuális gépek és fizikai gépek replikálása az Azure-bA az Azure Site Recovery szolgáltatással."
+title: "az Azure Site Recovery segítségével replikációs tooAzure aaaPrerequisites |} Microsoft Docs"
+description: "Ez a cikk összefoglalja az előfeltételeket replikáló virtuális gépek és fizikai gépek tooAzure hello Azure Site Recovery szolgáltatással."
 services: site-recovery
 documentationcenter: 
 author: rajani-janaki-ram
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/01/2017
 ms.author: rajanaki
-ms.openlocfilehash: fb5b8c9ac96ac44d0112919664a177f33ef392da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c66cea8b097a872bae57e7b42e659e58c4b0b1f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="prerequisites-for-replicating-azure-virtual-machines-to-another-region-by-using-azure-site-recovery"></a>Egy másik régióban Azure virtuális gépek replikálása Azure Site Recovery segítségével előfeltételei
+#  <a name="prerequisites-for-replicating-azure-virtual-machines-tooanother-region-by-using-azure-site-recovery"></a>Az Azure virtuális gépek tooanother régió replikálása az Azure Site Recovery segítségével előfeltételei
 
 > [!div class="op_single_selector"]
-> * [Az Azure-ból az Azure-bA replikálása](site-recovery-azure-to-azure-prereq.md)
-> * [A helyszíni replikálása Azure-bA](site-recovery-prereq.md)
+> * [Az Azure tooAzure replikáláshoz](site-recovery-azure-to-azure-prereq.md)
+> * [A helyszíni tooAzure replikáláshoz](site-recovery-prereq.md)
 
-Az Azure Site Recovery szolgáltatás hozzájárul az üzleti folytonossági és vészhelyreállítási (BCDR) helyreállítási stratégia megvalósításában:
-* Egy másik Azure-régió, az Azure virtuális gépek replikációját.
-* A helyszíni fizikai kiszolgálóknak és virtuális gépek Azure-bA vagy másodlagos adatközpontba replikációját. 
+hello Azure Site Recovery szolgáltatás hozzájárul tooyour üzleti folytonossági és vészhelyreállítási (BCDR) helyreállítási stratégia megvalósításában:
+* Az Azure virtuális gépek tooanother az Azure-régió replikációját.
+* A helyszíni fizikai kiszolgálók és virtuális gépek tooAzure vagy tooa másodlagos adatközpontba replikációját. 
 
-Ha az elsődleges helyen valamilyen okból kimaradás lép fel, akkor átveheti egy másodlagos helyre, így az alkalmazások és számítási feladatok nem állnak. Amikor visszatér a normál műveletek sikertelen lehet az elsődleges helyre. A Site Recovery kapcsolatban bővebben lásd: [Mi az Site Recovery?](site-recovery-overview.md).
+Ha az elsődleges helyen valamilyen okból kimaradás lép fel, akkor átveheti tooa másodlagos helyre tookeep alkalmazások és számítási feladatok nem állnak. Elsődleges hely hátsó tooyour sikertelen lehet, ha toonormal műveletek adja vissza. A Site Recovery kapcsolatban bővebben lásd: [Mi az Site Recovery?](site-recovery-overview.md).
 
-Ez a cikk az Azure Site Recovery a helyszíni replikáció megkezdéséhez szükséges előfeltételek foglalja össze.
+Ez a cikk hello Előfeltételek szükséges toobegin replikáció a Site Recovery a helyszíni tooAzure foglalja össze.
 
-A megjegyzéseket, a cikk alján, vagy technikai kérdéseket a a [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Bármely fűzhetnek hello cikk hello alján, vagy technikai kérdéseket hello [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="azure-requirements"></a>Azure-követelmények
@@ -42,14 +42,14 @@ A megjegyzéseket, a cikk alján, vagy technikai kérdéseket a a [Azure Recover
 **Követelmény** | **Részletek**
 --- | ---
 **Azure-fiók** | A [Microsoft Azure](http://azure.microsoft.com/) fiók.<br/><br/> Kezdésként használhatja az [ingyenes próbaverziót](https://azure.microsoft.com/pricing/free-trial/) is.
-**Site Recovery szolgáltatás** | A Site Recovery díjszabásáról kapcsolatban bővebben lásd: [Site Recovery díjszabásáról](https://azure.microsoft.com/pricing/details/site-recovery/). Azt javasoljuk, hogy a cél Azure-régió, egy vész-helyreállítási helyként használni kívánt hozzon létre a Recovery Services-tároló. Például ha a forrás virtuális gépek futnak, az USA keleti régiója, és szeretné replikálni a központi US, azt javasoljuk, hogy Államok középső hozzon létre a tárolót.|
-**Az Azure kapacitás** | A cél a vész-helyreállítási helyként használni kívánt Azure-régiót kell rendelkezik elegendő kapacitással a virtuális gépeket, a storage-fiókok és a hálózati összetevők előfizetéssel. Nagyobb kapacitású is ügyfélszolgálatához.
-**Tárolási útmutatásokkal** | Győződjön meg arról, hogy kövesse a [tárolási útmutatásokkal](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) a forrás Azure virtuális gépek a teljesítménnyel kapcsolatos problémák elkerülése érdekében. Ha követi az alapértelmezett beállításokat, a Site Recovery a forrás-konfigurációtól függően szükséges tárfiókok hoz létre. Ha testre szabhatja, és válassza ki a saját beállításait, győződjön meg arról, hogy kövesse a [méretezhetőségi célok a virtuális gép lemezeinek](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks).
-**Hálózati útmutató** | Kell engedélyezett a kimenő kapcsolat az Azure virtuális gép számára megadott URL-címek vagy IP-címtartományok. További részletekért tekintse meg a [útmutató az Azure virtuális gépek replikálása a hálózat](site-recovery-azure-to-azure-networking-guidance.md) cikk.
-**Azure virtuális gép** | Győződjön meg arról, hogy a legújabb legfelső szintű tanúsítványokat Windows vagy Linux virtuális gép jelen-e. Ha nem találhatók a legújabb legfelső szintű tanúsítványok, a virtuális gép biztonsági korlátozások miatt a Site Recovery nem regisztrálható.
+**Site Recovery szolgáltatás** | A Site Recovery díjszabásáról kapcsolatban bővebben lásd: [Site Recovery díjszabásáról](https://azure.microsoft.com/pricing/details/site-recovery/). Azt javasoljuk, hogy hozzon létre egy Recovery Services-tároló hello cél Azure-régiót, amelyet a vész-helyreállítási helyként toouse. Például ha a forrás virtuális gépek futnak, az USA keleti régiója, és tooreplicate tooCentral VELÜNK, azt javasoljuk, hogy Államok középső hello tároló létrehozása.|
+**Az Azure kapacitás** | Hello cél Azure-régiót, amelyet az toouse a vész-helyreállítási helyként van szüksége a virtuális gépeket, a storage-fiókok és a hálózati összetevők elegendő kapacitással rendelkező előfizetés toohave. Támogatási tooadd nagyobb kapacitású felveheti a kapcsolatot.
+**Tárolási útmutatásokkal** | Győződjön meg arról, hogy kövesse a hello [tárolási útmutatásokkal](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) a forrás Azure virtuális gépen tooavoid bármely teljesítményproblémákat. Ha követi hello alapértelmezett beállításokat, a Site Recovery hello forrás konfigurációtól függően szükséges hello tárfiókok hoz létre. Ha testre szabhatja, és válassza ki a saját beállításait, győződjön meg arról, hogy hello kövesse [méretezhetőségi célok a virtuális gép lemezeinek](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks).
+**Hálózati útmutató** | Szükséges toowhitelist hello kimenő kapcsolódás az Azure virtuális gép a megadott URL-címek vagy IP-címtartományok. További részletekért tekintse meg a toohello [útmutató az Azure virtuális gépek replikálása a hálózat](site-recovery-azure-to-azure-networking-guidance.md) cikk.
+**Azure virtuális gép** | Győződjön meg arról, hogy minden hello legújabb legfelső szintű tanúsítványok hello Windows vagy Linux virtuális gép jelen-e. Hello legújabb legfelső szintű tanúsítványok nem szerepelnek, ha a hello VM regisztrált tooSite helyreállítási toosecurity megkötések miatt nem lehet.
 
 >[!NOTE]
->Specifikus konfigurációk-támogatással kapcsolatos további tudnivalókért olvassa el a [támogatási mátrix](site-recovery-support-matrix-azure-to-azure.md).
+>Specifikus konfigurációk-támogatással kapcsolatos további tudnivalókért olvassa el a hello [támogatási mátrix](site-recovery-support-matrix-azure-to-azure.md).
 
 ## <a name="next-steps"></a>Következő lépések
 - További információ [útmutató az Azure virtuális gépek replikálása a hálózat](site-recovery-azure-to-azure-networking-guidance.md).

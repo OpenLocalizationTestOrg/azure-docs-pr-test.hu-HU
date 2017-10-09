@@ -1,6 +1,6 @@
 ---
-title: "Runbook-kimenet és üzenetek az Azure Automationben |} Microsoft Docs"
-description: "Hogyan hozhat létre, és kimeneti és a hiba az Azure Automation runbookjai érkező üzenetek Desribes."
+title: "aaaRunbook-kimenet és üzenetek az Azure Automationben |} Microsoft Docs"
+description: "Hogyan toocreate és lekérése kimenet és a hiba érkező üzenetek az Azure Automation runbookjai Desribes."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/11/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 6f01f97e38aa271034741c8a5e2f8057ab61fcd7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c1505fa889473766bfa47e43aaed2449d60ad851
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="runbook-output-and-messages-in-azure-automation"></a>Runbook-kimenet és üzenetek az Azure Automationben
-Azure Automation-forgatókönyv a legtöbb valamilyen kimenetet, például a felhasználónak egy hibaüzenet fog rendelkezni, vagy egy összetett objektumot egy másik munkafolyamat számára készült. A Windows PowerShell szintén [több adatfolyam](http://blogs.technet.com/heyscriptingguy/archive/2014/03/30/understanding-streams-redirection-and-write-host-in-powershell.aspx) kimenetként egy parancsfájl vagy a munkafolyamat számára. Az összes ezekbe az adatfolyamokba eltérő módon működik az Azure Automation, és ajánlott eljárások használata minden egyes runbook létrehozásakor kell.
+Azure Automation-forgatókönyv a legtöbb valamilyen kimenetet például egy hiba üzenet toohello felhasználó fog rendelkezni, vagy egy összetett objektumot egy másik munkafolyamat által használt toobe készült. A Windows PowerShell szintén [több adatfolyam](http://blogs.technet.com/heyscriptingguy/archive/2014/03/30/understanding-streams-redirection-and-write-host-in-powershell.aspx) egy parancsfájl vagy a munkafolyamat toosend kimenetét. Azure Automation szolgáltatásbeli eltérő módon működik az összes ezekbe az adatfolyamokba, és a bevált gyakorlatokat kövesse toouse minden runbook létrehozásakor.
 
-A következő táblázat rövid leírása az adatfolyamokat, és azok viselkedését az Azure felügyeleti portálján, mind a közzétett runbookok futtatásakor, és ha [runbook tesztelése](automation-testing-runbook.md). További részleteket az egyes adatfolyamokkal az ezt követő szakaszok szolgálnak.
+hello következő táblázat röviden hello adatfolyamok és hello Azure felügyeleti portálon viselkedésük mind a közzétett runbookok futtatásakor, és ha [runbook tesztelése](automation-testing-runbook.md). További részleteket az egyes adatfolyamokkal az ezt követő szakaszok szolgálnak.
 
 | Az adatfolyam | Leírás | Közzétéve | Tesztelés |
 |:--- |:--- |:--- |:--- |
-| Kimenet |Másik runbookok számára készült objektum. |A feladatelőzmények írni. |Megjelennek a Tesztkimenet ablaktáblán. |
-| Figyelmeztetés |A felhasználónak szóló figyelmeztető üzenetet. |A feladatelőzmények írni. |Megjelennek a Tesztkimenet ablaktáblán. |
-| Hiba |A felhasználónak szóló hibaüzenet. A kivételek a runbook továbbra is fut egy hibaüzenet megjelenésekor alapértelmezés szerint. |A feladatelőzmények írni. |Megjelennek a Tesztkimenet ablaktáblán. |
-| Részletes |Általános vagy a hibakeresési információk üzeneteket. |Csak akkor, ha a runbook be van kapcsolva a részletes naplózást, szerepel a feladatelőzményekben. |Csak akkor, ha a $VerbosePreference folytatja a runbook értéke megjelenik a Tesztkimenet ablaktáblán. |
-| Folyamatban van |Automatikusan létrehozott előtt és után a runbook minden tevékenysége rögzíti. A runbook ne próbáljon létrehozni a saját állapotrekordjait, mert egy interaktív felhasználó szolgálnak. |Csak akkor, ha a runbook be van kapcsolva a folyamatban lévő naplózási szerepel a feladatelőzményekben. |Nem jelennek meg a Tesztkimenet ablaktáblán. |
-| Hibakeresés |Egy interaktív felhasználó számára készült üzenetek. Nem használható a runbookok. |Nem szerepel a feladatelőzményekben. |Nem szerepel a Tesztkimenet ablaktáblán. |
+| Kimenet |Másik runbookok toobe készült objektum. |Írt toohello feladatelőzményekben. |Hello Tesztkimenet ablaktáblán jelennek meg. |
+| Figyelmeztetés |Hello felhasználónak szóló figyelmeztető üzenetet. |Írt toohello feladatelőzményekben. |Hello Tesztkimenet ablaktáblán jelennek meg. |
+| Hiba |Hello felhasználónak szóló hibaüzenet. A kivételek hello runbook továbbra is fut egy hibaüzenet megjelenésekor alapértelmezés szerint. |Írt toohello feladatelőzményekben. |Hello Tesztkimenet ablaktáblán jelennek meg. |
+| Részletes |Általános vagy a hibakeresési információk üzeneteket. |Ha a részletes naplózás is engedélyezve van a hello runbook írt csak toojob előzményeit. |Hello Tesztkimenet ablaktáblán jelenik meg, csak ha $VerbosePreference tooContinue hello runbook. |
+| Folyamatban van |Automatikusan létrehozott előtt és után hello runbook minden tevékenysége rögzíti. hello runbook nem szabadna megpróbálniuk toocreate a saját állapotrekordjait, mivel egy interaktív felhasználó szolgálnak. |Ha folyamatban van a naplózás kapcsolva hello runbook írt csak toojob előzményeit. |Nem jelenik meg a hello Tesztkimenet ablaktáblán. |
+| Hibakeresés |Egy interaktív felhasználó számára készült üzenetek. Nem használható a runbookok. |Nem írt toojob előzményeit. |Nem írt tooTest Tesztkimenet ablaktáblán. |
 
 ## <a name="output-stream"></a>Kimeneti adatfolyam
-A kimeneti adatfolyamba megfelelően egy parancsfájl vagy a munkafolyamat által létrehozott objektumok kimenetéhez használható. Az Azure Automationben, ez az adatfolyam elsősorban a által felhasznált objektumok esetében [az aktuális runbookot meghívó runbookok szülő](automation-child-runbooks.md). Ha Ön [beágyazottan indított runbook hívja](automation-child-runbooks.md#invoking-a-child-runbook-using-inline-execution) a szülőrunbookból, hogy adatokat ad vissza a kimeneti adatfolyamból a szülő. A kimeneti adatfolyamba való kommunikációhoz az általános információkat továbbítson a felhasználónak, ha tudja, hogy a runbook nem fogja meghívni egy másik runbook csak használjon. Ajánlott eljárásként, azonban általában használjon a [részletes adatfolyam](#Verbose) hogy általános információkat a felhasználó számára.
+hello kimeneti adatfolyamba megfelelően egy parancsfájl vagy a munkafolyamat által létrehozott objektumok kimenetéhez használható. Azure Automation, ez az adatfolyam elsősorban használják a által felhasznált objektumok toobe [runbookokat hello aktuális runbookot meghívó szülő](automation-child-runbooks.md). Ha Ön [beágyazottan indított runbook hívja](automation-child-runbooks.md#invoking-a-child-runbook-using-inline-execution) a szülőrunbookból, akkor ad vissza adatokat hello kimeneti adatfolyam toohello szülő. Hello kimeneti adatfolyam toocommunicate általános információkat hátsó toohello felhasználói csak akkor ajánlott, ha soha nem fogja meghívni egy másik runbook hello runbook tudja. Ajánlott eljárásként, azonban általában használjon hello [részletes adatfolyam](#Verbose) toocommunicate általános információkat toohello felhasználó.
 
-Adatokat írni a kimeneti adatfolyamhoz a [Write-Output](http://technet.microsoft.com/library/hh849921.aspx) vagy az objektum saját sort kap a runbookban a helyezésével.
+Adatok toohello kimeneti adatfolyam használatával írhat [Write-Output](http://technet.microsoft.com/library/hh849921.aspx) vagy hello objektum saját sort hello runbook helyezésével.
 
-    #The following lines both write an object to the output stream.
+    #hello following lines both write an object toohello output stream.
     Write-Output –InputObject $object
     $object
 
 ### <a name="output-from-a-function"></a>Függvények kimenete
-Ha a kimeneti adatfolyamba, a runbookban szereplő függvényből ír a kimeneti átadódik a runbookot. Ha a runbook hozzárendeli a kimenet egy változóhoz, majd nem írás a kimeneti adatfolyamba. Bármely másik adatfolyamba a függvényen belülről való írás a runbook megfelelő adatfolyamába fognak írni.
+Ha a runbookban szereplő függvényből ír toohello kimeneti adatfolyamba, hello kimeneti hátsó toohello runbook lett átadva. Ha hello runbook kimeneti tooa változóhoz rendeli hozzá, majd a program nem készült toohello kimeneti adatfolyam. Írása tooany hello függvényen belül másik adatfolyamba ír toohello hello runbook megfelelő adatfolyamába.
 
-Vegye figyelembe az alábbi példában a runbook.
+Vegye figyelembe a következő példában a runbook hello.
 
     Workflow Test-Runbook
     {
@@ -63,20 +63,20 @@ Vegye figyelembe az alábbi példában a runbook.
     }
 
 
-A kimeneti adatfolyamba, a runbook-feladat a következő lesz:
+hello kimeneti adatfolyama így hello runbook-feladat a következő lesz:
 
     Output inside of function
     Output outside of function
 
-A részletes adatfolyama így a runbook-feladat a következő lesz:
+hello részletes adatfolyama így hello runbook-feladat a következő lesz:
 
     Verbose outside of function
     Verbose inside of function
 
-A runbook közzététel után, és mielőtt elkezdené, is engedélyezni kell a részletes naplózást a runbook beállításaiban a részletes adatfolyam-kimenetét eléréséhez.
+Miután hello runbook közzétett, és azt megkezdése előtt, kell is bekapcsolja a részletes naplózást hello runbook beállításaiban rendelés tooget hello részletes adatfolyam-kimenetét.
 
 ### <a name="declaring-output-data-type"></a>Deklarálási kimeneti adatok típusát
-Egy munkafolyamat adhat meg a kimenethez használt adattípusa a [OutputType attribútummal](http://technet.microsoft.com/library/hh847785.aspx). Ez az attribútum nincs hatása futásidőben, de a arra utal, hogy a runbook Szerző a runbook a várt kimeneti tervezési időben. A runbookok eszközkészlete folyamatosan fejleszteni, a fontos tervezési időben elvárt kimeneti adattípus fontossága növekszik. Ennek eredményeképpen a legjobb az Ön által létrehozott runbook ezt a nyilatkozatot felvenni.
+Egy munkafolyamat megadható hello adatok típusa a kimeneti hello segítségével [OutputType attribútummal](http://technet.microsoft.com/library/hh847785.aspx). Ennek az attribútumnak nincs hatása futásidőben, de a runbook szerzők arra utal, hogy toohello hello várható kimenet hello runbook tervezési időben. Hello a runbookok eszközkészlete folyamatosan tooevolve, fontos tervezési időben elvárt kimeneti adattípus fontossága hello növekszik. Ennek eredményeképpen bevált gyakorlat az tooinclude Ez a nyilatkozat az Ön által létrehozott runbookokat.
 
 Ez egy lista példa kimenet típusa:
 
@@ -85,7 +85,7 @@ Ez egy lista példa kimenet típusa:
 * System.Collections.Hashtable
 * Microsoft.Azure.Commands.Compute.Models.PSVirtualMachine
 
-Az alábbi példában a runbook kimenete egy karakterlánc-objektum, és megadja az elvárt kimenettípust. Ha a runbook kimenete egy bizonyos típusú tömb, majd, továbbra is adja meg a típus típusú tömb szemben.
+hello alábbi példában a runbook kimenete egy karakterlánc-objektum, és megadja az elvárt kimenettípust. Ha a runbook kimenete egy bizonyos típusú tömb, majd kell továbbra is meg hello típus megakadályozását tooan tömbként hello típusú.
 
     Workflow Test-Runbook
     {
@@ -95,61 +95,61 @@ Az alábbi példában a runbook kimenete egy karakterlánc-objektum, és megadja
        Write-Output $output
     }
 
-Deklarálja a Grapical vagy grafikus PowerShell-munkafolyamati forgatókönyvek kimeneti típusát, jelölje ki a **bemeneti és kimeneti** menüpontra, majd a kimeneti típus nevében típusa.  Azt javasoljuk, hogy a teljes .NET-osztály nevét használja abba, hogy könnyen azonosítható, ha a szülőrunbookból hivatkoznak rá.  Ez az adatbuszhoz a runbookban lévő osztály összes tulajdonságainak, és használatuk feltételes logikához, a naplózás, és más tevékenységek a runbookban értékként hivatkozó biztosítja a magas fokú rugalmasságot biztosít.<br> ![A Runbook bemeneti és kimeneti beállítás](media/automation-runbook-output-and-messages/runbook-menu-input-and-output-option.png)
+Adja meg egy kimeneti Grapical vagy grafikus PowerShell-munkafolyamati forgatókönyvek toodeclare, kiválaszthatja hello **bemeneti és kimeneti** menüpontra, majd hello típusú hello nevét a kimeneti típus.  Azt javasoljuk hello teljes .NET osztály neve toomake használja az egyszerűen azonosítható, ha a szülőrunbookból hivatkoznak rá.  Az adott osztály toohello adatbusz hello runbook összes hello tulajdonságok, és a használatuk feltételes logikához, a naplózás, és a hello runbook más tevékenységei értékként hivatkozó biztosítja a magas fokú rugalmasságot biztosít.<br> ![A Runbook bemeneti és kimeneti beállítás](media/automation-runbook-output-and-messages/runbook-menu-input-and-output-option.png)
 
-A következő példában két grafikus forgatókönyvek, ez a funkció bemutatásához van.  A moduláris runbook hálózattervezési modell érvénybe lépni, hogy egy runbookot, amely a *hitelesítési Runbook sablon* hitelesítés kezelése az Azure-ban a Futtatás mint fiók.  A második runbookot, amely általában hajtaná végre a core logika egy adott forgatókönyv automatizálása, ebben az esetben lesz hajtható végre a *hitelesítési Runbook sablon* , és megjeleníti az eredményeket a **teszt** tesztkimenet ablaktáblán.  Normál körülmények között ez a forgatókönyv foglalkozhat ellen, ami a gyermekrunbook kimenetét erőforrás kellene azt.    
+A következő példa hello tudunk két grafikus forgatókönyvek toodemonstrate ezt a szolgáltatást.  Hello moduláris runbook hálózattervezési modell érvénybe lépni, hogy egy runbookot, amely hello *hitelesítési Runbook sablon* hitelesítéséhez az Azure használatával hello futtató fiók.  A második runbookot, amely általában hajtaná végre a hello core logika tooautomate egy adott forgatókönyv esetén, ebben az esetben lesz tooexecute hello *hitelesítési Runbook sablon* , és megjeleníti a hello eredmények tooyour **tesztelése** tesztkimenet ablaktáblán.  Normál körülmények azt kellene foglalkozhat elleni egy erőforrás-emelés hello kimeneti hello gyermekrunbook a runbookot.    
 
-Ez az alapvető logikát a **AuthenticateTo-Azure** runbook.<br> ![Runbook-sablont példa hitelesítéséhez](media/automation-runbook-output-and-messages/runbook-authentication-template.png).  
+Itt látható az alapszintű logikája hello hello **AuthenticateTo-Azure** runbook.<br> ![Runbook-sablont példa hitelesítéséhez](media/automation-runbook-output-and-messages/runbook-authentication-template.png).  
 
-A kimeneti típust tartalmazza *Microsoft.Azure.Commands.Profile.Models.PSAzureContext*, visszatér a hitelesítést, amely profiltulajdonságok.<br> ![Runbook-kimenet típusa – példa](media/automation-runbook-output-and-messages/runbook-input-and-output-add-blade.png) 
+Hello kimeneti típust tartalmazza *Microsoft.Azure.Commands.Profile.Models.PSAzureContext*, amely hello hitelesítési profiltulajdonságok ad vissza.<br> ![Runbook-kimenet típusa – példa](media/automation-runbook-output-and-messages/runbook-input-and-output-add-blade.png) 
 
-Bár ez a forgatókönyv igen közvetlen, egy konfigurációs elem van itt hívásához.  Az utolsó tevékenység végrehajtása történik a **Write-Output** parancsmag és a profiladatok ír egy $_ változó segítségével egy PowerShell-kifejezést vár a **Inputobject** paraméter, amely pedig szükséges, hogy a parancsmag.  
+Bár ez a forgatókönyv igen közvetlen, van egy konfigurációs elem toocall itt meg.  hello utolsó tevékenység végrehajtása történik hello **Write-Output** parancsmag és az írás hello profil adatok tooa $_ változó PowerShell-kifejezést használ hello **Inputobject** paraméter, amely szükséges parancsmag.  
 
-A második forgatókönyv ebben a példában, nevű *teszt-ChildOutputType*, egyszerűen tudunk két tevékenység.<br> ![Példa gyermek típusú Runbook kimeneti](media/automation-runbook-output-and-messages/runbook-display-authentication-results-example.png) 
+Hello második forgatókönyv ebben a példában, nevű *teszt-ChildOutputType*, egyszerűen tudunk két tevékenység.<br> ![Példa gyermek típusú Runbook kimeneti](media/automation-runbook-output-and-messages/runbook-display-authentication-results-example.png) 
 
-Az első tevékenység hívások a **AuthenticateTo-Azure** runbook és a második tevékenység fut a **Write-Verbose** parancsmagot a **adatforrás** a **tevékenység kimeneti** és az értéke **mező elérési útja** van **Context.Subscription.SubscriptionName**, amely határozza meg a környezetben kimenetét a a **AuthenticateTo-Azure** runbook.<br> ![Write-Verbose parancsmag paraméter adatforrás](media/automation-runbook-output-and-messages/runbook-write-verbose-parameters-config.png)    
+hello első tevékenység meghívja a hello **AuthenticateTo-Azure** hello fut a runbook és hello második tevékenység **Write-Verbose** hello parancsmagot **adatforrás** a  **Tevékenység kimeneti** és hello értéke **mező elérési útja** van **Context.Subscription.SubscriptionName**, amely hello környezetben kimenete hello meg  **AuthenticateTo-Azure** runbook.<br> ![Write-Verbose parancsmag paraméter adatforrás](media/automation-runbook-output-and-messages/runbook-write-verbose-parameters-config.png)    
 
-Ennek kimenete az előfizetés esetén.<br> ![Teszt-ChildOutputType eredmények összesítése](media/automation-runbook-output-and-messages/runbook-test-childoutputtype-results.png)
+Ennek kimenete hello hello előfizetés hello neve.<br> ![Teszt-ChildOutputType eredmények összesítése](media/automation-runbook-output-and-messages/runbook-test-childoutputtype-results.png)
 
-A kimeneti típus vezérlő viselkedését egy megjegyzést.  Ha a kimeneti mezőben a bemeneti és kimeneti tulajdonságai panelen írjon be egy értéket kell a vezérlőn kívül, akkor ahhoz, hogy a megadott adatot ismeri fel a vezérlő beírása után.  
+A OneNote kapcsolatos hello kimeneti típusú vezérlő hello viselkedését.  Amikor beírja egy az hello kimeneti típust mezőben a hello bemeneti és kimeneti tulajdonságok panelére léphet, lehetősége van tooclick hello vezérlőn kívül, ahhoz, hogy a belépési toobe ismeri fel hello vezérlő beírása után.  
 
 ## <a name="message-streams"></a>Üzenet-adatfolyamok
-A kimeneti adatfolyamokkal ellentétben üzenet-adatfolyamok célja, hogy a felhasználónak kommunikációhoz. A különböző információtípusoknak saját üzenet-adatfolyamuk van, és minden Azure Automation a másképpen kezeli.
+Hello kimeneti adatfolyamokkal ellentétben az üzenet-adatfolyamok tervezett toocommunicate információk toohello felhasználókként szerepelnek. A különböző információtípusoknak saját üzenet-adatfolyamuk van, és minden Azure Automation a másképpen kezeli.
 
 ### <a name="warning-and-error-streams"></a>Figyelmeztetés és hiba adatfolyamok
-A figyelmeztetési és hibaadatfolyamok a runbookban előforduló problémákat naplózzák. Írás a feladatelőzményekben a runbook végrehajtása, és az Azure felügyeleti portálon Tesztkimenet ablaktábláján szerepel egy runbook tesztelésekor. Alapértelmezés szerint a runbook fog szakítják meg a figyelmeztető vagy hibaüzenetek. Megadhatja, hogy a runbook kell fel legyen függesztve figyelmeztető vagy hibaüzenet úgy, hogy egy [preferenciaváltozót](#PreferenceVariables) a runbookban az üzenet létrehozása előtt. Például, hogy egy runbook felfüggessze a hiba, mintha a kivétel, állítsa **$ErrorActionPreference** állítja.
+Figyelmeztetés és hiba adatfolyamok hello egy runbook tervezett toolog problémák. Amikor egy runbook végrehajtásakor, és a hello Azure felügyeleti portál Tesztkimenet ablaktábláján hello szerepel egy runbook tesztelésekor az oktatóprogram toohello feladatelőzményekben. Alapértelmezés szerint hello runbook fog szakítják meg a figyelmeztető vagy hibaüzenetek. Megadhatja, hogy hello runbook kell fel legyen függesztve figyelmeztető vagy hibaüzenet úgy, hogy egy [preferenciaváltozót](#PreferenceVariables) hello runbook üdvözlőüzenetére létrehozása előtt. Egy hiba történt a runbook toosuspend toocause, mintha a kivétel, állítsa például **$ErrorActionPreference** tooStop.
 
-Hozzon létre egy figyelmeztető és hibaüzeneteket a [Write-Warning](https://technet.microsoft.com/library/hh849931.aspx) vagy [Write-Error](http://technet.microsoft.com/library/hh849962.aspx) parancsmag. A tevékenységek is írhatnak adatokat ezekbe az adatfolyamokba.
+Hozzon létre egy figyelmeztetés vagy hibaüzenet üzenetet hello segítségével [Write-Warning](https://technet.microsoft.com/library/hh849931.aspx) vagy [Write-Error](http://technet.microsoft.com/library/hh849962.aspx) parancsmag. A tevékenységek is írhatnak toothese adatfolyamokat.
 
-    #The following lines create a warning message and then an error message that will suspend the runbook.
+    #hello following lines create a warning message and then an error message that will suspend hello runbook.
 
     $ErrorActionPreference = "Stop"
     Write-Warning –Message "This is a warning message."
-    Write-Error –Message "This is an error message that will stop the runbook because of the preference variable."
+    Write-Error –Message "This is an error message that will stop hello runbook because of hello preference variable."
 
 ### <a name="verbose-stream"></a>Részletes adatfolyam
-A részletes üzenet-adatfolyam van a runbook-művelettel kapcsolatos általános információkat. Mivel a [hibakeresési adatfolyam](#Debug) nem érhető el egy runbook részletes üzenetek használja a rendszer hibakeresési információ. Alapértelmezés szerint a közzétett runbookok részletes üzenetei nem tárolódnak a feladatelőzményekben. Részletes üzenetek tárolásához, konfigurálja a konfigurálása lapon, az Azure felügyeleti portálon a runbook közzétett runbookok részletes rekordok naplózása. A legtöbb esetben érdemes megtartani az alapértelmezett beállítás, amely nem naplózza a teljesítményre vonatkozó megfontolásból runbook részletes rekordjait. Kapcsolja be ezt a lehetőséget csak hibaelhárítása vagy a hibakeresési egy runbookot.
+hello részletes üzenet-adatfolyam hello runbook műveletekre vonatkozó általános információk van. Hello óta [hibakeresési adatfolyam](#Debug) nem érhető el egy runbook részletes üzenetek használja a rendszer hibakeresési információ. Alapértelmezés szerint a közzétett runbookok részletes üzenetei nem tárolódnak hello feladatelőzményekben. toostore részletes üzenetek, konfigurálja a közzétett runbookok tooLog részletes rekordok hello konfigurálása lapon hello runbook hello Azure felügyeleti portálon. A legtöbb esetben érdemes megtartani hello beállítás alapértelmezés szerint nem naplózza a teljesítményre vonatkozó megfontolásból runbook részletes rekordjait. Kapcsolja be ezt a beállítást csak tootroubleshoot, vagy a hibakeresési egy runbookot.
 
-Ha [runbook tesztelése](automation-testing-runbook.md), részletes üzenet nem jelenik meg akkor is, ha a runbook a részletes rekordok naplózására van beállítva. Miközben a részletes üzenetek megjelenítése [runbook tesztelése](automation-testing-runbook.md), a $VerbosePreference változó Folytatás kell beállítania. A változó beállítása részletes üzenetek megjelennek az Azure portál Tesztkimenet ablaktábláján.
+Ha [runbook tesztelése](automation-testing-runbook.md), részletes üzenet nem jelenik meg akkor is, ha hello runbook konfigurált toolog részletes rekordok. részletes üzenetek toodisplay közben [runbook tesztelése](automation-testing-runbook.md), hello $VerbosePreference változó tooContinue meg kell adni. A változó beállítása részletes üzenetek megjelennek hello hello Azure-portál Tesztkimenet ablaktábláján.
 
-Részletes üzenetet létrehozni a [Write-Verbose](http://technet.microsoft.com/library/hh849951.aspx) parancsmag.
+Hozzon létre egy részletes üzenetet hello segítségével [Write-Verbose](http://technet.microsoft.com/library/hh849951.aspx) parancsmag.
 
-    #The following line creates a verbose message.
+    #hello following line creates a verbose message.
 
     Write-Verbose –Message "This is a verbose message."
 
 ### <a name="debug-stream"></a>Hibakeresési adatfolyam
-A hibakeresési adatfolyam interaktív felhasználót számára készült, és nem használható a runbookok.
+hello hibakeresési adatfolyam interaktív felhasználót számára készült, és nem használható a runbookok.
 
 ## <a name="progress-records"></a>Állapotrekordok
-Ha konfigurálja a runbook naplózza folyamatban (az Azure-portálon a runbook konfigurálása lapján) rögzíti, majd egy rekord fog szerepelni a feladatelőzményekben, előtt és után a tevékenység futtatása. A legtöbb esetben az alapértelmezett beállítás, amely nem naplózza a runbook az állapotrekordok teljesítmény maximalizálása érdekében érdemes megtartani. Kapcsolja be ezt a lehetőséget csak hibaelhárítása vagy a hibakeresési egy runbookot. A runbook tesztelésekor hibaüzenetei nem jelennek meg, akkor is, ha a runbook az állapotrekordok naplózására van beállítva.
+Ha konfigurál egy runbook toolog folyamatban (az hello konfigurálása lapon hello runbook hello Azure-portál) rögzíti, majd egy rekord fog szerepelni a feladatelőzményekben toohello előtt és után a tevékenység futtatása. A legtöbb esetben érdemes megtartani hello beállítás alapértelmezés szerint nem naplózza a runbook az állapotrekordok rendelés toomaximize teljesítményét. Kapcsolja be ezt a beállítást csak tootroubleshoot, vagy a hibakeresési egy runbookot. A runbook tesztelésekor hibaüzenetei nem jelennek meg, akkor is, ha hello runbook konfigurált toolog állapotrekordokat.
 
-A [Write-Progress](http://technet.microsoft.com/library/hh849902.aspx) parancsmag érvénytelen runbookokban, mivel ez egy interaktív felhasználó való használatra készült.
+Hello [Write-Progress](http://technet.microsoft.com/library/hh849902.aspx) parancsmag érvénytelen runbookokban, mivel ez egy interaktív felhasználó való használatra készült.
 
 ## <a name="preference-variables"></a>Preferenciaváltozók
-A Windows PowerShell használ [preferenciaváltozók](http://technet.microsoft.com/library/hh847796.aspx) annak meghatározásához, hogyan reagáljon a különböző kimeneti adatfolyamokba küldött adatokra. Ezek a változók beállíthat egy runbook vezérlésére, hogyan fog válaszolni a különböző adatfolyamokba küldött adatokra.
+A Windows PowerShell használ [preferenciaváltozók](http://technet.microsoft.com/library/hh847796.aspx) toodetermine hogyan toorespond küldött toodata toodifferent kimenetét. Ezek a változók egy runbook toocontrol, hogyan válaszol a különböző adatfolyamokba küldött toodata állíthatja be.
 
-Az alábbi táblázat a preferenciaváltozók használható a runbookok, valamint azok érvényes és alapértelmezett értékeit. Vegye figyelembe, hogy ez a táblázat csak tartalmazza a a runbookokban érvényes értékeket. A preferenciaváltozók Azure Automation kívül a Windows PowerShell további értékek érvényesek.
+hello következő táblázatban hello preferenciaváltozók használható a runbookok, valamint azok érvényes és alapértelmezett értékeit. Vegye figyelembe, hogy ez a táblázat csak tartalmaz hello értékek, amelyek érvényesek a runbookokban. Hello preferenciaváltozók Azure Automation kívül a Windows PowerShell további értékek érvényesek.
 
 | Változó | Alapértelmezett érték | Érvényes értékek |
 |:--- |:--- |:--- |
@@ -157,22 +157,22 @@ Az alábbi táblázat a preferenciaváltozók használható a runbookok, valamin
 | ErrorActionPreference |Folytatás |Leállítás<br>Folytatás<br>Folytatáscsendben |
 | VerbosePreference |Folytatáscsendben |Leállítás<br>Folytatás<br>Folytatáscsendben |
 
-A következő táblázat preferencia változóértékei, amelyek érvényesek a runbookok viselkedését.
+a következő táblázat hello hello változó preferenciák, amelyek érvényesek a runbookokat hello viselkedése sorolja fel.
 
 | Érték | Viselkedés |
 |:--- |:--- |
-| Folytatás |Naplózza az üzenetet, és folytatja a runbook futtatását. |
-| Folytatáscsendben |Továbbra is fennáll, az üzenet naplózása nélkül a runbook futtatását. Ez befolyásolja a rendszer figyelmen kívül hagyja az üzenetet. |
-| Leállítás |Naplózza az üzenetet, és felfüggeszti a runbook futtatását. |
+| Folytatás |Üdvözlőüzenetére naplózza, és továbbra is fennáll, hello runbook futtatását. |
+| Folytatáscsendben |Továbbra is fennáll, hello üzenet naplózása nélkül hello runbook futtatását. Ennek hatása hello üdvözlőüzenetére jelenti. |
+| Leállítás |Üdvözlőüzenetére naplózza, és felfüggeszti a hello runbook. |
 
 ## <a name="retrieving-runbook-output-and-messages"></a>Runbook-kimenet és üzenetek lekérése
 ### <a name="azure-portal"></a>Azure Portal
-A runbook-feladatok részletes adatait az Azure portálon a runbookok feladatok lapján tekintheti meg. A feladat összegzését jeleníti meg a bemeneti paraméterek és a [kimeneti adatfolyamba](#Output) mellett a feladatot, és ha sor került ilyenre kivételek kapcsolatos általános információkat. Az előzmények üzeneteit tartalmazzák a [kimeneti adatfolyamba](#Output) és [figyelmeztető és Hibaadatfolyamok](#WarningError) kívül a [részletes adatfolyam](#Verbose) és [Állapotrekordokat](#Progress) Ha a runbook naplózza a részletes és állapotrekordokat van beállítva.
+A hello hello feladatok lapján a runbookok az Azure-portálon tekintheti hello a runbook-feladatok részleteit. hello hello feladat összegzését jeleníti meg hello bemeneti paraméterek és hello [kimeneti adatfolyamba](#Output) hozzáadása toogeneral információt hello feladat és a kivételek, ha azok történt. hello előzmények hello üzeneteit tartalmazzák [kimeneti adatfolyamba](#Output) és [figyelmeztető és Hibaadatfolyamok](#WarningError) hozzáadása toohello a [részletes adatfolyam](#Verbose) és [folyamatban Rekordok](#Progress) hello runbook esetén konfigurált toolog részletes és állapotrekordokat.
 
 ### <a name="windows-powershell"></a>Windows PowerShell
-A Windows PowerShell parancssorába beolvasható-kimenet és üzenetek powershellel a [Get-AzureAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) parancsmag. Ehhez a parancsmaghoz szükséges a feladat Azonosítóját, és hívta a paraméter adatfolyam, amelyben meg kell határoznia melyik adatfolyamot adja majd vissza. Bármely, a feladathoz tartozó összes adatfolyamot visszaadja adhatja meg.
+A Windows PowerShell parancssorába beolvasható-kimenet és üzenetek a runbookot hello [Get-AzureAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) parancsmag. Ehhez a parancsmaghoz szükséges hello hello feladat Azonosítóját, és egy paraméterrel hívják mely adatfolyam tooreturn megadott adatfolyam. Bármely tooreturn hello feladathoz tartozó összes adatfolyamot adhatja meg.
 
-A következő példában elindul a runbook, és majd megvárja, amíg befejeződik. Ezt követően a kimeneti adatfolyamot begyűjti a feladatból.
+a következő példa hello megkezdi a minta-runbookhoz és vár, amíg toocomplete. Ezt követően a kimeneti adatfolyamot a folyamat során gyűjtött hello feladat.
 
     $job = Start-AzureRmAutomationRunbook -ResourceGroupName "ResourceGroup01" `
     –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook"
@@ -189,25 +189,25 @@ A következő példában elindul a runbook, és majd megvárja, amíg befejeződ
     –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Output
 
 ### <a name="graphical-authoring"></a>Grafikus készítése
-Grafikus forgatókönyvekhez extra naplózás érhető tevékenység szintű nyomkövetés formájában.  Nyomkövetés két szint: Basic, és részletesen.  Alapvető nyomkövetés, láthatja, hogy a start és a runbook, valamint minden tevékenység-újrapróbálkozások, például a kapcsolatos adatokat minden tevékenység befejezési időpontja kísérletet tett, és a tevékenység kezdési időpontja.  Részletes nyomkövetés, a kapott egyszerű nyomkövetést plusz bemeneti és kimeneti minden egyes tevékenységhez.  Vegye figyelembe, hogy jelenleg a nyomkövetési rekord segítségével készül a részletes napló, engedélyeznie kell a részletes naplózást, ha engedélyezi a nyomkövetést.  A kérelmek nyomon követése engedélyezve grafikus forgatókönyvek naplózza az állapotrekordokat, mert az alapvető nyomkövetés ugyanazt a célt szolgálja, és még informatívabbá nincs szükség van.
+Grafikus forgatókönyvekhez további naplózás érhető el a tevékenység szintű nyomkövetésre hello formában.  Nyomkövetés két szint: Basic, és részletesen.  Alapszintű nyomkövetés, a hello start látható, és minden hello runbook és információk a tevékenység befejezési időpontja kapcsolatos tooany tevékenység újrapróbálkozások, például a kísérletek száma és hello tevékenység kezdési időpontja.  Részletes nyomkövetés, a kapott egyszerű nyomkövetést plusz bemeneti és kimeneti minden egyes tevékenységhez.  Vegye figyelembe, hogy jelenleg hello nyomkövetési rekord segítségével készül hello részletes adatfolyam, engedélyeznie kell a részletes naplózást, ha engedélyezi a nyomkövetést.  A kérelmek nyomon követése engedélyezve grafikus forgatókönyvekhez nincs szükség toolog állapotrekordokat, mert hello alapvető nyomkövetés szolgál hello ugyanerre a célra, és több adatot.
 
 ![Grafikus szerzői feladat adatfolyamokat megtekintése](media/automation-runbook-output-and-messages/job-streams-view-blade.png)
 
-A fenti képernyőfelvételen az látható, hogy ha engedélyezi a részletes naplózás és nyomkövetés grafikus forgatókönyvekhez, sokkal több adatot legyen az üzemi feladat adatfolyamok nézet.  Lehet, hogy ez további információt a runbook üzemi kapcsolatos problémák alapvető, és ezért csak akkor engedélyezze az erre a célra, nem pedig egy általános gyakorlat.    
-Lehet, hogy a nyomkövetési rekord különösen számos.  Grafikus forgatókönyvnek a nyomkövetés akkor kaphat kettő vagy négy rekordok száma attól függően, hogy konfigurálta az alap vagy részletes nyomkövetés tevékenység.  Ha nem kell ezt az információt a runbook hibaelhárítási előrehaladását úgy követheti nyomon, érdemes nyomkövetés megőrzése ki van kapcsolva.
+A fenti képernyőfelvételen hello látható, hogy ha engedélyezi a részletes naplózás és nyomkövetés grafikus forgatókönyvekhez, sokkal több adatot legyen hello éles feladat adatfolyamok megtekintése.  Lehet, hogy ez további információt a runbook üzemi kapcsolatos problémák alapvető, és ezért csak akkor engedélyezze az erre a célra, nem pedig egy általános gyakorlat.    
+lehet, hogy különösen számos hello nyomkövetési rögzíti.  Grafikus forgatókönyvnek a nyomkövetés akkor kaphat két toofour rekordok száma attól függően, hogy konfigurálta az alap vagy részletes nyomkövetés tevékenység.  Ha nem kell az adatokat tootrack hello folyamatban van egy runbook hibaelhárítási, érdemes tookeep nyomkövetés ki van kapcsolva.
 
-**Tevékenység szintű a nyomkövetés engedélyezéséhez, hajtsa végre a következő lépéseket.**
+**tevékenység szintű tooenable nyomkövetés, hajtsa végre a lépéseket követve hello.**
 
-1. Az Azure portálon nyissa meg az Automation-fiókját.
-2. Kattintson a **Forgatókönyvek** csempére a forgatókönyvek listájának megnyitásához.
-3. A Runbookok panelen kattintson egy grafikus forgatókönyvnek a runbookok a listából.
-4. A kiválasztott runbook beállítási paneljén kattintson **naplózás és nyomkövetés**.
-5. A naplózás és nyomkövetés panelen, a részletes rekordok naplózása, kattintson a **a** részletes naplózást és tevékenység-szintű udner nyomkövetés engedélyezéséhez módosítsa a nyomkövetési szint **alapvető** vagy **részletes** szükséges nyomkövetési szint alapján.<br>
+1. Hello Azure portál nyissa meg az Automation-fiók.
+2. Kattintson a hello **Runbookok** csempe tooopen hello forgatókönyvek listája.
+3. A Runbookokat hello panelen kattintson a tooselect egy grafikus forgatókönyvnek a runbookok a listából.
+4. A kiválasztott hello runbook hello beállítási paneljén kattintson **naplózás és nyomkövetés**.
+5. Hello a naplózás és a nyomkövetés panelen, a részletes rekordok naplózása kattintson **a** tooenable részletes naplózást és udner tevékenység szintű nyomkövetés módosítása hello nyomkövetési szint túl**alapvető** vagy **részletes**  hello szintje szükséges nyomkövetés alapján.<br>
    
    ![Grafikus szerzői naplózás és nyomkövetés panel](media/automation-runbook-output-and-messages/logging-and-tracing-settings-blade.png)
 
 ### <a name="microsoft-operations-management-suite-oms-log-analytics"></a>A Microsoft Operations Management Suite (OMS) szolgáltatáshoz
-Automatizálási küldhet runbook feladat állapotát és a feladat adatfolyamokat a Microsoft Operations Management Suite (OMS) Naplóelemzési munkaterületet.  A Naplóelemzési is,
+Automatizálási runbook feladat állapotát és a feladat adatfolyamok tooyour a Microsoft Operations Management Suite (OMS) Naplóelemzési munkaterület küldhet.  A Naplóelemzési is,
 
 * Az automatizálási feladatok insight letöltése 
 * A runbook-feladat állapota (pl. felfüggesztett vagy sikertelen) alapuló riasztás vagy e-mail eseményindító 
@@ -215,9 +215,9 @@ Automatizálási küldhet runbook feladat állapotát és a feladat adatfolyamok
 * Feladatok összefüggéseket Automation-fiókok között 
 * A feladatelőzmények megjelenítheti az adott idő alatt    
 
-Hogyan gyűjthet, egyeztetéséhez és feladatadatok intézkedjen Naplóelemzési rendszerrel történő integráció konfigurálása További információkért lásd: [továbbítása feladat állapotát és a feladat adatfolyamok Automation való Naplóelemzés (OMS)](automation-manage-send-joblogs-log-analytics.md).
+Naplóelemzési toocollect tooconfigure integrációja összefüggéseket és feladatadatok intézkedjen további információkért lásd: [feladat állapotát és a feladat adatfolyam továbbítása Automation tooLog szolgáltatás (OMS)](automation-manage-send-joblogs-log-analytics.md).
 
 ## <a name="next-steps"></a>Következő lépések
-* A runbook végrehajtásával, a runbook-feladatok figyelésével, illetve az egyéb technikai részletekkel kapcsolatos további tudnivalókat a [Runbook-feladatok nyomon követése](automation-runbook-execution.md) című rész tartalmazza
-* Tervezése és alárendelt forgatókönyvekkel ismertetése: [gyermek az Azure Automation runbookjai](automation-child-runbooks.md)
+* További információk a runbook végrehajtása toomonitor runbook feladatokat, valamint egyéb technikai részleteket lásd: hogyan toolearn [nyomon követheti a runbook-feladatok](automation-runbook-execution.md)
+* Hogyan toodesign és -felhasználási gyermekforgatókönyvek: toounderstand [gyermek az Azure Automation runbookjai](automation-child-runbooks.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Erőforrások az PowerShell és a sablon telepítése |} Microsoft Docs"
-description: "Azure Resource Manager és az Azure PowerShell használatával telepítse a erőforrások az Azure. Az erőforrások egy Resource Manager-sablonban vannak meghatározva."
+title: "a PowerShell és a sablon aaaDeploy erőforrások |} Microsoft Docs"
+description: "Azure Resource Manager és az Azure PowerShell toodeploy egy erőforrások tooAzure használja. a Resource Manager-sablon hello erőforrások vannak definiálva."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5f395abf8ebdfbac18fd17d8183b392673e280ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41506811ba3c2ea5df6313db70978ade50f71161
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-resources-with-resource-manager-templates-and-azure-powershell"></a>Erőforrások üzembe helyezése Resource Manager-sablonokkal és az Azure PowerShell-lel
 
-Ez a témakör ismerteti az Azure PowerShell használata a Resource Manager-sablonok az erőforrások telepítése az Azure-bA. Ha nem ismeri a telepítésével kapcsolatos alapfogalmakat és kezelése az Azure megoldások, lásd: [Azure Resource Manager áttekintése](resource-group-overview.md).
+Ez a témakör azt ismerteti, hogyan toouse Azure PowerShell, a Resource Manager sablonok toodeploy az erőforrások tooAzure. Ha nem ismeri a hello kapcsolatos alapfogalmakat üzembe helyezése és kezelése az Azure megoldások, lásd: [Azure Resource Manager áttekintése](resource-group-overview.md).
 
-A Resource Manager-sablon, azok a helyi fájl a számítógépre telepít, vagy egy külső egy például a GitHub-tárházban található fájl. Ez a cikk központi telepítését a sablon érhető el a [mintasablon](#sample-template) szakasz, vagy mint [tárolási fiók sablon a Githubon](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json).
+azok a helyi fájl a számítógépre telepít hello Resource Manager-sablon, vagy egy külső egy például a GitHub-tárházban található fájl. Ebben a cikkben telepít hello sablon érhető el hello [mintasablon](#sample-template) szakasz, vagy mint [tárolási fiók sablon a Githubon](https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json).
 
 [!INCLUDE [sample-powershell-install](../../includes/sample-powershell-install.md)]
 
@@ -32,15 +32,15 @@ A Resource Manager-sablon, azok a helyi fájl a számítógépre telepít, vagy 
 
 ## <a name="deploy-a-template-from-your-local-machine"></a>A helyi gépről sablon telepítése
 
-Ha erőforrásokat üzembe helyezi az Azure-ba, hogy:
+Erőforrások tooAzure telepítésekor meg:
 
-1. Jelentkezzen be az Azure-fiókjával
-2. Hozzon létre egy erőforráscsoportot, amely a telepített erőforrások tárolójaként szolgál. Az erőforráscsoport neve csak tartalmazhatnak alfanumerikus karaktereket, pontokat, aláhúzásjeleket, kötőjeleket és zárójeleket tartalmazhat. Legfeljebb 90 karakter lehet. Nem végződhet ponttal.
-3. Telepítse az erőforráscsoport a sablon, amely meghatározza az erőforrás létrehozásához.
+1. Jelentkezzen be tooyour Azure-fiók
+2. Hozzon létre egy erőforráscsoportot, amely hello telepített erőforrások hello tárolóként szolgál. hello erőforráscsoport nevét hello tartalmazhatnak alfanumerikus karaktereket, pontokat, aláhúzásjeleket, kötőjeleket és zárójeleket tartalmazhat. Másolatot too90 karakter lehet. Nem végződhet ponttal.
+3. Toohello erőforrás csoport hello sablont, amely meghatározza a hello erőforrások toocreate telepítése
 
-A sablon tartalmazhat, amelyek segítségével testre szabhatja a központi telepítési paramétereit. Biztosíthatja például is lefednek értékeket (például a fejlesztői, tesztelési és éles) egy adott környezetben. A minta sablon meghatározza a tárfiók SKU paraméter.
+A sablon tartalmazhat, amelyek lehetővé teszik toocustomize hello telepítési paramétereit. Biztosíthatja például is lefednek értékeket (például a fejlesztői, tesztelési és éles) egy adott környezetben. hello mintasablon hello tárfiók SKU paraméter határozza meg.
 
-Az alábbi példa létrehoz egy erőforráscsoport, és egy sablon, a helyi számítógépen telepíti:
+a következő példa hello hoz létre egy erőforráscsoportot, és egy sablon, a helyi számítógépen telepíti:
 
 ```powershell
 Login-AzureRmAccount
@@ -50,7 +50,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType Standard_GRS
 ```
 
-Az üzembe helyezés eltarthat néhány percig. A Befejezés után megjelenik egy üzenet, amely tartalmazza az eredmény:
+hello központi telepítés is igénybe vehet néhány percet toocomplete. A Befejezés után megjelenik egy üzenet, amely tartalmazza az hello eredmény:
 
 ```powershell
 ProvisioningState       : Succeeded
@@ -58,9 +58,9 @@ ProvisioningState       : Succeeded
 
 ## <a name="deploy-a-template-from-an-external-source"></a>Külső forrásból sablon telepítése
 
-Helyett Resource Manager-sablonok a helyi gépén, célszerű lehet külső helyen tárolja őket. A verziókövetési tárházat (például a Githubon) sablonok tárolhat. Vagy tárolhatja őket egy Azure storage-fiók megosztott eléréséhez a szervezetében.
+Toostore célszerű helyett Resource Manager-sablonok a helyi számítógépen, a külső helyre. A verziókövetési tárházat (például a Githubon) sablonok tárolhat. Vagy tárolhatja őket egy Azure storage-fiók megosztott eléréséhez a szervezetében.
 
-Egy külső sablon történő üzembe helyezéséhez használjon a **TemplateUri** paraméter. A példában az URI segítségével telepítheti a minta-sablont a Githubból.
+egy külső sablon toodeploy hello használata **TemplateUri** paraméter. Hello URI hello példa toodeploy hello minta sablont a Githubból a használata.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -68,11 +68,11 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -storageAccountType Standard_GRS
 ```
 
-Az előző példában a sablont, amely a legtöbb környezetben működik, mivel a sablon nem tartalmaznia kell a bizalmas adatok nyilvánosan elérhető URI igényel. Meg kell adnia a bizalmas adatok (például egy rendszergazdai jelszó), ha egy biztonságos paraméterben adja át ezt az értéket. Azonban ha nem szeretné, hogy a sablon a nyilvánosan hozzáférhető, megvédheti azokat a személyes tárolót tárolja őket. A sablont, amely közös hozzáférésű jogosultságkód (SAS) jogkivonat szükséges, központi telepítésével kapcsolatos információkért lásd: [telepítés titkos sablont a SAS-jogkivonat](resource-manager-powershell-sas-token.md).
+hello előző példa kell rendelkeznie a nyilvánosan elérhető URI hello sablon, amely a legtöbb környezetben működik, mivel a sablon nem érzékeny adatot kell tartalmaznia. Ha toospecify bizalmas adatok (például egy rendszergazdai jelszó) van szüksége, adja át ezt az értéket egy biztonságos paraméterben. Azonban ha nem szeretné, hogy a sablon toobe nyilvánosan elérhető, megvédheti azokat a személyes tárolót tárolja őket. A sablont, amely közös hozzáférésű jogosultságkód (SAS) jogkivonat szükséges, központi telepítésével kapcsolatos információkért lásd: [telepítés titkos sablont a SAS-jogkivonat](resource-manager-powershell-sas-token.md).
 
 ## <a name="parameter-files"></a>A paraméter fájlok
 
-Ahelyett, hogy a parancsfájl beágyazott értékeiként paraméterek átadása, előfordulhat, hogy ez egyszerűbbé teszi a paraméterek értékeit tartalmazó JSON-fájl használatára. A paraméterfájl a következő formátumúnak kell lennie:
+Ahelyett, hogy a parancsfájl beágyazott értékeiként paraméterek átadása, azt tapasztalhatja, könnyebben toouse hello paraméterértékek tartalmazó JSON-fájl. hello paraméterfájl kell hello a következő formátumban:
 
 ```json
 {
@@ -86,11 +86,11 @@ Ahelyett, hogy a parancsfájl beágyazott értékeiként paraméterek átadása,
 }
 ```
 
-Figyelje meg, hogy a Paraméterek szakaszban tartalmazza-e a paraméter neve, amely megfelel a sablonban (storageAccountType) meghatározott paraméter. A paraméterfájl a paraméter értékét tartalmazza. Ezt az értéket automatikusan kerülnek a sablon üzembe helyezése során. Hozzon létre különböző telepítési forgatókönyvek esetén több paraméter fájlt, és akkor továbbítja a megfelelő paraméter fájlban. 
+Figyelje meg, hogy hello paraméterek szakaszban tartalmazza-e a paraméter neve, amely megfelel a sablonban (storageAccountType) meghatározott hello paraméter. hello paraméterfájl hello paraméter értékét tartalmazza. Ezt az értéket automatikusan átadódik toohello sablon üzembe helyezése során. Hozzon létre különböző telepítési forgatókönyvek esetén több paraméter fájlt, és akkor továbbítja a hello megfelelő paraméter fájlban. 
 
-Másolja át az előző példában, és mentse a fájlt `storage.parameters.json`.
+Példa megelőző hello másolja, majd mentse a fájlt `storage.parameters.json`.
 
-A helyi paraméterfájl továbbítani, használja a **TemplateParameterFile** paraméter:
+a helyi paraméterfájl toopass hello használata **TemplateParameterFile** paraméter:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -98,7 +98,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateParameterFile c:\MyTemplates\storage.parameters.json
 ```
 
-Egy külső paraméterfájl továbbítani, használja a **TemplateParameterUri** paraméter:
+toopass külső paraméterfájl használata hello **TemplateParameterUri** paraméter:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
@@ -106,35 +106,35 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
   -TemplateParameterUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.parameters.json
 ```
 
-Beágyazott paraméterek és a helyi paraméterfájl azonos központi telepítési művelet használható. Például a helyi paraméterfájl adja meg az egyes értékeket, és adja hozzá a más értékek beágyazott üzembe helyezése során. Ha az egyik paraméter a helyi paraméterfájl és a beágyazott értékeket ad meg, a beágyazott elsőbbséget.
+Beágyazott paraméterek használhatók, és egy helyi paraméter fájlt hello ugyanazt a telepítési műveletek. Például adja meg az egyes értékeket hello helyi paraméterfájl és egyéb értékek beágyazott hozzáadása a telepítés során. Ha értékeket ad meg az egyik paraméter a helyi paraméterfájl hello és a beágyazott, hello beágyazott elsőbbséget.
 
-Azonban egy külső paraméterfájl használata esetén nem adható át más értékek vagy szövegközi vagy egy helyi fájlból. A paraméterfájl a megadása a **TemplateParameterUri** paraméter, minden beágyazott paraméterek figyelmen kívül lesznek hagyva. Adja meg az összes paraméter a külső fájlban. Ha a sablont, amely nem adhat meg a paraméter fájl-és nagybetűket értéket tartalmaz, adja hozzá ezt az értéket a kulcstároló, vagy dinamikusan adjon meg az összes paraméter értékek beágyazott.
+Azonban egy külső paraméterfájl használata esetén nem adható át más értékek vagy szövegközi vagy egy helyi fájlból. Ha megadja a paraméterfájl hello **TemplateParameterUri** paraméter, minden beágyazott paraméterek figyelmen kívül lesznek hagyva. Adja meg az összes paraméter hello külső fájlban. Ha a sablont, amely nem adhat meg hello paraméterfájl kényes értéket tartalmaz, adja hozzá az adott érték tooa kulcstároló, vagy dinamikusan adjon meg az összes paraméter értékek beágyazott.
 
-Ha a sablon szerepel a PowerShell-parancs olyan paraméterre, amelynek a neve megegyezik a paraméterek egyikét, PowerShell eltéréseit a paraméter a sablonból a utótag **FromTemplate**. Például nevű paraméter **ResourceGroupName** a sablon ütközik a **ResourceGroupName** paramétere a [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) parancsmag. Adjon meg egy értéket a rendszer kéri **ResourceGroupNameFromTemplate**. Ez zavart ne általában a nem paraméterek telepítési műveleteihez használt paraméterek megegyező névvel.
+Ha a sablon azonos nevet hello paraméterek hello PowerShell-parancsot a rendelkezésre álló hello paraméterrel tartalmaz, PowerShell hello paraméter a sablon alapján megadja a hello utótag **FromTemplate**. Például nevű paraméter **ResourceGroupName** a sablon ütközéseket hello **ResourceGroupName** hello paraméterének [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment)parancsmag. Felszólító tooprovide értéket **ResourceGroupNameFromTemplate**. Ez zavart ne általában a nem azonos nevet telepítési műveleteihez használt paraméterekként hello paramétereket.
 
 ## <a name="test-a-template-deployment"></a>A sablon üzemelő példány tesztelése
 
-Minden olyan erőforrásnál tényleges telepítése nélkül a sablonnal és paraméterfájlokkal értékek teszteléséhez [teszt-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/test-azurermresourcegroupdeployment). 
+tootest erőforrásokat, tényleges telepítése nélkül a sablonnal és paraméterfájlokkal értékeket használja [teszt-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/test-azurermresourcegroupdeployment). 
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType Standard_GRS
 ```
 
-Ha nincsenek hibák, a parancs a válaszra befejeződik. Ha a rendszer hibát észlel, a parancs hibaüzenetet ad vissza. Például a tárfiók SKU, helytelen értéket átadni próbált a következő hibaüzenet:
+Ha nincsenek hibák, a hello parancs befejezi a válaszra. Ha a rendszer hibát észlel, hello parancs hibaüzenetet ad vissza. Például kísérlet toopass hello tárfiók SKU, helytelen értéket adja vissza hello hiba a következő:
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName testgroup `
   -TemplateFile c:\MyTemplates\storage.json -storageAccountType badSku
 
 Code    : InvalidTemplate
-Message : Deployment template validation failed: 'The provided value 'badSku' for the template parameter 'storageAccountType'
-          at line '15' and column '24' is not valid. The parameter value is not part of the allowed value(s):
+Message : Deployment template validation failed: 'hello provided value 'badSku' for hello template parameter 'storageAccountType'
+          at line '15' and column '24' is not valid. hello parameter value is not part of hello allowed value(s):
           'Standard_LRS,Standard_ZRS,Standard_GRS,Standard_RAGRS,Premium_LRS'.'.
 Details :
 ```
 
-Ha a sablon szintaktikai hibát tartalmaz, a parancs nem tudta elemezni a sablon jelző hiba adja vissza. Az üzenet azt jelzi, a sor számának megjelenítése és elhelyezése az elemzési hiba.
+Ha a sablon szintaktikai hibát tartalmaz, a hello parancs nem tudta elemezni a hello sablon jelző hibát ad vissza. hello az üzenet azt jelzi, hello számát és a feldolgozási hiba hello pozícióját.
 
 ```powershell
 Test-AzureRmResourceGroupDeployment : After parsing a value an unexpected character was encountered: 
@@ -143,7 +143,7 @@ Test-AzureRmResourceGroupDeployment : After parsing a value an unexpected charac
 
 [!INCLUDE [resource-manager-deployments](../../includes/resource-manager-deployments.md)]
 
-Teljes módot használja, használja a `Mode` paraméter:
+toouse teljes módban használja hello `Mode` paraméter:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
@@ -152,7 +152,7 @@ New-AzureRmResourceGroupDeployment -Mode Complete -Name ExampleDeployment `
 
 ## <a name="sample-template"></a>Minta sablon
 
-Ebben a témakörben szereplő példák a következő sablon használható. Másolja ki és mentse azt egy storage.json nevű fájlba. Ez a sablon létrehozása ismertetése: [az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md).  
+hello következő sablon használható hello példák ebben a témakörben. Másolja ki és mentse azt egy storage.json nevű fájlba. toounderstand hogyan toocreate ezen sablon esetén lásd: [az első Azure Resource Manager-sablon létrehozása](resource-manager-create-first-template.md).  
 
 ```json
 {
@@ -200,10 +200,10 @@ Ebben a témakörben szereplő példák a következő sablon használható. Más
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* Ebben a cikkben szereplő példák erőforrások telepítése az alapértelmezett előfizetésében az erőforráscsoporthoz. Használjon másik előfizetést, lásd: [több Azure-előfizetések kezeléséhez](/powershell/azure/manage-subscriptions-azureps).
+* a cikkben szereplő példák hello erőforrások alapértelmezett előfizetése tooa erőforráscsoport telepítése. toouse egy másik előfizetést, lásd: [több Azure-előfizetések kezeléséhez](/powershell/azure/manage-subscriptions-azureps).
 * Egy teljes parancsfájlt, amely telepít egy sablon, lásd: [Resource Manager sablon üzembe helyezési parancsfájl](resource-manager-samples-powershell-deploy.md).
-* Szeretné megtudni, hogyan adhat meg a paramétereket a sablonban, lásd: [megérteni a felépítését és Azure Resource Manager-sablonok szintaxisát](resource-group-authoring-templates.md).
+* Hogyan toodefine paramétereket a sablonban: toounderstand [hello struktúra és az Azure Resource Manager-sablonok szintaxisát](resource-group-authoring-templates.md).
 * Tippek az általános telepítési hibák feloldására, lásd: [hibaelhárítás általános az Azure-telepítés az Azure Resource Manager](resource-manager-common-deployment-errors.md).
 * A sablont, amely a SAS-jogkivonat szükséges, központi telepítésével kapcsolatos információkért lásd: [telepítés titkos sablont a SAS-jogkivonat](resource-manager-powershell-sas-token.md).
-* Nagyvállalatoknak az [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Azure nagyvállalati struktúra - előíró előfizetés-irányítás) című cikk nyújt útmutatást az előfizetéseknek a Resource Managerrel való hatékony kezeléséről.
+* A vállalatok használatát erőforrás-kezelő tooeffectively segítségükkel előfizetések kezelése című [Azure enterprise scaffold - előíró előfizetés irányítás](resource-manager-subscription-governance.md).
 

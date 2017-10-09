@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions időzítő indítófeltételt |} Microsoft Docs"
-description: "Időzítő eseményindítók használata az Azure Functions ismertetése."
+title: "aaaAzure funkciók időzítő indítófeltételt |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse időzítő elindítja az Azure Functions."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -17,26 +17,26 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: glenga
 ms.custom: 
-ms.openlocfilehash: 6a97ab8508f889b77d064a5da70e3c726d62900c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 17fca22372dbc55d4684c8c099cc97923a7d3cf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-timer-trigger"></a>Az Azure Functions időzítő indítófeltételt
 
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk azt ismerteti, konfigurálása és az Azure Functions kód időzítő eseményindítók. Az Azure Functions lehetővé teszi, hogy a kódra a függvény a meghatározott ütemezés szerint időzítő eseményindító-kötéssel rendelkezik. 
+Ez a cikk azt ismerteti, hogyan tooconfigure és kód időzítő elindítja az Azure Functions. Az Azure Functions lehetővé teszi, hogy a kódra a függvény a meghatározott ütemezés szerint időzítő eseményindító-kötéssel rendelkezik. 
 
-Az időzítő indítófeltételt többpéldányos kibővített támogatja. Egy adott időzítő egyetlen példányán fut minden példányára.
+hello időzítő indítófeltételt többpéldányos kibővített támogatja. Egy adott időzítő egyetlen példányán fut minden példányára.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a id="trigger"></a>
 
 ## <a name="timer-trigger"></a>Időzítő eseményindító
-Az időzítő indítófeltételt egy függvénynek, használja a következő JSON-objektum a `bindings` function.json tömbje:
+hello időzítő eseményindító tooa függvény használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -47,22 +47,22 @@ Az időzítő indítófeltételt egy függvénynek, használja a következő JSO
 }
 ```
 
-Értékének `schedule` van egy [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression) , amely tartalmazza a hat mezők: 
+hello értékének `schedule` van egy [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression) , amely tartalmazza a hat mezők: 
 
     {second} {minute} {hour} {day} {month} {day-of-week}
 &nbsp;
 >[!NOTE]   
->A cron-kifejezés talál online számos hagyja ki ezt a `{second}` mező. Másolása egyik, ha úgy, hogy az extra kell `{second}` mező. Adott, tekintse meg a [példák ütemezése](#examples) alatt.
+>Hello cron kifejezések talál online számos hagyja el a hello `{second}` mező. Másolása egyik, ha szüksége tooadjust hello extra `{second}` mező. Adott, tekintse meg a [példák ütemezése](#examples) alatt.
 
-Az alapértelmezett időzónát együtt a CRON-kifejezés az egyezményes világidő (UTC). A CRON-kifejezés alapján másik időzónában van, hozzon létre egy új alkalmazásbeállítást nevű függvény alkalmazás `WEBSITE_TIME_ZONE`. Adja meg a értéket a kívánt időzóna neve látható módon a [Microsoft időzóna Index](https://msdn.microsoft.com/library/ms912391.aspx). 
+hello hello CRON kifejezésekkel használt alapértelmezett időzóna az egyezményes világidő (UTC). toohave CRON-kifejezés egy másik időzónán alapuló váltását, hozzon létre egy új alkalmazásbeállítást nevű függvény alkalmazás `WEBSITE_TIME_ZONE`. Set hello érték toohello neve hello időzóna szükséges, ahogy az hello [Microsoft időzóna Index](https://msdn.microsoft.com/library/ms912391.aspx). 
 
-Például *keleti téli idő* az UTC-05:00. Szeretné, hogy a időzítő tűz indítás: 10:00 de minden nap, használja a következő CRON-kifejezés, amely az UTC időzóna:
+Például *keleti téli idő* az UTC-05:00. toohave a időzítő indul el, tűz: 10:00 de naponta, a következő CRON-kifejezés az UTC időzóna fiókok használatát hello:
 
 ```json
 "schedule": "0 0 15 * * *",
 ``` 
 
-Azt is megteheti, hozzáadhatja egy új alkalmazásbeállítást a függvény nevű alkalmazást `WEBSITE_TIME_ZONE` és állítsa be az értéket **keleti téli idő**.  Ezután a következő CRON-kifejezés 10:00 de használható: 
+Azt is megteheti, hozzáadhatja egy új alkalmazásbeállítást a függvény nevű alkalmazást `WEBSITE_TIME_ZONE` és hello érték túl**keleti téli idő**.  Majd 10:00 de hello CRON-kifejezés a következő használható: 
 
 ```json
 "schedule": "0 0 10 * * *",
@@ -72,39 +72,39 @@ Azt is megteheti, hozzáadhatja egy új alkalmazásbeállítást a függvény ne
 <a name="examples"></a>
 
 ## <a name="schedule-examples"></a>Ütemezés példák
-Az alábbiakban néhány CRON kifejezésekre is használhatja a mintákat a `schedule` tulajdonság. 
+Az alábbiakban néhány minták CRON kifejezésekre is használhatja a hello `schedule` tulajdonság. 
 
-5 percenként egyszer indításához:
+5 percenként egyszer tootrigger:
 
 ```json
 "schedule": "0 */5 * * * *"
 ```
 
-Az Indítás egyszer minden órában tetején:
+hello felső részén minden órában egyszer, tootrigger:
 
 ```json
 "schedule": "0 0 * * * *",
 ```
 
-Két óránként indításához:
+tootrigger két óránként:
 
 ```json
 "schedule": "0 0 */2 * * *",
 ```
 
-Óránként egyszer a Reggel 9 délután 5 óra történő indításához:
+a Reggel 9 too5 óránként egyszer tootrigger PM:
 
 ```json
 "schedule": "0 0 9-17 * * *",
 ```
 
-Indításához: 9:30 AM minden nap:
+tootrigger: 9:30 AM minden nap:
 
 ```json
 "schedule": "0 30 9 * * *",
 ```
 
-Indításához: 9:30 AM minden hétköznap:
+9:30 AM minden hétköznap, tootrigger:
 
 ```json
 "schedule": "0 30 9 * * 1-5",
@@ -113,7 +113,7 @@ Indításához: 9:30 AM minden hétköznap:
 <a name="usage"></a>
 
 ## <a name="trigger-usage"></a>Eseményindító kihasználtsága
-Egy időzítő funkció meghívásakor a [objektum](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) átad a funkciót a. A következő JSON-ja az objektum egy példa ábrázolását. 
+Egy időzítő funkció meghívásakor hello [objektum](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) átad a hello függvény. hello következő JSON-ja hello objektum egy példa ábrázolását. 
 
 ```json
 {
@@ -130,7 +130,7 @@ Egy időzítő funkció meghívásakor a [objektum](https://github.com/Azure/azu
 <a name="sample"></a>
 
 ## <a name="trigger-sample"></a>Eseményindító minta
-Tegyük fel, hogy rendelkezik a következő időzítő indítófeltételt a `bindings` function.json tömbje:
+Tegyük fel, hogy rendelkezik a következő időzítő indítófeltételt a hello hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -141,7 +141,7 @@ Tegyük fel, hogy rendelkezik a következő időzítő indítófeltételt a `bin
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, hogy az olvasások az objektum, hogy késői fut-e.
+Lásd: olvasó a objektum toosee hello időzítő attól késői hello nyelvspecifikus minta.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)

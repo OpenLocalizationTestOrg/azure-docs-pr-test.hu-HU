@@ -1,6 +1,6 @@
 ---
-title: "Nagy központi telepítése"
-description: "Megtudhatja, hogyan telepítheti az Azure-eszközkészlet használata az Eclipse nagy méretű telepítéséhez."
+title: "Nagy telepítések aaaDeploying"
+description: "Ismerje meg, hogyan toodeploy nagy üzembe helyezése hello Azure eszköztára eclipse-ben."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,27 +14,27 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: e12e379e2b6727653e2377b1760c3745596a1e9c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b1d2a7a5e49c78154fc856a221e64ca8dcfbe9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploying-large-deployments"></a>Nagy központi telepítése
-Ha a telepítés túl nagy ahhoz, hogy az alapértelmezett approot mappában található, használhatja a helyi tároló egyik erőforrásához, a központi telepítés gyökérmappa a JDK és az alkalmazáskiszolgálóhoz.
+Ha a telepítés túl nagy toobe hello alapértelmezett approot mappában található, használhatja a helyi tároló egyik erőforrásához hello telepítési legfelső szintű mappa a JDK és az alkalmazáskiszolgálóhoz.
 
-## <a name="to-use-a-local-storage-resource-as-the-deployment-root-folder-for-large-deployments"></a>A helyi tároló egyik erőforrásához használandó telepítési gyökérmappájába nagy méretű telepítéséhez
-1. Hozzon létre egy új helyi tároló-erőforrás. Az erőforrás neve nem lényeges. Tároló-erőforrások a szerepkör szintjén van meghatározva. A leggyorsabban úgy tudja elérni a helyi tároló konfigurációs párbeszédpanel, ahol létrehozhat egy új helyi tároló-erőforrás van a következő lépések segítségével: kattintson a jobb gombbal a szerepkör a **Project Explorer** nézet (bontsa ki az Azure-projekt csomópont Ha a szerepkör nem látható), kattintson **Azure**, és kattintson a **helyi tároló**. Belül a **helyi tároló** párbeszédpanel, kattintson a **Hozzáadás** válasszal létrehozhat egy új helyi tárterület.
+## <a name="toouse-a-local-storage-resource-as-hello-deployment-root-folder-for-large-deployments"></a>a helyi tároló egyik erőforrásához hello telepítési legfelső szintű mappa a nagyméretű telepítések toouse
+1. Hozzon létre egy új helyi tároló-erőforrás. hello hello erőforrás neve nem lényeges. Tároló-erőforrások hello szerepkör szintjén van meghatározva. hello leggyorsabb módon tooaccess hello helyi tároló konfigurációs párbeszédpanel, ahol létrehozhat egy új helyi tároló-erőforrás van hello lépések segítségével: kattintson a jobb gombbal hello szerepköre hello **Project Explorer** nézet (bontsa ki a Azure-projekt csomópont Ha hello szerepkör nem látható), kattintson a **Azure**, és kattintson a **helyi tároló**. Hello belül **helyi tároló** párbeszédpanel, kattintson a **Hozzáadás** toocreate egy új helyi tároló-erőforrás.
 
-2. A kívánt méretet állítsa legalább 2048 MB-ra (semmit kevesebb problémái lehetnek ugyanazt a fájlt méretét, akkor tapasztal a approot).
+2. Set hello szükséges méret tooat legalább 2048 MB-ot (semmit kevesebb problémái lehetnek hello ugyanazon fájl méretét, akkor tapasztal hello approot).
 
-3. Győződjön meg arról, hogy **tiszta tartalmát, amikor a szerepkör példánya újraindul** be van jelölve; ez segít a központi telepítés ügyfélindítási logikája a szerepkörpéldány esetén az erőforrás már meglévő fájlok való ütközések futásának megakadályozása felhasználását.
+3. Győződjön meg arról, hogy **hello tartalmának törlése hello szerepkörpéldányt újrahasznosítása esetén** be van jelölve; ez segít futtathatják a hello telepítési ügyfélindítási logikája ütközik a már meglévő fájlok hello erőforrás amikor hello szerepkör a példány újrahasznosított.
 
-4. Győződjön meg arról, hogy a **környezeti változó tárolja az erőforrás elérési útja a telepítés utáni** a karakterlánc értéke **DEPLOYROOT**. A helyi tároló-erőforrás párbeszédpanel az alábbihoz hasonlóan fog kinézni.
+4. Győződjön meg arról, hogy hello **környezeti változó tárolásához hello erőforrás könyvtár elérési útja a telepítés utáni** toohello karakterlánc értéke **DEPLOYROOT**. A helyi tároló-erőforrás párbeszédpanel hasonló toohello következő fog kinézni.
 
    ![][ic667943]
 
-Azt is megteheti Ha **DEPLOYROOT** , a *neve* a helyi erőforrások és, ne módosítsa az automatikusan generált környezeti változó neve (amely úgy lesz beállítva, **DEPLOYROOT_ Elérési út** ebben az esetben), működő lenne, az alkalmazáshoz.
+Azt is megteheti Ha **DEPLOYROOT** hello, *neve* a helyi erőforrás, és hogy ne változtassa meg hello automatikusan generált környezeti változó neve (amely lesz beállítva, túl **DEPLOYROOT_PATH** ebben az esetben), működő lenne, az alkalmazáshoz.
 
 A helyi tároló egyik erőforrásához létrehozásával kapcsolatos további információk találhatók [helyi tároló tulajdonságainak][Local storage properties].
 
@@ -43,16 +43,16 @@ A helyi tároló egyik erőforrásához létrehozásával kapcsolatos további i
 
 [Hozzon létre egy Hello World alkalmazásról egy Azure az eclipse-ben][Creating a Hello World Application for Azure in Eclipse]
 
-[Az eclipse-ben az Azure eszközkészlet telepítése][Installing the Azure Toolkit for Eclipse] 
+[Hello Azure eszköztára Eclipse telepítése][Installing hello Azure Toolkit for Eclipse] 
 
-Azure Java használatával kapcsolatos további információkért lásd: a [Azure Java fejlesztői központból][Azure Java Developer Center].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból][Azure Java Developer Center].
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [Local storage properties]: http://go.microsoft.com/fwlink/?LinkID=699525#local_storage_properties
 
 <!-- IMG List -->

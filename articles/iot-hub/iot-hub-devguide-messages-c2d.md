@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub eszközre cloud messaging megértése |} Microsoft Docs"
-description: "Fejlesztői útmutató - felhő eszközre üzenetküldés az IoT-központ használatával. Az üzenet életciklusát, és a konfigurációs beállítások kapcsolatos adatokat tartalmaz."
+title: "Azure IoT Hub felhő eszköz aaaUnderstand üzenetküldési |} Microsoft Docs"
+description: "Fejlesztői útmutató - hogyan toouse felhő eszközre az IoT-központ az üzenetküldési. Hello üzenet életciklusát, és a konfigurációs beállítások kapcsolatos adatokat tartalmaz."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,85 +13,85 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: 04ac46498c912b0503036f70b7f3d0e28e5a82b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c747b50163873d823556a8baa769c4b8f7f8c44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-cloud-to-device-messages-from-iot-hub"></a>Felhő-eszközre küldött üzenetek küldése az IoT-központ
 
-Az eszköz alkalmazásának a megoldás háttérből egyirányú értesítések küldésére, felhő-eszközök üzenetek küldése az IoT hub az eszközét. Más felhőalapú-eszközök beállításai, IoT-központ által támogatott tárgyalását lásd: [felhő eszközre kommunikációs útmutatást][lnk-c2d-guidance].
+toosend egyirányú értesítések toohello eszköz alkalmazást, a megoldás háttérrendszeréhez, az IoT hub tooyour eszközről felhő-eszközök üzeneteket küldeni. Más felhőalapú-eszközök beállításai, IoT-központ által támogatott tárgyalását lásd: [felhő eszközre kommunikációs útmutatást][lnk-c2d-guidance].
 
-A szolgáltatás felé néző végpont keresztül felhő eszközre üzeneteket küld (**/üzenetek/devicebound**). Egy eszköz majd fogadja az üzeneteket egy eszközspecifikus végpontot keresztül (**/devices/ {deviceId} / üzenetek/devicebound**).
+A szolgáltatás felé néző végpont keresztül felhő eszközre üzeneteket küld (**/üzenetek/devicebound**). Egy eszköz majd megkapja egy eszközspecifikus végpontot keresztül köszönőüzenetei (**/devices/ {deviceId} / üzenetek/devicebound**).
 
-Minden felhő eszközre üzenetet egyetlen eszközt a célja úgy, hogy a **való** tulajdonságot **/devices/ {deviceId} / üzenetek/devicebound**.
+Minden felhő eszközre üzenetet egyetlen eszközt a célja által hello beállítása **való** tulajdonság túl**/devices/ {deviceId} / üzenetek/devicebound**.
 
-Minden eszköz várólista legfeljebb 50 felhő eszközre üzeneteket tárolja. A el ugyanazon eszköz hiba további üzenetek küldésére tett kísérlet.
+Minden eszköz várólista legfeljebb 50 felhő eszközre üzeneteket tárolja. Próbált toosend további üzenetek toohello ugyanarra az eszközre hibát eredményez.
 
-## <a name="the-cloud-to-device-message-lifecycle"></a>A felhő-eszközre küldött üzenetek életciklusa
+## <a name="hello-cloud-to-device-message-lifecycle"></a>hello felhő-eszközre küldött üzenetek életciklusa
 
-A legalább egyszeri üzenet kézbesítési biztosításához IoT-központ továbbra is fennáll eszköz felhő eszközre üzeneteket. Eszközök kell kifejezetten elismeri *befejezési* IoT hub azok eltávolítása a sorból. Ez a megközelítés biztosítja, hogy kapcsolatot és meghibásodása esetén szembeni hibatűrést.
+tooguarantee: legalább egyszeri üzenet kézbesítési, IoT-központ továbbra is fennáll, eszköz felhő eszközre üzeneteket. Eszközök kell kifejezetten elismeri *befejezési* az IoT-központ tooremove azokat hello várólista. Ez a megközelítés biztosítja, hogy kapcsolatot és meghibásodása esetén szembeni hibatűrést.
 
-A következő diagramon láthatók a felhőből eszközre üzenet életciklus állapotát ábrázoló az IoT-központ.
+hello következő diagramon láthatók hello életciklus állapot graph felhő eszközre üzenetet az IoT-központot.
 
 ![Felhő-eszközre küldött üzenetek életciklusa][img-lifecycle]
 
-Az IoT-központ szolgáltatás üzenetet küld egy eszközt, ha a szolgáltatás üzenet állapotba állítása **a várólistában levő**. Ha egy eszköz kísérel *kap* üzenetet az IoT-központ *zárolások* az üzenet (által a állapotra **láthatatlan**), amely lehetővé teszi, hogy más szálak megkezdése az eszközön más üzeneteket. Egy eszköz szál befejezése után egy üzenet feldolgozása értesíti a felhasználót az IoT-központ által *befejezése* az üzenetet. Az IoT-központ majd állapotba állítása **befejezve**.
+Ha hello IoT-központ szolgáltatás elküldi egy üzenet tooa eszköz, hello szolgáltatás túl beállítja hello üzenet állapot**a várólistában levő**. Ha egy eszköz túl szeretne*kap* üzenetet az IoT-központ *zárolások* üdvözlőüzenetére (hello állapot túl beállításával**láthatatlan**), amely lehetővé teszi, hogy más szálak hello eszköz toostart a más üzenetek fogadására. Egy eszköz szál befejezése után egy üzenet feldolgozása hello értesíti a felhasználót az IoT-központ által *befejezése* üdvözlőüzenetére. Az IoT-központ majd az túl hello állapotának beállítása**befejezve**.
 
 Egy eszköz is megteheti, hogy:
 
-* *Elutasítása* az üzenet, amely azt eredményezi, állítsa be az IoT-központ a **Deadlettered** állapotát. A MQTT protokollon keresztül csatlakozó eszközökön nem utasíthat el a felhő-eszközre küldött üzenetek.
-* *Abandon* az üzenet, amely azt eredményezi, az üzenet vissza a várólistába helyezni, az állapot beállítása az IoT-központ **a várólistában levő**.
+* *Elutasítása* üdvözlőüzenetére, aminek következtében az IoT-központ tooset azt toohello **Deadlettered** állapotát. Hello MQTT protokoll keresztül csatlakozó eszközökön nem utasíthat el a felhő-eszközre küldött üzenetek.
+* *Abandon* üdvözlőüzenetére, aminek következtében az IoT-központ tooput üdvözlőüzenetére újra hello várólista, a hello állapot értéke túl a**a várólistában levő**.
 
-A szál nem sikerül felvenni feldolgozni egy üzenetet az IoT-központ értesítése nélkül. Ebben az esetben üzenetek automatikusan állnak a **láthatatlan** állapot vissza a **a várólistában levő** állapot után egy *látható (vagy a zárolás) időtúllépési*. Ez az időkorlát alapértelmezett értéke egy perc.
+A szál sikertelen lehet, tooprocess egy üzenetet az IoT-központ értesítése nélkül. Ebben az esetben üzenetek automatikusan a hello áttűnés **láthatatlan** állapot hátsó toohello **a várólistában levő** állapot után egy *látható (vagy a zárolás) időtúllépési*. hello alapértelmezett Ez az időkorlát értéke egy perc.
 
-Üzenet között is átléphet a **a várólistában levő** és **láthatatlan** állapota, legfeljebb ennyiszer megadott a **kézbesítési száma legfeljebb** IoT hub tulajdonság. Követően, hogy áttérések számával, IoT-központ állapotát állítja, az üzenet **Deadlettered**. Ehhez hasonlóan az IoT-központ üzenet állapotúra állítja **Deadlettered** a lejárati idő után (lásd: [élettartama][lnk-ttl]).
+Egy üzenet is átmenet hello közötti **a várólistában levő** és **láthatatlan** állapotai, legfeljebb hányszor hello megadott hello **kézbesítési száma legfeljebb** IoT hub tulajdonság. Adott áttérések számával, miután az IoT-központ hello állapotának beállítása üdvözlőüzenetére túl**Deadlettered**. Ehhez hasonlóan az IoT-központ hello állapotának beállítása üzenet túl**Deadlettered** a lejárati idő után (lásd: [toolive idő][lnk-ttl]).
 
-A [IoT hubbal felhő eszközre üzenetek küldése] [ lnk-c2d-tutorial] bemutatja, hogyan felhő-eszközre küldött üzenetek küldéséhez a felhőből, és fogadásukra az eszközön.
+Hello [hogyan toosend felhőből eszközre küldött üzenetek IoT-központ] [ lnk-c2d-tutorial] bemutatja, hogyan toosend felhő eszközre üzeneteit hello a felhő és a fogadásukra az eszközön.
 
-Általában egy eszköz befejezése felhő eszközre üzenet, amikor elvész az az üzenet nem befolyásolja az alkalmazás logikáját. Például ha az eszköz rendelkezik helyileg tárolt tartalom üzenet vagy a sikeresen végrehajtott egy művelet. Az üzenetet is sikerült továbbítani az átmeneti információkat, amelyek adatvesztés nem befolyásolná az alkalmazás funkcióit. Egyes esetekben a hosszan futó feladatokat, hajthatja végre a felhőből eszközre üzenet után megőrzése a helyi tároló feladat leírását. A megoldás háttérrendszerének integrációját egy vagy több eszköz-a-felhőbe küldött üzeneteket majd értesítheti különböző szakaszaiban a feladat előrehaladását.
+Általában egy eszköz befejezése felhő eszközre üzenet, amikor üdvözlőüzenetére hello megszűnését hello úgy az alkalmazáslogikát nincs hatással. Például ha hello eszköz rendelkezik megőrzött hello üzenet tartalmat a helyi vagy sikeresen megtörtént a következő művelet végrehajtása. üdvözlőüzenetére is sikerült továbbítani az átmeneti információkat, amelyek adatvesztés nem befolyásolná a hello alkalmazás hello funkcióit. Egyes esetekben a hosszan futó feladatokat, befejezheti felhő eszközre üdvözlőüzenetére után megőrzése hello feladat leírása található helyi tárterület. Majd értesítheti hello megoldás háttérrendszerének integrációját egy vagy több eszköz-a-felhőbe küldött üzeneteket különböző szakaszaiban hello a feladat előrehaladását.
 
-## <a name="message-expiration-time-to-live"></a>Üzenet lejárati (élő idő)
+## <a name="message-expiration-time-toolive"></a>Üzenet lejárati (toolive idő)
 
-Minden felhő eszközre üzenetnek lejárati időt. Most vagy a szolgáltatás beállítása (a a **ExpiryTimeUtc** tulajdonság), vagy az alapértelmezett IoT-központ által *élettartama* egy IoT-központ tulajdonságban megadott. Lásd: [felhő eszközre konfigurációs beállítások][lnk-c2d-configuration].
+Minden felhő eszközre üzenetnek lejárati időt. Megadott idő van beállítva, vagy hello szolgáltatást (hello a **ExpiryTimeUtc** tulajdonság), vagy az IoT hubból hello alapértelmezett *toolive idő* egy IoT-központ tulajdonságban megadott. Lásd: [felhő eszközre konfigurációs beállítások][lnk-c2d-configuration].
 
-Egy közös üzenet lejárati előnyeit, és elkerülheti a leválasztott eszközök üzenetküldésre módja értékek élő rövid idő beállítása. Ez a megközelítés fenntartása az eszköz kapcsolati állapotát, miközben sokkal hatékonyabb ugyanazt az eredményt éri el. Amikor üzenet nyugták kér le, az IoT-központ értesítést küld, mely eszközök fogadhat üzeneteket, és mely eszközök nincs online állapotban, vagy nem sikerült.
+Egy általános módszer tootake előnyeit lejárati üzenet és üzenetküldésre toodisconnected eszközök elkerüléséhez tooset toolive értékeket rövid időn belül van. Ez a megközelítés azonos eredménye karbantartása hello eszköz kapcsolati állapotát, miközben sokkal hatékonyabb, hello éri el. Amikor üzenet nyugták kér le, az IoT-központ értesítést küld, mely eszközök képes tooreceive üzeneteket, és mely eszközök nincs online állapotban, vagy nem sikerült.
 
 ## <a name="message-feedback"></a>Üzenet visszajelzés
 
-A felhőből eszközre üzenetet küld, ha a szolgáltatás kérhetnek az üzenet visszajelzés kapcsolatban a végső állapot üzenet kézbesítését.
+Felhő eszközre üzenet küldésekor hello szolgáltatás kérhetnek hello végső állapot üzenet vonatkozó állapotüzenet visszajelzés hello kézbesítését.
 
 | Nyugtázási tulajdonság | Viselkedés |
 | ------------ | -------- |
-| **pozitív** | Az IoT-központ visszajelzés üzenet állít elő, ha, és csak a felhőből eszközre üzenet elérte a **befejezve** állapotát. |
-| **negatív.** | Az IoT-központ visszajelzés üzenetet hoz létre, csak ha, a felhő eszközre üzenet eléri a **Deadlettered** állapotát. |
+| **pozitív** | Az IoT-központ visszajelzést-üzenetet hoz létre, ha, és csak akkor hello felhő eszközre üzenet elérte hello **befejezve** állapotát. |
+| **negatív.** | Az IoT-központ visszajelzés üzenetet hoz létre, csak ha, felhőalapú eszközre üdvözlőüzenetére eléri hello **Deadlettered** állapotát. |
 | **teljes**     | Az IoT-központ visszajelzés üzenet mindkét esetben állít elő. |
 
-Ha **nyugtázási** van **teljes**, és nem kap egy üzenetet, visszajelzést, az azt jelenti, hogy a visszajelzés üzenet lejárt. A szolgáltatás nem tudja az eredeti üzenet Mi történt. A gyakorlatban egy szolgáltatás győződjön meg arról, hogy a visszajelzés lejárata előtt is feldolgozza. A lejárati idő két nap, amely bőséges időt a szolgáltatás eléréséhez fut újra hiba esetén.
+Ha **nyugtázási** van **teljes**, és nem kap egy üzenetet, visszajelzést, az azt jelenti, hogy üdvözlőüzenetére visszajelzés lejárt. hello szolgáltatás nem tudja, milyen történt toohello eredeti üzenet. A gyakorlatban egy szolgáltatás győződjön meg arról, hogy feldolgozható hello visszajelzés lejárata előtt. hello maximális lejárati ideje két nap bőséges időt tooget hello szolgáltatás újra futtatni a hiba akkor fordul elő, ha lehetővé teszi.
 
-A [végpontok][lnk-endpoints], IoT-központ biztosítja a szolgáltatás felé néző végpont visszajelzései (**/messages/servicebound/feedback**) üzeneteihez. Visszajelzés fogadott szemantikáját ugyanúgy felhő-eszközre küldött üzenetek, és az [üzenet életciklus][lnk-lifecycle]. Amikor csak lehetséges, a program egy üzenetben, a következő formátumú kötegelni üzenet visszajelzés:
+A [végpontok][lnk-endpoints], IoT-központ biztosítja a szolgáltatás felé néző végpont visszajelzései (**/messages/servicebound/feedback**) üzeneteihez. hello szemantikáját visszajelzés fogadására vannak hello ugyanaz, mint a felhő-eszközre küldött üzenetek és hello azonos [üzenet életciklus][lnk-lifecycle]. Amikor csak lehetséges, üzenet visszajelzés egyetlen üzenetben van kötegelni a hello a következő formátumban:
 
 | Tulajdonság     | Leírás |
 | ------------ | ----------- |
-| EnqueuedTime | Az üzenet létrehozásának jelző időbélyegző. |
+| EnqueuedTime | Üdvözlőüzenetére létrehozásának jelző időbélyegző. |
 | Felhasználói azonosítóját       | `{iot hub name}` |
 | A ContentType  | `application/vnd.microsoft.iothub.feedback.json` |
 
-A szervezet rekord, egy JSON-szerializált tömbje, minden, a következő tulajdonságokkal:
+hello törzse JSON-szerializált tömbje rögzíti, az alábbi tulajdonságokkal hello:
 
 | Tulajdonság           | Leírás |
 | ------------------ | ----------- |
-| EnqueuedTimeUtc    | Mikor történt, az üzenet eredményeit jelző időbélyegző. Például az eszköz befejeződött vagy az üzenet lejárt. |
-| originalMessageId  | **MessageId** a felhőből eszközre üzenet, amely a visszajelzési információk vonatkozik. |
+| EnqueuedTimeUtc    | Mikor történt a üdvözlőüzenetére hello eredményét jelző időbélyegző. Például az eszköz befejezte hello, vagy üdvözlőüzenetére lejárt. |
+| originalMessageId  | **MessageId** hello felhő-eszközre küldött üzenetek toowhich a visszajelzési információk vonatkozik. |
 | statusCode         | Szükséges karakterlánc. Az IoT-központ által generált visszajelzés üzenetekben használatos. <br/> "Sikeres" <br/> "A lejárt" <br/> "DeliveryCountExceeded" <br/> "Visszautasított" <br/> "Kiürítve" |
 | Leírás        | Karakterlánc-értékek **StatusCode**. |
-| Eszközazonosító           | **DeviceId** a célként megadott eszköz a felhőből eszközre üzenet, amely a visszajelzésekben vonatkozik. |
-| DeviceGenerationId | **DeviceGenerationId** a célként megadott eszköz a felhőből eszközre üzenet, amely a visszajelzésekben vonatkozik. |
+| Eszközazonosító           | **DeviceId** hello céleszköz a hello felhő-eszközre küldött üzenetek toowhich a visszajelzésekben vonatkozik. |
+| DeviceGenerationId | **DeviceGenerationId** hello céleszköz a hello felhő-eszközre küldött üzenetek toowhich a visszajelzésekben vonatkozik. |
 
-A szolgáltatás meg kell adnia egy **MessageId** a felhőből eszközre üzenet tudjanak a visszajelzés a kivizsgált az eredeti üzenet.
+hello szolgáltatást meg kell adnia egy **MessageId** a hello felhő eszközre üzenet toobe képes toocorrelate a visszajelzés hello eredeti üzenettel.
 
-A következő példa bemutatja a visszajelzés üzenet törzsét.
+hello következő példa bemutatja hello visszajelzés üzenet törzsét.
 
 ```json
 [
@@ -112,22 +112,22 @@ A következő példa bemutatja a visszajelzés üzenet törzsét.
 
 ## <a name="cloud-to-device-configuration-options"></a>Felhő-eszköz konfigurációs beállítások
 
-Minden egyes IoT-központ mutatja meg a következő konfigurációs beállításokat a felhőből eszközre üzenetek:
+Minden egyes IoT-központ mutatja meg a következő konfigurációs beállításokat a felhőből eszközre üzenetek hello:
 
 | Tulajdonság                  | Leírás | Tartomány- és alapértelmezett |
 | ------------------------- | ----------- | ----------------- |
-| defaultTtlAsIso8601       | Felhő-eszközre küldött üzenetek alapértelmezett élettartam. | ISO_8601 időköz legfeljebb 2D (legalább 1 perc). Alapértelmezett: 1 óra. |
-| maxDeliveryCount          | Felhő eszközre eszközönkénti sorok maximális száma. | 1 és 100 közötti. Alapértelmezett: 10. |
-| feedback.ttlAsIso8601     | Szolgáltatás adathoz kötött visszajelzés üzenetek megőrzési. | ISO_8601 időköz legfeljebb 2D (legalább 1 perc). Alapértelmezett: 1 óra. |
-| feedback.maxDeliveryCount |A visszajelzési üzenetsor maximális száma. | 1 és 100 közötti. Alapértelmezett: 100. |
+| defaultTtlAsIso8601       | Felhő-eszközre küldött üzenetek alapértelmezett élettartam. | Másolatot too2D ISO_8601 időköz (legalább 1 perc). Alapértelmezett: 1 óra. |
+| maxDeliveryCount          | Felhő eszközre eszközönkénti sorok maximális száma. | 1 too100. Alapértelmezett: 10. |
+| feedback.ttlAsIso8601     | Szolgáltatás adathoz kötött visszajelzés üzenetek megőrzési. | Másolatot too2D ISO_8601 időköz (legalább 1 perc). Alapértelmezett: 1 óra. |
+| feedback.maxDeliveryCount |A visszajelzési üzenetsor maximális száma. | 1 too100. Alapértelmezett: 100. |
 
-A konfigurációs beállításokról telepítésével kapcsolatos további információkért lásd: [létrehozása IoT-központok][lnk-portal].
+További információ a hogyan tooset a konfigurációs beállításokról: [létrehozása IoT-központok][lnk-portal].
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az SDK-k segítségével felhő eszközre üzeneteket fogadni,: [Azure IoT SDK-k][lnk-sdks].
+Információ a hello SDK-k használata a tooreceive felhő eszközre üzenetek, hogy [Azure IoT SDK-k][lnk-sdks].
 
-Próbálja ki felhő-eszközre küldött üzenetek fogadását, tekintse meg a [küldése eszközre felhő] [ lnk-c2d-tutorial] oktatóanyag.
+tootry ki felhő-eszközre küldött üzenetek fogadását, lásd: hello [küldése eszközre felhő] [ lnk-c2d-tutorial] oktatóanyag.
 
 [img-lifecycle]: ./media/iot-hub-devguide-messages-c2d/lifecycle.png
 

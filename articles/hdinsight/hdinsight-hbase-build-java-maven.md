@@ -1,6 +1,6 @@
 ---
-title: "Windows-alapú Azure hdinsight Java HBase-alkalmazás létrehozása |} Microsoft Docs"
-description: "Útmutató Apache Maven segítségével összeállíthat egy Apache HBase Java-alapú alkalmazást, majd központilag telepítenie kell egy Windows-alapú Azure HDInsight-fürtöt."
+title: "egy Windows-alapú Azure HDInsight Java HBase-alkalmazást aaaBuild |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Apache Maven Java-alapú toobuild Apache HBase alkalmazást, majd telepítenie kell azt tooa Windows-alapú Azure HDInsight-fürtöt."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 02/05/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 59c9af5a91b107e68a676f02fe5a936f955b22fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 33c2f3d12cb6a17b5406817e8bcd3accff239517
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-maven-to-build-java-applications-that-use-hbase-with-windows-based-hdinsight-hadoop"></a>A HBase és a Windows-alapú HDInsight (Hadoop) együttes használata Java-alkalmazások készítéséhez használja Maven
-Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apache.org/) alkalmazás Apache Maven használatával Java nyelven. Ezután használja az alkalmazást az Azure HDInsight (Hadoop).
+# <a name="use-maven-toobuild-java-applications-that-use-hbase-with-windows-based-hdinsight-hadoop"></a>Maven toobuild Java-alkalmazások, amelyek használják a HBase és a Windows-alapú HDInsight (Hadoop) együttes használata
+Megtudhatja, hogyan toocreate hozhat létre egy [Apache HBase](http://hbase.apache.org/) alkalmazás Apache Maven használatával Java nyelven. Majd használni hello alkalmazás Azure HDInsight (Hadoop).
 
-[Maven](http://maven.apache.org/) szoftver project management és a szövegértést eszköz használatával olyan szoftver, a dokumentáció és a Java-projektek a jelentésekre. Ebből a cikkből megismerheti, hogyan használhatja egy alapszintű Java-alkalmazás létrehozása, amely hoz létre, a lekérdezések, és törli az Azure HDInsight-fürtök egy HBase tábla.
+[Maven](http://maven.apache.org/) szoftver project management és a szövegértést eszköz, amely lehetővé teszi a toobuild szoftver, a dokumentáció és a Java-projektek a jelentésekre. Ebből a cikkből megismerheti, hogyan toouse azt toocreate egy alapszintű Java-alkalmazást hoz létre, lekérdezi és törli a HBase tábla Azure HDInsight-fürtöt.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Windows igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Windows igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="requirements"></a>Követelmények
 * [Java-platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 vagy újabb
@@ -36,22 +36,22 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
 * Egy Windows-alapú HDInsight-fürtöt, a hbase eszközzel
 
     > [!NOTE]
-    > A jelen dokumentumban leírt lépések HDInsight fürt verzióival 3.2-es és 3.3-as lettek tesztelve. Példák a megadott alapértelmezett értékek vannak HDInsight 3.3 fürt.
+    > jelen dokumentumban leírt lépések hello HDInsight fürt verzióival 3.2-es és 3.3-as lettek tesztelve. hello alapértelmezett példákban megadott értékei HDInsight 3.3 fürt.
 
-## <a name="create-the-project"></a>A projekt létrehozása
-1. A parancssorban a fejlesztési környezetet, módosítsa a könyvtárat a helyének például a projekt létrehozásához `cd code\hdinsight`.
-2. Használja a **mvn** parancsot, amely Maven együtt települ, a állványok a projekt létrehozásához.
+## <a name="create-hello-project"></a>Hello projekt létrehozása
+1. Parancssorból hello a fejlesztési környezetben, módosítsa a könyvtárakat toohello helyének toocreate hello projekt, például `cd code\hdinsight`.
+2. Használjon hello **mvn** parancsot, amely Maven, hello projekt szerkezetet toogenerate hello együtt települ.
 
         mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=hbaseapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-    A megadott névvel ezzel a paranccsal létrejön az aktuális helyen, egy könyvtárat a **artifactid szakaszát** paraméter (**hbaseapp** ebben a példában.) Ez a könyvtár a következő elemeket tartalmazza:
+    Hello által megadott hello nevű ezzel a paranccsal létrejön az hello aktuális helyen, egy könyvtárat **artifactid szakaszát** paraméter (**hbaseapp** ebben a példában.) Ez a könyvtár hello a következő elemeket tartalmazza:
 
-   * **pom.xml**: A projekt Object Model ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) és a projekt felépítéséhez használt információkat és konfigurációs részleteit tartalmazza.
-   * **src**: tartalmazó könyvtárat a **main\java\com\microsoft\examples** könyvtárban, ahol meg fogja írni az alkalmazás.
-3. Törölje a **src\test\java\com\microsoft\examples\apptest.java** fájlhoz, mert nem szerepel ebben a példában.
+   * **pom.xml**: hello projekt Object Model ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) konfigurációban használt toobuild hello projektet tartalmaz.
+   * **src**: hello tartalmazó hello könyvtár **main\java\com\microsoft\examples** könyvtárban, ahol meg fog írni hello alkalmazás.
+3. Törölje a hello **src\test\java\com\microsoft\examples\apptest.java** fájlhoz, mert nem szerepel ebben a példában.
 
-## <a name="update-the-project-object-model"></a>Frissítés a projekt Hálózatiobjektum-modellje
-1. Szerkessze a **pom.xml** fájlt, és adja hozzá az alábbi kódot a `<dependencies>` szakasz:
+## <a name="update-hello-project-object-model"></a>Frissítés hello projekt Hálózatiobjektum-modellje
+1. Hello szerkesztése **pom.xml** fájlt, és adja hozzá a következő kódot hello hello `<dependencies>` szakasz:
 
         <dependency>
           <groupId>org.apache.hbase</groupId>
@@ -59,20 +59,20 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           <version>1.1.2</version>
         </dependency>
 
-    Ez a szakasz azt ismerteti Maven, hogy szükséges-e a projekt **hbase-ügyfél** verzió **1.1.2**. Fordítási időben a függőség letölti az alapértelmezett Maven-tárházat. Használhatja a [Maven központi tárház keresési](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar) további információt a függőség.
+    Ez a szakasz azt ismerteti, igényel, amely hello projektet Maven **hbase-ügyfél** verzió **1.1.2**. Fordítási időben a függőség letöltésének hello alapértelmezett Maven-tárházat. Használhatja a hello [Maven központi tárház keresési](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar) további információk a függőség toolearn.
 
    > [!IMPORTANT]
-   > A verziószámnak meg kell egyeznie a HBase a HDInsight-fürthöz megadott verzióját. Használja az alábbi táblázatban található a megfelelő verziószámot.
+   > hello verziószámnak egyeznie kell a HBase a HDInsight-fürthöz biztosított hello verzióját. A következő tábla toofind hello megfelelő verziószámot hello használata.
    >
    >
 
-   | HDInsight-fürt verziószáma | A HBase-verziót kell használni |
+   | HDInsight-fürt verziószáma | A HBase verzió toouse |
    | --- | --- |
    | 3.2 |0.98.4-hadoop2 |
    | 3.3 |1.1.2 |
 
-    A HDInsight-verziókról és összetevők további információkért lásd: [Mik a különböző érhető el a HDInsight Hadoop-összetevők](hdinsight-component-versioning.md).
-2. Ha egy HDInsight 3.3-fürtöt használ, a következő is hozzá kell adnia a `<dependencies>` szakasz:
+    A HDInsight-verziókról és összetevők további információkért lásd: [hello különböző Hadoop-összetevők és a HDInsight együttes rendelkezésre Mik](hdinsight-component-versioning.md).
+2. Ha egy HDInsight 3.3-fürtöt használ, a következő toohello hello is hozzá kell adnia `<dependencies>` szakasz:
 
         <dependency>
             <groupId>org.apache.phoenix</groupId>
@@ -80,8 +80,8 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
             <version>4.4.0-HBase-1.1</version>
         </dependency>
 
-    A függőség betölti a phoenix-alapvető összetevői, Hbase verziója által használt 1.1.x.
-3. Adja hozzá a következő kódot a **pom.xml** fájlt. Ez a szakasz belül kell lennie a `<project>...</project>` címkék a fájlban, például közötti `</dependencies>` és `</project>`.
+    A függőség betölti hello phoenix-alapvető összetevői, Hbase verziója által használt 1.1.x.
+3. Adja hozzá a következő kód toohello hello **pom.xml** fájlt. Ez a szakasz hello belül kell `<project>...</project>` hello címkék fájlba, például közötti `</dependencies>` és `</project>`.
 
         <build>
           <sourceDirectory>src</sourceDirectory>
@@ -126,40 +126,40 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           </plugins>
         </build>
 
-    A `<resources>` szakasz konfigurál egy erőforrást (**conf\hbase-site.xml**), amely a HBase konfigurációs információkat tartalmaz.
+    Hello `<resources>` szakasz konfigurál egy erőforrást (**conf\hbase-site.xml**), amely a HBase konfigurációs információkat tartalmaz.
 
    > [!NOTE]
-   > Megadhatja a konfigurációs értékeket keresztül kódot is. A Megjegyzések a **CreateTable** ennek az alábbi példa.
+   > Megadhatja a konfigurációs értékeket keresztül kódot is. A hello hello megjegyzéseket **CreateTable** kapcsolatos alábbi példa toodo ez.
    >
    >
 
-    Ez `<plugins>` szakasz konfigurálja a [Maven fordító beépülő modul](http://maven.apache.org/plugins/maven-compiler-plugin/) és [Maven árnyalatát beépülő modul](http://maven.apache.org/plugins/maven-shade-plugin/). A fordítóprogram beépülő modul segítségével lefordítani a topológia. A beépülő modul színárnyalat annak megelőzésére szolgál a JAR-csomagot, amely épül fel Maven licenc rejlő ismétlődést. Ez használható oka az, hogy az ismétlődő licencfájlok futási időben a HDInsight-fürt hibát okozhat. Maven-árnyalatát-beépülő modul a használatával a `ApacheLicenseResourceTransformer` megvalósítási megakadályozza, hogy ez a hiba.
+    Ez `<plugins>` szakasz hello konfigurálása [Maven fordító beépülő modul](http://maven.apache.org/plugins/maven-compiler-plugin/) és [Maven árnyalatát beépülő modul](http://maven.apache.org/plugins/maven-shade-plugin/). hello fordító beépülő modul használt toocompile hello topológia. hello árnyalatát beépülő modul használt tooprevent licenc ismétlődést hello JAR package Maven által épített. hello ez használható oka az, hogy hello ismétlődő licencfájlok hello HDInsight-fürt futás közben hibát okozhat. Maven-árnyalatát-beépülő modul használata hello `ApacheLicenseResourceTransformer` megvalósítási megakadályozza, hogy ez a hiba.
 
-    A maven-árnyalatát-beépülő modul hoz létre egy uber jar (vagy az fat jar) is, amely tartalmazza az alkalmazás által igényelt összes függősége.
-4. Mentse a **pom.xml** fájlt.
-5. Hozzon létre egy új könyvtárat nevű **conf** a a **hbaseapp** könyvtár. Az a **conf** könyvtár, hozzon létre egy fájlt **hbase-site.xml**. A fájl tartalmát az alábbiak használata:
+    hello maven-árnyalatát-beépülő modul is hoz létre egy uber jar (vagy az fat jar), amely tartalmazza az összes hello függőségek hello alkalmazáshoz szükséges.
+4. Mentse a hello **pom.xml** fájlt.
+5. Hozzon létre egy új könyvtárat nevű **conf** a hello **hbaseapp** könyvtár. A hello **conf** könyvtár, hozzon létre egy fájlt **hbase-site.xml**. Hello következő hello fájl tartalmának hello használata:
 
         <?xml version="1.0"?>
         <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
         <!--
         /**
-          * Copyright 2010 The Apache Software Foundation
+          * Copyright 2010 hello Apache Software Foundation
           *
-          * Licensed to the Apache Software Foundation (ASF) under one
-          * or more contributor license agreements.  See the NOTICE file
+          * Licensed toohello Apache Software Foundation (ASF) under one
+          * or more contributor license agreements.  See hello NOTICE file
           * distributed with this work for additional information
-          * regarding copyright ownership.  The ASF licenses this file
-          * to you under the Apache License, Version 2.0 (the
+          * regarding copyright ownership.  hello ASF licenses this file
+          * tooyou under hello Apache License, Version 2.0 (the
           * "License"); you may not use this file except in compliance
-          * with the License.  You may obtain a copy of the License at
+          * with hello License.  You may obtain a copy of hello License at
           *
           *     http://www.apache.org/licenses/LICENSE-2.0
           *
-          * Unless required by applicable law or agreed to in writing, software
-          * distributed under the License is distributed on an "AS IS" BASIS,
+          * Unless required by applicable law or agreed tooin writing, software
+          * distributed under hello License is distributed on an "AS IS" BASIS,
           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-          * See the License for the specific language governing permissions and
-          * limitations under the License.
+          * See hello License for hello specific language governing permissions and
+          * limitations under hello License.
           */
         -->
         <configuration>
@@ -177,16 +177,16 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           </property>
         </configuration>
 
-    Ez a fájl betöltése a HDInsight-fürtök a HBase konfigurációs használható.
+    Ez a fájl használt tooload hello HBase konfigurációs a HDInsight-fürtök lesz.
 
    > [!NOTE]
-   > A minimális hbase-site.xml fájl, és a HDInsight-fürthöz az operációs rendszer minimális beállításokat tartalmaz.
+   > A minimális hbase-site.xml fájl, és operációs rendszer minimális beállítások hello hello HDInsight-fürtöt tartalmaz.
 
-6. Mentse a **hbase-site.xml** fájlt.
+6. Mentse a hello **hbase-site.xml** fájlt.
 
-## <a name="create-the-application"></a>Az alkalmazás létrehozása
-1. Lépjen a **hbaseapp\src\main\java\com\microsoft\examples** könyvtár, és nevezze át a app.java fájl **CreateTable.java**.
-2. Nyissa meg a **CreateTable.java** fájlt, és cserélje ki a meglévő tartalmát az alábbira:
+## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
+1. Nyissa meg toohello **hbaseapp\src\main\java\com\microsoft\examples** könyvtár, és nevezze át hello app.java fájl túl**CreateTable.java**.
+2. Nyissa meg hello **CreateTable.java** fájlt, és cserélje le a meglévő tartalom hello hello a következő kódot:
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -212,13 +212,13 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
             //            "zookeepernode0,zookeepernode1,zookeepernode2");
             //config.set("hbase.zookeeper.property.clientPort", "2181");
             //config.set("hbase.cluster.distributed", "true");
-            // The following sets the znode root for Linux-based HDInsight
+            // hello following sets hello znode root for Linux-based HDInsight
             //config.set("zookeeper.znode.parent","/hbase-unsecure");
 
-            // create an admin object using the config
+            // create an admin object using hello config
             HBaseAdmin admin = new HBaseAdmin(config);
 
-            // create the table...
+            // create hello table...
             HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("people"));
             // ... with two column families
             tableDescriptor.addFamily(new HColumnDescriptor("name"));
@@ -236,9 +236,9 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
 
             HTable table = new HTable(config, "people");
 
-            // Add each person to the table
-            //   Use the `name` column family for the name
-            //   Use the `contactinfo` column family for the email
+            // Add each person toohello table
+            //   Use hello `name` column family for hello name
+            //   Use hello `contactinfo` column family for hello email
             for (int i = 0; i< people.length; i++) {
               Put person = new Put(Bytes.toBytes(people[i][0]));
               person.add(Bytes.toBytes("name"), Bytes.toBytes("first"), Bytes.toBytes(people[i][1]));
@@ -246,15 +246,15 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
               person.add(Bytes.toBytes("contactinfo"), Bytes.toBytes("email"), Bytes.toBytes(people[i][3]));
               table.put(person);
             }
-            // flush commits and close the table
+            // flush commits and close hello table
             table.flushCommits();
             table.close();
           }
         }
 
-    Ez a **CreateTable** osztályt, amely létrehoz egy táblát nevű **személyek** , és feltöltheti olyan előre definiált felhasználók.
-3. Mentse a **CreateTable.java** fájlt.
-4. Az a **hbaseapp\src\main\java\com\microsoft\examples** könyvtár, hozzon létre egy új fájlt **SearchByEmail.java**. Ez a fájl tartalmát az alábbira használata:
+    Ez a hello **CreateTable** osztályt, amely létrehoz egy táblát nevű **személyek** , és feltöltheti olyan előre definiált felhasználók.
+3. Mentse a hello **CreateTable.java** fájlt.
+4. A hello **hbaseapp\src\main\java\com\microsoft\examples** könyvtár, hozzon létre egy új fájlt **SearchByEmail.java**. Kód hello a fájl tartalmát, a következő hello használata:
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -275,18 +275,18 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           public static void main(String[] args) throws IOException {
             Configuration config = HBaseConfiguration.create();
 
-            // Use GenericOptionsParser to get only the parameters to the class
-            // and not all the parameters passed (when using WebHCat for example)
+            // Use GenericOptionsParser tooget only hello parameters toohello class
+            // and not all hello parameters passed (when using WebHCat for example)
             String[] otherArgs = new GenericOptionsParser(config, args).getRemainingArgs();
             if (otherArgs.length != 1) {
               System.out.println("usage: [regular expression]");
               System.exit(-1);
             }
 
-            // Open the table
+            // Open hello table
             HTable table = new HTable(config, "people");
 
-            // Define the family and qualifiers to be used
+            // Define hello family and qualifiers toobe used
             byte[] contactFamily = Bytes.toBytes("contactinfo");
             byte[] emailQualifier = Bytes.toBytes("email");
             byte[] nameFamily = Bytes.toBytes("name");
@@ -295,8 +295,8 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
 
             // Create a new regex filter
             RegexStringComparator emailFilter = new RegexStringComparator(otherArgs[0]);
-            // Attach the regex filter to a filter
-            //   for the email column
+            // Attach hello regex filter tooa filter
+            //   for hello email column
             SingleColumnValueFilter filter = new SingleColumnValueFilter(
               contactFamily,
               emailQualifier,
@@ -304,11 +304,11 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
               emailFilter
             );
 
-            // Create a scan and set the filter
+            // Create a scan and set hello filter
             Scan scan = new Scan();
             scan.setFilter(filter);
 
-            // Get the results
+            // Get hello results
             ResultScanner results = table.getScanner(scan);
             // Iterate over results and print  values
             for (Result result : results ) {
@@ -327,9 +327,9 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           }
         }
 
-    A **SearchByEmail** osztály használható lekérdezze a sorok e-mail cím alapján. Reguláris kifejezés szűrőt használja, mert biztosíthat egy karakterlánc vagy egy reguláris kifejezést az osztály használata esetén.
-5. Mentse a **SearchByEmail.java** fájlt.
-6. Az a **hbaseapp\src\main\hava\com\microsoft\examples** könyvtár, hozzon létre egy új fájlt **DeleteTable.java**. Ez a fájl tartalmát az alábbira használata:
+    Hello **SearchByEmail** osztály használt tooquery sorok e-mail cím alapján lehet. Mivel a program reguláris kifejezés szűrőt, megadhatja egy karakterlánc vagy egy reguláris kifejezést hello osztály használata esetén.
+5. Mentse a hello **SearchByEmail.java** fájlt.
+6. A hello **hbaseapp\src\main\hava\com\microsoft\examples** könyvtár, hozzon létre egy új fájlt **DeleteTable.java**. Kód hello a fájl tartalmát, a következő hello használata:
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -342,43 +342,43 @@ Ismerje meg, hogyan hozhat létre és build egy [Apache HBase](http://hbase.apac
           public static void main(String[] args) throws IOException {
             Configuration config = HBaseConfiguration.create();
 
-            // Create an admin object using the config
+            // Create an admin object using hello config
             HBaseAdmin admin = new HBaseAdmin(config);
 
-            // Disable, and then delete the table
+            // Disable, and then delete hello table
             admin.disableTable("people");
             admin.deleteTable("people");
           }
         }
 
-    Ez az osztály van ebben a példában tisztítási letiltásával és eldobása hozta létre a tábla a **CreateTable** osztály.
-7. Mentse a **DeleteTable.java** fájlt.
+    Ez az osztály van ebben a példában tisztítási letiltásával és hello tábla eldobása hozta létre hello **CreateTable** osztály.
+7. Mentse a hello **DeleteTable.java** fájlt.
 
-## <a name="build-and-package-the-application"></a>Hozza létre, és az alkalmazás becsomagolása
-1. Nyisson meg egy parancssort, és lépjen a **hbaseapp** könyvtár.
-2. A következő paranccsal hozhat létre az alkalmazást tartalmazó JAR-fájlt:
+## <a name="build-and-package-hello-application"></a>Buildelés és a csomag hello alkalmazás
+1. Nyisson meg egy parancssort, és módosítsa a könyvtárakat toohello **hbaseapp** könyvtár.
+2. A következő parancs toobuild hello alkalmazást tartalmazó JAR-fájlra hello használata:
 
         mvn clean package
 
-    Ez törli az előző build összetevőihez, letölti az összes függőséget, amely már nincs telepítve, majd alapszik, és az alkalmazás a csomagokat.
-3. A parancs befejeződésekor a **hbaseapp\target** directory nevű fájlt tartalmaz **hbaseapp-1.0-SNAPSHOT.jar**.
+    Ez törli az előző build összetevőihez, letölti az összes függőséget, amely már nincs telepítve, majd épít fel és hello alkalmazás csomagok.
+3. Hello parancs befejeződésekor hello **hbaseapp\target** directory nevű fájlt tartalmaz **hbaseapp-1.0-SNAPSHOT.jar**.
 
    > [!NOTE]
-   > A **hbaseapp-1.0-SNAPSHOT.jar** fájl egy uber jar (más néven a fat jar), amely tartalmazza az alkalmazás futtatásához szükséges összes függősége.
+   > Hello **hbaseapp-1.0-SNAPSHOT.jar** fájl egy uber (más néven a fat jar) minden hello függőség tartalmazó jar toorun hello alkalmazás szükséges.
 
-## <a name="upload-the-jar-file-and-start-a-job"></a>Töltse fel a JAR-fájlra, és a feladat indítása
-Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az adatokat a HDInsight Hadoop-feladatok](hdinsight-upload-data.md). Az alábbi lépéseket az Azure PowerShell használata.
+## <a name="upload-hello-jar-file-and-start-a-job"></a>Töltse fel a hello JAR-fájlra, és elindíthat egy feladatot
+Nincsenek számos módon tooupload egy fájl tooyour HDInsight-fürtöt, a [feltölteni az adatokat a HDInsight Hadoop-feladatok](hdinsight-upload-data.md). hello lépések Azure PowerShell használata.
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-1. Miután telepítése és konfigurálása az Azure PowerShell, hozzon létre egy új fájlt **hbase-runner.psm1**. A fájl tartalmát az alábbiak használata:
+1. Miután telepítése és konfigurálása az Azure PowerShell, hozzon létre egy új fájlt **hbase-runner.psm1**. A fájl tartalmának hello következő hello használata:
 
         <#
         .SYNOPSIS
-        Copies a file to the primary storage of an HDInsight cluster.
+        Copies a file toohello primary storage of an HDInsight cluster.
         .DESCRIPTION
-        Copies a file from a local directory to the blob container for
-        the HDInsight cluster.
+        Copies a file from a local directory toohello blob container for
+        hello HDInsight cluster.
         .EXAMPLE
         Start-HBaseExample -className "com.microsoft.examples.CreateTable"
         -clusterName "MyHDInsightCluster"
@@ -397,11 +397,11 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
         function Start-HBaseExample {
         [CmdletBinding(SupportsShouldProcess = $true)]
         param(
-        #The class to run
+        #hello class toorun
         [Parameter(Mandatory = $true)]
         [String]$className,
 
-        #The name of the HDInsight cluster
+        #hello name of hello HDInsight cluster
         [Parameter(Mandatory = $true)]
         [String]$clusterName,
 
@@ -409,34 +409,34 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
         [Parameter(Mandatory = $false)]
         [String]$emailRegex,
 
-        #Use if you want to see stderr output
+        #Use if you want toosee stderr output
         [Parameter(Mandatory = $false)]
         [Switch]$showErr
         )
 
         Set-StrictMode -Version 3
 
-        # Is the Azure module installed?
+        # Is hello Azure module installed?
         FindAzure
 
-        # Get the login for the HDInsight cluster
-        $creds=Get-Credential -Message "Enter the login for the cluster" -UserName "admin"
+        # Get hello login for hello HDInsight cluster
+        $creds=Get-Credential -Message "Enter hello login for hello cluster" -UserName "admin"
 
-        # The JAR
+        # hello JAR
         $jarFile = "wasb:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
 
-        # The job definition
+        # hello job definition
         $jobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
             -JarFile $jarFile `
             -ClassName $className `
             -Arguments $emailRegex
 
-        # Get the job output
+        # Get hello job output
         $job = Start-AzureRmHDInsightJob `
             -ClusterName $clusterName `
             -JobDefinition $jobDefinition `
             -HttpCredential $creds
-        Write-Host "Wait for the job to complete ..." -ForegroundColor Green
+        Write-Host "Wait for hello job toocomplete ..." -ForegroundColor Green
         Wait-AzureRmHDInsightJob `
             -ClusterName $clusterName `
             -JobId $job.JobId `
@@ -450,7 +450,7 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
                     -HttpCredential $creds `
                     -DisplayOutputType StandardError
         }
-        Write-Host "Display the standard output ..." -ForegroundColor Green
+        Write-Host "Display hello standard output ..." -ForegroundColor Green
         Get-AzureRmHDInsightJobOutput `
                     -Clustername $clusterName `
                     -JobId $job.JobId `
@@ -459,10 +459,10 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
 
         <#
         .SYNOPSIS
-        Copies a file to the primary storage of an HDInsight cluster.
+        Copies a file toohello primary storage of an HDInsight cluster.
         .DESCRIPTION
-        Copies a file from a local directory to the blob container for
-        the HDInsight cluster.
+        Copies a file from a local directory toohello blob container for
+        hello HDInsight cluster.
         .EXAMPLE
         Add-HDInsightFile -localPath "C:\temp\data.txt"
         -destinationPath "example/data/data.txt"
@@ -477,15 +477,15 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
         function Add-HDInsightFile {
             [CmdletBinding(SupportsShouldProcess = $true)]
             param(
-                #The path to the local file.
+                #hello path toohello local file.
                 [Parameter(Mandatory = $true)]
                 [String]$localPath,
 
-                #The destination path and file name, relative to the root of the container.
+                #hello destination path and file name, relative toohello root of hello container.
                 [Parameter(Mandatory = $true)]
                 [String]$destinationPath,
 
-                #The name of the HDInsight cluster
+                #hello name of hello HDInsight cluster
                 [Parameter(Mandatory = $true)]
                 [String]$clusterName,
 
@@ -496,22 +496,22 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
 
             Set-StrictMode -Version 3
 
-            # Is the Azure module installed?
+            # Is hello Azure module installed?
             FindAzure
 
-            # Get authentication for the cluster
+            # Get authentication for hello cluster
             $creds=Get-Credential
 
-            # Does the local path exist?
+            # Does hello local path exist?
             if (-not (Test-Path $localPath))
             {
                 throw "Source path '$localPath' does not exist."
             }
 
-            # Get the primary storage container
+            # Get hello primary storage container
             $storage = GetStorage -clusterName $clusterName
 
-            # Upload file to storage, overwriting existing files if -force was used.
+            # Upload file toostorage, overwriting existing files if -force was used.
             Set-AzureStorageBlobContent -File $localPath `
                 -Blob $destinationPath `
                 -force:$force `
@@ -524,7 +524,7 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
             $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
             if(-not($sub))
             {
-                throw "No active Azure subscription found! If you have a subscription, use the Login-AzureRmAccount cmdlet to login to your subscription."
+                throw "No active Azure subscription found! If you have a subscription, use hello Login-AzureRmAccount cmdlet toologin tooyour subscription."
             }
         }
 
@@ -534,7 +534,7 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
                 [String]$clusterName
             )
             $hdi = Get-AzureRmHDInsightCluster -ClusterName $clusterName
-            # Does the cluster exist?
+            # Does hello cluster exist?
             if (!$hdi)
             {
                 throw "HDInsight cluster '$clusterName' does not exist."
@@ -550,53 +550,53 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
             $storageAccountKey=(Get-AzureRmStorageAccountKey `
                 -Name $storageAccountName `
             -ResourceGroupName $resourceGroup)[0].Value
-            # Get the resource group, in case we need that
+            # Get hello resource group, in case we need that
             $return.resourceGroup = $resourceGroup
-            # Get the storage context, as we can't depend
-            # on using the default storage context
+            # Get hello storage context, as we can't depend
+            # on using hello default storage context
             $return.context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
-            # Get the container, so we know where to
+            # Get hello container, so we know where to
             # find/store blobs
             $return.container = $container
-            # Return storage accounts to support finding all accounts for
+            # Return storage accounts toosupport finding all accounts for
             # a cluster
             $return.storageAccount = $storageAccountName
             $return.storageAccountKey = $storageAccountKey
 
             return $return
         }
-        # Only export the verb-phrase things
+        # Only export hello verb-phrase things
         export-modulemember *-*
 
     Ez a fájl két lehetővé tevő modulokat tartalmaz:
 
-   * **Adja hozzá HDInsightFile** - használt HDInsight fájlok feltöltése
-   * **Start-HBaseExample** - a korábban létrehozott osztályok futtatásához használt
-2. Mentse a **hbase-runner.psm1** fájlt.
-3. Nyisson meg egy új Azure PowerShell-ablakot, lépjen a **hbaseapp** könyvtár, és futtassa a következő parancsot.
+   * **Adja hozzá HDInsightFile** -tooupload fájlok tooHDInsight használt
+   * **Start-HBaseExample** -használt korábban létrehozott toorun hello osztályok
+2. Mentse a hello **hbase-runner.psm1** fájlt.
+3. Nyisson meg egy új Azure PowerShell-ablakot, módosítsa a könyvtárakat toohello **hbaseapp** könyvtárat, majd futtatási hello végrehajtja a parancsot.
 
         PS C:\ Import-Module c:\path\to\hbase-runner.psm1
 
-    Az elérési utat módosítsa a helyét a **hbase-runner.psm1** korábban létrehozott fájlt. Ez a modul az Azure PowerShell-munkamenetben regisztrál.
-4. Az alábbi parancs segítségével töltse fel a **hbaseapp-1.0-SNAPSHOT.jar** a HDInsight-fürthöz.
+    Módosítani hello elérési toohello hello **hbase-runner.psm1** korábban létrehozott fájlt. Hello modul ez regisztrál az Azure PowerShell-munkamenetben.
+4. Használjon hello következő parancsot a tooupload hello **hbaseapp-1.0-SNAPSHOT.jar** tooyour HDInsight-fürthöz.
 
         Add-HDInsightFile -localPath target\hbaseapp-1.0-SNAPSHOT.jar -destinationPath example/jars/hbaseapp-1.0-SNAPSHOT.jar -clusterName hdinsightclustername
 
-    Cserélje le **hdinsightclustername** a HDInsight-fürt nevét. A parancs feltölti a **hbaseapp-1.0-SNAPSHOT.jar** számára a **példa/JAR-fájlok kivételével** a HDInsight-fürthöz elsődleges tárolási helyét.
-5. Miután a fájlok feltöltése, a következő kódot használja hozzon létre egy táblát az a **hbaseapp**:
+    Cserélje le **hdinsightclustername** hello nevet, a HDInsight-fürthöz. hello parancs feltölt hello **hbaseapp-1.0-SNAPSHOT.jar** toohello **példa/JAR-fájlok kivételével** hello a HDInsight-fürt elsődleges tároló helyét.
+5. Miután hello fájlok feltöltése után használata hello következő kódot toocreate hello használó **hbaseapp**:
 
         Start-HBaseExample -className com.microsoft.examples.CreateTable -clusterName hdinsightclustername
 
-    Cserélje le **hdinsightclustername** a HDInsight-fürt nevét.
+    Cserélje le **hdinsightclustername** hello nevet, a HDInsight-fürthöz.
 
-    Ezzel a paranccsal létrejön egy új tábla nevű **személyek** a HDInsight-fürtön. Ez a parancs nem szerepelnek a konzolablakban kimenetet.
-6. Keresse meg a táblázat, használja a következő parancsot:
+    Ezzel a paranccsal létrejön egy új tábla nevű **személyek** a HDInsight-fürtön. Ez a parancs nem jeleníti meg a hello konzolablak kimenetet.
+6. a hello táblázatban, a következő parancs használata hello toosearch:
 
         Start-HBaseExample -className com.microsoft.examples.SearchByEmail -clusterName hdinsightclustername -emailRegex contoso.com
 
-    Cserélje le **hdinsightclustername** a HDInsight-fürt nevét.
+    Cserélje le **hdinsightclustername** hello nevet, a HDInsight-fürthöz.
 
-    Ez a parancs a **SearchByEmail** osztály egyetlen sort sem kereséséhez ahol a **contactinformation** oszlop termékcsalád és a **e-mail** oszlopa tartalmazza a karakterláncot **contoso.com**. A következő eredményeket kell megjelennie:
+    Ez a parancs hello **SearchByEmail** toosearch egyetlen sort sem az osztály adott hello **contactinformation** oszlop termékcsalád és hello **e-mail** oszlopban hello karakterláncot tartalmaz **contoso.com**. A következő eredmények hello kell megjelennie:
 
           Franklin Holtz - ID: 2
           Franklin Holtz - franklin@contoso.com - ID: 2
@@ -605,15 +605,15 @@ Számos módon feltölteni a fájlt a HDInsight-fürthöz, a [feltölteni az ada
           Gabriela Ingram - ID: 6
           Gabriela Ingram - gabriela@contoso.com - ID: 6
 
-    Használatával **fabrikam.com** a a `-emailRegex` értéket adja vissza a felhasználóknak, akiknek **fabrikam.com** az e-mailek mezőben. Ez a keresés reguláris kifejezés alapú szűrő használatával valósul meg, mert is megadhat reguláris kifejezéseket, például a **^ r**, mely értéket ad vissza bejegyzéseket, ahol az e-mailt "r" betűvel kezdődik.
+    Használatával **fabrikam.com** a hello `-emailRegex` értéket adja vissza hello felhasználóknak, akik számára **fabrikam.com** hello e-mail mezőben. Ez a keresés reguláris kifejezés alapú szűrő használatával valósul meg, mert is megadhat reguláris kifejezéseket, például a **^ r**, mely értéket ad vissza bejegyzéseket, ahol az üdvözlő e-mail hello levél "r" kezdődik.
 
-## <a name="delete-the-table"></a>A tábla törlése
-Amikor elkészült, a példában a, a következő paranccsal az Azure PowerShell-munkamenetben törli a **személyek** ebben a példában használt tábla:
+## <a name="delete-hello-table"></a>Hello tábla törlése
+Amikor elkészült, a hello példa, használjon hello következő parancsot a hello Azure PowerShell-munkamenet toodelete hello a **személyek** ebben a példában használt tábla:
 
     Start-HBaseExample -className com.microsoft.examples.DeleteTable -clusterName hdinsightclustername
 
-Cserélje le **hdinsightclustername** a HDInsight-fürt nevét.
+Cserélje le **hdinsightclustername** hello nevet, a HDInsight-fürthöz.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 ### <a name="no-results-or-unexpected-results-when-using-start-hbaseexample"></a>Nincs eredményeit, illetve a Start-HBaseExample használata váratlan eredményekhez
-Használja a `-showErr` paraméter a normál hiba (STDERR), a feladat futtatása során előállított megtekintéséhez.
+Használjon hello `-showErr` paraméter tooview hello standard hiba (STDERR) futó hello feladat során előállított.

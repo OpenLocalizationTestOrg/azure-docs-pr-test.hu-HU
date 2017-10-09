@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL adatbázis tűzfalszabályainak |} Microsoft Docs"
-description: "Ismerje meg, hogyan konfigurálhat egy SQL Database-tűzfalat a hozzáférések kezelése céljából kiszolgálói és adatbázisszintű tűzfalszabályokkal."
+title: "SQL Database tűzfalszabályai aaaAzure |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure SQL adatbázis-kiszolgáló- és adatbázis tűzfal-szabályok toomanage hozzáféréssel rendelkező tűzfal."
 keywords: "adatbázistűzfal"
 services: sql-database
 documentationcenter: 
@@ -17,109 +17,109 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 04/10/2017
 ms.author: rickbyh
-ms.openlocfilehash: 583c91376418d20d34db17d57d3fa14a1e71cd3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a8cdf629d0d0e55421a5e9f9b894a21371be568
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-server-level-and-database-level-firewall-rules"></a>Az Azure SQL Database kiszolgáló- és adatbázis tűzfalszabályok 
 
-A Microsoft Azure SQL Database egy relációs adatbázis-szolgáltatást nyújt az Azure és egyéb internetalapú alkalmazások számára. Az adatok védelme érdekében a tűzfalak mindaddig megakadályozzák az adatbázis-kiszolgáló elérését, amíg meg nem adja, hogy mely számítógépek rendelkeznek ehhez engedéllyel. A tűzfal biztosítja az adatbázisokhoz való hozzáférést az egyes kérések kiindulási IP-címe alapján.
+A Microsoft Azure SQL Database egy relációs adatbázis-szolgáltatást nyújt az Azure és egyéb internetalapú alkalmazások számára. az adatok védelméhez toohelp, tűzfalak tooyour adatbázis-kiszolgáló minden hozzáférés tiltása, amíg megadhatja, hogy mely számítógépek rendelkeznek engedéllyel. hello tűzfal engedélyezi a hozzáférést toodatabases származó IP-cím az egyes kérelmek hello alapján.
 
 ## <a name="overview"></a>Áttekintés
 
-Kezdetben a tűzfal az Azure SQL Server összes Transact-SQL-hozzáférését blokkolja. Az Azure SQL server használatának megkezdéséhez meg kell adnia egy vagy több kiszolgálószintű tűzfalszabályt, amely engedélyezi az Azure SQL-kiszolgáló eléréséhez. A tűzfalszabályok segítségével adja meg, hogy az internet felől mely IP-címtartományok engedélyezettek, valamint hogy az Azure-alkalmazások megpróbálhatnak-e csatlakozni az Azure SQL Serverhez.
+Kezdetben minden Transact-SQL hozzáférés tooyour Azure SQL server hello tűzfal blokkolja. az Azure SQL server használatával toobegin meg kell adnia egy vagy több kiszolgálószintű tűzfalszabályt, amely engedélyezi hozzáférés tooyour Azure SQL-kiszolgálót. Hello tűzfal szabályok toospecify mely IP-címtartományt, az Internet engedélyezettek hello használja, és hogy az Azure-alkalmazások megpróbálhatnak tooconnect tooyour Azure SQL server.
 
-Ha az Azure SQL Serveren csak egyetlen adatbázishoz szeretne hozzáférést biztosítani, akkor az adott adatbázishoz egy adatbázisszintű szabályt kell létrehoznia. Adjon meg egy olyan IP-címtartományt az adatbázis tűzfalszabályához, amely a kiszolgálószintű tűzfalszabályban megadott IP-címtartományon kívül van, és ügyeljen arra, hogy az ügyfél IP-címe az adatbázisszintű szabályban megadott tartományon belülre essen.
+tooselectively grant hozzáférés toojust hello adatbázisokat az Azure SQL Server egyik, hello szükséges adatbázis adatbázis-szintű szabályt kell létrehoznia. Adjon meg egy IP-címtartomány a hello adatbázishoz tartozó tűzfalszabály, amely hello IP-címtartományt megadott hello kiszolgálószintű tűzfalszabályt, és győződjön meg arról, hogy hello ügyfél IP-címe hello hello adatbázis szintű szabályban megadott hello közé esik-e.
 
-Az internetről és az Azure-ból érkező kapcsolódási kísérleteknek először át kell jutniuk a tűzfalon, mielőtt elérnék az Azure SQL Servert vagy az SQL Database-t, ahogyan az a következő ábrán látható:
+A kapcsolódási kísérletek hello Internet és Azure kell először telnie hello tűzfalon keresztül érik az Azure SQL server vagy SQL-adatbázis, ahogy az ábra a következő hello:
 
    ![A tűzfal-konfigurációt bemutató ábra.][1]
 
-* **Kiszolgálószintű tűzfalszabályok:** Ezek a szabályok hozzáférést biztosítanak az ügyfelek számára a teljes Azure SQL Serverhez, azaz az egyazon logikai kiszolgálón található összes adatbázishoz. Ezek a szabályok a **fő** adatbázisban vannak tárolva. A kiszolgálószintű tűzfalszabályok a portálon vagy Transact-SQL utasításokkal konfigurálhatók. Az Azure Portal vagy a PowerShell használatával csak az előfizetés tulajdonosa vagy az előfizetés közreműködői hozhatnak létre kiszolgálószintű tűzfalszabályokat. Ha kiszolgálószintű tűzfalszabályt kíván létrehozni a Transact-SQL használatával, akkor kiszolgálószintű fő bejelentkezőként vagy az Azure Active Directory rendszergazdájaként kell csatlakoznia az SQL Database-példányhoz (ez egyben azt is jelenti, hogy először kiszolgálószintű tűzfalszabályt kell létrehoznia egy Azure-szintű engedélyekkel rendelkező felhasználóval).
-* **Adatbázis-adatbázisszintű tűzfalszabályok:** ezek a szabályok engedélyezi az ügyfelek bizonyos (biztonságos) adatbázisok belül az azonos logikai kiszolgáló eléréséhez. Hozhatja létre ezeket a szabályokat az egyes adatbázisok (beleértve a **fő** database0) és az egyes adatbázisok tárolódnak. Adatbázis-szintű tűzfalszabályok csak akkor lehet Transact-SQL-utasítások segítségével konfigurált csak az első kiszolgálószintű tűzfal konfigurálása után. Ha egy olyan IP-címtartományt ad meg az adatbázisszintű tűzfalszabályban, amely kívül esik a kiszolgálószintű tűzfalszabályban megadott tartományon, akkor csak az adatbázisszinten megadott tartományba eső IP-címekkel rendelkező ügyfelek érhetik el az adatbázist. Egy adatbázishoz legfeljebb 128 adatbázisszintű tűzfalszabály adható meg. Adatbázis-szintű tűzfalszabályok fő- és felhasználói adatbázisok csak hozható létre és kezelhetők a Transact-SQL. Az adatbázis-szintű tűzfalszabályok beállítása további információkért lásd: a példa későbbi részében a következő cikket, és tekintse meg [sp_set_database_firewall_rule (Azure SQL-adatbázisok)](https://msdn.microsoft.com/library/dn270010.aspx).
+* **Kiszolgálószintű tűzfal-szabályokat:** ezek a szabályok engedélyezése az ügyfelek tooaccess a teljes Azure SQL server, ez azt jelenti, hogy az összes hello adatbázis belül hello azonos logikai kiszolgáló. Ezek a szabályok be vannak tárolva hello **fő** adatbázis. Kiszolgálószintű tűzfal-szabályokat hello portál használatával, vagy a Transact-SQL-utasítások segítségével konfigurálható. hello Azure-portálon vagy a PowerShell használatával toocreate kiszolgálószintű tűzfal szabályokat, a hello előfizetés tulajdonosa vagy egy előfizetés közreműködői kell lennie. toocreate egy kiszolgálószintű tűzfalszabályt Transact-SQL használatával, csatlakoznia kell SQL Database-példányt toohello hello kiszolgálószintű fő bejelentkezéssel vagy hello Azure Active Directory-rendszergazda (ami azt jelenti, hogy egy kiszolgálószintű tűzfalszabályt először létre kell hozni a felhasználó Azure-szintű engedélyekkel).
+* **Adatbázis-adatbázisszintű tűzfalszabályok:** ezek a szabályok engedélyezése az ügyfelek tooaccess bizonyos (biztonságos) adatbázisok hello belül azonos logikai kiszolgáló. Hozhatja létre ezeket a szabályokat az egyes adatbázisok (beleértve a hello **fő** database0) és tárolásuk hello egyes adatbázisokat. Adatbázis-szintű tűzfalszabályok csak Transact-SQL-utasítások segítségével konfigurálhatja, és csak a beállítása után hello első kiszolgálószintű tűzfal. Ha az IP-címtartományok hello adatbázis-adatbázisszintű tűzfalszabály, amely megadott hello kiszolgálószintű tűzfalszabály külső hello tartomány ad meg, csak ezek az ügyfelek IP-címmel rendelkező hello adatbázis szintű tartományban hozzáférhessen hello adatbázishoz. Egy adatbázishoz legfeljebb 128 adatbázisszintű tűzfalszabály adható meg. Adatbázis-szintű tűzfalszabályok fő- és felhasználói adatbázisok csak hozható létre és kezelhetők a Transact-SQL. Az adatbázis-szintű tűzfalszabályok beállítása további információkért lásd: hello példa későbbi részében a következő cikket, és tekintse meg [sp_set_database_firewall_rule (Azure SQL-adatbázisok)](https://msdn.microsoft.com/library/dn270010.aspx).
 
-**Javaslat:** A Microsoft a biztonság és az adatbázis hordozhatóságának fokozása érdekében adatbázisszintű tűzfalszabályok használatát javasolja, amikor erre lehetőség van. Kiszolgálószintű tűzfalszabályokat használhat a rendszergazdákra vonatkozóan, vagy ha több, azonos hozzáférési követelményt támasztó adatbázissal rendelkezik, és nem szeretne időt tölteni az egyes adatbázisok egyenként való konfigurálásával.
+**Javaslat:** Microsoft azt javasolja, hogy adatbázis-szintű tűzfalszabályok segítségével amikor csak lehetséges tooenhance biztonsági és toomake az adatbázis több hordozható. Kiszolgálószintű tűzfal-szabályok használata a rendszergazdák számára, és ha sok adatbázis, amely rendelkezik hello ugyanazt a hozzáférési követelményeket, és nem szeretné, minden adatbázisnak külön-külön konfigurálása toospend idő.
 
 > [!Note]
-> Az üzletmenet folytonossága és a hordozható adatbázisok közötti kapcsolatról [a vészhelyreállítás hitelesítési követelményeit](sql-database-geo-replication-security-config.md)ismertető cikkből tájékozódhat.
+> Az üzletmenet folytonossága hello környezetben hordozható adatbázisokkal kapcsolatos információk: [hitelesítésének követelményei a vész-helyreállítási](sql-database-geo-replication-security-config.md).
 >
 
-### <a name="connecting-from-the-internet"></a>Csatlakozás az internetről
+### <a name="connecting-from-hello-internet"></a>A hello Internet csatlakoztatása
 
-Amikor egy számítógép megpróbál csatlakozni az adatbázis-kiszolgálóhoz az internetről, a tűzfal először az adatbázisszintű tűzfalszabályoknak megfelelően ellenőrzi a kérés eredeti IP-címét, a kapcsolati kérésben szereplő adatbázisra vonatkozóan:
+Amikor egy számítógép megpróbál tooconnect tooyour adatbázis-kiszolgálójának hello Internet, hello tűzfal először ellenőrzi hello származó hello adatbázis szintű adatbázisra vonatkozó tűzfalszabályok, hello hello kapcsolatot igénylő hello kérelmet IP-címe:
 
-* Ha a kérés IP-címe a adatbázisszintű tűzfalszabályokban megadott tartományok egyikében található, a tűzfal engedélyezi a csatlakozást a szabályt tartalmazó SQL-adatbázishoz.
-* Ha a kérés IP-címe nem található meg az adatbázisszintű tűzfalszabályokban megadott tartományok egyikében sem, a tűzfal ellenőrzi a kiszolgálószintű tűzfalszabályokat. Ha a kérés IP-címe a kiszolgálószintű tűzfalszabályokban megadott tartományok egyikében található, a tűzfal engedélyezi a csatlakozást. A kiszolgálószintű tűzfalszabályok az összes SQL-adatbázisra érvényesek az Azure SQL Serveren.  
-* Ha az IP-cím, a kérelem nem az adatbázis-szintjére, vagy a kiszolgálószintű tűzfalszabály megadott tartományok belül van, a kapcsolódási kérelem sikertelen lesz.
+* Ha hello IP-cím hello kérelem hello adatbázis szintű tűzfalszabályok megadott hello tartományok egyikébe esik, hello kapcsolat toohello hello szabályt tartalmazó SQL-adatbázis kapnak.
+* Ha hello IP-cím hello kérelem nem hello adatbázis-adatbázisszintű tűzfalszabály megadott hello tartományok egyikébe esik, hello kiszolgálószintű tűzfal-szabályokat a rendszer ellenőrzi. Ha hello IP-cím hello kérelem hello kiszolgálószintű tűzfal szabályokban megadott hello tartományok egyikébe esik, hello kapcsolat kapnak. Kiszolgálószintű tűzfal-szabályokat alkalmazni tooall SQL-adatbázisok hello Azure SQL-kiszolgálón.  
+* Ha hello IP-cím hello kérelem nincs belül hello tartományok hello adatbázis szintű valamelyikében vagy megadott kiszolgálószintű tűzfal-szabályok, hello kapcsolódási kérelem sikertelen lesz.
 
 > [!NOTE]
-> Ha a helyi számítógépről szeretné elérni az Azure SQL Database-t, akkor ellenőrizze, hogy a hálózaton és a helyi számítógépen lévő tűzfal engedélyezi-e a kimenő kommunikációt az 1433-as TCP-porton keresztül.
+> az Azure SQL Database tooaccess a helyi számítógépen, győződjön meg arról, a hálózati és a helyi számítógép hello tűzfala lehetővé teszi, hogy a 1433-as TCP-port kimenő kommunikációra.
 > 
 
 ### <a name="connecting-from-azure"></a>Csatlakozás az Azure-ból
-Annak engedélyezéséhez, hogy az Azure-alkalmazások csatlakozhassanak az Azure SQL Serverhez, engedélyezni kell az Azure-kapcsolatokat. Amikor egy Azure-alkalmazás megkísérel csatlakozni az adatbázis-kiszolgálóhoz, a tűzfal ellenőrzi, hogy az Azure-kapcsolatok engedélyezve vannak-e. A 0.0.0.0 kezdő- és zárócímet tartalmazó tűzfalbeállítás jelzi, hogy ezek a kapcsolatok engedélyezettek. Ha a csatlakozási kísérlet nem engedélyezett, a kérés nem éri el az Azure SQL Database-kiszolgálót.
+az Azure tooconnect tooyour Azure SQL server Azure-kapcsolatok tooallow alkalmazások engedélyezve kell lennie. Amikor egy alkalmazás az Azure-ból próbál tooconnect tooyour adatbázis-kiszolgáló, a hello tűzfal ellenőrzi, hogy az Azure-kapcsolatok engedélyezve legyenek-e. A tűzfal beállítása a kezdő és záró cím egyenlő too0.0.0.0 azt jelzi, hogy ezek a kapcsolatok számára engedélyezett. Hello kapcsolódási kísérlet nem engedélyezett, ha a hello kérelem nem éri el hello Azure SQL Database-kiszolgálóhoz.
 
 > [!IMPORTANT]
-> Ez a beállítás konfigurálja a tűzfalat arra, hogy engedélyezzen minden, az Azure felől érkező kapcsolatot, beleértve a más ügyfelek előfizetéseiből érkező kapcsolatokat is. Ezen beállítás kiválasztásakor győződjön meg arról, hogy a bejelentkezési és felhasználói engedélyei a hozzáféréseket az arra jogosult felhasználókra korlátozzák.
+> Ez a beállítás állítja be a hello tűzfal tooallow más ügyfelek hello előfizetések az Azure többek között a következőket kapcsolatoktól összes kapcsolatokat. Ha ezzel a beállítással, a bejelentkezési győződjön meg arról, valamint a felhasználói engedélyek korlátozása hozzáférés tooonly engedéllyel rendelkező felhasználók.
 > 
 
 ## <a name="creating-and-managing-firewall-rules"></a>Tűzfal-szabályok létrehozását és kezelését
-Az első kiszolgálószintű tűzfal beállítás segítségével hozhatók létre a [Azure-portálon](https://portal.azure.com/) vagy programozott módon [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx), [Azure CLI](/cli/azure/sql/server/firewall-rule#create), vagy a [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx). A további kiszolgálószintű tűzfalszabályok ugyanezekkel a módszerekkel, vagy a Transact-SQL-lel hozhatók létre és kezelhetők. 
+hello első kiszolgálószintű tűzfal beállítás hello segítségével hozhatók létre [Azure-portálon](https://portal.azure.com/) vagy programozott módon [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx), [Azure CLI](/cli/azure/sql/server/firewall-rule#create), vagy hello [REST API-t](https://msdn.microsoft.com/library/azure/dn505712.aspx). A további kiszolgálószintű tűzfalszabályok ugyanezekkel a módszerekkel, vagy a Transact-SQL-lel hozhatók létre és kezelhetők. 
 
 > [!IMPORTANT]
 > Adatbázis-szintű tűzfalszabályok csak hozhatók létre, és a Transact-SQL használatával kezelhetők. 
 >
 
-A teljesítmény javítása érdekében a kiszolgálószintű tűzfalszabályokat átmenetileg adatbázisszinten is gyorsítótárazza a rendszer. A gyorsítótár frissítésével kapcsolatban lásd: [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx). 
+tooimprove teljesítmény, a kiszolgálószintű tűzfal szabályok ideiglenesen gyorsítótárba kerüljenek-e hello adatbázis szintjén. toorefresh hello gyorsítótár, lásd: [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx). 
 
 > [!TIP]
-> Használhat [SQL Database Auditing](sql-database-auditing.md) kiszolgáló- és adatbázis tűzfal naplózása.
+> Használhat [SQL Database Auditing](sql-database-auditing.md) tooaudit kiszolgáló- és adatbázis tűzfal módosításokat.
 >
 
 ### <a name="azure-portal"></a>Azure Portal
 
-Egy kiszolgálószintű tűzfalszabályt beállítani az Azure portálon, vagy lépjen a – áttekintés oldalra az Azure SQL database vagy az Áttekintés lap az Azure Database logikai kiszolgáló.
+tooset egy kiszolgálószintű tűzfalszabályt hello Azure-portálon, vagy lépjen toohello – áttekintés oldalra Azure SQL adatbázis vagy hello áttekintése lapon a Azure Database logikai kiszolgáló.
 
 > [!TIP]
-> Az oktatóanyagok esetén lásd: [hozzon létre egy Azure portál használatával DB](sql-database-get-started-portal.md).
+> Az oktatóanyagok esetén lásd: [Azure-portálon hozzon létre egy DB használatával hello](sql-database-get-started-portal.md).
 >
 
 **Az adatbázis – áttekintés oldalra**
 
-1. Az adatbázis – áttekintés oldalra egy kiszolgálószintű tűzfalszabályt beállításához kattintson **kiszolgáló tűzfalának beállítása** az eszköztáron a következő ábrán látható módon: A **tűzfalbeállítások** az SQL Database-kiszolgálóhoz tartozó lapon nyílik meg.
+1. tooset egy kiszolgálószintű tűzfalszabályt hello adatbázis – áttekintés lapon kattintson a **kiszolgáló tűzfalának beállítása** hello eszköztáron látható hello kép a következő módon: hello **tűzfalbeállítások** hello SQL lapja Megnyílik az adatbázis-kiszolgáló.
 
       ![kiszolgálói tűzfalszabály](./media/sql-database-get-started-portal/server-firewall-rule.png) 
 
-2. Kattintson a **ügyfél IP-cím hozzáadása** annak a számítógépnek az IP-cím hozzáadása az eszköztáron jelenleg használ, és kattintson a **mentése**. A rendszer létrehoz egy kiszolgálószintű tűzfalszabályt az aktuális IP-címhez.
+2. Kattintson a **ügyfél IP-cím hozzáadása** hello eszköztár tooadd hello IP-cím hello számítógép jelenleg használ, és kattintson a **mentése**. A rendszer létrehoz egy kiszolgálószintű tűzfalszabályt az aktuális IP-címhez.
 
       ![kiszolgálótűzfal-szabály beállítása](./media/sql-database-get-started-portal/server-firewall-rule-set.png) 
 
 **A kiszolgáló – áttekintés oldalra**
 
-A kiszolgálóhoz tartozó – Áttekintés lapon nyit meg, hogy bemutatja a kiszolgáló teljesen minősített neve (például **mynewserver20170403.database.windows.net**) és további konfigurációs lehetőségeket.
+hello áttekintő lapjára jut a kiszolgáló megnyílik, teljes mértékben hello megjelenítő minősített kiszolgáló neve (például **mynewserver20170403.database.windows.net**) és további konfigurációs lehetőségeket.
 
-1. A kiszolgáló – Áttekintés lap egy kiszolgálószintű szabály beállításához kattintson **tűzfal** a beállítások, amint az az alábbi ábrán a bal oldali menüben: 
+1. tooset egy kiszolgálószintű szabály áttekintése lapon kattintson a **tűzfal** hello bal oldali menüben a beállítások, amint az a következő kép hello: 
 
      ![a logikai kiszolgáló – áttekintés](./media/sql-database-migrate-your-sql-server-database/logical-server-overview.png)
 
-2. Kattintson a **ügyfél IP-cím hozzáadása** annak a számítógépnek az IP-cím hozzáadása az eszköztáron jelenleg használ, és kattintson a **mentése**. A rendszer létrehoz egy kiszolgálószintű tűzfalszabályt az aktuális IP-címhez.
+2. Kattintson a **ügyfél IP-cím hozzáadása** hello eszköztár tooadd hello IP-cím hello számítógép jelenleg használ, és kattintson a **mentése**. A rendszer létrehoz egy kiszolgálószintű tűzfalszabályt az aktuális IP-címhez.
 
      ![kiszolgálótűzfal-szabály beállítása](./media/sql-database-migrate-your-sql-server-database/server-firewall-rule-set.png)
 
 ### <a name="transact-sql"></a>Transact-SQL
 | Katalógusnézet vagy tárolt eljárás | Szint | Leírás |
 | --- | --- | --- |
-| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |Kiszolgáló |Az aktuális kiszolgálószintű tűzfalszabályok megjelenítése |
+| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |Kiszolgáló |Megjeleníti az aktuális kiszolgálószintű tűzfal-szabályokat hello |
 | [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok létrehozása vagy frissítése |
 | [sp_delete_firewall_rule](https://msdn.microsoft.com/library/dn270024.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok eltávolítása |
-| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |Adatbázis |Az aktuális adatbázisszintű tűzfalszabályok megjelenítése |
-| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |Adatbázis |Adatbázisszintű tűzfalszabályok létrehozása vagy frissítése |
+| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |Adatbázis |Megjeleníti a hello aktuális adatbázis szintű tűzfalszabályok |
+| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |Adatbázis |Létrehozza vagy frissíti az adatbázis-szintű tűzfalszabályok hello |
 | [sp_delete_database_firewall_rule](https://msdn.microsoft.com/library/dn270030.aspx) |Adatbázisok |Adatbázisszintű tűzfalszabályok eltávolítása |
 
 
-Az alábbi példák tekintse át a meglévő szabályokat, egy adott IP-címek a kiszolgálóra Contoso engedélyezése és tűzfalszabály törlése:
+hello alábbi példák tekintse át a meglévő szabályok hello hello kiszolgálóra Contoso egy adott IP-címek engedélyezése és a tűzfalszabály törlése:
    
 ```sql
 SELECT * FROM sys.firewall_rules ORDER BY name;
@@ -132,7 +132,7 @@ EXECUTE sp_set_firewall_rule @name = N'ContosoFirewallRule',
    @start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.10'
 ```
 
-Kiszolgálószintű tűzfalszabály törléséhez futtassa az sp_delete_firewall_rule tárolt eljárást. Az alábbi példában a szabály ContosoFirewallRule nevű törlése:
+egy kiszolgálószintű tűzfalszabályt toodelete hello sp_delete_firewall_rule tárolt eljárás végrehajtása. hello alábbi példa hello szabály törlése ContosoFirewallRule nevű:
    
 ```sql
 EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
@@ -141,13 +141,13 @@ EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
 ### <a name="azure-powershell"></a>Azure PowerShell
 | Parancsmag | Szint | Leírás |
 | --- | --- | --- |
-| [Get-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546731.aspx) |Kiszolgáló |Az aktuális kiszolgálószintű tűzfalszabályokat adja vissza |
+| [Get-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546731.aspx) |Kiszolgáló |Hello aktuális kiszolgálószintű tűzfal-szabályokat adja vissza |
 | [New-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546724.aspx) |Kiszolgáló |Új kiszolgálószintű tűzfalszabály létrehozása |
-| [Set-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546739.aspx) |Kiszolgáló |Meglévő kiszolgálószintű tűzfalszabály tulajdonságainak frissítése |
+| [Set-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546739.aspx) |Kiszolgáló |Meglévő kiszolgálószintű tűzfalszabály hello tulajdonságainak frissítése |
 | [Remove-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546727.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok eltávolítása |
 
 
-Az alábbi mintakód egy kiszolgálószintű tűzfalszabályt PowerShell használatával:
+a következő példa hello beállítja egy kiszolgálószintű tűzfalszabályt PowerShell használatával:
 
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
@@ -156,19 +156,19 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
 ```
 
 > [!TIP]
-> PowerShell az adott környezetben a gyors, tekintse meg a [létrehozása DB - PowerShell](sql-database-get-started-powershell.md) és [hozzon létre egy adatbázist, és a PowerShell használatával tűzfalszabályok konfigurálása](scripts/sql-database-create-and-configure-database-powershell.md)
+> PowerShell hello környezetben a gyors, tekintse meg a [létrehozása DB - PowerShell](sql-database-get-started-powershell.md) és [hozzon létre egy adatbázist, és a PowerShell használatával tűzfalszabályok konfigurálása](scripts/sql-database-create-and-configure-database-powershell.md)
 >
 
 ### <a name="azure-cli"></a>Azure CLI
 | Parancsmag | Szint | Leírás |
 | --- | --- | --- |
-| [az sql server tűzfal létrehozása](/cli/azure/sql/server/firewall-rule#create) | Engedélyezi a kiszolgálón lévő összes SQL-adatbázis elérését a megadott IP-címtartomány egy tűzfalszabályt hoz létre.|
+| [az sql server tűzfal létrehozása](/cli/azure/sql/server/firewall-rule#create) | Létrehoz egy tűzfal szabály tooallow hozzáférés tooall SQL-adatbázisok hello megadott IP-címtartomány a hello kiszolgálóján.|
 | [az sql server tűzfal törlése](/cli/azure/sql/server/firewall-rule#delete)| Törli a tűzfalszabályt.|
-| [az sql server tűzfal listájára](/cli/azure/sql/server/firewall-rule#list)| A tűzfal-szabályokat sorolja fel.|
-| [az sql server tűzfalszabály megjelenítése](/cli/azure/sql/server/firewall-rule#show)| Egy tűzfalszabály részleteit jeleníti meg.|
+| [az sql server tűzfal listájára](/cli/azure/sql/server/firewall-rule#list)| Hello tűzfal-szabályokat sorolja fel.|
+| [az sql server tűzfalszabály megjelenítése](/cli/azure/sql/server/firewall-rule#show)| Egy tűzfalszabály hello részleteit jeleníti meg.|
 | [frissítés az sql server tűzfal szabály AX](/cli/azure/sql/server/firewall-rule#update)| Egy tűzfalszabály frissíti.
 
-Az alábbi mintakód egy kiszolgálószintű tűzfalszabályt, az Azure parancssori felület használatával: 
+a következő példa hello beállítja egy kiszolgálószintű tűzfalszabályt hello Azure parancssori felület használatával: 
 
 ```azurecli-interactive
 az sql server firewall-rule create --resource-group myResourceGroup --server $servername \
@@ -176,53 +176,53 @@ az sql server firewall-rule create --resource-group myResourceGroup --server $se
 ```
 
 > [!TIP]
-> Például egy Azure CLI-t az adott környezetben a gyors üzembe helyezési, lásd: [létrehozása KCSA - Azure CLI](sql-database-get-started-cli.md) és [egy önálló adatbázis létrehozása és konfigurálása egy tűzfalszabályt, az Azure parancssori felület használatával](scripts/sql-database-create-and-configure-database-cli.md)
+> Például egy Azure CLI hello környezetben gyors, lásd: [létrehozása KCSA - Azure CLI](sql-database-get-started-cli.md) és [egy önálló adatbázis létrehozása és konfigurálása a tűzfalszabályok hello Azure parancssori felület használatával](scripts/sql-database-create-and-configure-database-cli.md)
 >
 
 ### <a name="rest-api"></a>REST API
 | API | Szint | Leírás |
 | --- | --- | --- |
-| [List Firewall Rules](https://msdn.microsoft.com/library/azure/dn505715.aspx) |Kiszolgáló |Az aktuális kiszolgálószintű tűzfalszabályok megjelenítése |
+| [List Firewall Rules](https://msdn.microsoft.com/library/azure/dn505715.aspx) |Kiszolgáló |Megjeleníti az aktuális kiszolgálószintű tűzfal-szabályokat hello |
 | [Create Firewall Rule](https://msdn.microsoft.com/library/azure/dn505712.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok létrehozása vagy frissítése |
-| [Set Firewall Rule](https://msdn.microsoft.com/library/azure/dn505707.aspx) |Kiszolgáló |Meglévő kiszolgálószintű tűzfalszabály tulajdonságainak frissítése |
-| [Delete Firewall Rule](https://msdn.microsoft.com/library/azure/dn505706.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok eltávolítása |
+| [Set Firewall Rule](https://msdn.microsoft.com/library/azure/dn505707.aspx) |Kiszolgáló |Meglévő kiszolgálószintű tűzfalszabály hello tulajdonságainak frissítése |
+| [Tűzfalszabály törlése](https://msdn.microsoft.com/library/azure/dn505706.aspx) |Kiszolgáló |Kiszolgálószintű tűzfalszabályok eltávolítása |
 
 ## <a name="server-level-firewall-rule-versus-a-database-level-firewall-rule"></a>Kiszolgálószintű tűzfalszabályt és egy adatbázis-adatbázisszintű tűzfalszabály
 Q. Egy adatbázis felhasználói kell teljesen különíteni az egy másik adatbázis?   
-  Ha igen, hozzáférést adatbázis szintű tűzfalszabályok használatával. Ezzel elkerülhető használatával kiszolgálószintű tűzfal-szabályok, amelyek lehetővé teszik az összes adatbázisra, a védelmekkel mélységének csökkentése a tűzfalon a hozzáférést.   
+  Ha igen, hozzáférést adatbázis szintű tűzfalszabályok használatával. Ezzel elkerülhető a kiszolgálószintű tűzfal-szabályok, amelyek lehetővé teszik a hozzáférést hello tűzfalon keresztül tooall adatbázisok, csökkenti a védelmekkel hello mélysége használatával.   
  
-Q. Az IP-címen a felhasználói hozzáférést igényelnek az összes adatbázis?   
-  Kiszolgálószintű tűzfal-szabályok használatával konfigurálnia kell a tűzfalszabályok száma csökkenthető.   
+Q. Hajtsa végre az hello IP-cím felhasználói kell adatbázisához tooall?   
+  Használja a kiszolgálószintű tűzfal szabályok tooreduce hello ennyiszer tűzfalszabályokat kell konfigurálnia.   
 
-Q. Személyt vagy csapatot a tűzfal-szabályok konfigurálása rendelkezik az Azure-portálon, a PowerShell vagy a REST API-en keresztüli hozzáférés?   
+Q. Hello személyt vagy csapatot csak a hello tűzfalszabályok beállítása rendelkezik hello Azure-portálon PowerShell, vagy a REST API hello keresztül hozzáférést?   
   Kiszolgálószintű tűzfal-szabályokat kell használnia. Adatbázis-szintű tűzfalszabályok csak Transact-SQL használatával konfigurálható.  
 
-Q. Van személyt vagy csapatot a tűzfalszabályok beállítása magas szintű engedéllyel rendelkezik az adatbázis szintjén tiltani?   
-  Kiszolgálószintű tűzfal-szabályok használata. Felhasználó számára legalább használatával Transact-SQL-adatbázis szintű tűzfalszabályok beállítása `CONTROL DATABASE` engedéllyel az adatbázis szintjén.  
+Q. Hello személyt vagy csapatot hello tűzfalszabályok beállítása tiltott hello adatbázis szintjén magas szintű engedéllyel rendelkezik?   
+  Kiszolgálószintű tűzfal-szabályok használata. Felhasználó számára legalább használatával Transact-SQL-adatbázis szintű tűzfalszabályok beállítása `CONTROL DATABASE` engedély hello adatbázis szintjén.  
 
-Q. Központilag kezelése tűzfalszabályok számos személyt vagy csapatot konfigurálásához, vagy a tűzfalszabályok naplózás van (akár 100 egység) adatbázisok?   
-  Ez a beállítás attól függ, a szükségleteinek és környezet. Előfordulhat, hogy a kiszolgálószintű tűzfal-szabályok beállítása egyszerűbb, de scripting szabályok szinten konfigurálható az adatbázis. Akkor is, ha a kiszolgálószintű tűzfal-szabályokat használ, szükség lehet az adatbázis-tűzfalszabályok, hogy megtudja, naplózási és a felhasználók `CONTROL` engedéllyel az adatbázishoz a létrehozott adatbázis szintű tűzfalszabályokat.   
+Q. Hello személyt vagy csapatot konfigurálásához, vagy a naplózás hello tűzfalszabályok, központilag kezelése tűzfalszabályok számos van (akár 100 egység) adatbázisok?   
+  Ez a beállítás attól függ, a szükségleteinek és környezet. Kiszolgálószintű tűzfal-szabályokat lehet, hogy könnyebben tooconfigure, de a parancsfájl-kezelési szabályok konfigurálható hello adatbázis szintű. És akkor is, ha a kiszolgálószintű tűzfal-szabályokat használ, tooaudit hello adatbázis-tűzfalszabályok, toosee akkor, ha a felhasználók `CONTROL` engedéllyel rendelkezik a hello adatbázis adatbázis-szintű tűzfalszabályok hozott létre.   
 
 Q. Mindkét kiszolgáló- és adatbázis tűzfalszabályok vegyesen használata   
   Igen. Egyes felhasználók, rendszergazdák például módosítania kell kiszolgálószintű tűzfal-szabályokat. Más felhasználók, például egy adatbázis-alkalmazás felhasználói adatbázis-szintű tűzfalszabályok módosítania kell.   
 
-## <a name="troubleshooting-the-database-firewall"></a>Az adatbázistűzfal hibaelhárítása
-A következő szempontokat vegye figyelembe, ha a Microsoft Azure SQL Database szolgáltatáshoz való hozzáférése nem a várt módon működik:
+## <a name="troubleshooting-hello-database-firewall"></a>Hello adatbázis tűzfal hibaelhárítása
+Vegye figyelembe a következő pontokat, amikor hozzáférési toohello Microsoft Azure SQL Database szolgáltatás nem a várt módon működnek várt hello:
 
-* **Helyi tűzfal konfigurációja:** Mielőtt a számítógépe hozzáférne az Azure SQL Database szolgáltatáshoz, lehet, hogy létre kell hoznia egy tűzfalkivételt a számítógépén az 1433-as TCP-port számára. Ha az Azure-felhő határain belül létesít kapcsolatokat, előfordulhat, hogy további portokat is meg kell nyitnia. További információkért lásd: a **SQL-adatbázis: kívül és belül** szakasza [kívüli ADO.NET 4.5 és az SQL-adatbázis 1433-as portokon](sql-database-develop-direct-route-ports-adonet-v12.md).
-* **Hálózati címfordítás (NAT):** A NAT miatt a számítógépe által az Azure SQL Database szolgáltatáshoz való csatlakozáshoz használt IP-cím eltérhet a számítógép IP-konfigurációs beállításai között megjelenő IP-címtől. A számítógép által az Azure-hoz való csatlakozáshoz használt IP-cím megtekintéséhez jelentkezzen be a portálra, és lépjen az adatbázist futtató kiszolgáló **Konfigurálás** lapjára. Az **Engedélyezett IP-címek** szakasz alatt jelenik meg az **Ügyfél aktuális IP-címe**. Kattintson a **Hozzáadás** lehetőségre az **Engedélyezett IP-címek** között, ha szeretné engedélyezni a számítógép számára a kiszolgáló elérését.
-* **Az engedélyezési lista módosításai még nem léptek érvénybe:** Az Azure SQL Database tűzfalkonfigurációján végzett módosítások érvénybe lépéséig akár öt perc is eltelhet.
-* **A bejelentkezés nem engedélyezett, vagy helytelen jelszó lett használva:** Ha egy bejelentkezés nem rendelkezik engedélyekkel az Azure SQL Database-kiszolgálón, vagy a használt jelszó érvénytelen, akkor a rendszer megtagadja az Azure SQL Database-kiszolgálóhoz való csatlakozást. Egy tűzfalbeállítás létrehozása lehetővé teszi az ügyfelek számára a kiszolgálóhoz való csatlakozás megkísérlését, azonban minden egyes ügyfélnek meg kell adnia a szükséges biztonsági hitelesítő adatokat. A bejelentkezések előkészítésével kapcsolatos további információkért lásd az adatbázisok, bejelentkezések és felhasználók Azure SQL Database-ben történő kezelésével foglalkozó cikket.
-* **Dinamikus IP-cím**: Ha az internetkapcsolata dinamikus IP-címkezeléssel rendelkezik, és problémákat okoz a tűzfalon való átjutás, próbálja ki a következő megoldások valamelyikét:
+* **Helyi tűzfal konfigurációját:** a számítógép hozzáférhessen az Azure SQL Database, szükség lehet olyan érvényes tűzfalkivétel toocreate az 1433-as TCP-port a számítógépen. Ha kapcsolatok belül hello Azure felhőben határt, előfordulhat, hogy tooopen további portokat. További információkért lásd: hello **SQL-adatbázis: kívül és belül** szakasza [kívüli ADO.NET 4.5 és az SQL-adatbázis 1433-as portokon](sql-database-develop-direct-route-ports-adonet-v12.md).
+* **Hálózati címfordítás (NAT):** kellő tooNAT, a számítógép tooconnect tooAzure SQL-adatbázis hello IP-cím látható a számítógép IP-konfigurációs beállítások eltérhetnek által használt hello IP-cím. a számítógép tooview hello IP-cím tooconnect tooAzure használva toohello portal-e jelentkezni, és keresse meg a toohello **konfigurálása** az adatbázist üzemeltető kiszolgálón hello lapon. A hello **engedélyezett IP-címek** című szakaszba hello **aktuális ügyfél IP-cím** jelenik meg. Kattintson a **Hozzáadás** toohello **engedélyezett IP-címek** tooallow a számítógép tooaccess hello kiszolgáló.
+* **Módosítások toohello engedélyezési lista rendelkezik még nincsenek érvényben:** lehet, mint amennyit egy 5 perces késleltetést használ az toohello Azure SQL Database tűzfal konfigurációs tootake hatás változik.
+* **hello bejelentkezési nincs engedélyezve, vagy helytelen jelszót használt:** Ha egy bejelentkezési azonosító nem rendelkezik engedélyekkel hello Azure SQL adatbázis-kiszolgálón, vagy hello használt jelszó nem megfelelő, hello kapcsolat toohello Azure SQL adatbázis-kiszolgáló megtagadva. Csak egy tűzfal-beállítás létrehozásához biztosít az ügyfelek számára egy lehetőség tooattempt tooyour server; kapcsolódás minden ügyfél hello szükséges biztonsági adatokat kell megadni. A bejelentkezések előkészítésével kapcsolatos további információkért lásd az adatbázisok, bejelentkezések és felhasználók Azure SQL Database-ben történő kezelésével foglalkozó cikket.
+* **Dinamikus IP-cím:** Ha az internethez, a dinamikus IP-címzést és tapasztal hello tűzfalon keresztül történt, próbálkozzon a következő megoldások hello egyikét:
   
-  * Kérje el az internetszolgáltatójától az Azure SQL Database-kiszolgáló eléréséhez használt ügyfélszámítógépeihez társított IP-címtartományt, majd adja meg ezt az IP-címtartományt egy tűzfalszabályként.
-  * Állítson be statikus IP-címeket az ügyfélszámítógépei számára, majd adja meg az IP-címeket tűzfalszabályokként.
+  * Kérje meg az internetszolgáltató (ISP) hello IP-címtartomány hozzárendelt tooyour ügyfélszámítógépek számára, hogy hozzáférési hello Azure SQL Database-kiszolgálóhoz, és adja hozzá a hello IP-címtartomány tűzfal szabály.
+  * Első statikus IP-címzés helyette az ügyfélszámítógépek számára, és adja hozzá a hello IP-címek, tűzfal-szabályokat.
 
 ## <a name="next-steps"></a>Következő lépések
 
 - Az adatbázis és a kiszolgálószintű tűzfalszabály létrehozása a gyors üzembe helyezési, lásd: [hozzon létre egy Azure SQL-adatbázis](sql-database-get-started-portal.md).
-- Ha nyílt forráskódú vagy külső alkalmazásokból szeretne kapcsolódni az Azure SQL Database-hez, lásd az [SQL Database gyors üzembe helyezési ügyfélkódmintáival](https://msdn.microsoft.com/library/azure/ee336282.aspx) foglalkozó cikket.
-- Kapcsolatban további portok megnyitásához szükséges információk, a **SQL-adatbázis: kívül és belül** szakasza [portok túl az 1433-as ADO.NET 4.5 és az SQL-adatbázis](sql-database-develop-direct-route-ports-adonet-v12.md)
+- Az összekötő tooan Azure SQL-adatbázis nyílt forráskódú vagy harmadik féltől származó alkalmazások útmutatásért lásd: [gyors üzembe helyezési Ügyfélkód minták tooSQL adatbázis](https://msdn.microsoft.com/library/azure/ee336282.aspx).
+- Hogy szükség lehet a tooopen portokon további információ: hello **SQL-adatbázis: kívül és belül** szakasza [portok túl az 1433-as ADO.NET 4.5 és az SQL-adatbázis](sql-database-develop-direct-route-ports-adonet-v12.md)
 - Az Azure SQL Database biztonsági áttekintését lásd: [biztonságossá tétele az adatbázis](sql-database-security-overview.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL adatbázis metrikák & diagnosztikai naplózás |} Microsoft Docs"
-description: "Ismerje meg az erőforrás-használat, a kapcsolat és a lekérdezés végrehajtási statisztika tárolására az Azure SQL Database-erőforrás konfigurálása."
+title: "aaaAzure SQL adatbázis-metrikák & diagnosztikai naplózás |} Microsoft Docs"
+description: "További tudnivalók az Azure SQL Database erőforrás toostore erőforrás-használat, a kapcsolat és a lekérdezés végrehajtási statisztika konfigurálása."
 services: sql-database
 documentationcenter: 
 author: vvasic
@@ -15,187 +15,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2017
 ms.author: vvasic
-ms.openlocfilehash: bf41aa530c68ea0e94a09d1dab63237c6f42bce7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e6f9e24992ca4f84f701e1ef858e98dc7b481e28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-metrics-and-diagnostics-logging"></a>Az Azure SQL Database metrikák és diagnosztikai naplózás 
-Az Azure SQL-adatbázis el tudná küldeni, metrikákat és egyszerűbb figyelési diagnosztikai naplókat. Konfigurálhatja az Azure SQL-adatbázis tárolásához, erőforrás-használat, a dolgozók és a munkamenetek és a kapcsolat valamelyikébe ezek Azure-erőforrások:
+Az Azure SQL-adatbázis el tudná küldeni, metrikákat és egyszerűbb figyelési diagnosztikai naplókat. Az Azure SQL Database toostore erőforrás-használat, a munkavállalók és a munkamenetek és a kapcsolat egy Azure erőforrásainak konfigurálhatja:
 - **Azure Storage**: Nagy tömegű telemetriai adat alacsony költségű archiválására
 - **Az Azure Event Hubs**: az Azure SQL Database telemetriai integrálása a figyelési megoldást igényelnek egyéni vagy a működés közbeni folyamatok
-- **Az Azure Naplóelemzés**: az a felügyeleti megoldás reporting, riasztás és képességek kiküszöböléséhez kezdő verzióról 
+- **Az Azure Naplóelemzés**: A felügyeleti megoldás reporting, riasztás és képességek kiküszöböléséhez hello kezdő verzióról 
 
     ![architektúra](./media/sql-database-metrics-diag-logging/architecture.png)
 
 ## <a name="enable-logging"></a>Naplózás engedélyezése
 
-Metrikák és diagnosztikai naplózás alapértelmezés szerint nincs engedélyezve. Engedélyezi, és kezelheti a metrikák és a naplózás a következő módszerek egyikét használva diagnosztika:
+Metrikák és diagnosztikai naplózás alapértelmezés szerint nincs engedélyezve. Engedélyezi, és kezelheti a metrikák és diagnosztikai naplózás hello a következő módszerek egyikével:
 - Azure Portal
 - PowerShell
 - Azure CLI
 - REST API 
 - Resource Manager-sablon
 
-Metrikák és diagnosztikai naplózás engedélyezése esetén meg kell adnia a Azure erőforráscsoport, ahol a kijelölt adatok gyűjtése. Elérhető lehetőségek:
+Metrikák és diagnosztikai naplózás engedélyezéséhez meg kell toospecify hello Azure erőforráscsoport, ahol a kijelölt adatok gyűjtése. Elérhető lehetőségek:
 - Log Analytics
 - Eseményközpont
 - Azure Storage 
 
-Új Azure-erőforrás kiépítése, vagy jelöljön ki egy meglévő erőforrást. Miután kiválasztotta a tárolási erőforrások, meg kell adnia az összegyűjtendő adatok. Elérhető lehetőségek a következők:
+Új Azure-erőforrás kiépítése, vagy jelöljön ki egy meglévő erőforrást. Hello tárolási erőforrások kijelölése, után kell toospecify mely adatok toocollect. Elérhető lehetőségek a következők:
 
 - **[1 perces metrikák](sql-database-metrics-diag-logging.md#1-minute-metrics)**  -DTU százaléka, a DTU határt, a Processzor százalékban tartalmaz napló írása fizikai adatot olvasott a következő százalékos aránya, százalékos, sikeres vagy sikertelen/letiltott tűzfalkapcsolatok, munkamenetek százalékos, munkavállalók százalékos, tárolási, tárolási százalékos, XTP tárolási százalékos aránya
 
-Eseményközpont vagy egy AzureStorage fiókot ad meg, ha megadhat egy megőrzési házirend régebbi, mint a kijelölt időszakot törlődik adatok megadásához. A Naplóelemzési ad meg, ha az adatmegőrzési függ a kijelölt tarifacsomag. Tudjon meg többet az [Naplóelemzési árképzési](https://azure.microsoft.com/pricing/details/log-analytics/). 
+Az Event Hubs vagy AzureStorage fiók megadása esetén is megadhat egy megőrzési házirend toospecify régebbi, mint egy kiválasztott időszakban törlése adatok. A Naplóelemzési ad meg, ha hello adatmegőrzési hello kijelölt tarifacsomag függ. Tudjon meg többet az [Naplóelemzési árképzési](https://azure.microsoft.com/pricing/details/log-analytics/). 
 
-Azt javasoljuk, hogy olvassa el is a [áttekintése a Microsoft Azure-ban mérőszámok](../monitoring-and-diagnostics/monitoring-overview-metrics.md) és [áttekintés az Azure diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) felmérheti, nem csak hogyan engedélyezze a naplózást, de a metrikák és a napló kategóriák különböző Azure-szolgáltatás által támogatott cikkeket.
+Azt javasoljuk, hogy olvassa el a mindkét hello [áttekintése a Microsoft Azure-ban mérőszámok](../monitoring-and-diagnostics/monitoring-overview-metrics.md) és [áttekintés az Azure diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) cikkek toogain megismerhesse, nem csak hogyan tooenable naplózást is, de hello metrikák és a napló kategóriák hello által támogatott különböző Azure-szolgáltatásokhoz.
 
 ### <a name="azure-portal"></a>Azure Portal
 
-Metrikák és az Azure portálon diagnosztikai naplók gyűjtemény engedélyezéséhez navigáljon az Azure SQL adatbázis vagy a rugalmas készlet lap, és kattintson **diagnosztikai beállítások**.
+tooenable metrikák és diagnosztikai naplók gyűjtemény hello Azure-portálon lépjen a tooyour Azure SQL adatbázis vagy a rugalmas készlet lap, és kattintson **diagnosztikai beállítások**.
 
-   ![az Azure portálon engedélyezése](./media/sql-database-metrics-diag-logging/enable-portal.png)
+   ![az Azure-portálon hello engedélyezése](./media/sql-database-metrics-diag-logging/enable-portal.png)
 
 ### <a name="powershell"></a>PowerShell
 
-Metrikák és a PowerShell használatával diagnosztikai naplózás engedélyezéséhez használja a következő parancsokat:
+tooenable metrikákat és naplózási diagnosztikai PowerShell, a használatával a következő parancsok hello:
 
-- Ahhoz, hogy a Storage-fiókok a diagnosztikai naplók tárolására, az alábbi parancsot használja:
+- egy Tárfiókot, a diagnosztikai naplók tárolására tooenable használja ezt a parancsot:
 
    ```powershell
    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
    ```
 
-   A Tárfiók azonosítója az erőforrás-azonosítója, amelyhez hozzá szeretné küldeni a naplókat a tárfiók.
+   Tárfiók azonosítója hello hello tárolási fiók toowhich toosend hello kívánt naplók hello erőforrás-azonosító.
 
-- Adatfolyamként való küldése a diagnosztikai naplók Eseményközpontokba való engedélyezéséhez az alábbi parancsot használja:
+- tooenable streaming diagnosztikai naplók tooan Eseményközpontot, az alábbi parancsot használja:
 
    ```powershell
    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
    ```
 
-   A Service Bus Szabályazonosító egy ilyen formátumú karakterláncot:
+   Service Bus Szabályazonosító hello egy ilyen formátumú karakterláncot:
 
    ```powershell
    {service bus resource ID}/authorizationrules/{key name}
    ``` 
 
-- A Naplóelemzési munkaterület elküldését a diagnosztikai naplók engedélyezéséhez az alábbi parancsot használja:
+- Diagnosztikai naplók tooa Naplóelemzési munkaterület küldése tooenable használja ezt a parancsot:
 
    ```powershell
-   Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
+   Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of hello log analytics workspace] -Enabled $true
    ```
 
-- Az erőforrás-azonosítója a Naplóelemzési munkaterület a következő paranccsal szerezheti be:
+- Ezt úgy szerezheti be a Naplóelemzési munkaterület használatával a következő parancs hello hello erőforrás-azonosító:
 
    ```powershell
    (Get-AzureRmOperationalInsightsWorkspace).ResourceId
    ```
 
-Ezek a paraméterek ahhoz, hogy több kimenet beállításai kombinálhatja.
+Ezek a paraméterek tooenable kombinálhatja több kimenet beállításai.
 
 ### <a name="cli"></a>parancssori felület
 
-Metrikák és az Azure parancssori felület használatával diagnosztikai naplózás engedélyezéséhez használja a következő parancsokat:
+tooenable metrikák és diagnosztikai naplózás használatával hello Azure parancssori felület, a következő parancsok használata hello:
 
-- Ahhoz, hogy a Storage-fiókok a diagnosztikai naplók tárolására, az alábbi parancsot használja:
+- egy Tárfiókot, a diagnosztikai naplók tárolására tooenable használja ezt a parancsot:
 
    ```azurecli-interactive
    azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
    ```
 
-   A Tárfiók azonosítója az erőforrás-azonosítója, amelyhez hozzá szeretné küldeni a naplókat a tárfiók.
+   Tárfiók azonosítója hello hello tárolási fiók toowhich toosend hello kívánt naplók hello erőforrás-azonosító.
 
-- Adatfolyamként való küldése a diagnosztikai naplók Eseményközpontokba való engedélyezéséhez az alábbi parancsot használja:
+- tooenable streaming diagnosztikai naplók tooan Eseményközpontot, az alábbi parancsot használja:
 
    ```azurecli-interactive
    azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
    ```
 
-   A Service Bus Szabályazonosító egy ilyen formátumú karakterláncot:
+   Service Bus Szabályazonosító hello egy ilyen formátumú karakterláncot:
 
    ```azurecli-interactive
    {service bus resource ID}/authorizationrules/{key name}
    ```
 
-- A Naplóelemzési munkaterület elküldését a diagnosztikai naplók engedélyezéséhez az alábbi parancsot használja:
+- Diagnosztikai naplók tooa Naplóelemzési munkaterület küldése tooenable használja ezt a parancsot:
 
    ```azurecli-interactive
-   azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
+   azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of hello log analytics workspace> --enabled true
    ```
 
-Ezek a paraméterek ahhoz, hogy több kimenet beállításai kombinálhatja.
+Ezek a paraméterek tooenable kombinálhatja több kimenet beállításai.
 
 ### <a name="rest-api"></a>REST API
 
-Olvassa el, hogyan [a Azure REST API használatával diagnosztikai beállítások módosításához](https://msdn.microsoft.com/library/azure/dn931931.aspx). 
+Megtudhatja, hogyan túl[hello Azure figyelő REST API használatával diagnosztikai beállítások módosításához](https://msdn.microsoft.com/library/azure/dn931931.aspx). 
 
 ### <a name="resource-manager-template"></a>Resource Manager-sablon
 
-Olvassa el, hogyan [engedélyezze a diagnosztikát a Resource Manager sablonnal erőforrás létrehozásakor](../monitoring-and-diagnostics/monitoring-enable-diagnostic-logs-using-template.md). 
+Megtudhatja, hogyan túl[engedélyezze a diagnosztikát a Resource Manager sablonnal erőforrás létrehozásakor](../monitoring-and-diagnostics/monitoring-enable-diagnostic-logs-using-template.md). 
 
 ## <a name="stream-into-log-analytics"></a>A Naplóelemzési adatfolyam 
-Az Azure SQL Database metrikák és diagnosztikai naplók továbbítható a beépített "Küldése a Log Analyticshez" beállítás használatával, a portálon, vagy az Azure PowerShell parancsmagok, az Azure parancssori felület vagy Azure figyelő REST API-n keresztül diagnosztikai beállítás Naplóelemzési engedélyezésével Naplóelemzési be.
+Az Azure SQL Database metrikák és diagnosztikai naplók továbbítható a Log Analyticshez hello beépített "küldési tooLog Analytics" kapcsoló használatával hello portálon, vagy egy diagnosztikai beállításban Azure PowerShell parancsmagok, Azure CLI vagy a figyelő többi Azure Log Analytics engedélyezésével API-T.
 
 ### <a name="installation-overview"></a>Telepítés – áttekintés
 
 Figyelése Azure SQL Database járműflotta a Naplóelemzési egyszerű. Három lépésre szükség:
 
 1.  Log Analytics-erőforrás létrehozása
-2.  A metrikák és diagnosztikai naplók rekordot a létrehozott Log Analytics-adatbázisok konfigurálása
+2.  A Naplóelemzési létrehozott hello adatbázisok toorecord metrikák és diagnosztikai naplók konfigurálása
 3.  Telepítés **Azure SQL elemzés** Log Analytics-galériából megoldás
 
 ### <a name="create-log-analytics-resource"></a>Log Analytics-erőforrás létrehozása
 
-1. Kattintson a **új** a bal oldali menüben.
+1. Kattintson a **új** hello bal oldali menüben.
 2. Kattintson a **figyelési + kezelése**
 3. Kattintson a **Analytics naplózása**
-4. Töltse ki a Naplóelemzési űrlapot szükséges további információ: munkaterület nevét, előfizetés, erőforráscsoportot, helyét és IP-címek.
+4. Töltse ki hello Naplóelemzési űrlapot hello szükséges további információt: munkaterület nevét, előfizetés, erőforráscsoportot, helyét és IP-címek.
 
    ![a naplóelemzési](./media/sql-database-metrics-diag-logging/log-analytics.png)
 
-### <a name="configure-databases-to-record-metrics-and-diagnostic-logs"></a>Rekord metrikák és diagnosztikai naplók-adatbázisok konfigurálása
+### <a name="configure-databases-toorecord-metrics-and-diagnostic-logs"></a>Adatbázisok toorecord metrikák és diagnosztikai naplók konfigurálása
 
-A legegyszerűbben úgy konfigurálja, ahol adatbázisok jegyezze fel a metrikák van az Azure portálon keresztül. Az Azure-portálon az Azure SQL Database erőforrás keresse meg és kattintson a **diagnosztikai beállítások**. 
+hello ahol adatbázisok jegyezze fel a metrikák legegyszerűbb módja tooconfigure hello Azure-portálon keresztül történik. A hello Azure-portálon, keresse meg az Azure SQL Database erőforrás tooyour, és kattintson **diagnosztikai beállítások**. 
 
-### <a name="install-the-azure-sql-analytics-solution-from-gallery"></a>Telepítse az Azure SQL elemzési megoldások gyűjteményből  
+### <a name="install-hello-azure-sql-analytics-solution-from-gallery"></a>Gyűjteményből hello Azure SQL elemzési megoldás telepítése  
 
-1. Miután a Naplóelemzési erőforrás jön létre, és az adatok áramlik bele, telepítse az Azure SQL elemzési megoldások. Ez végezhető el a **megoldások gyűjtemény** , amely a OMS kezdőlapon és az ügyféloldali menüjében található. Az oldalon található, és kattintson a **Azure SQL elemzés** megoldás, és kattintson **Hozzáadás**.
+1. Miután hello Naplóelemzési erőforrás jön létre, és az adatok áramlik bele, telepítse az Azure SQL elemzési megoldások. Ezt rábízhatja a hello **megoldások gyűjtemény** , amely a hello OMS kezdőlap és hello oldalsó menüben található. Hello gyűjteményben található, és kattintson a **Azure SQL elemzés** megoldás, és kattintson **Hozzáadás**.
 
    ![felügyeleti megoldás](./media/sql-database-metrics-diag-logging/monitoring-solution.png)
 
-2. A kezdőlapon OMS, egy új csempe nevű **Azure SQL elemzés** jelenik meg. Ez a csempe kiválasztásával megnyílik az Azure SQL-elemzések irányítópultján.
+2. A kezdőlapon OMS, egy új csempe nevű **Azure SQL elemzés** jelenik meg. Ez a csempe kiválasztásával megnyílik a hello Azure SQL-elemzések irányítópultján.
 
 ### <a name="using-azure-sql-analytics-solution"></a>Az Azure SQL elemzés megoldással
 
-Az Azure SQL elemzés, amely lehetővé teszi a hierarchiában, az Azure SQL Database erőforrások közötti navigáláshoz hierarchikus irányítópult. Ez a funkció lehetővé teszi magas szintű figyelését, de emellett lehetővé teszi a hatókör csak a megfelelő készletéhez erőforrások a figyelést.
-Az irányítópulton a kiválasztott erőforrás a különböző erőforrások listáját. Például a kiválasztott előfizetéshez megtekintheti az összes kiszolgálók, rugalmas készletek és adatbázisok, amelyek a kijelölt előfizetéshez tartozik. Emellett a rugalmas készletek és adatbázisokat, megtekintheti az erőforrás-használati metrikák erőforrás. Ez magában foglalja diagramok DTU, Processzor, IO, napló, munkamenetek, dolgozók, kapcsolatok, valamint tárolási GB-ban.
+Az Azure SQL elemzés, amely lehetővé teszi az Azure SQL Database erőforrások hello hierarchia keresztül toonavigate hierarchikus irányítópult. A funkció lehetővé teszi, hogy Ön toodo magas szintű figyelési azonban azt is lehetővé teszi a tooscope a megfelelő figyelési toojust hello beállítása az erőforrások.
+Az irányítópulton kiválasztott hello erőforrás a különböző erőforrások hello listája. Például a kiválasztott előfizetéshez láthatja hello összes kiszolgáló, a rugalmas készletek és a toohello tartozó adatbázis kiválasztott előfizetéshez. Emellett a rugalmas készletek és adatbázisokat, láthatja hello erőforrás-használati metrikák erőforrás. Ez magában foglalja diagramok DTU, Processzor, IO, napló, munkamenetek, dolgozók, kapcsolatok, valamint tárolási GB-ban.
 
 ## <a name="stream-into-azure-event-hub"></a>Az Azure Event Hubs adatfolyam
 
-Az Azure SQL Database metrikák és diagnosztikai naplók továbbítható a beépített "Stream az eseményközpontba" beállítás használatával, a portálon, vagy a Service Bus szabály azonosítója az Azure PowerShell-parancsmagok, az Azure parancssori felület vagy a Azure figyelő REST API-t egy diagnosztikai beállítás engedélyezésével az Event Hubs be. 
+Az Azure SQL Database metrikák és diagnosztikai naplók továbbítható az Event Hubs hello beépített "adatfolyam tooan eseményközpont" kapcsoló használatával hello portálon, vagy a Service Bus szabály azonosítója az Azure PowerShell-parancsmagok, az Azure parancssori felület vagy a Azure figyelő REST diagnosztikai beállítás engedélyezésével API-T. 
 
-### <a name="what-to-do-with-metrics-and-diagnostic-logs-in-event-hub"></a>Mit kell tenni a metrikák és diagnosztikai naplófájlok az Event Hubs?
-Ha a kijelölt adatokat az Event Hubs továbbítja adatfolyamként, áll egy lépéssel közelebb kerülnek engedélyezése speciális figyelési forgatókönyveket. Az Event Hubs a „bejárati ajtó” funkcióját látja el egy eseményfolyamat számára, az adatoknak egy eseményközpontba való összegyűjtését követően az adatok bármilyen valós idejű elemzési szolgáltató vagy kötegelési/tárolóadapter segítségével átalakíthatók és tárolhatók. Az Event Hubs elválasztja az eseménystreamek létrehozását azok felhasználásától, így az események felhasználói a saját ütemezésüknek megfelelően férhetnek hozzá az eseményekhez. Az Event Hubs további információkért lásd:
+### <a name="what-toodo-with-metrics-and-diagnostic-logs-in-event-hub"></a>Milyen toodo metrikák és diagnosztikai naplófájlok az Event Hubs?
+Miután kijelölt hello adatokat az Event Hubs továbbítja adatfolyamként, egy lépéssel közelebb tooenabling speciális megfigyelési forgatókönyvekhez áll. Az Event Hubs úgy működik, mint egy eseményfolyamat számára "bejárati ajtón" hello, és amennyiben az eseményközpontnak összegyűjtött adatok átalakíthatók, és bármilyen valós idejű elemzési szolgáltató vagy kötegelési/tárolóadapter segítségével tárolják. Az Event Hubs hello éles tartozó események hello felhasználásától, az adatfolyam leválasztja az, hogy az eseményfelhasználók férhetnek hozzá a saját ütemezésüknek hello események. Az Event Hubs további információkért lásd:
 
 - [Mik az Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md)?
 - [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
 
-Az alábbiakban néhány módokon használhatja a adatfolyam-továbbítási funkció:
+Az alábbiakban néhány módokon használhatja a streaming funkció hello:
 
--   Szolgáltatás állapotának megtekintéséhez folyamatos "forró path" adatokat a PowerBI - Event Hubs használatával, a Stream Analytics és a Power BI, könnyen alakíthatja a metrikák és diagnosztikai adatokat közel valós idejű elemzése az Azure-szolgáltatásoknak. Megtudhatja, hogyan állíthat be az Event Hubs adatfeldolgozásra Streamelemzéssel és kimenetként Power bi használatát [Stream Analytics és a Power BI](../stream-analytics/stream-analytics-power-bi-dashboard.md).
--   Stream naplók a külső naplózása és telemetriai adatfolyamok – használja az Event Hubs streaming meg kérheti le a metrikákat, és diagnosztikai jelentkezik be a különböző külső figyelése és a naplófájlok elemzési megoldásokat. 
--   Egy egyéni telemetriai adatok és a naplózás platform összeállítása – Ha már rendelkezik egy egyedi telemetriai platform vagy vannak csak gondolat egy kiválóan méretezhető épület jellegétől függően az Event Hubs közzétételi-feliratkozási lehetővé teszi rugalmasan betöltési a diagnosztikai naplókat. Lásd: [Dan Rosanova útmutató az Event Hubs egy globális méretű telemetriai platform használatával](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/).
+-   Szolgáltatás állapotának megtekintéséhez folyamatos "forró path" adatok tooPowerBI - Event Hubs használatával, a Stream Analytics és a Power BI, könnyen alakíthatja a metrikák és diagnosztikai adatokat közel valós idejű elemzése az Azure-szolgáltatásoknak. Egy megtudhatja, hogyan tooset fel az Event Hubs feldolgozni az adatokat az Stream Analytics használ, és kimenetként használata a Power bi [Stream Analytics és a Power BI](../stream-analytics/stream-analytics-power-bi-dashboard.md).
+-   Stream naplók toothird féltől naplózása és telemetriai adatfolyamok – használatával az Event Hubs streaming, kérheti le a metrikák és diagnosztikai naplókat a toodifferent külső figyelése és a naplófájlok elemzési megoldásokat. 
+-   És hozhat létre egy egyéni telemetria naplózási platform – Ha már rendelkezik egy egyedi telemetriai platform vagy a rendszer csak a gondolat egy kiválóan méretezhető hello közzétételi-feliratkozási épület jellegétől függően az Event Hubs lehetővé teszi a tooflexibly betöltési diagnosztikai naplók. Lásd: [Dan Rosanova útmutató toousing Event Hubs egy globális méretű telemetriai Platform](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/).
 
 ## <a name="stream-into-azure-storage"></a>Az Azure Storage adatfolyam
 
-Az Azure SQL Database metrikák és diagnosztikai naplók az Azure Storage a beépített "Archív tárfiókba" beállítás használatával, az Azure portálon, vagy Azure Storage Azure PowerShell-parancsmagok, az Azure parancssori felület vagy a Azure figyelő REST API-t egy diagnosztikai beállítás engedélyezésével is tárolhatók.
+Az Azure SQL Database metrikák és diagnosztikai naplók tárolhatja az Azure Storage hello beépített "Archiválására tooa storage-fiók" beállítás használatával hello Azure-portálon vagy az Azure Storage engedélyezése az Azure PowerShell-parancsmagok, az Azure parancssori felület vagy a Azure diagnosztikai beállítás A figyelő REST API-t.
 
-### <a name="schema-of-metrics-and-diagnostic-logs-in-the-storage-account"></a>A metrikák és diagnosztikai naplókat a tárfiókban lévő séma
+### <a name="schema-of-metrics-and-diagnostic-logs-in-hello-storage-account"></a>A metrikák és diagnosztikai naplók hello tárfiókban lévő séma
 
-Ha metrikák és diagnosztikai naplók gyűjtemény áll, tárolót választotta, amikor az első adatsor sem érhető el a storage-fiók jön létre. A blobok szerkezete van:
+Ha metrikák és diagnosztikai naplók gyűjtemény áll, tárolót választotta, mikor érhetők el adatok első sora hello hello tárfiók jön létre. a blobok hello szerkezete van:
 
 ```powershell
 insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/ RESOURCEGROUPS/{resource group name}/PROVIDERS/Microsoft.SQL/servers/{resource_server}/ databases/{database_name}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
@@ -213,7 +213,7 @@ A blob nevének 1 perces metrikáihoz lehet, például:
 insights-metrics-minute/resourceId=/SUBSCRIPTIONS/s1id1234-5679-0123-4567-890123456789/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.SQL/ servers/Server1/databases/database1/y=2016/m=08/d=22/h=18/m=00/PT1H.json
 ```
 
-Abban az esetben, ha szeretné rögzíteni az adatokat a rugalmas készletből, blob neve a következő kissé eltérő:
+Abban az esetben, ha azt szeretné, hogy a rugalmas készlet hello toorecord hello adatait, blob neve a következő kissé eltérő:
 
 ```powershell
 insights-{metrics|logs}-{category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/ RESOURCEGROUPS/{resource group name}/PROVIDERS/Microsoft.SQL/servers/{resource_server}/ elasticPools/{elastic_pool_name}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
@@ -234,8 +234,8 @@ Lásd: [metrikák és diagnosztikai naplók letöltése Azure Storage-ból](../s
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Mindkét olvassa el a [áttekintése a Microsoft Azure-ban mérőszámok](../monitoring-and-diagnostics/monitoring-overview-metrics.md) és [áttekintés az Azure diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) cikkek felmérheti, nem csak hogyan engedélyezze a naplózást, de a metrikák és a napló kategóriák különböző Azure-szolgáltatás által támogatott.
-- Ezek a cikkek az event hubs megismeréséhez olvassa el:
+- Mindkét hello olvasási [áttekintése a Microsoft Azure-ban mérőszámok](../monitoring-and-diagnostics/monitoring-overview-metrics.md) és [áttekintés az Azure diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) toogain nem csak hogyan metrikák hello azonban a naplózás tooenable és kategóriák jelentkezzen cikkek hello által támogatott különböző Azure-szolgáltatásokhoz.
+- Olvassa el ezeket az event hubs vonatkozó cikkek toolearn:
    - [Mik az Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md)?
    - [Bevezetés az Event Hubs használatába](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 - Lásd: [metrikák és diagnosztikai naplók letöltése Azure Storage-ból](../storage/blobs/storage-dotnet-how-to-use-blobs.md#download-blobs)

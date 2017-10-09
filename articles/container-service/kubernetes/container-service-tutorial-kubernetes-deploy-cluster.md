@@ -1,5 +1,5 @@
 ---
-title: "Azure Tárolószolgáltatás útmutató - fürt központi telepítése |} Microsoft Docs"
+title: "aaaAzure Tárolószolgáltatás oktatóanyag - fürt központi telepítése |} Microsoft Docs"
 description: "Azure Tárolószolgáltatás útmutató - fürt központi telepítése"
 services: container-service
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.workload: na
 ms.date: 08/21/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 472697c1f0c18859087d7b448e1786d85c27aca0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c4c8cc95c88d9c2077d0322f57e5d3159e2dd0ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-kubernetes-cluster-in-azure-container-service"></a>Az Azure Tárolószolgáltatásban Kubernetes fürt központi telepítése
 
@@ -29,56 +29,56 @@ Kubernetes elosztott platformot kínál a tárolóalapú alkalmazások. Azure T�
 
 > [!div class="checklist"]
 > * Egy Kubernetes ACS-fürt telepítése
-> * A Kubernetes CLI (kubectl) telepítése
+> * Hello Kubernetes CLI (kubectl) telepítése
 > * Kubectl konfigurálása
 
-A következő útmutatókból az Azure szavazattal alkalmazás központi telepítése a fürt, méretezhető, frissítése, és az Operations Management Suite a Kubernetes fürt figyelésére van beállítva.
+A következő útmutatókból hello Azure szavazattal alkalmazás telepített toohello fürt, méretezhető, frissítése és az Operations Management Suite konfigurált toomonitor hello Kubernetes fürt.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Az előző oktatóanyagokat a tároló-lemezkép létrejött, de feltöltött egy Azure-tároló beállításjegyzék-példányon. Ha nem volna ezeket a lépéseket, és szeretné követéséhez, vissza [oktatóanyag 1 – létrehozás tároló képek](./container-service-tutorial-kubernetes-prepare-app.md).
+Az előző oktatóanyagok a tároló-lemezkép létrehozásának és fel kell tölteni tooan Azure tároló beállításjegyzék példány. Ha nem volna ezeket a lépéseket, és szeretné mentén toofollow, visszaadása túl[oktatóanyag 1 – létrehozás tároló képek](./container-service-tutorial-kubernetes-prepare-app.md).
 
 ## <a name="create-kubernetes-cluster"></a>Kubernetes-fürt létrehozása
 
-Az a [az oktatóanyag előző](./container-service-tutorial-kubernetes-prepare-acr.md), nevű erőforráscsoport *myResourceGroup* lett létrehozva. Ha nem tette, ez az erőforráscsoport most hozzon létre.
+A hello [az oktatóanyag előző](./container-service-tutorial-kubernetes-prepare-acr.md), nevű erőforráscsoport *myResourceGroup* lett létrehozva. Ha nem tette, ez az erőforráscsoport most hozzon létre.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westeurope
 ```
 
-Hozzon létre egy Kubernetes-fürtöt az Azure Container Service-ben az [az acs create](/cli/azure/acs#create) paranccsal. 
+Hozzon létre egy Kubernetes fürtöt az Azure Tárolószolgáltatásban hello [az acs létre](/cli/azure/acs#create) parancsot. 
 
-A következő példa egy *myK8sCluster* nevű fürtöt hoz létre egy Linux-főcsomóponttal és három Linux-ügyfélcsomóponttal.
+hello alábbi példakód létrehozza a fürt nevű *myK8sCluster* egy Linux fő csomópont- és Linux-ügynök három csomópontot.
 
 ```azurecli-interactive 
 az acs create --orchestrator-type=kubernetes --resource-group myResourceGroup --name=myK8SCluster --generate-ssh-keys 
 ```
 
-Pár perc múlva a parancs végrehajtását, és értéket ad vissza json formátumú az ACS telepítési információkat.
+Pár perc múlva hello parancs végrehajtását, és értéket ad vissza json formátumú hello ACS fejlesztésével kapcsolatos információk.
 
-## <a name="install-the-kubectl-cli"></a>A kubectl parancssori felület telepítése
+## <a name="install-hello-kubectl-cli"></a>Hello kubectl parancssori felület telepítése
 
-Az Kubernetes fürthöz csatlakoztatja az ügyfélszámítógépről, használja a [kubectl](https://kubernetes.io/docs/user-guide/kubectl/), a Kubernetes parancssori ügyfél. 
+az ügyfélszámítógépen, használja a fürt Kubernetes tooconnect toohello [kubectl](https://kubernetes.io/docs/user-guide/kubectl/), hello Kubernetes parancssori ügyfél. 
 
-Az Azure CloudShell használata esetén a `kubectl` már telepítve van. Ha helyileg telepíteni szeretne, használja a [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli) parancsot.
+Az Azure CloudShell használata esetén a `kubectl` már telepítve van. Ha azt szeretné, hogy tooinstall helyileg, használja a hello [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli) parancsot.
 
-Ha a Linux vagy macOS fut, szükség lehet a sudo futtatásához. A Windows győződjön meg arról, a rendszerhéj futtatása rendszergazdaként.
+Ha a Linux vagy macOS fut, szükség lehet a sudo toorun. A Windows győződjön meg arról, a rendszerhéj futtatása rendszergazdaként.
 
 ```azurecli-interactive 
 az acs kubernetes install-cli 
 ```
 
-A Windows, az alapértelmezett telepítési van *c:\program files (x86)\kubectl.exe*. Szükség lehet a fájl hozzáadása a Windows útvonalhoz. 
+A Windows hello alapértelmezett telepítése van *c:\program files (x86)\kubectl.exe*. Szükség lehet tooadd a toohello Windows elérési útja. 
 
 ## <a name="connect-with-kubectl"></a>Kapcsolódás a kubectl parancssori ügyfélhez
 
-Az [az acs kubernetes get-credentials](/cli/azure/acs/kubernetes#get-credentials) parancs futtatásával konfigurálja a `kubectl` ügyfelet úgy, hogy a saját Kubernetes-fürthöz kapcsolódjon.
+tooconfigure `kubectl` tooconnect tooyour Kubernetes fürthöz, futtassa a hello [az acs kubernetes get-hitelesítő adatok](/cli/azure/acs/kubernetes#get-credentials) parancsot.
 
 ```azurecli-interactive 
 az acs kubernetes get-credentials --resource-group=myResourceGroup --name=myK8SCluster
 ```
 
-Ellenőrizze a kapcsolatot a fürthöz, futtassa a [kubectl beolvasása csomópontok](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) parancsot.
+tooverify hello kapcsolat tooyour fürthöz, futtassa a hello [kubectl beolvasása csomópontok](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) parancsot.
 
 ```azurecli-interactive
 kubectl get nodes
@@ -94,18 +94,18 @@ k8s-agent-98dc3136-2    Ready                      5m        v1.6.2
 k8s-master-98dc3136-0   Ready,SchedulingDisabled   5m        v1.6.2
 ```
 
-Oktatóanyag befejezése után következő, hogy az ACS Kubernetes fürt készen áll a munkaterhelések. A következő útmutatókból egy több tároló alkalmazás üzemel a fürthöz, horizontálisan, frissítése, és figyeli.
+Oktatóanyag befejezése után következő, hogy az ACS Kubernetes fürt készen áll a munkaterhelések. A következő útmutatókból a tárolót több alkalmazás telepített toothis fürt, horizontálisan, frissítése és figyelemmel kísérni.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban az Azure-tároló szolgáltatás Kubernetes fürt tették elérhetővé telepítésre. A következő lépéseket hajtotta végre:
+Ebben az oktatóanyagban az Azure-tároló szolgáltatás Kubernetes fürt tették elérhetővé telepítésre. befejeződtek a hello a következő lépéseket:
 
 > [!div class="checklist"]
 > * Egy Kubernetes ACS-fürt telepítése
-> * A Kubernetes CLI (kubectl) telepítése
+> * Telepített hello Kubernetes CLI (kubectl)
 > * Konfigurált kubectl
 
-Továbblépés a következő oktatóanyag fürtben futó alkalmazás megismeréséhez.
+Előzetes toohello oktatóanyag következő toolearn kapcsolatos hello fürt alkalmazást futtat.
 
 > [!div class="nextstepaction"]
 > [Kubernetes az alkalmazás központi telepítése](./container-service-tutorial-kubernetes-deploy-application.md)

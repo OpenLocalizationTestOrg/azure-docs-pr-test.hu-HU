@@ -1,6 +1,6 @@
 ---
-title: "Adatok áthelyezése a Data Factory használatával MongoDB |} Microsoft Docs"
-description: "Tudnivalók az adatok áthelyezése az Azure Data Factory használatával MongoDB-adatbázisból."
+title: "használatával a Data Factory MongoDB aaaMove adatait |} Microsoft Docs"
+description: "További információk a hogyan toomove adatait MongoDB adatbázis-Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jingwang
-ms.openlocfilehash: ac4ff55c765a5b874b81714c3d0063a5b4765a05
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 154e85712f27b978976c7499c43dde9429f124c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-mongodb-using-azure-data-factory"></a>Helyezze át az adatokat a MongoDB Azure Data Factory használatával
-Ez a cikk ismerteti, hogyan a másolási tevékenység során az Azure Data Factoryben az adatok mozgatása egy helyszíni MongoDB-adatbázist. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toomove az adatbázisból a helyszíni MongoDB a másolási tevékenység. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.
 
-Egy helyszíni MongoDB adattároló adatok bármely támogatott fogadó adattárolóhoz másolhatja. A másolási tevékenység által támogatott mosdók adattárolókhoz listájáért lásd: a [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Adat-előállító jelenleg csak áthelyezése adatait a MongoDB-tárolóban egyéb adattárakhoz, de nem az adatok áthelyezése az egyéb adattárakhoz egy MongoDB adattárral. 
+Egy helyszíni MongoDB adatokat tároló támogatott tooany fogadó adatokat tároló adatainak másolhatja. Az adatok támogatott tárolja, a fogadók esetében hello másolási tevékenység, lásd: hello [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Adat-előállító jelenleg csak a MongoDB-adatokból adattároló tooother adattárolókhoz áthelyezése, de nem adatok áthelyezését más adatokat tároló tooan MongoDB adattárolót. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az Azure Data Factory szolgáltatás kell kapcsolódnia kell a helyszíni MongoDB-adatbázist a következő összetevőket kell telepíteni:
+Hello Azure Data Factory szolgáltatás toobe képes tooconnect tooyour helyszíni MongoDB adatbázis telepítenie kell a következő összetevők hello:
 
 - MongoDB-verziók a következők: 2.4, 2.6, 3.0-s és 3.2-es verzióját.
-- Az adatkezelési átjáró ugyanazon a számítógépen, amelyen az adatbázis vagy egy külön számítógépen elkerülésére használják a források az adatbázissal. Az adatkezelési átjáró olyan szoftver, a helyszíni adatforrások csatlakozik a felhőalapú szolgáltatások biztonságának és kezelésének módja. Lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md) szóló cikkben olvashat az adatkezelési átjáró. Lásd: [tárolt adatok mozgatása felhőbe helyszíni](data-factory-move-data-between-onprem-and-cloud.md) cikk lépésenkénti adatok folyamat az átjáró beállítása áthelyezni az adatokat.
+- Az adatkezelési átjáró hello ugyanaz a gép állomások hello adatbázis vagy egy másik számítógépre tooavoid hello adatbázis erőforrás használják. Az adatkezelési átjáró egy szoftver, amely összeköti a helyszíni adatok források toocloud szolgáltatások biztonságának és kezelésének módja. Lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md) szóló cikkben olvashat az adatkezelési átjáró. Lásd: [tárolt adatok mozgatása a helyszíni toocloud](data-factory-move-data-between-onprem-and-cloud.md) cikk hello átjáró egy adatok adatcsatorna toomove adatok beállításának lépéseit.
 
-    Az átjáró telepítésekor automatikusan telepíti a MongoDB való kapcsolódáshoz használt Microsoft MongoDB ODBC-illesztőprogram.
+    Hello átjáró telepítésekor automatikusan telepíti a Microsoft MongoDB ODBC-illesztőprogram használt tooconnect tooMongoDB.
 
     > [!NOTE]
-    > Az átjáró használatához a MongoDB kapcsolódni, akkor is, ha az Azure IaaS virtuális gépeken fut. kell. Ha próbál csatlakozni a felhőben üzemeltetett MongoDB példánya, az infrastruktúra-szolgáltatási virtuális gép is az átjárópéldány is telepítheti.
+    > Akkor is, ha az Azure IaaS virtuális gépeken fut. toouse hello átjáró tooconnect tooMongoDB kell. Ha a felhőben üzemeltetett MongoDB tooconnect tooan példányának próbált, hello infrastruktúra-szolgáltatási virtuális gép is hello átjárópéldány is telepítheti.
 
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, mely az adatok egy helyszíni MongoDB adattároló különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját. 
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára. 
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban: 
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello: 
 
-1. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory.
-2. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. 
+1. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban.
+2. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. 
 3. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. 
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása egy helyszíni MongoDB adattároló használt adat-előállító entitások JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az MongoDB az Azure Blob](#json-example-copy-data-from-mongodb-to-azure-blob) című szakaszát. 
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek egy helyszíni MongoDB adattárolóból használt toocopy adatok JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az MongoDB tooAzure Blob](#json-example-copy-data-from-mongodb-to-azure-blob) című szakaszát. 
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory tartozó entitások MongoDB forrás JSON-tulajdonságok:
+a következő szakaszok hello használt toodefine adat-előállító entitások adott tooMongoDB forrás JSON-tulajdonághoz részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat tartalmazza a JSON-elemek szerepelnek jellemző leírást **OnPremisesMongoDB** társított szolgáltatás.
+hello alábbi táblázatban megadott JSON-elemek leírása túl**OnPremisesMongoDB** társított szolgáltatás.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **OnPremisesMongoDb** |Igen |
-| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét a mongodb-Protokolltámogatással. |Igen |
-| port |A MongoDB-kiszolgálóhoz a kapcsolatok figyelésére használt TCP portot. |Nem kötelező, alapértelmezett érték: 27017 |
+| type |hello type tulajdonságot kell beállítani: **OnPremisesMongoDb** |Igen |
+| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét hello MongoDB. |Igen |
+| port |TCP-portot, amely a MongoDB-kiszolgálóhoz hello toolisten ügyfél-kommunikációhoz használ. |Nem kötelező, alapértelmezett érték: 27017 |
 | AuthenticationType |Alapszintű, vagy névtelen. |Igen |
-| felhasználónév |Felhasználói fiók MongoDB eléréséhez. |Igen (Ha alapszintű hitelesítést használ). |
-| jelszó |A felhasználó jelszavát. |Igen (Ha alapszintű hitelesítést használ). |
-| authSource |A MongoDB-adatbázist, amely a hitelesítő adatok kereséséhez használni kívánt nevét. |Választható (Ha alapszintű hitelesítést használ). alapértelmezett: a rendszergazdai fiókot és a databaseName tulajdonsággal megadott adatbázis használ. |
-| DatabaseName |A MongoDB-adatbázist, amely az elérni kívánt nevét. |Igen |
-| gatewayName |Az átjáró, aki hozzáfér az adattár neve. |Igen |
+| felhasználónév |Felhasználói fiók MongoDB tooaccess. |Igen (Ha alapszintű hitelesítést használ). |
+| jelszó |Hello felhasználó jelszavát. |Igen (Ha alapszintű hitelesítést használ). |
+| authSource |Hello MongoDB-adatbázist, amelyet toouse toocheck a hitelesítő adatok hitelesítéshez neve. |Választható (Ha alapszintű hitelesítést használ). alapértelmezett: hello rendszergazdai fiókot és a databaseName tulajdonsággal megadott hello adatbázis használ. |
+| DatabaseName |Hello MongoDB-adatbázist, amelyet az tooaccess neve. |Igen |
+| gatewayName |Hello adattár hozzáférő hello átjáró neve. |Igen |
 | encryptedCredential |A hitelesítőadat-átjáró által titkosított. |Optional |
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
 
-A **typeProperties** szakasz eltérő adatkészlet egyes típusai és információkat nyújt azokról az adattárban adatok helyét. A typeProperties szakasz típusú adatkészlet **MongoDbCollection** tulajdonságai a következők:
+Hello **typeProperties** szakasz eltérő adatkészlet egyes típusai és hello adattár hello adatok hello helyét ismerteti. hello typeProperties szakasz típusú adatkészlet **MongoDbCollection** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| CollectionName |A MongoDB-adatbázist a gyűjtemény nevét. |Igen |
+| CollectionName |A MongoDB adatbázis hello gyűjtemény nevét. |Igen |
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
 
-Tulajdonságok érhetők el a **typeProperties** szakasz a tevékenység viszont eltérőek a tevékenységek minden típusának. A másolási tevékenység során két érték források és mosdók típusától függően.
+Tulajdonságok érhetők el hello **typeProperties** szakasz hello hello tevékenységekre ugyanakkor tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
-Ha a forrás típusa nem **MongoDbSource** typeProperties szakaszában érhetők a következő tulajdonságokkal:
+Ha hello forrás típusa nem **MongoDbSource** typeProperties szakaszában érhetők hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-92 lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem (Ha **collectionName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-92 lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem (Ha **collectionName** a **dataset** van megadva) |
 
 
 
-## <a name="json-example-copy-data-from-mongodb-to-azure-blob"></a>JSON-példa: adatok másolása az MongoDB az Azure-Blobba
-Ebben a példában a minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot biztosít [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azt illusztrálja, hogyan adatok másolása egy helyszíni MongoDB egy Azure Blob Storage tárolóban. Azonban adatok átmásolhatók a megadott mosdók bármelyikét [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.
+## <a name="json-example-copy-data-from-mongodb-tooazure-blob"></a>JSON-példa: adatok másolása az MongoDB tooAzure Blob
+Ebben a példában a minta JSON definícióit tartalmazza használható toocreate folyamat használatával [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md) vagy [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) vagy [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Azt illusztrálja, hogyan egy helyszíni MongoDB tooan Azure Blob Storage toocopy adatait. Adatok azonban nem közölt hello nyelő másolt tooany [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.
 
-A minta a következő data factory entitások rendelkezik:
+hello minta a következő data factory entitások hello rendelkezik:
 
 1. A társított szolgáltatás típusa [OnPremisesMongoDb](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -102,9 +102,9 @@ A minta a következő data factory entitások rendelkezik:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [MongoDbSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-A minta másol adatokat egy lekérdezés eredményét a MongoDB adatbázis blob minden órában. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta másol adatokat egy lekérdezés eredményét a MongoDB adatbázis tooa blob minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
-Első lépésként, a telepítő az adatkezelési átjáró szerint utasításait a [az adatkezelési átjáró](data-factory-data-management-gateway.md) cikk.
+Első lépésként, a telepítő hello az adatkezelési átjáró szerint hello hello utasításait [az adatkezelési átjáró](data-factory-data-management-gateway.md) cikk.
 
 **MongoDB társított szolgáltatáshoz:**
 
@@ -117,11 +117,11 @@ Első lépésként, a telepítő az adatkezelési átjáró szerint utasításai
         "typeProperties":
         {
             "authenticationType": "<Basic or Anonymous>",
-            "server": "< The IP address or host name of the MongoDB server >",  
-            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "server": "< hello IP address or host name of hello MongoDB server >",  
+            "port": "<hello number of hello TCP port that hello MongoDB server uses toolisten for client connections.>",
             "username": "<username>",
             "password": "<password>",
-           "authSource": "< The database that you want to use to check your credentials for authentication. >",
+           "authSource": "< hello database that you want toouse toocheck your credentials for authentication. >",
             "databaseName": "<database name>",
             "gatewayName": "<mygateway>"
         }
@@ -143,7 +143,7 @@ Első lépésként, a telepítő az adatkezelési átjáró szerint utasításai
 }
 ```
 
-**MongoDB bemeneti adatkészlet:** "external" beállítása: "true" arról tájékoztatja a Data Factory szolgáltatásnak, hogy a tábla külső data factoryval való, és nem hozzák adat-előállító tevékenység.
+**MongoDB bemeneti adatkészlet:** "external" beállítása: "true" tájékoztatja hello Data Factory szolgáltatásnak, hogy hello tábla külső toohello adat-előállító, ezért nem hozzák hello adat-előállítóban tevékenységgel.
 
 ```json
 {
@@ -165,7 +165,7 @@ Első lépésként, a telepítő az adatkezelési átjáró szerint utasításai
 
 **Az Azure Blob kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB a szelet által feldolgozott kezdési ideje alapján dinamikusan történik. A mappa elérési útját használja, év, hónap, nap és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útja hello kezdési ideje év, hónap, nap és óra részét használja.
 
 ```json
 {
@@ -225,7 +225,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 **Másolási tevékenység a MongoDB-forrás és a Blob fogadó egy folyamaton belül:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység során használja a fenti bemeneti és kimeneti adatkészletek konfigurált és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **MongoDbSource** és **fogadó** típusúra **BlobSink**. A megadott SQL-lekérdezést a **lekérdezés** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat, amely a bemeneti és kimeneti adatkészletek fent konfigurált toouse hello és ütemezett toorun óránként másolatot tevékenységet tartalmaz. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**MongoDbSource** és **fogadó** típusuk értéke túl**BlobSink**. hello SQL-lekérdezésben megadott hello **lekérdezés** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```json
 {
@@ -275,15 +275,15 @@ A feldolgozási sor tartalmazza a másolási tevékenység során használja a f
 
 
 ## <a name="schema-by-data-factory"></a>Adat-előállító sémája
-Az Azure Data Factory szolgáltatásnak a MongoDB-gyűjteményből séma kikövetkezteti a legújabb 100 dokumentumok használatával a gyűjteményben. A 100 dokumentumok teljes séma nem tartalmaznak, ha azokat az oszlopokat is figyelmen kívül hagyja a másolási művelet során.
+Az Azure Data Factory szolgáltatásnak kikövetkezteti a MongoDB-gyűjteményből séma hello legújabb 100 dokumentumok hello gyűjtemény használatával. A 100 dokumentumok teljes séma nem tartalmaznak, ha azokat az oszlopokat hello másolási művelet során előfordulhat, hogy figyelembe véve.
 
 ## <a name="type-mapping-for-mongodb"></a>Mongodb-protokolltámogatással leképezésének
-Ahogyan az a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, a másolási tevékenység eseményforrás-típusnak gyűjtése típusa a következő 2. lépés – a módszert használja az automatikus típuskonverziók hajtja végre:
+A hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység hajt végre automatikus típuskonverziók származó típusok toosink típusait a 2. lépés – a módszert követve hello:
 
-1. A natív eseményforrás-típusnak átalakítása .NET-típusa
-2. .NET-típus konvertálása natív a fogadó típusa
+1. Natív típusok too.NET forrástípus konvertálása
+2. .NET típusú toonative a fogadó típusa konvertálása
 
-Ha az adatok áthelyezése a MongoDB .NET típusú a következő megfeleltetéseket használtak MongoDB típusok.
+Amikor helyezi át a következő adatok tooMongoDB hello hozzárendelések MongoDB típusok too.NET típusok használtak.
 
 | MongoDB-típus | .NET-keretrendszer típusa |
 | --- | --- |
@@ -299,19 +299,19 @@ Ha az adatok áthelyezése a MongoDB .NET típusú a következő megfeleltetése
 | Objektum |Renormalized történő egybesimítására "_" beágyazott elválasztójelként oszlopok |
 
 > [!NOTE]
-> Virtuális táblák használata tömbök-támogatással kapcsolatos további tudnivalókért tekintse meg [támogatja az összetett típusok virtuális táblák használata](#support-for-complex-types-using-virtual-tables) az alábbi szakasz.
+> virtuális táblák, tömbök-támogatással kapcsolatos toolearn tekintse meg a túl[támogatja az összetett típusok virtuális táblák használata](#support-for-complex-types-using-virtual-tables) az alábbi szakasz.
 
-Jelenleg a következő MongoDB-adattípusok nem támogatottak: DBPointer, JavaScript, Max percenkénti kulcs, reguláris kifejezés, szimbólum, Timestamp, meghatározatlan
+Jelenleg nem támogatottak a következő MongoDB adattípusok hello: DBPointer, JavaScript, Max percenkénti kulcs, reguláris kifejezés, szimbólum, Timestamp, meghatározatlan
 
 ## <a name="support-for-complex-types-using-virtual-tables"></a>Virtuális táblák használata összetett típusok támogatása
-Az Azure Data Factory beépített ODBC-illesztőprogram használatával csatlakozhat, és másolja az adatokat a MongoDB-adatbázisból. A dokumentumok között különböző típusú tömb, vagy objektumok például összetett típusok az illesztőprogram újra normalizálja adatok megfelelő virtuális táblákba. Pontosabban Ha a tábla tartalmaz ilyen oszlopok, az illesztőprogram állít elő, a következő virtuális táblák:
+Az Azure Data Factory egy beépített ODBC illesztőprogram tooconnect tooand példány adatait használja a MongoDB-adatbázist. Hello dokumentumok között különböző típusú tömb, vagy objektumok például összetett típusok hello illesztőprogram újra normalizálja adatok megfelelő virtuális táblákba. Pontosabban Ha a tábla tartalmaz ilyen oszlopok, hello illesztőprogram állít elő, a következő virtuális táblák hello:
 
-* A **alaptábla**, amely tartalmazza a tényleges táblából, az összetett típusú oszlopok ugyanazokat az adatokat. Az alaptábla ugyanazt a nevet használja, amely valós táblázatként.
-* A **virtuális tábla** minden összetett típusú oszlophoz, amely kiterjeszti a beágyazott adatok. A virtuális táblák neve a valódi tábla, "_" elválasztó és a nevét, a tömb vagy objektum nevével.
+* A **alaptábla**, amely tartalmazza hello hello valós táblából hello összetett típusú oszlopok ugyanazokat az adatokat. hello alaptábla hello ugyanazt a nevet használja, mint hello valós táblázatot, amely azt jelöli.
+* A **virtuális tábla** minden összetett típusú oszlophoz, amely kiterjeszti hello beágyazott adatok. hello virtuális táblák megnevezett hello valós tábla hello neve, "_" elválasztó és hello tömb vagy objektum hello neve.
 
-Virtuális táblák tekintse meg az adatok a valós táblázatban, az illesztőprogram, a nem normalizált adatok eléréséhez. Részletekért lásd: Példa szakaszban olvashatók. A MongoDB-tömbök tartalmának lekérdezése, és a virtuális tábla érheti el.
+Virtuális táblák tekintse meg a hello valós tábla toohello adatokat, lehetővé teszi hello illesztőprogram tooaccess hello nem normalizált adatok. Részletekért lásd: Példa szakaszban olvashatók. MongoDB-tömbök hello tartalmának lekérdezése és hello virtuális tábla érheti el.
 
-Használhatja a [másolása varázsló](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) intuitív táblázatok listájának megtekintése a MongoDB-adatbázist, beleértve a virtuális táblák és található adatok megtekintésére. Is másolása varázsló az olyan lekérdezést, és az érvényesítés lehetőségre az eredményt.
+Használhatja a hello [másolása varázsló](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) toointuitively nézet hello hello virtuális táblázatot is MongoDB-adatbázist a táblák listáját és hello található adatok megtekintésére. Is hello másolása varázsló az olyan lekérdezést, és toosee hello eredmény ellenőrzése.
 
 ### <a name="example"></a>Példa
 "ExampleTable" alatt például MongoDB tábla egy objektumokból álló tömb egy oszlopot az egyes cellák – számlákat és a skaláris típusok – minősítések tömbje egy oszlop.
@@ -321,18 +321,18 @@ Használhatja a [másolása varázsló](data-factory-data-movement-activities.md
 | 1111 |ABC |[{invoice_id: "123", cikk: "toaster", az ár: "456" kedvezményes: "0,2"}, {invoice_id: "124" elem: "helyezzük", az ár: "1235" kedvezményes: "0,2"}] |Ezüst |[5,6] |
 | 2222 |XYZ |[{invoice_id: "135", cikk: "kombinált hűtőszekrények", az ár: "12543" kedvezménnyel: "0,0"}] |Arany |[1,2] |
 
-Az illesztőprogram az egyetlen tábla képviselő virtuális táblákat hoz létre. Az első virtuális táblát kell az alaptábla nevű "ExampleTable" alább látható. Az alaptábla az eredeti tábla összes adatot tartalmaz, de az adatokat a tömbök kimaradt, és a virtuális táblázatokban ki van bontva.
+hello illesztőprogram több virtuális táblák toorepresent hoz létre a egyetlen tábla. első virtuális tábla hello hello alaptábla "ExampleTable" alább látható nevű. hello alaptábla hello eredeti tábla összes hello adatokat tartalmaz, de hello tömbök hello adatait kimaradt, és ki van bontva hello virtuális táblában.
 
 | _id | Ügyfél neve | Szolgáltatási szint |
 | --- | --- | --- |
 | 1111 |ABC |Ezüst |
 | 2222 |XYZ |Arany |
 
-Az alábbi táblázatok bemutatják a virtuális táblákat, amelyek megfelelnek a példában az eredeti tömbök. Ezek a táblázatok tartalmazzák a következő:
+hello táblázatokban hello virtuális táblák megjelenítése, amelyek megfelelnek az eredeti tömbök hello hello példában. Ezek a táblázatok hello alábbiakat tartalmazza:
 
-* Vissza az eredeti elsődleges kulcsként megadott oszlop (keresztül a _id. oszlop) eredeti tömb sorának megfelelő mutató hivatkozás
-* Utalhat, hogy az adatok az eredeti tömbön belüli pozíciója
-* A kibontott adatok belül a tömb egyes elemei
+* Hivatkozás biztonsági toohello eredeti elsődleges kulcsként megadott oszlop megfelelő toohello hello eredeti tömb sora (keresztül hello _id oszlop)
+* Utalhat, hogy hello adatok hello eredeti tömbön belüli hello pozíciója
+* hello kibontva az egyes elemekhez hello tömbön belüli adatok
 
 "ExampleTable_Invoices". tábla:
 
@@ -351,14 +351,14 @@ Az alábbi táblázatok bemutatják a virtuális táblákat, amelyek megfelelnek
 | 2222 |0 |1 |
 | 2222 |1 |2 |
 
-## <a name="map-source-to-sink-columns"></a>Térkép forrás oszlopok gyűjtése
-A forrás oszlop szerepel a fogadó dataset adatkészlet leképezési oszlopok, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>A forrásoszlopokat toosink leképezése
+toolearn leképezési oszlopok az forrás adatkészlet toocolumns fogadó adatkészletben, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>A relációs források ismételhető Olvasás
-Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha győződjön meg arról, hogy ugyanazokat az adatokat olvasható függetlenül attól, hogy a szelet futtatása hány alkalommal kell. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Amikor az adatok másolása relációs adattároló, tartsa ismételhetőség szem előtt tartva tooavoid nem kívánt eredmények. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha van szüksége arról, hogy ugyanazokat az adatokat hello toomake hogyan olvasható függetlenül attól, hogy hányszor a szelet futtatása. Lásd: [relációs források olvasni Repeatable](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd: [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) cikk részletes utasításokat az adatok folyamat létrehozása, amely mozgatja az adatokat kereshet ki egy a helyszíni adatok Azure adattárolóihoz.
+Lásd: [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) cikk részletes utasításokat az adatok folyamat létrehozása, amely áthelyezi adatait egy a helyszíni adatok tooan az Azure data tárolni.

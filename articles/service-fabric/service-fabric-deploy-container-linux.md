@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric és központi telepítése Linux a tárolók |} Microsoft Docs"
-description: "A Service Fabric és a Linux-tárolók használatát mikroszolgáltatási alkalmazások központi telepítése. Ez a cikk ismerteti, amely tárolók biztosít a Service Fabric képességeit és a Linux-tároló lemezkép központi telepítése a fürtbe"
+title: "aaaService háló és a Linux tárolók üzembe helyezése |} Microsoft Docs"
+description: "A Service Fabric és hello használata Linux tárolók toodeploy mikroszolgáltatási alkalmazások. Ez a cikk ismerteti, amely a Service Fabric-tárolókban, és hogyan toodeploy egy Linux-tároló kép fürtbe hello képességek"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 6/29/2017
 ms.author: msfussell
-ms.openlocfilehash: 9dcec753e5f999a1bac07276373c0c25f89ec58d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e28f99a145b0594d871b0ec0566233a7ad235ce8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-linux-container-to-service-fabric"></a>A Service Fabric központi telepítése egy Linux-tároló
+# <a name="deploy-a-linux-container-tooservice-fabric"></a>A Linux-tároló tooService háló telepítése
 > [!div class="op_single_selector"]
 > * [Windows-tároló üzembe](service-fabric-deploy-container.md)
 > * [Linux-tároló üzembe](service-fabric-deploy-container-linux.md)
@@ -31,57 +31,57 @@ Ez a cikk bemutatja, hogyan indexelése szolgáltatások Docker-tárolókban lé
 
 A Service Fabric különböző tároló képességeket, amelyek segítenek a mikroszolgáltatások létrehozására, amelyek indexelése épülnek alkalmazások építéséhez rendelkezik. Ezek a szolgáltatások indexelése szolgáltatások nevezzük.
 
-A lehetőségek tartalmazzák;
+hello lehetőségek tartalmazzák;
 
 * Tároló lemezkép-telepítés és az aktiválás
 * Erőforrás-irányítás
 * Tárház-hitelesítés
-* A gazdagép porthozzárendelés tárolóportot
+* Tároló-porthozzárendelést, toohost port
 * Tároló-tároló felderítése és kommunikáció
-* Konfigurálása, és állítsa be a környezeti változók
+* Képes tooconfigure és környezeti változók megadása
 
 ## <a name="packaging-a-docker-container-with-yeoman"></a>Egy docker-tároló csomagolására rendelkező yeoman
-Egy tároló Linux-csomagban, amikor Ön választhatja yeoman sablon használata vagy [hozzon létre manuálisan az alkalmazáscsomag](#manually).
+Egy tároló Linux csomagolás, beállíthatja vagy toouse yeoman sablon vagy [hozzon létre manuálisan hello alkalmazáscsomag](#manually).
 
-A Service Fabric-alkalmazás tartalmazhat egy vagy több tárolóban, az egy adott szerepkör a postai az alkalmazás működését. A Linux Service Fabric SDK tartalmaz egy [Yeoman](http://yeoman.io/)-generátort, amely megkönnyíti az alkalmazás létrehozását és egy tárolórendszerkép hozzáadását. Hozzunk létre egy alkalmazást, amely egyetlen, *SimpleContainerApp* nevű Docker-tárolóval rendelkezik. Hozzáadhat további szolgáltatások később a létrehozott szerkesztésével manifest fájlt.
+A Service Fabric-alkalmazás tartalmazhat egy vagy több tárolóban, az egy adott szerepkör a postai hello alkalmazás működését. Service Fabric SDK Linux hello tartalmaz egy [Yeoman](http://yeoman.io/) , így könnyen toocreate generátor az alkalmazás, és adja hozzá a tároló-lemezkép. Most használja az alkalmazás egy Docker-tároló nevű Yeoman toocreate *SimpleContainerApp*. Hozzáadhat további szolgáltatások később hello létrehozott fájlok szerkesztésével.
 
 ## <a name="install-docker-on-your-development-box"></a>A fejlesztési mezőben Docker telepítése
 
-Docker telepítését a Linux-fejlesztési mezőben a következő parancsokat (a vagrant lemezkép használatakor az os x docker már telepítve van):
+Futtatási hello következő parancsokat a Linux-fejlesztési be tooinstall docker (hello vagrant lemezkép használatakor az os x docker már telepítve van):
 
 ```bash
     sudo apt-get install wget
     wget -qO- https://get.docker.io/ | sh
 ```
 
-## <a name="create-the-application"></a>Az alkalmazás létrehozása
+## <a name="create-hello-application"></a>Hello alkalmazás létrehozása
 1. Írja be a terminálba a következőt: `yo azuresfcontainer`.
 2. Az alkalmazás - például mycontainerap neve
-3. Adja meg az URL-címet a tároló lemezképének egy DockerHub tárházból. A kép paraméter [tárház] formájában történik [kép neve]
-4. Ha a kép nem rendelkezik a munkaterhelés belépési ponttal definiált, explicit módon adja meg a parancsok futtatásához a tároló, amely akkor is megtartja a tároló indítás után fut belül vesszővel tagolt számú bemeneti parancsokat kell használnia.
+3. Adja meg hello tároló lemezképének egy DockerHub tárházból hello URL-CÍMÉT. hello kép paraméter vesz hello űrlap [tárház] / [lemezkép neve]
+4. Ha hello kép nem rendelkezik egy munkaterhelés belépési pont definiálva, akkor meg kell tooexplicitly adja meg a bemeneti parancsokat parancsok toorun belül hello tároló, amely közli a hello tároló indítás után fut vesszővel tagolt állítja be.
 
 ![Tárolókhoz készült Service Fabric Yeoman-generátor][sf-yeoman]
 
-## <a name="deploy-the-application"></a>Az alkalmazás központi telepítése
+## <a name="deploy-hello-application"></a>Hello alkalmazás központi telepítése
 
 ### <a name="using-xplat-cli"></a>Az XPlat CLI használatával
-Az alkalmazást a létrehozása után az Azure parancssori felülettel telepítheti a helyi fürtben.
+Miután hello alkalmazás épül, ezután telepítheti azt toohello helyi fürt hello Azure parancssori felület használatával.
 
-1. Csatlakozzon a helyi Service Fabric-fürthöz.
+1. Csatlakozás helyi Service Fabric-fürt toohello.
 
     ```bash
     azure servicefabric cluster connect
     ```
 
-2. Használja a sablonban megadott telepítési szkriptet az alkalmazáscsomag a fürt lemezképtárolójába való másolásához, regisztrálja az alkalmazás típusát, és hozza létre az alkalmazás egy példányát.
+2. Használjon hello telepítési parancsfájlját hello sablon toocopy hello alkalmazás csomag toohello fürt lemezképtárolóhoz, hello alkalmazástípus regisztrálása, és a hello alkalmazás példányt létrehozni.
 
     ```bash
     ./install.sh
     ```
 
-3. Nyisson meg egy böngészőt, és keresse fel a Service Fabric Explorert a következő címen: http://localhost:19080/Explorer (a Vagrant Mac OS X rendszeren való használata esetében a localhost helyett használja a virtuális gép magánhálózati IP-címét).
-4. Bontsa ki az Alkalmazások csomópontot, és figyelje meg, hogy most már megjelenik benne egy bejegyzés az alkalmazása típusához, és egy másik a típus első példányához.
-5. A sablonban megadott eltávolítása parancsfájl segítségével törölje az alkalmazáspéldány, és az alkalmazástípus regisztrációjának törlése.
+3. Nyisson meg egy böngészőt, és keresse meg a Fabric Explorer tooService: 19080/Explorer (a név felülírandó localhost a hello privát IP-címe hello VM Vagrant használatakor a Mac OS x).
+4. Hello alkalmazások csomópontot, és vegye figyelembe, hogy most egy bejegyzést, az alkalmazás típusának és egy másikat a hello adott típus első példányát.
+5. Hello eltávolítás parancsfájl használata hello sablon toodelete hello alkalmazáspéldány és a hello alkalmazástípus regisztrációjának törlése.
 
     ```bash
     ./uninstall.sh
@@ -89,31 +89,31 @@ Az alkalmazást a létrehozása után az Azure parancssori felülettel telepíth
 
 ### <a name="using-azure-cli-20"></a>Az Azure CLI 2.0 használatával
 
-Lásd: a hivatkozási doc kezeléséről egy [alkalmazás életciklusa az Azure CLI 2.0 használatával](service-fabric-application-lifecycle-azure-cli-2-0.md).
+Lásd: hello hivatkozás doc kezeléséről egy [életciklus használó hello Azure CLI 2.0](service-fabric-application-lifecycle-azure-cli-2-0.md).
 
-A mintaalkalmazás [kivételt a Service Fabric-tároló kódja a Githubon található – minták](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+A mintaalkalmazás [kivételt hello Service Fabric tároló kódja a Githubon található – minták](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
-## <a name="adding-more-services-to-an-existing-application"></a>További szolgáltatások hozzáadása meglévő alkalmazáshoz
+## <a name="adding-more-services-tooan-existing-application"></a>További szolgáltatások tooan meglévő alkalmazás hozzáadása
 
-Egy másik tárolószolgáltatás hozzáadása egy már létrehozott alkalmazás `yo`, hajtsa végre a következő lépéseket:
+tooadd egy másik tárolóban szolgáltatásalkalmazás tooan már létrehozott `yo`, hajtsa végre az alábbi lépésekkel hello:
 
-1. Lépjen a meglevő alkalmazás gyökérkönyvtárába.  Például `cd ~/YeomanSamples/MyApplication`, ha a `MyApplication` a Yeoman által létrehozott alkalmazás.
+1. Hello meglévő alkalmazás gyökérkönyvtárának toohello módosítása.  Például `cd ~/YeomanSamples/MyApplication`, ha `MyApplication` Yeoman által létrehozott hello alkalmazás.
 2. Futtassa a `yo azuresfcontainer:AddService` parancsot.
 
 <a id="manually"></a>
 
 ## <a name="manually-package-and-deploy-a-container-image"></a>Manuálisan csomag és a tároló-lemezkép központi telepítése
-A folyamat manuálisan csomagolási indexelése szolgáltatás alapul az alábbi lépéseket:
+hello folyamat manuálisan csomagolási indexelése szolgáltatás lépések hello alapul:
 
-1. A tárolók közzététele a tárházhoz.
-2. Hozza létre a csomag könyvtárstruktúrát.
-3. A service manifest fájl szerkesztése.
-4. Az Alkalmazásjegyzék-fájl szerkesztése.
+1. Hello tárolók tooyour tárház közzététele.
+2. Hello csomag könyvtárstruktúrát létrehozása.
+3. Hello service manifest-fájl szerkesztése.
+4. Hello Alkalmazásjegyzék-fájl szerkesztése.
 
 ## <a name="deploy-and-activate-a-container-image"></a>Központi telepítése és a tároló lemezkép aktiválása
-A Service Fabric a [alkalmazásmodell](service-fabric-application-model.md), a tároló jelöli egy alkalmazásgazda, mely több szolgáltatásban replikák kerülnek. Üzembe helyezését, és aktiválja a tároló, helyezze be a tároló lemezkép nevét egy `ContainerHost` elem a szolgáltatás jegyzékben.
+A Service Fabric hello [alkalmazásmodell](service-fabric-application-model.md), a tároló jelöli egy alkalmazásgazda, mely több szolgáltatásban replikák kerülnek. toodeploy, és aktiválja a tároló, hello tároló lemezkép a put hello nevét egy `ContainerHost` elem hello szolgáltatás jegyzékben.
 
-A szolgáltatás jegyzékfájlban hozzáadása egy `ContainerHost` a belépési pont számára. Utána állítsa be a `ImageName` kell lennie a tároló tárházhoz és a lemezkép nevét. A következő részleges jegyzékfájl látható példa központi telepítése a tároló neve `myimage:v1` a tárházból nevű `myrepo`:
+Hello szolgáltatás jegyzékben, vegye fel a `ContainerHost` hello belépési ponthoz. Majd a készlet hello `ImageName` hello tároló tárház és lemezkép toobe hello nevét. hello következő részleges jegyzékfájl szemlélteti, hogyan toodeploy hello tároló nevű `myimage:v1` a tárházból nevű `myrepo`:
 
 ```xml
     <CodePackage Name="Code" Version="1.0">
@@ -126,13 +126,13 @@ A szolgáltatás jegyzékfájlban hozzáadása egy `ContainerHost` a belépési 
     </CodePackage>
 ```
 
-Bemeneti parancsok megadhatja a választható megadásával `Commands` parancsok futtatásához a tároló belső vesszővel tagolt számú elemet.
+Megadhat bemeneti parancsok választható hello megadásával `Commands` parancsok toorun belül hello tároló vesszővel tagolt számú elemet.
 
 > [!NOTE]
-> Ha a kép nem rendelkezik egy munkaterhelés belépési pont definiálva, akkor explicit módon adja meg a bemeneti parancsokat belül kell `Commands` elem futhat a tároló, amely akkor is megtartja a tároló indítás után fut, parancsokat tartalmazó, vesszővel elválasztott készletével.
+> Ha hello kép nem rendelkezik egy munkaterhelés belépési pont definiálva, akkor meg kell tooexplicitly adja meg a bemeneti parancsok belül `Commands` parancsok toorun belül hello tároló, amely közli a hello tároló futtatása után vesszővel tagolt számú elem indítási.
 
 ## <a name="understand-resource-governance"></a>Erőforrás-irányítás ismertetése
-Erőforrás-irányítás egy olyan képességet, a tároló, amely korlátozza az erőforrásokat, amelyek a tároló a gazdagépen. A `ResourceGovernancePolicy`, amely az alkalmazás jegyzékében meghatározott szolgál a szolgáltatáscsomagot a kód erőforrás korlátairól deklarálható. Erőforrás-korlátozások állíthat be a következőket:
+Erőforrás-irányítás, mert egy olyan képességet, amely korlátozza a tároló hello hello erőforrások hello tároló hello gazdagépen használhatják. Hello `ResourceGovernancePolicy`, amely hello alkalmazásjegyzékben megadott használt toodeclare erőforrás korlátai a szolgáltatáscsomagot a kódot. Erőforrás-korlátozások állíthat be a következő erőforrások hello:
 
 * Memory (Memória)
 * MemorySwap
@@ -156,7 +156,7 @@ Erőforrás-irányítás egy olyan képességet, a tároló, amely korlátozza a
 ```
 
 ## <a name="authenticate-a-repository"></a>A tárház hitelesítéséhez
-Egy tároló letöltéséhez, lehetséges, hogy bejelentkezési hitelesítő adatok a tároló tárházba. Adja meg a bejelentkezési adatait, vagy az SSH-kulcsot a tároló lemezkép letöltése a lemezképtárból a bejelentkezéshez megadott hitelesítő adatokat, az alkalmazás jegyzékében szolgálnak. A következő példa bemutatja nevű *tesztfelhasználó néven* és a jelszó nyílt szövegként (*nem* ajánlott):
+egy tároló toodownload, lehetséges, hogy tooprovide bejelentkezési hitelesítő adatok toohello tároló tárházba. hello bejelentkezési, hello alkalmazásjegyzékben, a megadott hitelesítő adatok használt toospecify hello bejelentkezési adatait, vagy SSH-kulcsban, a hello tároló lemezkép letöltése hello lemezképtárból. hello alábbi példa bemutatja nevű *tesztfelhasználó néven* hello a jelszó nyílt szövegként együtt (*nem* ajánlott):
 
 ```xml
     <ServiceManifestImport>
@@ -169,11 +169,11 @@ Egy tároló letöltéséhez, lehetséges, hogy bejelentkezési hitelesítő ada
     </ServiceManifestImport>
 ```
 
-Azt javasoljuk, hogy a gépre telepített tanúsítvány használatával titkosítja a jelszót.
+Azt javasoljuk, hogy titkosítsa a hello jelszó toohello gépen központilag telepített tanúsítvánnyal.
 
-A következő példa bemutatja nevű *tesztfelhasználó néven*, ahol a jelszó nevű tanúsítvánnyal titkosított *MyCert*. Használhatja a `Invoke-ServiceFabricEncryptText` PowerShell-parancsot a jelszót a titkos titkosítási szöveg létrehozásához. További információkért lásd: a cikk [Service Fabric-alkalmazások a titkos kulcsok kezelése](service-fabric-application-secret-management.md).
+hello alábbi példa bemutatja nevű *tesztfelhasználó néven*, ahol hello jelszó nevű tanúsítvánnyal titkosított *MyCert*. Használhatja a hello `Invoke-ServiceFabricEncryptText` PowerShell toocreate hello titkos titkosítási parancsszövege hello jelszót. További információkért lásd: hello cikk [Service Fabric-alkalmazások a titkos kulcsok kezelése](service-fabric-application-secret-management.md).
 
-A tanúsítvány használatával fejthetők vissza a jelszót a titkos kulcsot egy sávon kívüli módszert a helyi gépre kell telepíteni. (Az Azure-ban Ez a módszer az Azure Resource Manager.) Majd amikor a Service Fabric telepíti a szolgáltatáscsomagnak a gép, azt vissza tudja fejteni a titkos kulcsot. A fiók nevét és a titkos kulcs használatával, majd hitelesítheti a tároló tárházban.
+hello az tanúsítvány titkos kulcsa hello toodecrypt hello jelszó által használt helyi számítógép telepített toohello sávon kívüli metódusban kell lennie. (Az Azure-ban Ez a módszer az Azure Resource Manager.) Majd amikor a Service Fabric hello szolgáltatás csomag toohello számítógépe telepíti, azt vissza tudja fejteni hello titkos kulcsot. Hello titkos hello fióknév együtt használva, majd hitelesítheti a hello tároló tárház.
 
 ```xml
     <ServiceManifestImport>
@@ -187,7 +187,7 @@ A tanúsítvány használatával fejthetők vissza a jelszót a titkos kulcsot e
 ```
 
 ## <a name="configure-container-port-to-host-port-mapping"></a>Tároló port-állomás porthozzárendelés konfigurálása
-Egy megadásával a tárolóhoz való kommunikációhoz használt állomás port is beállítható egy `PortBinding` az alkalmazásjegyzékben. A port kötés leképezi a portot, amelyre a szolgáltatás figyeli-e a tárolót, hogy a portot a gazdagépen belül.
+Konfigurálhatja a gazdagépen használt port toocommunicate hello tárolóval megadásával egy `PortBinding` hello alkalmazásjegyzékben. hello port kötés maps hello port toowhich hello szolgáltatást figyel tooa tárolóportot hello hello gazdagépen belül.
 
 ```xml
     <ServiceManifestImport>
@@ -201,9 +201,9 @@ Egy megadásával a tárolóhoz való kommunikációhoz használt állomás port
 ```
 
 ## <a name="configure-container-to-container-discovery-and-communication"></a>Tároló-tároló felderítése és a kommunikáció konfigurálása
-Használatával a `PortBinding` házirend, a tároló port hozzárendelhető egy `Endpoint` a szolgáltatás jegyzékben. A végpont `Endpoint1` adhat meg egy rögzített port (például a 80-as port). Azt is megadhatja, nincs port minden, ebben az esetben a fürt alkalmazás porttartományát a véletlenszerű port meg van kiválasztva.
+Hello segítségével `PortBinding` házirend, leképezheti a tárolóportot tooan `Endpoint` hello szolgáltatás jegyzékben. végpont hello `Endpoint1` adhat meg egy rögzített port (például a 80-as port). Azt is megadhatja, nincs port minden, ebben az esetben az alkalmazás porttartományát hello fürt véletlenszerű port meg van kiválasztva.
 
-Ha megad egy végpontot, használja a `Endpoint` címkét a szolgáltatás jegyzékfájlban Vendég-tároló, a Service Fabric automatikusan közzéteheti a végpont a Naming service. A fürtben futó egyéb szolgáltatások így képes felderíteni a tárolót a REST-lekérdezésekkel kapcsolatos.
+Ha megad egy végpontot, használatával hello `Endpoint` címkét hello szolgáltatás jegyzékfájlban Vendég-tároló, a Service Fabric automatikusan közzéteheti a végpont toohello Naming service. Hello fürtben futó egyéb szolgáltatások így felderíthetők az ebben a tárolóban hello REST lekérdezésekkel kapcsolatos.
 
 ```xml
     <ServiceManifestImport>
@@ -216,12 +216,12 @@ Ha megad egy végpontot, használja a `Endpoint` címkét a szolgáltatás jegyz
     </ServiceManifestImport>
 ```
 
-Ha regisztrálja a Naming Service, egyszerűen elvégezhető tároló-tároló kommunikációs a kódban a tárolóban használatával a [fordított proxy](service-fabric-reverseproxy.md). Kommunikáció a fordított proxy figyelő http-port és a szolgáltatások környezeti változóként folytatott kommunikációhoz használni kívánt név megadásával történik. További információkért tekintse meg a következő szakaszban.
+Ha regisztrálja a Naming service hello, egyszerűen elvégezhető tároló-tároló kommunikációs hello kódban a tárolóban hello segítségével [fordított proxy](service-fabric-reverseproxy.md). Kommunikációs hello fordított proxy http figyelőportja és hello szolgáltatások kiszolgálóként használni kívánt toocommunicate a környezeti változók neve hello megadásával történik. További információkért lásd a hello következő szakaszt.
 
 ## <a name="configure-and-set-environment-variables"></a>Környezeti változók konfigurálása és beállítása
-Környezeti változók minden szolgáltatás jegyzékben, mind a tárolók üzembe helyezett szolgáltatások vagy szolgáltatások, folyamatok/Vendég végrehajtható fájlok telepített kódcsomag adható meg. A környezeti változók értékeinek kifejezetten az alkalmazásjegyzékben szereplő felül, vagy alkalmazás paraméterekként telepítés során megadott.
+Környezeti változók minden hello szolgáltatás jegyzékben, mind a tárolók üzembe helyezett szolgáltatások vagy szolgáltatások, folyamatok/Vendég végrehajtható fájlok telepített kódcsomag adható meg. A környezeti változók értékeinek kifejezetten hello alkalmazásjegyzék felülbírálva, vagy alkalmazás paraméterekként telepítés során megadott.
 
-A következő szolgáltatásjegyzékbeli XML-kódrészlet arra mutat be egy példát, hogyan adhat meg környezeti változókat egy kódcsomaghoz:
+hello service manifest következő XML-részletet szemlélteti, hogyan toospecify környezeti változók kód csomag:
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -244,7 +244,7 @@ A következő szolgáltatásjegyzékbeli XML-kódrészlet arra mutat be egy pél
     </ServiceManifest>
 ```
 
-Ezek a környezeti változók az alkalmazás jegyzékének szintjén felülbírálható lesz:
+Ezek a környezeti változók hello alkalmazás jegyzékének szintjén felülbírálható lesz:
 
 ```xml
     <ServiceManifestImport>
@@ -256,7 +256,7 @@ Ezek a környezeti változók az alkalmazás jegyzékének szintjén felülbír�
     </ServiceManifestImport>
 ```
 
-Az előző példában azt meg explicit érték a `HttpGateway` környezeti változó (19000), miközben hivatott értéke `BackendServiceName` keresztül paraméter a `[BackendSvc]` alkalmazás paraméter. Ezek a beállítások lehetővé teszik az értéket adja meg `BackendServiceName`értéke, ha az alkalmazás központi telepítése, és nem rendelkezik rögzített érték a jegyzékfájlban.
+Hello előző példában a Microsoft hello explicit érték megadott `HttpGateway` környezeti változó (19000), miközben hivatott hello értéke `BackendServiceName` keresztül hello paraméter `[BackendSvc]` alkalmazás paraméter. Ezek a beállítások lehetővé teszik toospecify hello értéke `BackendServiceName`értéke, ha hello alkalmazás központi telepítése, és nem rendelkezik rögzített érték hello jegyzékben.
 
 ## <a name="complete-examples-for-application-and-service-manifest"></a>Fejezze be az alkalmazás és szolgáltatás jegyzékfájl példák
 
@@ -286,7 +286,7 @@ A következő példa alkalmazásjegyzéket:
     </ApplicationManifest>
 ```
 
-A következő egy példa service jegyzékfájl (az előző alkalmazásjegyzékben megadott):
+A következő egy példa service jegyzékfájl (alkalmazásjegyzék megelőző hello megadott):
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -317,10 +317,10 @@ A következő egy példa service jegyzékfájl (az előző alkalmazásjegyzékbe
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy indexelése szolgáltatásként telepített, akkor útmutató elolvasásával életciklus kezeléséhez [Service Fabric-alkalmazás életciklusa](service-fabric-application-lifecycle.md).
+Most, hogy indexelése szolgáltatásként telepített, akkor megtudhatja, hogyan toomanage olvasásával életciklus [Service Fabric-alkalmazás életciklusa](service-fabric-application-lifecycle.md).
 
 * [A Service Fabric és a tárolók áttekintése](service-fabric-containers-overview.md)
-* [Service Fabric-fürtökkel folytatott interakció az Azure parancssori felületének használatával](service-fabric-azure-cli.md)
+* [Service Fabric-fürtök hello Azure parancssori felület használatával való interakció](service-fabric-azure-cli.md)
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-deploy-container-linux/sf-container-yeoman1.png

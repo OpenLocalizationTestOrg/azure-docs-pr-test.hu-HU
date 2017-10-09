@@ -1,5 +1,5 @@
 ---
-title: Microsoft Power BI Embedded gyakori helyzetek
+title: "Microsoft Power BI Embedded aaaCommon forgatókönyvek"
 description: Microsoft Power BI Embedded gyakori helyzetek
 services: power-bi-embedded
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 01/06/2017
 ms.author: asaxton
-ms.openlocfilehash: f4d145c9e61929cca97a4dd15c10b1028ca424d2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f898fe26217b8c208c97df65de9f365a62934d04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="common-power-bi-embedded-scenarios"></a>A Power BI Embedded gyakori helyzetek
-**Microsoft Power BI Embedded** teszi ki a meglévő Power BI API funkcióit, hogy az alkalmazások fejlesztése az Azure-szolgáltatások részeként többsége összpontosít.  Ezen felül lesz programozott módon kiépítéséhez, fejleszthet, és telepítse a szükséges erőforrások és a Power BI-tartalmakat. További tudnivalókért lásd: [Ismerkedés a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
+**Microsoft Power BI Embedded** arra irányul, hogy csökkenjen az alkalmazások, az hello többsége a meglévő Power BI API szolgáltatását, toodevelop egy Azure-szolgáltatás részeként.  Ezen felül fog tudni tooprogrammatically rendelkezni, fejlesztésekor és telepítésekor hello szükséges erőforrások és a Power BI-tartalmakat. több, lásd: toolearn [Ismerkedés a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
 
 Az alábbiakban néhány használatára vonatkozó forgatókönyvek **Power BI Embedded** az alkalmazásokban.
 
-* Teljesen interaktív jelentéseket a Power BI Desktopban létrehozott egy új alkalmazás-tokent használó hitelesítés modell használatával saját alkalmazáson belül lehet beágyazni.
-* Független szoftvergyártók és az ügyfelek által használt alkalmazások összeállítása az ügyfelek használhatják a **Power BI Embedded** szolgáltatás, és interaktív jelentés beágyazása a Power BI SDK. Megtudhatja, hogyan: [Ismerkedés a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
-* Fejlesztői használhatja a Power bi-ban a képi megjelenítés keretrendszer saját alkalmazásban használható egyéni képi megjelenítések létrehozásához. Lásd: [kiterjesztése a Power BI egyéni látványelemek](https://powerbi.microsoft.com/custom-visuals/).
+* Teljesen interaktív jelentéseket a Power BI Desktop hello létrehozott egy új alkalmazás-tokent használó hitelesítés modell használatával saját alkalmazáson belül lehet beágyazni.
+* Független szoftvergyártók és az ügyfelek által használt alkalmazások összeállítása az ügyfelek használhatják hello **Power BI Embedded** szolgáltatás és a Power BI SDK, hello tooembed interaktív jelentéseket. toolearn című témakörben talál [Ismerkedés a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
+* Fejlesztői használhatja az alkalmazásba hello Power bi-ban a képi megjelenítés keretrendszer toocreate egyéni képi megjelenítések használható. Lásd: [kiterjesztése a Power BI egyéni látványelemek](https://powerbi.microsoft.com/custom-visuals/).
 
 ### <a name="see-also"></a>Lásd még:
 * [Ismerkedés a Microsoft Power BI Embedded](power-bi-embedded-get-started.md)

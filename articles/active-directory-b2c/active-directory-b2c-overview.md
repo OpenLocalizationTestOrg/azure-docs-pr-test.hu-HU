@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: saeedakhter-msft
-ms.openlocfilehash: 44d5d31d49c375c802a67511d1f962df20656559
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: abfd742e710458de3193dc5051de7818a112376c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-b2c-focus-on-your-app-let-us-worry-about-sign-up-and-sign-in"></a>Azure AD B2C: Összpontosítson az alkalmazására, a regisztráció és a bejelentkezés a mi feladatunk
 
-Az Azure AD B2C egy felhőbeli identitáskezelő megoldás a webes és mobilalkalmazásokhoz. Ez a globális szolgáltatás magas rendelkezésre állást biztosít, és akár több száz millió felhasználói identitásra is méretezhető. A vállalati szintű biztonsági platformra épülő Azure AD B2C védelmet nyújt alkalmazásainak, vállalatának és ügyfeleinek.
+Az Azure AD B2C egy felhőbeli identitáskezelő megoldás a webes és mobilalkalmazásokhoz. Egy magas rendelkezésre állású globális szolgáltatás, amely az identitások millióinak toohundreds méretezi. A vállalati szintű biztonsági platformra épülő Azure AD B2C védelmet nyújt alkalmazásainak, vállalatának és ügyfeleinek.
 
-Az Azure AD B2C minimális konfigurálással lehetővé teszi az alkalmazásnak a következők hitelesítését:
+Minimális konfiguráció esetén az Azure AD B2C lehetővé teszi, hogy az alkalmazás tooauthenticate:
 
 * **Közösségi fiókok** (például Facebook, Google, LinkedIn stb.)
 * **Vállalati fiókok** (nyílt szabványos protokollok, OpenID Connect vagy SAML használata esetén)
@@ -32,7 +32,7 @@ Az Azure AD B2C minimális konfigurálással lehetővé teszi az alkalmazásnak 
 
 ## <a name="get-started"></a>Bevezetés
 
-Először hozzon létre egy saját bérlőt az [Azure AD B2C-bérlő létrehozása](active-directory-b2c-get-started.md) című részben ismertetett lépések segítségével.
+Először leírt lépéseket hello segítségével a saját-bérlő beszerzése [az Azure AD B2C bérlő létrehozása](active-directory-b2c-get-started.md).
 
 Ezután válassza ki az alkalmazásfejlesztési forgatókönyvet:
 
@@ -45,38 +45,38 @@ Ezután válassza ki az alkalmazásfejlesztési forgatókönyvet:
 
 ## <a name="whats-new"></a>Újdonságok
 
-Keresse fel rendszeresen ezt a lapot, hiszen itt szerezhet tudomást az Azure Active Directory B2C-t érintő változásokról. A frissítésekről @AzureAD néven Twitter-üzeneteket is küldünk.
+Térjen vissza ide gyakran kapcsolatos változásokról toohello Azure Active Directory B2C toolearn. A frissítésekről @AzureAD néven Twitter-üzeneteket is küldünk.
 
-* Az általánosan elérhető „Beépített szabályzatok” funkció mellett mostantól az [„Egyéni szabályzatok”](active-directory-b2c-overview-custom.md) funkció is elérhető nyilvános előzetes verzióban.  Az egyéni szabályzatokat az identitáskezelő szakemberek használhatják, akik felügyelni szeretnék az identitáskezelési feladatok összetételét.
-* Mostantól nyilvános előzetes verzióban elérhető az [Access Token](https://azure.microsoft.com/en-us/blog/azure-ad-b2c-access-tokens-now-in-public-preview) funkció.
+* Ezenkívül túl "Beépített házirendek" (általánosan rendelkezésre álló), hello ["Egyéni házirendek"](active-directory-b2c-overview-custom.md) funkció mostantól nyilvános előzetes verziójában.  Egyéni házirendek olyan identitás tapasztalataikat hello összetételének szabályozhatják igénylő identitás szakemberek számára.
+* Hello [Access Token](https://azure.microsoft.com/en-us/blog/azure-ad-b2c-access-tokens-now-in-public-preview) funkció mostantól nyilvános előzetes verziójában.
 * Bejelentettük az [európai Azure AD B2C-könyvtárak](https://azure.microsoft.com/en-us/blog/azuread-b2c-ga-eu/) általános elérhetőségét.
 * Tekintse meg a [kódpéldák folyamatosan bővülő könyvtárát a Githubon](https://github.com/Azure-Samples?q=b2c)!
 
-## <a name="how-to-articles"></a>Útmutatók
+## <a name="how-tooarticles"></a>Hogyan-tooarticles
 
-Ismerje meg, hogyan használhatja az Azure Active Directory B2C egyes szolgáltatásait:
+Megtudhatja, hogyan toouse Azure Active Directory B2C funkciók:
 
 * [Facebook-](active-directory-b2c-setup-fb-app.md), [Google+-](active-directory-b2c-setup-goog-app.md), [Microsoft-](active-directory-b2c-setup-msa-app.md), [Amazon-](active-directory-b2c-setup-amzn-app.md) és [LinkedIn-](active-directory-b2c-setup-li-app.md)fiókok beállítása a felhasználók felé néző alkalmazásokban való használatra
-* [Egyéni attribútumok használata a felhasználókról való adatgyűjtéshez](active-directory-b2c-reference-custom-attr.md)
+* [Használja a toocollect egyéni attribútumok a felhasználókról](active-directory-b2c-reference-custom-attr.md).
 * [Az Azure Multi-Factor Authentication alkalmazása a felhasználók felé néző alkalmazásokban](active-directory-b2c-reference-mfa.md)
 * [Önkiszolgáló jelszóátállítás a felhasználók számára](active-directory-b2c-reference-sspr.md)
-* Az Azure Active Directory B2C által üzemeltetett, [felhasználók felé irányuló regisztrációs, bejelentkezési és más lapok megjelenésének és használatának testreszabása](active-directory-b2c-reference-ui-customization.md)
-* [Felhasználók programokon keresztüli létrehozása, beolvasása, frissítése és törlése az Azure Active Directory Graph API segítségével](active-directory-b2c-devquickstarts-graph-dotnet.md) az Azure Active Directory B2C-bérlőben
+* [Hello megjelenésének és arculatának előfizetési testreszabása, jelentkezzen az és más felhasználók felé néző lapok](active-directory-b2c-reference-ui-customization.md) Azure Active Directory B2C által üzemeltetett.
+* [Használjon hello Azure Active Directory Graph API tooprogrammatically létrehozása, olvasása, frissítése és törlése fogyasztók](active-directory-b2c-devquickstarts-graph-dotnet.md) az Azure Active Directory B2C-bérlőben.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi hivatkozások segítségével mélyebben is megismerheti a szolgáltatást:
+Ezek a hivatkozások hasznosak felfedezése hello szolgáltatás részletesen:
 
-* Tekintse meg az [Azure Active Directory B2C díjszabásával kapcsolatos információkat](https://azure.microsoft.com/pricing/details/active-directory-b2c/).
+* Lásd: hello [Azure Active Directory B2C díjszabási információit](https://azure.microsoft.com/pricing/details/active-directory-b2c/).
 * Tekintse át az Azure Active Directory B2C-vel kapcsolatos [kódmintákat](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory&term=b2c). 
-* Keressen hasznos információkat a Stack Overflow oldalon az [azure-ad-b2c](http://stackoverflow.com/questions/tagged/azure-ad-b2c) címke segítségével.
-* Ossza meg velünk gondolatait a [felhasználói visszajelzési webhelyen](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c). Szívesen veszünk minden visszajelzést.
-* Tekintse át az [Azure AD B2C protokollreferenciáját](active-directory-b2c-reference-protocols.md).
-* Tekintse át az [Azure AD B2C jogkivonat-referenciáját](active-directory-b2c-reference-tokens.md).
-* Olvassa el az [Azure Active Directory B2C-vel kapcsolatos gyakori kérdéseket](active-directory-b2c-faqs.md).
+* Segítség a Stack Overflow hello segítségével [azure-Active-b2c](http://stackoverflow.com/questions/tagged/azure-ad-b2c) címke.
+* A gondolatait biztosítják [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c), azt szeretnénk, ha toohear őket!
+* Felülvizsgálati hello [az Azure AD B2C protokoll referenciája](active-directory-b2c-reference-protocols.md).
+* Felülvizsgálati hello [az Azure AD B2C-jogkivonatok Referenciájából](active-directory-b2c-reference-tokens.md).
+* Olvasási hello [Azure Active Directory B2C – gyakori kérdések](active-directory-b2c-faqs.md).
 * [Az Azure Active Directory B2C-vel kapcsolatos fájltámogatási kérések](active-directory-b2c-support.md).
 
 ## <a name="get-security-updates-for-our-products"></a>Biztonsági frissítések termékeinkhez
 
-Javasoljuk, hogy kérjen értesítést a bekövetkező biztonsági incidensekről. Látogasson el [erre a lapra](https://technet.microsoft.com/security/dd252948), és fizessen elő a biztonsági tanácsadói riasztásokra.
+Javasoljuk, tooget értesítést a bekövetkező biztonsági incidensekről ellátogatva [ezen a lapon](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.
 

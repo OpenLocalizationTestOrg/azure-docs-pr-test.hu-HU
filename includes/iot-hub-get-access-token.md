@@ -1,7 +1,7 @@
 ## <a name="obtain-an-azure-resource-manager-token"></a>Az Azure Resource Manager jogkivonat beszerzése
-Az Azure Active Directory hitelesítenie kell a feladatokat hajt végre az Azure Resource Manager eszközzel. Az itt bemutatott példában jelszó-hitelesítést használ, a más megoldások lásd [kérelmek hitelesítéséhez az Azure Resource Manager][lnk-authenticate-arm].
+Az Azure Active Directory üdvözlő feladataival hello Azure Resource Manager eszközzel a kell hitelesítenie. hello az itt bemutatott példában jelszó-hitelesítést használ, más megoldások című [kérelmek hitelesítéséhez az Azure Resource Manager][lnk-authenticate-arm].
 
-1. Adja hozzá a következő kódot a **fő** metódus a Program.cs jogkivonatot beolvasni az Azure AD az alkalmazás-azonosító és jelszó használatával.
+1. Adja hozzá a következő kód toohello hello **fő** metódus a Program.cs tooretrieve jogkivonatot az Azure AD hello alkalmazás azonosító és jelszó használatával.
    
     ```
     var authContext = new AuthenticationContext(string.Format  
@@ -12,18 +12,18 @@ Az Azure Active Directory hitelesítenie kell a feladatokat hajt végre az Azure
    
     if (token == null)
     {
-      Console.WriteLine("Failed to obtain the token");
+      Console.WriteLine("Failed tooobtain hello token");
       return;
     }
     ```
-2. Hozzon létre egy **ResourceManagementClient** objektum, amely használja a jogkivonatot végén ad hozzá a következő kódot a **fő** módszert:
+2. Hozzon létre egy **ResourceManagementClient** objektumot, hogy használja a következő kód toohello vége hello hello hozzáadásával token hello **fő** módszert:
    
     ```
     var creds = new TokenCredentials(token.AccessToken);
     var client = new ResourceManagementClient(creds);
     client.SubscriptionId = subscriptionId;
     ```
-3. Hozzon létre, vagy az erőforráscsoportot használ mutató hivatkozás beszerzése:
+3. Hozzon létre, vagy szerezzen be egy hivatkozást, hello erőforráscsoportot használ:
    
     ```
     var rgResponse = client.ResourceGroups.CreateOrUpdate(rgName,

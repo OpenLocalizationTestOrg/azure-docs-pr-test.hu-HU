@@ -1,6 +1,6 @@
 ---
-title: "Privát Docker-tárolójegyzékek az Azure-ban | Microsoft Docs"
-description: "Bevezetés az Azure Container Registry szolgáltatásba, amely felhőalapú, felügyelt és magán Docker-beállításjegyzékeket biztosít."
+title: "aaaPrivate Docker-tároló nyilvántartó az Azure-ban |} Microsoft Docs"
+description: "Bevezetés toohello Azure tároló beállításjegyzék szolgáltatás felhőalapú, felügyelt, személyes Docker nyilvántartó biztosítása."
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -17,16 +17,16 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fd0356286be46f99fd9ab8eabc53256103038407
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f6edcf0bf947b7770ee0a4e4a5cfbf4ef8b7392a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-private-docker-container-registries"></a>A privát Docker-tárolójegyzékek bemutatása
+# <a name="introduction-tooprivate-docker-container-registries"></a>Bevezetés tooprivate Docker-tároló nyilvántartó
 
 
-Az Azure Container Registry egy felügyelt [Docker jegyzékszolgáltatás](https://docs.docker.com/registry/), amely a nyílt forráskódú Docker Registry 2.0 technológiára épül. Az Azure-beli tároló-beállításjegyzékek létrehozásával és fenntartásával tárolhatja és kezelheti privát [Docker-tárolóinak](https://www.docker.com/what-docker) rendszerképeit. Az Azure-beli tároló-beállításjegyzékeit meglévő tárolófejlesztési és üzembe helyezési folyamataival együtt használhatja, és közben számíthat a Docker közösség szakértelmére.
+Az Azure tároló beállításjegyzék egy felügyelt [Docker beállításjegyzék](https://docs.docker.com/registry/) szolgáltatáson hello nyílt forráskódú Docker beállításjegyzék 2.0. Hozzon létre és Azure-tárolót nyilvántartó toostore kezelheti és a saját [Docker-tároló](https://www.docker.com/what-docker) képek. A meglévő tárolóhoz fejlesztési és telepítési folyamatok tároló nyilvántartó az Azure-ban használjon, és megrajzolja a Docker közösségi szakértői hello törzsét.
 
 A Dockerrel és a tárolókkal kapcsolatos háttérinformációk:
 
@@ -36,40 +36,40 @@ A Dockerrel és a tárolókkal kapcsolatos háttérinformációk:
 
 
 ## <a name="use-cases"></a>Használati esetek
-Rendszerképek lekérése egy Azure-beli tároló-beállításjegyzékből különféle telepítési célokra:
+Lekéréses képek egy Azure-tárolót a beállításjegyzék toovarious telepítési célok:
 
 * **Méretezhető előkészítési rendszerek**, amelyek tárolóalapú alkalmazásokat kezelnek gazdagépfürtökben (többek között [DC/OS](https://docs.mesosphere.com/), [Docker Swarm](https://docs.docker.com/swarm/) és [Kubernetes](http://kubernetes.io/docs/)).
 * **Azure-szolgáltatások**, amelyek támogatják az alkalmazások építését és nagy mennyiségű alkalmazás futtatását, beleértve a [Container Service](../container-service/index.yml), az [App Service](/app-service/index.md), a [Batch](../batch/index.md), a [Service Fabric](/azure/service-fabric/) és egyéb szolgáltatásokat.
 
-A fejlesztők emellett le is küldhetik a tároló-beállításjegyzékeket a tárolófejlesztési munkafolyamatok részeként. Például megcélozhat egy tároló-beállításjegyzéket egy olyan folyamatos integrációs és üzembe helyezési eszközből, mint a [Visual Studio Team Services](https://www.visualstudio.com/docs/overview) vagy a [Jenkins](https://jenkins.io/).
+A fejlesztők is tolható tooa tároló beállításjegyzék tároló fejlesztési munkafolyamat részeként. Például megcélozhat egy tároló-beállításjegyzéket egy olyan folyamatos integrációs és üzembe helyezési eszközből, mint a [Visual Studio Team Services](https://www.visualstudio.com/docs/overview) vagy a [Jenkins](https://jenkins.io/).
 
 
 
 
 
 ## <a name="key-concepts"></a>Fő fogalmak
-* **Beállításjegyzék** – Létrehozhat egy vagy több tároló-beállításjegyzéket Azure-előfizetésében. Mindegyik beállításjegyzék egy, ugyanazon a helyen található standard Azure [Storage-fiókra](../storage/common/storage-introduction.md) épül. Hozzon létre egy beállításjegyzéket az üzemelő példányaival megegyező Azure-beli helyen, hogy kiaknázhassa tárolórendszerképei helyi, hálózatközeli tárolásának előnyeit. A teljes tartománynév `myregistry.azurecr.io` formában van.
+* **Beállításjegyzék** – Létrehozhat egy vagy több tároló-beállításjegyzéket Azure-előfizetésében. Egy szabványos Azure által támogatott minden egyes beállításjegyzék [tárfiók](../storage/common/storage-introduction.md) hello az ugyanazon a helyen. Ha létrehoz egy beállításjegyzék hello helyi, a hálózati zárja be a tároló képek tárolási előnyeit a központi telepítések azonos Azure-beli helyhez. Egy teljesen minősített beállításjegyzék neve van hello űrlap `myregistry.azurecr.io`.
 
-  A tároló-beállításjegyzékhez való [hozzáférés szabályozása](container-registry-authentication.md) egy, az Azure Active Directory által támogatott [egyszerű szolgáltatással](../active-directory/active-directory-application-objects.md) vagy a rendszergazdai fiókkal lehetséges. A beállításjegyzéken való hitelesítéshez futtassa a szabványos `docker login` parancsokat.
+  Ön [hozzáférés szabályozása](container-registry-authentication.md) tooa tároló beállításjegyzék használatával az Azure Active Directory-biztonsági [egyszerű](../active-directory/active-directory-application-objects.md) vagy egy megadott rendszergazdai fiókot. Standard futtatási hello `docker login` parancs tooauthenticate a beállításjegyzékbeli.
 
-* **Felügyelt beállításjegyzék** – A beállításjegyzékekhez további képességeket nyújtó szint három termékváltozatban – Basic, Standard és Premium – érhető el. A termékváltozatokban lévő rendszerképek az Azure Container Registry szolgáltatás által felügyelt tárfiókokban vannak tárolva, ami növeli a megbízhatóságot és új funkciókat tesz elérhetővé. Az új képességek közé tartozik a webhook-integráció, az Azure Active Directoryval való adattár-hitelesítés és a törlési funkció támogatása. A felhasználók a beállításjegyzékek létrehozásakor választhatnak a felügyelt beállításjegyzékek vagy a saját tárfiókjuk által támogatott beállításjegyzék létrehozása között.
+* **Felügyelt beállításjegyzék** – A beállításjegyzékekhez további képességeket nyújtó szint három termékváltozatban – Basic, Standard és Premium – érhető el. Ezek termékváltozatok hello képek hello Azure tároló nyilvántartó szolgáltatást, ami növeli a megbízhatóságot, és lehetővé teszi, hogy a új szolgáltatások által kezelt Storage-fiókok vannak tárolva. Az új képességek közé tartozik a webhook-integráció, az Azure Active Directoryval való adattár-hitelesítés és a törlési funkció támogatása. Felhasználóknál hello beállítás toochoose felügyelt nyilvántartó vagy toocreate között egy beállításjegyzék-kezelőkön létrehozásakor a saját Tárfiókok alapját.
 
-* **Tár** – A beállításjegyzékek egy vagy több tárat tartalmaznak, amelyek tárolórendszerképek csoportjai. Az Azure Container Registry támogatja a többszintű adattárnévtereket. Ezzel a szolgáltatással egy adott alkalmazáshoz vagy alkalmazások gyűjteményéhez kapcsolódó rendszerképek gyűjteményeit csoportba rendezheti az egyes fejlesztői és üzemeltetői csoportok számára. Példa:
+* **Tár** – A beállításjegyzékek egy vagy több tárat tartalmaznak, amelyek tárolórendszerképek csoportjai. Az Azure Container Registry támogatja a többszintű adattárnévtereket. Ez a funkció lehetővé teszi, hogy Ön toogroup gyűjtemények képek kapcsolódó tooa adott alkalmazás vagy alkalmazások toospecific fejlesztési vagy működési csapatok gyűjteménye. Példa:
 
   * A(z) `myregistry.azurecr.io/aspnetcore:1.0.1` egy, a teljes vállalatban elérhető rendszerképet jelöl
-  * A(z) `myregistry.azurecr.io/warrantydept/dotnet-build` egy .NET-alkalmazások felépítéséhez használt rendszerképet jelöl, amely a jótállási részlegen van megosztva
-  * A(z) `myregistry.azrecr.io/warrantydept/customersubmissions/web` egy, az ügyfélbeadványok alkalmazásban csoportosított webes rendszerképet jelöl, amely a jótállási részleg tulajdona
+  * `myregistry.azurecr.io/warrantydept/dotnet-build`jelölő kép használt közösen használt hello jótállás részleg toobuild .NET-alkalmazások
+  * `myregistry.azrecr.io/warrantydept/customersubmissions/web`egy webes kép alkalmazásban hello ügyfél jelentések hello jótállás részleg által birtokolt csoportosítva jelenti.
 
-* **Rendszerkép** – Az adattárakban tárolt egyes rendszerképek egy-egy Docker-tároló csak olvasható pillanatfelvételei. Az Azure tároló-beállításjegyzékek Windows- és Linux-rendszerképeket is tartalmazhatnak. A rendszerképek neveit Ön határozza meg mindegyik tárolókörnyezetben. A rendszerképek szabványos [Docker-parancsokkal](https://docs.docker.com/engine/reference/commandline/) küldhetők le egy adattárba, vagy hívhatók elő onnan.
+* **Rendszerkép** – Az adattárakban tárolt egyes rendszerképek egy-egy Docker-tároló csak olvasható pillanatfelvételei. Az Azure tároló-beállításjegyzékek Windows- és Linux-rendszerképeket is tartalmazhatnak. A rendszerképek neveit Ön határozza meg mindegyik tárolókörnyezetben. Használjon szabványos [Docker parancsok](https://docs.docker.com/engine/reference/commandline/) toopush képek tárház vagy lekéréses a tárházban lévő lemezkép.
 
-* **Tároló** – A tároló egy szoftveralkalmazást határoz meg annak függőségeivel együtt egy teljes fájlrendszerbe csomagolva, beleértve a kódot, a futtatókörnyezetet, a rendszereszközöket és a könyvtárakat. A Docker-tárolókat a tároló-beállításjegyzékekből előhívott Windows- vagy Linux-rendszerképek alapján futtathatja. Az egy gépen futó tárolók osztoznak az operációs rendszer kernelén. A Docker-tárolók teljes mértékben portolhatók az összes nagyobb Linux-disztribúcióra, Macre és Windowsra is.
+* **Tároló** – A tároló egy szoftveralkalmazást határoz meg annak függőségeivel együtt egy teljes fájlrendszerbe csomagolva, beleértve a kódot, a futtatókörnyezetet, a rendszereszközöket és a könyvtárakat. A Docker-tárolókat a tároló-beállításjegyzékekből előhívott Windows- vagy Linux-rendszerképek alapján futtathatja. Egyetlen számítógépen futó tárolók hello operációs rendszer kernel megosztani. Docker-tároló fő disztribúciókkal teljes mértékben hordozhatók tooall a Linux, Mac és a Windows rendszer.
 
 
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Tároló-beállításjegyzék létrehozása az Azure Portalon](container-registry-get-started-portal.md)
-* [Tároló beállításjegyzék létrehozása az Azure CLI-vel](container-registry-get-started-azure-cli.md)
-* [Az első rendszerkép leküldése a Docker parancssori felületével](container-registry-get-started-docker-cli.md)
-* Egy folyamatos integrációt és üzembe helyezést megvalósító munkafolyamat a Visual Studio Team Services, az Azure Container Service és az Azure Container Registry használatával történő kiépítéséhez lásd [ezt az oktatóanyagot](../container-service/dcos-swarm/container-service-docker-swarm-setup-ci-cd.md).
-* Ha privát Docker-beállításjegyzéket szeretne beállítani az Azure-ban (nyilvános végpont nélkül), tekintse meg [a saját privát Docker-beállításjegyzék Azure-beli üzembe helyezésével kapcsolatos](../virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md) cikket.
+* [Hozzon létre egy tároló beállításjegyzék hello Azure-portál használatával](container-registry-get-started-portal.md)
+* [Hozzon létre egy tároló beállításjegyzék hello Azure parancssori felület használatával](container-registry-get-started-azure-cli.md)
+* [Leküldéses az első kép hello Docker parancssori felület használatával](container-registry-get-started-docker-cli.md)
+* toobuild folyamatos integrációt és telepítési munkafolyamat Visual Studio Team Services, Azure Tárolószolgáltatás és az Azure-tároló beállításjegyzék, lásd: [ebben az oktatóanyagban](../container-service/dcos-swarm/container-service-docker-swarm-setup-ci-cd.md).
+* Ha azt szeretné, tooset saját Docker titkos beállításjegyzék az Azure-ban (nélkül egy nyilvános végpontot), lásd: [központi telepítése a saját személyes Docker beállításjegyzék Azure](../virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md).

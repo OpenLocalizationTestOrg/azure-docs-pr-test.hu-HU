@@ -1,6 +1,6 @@
 ---
-title: "Az adatszolgáltatás-ajánlat a piactér tesztelése |} Microsoft Docs"
-description: "Megtudhatja, hogyan tesztelheti az adatszolgáltatás-ajánlat a Azure piactérről."
+title: "az adatszolgáltatás hello Piactéri ajánlat aaaTesting |} Microsoft Docs"
+description: "Ismerje meg, hogyan tootest a adatszolgáltatás ajánlat hello Azure piactéren."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 56a8aad7484fed18b74200ffa7acf22363625a15
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b9c7027d8e0818b9bdee5cfca971bab25dd1959
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testing-your-data-service-offer-in-staging"></a>Az adatszolgáltatás ajánlatot átmeneti tesztelése
 > [!IMPORTANT]
-> **Jelenleg dolgozunk már nem bevezetési bármely új adatszolgáltatás közzétevők. Új dataservices nem get jóváhagyott listaelem.** Ha egy SaaS-üzleti AppSource a közzétenni kívánt alkalmazás további információt talál [Itt](https://appsource.microsoft.com/partners). Ha egy infrastruktúra-szolgáltatási alkalmazások vagy fejlesztői szolgáltatás szeretne közzétenni az Azure piactérről, további információt talál [Itt](https://azure.microsoft.com/marketplace/programs/certified/).
+> **Jelenleg dolgozunk már nem bevezetési bármely új adatszolgáltatás közzétevők. Új dataservices nem get jóváhagyott listaelem.** Ha rendelkezik a Szolgáltatottszoftver-üzleti alkalmazások toopublish szeretné a AppSource tekinthet meg további információkat [Itt](https://appsource.microsoft.com/partners). Ha egy infrastruktúra-szolgáltatási alkalmazások vagy fejlesztői szolgáltatást, akkor például az Azure piactér toopublish tekinthet meg további információkat [Itt](https://azure.microsoft.com/marketplace/programs/certified/).
 > 
 > 
 
-Az első két lépések végrehajtását követően [a Microsoft Developer-fiók létrehozása](marketplace-publishing-accounts-creation-registration.md) és [a szolgáltatás-ajánlatot létre közzétételi portálon](marketplace-publishing-data-service-creation.md) , hogy készen áll az ajánlatot az Azure-ban elérhetővé tétele Piactér. Ez a témakör végigvezeti az első, köztes, a "Tesztelés" nevű lépés
+Hello két lépést az befejezése után [a Microsoft Developer-fiók létrehozása](marketplace-publishing-accounts-creation-registration.md) és [a szolgáltatás-ajánlatot létre közzétételi portálon](marketplace-publishing-data-service-creation.md) , hogy készen áll az ajánlatot hello elérhetővé tétele Az Azure piactéren. Ez a témakör fog végigvezetik hello először, köztes, hívott "tesztelés" lépés
 
-Átmeneti azt jelenti, hogy a "védőfal", ahol tesztelése és funkciókat ellenőrzése előtt az üzemi környezetben privát ajánlatát telepítése. Az ajánlat volna egy felhasználói, akik már telepítették az átmeneti fog megjelenni.
+Átmeneti azt jelenti, hogy az ajánlatot "védőfal", ahol tesztelése és funkciókat ellenőrzése előtt az tooproduction privát telepítése. hello ajánlat tooa felhasználói, akik már telepítették volna átmeneti fog megjelenni.
 
-## <a name="step-1-pushing-your-offer-to-staging"></a>1. lépés A lefokozásra szolgáló átmeneti küldését
-Kérdez le az átmeneti tesznek lehetővé teszi, hogy az ajánlat tesztelni, mielőtt jövőbeli előfizetők számára elérhetővé válik.  Láthatja, hogyan ajánlatát fog jelenik meg, és azok az adatok előfizetés működik.  
+## <a name="step-1-pushing-your-offer-toostaging"></a>1. lépés Az ajánlat toostaging küldését
+Az ajánlat toostaging küldését teszi lehetővé tootest hello ajánlat ahhoz, hogy elérhető toofuture előfizetők.  Láthatja, hogyan ajánlatát fog jelenik meg, és azok tooyour adatok előfizetés működik.  
 
   ![rajz](media/marketplace-publishing-data-service-test-in-staging/step-1.1.png)
 
-1. Bejelentkezés a a [Portal közzététele](https://publish.windowsazure.com)
-2. Válassza ki **adatszolgáltatások** a bal oldali navigációs ablakban
-3. Válassza ki az átmeneti leküldése kívánt ajánlatot. A fenti képernyő jelenik meg.
-4. Kattintson a **leküldéses átmeneti** gombra.  
-5. Az ajánlat, amelyek végrehajtása előtt kérdez le, hogy átmeneti problémák vannak, ha megjelenik egy lista jelenik meg.  Javítsa ki ezeket az elemeket a lista összes elemére kattintva. Amikor végzett, az összes korrekció kattintson **átmeneti leküldése** újra gombra.
+1. Bejelentkezés a hello [közzétételi Portáljára](https://publish.windowsazure.com)
+2. Válassza ki **adatszolgáltatások** hello bal oldali navigációs ablakban
+3. Válassza ki a kívánt toopush toostaging ajánlatot. Hello képernyője felett jelenik meg.
+4. Kattintson a **tooStaging leküldéses** gombra.  
+5. Ha problémák vannak az hello ajánlat, amely szükséges toobe előzetes toopushing toostaging befejeződött, megjelenik egy lista jelenik meg.  Javítsa ki ezeket az elemeket hello lista összes elemére kattintva. Amikor végzett, az összes korrekció kattintson **tooStaging leküldéses** újra gombra.
 
-Ha nincsenek a ajánlat problémák látni fogja az alábbi előugró ablak.  
+Ha nincsenek a ajánlat problémák hello előugró ablakban az alábbi jelenik meg.  
 
-Ha még nem tervezési/nem jóvá az Azure portálon ajánlatot illesztésének (jelenleg korlátozott kapacitás), majd bezárja az előugró ablak.
+Ha még nem jóváhagyott toosurface az Azure portálon ajánlatot tervezési/nem (jelenleg korlátozott kapacitás), majd az imént Bezárás hello előugró ablak.
 
-A szolgáltatás teszteléséhez az Azure portálon (mellett a DataMarket portál), szüksége lesz egy Azure-előfizetési Azonosítót tesztelni.  Az előfizetés-azonosító azonosítja a fiókot, amelyet a rendszer engedélyezi-e az ajánlatot tesztelése.  
+tootest az adatok szolgáltatás az Azure portálon (a hozzáadása toohello DataMarket portál), szüksége lesz egy Azure-előfizetési Azonosítót tootest rendelkező.  Az előfizetés-azonosító hello fiók, amely azonosítja tootest ajánlatát engedélyezett.  
 
-Kivágás, és illessze be az előfizetés-Azonosítóval, és kattintson a pipa jelre a folytatáshoz.
+Kivágás, és illessze be az előfizetés-Azonosítóval, és kattintson a pipa toocontinue hello.
 
   ![rajz](media/marketplace-publishing-data-service-test-in-staging/step-1.2.png)
 
 > [!NOTE]
-> Ezek az Azure-előfizetések azonosítói csak tesztelési és átmeneti előkészítő a szükséges a [Azure felügyeleti portálon](https://manage.windowsazure.com). Ezek nem szükségesek tesztelése az Azure piactéren.
+> Ezek az Azure-előfizetések azonosítói csak tesztelési és átmeneti előkészítő hello a szükséges [Azure felügyeleti portálon](https://manage.windowsazure.com). Nincsenek szükséges tootest Azure piactéren.
 > 
 > 
 
-A következő képernyőn megjelenő mutat be, hogy a közzététel van folyamatban a "folyamatban" ikonra megjelenítésével jelzi ezt az alábbi sárga kiemelve. Kérdez le, hogy átmeneti közötti 10 – 15 percet vesz igénybe.  Ha hosszabb ideig tart, először frissítse a böngésző (nyomja le az F5 IE-ben).  Bizonyos ritkán előforduló esetekben, ahol az ajánlatot továbbra is küld egy óra múlva átmeneti, kattintson a lépjen kapcsolatba velünk csatolása ossza meg velünk, hogy probléma van.
+hello tovább a képernyőn megjelenő látható, hogy a közzététel lefolyása "folyamatban" hello megjelenítésével ikonja kiemelve az alábbi sárga. Toostaging küldését veszi too15 10 perc között.  Ha hosszabb ideig tart, először frissítse a böngésző (nyomja le az F5 IE-ben).  Bizonyos ritkán előforduló esetekben, ahol az ajánlat még küldését toostaging egy óra elteltével hello kattintson hello lépjen kapcsolatba velünk toolet arról, hogy probléma van a hivatkozásra.
 
   ![rajz](media/marketplace-publishing-data-service-test-in-staging/step-1.3.png)
 
-A "folyamatban" ikonra a leküldéses átmeneti befejeződésekor stop áthelyezése és az állapot lesz frissíti "Előkészített".  Most már készen áll az ajánlatot teszteléséhez.  
+Hello leküldéses tooStaging befejezéséről hello "folyamatban" ikonra a továbbiakban nem áthelyezése és túl "előkészített" hello állapota frissül.  Ön most már készen áll a tootest ajánlatát vannak.  
 
 ## <a name="step-2-test-your-staged-offer-in-datamarket"></a>2. lépés Az előkészített ajánlatot DataMarket tesztelése
-A szöveg a következő hivatkozásra kattintva **"tekintse meg a szolgáltatás következő kínálnak..."** megjelenítéséhez a képernyőn, hogy az előfizető megjelenik, amikor az ajánlat éles kerül, és DataMarket fog megjelenni.
+A következő hello szöveg hello hivatkozásra **"tekintse meg a szolgáltatás következő kínálnak..."** amely előfizető hello toodisplay üdvözlő képernyőt fog látni, amikor az ajánlat kerül tooproduction, és DataMarket fog megjelenni.
 
   ![rajz](media/marketplace-publishing-data-service-test-in-staging/step-2.2.png)
 
-Tesztelje, vagy ellenőrizze a 12 elemeket megjelölve, fent győződjön meg arról, minden emblémák, árak/tranzakciók, szöveg, képek, dokumentáció, és hivatkozások helyességét, és működik megfelelően.  Ez az egy időben teszt értékeket az ajánlat létrehozásakor megadott helyett tényleges értékeket biztosításához.
+Tesztelje, vagy ellenőrizze hello 12 elemeket jelölte meg fent tooensure összes emblémák, árak/tranzakciók, szöveg, képek, dokumentáció, és hivatkozások helyességét, és működik megfelelően.  Ez az egy időben tooensure teszt értékeket az ajánlat létrehozásakor megadott helyett tényleges értékeket.
 
 1. Az ajánlat embléma
 2. Az ajánlat neve
-3. Közzétevő neve/hivatkozásra a vállalati webhely
+3. Közzétevő neve/link tooyour vállalati webhely
 4. Az ajánlat kategóriák keresése
-5. Az ajánlat támogatási hivatkozás előfizetők segít
+5. Az ajánlat támogatási hivatkozás tooassist előfizetők
 6. Környezetfüggő leírást az előfizetéshez
 7. Az ajánlat terv végzett ügyfélellenőrzések számlázási részletek
-8. Végrehajtási kód csatolása
+8. Hivatkozás tooimplementation kódot
 9. Minta képek, mely ajánlat adatok használata
-10. Az ajánlat belül minden egyes szolgáltatás bemeneti/kimeneti metaadatok
+10. Bemeneti/kimeneti metaadatok hello ajánlat belül minden szolgáltatás
 11. Ajánlat használati feltételek
-12. Az ajánlat adatok megtekintése
+12. Hello ajánlat adatok megtekintése
 
-Végül ellenőrizze a szolgáltatás "MEGISMERKEDHET a DATASET" hivatkozásra kattintva a Datamarket keresztül fog működni.  Egy új ablakban nyílik meg az eszköz a közvetlen telepítésnek "Szolgáltatás Explorer", egy lekérdezés eredményét megtekintheti a szolgáltatásra.  Ebben az ablakban adja meg a szükséges paramétereket, és tekintse meg a szolgáltatás egy lekérdezés által megjelenített eredményekre.   Megjelenik a, az URL-címet a lekérdezésben.  
+Végül ellenőrizze hello szolgáltatás "MEGISMERKEDHET a DATASET" hello hivatkozásra kattintva hello Datamarket keresztül fog működni.  Egy új ablakban nyílik meg hello eszközben közvetlen telepítésnek "Szolgáltatás Explorer", a lekérdezés eredményeinek hello megtekintheti a szolgáltatásra.  Ebben az ablakban hello paraméterek szükséges, és tekintse meg a szolgáltatás egy lekérdezés által megjelenített hello eredményeket is megadhatja.   Megjelenik a, hello URL-címet a lekérdezésben.  
 
 > [!NOTE]
-> Győződjön meg arról, hogy tekintse át a szolgáltatás a lap tetején megjelenik a szöveges leírása.  És ha az ajánlatot több szolgáltatás hívja, kattintson a lap alján váltson át a következő szolgáltatás tekintse át és tesztelje a lappal.
+> Lehet, hogy tooreview hello szöveges leírása hello szolgáltatás hello tetején jelenik meg.  És ha az ajánlatot több szolgáltatás hívja, hello alsó tooswitch toohello tovább szolgáltatás tooreview hello fülek kattintson, és teszteléséhez.
 > 
 > 
 
 ## <a name="next-step"></a>Következő lépés
 Ha problémát tapasztal, és segítségre van szüksége megoldása kérdéseivel forduljon [Azure közzétevő támogatási csoportjához](http://go.microsoft.com/fwlink/?LinkId=272975).
 
-Ha-e meg, és készen állnak a közzététele az ajánlatot, olvassa el a [vonatkozó kérés jóváhagyása leküldéses üzemi](marketplace-publishing-push-to-production.md) dokumentációját.
+Ha elégedett, és készen áll a toopublish ajánlatát olvassa el az hello [vonatkozó kérés jóváhagyása tooPush tooProduction](marketplace-publishing-push-to-production.md) dokumentációját.
 
 ## <a name="see-also"></a>Lásd még:
-* [Első lépések: Hogyan ajánlat közzététele az Azure piactéren](marketplace-publishing-getting-started.md)
+* [Első lépések: Hogyan toopublish egy ajánlat toohello Azure piactéren](marketplace-publishing-getting-started.md)
 

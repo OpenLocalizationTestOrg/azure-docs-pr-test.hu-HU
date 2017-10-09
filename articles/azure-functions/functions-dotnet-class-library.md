@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazás használatával az Azure Functions |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre forgatókönyveket alkalmazás használható az Azure Functions"
+title: "aaaUsing .NET osztály az Azure Functions szalagtárak |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooauthor alkalmazás számára az Azure Functions használata"
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,42 +16,42 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: donnam
-ms.openlocfilehash: 0613bb96d3afb85ff7e684246b128e4eef518d23
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4e0fd954b554006ba1d8ecc47403a9fb1c67c3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-net-class-libraries-with-azure-functions"></a>Alkalmazás az Azure Functions használatával
 
-Parancsfájl fájlok mellett az Azure Functions támogatja egy osztálytár közzététele, egy vagy több funkciók végrehajtására. Azt javasoljuk, hogy használja a [Azure Functions Visual Studio 2017 eszközök](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/).
+Tooscript fájlok, az Azure Functions támogatja továbbá egy osztálytár közzététele, egy vagy több funkciók hello implementációja. Azt javasoljuk, hogy használja-e hello [Azure Functions Visual Studio 2017 eszközök](https://blogs.msdn.microsoft.com/webdev/2017/05/10/azure-function-tools-for-visual-studio-2017/).
 
 ## <a name="prerequisites"></a>Előfeltételek 
 
-Ez a cikk előfeltételei a következők:
+Ez a cikk a következő előfeltételek hello rendelkezik:
 
-- [A Visual Studio 2017 15.3 előzetes](https://www.visualstudio.com/vs/preview/). Telepítse a munkaterhelések **ASP.NET és a webes fejlesztési** és **Azure fejlesztési**.
+- [A Visual Studio 2017 15.3 előzetes](https://www.visualstudio.com/vs/preview/). Hello munkaterhelések telepítése **ASP.NET és a webes fejlesztési** és **Azure fejlesztési**.
 - [Az Azure-függvény Tools for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=AndrewBHall-MSFT.AzureFunctionToolsforVisualStudio2017)
 
 ## <a name="functions-class-library-project"></a>Functions hordozhatóosztálytár-projektjének
 
-A Visual Studio eszközből az Azure Functions új projekt létrehozása. Az új projekt sablont hoz létre a fájlok *host.json* és *local.settings.json*. Is [host.json az Azure Functions futásidejű beállításokat](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json). 
+A Visual Studio eszközből az Azure Functions új projekt létrehozása. hello új projektsablon hello fájlokat hozza létre *host.json* és *local.settings.json*. Is [host.json az Azure Functions futásidejű beállításokat](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json). 
 
-A fájl *local.settings.json* tárolja Alkalmazásbeállítások, a kapcsolati karakterláncok és az Azure Functions Core eszközök beállításait. A struktúra kapcsolatos további információkért lásd: [kódot és az Azure functions helyi tesztelése](functions-run-local.md#local-settings).
+hello fájl *local.settings.json* tárolja Alkalmazásbeállítások, a kapcsolati karakterláncok és az Azure Functions Core eszközök beállításait. toolearn struktúrájától kapcsolatos további információkért lásd: [kódot és az Azure functions helyi tesztelése](functions-run-local.md#local-settings).
 
 ### <a name="functionname-attribute"></a>Függvénynév attribútum
 
-Az attribútum [ `FunctionNameAttribute` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) jelöli meg a metódus egy függvény belépési pontként. Pontosan egy eseményindító együtt kell használni, és 0 vagy több bemeneti és kimeneti kötéseket.
+hello attribútum [ `FunctionNameAttribute` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/FunctionNameAttribute.cs) jelöli meg a metódus egy függvény belépési pontként. Pontosan egy eseményindító együtt kell használni, és 0 vagy több bemeneti és kimeneti kötéseket.
 
-### <a name="conversion-to-functionjson"></a>Function.json átalakítása
+### <a name="conversion-toofunctionjson"></a>Átalakítás toofunction.json
 
-Ha az Azure Functions projektek épül, akkor fájlt hoz létre `function.json` által definiált függvény névnek megfelelő könyvtárban `[FunctionName]`. Azt adja meg, eseményindítók és kötések és a projekt szerelvényfájl mutat.
+Ha az Azure Functions projektek épül, akkor fájlt hoz létre `function.json` által meghatározott hello függvény névnek megfelelő hello könyvtárban `[FunctionName]`. Eseményindítók és kötések és pontok toohello szerelvény projektfájlt határoz meg.
 
-Az átalakításhoz végzi el a NuGet-csomag [Microsoft\.NET\.Sdk\.funkciók](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions). A forrás álljon rendelkezésre a GitHub-tárházban [azure\-funkciók\-vs\-build\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk).
+Hello NuGet-csomagja végzi el az átalakításhoz [Microsoft\.NET\.Sdk\.funkciók](http://www.nuget.org/packages/Microsoft.NET.Sdk.Functions). hello forrás álljon rendelkezésre a GitHub-tárház hello [azure\-funkciók\-vs\-build\-sdk](https://github.com/Azure/azure-functions-vs-build-sdk).
 
 ## <a name="triggers-and-bindings"></a>Eseményindítók és kötések
 
-A következő táblázat az eseményindítók és kötések az Azure Functions hordozhatóosztálytár-projektjének elérhető. A következő névtérbeli attribútumok összes `Microsoft.Azure.WebJobs`.
+hello következő táblázatban hello eseményindítók és kötések, az Azure Functions hordozhatóosztálytár-projektjének elérhető. Minden attribútumokat hello névtérben `Microsoft.Azure.WebJobs`.
 
 | Kötelező | Attribútum | NuGet-csomag |
 |------   | ------    | ------        |
@@ -75,7 +75,7 @@ A következő táblázat az eseményindítók és kötések az Azure Functions h
 
 Az Azure Functions támogatja eseményindító, adjon meg, és kimeneti Azure Blob Storage tárolóban kötéseit. A kötés kifejezések és a metaadatok további információkért lásd: [Azure Functions Blob storage kötések](functions-bindings-storage-blob.md).
 
-Egy blob eseményindító van definiálva a `[BlobTrigger]` attribútum. Az attribútum használható `[StorageAccount]` a tárfiók egy teljes vagy a osztály által használt meghatározásához.
+Egy blob eseményindító van definiálva hello `[BlobTrigger]` attribútum. Használhatja a hello attribútum `[StorageAccount]` toodefine hello tárfiók egy teljes vagy a osztály által használt.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -86,7 +86,7 @@ public static void Run([BlobTrigger("samples-workitems/{name}")] Stream myBlob, 
 }
 ```
 
-BLOB bemeneti és kimeneti meghatározása a `[Blob]` attribútumot, jelszavat rendelkező egy `FileAccess` paraméter jelző olvasására vagy írására. Az alábbi példában egy blob eseményindító és blob kimeneti kötése.
+Hello segítségével meghatározott BLOB bemeneti és kimeneti `[Blob]` attribútumot, jelszavat rendelkező egy `FileAccess` paraméter jelző olvasására vagy írására. egy blob eseményindító a következő példában hello és blob kimeneti kötése.
 
 ```csharp
 [FunctionName("ResizeImage")]
@@ -122,9 +122,9 @@ private static Dictionary<ImageSize, (int, int)> imageDimensionsTable = new Dict
 
 ### <a name="cosmos-db-input-and-output-bindings"></a>Cosmos DB bemeneti és kimeneti kötések
 
-Az Azure Functions támogatja bemeneti és kimeneti Cosmos DB kötései. A Cosmos DB kötés funkciókkal kapcsolatos további tudnivalókért lásd: [Azure Functions Cosmos DB kötések](functions-bindings-documentdb.md).
+Az Azure Functions támogatja bemeneti és kimeneti Cosmos DB kötései. toolearn hello szolgáltatások hello Cosmos DB kötés, bővebben lásd: [Azure Functions Cosmos DB kötések](functions-bindings-documentdb.md).
 
-Kötési Cosmos DB dokumentumhoz, használja a attribútum `[DocumentDB]` a NuGet-csomagot a [Microsoft.Azure.WebJobs.Extensions.DocumentDB]. A következő példa a várólista eseményindító és a DocumentDB API kimeneti kötése van:
+toobind tooa Cosmos DB dokumentum hello attribútum használata a `[DocumentDB]` hello NuGet-csomagot a [Microsoft.Azure.WebJobs.Extensions.DocumentDB]. a következő példa hello várólista eseményindító és a DocumentDB API kimeneti kötése van:
 
 ```csharp
 [FunctionName("QueueToDocDB")]        
@@ -143,9 +143,9 @@ public static void Run(
 
 Az Azure Functions támogatja indítható el, és az Event Hubs kötései kimeneti. További információkért lásd: [Azure Functions Eseményközpont kötések](functions-bindings-event-hubs.md).
 
-A típusok `[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` és `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]` határozzák meg a NuGet-csomag [Microsoft.Azure.WebJobs.ServiceBus]. 
+hello típusok `[Microsoft.Azure.WebJobs.ServiceBus.EventHubTriggerAttribute]` és `[Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.ServiceBus]. 
 
-A következő példában egy Eseményközpontba eseményindító:
+hello következő példában egy Eseményközpontba eseményindító:
 
 ```csharp
 [FunctionName("EventHubTriggerCSharp")]
@@ -155,7 +155,7 @@ public static void Run([EventHubTrigger("samples-workitems", Connection = "Event
 }
 ```
 
-A következő példa egy Eseményközpontba kimeneti, a metódus visszatérési értéket használja, mint a kimeneti rendelkezik:
+hello következő például rendelkezik egy Eseményközpontot, kimeneti hello metódus visszatérési értéke hello kimenetként használata:
 
 ```csharp
 [FunctionName("EventHubOutput")]
@@ -171,9 +171,9 @@ public static string Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, Trac
 
 ### <a name="external-file-input-and-output"></a>Külső fájl bemeneti és kimeneti
 
-Az Azure Functions támogatja eseményindító, bemeneti és kimeneti kötések külső fájlokat, például a Google-meghajtó, a Dropbox és a onedrive vállalati verzió. További tudnivalókért lásd: [Azure Functions külső fájl kötések](functions-bindings-external-file.md). Az attribútumok `[ExternalFileTrigger]` és `[ExternalFile]` határozzák meg a NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.ApiHub].
+Az Azure Functions támogatja eseményindító, bemeneti és kimeneti kötések külső fájlokat, például a Google-meghajtó, a Dropbox és a onedrive vállalati verzió. több, lásd: toolearn [Azure Functions külső fájl kötések](functions-bindings-external-file.md). attribútumok hello `[ExternalFileTrigger]` és `[ExternalFile]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.Extensions.ApiHub].
 
-A következő C# példa bemutatja a külső fájlban bemeneti és kimeneti kötése. A kódot másolja a kimeneti fájl a bemeneti fájl.
+a következő példa C# hello mutatja be, külső fájlban bemeneti és kimeneti kötése. hello kódot másolja a bemeneti fájl toohello kimeneti fájl hello.
 
 ```csharp
 [StorageAccount("MyStorageConnection")]
@@ -192,7 +192,7 @@ public static string Run([QueueTrigger("myqueue-items")] string myQueueItem,
 
 ### <a name="http-and-webhooks"></a>HTTP és webhookok
 
-Használja a `HttpTrigger` attribútum használatával definiálja a egy HTTP-eseményindítóval vagy webhook. Ez az attribútum van megadva a NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.Http]. A jogosultsági szintet, a webhook típusa, az útvonal és a metódusok személyre is szabhatja. Az alábbi példa meghatározza a névtelen hitelesítés egy HTTP-eseményindítóval és _genericJson_ webhook típusa.
+Használjon hello `HttpTrigger` attribútum toodefine HTTP eseményindító vagy webhook. Ez az attribútum van megadva hello NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.Http]. Hello jogosultsági szintet, a webhook típusa, az útvonal és a módszerek személyre is szabhatja. hello alábbi példa meghatározza a névtelen hitelesítés egy HTTP-eseményindítóval és _genericJson_ webhook típusa.
 
 ```csharp
 [FunctionName("HttpTriggerCSharp")]
@@ -206,9 +206,9 @@ public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous,
 
 ### <a name="mobile-apps-input-and-output"></a>Mobile Apps bemeneti és kimeneti
 
-Azure Functions támogatja bemeneti és kimeneti Mobile Apps kötéseit. További tudnivalókért lásd: [Azure Functions Mobile Apps kötések](functions-bindings-mobile-apps.md). Az attribútum `[MobileTable]` definiálva van a NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.MobileApps].
+Azure Functions támogatja bemeneti és kimeneti Mobile Apps kötéseit. több, lásd: toolearn [Azure Functions Mobile Apps kötések](functions-bindings-mobile-apps.md). hello attribútum `[MobileTable]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.Extensions.MobileApps].
 
-A következő példa bemutatja a Mobile Apps kimeneti kötése:
+hello következő példa bemutatja a Mobile Apps kimeneti kötése:
 
 ```csharp
 [FunctionName("MobileAppsOutput")]        
@@ -223,7 +223,7 @@ public static object Run([QueueTrigger("myqueue-items", Connection = "AzureWebJo
 
 ### <a name="notification-hubs-output"></a>Notification Hubs kimeneti
 
-Az Azure Functions a Notification Hubs egy kimeneti kötése támogatja. További tudnivalókért lásd: [Azure Functions Notification Hub kimeneti kötése](functions-bindings-notification-hubs.md). Az attribútum `[NotificationHub]` definiálva van a NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.NotificationHubs].
+Az Azure Functions a Notification Hubs egy kimeneti kötése támogatja. több, lásd: toolearn [Azure Functions Notification Hub kimeneti kötése](functions-bindings-notification-hubs.md). hello attribútum `[NotificationHub]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.Extensions.NotificationHubs].
 
 <a name="queue"></a>
 
@@ -231,7 +231,7 @@ Az Azure Functions a Notification Hubs egy kimeneti kötése támogatja. Tovább
 
 Az Azure Functions támogatja aktiválhatja, és kimeneti Azure várólisták kötései. További információkért lásd: [Azure Functions a Queue Storage kötések](functions-bindings-storage-queue.md).
 
-A következő példa bemutatja, hogyan használható a függvény visszatérési típusa egy várólista kimeneti kötelező, segítségével a `[Queue]` attribútum. A várólista eseményindító megadásához használja a `[QueueTrigger]` attribútum.
+hello következő példa bemutatja, hogyan toouse hello függvény visszatérési-típus egy várólista kimeneti kötelező, segítségével hello `[Queue]` attribútum. egy várólista eseményindító toodefine hello használata `[QueueTrigger]` attribútum.
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -261,11 +261,11 @@ public static class QueueFunctions
 
 ### <a name="sendgrid-output"></a>SendGrid kimeneti
 
-Az Azure Functions támogatja a SendGrid kimeneti kötése programozott módon küld e-mailt. További tudnivalókért lásd: [Azure Functions SendGrid kötések](functions-bindings-sendgrid.md).
+Az Azure Functions támogatja a SendGrid kimeneti kötése programozott módon küld e-mailt. több, lásd: toolearn [Azure Functions SendGrid kötések](functions-bindings-sendgrid.md).
 
-Az attribútum `[SendGrid]` definiálva van a NuGet-csomag [Microsoft.Azure.WebJobs.Extensions.SendGrid].
+hello attribútum `[SendGrid]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.Extensions.SendGrid].
 
-Az alábbiakban egy példa Service Bus várólista eseményindítót használ, és a SendGrid kimeneti kötés használatával `SendGridMessage`:
+hello az alábbiakban látható példa Service Bus várólista eseményindítót használ, és a SendGrid kimeneti kötés használatával `SendGridMessage`:
 
 ```csharp
 [FunctionName("SendEmail")]
@@ -282,7 +282,7 @@ public static void Run(
 
 public class OutgoingEmail
 {
-    public string To { get; set; }
+    public string too{ get; set; }
     public string From { get; set; }
     public string Subject { get; set; }
     public string Body { get; set; }
@@ -295,9 +295,9 @@ public class OutgoingEmail
 
 Az Azure Functions támogatja aktiválhatja és Service Bus-üzenetsorok és témakörök kimeneti. Kötések konfigurálásával kapcsolatos további információkért lásd: [Azure Functions Service Bus kötések](functions-bindings-service-bus.md).
 
-Az attribútumok `[ServiceBusTrigger]` és `[ServiceBus]` határozzák meg a NuGet-csomag [Microsoft.Azure.WebJobs.ServiceBus]. 
+attribútumok hello `[ServiceBusTrigger]` és `[ServiceBus]` hello NuGet-csomag meghatározott [Microsoft.Azure.WebJobs.ServiceBus]. 
 
-A következő egy példa egy Service Bus várólista eseményindító:
+hello az alábbiakban látható egy példa egy Service Bus várólista eseményindító:
 
 ```csharp
 [FunctionName("ServiceBusQueueTriggerCSharp")]                    
@@ -307,7 +307,7 @@ public static void Run([ServiceBusTrigger("myqueue", AccessRights.Manage, Connec
 }
 ```
 
-A következő egy példa egy Service Bus: kötelező, segítségével a metódus visszatérési típusának kimeneteként:
+hello az alábbiakban látható egy példa egy Service Bus kimeneti kötése, hello metódus visszatérési típusának hello kimenetként használata:
 
 ```csharp
 [FunctionName("ServiceBusOutput")]
@@ -323,9 +323,9 @@ public static string ServiceBusOutput([HttpTrigger] dynamic input, TraceWriter l
 
 ### <a name="table-storage-input-and-output"></a>TABLE storage bemeneti és kimeneti
 
-Az Azure Functions támogatja bemeneti és kimeneti Azure Table storage kötései. További tudnivalókért lásd: [Azure Functions Table storage kötések](functions-bindings-storage-table.md).
+Az Azure Functions támogatja bemeneti és kimeneti Azure Table storage kötései. több, lásd: toolearn [Azure Functions Table storage kötések](functions-bindings-storage-table.md).
 
-A következő példa az osztály két függvényekkel, table storage kimeneti és a bemeneti kötések, amely tartalmazza. 
+hello következő példa egy olyan osztály, amelynek két funkciót, a table storage kimeneti és a bemeneti kötések, amely tartalmazza. 
 
 ```csharp
 [StorageAccount("AzureWebJobsStorage")]
@@ -346,7 +346,7 @@ public class TableStorage
         return new MyPoco { PartitionKey = "Http", RowKey = Guid.NewGuid().ToString(), Text = input.Text };
     }
 
-    // use the metadata parameter "queueTrigger" to bind the queue payload
+    // use hello metadata parameter "queueTrigger" toobind hello queue payload
     [FunctionName("TableInput")]
     public static void TableInput([QueueTrigger("table-items")] string input, [Table("MyTable", "Http", "{queueTrigger}")] MyPoco poco, TraceWriter log)
     {
@@ -360,11 +360,11 @@ public class TableStorage
 
 ### <a name="timer-trigger"></a>Időzítő eseményindító
 
-Az Azure Functions lehetővé teszi, hogy a kódra a függvény a meghatározott ütemezés szerint időzítő eseményindító-kötéssel rendelkezik. A kötés funkciókkal kapcsolatos további tudnivalókért lásd: [kód végrehajtását az Azure Functions](functions-bindings-timer.md).
+Az Azure Functions lehetővé teszi, hogy a kódra a függvény a meghatározott ütemezés szerint időzítő eseményindító-kötéssel rendelkezik. toolearn hello szolgáltatások hello kötés, bővebben lásd: [kód végrehajtását az Azure Functions](functions-bindings-timer.md).
 
-A felhasználási terv ütemezés a definiálhat egy [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression). Használata egy App Service-csomag, a TimeSpan karakterlánc is használható. 
+Hello fogyasztás terv, ütemezés a definiálhat egy [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression). Használata egy App Service-csomag, a TimeSpan karakterlánc is használható. 
 
-Az alábbi példa meghatározza, hogy egy időzítő indítófeltételt 5 percenként futtató:
+a következő példa hello meghatározza, hogy egy időzítő indítófeltételt 5 percenként futtató:
 
 ```csharp
 [FunctionName("TimerTriggerCSharp")]
@@ -378,11 +378,11 @@ public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWr
 
 ### <a name="twilio-output"></a>Twilio-kimenet
 
-Az Azure Functions támogatja a Twilio kimeneti kötések SMS szöveges üzenetek küldéséhez a funkciók engedélyezéséhez. További tudnivalókért lásd: [az SMS küldése az Azure Functions használatával a Twilio kimeneti kötése](functions-bindings-twilio.md). 
+Az Azure Functions támogatja Twilio kimeneti kötések tooenable a funkciók toosend SMS szöveges üzenetek. több, lásd: toolearn [az SMS küldése az Azure Functions használatával hello Twilio kimeneti kötése](functions-bindings-twilio.md). 
 
-Az attribútum `[TwilioSms]` a csomagban van definiálva [Microsoft.Azure.WebJobs.Extensions.Twilio].
+hello attribútum `[TwilioSms]` hello csomagban van definiálva [Microsoft.Azure.WebJobs.Extensions.Twilio].
 
-Az alábbi C# példában várólista eseményindító és a Twilio kimeneti kötése:
+hello alábbi C# példában várólista eseményindító és a Twilio kimeneti kötése:
 
 ```csharp
 [FunctionName("QueueTwilio")]
@@ -394,7 +394,7 @@ public static SMSMessage Run([QueueTrigger("myqueue-items", Connection = "AzureW
     var message = new SMSMessage()
     {
         Body = $"Hello {order["name"]}, thanks for your order!",
-        To = order["mobileNumber"].ToString()
+        too= order["mobileNumber"].ToString()
     };
 
     return message;
@@ -423,7 +423,7 @@ További információ az Azure Functions használatával a C# scripting, talál 
 [Microsoft.Azure.WebJobs.Extensions]: http://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions/2.1.0-beta1
 
 
-<!-- Links to source --> 
+<!-- Links toosource --> 
 [DocumentDBAttribute]: https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.DocumentDB/DocumentDBAttribute.cs
 [EventHubAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubAttribute.cs
 [EventHubTriggerAttribute]: https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubTriggerAttribute.cs

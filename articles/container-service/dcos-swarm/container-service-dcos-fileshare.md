@@ -1,6 +1,6 @@
 ---
-title: "Azure DC/OS-fürtről fájlmegosztásához |} Microsoft Docs"
-description: "Hozzon létre, és azt csatlakoztatja a fájlmegosztást a DC/OS fürtben, az Azure Tárolószolgáltatásban"
+title: "Azure DC/OS-fürtről aaaFile megosztást |} Microsoft Docs"
+description: "Hozzon létre, és csatlakoztassa egy fájl megosztási tooa DC/OS fürtben az Azure Tárolószolgáltatásban"
 services: container-service
 documentationcenter: 
 author: julienstroheker
@@ -17,29 +17,29 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: juliens
 ms.custom: mvc
-ms.openlocfilehash: 549b52bfb0a0268f754da26c6a374b267861f6d0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d18090d414a3e00202ccde442ac9b865d74f1e34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-mount-a-file-share-to-a-dcos-cluster"></a>Hozzon létre, és azt csatlakoztatja a fájlmegosztást a DC/OS-fürtről
-Ez az oktatóanyag fájlmegosztás létrehozása az Azure-ban, és csatlakoztassa azt minden ügynök és a DC/OS-fürt fő részletezi. Fájlmegosztás beállítása megkönnyíti a fürt, például a konfigurációs, access, naplók és egyéb fájlok megosztása. Ebben az oktatóanyagban a következő műveleteket foglalja:
+# <a name="create-and-mount-a-file-share-tooa-dcos-cluster"></a>Hozzon létre, és csatlakoztassa egy fájl megosztási tooa DC/OS-fürt
+Ez az oktatóanyag részletezi, hogyan toocreate fájl megosztása az Azure-ban, és csatlakoztassa azt minden ügynök és a fő hello DC/OS-fürtről. Fájlmegosztás beállítása teszi egyszerűbbé tooshare fájlok például konfigurációs hozzáférés, naplók vagy többet a fürtön. a következő feladatok hello ebben az oktatóanyagban töltik:
 
 > [!div class="checklist"]
 > * Azure-tárfiók létrehozása
 > * Fájlmegosztás létrehozása
-> * A DC/OS fürtben a megosztás csatlakoztatásához
+> * Hello megosztás hello DC/OS-fürt csatlakoztatása
 
-Az ACS DC/OS-fürt az oktatóanyag lépéseinek végrehajtásához van szüksége. Ha szükséges, [a parancsfájl minta](./../kubernetes/scripts/container-service-cli-deploy-dcos.md) hozhat létre egyet.
+Az ACS a DC/OS fürtben toocomplete hello lépések ebben az oktatóanyagban van szüksége. Ha szükséges, [a parancsfájl minta](./../kubernetes/scripts/container-service-cli-deploy-dcos.md) hozhat létre egyet.
 
-Az oktatóanyaghoz az Azure CLI 2.0.4-es vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ez az oktatóanyag szükséges hello Azure CLI 2.0.4 verzió vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooupgrade van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-a-file-share-on-microsoft-azure"></a>Fájlmegosztás létrehozása a Microsoft Azure
 
-Az Azure fájlmegosztások használ egy ACS DC/OS-fürtről, mielőtt a storage-fiókot és -fájlmegosztást kell létrehozni. Az alábbi parancsprogrammal hozzon létre a tároló és a fájlmegosztást. Frissítse a paraméterek thoes a környezetből.
+Az Azure fájlmegosztások használ egy ACS DC/OS-fürtről, mielőtt hello tárolási fiókot és -fájlmegosztást kell létrehozni. Futtassa a következő parancsfájl toocreate hello tárolási és -fájlmegosztást hello. Frissítse a hello paraméterek thoes a környezetből.
 
 ```azurecli-interactive
 # Change these four parameters
@@ -48,23 +48,23 @@ DCOS_PERS_RESOURCE_GROUP=myResourceGroup
 DCOS_PERS_LOCATION=eastus
 DCOS_PERS_SHARE_NAME=dcosshare
 
-# Create the storage account with the parameters
+# Create hello storage account with hello parameters
 az storage account create -n $DCOS_PERS_STORAGE_ACCOUNT_NAME -g $DCOS_PERS_RESOURCE_GROUP -l $DCOS_PERS_LOCATION --sku Standard_LRS
 
-# Export the connection string as an environment variable, this is used when creating the Azure file share
+# Export hello connection string as an environment variable, this is used when creating hello Azure file share
 export AZURE_STORAGE_CONNECTION_STRING=`az storage account show-connection-string -n $DCOS_PERS_STORAGE_ACCOUNT_NAME -g $DCOS_PERS_RESOURCE_GROUP -o tsv`
 
-# Create the share
+# Create hello share
 az storage share create -n $DCOS_PERS_SHARE_NAME
 ```
 
-## <a name="mount-the-share-in-your-cluster"></a>A fürt a megosztás csatlakoztatásához
+## <a name="mount-hello-share-in-your-cluster"></a>A fürt hello megosztás csatlakoztatása
 
-Ezután a fájlmegosztást kell csatlakoztatni kell a fürtben található összes virtuális gépen. Ez a feladat befejeződött, a cifs eszköz/protokoll használatával. A szalagcsatlakoztatási művelet manuálisan minden csomóponton, a fürt, vagy a fürt minden csomópontja elleni parancsfájl futtatásával is elvégezhető.
+A következő hello fájlmegosztás igények toobe csatlakoztatva a fürtben található összes virtuális gépen. A feladat befejezése hello cifs eszköz/protokoll használatával. hello csatlakoztatási művelet befejezéséhez manuálisan minden egyes csomóponton hello fürt, vagy egy parancsfájl futtatásával hello fürt minden csomópontja ellen.
 
-Ebben a példában két parancsfájlok, egy csatlakoztatása az Azure-fájlmegosztáshoz, és egy második, a parancsfájl futtatásához a DC/OS-fürt mindegyik csomópontján.
+Ebben a példában két parancsfájlok, egy toomount hello Azure fájl megosztást, és egy második toorun ezt a parancsfájlt hello DC/OS-fürt mindegyik csomópontján.
 
-Először a az Azure storage-fiók neve és elérési kulcs van szükség. Ezek az információk beolvasása a következő parancsok futtatásával. Jegyezze fel az egyes, ezeket az értékeket használni egy későbbi lépésben.
+Először hello az Azure storage-fiók neve és elérési kulcs van szükség. Futtassa a következő parancsok tooget hello ezt az információt. Jegyezze fel az egyes, ezeket az értékeket használni egy későbbi lépésben.
 
 Tárfiók nevét:
 
@@ -79,27 +79,27 @@ Tárfiók hozzáférési kulcsának:
 az storage account keys list --resource-group myResourceGroup --account-name $STORAGE_ACCT --query "[0].value" -o tsv
 ```
 
-A következő beolvasása a DC/OS fő teljes Tartománynevét, és tárolható egy változóban.
+A következő get hello hello DC/OS fő és tárolható egy változóban teljes Tartományneve.
 
 ```azurecli-interactive
 FQDN=$(az acs list --resource-group myResourceGroup --query "[0].masterProfile.fqdn" --output tsv)
 ```
 
-Másolja a titkos kulcsot a fő csomópont. Ez a kulcs létrehozásához szükséges egy ssh-kapcsolatot a fürt összes csomópontján. Frissítse a felhasználó nevét, ha egy nem alapértelmezett érték lett megadva, a fürt létrehozásakor. 
+A titkos kulcs toohello főcsomópont másolja. A kulcs mindenképpen szükséges toocreate egy ssh-kapcsolatot hello fürt összes csomópontján. Frissítse a hello felhasználói nevét, ha egy nem alapértelmezett érték lett megadva, amikor hello fürtöt hoz létre. 
 
 ```azurecli-interactive
 scp ~/.ssh/id_rsa azureuser@$FQDN:~/.ssh
 ```
 
-Az SSH-kapcsolat létrehozása a főkiszolgáló (vagy az első főkiszolgálójának) a DC/OS-alapú fürt. Frissítse a felhasználó nevét, ha egy nem alapértelmezett érték lett megadva, a fürt létrehozásakor.
+Hozzon létre egy SSH-kapcsolat hello főkiszolgáló (vagy hello első főkiszolgálójának) a DC/OS-alapú fürt. Frissítse a hello felhasználói nevét, ha egy nem alapértelmezett érték lett megadva, amikor hello fürtöt hoz létre.
 
 ```azurecli-interactive
 ssh azureuser@$FQDN
 ```
 
-Hozzon létre egy fájlt **cifsMount.sh**, és a következő tartalom másolása. 
+Hozzon létre egy fájlt **cifsMount.sh**, és a következő tartalom másolása hello bele. 
 
-Ez a parancsfájl Azure fájlmegosztás csatlakoztatásához használatos. Frissítés a `STORAGE_ACCT_NAME` és `ACCESS_KEY` korábban összegyűjtött változóit.
+Ez a parancsfájl használt toomount hello Azure fájlmegosztás. Frissítés hello `STORAGE_ACCT_NAME` és `ACCESS_KEY` korábban összegyűjtött változók hello adatokkal.
 
 ```azurecli-interactive
 #!/bin/bash
@@ -108,53 +108,53 @@ Ez a parancsfájl Azure fájlmegosztás csatlakoztatásához használatos. Friss
 STORAGE_ACCT_NAME=mystorageaccount
 ACCESS_KEY=mystorageaccountKey
 
-# Install the cifs utils, should be already installed
+# Install hello cifs utils, should be already installed
 sudo apt-get update && sudo apt-get -y install cifs-utils
 
-# Create the local folder that will contain our share
+# Create hello local folder that will contain our share
 if [ ! -d "/mnt/share/dcosshare" ]; then sudo mkdir -p "/mnt/share/dcosshare" ; fi
 
-# Mount the share under the previous local folder created
+# Mount hello share under hello previous local folder created
 sudo mount -t cifs //$STORAGE_ACCT_NAME.file.core.windows.net/dcosshare /mnt/share/dcosshare -o vers=3.0,username=$STORAGE_ACCT_NAME,password=$ACCESS_KEY,dir_mode=0777,file_mode=0777
 ```
-Hozzon létre egy második fájlt **getNodesRunScript.sh** és másolja az alábbiakat a fájlba. 
+Hozzon létre egy második fájlt **getNodesRunScript.sh** és a következő tartalom másolása hello hello fájlba. 
 
-Ez a parancsfájl deríti fel a fürt összes csomópontján, és majd futtatja a **cifsMount.sh** parancsfájl minden egyes a fájlmegosztás csatlakoztatásához.
+Ez a parancsfájl deríti fel a fürt összes csomópontján, és majd futtatja a hello **cifsMount.sh** parancsfájl toomount hello fájlmegosztást mindegyik.
 
 ```azurecli-interactive
 #!/bin/bash
 
-# Install jq used for the next command
+# Install jq used for hello next command
 sudo apt-get install jq -y
 
-# Get the IP address of each node using the mesos API and store it inside a file called nodes
+# Get hello IP address of each node using hello mesos API and store it inside a file called nodes
 curl http://leader.mesos:1050/system/health/v1/nodes | jq '.nodes[].host_ip' | sed 's/\"//g' | sed '/172/d' > nodes
 
-# From the previous file created, run our script to mount our share on each node
+# From hello previous file created, run our script toomount our share on each node
 cat nodes | while read line
 do
   ssh `whoami`@$line -o StrictHostKeyChecking=no < ./cifsMount.sh
   done
 ```
 
-Futtassa a parancsfájlt a fürt összes csomópontján Azure fájlmegosztás csatlakoztatásához.
+Futtassa a hello parancsfájl toomount hello Azure fájlmegosztás hello fürt összes csomópontján.
 
 ```azurecli-interactive
 sh ./getNodesRunScript.sh
 ```  
 
-A fájlmegosztás mostantól elérhető a `/mnt/share/dcosshare` a fürt mindegyik csomópontján.
+hello fájlmegosztás érhető el, `/mnt/share/dcosshare` hello fürt mindegyik csomópontján.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban az Azure fájlmegosztás lett elérhetővé tenni az a DC/OS fürtben, a lépéseket követve:
+Ebben az oktatóanyagban az Azure fájlmegosztás lett készült elérhető tooa DC/OS fürtben hello lépéseket követve:
 
 > [!div class="checklist"]
 > * Azure-tárfiók létrehozása
 > * Fájlmegosztás létrehozása
-> * A DC/OS fürtben a megosztás csatlakoztatásához
+> * Hello megosztás hello DC/OS-fürt csatlakoztatása
 
-A következő oktatóanyag további információt az Azure-tároló beállításjegyzék integrálása az Azure-ban a DC/OS továbblépés.  
+Előzetes toohello oktatóanyag következő toolearn kapcsolatos egy Azure-tároló beállításjegyzék integrálása a DC/OS az Azure-ban.  
 
 > [!div class="nextstepaction"]
 > [Terheléselosztási alkalmazások](container-service-dcos-acr.md)

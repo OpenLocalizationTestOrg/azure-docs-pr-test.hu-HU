@@ -1,6 +1,6 @@
 ---
-title: "A csoport az Azure Active Directoryban a tagokat kezelése |} Microsoft Docs"
-description: "Hogyan lehet hozzáadni vagy a felhasználók és eszközök eltávolítása egy csoportból az Azure Active Directoryban"
+title: a csoport az Azure Active Directoryban aaaManage hello tagok |} Microsoft Docs
+description: "Hogyan tooadd vagy a felhasználók és eszközök eltávolítása egy csoportból az Azure Active Directoryban"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,36 +15,36 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 044e88f95712e1cc5b5532f5492c78d711a8d858
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4cb16ee63828003da251423a04736f7174dd4896
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-group-membership-for-users-in-your-azure-active-directory-tenant"></a>Az Azure Active Directory-bérlő felhasználók csoport tagságának kezelésére
-Ez a cikk azt ismerteti, hogyan kezelheti az Azure Active Directory (Azure AD) csoport tagjai.
+Ez a cikk azt ismerteti, hogyan toomanage hello az Azure Active Directory (Azure AD) csoport tagjai.
 
-## <a name="how-do-i-find-the-members-and-manage-them"></a>Hogyan keresse meg a tagok és kezelheti azokat?
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** a szövegmezőbe, majd válassza ki azt a **Enter**.
+## <a name="how-do-i-find-hello-members-and-manage-them"></a>Hogyan hello tagok keresse meg és kezelheti azokat?
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **felhasználók és csoportok** hello szövegmezőbe, és válassza ki **Enter**.
 
    ![Nyitó felhasználók kezelése](./media/active-directory-groups-members-azure-portal/search-user-management.png)
-3. Az a **felhasználók és csoportok** panelen válassza **összes csoport**.
+3. A hello **felhasználók és csoportok** panelen válassza **összes csoport**.
 
-   ![A csoportok panel megnyitása](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
-4. Az a **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
-5. Az a **csoport - *groupname***  panelen válassza **tagok**.
+   ![Nyitó hello csoportok panelen](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
+4. A hello **felhasználók és csoportok – minden csoport** panelen válasszon ki egy csoportot.
+5. A hello **csoport - *groupname***  panelen válassza **tagok**.
 
-   ![A tagok panel megnyitása](./media/active-directory-groups-members-azure-portal/view-group-members.png)
-6. Tagok hozzáadása a csoporthoz, az a **csoport - tagok** panelen válassza **tagok hozzáadása**.
+   ![Nyitó hello tagok panel](./media/active-directory-groups-members-azure-portal/view-group-members.png)
+6. tooadd tagok toohello csoport, a hello **csoport - tagok** panelen válassza **tagok hozzáadása**.
 
    ![Tagok parancs hozzáadása](./media/active-directory-groups-members-azure-portal/add-group-members-command.png)
-7. Az a **tagok** panelen, jelölje be egy vagy több felhasználók vagy eszközök felvétele a csoportba, és válassza ki a **válasszon** gomb felvétele a csoportba a panel alján. A **felhasználói** mezőben szűrése a képernyőt a megfelelő felhasználó vagy eszköz nevek a bejegyzést. Nem helyettesítő karakterek használata engedélyezett, hogy a mezőben.
-8. Tagok eltávolítása a csoportból, a a **csoport - tagok** panelen válassza ki a megfelelő tag.
-9. Az a ***membername*** panelen válassza a **eltávolítása** parancsot, és erősítse meg választását a parancssorba.
+7. A hello **tagok** panelen, válasszon ki egy vagy több felhasználók vagy eszközök tooadd toohello csoport és select hello **válasszon** gomb hello panel tooadd hello alján őket toohello csoport. Hello **felhasználói** szűri hello megjelenítési megfelelő a bejegyzés tooany része egy felhasználó vagy eszköz nevét. Nem helyettesítő karakterek használata engedélyezett, hogy a mezőben.
+8. hello csoportból, a hello tooremove tagok **csoport - tagok** panelen válassza ki a megfelelő tag.
+9. A hello ***membername*** panelen, jelölje be hello **eltávolítása** parancsot, és erősítse meg választását hello a parancssorból.
 
    ![Távolítsa el a tagok parancs](./media/active-directory-groups-members-azure-portal/remove-group-members-command.png)
-10. Ha befejezte a csoport tagjainak módosítása, válassza ki a **mentése**.
+10. Amikor befejezte a hello csoport tagjainak módosítása, válassza ki a **mentése**.
 
 ## <a name="additional-information"></a>További információ
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.

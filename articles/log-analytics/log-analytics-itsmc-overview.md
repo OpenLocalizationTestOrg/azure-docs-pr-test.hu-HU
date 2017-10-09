@@ -1,6 +1,6 @@
 ---
-title: "Informatikai Management-összekötő az OMS szolgáltatással |} Microsoft Docs"
-description: "Az informatikai szolgáltatás Management-összekötő használatával központilag figyelheti és az OMS ITSM munkaelemek kezeléséhez, és gyorsan hárítson el minden problémát."
+title: "Service Management-összekötő az OMS aaaIT |} Microsoft Docs"
+description: "Hello IT Service Management-összekötő toocentrally figyelheti és hello OMS ITSM munkaelemek kezeléséhez, és gyorsan hárítson el minden problémát."
 services: log-analytics
 documentationcenter: 
 author: JYOTHIRMAISURI
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: v-jysur
-ms.openlocfilehash: 54974ef06efdae69ddbfa12b1ba9278b48b113d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 33ed5d432591b836eb41ba982c66c96f22879444
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="centrally-manage-itsm-work-items-using-it-service-management-connector-preview"></a>Központi kezelését az informatikai szolgáltatás Management Connector (előzetes verzió) segítségével ITSM munkaelemek
 
 ![Informatikai Management-összekötő szimbólum](./media/log-analytics-itsmc/itsmc-symbol.png)
 
-Segítségével az informatikai szolgáltatás Management Connector (ITSMC) az OMS szolgáltatáshoz központilag figyelheti és munkaelemek kezelésére a ITSM termékek vagy szolgáltatások között.
+Hello IT Service Management Connector (ITSMC) az OMS szolgáltatáshoz toocentrally monitor használata, és a munkaelemek kezelésére a ITSM termékek vagy szolgáltatások között.
 
-Az informatikai szolgáltatás Management-összekötő integrálható a meglévő IT Service Management (ITSM) termékek és szolgáltatások a OMS szolgáltatáshoz.  A megoldás rendelkezik kétirányú integrációt ITSM termékek vagy szolgáltatások, ahol azt az OMS-felhasználók lehetőséget biztosít az incidensek, a riasztásokat vagy a események létrehozása ITSM megoldásban. Az összekötő is különféle adatok, például incidensek és változáskérések ITSM megoldásból az OMS szolgáltatáshoz.
+hello IT Service Management-összekötő integrálható a meglévő IT Service Management (ITSM) termékek és szolgáltatások a OMS szolgáltatáshoz.  hello megoldás ITSM termékek vagy szolgáltatások kétirányú integrációt, akkor ha biztosít hello OMS felhasználók egy beállítás toocreate incidensek, a riasztásokat vagy a események ITSM megoldásban. hello összekötő is különféle adatok, például incidensek és változáskérések ITSM megoldásból az OMS szolgáltatáshoz.
 
 Az informatikai szolgáltatás Management-összekötő segítségével:
 
   - Központilag figyelheti és ITSM termékek vagy szolgáltatások a szervezetben használt munkaelemek kezelésére.
   - Hozzon létre ITSM munkaelemeket (például a riasztást, esemény, incidens) ITSM az OMS-riasztások és a keresési napló.
   - Olvassa el az incidensek és változáskérések az ITSM megoldásból, és vonatkozó naplóadatok Naplóelemzési munkaterület függ.
-  - Váratlan és szokatlan eseményeket található, és a megoldásukkal együtt, még mielőtt a végfelhasználók hívja, és jelentse őket a támogató szolgálathoz.
+  - Váratlan és szokatlan eseményeket található, és a megoldásukkal együtt, még mielőtt a végfelhasználók hello hívja, és jelentést őket toohello segélyszolgálat.
   - Munkahelyi elemek adatok importálása a Naplóelemzési és fő teljesítménymutatók (KPI) jelentések létrehozása.  Ezekre a jelentésekre, segítségével azonosíthatja, értékeléséhez és számos fontos elemek, például a kártevő szoftverek assessment működjön.
   - Részletesebben is elemezheti válogatott irányítópultok incidensek megtekintéséhez a változáskérésekhez és az érintett rendszerek.
-  - Végezzen hibaelhárítást a gyorsabb egyéb megoldások a Naplóelemzési munkaterület az adatok.
+  - Végezzen hibaelhárítást a gyorsabb egyéb megoldások hello Naplóelemzési munkaterület az adatok.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A ITSM munkaelemek importálása az OMS szolgáltatáshoz, a megoldás az informatikai szolgáltatás Management-összekötő az OMS a és a informatikai SM termék vagy szolgáltatás, amelyből importál a munkaelemek közötti kapcsolat szükséges.
+tooimport hello ITSM munkaelemek az OMS szolgáltatáshoz, hello megoldás hello IT Service Management-összekötő az hello OMS és hello IT Service Manager termék vagy szolgáltatás, ahonnan importálni hello munkaelemek közötti kapcsolat szükséges.
 
 
 ## <a name="configuration"></a>Konfiguráció
 
-Az informatikai szolgáltatás Management-összekötő megoldás felvétele a OMS munkahelyi tárhelyre, ismertetett eljárással [hozzáadni a Naplóelemzési megoldások a megoldások gyűjteményből](log-analytics-add-solutions.md).
+Hozzáadás hello IT Service Management-összekötő megoldás tooyour OMS munkaterület, ismertetett hello eljárással [hozzáadni a Naplóelemzési megoldásokat az hello megoldások gyűjtemény](log-analytics-add-solutions.md).
 
-Informatikai szolgáltatás Management-összekötő csempére a megoldások katalógusban látható módon:
+Informatikai szolgáltatás Management-összekötő csempe hello megoldások katalógusban látható módon:
 
 ![összekötő csempe](./media/log-analytics-itsmc/itsmc-solutions-tile.png)
 
-Sikeres hozzáadása után az IT Service Management-összekötő alatt megjelenik **OMS** > **beállítások** > **csatlakoztatott források.**
+Sikeres hozzáadása után megjelenik IT Service Management-összekötő a hello **OMS** > **beállítások** > **csatlakoztatott források.**
 
 ![Csatlakoztatott ITSMC](./media/log-analytics-itsmc/itsmc-overview-solution-in-connected-sources.png)
 
 > [!NOTE]
 
-> Alapértelmezés szerint az IT Service Management-összekötő 24 óránként egyszer a a kapcsolati adatok frissítése. Azonnal az esetleges módosításokat, vagy a Szolgáltatássablon-frissítések, amelyek miatt, a frissítés gombra, a kapcsolat mellett megjelenik a kapcsolati adatok frissítéséhez.
+> Alapértelmezés szerint a hello IT Service Management-összekötő frissítése 24 óránként egyszer a hello kapcsolati adatait. toorefresh a kapcsolat azonnal az esetleges módosításokat, vagy a sablon adatfrissítések, amelyek miatt, kattintson a hello frissítési gomb látható következő tooyour kapcsolat.
 
  ![ITSMC frissítése](./media/log-analytics-itsmc/itsmc-connection-refresh.png)
 
@@ -67,7 +67,7 @@ Ez a megoldás nem igényel minden olyan felügyeleti csomagot.
 
 ## <a name="connected-sources"></a>Összekapcsolt források
 
-A következő ITSM termékek vagy szolgáltatások az informatikai szolgáltatás Management-összekötő által támogatott:
+hello következő ITSM termékek és szolgáltatások által támogatott IT Service Management-összekötő hello:
 
 - [A System Center Service Manager (SCSM)](log-analytics-itsmc-connections.md#connect-system-center-service-manager-to-it-service-management-connector-in-oms)
 
@@ -77,21 +77,21 @@ A következő ITSM termékek vagy szolgáltatások az informatikai szolgáltatá
 
 - [Cherwell](log-analytics-itsmc-connections.md#connect-cherwell-to-it-service-management-connector-in-oms)
 
-## <a name="using-the-solution"></a>A megoldás használata
+## <a name="using-hello-solution"></a>Hello megoldással
 
-Az OMS informatikai Management-összekötő csatlakozott a ITSM szolgáltatással, miután a Naplóelemzési szolgáltatások kezdődik, az adatgyűjtés a csatlakoztatott ITSM termékek/szolgáltatás.
+Hello OMS IT Service Management-összekötő csatlakozott a ITSM szolgáltatással, miután a hello Naplóelemzési szolgáltatások hello adatgyűjtés csatlakoztatott hello ITSM termékek/szolgáltatás elindul.
 
 > [!NOTE]
 > - Log Analytics nevű eseményként is megjelenik megoldás IT Service Management-összekötő által importált adatok **ServiceDesk_CL**.
-- Esemény nevű mezőt tartalmaz **ServiceDeskWorkItemType_s**. amely a számot, incidens, vagy változáskérés, attól függően, hogy a munka elem szereplő adatok a **ServiceDesk_CL** esemény.
+- Esemény nevű mezőt tartalmaz **ServiceDeskWorkItemType_s**. amely incidens, mint az értékét vagy változáskérés is magával attól függően, hogy hello munkaelem hello szereplő adatok **ServiceDesk_CL** esemény.
 
 ## <a name="input-data"></a>A bemeneti adatok
-A munkaelemek ITSM termékek vagy szolgáltatások importálására.
+A munkaelemek hello ITSM termékek vagy szolgáltatások importálására.
 
-A következő információkat az informatikai szolgáltatás Management-összekötő által összegyűjtött adatok láthatók:
+hello alábbi információkat jeleníti meg hello IT Service Management-összekötő által összegyűjtött adatok:
 
 > [!NOTE]
-> Attól függően, hogy a munkaelem-típusban importálni a Log Analyticshez **ServiceDesk_CL** a következő mezőket tartalmazza:
+> Attól függően, hogy hello munkaelem típusa Log Analyticshez importálni **ServiceDesk_CL** hello a következő mezőket tartalmazza:
 
 **Munkaelem:** **incidensek**  
 ServiceDeskWorkItemType_s = "Esemény"
@@ -166,7 +166,7 @@ ServiceDeskWorkItemType_s = "módosítási kérés"
 | ResolvedBy_s | Megoldó|
 | ClosedBy_s  | Lezárt |
 | Source_s| Kapcsolat típusa |
-| AssignedTo_s | Rendelt  |
+| AssignedTo_s | Hozzárendelt túl |
 | Category_s | Kategória |
 | Title_s|  Rövid leírás |
 | Description_s|  Megjegyzések |
@@ -182,7 +182,7 @@ ServiceDeskWorkItemType_s = "módosítási kérés"
 | ServiceDeskId_s| Szám |
 | CreatedBy_s | Által kért |
 | ClosedBy_s | Lezárt |
-| AssignedTo_s | Rendelt  |
+| AssignedTo_s | Hozzárendelt túl |
 | Title_s|  Rövid leírás |
 | Type_s|  Típus |
 | Category_s|  Catgory |
@@ -206,83 +206,83 @@ ServiceDeskWorkItemType_s = "módosítási kérés"
 
 ## <a name="it-service-management-connector--integration-with-other-oms-solutions"></a>Informatikai szolgáltatás Management-összekötő – integrálva más OMS-megoldásokkal
 
-Informatikai szolgáltatás Management-összekötő jelenleg a Service Map megoldással való integráció.
+Informatikai szolgáltatás Management-összekötő jelenleg hello Szolgáltatástérkép megoldással való integráció.
 
-Szolgáltatástérkép automatikusan észleli az alkalmazás-összetevők, a Windows és Linux rendszerek, és leképezi a szolgáltatások közötti kommunikáció. Lehetővé teszi a kiszolgálók, úgy gondolja, hogy azok –, hogy a kritikus szolgáltatások összekapcsolt rendszerként. Szolgáltatástérkép jeleníti meg a kiszolgálók, a folyamatok közötti kapcsolatokat, és portok között bármely TCP-csatlakoztatott architektúra a konfiguráció nem szükséges másik ügynököt telepíteni. További információ: [Szolgáltatástérkép](../operations-management-suite/operations-management-suite-service-map.md).
+Szolgáltatástérkép automatikus felderítésére szolgál az alkalmazás-összetevők a Windows hello- és Linux rendszerek és a maps hello szolgáltatások közötti kommunikáció. Ez lehetővé teszi, hogy a kiszolgálók gondolunk, hogy –, hogy a kritikus szolgáltatások összekapcsolt rendszerként tooview. Szolgáltatástérkép jeleníti meg a kiszolgálók, a folyamatok közötti kapcsolatokat, és portok között bármely TCP-csatlakoztatott architektúra a konfiguráció nem szükséges másik ügynököt telepíteni. További információ: [Szolgáltatástérkép](../operations-management-suite/operations-management-suite-service-map.md).
 
-Ez az integráció tekintheti meg a szolgáltatás ügyfélszolgálati létrehozott elemek szerepelnek a ITSM megoldások a következő példában látható módon:
+Ez az integráció létrehozott hello ITSM megoldásokban, ahogy az alábbi példa hello hello szolgáltatás ügyfélszolgálati elemek tekintheti meg:
 
 ![Az integrált megoldást ](./media/log-analytics-itsmc/itsmc-overview-integrated-solutions.png)
 ## <a name="create-itsm-work-items-for-oms-alerts"></a>Az OMS-értesítések ITSM munkaelemek létrehozása
 
-Az OMS riasztásokhoz kapcsolódó munkaelemek a csatlakoztatott ITSM forrásokban is létrehozhat.  Ehhez használja az alábbi eljárást:
+Hello OMS riasztások létrehozhat társított munkaelemekhez kapcsolódó hello ITSM források.  toodo a, a következő eljárás használata hello:
 
-1. A **naplófájl-keresési** ablakban futtassa a napló keresési lekérdezés adatainak megtekintéséhez. Lekérdezés eredményei munkaelemek forrását.
-2. A **naplófájl-keresési**, kattintson a **riasztási** megnyitásához a **riasztási szabály hozzáadása** lap.
+1. A **naplófájl-keresési** ablakban futtassa egy keresési lekérdezés tooview naplóadatokat. Lekérdezés eredményei munkaelemek hello forrása.
+2. A **naplófájl-keresési**, kattintson a **riasztási** tooopen hello **riasztási szabály hozzáadása** lap.
 
     ![Napló elemzési képernyő](./media/log-analytics-itsmc/itsmc-work-items-for-oms-alerts.png)
 
-3. Az a **riasztási szabály hozzáadása** ablakban adja meg a szükséges adatokat a **neve**, **súlyossági**, **keresési lekérdezés**, és **riasztás feltételek** (ablakban/Időmetrika mérési).
+3. A hello **riasztási szabály hozzáadása** ablakban adja meg a szükséges hello adatait **neve**, **súlyossági**, **keresési lekérdezés**, és  **Riasztási feltételek** (ablakban/Időmetrika mérési).
 4. Válassza ki **Igen** a **ITSM műveletek**.
-5. Válassza ki a ITSM kapcsolatot a **válassza ki a kapcsolat** listája.
-6. Adja meg szükség szerint adatait.
-7. Minden naplóbejegyzés a riasztás egy külön munkaelemet létrehozásához válassza a **minden naplóbejegyzés egyes munkaelemek létrehozása** jelölőnégyzetet.
+5. Válassza ki a ITSM kapcsolatot a hello **válassza ki a kapcsolat** listája.
+6. Adja meg szükség szerint hello adatait.
+7. az egyes, a riasztások területen válassza hello naplóbejegyzések külön munkaelem toocreate **minden naplóbejegyzés egyes munkaelemek létrehozása** jelölőnégyzetet.
 
     Vagy
 
-    hagyja üresen ezt a jelölőnégyzetet, jelölje ki az ebben a riasztásban vonta naplóbejegyzések tetszőleges számú csak egy munkaelem létrehozásához.
+    a jelölőnégyzet nem kijelölt toocreate csak egy munkaelem naplóbejegyzések ebben a riasztásban vonta tetszőleges számú hagyja.
 
 7. Kattintson a **Save** (Mentés) gombra.
 
-Az OMS-riasztás alapján jön létre **riasztások**. A megfelelő ITSM kapcsolat munkaelemek jönnek létre, ha a megadott riasztás feltétel teljesül.
+hello OMS riasztás jön létre a **riasztások**. hello megfelelő ITSM kapcsolat munkahelyi elemek jönnek létre, ha hello megadott riasztás feltétel teljesül.
 
 ## <a name="create-itsm-work-items-from-oms-logs"></a>Az OMS-naplók ITSM munkaelemek létrehozása
 
-A csatlakoztatott ITSM forrásokban munkaelemek OMS napló keresési használatával hozhat létre. Ehhez használja az alábbi eljárást:
+A csatlakoztatott hello ITSM forrásokban OMS napló keresési segítségével létrehozható munkaelemek. toodo a, a következő eljárás használata hello:
 
-1. A **naplófájl-keresési**, keresse meg a szükséges adatokat, válassza ki a részleteket, és kattintson **létrehozás munkaelem**.
+1. A **naplófájl-keresési**, hello szükséges adatokat, válassza ki a hello részletes, és kattintson **létrehozás munkaelem**.
 
-    A **ITSM munkaelem létrehozása** ablak jelenik meg:
+    Hello **ITSM munkaelem létrehozása** ablak jelenik meg:
 
     ![Napló elemzési képernyő](media/log-analytics-itsmc/itsmc-work-items-from-oms-logs.png)
 
-2.   Adja hozzá a következő adatokat:
+2.   Adja hozzá a következő adatok hello:
 
-  - **Munkaelem-cím**: a munkaelem címét.
-  - **Munkaelem-leírás**: az új munkaelemhez leírását.
-  - **Érintett számítógép**: Ha a napló adatokat talált a számítógép nevét.
-  - **Válassza ki a kapcsolat**: ITSM kapcsolat, amelyben szeretné létrehozni ezt a munkaelemet.
+  - **Munkaelem-cím**: hello munkaelem címét.
+  - **Munkaelem-leírás**: hello új munkaelem leírását.
+  - **Érintett számítógép**: Ha a napló adatokat talált hello számítógép nevét.
+  - **Válassza ki a kapcsolat**: ITSM kapcsolat használni kívánt toocreate ezt a munkaelemet.
   - **Munkaelem**: típusú munkaelemet.
 
-3. Incidens egy meglévő munkaelemsablonból használatához kattintson **Igen** alatt **Generate elemet a sablon alapján** lehetőséget, majd kattintson a **létrehozása**.
+3. az incidensek egy meglévő munkaelemsablonból toouse kattintson **Igen** alatt **Generate munkaelem hello sablon alapján** lehetőséget, majd kattintson a **létrehozása**.
 
     Vagy
 
-    Kattintson a **nem** Ha lehetővé szeretné tenni a szabott értékekhez.
+    Kattintson a **nem** Ha azt szeretné, tooprovide a szabott értékekhez.
 
-4. Adja meg a megfelelő értékeket a **ügyfél típusú**, **hatás**, **sürgősség**, **kategória**, és **alkategória** szövegmezőbe, és kattintson **létrehozása**.
+4. Adja meg a megfelelő értékeket hello hello **ügyfél típusú**, **hatás**, **sürgősség**, **kategória**, és **Sub kategória**  szövegmezőbe, és kattintson **létrehozása**.
 
-A munkaelem létrejön a ITSM, amelyen megtekintheti az OMS Szolgáltatáshoz.
+hello munkaelem hello ITSM, amelyen megtekintheti a OMS létrejön.
 
 ## <a name="troubleshoot-itsm-connections-in-oms"></a>Az OMS ITSM kapcsolatok hibáinak elhárítása
-1.  Ha a csatlakoztatott adatforrás felhasználói Felületről való kapcsolódás sikertelen, és kapott a **hiba történt a kapcsolat mentése** üzenet, tegye a következőket:
- - A ServiceNow, Cherwell és Provance kapcsolatok esetén győződjön meg arról megfelelően a felhasználónév/jelszó és az ügyfél azonosítója/ügyfélkulcs az egyes kapcsolatok. Ha a probléma továbbra is fennáll, ellenőrizze, ha a megfelelő engedélyekkel rendelkezik a megfelelő ITSM termékben való csatlakozáshoz.
- - Esetén Service Manager alkalmazást, győződjön meg arról, hogy a webalkalmazás telepítése sikeres volt, és a hibrid kapcsolat jön létre. Ellenőrizze, hogy sikeresen létrejött a kapcsolat a helyszíni Service Manager számítógéppel, látogasson el a webes alkalmazás URL-CÍMÉT, hogy dokumentációjában ismertetett módon a [a hibrid kapcsolat](log-analytics-itsmc-connections.md#configure-the-hybrid-connection).
+1.  Ha a csatlakoztatott adatforrás felhasználói Felületről való kapcsolódás sikertelen, és elérhetővé hello **hiba történt a kapcsolat mentése** üzenet, a következő hello:
+ - A ServiceNow, Cherwell és Provance kapcsolatok esetén győződjön meg arról, helytelenül beírt hello felhasználónév/jelszó és az ügyfél azonosítója/titkos ügyfélkulcsot az egyes hello kapcsolatok. Ha hello hiba továbbra is fennáll, ellenőrizheti a hello megfelelő ITSM termék toomake hello kapcsolatban, hogy megfelelő jogosultságokkal.
+ - Esetén Service Manager alkalmazást, győződjön meg arról, hogy hello webalkalmazás telepítése sikeres volt, és a hibrid kapcsolat jön létre. tooverify hello kapcsolat sikeresen létrejött hello helyszíni Service Manager géppel, látogasson el a hello webes alkalmazás URL-címet adja meg a megfelelő hello hello dokumentációjának részletes [a hibrid kapcsolat](log-analytics-itsmc-connections.md#configure-the-hybrid-connection).
 
-2.  Ha ServiceNow adatait van nem történt-e szinkronizálva az OMS, győződjön meg arról, hogy a példány nem alszik ServiceNow. Ez egy kis ideig fordulhat elő, a ServiceNow fejlesztői esetekben üresjáratban. Más jelentse a hibát.
-3.  Ha riasztások elindulása esetén első az OMS Szolgáltatáshoz, de a munkaelemek nem ITSM első létrehozott termék vagy a konfigurációs elemek nem kapják meg a létrehozott/kapcsolódó munkaelemek vagy bármely általános információkat, tegye a következőket:
- -  Informatikai Management-összekötő megoldás az OMS-portálon is használható a beolvasandó, kapcsolatok munkahelyi elemek/számítógépek stb. A hibaüzenet a állapot paneljén kattintson, keresse meg **naplófájl-keresési** és a kapcsolat, amely rendelkezik a hiba részleteit a hibaüzenet megtekintéséhez.
- - közvetlenül megtekintheti a hibák/kapcsolatos információk a **naplófájl-keresési** használatával lapon *típus = ServiceDeskLog_CL*.
+2.  Ha a ServiceNow adatait van nem történt-e szinkronizálva az OMS, győződjön meg arról, hello ServiceNow példánynak nem alvó állapotban van. Ez egy kis ideig fordulhat elő, a hello ServiceNow fejlesztői esetben, ha inaktív. Más, a jelentés hello probléma.
+3.  Ha a riasztások elindulása esetén első az OMS Szolgáltatáshoz, azonban munkaelemek első létrehozása ITSM termék vagy a konfigurációs elemek nem kapják meg a létrehozott/kapcsolódó toowork elemek vagy bármely általános információkat, hello a következő:
+ -  Az OMS-portálon IT Service Management-összekötő megoldás lehet használt tooget, kapcsolatok munkahelyi elemek/számítógépek stb. Hello hibaüzenet hello állapot paneljén kattintson, keresse meg a túl**naplófájl-keresési** és hello kapcsolat hello hibát hello részletei használatával a hello hibaüzenet megtekintéséhez.
+ - közvetlenül megtekintheti hello hibák/kapcsolatos információkat a hello **naplófájl-keresési** használatával lapon *típus = ServiceDeskLog_CL*.
 
 ## <a name="troubleshoot-service-manager-web-app-deployment"></a>A Service Manager webes alkalmazás telepítésének hibaelhárítása
-1.  Esetén a webes alkalmazás központi telepítési problémák léptek fel győződjön meg arról, hogy megfelelő engedélyekkel rendelkezik az előfizetés említett erőforrások létrehozása vagy telepítése.
-2.  Ha **hivatkozás nincs beállítva egy objektumpéldányra objektum** futtatása során hibaüzenet jelenik meg a [parancsfájl](log-analytics-itsmc-service-manager-script.md) győződjön meg arról, hogy az érvényes értékek **felhasználói konfiguráció** a szakasz.
-3.  Ha Ön nem tudja létrehozni a service bus relay-névtér, győződjön meg arról, hogy a szükséges erőforrás-szolgáltató regisztrálva van az előfizetés. Ha nem regisztrált, manuálisan hozza létre az Azure portálról. Akkor is létrehozható közben [a hibrid kapcsolat létrehozása](log-analytics-itsmc-connections.md#configure-the-hybrid-connection) Azure-portálról.
+1.  Esetén a webes alkalmazás központi telepítési problémák léptek fel, ellenőrizze, hogy megfelelő engedélyekkel hello előfizetésben említett toocreate/telepítés erőforrásokat.
+2.  Ha **az objektumhivatkozás nincs beállítva az objektum tooinstance** hello futtatása során hibaüzenet jelenik meg [parancsfájl](log-analytics-itsmc-service-manager-script.md) győződjön meg arról, hogy az érvényes értékek **felhasználói konfiguráció**szakasz.
+3.  Ha nem toocreate service bus relay-névtér, győződjön meg arról, adott hello igényel hello előfizetés erőforrás-szolgáltató regisztrálva van. Ha nincs regisztrálva, manuálisan hozza létre a hello Azure-portálon. Akkor is létrehozható közben [hello hibrid kapcsolat létrehozása](log-analytics-itsmc-connections.md#configure-the-hybrid-connection) a hello Azure-portálon.
 
 
 ## <a name="contact-us"></a>Kapcsolat
 
-A lekérdezést vagy az informatikai szolgáltatás Management-összekötő visszajelzést, lépjen velünk kapcsolatba [ omsitsmfeedback@microsoft.com ](mailto:omsitsmfeedback@microsoft.com).
+A lekérdezést vagy hello IT Service Management-összekötő visszajelzést, lépjen velünk kapcsolatba [ omsitsmfeedback@microsoft.com ](mailto:omsitsmfeedback@microsoft.com).
 
 ## <a name="next-steps"></a>Következő lépések
-[ITSM termékek és szolgáltatások hozzáadása IT Service Management-összekötő](log-analytics-itsmc-connections.md).
+[Adja hozzá a ITSM termékek vagy szolgáltatások tooIT Management-összekötő](log-analytics-itsmc-connections.md).

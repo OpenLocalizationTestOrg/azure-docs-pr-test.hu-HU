@@ -1,6 +1,6 @@
 ---
-title: "Állítsa be a Azure Key Vault-végpontok közötti fő elforgatás és naplózási |} Microsoft Docs"
-description: "Ez az útmutató segítségével rendszerrel legfontosabb rotációjával és figyelési kulcstároló naplóit."
+title: "végpont kulcs elforgatás és naplózás mentése az Azure Key Vault aaaSet |} Microsoft Docs"
+description: "A kulcs elforgatás és figyelési kulcstároló naplóit beolvasása beállítása hogyan-tootoohelp használja."
 services: key-vault
 documentationcenter: 
 author: swgriffith
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: jodehavi;stgriffi
-ms.openlocfilehash: 38c342802ed687985ac6f84f5a590a1a0dcc6c6a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0c393873077e3b91adc9fa7f39128bc1b6abe26
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-azure-key-vault-with-end-to-end-key-rotation-and-auditing"></a>Az Azure Key Vault beállítása végpontok közötti kulcsforgatással és auditálással
 ## <a name="introduction"></a>Bevezetés
-Miután létrehozta a kulcstároló, lesz a kulcsok és titkos kulcsok tárolására, hogy a tároló használatának megkezdéséhez. Az alkalmazások többé nem kell megőrizni a kulcsok vagy titkos kulcsok, hanem fog kérni azokat a key vault a igény szerint. Ez lehetővé teszi a kulcsok és titkos kulcsok frissítése az alkalmazás, így akár a kulcs és a titkos felügyeleti lehetőségek széles választékát viselkedésének módosítása nélkül.
+Miután létrehozta a kulcstároló, a tároló toostore használ a kulcsok és titkos képes toostart fogja. Az alkalmazások toopersist már nem szükséges, a kulcsok vagy titkos, de ahelyett, hogy fog igényelni őket hello kulcs tárolóból igény szerint. Ez lehetővé teszi tooupdate kulcsok és titkos hello viselkedést az alkalmazás, így akár a kulcs és a titkos felügyeleti lehetőségek széles választékát befolyásolása nélkül.
 
-Ez a cikk végigvezeti az Azure Key Vault használatával használatával egy titkos kulcsot, ebben az esetben egy Azure Storage-fiók kulcsát, hogy egy alkalmazás egy példát. Is egy ütemezett elforgatási szögét a tárfiók kulcsa végrehajtását mutatja be. Végül azt végigvezeti bemutatjuk a kulcstartót naplók figyelésére, és riasztást, ha a nem várt kérelmeket.
+Ez a cikk útmutatást keresztül az Azure Key Vault toostore használatának példája egy titkos kulcsot, ebben az esetben egy Azure Storage-fiók kulcsot, amely egy alkalmazás használja. Is egy ütemezett elforgatási szögét a tárfiók kulcsa végrehajtását mutatja be. Végül azt végigvezeti az egyes hogyan toomonitor hello kulcstároló naplókat, és riasztást, ha a nem várt kérelmeket.
 
 > [!NOTE]
-> Ez az oktatóanyag nem célja a részletesen ismertetik a kulcstartót kezdeti telepítése. Ezekről a [Get started with Azure Key Vault](key-vault-get-started.md) (Bevezetés az Azure Key Vault használatába) című cikkben találhat információt. Platformfüggetlen parancssori felületre vonatkozó utasításokat lásd: [kezelése Key Vault parancssori felület használatával](key-vault-manage-with-cli2.md).
+> Ebben az oktatóanyagban nincs tervezett tooexplain részletes hello kezdeti telepítése a kulcstartót. Ezekről a [Get started with Azure Key Vault](key-vault-get-started.md) (Bevezetés az Azure Key Vault használatába) című cikkben találhat információt. Platformfüggetlen parancssori felületre vonatkozó utasításokat lásd: [kezelése Key Vault parancssori felület használatával](key-vault-manage-with-cli2.md).
 >
 >
 
 ## <a name="set-up-key-vault"></a>A Key Vault beállítása
-Ahhoz, hogy egy alkalmazás titkos kulcs lekérése a Key Vault, először hozzon létre a titkos kulcsot, és töltse fel azt a tárolóban. Ehhez az Azure PowerShell-munkamenet indítása, a következő paranccsal Azure-fiókjába történő bejelentkezés:
+egy alkalmazás titkos kulcs tooretrieve tooenable a kulcstároló, először hello titkos kulcs létrehozása, és töltse fel az tooyour tárolóban. Ehhez az Azure PowerShell-munkamenet indítása, aláírást tooyour az Azure-fiók a hello a következő parancsot:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Az előugró böngészőablakban adja meg az Azure-fiókja felhasználónevét és jelszavát. PowerShell beolvassa az összes olyan előfizetést, ehhez a fiókhoz társított. PowerShell alapértelmezés szerint az elsőt használja.
+Hello előugró böngészőablakban adja meg a Azure-fiók felhasználói nevét és jelszavát. PowerShell beolvassa az ehhez a fiókhoz társított összes hello-előfizetést. PowerShell használ hello alapértelmezés szerint az elsőt.
 
-Ha több előfizetéssel rendelkezik, akkor előfordulhat, hogy adja meg azt, amelyik a kulcstároló létrehozásához használt. Adja meg a fiókhoz tartozó előfizetések megjelenítéséhez a következőket:
+Ha több előfizetéssel rendelkezik, lehetséges, hogy a kulcstartót hello egyet, de a használt toocreate toospecify. Adja meg a fiókhoz toosee hello előfizetések a következő hello:
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Adja meg az előfizetést, a key vault naplózása akkor van társítva, írja be a következőt:
+Adja meg a toospecify hello előfizetés meg fogja naplózás, hello kulcstároló társított:
 
 ```powershell
 Set-AzureRmContext -SubscriptionId <subscriptionID>
@@ -58,56 +58,56 @@ Mivel ez a cikk bemutatja, hogy a tárfiók kulcsára, titkos kulcs tárolása, 
 Get-AzureRmStorageAccountKey -ResourceGroupName <resourceGroupName> -Name <storageAccountName>
 ```
 
-A titkos kulcsot (ebben az esetben a tárfiók kulcsára) beolvasása, után kell átalakítani, amely egy biztonságos karakterláncot, és majd titkos kulcs létrehozása ezt az értéket a key vaultban lévő.
+A titkos kulcsot (ebben az esetben a tárfiók kulcsára) beolvasása, után kell alakítani, hogy tooa biztonságos karakterláncot, és majd titkos kulcs létrehozása ezt az értéket a key vaultban lévő.
 
 ```powershell
 $secretvalue = ConvertTo-SecureString <storageAccountKey> -AsPlainText -Force
 
 Set-AzureKeyVaultSecret -VaultName <vaultName> -Name <secretName> -SecretValue $secretvalue
 ```
-Az URI a következő lekérése a létrehozott titkos kulcsot. Ez szolgál egy későbbi lépésben hívásakor a key vault beolvasni a titkos kulcsot. A következő PowerShell-parancsot, és jegyezze fel az azonosító értéket, a titkos URI:
+A következő beolvasása hello URI létrehozott hello titkos kulcsot. Ez szolgál egy későbbi lépésben a titkos kód hello kulcstároló tooretrieve hívásakor. Futtassa a következő PowerShell-paranccsal hello, és jegyezze fel a hello azonosító értéke, amely hello titkos kulcs URI:
 
 ```powershell
 Get-AzureKeyVaultSecret –VaultName <vaultName>
 ```
 
-## <a name="set-up-the-application"></a>Az alkalmazás beállítása
-Most, hogy a titkos kulcs tárolása, kód segítségével kérje le, majd használja. Ennek eléréséhez szükséges néhány lépésből áll. Az első és legfontosabb lépés az alkalmazás regisztrálása az Azure Active Directoryban, és majd közli az alkalmazással kapcsolatos adatok Key Vault, így engedélyezheti, hogy az alkalmazás érkező kérelmeket.
+## <a name="set-up-hello-application"></a>Hello alkalmazás beállítása
+Most, hogy a titkos kulcs tárolása, kód tooretrieve használja, és használja azt. Van néhány lépést szükséges tooachieve ez. hello első és legfontosabb lépés az alkalmazás regisztrálása az Azure Active Directoryban, majd közli az alkalmazással kapcsolatos adatok Key Vault, így engedélyezheti, hogy az alkalmazás érkező kérelmeket.
 
 > [!NOTE]
-> Az alkalmazás léteznie kell a azonos Azure Active Directory-bérlőt, mint a kulcstárolót.
+> Az alkalmazás kell létrehozni a hello ugyanaz, mint a kulcstárolót Azure Active Directory-bérlő.
 >
 >
 
-Nyissa meg az Azure Active Directory az alkalmazások fülre.
+Nyissa meg az Azure Active Directory hello alkalmazások lapon.
 
 ![Nyissa meg az alkalmazások az Azure Active Directoryban](./media/keyvault-keyrotation/AzureAD_Header.png)
 
-Válasszon **Hozzáadás** hozzáadhat egy alkalmazást az Azure Active Directoryban.
+Válasszon **hozzáadása** tooadd egy alkalmazás tooyour Azure Active Directoryban.
 
 ![A Hozzáadás gombra](./media/keyvault-keyrotation/Azure_AD_AddApp.png)
 
-Hagyja meg az alkalmazás típusú **WEB APPLICATION AND/OR WEB API** és nevezze el az alkalmazást.
+Alkalmazás típusú hello hagyja **WEB APPLICATION AND/OR WEB API** és nevezze el az alkalmazást.
 
-![Az alkalmazás neve](./media/keyvault-keyrotation/AzureAD_NewApp1.png)
+![Nevű hello alkalmazás](./media/keyvault-keyrotation/AzureAD_NewApp1.png)
 
 Adja meg az alkalmazás egy **SIGN-ON URL** és egy **APP ID URI**. Ebben a bemutatóban bármilyen is lehetnek, és azokat később módosítható, ha szükséges.
 
 ![Adja meg a szükséges URI-azonosítók](./media/keyvault-keyrotation/AzureAD_NewApp2.png)
 
-Az alkalmazás Azure Active Directoryba való hozzáadása után jut az alkalmazás oldalhoz. Kattintson a **konfigurálása** lapon, majd keresse meg és másolja a **ügyfél-azonosító** érték. Jegyezze fel a későbbi lépésekben az ügyfél-azonosító.
+Hello alkalmazás hozzáadása az Active Directory tooAzure után jut hello alkalmazás oldalhoz. Kattintson a hello **konfigurálása** lapon, majd keresse meg és hello másolása **ügyfél-azonosító** érték. Jegyezze fel az ügyfél-azonosító hello későbbi lépéseire.
 
-Ezt követően az alkalmazás kulcs létrehozása, az Azure Active Directory kommunikálhat. Ez alapján hozhat létre a **kulcsok** szakasz a **konfigurációs** fülre. Jegyezze fel az újonnan létrehozott kulcs használható az Azure Active Directory-alkalmazás egy későbbi lépésben.
+Ezt követően az alkalmazás kulcs létrehozása, az Azure Active Directory kommunikálhat. Ez a hello hozhat létre **kulcsok** hello szakasz **konfigurációs** lapon. Jegyezze fel az újonnan létrehozott hello kulcs használható az Azure Active Directory-alkalmazás egy későbbi lépésben.
 
 ![Az Azure Active Directory-alkalmazás kulcsok](./media/keyvault-keyrotation/Azure_AD_AppKeys.png)
 
-Mielőtt bármely hívást az alkalmazás a kulcstartót létrehozó, a a key vault kérje meg az alkalmazásról és az engedélyeket. A következő parancs időt vesz igénybe, a tároló neve és az ügyfél-Azonosítóját az Azure Active Directory-alkalmazás és biztosít **beolvasása** a kulcstartót eléréséhez alkalmazására.
+Mielőtt bármely hívásokat az alkalmazásból történő hello kulcstároló létrehozása, a hello kulcstároló kérje meg az alkalmazásról és az engedélyeket. hello következő parancsnak hello tároló nevére és hello ügyfél-azonosító az Azure Active Directory-alkalmazás és biztosít **beolvasása** hozzáférés tooyour kulcstároló hello alkalmazáshoz.
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName <vaultName> -ServicePrincipalName <clientIDfromAzureAD> -PermissionsToSecrets Get
 ```
 
-Ekkor készen áll az alkalmazás hívások készítéséhez. Az alkalmazás telepítenie kell a NuGet-csomagok működjön együtt az Azure Key Vault és az Azure Active Directory szükséges. A Visual Studio Csomagkezelő konzolról adja meg a következő parancsokat. : Ez a cikk írásának pillanatában a az Azure Active Directory-csomag nem 3.10.305231913, így előfordulhat, hogy a legújabb verzióra, és ennek megfelelően szeretné.
+Ekkor készen áll az alkalmazás hívások felépítése toostart áll. Az alkalmazás az Azure Key Vault és az Azure Active Directory hello NuGet-csomagok szükséges toointeract kell telepíteni. Hello Visual Studio Csomagkezelő konzolról adja meg a következő parancsok hello. : Ez a cikk hello írását, hello hello Azure Active Directory-csomag nem 3.10.305231913, így előfordulhat, hogy szeretné, hogy tooconfirm hello legújabb verzióját, és ennek megfelelően frissülnek.
 
 ```powershell
 Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 3.10.305231913
@@ -115,13 +115,13 @@ Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 3.10.30
 Install-Package Microsoft.Azure.KeyVault
 ```
 
-Az alkalmazás kódjában hozzon létre egy osztályt, ahhoz, hogy az az Azure Active Directory hitelesítési módszert. Ebben a példában az adott osztály neve **Utils**. Adja hozzá a következő using utasítást:
+Az alkalmazás kódjában hozzon létre egy osztály toohold hello hitelesítési módszer választása az Azure Active Directoryban. Ebben a példában az adott osztály neve **Utils**. Adja hozzá hello következő using utasítást:
 
 ```csharp
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 ```
 
-Ezután adja hozzá a következő metódust a JWT jogkivonat beolvasása az Azure Active Directoryból. A karbantartási követelmények érdemes lehet a kódolt karakterlánc-értékek áthelyezi a webhely vagy alkalmazás konfigurációja.
+Ezután adja hozzá a hello metódus tooretrieve hello JWT jogkivonat követően az Azure Active Directoryból. A karbantartási követelmények érdemes lehet az toomove hello kódolt karakterlánc-értékek be a webhely vagy alkalmazás konfigurációjának.
 
 ```csharp
 public async static Task<string> GetToken(string authority, string resource, string scope)
@@ -134,19 +134,19 @@ public async static Task<string> GetToken(string authority, string resource, str
 
     if (result == null)
 
-    throw new InvalidOperationException("Failed to obtain the JWT token");
+    throw new InvalidOperationException("Failed tooobtain hello JWT token");
 
     return result.AccessToken;
 }
 ```
 
-Adja hozzá a szükséges kódot Key Vault és a titkos érték beolvasása. Először hozzá kell adnia a következő using utasítást:
+Hello szükséges kód toocall Key Vault hozzáadása, és a titkos érték beolvasása. Először hozzá kell adnia hello következő using utasítást:
 
 ```csharp
 using Microsoft.Azure.KeyVault;
 ```
 
-Adja hozzá a metódushívások Key Vault meghívni, és a titkos kulcs beolvasása. Ez a módszer biztosítja a titkos kulcsot, amelyet az előző lépésben mentett URI. Vegye figyelembe a használatát a **GetToken** metódust a **Utils** korábban létrehozott osztályt.
+Hello metódus hívások tooinvoke Key Vault hozzáadása, és a titkos kulcs beolvasása. Ezzel a módszerrel hello titkos kulcs URI, amelyet az előző lépésben mentett adja meg. Vegye figyelembe a hello hello használata **GetToken** hello metódusnak **Utils** korábban létrehozott osztályt.
 
 ```csharp
 var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetToken));
@@ -154,16 +154,16 @@ var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetT
 var sec = kv.GetSecretAsync(<SecretID>).Result.Value;
 ```
 
-Az alkalmazás futtatásakor kell hitelesítéséhez az Azure Active Directory és a titkos érték majd lekérése az Azure Key Vault.
+Az alkalmazás futtatásakor meg kell most kell hitelesítő tooAzure Active Directory és majd a titkos értékének beolvasása az Azure Key Vault.
 
 ## <a name="key-rotation-using-azure-automation"></a>Azure Automation használatával kulcs Elforgatás
-Az Azure Key Vault titkok, tárolt értékek Elforgatás stratégiája megvalósításának számos lehetőség áll rendelkezésre. Titkos kulcsok forgatható el kézi folyamat részeként, akkor lehetséges, hogy forgatható programozott módon API-hívásokkal, vagy előfordulhat, hogy forgatható vállalja egy automatizálási parancsfájl. Ez a cikk alkalmazásában fog használni az Azure Automation szolgáltatásban, együttesen Azure PowerShell módosítása az Azure Storage-fiók hozzáférési kulcsot. A kulcstároló titkos kulcsot az új kulcs majd frissíti.
+Az Azure Key Vault titkok, tárolt értékek Elforgatás stratégiája megvalósításának számos lehetőség áll rendelkezésre. Titkos kulcsok forgatható el kézi folyamat részeként, akkor lehetséges, hogy forgatható programozott módon API-hívásokkal, vagy előfordulhat, hogy forgatható vállalja egy automatizálási parancsfájl. Ez a cikk hello célokra fogja az Azure PowerShell együttesen Azure Automation toochange egy Azure Storage-fiók hozzáférési kulcsot. A kulcstároló titkos kulcsot az új kulcs majd frissíti.
 
-Ahhoz, hogy az Azure Automation key vaultban lévő titkos értékeinek beállításához, ha előbb telepítik azokra az ügyfél-azonosító nevű AzureRunAsConnection, az Azure Automation-példányt létrejöttekor létrehozott. Válassza ezt az Azonosítót található **eszközök** az Azure Automation-példányból. Ott, válasszon **kapcsolatok** , és válassza a **AzureRunAsConnection** szolgáltatás elvet. Vegye figyelembe a **Alkalmazásazonosító**.
+tooallow Azure Automation tooset titkos értékek key vaultban lévő, ha előbb telepítik azokra hello ügyfél-azonosító AzureRunAsConnection, az Azure Automation-példányt létrejöttekor létrehozott nevű hello kapcsolathoz. Válassza ezt az Azonosítót található **eszközök** az Azure Automation-példányból. Ott, válasszon **kapcsolatok** , és válassza a hello **AzureRunAsConnection** szolgáltatás elvet. Jegyezze fel a hello **Alkalmazásazonosító**.
 
 ![Azure Automation ügyfél-azonosítója](./media/keyvault-keyrotation/Azure_Automation_ClientID.png)
 
-A **eszközök**, válassza a **modulok**. A **modulok**, jelölje be **gyűjtemény**, majd keresse meg és **importálási** frissített verziói, a következő modulok mindegyikének:
+A **eszközök**, válassza a **modulok**. A **modulok**, jelölje be **gyűjteménye**, majd keresse meg és **importálása** frissített verziói egyes hello modulok a következő:
 
     Azure
     Azure.Storage
@@ -174,30 +174,30 @@ A **eszközök**, válassza a **modulok**. A **modulok**, jelölje be **gyűjtem
 
 
 > [!NOTE]
-> Ez a cikk írásának pillanatában, csak a korábban feljegyzett modulok frissítenie kell a következő parancsfájl szükséges. Ha talál meg, hogy az automation-feladat meghiúsul, győződjön meg arról, hogy importálta-e minden szükséges modulokat és függőségi viszonyaikat.
+> : Ez a cikk hello írását, csak hello szükséges korábban feljegyzett modulok toobe frissítve a következő parancsfájl hello. Ha talál meg, hogy az automation-feladat meghiúsul, győződjön meg arról, hogy importálta-e minden szükséges modulokat és függőségi viszonyaikat.
 >
 >
 
-Után az alkalmazás-azonosítója az Azure Automation-kapcsolat, meg kell, hogy a kulcstároló, hogy az alkalmazás fér hozzá a tárolóban lévő titkos kulcsok frissítése. Ehhez a következő PowerShell-paranccsal:
+Az Azure Automation-kapcsolat beolvasása hello Alkalmazásazonosító, után kell közli a kulcstartót, hogy rendelkezik-e az alkalmazás hozzáférési tooupdate titkokat a tárolóban lévő állapottal. Ehhez a következő PowerShell-paranccsal hello:
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName <vaultName> -ServicePrincipalName <applicationIDfromAzureAutomation> -PermissionsToSecrets Set
 ```
 
-Válassza ki, **Runbookok** az Azure Automation-példány, és válassza ki azt a **hozzáadása egy Runbook**. Kattintson a **Gyors létrehozás** gombra. A runbook neve, és válassza ki **PowerShell** a runbook típusa. Lehetősége van a adjon meg egy leírást. Végezetül kattintson **létrehozása**.
+Válassza ki, **Runbookok** az Azure Automation-példány, és válassza ki azt a **hozzáadása egy Runbook**. Kattintson a **Gyors létrehozás** gombra. A runbook neve, és válassza ki **PowerShell** hello runbook típusként. Hello beállítás tooadd tartozik leírás. Végezetül kattintson **létrehozása**.
 
 ![Runbook létrehozása](./media/keyvault-keyrotation/Create_Runbook.png)
 
-Illessze be a következő PowerShell-parancsfájlt az új runbook szerkesztő ablaktáblában:
+Illessze be a következő PowerShell-parancsfájl hello szerkesztő ablaktáblában az új runbook hello:
 
 ```powershell
 $connectionName = "AzureRunAsConnection"
 try
 {
-    # Get the connection "AzureRunAsConnection "
+    # Get hello connection "AzureRunAsConnection "
     $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-    "Logging in to Azure..."
+    "Logging in tooAzure..."
     Add-AzureRmAccount `
         -ServicePrincipal `
         -TenantId $servicePrincipalConnection.TenantId `
@@ -216,13 +216,13 @@ catch {
     }
 }
 
-#Optionally you may set the following as parameters
+#Optionally you may set hello following as parameters
 $StorageAccountName = <storageAccountName>
 $RGName = <storageAccountResourceGroupName>
 $VaultName = <keyVaultName>
 $SecretName = <keyVaultSecretName>
 
-#Key name. For example key1 or key2 for the storage account
+#Key name. For example key1 or key2 for hello storage account
 New-AzureRmStorageAccountKey -ResourceGroupName $RGName -Name $StorageAccountName -KeyName "key2" -Verbose
 $SAKeys = Get-AzureRmStorageAccountKey -ResourceGroupName $RGName -Name $StorageAccountName
 
@@ -231,12 +231,12 @@ $secretvalue = ConvertTo-SecureString $SAKeys[1].Value -AsPlainText -Force
 $secret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $SecretName -SecretValue $secretvalue
 ```
 
-A szerkesztő ablaktáblában válassza **teszt ablaktábla** tesztelni a parancsfájlt. Miután a parancsfájl hiba nélkül fut-e, kijelölheti a **közzététel**, és újra a runbook konfigurációs ablaktábla a runbook ütemezés szerint alkalmazhatja.
+Hello szerkesztő ablaktáblán válassza ki a **teszt ablaktábla** tootest a parancsfájlt. Miután hello parancsfájl hiba nélkül fut-e, kijelölheti a **közzététel**, és vissza a hello runbook konfigurációs ablaktáblán hello runbook ütemezés szerint alkalmazhatja.
 
 ## <a name="key-vault-auditing-pipeline"></a>Key Vault naplózási folyamat
-Kulcstároló beállításakor bekapcsolása gyűjtött naplók a hozzáférési kérelmeket a key vault naplózását. Ezek a naplók a kijelölt Azure Storage-fiókban tárolt, és figyeli, és elemezni, lekért. Az alábbi forgatókönyvet az Azure functions az Azure logic apps és kulcstároló-naplók segítségével hozzon létre egy folyamatot, az e-mailt küld, ha olyan alkalmazás, amelynek felel meg az alkalmazás Azonosítóját a webalkalmazás titkok lekéri a tárolóból.
+Kulcstároló beállításakor bekapcsolása toocollect toohello kulcstároló hozzáférési kérelmet a naplófájlokat. Ezek a naplók a kijelölt Azure Storage-fiókban tárolt, és figyeli, és elemezni, lekért. hello alábbi forgatókönyvet használja az Azure functions, az Azure logic apps és kulcstároló naplózási naplók toocreate egy folyamat toosend egy e-mailt Ha egy alkalmazás, amely egyezik a hello Alkalmazásazonosító hello webalkalmazás olvas be a titkos kulcsok hello tárolóból.
 
-Először engedélyeznie kell a kulcstartót bejelentkezni. Ez a következő PowerShell-parancsok segítségével végezhető (teljes részletei láthatók [kulcs-tároló-naplózás](key-vault-logging.md)):
+Először engedélyeznie kell a kulcstartót bejelentkezni. Ez a következő PowerShell-parancsok hello keresztül végezhető (teljes részletei láthatók [kulcs-tároló-naplózás](key-vault-logging.md)):
 
 ```powershell
 $sa = New-AzureRmStorageAccount -ResourceGroupName <resourceGroupName> -Name <storageAccountName> -Type Standard\_LRS -Location 'East US'
@@ -244,29 +244,29 @@ $kv = Get-AzureRmKeyVault -VaultName '<vaultName>'
 Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
 ```
 
-Miután engedélyezve van, az auditnaplókat indítása a kijelölt tárfiókkal való gyűjtésére. Ezek a naplók tartalmaz arról, hogyan és mikor érhetők el a kulcstárolót, és ki eseményeket.
+Miután engedélyezve van, az auditnaplókat a kijelölt tárfiókkal hello gyűjtése start. Ezek a naplók tartalmaz arról, hogyan és mikor érhetők el a kulcstárolót, és ki eseményeket.
 
 > [!NOTE]
-> Elérheti a naplóinformációkat 10 perccel a kulcstartót művelet után. Általában lesz gyorsabb, mint ez.
+> Elérheti a naplóinformációkat hello kulcstároló műveletet követően 10 percet. Általában lesz gyorsabb, mint ez.
 >
 >
 
-A következő lépés [hozzon létre egy Azure Service Bus-üzenetsorba](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md). Ez azért, ahol a kulcstartót naplók leküldött vannak. Ha a naplózási üzenetek a várólista, a logikai alkalmazás felveszi őket, és kezelje őket. Hozzon létre egy service bus az alábbi lépéseket:
+következő lépés hello túl van[hozzon létre egy Azure Service Bus-üzenetsorba](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md). Ez azért, ahol a kulcstartót naplók leküldött vannak. Ha hello naplózási üzenetek hello várólista, a hello logikai alkalmazás felveszi őket, és kezelje őket. Hozzon létre egy service bus hello a következő lépéseket:
 
-1. Service Bus-névtér létrehozása (Ha már rendelkezik egy, a, folytassa a 2. lépésben használni kívánt).
-2. Keresse meg a service bus az Azure portálon, és válassza ki a létrehozandó sorból névteret.
-3. Válassza ki **új** válassza **Service Bus > várólista** , és írja be a szükséges adatokat.
-4. Válassza ki a Service Bus kapcsolati információit a névtér kiválasztásával, majd **kapcsolatadatok**. Szüksége lesz ezt az információt a következő szakaszban.
+1. Hozzon létre egy Service Bus-névtér (Ha már rendelkezik egy használni kívánt ehhez toouse kihagyása tooStep 2).
+2. Toohello a service bus hello Azure-portálon, és jelölje be hello névtér toocreate hello várólista a Tallózás gombra.
+3. Válassza ki **új** válassza **Service Bus > várólista** és írja be a szükséges hello adatait.
+4. Hello névtér kiválasztásával, majd válassza ki a hello Service Bus kapcsolati információit **kapcsolatadatok**. A következő szakaszban hello szüksége lesz ezt az információt.
 
-Ezt követően [egy Azure-függvény létrehozása](../azure-functions/functions-create-first-azure-function.md) kérdezze le a kulcstároló naplóit a tárfiókon belül, és új események átvételéhez. Ez lesz az ütemezés szerint kiváltó függvényt.
+Ezt követően [egy Azure-függvény létrehozása](../azure-functions/functions-create-first-azure-function.md) toopoll kulcstároló naplóit belül hello tárfiók, és új események átvételéhez. Ez lesz az ütemezés szerint kiváltó függvényt.
 
-Egy Azure-függvény létrehozása, válassza a **új > függvény App** az Azure portálon. A létrehozás során egy meglévő üzemeltetési terv használja, vagy hozzon létre egy újat. Sikerült is választhat dinamikus üzemeltetéséhez. További részleteket a beállításokat tartalmazó függvény található [az Azure Functions méretezése](../azure-functions/functions-scale.md).
+Válasszon egy Azure függvény toocreate **új > függvény App** hello Azure-portálon a. A létrehozás során egy meglévő üzemeltetési terv használja, vagy hozzon létre egy újat. Sikerült is választhat dinamikus üzemeltetéséhez. További részleteket a beállításokat tartalmazó függvény található [hogyan tooscale Azure Functions](../azure-functions/functions-scale.md).
 
-Az Azure-függvény létrehozása esetén keresse meg a fájlt, és válassza a időzítőt, függvény és C\#. Kattintson a **Ez a függvény létrehozása**.
+Hello Azure függvény létrehozásakor nyissa meg a tooit, és válasszon egy számlálót függvény és C\#. Kattintson a **Ez a függvény létrehozása**.
 
 ![Az Azure Functions lépések panelen](./media/keyvault-keyrotation/Azure_Functions_Start.png)
 
-Az a **Develop** lapra, cserélje ki a run.csx kódot a következőre:
+A hello **Develop** lapján hello következő hello run.csx kód cseréje:
 
 ```csharp
 #r "Newtonsoft.Json"
@@ -304,7 +304,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
         else
         {
             dtPrev = DateTime.UtcNow;
-            log.Verbose($"Sync point file didnt have a date. Setting to now.");
+            log.Verbose($"Sync point file didnt have a date. Setting toonow.");
         }
     }
 
@@ -339,7 +339,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
 
             dynamic dynJson = JsonConvert.DeserializeObject(text);
 
-            //required to order by time as they may not be in the file
+            //required tooorder by time as they may not be in hello file
             var results = ((IEnumerable<dynamic>) dynJson.records).OrderBy(p => p.time);
 
             foreach (var jsonItem in results)
@@ -350,7 +350,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
                     log.Info($"{jsonItem.ToString()}");
 
                     var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonItem.ToString()));
-                    //When sending to ServiceBus, use the payloadStream and set keeporiginal to true
+                    //When sending tooServiceBus, use hello payloadStream and set keeporiginal tootrue
                     var message = new BrokeredMessage(payloadStream, true);
                     sbClient.Send(message);
                     dtPrev = dt;
@@ -369,23 +369,23 @@ static string GetContainerSasUri(CloudBlockBlob blob)
     sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24);
     sasConstraints.Permissions = SharedAccessBlobPermissions.Read;
 
-    //Generate the shared access signature on the container, setting the constraints directly on the signature.
+    //Generate hello shared access signature on hello container, setting hello constraints directly on hello signature.
     string sasBlobToken = blob.GetSharedAccessSignature(sasConstraints);
 
-    //Return the URI string for the container, including the SAS token.
+    //Return hello URI string for hello container, including hello SAS token.
     return blob.Uri + sasBlobToken;
 }
 ```
 
 
 > [!NOTE]
-> Feltétlenül cserélje le a változók az előző kódban, hogy a tárfiók mutasson, amelyben a kulcstároló naplóit íródtak, a korábban létrehozott service bus és a megadott elérési útját a kulcstároló tárolási naplóit.
+> Győződjön meg arról, hogy tooreplace hello változók hello megelőző kód toopoint tooyour tárfiókot, ahol hello kulcstároló naplóit íródtak, korábban létrehozott hello a service bus, és a megadott elérési út toohello kulcstároló tárolási naplóit hello.
 >
 >
 
-A függvény szerzi be a legújabb naplófájl a tárfiók a kulcstároló naplóit írt ahol, a fájl legújabb események grabs és leküldéses értesítések azokat a Service Bus-üzenetsorba. Mivel egyetlen fájl rendelkezhet több esemény, készítsen egy sync.txt fájlt, amely a függvény is ellenőrzi, hogy az kivételezett be a legutóbbi esemény időbélyege meghatározásához. Ez biztosítja, hogy nem leküldéses ugyanarra az eseményre több alkalommal. Ez a sync.txt fájl tartalmazza a legutóbbi észlelt esemény időbélyeg. A naplókat, ha be van töltve, a megfelelő sorrendben biztosításához időbélyeg alapján rendezni kell.
+hello funkció szerzi be hello legújabb naplófájl hello tárfiókból ahol hello kulcstároló írja a naplókat, Markoló hello legújabb események a fájl, és a Service Bus-üzenetsorba tooa leküldéses értesítések. Mivel egyetlen fájl rendelkezhet több esemény, készítsen hello függvény is ellenőrzi, hogy az utolsó esemény hello mentése kivételezett toodetermine hello időbélyegzőjét sync.txt fájlt. Ez biztosítja, hogy nem leküldéses hello ugyanarra az eseményre több alkalommal. A sync.txt fájl tartalmaz egy Timestamp típusú hello utolsó észlelt esemény. hello naplókat, ha be van töltve, van rendezve toobe hello időbélyeg tooensure megfelelő sorrendben alapján.
 
-Ennél a függvénynél néhány további szalagtár szerepel, amely nem használható az Azure Functions mezőben kívüli jelenleg hivatkozik. Az ezen, igazolnia kell őket az Azure Functions NuGet segítségével. Válassza ki a **fájlok megtekintése** lehetőséget.
+Ennél a függvénynél néhány további szalagtár szerepel, amely nem használható az Azure Functions hello mezőben kívüli jelenleg hivatkozik. tooinclude ezeket, igazolnia kell, hogy az Azure Functions toopull őket NuGet segítségével. Válassza ki a hello **fájlok megtekintése** lehetőséget.
 
 ![Fájlok beállítás megtekintése](./media/keyvault-keyrotation/Azure_Functions_ViewFiles.png)
 
@@ -403,37 +403,37 @@ Ennél a függvénynél néhány további szalagtár szerepel, amely nem haszná
        }
     }
 ```
-Akkor **mentése**, az Azure Functions fogja letölteni a szükséges bináris fájlokat.
+Akkor **mentése**, az Azure Functions hello szükséges bináris fájlokat tölti le.
 
-Váltás a **integráció** lapon és a időzítő paraméter adjon meg egy beszédes nevet a a függvényen belül. Az előző kód hívása időzítő vár *myTimer*. Adjon meg egy [CRON-kifejezés](../app-service-web/web-sites-create-web-jobs.md#CreateScheduledCRON) az alábbiak szerint: 0 \* \* \* \* \* az időzítő, amely újraindítja a függvény percenként egyszer futtatásához.
+Váltás toohello **integráció** lapon és hello időzítő paraméter adjon meg egy kifejező nevet toouse hello függvényen belül. A kód megelőző hello, hello időzítő toobe nevű vár *myTimer*. Adjon meg egy [CRON-kifejezés](../app-service-web/web-sites-create-web-jobs.md#CreateScheduledCRON) az alábbiak szerint: 0 \* \* \* \* \* hello időzítő, amely újraindítja a hello függvény toorun percenként egyszer.
 
-Az azonos **integráció** lapon maradva adja hozzá a típusú bemeneti **Azure Blob Storage**. Ez a sync.txt fájlt, amely tartalmazza a tekintett meg, amelyet a függvény utolsó esemény időbélyegzője mutasson. Ez a paraméter neve függvényen belül elérhető lesz. Az előzőekben látható kód az Azure Blob Storage bemenetet vár a paraméternév megadásához, hogy *inputBlob*. Válassza ki a tárfiók, amelyben a sync.txt fájl lesznek tárolva (Ez lehet ugyanaz vagy egy másik tárolási fiókot). Az elérési út mezőben adja meg az elérési utat, ahol a formátum {container-name}/path/to/sync.txt a fájl él.
+A hello azonos **integráció** lapon maradva adja hozzá a hello típusú bemeneti **Azure Blob Storage**. Ez fog mutatni toohello sync.txt hello tekintett meg hello függvény utolsó esemény időbélyegzője hello tartalmazó fájlt. Ez lesz hello paraméter neve hello függvényen belül használható. A kód megelőző hello, hello Azure Blob Storage bemenetet vár hello paraméter neve toobe *inputBlob*. A tárfiók hello hello sync.txt fájl tároló választható (lehet hello ugyanabban vagy egy másik tárolási fiókot). Hello elérési út mezőbe adjon meg a hello elérési utat, ahol él, hello fájl hello formátum {container-name}/path/to/sync.txt.
 
-Adja hozzá egy kimeneti típusú *Azure Blob Storage* kimeneti. Ez a sync.txt fájl a bemeneti megadott mutasson. Ez használatos a függvény tekintett meg a legutóbbi esemény időbélyege írni. Az előzőekben látható kód várja a paraméter hívni *outputBlob*.
+Adja hozzá egy kimeneti hello típusú *Azure Blob Storage* kimeneti. Ez fog mutatni hello bemeneti megadott toohello sync.txt fájlt. Ez használható az hello függvény toowrite hello hello utolsó esemény időbélyegzője tekintett meg. hello előző kód várja a paraméter toobe nevű *outputBlob*.
 
-Ezen a ponton a függvény készen áll. Ügyeljen arra, hogy váltson vissza a **Develop** lapra, és mentse a kódot. A kimeneti ablakban, a fordítási hibákat, és ennek megfelelően javítsa ki azokat. Ha a kód lefordításához, majd a kódot kell most kell ellenőrzése a kulcstároló naplóit percenként és terjesztése a megadott Service Bus-üzenetsorba, új eseményeket. Minden alkalommal aktiválódik, a függvény a napló ablakban írja naplóinformációk kell megjelennie.
+Ezen a ponton hello függvény készen áll. Győződjön meg arról, hogy tooswitch hátsó toohello **Develop** lapra, és mentse a hello kódot. Hello kimeneti ablakban a fordítási hibákat, és ennek megfelelően javítsa ki azokat. Ha hello kód lefordításához, majd hello kódot kell most kell ellenőrzése hello kulcstároló naplóit percenként és bármely új események alakzatot hello küldését definiált Service Bus-üzenetsorba. Minden indításakor lefutnak hello függvény toohello napló ablakban kiírni naplózási információkat kell megjelennie.
 
 ### <a name="azure-logic-app"></a>Az Azure Logic Apps alkalmazást
-Ezután létre kell hoznia egy Azure logikai alkalmazás, amely szerzi be az eseményeket, hogy a funkció a Service Bus-üzenetsorba való küldését, elemzi a tartalom és elküld egy e-mailt az egyező feltétel alapján.
+Ezután létre kell hoznia egy Azure logikai alkalmazás, amely szerzi be, hogy hello függvény küldését toohello Service Bus-üzenetsorba, hello tartalom elemzi és elküld egy e-mailt az egyező feltétel alapján hello események.
 
-[Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) címen **új > logikai alkalmazás**.
+[Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md) címen túl**új > logikai alkalmazás**.
 
-A logikai alkalmazás létrehozása után keresse meg a fájlt, és válassza a **szerkesztése**. A logic app szerkesztő választható **Service Bus-üzenetsorba** a várólista csatlakozni a Service Bus hitelesítő adataival.
+Hello logikai alkalmazás létrehozása után nyissa meg a tooit, és válassza a **szerkesztése**. Hello logic app szerkesztő választható **Service Bus-üzenetsorba** , és írja be a Service Bus-hitelesítő adatok tooconnect azt toohello várólista.
 
 ![Az Azure Logic App Service Bus](./media/keyvault-keyrotation/Azure_LogicApp_ServiceBus.png)
 
-Ezután válasszon **feltétel hozzáadása**. A feltételben a speciális szerkesztő váltson, és írja be a következő kódot, a tényleges APP_ID webalkalmazás APP_ID cseréje:
+Ezután válasszon **feltétel hozzáadása**. Hello állapotban speciális szerkesztő toohello váltson, és adja meg a következő kódot, APP_ID lecserélését hello hello webalkalmazás tényleges APP_ID:
 
 ```
 @equals('<APP_ID>', json(decodeBase64(triggerBody()['ContentData']))['identity']['claim']['appid'])
 ```
 
-Ebben a kifejezésben lényegében adja vissza **hamis** Ha a *appid* a bejövő eseménytől (amely a Service Bus üzenet törzsét) nincs a *appid* az alkalmazás.
+Ebben a kifejezésben lényegében adja vissza **hamis** Ha hello *appid* hello a beérkező eseményhez (amely hello Service Bus üzenet törzsét hello) nem hello *appid* a hello alkalmazás.
 
 Ezután hozzon létre egy műveletet a **Ha nem, nem történik semmi**.
 
 ![Az Azure Logic App művelet kiválasztását.](./media/keyvault-keyrotation/Azure_LogicApp_Condition.png)
 
-A művelet kiválasztása **Office 365 – e-mail küldése**. Hozzon létre egy e-mailek küldése, ha a megadott feltétel visszaadja a mezők kitöltése **hamis**. Ha nem rendelkezik Office 365, sikerült megnézzük alternatívák ugyanaz az eredmény elérése érdekében.
+Hello a művelethez, válassza ki a **Office 365 – e-mail küldése**. Töltse ki hello mezők toocreate egy e-mailek toosend hello meghatározva feltétel beolvasása **hamis**. Ha nem rendelkezik Office 365, sikerült tekinti meg alternatív tooachieve hello ugyanazokat az eredményeket.
 
-Ezen a ponton rendelkezik egy teljes körű folyamatot, amely új kulcstartó naplók percenként egyszer keresi. Úgy találja, az új naplók az leküldi a service bus-üzenetsorba. A logikai alkalmazás lesz kiváltva, ha egy új üzenet a várólistában lévő fájljai. Ha a *appid* belül az esemény nem egyezik meg az alkalmazás Azonosítóját a hívó alkalmazás, egy e-mailt küld.
+Ezen a ponton rendelkezik egy záró tooend-feldolgozási folyamat percenként egyszer új kulcstartó naplók keresi. Ez a leküldéses értesítések tooa service bus-üzenetsorba megtalálja az új naplók. hello logikai alkalmazás lesz kiváltva, ha egy új üzenet fájljai a hello várólista. Ha hello *appid* belül hello esemény nem egyezik meg az alkalmazás hívása hello hello Alkalmazásazonosító, egy e-mailt küld.

@@ -1,6 +1,6 @@
 ---
-title: "Azure RemoteApp a sávszélesség-használat becsléséhez |} Microsoft Docs"
-description: "További tudnivalók az Azure RemoteApp-gyűjtemények és az alkalmazások számára a hálózati sávszélesség-követelményekkel."
+title: "Azure RemoteApp a sávszélesség-használat aaaEstimate |} Microsoft Docs"
+description: "További tudnivalók hello sávszélességre van szükség az Azure RemoteApp-gyűjtemények és az alkalmazások számára."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,34 +13,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 16b4ba974742d004ea02e3f83e522b9c43f2ef40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 675ee82f26ddb46a3bb3e0ee95ed397e4064e45f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="estimate-azure-remoteapp-network-bandwidth-usage"></a>Azure RemoteApp a sávszélesség-használat becslése
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Az Azure RemoteApp a távoli asztal protokoll (RDP) használ az Azure felhőben és a felhasználók futó alkalmazások közötti kommunikációhoz. A cikkben néhány alapvető útmutatók használatával, hogy hálózati használat becsléséhez és potenciálisan kiértékelheti az Azure RemoteApp felhasználónként sávszélesség-használat.
+Az Azure RemoteApp hello Remote Desktop Protocol (RDP) toocommunicate hello Azure felhőben és a felhasználók a futó alkalmazások közötti használja. Ez a cikk néhány alapvető hasznos útmutatást ad a tooestimate használható hálózati használati és potenciálisan kiértékelheti az Azure RemoteApp felhasználónként sávszélesség-használat.
 
-Sávszélesség-használat felhasználónként becslése rendkívül bonyolult, és több alkalmazás egyidejűleg futó többfeladatos forgatókönyvekben ahol hatással lehet a alkalmazások egymás teljesítmény a hálózati sávszélesség iránti igény igényel. Még a távoli asztali ügyfél (például a Mac-ügyfél és a HTML5-ügyfél) típusú különböző sávszélesség eredményekhez vezethet. Kezelheti a komplikációk keresztül, azt fogja felosztása a használati forgatókönyvek a számos gyakori kategóriája valós forgatókönyv replikálásához. (Ha a valós forgatókönyvvel, természetesen kategóriák vegyesen és a felhasználó által eltér.)
+Sávszélesség-használat felhasználónként becslése rendkívül bonyolult, és több alkalmazás egyidejűleg futó többfeladatos forgatókönyvekben ahol hatással lehet a alkalmazások egymás teljesítmény a hálózati sávszélesség iránti igény igényel. Távoli asztali ügyfél (például a Mac-ügyfél és a HTML5-ügyfél) még akkor is, hello típusú toodifferent sávszélesség eredmények vezethet. Ezek komplikációk előrehalad toohelp, azt fogja felosztása hello használati forgatókönyvek hello közös kategóriák tooreplicate valós forgatókönyv számos. (Ha hello valós forgatókönyvvel, természetesen kategóriák vegyesen és a felhasználó által eltér.)
 
-Azt a további - Ugrás előtt vegye figyelembe, hogy azt feltételezzük, hogy RDP biztosít kiváló felületet jó legtöbb használati forgatókönyvek a hálózatok és mértékű sávszélesség 120 ms alatt több mint 5 MB - RDP tartozó képes dinamikusan úgy, hogy a rendelkezésre álló hálózati sávszélesség alapul ezért az alkalmazás becsült sávszélesség. Ez a cikk kerül ruházzák "legtöbb használati forgatókönyvek" a peremhálózaton, ahol forgatókönyvek veszik át a lecseréléshez és felhasználói élmény kezd kezdődik meg.
+Azt a további - Ugrás előtt vegye figyelembe, hogy azt feltételezzük, hogy RDP jó tooexcellent élményt nyújt a legtöbb használati forgatókönyvek hálózatokon és mértékű sávszélesség 120 ms alatt több mint 5 MB - RDP tartozó képességét toodynamically alapul hello elérhető hálózaton keresztül beállítása sávszélesség- és hello becsült alkalmazások sávszélesség igényeihez. Ez a cikk "legtöbb használati forgatókönyvek" toolook hello szélén, ahol forgatókönyvek toounwind kezdődik, és a felhasználói élmény kezdődik toodegrade kerül ismertetettek mellett.
 
-Alapkonfiguráció javaslatokat, és mi azt nem vette fel a becslések most tekintse meg a részletes tényezőket kell figyelembe venni, beleértve a következő cikkeket.
+Most tekintse meg a következő cikkek hello részleteket, beleértve a tényezők tooconsider, Alapterv javaslatok és mi azt nem vette fel a becslések hello.
 
 * [Hogyan hálózati sávszélességet és a minőségét tapasztalja munkahelyi együtt?](remoteapp-bandwidthexperience.md)
 * [A hálózati sávszélesség-használat és olyan gyakori forgatókönyveket tartalmaz tesztelése](remoteapp-bandwidthtests.md)
-* [Ha még nem rendelkezik, az idő vagy képességét tesztelése gyors irányelvek](remoteapp-bandwidthguidelines.md)
+* [Ha még nem rendelkezik hello idő vagy képességét tootest gyors irányelvek](remoteapp-bandwidthguidelines.md)
 
 ## <a name="what-are-we-not-including"></a>Mi a Microsoft nem tartalmazzák az?
-Amikor a javasolt tesztek és az általános (és admittedly általános) javaslatokat, vegye figyelembe, hogy vannak-e számos tényező, amely jelenleg nem érdemes lehet. Például a felhasználói élmény komplikációk feltöltés és aszimmetrikus jellege által biztosított letölti a sávszélesség. A legtöbb Wi-Fi hálózat aszimmetrikus jellege továbbá hatással van a teljesítmény és a felhasználói élmény egyensúlyozhatom. Interaktív forgatókönyvek alacsonyabb, mint a felsőbb rétegbeli, amely az elveszett video- vagy keretek számának növeléséhez, és ezért hatással lehet az adatfolyam-továbbítási élmény felhasználói érzete előfordulhat, hogy az alsóbb rétegbeli forgalom prioritása. A konkrét használati esetek és hálózati meg a saját kísérletek is futtathatja.
+Amikor javasolt tesztek és teljes (és admittedly általános) Javaslataink hello, vegye figyelembe, hogy vannak-e számos tényező, amely jelenleg nem érdemes lehet. Például hello felhasználói élmény komplikációk feltöltés és letöltés sávszélesség aszimmetrikus jellege hello által biztosított. a legtöbb Wi-Fi hálózat aszimmetrikus jellege hello továbbá hatással lesz a hello teljesítmény- és hello felhasználói élmény egyensúlyozhatom. Interaktív forgatókönyvek hello előtt, ami növelheti a elveszett video- vagy keretek hello száma, és ezért hatással lehet az adatfolyam-élmény hello hello felhasználói érzete-nél kisebb lehet, hogy hello alárendelt forgalom prioritása. A saját kísérletek toosee Mi az a konkrét használati esetek és hálózati futtathatja.
 
-Bár eszközátirányítás arról lesz szó, azt nem vette figyelembe a csatlakoztatott eszközök, például a tárolási, nyomtatók, képolvasók, Webkamerák és más USB-eszközök által okozott hálózati forgalom a sávszélesség hatását. A hatását, hogy az eszközök általában ideiglenesen napra sávszélesség igényeinek és eltűnik, ha a tevékenység befejeződött. De ha gyakran történik, a sávszélesség igény szerint igen szembetűnő lehet.
+Bár eszközátirányítás arról lesz szó, azt nem vette szempont hello sávszélesség hello hálózati forgalom csatlakoztatott eszközök, például a tárolási, nyomtatók, képolvasók, Webkamerák és más USB-eszközök által okozott hatását. hello érvénybe ezen eszközök általában ideiglenesen napra hello sávszélesség igényeinek és hello feladat befejezésekor eltűnik. De ha gyakran történik, a sávszélesség igény szerint igen szembetűnő lehet.
 
-Még nem tárgyaljuk egy felhasználó kedvezőtlen hatással lehet az ugyanazon a hálózaton belüli más felhasználók. Például egy felhasználó egy 100 MB/s hálózaton a 4 KB-os videó fel lehet, hogy jelentős hatással vannak ugyanaz a feladat végrehajtását megkísérlő ugyanazon a hálózaton lévő többi felhasználóval. Azt sajnos lekérdezi fokozatosan nehezebben egyidejű használata közös vagy minden felölelő ajánlást kapcsolatban a rendszer teljesítményét összesítő, hogy a hatásának megállapításához. Azt is fel, hogy az alapul szolgáló protokoll technológiát biztosítják a lehető legjobb felhasználását, a rendelkezésre álló hálózati sávszélességet, azonban ez a korlátozott.
+Még nem tárgyaljuk egy felhasználó hello belüli más felhasználók kedvezőtlen hatással lehet az ugyanazon a hálózaton. Például egy felhasználó egy 100 MB/s hálózaton a 4 KB-os videó fel lehet, hogy jelentős hatással vannak más toodo próbált ugyanazon a hálózaton lévő felhasználók hello ugyanezt a feladatot. Sajnos azt lekérése egyidejű használatra vonatkozó toogive fokozatosan nehezebben toodetermine hello hatása közös vagy minden felölelő ajánlást kapcsolatos hogyan hello rendszer hajt végre, összesítést. Azt is fel, hogy az alapul szolgáló protokoll technológia hello megkönnyítő hello legjobb hello rendelkezésre álló hálózati sávszélesség használatának, azonban ez a korlátozott.
 

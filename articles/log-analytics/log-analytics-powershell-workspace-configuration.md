@@ -1,5 +1,5 @@
 ---
-title: "PowerShell segítségével hozza létre és konfigurálja a Naplóelemzési munkaterület |} Microsoft Docs"
+title: "aaaUse PowerShell tooCreate, és konfigurálja a Naplóelemzési munkaterület |} Microsoft Docs"
 description: "A helyszíni kiszolgálók elemzés által használt adatok bejelentkezhet, illetve a felhőalapú infrastruktúra. Gép adatgyűjtést az Azure storage Azure diagnostics generálásakor."
 services: log-analytics
 documentationcenter: 
@@ -14,64 +14,64 @@ ms.devlang: powershell
 ms.topic: article
 ms.date: 11/21/2016
 ms.author: richrund
-ms.openlocfilehash: 6807ab67e3593da82c147669b29bfdae3b6c967c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a6d66194204cc58de6aafb687a19fe9611e0c58e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-log-analytics-using-powershell"></a>A Log Analytics felügyelete PowerShell használatával
-Használhatja a [napló Analytics PowerShell-parancsmagok](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) végzik el a különböző funkciókat a Naplóelemzési parancssori vagy parancsfájl részeként.  A PowerShell használatával végezheti el a feladatok közé:
+Használhatja a hello [napló Analytics PowerShell-parancsmagok](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) tooperform különböző függvényeket a Naplóelemzési parancssori vagy parancsfájl részeként.  A PowerShell használatával végezheti el hello feladatok közé:
 
 * Munkaterületek létrehozása
 * Hozzáadni vagy eltávolítani egy megoldást
 * Importálás és exportálás a mentett keresések
 * Hozzon létre egy számítógépcsoportot
-* A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
+* Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
 * A Linux és Windows számítógépekről a teljesítményszámlálók adatainak összegyűjtése
 * A Linux rendszerű számítógépeken syslog események gyűjtése 
 * A Windows Eseménynapló eseményeinek gyűjtése
 * Egyéni eseménynaplók gyűjtése
-* A log analytics agent hozzáadása egy Azure virtuális gépen
-* Naplóelemzési Azure diagnostics használatával gyűjt index adatok konfigurálása
+* Hello napló analytics ügynök tooan Azure virtuális gépek hozzáadása
+* Log analytics-tooindex adatok Azure diagnostics használatával gyűjt konfigurálása
 
-Ez a cikk ismerteti, amelyek bemutatják a powershellből a végrehajtható függvények két mintakódok.  Olvassa el a [napló Analytics PowerShell parancsmag-referencia](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) az egyéb funkciót.
+Ez a cikk ismerteti, amelyek bemutatják a Powershellből a végrehajtható függvények hello két mintakódok.  Olvassa el a toohello [napló Analytics PowerShell parancsmag-referencia](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) az egyéb funkciót.
 
 > [!NOTE]
-> Naplóelemzési korábban meghívták az Operational Insights, ezért a parancsmagokban használt a név.
+> Naplóelemzési korábban meghívták az Operational Insights, ezért a hello parancsmagokban használt hello név.
 > 
 > 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ezek a példák 2.3.0 verziójával vagy későbbi a AzureRm.OperationalInsights modul működik.
+Ezek a példák 2.3.0 verziójával vagy későbbi hello AzureRm.OperationalInsights modul működik.
 
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>Hozza létre és konfigurálja a Naplóelemzési munkaterület
-Az alábbi parancsfájl minta bemutatja, hogyan:
+hello mintában parancsfájl bemutatja, hogyan:
 
 1. Munkaterületek létrehozása
-2. A rendelkezésre álló megoldások felsorolása
-3. A munkaterület megoldások hozzáadása
+2. Lista hello elérhető megoldások
+3. Adja hozzá a megoldások toohello munkaterület
 4. Importálás mentett keresések
 5. Exportálás mentett keresések
 6. Hozzon létre egy számítógépcsoportot
-7. A Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
+7. Hello Windows-ügynök telepítve az IIS-naplók számítógépekről gyűjtésének engedélyezése
 8. Logikai lemez teljesítményszámlálói gyűjteni a Linux rendszerű számítógépek (% Inode-OK; Szabad hely MB-ban; Foglalt hely; % / Mp átvitelek; Lemezolvasások/mp; Lemezírás/mp)
 9. Syslog-események gyűjtése Linux számítógépekről
-10. Hiba és figyelmeztetési események gyűjtése az alkalmazások eseménynaplójában a Windows rendszerű számítógépek
+10. Hiba és figyelmeztetési események gyűjtése hello alkalmazások eseménynaplójában keresse meg a Windows rendszerű számítógépek
 11. A Windows rendszerű számítógépek memória rendelkezésre álló memória (MB) teljesítményszámláló gyűjtése.
 12. Egy egyéni napló gyűjtése 
 
 ```
 
 $ResourceGroup = "oms-example"
-$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need to be unique - Get-Random helps with this for the example code
+$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need toobe unique - Get-Random helps with this for hello example code
 $Location = "westeurope"
 
-# List of solutions to enable
+# List of solutions tooenable
 $Solutions = "Security", "Updates", "SQLAssessment"
 
-# Saved Searches to import
+# Saved Searches tooimport
 $ExportedSearches = @"
 [
     {
@@ -89,7 +89,7 @@ $ExportedSearches = @"
 ]
 "@ | ConvertFrom-Json
 
-# Custom Log to collect
+# Custom Log toocollect
 $CustomLog = @"
 {
     "customLogName": "sampleCustomLog1", 
@@ -127,14 +127,14 @@ $CustomLog = @"
     }
 "@
 
-# Create the resource group if needed
+# Create hello resource group if needed
 try {
     Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop
 } catch {
     New-AzureRmResourceGroup -Name $ResourceGroup -Location $Location
 }
 
-# Create the workspace
+# Create hello workspace
 New-AzureRmOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Sku Standard -ResourceGroupName $ResourceGroup
 
 # List all solutions and their installation status
@@ -160,7 +160,7 @@ foreach ($search in $ExportedSearches) {
 # Create Computer Group based on a query
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Web Servers" -DisplayName "Web Servers" -Category "My Saved Searches" -Query "Computer=""web*"" | distinct Computer" -Version 1
 
-# Create a computer group based on names (up to 5000)
+# Create a computer group based on names (up too5000)
 $computerGroup = """servername1.contoso.com"",""servername2.contoso.com"",""servername3.contoso.com"",""servername4.contoso.com"""
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Named Servers" -DisplayName "Named Servers" -Category "My Saved Searches" -Query $computerGroup -Version 1
 
@@ -186,8 +186,8 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 
 ```
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics"></a>Az Azure diagnostics indexelésre Naplóelemzési konfigurálása
-Az ügynök nélküli figyelés az Azure-erőforrások, az erőforrások kell rendelkeznie az Azure diagnostics engedélyezni és konfigurálni a Naplóelemzési munkaterület írni. Ez a megközelítés adatokat közvetlenül küld a Naplóelemzési, és nem szükséges adatok tárfiókba kellene írni. Támogatott erőforrások többek között:
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics"></a>A Naplóelemzési tooindex Azure diagnostics konfigurálása
+Az ügynök nélküli figyelés az Azure-erőforrások hello erőforrások toohave Azure diagnostics engedélyezett és konfigurált toowrite tooa Naplóelemzési munkaterület kell. Ez a megközelítés elküldi az adatokat közvetlenül tooLog elemzés, így nem szükséges tooa tárfiók írt adatok toobe. Támogatott erőforrások többek között:
 
 | Erőforrás típusa | Logs | Mérőszámok |
 | --- | --- | --- |
@@ -210,9 +210,9 @@ Az ügynök nélküli figyelés az Azure-erőforrások, az erőforrások kell re
 | Webhelyek               |     | Igen |
 | Kiszolgáló-webfarmok        |     | Igen |
 
-Az elérhető mérőszámok leírását, [támogatott Azure-figyelő metrikák](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
+Az elérhető mérőszámok hello hello részletekért lásd a túl[támogatott Azure-figyelő metrikák](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
 
-A naplók leírását, [szolgáltatások és a séma támogatja a diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
+Hello elérhető naplók hello részletekért lásd a túl[szolgáltatások és a séma támogatja a diagnosztikai naplók](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
 
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -222,27 +222,27 @@ $resourceId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUP
 Set-AzureRmDiagnosticSetting -ResourceId $resourceId -WorkspaceId $workspaceId -Enabled $true
 ```
 
-A fenti parancsmag segítségével is naplóinak gyűjtése az erőforrásokat, amelyek különböző előfizetésekhez. A parancsmag annak tud dolgozni előfizetések között, mert meg van adva mindkét az erőforrás létrehozása a naplókat, valamint a naplókat küld a munkaterület azonosítóját.
+Használhatja az erőforrásokat, amelyek különböző előfizetésekhez parancsmag toocollect naplók megelőző hello is. hello parancsmag is képes toowork előfizetések között, mivel mindkét hello erőforrás létrehozása a naplók hello azonosítója meg van adva, és hello munkaterület hello naplók küldött.
 
 
-## <a name="configuring-log-analytics-to-index-azure-diagnostics-from-storage"></a>Naplóelemzési tárolóból az Azure diagnostics indexelésre konfigurálása
-Napló amikből adatgyűjtést belül egy klasszikus felhőalapú szolgáltatás, vagy a service fabric-fürt futó példányát, először az adatok írása az Azure storage kell. A Naplóelemzési majd gyűjteni a tárfiók van beállítva. Támogatott erőforrások többek között:
+## <a name="configuring-log-analytics-tooindex-azure-diagnostics-from-storage"></a>A Naplóelemzési tooindex tárolóból az Azure diagnostics konfigurálása
+toocollect naplóadatait belül egy klasszikus felhőalapú szolgáltatás, vagy a service fabric-fürt futó példányát, toofirst tooAzure írási hello adattárolás kell. Naplóelemzési majd van konfigurálva toocollect hello naplók hello tárfiókból. Támogatott erőforrások többek között:
 
 * Klasszikus felhőszolgáltatások (webes és feldolgozói szerepkörök)
 * Service fabric-fürtök
 
-Az alábbi példában látható hogyan:
+a következő példa azt mutatja meg hogyan hello számára:
 
-1. A meglévő tárfiókok és a Naplóelemzési indexeli az adatok helyek felsorolása
-2. A tárfiók olvasni-konfiguráció létrehozása
-3. Az újonnan létrehozott konfigurációjának frissítése index adatokat további helyekről
-4. Az újonnan létrehozott konfiguráció törlése
+1. Lista hello meglévő tárfiókok és Naplóelemzési indexeli az adatok helyek
+2. Egy konfigurációs tooread a storage-fiók létrehozása
+3. Az újonnan létrehozott konfigurációs tooindex adatokat további helyekről hello frissítése
+4. Az újonnan létrehozott hello konfiguráció törlése
 
 ```
 # validTables = "WADWindowsEventLogsTable", "LinuxsyslogVer2v0", "WADServiceFabric*EventTable", "WADETWEventTable" 
 $workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq "your workspace name"})
 
-# Update these two lines with the storage account resource ID and the storage account key for the storage account you want to Log Analytics to  
+# Update these two lines with hello storage account resource ID and hello storage account key for hello storage account you want tooLog Analytics too 
 $storageId = "/subscriptions/ec11ca60-1234-491e-5678-0ea07feae25c/resourceGroups/demo/providers/Microsoft.Storage/storageAccounts/wadv2storage"
 $key = "abcd=="
 
@@ -255,12 +255,12 @@ New-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Resou
 # Update existing insight
 Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles")
 
-# Remove the insight
+# Remove hello insight
 Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" 
 
 ```
 
-A fenti parancsfájl segítségével is gyűjteni a tárfiók különböző előfizetésekhez. A parancsfájl tud dolgozni előfizetések között, mert meg van adva, a tárfiók erőforrás azonosítója és a megfelelő hozzáférési kulcsot. A hozzáférési kulcs módosításakor kell frissíteni az új kulcsot a tároló betekintést.
+Parancsfájl toocollect naplók a tárfiók különböző előfizetésekhez megelőző hello is használható. hello parancsfájl is képes toowork előfizetések között, mivel a hello tárfiók erőforrás azonosítója és a megfelelő hozzáférési kulcs ad. Hello hozzáférési kulcs módosításakor kell tooupdate hello tárolási insight toohave hello új kulcsot.
 
 
 ## <a name="next-steps"></a>Következő lépések

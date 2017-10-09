@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL Database biztonsági vész-helyreállítási konfigurálása |} Microsoft Docs"
-description: "Ez a témakör azt ismerteti, konfigurálásához és kezeléséhez biztonsági egy adatbázis visszaállítása vagy egy másodlagos kiszolgáló a feladatátvétel után egy adatközpont-meghibásodás után vagy egyéb katasztrófa esetén a biztonsági szempontok"
+title: "az Azure SQL Database biztonsági vész-helyreállítási aaaConfigure |} Microsoft Docs"
+description: "Ez a témakör azt ismerteti, konfigurálásához és kezeléséhez biztonsági egy adatbázis visszaállítása vagy egy feladatátvételi tooa másodlagos kiszolgáló egy adatközpont-meghibásodás után vagy más katasztrófa hello esemény után a biztonsági szempontok"
 services: sql-database
 documentationcenter: na
 author: anosov1960
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 10/13/2016
 ms.author: sashan
-ms.openlocfilehash: de5e1732dab570b80692efcdd08e4ed2d8c98800
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3172568e1b8ad2a53958200aa6cf19b4a9434ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-and-manage-azure-sql-database-security-for-geo-restore-or-failover"></a>Konfigurálhatja és kezelheti az Azure SQL Database biztonsági georedundáns helyreállítás vagy feladatátvételi 
 
@@ -28,72 +28,72 @@ ms.lasthandoff: 07/11/2017
 >  
 
 ## <a name="overview-of-authentication-requirements-for-disaster-recovery"></a>Vész-helyreállítási hitelesítési követelmények áttekintése
-Ez a témakör ismerteti a hitelesítési követelmények konfigurálása és [aktív georeplikáció](sql-database-geo-replication-overview.md) és a felhasználó hozzáférését a másodlagos adatbázis beállításához szükséges lépéseket. Azt is ismerteti, hogyan a helyreállított adatbázis elérésének lehetővé tétele használata után [georedundáns helyreállítás](sql-database-recovery-using-backups.md#geo-restore). Helyreállítási lehetőségekről további információkért lásd: [üzleti folytonosság – áttekintés](sql-database-business-continuity.md).
+Ez a témakör ismerteti a hello hitelesítési követelmények tooconfigure és vezérlés [aktív georeplikáció](sql-database-geo-replication-overview.md) és hello felhasználói hozzáférés toohello másodlagos adatbázis szükséges tooset lépéseket. Azt is ismerteti, hogyan engedélyezze a hozzáférést toohello helyreállított adatbázis használata után [georedundáns helyreállítás](sql-database-recovery-using-backups.md#geo-restore). Helyreállítási lehetőségekről további információkért lásd: [üzleti folytonosság – áttekintés](sql-database-business-continuity.md).
 
 ## <a name="disaster-recovery-with-contained-users"></a>A tartalmazott felhasználók katasztrófa utáni helyreállítás
-Ellentétben a hagyományos felhasználóknak, amelyet le kell képezni a master adatbázisban bejelentkezéseket, egy felhasználó teljesen által felügyelt maga az adatbázis. Azt két előnnyel jár. A vészhelyreállítás esetén a felhasználók továbbra is az új elsődleges adatbázishoz való kapcsolódáshoz vagy az adatbázist helyre az georedundáns helyreállítás, további konfiguráció nélkül használja, mert az adatbázis kezeli a felhasználók. Nincsenek is lehetséges méretezhetőségét és teljesítményét számos előnyt biztosít az ebben a konfigurációban egy bejelentkezési szempontjából. További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál. 
+Hagyományos felhasználók eltérően toologins hello master adatbázisban kell lennie, amely leképezve, egy felhasználó maga hello adatbázis teljesen kezeli. Azt két előnnyel jár. Hello vészhelyreállítás esetén hello felhasználók továbbra is tooconnect toohello új elsődleges adatbázis vagy hello adatbázis helyre georedundáns helyreállítás, további konfiguráció nélkül használja, mert hello adatbázis hello felhasználók kezeli. Nincsenek is lehetséges méretezhetőségét és teljesítményét számos előnyt biztosít az ebben a konfigurációban egy bejelentkezési szempontjából. További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál. 
 
-A fő kompromisszum, annál nagyobb kihívás a vész-helyreállítási folyamat léptékű kezelésére. Ha egyszerre több adatbázis ugyanazon bejelentkezési használó, a hitelesítő adatokat tartalmazott felhasználók több adatbázisok karbantartása előfordulhat, hogy semlegesítsék a tartalmazott felhasználók előnyeit. Például a jelszóházirend elforgatási van szükség, hogy lehet változtatás következetesen több adatbázis ahelyett, hogy megváltoztatta a jelszavát, a bejelentkezési azonosítóhoz egyszer a master adatbázisban. Ezért ha több, ugyanazt a felhasználónevet és jelszót, használó adatbázisok tartalmazott felhasználók használata nem ajánlott. 
+hello fő kompromisszum az, hogy hello vész-helyreállítási folyamat léptékű kezelése bonyolult. Ha több adatbázist, hogy használjon hello azonos bejelentkezési karbantartása hello hitelesítő adatokat tartalmazott a felhasználók több adatbázis előfordulhat, hogy semlegesítsék tartalmazott felhasználók hello előnyeit. Például hello Elforgatás jelszóházirend megköveteli-, hogy módosítható következetesen több adatbázisok helyett hello bejelentkezési azonosító változó hello jelszavának egyszer hello master adatbázisban. Ezért, ha több adatbázist, hogy használjon hello ugyanazt a felhasználónevet és jelszót, a tartalmazott felhasználók használata nem ajánlott. 
 
-## <a name="how-to-configure-logins-and-users"></a>Bejelentkezések és a felhasználók konfigurálása
-Bejelentkezések és felhasználók használata (helyett a benne lévő felhasználók), annak érdekében, hogy létezik-e az azonos bejelentkezések a master adatbázisban további lépéseket kell végrehajtania. Az alábbi szakaszok felsorolják a lépéseket érintett és további szempontokat.
+## <a name="how-tooconfigure-logins-and-users"></a>Hogyan tooconfigure bejelentkezéseket és a felhasználók
+Bejelentkezések és felhasználók használata (helyett a benne lévő felhasználók), érdemes további lépések tooinsure, hogy ugyanazt a bejelentkezési adatok léteznek hello hello master adatbázisban. hello alábbi szakaszok felsorolják hello lépéseket érintett és további szempontokat.
 
-### <a name="set-up-user-access-to-a-secondary-or-recovered-database"></a>Állítsa be a másodlagos, és a helyreállított adatbázis felhasználói hozzáférése
-Ahhoz, hogy a másodlagos adatbázis csak olvasható másodlagos adatbázis használható, és megfelelő hozzáféréssel az új elsődleges adatbázis vagy az adatbázis visszaállítással földrajzi helyre a célkiszolgáló a master adatbázis konfigurációval kell rendelkeznie a megfelelő biztonsági a helyreállítás előtt a helyükön.
+### <a name="set-up-user-access-tooa-secondary-or-recovered-database"></a>Felhasználói hozzáférés tooa másodlagos vagy a helyreállított adatbázis létrehozása
+Ahhoz, hogy hello másodlagos adatbázis toobe használható, egy csak olvasható másodlagos adatbázis és tooensure megfelelő hozzáféréssel toohello új elsődleges adatbázis vagy hello adatbázis helyreállítása a földrajzi-visszaállítással, hello fő célkiszolgáló hello kell biztosítani hello megfelelő biztonsági konfiguráció hello helyreállítás előtt a helyükön.
 
-A témakör későbbi részében egyes lépéseihez szükséges engedélyeket ismerteti.
+a témakör későbbi részében hello egyes lépéseihez szükséges engedélyeket ismerteti.
 
-Felkészülés a felhasználói hozzáférés a georeplikáció másodlagos georeplikáció konfigurálása során kell elvégezni. Felkészülés a földrajzi vissza adatbázisok felhasználói hozzáférést kell hajtható végre, tetszőleges időpontban, amikor az eredeti kiszolgáló online állapotban-e (pl. a vész-Helyreállítási részletezési részeként).
+Felkészülés a felhasználói hozzáférés tooa georeplikáció másodlagos georeplikáció konfigurálása során kell végrehajtani. Felkészülés a felhasználói hozzáférés toohello földrajzi vissza adatbázisok kell hajtható végre, tetszőleges időpontban, amikor hello eredeti kiszolgáló online állapotban-e (pl. hello vész-Helyreállítási részletezési részeként).
 
 > [!NOTE]
-> Ha a rendszer átadja, vagy olyan kiszolgálóra, amely nem rendelkezik hozzáféréssel a megfelelően konfigurált bejelentkezések georedundáns helyreállítás korlátozódik a kiszolgáló-rendszergazdai fiókot.
+> Ha nem sikerül over vagy georedundáns helyreállítás, amely nem rendelkezik megfelelően konfigurált bejelentkezések tooa server hozzáférés tooit lesz korlátozott toohello server rendszergazdai fiók.
 > 
 > 
 
-Az alábbiakban leírt három lépést beállítása a célkiszolgálón bejelentkezések foglal magában:
+Az alábbiakban leírt három lépést beállítása a célkiszolgálón hello bejelentkezések foglal magában:
 
-#### <a name="1-determine-logins-with-access-to-the-primary-database"></a>1. Határozza meg az elsődleges adatbázis eléréséhez felmérhetők:
-A folyamat az első lépés annak meghatározásához, hogy mely bejelentkezések kell készíteni a cél kiszolgálón. Ez KIVÁLASZTÓ utasítást, az a logikai master adatbázis a forráskiszolgálón és a maga az elsődleges adatbázis két érhető el.
+#### <a name="1-determine-logins-with-access-toohello-primary-database"></a>1. Határozza meg az access toohello elsődleges adatbázissal bejelentkezések:
+hello hello folyamatának első lépésében toodetermine mely bejelentkezések hello célkiszolgálón kell készíteni. Ez két KIVÁLASZTÓ utasítást, hello logikai master adatbázis hello forráskiszolgálón szerkezetével és az elsődleges adatbázis hello maga érhető el.
 
-Csak a kiszolgáló rendszergazdája vagy egy másik a **LoginManager** kiszolgálói szerepkör megállapíthatja, hogy a bejelentkezési adatok, a forráskiszolgálón a következő SELECT utasítással. 
+Csak a kiszolgáló rendszergazdája vagy egy másik hello hello **LoginManager** kiszolgálói szerepkör megállapíthatja, hogy a SELECT utasítás a következő hello hello bejelentkezések hello forráskiszolgálón. 
 
     SELECT [name], [sid] 
     FROM [sys].[sql_logins] 
     WHERE [type_desc] = 'SQL_Login'
 
-Csak a db_owner adatbázis-szerepkör, a dbo felhasználói vagy kiszolgálói rendszergazda, tag lehet meghatározni az összes, az adatbázis-felhasználó rendszerbiztonsági tagot az elsődleges adatbázis.
+Csak hello db_owner adatbázis-szerepkör, hello dbo felhasználói vagy kiszolgálói rendszergazda, tag összes hello adatbázis felhasználói hello elsődleges adatbázis rendszerbiztonsági tagok meghatározásához.
 
     SELECT [name], [sid]
     FROM [sys].[database_principals]
     WHERE [type_desc] = 'SQL_USER'
 
-#### <a name="2-find-the-sid-for-the-logins-identified-in-step-1"></a>2. 1. lépésben azonosított bejelentkezések tartozó SID kereséséhez:
-A fenti szakaszban leírt lekérdezések kimenetének összehasonlítása, és a biztonsági azonosítók megfelelő, a kiszolgálói bejelentkezési adatbázis-felhasználó is leképezheti. Egy adatbázis-felhasználó a megfelelő SID-AZONOSÍTÓVAL rendelkező felhasználók hozzáférhetnek felhasználó ahhoz az adatbázishoz adott adatbázis elsődleges felhasználóként. 
+#### <a name="2-find-hello-sid-for-hello-logins-identified-in-step-1"></a>2. 1. lépésben azonosított hello bejelentkezések hello SID található:
+Az előző szakaszban hello és egyező hello SID hello lekérdezések hello kimeneti összehasonlításával hello bejelentkezési toodatabase felhasználója is leképezheti. Egy adatbázis-felhasználó a megfelelő SID-AZONOSÍTÓVAL rendelkező bejelentkezések felhasználói toothat adatbázist, hogy a fő adatbázis felhasználó rendelkezik. 
 
-A következő lekérdezés segítségével láthatja az összes, a felhasználó rendszerbiztonsági tagok és az SID-adatbázisban. Csak a db_owner adatbázis-szerepkör- vagy felügyeleti tagjai futtathatják a lekérdezés.
+hello következő lekérdezés lehet használt toosee összes hello felhasználó rendszerbiztonsági tagok és az SID-adatbázisban. Csak hello db_owner adatbázis szerepkör- vagy felügyeleti tagjai futtathatják a lekérdezés.
 
     SELECT [name], [sid]
     FROM [sys].[database_principals]
     WHERE [type_desc] = 'SQL_USER'
 
 > [!NOTE]
-> A **entitástulajdonos** és **sys** felhasználóknál *NULL* SID-k, és a **vendég** SID **0x00**. A **dbo** SID kezdődik *0x01060000000001648000000000048454*, ha az adatbázis-készítő tagja helyett a kiszolgáló rendszergazdája **DbManager**.
+> Hello **entitástulajdonos** és **sys** felhasználóknál *NULL* SID-k és hello **vendég** SID **0x00**. Hello **dbo** SID kezdődik *0x01060000000001648000000000048454*, ha az adatbázis-készítő hello hello kiszolgálói rendszergazda helyett tagja volt **DbManager**.
 > 
 > 
 
-#### <a name="3-create-the-logins-on-the-target-server"></a>3. A bejelentkezési adatok létrehozása a célkiszolgálón:
-Az utolsó lépése, hogy nyissa meg a célként megadott kiszolgáló vagy kiszolgálók, és a megfelelő SID-k a felmérhetők készítése. Az alapvető szintaxisa a következő.
+#### <a name="3-create-hello-logins-on-hello-target-server"></a>3. Hozzon létre hello bejelentkezések hello célkiszolgálón:
+hello utolsó lépése toogo toohello célkiszolgáló, vagy kiszolgálókon, és hello hello felmérhetők készítése a megfelelő SID-k. hello alapvető szintaxisa a következő.
 
     CREATE LOGIN [<login name>]
     WITH PASSWORD = <login password>,
     SID = <desired login SID>
 
 > [!NOTE]
-> Ha meg szeretné adni a felhasználói hozzáférést a másodlagos, de nem az elsődleges, akkor a következő szintaxis használatával az elsődleges kiszolgálón a felhasználói bejelentkezési módosításával teheti meg.
+> Ha szeretné toogrant felhasználói hozzáférés toohello másodlagos, de nem toohello elsődleges, azt hello felhasználói bejelentkezés hello elsődleges kiszolgálón megváltoztatásával hello a következő szintaxis használatával teheti meg.
 > 
 > ALTER LOGIN <login name> LETILTÁSA
 > 
-> Tiltsa le a jelszó nem változik, ezért mindig engedélyezheti azt szükség esetén.
+> Tiltsa le nem jelszómódosítás hello, így mindig engedélyezheti azt szükség esetén.
 > 
 > 
 

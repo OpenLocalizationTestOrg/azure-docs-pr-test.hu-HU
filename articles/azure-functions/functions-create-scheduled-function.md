@@ -1,6 +1,6 @@
 ---
-title: "Ütemezés szerint futó függvények létrehozása az Azure-ban | Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat olyan függvényt az Azure-ban, amely az Ön által meghatározott ütemezés alapján fut."
+title: "egy függvényt, amely az Azure-ban ütemezés szerint futtatott aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate futó Azure-ban függvény alapján meghatározott ütemezés szerint."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 03cc5e71e8eb20002cf58e713fc0fc92a9129874
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 793b06a65a154466dfd4c121bcc88082227cd597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-in-azure-that-is-triggered-by-a-timer"></a>Időzítő által aktivált függvény létrehozása az Azure-ban
 
-Tekintse át, hogyan használhatja az Azure Functions szolgáltatást olyan függvény létrehozására, amely az Ön által meghatározott ütemezés alapján fut.
+Ismerje meg, hogyan toouse Azure Functions toocreate lefutó függvény alapján meghatározott ütemezés szerint.
 
-![Függvényalkalmazás létrehozása az Azure Portalon](./media/functions-create-scheduled-function/function-app-in-portal-editor.png)
+![Függvény-alkalmazás létrehozása az Azure-portálon hello](./media/functions-create-scheduled-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 + Ha nem rendelkezik Azure-előfizetéssel, mindössze néhány perc alatt létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) a virtuális gép létrehozásának megkezdése előtt.
 
@@ -42,40 +42,40 @@ Az oktatóanyag elvégzéséhez:
 
 ![A függvényalkalmazás elkészült.](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-Ezután létrehozhat egy függvényt az új függvényalkalmazásban.
+A függvény a következő alkalmazásban hello új függvény létrehozása.
 
 <a name="create-function"></a>
 
 ## <a name="create-a-timer-triggered-function"></a>Időzítő által aktivált függvény létrehozása
 
-1. Bontsa ki a függvényalkalmazást, és kattintson a **Függvények** elem melletti **+** gombra. Ha ez az első függvény a függvényalkalmazásban, jelölje ki az **Egyéni függvény** lehetőséget. Ez megjeleníti a függvénysablonok teljes készletét.
+1. Bontsa ki a függvény alkalmazást, majd kattintson a hello  **+**  gomb melletti túl**funkciók**. Ha ez az első függvényét hello az függvény alkalmazásban, válassza ki a **egyéni függvény**. Ez a függvény sablonok teljes készletének hello jeleníti meg.
 
-    ![Függvények gyors létrehozásának oldala az Azure Portalon](./media/functions-create-scheduled-function/add-first-function.png)
+    ![Gyors üzembe helyezés lap funkciók hello Azure-portálon](./media/functions-create-scheduled-function/add-first-function.png)
 
-2. Kattintson a kívánt nyelvhez tartozó **TimerTrigger** sablonra. Ezt követően használja a táblázatban megadott beállításokat:
+2. Jelölje be hello **TimerTrigger** sablont a kívánt nyelvet. Majd beállításokkal hello hello táblázatban megadottak szerint:
 
-    ![Hozzon létre egy időzítő által aktivált függvényt az Azure Portalon.](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
+    ![Hozzon létre egy indított időzítő hello Azure-portálon.](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
 
     | Beállítás | Ajánlott érték | Leírás |
     |---|---|---|
-    | **A függvény neve** | TimerTriggerCSharp1 | Az időzítő által aktivált függvény nevét adja meg. |
-    | **[Ütemezés](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | Hat mezőből álló [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression), amely úgy ütemezi a függvényt, hogy minden percben fusson. |
+    | **A függvény neve** | TimerTriggerCSharp1 | Az időzítő indított függvény hello nevét adja meg. |
+    | **[Ütemezés](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | A hat mező [CRON-kifejezés](http://en.wikipedia.org/wiki/Cron#CRON_expression) , amely ütemezi a függvény toorun percenként. |
 
-2. Kattintson a **Létrehozás** gombra. Létrejön egy függvény a választott nyelven, amely minden percben futni fog.
+2. Kattintson a **Create** (Létrehozás) gombra. Létrejön egy függvény a választott nyelven, amely minden percben futni fog.
 
-3. Ellenőrizze a végrehajtást a naplókban gyűjtött nyomkövetési adatok áttekintésével.
+3. Ellenőrizze a végrehajtási toohello naplók írt nyomkövetési adatok megtekintéséhez használatos időkategóriát.
 
-    ![A függvények naplómegtekintője az Azure Portalon.](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
+    ![Funkciók viewer bejelentkezés hello Azure-portálon.](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
 
-Most módosíthatja a függvény ütemezését, hogy ritkábban, például óránként egyszer fusson. 
+Most módosíthatja hello függvény ütemezését, hogy kevesebb gyakran, például óránként egyszer fusson. 
 
-## <a name="update-the-timer-schedule"></a>Az időzítő ütemezésének módosítása
+## <a name="update-hello-timer-schedule"></a>Frissítés hello időzítő ütemezése
 
-1. Bontsa ki a függvényt, és kattintson az **Integráció** elemre. Itt határozhatja meg a függvény bemeneti és kimeneti kötéseit, és itt állíthatja be az ütemezést is. 
+1. Bontsa ki a függvényt, és kattintson az **Integráció** elemre. Ez az ahol határozza meg a bemeneti és kimeneti kötések a függvény és hello ütemezést is beállíthat. 
 
 2. Adja meg az új `0 0 */1 * * *` értéket az **Ütemezés** beállításnál, és kattintson a **Mentés** gombra.  
 
-![A függvények időzítési ütemezésének módosítása az Azure Portalon.](./media/functions-create-scheduled-function/functions-timer-trigger-change-schedule.png)
+![Funkciók hello Azure-portálon időzítő ütemezés frissítése.](./media/functions-create-scheduled-function/functions-timer-trigger-change-schedule.png)
 
 A függvény ezután óránként egyszer fog futni. 
 

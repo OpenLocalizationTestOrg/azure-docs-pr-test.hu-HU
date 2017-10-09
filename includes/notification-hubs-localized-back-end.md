@@ -2,7 +2,7 @@
 
 
 
-Csak meg kell adnia a tulajdonságait sablon értesítéseket küld, amikor a mi esetünkben küldünk a tulajdonságkészletbe honosított verziója az aktuális híreket tartalmazó példány:
+Csak akkor kell tooprovide tulajdonságait sablon értesítéseket küld, amikor a mi esetünkben küldünk hello tulajdonságkészletbe hello hello aktuális híreket, honosított verzióját tartalmazó példány:
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@ Csak meg kell adnia a tulajdonságait sablon értesítéseket küld, amikor a mi
     }
 
 
-Ez a szakasz bemutatja, hogyan küldhetők értesítések egy konzolalkalmazás használatával
+Ez a szakasz bemutatja, hogyan toosend értesítések egy konzolalkalmazás használatával
 
-A befoglalt kódot közzéteszi Windows áruház és az iOS-eszközökre, mivel a háttérkiszolgálón is szórási bármely, a támogatott eszközök.
+mivel hello háttér terjesztéshez tooany hello támogatott eszközök hello kód szórás tooboth Windows áruház és az iOS-eszközök esetén tartalmazza.
 
-### <a name="to-send-notifications-using-a-c-console-app"></a>Egy C# Konzolalkalmazás használatával az értesítések küldéséhez
-Módosítsa a `SendTemplateNotificationAsync` módszer a korábban létrehozott kódot a következő konzol alkalmazás. Figyelje meg, hogyan ebben az esetben nincs szükség a különböző területi beállításokhoz és platformokra több értesítések küldéséhez.
+### <a name="toosend-notifications-using-a-c-console-app"></a>toosend értesítéseket egy C# Konzolalkalmazás
+Módosítsa a hello `SendTemplateNotificationAsync` hello a következő kódot a korábban létrehozott hello Konzolalkalmazás metódust. Figyelje meg, hogyan ebben az esetben nincs nincs szükség toosend különböző területi beállításokhoz és platformok több értesítés is érkezett.
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@ Módosítsa a `SendTemplateNotificationAsync` módszer a korábban létrehozott 
         }
 
 
-Vegye figyelembe, hogy a egyszerű hívás fog továbbítani az honosított adat híreket, **összes** az eszközök, függetlenül a platform, az értesítési központ hoz létre, és kézbesíti az összes eszközt egy adott előfizetni a megfelelő natív forgalma címke.
+Vegye figyelembe, hogy a egyszerű hívás funkció hírek hello honosított adat túl**összes** hello platform, függetlenül az eszközök az értesítési központ hoz létre, és kézbesíti hello megfelelő natív hasznos tooall hello eszközök előfizetve tooa adott címke.
 
-### <a name="sending-the-notification-with-mobile-services"></a>A Mobile Services értesítés küldése
-A Mobile Service ütemező a következő parancsfájlt használhatja:
+### <a name="sending-hello-notification-with-mobile-services"></a>A Mobile Services hello értesítés küldése
+A Mobile Service ütemező a következő parancsfájl hello is használhatja:
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

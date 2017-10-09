@@ -1,0 +1,178 @@
+---
+title: "aaaManaging Media Services entitások többi |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage Media Services-entitások REST API-t."
+author: juliako
+manager: cfowler
+editor: 
+services: media-services
+documentationcenter: 
+ms.assetid: 95262a32-0f2a-4286-b9e2-1a1ca6399b5b
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/10/2017
+ms.author: juliako
+ms.openlocfilehash: bcdc5288e422ebc4e6f682a97da4e925ce237a79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="managing-media-services-entities-with-rest"></a>A Media Services entitások többi kezelése 
+> [!div class="op_single_selector"]
+> * [REST](media-services-rest-manage-entities.md)
+> * [.NET](media-services-dotnet-manage-entities.md)
+> 
+> 
+
+A Microsoft Azure Media Services egy olyan REST-alapú szolgáltatás, OData v3 épül. Hozzáadhat, lekérdezés, update és delete entitások sokkal hello azonos módon, mint bármely más OData szolgáltatás. Kivételek neve ha alkalmazható. Az OData további információkért lásd: [protokollhoz adatok dokumentáció](http://www.odata.org/documentation/).
+
+Ez a témakör bemutatja, hogyan toomanage Azure Media Services entitások többi.
+
+>[!NOTE]
+> 2017. április 1., kezdési bármely feladat rekord 90 napnál régebbi fiókja automatikusan törlődik, a társított feladat bejegyzéseket, valamint akkor is, ha hello rekordok teljes száma nem éri el hello kvóta felső határát. Például a 2017. április 1. a régebbi, mint a 2016. December 31-én fiókjában feladat rekordot automatikusan törlődni fog. Ha tooarchive hello/feladat tájékoztatásra van szüksége, használhatja a jelen témakörben ismertetett hello kódot.
+
+## <a name="considerations"></a>Megfontolandó szempontok  
+
+A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md).
+
+## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
+
+Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+
+>[!NOTE]
+>Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
+
+## <a name="adding-entities"></a>Entitás hozzáadása
+A Media Services összes entitás tooan entitáskészlet, eszközök, például a POST HTTP-kérelmek keresztül kerül.
+
+a következő példa azt mutatja meg hogyan hello toocreate egy AccessPolicy.
+
+    POST https://media.windows.net/API/AccessPolicies HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337067658&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=dithjGvlXR9HlyAf5DE99N5OCYkPAxsHIcsTSjm9%2fVE%3d
+    Host: media.windows.net
+    Content-Length: 74
+    Expect: 100-continue
+
+    {"Name": "DownloadPolicy", "DurationInMinutes" : "300", "Permissions" : 1}
+
+## <a name="querying-entities"></a>Entitás lekérdezése
+Kérdez le, és entitások listázása egyszerű, és csak a GET HTTP kérelmet és választható OData műveletek foglalja magában.
+hello alábbi példa lekér egy listát az összes MediaProcessor entitások.
+
+    GET https://media.windows.net/API/MediaProcessors HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
+    Host: media.windows.net
+
+Egy adott entitás vagy egy adott entitáshoz társított, többek között a következő példák hello összes entitáskészletekben is kérheti le:
+
+    GET https://media.windows.net/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c') HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1336907474&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=OpuY0CeTylqFFcFaP4pKUVGesT4PGx4CP55zDf2zXnc%3d
+    Host: media.windows.net
+
+    GET https://media.windows.net/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c')/TaskTemplates HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1336907474&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=OpuY0CeTylqFFcFaP4pKUVGesT4PGx4CP55zDf2zXnc%3d
+    Host: media.windows.net
+
+hello alábbi példa adja vissza minden feladat csak hello State tulajdonsága.
+
+    GET https://media.windows.net/API/Jobs?$select=State HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
+    Host: media.windows.net
+
+hello alábbi példa adja vissza az összes JobTemplates hello nevű "SampleTemplate."
+
+    GET https://media.windows.net/API/JobTemplates?$filter=startswith(Name,%20'SampleTemplate') HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
+    Host: media.windows.net
+
+> [!NOTE]
+> hello $ bontsa ki a művelet nem támogatott a Media Services, valamint a LINQ szempontjai (a WCF Data Services) nem támogatott LINQ módszerek hello.
+> 
+> 
+
+## <a name="enumerating-through-large-collections-of-entities"></a>Az entitások nagy gyűjteményekre számbavétele
+Entitások lekérdezésekor korlátozás van adja vissza egy időben, mert a nyilvános REST v2 korlátozza a lekérdezési eredmények too1000 eredmények 1000 entitások. Használjon **kihagyása** és **felső** tooenumerate keresztül hello nagy az entitások gyűjteményét tartalmazza. 
+
+a következő példa azt mutatja meg hogyan hello toouse **kihagyása** és **felső** tooskip hello először 2000 feladatok és get hello mellett 1000 feladatok.  
+
+    GET https://media.windows.net/api/Jobs()?$skip=2000&$top=1000 HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337078831&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=suFkxhvPWxQVMjOYelOJfYEWkyTWJCBc02pF0N7NghI%3d
+    Host: media.windows.net
+
+## <a name="updating-entities"></a>Entitások frissítése
+Attól függően, hogy hello entitástípus és, hogy a hello állapot frissítheti a javítás keresztül entitáshoz tulajdonságainak PUT vagy egyesítési HTTP-kérelmek. További információ ezekről a műveletekről: [javítás/PUT/EGYESÍTÉS](https://msdn.microsoft.com/library/dd541276.aspx).
+
+a következő példakód hello jeleníti meg, hogyan tooupdate hello eszköz entitás Name tulajdonság.
+
+    MERGE https://media.windows.net/API/Assets('nb:cid:UUID:80782407-3f87-4e60-a43e-5e4454232f60') HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337083279&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=DMLQXWah4jO0icpfwyws5k%2b1aCDfz9KDGIGao20xk6g%3d
+    Host: media.windows.net
+    Content-Length: 21
+    Expect: 100-continue
+
+    {"Name" : "NewName" }
+
+## <a name="deleting-entities"></a>Entitások törlése
+Entitások a törlése HTTP-kérelmek használatával törölheti a Media Services. Hello entitás, attól függően, amelyben entitások törlése hello sorrendje fontos lehet. Például entitások eszközök például megkövetelheti, hogy Ön visszavonása (vagy törlése) összes Lokátorokat, amelyek az adott eszköz hivatkoznak hello eszköz törlése előtt.
+
+a következő példa azt mutatja meg hogyan hello toodelete egy kereső, de a használt tooupload egy fájlt a blob-tárolóba.
+
+    DELETE https://media.windows.net/API/Locators('nb:lid:UUID:76dcc8e8-4230-463d-97b0-ce25c41b5c8d') HTTP/1.1
+    Content-Type: application/json;odata=verbose
+    Accept: application/json;odata=verbose
+    DataServiceVersion: 3.0
+    MaxDataServiceVersion: 3.0
+    x-ms-version: 2.11
+    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=youraccountname&urn%3aSubscriptionId=2f84471d-b1ae-4e75-aa09-010f0fc0cf5b&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1337067658&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=dithjGvlXR9HlyAf5DE99N5OCYkPAxsHIcsTSjm9%2fVE%3d
+    Host: media.windows.net
+    Content-Length: 0
+
+## <a name="media-services-learning-paths"></a>Media Services képzési tervek
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+
+## <a name="provide-feedback"></a>Visszajelzés küldése
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+

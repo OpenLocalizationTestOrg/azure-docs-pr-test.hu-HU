@@ -1,6 +1,6 @@
 ---
-title: "Adatok másolása az Azure Storage blobs szolgáltatásban a Data Lake Store |} Microsoft Docs"
-description: "Adatok másolása az Azure Storage Blobs Data Lake Store AdlCopy eszközzel"
+title: Data Lake Store az Azure Storage Blobs aaaCopy adatait |} Microsoft Docs
+description: "Azure Storage Blobs tooData Lake Store-ból AdlCopy eszköz toocopy adatok használata"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 68f44991432a76c2ef1c79ec6dffdea4c62bcb17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3d4172eaefe7395cdef2fff72691bd70f642b78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-data-from-azure-storage-blobs-to-data-lake-store"></a>Adatok másolása az Azure Storage-blobokból a Data Lake Store-ba
+# <a name="copy-data-from-azure-storage-blobs-toodata-lake-store"></a>Adatok másolása az Azure Storage Blobs tooData Lake Store-ból
 > [!div class="op_single_selector"]
 > * [A DistCp használata](data-lake-store-copy-data-wasb-distcp.md)
 > * [Az AdlCopy használata](data-lake-store-copy-data-azure-storage-blob.md)
 >
 >
 
-Azure Data Lake Store biztosítja a parancssori eszköz [AdlCopy](http://aka.ms/downloadadlcopy), a következő forrásokból származó adatok másolása:
+Azure Data Lake Store biztosítja a parancssori eszköz [AdlCopy](http://aka.ms/downloadadlcopy), a következő források hello toocopy adatait:
 
-* Tárolóblobokból az Azure Data Lake-tárolóba. Adatok másolása az Data Lake Store az Azure Storage blobs AdlCopy nem használható.
+* Tárolóblobokból az Azure Data Lake-tárolóba. Data Lake Store tooAzure tárolóblobokból AdlCopy toocopy adatok nem használhatók.
 * Között két Azure Data Lake Store-fiókot.
 
-Ezenkívül használhatja a AdlCopy eszköz két különböző módban:
+Emellett eszközzel hello AdlCopy két különböző módban:
 
-* **Önálló**, ahol az eszköz Data Lake Store erőforrást használ a feladat végrehajtásához.
-* **A Data Lake Analytics-fiókkal**, ahol a másolási művelet végrehajtásához az egység a Data Lake Analytics-fiókjához társított használják. Előfordulhat, hogy szeretné ezt a beállítást használja, ha szeretné a másolási feladatokat kiszámítható módon.
+* **Önálló**, ahol a hello eszköz használja a Data Lake Store erőforrások tooperform hello feladat.
+* **A Data Lake Analytics-fiókkal**, tooyour Data Lake Analytics-fiókhoz hozzárendelt hello egységek esetén használt tooperform hello másolási művelet. Érdemes lehet toouse ezt a beállítást, ha a keresett tooperform hello másolási feladat egy előre jelezhető módon.
 
 ## <a name="prerequisites"></a>Előfeltételek
-A cikk elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez a cikk elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 * **Az Azure Storage Blobs** néhány adat-tárolóban.
-* **Egy Azure Data Lake Store-fiók**. Hogyan hozhat létre ilyet, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
-* **Az Azure Data Lake Analytics fiók (nem kötelező)** -lásd [Ismerkedés az Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md) Data Lake Store-fiók létrehozásához útmutatást.
-* **AdlCopy eszköz**. Telepítse a AdlCopy eszközt [http://aka.ms/downloadadlcopy](http://aka.ms/downloadadlcopy).
+* **Egy Azure Data Lake Store-fiók**. Útmutatást toocreate egy, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
+* **Az Azure Data Lake Analytics fiók (nem kötelező)** -lásd [Ismerkedés az Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md) kapcsolatban, hogyan toocreate egy Data Lake tárolásához fiók.
+* **AdlCopy eszköz**. Hello AdlCopy eszköz telepítése [http://aka.ms/downloadadlcopy](http://aka.ms/downloadadlcopy).
 
-## <a name="syntax-of-the-adlcopy-tool"></a>A AdlCopy eszköz szintaxisa
-Az alábbi szintaxissal a AdlCopy eszköz használata
+## <a name="syntax-of-hello-adlcopy-tool"></a>Hello AdlCopy eszköz szintaxisa
+A következő szintaxist toowork hello AdlCopy eszközzel hello használata
 
     AdlCopy /Source <Blob or Data Lake Store source> /Dest <Data Lake Store destination> /SourceKey <Key for Blob account> /Account <Data Lake Analytics account> /Unit <Number of Analytics units> /Pattern
 
-A paraméterek a szintaxist a leírása a következő:
+hello paraméterek hello szintaxisban leírása a következő:
 
 | Beállítás | Leírás |
 | --- | --- |
-| Forrás |Adja meg az adatok helye az Azure storage-blobba. A forrás lehet egy blob-tároló, egy blobba vagy egy másik Data Lake Store-fiók. |
-| Cél |Adja meg a Data Lake Store cél másolja. |
-| SourceKey |Adja meg a hozzáférési kulcsot az Azure storage-blob adatforrásra vonatkozóan. Ez azért szükséges, csak ha a forrás egy blob-tároló vagy egy blobot. |
-| Fiók |**Választható**. Akkor használja, ha azt szeretné, a másolási feladat futtatása az Azure Data Lake Analytics-fiók használatával. Ha használja a /Account lehetőséget a szintaxissal, de nem adja meg a Data Lake Analytics-fiók, AdlCopy egy alapértelmezett fiók használatával futtatni a feladatot. Is ha ezt a beállítást használja, hozzá kell adnia a forrás (Azure Storage-Blobba) és a cél (az Azure Data Lake Store) adatforrásaként a Data Lake Analytics-fiókhoz. |
-| egység |Itt adhatja meg, amely jelzi a másolási feladatot a Data Lake Analytics egységek száma. Ez a beállítás nem kötelező, ha a **/fiók** beállítással adhatja meg a Data Lake Analytics-fiók. |
-| Minta |Adja meg a reguláris kifejezéssel mintát, amely azt jelzi, mely blobokkal vagy a fájlok másolása. AdlCopy használja a megfelelő kis-és nagybetűket. Az alapértelmezett használható, ha nincs minta van megadva a mintája, másolja az összes elemet. Több fájl minták megadása nem támogatott. |
+| Forrás |Az Azure storage-blob hello hello forrásadatok hello helyét adja meg. hello forrás lehet egy blob-tároló, egy blobba vagy egy másik Data Lake Store-fiók. |
+| Cél |Megadja a hello Data Lake Store cél toocopy számára. |
+| SourceKey |Megadja a tárelérési kulcs hello hello az Azure storage blob-forrás. Ez azért szükséges, csak ha hello forrás egy blob-tároló vagy egy blobot. |
+| Fiók |**Választható**. Akkor használja, ha azt szeretné, hogy toouse Azure Data Lake Analytics fiók toorun hello másolási feladat. Ha hello /Account beállítást hello szintaxist használják, de nem adja meg a Data Lake Analytics-fiók, AdlCopy használ egy alapértelmezett fiókot toorun hello feladat. Is ha ezt a beállítást használja, hozzá kell adnia hello forrás (Azure Storage-Blobba) és a cél (az Azure Data Lake Store) adatforrásaként a Data Lake Analytics-fiókhoz. |
+| egység |A Data Lake Analytics egység, amely jelzi a hello másolási feladat hello számát adja meg. Ez a beállítás nem kötelező, ha hello **/fiók** toospecify hello Data Lake Analytics-fiók lehetőséget. |
+| Minta |Adja meg a reguláris kifejezéssel mintát, amely azt jelzi, mely blobokkal vagy a fájlok toocopy. AdlCopy használja a megfelelő kis-és nagybetűket. hello alapértelmezett mintát használható, ha nincs minta toocopy minden elem van megadva. Több fájl minták megadása nem támogatott. |
 
-## <a name="use-adlcopy-as-standalone-to-copy-data-from-an-azure-storage-blob"></a>Használják AdlCopy (önálló) adatok másolása az Azure Storage-blobba
-1. Nyisson meg egy parancssort, és keresse meg azt a könyvtárat, AdlCopy futtató, általában `%HOMEPATH%\Documents\adlcopy`.
-2. A következő parancsot egy adott blob átmásolja a forrás-tároló egy Data Lake Store:
+## <a name="use-adlcopy-as-standalone-toocopy-data-from-an-azure-storage-blob"></a>Az Azure Storage-blobból (önálló) a AdlCopy toocopy adatok használata
+1. Nyisson meg egy parancssort, és keresse meg a toohello rendszert tartalmazó könyvtár AdlCopy, általában `%HOMEPATH%\Documents\adlcopy`.
+2. Futtassa a következő parancs toocopy hello egy adott blob hello forrás tároló tooa Data Lake Store:
 
         AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/<blob name> /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container>
 
@@ -72,9 +72,9 @@ A paraméterek a szintaxist a leírása a következő:
 
         AdlCopy /source https://mystorage.blob.core.windows.net/mycluster/HdiSamples/HdiSamples/WebsiteLogSampleData/SampleLog/909f2b.log /dest swebhdfs://mydatalakestore.azuredatalakestore.net/mynewfolder/ /sourcekey uJUfvD6cEvhfLoBae2yyQf8t9/BpbWZ4XoYj4kAS5Jf40pZaMNf0q6a8yqTxktwVgRED4vPHeh/50iS9atS5LQ==
 
-    >[AZURE.NOTE] A fenti szintaxist határozza meg, hogy a fájl másolása egy mappába a Data Lake Store-fiókban. AdlCopy eszköz egy mappát hoz létre, ha a megadott mappanév nem létezik.
+    >[AZURE.NOTE] a fenti hello szintaxis hello fájlmappa toobe másolt tooa hello Data Lake Store-fiókot határozza meg. AdlCopy eszköz egy mappát hoz létre, ha hello megadott mappa neve nem létezik.
 
-    A rendszer bekéri a hitelesítő adatok megadása az Azure-előfizetés alapján, amely rendelkezik a Data Lake Store-fiók. Egy a következőhöz hasonló kimenetet fog látni:
+    Fogja felszólító tooenter hello hitelesítő adatai hello, amely alatt a Data Lake Store-fiók rendelkezik Azure-előfizetés. Egy kimeneti hasonló toohello következő jelenik meg:
 
         Initializing Copy.
         Copy Started.
@@ -82,7 +82,7 @@ A paraméterek a szintaxist a leírása a következő:
         Finishing Copy.
         Copy Completed. 1 file copied.
 
-1. Is átmásolhatja a blobokat több tároló a Data Lake Store-fiókba, a következő parancsot:
+1. Egy tároló Data Lake Store-fiókból toohello hello a következő parancs használatával is másolhatja az összes hello BLOB:
 
         AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/ /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container>        
 
@@ -92,13 +92,13 @@ A paraméterek a szintaxist a leírása a következő:
 
 ### <a name="performance-considerations"></a>A teljesítménnyel kapcsolatos megfontolások
 
-Az Azure Blob Storage-fiók másolása, a lehetséges, hogy szabályozva, a blob storage oldalon másolása során. Ez csökkenti a teljesítményt, a másolat. Az Azure Blob Storage korlátai által megszabott kapcsolatos további információkért lásd: Azure Storage-korlátok, [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](../azure-subscription-service-limits.md).
+Az Azure Blob Storage-fiók másolása, a lehetséges, hogy szabályozva, hello blob storage oldalon másolása során. Ez csökkenti a másolási feladat hello teljesítményét. További információ az Azure Blob Storage hello korlátai által megszabott toolearn tekintse meg az Azure Storage-korlátok, [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](../azure-subscription-service-limits.md).
 
-## <a name="use-adlcopy-as-standalone-to-copy-data-from-another-data-lake-store-account"></a>Használják AdlCopy (önálló) adatok másolása másik Data Lake Store-fiók
-AdlCopy használatával másolja az adatokat két Data Lake Store-fiókok között.
+## <a name="use-adlcopy-as-standalone-toocopy-data-from-another-data-lake-store-account"></a>(A különálló) AdlCopy toocopy adatait egy másik Data Lake Store-fiók használata
+AdlCopy toocopy adatok között két Data Lake Store-fiók is használható.
 
-1. Nyisson meg egy parancssort, és keresse meg azt a könyvtárat, AdlCopy futtató, általában `%HOMEPATH%\Documents\adlcopy`.
-2. A következő parancsot egy adott fájlt átmásolni egy Data Lake Store-fiók egy másikra.
+1. Nyisson meg egy parancssort, és keresse meg a toohello rendszert tartalmazó könyvtár AdlCopy, általában `%HOMEPATH%\Documents\adlcopy`.
+2. Futtassa a következő parancs toocopy hello egy adott fájlt egy Data Lake Store-fiók tooanother.
 
         AdlCopy /Source adl://<source_adls_account>.azuredatalakestore.net/<path_to_file> /dest adl://<dest_adls_account>.azuredatalakestore.net/<path>/
 
@@ -107,36 +107,36 @@ AdlCopy használatával másolja az adatokat két Data Lake Store-fiókok közö
         AdlCopy /Source adl://mydatastore.azuredatalakestore.net/mynewfolder/909f2b.log /dest adl://mynewdatalakestore.azuredatalakestore.net/mynewfolder/
 
    > [!NOTE]
-   > A fenti szintaxist határozza meg, hogy a fájl másolása egy mappába a célként megadott Data Lake Store-fiók. AdlCopy eszköz egy mappát hoz létre, ha a megadott mappanév nem létezik.
+   > a fenti hello szintaxis hello fájlmappa toobe másolt tooa hello cél Data Lake Store-fiók határozza meg. AdlCopy eszköz egy mappát hoz létre, ha hello megadott mappa neve nem létezik.
    >
    >
 
-    A rendszer bekéri a hitelesítő adatok megadása az Azure-előfizetés alapján, amely rendelkezik a Data Lake Store-fiók. Egy a következőhöz hasonló kimenetet fog látni:
+    Fogja felszólító tooenter hello hitelesítő adatai hello, amely alatt a Data Lake Store-fiók rendelkezik Azure-előfizetés. Egy kimeneti hasonló toohello következő jelenik meg:
 
         Initializing Copy.
         Copy Started.|
         100% data copied.
         Finishing Copy.
         Copy Completed. 1 file copied.
-3. A következő parancsot egy adott mappából a forráshelyen Data Lake Store-fiók összes fájlt másolja a célként megadott Data Lake Store-fiók mappába.
+3. hello következő parancs összes fájlt másolja hello Data Lake Store fiók tooa forrásmappában hello cél Data Lake Store-fiók egy adott mappából.
 
         AdlCopy /Source adl://mydatastore.azuredatalakestore.net/mynewfolder/ /dest adl://mynewdatalakestore.azuredatalakestore.net/mynewfolder/
 
 ### <a name="performance-considerations"></a>A teljesítménnyel kapcsolatos megfontolások
 
-AdlCopy önálló eszközként használatakor a példány futtatja megosztott, az Azure által felügyelt erőforrások. A teljesítmény jelenhet meg ebben a környezetben a rendszerterhelés és a rendelkezésre álló erőforrások függ. Ebben a módban leginkább kis átvitelek eseti alapon szolgál. Paraméterek nélkül kell AdlCopy használata önálló eszközként kell beállítani.
+AdlCopy önálló eszközként használatakor hello másolási futtatja megosztott, az Azure által felügyelt erőforrások. Ebben a környezetben programkódjában hello teljesítmény rendszerterhelés és a rendelkezésre álló erőforrások függ. Ebben a módban leginkább kis átvitelek eseti alapon szolgál. Paraméterek nélkül kell toobe beállított AdlCopy önálló eszközként használatakor.
 
-## <a name="use-adlcopy-with-data-lake-analytics-account-to-copy-data"></a>Használja AdlCopy (Data Lake Analytics-fiók) adatok másolása
-A Data Lake Analytics-fiók használatával a Data Lake Store-adatok másolása az Azure storage blobs AdlCopy feladat futtatása. Általában használja ezt a beállítást, amikor az adatok áthelyezésének gigabájt és terabájt a tartományban, és azt szeretné, hogy jobb és kiszámítható teljesítmény átviteli sebesség.
+## <a name="use-adlcopy-with-data-lake-analytics-account-toocopy-data"></a>(A Data Lake Analytics-fiók) AdlCopy toocopy adatok használata
+Használhatja a Data Lake Analytics toorun hello AdlCopy feladat toocopy adatait az Azure storage-blobok tooData Lake Store fiók. Ha hello adatok toobe áthelyezése gigabájt és terabájt hello körét, és azt szeretné, hogy jobb és kiszámítható teljesítmény átviteli általában használja ezt a beállítást.
 
-A Data Lake Analytics-fiók használata AdlCopy másolása az Azure Storage-Blobból, a forrás (Azure Storage-Blobba) a Data Lake Analytics-fiók adatforrásként hozzá kell adni. A Data Lake Analytics-fiókhoz való hozzáadását további adatforrások, lásd: [Data Lake Analytics kezelése az adatforrások fiók](../data-lake-analytics/data-lake-analytics-manage-use-portal.md#manage-data-sources).
+az az Azure Storage-Blobból, hello forrás (Azure Storage-Blobba) AdlCopy toocopy a Data Lake Analytics fiókot hozzá kell adni a Data Lake Analytics-fiók adatforrásként toouse. További adatok források tooyour Data Lake Analytics-fiók hozzáadására vonatkozó utasításokért lásd: [Data Lake Analytics kezelése az adatforrások fiók](../data-lake-analytics/data-lake-analytics-manage-use-portal.md#manage-data-sources).
 
 > [!NOTE]
-> A Data Lake Analytics-fiókkal forrásaként másolása az Azure Data Lake Store-fiókból, nem kell a Data Lake Store-fiók társítása a Data Lake Analytics-fiók. A követelmény a forrás tárolási társítja a Data Lake Analytics-fiók csak akkor, ha a forrás álljon az Azure Storage-fiók.
+> A Data Lake Analytics-fiókkal hello forrásaként másolása az Azure Data Lake Store-fiókból, nem kell tooassociate hello Data Lake Store-fiókot a hello Data Lake Analytics-fiók. hello követelmény tooassociate hello forrás tároló hello Data Lake Analytics-fiók csak hello forrás esetén egy Azure Storage-fiókot.
 >
 >
 
-A következő parancsot egy Data Lake Store-fiók használatával a Data Lake Analytics-fiók egy Azure Storage-blob másolása:
+Futtassa a parancsot toocopy követően az Azure Storage blob tooa Data Lake Store-fiók használatával a Data Lake Analytics-fiók hello:
 
     AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/<blob name> /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container> /Account <data_lake_analytics_account> /Unit <number_of_data_lake_analytics_units_to_be_used>
 
@@ -144,19 +144,19 @@ Példa:
 
     AdlCopy /Source https://mystorage.blob.core.windows.net/mycluster/example/data/gutenberg/ /dest swebhdfs://mydatalakestore.azuredatalakestore.net/mynewfolder/ /sourcekey uJUfvD6cEvhfLoBae2yyQf8t9/BpbWZ4XoYj4kAS5Jf40pZaMNf0q6a8yqTxktwVgRED4vPHeh/50iS9atS5LQ== /Account mydatalakeanalyticaccount /Units 2
 
-Hasonlóképpen futtassa a következő parancsot egy Data Lake Store-fiók használatával a Data Lake Analytics-fiók egy Azure Storage-blob másolása:
+Hasonlóképpen futtassa a hello parancs toocopy az Azure Storage blob tooa Data Lake Store-fiók Data Lake Analytics-fiókkal a következő:
 
     AdlCopy /Source adl://mysourcedatalakestore.azuredatalakestore.net/mynewfolder/ /dest adl://mydestdatastore.azuredatalakestore.net/mynewfolder/ /Account mydatalakeanalyticaccount /Units 2
 
 ### <a name="performance-considerations"></a>A teljesítménnyel kapcsolatos megfontolások
 
-Az adatok másolásának terabájt közé, amikor a AdlCopy a saját Azure Data Lake Analytics-fiók használatával hatékonyabb és sokkal kiszámíthatóbbá teljesítményt biztosít. Amely kell kell hangolni paraméter Azure Data Lake Analytics egység a másolási feladat használandó számát. Egységek számának növelésével növeli a teljesítményt, a másolat. A másolandó fájlok maximális egy egységet használhat. Fájlok másolásának számánál több egységek megadása nem növeli a teljesítményt.
+Hello közé terabájt adatok másolásakor hatékonyabb és sokkal kiszámíthatóbbá teljesítményt AdlCopy segítségével a saját Azure Data Lake Analytics-fiókkal biztosít. hello paraméter, amely kell kell hangolni Azure Data Lake Analytics egységek toouse hello másolási feladat hello számát jelenti. Hello egységek számának növelésével növeli a másolási feladat hello teljesítményét. Összes másolt fájl toobe használható maximális egységárát. Fájlok másolásának hello számnál több egységek megadása nem növeli a teljesítményt.
 
-## <a name="use-adlcopy-to-copy-data-using-pattern-matching"></a>Másolja az adatokat használ a mintamegfeleltetés AdlCopy segítségével
-Ebben a szakaszban megismerheti, hogyan AdlCopy használatával másolja az adatokat egy forrásból (az alábbi példában használjuk Azure Storage-Blobba) használ a mintamegfeleltetés cél Data Lake Store-fiókra. Az alábbi lépéseket használhatja például a forrás blob összes .csv kiterjesztésű fájlt átmásolni a cél.
+## <a name="use-adlcopy-toocopy-data-using-pattern-matching"></a>Használ a mintamegfeleltetés AdlCopy toocopy adatok használata
+Ebben a szakaszban megismerheti, hogyan toouse AdlCopy toocopy adatok forrásból (az alábbi példában használjuk Azure Storage-Blobba) tooa Data Lake Store-fiók cél használ a mintamegfeleltetés. Például lépésekkel hello toocopy alatti összes fájl hello forrás blob toohello cél a .csv-bővítménnyel.
 
-1. Nyisson meg egy parancssort, és keresse meg azt a könyvtárat, AdlCopy futtató, általában `%HOMEPATH%\Documents\adlcopy`.
-2. A következő parancsot az összes *.csv kiterjesztésű fájlt átmásolni egy adott blob-forrás tárolójából. a Data Lake Store:
+1. Nyisson meg egy parancssort, és keresse meg a toohello rendszert tartalmazó könyvtár AdlCopy, általában `%HOMEPATH%\Documents\adlcopy`.
+2. Futtassa a következő parancs toocopy hello minden fájl *.csv kiterjesztésű hello forrás tároló tooa Data Lake Store az egy adott blob:
 
         AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/<blob name> /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container> /Pattern *.csv
 
@@ -165,18 +165,18 @@ Ebben a szakaszban megismerheti, hogyan AdlCopy használatával másolja az adat
         AdlCopy /source https://mystorage.blob.core.windows.net/mycluster/HdiSamples/HdiSamples/FoodInspectionData/ /dest adl://mydatalakestore.azuredatalakestore.net/mynewfolder/ /sourcekey uJUfvD6cEvhfLoBae2yyQf8t9/BpbWZ4XoYj4kAS5Jf40pZaMNf0q6a8yqTxktwVgRED4vPHeh/50iS9atS5LQ== /Pattern *.csv
 
 ## <a name="billing"></a>Számlázás
-* Ha a AdlCopy eszközzel önálló számlázott kilépő költségek áthelyezésére adatokat, ha a forrás Azure Storage-fiók nem ugyanabban a régióban, mint a Data Lake Store.
-* Ha a AdlCopy eszköz használata a Data Lake Analytics fiók, szabványos [Data Lake Analytics díjszabás számlázási](https://azure.microsoft.com/pricing/details/data-lake-analytics/) alkalmazza.
+* Ha eszközzel hello AdlCopy számlázott önálló kilépő költségek áthelyezésére az adatokat, ha nincs hello forrás Azure Storage-fiók hello ugyanabban a régióban, Data Lake Store hello.
+* Ha hello AdlCopy eszköz használata a Data Lake Analytics fiók, szabványos [Data Lake Analytics díjszabás számlázási](https://azure.microsoft.com/pricing/details/data-lake-analytics/) alkalmazza.
 
 ## <a name="considerations-for-using-adlcopy"></a>AdlCopy használatának szempontjai
-* (Verziójához 1.0.5), AdlCopy támogatja, amelyek együttesen több ezer fájlok és mappák forrásokból származó adatok másolását. Azonban, hogy a felmerülő problémák nagy dataset másolása után a fájlok és mappák terjesztése különböző alárendelt mappákba is inkább az elérési út a alárendelt mappákra forrásaként.
+* (Verziójához 1.0.5), AdlCopy támogatja, amelyek együttesen több ezer fájlok és mappák forrásokból származó adatok másolását. Azonban ha problémák nagy dataset másolása, terjesztése hello fájlok és mappák különböző alárendelt mappákba szabadon hello elérési toothose almappák hello forrásként inkább.
 
 ## <a name="performance-considerations-for-using-adlcopy"></a>AdlCopy a teljesítménnyel kapcsolatos szempontok
 
-AdlCopy támogatja az adatok másolását a fájlok és mappák ezer tartalmazó. Azonban ha problémák nagy dataset másolása, terjesztheti a fájlok és mappák kisebb alárendelt mappákba. AdlCopy alkalmi példány lett létrehozva. Ha az ismétlődő adatokat másolni kívánt, érdemes [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md) , amely körül a másolási műveletek teljes felügyeletet biztosít.
+AdlCopy támogatja az adatok másolását a fájlok és mappák ezer tartalmazó. Azonban ha problémák nagy dataset másolása, terjesztheti hello fájlok és mappák kisebb alárendelt mappákba. AdlCopy alkalmi példány lett létrehozva. Ha toocopy adatok ismétlődően, érdemes [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md) , amely körül hello másolási műveletek teljes felügyeletet biztosít.
 
 ## <a name="release-notes"></a>Kibocsátási megjegyzések
-* 1.0.13 - másolása adatok a azonos Azure Data Lake Store-fiókba között több adlcopy parancs, akkor nem kell minden egyes futtatásához a hitelesítő adatok újbóli többé. Adlcopy között több futtatása most gyorsítótárazhatják az adatokat.
+* 1.0.13 - adatok toohello másolása több adlcopy között ugyanazt az Azure Data Lake Store-fiókot a parancsokat, nem kell többé futtatásához a hitelesítő adatokat az egyes tooreenter. Adlcopy között több futtatása most gyorsítótárazhatják az adatokat.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Biztonságos adattárolás a Data Lake Store-ban](data-lake-store-secure-data.md)

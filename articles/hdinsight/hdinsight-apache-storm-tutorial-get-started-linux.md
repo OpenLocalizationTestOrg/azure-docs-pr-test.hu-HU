@@ -1,6 +1,6 @@
 ---
-title: "Storm Starter-példák az Azure HDInsight-alapú Apache Storm rendszerben | Microsoft Docs"
-description: "Ismerje meg az Apache Storm használatával történő valós idejű big data-elemzést és adatfeldolgozást, valamint a HDInsight-alapú Storm Starter-példákat."
+title: "aaaStorm-kezdőpéldák a HDInsight - Azure alatt futó Apache Storm |} Microsoft Docs"
+description: "Megtudhatja, hogyan toodo big data-elemzések és a valós idejű adatfeldolgozásra Apache Storm használatának és a HDInsight alatt futó storm-starter-példák hello."
 keywords: "storm starter, apache storm-példa"
 services: hdinsight
 documentationcenter: 
@@ -16,20 +16,20 @@ ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
-ms.openlocfilehash: 83fc6db1ddb43eb87e7c58684505d7196c1e53d0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb6d6549e67ca5b557f0692f98c89692a87267b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-#<a name="get-started-with-apache-storm-on-hdinsight-using-the-storm-starter-examples"></a>A HDInsight-alapú Apache Storm rendszer használatának első lépései Storm Starter-példákkal
+#<a name="get-started-with-apache-storm-on-hdinsight-using-hello-storm-starter-examples"></a>Ismerkedés az Apache Storm on HDInsight hello storm-kezdőpéldák a
 
-Ismerje meg a HDInsight-alapú Apache Storm használatát a Storm Starter-példák segítségével.
+Ismerje meg, hogyan toouse alatt futó Apache Storm a Hdinsightban az hello storm-kezdőpéldák.
 
 Az Apache Storm egy skálázható, hibatűrő, elosztott, valós idejű számítási rendszer az adatstreamek feldolgozására. A Storm on Azure HDInsight segítségével olyan felhőalapú Storm-fürtöket hozhat létre, amelyek valós időben végeznek big data elemzést.
 
 > [!IMPORTANT]
-> A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -41,24 +41,24 @@ Az Apache Storm egy skálázható, hibatűrő, elosztott, valós idejű számít
 
 ## <a name="create-a-storm-cluster"></a>Storm-fürt létrehozása
 
-HDInsight alatt futó Storm-fürt létrehozásához kövesse az alábbi lépéseket:
+Következő lépések toocreate Storm on HDInsight-fürt hello használata:
 
-1. Az [Azure Portalon](https://portal.azure.com) válassza az **+ ÚJ**, **Intelligencia és analitika**, majd a **HDInsight** elemet.
+1. A hello [Azure-portálon](https://portal.azure.com), jelölje be **+ új**, **Eszközintelligencia + analitika**, majd válassza ki **HDInsight**.
 
     ![HDInsight-fürt létrehozása](./media/hdinsight-apache-storm-tutorial-get-started-linux/create-hdinsight.png)
 
-2. Az **Alapvető beállítások** panelen adja meg a következőket:
+2. A hello **alapjai** panelen adja meg a következő információ hello:
 
-    * **Fürt neve**: A HDInsight-fürt neve.
-    * **Előfizetés**: Válassza ki a használni kívánt előfizetést.
-    * **Fürt bejelentkezési felhasználóneve** és **Fürt bejelentkezési jelszava**: A fürt HTTPS-kapcsolaton keresztüli elérésekor használt bejelentkezési adatok. Ezekkel a hitelesítő adatokkal érheti el az olyan szolgáltatásokat, mint az Ambari webes felület vagy a REST API.
-    * **SSH-felhasználónév**: A fürt SSH-kapcsolaton keresztüli elérésekor használt bejelentkezési adatok. Alapértelmezés szerint a jelszó megegyezik a fürt bejelentkezési jelszavával.
-    * **Erőforráscsoport**: Az az erőforráscsoport, amelyben a fürt létre lesz hozva.
-    * **Hely**: Az az Azure-régió, amelyben a fürt létre lesz hozva.
+    * **A fürt neve**: hello hello HDInsight-fürt nevét.
+    * **Előfizetés**: hello előfizetés toouse kiválasztása.
+    * **A fürt bejelentkezési felhasználónevének** és **fürt bejelentkezési jelszó**: hello bejelentkezési hello fürt eléréséhez a HTTPS-KAPCSOLATON keresztül. A hitelesítő adatok tooaccess szolgáltatások például hello Ambari webes felhasználói felületén vagy a REST API-t használja.
+    * **Secure Shell (SSH) felhasználónév**: hello bejelentkezési SSH-n keresztül hello fürt eléréséhez használt. Alapértelmezés szerint hello jelszó hello ugyanaz, mint a hello fürt bejelentkezési jelszót.
+    * **Erőforráscsoport**: hello erőforrás csoport toocreate hello fürtöt.
+    * **Hely**: hello Azure-régiót toocreate hello fürtöt.
 
     ![Előfizetés kiválasztása](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-basic-configuration.png)
 
-3. Válassza ki a **Fürt típusát**, majd állítsa be a következő értékeket a **Fürtkonfiguráció** panelen:
+3. Válassza ki **típusú fürt**, és a set hello majd értékek következő hello **fürtkonfiguráció** panel:
 
     * **Fürt típusa**: Storm
 
@@ -68,99 +68,99 @@ HDInsight alatt futó Storm-fürt létrehozásához kövesse az alábbi lépése
 
     * **Fürt szintje**: Standard
 
-    Végül mentse a beállításokat a **Kiválasztás** gomb használatával.
+    Végül, használja a hello **válasszon** toosave beállítások gombra.
 
     ![Fürttípus kiválasztása](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-cluster-type.png)
 
-4. A fürt típusának kijelölése után erősítse meg a beállítást a __Kiválasztás__ gombbal. Ezután kattintson a __Tovább__ gombra az alapszintű konfiguráció befejezéséhez.
+4. Hello fürt típusának kiválasztása után használja a hello __válasszon__ gomb tooset hello fürt típusa. Következő lépésként az hello __következő__ gomb toofinish alapszintű konfigurálása.
 
-5. A **Tárolás** panelen válasszon ki vagy hozzon létre egy Storage-fiókot. A jelen dokumentumban leírt lépések esetében a panel többi mezőjét hagyja az alapértelmezett értékeken. Kattintson a __Tovább__ gombra a tárolókonfiguráció mentéséhez.
+5. A hello **tárolási** panelen válassza ki vagy hozzon létre egy tárfiókot. A jelen dokumentumban leírt lépések hello, hello többi mezőt hagyja a panel hello alapértelmezett értéken. Használjon hello __következő__ gomb toosave tárolási konfigurációt.
 
-    ![A tárfiók HDInsight-beállításainak konfigurálása](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-storage-account.png)
+    ![Állítsa be a HDInsight-hello tárolási fiók beállításai](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-storage-account.png)
 
-6. Az **Összegzés** lapon tekintse át a fürt konfigurációját. A __Szerkesztés__ hivatkozásai használatával módosítsa a hibás beállításokat. Végül kattintson a__Létrehozás__ gombra a fürt létrehozásához.
+6. A hello **összegzés** panelen hello fürt hello konfiguráció áttekintése. Használjon hello __szerkesztése__ hivatkozásait toochange életbe léptetett beállítások helytelenek. Végezetül the__Create__ gomb toocreate hello-fürt használatára.
 
     ![A fürtkonfiguráció összegzése](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-configuration-summary.png)
 
     > [!NOTE]
-    > A fürt létrehozása 20 percig is eltarthat.
+    > Too20 perc toocreate hello fürt is eltarthat.
 
 ## <a name="run-a-storm-starter-sample-on-hdinsight"></a>Storm Starter-példa futtatása a HDInsightban
 
-1. Csatlakozzon SSH-val a HDInsight-fürthöz:
+1. Csatlakozzon az SSH használatával toohello HDInsight-fürt:
 
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
-    Ha az SSH-felhasználói fiókhoz jelszót használt, a rendszer felkéri annak megadására. Nyilvános kulcs használatakor lehetséges, hogy az `-i` paraméter használatára van szükség a megfelelő titkos kulcs megadásához. Például: `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`.
+    Ha a jelszó toosecure az SSH-felhasználói fiókhoz,-e rákérdezéses tooenter azt. A nyilvános kulcs használatakor kell segítségével hello `-i` paraméter toospecify hello kapcsolódó titkos kulcs. Például: `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`.
 
     További információk: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Használja az alábbi parancsot példatopológia indításához:
+2. A következő parancs toostart példatopológia hello használata:
 
         storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar org.apache.storm.starter.WordCountTopology wordcount
 
     > [!NOTE]
-    > A HDInsight előző verzióiban a topológia osztályneve `org.apache.storm.starter.WordCountTopology` helyett `storm.starter.WordCountTopology`.
+    > A HDInsight korábbi verzióiban hello topológia hello osztály neve nem `storm.starter.WordCountTopology` helyett `org.apache.storm.starter.WordCountTopology`.
 
-    Ez a parancs a „wordcount” rövid néven elindítja a fürtön a WordCount-példatopológiát. Ez véletlenszerűen állít elő mondatokat, majd az egyes szavak előfordulását számolja meg a mondatokban.
+    Indítja el a hello példa WordCount topológia hello fürtön, a "wordcount" rövid nevet. Véletlenszerűen létrehozott mondatokat és count hello előfordulásainak kívánt számát, az összes szó hello mondat a.
 
     > [!NOTE]
-    > A saját topológiák a fürtre történő elküldésekor a fürtöket tartalmazó jar-fájlt a `storm` parancs használata előtt kell másolnia. A fájl másolásához használja az `scp` parancsot. Például: `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
+    > A saját topológiák toohello fürtre történő elküldésekor, át kell másolnia hello használata előtt hello fürtöt tartalmazó jar-fájlra hello `storm` parancsot. Használjon hello `scp` toocopy hello parancsfájlt. Például: `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
     >
-    > A WordCount-példa és más Storm Starter-példák már megtalálhatók a fürtön a következő helyen: `/usr/hdp/current/storm-client/contrib/storm-starter/`.
+    > hello WordCount-példa és egyéb storm-starter-példák megtalálhatóak a fürthöz `/usr/hdp/current/storm-client/contrib/storm-starter/`.
 
-A Storm Starter-példák forráskódját a [https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter) helyen tekintheti meg. A hivatkozás a Storm 1.1.x-es verzió példáira mutat, amely a HDInsight 3.6-ban érhető el. A Storm egyéb verziói esetében használja a __Branch__ (Ág) gombot a lap tetején egy másik Storm-verzió kiválasztásához.
+Ha érdekli a hello storm-kezdőpéldák hello forrás megtekintése, hello kódot található [https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter). A hivatkozás a Storm 1.1.x-es verzió példáira mutat, amely a HDInsight 3.6-ban érhető el. A Storm egyéb verziói esetén használja a hello __fiókirodai__ hello lap tooselect hello tetején gombra egy másik Storm verzióját.
 
-## <a name="monitor-the-topology"></a>A topológia figyelése
+## <a name="monitor-hello-topology"></a>A figyelő hello topológia
 
-A HDInsight-fürtön elérhető Storm webes felhasználói felületet biztosít a futó topológiákkal való munkavégzéshez.
+hello Storm felhasználói felülete webes felületet biztosít a futó topológiákkal dolgozik, és szerepel-e a HDInsight-fürthöz.
 
-Kövesse az alábbi lépéseket a topológia a Storm felhasználói felületével történő figyeléséhez:
+A következő lépéseket toomonitor hello topológiájának megtekintését a Storm felhasználói felülete hello hello használata:
 
-1. A Storm felhasználói felületének megjelenítéséhez egy webböngészőben nyissa meg a következőt: https://CLUSTERNAME.azurehdinsight.net/stormui. Cserélje le a **CLUSTERNAME** elemet a fürt nevére.
+1. toodisplay hello Storm felhasználói felületén, nyissa meg egy webes böngésző toohttps://CLUSTERNAME.azurehdinsight.net/stormui. Cserélje le **CLUSTERNAME** hello néven a fürt.
 
     > [!NOTE]
-    > Ha a rendszer felkéri a felhasználónév és a jelszó megadására, a fürt létrehozásakor használt fürtrendszergazda (rendszergazda) nevét és jelszavát adja meg.
+    > Ha tooprovide kéri a felhasználónevet és jelszót, adja meg a hello Fürtrendszergazda (rendszergazda) és a használt jelszó létrehozása hello fürt.
 
-2. A **Topology summary** (Topológia összegzése) területen válassza ki a **wordcount** bejegyzést a **Name** (Név) oszlopban. Megjelennek a topológiával kapcsolatos információk.
+2. A **topológia összegzése**, jelölje be hello **wordcount** hello bejegyzést **neve** oszlop. Hello topológiára vonatkozó információk jelennek meg.
 
     ![A Storm irányítópultja a Storm Starter WordCount-topológiára vonatkozó információkkal.](./media/hdinsight-apache-storm-tutorial-get-started-linux/topology-summary.png)
 
-    Ezen a lapon az alábbi információk találhatóak meg:
+    Ezen a lapon hello a következő információkat biztosítja:
 
-    * **Topológiastatisztikák** – Alapszintű információkat tartalmaz a topológia teljesítményével kapcsolatban, időtartományokba rendezve.
+    * **Topológiastatisztikák** – alapszintű információkat tartalmaz hello topológia teljesítményével kapcsolatban, időtartományokba.
 
         > [!NOTE]
-        > Egy adott időtartományt kiválasztva a lap más szakaszaiban található információk időtartománya megváltozik.
+        > Ha a egy adott időpont ablak módosítások hello időkerete hello lap más szakaszaiban talál.
 
-    * **Spoutok** – Alapszintű információkat tartalmaz a spoutokkal kapcsolatban, beleértve az egyes spoutok által visszaadott legutóbbi hibaüzenetet is.
+    * **Spoutok** – alapszintű információkat tartalmaz a spoutokkal kapcsolatban, beleértve az egyes spoutok által visszaadott legutóbbi hibaüzenetet hello.
 
     * **Boltok** – Alapszintű információkat tartalmaz a boltokkal kapcsolatban.
 
-    * **Topológiakonfiguráció** – Részletes információkat tartalmaz a topológia konfigurációjával kapcsolatban.
+    * **Topológiakonfiguráció** -részletes hello topológia konfigurációjával kapcsolatos információkat.
 
-    Ezen a lapon a következő topológiaműveletek szerepelnek:
+    Ezen a lapon is biztosít, amelyen átvihető hello topológia műveletek:
 
     * **Aktiválás** – Folytatja az inaktivált topológia feldolgozását.
 
     * **Inaktiválás** – Megszakítja a futó topológiát.
 
-    * **Visszaegyensúlyozás** – Beállítja a topológia párhuzamosságát. A fürtben található csomópontok számának megváltoztatását követően újra ki kell egyensúlyozni a futó topológiákat. Az újraegyensúlyozás beállítja a párhuzamosságot a fürtben található csomópontok számának növekedése/csökkenése kiegyensúlyozása érdekében. További információ: [Understanding the parallelism of a Storm topology](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) (A Storm-topológia párhuzamosságának ismertetése).
+    * **Visszaegyensúlyozás** -hello topológia párhuzamosságát hello módosíthatja. Futó topológiákat kell egyensúlyba, miután módosította hello fürtben található csomópontok számának hello. Párhuzamossági toocompensate hello növekedése/csökkenése számaként hello fürtben található csomópontok újraelosztás módosítja. További információkért lásd: [ismertetése a Storm-topológia párhuzamosságát hello](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html).
 
-    * **Törlés** – A Storm-topológia leállítása bizonyos időtúllépést követően.
+    * **Kill** – a Storm-topológia leállítása után hello megadott időkorlát.
 
-3. Válassza ki a jelen lapon található **Spoutok** vagy **Boltok** szakaszok bejegyzéseinek egyikét. Ekkor információk jelennek meg a kiválasztott összetevővel kapcsolatban.
+3. Ezen a lapon válassza ki egy bejegyzést hello **Spoutok** vagy **boltok** szakasz. Kiválasztott összetevő hello információkat jelenít meg.
 
     ![A Storm irányítópultja a kiválasztott összetevőkkel kapcsolatos információkkal.](./media/hdinsight-apache-storm-tutorial-get-started-linux/component-summary.png)
 
-    Ezen a lapon az alábbi információk találhatóak meg:
+    Ez a lap megjeleníti a következő információ hello:
 
-    * **Spout-/Bolt-statisztikák** – Alapszintű információkat tartalmaz az egyes összetevők teljesítményével kapcsolatban, időtartományokba rendezve.
+    * **Spout vagy Bolt statisztikák** – alapszintű információkat tartalmaz hello összetevők teljesítményével kapcsolatban, időtartományokba.
 
         > [!NOTE]
-        > Egy adott időtartományt kiválasztva a lap más szakaszaiban található információk időtartománya megváltozik.
+        > Ha a egy adott időpont ablak módosítások hello időkerete hello lap más szakaszaiban talál.
 
-    * **Beviteli statisztikák** (csak boltok esetében) – Információkat tartalmaz a bolt által feldolgozott adatokat előállító összetevőkről.
+    * **Beviteli statisztikák** (csak boltok esetében) - információk hello bolt által feldolgozott adatokat előállító összetevőkről.
 
     * **Kimeneti statisztikák** – Információkat tartalmaz a bolt által kibocsátott adatokról.
 
@@ -168,7 +168,7 @@ Kövesse az alábbi lépéseket a topológia a Storm felhasználói felületéve
 
     * **Hibák** – A jelen összetevő által visszaadott hibaüzenetek.
 
-4. Egy adott spout vagy bolt részletes adatainak megtekintésekor az összetevők adott példánya részletes adatainak megtekintéséhez jelöljön ki egy bejegyzést a **Port** oszlopból az **Executors** (Végrehajtók) szakaszban.
+4. Ha adott spout vagy bolt hello részleteit jeleníti meg, jelöljön ki egy bejegyzést a hello **Port** hello oszlopa **végrehajtója** hello összetevők adott példánya részletes tooview szakasz.
 
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: split default ["with"]
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: split default ["nature"]
@@ -179,13 +179,13 @@ Kövesse az alábbi lépéseket a topológia a Storm felhasználói felületéve
         2015-01-27 14:18:02 b.s.d.executor [INFO] Processing received message source: split:21, stream: default, id: {}, [seven]
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: count default [seven, 1493957]
 
-    Ebben a példában a **seven** szó 1 493 957 alkalommal fordul elő. A szó előfordulásainak számlálása a topológia indításától kezdve történik.
+    Ebben a példában a word hello **hét** 1493957 hányszor történt. A számláló értéke hányszor hello word történt. Ez a topológia indítása óta.
 
-## <a name="stop-the-topology"></a>A topológia leállítása
+## <a name="stop-hello-topology"></a>Hello topológia leállítása
 
-Lépjen vissza a **Topology summary** (Topológia összegzése) lapra a word-count topológiához, majd válassza a **Kill** (Törlés) gombot a **Topology actions** (Topológiaműveletek) szakaszban. Amikor a rendszer kéri, adjon meg 10 másodperces értéket a topológia leállítása előtti várakozási időként. Az időtúllépés lejáratát követően az adott topológia már nem jelenik meg az irányítópult **Storm felhasználói felülete** szakaszában.
+Térjen vissza a toohello **topológia összegzése** hello word-count topológiához lapján, majd válassza ki a hello **Kill** hello a gomb **topológia műveletek** szakasz. Amikor a rendszer kéri, adja meg 10 másodperc toowait hello hello topológia leállítása előtt. Hello időkorlát, után hello topológia nem jelenik meg az hello felkeresésekor **Storm felhasználói felülete** hello irányítópult szakasza.
 
-## <a name="delete-the-cluster"></a>A fürt törlése
+## <a name="delete-hello-cluster"></a>Hello fürt törlése
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -193,13 +193,13 @@ Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse me
 
 ## <a id="next"></a>Következő lépések
 
-Ebből az Apache Storm-oktatóanyagból megismerhette a Storm HDInsightban való használatának alapjait. A következő szakaszban a [Java-alapú topológiák fejlesztését ismertetjük Maven használatával](hdinsight-storm-develop-java-topology.md).
+Az Apache Storm oktatóanyag megismerte hello használata a HDInsight alatt futó Storm alapjait. A következő megtudhatja, hogyan túl[Maven használatával fejlesztése Java-alapú topológiák](hdinsight-storm-develop-java-topology.md).
 
-Ha már ismeri a Java-alapú topológiák fejlesztését, és egy meglévő topológiát kíván üzembe helyezni a HDInsighton, tekintse meg a következő cikket: [HDInsighton futó Apache Storm-topológiák üzembe helyezése és kezelése](hdinsight-storm-deploy-monitor-topology-linux.md).
+Ha már ismeri a Java-alapú topológiák fejlesztése és egy meglévő topológiát tooHDInsight toodeploy, lásd: [központi telepítése és kezelése a HDInsight alatt futó Apache Storm-topológiák](hdinsight-storm-deploy-monitor-topology-linux.md).
 
 A.NET-fejlesztők C#- vagy hibrid C#/Java-topológiákat hozhatnak létre a Visual Studio használatával. További információk: [C#-topológiák fejlesztése HDInsight alatt futó Apache Stormra a Visual Studio Hadoop-eszközeinek használatával](hdinsight-storm-develop-csharp-visual-studio-topology.md).
 
-A HDInsight alatt futó Stormmal használható példatopológiákat az alábbiakban talál:
+Példa topológiákat, amely a HDInsight alatt futó Storm használható tekintse meg a következő példák hello:
 
 * [HDInsight alatt futó Storm példatopológiái](hdinsight-storm-example-topology.md)
 

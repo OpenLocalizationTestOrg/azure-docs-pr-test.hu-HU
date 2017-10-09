@@ -1,0 +1,2 @@
+Ez a cikk egy szélesebb körű adatsorozat tooprovide, a kialakítási szempontokat és útmutatókkal együtt, ha Ön készít, egy alkalmazás-infrastruktúra az Azure-ban része. Is [hello További súgótémakörök megjelenítéséhez hello sorozat](#next-steps). Gyorsan létrehozhat egy az Azure-ban fejlesztési/tesztelési környezetben, bár vannak további szempontok egy éles használatra kész, magas rendelkezésre állású, és a biztonságos környezetben végrehajtása során.
+

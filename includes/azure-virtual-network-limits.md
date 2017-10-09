@@ -1,4 +1,4 @@
-<a name="virtual-networking-limits-classic"></a>Az alábbi korlátozások kizárólag olyan hálózati erőforrásokra érvényesek, amelyek kezelése előfizetésenként, a klasszikus üzemi modellel történik.
+<a name="virtual-networking-limits-classic"></a>hello következő korlátok alkalmazása csak a hálózati erőforrások hello klasszikus üzembe helyezési modellel előfizetésenként kezelhetők.
 
 | Erőforrás | Alapértelmezett korlát | Felső korlát |
 | --- | --- | --- |
@@ -18,7 +18,7 @@
 | Végponthozzáférés-vezérlési listák (ACL-ek) |50 |50 |
 
 #### <a name="azure-resource-manager-virtual-networking-limits"></a>Hálózatkezelési korlátok – Azure Resource Manager
-Az alábbi korlátozások kizárólag olyan hálózati erőforrásokra érvényesek, amelyek kezelése régiónként és előfizetésenként, az Azure Resource Managerrel történik.
+hello következő korlátok alkalmazása csak a hálózati erőforrások az Azure Resource Manageren keresztül felügyelt régiónként.
 
 | Erőforrás | Alapértelmezett korlát | Felső korlát |
 | --- | --- | --- |
@@ -44,5 +44,5 @@ Az alábbi korlátozások kizárólag olyan hálózati erőforrásokra érvénye
 | Pont–hely kapcsolati főtanúsítványok száma VPN Gateway-példányonként |20 |20 |
 | Másodlagos IP-konfigurációk száma virtuális hálózatonként |1000 |kapcsolatfelvétel az ügyfélszolgálattal |
 
-Ha meg szeretné növelni a korlátozások alapértelmezett értékeit, [lépjen kapcsolatba az ügyfélszolgálattal](../articles/azure-supportability/resource-manager-core-quotas-request.md ).
+[Forduljon a támogatási szolgálathoz](../articles/azure-supportability/resource-manager-core-quotas-request.md ) abban az esetben tooincrease korlátok alapértelmezett van szüksége.
 

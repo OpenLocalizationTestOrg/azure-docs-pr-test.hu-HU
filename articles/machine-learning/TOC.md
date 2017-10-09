@@ -17,7 +17,7 @@
 ### [Azure ML használatával](http://aka.ms/datascienceprocess)
 
 ## Machine Learning Studio
-### [Mi a Studio?](machine-learning-what-is-ml-studio.md)
+### [Mi az a hello Studio?](machine-learning-what-is-ml-studio.md)
 ### [A Studio képességei](machine-learning-studio-overview-diagram.md)
 ### [Szemléltető ábra: Gépi tanulási alapismeretek](machine-learning-basics-infographic-with-algorithm-examples.md)
 
@@ -40,7 +40,7 @@
 ## Adatelemzés kezdőknek
 ### [1: Öt kérdés](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
 ### [2: Készen állnak az adatok?](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
-### [3: Jó kérdések megkérdezése](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
+### [3: tegyen hello jobb kérdést](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
 ### [4: Válasz előrejelzése](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
 ### [5: Más emberek munkájának másolása](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 
@@ -54,8 +54,8 @@
 ### [Hadoop testreszabása](machine-learning-data-science-customize-hadoop-cluster.md)
 ### Virtuális gép telepítése
 #### [DS virtuális gépek áttekintése](machine-learning-data-science-virtual-machine-overview.md)
-#### [A DS VM használata](machine-learning-data-science-vm-do-ten-things.md)
-#### [A DS VM üzembe helyezése](machine-learning-data-science-provision-vm.md)
+#### [Hogyan toouse hello DS VM](machine-learning-data-science-vm-do-ten-things.md)
+#### [Hello DS virtuális gép kiépítése](machine-learning-data-science-provision-vm.md)
 #### [Az Azure VM telepítése](machine-learning-data-science-setup-virtual-machine.md)
 #### [Az SQL VM telepítése](machine-learning-data-science-setup-sql-server-virtual-machine.md)
 #### [Linux-alapú virtuális gépek üzembe helyezése](machine-learning-data-science-linux-dsvm-intro.md)
@@ -79,8 +79,8 @@
 #### [Az AzCopy használata](machine-learning-data-science-move-data-to-azure-blob-using-azcopy.md)
 #### [A Python használata](machine-learning-data-science-move-data-to-azure-blob-using-python.md)
 #### [Az SSIS használata](machine-learning-data-science-move-data-to-azure-blob-using-ssis.md)
-#### [Áthelyezés virtuális gépre](machine-learning-data-science-move-sql-server-virtual-machine.md)
-#### [Áthelyezés SQL Database szolgáltatásra](machine-learning-data-science-move-sql-azure.md)
+#### [Helyezze át a virtuális gép tooa](machine-learning-data-science-move-sql-server-virtual-machine.md)
+#### [TooSQL adatbázis áthelyezése](machine-learning-data-science-move-sql-azure.md)
 #### [Betöltés Hive táblákba](machine-learning-data-science-move-hive-tables.md)
 #### [Betöltés helyszíni SQL-ből](machine-learning-data-science-move-sql-azure-adf.md)
 #### [Betöltés SQL partíciós táblákból](machine-learning-data-science-parallel-load-sql-partitioned-tables.md)
@@ -119,7 +119,7 @@
 ### Modellek létrehozása és betanítása
 #### [Életciklus-felügyelet kipróbálása](machine-learning-version-control.md)
 #### [Az ismétlések kezelése](machine-learning-manage-experiment-iterations.md)
-#### [Modellek létrehozása a PowerShell-lel](machine-learning-create-models-and-endpoints-with-powershell.md)
+#### [PowerShell toocreate modellek használata](machine-learning-create-models-and-endpoints-with-powershell.md)
 #### Algoritmusok kiválasztása
 ##### [Algoritmusok kiválasztása](machine-learning-algorithm-choice.md)
 ##### [Algoritmusok – Adatlap](machine-learning-algorithm-cheat-sheet.md)

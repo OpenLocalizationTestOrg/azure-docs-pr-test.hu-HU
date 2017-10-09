@@ -1,6 +1,6 @@
 ---
-title: "Az eclipse-ben az Azure eszközkészlet telepítése |} Microsoft Docs"
-description: "Megtudhatja, hogyan telepítse az Azure-eszközkészlet az eclipse-ben."
+title: "aaaInstalling hello Azure eszköztára Eclipse |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooinstall hello Azure eszköztára eclipse-ben."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,69 +14,69 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 35cddba38c364dfb2f6a8646b0014d48ca4cb795
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c195fab2b47fb5c42541a8cf52be4ec88d27b5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="installing-the-azure-toolkit-for-eclipse"></a>Az eclipse-ben az Azure eszközkészlet telepítése
-Az Eclipse Azure eszköztára és sablonok, amelyek lehetővé teszik könnyen létrehozása, fejlesztése és tesztelése, és központi telepítése az Azure-alkalmazások használata az Eclipse fejlesztői környezetet biztosít a. Az Eclipse Azure eszköztára nyílt forráskódú projektként. A forráskód érhető el a MIT licence alapján <https://github.com/microsoft/azure-tools-for-java>.
+# <a name="installing-hello-azure-toolkit-for-eclipse"></a>Hello Azure eszköztára Eclipse telepítése
+sablonok és a funkciókat, amelyek lehetővé teszik tooeasily létrehozásával hello Azure eszköztára Eclipse foglalja össze, fejlesztése, tesztelése és hello Eclipse fejlesztői környezetet használó Azure alkalmazások telepítéséhez. hello Azure eszköztára Eclipse nyílt forráskódú projektként. hello forráskód alatt hello MIT licenccel érhető el a <https://github.com/microsoft/azure-tools-for-java>.
 
-A következő lépések bemutatják az eclipse-ben az Azure eszközkészlet telepítése.
+hello lépések bemutatják, hogyan tooinstall hello Azure eszköztára eclipse-ben.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## <a name="to-install-the-azure-toolkit-for-eclipse"></a>Az eclipse-ben az Azure eszközkészlet telepítése
+## <a name="tooinstall-hello-azure-toolkit-for-eclipse"></a>tooinstall hello Eclipse Azure eszköztára
 1. Indítsa el az Eclipse.
-2. Kattintson a **súgó** menüben, majd kattintson **új szoftverek telepítése**, a következő ábrán látható módon.
+2. Kattintson a hello **súgó** menüben, majd kattintson **új szoftverek telepítése**, ahogy az ábra a következő hello.
    
-    ![Az eclipse-ben az Azure eszközkészlet telepítése][01]
-3. Az a **elérhető szoftverek** párbeszédpanel, melyhez a **együttműködve** szövegmezőben `http://dl.microsoft.com/eclipse` követ a **Enter** kulcs.
-4. Az a **neve** ablaktáblán jelölje **Eclipse Azure eszköztára**, és törölje a jelet **lépjen kapcsolatba az összes frissítés hely található a szükséges szoftverek telepítése során**. A képernyőn a következőhöz hasonlóan kell megjelennie:
+    ![Hello Azure eszköztára Eclipse telepítése][01]
+3. A hello **elérhető szoftverek** párbeszédpaneljén hello **együttműködve** szövegmezőben `http://dl.microsoft.com/eclipse` hello követ **Enter** kulcs.
+4. A hello **neve** ablaktáblán jelölje **Eclipse Azure eszköztára**, és törölje a jelet **minden frissítés során helyek forduljon toofind szükséges szoftver telepítéséhez**. A képernyő hasonló toohello következő kell megjelennie:
    
-    ![Az eclipse-ben az Azure eszközkészlet telepítése][02]
-5. Ha kibontja a **Eclipse Azure eszköztára**, látni fogja a következő elemek:
+    ![Hello Azure eszköztára Eclipse telepítése][02]
+5. Ha kibontja hello **Eclipse Azure eszköztára**, látni fogja a következő elemek hello:
    
-   * **Javához készült Application Insights beépülő modul**: Ez az összetevő lehetővé teszi, hogy az Azure telemetriai naplózása és elemzése az alkalmazások és a kiszolgáló-példány szolgáltatások.
-   * **Az Azure Access Control szolgáltatások szűrő**: Ez az összetevő-támogatást biztosít az alkalmazás használatához Azure ACS, engedélyezése egyszeri bejelentkezéshez forgatókönyvek és az alkalmazás identitását logika externalizing.
-   * **Az Azure közös beépülő modul**: Ez az összetevő biztosítja a szükséges egyéb eszközkészlet összetevők közös funkciókat.
-   * **Az Azure-kezelőjét az Eclipse**: Ez az összetevő biztosítja a szükséges egyéb eszközkészlet összetevők közös funkciókat.
-   * **Azure Java Eclipse beépülő modul**: Ez az összetevő támogatást nyújt az projektek, amelyek segítenek a létrehozása, tesztelése és telepítése a Microsoft Azure felhőbe az eclipse-ben és a parancssorból Java-alkalmazások fejlesztésével.
-   * **Az Azure Web Apps Plugin Java**: Ez az összetevő támogatást nyújt a Microsoft Azure Web Apps tárolók Java webes alkalmazások telepítése.
+   * **Javához készült Application Insights beépülő modul**: Ez az összetevő lehetővé teszi a toouse Azure telemetriai naplózása és elemzése az alkalmazások és a kiszolgáló-példány szolgáltatások.
+   * **Az Azure Access Control szolgáltatások szűrő**: Ez az összetevő-támogatást biztosít az alkalmazás használatához Azure ACS, engedélyezése egyszeri bejelentkezéshez forgatókönyvek és externalizing identitás logika hello alkalmazásból.
+   * **Az Azure közös beépülő modul**: Ez az összetevő hello más eszközkészlet összetevőkhöz szükséges közös funkciókat biztosítja.
+   * **Az Azure-kezelőjét az Eclipse**: Ez az összetevő hello más eszközkészlet összetevőkhöz szükséges közös funkciókat biztosítja.
+   * **Azure Java Eclipse beépülő modul**: Ez az összetevő létrehozása, tesztelése és hello Microsoft Azure felhőbe az eclipse-ben és a parancssorból a Java-alkalmazások központi telepítését megkönnyítő projektek fejlesztése támogatást nyújt.
+   * **Az Azure Web Apps Plugin Java**: Ez az összetevő támogatást nyújt a Java webes alkalmazások tooMicrosoft Azure Web Apps tárolók telepítése.
    * **Microsoft SQL Server JDBC illesztőprogram 4.2**: Java Platform Enterprise Edition 8 Ez az összetevő biztosítja az SQL Server és a Microsoft Azure SQL Database JDBC API.
-   * **Az Apache Qpid ügyfél függvénytárainak JMS csomag**: Ez az összetevő biztosítja az JMS ügyféloldali összetevők ahhoz, hogy az alkalmazás használhatja a Microsoft Azure messaging AMQP Apache Qpid projektből.
+   * **Az Apache Qpid ügyfél függvénytárainak JMS csomag**: Ez az összetevő hello JMS ügyfél összetevőt hello Apache Qpid projekt tooenable az alkalmazás toouse AMQP üzenetküldést biztosít a Microsoft Azure-ban.
    * **A Microsoft Azure-könyvtárakban Java csomag**: Ez az összetevő biztosítja API-k eléréséhez a Microsoft Azure-szolgáltatások, például a tárolás, a service bus, szolgáltatás futásideje, stb.
-6. Kattintson a **Tovább** gombra. (Ha az eszközkészlet telepítésével szokatlan késést tapasztal, ellenőrizze, hogy **lépjen kapcsolatba az összes frissítés hely található a szükséges szoftverek telepítése során** nincs bejelölve.)
-7. Az a **telepítése részletek** párbeszédpanel, kattintson a **következő**.
+6. Kattintson a **Tovább** gombra. (Ha szokatlan késések hello eszközkészlet telepítése közben, győződjön meg arról, hogy **minden frissítés során helyek forduljon toofind szükséges szoftver telepítéséhez** nincs bejelölve.)
+7. A hello **telepítése részletek** párbeszédpanel, kattintson a **következő**.
    
     ![Tekintse át a telepítés részleteit][03]
-8. Az a **licencek áttekintése** párbeszédpanelen tekintse át a Licencszerződések feltételeit. Ha elfogadja a licencszerződés feltételeit, kattintson az **elfogadom a licencszerződés feltételeit** majd **Befejezés**. (A többi lépések feltételezik, fogadja el a licencszerződés feltételeit. Amennyiben nem fogadja el a licencszerződés feltételeit, lépjen ki a telepítési folyamatot.)
+8. A hello **licencek áttekintése** párbeszédpanelen tekintse át a hello hello Licencszerződések feltételeit. Ha hello hello licencszerződés feltételeinek elfogadásához kattintson **hello hello szerződés feltételeinek elfogadása** majd **Befejezés**. (hello fennmaradó lépések azt feltételezik hello hello licencszerződés feltételeinek elfogadásához. Ha nem fogadja el a hello hello Licencszerződések feltételeit, lépjen ki a telepítési folyamat hello.)
    
     ![Licencek áttekintése][04]
    
-    Eclipse letölti és telepíti a szükséges csomagokat.
+    Eclipse letölti és telepíti a szükséges hello csomagok.
    
     ![Folyamatban lévő telepítés][05]
-9. Ha a telepítés befejezéséhez indítsa újra a Eclipse kéri, kattintson a **Igen**.
+9. Ha toorestart Eclipse toocomplete telepítési kéri, kattintson az **Igen**.
    
     ![Indítsa újra a parancssorba][06]
 
 ## <a name="see-also"></a>Lásd még:
-A Java IDE környezetekhez készült Azure-eszközkészlettel kapcsolatos további információkért lásd az alábbi hivatkozásokat:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő hivatkozások hello:
 
 * [Eclipse Azure eszköztára]
-  * [Az Eclipse-hez készült Azure-eszközkészlet újdonságai]
-  * *Az Azure eszközkészlet telepítése az eclipse-ben (Ez a cikk)*
-  * [Bejelentkezési utasítások az Eclipse-hez készült Azure-eszközkészlethez]
+  * [Újdonságok az Eclipse Azure eszköztára hello]
+  * *Hello Azure eszköztára Eclipse (Ez a cikk) telepítése*
+  * [Bejelentkezés a utasításokat hello Eclipse Azure eszköztára]
   * [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
-  * [Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]
+  * [Újdonságok az intellij-t Azure eszköztára hello]
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
+  * [Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
 
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból].
 
 <!-- URL List -->
 
@@ -84,14 +84,14 @@ Az Azure Javával való használatáról további információ: [Azure Java fejl
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ./azure-toolkit-for-intellij.md
 [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
-[Bejelentkezési utasítások az Eclipse-hez készült Azure-eszközkészlethez]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Az Eclipse-hez készült Azure-eszközkészlet újdonságai]: ./azure-toolkit-for-eclipse-whats-new.md
-[Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]: ./azure-toolkit-for-intellij-whats-new.md
+[Installing hello Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
+[Bejelentkezés a utasításokat hello Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Újdonságok az Eclipse Azure eszköztára hello]: ./azure-toolkit-for-eclipse-whats-new.md
+[Újdonságok az intellij-t Azure eszköztára hello]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
+[Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
 
 <!-- IMG List -->
 

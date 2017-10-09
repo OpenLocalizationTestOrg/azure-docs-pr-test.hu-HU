@@ -1,5 +1,5 @@
 ---
-title: "Az Azure továbbítási portbeállítások |} Microsoft Docs"
+title: "aaaAzure továbbítási portbeállítások |} Microsoft Docs"
 description: "Azure-továbbítási portértékeket adatait."
 services: service-bus-relay
 documentationcenter: na
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e66785f786ee241c974d250f9ec29dfcc1fdc3fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-relay-port-settings"></a>Az Azure továbbítási port beállításai
 
-A következő táblázat ismerteti az Azure-továbbítási értékeket a kötelező beállítani.
+hello következő táblázatban hello kötelező beállítani a portértékeket Azure továbbító.
 
 ## <a name="hybrid-connections"></a>Hibrid kapcsolatok
-Hibrid kapcsolatok websocket elemek használja a mögöttes átviteli mechanizmusként, amely használja **HTTPS** csak. 
+Hibrid kapcsolatok websocket elemek használja, mint az alapul szolgáló átviteli mechanizmus, amely használja hello **HTTPS** csak. 
 
 ## <a name="wcf-relays"></a>WCF-továbbítók
   
@@ -49,6 +49,6 @@ Hibrid kapcsolatok websocket elemek használja a mögöttes átviteli mechanizmu
 |[WS2007HttpRelayBinding osztály](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (szolgáltatás)|Vagy|9351/HTTP|
 
 ## <a name="next-steps"></a>Következő lépések
-Azure-továbbítási kapcsolatos további információkért látogasson el ezeket a hivatkozásokat:
+További információ az Azure továbbítási toolearn látogasson el ezeket a hivatkozásokat:
 * [Mi az az Azure Relay?](relay-what-is-it.md)
 * [Relay – gyakori kérdések](relay-faq.md)

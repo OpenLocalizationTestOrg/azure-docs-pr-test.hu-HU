@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub eszköz twins (Java) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub eszköz twins címkéket, majd az IoT Hub-lekérdezést. Az Azure IoT-eszközök SDK Java segítségével valósítja meg az eszköz alkalmazás és az Azure IoT szolgáltatás Java SDK egy szolgáltatás-alkalmazást, amely hozzáadja a címkéket és az IoT Hub-lekérdezés futtatása végrehajtásához."
+title: "aaaGet Azure IoT Hub eszköz twins (Java) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz twins tooadd címkéket, majd az IoT Hub-lekérdezést. Hello Azure IoT-eszközök SDK használata Java tooimplement hello eszközalkalmazás és hello Azure IoT szolgáltatás SDK Java tooimplement egy szolgáltatás-alkalmazást, amely hello címkék hozzáadása, és az IoT-központ lekérdezés hello futtatja."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: dobett
-ms.openlocfilehash: 583cfcb9442c7be0a41aa1bc0f743bf8cf863665
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 25f6fc81471d59c62bcdc3766bb5c33f5733c930
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-java"></a>Ismerkedés az eszköz twins (Java)
 
@@ -26,14 +26,14 @@ ms.lasthandoff: 08/18/2017
 Ebben az oktatóanyagban létrehoz két Java-konzol alkalmazásokhoz:
 
 * **Adja hozzá címkék-lekérdezés**, a Java háttér-alkalmazást, amely címkét ad hozzá, és lekérdezi az eszköz twins.
-* **Szimulált eszköz**, egy Java eszköz-alkalmazást, amely kapcsolódik az IoT hub jelentést készít a kapcsolatát feltétel jelentett tulajdonság használatával.
+* **Szimulált eszköz**, a Java eszközalkalmazás, hogy, hogy kapcsolatot tooyour IoT hub és a jelentések jelentett tulajdonsággal kapcsolat állapotát.
 
 > [!NOTE]
-> A cikk [Azure IoT SDK-k](iot-hub-devguide-sdks.md) használható eszközt és a háttér-alkalmazások az Azure IoT SDK-k információt nyújt.
+> hello cikk [Azure IoT SDK-k](iot-hub-devguide-sdks.md) információkat nyújt azokról hello Azure IoT SDK-k toobuild használt eszköz és a háttér-alkalmazásokat.
 
-Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban szüksége:
 
-* A legújabb [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* hello legújabb [Java használata Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot](http://azure.microsoft.com/pricing/free-trial/) néhány perc alatt.)
 
@@ -41,21 +41,21 @@ Az oktatóanyag elvégzéséhez a következőkre lesz szüksége:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-Ha inkább hozzon létre az eszközidentitást programozott módon, olvassa el a megfelelő részt a [csatlakoztassa az eszközt az IoT hub Java használatával](iot-hub-java-java-getstarted.md#create-a-device-identity) cikk.
+Toocreate hello eszközidentitás programozott módon tetszés szerint olvassa el a megfelelő szakasz hello hello [csatlakozni az eszköz tooyour IoT hub Java használatával](iot-hub-java-java-getstarted.md#create-a-device-identity) cikk.
 
-## <a name="create-the-service-app"></a>A service-alkalmazás létrehozása
+## <a name="create-hello-service-app"></a>Hello service-alkalmazás létrehozása
 
-Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely metaadatokat, az IoT-központ az eszköz a két címkét társított **myDeviceId**. Az alkalmazás első lekérdezi az IoT-központ az Egyesült Államokban lévő eszközök, majd az eszközök mobilhálózati kapcsolat hoznak.
+Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely metaadatokat egy címke toohello eszköz iker az IoT-központ kapcsolódó **myDeviceId**. hello app először lekérdezi az IoT-központ hello USA található eszközök, majd jelentést mobilhálózati kapcsolat eszközök esetében.
 
 1. A fejlesztői gépen, hozzon létre egy üres nevű `iot-java-twin-getstarted`.
 
-1. A a `iot-java-twin-getstarted` mappa, úgynevezett Maven-projekt létrehozása **hozzáadása-címkék-lekérdezés** parancsot a parancssorba az alábbi parancs segítségével. Látható, hogy ez egyetlen hosszú parancs:
+1. A hello `iot-java-twin-getstarted` mappa, nevű Maven-projekt létrehozása **hozzáadása-címkék-lekérdezés** a következő parancsot a parancssorba hello segítségével. Látható, hogy ez egyetlen hosszú parancs:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=add-tags-query -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. A parancssorban navigáljon a `add-tags-query` mappát.
+1. A parancssorban lépjen a toohello `add-tags-query` mappa.
 
-1. Egy szövegszerkesztőben nyissa meg a `pom.xml` fájlt a `add-tags-query` mappa, és adja hozzá a következő függőség a **függőségek** csomópont. A függőség lehetővé teszi, hogy a **iot-szolgáltatásügyfél** csomag kommunikáljon az IoT hub az alkalmazásban:
+1. Egy szövegszerkesztőben nyissa meg hello `pom.xml` hello fájlban `add-tags-query` mappa, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. A függőség lehetővé teszi a toouse hello **iot-szolgáltatásügyfél** az alkalmazás toocommunicate és az IoT hub-csomagot:
 
     ```xml
     <dependency>
@@ -67,9 +67,9 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     ```
 
     > [!NOTE]
-    > Ellenőrizze, hogy a legújabb **iot-szolgáltatásügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-szolgáltatásügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
 
-1. Adja hozzá a következő **build** csomópont után a **függőségek** csomópont. Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:
+1. Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont. Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:
 
     ```xml
     <build>
@@ -87,11 +87,11 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     </build>
     ```
 
-1. Mentse és zárja be a `pom.xml` fájlt.
+1. Mentse és zárja be a hello `pom.xml` fájlt.
 
-1. Egy szövegszerkesztőben nyissa meg a `add-tags-query\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Egy szövegszerkesztőben nyissa meg hello `add-tags-query\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+1. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.*;
@@ -102,7 +102,7 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     import java.util.Set;
     ```
 
-1. Adja hozzá a következő osztályszintű változókat az **App** osztályhoz. Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal feljegyzett a *létrehoz egy IoT-központot* szakasz:
+1. Adja hozzá a következő osztály változók toohello hello **App** osztály. Cserélje le `{youriothubconnectionstring}` az IoT hub kapcsolati karakterlánccal hello feljegyzett *létrehoz egy IoT-központot* szakasz:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -112,21 +112,21 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     public static final String plant = "Redmond43";
     ```
 
-1. Frissítés a **fő** tartalmazza a következő metódus-aláírás `throws` záradékban:
+1. Frissítés hello **fő** metódus aláírása tooinclude hello következő `throws` záradékban:
 
     ```java
     public static void main( String[] args ) throws IOException
     ```
 
-1. Adja hozzá a következő kódot a **fő** metódus létrehozása a **DeviceTwin** és **DeviceTwinDevice** objektumok. A **DeviceTwin** objektum az IoT hub kommunikációt kezeli. A **DeviceTwinDevice** objektum által jelképezett tulajdonságok és címkék az eszköz iker:
+1. Adja hozzá a következő kód toohello hello **fő** metódus toocreate hello **DeviceTwin** és **DeviceTwinDevice** objektumok. Hello **DeviceTwin** objektum az IoT hub hello kommunikációt kezeli. Hello **DeviceTwinDevice** objektum által jelképezett hello eszköz iker tulajdonságok és címkék:
 
     ```java
-    // Get the DeviceTwin and DeviceTwinDevice objects
+    // Get hello DeviceTwin and DeviceTwinDevice objects
     DeviceTwin twinClient = DeviceTwin.createFromConnectionString(iotHubConnectionString);
     DeviceTwinDevice device = new DeviceTwinDevice(deviceId);
     ```
 
-1. Adja hozzá a következő `try/catch` megakadályozza a **fő** módszert:
+1. Adja hozzá a következő hello `try/catch` toohello blokkolása **fő** módszert:
 
     ```java
     try {
@@ -138,45 +138,45 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     }
     ```
 
-1. Frissítése a **régió** és **gépek** eszköz iker címkék az eszköz iker adja hozzá az alábbi kódot a a `try` letiltása:
+1. tooupdate hello **régió** és **gépek** az eszköz iker eszköz iker címkék hozzáadása a következő kódot a hello hello `try` letiltása:
 
     ```java
-    // Get the device twin from IoT Hub
+    // Get hello device twin from IoT Hub
     System.out.println("Device twin before update:");
     twinClient.getTwin(device);
     System.out.println(device);
 
     // Update device twin tags if they are different
-    // from the existing values
+    // from hello existing values
     String currentTags = device.tagsToString();
     if ((!currentTags.contains("region=" + region) && !currentTags.contains("plant=" + plant))) {
-      // Create the tags and attach them to the DeviceTwinDevice object
+      // Create hello tags and attach them toohello DeviceTwinDevice object
       Set<Pair> tags = new HashSet<Pair>();
       tags.add(new Pair("region", region));
       tags.add(new Pair("plant", plant));
       device.setTags(tags);
 
-      // Update the device twin in IoT Hub
+      // Update hello device twin in IoT Hub
       System.out.println("Updating device twin");
       twinClient.updateTwin(device);
     }
 
-    // Retrieve the device twin with the tag values from IoT Hub
+    // Retrieve hello device twin with hello tag values from IoT Hub
     System.out.println("Device twin after update:");
     twinClient.getTwin(device);
     System.out.println(device);
     ```
 
-1. Az eszköz twins az IoT hubon lekérdezéséhez adja hozzá az alábbi kódot a `try` blokk az előző lépésben felvett kód után. A kód lefut két lekérdezést. Minden egyes lekérdezés visszaadja a legfeljebb 100 eszközöket:
+1. tooquery hello eszköz twins az IoT-központot, adja hozzá a következő kód toohello hello `try` blokk hello előző lépésben felvett hello kód után. hello kódjának futtatásához két lekérdezést. Minden egyes lekérdezés visszaadja a legfeljebb 100 eszközöket:
 
     ```java
-    // Query the device twins in IoT Hub
+    // Query hello device twins in IoT Hub
     System.out.println("Devices in Redmond:");
 
-    // Construct the query
+    // Construct hello query
     SqlQuery sqlQuery = SqlQuery.createSqlQuery("*", SqlQuery.FromType.DEVICES, "tags.plant='Redmond43'", null);
 
-    // Run the query, returning a maximum of 100 devices
+    // Run hello query, returning a maximum of 100 devices
     Query twinQuery = twinClient.queryTwin(sqlQuery.getQuery(), 100);
     while (twinClient.hasNextDeviceTwin(twinQuery)) {
       DeviceTwinDevice d = twinClient.getNextDeviceTwin(twinQuery);
@@ -185,10 +185,10 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
 
     System.out.println("Devices in Redmond using a cellular network:");
 
-    // Construct the query
+    // Construct hello query
     sqlQuery = SqlQuery.createSqlQuery("*", SqlQuery.FromType.DEVICES, "tags.plant='Redmond43' AND properties.reported.connectivityType = 'cellular'", null);
 
-    // Run the query, returning a maximum of 100 devices
+    // Run hello query, returning a maximum of 100 devices
     twinQuery = twinClient.queryTwin(sqlQuery.getQuery(), 3);
     while (twinClient.hasNextDeviceTwin(twinQuery)) {
       DeviceTwinDevice d = twinClient.getNextDeviceTwin(twinQuery);
@@ -196,23 +196,23 @@ Ebben a szakaszban hoz létre egy Java-alkalmazást, amely hozzáadja a hely met
     }
     ```
 
-1. Mentse és zárja be a `add-tags-query\src\main\java\com\mycompany\app\App.java` fájl
+1. Mentse és zárja be a hello `add-tags-query\src\main\java\com\mycompany\app\App.java` fájl
 
-1. Build a **hozzáadása-címkék-lekérdezés** alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban navigáljon a `add-tags-query` mappa, és futtassa a következő parancsot:
+1. Build hello **hozzáadása-címkék-lekérdezés** alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban lépjen a toohello `add-tags-query` mappa és a következő parancs futtatása hello:
 
     `mvn clean package -DskipTests`
 
 ## <a name="create-a-device-app"></a>Eszközalkalmazás létrehozása
 
-Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a küldi el az IoT-központ jelentett tulajdonság értéke.
+Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a központ tooIoT küldött jelentett tulajdonság értéke.
 
-1. Az a `iot-java-twin-getstarted` mappa, úgynevezett Maven-projekt létrehozása **szimulált eszköz** parancsot a parancssorba az alábbi parancs segítségével. Látható, hogy ez egyetlen hosszú parancs:
+1. A hello `iot-java-twin-getstarted` mappa, úgynevezett Maven-projekt létrehozása **szimulált eszköz** használatával a következő parancsot a parancssorba hello. Látható, hogy ez egyetlen hosszú parancs:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. A parancssorban navigáljon a `simulated-device` mappát.
+1. A parancssorban lépjen a toohello `simulated-device` mappa.
 
-1. Egy szövegszerkesztőben nyissa meg a `pom.xml` fájlt a `simulated-device` mappa, és adja hozzá az alábbi függőségeket a **függőségek** csomópont. A függőség lehetővé teszi, hogy a **iot-eszközügyfél** csomag kommunikáljon az IoT hub az alkalmazásban:
+1. Egy szövegszerkesztőben nyissa meg hello `pom.xml` hello fájlban `simulated-device` mappa, és adja hozzá a következő függőségek toohello hello **függőségek** csomópont. A függőség lehetővé teszi a toouse hello **iot-eszközügyfél** az alkalmazás toocommunicate és az IoT hub-csomagot:
 
     ```xml
     <dependency>
@@ -223,9 +223,9 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     ```
 
     > [!NOTE]
-    > Ellenőrizze, hogy a legújabb **iot-eszközügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-eszközügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
 
-1. Adja hozzá a következő **build** csomópont után a **függőségek** csomópont. Ez a konfiguráció arra utasítja a Java 1.8 az lehetővé teszi az alkalmazás Maven:
+1. Adja hozzá a következő hello **build** után hello csomópont **függőségek** csomópont. Ez a konfiguráció arra utasítja a Maven toouse Java 1,8 toobuild hello alkalmazást:
 
     ```xml
     <build>
@@ -243,11 +243,11 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     </build>
     ```
 
-1. Mentse és zárja be a `pom.xml` fájlt.
+1. Mentse és zárja be a hello `pom.xml` fájlt.
 
-1. Egy szövegszerkesztőben nyissa meg a `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Egy szövegszerkesztőben nyissa meg hello `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+1. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -258,7 +258,7 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     import java.util.Scanner;
     ```
 
-1. Adja hozzá a következő osztályszintű változókat az **App** osztályhoz. A mag cseréje `{youriothubname}` az IoT hub nevű és `{yourdevicekey}` a eszközkulcs értékre hozott létre a *hozzon létre egy eszközidentitás* szakasz:
+1. Adja hozzá a következő osztály változók toohello hello **App** osztály. A mag cseréje `{youriothubname}` az IoT hub nevű és `{yourdevicekey}` hello eszköz kulcsérték hello hozta létre a *hozzon létre egy eszközidentitás* szakasz:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myDeviceID;SharedAccessKey={yourdevicekey}";
@@ -266,34 +266,34 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     private static String deviceId = "myDeviceId";
     ```
 
-    Ez a mintaalkalmazás a **protocol** változót használja egy **DeviceClient** objektum példányának létrehozásakor. Jelenleg eszköz iker szolgáltatásait is használni kell használnia a MQTT protokoll.
+    Ezen PéldaAlkalmazás használ hello **protokoll** változó, amikor elindítja a **DeviceClient** objektum. Jelenleg toouse eszközök iker szolgáltatásainak hello MQTT protokollt kell használnia.
 
-1. Adja hozzá a következő kódot a **fő** módszert:
-    * Hozzon létre egy ügyfél-kommunikáljon az IoT-központot.
-    * Hozzon létre egy **eszköz** objektum iker eszköztulajdonságok tárolásához.
+1. Adja hozzá a következő kód toohello hello **fő** módszert:
+    * Hozzon létre egy eszköz ügyfél toocommunicate IoT-központot.
+    * Hozzon létre egy **eszköz** toostore hello eszköztulajdonságok a két objektum.
 
     ```java
     DeviceClient client = new DeviceClient(connString, protocol);
 
-    // Create a Device object to store the device twin properties
+    // Create a Device object toostore hello device twin properties
     Device dataCollector = new Device() {
       // Print details when a property value changes
       @Override
       public void PropertyCall(String propertyKey, Object propertyValue, Object context) {
-        System.out.println(propertyKey + " changed to " + propertyValue);
+        System.out.println(propertyKey + " changed too" + propertyValue);
       }
     };
     ```
 
-1. Adja hozzá a következő kódot a **fő** metódussal hozzon létre egy **connectivityType** tulajdonság jelentette, és elküldi a IoT-központ:
+1. Adja hozzá a következő kód toohello hello **fő** metódus toocreate egy **connectivityType** tulajdonság jelentette, és elküldi a tooIoT Hub:
 
     ```java
     try {
-      // Open the DeviceClient and start the device twin services.
+      // Open hello DeviceClient and start hello device twin services.
       client.open();
       client.startDeviceTwin(new DeviceTwinStatusCallBack(), null, dataCollector, null);
 
-      // Create a reported property and send it to your IoT hub.
+      // Create a reported property and send it tooyour IoT hub.
       dataCollector.setReportedProp(new Property("connectivityType", "cellular"));
       client.sendReportedProperties(dataCollector.getReportedProp());
     }
@@ -305,10 +305,10 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     }
     ```
 
-1. Adja hozzá a következő kódot végén a **fő** metódust. Várakozás a **Enter** kulcs lehetővé teszi, hogy az eszköz iker műveletek állapotának jelentésének IoT-központ számára:
+1. Adja hozzá a következő kód toohello vége hello hello **fő** metódust. Várakozás a hello **Enter** kulcs lehetővé teszi, hogy az IoT-központ tooreport hello hello eszköz iker műveletek állapotának ideje:
 
     ```java
-    System.out.println("Press any key to exit...");
+    System.out.println("Press any key tooexit...");
 
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
@@ -317,46 +317,46 @@ Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, amely beállítja a
     client.close();
     ```
 
-1. Mentse és zárja be a `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Mentse és zárja be a hello `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. Build a **szimulált eszköz** alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban navigáljon a `simulated-device` mappa, és futtassa a következő parancsot:
+1. Build hello **szimulált eszköz** alkalmazást, és kijavíthatja az esetleges hibákat. A parancssorban lépjen a toohello `simulated-device` mappa és a következő parancs futtatása hello:
 
     `mvn clean package -DskipTests`
 
-## <a name="run-the-apps"></a>Az alkalmazások futtatása
+## <a name="run-hello-apps"></a>Hello alkalmazások futtatása
 
-Most már készen áll a konzol alkalmazások futtatásához.
+Most már áll készen toorun hello konzol alkalmazásokat.
 
-1. A parancsot a parancssorba a `add-tags-query` mappa futtatásához a következő parancsot a **hozzáadása-címkék-lekérdezés** service-alkalmazást:
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![Java IoT-központ szolgáltatás alkalmazás címke értékeinek frissítéséhez és eszköz-lekérdezések futtatása](media/iot-hub-java-java-twin-getstarted/service-app-1.png)
-
-    Megtekintheti a **gépek** és **régió** címkéket, az eszköz iker hozzáadni. Az első lekérdezés visszaadja az eszközt, de a második viszont nem.
-
-1. A parancsot a parancssorba a `simulated-device` mappa, a következő parancs futtatásával adja hozzá a **connectivityType** jelentett tulajdonság az eszköz iker:
+1. A hello parancsot a parancssorba `add-tags-query` mappa, futtassa a következő parancs toorun hello hello **hozzáadása-címkék-lekérdezés** service-alkalmazást:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![Az eszközügyfél hozzáadja a ** connectivityType ** jelentett tulajdonság](media/iot-hub-java-java-twin-getstarted/device-app-1.png)
+    ![Java IoT-központ szolgáltatás app tooupdate értékek címkét, és eszköz-lekérdezések futtatása](media/iot-hub-java-java-twin-getstarted/service-app-1.png)
 
-1. A parancsot a parancssorba a `add-tags-query` mappa futtatásához a következő parancsot a **hozzáadása-címkék-lekérdezés** service-alkalmazást még egyszer:
+    Megtekintheti a hello **gépek** és **régió** címkék hozzáadott toohello eszköz iker. hello első lekérdezés visszaadja az eszközt, de hello második viszont nem.
+
+1. A hello parancsot a parancssorba `simulated-device` mappa, futtassa a következő parancs tooadd hello hello **connectivityType** tulajdonság toohello eszköz iker jelentette:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![Java IoT-központ szolgáltatás alkalmazás címke értékeinek frissítéséhez és eszköz-lekérdezések futtatása](media/iot-hub-java-java-twin-getstarted/service-app-2.png)
+    ![hello eszköz client ad hello ** connectivityType ** jelentett tulajdonság](media/iot-hub-java-java-twin-getstarted/device-app-1.png)
 
-    Miután elküldte az eszköz a **connectivityType** IoT-központ tulajdonságot, a második lekérdezés visszaadja az eszközt.
+1. A hello parancsot a parancssorba `add-tags-query` mappa, futtassa a következő parancs toorun hello hello **hozzáadása-címkék-lekérdezés** service-alkalmazást még egyszer:
+
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![Java IoT-központ szolgáltatás app tooupdate értékek címkét, és eszköz-lekérdezések futtatása](media/iot-hub-java-java-twin-getstarted/service-app-2.png)
+
+    Miután az eszköz küldött hello **connectivityType** tulajdonság tooIoT Hub, hello második lekérdezés visszaadja az eszközt.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Fel van véve eszköz metaadatait címkék egy háttér-alkalmazásból, és egy eszköz alkalmazásának megírt az eszköz a két jelentés eszköz kapcsolódási adatok. Is megismerte az SQL-szerű IoT Hub lekérdezési nyelv használatával kettős eszközadatokat lekérdezése.
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Eszköz metaadatait címkeként felvett egy háttér-alkalmazást, és egy eszköz kapcsolat app tooreport eszközadatokat megírt hello eszköz iker a. Is megtanulta, hogyan tooquery hello hello SQL-szerű IoT Hub lekérdezési nyelv használatával kettős eszközadatokat.
 
-A következő források segítségével megtudhatja, hogyan:
+A következő erőforrások toolearn hogyan használja hello számára:
 
-* Telemetriai adatokat küldhet az eszközökről a [Ismerkedés az IoT-központ](iot-hub-java-java-getstarted.md) oktatóanyag.
-* Az interaktív (például egy felhasználó által felügyelt alkalmazásból ventilátor bekapcsolása) eszközeinek vezérléséhez a [közvetlen módszerekkel](iot-hub-java-java-direct-methods.md) oktatóanyag.
+* Telemetriai adatokat küldhet a hello eszközökről [Ismerkedés az IoT-központ](iot-hub-java-java-getstarted.md) oktatóanyag.
+* Interaktív (például egy felhasználó által felügyelt alkalmazásból ventilátor bekapcsolása) eszközeinek vezérléséhez a hello [közvetlen módszerekkel](iot-hub-java-java-direct-methods.md) oktatóanyag.
 
 <!-- Images. -->
 [7]: ./media/iot-hub-java-java-twin-getstarted/invoke-method.png

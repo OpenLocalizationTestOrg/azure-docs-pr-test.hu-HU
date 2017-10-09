@@ -1,6 +1,6 @@
 ---
-title: "Adatok áthelyezése egy helyi SQL Server az SQL Azure-bA az Azure Data Factoryvel |} Microsoft Docs"
-description: "Állítsa be az ADF-feldolgozási folyamat composes adatok áttelepítési két tevékenység váltó együtt adatok naponta helyszíni adatbázisok között, és a felhőben."
+title: "egy helyi SQL Server tooSQL Azure szolgáltatásban az Azure Data Factory aaaMove adatait |} Microsoft Docs"
+description: "Állítsa be az ADF-feldolgozási folyamat composes két együtt adatok áthelyezése a naponta helyszíni adatbázisok között, és hello felhőben található adatok áttelepítési tevékenységeket."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: 39fe26d3388be8b558f05063a8965889c013a41e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7f7e78c7a84a259539221d3235b76bb5a3cf9866
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-from-an-on-premises-sql-server-to-sql-azure-with-azure-data-factory"></a>Adatok áthelyezése egy helyi SQL server SQL Azure és az Azure Data Factory
-Ez a témakör bemutatja, hogyan tárolt adatok mozgatása egy helyi SQL Server-adatbázis SQL Azure adatbázishoz keresztül Azure Blob Storage használata az Azure Data Factory (ADF).
+# <a name="move-data-from-an-on-premises-sql-server-toosql-azure-with-azure-data-factory"></a>Adatok áthelyezése egy helyi SQL server tooSQL Azure az Azure Data Factoryvel
+Ez a témakör bemutatja, hogyan toomove adatait egy helyi SQL Server-adatbázis tooa SQL Azure Database keresztül Azure Blob Storage használatával hello Azure Data Factory (ADF).
 
-Az egy táblázatot, amely összefoglalja az adatok áthelyezése az Azure SQL Database különböző beállítások [adatok áthelyezése az Azure SQL Database az Azure Machine Learning](machine-learning-data-science-move-sql-azure.md).
+Az egy táblázatot, amely összefoglalja az áthelyezett adatok tooan Azure SQL Database különböző beállítások [adatok tooan Azure SQL-adatbázis áthelyezése az Azure Machine Learning](machine-learning-data-science-move-sql-azure.md).
 
-## <a name="intro"></a>Bemutatása: Mi az az ADF, és amikor azt használatával telepítse át az adatokat?
-Az Azure Data Factory koordinálja és automatizálja az adatátviteli és az adatok átalakítása felhőalapú teljes körűen felügyelt adatok integrációs szolgáltatás. A kulcs az ADF modell fogalma folyamat. Egy folyamat tevékenységek, logikai csoportját, amelyek mindegyike meghatározza, hogy a műveletek végrehajtását az adatkészletek szereplő adatokat. Társított szolgáltatások segítségével határozza meg a Data Factory az adatok erőforrások eléréséhez szükséges információkat.
+## <a name="intro"></a>Bevezetés: ADF és mikor lehet használt toomigrate adatokat?
+Az Azure Data Factory koordinálja, és automatikusan hello adatátviteli, valamint az adatok átalakítása felhőalapú teljes körűen felügyelt adatok integrációs szolgáltatás. hello kulcs hello ADF modellben fogalma folyamat. Egy folyamat tevékenységek, logikai csoportját, amelyek mindegyike meghatározza az hello műveletek tooperform adatkészletek szereplő hello adatok. Társított szolgáltatások olyan használt toodefine hello információk a Data Factory tooconnect toohello adatforrásaihoz szükséges.
 
-Az ADF meglévő adatfeldolgozási szolgáltatások összeállítható az adatok folyamatok, amelyek magas rendelkezésre állású és kezelt a felhőben. Ezen adatok folyamatok ütemezhető a betöltési, előkészítése, átalakítására, elemzése és adatok közzétételére, és az ADF kezeli, és az összetett adatokat és a feldolgozási függőségek koordinálja. Megoldások gyorsan kell a beépített és csatlakozás helyszíni egyre több telepített a felhőben és a felhő tárolt adatforrások.
+Az ADF meglévő adatfeldolgozási szolgáltatások az adatok folyamatok, amelyek magas rendelkezésre állású és felügyelt hello felhőben állítható össze. Ezen adatok folyamatok is lehet ütemezett tooingest, előkészítése, átalakítására, elemzése és adatok közzététele, és ADF kezeli, és koordinálja a hello összetett adatokat és feldolgozási függőségek. Megoldások is gyorsan beépített és a telepített hello felhő csatlakozás helyszíni egyre több és a felhő tárolt adatforrások.
 
 Érdemes lehet ADF:
 
-* Ha folyamatosan áttelepítendő adatokat egy hibrid forgatókönyvben, amely mindkettőt fér hozzá a helyszíni és felhőalapú erőforrások
-* Ha az adatok tranzakcióalapú van, vagy módosítani vagy üzleti logikát, ha az áttelepítés alatt álló hozzáadott rendelkezik.
+* Ha adatok igényeinek toobe folyamatosan át egy hibrid forgatókönyvekben, amelyek mindkettőt fér hozzá a helyszíni és felhőalapú erőforrások
+* Ha hello adatok tranzakcióalapú van, vagy igények toobe módosítható vagy nem rendelkezik az üzleti logika hozzá tooit, amikor az áttelepíteni.
 
-ADF lehetővé teszi, hogy az ütemezés és rendszeres időközönként adatok mozgása kezelő egyszerű JSON-parancsfájlokat használó feladatok figyelését. ADF is rendelkeznek egyéb képességeit, például a összetett műveletek támogatása. Az ADF további információkért lásd a dokumentációban a [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/).
+ADF hello ütemezés és a feladatok által kezelt adatok rendszeres időközönként hello mozgása egyszerű JSON-parancsfájlok használata a figyelését teszi lehetővé. ADF is rendelkeznek egyéb képességeit, például a összetett műveletek támogatása. Az ADF további információkért lásd: hello dokumentációját a [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/).
 
-## <a name="scenario"></a>A forgatókönyv
-Az ADF-feldolgozási folyamat két adatok áttelepítési tevékenységek composes beállítjuk. Együtt mozognak adatok naponta egy helyi SQL-adatbázis és a felhőben Azure SQL adatbázis között. A két tevékenység a következők:
+## <a name="scenario"></a>hello forgatókönyv
+Az ADF-feldolgozási folyamat két adatok áttelepítési tevékenységek composes beállítjuk. Együtt mozognak adatok naponta egy helyi SQL-adatbázis és az Azure SQL Database hello felhő között. hello két tevékenységek a következők:
 
-* a helyszíni SQL Server adatbázisból származó adatok másolása az Azure Blob Storage-fiók
-* adatok másolása az Azure Blob Storage-fiók egy Azure SQL-adatbázis.
+* adatok másolása egy helyi SQL Server adatbázis tooan Azure Blob Storage-fiók
+* adatok másolása az hello Azure Blob Storage-fiók tooan Azure SQL Database.
 
 > [!NOTE]
-> Itt volt módosítani a részletesebb oktatóanyagot, az ADF-csapat által biztosított bemutatott lépések: [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró felhő között](../data-factory/data-factory-move-data-between-onprem-and-cloud.md) témakör vonatkozó szakaszaihoz-hivatkozások megadott, amikor szükséges.
+> hello látható itt volt módosítani a hello hello ADF csapat által biztosított oktatóanyag részletes lépései: [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró felhő között](../data-factory/data-factory-move-data-between-onprem-and-cloud.md) toohello a témakör vonatkozó szakaszaihoz hivatkozik Ha a megfelelő biztosított.
 >
 >
 
@@ -52,35 +52,35 @@ Az ADF-feldolgozási folyamat két adatok áttelepítési tevékenységek compos
 Ez az oktatóanyag feltételezi, hogy rendelkezik:
 
 * Egy **Azure-előfizetés**. Ha nem rendelkezik előfizetéssel, regisztrálhat egy [ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/).
-* Egy **Azure storage-fiók**. Egy Azure storage-fiókot használ az adatok tárolása az oktatóanyag. Ha egy Azure storage-fiók nem rendelkezik, tekintse meg a [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account) cikk. Miután létrehozta a tárfiókot, be kell szereznie a tároló elérésére használt fiókot kulcs. Lásd: [a tárelérési kulcsok kezelése](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
-* A hozzáférést egy **Azure SQL adatbázis**. Ha be kell állítania egy Azure SQL Database, a tpoic [Ismerkedés a Microsoft Azure SQL Database ](../sql-database/sql-database-get-started.md) bemutatja, hogy miként lehet kiépíteni egy Azure SQL adatbázis új példányát.
-* Telepített és konfigurált **Azure PowerShell** helyileg. Útmutatásért lásd: [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview).
+* Egy **Azure storage-fiók**. Egy Azure storage-fiók ebben az oktatóanyagban hello adatok tárolásához használja. Ha egy Azure storage-fiók nem rendelkezik, tekintse meg a hello [hozzon létre egy tárfiókot](../storage/common/storage-create-storage-account.md#create-a-storage-account) cikk. Hello storage-fiók létrehozását követően használja a tooaccess hello tárolási tooobtain hello fiók szükséges. Lásd: [a tárelérési kulcsok kezelése](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
+* Hozzáférés tooan **Azure SQL Database**. Ha be kell állítania egy Azure SQL Database, hello tpoic [Ismerkedés a Microsoft Azure SQL Database ](../sql-database/sql-database-get-started.md) bemutatja, hogy miként tooprovision Azure SQL adatbázis új példányát.
+* Telepített és konfigurált **Azure PowerShell** helyileg. Útmutatásért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
 
 > [!NOTE]
-> Ez az eljárás használja a [Azure-portálon](https://portal.azure.com/).
+> Ez az eljárás használja hello [Azure-portálon](https://portal.azure.com/).
 >
 >
 
-## <a name="upload-data"></a>Az adatok feltöltése a helyszíni SQL Server
-Használjuk a [NYC Taxi dataset](http://chriswhong.com/open-data/foil_nyc_taxi/) az áttelepítési folyamat bemutatásához. A következőt: Taxi adatkészlet érhető el, a feladás egy vagy több, az Azure blob storage leírtaknak megfelelően [NYC Taxi adatok](http://www.andresmh.com/nyctaxitrips/). Az adatok van két fájlt, a trip_data.csv fájlt, amely tartalmazza-e vissza adatokat, és a trip_far.csv fájlt, amely a jegy minden út kifizette ára részleteit tartalmazza. A minta és az ezek a fájlok leírása szerepelnek [NYC Taxi Utazgatással adatkészlet leírása](machine-learning-data-science-process-sql-walkthrough.md#dataset).
+## <a name="upload-data"></a>Feltöltés hello adatok tooyour a helyszíni SQL Server
+Hello használjuk [NYC Taxi dataset](http://chriswhong.com/open-data/foil_nyc_taxi/) toodemonstrate hello áttelepítési folyamat. hello NYC Taxi adatkészlet érhető el, a feladás egy vagy több, az Azure blob storage leírtaknak megfelelően [NYC Taxi adatok](http://www.andresmh.com/nyctaxitrips/). hello adatok van két fájlt, hello trip_data.csv fájl, amely út adatokat tartalmaz, és hello trip_far.csv fájlt, amely minden út kifizette hello jegy ára részleteit tartalmazza. A minta és az ezek a fájlok leírása szerepelnek [NYC Taxi Utazgatással adatkészlet leírása](machine-learning-data-science-process-sql-walkthrough.md#dataset).
 
-Az itt megadott saját adatok eljárás igazítja, vagy hajtsa végre a következőt: Taxi adatkészlet szerint. Töltse fel a következőt: Taxi dataset a helyszíni SQL Server-adatbázisba, kövesse az ismertetett eljárás [tömeges adatok importálása az SQL Server-adatbázisba](machine-learning-data-science-process-sql-walkthrough.md#dbload). Ezek az utasítások az Azure virtuális gép az SQL Server, de a helyszíni SQL Server feltöltését eljárás megegyezik.
+A saját adatok tooa készletét itt megadott hello eljárás igazítja, vagy hello lépésekkel hello NYC Taxi dataset használatával leírtak szerint. a helyszíni SQL Server adatbázisba NYC Taxi dataset tooupload hello eljárással hello leírt [tömeges adatok importálása az SQL Server-adatbázisba](machine-learning-data-science-process-sql-walkthrough.md#dbload). Ezeket az utasításokat egy SQL Server egy Azure virtuális gépen, de a helyszíni SQL Server toohello feltöltése hello eljárását hello azonos.
 
 ## <a name="create-adf"></a>Egy Azure Data Factory létrehozása
-Egy új Azure Data Factory és az erőforráscsoport létrehozására vonatkozó utasításokat a [Azure-portálon](https://portal.azure.com/) biztosított [hozzon létre egy Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#create-data-factory). Az új ADF-példány neve *adfdsp* és az erőforráscsoport létrehozásánál *adfdsprg*.
+egy új Azure Data Factory és az erőforráscsoport létrehozása a hello utasításokat hello [Azure-portálon](https://portal.azure.com/) biztosított [hozzon létre egy Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#create-data-factory). Név hello új ADF példány *adfdsp* és name hello erőforráscsoport létrehozásánál *adfdsprg*.
 
-## <a name="install-and-configure-up-the-data-management-gateway"></a>Telepítse és konfigurálja az adatkezelési átjáró mentése
-Ahhoz, hogy az egy az Azure data factory szeretne dolgozni egy helyi SQL Server adatcsatornák, szüksége csatolt szolgáltatásként hozzáadása az adat-előállítóban. A társított szolgáltatás létrehozása egy helyi SQL Server, a következőket kell tennie:
+## <a name="install-and-configure-up-hello-data-management-gateway"></a>Telepítse és konfigurálja az adatkezelési átjáró hello mentése
+tooenable a folyamatok egy az Azure data factory toowork egy helyi SQL Server, a tooadd szükség van rá a társított szolgáltatás toohello adat-előállítóban. a csatolt szolgáltatása a helyszíni SQL Server kiszolgáló toocreate, kell:
 
-* Töltse le és telepítse a Microsoft adatkezelési átjáró a helyi számítógépre.
-* a társított szolgáltatás a helyszíni adatforráshoz az átjáró használatára konfigurálja.
+* Töltse le és telepítse a Microsoft adatkezelési átjáró hello a helyi számítógépre.
+* Konfigurálja a kapcsolódó hello szolgáltatást hello a helyszíni adatok forrás toouse hello átjáró.
 
-Az adatkezelési átjáró rendezi sorba, és a forrás és a fogadó adatokat azon a számítógépen, amelyen található deserializes.
+Az adatkezelési átjáró hello rendezi sorba, és deserializes hello forrás és a fogadó adatokat hello számítógépen hol tárolja.
 
 Telepítési utasításokat és az adatkezelési átjáró részleteinek: [helyezze át az adatokat a helyszíni adatforrások és az adatkezelési átjáró felhő között](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)
 
-## <a name="adflinkedservices"></a>Az adatok erőforrásokhoz való társított szolgáltatások létrehozásához
-A társított szolgáltatás határozza meg az Azure Data Factory egy adatforrás, melyhez való kapcsolódáshoz szükséges adatokat. Lépésről lépésre társított szolgáltatások létrehozásához megadott [társított szolgáltatások létrehozásához](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-linked-services).
+## <a name="adflinkedservices"></a>Hozzon létre csatolt szolgáltatások tooconnect toohello erőforrásokat
+A társított szolgáltatás az Azure Data Factory tooconnect tooa adatforrás, melyhez a szükséges hello információkat határozza meg. hello lépésről lépésre társított szolgáltatások létrehozásához megadott [társított szolgáltatások létrehozásához](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-linked-services).
 
 Három erőforrások van ebben a forgatókönyvben összekapcsolt szolgáltatások van szükség.
 
@@ -89,36 +89,36 @@ Három erőforrások van ebben a forgatókönyvben összekapcsolt szolgáltatás
 3. [Az Azure SQL database társított szolgáltatás](#adf-linked-service-azure-sql)
 
 ### <a name="adf-linked-service-onprem-sql"></a>A helyszíni SQL Server-adatbázis társított szolgáltatás
-A helyszíni SQL Server a társított szolgáltatás létrehozása:
+hello toocreate kapcsolódó hello szolgáltatást a helyi SQL Server:
 
-* Kattintson a **adattár** a klasszikus Azure portálon az ADF kezdőlapja
-* Válassza ki **SQL** , és írja be a *felhasználónév* és *jelszó* a helyszíni SQL-kiszolgálóhoz tartozó hitelesítő adatokat. Meg kell adnia a kiszolgálónév, mint egy **teljesen minősített kiszolgálónév fordított perjel példány neve (kiszolgáló_neve\példány_neve)**. A társított szolgáltatás neve *adfonpremsql*.
+* Kattintson a hello **adattár** a klasszikus Azure portál hello ADF kezdőlapja
+* Válassza ki **SQL** , és írja be a hello *felhasználónév* és *jelszó* a hello a helyszíni SQL Server-felhasználó hitelesítő adatait. Tooenter hello kiszolgálónév másként van szüksége egy **teljesen minősített kiszolgálónév fordított perjel példány neve (kiszolgáló_neve\példány_neve)**. A társított szolgáltatás neve hello *adfonpremsql*.
 
 ### <a name="adf-linked-service-blob-store"></a>A Blob társított szolgáltatás
-A társított szolgáltatás az Azure Blob Storage-fiók létrehozása:
+toocreate hello hello Azure Blob Storage-fiókhoz társított szolgáltatás:
 
-* Kattintson a **adattár** a klasszikus Azure portálon az ADF kezdőlapja
+* Kattintson a hello **adattár** a klasszikus Azure portál hello ADF kezdőlapja
 * Válassza ki **Azure Storage-fiók**
-* Írja be a Azure Blob Storage-fiók és tároló neve. A társított szolgáltatás neve *adfds*.
+* Adja meg a hello Azure Blob Storage fiók kulcs és a tároló nevét. Társított szolgáltatás neve hello *adfds*.
 
 ### <a name="adf-linked-service-azure-sql"></a>Az Azure SQL database társított szolgáltatás
-A társított szolgáltatás az Azure SQL-adatbázis létrehozása:
+hello Azure SQL Database toocreate kapcsolódó hello szolgáltatást:
 
-* Kattintson a **adattár** a klasszikus Azure portálon az ADF kezdőlapja
-* Válassza ki **Azure SQL** , és írja be a *felhasználónév* és *jelszó* az Azure SQL-adatbázishoz tartozó hitelesítő adatokat. A *felhasználónév* kell megadni,  *user@servername* .   
+* Kattintson a hello **adattár** a klasszikus Azure portál hello ADF kezdőlapja
+* Válassza ki **Azure SQL** , és írja be a hello *felhasználónév* és *jelszó* hello Azure SQL adatbázis hitelesítő adatait. Hello *felhasználónév* kell megadni,  *user@servername* .   
 
-## <a name="adf-tables"></a>Adja meg, és adja meg, hogyan férhet hozzá az adatkészletek táblák létrehozása
-Adja meg a struktúra, helyét és az adatkészletek rendelkezésre állását az alábbi parancsfájl-alapú eljárások táblák létrehozása. JSON-fájlokat a táblák meghatározásához használják. Ezek a fájlok szerkezetének további információkért lásd: [adatkészletek](../data-factory/data-factory-create-datasets.md).
+## <a name="adf-tables"></a>Adja meg, és hozzon létre táblák toospecify hogyan tooaccess hello adatkészletek
+Hozzon létre táblákat, adja meg a következő eljárások parancsfájlalapú hello hello struktúra, helyét és hello adatkészletek rendelkezésre állását. JSON-fájlok használt toodefine hello táblákat. Ezek a fájlok hello szerkezete további információkért lásd: [adatkészletek](../data-factory/data-factory-create-datasets.md).
 
 > [!NOTE]
-> Végre kell hajtani a `Add-AzureAccount` parancsmag végrehajtása előtt a [New-AzureDataFactoryTable](https://msdn.microsoft.com/library/azure/dn835096.aspx) parancsmag segítségével győződjön meg arról, hogy a jobb oldali Azure-előfizetés parancs végrehajtásának van kiválasztva. Ez a parancsmag dokumentációjáért lásd: [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0).
+> Végre kell hajtani hello `Add-AzureAccount` parancsmag hello végrehajtása előtt [New-AzureDataFactoryTable](https://msdn.microsoft.com/library/azure/dn835096.aspx) , amely közvetlenül az Azure-előfizetés hello parancsmag tooconfirm van kiválasztva a hello parancs végrehajtása. Ez a parancsmag dokumentációjáért lásd: [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0).
 >
 >
 
-A JSON-alapú definíciók táblázatokban az alábbi neveket használja:
+hello JSON-alapú definíciók hello táblák neve a következő hello használata:
 
-* a **táblanév** a helyszíni SQL server rendszer *nyctaxi_data*
-* a **Tárolónév** az Azure Blob Storage fiók van *containername*  
+* Hello **táblanév** hello a helyszíni SQL server esetében *nyctaxi_data*
+* Hello **Tárolónév** hello Azure Blob Storage a fiók esetében *containername*  
 
 Három definíciói az ADF adatcsatorna van szükség:
 
@@ -127,12 +127,12 @@ Három definíciói az ADF adatcsatorna van szükség:
 3. [Az SQL Azure-tábla](#adf-table-azure-sql)
 
 > [!NOTE]
-> Ezek az eljárások Azure PowerShell használatával határozza meg, és az ADF tevékenységek létrehozása. De ezek a feladatok az Azure portál használatával is elvégezhető. További információkért lásd: [adatkészletek létrehozása](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-datasets).
+> Ezek az eljárások Azure PowerShell toodefine használja, és hello ADF tevékenységek létrehozása. De ezek a feladatok hello Azure-portál használatával is elvégezhető. További információkért lásd: [adatkészletek létrehozása](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-datasets).
 >
 >
 
 ### <a name="adf-table-onprem-sql"></a>A helyszíni SQL-tábla
-A helyszíni SQL Server-definíció van megadva a következő JSON-fájlban:
+hello hello-definíció a helyszíni SQL Server megadott JSON-fájl a következő hello:
 
         {
             "name": "OnPremSQLTable",
@@ -159,15 +159,15 @@ A helyszíni SQL Server-definíció van megadva a következő JSON-fájlban:
             }
         }
 
-Az oszlopnevek nem szerepeltek itt. Részterv jelölheti meg az oszlopok neveit itt többek között (a részleteket tekintse meg a [ADF dokumentáció](../data-factory/data-factory-data-movement-activities.md) témakör.
+hello oszlopnevek nem szerepeltek itt. Részterv választhat a hello oszlopnevek itt többek között (részletekért ellenőrizze a hello [ADF dokumentáció](../data-factory/data-factory-data-movement-activities.md) témakör.
 
-Másolás fájlba a tábla JSON-definícióból nevű *onpremtabledef.json* fájlt, és mentse egy ismert helyre (Itt feltételezhető *C:\temp\onpremtabledef.json*). A tábla létrehozása az ADF a következő Azure PowerShell-parancsmagot:
+Hello JSON-definícióból hello tábla másolja egy nevű fájlba *onpremtabledef.json* fájlt, és mentse ismert hely tooa (Itt feltételezett toobe *C:\temp\onpremtabledef.json*). Hello tábla létrehozása az ADF hello Azure PowerShell-parancsmag a következő:
 
     New-AzureDataFactoryTable -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp –File C:\temp\onpremtabledef.json
 
 
 ### <a name="adf-table-blob-store"></a>A BLOB tábla
-A következő táblázatban a kimeneti blob helyére vonatkozó definíciójának szerepel (Ez leképezi a feldolgozott adatokat a helyszíni Azure blob) a következő:
+Hello hello tábla definícióját kimeneti blob helyére hello alábbi (Ez leképezi a helyszíni tooAzure blob okozhatnak hello adatait):
 
         {
             "name": "OutputBlobTable",
@@ -192,12 +192,12 @@ A következő táblázatban a kimeneti blob helyére vonatkozó definíciójána
             }
         }
 
-Másolás fájlba a tábla JSON-definícióból nevű *bloboutputtabledef.json* fájlt, és mentse egy ismert helyre (Itt feltételezhető *C:\temp\bloboutputtabledef.json*). A tábla létrehozása az ADF a következő Azure PowerShell-parancsmagot:
+Hello JSON-definícióból hello tábla másolja egy nevű fájlba *bloboutputtabledef.json* fájlt, és mentse ismert hely tooa (Itt feltételezett toobe *C:\temp\bloboutputtabledef.json*). Hello tábla létrehozása az ADF hello Azure PowerShell-parancsmag a következő:
 
     New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\bloboutputtabledef.json  
 
 ### <a name="adf-table-azure-sq"></a>Az SQL Azure-tábla
-Definíciója a következő táblázatban az SQL Azure kimeneti (ebben a sémában az adatokat a blob érkező képezi le) a következőket:
+Az SQL Azure kimeneti hello hello tábla definícióját hello következő (ebben a sémában leképezhető hello blob érkező hello adatok) kell megadni:
 
     {
         "name": "OutputSQLAzureTable",
@@ -222,34 +222,34 @@ Definíciója a következő táblázatban az SQL Azure kimeneti (ebben a sémáb
         }
     }
 
-Másolás fájlba a tábla JSON-definícióból nevű *AzureSqlTable.json* fájlt, és mentse egy ismert helyre (Itt feltételezhető *C:\temp\AzureSqlTable.json*). A tábla létrehozása az ADF a következő Azure PowerShell-parancsmagot:
+Hello JSON-definícióból hello tábla másolja egy nevű fájlba *AzureSqlTable.json* fájlt, és mentse ismert hely tooa (Itt feltételezett toobe *C:\temp\AzureSqlTable.json*). Hello tábla létrehozása az ADF hello Azure PowerShell-parancsmag a következő:
 
     New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\AzureSqlTable.json  
 
 
-## <a name="adf-pipeline"></a>Adja meg, és a folyamat létrehozása
-Adja meg az adatcsatornához tartozó, és hozzon létre a folyamat a következő parancsprogram-alapú eljárásokkal a tevékenységek. A JSON-fájl folyamat tulajdonságainak definiálásához szolgál.
+## <a name="adf-pipeline"></a>Adja meg, és hello folyamat létrehozása
+Adja meg a toohello tartozó hello tevékenység a következő feldolgozási sorban, és hozzon létre hello folyamat a következő eljárások parancsfájlalapú hello. A JSON-fájl használt toodefine hello csővezeték tulajdonságok.
 
-* A parancsfájl feltételezi, hogy a **adatcsatorna neve** van *AMLDSProcessPipeline*.
-* Ne feledje, hogy be van állítva az ismétlődési gyakoriságára vonatkozóan a feldolgozási sor napi szinten hajtható végre, és az alapértelmezett végrehajtási idő használata a feladathoz (12 óra UTC).
+* hello parancsfájl feltételezi, hogy hello **adatcsatorna neve** van *AMLDSProcessPipeline*.
+* Ne feledje, hogy hivatott hello periodikusságát hello adatcsatorna toobe végrehajtva a következő napi szinten és -felhasználási hello alapértelmezett végrehajtási idő hello feladat (12 óra UTC).
 
 > [!NOTE]
-> Az alábbi eljárások Azure PowerShell használatával határozza meg, és hozzon létre a ADF-feldolgozási folyamat. Azonban ez a feladat az Azure portál használatával is elvégezhető. További információkért lásd: [létrehozási folyamat](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-pipeline).
+> hello alábbi eljárások használata az Azure PowerShell toodefine és hello ADF folyamatot létrehozni. Azonban ez a feladat az Azure portál használatával is elvégezhető. További információkért lásd: [létrehozási folyamat](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#create-pipeline).
 >
 >
 
-A korábban megadott definíciói használ, az ADF csővezeték definíciója van megadva az alábbiak szerint:
+Hello definíciói használatával megadott korábban hello csővezeték definíciója hello ADF van megadva az alábbiak szerint:
 
         {
             "name": "AMLDSProcessPipeline",
             "properties":
             {
-                "description" : "This pipeline has one Copy activity that copies data from an on-premises SQL to Azure blob",
+                "description" : "This pipeline has one Copy activity that copies data from an on-premises SQL tooAzure blob",
                  "activities":
                 [
                     {
                         "name": "CopyFromSQLtoBlob",
-                        "description": "Copy data from on-premises SQL server to blob",     
+                        "description": "Copy data from on-premises SQL server tooblob",     
                         "type": "CopyActivity",
                         "inputs": [ {"name": "OnPremSQLTable"} ],
                         "outputs": [ {"name": "OutputBlobTable"} ],
@@ -278,7 +278,7 @@ A korábban megadott definíciói használ, az ADF csővezeték definíciója va
 
                     {
                         "name": "CopyFromBlobtoSQLAzure",
-                        "description": "Push data to Sql Azure",        
+                        "description": "Push data tooSql Azure",        
                         "type": "CopyActivity",
                         "inputs": [ {"name": "OutputBlobTable"} ],
                         "outputs": [ {"name": "OutputSQLAzureTable"} ],
@@ -307,21 +307,21 @@ A korábban megadott definíciói használ, az ADF csővezeték definíciója va
             }
         }
 
-A JSON-definícióból a folyamat egy fájlba nevű példány *pipelinedef.json* fájlt, és mentse egy ismert helyre (Itt feltételezhető *C:\temp\pipelinedef.json*). Hozzon létre a folyamat a következő Azure PowerShell-parancsmaggal ADF:
+Másolja a JSON-definícióból hello folyamatának nevű fájlba *pipelinedef.json* fájlt, és mentse ismert hely tooa (Itt feltételezett toobe *C:\temp\pipelinedef.json*). Hozzon létre hello folyamat az ADF hello Azure PowerShell-parancsmag a következő:
 
     New-AzureDataFactoryPipeline  -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\pipelinedef.json
 
-Győződjön meg arról, hogy látja-e a folyamat az ADF a klasszikus Azure-portálon a megjelennek, a következő, (Ha a diagram kattint)
+Ellenőrizze, hogy is látható hello csővezeték hello a klasszikus Azure portál hello ADF jelenik meg a következőképpen (kattintást hello diagram)
 
 ![Az ADF-feldolgozási folyamat](media/machine-learning-data-science-move-sql-azure-adf/DJP1kji.png)
 
-## <a name="adf-pipeline-start"></a>A folyamat elindítása
-A folyamat futtatható a következő parancsot:
+## <a name="adf-pipeline-start"></a>Hello folyamat elindítása
+hello csővezeték futtatható a következő parancs hello használata:
 
     Set-AzureDataFactoryPipelineActivePeriod -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp -StartDateTime startdateZ –EndDateTime enddateZ –Name AMLDSProcessPipeline
 
-A *startdate* és *enddate* paraméterértékeket kell cserélni a tényleges dátum között, amelyek a folyamatot futtatni szeretné.
+Hello *startdate* és *enddate* paraméterértékeket kell írni a hello tényleges dátumok, amelyek között hello adatcsatorna toorun kívánt toobe.
 
-Ha a feldolgozási sor végrehajtása során, kell megjeleníti őket a tárolóban, a BLOB, naponta egy fájl kiválasztott adatok megtekintéséhez.
+Hello folyamat végrehajtása során, ha meg tudja toosee hello adatok megjelennek hello tárolóban hello BLOB, naponta egy fájl kiválasztott kell lennie.
 
-Vegye figyelembe, hogy a jelenleg nem alkalmazhatók az által biztosított funkcióknak ADF cső adatok Növekményesen rendelkezik. Ez, és más ADF által biztosított képességek módjáról további információkért lásd: a [ADF dokumentáció](https://azure.microsoft.com/services/data-factory/).
+Vegye figyelembe, hogy a jelenleg nem alkalmazhatók az hello funkcióit ADF toopipe adatok Növekményesen rendelkezik. További információ a hogyan toodo ezzel és más ADF, által biztosított képességek: hello [ADF dokumentáció](https://azure.microsoft.com/services/data-factory/).

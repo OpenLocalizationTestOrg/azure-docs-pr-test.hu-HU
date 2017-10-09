@@ -3,8 +3,8 @@
 | --- | --- | --- | --- |
 | API-hívások |500 KB-OS |1.5-ös M / egység |15 M / egység |
 | Aktív eszközök |500 |Korlátlan |Korlátlan |
-| Méretezés |N/A |Legfeljebb 6 egység |Korlátlan számú egység |
-| Leküldéses értesítések |Notification Hubs ingyenes szint tartalmazza, akár 1 M kimenő |Notification Hubs az alapszintű csomag része, legfeljebb 10 millió leküldéses értesítések |Notification Hubs Standard csomag része, legfeljebb 10 millió leküldéses értesítések |
+| Méretezés |N/A |Környezet too6 egység |Korlátlan számú egység |
+| Leküldéses értesítések |Notification Hubs ingyenes szint része, mentése too1 M kimenő jelzés |Értesítési központok alapszintű rétegben található, be too10 M kimenő jelzés |Notification Hubs Standard csomagra része, mentése too10 M kimenő jelzés |
 | Valós idejű üzenetküldés /<br/>Web Sockets |Korlátozott |350 / mobil szolgáltatás |Korlátlan |
 | Offline szinkronizálások |Korlátozott |Tartalmazza |Tartalmazza |
 | Ütemezett feladatok |Korlátozott |Tartalmazza |Tartalmazza |

@@ -1,6 +1,6 @@
 ---
-title: "Python az Azure Data Lake Analytics U-SQL-parancsfájlok kiterjesztése |} Microsoft Docs"
-description: "Megtudhatja, hogyan Python kódját a U-SQL-parancsfájlok futtatása"
+title: "aaaExtend U-SQL parancsfájl az Azure Data Lake Analytics Python |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorun Python U-SQL-parancsfájlok kódot"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/20/2017
 ms.author: saveenr
-ms.openlocfilehash: d18ef1f747aee2fa01cef9891432d0461031ee4c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f051f56f67522d4f2b8e6e54fd21a5c95ce3ba92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-get-started-with-extending-u-sql-with-python"></a>Oktatóanyag: Ismerkedés a U-SQL Python kiterjesztése
 
-U-SQL Python-bővítmények a fejlesztők hajtsa végre a Python kód nagymértékben párhuzamos végrehajtása. A következő példa bemutatja az alapvető lépéseket:
+Az U-SQL Python-bővítmények lehetővé teszi a fejlesztők tooperform nagymértékben párhuzamos végrehajtása Python kódját. a következő példa hello hello alapvető lépéseit mutatja be:
 
-* Használja a `REFERENCE ASSEMBLY` utasítás a U-SQL parancsfájl Python bővítmények engedélyezése
-* Használja a `REDUCE` művelet, a kulcs a bemeneti adatok particionálása
-* A U-SQL Python-bővítmények közé tartozik egy beépített nyomáscsökkentő (`Extension.Python.Reducer`) futó Python kódját a nyomáscsökkentő rendelt minden csomópont
-* A U-SQL parancsfájl tartalmazza a beágyazott Python-kódot, amely rendelkezik a hívott függvény `usqlml_main` , amely fogad egy pandas DataFrame bemeneti adatként, és egy pandas DataFrame kimeneteként adja vissza.
+* Használjon hello `REFERENCE ASSEMBLY` utasítás tooenable Python-bővítmények hello U-SQL-parancsfájl
+* Hello segítségével `REDUCE` művelet toopartition hello adja meg a kulcs adatokat
+* hello U-SQL Python-bővítmények közé tartozik egy beépített nyomáscsökkentő (`Extension.Python.Reducer`) minden egyes hozzárendelt csúcspont toohello nyomáscsökkentő futó Python kódot
+* U-SQL parancsfájl hello beágyazott hello Python kódot tartalmaz, amely rendelkezik a hívott függvény `usqlml_main` , amely fogad egy pandas DataFrame bemeneti adatként, és egy pandas DataFrame kimeneteként adja vissza.
 
 --
 
@@ -59,7 +59,7 @@ U-SQL Python-bővítmények a fejlesztők hajtsa végre a Python kód nagymért�
         USING new Extension.Python.Reducer(pyScript:@myScript);
 
     OUTPUT @m
-        TO "/tweetmentions.csv"
+        too"/tweetmentions.csv"
         USING Outputters.Csv();
 
 ## <a name="how-python-integrates-with-u-sql"></a>Hogyan integrálható a Python U-SQL
@@ -67,11 +67,11 @@ U-SQL Python-bővítmények a fejlesztők hajtsa végre a Python kód nagymért�
 ### <a name="datatypes"></a>Adattípusok
 
 * Konvertálja a karakterláncot és a numerikus oszlopot a U-SQL-Pandas és a U-SQL között
-* U-SQL nullák alakítja a Pandas érkező vagy oda irányuló `NA` értékek
+* U-SQL NULL értékek Pandas a konvertált tooand `NA` értékek
 
 ### <a name="schemas"></a>Sémák
 
-* A Pandas index vektorok nem támogatottak a U-SQL. A Python függvény összes bemeneti adatkeretek mindig rendelkezik egy 64 bites numerikus index 0 és mínusz 1 sorok száma. 
+* A Pandas index vektorok nem támogatottak a U-SQL. Az összes bemeneti adatkeretek hello Python függvény mindig rendelkezik egy 64 bites numerikus index 0 és hello száma mínusz 1 sort. 
 * U-SQL adatkészletek nem lehet ismétlődő oszlopneveket tartalmaz
 * U-SQL adatkészletek oszlopnevek, amelyek nem karakterlánc. 
 
@@ -79,20 +79,20 @@ U-SQL Python-bővítmények a fejlesztők hajtsa végre a Python kód nagymért�
 Csak a Python 3.5.1 (Windows fordított) használata támogatott. 
 
 ### <a name="standard-python-modules"></a>Python-modulok
-Összes a Python modulban találhatók.
+Összes hello Python modulban találhatók.
 
 ### <a name="additional-python-modules"></a>További Python-modulok.
-A szabványos Python-függvénytárak mellett számos általánosan használt python-könyvtárak jelennek meg:
+Módosításokon kívül a Python szabványos függvénytárak hello, több gyakran használt python könyvtárak jelennek meg:
 
     pandas
     numpy
     numexpr
 
 ### <a name="exception-messages"></a>Kivétel üzenetek
-Jelenleg a Python kódban kivétel jeleníti meg hibaként általános csúcspont. A jövőben a U-SQL-feladatot hibaüzenetek a Python kivétel üzenetet jelenít meg.
+Jelenleg a Python kódban kivétel jeleníti meg hibaként általános csúcspont. A jövőbeli hello hello U-SQL-feladatot hibaüzenetek hello Python kivétel üzenetet jelenít meg.
 
 ### <a name="input-and-output-size-limitations"></a>Bemeneti és kimeneti méretkorlátai
-Minden csomópont csak korlátozott mennyiségű memória rendelve van. Ezt a határértéket jelenleg egy AU 6 GB-ot. A bemeneti és kimeneti DataFrames már léteznie kell a Python kódját a memória, mert a bemeneti és kimeneti teljes mérete nem haladhatja meg a 6 GB.
+Minden csomópont számára tooit rendelt memória korlátozott mennyiségű. Ezt a határértéket jelenleg egy AU 6 GB-ot. Hello bemeneti és kimeneti DataFrames léteznie kell a hello Python kódját a memóriában, mert hello bemeneti és kimeneti hello teljes mérete nem lehet nagyobb, mint 6 GB.
 
 ## <a name="see-also"></a>Lásd még:
 * [A Microsoft Azure Data Lake Analytics áttekintése](data-lake-analytics-overview.md)

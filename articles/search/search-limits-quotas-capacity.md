@@ -1,5 +1,5 @@
 ---
-title: "Szolgáltatási korlátait, az Azure Search |} Microsoft Docs"
+title: "az Azure Search aaaService korlátok |} Microsoft Docs"
 description: "A kapacitástervezés használt szolgáltatásra vonatkozó korlátozások és kérelmeit és válaszait az Azure Search maximális korlátozásait."
 services: search
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 06/07/2017
 ms.author: heidist
-ms.openlocfilehash: 60e63401e3915e62e1ec5ac03cd548c291580b24
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cb13a0f1c87a654fb5845c9c741f74a91da5b372
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-limits-in-azure-search"></a>Az Azure Search szolgáltatásra vonatkozó korlátozások
 Maximális korlátozza a tárolási, számítási feladatok és indexek, dokumentumok, mennyiségét, és más objektumok függenek, hogy Ön [kiépíteni az Azure Search](search-create-service-portal.md) , egy **szabad**, **alapvető**, vagy **Szabványos** tarifacsomagra vált.
 
-* **Szabad** egy több-bérlős megosztott szolgáltatás, amely az Azure-előfizetéssel rendelkezik. Már meglévő előfizetők egy további-ingyenes beállítása, amely lehetővé teszi, hogy a szolgáltatás kísérletezhet a dedikált erőforrások regisztrálása előtt.
+* **Szabad** egy több-bérlős megosztott szolgáltatás, amely az Azure-előfizetéssel rendelkezik. Meglévő előfizető egy további-ingyenes beállítása, amely lehetővé teszi a dedikált erőforrások regisztrálása előtt tooexperiment hello szolgáltatásban is.
 * **Alapszintű** dedikált számítási erőforrások biztosít egy kisebb léptékű termelési számítási feladatokhoz.
 * **Standard** minden szinten további tárolási és feldolgozási kapacitással rendelkező dedikált gépeken futtatja. Standard elérhető lesz a négy szinten lévő: S1, S2, S3 és S3 nagy sűrűségű (S3 HD).
 
 > [!NOTE]
-> A szolgáltatás van üzembe helyezve egy konkrét csomagot kiválasztani. Ha szeretne további kapacitás beolvasandó rétegek ugorhat, el kell juttatnia (nincs nincs frissítés) új szolgáltatása. További információkért lásd: [válasszon egy SKU vagy a réteg](search-sku-tier.md). Beállítja egy már kiépített szolgáltatás belül kapcsolatos további információkért lásd: [erőforrás szintek lekérdezési és indexelési munkaterhelések méretezése](search-capacity-planning.md).
+> A szolgáltatás van üzembe helyezve egy konkrét csomagot kiválasztani. Ha toojump rétegek tooget nagyobb kapacitású, el kell juttatnia (nincs nincs frissítés) új szolgáltatása. További információkért lásd: [válasszon egy SKU vagy a réteg](search-sku-tier.md). További információk a szolgáltatásokon belüli kapacitás értékének toolearn korábban már kiépített, lásd: [erőforrás szintek lekérdezési és indexelési munkaterhelések méretezése](search-capacity-planning.md).
 >
 
 ## <a name="per-subscription-limits"></a>Előfizetés korlátokat
@@ -39,7 +39,7 @@ Maximális korlátozza a tárolási, számítási feladatok és indexek, dokumen
 [!INCLUDE [azure-search-limits-per-service](../../includes/azure-search-limits-per-service.md)]
 
 ## <a name="per-index-limits"></a>Index korlátokat
-Van egy-az-egyhez levelezés között indexek vonatkozó korlátozások és indexelők korlátozásait. 200 indexek legfeljebb megadott, indexelők maximális egyben ugyanahhoz a 200-as.
+Van egy-az-egyhez levelezés között indexek vonatkozó korlátozások és indexelők korlátozásait. 200 indexek legfeljebb megadott, hello maximális száma indexelők egyben hello a 200 ugyanazt a szolgáltatást.
 
 | Erőforrás | Ingyenes | Alapszintű | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -51,31 +51,31 @@ Van egy-az-egyhez levelezés között indexek vonatkozó korlátozások és inde
 | A BLOB indexelő: blob maximális mérete, MB |16 |16 |128 |256 |256 |N/A <sup>2</sup> |
 | A BLOB indexelő: blob kinyert tartalom maximális karakterszám |32,000 |64,000 |4 millió |4 millió |4 millió |N/A <sup>2</sup> |
 
-<sup>1</sup> alapvető érvényben lévő korlát miatt az index / 100 mezők alsó határának csak Termékváltozat.
+<sup>1</sup> alapszintű rétegben van hello csak az index / 100 mezők alsó határának Termékváltozat.
 
 <sup>2</sup> S3 HD jelenleg nem támogatja az indexelők. Ha ezt a képességet sürgős van, forduljon az Azure támogatási szolgálatához.
 
-<sup>3</sup> indexelő maximális végrehajtási ingyenes szint ideje 3 perc, a blob-forrásoknak és más adatforrások 1 perc.
+<sup>3</sup> indexelő maximális végrehajtási hello ingyenes szint ideje 3 perc, a blob-forrásoknak és más adatforrások 1 perc.
 
 ## <a name="document-size-limits"></a>A dokumentum méretkorlátai
 | Erőforrás | Ingyenes | Alapszintű | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
 | Egyes dokumentum méretet a Index API |< 16 MB |< 16 MB |< 16 MB |< 16 MB |< 16 MB |< 16 MB |
 
-A dokumentum maximális méretét jelenti az Index API-k hívásakor. A dokumentum mérete ténylegesen maximális mérete a Index API-kérés törzsében. Átadhatók egy kötegelt több dokumentumot az Index API egyszerre, mivel a méretkorlátot ténylegesen hány dokumentumok szerepelnek a kötegelt függ. Egyetlen dokumentum kötegben a dokumentum maximális mérete 16 MB JSON.
+Toohello maximális dokumentum mérete hivatkozik, amikor egy Index API felület meghívásakor. A dokumentum mérete ténylegesen hello Index API-kérés törzsében hello méretének korlátozására. Mivel egyszerre több dokumentumok toohello Index API egy tranzakcióköteghez átadhatók, hello méretkorlátot ténylegesen hány dokumentumok olyan hello kötegben függ. Az egyetlen dokumentum kötegben hello maximális dokumentum mérete 16 MB JSON.
 
-Tartsa a dokumentum mérete, ne felejtse el nem lekérdezhető adatok kihagyása a kérelemből. Képek és egyéb bináris adatokat nem közvetlenül lekérdezhető, és nem szabad az index. Nem lekérdezhető adatok integrálja a keresési eredmények között, adja meg az erőforrás URL-cím hivatkozást tartalmazó nem kereshető mező.
+tookeep dokumentum mérete, tooexclude nem lekérdezhető adatok megjegyzése hello kérelemből. Képek és egyéb bináris adatokat nem közvetlenül lekérdezhető, és nem szabad hello index. keresési eredmények toointegrate nem lekérdezhető adatokat tároló URL-hivatkozás toohello erőforráshoz nem kereshető mező határozza meg.
 
 ## <a name="workload-limits-queries-per-second"></a>Munkaterhelés-korlátok (lekérdezések / másodperc)
 | Erőforrás | Ingyenes | Alapszintű | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
 | QPS |N/A |~3 replikánként |~15 replikánként |~60 replikánként |>60 replikánként |>60 replikánként |
 
-Lekérdezések / másodperc (QPS) közelítő heurisztikus szimulált és a tényleges ügyfél munkaterheléseinek használ kapcsolattípusokból becsült értékek alapján. Pontos QPS átviteli az adatok és a lekérdezés jellegétől függ.
+Lekérdezések / másodperc (QPS) közelítő heurisztikus szimulált és tényleges ügyfelek munkaterhelések tooderive becsült értékek alapján. Pontos QPS átviteli hello lekérdezés az adatok és hello jellegű függ.
 
-Bár durva becslést fent vannak, egy tényleges sebessége akkor nehéz lenne meghatározni, különösen ha átviteli sebesség alapján rendelkezésre álló sávszélesség és a rendszer-erőforrások verseny a szabad megosztott szolgáltatás. Ingyenes szint számítási és tárolási erőforrásokat megosztott több előfizető, így a megoldás QPS mindig változhatnak attól függően, hogy egyszerre hány más feladatokat futtató.
+Bár durva becslést fent vannak, egy tényleges sebessége akkor nehéz toodetermine, különösen a szabad megosztott szolgáltatás, amelyben átviteli sebesség alapján rendelkezésre álló sávszélesség és a rendszer-erőforrások verseny hello. Hello ingyenes szint, a számítási és tárolási erőforrásokat megosztott több előfizető, így a megoldás QPS mindig változhatnak attól függően, hogy hány más feladatokat futtató: hello ugyanannyi időt vesz igénybe.
 
-Standard szintű megbecsülheti QPS jobban mert befolyásolni több paramétert. További részletekért lásd a témakör az ajánlott eljárásokat [kezelése a keresési megoldás](search-manage.md) kapcsolatos útmutatás a munkaterhelések QPS kiszámításához.
+Hello standard szintű megbecsülheti további QPS szorosan mert befolyásolni több hello paramétert. Hello ajánlott eljárások a című [kezelése a keresési megoldás](search-manage.md) kapcsolatos útmutatás a munkaterhelések QPS toocalculate.
 
 ## <a name="api-request-limits"></a>API-kérelmekre vonatkozó korlátok
 * 16 MB kérelmenként maximálisan <sup>1</sup>
@@ -84,14 +84,14 @@ Standard szintű megbecsülheti QPS jobban mert befolyásolni több paramétert.
 * A $orderby záradékban maximális 32 mezők
 * Maximális keresési kifejezés mérete 32766 bájt (32 KB-os mínusz 2 bájt) UTF-8 kódolású szöveg
 
-<sup>1</sup> az Azure Search kérelem törzse 16 MB, a gyakorlati küszöbérték egyéni mezők vagy gyűjtemények, ellenkező esetben nem korlátozott elméleti korlátok tartalmára előíró felső korlát vonatkozik (lásd: [támogatott adatok típusok](https://msdn.microsoft.com/library/azure/dn798938.aspx) mező összetételűnek és korlátozások olvashat).
+<sup>1</sup> az Azure Search hello kérelem törzse tulajdonos tooan felső határ az egyes mezők vagy gyűjtemények, ellenkező esetben nem korlátozott elméleti korlátok hello tartalmát gyakorlati korlátozást előíró 16 MB (lásd: [támogatott adattípusok](https://msdn.microsoft.com/library/azure/dn798938.aspx) mező összetételűnek és korlátozások olvashat).
 
 ## <a name="api-response-limits"></a>API-válaszból korlátok
 * A keresési eredmények laponként visszaadott legfeljebb 1000 dokumentumok
 * Javaslat API kérelmenként visszaadott legfeljebb 100 javaslatok
 
 ## <a name="api-key-limits"></a>Az API-kulcs korlátok
-API-kulcsokat használnak a szolgáltatás-hitelesítéshez. Két típusa van. A kérelem fejlécében megadott adminisztrációs kulcsok, és a szolgáltatás teljes olvasási és írási hozzáférést. Lekérdezés kulcsai csak olvasható, az URL-cím a megadott, és általában elosztott ügyfélalkalmazások számára.
+API-kulcsokat használnak a szolgáltatás-hitelesítéshez. Két típusa van. Adminisztrációs kulcsok hello kérelem fejlécében megadott, és teljes olvasási és írási hozzáférése toohello szolgáltatást biztosítania. Lekérdezés kulcsai csak olvasható, hello URL-címet, és általában elosztott tooclient alkalmazások megadott.
 
 * Legfeljebb 2 adminisztrációs kulcsok-szolgáltatás
 * Legfeljebb 50 lekérdezési kulcsok-szolgáltatás

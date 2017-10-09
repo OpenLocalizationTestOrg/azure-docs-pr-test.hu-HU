@@ -8,7 +8,7 @@
 # Oktatóanyagok
 ## .NET-alkalmazás üzembe helyezése
 ### [1. .NET-alkalmazás összeállítása](service-fabric-tutorial-create-dotnet-app.md)
-### [2. Az alkalmazás telepítése](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+### [2 – hello-alkalmazás központi telepítése](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 ### [3. A CI/CD beállítása](service-fabric-tutorial-deploy-app-with-cicd-vsts.md)
 
 ## Egy alkalmazás átemelése
@@ -79,7 +79,7 @@
 
 ## Alkalmazások kezelése
 ### [Áttekintés](service-fabric-application-lifecycle.md)
-### [Az ImageStoreConnectionString beállítás](service-fabric-image-store-connection-string.md)
+### [hello előtaggal beállítás](service-fabric-image-store-connection-string.md)
 ### Alkalmazás frissítése
 #### [Áttekintés](service-fabric-application-upgrade.md)
 #### [Konfigurálás](service-fabric-visualstudio-configure-upgrade.md)
@@ -121,7 +121,7 @@
 ### [A Stateful Reliable Services diagnosztikai funkciói](service-fabric-reliable-services-diagnostics.md)
 ### [Reliable Actors-diagnosztika](service-fabric-reliable-actors-diagnostics.md)
 
-# Útmutatók
+# Hogyan tooGuides
 ## A fejlesztési környezet beállítása
 ### [Windows](service-fabric-get-started.md)
 ### [Linux](service-fabric-get-started-linux.md)
@@ -185,7 +185,7 @@
 #### [Kommunikációs beállítások konfigurálása](service-fabric-reliable-actors-fabrictransportsettings.md)
 #### [ReliableDictionaryActorStateProvider konfigurálása](service-fabric-reliable-actors-reliabledictionarystateprovider-configuration.md)
 
-### [Régi Java-alkalmazás migrálása a Maven támogatására](service-fabric-migrate-old-javaapp-to-use-maven.md)
+### [Telepítse át a régi Java-alkalmazások toosupport Maven](service-fabric-migrate-old-javaapp-to-use-maven.md)
 
 ### [Fordított proxy konfigurálása biztonságos kommunikációhoz](service-fabric-reverseproxy-configure-secure-communication.md)
 
@@ -214,7 +214,7 @@
 
 ## Áttelepítés a Cloud Servicesből
 ### [A Cloud Services és a Service Fabric összehasonlítása](service-fabric-cloud-services-migration-differences.md)
-### [Migráció a Service Fabricre](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
+### [Háló tooService áttelepítése](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
 ### [Ajánlott eljárások](/azure/architecture/service-fabric/migrate-from-cloud-services)
 
 ## Alkalmazások életciklus-kezelése
@@ -239,7 +239,7 @@
 ##### [Tesztműveletek használata](service-fabric-testability-actions.md)
 ##### [Számítási feladatok során](service-fabric-testability-workload-tests.md)
 ##### [Tesztelési forgatókönyvek használata](service-fabric-testability-scenarios.md)
-##### [A csomópontváltó API-k használata](service-fabric-node-transition-apis.md)
+##### [Hello csomópont átmenet API-k használatával](service-fabric-node-transition-apis.md)
 #### [Az alkalmazás terheléses tesztelése](service-fabric-vso-load-test.md)
 
 ### A folyamatos integráció beállítása
@@ -258,7 +258,7 @@
 #### [Frissítés](service-fabric-cluster-upgrade.md)
 #### [Hozzáférés-vezérlés beállítása](service-fabric-cluster-security-roles.md)
 #### [Konfigurálás](service-fabric-cluster-fabric-settings.md)
-#### [Port megnyitása a terheléselosztóban](create-load-balancer-rule.md)
+#### [Port megnyitása a hello terheléselosztó](create-load-balancer-rule.md)
 #### [Fürttanúsítványok kezelése](service-fabric-cluster-security-update-certs-azure.md)
 #### [Törlés](service-fabric-cluster-delete.md)
 
@@ -269,14 +269,14 @@
 ##### [Helyszíni létrehozás](service-fabric-cluster-creation-for-windows-server.md)
 ##### [Biztonságossá tétel tanúsítványokkal](service-fabric-windows-cluster-x509-security.md)  
 ##### [Biztonságossá tétel a Windows-rendszerbiztonság használatával](service-fabric-windows-cluster-windows-security.md)
-##### [A különálló csomag tartalma](service-fabric-cluster-standalone-package-contents.md)
+##### [Hello önálló csomag tartalmát](service-fabric-cluster-standalone-package-contents.md)
 #### [Méretezés](service-fabric-cluster-windows-server-add-remove-nodes.md)
 #### [Hozzáférés-vezérlés beállítása](service-fabric-cluster-security-roles.md)
 #### [Konfigurálás](service-fabric-cluster-manifest.md)
 #### [Frissítés](service-fabric-cluster-upgrade-windows-server.md)
 
 ### [Fürt ábrázolása](service-fabric-visualizing-your-cluster.md)
-### [Csatlakozás biztonságos fürthöz](service-fabric-connect-to-secure-cluster.md)
+### [Csatlakoztassa tooa biztonságos fürtöt](service-fabric-connect-to-secure-cluster.md)
 
 ### [Fürt kezelése a Service Fabric parancssori felülettel](service-fabric-cli.md)
 ### [Fürtcsomópontok javítása](service-fabric-patch-orchestration-application.md)

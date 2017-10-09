@@ -5,5 +5,5 @@
 | CDN-végpontok profilonként |10 |
 | Egyéni tartományok végpontonként |10 |
 
-Az előfizetés ideiglenes korlátoknak frissítése kérelmet egy támogatási jegy megnyitásával.
+Egy frissítés tooyour előfizetés ideiglenes korlátoknak kérelmet egy támogatási jegy megnyitásával.
 

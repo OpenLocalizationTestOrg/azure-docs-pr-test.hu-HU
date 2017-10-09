@@ -1,6 +1,6 @@
 ---
-title: "Nyílt forráskódú technológiák gyakori kérdések az Azure web apps |} Microsoft Docs"
-description: "Adott válaszok nyílt forráskódú technológiákkal kapcsolatos gyakori kérdések az Azure App Service Web Apps szolgáltatása."
+title: "aaaOpen-forrás technológiák gyakori kérdések az Azure web apps |} Microsoft Docs"
+description: "Az Azure App Service Web Apps szolgáltatása hello nyílt forráskódú technológiákkal kapcsolatos kérdések válaszok toofrequently beolvasása."
 services: app-service\web
 documentationcenter: 
 author: genlin
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/10/2017
 ms.author: genli
-ms.openlocfilehash: d37b53242c0b231d83425a59ecbe50216216a95b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 35cff4f322859d25972747cf55aa7c4316381a51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="open-source-technologies-faqs-for-web-apps-in-azure"></a>Gyakori kérdések az Azure Web Apps nyílt forráskódú technológiák
 
-Ez a cikk gyakran ismételt kérdések (GYIK) választ rendelkezik tudnivalók a nyílt forráskódú technológiák a [az Azure App Service Web Apps szolgáltatásának](https://azure.microsoft.com/services/app-service/web/).
+Ez a cikk kérdések (GYIK) válaszok toofrequently rendelkezik hello nyílt forráskódú technológiák összefüggő problémákkal kapcsolatos [az Azure App Service Web Apps szolgáltatásának](https://azure.microsoft.com/services/app-service/web/).
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
@@ -31,13 +31,13 @@ Ez a cikk gyakran ismételt kérdések (GYIK) választ rendelkezik tudnivalók a
 
 Adatbázissal kapcsolatos problémák esetén kérje [ClearDB támogatási](https://www.cleardb.com/developers/help/support). 
 
-A ClearDB kapcsolatos gyakori kérdésekre adott válaszok, lásd: [ClearDB – gyakori kérdések](https://docs.microsoft.com/azure/store-cleardb-faq/).
+Válaszok toocommon kérdésekre ClearDB, lásd: [ClearDB – gyakori kérdések](https://docs.microsoft.com/azure/store-cleardb-faq/).
 
-## <a name="why-isnt-my-cleardb-database-listed-in-the-portal"></a>A ClearDB adatbázist miért nem szerepel a portálon?
+## <a name="why-isnt-my-cleardb-database-listed-in-hello-portal"></a>A ClearDB adatbázist miért nem szerepel a hello portálon?
 
-Ha a ClearDB-adatbázis létrehozása a [Azure-portálon](http://portal.azure.com/), az adatbázis nem jelenik meg a [a klasszikus Azure portálon](http://manage.windowsazure.com/). Ez elkerülhető, hogy manuálisan társíthatja az adatbázis a webalkalmazást.
+Ha egy ClearDB adatbázist hoz létre a hello [Azure-portálon](http://portal.azure.com/), hello adatbázis nem jelenik meg a hello [a klasszikus Azure portálon](http://manage.windowsazure.com/). Ez elkerülhető toowork, manuálisan társíthatja az adatbázis toohello webes alkalmazás.
 
-Hasonló módon ha a ClearDB-adatbázis létrehozása a [a klasszikus Azure portálon](http://manage.windowsazure.com/), nem jelenik meg az adatbázis a [Azure-portálon](http://portal.azure.com/). Ebben az esetben nincs megkerülő megoldás érhető el. 
+Hasonló módon ha hello egy ClearDB adatbázist hoz létre [a klasszikus Azure portálon](http://manage.windowsazure.com/), nem jelenik meg az adatbázis a hello [Azure-portálon](http://portal.azure.com/). Ebben az esetben nincs megkerülő megoldás érhető el. 
 
 További információkért lásd: [ClearDB MySQL-adatbázisok – gyakori kérdések az Azure App Service](https://docs.microsoft.com/azure/store-cleardb-faq/).
 
@@ -45,101 +45,101 @@ További információkért lásd: [ClearDB MySQL-adatbázisok – gyakori kérd�
 
 Erőforrás-áttelepítés végrehajtása előfizetések között, bizonyos korlátozások vonatkoznak. A ClearDB MySQL-adatbázis egy külső szolgáltatás, és nem telepíti át az Azure-előfizetés az áttelepítés során.
 
-Ha nem Ön a MySQL-adatbázis áttelepítése az Azure-erőforrások áttelepítése előtt, előfordulhat, hogy a ClearDB MySQL-adatbázis nem elérhető. Ennek elkerülése érdekében először, manuálisan telepítse át a ClearDB adatbázist, majd utána áttelepíteni a webalkalmazás az Azure-előfizetés.
+Ha nem Ön hello a MySQL-adatbázis áttelepítése az Azure-erőforrások áttelepítése előtt, előfordulhat, hogy a ClearDB MySQL-adatbázis nem elérhető. tooavoid ez, először, manuálisan telepítse át a ClearDB adatbázist, majd utána áttelepíteni az hello Azure-előfizetés a webalkalmazás.
 
 További információkért lásd: [ClearDB MySQL-adatbázisok – gyakori kérdések az Azure App Service](https://docs.microsoft.com/azure/store-cleardb-faq/).
 
-## <a name="how-do-i-turn-on-php-logging-to-troubleshoot-php-issues"></a>Hogyan PHP PHP kapcsolatos problémák elhárítása naplózás bekapcsolása?
+## <a name="how-do-i-turn-on-php-logging-tootroubleshoot-php-issues"></a>Hogyan PHP tootroubleshoot PHP problémák naplózás bekapcsolása?
 
-PHP-naplózás bekapcsolása:
+a PHP-naplózást tooturn:
 
-1. Jelentkezzen be a [Kudu webhely](https://*yourwebsitename*.scm.azurewebsites.net).
-2. A felső menüben válassza ki **Debug konzol** > **CMD**.
-3. Válassza ki a **hely** mappát.
-4. Válassza ki a **wwwroot** mappát.
-5. Válassza ki a  **+**  ikonra, és válassza **új fájl**.
-6. A fájl neve **. user.ini**.
-7. Jelölje be a ceruza ikonra a **. user.ini**.
-8. A fájlban adja hozzá ezt a kódot:`log_errors=on`
+1. Jelentkezzen be tooyour [Kudu webhely](https://*yourwebsitename*.scm.azurewebsites.net).
+2. Hello felső menüben válassza ki a **Debug konzol** > **CMD**.
+3. Jelölje be hello **hely** mappát.
+4. Jelölje be hello **wwwroot** mappát.
+5. Jelölje be hello  **+**  ikonra, és válassza **új fájl**.
+6. Állítsa be a hello fájlnév túl**. user.ini**.
+7. Válasszon hello ceruza ikont mellett túl**. user.ini**.
+8. Hello fájlban adja hozzá ezt a kódot:`log_errors=on`
 9. Kattintson a **Mentés** gombra.
-10. Jelölje be a ceruza ikonra a **wp-config.php**.
-11. Módosítsa a szöveg a következő kódot:
+10. Válasszon hello ceruza ikont mellett túl**wp-config.php**.
+11. A következő kód hello szöveg toohello módosítása:
    ```
-   //Enable WP_DEBUG modedefine('WP_DEBUG', true);//Enable debug logging to /wp-content/debug.logdefine('WP_DEBUG_LOG', true);
-   //Supress errors and warnings to screendefine('WP_DEBUG_DISPLAY', false);//Supress PHP errors to screenini_set('display_errors', 0);
+   //Enable WP_DEBUG modedefine('WP_DEBUG', true);//Enable debug logging too/wp-content/debug.logdefine('WP_DEBUG_LOG', true);
+   //Supress errors and warnings tooscreendefine('WP_DEBUG_DISPLAY', false);//Supress PHP errors tooscreenini_set('display_errors', 0);
    ```
-12. Az Azure portálon, a webes alkalmazás menü indítsa újra a webes alkalmazást.
+12. Indítsa újra a webes alkalmazás hello hello webes alkalmazás menü, az Azure-portálon.
 
 További információkért lásd: [engedélyezése WordPress hibanaplókat](https://blogs.msdn.microsoft.com/azureossds/2015/10/09/logging-php-errors-in-wordpress-2/).
 
 ## <a name="how-do-i-log-python-application-errors-in-apps-that-are-hosted-in-app-service"></a>Hogyan Python-alkalmazások hibáinak jelentkezni az App Service szolgáltatásban üzemeltetett alkalmazásokat?
 
-Rögzítheti a Python-alkalmazások hibáinak:
+Python-alkalmazások hibáinak toocapture:
 
-1. Válassza ki az Azure portálon, a web app alkalmazásban **beállítások**.
-2. Az a **beállítások** lapon jelölje be **Alkalmazásbeállítások**.
-3. A **Alkalmazásbeállítások**, adja meg a következő kulcs/érték pár:
+1. Válassza ki a webalkalmazás az Azure-portálon hello **beállítások**.
+2. A hello **beállítások** lapon jelölje be **Alkalmazásbeállítások**.
+3. A **Alkalmazásbeállítások**, adja meg a következő kulcs/érték pár hello:
     * Kulcs: WSGI_LOG
     * Érték: D:\home\site\wwwroot\logs.txt (adja meg a kívánt fájlnevet)
 
-Meg kell jelennie a logs.txt fájlban a wwwroot hibáit.
+Meg kell jelennie hibák hello logs.txt fájlban hello wwwroot mappában.
 
-## <a name="how-do-i-change-the-version-of-the-nodejs-application-that-is-hosted-in-app-service"></a>A Node.js-alkalmazás az App Service-ben futtatott verziójának módosítása?
+## <a name="how-do-i-change-hello-version-of-hello-nodejs-application-that-is-hosted-in-app-service"></a>Hogyan változtathatom meg a Node.js-alkalmazás az App Service-ben üzemeltetett hello hello verzióját?
 
-Ha módosítani szeretné a Node.js-alkalmazás verziója, az alábbi lehetőségek egyikét használhatja:
+hello Node.js-alkalmazás toochange hello verzióját használja hello alábbi beállítások egyikét:
 
-*   Az Azure-portálon használni **Alkalmazásbeállítások**.
-    1. Az Azure-portálon keresse meg a webes alkalmazást.
-    2. Az a **beállítások** panelen válassza **Alkalmazásbeállítások**.
-    3. A **Alkalmazásbeállítások**, WEBSITE_NODE_DEFAULT_VERSION is megadható a kulcsot, valamint a Node.js értékeként kívánt verzióját.
-    4. Lépjen a [Kudu konzol](https://*yourwebsitename*.scm.azurewebsites.net).
-    5. A Node.js-verzió ellenőrzéséhez írja be a következő parancsot:  
+*   Hello Azure-portálon, használjon **Alkalmazásbeállítások**.
+    1. A hello Azure-portálon válassza a tooyour webalkalmazás.
+    2. A hello **beállítások** panelen válassza **Alkalmazásbeállítások**.
+    3. A **Alkalmazásbeállítások**, WEBSITE_NODE_DEFAULT_VERSION hello kulcsként is felvehet, és azt hello Node.js verziója hello értékként.
+    4. Nyissa meg tooyour [Kudu konzol](https://*yourwebsitename*.scm.azurewebsites.net).
+    5. toocheck hello Node.js verziót, írja be a következő parancs hello:  
    ```
    node -v
    ```
-*   Módosítsa a iisnode.yml fájlt. A Node.js-verzió az iisnode.yml fájlt módosítása csak állítja be a futtatási környezetet, hogy az iisnode használja. A Kudu cmd, míg mások továbbra is használhatják a Node.js-verzió az beállított **Alkalmazásbeállítások** az Azure portálon.
+*   Módosítsa a hello iisnode.yml fájlt. Változó hello Node.js verziót a hello iisnode.yml fájlt csak beállítja hello futtatókörnyezetben, hogy az iisnode használja. A Kudu cmd, míg mások továbbra is használhatják az beállított hello Node.js-verzió **Alkalmazásbeállítások** a hello Azure-portálon.
 
-    Állítsa be manuálisan a iisnode.yml fájlt, hozzon létre egy iisnode.yml fájlt az alkalmazás gyökérmappájában lévő mappának. A fájlban a következő sort a következők:
+    tooset hello iisnode.yml fájlt, hozzon létre manuálisan egy iisnode.yml fájlt az alkalmazás gyökérmappájába. Hello fájlban a következő sor hello a következők:
    ```
    nodeProcessCommandLine: "D:\Program Files (x86)\nodejs\5.9.1\node.exe"
    ```
    
-*   Be iisnode.yml fájlt package.json forrás vezérlő üzembe helyezése során.
-    Az Azure forrás vezérlő telepítési folyamat a következő lépésekből áll:
-    1. Tartalom áthelyezése az Azure-webalkalmazásban.
-    2. Egy alapértelmezett telepítési parancsfájl hoz létre, ha nincs a webes alkalmazás gyökérmappájában (Deploy.cmd fájl, .deployment fájlok) ilyen.
-    3. A telepítési parancsfájlt, amelyben létrehoz egy iisnode.yml fájlt Ha, említse meg a package.json fájlban a Node.js-verzió fut > motor`"engines": {"node": "5.9.1","npm": "3.7.3"}`
-    4. A iisnode.yml fájlt a következő kódsort rendelkezik:
+*   Be hello iisnode.yml fájlt package.json forrás vezérlő üzembe helyezése során.
+    hello Azure forrás vezérlő telepítési folyamata magában foglalja a hello a következő lépéseket:
+    1. Azure-webalkalmazás tartalmi toohello helyezi.
+    2. Egy alapértelmezett telepítési parancsfájl hoz létre, ha nincs hello webes alkalmazás gyökérmappájában (Deploy.cmd fájl, .deployment fájlok) ilyen.
+    3. Futtatja a telepítési parancsfájlt, amelyben létrehoz egy iisnode.yml fájlt Ha, említse meg a Node.js-verzió hello hello package.json fájl > motor`"engines": {"node": "5.9.1","npm": "3.7.3"}`
+    4. hello iisnode.yml fájlt a következő kódsort hello rendelkezik:
         ```
         nodeProcessCommandLine: "D:\Program Files (x86)\nodejs\5.9.1\node.exe"
         ```
 
-## <a name="i-see-the-message-error-establishing-a-database-connection-in-my-wordpress-app-thats-hosted-in-app-service-how-do-i-troubleshoot-this"></a>A WordPress alkalmazás az App Service-ben üzemeltetett "Error egy adatbázis-kapcsolatot létesít." hibaüzenet jelenik meg. Hogyan hibaelhárítása Ez?
+## <a name="i-see-hello-message-error-establishing-a-database-connection-in-my-wordpress-app-thats-hosted-in-app-service-how-do-i-troubleshoot-this"></a>A WordPress alkalmazás az App Service-ben üzemeltetett üdvözlőüzenetére "Adatbázis-kapcsolatot létrehozó Error" látható. Hogyan hibaelhárítása Ez?
 
-Ha ez a hiba jelenik meg az Azure WordPress-alkalmazás, php_errors.log és debug.log, hogy teljes a lépések részletes leírást talál [engedélyezése WordPress hibanaplókat](https://blogs.msdn.microsoft.com/azureossds/2015/10/09/logging-php-errors-in-wordpress-2/).
+Ha ez a hiba a Azure WordPress alkalmazás, tooenable php_errors.log és debug.log című teljes hello lépéseket részletesen [engedélyezése WordPress hibanaplókat](https://blogs.msdn.microsoft.com/azureossds/2015/10/09/logging-php-errors-in-wordpress-2/).
 
-A naplókat, ha engedélyezve vannak Reprodukálja a hibát, és ellenőrizze a naplókat, ha elfogy kapcsolatok megjelenítéséhez:
+Hello naplókat, ha engedélyezve vannak Reprodukálja hello hibát, és ellenőrizze az hello naplók toosee, ha nincs kapcsolat:
 ```
-[09-Oct-2015 00:03:13 UTC] PHP Warning: mysqli_real_connect(): (HY000/1226): User ‘abcdefghijk79' has exceeded the ‘max_user_connections’ resource (current value: 4) in D:\home\site\wwwroot\wp-includes\wp-db.php on line 1454
+[09-Oct-2015 00:03:13 UTC] PHP Warning: mysqli_real_connect(): (HY000/1226): User ‘abcdefghijk79' has exceeded hello ‘max_user_connections’ resource (current value: 4) in D:\home\site\wwwroot\wp-includes\wp-db.php on line 1454
 ```
 
-Ha ez a hiba a debug.log vagy php_errors.log fájlok jelenik meg, az alkalmazás túllépte a kapcsolatok száma. Ha a ClearDB, ellenőrizze a rendelkezésre álló kapcsolatok száma a [service-csomag](https://www.cleardb.com/pricing.view).
+Ha ez a hiba a debug.log vagy php_errors.log fájlok jelenik meg, az alkalmazás meghaladja hello kapcsolatok száma. A ClearDB tárolja, ha ellenőrizze a rendelkezésre álló kapcsolatok hello száma a [service-csomag](https://www.cleardb.com/pricing.view).
 
 ## <a name="how-do-i-debug-a-nodejs-app-thats-hosted-in-app-service"></a>Hogyan debug a Node.js-alkalmazás az App Service-ben üzemeltetett?
 
-1.  Lépjen a [Kudu konzol](https://*yourwebsitename*.scm.azurewebsites.net/DebugConsole).
-2.  Nyissa meg az alkalmazás naplók mappába (D:\home\LogFiles\Application).
-3.  A logging_errors.txt fájlban ellenőrizze a tartalom.
+1.  Nyissa meg tooyour [Kudu konzol](https://*yourwebsitename*.scm.azurewebsites.net/DebugConsole).
+2.  Nyissa meg tooyour application logs mappában (D:\home\LogFiles\Application).
+3.  Hello logging_errors.txt fájlban ellenőrizze a tartalom.
 
 ## <a name="how-do-i-install-native-python-modules-in-an-app-service-web-app-or-api-app"></a>Natív Python-modulok telepítése egy App Service webalkalmazás vagy API-alkalmazás
 
-Néhány csomag Előfordulhat, hogy telepítse az Azure-ban a pip használatával. A csomag nem feltétlenül érhető el a Python-Csomagindexben, vagy lehet, hogy egy fordító szükséges (a fordító nem érhető el a számítógépen, hogy fut a webes alkalmazás az App Service szolgáltatásban). Az App Service web apps és API-alkalmazások natív modulok telepítésével kapcsolatos információkért lásd: [telepítése Python-modulok az App Service](https://blogs.msdn.microsoft.com/azureossds/2015/06/29/install-native-python-modules-on-azure-web-apps-api-apps/).
+Néhány csomag Előfordulhat, hogy telepítse az Azure-ban a pip használatával. hello csomag valószínűleg csak akkor érhető el a Python-Csomagindexet hello, vagy lehet, hogy egy fordító szükséges (a fordító nem áll rendelkezésre hello futtató hello webalkalmazást az App Service szolgáltatásban). Az App Service web apps és API-alkalmazások natív modulok telepítésével kapcsolatos információkért lásd: [telepítése Python-modulok az App Service](https://blogs.msdn.microsoft.com/azureossds/2015/06/29/install-native-python-modules-on-azure-web-apps-api-apps/).
 
-## <a name="how-do-i-deploy-a-django-app-to-app-service-by-using-git-and-the-new-version-of-python"></a>Hogyan telepíthetem a Django-alkalmazást az App Service a Git szoftver, a Python új verziójának használatával?
+## <a name="how-do-i-deploy-a-django-app-tooapp-service-by-using-git-and-hello-new-version-of-python"></a>Hogyan telepíthetem a Django app tooApp Service Python a Git és hello verziójának használatával?
 
-A Django telepítésével kapcsolatos információkért lásd: [központi telepítése egy Django-alkalmazást az App Service](https://blogs.msdn.microsoft.com/azureossds/2016/08/25/deploying-django-app-to-azure-app-services-using-git-and-new-version-of-python/).
+A Django telepítésével kapcsolatos információkért lásd: [egy Django app tooApp szolgáltatás telepítése](https://blogs.msdn.microsoft.com/azureossds/2016/08/25/deploying-django-app-to-azure-app-services-using-git-and-new-version-of-python/).
 
-## <a name="where-are-the-tomcat-log-files-located"></a>A Tomcat naplófájlok helyét?
+## <a name="where-are-hello-tomcat-log-files-located"></a>Hol vannak hello Tomcat naplófájlok található?
 
 Az Azure piactér és egyéni telepítésekhez:
 
@@ -164,88 +164,88 @@ A portál **Alkalmazásbeállítások** központi telepítések:
 
 ## <a name="how-do-i-troubleshoot-jdbc-driver-connection-errors"></a>Hogyan hibáinak elhárítása JDBC kapcsolat hibái?
 
-A következő üzenetet láthatja a Tomcat naplókban:
+A következő üzenet a Tomcat naplókban hello tapasztalhatja:
 
 ```
-The web application[ROOT] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak,the JDBC Driver has been forcibly unregistered
+hello web application[ROOT] registered hello JDBC driver [com.mysql.jdbc.Driver] but failed toounregister it when hello web application was stopped. tooprevent a memory leak,hello JDBC Driver has been forcibly unregistered
 ```
 
-A hiba elhárításához:
+tooresolve hello hiba:
 
-1. Távolítsa el a sqljdbc*.jar fájlt az alkalmazás/lib mappából.
-2. Ha az egyéni Tomcat- vagy Azure piactér Tomcat webkiszolgáló használ, másolja a .jar fájlt a Tomcat lib mappába.
-3. Ha engedélyezi az Azure portálról Java (válasszon **Java 1.8** > **Tomcat kiszolgálót**), másolja a sqljdbc.* jar-fájlra a mappában, az alkalmazás párhuzamos. Ezt követően adja hozzá a következő classpath a web.config fájlban
+1. Távolítsa el az alkalmazás/lib mappában hello sqljdbc*.jar fájlt.
+2. Ha hello egyéni Tomcat vagy Azure piactér Tomcat webkiszolgálókat használ, a .jar fájl toohello Tomcat lib mappa másolása.
+3. Ha engedélyezi a Java hello Azure portal (válasszon **Java 1.8** > **Tomcat kiszolgálót**), másolása hello sqljdbc.* jar-fájlra, amely párhuzamos tooyour app hello mappában. Adja hozzá a következő classpath beállítás toohello web.config fájl hello:
 
     ```
     <httpPlatform>
     <environmentVariables>
     <environmentVariablename ="JAVA_OPTS" value=" -Djava.net.preferIPv4Stack=true
-    -Xms128M -classpath %CLASSPATH%;[Path to the sqljdbc*.jarfile]" />
+    -Xms128M -classpath %CLASSPATH%;[Path toohello sqljdbc*.jarfile]" />
     </environmentVariables>
     </httpPlatform>
     ```
 
-## <a name="why-do-i-see-errors-when-i-attempt-to-copy-live-log-files"></a>Miért látom hibák, amikor élő naplófájlok másolása?
+## <a name="why-do-i-see-errors-when-i-attempt-toocopy-live-log-files"></a>Miért látom hibák, amikor élő naplófájlok toocopy?
 
-Ha megpróbálja élő naplófájlok Java-alkalmazások (például Tomcat) másolja, láthatja az FTP-hiba:
+Ha élő naplófájlok toocopy a Java-alkalmazások (például Tomcat), láthatja az FTP-hiba:
 
 ```
 Error transferring file [filename] Copying files from remote side failed.
     
-The process cannot access the file because it is being used by another process.
+hello process cannot access hello file because it is being used by another process.
 ```
 
-A hibaüzenet a következő változhat, attól függően, hogy az FTP-ügyfél.
+hello hibaüzenet hello FTP-ügyfél függően változhat.
 
-Minden Java-alkalmazások rendelkeznek a zárolási problémát. Csak a Kudu támogatja, a fájl letöltése, az alkalmazás futtatása közben.
+Minden Java-alkalmazások rendelkeznek a zárolási problémát. Csak a Kudu támogatja, a fájl letöltése hello alkalmazás futtatása közben.
 
-Az alkalmazás leállítása lehetővé teszi az FTP-hozzáférést a fájlokhoz.
+Leállítása hello app engedélyezi az FTP-hozzáférést toothese fájlok.
 
-Egy másik megoldás, a webjobs-feladat ütemezés szerint fut, és másolja át ezeket a fájlokat egy másik címtárba írható. Egy minta-projekt tekintse meg a [CopyLogsJob](https://github.com/kamilsykora/CopyLogsJob) projekt.
+Egy másik megoldás, toowrite webjobs-feladat ütemezés szerint fut, és másolja át a fájlok tooa másik címtárhoz. Egy minta-projekt lásd: hello [CopyLogsJob](https://github.com/kamilsykora/CopyLogsJob) projekt.
 
-## <a name="where-do-i-find-the-log-files-for-jetty"></a>Hol található a naplófájlok a Jetty?
+## <a name="where-do-i-find-hello-log-files-for-jetty"></a>Hol található a Jetty hello naplófájlok?
 
-Piactér-vagy egyéni telepítések esetén a naplófájl a D:\home\site\wwwroot\bin\jetty-distribution-9.1.2.v20140210\logs mappában van. Vegye figyelembe, hogy a mappa helyét a Jetty használ verziójától függ. Például az elérési út az itt megadott a Jetty 9.1.2. Keresse meg jetty_*YYYY_MM_DD*. stderrout.log.
+A piactéren, és egyéni telepítésekhez hello naplófájl hello D:\home\site\wwwroot\bin\jetty-distribution-9.1.2.v20140210\logs mappában van. Vegye figyelembe, hogy hello mappájának helye hello használt Jetty módjától függ. Például hello elérési utat az itt megadott a Jetty 9.1.2. Keresse meg jetty_*YYYY_MM_DD*. stderrout.log.
 
-A portál Alkalmazásbeállítás telepítések esetében a naplófájl D:\home\LogFiles van. Keresse meg jetty_*YYYY_MM_DD*. stderrout.log
+A portál Alkalmazásbeállítás telepítések esetében hello naplófájl D:\home\LogFiles van. Keresse meg jetty_*YYYY_MM_DD*. stderrout.log
 
 ## <a name="can-i-send-email-from-my-azure-web-app"></a>Küldhetek e-mailt a saját Azure-webalkalmazás?
 
 App Service beépített e-mail-szolgáltatás nem rendelkezik. Az e-mailek küldése az alkalmazásból, néhány jó alternatíva ez című [Stack Overflow vitafórum](http://stackoverflow.com/questions/17666161/sending-email-from-azure).
 
-## <a name="why-does-my-wordpress-site-redirect-to-another-url"></a>Miért nem saját WordPress-webhely átirányítja egy másik URL-CÍMRE?
+## <a name="why-does-my-wordpress-site-redirect-tooanother-url"></a>Miért saját WordPress-webhely tooanother URL-Címének átirányítása?
 
-Ha nemrég áttelepítette az Azure-ba, WordPress előfordulhat, hogy átirányítja a régi tartomány URL-CÍMRE. Ezt a MySQL-adatbázis beállítása okozza.
+Ha nemrégiben telepítette át tooAzure, a WordPress előfordulhat, hogy toohello régi tartomány URL-Címének átirányítása. Ennek oka egy beállítás hello MySQL-adatbázisban.
 
-WordPress ismerős + az Azure hely bővítménye által az átirányítási URL-címet közvetlenül az adatbázis frissítéséhez használhatja. WordPress ismerős + használatával kapcsolatos további információkért lásd: [WordPress eszközök és a MySQL-áttelepítés a WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/).
+WordPress ismerős + használható tooupdate hello átirányítási URL-címet közvetlenül a hello adatbázis bővítmény Azure hely. WordPress ismerős + használatával kapcsolatos további információkért lásd: [WordPress eszközök és a MySQL-áttelepítés a WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/).
 
-Azt is megteheti, ha szeretné-e manuálisan frissítse a átirányítási URL-címet az SQL-lekérdezések vagy PHPMyAdmin, lásd: [WordPress: rossz URL-cím átirányítása](https://blogs.msdn.microsoft.com/azureossds/2016/07/12/wordpress-redirecting-to-wrong-url/).
+Másik lehetőségként toomanually frissítési hello átirányítási URL-Címének használatával, az SQL-lekérdezések vagy PHPMyAdmin tetszés szerint lásd: [WordPress: toowrong URL-cím átirányítása](https://blogs.msdn.microsoft.com/azureossds/2016/07/12/wordpress-redirecting-to-wrong-url/).
 
 ## <a name="how-do-i-change-my-wordpress-sign-in-password"></a>A WordPress bejelentkezési jelszó módosítása
 
-Ha elfelejtette a jelszavát WordPress-bejelentkezés, segítségével WordPress ismerős + a frissítést. A jelszó alaphelyzetbe állításához, a WordPress ismerős + Azure hely-kiterjesztés telepítése, és fejezze be a leírt lépéseket [WordPress eszközök és a MySQL-áttelepítés a WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/).
+Ha elfelejtette a jelszavát WordPress-bejelentkezés, WordPress ismerős + tooupdate használhatja azt. a jelszó, a telepítés hello WordPress ismerős + Azure hely bővítmény és a majd teljes hello lépéseket tooreset [WordPress eszközök és a MySQL-áttelepítés a WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/).
 
-## <a name="i-cant-sign-in-to-wordpress-how-do-i-resolve-this"></a>Nem lehet bejelentkezni WordPress. Hogyan lehet elhárítani ezt?
+## <a name="i-cant-sign-in-toowordpress-how-do-i-resolve-this"></a>Nem tud bejelentkezni tooWordPress. Hogyan lehet elhárítani ezt?
 
 Ha nemrég a beépülő modul telepítése után WordPress tévedéssel, lehetséges, hogy egy hibás beépülő modult. WordPress ismerős +, amelyek segítségével Azure hely bővítmény letiltása a WordPress beépülő modulok. További információkért lásd: [WordPress eszközök és a MySQL-áttelepítés a WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/).
 
 ## <a name="how-do-i-migrate-my-wordpress-database"></a>Hogyan telepítse át a WordPress adatbázist?
 
-Amely csatlakozik a WordPress webhely MySQL-adatbázis áttelepítéséhez több lehetőség közül választhat:
+Egy csatlakoztatott tooyour WordPress-webhely áttelepítése hello MySQL adatbázis több lehetőség közül választhat:
 
-* A fejlesztők: Használja a [parancssort vagy PHPMyAdmin](https://blogs.msdn.microsoft.com/azureossds/2016/03/02/migrating-data-between-mysql-databases-using-kudu-console-azure-app-service/)
+* A fejlesztők: Használata hello [parancssort vagy PHPMyAdmin](https://blogs.msdn.microsoft.com/azureossds/2016/03/02/migrating-data-between-mysql-databases-using-kudu-console-azure-app-service/)
 * Nem-Fejlesztők: [WordPress ismerős +](https://blogs.msdn.microsoft.com/azureossds/2016/12/21/wordpress-tools-and-mysql-migration-with-wordpress-buddy/)
 
 ## <a name="how-do-i-help-make-wordpress-more-secure"></a>Hogyan segít, WordPress biztonságosabbá?
 
-Ajánlott biztonsági eljárások a WordPress, lásd: [ajánlott eljárások az Azure-ban WordPress biztonsági](https://blogs.msdn.microsoft.com/azureossds/2016/12/26/best-practices-for-wordpress-security-on-azure/).
+Tekintse meg a WordPress, ajánlott biztonsági eljárásokkal kapcsolatos toolearn [ajánlott eljárások az Azure-ban WordPress biztonsági](https://blogs.msdn.microsoft.com/azureossds/2016/12/26/best-practices-for-wordpress-security-on-azure/).
 
-## <a name="i-am-trying-to-use-phpmyadmin-and-i-see-the-message-access-denied-how-do-i-resolve-this"></a>Kísérlet PHPMyAdmin használja, és "Hozzáférés megtagadva." a következő üzenet jelenik meg Hogyan lehet elhárítani ezt?
+## <a name="i-am-trying-toouse-phpmyadmin-and-i-see-hello-message-access-denied-how-do-i-resolve-this"></a>Próbálok toouse PHPMyAdmin, és látható üdvözlőüzenetére "Hozzáférés megtagadva." Hogyan lehet elhárítani ezt?
 
-A probléma tapasztalhat, ha a MySQL alkalmazásbeli funkció még nem fut. Ez App Service-példányban. A probléma megoldása érdekében próbálkozzon a webhely eléréséhez. A szükséges eljárásokat, beleértve a MySQL alkalmazáson belüli folyamat elindul. Annak ellenőrzése, hogy MySQL alkalmazásbeli fut-e, a Process Explorert, hogy mysqld.exe jelleggel szerepel-e.
+A probléma tapasztalhat, ha hello MySQL alkalmazásbeli funkció még nem fut. Ez App Service-példányban. tooresolve hello problémát, próbálja meg tooaccess a webhelyet. Hello szükséges eljárások, beleértve a hello MySQL alkalmazáson belüli folyamat elindul. hello folyamatok jelenik meg, hogy az alkalmazás fut, a Process Explorer MySQL győződjön meg arról, hogy mysqld.exe tooverify.
 
-Miután meggyőződött arról, hogy MySQL alkalmazásbeli fut-e, próbálja meg PHPMyAdmin.
+Miután meggyőződött arról, hogy fut-e a MySQL alkalmazásbeli, próbálja toouse PHPMyAdmin.
 
-## <a name="i-get-an-http-403-error-when-i-try-to-import-or-export-my-mysql-in-app-database-by-using-phpmyadmin-how-do-i-resolve-this"></a>A HTTP 403-as hiba jelenik meg: való importálására vagy exportálására alkalmazásbeli MySQL adatbázis PHPMyadmin használatával. Hogyan lehet elhárítani ezt?
+## <a name="i-get-an-http-403-error-when-i-try-tooimport-or-export-my-mysql-in-app-database-by-using-phpmyadmin-how-do-i-resolve-this"></a>A HTTP 403-as hiba jelenik meg: tooimport próbálja vagy alkalmazásbeli MySQL adatbázis exportálása PHPMyadmin használatával. Hogyan lehet elhárítani ezt?
 
-Ha a Látványelem egy régebbi verzióját használja, akkor léptek fel egy ismert hiba. A probléma megoldása érdekében váltson a Chrome egy újabb verziója. Is próbálkozzon másik böngészővel, például az Internet Explorer vagy Edge, ha a probléma nem történik meg.
+Ha a Látványelem egy régebbi verzióját használja, akkor léptek fel egy ismert hiba. tooresolve hello problémát, a frissítési tooa Chrome újabb verziója. Is próbálkozzon másik böngészővel, például az Internet Explorer vagy Edge, ahol hello nem fordul elő.

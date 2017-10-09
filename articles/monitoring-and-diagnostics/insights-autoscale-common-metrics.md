@@ -1,5 +1,5 @@
 ---
-title: "Az Azure a figyelő automatikus skálázás közös metrikák |} Microsoft Docs"
+title: "a figyelő automatikus skálázás közös metrikák aaaAzure |} Microsoft Docs"
 description: "Ismerje meg, melyik metrikák gyakran használják az automatikus skálázást a Felhőszolgáltatásokat, a virtuális gépek és a Web Apps."
 author: anirudhcavale
 manager: orenr
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
 ms.author: ancav
-ms.openlocfilehash: 240a230d09680672ccd5316470a87d047fab9fd1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 372a40d72d7a6c22c5ff854b1460ec8a3b7ed1d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Az Azure a figyelő automatikus skálázás közös metrikák
-Azure figyelő automatikus skálázás lehetővé teszi futó példányok méretezési felfelé vagy lefelé, telemetriai adatokat (metrikák) alapján. Ez a dokumentum ismerteti a gyakori metrikákat, amelyeket érdemes használni. Az Azure-portál a felhőalapú szolgáltatások és a kiszolgálófarmok válassza a metrika bővítse az erőforrás. Bővítse a különböző erőforrás közül azonban bármely metrika is választhat.
+Azure figyelő automatikus skálázás lehetővé teszi futó példányok száma tooscale hello felfelé vagy lefelé, telemetriai adatokat (metrikák) alapján. Ez a dokumentum ismerteti, hogy érdemes-e toouse közös metrikákat. Hello Azure-portál a felhőalapú szolgáltatások és a kiszolgálófarmok hello metrikája hello erőforrás tooscale alapján választhatja ki. Azonban is választhat a metrika egy másik erőforráscsoportban tooscale által.
 
-Az Azure a figyelő automatikus skálázás vonatkozik csak a [virtuálisgép-méretezési csoportok](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Felhőszolgáltatások](https://azure.microsoft.com/services/cloud-services/), és [App Service - webalkalmazások](https://azure.microsoft.com/services/app-service/web/). Más Azure-szolgáltatások különböző méretezési módszer használatára.
+Az Azure a figyelő automatikus skálázás csak túl vonatkozik[virtuálisgép-méretezési csoportok](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Felhőszolgáltatások](https://azure.microsoft.com/services/cloud-services/), és [App Service - webalkalmazások](https://azure.microsoft.com/services/app-service/web/). Más Azure-szolgáltatások különböző méretezési módszer használatára.
 
 ## <a name="compute-metrics-for-resource-manager-based-vms"></a>Metrikák Resource Manager-alapú virtuális gépek számítási
-Alapértelmezés szerint a Resource Manager-alapú virtuális gépek és virtuálisgép-méretezési csoportok létrehozása (gazdaszintű) alapvető metrikákat. Emellett egy Azure virtuális gép és VMSS diagnosztikai adatok gyűjtésének konfigurálásakor az Azure diagnosztikai-bővítményt is megfelelően kibocsát Vendég-operációsrendszer teljesítményszámlálók (gyakran nevezik "Vendég-operációsrendszer-metrikák").  Ezeket a mérési szabályok automatikus skálázás használható.
+Alapértelmezés szerint a Resource Manager-alapú virtuális gépek és virtuálisgép-méretezési csoportok létrehozása (gazdaszintű) alapvető metrikákat. Emellett egy Azure virtuális gép és VMSS diagnosztikai adatok gyűjtésének konfigurálásakor hello Azure diagnosztikai bővítmény is megfelelően kibocsát Vendég-operációsrendszer teljesítményszámlálók (gyakran nevezik "Vendég-operációsrendszer-metrikák").  Ezeket a mérési szabályok automatikus skálázás használható.
 
-Használhatja a `Get MetricDefinitions` API/PoSH/CLI megtekintéséhez a metrikák a VMSS erőforrás érhető el.
+Használhatja a hello `Get MetricDefinitions` API/PoSH/CLI tooview hello metrikákat a VMSS erőforrás érhető el.
 
 Ha Virtuálisgép-méretezési készlet használata és egy adott metrika felsorolt nem jelenik meg, akkor valószínűleg *le van tiltva* a diagnosztika bővítményben.
 
-Ha egy adott metrika nem készül mintát vagy a kívánt gyakorisággal, frissítheti a diagnosztika konfigurációját.
+Ha egy adott metrika nem folyamatban van a mintában szereplő vagy átvitt: hello gyakorisággal, frissítheti hello diagnosztika konfigurációját.
 
-Ha az előző mindenképpen értéke true, majd tekintse át [Windows rendszerű virtuális gépként Azure Diagnostics engedélyezéséhez használja a Powershellt](../virtual-machines/windows/ps-extensions-diagnostics.md) kapcsolatos PowerShell használatával az Azure Virtuálisgép-diagnosztika kiterjesztést a metrika engedélyezése és konfigurálása. Cikkben is egy minta diagnosztika konfigurációs fájlt.
+Ha az előző mindenképpen értéke true, majd tekintse át [használja a Powershellt tooenable Azure Diagnostics Windows rendszerű virtuális gépként](../virtual-machines/windows/ps-extensions-diagnostics.md) PowerShell tooconfigure és a frissítés az Azure Virtuálisgép-diagnosztika bővítmény tooenable hello metrikát. Cikkben is egy minta diagnosztika konfigurációs fájlt.
 
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>A Resource Manager-alapú Windows és Linux virtuális gépek gazdagép-metrikák
-A következő gazdagép szintekhez tartozó metrikákat kibocsátott alapértelmezés szerint az Azure virtuális gép és VMSS Windows és Linux példányát. A metrikák írják le az Azure virtuális gép, de az Azure virtuális gép gazdagépről, nem pedig a Vendég virtuális Gépen telepített ügynök keresztül gyűjtött. Ezeket a mérési szabályok automatikus skálázás lehet használni.
+a következő gazdagép szintekhez tartozó metrikákat hello kibocsátott alapértelmezés szerint az Azure virtuális gép és VMSS a Windows és Linux-példányok. A metrikák írják le az Azure virtuális gép, de hello Azure Virtuálisgép-gazda nem hello Vendég virtuális Gépen telepített ügynök keresztül gyűjtött. Ezeket a mérési szabályok automatikus skálázás lehet használni.
 
 - [A Resource Manager-alapú Windows és Linux virtuális gépek gazdagép-metrikák](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
 - [A Resource Manager-alapú Windows és Linux Virtuálisgép-méretezési készlet gazdagép metrikák](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
 
 ### <a name="guest-os-metrics-resource-manager-based-windows-vms"></a>Resource Manager-alapú Windows virtuális gépek vendég operációs rendszer metrikák
-Ha a virtuális gép létrehozása az Azure-ban, diagnosztika engedélyezve van a diagnosztika bővítményével. A diagnosztika bővítményt a virtuális Gépen belül vett metrikák készlete bocsát ki. Ez azt jelenti, hogy ki alapértelmezés szerint nem kibocsátott metrikák automatikus skálázás is.
+Ha a virtuális gép létrehozása az Azure-ban, diagnosztika hello diagnosztika bővítményével engedélyezve van. hello diagnosztika bővítmény belül hello VM vett metrikák készlete bocsát ki. Ez azt jelenti, hogy ki alapértelmezés szerint nem kibocsátott metrikák automatikus skálázás is.
 
-A metrikák listája a következő parancsot a PowerShell használatával is létrehozhat.
+Hello metrikák listája hello a következő parancsot a PowerShell használatával is létrehozhat.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-A következő mérőszámokat riasztást hozhat létre:
+A következő metrikák hello riasztást hozhat létre:
 
 | Metrika neve | Unit (Egység) |
 | --- | --- |
@@ -86,13 +86,13 @@ A következő mérőszámokat riasztást hozhat létre:
 ### <a name="guest-os-metrics-linux-vms"></a>Linux virtuális gépek vendég operációs rendszer metrikák
 Ha a virtuális gép létrehozása az Azure-ban, diagnosztika alapértelmezés szerint engedélyezve van diagnosztika bővítmény használatával.
 
-A metrikák listája a következő parancsot a PowerShell használatával is létrehozhat.
+Hello metrikák listája hello a következő parancsot a PowerShell használatával is létrehozhat.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- A következő mérőszámokat riasztást hozhat létre:
+ A következő metrikák hello riasztást hozhat létre:
 
 | Metrika neve | Unit (Egység) |
 | --- | --- |
@@ -136,10 +136,10 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \NetworkInterface\TotalCollisions |Darabszám |
 
 ## <a name="commonly-used-web-server-farm-metrics"></a>A gyakran használt (kiszolgálófarm) webes metrikák
-Például a Http-várólista hossza közös web server mérőszámok alapján automatikus skálázás is elvégezheti. Az metrika neve **HttpQueueLength**.  A következő szakasz elérhető server farm (webalkalmazások) metrikákat.
+Automatikus skálázás például hello Http-várólista hossza közös web server mérőszámok alapján is elvégezheti. Az metrika neve **HttpQueueLength**.  a következő szakasz listák elérhető server farm (webalkalmazások) mérőszámok hello.
 
 ### <a name="web-apps-metrics"></a>Webes alkalmazások metrikák
-A Web Apps metrikák listája a következő parancsot a PowerShell használatával is létrehozhat.
+Hello webalkalmazások metrikák listája hello a következő parancsot a PowerShell használatával is létrehozhat.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -157,11 +157,11 @@ Riasztás, vagy skálázhatja által metrikákat.
 | BytesSent |Bájtok |
 
 ## <a name="commonly-used-storage-metrics"></a>Tárolási általánosan használt mérőszámait
-Méretezhető tárolás várólista hossza, amely a tárolási várólistában lévő üzenetek száma szerint. Tároló várólista hossza különleges metrika, és a küszöbérték példányonként üzenetek száma. Például ha két példányt, és ha a küszöb értéke 100, skálázás esetén a várólistán lévő üzenetek száma 200. Amely lehet egy példány 100 üzenetek, 120 és 80 vagy bármely más kombinációja, amely legfeljebb 200 vagy több ad hozzá.
+Tároló várólista hossza, amely hello hello tárolási várólistában lévő üzenetek száma szerint méretezheti. Tároló várólista hossza különleges metrika és hello küszöbértéke hello példányonként üzenetek száma. Például ha két esetben és hello küszöbértéke too100, skálázás esetén hello hello várólistában lévő üzenetek teljes száma 200. Amely lehet egy példány 100 üzenetek, 120 és 80 vagy bármely más kombinációja, amely too200 vagy több ad hozzá.
 
-Ez a beállítás konfigurálása az Azure-portálon a **beállítások** panelen. Virtuálisgép-méretezési készlet, frissítheti az automatikus skálázási beállítás használata a Resource Manager sablon *metricName* , *ApproximateMessageCount* , és adja át, a tároló várólista Azonosítójának  *metricResourceUri*.
+Ezt a beállítást hello Azure portálra az hello konfigurálása **beállítások** panelen. A Virtuálisgép-méretezési készlet, frissítheti az automatikus skálázási beállítás hello hello Resource Manager sablon toouse *metricName* , *ApproximateMessageCount* , és adja át a hello azonosító hello tároló várólista,  *metricResourceUri*.
 
-Például egy klasszikus tárfiókot az automatikus skálázási beállítás metricTrigger a következők:
+Például egy klasszikus Tárfiók hello az automatikus skálázási beállítás metricTrigger a következők:
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -169,7 +169,7 @@ Például egy klasszikus tárfiókot az automatikus skálázási beállítás me
  "metricResourceUri": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RES_GROUP_NAME/providers/Microsoft.ClassicStorage/storageAccounts/STORAGE_ACCOUNT_NAME/services/queue/queues/QUEUE_NAME"
  ```
 
-(Nem klasszikus) tárfiókot a metricTrigger ilyen műveletekre:
+(Nem klasszikus) tárfiókot hello metricTrigger ilyen műveletekre:
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -178,9 +178,9 @@ Például egy klasszikus tárfiókot az automatikus skálázási beállítás me
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>A Service Bus általánosan használt mérőszámait
-A Service Bus-várólista hossza, amely a Service Bus várólistában lévő üzenetek száma szerint méretezheti. A Service Bus-várólista hossza különleges metrika, és a küszöbérték példányonként üzenetek száma. Például ha két példányt, és ha a küszöb értéke 100, skálázás esetén a várólistán lévő üzenetek száma 200. Amely lehet egy példány 100 üzenetek, 120 és 80 vagy bármely más kombinációja, amely legfeljebb 200 vagy több ad hozzá.
+A Service Bus-várólista hossza, amely hello hello Service Bus várólistában lévő üzenetek száma szerint méretezheti. A Service Bus-várólista hossza különleges metrika és hello küszöbértéke hello példányonként üzenetek száma. Például ha két esetben és hello küszöbértéke too100, skálázás esetén hello hello várólistában lévő üzenetek teljes száma 200. Amely lehet egy példány 100 üzenetek, 120 és 80 vagy bármely más kombinációja, amely too200 vagy több ad hozzá.
 
-Virtuálisgép-méretezési készlet, frissítheti az automatikus skálázási beállítás használata a Resource Manager sablon *metricName* , *ApproximateMessageCount* , és adja át, a tároló várólista Azonosítójának  *metricResourceUri*.
+A Virtuálisgép-méretezési készlet, frissítheti az automatikus skálázási beállítás hello hello Resource Manager sablon toouse *metricName* , *ApproximateMessageCount* , és adja át a hello azonosító hello tároló várólista,  *metricResourceUri*.
 
 ```
 "metricName": "MessageCount",
@@ -189,6 +189,6 @@ Virtuálisgép-méretezési készlet, frissítheti az automatikus skálázási b
 ```
 
 > [!NOTE]
-> A Service Bushoz az erőforrás-csoport fogalma nem létezik, de Azure Resource Manager létrehoz egy alapértelmezett erőforráscsoport régiónként. Az erőforráscsoport általában a "Default - Szolgáltatásbusz-[régió]" formátumban van. Például: "Alapértelmezett-Szolgáltatásbusz-EastUS", "Alapértelmezett-Szolgáltatásbusz-WestUS", "Alapértelmezett-Szolgáltatásbusz-AustraliaEast" stb.
+> Service Bus hello erőforrás csoport fogalma nem létezik, de Azure Resource Manager régiónként alapértelmezett erőforrás csoportot hoz létre. hello erőforráscsoport általában hello "Default - Szolgáltatásbusz-[régió]" formátumban van. Például: "Alapértelmezett-Szolgáltatásbusz-EastUS", "Alapértelmezett-Szolgáltatásbusz-WestUS", "Alapértelmezett-Szolgáltatásbusz-AustraliaEast" stb.
 >
 >

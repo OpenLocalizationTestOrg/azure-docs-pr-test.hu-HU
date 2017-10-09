@@ -1,35 +1,35 @@
-### <a name="configure-a-dns-label-for-the-public-ip-address"></a>DNS-címke konfigurálása a nyilvános IP-címhez
+### <a name="configure-a-dns-label-for-hello-public-ip-address"></a>A DNS-címke hello nyilvános IP-cím konfigurálása
 
-Ha az internetről szeretne csatlakozni az SQL Server-adatbázismotorhoz, érdemes létrehoznia egy DNS-címkét a nyilvános IP-címhez. Csatlakozhat IP-cím alapján, de a DNS-címke létrehoz egy könnyebben azonosítható A rekordot, és kivonatolja az alapul szolgáló nyilvános IP-címet.
+tooconnect toohello SQL Server adatbázis-kezelő a hello Internet, fontolja meg egy DNS-címke a nyilvános IP-cím létrehozása. IP-címe is elérheti, de hello DNS-címke létrehoz egy A rekordot, amely könnyebben tooidentify és kivonatok hello alapul szolgáló nyilvános IP-cím.
 
 > [!NOTE]
-> Nincs szükség DNS-címkére, ha csak az adott virtuális hálózaton belül vagy csak helyben szeretne csatlakozni az SQL Server-példányhoz.
+> DNS-címkére esetén nincs szükség, ha terv, tooonly csatlakozás toohello SQL Server-példány hello belül azonos virtuális hálózaton, vagy csak a helyi számítógépre.
 
-DNS-címke létrehozásához először válassza a **Virtuális gépek** elemet a portálon. Jelölje ki az SQL Server rendszerű virtuális gépet a tulajdonságai megjelenítéséhez.
+toocreate DNS-címke, először válassza **virtuális gépek** hello portálon. Válassza ki az SQL Server virtuális gép toobring a tulajdonságai megjelenítéséhez.
 
-1. A virtuális gép áttekintésében válassza ki a **nyilvános IP-címét**.
+1. Hello virtuális gépek – áttekintés, válassza ki a **nyilvános IP-cím**.
 
     ![nyilvános IP-cím](./media/virtual-machines-sql-server-connection-steps/rm-public-ip-address.png)
 
-1. A Nyilvános IP-cím tulajdonságai között bontsa ki a **Konfiguráció** elemet.
+1. Bontsa ki a nyilvános IP-cím hello tulajdonságait, **konfigurációs**.
 
-1. Adjon meg egy DNS-címkenevet. Ez a név egy A rekord, amelynek használatával név szerint csatlakozhat az SQL Server rendszerű virtuális géphez az IP-cím megadásával való közvetlen csatlakozás helyett.
+1. Adjon meg egy DNS-címkenevet. Ez a név egy A rekordot, amely közvetlenül lehet használt tooconnect tooyour SQL Server virtuális gép neve helyett az IP-cím szerint.
 
-1. Kattintson a **Mentés** gombra.
+1. Kattintson a hello **mentése** gombra.
 
     ![dns-címke](./media/virtual-machines-sql-server-connection-steps/rm-dns-label.png)
 
-### <a name="connect-to-the-database-engine-from-another-computer"></a>Csatlakozás az adatbázismotorhoz egy másik számítógépről
+### <a name="connect-toohello-database-engine-from-another-computer"></a>Adatbázis-kezelő toohello Csatlakozás másik számítógépről
 
-1. Nyissa meg az SQL Server Management Studio (SSMS) alkalmazást egy internethez csatlakozó számítógépen. Ha még nem rendelkezik az SQL Server Management Studio alkalmazással, [innen](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) letöltheti.
+1. Egy számítógép csatlakozik a toohello internet, nyissa meg az SQL Server Management Studio (SSMS). Ha még nem rendelkezik az SQL Server Management Studio alkalmazással, [innen](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms) letöltheti.
 
-1. A **Kapcsolódás a kiszolgálóhoz** vagy a **Kapcsolódás az adatbázismotorhoz** párbeszédpanelen szerkessze a **Kiszolgáló neve** értéket. Adja meg a virtuális gép (az előző feladat során meghatározott) IP-címét vagy teljes DNS-nevét. Egy vessző hozzáadásával az SQL Server TCP-portját is megadhatja. Például: `mysqlvmlabel.eastus.cloudapp.azure.com,1433`.
+1. A hello **tooServer csatlakozás** vagy **tooDatabase motor csatlakozás** hello szerkesztése párbeszédpanelen **kiszolgálónév** érték. Adja meg a hello IP-cím vagy hello virtuális gép (hello előző feladatban meghatározott) teljes DNS-nevét. Egy vessző hozzáadásával az SQL Server TCP-portját is megadhatja. Például: `mysqlvmlabel.eastus.cloudapp.azure.com,1433`.
 
-1. A **Hitelesítés** mezőben válassza az **SQL Server-hitelesítés** lehetőséget.
+1. A hello **hitelesítési** mezőben válassza **SQL Server-hitelesítés**.
 
-1. A **Bejelentkezés** szövegmezőbe írjon be egy érvényes SQL-bejelentkezési nevet.
+1. A hello **bejelentkezési** mezőben, egy érvényes SQL-bejelentkezési hello típusnév.
 
-1. A **Jelszó** szövegmezőbe írja be a bejelentkezési jelszót.
+1. A hello **jelszó** mezőbe, írja be a jelszót hello hello bejelentkezési azonosító.
 
 1. Kattintson a **Connect** (Csatlakozás) gombra.
 

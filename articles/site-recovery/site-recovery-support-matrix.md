@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Site Recovery-támogatási mátrix |} Microsoft Docs"
-description: "A támogatott operációs rendszerek és összetevők összegzi az Azure Site Recovery"
+title: "a Site Recovery-támogatási mátrix aaaAzure |} Microsoft Docs"
+description: "Az Azure Site Recovery összegzi a hello támogatott operációs rendszerek és összetevők"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -16,12 +16,12 @@ ms.date: 03/27/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: site-recovery-support-matrix-to-azure
-ms.openlocfilehash: ed6f8488bf784cd79b70dc4dea63a38d8c6a0f50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a067b2baa141ce44a2c65d50ad22780fe0dca37e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-site-recovery-support-matrix"></a>Az Azure Site Recovery-támogatási mátrix
 
-Ez a cikk az Azure Site Recovery támogatott operációs rendszerek és összetevőket foglalja össze. A támogatott összetevők és az Előfeltételek listáját az egyes központi telepítési forgatókönyvek esetén érhető el az egyes a megfelelő központi telepítési cikket, és ez a dokumentum összefoglalja azokat.
+Ez a cikk az Azure Site Recovery támogatott operációs rendszerek és összetevőket foglalja össze. A támogatott összetevők és az Előfeltételek listáját az egyes központi telepítési forgatókönyvek esetén az egyes hello megfelelő központi telepítési cikkben érhető el, és a dokumentum összefoglalja azokat.

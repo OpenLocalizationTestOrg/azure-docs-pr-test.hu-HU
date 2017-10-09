@@ -1,12 +1,12 @@
 # Áttekintés
-## [Az Azure Data Factory bemutatása](data-factory-introduction.md)
+## [Data Factory bemutatása tooAzure](data-factory-introduction.md)
 ## Alapelvek
 ### [Folyamatok és tevékenységek](data-factory-create-pipelines.md)
 ### [Adatkészletek](data-factory-create-datasets.md)
 ### [Ütemezés és végrehajtás](data-factory-scheduling-and-execution.md)
 
 # Első lépések
-## [Oktatóanyag: Folyamat létrehozása adatmásolásra](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+## [Oktatóanyag: Hozzon létre egy folyamatot toocopy adatok](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 ### [Másolás varázsló](data-factory-copy-data-wizard-tutorial.md)
 ### [Azure Portal](data-factory-copy-activity-tutorial-using-azure-portal.md)
 ### [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
@@ -14,7 +14,7 @@
 ### [Azure Resource Manager-sablon](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 ### [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 ### [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-## [Oktatóanyag: Folyamat létrehozása adatok átalakítására](data-factory-build-your-first-pipeline.md)
+## [Oktatóanyag: Hozzon létre egy folyamatot tootransform adatok](data-factory-build-your-first-pipeline.md)
 ### [Azure Portal](data-factory-build-your-first-pipeline-using-editor.md)
 ### [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 ### [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
@@ -64,7 +64,7 @@
 ### Adatkezelési átjáró
 #### [Áttekintés](data-factory-data-management-gateway.md)
 #### [Magas rendelkezésre állás és méretezhetőség (előzetes verzió)](data-factory-data-management-gateway-high-availability-scalability.md)
-#### [Bemutató: Adatok áthelyezése helyszíni SQL Serverről az Azure Blob Storage-ba](data-factory-move-data-between-onprem-and-cloud.md)
+#### [Forgatókönyv: Egy a helyszíni SQL Server tooAzure Blob Storage tárolóban tárolt adatok mozgatása](data-factory-move-data-between-onprem-and-cloud.md)
 
 
 ## [Adatok átalakítása](data-factory-data-transformation-activities.md)

@@ -1,6 +1,6 @@
 ---
-title: "Az Azure-Felhőszolgáltatás a távoli asztal engedélyezése |} Microsoft Docs"
-description: "Az azure cloud service alkalmazás távoli asztali kapcsolatok lehetővé tételéhez konfigurálása"
+title: "Azure Cloud Service a távoli asztal aaaEnable |} Microsoft Docs"
+description: "Hogyan tooconfigure az azure felhőalapú szolgáltatás alkalmazás tooallow távoli asztali kapcsolatok"
 services: cloud-services
 documentationcenter: 
 author: thraka
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 413e72e9a39fcde84f56bfc61a6bc72dbadf1c97
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3c0180bf5ad29cb77e5303ccbd6f9ccc44b7b0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services"></a>Engedélyezze a távoli asztali kapcsolat egy szerepkör esetén az Azure Cloud Services csomag
 
@@ -28,66 +28,66 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
 > * [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)
 
-Engedélyezheti a távoli asztali kapcsolat létrehozása a szerepkörben fejlesztése során a távoli asztal modulok belefoglalja a szolgáltatás definíciós, vagy választhatja azt is, a távoli asztal bővítményével távoli asztal engedélyezése. Az előnyben részesített megoldás, a távoli asztali bővítmény használatára, mert a távoli asztal az alkalmazás nem kell újratelepíteni az alkalmazás központi telepítése után is engedélyezheti.
+Engedélyezheti a távoli asztali kapcsolat létrehozása a szerepkörben a fejlesztés során hello távoli asztal modulok belefoglalja a szolgáltatás definíciós, vagy választhatja azt a távoli asztal tooenable hello távoli asztali bővítmény keresztül. hello előnyben részesített megoldás, toouse hello távoli asztali bővítmény, a távoli asztal hello alkalmazás anélkül, hogy tooredeploy az alkalmazás központi telepítése után is engedélyezheti.
 
-## <a name="configure-remote-desktop-from-the-azure-classic-portal"></a>A távoli asztal konfigurálása a klasszikus Azure portálon
-A klasszikus Azure portálra a távoli asztali bővítmény megközelítést használ, így a távoli asztal az alkalmazás központi telepítése után is engedélyezheti. A **konfigurálása** a felhőszolgáltatás lap lehetővé teszi a távoli asztal engedélyezéséhez módosítsa a helyi rendszergazda fiók használatával kapcsolódik a virtuális gépek, a tanúsítvány-hitelesítésben használt, és a lejárati dátuma.
+## <a name="configure-remote-desktop-from-hello-azure-classic-portal"></a>A távoli asztal a klasszikus Azure portálon hello konfigurálása
+hello a klasszikus Azure portálon hello a távoli asztali bővítmény módszert használ, így a távoli asztal hello alkalmazás központi telepítése után is engedélyezheti. Hello **konfigurálása** a felhőszolgáltatás lap lehetővé teszi a távoli asztal tooenable használt tooconnect toohello virtuális gépek módosítása hello helyi rendszergazdai fiókot, hello tanúsítvány-hitelesítésben használt és hello beállítása lejárati dátuma.
 
-1. Kattintson a **Felhőszolgáltatások**, kattintson a nevére, a felhőalapú szolgáltatás, és kattintson a **konfigurálása**.
-2. Kattintson a **távoli** panel alján.
+1. Kattintson a **Felhőszolgáltatások**, kattintson hello felhőszolgáltatás hello nevét, majd **konfigurálása**.
+2. Kattintson a hello **távoli** hello alsó gombra.
 
     ![Távoli cloud services csomag](./media/cloud-services-role-enable-remote-desktop/CloudServices_Remote.png)
 
    > [!WARNING]
-   > Összes szerepkörpéldányt újra kell indítani, amikor először a távoli asztal engedélyezése és kattintson az OK gombra (jelölő). Újraindítás megakadályozása érdekében a jelszó titkosításához használt tanúsítványról telepítenie kell a szerepkört. Egy újraindítás érdekében [töltse fel a tanúsítványt a felhőalapú szolgáltatáshoz](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) és térjen vissza ezt a párbeszédpanelt.
+   > Összes szerepkörpéldányt újra kell indítani, amikor először a távoli asztal engedélyezése és kattintson az OK gombra (jelölő). Újraindítás, hello tanúsítványjelszavas használt tooencrypt hello tooprevent hello szerepkört telepíteni kell. Újraindítás, tooprevent [hello felhőszolgáltatás tanúsítvány feltöltése](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) , és visszatér a toothis párbeszédpanel.
 
-3. A **szerepkörök**, válassza ki a frissíteni, vagy válassza ki a szerepkör **összes** összes szerepköre tekintetében.
-4. Ellenőrizze a következő módosításokat:
+3. A **szerepkörök**, jelölje be hello szerepkör tooupdate kívánt **összes** összes szerepköre tekintetében.
+4. Végezze el a következő módosításokat hello:
 
-   * A távoli asztal engedélyezéséhez jelölje be a **távoli asztal engedélyezése** jelölőnégyzetet. A távoli asztal letiltásához törölje a jelölőnégyzet jelölését.
-   * A távoli asztal kapcsolatokat a szerepkörpéldányok a használandó fiók létrehozása.
-   * Frissítse a meglévő fiók jelszavát.
-   * A hitelesítéshez használandó feltöltött tanúsítvány kiválasztása (töltse fel a tanúsítvány használatával **feltöltése** a a **tanúsítványok** oldalon), vagy hozzon létre egy új tanúsítványt.
-   * Módosítsa a lejárati dátumot a távoli asztal konfigurációjának.
+   * Távoli asztal, jelölje be hello tooenable **távoli asztal engedélyezése** jelölőnégyzetet. toodisable távoli asztal, törölje a jelet hello jelölőnégyzetet.
+   * Hozzon létre egy fiókot toouse távoli asztali kapcsolatok toohello szerepkörpéldányokat.
+   * Frissítse a hello hello meglévő fiók jelszavát.
+   * Válassza ki a hitelesítés egy feltöltött tanúsítvány toouse (feltöltési hello tanúsítvány használatával **feltöltése** a hello **tanúsítványok** lap), vagy hozzon létre egy új tanúsítványt.
+   * Hello lejárati dátum hello távoli asztal konfigurációjának módosítása.
 
 5. A konfigurációs módosítások befejeztével kattintson **OK** (jelölő).
 
 ## <a name="remote-into-role-instances"></a>A szerepkörpéldányok távoli
-A távoli asztal engedélyezve van a szerepkörök a következőket teheti, miután távoli olyan szerepkörpéldányt, különböző eszközök használatával történő.
+A távoli asztal hello szerepkörök engedélyezése után is távoli való a szerepkörpéldányt, különböző eszközök között.
 
-A szerepkör példánya csatlakoztatja a klasszikus Azure-portálon:
+tooconnect tooa szerepkör példánya a klasszikus Azure portálon hello:
 
-1. Kattintson a **példányok** megnyitásához a **példányok** lap.
+1. Kattintson a **példányok** tooopen hello **példányok** lap.
 2. Válassza ki a szerepkör példánya, amely a távoli asztal konfigurálva van.
-3. Kattintson a **Connect**, és kövesse az utasításokat megnyitásához az asztalon.
-4. Kattintson a **nyitott** , majd **Connect** a távoli asztali kapcsolat elindításához.
+3. Kattintson a **Connect**, és hajtsa végre a hello utasításokat tooopen hello asztali.
+4. Kattintson a **nyitott** , majd **Connect** toostart hello távoli asztali kapcsolat.
 
-### <a name="use-visual-studio-to-remote-into-a-role-instance"></a>Visual Studio használata a távoli be a szerepkör példánya
+### <a name="use-visual-studio-tooremote-into-a-role-instance"></a>Visual Studio tooremote használja azokat a szerepkör példánya
 A Visual Studio Server Explorer:
 
-1. Bontsa ki a **Azure** > **Felhőszolgáltatások** > **[felhőszolgáltatás neve]** csomópont.
+1. Bontsa ki a hello **Azure** > **Felhőszolgáltatások** > **[felhőszolgáltatás neve]** csomópont.
 2. Bontsa ki **átmeneti** vagy **éles**.
-3. Bontsa ki az egyes szerepkör.
-4. Kattintson a jobb gombbal a szerepkörpéldányt beállítani, kattintson a **csatlakozzon a távoli asztali kapcsolattal...** , majd adja meg a felhasználónevet és jelszót.
+3. Bontsa ki a hello egyéni szerepkör.
+4. Kattintson a jobb gombbal egy hello szerepkörpéldányt beállítani, kattintson a **csatlakozzon a távoli asztali kapcsolattal...** , majd adja meg a hello felhasználónevet és jelszót.
 
 ![Server explorer távoli asztal](./media/cloud-services-role-enable-remote-desktop/ServerExplorer_RemoteDesktop.png)
 
-### <a name="use-powershell-to-get-the-rdp-file"></a>Az RDP-fájl lekérése a PowerShell használatával
-Használhatja a [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) parancsmag segítségével kérje le a RDP-fájlt. Ezután használhatja az RDP-fájlt a távoli asztali kapcsolat a felhőalapú szolgáltatás eléréséhez.
+### <a name="use-powershell-tooget-hello-rdp-file"></a>PowerShell tooget hello RDP-fájl használata
+Használhatja a hello [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) parancsmag tooretrieve hello RDP-fájlt. Távoli asztali kapcsolat tooaccess hello felhőalapú szolgáltatással használhatja hello RDP-fájlt.
 
-### <a name="programmatically-download-the-rdp-file-through-the-service-management-rest-api"></a>A Service Management REST API-n keresztül az RDP-fájl letöltése
-Használhatja a [RDP-fájl letöltése](https://msdn.microsoft.com/library/jj157183.aspx) REST-művelet az RDP-fájl letöltésére.
+### <a name="programmatically-download-hello-rdp-file-through-hello-service-management-rest-api"></a>Hello szolgáltatásfelügyelet REST API használatával hello RDP-fájl letöltése
+Használhatja a hello [RDP-fájl letöltése](https://msdn.microsoft.com/library/jj157183.aspx) REST művelet toodownload hello RDP-fájlt.
 
-## <a name="to-configure-remote-desktop-in-the-service-definition-file"></a>A távoli asztal konfigurálása a szolgáltatásdefiníciós fájlban
-Ez a módszer lehetővé teszi a távoli asztal engedélyezése az alkalmazás fejlesztése során. Ez a megközelítés titkosított jelszavakat igényel tárolható szolgáltatás konfigurációs fájl- és a távoli asztal konfigurálásának frissítéseit az alkalmazás egy újratelepítés igényelnének. Ha el szeretné kerülni a downsides a fent leírt-alapú távoli asztali bővítmény megközelítést kell használnia.  
+## <a name="tooconfigure-remote-desktop-in-hello-service-definition-file"></a>Távoli asztal hello szolgáltatásdefiníciós fájlban tooconfigure
+Ez a módszer lehetővé teszi a távoli asztal tooenable hello alkalmazás fejlesztése során. Ez a megközelítés titkosított jelszavakat igényel tárolja a szolgáltatás konfigurációs fájl- és a frissítések toohello a távoli asztal konfigurálásának igényelnének egy újratelepítés hello alkalmazás. Ha azt szeretné, hogy tooavoid ezeket kell használnia a távoli asztali bővítmény hello downsides alapú a fent leírt módszer.  
 
-Használhatja a Visual Studio [engedélyezése a távoli asztali kapcsolat](../vs-azure-tools-remote-desktop-roles.md) a szolgáltatás definíciós fájl módszer használatával.  
-A következő lépések leírják a távoli asztal engedélyezése a szolgáltatásmodell-fájlokból szükséges módosításokat. A Visual Studio automatikusan fog teszi ezeket a módosításokat, közzétételekor.
+Használhatja a Visual Studio túl[engedélyezése a távoli asztali kapcsolat](../vs-azure-tools-remote-desktop-roles.md) hello szolgáltatás definíciós fájl módszer használatával.  
+hello következő lépések leírják hello módosítások szükséges toohello szolgáltatás modell fájlok tooenable távoli asztal. A Visual Studio automatikusan fog teszi ezeket a módosításokat, közzétételekor.
 
-### <a name="set-up-the-connection-in-the-service-model"></a>A szolgáltatásmodell a kapcsolat beállítása
-Használja a **importálja** elem importálásához a **RemoteAccess** modul és a **RemoteForwarder** modult a [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef) fájl.
+### <a name="set-up-hello-connection-in-hello-service-model"></a>Hello hello szolgáltatásmodell-kapcsolat beállítása
+Használjon hello **importálja** elem tooimport hello **RemoteAccess** modul és hello **RemoteForwarder** modul toohello [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef) fájlt.
 
-A szolgáltatásdefiníciós fájlban az alábbi példához hasonló legyen a `<Imports>` -eleme.
+hello szolgáltatásdefiníciós fájl kell lennie a következő példa a hello hasonló toohello `<Imports>` -eleme.
 
 ```xml
 <ServiceDefinition name="<name-of-cloud-service>" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
@@ -110,7 +110,7 @@ A szolgáltatásdefiníciós fájlban az alábbi példához hasonló legyen a `<
     </WebRole>
 </ServiceDefinition>
 ```
-A [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) fájl kell az alábbi példához hasonló, vegye figyelembe a `<ConfigurationSettings>` és `<Certificates>` elemeket. A megadott tanúsítványt kell [feltöltve felhőszolgáltatás](cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service).
+Hello [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) fájl a következő példa hasonló toohello kell, vegye figyelembe a hello `<ConfigurationSettings>` és `<Certificates>` elemeket. a megadott tanúsítvány hello kell [feltöltve felhőszolgáltatás toohello](cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -133,5 +133,5 @@ A [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) fájl 
 
 
 ## <a name="additional-resources"></a>További források
-[Felhőalapú szolgáltatások konfigurálása](cloud-services-how-to-configure.md)
+[Hogyan tooConfigure Felhőszolgáltatások](cloud-services-how-to-configure.md)
 [Cloud services – gyakori kérdések – a távoli asztal](cloud-services-faq.md)

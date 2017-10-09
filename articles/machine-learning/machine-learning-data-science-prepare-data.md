@@ -1,6 +1,6 @@
 ---
-title: "Tisztítsa meg és készítse elő az adatokat az Azure Machine Learning |} Microsoft Docs"
-description: "Előre feldolgozzák a, és hogy felkészítse az gépi tanulás adatait."
+title: "aaaClean és készítse elő az adatokat az Azure Machine Learning |} Microsoft Docs"
+description: "Előre folyamat, illetve a tiszta adatok tooprepare azt a machine Learning szolgáltatáshoz."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: cfaccad0a7d81950d80486dcb0d9e6520deab9b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3e3c3e4b0cfb9187f5820d7165e6ee1ea013ba02
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tasks-to-prepare-data-for-enhanced-machine-learning"></a>Az adatok bővített gépi tanulásra való előkészítésének feladatai
-Előzetesen feldolgozni, és az adatok tisztítása, amelyek általában kell elvégzése előtt a DataSet adatkészlet nem használható hatékonyan gépi tanulás fontos feladatokat. Nyers adatok gyakran zajos vagy nem megbízható, és előfordulhat, hogy értékek hiányzik. Ilyen adatok használata a modellezési félrevezető eredményeket hozhat létre. Ezeket a feladatokat a csapat adatok tudományos folyamat (TDSP) a részét képezik, és általában hajtsa végre egy kezdeti feltárása a DataSet adatkészlet felderítése, és tervezze meg a szükséges előzetes feldolgozás segítségével. Részletes utasítások a TDSP folyamathoz, lásd: a leírt lépéseket a [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+# <a name="tasks-tooprepare-data-for-enhanced-machine-learning"></a>Továbbfejlesztett gépi tanulási feladatok tooprepare adatait
+Előzetesen feldolgozni, és az adatok tisztítása, amelyek általában kell elvégzése előtt a DataSet adatkészlet nem használható hatékonyan gépi tanulás fontos feladatokat. Nyers adatok gyakran zajos vagy nem megbízható, és előfordulhat, hogy értékek hiányzik. Ilyen adatok használata a modellezési félrevezető eredményeket hozhat létre. Ezek a feladatok hello Team adatok tudományos folyamat (TDSP) részét képezik, és általában kövesse a használt adatkészlet toodiscover és a terv hello előzetes feldolgozás szükséges egy kezdeti feltárása. Részletes utasítások hello TDSP folyamathoz, lásd: hello leírt hello lépéseket [Team adatok tudományos folyamat](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
-Előzetes feldolgozás és a tisztítási feladatok, például az adatok feltárása feladat végrehajthatók széles környezetekben, például az SQL vagy a Hive vagy az Azure Machine Learning Studio és a különböző eszközök és nyelven, például az R vagy Python, attól függően, hol tárolja az adatokat, és hogyan van formázva. Mivel TDSP iteratív ideiglenesek, ezek a feladatok végrehajthatók, különböző a munkafolyamat a folyamat lépéseit.
+Előzetesen feldolgozni, és a tisztítási feladatok, például hello adatok feltárása feladat, elvégzési környezetekben, például az SQL vagy a Hive vagy az Azure Machine Learning Studio és a különböző eszközök és nyelven, például az R vagy Python adatai függően számos tárolja, és hogyan van formázva. Mivel TDSP iteratív ideiglenesek, ezek a feladatok történhet: hello munkafolyamat hello folyamat több lépést.
 
 Ez a cikk be különböző adatfeldolgozási fogalmakat és feladatokat, amelyek előtt vagy után az Azure Machine Learning adatok bevitele végezhető.
 
-Például az adatok feltárása és előzetes feldolgozás Azure Machine Learning studio belül történik, a [előzetesen feldolgozni az adatokat az Azure Machine Learning Studióban](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/) videó.
+Az adatok feltárása és az Azure Machine Learning studio belül történik előzetes feldolgozás példáért lásd: hello [előzetesen feldolgozni az adatokat az Azure Machine Learning Studióban](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/) videó.
 
 ## <a name="why-pre-process-and-clean-data"></a>Miért előre feldolgozzák, és adatait?
-Valós adatokat különböző forrásokból gyűjtött, és folyamatokat, és tartalmazhat szabálytalanságok, vagy hogy az adatkészlet adatai sérültek. A tipikus data quality problémák merülnek fel a következők:
+Valós adatokat különböző forrásokból gyűjtött, és folyamatokat, és tartalmazhat szabálytalanságok vagy veszélyeztetése hello minőségének hello adatkészlet adatai sérültek. hello jellemző adatok minőségi kérdések merülhetnek fel a következők:
 
 * **Hiányos**: adatok attribútumot, vagy a hiányzó értékeket tartalmazó hiányzik.
 * **Zajos**: adatok hibás rekordok vagy kiugró tartalmaz.
 * **Inkonzisztens**: adatok ütköző rekordok vagy azok az eltérések tartalmaz.
 
-Minőségi adatok minőségi prediktív modelleket előfeltétele. "Kimenő szemétgyűjtési a szemétgyűjtési" elkerüléséhez és adatok minőségének javítása, és ezért a teljesítmény modell, rendkívül fontos adatok állapotfigyelő képernyő adatproblémákat korai, és adja meg a megfelelő adatok feldolgozása és tisztítási lépések elvégzéséhez.
+Minőségi adatok minőségi prediktív modelleket előfeltétele. a kimenő szemétgyűjtési tooavoid "szemétgyűjtési" és az adatminőségi javítása és ezért a teljesítmény modell, a imperatív tooconduct egy adatok állapotfigyelő képernyő toospot, adatok korai állít ki, és adja meg a megfelelő adatok feldolgozása és lépéseket tisztítás hello.
 
 ## <a name="what-are-some-typical-data-health-screens-that-are-employed"></a>Mik azok a néhány tipikus data állapotfigyelő képernyő alkalmazott?
-Adatok általános minőségének azt is ellenőrizze, hogy ellenőrzése:
+Hello általános adatok minőségének azt is ellenőrizze, hogy ellenőrzése:
 
-* Hány **rekordok**.
-* Hány **attribútumok** (vagy **szolgáltatások**).
-* Az attribútum **adattípusok** (névleges, sorszám vagy folyamatos).
-* Hány **hiányzó értékek**.
-* **-Kód szabályosságának** az adatok.
-  * Ha az adatok TSV vagy a fürt megosztott kötetei szolgáltatás, ellenőrizze, hogy az oszlop elválasztóinak és a sor elválasztók megfelelően mindig külön oszlopok és sorok.
-  * Ha az adatok HTML vagy XML formátumú, ellenőrizze, hogy az adatok helyes formátumú-e alapján a megfelelő előírásokról.
-  * Elemzés is szükség lehet ahhoz, hogy a strukturált információk kinyerése félig strukturált vagy strukturálatlan adatokon.
-* **Inkonzisztens rekordok**. Ellenőrizze, hogy értékek használata engedélyezett. például ha az adatokban student GPA, ellenőrizze, hogy a kijelölt tartományban van a GPA tegyük fel például 0 ~ 4.
+* hello száma **rekordok**.
+* hello száma **attribútumok** (vagy **szolgáltatások**).
+* hello attribútum **adattípusok** (névleges, sorszám vagy folyamatos).
+* hello száma **hiányzó értékek**.
+* **-Kód szabályosságának** hello adatok.
+  * Ha hello adatok TSV vagy a fürt megosztott kötetei szolgáltatás, ellenőrizze, hogy hello oszlop elválasztóinak és a sor elválasztók megfelelően mindig önálló oszlopok és sorok.
+  * Ha hello adatok HTML vagy XML formátumú, ellenőrizze, hogy hello adatok helyes formátumú-e alapján a megfelelő előírásokról.
+  * Elemzés is szükség lehet a strukturált tooextract rendelésinformációkat félig strukturált vagy strukturálatlan adatok.
+* **Inkonzisztens rekordok**. Ellenőrizze, hogy hello értéktartományhoz engedélyezettek. például ha hello adatai student GPA, ellenőrizze, hogy a kijelölt tartomány, hello van hello GPA tegyük fel például 0 ~ 4.
 
-Ha megtalálta az adatokat, problémái **lépések feldolgozása** van szükség, amelyek gyakran magában foglalja a hiányzó értékeket, az adatok normalizálási, diszkretizálási tisztítás, távolítsa el vagy cserélje le a szöveget feldolgozási beágyazott karakterek, ami hatással lehet a adatok igazításának, vegyes adattípusok közös mezők és mások.
+Ha megtalálta az adatokat, problémái **lépések feldolgozása** van szükség, amelyek gyakran magában foglalja a hiányzó értékeket, adatok normalizálási, diszkretizálási, szöveges feldolgozási tooremove tisztítás és/vagy beágyazott karakterek, ami hatással lehet a adatok igazításának vegyes adattípusok közös mezők és mások számára.
 
-**Az Azure Machine Learning formátumú táblázatos adatokat felhasználva**.  Ha az adatok már táblázatos formában, előtti adatfeldolgozási közvetlenül az Azure Machine Learning a Machine Learning Studio hajtható végre.  Ha adatok nem táblázatos, XML, az szóbeli elemzése lehet szükség ahhoz, hogy az adatok átalakítása táblázatos formában.  
+**Az Azure Machine Learning formátumú táblázatos adatokat felhasználva**.  Ha hello adatok már táblázatos formában, előtti adatfeldolgozási közvetlenül az Azure Machine Learning a Machine Learning Studio hello hajtható végre.  Ha adatok nem táblázatos formában, az XML-elemzés szóbeli szükség lehet ahhoz tooconvert hello adatok tootabular képernyőn.  
 
-## <a name="what-are-some-of-the-major-tasks-in-data-pre-processing"></a>Mik azok az adatok előzetes feldolgozás jelentős feladatokat?
+## <a name="what-are-some-of-hello-major-tasks-in-data-pre-processing"></a>Mik azok a hello fő feladatokat az adatok előzetes feldolgozás?
 * **Adatok tisztítása**: Töltse ki vagy hiányzó értékek észlelése és zajos adatok és kiugró.
-* **Adatok átalakítása**: normalizálása az adatok dimenziók és a zaj csökkentése érdekében.
+* **Adatok átalakítása**: az tooreduce dimenziókat és a zaj optimalizálására.
 * **Adatok csökkentési**: rekordok vagy könnyebben adatkezeléssel attribútumait.
-* **Adatok diszkretizálási**: folytonos attribútumok átalakítása könnyű használatra kategorikus attribútumok bizonyos machine learning metódusával.
+* **Adatok diszkretizálási**: Convert folyamatos attribútumok, a használat megkönnyítése érdekében toocategorical attribútumok bizonyos machine learning metódusával.
 * **Szöveg tisztítás**: távolítsa el a beágyazott karaktereket, így előfordulhat, hogy az adatok hibás illesztés hibákat, például tabulátorral tagolt adatfájl, a beágyazott lapjaira Embedded új sort, amelyben a megszakadhat a rekordok stb.
 
-Az alábbi részek adatfeldolgozási lépés néhány.
+hello az alábbi részek adatfeldolgozási lépés néhány.
 
-## <a name="how-to-deal-with-missing-values"></a>Hogyan kell foglalkozni a hiányzó értékeket?
-Hiányzó értékek kezelésére, érdemes először a probléma meghatározásához az az oka a hiányzó értékeket, jobb leíró. Hiányzó érték kezelése tipikus megoldások a következők:
+## <a name="how-toodeal-with-missing-values"></a>Hogyan toodeal a hiányzó értékeket?
+Hiányzó értékekkel toodeal, célszerű toofirst hello OK azonosítása, a hello hiányzó értékei toobetter leíró hello probléma. Hiányzó érték kezelése tipikus megoldások a következők:
 
 * **Törlés**: hiányzó értéket tartalmazó rekordok eltávolítása
 * **Üres helyettesítő**: hiányzó értékek cserélje le egy üres értéket: például azt, *ismeretlen* kategorikus vagy 0 numerikus értékeket.
-* **Helyettesítés jelenti**: Ha a hiányzó adatok numerikus, cserélje le a hiányzó értékeket a középérték.
-* **Gyakran használják a helyettesítés**: Ha a hiányzó adatok kategorikus, cserélje le a hiányzó értékeket a leggyakoribb elem
-* **Regressziós helyettesítés**: egy regressziós módszerrel cserélje le a hiányzó értékeket közleményében szerepelt értékekkel.  
+* **Helyettesítés jelenti**: Ha hello hiányzó adatok numerikus, hello hiányzó értékek cseréje hello közepét.
+* **Gyakran használják a helyettesítés**: Ha hello hiányzó adatok kategorikus, hello hiányzó értékek cseréje hello leggyakoribb elem
+* **Regressziós helyettesítés**: hiányzó regressziós metódus tooreplace közleményében szerepelt értékekkel értékeket használja.  
 
-## <a name="how-to-normalize-data"></a>Hogyan optimalizálására adatokat?
-Adatok normalizálási újra arányosan numerikus értékeket a megadott tartományon. Népszerű adatok normalizálási módszerek a következők:
+## <a name="how-toonormalize-data"></a>Hogyan toonormalize adatokat?
+A megadott tartomány adatok normalizálási újra méretezi számértékeket tooa. Népszerű adatok normalizálási módszerek a következők:
 
-* **Minimális-maximális normalizálási**: lineárisan széles átalakítására, 0 és 1, ahol a minimális értéke 0 és maximális értékének 1-re van méretezhető közötti fel.
-* **Z-pontszám normalizálási**: adatok és szórásnál alapuló méretezési: az adatok és a középérték közötti különbség a szórás osztás.
-* **Decimális skálázás**: az adatok méretezni a tizedesjel attribútumérték áthelyezésével.  
+* **Minimális-maximális normalizálási**: lineárisan hello tooa adattartomány átalakító, például 0 és 1 közötti adott hello minimális értéke méretezett too0 és a maximális érték too1.
+* **Z-pontszám normalizálási**: adatok és szórásnál alapuló méretezési: hello adatok és hello közepét hello különbségének nullával hello szórás.
+* **Decimális skálázás**: bővítse a hello adatok áthelyezése hello tizedesvessző hello attribútum-érték.  
 
-## <a name="how-to-discretize-data"></a>Hogyan diszkretizálásához adatokat?
-Adatok folyamatos érték átalakítása névleges attribútumot, vagy az intervallumok által is diszkretizálható. Bizonyos értelemben az ezzel a következők:
+## <a name="how-toodiscretize-data"></a>Hogyan toodiscretize adatokat?
+Adatok folyamatos értékek toonominal attribútumot, vagy az intervallumok átalakításával is diszkretizálható. Bizonyos értelemben az ezzel a következők:
 
-* **A Dobozolás egyenlő szélességű**: az összes lehetséges értékek attribútum felosztani N csoportok azonos méretűnek és rendelhet hozzá értéket, amely egy van bin számát.
-* **A Dobozolás egyenlő magasságú**: felosztani minden lehetséges értékek attribútum N csoportok, annyi példányt tartalmazó, majd rendelhet hozzá értéket, amely egy van bin számát.  
+* **A Dobozolás egyenlő szélességű**: hello értéktartományhoz minden lehetséges egy attribútum felosztani hello azonos méretezés és rendelhet hozzá hello eső értékeket egy van hello bin számú N csoportját.
+* **A Dobozolás egyenlő magasságú**: hello tartomány osztani lehetséges értékek N csoportokba attribútum, minden egyes tartalmazó hello példányok száma azonos, majd hozzárendelése hello eső értékeket egy van a hello bin számát.  
 
-## <a name="how-to-reduce-data"></a>Hogyan csökkenthető a adatokat?
-A könnyebb adatkezelési adatméret csökkentése különböző módszer áll rendelkezésre. Attól függően, hogy az adatok mérete és a tartomány az alábbi eljárások alkalmazhatók:
+## <a name="how-tooreduce-data"></a>Hogyan tooreduce adatokat?
+Nincsenek könnyebb adatkezelési különböző módszerek tooreduce adatok mérete. Attól függően, hogy az adatok méretét és hello tartomány a következő módszerek hello alkalmazhatók:
 
-* **Jegyezze fel a mintavétel**: a rekordok Sample, és csak az adatok közül választhat a reprezentatív részhalmazát.
-* **Mintavételi attribútum**: válassza ki az egyik legfontosabb attribútumok csak egy részét az adatokból.  
-* **Összesítési**: az adatok felosztani a csoportok és a számokat az egyes csoportok tárolására. Egy étterem lánc az elmúlt 20 évben napi bevétel számát például összesíthetők havi bevétel adatok méretének csökkentése érdekében.  
+* **Jegyezze fel a mintavétel**: hello rekordok Sample, és csak a hello adatok hello reprezentatív részhalmazát választhat.
+* **Mintavételi attribútum**: hello legfontosabb attribútumok csak egy részét jelölje ki a hello adatokból.  
+* **Összesítési**: hello adatok felosztani a csoportok és az egyes csoportok hello számok tárolja. Például hello egy étterem lánc keresztül hello elmúlt 20 évben számok lehetnek napi bevétel összesítve toomonthly bevétel tooreduce hello hello adatok méretét.  
 
-## <a name="how-to-clean-text-data"></a>Hogyan szöveg adatait?
-**Táblázatos adatok szövegmezők** oszlopok igazítás és/vagy rekord határok befolyásoló karaktereket tartalmazhatnak. Például lapok ágyazva egy tabulátorral tagolt fájl OK oszlop hibás illesztés hibákat, és a beágyazott új sor karaktereket törés rekord sorokat. Helytelen szöveg kódolási kezelési szöveg írás/olvasás közben információk elvesztését, véletlen bevezetése olvashatatlan karaktereket, például null értékeket, és előfordulhat, hogy is befolyásolják szöveg elemzése vezet. Gondos elemzése és -szerkesztő lehet szükség ahhoz, hogy a szövegmezők megfelelő igazítás és/vagy a szöveg strukturálatlan és félig strukturált adatok kivonat strukturált adatok törlése.
+## <a name="how-tooclean-text-data"></a>Hogyan tooclean szöveg adatokat?
+**Táblázatos adatok szövegmezők** oszlopok igazítás és/vagy rekord határok befolyásoló karaktereket tartalmazhatnak. Például lapok ágyazva egy tabulátorral tagolt fájl OK oszlop hibás illesztés hibákat, és a beágyazott új sor karaktereket törés rekord sorokat. Nem megfelelő szövegkódolás szöveg írás/olvasás közben kezelési tooinformation adatvesztés, véletlen bevezetése olvashatatlan karaktereket, például null értékeket, és előfordulhat, hogy is befolyásolják szöveg elemzése vezet. Gondos elemzése és -szerkesztő rendelés tooclean szöveg mezőiben megfelelő igazítás és/vagy szöveges strukturálatlan és félig strukturált adatok tooextract strukturált adatok szükség lehet.
 
-**Az adatok feltárása** egy korai képet kaphat az adatokat biztosít. Ezzel a lépéssel adatproblémákat számos fedetlen lehet, és megfelelő módszerek alkalmazhatók hárítsa el ezeket a problémákat.  Fontos, mint mi a probléma forrását, és hogyan a probléma be kérdéseket. Ez segít eldöntheti, hogy a az adatok feldolgozása lépésekre, amelyek kell tenni azok megoldása. Milyen típusú insights egy szándékozik az adatok származik adatfeldolgozási részéről az erőfeszítés rangsorolására is használható.
+**Az adatok feltárása** egy korai képet kaphat hello adatokat biztosít. Ezzel a lépéssel adatproblémákat számos fedetlen lehet, és a megfelelő módszereket is lehet alkalmazott tooaddress ismertetünk.  Fontos tooask kaphat például mi hello hello probléma forrását, és hogyan hello probléma lehet, hogy be. Azt is lehetővé teszi eldöntheti, hogy a hello adatfeldolgozási lépéseket, hogy szükség toobe tooresolve venni őket. egy százalékát hello adatokból tooderive insights hello típusú is lehet használt tooprioritize hello adatfeldolgozási beavatkozást.
 
 ## <a name="references"></a>Referencia
 > *Adatbányászat: Elvekről és technikákról*, harmadik Edition Morgan Kaufmann 2011 Jiawei Han, Micheline Kamber és Jian Pei

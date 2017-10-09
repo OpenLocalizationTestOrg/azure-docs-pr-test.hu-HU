@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés a kapcsolat be Azure hálózati figyelőt |} Microsoft Docs"
-description: "Ezen a lapon a hálózati figyelőt kapcsolat funkció áttekintése"
+title: "az Azure hálózati figyelőt aaaIntroduction tooconnectivity ellenőrzése |} Microsoft Docs"
+description: "Ezen a lapon hello hálózati figyelőt kapcsolat funkció áttekintése"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,46 +13,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: c29f5afe59f57112fe1f115df6bc53645f3c0d34
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 52fc4547f167cea2992a046859dc0550d136e80d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-connectivity-check-in-azure-network-watcher"></a>Bevezetés az Azure hálózati figyelőt a kapcsolat ellenőrzése
+# <a name="introduction-tooconnectivity-check-in-azure-network-watcher"></a>Bevezetés az tooconnectivity ellenőrzéshez Azure hálózati figyelőt
 
-A hálózati figyelőt kapcsolat szolgáltatása lehetővé teszi egy közvetlen TCP-kapcsolatot a virtuális gépről a virtuális gép (VM), teljesen minősített tartománynevét (FQDN), URI, ellenőrizze vagy IPv4-címet. Hálózati forgatókönyvek a következők összetett, végrehajtásuk hálózati biztonsági csoportok, tűzfalak, felhasználó által definiált útvonalak és az Azure által biztosított erőforrásokhoz. Összetett konfigurációk ellenőrizze a hibaelhárítási problémák kihívást. Hálózati figyelőt csökkenthető ennyi idő alatt található, és problémák észlelése. A visszaadott eredmények hogy platformot vagy felhasználó konfigurációs probléma okozza-e a egy hálózati probléma betekintést biztosít. Kapcsolat ellenőrizhetők a [PowerShell](network-watcher-connectivity-powershell.md), [Azure CLI](network-watcher-connectivity-cli.md), és [REST API](network-watcher-connectivity-rest.md).
+hello kapcsolatot a hálózati figyelőt funkciójával hello funkció toocheck közvetlen TCP-kapcsolatot a virtuális gép tooa virtuális gép (VM), teljesen minősített tartománynevét (FQDN), URI, vagy IPv4-címet. Hálózati forgatókönyvek a következők összetett, végrehajtásuk hálózati biztonsági csoportok, tűzfalak, felhasználó által definiált útvonalak és az Azure által biztosított erőforrásokhoz. Összetett konfigurációk ellenőrizze a hibaelhárítási problémák kihívást. Hálózati figyelőt segít csökkenteni hello idő toofind és problémák észlelése. hello eredményének is betekintést egy hálózati probléma miatt tooa platform vagy felhasználó konfigurációs hiba lépett fel van-e. Kapcsolat ellenőrizhetők a [PowerShell](network-watcher-connectivity-powershell.md), [Azure CLI](network-watcher-connectivity-cli.md), és [REST API](network-watcher-connectivity-rest.md).
 
 > [!IMPORTANT]
-> Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A bővítmény telepítése a Windows virtuális gép a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
+> Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A virtuális gép Windows hello-bővítmény telepítése a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="response"></a>Válasz
 
-Az alábbi táblázat a tulajdonságait, vissza, ha a kapcsolat-ellenőrzés futása befejeződött.
+a következő táblázat hello vissza, ha a kapcsolat-ellenőrzés futása hello tulajdonságok láthatók.
 
 |Tulajdonság  |Leírás  |
 |---------|---------|
-|ConnectionStatus     | A kapcsolat ellenőrzése állapota. Lehetséges eredményei **elérhető** és **Unreachable**.        |
-|AvgLatencyInMs     | Átlagos késleltetése ezredmásodpercben a kapcsolat ellenőrzése során. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
-|MinLatencyInMs     | Minimális késésre ezredmásodpercben a kapcsolat ellenőrzése során. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
-|MaxLatencyInMs     | Maximális késleltetés milliszekundumban a kapcsolat ellenőrzése során. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
-|ProbesSent     | Az ellenőrzés során küldött mintavételt száma. Maximális érték 100.        |
-|ProbesFailed     | Az ellenőrzés sikertelen mintavételek menüpontban száma. Maximális érték 100.        |
-|Az ugrásszám     | Ugrás a Ugrás elérési úttal forrás célhelyre.        |
+|ConnectionStatus     | hello állapota hello kapcsolat ellenőrzése. Lehetséges eredményei **elérhető** és **Unreachable**.        |
+|AvgLatencyInMs     | Átlagos késleltetése ezredmásodpercben hello kapcsolat ellenőrzése során. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
+|MinLatencyInMs     | Minimális késésre során hello kapcsolat ellenőrzése ezredmásodpercben. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
+|MaxLatencyInMs     | Maximális késleltetés során hello kapcsolat ellenőrzése ezredmásodpercben. (Csak jelenik meg, ha a jelölőnégyzet állapota érhető el)        |
+|ProbesSent     | Hello ellenőrzése során küldött mintavételt száma. Maximális érték 100.        |
+|ProbesFailed     | Hello ellenőrzése sikertelen mintavételek menüpontban száma. Maximális érték 100.        |
+|Az ugrásszám     | Ugrás a forrás toodestination Ugrás elérési úttal.        |
 |[] Az útválasztók. Típusa     | Az erőforrás típusát. A lehetséges értékek: **forrás**, **VirtualAppliance**, **VnetLocal**, és **Internet**.        |
-|[] Az útválasztók. Azonosítója | Az Ugrás egyedi azonosítója.|
-|[] Az útválasztók. Cím | Az Ugrás IP-címe.|
-|[] Az útválasztók. ResourceId | Az Ugrás, ha az Ugrás az Azure erőforrás ResourceID. Ha egy internetes erőforrást, van-e a ResourceID **Internet**. |
-|[] Az útválasztók. NextHopIds | A következő ugrás végrehajtott egyedi azonosítója.|
-|[] Az útválasztók. Problémák | Az adott Ugrás a ellenőrzése során felmerült problémákat gyűjteménye. Ha nincs probléma, az érték üres.|
-|[] Az útválasztók. [] Ad ki. Forrás | : Az aktuális Ugrás, ahol probléma lépett fel. Lehetséges értékek:<br/> **Bejövő** -probléma van a hivatkozásra kattintva a jelenlegi Ugrás az előző Ugrás a<br/>**Kimenő** -probléma van a következő Ugrás az aktuális Ugrás az alábbi hivatkozásra<br/>**Helyi** -probléma van az aktuális Ugrás.|
-|[] Az útválasztók. [] Ad ki. Súlyosság: | Az észlelt probléma súlyossága. A lehetséges értékek: **hiba** és **figyelmeztetés**. |
-|[] Az útválasztók. [] Ad ki. Típusa |A probléma található típusa. Lehetséges értékek: <br/>**PROCESSZOR**<br/>**Memória**<br/>**GuestFirewall**<br/>**DnsResolution**<br/>**NetworkSecurityRule**<br/>**UserDefinedRoute** |
-|[] Az útválasztók. [] Ad ki. A környezetben |A probléma található kapcsolatos részleteket.|
-|[] Az útválasztók. [] Ad ki. [] .key környezetben |A kulcs-érték pár kulcsa vissza.|
-|[] Az útválasztók. [] Ad ki. [] .value környezetben |A kulcs-érték pár értékét adja vissza.|
+|[] Az útválasztók. Azonosítója | Hello Ugrás egyedi azonosítója.|
+|[] Az útválasztók. Cím | Hello ugrás IP-címe.|
+|[] Az útválasztók. ResourceId | Ha hello Ugrás az Azure erőforrás hello Ugrás ResourceID. Ha egy internetes erőforrást, van-e a ResourceID **Internet**. |
+|[] Az útválasztók. NextHopIds | hello hello következő ugrás végrehajtott egyedi azonosítója.|
+|[] Az útválasztók. Problémák | Hello ellenőrzése, hogy Ugrás során felmerült problémákat gyűjteménye. Ha nincs probléma, hello értéke üres.|
+|[] Az útválasztók. [] Ad ki. Forrás | A hello aktuális hop, ahol probléma lépett fel. Lehetséges értékek:<br/> **Bejövő** -probléma van a hello előző Ugrás toohello aktuális Ugrás hello hivatkozásra<br/>**Kimenő** -probléma van a hello hivatkozásra a hello aktuális Ugrás toohello következő ugrás<br/>**Helyi** -hello aktuális ugrásnál van probléma.|
+|[] Az útválasztók. [] Ad ki. Súlyosság: | hello problémát észlelt hello súlyossága. A lehetséges értékek: **hiba** és **figyelmeztetés**. |
+|[] Az útválasztók. [] Ad ki. Típusa |a probléma található hello típusa. Lehetséges értékek: <br/>**PROCESSZOR**<br/>**Memória**<br/>**GuestFirewall**<br/>**DnsResolution**<br/>**NetworkSecurityRule**<br/>**UserDefinedRoute** |
+|[] Az útválasztók. [] Ad ki. A környezetben |Hello probléma található kapcsolatos részleteket.|
+|[] Az útválasztók. [] Ad ki. [] .key környezetben |Hello kulcs-érték pár kulcsa vissza.|
+|[] Az útválasztók. [] Ad ki. [] .value környezetben |Hello kulcs-érték pár értékét adja vissza.|
 
-Egy példa található egy Ugrás a problémát a következő:
+hello az alábbiakban látható egy példa található egy Ugrás a problémát.
 
 ```json
 "Issues": [
@@ -71,20 +71,20 @@ Egy példa található egy Ugrás a problémát a következő:
 ```
 ## <a name="fault-types"></a>Hiba típusa
 
-A kapcsolat ellenőrzése a kapcsolatra vonatkozó hiba típusok adja vissza. A következő táblázat felsorolja a típusú aktuális hibát adott vissza.
+hello kapcsolat ellenőrzése tartalék típusok hello kapcsolatról adja vissza. hello következő táblázat felsorolja típusú hello aktuális hibát adott vissza.
 
 |Típus  |Leírás  |
 |---------|---------|
 |CPU     | Magas fokú Processzorhasználatot tapasztalható.       |
 |Memory (Memória)     | Magas memóriahasználat.       |
-|GuestFirewall     | Forgalom le van tiltva, mert a virtuális gép tűzfal konfigurációja.        |
-|DNSResolution     | DNS-feloldás a célcím nem sikerült.        |
+|GuestFirewall     | Forgalom tooa a virtuális gép tűzfalbeállítások miatt le van tiltva.        |
+|DNSResolution     | DNS-feloldás hello célcím nem sikerült.        |
 |NetworkSecurityRule    | Forgalmát blokkolja egy NSG-szabály (szabály visszaadott)        |
-|UserDefinedRoute|Egy felhasználó által definiált vagy rendszerútvonal miatt megszakad a forgalmat. |
+|UserDefinedRoute|Forgalom megfelelő tooa felhasználó által definiált vagy rendszerútvonal megszakad. |
 
 ### <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan ellátogatva erőforrás ellenőrzésére: [ellenőrizze a kapcsolatot az Azure hálózati figyelőt](network-watcher-connectivity-powershell.md).
+Megtudhatja, hogyan tooverify kapcsolat tooa erőforrás ellátogatva: [ellenőrizze a kapcsolatot az Azure hálózati figyelőt](network-watcher-connectivity-powershell.md).
 
 <!--Image references-->
 [1]: ./media/network-watcher-next-hop-overview/figure1.png

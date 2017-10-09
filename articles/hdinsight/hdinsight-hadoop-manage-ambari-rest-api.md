@@ -1,6 +1,6 @@
 ---
-title: "Felügyeletéhez és kezeléséhez az Ambari REST API - Azure HDInsight Hadoop |} Microsoft Docs"
-description: "Megtudhatja, hogyan figyelheti és kezelheti az Azure HDInsight Hadoop-fürtök az Ambari használatával. Ebben a dokumentumban, megtudhatja, hogyan használható az Ambari REST API-t a HDInsight-fürtök részét képező."
+title: "aaaMonitor és kezelése az Ambari REST API - Azure HDInsight Hadoop |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Ambari toomonitor és az Azure HDInsight Hadoop-fürtök kezelése. Ebből a dokumentumból megtudhatja, hogyan toouse hello Ambari REST API-t tartalmazza a HDInsight-fürtök."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,51 +16,51 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 7960d83bce22d4f671d61e9aaf55561bc24308f8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1866a77c8e402231bccbcfba7174253aca41339b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-hdinsight-clusters-by-using-the-ambari-rest-api"></a>A HDInsight-fürtök kezelése az Ambari REST API használatával
+# <a name="manage-hdinsight-clusters-by-using-hello-ambari-rest-api"></a>HDInsight-fürtök kezelése az Ambari REST API hello segítségével
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-Ismerje meg, hogy kezelni és megfigyelni az Azure HDInsight Hadoop-fürtök az Ambari REST API használatával.
+Ismerje meg, hogyan toouse Ambari REST API toomanage hello és az Azure HDInsight Hadoop-fürtök figyelése.
 
-Apache Ambari egyszerűbbé teszi a felügyeleti és a Hadoop-fürthöz, adja meg a webes felhasználói felület és a REST API használatát egy könnyen ellenőrzésére. Ambari szerepel-e a Linux operációs rendszer használata a HDInsight-fürtök. Ambari használatával figyelheti a fürt és a konfigurációs módosításokat.
+Apache Ambari egyszerűbbé teszi a hello kezelése és figyelése a Hadoop fürtök egy egyszerű toouse webes felhasználói felület és a REST API-k megadásával. A HDInsight-fürtök hello Linux operációs rendszert használó Ambari szerepel. Ambari toomonitor hello fürtöt használ, és a konfigurációs módosításokat.
 
 ## <a id="whatis"></a>Mi az az Ambari
 
-[Apache Ambari](http://ambari.apache.org) biztosít a webes felhasználói felület kiépítéséhez, kezelése és figyelése a Hadoop-fürtök használható. A fejlesztők integrálható a ezeket a képességeket a alkalmazások használatával a [Ambari REST API-k](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+[Apache Ambari](http://ambari.apache.org) webes felhasználói felület használt tooprovision, kezeléséhez, és figyelheti a Hadoop-fürtök biztosít. A fejlesztők integrálható a ezeket a képességeket a alkalmazások hello segítségével [Ambari REST API-k](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 
 Alapértelmezés szerint a Linux-alapú HDInsight-fürtök Ambari valósul meg.
 
-## <a name="how-to-use-the-ambari-rest-api"></a>Az Ambari REST API használatával
+## <a name="how-toouse-hello-ambari-rest-api"></a>Hogyan toouse hello Ambari REST API
 
 > [!IMPORTANT]
-> Információkat és példákat a jelen dokumentum igényelnek a Linux operációs rendszert használó HDInsight-fürtöt. További információkért lásd: [első lépései a hdinsight eszközzel](hdinsight-hadoop-linux-tutorial-get-started.md).
+> hello útmutatást és példákat a jelen dokumentum igényelnek a Linux operációs rendszert használó HDInsight-fürtöt. További információkért lásd: [első lépései a hdinsight eszközzel](hdinsight-hadoop-linux-tutorial-get-started.md).
 
-Ebben a dokumentumban szereplő példák a Bourne rendszerhéj (bash) és a PowerShell-okat. A bash eszközt, példákat alapján történő teszteléskor az GNU bash 4.3.11, de más Unix ismertetése együtt kell működnie. A PowerShell-példák PowerShell 5.0 teszteltük, de a PowerShell 3.0-s vagy újabb verzióját kell működnie.
+Ebben a dokumentumban hello példák hello Bourne rendszerhéj (bash) és a PowerShell-okat. példák alapján történő teszteléskor az GNU hello bash bash 4.3.11, de más Unix ismertetése együtt kell működnie. hello PowerShell-példák PowerShell 5.0 teszteltük, de a PowerShell 3.0-s vagy újabb verzióját kell működnie.
 
-Ha használja a __Bourne rendszerhéj__ (Bash), rendelkeznie kell a következőkkel:
+Ha használja a hello __Bourne rendszerhéj__ (Bash), rendelkeznie kell hello következőkkel:
 
-* [cURL](http://curl.haxx.se/): cURL egy segédprogram, amely a REST API-k használata a parancssorból is használható. Ebben a dokumentumban szolgál az Ambari REST API folytatott kommunikációhoz.
+* [cURL](http://curl.haxx.se/): cURL egy segédprogram, amely a REST API-khoz használt toowork hello parancssorból lehet. Az ebben a dokumentumban az Ambari REST API hello használt toocommunicate is.
 
-E Bash vagy a PowerShell használatával, rendelkeznie kell [jq](https://stedolan.github.io/jq/) telepítve. Jq olyan eszköz, amellyel a JSON-dokumentumok használata. Szerepel, **összes** Bash példák és **egy** a PowerShell-példák.
+E Bash vagy a PowerShell használatával, rendelkeznie kell [jq](https://stedolan.github.io/jq/) telepítve. Jq olyan eszköz, amellyel a JSON-dokumentumok használata. Szerepel, **összes** hello Bash példák és **egy** hello PowerShell-példák.
 
 ### <a name="base-uri-for-ambari-rest-api"></a>Alap URI-JÁNAK Ambari Rest API
 
-Az Ambari REST API-t a HDInsight alap URI-azonosító https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, ahol **CLUSTERNAME** a fürt neve.
+hello hello Ambari REST API-t a HDInsight az alap URI-azonosító https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, ahol **CLUSTERNAME** hello a fürt neve van.
 
 > [!IMPORTANT]
-> Míg a fürt neve a teljesen minősített tartománynév (FQDN) része az URI (CLUSTERNAME.azurehdinsight.net) a nagybetűk között, más előfordulások URI azonosítójában nagybetűk között. Például, ha a fürt neve `MyCluster`, érvényes URI-azonosítók a következők:
+> Amíg a fürtnév hello hello a teljesen minősített tartománynév (FQDN) része hello URI (CLUSTERNAME.azurehdinsight.net) azonban nem, más előfordulás hello URI-és nagybetűk. Például, ha a fürt neve `MyCluster`, az alábbiakban hello érvényes URI-azonosítók:
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 >
 > `https://MyCluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 > 
-> A következő URI-k egy hibaüzenetet adja vissza, mert a név a második előfordulása nincs kis-és nagybetűk.
+> hello következő URI-azonosítók hibát vissza, mert hello hello neve második előfordulása nem hello. Javítsa ki a eset.
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/mycluster`
 >
@@ -68,22 +68,22 @@ Az Ambari REST API-t a HDInsight alap URI-azonosító https://CLUSTERNAME.azureh
 
 ### <a name="authentication"></a>Authentication
 
-A HDInsight Ambari való csatlakozás igényel a HTTPS PROTOKOLLT. A rendszergazda fiók nevét használja (az alapértelmezett érték **admin**) és a fürt létrehozása során megadott jelszót.
+A HDInsight tooAmbari csatlakozás igényel a HTTPS PROTOKOLLT. Használjon hello rendszergazdai fiók neve (hello alapértelmezett érték **admin**) és a fürt létrehozása során megadott jelszót.
 
 ## <a name="examples-authentication-and-parsing-json"></a>Példák: Hitelesítés és elemzése JSON
 
-Az alábbi példák bemutatják, hogyan végezheti el az alap Ambari REST API egy GET kérelmet:
+hello a következő példák azt mutatják be, hogyan toomake hello egy GET kérelmet kiinduló Ambari REST API:
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
 ```
 
 > [!IMPORTANT]
-> Ebben a dokumentumban a Bash példák hajtsa végre a következő előfeltételek:
+> hello Bash példák ebben a dokumentumban hajtsa végre a következő feltételek hello:
 >
-> * A bejelentkezési név a fürt az alapértelmezett értékének `admin`.
-> * `$PASSWORD`a jelszót ahhoz, hogy a HDInsight bejelentkezési parancs tartalmaz. Használja ezt az értéket is megadhat `PASSWORD='mypassword'`.
-> * `$CLUSTERNAME`a fürt nevét tartalmazza. Használja ezt az értéket is megadhat`set CLUSTERNAME='clustername'`
+> * hello bejelentkezési név hello fürt az alapértelmezett érték hello `admin`.
+> * `$PASSWORD`a HDInsight bejelentkezési parancs hello hello jelszót tartalmaz. Használja ezt az értéket is megadhat `PASSWORD='mypassword'`.
+> * `$CLUSTERNAME`hello fürt hello nevét tartalmazza. Használja ezt az értéket is megadhat`set CLUSTERNAME='clustername'`
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -92,12 +92,12 @@ $resp.Content
 ```
 
 > [!IMPORTANT]
-> Ebben a dokumentumban a PowerShell-példák hajtsa végre a következő előfeltételek:
+> hello PowerShell-példák ebben a dokumentumban hajtsa végre a következő feltételek hello:
 >
-> * `$creds`a hitelesítő objektum, amely tartalmazza a rendszergazdai bejelentkezés és a jelszót a fürthöz van. Használja ezt az értéket is megadhat `$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"` , és adja meg a hitelesítő adatokat, amikor a rendszer kéri.
-> * `$clusterName`egy olyan karakterlánc, amely a fürt nevét tartalmazza. Használja ezt az értéket is megadhat `$clusterName="clustername"`.
+> * `$creds`a hitelesítő objektum, amely tartalmazza a hello rendszergazda felhasználónevet és jelszót hello fürthöz van. Használja ezt az értéket is megadhat `$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"` és hello hitelesítő adatokat biztosít.
+> * `$clusterName`egy olyan karakterlánc, amely hello fürt hello nevét tartalmazza. Használja ezt az értéket is megadhat `$clusterName="clustername"`.
 
-Mindkét példák adja vissza egy JSON-dokumentum információkat az alábbi példához hasonló karakterlánccal kezdődik:
+Mindkét példák adja vissza egy JSON-dokumentum információkat a következő példa hasonló toohello karakterlánccal kezdődik:
 
 ```json
 {
@@ -121,14 +121,14 @@ Mindkét példák adja vissza egy JSON-dokumentum információkat az alábbi pé
 
 ### <a name="parsing-json-data"></a>JSON-adatok elemzése
 
-Az alábbi példában `jq` elemezni a JSON-válasz dokumentum ki és jelenítheti meg a csak a `health_report` az eredmények adatait.
+hello alábbi példában `jq` tooparse hello válasz JSON-dokumentum, és csak hello megjelenítése `health_report` hello eredmények adatait.
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME" \
 | jq '.Clusters.health_report'
 ```
 
-A PowerShell 3.0-s és újabb rendszer biztosítja a `ConvertFrom-Json` parancsmagot, amely a JSON-dokumentum alakít át egy objektumot, amely egyszerűbbé teszik a Powershellből. Az alábbi példában `ConvertFrom-Json` megjelenítése csak a `health_report` az eredmények adatait.
+A PowerShell 3.0-s és újabb rendszer biztosít hello `ConvertFrom-Json` parancsmag, amely olyan objektumot, amely a powershellből könnyebb toowork hello JSON-dokumentum alakítja. hello alábbi példában `ConvertFrom-Json` toodisplay csak hello `health_report` hello eredmények adatait.
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -138,13 +138,13 @@ $respObj.Clusters.health_report
 ```
 
 > [!NOTE]
-> Ez a dokumentum használatát a legtöbb példa során `ConvertFrom-Json` a válasz dokumentumból elemek megjelenítéséhez a [frissítés Ambari konfigurációs](#example-update-ambari-configuration) példában jq. Jq szerepel ebben a példában a JSON-válasz dokumentum az új sablon létrehozásához.
+> Ez a dokumentum használatát a legtöbb példa során `ConvertFrom-Json` toodisplay elemek hello-dokumentumból, hello [frissítés Ambari konfigurációs](#example-update-ambari-configuration) példa jq használ. Jq használatban van ebben a példában tooconstruct hello JSON-válasz dokumentum egy új sablont.
 
-A REST API-t a teljes referenciáért lásd: [Ambari API-referencia V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+Hello REST API-t a teljes referenciáért lásd: [Ambari API-referencia V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 
-## <a name="example-get-the-fqdn-of-cluster-nodes"></a>Példa: Első fürtcsomópont teljes Tartományneve
+## <a name="example-get-hello-fqdn-of-cluster-nodes"></a>Példa: Hello fürtcsomópont FQDN beolvasása
 
-A HDInsight használata, amikor szükség lehet tudni, hogy a teljesen minősített tartományneve (FQDN) egy fürt csomópontja. A különböző csomópontok használatával az alábbi példák a fürt teljes Tartománynevének könnyen le:
+A HDInsight használata, ha esetleg tooknow hello teljesen minősített tartományneve (FQDN) egy fürt csomópontja. Hello FQDN a hello segítségével a következő példák hello hello fürt különböző csomópontja egyszerűen beolvashatók:
 
 * **Minden csomópont**
 
@@ -202,14 +202,14 @@ A HDInsight használata, amikor szükség lehet tudni, hogy a teljesen minősít
     $respObj.host_components.HostRoles.host_name
     ```
 
-## <a name="example-get-the-internal-ip-address-of-cluster-nodes"></a>Példa: A belső IP-cím fürtcsomópontok beolvasása
+## <a name="example-get-hello-internal-ip-address-of-cluster-nodes"></a>Példa: Hello belső IP-cím fürtcsomópontok beolvasása
 
 > [!IMPORTANT]
-> Az ebben a szakaszban szereplő példák által visszaadott IP-címek nem érhetők el közvetlenül az interneten keresztül. Csak azok a HDInsight-fürt tartalmazó Azure virtuális hálózaton belülről érhetők el.
+> a szakaszban szereplő példák hello által visszaadott hello IP-címek vannak, nem közvetlenül elérhető over internet hello. Csak azok hello Azure virtuális hálózat, amely tartalmazza a HDInsight-fürt hello belülről érhetők el.
 >
 > További információk a HDInsight és virtuális hálózatok: [kiterjesztése HDInsight képességek egyéni Azure virtuális hálózat használatával](hdinsight-extend-hadoop-virtual-network.md).
 
-Az IP-címének ismernie kell a fürt csomópontjai belső teljesen minősített tartománynevét (FQDN). Miután a teljes Tartománynevét, majd érheti el a gazdagép IP-címét. Az alábbi példák először Ambari kereshet a gazdagép-csomópontok teljes Tartománynevét, majd Ambari lekérdezni az egyes állomások IP-címét.
+toofind hello IP-cím, ismernie kell a hello belső teljesen minősített tartományneve (FQDN) hello fürtcsomópontok. Miután hello teljes Tartománynevét, majd kaphat a hello állomás hello IP-címét. hello alábbi példák először Ambari lekérdezése a hello hello minden gazdagép-csomópontok teljes Tartománynevét, majd hello IP-cím az egyes állomások Ambari lekérdezése.
 
 ```bash
 for HOSTNAME in $(curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" | jq -r '.items[].Hosts.host_name')
@@ -233,11 +233,11 @@ foreach($item in $respObj.items) {
 }
 ```
 
-## <a name="example-get-the-default-storage"></a>Példa: Az alapértelmezett tároló beolvasása
+## <a name="example-get-hello-default-storage"></a>Példa: Hello alapértelmezett tárolási beolvasása
 
-HDInsight-fürtök létrehozásakor kell használnia az Azure Storage-fiók vagy a Data Lake Store az alapértelmezett tárolóként a fürthöz. Ambari segítségével ezt az információt lekérni a fürt létrehozása után. Ha például szeretné az adatokat a tárolót a HDInsight kívül olvasására vagy írására.
+HDInsight-fürtök létrehozásakor kell használnia az Azure Storage-fiók vagy a Data Lake Store hello alapértelmezett tárolóként hello fürthöz. Használhatja Ambari tooretrieve ezt az információt hello fürt létrehozása után. Ha például azt szeretné, hogy toohello adattároló tooread/írás HDInsight kívül.
 
-Az alábbi példák a alapértelmezett tárolási konfiguráció lekérése a fürt:
+hello alábbi példák lekérése hello alapértelmezett tárolási konfigurációt hello fürt:
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -252,15 +252,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 ```
 
 > [!IMPORTANT]
-> Ezek a példák, térjen vissza az első konfiguráció, a kiszolgálón alkalmazott (`service_config_version=1`) amely tartalmazza ezt az információt. Ha beolvasni egy érték, amely a fürt létrehozása után módosítva lett, szükség lehet a konfiguráció listában, és töltik le a legújabb.
+> Ezek a példák vissza hello első alkalmazott konfiguráció toohello kiszolgáló (`service_config_version=1`) amely tartalmazza ezt az információt. Egy érték, amely a fürt létrehozása után módosítva lett letöltésekor, toolist hello konfigurációs verziók kell, és hello legújabb beolvasása.
 
-A visszatérési érték a következő példák hasonló:
+hello visszatérési érték a következő példák hello hasonló tooone:
 
-* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net`-Ez az érték azt jelzi, hogy a fürt alapértelmezett tárolására használt Azure Storage-fiók. A `ACCOUNTNAME` értéke a tárfiók neve. A `CONTAINER` részét pedig a tárfiók a blob-tároló neve. A tároló a fürt HDFS-kompatibilis tárolási gyökérmappájában.
+* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net`-Ez azt jelzi, hogy hello fürt által használt Azure Storage-fiók alapértelmezett tárolási. Hello `ACCOUNTNAME` értéke hello tárfiók hello neve. Hello `CONTAINER` részét hello blob tároló hello tárfiókban hello neve. hello tároló hello HDFS-kompatibilis tároló hello fürt hello gyökérkönyvtárában.
 
-* `adl://home`-Ez az érték azt jelzi, hogy a fürt egy Azure Data Lake Store használt alapértelmezett tárolási.
+* `adl://home`-Ez azt jelzi, hogy hello fürt által használt egy Azure Data Lake Store alapértelmezett tárolási.
 
-    A Data Lake Store-fiók neve megkereséséhez használja az alábbi példákat:
+    toofind hello Data Lake Store-fiók neve, a következő példák hello használata:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -274,9 +274,9 @@ A visszatérési érték a következő példák hasonló:
     $respObj.items.configurations.properties.'dfs.adls.home.hostname'
     ```
 
-    Az eredményül kapott értéket hasonlít `ACCOUNTNAME.azuredatalakestore.net`, ahol `ACCOUNTNAME` a Data Lake Store-fiók neve.
+    hello visszatérési értéke hasonló túl`ACCOUNTNAME.azuredatalakestore.net`, ahol `ACCOUNTNAME` hello hello Data Lake Store-fiók neve.
 
-    A könyvtár belül, amely tartalmazza a fürt tárolóhelyét Data Lake Store megkereséséhez használja az alábbi példákat:
+    Data Lake Store hello tárolási hello fürthöz, a következő példák használata hello tartalmazó belüli toofind hello könyvtár:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -290,15 +290,15 @@ A visszatérési érték a következő példák hasonló:
     $respObj.items.configurations.properties.'dfs.adls.home.mountpoint'
     ```
 
-    Az eredményül kapott értéket hasonlít `/clusters/CLUSTERNAME/`. Ez az érték a Data Lake Store-fiókban út. Ez az elérési út a HDFS-kompatibilis fájlrendszer a fürt gyökérmappájában. 
+    hello visszatérési értéke hasonló túl`/clusters/CLUSTERNAME/`. Ez az érték út belül hello Data Lake Store-fiók. Ez az elérési út hello HDFS kompatibilis fájlrendszer hello fürt hello gyökérmappájában. 
 
 > [!NOTE]
-> A `Get-AzureRmHDInsightCluster` parancsmag által biztosított [Azure PowerShell](/powershell/azure/overview) is a a fürt tárolási információkat ad vissza.
+> Hello `Get-AzureRmHDInsightCluster` parancsmag által biztosított [Azure PowerShell](/powershell/azure/overview) is vissza hello tárolással kapcsolatos hello fürthöz.
 
 
 ## <a name="example-get-configuration"></a>Példa: Get-konfiguráció
 
-1. A konfigurációk a fürt számára rendelkezésre álló beolvasása.
+1. A fürt számára rendelkezésre álló hello konfigurációk beolvasása.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -310,7 +310,7 @@ A visszatérési érték a következő példák hasonló:
     $respObj.Content
     ```
 
-    Ebben a példában a jelenlegi konfiguráció tartalmazó JSON-dokumentum adja vissza (azonosíthatók a *címke* érték) a fürtben telepített összetevőket. A következő példa egy fájlból egy Spark-fürt típusa által visszaadott adatokat.
+    Ebben a példában egy JSON-dokumentum hello aktuális konfigurációs tartalmazó adja vissza (hello által azonosított *címke* érték) hello összetevők hello fürtön telepítve. hello következő példa egy fájlból egy Spark-fürt típusa által visszaadott hello adatokat.
    
    ```json
    "spark-metrics-properties" : {
@@ -330,7 +330,7 @@ A visszatérési érték a következő példák hasonló:
    }
    ```
 
-2. A konfiguráció megváltozása összetevő beolvasása. Az alábbi példában cserélje le `INITIAL` az előző kérelem által visszaadott a címke értékű.
+2. Hello összetevő, amely érdekli hello konfigurációjának beolvasása. Hello a következő példában cserélje le `INITIAL` hello előző kérelem által visszaadott hello címke értékkel.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=core-site&tag=INITIAL"
@@ -342,11 +342,11 @@ A visszatérési érték a következő példák hasonló:
     $resp.Content
     ```
 
-    Ebben a példában a vonatkozó aktuális konfigurációját tartalmazó JSON-dokumentum adja vissza a `core-site` összetevő.
+    Ez a példa adja vissza egy JSON-dokumentum hello hello vonatkozó aktuális konfigurációját tartalmazó `core-site` összetevő.
 
 ## <a name="example-update-configuration"></a>Példa: Konfigurációjának frissítése
 
-1. Töltse le a jelenlegi konfigurációt, és a "szükségeskonfiguráció" Ambari tárolja:
+1. Töltse le a hello jelenlegi konfigurációt, amely Ambari hello "kívánt konfiguráció" tárolja:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -357,7 +357,7 @@ A visszatérési érték a következő példák hasonló:
         -Credential $creds
     ```
 
-    Ebben a példában a jelenlegi konfiguráció tartalmazó JSON-dokumentum adja vissza (azonosíthatók a *címke* érték) a fürtben telepített összetevőket. A következő példa egy fájlból egy Spark-fürt típusa által visszaadott adatokat.
+    Ebben a példában egy JSON-dokumentum hello aktuális konfigurációs tartalmazó adja vissza (hello által azonosított *címke* érték) hello összetevők hello fürtön telepítve. hello következő példa egy fájlból egy Spark-fürt típusa által visszaadott hello adatokat.
    
     ```json
     "spark-metrics-properties" : {
@@ -377,9 +377,9 @@ A visszatérési érték a következő példák hasonló:
     }
     ```
    
-    Ebből a listából kell másolnia az összetevő neve (például **spark\_thrift\_sparkconf** és a **címke** érték.
+    Ebből a listából kell hello összetevő toocopy hello neve (például **spark\_thrift\_sparkconf** és hello **címke** érték.
 
-2. Az összetevő és a címke konfigurációjának beolvasása a következő parancsokkal:
+2. Lekéri a hello összetevő és a címke hello konfigurálása hello a következő parancsok használatával:
    
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=spark-thrift-sparkconf&tag=INITIAL" \
@@ -396,21 +396,21 @@ A visszatérési érték a következő példák hasonló:
     ```
 
     > [!NOTE]
-    > Cserélje le **spark-thrift-sparkconf** és **kezdeti** az összetevő és a tag, szeretné beolvasni a konfigurációját.
+    > Cserélje le **spark-thrift-sparkconf** és **kezdeti** hello összetevő és tooretrieve hello konfigurációja kívánt címkét.
    
-    Kapcsolja be az új konfigurációs sablonba a HDInsight-ból beolvasott adat Jq szolgál. Pontosabban ezek a példák a következő műveleteket:
+    Jq használt tooturn hello származó adatok HDInsight új konfigurációs sablonba. Pontosabban ezek a példák hajtsa végre a következő műveletek hello:
    
-    * Létrehoz egy egyedi értéket a "version" karakterláncot és a dátum, ami a tartalmazó `newtag`.
+    * Létrehoz egy egyedi értéket tartalmazó hello karakterlánc "version" és a hello dátum, ami a `newtag`.
 
-    * Az új szükségeskonfiguráció a legfelső szintű dokumentum létrehozása.
+    * Az új szükségeskonfiguráció hello legfelső szintű dokumentum létrehozása.
 
-    * Lekérdezi a tartalmát a `.items[]` tömb, és hozzáadja azt a a **desired_config** elemet.
+    * Lekérdezi hello hello tartalmát `.items[]` tömb, és hozzáadja azt a hello **desired_config** elemet.
 
-    * Törli a `href`, `version`, és `Config` elemek, ezeket az elemeket, nem szükségesek a elküldeni a konfigurációt.
+    * Törlések hello `href`, `version`, és `Config` elemek, ezeket az elemeket, nem szükséges toosubmit egy új konfigurációt.
 
-    * Hozzáad egy `tag` elem értéke az `version#################`. A numerikus része az aktuális dátumot alapul. Minden egyes-konfiguráció egyedi kódot kell rendelkeznie.
+    * Hozzáad egy `tag` elem értéke az `version#################`. hello numerikus részét alapul hello aktuális dátumot. Minden egyes-konfiguráció egyedi kódot kell rendelkeznie.
      
-    Végül, az adatok mentése a `newconfig.json` dokumentum. A dokumentum struktúra az alábbi példához hasonlóan kell megjelennie:
+    Végezetül hello mentett adatok toohello `newconfig.json` dokumentum. hello dokumentumstruktúrával megjelenjen-e a következő példa hasonló toohello:
      
      ```json
     {
@@ -428,14 +428,14 @@ A visszatérési érték a következő példák hasonló:
     }
     ```
 
-3. Nyissa meg a `newconfig.json` dokumentum és a módosítása vagy hozzáadása az `properties` objektum. Az alábbi példa értékének megváltoztatása `"spark.yarn.am.memory"` a `"1g"` való `"3g"`. Bővíti ezenkívül `"spark.kryoserializer.buffer.max"` értékkel rendelkező `"256m"`.
+3. Nyissa meg hello `newconfig.json` hello dokumentum és a módosítása vagy hozzáadása értékek `properties` objektum. hello változásai példa hello értékének `"spark.yarn.am.memory"` a `"1g"` túl`"3g"`. Bővíti ezenkívül `"spark.kryoserializer.buffer.max"` értékkel rendelkező `"256m"`.
    
         "spark.yarn.am.memory": "3g",
         "spark.kyroserializer.buffer.max": "256m",
    
-    Ha elkészült, hogy a módosításokat, mentse a fájlt.
+    Ha elkészült, hogy a módosításokat, mentse a hello fájlt.
 
-4. A frissített konfiguráció Ambari küldhetnek a következő parancsok használatával.
+4. A következő parancsok toosubmit hello frissített konfigurációs tooAmbari hello használata.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" -X PUT -d @newconfig.json "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
@@ -451,13 +451,13 @@ A visszatérési érték a következő példák hasonló:
     $resp.Content
     ```
    
-    Ezek a parancsok, küldje el a tartalmát a **newconfig.json** a fürtön, amelyen az új szükségeskonfiguráció-fájlt. A kérelem egy JSON-dokumentum adja vissza. A **versionTag** elem ebben a dokumentumban meg kell felelnie a verzió benyújtott, és a **configs** objektum tartalmazza a kért konfigurációs módosításokat.
+    Ezek a parancsok nyújt hello hello tartalmát **newconfig.json** toohello fürt fájlt, hello új szükségeskonfiguráció-konfiguráció. hello kérelem JSON-dokumentum adja vissza. Hello **versionTag** elem ebben a dokumentumban meg kell felelnie a hello verzió elküldése megtörtént, és hello **configs** objektum tartalmazza a kért hello konfigurációs módosításokat.
 
 ### <a name="example-restart-a-service-component"></a>Példa: Indítsa újra a szolgáltatás valamelyik összetevője
 
-Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark szolgáltatást azt jelzi, hogy azt az új konfiguráció életbe léptetéséhez újra kell indítani. Az alábbi lépések segítségével indítsa újra a szolgáltatást.
+Ezen a ponton hello Ambari webes felhasználói felület tekinti meg, ha hello Spark szolgáltatást azt jelzi, hogy kell-e toobe hello új konfiguráció életbe léptetéséhez újra. A következő lépéseket toorestart hello szolgáltatás hello használata.
 
-1. A Spark szolgáltatás karbantartási mód engedélyezéséhez használja a következőket:
+1. A következő tooenable karbantartási mód hello Spark szolgáltatást hello használata:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -474,7 +474,7 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
     $resp.Content
     ```
    
-    Ezek a parancsok egy JSON-dokumentum küldeni a kiszolgáló, amely bekapcsolja a karbantartási módból. Ellenőrizheti, hogy a szolgáltatás jelenleg karbantartási módba a következő kérelmet:
+    Ezek a parancsok küldése egy JSON dokumentum toohello kiszolgáló, amely bekapcsolja a karbantartási módból. Ellenőrizheti, hogy hello szolgáltatás most már karbantartási módban van hello kérelem a következő használatával:
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -489,9 +489,9 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
     $respObj.ServiceInfo.maintenance_state
     ```
    
-    A visszatérési érték `ON`.
+    hello visszatérési értéke `ON`.
 
-2. Kapcsolja ki a szolgáltatás ezt követően használja a következő:
+2. Következő lépésként az hello tooturn ki hello szolgáltatást a következő:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -508,7 +508,7 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
     $resp.Content
     ```
     
-    A rendszer a választ az alábbi példához hasonló:
+    a rendszer a következő példa hasonló toohello hello választ:
    
     ```json
     {
@@ -521,9 +521,9 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
     ```
     
     > [!IMPORTANT]
-    > A `href` ezt az URI által visszaadott értéket használja a fürtcsomópont belső IP-címét. A használatához a fürtön kívül cserélje le a "10.0.0.18:8080" rész a fürt teljes Tartománynevét. 
+    > Hello `href` ezt az URI által visszaadott érték hello fürtcsomópont hello belső IP-címét használja. toouse hello hello-fürt külső hello fürtből, akkor hello "10.0.0.18:8080" részét cserélje le. 
     
-    Az alábbi parancsokat a kérelem állapotának beolvasása:
+    a következő parancsok hello hello kérelem hello állapotának beolvasása:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -538,9 +538,9 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
     $respObj.Requests.request_status
     ```
 
-    A válasz `COMPLETED` azt jelzi, hogy a kérelem befejeződött.
+    A válasz `COMPLETED` azt jelzi, hogy adott hello kérelem befejeződött.
 
-3. Miután befejeződött az előző kérést, a szolgáltatás elindításához használja a következő.
+3. Hello előző kérelem után használja a következő toostart hello szolgáltatás hello.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -555,9 +555,9 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
         -Headers @{"X-Requested-By" = "ambari"} `
         -Body '{"RequestInfo":{"context":"_PARSE_.STOP.SPARK","operation_level":{"level":"SERVICE","cluster_name":"CLUSTERNAME","service_name":"SPARK"}},"Body":{"ServiceInfo":{"state":"STARTED"}}}'
     ```
-    A szolgáltatás az új konfigurációt használ.
+    hello szolgáltatás hello új konfigurációt használ.
 
-4. Végezetül a következő használatával kapcsolja ki a karbantartási módból.
+4. Végezetül használja a következő tooturn ki a karbantartási módot hello.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -575,5 +575,5 @@ Ezen a ponton az Ambari webes felhasználói felület tekinti meg, ha a Spark sz
 
 ## <a name="next-steps"></a>Következő lépések
 
-A REST API-t a teljes referenciáért lásd: [Ambari API-referencia V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+Hello REST API-t a teljes referenciáért lásd: [Ambari API-referencia V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 

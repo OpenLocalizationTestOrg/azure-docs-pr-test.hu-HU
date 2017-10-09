@@ -2,94 +2,94 @@
 <br>
 
 > [!NOTE]
-> Egy rendszergazda felhasználónevet és jelszót kapott, nincs-e esély arra, hogy már rendelkezik munkahelyi vagy iskolai azonosítója (néha is egy *szervezeti Azonosítóval*). Ha igen, azonnal megkezdheti az Azure-fiókjával jelszó használata kötelezővé tehető Azure-erőforrások elérésére használhat. Ha talál meg, hogy nem használja ezeket az erőforrásokat, szükség lehet a cikk segítséget való visszatéréshez. További információkért lásd: [fiókokat is használhatja a bejelentkezés](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SignInAccounts) és [hogyan egy Azure-előfizetéshez az Azure AD kapcsolódó](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SubRelationToDir).
+> Egy rendszergazda felhasználónevet és jelszót kapott, nincs-e esély arra, hogy már rendelkezik munkahelyi vagy iskolai azonosítója (néha is egy *szervezeti Azonosítóval*). Ha igen, azonnal megkezdheti toouse az Azure-fiók tooaccess Azure-erőforrások jelszó használata kötelezővé tehető. Ha talál meg, hogy nem használja ezeket az erőforrásokat, szükség lehet tooreturn toothis cikk segítségét. További információkért lásd: [fiókokat is használhatja a bejelentkezés](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SignInAccounts) és [hogyan Azure-előfizetés, kapcsolódó tooAzure AD](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SubRelationToDir).
 > 
 > 
 
-Az egyszerű lépésekre. Meg kell meghatározni az aláírt identitás a klasszikus Azure portálon Fedezze fel az alapértelmezett Azure Active Directory-tartomány, és új felhasználók hozzáadása az Azure közös rendszergazdaként.
+hello lépésekre egyszerű. Az aláírt kell toolocate-identitás az hello a klasszikus Azure portálon, a Fedezze fel az alapértelmezett Azure Active Directory-tartományhoz, majd adja meg egy új felhasználó tooit Azure közös rendszergazdaként.
 
-## <a name="locate-your-default-directory-in-the-azure-classic-portal"></a>Keresse meg az alapértelmezett címtárat a klasszikus Azure portálon
-Először jelentkezik be a [a klasszikus Azure portálon](https://manage.windowsazure.com) a személyes Microsoft-fiók identitással. Miután bejelentkezett, görgessen lefelé a kék panel bal oldalán, majd kattintson a **ACTIVE DIRECTORY**.
+## <a name="locate-your-default-directory-in-hello-azure-classic-portal"></a>Keresse meg az alapértelmezett címtárban hello a klasszikus Azure portálon
+Első lépésként toohello naplózás [a klasszikus Azure portálon](https://manage.windowsazure.com) a személyes Microsoft-fiók identitással. Miután bejelentkezett, görgessen le a bal oldali hello hello kék panel, majd kattintson a **ACTIVE DIRECTORY**.
 
 ![Azure Active Directory](./media/virtual-machines-common-create-aad-work-id/azureactivedirectorywidget.png)
 
-Először néhány a felhasználó adatainak keresése az Azure-ban. Meg kell jelennie a következőhöz a fő ablaktáblán látható, hogy rendelkezik-e egy alapértelmezett címtár.
+Először néhány a felhasználó adatainak keresése az Azure-ban. Meg kell jelennie hello hello fő panelen a következő, megjeleníti, hogy rendelkezik-e egy alapértelmezett címtár hasonlót.
 
 ![](./media/virtual-machines-common-create-aad-work-id/defaultaadlisting.png)
 
-Keressük meg néhány további információt. Kattintson a alapértelmezett directory sorra, amely azt az alapértelmezett címtár tulajdonságait.  
+Keressük meg néhány további információt. Kattintson a során akkor kerülnek hello alapértelmezett címtár tulajdonságait hello alapértelmezett címtár sor.  
 
 ![](./media/virtual-machines-common-create-aad-work-id/defaultdirectorypage.png)
 
-Az alapértelmezett tartomány nevét megtekintéséhez kattintson **TARTOMÁNYOK**.
+tooview hello alapértelmezett tartomány nevét, kattintson a **TARTOMÁNYOK**.
 
 ![](./media/virtual-machines-common-create-aad-work-id/domainclicktoseeyourdefaultdomain.png)
 
-Itt kell tudni, hogy az Azure-fiók létrehozása után Azure Active Directoryban, amely a kivonat értéke (karakterlánc alapján generált szám) személyes alapértelmezett tartomány létrehozása a személyes azonosító onmicrosoft.com altartománya használja. Ez a tartomány, amelyhez most hozzáadjuk egy új felhasználót.
+Itt meg kell tudni toosee, hogy hello Azure-fiók létrehozása után Azure Active Directoryban, amely a kivonat értéke (karakterlánc alapján generált szám) személyes alapértelmezett tartomány létrehozása a személyes azonosító onmicrosoft.com altartománya használja. Ez az új felhasználó most hozzáadjuk hello tartomány toowhich.
 
-## <a name="creating-a-new-user-in-the-default-domain"></a>Új felhasználó létrehozása az alapértelmezett tartományban
-Kattintson a **felhasználók** , és tekintse meg a egy személyes fiók. A kell megjelennie a **forrás** oszlop, hogy ez egy **Microsoft-fiók**. Azt szeretnénk, hogy a felhasználó létrehozása az alapértelmezett. onmicrosoft.com Azure Active Directory-tartományhoz.
+## <a name="creating-a-new-user-in-hello-default-domain"></a>Új felhasználó létrehozása hello alapértelmezett tartományban
+Kattintson a **felhasználók** , és tekintse meg a egy személyes fiók. Megjelenik a hello **forrás** oszlop, hogy ez egy **Microsoft-fiók**. Azt szeretnénk, ha a felhasználó az alapértelmezett toocreate. onmicrosoft.com Azure Active Directory-tartományhoz.
 
 ![](./media/virtual-machines-common-create-aad-work-id/defaultdirectoryuserslisting.png)
 
-Kövesse az oktatóanyagban módosítjuk [ezeket az utasításokat](https://technet.microsoft.com/library/hh967632.aspx#BKMK_1) a következő néhány lépésben leírtak, de használja az adott példát.
+Fogjuk toofollow [ezeket az utasításokat](https://technet.microsoft.com/library/hh967632.aspx#BKMK_1) a következő néhány lépésben leírtak hello, de egy adott példát.
 
-Kattintson a lap alján **+ felhasználó hozzáadása**. Az oldal jelenik meg, írja be az új felhasználónevet, és ellenőrizze a **felhasználó típusa** egy **a szervezet új felhasználó**. Ebben a példában az új felhasználó neve: `ahmet`. Válassza ki az alapértelmezett tartomány, akkor a felderített korábban a tartományként ahmet tartozó e-mail cím. Kattintson a Tovább nyílra, amikor befejeződött.
+Hello a hello lap alján, kattintson **+ felhasználó hozzáadása**. A hello oldal jelenik meg, írja be a hello új felhasználónevet, és tegye hello **felhasználó típusa** egy **a szervezet új felhasználó**. Ebben a példában a hello új felhasználónevet: `ahmet`. Válassza ki azt a felderített hello alapértelmezett tartományt korábban hello tartományként ahmet tartozó e-mail cím. Kattintson a Tovább nyílra hello befejezésekor.
 
 ![](./media/virtual-machines-common-create-aad-work-id/addingauserwithdirectorydropdown.png)
 
-Adja hozzá a további részleteket a Ahmet, de győződjön meg arról, hogy válassza ki a megfelelő **SZEREPKÖR** érték. Könnyen használható legyen **globális rendszergazda** annak sure dolgot dolgozik, de ha egy kisebb szerepkör használatához, érdemes. Ez a példa a **felhasználói** szerepkör. (További: [rendszergazdai jogosultságokkal szerepkör](https://msdn.microsoft.com/library/azure/dn468213.aspx#BKMK_1).) Ne engedélyezze a multi-factor authentication, kivéve, ha a többtényezős hitelesítés használjanak minden egyes bejelentkezés műveletet szeretne. Amikor végzett, kattintson a Tovább nyílra.
+Adja hozzá a további részleteket a Ahmet, de győződjön meg arról, hogy tooselect hello megfelelő **SZEREPKÖR** érték. Egyszerű toouse **globális rendszergazda** toomake sure dolgot dolgozik, de ha egy kisebb szerepkör használatához, érdemes. Ez a példa hello **felhasználói** szerepkör. (További: [rendszergazdai jogosultságokkal szerepkör](https://msdn.microsoft.com/library/azure/dn468213.aspx#BKMK_1).) Ne engedélyezze a multi-factor authentication, kivéve, ha azt szeretné, hogy az egyes naplókon műveletben toouse a többtényezős hitelesítést. Amikor végzett, kattintson a Tovább nyílra hello.
 
 ![](./media/virtual-machines-common-create-aad-work-id/userprofileuseradmin.png)
 
-Kattintson a **létrehozása** készítése és ideiglenes jelszót Ahmet megjelenítése gombra.
+Kattintson a hello **létrehozása** toogenerate gombra, és ideiglenes jelszavakat Ahmet megjelenítése.
 
 ![](./media/virtual-machines-common-create-aad-work-id/gettemporarypasswordforuser.png)
 
-Másolja a felhasználói e-mail-címet, vagy használjon **jelszó része az E-mail KÜLDÉSE**. Az információk hamarosan jelentkezzen be lesz szüksége.
+Másolja a hello felhasználói e-mail-címet, vagy használjon **jelszó része az E-mail KÜLDÉSE**. Szüksége lesz hello információk toolog a hamarosan.
 
 ![](./media/virtual-machines-common-create-aad-work-id/receivedtemporarypassworddialog.png)
 
-Most látnia kell az új felhasználó **Ahmet a fejlesztői**, termékekre, az Azure Active Directoryból. Létrehozta az új munkahelyi vagy iskolai azonosító az Azure Active Directoryban. Azonban ez az identitás még nincs jogosultsága Azure-erőforrások használatára.
+Most már megtekintheti az új felhasználóhoz hello **Ahmet hello fejlesztői**, termékekre, az Azure Active Directoryból. Létrehozott hello új munkahelyi vagy iskolai azonosítása az Azure Active Directoryban. Azonban ez az identitás még nem rendelkezik engedélyekkel toouse Azure erőforrásokat.
 
 ![](./media/virtual-machines-common-create-aad-work-id/defaultdirectoryusersaftercreate.png)
 
-Ha **jelszó része az E-mail KÜLDÉSE**, a következő típusú e-mailt küld.
+Ha **jelszó része az E-mail KÜLDÉSE**, a következő típusú e-mailek hello zajlik.
 
 ![](./media/virtual-machines-common-create-aad-work-id/emailreceivedfromnewusercreation.png)
 
 ## <a name="adding-azure-co-administrator-rights-for-subscriptions"></a>Az előfizetések Azure közös rendszergazdai jogosultságokkal hozzáadása
-A továbbiakban létre kell az új felhasználó hozzáadása az előfizetés társadminisztrátoraként, így az új felhasználó bejelentkezve is a kezelési portálon. Ennek elvégzéséhez a bal alsó panelen kattintson a **beállítások**.
+A továbbiakban létre kell tooadd hello új felhasználó az előfizetés társadminisztrátoraként, hello új felhasználó bejelentkezhessen a kezelési portál toohello. Ez, hello bal alsó panelen kattintson a toodo **beállítások**.
 
 ![](./media/virtual-machines-common-create-aad-work-id/thesettingswidget.png)
 
-A fő beállítások területen kattintson a **RENDSZERGAZDÁK** felső és azt kell látnia csak a személyes Microsoft fiók azonosítóját. Kattintson a lap alján **+ Hozzáadás** társadminisztrátorának megadásához. Itt adja meg a felhasználó e-mail címe az az új hozna létre, beleértve az alapértelmezett tartomány. Képernyőfelvételen látható módon a következő, egy zöld pipa jelenik meg a felhasználó alapértelmezett könyvtár mellett. Ne felejtse el, válassza ki az összes olyan előfizetést, amely azt szeretné, hogy a felhasználó felügyelhető legyen.
+Hello fő beállítások területen, kattintson a **RENDSZERGAZDÁK** : hello felső, és csak a személyes Microsoft fiók azonosítóját megjelennie. Hello a hello lap alján, kattintson **+ Hozzáadás** toospecify társadminisztrátorának. Itt adja meg a hello új felhasználó hozna létre, beleértve az alapértelmezett tartomány üdvözlő e-mail címét. Képernyőfelvételen látható módon hello tovább, egy zöld pipa hello alapértelmezett könyvtár a következő toohello felhasználó jelenik meg. Tooselect ne feledje, hogy szeretné-e a felhasználó toobe képes tooadminister hello előfizetések mindegyikét.
 
 ![](./media/virtual-machines-common-create-aad-work-id/addingnewuserascoadmin.png)
 
-Amikor elkészült, most látnia kell két felhasználó, beleértve az új társadminisztrátoraként személyazonosságát. Jelentkezzen ki a portálon.
+Amikor elkészült, most látnia kell két felhasználó, beleértve az új társadminisztrátoraként személyazonosságát. Hello portál kijelentkezés.
 
 ![](./media/virtual-machines-common-create-aad-work-id/newuseraddedascoadministrator.png)
 
-## <a name="logging-in-and-changing-the-new-users-password"></a>A bejelentkezés és az új jelszó módosítása
-Jelentkezzen be az új felhasználó hozott létre.
+## <a name="logging-in-and-changing-hello-new-users-password"></a>A bejelentkezés és hello új jelszó módosítása
+Jelentkezzen be hello új felhasználó hozott létre.
 
 ![](./media/virtual-machines-common-create-aad-work-id/signinginwithnewuser.png)
 
-Azonnal kérni fogja az új jelszót létrehozni.
+Egy új jelszót kért toocreate azonnal lesz.
 
 ![](./media/virtual-machines-common-create-aad-work-id/mustupdateyourpassword.png)
 
-Meg kell megkapja az, hogy a következőképpen néznek.
+Meg kell megkapja, következőhöz hasonló hello sikeres.
 
 ![](./media/virtual-machines-common-create-aad-work-id/successtourdialog.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Most már használhatja az új Azure Active Directory-identitás használatára [Azure-erőforrás csoport sablonok](../articles/xplat-cli-azure-resource-manager.md).
+Ezután már használhatja az új Azure Active Directory-identitás toouse [Azure-erőforrás csoport sablonok](../articles/xplat-cli-azure-resource-manager.md).
 
     azure login
     info:    Executing command login
-    warn:    Please note that currently you can login only via Microsoft organizational account or service principal. For instructions on how to set them up, please read http://aka.ms/Dhf67j.
+    warn:    Please note that currently you can login only via Microsoft organizational account or service principal. For instructions on how tooset them up, please read http://aka.ms/Dhf67j.
     Username: ahmet@aztrainpassxxxxxoutlook.onmicrosoft.com
     Password: *********
     /info:    Added subscription Azure Pass

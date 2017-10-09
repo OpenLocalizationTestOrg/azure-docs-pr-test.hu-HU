@@ -13,81 +13,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: fd5988b2d4170166902bb5cc39603d4a0f83be59
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 39c0b127d3dcf6f45607ad8b4647a9ad79dfc732
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-for-azure-active-directory-connect"></a>Gyakori kérdések az Azure Active Directory Connect
 
 ## <a name="general-installation"></a>Általános telepítési
-**K: telepítési működnek, ha az Azure AD globális rendszergazda 2FA engedélyezve van?**  
-A 2016. februári a buildek Ez támogatott.
+**K: telepítési működnek, ha hello Azure AD globális rendszergazda 2FA engedélyezve van?**  
+A hello buildekben a 2016. februári Ez támogatott.
 
-**K: az Azure AD Connect felügyelet nélküli telepítéséhez úgy van?**  
-Csak a telepítési varázsló segítségével az Azure AD Connect telepítése támogatott. Felügyelet nélküli és a csendes telepítés nem támogatott.
+**K: van egy módon tooinstall felügyelet az Azure AD Connect?**  
+Már csak a támogatott tooinstall az Azure AD Connect telepítővarázsló hello használata. Felügyelet nélküli és a csendes telepítés nem támogatott.
 
 **K: erdővel rendelkezem ahol tartománya nem érhető el. Hogyan kell telepíteni az Azure AD Connect?**  
-A 2016. februári a buildek Ez támogatott.
+A hello buildekben a 2016. februári Ez támogatott.
 
-**K: az Active Directory tartományi szolgáltatások health-ügynök működik a server core?**  
-Igen. Az ügynök telepítése után végezze el a regisztrációs folyamat során a következő PowerShell-parancsmag használatával: 
+**K: hello Active Directory tartományi szolgáltatások health ügynök munka a server core?**  
+Igen. Hello ügynök telepítése után hello regisztrációs folyamat a következő PowerShell-parancsmag hello segítségével hajthatja végre: 
 
 `Register-AzureADConnectHealthADDSAgent -Credentials $cred`
 
 ## <a name="network"></a>Network (Hálózat)
-**K: van egy tűzfal, a hálózati eszköz, vagy valami mást, amely korlátozza a maximális időt kapcsolatok maradhat, nyissa meg a hálózaton. Mennyi ideig kell a ügyfél ügyféloldali időkorlát küszöbértéke lehet, ha az Azure AD Connect használatával?**  
-Minden hálózati szoftver, a fizikai eszközök vagy bármi más, amely korlátozza a maximális időt kapcsolatok nyitva maradhat a használata ajánlott a küszöbérték legalább 5 perc (300 másodperc) a kiszolgálóra, ahol az Azure AD Connect-ügyfél telepítve van és az Azure Active Directory közötti kapcsolatot. Ez vonatkozik az összes korábban kiadott Microsoft Identity szinkronizálási eszközöket is.
+**K: van egy tűzfal, a hálózati eszköz, vagy valami mást, amely korlátozza a hello maximális idő kapcsolatok maradhat, nyissa meg a hálózaton. Mennyi ideig kell a ügyfél ügyféloldali időkorlát küszöbértéke lehet, ha az Azure AD Connect használatával?**  
+Minden hálózati szoftvert, fizikai eszközök vagy bármely más, a kapcsolatok nyitva maradhat hello maximális idő közötti kapcsolatot kell használnia a küszöbérték legalább 5 perc (300 másodperc) korlátok hello hello Azure AD Connect-ügyfelet futtató kiszolgáló és az Azure Active Directory. Ez a korábban kiadott tooall Microsoft Identity szinkronizálási eszközöket is vonatkozik.
 
 **K: vannak (egy címke tartományok) által támogatott?**  
 Nem, az Azure AD Connect nem támogatja a helyi erdők/tartományok által használatával.
 
 **K: vannak "pontozott" nevű NetBios támogatott?**  
-Nem, az Azure AD Connect nem támogatja a helyi erdők/tartományok ahol a NetBIOS-név pontot tartalmaz "." a neve.
+Nem, az Azure AD Connect nem támogatja a helyi erdők/tartományok ahol hello NetBIOS-név pontot tartalmaz "." hello nevében.
 
 ## <a name="federation"></a>Összevonási
-**K: Mit tehetek, ha jelenik meg egy e-mailt, amely az Office 365 tanúsítvány megújítása kérése**  
-Útmutatás a a [megújítani a tanúsítványokat](active-directory-aadconnect-o365-certs.md) témakör: a tanúsítvány megújításához.
+**K: Mi a teendő ha jelenik meg egy e-mailt, amely toorenew jóváhagyás kérése az Office 365 tanúsítvány**  
+Használja a hello hello útmutatást [megújítani a tanúsítványokat](active-directory-aadconnect-o365-certs.md) című hogyan toorenew hello tanúsítványt.
 
-**K: van "automatikus frissítése függő" állítsa be az Office 365 függő entitáshoz. Kell tennie semmit, amikor a jogkivonat-aláíró tanúsítványa automatikusan visszaállítja a?**  
-A cikkben ismertetett útmutatás [megújítani a tanúsítványokat](active-directory-aadconnect-o365-certs.md).
+**K: van "automatikus frissítése függő" állítsa be az Office 365 függő entitáshoz. Van tootake bármely művelet, amikor a jogkivonat-aláíró tanúsítványa automatikusan visszaállítja a?**  
+Használja a hello cikk hello útmutatást [megújítani a tanúsítványokat](active-directory-aadconnect-o365-certs.md).
 
 ## <a name="environment"></a>Környezet
-**K: támogatott a kiszolgáló átnevezése, az Azure AD Connect telepítése után?**  
-Nem. A kiszolgálónév módosítása esetén a szinkronizálási motor nem lehet kapcsolódni az SQL-adatbázishoz, és a szolgáltatás nem fogja tudni elindítani.
+**K: az informatikai támogatott toorename hello kiszolgáló, az Azure AD Connect telepítése után?**  
+Nem. Hello kiszolgáló nevének módosítása OK hello szinkronizálási motor toonot képes tooconnect toohello SQL-adatbázis és hello szolgáltatás nem lesz képes toostart.
 
 ## <a name="identity-data"></a>Azonosító adatok
-**K: az egyszerű felhasználónév (userPrincipalName) attribútum az Azure ad-ben nem egyezik a helyszíni UPN - miért?**  
+**K: az Azure AD-hello UPN (userPrincipalName) attribútuma nem egyezik a helyszínen UPN - miért hello?**  
 Ezek a cikkek lásd:
 
-* [Office 365, az Azure vagy az Intune-ban szereplő felhasználónevek nem egyeznek meg, a helyszíni egyszerű Felhasználónévvel vagy másodlagos bejelentkezési Azonosítóval](https://support.microsoft.com/en-us/kb/2523192)
-* [A felhasználói fiók egyszerű másik összevont tartományt használandó módosítása után a módosítások nem az Azure Active Directory szinkronizáló eszköz által szinkronizálása](https://support.microsoft.com/en-us/kb/2669550)
+* [A felhasználónevek nem egyeznek az Office 365, Azure vagy Intune hello helyszíni egyszerű Felhasználónévvel vagy másodlagos bejelentkezési Azonosítóval](https://support.microsoft.com/en-us/kb/2523192)
+* [A felhasználói fiók toouse másik összevont tartományt egyszerű hello módosítása után a módosítások nem hello Azure Active Directory szinkronizáló eszköz által szinkronizálása](https://support.microsoft.com/en-us/kb/2669550)
 
-Beállíthatja úgy is engedélyezi a szinkronizálási motor frissítése a userPrincipalName leírtak szerint az Azure AD [az Azure AD Connect szinkronizálási szolgáltatás szolgáltatások](active-directory-aadconnectsyncservice-features.md).
+Beállíthatja úgy is az Azure AD tooallow hello szinkronizálási motor tooupdate hello userPrincipalName leírtak [az Azure AD Connect szinkronizálási szolgáltatás szolgáltatások](active-directory-aadconnectsyncservice-features.md).
 
-**K: enyhe találatra támogatja azt a helyszíni AD-csoport vagy partner meglévő Azure AD-csoport vagy partner objektummal objektumokat?**  
+**K: az informatikai támogatott toosoft egyezés a helyszíni AD-csoport vagy partner objektumok meglévő Azure AD-csoport vagy partner objektummal?**  
 Nem, ez jelenleg nem támogatott.
 
-**K:, mert az azt manuális módon állítsa be a támogatott merevlemez egyező úgy, hogy a meglévő Azure AD-csoport vagy partner objektumok attribútum ImmutableId a helyszíni AD-csoport vagy partner objektumok?**  
+**K: az informatikai támogatott toomanually ImmutableId attribútum beállítása a meglévő Azure AD csoport vagy partner objektumok toohard egyezni tooon helyszíni AD-csoport vagy partner objektumok?**  
 Nem, ez jelenleg nem támogatott.
 
 
 
 ## <a name="custom-configuration"></a>Egyéni konfiguráció
-**K: hol szerepelnek a PowerShell-parancsmagok az Azure AD Connect?**  
-Kivételével a parancsmagokat ezen a helyen más található az Azure AD Connect PowerShell-parancsmagok nem támogatottak a ügyfél használja.
+**K: hol vannak hello PowerShell-parancsmagok az Azure AD Connect dokumentált?**  
+Ezen a helyen hello parancsmagokat hello kivételével más található az Azure AD Connect PowerShell-parancsmagok nem támogatottak a ügyfél használja.
 
-**K: használhatok "Kiszolgáló exportálási/kiszolgáló importálás" található *Synchronization Service Managert* helyezhető át a konfigurációs kiszolgáló között?**  
-Nem. Ez a beállítás az összes konfigurációs beállítások beolvasása sikertelen lesz, és nem használható. Ehelyett használjon a varázsló az alapkonfiguráció létrehozása a második kiszolgálón, és a szerkesztővel szinkronizálási szabály létrehozása a PowerShell-parancsfájlokat egyéni szabályok áthelyezése kiszolgálók között. Lásd: [áttelepítési éppen](active-directory-aadconnect-upgrade-previous-version.md#swing-migration).
+**K: használhatok "Kiszolgáló exportálási/kiszolgáló importálás" található *Synchronization Service Managert* toomove konfigurációs kiszolgáló között?**  
+Nem. Ez a beállítás az összes konfigurációs beállítások beolvasása sikertelen lesz, és nem használható. Inkább helyette hello varázsló toocreate hello alapkonfiguráció hello második kiszolgálón használja és használatát hello szinkronizálási szabály szerkesztő toogenerate PowerShell parancsfájlok toomove egyéni szabályok kiszolgálók között. Lásd: [áttelepítési éppen](active-directory-aadconnect-upgrade-previous-version.md#swing-migration).
 
-**K: kell gyorsítótárazzák a jelszavakat az Azure bejelentkezési oldal, és ez megelőzhető ugyanis tartalmaz. a jelszó bemeneti elemnek az automatikus kiegészítés = "false" attribútum?**</br>
-Jelenleg nem támogatjuk a jelszó bemeneti mező, beleértve az automatikus kiegészítés címke a HTML-attribútumok módosítását. Jelenleg dolgozunk egy szolgáltatás, amely lehetővé teszi a egyéni Javascript, amely lehetővé teszi azok az attribútumok hozzáadása a jelszó mező. 2017 elérhető későbbi része legyen.
+**K: kell gyorsítótárazzák a jelszavakat az Azure-bejelentkezés hello lap, és ez megelőzhető ugyanis tartalmaz. a jelszó bemeneti elemnek hello autocomplete = "false" attribútum?**</br>
+Jelenleg nem támogatjuk hello jelszó beviteli mezőt, beleértve a hello autocomplete címke módosítása hello HTML attribútumait. Jelenleg dolgozunk egy szolgáltatás, amely lehetővé teszi a egyéni Javascript, amely lehetővé teszi a tooadd bármely attribútum toohello jelszó mező. 2017 elérhető későbbi része legyen.
 
-**K: az Azure bejelentkezési lapon felhasználónevei, akik korábban már sikeresen bejelentkezett felhasználók jelennek meg.  Ez a viselkedés kikapcsolható?**</br>
-Jelenleg nem támogatjuk a bejelentkezési oldal HTML attribútumainak módosítása. Jelenleg dolgozunk egy szolgáltatás, amely lehetővé teszi a egyéni Javascript, amely lehetővé teszi azok az attribútumok hozzáadása a jelszó mező. 2017 elérhető későbbi része legyen.
+**K: az Azure bejelentkezési oldal hello a felhasználók számára, akik korábban már sikeresen bejelentkezett felhasználónevek jelennek meg.  Ez a viselkedés kikapcsolható?**</br>
+Jelenleg nem támogatott módosítása hello hello bejelentkezési lap HTML-attribútumok. Jelenleg dolgozunk egy szolgáltatás, amely lehetővé teszi a egyéni Javascript, amely lehetővé teszi a tooadd bármely attribútum toohello jelszó mező. 2017 elérhető későbbi része legyen.
 
-**K: akadályozza meg, hogy a munkamenetek van?**</br>
+**K: van egy módon tooprevent egyidejű munkamenetek?**</br>
 Nem.
 
 
@@ -95,15 +95,15 @@ Nem.
 ## <a name="troubleshooting"></a>Hibaelhárítás
 **K: hogyan kaphat segítséget az Azure AD Connect?**
 
-[A Microsoft Tudásbázisban (KB)](https://www.microsoft.com/en-us/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport)
+[Keresési hello Microsoft Tudásbázis (KB)](https://www.microsoft.com/en-us/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport)
 
-* Keresse meg a Microsoft Tudásbázis (KB) az Azure AD Connect-támogatással kapcsolatos gyakori javítás / csere problémákat műszaki megoldások keresése.
+* Keresse meg a Microsoft Tudásbázis (KB) hello műszaki megoldások toocommon javítás / csere problémák az Azure AD Connect-támogatással kapcsolatos.
 
 [A Microsoft Azure Active Directory-fórumok](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD)
 
-* Keressen, és keresse meg a technikai kérdések és a közösségi válaszok vagy saját kérdés feltevése kattintva [Itt](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required).
+* Keressen, és keresse meg a technikai kérdések és hello Közösségtől felveszi vagy saját kérdés feltevése kattintva [Itt](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required).
 
 [Az Azure AD Connect ügyfélszolgálata](https://manage.windowsazure.com/?getsupport=true)
 
-* Ez a hivatkozás segítségével segítségre van szüksége az Azure portálon keresztül.
+* Használja a kapcsolat tooget támogatás hello Azure-portálon keresztül.
 

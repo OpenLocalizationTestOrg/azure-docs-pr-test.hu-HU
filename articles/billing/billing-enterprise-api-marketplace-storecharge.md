@@ -1,6 +1,6 @@
 ---
-title: "Azure számlázási vállalati API - piactér díjak |} Microsoft Docs"
-description: "További tudnivalók a Reporting API-k, amelyek lehetővé teszik a vállalati Azure ügyfelek való lekérésére programozott módon fogyasztási adatokhoz."
+title: "aaaAzure számlázási vállalati API - piactér díjak |} Microsoft Docs"
+description: "További információk a hello Reporting API-k, amelyek lehetővé teszik a vállalati Azure ügyfelek toopull adatokkal programozott módon."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 5539623f7ae35e14b6dafe6fdf9efe4bcaba4fd3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cdf2836b52df06a4bf5ed71a476fe33662c5363c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---marketplace-store-charge"></a>A vállalati ügyfelek - piactér tároló kell fizetni jelentéskészítési API-k
 
-A piactér tároló ingyenesen elérhető API piactér használat alapú költségek bontásban tartalmazza a megadott számlázási időszak vagy a kezdő és befejező dátumok (egyszer díjak nincsenek) napi adja vissza.
+hello piactér tároló ingyenesen elérhető API értéket ad vissza hello piactér használat alapú költségek bontás hello nap megadott számlázási időszak vagy kezdő és befejező dátumok (egyszer díjak nem szerepelnek).
 
 ##<a name="request"></a>Kérés 
-Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterprise-api.md). Ha a számlázott időszak nincs megadva, majd az aktuális elszámolási időszak adat. Egyéni időtartományhoz megadhatók a kezdő és befejező dátum paraméterek éééé-hh-nn formátum a, a maximális támogatott időtartomány 36 hónap.  
+Közös fejléc tulajdonságok hozzáadott toobe igénylő megadott [Itt](billing-enterprise-api.md). Ha nincs megadva a számlázott időszak, majd a hello aktuális elszámolási időszak adat. Egyéni időtartományhoz hello megkezdve adható meg, és dátumparaméterekkel, amelyek hello formátum éééé-hh-nn hello maximális támogatott időben tartománya 36 hónap végén.  
 
 |Módszer | Kérelem URI-azonosítója|
 |-|-|
@@ -35,7 +35,7 @@ Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterp
 |GET|{enrollmentNumber} https://consumption.Azure.com/v2/enrollments/ / marketplacechargesbycustomdate? startTime = 2017-01-01 & endTime = 2017-01-10|
 
 > [!Note]
-> API előzetes verzióját használja, a fenti URL-címben v1 v2 cserélje.
+> toouse hello előzetes verzióját API, v2 v1 a fenti URL-cím hello cserélje le.
 >
 
 ## <a name="response"></a>Válasz
@@ -76,29 +76,29 @@ Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterp
 
 |Tulajdonság neve| Típus| Leírás
 |-|-|-|
-|id|Karakterlánc|A piactér kell fizetni elem egyedi azonosítója|
-|subscriptionGuid|GUID|Az előfizetés Guid|
-|SubscriptionName|Karakterlánc|Az előfizetés neve|
-|meterId|Karakterlánc|A kibocsátott mérő azonosítója|
-|usageStartDate|Dátum és idő|Indítsa el a használati rekord|
-|usageEndDate|Dátum és idő|A használati rekord befejezési időpontja|
-|offerName|Karakterlánc|Az ajánlat neve|
-|Erőforráscsoport|Karakterlánc|Az erőforrás csoport|
+|id|Karakterlánc|Hello piactér kell fizetni elem egyedi azonosítója|
+|subscriptionGuid|GUID|hello előfizetés Guid|
+|SubscriptionName|Karakterlánc|hello előfizetés neve|
+|meterId|Karakterlánc|A kibocsátott mérő hello azonosítója|
+|usageStartDate|Dátum és idő|Hello használati rekord kezdési időpontja|
+|usageEndDate|Dátum és idő|Hello használati rekord befejezési időpontja|
+|offerName|Karakterlánc|hello ajánlat neve|
+|Erőforráscsoport|Karakterlánc|hello erőforrás csoport|
 |instanceId|Karakterlánc|Példányazonosító|
 |additionalinfo részben|Karakterlánc|További információ a JSON-karakterláncban|
 |tags|Karakterlánc|Címke JSON-karakterláncban|
-|orderNumber|Karakterlánc|A sorszám|
-|unitOfMeasure|Karakterlánc|A mérő mértékegysége|
-|CostCenter|Karakterlánc|A költségközpont|
-|accountId|int|A fiók azonosítója|
-|Fióknév|Karakterlánc |A fiók neve|
-|accountOwnerId|Karakterlánc|A fiók tulajdonosa azonosítója|
-|departmentId|int|A szervezeti egység azonosítója|
-|departmentname nevű|Karakterlánc|Az osztály neve|
-|publisherName|Karakterlánc|A közzétevő neve|
-|planName|Karakterlánc|A csomag neve|
+|orderNumber|Karakterlánc|hello sorszámú|
+|unitOfMeasure|Karakterlánc|Hello mérő mértékegységét|
+|CostCenter|Karakterlánc|költség hello center|
+|accountId|int|hello fiók azonosítója|
+|Fióknév|Karakterlánc |hello fiók neve|
+|accountOwnerId|Karakterlánc|hello fiókazonosító tulajdonosa|
+|departmentId|int|hello részleg azonosítója|
+|departmentname nevű|Karakterlánc|hello osztály neve|
+|publisherName|Karakterlánc|hello közzétevő neve|
+|planName|Karakterlánc|hello csomag neve|
 |consumedQuantity|Decimális|Ezen időszak alatt felhasznált mennyiség|
-|resourceRate|Decimális|A mérő Egységár|
+|resourceRate|Decimális|Hello mérő Egységár|
 |extendedCost|Decimális|Becsült költség felhasznált mennyiség és kiterjesztett alapján|
 <br/>
 ## <a name="see-also"></a>Lásd még:

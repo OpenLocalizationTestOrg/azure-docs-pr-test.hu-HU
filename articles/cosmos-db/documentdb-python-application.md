@@ -1,6 +1,6 @@
 ---
-title: "Python Flask-webalkalmazási oktatóanyag az Azure Cosmos DB-hez | Microsoft Docs"
-description: "Egy adatbázis-oktatóanyag áttekintésével megtudhatja, hogyan tárolhatja és érheti el az Azure-ban tárolt Python Flask-webalkalmazások adatait az Azure Cosmos DB használatával. Alkalmazásfejlesztési megoldások keresése."
+title: "aaaPython Flask webalkalmazásokra vonatkozó oktatóanyag az Azure Cosmos DB |} Microsoft Docs"
+description: "Tekintse át egy adatbázis-oktatóanyag az Azure-platformon futó Python Flask-webalkalmazások toostore és a hozzáférési adatok Azure Cosmos DB használatával. Alkalmazásfejlesztési megoldások keresése."
 keywords: "Alkalmazásfejlesztés, python flask, python-webalkalmazás, python-webfejlesztés"
 services: cosmos-db
 documentationcenter: python
@@ -16,11 +16,11 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ed5284b5a265840c43dbc9890082a7c038d22975
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 87b73c656ed96a7efbd162843a1529d435f027f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-python-flask-web-application-using-azure-cosmos-db"></a>Python Flask-webalkalmazás létrehozása az Azure Cosmos DB használatával
 > [!div class="op_single_selector"]
@@ -31,73 +31,73 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-Ez az oktatóanyag bemutatja, hogyan tárolhatja és érheti el az Azure-ban tárolt Python-webalkalmazás adatait az Azure Cosmos DB használatával, valamint feltételezi, hogy már rendelkezik némi tapasztalattal a Python és az Azure Websites használatát illetően.
+Az oktatóanyag bemutatja, hogyan toouse Azure Cosmos DB toostore és a hozzáférési adatok egy Python webes alkalmazás Azure-platformon futó, és feltételezi, hogy rendelkezik némi tapasztalattal a Python és az Azure-webhelyek használatát.
 
 Az adatbázis-oktatóanyag az alábbiakat ismerteti:
 
 1. Létrehozása, és üzembe helyezése egy Cosmos-DB-fiókot.
 2. A Python Flask-alkalmazás létrehozása.
-3. A Cosmos DB a webalkalmazásból történő használata, valamint az ahhoz való csatlakozás.
-4. Az Azure webes alkalmazás központi telepítését.
+3. Csatlakozás tooand Cosmos DB használatával a webalkalmazásból.
+4. Hello webes alkalmazás tooAzure telepítését.
 
-Az oktatóanyag utasításait követve egy egyszerű szavazóalkalmazást fog létrehozni, amely lehetővé teszi, hogy leadja a voksát egy szavazáson.
+Az oktatóanyag utasításait követve egy egyszerű szavazóalkalmazást, amely lehetővé teszi a voksát egy szavazáson toovote fog létrehozni.
 
-![Az adatbázis-oktatóprogram során létrehozott szavazóalkalmazást képernyőfelvétele](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
+![Képernyőfelvétel a hello szavazóalkalmazást adatbázis-oktatóprogram során létrehozott](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
 
 ## <a name="database-tutorial-prerequisites"></a>Az adatbázis-oktatóanyag előfeltételei
-A jelen cikkben lévő utasítások követése előtt rendelkeznie kell a következőkkel:
+Ez a cikk hello utasításait követve, előtt győződjön meg, hogy rendelkezik a következőkkel hello:
 
 * Aktív Azure-fiók. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
  
     VAGY 
 
-    Az [Azure Cosmos DB Emulator](local-emulator.md) helyi telepítése.
+    Egy helyi telepítését teszi hello [Azure Cosmos DB emulátor](local-emulator.md).
 * [A Microsoft Visual Studio Community 2017](http://www.visualstudio.com/).  
 * [A Python Tools for Visual Studio](https://github.com/Microsoft/PTVS/).  
 * [Python 2.7-hez készült Microsoft Azure SDK](https://azure.microsoft.com/downloads/). 
 * [Python 2.7.13](https://www.python.org/downloads/windows/). 
 
 > [!IMPORTANT]
-> Ha először telepíti a Python 2.7, győződjön meg arról, hogy testreszabása Python 2.7.13 képernyőjén választja **python.exe hozzáadása az elérési út**.
+> Ha telepíti Python 2.7 hello először, győződjön meg arról, hogy hello testreszabása Python 2.7.13 képernyőjén választja **python.exe tooPath hozzáadása**.
 > 
-> ![Képernyőfelvétel a Customize Python 2.7.11 (Python 2.7.11 testreszabása) képernyőről, ahol be az Add python.exe to Path (Python.exe hozzáadása az útvonalhoz) lehetőséget ki kell választania.](./media/documentdb-python-application/cosmos-db-python-install.png)
+> ![Képernyőfelvétel a hello testreszabása Python 2.7.11 képernyő, ahol tooselect Add python.exe tooPath kell](./media/documentdb-python-application/cosmos-db-python-install.png)
 > 
 > 
 
 * [A Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266).
 
 ## <a name="step-1-create-an-azure-cosmos-db-database-account"></a>1. lépés: Azure Cosmos DB-adatbázisfiók létrehozása
-Először hozzon létre egy Cosmos DB-fiókot. Ha már rendelkezik fiókkal, vagy az oktatóanyagban az Azure Cosmos DB Emulatort használja, továbbléphet a [2. lépés: Új Python Flask-webalkalmazás létrehozása](#step-2-create-a-new-python-flask-web-application) című lépésre.
+Először hozzon létre egy Cosmos DB-fiókot. Ha már rendelkezik fiókkal, vagy használatakor hello Azure Cosmos DB emulátor ehhez az oktatóanyaghoz, ugorjon túl[2. lépés: új Python Flask-webalkalmazás létrehozása](#step-2-create-a-new-python-flask-web-application).
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 <br/>
-Most végigvezetjük azon, hogyan hozhat létre új Python Flask-webalkalmazást az alapoktól kezdve.
+Most végigvezetjük hogyan toocreate egy új Python Flask-webalkalmazás a hello szabad-e.
 
 ## <a name="step-2-create-a-new-python-flask-web-application"></a>2. lépés: Új Python Flask-webalkalmazás létrehozása
-1. A Visual Studio programban, a **File** (Fájl) menüben mutasson a **New** (Új) elemre, majd kattintson a **Project** (Projekt) elemre.
+1. A Visual Studio, a hello **fájl** menüben mutasson túl**új**, és kattintson a **projekt**.
    
-    Megjelenik a **New project** (Új projekt) párbeszédpanel.
-2. A bal oldali ablaktáblán bontsa ki a **Templates** (Sablonok), majd a **Python** elemet, és kattintson a **Web** lehetőségre. 
-3. Válassza ki a **Flask Web Project** (Flask webes projekt) lehetőséget a középső ablaktáblán, majd a **Name** (Név) mezőbe írja be a **tutorial** nevet, és kattintson az **OK** gombra. Ne feledje, hogy a Python-csomagok nevében csak kisbetű szerepelhet, ahogyan ezt a [Stílusmutató a Python-kódokhoz](https://www.python.org/dev/peps/pep-0008/#package-and-module-names) című útmutató is részletezi.
+    Hello **új projekt** párbeszédpanel jelenik meg.
+2. Hello bal oldali ablaktáblán bontsa ki a **sablonok** , majd **Python**, és kattintson a **webes**. 
+3. Válassza ki **Flask webes projekt** hello középső ablaktáblába, majd a hello **neve** mezőbe írja be **oktatóanyag**, és kattintson a **OK**. Ne feledje, hogy Python-csomagok nevében csak kisbetű szerepelhet, a hello [Stílusútmutató Python kód](https://www.python.org/dev/peps/pep-0008/#package-and-module-names).
    
-    Azok számára, akik még nem ismernék, a Python Flask egy webalkalmazás-fejlesztési keretrendszer, amely lehetővé teszi a webalkalmazások Pythonban történő gyorsabb létrehozását.
+    Ezen új tooPython Flask egy webalkalmazás-fejlesztési keretrendszer, amely segít a webalkalmazások pythonban gyorsabban esetén.
    
-    ![Képernyőfelvétel a Visual Studio New Project (Új projekt) ablakáról, amely bal oldalán ki van emelve a Python, középen ki van választva a Python Flask webes projekt elem, a Name (Név) mezőben pedig meg van adva a tutorial név.](./media/documentdb-python-application/image9.png)
-4. A **Python Tools for Visual Studio** ablakban kattintson az **Install into a virtual environment** (Telepítés virtuális környezetbe) lehetőségre. 
+    ![Képernyőfelvétel a Visual Studio és Python lévő balra, a Python Flask webes projekt hello középső és hello neve oktatóanyag hello név mezőben kiválasztott hello hello új projekt ablakról](./media/documentdb-python-application/image9.png)
+4. A hello **a Python Tools for Visual Studio** ablak, kattintson a **a virtuális környezetbe telepítése**. 
    
-    ![Képernyőfelvétel az adatbázisról-oktatóanyagról – Python Tools for Visual Studio](./media/documentdb-python-application/python-install-virtual-environment.png)
-5. Az **Add Virtual Environment** (Virtuális környezet hozzáadása) ablakban elfogadhatja az alapértelmezett értékeket, és a Python 2.7-es verziót használhatja alapkörnyezetként, mivel a PyDocumentDB jelenleg nem támogatja a Python 3.x-es verzióit. Végül kattintson a **Create** (Létrehozás) gombra. Ezzel beállítja a projekthez szükséges Python virtuális környezetet.
+    ![Képernyőfelvétel a hello adatbázisról-oktatóanyagról – Python Tools for Visual Studio ablak](./media/documentdb-python-application/python-install-virtual-environment.png)
+5. A hello **virtuális környezet hozzáadása** ablakban hello alapértelmezések elfogadásához és a Python 2.7-es alapszintű hello környezetben használható, mert a PyDocumentDB jelenleg nem támogatja a Python 3.x, és kattintson **létrehozása**. Hello szükséges Python virtuális környezetet a projekt állít be.
    
-    ![Képernyőfelvétel az adatbázisról-oktatóanyagról – Python Tools for Visual Studio](./media/documentdb-python-application/image10_A.png)
+    ![Képernyőfelvétel a hello adatbázisról-oktatóanyagról – Python Tools for Visual Studio ablak](./media/documentdb-python-application/image10_A.png)
    
-    A környezet sikeres telepítését követően a következőt látja majd a kimeneti ablakban: `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.5 itsdangerous-0.24 'requirements.txt' was installed successfully.`.
+    a kimeneti ablakban jelennek meg hello `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.5 itsdangerous-0.24 'requirements.txt' was installed successfully.` amikor hello környezet sikeres telepítését követően.
 
-## <a name="step-3-modify-the-python-flask-web-application"></a>3. lépés: A Python Flask-webalkalmazás módosítása
-### <a name="add-the-python-flask-packages-to-your-project"></a>A Python Flask-csomagok hozzáadása a projekthez
-A projekt beállítását követően hozzá kell adnia a szükséges Flask-csomagokat a projekthez, beleértve a pydocumentdb csomagot is, amely a DocumentDB-hez szükséges Python-csomag.
+## <a name="step-3-modify-hello-python-flask-web-application"></a>3. lépés: Hello Python Flask-webalkalmazás módosítása
+### <a name="add-hello-python-flask-packages-tooyour-project"></a>Hello Python Flask-csomagok tooyour projekt hozzáadása
+A projekt beállítását követően tooadd hello szükséges Flask csomagok tooyour projekt, beleértve a pydocumentdb hello Python-csomag a DocumentDB lesz szüksége.
 
-1. A Solution Explorer (Megoldáskezelő) nézetben nyissa meg a **requirements.txt** fájlt, majd cserélje ki annak tartalmát a következőre:
+1. A Solution Explorerben nyissa meg a hello fájlt nevű **requirements.txt** , és cserélje ki hello tartalmát hello következőre:
    
         flask==0.9
         flask-mail==0.7.6
@@ -110,34 +110,34 @@ A projekt beállítását követően hozzá kell adnia a szükséges Flask-csoma
         flask-babel==0.8
         flup
         pydocumentdb>=1.0.0
-2. Mentse a **requirements.txt** fájlt. 
+2. Mentse a hello **requirements.txt** fájlt. 
 3. A Solution Explorer (Megoldáskezelő) nézetben kattintson a jobb gombbal az **env** elemre, majd kattintson az **Install from requirements.txt** (Telepítés a requirements.txt fájlból) lehetőségre.
    
-    ![A képernyőfelvétel az env elem (Python 2.7) kiválasztását, valamint az Install from requirements.txt (Telepítés a requirements.txt fájlból) lehetőséget mutatja be.](./media/documentdb-python-application/cosmos-db-python-install-from-requirements.png)
+    ![Képernyőfelvétel az ENV elem (Python 2.7) ki a telepítés a requirements.txt hello listában kijelölt](./media/documentdb-python-application/cosmos-db-python-install-from-requirements.png)
    
-    A sikeres telepítés után a kimeneti ablak a következőt jeleníti meg:
+    A sikeres telepítés után hello a kimeneti ablakban hello következő:
    
         Successfully installed Babel-2.3.2 Tempita-0.5.2 WTForms-2.1 Whoosh-2.7.4 blinker-1.4 decorator-4.0.9 flask-0.9 flask-babel-0.8 flask-mail-0.7.6 flask-sqlalchemy-0.16 flask-whooshalchemy-0.55a0 flask-wtf-0.8.4 flup-1.0.2 pydocumentdb-1.6.1 pytz-2013b0 speaklater-1.3 sqlalchemy-0.7.9 sqlalchemy-migrate-0.7.2
    
    > [!NOTE]
-   > Ritka esetekben előfordulhat, hogy egy hibaüzenet jelenik meg a kimeneti ablakban. Ebben az esetben ellenőrizze, hogy a hiba a tisztítással kapcsolatos-e. Előfordul, hogy a tisztítás sikertelen, de a telepítés sikeres (ennek ellenőrzéséhez görgessen felfelé a kimeneti ablakban). A telepítés állapotát a [virtuális környezet ellenőrzésével](#verify-the-virtual-environment) vizsgálhatja meg. Ha a telepítés sikertelen volt, de a megerősítés sikeres, akkor továbbléphet.
+   > Ritka esetekben hello kimeneti ablakban hiba jelenhet meg. Ha ez történik, ellenőrizze, hogy hello hiba-e a kapcsolódó toocleanup. Egyes esetekben nem sikerül hello karbantartása, de hello telepítése akkor is sikeres (görgessen fel a hello kimeneti ablak tooverify ez). Ellenőrizheti a telepítés állapotát [ellenőrzése hello virtuális környezet](#verify-the-virtual-environment). Ha hello telepítése sikertelen volt, de hello ellenőrzés sikeres, akkor OK toocontinue.
    > 
    > 
 
-### <a name="verify-the-virtual-environment"></a>A virtuális környezet ellenőrzése
+### <a name="verify-hello-virtual-environment"></a>Hello virtuális környezet ellenőrzése
 Ellenőrizzük, hogy minden megfelelően telepítve van-e.
 
-1. Fordítsa le a megoldást a **Ctrl**+**Shift**+**B** billentyűkombináció lenyomásával.
-2. A sikeres fordítás után indítsa el a webhelyet az **F5** billentyű lenyomásával. Ez elindítja a Flask fejlesztési kiszolgálót és a webböngészőt. A következő lapnak kell megjelennie.
+1. Hello megoldás kiépítését, billentyűkombináció lenyomásával **Ctrl**+**Shift**+**B**.
+2. Sikeres hello fordítás után indítsa el a webhelyet hello billentyűkombináció lenyomásával **F5**. Ez elindítja a hello Flask fejlesztési kiszolgálót, és a webböngészőt. A következő lap hello kell megjelennie.
    
-    ![A böngészőben megjelenített üres Python Flask webes fejlesztési projekt](./media/documentdb-python-application/image12.png)
-3. Nyomja le a **Shift**+**F5** billentyűkombinációt a Visual Studio alkalmazásban a webhely hibakeresésének leállításához.
+    ![hello üres Python Flask webes fejlesztési projekt a böngészőben megjelenített](./media/documentdb-python-application/image12.png)
+3. Nyomja le a hello webhely hibakeresésének leállításához **Shift**+**F5** a Visual Studióban.
 
 ### <a name="create-database-collection-and-document-definitions"></a>Adatbázis-, gyűjtemény- és dokumentum-definíciók létrehozása
 Ideje létrehozni a szavazóalkalmazást az új fájlok hozzáadásával, valamint a többi fájl frissítésével.
 
-1. A Solution Explorer (Megoldáskezelő) nézetben kattintson a jobb gombbal a **tutorial** nevű projektre, kattintson az **Add** (Hozzáadás), majd a **New Item** (Új elem) gombra. Válassza az **Empty Python File** (Üres Python-fájl) lehetőséget, és adja neki a **forms.py** nevet.  
-2. Adja hozzá a következő kódot a forms.py fájlhoz, majd mentse azt.
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **oktatóanyag** projektre, kattintson **Hozzáadás**, és kattintson a **új elem**. Válassza ki **üres Python-fájl** és nevű hello fájl **forms.py**.  
+2. Adja hozzá a következő kód toohello forms.py fájl hello, és mentse hello fájlt.
 
 ```python
 from flask.ext.wtf import Form
@@ -151,9 +151,9 @@ class VoteForm(Form):
 ```
 
 
-### <a name="add-the-required-imports-to-viewspy"></a>A szükséges importálások hozzáadása a views.py fájlhoz
-1. A Solution Explorer (Megoldáskezelő) nézetben bontsa ki a **tutorial** mappát, majd nyissa meg a **views.py** fájlt. 
-2. Adja hozzá a következő importálási utasításokat a **views.py** fájl elejéhez, majd mentse a fájlt. Ezek importálják majd a Cosmos DB Python SDK-it és a Flask-csomagokat.
+### <a name="add-hello-required-imports-tooviewspy"></a>Adja hozzá a szükséges hello importálja tooviews.py
+1. A Megoldáskezelőben bontsa ki a hello **oktatóanyag** mappára, majd nyissa meg hello **views.py** fájlt. 
+2. Adja hozzá a következő importálási utasítások toohello felső részén hello hello **views.py** fájlt, majd mentse hello fájlt. Ezek importálása Cosmos DB Python SDK-IT és hello Flask-csomagokat.
    
     ```python
     from forms import VoteForm
@@ -162,15 +162,15 @@ class VoteForm(Form):
     ```
 
 ### <a name="create-database-collection-and-document"></a>Adatbázisok, gyűjtemények és dokumentumok létrehozása
-* Adja hozzá az alábbi kódot a **views.py** fájl végéhez. Ezzel létrehozza az űrlap által használt adatbázist. Ne töröljön semmit a **views.py** fájl meglévő kódjából. Egyszerűen csak fűzze hozzá a kódot a fájl végéhez.
+* Még mindig **views.py**, adja hozzá a következő kód toohello hello fájl vége hello. Ezzel létrehozza hello űrlap által használt hello adatbázist hoz létre. Ne törölje a meglévő kód hello **views.py**. Egyszerűen csak fűzze hozzá toohello ennek.
 
 ```python
 @app.route('/create')
 def create():
-    """Renders the contact page."""
+    """Renders hello contact page."""
     client = document_client.DocumentClient(config.DOCUMENTDB_HOST, {'masterKey': config.DOCUMENTDB_KEY})
 
-    # Attempt to delete the database.  This allows this to be used to recreate as well as create
+    # Attempt toodelete hello database.  This allows this toobe used toorecreate as well as create
     try:
         db = next((data for data in client.ReadDatabases() if data['id'] == config.DOCUMENTDB_DATABASE))
         client.DeleteDatabase(db['_self'])
@@ -201,7 +201,7 @@ def create():
 
 
 ### <a name="read-database-collection-document-and-submit-form"></a>Adatbázis, gyűjtemény és dokumentum beolvasása, valamint az űrlap elküldése
-* Adja hozzá az alábbi kódot a **views.py** fájl végéhez. Ezzel létrehozza az űrlapot, beolvassa az adatbázist, a gyűjteményt és a dokumentumot. Ne töröljön semmit a **views.py** fájl meglévő kódjából. Egyszerűen csak fűzze hozzá a kódot a fájl végéhez.
+* Még mindig **views.py**, adja hozzá a következő kód toohello hello fájl vége hello. Ezzel létrehozza hello űrlap hello adatbázis, gyűjtemény és dokumentum olvasása beállítása. Ne törölje a meglévő kód hello **views.py**. Egyszerűen csak fűzze hozzá toohello ennek.
 
 ```python
 @app.route('/vote', methods=['GET', 'POST'])
@@ -220,11 +220,11 @@ def vote():
         # Read documents and take first since id should not be duplicated.
         doc = next((doc for doc in client.ReadDocuments(coll['_self']) if doc['id'] == config.DOCUMENTDB_DOCUMENT))
 
-        # Take the data from the deploy_preference and increment our database
+        # Take hello data from hello deploy_preference and increment our database
         doc[form.deploy_preference.data] = doc[form.deploy_preference.data] + 1
         replaced_document = client.ReplaceDocument(doc['_self'], doc)
 
-        # Create a model to pass to results.html
+        # Create a model toopass tooresults.html
         class VoteObject:
             choices = dict()
             total_votes = 0
@@ -251,11 +251,11 @@ def vote():
 ```
 
 
-### <a name="create-the-html-files"></a>A HTML-fájlok létrehozása
-1. A Solution Explorer (Megoldáskezelő) nézetben, a **tutorial** mappában kattintson a jobb gombbal a **Templates** (Sablonok) mappára, kattintson az **Add** (Hozzáadás), majd a **New Item** (Új elem) elemre. 
-2. Válassza ki a **HTML Page** (HTML-oldal) lehetőséget, majd a Name (Név) mezőbe írja be a **create.html** nevet. 
-3. Ismételje meg az 1. és 2. lépést, és adjon hozzá további kettő HTML-fájlt: ezek a results.html és a vote.html.
-4. Adja hozzá a következő kódot a **create.html** fájl `<body>` szakaszához. Ez megjelenít egy üzenetet, miszerint sikeresen létrehozott egy új adatbázist, gyűjteményt és dokumentumot.
+### <a name="create-hello-html-files"></a>Hello HTML-fájlok létrehozása
+1. A Megoldáskezelőben a hello **oktatóanyag** mappa, a jobb oldali kattintson hello **sablonok** mappát, kattintson a **hozzáadása**, és kattintson a **új elem**. 
+2. Válassza ki **HTML-weblap**, majd a hello név mezőbe írja be a **create.html**. 
+3. Ismételje meg az 1. és 2 toocreate két további HTML-fájlok: ezek a results.html és a vote.html.
+4. Adja hozzá a következő kód túl hello**create.html** a hello `<body>` elemet. Ez megjelenít egy üzenetet, miszerint sikeresen létrehozott egy új adatbázist, gyűjteményt és dokumentumot.
    
     ```html
     {% extends "layout.html" %}
@@ -265,12 +265,12 @@ def vote():
     <p><a href="{{ url_for('vote') }}" class="btn btn-primary btn-large">Vote &raquo;</a></p>
     {% endblock %}
     ```
-5. Adja hozzá a következő kódot a **results.html** fájl `<body`> szakaszához. Ez megjeleníti a szavazás eredményét.
+5. Adja hozzá a következő kód túl hello**results.html** a hello `<body`> elemet. Hello hello lekérdezési eredményeit jeleníti meg.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
-    <h2>Results of the vote</h2>
+    <h2>Results of hello vote</h2>
         <br />
    
     {% for choice in vote_object.choices %}
@@ -290,12 +290,12 @@ def vote():
     <a class="btn btn-primary" href="{{ url_for('vote') }}">Vote again?</a>
     {% endblock %}
     ```
-6. Adja hozzá a következő kódot a **vote.html** fájl `<body`> szakaszához. Ez megjeleníti a szavazást, és fogadja a szavazatokat. A szavazatok regisztrálása után a vezérlést a views.py fájl veszi át, ahol feldolgozhatjuk a leadott szavazatot, és annak megfelelően hozzáfűzhetjük a szükséges dokumentumot.
+6. Adja hozzá a következő kód túl hello**vote.html** a hello `<body`> elemet. Hello lekérdezési jeleníti meg, és elfogadja hello szavazatot. Hello szavazatok regisztrálása, hello vezérlő tooviews.py, ahol rendszer hello leadott ismeri fel és ennek megfelelően hozzáfűzése hello dokumentum keresztül lett átadva.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
-    <h2>What is your favorite way to host an application on Azure?</h2>
+    <h2>What is your favorite way toohost an application on Azure?</h2>
     <form action="" method="post" name="vote">
         {{form.hidden_tag()}}
             {{form.deploy_preference}}
@@ -303,21 +303,21 @@ def vote():
     </form>
     {% endblock %}
     ```
-7. A **templates** mappában cserélje ki az **index.html** fájl tartalmát az alábbira. Ez lesz az alkalmazás kezdőlapja.
+7. A hello **sablonok** mappa, a név felülírandó hello tartalmát **index.html** hello következőre. Ez az alkalmazás kezdőlapján hello funkcionál.
    
     ```html
     {% extends "layout.html" %}
     {% block content %}
     <h2>Python + Azure Cosmos DB Voting Application.</h2>
     <h3>This is a sample Cosmos DB voting application using PyDocumentDB</h3>
-    <p><a href="{{ url_for('create') }}" class="btn btn-primary btn-large">Create/Clear the Voting Database &raquo;</a></p>
+    <p><a href="{{ url_for('create') }}" class="btn btn-primary btn-large">Create/Clear hello Voting Database &raquo;</a></p>
     <p><a href="{{ url_for('vote') }}" class="btn btn-primary btn-large">Vote &raquo;</a></p>
     {% endblock %}
     ```
 
-### <a name="add-a-configuration-file-and-change-the-initpy"></a>Konfigurációs fájl hozzáadása és az \_\_init\_\_.py fájl módosítása
-1. A Solution Explorer (Megoldáskezelő) nézetben kattintson a jobb gombbal a **tutorial** nevű projektre, kattintson az **Add** (Hozzáadás), majd a **New Item** (Új elem) gombra, válassza az **Empty Python File** (Üres Python-fájl) lehetőséget, és a fájlnak adja a **config.py** nevet. A Flask űrlapjainak szüksége van erre a konfigurációs fájlra. Ezzel a fájllal egy titkos kulcsot is megadhat. A jelen oktatóanyaghoz azonban nincs szükség ilyen kulcsra.
-2. Adja hozzá a következő kódot a config.py fájlhoz, és a következő lépésben módosítsa a **DOCUMENTDB\_HOST** és **DOCUMENTDB\_KEY** paraméterek értékét.
+### <a name="add-a-configuration-file-and-change-hello-initpy"></a>Konfigurációs fájl felvétele és módosítása hello \_ \_init\_\_.py
+1. A Megoldáskezelőben kattintson a jobb gombbal hello **oktatóanyag** projektre, kattintson **hozzáadása**, kattintson **új elem**, jelölje be **üres Python-fájl**, majd nevű hello fájl **config.py**. A Flask űrlapjainak szüksége van erre a konfigurációs fájlra. Használat tooprovide egy titkos kulcsot is. A jelen oktatóanyaghoz azonban nincs szükség ilyen kulcsra.
+2. Adja hozzá a következő hello kód tooconfig.py, szüksége lesz tooalter hello értékének **DOCUMENTDB\_állomás** és **DOCUMENTDB\_kulcs** hello következő lépésben.
    
     ```python
     CSRF_ENABLED = True
@@ -330,13 +330,13 @@ def vote():
     DOCUMENTDB_COLLECTION = 'voting collection'
     DOCUMENTDB_DOCUMENT = 'voting document'
     ```
-3. Az [Azure Portalon](https://portal.azure.com/) navigáljon a **Kulcsok** panelre. Ehhez kattintson a **Tallózás**, majd az **Azure Cosmos DB-fiókok** lehetőségre, kattintson duplán a használni kívánt fiók nevére, és végül kattintson a **Kulcsok** gombra az **Alapvető erőforrások** területen. A **Kulcsok** panelen másolja ki az **URI** mező értékét, és illessze be azt a **config.py** fájlba a **DOCUMENTDB\_HOST** paraméter értéke helyére. 
-4. Ismét az Azure Portalon, a **Kulcsok** panelen másolja ki az **Elsődleges kulcs** vagy **Másodlagos kulcs** mező értékét, és illessze be azt a **config.py** fájlba a **DOCUMENTDB\_KEY** paraméter értéke helyére.
-5. Adja hozzá a következő sort az **\_\_init\_\_.py** fájlhoz. 
+3. Hello a [Azure-portálon](https://portal.azure.com/), keresse meg a toohello **kulcsok** panelre. Ehhez kattintson **Tallózás**, **Azure Cosmos DB fiókok**, kattintson duplán a hello neve a hello toouse fiókra, majd hello **kulcsok** hello gombjára **Essentials** területen. A hello **kulcsok** panelen, a Másolás hello **URI** értékét, és illessze be hello **config.py** fájl hello hello értékként **DOCUMENTDB\_állomás**  tulajdonság. 
+4. Vissza az Azure portálra, az hello hello **kulcsok** panelen másolási hello értékének hello **elsődleges kulcs** vagy hello **másodlagos kulcs**, és illessze be hello **config.py**  fájl hello hello értékként **DOCUMENTDB\_kulcs** tulajdonság.
+5. A hello  **\_ \_init\_\_.py** fájlt, adja hozzá a következő sor hello. 
    
         app.config.from_object('config')
    
-    Tehát a fájl tartalma a következő legyen:
+    Így hello hello fájl tartalma:
    
     ```python
     from flask import Flask
@@ -344,59 +344,59 @@ def vote():
     app.config.from_object('config')
     import tutorial.views
     ```
-6. Az összes fájl hozzáadása után a Solution Explorer (Megoldáskezelő) nézetnek az alábbi módon kell kinéznie:
+6. A felvett összes hello fájlok, Megoldáskezelőben kell kinéznie:
    
-    ![Képernyőfelvétel a Visual Studio Solution Explorer (Megoldáskezelő) ablakáról](./media/documentdb-python-application/cosmos-db-python-solution-explorer.png)
+    ![Képernyőfelvétel a hello Visual Studio Solution Explorer ablak](./media/documentdb-python-application/cosmos-db-python-solution-explorer.png)
 
 ## <a name="step-4-run-your-web-application-locally"></a>4. lépés: A webalkalmazás helyileg történő futtatása
-1. Fordítsa le a megoldást a **Ctrl**+**Shift**+**B** billentyűkombináció lenyomásával.
-2. A sikeres fordítás után indítsa el a webhelyet az **F5** billentyű lenyomásával. A következőnek kell megjelennie a képernyőn.
+1. Hello megoldás kiépítését, billentyűkombináció lenyomásával **Ctrl**+**Shift**+**B**.
+2. Sikeres hello fordítás után indítsa el a webhelyet hello billentyűkombináció lenyomásával **F5**. Hello következő kell megjelennie a képernyőn.
    
-    ![Képernyőfelvétel a webböngészőben megjelenített Python + Azure Cosmos DB szavazóalkalmazásról](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
-3. Kattintson a **Create/Clear the Voting Database** (A szavazóadatbázis létrehozása/törlése) lehetőségre az adatbázis létrehozásához.
+    ![Képernyőfelvétel a hello Python + Azure Cosmos DB Szavazóalkalmazásról megjelenik a webböngészőben](./media/documentdb-python-application/cosmos-db-pythonr-run-application.png)
+3. Kattintson a **Létrehozás/törlés hello szavazás adatbázis** toogenerate hello adatbázis.
    
-    ![Képernyőfelvétel a webalkalmazás Create (Létrehozás) lapjáról – fejlesztési részletek](./media/documentdb-python-application/cosmos-db-python-run-create-page.png)
+    ![Képernyőfelvétel a hello létrehozása lap hello webalkalmazás – fejlesztési részletek](./media/documentdb-python-application/cosmos-db-python-run-create-page.png)
 4. Ezután kattintson a **Vote** (Szavazás) elemre, és válassza ki a kívánt elemet.
    
-    ![Képernyőfelvétel a webalkalmazásról és a szavazási kérdés feltételéről](./media/documentdb-python-application/cosmos-db-vote.png)
-5. Minden leadott szavazattal az annak megfelelő számlálót növeli.
+    ![Képernyőfelvétel a hello webalkalmazásról és a szavazási kérdés feltételéről](./media/documentdb-python-application/cosmos-db-vote.png)
+5. Minden leadott szavazattal az hello megfelelő számlálót növeli.
    
-    ![Képernyőfelvétel a szavazás oldalának Results (Eredmények) lapjáról](./media/documentdb-python-application/cosmos-db-voting-results.png)
-6. A projekt hibakeresésének leállításához nyomja le a Shift+F5 billentyűkombinációt.
+    ![Képernyőfelvétel a hello hello szavazási lapon látható eredményei](./media/documentdb-python-application/cosmos-db-voting-results.png)
+6. Nyomja le a Shift + F5 hello projekt hibakeresésének leállításához.
 
-## <a name="step-5-deploy-the-web-application-to-azure"></a>5. lépés: A webalkalmazás az Azure-bA telepítése
-Most, hogy a teljes alkalmazás megfelelően működik-e Cosmos DB ellen, fogjuk központilag telepítheti az Azure-bA.
+## <a name="step-5-deploy-hello-web-application-tooazure"></a>5. lépés: Hello webes alkalmazás tooAzure telepítése
+Most, hogy hello teljes alkalmazás megfelelően működik-e Cosmos DB szemben, az oktatóanyagban módosítjuk toodeploy a tooAzure.
 
-1. Kattintson a jobb gombbal a projektre a Solution Explorer (Megoldáskezelő) nézetben (győződjön meg arról, hogy helyileg már nem futtatja azt), és válassza a **Publish** (Közzététel) lehetőséget.  
+1. Kattintson a jobb gombbal hello projektre a Solution Explorer (Győződjön meg arról, hogy Ön nem továbbra is helyben fut), majd **közzététel**.  
    
-     ![Képernyőfelvétel a kiválasztott „tutorial” projektről a Solution Explorer (Megoldáskezelő) nézetben, a kiemelt Publish (Közzététel) lehetőséggel](./media/documentdb-python-application/image20.png)
-2. Az a **közzététel** párbeszédpanelen jelölje ki **Microsoft Azure App Service**, jelölje be **hozzon létre új**, és kattintson a **közzététel**.
+     ![Képernyőfelvétel a hello "tutorial" projektről a Solution Explorer hello közzététel lehetőséggel kiemelve](./media/documentdb-python-application/image20.png)
+2. A hello **közzététel** párbeszédpanelen jelölje ki **Microsoft Azure App Service**, jelölje be **hozzon létre új**, és kattintson a **közzététel**.
    
-    ![Képernyőfelvétel a Microsoft Azure App Service a kijelölt webhely közzététele ablak](./media/documentdb-python-application/cosmos-db-python-publish.png)
-3. Az a **App Service létrehozása** párbeszédpanel mezőben adja meg a nevet a webalkalmazás, valamint a **előfizetés**, **erőforráscsoport**, és **App Service-csomag**, majd kattintson a **létrehozása**.
+    ![Képernyőfelvétel a hello webhely közzététele ablak kiemelt Microsoft Azure App Service szolgáltatással](./media/documentdb-python-application/cosmos-db-python-publish.png)
+3. A hello **létrehozása az App Service** párbeszédpanelen adja meg a webalkalmazás, valamint hello nevét a **előfizetés**, **erőforráscsoport**, és **App Service-csomag** , majd kattintson a **létrehozása**.
    
-    ![Képernyőfelvétel a Microsoft Azure Web Apps (Microsoft Azure-webalkalmazások) ablakról](./media/documentdb-python-application/cosmos-db-python-create-app-service.png)
+    ![Képernyőfelvétel a hello Microsoft Azure Web Apps ablak ablak](./media/documentdb-python-application/cosmos-db-python-create-app-service.png)
 4. Néhány másodpercen belül a Visual Studio befejezi az app service közzétételét, és elindít egy böngészőt, ahol láthatja az Azure-beli handiwork!
 
-    ![Képernyőfelvétel a Microsoft Azure Web Apps (Microsoft Azure-webalkalmazások) ablakról](./media/documentdb-python-application/cosmos-db-python-appservice-created.png)
+    ![Képernyőfelvétel a hello Microsoft Azure Web Apps ablak ablak](./media/documentdb-python-application/cosmos-db-python-appservice-created.png)
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha ez az első Python-alkalmazás, amelyet számítógépén futtat, győződjön meg arról, hogy a következő mappák (vagy az azokkal egyenértékű telepítési helyek) szerepelnek a PATH változóban:
+Ha ez hello első Python-alkalmazás futtatását a számítógépen, győződjön meg arról, hogy hello következő mappák (vagy hello azokkal egyenértékű telepítési helyek) szerepelnek a PATH változóban:
 
     C:\Python27\site-packages;C:\Python27\;C:\Python27\Scripts;
 
-Ha hibába ütközik a szavazási lapon, és a projektet nem **tutorial** néven hozta létre, győződjön meg arról, hogy az **\_\_init\_\_.py** fájl a megfelelő projektnévre hivatkozik a következő sorban: `import tutorial.view`.
+Ha hibaüzenetet kap a szavazási lapon, és elnevezett a projekt valami eltérő **oktatóanyag**, győződjön meg arról, hogy  **\_ \_init\_\_.py** hivatkozások hello megfelelő projektnévre hello sorban: `import tutorial.view`.
 
 ## <a name="next-steps"></a>Következő lépések
-Gratulálunk! Ebben az esetben az első Python webes alkalmazás Cosmos DB használatával befejeződött, és közzétette azt Azure-bA.
+Gratulálunk! Ebben az esetben az első Python webes alkalmazás Cosmos DB használatával befejeződött, és közzétette azt tooAzure.
 
-Gyakran frissítjük és javítjuk a jelen témakört a visszajelzések alapján.  Az oktatóanyag befejezése után a lap tetején vagy alján található szavazógomb használatával küldhet visszajelzést. A visszajelzésbe azt is foglalja bele, hogy milyen javításokat szeretne látni. Ha szeretne közvetlenül kapcsolatba lépni velünk, a hozzászólásaiban tüntesse fel az e-mail-címét.
+Gyakran frissítjük és javítjuk a jelen témakört a visszajelzések alapján.  Egyszer, elsajátította hello oktatóanyagban hello szavazás hello felső és a lap alján gombok használatával, és lehet, hogy tooinclude Várjuk visszajelzését a végrehajtott toosee kívánt milyen fejlesztéseket. Ha szeretné toocontact úgy közvetlenül, érzi, hogy az e-mail cím szabad tooinclude a megjegyzéseit.
 
-További funkciókat szeretne az alkalmazáshoz adni, tekintse át az elérhető API-kat a [Azure Cosmos DB Python SDK](documentdb-sdk-python.md).
+tooadd további funkciók tooyour webalkalmazás, tekintse át hello hello elérhető API-k [Azure Cosmos DB Python SDK](documentdb-sdk-python.md).
 
-Az Azure-ra, a Visual Studióval és a Pythonnal kapcsolatos további információkért lásd: [Python fejlesztői központ](https://azure.microsoft.com/develop/python/). 
+Azure, a Visual Studio és a Pythonnal kapcsolatos további információkért lásd: hello [Python fejlesztői központ](https://azure.microsoft.com/develop/python/). 
 
-További Python Flask-oktatóanyagok: [The Flask Mega-Tutorial, Part I: Hello, World!](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) (A Flask óriási oktatóanyaga – 1. rész: Hello, World!) 
+További további Python Flask-oktatóanyagok: [hello Flask Mega-oktatóanyagban rész I: Hello, World!](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). 
 
 [Visual Studio Express]: http://www.visualstudio.com/products/visual-studio-express-vs.aspx
 [2]: https://www.python.org/downloads/windows/

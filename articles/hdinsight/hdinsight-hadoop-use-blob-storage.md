@@ -1,6 +1,6 @@
 ---
-title: "Adatok lekérdezése HDFS-kompatibilis Azure Storage-ból – Azure HDInsight | Microsoft Docs"
-description: "Megtudhatja, hogyan kérdezhet le adatokat az Azure Blob Storage-ból és az Azure Data Lake Store-ból, és hogyan tárolhatja az elemzések eredményeit."
+title: HDFS-kompatibilis aaaQuery adatait az Azure storage - Azure HDInsight |} Microsoft Docs
+description: "Ismerje meg, hogyan tooquery adatokat az Azure storage és az Azure Data Lake Store toostore eredmények elemzéshez."
 keywords: "blob storage,hdfs,strukturált adatok,strukturálatlan adatok, data lake store,Hadoop-bemenet,Hadoop-kimenet, hadoop-tárolás, hdfs-bemenet,hdfs-kimenet,hdfs-tárolás,wasb azure"
 services: hdinsight,storage
 documentationcenter: 
@@ -17,24 +17,24 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: jgao
-ms.openlocfilehash: a44c2b363f7ebb593b9a9c5bd9e0d4fc3b4c31bb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1032d60424b65e3c0c54a25c7c15970b017a788f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-storage-with-azure-hdinsight-clusters"></a>Az Azure Storage és az Azure HDInsight-fürtök együttes használata
 
-A HDInsight-fürtben lévő adatok elemzéséhez az adatokat tárolhatja az Azure Storage-ban, az Azure Data Lake Store-ban vagy mindkettőben. Mindkét tárolási lehetőség lehetővé teszi a számításhoz használt HDInsight-fürtök biztonságos törlését a felhasználói adatok elvesztése nélkül.
+HDInsight-fürt tooanalyze adatokat, tárolhatja az adatokat hello, vagy az Azure Storage, az Azure Data Lake Store vagy mindkettőt. Mindkét tárolási lehetőségek lehetővé teszik a HDInsight-fürtök toosafely törlése, felhasználói adatok elvesztése nélkül számításhoz használt.
 
-A Hadoop támogatja az alapértelmezett fájlrendszert. Az alapértelmezett fájlrendszer egy alapértelmezett sémát és szolgáltatót is jelent. A relatív elérési utak feloldásához is használható. A HDInsight-fürt létrehozása során blobtárolók adhatók meg alapértelmezett fájlrendszerként, illetve a HDInsight 3.5 esetében választhat, hogy az Azure Storage vagy az Azure Data Lake Store legyen az alapértelmezett fájlrendszer, néhány kivétellel. A Data Lake Store alapértelmezett és kapcsolt tárként való egyidejű használatának támogatási lehetőségeiről a [Lehetőségek HDInsight-fürtök esetén](./hdinsight-hadoop-use-data-lake-store.md#availabilities-for-hdinsight-clusters) című cikk ad tájékoztatást.
+A Hadoop hello alapértelmezett fájlrendszer támogatja. hello alapértelmezett fájlrendszer egy alapértelmezett sémát és szolgáltatót jelenti. Használt tooresolve relatív elérési utakat is lehet. Során hello HDInsight fürt létrehozásának folyamatát az Azure Storage hello alapértelmezett fájlrendszer egy blob-tároló is megadhat, vagy a HDInsight 3.5 választhat vagy az Azure Storage, vagy az Azure Data Lake Store hello alapértelmezett fájlok rendszert néhány kivételtől eltekintve. Hello támogatásának Data Lake Store használatának hello alapértelmezett és a csatolt tároló is, lásd: [rendelkezésre álló termékek HDInsight-fürthöz](./hdinsight-hadoop-use-data-lake-store.md#availabilities-for-hdinsight-clusters).
 
-Ebből a cikkből megtudhatja, hogyan használható az Azure Storage a HDInsight-fürtökkel. A Data Lake Store HDInsight-fürtökkel való használatáról az [Azure Data Lake Store használata Azure HDInsight-fürtökkel](hdinsight-hadoop-use-data-lake-store.md) című cikk szól. További információ a HDInsight-fürtök létrehozásáról: [Hadoop-fürtök létrehozása a HDInsightban](hdinsight-hadoop-provision-linux-clusters.md).
+Ebből a cikkből megtudhatja, hogyan használható az Azure Storage a HDInsight-fürtökkel. toolearn Data Lake Store működése HDInsight-fürtökkel, lásd: [használata Azure Data Lake Store az Azure HDInsight-fürtök](hdinsight-hadoop-use-data-lake-store.md). További információ a HDInsight-fürtök létrehozásáról: [Hadoop-fürtök létrehozása a HDInsightban](hdinsight-hadoop-provision-linux-clusters.md).
 
-Az Azure Blob Storage egy robusztus, általános célú tárolómegoldás, amely zökkenőmentesen integrálható a HDInsight eszközzel. A HDInsight egy blobtárolót használhat az Azure Storage-ben a fürt alapértelmezett fájlrendszereként. A Hadoop elosztott fájlrendszer (HDFS) felületen keresztül a HDInsight összetevők teljes készlete működhet közvetlenül a strukturált vagy strukturálatlan adatokon a Blob Storage tárolóban.
+Az Azure Blob Storage egy robusztus, általános célú tárolómegoldás, amely zökkenőmentesen integrálható a HDInsight eszközzel. HDInsight használható egy blob-tároló az Azure Storage hello alapértelmezett fájlrendszer hello fürtökhöz. Egy Hadoop elosztott fájlrendszer (HDFS) rendszer felületen hello hdinsight összetevők teljes készlete működhet közvetlenül a strukturált vagy strukturálatlan adatok blobként tárolja.
 
 > [!WARNING]
-> Az Azure Storage-fiók létrehozása során számos beállítás áll rendelkezésre. A következő táblázat információkat nyújt arról, hogy milyen beállítások támogatottak a HDInsight használatakor:
+> Az Azure Storage-fiók létrehozása során számos beállítás áll rendelkezésre. a következő táblázat hello információt nyújt a hdinsight eszközzel milyen lehetőségeket támogat:
 > 
 > | Tárfiók típusa | Tárolási réteg | Támogatott a HDInsightban |
 > | ------- | ------- | ------- |
@@ -43,79 +43,79 @@ Az Azure Blob Storage egy robusztus, általános célú tárolómegoldás, amely
 > | Blob Storage-fiók | Gyakori | Nem |
 > | &nbsp; | Ritka | Nem |
 
-Az alapértelmezett blobtárolóban nem ajánlott üzleti adatokat tárolni. Az alapértelmezett blobtárolót ajánlatos törölni minden egyes használat után. Fontos, hogy az alapértelmezett tároló alkalmazás- és rendszernaplókat is tartalmaz. A tároló törlése előtt gondoskodjon a naplók begyűjtéséről.
+Nem javasoljuk, hogy hello alapértelmezett blob tárolókat használ üzleti adatok tárolására. Hello alapértelmezett blob tároló törlése után minden használata tooreduce tárolási költségű érdemes. Megjegyzés: hello alapértelmezett tároló tartalmazza az alkalmazás- és naplókat. Győződjön meg arról, hogy tooretrieve hello naplók hello tároló törlése előtt.
 
 Egy blobtároló több fürt közötti megosztása nem támogatott.
 
 ## <a name="hdinsight-storage-architecture"></a>HDInsight tároló-architektúra
-A következő ábra az Azure Storage-ot használó HDInsight tároló-architektúra absztrakt nézetét nyújtja:
+a következő diagram hello hello Azure Storage használata a HDInsight Tárló-architektúra absztrakt nézetét nyújtja:
 
-![A Hadoop-fürtök a HDFS API-val érik el és tárolják a strukturált és strukturálatlan adatokat a Blob Storage-ban.](./media/hdinsight-hadoop-use-blob-storage/HDI.WASB.Arch.png "HDInsight-tárarchitektúra")
+![Hadoop-fürtök hello HDFS API-val tooaccess és strukturált és strukturálatlan adatokat a Blob Storage tárolóban tárolja. ] (./media/hdinsight-hadoop-use-blob-storage/HDI.WASB.Arch.png "HDInsight tároló-architektúra")
 
-A HDInsight hozzáférést nyújt a helyileg a számítási csomópontokhoz csatlakozó elosztott fájlrendszerhez. Ez a fájlrendszer a teljes URI használatával érhető el, például:
+HDInsight biztosít hozzáférést toohello elosztott fájlrendszer, amely a helyileg csatlakoztatott toohello számítási csomópontok. Ez a fájlrendszer használatával elérhető például csak a teljesen minősített URI, hello:
 
     hdfs://<namenodehost>/<path>
 
-Emellett a HDInsight lehetővé teszi az Azure Storage tárolóban tárolt adatok elérését. A szintaxis a következő:
+Ezenkívül HDInsight lehetővé teszi az Azure Storage tárolt tooaccess adatokat. hello szintaxisa:
 
     wasb[s]://<containername>@<accountname>.blob.core.windows.net/<path>
 
 Az alábbiakban néhány szempont olvasható Azure Storage-fiók és HDInsight-fürtök együttes használatával kapcsolatban.
 
-* **Fürthöz csatlakozó tárolók a tárfiókokban:** Mivel a fiók neve és kulcsa társítva van a fürttel a létrehozás során, teljes hozzáféréssel rendelkezik a tárolókban lévő összes blobhoz.
+* **A tárolók hello storage-fiókok, amelyek csatlakoztatott tooa fürt:** hello fióknevet és kulcsot társított hello fürt létrehozása során, mert rendelkezik teljes körű hozzáférési toohello tárolókban lévő összes blobhoz.
 
-* **Fürthöz NEM csatlakozó nyilvános tárolók vagy nyilvános blobok a tárfiókokban:** Csak olvasási engedéllyel rendelkezik a tárolókban lévő blobokhoz.
+* **Nyilvános tárolók vagy nyilvános blobok a tárfiókokban, amelyek nincsenek csatlakoztatva a tooa fürt:** hello tárolók toohello blobokat olvasási engedéllyel rendelkezik.
   
   > [!NOTE]
-  > A nyilvános tárolók esetén a tárolóban elérhető összes blob listáját és a tároló metaadatait is lekérheti. A nyilvános blobok esetén csak akkor érheti el a blobokat, ha ismeri a pontos URL-t. További információkért lásd: <a href="http://msdn.microsoft.com/library/windowsazure/dd179354.aspx">Restrict access to containers and blobs</a> (A tárolókhoz és blobokhoz való hozzáférés korlátozása).
+  > Nyilvános tárolók lehetővé teszik a tooget, amelyek a tárolóban elérhető, és a tároló metaadatot beszerezni összes BLOB listáját. A nyilvános blobok meg tooaccess hello blobok csak akkor, ha tudja hello pontos URL-cím. További információkért lásd: <a href="http://msdn.microsoft.com/library/windowsazure/dd179354.aspx">korlátozzák a hozzáférést toocontainers és blobok</a>.
   > 
   > 
-* **Fürthöz NEM csatlakozó személyes tárolók a tárfiókokban:** Nem érheti el a tárolókban lévő blobokat, ha nem határozza meg a tárfiókot a WebHCat-feladatok elküldésekor. Ennek a magyarázatát a cikk későbbi részében találja.
+* **Személyes tárolók a tárfiókokban, amelyek nincsenek csatlakoztatva tooa fürt:** hello tárolókban lévő hello blobok nem érhetők el, kivéve, ha hello tárfiók adhat meg hello WebHCat-feladatok elküldésekor. Ennek a magyarázatát a cikk későbbi részében találja.
 
-A létrehozási folyamat során meghatározott tárfiókok és a kulcsaik a %HADOOP_HOME%/conf/core-site.xml fájlban találhatók a fürtcsomópontokon. A HDInsight alapértelmezett viselkedése a core-site.xml fájlban meghatározott tárfiókok használata. A beállítást az [Ambari](./hdinsight-hadoop-manage-ambari.md) használatával módosíthatja
+hello létrehozási folyamata és azok kulcsait meghatározott tárfiókok hello hello fürtcsomópontokon %HADOOP_HOME%/conf/core-site.xml fájlban tárolódnak. HDInsight alapértelmezett viselkedése hello toouse hello hello core-site.xml fájlban meghatározott tárfiókok. A beállítást az [Ambari](./hdinsight-hadoop-manage-ambari.md) használatával módosíthatja
 
 Több WebHCat-feladat (beleértve a Hive, MapReduce, Hadoop-stream és Pig-feladatokat) is tartalmazhatja a tárfiókok és a metaadatok leírását. (Ez jelenleg a tárfiókokkal működik a Pig-feladatokkal, a metaadatokkal nem.) További információkért lásd: [Using an HDInsight Cluster with Alternate Storage Accounts and Metastores](http://social.technet.microsoft.com/wiki/contents/articles/23256.using-an-hdinsight-cluster-with-alternate-storage-accounts-and-metastores.aspx) (HDInsight-fürtök használata alternatív tárfiókokkal és metaadattárakkal).
 
-A blobok a strukturált és strukturálatlan adatokhoz használhatók. A blobtárolók kulcs/érték párokként tárolnak adatokat, és nincs könyvtár-hierarchia. A perjel karakter ( / ) azonban használható a kulcsnévben, hogy úgy tűnjön, mintha a fájl könyvtárszerkezetben lenne tárolva. Egy blob kulcsa lehet például az *input/log1.txt*. Nem létezik tényleges *input* könyvtár, de mivel jelen van a perjel karakter a kulcsnévben, úgy néz ki, mint egy fájlútvonal.
+A blobok a strukturált és strukturálatlan adatokhoz használhatók. A blobtárolók kulcs/érték párokként tárolnak adatokat, és nincs könyvtár-hierarchia. Azonban hello perjelet (/) használhatja hello kulcsnév toomake akkor jelenik meg, mintha a fájl könyvtárszerkezetben tárolódik. Egy blob kulcsa lehet például az *input/log1.txt*. Nem tényleges *bemeneti* könyvtár létezik, de miatt hello perjel karakter hello kulcsnév toohello jelenlétét, egy fájl elérési útját hello megjelenésének rendelkezik.
 
 ## <a id="benefits"></a>Az Azure Storage előnyei
-A számítási fürtök és tárolási erőforrások nem egy helyre helyezésével járó teljesítményköltségeket csökkenti a számítási fürtöknek a tárfiók erőforrásainak közelében való létrehozása az Azure-régión belül, ahol a nagysebességű hálózat hatékonnyá teszi a számítási csomópontok számára az Azure Storage-ban lévő adatok elérését.
+hello hallgatólagos teljesítményarányos költsége közös elhelyezéskor számítási fürtök és tárolási erőforrásokat elhárítására hello módon hello számítási fürtök Bezárás toohello tárfiók erőforrásainak belül hello Azure-régió, ahol nagy sebességű hálózati hello teszi jönnek létre. a számítási csomópontok hello hatékonyan tooaccess hello az Azure storage található adatok közül.
 
-Több előnye is van annak, ha az adatokat a HDFS helyett az Azure Blob Storage tárolóban tárolja:
+Hello adatok tárolása a HDFS helyett az Azure storage társított több előnye is van:
 
-* **Adatok újbóli használata és megosztása:** A HDFS-ben az adatok a számítási fürtön belül találhatóak. Csak a számítási fürtöt elérő alkalmazások használhatják az adatokat HDFS API-k használatával. Az Azure Blob Storage-ban lévő adatok a HDFS API-kon vagy a [Blob Storage REST API-kon][blob-storage-restAPI] keresztül érhetők el. Így az alkalmazások (beleértve más HDInsight fürtöket) és eszközök nagyobb készlete használható az adatok előállításához és fogyasztásához.
-* **Adatarchiválás:** Az adatok Azure Blob Storage tárolóban végzett tárolása lehetővé teszi, hogy biztonságosan törölje a számításhoz használt HDInsight fürtöket a felhasználói adatok elvesztése nélkül.
-* **Adattárolási költség:** Az adatok DFS-ben végzett hosszú távú tárolása költségesebb, mint az adatok Azure Storage tárolóban végzett tárolása, mert a számítási fürt költsége nagyobb, mint az Azure Storage költsége. Ezenkívül mivel az adatokat nem kell újból betölteni minden számítási fürt létrehozásakor, az adatbetöltési költségeket is megtakaríthatja.
-* **Rugalmas kibővítés:** Bár a HDFS kibővített fájlrendszert biztosít, a léptéket a fürthöz létrehozott csomópontok száma határozza meg. A lépték módosítása bonyolultabb folyamattá válhat, mintha az Azure Blob Storage tárolóban automatikusan elérhető rugalmas léptékezési képességekre támaszkodna.
-* **Georeplikáció:** Az Azure Storage tárolókról georeplikálás készíthető. Bár ez földrajzi helyreállítást és adatredundanciát biztosít, a georeplikált helyre végzett feladatátvétel súlyos hatással van a teljesítményre, és további költségekkel járhat. Így azt javasoljuk, hogy válassza körültekintően a georeplikációt, és csak akkor, ha az adatok megérik a további költségeket.
+* **Adatok újbóli használata és megosztása:** hello adatokat HDFS-ben hello számítási fürtön belül található. Csak az hello alkalmazásokat, amelyek hozzáférést toohello számítási fürt használhassa a hello adatokat HDFS API-k használatával. hello HDFS API-k vagy hello keresztül elérhető hello adatokat az Azure storage [Blob Storage REST API-k][blob-storage-restAPI]. Emiatt az alkalmazások (beleértve más HDInsight fürtöket) és eszközök nagyobb készlete használt tooproduce kell és hello adatokat.
+* **Adatarchiválás:** adatok Azure Storage tárolóban végzett tárolása lehetővé teszi, hogy biztonságosan törölje a felhasználói adatok elvesztése nélkül számítási toobe használt hello a HDInsight-fürtök.
+* **Adattárolási költség:** adattárolás DFS-ben, a hosszú távú hello költségesebb, mint az Azure storage hello adatok tárolására, mert a számítási fürt hello költség magasabb, mint az Azure storage hello költségét. Ezenkívül hello adatokat nem kell újra minden számítási fürt létrehozásakor toobe, mert is megtakaríthatja Adatbetöltési költségeket.
+* **Rugalmas kibővítés:** Bár a HDFS kibővített fájlrendszert biztosít, hello méretezési hello a fürthöz létrehozott csomópontok száma határozza meg. Hello skála módosítása hello elérhető rugalmas léptékezési képességekre, az Azure storage automatikusan kapott egy bonyolultabb folyamattá válhat.
+* **Georeplikáció:** Az Azure Storage tárolókról georeplikálás készíthető. Ez lehetővé teszi földrajzi helyreállítást és adatredundanciát, bár egy feladatátvételi toohello georeplikált helyre súlyos hatással van a teljesítményre, és további költségekkel járhat. Ezért azt javasoljuk, toochoose hello georeplikáció georeplikációt, és csak akkor, ha hello hello adatok értéke érdemes hello további költség nélkül.
 
-Bizonyos MapReduce-feladatok és csomagok olyan köztes eredményeket hozhatnak létre, amelyeket nem érdemes az Azure Blob Storage tárolóban tárolni. Ebben az esetben a helyi HDFS-ben is tárolhatja az adatokat. Valójában a HDInsight a DFS-t használja több ilyen köztes eredményhez a Hive-feladatokban és egyéb folyamatokban.
+Bizonyos MapReduce-feladatok és csomagok akkor is, hogy valóban szeretné toostore az Azure storage köztes eredményeket hozhatnak létre. Ebben az esetben választhatja, amelyeket toostore hello adatok hello helyi HDFS. Valójában a HDInsight a DFS-t használja több ilyen köztes eredményhez a Hive-feladatokban és egyéb folyamatokban.
 
 > [!NOTE]
-> A legtöbb HDFS parancs (például az <b>ls</b>, a <b>copyFromLocal</b> és a <b>mkdir</b>) továbbra is a várt módon működik. Csak a natív HDFS implementációra (más néven DFS-re) jellemző parancsok, például az <b>fschk</b> és a <b>dfsadmin</b> viselkednek máshogy az Azure Storage tárolóban.
+> A legtöbb HDFS parancs (például az <b>ls</b>, a <b>copyFromLocal</b> és a <b>mkdir</b>) továbbra is a várt módon működik. Csak az adott toohello natív HDFS implementációra (amely hivatkozott tooas DFS), parancsok, mint hello <b>fschk</b> és <b>dfsadmin</b>, az Azure storage másképp viselkednek megjelenítése.
 > 
 > 
 
 ## <a name="create-blob-containers"></a>Blob tárolók létrehozása
-A blobok használatához először hozzon létre egy [Azure Storage-fiókot][azure-storage-create]. Ennek részeként meg kell adnia egy Azure-régiót, amelyben a tárfiók létrejön. A fürtnek és a tárfióknak ugyanabban a régióban kell lennie. A Hive-metaadattár SQL Server adatbázisának és az Oozie-metaadattár SQL Server adatbázisának is ugyanabban a régióban kell lennie.
+toouse blobokat, először létre kell hoznia egy [Azure Storage-fiók][azure-storage-create]. Ennek keretében adja meg az Azure-régió, ahol hello tárfiók létrehozása. hello fürt és hello tárfiókot kell futnia hello ugyanabban a régióban. hello Hive-metaadattár SQL Server adatbázisának és az Oozie metaadattárhoz SQL Server adatbázis is található a hello ugyanabban a régióban.
 
-Akárhol él, mindegyik létrehozott blob az Azure Storage-fiókban lévő tárolóhoz tartozik. Ez a tároló egy már létező, a HDInsight eszközön kívül létrejövő blob vagy egy HDInsight-fürthöz létrehozott tároló lehet.
+Akárhol él, mindegyik létrehozott blob tartozik tooa tároló Azure Storage-fiókjában. Ez a tároló egy már létező, a HDInsight eszközön kívül létrejövő blob vagy egy HDInsight-fürthöz létrehozott tároló lehet.
 
-Az alapértelmezett Blob-tároló a fürtre jellemző információkat, például a feladatelőzményeket és a naplókat tárolja. Ne osszon meg alapértelmezett Blob tárolókat több HDInsight-fürttel. Ez károsíthatja a feladatelőzményeket. Ajánlott különböző tárolót használni mindegyik fürthöz és a megosztott adatokat az összes kapcsolódó fürt üzemelő példányában meghatározott kapcsolt tárfiókra helyezni az alapértelmezett tárfiók helyett. A kapcsolt tárfiókok konfigurálásáról további információért lásd: [HDInsight-fürtök létrehozása][hdinsight-creation]. De újból felhasználhatja az alapértelmezett tárolókat az eredeti HDInsight fürt törlése után. Az HBase fürtök esetén megőrizheti az HBase táblasémát és adatokat, ha létrehoz egy új HBase-fürtöt a törölt HBase-fürt által használt alapértelmezett blobtárolóval.
+hello alapértelmezett Blob tároló például a feladatelőzményeket és a naplók fürt-specifikus adatait tárolja. Ne osszon meg alapértelmezett Blob tárolókat több HDInsight-fürttel. Ez károsíthatja a feladatelőzményeket. Ajánlott különböző tárolót minden fürt és a megosztott adatok elhelyezése hello alapértelmezett tárfiókot, hanem az összes kapcsolódó fürt üzemelő példányában meghatározott kapcsolt tárfiókra toouse. A kapcsolt tárfiókok konfigurálásáról további információért lásd: [HDInsight-fürtök létrehozása][hdinsight-creation]. Alapértelmezett tárolókat azonban hello eredeti HDInsight fürt törlése után is felhasználhatja. A HBase fürtök esetén megőrizheti hello HBase táblasémát és adatokat hozzon létre egy új HBase fürtöt a törölt HBase fürt által használt hello alapértelmezett blob tárolókat.
 
 [!INCLUDE [secure-transfer-enabled-storage-account](../../includes/hdinsight-secure-transfer.md)]
 
-### <a name="use-the-azure-portal"></a>Az Azure Portal használata
-Amikor HDInsight-fürtöt hoz létre a portálról, megadhatja a tárfiók részleteit (az alábbiakban látható módon). Azt is megadhatja, hogy szeretne-e további tárfiókot társítani a fürttel, és ha igen, a Data Lake Store-t vagy más Azure Storage-blobot választhat további tárolóként.
+### <a name="use-hello-azure-portal"></a>Hello Azure portál használata
+Ha a HDInsight-fürtök létrehozása a portál hello, akkor hello lehetőségek (lásd alább), tooprovide hello tárfiókadatok. Megadhatja, hogy kívánja-e egy további tárfiók hello-fürthöz tartozó, és ha igen, a Data Lake Store vagy egy másik Azure Storage-blobba hello további tárolóként választhat.
 
 ![HDInsight hadoop létrehozási adatforrás](./media/hdinsight-hadoop-use-blob-storage/hdinsight.provision.data.source.png)
 
 > [!WARNING]
-> A rendszer nem támogatja további tárfiókok használatát a HDInsight-fürtön kívül eső helyeken.
+> Egy további storage-fiók egy másik helyen található mint hello HDInsight-fürt használata nem támogatott.
 
 
 ### <a name="use-azure-powershell"></a>Azure PowerShell használatával
-Ha [telepítette és konfigurálta az Azure PowerShellt][powershell-install], a következőt használhatja az Azure PowerShell-parancssorról egy tárfiók és tároló létrehozásához:
+Ha Ön [telepítette és konfigurálta az Azure PowerShell][powershell-install], használhatja a tárfiók és tároló hello Azure PowerShell Rákérdezés toocreate követően hello:
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
@@ -144,52 +144,52 @@ Ha [telepítette és konfigurálta az Azure PowerShellt][powershell-install], a 
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-Ha [telepítette és konfigurálta az Azure CLI parancssori felületet](../cli-install-nodejs.md), a következő parancs használható a tárfiókokhoz és tárolóhoz.
+Ha rendelkezik [telepítette és konfigurálta az Azure parancssori felület hello](../cli-install-nodejs.md), hello következő parancsot a használt tooa tárfiók és tároló lehet.
 
     azure storage account create <storageaccountname> --type LRS
 
 > [!NOTE]
-> A `--type` paraméter jelzi, hogyan lesz replikálva a tárfiók. További információ: [Azure Storage replication](../storage/storage-redundancy.md) (Az Azure Storage replikációja). Na használjon ZRS-t, mivel a ZRS nem támogatja a lapblobokat, a fájlokat, a táblákat és az üzenetsorokat.
+> Hello `--type` paraméter azt jelzi, hogyan hello tárfiók replikálódik. További információ: [Azure Storage replication](../storage/storage-redundancy.md) (Az Azure Storage replikációja). Na használjon ZRS-t, mivel a ZRS nem támogatja a lapblobokat, a fájlokat, a táblákat és az üzenetsorokat.
 > 
 > 
 
-A rendszer kéri, hogy adja meg a földrajzi régiót, amelyben a tárfiók létre lett hozva. Ugyanabban a régióban kell létrehoznia a tárfiókot, mint amelyben a HDInsight-fürt létrehozását tervezi.
+Biztosan felszólító toospecify hello földrajzi régiót, amelyben hello storage-fiók jön létre. A hello készítsen hello storage-fiók ugyanabban a régióban, amely a HDInsight-fürt létrehozását tervezi.
 
-A tárfiók létrehozása után a következő paranccsal kérheti le a tárfiók kulcsait:
+Hello storage-fiók létrehozása után használja a következő parancs tooretrieve hello tárfiókkulcsok hello:
 
     azure storage account keys list <storageaccountname>
 
-Egy tároló létrehozásához használja az alábbi parancsot:
+egy tároló toocreate hello a következő parancsot használja:
 
     azure storage container create <containername> --account-name <storageaccountname> --account-key <storageaccountkey>
 
 ## <a name="address-files-in-azure-storage"></a>Az Azure Storage tárolóban található címfájlok
-Az Azure Storage tárolóban a HDInsight eszközről végzett fájlelérés URI sémája a következő:
+hello URI-sémája a HDInsight-ból az Azure storage fájlokhoz való hozzáférést a következő:
 
     wasb[s]://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/<path>
 
-Az URI séma titkosítatlan hozzáférést (a *wasb:* előtaggal) és SSL titkosított hozzáférést (a *wasbs* előtaggal) biztosít. Ajánlott a *wasbs* előtagot használnia, amikor lehetséges, még akkor is, amikor az Azure-ban ugyanabban a régióban lévő adatokat éri el.
+hello URI séma titkosítatlan hozzáférést biztosít (az hello *wasb:* előtag) és SSL titkosított hozzáférést (a *wasbs*). Azt javasoljuk, *wasbs* lehetőség, akkor is, ha elérése során adatokat hello Azure-ban ugyanabban a régióban.
 
-A &lt;BlobStorageContainerName&gt; azonosítja a blobtároló nevét az Azure Storage tárolóban.
-A &lt;StorageAccountName&gt; azonosítja az Azure Storage-fiók nevét. Szükség van a teljes tartománynévre (FQDN-re).
+Hello &lt;BlobStorageContainerName&gt; hello blob tároló az Azure storage hello neve azonosítja.
+Hello &lt;StorageAccountName&gt; hello Azure Storage-fiók neve azonosítja. Szükség van a teljes tartománynévre (FQDN-re).
 
-Ha a &lt;BlobStorageContainerName&gt; és a &lt;StorageAccountName&gt; sincs meghatározva, a rendszer az alapértelmezett fájlrendszert használja. Az alapértelmezett fájlrendszeren tárolt fájlok esetén relatív elérési utat vagy abszolút elérési utat használhat. A HDInsight-fürtökben lévő *hadoop-mapreduce-examples.jar* fájlra például a következők egyikével lehet hivatkozni:
+Ha sem &lt;BlobStorageContainerName&gt; sem &lt;StorageAccountName&gt; van megadva, hello alapértelmezett fájlrendszert használja. Hello alapértelmezett fájlrendszeren hello fájlok esetén relatív elérési utat vagy abszolút elérési utat is használhatja. Például hello *hadoop-mapreduce-examples.jar* fájl, a HDInsight-fürtök lehet hivatkozott tooby hello következő használatával:
 
     wasb://mycontainer@myaccount.blob.core.windows.net/example/jars/hadoop-mapreduce-examples.jar
     wasb:///example/jars/hadoop-mapreduce-examples.jar
     /example/jars/hadoop-mapreduce-examples.jar
 
 > [!NOTE]
-> A fájlnév a <i>hadoop-examples.jar</i> a HDInsight 2.1-es és 1.6-s verziójú fürtökben.
+> hello Fájlnév <i>hadoop-examples.jar</i> HDInsight 2.1-es és 1.6-os fürtökben.
 > 
 > 
 
-Az &lt;elérési út&gt; a fájl vagy könyvtár HDFS elérési útja neve. Mivel az Azure Blob Storage tárolóban lévő tárolók egyszerűen kulcs-érték tárolók, nincs valós hierarchikus fájlrendszer. A blob kulcson belüli perjel karaktert ( / ) a rendszer könyvtárelválasztóként értelmezi. A *hadoop-mapreduce-examples.jar* blobneve például a következő:
+Hello &lt;elérési&gt; hello fájl vagy könyvtár HDFS elérési út. Mivel az Azure Blob Storage tárolóban lévő tárolók egyszerűen kulcs-érték tárolók, nincs valós hierarchikus fájlrendszer. A blob kulcson belüli perjel karaktert ( / ) a rendszer könyvtárelválasztóként értelmezi. Például hello blob neve *hadoop-mapreduce-examples.jar* van:
 
     example/jars/hadoop-mapreduce-examples.jar
 
 > [!NOTE]
-> Amikor a HDInsight eszközön kívüli blobokkal dolgozik, a legtöbb segédprogram nem ismeri fel a WASB formátumot, és ehelyett alapvető elérési út formátumot vár, például a következőt: `example/jars/hadoop-mapreduce-examples.jar`.
+> HDInsight eszközön kívüli blobokkal dolgozik, amikor legtöbb segédprogram nem ismeri fel a WASB formátumot hello és helyette, mint az egy alapvető elérési út formátumot várhatóan `example/jars/hadoop-mapreduce-examples.jar`.
 > 
 > 
 
@@ -198,28 +198,28 @@ Az &lt;elérési út&gt; a fájl vagy könyvtár HDFS elérési útja neve. Mive
 
 ### <a name="access-blobs-using-azure-powershell"></a> Az Azure PowerShell használata
 > [!NOTE]
-> Ezen szakasz parancsai a blobokban tárolt adatok PowerShell eszközön keresztüli elérésének egyszeri példáit nyújtják. A HDInsight használatához testreszabott további teljes példákért lásd: [HDInsight eszközök](https://github.com/Blackmist/hdinsight-tools).
+> Ezen szakasz parancsaiban hello adjon meg egy alapszintű példa blobok tárolt PowerShell tooaccess adatok használatára. A HDInsight használatához testreszabott további teljes körű példa, lásd: hello [a HDInsight Tools](https://github.com/Blackmist/hdinsight-tools).
 > 
 > 
 
-Használja az alábbi parancsot a blobbal kapcsolatos parancsmagok listázásához:
+A következő parancs toolist hello blobbal kapcsolatos parancsmagok hello használata:
 
     Get-Command *blob*
 
 ![A blobbal kapcsolatos PowerShell parancsmagok listája.][img-hdi-powershell-blobcommands]
 
 #### <a name="upload-files"></a>Fájlok feltöltése
-Lásd: [Adatok feltöltése a HDInsightba][hdinsight-upload-data].
+Lásd: [töltse fel az adatok tooHDInsight][hdinsight-upload-data].
 
 #### <a name="download-files"></a>Fájlok letöltése
-A következő szkript egy blokkblobot tölt le az aktuális mappába. A parancsfájl futtatása előtt módosítsa a könyvtárt olyan mappára, ahol írási engedélyei vannak.
+hello következő parancsfájl letölti egy blokk blob toohello aktuális mappába. Hello a parancsfájl futtatását, mielőtt módosítani hello tooa könyvtármappát ahol írási jogosultsággal rendelkeznek-e.
 
     $resourceGroupName = "<AzureResourceGroupName>"
-    $storageAccountName = "<AzureStorageAccountName>"   # The storage account used for the default file system specified at creation.
-    $containerName = "<BlobStorageContainerName>"  # The default file system container has the same name as the cluster.
-    $blob = "example/data/sample.log" # The name of the blob to be downloaded.
+    $storageAccountName = "<AzureStorageAccountName>"   # hello storage account used for hello default file system specified at creation.
+    $containerName = "<BlobStorageContainerName>"  # hello default file system container has hello same name as hello cluster.
+    $blob = "example/data/sample.log" # hello name of hello blob toobe downloaded.
 
-    # Use Add-AzureAccount if you haven't connected to your Azure subscription
+    # Use Add-AzureAccount if you haven't connected tooyour Azure subscription
     Login-AzureRmAccount 
     Select-AzureRmSubscription -SubscriptionID "<Your Azure Subscription ID>"
 
@@ -227,17 +227,17 @@ A következő szkript egy blokkblobot tölt le az aktuális mappába. A parancsf
     $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
     $storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey  
 
-    Write-Host "Download the blob ..." -ForegroundColor Green
+    Write-Host "Download hello blob ..." -ForegroundColor Green
     Get-AzureStorageBlobContent -Container $ContainerName -Blob $blob -Context $storageContext -Force
 
-    Write-Host "List the downloaded file ..." -ForegroundColor Green
+    Write-Host "List hello downloaded file ..." -ForegroundColor Green
     cat "./$blob"
 
-Az erőforráscsoport nevét és a fürt nevét megadva a következő kódot használhatja:
+Hello erőforráscsoport-név és hello fürt nevének megadásával, hello a következő kódot használhatja:
 
     $resourceGroupName = "<AzureResourceGroupName>"
     $clusterName = "<HDInsightClusterName>"
-    $blob = "example/data/sample.log" # The name of the blob to be downloaded.
+    $blob = "example/data/sample.log" # hello name of hello blob toobe downloaded.
 
     $cluster = Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $clusterName
     $defaultStorageAccount = $cluster.DefaultStorageAccount -replace '.blob.core.windows.net'
@@ -245,7 +245,7 @@ Az erőforráscsoport nevét és a fürt nevét megadva a következő kódot has
     $defaultStorageContainer = $cluster.DefaultStorageContainer
     $storageContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccount -StorageAccountKey $defaultStorageAccountKey 
 
-    Write-Host "Download the blob ..." -ForegroundColor Green
+    Write-Host "Download hello blob ..." -ForegroundColor Green
     Get-AzureStorageBlobContent -Container $defaultStorageContainer -Blob $blob -Context $storageContext -Force
 
 
@@ -256,7 +256,7 @@ Az erőforráscsoport nevét és a fürt nevét megadva a következő kódot has
     Get-AzureStorageBlob -Container $containerName -Context $storageContext -prefix "example/data/"
 
 #### <a name="run-hive-queries-using-an-undefined-storage-account"></a>Hive-lekérdezések futtatása nem meghatározott tárfiókkal
-Ez a példa bemutatja, hogyan listázhat mappákat a létrehozási folyamat során nem meghatározott tárfiókból.
+Ez a példa bemutatja, hogyan toolist során nem meghatározott tárfiókból mappa hello létrehozási folyamat.
 $clusterName = "<HDInsightClusterName>"
 
     $undefinedStorageAccount = "<UnboundedStorageAccountUnderTheSameSubscription>"
@@ -272,44 +272,44 @@ $clusterName = "<HDInsightClusterName>"
     Invoke-AzureRmHDInsightHiveJob -Defines $defines -Query "dfs -ls wasb://$undefinedContainer@$undefinedStorageAccount.blob.core.windows.net/;"
 
 ### <a name="use-azure-cli"></a>Az Azure parancssori felület használatával
-Használja az alábbi parancsot a blobbal kapcsolatos parancsok listázásához:
+A következő parancs toolist hello blobbal kapcsolatos parancsok hello használata:
 
     azure storage blob
 
-**Az Azure parancssori felület használatának példája fájlok feltöltéséhez**
+**Az Azure parancssori felület tooupload fájl használatának példája**
 
     azure storage blob upload <sourcefilename> <containername> <blobname> --account-name <storageaccountname> --account-key <storageaccountkey>
 
-**Az Azure parancssori felület használatának példája fájlok letöltéséhez**
+**Az Azure parancssori felület toodownload fájl használatának példája**
 
     azure storage blob download <containername> <blobname> <destinationfilename> --account-name <storageaccountname> --account-key <storageaccountkey>
 
-**Az Azure parancssori felület használatának példája fájlok törléséhez**
+**Az Azure parancssori felület toodelete fájl használatának példája**
 
     azure storage blob delete <containername> <blobname> --account-name <storageaccountname> --account-key <storageaccountkey>
 
-**Az Azure parancssori felület használatának példája fájlok listázásához**
+**Toolist fájlok az Azure parancssori felület használatának példája**
 
     azure storage blob list <containername> <blobname|prefix> --account-name <storageaccountname> --account-key <storageaccountkey>
 
 ## <a name="use-additional-storage-accounts"></a>További tárfiókok használata
 
-HDInsight-fürt létrehozásakor meg kell adnia azt az Azure Storage-fiókot, amelyet a fürthöz társítani kívánja. Ezen a tárfiókon kívül további tárfiókokat vehet fel ugyanabból az Azure-előfizetésből vagy más Azure-előfizetésekből a létrehozási folyamat során vagy a fürt létrehozása után. Útmutatás további tárfiókok hozzáadásához: [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
+HDInsight-fürtök létrehozásakor adja meg azt szeretné, hogy azt tooassociate hello Azure Storage-fiók. Ezenkívül toothis tárfiókot, hozzáadhat további tárfiókok a hello azonos Azure-előfizetés vagy különböző Azure-előfizetések hello létrehozási folyamata során, vagy a fürt létrehozása után. Útmutatás további tárfiókok hozzáadásához: [HDInsight-fürtök létrehozása](hdinsight-hadoop-provision-linux-clusters.md).
 
 > [!WARNING]
-> A rendszer nem támogatja további tárfiókok használatát a HDInsight-fürtön kívül eső helyeken.
+> Egy további storage-fiók egy másik helyen található mint hello HDInsight-fürt használata nem támogatott.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebből a cikkből megtanulta, hogyan használhat HDFS-kompatibilis Azure-tárolót a HDInsighttal. Ez lehetővé teszi a skálázható, hosszú távú adatarchiváló beszerzési megoldások kiépítését, valamint hogy a HDInsighttal kinyerje a strukturált és strukturálatlan tárolt adatokban lévő információkat.
+Ebben a cikkben megtanulta, hogyan meg toouse HDFS-kompatibilis az Azure storage a hdinsight eszközzel. Ez lehetővé teszi, hogy toobuild méretezhető, hosszú távú, archiválás beszerzési megoldások kiépítését és -felhasználási HDInsight toounlock hello lévő információkat hello tárolt strukturált és strukturálatlan adatokat.
 
 További információkért lásd:
 
 * [Azure HDInsight – első lépések][hdinsight-get-started]
 * [Az Azure Data Lake Store használatának első lépései](../data-lake-store/data-lake-store-get-started-portal.md)
-* [Adatok feltöltése a HDInsightba][hdinsight-upload-data]
+* [Adatok tooHDInsight feltöltése][hdinsight-upload-data]
 * [A Hive használata a HDInsightban][hdinsight-use-hive]
 * [A Pig használata a HDInsightban][hdinsight-use-pig]
-* [Az Azure Storage közös hozzáférésű jogosultságkódok használata az adathozzáférés korlátozásához a HDInsightban][hdinsight-use-sas]
+* [Azure Storage megosztott hozzáférési aláírásokkal toorestrict hozzáférés toodata használata a hdinsight eszközzel][hdinsight-use-sas]
 
 [hdinsight-use-sas]: hdinsight-storage-sharedaccesssignature-permissions.md
 [powershell-install]: /powershell/azureps-cmdlets-docs

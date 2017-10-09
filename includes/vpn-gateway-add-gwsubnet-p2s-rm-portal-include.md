@@ -1,8 +1,8 @@
-1. Keresse meg a [portálon](http://portal.azure.com) azt a Resource Manager-alapú virtuális hálózatot, amelyhez létre kíván hozni egy virtuális hálózati átjárót.
-2. A VNet lap **Beállítások** részén az **Alhálózatok** elemre kattintva bontsa ki az **Alhálózatok** oldalt.
-3. Az **Alhálózatok** lap **+Átjáróalhálózat** elemére kattintva nyissa meg az **Alhálózat hozzáadása** lapot. 
+1. A hello [portal](http://portal.azure.com), keresse meg a toohello erőforrás-kezelő virtuális hálózati legyen a virtuális hálózati átjáró toocreate.
+2. A hello **beállítások** szakasz mutatja be a virtuális hálózatot, kattintson a **alhálózatok** tooexpand hello **alhálózatok** lap.
+3. A hello **alhálózatok** kattintson **+ átjáróalhálózatot** tooopen hello **alhálózat hozzáadása** lap. 
 
-  ![Az átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-p2s-rm-portal-include/addgwsubnet.png "Az átjáró alhálózatának hozzáadása")
-4. Az alhálózat **nevénél** automatikusan megjelenik a „GatewaySubnet” érték. Ez az érték szükséges ahhoz, hogy az Azure felismerje, hogy az alhálózat egy átjáró alhálózata. Módosítsa úgy a **címtartomány** automatikusan kitöltött értékeit, hogy megfeleljenek a konfigurációs követelményeinek, majd a lap alján található **OK** gombra kattintva hozza létre az alhálózatot.
+  ![Hello átjáró alhálózatának hozzáadása](./media/vpn-gateway-add-gwsubnet-p2s-rm-portal-include/addgwsubnet.png "hello átjáró alhálózatának hozzáadása")
+4. Hello **neve** az alhálózat hello automatikusan felveszi a "GatewaySubnet" értéket. Ezt az értéket ahhoz, hogy az Azure toorecognize hello alhálózati hello átjáró alhálózatának minimális. Automatikusan kitöltött hello beállítása **-címtartományt** értékek toomatch a konfigurációs követelmények, majd kattintson a **OK** hello lap toocreate hello alhálózati hello alján.
 
-  ![Az alhálózat hozzáadása](./media/vpn-gateway-add-gwsubnet-p2s-rm-portal-include/p2sgwsub.png "Az alhálózat hozzáadása")
+  ![Hello alhálózat hozzáadása](./media/vpn-gateway-add-gwsubnet-p2s-rm-portal-include/p2sgwsub.png "hello alhálózat hozzáadása")

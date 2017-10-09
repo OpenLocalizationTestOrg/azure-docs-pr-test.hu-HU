@@ -1,4 +1,4 @@
-A következő táblázat felsorolja a lehetséges feltöltés és a Windows rögzítési kombinációi általánosítva (főkönyvi), és kifejezetten (egyedi). Operációsrendszer-lemezképek. Egy Y jelzi a kombinációit, amelyek a hibák nélkül fel fogja dolgozni, és a hibák kivételhibát jelzi az n billentyűt. A okaik és megoldásaik felsorolását, be fogja futtatni a különböző hibákat adta a táblázat alatti.
+hello alábbi táblázat hello lehetséges feltöltés és rögzítési kombinációja Windows általánosítva (főkönyvi) és a speciális (spec.) Operációsrendszer-lemezképek. hello kombinációit, amely feldolgozza nélkül egy Y jelöli ki a hibákat, és azokat, kivételhibát hibák szerepelnek, az n hello okok és hello különböző hibákat fog futtatni a megoldások a következők hello tábla.
 
 | Operációs rendszer | Töltse fel specifikációi. | Töltse fel a generációból. | Egyedi rögzíti. | Generációs rögzíti. |
 | --- | --- | --- | --- | --- |

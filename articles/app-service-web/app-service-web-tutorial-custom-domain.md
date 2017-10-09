@@ -1,6 +1,6 @@
 ---
-title: "Egy meglévő egyéni DNS-névvel hozzárendelése az Azure Web Apps |} Microsoft Docs"
-description: "Útmutató egy webalkalmazást, mobil-háttéralkalmazás vagy az Azure App Service API-alkalmazás hozzáadása egy meglévő egyéni DNS-tartománynevet (személyes tartománnyal)."
+title: "egy meglévő egyéni DNS aaaMap tooAzure webalkalmazások name |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooadd egy meglévő egyéni DNS-tartomány (kreatív tartomány) tooa webalkalmazás, mobil-háttéralkalmazás vagy az Azure App Service API-alkalmazás neve."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,17 +15,17 @@ ms.topic: tutorial
 ms.date: 06/23/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 973cda462e8d258cc848e1036891c7f8af043102
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2c4eea3c56c758ca11355554321ffa52dd2c6b9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-an-existing-custom-dns-name-to-azure-web-apps"></a>Egy meglévő egyéni DNS-névvel hozzárendelése az Azure Web Apps
+# <a name="map-an-existing-custom-dns-name-tooazure-web-apps"></a>Egy meglévő egyéni DNS nevét tooAzure webalkalmazások leképezése
 
-Az [Azure Web Apps](app-service-web-overview.md) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás. Az oktatóanyag bemutatja, hogyan képezheti Azure Web Apps egy meglévő egyéni DNS-névvel.
+Az [Azure Web Apps](app-service-web-overview.md) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás. Az oktatóanyag bemutatja, hogyan toomap egy meglévő egyéni DNS name tooAzure webalkalmazások.
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/app-with-custom-dns.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/app-with-custom-dns.png)
 
 Eben az oktatóanyagban az alábbiakkal fog megismerkedni:
 
@@ -35,66 +35,66 @@ Eben az oktatóanyagban az alábbiakkal fog megismerkedni:
 > * Rendelni egy helyettesítő tartományt (például `*.contoso.com`) egy olyan CNAME rekordot használatával
 > * Tartomány leképezése parancsfájlokkal automatizálhatja
 
-Választhat egy **CNAME rekord** vagy egy **rekord** App Service egy egyéni DNS-név hozzárendelése. 
+Választhat egy **CNAME rekord** vagy egy **rekord** toomap egy egyéni DNS tooApp szolgáltatás neve. 
 
 > [!NOTE]
 > Azt javasoljuk, hogy használ egy olyan CNAME REKORDOT a legfelső szintű tartomány kivételével az összes egyéni DNS-nevek (például `contoso.com`).
 
-Az App Service egy élő hely és a DNS-tartománynév áttelepítéséhez lásd: [egy aktív DNS-név áttelepítése az Azure App Service](app-service-custom-domain-name-migrate.md).
+toomigrate élő webhelyet, és a DNS tartomány neve tooApp szolgáltatás, lásd: [áttelepítése egy aktív DNS-név tooAzure App Service](app-service-custom-domain-name-migrate.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 * [App Service-alkalmazás létrehozása](/azure/app-service/), vagy egy másik az oktatóanyaghoz létrehozott alkalmazást használni.
-* Vásároljon egy tartomány nevét, és ellenőrizze, elérhető lesz a tartomány-szolgáltató (például a GoDaddy) a DNS-beállításjegyzék.
+* Vásároljon egy tartomány nevét, és ellenőrizze, hogy hozzáférési toohello DNS beállításjegyzék a tartomány-szolgáltató (például a GoDaddy).
 
-  Ahhoz például, hogy vegye fel a DNS-bejegyzéseket `contoso.com` és `www.contoso.com`, be kell tudnia a DNS-beállításainak konfigurálásához a `contoso.com` gyökértartomány.
+  Például tooadd DNS-bejegyzéseket `contoso.com` és `www.contoso.com`, képes tooconfigure hello DNS-beállításainak hello kell `contoso.com` gyökértartomány.
 
   > [!NOTE]
-  > Ha még nem rendelkezik egy meglévő tartomány nevét, érdemes lehet [egy tartományhoz az Azure portál használatával megvásárlásáról](custom-dns-web-site-buydomains-web-app.md). 
+  > Ha még nem rendelkezik egy meglévő tartomány nevét, érdemes lehet [megvásárlásáról a tartomány használatával hello Azure-portálon](custom-dns-web-site-buydomains-web-app.md). 
 
-## <a name="prepare-the-app"></a>Az alkalmazás előkészítése
+## <a name="prepare-hello-app"></a>Hello alkalmazás előkészítése
 
-Egy egyéni DNS-név hozzárendelése egy webes alkalmazás, a webes alkalmazás [App Service-csomag](https://azure.microsoft.com/pricing/details/app-service/) fizetős rétegben kell lennie (**megosztott**, **alapvető**, **szabványos**, vagy  **Prémium szintű**). Ezt a lépést akkor győződjön meg arról, hogy az App Service alkalmazás van a támogatott az IP-címek.
+egy egyéni DNS neve tooa webalkalmazás, webes alkalmazás hello toomap [App Service-csomag](https://azure.microsoft.com/pricing/details/app-service/) fizetős rétegben kell lennie (**megosztott**, **alapvető**, **szabványos**, vagy  **Prémium szintű**). Ebben a lépésben biztosíthatja, hogy az App Service alkalmazás van hello hello támogatott tarifacsomagot.
 
-### <a name="sign-in-to-azure"></a>Bejelentkezés az Azure-ba
+### <a name="sign-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Nyissa meg a [Azure-portálon](https://portal.azure.com) és jelentkezzen be az Azure-fiókjával.
+Nyissa meg hello [Azure-portálon](https://portal.azure.com) és jelentkezzen be az Azure-fiókjával.
 
-### <a name="navigate-to-the-app-in-the-azure-portal"></a>Keresse meg az alkalmazás az Azure-portálon
+### <a name="navigate-toohello-app-in-hello-azure-portal"></a>Keresse meg az alkalmazás toohello hello Azure-portálon
 
-A bal oldali menüben válassza ki a **alkalmazásszolgáltatások**, majd válassza ki az alkalmazás nevét.
+Hello bal oldali menüben válassza ki a **alkalmazásszolgáltatások**, majd válassza ki a hello alkalmazás hello nevét.
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/select-app.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/select-app.png)
 
-Az App Service alkalmazás a felügyeleti oldal akkor jelenik meg.  
+Az App Service alkalmazás hello hello felügyeleti oldal akkor jelenik meg.  
 
 <a name="checkpricing"></a>
 
-### <a name="check-the-pricing-tier"></a>Ellenőrizze az árképzési szint
+### <a name="check-hello-pricing-tier"></a>IP-címek hello ellenőrzése
 
-Az alkalmazás oldal bal oldali navigációs, görgessen a **beállítások** válassza ki azt **vertikális felskálázás (App Service-csomag)**.
+A bal oldali navigációs hello app lap hello, görgessen a toohello **beállítások** válassza ki azt **vertikális felskálázás (App Service-csomag)**.
 
 ![Méretezett menü](./media/app-service-web-tutorial-custom-domain/scale-up-menu.png)
 
-Az alkalmazás jelenlegi rétegtől kék szegély ki van jelölve. Győződjön meg arról, hogy az alkalmazás nem szerepel a **szabad** réteg. Nem támogatja az egyéni DNS a **szabad** réteg. 
+hello alkalmazás jelenlegi rétegtől kék szegély ki van jelölve. Ellenőrizze, hogy hello alkalmazáshoz nincs hello toomake **szabad** réteg. Hello nem támogatja az egyéni DNS **szabad** réteg. 
 
 ![Ellenőrizze a tarifacsomag](./media/app-service-web-tutorial-custom-domain/check-pricing-tier.png)
 
-Ha az App Service-csomag **szabad**, zárja be a **válasszon tarifacsomagot** lapon, és folytassa a [képezi le egy olyan CNAME rekordot](#cname).
+Ha hello App Service-csomag nincs **szabad**zárja be, hello **válasszon tarifacsomagot** lapon, és hagyja ki túl[képezi le egy olyan CNAME rekordot](#cname).
 
 <a name="scaleup"></a>
 
-### <a name="scale-up-the-app-service-plan"></a>Vertikális felskálázás az App Service-csomag
+### <a name="scale-up-hello-app-service-plan"></a>Vertikális felskálázás hello App Service-csomag
 
-Válassza ki valamelyik nem szabad rétegek (**megosztott**, **alapvető**, **szabványos**, vagy **prémium**). 
+Válassza ki valamelyik hello nem szabad rétegek (**megosztott**, **alapvető**, **szabványos**, vagy **prémium**). 
 
 Kattintson a **Kiválasztás** gombra.
 
 ![Ellenőrizze a tarifacsomag](./media/app-service-web-tutorial-custom-domain/choose-pricing-tier.png)
 
-Amikor megjelenik a következő értesítés, a méretezési művelet befejeződött.
+Amikor megjelenik a következő értesítési hello, hello skálázási művelet be nem fejeződött.
 
 ![Skálázási művelet megerősítése](./media/app-service-web-tutorial-custom-domain/scale-notification.png)
 
@@ -102,49 +102,49 @@ Amikor megjelenik a következő értesítés, a méretezési művelet befejeződ
 
 ## <a name="map-a-cname-record"></a>A CNAME rekord leképezése
 
-Az oktatóanyag példában hozzá egy CNAME rekordot a `www` altartomány (például `www.contoso.com`).
+Hello oktatóanyag példában hello CNAME rekord hozzáadása `www` altartomány (például `www.contoso.com`).
 
 [!INCLUDE [Access DNS records with domain provider](../../includes/app-service-web-access-dns-records.md)]
 
-### <a name="create-the-cname-record"></a>A CNAME rekord létrehozása
+### <a name="create-hello-cname-record"></a>Hello CNAME rekord létrehozása
 
-Adjon hozzá egy CNAME rekordot altartomány hozzárendelése az alkalmazás alapértelmezett állomásnév (`<app_name>.azurewebsites.net`).
+Adja hozzá egy CNAME rekord toomap egy altartomány toohello alkalmazás alapértelmezett állomásnév (`<app_name>.azurewebsites.net`).
 
-Az a `www.contoso.com` tartomány például egy CNAME rekordot, amely rendeli hozzá `www` való `<app_name>.azurewebsites.net`.
+A hello `www.contoso.com` tartomány például adjon hozzá egy CNAME rekordot, amely leképezhető hello neve `www` túl`<app_name>.azurewebsites.net`.
 
-Miután hozzáadta a CNAME REKORDOT, a DNS-rekordok lapon néz ki a következő példa:
+Miután hozzáadta a hello CNAME, hello DNS-rekordok oldalon néz ki a következő példa hello:
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/cname-record.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/cname-record.png)
 
-### <a name="enable-the-cname-record-mapping-in-azure"></a>Az Azure-ban a CNAME rekord hozzárendelésének engedélyezése
+### <a name="enable-hello-cname-record-mapping-in-azure"></a>Engedélyezett hello CNAME rekord-hozzárendelést az Azure-ban
 
-Az alkalmazás oldal az Azure-portálon a bal oldali navigációs, válassza ki a **egyéni tartományok**. 
+Hello hello app lap navigációs maradtak hello Azure-portálon, válassza ki **egyéni tartományok**. 
 
 ![Az egyéni tartomány menü](./media/app-service-web-tutorial-custom-domain/custom-domain-menu.png)
 
-Az a **egyéni tartományok** lap az alkalmazáshoz, adja hozzá a teljes egyéni DNS-nevet (`www.contoso.com`) listájához.
+A hello **egyéni tartományok** lap hello alkalmazás hozzáadása a hello teljesen minősített egyéni DNS-nevét (`www.contoso.com`) toohello listája.
 
-Válassza ki a  **+**  melletti ikon **állomásnév hozzáadása**.
+Jelölje be hello  **+**  ikon következő túl**állomásnév hozzáadása**.
 
 ![Adja hozzá a gazdagép neve](./media/app-service-web-tutorial-custom-domain/add-host-name-cname.png)
 
-Írja be a teljesen minősített tartománynevét, egy CNAME rekordot, például a hozzáadott `www.contoso.com`. 
+Típus hello teljesen minősített tartománynevét egy CNAME rekordot, például a hozzáadott `www.contoso.com`. 
 
 Válassza ki **érvényesítése**.
 
-A **állomásnév hozzáadása** gomb aktiválásakor. 
+Hello **állomásnév hozzáadása** gomb aktiválásakor. 
 
-Győződjön meg arról, hogy **állomásnév rekordtípus** értéke **CNAME (www.example.com vagy bármely altartomány)**.
+Győződjön meg arról, hogy **állomásnév rekordtípus** értéke túl**CNAME (www.example.com vagy bármely altartomány)**.
 
 Válassza ki **állomásnév hozzáadása**.
 
-![DNS-név hozzáadása az alkalmazáshoz](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
+![DNS-név toohello alkalmazás hozzáadása](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
 
-Ez eltarthat egy ideig, megjelennek az alkalmazás új gazdagép **egyéni tartományok** lap. Próbálja meg frissíteni a böngészőt az adatok frissítéséhez.
+Hello hello app kerülnek új állomásnév toobe némi időbe telhet **egyéni tartományok** lap. Próbálja meg frissíteni a hello böngésző tooupdate hello adatokat.
 
 ![CNAME rekord hozzáadva](./media/app-service-web-tutorial-custom-domain/cname-record-added.png)
 
-Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőrzési hiba a lap alján látható.
+Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőrzési hiba hello hello lap alsó részén látható.
 
 ![Ellenőrzési hiba](./media/app-service-web-tutorial-custom-domain/verification-error-cname.png)
 
@@ -152,69 +152,69 @@ Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőr
 
 ## <a name="map-an-a-record"></a>Az A rekord leképezése
 
-Az oktatóanyag példában a legfelső szintű tartomány az A rekord hozzáadása (például `contoso.com`). 
+Hello oktatóanyag példában hello legfelső szintű tartomány az A rekord hozzáadása (például `contoso.com`). 
 
 <a name="info"></a>
 
-### <a name="copy-the-apps-ip-address"></a>Az alkalmazás IP-cím másolása
+### <a name="copy-hello-apps-ip-address"></a>Hello app IP-cím másolása
 
-Képezi rekorddal, az alkalmazás külső IP-cím szükséges. Az IP-címet az alkalmazásban található **egyéni tartományok** oldal az Azure portálon.
+toomap egy A rekordot kell hello app külső IP-címet. Az IP-cím hello alkalmazásban található **egyéni tartományok** hello Azure portálra a lap.
 
-Az alkalmazás oldal az Azure-portálon a bal oldali navigációs, válassza ki a **egyéni tartományok**. 
+Hello hello app lap navigációs maradtak hello Azure-portálon, válassza ki **egyéni tartományok**. 
 
 ![Az egyéni tartomány menü](./media/app-service-web-tutorial-custom-domain/custom-domain-menu.png)
 
-Az a **egyéni tartományok** lapon, az alkalmazás IP-cím másolásához.
+A hello **egyéni tartományok** lapján hello app IP-cím másolásához.
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
 
 [!INCLUDE [Access DNS records with domain provider](../../includes/app-service-web-access-dns-records.md)]
 
-### <a name="create-the-a-record"></a>Az A rekord létrehozása
+### <a name="create-hello-a-record"></a>Hello A rekord létrehozása
 
-Az A rekord leképezése egy alkalmazást, az App Service szükséges **két** DNS-rekordokat:
+toomap egy A rekord tooan alkalmazás, az App Service csak **két** DNS-rekordokat:
 
-- Egy **A** rekord az alkalmazás IP-cím hozzárendelése.
-- A **TXT** rekord leképezése az alkalmazás alapértelmezett állomásnév `<app_name>.azurewebsites.net`. App Service a rekord csak időben konfigurációs, győződjön meg arról, hogy Ön a tulajdonosa az egyéni tartomány használja. Miután az egyéni tartomány érvényesítve, és az App Service-ben konfigurált, törölheti a TXT-rekord. 
+- Egy **A** toomap toohello app IP-cím rögzítése.
+- A **TXT** toomap toohello alkalmazás alapértelmezett állomásnév rögzítse `<app_name>.azurewebsites.net`. App Service használja ezt a rekordot csak egyidejűleg konfigurációs tooverify, hogy Ön a tulajdonosa hello egyéni tartományt. Miután az egyéni tartomány érvényesítve, és az App Service-ben konfigurált, törölheti a TXT-rekord. 
 
-Az a `contoso.com` tartomány például az alábbi táblázat szerint és TXT-rekordok létrehozása (`@` a gyökértartomány általában jelöli). 
+A hello `contoso.com` tartomány például hello és TXT-rekordok megfelelően a következő táblázat toohello létrehozása (`@` általában jelöli hello gyökértartomány). 
 
 | Bejegyzéstípus | Gazdagép | Érték |
 | - | - | - |
-| A | `@` | IP-cím a [másolja az alkalmazás IP-cím](#info) |
+| A | `@` | IP-cím a [másolási hello app IP-cím](#info) |
 | TXT | `@` | `<app_name>.azurewebsites.net` |
 
-A rekordok kerülnek, ha a DNS-rekordok lapon néz ki a következő példa:
+Hello bejegyzések felvételekor hello DNS-rekordok oldalon néz ki a következő példa hello:
 
 ![DNS-rekordok lap](./media/app-service-web-tutorial-custom-domain/a-record.png)
 
 <a name="enable-a"></a>
 
-### <a name="enable-the-a-record-mapping-in-the-app"></a>Az alkalmazásban, az A rekord hozzárendelésének engedélyezése
+### <a name="enable-hello-a-record-mapping-in-hello-app"></a>Egy rekord leképezése hello alkalmazásban hello engedélyezése
 
-Vissza az alkalmazásban lévő **egyéni tartományok** oldalra az Azure portálon, adja hozzá a teljesen minősített egyéni DNS-nevét (például `contoso.com`) listájához.
+Vissza a hello app **egyéni tartományok** hello Azure-portálon lapján hozzáadása hello teljesen minősített egyéni DNS-nevét (például `contoso.com`) toohello listája.
 
-Válassza ki a  **+**  melletti ikon **állomásnév hozzáadása**.
+Jelölje be hello  **+**  ikon következő túl**állomásnév hozzáadása**.
 
 ![Adja hozzá a gazdagép neve](./media/app-service-web-tutorial-custom-domain/add-host-name.png)
 
-Írja be a teljesen minősített tartománynevét, az A rekordot, például a konfigurált `contoso.com`.
+Típus hello teljesen minősített tartománynevét hello A rekord, például a konfigurált `contoso.com`.
 
 Válassza ki **érvényesítése**.
 
-A **állomásnév hozzáadása** gomb aktiválásakor. 
+Hello **állomásnév hozzáadása** gomb aktiválásakor. 
 
-Győződjön meg arról, hogy **állomásnév rekordtípus** értéke **egy olyan rekordot (example.com)**.
+Győződjön meg arról, hogy **állomásnév rekordtípus** értéke túl**egy olyan rekordot (example.com)**.
 
 Válassza ki **állomásnév hozzáadása**.
 
-![DNS-név hozzáadása az alkalmazáshoz](./media/app-service-web-tutorial-custom-domain/validate-domain-name.png)
+![DNS-név toohello alkalmazás hozzáadása](./media/app-service-web-tutorial-custom-domain/validate-domain-name.png)
 
-Ez eltarthat egy ideig, megjelennek az alkalmazás új gazdagép **egyéni tartományok** lap. Próbálja meg frissíteni a böngészőt az adatok frissítéséhez.
+Hello hello app kerülnek új állomásnév toobe némi időbe telhet **egyéni tartományok** lap. Próbálja meg frissíteni a hello böngésző tooupdate hello adatokat.
 
 ![Egy hozzáadott bejegyzés](./media/app-service-web-tutorial-custom-domain/a-record-added.png)
 
-Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőrzési hiba a lap alján látható.
+Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőrzési hiba hello hello lap alsó részén látható.
 
 ![Ellenőrzési hiba](./media/app-service-web-tutorial-custom-domain/verification-error.png)
 
@@ -222,61 +222,61 @@ Ha nem talált meg egy lépést, vagy elgépelte valahol korábban, egy ellenőr
 
 ## <a name="map-a-wildcard-domain"></a>A helyettesítő tartomány leképezése
 
-Az oktatóanyag példában leképez egy [helyettesítő DNS-név](https://en.wikipedia.org/wiki/Wildcard_DNS_record) (például `*.contoso.com`) az App Service alkalmazásba adja hozzá egy CNAME rekordot. 
+Hello oktatóanyag példában leképez egy [helyettesítő DNS-név](https://en.wikipedia.org/wiki/Wildcard_DNS_record) (például `*.contoso.com`) toohello App Service alkalmazáshoz egy olyan CNAME rekordot hozzáadásával. 
 
 [!INCLUDE [Access DNS records with domain provider](../../includes/app-service-web-access-dns-records.md)]
 
-### <a name="create-the-cname-record"></a>A CNAME rekord létrehozása
+### <a name="create-hello-cname-record"></a>Hello CNAME rekord létrehozása
 
-Adjon hozzá egy CNAME rekordot egy helyettesítő karakteres nevet hozzárendelése az alkalmazás alapértelmezett állomásnév (`<app_name>.azurewebsites.net`).
+Adja hozzá egy CNAME rekord toomap egy helyettesítő karakteres nevet toohello alkalmazás alapértelmezett állomásnév (`<app_name>.azurewebsites.net`).
 
-Az a `*.contoso.com` tartomány például a CNAME rekord felelteti meg a név `*` való `<app_name>.azurewebsites.net`.
+A hello `*.contoso.com` tartomány például hello CNAME rekord leképezése hello neve `*` túl`<app_name>.azurewebsites.net`.
 
-Amikor a CNAME ad hozzá, a DNS-rekordok lapon néz ki a következő példa:
+Hello CNAME felvételekor hello DNS-rekordok oldalon néz ki a következő példa hello:
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/cname-record-wildcard.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/cname-record-wildcard.png)
 
-### <a name="enable-the-cname-record-mapping-in-the-app"></a>Az alkalmazásban a CNAME rekord hozzárendelésének engedélyezése
+### <a name="enable-hello-cname-record-mapping-in-hello-app"></a>Hello CNAME rekord hozzárendelésének hello alkalmazásban engedélyezése
 
-Mostantól hozzáadhatja azok bármely altartomány, amely megfelel a helyettesítő karakteres nevének az alkalmazáshoz (például `sub1.contoso.com` és `sub2.contoso.com` megfelelő `*.contoso.com`). 
+Mostantól hozzáadhatja azok bármely altartomány megfelelő hello helyettesítő neve toohello app (például `sub1.contoso.com` és `sub2.contoso.com` megfelelő `*.contoso.com`). 
 
-Az alkalmazás oldal az Azure-portálon a bal oldali navigációs, válassza ki a **egyéni tartományok**. 
+Hello hello app lap navigációs maradtak hello Azure-portálon, válassza ki **egyéni tartományok**. 
 
 ![Az egyéni tartomány menü](./media/app-service-web-tutorial-custom-domain/custom-domain-menu.png)
 
-Válassza ki a  **+**  melletti ikon **állomásnév hozzáadása**.
+Jelölje be hello  **+**  ikon következő túl**állomásnév hozzáadása**.
 
 ![Adja hozzá a gazdagép neve](./media/app-service-web-tutorial-custom-domain/add-host-name-cname.png)
 
-Írjon be egy teljesen minősített tartománynevet, amely megfelel a helyettesítő tartomány (például `sub1.contoso.com`), majd válassza ki **ellenőrzése**.
+Írjon be egy teljesen minősített tartománynevet, amely megfelel a hello helyettesítő tartomány (például `sub1.contoso.com`), majd válassza ki **ellenőrzése**.
 
-A **állomásnév hozzáadása** gomb aktiválásakor. 
+Hello **állomásnév hozzáadása** gomb aktiválásakor. 
 
-Győződjön meg arról, hogy **állomásnév rekordtípus** értéke **CNAME rekord (www.example.com vagy bármely altartomány)**.
+Győződjön meg arról, hogy **állomásnév rekordtípus** értéke túl**CNAME rekord (www.example.com vagy bármely altartomány)**.
 
 Válassza ki **állomásnév hozzáadása**.
 
-![DNS-név hozzáadása az alkalmazáshoz](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname-wildcard.png)
+![DNS-név toohello alkalmazás hozzáadása](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname-wildcard.png)
 
-Ez eltarthat egy ideig, megjelennek az alkalmazás új gazdagép **egyéni tartományok** lap. Próbálja meg frissíteni a böngészőt az adatok frissítéséhez.
+Hello hello app kerülnek új állomásnév toobe némi időbe telhet **egyéni tartományok** lap. Próbálja meg frissíteni a hello böngésző tooupdate hello adatokat.
 
-Válassza ki a  **+**  ikonra újra egy másik állomásnév, amely megfelel a helyettesítő tartomány hozzáadásához. Adja hozzá például `sub2.contoso.com`.
+Jelölje be hello  **+**  ikon újra tooadd egy másik állomásnév, amely megfelel a hello helyettesítő tartomány. Adja hozzá például `sub2.contoso.com`.
 
 ![CNAME rekord hozzáadva](./media/app-service-web-tutorial-custom-domain/cname-record-added-wildcard2.png)
 
 ## <a name="test-in-browser"></a>A böngészőben tesztelése
 
-Keresse meg a korábban konfigurált DNS-nevek (például `contoso.com`, `www.contoso.com`, `sub1.contoso.com`, és `sub2.contoso.com`).
+Keresse meg a korábban megadott értékektől toohello DNS-nevek (például `contoso.com`, `www.contoso.com`, `sub1.contoso.com`, és `sub2.contoso.com`).
 
-![Az Azure alkalmazásba portálnavigációjával](./media/app-service-web-tutorial-custom-domain/app-with-custom-dns.png)
+![Portálnavigációjával tooAzure alkalmazás](./media/app-service-web-tutorial-custom-domain/app-with-custom-dns.png)
 
 ## <a name="automate-with-scripts"></a>Parancsfájlok automatizálásához
 
-Automatizálható a parancsfájlok, az egyéni tartományok felügyeleti használatával a [Azure CLI](/cli/azure/install-azure-cli) vagy [Azure PowerShell](/powershell/azure/overview). 
+Automatizálható a parancsfájlok, az egyéni tartományok felügyeleti hello segítségével [Azure CLI](/cli/azure/install-azure-cli) vagy [Azure PowerShell](/powershell/azure/overview). 
 
 ### <a name="azure-cli"></a>Azure CLI 
 
-A következő parancsot egy konfigurált egyéni DNS-nevet ad hozzá egy App Service-alkalmazást. 
+a következő parancs hello ad hozzá egy konfigurált egyéni DNS nevét tooan App Service-alkalmazást. 
 
 ```bash 
 az appservice web config hostname add \
@@ -285,11 +285,11 @@ az appservice web config hostname add \
     --name <fully_qualified_domain_name> 
 ``` 
 
-További információkért lásd: [egy egyéni tartomány leképezése a webes alkalmazás](scripts/app-service-cli-configure-custom-domain.md). 
+További információkért lásd: [képezi le egy egyéni tartomány tooa webalkalmazás](scripts/app-service-cli-configure-custom-domain.md). 
 
 ### <a name="azure-powershell"></a>Azure PowerShell 
 
-A következő parancsot egy konfigurált egyéni DNS-nevet ad hozzá egy App Service-alkalmazást. 
+a következő parancs hello ad hozzá egy konfigurált egyéni DNS nevét tooan App Service-alkalmazást. 
 
 ```PowerShell  
 Set-AzureRmWebApp `
@@ -298,7 +298,7 @@ Set-AzureRmWebApp `
     -HostNames @("<fully_qualified_domain_name>","<app_name>.azurewebsites.net") 
 ```
 
-További információkért lásd: [rendelje hozzá az egyéni tartománynév a webes alkalmazás](scripts/app-service-powershell-configure-custom-domain.md).
+További információkért lásd: [hozzárendelése egyéni tartományhoz tooa webalkalmazás](scripts/app-service-powershell-configure-custom-domain.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -310,7 +310,7 @@ Ez az oktatóanyag bemutatta, hogyan végezheti el az alábbi műveleteket:
 > * Térkép egy helyettesítő tartomány CNAME rekord használatával
 > * Tartomány leképezése parancsfájlokkal automatizálhatja
 
-Továbblépés a következő oktatóanyag áttekintésével megismerheti, hogyan lehet kötést létrehozni egy egyéni SSL-tanúsítványt egy webalkalmazást.
+Előzetes toohello következő útmutató toolearn hogyan toobind egyéni SSL tanúsítvány tooa webalkalmazás.
 
 > [!div class="nextstepaction"]
-> [Egy meglévő egyéni SSL-tanúsítvány kötését az Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
+> [Egy meglévő egyéni SSL tanúsítvány tooAzure webalkalmazások kötése](app-service-web-tutorial-custom-ssl.md)

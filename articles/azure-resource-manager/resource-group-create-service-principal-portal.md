@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre Azure-alkalmazás identitását portálon |} Microsoft Docs"
-description: "Hozzon létre egy új Azure Active Directory-alkalmazás és szolgáltatás egyszerű erőforrásokhoz való hozzáférés kezelésére használható a szerepköralapú hozzáférés-vezérlés az Azure Resource Manager ismerteti."
+title: "Azure-portál alkalmazás aaaCreate identitást |} Microsoft Docs"
+description: "Ismerteti, hogyan toocreate egy új Azure Active Directory-alkalmazás és egyszerű, amely használható az Azure Resource Manager toomanage hello szerepköralapú hozzáférés-vezérlés szolgáltatás hozzáférés tooresources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5d24fb99e1095d53e5ea547e53b80178d9cb77c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9624715ac612f42df6f9e9e67b8233bd4b914174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-portal-to-create-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>Hozzon létre egy Azure Active Directory-alkalmazást és egy egyszerű szolgáltatást, amely erőforrások eléréséhez a portál használatával
+# <a name="use-portal-toocreate-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>Portál toocreate használja az Azure Active Directory-alkalmazást és egy egyszerű szolgáltatást, amely erőforrások eléréséhez
 
-Ha egy alkalmazás eléréséhez, vagy módosítsa az erőforrások igénylő, állítson be egy Azure Active Directory (AD) alkalmazást, és a szükséges engedélyek hozzárendelése. Ez a megközelítés célszerű a saját credentials az alkalmazást futtató, mert:
+Ha egy alkalmazás, amely tooaccess kell, vagy módosítsa az erőforrásokat, állítson be egy Azure Active Directory (AD) alkalmazás, és rendelje hozzá a szükséges hello engedélyek tooit. Ez a módszer előnyösebb toorunning hello alkalmazás a saját credentials azért, mert:
 
-* Engedélyeket rendelhet a saját engedélyek eltérő identitását. Ezek az engedélyek általában korlátozódik, hogy mit az alkalmazás kell tennie.
-* Nem kell módosítani az alkalmazás hitelesítő adatokat, ha az Ön feladatkörei módosítása. 
-* Tanúsítvány segítségével automatizálhatja a hitelesítést egy felügyelet nélküli parancsfájl végrehajtása közben.
+* Engedélyeket rendelhet a saját engedélyeit eltérő toohello identitását. Ezek az engedélyek általában korlátozott tooexactly milyen hello alkalmazásnak kell toodo.
+* Ha módosítja az Ön feladatkörei nincs toochange hello alkalmazás hitelesítő adatait. 
+* Használhatja a tanúsítványhitelesítés tooautomate egy felügyelet nélküli parancsfájl végrehajtása közben.
 
-Ez a témakör bemutatja, hogyan hajtsa végre ezeket a lépéseket a portálon keresztül. A single-bérlői alkalmazások, ahol az alkalmazás futtatásához csak egy szervezeten belül olyan összpontosít. Általában egy bérlői alkalmazásokat használ futó üzleti alkalmazásokhoz a szervezeten belül.
+Ez a témakör bemutatja, hogyan tooperform azokat lépésről-lépésre hello portálon. A single-bérlő alkalmazás hello alkalmazás esetén csak egy szervezeten belül tervezett toorun összpontosít. Általában egy bérlői alkalmazásokat használ futó üzleti alkalmazásokhoz a szervezeten belül.
  
 ## <a name="required-permissions"></a>Szükséges engedélyek
-Ez a témakör befejezéséhez megfelelő engedélyekkel rendelkezik alkalmazás regisztrálása az Azure AD-bérlőn, és az alkalmazást egy szerepkörhöz rendelhető az Azure-előfizetésben. Ellenőrizze, hogy a fenti lépések végrehajtásához a megfelelő engedélyekkel.
+toocomplete ebben a témakörben kell, hogy megfelelő engedélyek tooregister egy alkalmazást az Azure AD-bérlőről, és hello alkalmazás tooa szerepkör hozzárendelése az Azure-előfizetésben. Most Meggyőződünk arról rendelkezik megfelelő engedélyekkel tooperform hello ezeket a lépéseket.
 
 ### <a name="check-azure-active-directory-permissions"></a>Azure Active Directory-engedélyek ellenőrzése
-1. Az Azure-fiók használatával jelentkezzen be a [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be Azure-fiók tooyour keresztül hello [Azure-portálon](https://portal.azure.com).
 2. Válassza ki **az Azure Active Directory**.
 
      ![Válassza ki az azure active directory](./media/resource-group-create-service-principal-portal/select-active-directory.png)
 3. Válassza ki az Azure Active Directoryban, **felhasználói beállítások**.
 
      ![Válassza ki a felhasználói beállítások](./media/resource-group-create-service-principal-portal/select-user-settings.png)
-4. Ellenőrizze a **App regisztrációk** beállítást. Ha beállítása **Igen**, nem rendszergazdai felhasználók regisztrálhatják AD alkalmazásaiban. Ez a beállítás azt jelenti, hogy egyetlen felhasználóhoz sem az Azure AD-bérlő regisztrálhatja az alkalmazást. Lépne [Azure ellenőrizze előfizetése engedélyei között](#check-azure-subscription-permissions).
+4. Ellenőrizze a hello **App regisztrációk** beállítást. Ha túl beállítása**Igen**, nem rendszergazdai felhasználók regisztrálhatják AD alkalmazásaiban. Ez a beállítás azt jelenti, hogy minden olyan felhasználó, az Azure AD-bérlő hello regisztrálhatja az alkalmazást. A Folytatás túl[Azure ellenőrizze előfizetése engedélyei között](#check-azure-subscription-permissions).
 
      ![alkalmazás-regisztrációk megtekintése](./media/resource-group-create-service-principal-portal/view-app-registrations.png)
-5. Ha az alkalmazás regisztrációk beállítás értéke **nem**, csak a rendszergazda felhasználók regisztrálhatják az alkalmazásokat. Ellenőrizze, hogy a fiók egy rendszergazda az Azure AD-bérlő kell. Válassza ki **áttekintése** és **keresse meg azt a felhasználót** a gyorsan elvégezhető.
+5. Ha hello app regisztrációk beállítás értéke túl**nem**, csak a rendszergazda felhasználók regisztrálhatják az alkalmazásokat. Toocheck kell-e a fiók egy rendszergazda hello Azure AD-bérlő. Válassza ki **áttekintése** és **keresse meg azt a felhasználót** a gyorsan elvégezhető.
 
      ![felhasználó keresése](./media/resource-group-create-service-principal-portal/find-user.png)
 6. Keresse meg a fiókját, és válassza ki, ha azt.
@@ -53,16 +53,16 @@ Ez a témakör befejezéséhez megfelelő engedélyekkel rendelkezik alkalmazás
 7. Válassza ki a fiókot, **Directory szerepkör**. 
 
      ![Directory szerepkör](./media/resource-group-create-service-principal-portal/select-directory-role.png)
-8. A hozzárendelt directory szerepkör megtekintéséhez az Azure ad-ben. Ha a fiók hozzá van rendelve a felhasználói szerepkör, de a regisztrációs alkalmazásbeállításhoz (az előző lépések) korlátozott rendszergazdai jogosultságú felhasználókhoz, kérje meg a rendszergazdát, vagy hogy rendeljen Önhöz egy rendszergazdai szerepkört, vagy lehetővé teszi a felhasználók alkalmazásokat regisztrálni.
+8. A hozzárendelt directory szerepkör megtekintéséhez az Azure ad-ben. Ha a fiókjához toohello felhasználói szerepkör van hozzárendelve, de hello regisztrációs Alkalmazásbeállítás (az előző lépésekben hello) korlátozott tooadmin felhasználók, kérje a rendszergazda tooeither rendelje hozzá, akkor tooan rendszergazdai szerepkör, illetve tooenable felhasználók tooregister alkalmazások.
 
      ![nézet szerepkör](./media/resource-group-create-service-principal-portal/view-role.png)
 
 ### <a name="check-azure-subscription-permissions"></a>Azure-előfizetés engedélyek ellenőrzése
-Az Azure-előfizetéséhez, a fiók rendelkezik `Microsoft.Authorization/*/Write` egy AD-alkalmazás hozzárendelése szerepkörhöz a hozzáférést. Ez a művelet biztosítja a [tulajdonos](../active-directory/role-based-access-built-in-roles.md#owner) szerepkör vagy [felhasználói hozzáférés adminisztrátora](../active-directory/role-based-access-built-in-roles.md#user-access-administrator) szerepkör. Ha a fiók hozzá van rendelve a **közreműködő** szerepkör, Önnek nincs megfelelő engedélye. Egy hibaüzenetet fog kapni, megkísérlésekor. a szolgáltatás egyszerű hozzárendelése egy szerepkörhöz. 
+Az Azure-előfizetéséhez, a fiók rendelkezik `Microsoft.Authorization/*/Write` tooassign AD-alkalmazás tooa szerepet eléréséhez. Ez a művelet biztosítja hello [tulajdonos](../active-directory/role-based-access-built-in-roles.md#owner) szerepkör vagy [felhasználói hozzáférés adminisztrátora](../active-directory/role-based-access-built-in-roles.md#user-access-administrator) szerepkör. Ha a fiók hozzá van rendelve a toohello **közreműködő** szerepkör, Önnek nincs megfelelő engedélye. Egy hibaüzenetet fog kapni, tooassign hello szolgáltatás egyszerű tooa szerepkör megkísérlése során. 
 
-Ellenőrizze előfizetése engedélyei között:
+toocheck előfizetése engedélyei között:
 
-1. Ha nem már nézi, az Azure AD-fiókot az előző lépéseiből, válassza ki a **Azure Active Directory** a bal oldali ablaktáblán.
+1. Ha nem már nézi, az Azure AD-fiókot az előző lépésekben hello, válassza ki a **Azure Active Directory** hello bal oldali ablaktáblán.
 
 2. Keresse meg az Azure AD-fiókot. Válassza ki **áttekintése** és **keresse meg azt a felhasználót** a gyorsan elvégezhető.
 
@@ -74,12 +74,12 @@ Ellenőrizze előfizetése engedélyei között:
 3. Válassza ki **Azure-erőforrások**.
 
      ![Erőforrások kiválasztása](./media/resource-group-create-service-principal-portal/select-azure-resources.png) 
-3. A hozzárendelt szerepkörök megtekintése, és határozza meg, hogy van-e megfelelő engedélyekkel az AD-alkalmazás hozzárendelése szerepkörhöz. Ha nem, kérje meg a előfizetési rendszergazda, akkor a felhasználói hozzáférés adminisztrátora szerepkörbe való felvételre. Az alábbi ábrán a felhasználó rendelve a tulajdonosi szerepkört, a két előfizetésekhez, ami azt jelenti, hogy a felhasználó a megfelelő engedélyekkel rendelkezik. 
+3. A hozzárendelt szerepkörök megtekintése, és határozza meg, ha rendelkezik megfelelő engedélyekkel tooassign AD-alkalmazás tooa szerepet. Ha nem, kérje meg az előfizetés rendszergazdája tooadd meg tooUser hozzáférési rendszergazdai szerepkört. A következő kép hello hello felhasználó, hozzárendelt toohello tulajdonosi szerepkör két elő, ami azt jelenti, hogy a felhasználó a megfelelő engedélyekkel rendelkezik. 
 
      ![engedélyek megjelenítése](./media/resource-group-create-service-principal-portal/view-assigned-roles.png)
 
 ## <a name="create-an-azure-active-directory-application"></a>Egy Azure Active Directory-alkalmazás létrehozása
-1. Az Azure-fiók használatával jelentkezzen be a [Azure-portálon](https://portal.azure.com).
+1. Jelentkezzen be Azure-fiók tooyour keresztül hello [Azure-portálon](https://portal.azure.com).
 2. Válassza ki **az Azure Active Directory**.
 
      ![Válassza ki az azure active directory](./media/resource-group-create-service-principal-portal/select-active-directory.png)
@@ -91,53 +91,53 @@ Ellenőrizze előfizetése engedélyei között:
 
      ![alkalmazás hozzáadása](./media/resource-group-create-service-principal-portal/select-add-app.png)
 
-6. Adjon meg egy nevet és egy URL-címet az alkalmazáshoz. Válassza ki vagy **Web app / API** vagy **natív** a létrehozandó alkalmazás típusától. Miután beállította az értékeket, válassza ki a **létrehozása**.
+6. Adjon meg egy nevet és egy URL-cím hello alkalmazáshoz. Válassza ki vagy **Web app / API** vagy **natív** hello alkalmazástípus toocreate keresi. Miután beállította a hello értékek, válassza ki a **létrehozása**.
 
      ![alkalmazás neve](./media/resource-group-create-service-principal-portal/create-app.png)
 
 Az alkalmazás hozott létre.
 
 ## <a name="get-application-id-and-authentication-key"></a>Alkalmazás azonosítója és a hitelesítési kulcs beszerzése
-Bejelentkezéskor programozott módon, a azonosító szükséges az alkalmazás és egy hitelesítési kulcs. Ahhoz, hogy ezeket az értékeket, tegye a következőket:
+Bejelentkezéskor programozott módon, az alkalmazás és egy hitelesítési kulcsot kell hello azonosítója. tooget megadott értékeket használja hello a következő lépéseket:
 
 1. A **App regisztrációk** az Azure Active Directoryban, válassza ki az alkalmazást.
 
      ![alkalmazás kiválasztása](./media/resource-group-create-service-principal-portal/select-app.png)
-2. Másolás a **Alkalmazásazonosító** és az alkalmazás kódjában tárolja. Az alkalmazások a [mintaalkalmazást](#sample-applications) szakasz tekintse meg ezt az értéket az ügyfél-azonosító.
+2. Másolás hello **Alkalmazásazonosító** és az alkalmazás kódjában tárolja. hello alkalmazások hello [mintaalkalmazást](#sample-applications) szakasz tekintse meg a toothis értékével megegyező hello ügyfél-azonosító.
 
      ![ügyfél-azonosító](./media/resource-group-create-service-principal-portal/copy-app-id.png)
-3. A hitelesítési kulcs létrehozásához válasszon **kulcsok**.
+3. egy hitelesítési kulcs toogenerate válasszon **kulcsok**.
 
      ![Válassza ki a kulcsok](./media/resource-group-create-service-principal-portal/select-keys.png)
-4. Adja meg a kulcsot, és egy időtartamot a kulcs leírását. Ha elkészült, válassza ki a **mentése**.
+4. Adja meg a hello-kulccsal és egy időtartamot hello kulcs leírását. Ha elkészült, válassza ki a **mentése**.
 
      ![kulcs mentése](./media/resource-group-create-service-principal-portal/save-key.png)
 
-     A kulcs mentése után a kulcsnak az értéke megjelenik. Másolja ezt az értéket, mert nem sikerült beolvasni a a kulcs később. A kulcs értéke az alkalmazás azonosítójával jelentkezzen be az alkalmazás számára adja meg. Tárolja a kulcs értékét, ahol az alkalmazás kérheti le.
+     Hello kulcs mentése, után hello hello kulcs értéke jelenik meg. Másolja ezt az értéket, mert nem tudja tooretrieve hello kulcs később. Hello alkalmazás azonosítója toolog a hello kulcsérték rendelkezésére hello alkalmazásként. Tárolja a hello kulcs értékét, ahol az alkalmazás kérheti le.
 
      ![kulcs mentése](./media/resource-group-create-service-principal-portal/copy-key.png)
 
 ## <a name="get-tenant-id"></a>-Bérlőazonosító beszerzése
-Bejelentkezéskor programozott módon, kell átadni a hitelesítési kéréshez a bérlő azonosítója. 
+Bejelentkezéskor programozott módon, toopass hello Bérlőazonosító van szüksége a hitelesítési kérelmet. 
 
-1. Válassza ki ahhoz, hogy a bérlő azonosítója, **tulajdonságok** az Azure AD-bérlő. 
+1. tooget hello Bérlőazonosító, válassza ki **tulajdonságok** az Azure AD-bérlő. 
 
      ![Válassza ki az Azure AD-tulajdonságok](./media/resource-group-create-service-principal-portal/select-ad-properties.png)
 
-2. Másolás a **könyvtár-azonosítója**. Ez az érték az a bérlő azonosítója.
+2. Másolás hello **könyvtár-azonosítója**. Ez az érték az a bérlő azonosítója.
 
      ![bérlő azonosítója](./media/resource-group-create-service-principal-portal/copy-directory-id.png)
 
-## <a name="assign-application-to-role"></a>Szerepkör alkalmazást
-Az előfizetés az erőforrások eléréséhez az alkalmazást egy szerepkörhöz kell rendelni. Döntse el, melyik szerepkört jelöli a megfelelő engedélyekkel az alkalmazáshoz. A rendelkezésre álló szerepkörökkel kapcsolatos további tudnivalókért lásd: [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
+## <a name="assign-application-toorole"></a>Rendelje hozzá az alkalmazás toorole
+tooaccess erőforrást az előfizetésében, hozzá kell rendelnie hello alkalmazás tooa szerepkör. Döntse el, melyik szerepkör hello a megfelelő engedélyekkel a hello alkalmazás jelöli. toolearn hello elérhető szerepkörök, lásd: [RBAC: beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md).
 
-A hatókör szintjén található az előfizetés, erőforráscsoportból vagy erőforrás állíthatja be. Engedélyek hatókör alacsonyabb szintre származnak. Például egy alkalmazást az olvasó szerepkört erőforráscsoport hozzáadása azt jelenti, hogy ez az erőforráscsoport és a benne található erőforrásokat tudja olvasni.
+Hello hatókör hello előfizetés, az erőforráscsoportot, vagy az erőforrás hello szinten állíthatja be. Az engedélyek hatóköre örökölt toolower szintű is. Például hozzáadása egy alkalmazáshoz toohello olvasó szerepkört erőforráscsoport azt jelenti, hogy az tud olvasni hello erőforráscsoport és a benne található erőforrásokat.
 
-1. Nyissa meg a szint szeretne hozzárendelni az alkalmazást. Például egy szerepkört az előfizetés hatókörből rendeléséhez jelölje **előfizetések**. Ehelyett kiválaszthatja egy erőforráscsoport vagy az erőforrás.
+1. Keresse meg a kívánt tooassign hello alkalmazás hatókör toohello szintjét. Például tooassign hello előfizetés hatókörben szerepkör kiválasztása **előfizetések**. Ehelyett kiválaszthatja egy erőforráscsoport vagy az erőforrás.
 
      ![Válassza ki az előfizetést](./media/resource-group-create-service-principal-portal/select-subscription.png)
 
-2. Válassza az adott előfizetés (erőforráscsoport vagy erőforrás) az alkalmazást.
+2. Válassza ki a hello adott előfizetés (erőforráscsoport vagy erőforrás) tooassign hello alkalmazást.
 
      ![Válassza ki az előfizetést a hozzárendeléshez](./media/resource-group-create-service-principal-portal/select-one-subscription.png)
 
@@ -148,18 +148,18 @@ A hatókör szintjén található az előfizetés, erőforráscsoportból vagy e
 4. Válassza a **Hozzáadás** lehetőséget.
 
      ![Válassza ki hozzáadása](./media/resource-group-create-service-principal-portal/select-add.png)
-6. Jelölje ki az alkalmazáshoz hozzárendelni kívánt szerepkört. Az alábbi képen látható a **olvasó** szerepkör.
+6. Válassza ki a hello szerepkör tooassign toohello alkalmazás kívánja. hello következő kép bemutatja hello **olvasó** szerepkör.
 
      ![szerepkör kiválasztása](./media/resource-group-create-service-principal-portal/select-role.png)
 
 8. Keresse meg az alkalmazást, és válassza ki azt.
 
      ![alkalmazások keresése](./media/resource-group-create-service-principal-portal/search-app.png)
-9. Válassza ki **OK** a szerepkör hozzárendelése befejezéséhez. Megjelenik a listában, hogy a hatókör adott szerepkörhöz rendelt felhasználók az alkalmazást.
+9. Válassza ki **OK** toofinish hello szerepkör hozzárendelése. Megjelenik a felhasználók tooa szerepkörrel rendelkeznek az adott hatókörnél hello lista alkalmazását.
 
-## <a name="log-in-as-the-application"></a>Jelentkezzen be az alkalmazás
+## <a name="log-in-as-hello-application"></a>Jelentkezzen be hello alkalmazás
 
-Az alkalmazás most már be van állítva az Azure Active Directoryban. Rendelkezik egy Azonosítóját és kulcsát az alkalmazás aláíráshoz használandó. Az alkalmazás hozzá van rendelve egy szerepkör, amely azt teszi bizonyos műveleteket hajthat végre műveleteket. Az alkalmazás a különböző platformokat, a bejelentkezés kapcsolatos információkért lásd:
+Az alkalmazás most már be van állítva az Azure Active Directoryban. Rendelkezik egy Azonosítót és a kulcs toouse hello alkalmazásként aláíráshoz. hello alkalmazás szerepét tooa, mely bizonyos műveleteket hajthat végre műveleteket. Különböző platformokon keresztül hello alkalmazásként naplózás kapcsolatos információkért lásd:
 
 * [PowerShell](resource-group-authenticate-service-principal.md#provide-credentials-through-powershell)
 * [Azure CLI](resource-group-authenticate-service-principal-cli.md#provide-credentials-through-azure-cli)
@@ -172,6 +172,6 @@ Az alkalmazás most már be van állítva az Azure Active Directoryban. Rendelke
 
 
 ## <a name="next-steps"></a>Következő lépések
-* Egy több-bérlős alkalmazás beállításához tekintse meg a [fejlesztői útmutató az Azure Resource Manager API-val engedélyezési](resource-manager-api-authentication.md).
-* Biztonsági házirendek megadásával kapcsolatos további tudnivalókért lásd: [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md).  
-* Elérhető műveleteket, lehet megadott vagy megtagadta a felhasználók listáját lásd: [Azure Resource Manager erőforrás-szolgáltató műveletek](../active-directory/role-based-access-control-resource-provider-operations.md).
+* egy több-bérlős alkalmazást, be tooset lásd: [– fejlesztői útmutató tooauthorization hello Azure Resource Manager API-val rendelkező](resource-manager-api-authentication.md).
+* toolearn biztonsági házirendek meghatározásával kapcsolatban lásd: [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md).  
+* Az elérhető műveleteket, lehet megadott vagy toousers megtagadva listájáért lásd: [Azure Resource Manager erőforrás-szolgáltató műveletek](../active-directory/role-based-access-control-resource-provider-operations.md).

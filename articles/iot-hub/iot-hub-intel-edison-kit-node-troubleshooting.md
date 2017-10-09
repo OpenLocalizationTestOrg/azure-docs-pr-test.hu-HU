@@ -1,5 +1,5 @@
 ---
-title: "Intel Edison (csomópont) csatlakozni az Azure IoT - 4. lecke: hibaelhárítása |} Microsoft Docs"
+title: "Csatlakozás Intel Edison (csomópont) tooAzure IoT - lecke 4: hibaelhárítása |} Microsoft Docs"
 description: "Hibaelhárítás lap Intel Edison Node.js-élmény"
 services: iot-hub
 documentationcenter: 
@@ -17,50 +17,50 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: d54dd4a13ed87152fb6c039f38a5ffe8b4470df9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9502300f7f372255572b49bea45dd3e1fdaeeb37
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting"></a>Hibaelhárítás
 ## <a name="hardware-issues"></a>Hardverproblémák
-Intel Edison gyakori problémáinak megoldásával kapcsolatban további információkért lásd: a [hivatalos hibaelhárítási lap](https://software.intel.com/en-us/node/637974).
+Intel Edison gyakori problémáinak megoldásával kapcsolatban további információkért lásd: hello [hivatalos hibaelhárítási lap](https://software.intel.com/en-us/node/637974).
 
 ## <a name="nodejs-package-issues"></a>NODE.js csomag problémák
 ### <a name="no-response-during-gulp-tasks"></a>Gulp műveletek során nincs válasz.
-Ha problémába ütközik az éppen futó feladatok gulp, adhat hozzá a `--verbose` hibakeresési lehetőséget. Állítsa le a jelenlegi gulp feladatok használatával próbál `Ctrl + C`, és futtassa a következő parancsot a konzolablakban tekintse meg a hibakeresési üzeneteket. A részletes hibaüzenetek a konzol kimeneti jelenhet meg. 
+Ha problémába ütközik az éppen futó feladatok gulp, adhat hozzá hello `--verbose` hibakeresési lehetőséget. Próbálja tooterminate aktuális gulp feladatok használatával `Ctrl + C`, majd a futtatási hello végrehajtja a parancsot a konzol ablakot toosee hibakeresési üzeneteket. A részletes hibaüzenetek a konzol kimeneti jelenhet meg. 
 
 ```bash
 gulp --verbose
 ```
 
 ### <a name="npm-issues"></a>NPM problémák
-Próbálja meg frissíteni az NPM-csomagot a következő parancsot:
+Próbálja meg tooupdate az NPM csomag hello a következő parancsot:
 
 ```bash
 npm install -g npm
 ```
 
-Ha a probléma továbbra is fennáll, hagyja meg a megjegyzéseit, ez a cikk végén, vagy hozzon létre egy GitHub probléma a [minta tárház][sample-repository].
+Ha hello probléma továbbra is fennáll, hagyja meg a megjegyzéseit, ez a cikk végén hello, vagy hozzon létre egy GitHub probléma a [minta tárház][sample-repository].
 
 ## <a name="remote-debugging"></a>Távoli hibakeresés
 
-### <a name="run-the-sample-application-in-debug-mode"></a>Futtassa a mintaalkalmazást hibakeresési módban
+### <a name="run-hello-sample-application-in-debug-mode"></a>Hibakeresési módban hello mintaalkalmazás futtatása
 
 ```bash
 gulp run --debug
 ```
 
-Ha készen áll a hibakeresési motor, kell tudni ```Debugger listening on port 5858``` a konzol kimeneti a.
+Ha hello hibakeresési motor készen áll, meg kell tudni toosee ```Debugger listening on port 5858``` hello konzol kimenetből.
 
-### <a name="configure-vs-code-to-connect-to-the-remote-device"></a>Visual STUDIO Code kapcsolódni a távoli eszköz konfigurálása
+### <a name="configure-vs-code-tooconnect-toohello-remote-device"></a>Visual STUDIO Code tooconnect toohello távoli eszközök konfigurálása
 
-Nyissa meg a **Debug** bal oldali panelen.
+Nyissa meg hello **Debug** a hello bal oldali panelen.
 
-Kattintson a zöld **Start Debugging** (F5) gombra. Visual STUDIO Code nyitna a **launch.json** fájl, amelyet frissíteni kell.
+Kattintson a zöld hello **Start Debugging** (F5) gombra. Visual STUDIO Code nyitna a **launch.json** fájlt, amely tooupdate van szüksége.
 
-Frissítés a **launch.json** fájlt a következő tartalmat, hogy lecseréli `[device hostname or IP address]` a tényleges eszköz IP-címet vagy állomásnevet.  
+Frissítés hello **launch.json** tartalom a következő hello fájlt, hogy lecseréli `[device hostname or IP address]` hello tényleges eszköz IP-címet vagy állomásnevet.  
 
 ```json
 {
@@ -84,22 +84,22 @@ Frissítés a **launch.json** fájlt a következő tartalmat, hogy lecseréli `[
 
 ![Távoli hibakeresési konfigurálása](media/iot-hub-intel-edison-lessons/troubleshooting/remote_debugging_configuration.png)
 
-### <a name="attach-to-the-remote-application"></a>A távoli alkalmazás csatlakoztatása
+### <a name="attach-toohello-remote-application"></a>Toohello távoli alkalmazás csatlakoztatása
 
-Kattintson a zöld **Start Debugging** (F5) gombra, és kihasználhatják a hibakeresést.
+Kattintson a zöld hello **Start Debugging** (F5) gombra, és kihasználhatják a hibakeresést.
 
-Elolvashatja [Visual STUDIO Code JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) további információt a hibakereső.
+Elolvashatja [Visual STUDIO Code JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) toolearn hello hibakereső többet.
 
 ![Távoli, interaktív hibakeresés](media/iot-hub-intel-edison-lessons/troubleshooting/remote_debugging_interactive.png)
 
 ## <a name="azure-cli-issues"></a>Azure-CLI problémák
-Az Azure parancssori felület (CLI) preview build. Keresse meg a megoldást a [Preview telepítése útmutató](https://github.com/Azure/azure-cli/blob/master/doc/preview_install_guide.md) megoldások keresése. Próbálja meg az Azure-cli parancsok nem a várt módon működik legújabb verziójára történő frissítés.
+az Azure parancssori felület (CLI) hello preview build. Keressen megoldást a hello [Preview telepítése útmutató](https://github.com/Azure/azure-cli/blob/master/doc/preview_install_guide.md) tooseek megoldásokat. Amikor parancsok nem a várt módon működik, próbálja meg tooupgrade Azure-cli toolatest verziója.
 
-Ha az eszköz hibáit, a fájl egy [probléma](https://github.com/Azure/azure-cli/issues) a a **problémák** a GitHub-tárház szakasza.
+Ha hello eszközzel hibáit, a fájl egy [probléma](https://github.com/Azure/azure-cli/issues) a hello **problémák** hello GitHub-tárház szakasza.
 
-A gyakori problémák elhárításához tekintse meg a [információs](https://github.com/Azure/azure-cli/blob/master/README.rst).
+A gyakori problémák elhárításához tekintse meg hello [információs](https://github.com/Azure/azure-cli/blob/master/README.rst).
 
-Ha megfelel a "Egy olyan verzióra, amely eleget tesz a követelmény nem található", futtassa a következő parancsot a pip frissítése a legújabb verzióra.
+Ha megfelel a "Nem található olyan verzióra, amely eleget tesz a hello követelmény", adjon futtatási hello következő parancsot a tooupgrade pip toolastest verziója.
 
 ```bash
 python -m pip install --upgrade pip
@@ -107,7 +107,7 @@ python -m pip install --upgrade pip
 
 ## <a name="python-installation-issues"></a>Python telepítési problémák
 ### <a name="legacy-installation-issues-macos"></a>A hagyományos telepítési problémák (macOS)
-Amikor telepít **pip**, egy engedély hibát vált ki, ha a régebbi csomagok, amelyeket együtt telepített **su** engedélyek. Ebben az esetben az okozza, hogy a Python brew (macOS) használatával egy korábban elindított telepítése nincs teljesen eltávolítva. Néhány **pip** a korábbi telepítés csomagok létrehozásakor a gyökérszintű, amely azt eredményezi, az engedély hiba. A megoldás, hogy távolítsa el azokat a legfelső szintű telepített csomagokat. Ez a feladat befejezéséhez tegye a következőket:
+Amikor telepít **pip**, egy engedély hibát vált ki, ha a régebbi csomagok, amelyeket együtt telepített **su** engedélyek. Ebben az esetben az okozza, hogy a Python brew (macOS) használatával egy korábban elindított telepítése nincs teljesen eltávolítva. Néhány **pip** a korábbi telepítés csomagok hello engedély hibát okoz a legfelső szintű hozott létre. megoldás hello tooremove azokat a csomagokat, legfelső szintű telepítve van. Ez a feladat használható a következő lépéseket toocomplete hello:
 
 1. Ugrás: /usr/local/lib/python2.7/site-packages
 2. Csomagok létrehozása a legfelső szintű:`ls -l | grep root`
@@ -115,42 +115,42 @@ Amikor telepít **pip**, egy engedély hibát vált ki, ha a régebbi csomagok, 
 4. Telepítse újra a Python.
 
 ## <a name="azure-iot-hub-issues"></a>Az Azure IoT Hub-problémák
-Ha az Azure IoT hubot sikeresen kiépítette már `azure-cli`, és meg kell-e olyan eszköz, amely az IoT hub csatlakozó eszközök kezelésére, és próbálkozzon az alábbi eszközöket:
+Ha az Azure IoT hubot sikeresen kiépítette már `azure-cli`, és egy eszköz toomanage hello eszközök tooyour IoT-központ, a következő eszközök próbálja hello csatlakozó van szüksége:
 
 ### <a name="device-explorer"></a>Eszköz Explorer
-[Eszköz Explorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) Windows helyi gépen fut, és az Azure IoT hub csatlakozik. A következő kommunikál [IoT-központok végpontjai](iot-hub-devguide.md):
+[Eszköz Explorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer) Windows helyi gépen fut, és az Azure IoT-központ tooyour csatlakozik. Hello következő kommunikál [IoT-központok végpontjai](iot-hub-devguide.md):
 
-- _Eszköz Identitáskezelés_ szeretnék telepíteni és kezelni az IoT hub regisztrált eszközökre.
-- _Eszköz-felhő kap_ , figyelheti az IoT hub az eszközről küldött üzeneteket.
-- _Felhő eszközre küldése_ úgy küldhet üzeneteket az eszközök az IoT hub a.
+- _Eszköz Identitáskezelés_ tooprovision és az IoT hub regisztrált eszközök kezeléséhez.
+- _Eszköz-felhő kap_ , megfigyelheti, hogy az eszköz tooyour IoT hub küldött üzenetek.
+- _Felhő eszközre küldése_ úgy küldhet üzeneteket tooyour eszközök az IoT hub a.
 
-Konfigurálja a `IoT hub connection string` ebből az eszközből készülék képességeinek használatához.
+Konfigurálja a `IoT hub connection string` belül az eszköz toouse annak képességeit.
 
 ### <a name="iot-hub-explorer"></a>Az IoT-központ Explorer
-[Az IoT-központ Explorer](https://github.com/Azure/iothub-explorer) egy minta többplatformos parancssori felület eszköz eszközügyfeleken kezelésére. Az eszköz segítségével az identitásjegyzékhez lévő eszközök kezeléséhez, eszköz-a-felhőbe küldött üzeneteket figyelése és felhő eszközparancsok küldése.
+[Az IoT-központ Explorer](https://github.com/Azure/iothub-explorer) egy olyan minta többplatformos parancssori felület eszköz toomanage eszközügyfeleitől. Hello eszköz toomanage hello eszközeiket használják a hello identitásjegyzékhez, figyelheti az eszköz a felhőbe küldött üzeneteket, és felhő eszközparancsok küldése.
 
-Telepítse a legújabb (előzetes) verzióját az IOT hubbal-explorer eszköz, a következő parancsot a parancssori környezetben:
+tooinstall hello hello IOT hubbal-explorer eszköz, futtassa a következő parancsot a parancssori környezetben hello legújabb (előzetes) verzióját:
 
 ```bash
 npm install -g iothub-explorer@latest
 ```
 
-A következő paranccsal minden IOT hubbal-explorer parancsot és paramétereket kapcsolatos további segítség:
+A következő parancs tooget további súgó összes hello IOT hubbal-explorer parancsot és paramétereket hello használhatja:
 
 ```bash
 iothub-explorer help
 ```
 
 ### <a name="azure-portal"></a>Azure Portal
-Egy teljes parancssori felület segítségével létrehozhatja és az Azure erőforrások kezeléséhez. Érdemes lehet használni a [Azure-portálon](../azure-portal-overview.md) kiépítéséhez, kezeléséhez, és hibakeresése az Azure-erőforrások.
+Egy teljes parancssori felület segítségével létrehozhatja és az Azure erőforrások kezeléséhez. Érdemes lehet toouse hello [Azure-portálon](../azure-portal-overview.md) toohelp kiépítését, kezelése és hibakeresése az Azure-erőforrások.
 
 ## <a name="azure-storage-issues"></a>Az Azure storage-problémák
-[A Microsoft Azure Tártallózó (előzetes verzió)](http://storageexplorer.com) egy különálló alkalmazás, amelyekkel dolgozni Microsoft [Azure Storage](https://azure.microsoft.com/en-us/services/storage/) Windows, a macOS és a Linux adatok. Ez az eszköz segítségével, a tábla csatlakozhat, és azt az adatok megtekintéséhez. Az eszköz segítségével az Azure Storage problémák elhárításához.
+[A Microsoft Azure Tártallózó (előzetes verzió)](http://storageexplorer.com) egy különálló alkalmazás, melyekkel a toowork Microsoft [Azure Storage](https://azure.microsoft.com/en-us/services/storage/) Windows, a macOS és a Linux adatok. Az eszköz használatával tooyour tábla csatlakozhat, és azt hello adatok megtekintéséhez. Az eszköz tootroubleshoot használhatja az Azure tárolási problémák.
 
 ## <a name="next-steps"></a>Következő lépések
-Ezen a lapon csak Intel Edison Kit leggyakoribb problémákat foglalja magában. Alsó megjegyzések további hibaelhárítási jelentés problémákat is hagyhatja.
+Ezen a lapon csak a leggyakoribb problémák hello Intel Edison Kit tartalmazza. Alsó megjegyzések tooreport problémákkal kapcsolatos további információkat is hagyhatja.
 
-Lépjen vissza a [Intel Edison (Node.js) az első lépései](iot-hub-intel-edison-kit-node-get-started.md)
+Lépjen vissza túl[Intel Edison (Node.js) az első lépései](iot-hub-intel-edison-kit-node-get-started.md)
 
 <!-- Images and links -->
 

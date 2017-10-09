@@ -1,0 +1,5 @@
+> [!NOTE]
+> toocomplete ebben az oktatóanyagban egy Azure-fiókra van szüksége. [Aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF), vagy [regisztrálhat egy ingyenes fiókot](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF).
+> 
+> 
+

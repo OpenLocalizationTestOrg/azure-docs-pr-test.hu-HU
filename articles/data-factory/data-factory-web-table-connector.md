@@ -1,6 +1,6 @@
 ---
-title: "Adatok áthelyezése az Azure Data Factory használatával webes táblából |} Microsoft Docs"
-description: "Tudnivalók az adatok áthelyezése egy táblából egy Azure Data Factory használatával weblapon."
+title: "Azure Data Factory használatával webes tábla aaaMove adatait |} Microsoft Docs"
+description: "További információk a hogyan egy tábla egy webes toomove adatait lapon Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: jingwang
-ms.openlocfilehash: 9e006bc7289fa0239f1650ac6ad43dd159e3c7e0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e52216305583ebbe71ed896522f361bb22f01278
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-a-web-table-source-using-azure-data-factory"></a>Adatok áthelyezése az Azure Data Factory használatával webes tábla forrásból
-Ez a cikk ismerteti a másolási tevékenység használata az Azure Data Factory tárolt adatok mozgatása egy tábla egy weblapon támogatott fogadó adattárat. Ez a cikk épít, a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely megadja az adatmozgás általános áttekintést a másolási tevékenység és a támogatott adatforrások/mosdók adattárolókhoz listáját.
+Ez a cikk ismerteti, hogyan toouse hello másolási tevékenység az Azure Data Factory toomove adatok egy táblából egy weblap tooa támogatott fogadó adattár. Ez a cikk épít, hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely megadja a másolási tevékenység és hello listáját támogatott adatforrások/mosdók adattárolókhoz adatmozgás általános áttekintést.
 
-Adat-előállító jelenleg csak áthelyezése egy webes tábla adatai más adattárolókhoz, de egy webes tábla célra nem adatok áthelyezését más adatokat tárolja.
+Adat-előállító jelenleg csak egy webes tábla tooother adatok áthelyezése adatait tárolja, de nem az adatok áthelyezése más adatok tooa webes tábla cél tárolja.
 
 > [!IMPORTANT]
-> A webalkalmazás-összekötőjének jelenleg csak kibontása tábla tartalma HTML-lapon. A HTTP/s végpont adatok lekéréséhez használja [HTTP összekötő](data-factory-http-connector.md) helyette.
+> A webalkalmazás-összekötőjének jelenleg csak kibontása tábla tartalma HTML-lapon. a HTTP/s végpont tooretrieve adatait használja [HTTP összekötő](data-factory-http-connector.md) helyette.
 
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, mely az adatok egy helyszíni Cassandra adattároló különböző eszközök/API-k használatával létrehozhat egy folyamatot. 
 
-- Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást. 
-- Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját. 
+- hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást. 
+- Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára. 
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban:
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello:
 
-1. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory.
-2. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. 
+1. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban.
+2. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. 
 3. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. 
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása egy webes tábla használt adat-előállító entitások JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az webes tábla az Azure Blob](#json-example-copy-data-from-web-table-to-azure-blob) című szakaszát. 
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek egy webes tábla használt toocopy adatait JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az webes tábla tooAzure Blob](#json-example-copy-data-from-web-table-to-azure-blob) című szakaszát. 
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory tartozó entitások webes táblához JSON-tulajdonságok:
+a következő szakaszok hello használt toodefine adat-előállító entitások adott tooa webes tábla JSON-tulajdonághoz részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat a JSON-elemek szerepelnek jellemző csatolt webszolgáltatás leírását.
+a következő táblázat hello biztosít JSON elemek adott tooWeb kapcsolódó szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **webes** |Igen |
-| URL-cím |A webes forrás URL-címe |Igen |
+| type |hello type tulajdonságot kell beállítani: **webes** |Igen |
+| URL-cím |URL-cím toohello webes forrás |Igen |
 | AuthenticationType |Névtelen. |Igen |
 
 ### <a name="using-anonymous-authentication"></a>A névtelen hitelesítés segítségével
@@ -71,15 +71,15 @@ A következő táblázat a JSON-elemek szerepelnek jellemző csatolt webszolgál
 ```
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
 
-A **typeProperties** szakasz eltérő adatkészlet egyes típusai és információkat nyújt azokról az adattárban adatok helyét. A typeProperties szakasz típusú adatkészlet **Webtábla** tulajdonságai a következők
+Hello **typeProperties** szakasz eltérő adatkészlet egyes típusai és hello adattár hello adatok hello helyét ismerteti. hello typeProperties szakasz típusú adatkészlet **Webtábla** rendelkezik hello következő tulajdonságai
 
 | Tulajdonság | Leírás | Szükséges |
 |:--- |:--- |:--- |
-| type |A dataset típusa. meg kell **Webtábla** |Igen |
-| Elérési út |Az erőforrás, amely tartalmazza a tábla relatív URL-CÍMÉT. |Nem. Ha nincs megadva, csak a megadott URL-cím a társított szolgáltatás definíciójának használja. |
-| Index |Annak az erőforrás a táblának az indexe. Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit egy tábla indexének első HTML-lapon. |Igen |
+| type |Hello dataset típusa. be kell állítani túl**Webtábla** |Igen |
+| Elérési út |Relatív URL-cím toohello erőforrás hello táblát tartalmaz. |Nem. Ha nincs megadva elérési út, kapcsolódó hello szolgáltatásdefinícióban megadott csak hello URL szolgál. |
+| Index |hello tábla hello erőforrás hello indexe. Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit toogetting index egy tábla egy HTML-lapon. |Igen |
 
 **Példa**
 
@@ -103,15 +103,15 @@ A **typeProperties** szakasz eltérő adatkészlet egyes típusai és informáci
 ```
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, valamint bemeneti és kimeneti táblák és házirend tulajdonságai minden típusú tevékenységek érhetők el.
 
-Mivel a tevékenység typeProperties szakaszában elérhető tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Mivel a hello hello tevékenység részében typeProperties rendelkezésre álló tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
-Ha a forrás, a másolási tevékenység jelenleg típusú **WebSource**, további tulajdonságok nem támogatottak.
+Ha a másolási tevékenység hello forrás jelenleg típusú **WebSource**, további tulajdonságok nem támogatottak.
 
 
-## <a name="json-example-copy-data-from-web-table-to-azure-blob"></a>JSON-példa: adatok másolása az webes tábla az Azure-Blobba
-A következő példában:
+## <a name="json-example-copy-data-from-web-table-tooazure-blob"></a>JSON-példa: adatok másolása az webes tábla tooAzure Blob
+a következő példa azt mutatja be hello:
 
 1. A társított szolgáltatás típusa [webes](#linked-service-properties).
 2. A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -119,11 +119,11 @@ A következő példában:
 4. Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [WebSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-A minta másol adatokat egy webes tábla egy Azure blob minden órában. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta másol adatokat egy webes tábla tooan Azure blob minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
-A következő példa bemutatja, hogyan adatok másolása az Azure blob egy webes táblából. Azonban adatok átmásolhatók közvetlenül a megadott mosdók bármelyikét a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk a másolási tevékenység során az Azure Data Factory használatával.
+a következő minta hello jeleníti meg, hogyan toocopy adatait egy webes tábla tooan Azure blob-e. Azonban adatok átmásolhatók, közvetlenül a hello tooany fogadók esetében a megadott hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk hello másolási tevékenység az Azure Data Factory használatával.
 
-**Webes társított szolgáltatás** a példában a kapcsolódó webszolgáltatás névtelen hitelesítést. Lásd: [webes társított szolgáltatás](#linked-service-properties) szakasz a különböző típusú hitelesítés használható.
+**Webes társított szolgáltatás** ebben a példában használt webes hello társított szolgáltatás névtelen hitelesítést. Lásd: [webes társított szolgáltatás](#linked-service-properties) szakasz a különböző típusú hitelesítés használható.
 
 ```json
 {
@@ -154,10 +154,10 @@ A következő példa bemutatja, hogyan adatok másolása az Azure blob egy webes
 }
 ```
 
-**Webtábla bemeneti adatkészlet** beállítás **külső** való **igaz** tájékoztatja a Data Factory szolgáltatásnak, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák.
+**Webtábla bemeneti adatkészlet** beállítás **külső** túl**igaz** hello Data Factory szolgáltatásnak tájékoztatja, hogy hello dataset külső toohello adat-előállító, és nem hozzák hello tevékenységet adat-előállítóban.
 
 > [!NOTE]
-> Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit egy tábla indexének első HTML-lapon.  
+> Lásd: [Get index egy tábla egy HTML-lapon](#get-index-of-a-table-in-an-html-page) szakasz lépéseit toogetting index egy tábla egy HTML-lapon.  
 >
 >
 
@@ -183,7 +183,7 @@ A következő példa bemutatja, hogyan adatok másolása az Azure blob egy webes
 
 **Az Azure Blob kimeneti adatkészlet**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1).
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1).
 
 ```json
 {
@@ -209,9 +209,9 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1).
 
 **A másolási tevékenység-feldolgozási folyamat**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **WebSource** és **fogadó** típusúra **BlobSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**WebSource** és **fogadó** típusuk értéke túl**BlobSink**.
 
-Lásd: [WebSource típustulajdonságokat](#copy-activity-type-properties) a WebSource által támogatott tulajdonságok listája.
+Lásd: [WebSource típustulajdonságokat](#copy-activity-type-properties) hello WebSource által támogatott tulajdonságokról hello listáját.
 
 ```json
 {  
@@ -223,7 +223,7 @@ Lásd: [WebSource típustulajdonságokat](#copy-activity-type-properties) a WebS
     "activities":[  
       {
         "name": "WebTableToAzureBlob",
-        "description": "Copy from a Web table to an Azure blob",
+        "description": "Copy from a Web table tooan Azure blob",
         "type": "Copy",
         "inputs": [
           {
@@ -260,32 +260,32 @@ Lásd: [WebSource típustulajdonságokat](#copy-activity-type-properties) a WebS
 ```
 
 ## <a name="get-index-of-a-table-in-an-html-page"></a>Egy tábla indexének lekérése egy HTML-weblap
-1. Indítsa el **Excel 2016** majd átváltása a **adatok** fülre.  
-2. Kattintson a **új lekérdezés** eszköztárán mutasson **egyéb forrásokból származó** kattintson **a webes**.
+1. Indítsa el **Excel 2016** és toohello **adatok** fülre.  
+2. Kattintson a **új lekérdezés** hello eszköztár pont túl**egyéb forrásokból származó** kattintson **a webes**.
 
     ![A Power Query menü](./media/data-factory-web-table-connector/PowerQuery-Menu.png)
-3. A a **a webes** párbeszédpanelen adja meg a **URL-cím** használható a társított szolgáltatás JSON (például: https://en.wikipedia.org/wiki/) elérési út lehet megadni az adatkészlet együtt (például: AFI % 27s_100_Years 100_Movies), és kattintson a **OK**.
+3. A hello **a webes** párbeszédpanelen adja meg a **URL-cím** használható a társított szolgáltatás JSON (például: https://en.wikipedia.org/wiki/) elérési út lehet megadni hello adatkészlet együtt (például: AFI % 27s_100_Years... 100_Movies), és kattintson a **OK**.
 
     ![Webes párbeszédpanelről](./media/data-factory-web-table-connector/FromWeb-DialogBox.png)
 
     Ebben a példában használt URL-cím: https://en.wikipedia.org/wiki/AFI%27s_100_Years...100_Movies
-4. Ha látja **hozzáférés webes tartalom** párbeszédpanelen jelölje ki a jobb **URL-cím**, **hitelesítési**, kattintson **Connect**.
+4. Ha látja **hozzáférés webes tartalom** párbeszédpanel megnyitásához, jelölje be hello jobb **URL-cím**, **hitelesítési**, és kattintson a **Connect**.
 
    ![Webes tartalom párbeszédpanel](./media/data-factory-web-table-connector/AccessWebContentDialog.png)
-5. Kattintson egy **tábla** tekintse meg a tábla tartalmát, és kattintson a fanézetben elem **szerkesztése** panel alján.  
+5. Kattintson egy **tábla** hello fa nézet toosee tartalom hello táblából elemét, majd **szerkesztése** hello alsó gombra.  
 
    ![Navigator párbeszédpanel](./media/data-factory-web-table-connector/Navigator-DialogBox.png)
-6. Az a **Lekérdezésszerkesztő** ablak, kattintson a **speciális szerkesztő** gomb az eszköztáron.
+6. A hello **Lekérdezésszerkesztő** ablak, kattintson a **speciális szerkesztő** hello gombjára.
 
     ![Speciális szerkesztő gomb](./media/data-factory-web-table-connector/QueryEditor-AdvancedEditorButton.png)
-7. A speciális szerkesztése párbeszédpanelen az mellett látható "Forrás" érték az index.
+7. A hello speciális szerkesztő párbeszédpanel hello szám következő túl "Forrás" hello index.
 
     ![Speciális szerkesztő - Index](./media/data-factory-web-table-connector/AdvancedEditor-Index.png)
 
-Ha az Excel 2013 használ, [Microsoft Power Query az Excel programhoz](https://www.microsoft.com/download/details.aspx?id=39379) lekérni az index. Lásd: [weblapon kapcsolódás](https://support.office.com/article/Connect-to-a-web-page-Power-Query-b2725d67-c9e8-43e6-a590-c0a175bd64d8) cikkben alább. A lépések hasonlóak használata [Microsoft Power BI Desktop az](https://powerbi.microsoft.com/desktop/).
+Ha az Excel 2013 használ, [Microsoft Power Query az Excel programhoz](https://www.microsoft.com/download/details.aspx?id=39379) tooget hello index. Lásd: [Connect tooa weblap](https://support.office.com/article/Connect-to-a-web-page-Power-Query-b2725d67-c9e8-43e6-a590-c0a175bd64d8) cikkben alább. hello lépések hasonlóak használata [Microsoft Power BI Desktop az](https://powerbi.microsoft.com/desktop/).
 
 > [!NOTE]
-> Képezze le a fogadó adatkészletből oszlopok forrás adatkészletből oszlopokat, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+> Tekintse meg a forrás adatkészlet toocolumns fogadó adatkészletből toomap oszlopokat [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.

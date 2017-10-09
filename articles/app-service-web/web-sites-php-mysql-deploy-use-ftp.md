@@ -1,6 +1,6 @@
 ---
-title: "PHP-MySQL webes alkalmazás létrehozása az Azure App Service-ben és üzembe helyezése FTP használatával"
-description: "Ez az oktatóanyag bemutatja, hogyan hozzon létre egy PHP webalkalmazást, amely tárolja az adatokat a MySQL és -felhasználási FTP telepítési az Azure-bA."
+title: "aaaCreate egy PHP-beli MySQL az Azure App Service webalkalmazás, és a FTP telepítése"
+description: "Ez az oktatóanyag bemutatja, hogyan toocreate a PHP webes alkalmazást, amely tárolja az adatokat a MySQL és -felhasználási FTP telepítési tooAzure."
 services: app-service\web
 documentationcenter: php
 author: rmcmurray
@@ -14,66 +14,66 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: d428dffc6b810a692be0ec39a5f9cca05f5439e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d3b56a8ac63d0eba0dc0aec1b62e6d12f601bf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-php-mysql-web-app-in-azure-app-service-and-deploy-using-ftp"></a>PHP-MySQL webes alkalmazás létrehozása az Azure App Service-ben és üzembe helyezése FTP használatával
-Az oktatóanyag bemutatja, hogyan PHP-MySQL-webalkalmazás létrehozása és központi telepítése FTP használatával. Ez az oktatóanyag feltételezi, hogy rendelkezik [PHP][install-php], [MySQL][install-mysql], webkiszolgáló, és az FTP-ügyfél telepítve a számítógépre. Ez az oktatóanyag utasításai követhetők bármely operációs rendszeren, beleértve a Windows, Mac és Linux. Ez az útmutató befejezése után fog egy PHP/MySQL az Azure-ban futó webalkalmazás.
+Az oktatóanyag bemutatja, hogyan toocreate egy PHP-MySQL web app, és hogyan toodeploy FTP használatával. Ez az oktatóanyag feltételezi, hogy rendelkezik [PHP][install-php], [MySQL][install-mysql], webkiszolgáló, és az FTP-ügyfél telepítve a számítógépre. hello az oktatóanyag utasításai követhetők bármelyik operációs rendszeren, beleértve a Windows, Mac és Linux. Ez az útmutató befejezése után fog egy PHP/MySQL az Azure-ban futó webalkalmazás.
 
 Az oktatóanyagban érintett témák köre:
 
-* Tudnivalók a webalkalmazások és az Azure portál használatával MySQL-adatbázis. A PHP alapértelmezés szerint engedélyezve van a webalkalmazásokban, mert semmi különleges kell futnia a PHP-kódot.
-* Hogyan lehet FTP használatával az alkalmazás közzétételére.
+* Hogyan toocreate egy webalkalmazást és a MySQL-adatbázis hello Azure portál használatával. A PHP alapértelmezés szerint engedélyezve van a webalkalmazásokban, mert semmi különleges-e szükséges toorun a PHP-kódot.
+* Hogyan toopublish az alkalmazást tooAzure a FTP.
 
-Az oktatóanyag utasításait követve egy egyszerű regisztrációs webalkalmazás PHP fog létrehozni. Az alkalmazás üzemel a webalkalmazásban. A kész alkalmazás képernyőfelvételének alatt van:
+Az oktatóanyag utasításait követve egy egyszerű regisztrációs webalkalmazás PHP fog létrehozni. a webalkalmazásban hello alkalmazás üzemel. A képernyőfelvétel a hello befejeződött alkalmazás alatt van:
 
 ![Az Azure PHP-webhely][running-app]
 
 > [!NOTE]
-> Ha szeretne egy olyan fiók regisztrálása előtt Ismerkedés az Azure App Service, folytassa a [App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel. 
+> Ha azt szeretné, hogy az Azure App Service egy olyan fiók regisztrálása előtt lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel. 
 > 
 > 
 
 ## <a name="create-a-web-app-and-set-up-ftp-publishing"></a>Hozzon létre egy webalkalmazást, és állítsa be az FTP-közzététel
-Kövesse az alábbi lépéseket a webes alkalmazás és MySQL-adatbázis létrehozásához:
+A webes alkalmazás és MySQL-adatbázis, kövesse ezeket a lépéseket toocreate:
 
-1. Jelentkezzen be a [Azure-portálon][management-portal].
-2. Kattintson a **+ új** az Azure portál bal felső ikonra.
+1. Bejelentkezési toohello [Azure Portal][management-portal].
+2. Kattintson a hello **+ új** hello felül ikon hello Azure-portálon a bal oldali.
    
     ![Új Azure-webhely létrehozása][new-website]
-3. A írja be a **webes alkalmazás + MySQL** , majd kattintson a **webes alkalmazás + MySQL**.
+3. A hello írja be **webes alkalmazás + MySQL** , majd kattintson a **webes alkalmazás + MySQL**.
    
     ![Egyéni új webhely létrehozása][custom-create]
-4. Kattintson a **Create** (Létrehozás) gombra. Adjon meg egy egyedi alkalmazás nevét, egy érvényes nevet az erőforráscsoportot és egy új service-csomagot.
+4. Kattintson a **Create** (Létrehozás) gombra. Adjon meg egy egyedi alkalmazás nevét, egy érvényes nevet a hello erőforráscsoport és egy új service-csomagot.
    
     ![Állítsa az erőforráscsoport neve][resource-group]
-5. Adja meg az új adatbázis, beleértve a jogi feltételek elfogadását jelző mezőt.
+5. Adja meg az értékeket az új adatbázisra, beleértve a elfogadja toohello jogi feltételeket.
    
     ![Új MySQL-adatbázis létrehozása][new-mysql-db]
-6. A webalkalmazás létrehozásakor látni fogja az új szolgáltatás panelen.
+6. Hello webalkalmazás létrehozásakor hello új app service panel jelenik meg.
 7. Kattintson a **beállítások** > **üzembe helyezési hitelesítő adatok**. 
    
     ![Telepítési hitelesítő adatok beállítása][set-deployment-credentials]
-8. Az FTP-közzététel engedélyezéséhez meg kell adnia egy felhasználónevet és jelszót. A hitelesítő adatok mentése, és jegyezze fel a felhasználónevet és jelszót hoz létre.
+8. tooenable FTP-közzététel, meg kell adnia egy felhasználónevet és jelszót. Hello hitelesítő adatok mentése, és jegyezze fel a hello felhasználónevet és jelszót hoz létre.
    
     ![Közzétételi hitelesítő adatok létrehozása][portal-ftp-username-password]
 
 ## <a name="build-and-test-your-app-locally"></a>És az alkalmazás helyi teszteléséhez
-A regisztrációs alkalmazás egy egyszerű PHP-alkalmazás, amely lehetővé teszi, hogy regisztrálja az esemény a név és e-mail cím megadásával. Előző igénylők kapcsolatos információkat a táblázatban jelennek meg. Regisztrációs adatokat a MySQL-adatbázisban tárolódik. Az alkalmazás két fájlból áll:
+hello regisztrációs alkalmazása, amely lehetővé teszi a név és e-mail cím megadásával az esemény tooregister egyszerű PHP-alkalmazások. Előző igénylők kapcsolatos információkat a táblázatban jelennek meg. Regisztrációs adatokat a MySQL-adatbázisban tárolódik. hello alkalmazás két fájlból áll:
 
 * **index.php**: regisztráció és a bejegyzés adatokat tartalmazó táblát űrlap jeleníti meg.
-* **createtable.php**: az alkalmazás a MySQL táblát hoz létre. Ezt a fájlt csak egyszer használható.
+* **createtable.php**: hello alkalmazás hello MySQL táblát hoz létre. Ezt a fájlt csak egyszer használható.
 
-Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lépéseket. Vegye figyelembe, hogy ezek a lépések feltételezik, PHP, a MySQL és egy webkiszolgáló, állítsa be a helyi számítógépen, és engedélyezte a [MySQL OEM kiterjesztése][pdo-mysql].
+toobuild és futtatási hello alkalmazást helyileg, kövesse az alábbi hello lépéseket. Vegye figyelembe, hogy ezek a lépések feltételezik, hogy a PHP, a MySQL és egy webkiszolgáló, állítsa be a helyi számítógépen, és engedélyezte hello [MySQL OEM kiterjesztése][pdo-mysql].
 
-1. Hozzon létre egy MySQL-adatbázis nevű `registration`. Ez a MySQL-parancssorból, ezzel a paranccsal teheti meg:
+1. Hozzon létre egy MySQL-adatbázis nevű `registration`. Ezt megteheti a parancssorból hello MySQL ezzel a paranccsal:
    
         mysql> create database registration;
 2. A webkiszolgáló gyökérkönyvtárában, hozzon létre egy nevű `registration` , és hozzon létre két fájlt az - egy `createtable.php` és egy `index.php`.
-3. Nyissa meg a `createtable.php` fájlt egy szövegszerkesztőben, vagy IDE, és adja hozzá az alábbi kódot. Ez a kód létrehozásához használható a `registration_tbl` a tábla a `registration` adatbázis.
+3. Nyissa meg hello `createtable.php` fájlt egy szövegszerkesztőben, vagy IDE, és adja hozzá az alábbi hello kódot. Ez a kód lesz használt toocreate hello `registration_tbl` hello táblájában `registration` adatbázis.
    
         <?php
         // DB connection info
@@ -99,11 +99,11 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
         ?>
    
    > [!NOTE]
-   > Értéket kell <code>$user</code> és <code>$pwd</code> a helyi MySQL-felhasználó nevét és jelszavát.
+   > Szüksége lesz a tooupdate hello értékeinek <code>$user</code> és <code>$pwd</code> a helyi MySQL-felhasználó nevét és jelszavát.
    > 
    > 
-4. Nyisson meg egy webböngészőt, és keresse meg a [http://localhost/registration/createtable.php][localhost-createtable]. Ekkor létrejön az `registration_tbl` tábla az adatbázisban.
-5. Nyissa meg a **index.php** fájlt egy szövegszerkesztőben, vagy IDE, és adja hozzá az alapvető HTML- és CSS kódot (a PHP kód megkapja a későbbi lépésekben) lap.
+4. Nyisson meg egy webböngészőt, és keresse meg a túl[http://localhost/registration/createtable.php][localhost-createtable]. Ezzel létrehoz hello `registration_tbl` hello adatbázis táblájában.
+5. Nyissa meg hello **index.php** fájlt egy szövegszerkesztőben, vagy IDE, és adja hozzá a hello alapvető HTML- és CSS kód hello lap (hello PHP kód megkapja a későbbi lépésekben).
    
         <html>
         <head>
@@ -124,7 +124,7 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
         </head>
         <body>
         <h1>Register here!</h1>
-        <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+        <p>Fill in your name and email address, then click <strong>Submit</strong> tooregister.</p>
         <form method="post" action="index.php" enctype="multipart/form-data" >
               Name  <input type="text" name="name" id="name"/></br>
               Email <input type="text" name="email" id="email"/></br>
@@ -135,14 +135,14 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
         ?>
         </body>
         </html>
-6. A PHP címkék belül adja hozzá a PHP kódot az adatbázishoz való kapcsolódáshoz.
+6. Hello PHP címkék, belül adja hozzá a PHP kódot toohello adatbázis csatlakozni.
    
         // DB connection info
         $host = "localhost";
         $user = "user name";
         $pwd = "password";
         $db = "registration";
-        // Connect to database.
+        // Connect toodatabase.
         try {
             $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
             $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -152,10 +152,10 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
         }
    
    > [!NOTE]
-   > Ebben az esetben szüksége lesz a értéket <code>$user</code> és <code>$pwd</code> a helyi MySQL-felhasználó nevét és jelszavát.
+   > Ebben az esetben szüksége lesz tooupdate hello értékeinek <code>$user</code> és <code>$pwd</code> a helyi MySQL-felhasználó nevét és jelszavát.
    > 
    > 
-7. Követően az adatbázis-kapcsolat kód adja hozzá a kódot a regisztrációs adatokat beszúrni az adatbázisba.
+7. Következő hello adatbázis kapcsolati kódja vegye fel a regisztrációs adatok beszúrása hello adatbázis kódot.
    
         if(!empty($_POST)) {
         try {
@@ -176,7 +176,7 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
         }
         echo "<h3>Your're registered!</h3>";
         }
-8. Végezetül a fenti kódot követően adja hozzá a kódot az adatokat az adatbázisból.
+8. Végül követően a fenti hello kódot, adja hozzá az adatok lekérdezése hello adatbázis kódját.
    
         $sql_select = "SELECT * FROM registration_tbl";
         $stmt = $conn->query($sql_select);
@@ -197,37 +197,37 @@ Felépítéséhez és az alkalmazás futtatása helyben, kövesse az alábbi lé
             echo "<h3>No one is currently registered.</h3>";
         }
 
-Most tallózással megkereshet [http://localhost/registration/index.php] [ localhost-index] az alkalmazás teszteléséhez.
+Most már megkeresheti túl[http://localhost/registration/index.php] [ localhost-index] tootest hello alkalmazást.
 
 ## <a name="get-mysql-and-ftp-connection-information"></a>MySQL- és FTP-kapcsolati adatok
-A MySQL-adatbázis, amely futtatja a Web Apps, a fog csatlakozni kell a kapcsolat adatai. Ahhoz, hogy a MySQL-kapcsolati adatokat, kövesse az alábbi lépéseket:
+tooconnect toohello MySQL-adatbázis, amely futtatja a Web Apps, a fog kell hello kapcsolódási információt. tooget MySQL kapcsolati adatokat, kövesse az alábbi lépéseket:
 
-1. Az app service webalkalmazás panelen kattintson az erőforrás-csoport hivatkozás:
+1. Hello app service webalkalmazás panelen kattintson az hello erőforrás csoportjának hivatkozásra:
    
     ![Válasszon erőforráscsoportot][select-resourcegroup]
-2. Az erőforráscsoport kattintson az adatbázisban:
+2. Az erőforráscsoport kattintson hello adatbázis:
    
     ![Adatbázis kiválasztása][select-database]
-3. Az adatbázisból összefoglaló, válassza ki a **beállítások** > **tulajdonságok**.
+3. Hello adatbázis összegzése, válassza ki **beállítások** > **tulajdonságok**.
    
     ![A tulajdonságok kiválasztása][select-properties]
-4. Jegyezze fel az értékei `Database`, `Host`, `User Id`, és `Password`.
+4. Jegyezze fel a hello értékeinek `Database`, `Host`, `User Id`, és `Password`.
    
     ![Megjegyzés: Tulajdonságok][note-properties]
-5. A webalkalmazás, kattintson a **közzétételi profil letöltése** hivatkozásra, a jobb alsó sarkában az oldalon:
+5. Kattintson a webalkalmazás hello **közzétételi profil letöltése** hivatkozásra, hello jobb alsó sarkában hello lap:
    
     ![Közzétételi profil letöltése][download-publish-profile]
-6. Nyissa meg a `.publishsettings` fájlt egy XML-szerkesztőben. 
-7. Keresés a `<publishProfile >` elem `publishMethod="FTP"` , amelyek a következőhöz hasonló:
+6. Nyissa meg hello `.publishsettings` fájlt egy XML-szerkesztőben. 
+7. Hello található `<publishProfile >` elem `publishMethod="FTP"` , amelyek a következőhöz hasonló toothis:
    
         <publishProfile publishMethod="FTP" publishUrl="ftp://[mysite].azurewebsites.net/site/wwwroot" ftpPassiveMode="True" userName="[username]" userPWD="[password]" destinationAppUrl="http://[name].antdf0.antares-test.windows-int.net" 
             ...
         </publishProfile>
 
-Jegyezze fel a `publishUrl`, `userName`, és `userPWD` attribútumok.
+Jegyezze fel a hello `publishUrl`, `userName`, és `userPWD` attribútumok.
 
 ## <a name="publish-your-app"></a>Az alkalmazás közzététele
-Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti a webalkalmazáshoz FTP használatával. Azonban először az alkalmazást az adatbázis-kapcsolat adatainak frissítése. Korábban beszerzett adatbázis kapcsolati információk használatával (a a **MySQL beszerzése és az FTP-kapcsolati adatokat** szakaszban), a következő információinak frissítése a **is** a `createdatabase.php` és `index.php` fájlokat a megfelelő értékekkel:
+Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti azt tooyour web app FTP használatával. Azonban először tooupdate hello adatbázis-kapcsolat adatainak hello alkalmazásban. Korábban beszerzett hello adatbázis-kapcsolat adatainak használatával (a hello **MySQL beszerzése és az FTP-kapcsolati adatokat** szakaszban), a következő információkat a frissítés hello **is** hello `createdatabase.php` és `index.php` hello fájlokat a megfelelő értékeket:
 
     // DB connection info
     $host = "value of Data Source";
@@ -235,19 +235,19 @@ Miután ellenőrizte, hogy az alkalmazást helyileg, közzéteheti a webalkalmaz
     $pwd = "value of Password";
     $db = "value of Database";
 
-Most már készen áll az FTP használó alkalmazás közzététele.
+Most már áll toopublish az alkalmazás készen álljon a FTP.
 
 1. Nyissa meg az FTP-ügyfél választott.
-2. Adja meg a *állomásnév* a a `publishUrl` az FTP-ügyfél a fent leírt attribútum.
-3. Adja meg a `userName` és `userPWD` fent leírt attribútumok be az FTP-ügyfél nem változik.
+2. Adja meg a hello *állomásnév* a hello `publishUrl` az FTP-ügyfél a fent leírt attribútum.
+3. Adja meg a hello `userName` és `userPWD` fent leírt attribútumok be az FTP-ügyfél nem változik.
 4. A kapcsolatot.
 
-Kapcsolódás után lesz, a fájlok feltöltését és letöltését igény szerint. Ne feledje, hogy feltölteni kívánt fájlokat a gyökérkönyvtárba, amely `/site/wwwroot`.
+Csatlakozás után tud tooupload kell, és szükség esetén töltse le a fájlokat. Ne feledje, hogy fájlokat toohello gyökérkönyvtár, amely feltölteni kívánt `/site/wwwroot`.
 
-Mindkét feltöltése után `index.php` és `createtable.php`, keresse meg a **http://[site name].azurewebsites.net/createtable.php** MySQL tábla az alkalmazás létrehozása, majd keresse meg **http://[site name]. azurewebsites.NET/index.php** az alkalmazás használatának megkezdéséhez.
+Mindkét feltöltése után `index.php` és `createtable.php`, keresse meg a túl**http://[site name].azurewebsites.net/createtable.php** toocreate hello MySQL tábla hello alkalmazáshoz, majd keresse meg a túl**http://[site neve ].azurewebsites.net/index.php** toobegin hello alkalmazás segítségével.
 
 ## <a name="next-steps"></a>Következő lépések
-További információkért lásd: a [PHP fejlesztői központ](/develop/php/).
+További információkért lásd: hello [PHP fejlesztői központ](/develop/php/).
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-mysql]: http://dev.mysql.com/doc/refman/5.6/en/installing.html

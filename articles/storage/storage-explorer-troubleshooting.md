@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Tártallózó hibaelhárítási útmutatója |} Microsoft Docs"
-description: "A két funkció az Azure-hibakeresés áttekintése"
+title: "aaaAzure Tártallózó hibaelhárítási útmutatója |} Microsoft Docs"
+description: "Az Azure két hello hibakeresési szolgáltatása – áttekintés"
 services: virtual-machines
 documentationcenter: 
 author: Deland-Han
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: delhan
-ms.openlocfilehash: e9b833b07556378f17d9aaff0912c7d73dff44eb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21705629500359222bc566c599f0864ad50036ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-explorer-troubleshooting-guide"></a>Az Azure Tártallózó hibaelhárítási útmutató
 
 ## <a name="introduction"></a>Bevezetés
 
-A Microsoft Azure Tártallózó (előzetes verzió) egy különálló alkalmazás, amelynek segítségével egyszerűen dolgozhat Azure Storage-adatokkal Windows, a macOS és a Linux. Az alkalmazás Azure állami felhők és Azure verem üzemeltetett toStorage fiókok is elérheti.
+A Microsoft Azure Tártallózó (előzetes verzió) egy különálló alkalmazás, amely lehetővé teszi tooeasily dolgozhat Azure Storage-adatokkal Windows, a macOS és a Linux. hello app Azure állami felhők és Azure verem üzemeltetett toStorage fiókok is elérheti.
 
 Ez az útmutató a megoldások a Tártallózó tapasztalt gyakori problémákat foglalja össze.
 
 ## <a name="sign-in-issues"></a>Jelentkezzen be a problémák
 
-Csak az Azure Active Directory (AAD) fiókok támogatottak. Ha az AD FS fiókot használjon, várható, hogy a Tártallózó bejelentkezés csatlakoztatás nem működik. A folytatás előtt indítsa újra az alkalmazást, és hogy kell-e javítani a problémák.
+Csak az Azure Active Directory (AAD) fiókok támogatottak. Az AD FS fiókot használjon, ha rendelkezik várt tooStorage Explorer csatlakoztatás nem működik az aláíráshoz. A folytatás előtt indítsa újra az alkalmazást, és hogy kell-e javítani hello problémákat.
 
 ### <a name="error-self-signed-certificate-in-certificate-chain"></a>Hiba: A tanúsítványláncában szereplő önaláírt tanúsítvány
 
-Több oka miért merülhetnek fel ezt a hibát, és a leggyakrabban használt két lehetnek az okai a következők:
+Több oka miért merülhetnek fel ezt a hibát, és hello leggyakrabban használt két okok a következők:
 
-1. Az alkalmazás "transzparens proxyra", vagyis a kiszolgálóhoz (például a vállalati kiszolgálónak) elfogja a HTTPS-forgalmat, visszafejtése, és azt egy önaláírt tanúsítványt használ majd titkosítása keresztül csatlakozik.
+1. hello app "transzparens proxyra", vagyis a kiszolgálóhoz (például a vállalati kiszolgálónak) elfogja a HTTPS-forgalmat, visszafejtése, és azt egy önaláírt tanúsítványt használ majd titkosítása keresztül csatlakozik.
 
-2. Egy alkalmazás, például víruskereső szoftver, amely egy önaláírt SSL-tanúsítvány van hogy megkapja a HTTPS-üzenetek futtatja.
+2. Egy alkalmazás, például víruskereső szoftver, amely egy önaláírt SSL-tanúsítvány van hogy fogadott hello HTTPS üzenetek futtatja.
 
-Amikor Tártallózó egyik hibát észlel, azt már nem tudja, hogy a fogadott üzenet HTTPS van-e illetéktelenül. Ha az önaláírt tanúsítvány egy példányát, hogy a Tártallózó megbízható. Ha biztos a tanúsítvány ki van beszúrva, kövesse az alábbi lépéseket, és keresse meg:
+Amikor Tártallózó észlel hello problémák egyike, azt már nem tudja, hogy kapott HTTPS üdvözlőüzenetére van-e illetéktelenül. Ha hello önaláírt tanúsítvány egy példányát, hogy a Tártallózó megbízható. Ha biztos ki van beszúrva hello tanúsítvány, kövesse ezeket a lépéseket toofind azt:
 
 1. Nyissa meg az SSL telepítése
 
-    - [Windows](https://slproweb.com/products/Win32OpenSSL.html) (könnyű verzióinak elegendőnek kell lennie)
+    - [Windows](https://slproweb.com/products/Win32OpenSSL.html) (hello könnyű verzióinak elegendőnek kell lennie)
 
     - Mac- és Linux: kell figyelembe venni az operációs rendszer
 
 2. Nyissa meg az SSL futtatása
 
-    - Windows: a telepítési könyvtár megnyitásához kattintson **/bin/**, majd kattintson duplán **openssl.exe**.
+    - Windows: hello telepítési könyvtár megnyitásához kattintson **/bin/**, majd kattintson duplán **openssl.exe**.
     - Mac- és Linux: futtatása **openssl** terminálról.
 
 3. Végrehajtás s_client - showcerts-csatlakozás microsoft.com:443
 
-4. Keresse meg az önaláírt tanúsítványokat. Ha biztos benne, amelyek van látva saját aláírással, keressen tetszőleges helyre a tárgy ("%s") és a kiállító ("i:") azonos.
+4. Keresse meg az önaláírt tanúsítványokat. Ha biztos benne, amelyeket önaláírt, keresse meg bárhol hello tulajdonos ("%s") és kibocsátó ("i:") van hello azonos.
 
-5. Miután megtalálta az összes önaláírt tanúsítványokat, mindegyikhez, másolja be minden-kra **---BEGIN CERTIFICATE---** való **---vége tanúsítvány---** egy új .cer kiterjesztésű fájlba.
+5. Miután megtalálta az összes önaláírt tanúsítványokat, mindegyikhez, másolja be minden-kra **---BEGIN CERTIFICATE---** túl**---vége tanúsítvány---** tooa új .cer kiterjesztésű fájlba.
 
-6. Nyissa meg a Tártallózót, kattintson a **szerkesztése** > **SSL-tanúsítványok** > **importálási tanúsítványok**, és majd a fájlkiválasztóval található, válassza ki, majd nyissa meg a létrehozott .cer kiterjesztésű fájlokat.
+6. Nyissa meg a Tártallózót, kattintson a **szerkesztése** > **SSL-tanúsítványok** > **importálási tanúsítványok**, és majd használata hello fájl objektumválasztó toofind, jelölje be, majd nyissa meg a létrehozott hello .cer kiterjesztésű fájlokat.
 
-Ha nem talál meg minden önaláírt tanúsítványokat használ a fenti lépéseket, kapcsolatfelvétel a visszajelzés eszközzel további segítséget itt találhat.
+Ha bármely hello a fenti lépések használatával önaláírt tanúsítványok nem találja, kapcsolatfelvétel hello visszajelzés eszköz további segítséget itt találhat.
 
-### <a name="unable-to-retrieve-subscriptions"></a>Nem sikerült beolvasni az előfizetések
+### <a name="unable-tooretrieve-subscriptions"></a>Nem lehet tooretrieve előfizetések
 
-Ha nem tudja beolvasni az előfizetések sikeres bejelentkezés után, kövesse az alábbi lépéseket a probléma elhárítása érdekében:
+Ha nem tooretrieve az előfizetések, miután sikeresen jelentkezzen be, kövesse ezeket a lépéseket tootroubleshoot probléma:
 
-- Győződjön meg arról, hogy a fiók hozzáfér az előfizetések az Azure-portál bejelentkezni.
+- Győződjön meg arról, hogy a fiók rendelkezik-e hozzáférési toohello előfizetések Ha bejelentkezik hello Azure-portálon.
 
-- Győződjön meg arról, hogy be van jelentkezve a megfelelő környezet (Azure, Azure Kína, Azure Németország, Azure Amerikai Egyesült államokbeli kormányzati vagy egyéni környezet vagy az Azure-verem) használatával.
+- Győződjön meg arról, hogy bejelentkezett hello megfelelő környezet (Azure, Azure Kína, Azure Németország, Azure Amerikai Egyesült államokbeli kormányzati vagy egyéni környezet vagy az Azure-verem) használatával.
 
-- Ha a rendszer proxy mögött, győződjön meg arról, hogy a Tártallózó proxy megfelelően van konfigurálva.
+- Ha a rendszer proxy mögött, győződjön meg arról, hogy hello Tártallózó proxy megfelelően van konfigurálva.
 
-- Próbálja meg eltávolítani, és olvasása a következő fiók.
+- Próbálja meg eltávolítani, és olvasása a következő hello fiók.
 
-- Próbálja meg a következő fájlok eltávolítása a gyökérkönyvtár (Ez azt jelenti, hogy C:\Users\ContosoUser), majd újra adja hozzá a fiókhoz:
+- Törölje a következő fájlok a gyökérkönyvtárából (Ez azt jelenti, hogy C:\Users\ContosoUser), és majd ismételt felvételével hello fiók hello:
 
     - .adalcache
 
@@ -83,25 +83,25 @@ Ha nem tudja beolvasni az előfizetések sikeres bejelentkezés után, kövesse 
 
     - .extaccounts
 
-- Tekintse meg a fejlesztői eszközök konzol (az F12 billentyű megnyomásával) hibaüzeneteket a bejelentkezés során:
+- A Watch hello fejlesztői eszközök konzol (F12 billentyű megnyomásával) amikor bejelentkezik a hibaüzenet:
 
 ![Fejlesztői eszközök](./media/storage-explorer-troubleshooting/4022501_en_2.png)
 
-### <a name="unable-to-see-the-authentication-page"></a>Nem sikerült a hitelesítés oldal jelenik meg
+### <a name="unable-toosee-hello-authentication-page"></a>Nem lehet toosee hello hitelesítés lap
 
-Ha nem sikerül, a hitelesítés lap, kövesse az alábbi lépéseket a probléma elhárítása érdekében:
+Ha nem toosee hello hitelesítési lapot, kövesse ezeket a lépéseket tootroubleshoot probléma:
 
-- Attól függően, hogy a kapcsolat sebességétől a bejelentkezési lap betöltése, és a párbeszédpanel bezárása előtt legalább egy percig várjon egy ideig is eltarthat.
+- Attól függően, hogy a kapcsolat sebességétől hello azt is igénybe vehet igénybe az hello bejelentkezési oldal tooload, hello párbeszédpanel bezárása előtt legalább egy percig várjon.
 
-- Ha a rendszer proxy mögött, győződjön meg arról, hogy a Tártallózó proxy megfelelően van konfigurálva.
+- Ha a rendszer proxy mögött, győződjön meg arról, hogy hello Tártallózó proxy megfelelően van konfigurálva.
 
-- A fejlesztői konzolján megtekintheti az F12 billentyű lenyomása mellett. Tekintse meg a fejlesztői konzolján válaszát, és ellenőrizze, hogy található bármely clue ennek okát a hitelesítés nem működik.
+- Nézet hello fejlesztői konzolján hello F12 billentyű lenyomása mellett. Hello válaszok hello fejlesztői konzolról nézze meg, és ellenőrizze, hogy található bármely clue ennek okát a hitelesítés nem működik.
 
 ### <a name="cannot-remove-account"></a>Fiók nem távolítható el.
 
-Ha nem tudja eltávolítani egy fiókot, vagy az újrahitelesítés elemre hivatkozás nem befolyásolja, kövesse az alábbi lépéseket a probléma elhárítása érdekében:
+Ha Ön nem tooremove egy fiókot, vagy hello újrahitelesítés elemre hivatkozás nem befolyásolja, kövesse ezeket a lépéseket tootroubleshoot probléma:
 
-- Próbálja meg a következő fájlok eltávolítása a gyökérkönyvtár, és ezután olvasása a következő fiók:
+- Törölje a következő fájlok a gyökérkönyvtárából, majd olvasása a következő hello fiók hello:
 
     - .adalcache
 
@@ -109,7 +109,7 @@ Ha nem tudja eltávolítani egy fiókot, vagy az újrahitelesítés elemre hivat
 
     - .extaccounts
 
-- Ha el szeretné távolítani a SAS csatlakoztatott tároló-erőforrások, törölje a következő fájlokat:
+- Ha szeretné, hogy tooremove SAS csatlakoztatott tároló-erőforrások, törölje a következő fájlok hello:
 
     - A Windows %AppData%/StorageExplorer mappa
 
@@ -118,67 +118,67 @@ Ha nem tudja eltávolítani egy fiókot, vagy az újrahitelesítés elemre hivat
     - Linux ~/.config/StorageExplorer
 
 > [!NOTE]
->  Adja meg újra a hitelesítő adatokat, ha törli ezeket a fájlokat kell.
+>  Hogy tooreenter a hitelesítő adatok Ha törli ezeket a fájlokat.
 
 ## <a name="proxy-issues"></a>Proxy problémák
 
-Először is győződjön meg arról, hogy minden helyesen-e a következő adatokat a megadott:
+Először is győződjön meg arról, hogy hello a következő megadott adatok helyességét:
 
-- A proxykiszolgáló URL-cím és port száma
+- hello proxy URL-cím és port száma
 
-- Felhasználónevet és jelszót, ha az szükséges a proxy
+- Felhasználónév és jelszó igényei szerint hello proxy
 
 ### <a name="common-solutions"></a>Közös megoldások
 
-Ha továbbra is problémákat tapasztal, kövesse az alábbi lépéseket a hibakereséshez:
+Ha továbbra is problémákat tapasztal, kövesse ezeket a lépéseket tootroubleshoot őket:
 
-- Ha a proxy használata nélkül is csatlakozni az internethez, ellenőrizze, hogy működik-e a Tártallózó nélkül proxy-beállítások engedélyezve vannak. Ha ez a helyzet, előfordulhat, hogy a proxybeállítások problémát kell. A proxykiszolgáló rendszergazdájához, és a problémák azonosításához dolgozni.
+- Toohello Internet a proxy használata nélkül is elérheti, győződjön meg arról, hogy működik-e a Tártallózó nélkül proxy-beállítások engedélyezve vannak. Ha ez helyzet hello, valószínűleg a proxybeállítások kapcsolatos problémát. A proxy felügyeleti tooidentify hello problémák működik.
 
-- Győződjön meg arról, hogy más alkalmazások, amelyek a proxykiszolgálót a várt módon működik-e.
+- Győződjön meg arról, hogy más alkalmazások hello proxykiszolgáló használata a várt módon működik-e.
 
-- Ellenőrizze, hogy tud-e csatlakozni a webböngésző segítségével a Microsoft Azure-portálon
+- Gondoskodjon arról, hogy csatlakozhasson a webböngésző segítségével toohello Microsoft Azure-portálon
 
 - Győződjön meg arról, hogy fogadhat válaszok a végpontok. Adja meg a végpont URL-címek egyikét a böngészőbe. Ha csatlakoztat, egy InvalidQueryParameterValue vagy hasonló XML-válasz kell kapnia.
 
-- Ha a proxykiszolgáló valaki más is használja a Tártallózó, győződjön meg arról, hogy csatlakozhassanak. Ha a csatlakozás, előfordulhat, hogy kapcsolatba a proxy server rendszergazdával.
+- Ha a proxykiszolgáló valaki más is használja a Tártallózó, győződjön meg arról, hogy csatlakozhassanak. Ha a csatlakozás, előfordulhat, hogy toocontact a proxy kiszolgáló rendszergazdájával.
 
 ### <a name="tools-for-diagnosing-issues"></a>A problémák diagnosztizálásával eszközök
 
-Ha hálózati eszközök, például a Fiddler a Windows, esetleg a problémák diagnosztizálásához az alábbiak szerint:
+Ha hálózati eszközök, például a Fiddler a Windows, hogy az alábbiak szerint képes toodiagnose hello problémák merülhetnek fel:
 
-- Ha a proxyn keresztül történő működéséhez, előfordulhat, hogy a hálózati eszköz csatlakozni a proxyn keresztül történő konfigurálásához.
+- Ha a proxyn keresztül történő toowork, előfordulhat, hogy tooconfigure a hálózati eszköz tooconnect hello proxyn keresztül.
 
-- Ellenőrizze a hálózati eszköz által használt port számát.
+- Ellenőrizze a hálózati eszköz által használt hello portszámot.
 
-- Adja meg a helyi állomás URL-cím és a hálózati eszköz portszám Tártallózó proxybeállításai. Ebben az esetben megfelelően, ha a hálózati eszköz elindítja a hálózati kérelmek, felügyeleti és Szolgáltatásvégpontok Tártallózó által végzett naplózás. Írja be például a blob-végpontot egy böngészőben a https://cawablobgrs.blob.core.windows.net/, és le fogja kérni a válasz a következőhöz, ami alapján, az erőforrás létezik-e, bár nem férhet hozzá.
+- Adja meg a hello localhost URL-cím és hello hálózati eszköz portszámot a Tártallózó proxykiszolgáló-beállításként. Ebben az esetben megfelelően, ha a hálózati eszköz elindítja a hálózati kérelmek Tártallózó toomanagement és a szolgáltatási végpont által végzett naplózás. Például adja meg a blob-végpontot egy böngészőben https://cawablobgrs.blob.core.windows.net/, és választ kap alábbihoz hello, ami alapján a hello erőforrás létezik-e, bár nem férhet hozzá.
 
 ![kódminta](./media/storage-explorer-troubleshooting/4022502_en_2.png)
 
 ### <a name="contact-proxy-server-admin"></a>Lépjen kapcsolatba a proxy-kiszolgálói rendszergazda
 
-Ha a proxybeállításai megfelelőek, előfordulhat, hogy a proxy server rendszergazdától, és
+Ha a proxybeállításai megfelelőek, előfordulhat, hogy toocontact a proxy server rendszer rendszergazdájához, és
 
-- Győződjön meg arról, hogy a proxy blokkolja Azure felügyeleti vagy erőforrás-végpontok irányuló forgalmat.
+- Győződjön meg arról, hogy a proxy blokkolja forgalom tooAzure felügyeleti vagy erőforrás-végpontot.
 
-- Ellenőrizze a proxy-kiszolgáló által használt hitelesítési protokoll. A Tártallózó jelenleg nem támogatja az NTLM-proxyk.
+- Ellenőrizze a proxy server által használt hello hitelesítési protokoll. A Tártallózó jelenleg nem támogatja az NTLM-proxyk.
 
-## <a name="unable-to-retrieve-children-error-message"></a>"Nem sikerült beolvasni a gyermekek" hibaüzenet jelenik meg
+## <a name="unable-tooretrieve-children-error-message"></a>"Nem tooRetrieve gyermekek" hibaüzenet jelenik meg
 
-Ha proxyn keresztül csatlakoznak az Azure-ba, győződjön meg arról, hogy a proxybeállítások helyességéről. Ha az előfizetés vagy a fiók tulajdonosának a hozzáférési volt engedélyezni lehessen egy erőforrást, győződjön meg arról, olvasási, vagy erőforrás engedélyeinek listázása
+Ha olyan proxyn keresztül csatlakoztatott tooAzure, győződjön meg arról, hogy a proxybeállítások helyességéről. Hozzáférés tooa erőforrás kaptak hello tulajdonos hello előfizetés vagy a fiókot, ha győződjön meg arról, hogy elolvasta, vagy engedélyeket az adott erőforrás listában.
 
 ### <a name="issues-with-sas-url"></a>SAS URL-cím problémái
-Ha a szolgáltatás egy SAS URL-cím segítségével, és ezt a hibát tapasztaló csatlakozik:
+Ha egy SAS URL-cím segítségével, és ezt a hibát tapasztaló tooa szolgáltatás csatlakozik:
 
-- Győződjön meg arról, hogy az URL-cím biztosít-e olvasási és erőforrások sorolja fel a szükséges engedélyekkel.
+- Győződjön meg arról, hogy hello URL-cím biztosítanak hello szükséges engedélyek tooread vagy a lista erőforrásokat.
 
-- Győződjön meg arról, hogy az URL-cím nem járt le.
+- Győződjön meg arról, hogy hello URL-cím nem járt le.
 
-- Ha a hozzáférési házirendek az SAS URL-cím alapú, győződjön meg arról, hogy a házirend nincs visszavonva.
+- Hello SAS URL-cím alapú hozzáférési házirend, győződjön meg arról, hogy hello házirend nincs visszavonva.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha a megoldások egyike sem működik, az Ön, küldje el a problémát a visszajelzés eszközzel együtt az e-maileket, és annyi információkhoz juthat a problémáról, néven akkor is, így elküldhetjük Önnek a probléma.
+Ha hello megoldások egyike sem működik, az Ön, küldje el a problémát az e-mail hello visszajelzés eszközzel, és annyi részleteit tartalmazza, ha Ön hello probléma is, így elküldhetjük Önnek a hello a probléma kijavítása.
 
-Ehhez kattintson **súgó** menüben, majd kattintson **visszajelzés küldése**.
+toodo, kattintson **súgó** menüben, majd kattintson **visszajelzés küldése**.
 
 ![Visszajelzés](./media/storage-explorer-troubleshooting/4022503_en_1.png)

@@ -1,6 +1,6 @@
 ---
-title: "Egy több-bérlős alkalmazást az Azure SQL-adatbázis visszaállítása |} Microsoft Docs"
-description: "Megtudhatja, hogyan egyetlen bérlők SQL-adatbázis visszaállítása után véletlenül az adatok törlése"
+title: "egy Azure SQL Database adatbázist egy több-bérlős alkalmazásban aaaRestore |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorestore egyetlen bérlők SQL adatbázis véletlenül az adatok törlése után"
 keywords: "sql database-oktatóanyag"
 services: sql-database
 documentationcenter: 
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: billgib;sstein
-ms.openlocfilehash: 547851972f13ec69a8f65d01290874ad7d07f192
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8507ecec2424c135f1859b88ebf2bb4e17538a58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-a-wingtip-saas-tenants-sql-database"></a>Bérlők Wingtip SaaS SQL-adatbázis visszaállítása
 
-A Wingtip SaaS-alkalmazás épül, ahol az egyes bérlők rendelkezik saját adatbázis egy adatbázis-/-bérlős modell használatával. Ez a modell előnye, hogy a rendszer egyszerű önmagában egy egybérlős adatok helyreállítását a többi bérlő befolyásolása nélkül.
+hello Wingtip SaaS-alkalmazás épül, ahol az egyes bérlők rendelkezik saját adatbázis egy adatbázis-/-bérlős modell használatával. Ez a modell hello előnyei egyike, hogy az egyszerű toorestore egy egybérlős adatai elkülönítve a többi bérlő befolyásolása nélkül.
 
 Ebben az oktatóanyagban elsajátíthatja, két adatok helyreállítási minták:
 
@@ -36,101 +36,101 @@ Ebben az oktatóanyagban elsajátíthatja, két adatok helyreállítási minták
 
 |||
 |:--|:--|
-| **Visszaállítása bérlői egy korábbi időpontra, egy párhuzamos adatbázisba** | Ebben a mintában a bérlő által használható felülvizsgálati naplózás esetén a megfelelőségi stb. Az eredeti adatbázis online állapotú, és változatlan marad. |
-| **Bérlői helyben visszaállítása** | Ebben a mintában a bérlő előzetes pontra visszaállíthatja a idő, miután a bérlő véletlenül törli az adatokat általában használatos. Az eredeti adatbázist offline állapotba, és a visszaállított adatbázis helyett. |
+| **Bérlői tooa előzetes pont visszaállítása időpontra, egy párhuzamos adatbázisba** | Ebben a mintában is használható a hello bérlő tekintse át, a naplózás, a megfelelőségi, stb. hello eredeti adatbázis online és változatlan marad. |
+| **Bérlői helyben visszaállítása** | Ebben a mintában általánosan használt toorecover egy bérlő tooa előzetes pontot jelöl, miután a bérlő véletlenül törli az adatokat. hello eredeti adatbázis offline állapotba, és a visszaállított adatbázis hello helyére. |
 |||
 
-Az oktatóanyag teljesítéséhez meg kell felelnie az alábbi előfeltételeknek:
+Ebben az oktatóanyagban a következő előfeltételek győződjön meg arról, hogy hello elvégzése toocomplete:
 
-* A Wingtip SaaS-alkalmazás telepítve van. Kevesebb mint öt perc alatt telepítéséhez lásd: [központi telepítése és vizsgálja meg a Wingtip SaaS-alkalmazáshoz](sql-database-saas-tutorial.md)
+* hello Wingtip SaaS-alkalmazás telepítve van. toodeploy öt percen belül, lásd: [központi telepítése és felfedezése hello Wingtip SaaS-alkalmazáshoz](sql-database-saas-tutorial.md)
 * Az Azure PowerShell telepítve van. A részletekért lásd: [Ismerkedés az Azure PowerShell-lel](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
-## <a name="introduction-to-the-saas-tenant-restore-pattern"></a>A Szolgáltatottszoftver-bérlői visszaállítási mintát bemutatása
+## <a name="introduction-toohello-saas-tenant-restore-pattern"></a>Bevezetés toohello SaaS bérlői visszaállítási minta
 
-A bérlői visszaállítási mintát nincsenek egy adott bérlő adatok visszaállításához két egyszerű mintát. Bérlői adatbázisok el különítve egymástól, mert egy bérlő visszaállítása nem hatást gyakorol semmilyen más bérlővel adatokat.
+Hello bérlő mintát visszaállításához nincsenek egy adott bérlő adatok visszaállításához két egyszerű mintát. Bérlői adatbázisok el különítve egymástól, mert egy bérlő visszaállítása nem hatást gyakorol semmilyen más bérlővel adatokat.
 
-Az első mintában új adatbázisba visszaállítani adatait. A bérlő majd hozzáférése ehhez az adatbázishoz a termelési adatokkal együtt. Ebben a mintában lehetővé teszi, hogy a bérlői rendszergazda tekintse át az adatok és potenciálisan szelektív felülírja az aktuális adatok értékek használhatók. A Szolgáltatottszoftver-app Designer annak meghatározásához, hogy milyen kifinomult kell lennie az adat-helyreállítási beállítások van. Egyszerűen igényt tekintse át az állapotba, az adott időben adatokat minden egyes esetekben szükséges lehet. Ha az adatbázis használ [georeplikáció](sql-database-geo-replication-overview.md), javasoljuk, hogy a szükséges adatok másolását a visszaállított másolja át a az eredeti adatbázist. Ha az eredeti adatbázis cserélje a visszaállított adatbázis, kell konfigurálnia, majd szinkronizálja újra a georeplikáció.
+Hello első mintában új adatbázisba visszaállítani adatait. hello bérlői majd kap toothis adatbázist a termelési adatokkal együtt. Ebben a mintában lehetővé teszi, hogy a egy Bérlői rendszergazda tooreview hello vissza adatokat, és esetleg azt tooselectively felülírja a jelenlegi adatértékekkel. Már fel toohello SaaS app Tervező toodetermine milyen kifinomult hello adat-helyreállítási beállítások kell lennie. Egyszerűen alatt álló adatokat képes tooreview hello állapotba, amelyben egy időben minden egyes esetekben szükséges lehet. Ha hello adatbázis használ [georeplikáció](sql-database-geo-replication-overview.md), javasoljuk, hogy hello szükséges az adatok másolása vissza hello másolási hello eredeti adatbázisba. Ha lecseréli a hello eredeti adatbázis visszaállítása hello adatbázissal, meg kell tooreconfigure, majd szinkronizálja újra a georeplikáció.
 
-A második mintát, amely azt feltételezi, hogy a bérlő szenvedett elvesztése vagy sérülése, adatok, az a bérlő éles adatbázis visszaállítása van egy korábbi pontra idő. A visszaállítási helyre mintában a bérlő offline állapotba egy rövid ideig, amíg az adatbázis visszaállítása, és újra online állapotba. Az eredeti adatbázist törölték, de továbbra is visszaállíthatók a ha kell térni a még régebbi pontként időben. Ez a minta egy változata névre történő átnevezése volt az adatbázis törlése helyett, bár az adatbázis átnevezése nem további adatbiztonsági előnyösebb kínál.
+Hello második mintát, amely azt feltételezi, hogy hello bérlőre szenvedett elvesztése vagy sérülése, adatok, a hello bérlői éles adatbázis visszaállítása korábbi pont tooa időben. Hely mintában hello visszaállítás egy korábbi hello bérlői offline állapotba egy rövid ideig hello adatbázis visszaállítása, és automatikusan visszaáll online állapotba. hello eredeti adatbázis törlődik, de továbbra is visszaállíthatók a Ha toogo hátsó tooan kell időben is korábbi állapotba. Ez a minta egy változata névre történő átnevezése volt hello adatbázis helyett a törlés, bár átnevezési hello adatbázis nincs további adatbiztonsági előnyösebb kínál.
 
-## <a name="get-the-wingtip-application-scripts"></a>A Wingtip alkalmazásszkriptek beolvasása
+## <a name="get-hello-wingtip-application-scripts"></a>Hello Wingtip alkalmazás parancsfájlok beolvasása
 
-A Wingtip Szolgáltatottszoftver-parancsfájlok és az alkalmazás forráskódjához érhetők el a [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github-tárház. [Töltse le a Wingtip Szolgáltatottszoftver-parancsfájlok lépéseket](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+hello Wingtip Szolgáltatottszoftver-parancsfájlok és az alkalmazás forráskódjához találhatók hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github-tárház. [Lépések toodownload hello Wingtip SaaS parancsfájlok](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 ## <a name="simulate-a-tenant-accidentally-deleting-data"></a>A bérlő véletlenül törli az adatok szimulálása
 
-Helyreállítási forgatókönyvekben bemutatásához, szeretnénk *véletlenül* törlése egy bérlő adatbázis bizonyos adatai. Rekordot törölheti, amíg a következő lépésben beállítja a bemutató hogy nem blokkolja lekérni a hivatkozási integritás megsértésének! Bővíti Ezenkívül egyes jegy beszerzési adatokat később is használhatja a *Wingtip SaaS Analytics oktatóanyagok*.
+toodemonstrate helyreállítási forgatókönyvekben kell túl*véletlenül* hello bérlői adatbázisok közül az egyik adatokat törli. Rekordot törölheti, amíg a hivatkozási integritás megsértésének hello következő lépésben állítja be hello bemutató toonot beolvasása blokkolja! Bővíti Ezenkívül egyes jegy beszerzési adatokat is használhatja a hello *Wingtip SaaS Analytics oktatóanyagok*.
 
-A jegy generátor parancsprogrammal, és hozzon létre további adatokat. A jegy generátor szándékosan nem vásárolja meg a jegyektől az egyes bérlők utolsó eseményekhez.
+Hello jegy generátor parancsfájl futtatása, és hozzon létre további adatokat. hello jegy generátor szándékosan nem vásárolja meg a jegyektől az egyes bérlők utolsó eseményekhez.
 
-1. Nyissa meg... \\Tanulási modulok\\segédprogramok\\*bemutató-TicketGenerator.ps1* a a *PowerShell ISE*
-1. Nyomja le az **F5** futtassa a parancsfájlt és ügyfelek készítése és értékesítési adatokat jegyet.
+1. Nyissa meg... \\Tanulási modulok\\segédprogramok\\*bemutató-TicketGenerator.ps1* a hello *PowerShell ISE*
+1. Nyomja le az **F5** toorun parancsfájl hello és ügyfelek készítése és értékesítési adatokat jegyet.
 
 
-### <a name="open-the-events-app-to-review-the-current-events"></a>Nyissa meg az események alkalmazásnak, hogy tekintse át a jelenlegi eseményeket
+### <a name="open-hello-events-app-tooreview-hello-current-events"></a>Nyissa meg a hello események app tooreview hello aktuális események
 
-1. Nyissa meg a *események Hub* (http://events.wtp.&lt; felhasználói&gt;. trafficmanager.net), majd **Contoso energiaoptimalizálást egyszerre Hall**:
+1. Nyissa meg hello *események Hub* (http://events.wtp.&lt; felhasználói&gt;. trafficmanager.net), majd **Contoso energiaoptimalizálást egyszerre Hall**:
 
    ![eseményközpont](media/sql-database-saas-tutorial-restore-single-tenant/events-hub.png)
 
-1. Görgessen az események listájának, és jegyezze fel az utolsó esemény a listában:
+1. Görgessen események hello listáját, és jegyezze fel az utolsó esemény hello hello listában:
 
    ![utolsó esemény](media/sql-database-saas-tutorial-restore-single-tenant/last-event.png)
 
 
-### <a name="run-the-demo-scenario-to-accidentally-delete-the-last-event"></a>Futtassa a bemutató forgatókönyvet véletlenül törli a legutóbbi esemény
+### <a name="run-hello-demo-scenario-tooaccidentally-delete-hello-last-event"></a>Futtassa a hello bemutató forgatókönyvet tooaccidentally delete hello utolsó esemény
 
-1. Nyissa meg... \\Tanulási modulok\\az üzletmenet folytonossága és vészhelyreállítás\\RestoreTenant\\*bemutató-RestoreTenant.ps1* a a *PowerShell ISE*, és a következő értéket:
-   * **$DemoScenario** = **1**, beállítása **1** -jegy értékesítés nélküli események törlése.
-1. Nyomja le az **F5** futtassa a parancsfájlt, és az utolsó esemény törlése. Megjelenik egy megerősítő üzenetet a következőhöz hasonló:
+1. Nyissa meg... \\Tanulási modulok\\az üzletmenet folytonossága és vészhelyreállítás\\RestoreTenant\\*bemutató-RestoreTenant.ps1* a hello *PowerShell ISE*, és a set hello a következő értéket:
+   * **$DemoScenario** = **1**, túl beállíthatja**1** -jegy értékesítés nélküli események törlése.
+1. Nyomja le az **F5** toorun parancsfájl hello és hello utolsó esemény törlése. Egy megerősítő üzenet hasonló toohello következő kell megjelennie:
 
    ```Console
    Deleting unsold events from Contoso Concert Hall ...
    Deleted event 'Seriously Strauss' from Contoso Concert Hall venue.
    ```
 
-1. A Contoso események lap nyílik meg. Görgessen lefelé, és győződjön meg arról az esemény már nem. Ha az esemény továbbra is szerepel a listában, kattintson a frissítés és győződjön meg arról eltűnt.
+1. Megnyílik a hello Contoso események lapot. Görgessen lefelé, és győződjön meg arról hello esemény már nem. Ha hello esemény továbbra is a hello listában, kattintson a frissítés, és győződjön meg arról eltűnt.
 
    ![utolsó esemény](media/sql-database-saas-tutorial-restore-single-tenant/last-event-deleted.png)
 
 
-## <a name="restore-a-tenant-database-in-parallel-with-the-production-database"></a>Az éles adatbázis párhuzamosan bérlői adatbázis visszaállítása
+## <a name="restore-a-tenant-database-in-parallel-with-hello-production-database"></a>Hello éles adatbázis párhuzamosan bérlői adatbázis visszaállítása
 
-Ebben a gyakorlatban adatbázisát állítja vissza a Contoso energiaoptimalizálást egyszerre Hall pontra előtti az esemény törölve lett. Az esemény az előző lépésben törlését követően szeretné helyreállítani, és tekintse meg a törölt adatokat. Nem kell visszaállítani a törölt bejegyzés az éles adatbázis, de kell állítani a régi adatbázis más üzleti okokból a régi adatok eléréséhez.
+Ebben a gyakorlatban hello Contoso energiaoptimalizálást egyszerre Hall adatbázis tooa pont visszaállítása előtti hello esemény törölve lett. Hello esemény hello előző lépésekben törlését követően szeretné, hogy toorecover, és törölni hello adatok megtekintéséhez. Nem kell toorestore az éles adatbázis törlése hello rekorddal, de más üzleti okokból kell toorecover hello régi adatbázis tooaccess hello régi adatokat.
 
- A *visszaállítási-TenantInParallel.ps1* parancsfájl adatbázis és a párhuzamos katalógusbejegyzés mindkét nevű hoz létre egy párhuzamos bérlői *ContosoConcertHall\_régi*. Ebben a mintában a visszaállítás olyan kisebb adatvesztés helyreállítás vagy megfelelőségi és naplózási helyreállítási forgatókönyveit. Ez egyben az ajánlott módszer használata esetén [georeplikáció](sql-database-geo-replication-overview.md).
+ Hello *visszaállítási-TenantInParallel.ps1* parancsfájl adatbázis és a párhuzamos katalógusbejegyzés mindkét nevű hoz létre egy párhuzamos bérlői *ContosoConcertHall\_régi*. Ebben a mintában a visszaállítás olyan kisebb adatvesztés helyreállítás vagy megfelelőségi és naplózási helyreállítási forgatókönyveit. Egyúttal hello használata esetén az ajánlott megközelítést alkalmazva [georeplikáció](sql-database-geo-replication-overview.md).
 
-1. Fejezze be a [véletlenül törli az adatokat a felhasználó szimulálása](#simulate-a-tenant-accidentally-deleting-data) szakasz.
-1. Nyissa meg... \\Tanulási modulok\\az üzletmenet folytonossága és vészhelyreállítás\\RestoreTenant\\_bemutató-RestoreTenant.ps1_ a a *PowerShell ISE*.
-1. Állítsa be **$DemoScenario** = **2**, állítsa ezt a beállítást **2** való *párhuzamos visszaállítási bérlői*.
-1. A szkript futtatásához nyomja le az **F5** billentyűt.
+1. Teljes hello [véletlenül törli az adatokat a felhasználó szimulálása](#simulate-a-tenant-accidentally-deleting-data) szakasz.
+1. Nyissa meg... \\Tanulási modulok\\az üzletmenet folytonossága és vészhelyreállítás\\RestoreTenant\\_bemutató-RestoreTenant.ps1_ a hello *PowerShell ISE*.
+1. Állítsa be **$DemoScenario** = **2**, állítsa ezt túl**2** túl*párhuzamos visszaállítási bérlői*.
+1. Nyomja le az **F5** toorun hello parancsfájl.
 
-A parancsfájl adatbázisát állítja vissza a bérlő (a párhuzamos adatbázis) pontra időben az előző szakaszban esemény törlése előtt. Ez létrehoz egy második adatbázist, eltávolítja a meglévő katalógus metaadatokat, hogy létezik az adatbázisban, és az adatbázis hozzáadása a katalógus a *ContosoConcertHall\_régi* bejegyzés.
+hello parancsfájl hello bérlői adatbázis (tooa párhuzamos adatbázis) tooa pont visszaállítja az időben hello előző szakaszban hello esemény törlése előtt. Ez létrehoz egy második adatbázist, eltávolítja a meglévő katalógus metaadatokat, hogy létezik az adatbázisban, és hozzáadja hello adatbázis toohello katalógust a hello *ContosoConcertHall\_régi* bejegyzés.
 
-A bemutató-parancsfájl az események lapot a böngészőben nyílik meg. Megjegyzés: az URL-címről: ```http://events.wtp.&lt;user&gt;.trafficmanager.net/contosoconcerthall_old``` , hogy ez látható a visszaállított adatbázis ahol *_old* hozzáadódik a neve.
+hello bemutató-parancsfájl hello események lapot a böngészőben nyílik meg. Megjegyzés: a hello URL-CÍMRŐL: ```http://events.wtp.&lt;user&gt;.trafficmanager.net/contosoconcerthall_old``` , hogy ez látható hello visszaállított adatbázis ahol *_old* toohello neve kerül.
 
-Görgessen a böngészőt annak ellenőrzéséhez, hogy visszaállította az esemény törölve az előző szakaszban felsorolt események.
+Görgessen hello felsorolt események hello böngésző tooconfirm, amely az előző szakaszban hello törölt esemény hello vissza lett állítva.
 
-Vegye figyelembe, hogy, egy további bérlői, keresse meg a jegyektől, hogy a saját események alkalmazással nem valószínű, hogy hogyan szeretné biztosít egy bérlői hozzáférést kell, hogy csökkenjen a visszaállított bérlő visszaállította az adatokat, de könnyen mutatja be a visszaállítási mintát szolgál.
+Vegye figyelembe a exposing vissza hello bérlőre, egy további bérlői, a saját események app toobrowse jegyek valószínű toobe hogyan kellene megadnia egy bérlő access toorestored adatokat, de működik tooeasily bemutatják hello visszaállítási mintát.
 
-A valóságban ugyanúgy valószínűleg csak tartsa meg a visszaállított adatbázis számára meghatározott ideig. A visszaállított bérlői bejegyzés törlése után meghívásával elkészült a *Remove-RestoredTenant.ps1* parancsfájl.
+A valóságban ugyanúgy valószínűleg csak tartsa meg a visszaállított adatbázis számára meghatározott ideig. Vissza hello bérlői bejegyzés törlése után a hívó hello befejezte *Remove-RestoredTenant.ps1* parancsfájl.
 
-1. Állítsa be **$DemoScenario** való **4** jelölje be a *vissza eltávolítása bérlői* forgatókönyv.
+1. Állítsa be **$DemoScenario** túl**4** tooselect hello *vissza eltávolítása bérlői* forgatókönyv.
 1. **Végrehajtás** **használatával** **F5**
-1. A *ContosoConcertHall\_régi* bejegyzés törlődik a katalógusból. Lépjen tovább, és zárja be az események lapról ennél a bérlőnél a böngészőben.
+1. Hello *ContosoConcertHall\_régi* bejegyzés törlődik a hello katalógusból. Lépjen tovább, és zárja be a hello események lapot ennél a bérlőnél a böngészőben.
 
 
-## <a name="restore-a-tenant-in-place-replacing-the-existing-tenant-database"></a>A bérlő helyen, a mag cseréje a meglévő bérlő adatbázis visszaállítása
+## <a name="restore-a-tenant-in-place-replacing-hello-existing-tenant-database"></a>A bérlő helyen, cseréje hello meglévő bérlő adatbázis visszaállítása
 
-Ebben a gyakorlatban a Contoso energiaoptimalizálást egyszerre Hall bérlő visszaállítja az a pont előtti az esemény törölve lett. A *visszaállítási-TenantInPlace* parancsfájl az aktuális bérlőhöz adatbázis visszaállítja az mutat egy korábbi időpontra időben új adatbázist, és törli az eredeti adatbázist. Ebben a mintában a visszaállítás olyan helyreállítására súlyos adatsérülés, mivel előfordulhat, hogy a bérlő olyan jelentős adatvesztés.
+Ebben a gyakorlatban hello Contoso energiaoptimalizálást egyszerre Hall bérlői tooa pont visszaállítása előtti hello esemény törölve lett. Hello *visszaállítási-TenantInPlace* parancsfájl adatbázisát állítja vissza a hello aktuális bérlőhöz adatbázis tooa új időben tooa korábbi időpontra mutat, és törli az eredeti adatbázis hello. Ebben a mintában a visszaállítás olyan a bérlő hello jelentős adatvesztés lehet súlyos adatsérülés helyreállva tooaccommodate lenne.
 
 1. Nyissa meg **bemutató-RestoreTenant.ps1** a PowerShell ISE fájl
-1. Állítsa be **$DemoScenario** való **5** jelölje be a *állítsa vissza a bérlő helye forgatókönyvben*.
+1. Állítsa be **$DemoScenario** túl**5** tooselect hello *állítsa vissza a bérlő helye forgatókönyvben*.
 1. Végrehajtás használatával **F5**.
 
-A parancsfájl adatbázisát állítja vissza a bérlő pontra öt perc elteltével az esemény törölve lett. Ennek érdekében első véve a Contoso energiaoptimalizálást egyszerre Hall bérlő offline, így nincsenek további frissítések az adatokhoz. Ezt követően egy párhuzamos adatbázis hozta létre a visszaállítási pontról visszaállítása és annak érdekében, hogy az adatbázis neve nem ütközik a meglévő adatbázis bérlő nevét az időbélyegzőnek nevű. Ezután a régi bérlői adatbázisa törlődik, és a visszaállított adatbázis átnevezése az eredeti adatbázis neve. Végezetül Contoso energiaoptimalizálást egyszerre Hall online állapotba a visszaállított adatbázis alkalmazás hozzá.
+hello parancsfájl visszaállítja hello bérlői adatbázis tooa pont öt perc elteltével hello esemény törölve lett. Ennek érdekében első bérlői offline így további hello Contoso energiaoptimalizálást egyszerre Hall véve frissíti toohello adatokat. Egy párhuzamos adatbázis visszaállítása hello visszaállítási pont által létrehozott és nevű, majd az időbélyegzőnek tooensure hello adatbázis neve nem ütköznek a hello meglévő bérlő adatbázis nevét. A következő hello régi bérlői adatbázis törlődik, és a visszaállított adatbázis hello átnevezett toohello eredeti adatbázis neve. Végezetül a Contoso energiaoptimalizálást egyszerre Hall kerüléséig online tooallow vissza toohello hello app adatbázist.
 
-Sikeresen visszaállította a az adatbázis pontra előtti az esemény törölve lett. Az események lap megnyílik, ezért győződjön meg róla, az utolsó esemény vissza lett állítva.
+Sikeresen visszaállította hello adatbázis tooa pont előtti hello esemény törölve lett. hello események lap nyílik, ezért ellenőrizze hello utolsó esemény vissza lett állítva.
 
 
 ## <a name="next-steps"></a>Következő lépések
@@ -146,6 +146,6 @@ Ez az oktatóanyag bemutatta, hogyan végezheti el az alábbi műveleteket:
 
 ## <a name="additional-resources"></a>További források
 
-* További [oktatóprogramot kínál, amelyek a Wingtip SaaS-alkalmazás épül](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* További [oktatóprogramot kínál, amelyek hello Wingtip SaaS-alkalmazás épül](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Az Azure SQL Database üzletmenet áttekintése](sql-database-business-continuity.md)
 * [További tudnivalók az SQL-adatbázis biztonsági mentése](sql-database-automated-backups.md)

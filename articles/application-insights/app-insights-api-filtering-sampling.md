@@ -1,6 +1,6 @@
 ---
-title: "Szűrés és az Azure Application Insights SDK előfeldolgozása |} Microsoft Docs"
-description: "Az írási Telemetriai processzorok és a telemetriai adatok inicializálók, az SDK-ban való vagy tulajdonságokat adhat az adatok az Application Insights portál telemetriai adatok elküldése előtt."
+title: "aaaFiltering és a előfeldolgozása hello Azure Application Insights SDK |} Microsoft Docs"
+description: "Telemetriai processzor- és Telemetria inicializálók írása hello SDK toofilter vagy tulajdonságok toohello adatok hozzáadása a hello telemetriai toohello Application Insights portál elküldése előtt."
 services: application-insights
 documentationcenter: 
 author: beckylino
@@ -13,45 +13,45 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: bwren
-ms.openlocfilehash: 17e66775dd2cd1c858594102f1ddb32e2fbbccc8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 51b9db69b2375b8799718f1b0e1af77620dc2692
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="filtering-and-preprocessing-telemetry-in-the-application-insights-sdk"></a>Szűrés és az Application Insights SDK a telemetriai adatok előfeldolgozása
+# <a name="filtering-and-preprocessing-telemetry-in-hello-application-insights-sdk"></a>Szűrés és az Application Insights SDK hello telemetriai előfeldolgozása
 
 
-Írása, és beépülő modulokat az Application Insights SDK testreszabása hogyan telemetriai adatokat rögzíti, majd dolgozni, mielőtt továbbítja az Application Insights szolgáltatás konfigurálása.
+Írása, és beépülő modulokat hello Application Insights SDK toocustomize hogyan telemetriai adatokat rögzíti, majd az Application Insights szolgáltatás toohello elküldés előtt feldolgozott konfigurálása.
 
-* [A mintavételi](app-insights-sampling.md) telemetriai adatok mennyiségét csökkenti a statisztika befolyásolása nélkül. Azonos tartja kapcsolatos adatok mutat, így közöttük, ha a probléma diagnosztizálása navigálhat. A portálon a teljes számlálás szorozni, hogy a mintavételi kártalanítja.
-* Szűrés Telemetriai processzorokat [ASP.NET](#filtering) vagy [Java](app-insights-java-filter-telemetry.md) lehetővé teszi, hogy válasszon, vagy módosítsa a az SDK-telemetriai adatokat a kiszolgálón való továbbítás előtt. A telemetriai adatok mennyiségének csökkentheti például kérelmek kizárja a robotokat. De szűrés több egyszerű megközelítése mint mintavételi forgalom csökkentése. Mi továbbított teljesebb körű vezérlése lehetővé teszi, de vegye figyelembe, hogy az hatással van a statisztika – például ki az összes sikeres kérelmek szűrése kell.
-* [Telemetria inicializálók tulajdonságok hozzáadása](#add-properties) bármely telemetriai adatok küldése az alkalmazásból, beleértve a szabványos modulból telemetriai való. Például hozzáadhatja számított értékeket; vagy a portál adatainak szűréséhez verziószámokra.
-* [Az SDK API-t](app-insights-api-custom-events-metrics.md) küldése egyéni események és metrikák használatával.
+* [A mintavételi](app-insights-sampling.md) anélkül, hogy befolyásolná a statisztika telemetriai hello mennyiségét csökkenti. Azonos tartja kapcsolatos adatok mutat, így közöttük, ha a probléma diagnosztizálása navigálhat. Hello portálon hello teljes számok pedig hello mintavételi rekordokkal toocompensate.
+* Szűrés Telemetriai processzorokat [ASP.NET](#filtering) vagy [Java](app-insights-java-filter-telemetry.md) lehetővé teszi, hogy válasszon, vagy módosítsa az hello SDK telemetriai toohello server elküldés előtt. Telemetriai adatok mennyisége hello csökkentheti például kérelmek kizárja a robotokat. De szűrés mintavételi-nál több alapvető megközelítés tooreducing forgalmat. Mi kerül továbbításra teljesebb körű vezérlése lehetővé teszi, de vegye figyelembe, hogy az hatással van a statisztika - például toobe rendelkezik ki az összes sikeres kérelmek szűrése.
+* [Telemetria inicializálók tulajdonságok hozzáadása](#add-properties) tooany telemetriai adatok küldése az alkalmazásból, beleértve a szabványos modulokban hello telemetriai. Például hozzáadhatja számított értékeket; vagy verziószámok hello portálon toofilter hello adatok alapján.
+* [hello SDK API](app-insights-api-custom-events-metrics.md) használt toosend egyéni események és metrikák.
 
 Előkészületek:
 
-* Telepítse az Application Insights [SDK for ASP.NET](app-insights-asp-net.md) vagy [SDK Java](app-insights-java-get-started.md) az alkalmazásban.
+* Telepítse az Application Insights hello [SDK for ASP.NET](app-insights-asp-net.md) vagy [SDK Java](app-insights-java-get-started.md) az alkalmazásban.
 
 <a name="filtering"></a>
 
 ## <a name="filtering-itelemetryprocessor"></a>Szűrés: ITelemetryProcessor
-Ez a módszer lehetővé teszi több közvetlen ellenőrzése alatt tartja a mi van, illetve tiltani szeretné a telemetriai adatok adatfolyamból. A mintavételi, párhuzamosan használható vagy külön-külön.
+Ez a módszer lehetővé teszi több közvetlen ellenőrzése alatt tartja a mi van, illetve tiltani szeretné hello telemetriai adatfolyamból. A mintavételi, párhuzamosan használható vagy külön-külön.
 
-Telemetriai adatok szűrése, telemetriai processzort írása, és regisztrálja az SDK-val. A processzor végighalad az összes telemetriai adat, és dobja el, az adatfolyamból, vagy vegye fel a Tulajdonságok választhatja. Ez magában foglalja a szabványos modulból, mint a HTTP-kérelem adatgyűjtő és a függőségi adatgyűjtő telemetriai, valamint saját kezűleg írt telemetriai adatokat. Például szűrhetők telemetriai adatainak robots vagy sikeres függőségi hívások esetében érkező kérelmeket.
+toofilter telemetriai adatokat, akkor írási telemetriai processzort, és regisztrálhatja azt az hello SDK. A processzor végighalad az összes telemetriai adat, és választhat toodrop hello le adatfolyam, vagy vegye fel a tulajdonságai. Ez magában foglalja a telemetriai hello szabványos modulokban például hello HTTP-kérelem adatgyűjtő és hello függőségi adatgyűjtő, valamint saját kezűleg írt telemetriai adatokat. Például szűrhetők telemetriai adatainak robots vagy sikeres függőségi hívások esetében érkező kérelmeket.
 
 > [!WARNING]
-> Az SDK által küldött telemetriai adatok szűrése feldolgozók segítségével döntés a statisztika, melyek megjelennek a portálon, és nehéz hajtsa végre a kapcsolódó elemek.
+> Szűrés hello SDK által küldött hello telemetriai processzorokat használó is eltolódhat hello statisztika kapcsolatban a hello portálon, és könnyebben nehéz toofollow kapcsolódó elemeket.
 >
 > Ehelyett érdemes [mintavételi](app-insights-sampling.md).
 >
 >
 
 ### <a name="create-a-telemetry-processor-c"></a>Hozzon létre egy telemetriai processzor (C#)
-1. Győződjön meg arról, hogy az Application Insights SDK célverzióját 2.0.0 verzió vagy újabb. Kattintson a jobb gombbal a projektre a Visual Studio Solution Explorerben, és válassza ki a NuGet-csomagok kezelése. A NuGet-Csomagkezelő ellenőrizze a Microsoft.ApplicationInsights.Web.
-2. Szűrő létrehozásához ITelemetryProcessor megvalósításához. Ez egy másik bővítési pontot például telemetriai modul, telemetriai inicializáló és telemetriai csatorna.
+1. Győződjön meg arról, hogy hello Application Insights SDK célverzióját 2.0.0 verzió vagy újabb. Kattintson a jobb gombbal a projektre a Visual Studio Solution Explorerben, és válassza ki a NuGet-csomagok kezelése. A NuGet-Csomagkezelő ellenőrizze a Microsoft.ApplicationInsights.Web.
+2. a szűrő toocreate ITelemetryProcessor valósítja meg. Ez egy másik bővítési pontot például telemetriai modul, telemetriai inicializáló és telemetriai csatorna.
 
-    Figyelje meg, hogy a Telemetriai processzor feldolgozási láncolata összeállításához. Telemetria processzort hozható létre, ha át egy hivatkozást a következő feldolgozó a láncban. Ha telemetriai adatpont folyamat metódus számára, ne a tevékenységeket, majd majd hívja a következő Telemetriai processzor a lánc.
+    Figyelje meg, hogy a Telemetriai processzor feldolgozási láncolata összeállításához. Telemetria processzort hozható létre, ha egy hivatkozás toohello következő processzor át hello lánc. Ha a telemetriai adatok adatpont toohello folyamat metódus, a tevékenységeket végez el, és majd hívások hello hello láncban következő Telemetriai processzor.
 
     ``` C#
 
@@ -66,16 +66,16 @@ Telemetriai adatok szűrése, telemetriai processzort írása, és regisztrálja
         // You can pass values from .config
         public string MyParamFromConfigFile { get; set; }
 
-        // Link processors to each other in a chain.
+        // Link processors tooeach other in a chain.
         public SuccessfulDependencyFilter(ITelemetryProcessor next)
         {
             this.Next = next;
         }
         public void Process(ITelemetry item)
         {
-            // To filter out an item, just return
+            // toofilter out an item, just return
             if (!OKtoSend(item)) { return; }
-            // Modify the item if required
+            // Modify hello item if required
             ModifyItem(item);
 
             this.Next.Process(item);
@@ -111,16 +111,16 @@ Telemetriai adatok szűrése, telemetriai processzort írása, és regisztrálja
 
 ```
 
-(Ez a szakaszában azonos ahol inicializálni a mintavételi szűrő.)
+(Ez az hello ahol inicializálni a mintavételi szűrő szakaszában azonos.)
 
-Az osztály nyilvános elnevezett tulajdonságok megadásával átadhatók karakterlánc-értékek a .config fájlból.
+Az osztály nyilvános elnevezett tulajdonságok megadásával átadhatók karakterlánc-értékek hello .config fájlból.
 
 > [!WARNING]
-> A nevét, és az osztály és a tulajdonság nevét, a kódban az .config fájl bármely tulajdonságnevek megfelelően kezeli. Ha a .config fájl egy nem létező típus vagy a tulajdonságra hivatkozik, az SDK-t is csendes nem minden telemetriai adatokat küldhet.
+> Mi gondoskodunk toomatch hello nevét és minden tulajdonságnevek hello .config fájl toohello osztály és a tulajdonságnevek hello kódban. Ha hello .config fájl egy nem létező típus vagy a tulajdonságra hivatkozik, hello SDK csendes sikertelenek lehetnek toosend bármely telemetriai adatokat.
 >
 >
 
-**Másik lehetőségként** tudja inicializálni a kódban a szűrőt. A megfelelő inicializálása az osztály - például a Global.asax.cs AppStart - a processzor beilleszteni a lánc:
+**Másik lehetőségként** tudja inicializálni a kódban hello szűrő. A megfelelő inicializálási osztályban – például a Global.asax.cs AppStart - hello lánc a processzor beszúrása:
 
 ```C#
 
@@ -138,7 +138,7 @@ Ezt a pontot fogja használni a processzor után létrehozott TelemetryClients.
 
 ### <a name="example-filters"></a>Példa szűrők
 #### <a name="synthetic-requests"></a>Szintetikus kérelmek
-Botok és a webalkalmazás-tesztek szűrik. Bár a Metrikaböngésző felajánlja a szintetikus források szűrheti, ezt a beállítást, az SDK szűréssel csökken a forgalom.
+Botok és a webalkalmazás-tesztek szűrik. Bár a Metrikaböngésző ad meg hello kimenő szintetikus források beállítás toofilter, ezt a beállítást, hello SDK szűréssel csökkenti a forgalmat.
 
 ``` C#
 
@@ -164,7 +164,7 @@ public void Process(ITelemetry item)
     if (request != null &&
     request.ResponseCode.Equals("401", StringComparison.OrdinalIgnoreCase))
     {
-        // To filter out an item, just terminate the chain:
+        // toofilter out an item, just terminate hello chain:
         return;
     }
     // Send everything else:
@@ -174,10 +174,10 @@ public void Process(ITelemetry item)
 ```
 
 #### <a name="filter-out-fast-remote-dependency-calls"></a>Kiszűrhetők a gyorsan távoli függőségi hívások esetében
-Ha szeretné, amelyek lassú hívások diagnosztizálása, kiszűrhetők a gyorsan megfelelően.
+Ha azt szeretné, amelyek lassú hívások toodiagnose csak, kiszűrhetők a hello gyors néhányat a meglévők közül.
 
 > [!NOTE]
-> Ez fogja döntés a statisztika, megjelenik a portálon. A függőség diagram, ha a függőségi hívások esetében minden hibák fog kinézni.
+> Ez fogja döntés hello statisztika hello portálon megjelenik. hello függőségi diagram fog kinézni, mintha hello függőségi hívások esetében is az összes sikertelen.
 >
 >
 
@@ -197,17 +197,17 @@ public void Process(ITelemetry item)
 ```
 
 #### <a name="diagnose-dependency-issues"></a>Függőségi problémák diagnosztikája
-[Ebben a blogban](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/) függőségi eseményadatokat elküldésével automatikusan rendszeres pingelésre függőségek projekt ismerteti.
+[Ebben a blogban](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/) rendszeres pingelésre toodependencies automatikusan küldésével egy projekt toodiagnose függőségi problémákat ismerteti.
 
 
 <a name="add-properties"></a>
 
 ## <a name="add-properties-itelemetryinitializer"></a>Adja hozzá a tulajdonságok: ITelemetryInitializer
-Telemetria inicializálók segítségével az összes telemetriai adat; küldött általános tulajdonságainak megadása és a szabványos telemetriai modulok kijelölt működés felülbírálásához.
+Használja a telemetriai adatok inicializálók toodefine globális tulajdonságait küldött az összes telemetriai adat; és toooverride kijelölt hello szabványos telemetriai modulok viselkedését.
 
-Az Application Insights webes csomag például HTTP-kérelmekre vonatkozó telemetriai adatokat gyűjt. Alapértelmezés szerint azt észleli, ha bármely kérelem válaszkód sikertelenként > = 400. Azonban ha azt szeretné kezelni a 400 sikeres, megadhatja a telemetriai adatok inicializáló, amely beállítja a sikeres tulajdonságot.
+Hello Application Insights webes csomag például HTTP-kérelmekre vonatkozó telemetriai adatokat gyűjt. Alapértelmezés szerint azt észleli, ha bármely kérelem válaszkód sikertelenként > = 400. Azonban ha azt szeretné, hogy egy sikeres 400 tootreat, megadhatja a telemetriai adatok inicializáló, amely beállítja hello sikeres tulajdonságot.
 
-Ha megad egy telemetriai inicializáló, azt nevezzük, amikor a Track*() módszerekkel nevezik. Ez magában foglalja a szabványos telemetriai modulok által meghívott módszerek. Konvenció ezek a modulok egyik tulajdonságnak sem, amely már be van állítva egy inicializáló által nem állít be.
+Ha megad egy telemetriai inicializáló, ha bármelyik hello Track*() nevezik módszert nevezik. Ez magában foglalja a hello szabványos telemetriai modulok által meghívott módszerek. Konvenció ezek a modulok egyik tulajdonságnak sem, amely már be van állítva egy inicializáló által nem állít be.
 
 **Adja meg az inicializáló**
 
@@ -223,7 +223,7 @@ Ha megad egy telemetriai inicializáló, azt nevezzük, amikor a Track*() módsz
     namespace MvcWebRole.Telemetry
     {
       /*
-       * Custom TelemetryInitializer that overrides the default SDK
+       * Custom TelemetryInitializer that overrides hello default SDK
        * behavior of treating response codes >= 400 as failed requests
        *
        */
@@ -239,12 +239,12 @@ Ha megad egy telemetriai inicializáló, azt nevezzük, amikor a Track*() módsz
             if (!parsed) return;
             if (code >= 400 && code < 500)
             {
-                // If we set the Success property, the SDK won't change it:
+                // If we set hello Success property, hello SDK won't change it:
                 requestTelemetry.Success = true;
-                // Allow us to filter these requests in the portal:
+                // Allow us toofilter these requests in hello portal:
                 requestTelemetry.Context.Properties["Overridden400s"] = "true";
             }
-            // else leave the SDK to set the Success property      
+            // else leave hello SDK tooset hello Success property      
         }
       }
     }
@@ -262,7 +262,7 @@ Az ApplicationInsights.config:
       </TelemetryInitializers>
     </ApplicationInsights>
 
-*Másik lehetőségként* az inicializáló a kód, például a Global.aspx.cs osztályból példányosítható:
+*Másik lehetőségként* hello inicializáló a kód, például a Global.aspx.cs osztályból példányosítható:
 
 ```C#
     protected void Application_Start()
@@ -281,7 +281,7 @@ Az ApplicationInsights.config:
 ### <a name="javascript-telemetry-initializers"></a>JavaScript telemetriai inicializálók
 *JavaScript*
 
-Szúrja be a telemetriai adatok inicializáló közvetlenül a portálon kapott inicializálási kód után:
+Szúrja be a telemetriai adatok inicializáló közvetlenül a portáltól kapott hello portal hello inicializálási kód után:
 
 ```JS
 
@@ -301,17 +301,17 @@ Szúrja be a telemetriai adatok inicializáló közvetlenül a portálon kapott 
             appInsights.context.addTelemetryInitializer(function (envelope) {
                 var telemetryItem = envelope.data.baseData;
 
-                // To check the telemetry item’s type - for example PageView:
+                // toocheck hello telemetry item’s type - for example PageView:
                 if (envelope.name == Microsoft.ApplicationInsights.Telemetry.PageView.envelopeType) {
                     // this statement removes url from all page view documents
                     telemetryItem.url = "URL CENSORED";
                 }
 
-                // To set custom properties:
+                // tooset custom properties:
                 telemetryItem.properties = telemetryItem.properties || {};
                 telemetryItem.properties["globalProperty"] = "boo";
 
-                // To set custom metrics:
+                // tooset custom metrics:
                 telemetryItem.measurements = telemetryItem.measurements || {};
                 telemetryItem.measurements["globalMetric"] = 100;
             });
@@ -323,16 +323,16 @@ Szúrja be a telemetriai adatok inicializáló közvetlenül a portálon kapott 
     </script>
 ```
 
-Elérhető a telemetryItem nem egyéni tulajdonság, témakör [Application Insights exportálása adatmodell](app-insights-export-data-model.md).
+Hello nem egyéni tulajdonságok hello telemetryItem elérhető összefoglalását lásd: [Application Insights exportálása adatmodell](app-insights-export-data-model.md).
 
 Tetszőleges számú inicializálók szerint adhat hozzá.
 
 ## <a name="itelemetryprocessor-and-itelemetryinitializer"></a>ITelemetryProcessor és ITelemetryInitializer
-Mi az a telemetriai adatok processzorok és telemetriai inicializálók közötti különbség?
+Mi az a telemetriai adatok processzorral és telemetriai inicializálók hello különbségének?
 
-* Van néhány átfedéseket, mi mindent velük a: Tulajdonságok hozzáadása telemetriai egyaránt használható.
+* Van néhány átfedéseket, mi mindent velük a: használt tooadd tulajdonságok tootelemetry is lehet.
 * TelemetryInitializers TelemetryProcessors előtt mindig fusson.
-* TelemetryProcessors engedélyezi, hogy teljesen cserélje le, vagy vesse el a telemetriai adatok elemet.
+* TelemetryProcessors toocompletely csere engedélyezése, vagy vesse el a telemetriai adatok elemet.
 * TelemetryProcessors teljesítmény számláló telemetriai nem feldolgozni.
 
 

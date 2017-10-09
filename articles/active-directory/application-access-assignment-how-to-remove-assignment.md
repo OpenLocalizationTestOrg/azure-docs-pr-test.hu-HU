@@ -1,6 +1,6 @@
 ---
-title: "A felhasználó hozzáférést egy alkalmazáshoz eltávolítása |} Microsoft Docs"
-description: "Megtudhatja, hogyan távolítsa el a felhasználó hozzáférést egy alkalmazáshoz"
+title: "aaaHow tooremove a felhasználó által tooan alkalmazás hozzáférésének |} Microsoft Docs"
+description: "Megértéséhez hogyan tooremove egy felhasználó tooan alkalmazás elérése"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,62 +13,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 497429e7bf62f7e1d67ea429d6b858725f843688
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 17017bddb73aad5a0ef3a411ac91bf0423f0b600
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-remove-a-users-access-to-an-application"></a>A felhasználó hozzáférést egy alkalmazáshoz eltávolítása
+# <a name="how-tooremove-a-users-access-tooan-application"></a>Hogyan tooremove egy felhasználó tooan alkalmazás elérése
 
-Ez a cikk segítenek megérteni, hogyan távolíthatja el egy felhasználó hozzáférést egy alkalmazáshoz.
+Ez a cikk segítséget toounderstand hogyan tooremove egy felhasználó tooan alkalmazás eléréséhez.
 
-## <a name="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application"></a>Egy alkalmazás egy adott felhasználó vagy csoport-hozzárendelés eltávolítása
+## <a name="i-want-tooremove-a-specific-users-or-groups-assignment-tooan-application"></a>Egy adott felhasználó vagy csoport hozzárendelése tooan alkalmazás kívánt tooremove
 
-Egy felhasználó vagy csoport-hozzárendelés alkalmazáshoz való eltávolításához kövesse a lépéseket a [egy felhasználó vagy csoport-hozzárendelés eltávolítása egy vállalati alkalmazás Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) cikk.
+egy felhasználó vagy csoport hozzárendelése tooan alkalmazást, tooremove lépésekkel hello hello felsorolt [egy felhasználó vagy csoport-hozzárendelés eltávolítása egy vállalati alkalmazás Azure Active Directoryban](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) cikk.
 
-. ## szeretném tiltani minden hozzáférést egy alkalmazáshoz minden felhasználó
+. ## Kívánt toodisable összes access tooan alkalmazás minden felhasználó
 
-Minden felhasználói bejelentkezések alkalmazáshoz való letiltásához kövesse a lépéseket a [tiltsa le a felhasználói bejelentkezések Azure Active Directory vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) cikk.
+toodisable minden felhasználói bejelentkezések tooan alkalmazást, kövesse hello lépéseket hello [tiltsa le a felhasználói bejelentkezések Azure Active Directory vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) cikk.
 
-## <a name="i-want-to-delete-an-application-entirely"></a>Az alkalmazás teljesen törlése
+## <a name="i-want-toodelete-an-application-entirely"></a>Egy alkalmazás toodelete teljesen kívánt
 
-A **alkalmazás törlése**, kövesse az alábbi utasításokat:
+túl**alkalmazás törlése**, kövesse az alábbi hello utasításokat:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-   * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+   * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki a törölni kívánt alkalmazást.
+6.  Válassza ki a kívánt toodelete hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson **törlése** ikonra a felső alkalmazás **áttekintése** panelen.
+7.  Amikor hello alkalmazás betölt, kattintson a **törlése** hello felső alkalmazás ikonja **áttekintése** panelen.
 
-## <a name="i-want-to-disable-all-future-user-consent-operations-to-any-application"></a>Szeretném tiltani az összes jövőbeni felhasználói hozzájárulás műveletek bármely alkalmazás
+## <a name="i-want-toodisable-all-future-user-consent-operations-tooany-application"></a>Az összes jövőbeni felhasználói hozzájárulás műveletek tooany alkalmazás kívánt toodisable
 
-Felhasználói hozzájárulás letiltása, az a teljes címtár megakadályozhatja a végfelhasználók számára hozzájárul ahhoz, hogy minden alkalmazás. A rendszergazdák továbbra is a felhasználó behalves is hozzájárulás. Tudjon meg többet a kérelem jóváhagyását, és ezért előfordulhat, hogy, vagy előfordulhat, hogy nem szeretne ehhez olvassa el a [ismertetése felhasználói és rendszergazdai hozzájárulási](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
+Felhasználói hozzájárulás letiltása, az a teljes címtár megakadályozhatja a végfelhasználók számára a küldőnek tooany alkalmazásból. A rendszergazdák továbbra is a felhasználó behalves is hozzájárulás. További információ az alkalmazás toolearn hozzájárulás, és miért lehet, vagy előfordulhat, hogy nem kívánja toodo, olvassa el a következőt [ismertetése felhasználói és rendszergazdai hozzájárulási](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
 
-A **tiltsa le a teljes címtár minden jövőbeni felhasználói hozzájárulás műveletei**, kövesse az alábbi utasításokat:
+túl**tiltsa le a teljes címtár minden jövőbeni felhasználói hozzájárulás műveletei**, kövesse az alábbi hello utasításokat:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **felhasználók és csoportok** a navigációs menü.
+4.  Kattintson a **felhasználók és csoportok** hello navigációs menüjében.
 
 5.  Kattintson a **felhasználói beállítások**.
 
-6.  Tiltsa le az összes jövőbeni felhasználói hozzájárulás műveletek úgy, hogy a **felhasználók is engedélyezi, hogy az alkalmazások hozzáférjenek az adataikhoz** kapcsolót **nem** , és kattintson a **mentése** gombra.
+6.  Tiltsa le az összes jövőbeni felhasználói hozzájárulás műveletek hello beállítása az **felhasználók engedélyezhetik alkalmazások tooaccess adataikat** túl váltása**nem** hello kattintson **mentése** gombra.
 
 
 # <a name="next-steps"></a>Következő lépések
-[Az alkalmazásokhoz való hozzáférés kezelése](active-directory-managing-access-to-apps.md)
+[Hozzáférés tooapps kezelése](active-directory-managing-access-to-apps.md)

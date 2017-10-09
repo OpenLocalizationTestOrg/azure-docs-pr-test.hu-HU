@@ -1,19 +1,19 @@
 
 
-Használata esetén csatlakozhassanak az **SharePoint Online**, meg kell adnia az identitás (felhasználónév és jelszó, intelligens kártyához tartozó hitelesítő adatok, stb.) a SharePoint online. Amennyiben Ön már hitelesítve, a SharePoint Online-összekötő használatához a logic App lépne. 
+A sorrend tooconnect túl**SharePoint Online**, tooprovide az identity (felhasználónév és jelszó, intelligens kártya hitelesítő adatainak stb.) tooSharePoint Online van szüksége. Után, hogy hitelesített, végrehajtható a logic App toouse hello SharePoint Online Connectort. 
 
-A Logic Apps alkalmazást designer, a lépések végrehajtásával jelentkezzen be a SharePoint létrehozásához a **kapcsolat** használható a Logic Apps alkalmazást:
+A hello tervezője a Logic Apps alkalmazást, kövesse ezeket a lépéseket toosign a SharePoint toocreate hello **kapcsolat** használható a Logic Apps alkalmazást:
 
-1. A keresőmezőbe írja be a SharePoint, és várja meg, a keresés vissza eseményindítók és a SharePoint online-hoz kapcsolódó műveletek:   
+1. Adja meg a SharePoint hello keresőmezőbe, majd várja meg a hello keresési tooreturn összes eseményindítók és műveletek kapcsolódó tooSharePoint Online:   
    ![A SharePoint konfigurálása][1]  
-2. Válassza ki a **SharePoint online-hoz - fájl jön létre** eseményindító  
-3. Válassza ki **jelentkezzen be a SharePoint Online**:   
+2. Jelölje be hello **SharePoint online-hoz - fájl jön létre** eseményindító  
+3. Válassza ki **tooSharePoint Online bejelentkezés**:   
    ![A SharePoint konfigurálása][2]    
-4. Jelentkezzen be a SharePoint való hitelesítéshez szükséges a SharePoint hitelesítő adatok megadása   
+4. Adja meg a SharePoint hitelesítő adatok toosign tooauthenticate a SharePoint   
    ![A SharePoint konfigurálása][3]     
-5. A hitelesítés befejezése után a lesz átirányítva, a logikai alkalmazáshoz. Ennyi az egész, a kapcsolat létrejött. Figyelje meg, az üzenet azt jelzi, hogy most már csatlakozott SharePoint alján.  
+5. Hello hitelesítés befejezése után lesz átirányított tooyour logikai alkalmazást. Ennyi az egész, hello kapcsolat létrejött. Figyelje meg, amely azt jelzi, hogy Ön most már csatlakoztatott tooSharePoint hello alján üdvözlőüzenetére.  
    ![A SharePoint konfigurálása][4]  
-6. Más eseményindítók és műveletek végre kell hajtania a Logic Apps alkalmazást, majd adja hozzá.   
+6. Más eseményindítók és műveletek toocomplete a Logic Apps alkalmazást újra kell majd is hozzáadhat.   
 
 [1]: ./media/connectors-create-api-sharepointonline/connectionconfig1.png
 [2]: ./media/connectors-create-api-sharepointonline/connectionconfig2.png 

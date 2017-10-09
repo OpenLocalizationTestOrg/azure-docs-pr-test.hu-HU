@@ -1,6 +1,6 @@
 ---
-title: "Váltás a nézet és szerkesztési módban a jelentések Azure Power BI Embedded |} Microsoft Docs"
-description: "Megtudhatja, hogyan nézet közötti váltáshoz és szerkesztési módban a jelentésekhez a Power BI Embedded belül."
+title: "a jelentések Azure Power BI Embedded megtekintés és szerkesztés mód közötti aaaToggle |} Microsoft Docs"
+description: "Megtudhatja, hogyan tootoggle a jelentésekhez a Power BI Embedded belül megtekintés és szerkesztés mód között."
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,22 +15,22 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: f73bf05b41523a5833cc9366fb84cb7021b4b7a9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9e3da5f9ae74d221af650adebde7c9d83b38a99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="toggle-between-view-and-edit-mode-for-reports-in-power-bi-embedded"></a>Váltás a nézet és szerkesztési módban a jelentésekhez a Power BI Embedded
 
-Megtudhatja, hogyan nézet közötti váltáshoz és szerkesztési módban a jelentésekhez a Power BI Embedded belül.
+Megtudhatja, hogyan tootoggle a jelentésekhez a Power BI Embedded belül megtekintés és szerkesztés mód között.
 
 ## <a name="creating-an-access-token"></a>Egy hozzáférési jogkivonat létrehozása
 
-Szüksége lesz egy hozzáférési jogkivonatot, amely lehetővé teszi a megtekintése és-jelentés szerkesztése létrehozásához. Szerkesztheti, és mentse a jelentést, szüksége lesz a **Report.ReadWrite** token engedéllyel. További információkért lásd: [Authenticating és a Power BI Embedded engedélyező](power-bi-embedded-app-token-flow.md).
+Szüksége lesz egy hozzáférési jogkivonatot, amely lehetővé teszi az hello képességét tooboth megtekintés és Szerkesztés jelentés toocreate. tooedit és mentse a jelentést, szüksége lesz a hello **Report.ReadWrite** token engedéllyel. További információkért lásd: [Authenticating és a Power BI Embedded engedélyező](power-bi-embedded-app-token-flow.md).
 
 > [!NOTE]
-> Ez lehetővé teszi, szerkesztése és a meglévő jelentés módosításainak mentéséhez. Ha azt is szeretné funkciót támogató **Mentés másként**, akkor adja meg a további engedélyek. További információkért lásd: [hatókörök](power-bi-embedded-app-token-flow.md#scopes).
+> Ez lehetővé teszi tooedit, és tooan meglévő jelentés módosítások mentése. Ha azt is szeretné hello funkciót támogató **Mentés másként**, szüksége lesz a toosupply további engedélyek. További információkért lásd: [hatókörök](power-bi-embedded-app-token-flow.md#scopes).
 
 ```
 using Microsoft.PowerBI.Security;
@@ -44,7 +44,7 @@ var token = embedToken.Generate("{access key}");
 
 ## <a name="embed-configuration"></a>Konfigurációs beágyazása
 
-Szüksége lesz az engedélyek és a viewMode láthatók a Mentés gombra kattint, szerkesztési módban. További információkért lásd: [konfigurációs részletek beágyazása](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
+Toosupply engedélyek és a sorrend toosee hello mentési gomb szerkesztési módban a viewMode lesz szüksége. További információkért lásd: [konfigurációs részletek beágyazása](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details).
 
 Ha például a JavaScript:
 
@@ -54,7 +54,7 @@ Ha például a JavaScript:
     // Get models. Models, it contains enums that can be used.
     var models = window['powerbi-client'].models;
 
-    // Embed configuration used to describe the what and how to embed.
+    // Embed configuration used toodescribe hello what and how tooembed.
     // This object is used when calling powerbi.embed.
     // This also includes settings and options such as filters.
     // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
@@ -71,43 +71,43 @@ Ha például a JavaScript:
         }
     };
 
-    // Get a reference to the embedded report HTML element
+    // Get a reference toohello embedded report HTML element
     var reportContainer = $('#reportContainer')[0];
 
-    // Embed the report and display it within the div container.
+    // Embed hello report and display it within hello div container.
     var report = powerbi.embed(reportContainer, config);
 ```
 
-Ez a jelentés beágyazása a megjelenítési mód alapján fogják **viewMode** állítják be **modellek. ViewMode.View**.
+Ez tájékoztatja tooembed hello jelentés alapján nézetét **viewMode** túl állítják**modellek. ViewMode.View**.
 
 ## <a name="view-mode"></a>Megjelenítési mód
 
-A következő JavaScript használatával nézet módba kapcsolni, ha Ön a szerkesztési módban.
+JavaScript tooswitch nézet módba a következő hello is használhatja, ha szerkesztési módban.
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to view mode.
+// Switch tooview mode.
 report.switchMode("view");
 
 ```
 
 ## <a name="edit-mode"></a>Szerkesztési módban
 
-A következő JavaScript segítségével átváltani a szerkesztési módot, ha megtekintési módban.
+JavaScript tooswitch szerkesztési módba a következő hello is használhatja, ha megtekintési módban.
 
 ```
-// Get a reference to the embedded report HTML element
+// Get a reference toohello embedded report HTML element
 var reportContainer = $('#reportContainer')[0];
 
-// Get a reference to the embedded report.
+// Get a reference toohello embedded report.
 report = powerbi.get(reportContainer);
 
-// Switch to edit mode.
+// Switch tooedit mode.
 report.switchMode("edit");
 
 ```
@@ -121,4 +121,4 @@ report.switchMode("edit");
 [JavaScript beágyazási minta](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 [A csharp nyelvű Power bi Git-tárház](https://github.com/Microsoft/PowerBI-CSharp)  
 [Power bi-csomópont Git-tárház](https://github.com/Microsoft/PowerBI-Node)  
-További kérdései vannak? [Tegye próbára a Power BI közösségét](http://community.powerbi.com/)
+További kérdései vannak? [Próbálja meg a Power BI-Közösség hello](http://community.powerbi.com/)

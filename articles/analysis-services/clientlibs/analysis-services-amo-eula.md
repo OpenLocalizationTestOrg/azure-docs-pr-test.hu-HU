@@ -1,6 +1,6 @@
 ---
-title: Az Azure Analysis Services rendszerhez AMO EULA |} Microsoft Docs
-description: "A MICROSOFT ANALYSIS MANAGEMENT OBJECTS (AMO) újraterjeszthető csomag végfelhasználói licencszerződés feltételeit"
+title: Analysis Services AMO EULA aaaAzure |} Microsoft Docs
+description: "MICROSOFT ANALYSIS MANAGEMENT OBJECTS (AMO) újraterjeszthető csomag hello végfelhasználói licencszerződés feltételeit"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: owend
-ms.openlocfilehash: 8f357a8091ce07104b81e1f9d87994d4de14e3e9
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 8749ca1f52647190b1d5671552788fb8aed818fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analysis-services-amo-redistributable-package-end-user-license-agreement-eula"></a>Analysis Services AMO terjeszthető csomag végfelhasználói licencszerződés (EULA)
 
@@ -27,91 +27,91 @@ ms.lasthandoff: 07/29/2017
 
 **MICROSOFT ANALYSIS MANAGEMENT OBJECTS (AMO)**  
 
-**HA MŰKÖDÉS KÖZBENI (VAGY EGY ELSŐDLEGES HELLYEL RENDELKEZŐ VÁLLALAT) AZ EGYESÜLT ÁLLAMOKBAN, OLVASSA EL AZ ALÁBBI "KÖTÉS EGYEZTETÉSI ÉS OSZTÁLY MŰVELET LEMONDÁS" SZAKASZT. ÁLTALA ÉRINTETT VITÁK FELOLDÁSA.**
+**Ha élő meg (vagy vannak A üzleti rendelkező A fő helye az üzleti IN) hello az Amerikai Egyesült Államok, olvassa el hello "KÖTÉS egyeztetési és osztály művelet lemondás" szakasz alatt. ÁLTALA ÉRINTETT VITÁK FELOLDÁSA.**
 
-Jelen dokumentumban foglalt licencfeltételek szerződést között, és a Microsoft Corporation (vagy annak valamelyik leányvállalatával kötött). A fent megnevezett szoftverre szoftver- és bármely Microsoft-szolgáltatások vagy a szoftver frissítések vonatkoznak (kivéve mértékben ilyen szolgáltatások vagy a frissítések mellett az új vagy további feltételeket, ebben az esetben a különböző feltételek jövőre alkalmazása és nem módosítja a a vagy A Microsoft rights vonatkozó előre frissített szoftverek és szolgáltatások). HA EZEKET A LICENCFELTÉTELEKET AHHOZ, AZOK AZ ALÁBBIAKBAN JOGOKAT. A SZOFTVER HASZNÁLATÁVAL ELFOGADJA EZEKET A FELTÉTELEKET.
+Jelen dokumentumban foglalt licencfeltételek szerződést között, és a Microsoft Corporation (vagy annak valamelyik leányvállalatával kötött). Toohello szoftver fent megnevezett szoftverre vonatkoznak a szolgáltatások vagy a szoftver a Microsoft frissítéseket (kivéve toohello mértékben ilyen szolgáltatások vagy a frissítések mellett az új vagy további feltételeket, ebben az esetben a különböző feltételeket alkalmazza jövőre és nem módosítja a vagy A Microsoft rights vonatkozó toopre frissített szoftverek és szolgáltatások). Ha ezeket a LICENCFELTÉTELEKET ahhoz, hogy hello jogok alatt. ÁLTAL használata hello szoftvert, hogy fogadja el a feltételeket.
 
 1.  **TELEPÍTÉSI ÉS HASZNÁLATI JOGOK.**
 
-    **a) általános.** Akkor telepítheti és használhatja a szoftver példányát tetszőleges számú.
+    **a) általános.** Ön telepítheti és tetszőleges számú hello szoftver példányát használja.
 
-    **b) harmadik felek szoftvereihez.** A szoftver harmadik féltől származó alkalmazások, amelyek a Microsoft, nem a harmadik féltől származó licencét a jelen szerződés értelmében tartalmazhat. A harmadik féltől származó alkalmazások belefoglalt értesítések csak tájékoztatási vannak.
+    **b) harmadik felek szoftvereihez.** hello szoftver harmadik féltől származó alkalmazások, amelyek a Microsoft, nem a hello harmadik féltől származó licencek tooyou jelen szerződés értelmében tartalmazhat. A harmadik féltől származó alkalmazások belefoglalt értesítések csak tájékoztatási vannak.
 
-    **c) versenyképes teljesítménymérésre.** Ha egy közvetlen versenytársnak, és eléréséhez, vagy a szoftver versenyképes teljesítménymérésre, elemzés, vagy adatgyűjtés eszközintelligencia célokra használni, szemben a Microsoft, leányvállalatai és a kapcsolt vállalatok (beleértve a jövőre) elengedni bármely versenyképes használatát, a hozzáférés és a vizsgálati korlátozások teljesítménymérésre mértékben a használati feltételeket, a szoftverek vonatkozó feltételekkel vagy szabálygyűjtemény, mint a Microsoft feltételek irányul. Ilyen feltételezett korlátozásokat a feltételeit a szoftver nem Ön lemond, ha nem engedélyezett, eléréséhez, vagy használhatja a szoftvert, és ehhez lesz.
+    **c) versenyképes teljesítménymérésre.** Ha egy közvetlen versenytársnak, és eléréséhez, vagy hello szoftver versenyképes teljesítménymérésre, elemzés vagy adatgyűjtési eszközintelligencia célokra használni, szemben a Microsoft, leányvállalatai és a kapcsolt vállalatok (beleértve a jövőre) elengedni bármely versenyképes használja, hozzáférési és teljesítménymérésre teszt korlátozások a hello feltételeit a szoftver toohello mértékben a használati feltételeket, vagy toobe, a Microsoft feltételek határértéknél erősebb korlátozást irányul. Feltételezett korlátozásra hello feltételeit a szoftver nem Ön lemond, ha meg nem engedélyezettek tooaccess vagy használhatja a szoftvert, és nem.
 
-2.  **TERJESZTHETŐ KÓDOT.** A szoftver tartalmazhat olyan terjesztése engedélyezett kódot (azaz elérhetővé külső felek számára) az alkalmazások fejlesztése, ebben a szakaszban leírtak szerint.
+2.  **TERJESZTHETŐ KÓDOT.** hello szoftver tartalmazhat olyan toodistribute engedélyezett kódot (azaz elérhetővé külső felek számára) az alkalmazások fejlesztése, ebben a szakaszban leírtak szerint.
 
-    **a) terjesztési jogokkal.** A kód és a teszt az alábbiakban fájlok terjeszthető, ha a szoftver része.
+    **a) terjesztési jogokkal.** Az alábbiakban hello kód és a vizsgálati fájl terjeszthető, ha hello szoftver része.
 
-    **i.**  TERJESZTHETŐ CSOMAGJÁT. TXT-fájlokat. Azonban másolható és az object kód űrlap kód szerepel a REDIST listáján, a szoftvert, ha vannak ilyenek, vagy megtalálható a Redist.txt;
+    **i.**  TERJESZTHETŐ CSOMAGJÁT. TXT-fájlokat. Azonban másolható és terjesztése hello objektum kód formájában a kód felsorolt hello REDIST listán hello szoftverben, ha vannak ilyenek, vagy megtalálható a Redist.txt;
 
-    **II.** Képtár. Azonban másolható és lemezképeket, grafikus és a Képtár, lásd: a szoftver dokumentációját; animációja terjesztése és
+    **II.** Képtár. Azonban másolható és lemezképeket, grafikus és animációja hello Képtár hello szoftver dokumentációját; leírtak szerint és
 
-    **III.**    Harmadik féltől származó terjesztési. Előfordulhat, hogy lehetővé teszik a forgalmazók az alkalmazások másolása és terjesztése az Ön úgy dönt, terjeszteni az alkalmazásokkal terjeszthető kódját.
+    **III.**    Harmadik féltől származó terjesztési. Előfordulhat, hogy lehetővé teszik az alkalmazások toocopy forgalmazói és terjesztése a terjeszthető kód Ön úgy dönt, toodistribute az alkalmazásokkal.
 
     **b) a telepítési követelményeknek.** A kód terjesztése a következők szükségesek:
 
-    **i.**  jelentős elsődleges funkciók hozzáadása, az alkalmazások;
+    **i.**  az alkalmazások; jelentős elsődleges funkciót tooit hozzáadása
 
-    **II.** szükséges forgalmazóknak és a külső felhasználók számára, hogy elfogadja a feltételeket, amelyek védelmét, és a Microsoft legalább annyi, ez a szerződés; és
+    **II.** szükséges forgalmazóknak és a külső felhasználók tooagree tooterms védelmét, és a Microsoft legalább annyi, ez a szerződés; és
 
-    **III.**    kártalanítja, védelemre, és tartsa ártalmatlan Microsoft a jogcímeket, beleértve a ügyvédi, a terjesztési vagy kapcsolódó használja az alkalmazások, kivéve az egyetlen jogcímet kizárólag a változatlan terjeszthető kódot alapul.
+    **III.**    kártalanítja, védelemre, és a jogcímeket, többek között a következőket ügyvédi, a kapcsolódó toohello terjesztési vagy az alkalmazások, kivéve toohello mértékben, hogy minden jogcím alapul kizárólag változtatás nélkül hello terjeszthető kód ártalmatlan Microsoft tárolásához.
 
     **c) terjesztési korlátozások.** Nem lehet:
 
     **i.**  használja a Microsoft védjegye vagy kereskedelmi megjelenítésre bármely olyan módon, hogy az alkalmazás származik, vagy a Microsoft; záradékkal van javasol az alkalmazásban vagy
 
-    **II.** Módosítsa vagy terjesztése terjeszthető kódok forráskódját, hogy valamely része lesz licencfeltétel tárgyát bármely terjeszthető kódot, a többi része a szoftver, sem annak a Microsoft egyéb szellemi tulajdonra vonatkozó közölni igénylő vagy elosztott forrás kód formájában, vagy az, hogy mások jogosult módosítható.
+    **II.** Módosítsa vagy terjesztése terjeszthető kódok hello forráskódját, hogy valamely része lesz hello terjeszthető kódot, hello szoftver többi része, vagy a Microsoft egyéb szellemi tulajdonra vonatkozó közölni igénylő tulajdonos tooany licenc vagy elosztott forrás kód formájában, vagy az, hogy rendelkezik-e más hello jobb toomodify azt.
 
-3.  **ADATGYŰJTÉS.** Előfordulhat, hogy információkat gyűjtsön, és a szoftver használatára, és, hogy küldeni a Microsoftnak. A Microsoft ezeket az információkat történő szolgáltatásokat, és a Microsoft termékeinek és szolgáltatásainak javítására használja. A lemondáshoz jogok, ha van ilyen, ismerteti a termék dokumentációját. A szoftver szolgáltatások néhány funkciója lehetővé teheti a felhasználóktól az alkalmazások eléréséhez, vagy a szoftver az adatok gyűjtését. Ezeket a funkciókat szeretné az adatgyűjtést az alkalmazásokban való használatakor kell ahhoz az alkalmazandó jogszabályok lehetővé teszik, beleértve az első bármely szükséges felhasználói hozzájárulás és karbantartása, hogy pontosan mely tájékoztatja a felhasználót arról, hogyan használja, összegyűjtése és megoszthassák jól láthatóan elhelyezett adatvédelmi szabályzathoz. További tudnivalók a Microsoft adatok gyűjtését, és használja a termék dokumentációját és a Microsoft adatvédelmi nyilatkozatát a [https://go.microsoft.com/fwlink/?LinkId=521839](https://go.microsoft.com/fwlink/?LinkId=521839). Vállalja, hogy megfelelnek az összes alkalmazható a Microsoft adatvédelmi nyilatkozatát.
+3.  **ADATGYŰJTÉS.** hello szoftver előfordulhat, hogy információkat gyűjtsön, és a hello szoftver használata, és adott tooMicrosoft küldése. Microsoft előfordulhat, hogy ezen információk tooprovide szolgáltatásokat használja, és a Microsoft termékeinek és szolgáltatásainak javítására. A lemondáshoz jogok, ha van ilyen, ismerteti a hello termék dokumentációját. Néhány funkció hello szoftverfrissítési lehetővé teheti a felhasználóktól az alkalmazások eléréséhez, vagy használjon hello szoftver adatok gyűjtését. Ezen szolgáltatások tooenable adatgyűjtés az alkalmazásokban való használatakor kell tartania az alkalmazandó jogszabályok lehetővé teszik, beleértve a szükséges felhasználói hozzájárulás első és karbantartása, hogy pontosan mely tájékoztatja a felhasználót arról, hogyan használja, összegyűjtése és megosztása jól láthatóan elhelyezett adatvédelmi szabályzata az adatokat. További tudnivalók a Microsoft adatgyűjtés és használhatja a hello termékdokumentáció és Microsoft adatvédelmi nyilatkozatát: hello [https://go.microsoft.com/fwlink/?LinkId=521839](https://go.microsoft.com/fwlink/?LinkId=521839). Ön vállalja, hogy a Microsoft adatvédelmi nyilatkozatát hello alkalmazható rendelkezéseit toocomply.
 
-4.  **A LICENC HATÁLYA.** Ezt a szoftvert licenceljük, és nem értékesítjük. A Microsoft minden egyéb jogot fenntart. Kivéve, ha az alkalmazandó jogszabályok biztosítanak Önnek több jogot, annak ellenére, hogy ez a korlátozás, akkor nem lesz (és nincs joga):
+4.  **A LICENC HATÁLYA.** Ön csak hello szoftver licencét szerezte meg, a tulajdonjogát nem. A Microsoft minden egyéb jogot fenntart. Kivéve, ha az alkalmazandó jogszabályok biztosítanak Önnek több jogot, annak ellenére, hogy ez a korlátozás, akkor nem lesz (és nincs joga):
 
-    **a)** megkerülheti a szoftver minden olyan technikai korlátozását, amelyekben csak meghatározott módokon; használandó
+    **a)** megoldása hello szoftvert minden olyan technikai korlátozását, amely csak toouse engedélyezi azt meghatározott módokon;
 
-    **b)** , nem fordíthatja vissza és nem fejtheti vissza a szoftver;
+    **b)** , nem fordíthatja vissza és nem fejtheti vissza hello szoftver;
 
-    **c)** eltávolítása, minimalizálása érdekében, letiltása, vagy módosítsa az értesítések a Microsoft vagy beszállítói a szoftver;
+    **c)** eltávolítása, minimálisra csökkenthető, letiltása, vagy módosítsa a Microsoft vagy beszállítói hello szoftverfrissítési; értesítések
 
-    **d)** a szoftver, amellyel szemben a törvény vagy hozzon létre vagy kártevő; propagálása módon használni vagy 
+    **d)** hello szoftvert használ valamilyen módon hello törvények vagy toocreate vagy propagálása malware; vagy 
 
-    **e)** megosztani, közzététele, terjeszt, vagy a szoftver (kivéve a fenti feltételei bármely terjeszthető kód) kikényszerítése, adja meg a szoftver egy önálló üzemeltetett megoldás, mások számára is, vagy át a szoftver vagy jelen szerződés átadása harmadik félnek .
+    **e)** megosztani, közzététele, terjesztésével vagy kikényszerítése hello szoftver (kivéve bármely terjeszthető kód tulajdonos toohello a fenti feltételek), olyan hello szoftvert önálló üzemeltetett megoldás, mások toouse vagy átviteli hello szoftver vagy jelen szerződés tooany harmadik fél.
 
-5.  **EXPORTKORLÁTOZÁSOK.** Be kell tartania minden hazai és nemzetközi exportjogszabályt és ‑előírást a szoftvert, többek között a célok, a végfelhasználók és a végfelhasználás korlátozások. EXPORTKORLÁTOZÁSOK további információkért látogasson el [http://aka.ms/exporting](http://aka.ms/exporting).
+5.  **EXPORTKORLÁTOZÁSOK.** Be kell tartania minden hazai és nemzetközi exportjogszabályt és ‑előírást toohello szoftver, többek között a célok, a végfelhasználók és a végfelhasználás korlátozásait. EXPORTKORLÁTOZÁSOK további információkért látogasson el [http://aka.ms/exporting](http://aka.ms/exporting).
 
-6.  **TERMÉKTÁMOGATÁSI SZOLGÁLTATÁSOK.** A Microsoft nem köteles jelen szerződés értelmében a szoftver támogatási szolgáltatások biztosításához. A megadott támogatás az "adott állapotban", "minden hibájával együtt", és bármiféle garancia nélkül.
+6.  **TERMÉKTÁMOGATÁSI SZOLGÁLTATÁSOK.** A Microsoft nem köteles alatt ez a szerződés tooprovide bármely vonatkozó támogatási szolgáltatások hello szoftver. A megadott támogatás az "adott állapotban", "minden hibájával együtt", és bármiféle garancia nélkül.
 
-7.  **A FRISSÍTÉSEK.** A szoftver rendszeres időközönként keressen frissítéseket, és töltse le és telepíti azokat. Frissítések csak a Microsofttól vagy hivatalos források kaphat. A Microsoft biztosítja, hogy a frissítések a rendszer frissítésére lehet szükség. Vállalja, hogy minden további minden külön értesítés nélkül automatikus frissítések fogadásához. Frissítések nem tartalmaz és nem támogatja az összes meglévő szoftveres funkcióit, a szolgáltatások és a perifériák.
+7.  **A FRISSÍTÉSEK.** hello szoftver rendszeres időközönként keressen frissítéseket, és töltse le és telepíti azokat. Frissítések csak a Microsofttól vagy hivatalos források kaphat. A Microsoft esetleg tooupdate a rendszer tooprovide kapcsolatos frissítések. Ön vállalja, tooreceive automatikus frissítésekkel semmilyen további minden külön értesítés nélkül. Frissítések nem tartalmaz és nem támogatja az összes meglévő szoftveres funkcióit, a szolgáltatások és a perifériák.
 
-8.  **KÖTELEZŐ EGYEZTETÉSI ÉS OSZTÁLY MŰVELET LEMONDÁS.** Ez a szakasz alkalmazza, ha él, (vagy, ha a vállalat a fő üzleti tevékenysége a) az Amerikai Egyesült Államokban.  Ha Ön és a Microsoft viták, és a Microsoft vállalja, hogy próbálja meg 60 napig nem hivatalosan oldható meg. Ha nem Ön és a Microsoft, és a Microsoft vállalja, hogy egyes egyeztetési kötés a Szövetségi egyeztetési járnak ("FAA"), nem pedig a elé egy bíró vagy bírálóbizottság bírósági ági American egyeztetési társítás előtt. Ehelyett egy semleges értelmező határoz meg. Osztály művelet peres eljárásokra, osztály kiterjedő erről, személyes ügyvéddel általános műveletek és bármely más, ha valaki látja el egy reprezentatív kapacitás eljárás nem engedélyezett. sem egyesítő egyedi eljárás az összes fél hozzájárulása nélkül. A teljes egyeztetési szerződés további feltételeket tartalmaz, és jelenleg [http://aka.ms/arb-agreement-1](http://aka.ms/arb-agreement-1). Ön és a Microsoft elfogadja ezeket a feltételeket.
+8.  **KÖTELEZŐ EGYEZTETÉSI ÉS OSZTÁLY MŰVELET LEMONDÁS.** Ez a szakasz alkalmazza, ha él, (vagy, ha a vállalat a fő üzleti tevékenysége a) hello az Amerikai Egyesült Államokban.  Ha Ön és a Microsoft viták, és a Microsoft a 60 nap tooresolve tootry elfogadja azt nem hivatalosan. Ha Ön és a Microsoft nem Ön és a Microsoft elfogadja toobinding egyedi egyeztetési előtt hello American egyeztetési társítás alatt hello Szövetségi egyeztetési törvény ("FAA"), és nem a elé egy bíró vagy bírálóbizottság bírósági toosue. Ehelyett egy semleges értelmező határoz meg. Osztály művelet peres eljárásokra, osztály kiterjedő erről, személyes ügyvéddel általános műveletek és bármely más, ha valaki látja el egy reprezentatív kapacitás eljárás nem engedélyezett. sem egyesítő egyedi eljárás az összes fél hello hozzájárulása nélkül. teljes egyeztetési megállapodás több tartalmaz hello feltételeket, és jelenleg [http://aka.ms/arb-agreement-1](http://aka.ms/arb-agreement-1). És a Microsoft aláveti toothese feltételeit.
 
-9.  **A SZERZŐDÉS TELJESSÉGE.** Ez a szerződés és bármely egyéb feltételeket, a Microsoft által biztosított a kiegészítések, a frissítések vagy a külső alkalmazások, a szoftver a szerződés teljessége.
+9.  **A SZERZŐDÉS TELJESSÉGE.** Ez a szerződés és bármely egyéb feltételeket, a Microsoft által biztosított a kiegészítések, a frissítések vagy a külső alkalmazások, hello szoftver hello teljes megállapodást.
 
-10. **ALKALMAZANDÓ JOG ÉS JOGVITÁK MEGOLDÁSA ÉRDEKÉBEN ÉRVÉNYBEN.** Ha a szoftver az Egyesült Államok és Kanada, annak az államnak vagy megyének a törvényi szerzett, ahol Ön (vagy ha egy üzleti, ahol a fő üzleti tevékenysége található) szabályozására, a jelen szerződés, annak megsértésével kapcsolatos igények és minden más jogcímet (beleértve a fogyasztóvédelmi, a tisztességtelen piaci versenyre vonatkozó és a vétségeket jogcímek), függetlenül attól, szabályaira értelmezése , azzal a különbséggel, hogy a FAA irányadók a egyeztetési kapcsolatos információk. A szoftver bármely más országban szerezte be, ha a törvényi alkalmazni, kivéve a FAA irányadók a egyeztetési kapcsolatos információk. Ha az USA szövetségi joghatóság létezik, és a Microsoft hozzájárul kizárólagos joghatóság és az összes viták hallgassa meg a (kivéve az egyeztetési) bírósági érvényesíthet a szövetségi bírósági a helyszínére. Ha nem, akkor Ön és a Microsoft kizárólagos joghatóság és a fölérendelt bírósági a érvényesíthet az összes viták hallgassa meg a bírósági (kivéve az egyeztetési) a helyszínére hozzájárul.
+10. **ALKALMAZANDÓ jog és hely tooRESOLVE viták.** Hello szoftver hello az Amerikai Egyesült Államok vagy Kanada szerezte be, ha hello hello állam vagy tartomány, ahol Ön (vagy ha egy üzleti, ahol a fő üzleti tevékenysége található) szabályozására, ezt a szerződést, a jogcímek az annak megsértésével, és az összes hello értelmezése más jogcímeket (beleértve a fogyasztóvédelmi, a tisztességtelen piaci versenyre vonatkozó és a vétségeket jogcímek), függetlenül attól, szabályaira, azzal a különbséggel, hogy hello FAA irányadók a minden kapcsolódó tooarbitration. Hello szoftver bármely más országban szerezte be, ha a törvényi alkalmazni, azzal a különbséggel, hogy hello FAA irányadók minden kapcsolódó tooarbitration. Egyesült Államok Szövetségi joghatóság létezik-e, ha a Ön és a Microsoft hozzájárulás tooexclusive joghatóság és a hello szövetségi bírósági-a érvényesíthet az összes viták hallgassa meg a (kivéve az egyeztetési) bírósági helyszínére. Ha nem, akkor Ön és a Microsoft hozzájárulás tooexclusive joghatóság és a hello fölérendelt bírósági a érvényesíthet az összes viták hallgassa meg a (kivéve az egyeztetési) bírósági helyszínére.
 
-11. **FELHASZNÁLÓI JOGOSULTSÁGOK; REGIONÁLIS VÁLTOZATA.** A jelen szerződés bizonyos jogokról szól. Előfordulhat, hogy más engedélyek fogyasztói jogokkal, beleértve az állapotot, a tartományt vagy a ország törvényei. Külön, és a kapcsolatot a Microsofttal, leszámítva az is előfordulhat, amelyből a szoftvert beszerezte a fél megillethetik bizonyos jogok. A jelen szerződés nem módosítja ezeket a jogokat, amennyiben az állapot, a tartományt vagy a ország törvényei ezt nem engedélyezik ehhez. Például, ha a szoftver az alábbi régióba, vagy kötelező egyikében ország jog vonatkozik, akkor a következő rendelkezések vonatkozik:
+11. **FELHASZNÁLÓI JOGOSULTSÁGOK; REGIONÁLIS VÁLTOZATA.** A jelen szerződés bizonyos jogokról szól. Előfordulhat, hogy más engedélyek fogyasztói jogokkal, beleértve az állapotot, tartomány vagy ország hello jogszabályok. Külön, és a kapcsolatot a Microsofttal, leszámítva Ön is jogokkal is rendelkezhet, amelyből hello szoftvert beszerezte a tekintetben toohello féllel. A jelen szerződés nem módosítja ezeket a jogokat, amennyiben hello az állapot, a tartományt vagy a ország törvényei ezt nem engedélyezik toodo így. Például ha valamelyik alábbi régiók hello hello szoftver szerezte be, vagy kötelező ország jog vonatkozik, majd hello következő rendelkezéseket tooyou alkalmazni:
 
-    **a) Ausztrália.** Az ausztrál fogyasztóvédelmi törvény értelmében kötelező garanciák rendelkezik, és a megállapodás nem célja e jogainak.
+    **a) Ausztrália.** A hello ausztrál fogyasztóvédelmi törvény értelmében kötelező garanciák, és nem a jelen szerződés a tervezett tooaffect ezeket a jogokat.
 
-    **b) Kanada.** Ha ezt a szoftvert a kanadai szerezte be, leállíthatja frissítések fogadása az által, hogy ki az automatikus frissítés szolgáltatást, az eszköz leválasztása az internetről (Ha újra csatlakozni az internethez, azonban a szoftver folytatódik ellenőrzése és a frissítések telepítése), vagy a szoftver eltávolítása. A termék dokumentációjában bármilyen is meghatározza az adott eszköz vagy a szoftver frissítések kikapcsolása.
+    **b) Kanada.** Ha ezt a szoftvert a kanadai szerezte be, leállíthatja frissítések fogadása kikapcsolásával hello automatikus frissítés szolgáltatást, az eszköz leválasztása hello Internet (toohello Internet újra csatlakozik, ha azonban hello szoftver folytatódik, keresése és frissítések telepítése), vagy hello szoftver eltávolítása. hello termék dokumentációját, ha van ilyen is meghatározza, hogyan tooturn ki az adott eszköz vagy a szoftver frissítései.
     
     **c) Németország és Ausztria.**
 
-    **i.    A Jótállás kizárása.** A megfelelő licencelt szoftverek alapvetően olyan Microsoft anyagokat, amelyek a szoftverhez leírtak hajt végre. A Microsoft biztosít, azonban a licencelt szoftverek viszonyítva szerződéses garancia.
+    **i.    A Jótállás kizárása.** hello megfelelően licencelt szoftverek alapvetően olyan Microsoft anyagokat, amelyek hello szoftverhez leírtak hajtja végre. Azonban a Microsoftnál relációban szerződéses garancia toohello licencelt szoftverek.
         
-    **II.   A felelősség korlátozása.** Szándékos viselkedési, hanyagság, a termék felelősség Act, valamint, halála vagy személyes vagy fizikai sérülése esetén a jogcímalapú Microsoft által a törvényes törvények szerint.
+    **II.   A felelősség korlátozása.** Szándékos viselkedési, hanyagság, jogcímalapú hello termék felelősség Act, valamint, halála vagy személyes vagy fizikai sérülése esetén a Microsoft által toohello törvényes törvények szerint.
 
-    Függvényében a fenti záradék ii. Microsoft csak akkor enyhe hanyagsággal felelőssé Ha Microsoft ilyen jelentősen a teljesítése szerződéses kötelezettségek megsértésével, amelyek megkönnyítik a a jelen szerződés, a megsértése volna veszélyeztetheti a jelen szerződés és a megfelelőségi, amellyel egy entitás előfordulhat, hogy folyamatosan megbízhatósága (úgynevezett "kardinális kötelezettségek") célja a esedékes teljesítését. Más esetben enyhe hanyagság a Microsoft nem vállal enyhe hanyagsággal felelős.
+    Tulajdonos toohello előző záradék ii., a Microsoft csak lesznek enyhe hanyagsággal felelőssé Ha Microsoft ilyen jelentős hello teljesítése szerződéses kötelezettségek megsértésével, amelyek segítik a hello a jelen szerződés, amely hello megsértésével esedékes teljesítmény hello célját, amellyel egy entitás előfordulhat, hogy folyamatosan megbízhatósága (úgynevezett "kardinális kötelezettségek") a szerződés és hello megfelelőségi veszélybe kerülne. Más esetben enyhe hanyagság a Microsoft nem vállal enyhe hanyagsággal felelős.
 
-12. **A GARANCIA KIZÁRÁSA. A SZOFTVER LICENCÉT SZEREZTE MEG "ADOTT ÁLLAPOTBAN." ÖN AZ ALKALMAZÁST SAJÁT FELELŐSSÉGÉRE HASZNÁLJA AZT. A MICROSOFTNÁL NINCS KIFEJEZETT SZAVATOSSÁGOT, GARANCIÁT VAGY FELTÉTELEKET. A VONATKOZÓ TÖRVÉNYEK ÁLTAL MEGENGEDETT MÉRTÉKBEN MICROSOFT SZAVATOSSÁGOT, BELEÉRTVE AZ ELADHATÓSÁGRA, AZ ADOTT CÉLRA, ÉS A JOGBITORLÁS-MENTESSÉGRE NEM TARTALMAZZA.**
+12. **JOGI NYILATKOZAT JÓTÁLLÁS KIZÁRÁSA. SZOFTVER hello LICENCKÖTELES "AS IS." HOGY VISELNIÜK hello informatikai használatával kockázatot jelent. A MICROSOFTNÁL NINCS KIFEJEZETT SZAVATOSSÁGOT, GARANCIÁT VAGY FELTÉTELEKET. a vonatkozó TÖRVÉNYEKET, MICROSOFT nem tartalmazza az összes VÉLELMEZETT SZAVATOSSÁGOT, beleértve az eladhatóságra, alkalmazhatóságra az egy adott célra, és nem jogsértés engedélyezett mértékig toohello.**
 
-13. **A KORLÁTOZÁS ILLETVE LEHETŐSÉGÉRŐL. HA BÁRMILYEN ALAPOT HELYREÁLLÍTÁSÁHOZ ANNAK ELLENÉRE, HOGY AZ ELŐZŐ JOGI NYILATKOZAT JÓTÁLLÁS KÁRÉRT, AKKOR HELYREÁLLÍTHATJA A MICROSOFT ÉS A SZÁLLÍTÓK CSAK KÖZVETLEN KÁR LEGFELJEBB 5,00 USD. NEM ÁLLÍTHATÓ HELYRE SEMMIFÉLE EGYÉB KÁRÉRT, BELEÉRTVE A KÖVETKEZMÉNYI, AZ ELMARADT NYERESÉGET, A RENDKÍVÜLI, KÖZVETETT ÉS A VÉLETLENSZERŰ KÁROKAT IS.**
+13. **A KORLÁTOZÁS ILLETVE LEHETŐSÉGÉRŐL. Ha bármely történő HELYREÁLLÍTÁSÁVAL kárért, annak ellenére, hogy hello megelőző jogi nyilatkozat a jótállás, akkor is helyreállítása a MICROSOFT és az SZÁLLÍTÓK csak közvetlen kár be tooU.S. $5,00. NEM ÁLLÍTHATÓ HELYRE SEMMIFÉLE EGYÉB KÁRÉRT, BELEÉRTVE A KÖVETKEZMÉNYI, AZ ELMARADT NYERESÉGET, A RENDKÍVÜLI, KÖZVETETT ÉS A VÉLETLENSZERŰ KÁROKAT IS.**
 
-**Ez a korlátozás vonatkozik (a) minden a szoftver, a szolgáltatások, a harmadik felek webhelyéhez, vagy harmadik féltől származó alkalmazások; található tartalommal (beleértve a kódot is) és (b) szerződés, a jótállás, a garancia vagy a feltétel szerződésszegés esetén objektív felelősség, hanyagság vagy egyéb károkozás; vagy bármely más jogcímet; minden esetben a vonatkozó törvények által megengedett mértékig.**
+**Ez a korlátozás vonatkozik too(a) programjával kapcsolatos toohello szoftver, a szolgáltatások, a harmadik felek webhelyéhez, vagy harmadik féltől származó alkalmazások; található tartalommal (beleértve a kódot is) és (b) szerződés, a jótállás, a garancia vagy a feltétel szerződésszegés esetén objektív felelősség, hanyagság vagy egyéb károkozás; vagy bármely más jogcímet; a minden egyes eset toohello alkalmazandó törvények által megengedett mértékig.**
 
-**Azt is érvényesek, ha a Microsoftnak tudomása volt vagy tudnia kellett volna az ilyen károk bekövetkeztének lehetőségéről. A fenti korlátozás, illetve kizárás előfordulhat, hogy nem vonatkozik Önre, mert az állapot, a tartományt vagy a ország előfordulhat, hogy nem teszi lehetővé a véletlenszerű, következményi vagy egyéb károkért való felelősség korlátozása.**
+**Azt is érvényesek, ha a Microsoftnak tudomása volt vagy tudnia kellett volna hello hello lehetőségéről. korlátozás fent hello vagy kizárási nem alkalmazza tooyou, mert az állapot, a tartományt vagy a ország előfordulhat, hogy nem teszi lehetővé hello vagy korlátozás jogorvoslatok, más kárért.**
 
-**Megjegyzés: ezt a szoftvert az elosztott Kanadában, a jelen szerződés záradékok némelyike alább francia nyelven indul.**
+**Megjegyzés: ezt a szoftvert az elosztott Kanadában, néhány, a jelen szerződés meghatároz hello záradékok alább francia nyelven indul.**
 
 **Remarque: Ce logiciel étant distribué au Kanada, certaines des záradékok dans ce contrat sont fournies ci-dessous en francia. EXONÉRATION DE GARANTIE. Le logiciel visé par talógusból engedéllyel est offert "tel quel". Toute kapacitáskihasználás de ce logiciel est à votre seule risque et péril. Microsoft n'accorde aucune autre garantie expresse. Vous pouvez bénéficier de droits additionnels en vertu du droit helyi sur la védelmi des consommateurs, que ce contrat ne peut módosítóval. La ou elles sont permises par le droit területi, les garanties implicites de qualité marchande, d "adéquation à un használati particulier et d'absence de contrefaçon sont exclues.**
 

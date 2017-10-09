@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Multivariate lineáris regressziós - Azure |} Microsoft Docs"
+title: "aaa(deprecated) Multivariate lineáris regressziós - Azure |} Microsoft Docs"
 description: "(elavult) Multivariate lineáris regressziós"
 services: machine-learning
 documentationcenter: 
@@ -16,42 +16,42 @@ ms.date: 01/06/2017
 ms.author: jaymathe
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 65a8005139e920cd19593e954fc1bf836354bdf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 0ff7221cd06c0ef059b0c5bf327016588174dcfe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-multivariate-linear-regression"></a>(elavult) Multivariate lineáris regressziós
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Tegyük fel egy adatkészlet rendelkezik, és szeretné gyorsan előrejelzése egy függő változó (y), a független változók alapján minden egyes (i). Lineáris regressziós a népszerű statisztikai technika ilyen előrejelzéseket használatos. Itt a függő változó y érték folytonos érték.  
+Tegyük fel egy adatkészlet rendelkezik, és például tooquickly előrejelzése lenne a függő változó (y), a független változók alapján minden egyes (i). Lineáris regressziós a népszerű statisztikai technika ilyen előrejelzéseket használatos. Itt hello függő változó y toobe folyamatos értéket feltételezi.  
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Egy egyszerű forgatókönyv lehet, ahol a biztonságkutatói próbál a súlyozási egy adott (y), a magasságát (x) alapján előre jelezni. Ennél összetettebb környezetben oka lehet, ahol a biztonságkutatói további információ az egyes (például a súly, a nemét, a fajta) rendelkezik, és előre jelezni az egyes súlya megkísérli. Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/multivariate_regression) megfelel a lineáris regressziós modellt az adatokat, és kiírja az előre jelzett érték (y) minden az adatok a megfigyelt.
+Egy egyszerű forgatókönyv lehet, ahol hello biztonságkutatói próbál toopredict hello súlya egy adott (y), a magasságát (x) alapján. Ennél összetettebb környezetben oka lehet, ahol a hello biztonságkutatói további információk a hello egyes (például a súly, a nemét, a fajta) rendelkezik, és megpróbál toopredict hello súly hello egyéni. Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/multivariate_regression) elfér hello lineáris regressziós modell toohello adatai és kimenetek hello előre jelzett érték (y) az egyes hello megfigyelések hello adataiban.
 
-> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd közzé az Azure piactéren, és felhasználók és eszközök által felhasznált világszerte a szerző, a webszolgáltatás által infrastruktúra beállítás nélkül.  
+> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és a felhasználók és eszközök által felhasznált között hello world hello Szerző hello webszolgáltatás infrastruktúra beállítás nélkül.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-Ennek a webszolgáltatásnak ad az összes megfigyelések független változók alapján függő változó előre jelzett értékek. A webszolgáltatás vár a felhasználó a bemeneti adatok karakterláncként, ahol sorok egymástól vesszővel (,) válassza el egymástól, és oszlopok egymástól pontosvesszővel (;). A webszolgáltatás egyszerre 1 sor vár, és a függő változó az első oszlopot vár. Egy példa adatkészlet nézhet ki:
+A webes szolgáltatás által biztosított hello értékek hello függő változó összes hello megfigyelések hello független változók alapján előre jelezni. hello webszolgáltatás hello végfelhasználói tooinput adatok vár, ahol sorok egymástól vesszővel (,) válassza el egymástól, és oszlopok pontosvesszővel (;) elválasztott karakterlánc. hello webszolgáltatás egyszerre 1 sor vár, és hello első oszlop toobe hello függő változó vár. Egy példa adatkészlet nézhet ki:
 
 ![Mintaadatok][1]
 
-Megfigyelések egy függő változó nélkül y kell megadnia, "NA"KARAKTERLÁNCOT. Az adatok, adjon meg, mert a fenti adatkészlet a következő karakterláncot: "10; 5; 2,18; 1; 6,6; 5.3-as; 2.1,7; 5; 5,22; 3; 4,12; 2; 1, NA; 3, 4". A kimeneti az előre jelzett érték az egyes a sorok, a független változók alapján. 
+Megfigyelések egy függő változó nélkül y kell megadnia, "NA"KARAKTERLÁNCOT. hello adatokat adjon meg a fenti dataset hello volna kell hello a következő karakterláncot: "10; 5; 2,18; 1; 6,6; 5.3-as; 2.1,7; 5; 5,22; 3; 4,12; 2; 1, NA; 3; 4". a kimeneti hello van hello előre jelzett érték az egyes hello sorok hello független változók alapján. 
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/MultipleLinearRegressionService.aspx)).
+Többféleképpen is az automatizált módon hello szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/MultipleLinearRegressionService.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
     public class Input
@@ -84,11 +84,11 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa al
 
 
 ## <a name="creation-of-web-service"></a>Webes szolgáltatás létrehozása
-> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 > 
 > 
 
-Azure Machine Learning belül egy új üres kísérlet létrehozásához és két [R-parancsfájl végrehajtása] [ execute-r-script] modulok lekért a munkaterület-kiszolgálóra. Ez a webszolgáltatás egy Azure Machine Learning kísérlet fut, alapul szolgáló R-parancsfájl. Ehhez a kísérlethez 2 részből áll: schema definíció jelenik meg, és a tanítási modell + pontozási. Az első modul határozza meg a bemeneti adatkészlet, ahol az első változó a függő változó, és a fennmaradó változók függetlenek a várt szerkezetnek. A második modul megfelel a bemeneti adatok általános lineáris regressziós modellt.  
+Azure Machine Learning belül egy új üres kísérlet létrehozásához és két [R-parancsfájl végrehajtása] [ execute-r-script] modulok lekért hello munkaterület-kiszolgálóra. Ez a webszolgáltatás egy Azure Machine Learning kísérlet fut, alapul szolgáló R-parancsfájl. Nincsenek a 2 részek toothis kísérletezhet: schema definíció jelenik meg, és a tanítási modell + pontozási. hello első modul várt hello struktúrát hello bemeneti adatkészlet, ahol a hello első változó hello függő változó és hello fennmaradó változók független határozza meg. hello második modul megfelel egy általános lineáris regressziós modellt hello bemeneti adatok.  
 
 ![Kísérlet folyamata][3]
 
@@ -114,10 +114,10 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
     maml.mapOutputPort("out");  
 
 ## <a name="limitations"></a>Korlátozások
-Itt látható egy nagyon egyszerű példa egy lineáris regressziós több webszolgáltatás. A fenti példa kódot is látható, mert nincs hiba alatt van megvalósítva, és a szolgáltatás azt feltételezi, hogy minden folyamatos változó (ahol nincs kategorikus funkció engedélyezett), a szolgáltatás csak bemenetek numerikus értékként ennek a webszolgáltatásnak létrehozásának időpontjában. Emellett a szolgáltatás jelenleg kezeli korlátozott adatok mérete, kellő a webszolgáltatás-hívások és azt a tényt, hogy a modell alatt alkalmas a webes szolgáltatás neve minden egyes kérelem/válasz jellegének. 
+Itt látható egy nagyon egyszerű példa egy lineáris regressziós több webszolgáltatás. Hello példakódot fent is látható, mert nincs hiba alatt van megvalósítva és hello szolgáltatás feltételezi, hogy minden rendben (ahol nincs kategorikus funkció engedélyezett), a folyamatos változó hello szolgáltatást csak bemenetek numerikus értékként hello létrehozását webhely hello helyreállításkor a szolgáltatás. Is hello szolgáltatás jelenleg korlátozott adatméret kezeli, miatt toohello kérelem-válasz jellegű hello webszolgáltatás hívás és hello tényt, hogy a modell hello alatt alkalmas minden alkalommal, amikor hello webszolgáltatás nevezik. 
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-multivariate-linear-regression/multireg-img1.png
 [2]: ./media/machine-learning-r-csharp-multivariate-linear-regression/multireg-img2.png

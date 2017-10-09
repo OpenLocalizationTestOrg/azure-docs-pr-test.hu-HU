@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás egy alkalmazással a virtuális hálózatra a PowerShell használatával"
-description: "Leírja, hogyan kell csatlakozni, és a virtuális hálózatok használata a PowerShell használatával"
+title: "aaaConnect a app tooyour virtuális hálózat PowerShell használatával"
+description: "Leírja, hogyan tooconnect tooand működnek virtuális hálózatokat a PowerShell használatával"
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/29/2016
 ms.author: ccompy
-ms.openlocfilehash: 6fae6a6c162fa326161d2b47a259b3151d6e3dd0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c9d0fa99d02cab7b2c7211a1b2f7b7d0cd27ee8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-app-to-your-virtual-network-by-using-powershell"></a>Csatlakozás egy alkalmazással a virtuális hálózatra a PowerShell használatával
+# <a name="connect-your-app-tooyour-virtual-network-by-using-powershell"></a>Az alkalmazás tooyour virtuális hálózati csatlakoztatása a PowerShell használatával
 ## <a name="overview"></a>Áttekintés
-Az Azure App Service-ben kapcsolódhat az alkalmazás (webes, mobil, vagy API) egy Azure virtuális hálózatot (VNet) az előfizetésben. A szolgáltatás virtuális integráció neve. A virtuális hálózat integrációs szolgáltatás számára nem kell összetéveszthető az App Service Environment-környezet funkció, amely lehetővé teszi a virtuális hálózat egy példányát az Azure App Service futtatását.
+Az Azure App Service szolgáltatásban csatlakoztathatja az alkalmazás (webes, mobil, vagy API) tooan Azure virtuális hálózathoz (VNet) az előfizetésben. A szolgáltatás virtuális integráció neve. hello VNet integrációs szolgáltatás számára nem keverendő kell hello App Service Environment-környezet szolgáltatással, amely lehetővé teszi a virtuális hálózat az Azure App Service példányának toorun.
 
-A virtuális hálózat integrációs szolgáltatás számára az új portálon, hogy a virtuális hálózatok, a klasszikus üzembe helyezési modellt vagy az Azure Resource Manager telepítési modell segítségével telepített integrálása használhatja a felhasználói felület (UI) rendelkezik. Ha azt szeretné, további információt a szolgáltatást, lásd: [az alkalmazás integrálása az Azure virtuális hálózat](web-sites-integrate-with-vnet.md).
+hello VNet integrációs szolgáltatás számára van a felhasználói felület (UI) az új portálon hello használható toointegrate hello klasszikus üzembe helyezési modellel vagy hello Azure Resource Manager üzembe helyezési modellben telepített virtuális hálózatokat. Ha azt szeretné, hogy hello funkcióval kapcsolatban további toolearn, [az alkalmazás integrálása az Azure virtuális hálózat](web-sites-integrate-with-vnet.md).
 
-Ez a cikk van, nem a felhasználói felület használatával kapcsolatban, de ahelyett, hogy engedélyezésével kapcsolatos integrációs PowerShell használatával. Mivel minden üzembe helyezési modellben a parancsokat, akkor ez a cikk szakasza minden központi telepítési modell.  
+Ez a cikk nem kapcsolatos hogyan toouse hello felhasználói felület, de ahelyett, hogy arról, hogyan van tooenable integrációs PowerShell használatával. Mivel minden üzembe helyezési modellel hello parancsai nem egyezik, akkor ez a cikk szakasza minden központi telepítési modell.  
 
 Ez a cikk a folytatás előtt győződjön meg arról, hogy:
 
-* A legújabb Azure PowerShell SDK telepítve. Az a Webplatform-telepítővel telepíthető.
+* hello Azure PowerShell SDK legújabb telepítve. A hello Webplatform-telepítővel telepíthető.
 * Az Azure App Service egy Standard vagy Premium Termékváltozat futó alkalmazások.
 
 ## <a name="classic-virtual-networks"></a>Klasszikus virtuális hálózatok
-Ez a szakasz ismerteti a klasszikus üzembe helyezési modellt használó virtuális hálózatok három feladatok:
+Ez a szakasz ismerteti a három feladatok hello klasszikus üzembe helyezési modellt használó virtuális hálózatok:
 
-1. Az alkalmazás kapcsolódni tudjon egy már meglévő virtuális hálózati átjáró és a pont – hely kapcsolat van konfigurálva.
+1. Csatlakoztassa a app tooa elérésű, korábban létező virtuális hálózati átjáró és a pont – hely kapcsolat van konfigurálva.
 2. Az alkalmazás a virtuális hálózati integráció adatok frissítése.
 3. Az alkalmazás leválasztása a virtuális hálózat.
 
-### <a name="connect-an-app-to-a-classic-vnet"></a>Az alkalmazás kapcsolódni tudjon egy klasszikus virtuális hálózaton
-Egy alkalmazás egy virtuális hálózathoz való kapcsolódáshoz, kövesse a fenti három lépést:
+### <a name="connect-an-app-tooa-classic-vnet"></a>Csatlakozás egy alkalmazás tooa klasszikus virtuális hálózaton
+egy alkalmazás tooa virtuális hálózathoz tooconnect kövesse az alábbi három lépéseket:
 
-1. Deklarálja azt a webalkalmazást, hogy az csatlakozni fog egy adott virtuális hálózaton. Az alkalmazás egy pont – hely kapcsolat a virtuális hálózathoz megadott tanúsítványt hoz létre.
-2. A webes alkalmazás-tanúsítvány feltöltése a virtuális hálózathoz, és majd lekérheti a pont-pont VPN csomag URI.
-3. A web app virtuális hálózati kapcsolat frissítése a pont-pont csomag URI.
+1. Deklarálja, hogy az csatlakozni fog egy adott virtuális hálózati toohello webalkalmazás. hello app olyan tanúsítvány, amely a virtuális hálózati toohello kap a pont – hely kapcsolatot hoz létre.
+2. Töltsön fel hello web app tanúsítvány toohello virtuális hálózatot, és majd lekérheti a hello pont-pont VPN csomag URI.
+3. Frissítse a hello web app virtuális hálózati kapcsolat hello pont-pont csomag URI.
 
-Az első és harmadik lépéseket teljes parancsfájlos, de a második lépés szükséges a portálon, vagy hajtsa végre a hozzáférést egy egyszeri, manuális művelet **PUT** vagy **javítás** műveletek a virtuális hálózati Azure Resource Manager-végpont. Kérje az Azure támogatási ez engedélyezve van. Mielőtt elkezdené, győződjön meg arról, hogy rendelkezik-e a klasszikus virtuális hálózatot, amelyen már engedélyezve van a pont – hely kapcsolat és a telepített átjárót. Az átjáró létrehozásához, és engedélyezze a pont – hely kapcsolatot, akkor portált kell használniuk a részben ismertetett módon [VPN-átjáró létrehozása][createvpngateway].
+hello első és harmadik lépéseket teljes parancsfájlos, de hello második lépés szükséges egy egyszeri, manuális művelet hello portál vagy a hozzáférés tooperform **PUT** vagy **javítás** műveletek hello virtuális hálózaton Azure Resource Manager-végpont. Lépjen kapcsolatba Azure támogatási toohave ez engedélyezve van. Mielőtt elkezdené, győződjön meg arról, hogy rendelkezik-e a klasszikus virtuális hálózatot, amelyen már engedélyezve van a pont – hely kapcsolat és a telepített átjárót. toocreate hello átjáró és az engedélyezés pont – hely kapcsolatot, kell toouse hello portal részben ismertetett módon [VPN-átjáró létrehozása][createvpngateway].
 
-A klasszikus virtuális hálózaton kell lennie az App Service-csomag, amely tárolja az alkalmazást, amely integrációhoz tárolóként ugyanazt az előfizetést.
+hello klasszikus virtuális hálózatot kell toobe hello ugyanahhoz az előfizetéshez, az App Service tervet, amely integrációhoz tartás hello alkalmazást.
 
 ##### <a name="set-up-azure-powershell-sdk"></a>Azure PowerShell SDK beállítása
 Nyisson meg egy PowerShell-ablakot, és állítsa be az Azure-fiókja és -előfizetést használatával:
 
     Login-AzureRmAccount
 
-Ez a parancs jelenít meg az Azure hitelesítő adatainak lekérése nyílik meg. Miután bejelentkezik, az alábbi parancsok egyikét segítségével válassza ki a használni kívánt előfizetést. Győződjön meg arról, hogy az előfizetés, amelyek a virtuális hálózat és az App Service-csomagot használ-e.
+Ez a parancs nyílik Rákérdezés tooget Azure hitelesítő adatait. Miután bejelentkezik, használja a következő parancsok tooselect hello előfizetést, amelyet az toouse hello egyikét. Győződjön meg arról, hogy a rendszer a virtuális hálózat és az App Service-csomag hello-előfizetését használja.
 
     Select-AzureRmSubscription –SubscriptionName [WebAppSubscriptionName]
 
@@ -65,9 +65,9 @@ vagy
     Select-AzureRmSubscription –SubscriptionId [WebAppSubscriptionId]
 
 ##### <a name="variables-used-in-this-article"></a>A cikk ezt használja változók
-Egyszerűbbé teheti a parancsok, helyezünk egy **$Configuration** PowerShell változó az adott konfigurációval.
+toosimplify parancsok helyezünk egy **$Configuration** PowerShell változó hello adott konfigurációval.
 
-Egy változót az alábbiak szerint állíthatja a PowerShellben a következő paraméterekkel:
+Egy változót az alábbiak szerint állíthatja a PowerShellben a következő paraméterek hello:
 
     $Configuration = @{}
     $Configuration.WebAppResourceGroup = "[Your web app resource group]"
@@ -76,15 +76,15 @@ Egy változót az alábbiak szerint állíthatja a PowerShellben a következő p
     $Configuration.VnetResourceGroup = "[Your vnet resource group]"
     $Configuration.VnetName = "[Your vnet name]"
 
-Az alkalmazás bármely szóközök nélkül a helyen kell lennie. USA nyugati régiója például westus.
+hello app helyen hello hely nélkül szóközt kell lennie. USA nyugati régiója például westus.
 
     $Configuration.WebAppLocation = "[Your web app Location]"
 
-A következő elem, ahol lehet írni a tanúsítványt. Azt a helyi számítógépen írható elérési útnak kell lennie. Ügyeljen arra, hogy tartalmazzák a .cer végén.
+hello következő elem, ahol hello tanúsítványt kell írni. Azt a helyi számítógépen írható elérési útnak kell lennie. Győződjön meg arról, hogy tooinclude .cer hello végén.
 
     $Configuration.GeneratedCertificatePath = "[C:\Path\To\Certificate.cer]"
 
-Akkor állítsa be parancsot kell beírnia **$Configuration**.
+toosee mi állítja, típus **$Configuration**.
 
     > $Configuration
 
@@ -98,33 +98,33 @@ Akkor állítsa be parancsot kell beírnia **$Configuration**.
     WebAppName                     vnetintdemoapp
     WebAppLocation                 centralus
 
-Ez a szakasz a többi feltételezi, hogy rendelkezik-e csak leírtak változók.
+Ez a szakasz többi hello feltételezi, hogy rendelkezik-e csak leírtak változók.
 
-##### <a name="declare-the-virtual-network-to-the-app"></a>Deklarálja az alkalmazás a virtuális hálózat
-A következő paranccsal kérje meg az alkalmazást, hogy azt fogja használni az adott virtuális hálózati. Ez azt eredményezi, az alkalmazásnak, hogy a szükséges tanúsítványok létrehozása:
+##### <a name="declare-hello-virtual-network-toohello-app"></a>Hello virtuális hálózati toohello app deklarálható
+A következő parancs tootell hello alkalmazást, hogy azt fogja használni az adott virtuális hálózati hello használata. Ennek hatására hello app toogenerate szükséges tanúsítványok:
 
     $vnet = New-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -PropertyObject @{"VnetResourceId" = "/subscriptions/$($Configuration.VnetSubscriptionId)/resourceGroups/$($Configuration.VnetResourceGroup)/providers/Microsoft.ClassicNetwork/virtualNetworks/$($Configuration.VnetName)"} -Location $Configuration.WebAppLocation -ApiVersion 2015-07-01
 
-Ha ez a parancs végrehajtása sikeres, **$vnet** rendelkeznie kell egy **tulajdonságok** változó azt. A **tulajdonságok** változót kell tartalmaznia, a tanúsítvány-ujjlenyomat, mind a tanúsítványának adatait.
+Ha ez a parancs végrehajtása sikeres, **$vnet** rendelkeznie kell egy **tulajdonságok** változó azt. Hello **tulajdonságok** változó tartalmaznia kell mindkét a tanúsítvány ujjlenyomata és hello tanúsítványának adatait.
 
-##### <a name="upload-the-web-app-certificate-to-the-virtual-network"></a>A webes alkalmazás-tanúsítvány feltöltése a virtuális hálózathoz
-Kézi, egyszeri lépés akkor szükséges, az egyes előfizetés és a virtuális hálózati kombinációja. Ez azt jelenti, hogy ha a virtuális hálózati alkalmazások az előfizetést A kapcsolódik, akkor csak egyszer, függetlenül attól, hogy hány alkalmazások konfigurálása ehhez a lépéshez. Ha egy másik virtuális hálózathoz ad hozzá egy új alkalmazást, szüksége újra. Ennek oka, hogy a tanúsítványok készletét jön létre az Azure App Service előfizetési szinten, és a készletben jön létre egyszer minden virtuális hálózathoz, amelyek csatlakozni fognak az alkalmazások.
+##### <a name="upload-hello-web-app-certificate-toohello-virtual-network"></a>Hello web app tanúsítvány toohello virtuális hálózati feltöltése
+Kézi, egyszeri lépés akkor szükséges, az egyes előfizetés és a virtuális hálózati kombinációja. Ez azt jelenti, hogy ha az előfizetés A tooVirtual hálózati alkalmazások kapcsolódik, szüksége lesz toodo ezt a lépést csak egyszer, függetlenül attól, hogy hány alkalmazások konfigurálása. Ha ad hozzá egy új alkalmazás tooanother virtuális hálózatot, toodo többé lesz szüksége. hello ennek oka, hogy a tanúsítványok készletét jön létre az Azure App Service előfizetési szinten, és hello beállítása után minden virtuális hálózathoz csatlakozó hello alkalmazások jön létre.
 
-A tanúsítványok lesznek rendelkezik már be van állítva Ha követte ezeket a lépéseket, vagy ha a portál használatával integrálva van az azonos virtuális hálózatban.
+hello tanúsítványokat fog rendelkezik már be van állítva, ha követte ezeket a lépéseket, vagy ha integrálva hello azonos virtuális hálózati hello portál használatával.
 
-Az első lépés a .cer-fájl létrehozásához. A második lépésben fel kell töltenie a .cer fájlt a virtuális hálózathoz. Az API-hívás az előző lépésben a .cer-fájl létrehozásához futtassa az alábbi parancsokat.
+első lépés hello toogenerate hello .cer fájl. hello második lépésben tooupload hello .cer fájl tooyour virtuális hálózat. toogenerate hello .cer fájl hello API-hívás a hello futtassa a következő parancsok hello a korábbi lépésben.
 
     $certBytes = [System.Convert]::FromBase64String($vnet.Properties.certBlob)
     [System.IO.File]::WriteAllBytes("$($Configuration.GeneratedCertificatePath)", $certBytes)
 
-A tanúsítvány a helyen találhatók, amely **$Configuration.GeneratedCertificatePath** határozza meg.
+hello tanúsítvány hello helyen találhatók, amely **$Configuration.GeneratedCertificatePath** határozza meg.
 
-A tanúsítvány manuális feltöltése, használja a [Azure-portálon] [ azureportal] és **Tallózás virtuális hálózat (klasszikus)** > **VPN-kapcsolatok** > **pont-pont** > **tanúsítványok kezelése**. Itt a tanúsítvány feltöltése.
+tooupload hello tanúsítvány manuálisan, használja a hello [Azure-portálon] [ azureportal] és **Tallózás virtuális hálózat (klasszikus)** > **VPN-kapcsolatok**  >  **Pont-pont** > **tanúsítványok kezelése**. Itt a tanúsítvány feltöltése.
 
-##### <a name="get-the-point-to-site-package"></a>A pont-pont csomag
-A következő lépése a virtuális hálózati kapcsolat a webalkalmazás beállítása, hogy a pont-pont csomagjának és adja meg a webes alkalmazást.
+##### <a name="get-hello-point-to-site-package"></a>Hello pont-pont csomag
+hello következő lépése a virtuális hálózati kapcsolat a webalkalmazás beállítása tooget hello pont-pont csomag, és adja meg a webalkalmazás tooyour.
 
-A következő sablon mentése nevű GetNetworkPackageUri.json valahol a számítógépre, például C:\Azure\Templates\GetNetworkPackageUri.json fájlba.
+A következő nevű GetNetworkPackageUri.json valahol a számítógépre, például C:\Azure\Templates\GetNetworkPackageUri.json tooa sablonfájlt hello mentéséhez.
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
@@ -160,41 +160,41 @@ A megadott bemeneti paraméterek:
     certThumbprint = $vnet.Properties.certThumbprint ;
     "networkName" = $Configuration.VnetName }
 
-A parancsprogram hívása:
+Hívás hello parancsfájlt:
 
     $output = New-AzureRmResourceGroupDeployment -Name unused -ResourceGroupName $Configuration.VnetResourceGroup -TemplateParameterObject $parameters -TemplateFile C:\PATH\TO\GetNetworkPackageUri.json
 
 
-A változó **$output. Outputs.packageUri** mostantól tartalmazza a csomag URI-t kell megadni a webalkalmazáshoz.
+hello változó **$output. Outputs.packageUri** hello csomag URI toobe tooyour webalkalmazás megadott mostantól tartalmazza.
 
-##### <a name="upload-the-point-to-site-package-to-your-app"></a>A pont-pont csomag feltölteni az alkalmazást
-Az utolsó lépés, hogy adja meg az alkalmazás ezzel a csomaggal. Egyszerűen futtassa a következő parancsot:
+##### <a name="upload-hello-point-to-site-package-tooyour-app"></a>Hello pont-pont csomag tooyour alkalmazás feltöltése
+utolsó lépésként hello tooprovide hello app csomaggal. Egyszerűen futtassa a következő parancs hello:
 
     $vnet = New-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)/primary" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections/gateways" -ApiVersion 2015-07-01 -PropertyObject @{"VnetName" = $Configuration.VnetName ; "VpnPackageUri" = $($output.Outputs.packageUri).Value } -Location $Configuration.WebAppLocation
 
-Ha a rendszer megkérdezi, hogy ellenőrizze, hogy valamelyik meglévő erőforrására másolattal, győződjön meg arról, hogy engedélyezi-e.
+Ha a rendszer megkérdezi, hogy meg vannak felülírja a meglévő erőforrás tooconfirm, győződjön meg arról, hogy tooallow azt.
 
-Után ez a parancs sikeres, az alkalmazás most a virtuális hálózathoz kell csatlakoztatni. Erősítse meg a sikeres, az alkalmazás-konzolon, és írja be a következőt:
+Után ez a parancs sikeres, az alkalmazás most már csatlakoztatott toohello virtuális hálózati kell lennie. tooconfirm sikeres, nyissa meg tooyour app konzolon, és írja be a következő hello:
 
     SET WEBSITE_
 
-Ha egy környezeti változó neve, amely rendelkezik egy érték, amely megegyezik-e a cél virtuális hálózat WEBSITE_VNETNAME, az összes konfiguráció sikeres volt.
+Ha egy értéket, amely megfelel a hello cél virtuális hálózat nevét hello WEBSITE_VNETNAME nevű környezeti változó, az összes konfiguráció sikeres volt.
 
 ### <a name="update-classic-vnet-integration-information"></a>Klasszikus virtuális integráció frissítése
-Frissítéséhez, vagy el az újraszinkronizálást, az adatait, egyszerűen ismételje meg a integrálását az elsőként létrehozott követett. Ezek a lépések a következők:
+tooupdate vagy újraszinkronizálásra adatait, egyszerűen ismételje meg a hello hello integrációs hello első helyen létrehozásakor követett. Ezek a lépések a következők:
 
 1. Adja meg a konfigurációs adatokat.
-2. Deklarálja az alkalmazás a virtuális hálózat.
-3. A pont-pont csomag beolvasása.
-4. A pont-pont csomag feltölteni az alkalmazást.
+2. Hello virtuális hálózati toohello app deklarálható.
+3. Hello pont-pont csomag beolvasása.
+4. Hello pont-pont csomag tooyour alkalmazás feltöltéséhez.
 
 ### <a name="disconnect-your-app-from-a-classic-vnet"></a>Válassza le az alkalmazást egy klasszikus virtuális hálózaton
-Válassza le az alkalmazást, a virtuális hálózati integráció során megadott konfigurációs információkat kell. Az információk, nincs majd az alkalmazás bontja a virtuális hálózat egy parancs.
+toodisconnect hello alkalmazást, és kell hello konfigurációs adatait, amely a virtuális hálózati integráció során lett beállítva. Az információk, nincs majd egy parancs toodisconnect az alkalmazás a virtuális hálózaton.
 
     $vnet = Remove-AzureRmResource -Name "$($Configuration.WebAppName)/$($Configuration.VnetName)" -ResourceGroupName $Configuration.WebAppResourceGroup -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-07-01
 
 ## <a name="resource-manager-virtual-networks"></a>Erőforrás-kezelő virtuális hálózatok
-Erőforrás-kezelő virtuális hálózat is létezik Azure Resource Manager API-k, amelyek egyszerűsítése bizonyos folyamatok klasszikus virtuális hálózatokat képest. Van olyan parancsfájlt, amely segít a hajtsa végre a következő feladatokat:
+Erőforrás-kezelő virtuális hálózat is létezik Azure Resource Manager API-k, amelyek egyszerűsítése bizonyos folyamatok klasszikus virtuális hálózatokat képest. Egy parancsfájl, amely segítséget hello a következő feladatok végrehajtásában vezetünk be:
 
 * Hozzon létre egy erőforrás-kezelő virtuális hálózatot, és az alkalmazás integrálható.
 * Hozzon létre egy pont – hely kapcsolat konfigurálása az erőforrás-kezelő már meglévő virtuális hálózat és az alkalmazás integrálható.
@@ -202,7 +202,7 @@ Erőforrás-kezelő virtuális hálózat is létezik Azure Resource Manager API-
 * Az alkalmazás leválasztása a virtuális hálózat.
 
 ### <a name="resource-manager-vnet-app-service-integration-script"></a>Erőforrás-kezelő virtuális hálózat App Service integrációs parancsfájlját
-Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a parancsfájlt, nyugodtan megtudjuk módjával dolgot beállítása egy erőforrás-kezelő virtuális hálózattal.
+Másolja az alábbi parancsfájlt, és mentse tooa fájl hello. Ha nem szeretné toouse hello parancsfájl, érzi, hogy a szabad toolearn toosee hogyan tooset folyamatot egy erőforrás-kezelő virtuális hálózattal.
 
     function ReadHostWithDefault($message, $default)
     {
@@ -262,10 +262,10 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         $pip = New-AzureRmPublicIpAddress -Name $vnetIpName -ResourceGroupName $resourceGroupName -Location $location -AllocationMethod Dynamic
         $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $vnetIpConfigName -Subnet $subnet -PublicIpAddress $pip
 
-        Write-Host "Adding a root certificate to this VNET"
+        Write-Host "Adding a root certificate toothis VNET"
         $root = New-AzureRmVpnClientRootCertificate -Name "AppServiceCertificate.cer" -PublicCertData $certificateData
 
-        Write-Host "Creating Azure VNET Gateway. This may take up to an hour."
+        Write-Host "Creating Azure VNET Gateway. This may take up tooan hour."
         New-AzureRmVirtualNetworkGateway -Name $vnetGatewayName -ResourceGroupName $resourceGroupName -Location $location -IpConfigurations $ipconf -GatewayType Vpn -VpnType RouteBased -EnableBgp $false -GatewaySku Basic -VpnClientAddressPool $vnetPointToSiteAddressSpace -VpnClientRootCertificates $root
     }
 
@@ -290,7 +290,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         while($changeRequested -eq 0)
         {
             Write-Host
-            Write-Host "Currently, I will create a VNET with the following settings:"
+            Write-Host "Currently, I will create a VNET with hello following settings:"
             Write-Host
             Write-Host "Virtual Network Name: $vnetName"
             Write-Host "Resource Group Name:  $resourceGroupName"
@@ -301,7 +301,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
             Write-Host "Gateway Address Space:$vnetGatewayAddressSpace"
             Write-Host "Point-To-Site Address Space:  $vnetPointToSiteAddressSpace"
             Write-Host
-            $changeRequested = PromptYesNo "" "Do you wish to change these settings?" 1
+            $changeRequested = PromptYesNo "" "Do you wish toochange these settings?" 1
 
             if($changeRequested -eq 0)
             {
@@ -318,15 +318,15 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
         $ErrorActionPreference = "Stop";
 
-        # We create the virtual network and add it here. The way this works is:
-        # 1) Add the VNET association to the App. This allows the App to generate certificates, etc. for the VNET.
-        # 2) Create the VNET and VNET gateway, add the certificates, create the public IP, etc., required for the gateway
-        # 3) Get the VPN package from the gateway and pass it back to the App.
+        # We create hello virtual network and add it here. hello way this works is:
+        # 1) Add hello VNET association toohello App. This allows hello App toogenerate certificates, etc. for hello VNET.
+        # 2) Create hello VNET and VNET gateway, add hello certificates, create hello public IP, etc., required for hello gateway
+        # 3) Get hello VPN package from hello gateway and pass it back toohello App.
 
         $webApp = Get-AzureRmResource -ResourceName $webAppName -ResourceType "Microsoft.Web/sites" -ApiVersion 2015-08-01 -ResourceGroupName $webAppResourceGroup
         $location = $webApp.Location
 
-        Write-Host "Creating App association to VNET"
+        Write-Host "Creating App association tooVNET"
         $propertiesObject = @{
          "vnetResourceId" = "/subscriptions/$($subscriptionId)/resourceGroups/$($resourceGroupName)/providers/Microsoft.Network/virtualNetworks/$($vnetName)"
         }
@@ -336,16 +336,16 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
         CreateVnetGateway $resourceGroupName $vnetName $vnetIpName $location $vnetIpConfigName $vnetGatewayName $virtualNetwork.Properties.CertBlob $vnetPointToSiteAddressSpace
 
-        Write-Host "Retrieving VPN Package and supplying to App"
+        Write-Host "Retrieving VPN Package and supplying tooApp"
         $packageUri = Get-AzureRmVpnClientPackage -ResourceGroupName $resourceGroupName -VirtualNetworkGatewayName $vnetGatewayName -ProcessorArchitecture Amd64
         
-        # $packageUri may contain literal double-quotes at the start and the end of the URL
+        # $packageUri may contain literal double-quotes at hello start and hello end of hello URL
         if($packageUri.Length -gt 0 -and $packageUri.Substring(0, 1) -eq '"' -and $packageUri.Substring($packageUri.Length - 1, 1) -eq '"')
         {
             $packageUri = $packageUri.Substring(1, $packageUri.Length - 2)
         }
 
-        # Put the VPN client configuration package onto the App
+        # Put hello VPN client configuration package onto hello App
         $PropertiesObject = @{
         "vnetName" = $VirtualNetworkName; "vpnPackageUri" = $packageUri
         }
@@ -359,7 +359,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
     {
         $ErrorActionPreference = "Stop";
 
-        # At this point, the gateway should be able to be joined to an App, but may require some minor tweaking. We will declare to the App now to use this VNET
+        # At this point, hello gateway should be able toobe joined tooan App, but may require some minor tweaking. We will declare toohello App now toouse this VNET
         Write-Host "Getting App information"
         $webApp = Get-AzureRmResource -ResourceName $webAppName -ResourceType "Microsoft.Web/sites" -ApiVersion 2015-08-01 -ResourceGroupName $resourceGroupName
         $location = $webApp.Location
@@ -368,7 +368,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         $currentVnet = $webAppConfig.Properties.VnetName
         if($currentVnet -ne $null -and $currentVnet -ne "")
         {
-            Write-Host "Currently connected to VNET $currentVnet"
+            Write-Host "Currently connected tooVNET $currentVnet"
         }
 
         # Display existing vnets
@@ -380,23 +380,23 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         }
 
         Write-Host
-        $vnet = PromptCustom "Select a VNET to integrate with" $vnets $vnetNames
+        $vnet = PromptCustom "Select a VNET toointegrate with" $vnets $vnetNames
 
-        # We need to check if this VNET is able to be joined to a App, based on following criteria
+        # We need toocheck if this VNET is able toobe joined tooa App, based on following criteria
             # If there is no gateway, we can create one.
             # If there is a gateway:
                 # It must be of type Vpn
                 # It must be of VpnType RouteBased
-                # If it doesn't have the right certificate, we will need to add it.
-                # If it doesn't have a point-to-site range, we will need to add it.
+                # If it doesn't have hello right certificate, we will need tooadd it.
+                # If it doesn't have a point-to-site range, we will need tooadd it.
 
         $gatewaySubnet = $vnet.Subnets | Where-Object { $_.Name -eq "GatewaySubnet" }
 
         if($gatewaySubnet -eq $null -or $gatewaySubnet.IpConfigurations -eq $null -or $gatewaySubnet.IpConfigurations.Count -eq 0)
         {
             $ErrorActionPreference = "Continue";
-            # There is no gateway. We need to create one.
-            Write-Host "This Virtual Network has no gateway. I will need to create one."
+            # There is no gateway. We need toocreate one.
+            Write-Host "This Virtual Network has no gateway. I will need toocreate one."
 
             $vnetName = $vnet.Name
             $vnetGatewayName="$($vnetName)-gateway"
@@ -410,7 +410,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
             $changeRequested = 0
 
-            Write-Host "Your VNET is in the address space $($vnet.AddressSpace.AddressPrefixes), with the following Subnets:"
+            Write-Host "Your VNET is in hello address space $($vnet.AddressSpace.AddressPrefixes), with hello following Subnets:"
             foreach($subnet in $vnet.Subnets)
             {
                 Write-Host "$($subnet.Name): $($subnet.AddressPrefix)"
@@ -421,7 +421,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
             while($changeRequested -eq 0)
             {
                 Write-Host
-                Write-Host "Currently, I will create a VNET gateway with the following settings:"
+                Write-Host "Currently, I will create a VNET gateway with hello following settings:"
                 Write-Host
                 Write-Host "Virtual Network Name: $vnetName"
                 Write-Host "Resource Group Name:  $($vnet.ResourceGroupName)"
@@ -432,7 +432,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
                 Write-Host "Gateway Address Space:$vnetGatewayAddressSpace"
                 Write-Host "Point-To-Site Address Space:  $vnetPointToSiteAddressSpace"
                 Write-Host
-                $changeRequested = PromptYesNo "" "Do you wish to change these settings?" 1
+                $changeRequested = PromptYesNo "" "Do you wish toochange these settings?" 1
 
                 if($changeRequested -eq 0)
                 {
@@ -446,14 +446,14 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
             $ErrorActionPreference = "Stop";
 
-            Write-Host "Creating App association to VNET"
+            Write-Host "Creating App association tooVNET"
             $propertiesObject = @{
              "vnetResourceId" = "/subscriptions/$($subscriptionId)/resourceGroups/$($vnet.ResourceGroupName)/providers/Microsoft.Network/virtualNetworks/$($vnetName)"
             }
 
             $virtualNetwork = New-AzureRmResource -Location $location -Properties $PropertiesObject -ResourceName "$($webAppName)/$($vnet.Name)" -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-08-01 -ResourceGroupName $resourceGroupName -Force
 
-            # If there is no gateway subnet, we need to create one.
+            # If there is no gateway subnet, we need toocreate one.
             if($gatewaySubnet -eq $null)
             {
                 $gatewaySubnet = New-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -AddressPrefix $vnetGatewayAddressSpace
@@ -476,13 +476,13 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
             # validate gateway types, etc.
             if($gateway.GatewayType -ne "Vpn")
             {
-                Write-Error "This gateway is not of the Vpn type. It cannot be joined to an App."
+                Write-Error "This gateway is not of hello Vpn type. It cannot be joined tooan App."
                 return
             }
 
             if($gateway.VpnType -ne "RouteBased")
             {
-                Write-Error "This gateways Vpn type is not RouteBased. It cannot be joined to an App."
+                Write-Error "This gateways Vpn type is not RouteBased. It cannot be joined tooan App."
                 return
             }
 
@@ -493,14 +493,14 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
                 Set-AzureRmVirtualNetworkGatewayVpnClientConfig -VirtualNetworkGateway $gateway.Name -VpnClientAddressPool $pointToSiteAddress
             }
 
-            Write-Host "Creating App association to VNET"
+            Write-Host "Creating App association tooVNET"
             $propertiesObject = @{
              "vnetResourceId" = "/subscriptions/$($subscriptionId)/resourceGroups/$($vnet.ResourceGroupName)/providers/Microsoft.Network/virtualNetworks/$($vnet.Name)"
             }
 
             $virtualNetwork = New-AzureRmResource -Location $location -Properties $PropertiesObject -ResourceName "$($webAppName)/$($vnet.Name)" -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-08-01 -ResourceGroupName $resourceGroupName -Force
 
-            # We need to check if the certificate here exists in the gateway.
+            # We need toocheck if hello certificate here exists in hello gateway.
             $certificates = $gateway.VpnClientConfiguration.VpnClientRootCertificates
 
             $certFound = $false
@@ -520,17 +520,17 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
             }
         }
 
-        # Now finish joining by getting the VPN package and giving it to the App
-        Write-Host "Retrieving VPN Package and supplying to App"
+        # Now finish joining by getting hello VPN package and giving it toohello App
+        Write-Host "Retrieving VPN Package and supplying tooApp"
         $packageUri = Get-AzureRmVpnClientPackage -ResourceGroupName $vnet.ResourceGroupName -VirtualNetworkGatewayName $gateway.Name -ProcessorArchitecture Amd64
         
-        # $packageUri may contain literal double-quotes at the start and the end of the URL
+        # $packageUri may contain literal double-quotes at hello start and hello end of hello URL
         if($packageUri.Length -gt 0 -and $packageUri.Substring(0, 1) -eq '"' -and $packageUri.Substring($packageUri.Length - 1, 1) -eq '"')
         {
             $packageUri = $packageUri.Substring(1, $packageUri.Length - 2)
         }
 
-        # Put the VPN client configuration package onto the App
+        # Put hello VPN client configuration package onto hello App
         $PropertiesObject = @{
         "vnetName" = $vnet.Name; "vpnPackageUri" = $packageUri
         }
@@ -546,13 +546,13 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         $currentVnet = $webAppConfig.Properties.VnetName
         if($currentVnet -ne $null -and $currentVnet -ne "")
         {
-            Write-Host "Currently connected to VNET $currentVnet"
+            Write-Host "Currently connected tooVNET $currentVnet"
 
             Remove-AzureRmResource -ResourceName "$($webAppName)/$($currentVnet)" -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-08-01 -ResourceGroupName $resourceGroupName
         }
             else
         {
-            Write-Host "Not connected to a VNET."
+            Write-Host "Not connected tooa VNET."
         }
     }
 
@@ -566,7 +566,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
     if($subs.Length -eq 0)
     {
-        Write-Error "No subscriptions bound to this account."
+        Write-Error "No subscriptions bound toothis account."
         return
     }
 
@@ -589,13 +589,13 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
 
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-    $resourceGroup = Read-Host "Please enter the Resource Group of your App"
+    $resourceGroup = Read-Host "Please enter hello Resource Group of your App"
 
-    $appName = Read-Host "Please enter the Name of your App"
+    $appName = Read-Host "Please enter hello Name of your App"
 
-    $options = @("Add a NEW Virtual Network to an App", "Add an EXISTING Virtual Network to an App", "Remove a Virtual Network from an App");
+    $options = @("Add a NEW Virtual Network tooan App", "Add an EXISTING Virtual Network tooan App", "Remove a Virtual Network from an App");
     $optionValues = @(0, 1, 2)
-    $option = PromptCustom "What do you want to do?" $optionValues $options
+    $option = PromptCustom "What do you want toodo?" $optionValues $options
 
     if($option -eq 0)
     {
@@ -610,7 +610,7 @@ Másolja a következő parancsfájlt, és mentse a fájlt. Ha nem szeretné a pa
         RemoveVnet $subscriptionId $resourceGroup $appName
     }
 
-A parancsfájl másolatának mentése. Ebben a cikkben V2VnetAllinOne.ps1 nevezik, de egy másik nevet. Nincsenek ehhez a parancsprogramhoz argumentumok. Egyszerűen futtassa azt. A parancsfájl fog tenni elsőként felszólítja, hogy jelentkezzen be. Miután bejelentkezik, a parancsfájl lekérdezi a fiók adatait, és előfizetések listáját adja vissza. A kérelem a hitelesítő adatok nem számítva, a kezdeti parancsfájl végrehajtása néz ki:
+Hello parancsfájl másolatának mentése. Ebben a cikkben V2VnetAllinOne.ps1 nevezik, de egy másik nevet. Nincsenek ehhez a parancsprogramhoz argumentumok. Egyszerűen futtassa azt. hello először thing hello parancsfájl hajt végre a rendszer felszólítja a toosign. Miután bejelentkezik, hello parancsfájl lekérdezi a fiók adatait, és előfizetések listáját adja vissza. A hitelesítő adatok hello kérelem nem számítva, hello kezdeti parancsfájl végrehajtása néz ki:
 
     PS C:\Users\ccompy\Documents\VNET> .\V2VnetAllInOne.ps1
     Please Login
@@ -631,18 +631,18 @@ A parancsfájl másolatának mentése. Ebben a cikkben V2VnetAllinOne.ps1 nevezi
 
     Fiók: ccompy@microsoft.com környezet: AzureCloud előfizetés: 2d4c99a4-57f9-4d5e-a0a1-0034c52db59d bérlői: 722278f-fef1-499f-91ab-2323d011db47
 
-    Adja meg az alkalmazás az erőforráscsoport: hcdemo-rg adja meg az alkalmazás nevét: v2vnetpowershell mi történjen a teendő?
+    Adja meg az alkalmazás erőforráscsoport hello: hcdemo-rg adja meg az alkalmazás neve hello: v2vnetpowershell miről szeretne toodo?
 
-    1) ÚJ virtuális hálózat hozzáadása egy alkalmazáshoz
-    2) Egy meglévő virtuális hálózat hozzáadása egy alkalmazáshoz
+    1) Egy új virtuális hálózat tooan alkalmazás hozzáadása
+    2) Egy meglévő virtuális hálózat tooan alkalmazás hozzáadása
     3) Távolítsa el a virtuális hálózat az alkalmazásokból
 
-Ez a szakasz a többi ismerteti ezen három lehetőségek.
+Ez a szakasz többi hello ismerteti ezen három lehetőségek.
 
 ### <a name="create-a-resource-manager-vnet-and-integrate-with-it"></a>Erőforrás-kezelő VNet létrehozása, és azt integrálni
-A Resource Manager üzembe helyezési modellel használó új virtuális hálózat létrehozásához, és integrálhatja a az alkalmazás, válassza ki a **1) egy új virtuális hálózat hozzáadása egy alkalmazáshoz**. Ez kérni fogja a virtuális hálózat nevét. Abban az esetben, ha ahogy látja, a következő beállításokat, a használt a név, v2pshell.
+toocreate, hogy a használt hello Resource Manager üzembe helyezési modellben, és integrálhatja az alkalmazás a új virtuális hálózat kiválasztása **1) hozzáadása egy új virtuális hálózat tooan App**. Ez kérni fogja az hello hello virtuális hálózat nevét. Abban az esetben, ha ahogyan azt láthatja a beállításokat, a következő hello használt hello nevét, v2pshell.
 
-A parancsfájl tájékoztatást nyújt a a kiválasztott virtuális hálózat létrehozása folyamatban van. Ha szeretné, módosíthatók valamely értékét. A példa végrehajtása a létrehozott egy virtuális hálózatot, a következő beállításokkal:
+hello parancsfájl tájékoztatást nyújt a hello hello virtuális hálózat létrehozása folyamatban van. Szeretném, ha bármelyik hello értékek módosíthatók. A példa végrehajtása a következő beállítások hello rendelkező virtuális hálózatban létrehozott:
 
     Virtual Network Name:         v2pshell
     Resource Group Name:          hcdemo-rg
@@ -653,19 +653,19 @@ A parancsfájl tájékoztatást nyújt a a kiválasztott virtuális hálózat l�
     Gateway Address Space:        10.5.0.0/16
     Point-To-Site Address Space:  172.16.0.0/12
 
-    Do you wish to change these settings?
+    Do you wish toochange these settings?
     [Y] Yes  [N] No  [?] Help (default is "N"):
 
-Ha valamely értékét módosítani kívánja, írja be a **Y** , és hajtsa végre a módosításokat. Ha elégedett a virtuális hálózati beállításait, írja be a **N** vagy egyszerűen csak nyomja le az ENTER billentyűt, amikor a rendszer kéri, a beállítások módosításával. Innen a befejezéséig, a parancsfájl megtudhatja, amit a rendszergazda némelyike "i's egészen a virtuális hálózati átjáró létrehozása során. A lépés egy óráig is eltarthat. Ebben a fázisban nem folyamatjelző van, de a parancsfájl lehetővé teszi, hogy tudja, hogy az átjáró létrehozásakor.
+Ha azt szeretné, toochange hello értékek bármelyikét, írja be a **Y** és hello módosíthatja. Ha elégedett hello virtuális hálózati beállításait, írja be a **N** vagy egyszerűen csak nyomja le az Enter hello beállításainak módosításával kapcsolatos megjelenésekor. Ezekből a befejezéséig hello parancsfájl megtudhatja, amit a rendszergazda némelyike "i's végre, amíg nem toocreate hello virtuális hálózati átjáró kezdődik. A lépés akár tooan órát is igénybe vehet. Ebben a fázisban nem folyamatjelző van, de hello parancsfájl lehetővé teszi, hogy ismeri a hello átjáró létrehozásakor.
 
-A parancsfájl befejezése után, akkor megtudhatja, hogy **befejezett**. Ezen a ponton, amelyen a nevét, és a megadott beállításokat, erőforrás-kezelő virtuális hálózat fog. Az új virtuális hálózat is integrálják az alkalmazást.
+Hello parancsfájl befejezése után, akkor megtudhatja, hogy **befejezett**. Ezen a ponton fog hello neve erőforrás-kezelő virtuális hálózat és a kiválasztott beállításokat. Az új virtuális hálózat is integrálják az alkalmazást.
 
 ### <a name="integrate-your-app-with-a-preexisting-resource-manager-vnet"></a>Az alkalmazás integrálja a már meglévő Resource Manager virtuális hálózaton
-Ha egy már meglévő virtuális hálózatot, ha megadja a pont – hely kapcsolat vagy átjáróként működő nem rendelkező erőforrás-kezelő virtuális hálózat most integrálása, a parancsfájl beállításához nyújt útmutatást, amelyek. Ha a virtuális hálózat már rendelkezik állítsa be ezeket a beállításokat, a parancsfájl ugrik rögtön az alkalmazásintegráció. Ez a folyamat indításához egyszerűen válassza **2) egy meglévő virtuális hálózat hozzáadása egy alkalmazáshoz**.
+Ha egy már meglévő virtuális hálózatot, ha megadja a pont – hely kapcsolat vagy átjáróként működő nem rendelkező erőforrás-kezelő virtuális hálózat most integrálása, hello parancsprogram beállítja, hogy. Hello virtuális hálózat már rendelkezik állítsa be ezeket a beállításokat, ha hello parancsfájlt halad egyenes toohello alkalmazásintegráció. toostart ezt a folyamatot, egyszerűen válassza **2) hozzáadása egy meglévő virtuális hálózat tooan App**.
 
-Ez a beállítás csak akkor, ha már létező erőforrás-kezelő virtuális hálózattal rendelkezik, amely ugyanazt az előfizetést, az alkalmazás működik. A beállítást, akkor megjelenik a Resource Manager virtuális hálózatokból álló listát.   
+Ez a beállítás csak akkor, ha már létező erőforrás-kezelő virtuális hálózattal rendelkezik, amely hello működik az alkalmazás ugyanahhoz az előfizetéshez. Miután hello lehetőséget választja, választhat a Resource Manager virtuális hálózatok listájával.   
 
-    Select a VNET to integrate with
+    Select a VNET toointegrate with
 
     1) v2demonetwork
     2) v2pshell
@@ -675,14 +675,14 @@ Ez a beállítás csak akkor, ha már létező erőforrás-kezelő virtuális h�
 
     Válasszon egy lehetőséget: 5
 
-Egyszerűen jelölje ki a virtuális hálózat, amelyet integrálni szeretne. Ha már van egy átjáró, amely a pont – hely kapcsolat engedélyezve van, a parancsfájl egyszerűen integrálható az alkalmazás a virtuális hálózat. Ha nem rendelkezik egy átjárót, akkor adja meg az átjáró-alhálózatot. Az átjáró-alhálózatot a virtuális hálózat címtere kell lennie, és nem lehet a más alhálózathoz. Ha egy virtuális hálózati átjáró nélkül, és futtassa ezt a lépést, akkor a dolgok néznek ki:
+Hello virtuális hálózathoz, amelyet a toointegrate egyszerűen válassza. Ha már van egy átjáró, amely a pont – hely kapcsolat engedélyezve van, hello parancsfájl egyszerűen integrálható az alkalmazás a virtuális hálózat. Ha nem rendelkezik egy átjárót, szüksége lesz a toospecify hello átjáró-alhálózatot. Az átjáró-alhálózatot a virtuális hálózat címtere kell lennie, és nem lehet a más alhálózathoz. Ha egy virtuális hálózati átjáró nélkül, és futtassa ezt a lépést, akkor a dolgok néznek ki:
 
-    This Virtual Network has no gateway. I will need to create one.
-    Your VNET is in the address space 172.16.0.0/16, with the following Subnets:
+    This Virtual Network has no gateway. I will need toocreate one.
+    Your VNET is in hello address space 172.16.0.0/16, with hello following Subnets:
     default: 172.16.0.0/24
     Please choose a GatewaySubnet address space: 172.16.1.0/26
 
-Ebben a példában létrehozott egy virtuális hálózati átjáró a következő beállításokkal:
+Ebben a példában a virtuális hálózati átjáró, amely rendelkezik a következő beállítások hello létrehozott:
 
     Virtual Network Name:         v2pshell2
     Resource Group Name:          vnetdemo-rg
@@ -693,24 +693,24 @@ Ebben a példában létrehozott egy virtuális hálózati átjáró a következ�
     Gateway Address Space:        172.16.1.0/26
     Point-To-Site Address Space:  172.16.0.0/12
 
-    Do you wish to change these settings?
+    Do you wish toochange these settings?
     [Y] Yes  [N] No  [?] Help (default is "N"):
-    Creating App association to VNET
+    Creating App association tooVNET
 
-Ha szeretné módosítani ezeket a beállításokat, megteheti. Vagy nyomja le az ENTER billentyűt, és a parancsfájl létrehoz az átjáró és az alkalmazás csatlakoztatása a virtuális hálózat. Az átjáró létrehozása idő továbbra is egy óra alatt, ha, ezért győződjön meg arról, hogy figyelembe venni. Ha minden befejeződött, a parancsfájl megtudhatja, hogy **befejezett**.
+Ha azt szeretné, toochange ezeket a beállításokat, megteheti. Vagy nyomja le az ENTER billentyűt, és hello parancsfájl létrehoz az átjáró és az alkalmazás tooyour virtuális hálózat csatolása. hello átjáró létrehozásának ideje még nem állt le egy óra alatt, ha, ezért győződjön meg arról, hogy figyelembe venni. Ha minden befejeződött, hello parancsfájl megtudhatja, hogy **befejezett**.
 
 ### <a name="disconnect-your-app-from-a-resource-manager-vnet"></a>Válassza le az alkalmazást egy erőforrás-kezelő virtuális hálózat
-Az alkalmazás leválasztása a virtuális hálózat nem az átjáró le és tiltsa le a pont – hely kapcsolat. Előfordulhat, ha minden használni azt máshová. Azt is nem válassza le azt minden más alkalmazás nem a megadott. Ez a művelet elvégzéséhez válasszon **3) virtuális hálózat eltávolítása egy alkalmazás**. Ha így tesz, látni fogja például ehhez hasonló:
+Az alkalmazás leválasztása a virtuális hálózat nem hello átjáró le és tiltsa le a pont – hely kapcsolat. Előfordulhat, ha minden használni azt máshová. Azt is leválasztása nem azt minden más alkalmazás nem hello egy megadott. tooperform Ez a művelet, jelölje be **3) virtuális hálózat eltávolítása egy alkalmazás**. Ha így tesz, látni fogja például ehhez hasonló:
 
-    Currently connected to VNET v2pshell
+    Currently connected tooVNET v2pshell
 
     Confirm
-    Are you sure you want to delete the following resource:
+    Are you sure you want toodelete hello following resource:
     /subscriptions/edcc99a4-b7f9-4b5e-a9a1-3034c51db496/resourceGroups/hcdemo-rg/providers/Microsoft.Web/sites/v2vnetpowers
     hell/virtualNetworkConnections/v2pshell
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"):
 
-A parancsfájl törlése szerint, de nem törli a virtuális hálózat. Csak az éppen eltávolítja az integráció. Miután meggyőződött róla, hogy ez mit kíván tenni a, a parancs meglehetősen gyorsan dolgoz fel, és jelzi, hogy **igaz** amikor elkészült.
+Bár hello parancsfájl feliratú törlés, nem törli hello virtuális hálózat. Csak az éppen eltávolítja hello integráció. Miután meggyőződött róla, hogy ez a választható toodo, hello parancs meglehetősen gyorsan dolgoz fel, és jelzi, hogy **igaz** amikor elkészült.
 
 <!--Links-->
 [createvpngateway]: http://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/

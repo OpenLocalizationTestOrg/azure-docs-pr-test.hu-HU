@@ -1,5 +1,5 @@
 ---
-title: "Nyomon követheti a Azure Application Insights .NET SDK-val egyéni műveleteket |} Microsoft Docs"
+title: "Egyéni műveletek aaaTrack Azure Application Insights .NET SDK-val |} Microsoft Docs"
 description: "Azure Application Insights .NET SDK-val egyéni műveletek nyomon követése"
 services: application-insights
 documentationcenter: .net
@@ -12,19 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/31/2017
 ms.author: sergkanz
-ms.openlocfilehash: b31d38fe2f7060597956a1ee9c66f43ce39d7240
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fe338d3e2b17a3dae43c96c60a19f57b3f46f0a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="track-custom-operations-with-application-insights-net-sdk"></a>Application Insights .NET SDK-val egyéni műveletek nyomon követése
 
-Az Azure Application Insights SDK-k automatikusan követi nyomon a bejövő HTTP-kérelmek és a függő szolgáltatások, például HTTP-kérelmek és az SQL-lekérdezések. Nyomon követését és a kérelmek és a függőségek korrelációs biztosítanak a teljes alkalmazáshoz válaszidejét és megbízhatóság láthatósága összes mikroszolgáltatások létrehozására, az alkalmazás felhasználó között. 
+Az Azure Application Insights SDK-k automatikusan nyomon követése a bejövő HTTP-kérelmek, és meghívja a toodependent szolgáltatások, például a HTTP-kérelmek és az SQL-lekérdezések. Nyomon követését és a kérelmek és a függőségek korrelációs biztosítanak hello teljes alkalmazás válaszidejét és megbízhatóság láthatósága összes mikroszolgáltatások létrehozására, az alkalmazás felhasználó között. 
 
 Nincs alkalmazás mintáról olvashat, amelyek nem tudják támogatni az általános osztály. Az ilyen minták megfelelő figyeléshez szükséges manuális kód instrumentation. Ez a cikk manuális instrumentation egyéni várólista feldolgozása és a hosszú futású háttérfeladatok futtatása például szükség lehet néhány mintázatokat tartalmazza.
 
-Ez a dokumentum útmutatást nyújt a történő nyomon követheti az Application Insights SDK-val egyéni műveleteket. Ebben a dokumentációban fontos:
+Ez a dokumentum hogyan egyéni műveletek tootrack hello Application Insights SDK nyújt útmutatást. Ebben a dokumentációban fontos:
 
 - Az Application Insights .NET (más néven alapvető SDK) verziójának 2.4 +.
 - Az Application Insights webes (ASP.NET futó) alkalmazások verziójához 2.4 +.
@@ -33,19 +33,19 @@ Ez a dokumentum útmutatást nyújt a történő nyomon követheti az Applicatio
 ## <a name="overview"></a>Áttekintés
 Egy művelet egy logikai munkákat az alkalmazások futtatása. Az idő, időtartam, eredmény és olyan környezetben, például a felhasználónevet, a tulajdonságok és az eredmény végrehajtás start neve van. Ha A műveletet kezdeményezett művelet B, majd művelet B be van állítva az A. szülője Egy művelet csak egy szülőhöz lehet, de sok gyermek művelet veheti fel. Műveletek és telemetriai korrelációs további információkért lásd: [Azure Application Insights telemetria korrelációs](application-insights-correlation.md).
 
-Az Application Insights .NET SDK a művelet leírását a absztrakt osztály [OperationTelemetry](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/Extensibility/Implementation/OperationTelemetry.cs) és a leszármazottai [RequestTelemetry](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/DataContracts/RequestTelemetry.cs) és [DependencyTelemetry](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/DataContracts/DependencyTelemetry.cs).
+Az Application Insights .NET SDK hello, hello művelet le hello absztrakt osztály [OperationTelemetry](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/Extensibility/Implementation/OperationTelemetry.cs) és a leszármazottai [RequestTelemetry](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/DataContracts/RequestTelemetry.cs) és [DependencyTelemetry ](https://github.com/Microsoft/ApplicationInsights-dotnet/blob/develop/src/Core/Managed/Shared/DataContracts/DependencyTelemetry.cs).
 
 ## <a name="incoming-operations-tracking"></a>Bejövő műveletek nyomon követése 
-Az Application Insights webes SDK-t automatikusan gyűjti az ASP.NET futtatni egy IIS-feldolgozási folyamat összes ASP.NET Core alkalmazásokat és a HTTP-kérelmekre. Nincsenek megoldások Közösség által támogatott más platformok és -keretrendszerek számára. Azonban ha az alkalmazás nem támogatja a standard vagy a Közösség által támogatott megoldások bármelyikét, hogy állíthatnak be azt manuálisan.
+hello Application Insights webes SDK automatikusan gyűjti az ASP.NET futtatni egy IIS-feldolgozási folyamat összes ASP.NET Core alkalmazásokat és a HTTP-kérelmekre. Nincsenek megoldások Közösség által támogatott más platformok és -keretrendszerek számára. Azonban hello alkalmazás bármelyik hello standard vagy a Közösség által támogatott megoldások nem támogatott, ha Ön állíthatnak be azt manuálisan.
 
-Egy másik, amelyhez az egyéni nyomkövetési: a worker, amely megkapja a cikkek az üzenetsorból. Egyes várólisták üzenet hozzáadása a várólista-hívás a függőség beállításához nyomon követni. Azonban a magas szintű műveletet leíró üzenet feldolgozása nem automatikusan összegyűjtött.
+Egy másik, amelyhez az egyéni nyomkövetési: hello munkavégző, amely megkapja a hello várólistában lévő elemeket. Egyes várólisták hello toothis várólista követhető nyomon a függőség beállításához üzenet hívja tooadd. Azonban hello magas szintű műveletet leíró üzenet feldolgozása nem automatikusan összegyűjtött.
 
 Nézzük meg, hogyan azt nyomon az ilyen műveleteket.
 
-Magas szinten, a feladatütemezés, ha a `RequestTelemetry` és ismert tulajdonságainak beállítása. A művelet befejezése után a telemetriai adatok nyomon követéséhez. A következő példa bemutatja, ezt a feladatot.
+Magas szinten hello feladata toocreate `RequestTelemetry` és ismert tulajdonságainak beállítása. Hello művelet befejezése után hello telemetriai nyomon követéséhez. hello a következő példa azt mutatja be ezt a feladatot.
 
 ### <a name="http-request-in-owin-self-hosted-app"></a>Önálló üzemeltetett alkalmazás Owin HTTP-kérelem
-Ebben a példában azt kövesse a [HTTP protokoll a korrelációs](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/HttpCorrelationProtocol.md). Fogadási hiba ismertetett fejlécek kell látnia.
+Ebben a példában, azt követve hello [HTTP protokoll a korrelációs](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/HttpCorrelationProtocol.md). Nem ismertetett tooreceive fejlécek kell látnia.
 
 ``` C#
 public class ApplicationInsightsMiddleware : OwinMiddleware
@@ -62,11 +62,11 @@ public class ApplicationInsightsMiddleware : OwinMiddleware
             Name = $"{context.Request.Method} {context.Request.Uri.GetLeftPart(UriPartial.Path)}"
         };
 
-        // If there is a Request-Id received from the upstream service, set the telemetry context accordingly.
+        // If there is a Request-Id received from hello upstream service, set hello telemetry context accordingly.
         if (context.Request.Headers.ContainsKey("Request-Id"))
         {
             var requestId = context.Request.Headers.Get("Request-Id");
-            // Get the operation ID from the Request-Id (if you follow the HTTP Protocol for Correlation).
+            // Get hello operation ID from hello Request-Id (if you follow hello HTTP Protocol for Correlation).
             requestTelemetry.Context.Operation.Id = GetOperationId(requestId);
             requestTelemetry.Context.Operation.ParentId = requestId;
         }
@@ -76,7 +76,7 @@ public class ApplicationInsightsMiddleware : OwinMiddleware
         // and initializes start time and duration on telemetry items.
         var operation = telemetryClient.StartOperation(requestTelemetry);
 
-        // Process the request.
+        // Process hello request.
         try
         {
             await Next.Invoke(context);
@@ -100,14 +100,14 @@ public class ApplicationInsightsMiddleware : OwinMiddleware
                 requestTelemetry.Success = false;
             }
 
-            // Now it's time to stop the operation (and track telemetry).
+            // Now it's time toostop hello operation (and track telemetry).
             telemetryClient.StopOperation(operation);
         }
     }
     
     public static string GetOperationId(string id)
     {
-        // Returns the root ID from the '|' to the first '.' if any.
+        // Returns hello root ID from hello '|' toohello first '.' if any.
         int rootEnd = id.IndexOf('.');
         if (rootEnd < 0)
             rootEnd = id.Length;
@@ -118,31 +118,31 @@ public class ApplicationInsightsMiddleware : OwinMiddleware
 }
 ```
 
-A HTTP protokoll a korrelációs is deklarálja a `Correlation-Context` fejléc. Azonban ki van hagyva itt az egyszerűség érdekében.
+hello korrelációs HTTP protokollt is deklarál hello `Correlation-Context` fejléc. Azonban ki van hagyva itt az egyszerűség érdekében.
 
 ## <a name="queue-instrumentation"></a>Várólista instrumentation
-HTTP-kommunikációhoz létrehoztunk Önnek egy protokoll felelt meg a korrelációs részleteit. Az egyes üzenetsorok protokollok adja át további metaadatokat együtt az üzenetet, és másokkal, nem lehet.
+HTTP-kommunikációhoz létrehoztunk Önnek egy protokoll toopass korrelációs részleteit. Az egyes üzenetsorok protokollok adja át további metaadatokat üdvözlőüzenetére együtt, és nem lehet másokkal.
 
 ### <a name="service-bus-queue"></a>Service Bus-üzenetsorba
-Az Azure-ral [Service Bus-üzenetsorba](../service-bus-messaging/index.md), átadhatók egy tulajdonságcsomagot és az üzenetet. Felelt meg a korrelációs azonosító használjuk
+Az hello Azure [Service Bus-üzenetsorba](../service-bus-messaging/index.md), átadhatók egy tulajdonságcsomagot üdvözlőüzenetére együtt. Használjuk, toopass hello korrelációs azonosítója.
 
-A Service Bus-üzenetsorba TCP-alapú technológiát használ. Az Application Insights nem automatikusan nyomon követheti a várólista műveleteket, így manuálisan azt nyomon őket. A dequeue művelet egy leküldéses stílusú API-t, és a rendszer nem tudja nyomon követni azt.
+Service Bus-üzenetsorba hello TCP-alapú technológiát használ. Az Application Insights nem automatikusan nyomon követheti a várólista műveleteket, így manuálisan azt nyomon őket. hello created művelet egy leküldéses stílusú API-t, és nem tootrack el azt.
 
 #### <a name="enqueue"></a>Sorba helyezni
 
 ```C#
 public async Task Enqueue(string payload)
 {
-    // StartOperation is a helper method that initializes the telemetry item
+    // StartOperation is a helper method that initializes hello telemetry item
     // and allows correlation of this operation with its parent and children.
     var operation = telemetryClient.StartOperation<DependencyTelemetry>("enqueue " + queueName);
     operation.Telemetry.Type = "Queue";
     operation.Telemetry.Data = "Enqueue " + queueName;
 
     var message = new BrokeredMessage(payload);
-    // Service Bus queue allows the property bag to pass along with the message.
-    // We will use them to pass our correlation identifiers (and other context)
-    // to the consumer.
+    // Service Bus queue allows hello property bag toopass along with hello message.
+    // We will use them toopass our correlation identifiers (and other context)
+    // toohello consumer.
     message.Properties.Add("ParentId", operation.Telemetry.Id);
     message.Properties.Add("RootId", operation.Telemetry.Context.Operation.Id);
 
@@ -171,13 +171,13 @@ public async Task Enqueue(string payload)
 ```C#
 public async Task Process(BrokeredMessage message)
 {
-    // After the message is taken from the queue, create RequestTelemetry to track its processing.
-    // It might also make sense to get the name from the message.
+    // After hello message is taken from hello queue, create RequestTelemetry tootrack its processing.
+    // It might also make sense tooget hello name from hello message.
     RequestTelemetry requestTelemetry = new RequestTelemetry { Name = "Dequeue " + queueName };
 
     var rootId = message.Properties["RootId"].ToString();
     var parentId = message.Properties["ParentId"].ToString();
-    // Get the operation ID from the Request-Id (if you follow the HTTP Protocol for Correlation).
+    // Get hello operation ID from hello Request-Id (if you follow hello HTTP Protocol for Correlation).
     requestTelemetry.Context.Operation.Id = rootId;
     requestTelemetry.Context.Operation.ParentId = parentId;
 
@@ -201,35 +201,35 @@ public async Task Process(BrokeredMessage message)
 ```
 
 ### <a name="azure-storage-queue"></a>Az Azure Storage üzenetsorába
-A következő példa bemutatja, hogyan nyomon követéséhez a [Azure Storage üzenetsorába](../storage/queues/storage-dotnet-how-to-use-queues.md) műveletek és a gyártó fogyasztói, és az Azure Storage közötti összefüggésbe telemetriai. 
+a következő példa azt mutatja meg hogyan hello tootrack hello [Azure Storage üzenetsorába](../storage/queues/storage-dotnet-how-to-use-queues.md) műveletek és összefüggésbe telemetriai hello készítő, hello fogyasztói és az Azure Storage között. 
 
-A tároló várólista rendelkezik egy HTTP API-t. A várólistára minden hívást követi az Application Insights függőségi gyűjtő a HTTP-kérelmekre.
-Győződjön meg arról, hogy `Microsoft.ApplicationInsights.DependencyCollector.HttpDependenciesParsingTelemetryInitializer` a `applicationInsights.config`. Ha nem rendelkezik, adja hozzá a programozott módon [szűrést és az Azure Application Insights SDK előfeldolgozása](app-insights-api-filtering-sampling.md).
+hello tárolási várólistának egy HTTP API-t. Minden hívások toohello várólista kötetblokkok hello Application Insights függőségi adatgyűjtő a HTTP-kérelmekre.
+Győződjön meg arról, hogy `Microsoft.ApplicationInsights.DependencyCollector.HttpDependenciesParsingTelemetryInitializer` a `applicationInsights.config`. Ha nem rendelkezik, adja hozzá a programozott módon [szűrést és a hello Azure Application Insights SDK előfeldolgozása](app-insights-api-filtering-sampling.md).
 
 Ha manuálisan adja meg az Application Insights, győződjön meg arról, létrehozása és inicializálása `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule` mint:
  
 ``` C#
 DependencyTrackingTelemetryModule module = new DependencyTrackingTelemetryModule();
 
-// You can prevent correlation header injection to some domains by adding it to the excluded list.
-// Make sure you add a Storage endpoint. Otherwise, you might experience request signature validation issues on the Storage service side.
+// You can prevent correlation header injection toosome domains by adding it toohello excluded list.
+// Make sure you add a Storage endpoint. Otherwise, you might experience request signature validation issues on hello Storage service side.
 module.ExcludeComponentCorrelationHttpHeadersOnDomains.Add("core.windows.net");
 module.Initialize(TelemetryConfiguration.Active);
 
-// Do not forget to dispose of the module during application shutdown.
+// Do not forget toodispose of hello module during application shutdown.
 ```
 
-Érdemes azt is összefüggéseket az Application Insights Műveletazonosító tároló kérelemben azonosítóval. Állítsa be, és egy tároló kérelemben ügyfél és a kiszolgáló Kérelemazonosító információkért lásd: [figyelése, diagnosztizálása és elhárítása az Azure Storage](../storage/common/storage-monitoring-diagnosing-troubleshooting.md#end-to-end-tracing).
+Érdemes azt is toocorrelate hello Application Insights Műveletazonosító hello tároló kérelemben azonosítóval. Hogyan tooset és a tárolási get kérelmek ügyfél és a kiszolgáló Kérelemazonosító információkért lásd: [figyelése, diagnosztizálása és elhárítása az Azure Storage](../storage/common/storage-monitoring-diagnosing-troubleshooting.md#end-to-end-tracing).
 
 #### <a name="enqueue"></a>Sorba helyezni
-Tárolási sorok támogatja a HTTP API-t, mert a sor összes művelet automatikusan követi az Application Insights. Sok esetben elegendő a instrumentation kell lennie. Azonban összefüggéseket készítő nyomkövetési adatokat a fogyasztói oldalon a nyomkövetéseket, át kell korrelációs környezete hasonlóképpen hogyan azt ehhez a HTTP protokoll korrelációhoz. 
+Tárolási sorok hello HTTP API támogatja, mert hello várakozási sorral rendelkező összes művelet automatikusan követi az Application Insights. Sok esetben elegendő a instrumentation kell lennie. Azonban a gyártó nyomkövetések hello fogyasztói oldalán hívásláncainak toocorrelate, át kell adnia néhány korrelációs környezetben hasonlóképpen toohow végezzük azt a HTTP protokoll a korrelációs hello. 
 
-Ebben a példában azt a nem kötelező követni `Enqueue` műveletet. A következőket teheti:
+Ebben a példában a Microsoft hello választható nyomon `Enqueue` műveletet. A következőket teheti:
 
- - **Összefüggéseket találni az újrapróbálkozások között (ha van ilyen)**: minden rendelkeznek egy közös szülő, amely rendelkezik a `Enqueue` műveletet. Ellenkező esetben ezek még nyomon követi a bejövő kérelem gyermekeként. Ha a várólista logikai kéréseket, hívást eredményezett újrapróbálkozások található nehéz lehet.
+ - **Összefüggéseket találni az újrapróbálkozások között (ha van ilyen)**: minden rendelkeznek, amely hello egy közös szülő `Enqueue` műveletet. Ellenkező esetben ezek még nyomon hello bejövő kérelem gyermekeként. Ha több logikai kérelmek toohello várólista, a hívást eredményezett újrapróbálkozások nehéz toofind lehet.
  - **A tárolási naplófájljai összefüggéseket (ha szükséges)**: azok az Application Insights telemetria most tartozzanak.
 
-A `Enqueue` művelet egy szülő műveletet (például egy bejövő HTTP-kérelem) gyermeke. A HTTP-függőségi hívás nem gyermeke a `Enqueue` művelet és a bejövő kérelem unoka:
+Hello `Enqueue` művelet egy szülő műveletet (például egy bejövő HTTP-kérelem) hello gyermeke. hello HTTP függőségi hívás hello hello gyermeke `Enqueue` művelet és hello unoka hello bejövő kérelem:
 
 ```C#
 public async Task Enqueue(CloudQueue queue, string message)
@@ -239,8 +239,8 @@ public async Task Enqueue(CloudQueue queue, string message)
     operation.Telemetry.Data = "Enqueue " + queue.Name;
 
     // MessagePayload represents your custom message and also serializes correlation identifiers into payload.
-    // For example, if you choose to pass payload serialized to JSON, it might look like
-    // {'RootId' : 'some-id', 'ParentId' : '|some-id.1.2.3.', 'message' : 'your message to process'}
+    // For example, if you choose toopass payload serialized tooJSON, it might look like
+    // {'RootId' : 'some-id', 'ParentId' : '|some-id.1.2.3.', 'message' : 'your message tooprocess'}
     var jsonPayload = JsonConvert.SerializeObject(new MessagePayload
     {
         RootId = operation.Telemetry.Context.Operation.Id,
@@ -250,7 +250,7 @@ public async Task Enqueue(CloudQueue queue, string message)
     
     CloudQueueMessage queueMessage = new CloudQueueMessage(jsonPayload);
 
-    // Add operation.Telemetry.Id to the OperationContext to correlate Storage logs and Application Insights telemetry.
+    // Add operation.Telemetry.Id toohello OperationContext toocorrelate Storage logs and Application Insights telemetry.
     OperationContext context = new OperationContext { ClientRequestID = operation.Telemetry.Id};
 
     try
@@ -272,18 +272,18 @@ public async Task Enqueue(CloudQueue queue, string message)
 }  
 ```
 
-A telemetriai adatok mennyiségének csökkentésére az alkalmazás jelentéseket, vagy ha nem kívánja nyomon követni a `Enqueue` más okok miatt, használja a `Activity` API közvetlenül:
+telemetriai adatok mennyisége tooreduce hello az alkalmazás jelentéseket, vagy ha nem szeretné, hogy tootrack hello `Enqueue` más okokból használata hello művelet `Activity` közvetlenül API:
 
-- Hozzon létre (és indítása) egy új `Activity` helyett az Application Insights művelet elindítása. Ezt megteheti *nem* kell hozzárendelni kívánt tulajdonságokat rajta a művelet nevén kívül.
-- Szerializálható `yourActivity.Id` ahelyett, hogy a üzenetadatokat be `operation.Telemetry.Id`. Is `Activity.Current.Id`.
+- Hozzon létre (és indítása) egy új `Activity` helyett hello Application Insights művelet elindítása. Ezt megteheti *nem* kell tooassign hello művelet nevén kívül a kívánt tulajdonságokat.
+- Szerializálható `yourActivity.Id` hello üzenetadatokat ahelyett, hogy a `operation.Telemetry.Id`. Is `Activity.Current.Id`.
 
 
 #### <a name="dequeue"></a>Created
-Hasonlóképpen, a `Enqueue`, a tároló várólista tényleges HTTP-kérelem automatikusan követi nyomon az Application Insights. Azonban a `Enqueue` művelet feltehetően történik, a szülő környezetben, például egy bejövő kérelem környezete. Application Insights SDK-k automatikusan összefüggéseket ilyen művelet (és a HTTP része) a szülő kérelem és egyéb telemetriai jelentett ugyanabban a hatókörben.
+Hasonlóképpen túl`Enqueue`, egy tényleges HTTP toohello tároló várólistája automatikusan követi nyomon az Application Insights. Azonban hello `Enqueue` művelet feltehetően hello szülő környezetben, például egy bejövő kérelem környezete zajlik. Application Insights SDK-k automatikusan egyeztetéséhez ilyen művelet (és a HTTP-rész) hello szülő kérelemmel és egyéb telemetriai jelentett hello azonos hatókör.
 
-A `Dequeue` legbonyolultabb művelet. Az Application Insights SDK automatikusan nyomon követi a HTTP-kérelmekre. A korrelációs környezetben azonban azt nem ismert mindaddig, amíg az üzenetet a rendszer értelmezi. Nincs lehetőség a HTTP-kérelem és a telemetriai adatokat a többi üzenet összefüggéseket.
+Hello `Dequeue` legbonyolultabb művelet. Application Insights SDK hello automatikusan nyomon követi a HTTP-kérelmekre. Hello korrelációs környezetben azonban azt nem ismert amíg üdvözlőüzenetére elemzi. Már nem lehetséges toocorrelate hello HTTP tooget hello kérelemüzenet hello többi hello telemetriai adatokat.
 
-Sok esetben hasznos lehet a más nyomkövetési adatokat, valamint a HTTP-kérelem a várólista összefüggéseket. A következő példa bemutatja, hogyan teheti meg:
+Sok esetben hasznos toocorrelate hello HTTP kérelem toohello várólista más nyomkövetések is lehet. hello következő példa bemutatja, hogyan toodo azt:
 
 ``` C#
 public async Task<MessagePayload> Dequeue(CloudQueue queue)
@@ -304,13 +304,13 @@ public async Task<MessagePayload> Dequeue(CloudQueue queue)
         {
             var payload = JsonConvert.DeserializeObject<MessagePayload>(message.AsString);
 
-            // If there is a message, we want to correlate the Dequeue operation with processing.
-            // However, we will only know what correlation ID to use after we get it from the message,
-            // so we will report telemetry after we know the IDs.
+            // If there is a message, we want toocorrelate hello Dequeue operation with processing.
+            // However, we will only know what correlation ID toouse after we get it from hello message,
+            // so we will report telemetry after we know hello IDs.
             telemetry.Context.Operation.Id = payload.RootId;
             telemetry.Context.Operation.ParentId = payload.ParentId;
 
-            // Delete the message.
+            // Delete hello message.
             return payload;
         }
     }
@@ -334,14 +334,14 @@ public async Task<MessagePayload> Dequeue(CloudQueue queue)
 
 #### <a name="process"></a>Folyamat
 
-A következő példában azt egy bejövő üzenet módon hasonlóképpen követéséhez hogyan azt egy bejövő HTTP-kérelem nyomon követése:
+A következő példa hello, azt követni a bejövő üzenet módon hasonlóképpen toohow azt nyomon követni a bejövő HTTP kérelem:
 
 ```C#
 public async Task Process(MessagePayload message)
 {
-    // After the message is dequeued from the queue, create RequestTelemetry to track its processing.
+    // After hello message is dequeued from hello queue, create RequestTelemetry tootrack its processing.
     RequestTelemetry requestTelemetry = new RequestTelemetry { Name = "Dequeue " + queueName };
-    // It might also make sense to get the name from the message.
+    // It might also make sense tooget hello name from hello message.
     requestTelemetry.Context.Operation.Id = message.RootId;
     requestTelemetry.Context.Operation.ParentId = message.ParentId;
 
@@ -366,22 +366,22 @@ public async Task Process(MessagePayload message)
 
 Hasonlóképpen a többi üzenetsor-műveletet tagolva is. Egy betekintés művelet egy dequeue művelet, hasonló módon lesznek tagolva. Üzenetsor-kezelési műveletet tagolása nem szükséges. Az Application Insights nyomon követi a műveletek, például HTTP, és a legtöbb esetben elegendő.
 
-Amikor állíthatnak üzenet törlése, ellenőrizze, hogy beállította a művelet (korrelációs) azonosítót. Másik lehetőségként használhatja a `Activity` API. Majd nincs szükség művelet azonosítók a telemetriai adatok elemek beállítani, mert az Application Insights minderre meg:
+Amikor állíthatnak üzenet törlése, ellenőrizze, hogy beállította hello művelet (korrelációs) azonosítót. Másik lehetőségként használhatja a hello `Activity` API. Nem szükséges a tooset művelet azonosítók hello telemetriai elemek Application Insights minderre, mert:
 
-- Hozzon létre egy új `Activity` után egy elemet az üzenetsorból.
-- Használjon `Activity.SetParentId(message.ParentId)` fogyasztói és gyártó naplók összefüggéseket.
-- Indítsa el a `Activity`.
-- Track created, feldolgozása és törlési műveletek használatával `Start/StopOperation` segítő. Ehhez a a azonos aszinkron folyamatábrán (a végrehajtási környezet). Ezzel a módszerrel azok még korrelált megfelelően.
-- Állítsa le a `Activity`.
+- Hozzon létre egy új `Activity` után egy elem hello üzenetsorból.
+- Használjon `Activity.SetParentId(message.ParentId)` toocorrelate fogyasztói, a gyártó naplókat.
+- Indítsa el a hello `Activity`.
+- Track created, feldolgozása és törlési műveletek használatával `Start/StopOperation` segítő. Ehhez a hello azonos aszinkron szabályozása folyamata (a végrehajtási környezet). Ezzel a módszerrel azok még korrelált megfelelően.
+- Állítsa le hello `Activity`.
 - Használjon `Start/StopOperation`, vagy hívja az `Track` telemetriai manuálisan.
 
 ### <a name="batch-processing"></a>Kötegfeldolgozási
-Az egyes üzenetsorok egy kérelem több üzenetet is created. Ilyen üzenetek feldolgozása feltételezhetően független, és a különböző logikai műveletek tartozik. Ebben az esetben nincs lehetőség a összefüggéseket a `Dequeue` adott üzenetfeldolgozást művelet.
+Az egyes üzenetsorok egy kérelem több üzenetet is created. Ilyen üzenetek feldolgozása feltételezhetően független, és különböző logikai műveletek toohello tartozik. Ebben az esetben nincs lehetséges toocorrelate hello `Dequeue` művelet tooparticular üzenet feldolgozása.
 
-Minden üzenet fel kell dolgozni a saját aszinkron vezérlési folyamatában. További információkért lásd: a [követési kimenő függőségek](#outgoing-dependencies-tracking) szakasz.
+Minden üzenet fel kell dolgozni a saját aszinkron vezérlési folyamatában. További információkért lásd: hello [követési kimenő függőségek](#outgoing-dependencies-tracking) szakasz.
 
 ## <a name="long-running-background-tasks"></a>Hosszan futó háttérfeladatok
-Egyes alkalmazások start hosszú futású műveleteket, amelyek a felhasználói kérelmek oka lehet. A nyomkövetés/instrumentation szempontjából nincs eltér a kérelem vagy függőségi instrumentation: 
+Egyes alkalmazások start hosszú futású műveleteket, amelyek a felhasználói kérelmek oka lehet. Hello nyomkövetés/instrumentation szempontjából nincs eltér a kérelem vagy függőségi instrumentation: 
 
 ``` C#
 async Task BackgroundTask()
@@ -393,7 +393,7 @@ async Task BackgroundTask()
         int progress = 0;
         while (progress < 100)
         {
-            // Process the task.
+            // Process hello task.
             telemetryClient.TrackTrace($"done {progress++}%");
         }
         // Update status code and success as appropriate.
@@ -411,24 +411,24 @@ async Task BackgroundTask()
 }
 ```
 
-A jelen példában használjuk `telemetryClient.StartOperation` létrehozásához `RequestTelemetry` , és adja meg a korrelációs környezetben. Tegyük fel, a bejövő kérelmeket, amelyek ütemezett a művelet által létrehozott szülő művelet van. Amennyiben a megjelölt `BackgroundTask` ugyanazon aszinkron elindul egy bejövő kérelem folyamata kontrolljához szülő művelet tartozzanak. `BackgroundTask`és minden beágyazott telemetriai elem mellékel a kérelemhez, amely a, a kérelem befejeződését követően automatikusan közötti kapcsolatot.
+A jelen példában használjuk `telemetryClient.StartOperation` toocreate `RequestTelemetry` és kitöltési hello korrelációs környezetet. Tegyük fel, a bejövő kérelmeket, amelyek ütemezett hello művelet által létrehozott szülő művelet van. Amennyiben a megjelölt `BackgroundTask` induljon el, egy bejövő kérelem azonos aszinkron folyamatábrán hello, azt, hogy a szülő művelet tartozzanak. `BackgroundTask`és minden beágyazott telemetriai elem automatikusan, ami miatt, hello kérelem befejeződését követően hello kérelemmel közötti kapcsolatot.
 
-A feladat indításakor a háttérben szálból, amely nem tartalmaz semmilyen műveletet (`Activity`) társított, `BackgroundTask` bármelyik szülő nem rendelkezik. Azonban azt is beágyazott műveletek. A feladat jelentett összes telemetriai elemet összefüggő a `RequestTelemetry` létrehozott `BackgroundTask`.
+Hello feladat indításakor hello háttér szálból, amely nem tartalmaz semmilyen műveletet (`Activity`) társított, `BackgroundTask` bármelyik szülő nem rendelkezik. Azonban azt is beágyazott műveletek. Az összes telemetriai hello feladat jelentett cikkeket korrelált toohello `RequestTelemetry` létrehozott `BackgroundTask`.
 
 ## <a name="outgoing-dependencies-tracking"></a>Kimenő függőségek nyomon követése
 Nyomon követheti a saját függőségi fajta vagy az Application Insights nem támogatja a műveletet.
 
-A `Enqueue` metódus a Service Bus-üzenetsorba, vagy a tároló várólista ilyen egyéni követési példák lehetnek.
+Hello `Enqueue` metódus a Service Bus-üzenetsorba hello vagy hello Storage üzenetsorába ilyen egyéni követési példák lehetnek.
 
-Az általános módszer követési egyéni függőséget, hogy:
+általános megközelítés hello egyéni függőségi nyomon követése, hogy:
 
-- Hívja a `TelemetryClient.StartOperation` (kiterjesztés) módszer, amelynek változó kitöltése a `DependencyTelemetry` összefüggések keresésére és néhány egyéb tulajdonság szükséges tulajdonságok (kezdő időpont stamp, időtartama).
-- Egyéb egyéni tulajdonságának beállítása a `DependencyTelemetry`, például a nevét és minden egyéb környezetre van szüksége.
+- Hello hívás `TelemetryClient.StartOperation` (kiterjesztés) módszer, amelynek változó kitöltése hello `DependencyTelemetry` összefüggések keresésére és néhány egyéb tulajdonság szükséges tulajdonságok (kezdő időpont stamp, időtartama).
+- Egyéb egyéni tulajdonságainak beállítása hello `DependencyTelemetry`, például hello nevét és minden egyéb környezetre van szüksége.
 - Ellenőrizze a függőségi hívás, és várjon, amíg az.
-- Állítsa le a műveletet a `StopOperation` amikor befejeződött.
+- Állítsa le a hello műveletet `StopOperation` amikor befejeződött.
 - Kivétel kezelése.
 
-`StopOperation`csak leállítja a műveletet, amely elkezdődött. Ha az aktuális futó művelet nem egyezik meg szeretné szüntetni, azzal `StopOperation` nincs semmi hatása. Ez a helyzet akkor fordulhat elő, ha azonos végrehajtási környezetében párhuzamosan több művelet indítása:
+`StopOperation`csak leállítja az elindított hello műveletet. Ha hello aktuális futó művelet nem egyezik meg a kívánt toostop, egy hello `StopOperation` nincs semmi hatása. Ez a helyzet akkor fordulhat elő, ha több operations hello párhuzamosan ugyanazt a végrehajtási környezet:
 
 ```C#
 var firstOperation = telemetryClient.StartOperation<DependencyTelemetry>("task 1");
@@ -440,7 +440,7 @@ var secondTask = RunMyTaskAsync();
 
 await firstTask;
 
-// This will do nothing and will not report telemetry for the first operation
+// This will do nothing and will not report telemetry for hello first operation
 // as currently secondOperation is active.
 telemetryClient.StopOperation(firstOperation); 
 
@@ -470,8 +470,8 @@ public async Task RunMyTaskAsync()
 
 ## <a name="next-steps"></a>Következő lépések
 
-- Az alapvető [telemetriai korrelációs](application-insights-correlation.md) az Application insights szolgáltatással.
-- Tekintse meg a [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
-- Egyéni jelentést [eseményeket és metrikákat](app-insights-api-custom-events-metrics.md) az Application Insights részére.
+- A hello alapvető [telemetriai korrelációs](application-insights-correlation.md) az Application insights szolgáltatással.
+- Lásd: hello [adatmodell](application-insights-data-model.md) Application Insights-típusok és az adatok modell.
+- Egyéni jelentést [eseményeket és metrikákat](app-insights-api-custom-events-metrics.md) tooApplication Insights.
 - Tekintse meg a standard [konfigurációs](app-insights-configuration-with-applicationinsights-config.md#telemetry-initializers-aspnet) környezeti tulajdonságok gyűjtemény.
-- Ellenőrizze a [System.Diagnostics.Activity felhasználói útmutató](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) hogyan azt összefüggéseket telemetriai adatok megjelenítéséhez.
+- Ellenőrizze a hello [System.Diagnostics.Activity felhasználói útmutató](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/ActivityUserGuide.md) toosee hogyan azt összefüggéseket telemetriai adatokat.

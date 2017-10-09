@@ -1,5 +1,5 @@
 ---
-title: "Data Lake Store-ból adatokat regisztrálni kell az Azure Data Catalog |} Microsoft Docs"
+title: Data Lake Store az Azure Data Catalog aaaRegister adatait |} Microsoft Docs
 description: "Data Lake Store-ból adatokat regisztrálni kell az Azure Data Catalog"
 services: data-lake-store,data-catalog
 documentationcenter: 
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 41f7ca0d638479b013e77cb949a71c566bc66aa4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3e895b42cab4ba39d288950763312a243883cbdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="register-data-from-data-lake-store-in-azure-data-catalog"></a>Data Lake Store-ból adatokat regisztrálni kell az Azure Data Catalog
-Ebben a cikkben, megtudhatja, hogyan integrálható az Azure Data Lake Store az Azure Data Catalog, hogy az adatok felderíthető egy szervezeten belül a Data Catalog integrálásával. Az adatok katalogizálása további információkért lásd: [Azure Data Catalog](../data-catalog/data-catalog-what-is-data-catalog.md). Forgatókönyvek, amelyben használhatja a Data Catalog ismertetése: [Azure Data Catalog gyakori forgatókönyvei](../data-catalog/data-catalog-common-scenarios.md).
+Ebben a cikkben megtudhatja, hogyan toointegrate az Azure Data Lake az Azure Data Catalog toomake az adatok tárolásához felderíthető egy szervezeten belül a Data Catalog integrálásával. Az adatok katalogizálása további információkért lásd: [Azure Data Catalog](../data-catalog/data-catalog-what-is-data-catalog.md). toounderstand forgatókönyvek, amelyben használhatja a Data Catalog, lásd: [Azure Data Catalog gyakori forgatókönyvei](../data-catalog/data-catalog-common-scenarios.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 * **Az Azure-előfizetés engedélyezése** a Data Lake Store nyilvános előzetes verziójához. Lásd az [utasításokat](data-lake-store-get-started-portal.md).
-* **Azure Data Lake Store-fiók**. Kövesse [Az Azure Data Lake Store használatának első lépései az Azure Portal használatával](data-lake-store-get-started-portal.md) című témakör utasításait. Ebben az oktatóanyagban ossza meg velünk hozzon létre egy Data Lake Store-fiókot nevű **datacatalogstore**.
+* **Azure Data Lake Store-fiók**. Hajtsa végre a hello található utasítások segítségével: [Ismerkedés az Azure Data Lake Store használatának hello Azure Portal](data-lake-store-get-started-portal.md). Ebben az oktatóanyagban ossza meg velünk hozzon létre egy Data Lake Store-fiókot nevű **datacatalogstore**.
 
-    Egyszer létrehozta a fiókot, a minta adatkészletet feltölteni. Ebben az oktatóanyagban található összes .csv fájl feltöltéséhez írja meg nekünk a **AmbulanceData** mappájában a [Azure Data Lake Git-tárház](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/). Használhatja például a különböző ügyfelek [Azure Tártallózó](http://storageexplorer.com/), feltölteni az adatokat egy blob-tárolóba.
+    Hello fiók létrehozását követően töltse fel a minta adatkészlet tooit. Ebben az oktatóanyagban ossza meg velünk hello található összes hello .csv fájl feltöltéséhez **AmbulanceData** hello mappájában [Azure Data Lake Git-tárház](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/). Használhatja például a különböző ügyfelek [Azure Tártallózó](http://storageexplorer.com/), tooupload adatok tooa blob tároló.
 * **Az Azure Data Catalog**. A szervezet már rendelkeznie kell egy Azure Data Catalog létrehozni a szervezet számára. Egy szervezet csak egy katalógus esetén engedélyezett.
 
 ## <a name="register-data-lake-store-as-a-source-for-data-catalog"></a>Register Data Lake Store a Data Catalog forrásként
 
 > [!VIDEO https://channel9.msdn.com/Series/AzureDataLake/ADCwithADL/player]
 
-1. Ugrás a `https://azure.microsoft.com/services/data-catalog`, és kattintson a **Ismerkedés**.
-2. Jelentkezzen be az Azure Data Catalog-portált, majd kattintson **adatok közzététele**.
+1. Nyissa meg túl`https://azure.microsoft.com/services/data-catalog`, és kattintson a **Ismerkedés**.
+2. Jelentkezzen be hello Azure Data Catalog-portált, majd kattintson **adatok közzététele**.
 
     ![Egy adatforrás regisztrálása](./media/data-lake-store-with-data-catalog/register-data-source.png "egy adatforrás regisztrálása")
-3. A következő lapon kattintson a **alkalmazás indítása**. Az Alkalmazásjegyzék-fájl a számítógép letöltése. Kattintson duplán a jegyzékfájl az alkalmazás indításához.
-4. Az üdvözlőoldalon kattintson **bejelentkezés**, és adja meg a hitelesítő adatokat.
+3. Hello következő lapon kattintson a **alkalmazás indítása**. Ez letölti azokat a hello Alkalmazásjegyzék-fájl a számítógépen. Kattintson duplán a hello jegyzékfájl toostart hello alkalmazásra.
+4. A hello kezdőlapján kattintson **bejelentkezés**, és adja meg a hitelesítő adatokat.
 
     ![Üdvözlőképernyő](./media/data-lake-store-with-data-catalog/welcome.screen.png "üdvözlőképernyője")
-5. A Select egy adatforrás lap, válassza ki a **Azure Data Lake**, és kattintson a **következő**.
+5. Válasszon egy adatforrás lap hello, jelölje ki **Azure Data Lake**, és kattintson a **következő**.
 
     ![Adatforrás kiválasztása](./media/data-lake-store-with-data-catalog/select-source.png "adatforrás kiválasztása")
-6. A következő oldalon adja meg a Data Catalog regisztrálni kívánt Data Lake Store-fiók nevét. Az egyéb beállításokat hagyja az alapértelmezett, és kattintson a **Connect**.
+6. Hello következő lapon adja meg a Data Lake Store-fiók nevét, amelyet a Data Catalog tooregister hello. Egyéb lehetőségek hello hagyja az alapértelmezett, és kattintson a **Connect**.
 
-    ![Az adatforráshoz történő csatlakozás](./media/data-lake-store-with-data-catalog/connect-to-source.png "az adatforráshoz történő csatlakozás")
-7. A következő oldalon a következő szegmensek lehet osztani.
+    ![Csatlakozás toodata forrás](./media/data-lake-store-with-data-catalog/connect-to-source.png "Connect toodata forrás")
+7. hello következő lap a következő szegmensek hello lehet osztani.
 
-    a. A **kiszolgálói hierarchia** mezőben a Data Lake Store-fiók mappaszerkezet jelöli. **$Root** Data Lake Store-fiók gyökerét jelző és **AmbulanceData** jelenti. a mappa létrehozása a Data Lake Store-fiók gyökérkönyvtárában.
+    a. Hello **kiszolgálói hierarchia** mezőben hello Data Lake Store-fiók mappaszerkezet jelöli. **$Root** jelöli hello Data Lake Store-fiók gyökérben, és **AmbulanceData** jelöli hello hello Data Lake Store-fiók gyökérkönyvtárában hello létrehozott mappába.
 
-    b. A **rendelkezésre álló objektumok** mezőben sorolja fel a fájlokat és mappákat a **AmbulanceData** mappa.
+    b. Hello **rendelkezésre álló objektumok** mezőben hello fájlokat és mappákat a hello tartalmazza **AmbulanceData** mappa.
 
-    c. **Objektumok regisztrált mezőben** a fájlokat és mappákat, amelyet szeretne regisztrálni kell az Azure Data Catalog sorolja fel.
+    c. **Objektumok toobe regisztrált mezőben** listák hello fájlok és mappák, amelyet az Azure Data Catalog tooregister.
 
     ![Adatszerkezet megtekintése](./media/data-lake-store-with-data-catalog/view-data-structure.png "adatszerkezet megtekintése")
-8. Ebben az oktatóanyagban regisztrálnia kell az összes fájl a könyvtárban. Ehhez kattintson a (![-objektumainak áthelyezése](./media/data-lake-store-with-data-catalog/move-objects.png "-objektumainak áthelyezése")) gombra kattintva helyezze át az összes fájlt **regisztrálandó objektumok** mezőbe.
+8. Ebben az oktatóanyagban regisztrálnia kell az összes hello fájlok hello könyvtárban. Az adott, kattintson a hello (![-objektumainak áthelyezése](./media/data-lake-store-with-data-catalog/move-objects.png "-objektumainak áthelyezése")) gomb toomove összes hello fájlok túl**regisztrált objektumok toobe** mezőbe.
 
-    Mivel az adatok egy szervezeti adatkatalógus lesz regisztrálva, bizonyos metaadatait, amelyet később felhasználhat kereshetők meg gyorsan az adatok hozzáadása egy ajánlott maszkolandó módszert is. Például az adatok tulajdonosa (például egy tölti fel az adatokat, akik) hozzáadása egy e-mail címet, vagy az adatok azonosítására címke hozzáadása. Az alábbi képernyőfelvétel-készítés jeleníti meg egy címkét, hogy azt adja hozzá az adatokhoz.
+    Egy szervezeti adatkatalógus hello adatok lesz regisztrálva, mert egy ajánlott maszkolandó közelítse tooadd bizonyos metaadatait, amelyet később felhasználhat tooquickly hello adatok elhelyezése. Például egy e-mail címet (például egy ki az adatfeltöltés hello) hello adatok tulajdonosa hozzá, vagy egy címke tooidentify hello adatok hozzáadása. az alábbi hello képernyőfelvétel-készítés mutatja, hogy azt toohello adatok hozzáadása egy címkét.
 
     ![Adatszerkezet megtekintése](./media/data-lake-store-with-data-catalog/view-selected-data-structure.png "adatszerkezet megtekintése")
 
     Kattintson a **regisztrálása**.
-9. A következő képernyőfelvétel-készítés azt jelzi, hogy az adatok sikeresen regisztrálva van a Data Catalog.
+9. hello következő képernyőfelvétel-készítés azt jelzi, hogy hello adatok sikeresen regisztrálva van a Data Catalog hello.
 
     ![Regisztráció kész](./media/data-lake-store-with-data-catalog/registration-complete.png "adatszerkezet megtekintése")
-10. Kattintson a **View Portal** lépjen vissza a Data Catalog-portált, és győződjön meg arról, hogy érhetők el a regisztrált adategységeket a portálról. Keresse meg az adatokat, az adatok regisztrálása során használt címke is használhat.
+10. Kattintson a **View Portal** toogo biztonsági toohello Data Catalog-portált, és győződjön meg arról, hogy most hozzáférés hello regisztrált hello portálról adatokat is. toosearch hello adatok, hello adatok regisztrálása során használt hello címke is használhatja.
 
      ![Adatok keresése a katalógus](./media/data-lake-store-with-data-catalog/search-data-in-catalog.png "keresés adatokat keressen a katalógusban")
-11. Most már például való hozzáadását jegyzeteket és dokumentáció található adatok műveleteket hajthat végre. További információkért tekintse meg a következő hivatkozásokat.
+11. Most már például való hozzáadását a jegyzeteket és dokumentáció toohello adatok műveleteket hajthat végre. További információkért tekintse meg a következő hivatkozások hello.
 
     * [A Data Catalog adatforrások ellátása megjegyzésekkel](../data-catalog/data-catalog-how-to-annotate.md)
     * [A Data Catalog dokumentum adatforrások](../data-catalog/data-catalog-how-to-documentation.md)

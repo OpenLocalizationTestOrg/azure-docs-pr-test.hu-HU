@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions értesítési központ kötés |} Microsoft Docs"
-description: "Azure Notification Hub-kötés az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók értesítési központ kötés |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Azure Notification Hub-kötés az Azure Functions."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,39 +16,39 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/27/2016
 ms.author: glenga
-ms.openlocfilehash: fa3d37b963c1bb6b58127b9180cd657d7b1dabcc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d192424a8ec701d02f8bcb4aa4c1d189b20537a5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-notification-hub-output-binding"></a>Az Azure Functions értesítési központ kimeneti kötése
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk azt ismerteti, konfigurálása és az Azure Functions Azure Notification Hub kötések kódot. 
+Ez a cikk azt ismerteti, hogyan tooconfigure és kód az Azure Functions Azure Notification Hub-kötéseket. 
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-A funkciók egy konfigurált Azure Notification Hub használata néhány sornyi kód leküldéses értesítéseket küldhet. Azonban az Azure Notification Hub be kell állítani az a Platform értesítések szolgáltatások (PNS) szeretne használni. Az Azure értesítési központ konfigurálása és egy, ha értesítést szeretne kapni regisztrálni alkalmazások fejlesztésére további információkért lásd: [Ismerkedés a Notification Hubs](../notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) a célplatform ügyfél felső részén kattintson .
+A funkciók egy konfigurált Azure Notification Hub használata néhány sornyi kód leküldéses értesítéseket küldhet. Azonban hello Azure Notification Hub kell konfigurálni hello toouse kívánt Platform értesítések szolgáltatások (PNS). Az Azure Notification Hub konfigurálása és egy ügyfél tooreceive értesítések regisztrálása alkalmazások fejlesztéséhez további információkért lásd: [Ismerkedés a Notification Hubs](../notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) kattintson a célplatform ügyfél hello: felső.
 
-Az értesítéseket küld a natív értesítések vagy sablon értesítések lehet. Natív értesítések célplatform egy adott értesítés be a `platform` tulajdonság a kimeneti kötése. Sablon értesítést, amelyekre több platformon is használható.   
+hello értesítéseket küld a natív értesítések vagy sablon értesítések lehet. Natív értesítések célplatform egy adott értesítés be hello `platform` hello tulajdonságának kimeneti kötése. Egy sablon értesítés lehet használt tootarget több platformon.   
 
 ## <a name="notification-hub-output-binding-properties"></a>Értesítési központ kimeneti kötési tulajdonságok
-A function.json fájl tartalmazza a következő tulajdonságokkal:
+hello function.json fájl megad hello következő tulajdonságai:
 
-* `name`: Az értesítési központ üzenet függvény kódban használt változó neve.
-* `type`: meg kell *"notificationHub"*.
-* `tagExpression`: Címke kifejezések adja meg, hogy az eszközök, amelyek megfelelnek a címke kifejezésnek értesítések fogadására regisztrált értesítések kézbesítendő teszik lehetővé.  További információkért lásd: [Útválasztás és címke kifejezések](../notification-hubs/notification-hubs-tags-segment-push-message.md).
-* `hubName`: Az Azure-portálon az értesítési központ erőforrás neve.
-* `connection`: Ez a kapcsolati karakterláncnak kell lennie egy **Alkalmazásbeállítás** kapcsolati karakterlánc beállítása a *DefaultFullSharedAccessSignature* értéke az értesítési központban.
-* `direction`: meg kell *"out"*. 
-* `platform`: A platform tulajdonság jelöli a értesítési platform az értesítési célokat. A következő értékek egyikének kell lennie:
-  * Alapértelmezés szerint a platform tulajdonság nem szerepel a kimeneti kötés, ha sablon értesítések segítségével bármely célplatform az Azure értesítési központ konfigurálva. A közötti az Azure Notification Hub platform értesítések küldése általában sablonokkal további információkért lásd: [sablonok](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).
-  * `apns`: Az Apple Push Notification szolgáltatás. Az értesítési központ konfigurálása az APN szolgáltatás és az értesítés fogadásának egy ügyfél alkalmazásban további információkért lásd: [küldő leküldéses értesítések küldéséhez iOS az Azure Notification hubs használatával](../notification-hubs/notification-hubs-ios-apple-push-notification-apns-get-started.md) 
-  * `adm`: [Amazon Device Messaging](https://developer.amazon.com/device-messaging). Az értesítési központ konfigurálása az ADM és az értesítés fogadásának Kindle-alkalmazást a további információkért lásd: [Ismerkedés a Notification Hubs szolgáltatással Kindle-alkalmazásokhoz](../notification-hubs/notification-hubs-kindle-amazon-adm-push-notification.md) 
-  * `gcm`: [A Google Cloud Messaging](https://developers.google.com/cloud-messaging/). Firebase Cloud Messaging, amely GCM új verziója, is támogatott. Az értesítési központ konfigurálása GCM/FCM és az értesítés fogadásának egy Android-ügyfélalkalmazás további információkért lásd: [küldő leküldéses értesítések androidra az Azure Notification hubs használatával](../notification-hubs/notification-hubs-android-push-notification-google-fcm-get-started.md)
-  * `wns`: [Windows leküldéses értesítéseket kezelő szolgáltatása](https://msdn.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-windows-push-notification-services--wns--overview) célzó Windows platformra. Windows Phone 8.1 és újabb verziók WNS is támogatja. Az értesítési központ konfigurálása a wns-ből, és az értesítés fogadásának egy univerzális Windows Platform (UWP) alkalmazásban további információkért lásd: [Ismerkedés a Notification Hubs Windows Universal Platform alkalmazásokkal való](../notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)
-  * `mpns`: [A Microsoft leküldéses értesítéseket kezelő szolgáltatása](https://msdn.microsoft.com/en-us/library/windows/apps/ff402558.aspx). Ez a platform támogatja a Windows Phone 8 és a korábbi Windows Phone-platformokat. Az értesítési központ konfigurálása az mpns Szolgáltatáshoz, és a Windows Phone-alkalmazás az értesítés fogadásának további információkért lásd: [küldő leküldéses értesítések az Azure Notification Hubs – Windows Phone](../notification-hubs/notification-hubs-windows-mobile-push-notifications-mpns.md)
+* `name`: Értesítési központ üdvözlőüzenetére függvény a kódban használt változó neve.
+* `type`: be kell állítani túl*"notificationHub"*.
+* `tagExpression`: Címke kifejezések lehetővé teszik, hogy értesítések kézbesíteni tooa készlete, amelyek megfelelnek hello címke kifejezésnek tooreceive értesítések regisztrált eszközök toospecify.  További információkért lásd: [Útválasztás és címke kifejezések](../notification-hubs/notification-hubs-tags-segment-push-message.md).
+* `hubName`: Hello notification hub erőforrás hello Azure-portálon a neve.
+* `connection`: Ez a kapcsolati karakterláncnak kell lennie egy **Alkalmazásbeállítás** kapcsolati karakterlánc beállítása toohello *DefaultFullSharedAccessSignature* értéke az értesítési központban.
+* `direction`: be kell állítani túl*"out"*. 
+* `platform`: hello platform tulajdonság jelzi hello értesítési platform az értesítési célokat. Hello a következő értékek egyike lehet:
+  * Alapértelmezés szerint ha hello platform tulajdonság hiányzik a kötés, hello kimenet sablon értesítések lehet használt tootarget hello Azure Notification Hub konfigurált bármely platformra. További információ a sablonok használatával általában toosend közötti platform értesítések az Azure Notification Hub, az: [sablonok](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).
+  * `apns`: Az Apple Push Notification szolgáltatás. Hello értesítési központ konfigurálása APNS és hello értesítést kap egy ügyfél alkalmazásban további információkért lásd: [küldő leküldéses értesítések tooiOS az Azure Notification hubs használatával](../notification-hubs/notification-hubs-ios-apple-push-notification-apns-get-started.md) 
+  * `adm`: [Amazon Device Messaging](https://developer.amazon.com/device-messaging). Hello értesítési központ konfigurálása az ADM és hello értesítést kap a Kindle-alkalmazást a további információkért lásd: [Ismerkedés a Notification Hubs szolgáltatással Kindle-alkalmazásokhoz](../notification-hubs/notification-hubs-kindle-amazon-adm-push-notification.md) 
+  * `gcm`: [A Google Cloud Messaging](https://developers.google.com/cloud-messaging/). Firebase Cloud Messaging, amely hello GCM új verziója, is támogatott. A GCM/FCM hello értesítési központ konfigurálása és az Android-ügyfélalkalmazás hello értesítést további információkért lásd: [küldő leküldéses értesítések tooAndroid az Azure Notification hubs használatával](../notification-hubs/notification-hubs-android-push-notification-google-fcm-get-started.md)
+  * `wns`: [Windows leküldéses értesítéseket kezelő szolgáltatása](https://msdn.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-windows-push-notification-services--wns--overview) célzó Windows platformra. Windows Phone 8.1 és újabb verziók WNS is támogatja. A WNS hello értesítési központ konfigurálása és hello értesítést kap egy univerzális Windows Platform (UWP) alkalmazásban további információkért lásd: [Ismerkedés a Notification Hubs Windows Universal Platform alkalmazásokkal való](../notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)
+  * `mpns`: [A Microsoft leküldéses értesítéseket kezelő szolgáltatása](https://msdn.microsoft.com/en-us/library/windows/apps/ff402558.aspx). Ez a platform támogatja a Windows Phone 8 és a korábbi Windows Phone-platformokat. Értesítési központ hello beállítása az mpns Szolgáltatáshoz, és hello értesítést kap a Windows Phone-alkalmazás további információkért lásd: [küldő leküldéses értesítések az Azure Notification Hubs – Windows Phone](../notification-hubs/notification-hubs-windows-mobile-push-notifications-mpns.md)
 
 Példa function.json:
 
@@ -70,17 +70,17 @@ Példa function.json:
 ```
 
 ## <a name="notification-hub-connection-string-setup"></a>Értesítési központ kapcsolati karakterlánc beállítása
-A Notification hub kimeneti kötés használatához konfigurálnia kell a kapcsolati karakterláncot a központ. Az ehhez a *integráció* lapon válassza az értesítési központ, vagy hozzon létre egy újat. 
+egy értesítési központot toouse kimeneti kötése, konfigurálnia kell a kapcsolati karakterlánc hello hello központ. Ezt megteheti a hello *integráció* lapon válassza az értesítési központ, vagy hozzon létre egy újat. 
 
-Adja hozzá a kapcsolati karakterláncot egy kapcsolati karakterláncot egy meglévő központ kézzel is hozzáadhatja a *DefaultFullSharedAccessSignature* az értesítési központba. Ez a kapcsolati karakterlánc az értesítések küldéséhez függvény hozzáférési engedélyt biztosít. A *DefaultFullSharedAccessSignature* kapcsolódási karakterlánc értéke elérhető a **kulcsok** gombra a fő paneljén az értesítési központ erőforrás az Azure portálon. Manuálisan adja hozzá a központ kapcsolati karakterláncot, használja az alábbi lépéseket: 
+Hello kapcsolati karakterláncot adja hozzá manuálisan is hozzáadhat egy kapcsolati karakterláncot egy meglévő központi *DefaultFullSharedAccessSignature* tooyour értesítési központot. Ez a kapcsolati karakterlánc engedély toosend értesítési üzenetek a függvény hozzáférést biztosít. Hello *DefaultFullSharedAccessSignature* kapcsolódási karakterlánc értéke hello elérhető **kulcsok** gomb hello fő panelen a notification hub erőforrás hello Azure-portálon. toomanually hozzáadása egy kapcsolati karakterláncot a központ használata hello a következő lépéseket: 
 
-1. Az a **függvény app** panel az Azure portál, kattintson a **függvény Alkalmazásbeállítások > az App Service-beállítások**.
-2. Az a **beállítások** panelen kattintson a **Alkalmazásbeállítások**.
-3. Görgessen le a **Alkalmazásbeállítások** szakaszt, és adjon hozzá egy nevű bejegyzést a *DefaultFullSharedAccessSignature* értéke az értesítési központban.
-4. Az alkalmazás beállítás karakterlánc nevét a kimeneti kötéseiben hivatkozik. Hasonló **MyHubConnectionString** a fenti példában használt.
+1. A hello **függvény app** panelen található hello Azure-portálon kattintson **függvény Alkalmazásbeállítások > Ugrás tooApp szolgáltatás beállításaira**.
+2. A hello **beállítások** panelen kattintson a **Alkalmazásbeállítások**.
+3. Görgessen lefelé toohello **Alkalmazásbeállítások** szakaszt, és adjon hozzá egy nevű bejegyzést a *DefaultFullSharedAccessSignature* értéke az értesítési központban.
+4. Az alkalmazás, karakterlánc neve beállítás hello kimeneti kötések hivatkozik. Hasonló túl**MyHubConnectionString** fenti hello példában használt.
 
 ## <a name="apns-native-notifications-with-c-queue-triggers"></a>APNS natív értesítések küldése a C# eseményindítók
-A példa bemutatja, hogyan használható a megadott típus beolvasása a [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) natív APNS értesítés küldése. 
+Ez a példa bemutatja, hogyan toouse meghatározva a hello [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) toosend natív APNS értesítést. 
 
 ```cs
 #r "Microsoft.Azure.NotificationHubs"
@@ -94,15 +94,15 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    // In this example the queue item is a new user to be processed in the form of a JSON string with 
+    // In this example hello queue item is a new user toobe processed in hello form of a JSON string with 
     // a "name" value.
     //
-    // The JSON format for a native APNS notification is ...
+    // hello JSON format for a native APNS notification is ...
     // { "aps": { "alert": "notification message" }}  
 
     log.Info($"Sending APNS notification of a new user");    
     dynamic user = JsonConvert.DeserializeObject(myQueueItem);    
-    string apnsNotificationPayload = "{\"aps\": {\"alert\": \"A new user wants to be added (" + 
+    string apnsNotificationPayload = "{\"aps\": {\"alert\": \"A new user wants toobe added (" + 
                                         user.name + ")\" }}";
     log.Info($"{apnsNotificationPayload}");
     await notification.AddAsync(new AppleNotification(apnsNotificationPayload));        
@@ -110,7 +110,7 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
 ```
 
 ## <a name="gcm-native-notifications-with-c-queue-triggers"></a>GCM natív értesítések küldése a C# eseményindítók
-A példa bemutatja, hogyan használható a megadott típus beolvasása a [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) natív GCM értesítés küldése. 
+Ez a példa bemutatja, hogyan toouse meghatározva a hello [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) toosend natív GCM értesítést. 
 
 ```cs
 #r "Microsoft.Azure.NotificationHubs"
@@ -124,15 +124,15 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    // In this example the queue item is a new user to be processed in the form of a JSON string with 
+    // In this example hello queue item is a new user toobe processed in hello form of a JSON string with 
     // a "name" value.
     //
-    // The JSON format for a native GCM notification is ...
+    // hello JSON format for a native GCM notification is ...
     // { "data": { "message": "notification message" }}  
 
     log.Info($"Sending GCM notification of a new user");    
     dynamic user = JsonConvert.DeserializeObject(myQueueItem);    
-    string gcmNotificationPayload = "{\"data\": {\"message\": \"A new user wants to be added (" + 
+    string gcmNotificationPayload = "{\"data\": {\"message\": \"A new user wants toobe added (" + 
                                         user.name + ")\" }}";
     log.Info($"{gcmNotificationPayload}");
     await notification.AddAsync(new GcmNotification(gcmNotificationPayload));        
@@ -140,7 +140,7 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
 ```
 
 ## <a name="wns-native-notifications-with-c-queue-triggers"></a>WNS natív értesítések küldése a C# eseményindítók
-A példa bemutatja, hogyan használható a megadott típus beolvasása a [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) natív WNS bejelentési értesítés küldése. 
+Ez a példa bemutatja, hogyan toouse meghatározva a hello [Microsoft Azure Notification Hubs Library](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) toosend natív WNS poharad értesítést. 
 
 ```cs
 #r "Microsoft.Azure.NotificationHubs"
@@ -154,10 +154,10 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    // In this example the queue item is a new user to be processed in the form of a JSON string with 
+    // In this example hello queue item is a new user toobe processed in hello form of a JSON string with 
     // a "name" value.
     //
-    // The XML format for a native WNS toast notification is ...
+    // hello XML format for a native WNS toast notification is ...
     // <?xml version="1.0" encoding="utf-8"?>
     // <toast>
     //      <visual>
@@ -172,7 +172,7 @@ public static async Task Run(string myQueueItem, IAsyncCollector<Notification> n
     string wnsNotificationPayload = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
                                     "<toast><visual><binding template=\"ToastText01\">" +
                                         "<text id=\"1\">" + 
-                                            "A new user wants to be added (" + user.name + ")" + 
+                                            "A new user wants toobe added (" + user.name + ")" + 
                                         "</text>" +
                                     "</binding></visual></toast>";
 
@@ -210,7 +210,7 @@ let Run(myTimer: TimerInfo, notification: byref<IDictionary<string, string>>) =
 ```
 
 ## <a name="template-example-using-an-out-parameter"></a>Sablon példa egy kimeneti paraméter használatával
-Ebben a példában értesítést küld egy [sablon regisztrációs](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) , amely tartalmazza a `message` helyőrző a sablonban.
+Ebben a példában értesítést küld egy [sablon regisztrációs](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) , amely tartalmazza a `message` helyőrző hello sablonban.
 
 ```cs
 using System;
@@ -232,7 +232,7 @@ private static IDictionary<string, string> GetTemplateProperties(string message)
 ```
 
 ## <a name="template-example-with-asynchronous-function"></a>Az aszinkron függvény sablon – példa
-Aszinkron kódot használja, ha kimenő paraméterek nem engedélyezettek. Ebben az esetben használjon `IAsyncCollector` a sablon értesítési vissza. A következő kódot a fenti kódot aszinkron példája. 
+Aszinkron kódot használja, ha kimenő paraméterek nem engedélyezettek. Ebben az esetben használjon `IAsyncCollector` tooreturn a sablon értesítést. hello következő kód egy aszinkron példában látható a fenti hello kódot. 
 
 ```cs
 using System;
@@ -243,20 +243,20 @@ public static async Task Run(string myQueueItem, IAsyncCollector<IDictionary<str
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
 
-    log.Info($"Sending Template Notification to Notification Hub");
+    log.Info($"Sending Template Notification tooNotification Hub");
     await notification.AddAsync(GetTemplateProperties(myQueueItem));    
 }
 
 private static IDictionary<string, string> GetTemplateProperties(string message)
 {
     Dictionary<string, string> templateProperties = new Dictionary<string, string>();
-    templateProperties["user"] = "A new user wants to be added : " + message;
+    templateProperties["user"] = "A new user wants toobe added : " + message;
     return templateProperties;
 }
 ```
 
 ## <a name="template-example-using-json"></a>Sablon példa JSON használatával
-Ebben a példában értesítést küld egy [sablon regisztrációs](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) , amely tartalmazza a `message` helyőrző a sablonban érvényes JSON karakterláncnak használatával.
+Ebben a példában értesítést küld egy [sablon regisztrációs](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) , amely tartalmazza a `message` helyőrző hello sablon használatával érvényes JSON karakterláncnak.
 
 ```cs
 using System;
@@ -269,7 +269,7 @@ public static void Run(string myQueueItem,  out string notification, TraceWriter
 ```
 
 ## <a name="template-example-using-notification-hubs-library-types"></a>Sablon példa dokumentumtár-típus a Notification Hubs használatával
-A példa bemutatja, hogyan használható a megadott típus beolvasása a [Microsoft Azure Notification Hubs könyvtár](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/). 
+Ez a példa bemutatja, hogyan toouse meghatározva a hello [Microsoft Azure Notification Hubs könyvtár](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/). 
 
 ```cs
 #r "Microsoft.Azure.NotificationHubs"

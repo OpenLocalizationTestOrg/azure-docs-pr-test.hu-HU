@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Active Directory tartományi szolgáltatások: Első lépések |} Microsoft Docs"
-description: "Engedélyezze az Azure Active Directory tartományi szolgáltatások (előzetes verzió) Azure portál használatával"
+description: "Engedélyezze az Azure Active Directory tartományi szolgáltatások (előzetes verzió) Azure-portálon hello használata"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/28/2017
 ms.author: maheshu
-ms.openlocfilehash: 47507096a6245d4f1ba57a652ddf5167b3776ae9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 79cbb21c4a50194f5ad8ca1a4a8493ee4a260a9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>Engedélyezze az Azure Active Directory tartományi szolgáltatások (előzetes verzió) Azure portál használatával
-Ez a cikk bemutatja, hogyan engedélyezze az Azure Active Directory tartományi szolgáltatások (az Azure Active Directory tartományi szolgáltatások) az Azure portál használatával.
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>Engedélyezze az Azure Active Directory tartományi szolgáltatások (előzetes verzió) Azure-portálon hello használata
+Ez a cikk bemutatja, hogyan tooenable Azure Active Directory tartományi szolgáltatások (az Azure AD DS) használatával hello Azure-portálon.
 
 
-Elindíthatja a **engedélyezése az Azure AD tartományi szolgáltatások** varázslóban kövesse az alábbi lépéseket:
+toolaunch hello **engedélyezése az Azure AD tartományi szolgáltatások** varázsló, teljes hello a következő lépéseket:
 
-1. Nyissa meg az [Azure Portal](https://portal.azure.com).
-2. A bal oldali ablaktáblájában kattintson a **új**.
-3. Az a **új** panelen, írja be **tartományi szolgáltatások** azokat a keresési sávon.
+1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com).
+2. Hello bal oldali ablaktáblában kattintson a **új**.
+3. A hello **új** panelen, írja be **tartományi szolgáltatások** hello keresősáv be.
 
     ![Keresse meg a tartományi szolgáltatások](./media/getting-started/search-domain-services.png)
 
-4. Kattintással jelölje ki **Azure AD tartományi szolgáltatások** keresési javaslatok listája. Az a **Azure AD tartományi szolgáltatások** panelen kattintson a **létrehozása** gombra.
+4. Kattintson a tooselect **Azure AD tartományi szolgáltatások** hello keresési javaslatok listája. A hello **Azure AD tartományi szolgáltatások** panelen kattintson hello **létrehozása** gombra.
 
     ![Tartományi szolgáltatások panel](./media/getting-started/domain-services-blade.png)
 
-5. A **engedélyezése az Azure AD tartományi szolgáltatások** varázsló elindul.
+5. Hello **engedélyezése az Azure AD tartományi szolgáltatások** varázsló elindul.
 
 
 ## <a name="task-1-configure-basic-settings"></a>1. feladat: konfigurálja az alapbeállításokat
-Az a **alapjai** lap a varázslóban megadhatja a DNS-tartománynév, a felügyelt tartomány számára. Választhatja azt is, az erőforráscsoport és az Azure-beli hely, amelyhez a felügyelt tartományra kell telepíteni.
+A hello **alapjai** lap hello varázsló hello hello által kezelt tartomány DNS-tartománynevet adhat meg. Hello erőforráscsoportot is beállíthatja, és az Azure-beli hely toowhich hello által felügyelt tartományokhoz kell telepíteni.
 
 ![Alapvető beállítások konfigurálása](./media/getting-started/domain-services-blade-basics.png)
 
-1. Válassza ki a **DNS-tartománynév** a felügyelt tartományok.
+1. Válassza ki a hello **DNS-tartománynév** a felügyelt tartományok.
 
-   * A címtár alapértelmezett tartományneve (az egy **. onmicrosoft.com** utótag) alapértelmezés szerint van megadva.
+   * hello hello címtár alapértelmezett tartományneve (az egy **. onmicrosoft.com** utótag) alapértelmezés szerint van megadva.
 
-   * A egy egyéni tartománynevet is megadható. Ebben a példában az egyéni tartománynév a *contoso100.com*.
+   * A egy egyéni tartománynevet is megadható. Ebben a példában hello egyéni tartománynév megadása *contoso100.com*.
 
      > [!WARNING]
-     > A megadott tartománynév előtagja (a *contoso100.com* tartománynévben például a *contoso100* tag) legfeljebb 15 karaktert tartalmazhat. Nem hozható létre egy felügyelt tartomány 15 karakternél hosszabb előtaggal kezdődik.
+     > a megadott tartománynév előtagja hello (például *contoso100* a hello *contoso100.com* tartománynevet) kell tartalmaznia a 15 karaktert. Nem hozható létre egy felügyelt tartomány 15 karakternél hosszabb előtaggal kezdődik.
      >
      >
 
-2. Ellenőrizze, hogy a felügyelt tartomány számára választott DNS-tartománynév még nem létezik a virtuális hálózatban. Pontosabban, ellenőrizze, hogy:
+2. Győződjön meg arról, hogy hello DNS-tartománynevet választott hello felügyelt tartomány már nem létezik hello virtuális hálózatban. Pontosabban, ellenőrizze, hogy:
 
-   * Már létezik-e tartomány ugyanezzel a DNS-tartománynévvel a virtuális hálózaton.
+   * Már létezik hello tartomány hello virtuális hálózaton azonos DNS-tartománynevet.
 
-   * A virtuális hálózat, ahol a felügyelt tartományra engedélyezni szeretné a helyszíni hálózat VPN-kapcsolattal rendelkezik. Ebben a forgatókönyvben győződjön meg arról, nincs olyan tartomány ugyanezzel a DNS-tartománynévvel a helyi hálózaton.
+   * hello tooenable hello által kezelt tartomány tervezett virtuális hálózat a helyszíni hálózat VPN-kapcsolattal rendelkezik. Ebben a forgatókönyvben a ellenőrizze, hogy nincs olyan tartomány hello azonos DNS-tartománynevet a helyi hálózaton.
 
-   * Létezik-e egy már meglévő felhőszolgáltatás ugyanezen a néven a virtuális hálózaton.
+   * Hello virtuális hálózaton van ilyen nevű létező felhőalapú szolgáltatást.
 
-3. Válassza ki a **a fajta virtuális hálózatot**. Alapértelmezés szerint a **erőforrás-kezelő** virtuális hálózati típus van kijelölve. Ez a fajta virtuális hálózatot az összes felügyelt tartományok az újonnan létrehozott használatát javasoljuk.
+3. Válassza ki a hello **a fajta virtuális hálózatot**. Alapértelmezés szerint hello **erőforrás-kezelő** virtuális hálózati típus van kijelölve. Ez a fajta virtuális hálózatot az összes felügyelt tartományok az újonnan létrehozott használatát javasoljuk.
 
-4. Válassza ki az Azure **előfizetés** a szeretné létrehozni a felügyelt tartományra.
+4. Jelölje be hello Azure **előfizetés** , amelyben szeretné toocreate hello által felügyelt tartományokhoz.
 
-5. Válassza ki a **erőforráscsoport** a felügyelt tartományra tartozik kell. Ön választhatja a **hozzon létre új** vagy **meglévő** lehetőséget választhat ki az erőforráscsoportot.
+5. Jelölje be hello **erőforráscsoport** toowhich hello felügyelt tartományhoz kell tartoznia. Dönthet úgy, vagy hello **hozzon létre új** vagy **meglévő** beállítások tooselect hello erőforráscsoportot.
 
-6. Válassza ki az Azure **hely** a a felügyelt tartományra meg kell létrehozni. Az a **hálózati** oldalon a varázsló csak virtuális hálózatok, amelyek a kijelölt helyre látja.
+6. Válassza ki a hello Azure **hely** mely hello által felügyelt tartományokhoz kell létrehozni. A hello **hálózati** lap hello varázsló csak virtuális hálózatok tartozó kijelölt toohello helyét látja.
 
-7. Amikor elkészült, kattintson a **OK** a áthelyezése a **hálózati** a varázsló.
+7. Amikor elkészült, kattintson a **OK** a toohello toomove **hálózati** hello varázsló.
 
 
 ## <a name="next-step"></a>Következő lépés

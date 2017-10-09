@@ -1,6 +1,6 @@
 ---
-title: "Kiterjesztése az r az Azure Data Lake Analytics U-SQL-parancsfájlok |} Microsoft Docs"
-description: "Megtudhatja, hogyan R-kód U-SQL-parancsfájlok futtatása"
+title: "Azure Data Lake Analytics az r parancsfájlok aaaExtend U-SQL |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorun R-kód a U-SQL-parancsfájlok"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/20/2017
 ms.author: saveenr
-ms.openlocfilehash: d479af515566f497d9611e75426f6acb8f8276d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24affd4963a08d30a7111b49af388e9c1268430e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-get-started-with-extending-u-sql-with-r"></a>Oktatóanyag: Ismerkedés a U-SQL r kiterjesztése
 
-A következő példa az R-kód telepítésének lépéseit mutatja be:
-* Használja a `REFERENCE ASSEMBLY` R bővítmények engedélyezése a U-SQL parancsfájl utasítást.
-* Használja a` REDUCE` művelet a bemeneti adatok a kulcs particionálásához.
-* A U-SQL-R bővítmények közé tartozik egy beépített nyomáscsökkentő (`Extension.R.Reducer`) mindegyik csomópontra a nyomáscsökkentő rendelt futó R-kód. 
-* Dedikált használatát nevű nevű adatkeretek `inputFromUSQL` és `outputToUSQL `rendre mechanizmusok adatok átadására közötti U-SQL és a R. bemeneti és kimeneti típusú azonosító neveket fix DataFrame számára (Ez azt jelenti, hogy felhasználók nem módosítható ezen előre meghatározott bemeneti neve és kimeneti DataFrame azonosítók).
+a következő példa hello hello R-kód telepítésének lépéseit mutatja be:
+* Használjon hello `REFERENCE ASSEMBLY` hello U-SQL parancsfájl-utasítás tooenable R bővítmények.
+* Használja a` REDUCE` művelet toopartition hello adja meg a kulcs adatokat.
+* U-SQL hello R-bővítmények közé tartozik egy beépített nyomáscsökkentő (`Extension.R.Reducer`) minden egyes hozzárendelt csúcspont toohello nyomáscsökkentő futó R-kód. 
+* Dedikált használatát nevű nevű adatkeretek `inputFromUSQL` és `outputToUSQL `rendre toopass adatok között U-SQL és R. bemeneti és kimeneti DataFrame típusú azonosító neveket fix (Ez azt jelenti, hogy felhasználók nem lehet módosítani ezeket előre definiált nevek a bemeneti és kimeneti DataFrame azonosítók).
 
-## <a name="embedding-r-code-in-the-u-sql-script"></a>R-kód beágyazása a U-SQL-parancsfájl
+## <a name="embedding-r-code-in-hello-u-sql-script"></a>R-kód beágyazása hello U-SQL-parancsfájl
 
-Az R-kód a U-SQL parancsfájl parancs paraméterének használatával beágyazott is a `Extension.R.Reducer`. Például az R-parancsfájl, mint egy karakterlánc-változó deklarálható, és adja át paraméterként a nyomáscsökkentő.
+Segítségével beágyazott hello R kód a U-SQL parancsfájl hello parancs paramétere hello `Extension.R.Reducer`. Például deklarálható hello karakterlánc változóként R-parancsfájl, és adja át azt, mint egy paraméterrel toohello nyomáscsökkentő.
 
 
     REFERENCE ASSEMBLY [ExtR];
@@ -38,7 +38,7 @@ Az R-kód a U-SQL parancsfájl parancs paraméterének használatával beágyazo
     DECLARE @myRScript = @"
     inputFromUSQL$Species = as.factor(inputFromUSQL$Species)
     lm.fit=lm(unclass(Species)~.-Par, data=inputFromUSQL)
-    #do not return readonly columns and make sure that the column names are the same in usql and r scripts,
+    #do not return readonly columns and make sure that hello column names are hello same in usql and r scripts,
     outputToUSQL=data.frame(summary(lm.fit)$coefficients)
     colnames(outputToUSQL) <- c(""Estimate"", ""StdError"", ""tValue"", ""Pr"")
     outputToUSQL
@@ -46,16 +46,16 @@ Az R-kód a U-SQL parancsfájl parancs paraméterének használatával beágyazo
     
     @RScriptOutput = REDUCE … USING new Extension.R.Reducer(command:@myRScript, rReturnType:"dataframe");
 
-## <a name="keep-the-r-code-in-a-separate-file-and-reference-it--the-u-sql-script"></a>Az R-kód tartsa külön fájlt, és hivatkozzon a U-SQL-parancsfájl
+## <a name="keep-hello-r-code-in-a-separate-file-and-reference-it--hello-u-sql-script"></a>Tartsa hello R-kód külön fájlt, és hivatkozni rá hello U-SQL parancsfájl
 
-Az alábbi példában látható egy összetettebb használat. Ebben az esetben az R-kód, amely a U-SQL parancsfájl erőforrásként van telepítve.
+a következő példa hello összetettebb használati mutatja be. Ebben az esetben hello R-kód, amely hello U-SQL parancsfájl erőforrásként van telepítve.
 
 Az R-kód külön fájlt mentse.
 
     load("my_model_LM_Iris.rda")
     outputToUSQL=data.frame(predict(lm.fit, inputFromUSQL, interval="confidence")) 
 
-U-SQL parancsfájl segítségével, hogy az erőforrás telepítése utasítással R-parancsfájl telepítése.
+Használja a U-SQL parancsfájl toodeploy adott R-parancsfájl hello telepítése erőforrás utasítást.
 
     REFERENCE ASSEMBLY [ExtR];
 
@@ -90,25 +90,25 @@ U-SQL parancsfájl segítségével, hogy az erőforrás telepítése utasításs
         PRODUCE Par, fit double, lwr double, upr double
         READONLY Par
         USING new Extension.R.Reducer(scriptFile:"RinUSQL_PredictUsingLinearModelasDF.R", rReturnType:"dataframe", stringsAsFactors:false);
-        OUTPUT @RScriptOutput TO @OutputFilePredictions USING Outputters.Tsv();
+        OUTPUT @RScriptOutput too@OutputFilePredictions USING Outputters.Tsv();
 
 ## <a name="how-r-integrates-with-u-sql"></a>Hogyan integrálható az R U-SQL
 
 ### <a name="datatypes"></a>Adattípusok
 * Konvertálja a karakterláncot és a numerikus oszlopot a U-SQL-R DataFrame és a U-SQL közötti [támogatott típusok: `double`, `string`, `bool`, `integer`, `byte`].
-* A `Factor` adattípus nem támogatott a U-SQL.
+* Hello `Factor` adattípus nem támogatott a U-SQL.
 * `byte[]`a base64-kódolású kell szerializálhatók `string`.
-* U-SQL-karakterláncok konvertálhatók tényezők az R-kód, amennyiben az U-SQL R bemeneti dataframe létrehozása vagy nyomáscsökkentő paramétert `stringsAsFactors: true`.
+* U-SQL-karakterláncok U-SQL R bemeneti dataframe létrehozása után, vagy hello nyomáscsökkentő paraméter beállítása lehet az R-kód, átalakított toofactors `stringsAsFactors: true`.
 
 ### <a name="schemas"></a>Sémák
 * U-SQL adatkészletek nem lehet ismétlődő oszlopneveket tartalmaz.
 * U-SQL adatkészletek oszlopnevek karakterláncoknak kell lenniük.
-* Oszlopnév a U-SQL és az R parancsfájlok azonosnak kell lennie.
-* Csak olvasható oszlop nem lehet a kimeneti dataframe része. Mivel a csak olvasható oszlop automatikusan beszúrta vissza a U-SQL táblázatban, ha UDO kimeneti sémája része.
+* Oszlopnevek ugyanazt a U-SQL és az R parancsfájlok kell hello.
+* Csak olvasható oszlop nem lehet hello kimeneti dataframe része. Mivel a csak olvasható oszlop automatikusan beszúrta vissza táblázatban hello U-SQL, ha UDO kimeneti sémája része.
 
 ### <a name="functional-limitations"></a>Működési korlátai
-* Az R-motor kétszer ugyanazt a folyamatot a példánya nem hozható létre. 
-* Jelenleg U-SQL nem támogatja nyomáscsökkentő udo-k segítségével generált particionált modellek segítségével előrejelzés egyesítő udo-k. Felhasználók deklarálja a particionált modellek erőforrásként és azok az R-parancsfájl használatát (lásd: mintakód `ExtR_PredictUsingLMRawStringReducer.usql`)
+* hello R motor példánya nem hozható létre kétszer a hello ugyanazt a folyamatot. 
+* Jelenleg U-SQL nem támogatja nyomáscsökkentő udo-k segítségével generált particionált modellek segítségével előrejelzés egyesítő udo-k. Felhasználók deklarálnia particionálva hello modellek erőforrásként és azok az R-parancsfájl használatát (lásd: mintakód `ExtR_PredictUsingLMRawStringReducer.usql`)
 
 ### <a name="r-versions"></a>R-verziók
 Csak R 3.2.2 esetén támogatott.
@@ -164,14 +164,14 @@ Csak R 3.2.2 esetén támogatott.
     XML
 
 ### <a name="input-and-output-size-limitations"></a>Bemeneti és kimeneti méretkorlátai
-Minden csomópont csak korlátozott mennyiségű memória rendelve van. A bemeneti és kimeneti DataFrames már léteznie kell az R-kód memóriája, mert a bemeneti és kimeneti teljes mérete legfeljebb 500 MB.
+Minden csomópont számára tooit rendelt memória korlátozott mennyiségű. Hello bemeneti és kimeneti DataFrames léteznie kell a memóriában hello R-kódban, mert hello bemeneti és kimeneti hello teljes mérete nem lehet nagyobb, mint 500 MB.
 
 ### <a name="sample-code"></a>Mintakód
-További mintakód áll rendelkezésre a Data Lake Store-fiókot, a U-SQL Advanced Analytics extensions telepítését követően. További mintakód elérési útja: `<your_account_address>/usqlext/samples/R`. 
+További mintakód megtalálható a Data Lake Store-fiók hello U-SQL Advanced Analytics extensions telepítését követően. További mintakód hello elérési útja: `<your_account_address>/usqlext/samples/R`. 
 
 ## <a name="deploying-custom-r-modules-with-u-sql"></a>A U-SQL egyéni R modul telepítése
 
-Először hozzon létre egy egyéni R modult, és azt a zip-, majd töltse fel az R egyéni modul zip fájlt az ADL áruházba. A példában magittr_1.5.zip feltölti azt használjuk ADLA fiók alapértelmezett ADLS-fiók gyökérkönyvtárában. Ha a modul ADL tárolójába feltöltött, deklarálja azt, tegye elérhetővé a U-SQL parancsfájl és hívás erőforrás központi telepítése segítségével `install.packages` a telepítéshez.
+Először hozzon létre egy egyéni R modult, és azt a zip-, majd töltse fel az R modul egyéni tooyour ADL fájltároló zip hello. Hello példában azt fel kell töltenie magittr_1.5.zip toohello gyökere hello alapértelmezett ADLS-fiók hello ADLA fiókot használunk. Hello modul tooADL tároló feltöltése után deklarálja azt TELEPÍTENI erőforrás toomake használja azt a U-SQL parancsfájlt és a hívás `install.packages` tooinstall azt.
 
     REFERENCE ASSEMBLY [ExtR];
     DEPLOY RESOURCE @"/magrittr_1.5.zip";
@@ -179,13 +179,13 @@ Először hozzon létre egy egyéni R modult, és azt a zip-, majd töltse fel a
     DECLARE @IrisData string =  @"/usqlext/samples/R/iris.csv";
     DECLARE @OutputFileModelSummary string = @"/R/Output/CustomePackages.txt";
 
-    // R script to run
+    // R script toorun
     DECLARE @myRScript = @"
-    # install the magrittr package,
+    # install hello magrittr package,
     install.packages('magrittr_1.5.zip', repos = NULL),
-    # load the magrittr package,
+    # load hello magrittr package,
     require(magrittr),
-    # demonstrate use of the magrittr package,
+    # demonstrate use of hello magrittr package,
     2 %>% sqrt
     ";
 
@@ -208,7 +208,7 @@ Először hozzon létre egy egyéni R modult, és azt a zip-, majd töltse fel a
     READONLY Par
     USING new Extension.R.Reducer(command:@myRScript, rReturnType:"charactermatrix");
 
-    OUTPUT @RScriptOutput TO @OutputFileModelSummary USING Outputters.Tsv();
+    OUTPUT @RScriptOutput too@OutputFileModelSummary USING Outputters.Tsv();
 
 ## <a name="next-steps"></a>Következő lépések
 * [A Microsoft Azure Data Lake Analytics áttekintése](data-lake-analytics-overview.md)

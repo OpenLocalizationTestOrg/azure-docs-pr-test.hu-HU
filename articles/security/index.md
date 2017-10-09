@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Security dokumentációja – oktatóanyagok | Microsoft Docs"
-description: "Ismerje meg az Azure-szolgáltatások biztonsági beállításainak testre szabását, hogy azok megfeleljenek a felhőben található szolgáltatások és adatok követelményeinek."
+title: "aaaAzure biztonsági dokumentációja – oktatóanyag |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocustomize biztonsági beállítások az Azure-szolgáltatások toomeet hello a szolgáltatásaikat és adataikat hello felhőben példányainak követelményeinek."
 services: security
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 2bdb991ec16dd4daffe8605598d589918bc07b64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef845a50b32dfec102d1f74d4af98e316dd7e1c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-documentation"></a>A Security dokumentációja
 
-Ismerje meg, hogy az Azure Security hogyan használható a felhőben található szolgáltatások és adatok védelmére. Az oktatóanyagok és egyéb dokumentációk segítenek testre szabni az Azure szolgáltatások biztonsági beállításait, hogy azok megfeleljenek a környezet követelményeinek.
+Ismerje meg, hogyan toouse Azure biztonsági tooprotect szolgáltatásaikat és adataikat a hello felhő. Oktatóanyagok és egyéb dokumentációt segítenek az Azure-szolgáltatások toomeet hello követelményeinek a központi telepítések a biztonsági beállítások testreszabása.
 
 <ul class="panelContent cardsFTitle">
     <li>

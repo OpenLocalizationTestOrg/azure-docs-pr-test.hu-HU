@@ -1,6 +1,6 @@
-Előfizetés, üzembe helyezve egy konkrét csomagot kiválasztani, csak az egyes rétegek engedélyezett szolgáltatások száma korlátozza mindegyiknél belül több szolgáltatáshoz is létrehozhat. Például létrehozhat legfeljebb 12-szolgáltatásokat az alapszintű rétegben, és egy másik 12: a S1 rétegben egyazon előfizetésen belül. Rétegek kapcsolatos további információkért lásd: [válasszon egy SKU vagy a réteg az Azure Search](../articles/search/search-sku-tier.md).
+Előfizetés, minden egyes üzembe helyezve egy konkrét csomagot kiválasztani, csak egyes rétegek engedélyezett szolgáltatások hello számát korlátozza egy belül több szolgáltatáshoz is létrehozhat. Például létrehozhat too12 szolgáltatások hello alapszintű rétegben, és egy másik 12 szolgáltatásokat, amely hello S1 réteg hello belül azonos előfizetéssel. Rétegek kapcsolatos további információkért lásd: [válasszon egy SKU vagy a réteg az Azure Search](../articles/search/search-sku-tier.md).
 
-Maximális szolgáltatásra vonatkozó korlátozások is generál, kérésre. Ha további szolgáltatásokat egyazon előfizetésen belül van szüksége, forduljon az Azure ügyfélszolgálatához.
+Maximális szolgáltatásra vonatkozó korlátozások is generál, kérésre. Kapcsolattartási Azure Ha szüksége több ügyfélszolgálatainak hello belül azonos előfizetéssel.
 
 | Erőforrás | Ingyenes | Alapszintű | S1 | S2 | S3 | S3 HD <sup>1</sup> |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -9,7 +9,7 @@ Maximális szolgáltatásra vonatkozó korlátozások is generál, kérésre. Ha
 
 <sup>1</sup> S3 HD nem támogatja a [indexelők](../articles/search/search-indexer-overview.md) most. 
 
-<sup>2</sup> keresési egységek (SU) vannak számlázást egységeket, mert lefoglalt egy *replika* vagy egy *partíció*. A tárolás, az indexelést és a lekérdezési műveletek mindkét erőforrás van szüksége. Hogyan keresési egység arra az esetre vonatkoznak, valamint egy diagram, amelyek a határok alatt maradjunk érvényes kombinációk kapcsolatos további információkért lásd: [lekérdezési és indexelési munkaterhelések szintjeinek erőforrás méretezése](../articles/search/search-capacity-planning.md). 
+<sup>2</sup> keresési egységek (SU) vannak számlázást egységeket, mert lefoglalt egy *replika* vagy egy *partíció*. A tárolás, az indexelést és a lekérdezési műveletek mindkét erőforrás van szüksége. További információk hogyan keresési egység arra az esetre vonatkoznak, valamint a diagram érvényes kombinációk hello határok alatt maradjunk, lásd: toolearn [lekérdezési és indexelési munkaterhelések szintjeinek erőforrás méretezése](../articles/search/search-capacity-planning.md). 
 
 <sup>3</sup> szabad több előfizetők által használt megosztott erőforrások alapul. Ebben a rétegben, nincsenek az egyes előfizető dedikált erőforrások. Emiatt a maximális skálája jelölésű nem alkalmazható.
 

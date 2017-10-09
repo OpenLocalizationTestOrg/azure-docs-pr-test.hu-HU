@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Storage eszközei |} Microsoft Docs"
-description: "Eszközök, amelyek lehetővé teszik a nézet vagy használhatják az Azure Storage adatokat listáját."
+title: "az Azure Storage használatához aaaTools |} Microsoft Docs"
+description: "Eszközök, amelyek lehetővé teszik tooview/használhatják az Azure Storage adatokat listáját."
 services: storage
 documentationcenter: 
 author: dineshmurthy
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: dineshmurthy
-ms.openlocfilehash: 620efda06d8225b21b6bb9b104b79061ebb6515c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3308de2153099a05a676ab1d76426bd932e8a96c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-client-tools"></a>Azure Storage-ügyféleszközök
-Az Azure Storage felhasználók gyakran érdemes megtekintése/kezelhetik az adatokat egy Azure Storage ügyfél eszközzel. Az alábbi táblázatban látható eszközöket tartalmazza, amelyek lehetővé teszik a számnak. A Microsoft helyezze el az "X" valamennyi blokkja Ha felsorolni és/vagy a hozzáférési adatok kivételére lehetőséget biztosít. A táblázatban is látható, ha az eszközök szabad-e vagy sem. "Próba" azt jelzi, hogy van egy ingyenes próbaverziót, de a teljes termék nincs szabad. "I/N" azt jelzi, hogy egy újabb verziója érhető szabad, miközben egy másik verzió.
+Az Azure Storage felhasználók gyakran szeretné, hogy toobe képes tooview/módosításának és az adatokat, egy Azure Storage ügyféleszközben. Hello táblázatokban szereplő, jelenleg egy számozott lista eszközöket tartalmazza, amelyek lehetővé teszik toodo ez. Azt be az "X" valamennyi blokkja Ha hello lehetőséget biztosít tooeither felsorolni és/vagy hello adatok kivételére eléréséhez. hello táblázatban is látható, ha hello eszközök szabad-e vagy sem. "Próba" azt jelzi, hogy van egy ingyenes próbaverziót, de nincs szabad hello teljes termék. "I/N" azt jelzi, hogy egy újabb verziója érhető szabad, miközben egy másik verzió.
 
-Csak az elérhető Azure Storage-ügyféleszközöket pillanatképe mellékelt. Ezek az eszközök továbbra is fejlődnek, és funkcióit nő. Ha anyagban javították vagy a frissítéseket, írt hozzászólásban tudassa velünk, hogy. Ugyanez érvényes Ha tudja, kell lennie a ide - eszközök örömmel adja hozzá lenne.
+Csak mellékelt hello elérhető Azure Storage-ügyféleszközök pillanatképet. Ezek az eszközök előfordulhat, hogy továbbra is tooevolve és funkció nő. Ha anyagban javították vagy a frissítéseket, hagyja a Megjegyzés toolet velünk. hello is igaz, ha ismeri eszközöket tartalmazza, amelyek toobe ide kell kerülnie - boldogok tooadd lenne őket.
 
 **A Microsoft Azure Storage ügyféleszközök**
 
@@ -91,7 +91,7 @@ Csak az elérhető Azure Storage-ügyféleszközöket pillanatképe mellékelt. 
 
 **Az Azure Storage külső ügyféleszközök**
 
-A Microsoft nem ellenőrizte a funkció vagy a következő külső eszközök által igényelt minőségét és a listaelem nem feltétlenül jelenti azt egy Microsoft záradéka.
+A Microsoft nem ellenőrizte hello funkció vagy a külső eszközök és a lista tartalmazza a következő hello által igényelt minőségi nem feltétlenül jelenti azt egy Microsoft záradéka.
 
 <table>
   <tr>

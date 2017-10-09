@@ -1,6 +1,6 @@
 ---
-title: "Batch-fiók létrehozása az Azure Portalon | Microsoft Docs"
-description: "Megtudhatja, hogyan hozhat létre Azure Batch-fiókot az Azure Portalon nagyméretű párhuzamos számítási feladatok futtatásához a felhőben"
+title: "a Batch-fiók hello Azure-portálon aaaCreate |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate az Azure Batch fiókként hello Azure portál toorun nagyméretű párhuzamos munkaterhelések hello felhőben"
 services: batch
 documentationcenter: 
 author: tamram
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.date: 06/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 520d1d42d35b25db1a35d4317e9eb616cf5de565
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2176f88ba0a1a3298023de8f520d46ef28a664b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-batch-account-with-the-azure-portal"></a>Batch-fiók létrehozása az Azure Portalon
+# <a name="create-a-batch-account-with-hello-azure-portal"></a>Az Azure-portálon hello Batch-fiók létrehozása
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](batch-account-create-portal.md)
@@ -29,116 +29,116 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Megtudhatja, hogyan hozhat létre Azure Batch-fiókot az [Azure Portalon][azure_portal], és miként választhatja ki a számítási forgatókönyvének legmegfelelőbb fióktulajdonságokat. Megtudhatja, hol találja a fontos fióktulajdonságokat, például a hozzáférési kulcsokat és a fiókok URL-címeit.
+Megtudhatja, hogyan toocreate az Azure Batch hello fiókként [Azure-portálon][azure_portal], és válassza ki, amelyek felelnek meg a számítási forgatókönyv hello fiók tulajdonságait. Ismerje meg, ahol toofind fontos fiók tulajdonságait, például tárelérési kulcsok és a fiók URL-címek.
 
-További ismereteket a Batch-fiókokról és -forgatókönyvekről a [funkciók áttekintésében](batch-api-basics.md) találhat.
+Batch-fiókok és forgatókönyvek kapcsolatos háttér, lásd: hello [szolgáltatás áttekintése](batch-api-basics.md).
 
 
 
 ## <a name="create-a-batch-account"></a>Batch-fiók létrehozása
 
-A portálon a két *készletfelosztási mód* egyikének használatával hozhat létre Batch-fiókot: a **Batch szolgáltatás** módban vagy az újabb, **felhasználói előfizetés** módban, amely több konfigurálást igényel. További információt a két módról a [funkciók áttekintésében](batch-api-basics.md#account) találhat. A felhasználói előfizetés mód funkcióiról a [blogbejegyzésben](https://blogs.technet.microsoft.com/windowshpc/2017/03/17/azure-batch-vnet-and-custom-image-support-for-virtual-machine-pools/) is olvashat.
+Hello portál toocreate Batch-fiók használata egy hello két *tárolókészlet foglalási mód*: **a Batch szolgáltatás** módban vagy újabb hello **felhasználói előfizetési** módját, amely több helyre van szüksége konfiguráció. E két mód kapcsolatos információkért lásd: hello [szolgáltatás áttekintése](batch-api-basics.md#account). A hello felhasználói előfizetési mód, lásd is hello [blogbejegyzés](https://blogs.technet.microsoft.com/windowshpc/2017/03/17/azure-batch-vnet-and-custom-image-support-for-virtual-machine-pools/).
 
 ## <a name="batch-service-mode"></a>Batch szolgáltatás mód
 
 
 
-1. Jelentkezzen be az [Azure Portalra][azure_portal].
+1. Jelentkezzen be toohello [Azure-portálon][azure_portal].
 2. Kattintson az **Új** > **Számítás** > **Batch-szolgáltatás** elemre.
 
-    ![Batch a Piactéren][marketplace_portal]
-3. Megjelenik az **Új Batch-fiók** panel. Az egyes panelelemek leírását alább találja.
+    ![Köteg hello piactér][marketplace_portal]
+3. Hello **új Batch-fiók** panel jelenik meg. Lásd: hello leírását alább minden panel elemet.
 
     ![Batch-fiók létrehozása][account_portal]
 
-    a. **Fióknév**: A választott Batch-fióknévnek egyedinek kell lennie az Azure-régióban, amelyben az új fiókot létrehozza (lásd **Hely** alább). A fiók neve csak kisbetűket vagy számokat tartalmazhat, és 3–24 karakter hosszúnak kell lennie.
+    a. **Fióknév**: hello Batch-fiók neve mellett dönt hello Azure-régió, ahol hello-fiók létrehozása belül egyedinek kell lennie (lásd: **hely** alatt). hello fiók neve csak kisbetűket és számokat tartalmazhat, és 3 – 24 karakter hosszúságúnak kell lennie.
 
-    b. **Előfizetés**: A Batch-fiók létrehozására szolgáló előfizetés. Ha csak egy előfizetéssel rendelkezik, ez alapértelmezés szerint be van jelölve.
+    b. **Előfizetés**: hello mely toocreate hello Batch-fiókhoz az előfizetéshez. Ha csak egy előfizetéssel rendelkezik, ez alapértelmezés szerint be van jelölve.
 
     c. **Készletfelosztási mód**: Válassza a **Batch szolgáltatás** lehetőséget.
 
     c. **Erőforráscsoport**: Kiválaszthat egy meglévő erőforráscsoportot az új Batch-fiókhoz, vagy újat is létrehozhat.
 
-    d. **Hely**: Az az Azure-régió, amelyben a Batch-fiókot létrehozza. Csak az előfizetése és az erőforráscsoportja által támogatott régiók jelennek meg lehetőségként.
+    d. **Hely**: hello Azure-régiót mely toocreate hello Batch-fiókhoz. Beállítások, csak az előfizetés és az erőforráscsoport által támogatott hello régiók jelennek meg.
 
     e. **Tárfiók** (nem kötelező): Olyan általános célú Azure Storage-fiók, amelyet a Batch-fiókhoz társít. A legtöbb Batch-fiókhoz ajánlott a használata. További részletekért tekintse meg a lentebb található [Társított Azure Storage-fiók](#linked-azure-storage-account) című szakaszt.
 
-4. A fiók létrehozásához kattintson a **Létrehozás** gombra.
+4. Kattintson a **létrehozása** toocreate hello fiók.
 
-   A portál jelzi a folyamatban lévő üzembe helyezést. A befejezéskor **Az üzembe helyezések sikerültek** értesítés jelenik meg az **Értesítések** területen.
+   hello portál jelzi, hogy központi telepítése folyamatban van. A befejezéskor **Az üzembe helyezések sikerültek** értesítés jelenik meg az **Értesítések** területen.
 
 ## <a name="user-subscription-mode"></a>Felhasználói előfizetés mód
 
-### <a name="allow-azure-batch-to-access-the-subscription-one-time-operation"></a>Az előfizetés elérésének engedélyezése az Azure Batch számára (egyszeri művelet)
-Amikor először hoz létre Batch-fiókot felhasználói előfizetés módban, az alábbi lépéseket követve regisztrálja az előfizetését a Batch szolgáltatásban. (Ha korábban már regisztrált, ugorjon a következő szakaszra.)
+### <a name="allow-azure-batch-tooaccess-hello-subscription-one-time-operation"></a>Engedélyezi az Azure Batch tooaccess hello előfizetés (egyszeri művelet)
+Az első Batch-fiók felhasználói előfizetési módban létrehozásakor hajtsa végre a következő lépéseket tooregister hello kötegelt előfizetés. (Ha korábban már elvégezte ezt, hagyja ki toohello a következő szakaszt.)
 
-1. Jelentkezzen be az [Azure Portalra][azure_portal].
+1. Jelentkezzen be toohello [Azure-portálon][azure_portal].
 
-2. Kattintson a **További szolgáltatások** > **Előfizetések** elemre, majd a Batch-fiókhoz használni kívánt előfizetésre.
+2. Kattintson a **több szolgáltatások** > **előfizetések**, és hello az előfizetés Batch-fiók hello toouse használni szeretne.
 
-3. Az **Előfizetés** panelen kattintson a **Hozzáférés-vezérlés (IAM)** > **Hozzáadás** lehetőségre.
+3. A hello **előfizetés** panelen kattintson a **hozzáférés-vezérlés (IAM)** > **Hozzáadás**.
 
     ![Az előfizetéshez való hozzáférés vezérlése][subscription_access]
 
-4. Az **Engedélyek hozzáadása** panelen válassza a **Közreműködő** szerepkört, és keressen rá a Batch API kifejezésre. Keressen rá az egyes karakterláncokra, addig amíg meg nem találja az API-t:
+4. A hello **engedélyek hozzáadása** panelen, jelölje be hello **közreműködő** szerepkör, keressen a hello kötegelt API. Ezek a karakterláncok, amíg meg nem látja hello API mindegyikének keresése:
     1. **MicrosoftAzureBatch**.
     2. **Microsoft Azure Batch**. Újabb Azure AD-bérlők ezt a nevet használhatják.
-    3. A **ddbf3205-c6bd-46ae-8127-60eb93363864** a Batch API azonosítója. 
+    3. **ddbf3205-c6bd-46ae-8127-60eb93363864** hello azonosítója hello kötegelt API. 
 
-5. Miután megtalálta a Batch API-t, jelölje ki, majd kattintson a **Mentés** gombra.
+5. Miután megtalálta hello kötegelt API-t, jelölje ki, majd kattintson a **mentése**.
 
     ![Batch-engedélyek hozzáadása][add_permission]
 
 ### <a name="create-a-key-vault"></a>Kulcstartó létrehozása
-Felhasználói előfizetés módban olyan Azure Key Vault szükséges, amely ugyanahhoz az erőforráscsoporthoz tartozik, mint a létrehozandó Batch-fiók. Győződjön meg arról, hogy az erőforráscsoport olyan régióban található, amelyben [elérhető](https://azure.microsoft.com/regions/services/) a Batch szolgáltatás, és amelyet támogat az előfizetése.
+Felhasználói előfizetési módban az az Azure key vault kell toothe tartozik, amely ugyanabban az erőforráscsoportban, hello Batch-fiók toobe létrehozott. Ellenőrizze, hogy a terület, ahol kötegelt hello erőforráscsoport van [elérhető](https://azure.microsoft.com/regions/services/) , és amely az előfizetés támogatja.
 
-1. Az [Azure Portalon][azure_portal] kattintson az **Új** > **Biztonság és identitás** > **Kulcstartó** elemre.
+1. A hello [Azure-portálon][azure_portal], kattintson a **új** > **biztonság + identitás szakaszában** > **Key Vault** .
 
-2. A **Kulcstartó létrehozása** panelen adja meg a kulcstartó nevét, és hozzon létre a régióban egy erőforráscsoportot a Batch-fiókhoz. A többi beállításnál hagyja meg az alapértelmezett értéket, majd kattintson a **Létrehozás** elemre.
+2. A hello **kulcstároló létrehozása** panelen adjon meg egy nevet hello kulcstároló, és hozzon létre egy erőforráscsoportot a Batch-fiókhoz használni kívánt hello régióban. Hagyja hello fennmaradó alapértelmezés szerinti beállításokat, majd kattintson az **létrehozása**.
 
 ### <a name="create-a-batch-account"></a>Batch-fiók létrehozása
 
-1. Az [Azure Portalon][azure_portal] kattintson az **Új** > **Számítás** > **Batch szolgáltatás** lehetőségre.
+1. A hello [Azure-portálon][azure_portal], kattintson a **új** > **számítási** > **Batch szolgáltatás**.
 
-    ![Batch a Piactéren][marketplace_portal]
-3. Megjelenik az **Új Batch-fiók** panel. Az egyes panelelemek leírását alább találja.
+    ![Köteg hello piactér][marketplace_portal]
+3. Hello **új Batch-fiók** panel jelenik meg. Lásd: hello leírását alább minden panel elemet.
 
     ![Batch-fiók létrehozása][account_portal_byos]
 
-    a. **Fióknév**: A választott Batch-fióknévnek egyedinek kell lennie az Azure-régióban, amelyben az új fiókot létrehozza (lásd **Hely** alább). A fiók neve csak kisbetűket vagy számokat tartalmazhat, és 3–24 karakter hosszúnak kell lennie.
+    a. **Fióknév**: hello Batch-fiók neve mellett dönt hello Azure-régió, ahol hello-fiók létrehozása belül egyedinek kell lennie (lásd: **hely** alatt). hello fiók neve csak kisbetűket és számokat tartalmazhat, és 3 – 24 karakter hosszúságúnak kell lennie.
 
-    b. **Előfizetés**: Ha egynél több előfizetéssel rendelkezik, akkor válassza ki azt, amelyet a Batch szolgáltatáshoz regisztrált.
+    b. **Előfizetés**: Ha több előfizetéssel rendelkezik, válassza ki a Batch szolgáltatás hello regisztrált hello-előfizetést.
 
     c. **Készletfeldolgozási mód**: Válassza a **Felhasználói előfizetés** módot.
 
-    d. **Kulcstartó**: válassza ki azt a kulcstartót, amelyet az előző szakaszban leírtak szerint hozott létre a Batch-fiókhoz. Szükség esetén hozzon létre egy új kulcstartót. A kulcstartó kiválasztása után a jelölőnégyzet bejelölésével engedélyezze az Azure Batch számára a kulcstartó elérését.
+    d. **Kulcstároló**: a Batch-fiókhoz hello előző szakaszban létrehozott válassza hello kulcstároló. Szükség esetén hozzon létre egy új kulcstartót. Miután kijelölte a hello tárolóban, jelölje ki a hello jelölőnégyzet toogrant Azure Batch hozzáférés toohello kulcstároló.
 
-    c. **Erőforráscsoport**: Válassza ki azt az erőforráscsoportot, amelyben létrehozta a kulcstartót.
+    c. **Erőforráscsoport**: hello kulcstároló létrehozására használt válassza hello erőforráscsoportot.
 
-    d. **Hely**: Az az Azure-régió, amelyben létrehozta a Batch-fiókhoz tartozó kulcstartót.
+    d. **Hely**: hello hello kulcstároló hello Batch-fiók létrehozására használt Azure-régiót.
 
     e. **Tárfiók** (nem kötelező): Olyan általános célú Azure Storage-fiók, amelyet a Batch-fiókhoz társít. A legtöbb Batch-fiókhoz ajánlott a használata. További részletekért tekintse meg az alábbi, [Társított Azure Storage-fiók](#linked-azure-storage-account) című szakaszt.
 
-4. A fiók létrehozásához kattintson a **Létrehozás** gombra.
+4. Kattintson a **létrehozása** toocreate hello fiók.
 
-   A portál jelzi a folyamatban lévő üzembe helyezést. A befejezéskor **Az üzembe helyezések sikerültek** értesítés jelenik meg az **Értesítések** területen.
+   hello portál jelzi, hogy központi telepítése folyamatban van. A befejezéskor **Az üzembe helyezések sikerültek** értesítés jelenik meg az **Értesítések** területen.
 
 
 
 ## <a name="view-batch-account-properties"></a>Batch-fiók tulajdonságainak megtekintése
-A fiók létrehozása után megnyithatja a **Batch-fiók panelt** a beállítások és tulajdonságok eléréséhez. Az összes fiókbeállítást és tulajdonságot elérheti a Batch-fiók panelének bal oldali menüjéből.
+Hello fiók létrehozása után megnyithatja hello **Batch-fiók panelen** tooaccess a beállítások és tulajdonságait. A bal oldali menüjében hello hello Batch-fiók panelen elérheti azokat fiókbeállítások és tulajdonságok.
 
 ![A Batch-fiók panel az Azure Portalon][account_blade]
 
-* **Batch-fiók URL-cím**: Amikor egy alkalmazást fejleszt a [Batch API-kkal](batch-apis-tools.md#azure-accounts-for-batch-development), szüksége lesz egy fiók URL-címére a Batch-erőforrások eléréséhez. A Batch-fiók URL-címének formátuma a következő:
+* **A Batch-fiók URL-címe**: Ha a hello alkalmazást fejleszt [kötegelt API-k](batch-apis-tools.md#azure-accounts-for-batch-development), szüksége lesz egy fiók URL-cím tooaccess a kötegelt erőforrásokhoz. A Batch-fiók URL-címe van hello a következő formátumban:
 
     `https://<account_name>.<region>.batch.azure.com`
 
 ![A Batch-fiók URL-címe a portálon][account_url]
 
-* **Hozzáférési kulcsok** (Batch szolgáltatás mód): Ahhoz, hogy hozzáférjen a Batch-fiókhoz az alkalmazásból, szüksége lesz a fiók hozzáférési kulcsára. (Ez a beállítás nem áll rendelkezésre felhasználói előfizetés módban, amelyben Azure Active Directory-hitelesítést használ.)
+* **Hívóbetűk** (a Batch szolgáltatás mód): tooauthenticate hozzáférés tooyour Batch-fiókhoz az alkalmazásról, szüksége lesz egy fiók hozzáférési kulcsot. (Ez a beállítás nem áll rendelkezésre felhasználói előfizetés módban, amelyben Azure Active Directory-hitelesítést használ.)
 
-    A Batch-fiók hozzáférési kulcsainak megtekintéséhez vagy újbóli létrehozásához írja be a `keys` kifejezést a bal oldali menü **Keresés** mezőjébe a Batch-fiók panelen, majd válassza a **Kulcsok** lehetőséget.
+    tooview vagy újragenerálása a Batch-fiók hozzáférési kulcsait, adja meg `keys` hello bal oldali menüben **keresési** hello Batch-fiók panelen lévő mezőbe, majd válasszon **kulcsok**.
 
     ![A Batch-fiók kulcsai az Azure Portalon][account_keys]
 
@@ -146,43 +146,43 @@ A fiók létrehozása után megnyithatja a **Batch-fiók panelt** a beállítás
 
 ## <a name="linked-azure-storage-account"></a>Társított Azure Storage-fiók
 
-Dönthet úgy, hogy általános célú Azure Storage-fiókot csatol a Batch-fiókhoz. A Batch [alkalmazáscsomagok](batch-application-packages.md) funkciója Azure Blob Storage-ot használ, ahogyan a [Batch File Conventions .NET](batch-task-output.md) könyvtár is. Ezek a választható funkciók segítik a Batch-feladatok által futtatott alkalmazások üzembe helyezését és az általuk létrehozott adatok megőrzését.
+Opcionálisan hozzákapcsolhatja egy általános célú Azure Storage-fiók tooyour Batch-fiókhoz. Hello [alkalmazáscsomagok](batch-application-packages.md) a Batch szolgáltatás használja Azure Blob Storage tárolóban hello [kötegelt fájl egyezmények .NET](batch-task-output.md) könyvtár. Ilyen választható szolgáltatások segítséget nyújt a rendszerbe állítása a kötegelt feladatok futtatása hello alkalmazásokat és általuk előállított hello adatait.
 
 Érdemes létrehozni egy új Storage-fiókot kifejezetten a Batch-fiók általi használatra.
 
 ![Általános célú tárfiók létrehozása][storage_account]
 
 > [!NOTE]
-> Az Azure Batch jelenleg kizárólag az általános célú Storage-fiók típusát támogatja. Erről a fióktípusról a [Tudnivalók az Azure Storage-fiókokról](../storage/common/storage-create-storage-account.md) oldal 5. lépésében [Create a storage account] (../storage/common/storage-create-storage-account.md#create-a-storage-account) talál leírást.
+> Az Azure Batch jelenleg csak hello általános célú Tárfiók típusa. Erről a fióktípusról a [Tudnivalók az Azure Storage-fiókokról](../storage/common/storage-create-storage-account.md) oldal 5. lépésében [Create a storage account] (../storage/common/storage-create-storage-account.md#create-a-storage-account) talál leírást.
 >
 >
 
 > [!WARNING]
-> Körültekintően járjon el, amikor újból létrehozza a társított Storage-fiók hozzáférési kulcsait. A Storage-fiókhoz csak egy hozzáférési kulcsot hozzon létre ismét, és kattintson a társított tárfiók panelén a **Kulcsok szinkronizálása** gombra. Várjon öt percet, hogy a rendszer propagálja a hozzáférési kulcsokat a készletekben található számítási csomópontokra, majd szükség esetén hozza létre újra és szinkronizálja a másik hozzáférési kulcsot. Ha mindkét hozzáférési kulcsot egyszerre hozza létre újra, a számítási csomópontok nem tudják szinkronizálni egyiket sem, és elveszítik a Storage-fiókhoz való hozzáférést.
+> Legyen körültekintő, amikor egy kapcsolódó tárfiók hello tárelérési kulcsok újragenerálása. Csak egy Tárfiók kulcsának újragenerálása, és kattintson a **szinkronizálási kulcsok** hello a kapcsolódó Storage-fiók panelen. Várjon, amíg tooallow hello kulcsok toopropagate toohello számítási csomópontjain a készletek, majd újbóli létrehozása és szinkronizálása öt percen belül hello más kulcsot, ha szükséges. Ha mindkét újragenerálja a kulcsok: hello azonos időben, a számítási csomópontok nem lesz képes toosynchronize mindkét kulcsot, és elvesztik a hozzáférést toohello tárfiók.
 >
 >
 
 ![A tárfiók hozzáférési kulcsainak ismételt létrehozása][4]
 
 ## <a name="batch-service-quotas-and-limits"></a>A Bach szolgáltatás kvótái és korlátozásai
-Vegye figyelembe, hogy az Azure-előfizetéshez és más Azure-szolgáltatásokhoz hasonlóan a Batch-fiókokra is bizonyos [kvóták és korlátozások](batch-quota-limit.md) érvényesek. A Batch-fiókok aktuális kvótái a **Tulajdonságok** fiókban jelennek meg a portálon.
+Felhívjuk a vegye figyelembe, hogy, az Azure-előfizetés és más Azure-szolgáltatások, bizonyos [kvótái és korlátai](batch-quota-limit.md) tooBatch alkalmazni. Batch-fiók aktuális kvótái hello fiók hello portálon jelennek meg **tulajdonságok**.
 
 ![Batch-fiókra vonatkozó kvóták az Azure Portalon][quotas]
 
 
 
-Ezenkívül, sok kvóta egyszerűen növelhető az Azure Portalra elküldött ingyenes terméktámogatási kéréssel. A kvótanövelések kéréséről részletekért lásd: [Quotas and limits for the Azure Batch service](batch-quota-limit.md) (Az Azure Batch szolgáltatás kvótái és korlátai).
+Ezenkívül ezek mely százalékértékénél kéri számos növelhető egyszerűen az elküldött hello Azure-portálon a termék ingyenes támogatási kérelmet. Lásd: [kvótái és korlátai hello Azure Batch szolgáltatás](batch-quota-limit.md) talál részletes információt kérő kvóta növekszik.
 
 ## <a name="other-batch-account-management-options"></a>Egyéb Batch-fiókkezelési lehetőségek
-Az Azure Portal használata mellett a következőkkel is létrehozhat és kezelhet Batch-fiókokat:
+Ezenkívül toousing hello Azure-portálon, is létrehozása és kezelése a Batch-fiókok hello alábbira:
 
 * [Batch – PowerShell-parancsmagok](batch-powershell-cmdlets-get-started.md)
 * [Azure CLI](batch-cli-get-started.md)
 * [Batch Management .NET](batch-management-dotnet.md)
 
 ## <a name="next-steps"></a>Következő lépések
-* A Batch szolgáltatás fogalmairól és funkcióiról további információt [a Batch funkcióinak áttekintésében](batch-api-basics.md) talál. A cikk az elsődleges Batch-erőforrásokat tárgyalja, például a készleteket, a számítási csomópontokat, a feladatokat, a tevékenységeket és a szolgáltatás olyan funkcióinak áttekintését nyújtja, amely lehetővé teszi a nagy méretű számítási feladatok futtatását.
-* Megismerheti a Batch-kompatibilis alkalmazások [Batch .NET ügyfélkönyvtárral](batch-dotnet-get-started.md) vagy [Python](batch-python-tutorial.md) segítségével való fejlesztésének alapjait. Ezek a bevezető cikkek végigvezetik egy működő alkalmazáson, amely a Batch szolgáltatással futtat egy számítási feladatot több számítási csomóponton, és az Azure Storage szolgáltatást is használja a számítási feladatok fájljainak előkészítéséhez és lekéréséhez.
+* Lásd: hello [Batch funkcióinak áttekintése](batch-api-basics.md) toolearn további kötegelt szolgáltatással kapcsolatos fogalmak és szolgáltatásokkal kapcsolatban. hello cikk ismerteti hello elsődleges kötegelt erőforrások, például a készletek, a számítási csomópontokat, a feladatok és a feladatokat, és hello áttekintése, amelyek lehetővé teszik a nagyméretű számítási munkaterhelés végrehajtási szolgáltatás szolgáltatásokat.
+* A Batch-kompatibilis alkalmazások hello használata fejlődő hello alapvető [Batch .NET ügyféloldali kódtár](batch-dotnet-get-started.md) vagy [Python](batch-python-tutorial.md). A bevezető cikkeiben végigvezeti egy működő alkalmazást, amely hello Batch szolgáltatás tooexecute a munkaterhelés használ több számítási csomóponton, és a munkaterhelés fájl átmeneti és lekérése az Azure Storage használatát magában foglalja.
 
 [api_net]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_rest]: https://msdn.microsoft.com/library/azure/Dn820158.aspx

@@ -1,6 +1,6 @@
 ---
-title: "Belső terheléselosztó áttekintése |} Microsoft Docs"
-description: "Belső terheléselosztó és a szolgáltatások áttekintése. A terheléselosztó belső végpont konfigurálása az Azure és a lehetséges forgatókönyvek működése"
+title: "aaaInternal terheléselosztó áttekintése |} Microsoft Docs"
+description: "Belső terheléselosztó és a szolgáltatások áttekintése. A terheléselosztó működéséről az Azure és a lehetséges forgatókönyvek tooconfigure belső végpont"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d324aaf8ec2c8766d5cf11452158d14c19cba4d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a901aad224d8821c154e130e142699d57282b25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="internal-load-balancer-overview"></a>Belső terheléselosztó áttekintése
 
-A belső terheléselosztó (ILB) eltérően az internetre irányuló a terheléselosztóhoz, arra utasítja a forgalom csak az erőforráshoz, a felhőalapú szolgáltatás, vagy az Azure-infrastruktúra eléréséhez a VPN-kapcsolattal. Az infrastruktúra korlátozza a hozzáférést a terheléselosztó virtuális IP-címek (VIP) egy felhőalapú szolgáltatás, vagy egy virtuális hálózatot, hogy azok soha nem közvetlenül számára megjelenik egy Internet-végpontot. Ez lehetővé teszi a belső üzletági üzletági (LOB) alkalmazások futtatása az Azure-ban, és elérhető a felhő vagy a helyszíni erőforrások.
+Hello Internet felé néző terheléselosztó eltérően hello belső terheléselosztón (ILB) irányítja a forgalmat csak tooresources hello felhőalapú szolgáltatás, vagy a VPN tooaccess hello Azure-infrastruktúra használatával belül. hello infrastruktúra korlátozza a hozzáférési toohello terhelésű virtuális IP-címek (VIP) egy felhőalapú szolgáltatás, vagy egy virtuális hálózatot, hogy soha nem fogja közvetlenül elérhetővé tooan Internet végpont. Ez lehetővé teszi, hogy a belső üzletági üzletági (LOB) alkalmazások toorun az Azure-ban, és elérhető az hello felhőben, vagy a helyszíni erőforrások.
 
 ## <a name="why-you-may-need-an-internal-load-balancer"></a>Miért szükség lehet egy belső terheléselosztó
 
-Az Azure belső betöltése terheléselosztás (ILB) belül egy felhőalapú szolgáltatás, vagy egy virtuális hálózat regionális hatókörbe telepített virtuális gépek közötti terheléselosztást biztosít. A használat és a virtuális hálózatokat regionális hatókörbe és konfigurálásával kapcsolatos további információkért lásd: [regionális virtuális hálózatokba](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/) az Azure blogján. Az affinitáscsoporthoz konfigurált meglévő virtuális hálózatok nem használhatják az ILB-t.
+Az Azure belső betöltése terheléselosztás (ILB) belül egy felhőalapú szolgáltatás, vagy egy virtuális hálózat regionális hatókörbe telepített virtuális gépek közötti terheléselosztást biztosít. Hello használata és a virtuális hálózatokat regionális hatókörbe és konfigurálásával kapcsolatos további információkért lásd: [regionális virtuális hálózatokba](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/) a hello Azure blog. Az affinitáscsoporthoz konfigurált meglévő virtuális hálózatok nem használhatják az ILB-t.
 
-ILB lehetővé teszi, hogy a következő típusú terheléselosztási:
+ILB lehetővé teszi, hogy a következő típusú terheléselosztás hello:
 
-* Egy felhőalapú szolgáltatás, a virtuális gépek számára a virtuális gépek csoportja tartalmazza az ugyanazon a felhőalapú szolgáltatás belüli belül (lásd az 1. ábra).
-* A virtuális hálózaton belül a virtuális hálózat a virtuális gépek csoportja tartalmazza az ugyanazon a felhőalapú szolgáltatás, a virtuális található virtuális gépekről származó (lásd a 2. ábra) hálózati.
-* A létesítmények közötti virtuális hálózat a helyszíni számítógépek számára a virtuális gépek csoportja tartalmazza az ugyanazon a felhőalapú szolgáltatás, a virtuális belüli (lásd a 3. ábra) hálózati.
-* Az Internet felé néző, a többrétegű alkalmazások, amelyben a háttér-rétegek nincsenek internetre irányuló, de szükséges hálózati terheléselosztást a forgalmat az Internet felé néző réteg alapján.
-* A LOB-alkalmazások anélkül, hogy további load balancer hardver- vagy Azure-ban üzemeltetett terheléselosztást. Elosztott terhelésű többek között a helyszíni kiszolgálók a számítógépet, amelynek a forgalmát terhelés készletében.
+* Belül egy felhőalapú szolgáltatás, a virtuális gépek hello belüli virtuális gépek tooa készletből ugyanaz a felhőalapú szolgáltatás (lásd az 1. ábra).
+* A virtuális hálózaton belül hello virtuális hálózati tooa hello belüli virtuális gépek halmaza virtuális gépekről származó ugyanaz a felhőalapú szolgáltatás, hello virtuális hálózat (lásd a 2. ábra).
+* A létesítmények közötti virtuális hálózat, a helyszíni számítógépek tooa hello belüli virtuális gépek halmaza azonos a felhőalapú szolgáltatás a hello virtuális hálózat (lásd a 3. ábra).
+* Internet felé néző, a többrétegű alkalmazások hello háttér-rétegek nincsenek internetre de igénylő terheléselosztás forgalom hello internetre réteg alapján.
+* A LOB-alkalmazások anélkül, hogy további load balancer hardver- vagy Azure-ban üzemeltetett terheléselosztást. A számítógépet, amelynek a forgalmát terhelés hello készletét is beleértve a helyszíni kiszolgálók átgondolni.
 
 ## <a name="internet-facing-multi-tier-applications"></a>Többrétegű alkalmazások internetes
 
-A webes réteg Internet felé néző végpontok van az internetes ügyfeleket, és egy elosztott terhelésű készlet része. A load balancer továbbítja a webkiszolgálók TCP port 443-as (HTTPS) webalkalmazás-ügyfelekről érkező bejövő forgalmat.
+hello webes réteg Internet felé néző végpontok van az internetes ügyfeleket, és egy elosztott terhelésű készlet része. hello terheléselosztó osztja el a TCP port 443 (HTTPS) toohello webkiszolgálók webes ügyfelekről érkező bejövő forgalmat.
 
-Az adatbázis-kiszolgálók a webkiszolgálók használó tárolási ILB végpont mögött találhatók. Az adatbázis szolgáltatás az elosztott terhelésű végpont, mely forgalom az adatbázis-kiszolgálóin ILB készletében betöltése.
+adatbázis-kiszolgálók hello hello webkiszolgálók használó tárolási ILB végpont mögött találhatók. Az adatbázis szolgáltatás az elosztott terhelésű végpont, mely akkor hello ILB set hello adatbázis kiszolgálója között elosztott terhelésű.
 
-A következő kép bemutatja, az internetre irányuló a többrétegű alkalmazást belül az azonos felhőalapú szolgáltatás.
+a következő kép bemutatja hello hello internetre irányuló többrétegű alkalmazást hello belül ugyanaz a felhőalapú szolgáltatás.
 
 ![Belső terheléselosztási egyetlen felhőszolgáltatás](./media/load-balancer-internal-overview/IC736321.png)
 
 1. ábra – internetre irányuló többrétegű alkalmazást
 
-Egy másik lehetséges Többrétegű alkalmazások használata a ILB központi telepítési fel a Példánynak a szolgáltatás egy másik felhőalapú szolgáltatást.
+Egy másik lehetséges Többrétegű alkalmazások használata telepítésekor hello ILB tooa másik felhőalapú szolgáltatást, mint a hello hello ILB egy fogyasztó hello szolgáltatást.
 
-Felhőszolgáltatások a azonos virtuális hálózaton keresztül hozzáférhet a Példánynak a végponthoz. A következő kép bemutatja az előtér-webkiszolgáló egy másik felhőalapú szolgáltatást, az adatbázis-háttér és használata a ILB végpontot a virtuális hálózaton belül vannak.
+Felhőalapú szolgáltatások segítségével hello azonos virtuális hálózatban kell elérni toohello ILB végpont. a következő kép azt mutatja be, előtér-webkiszolgálók szerepelnek a hello adatbázis háttér-másik felhőalapú szolgáltatást, és segítségével hello hello ILB végpont hello belül azonos virtuális hálózatban.
 
 ![Felhőszolgáltatások közötti belső terheléselosztás](./media/load-balancer-internal-overview/IC744147.png)
 
@@ -58,23 +58,23 @@ Felhőszolgáltatások a azonos virtuális hálózaton keresztül hozzáférhet 
 
 ## <a name="intranet-line-of-business-applications"></a>Intranetes üzletági alkalmazásokat
 
-A helyszíni hálózaton-ügyfelektől érkező forgalom beolvasása terhelésű közötti VPN-kapcsolat az Azure-hálózat használatával LOB-kiszolgálók készlete.
+Hello a helyi hálózaton-ügyfelektől érkező forgalom beolvasása terhelésű hello beállítása a VPN-kapcsolat tooAzure hálózat használatával LOB-kiszolgálók között.
 
-Az ügyfélszámítógép hozzáférhet a IP-cím pont közötti VPN használatával Azure VPN szolgáltatásból. A LOB-alkalmazások a ILB végpont mögött található engedélyezze a használatát.
+hello ügyfélszámítógép lesz hozzáférés tooan IP-cím pont toosite VPN-kapcsolattal Azure VPN szolgáltatásból. Lehetővé teszi a hello használata hello LOB-alkalmazás mögött hello ILB végpont.
 
-![Belső terheléselosztás pont közötti VPN használatával](./media/load-balancer-internal-overview/IC744148.png)
+![Pont toosite VPN-kapcsolattal belső terheléselosztás](./media/load-balancer-internal-overview/IC744148.png)
 
-3. ábra - végpont LB mögött található, a LOB-alkalmazások
+3. ábra - végpont hello LB mögött található, a LOB-alkalmazások
 
-Az üzleti egy másik forgatókönyve, hogy a webhelyek közötti VPN a virtuális hálózathoz, ahol a ILB végpont van konfigurálva. Ez lehetővé teszi a helyszíni hálózati forgalom átirányítását a ILB végpont.
+A hello LOB egy másik helyzet lehet toohave hely toosite VPN toohello virtuális hálózat ahol hello ILB végpont van konfigurálva. Ez lehetővé teszi a helyszíni hálózati forgalom irányított toobe toohello ILB végpontot.
 
-![Belső terheléselosztás webhelyek közötti VPN használatával](./media/load-balancer-internal-overview/IC744150.png)
+![Hely toosite VPN használatával belső terheléselosztás](./media/load-balancer-internal-overview/IC744150.png)
 
-4. ábra – a helyi hálózati forgalom irányítja át a ILB végpont
+4. ábra – a helyi hálózati forgalom irányított toohello ILB végpont
 
 ## <a name="limitations"></a>Korlátozások
 
-Belső terheléselosztó nem támogatja a SNAT. Ez a dokumentum összefüggésében SNAT port színleg forrás hálózati címfordítás hivatkozik.  Ez vonatkozik helyzetek, amikor egy virtuális Gépet a load balancer készlet kell-e a megfelelő belső terheléselosztó tartozó előtérbeli IP-cím elérésére. Ez a forgatókönyv nem támogatott belső terheléselosztóhoz. Kapcsolódási hibák történik, ha a folyamat a virtuális gépre, a folyamat szolgáltatásoktól elosztott terhelésű. Ilyen helyzetekben a proxy stílus terheléselosztó kell használnia.
+Belső terheléselosztó nem támogatja a SNAT. Ez a dokumentum a hello környezetében SNAT tooport színleg forrás hálózati címfordítás hivatkozik.  Amikor egy virtuális Gépet a load balancer készlet kell tooreach hello megfelelő belső terheléselosztó tartozó előtérbeli IP-cím tooscenarios vonatkozik. Ez a forgatókönyv nem támogatott belső terheléselosztóhoz. Kapcsolódási hibák hello folyamata az elosztott terhelésű toohello hello folyamata szolgáltatásoktól VM történjen. Ilyen helyzetekben a proxy stílus terheléselosztó kell használnia.
 
 ## <a name="next-steps"></a>Következő lépések
 

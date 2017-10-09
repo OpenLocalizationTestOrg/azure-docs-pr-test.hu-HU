@@ -1,6 +1,6 @@
 ---
-title: "Jelentkezzen be az Azure eszközkészlet utasításokat az Eclipse |} Microsoft Docs"
-description: "Útmutató a Microsoft Azure az eclipse-ben az Azure-eszközkészlet használatával írja alá."
+title: "aaaSign az utasításokat a hello Azure eszköztára Eclipse |} Microsoft Docs"
+description: "Ismerje meg, hogyan használatával a Microsoft Azure toosign hello Azure eszköztára eclipse-ben."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,26 +14,26 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 02dd9935086c4c40d9ed54cc9ff2412ca96889f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 95be64750ca0147f76dae8f364fad80cb9ccc969
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-sign-in-instructions-for-the-azure-toolkit-for-eclipse"></a>Az Azure jelentkezzen be az Azure eszközkészlet utasításokat az eclipse-ben
+# <a name="azure-sign-in-instructions-for-hello-azure-toolkit-for-eclipse"></a>Az Azure bejelentkezési az utasításokat hello Eclipse Azure eszköztára
 
-Az Azure-eszközkészlet az eclipse-ben az Azure-fiókjával bejelentkezik két módszert biztosít:
+hello Azure eszköztára eclipse-ben az Azure-fiókjával bejelentkezik két módszert biztosít:
 
   * **Interaktív** – Ez a módszer használata esetén megadja a Azure hitelesítő adatait az Azure-fiókjába történő minden egyes bejelentkezéskor.
-  * **Automatikus** – Ez a módszer használata esetén létrehozhat egy hitelesítőadat-fájlt, amely a szolgáltatás egyszerű adatokat tartalmaz, amely után az a hitelesítő adatok fájl segítségével automatikusan jelentkezzen be az Azure-fiókjával.
+  * **Automatikus** – Ez a módszer használata esetén létrehozhat egy hitelesítőadat-fájlt, amely a szolgáltatás egyszerű adatokat tartalmaz, amely után használhatja hello hitelesítő adatok fájl tooautomatically jelentkezzen be Azure-fiókjába.
 
-A lépéseket a következő szakaszokban azt ismerteti, hogyan minden módszer használatát.
+hello hello a következő részekben leírt lépéseket ismerteti, hogyan toouse mindegyik módszerről.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
 ## <a name="signing-into-your-azure-account-interactively"></a>Az Azure-fiókjával interaktívan bejelentkezni
 
-Az alábbi lépéseket fogja bemutatják, hogyan lehet jelentkezzen be Azure hitelesítő adatait az Azure manuális megadásával.
+hello következőket mutatják be hogyan toosign az Azure kézzel írja be Azure hitelesítő adatait.
 
 1. Nyissa meg a projekt eclipse-ben.
 
@@ -41,33 +41,33 @@ Az alábbi lépéseket fogja bemutatják, hogyan lehet jelentkezzen be Azure hit
 
    ![Az Azure bejelentkezési eclipse menü][I01]
 
-1. Ha a **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **interaktív**, és kattintson a **bejelentkezés**.
+1. Ha hello **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **interaktív**, és kattintson a **bejelentkezés**.
 
    ![Jelentkezzen be a párbeszédpanelt][I02]
 
-1. Ha a **Azure bejelentkezés** párbeszédpanel jelenik meg, az Azure hitelesítő adatait, és kattintson **bejelentkezés**.
+1. Ha hello **Azure bejelentkezés** párbeszédpanel jelenik meg, az Azure hitelesítő adatait, és kattintson **bejelentkezés**.
 
    ![Azure bejelentkezési párbeszédpanel][I03]
 
-1. Ha a **válasszon előfizetések** párbeszédpanel jelenik meg, válassza ki, amelyet szeretne használni, és kattintson az előfizetések **OK**.
+1. Ha hello **válasszon előfizetések** párbeszédpanel jelenik meg, jelölje be hello előfizetések toouse szeretne, és kattintson **OK**.
 
    ![Az előfizetések kiválasztása párbeszédpanel][I04]
 
 ## <a name="signing-out-of-your-azure-account-when-you-signed-in-interactively"></a>Aláírási kívül az Azure-fiókjával, amikor interaktívan jelentkezik be
 
-Miután konfigurálta a lépéseket az előző szakaszban, akkor lesz automatikusan kijelentkezteti az Eclipse újraindítását minden alkalommal, amikor Azure-fiókjával. Azonban ha azt szeretné, az Azure-fiókjával kijelentkezik Eclipse újraindítása nélkül, az alábbi lépésekkel.
+Miután konfigurálta a hello lépéseket hello előző szakaszban, fogja automatikusan kijelentkezteti az Eclipse újraindítását minden alkalommal, amikor Azure-fiókjával. Azonban toosign kívül az Azure-fiókjával Eclipse újraindítása nélkül, használja a következő lépéseket hello.
 
 1. Az eclipse-ben kattintson **eszközök**, majd kattintson a **Azure**, és kattintson a **Kijelentkezés**.
 
    ![Az Azure kijelentkezés eclipse menü][L01]
 
-1. Ha a **Azure Kijelentkezés** párbeszédpanel, kattintson a **Igen**.
+1. Ha hello **Azure Kijelentkezés** párbeszédpanel, kattintson a **Igen**.
 
    ![Jelentkezzen ki párbeszédpanel][L02]
 
-## <a name="signing-into-your-azure-account-automatically-and-creating-a-credentials-file-to-use-in-the-future"></a>Automatikusan jelentkezik be Azure-fiókja és a hitelesítő adatok fájl létrehozásakor a jövőben használni
+## <a name="signing-into-your-azure-account-automatically-and-creating-a-credentials-file-toouse-in-hello-future"></a>Automatikusan jelentkezik be az Azure-fiókjával, és a hitelesítő adatok egy fájlt toouse hello jövőbeli
 
-A következő lépésekkel haladhat végig létrehozása egy hitelesítőadat-fájlt, amely tartalmazza a szolgáltatás egyszerű adatait. Ha az alábbi lépéseket, automatikusan bejelentkezik az Azure minden alkalommal, amikor megnyitja a projekt Eclipse automatikusan az a hitelesítőadat-fájlt használja.
+hello következő lépésekkel haladhat végig vezeti egy hitelesítőadat-fájlt, amely tartalmazza a szolgáltatás egyszerű adatait. Miután végrehajtotta ezeket a lépéseket, Eclipse lesz automatikusan használata hello hitelesítő adatok fájl tooautomatically bejelentkezési meg az Azure minden alkalommal, amikor nyissa meg a projektet.
 
 1. Nyissa meg a projekt eclipse-ben.
 
@@ -75,45 +75,45 @@ A következő lépésekkel haladhat végig létrehozása egy hitelesítőadat-f�
 
    ![Az Azure bejelentkezési eclipse menü][A01]
 
-1. Ha a **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **automatikus**, és kattintson a **új**.
+1. Ha hello **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **automatikus**, és kattintson a **új**.
 
    ![Jelentkezzen be a párbeszédpanelt][A02]
 
-1. Ha a **Azure bejelentkezés** párbeszédpanel jelenik meg, az Azure hitelesítő adatait, és kattintson **bejelentkezés**.
+1. Ha hello **Azure bejelentkezés** párbeszédpanel jelenik meg, az Azure hitelesítő adatait, és kattintson **bejelentkezés**.
 
    ![Azure bejelentkezési párbeszédpanel][A03]
 
-1. Ha a **hitelesítési-fájlok létrehozása** párbeszédpanel jelenik meg, válassza ki, amelyet szeretne használni, válassza ki a célkönyvtárat, és kattintson az előfizetések **Start**.
+1. Ha hello **hitelesítési-fájlok létrehozása** párbeszédpanel jelenik meg, hogy azt szeretné, hogy toouse, válassza ki a célkönyvtárat, és kattintson az előfizetések válassza hello **Start**.
 
    ![Azure bejelentkezési párbeszédpanel][A04]
 
-1. A **egyszerű Creatation állapot** párbeszédpanel jelenik meg, miután a fájlok sikeresen létrejött, majd **OK**.
+1. Hello **egyszerű Creatation állapot** párbeszédpanel jelenik meg, miután a fájlok sikeresen létrejött, majd **OK**.
 
    ![Szolgáltatás egyszerű Creatation állapota párbeszédpanel][A05]
 
-1. Ha a **Azure bejelentkezés** párbeszédpanel, kattintson a **bejelentkezés**.
+1. Ha hello **Azure bejelentkezés** párbeszédpanel, kattintson a **bejelentkezés**.
 
    ![Azure bejelentkezési párbeszédpanel][A06]
 
-1. Ha a **válasszon előfizetések** párbeszédpanel jelenik meg, válassza ki, amelyet szeretne használni, és kattintson az előfizetések **OK**.
+1. Ha hello **válasszon előfizetések** párbeszédpanel jelenik meg, jelölje be hello előfizetések toouse szeretne, és kattintson **OK**.
 
    ![Az előfizetések kiválasztása párbeszédpanel][A07]
 
 ## <a name="signing-out-of-your-azure-account-when-you-signed-in-automatically"></a>Aláírási kívül az Azure-fiókjával, ha automatikusan jelentkezett be
 
-Miután konfigurálta a lépéseket az előző szakaszban, az Azure-eszközkészlet, automatikusan bejelentkezik az Eclipse újraindítását minden alkalommal, amikor az Azure-fiókjával. Azonban jelentkezzen ki az Azure-fiókjával, és az Azure-eszközkészlet megakadályozza az automatikus bejelentkezés, az alábbi lépésekkel.
+Miután konfigurálta a hello lépéseket hello előző szakaszban, hello Azure eszközkészlet, automatikusan bejelentkezik az Eclipse újraindítását minden alkalommal, amikor az Azure-fiókjával. Azonban toosign kívüli az Azure-fiókjával, és megakadályozza, hogy a hello Azure eszközkészlet automatikusan, a következő lépéseket használata hello bejelentkeztetése közben.
 
 1. Az eclipse-ben kattintson **eszközök**, majd kattintson a **Azure**, és kattintson a **Kijelentkezés**.
 
    ![Az Azure kijelentkezés eclipse menü][L01]
 
-1. Ha a **Azure Kijelentkezés** párbeszédpanel, kattintson a **Igen**.
+1. Ha hello **Azure Kijelentkezés** párbeszédpanel, kattintson a **Igen**.
 
    ![Jelentkezzen ki párbeszédpanel][L03]
 
 ## <a name="signing-into-your-azure-account-automatically-using-a-credentials-file-which-you-have-already-created"></a>Az Azure-fiók használatával automatikusan egy hitelesítőadat-fájlt, amely már létrehozott bejelentkezni
 
-Ha regisztrál az Azure-ból Eclipse használata esetén, szüksége lesz újrakonfigurálása az Azure-eszközkészlet az eclipse-ben a hitelesítőadat-fájlt, amely hozott létre, mielőtt automatikus bejelentkezés az Azure-fiókot használni. A következő lépésekkel haladhat végig konfigurálása az Azure-eszközkészlet meglévő hitelesítő adatok fájl.
+Ha regisztrál az Azure-ból Eclipse használata esetén, tooreconfigure hello Azure eszközkészlet Eclipse toouse egy hitelesítőadat-fájlt, amely hozott létre automatikusan az Azure-fiókot a következő bejelentkezés előtt szüksége lesz. hello lépések haladhat végig hello Azure eszközkészlet toouse konfigurálása egy meglévő hitelesítőadat-fájlt.
 
 1. Nyissa meg a projekt eclipse-ben.
 
@@ -121,37 +121,37 @@ Ha regisztrál az Azure-ból Eclipse használata esetén, szüksége lesz újrak
 
    ![Az Azure bejelentkezési eclipse menü][A01]
 
-1. Ha a **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **automatikus**, és kattintson a **Tallózás**.
+1. Ha hello **Azure bejelentkezés** kiválasztása párbeszédpanel jelenik meg, **automatikus**, és kattintson a **Tallózás**.
 
    ![Jelentkezzen be a párbeszédpanelt][A02]
 
-1. Ha a **hitelesített fájl kiválasztása** párbeszédpanel jelenik meg, válassza ki a hitelesítőadat-fájlt, amely a korábban létrehozott, és kattintson a **válasszon**.
+1. Ha hello **hitelesített fájl kiválasztása** párbeszédpanel jelenik meg, válassza ki a hitelesítőadat-fájlt, amely a korábban létrehozott, és kattintson a **válasszon**.
 
    ![Jelentkezzen be a párbeszédpanelt][A08]
 
-1. Ha a **Azure bejelentkezés** párbeszédpanel, kattintson a **bejelentkezés**.
+1. Ha hello **Azure bejelentkezés** párbeszédpanel, kattintson a **bejelentkezés**.
 
    ![Azure bejelentkezési párbeszédpanel][A06]
 
-1. Ha a **válasszon előfizetések** párbeszédpanel jelenik meg, válassza ki, amelyet szeretne használni, és kattintson az előfizetések **OK**.
+1. Ha hello **válasszon előfizetések** párbeszédpanel jelenik meg, jelölje be hello előfizetések toouse szeretne, és kattintson **OK**.
 
    ![Az előfizetések kiválasztása párbeszédpanel][A07]
 
 ## <a name="see-also"></a>Lásd még:
-A Java IDE környezetekhez készült Azure-eszközkészlettel kapcsolatos további információkért lásd az alábbi hivatkozásokat:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő hivatkozások hello:
 
 * [Eclipse Azure eszköztára]
-  * [Az Eclipse-hez készült Azure-eszközkészlet újdonságai]
-  * [Az Eclipse-hez készült Azure-eszközkészlet telepítése]
-  * *Jelentkezzen be az Azure eszközkészlet utasításokat az eclipse-ben (Ez a cikk)*
+  * [Újdonságok az Eclipse Azure eszköztára hello]
+  * [Hello Azure eszköztára Eclipse telepítése]
+  * *Bejelentkezés az utasításokat hello Azure eszköztára Eclipse (Ez a cikk)*
   * [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
-  * [Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]
+  * [Újdonságok az intellij-t Azure eszköztára hello]
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
+  * [Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
 
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ] és [Java-eszközök a Visual Studio Team Serviceshez].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból] és hello [Java Tools for Visual Studio Team Services].
 
 <!-- URL List -->
 
@@ -159,15 +159,15 @@ Az Azure Javával való használatáról további információ: [Azure Java fejl
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ./azure-toolkit-for-intellij.md
 [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Az Eclipse-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
-[Sign In Instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Bejelentkezési utasítások az IntelliJ-hez készült Azure-eszközkészlethez]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Az Eclipse-hez készült Azure-eszközkészlet újdonságai]: ./azure-toolkit-for-eclipse-whats-new.md
-[Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]: ./azure-toolkit-for-intellij-whats-new.md
+[Hello Azure eszköztára Eclipse telepítése]: ./azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
+[Sign In Instructions for hello Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Bejelentkezés a utasításokat hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Újdonságok az Eclipse Azure eszköztára hello]: ./azure-toolkit-for-eclipse-whats-new.md
+[Újdonságok az intellij-t Azure eszköztára hello]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
-[Java-eszközök a Visual Studio Team Serviceshez]: https://java.visualstudio.com/
+[Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
+[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- IMG List -->
 

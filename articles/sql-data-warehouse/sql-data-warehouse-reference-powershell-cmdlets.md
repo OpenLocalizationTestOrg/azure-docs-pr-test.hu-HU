@@ -1,6 +1,6 @@
 ---
-title: Az Azure SQL Data Warehouse PowerShell-parancsmagjai
-description: "A felső PowerShell-parancsmagok az Azure SQL Data Warehouse figyeléséről, valamint szüneteltetéséről és folytatásáról adatbázis található."
+title: Azure SQL Data Warehouse aaaPowerShell-parancsmagjai
+description: "Az Azure SQL Data Warehouse hello felső PowerShell-parancsmagok található egyebek között toopause és egy adatbázis folytatása."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,23 +15,23 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: ce3e11587c2e0cb92923868a4f26d7f59c7ef4ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84353b56131cf856e0724d338d7ed186fd2ceeaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="powershell-cmdlets-and-rest-apis-for-sql-data-warehouse"></a>PowerShell-parancsmagok és a REST API-k, az SQL Data Warehouse
-Az SQL Data Warehouse számos feladat Azure PowerShell-parancsmagokkal vagy a REST API-k kezelhetők.  Az alábbiakban néhány olyan PowerShell-parancsok használata az SQL Data Warehouse a gyakori feladatok automatizálására.  Egyes jó REST, tekintse meg a cikk [kezelése a REST-méretezhetőség][Manage scalability with REST].
+Az SQL Data Warehouse számos feladat Azure PowerShell-parancsmagokkal vagy a REST API-k kezelhetők.  Az alábbiakban néhány példa arra, hogyan toouse PowerShell-parancsok az SQL Data Warehouse tooautomate gyakori feladatokat.  Egyes jó REST, tekintse meg a hello cikk [kezelése a REST-méretezhetőség][Manage scalability with REST].
 
 > [!NOTE]
-> Az SQL Data Warehouse szolgáltatással Azure PowerShell használatához szüksége Azure PowerShell 1.0.3-as vagy újabb.  A verzió futtatásával ellenőrizheti **Get-Module - ListAvailable-Name Azure**.  A legújabb verzió telepíthető [Microsoft Webplatform-telepítő][Microsoft Web Platform Installer].  A legújabb verzió telepítésével kapcsolatban lásd: [How to install and configure Azure PowerShell][How to install and configure Azure PowerShell] (Az Azure PowerShell telepítése és konfigurálása).
+> Rendelés toouse Azure PowerShell az SQL Data Warehouse szolgáltatással, szükség Azure PowerShell 1.0.3-as vagy újabb.  A verzió futtatásával ellenőrizheti **Get-Module - ListAvailable-Name Azure**.  a legújabb verzió hello telepíthető [Microsoft Webplatform-telepítő][Microsoft Web Platform Installer].  Hello legújabb verzió telepítésével kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt][How tooinstall and configure Azure PowerShell].
 > 
 > 
 
 ## <a name="get-started-with-azure-powershell-cmdlets"></a>Ismerkedés az Azure PowerShell-parancsmagok
 1. Nyissa meg a Windows PowerShellt.
-2. A PowerShell-parancssorba, futtassa az alábbi parancsokat az Azure Resource Managerrel történő bejelentkezéshez, és jelölje ki az előfizetését.
+2. Hello PowerShell-parancssorba ezek a parancsok toosign toohello Azure Resource Manager futnak, és jelölje ki az előfizetését.
    
     ```PowerShell
     Login-AzureRmAccount
@@ -40,12 +40,12 @@ Az SQL Data Warehouse számos feladat Azure PowerShell-parancsmagokkal vagy a RE
     ```
 
 ## <a name="pause-sql-data-warehouse-example"></a>Felfüggesztés SQL adatok adatraktár – példa
-A "Kiszolgalo01." nevű kiszolgáló által üzemeltetett "Database02" nevű adatbázis felfüggesztése  A kiszolgáló van egy Azure erőforráscsoport neve "ResourceGroup1."
+A "Kiszolgalo01." nevű kiszolgáló által üzemeltetett "Database02" nevű adatbázis felfüggesztése  hello kiszolgáló van egy Azure erőforráscsoport neve "ResourceGroup1."
 
 ```Powershell
 Suspend-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" –ServerName "Server01" –DatabaseName "Database02"
 ```
-Módosítás, ez a példa kiszolgálókészletéhez a lekérdezett objektum [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase].  Ennek eredményeképpen az adatbázis fel van függesztve. A záró parancs az eredményeit jeleníti meg.
+Módosítás, ez a példa kiszolgálókészletéhez beolvasott hello objektum túl[Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase].  Ennek eredményeképpen hello adatbázis fel van függesztve. hello utolsó parancs hello eredményeket jeleníti meg.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" –ServerName "Server01" –DatabaseName "Database02"
@@ -54,13 +54,13 @@ $resultDatabase
 ```
 
 ## <a name="start-sql-data-warehouse-example"></a>Indítsa el az SQL Data Warehouse – példa
-A "Kiszolgalo01." nevű kiszolgáló által üzemeltetett "Database02" nevű adatbázis folytatása A kiszolgálón lévő "ResourceGroup1." nevű erőforráscsoport
+A "Kiszolgalo01." nevű kiszolgáló által üzemeltetett "Database02" nevű adatbázis folytatása hello kiszolgáló szerepel egy erőforráscsoportot "ResourceGroup1."
 
 ```Powershell
 Resume-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" –ServerName "Server01" -DatabaseName "Database02"
 ```
 
-Módosítás, ez a példa lekéri "Database02" néven "Kiszolgalo01", "ResourceGroup1." nevű erőforráscsoportban található nevű kiszolgálóról adatbázis A lekérdezett objektum kiszolgálókészletéhez azt [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase].
+Módosítás, ez a példa lekéri "Database02" néven "Kiszolgalo01", "ResourceGroup1." nevű erőforráscsoportban található nevű kiszolgálóról adatbázis Azt az beolvasott hello objektum túl kiszolgálókészletéhez[Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase].
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" –ServerName "Server01" –DatabaseName "Database02"
@@ -68,7 +68,7 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 ```
 
 > [!NOTE]
-> Figyelje meg, hogy ha a kiszolgáló foo.database.windows.net, "foo" használják a PowerShell-parancsmagok - kiszolgálónév.
+> Figyelje meg, hogy ha a kiszolgáló foo.database.windows.net, nem használható "foo" - kiszolgálónév hello hello PowerShell-parancsmagok a.
 > 
 > 
 
@@ -97,7 +97,7 @@ Egyéb feladatokat, melyekhez a PowerShell segítségével automatizálható, l�
 <!--Image references-->
 
 <!--Article references-->
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Create a SQL Data Warehouse using PowerShell]: ./sql-data-warehouse-get-started-provision-powershell.md
 [Database restore]: ./sql-data-warehouse-restore-database-powershell.md
 [Manage scalability with REST]: ./sql-data-warehouse-manage-compute-rest-api.md
@@ -112,7 +112,7 @@ Egyéb feladatokat, melyekhez a PowerShell segítségével automatizálható, l�
 [Remove-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619368.aspx
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
 [Resume-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619347.aspx
-<!-- It appears that Select-AzureRmSubscription isn't documented, so this points to Select-AzureSubscription -->
+<!-- It appears that Select-AzureRmSubscription isn't documented, so this points tooSelect-AzureSubscription -->
 [Select-AzureRmSubscription]: https://msdn.microsoft.com/library/dn722499.aspx
 [Set-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619433.aspx
 [Suspend-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619337.aspx

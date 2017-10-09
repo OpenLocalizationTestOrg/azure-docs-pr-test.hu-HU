@@ -1,6 +1,6 @@
 ---
-title: "PowerShell példa-visszaállítási-biztonsági mentés-Azure SQL-adatbázis |} Microsoft Docs"
-description: "Az Azure PowerShell-példa parancsfájl georedundáns biztonsági másolatból Azure SQL-adatbázis visszaállítása"
+title: "aaaPowerShell példa-visszaállítási-biztonsági mentés-Azure SQL-adatbázis |} Microsoft Docs"
+description: "Az Azure PowerShell például parancsfájl-toorestore georedundáns biztonsági másolatból Azure SQL-adatbázis"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,25 +16,25 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: ae1d0c828ae1e7e1e7e07dcc7d6157187a3859d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68becb89e8a8680aa2efc3de8ad947e674c5fc35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-restore-an-azure-sql-database-from-backups"></a>Azure SQL-adatbázis visszaállítása biztonsági másolatból a PowerShell használatával
+# <a name="use-powershell-toorestore-an-azure-sql-database-from-backups"></a>Használjon PowerShell toorestore Azure SQL-adatbázis biztonsági másolatból
 
-A PowerShell-mintaparancsfájl Azure SQL-adatbázis visszaállítása egy georedundáns biztonsági másolatból, törölt Azure SQL-adatbázis visszaállítása a legfrissebb biztonsági másolat, és visszaállítja az Azure SQL-adatbázis adott időben.  
+A PowerShell-mintaparancsfájl egy Azure SQL-adatbázis visszaállítása egy georedundáns biztonsági másolatból, visszaállítása egy törölt Azure SQL adatbázis tooits legfrissebb biztonsági másolat és az Azure SQL adatbázis tooa adott pontja visszaállítja az időben.  
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/sql-database/restore-database/restore-database.ps1?highlight=17-18 "SQL-adatbázis létrehozása")]
+[!code-powershell[main](../../../powershell_scripts/sql-database/restore-database/restore-database.ps1?highlight=17-18 "Create SQL Database")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot és a vele társított összes erőforrást.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport és a vele társított összes erőforrást.
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -56,6 +56,6 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Azure PowerShell további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Az Azure PowerShell hello további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-További SQL Database PowerShell parancsfájl minták megtalálhatók a [Azure SQL Database PowerShell-parancsfájlok](../sql-database-powershell-samples.md).
+További SQL Database PowerShell parancsfájl minták hello található [Azure SQL Database PowerShell-parancsfájlok](../sql-database-powershell-samples.md).

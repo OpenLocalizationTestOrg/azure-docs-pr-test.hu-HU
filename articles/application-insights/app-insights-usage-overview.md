@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Application Insights-webalkalmazások számára történő használatelemzést |} Microsoft docs"
+title: "aaaUsage elemzés webes alkalmazásokhoz az Azure Application insights szolgáltatással |} Microsoft docs"
 description: "Ismerje meg, a felhasználók és a webalkalmazással dolgukat."
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: 63b74399790b718e14a5b6e09bc009a336caf928
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f7f9173cf411fa0d2dfb3b5ba99134a02bbc0e89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="usage-analysis-for-web-applications-with-application-insights"></a>Az Application Insights-webalkalmazások számára történő használatának elemzése
 
@@ -24,90 +24,90 @@ A webes alkalmazás mely funkciók érhetők a legnépszerűbb? Hajtsa végre a 
 
 ## <a name="send-telemetry-from-your-app"></a>Telemetriai adatokat küldhet az alkalmazásból
 
-A legjobb élményt egységekre Application Insights telepítésével, az alkalmazás server kódját, mind a weblapokon. Az alkalmazás ügyfél- és összetevők vissza az Azure-portál a elemzés a telemetriai adatokat küldhet.
+az Application Insights telepítésével, az alkalmazás server kódját, mind a weblapok hello legjobb élmény egységekre. az alkalmazás ügyfél- és összetevők hello küldése telemetriai hátsó toohello elemzése az Azure portálon.
 
-1. **Kiszolgálóoldali kódban:** telepítse a megfelelő modulját a [ASP.NET](app-insights-asp-net.md), [Azure](app-insights-azure.md), [Java](app-insights-java-get-started.md), [Node.js](app-insights-nodejs.md), vagy [más](app-insights-platforms.md) alkalmazást.
+1. **Kiszolgálóoldali kódban:** telepítés hello megfelelő modul a a [ASP.NET](app-insights-asp-net.md), [Azure](app-insights-azure.md), [Java](app-insights-java-get-started.md), [Node.js](app-insights-nodejs.md), vagy [más](app-insights-platforms.md) alkalmazást.
 
-    * *Nem szeretné telepíteni a kiszolgálóoldali kódban? Csak [hozzon létre egy Azure Application Insights-erőforrást](app-insights-create-new-resource.md).*
+    * *Nem szeretnék tooinstall server kódot? Csak [hozzon létre egy Azure Application Insights-erőforrást](app-insights-create-new-resource.md).*
 
-2. **Weblap kód:** nyissa meg a [Azure-portálon](https://portal.azure.com), és nyissa meg az Application Insights-erőforrást az alkalmazáshoz, majd nyissa meg a **első lépések > figyelése és diagnosztizálása ügyféloldali**. 
+2. **Weblap kód:** nyitott hello [Azure-portálon](https://portal.azure.com), nyissa meg a hello Application Insights-erőforrást az alkalmazáshoz, és nyisson **első lépések > figyelése és diagnosztizálása ügyféloldali**. 
 
-    ![Másolja a parancsfájlt a fő weblap head.](./media/app-insights-usage-overview/02-monitor-web-page.png)
+    ![Másolja a fő weblap hello head hello parancsfájl.](./media/app-insights-usage-overview/02-monitor-web-page.png)
 
 
-3. **Telemetriai adatokat:** futtassa a projekt hibakeresési módban néhány percig, és keresse meg az Application Insights – áttekintés paneljén eredményez.
+3. **Telemetriai adatokat:** futtassa a projekt hibakeresési módban néhány percig, és keresse a hello áttekintése panel az Application Insights eredményez.
 
-    Tegye közzé az alkalmazást, az az alkalmazás teljesítményének figyelése, és kideríti, hogy a felhasználók tevékenységeit az alkalmazással.
+    Az alkalmazás toomonitor közzététele az alkalmazás teljesítményét, és kideríti, hogy a felhasználók tevékenységeit az alkalmazással.
 
 ## <a name="include-user-and-session-id-in-your-telemetry"></a>Tartalmazza a felhasználó és a munkamenet-Azonosítót a telemetria
-Felhasználók nyomon követése adott idő alatt, az Application Insights előírja, hogy azonosítani tudja azokat. Az események eszköz a csak használati eszköz, amely nem igényel felhasználói azonosító vagy munkamenet-azonosítót.
+tootrack felhasználók adott idő alatt, az Application Insights szükséges egy módon tooidentify őket. az eszköz hello események hello csak használati eszköz, amely nem igényel felhasználói azonosító vagy munkamenet-azonosítót.
 
 Értesítésküldés ezek azonosítók [Itt](https://docs.microsoft.com/azure/application-insights/app-insights-usage-send-user-context).
 
 ## <a name="explore-usage-demographics-and-statistics"></a>Megismerkedhet a használati demográfiai adatok és statisztikák
 Ismerje meg az alkalmazás használatakor a személyek, azok még legtöbb érdekli, ahol a felhasználók találhatók oldalak, milyen böngészők és operációs rendszerek használnak. 
 
-A felhasználók és a munkamenetek jelentések szűrje az adatokat lapok vagy egyéni események, és szegmentálja őket például hely, a környezet és a lap tulajdonságai. A saját szűrőt is hozzáadhat.
+Felhasználók és a munkamenetek jelentések hello szűrje az adatokat lapok vagy egyéni események és szegmentálja őket például hely, a környezet és a lap tulajdonságai. A saját szűrőt is hozzáadhat.
 
 ![Felhasználók](./media/app-insights-usage-overview/users.png)  
 
-A jobb oldali insights mutasson, hogy érdekes szabályszerűségeket készletében lévő adatok.  
+A jobb oldali hello insights pont hogy érdekes szabályszerűségeket hello készletében lévő adatok.  
 
-* A **felhasználók** jelentés megjeleníti a kiválasztott időtartamon belül a lapok hozzáférő egyedi felhasználók számát. (A felhasználók a cookie-k használatával számítanak. Ha valaki hozzáfér a webhelyet a különböző böngészők vagy ügyfélszámítógépre, vagy törli a cookie-k, majd azok megszámlálandó egynél többször.)
-* A **munkamenetek** jelentés megszámlálása felhasználói munkamenetek, amelyek hozzáférhetnek a webhelyhez. A munkamenet a felhasználó megszakította a több mint fél óra inaktivitási tevékenység belül.
+* Hello **felhasználók** jelentés hello számokat a megadott időtartamon belül a lapok hozzáférő egyedi felhasználók száma. (A felhasználók a cookie-k használatával számítanak. Ha valaki hozzáfér a webhelyet a különböző böngészők vagy ügyfélszámítógépre, vagy törli a cookie-k, majd azok megszámlálandó egynél többször.)
+* Hello **munkamenetek** jelentés megjeleníti a felhasználói munkamenetek, amelyek hozzáférhetnek a webhelyhez hello számát. A munkamenet a felhasználó megszakította a több mint fél óra inaktivitási tevékenység belül.
 
-[További információ a felhasználók, a munkamenetek és az események eszközök](app-insights-usage-segmentation.md)  
+[További információ az hello felhasználók munkamenetek és események eszközök](app-insights-usage-segmentation.md)  
 
 ## <a name="page-views"></a>Lapmegtekintések
 
-A használati paneljén kattintson a lapmegtekintések csempén a legnépszerűbb lap részletes információkat:
+Hello használati panelen kattintson a hello Lapmegtekintések csempe tooget a legnépszerűbb lap részletes információkat:
 
-![Áttekintés paneljén kattintson a lap nézetek diagram](./media/app-insights-usage-overview/05-games.png)
+![Hello áttekintése panelen kattintson a lap nézetek diagram hello](./media/app-insights-usage-overview/05-games.png)
 
-A fenti példa egy játékok webhelyről. A diagramok azonnal láthatja:
+hello fenti példája egy játékok webhelyről. A hello diagramokat azonnal láthatja:
 
-* Használati az elmúlt héten nem javult. Lehet, hogy meg kell fontolnunk a optimalizálás érdekében?
-* Tenisz a legnépszerűbb játékok lapon. Ez a lap további fejlesztései lehetővé összpontosítanak.
-* Átlagosan felhasználók által felkeresett a tenisz lap készül háromszor hetente. (Nincsenek felhasználók mint három-szer több munkamenetek.)
-* A legtöbb felhasználó keresse fel a webhelyet, az USA működő héten, és a munkaidő alatt. Lehet, hogy a "gyors elrejtése" gombra kell nyújtunk a weblapon.
-* A [jegyzetek](app-insights-annotations.md) a diagram megjelenítése, ha telepítve vannak-e az új verziókat a webhely. A legutóbbi központi telepítések egyike észrevehető hatást használata.
+* Használati még tovább hello a múlt hét. Lehet, hogy meg kell fontolnunk a optimalizálás érdekében?
+* Tenisz hello legnépszerűbb játék lap. További fejlesztések toothis lap most összpontosítanak.
+* Átlagosan felhasználó által meglátogatott hello tenisz lap készül háromszor hetente. (Nincsenek felhasználók mint három-szer több munkamenetek.)
+* A legtöbb felhasználó webhelyen hello hello USA heti során, és a munkaidő alatt. Lehet, hogy a "gyors elrejtése" gombra kell nyújtunk hello weblapon.
+* Hello [jegyzetek](app-insights-annotations.md) hello diagram megjelenítése, ha telepítve vannak-e új verziók hello webhely. Nincs hello legutóbbi központi telepítések észrevehető hatást használata.
 
-Mi történik, ha vizsgálni kívánt részletesen, például egy egyéni tulajdonság, a lap nézet telemetriai adatokat küldi el a hely által a felosztás webhelyekhez forgalom?
+Mi történik, ha azt szeretné, tooinvestigate hello forgalom tooyour webhely részletesen, például a felosztás küldi el a hely a lap nézet telemetriai egyéni tulajdonság szerint?
 
-1. Nyissa meg a **események** eszköz az Application Insights-erőforrás menüjében. Ez az eszköz lehetővé teszi, hogy hány Lapmegtekintések és egyéni események az alkalmazásból, a különböző szűrési, cohorting és Szegmentálás beállítások alapján küldött elemezheti.
-2. A "Ki használt" legördülő listában jelölje ki "Any lap nézet".
-3. A "Által megosztott" legördülő listában válassza ki ossza fel a lap nézet telemetriai egy tulajdonságot.
+1. Nyissa meg hello **események** eszköz hello Application Insights-erőforrás menüben. Ez az eszköz lehetővé teszi, hogy hány Lapmegtekintések és egyéni események az alkalmazásból, a különböző szűrési, cohorting és Szegmentálás beállítások alapján küldött elemezheti.
+2. A legördülő lista "Aki használja a" hello válassza ki az "Any lap nézet".
+3. A hello "Által megosztott" legördülő menüben válasszon ki egy tulajdonságot, mely toosplit által a lap telemetriai adatainak megtekintése.
 
 ## <a name="retention---how-many-users-come-back"></a>Megőrzési - hány felhasználó térjen vissza?
 
-Megőrzési segítségével megismerheti, hogy milyen gyakran térjen vissza a felhasználók az alkalmazással, a felhasználók által végrehajtott bizonyos üzleti művelet során egy bizonyos idő gyűjtőben cohorts alapján. 
+Megőrzési segít megérteni, hogy milyen gyakran a felhasználók vissza toouse az alkalmazás felhasználók által végrehajtott bizonyos üzleti művelet során egy bizonyos idő gyűjtőben cohorts alapján. 
 
-- Milyen funkciók miatt a felhasználók számára, térjen vissza több, mint a többire ismertetése 
+- Milyen funkciók miatt a felhasználók több, mint a többire toocome vissza ismertetése 
 - Űrlap feltételezéseket valós felhasználói adatok alapján 
 - Annak megállapítása, hogy megőrzési a termékkel kapcsolatos probléma 
 
 ![Megőrzés](./media/app-insights-usage-overview/retention.png) 
 
-A megőrzési vezérlők felül lehetővé teszik meg adott események és időtartomány megőrzési kiszámításához. A diagram a középső által az időtartomány lett megadva az összes megőrzési százalékos vizuális ábrázolását biztosítja. A grafikon alján egy adott időszakra vonatkozó egyéni megőrzési jelöli. Részletesség ilyen szintje lehetővé teszi, hogy a felhasználók tevékenységeit, és milyen hatással lehetnek a részletesebb lépésköz adatszolgáltató felhasználók megértését.  
+hello megőrzési vezérlők felül lehetővé teszik, hogy toodefine adott események és idő tartomány toocalculate megőrzési. hello hello középső graph ad hello vizuális ábrázolását általános megőrzési százalékos aránya hello időtartomány lett megadva. hello alsó hello grafikonon egy adott időszakra vonatkozó egyéni megőrzési jelöli. Részletesség ilyen szintje lehetővé teszi a felhasználók milyen végez toounderstand és milyen hatással lehetnek a részletesebb lépésköz adatszolgáltató felhasználója.  
 
-[További információ a megőrzési eszköz](app-insights-usage-retention.md)
+[További információk hello megőrzési eszköz](app-insights-usage-retention.md)
 
 ## <a name="custom-business-events"></a>Egyéni üzleti események
 
-Ahhoz, hogy pontosan ismeri a felhasználók mit a webalkalmazással, akkor célszerű beszúrása sornyi kód egyéni események naplózása. Ezeket az eseményeket is nyomon semmit részletes felhasználói műveletek, például adott gombokkal, például vásárol, vagy egy játékot győzelmével több jelentős üzleti eseményeket. 
+tooget pontosan ismeri a felhasználók milyen elvégezni a segítségével a webalkalmazás, hasznos tooinsert sornyi kód toolog egyéni események. Ezeket az eseményeket is nyomon semmit részletes felhasználói műveletek, például az adott gombokkal, például vásárol, vagy egy játékot győzelmével toomore jelentős üzleti események. 
 
-Bár bizonyos esetekben a lapmegtekintések hasznos események jelenthet, nem igaz általában. A felhasználó megnyithatja a termék oldalát a termék vásárlás nélkül. 
+Bár bizonyos esetekben a lapmegtekintések hasznos események jelenthet, nem igaz általában. A felhasználó megnyithatja a termék oldalát hello termék vásárlás nélkül. 
 
-Az adott üzleti eseményeket a webhelyen keresztül is diagram a felhasználók folyamatban van. Megtudhatja, a beállítások a különböző lehetőségek közül, és beállíthatja, amennyiben azok dobja el vagy megszüntetésekor nehézségekbe. Ennek az információnak a tehet a fejlesztési várakozó fájlok számát a prioritásokkal kapcsolatos kérdésekre vonatkozó döntések.
+Az adott üzleti eseményeket a webhelyen keresztül is diagram a felhasználók folyamatban van. Megtudhatja, a beállítások a különböző lehetőségek közül, és beállíthatja, amennyiben azok dobja el vagy megszüntetésekor nehézségekbe. Ennek az információnak a tehet a fejlesztési várakozó hello prioritások megalapozott döntéseket.
 
-A weblap bejelentkezhet események:
+Események hello weblap bejelentkezhet:
 
 ```JavaScript
 
     appInsights.trackEvent("ExpandDetailTab", {DetailTab: tabName});
 ```
 
-Vagy a web app server oldalán:
+Vagy a kiszolgálóoldali hello hello webalkalmazás:
 
 ```C#
     var tc = new Microsoft.ApplicationInsights.TelemetryClient();
@@ -118,27 +118,27 @@ Vagy a web app server oldalán:
     tc.TrackEvent("CompletedPurchase");
 ```
 
-Ezeket az eseményeket, hogy szűrje, vagy ossza fel az eseményeket, amikor a portál vizsgálhatja csatolhat tulajdonságértékek. Emellett minden esemény, például a névtelen felhasználói Azonosítóját, amely lehetővé teszi egy adott felhasználó-tevékenységek sorrendjének követéséhez tulajdonságok szabványos készletét van csatolva.
+Tulajdonság értékek toothese események csatolhat, hogy szűrje, vagy feloszthatja az eseményeket hello, amikor hello portálon vizsgálata. Ezenkívül a Tulajdonságok szabványos készletét csatolt tooeach esemény, például a névtelen felhasználói Azonosítóját, amely lehetővé teszi egy adott felhasználó tevékenységét tootrace hello sorrendjét is.
 
 További információ [egyéni események](app-insights-api-custom-events-metrics.md#trackevent) és [tulajdonságok](app-insights-api-custom-events-metrics.md#properties).
 
 ### <a name="slice-and-dice-events"></a>Szeletelésére és feldarabolására használnak események
 
-A felhasználók, a munkamenetek és az események eszközök akkor is részletekbe menően felhasználó, az esemény neve és a Tulajdonságok egyéni események.
+A hello felhasználók munkamenetek és események eszközök akkor is részletekbe menően felhasználó, az esemény neve és a Tulajdonságok egyéni események.
 ![Felhasználók](./media/app-insights-usage-overview/users.png)  
   
-## <a name="design-the-telemetry-with-the-app"></a>A telemetriai adatok és az alkalmazás tervezése
+## <a name="design-hello-telemetry-with-hello-app"></a>Tervezési hello telemetriai hello alkalmazással
 
-Az alkalmazás egyes szolgáltatások tervez, vegye figyelembe hogyan kívánja a sikeresség felméréséhez a felhasználóival. Döntse el, milyen rögzítendő az üzleti eseményeket, és a követési ezeket az eseményeket az alkalmazásba hívásokat a kezdetektől kódot.
+Az alkalmazás egyes szolgáltatások tervez, vegye figyelembe hogyan fog toomeasure annak sikerességét a felhasználóival. Döntse el, üzleti események toorecord kell, és nyomon követés hívások eseményekre az alkalmazásba hello hello code elindításához.
 
 ## <a name="a--b-testing"></a>A |} B tesztelés
-Ha nem tudja, melyik variant egy szolgáltatás több sikeres lesz, a kiadási helyezni őket, így minden elérhető különböző felhasználók. Az egyes alkalmazása sikerének mérésében, és anélkül helyezhet át egy egységes verziót.
+Ha nem tudja, melyik variant egy szolgáltatás több sikeres lesz, a kiadási helyezni őket, így minden elérhető toodifferent felhasználók. Az egyes hello sikeresség felméréséhez, és helyezze a tooa egyesített verziója.
 
-Ezzel a módszerrel a csatol különböző tulajdonságértékek minden verzió az alkalmazás által küldött összes telemetriai. Azt az aktív TelemetryContext a tulajdonságok megadásával teheti meg. Minden telemetriai üzenet, amely elküldi az alkalmazás - nem csak az egyéni üzenetek, de a szabványos telemetriai ezek alapértelmezett tulajdonságokkal is bővül.
+Ez a módszer különböző tulajdonság értékek tooall hello telemetriai az alkalmazás minden verziója által küldött csatlakoztatnia. Megtehetné tulajdonságainak meghatározása a hello aktív TelemetryContext. Ezek alapértelmezett tulajdonságokkal is bővül tooevery telemetriai, amely az alkalmazás hello küld e-nem csak az egyéni üzenetek, de hello szabványos telemetriai adatokat is.
 
-Az Application Insights portálon szűréséhez, és ossza fel a tulajdonságértékek esetén, hogy különböző hasonlítsa össze az adatokat.
+Hello Application Insights portál szűrése, és így toocompare hello különböző verziói osztani hello tulajdonságértékek esetén, az adatokat.
 
-Ehhez a [állítson be egy telemetriai inicializáló](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer):
+toodo, [állítson be egy telemetriai inicializáló](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer):
 
 ```C#
 
@@ -153,7 +153,7 @@ Ehhez a [állítson be egy telemetriai inicializáló](app-insights-api-filterin
     }
 ```
 
-A webes alkalmazás inicializáló Global.asax.cs például:
+A hello web app inicializáló Global.asax.cs például:
 
 ```C#
 
@@ -165,7 +165,7 @@ A webes alkalmazás inicializáló Global.asax.cs például:
     }
 ```
 
-Minden új TelemetryClients automatikusan hozzáadja a megadott tulajdonság értéke. Egyéni telemetriai események felülbírálhatja az alapértelmezett értékeket.
+Minden új TelemetryClients hello tulajdonság értékét adja meg, hogy automatikusan hozzáadják. Egyéni telemetriai események felülbírálhatják hello alapértelmezett értékeket.
 
 ## <a name="next-steps"></a>Következő lépések
    - [Felhasználók, munkamenetek, események](app-insights-usage-segmentation.md)

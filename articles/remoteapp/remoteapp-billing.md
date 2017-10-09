@@ -1,6 +1,6 @@
 ---
-title: "Módosítsa a számlázás az Azure RemoteApp |} Microsoft Docs"
-description: "Megtudhatja, hogyan állítsa le az Azure RemoteApp kiszámlázott."
+title: "az Azure RemoteApp aaaChange hello számlázási |} Microsoft Docs"
+description: "Megtudhatja, hogyan toostop kiszámlázott Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,25 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 18c369c4e8ccf828c35ec4a964e61f13613f899b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a0d449a6a9759c4b55156c1694fcd161a1face76
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-stop-being-billed-for-azure-remoteapp"></a>Azure RemoteApp kiszámlázott leállítása
+# <a name="how-toostop-being-billed-for-azure-remoteapp"></a>Hogyan toostop kiszámlázott Azure RemoteApp
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Mindaddig, amíg az Azure RemoteApp-gyűjtemények, még akkor is hozzá nem rendelt felhasználókkal rendelkezik, akkor a RemoteApp számlázzuk. Állítsa le a számlázás, törölje az összes, a gyűjtemények. 
+Mindaddig, amíg az Azure RemoteApp-gyűjtemények, még akkor is hozzá nem rendelt felhasználókkal rendelkezik, akkor a RemoteApp számlázzuk. toostop a számlázást, törölje az összes a gyűjtemények. 
 
-A gyűjtemény törlése:
+toodelete a gyűjteményben:
 
-1. A klasszikus Azure portálon nyissa meg a RemoteApp lapját.
-2. Kattintson a gyűjtemény törlése, és kattintson a kívánt **törlése** az oldal alján.
+1. A klasszikus Azure portálon hello nyissa meg a hello RemoteApp lapját.
+2. Szeretné, hogy toodelete, és kattintson a hello gyűjteményt **törlése** hello lap hello alján.
 3. Ismételje meg ezt az egyes gyűjtemények az előfizetésben. 
 
-Minden gyűjtemény törlése néhány percig is eltarthat.
+Minden gyűjtemény is eltarthat néhány percig toodelete.
 

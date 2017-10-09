@@ -1,70 +1,70 @@
 ---
 ms.assetid: 
-title: "Az Azure Key Vault helyreállítható törlésre |} Microsoft Docs"
+title: "aaaAzure Key Vault helyreállítható törlésre |} Microsoft Docs"
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 07/10/2017
-ms.openlocfilehash: c873b153ef9c7d5f55672a5918c9dc4fb7256701
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1b402c58db6f25ae4ae5e2720786fa81eb0e839a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-soft-delete-overview"></a>Az Azure Key Vault soft-törlés áttekintése
 
-Key Vault helyreállítható törlés funkció lehetővé teszi, hogy a törölt tárolók és a tároló objektumok soft-törlés néven ismert. Pontosabban oldjuk az alábbi esetekben:
+Key Vault helyreállítható törlés funkcióval törölt hello tárolók és a tároló objektumok soft-törlés néven ismert. Pontosabban a következő forgatókönyvek hello oldjuk:
 
 - Helyreállítható törlésre kerültek a kulcstároló támogatása
 - Támogatási helyreállítható törlésre kulcstároló-objektumok (például) kulcsok, a titkos kulcsokat, a tanúsítványok)
 
 ## <a name="supporting-interfaces"></a>Kapcsolatok támogatása
 
-A soft-törlés funkció kezdetben érhető el a többi, .NET útján / C# és PowerShell-felületek. Ezeket a további részletekért tekintse meg a hivatkozások [Key Vault hivatkozás](https://docs.microsoft.com/azure/key-vault/).
+hello soft-törlés funkció érhető el eredetileg keresztül hello REST, .NET / C# és PowerShell-felületek. Ezeket a további részletekért tekintse meg a toohello hivatkozások [Key Vault hivatkozás](https://docs.microsoft.com/azure/key-vault/).
 
 ## <a name="scenarios"></a>Forgatókönyvek
 
-Az Azure Key tárolók nyomon követett, Azure Resource Manager által kezelt erőforrások. Az Azure Resource Manager is törlésre, amely megköveteli, hogy egy sikeres törlési művelet eredménye nem érhető el többé erőforrás jól meghatározott tulajdonság határozza meg. A soft-törlés funkció a törölt objektumok helyreállítási megoldást, hogy a törlés véletlen vagy szándékos volt.
+Az Azure Key tárolók nyomon követett, Azure Resource Manager által kezelt erőforrások. Az Azure Resource Manager is törlésre, amely megköveteli, hogy egy sikeres törlési művelet eredménye nem érhető el többé erőforrás jól meghatározott tulajdonság határozza meg. hello soft-törlés funkció címek hello helyreállítási hello törölt objektum, hogy hello törlés véletlen vagy szándékos volt.
 
-1. Az a jellemző forgatókönyv a felhasználó véletlenül törölték a kulcstároló vagy kulcstároló objektum; Ha, amely kulcs tárolóhoz vagy a kulcs tároló objektum egy előre meghatározott ideig állíthatók el, a felhasználó előfordulhat, hogy a Törlés visszavonása, és az adatok helyreállítása.
+1. Hello szokásos esetben a felhasználó véletlenül törölték a kulcstároló vagy kulcstároló objektum; Ha adott kulcstároló vagy kulcsot használó objektum toobe helyreállítható volt előre meghatározott időtartamra, hello felhasználói hello visszavonni, és az adatok helyreállítását.
 
-2. Más esetben egy rosszindulatú felhasználó megkísérli kulcstároló vagy kulcstároló-objektum, például egy tárolót, egy üzleti problémákat okozhat belül kulcs törlése. A Törlés a kulcstartót vagy kulcstároló objektum mappától a tényleges adatok törlését is használhatók, biztonsági intézkedésként például Adattörlés egy másik, a jogosultságok korlátozása révén megbízható szerepkört. Ez a megközelítés hatékonyan igényel kvórum egy műveletet, amelyek egyébként egy azonnali adatvesztés.
+2. Más esetben egy rosszindulatú felhasználó megkísérelhet toodelete kulcstároló vagy kulcstároló-objektum, például egy kulcsot a tároló, a business szüneteltetése toocause belül. Hello törlése, hello Kulcstároló Kulcstároló objektum mappától hello tényleges hello alapjául szolgáló adatok törlését is használhatók, biztonsági intézkedésként például adatok törlését tooa különböző, a jogosultságok korlátozása révén megbízható szerepkört. Ez a megközelítés hatékonyan igényel kvórum egy műveletet, amelyek egyébként egy azonnali adatvesztés.
 
 ### <a name="soft-delete-behavior"></a>Helyreállítható törlési viselkedés
 
-Ezzel a funkcióval a törlési művelet kulcstároló vagy kulcstároló objektum a soft-törlés, az erőforrások hatékony tartó egy adott megőrzési időszak alatt a megjelenítési módja, hogy az objektum törlése közben. A szolgáltatás további lehetővé teszi a helyreállítás lényegében a törlésének visszavonása a törölt objektum. 
+Ezzel a funkcióval kulcstároló a törlési művelet hello vagy kulcstároló objektum soft-törlési, hatékonyan tartó hello erőforrásokhoz egy adott megőrzési időszak jogosultságot ad a hello megjelenését hello objektum törlése közben. További hello szolgáltatás lehetővé teszi a helyreállítás hello törölt objektum, tulajdonképpen a hello törlés visszavonása. 
 
-Soft-törlés választható Key Vault viselkedése és **alapértelmezés szerint nincs engedélyezve** ebben a kiadásban. További információ a soft-törlésének a kulcstartót engedélyezése: a konkrét útmutatást a hivatkozás a kapcsolat a kiválasztott [Key Vault hivatkozás](https://docs.microsoft.com/azure/key-vault/).
+Soft-törlés választható Key Vault viselkedése és **alapértelmezés szerint nincs engedélyezve** ebben a kiadásban. További információ a key vaultban, soft-törlésének engedélyezése: hello konkrét útmutatást hello útmutatóban hello interfész az Ön által választott [Key Vault hivatkozás](https://docs.microsoft.com/azure/key-vault/).
 
 ### <a name="key-vault-recovery"></a>Kulcstároló-helyreállítás
 
-Kulcstároló törlése, akkor a szolgáltatás hoz létre, az előfizetésben, a helyreállítás megfelelő metaadatok hozzáadása a proxy erőforrás. A proxy erőforrás tárolt objektumot, és a törölt-tárolónak ugyanazon a helyen rendelkezésre áll. 
+Hello szolgáltatást kulcstároló törlése, akkor hoz létre a hello előfizetésben, a helyreállítás megfelelő metaadatok hozzáadása a proxy erőforrás. hello proxy erőforrás elérhető hello tárolt objektum törölt hello kulcs tárolóval megegyező helyen. 
 
 ### <a name="key-vault-object-recovery"></a>Kulcstároló objektum-helyreállítást
 
-Egy kulcstartót objektumot, például a kulcs törlése után a szolgáltatás helyezi el a következő objektum törölt állapotban, így teszi elérhetetlenné a bármely adatbeolvasási műveletekkel. Ebben az állapotban lévő a kulcstartót objektum is csak akkor jelenik meg, helyreállított vagy kényszerített módon/véglegesen törlődik. 
+A kulcstároló objektumot, például a kulcs törlése után hello szolgáltatás helyezi el a következő hello objektum törölt állapotban, így azt nem érhető el tooany adatbeolvasási műveletekkel. Ebben az állapotban lévő hello kulcstároló objektum is csak akkor jelenik meg, helyreállított vagy kényszerített módon/véglegesen törlődik. 
 
-Egy időben a Key Vault a törölt kulcstároló vagy kulcstároló objektum egy előre meghatározott megőrzési időtartam után végrehajtásra megfelelő adatok törlését művelet ütemezi. A DNS-rekord, a tároló megfelelő is megőrzi a megőrzési időtartama.
+Hello: azonos idő, a kulcs tároló beütemezett alapjául szolgáló adatok megfelelő toohello törölt hello hello törlésének kulcstároló vagy kulcstároló objektum egy előre meghatározott megőrzési időtartam után végrehajtásra. hello DNS rekord megfelelő toohello tárolót is megmarad hello adatmegőrzési időköz hello időtartama.
 
 ### <a name="soft-delete-retention-period"></a>Soft-törlése a megőrzési időtartam
 
-Letölthető törölt erőforrásokat a beállított időn belül, 90 nap jelennek meg. A soft-törlés megőrzési időszakban a következő apply:
+Letölthető törölt erőforrásokat a beállított időn belül, 90 nap jelennek meg. Során hello soft-törlés megőrzési idejét, a következő apply hello:
 
-- Előfordulhat, hogy lista összes kulcstárolójának és kulcstároló objektumok a soft-törlés állapotú a előfizetés, valamint a rájuk vonatkozó törlése és a helyreállítási adatok eléréséhez.
+- Előfordulhat, hogy listában összes hello kulcstárolójának és kulcstároló objektumok hello soft-törlés állapotú a előfizetés, valamint a rájuk vonatkozó törlése és a helyreállítási adatok eléréséhez.
     - Csak különleges engedélyekkel rendelkező felhasználók is listázhatja törölve tárolók. Azt javasoljuk, hogy a felhasználók egyéni szerepkör létrehozása kezelési törölt tárolók ezek különleges engedélyekkel.
-- Kulcstároló ugyanazzal a névvel nem hozható létre ugyanazon a helyen; Ennek megfelelően a kulcstároló objektum nem hozható létre egy adott tárolóban Ha adott kulcstároló tartalmaz egy objektumot az azonos nevű, és amely törölt állapotban van. 
-- Csak a kifejezetten kiemelt felhasználó kulcstároló vagy kulcstároló objektum lehet, hogy visszaállítása a helyreállítás parancsot a megfelelő proxy erőforráson.
-    - Az egyéni szerepkör tagja, a jogosultsággal az erőforráscsoportba tartozó kulcstároló létrehozása a felhasználó visszaállíthatja a tárolóban.
-- Csak a kifejezetten jogosultsággal rendelkező felhasználó lehet, hogy kényszerített kulcstároló vagy kulcstároló objektum törlése a Törlés parancsot a a megfelelő proxy erőforráson.
+- A kulcstároló ugyanazzal a névvel nem hozható létre hello hello ugyanazon a helyen; Ennek megfelelően egy kulcstároló objektum nem hozható létre egy adott tárolóban, ha adott kulcstároló hello objektum tartalmazza ugyanazt a nevet, és amely törölt állapotban van. 
+- Csak a kifejezetten kiemelt felhasználó kulcstároló vagy kulcstároló objektum lehet, hogy visszaállítása a helyreállítás parancsot a hello megfelelő proxy erőforráson.
+    - hello felhasználói hello egyéni biztonsági szerepkört, hello jogosultság toocreate hello erőforráscsoportba tartozó kulcstároló, aki tagja hello tároló visszaállításához.
+- Csak a kifejezetten jogosultsággal rendelkező felhasználó lehet, hogy kényszerített kulcstároló vagy kulcstároló objektum törlése a Törlés parancsot a hello megfelelő proxy erőforráson.
 
-Kivéve, ha egy kulcstartót vagy kulcstároló objektum helyre lett állítva, a megőrzési időszak végén a szolgáltatás a kiürítést végző a helyreállíthatóan törölt kulcstároló vagy a kulcstároló objektum és a benne lévő tartalom. Erőforrás törlése nem lehetséges, hogy újraütemezte.
+Kivéve, ha egy kulcstartót vagy kulcstároló objektum helyre lett állítva, hello: hello adatmegőrzési időköz hello szolgáltatás végét a kiürítést végző helyreállíthatóan törölt hello kulcstároló vagy a kulcstároló objektum és a benne lévő tartalom. Erőforrás törlése nem lehetséges, hogy újraütemezte.
 
 ### <a name="permitted-purge"></a>Engedélyezett kiürítése
 
-Véglegesen törli kiürítése, kulcstároló alkalmazáson keresztül a POST műveletet az erőforrás-proxy, amely különleges jogosultságokra van szüksége. Általában csak az előfizetés tulajdonosa fog tudni kulcstároló törlése. A POST műveletet váltja ki, hogy a tároló azonnali és helyreállíthatatlan törlését. 
+Végleg törlése végleges törlése, kulcstároló alkalmazáson keresztül a POST műveletet hello proxy erőforráson, amely speciális jogosultságra van szükség. Általában csak a hello előfizetés tulajdonosa lesz képes toopurge kulcstároló. hello POST művelet eseményindítók hello azonnali és helyreállíthatatlan, hogy a tároló törlése. 
 
-Kivétel ez alól a helyzet, amikor az Azure-előfizetés jelölésű *undeletable*. Csak a szolgáltatás ebben az esetben előfordulhat, hogy végezze el a tényleges törlés, és így tesz, ütemezett folyamatként. 
+Egy kivétel toothis helyzet hello olyankor, amikor hello Azure-előfizetés van megjelölve *undeletable*. Ebben az esetben csak hello szolgáltatást majd végezhet hello tényleges törlésre, és így tesz, ütemezett folyamatként. 
 
 
 

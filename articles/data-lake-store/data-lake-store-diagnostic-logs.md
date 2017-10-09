@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Store diagnosztikai naplók megtekintése |} Microsoft Docs"
-description: "Ismerje meg, hogyan kell beállítania, és hozzáférés az Azure Data Lake Store diagnosztikai naplók "
+title: "Azure Data Lake Store aaaViewing diagnosztikai naplókat |} Microsoft Docs"
+description: "Megértéséhez hogyan toosetup és hozzáférés az Azure Data Lake Store diagnosztikai naplók "
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,83 +14,83 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: b7a38ec445ef0ce13f3f1931e8ee246dce6412a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11fbf7f517f97abdcaf809c1ebeeb51424ab2c1c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-store"></a>Diagnosztikai naplók az Azure Data Lake Store elérése
-Ismerje meg a Data Lake Store-fiók diagnosztikai naplózás engedélyezése és a fiókja gyűjtött naplók megtekintéséhez.
+További információk a hogyan tooenable diagnosztikai naplózás a Data Lake Store-fiókot, és hogy miként naplózza az tooview hello gyűjtése a fiókját.
 
-A szervezetek diagnosztikai naplózását is az Azure Data Lake Store fiók gyűjthet adatokat a fájlhozzáférés napló ellenőrzését, amely bemutatja, például a listát a felhasználók fér hozzá az adatokhoz, hogy milyen gyakran az adatokhoz, mennyi adatot a fiók tárolva van stb.
+A szervezetek is az Azure Data Lake Store fiók toocollect adatok a fájlhozzáférés napló ellenőrzését, amely bemutatja, például a lista kapcsolódó felhasználók hello adatok, milyen gyakran hello hozzá az adatokhoz, mennyi adatot tárolja hello diagnosztikai naplózás engedélyezése fiók, stb.
 
 ## <a name="prerequisites"></a>Előfeltételek
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* **Azure Data Lake Store-fiók**. Kövesse [Az Azure Data Lake Store használatának első lépései az Azure Portal használatával](data-lake-store-get-started-portal.md) című témakör utasításait.
+* **Azure Data Lake Store-fiók**. Hajtsa végre a hello található utasítások segítségével: [Ismerkedés az Azure Data Lake Store használatának hello Azure Portal](data-lake-store-get-started-portal.md).
 
 ## <a name="enable-diagnostic-logging-for-your-data-lake-store-account"></a>A Data Lake Store-fiók diagnosztikai naplózás engedélyezése
-1. Jelentkezzen be az új [Azure Portalra](https://portal.azure.com).
+1. Jelentkezzen be az új toohello [Azure Portal](https://portal.azure.com).
 2. Nyissa meg a Data Lake Store-fiókot, és a Data Lake Store-fiók panelen kattintson **beállítások**, és kattintson a **diagnosztikai naplók**.
-3. Az a **diagnosztikai naplók** panelen kattintson a **a diagnosztika bekapcsolásához**.
+3. A hello **diagnosztikai naplók** panelen kattintson a **a diagnosztika bekapcsolásához**.
 
     ![Diagnosztikai naplózás engedélyezése](./media/data-lake-store-diagnostic-logs/turn-on-diagnostics.png "diagnosztikai naplók engedélyezése")
 
-3. Az a **diagnosztikai** panelen diagnosztikai naplózás konfigurálása a következő módosításokat.
+3. A hello **diagnosztikai** panelen ellenőrizze a következő módosításokat tooconfigure diagnosztikai naplózás hello.
    
     ![Diagnosztikai naplózás engedélyezése](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "diagnosztikai naplók engedélyezése")
    
-   * Állítsa be **állapot** való **a** diagnosztikai naplózás engedélyezése.
-   * Ha szeretné, az adatok tárolási/folyamat más módon.
+   * Állítsa be **állapot** túl**a** tooenable diagnosztikai naplózás.
+   * Kiválaszthatja a toostore/folyamat hello adatokat különböző módon.
      
-        * Jelölje be a **tárfiókba archív** bejegyzéseit, amelyek egy Azure Storage-fiók tárolásához. Ha az adatokat, amelyek lesznek kötegelt feldolgozásra egy későbbi időpontban archiválni szeretné ezt a beállítást használja. Ha ezt a beállítást meg kell adnia egy Azure Storage-fiók mentése a naplókat.
+        * A beállításnak a hello túl**tooa tárfiók archiválására** toostore naplózza tooan Azure Storage-fiók. Ezt a beállítást használja, ha azt szeretné, hogy tooarchive hello adatot kötegelt feldolgozásra egy későbbi időpontban. Ha ezt a beállítást meg kell adnia egy Azure Storage-fiók toosave hello naplókat.
         
-        * Jelölje be a **adatfolyam egy eseményközpontba** adatfolyam napló adatokat az Azure-Eseményközpontok felé. Valószínűleg ezt a beállítást fogja használni, ha egy alárendelt feldolgozási folyamat bejövő naplók valós időben elemezni. Ha ezt a lehetőséget választja, meg kell adnia a használni kívánt Azure Event Hubs részleteit.
+        * A beállításnak a hello túl**adatfolyam tooan eseményközpont** toostream napló adatok tooan Azure Event Hubs. Valószínűleg fogja használni ezt a beállítást, ha egy alárendelt feldolgozási tooanalyze bejövő naplók valós időben a következő feldolgozási sorban. Ha ezt a lehetőséget választja, meg kell adnia hello Azure Event Hubs toouse kívánt hello részletei.
 
-        * Jelölje be a **küldeni a Naplóelemzési** használhatja az Azure Naplóelemzés szolgáltatást a előállított naplózási adatok elemzésére. Ha ezt a lehetőséget választja, meg kell adnia a részletek az Operations Management Suite-munkaterülettel a végezze el a webhelynapló elemzése használható.
+        * A beállításnak a hello túl**tooLog Analytics küldése** toouse hello Azure Naplóelemzés tooanalyze generált hello Szolgáltatásnapló-adatait. Ha ezt a lehetőséget választja, meg kell adnia, hello a kapcsolatos részleteket hello Operations Management Suite-munkaterülettel, hogy használjon hello hajtaná végre a webhelynapló elemzése.
      
-   * Adja meg, hogy megkapják a naplók vagy kérelmek naplóit vagy mindkettőt.
-   * Adja meg, hány nap, amelynek meg kell őrizni az adatokat. Megőrzési csak akkor alkalmazható, ha az Azure storage-fiók segítségével archiválja naplóadatokat.
+   * Adja meg, hogy tooget naplókat, a kérelmek naplóit vagy mindkettőhöz.
+   * Adja meg, amelynek meg kell őrizni hello adatok napok hello számát. Megőrzési csak akkor alkalmazható, ha az Azure storage-fiók tooarchive naplóadatokat használ.
    * Kattintson a **Save** (Mentés) gombra.
 
-Miután engedélyezte a diagnosztikai beállítások, a naplófájlok az figyelemmel követheti a **diagnosztikai naplók** fülre.
+Miután engedélyezte a diagnosztikai beállítások, figyelheti az hello bejelentkezik hello **diagnosztikai naplók** fülre.
 
 ## <a name="view-diagnostic-logs-for-your-data-lake-store-account"></a>A Data Lake Store-fiók diagnosztikai naplók megtekintése
-A Data Lake Store-fiók a naplóadatok megtekintéséhez két módja van.
+Két módon tooview hello adatainak naplózása a Data Lake Store-fiók.
 
-* A Data Lake Store-fiókból beállítások megtekintése
-* Az adatokat tároló Azure Storage-fiókból
+* A Data Lake Store-fiók hello beállítások megtekintése
+* A hello hello adatokat tároló Azure Storage-fiókban
 
-### <a name="using-the-data-lake-store-settings-view"></a>Használatával a Data Lake Store beállítások megtekintése
+### <a name="using-hello-data-lake-store-settings-view"></a>Data Lake Store beállítások megtekintése hello használata
 1. A Data Lake Store-fiókból **beállítások** panelen kattintson a **diagnosztikai naplók**.
    
     ![Diagnosztikai naplózás nézet](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "diagnosztikai naplók megtekintése") 
-2. Az a **diagnosztikai naplók** panelen megjelenik a naplók kategorizálta **naplók** és **kérelem naplók**.
+2. A hello **diagnosztikai naplók** panelen megtekintheti az kategorizálta hello naplók **naplók** és **kérelem naplók**.
    
-   * Kérelem naplók rögzítése a Data Lake Store-fiók minden API kérelmet.
-   * Naplók hasonlóak naplók kérése, de a műveletek végrehajtása a Data Lake Store-fiók sokkal részletesebb információkat biztosít. Például egy egyetlen feltöltés API-hívás a kérelem naplókban több "Append" műveletet a naplófájlban eredményezheti.
-3. Kattintson a **letöltése** hivatkozás minden naplóbejegyzés a naplók letöltéséhez ellen.
+   * Kérelem naplók rögzítése a Data Lake Store-fiók hello minden API kérelmet.
+   * Naplók hasonló toorequest naplókat azonban sokkal részletesebben bontást hello műveletek végrehajtása hello Data Lake Store-fiók. Például egy egyetlen feltöltés API-hívás a kérelem naplókban hello naplók több "Append" műveletei eredményezheti.
+3. Kattintson a hello **letöltése** egyes hivatkozás jelentkezzen bejegyzés toodownload hello naplókat.
 
-### <a name="from-the-azure-storage-account-that-contains-log-data"></a>Az Azure Storage-fiókhoz, amely tartalmazza adatainak naplózása
-1. Nyissa meg a naplózás a Data Lake Store társított Azure Storage-fiók panelen, és kattintson a Blobok. A **Blob szolgáltatás** panel két tárolók listája.
+### <a name="from-hello-azure-storage-account-that-contains-log-data"></a>Az Azure Storage-fiók hello naplóadatokat tartalmazó
+1. Nyissa meg a Data Lake Store társított naplózás hello Azure Storage-fiók panelen, és kattintson a Blobok. Hello **Blob szolgáltatás** panel két tárolók listája.
    
     ![Diagnosztikai naplózás nézet](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "diagnosztikai naplók megtekintése")
    
-   * A tároló **insights-logs-naplózási** tartalmazza a naplókat.
-   * A tároló **insights-logs-kérelmek** tartalmaz a kérelmek naplóit.
-2. Ezek a tárolók belül a naplók tárolt az alábbi szerkezettel.
+   * hello tároló **insights-logs-naplózási** hello naplók tartalmazza.
+   * hello tároló **insights-logs-kérelmek** hello kérelmek naplóit tartalmazza.
+2. Ezek a tárolók belül hello struktúra a következő tárolt hello naplókat.
    
     ![Diagnosztikai naplózás nézet](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "diagnosztikai naplók megtekintése")
    
-    Tegyük fel a teljes elérési útját, és egy naplófájlba lehet`https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
+    Tegyük fel a teljes elérési tooan napló hello lehet`https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
    
-    Similary, teljes elérési útját a napló lehet`https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
+    Similary, teljes elérési útja tooa napló hello lehet`https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
 
-## <a name="understand-the-structure-of-the-log-data"></a>A naplózási adatok szerkezete ismertetése
-A naplózási és kérelem naplók JSON formátumban vannak. Ez a szakasz azt nézze meg a kérelem JSON szerkezete és a naplók.
+## <a name="understand-hello-structure-of-hello-log-data"></a>Hello naplóadatokat hello szerkezete ismertetése
+hello naplózási és kérelem feldolgozásra JSON formátumban. Ez a szakasz azt hello szerkezete JSON kérelem tekintse meg és a naplók.
 
 ### <a name="request-logs"></a>Naplók kérése
-Íme egy minta-bejegyzést a JSON-formátumú kérelem naplóban. Minden egyes blob tartozik egy legfelső szintű objektum nevű **rekordok** , amely tartalmazza a napló objektumokból álló tömb.
+Íme egy minta bejegyzés hello JSON-formátumú kérelem naplóban. Minden egyes blob tartozik egy legfelső szintű objektum nevű **rekordok** , amely tartalmazza a napló objektumokból álló tömb.
 
     {
     "records": 
@@ -116,28 +116,28 @@ A naplózási és kérelem naplók JSON formátumban vannak. Ez a szakasz azt n�
 #### <a name="request-log-schema"></a>Kérelem séma
 | Név | Típus | Leírás |
 | --- | --- | --- |
-| time |Karakterlánc |Az időbélyeg (UTC szerint) a napló |
-| resourceId |Karakterlánc |Helyezze a művelet erőforrás azonosítója |
-| category |Karakterlánc |A napló kategóriát. Például **kérelmek**. |
-| operationName |Karakterlánc |A művelet naplózott neve. Például getfilestatus. |
-| resultType |Karakterlánc |A művelet, például 200 állapotát. |
-| callerIpAddress |Karakterlánc |A kérést küldő ügyfél IP-címe |
-| correlationId |Karakterlánc |A napló, amelyek azonosítója használt csoportba a kapcsolódó naplóbejegyzések készlete |
-| identity |Objektum |Az identitás, amely a napló jön létre |
+| time |Karakterlánc |hello időbélyegzőnek (UTC) hello napló |
+| resourceId |Karakterlánc |Helyezze el, hogy a művelet hello erőforrás hello azonosítója |
+| category |Karakterlánc |hello napló kategóriát. Például **kérelmek**. |
+| operationName |Karakterlánc |Bejelentkezve hello művelet neve. Például getfilestatus. |
+| resultType |Karakterlánc |hello művelet, például 200 hello állapotát. |
+| callerIpAddress |Karakterlánc |hello kérés hello ügyfél hello IP-címe |
+| correlationId |Karakterlánc |hello azonosítója, amelyet használhat toogroup egymáshoz kapcsolódó naplóbejegyzések készlete hello napló |
+| identity |Objektum |hello napló okozó hello identitás |
 | properties |JSON |További információ alább olvasható |
 
 #### <a name="request-log-properties-schema"></a>Kérelem tulajdonságok séma
 | Név | Típus | Leírás |
 | --- | --- | --- |
-| HttpMethod |Karakterlánc |A művelethez használt HTTP-metódust. Például beolvasása. |
-| Elérési út |Karakterlánc |Az elérési út a művelet végrehajtásának ideje |
-| RequestContentLength |int |A HTTP-kérelem a tartalom hossza |
-| clientRequestId |Karakterlánc |Az azonosító, amely egyedileg azonosítja az ehhez a kérelemhez |
-| Kezdő időpont |Karakterlánc |Az a kiszolgáló fogadja a kérelem ideje |
-| Befejezés időpontja |Karakterlánc |Az idő, ahol a kiszolgáló által küldött választ |
+| HttpMethod |Karakterlánc |hello HTTP-metódus használt hello a művelethez. Például beolvasása. |
+| Elérési út |Karakterlánc |hello elérési hello művelet végrehajtásának ideje |
+| RequestContentLength |int |hello tartalom hossza hello HTTP-kérelem |
+| clientRequestId |Karakterlánc |hello azonosítója, amely egyedileg azonosítja az ehhez a kérelemhez |
+| Kezdő időpont |Karakterlánc |mely hello kiszolgálótól kapott hello kérésére hello idő |
+| Befejezés időpontja |Karakterlánc |mely hello a kiszolgáló által küldött választ hello idő |
 
 ### <a name="audit-logs"></a>Naplók
-Íme egy minta-bejegyzést a JSON-formátumú naplóban. Minden egyes blob tartozik egy legfelső szintű objektum nevű **rekordok** napló objektumok tömbjét tartalmazza, amelyek
+Íme egy minta bejegyzés hello JSON-formátumú naplóban. Minden egyes blob tartozik egy legfelső szintű objektum nevű **rekordok** napló objektumok tömbjét tartalmazza, amelyek
 
     {
     "records": 
@@ -162,22 +162,22 @@ A naplózási és kérelem naplók JSON formátumban vannak. Ez a szakasz azt n�
 #### <a name="audit-log-schema"></a>Naplózási séma
 | Név | Típus | Leírás |
 | --- | --- | --- |
-| time |Karakterlánc |Az időbélyeg (UTC szerint) a napló |
-| resourceId |Karakterlánc |Helyezze a művelet erőforrás azonosítója |
-| category |Karakterlánc |A napló kategóriát. Például **naplózási**. |
-| operationName |Karakterlánc |A művelet naplózott neve. Például getfilestatus. |
-| resultType |Karakterlánc |A művelet, például 200 állapotát. |
-| correlationId |Karakterlánc |A napló, amelyek azonosítója használt csoportba a kapcsolódó naplóbejegyzések készlete |
-| identity |Objektum |Az identitás, amely a napló jön létre |
+| time |Karakterlánc |hello időbélyegzőnek (UTC) hello napló |
+| resourceId |Karakterlánc |Helyezze el, hogy a művelet hello erőforrás hello azonosítója |
+| category |Karakterlánc |hello napló kategóriát. Például **naplózási**. |
+| operationName |Karakterlánc |Bejelentkezve hello művelet neve. Például getfilestatus. |
+| resultType |Karakterlánc |hello művelet, például 200 hello állapotát. |
+| correlationId |Karakterlánc |hello azonosítója, amelyet használhat toogroup egymáshoz kapcsolódó naplóbejegyzések készlete hello napló |
+| identity |Objektum |hello napló okozó hello identitás |
 | properties |JSON |További információ alább olvasható |
 
 #### <a name="audit-log-properties-schema"></a>Naplózási tulajdonságai séma
 | Név | Típus | Leírás |
 | --- | --- | --- |
-| StreamName |Karakterlánc |Az elérési út a művelet végrehajtásának ideje |
+| StreamName |Karakterlánc |hello elérési hello művelet végrehajtásának ideje |
 
-## <a name="samples-to-process-the-log-data"></a>A naplózási adatok feldolgozása a minták
-Azure Data Lake Store minta hogyan feldolgozhatja és elemezheti a naplózási adatokat biztosít. A minta a található [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample). 
+## <a name="samples-tooprocess-hello-log-data"></a>Minták tooprocess hello naplóadatok
+Azure Data Lake Store biztosít egy minta tooprocess és elemezheti a hello naplóadatokat. Hello minta a található [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample). 
 
 ## <a name="see-also"></a>Lásd még:
 * [Az Azure Data Lake Store áttekintése](data-lake-store-overview.md)

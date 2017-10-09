@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Import/Export eszközzel |} Microsoft Docs"
-description: "Útmutató: az Import/Export eszköz segítségével készítse elő a merevlemez-meghajtók egy importálási feladatnak, javítsa az importálási feladat, vagy javítsa ki az exportálási feladat."
+title: "aaaUsing hello Azure Import/Export eszköz |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Import/Export eszköz tooprepare merevlemezeit, az importálási feladat javítsa az importálási feladat, vagy javítsa ki az exportálási feladat."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 86073f5d15253d658fcb371e913dd3a543a2b075
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fa2021e5a03281128e494e6e63f58bc6319aeb4c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-importexport-tool"></a>Az Azure Import/Export eszköz használatával 
+# <a name="using-hello-azure-importexport-tool"></a>Hello Azure Import/Export eszköz használatával 
 
-Az Azure Import/Export eszköz (WAImportExport.exe) segítségével az Azure Import/Export szolgáltatás feladatok létrehozásához és kezeléséhez így lehetővé teszi nagy adatmennyiségek átvitelét a virtuális gépbe vagy onnan Azure Blob Storage.
+hello Azure Import/Export eszköz (WAImportExport.exe) használt toocreate és hello Azure Import/Export szolgáltatás, amely lehetővé teszi, tootransfer nagy mennyiségű adat virtuális gépbe vagy onnan Azure Blob Storage feladatok kezelése.
 
-Ez a dokumentáció az Azure Import/Export eszköz legújabb verziója van. A V1-es eszköz használatával kapcsolatos információkért lásd: [használata az Azure Import/Export eszköz v1](storage-import-export-tool-how-to-v1.md).
+Ebben a dokumentációban hello hello Azure Import/Export eszköz legújabb verziója van. Hello V1-es eszköz használatával kapcsolatos információkért lásd: [Using hello Azure Import/Export eszköz v1](storage-import-export-tool-how-to-v1.md).
 
-Ezek a cikkek látni fogja az eszköz használatáról a következő:  
+Ezek a cikkek fog látni, hogyan toouse hello eszköz toodo hello következő:  
 
-- Telepítse és állítsa be az Import/Export eszköz.
-- Készítse elő a merevlemez-meghajtók egy feladatot, amikor adatokat importál a meghajtók Azure Blob Storage.
-- Tekintse át a feladat állapotának másolási naplófájlok. 
+- Telepítsen és konfiguráljon hello Import/Export eszköz.
+- Készítse elő a merevlemez-meghajtók ahol adatokat importálhat a meghajtók tooAzure Blob Storage-feladat.
+- Tekintse át a feladat állapotának hello másolási naplófájlok. 
 - Javítsa az importálási feladat. 
 - Javítsa ki az exportálási feladat. 
-- Végezzen hibaelhárítást az Azure Import/Export eszköz, abban az esetben, ha a probléma volt a folyamat során. 
+- Végezzen hibaelhárítást a hello Azure Import/Export eszköz, abban az esetben, ha a probléma volt a folyamat során. 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [A WAImportExport eszköz beállítása](storage-import-export-tool-setup.md)
+* [Hello WAImportExport eszköz beállítása](storage-import-export-tool-setup.md)

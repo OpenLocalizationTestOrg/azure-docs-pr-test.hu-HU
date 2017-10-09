@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub - első lépések az IoT-eszközök felhőhöz történő csatlakoztatásának |} Microsoft Docs"
-description: "Útmutató: Azure IoT-központ az IoT-modulok és a starter Kit csatlakozni. Az eszközök küldhet az IoT-központ és az IoT-központ telemetriai figyelheti és az eszközök kezeléséhez."
+title: "Az Azure IoT Hub - első lépések csatlakoztatása az IoT-eszközök toohello felhő |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooconnect az IoT-modulok és a starter Kit tooAzure IoT-központot. Az eszközök küldhet telemetriai tooIoT központ és az IoT-központ figyelheti és az eszközök kezeléséhez."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 45016e6383761ffe78f13ccef1112ab3d9753498
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6dc956308009091532019ff84aec881f042f0104
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-tutorials"></a>Az Azure IoT Hub get oktatóanyagok indítása
 
-Azure IoT-központ és az Azure IoT-eszközök SDK-k segítségével az eszközök internetes hálózatát (IoT) megoldások:
+Azure IoT Hub és hello Azure IoT eszköz SDK-k toobuild az eszközök internetes hálózatát (IoT) megoldások is használhatja:
 
-* Az Azure IoT-központot egy olyan teljes körűen felügyelt szolgáltatás a felhőben, amelyek biztonságosan csatlakozik, figyeli, és kezeli az IoT-eszközök. Az Azure IoT eszközoldali SDK-k segítségével valósítja meg az IoT-eszközök.
-* Az IoT-átjáró összetettebb IoT-forgatókönyvek esetén használható. Például, ha szeretné például az örökölt eszközök, a sávszélességgel kapcsolatos költségek, a biztonsági és adatvédelmi szabályzatok vagy a biztonsági adatok feldolgozása tényezőket kell figyelembe venni. Ezekben az esetekben a Azure IoT peremhálózati átjáró, amely az eszköz csatlakozik az IoT hub végrehajtásához használhatja.
+* Az Azure IoT-központot egy olyan teljes körűen felügyelt szolgáltatás hello felhőbe, amely biztonságosan csatlakozik, figyeli, és kezeli az IoT-eszközök. Hello Azure IoT eszközoldali SDK-k tooimplement az IoT-eszközök használata.
+* Az IoT-átjáró összetettebb IoT-forgatókönyvek esetén használható. Például, ha szüksége tooconsider tényezőkkel, például az örökölt eszközök, a sávszélességgel kapcsolatos költségek, a biztonsági és adatvédelmi szabályzatok vagy a biztonsági adatok feldolgozása. Ezek a forgatókönyvek használhatja az Azure IoT peremhálózati tooimplement eszközök tooyour IoT-központ összekapcsoló átjáró.
 
-## <a name="what-the-tutorials-cover"></a>Az oktatóanyagok vonatkozik
+## <a name="what-hello-tutorials-cover"></a>Hello oktatóanyagok vonatkozik
 
-Ezek az oktatóanyagok bemutatják a Azure IoT-központ és az eszköz SDK-k. Az oktatóanyagok általános IoT-forgatókönyvek esetén az IoT-központ funkcióinak bemutatása foglalkozik. Az oktatóanyagok bemutatják, hogyan kombinálhatók az IoT-központ más Azure-szolgáltatások és eszközök nagyobb teljesítményű az IoT-megoldások létrehozásához is. Az oktatóanyagok választhatja ki, vagy a szimulált, vagy a valós az IoT-eszközök használatához. Továbbá megismerheti az átjáró használatával engedélyezhető az eszközök csatlakoztatása az IoT hub.
+Ezek az oktatóanyagok tooAzure IoT Hub és hello eszköz SDK-k bevezetése. hello oktatóanyagok általános IoT forgatókönyvek toodemonstrate hello képességeket IoT hub foglalkozik. hello oktatóanyagokat is bemutatják, hogyan-toocombine más Azure IoT hubot szolgáltatásokat és eszközöket több toobuild hatékony IoT-megoldásokhoz. Hello oktatóanyagok válassza toouse szimulált vagy valós az IoT-eszközök. Emellett áttekintheti, hogyan toouse egy átjáró tooenable eszközök tooconnect tooyour IoT-központot.
 
 ## <a name="set-up-your-device"></a>Az eszköz beállítása
 
-Csatlakoztassa az IoT-eszközön vagy Azure IoT Hub-átjárót. Első lépésként szimulált vagy fizikai eszköz közül választhat:
+Csatlakozás egy IoT eszköz vagy az átjáró tooAzure IoT-központot. A szimulált vagy fizikai eszköz tooget lépések közül választhat:
 
 | IoT-eszközök                       | Programozási nyelv |
 |----------------------------------|----------------------|
@@ -47,7 +47,7 @@ Csatlakoztassa az IoT-eszközön vagy Azure IoT Hub-átjárót. Első lépéské
 | Szimulált eszköz számítógépen           | [.NET][Sim_NET], [Java][Sim_Jav], [Node.js][Sim_Nd], [Python][Sim_Pyth] |
 | Online eszköz szimulátor         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
-Emellett az egy IoT peremhálózati átjáró segítségével engedélyezheti az eszközök csatlakoztatása az IoT hub:
+Továbbá az IoT-peremhálózati átjáró tooenable eszközök tooconnect tooyour IoT-központ is használhatja:
 
 | Átjáróeszköz               | Programozási nyelv | Platform         |
 |------------------------------|----------------------|------------------|

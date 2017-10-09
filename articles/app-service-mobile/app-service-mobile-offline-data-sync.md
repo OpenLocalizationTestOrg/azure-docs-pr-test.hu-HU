@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Apps az offline adatszinkronizálás |} Microsoft Docs"
-description: "Fogalmi referenciája és a kapcsolat nélküli szinkronizálás funkció az Azure Mobile Apps áttekintése"
+title: "az Azure Mobile Apps adatszinkronizálás aaaOffline |} Microsoft Docs"
+description: "Fogalmi referenciája és hello kapcsolat nélküli szinkronizálás funkció az Azure Mobile Apps áttekintése"
 documentationcenter: windows
 author: ggailey777
 manager: syntaxc4
@@ -14,27 +14,27 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 8e2bd755d14319f8c66f7ae7ec64fbd10801b39d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 58673240ba433651faf1f619ca5da33dd6459d2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="offline-data-sync-in-azure-mobile-apps"></a>Kapcsolat nélküli adatszinkronizálás az Azure Mobile Apps megoldásban
 ## <a name="what-is-offline-data-sync"></a>Mi az az offline adatszinkronizálás?
-Offline adatszinkronizálás egy ügyfél és kiszolgáló SDK szolgáltatás az Azure Mobile Apps, amely megkönnyíti a fejlesztők számára, amelyek a hálózati kapcsolat nélkül működési-alkalmazásai létrehozására.
+Offline adatszinkronizálás egy ügyfél és kiszolgáló SDK szolgáltatás az Azure Mobile Apps, amely megkönnyíti a fejlesztők toocreate alkalmazásokat, amelyek funkcionális hálózati kapcsolat nélkül.
 
-Ha az alkalmazás offline módban van, még mindig létrehozásához és módosításához adatait, amely a helyi tárolójába kerülnek. Az alkalmazást újra online állapotba kerül, ha azt képes szinkronizálni az Azure Mobile Apps-háttéralkalmazás helyi módosításokkal. A szolgáltatás is támogatja az ütközések észlelése megváltozásakor ugyanazt a bejegyzést az ügyfélen és a háttérkiszolgálón is. Ütközések lehet kezelni, vagy a kiszolgáló vagy az ügyfélen.
+Ha az alkalmazás offline módban van, is létrehozhatja és módosíthatják az adatokat, amelyek menti a helyi tárolójába tooa. Hello app újra online állapotba kerül, ha azt képes szinkronizálni az Azure Mobile Apps-háttéralkalmazás helyi módosításokkal. hello szolgáltatást is támogatja az ütközések észlelése ugyanazt a rekordot is történtek hello ügyfél hello és háttér hello. Ütközések lehet kezelni, hello kiszolgáló vagy hello ügyfél.
 
 Kapcsolat nélküli szinkronizálás rendelkezik számos előnnyel jár:
 
-* Alkalmazások válaszképességét javítása a kiszolgáló az adatokat az eszközön helyileg
+* Alkalmazások válaszképességét továbbfejlesztésében helyileg hello eszközökön server adatok gyorsítótárazása
 * Továbbra is, ha hálózati problémák hasznos robusztus alkalmazások létrehozása
-* Lehetővé teszi a végfelhasználók számára, hogy hozzon létre és módosíthatják az adatokat, akkor is, amikor nincs hálózati hozzáférés, forgatókönyveket támogató összefüggő kevéssé vagy egyáltalán ne
-* Szinkronizálja az adatokat több eszközön, és ütközések észlelés, ha ugyanaz a bejegyzés módosul a két eszköz
+* Lehetővé teszi a végfelhasználók felhasználók toocreate és módosíthatják az adatokat, akkor is, amikor nincs hálózati hozzáférés, összefüggő kevéssé vagy egyáltalán ne forgatókönyvek támogatása
+* Szinkronizálja az adatokat több eszközön, és ütközések észlelés, ha hello azonos rekord módosul a két eszköz
 * A nagy késleltetésű vagy forgalmi díjas hálózatokon hálózati használatának korlátozása
 
-Az alábbi oktatóanyagok bemutatják, hogyan kapcsolat nélküli szinkronizálás hozzáadása az Azure Mobile Apps használata a mobil ügyfelek:
+a következő oktatóanyagok hello megjelenítése, hogyan tooadd kapcsolat nélküli szinkronizálás tooyour mobil ügyfelek Azure Mobile Apps használata:
 
 * [Android: Kapcsolat nélküli szinkronizálásának engedélyezése]
 * [Apache Cordova: Kapcsolat nélküli szinkronizálásának engedélyezése](app-service-mobile-cordova-get-started-offline-data.md)
@@ -45,48 +45,48 @@ Az alábbi oktatóanyagok bemutatják, hogyan kapcsolat nélküli szinkronizál�
 * [univerzális Windows Platform: kapcsolat nélküli szinkronizálásának engedélyezése]
 
 ## <a name="what-is-a-sync-table"></a>Mi az a egy szinkronizálás tábla?
-A "/ táblák" végpont szeretne használni, az Azure Mobile ügyfél SDK-k meg felületek például `IMobileServiceTable` (.NET SDK-ügyfél) vagy `MSTable` (iOS-ügyfél). Ezen API-k közvetlen csatlakoztatása az Azure Mobile Apps-háttéralkalmazás, és sikertelen lesz, ha az ügyféleszköz nincs hálózati kapcsolat.
+tooaccess hello "/ táblák" végpont, hello Azure Mobile ügyfél SDK-k biztosítanak a felületek, mint `IMobileServiceTable` (.NET SDK-ügyfél) vagy `MSTable` (iOS-ügyfél). Ezen API-k csatlakozzon közvetlenül toohello Azure Mobile Apps-háttéralkalmazás, és sikertelen lesz, ha hello ügyféleszköz nincs hálózati kapcsolat.
 
-Kapcsolat nélküli használatát támogatja, az alkalmazás inkább használjon a *szinkronizálási tábla* API-k, például a `IMobileServiceSyncTable` (.NET SDK-ügyfél) vagy `MSSyncTable` (iOS-ügyfél). Összes szinkronizálási dolgozhat ugyanazon a CRUD műveleteihez (létrehozási, olvasási, frissítési, törlési) tábla API-k, kivéve most azok olvasni vagy írni egy *helyi tároló*. A szinkronizálási tábla műveletek végrehajtása előtt a helyi tárolójába inicializálni kell.
+toosupport kapcsolat nélküli használatra, az alkalmazás inkább használjon hello *szinkronizálási tábla* API-k, például a `IMobileServiceSyncTable` (.NET SDK-ügyfél) vagy `MSSyncTable` (iOS-ügyfél). Szinkronizálási dolgozhat ugyanazon CRUD műveleteihez (létrehozási, olvasási, frissítési, törlési) összes hello tábla API-k, kivéve most azok olvasni vagy tooa írási *helyi tároló*. A szinkronizálási tábla műveletek elvégzése előtt hello helyi tároló inicializálni kell.
 
 ## <a name="what-is-a-local-store"></a>Mi az a helyi tárolót?
-A helyi tárolójába a adatmegőrző réteget az ügyféleszközön. Az Azure Mobile Apps-ügyfél SDK-k implementálásához alapértelmezett helyi tárolóból. A Windows, a Xamarin és az Android SQLite alapul. IOS az alapvető adatokon alapul.
+A helyi tárolójába hello adatmegőrző réteget hello ügyféleszközön. hello Azure Mobile Apps-ügyfél SDK-k, adjon meg egy helyi alapértelmezett megvalósítási tárolja. A Windows, a Xamarin és az Android SQLite alapul. IOS az alapvető adatokon alapul.
 
-A Windows Phone vagy Windows áruház 8.1 az SQLite-alapú megvalósítás használatához telepítendő egy SQLite-bővítmény. További információkért lásd: [univerzális Windows Platform: kapcsolat nélküli szinkronizálásának engedélyezése]. Android és iOS rendszerrel szállított egy SQLite verziója az eszköz operációs rendszere saját magát, így azt nem hivatkozhat saját SQLite verzióját.
+toouse hello SQLite-alapú megvalósítás a Windows Phone vagy Windows áruház 8.1-es, meg kell tooinstall egy SQLite-bővítmény. További információkért lásd: [univerzális Windows Platform: kapcsolat nélküli szinkronizálásának engedélyezése]. Android és iOS küldje el az operációs rendszer, így nem szükséges tooreference saját SQLite verziója hello eszköz SQLite verziójával.
 
-A fejlesztők is megvalósíthatja a saját helyi tárolóból. Például ha szeretne az adatok tárolása a mobil ügyfélen titkosított formátumban, megadhat titkosításhoz SQLCipher használó helyi tároló.
+A fejlesztők is megvalósíthatja a saját helyi tárolóból. Például ha toostore adatok titkosított formában hello mobil ügyfélen, megadhatja a titkosításhoz SQLCipher használó helyi tároló.
 
 ## <a name="what-is-a-sync-context"></a>Mi az a szinkronizálási környezetet?
-A *szinkronizálási környezetet* egy mobil ügyfél objektumhoz társított (például `IMobileServiceClient` vagy `MSClient`) és szinkronizáló táblákkal végzett módosításokat követi nyomon. A szinkronizálási környezetben kezeli az *művelet várólista*, amely tartja a rendezett listáját CUD műveleteket (létrehozás, frissítés, Törlés), amely későbbi küldi el a kiszolgálónak.
+A *szinkronizálási környezetet* egy mobil ügyfél objektumhoz társított (például `IMobileServiceClient` vagy `MSClient`) és szinkronizáló táblákkal végzett módosításokat követi nyomon. hello szinkronizálási környezetet tart fenn egy *művelet várólista*, amely tartja a rendezett listáját CUD műveleteket (létrehozás, frissítés, Törlés), amely későbbi küldésének toohello kiszolgáló.
 
-A szinkronizálás környezet használatával, mint egy inicializálási metódusa társítva a helyi tárolójába `IMobileServicesSyncContext.InitializeAsync(localstore)` a a [.NET ügyfél SDK].
+Hello szinkronizálási környezetet használja, mint egy inicializálási metódusa társítva a helyi tárolójába `IMobileServicesSyncContext.InitializeAsync(localstore)` a hello [.NET ügyfél SDK].
 
 ## <a name="how-sync-works"></a>Hogyan kapcsolat nélküli szinkronizálás használata
-Szinkronizálási táblák használata esetén az Ügyfélkód szabályozza, amikor változtatásokat szinkronizálva van-e az Azure Mobile Apps-háttéralkalmazás. Semmi sem küld a háttér csak akkor hívása *leküldéses* helyi módosításokkal. Hasonlóképpen, a helyi tárolójába fel van töltve az új adatokat csak akkor, ha egy hívás a *lekéréses* adatokat.
+Szinkronizálási táblák használata esetén az Ügyfélkód szabályozza, amikor változtatásokat szinkronizálva van-e az Azure Mobile Apps-háttéralkalmazás. Semmi küldött toohello háttér addig, amíg nincs egy hívás túl*leküldéses* helyi módosításokkal. Ehhez hasonlóan hello helyi tároló fel van töltve az új adatokat csak akkor hívása túl*lekéréses* adatokat.
 
-* **Leküldéses**: leküldéses művelet, a szinkronizálási környezetben, és minden CUD módosítások elküldi az utolsó leküldéses óta. Vegye figyelembe, hogy azt nem lehet elküldeni a csak egy egyedi tábla módosítása, mert ellenkező esetben műveletek sikerült elküldeni nem megfelelő sorrendben. Leküldéses hajtja végre az Azure Mobile Apps-háttéralkalmazás, amely pedig módosítja a server-adatbázis többi hívások sorozata.
-* **Lekéréses**: lekéréses tábla alapon történik, és csak egy részét a kiszolgáló adatainak beolvasása lekérdezéssel testreszabhatók. Az Azure Mobile ügyfél SDK-k helyezze be a kapott adatokat a helyi tárolójába.
-* **Implicit leküldéses értesítések**: lekérési egy táblázaton, amelyeknek helyi frissítések végrehajtása, ha a lehívásos először hajt végre egy `push()` sync-környezetében. A leküldéses csökkentheti módosításokat, amelyek már sorban áll, a kiszolgáló közötti ütközések.
-* **A növekményes szinkronizálás**: az első paraméter a pull művelet egy *lekérdezésnév* csak az ügyfélen használt. Ha egy nem null értékű lekérdezés nevet használja, az Azure Mobile SDK hajt végre egy *növekményes szinkronizálás*. Minden alkalommal, amikor egy lekéréses művelet adja vissza készletként, az eredmények, a legújabb `updatedAt` adott eredményhalmazából időbélyeg az SDK helyi rendszer táblázatban tárolja. További lekéréses műveletek után az időbélyeg csak rekordok beolvasása.
+* **Leküldéses**: leküldéses hello szinkronizálási környezeten művelet, és minden CUD módosításokat küldi hello utolsó leküldéses óta. Vegye figyelembe, hogy az informatikai van a csak egy egyedi tábla módosítása nem lehetséges toosend, mert ellenkező esetben műveletek sikerült elküldeni nem megfelelő sorrendben. Leküldéses végrehajtja a többi hívások tooyour Azure Mobile Apps-háttéralkalmazás, amely pedig módosítja a server-adatbázis sorozata.
+* **Lekéréses**: lekéréses tábla alapon történik, és a lekérdezés tooretrieve testre hello kiszolgálói adatok csak egy részét. hello Azure Mobile ügyfél SDK-k, majd szúrja be a kapott adatokban hello hello helyi tárolóhoz.
+* **Implicit leküldéses értesítések**: lekérési egy táblázaton, amelyeknek helyi frissítések végrehajtása, ha hello lekéréses először hajt végre egy `push()` hello szinkronizálási környezetében. A leküldéses csökkentheti módosításokat, amelyek már sorban áll, hello kiszolgálóról közötti ütközések.
+* **A növekményes szinkronizálás**: hello első paraméter toohello lekéréses művelet egy *lekérdezésnév* , amelyek az ügyfélszámítógépeken csak hello. Egy null értékű lekérdezésnév használatakor hello Azure Mobile SDK hajt végre egy *növekményes szinkronizálás*. Minden alkalommal, amikor egy lekéréses művelet adja vissza, amely eredmény elérése érdekében hello legújabb `updatedAt` adott eredményhalmazából időbélyeg hello SDK helyi rendszertáblák van tárolva. További lekéréses műveletek után az időbélyeg csak rekordok beolvasása.
 
-  Növekményes szinkronizálás használatára, a kiszolgáló kell visszaadnia jelentéssel bíró `updatedAt` értéket, majd is támogatnia kell ezt a mezőt szerint rendezve. Azonban az SDK-val saját rendezési updatedAt mező ad hozzá, mivel nem használhat saját lekéréses lekérdezés `orderBy` záradékban.
+  a növekményes szinkronizálás toouse, a kiszolgáló kell visszaadnia jelentéssel bíró `updatedAt` értéket, majd is támogatnia kell ezt a mezőt szerint rendezve. Azonban hello SDK saját rendezési hello updatedAt mező ad hozzá, mivel nem használhat saját lekéréses lekérdezés `orderBy` záradékban.
 
-  A lekérdezés neve mellett dönt karakterlánc lehet, de az alkalmazás minden logikai lekérdezés egyedinek kell lennie.
-  Ellenkező esetben másik lekéréses műveletek felülírhatja az ugyanazon a növekményes szinkronizálás időbélyeg, és a lekérdezések visszaadhatják a megfelelő eredményeket.
+  hello lekérdezésnév választja karakterlánc lehet, de az alkalmazás minden logikai lekérdezés egyedinek kell lennie.
+  Ellenkező esetben a különböző lekéréses műveletek felülírhatja hello ugyanazt a növekményes szinkronizálás időbélyeg és a lekérdezések helytelen eredményeket adhat vissza.
 
-  Ha a lekérdezés paraméterrel rendelkezik, egy hozzon létre egy egyedi lekérdezés neve módja átfogó a paraméter értékét.
+  Hello lekérdezési paraméter tartozik, ha egyirányú toocreate egy egyedi lekérdezés neve tooincorporate hello paraméter értékét.
   Például ha szűrt felhasználói azonosítóját, a lekérdezés neve lehet, az alábbiak szerint (a C#):
 
         await todoTable.PullAsync("todoItems" + userid,
             syncTable.Where(u => u.UserId == userid));
 
-  Ha azt szeretné, hogy tilthatják le a növekményes szinkronizálás, adja át `null` , a lekérdezés azonosítóját. Ebben az esetben az összes rekord rendszer kérdezi le, minden egyes hívásakor `PullAsync`, amely nem potenciálisan hatékony.
-* **Kiürítése**: törölheti a tartalmát a helyi tárolójába használatával `IMobileServiceSyncTable.PurgeAsync`.
-  Kiürítése akkor lehet szükség, ha elavult adatokat az ügyfél-adatbázisban, vagy ha függőben lévő módosítások elvetése.
+  Ha azt szeretné, hogy a növekményes szinkronizálás kívül tooopt, `null` , hello lekérdezés azonosítóját. Ebben az esetben minden rekordot a rendszer beolvassa a minden hívás túl`PullAsync`, amely nem potenciálisan hatékony.
+* **Kiürítése**: hello tartalmát hello helyi tároló használatával törölheti `IMobileServiceSyncTable.PurgeAsync`.
+  Kiürítése akkor lehet szükség, ha elavult adatokat hello ügyfél adatbázisban, vagy ha toodiscard a függőben lévő módosítások.
 
-  A kiürítési törli a tábla a helyi tárolóból. Ha nincsenek műveletek várnak az adatbázishoz való szinkronizálás, a kiürítés kivételt jelez, kivéve, ha a *kiürítése kényszerítése* paraméter értéke.
+  A kiürítési törli a helyi tárolóból hello egy tábla. Ha nincsenek műveletek várnak szinkronizálási hello kiszolgáló adatbázis-kezelő hello kiürítése jelez kivétel, kivéve, ha hello *kiürítése kényszerítése* paraméter értéke.
 
-  Az elavult adatok az ügyfélen például tegyük fel, hogy a "teendőlista" példában Device1 csak kéri le. elemek nem fejeződtek be. Egy todoitem "Megvásárlása tej" van megjelölve a kiszolgálón egy másik eszköz befejeződött. Azonban Device1 még a "Vásárlás tej" todoitem helyi tárolóban levő, mert csak akkor van húzza nem teljes megjelölt elemek. A kiürítési törli az elavult elem.
+  Az elavult adatok hello ügyfélen például tegyük fel, hogy hello "teendőlista" példában Device1 csak kéri le. elemek nem fejeződtek be. A todoitem "Megvásárlása tej" jelölésű hello kiszolgálón egy másik eszköz befejeződött. Azonban Device1 még hello "Megvásárlása tej" todoitem helyi tárolóban levő, mert csak akkor van húzza elemek, amelyek nincsenek megjelölt befejeződött. A kiürítési törli az elavult elem.
 
 ## <a name="next-steps"></a>Következő lépések
 * [iOS: kapcsolat nélküli szinkronizálásának engedélyezése]

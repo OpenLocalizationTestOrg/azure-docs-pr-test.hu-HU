@@ -1,42 +1,42 @@
 <!--author=alkohli last changed: 02/10/17-->
 
-#### <a name="to-add-a-storsimple-backup-policy"></a>StorSimple biztonsági mentési házirend hozzáadása
+#### <a name="tooadd-a-storsimple-backup-policy"></a>a StorSimple biztonsági mentési házirend tooadd
 
-1. A StorSimple-eszközben kattintson a **Biztonsági mentési szabályzat** lehetőségre.
+1. Nyissa meg a StorSimple eszköz tooyour és **biztonsági mentési házirend**.
 
-2. A **Biztonsági mentési szabályzat** panelen kattintson a **+ Szabályzat hozzáadása** gombra a parancssávon.
+2. A hello **biztonsági mentési házirend** panelen kattintson a **+ házirend hozzáadása** hello parancs sorából.
    
     ![Biztonsági mentési szabályzat hozzáadása](./media/storsimple-8000-add-backup-policy-u2/addbupol1.png)
 
-3. Hajtsa végre a következő lépéseket a **Biztonsági mentési szabályzat létrehozása** panelen:
+3. A hello **hozzon létre a biztonsági mentési házirend** panelen hello a következő lépéseket:
    
-   1. Az **Eszköz kiválasztása** mezőt a rendszer automatikusan kitölti a kiválasztott eszköz alapján.
+   1. **Kiválasztására szolgáló** automatikusan kijelölt hello eszköz alapján van feltöltve.
    
-   2. Adjon egy 3–150 karakter hosszúságú nevet a biztonsági mentési **szabályzat neveként**. A szabályzat nem nevezhető át a létrehozása után.
+   2. Adjon egy 3–150 karakter hosszúságú nevet a biztonsági mentési **szabályzat neveként**. Hello házirend létrehozása után nem lehet átnevezni hello házirend.
        
-   3. Ha köteteket szeretne hozzárendelni ehhez a biztonsági mentési szabályzathoz, válassza a **Kötetek hozzáadása** lehetőséget, majd a kötetek táblázatos listájában a jelölőnégyzet(ek)re kattintva rendeljen hozzá egy vagy több kötetet a biztonsági mentési szabályzathoz.
+   3. tooassign kötetek toothis a biztonsági mentési házirend, jelölje be **kötetek hozzáadása** és a kötetek listája táblázatos hello, kattintson a hello ellenőrzés x tooassign egyik, vagy további kötetek toothis biztonsági mentési házirend.
 
        ![Biztonsági mentési szabályzat hozzáadása](./media/storsimple-8000-add-backup-policy-u2/addbupol2.png)
 
-   4. Ha ütemezést szeretne meghatározni a biztonsági mentési szabályzathoz, kattintson az **Első ütemezés** lehetőségre, majd módosítsa a következő paramétereket:
+   4. toodefine annak ütemezését, hogy a biztonsági mentési házirend, kattintson a **először ütemezése** és hello a következő paraméterek módosítása:
 
        ![Biztonsági mentési szabályzat hozzáadása](./media/storsimple-8000-add-backup-policy-u2/addbupol3.png)
 
        1. A **Pillanatkép típusa** területen válassza a **Felhő** vagy a **Helyi** lehetőséget.
 
-       2. Határozza meg a biztonsági mentések gyakoriságát (adjon meg egy számot, majd válassza a **Nap** vagy **Hét** lehetőséget a legördülő listából).
+       2. A biztonsági mentések hello gyakoriság (adjon meg egy számot, és válassza a **nap** vagy **hét** hello legördülő listából.
 
        3. Adja meg a megőrzés ütemezését.
 
-       4. Adja meg a biztonsági házirend indítási időpontját és dátumát.
+       4. Adjon meg egy időpontja és dátuma hello biztonsági mentési házirend toobegin.
 
-       5. Kattintson az **OK** gombra az ütemezés meghatározásához.
+       5. Kattintson a **OK** toodefine hello ütemezést.
 
-   5. Biztonsági mentési szabályzat létrehozásához kattintson a **Létrehozás** gombra.
+   5. Kattintson a **létrehozása** toocreate a biztonsági mentési házirend.
 
        ![Biztonsági mentési szabályzat hozzáadása](./media/storsimple-8000-add-backup-policy-u2/addbupol4.png)
    
-   6. A biztonsági mentési szabályzat létrehozásáról értesítést kap. Az újonnan felvett szabályzat megjelenik a **Biztonsági mentési szabályzat** panel táblázatos nézetében.
+   6. Értesítést kap hello biztonsági mentési házirendet hoz létre. hello hozzáadta az új szabályzat megjelenik a hello hello táblázatos nézetben **biztonsági mentési házirend** panelen.
 
        ![Biztonsági mentési szabályzat hozzáadása](./media/storsimple-8000-add-backup-policy-u2/addbupol7.png)
 

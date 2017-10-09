@@ -1,31 +1,31 @@
 <!--author=alkohli last changed: 01/12/17-->
 
-#### <a name="to-complete-the-minimum-storsimple-device-setup"></a>A minimális StorSimple eszközbeállítás befejezése
+#### <a name="toocomplete-hello-minimum-storsimple-device-setup"></a>toocomplete hello minimális StorSimple Eszközbeállítás
 
    > [!NOTE]
-   > Az eszköz neve nem módosítható a minimális eszközbeállítás végrehajtása után.
+   > Hello eszköz neve nem módosítható, ha a minimális eszközbeállítások hello befejeződött.
    
-1. Az **Eszközök** panelen szereplő eszközök táblázatos listájából válassza ki az eszközt, majd kattintson rá. Az eszköz állapota: **Beállításra kész**. Ekkor megnyílik az **Eszköz konfigurálása** panel.
+1. A hello táblázatos felsorolása hello eszközök **eszközök** panelen jelölje ki, majd kattintson az eszköz. hello eszköz egy **tooset kész mentése** állapotát. Hello **eszköz konfigurálása** panel megnyílik.
 
      ![A StorSimple minimális eszközbeállításának hálózati adapterei](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig1.png)
 
-2. Az **Eszköz konfigurálása** panelen:
+2. A hello **eszköz konfigurálása** panel:
    
-   1. Adjon egy **rövid** nevet az eszköznek. Az alapértelmezett eszköznév olyan információkból áll, mint az eszköz típusa és sorozatszáma. Az eszköz kezelése érdekében egy legfeljebb 64 karakterből álló rövid nevet rendelhet hozzá.
-   2. Az **időzóna** az eszköz üzembe helyezésének földrajzi helyétől függ. Az eszköz minden ütemezett művelethez ezt az időzónát használja.
-   3. **A DATA 0 beállításai** között:
+   1. Adjon egy **rövid** nevet az eszköznek. hello alapértelmezett eszköznév olyan információkból például hello eszköz típusa és sorozatszáma. Egy rövid nevet a too64 karakterek toomanage fel az eszköz rendelhet hozzá.
+   2. Set hello **időzóna** hello mely hello az eszköz üzembe helyezésének földrajzi helye alapján. Az eszköz minden ütemezett művelethez ezt az időzónát használja.
+   3. A hello **DATA 0 beállítások**:
 
-       1. A DATA 0 hálózati adapter a beállítási varázslóban megadott hálózati beállítások (IP-cím, alhálózat, átjáró) szerint jelenik meg. A DATA 0 a felhőben és az iSCSI-n is automatikusan engedélyezve van.
+       1. A DATA 0 hálózati adapter látható hello engedélyezett hálózati beállításai (IP, alhálózaton, átjáró) hello beállítása varázsló segítségével. A DATA 0 a felhőben és az iSCSI-n is automatikusan engedélyezve van.
 
-       2. Adja meg a Vezérlő 0 és a Vezérlő 1 fix IP-címét. **A vezérlő fix IP-címeinek az alhálózaton belüli, az eszköz IP-címe alapján elérhető, szabad IP-címeknek kell lenniük.** Ha a DATA 0 adapter az IPv4 használatára van konfigurálva, akkor a fix IP-címeket is IPv4-formátumban kell megadni. Ha IPv6-konfigurációhoz tartozó előtagot adott meg, a fix IP-címek automatikusan ezekbe a mezőkbe lesznek betöltve.
+       2. Adja meg a hello IP-címek a vezérlő 0 és a vezérlő 1 fix. **hello vezérlő rögzített IP-címeket kell toobe szabad IP-cím elérhető hello alhálózaton belüli hello eszköz IP-cím alapján.** Ha hello DATA 0 felület lett konfigurálva az IPv4, hello statikus IP-címek kell toobe hello megadott IPv4-formátumban. Ha IPv6-konfigurációhoz tartozó előtagot adott meg, statikus IP-címek hello feltöltése automatikusan ezekbe a mezőkbe.
 
             ![A StorSimple minimális eszközbeállításának hálózati adapterei](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig2.png)
 
-            A vezérlőhöz tartozó fix IP-címek az eszköz frissítéseinek karbantartásához használatosak. Ezért a fix IP-knek irányíthatóknak kell lenniük, és csatlakoztatva kell lenniük az internethez. A fix vezérlő IP-k irányíthatóságát a [Test-HcsmConnection][Test] parancsmaggal ellenőrizheti. Az alábbi példán olyan, az internetre átirányított fix vezérlő IP-k láthatók, amelyek hozzáférnek a Microsoft Update-kiszolgálókhoz.
+            IP-címek hello vezérlő rögzített hello hello frissítések toohello eszköz karbantartásához használatosak. Emiatt rögzített IP-címei hello irányíthatók, és képes tooconnect toohello Internet kell lennie. Ellenőrizheti, hogy a fix vezérlő IP-címek k irányíthatóságát hello [Test-HcsmConnection] [ Test] parancsmag. a következő példa azt mutatja be a fix vezérlő IP irányított toohello Internet és férhetnek hozzá hello hello Microsoft Update-kiszolgálókról.
 
             ![Test-HcsmConnection irányítható IP-kkel](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig3.png)
 
-1. Kattintson az **OK** gombra. Ekkor elkezdődik az eszköz konfigurálása. Az eszköz konfigurálásának befejezéséről a rendszer értesítést küld. Az eszköz **Elérhető** állapotúra vált az **Eszközök** panelen.
+1. Kattintson az **OK** gombra. hello eszközkonfiguráció kezdődik. Ha hello eszközkonfiguráció befejeződött, értesítés jelenik meg. eszköz állapotmódosítások túl hello**Online** a hello **eszközök** panelen.
 
     ![A StorSimple minimális eszközbeállításának hálózati adapterei](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig4.png)
 

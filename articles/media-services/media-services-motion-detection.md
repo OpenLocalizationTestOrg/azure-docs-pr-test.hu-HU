@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Media Analytics mozdulatok észlelése |} Microsoft Docs"
-description: "Az Azure Media mozgásérzékelő media processzor (MP) lehetővé teszi egy egyébként hosszú és Eseménytelen video házirendsablonokkal szakaszok hatékonyan azonosításához."
+title: az Azure Media Analytics aaaDetect mozdulatok |} Microsoft Docs
+description: "hello Azure Media mozgásérzékelő media processzor (MP) lehetővé teszi, hogy Ön tooefficiently azonosítani egy egyébként hosszú és Eseménytelen video házirendsablonokkal szakaszait."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,38 +14,38 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: 115ad9dfd88062f23d5d17eed8897ce5d2ca8484
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb431375c92222053ed2239dd4e45767524dab68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="detect-motions-with-azure-media-analytics"></a>Az Azure Media Analytics mozdulatok észlelése
 ## <a name="overview"></a>Áttekintés
-A **Azure Media mozgásérzékelő** media processzor (MP) lehetővé teszi a szakaszok egy egyébként hosszú és Eseménytelen video házirendsablonokkal hatékonyan azonosításához. Mozgásérzékelés statikus kamerák felvételei szakaszok a videó hol mozgásérzékelési jelentkezik azonosításához használhatja. Az időbélyegzőket és a határoló régió, ahol az esemény történt a metaadatokat tartalmazó JSON-fájlt hoz létre.
+Hello **Azure Media mozgásérzékelő** media processzor (MP) lehetővé teszi, hogy Ön tooefficiently azonosítani egy egyébként hosszú és Eseménytelen video házirendsablonokkal szakaszait. Mozgásérzékelés statikus kamera felvételei tooidentify szakaszok hello videó hol mozgásérzékelési jelentkezik is használhatók. A metaadatok időbélyegeket és a régió, ahol hello esemény történt határolókeret hello tartalmazó JSON-fájlt hoz létre.
 
-Cél biztonsági videó hírcsatornák, ez a technológia el tudja mozgásérzékelési kategorizálása kapcsolódó eseményeket és vakriasztások például árnyékok és megvilágítási módosításokat. Ez lehetővé teszi, hogy a biztonsági riasztások generálása kamera hírcsatornák közben igényt érdeklő pillanat kinyerése rendkívül hosszú felügyeleti videók végtelen irreleváns események, éppen címünkre nélkül.
+Cél biztonsági videó hírcsatornák, ez a technológia képes toocategorize mozgásérzékelési kapcsolódó eseményeket és vakriasztások például árnyékok és megvilágítási módosításokat. Ez lehetővé teszi a kamera hírcsatornák toogenerate biztonsági riasztások alatt címünkre végtelen irreleváns események, ugyanakkor nem képes tooextract perc múlva a rendkívül hosszú felügyeleti videók érdeklő nélkül.
 
-A **Azure Media mozgásérzékelő** felügyeleti csomag jelenleg előzetes verzió.
+Hello **Azure Media mozgásérzékelő** felügyeleti csomag jelenleg előzetes verzió.
 
-Ez a témakör kapcsolatos részleteket nyújt **Azure Media mozgásérzékelő** és a .NET-keretrendszerhez készült Media Services SDK-val való használatát ismerteti
+Ez a témakör kapcsolatos részleteket nyújt **Azure Media mozgásérzékelő** és bemutatja, hogyan toouse a Media Services SDK for .NET
 
 ## <a name="motion-detector-input-files"></a>Mozgásérzékelő – érzékelő bemeneti fájlok
-Videofájlok lejátszását. Jelenleg a következő formátumok használhatók: MP4 MOV és WMV.
+Videofájlok lejátszását. Jelenleg a következő formátumok hello támogatottak: MP4 MOV és WMV.
 
 ## <a name="task-configuration-preset"></a>A feladat konfigurációja (beállítás)
 A feladat létrehozásakor **Azure Media mozgásérzékelő**, meg kell adnia egy konfigurációs készletet. 
 
 ### <a name="parameters"></a>Paraméterek
-A következő paramétereket használhatja:
+A következő paraméterek hello használhatja:
 
 | Név | Beállítások | Leírás | Alapértelmezett |
 | --- | --- | --- | --- |
-| sensitivityLevel |Karakterlánc: "alacsony", "közepes", "magas" |Beállítja az érzékenységi szint mely mozdulatok jelenti. Ez úgy, hogy téves mennyisége módosítása |"közepes" |
-| frameSamplingValue |Pozitív egész szám |A készletek algoritmus gyakorisága futtatja. 1 egyenlő minden keret, 2 azt jelenti, hogy minden 2. keret, és így tovább. |1 |
-| detectLightChange |Logikai: "true", "false" |Megadja, hogy e könnyű módosítások jelentik az eredmények között |"False" |
-| mergeTimeThreshold |Idő xs: Óó: pp:<br/>. Példa: 00:00:03 |Adja meg az időszak, ahol 2 esemény lesz kombinált és 1 jelentett mozgásérzékelési események között. |00:00:00 |
-| detectionZones |A tömb észlelési zónák:<br/>-Észlelési zóna: 3 vagy több pontok bájttömb<br/>-Pont egy x és y koordináta 0, 1. |Ismerteti a sokszög észlelési zónák használandó listáját.<br/>Az ID, az első egy folyamatban "id" a zónák lesz jelentve az eredményeket: 0 |Egy zóna, amely magában foglalja a teljes keret. |
+| sensitivityLevel |Karakterlánc: "alacsony", "közepes", "magas" |Beállítja hello bizalmassági szint mely mozdulatok jelenti. Állítsa be úgy a vakriasztások tooadjust mennyiségét. |"közepes" |
+| frameSamplingValue |Pozitív egész szám |Beállítja hello gyakoriság mely algoritmus futtatása. 1 egyenlő minden keret, 2 azt jelenti, hogy minden 2. keret, és így tovább. |1 |
+| detectLightChange |Logikai: "true", "false" |Megadja, hogy e könnyű módosítások kimutatott hello eredmények |"False" |
+| mergeTimeThreshold |Idő xs: Óó: pp:<br/>. Példa: 00:00:03 |Megadja, ahol 2 esemény lesz kombinált és 1 jelentett mozgásérzékelési események között hello időkerete. |00:00:00 |
+| detectionZones |A tömb észlelési zónák:<br/>-Észlelési zóna: 3 vagy több pontok bájttömb<br/>-Pont egy x és y koordináta a 0 too1. |Ismerteti a sokszög észlelési zónák toobe használt hello listája.<br/>Az ID, az első egy lesznek "id" hello hello zónák lesz jelentve az eredmények: 0 |Egy zóna, amely magában foglalja a teljes keret hello. |
 
 ### <a name="json-example"></a>JSON-példa
     {
@@ -78,37 +78,37 @@ A következő paramétereket használhatja:
 
 
 ## <a name="motion-detector-output-files"></a>Mozgásérzékelő – érzékelő kimeneti fájlok
-A mozgás észlelése a JSON-fájl adja vissza a kimeneti adategységen, amely mozgásérzékelési riasztásait és a kategóriák belül a videó ismerteti. A fájl ideje és időtartama észlelte a videóból mozgásérzékelési fogja tartalmazni.
+A mozgás észlelése hello kimeneti eszköz, amely hello mozgásérzékelési riasztások és azok kategóriák belül hello videó ismerteti adja vissza egy JSON-fájlt. hello fájl hello időpontja és időtartama található videó hello mozgási információkat tartalmaznak.
 
-A mozgás érzékelő API mutatók biztosít, amennyiben nincsenek objektumok mozgásérzékelési rögzített háttér video (pl. egy felügyeleti videó). A mozgásérzékelő be van tanítva, téves riasztásokat, például a megvilágítási és árnyékmásolat módosítások csökkentése érdekében. Aktuális korlátozások algoritmusok éjszakai stratégiai videók, félig átlátható és kis objektumok tartalmazza.
+hello Mozgásérzékelési érzékelő API mutatók biztosít, ha nincsenek objektumok mozgásérzékelési rögzített háttér video (pl. egy felügyeleti videó). Mozgásérzékelő hello képzett tooreduce téves riasztásokat, például a megvilágítási és árnyékmásolat módosítások. Aktuális korlátozások hello algoritmusok éjszakai stratégiai videók, félig átlátható és kis objektumok tartalmaznak.
 
-### <a id="output_elements"></a>A kimeneti JSON-fájl elemeinek
+### <a id="output_elements"></a>Hello kimeneti JSON-fájl elemeinek
 > [!NOTE]
-> Legújabb kiadása a kimeneti JSON formátumban megváltozott, és az egyes ügyfelek használhatatlanná tévő változást jelöl.
+> Hello a legfrissebb verzióban hello kimeneti JSON formátumban megváltozott, és az egyes ügyfelek használhatatlanná tévő változást jelöl.
 > 
 > 
 
-A következő táblázat ismerteti a kimeneti JSON-fájl elemeinek.
+hello következő táblázatban hello kimeneti JSON-fájl elemeinek.
 
 | Elem | Leírás |
 | --- | --- |
-| Verzió |Ez a videó API verziója vonatkozik. A jelenlegi verzió: 2. |
-| időskálára |A videó másodpercenként "ticks". |
-| Eltolás |A "ticks" időbélyegeket időeltolódás. Videó API-k 1.0-s verziójában az mindig 0 lesz. A jövőben támogatott forgatókönyveket, ezt az értéket módosíthatja. |
-| képkockasebességhez |A videó képkockasebessége. |
-| Szélesség, Hosszúság |A szélességét és magasságát képpontban hivatkozik. |
-| Indítás |A start időbélyegzőjéhez viszonyítva a "ticks". |
-| Időtartam |Az esemény, a "ticks" hosszát. |
-| időköz |Az időköz az egyes bejegyzések az eseményben a "ticks". |
-| Események |Minden esemény-töredéket adott időtartamig belül észlelhető a mozgásérzékelési tartalmazza. |
-| Típus |A jelenlegi verzióban ez a "2" általános mozgásérzékelési. A címke által biztosított videó API-k a rugalmasságot kategorizálásának mozgási későbbi verzióit. |
-| RegionID |Ahogy fent, az mindig 0 lesz ebben a verzióban. Ezt a címkét mozgásérzékelési későbbi verzióiban különböző régiókban található rugalmasságot biztosít a videó API. |
-| Régiók |A terület a videó, ahol az Ön számára legfontosabb mozgásérzékelési hivatkozik. <br/><br/>-az "id" jelöli a régió terület – ebben a verzióban van csak egy, azonosító: 0. <br/>-"type" jelenti. az Ön számára legfontosabb mozgásérzékelő – az a régió alakját. Jelenleg a "téglalap", "sokszög" támogatottak.<br/> Ha a megadott "téglalap", a régiót dimenziója van X, Y, szélességét és magasságát. Az X és Y koordinátáit a 0,0 és 1,0 normalizált skálája terület felső bal oldali Oxykiszolgáló koordinátáit jelölik. A szélesség és magasság határoz meg a 0,0 és 1,0 normalizált skálája terület méretét. Az aktuális verzió X, Y, szélességének és magasságának mindig rögzített 0, 0 és 1, 1. <br/>Ha meg van adva "sokszög", az a régió pontokon dimenziója van. <br/> |
-| töredék |A metaadatok töredék nevű különböző részekre van darabolásos fel. Minden töredéke a start, a időtartama, a időszakának száma és a esemény (eke) tartalmaz. Nincsenek események a töredéket azt jelenti, hogy semmilyen adott kezdő időpontja és időtartama során észlelt. |
-| Szögletes zárójelbe] |Minden egyes zárójel az esemény egy időköz jelöli. Üres szögletes az adott időköz azt jelenti, hogy semmilyen volt észlelhető. |
-| Helyek |Az új belépési események alapján sorolja fel a helyre, ahol a mozgásérzékelési történt. Ez a pontosabb, mint a észlelési zónákat. |
+| Verzió |Hello videó API verziója toohello utal. hello jelenlegi verzió: 2. |
+| időskálára |"Ticks" hello videó másodpercenként. |
+| Eltolás |a "ticks" időbélyegeket hello időeltolódás. Videó API-k 1.0-s verziójában az mindig 0 lesz. A jövőben támogatott forgatókönyveket, ezt az értéket módosíthatja. |
+| képkockasebességhez |Videó hello képkockasebessége. |
+| Szélesség, Hosszúság |Toohello szélessége és magassága képpontban videó hello hivatkozik. |
+| Indítás |hello indítsa el a "ticks" időbélyegző. |
+| Időtartam |hello esemény, a "ticks" Hello hossza. |
+| időköz |minden egyes bejegyzés hello esemény, a "ticks" Hello időközt. |
+| Események |Minden esemény-töredéket adott időtartamig belül észlelt hello mozgásérzékelési tartalmazza. |
+| Típus |Az aktuális verzióban hello Ez a "2" általános mozgásérzékelési. Ez a címke videó API-k hello rugalmasságot toocategorize mozgásérzékelő – adja meg a jövőbeli verziókkal. |
+| RegionID |Ahogy fent, az mindig 0 lesz ebben a verzióban. Ezt a címkét ad Video API hello rugalmasságot toofind mozgásérzékelési különböző régiókban futó későbbi verzióiban. |
+| Régiók |Toohello terület a videó ahol az Ön számára legfontosabb mozgásérzékelési hivatkozik. <br/><br/>-az "id" jelöli hello régió terület – ebben a verzióban van csak egy, azonosító: 0. <br/>-"type" az Ön számára legfontosabb a mozgásérzékelő – hello régió hello alakzat jelöli. Jelenleg a "téglalap", "sokszög" támogatottak.<br/> Ha a megadott "téglalap" hello régió dimenziója van X, Y, szélességét és magasságát. hello X és Y koordinátáit képviselő hello felső bal oldali Oxykiszolgáló koordinátáit 0.0 too1.0 normalizált skálája hello-régiót. hello szélességének és magasságának képviselő hello terület a 0.0 too1.0 normalizált skálája hello méretét. Hello aktuális verzió X, Y, szélességének és magasságának mindig rögzített 0, 0 és 1, 1. <br/>Ha a megadott "sokszög" hello régió pontokon dimenziója van. <br/> |
+| töredék |hello metaadatok töredék nevű különböző részekre van darabolásos fel. Minden töredéke a start, a időtartama, a időszakának száma és a esemény (eke) tartalmaz. Nincsenek események a töredéket azt jelenti, hogy semmilyen adott kezdő időpontja és időtartama során észlelt. |
+| Szögletes zárójelbe] |Minden egyes zárójel hello esemény egy időköz jelöli. Üres szögletes az adott időköz azt jelenti, hogy semmilyen volt észlelhető. |
+| Helyek |Az új bejegyzést események hello helyre, ahol hello mozgásérzékelési történt sorolja fel. Ez a pontosabb, mint hello észlelési zónák. |
 
-A JSON kimeneti például
+hello az alábbiakban látható egy JSON kimeneti példa
 
     {
       "version": 2,
@@ -154,16 +154,16 @@ A JSON kimeneti például
 
     …
 ## <a name="limitations"></a>Korlátozások
-* A támogatott bemeneti videó formátumnak tartalmaznia kell MP4 MOV és WMV.
-* Mozgásérzékelés álló háttér videók van optimalizálva. Az algoritmus összpontosít téves riasztásokat, például a megvilágítási érintő változtatások, valamint az árnyékok csökkentése.
-* Néhány mozgásérzékelő – műszaki akadályok; miatt nem észlelhető például éjszaka stratégiai videók, félig átlátható és kis objektumok.
+* hello támogatott bemeneti videó formátumnak tartalmaznia kell MP4 MOV és WMV.
+* Mozgásérzékelés álló háttér videók van optimalizálva. téves riasztásokat, például a megvilágítási érintő változtatások, valamint az árnyékok csökkentése hello algoritmus összpontosít.
+* Néhány mozgásérzékelési tootechnical kihívást; miatt nem észlelhető például éjszaka stratégiai videók, félig átlátható és kis objektumok.
 
 ## <a name="net-sample-code"></a>.NET mintakód
 
-A következő program bemutatja hogyan:
+hello következő program bemutatja hogyan:
 
-1. Hozzon létre egy eszközt, és adathordozó-fájl feltöltése az objektumba.
-2. Hozzon létre egy feladatot a következő json-készletet tartalmazó konfigurációs fájl alapján Videós mozgásérzékelési észlelési feladatokkal. 
+1. Hozzon létre egy eszközt, és töltse fel a médiafájl hello objektumba.
+2. Hozzon létre egy feladatot a json-készlet a következő hello tartalmazó konfigurációs fájl alapján Videós mozgásérzékelési észlelési feladatokkal. 
    
         {
           "Version": "1.0",
@@ -192,11 +192,11 @@ A következő program bemutatja hogyan:
             ]
           }
         }
-3. A kimeneti JSON-fájlok letöltésére. 
+3. Hello kimeneti JSON-fájlok letöltéséhez. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Példa
 
@@ -213,7 +213,7 @@ A következő program bemutatja hogyan:
     {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -229,17 +229,17 @@ A következő program bemutatja hogyan:
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run the VideoMotionDetection job.
+                // Run hello VideoMotionDetection job.
                 var asset = RunVideoMotionDetectionJob(@"C:\supportFiles\VideoMotionDetection\BigBuckBunny.mp4",
                                             @"C:\supportFiles\VideoMotionDetection\config.json");
 
-                // Download the job output asset.
+                // Download hello job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\VideoMotionDetection\Output");
             }
 
             static IAsset RunVideoMotionDetectionJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload the input media file to storage.
+                // Create an asset and upload hello input media file toostorage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Video Motion Detection Input Asset",
                     AssetCreationOptions.None);
@@ -247,38 +247,38 @@ A következő program bemutatja hogyan:
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Video Motion Detection Job");
 
-                // Get a reference to Azure Media Motion Detector.
+                // Get a reference tooAzure Media Motion Detector.
                 string MediaProcessorName = "Azure Media Motion Detector";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from the specified file.
+                // Read configuration from hello specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with the encoding details, using a string preset.
+                // Create a task with hello encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Video Motion Detection Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify the input asset.
+                // Specify hello input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset to contain the results of the job.
+                // Add an output asset toocontain hello results of hello job.
                 task.OutputAssets.AddNew("My Video Motion Detectoion Output Asset", AssetCreationOptions.None);
 
-                // Use the following event handler to check job progress.  
+                // Use hello following event handler toocheck job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch the job.
+                // Launch hello job.
                 job.Submit();
 
-                // Check job execution and wait for job to finish.
+                // Check job execution and wait for job toofinish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, the event handling
+                // If job state is Error, hello event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

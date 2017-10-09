@@ -1,5 +1,5 @@
 ---
-title: "Médiaadatfolyam-továbbítást az Azure Content Delivery Network keresztül optimalizálása"
+title: "adatfolyam-optimalizálás keresztül hello Azure Content Delivery Network aaaMedia"
 description: "Adatfolyam-továbbítási médiafájlok zökkenőmentes kézbesítésre optimalizálása"
 services: cdn
 documentationcenter: 
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 1221f4f50b8b9c4b9f9f88be4d04a65375c36062
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a05a86204708c7ea7ef1f9be04323cdda6a2d403
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="media-streaming-optimization-via-the-azure-content-delivery-network"></a>Médiaadatfolyam-továbbítást az Azure Content Delivery Network keresztül optimalizálása 
+# <a name="media-streaming-optimization-via-hello-azure-content-delivery-network"></a>Médiaadatfolyam-továbbítást keresztül hello Azure Content Delivery Network optimalizálása 
  
-A nagy felbontású video egyre gyakoribbá válik az interneten, és a nagy fájlok kézbesítését nehézségek hoz létre. Az igény szerinti videó egyenletes lejátszható várt vagy a hálózatok és ügyfelek különböző video eszközök élő a világ számos országában dolgoznak. A médiaadatfolyam-továbbítást fájlok gyors és hatékony mechanizmus alapvető fontosságú élvezetesebbé és zökkenőmentes felhasználói élményt nyújtsanak.  
+A nagy felbontású video egyre gyakoribbá válik az internethez, ami hoz létre a nagy fájlok kézbesítését nehézségek hello. Az igény szerinti videó egyenletes lejátszható várt vagy a hálózatok és ügyfelek különböző video eszközök élő hello világ számos országában dolgoznak. A médiaadatfolyam-továbbítást fájlok gyors és hatékony mechanizmus kritikus tooensure egy élvezetesebbé és zökkenőmentes felhasználói élmény.  
 
-Élő adatfolyamokat nehézségekbe ütközhet a fájlmegosztásba a nagy méretű és száma párhuzamos megjelenítők miatt. Nagy késleltetéseket okoz, hogy a felhasználók. Élő adatfolyamok időben nem gyorsítótárazható, mert a nagy késleltetésű nem teszi a nézők számára elfogadható, videó töredék időben érkeznek. 
+Élő adatfolyamokat különösen nehezen toodeliver hello nagy méretű és száma párhuzamos megjelenítők miatt. Nagy késleltetéseket okoz a felhasználók tooleave. Élő adatfolyamok időben nem gyorsítótárazható, és nagy késleltetésű nem elfogadható tooviewers, mert videó töredék időben érkeznek. 
 
-A kérelem mintákat keressen az adatfolyam-is nyújt néhány új kihívásokat. Amikor népszerű élő adatfolyam vagy új több megjelenik az igény szerinti videót, több ezer megjelenítők több millió kérhetnek az adatfolyam egy időben. Ebben az esetben intelligens kérelem összevonása nélkülözhetetlen annak nem ne terhelje tovább a származási kiszolgálók Ha az eszközök még nincsenek gyorsítótárazva.
+hello kérelem mintákat keressen az adatfolyam-is nyújt néhány új kihívásokat. Ha népszerű élő adatfolyam vagy új több felszabadul az igény szerinti, akár több ezer videót a megjelenítők toomillions kérhetnek hello adatfolyam: hello ugyanannyi időt vesz igénybe. Ebben az esetben intelligens kérelmeket összevonása létfontosságú toonot ne terhelje tovább hello származási kiszolgálók Ha hello eszközök még nincsenek gyorsítótárazva.
  
-Az Azure Content Delivery Network Akamai egy szolgáltatás, amely továbbítja a folyamatos átviteli adathordozó eszközök hatékony felhasználók léptékű világszerte kínál. A szolgáltatással csökken késések fordulnak elő, mivel csökkenti a terhelést a forrás-kiszolgálókon. A szolgáltatás az IP-címek Akamai Standard érhető el. 
+hello Azure Content Delivery Network Akamai kínál: a szolgáltatás letölti a folyamatos átviteli adathordozó eszközök hatékony toousers hello földgömb léptékű között. hello szolgáltatás csökkenti késések fordulnak elő, mert hello származási kiszolgálók hello terhelése csökkenti. Ez a szolgáltatás hello Standard Akamai tarifacsomag érhető el. 
 
-Az Azure Content Delivery Network verizon médiafolyamot nyújt, közvetlenül az általános webes optimalizálási típusú.
+hello Azure Content Delivery Network verizon médiafolyamot nyújt, közvetlenül a hello általános webes kézbesítési optimalizálási típusa.
  
-## <a name="configure-an-endpoint-to-optimize-media-streaming-in-the-azure-content-delivery-network-from-akamai"></a>Optimalizálja a médiaadatfolyam-továbbítást az Azure Content Delivery Network Akamai végpont konfigurálása
+## <a name="configure-an-endpoint-toooptimize-media-streaming-in-hello-azure-content-delivery-network-from-akamai"></a>Egy végpont toooptimize médiaadatfolyam-továbbítást az Azure Content Delivery Network Akamai hello konfigurálása
  
-Konfigurálhatja a tartalomkézbesítési hálózat (CDN) végpont nagy fájlok az Azure-portálon kézbesítési optimalizálása érdekében. Ehhez a REST API-k vagy az ügyfél SDK-k bármelyikét is használja. Az alábbi műveletek ismertetik a folyamatot az Azure-portálon:
+Konfigurálhatja a tartalomkézbesítési hálózat (CDN) végpont toooptimize kézbesítési hello Azure-portálon keresztül nagy fájlok esetében. Használhatja a REST API-kat is, vagy bármely ez hello ügyfél SDK-k toodo. hello következő lépések bemutatják hello folyamat hello Azure-portálon keresztül:
 
-1. Egy új végpont hozzáadásához a **CDN-profil** lapon jelölje be **végpont**.
+1. egy új végponton, hello tooadd **CDN-profil** lapon jelölje be **végpont**.
   
     ![Új végpont](./media/cdn-media-streaming-optimization/01_Adding.png)
 
-2. Az a **optimalizálva** legördülő listában válassza **videó igény szerinti médiaadatfolyam** videotartalom eszközök. Ha egy élő kombinációja és a videotartalom adatfolyamként történő továbbítását, válassza ki a **általános médiaadatfolyam**.
+2. A hello **optimalizálva** legördülő listában válassza **videó igény szerinti médiaadatfolyam** videotartalom eszközök. Ha egy élő kombinációja és a videotartalom adatfolyamként történő továbbítását, válassza ki a **általános médiaadatfolyam**.
 
     ![Adatfolyam-kiválasztva](./media/cdn-media-streaming-optimization/02_Creating.png) 
  
-Miután létrehozta a végpontot, a feltételeknek megfelelő összes fájl optimalizálása vonatkozik. Az alábbi szakasz ismerteti a folyamatot. 
+Hello végpont létrehozása után hello optimalizálási feltételeknek megfelelő összes fájl vonatkozik. a következő szakasz hello ezt a folyamatot ismerteti. 
  
-## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-akamai"></a>Médiaadatfolyam-továbbítást az Azure Content Delivery Network Akamai optimalizálás.
+## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-akamai"></a>Médiaadatfolyam-továbbítást az Azure Content Delivery Network Akamai hello optimalizálása
  
 Adatfolyam-továbbítási optimalizálási Akamai érvényben működés közbeni adathordozóról vagy adathordozót használó médiafolyamot videotartalom töredékei kézbesítését. Ez a folyamat nem azonos a progresszív letöltésen keresztül vagy a bájttartomány kérelmek használatával át egyetlen nagy eszköz. Információ a adott stílus media szállítási: [nagy méretű fájlok optimalizálási](cdn-large-file-optimization.md).
 
 
-Az általános media kézbesítési és videotartalom media kézbesítési optimalizálási típusú CDN használata gyorsabb képes biztosítani a media eszközök a háttér-optimalizálást. Megtudta, időbeli ajánlott eljárásai alapján adathordozó eszközök használata konfigurációk is.
+hello általános media kézbesítési vagy videotartalom media kézbesítési optimalizálási típusok használata CDN háttér-optimalizálást toodeliver adathordozó eszközök gyorsabb. Megtudta, időbeli ajánlott eljárásai alapján adathordozó eszközök használata konfigurációk is.
 
 ### <a name="caching"></a>Gyorsítótárazás
 
-Ha az Azure Content Delivery Network Akamai azt észleli, hogy az eszköz egy adatfolyam-továbbítási jegyzékfájl vagy töredék, általános webes kézbesítési eltérő gyorsítótár lejárati időpontban használ. (Lásd az alábbi táblázatban a teljes listát.) Ennek mindig a cache-control vagy Expires fejléc a forrásnak küldött is figyelembe véve. Ha az eszköz nem egy adathordozó eszköz, a lejárati időpontjait használatával általános webes kézbesítésre gyorsítótárazza.
+Hello Azure Content Delivery Network Akamai azt észleli, hogy hello eszköz egy adatfolyam-továbbítási jegyzékfájl vagy töredék, ha különböző gyorsítótár lejárati időpontjait a általános webes kézbesítési használ. (Lásd: hello teljes listáját a következő táblázat hello.) Ennek mindig a cache-control vagy Expires fejléc küldi hello forrásból is figyelembe véve. Ha nem a media eszköz hello eszköz, általános webes kézbesítésre hello lejárati időpontjait használatával gyorsítótárazza.
 
-A rövid negatív gyorsítótárazási idő az eredeti kiszervezési hasznos, sok felhasználó kérése egy kódrészletet, amely még nem létezik. Példa: Ha a csomagok nem érhetők el a forrásból, hogy a második élő adatfolyam. A gyorsítótárazási már intervallum segít kiszervezése a forrás érkező kéréseket, mert videotartalom általában nem módosította.
+hello rövid negatív gyorsítótárazási, hasznos, ha a forrás kiszervezési amikor sok felhasználók kérnek egy kódrészletet, amely még nem létezik. Példa: Ha hello csomagok nem érhetők el hello a forrásból, hogy a második élő adatfolyam. hello gyorsítótárazási már intervallum is lehetővé teszi, mert videotartalom általában nem módosította-kiszervezés hello származási érkező kérelmeket.
  
 
 |    | Általános kérdések<br> webalkalmazás<br>teljesítéssel | Általános kérdések<br> média<br> adatfolyam- | Videotartalom <br>média<br> adatfolyam-  
@@ -67,15 +67,15 @@ Gyorsítótárazás: negatív. <br> HTTP 204, 305, 404, <br> és 405 | None | 1 
  
 ### <a name="deal-with-origin-failure"></a>Az eredeti hiba kezelésére  
 
-Általános media kézbesítési és videotartalom media kézbesítési is származási időtúllépési és ajánlott eljárások a tipikus kérelem minták alapján újrapróbálkozási naplót. Például mert általános media kézbesítési a működés közbeni és videotartalom media kézbesítési, használ egy rövidebb kapcsolat időkorlátja időérzékeny jellemzői miatt live streaming.
+Általános media kézbesítési és videotartalom media kézbesítési is származási időtúllépési és ajánlott eljárások a tipikus kérelem minták alapján újrapróbálkozási naplót. Például mert általános media kézbesítési a működés közbeni és videotartalom media kézbesítési, használ egy rövidebb kapcsolat időtúllépés miatt toohello időérzékeny jellege live streaming.
 
-Ha a kapcsolat időtúllépés miatt megszakadt, a CDN újrapróbálja többször az ügyfél egy "504 - átjáró időtúllépése" hibaüzenet küldése előtt. 
+Ha a kapcsolat időtúllépés miatt megszakadt, hello CDN újrapróbálja többször "504 - átjáró időtúllépése" hiba toohello ügyfél küldése előtt. 
 
-Ha egy fájl megfelel a fájl típusát és méretét feltételek listája, a CDN viselkedésének médiaadatfolyam használja. Ellenkező esetben általános webes kézbesítési használ.
+Ha egy fájl megfelel a hello fájlok típusát és méretét feltételek listája, hello CDN hello viselkedés médiaadatfolyam-továbbítást használ. Ellenkező esetben általános webes kézbesítési használ.
    
 ### <a name="conditions-for-media-streaming-optimization"></a>Médiaadatfolyam-továbbítást optimalizálási feltételei 
 
-Az alábbi táblázat a médiaadatfolyam-továbbítást optimalizálási teljesítését feltételek csoportja: 
+a következő táblázat hello feltételek toobe elégedett a médiaadatfolyam-továbbítást optimalizálási hello készletét tartalmazza: 
  
 Támogatott adatfolyam-továbbítási típusok | Fájlkiterjesztések  
 --- | ---  
@@ -86,15 +86,15 @@ Smooth streaming | / jegyzékfájl /, töredék/QualityLevels / /
   
 
  
-## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-verizon"></a>Médiaadatfolyam-továbbítást az Azure Content Delivery Network verizon optimalizálás.
+## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-verizon"></a>Médiaadatfolyam-továbbítást az Azure Content Delivery Network verizon hello optimalizálása
 
-Az Azure Content Delivery Network verizon adatfolyam adathordozó eszközök általános webes optimalizálási típusú segítségével közvetlenül továbbítja. A CDN néhány funkcióinak közvetlenül segítse a postai adathordozó eszközök alapértelmezés szerint.
+hello Azure Content Delivery Network verizon adatfolyam adathordozó eszközök hello általános webes optimalizálási típusú segítségével közvetlenül továbbítja. Néhány funkcióinak hello CDN közvetlenül segítse a postai adathordozó eszközök alapértelmezés szerint.
 
 ### <a name="partial-cache-sharing"></a>A részleges gyorsítótári megosztása
 
-A részleges gyorsítótári megosztása lehetővé teszi, hogy a CDN és a részlegesen gyorsítótárazott tartalmat rendszerben tett új kérelmekre. Például ha az első kérelem és a CDN egy gyorsítótár-tévesztései eredményez, a kérelem érkezik a forrás. Bár a nem teljes tartalom a CDN-gyorsítótárból tölti be, küldött egyéb kérések számára a CDN megkezdheti az adatok beolvasása. 
+A részleges gyorsítótári megosztása lehetővé teszi a hello CDN tooserve részlegesen gyorsítótárazott tartalom toonew kérelmek. Például ha hello első kérelem toohello CDN gyorsítótár-tévesztései eredményez, hello kérelem küld toohello forrása. Bár a nem teljes tartalom hello CDN gyorsítótár tölti be, más kérelmek toohello CDN megkezdheti az adatok beolvasása. 
 
 ### <a name="cache-fill-wait-time"></a>Gyorsítótár kitöltés várakozási idő
 
- A gyorsítótár kitöltés várakozási idő a szolgáltatás kényszeríti a peremhálózati kiszolgáló erőforrást a következő kéréseit tárolásához, amíg az eredeti kiszolgálóra érkező HTTP-válaszfejlécek. Ha HTTP-válaszfejlécek a forrásból érkeznek, az időzítő lejárata előtt, a növekvő gyorsítótárból szolgáltatott összes kérelem volt helyezhető tartásba. Egy időben a gyorsítótár tölti ki a forrás adatait. Alapértelmezés szerint a gyorsítótár kitöltés várakozási idő értéke 3000 ezredmásodperc. 
+ hello gyorsítótár kitöltés várakozási idő a szolgáltatás kényszeríti hello peremhálózati kiszolgáló toohold a későbbi kéréseit hello azonos erőforrás csak fejlécek hello eredeti kiszolgálóra érkező HTTP-válasz. HTTP-válaszfejlécek hello forrásból érkezik hello időzítő lejárata előtt, ha volt függeszthetők összes kérelem szolgáltatott gyorsítótár növekvő hello kívül. A hello azonos időben, hello gyorsítótár tölti ki adatokat hello a forrásból. Alapértelmezés szerint a hello gyorsítótár kitöltés várakozási idő too3, 000 ezredmásodperc van beállítva. 
 

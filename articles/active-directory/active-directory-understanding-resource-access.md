@@ -1,6 +1,6 @@
 ---
-title: "Az az Azure-erőforrások hozzáférésének megismerése |} Microsoft Docs"
-description: "Ez a témakör a fogalmakat ismerteti az előfizetés rendszergazdáihoz segítségével vezérelheti, erőforrás-hozzáférés az Azure-portálon"
+title: "aaaUnderstanding erőforrások elérése az Azure-ban |} Microsoft Docs"
+description: "Ez a témakör ismerteti a fogalmakat előfizetés rendszergazdák toocontrol erőforrás-hozzáférés használata a hello Azure-portálon"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,52 +14,52 @@ ms.topic: article
 ms.date: 07/24/2017
 ms.author: curtand
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: f1fda3c4192d0dae4fa60788f4d88fb72ddba4ad
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 06b9c4166bdea849faae67cae3146c6c278deb97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understanding-resource-access-in-azure"></a>Az az Azure-erőforrások hozzáférésének megismerése
 > [!IMPORTANT]
-> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. Az Azure-portálon biztosít [szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md) , Azure-erőforrások kezelhetők pontosabban.
+> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. hello Azure-portált biztosít [szerepköralapú hozzáférés-vezérlés](role-based-access-control-configure.md) , Azure-erőforrások kezelhetők pontosabban.
 > 
 > 
 
-2013 októberében, a klasszikus Azure portál és a Service Management API-k volt Azure Active Directoryval integrált ahhoz, hogy az Azure-erőforrások való hozzáférés a felhasználói élmény javítására művelet. Az Azure Active Directory már például a felhasználók kezelése, a helyszíni címtár-szinkronizálás, a multi-factor authentication és alkalmazás-hozzáférés-vezérlés remek funkciókat biztosít. Természetesen ezek kell is elérhetővé válik az Azure-erőforrások kezelése megfogalmazott.
+2013 októberében hello a klasszikus Azure portálon, és a Service Management API-k lettek integrálva az Azure Active Directoryban rendelés toolay hello áttelepítés tooAzure erőforrások kezelésére szolgáló hello felhasználói élmény javítására. Az Azure Active Directory már például a felhasználók kezelése, a helyszíni címtár-szinkronizálás, a multi-factor authentication és alkalmazás-hozzáférés-vezérlés remek funkciókat biztosít. Természetesen ezek kell is elérhetővé válik az Azure-erőforrások kezelése megfogalmazott.
 
-Hozzáférés-vezérlés az Azure-ban elindul egy számlázási szempontjából. Azure-fiók esetén érhető el, látogasson el a tulajdonosa a [Azure Accounts Center](https://account.windowsazure.com/subscriptions), a fiók rendszergazdai AA van. Előfizetések számlázási tárolója, de úgy is működnek, mint a biztonsági határ: minden előfizetés rendelkezik egy szolgáltatás rendszergazdai (SA) számára adja hozzá, távolítsa el, és módosítsa az adott előfizetés Azure-erőforrások használatával a [a klasszikus Azure portálon](https://manage.windowsazure.com/). Az alapértelmezett biztonsági Társítás az új előfizetés az AA, de az AA módosíthatja a rendszergazdai (SA) az Azure Accounts Center a.
+Hozzáférés-vezérlés az Azure-ban elindul egy számlázási szempontjából. Azure-fiók esetén érhető el hello felkeresésével hello tulajdonosának [Azure Accounts Center](https://account.windowsazure.com/subscriptions), hello AA fiók rendszergazdai. Előfizetések számlázási tárolója, de úgy is működnek, mint a biztonsági határ: minden előfizetés rendelkezik a szolgáltatás rendszergazdai (SA) akik hozzáadása, eltávolítása és módosítása az Azure-erőforrások az adott előfizetés hello használatával [a klasszikus Azure portálon](https://manage.windowsazure.com/). az új előfizetés hello alapértelmezett SA hello AA, de hello AA módosíthatja a hello Azure Accounts Center hello SA.
 
 <br><br>![Azure-fiókra][1]
 
-Előfizetések is könyvtár van társítva. A directory egy felhasználók csoportját határozza meg. Ezek lehetnek a felhasználók a munkahelyi vagy iskolai, hozott létre a könyvtár, vagy külső felhasználók számára (Ez azt jelenti, hogy a Microsoft Accounts) is lehetnek. Az előfizetések által hozzárendelt szolgáltatás-rendszergazdai (SA) vagy Társadminisztrátorának (CA); directory felhasználók egy részhalmazát érhetők el az egyetlen kivétel, hogy az örökölt összetevők miatt, Microsoft Accounts (korábbi nevén Windows Live ID Azonosítóval) rendelhető rendszergazdai (SA) vagy a CA anélkül, hogy a címtárban található.
+Előfizetések is könyvtár van társítva. hello directory egy felhasználók csoportját határozza meg. Ezek lehetnek a felhasználók hello munkahelyi vagy iskolai hello directory létrehozott vagy külső felhasználók számára (Ez azt jelenti, hogy a Microsoft Accounts). Az előfizetések által hozzárendelt szolgáltatás-rendszergazdai (SA) vagy Társadminisztrátorának (CA); directory felhasználók egy részhalmazát érhetők el hello csak egyetlen kivételt jelenti, hogy az örökölt összetevők miatt, Microsoft Accounts (korábbi nevén Windows Live ID Azonosítóval) rendelhető rendszergazdai (SA) vagy a CA anélkül, hogy jelen hello könyvtárban.
 
 <br><br>![Hozzáférés-vezérlés az Azure-ban][2]
 
-A klasszikus Azure portálon belül funkciók lehetővé teszik a Bejelentkezés Microsoft-Account segítségével módosítsa a könyvtárat, amelyhez előfizetéssel társítva van a biztonsági társítások a **könyvtár szerkesztése** parancs a  **Előfizetések** lap **beállítások**. Vegye figyelembe, hogy ez a művelet hatással vannak az előfizetésben a hozzáférés-vezérlés.
+Hello a klasszikus Azure portálon belül funkciók lehetővé teszik a SAs használatával a Microsoft Account toochange hello könyvtár tartozó előfizetés hello használatával aláírt **könyvtár szerkesztése** hello parancs**Előfizetések** lap **beállítások**. Vegye figyelembe, hogy ez a művelet hatással vannak a hozzáférés-vezérlés hello előfizetésben.
 
 > [!NOTE]
-> A **könyvtár szerkesztése** parancs a klasszikus Azure portálon munkahelyi bejelentkezett felhasználók számára nem érhető el, vagy iskolai fiókhoz, mivel ezek a fiókok bejelentkezhetnek a, csak azt a könyvtárat, amelyhez tartoznak.
+> Hello **könyvtár szerkesztése** parancsot hello klasszikus Azure portál nincs elérhető toousers be voltak jelentkezve egy munkahelyi vagy iskolai fiókhoz, mivel ezek a fiókok bejelentkezhetnek csak toohello directory toowhich tartoznak.
 > 
 > 
 
 <br><br>![Egyszerű felhasználói bejelentkezési folyamat][3]
 
-Az egyszerű esetében egy szervezet (Contoso) például számlázási kényszerítése, és hozzáférés-vezérlés ugyanazokat az előfizetések között. Ez azt jelenti, hogy a könyvtár egy olyan Azure-fiók tulajdonában lévő előfizetések társítva. A klasszikus Azure portálra sikeres bejelentkezés esetén a felhasználók látni két gyűjtemények erőforrások (az előző ábrán narancssárga kitaláltak):
+Hello egyszerű esetben egy szervezet (Contoso) például számlázási kényszerítése, és hozzáférés-vezérlés hello azonos beállítása előfizetések között. Ez azt jelenti, hogy hello könyvtár egy olyan Azure-fiók tulajdonában lévő társított toosubscriptions. Sikeres bejelentkezés toohello a klasszikus Azure portálon, hogy a felhasználók látni két gyűjtemények erőforrások (az előző ábrán hello narancssárga ábrázolva):
 
-* Könyvtárak ahol a felhasználói fiók létezik-e (vagy fel van véve egy idegen rendszerbiztonsági tag forrása). Vegye figyelembe, hogy a könyvtár bejelentkezési, akkor nem kapcsolódik a számítási, ezért a címtárak mindig megjelennek, függetlenül attól, hol jelentkezett.
-* Előfizetések, amelyek hozzárendelve a bejelentkezéshez használt könyvtár, és amely a felhasználó elérheti (Ha olyan rendszergazdai (SA) vagy a CA) részét képező erőforrásokat.
+* Könyvtárak ahol a felhasználói fiók létezik-e (vagy fel van véve egy idegen rendszerbiztonsági tag forrása). Vegye figyelembe, hogy a bejelentkezéshez használt hello könyvtár nem megfelelő toothis számítási, így a címtárak mindig megjelennek, függetlenül attól, hol jelentkezett.
+* Előfizetések, amelyek hozzárendelve a bejelentkezéshez használt hello könyvtár, és amely hello felhasználói részét képező erőforrásokat érhetik el (Ha olyan rendszergazdai (SA) vagy a CA).
 
 <br><br>![A felhasználó több előfizetések és könyvtárak][4]
 
-Több címtárban előfizetések felhasználóknál váltson az aktuális környezetben, a klasszikus Azure portál használatával az előfizetés-szűrőt. A színfalak könyvtárt az eredmény egy külön bejelentkezési, de ez teszi lehetővé zökkenőmentesen egyszeri bejelentkezés (SSO).
+Több címtárban előfizetések felhasználóknál hello képességét tooswitch hello jelenlegi kontextusa hello a klasszikus Azure portálon hello előfizetés szűrő használatával. Hello színfalak ez külön bejelentkezési tooa másik címtárhoz eredményez, de mindez zökkenőmentesen egyszeri bejelentkezés (SSO) használatával.
 
-Lehet, hogy a műveletek, például az erőforrások áthelyezése másik előfizetések nehezebb előfizetések egyetlen nézetének miatt. Az erőforrás-áthelyezés végrehajtásához az első használat szükség lehet a **könyvtár szerkesztése** parancsot az előfizetések oldalán a **beállítások** rendelje hozzá a az előfizetések ugyanabban a könyvtárban.
+Lehet, hogy a műveletek, például az erőforrások áthelyezése másik előfizetések nehezebb előfizetések egyetlen nézetének miatt. tooperform hello erőforrás átviteli, szükség lehet toofirst hello használata **könyvtár szerkesztése** parancs hello az előfizetések oldalán **beállítások** tooassociate hello előfizetések toohello ugyanabban a könyvtárban .
 
 ## <a name="next-steps"></a>Következő lépések
-* Az Azure-előfizetések rendszergazdáinak módosításáról további információ: [Azure-rendszergazdai szerepkörök felvétele vagy módosítása](../billing/billing-add-change-azure-subscription-administrator.md)
-* Hogyan Azure Active Directory vonatkozik-e az Azure-előfizetéshez további információkért lásd: [kapcsolódnak hogyan Azure-előfizetések az Azure Active Directoryval](active-directory-how-subscriptions-associated-directory.md)
-* A szerepkörök Azure AD-ben történő hozzárendeléséről további információért lásd: [Rendszergazdai szerepkörök hozzárendelése az Azure Active Directoryban](active-directory-assign-admin-roles.md).
+* További részletek toolearn, hogyan toochange rendszergazdák az Azure-előfizetéssel, lásd: [hogyan tooadd, vagy módosítsa az Azure rendszergazdai szerepkörök](../billing/billing-add-change-azure-subscription-administrator.md)
+* Hogyan kapcsolódik az Azure Active Directory a tooyour Azure-előfizetés további információkért lásd: [kapcsolódnak hogyan Azure-előfizetések az Azure Active Directoryval](active-directory-how-subscriptions-associated-directory.md)
+* További információt a tooassign szerepkörök az Azure ad-ben, lásd: [rendszergazdai szerepkörök hozzárendelése az Azure Active Directoryban](active-directory-assign-admin-roles.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-understanding-resource-access/IC707931.png

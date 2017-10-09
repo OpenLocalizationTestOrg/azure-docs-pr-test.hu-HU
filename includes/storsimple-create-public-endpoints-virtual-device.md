@@ -1,14 +1,14 @@
-#### <a name="to-create-public-endpoints-on-the-virtual-device"></a>Nyilvános végpontok létrehozása a virtuális eszközön
+#### <a name="toocreate-public-endpoints-on-hello-virtual-device"></a>toocreate hello virtuáliseszköz nyilvános végpontok
 
-1. Jelentkezzen be a klasszikus Azure portálra.
-2. Kattintson a **Virtual Machines** elemre, majd válasszon ki egy, virtuális eszközként használni kívánt virtuális gépet.
-3. Kattintson a **Végpontok** elemre. A **Végpontok** lapon megjelennek a virtuális gép végpontjai.
-4. Kattintson a **Hozzáadás** parancsra. Megjelenik a **Végpont hozzáadása** párbeszédpanel. A folytatáshoz kattintson a nyílra.
-5. A **Név** mezőbe írja be a végponthoz a következő nevet: **WinRMHttps**.
-6. A **Protokoll** mezőben adja meg a **TCP** lehetőséget.
-7. A **Nyilvános port** mezőbe írja be a csatlakozáshoz használni kívánt portok számát.
-8. A **Magánhálózati port** mezőbe írja be az **5986** értéket.
-9. Kattintson a pipa jelre a végpont létrehozásához.
+1. Jelentkezzen be toohello a klasszikus Azure portálon.
+2. Kattintson a **virtuális gépek**, és ezután válasszon hello virtuális gépen, amelyen a virtuális eszköz használatos.
+3. Kattintson a **Végpontok** elemre. Hello **végpontok** laplistákhoz hello virtuális gép végpontjai.
+4. Kattintson az **Add** (Hozzáadás) parancsra. Hello **végpont hozzáadása** párbeszédpanel jelenik meg. Kattintson a nyílra toocontinue hello.
+5. A hello **neve**, hello végpont típusa hello következő nevet: **WinRMHttps**.
+6. A hello **protokoll**, adja meg **TCP**.
+7. A hello **nyilvános Port**, írja be a kívánt toouse hello kapcsolat hello portszámokat.
+8. A hello **magánhálózati Port**, típus **5986-os**.
+9. Kattintson a hello pipa toocreate hello végpontra.
 
-Ha létrehozta a végpontot, a részletek között megnézheti a nyilvános virtuális IP-címet (VIP). Jegyezze fel ezt az IP-címet.
+Hello végpont létrehozását követően megtekintheti az részletek toodetermine hello nyilvános virtuális IP-cím (VIP) címét. Jegyezze fel ezt az IP-címet.
 

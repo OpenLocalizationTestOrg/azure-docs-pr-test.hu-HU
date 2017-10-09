@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált & frankly |} Microsoft Docs"
-description: "Egyszeri bejelentkezés Azure Active Directory közötti konfigurálásával és & frankly."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory közötti és & frankly."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,116 +13,116 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jeedes
-ms.openlocfilehash: ea18a9f9bff258337a3de6d7703b4c548efa37df
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 92677b6fcd8609ca31f82a30e85c7010b7bb3351
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-frankly"></a>Oktatóanyag: Azure Active Directoryval integrált & frankly
 
-Ebben az oktatóanyagban elsajátíthatja, hogyan integrálhatja & frankly és az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate & frankly és az Azure Active Directory (Azure AD).
 
-Integrálása & frankly az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Integrálása & frankly az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, aki hozzáféréssel rendelkezik a & frankly Azure AD-ben
-- Engedélyezheti a felhasználók automatikusan lekérni bejelentkezett & frankly (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Szabályozhatja, aki hozzáféréssel rendelkezik, túl & frankly Azure AD-ben
+- Engedélyezheti a felhasználóknak tooautomatically bejelentkezett túl & frankly (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD integrálása & frankly, akkor kell a következő elemek:
+az Azure AD-integrációs tooconfigure & frankly, meg kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - A & frankly egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Hozzáadás & frankly a gyűjteményből
+1. Hozzáadás & frankly hello gyűjteményből
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-frankly-from-the-gallery"></a>Hozzáadás & frankly a gyűjteményből
-Konfigurálja az integrációt a & frankly az Azure AD-be, meg kell adni & frankly a felügyelt SaaS-alkalmazások listájára a gyűjteményből.
+## <a name="adding-frankly-from-hello-gallery"></a>Hozzáadás & frankly hello gyűjteményből
+tooconfigure hello integráció a & frankly az Azure AD-be, meg kell tooadd & frankly hello gyűjteménye tooyour kezelt SaaS-alkalmazások listáját.
 
-**Vegye fel & frankly a gyűjteményből, hajtsa végre a következő lépéseket:**
+**tooadd & frankly gyűjteményből hello, hajtsa végre az alábbi lépésekkel hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **& frankly**.
+4. Hello keresési mezőbe, írja be a **& frankly**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_search.png)
 
-5. Az eredmények panelen válassza ki a **& frankly**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **& frankly**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálása és tesztelése az Azure AD egyszeri bejelentkezést a & "Britta Simon." nevű tesztfelhasználó frankly alapján
 
-Az egyszeri bejelentkezés működéséhez az Azure AD milyen a partner felhasználónak tudnia kell, és frankly egy felhasználó számára az Azure AD. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó közötti kapcsolat kapcsolatot frankly & k kell létrehozni.
+Egyszeri bejelentkezés toowork az Azure AD kell tooknow megfelelőjére felhasználó hello-tooa felhasználói frankly az Azure AD-ben. Más szóval hivatkozás közötti kapcsolat egy Azure AD-felhasználó és hello kapcsolódó felhasználó a & frankly igényeinek toobe létrejött.
 
-A & frankly, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+A & frankly, rendelje hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD tesztelése és konfigurálása egyszeri bejelentkezéshez az & frankly, akkor kell végezze el a következő építőelemeket:
+tooconfigure és az Azure AD az egyszeri bejelentkezés tesztelése & frankly, meg kell a következő építőelemeket toocomplete hello:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Létrehozása egy & frankly tesztfelhasználó](#creating-a-frankly-test-user)**  – egy partner Britta Simon, hogy a & frankly vagyis csatolt a felhasználó az Azure AD-megjelenítésre.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Létrehozása egy & frankly tesztfelhasználó](#creating-a-frankly-test-user)**  -toohave egy megfelelője a Britta Simon a & frankly, amely csatolt toohello felhasználói az Azure AD-ábrázolását.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az a & frankly alkalmazás.
+Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése és konfigurálása egyszeri bejelentkezéshez az a & frankly alkalmazás.
 
-**Konfigurálhatja az Azure AD egyetlen jelentkezhessen be & frankly, hajtsa végre a következő lépéseket:**
+**az Azure AD tooconfigure egyetlen jelentkezhessen be & frankly, hajtsa végre az alábbi lépésekkel hello:**
 
-1. Az Azure portálon a a **& frankly** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **& frankly** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_samlbase.png)
 
-3. Az a **& frankly tartomány és az URL-címek** szakaszban, ha szeretne beállítani az alkalmazás **IDP** kezdeményezett mód:
+3. A hello **& frankly tartomány és az URL-címek** szakaszban, ha tooconfigure hello alkalmazás **IDP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_url.png)
 
-    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:`https://andfrankly.com/saml/simplesaml/www/module.php/saml/sp/metadata.php/<tenant id>`
+    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://andfrankly.com/saml/simplesaml/www/module.php/saml/sp/metadata.php/<tenant id>`
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:`https://andfrankly.com/saml/simplesaml/www/module.php/saml/sp/saml2-acs.php/<tenant id>`
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://andfrankly.com/saml/simplesaml/www/module.php/saml/sp/saml2-acs.php/<tenant id>`
 
-4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha szeretne beállítani az alkalmazás **SP** kezdeményezett mód:
+4. Ellenőrizze **megjelenítése speciális URL-beállításainak**. Ha tooconfigure hello alkalmazás **SP** kezdeményezett mód:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_url1.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://andfrankly.com/saml/okta/?saml_sso=<tenant id>`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://andfrankly.com/saml/okta/?saml_sso=<tenant id>`
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges azonosítójú bejelentkezés és a válasz URL-CÍMEN. Ügyfél [andfrankly támogatási csoport](mailto:help@andfrankly.com) beolvasni ezeket az értékeket.
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a hello tényleges azonosítója, bejelentkezés és a válasz URL-CÍMEN. Ügyfél [andfrankly támogatási csoport](mailto:help@andfrankly.com) tooget ezeket az értékeket.
 
-5. Az a **SAML-aláíró tanúsítványa** területen kattintson **metaadatainak XML-kódja** és mentse a metaadat-fájlt a számítógépen.
+5. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello metaadatait tartalmazó fájl a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_certificate.png) 
 
@@ -130,63 +130,63 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_general_400.png)
 
-7. Egyszeri bejelentkezés konfigurálása **& frankly** oldalon kell küldeniük a letöltött **metaadatainak XML-kódja** való [andfrankly támogatási csoport](mailto:help@andfrankly.com). 
+7. tooconfigure egyszeri bejelentkezést a **& frankly** oldalon kell letöltött toosend hello **metaadatainak XML-kódja** túl[andfrankly támogatási csoport](mailto:help@andfrankly.com). 
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-andfrankly-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-frankly-test-user"></a>Létrehozása egy & frankly tesztfelhasználó számára
 
-Ebben a szakaszban Britta Simon nevű frankly & a felhasználó létrehozása. Együttműködve [andfrankly támogatási csoport](mailto:help@andfrankly.com) tartozó felhasználók hozzáadása a & frankly platform.
+Ebben a szakaszban Britta Simon nevű frankly & a felhasználó létrehozása. Együttműködve [andfrankly támogatási csoport](mailto:help@andfrankly.com) tooadd hello felhasználók hello & frankly platform.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban Britta Simon hozzáférés biztosítása a & frankly által használandó Azure egyszeri bejelentkezés engedélyezése.
+Ebben a szakaszban engedélyezése az Azure egyszeri bejelentkezés Britta Simon toouse túl & frankly hozzáférés biztosítása.
 
 ![Felhasználó hozzárendelése][200] 
 
-**A & frankly Britta Simon hozzárendeléséhez a következő lépésekkel:**
+**tooassign Britta Simon túl & frankly, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **& frankly**.
+2. Hello alkalmazások listában válassza ki a **& frankly**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-andfrankly-tutorial/tutorial_andfrankly_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -194,7 +194,7 @@ Ebben a szakaszban Britta Simon hozzáférés biztosítása a & frankly által h
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -202,13 +202,13 @@ Ebben a szakaszban Britta Simon hozzáférés biztosítása a & frankly által h
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ez a szakasz célja a hozzáférési panelen az Azure AD SSO-konfigurációjának tesztelése.
+hello ebben a szakaszban célja tootest hozzáférési Panel az Azure AD SSO konfigurációs használatával hello.
 
-Kattintva & frankly csempéjén a hozzáférési panelen kattintson a jobb kapja meg automatikusan bejelentkezett az a & frankly alkalmazás
+Kattintson a hello & hello hozzáférési Panel frankly csempére, szerezheti be automatikusan bejelentkezett tooyour & frankly alkalmazás
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

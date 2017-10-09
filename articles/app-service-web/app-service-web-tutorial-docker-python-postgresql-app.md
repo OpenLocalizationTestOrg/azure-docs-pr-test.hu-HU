@@ -1,6 +1,6 @@
 ---
-title: "Build egy Docker Python és PostgreSQL webalkalmazást az Azure-ban |} Microsoft Docs"
-description: "Útmutató a Docker Python alkalmazást az Azure PostgreSQL adatbázis-kapcsolat használata."
+title: "aaaBuild egy Docker Python és PostgreSQL webalkalmazást az Azure-ban |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooget a Docker Python-alkalmazások használata az Azure-ban, a kapcsolat tooa PostgreSQL-adatbázis használati ideje."
 services: app-service\web
 documentationcenter: python
 author: berndverst
@@ -15,23 +15,23 @@ ms.topic: tutorial
 ms.date: 05/03/2017
 ms.author: beverst
 ms.custom: mvc
-ms.openlocfilehash: e70f85a1eb4a6e1a81e0ca4fae228ca97deca6fe
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e594ef9ec8c04ef2bf725e5f998691f3fb8cf815
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-docker-python-and-postgresql-web-app-in-azure"></a>Az Azure-ban Docker Python és PostgreSQL webalkalmazás létrehozása
 
-Az Azure Web Apps jól skálázható, önálló javítási a webhelyszolgáltató biztosít. Ez az oktatóanyag bemutatja, hogyan alapvető Docker Python-webalkalmazás létrehozása az Azure-ban. Ez az alkalmazás PostgreSQL-adatbázishoz szeretne összekapcsolni. Amikor elkészült, konfigurálnia kell egy Python Flask-alkalmazás egy Docker-tároló belül futó [Azure App Service Web Apps](app-service-web-overview.md).
+Az Azure Web Apps jól skálázható, önálló javítási a webhelyszolgáltató biztosít. Ez az oktatóanyag bemutatja, hogyan toocreate egy alapszintű Docker Python webalkalmazás az Azure-ban. Az alkalmazás tooa PostgreSQL-adatbázishoz fog csatlakozni. Amikor elkészült, konfigurálnia kell egy Python Flask-alkalmazás egy Docker-tároló belül futó [Azure App Service Web Apps](app-service-web-overview.md).
 
 ![Docker Python Flask-alkalmazás az Azure App Service-ben](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-flask-in-azure.png)
 
-A macOS hajtsa végre az alábbi lépéseket. Linux és Windows utasításokat legtöbbször azonos, de az eltéréseket nem részletes ebben az oktatóanyagban.
+A macOS hajtsa végre az alábbi hello lépéseket. Linux és Windows utasításokat a legtöbb esetben hello azonos, de hello különbségek nem részletes ebben az oktatóanyagban.
  
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 1. [A Git telepítése](https://git-scm.com/)
 1. [Telepítse a Pythont](https://www.python.org/downloads/)
@@ -42,38 +42,38 @@ Az oktatóanyag elvégzéséhez:
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="test-local-postgresql-installation-and-create-a-database"></a>Adatbázis létrehozása és helyi PostgreSQL-telepítés sikerességének ellenőrzése
 
-Nyissa meg a terminálablakot, és futtassa `psql postgres` a helyi PostgreSQL-kiszolgálóhoz való csatlakozáshoz.
+Nyissa meg a hello terminálablakot és `psql postgres` tooconnect tooyour helyi PostgreSQL-kiszolgálón.
 
 ```bash
 psql postgres
 ```
 
-Ha a kapcsolódás sikeres, a rendszer fut a PostgreSQL-adatbázisból. Ha nem, győződjön meg arról, hogy a helyi PostgresQL-adatbázisban van-e indítva a következő lépéseket követve [letölti - PostgreSQL Core terjesztési](https://www.postgresql.org/download/).
+Ha a kapcsolódás sikeres, a rendszer fut a PostgreSQL-adatbázisból. Ha nem, győződjön meg arról, hogy elindult-e a helyi PostgresQL-adatbázisban: hello lépéseket követve [letölti - PostgreSQL Core terjesztési](https://www.postgresql.org/download/).
 
 Adatbázis létrehozása *eventregistration* és nevű külön adatbázis-felhasználó beállítása *manager* jelszóval *supersecretpass*.
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
-Típus *\q* való kilépéshez a PostgreSQL-ügyfél. 
+Típus *\q* tooexit hello PostgreSQL-ügyfél. 
 
 <a name="step2"></a>
 
 ## <a name="create-local-python-flask-application"></a>Helyi Python Flask-alkalmazás létrehozása
 
-Ebben a lépésben beállíthatja a helyi Python Flask-projektet.
+Ebben a lépésben beállíthatja hello helyi Python Flask-projektet.
 
-### <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+### <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Nyissa meg a terminálablakot, és `CD` egy működő könyvtárba.  
+Nyissa meg hello terminálablakot, és `CD` tooa munkakönyvtárát.  
 
-A minta-tárház klónozása, és folytassa a következő parancsokat a *0,1-initialapp* kiadási.
+Futtatási hello következő parancsok tooclone hello minta tárház, majd a toohello *0,1-initialapp* kiadási.
 
 ```bash
 git clone https://github.com/Azure-Samples/docker-flask-postgres.git
@@ -83,12 +83,12 @@ git checkout tags/0.1-initialapp
 
 Ez a minta-tárház tartalmaz egy [Flask](http://flask.pocoo.org/) alkalmazás. 
 
-### <a name="run-the-application"></a>Az alkalmazás futtatása
+### <a name="run-hello-application"></a>Hello alkalmazás futtatása
 
 > [!NOTE] 
-> Egy későbbi lépésben épület egy Docker-tároló, hogy az éles adatbázist használ, egyszerűsíti a folyamatot.
+> Egy későbbi lépésben egy Docker-tároló toouse hello éles adatbázissal kiépítésével, egyszerűsíti a folyamatot.
 
-Telepítse a szükséges csomagokat, és indítsa el az alkalmazást.
+Telepítse a szükséges hello csomagok, és indítsa el a hello alkalmazás.
 
 ```bash
 pip install virtualenv
@@ -100,31 +100,31 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Az alkalmazás teljesen betöltődik, lásd a következő üzenet hasonló:
+Amikor hello alkalmazás teljesen betöltődik, valami hasonló toohello a következő üzenet jelenik meg:
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-Nyissa meg a böngészőben http://127.0.0.1:5000. Kattintson a **regisztrálni!** és tesztfelhasználó létrehozása.
+Keresse meg a böngészőben toohttp://127.0.0.1:5000. Kattintson a **regisztrálni!** és tesztfelhasználó létrehozása.
 
 ![Helyileg futó Python Flask-alkalmazás](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-A Flask mintaalkalmazás felhasználói adatot tárol az adatbázisban. Ha a felhasználó regisztrálása sikeres, az alkalmazás a helyi PostgreSQL-adatbázisból adatokat ír.
+hello Flask mintaalkalmazás felhasználói adatok hello adatbázisban tárolja. Ha a felhasználó regisztrálása sikeres, az alkalmazás ír adatok toohello helyi PostgreSQL-adatbázisból.
 
-A Flask kiszolgáló bármikor leállításához írja be a Terminálszolgáltatások Ctrl + C. 
+toostop hello Flask server bármikor, írja be a Terminálszolgáltatások hello Ctrl + C. 
 
 ## <a name="create-a-production-postgresql-database"></a>Hozzon létre egy PostgreSQL-adatbázisban
 
-Ebben a lépésben létrehoz egy PostgreSQL-adatbázisban az Azure-ban. Az alkalmazás telepítésekor az Azure-ba, a felhő adatbázist fogja használni.
+Ebben a lépésben létrehoz egy PostgreSQL-adatbázisban az Azure-ban. Ha az alkalmazás telepített tooAzure, a felhő adatbázist fogja használni.
 
-### <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+### <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Most kívánja használni az Azure CLI 2.0 létrehozása az Azure App Service-ben a Python-alkalmazás üzemeltetéséhez szükséges erőforrásokat.  Jelentkezzen be az Azure-előfizetésbe az [az login](/cli/azure/#login) paranccsal, és kövesse a képernyőn látható utasításokat. 
+Biztos, hogy most a folyamatban toouse hello Azure CLI 2.0 toocreate hello erőforrások szükséges toohost a Python-alkalmazás az Azure App Service-ben.  Jelentkezzen be Azure előfizetés hello tooyour [az bejelentkezési](/cli/azure/#login) parancsot, és kövesse hello képernyőn megjelenő utasításokat. 
 
 ```azurecli
 az login 
@@ -132,29 +132,29 @@ az login
    
 ### <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Hozzon létre egy [erőforráscsoportot](../azure-resource-manager/resource-group-overview.md) az [az group create](/cli/azure/group#create) paranccsal. 
+Hozzon létre egy [erőforráscsoport](../azure-resource-manager/resource-group-overview.md) a hello [az csoport létrehozása](/cli/azure/group#create). 
 
 [!INCLUDE [Resource group intro](../../includes/resource-group.md)]
 
-A következő példa egy erőforráscsoportot az USA nyugati régiója régióban hoz létre:
+hello alábbi példa létrehoz egy erőforráscsoport hello USA nyugati régiója régióban:
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location "West US"
 ```
 
-Használja a [az App Service lista-helyek](/cli/azure/appservice#list-locations) lista elérhető helyről az Azure parancssori felület parancsot.
+Használjon hello [az App Service lista-helyek](/cli/azure/appservice#list-locations) Azure CLI parancssori toolist elérhető helyről.
 
 ### <a name="create-an-azure-database-for-postgresql-server"></a>Azure-adatbázis létrehozása PostgreSQL-kiszolgálóhoz
 
-Hozzon létre egy PostgreSQL-kiszolgáló ezzel a [az postgres kiszolgáló létrehozni](/cli/azure/documentdb#create) parancsot.
+Egy PostgreSQL-kiszolgáló létrehozása hello [az postgres kiszolgáló létrehozni](/cli/azure/documentdb#create) parancsot.
 
-Az alábbi parancs helyettesítse be egy egyedi kiszolgálónevet számára a  *\<postgresql_name >* helyőrző és egy felhasználói nevet a  *\<admin_username >* helyőrző. A kiszolgáló nevét használja a PostgreSQL-végpontot részeként (`https://<postgresql_name>.postgres.database.azure.com`), így a nevének egyedinek kell lennie az Azure-ban minden kiszolgálóra. A felhasználónév megadása a kezdeti adatbázis rendszergazdai felhasználói fiókhoz. Válassza ki a felhasználó jelszavát kéri.
+Hello a következő parancsot, helyettesítse egy egyedi kiszolgálónevet a hello  *\<postgresql_name >* helyőrző és egy felhasználónevet hello  *\<admin_username >* helyőrző . hello kiszolgálónevet a PostgreSQL-végpontot részeként használatos (`https://<postgresql_name>.postgres.database.azure.com`), így a hello nevének kell toobe egyedi az Azure-ban minden kiszolgálóra. hello felhasználónév hello kezdeti adatbázis rendszergazdai felhasználói fiók megadása. Biztosan felszólító toopick a felhasználó jelszavát.
 
 ```azurecli-interactive
 az postgres server create --resource-group myResourceGroup --name <postgresql_name> --admin-user <admin_username>
 ```
 
-PostgreSQL-kiszolgálóhoz tartozó Azure-adatbázis létrehozásakor az Azure parancssori felület kapcsolatos adatokat jeleníti meg az alábbi példához hasonló:
+Hello Azure adatbázis PostgreSQL-kiszolgáló létrehozásakor hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg:
 
 ```json
 {
@@ -180,15 +180,15 @@ PostgreSQL-kiszolgálóhoz tartozó Azure-adatbázis létrehozásakor az Azure p
 }
 ```
 
-### <a name="create-a-firewall-rule-for-the-azure-database-for-postgresql-server"></a>Hozzon létre egy tűzfalszabályt PostgreSQL-kiszolgáló Azure-adatbázis
+### <a name="create-a-firewall-rule-for-hello-azure-database-for-postgresql-server"></a>Hozzon létre egy tűzfalszabályt hello Azure adatbázis PostgreSQL-kiszolgáló
 
-A következő parancsot az Azure parancssori felület összes IP-címet az adatbázis hozzáférést.
+Futtassa az Azure parancssori felület toohello parancs tooallow adatbázist az összes IP-cím a következő hello.
 
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myResourceGroup --server-name <postgresql_name> --start-ip-address=0.0.0.0 --end-ip-address=255.255.255.255 --name AllowAllIPs
 ```
 
-Az Azure parancssori felület megerősíti, hogy a kimenet az alábbihoz hasonló tűzfalszabály létrehozása:
+hello Azure CLI megerősíti, hogy a hello tűzfalszabály létrehozása a kimeneti hasonló toohello a következő példa:
 
 ```json
 {
@@ -201,69 +201,69 @@ Az Azure parancssori felület megerősíti, hogy a kimenet az alábbihoz hasonl�
 }
 ```
 
-## <a name="connect-your-python-flask-application-to-the-database"></a>Kapcsolódás az adatbázishoz a Python Flask-alkalmazás
+## <a name="connect-your-python-flask-application-toohello-database"></a>Csatlakozás a Python Flask toohello adatbázis
 
-Ebben a lépésben a Python Flask mintaalkalmazást PostgreSQL-kiszolgáló létrehozta az Azure-adatbázishoz való csatlakozáshoz.
+Ebben a lépésben csatlakoztatja a Python Flask minta alkalmazás toohello Azure adatbázis létrehozott PostgreSQL-kiszolgáló.
 
 ### <a name="create-an-empty-database-and-set-up-a-new-database-application-user"></a>Hozzon létre egy üres adatbázist, és állítson be egy új adatbázis-alkalmazás felhasználói
 
-Hozzon létre egy adatbázis-felhasználó csak egy önálló adatbázis elérésére. Elkerülése érdekében adjon az alkalmazás teljes hozzáférést a kiszolgáló ezeket a hitelesítő adatokat fogja használni.
+Hozzon létre egy adatbázis-felhasználó tooa egyetlen adatbázist csak. Ezen hitelesítő adatok tooavoid jogosultságot ad a hello Alkalmazáskiszolgáló teljes körű hozzáférési toohello fogja használni.
 
-Kapcsolódni az adatbázishoz (felszólítja a rendszergazdai jelszavát).
+Csatlakozás toohello adatbázis (felszólítja a rendszergazdai jelszavát).
 
 ```bash
 psql -h <postgresql_name>.postgres.database.azure.com -U <my_admin_username>@<postgresql_name> postgres
 ```
 
-Az adatbázis és a felhasználó létrehozása a PostgreSQL parancssori.
+Hello PostgreSQL CLI hello adatbázis és a felhasználó létrehozása.
 
 ```bash
 CREATE DATABASE eventregistration;
 CREATE USER manager WITH PASSWORD 'supersecretpass';
-GRANT ALL PRIVILEGES ON DATABASE eventregistration TO manager;
+GRANT ALL PRIVILEGES ON DATABASE eventregistration toomanager;
 ```
 
-Típus *\q* való kilépéshez a PostgreSQL-ügyfél.
+Típus *\q* tooexit hello PostgreSQL-ügyfél.
 
-### <a name="test-the-application-locally-against-the-azure-postgresql-database"></a>Az alkalmazás helyileg a Azure PostgreSQL-adatbázison tesztelése 
+### <a name="test-hello-application-locally-against-hello-azure-postgresql-database"></a>Helyi adatbázison hello Azure PostgreSQL hello alkalmazás tesztelése 
 
-Visszalépés most a *app* mappa a klónozott Github tárház, futtathatja a Python Flask-alkalmazás az adatbázis környezeti változók frissítésével.
+Ha visszalép most toohello *app* mappában található hello klónozott Github-tárházban, hello Python Flask-alkalmazást futtathatja hello adatbázis környezeti változók frissítésével.
 
 ```bash
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask db upgrade
 FLASK_APP=app.py DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Az alkalmazás teljesen betöltődik, lásd a következő üzenet hasonló:
+Amikor hello alkalmazás teljesen betöltődik, valami hasonló toohello a következő üzenet jelenik meg:
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.runtime.migration] Running upgrade  -> 791cd7d80402, empty message
  * Serving Flask app "app"
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C tooquit)
 ```
 
-Nyissa meg a böngészőben http://127.0.0.1:5000. Kattintson a **regisztrálni!** és egy tesztelési regisztráció létrehozása. Adatokat ír az adatbázisba az Azure-ban most.
+Keresse meg a böngészőben toohttp://127.0.0.1:5000. Kattintson a **regisztrálni!** és egy tesztelési regisztráció létrehozása. Az Azure-ban most ír az toohello-adatbázist.
 
 ![Helyileg futó Python Flask-alkalmazás](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app.png)
 
-### <a name="running-the-application-from-a-docker-container"></a>Futtatni az alkalmazást egy Docker-tároló
+### <a name="running-hello-application-from-a-docker-container"></a>Hello alkalmazást futtat egy Docker-tárolójából.
 
-A Docker tároló lemezképet létre.
+Hello Docker-tároló lemezképet létre.
 
 ```bash
 cd ..
 docker build -t flask-postgresql-sample .
 ```
 
-Docker visszaigazolja sikeresen létrejött a tároló.
+Docker visszaigazolja, hogy sikeresen létrejött informatikai hello tároló.
 
 ```bash
 Successfully built 7548f983a36b
 ```
 
-Adatbázis környezeti változók hozzá egy környezeti változó fájl *db.env*. Az alkalmazás az Azure-ban PostgreSQL adatbázisba fog csatlakozni.
+Adja hozzá a környezeti változók tooan környezeti változó adatbázisfájl *db.env*. hello app toohello PostgreSQL éles adatbázis az Azure-ban fog csatlakozni.
 
 ```text
 DBHOST="<postgresql_name>.postgres.database.azure.com"
@@ -272,32 +272,32 @@ DBNAME="eventregistration"
 DBPASS="supersecretpass"
 ```
 
-Futtassa az alkalmazást a belül a Docker-tároló. A következő parancsot a környezeti változó fájlt adja meg, és helyi port 5000 van leképezve az alapértelmezett Flask 5000-es port.
+Futtatta belül hello Docker-tároló hello alkalmazását. hello következő parancs hello környezeti változó fájlt adja meg, és leképezi hello alapértelmezett Flask port 5000 toolocal 5000-es port.
 
 ```bash
 docker run -it --env-file db.env -p 5000:5000 flask-postgresql-sample
 ```
 
-A kimeneti mi korábban látott hasonlít. A kezdeti adatbázis az áttelepítés azonban már nem hajtható végre, és ezért a rendszer kihagyja.
+hello korábban látott hasonló toowhat eredménye. Hello kezdeti adatbázis áttelepítés azonban már nincs szüksége a toobe végre, és ezért a rendszer kihagyja.
 
 ```bash
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
  * Serving Flask app "app"
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C tooquit)
 ```
 
-Az adatbázis már tartalmaz a korábban létrehozott regisztrációját.
+hello adatbázis már tartalmazza a korábban létrehozott hello regisztrációs.
 
 ![Docker tároló-alapú Python Flask helyileg futó alkalmazásba](./media/app-service-web-tutorial-docker-python-postgresql-app/local-docker.png)
 
-## <a name="upload-the-docker-container-to-a-container-registry"></a>Töltse fel a Docker-tároló egy tároló beállításjegyzék
+## <a name="upload-hello-docker-container-tooa-container-registry"></a>Hello Docker tároló tooa tároló beállításjegyzék feltöltése
 
-Ebben a lépésben a Docker-tároló egy tároló beállításjegyzék feltöltése. Azure-tároló beállításjegyzék fogja használni, de más például Docker Hub népszerű ők is használhatja.
+Ebben a lépésben hello Docker tároló tooa tároló beállításjegyzék feltöltése. Azure-tároló beállításjegyzék fogja használni, de más például Docker Hub népszerű ők is használhatja.
 
 ### <a name="create-an-azure-container-registry"></a>Azure Container Registry létrehozása
 
-Cserélje le az alábbi parancs segítségével hozza létre a tároló beállításkulcs  *\<registry_name >* az Ön által választott egyedi Azure tároló beállításjegyzék néven.
+Cserélje le a következő parancs toocreate tároló beállításjegyzékbeli hello  *\<registry_name >* az Ön által választott egyedi Azure tároló beállításjegyzék néven.
 
 ```azurecli-interactive
 az acr create --name <registry_name> --resource-group myResourceGroup --location "West US" --sku Basic
@@ -325,16 +325,16 @@ Kimenet
 }
 ```
 
-### <a name="retrieve-the-registry-credentials-for-pushing-and-pulling-docker-images"></a>A beállításjegyzék hitelesítő adatokat kérdez le, és húzza a Docker képek beolvasása
+### <a name="retrieve-hello-registry-credentials-for-pushing-and-pulling-docker-images"></a>Hello beállításjegyzék hitelesítő adatokat kérdez le, és húzza a Docker képek beolvasása
 
-Beállításjegyzék hitelesítő adatok megjelenítéséhez engedélyezéséhez először rendszergazdai módot.
+tooshow beállításjegyzék hitelesítő adatait, először engedélyezze a felügyeleti mód.
 
 ```azurecli-interactive
 az acr update --name <registry_name> --admin-enabled true
 az acr credential show -n <registry_name>
 ```
 
-Megjelenik a két jelszó. Jegyezze meg a felhasználónevet és az első jelszót.
+Megjelenik a két jelszó. Jegyezze fel a hello felhasználónevet és hello első jelszót.
 
 ```json
 {
@@ -352,7 +352,7 @@ Megjelenik a két jelszó. Jegyezze meg a felhasználónevet és az első jelsz�
 }
 ```
 
-### <a name="upload-your-docker-container-to-azure-container-registry"></a>Töltse fel a Docker-tároló Azure tároló beállításjegyzék
+### <a name="upload-your-docker-container-tooazure-container-registry"></a>A Docker-tároló tooAzure tároló beállításjegyzék feltöltése
 
 ```bash
 docker login <registry_name>.azurecr.io -u <registry_name> -p "<registry_password>"
@@ -360,23 +360,23 @@ docker tag flask-postgresql-sample <registry_name>.azurecr.io/flask-postgresql-s
 docker push <registry_name>.azurecr.io/flask-postgresql-sample
 ```
 
-## <a name="deploy-the-docker-python-flask-application-to-azure"></a>Az Azure-bA a Docker Python Flask-alkalmazás központi telepítése
+## <a name="deploy-hello-docker-python-flask-application-tooazure"></a>Hello Docker Python Flask alkalmazás tooAzure telepítése
 
-Ebben a lépésben alkalmazást telepít központilag a Docker tároló-alapú Python Flask Azure App Service szolgáltatásban.
+Ebben a lépésben a Docker tároló-alapú Python Flask alkalmazás tooAzure App Service telepítése.
 
 ### <a name="create-an-app-service-plan"></a>App Service-csomag létrehozása
 
-Hozzon létre egy App Service-csomagot az [az appservice plan create](/cli/azure/appservice/plan#create) paranccsal. 
+Hozzon létre egy App Service-csomag hello [az App Service-csomagot hozzon létre](/cli/azure/appservice/plan#create) parancsot. 
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-Az alábbi példa létrehoz egy Linux-alapú App Service-csomag nevű *myAppServicePlan* használatával a S1 árképzési szintjüket:
+hello alábbi példa létrehoz egy Linux-alapú App Service-csomag nevű *myAppServicePlan* hello S1 IP-címek segítségével:
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku S1 --is-linux
 ```
 
-Az App Service-csomag létrehozásakor az Azure parancssori felület kapcsolatos adatokat jeleníti meg az alábbi példához hasonló:
+Hello App Service-csomag létrehozásakor a hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg:
 
 ```json 
 {
@@ -416,17 +416,17 @@ Az App Service-csomag létrehozásakor az Azure parancssori felület kapcsolatos
 
 ### <a name="create-a-web-app"></a>Webalkalmazás létrehozása
 
-A webalkalmazás létrehozása a *myAppServicePlan* az App Service-csomag a [az webalkalmazás létrehozása](/cli/azure/webapp#create) parancsot. 
+A webalkalmazás létrehozása az hello *myAppServicePlan* hello az App Service-csomag [az webalkalmazás létrehozása](/cli/azure/webapp#create) parancsot. 
 
-A webes alkalmazás lehetővé teszi az üzemeltető adható meg a kód telepítésére, és biztosítja, hogy a telepített alkalmazás megtekintése egy URL-CÍMÉT. A webalkalmazás létrehozásához használja. 
+hello web app ad meg egy üzemeltetési tér toodeploy a kódot, és egy URL-címet biztosít az Ön tooview hello telepített alkalmazás. Toocreate hello webes alkalmazás használata. 
 
-A következő parancsban cserélje le a  *\<alkalmazás_neve >* helyőrzőt egy egyedi alkalmazásnevet. Ez a név része a web app alkalmazásban alapértelmezett URL-CÍMÉT, a nevének egyedinek kell lennie az Azure App Service-ben minden alkalmazások között. 
+A következő parancsot, hello hello helyébe  *\<alkalmazás_neve >* helyőrzőt egy egyedi alkalmazásnevet. Ez a név része hello alapértelmezett URL-cím hello webalkalmazás, így hello nevének kell toobe egyedi az Azure App Service-ben minden alkalmazások között. 
 
 ```azurecli
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-A webalkalmazás létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg: 
+Hello webalkalmazás létrehozásakor hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg: 
 
 ```json 
 {
@@ -443,13 +443,13 @@ A webalkalmazás létrehozása után az Azure CLI az alábbi példához hasonló
 }
 ```
 
-### <a name="configure-the-database-environment-variables"></a>Konfigurálja az adatbázis környezeti változók
+### <a name="configure-hello-database-environment-variables"></a>Hello adatbázis környezeti változók konfigurálása
 
-Az oktatóanyag korábbi részében definiált környezeti változók a PostgreSQL-adatbázishoz való kapcsolódáshoz.
+Hello az oktatóanyagban a korábbi megadott környezeti változók tooconnect tooyour PostgreSQL-adatbázisból.
 
-Az App Service-ben, a környezeti változók beállítása _Alkalmazásbeállítások_ használatával a [az webapp appsettings konfiguráció](/cli/azure/webapp/config#set) parancsot. 
+Az App Service-ben, a környezeti változók beállítása _Alkalmazásbeállítások_ hello segítségével [az webapp appsettings konfiguráció](/cli/azure/webapp/config#set) parancsot. 
 
-A következő példa az adatbázis-kapcsolat adatai Alkalmazásbeállítások adja meg. Is használja a *PORT* PORT 5000-leképezés változót a Docker-tároló, a 80-as PORT HTTP-forgalom fogadására.
+hello alábbi példa adja meg adatbázis-kapcsolat adatai hello Alkalmazásbeállítások. Ugyancsak hello *PORT* változó toomap PORTJÁVAL 5000 a Docker-tároló tooreceive HTTP-forgalmat a 80-as PORT.
 
 ```azurecli-interactive
 az webapp config appsettings set --name <app_name> --resource-group myResourceGroup --settings DBHOST="<postgresql_name>.postgres.database.azure.com" DBUSER="manager@<postgresql_name>" DBPASS="supersecretpass" DBNAME="eventregistration" PORT=5000
@@ -463,23 +463,23 @@ App Service automatikusan letölteni és futtatni egy Docker-tároló.
 az webapp config container set --resource-group myResourceGroup --name <app_name> --docker-registry-server-user "<registry_name>" --docker-registry-server-password "<registry_password>" --docker-custom-image-name "<registry_name>.azurecr.io/flask-postgresql-sample" --docker-registry-server-url "https://<registry_name>.azurecr.io"
 ```
 
-Amikor a Docker-tároló frissítésére, vagy módosítsa a beállításokat, indítsa újra az alkalmazást. Újraindítása biztosítja, hogy minden beállítások érvényesek, és a legújabb tároló van lekért a beállításjegyzékből.
+Amikor a hello Docker-tároló frissítésére vagy hello beállításainak módosítása, indítsa újra a hello alkalmazást. Újraindítása biztosítja, hogy minden beállítások érvényesek, és hello legújabb tároló lekért hello beállításjegyzék van.
 
 ```azurecli-interactive
 az webapp restart --resource-group myResourceGroup --name <app_name>
 ```
 
-### <a name="browse-to-the-azure-web-app"></a>Keresse meg az Azure-webalkalmazásban 
+### <a name="browse-toohello-azure-web-app"></a>Keresse meg az Azure-webalkalmazásban toohello 
 
-Tallózással keresse meg a telepített webalkalmazás webböngészővel. 
+Keresse meg a telepített toohello web app a webböngésző használatával. 
 
 ```bash 
 http://<app_name>.azurewebsites.net 
 ```
 > [!NOTE]
-> A webalkalmazás betölteni, mert a tároló rendelkezik letöltődnek és a tároló konfigurációjának módosítása után elindult hosszabb időt vesz igénybe.
+> hello webalkalmazás hosszabb tooload vesz igénybe, mert hello tároló toobe letöltődnek és működni kezdenek hello tároló konfigurációjának módosítása után.
 
-Az éles Azure-adatbázishoz az előző lépésben mentett korábban regisztrált vendégek láthatja.
+Megjelenik a korábban regisztrált vendégek hello előző lépésben mentett toohello Azure éles adatbázist.
 
 ![Docker tároló-alapú Python Flask helyileg futó alkalmazásba](./media/app-service-web-tutorial-docker-python-postgresql-app/docker-app-deployed.png)
 
@@ -487,15 +487,15 @@ Az éles Azure-adatbázishoz az előző lépésben mentett korábban regisztrál
 
 ## <a name="update-data-model-and-redeploy"></a>Frissítés adatmodell, és helyezze üzembe újra
 
-Ebben a lépésben hozzá a résztvevők száma minden eseményregisztráció vendég modell frissítésével.
+Ebben a lépésben a résztvevők tooeach eseményregisztráció hello száma hello vendég modell frissítésével hozzá.
 
-Tekintse meg a *0,2-áttelepítési* kiadás az alábbi git-paranccsal:
+Tekintse meg a hello *0,2-áttelepítési* kiadás az alábbi git parancs hello:
 
 ```bash
 git checkout tags/0.2-migration
 ```
 
-Ebben a kiadásban a nézeteket, a tartományvezérlőket és a modell már elvégezték a szükséges módosításokat. Is keresztül létrehozott adatbázis áttelepítés *alembic* (`flask db migrate`). A következő git-parancs használatával végrehajtott valamennyi módosítást látható:
+Ebben a kiadásban már elvégezték a szükséges módosításokat tooviews, tartományvezérlők és modell hello. Is keresztül létrehozott adatbázis áttelepítés *alembic* (`flask db migrate`). A következő git parancs hello keresztül végrehajtott valamennyi módosítást látható:
 
 ```bash
 git diff 0.1-initialapp 0.2-migration
@@ -503,7 +503,7 @@ git diff 0.1-initialapp 0.2-migration
 
 ### <a name="test-your-changes-locally"></a>A módosításokat a helyi tesztelése
 
-A következő parancsokat a módosítások ellenőrzéséhez helyileg a flask kiszolgáló futtatásával.
+Futtassa a következő parancsok tootest hello a módosítások helyileg futó hello flask kiszolgáló.
 
 Mac / Linux:
 ```bash
@@ -513,13 +513,13 @@ FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" 
 FLASK_APP=app.py DBHOST="localhost" DBUSER="manager" DBNAME="eventregistration" DBPASS="supersecretpass" flask run
 ```
 
-Nyissa meg a böngészőben, hogy a változások http://127.0.0.1:5000. Hozzon létre egy teszt regisztrációs.
+Keresse meg a böngésző tooview hello módosítások toohttp://127.0.0.1:5000. Hozzon létre egy teszt regisztrációs.
 
 ![Docker tároló-alapú Python Flask helyileg futó alkalmazásba](./media/app-service-web-tutorial-docker-python-postgresql-app/local-app-v2.png)
 
-### <a name="publish-changes-to-azure"></a>Változások közzétételére Azure
+### <a name="publish-changes-tooazure"></a>Módosítások tooAzure közzététele
 
-Az új docker-lemezkép, hogy a tároló beállításjegyzék, és indítsa újra az alkalmazást.
+Hello új docker lemezkép, toohello tároló beállításjegyzék leküldeni, és indítsa újra hello alkalmazást.
 
 ```bash
 docker build -t flask-postgresql-sample .
@@ -528,7 +528,7 @@ docker push <registry_name>.azurecr.io/flask-postgresql-sample
 az appservice web restart --resource-group myResourceGroup --name <app_name>
 ```
 
-Keresse meg az Azure-webalkalmazásban, és újra próbálja ki az új funkciókat. Hozzon létre egy másik eseményregisztráció.
+Keresse meg az Azure-webalkalmazásban tooyour, és újra hello új funkcióinak kipróbálásához. Hozzon létre egy másik eseményregisztráció.
 
 ```bash 
 http://<app_name>.azurewebsites.net 
@@ -538,19 +538,19 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="manage-your-azure-web-app"></a>Az Azure-webalkalmazásban kezelése
 
-Lépjen a [Azure-portálon](https://portal.azure.com) létrehozott webalkalmazás megjelenítéséhez.
+Nyissa meg toohello [Azure-portálon](https://portal.azure.com) toosee hello létrehozott webalkalmazás.
 
-A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webapp nevére.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevére.
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-tutorial-docker-python-postgresql-app/app-resource.png)
 
-Alapértelmezés szerint a portál megjeleníti a webalkalmazás **áttekintése** lap. Ezen az oldalon megtekintheti az alkalmazás állapotát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat is, mint a böngészés, leállítás, elindítás, újraindítás és törlés. A lap bal oldalán a lapok megnyithatja a különböző konfigurációs lapok megjelenítése.
+Alapértelmezés szerint hello portal jeleníti meg a webalkalmazás **áttekintése** lap. Ezen az oldalon megtekintheti az alkalmazás állapotát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat is, mint a böngészés, leállítás, elindítás, újraindítás és törlés. hello lapok hello bal oldalán található hello hello különböző konfigurációs lapok megnyithatja megjelenítése.
 
 ![Az App Service lap az Azure Portalon](./media/app-service-web-tutorial-docker-python-postgresql-app/app-mgmt.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-A következő oktatóanyag megtudhatja, hogyan képezheti egy egyéni DNS-nevet a webalkalmazás továbblépés.
+Előzetes toohello következő útmutató toolearn hogyan toomap egy egyéni DNS name tooyour webalkalmazás.
 
 > [!div class="nextstepaction"] 
-> [Meglévő egyéni DNS-név hozzákapcsolása az Azure-webalkalmazásokhoz](app-service-web-tutorial-custom-domain.md)
+> [Egy meglévő egyéni DNS nevét tooAzure webalkalmazások leképezése](app-service-web-tutorial-custom-domain.md)

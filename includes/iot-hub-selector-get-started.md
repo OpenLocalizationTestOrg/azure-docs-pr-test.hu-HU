@@ -7,15 +7,15 @@
 > 
 
 ## <a name="introduction"></a>Introduction (Bevezetés)
-Az Azure IoT Hub egy teljesen felügyelt szolgáltatás, amely megbízható és biztonságos kétirányú kommunikációt tesz lehetővé az eszközök internetes hálózatához (IoT) csatlakozó több millió eszköz között, valamint megoldást biztosít a háttérrendszer kialakításához. Az IoT-projektek számára az egyik legnagyobb kihívást az jelenti, hogyan lehet megbízható és biztonságos módon csatlakoztatni az eszközöket a megoldás háttérrendszeréhez. A kihívás megoldására az IoT Hub a következőket kínálja:
+Az Azure IoT Hub egy teljesen felügyelt szolgáltatás, amely megbízható és biztonságos kétirányú kommunikációt tesz lehetővé az eszközök internetes hálózatához (IoT) csatlakozó több millió eszköz között, valamint megoldást biztosít a háttérrendszer kialakításához. Hello legnagyobb kihívás, hogy az IoT projektek tapasztalt egyik hogyan tooreliably és biztonságosan csatlakozzon az eszközök toohello megoldás háttérrendszerének. tooaddress a kérdés, IoT-központ:
 
 * Megbízható nagy kapacitású üzenetkezelést kínál az eszközök és a felhő között mindkét irányban.
 * Az eszközönkénti biztonsági hitelesítő adatok és hozzáférés-vezérlés segítségével lehetővé teszi a biztonságos kommunikációt.
-* Tartalmazza a legnépszerűbb nyelvek és platformok eszközkönyvtárait.
+* Eszköz szalagtárak hello legnépszerűbb nyelvekhez és platformokhoz tartalmazza.
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Egy IoT Hub létrehozása az Azure Portallal.
+* Az Azure portál toocreate az IoT-központ hello használata.
 * Eszközidentitás létrehozása az IoT Hubban.
-* Egy szimulált eszközalkalmazás létrehozása, amely telemetriai adatokat küld a megoldás háttérrendszerének.
+* A szimulált eszköz alkalmazás által küldött telemetriai tooyour megoldás háttérrendszerének létrehozása.
 

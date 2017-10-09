@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Lake Store dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg, hogy hogyan hozhat létre, kezelhet, és érhet el egy nagykapacitású, Hadoop-kompatibilis Data Lake adattárat, amellyel bármilyen méretű, típusú és feldolgozási sebességű adatot elemezhet."
+title: "Data Lake Store-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooset, kezelését, és bármilyen méretű, típusú és feldolgozási sebességű adatok elemzés kapacitású, a Hadoop-kompatibilis data lake tárházat elérését."
 services: data-lake-store
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 473cb9709421f853cb78853b54682adb3e48d372
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8a4730472b7811f022991bffc6dde7bb1be6458e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-lake-store-documentation"></a>Data Lake Store – dokumentáció
 
-Ismerje meg, hogy hogyan használhatja a nagykapacitású, Hadoop-kompatibilis Data Lake Store adattárat, amellyel bármilyen méretű, típusú és feldolgozási sebességű adatot elemezhet. Az oktatóanyagok, API-referenciák és az egyéb dokumentáció bemutatják, hogyan hozhat létre, kezelhet, és érhet el egy Data Lake adattárat, amellyel üzemeltetési és magyarázó elemzéseket végezhet.
+Ismerje meg, hogyan toouse Data Lake Store toocreate egy kapacitású, a Hadoop-kompatibilis tárháza analytics szerepel, amely bármilyen méretű, típusú és feldolgozási sebessége. Oktatóanyagok API hivatkozásokat és egyéb dokumentációt, megtudhatja, hogyan tooset, kezelését, és a műveleti és felderítési jellegű data lake tára elérését.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Ismerje meg, hogy hogyan használhatja a nagykapacitású, Hadoop-kompatibilis D
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Az Azure Data Lake Store használatának első lépései az Azure Portal használatával</h3>
+                        <h3>Ismerkedés az Azure Data Lake Store használatának hello Azure-portálon</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Ismerje meg, hogy hogyan használhatja a nagykapacitású, Hadoop-kompatibilis D
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Az Azure Data Lake Store használatának első lépései az Azure parancssori felületének használatával</h3>
+                        <h3>Az Azure Data Lake Store hello Azure parancssori felület használatának első lépései</h3>
                     </div>
                 </div>
             </div>

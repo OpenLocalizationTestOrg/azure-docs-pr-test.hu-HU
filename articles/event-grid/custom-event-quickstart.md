@@ -1,6 +1,6 @@
 ---
-title: "Egyéni események az Azure Event Gridhez | Microsoft Docs"
-description: "Az Azure Event Griddel közzétehet egy témakört, és feliratkozhat a kapcsolódó eseményre."
+title: "az Azure Event rács aaaCustom események |} Microsoft Docs"
+description: "Azure Event rács toopublish témakör használja, és feliratkozhat toothat esemény."
 services: event-grid
 keywords: 
 author: djrosanova
@@ -8,20 +8,20 @@ ms.author: darosa
 ms.date: 08/15/2017
 ms.topic: hero-article
 ms.service: event-grid
-ms.openlocfilehash: 0290836bebadb20085a3ce84dddc088c3af385da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5055df1c970b043cadf06978a076f7f5c83501cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-route-custom-events-with-azure-event-grid"></a>Egyéni események létrehozása és átirányítása az Azure Event Griddel
 
-Az Azure Event Grid egy felhőalapú eseménykezelési szolgáltatás. Ebben a cikkben létrehozunk egy egyéni témakört az Azure CLI-vel, feliratkozunk a témakörre, majd elindítjuk az eseményt az eredmény megtekintéséhez. Általában olyan végpontoknak szoktunk eseményeket küldeni, amelyek reagálnak az eseményre, például egy webhooknak vagy egy Azure-függvénynek. A cikk egyszerűsítése érdekében azonban az eseményeket egy olyan URL-címnek küldjük el, amely pusztán üzenetek gyűjtésével foglalkozik. Az URL-címet a [RequestBin](https://requestb.in/) nevű nyílt forráskódú, külső fél által biztosított eszközzel fogjuk létrehozni.
+Az Azure Event rács egy hello felhőalapú szolgáltatás. Ebben a cikkben használjon hello Azure CLI toocreate egyéni témakör, előfizetés toohello témakör, és indítás hello esemény tooview hello eredménye. Általában küldött események tooan végpontot, amely válaszol a toohello esemény, például egy webhook vagy az Azure-függvény. Azonban toosimplify Ez cikk, hello események tooa URL-cím köszönőüzenetei csupán összegyűjtő küld. Az URL-címet a [RequestBin](https://requestb.in/) nevű nyílt forráskódú, külső fél által biztosított eszközzel fogjuk létrehozni.
 
 >[!NOTE]
->A **RequestBin** egy nyílt forráskódú eszköz, amely nagy teljesítményt megkövetelő használati területekhez nem alkalmas. Az eszköz használata ebben az esetben kizárólag bemutató célt szolgál. Ha egyszerre több eseményt továbbít, lehetséges, hogy az eszközben nem fog megjelenni az összes esemény.
+>A **RequestBin** egy nyílt forráskódú eszköz, amely nagy teljesítményt megkövetelő használati területekhez nem alkalmas. Itt hello eszköz hello használata tisztán demonstrative. Ha egyszerre több esemény leküldéses, nem láthatja az összes hello eszközben az események.
 
-A folyamat végén látni fogja, hogy az eseményadatokat egy végpontnak küldte el a rendszer.
+Ha elkészült, láthatja, hogy hello eseményadatok küldte tooan végpont.
 
 ![Eseményadatok](./media/custom-event-quickstart/request-result.png)
 
@@ -29,15 +29,15 @@ A folyamat végén látni fogja, hogy az eseményadatokat egy végpontnak küldt
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Ha a CLI helyi telepítését és használatát választja, akkor ehhez a cikkhez az Azure CLI legújabb verzióját (2.0.14 vagy újabb) kell futtatnia. A verzió megkereséséhez futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése](/cli/azure/install-azure-cli).
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ez a cikk van szükség, hogy futnak-e az Azure parancssori felület legújabb verziójának hello (2.0.14 vagy újabb). toofind hello verzió, futtassa `az --version`. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése](/cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
 
-Az Event Grid-témakörök Azure-erőforrások, amelyeket egy Azure-erőforráscsoportba kell helyezni. Az erőforráscsoport egy olyan logikai gyűjtemény, amelyben a rendszer üzembe helyezi és kezeli az Azure-erőforrásokat.
+Az Event Grid-témakörök Azure-erőforrások, amelyeket egy Azure-erőforráscsoportba kell helyezni. hello erőforráscsoport gyűjteményei logikai mely Azure az erőforrások telepítése és kezelése.
 
-Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal. 
+Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot. 
 
-A következő példában létrehozunk egy *gridResourceGroup* nevű erőforráscsoportot a *westus2* helyen.
+hello alábbi példa létrehoz egy erőforráscsoportot *gridResourceGroup* a hello *westus2* helyét.
 
 ```azurecli-interactive
 az group create --name gridResourceGroup --location westus2
@@ -45,7 +45,7 @@ az group create --name gridResourceGroup --location westus2
 
 ## <a name="create-a-custom-topic"></a>Egyéni témakör létrehozása
 
-A témakör egy felhasználó által meghatározott végpontot biztosít, amelybe elküldheti az eseményeket. Az alábbi példa az erőforráscsoportban hozza létre a témakört. A `<topic_name>` elemet a témakör egyedi nevére cserélje le. A témakör nevének egyedinek kell lennie, mert a nevet egy DNS-bejegyzés képviseli. Az előzetes verzió esetén az Event Grid a **westus2** és a **westcentralus** helyet támogatja.
+A témakör egy felhasználó által meghatározott végpontot biztosít, amelybe elküldheti az eseményeket. hello alábbi példakód létrehozza hello a témakör az erőforráscsoportban. A `<topic_name>` elemet a témakör egyedi nevére cserélje le. hello témakör nevének egyedinek kell lennie, mert a DNS-bejegyzés jelképezi. A hello előzetes kiadását, esemény rács támogatja **westus2** és **westcentralus** helyét.
 
 ```azurecli-interactive
 az eventgrid topic create --name <topic_name> -l westus2 -g gridResourceGroup
@@ -53,11 +53,11 @@ az eventgrid topic create --name <topic_name> -l westus2 -g gridResourceGroup
 
 ## <a name="create-a-message-endpoint"></a>Üzenetvégpont létrehozása
 
-A témakörre való feliratkozás előtt hozzuk létre az eseményüzenet végpontját. Az eseményre reagáló kód írása helyett egy olyan végpontot hozzunk létre, amely gyűjti az üzeneteket, hogy meg tudja őket tekinteni. A RequestBin egy nyílt forráskódú, külső gyártótól származó eszköz, amely lehetővé teszi egy végpont létrehozását és a neki küldött kérések megtekintését. Nyissa meg a [RequestBin](https://requestb.in/) eszközt, és kattintson a **Create a RequestBin** (Kéréstár létrehozása) elemre.  Másolja ki a tár URL-címét, mert szüksége lesz rá, amikor feliratkozik a témakörre.
+Mielőtt toohello témakör előfizetés, hozzuk létre hello eseményüzenet hello végpontja. Helyett a kód toorespond toohello esemény írása, hozzon létre egy végpontot, amely köszönőüzenetei gyűjti, így meg lehet tekinteni őket. RequestBin egy nyílt forráskódú, külső eszköz, amely lehetővé teszi a végpont toocreate és tooit küldött kérések megtekintése. Nyissa meg túl[RequestBin](https://requestb.in/), és kattintson a **hozzon létre egy RequestBin**.  Másolja a hello bin URL-címet, mert amikor toohello témakör előfizetés.
 
-## <a name="subscribe-to-a-topic"></a>Feliratkozás témakörre
+## <a name="subscribe-tooa-topic"></a>Előfizetés tooa témakör
 
-A témakörre való feliratkozással lehet tudatni az Event Griddel, hogy mely eseményeket kívánja nyomon követni. Az alábbi példa feliratkozik a létrehozott témakörre, és az eseményértesítés végpontjaként adja át a RequestBinből átemelt URL-címet. Az `<event_subscription_name>` elemet a feliratkozás egyedi nevére cserélje le, az `<URL_from_RequestBin>` elemet pedig az előző szakaszból származó értékre. Ha megadja a végpontot a feliratkozáskor, az Event Grid az adott végpontra irányítja az eseményeket. A `<topic_name>` elemnél a korábban létrehozott értéket adja meg. 
+Előfizetés tooa témakör tootell esemény rács eseményeket szeretné tootrack. hello alábbi példa előfizet hozott létre, és továbbítja a hello URL-címet a RequestBin hello végpontként az eseményértesítés toohello témakör. Cserélje le `<event_subscription_name>` az előfizetéshez tartozó egyedi névvel ellátott és `<URL_from_RequestBin>` az előző szakaszban hello hello értékkel. Szerint adja meg a végpont, ha feliratkozik, esemény rács kezeli a hello útválasztási események toothat végpont. A `<topic_name>`, korábban létrehozott hello értéket használja. 
 
 ```azurecli-interactive
 az eventgrid topic event-subscription create --name <event_subscription_name> \
@@ -66,30 +66,30 @@ az eventgrid topic event-subscription create --name <event_subscription_name> \
   --topic-name <topic_name>
 ```
 
-## <a name="send-an-event-to-your-topic"></a>Esemény elküldése a témakörbe
+## <a name="send-an-event-tooyour-topic"></a>Egy esemény tooyour témakör küldése
 
-Most aktiváljunk egy eseményt, és lássuk, hogyan küldi el az üzenetet az Event Grid a végpontnak. Először szükségünk lesz a témakör URL-címére és kulcsára. A `<topic_name>` helyett használja ismét a témakör nevét.
+Most tegyük indul el, az esemény toosee hogyan osztja el a esemény rács hello üzenet tooyour végpont. Először hozzuk hello URL-cím beszerzése és hello témakör kulcsát. A `<topic_name>` helyett használja ismét a témakör nevét.
 
 ```azurecli-interactive
 endpoint=$(az eventgrid topic show --name <topic_name> -g gridResourceGroup --query "endpoint" --output tsv)
 key=$(az eventgrid topic key list --name <topic_name> -g gridResourceGroup --query "key1" --output tsv)
 ```
 
-A folyamat leegyszerűsítése érdekében mintául szolgáló eseményadatokat hoztunk létre, amelyeket elküldhet a témakörbe. Egy alkalmazás vagy Azure-szolgáltatás általában eseményadatokat küld el. Az alábbi példa lekéri az eseményadatokat:
+toosimplify ebben a cikkben azt állította be a minta esemény adatok toosend toohello témakör. Általában az alkalmazás vagy az Azure szolgáltatás elküldése hello eseményadatok. a következő példa hello hello események adatainak beolvasása:
 
 ```azurecli-interactive
 body=$(eval echo "'$(curl https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/event-grid/customevent.json)'")
 ```
 
-Ha kiadja az `echo "$body"` parancsot, a teljes eseményt megtekintheti. A JSON `data` eleme az esemény hasznos adata. Bármilyen, megfelelően formált JSON megadható ebben a mezőben. A speciális útválasztáshoz és szűréshez használhatja a tárgy mezőt is.
+Ha Ön `echo "$body"` hello az esemény teljes látható. Hello `data` hello JSON eleme az esemény hello hasznos. Bármilyen, megfelelően formált JSON megadható ebben a mezőben. Hello tulajdonos mezőt az speciális útválasztáshoz és a szűrés is használhatja.
 
-A CURL egy olyan segédprogram, amely HTTP-kéréseket hajt végre. Ebben a cikkben a CURL használatával küldjük el az eseményt a témakörbe. 
+A CURL egy olyan segédprogram, amely HTTP-kéréseket hajt végre. Ez a cikk a CURL toosend hello esemény tooour témakör használjuk. 
 
 ```azurecli-interactive
 curl -X POST -H "aeg-sas-key: $key" -d "$body" $endpoint
 ```
 
-Ön kiváltotta az eseményt, az Event Grid pedig elküldte az üzenetet a feliratkozáskor konfigurált végpontnak. Lépjen a RequestBin eszközben korábban létrehozott URL-címre, vagy kattintson a megnyitott RequestBin-böngésző frissítés elemére. Megjelenik az imént elküldött esemény. 
+Hello esemény léptetnie, ezért esemény rács küldi hello üzenet toohello végpont előfizetés konfigurált. Keresse meg a korábban létrehozott RequestBin URL toohello. vagy kattintson a megnyitott RequestBin-böngésző frissítés elemére. Megjelenik az imént a telefonjára küldött hello esemény. 
 
 ```json
 [{
@@ -106,7 +106,7 @@ curl -X POST -H "aeg-sas-key: $key" -d "$body" $endpoint
 ```
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
-Ha azt tervezi, hogy folytatja az esemény használatát, akkor ne törölje a cikkben létrehozott erőforrásokat. Ha nem folytatja a munkát, akkor a következő paranccsal törölheti a cikkben létrehozott erőforrásokat.
+Ha azt tervezi, hogy ez az esemény használata toocontinue, tegye a cikkben létrehozott hello erőforrások nem törlése. Ha nem tervezi toocontinue, használja a következő parancs toodelete hello erőforrások ebben a cikkben létrehozott hello.
 
 ```azurecli-interactive
 az group delete --name gridResourceGroup
@@ -114,7 +114,7 @@ az group delete --name gridResourceGroup
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy megismerkedett vele, hogyan hozhat létre témaköröket és eseményfeliratkozásokat, bővebben is tájékozódhat arról, hogy miben nyújthat segítséget az Event Grid:
+Most, hogy hogyan toocreate üzenettémák és előfizetések esemény, tudhat meg többet milyen esemény rács is segítséget nyújthat:
 
 - [Bevezetés az Event Grid használatába](overview.md)
 - [Virtuális gépek módosításainak monitorozása az Azure Event Grid és a Logic Apps segítségével](monitor-virtual-machine-changes-event-grid-logic-app.md)

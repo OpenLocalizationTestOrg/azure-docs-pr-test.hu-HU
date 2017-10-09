@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Automationben Azure modulok frissítése |} Microsoft Docs"
+title: aaaUpdate Azure az Azure Automationben modulok |} Microsoft Docs
 description: "Ez a cikk ismerteti, hogyan most már frissítheti az Azure Automationben alapértelmezés szerint biztosított közös Azure PowerShell-modulok."
 services: automation
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/13/2017
 ms.author: magoedte
-ms.openlocfilehash: ed8c97b642d406a05817ec6c67f31a1b4bce93b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afa404a643349f044e55be2280e435b575049dec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-update-azure-powershell-modules-in-azure-automation"></a>Az Azure Automationben Azure PowerShell-modulok frissítése
+# <a name="how-tooupdate-azure-powershell-modules-in-azure-automation"></a>Hogyan tooupdate Azure PowerShell-modulok az Azure Automationben
 
-A leggyakoribb Azure PowerShell-modulok minden Automation-fiókban alapértelmezés szerint biztosítottak.  Az Azure-csapat rendszeresen, frissíti az Azure modulok, így lehetővé teszi a modulok a fiók frissítését, ha új verziói érhetők el a portálról az általunk az Automation-fiókban.  
+az egyes Automation-fiók alapértelmezés szerint biztosított hello leggyakoribb Azure PowerShell-modulok.  hello Azure csapata frissítések rendszeresen, hello Azure modulok, így az Automation-fiók hello nyújtunk oly módon, tooupdate hello modulok hello fiók Ha új verzió hello portálról érhetők el.  
 
-Modulok rendszeresen frissülnek a csoport által, mert negatívan befolyásolhatja a változás, például egy paraméter átnevezése vagy teljesen elavulttá parancsmag típusától függően a runbookok a belefoglalt parancsmagok módosítások alakulhat ki. A runbookok és a folyamatok automatizálásához azok érintő elkerüléséhez erősen ajánlott tesztelése, és a folytatás előtt ellenőrzi.  Ha erre a célra készült dedikált Automation-fiók nem rendelkezik, fontolja meg, hogy a teszteléssel számos különböző alkalmazási helyzetek és kombinációinak a runbookok fejlesztése során továbbá frissítése iteratív változásokra hozzon létre egyet a PowerShell-modulok.  Után az eredményeket a rendszer érvényesíti, és telepítette a szükséges módosításokat, folytassa a runbookokat, amely szükséges a módosítási áttelepítésének koordinációs, és hajtsa végre a frissítést, éles környezetben alább leírtak.     
+Modulok a hello termékcsoport rendszeresen frissíteni, mert negatívan befolyásolhatja a runbookokat hello típusú változás, például egy paraméter átnevezése vagy teljesen elavulttá parancsmag függően szereplő hello parancsmagok módosítások alakulhat ki. a runbookok és hello érintő tooavoid folyamatok automatizálása, teszteléséhez, és ellenőrizze a folytatás előtt erősen ajánlott.  Ha erre a célra készült dedikált Automation-fiók nem rendelkezik, fontolja meg, hozzon létre egyet, hogy számos különböző alkalmazási helyzetek és kombinációinak tesztelheti a runbookokat, továbbá tooiterative módosítások például hello frissítése hello fejlesztése során PowerShell-modulok.  Miután hello eredmények ellenőrzését, és telepítette a szükséges módosításokat, összehangolása szükséges módosítását runbookokat hello áttelepítésének folytatásához és hello frissítését éles alább leírtak szerint.     
 
 ## <a name="updating-azure-modules"></a>Az Azure modulok frissítése
 
-1. A modulokban panelen található az Automation-fiók nincs lehetőség érhető el nevű **frissítés Azure modulok**.  Mindig engedélyezve van.<br><br> ![Modulok panel Azure modulok beállítás frissítése](media/automation-update-azure-modules/automation-update-azure-modules-option.png)
+1. Hello modulban panelen található az Automation-fiók nincs lehetőség nevű **frissítés Azure modulok**.  Mindig engedélyezve van.<br><br> ![Modulok panel Azure modulok beállítás frissítése](media/automation-update-azure-modules/automation-update-azure-modules-option.png)
 
-2. Kattintson a **frissítés Azure modulok** és az Ön számára jelenik meg, amely arra kéri, ha folytatni kívánja megerősítési értesítés.<br><br> ![Azure-modulok értesítési frissítése](media/automation-update-azure-modules/automation-update-azure-modules-popup.png)
+2. Kattintson a **frissítés Azure modulok** és az Ön számára jelenik meg, amely arra kéri, ha azt szeretné, toocontinue megerősítési értesítés.<br><br> ![Azure-modulok értesítési frissítése](media/automation-update-azure-modules/automation-update-azure-modules-popup.png)
 
-3. Kattintson a **Igen** , és a modul frissítési folyamat megkezdődik.  A frissítési folyamat veszi körülbelül 15 – 20 perc frissítése a következő modult:
+3. Kattintson a **Igen** és hello modul frissítési folyamat megkezdődik.  hello frissítési folyamat veszi 15-20 perc tooupdate hello modulok a következő kapcsolatban:
 
   * Azure
   * Azure.Storage
@@ -43,15 +43,15 @@ Modulok rendszeresen frissülnek a csoport által, mert negatívan befolyásolha
   * AzureRm.Sql
   * AzureRm.Storage
 
-    Ha a modulok már naprakészek legyenek, majd a folyamat befejezi néhány másodpercen belül.  A frissítési folyamat befejezéséről értesítést fog kapni.<br><br> ![Azure-modulok frissítési állapotának frissítése](media/automation-update-azure-modules/automation-update-azure-modules-updatestatus.png)
+    Ha hello modulok már toodate be, majd hello folyamat befejezi néhány másodpercen belül.  Hello frissítési folyamat befejezéséről értesítést fog kapni.<br><br> ![Azure-modulok frissítési állapotának frissítése](media/automation-update-azure-modules/automation-update-azure-modules-updatestatus.png)
 
 > [!NOTE]
-> Azure Automation szolgáltatásbeli használni fog a legújabb modulok az Automation-fiók egy új ütemezett feladat futtatásakor.    
+> Azure Automation szolgáltatásbeli használni fog hello legújabb modulok az Automation-fiók egy új ütemezett feladat futtatásakor.    
 
-Ha használatával ezek Azure PowerShell-modulok parancsmagjait a runbookok Azure-erőforrások kezeléséhez, majd célszerű minden hónapban a frissítési folyamat végrehajtásához vagy így ahhoz, hogy biztosítsa, hogy rendelkezik-e a legújabb modulok.
+Parancsmagok használatakor ezeket a runbookok toomanage Azure az Azure PowerShell-modulok az erőforrásokat, akkor érdemes tooperform a frissítési folyamat havonta vagy úgy, hogy rendelkezik tooassure hello legújabb modulok.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Integrációs modulok és az egyéni modulok további Automation integrálása más rendszerek, a szolgáltatások vagy a megoldások létrehozásával kapcsolatos további információkért lásd: [integrációs modulok](automation-integration-modules.md).
+* További információ az integrációs modulok, és hogyan toocreate az egyéni modulok toofurther integrálhatja más rendszerek, a szolgáltatások vagy a megoldások, Automation toolearn lásd [integrációs modulok](automation-integration-modules.md).
 
-* Érdemes lehet forrás vezérlő integrációs [GitHub vállalati](automation-scenario-source-control-integration-with-github-ent.md) vagy [Visual Studio Team Services](automation-scenario-source-control-integration-with-vsts.md) központi kezelésére, és szabályozhatja a automatizálási runbook és konfigurációs portfóliót kiadásaiban.  
+* Érdemes lehet forrás vezérlő integrációs [GitHub vállalati](automation-scenario-source-control-integration-with-github-ent.md) vagy [Visual Studio Team Services](automation-scenario-source-control-integration-with-vsts.md) toocentrally kezelésére, és szabályozhatja a automatizálási runbook és konfigurációs portfóliót kiadásaiban.  

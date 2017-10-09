@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás Azure IoT - lecke 1 málna Pi (csomópont): (Ubuntu) eszközök beszerzése |} Microsoft Docs"
-description: "Töltse le és telepítse a szükséges eszközöket és a szoftver az első mintaalkalmazás pi Ubuntu."
+title: "Csatlakozás málna Pi (csomópont) tooAzure IoT - lecke 1: eszközök (Ubuntu) beszerzése |} Microsoft Docs"
+description: "Töltse le és Ubuntu hello szükséges eszközök és a szoftverek hello első mintaalkalmazás Pi telepítéséhez."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: de583be0cdce058c83091f421376812e8013d76e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4f566fa0d1faf8b2321707145f675e3d87f0bef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-ubuntu-1604"></a>Eszközök beszerzése (Ubuntu 16.04)
+# <a name="get-hello-tools-ubuntu-1604"></a>Hello eszközök (Ubuntu 16.04) beolvasása
 
 > [!div class="op_single_selector"]
 > * [Windows 7 vagy újabb](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
@@ -32,26 +32,26 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="what-you-will-do"></a>Mit fog
-Töltse le a fejlesztői eszközök és a szoftver málna Pi 3 első minta alkalmazásához. Ha bármilyen problémába ütközik, tekintse meg a megoldások a [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+Hello Fejlesztőeszközök és hello első mintaalkalmazás málna Pi 3 hello szoftver letöltése. Ha bármilyen problémába ütközik, keressen megoldásokat a hello [oldal hibaelhárítási](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Amiről tanulni fog
 Ebből a cikkből megtudhatja:
 
-* Hogyan kell telepíteni a Git és Node.js.
-  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk a mintaalkalmazás Git tárolja.
+* Hogyan tooinstall a Git szoftver, Node.js.
+  * [Git](https://git-scm.com) van egy nyílt forráskódú elosztott verziókezelő rendszer. Ez a cikk hello-mintaalkalmazás Git tárolja.
   * [NODE.js](https://nodejs.org/en/) van a JavaScript futásidejű és gazdag csomag-ökoszisztéma.
-* Hogyan további Node.js fejlesztői eszközök telepítése az NPM segítségével.
-  * A Node.js minimálisan szükséges verziója a 4.5-ös LTS.
-  * [NPM](https://www.npmjs.com) a csomag kezelők, a Node.js egyike.
+* Hogyan toouse NPM tooinstall további Node.js fejlesztői eszközök.
+  * hello minimálisan szükséges verziója Node.js 4.5-ös LTS.
+  * [NPM](https://www.npmjs.com) egyike hello Node.js csomag feletteseit.
 
 ## <a name="what-do-you-need"></a>Mire van szüksége
-A művelet elvégzéséhez szüksége lesz:
+toocomplete ennél a műveletnél, szüksége lesz:
 
-* A fejlesztői eszközök és a szoftverfrissítések letöltése az internethez.
+* Az Internet kapcsolat toodownload hello Fejlesztőeszközök és hello szoftver.
 * Ubuntu 16.04 vagy újabb rendszerrel működő számítógép.
 
 ## <a name="install-git-nodejs-and-npm"></a>Telepítse a Git, Node.js és NPM
-Használja a billentyűparancsot `Ctrl + Alt + T` nyisson meg egy terminált, és futtassa a következő parancsokat:
+Használjon hello billentyűparancsot `Ctrl + Alt + T` tooopen egy terminál és futtatási hello a következő parancsokat:
 
 ```bash
 sudo apt-get update
@@ -61,22 +61,22 @@ sudo apt-get install git
 ```
 
 ## <a name="install-additional-nodejs-development-tools"></a>További Node.js fejlesztői eszközök telepítése
-Használhat [gulp.js](http://gulpjs.com) Pi a minta-alkalmazás központi telepítésének automatizálásához. Is használhatja a [cli-eszköz-felderítési](https://github.com/Azure/device-discovery-cli) az IoT-eszközök hálózati adatainak lekérésére.
+Használhat [gulp.js](http://gulpjs.com) hello minta alkalmazás tooPi tooautomate hello központi telepítését. Hello is a [cli-eszköz-felderítési](https://github.com/Azure/device-discovery-cli) tooretrieve hálózati adatokat az IoT-eszközökről.
 
-Telepítés `gulp` és `device-discovery-cli` a terminálban a következő parancs futtatásával:
+Telepítés `gulp` és `device-discovery-cli` hello hello terminálban parancs a következő futtatásával:
 
 ```bash
 sudo npm install -g device-discovery-cli gulp
 ```
 
-Ha problémák Ubuntu Node.js és a további fejlesztői eszközök telepítése, lásd: a [hibaelhárítási útmutatója](iot-hub-raspberry-pi-kit-node-troubleshooting.md) gyakori problémák megoldásainak.
+Ha problémák Ubuntu Node.js és a további fejlesztői eszközök telepítése, lásd: hello [hibaelhárítási útmutatója](iot-hub-raspberry-pi-kit-node-troubleshooting.md) a megoldások toocommon problémákat.
 
 ## <a name="install-visual-studio-code"></a>Visual Studio Code telepítése
-[Töltse le](https://code.visualstudio.com/docs/setup/linux) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A mintakód szerkesztése a szerkesztő használata az oktatóanyag későbbi részében.
+[Töltse le](https://code.visualstudio.com/docs/setup/linux) és a Visual Studio Code telepítése. A Visual Studio Code a Windows, Linux és macOS egy egyszerűsített, de hatékony forráskód szerkesztőjében. A szerkesztő később hello oktatóanyag tooedit hello mintakód használható.
 
 ## <a name="summary"></a>Összefoglalás
-A szükséges fejlesztői eszközök és az első mintaalkalmazás szoftver telepítése. A következő feladat létrehozásához, telepítéséhez és futtassa a mintaalkalmazást a Pi-hoz.
+Szükséges hello fejlesztői eszközök és szoftverek hello első mintaalkalmazás telepítése. hello tovább feladat toocreate, telepítése, és futtassa a hello mintaalkalmazást a Pi.
 
 ## <a name="next-steps"></a>Következő lépések
-[Létrehozhat és telepíthet a villogási mintaalkalmazás](iot-hub-raspberry-pi-kit-node-lesson1-deploy-blink-app.md)
+[Hello villogási minta alkalmazás létrehozását és telepítését](iot-hub-raspberry-pi-kit-node-lesson1-deploy-blink-app.md)
 

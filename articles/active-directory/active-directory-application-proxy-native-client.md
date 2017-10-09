@@ -1,6 +1,6 @@
 ---
-title: "Natív ügyfél alkalmazások – az Azure AD közzététele |} Microsoft Docs"
-description: "Bemutatja, hogyan adhat kommunikálni az Azure AD alkalmazásproxy-összekötő a helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak a natív ügyfél alkalmazások engedélyezése."
+title: "natív ügyfél aaaPublish - alkalmazások az Azure AD |} Microsoft Docs"
+description: "Ismerteti, hogyan tooenable natív ügyfél alkalmazások toocommunicate az Azure AD alkalmazásproxy-összekötő tooprovide biztonságos távoli hozzáférés tooyour a helyszíni alkalmazások."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,32 +15,32 @@ ms.date: 08/17/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: bdaa5af6ff5331bc310499586615b48a864c3c5e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0ed2be217bf992f034d8321d5e66569b4cace24f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-enable-native-client-apps-to-interact-with-proxy-applications"></a>Hogyan kommunikál a proxy alkalmazások natív ügyfél alkalmazások engedélyezése
+# <a name="how-tooenable-native-client-apps-toointeract-with-proxy-applications"></a>Hogyan tooenable natív ügyfél alkalmazások toointeract proxyval alkalmazások
 
-Mellett a webes alkalmazásokhoz Azure Active Directory Alkalmazásproxyjával használhatók natív ügyfél alkalmazásokat közzétenni. Natív ügyfél alkalmazások eltérnek a webalkalmazások, mert telepítik őket egy eszközt, amíg a böngészőn keresztül elért webalkalmazások. 
+Továbbá tooweb alkalmazásokban Azure Active Directory Alkalmazásproxyjával is használt toopublish natív ügyfél alkalmazásokat. Natív ügyfél alkalmazások eltérnek a webalkalmazások, mert telepítik őket egy eszközt, amíg a böngészőn keresztül elért webalkalmazások. 
 
 Alkalmazásproxy által kiadott jogkivonatokat, amelyek szabványos engedélyezik HTTP-fejlécek elküldése megtörténjen fogadja el az Azure AD natív ügyfél alkalmazásokat támogatja.
 
 ![A végfelhasználók, az Azure Active Directory és a közzétett alkalmazások közötti kapcsolat](./media/active-directory-application-proxy-native-client/richclientflow.png)
 
-Az Azure AD Authentication Library, amely gondoskodik a hitelesítésről, és támogatja a legtöbb ügyfél környezetben, használja a natív alkalmazások közzétételét. Alkalmazásproxy hogyan illik bele a [webes API-forgatókönyvet natív alkalmazás](develop/active-directory-authentication-scenarios.md#native-application-to-web-api). Ez a cikk végigvezeti a négy alkalmazásproxy és az Azure AD Authentication Library natív alkalmazás közzététele. 
+Azure AD Authentication Library, amely gondoskodik a hitelesítésről és sok ügyfél környezetek és natív alkalmazások toopublish hello használata. Alkalmazásproxy illeszkedik hello [natív alkalmazás tooWeb API forgatókönyv](develop/active-directory-authentication-scenarios.md#native-application-to-web-api). Ez a cikk bemutatja, hogyan hello négy lépést toopublish alkalmazásproxy és hello Azure AD Authentication Library egy natív alkalmazást. 
 
 ## <a name="step-1-publish-your-application"></a>1. lépés: Az alkalmazás közzétételére.
-A proxy alkalmazás közzététele, mint bármilyen más alkalmazást, és rendelje hozzá a felhasználók az alkalmazás eléréséhez. További információkért lásd: [alkalmazások közzétételére az alkalmazásproxy](active-directory-application-proxy-publish.md).
+A proxy alkalmazás közzététele, mint bármilyen más alkalmazást, és rendelje hozzá a felhasználók tooaccess az alkalmazást. További információkért lásd: [alkalmazások közzétételére az alkalmazásproxy](active-directory-application-proxy-publish.md).
 
 ## <a name="step-2-configure-your-application"></a>2. lépés: Az alkalmazás konfigurálása
 A natív alkalmazások konfigurálása az alábbiak szerint:
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. Navigáljon a **Azure Active Directory** > **App regisztrációk**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Keresse meg a túl**Azure Active Directory** > **App regisztrációk**.
 3. Válassza ki **új alkalmazás regisztrációja**.
-4. Adjon meg egy nevet az alkalmazáshoz, jelölje be **natív** az alkalmazás-típusként, és adjon meg az alkalmazás átirányítási URI-t. 
+4. Adjon meg egy nevet az alkalmazásnak, válassza **natív** hello alkalmazás típusa, és adja meg a hello átirányítási URI-alkalmazás. 
 
    ![Hozzon létre egy új alkalmazás regisztrálása](./media/active-directory-application-proxy-native-client/create.png)
 5. Kattintson a **Létrehozás** gombra.
@@ -48,50 +48,50 @@ A natív alkalmazások konfigurálása az alábbiak szerint:
 Új alkalmazás regisztrációjának létrehozásával kapcsolatos információért, lásd: [alkalmazások integrálása az Azure Active Directory](.//develop/active-directory-integrating-applications.md).
 
 
-## <a name="step-3-grant-access-to-other-applications"></a>3. lépés: A hozzáférés engedélyezése az egyéb alkalmazások
-Lehetővé teszik a natív alkalmazások számára elérhetővé tehető, hogy a címtárban lévő más alkalmazásokkal:
+## <a name="step-3-grant-access-tooother-applications"></a>3. lépés: Grant tooother alkalmazásokat
+Hello natív alkalmazás kitett toobe tooother alkalmazások a címtárban engedélyezése:
 
-1. Még mindig **App regisztrációk**, válassza ki az imént létrehozott új natív alkalmazást.
+1. Még mindig **App regisztrációk**, válassza ki az imént létrehozott új natív alkalmazás hello.
 2. Válassza ki **szükséges engedélyek**.
 3. Válassza a **Hozzáadás** lehetőséget.
-4. Nyissa meg az első lépés **API kiválasztása**.
-5. A keresősáv segítségével megkeresheti az alkalmazásproxy-alkalmazást, az első szakaszban közzétett. Válassza ki, hogy az alkalmazást, majd kattintson az **válasszon**. 
+4. Nyissa meg hello első lépésként **API kiválasztása**.
+5. Hello keresési sáv toofind hello alkalmazásproxy alkalmazás használata közzétett hello első szakaszában. Válassza ki, hogy az alkalmazást, majd kattintson az **válasszon**. 
 
-   ![Keresse meg a proxy alkalmazást](./media/active-directory-application-proxy-native-client/select_api.png)
-6. Nyissa meg a második lépést **engedélyként válassza**.
-7. A natív alkalmazás hozzáférést biztosíthat a proxy-alkalmazást, majd kattintson a jelölőnégyzet segítségével **válasszon**.
+   ![Keresse meg hello proxy alkalmazást](./media/active-directory-application-proxy-native-client/select_api.png)
+6. Nyissa meg hello a második lépésben **engedélyként válassza**.
+7. Használjon hello jelölőnégyzet toogrant a natív alkalmazás access tooyour proxy alkalmazást, majd kattintson a **válasszon**.
 
-   ![Hozzáférést biztosít proxy-alkalmazás](./media/active-directory-application-proxy-native-client/select_perms.png)
+   ![Adjon hozzáférést tooproxy alkalmazás](./media/active-directory-application-proxy-native-client/select_perms.png)
 8. Válassza ki **végzett**.
 
 
-## <a name="step-4-edit-the-active-directory-authentication-library"></a>4. lépés: Az Active Directory hitelesítési tár szerkesztése
-A hitelesítési környezetet, az Active Directory Authentication Library (ADAL) az alábbi szöveget a natív alkalmazás kód szerkesztése:
+## <a name="step-4-edit-hello-active-directory-authentication-library"></a>4. lépés: Az Active Directory Authentication Library hello szerkesztése
+Hello natív alkalmazáskód hello hitelesítési környezetében hello Active Directory Authentication Library (ADAL) tooinclude hello a következő szöveg szerkesztése:
 
 ```
 // Acquire Access Token from AAD for Proxy Application
 AuthenticationContext authContext = new AuthenticationContext("https://login.microsoftonline.com/<Tenant ID>");
 AuthenticationResult result = authContext.AcquireToken("< External Url of Proxy App >",
-        "<App ID of the Native app>",
-        new Uri("<Redirect Uri of the Native App>"),
+        "<App ID of hello Native app>",
+        new Uri("<Redirect Uri of hello Native App>"),
         PromptBehavior.Never);
 
-//Use the Access Token to access the Proxy Application
+//Use hello Access Token tooaccess hello Proxy Application
 HttpClient httpClient = new HttpClient();
 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
 HttpResponseMessage response = await httpClient.GetAsync("< Proxy App API Url >");
 ```
 
-A változók példakód ki kell cserélni az alábbiak szerint:
+hello mintakód hello változók ki kell cserélni az alábbiak szerint:
 
-* **A bérlői azonosító** az Azure portálon található. Navigáljon a **Azure Active Directory** > **tulajdonságok** , és másolja a könyvtár-azonosító. 
-* **Külső URL-cím** a Proxy alkalmazása a megadott előtér URL-címét. Ez az érték megkereséséhez nyissa meg a **alkalmazásproxy** a proxy app szakasza.
-* **Alkalmazásazonosító** a natív alkalmazás megtalálható a **tulajdonságok** a natív alkalmazás lapján.
-* **Átirányítási URI-címe a natív alkalmazás** található meg a **átirányítási URI-azonosítók** a natív alkalmazás lapján.
+* **A bérlői azonosító** hello Azure-portálon található. Keresse meg a túl**Azure Active Directory** > **tulajdonságok** és másolási hello Directory azonosítóját. 
+* **Külső URL-cím** hello előtér URL-cím megadott hello Proxy alkalmazás. toofind Ez érték, keresse meg a toohello **alkalmazásproxy** hello proxy app szakasza.
+* **Alkalmazásazonosító** hello a natív alkalmazással megtalálja az hello **tulajdonságok** hello natív alkalmazás lapján.
+* **Átirányítási URI hello natív alkalmazás** hello található **átirányítási URI-azonosítók** hello natív alkalmazás lapján.
 
 
 ## <a name="see-also"></a>Lásd még:
 
-A natív alkalmazás folyamattal kapcsolatos további információkért lásd: [natív alkalmazás webes API-hoz](develop/active-directory-authentication-scenarios.md#native-application-to-web-api)
+Hello natív alkalmazási folyamatot kapcsolatos további információkért lásd: [natív alkalmazás tooweb API](develop/active-directory-authentication-scenarios.md#native-application-to-web-api)
 
-A legújabb híreket és frissítéseket itt találja: [Alkalmazásproxy blog](http://blogs.technet.com/b/applicationproxyblog/).
+Hello legfrissebb híreket és frissítéseket, tekintse meg a hello [alkalmazásproxy blog](http://blogs.technet.com/b/applicationproxyblog/)

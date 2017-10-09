@@ -1,25 +1,10 @@
 ---
-title: "PowerShell: A Data Lake Store bővítmény tárolóként az Azure HDInsight fürt |} Microsoft Docs"
-services: data-lake-store,hdinsight
-documentationcenter: 
-author: nitinme
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 164ada5a-222e-4be2-bd32-e51dbe993bc0
-ms.service: data-lake-store
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 06/08/2017
-ms.author: nitinme
-ms.openlocfilehash: 7a7069adab5742a9dae2833c13a1db57337a41a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+cím: aaa "PowerShell: Azure HDInsight fürt a Data Lake Store bővítmény tárolóként |} Microsoft Docs"szolgáltatások:-lake-adattár, hdinsight documentationcenter:" Szerző: nitinme manager: jhubbard szerkesztő: cgronlun
+
+MS.AssetId: 164ada5a-222e-4be2-bd32-e51dbe993bc0 ms.service: lake-adattár ms.devlang: na ms.topic: ms.tgt_pltfrm a következő cikket: na ms.workload: big data ms.date: 06/08/2017 ms.author: nitinme
+
 ---
-# <a name="use-azure-powershell-to-create-an-hdinsight-cluster-with-data-lake-store-as-additional-storage"></a>Azure PowerShell használata a HDInsight-fürtök létrehozása a Data Lake Store (a további tárhely)
+# <a name="use-azure-powershell-toocreate-an-hdinsight-cluster-with-data-lake-store-as-additional-storage"></a>Azure PowerShell toocreate HDInsight-fürtöt használja a Data Lake Store (a további tárhely)
 > [!div class="op_single_selector"]
 > * [A Portal használata](data-lake-store-hdinsight-hadoop-use-portal.md)
 > * [PowerShell használatával (az alapértelmezett tároló)](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
@@ -28,46 +13,46 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Azure PowerShell használata a HDInsight-fürtök konfigurálása az Azure Data Lake Store **további tárolóként**. A HDInsight-fürtök létrehozása az Azure Data Lake Store alapértelmezett tárolóként útmutatásért lásd: [HDInsight-fürtök létrehozása a Data Lake Store alapértelmezett tárolóként](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md).
+Ismerje meg, hogyan toouse Azure PowerShell tooconfigure egy HDInsight-fürtöt az Azure Data Lake Store **további tárolóként**. Hogyan toocreate egy HDInsight-fürtöt az Azure Data Lake Store alapértelmezett tárolóként, lásd: [HDInsight-fürtök létrehozása a Data Lake Store alapértelmezett tárolóként](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md).
 
 > [!NOTE]
-> Ha a Data Lake Store-t a HDInsight-fürt kiegészítő tárolójaként tervezi használni, akkor kifejezetten ezt a megoldást javasoljuk, amikor létrehozza a fürtöt az ebben a cikkben leírtaknak megfelelően. Az Azure Data Lake Store-t kiegészítő tárolóként hozzáadni egy meglévő HDInsight-fürthöz bonyolult folyamat, és sok hibalehetőséggel jár.
+> Ha azt tervezi, hogy toouse Azure Data Lake Store további tárolóként HDInsight-fürthöz, javasoljuk, hogy ehhez hello fürt létrehozásakor, a cikkben leírtak szerint. Azure Data Lake Store további tárhely tooan hozzáadása meglévő HDInsight-fürt egy összetett folyamat és hibalehetőségeket rejt magában tooerrors.
 >
 
-Támogatott fürttípusok Data Lake Store egy alapértelmezett tároló vagy a további tárhely fiókként használható. Ha a Data Lake Store további tárterületet, az alapértelmezett tárfiókot, a fürt továbbra is Azure Storage Blobs (WASB), és a fürt kapcsolatos (például naplói, stb.) továbbra is írja a fájlt, alapértelmezett tárolására, amíg a Data Lake Store-fiók tárolhatja az adatokat, hogy fel szeretné dolgoztatni. További tárhely fiókként használatával a Data Lake Store nem befolyásolja a teljesítményt vagy olvasására vagy írására a tárhelyet a fürtből történő alkalmazásának képességét.
+Támogatott fürttípusok Data Lake Store egy alapértelmezett tároló vagy a további tárhely fiókként használható. Ha a Data Lake Store további tárterületet, hello alapértelmezett tárfiók hello fürtök továbbra is Azure Storage Blobs (WASB), és hello fürt kapcsolatos fájlokhoz (például naplói, stb.) továbbra is írt toohello alapértelmezett tárolási hello adatainak közben, amikor szeretné, hogy tooprocess tárolható Data Lake Store-fiók. További tárhely fiókként használatával a Data Lake Store nem befolyásolja a teljesítményt és a hello képességét tooread/írás toohello tárolást hello fürtből.
 
 ## <a name="using-data-lake-store-for-hdinsight-cluster-storage"></a>Data Lake Store használata a HDInsight-fürt tárolására
 
 Az alábbiakban a HDInsight a Data Lake Store használatára vonatkozó szempontokat:
 
-* A HDInsight-fürtök létrehozása a Data Lake Store elérését, további tárhely áll rendelkezésre a HDInsight-verziókról 3.2-es, 3.4, 3.5-ös és 3.6 lehetőséget.
+* Beállítás toocreate a HDInsight-fürtök hozzáféréssel rendelkező tooData Lake Store további tárolóként verzióihoz áll rendelkezésre HDInsight 3.2-es, 3.4, 3.5-ös és 3.6.
 
-HDInsight a Data Lake Store működéséhez konfigurálása PowerShell használatával az alábbi lépésekből:
+HDInsight konfigurálása a PowerShell használatával a Data Lake Store toowork magában foglalja a hello a következő lépéseket:
 
 * Hozzon létre egy Azure Data Lake Store
-* A szerepköralapú hozzáférés-Data Lake Store-hitelesítés beállítása
-* HDInsight-fürt létrehozása a Data Lake Store-hitelesítéssel
-* Egy tesztelési feladat futtatása a fürtön
+* A hitelesítés beállítása, szerepköralapú hozzáférési tooData Lake
+* A hitelesítési tooData Lake Store HDInsight-fürt létrehozása
+* Egy tesztelési feladat futtatása hello fürtön
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az oktatóanyag elkezdéséhez az alábbiakkal kell rendelkeznie:
+Ez az oktatóanyag elkezdéséhez hello következő kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* Az **Azure PowerShell 1.0-s vagy újabb verziója**. Lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
-* **Windows SDK**. A későbbiekben telepítheti az [Itt](https://dev.windows.com/en-us/downloads). Ezzel a biztonsági tanúsítvány létrehozásához.
-* **Az Azure Active Directory szolgáltatás egyszerű**. Ez az oktatóanyag lépéseit ad útmutatást az egyszerű szolgáltatás létrehozása az Azure ad-ben. Azonban az Azure AD a rendszergazda létrehozhat egy egyszerű szolgáltatást kell lennie. Ha az Azure AD-rendszergazdaként, hagyja ki ezt az előfeltételt, és az oktatóanyag folytatásához.
+* Az **Azure PowerShell 1.0-s vagy újabb verziója**. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+* **Windows SDK**. A későbbiekben telepítheti az [Itt](https://dev.windows.com/en-us/downloads). A toocreate olyan biztonsági tanúsítványt használ.
+* **Az Azure Active Directory szolgáltatás egyszerű**. Ez az oktatóanyag lépéseit ad útmutatást toocreate egy egyszerű Azure AD-ben. Azonban az Azure AD rendszergazdai toobe képes toocreate szolgáltatásnevet kell lennie. Ha az Azure AD-rendszergazdaként, hagyja ki ezt az előfeltételt, és hello oktatóanyag folytatásához.
 
-    **Ha nem az Azure AD-rendszergazda**, nem fog tudni egy egyszerű szolgáltatásnév létrehozásához szükséges lépéseket. Ebben az esetben az Azure AD-rendszergazda először létre kell hoznia egy egyszerű szolgáltatást a Data Lake Store egy HDInsight-fürt létrehozása előtt. Emellett az egyszerű szolgáltatás segítségével kell létrehozni egy tanúsítványt, részben ismertetett módon [hozzon létre egy egyszerű tanúsítvány](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority).
+    **Ha nem az Azure AD-rendszergazda**, nem fogja tudni tooperform hello lépéseket szükséges toocreate egy egyszerű szolgáltatást. Ebben az esetben az Azure AD-rendszergazda először létre kell hoznia egy egyszerű szolgáltatást a Data Lake Store egy HDInsight-fürt létrehozása előtt. Emellett hello szolgáltatás egyszerű segítségével kell létrehozni egy tanúsítványt, részben ismertetett módon [hozzon létre egy egyszerű tanúsítvány](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority).
 
 ## <a name="create-an-azure-data-lake-store"></a>Hozzon létre egy Azure Data Lake Store
-Kövesse az alábbi lépéseket egy Data Lake Store létrehozásához.
+Hajtsa végre az alábbi lépéseket toocreate egy Data Lake Store.
 
-1. Az asztalon nyisson meg egy új Azure PowerShell-ablakot, és adja meg a következő kódrészletet. Amikor a rendszer kéri-e jelentkezni, győződjön meg arról jelentkezik be a rendelkezésre álló az előfizetés rendszergazdája vagy tulajdonosa:
+1. Az asztalon nyisson meg egy új Azure PowerShell-ablakot, és adja meg a következő kódrészletet hello. Amikor felszólító toolog, győződjön meg arról, hogy jelentkezik be a rendelkezésre álló hello előfizetés rendszergazdája vagy tulajdonosa:
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Login-AzureRmAccount
 
-        # List all the subscriptions associated to your account
+        # List all hello subscriptions associated tooyour account
         Get-AzureRmSubscription
 
         # Select a subscription
@@ -77,7 +62,7 @@ Kövesse az alábbi lépéseket egy Data Lake Store létrehozásához.
         Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
    > [!NOTE]
-   > Ha a hibaüzenet hasonló `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` a Data Lake Store erőforrás-szolgáltató regisztrálása, esetén lehetséges, hogy az előfizetés nem szerepel az Azure Data Lake Store az engedélyezési listán. Győződjön meg arról, hogy az Azure-előfizetéshez a Data Lake Store nyilvános előzetes verziójához engedélyezze a következő [utasításokat](data-lake-store-get-started-portal.md).
+   > Ha a hibaüzenet hasonló túl`Register-AzureRmResourceProvider : InvalidResourceNamespace: hello resource namespace 'Microsoft.DataLakeStore' is invalid` hello Data Lake Store erőforrás-szolgáltató regisztrálása, esetén lehetséges, hogy az előfizetés nem szerepel az Azure Data Lake Store az engedélyezési listán. Győződjön meg arról, hogy az Azure-előfizetéshez a Data Lake Store nyilvános előzetes verziójához engedélyezze a következő [utasításokat](data-lake-store-get-started-portal.md).
    >
    >
 2. Az Azure Data Lake Store-fiókok egy Azure-erőforráscsoporthoz vannak társítva. Először hozzon létre egy Azure-erőforráscsoportot.
@@ -93,12 +78,12 @@ Kövesse az alábbi lépéseket egy Data Lake Store létrehozásához.
         Tags              :
         ResourceId        : /subscriptions/<subscription-id>/resourceGroups/hdiadlgrp
 
-3. Hozzon létre egy Azure Data Lake Store-fiókot. A megadott fiók neve csak kisbetűket és számokat tartalmazhat.
+3. Hozzon létre egy Azure Data Lake Store-fiókot. hello fiókhoz megadott neve csak kisbetűket és számokat tartalmazhat.
 
         $dataLakeStoreName = "<your new Data Lake Store name>"
         New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
 
-    A következőhöz hasonló kimenetnek kell megjelennie:
+    Hello hasonló kimenetnek kell megjelennie:
 
         ...
         ProvisioningState           : Succeeded
@@ -115,45 +100,45 @@ Kövesse az alábbi lépéseket egy Data Lake Store létrehozásához.
         Location                    : East US 2
         Tags                        : {}
 
-5. Azure Data Lake tölthet fel néhány adatot. Használjuk Ez a cikk későbbi részében annak ellenőrzéséhez, hogy az adatok érhető el a HDInsight-fürtöt. Ha feltölthető mintaadatokra van szüksége, használhatja az [Azure Data Lake Git-tárában](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData) található **Ambulance Data** mappát.
+5. Néhány példa adatok tooAzure Data Lake feltöltése. Ez a cikk tooverify, hogy hello adatok érhető el a HDInsight-fürtök a későbbi fogjuk használni. Néhány példa adatok tooupload keres, ha kaphat a hello **Ambulance Data** hello mappát [Azure Data Lake Git-tárház](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData).
 
         $myrootdir = "/"
-        Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "C:\<path to data>\vehicle1_09142014.csv" -Destination $myrootdir\vehicle1_09142014.csv
+        Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "C:\<path toodata>\vehicle1_09142014.csv" -Destination $myrootdir\vehicle1_09142014.csv
 
 
-## <a name="set-up-authentication-for-role-based-access-to-data-lake-store"></a>A szerepköralapú hozzáférés-Data Lake Store-hitelesítés beállítása
-Egy Azure Active Directory minden Azure-előfizetés tartozik. Felhasználók és a szolgáltatások, az előfizetés, a klasszikus Azure portálon vagy az Azure Resource Manager API-t használó erőforrásokat elérő először hitelesítenie kell magát, hogy Azure Active Directoryban. Hozzáférés az Azure-előfizetések és-szolgáltatások egy Azure-erőforrás a megfelelő szerepkört hozzárendelésével.  Szolgáltatások esetén egy egyszerű szolgáltatást a szolgáltatás az Azure Active Directory (AAD) a azonosítja. Ez a szakasz bemutatja az alkalmazásszolgáltatás, mint például a HDInsight, egy Azure-erőforrás (a korábban létrehozott Azure Data Lake Store fióknak) való hozzáférés engedélyezése az alkalmazás egyszerű szolgáltatás létrehozása és hozzárendelése a szerepkörök, amelyek Azure PowerShell.
+## <a name="set-up-authentication-for-role-based-access-toodata-lake-store"></a>A hitelesítés beállítása, szerepköralapú hozzáférési tooData Lake
+Egy Azure Active Directory minden Azure-előfizetés tartozik. Felhasználók és a szolgáltatások hello előfizetés hello klasszikus Azure portálon vagy az Azure Resource Manager API-t használó erőforrásokat elérő először hitelesítenie kell magát, hogy Azure Active Directoryban. Hozzáférés tooAzure előfizetések és a szolgáltatások hello megfelelő szerepkört egy Azure-erőforrás hozzárendelésével.  Szolgáltatások esetén egy egyszerű szolgáltatásnév hello Azure Active Directory (AAD) hello szolgáltatást azonosítja. Ez a szakasz bemutatja, hogyan toogrant alkalmazás szolgáltatást, mint például a HDInsight hozzáférést tooan Azure-erőforrás (hello korábban létrehozott Azure Data Lake Store-fiók) hoz létre egy egyszerű hello alkalmazáshoz és szerepkörök toothat Azure keresztül PowerShell.
 
-Active Directory-hitelesítés az Azure Data Lake beállításához a következő feladatokat kell elvégeznie.
+az Active Directory-hitelesítés az Azure Data Lake tooset, végre kell hajtania a következő feladatok hello.
 
 * Önaláírt tanúsítvány létrehozása
 * Létrehoz egy alkalmazást az Azure Active Directory és az egyszerű szolgáltatás
 
 ### <a name="create-a-self-signed-certificate"></a>Önaláírt tanúsítvány létrehozása
-Győződjön meg arról, hogy [Windows SDK](https://dev.windows.com/en-us/downloads) ebben a szakaszban a lépések végrehajtása előtt. Kell is létrehozott egy könyvtárat, például a **C:\mycertdir**, ahol a tanúsítvány jön létre.
+Győződjön meg arról, hogy [Windows SDK](https://dev.windows.com/en-us/downloads) ebben a szakaszban lévő lépéseket hello folytatása előtt. Kell is létrehozott egy könyvtárat, például a **C:\mycertdir**, ahol hello tanúsítvány jön létre.
 
-1. A PowerShell ablakban keresse meg a helyet, amelyre telepítette a Windows SDK (általában `C:\Program Files (x86)\Windows Kits\10\bin\x86` , és használja a [MakeCert] [ makecert] segédprogram egy önaláírt tanúsítványt és a titkos kulcs létrehozása. Az alábbi parancsokkal.
+1. Hello PowerShell ablakban, keresse meg a toohello helyét Windows SDK-t (általában `C:\Program Files (x86)\Windows Kits\10\bin\x86` és hello [MakeCert] [ makecert] segédprogram toocreate egy önaláírt tanúsítványt és a titkos kulcs. A következő parancsok hello használata.
 
         $certificateFileDir = "<my certificate directory>"
         cd $certificateFileDir
 
         makecert -sv mykey.pvk -n "cn=HDI-ADL-SP" CertFile.cer -r -len 2048
 
-    A rendszer bekéri a titkos kulcsok jelszavának megadása. Miután a parancs sikeres végrehajtása során, megtekintheti az egy **CertFile.cer** és **mykey.pvk** a tanúsítvány megadott könyvtárban.
-2. Használja a [Pvk2Pfx] [ pvk2pfx] segédprogram a MakeCert létrehozott .pvk és .cer fájl átalakítása egy .pfx fájlba. A következő parancsot.
+    Rákérdezéses tooenter hello titkos kulcs jelszava lesz. Miután hello parancs sikeres végrehajtása során, megjelenik egy **CertFile.cer** és **mykey.pvk** megadott hello tanúsítvány könyvtárban.
+2. Használjon hello [Pvk2Pfx] [ pvk2pfx] segédprogram tooconvert hello .pvk és .cer-fájlokat a MakeCert létrehozott tooa .pfx fájlt. Futtassa a következő parancs hello.
 
         pvk2pfx -pvk mykey.pvk -spc CertFile.cer -pfx CertFile.pfx -po <password>
 
-    Amikor a rendszer kéri a korábban meghatározott titkos kulcsok jelszavának megadása. A megadott érték a **-po** paramétere a jelszót a .pfx fájl társított. Ha a parancs sikeresen befejeződött, emellett meg kell jelennie egy CertFile.pfx a tanúsítvány megadott könyvtárban.
+    Amikor a rendszer kéri hello titkos kulcs jelszava korábban meghatározott adja meg. hello számára megadott érték hello **-po** paraméter hello jelszavát hello .pfx-fájllal. Ha hello parancs sikeresen befejeződött, emellett meg kell jelennie egy CertFile.pfx megadott hello tanúsítvány könyvtárban.
 
 ### <a name="create-an-azure-active-directory-and-a-service-principal"></a>Egy Azure Active Directory és az egyszerű szolgáltatás létrehozása
-Ebben a szakaszban hajtsa végre a lépéseket egy egyszerű szolgáltatásnév létrehozása az Azure Active Directory-alkalmazás, a szerepkör hozzárendelése az egyszerű szolgáltatásnév és hitelesítse magát a szolgáltatás egyszerű, adja meg a tanúsítványt. A következő parancsokat az alkalmazás létrehozása az Azure Active Directoryban.
+Ebben a szakaszban az Azure Active Directory-alkalmazás végrehajtja a hello lépéseket toocreate egy egyszerű szolgáltatást, hozzárendelése egy szerepkörhöz toohello szolgáltatás egyszerű, és hitelesítse magát hello szolgáltatás egyszerű, adja meg a tanúsítványt. Futtassa a következő parancsok toocreate hello egy alkalmazást az Azure Active Directoryban.
 
-1. A PowerShell-konzolablakot illessze be a következő parancsmagokat. Győződjön meg arról, hogy a megadott érték a **- DisplayName** tulajdonság értéke egyedi. Az is, az értékek **- kezdőlap** és **- IdentiferUris** helyőrző értékeket, és nem ellenőrzi.
+1. Illessze be a következő parancsmagok a PowerShell-konzolablakot hello hello. Győződjön meg arról, hogy hello tulajdonság hello **- DisplayName** tulajdonság értéke egyedi. Emellett hello értékeinek **- kezdőlap** és **- IdentiferUris** helyőrző értékeket, és nem ellenőrzi.
 
         $certificateFilePath = "$certificateFileDir\CertFile.pfx"
 
-        $password = Read-Host –Prompt "Enter the password" # This is the password you specified for the .pfx file
+        $password = Read-Host –Prompt "Enter hello password" # This is hello password you specified for hello .pfx file
 
         $certificatePFX = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($certificateFilePath, $password)
 
@@ -170,24 +155,24 @@ Ebben a szakaszban hajtsa végre a lépéseket egy egyszerű szolgáltatásnév 
             -EndDate $certificatePFX.NotAfter
 
         $applicationId = $application.ApplicationId
-2. Hozzon létre egy egyszerű szolgáltatásnév az alkalmazás azonosítójával.
+2. Hozzon létre egy egyszerű szolgáltatást hello alkalmazás azonosítójával.
 
         $servicePrincipal = New-AzureRmADServicePrincipal -ApplicationId $applicationId
 
         $objectId = $servicePrincipal.Id
-3. A Data Lake Store-mappa és a fájlt, amely akkor érik el a HDInsight-fürt a szolgáltatás egyszerű hozzáférést engedélyez. Az alábbi részlet biztosít hozzáférést a Data Lake Store-fiók (másolásakor a mintaadatfájlokat), a legfelső szintű és magát a fájlt.
+3. Adja meg a hello szolgáltatás egyszerű hozzáférés toohello Data Lake Store a mappák és hello használni, akkor a hello HDInsight-fürthöz. az alábbi hello részlet hozzáférés toohello gyökere hello Data Lake Store (másolásakor hello mintaadatfájlokat) fiók, és maga hello biztosít.
 
         Set-AzureRmDataLakeStoreItemAclEntry -AccountName $dataLakeStoreName -Path / -AceType User -Id $objectId -Permissions All
         Set-AzureRmDataLakeStoreItemAclEntry -AccountName $dataLakeStoreName -Path /vehicle1_09142014.csv -AceType User -Id $objectId -Permissions All
 
 ## <a name="create-an-hdinsight-linux-cluster-with-data-lake-store-as-additional-storage"></a>Egy HDInsight Linux-fürt létrehozása a Data Lake Store további tárhely
 
-Ebben a részben azt egy HDInsight Hadoop Linux fürt létrehozása a Data Lake Store további tárolóként. Ebben a kiadásban a HDInsight-fürt és a Data Lake Store ugyanazon a helyen kell lennie.
+Ebben a részben azt egy HDInsight Hadoop Linux fürt létrehozása a Data Lake Store további tárolóként. Ebben a kiadásban hello HDInsight-fürtöt és hello Data Lake Store kell, hogy a hello ugyanazon a helyen.
 
-1. Indítsa el az előfizetés-azonosító. bérlő beolvasása Később szüksége lesz, amely.
+1. Indítsa el beolvasása hello előfizetés bérlő-azonosító. Később szüksége lesz, amely.
 
         $tenantID = (Get-AzureRmContext).Tenant.TenantId
-2. Ebben a kiadásban a Hadoop fürtök a Data Lake Store csak használható további tárterületként a fürthöz. Az alapértelmezett tároló is az Azure storage blobs szolgáltatásban (WASB). Igen először létrehozunk a tárfiók és a tároló a fürt szükséges.
+2. Ebben a kiadásban a Hadoop fürtök a Data Lake Store csak használható további tárterületként hello fürthöz. hello alapértelmezett tárolási is hello az Azure storage blobs (WASB). Igen először létrehozunk hello fiók- és tárolási tárolókban hello fürt szükséges.
 
         # Create an Azure storage account
         $location = "East US 2"
@@ -200,37 +185,37 @@ Ebben a részben azt egy HDInsight Hadoop Linux fürt létrehozása a Data Lake 
         $storageAccountKey = (Get-AzureRmStorageAccountKey -Name $storageAccountName -ResourceGroupName $resourceGroupName)[0].Value
         $destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
         New-AzureStorageContainer -Name $containerName -Context $destContext
-3. A HDInsight-fürtök létrehozása. A következő parancsmagokat használja.
+3. Hello HDInsight-fürtök létrehozása. A következő parancsmagok hello használata.
 
         # Set these variables
-        $clusterName = $containerName                   # As a best practice, have the same name for the cluster and container
-        $clusterNodes = <ClusterSizeInNodes>            # The number of nodes in the HDInsight cluster
+        $clusterName = $containerName                   # As a best practice, have hello same name for hello cluster and container
+        $clusterNodes = <ClusterSizeInNodes>            # hello number of nodes in hello HDInsight cluster
         $httpCredentials = Get-Credential
         $sshCredentials = Get-Credential
 
         New-AzureRmHDInsightCluster -ClusterName $clusterName -ResourceGroupName $resourceGroupName -HttpCredential $httpCredentials -Location $location -DefaultStorageAccountName "$storageAccountName.blob.core.windows.net" -DefaultStorageAccountKey $storageAccountKey -DefaultStorageContainer $containerName  -ClusterSizeInNodes $clusterNodes -ClusterType Hadoop -Version "3.4" -OSType Linux -SshCredential $sshCredentials -ObjectID $objectId -AadTenantId $tenantID -CertificateFilePath $certificateFilePath -CertificatePassword $password
 
-    A parancsmag sikeres befejezése után, a fürt részleteket felsoroló kimenetnek kell megjelennie.
+    Ha hello parancsmag sikeresen befejeződött, akkor listaelem hello fürt részletei kimenetnek kell megjelennie.
 
 
-## <a name="run-test-jobs-on-the-hdinsight-cluster-to-use-the-data-lake-store"></a>A HDInsight-fürt használata a Data Lake Store tesztet-feladatok futtatása
-Miután konfigurálta a HDInsight-fürtöt, a teszt feladatok ellenőrzéséhez, hogy a HDInsight-fürt hozzáférhet-e a Data Lake Store a fürtön is futtathatja. Ehhez az szükséges, azt egy minta Hive táblát hoz létre a Data Lake Store korábban feltöltött megadott mintaadatokat használja feladat elindul.
+## <a name="run-test-jobs-on-hello-hdinsight-cluster-toouse-hello-data-lake-store"></a>Hello HDInsight fürt toouse hello Data Lake Store a teszt feladatok futtatása
+Miután konfigurálta a HDInsight-fürtöt, futtathatja Tesztfeladatok hello fürt tootest adott hello HDInsight fürt Data Lake Store férhetnek hozzá. toodo úgy, hogy fog futni egy minta Hive-feladatot, amely táblát hoz létre, hogy a korábbi tooyour Data Lake Store feltöltött hello mintaadatok használatával.
 
-Ebben a szakaszban fogja SSH a HDInsight Linux fürthöz létrehozott, és futtassa a minta Hive-lekérdezések.
+Ez a szakasz a SSH hello HDInsight Linux cluster során létrehozott és hello minta Hive-lekérdezések futtatása a tartalma.
 
-* Ha a fürthöz SSH Windows ügyfél használ, tekintse meg [SSH használata a HDInsight Windows Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md).
-* Ha a fürthöz az SSH Linux-ügyfél használ, tekintse meg [SSH használata a HDInsight Linux Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
+* Ha egy Windows ügyfél tooSSH hello fürtbe használ, tekintse meg [SSH használata a HDInsight Windows Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md).
+* Ha a Linux-ügyfél tooSSH hello fürtbe használ, tekintse meg [SSH használata a HDInsight Linux Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
 
-1. A csatlakozás után a következő parancs használatával indítsa el a Hive CLI:
+1. A csatlakozás után indítsa el a hello Hive CLI hello a következő parancs segítségével:
 
         hive
-2. A parancssori felület használatával adja meg az alábbi állításokat annak nevű új tábla létrehozása **járművekről gyűjtött** által megadott mintaadatokat használja a Data Lake Store-ban:
+2. Hello CLI, adja meg a következő utasítások toocreate nevű új tábla hello **járművekről gyűjtött** hello mintaadatok használatával a Data Lake Store hello:
 
         DROP TABLE vehicles;
         CREATE EXTERNAL TABLE vehicles (str string) LOCATION 'adl://<mydatalakestore>.azuredatalakestore.net:443/';
         SELECT * FROM vehicles LIMIT 10;
 
-    A következőhöz hasonló kimenetnek kell megjelennie:
+    Egy kimeneti hasonló toohello következő kell megjelennie:
 
         1,1,2014-09-14 00:00:03,46.81006,-92.08174,51,S,1
         1,2,2014-09-14 00:00:06,46.81006,-92.08174,13,NE,1
@@ -244,27 +229,27 @@ Ebben a szakaszban fogja SSH a HDInsight Linux fürthöz létrehozott, és futta
         1,10,2014-09-14 00:00:30,46.81006,-92.08174,31,N,1
 
 ## <a name="access-data-lake-store-using-hdfs-commands"></a>Hozzáférés Data Lake Store HDFS parancs használatával
-Miután konfigurálta a Data Lake Store használata a HDInsight-fürthöz, a HDFS felületparancsokat használhatja az áruház eléréséhez szükséges.
+Miután konfigurálta a hello HDInsight fürt toouse Data Lake Store, hello HDFS rendszerhéj parancsok tooaccess hello tároló is használhatja.
 
-Az itt SSH a HDInsight Linux fürthöz létrehozott és a HDFS parancs futtatása lesz.
+Az itt SSH hello HDInsight Linux cluster során létrehozott és hello HDFS parancs futtatása a lesz.
 
-* Ha a fürthöz SSH Windows ügyfél használ, tekintse meg [SSH használata a HDInsight Windows Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md).
-* Ha a fürthöz az SSH Linux-ügyfél használ, tekintse meg [SSH használata a HDInsight Linux Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
+* Ha egy Windows ügyfél tooSSH hello fürtbe használ, tekintse meg [SSH használata a HDInsight Windows Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md).
+* Ha a Linux-ügyfél tooSSH hello fürtbe használ, tekintse meg [SSH használata a HDInsight Linux Linux-alapú Hadooppal](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
 
-A csatlakozás után a következő HDFS filesystem parancs segítségével a Data Lake Store található fájlok listázása.
+Miután csatlakozott, használja a következő HDFS hello filesystem parancs toolist fájlok hello Data Lake Store hello.
 
     hdfs dfs -ls adl://<Data Lake Store account name>.azuredatalakestore.net:443/
 
-Megjelenik a korábban a Data Lake Store-bA feltöltött fájl.
+Hello fájlt, hogy a korábbi toohello Data Lake Store feltöltött megjelenik.
 
     15/09/17 21:41:15 INFO web.CaboWebHdfsFileSystem: Replacing original urlConnectionFactory with org.apache.hadoop.hdfs.web.URLConnectionFactory@21a728d6
     Found 1 items
     -rwxrwxrwx   0 NotSupportYet NotSupportYet     671388 2015-09-16 22:16 adl://mydatalakestore.azuredatalakestore.net:443/mynewfolder
 
-Használhatja a `hdfs dfs -put` parancs egyes fájlok feltöltése a Data Lake Store, és ezután `hdfs dfs -ls` ellenőrzése, hogy a fájlok sikeresen feltöltve.
+Is használhatja a hello `hdfs dfs -put` tooupload bizonyos fájlok toohello Data Lake Store parancsot, és ezután `hdfs dfs -ls` tooverify e hello fájlok sikeresen feltöltve.
 
 ## <a name="see-also"></a>Lásd még:
-* [Portál: Data Lake Store használatára HDInsight-fürtök létrehozása](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [-Portálon: Létrehozása egy HDInsight-fürt toouse Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx

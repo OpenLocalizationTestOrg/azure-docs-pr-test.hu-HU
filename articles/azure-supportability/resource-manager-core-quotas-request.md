@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Resource Manager core kvóta növelése kérelmek |} Microsoft Docs"
+title: "aaaAzure erőforrás-kezelő core kvóta növelése kérelmek |} Microsoft Docs"
 description: "Az Azure Resource Manager core kvóta növelése kérelmek"
 author: ganganarayanan
 ms.author: gangan
@@ -7,24 +7,24 @@ ms.date: 1/18/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: ce37c848-ddd9-46ab-978e-6a1445728a3b
-ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b158b9f0e0338eb239da9253c2146ea93c02e316
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-manager-core-quota-increase-requests"></a>Erőforrás-kezelő core kvóta növelése kérelmek
 
-Erőforrás-kezelő core kvótái a régió szint és az SKU termékcsalád szintjén lépnek érvénybe.
-További tudnivalók a módját a kvóták kényszeríti ki a [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](http://aka.ms/quotalimits) lap.
-További információt a Termékváltozat-családok, előfordulhat, hogy összehasonlítja költségeket és a teljesítmény a a [Virtual Machines díjszabása](http://aka.ms/pricingcompute) lap.
+Erőforrás-kezelő core kvótái hello régió szint és SKU termékcsalád szintjén lépnek érvénybe.
+Tudjon meg többet a hogyan kvóták érvényes hello [Azure-előfizetés és a szolgáltatásra vonatkozó korlátozások](http://aka.ms/quotalimits) lap.
+További információk az SKU-családok toolearn, előfordulhat, hogy összehasonlítására, hello teljesítményére és költség [Virtual Machines díjszabása](http://aka.ms/pricingcompute) lap.
 
-A korlátozás megnövelésére a magok kvóta támogatási esetet az Azure-portálon hozzon létre [https://portal.azure.com](https://portal.azure.com).
+növelését, egy toorequest létrehozása kvóta támogatási esetet magok hello Azure-portálon [https://portal.azure.com](https://portal.azure.com).
 
 > [!NOTE]
-> Megtudhatja, hogyan [hozzon létre egy támogatási kérést](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) az Azure-portálon
+> Ismerje meg, hogyan túl[hozzon létre egy támogatási kérést](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) a hello Azure-portálon
 
-1. Új támogatási kérelem lapján válassza ki a probléma típusú, mint "Kvóta" és "Magok" kvóta típus lehet.
+1. Hello új támogatási kérelem lapon jelölje be probléma típusú, mint "Kvóta" és "Magok" kvóta típus lehet.
 
     ![Kvóta alapvető beállítások panel](./media/resource-manager-core-quotas-request/Basics-blade.png)
 
@@ -32,13 +32,13 @@ A korlátozás megnövelésére a magok kvóta támogatási esetet az Azure-port
 
     ![Kvóta probléma panel](./media/resource-manager-core-quotas-request/Problem-step.png)
 
-3. Válassza ki a Termékváltozat családok igénylő növelését.
+3. Válassza ki a hello SKU családok igénylő növelését.
 
     ![Kiválasztott Termékváltozat-sorozat](./media/resource-manager-core-quotas-request/SKU-selected.png)
 
-4. Írja be az új korlátai által megszabott szeretné az előfizetést.
+4. Adja meg a hello új korlátok szeretné hello az előfizetésben.
 
     ![Új kvótakérelemhez Termékváltozat](./media/resource-manager-core-quotas-request/SKU-new-quota.png)
 
-- Távolíthatja el, törölje a jelet a Termékváltozat az SKU-család legördülő menüből, vagy kattintson az "x" elvetési ikonra.
-A kívánt kvóta megadása minden SKU-család, után kattintson a "Tovább" gombra, a támogatási kérelem létrehozása folytatásához probléma lépés oldalon.
+- egy sor tooremove törölje a jelet hello SKU hello SKU termékcsalád kattintson a legördülő lista vagy hello elvetési "x" ikontól.
+Hello kívánt kvóta megadása minden SKU-család, után kattintson a "Tovább" gombra. a hello probléma lépés lap toocontinue hello támogatási kérés létrehozásával.

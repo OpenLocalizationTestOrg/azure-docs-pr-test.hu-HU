@@ -1,6 +1,6 @@
 ---
-title: "Az első data factory létrehozása (Azure Portal) | Microsoft Docs"
-description: "Az oktatóanyag során létre fog hozni egy minta Azure Data Factory-folyamatot az Azure Portal Data Factory Editor eszközével."
+title: "aaaBuild az első adat-előállítóban (Azure-portál) |} Microsoft Docs"
+description: "Ebben az oktatóanyagban létrehoz egy minta Azure Data Factory-folyamathoz Data Factory Editor hello Azure-portál használatával."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 9c958aecb841fa02349c6b9e5e1984f6ba4fb611
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fc80776001b181a59c04d80d2e05c20b107a63f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-build-your-first-azure-data-factory-using-azure-portal"></a>Oktatóanyag: az első Azure data factory létrehozása az Azure Portal használatával
 > [!div class="op_single_selector"]
@@ -30,86 +30,86 @@ ms.lasthandoff: 08/29/2017
 > * [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-Ez a cikk bemutatja, hogyan hozhatja létre az első Azure-os adat-előállítóját az [Azure Portal](https://portal.azure.com/) használatával. Ha ezt az oktatóanyagot más eszközök/SDK-k használatával szeretné elvégezni, válassza ki az egyik lehetőséget a legördülő listából. 
+Ebből a cikkből megismerheti, hogyan toouse [Azure-portálon](https://portal.azure.com/) toocreate az első az Azure data factory. toodo hello az oktatóanyagot más eszközök/SDK használatával hello legördülő listából válasszon hello lehetőségek közül. 
 
-A jelen oktatóanyagban szereplő folyamat egyetlen tevékenységet tartalmaz: ez a **HDInsight Hive-tevékenység**. A tevékenység egy hive-szkriptet futtat egy Azure HDInsight fürtön, amely a bemeneti adatokat átalakítja a kimeneti adatok előállításához. A folyamat úgy van ütemezve, hogy havonta egyszer fusson a megadott kezdő és befejező időpontok közt. 
+Ebben az oktatóanyagban hello folyamat rendelkezik egy tevékenység: **HDInsight Hive tevékenység**. Ez a tevékenység hive parancsfájlok futtatására szolgál, hogy átalakítások bemeneti adatok tooproduce kimeneti adatok Azure HDInsight-fürtöt. hello csővezeték ütemezett toorun, a hónap közötti hello kezdő és záró időpontjának megadása után. 
 
 > [!NOTE]
-> Az oktatóanyagban található adatfolyamat átalakítja a bemeneti adatokat, hogy ezzel kimeneti adatokat hozzon létre. Az adatok Azure Data Factory használatával történő másolásának útmutatásáért olvassa el [az adatok Blob Storage-ból SQL Database-be történő másolását ismertető oktatóanyagot](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+> hello adatok csővezeték ebben az oktatóanyagban alakítja át a bemeneti adatok tooproduce kimeneti adatokat. Hogyan oktatóanyagért toocopy adatok Azure Data Factory használatával, lásd: [oktatóanyag: adatok másolása a Blob Storage tooSQL adatbázis](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 > 
-> Egy folyamathoz több tevékenység is tartozhat. Ezenkívül össze is fűzhet két tevékenységet (egymás után futtathatja őket), ha az egyik tevékenység kimeneti adatkészletét a másik tevékenység bemeneti adatkészleteként állítja be. További tudnivalókért lásd: [Ütemezés és végrehajtás a Data Factoryban](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
+> Egy folyamathoz több tevékenység is tartozhat. És láncolt telepítését (egymás után futtatni egy tevékenységet) két tevékenység által hello bemeneti hello az adatkészlet többi tevékenység hello kimeneti adatkészlet egy tevékenység beállítását. További tudnivalókért lásd: [Ütemezés és végrehajtás a Data Factoryban](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
 
 ## <a name="prerequisites"></a>Előfeltételek
-1. Olvassa el [Az oktatóanyag áttekintése](data-factory-build-your-first-pipeline.md) című cikket, és hajtsa végre az **előfeltételként** felsorolt lépéseket.
-2. Ez a cikk nem nyújt fogalmi áttekintést az Azure Data Factory szolgáltatásról. Javasoljuk, hogy a szolgáltatás részletes áttekintéséhez olvassa el az [Introduction to Azure Data Factory](data-factory-introduction.md) (Az Azure Data Factory bemutatása) című cikket.  
+1. Olvassa végig [oktatóanyag – áttekintés](data-factory-build-your-first-pipeline.md) cikkben és a teljes hello **előfeltétel** lépéseket.
+2. Ez a cikk nem nyújt áttekintést hello Azure Data Factory szolgáltatásnak. Javasoljuk, hogy olvassa végig [Data Factory bemutatása tooAzure](data-factory-introduction.md) cikk részletes áttekintés hello szolgáltatást.  
 
 ## <a name="create-data-factory"></a>Data factory létrehozása
-A data factory egy vagy több folyamattal rendelkezhet. A folyamaton belül egy vagy több tevékenység lehet. Például egy olyan másolási tevékenység, amely adatokat másol egy forrásadattárból egy céladattárba, és egy HDInsight Hive-tevékenység, amely egy Hive-szkript futtatásával alakítja át a bemeneti adatokat kimeneti adatokká. Ebben a lépésben létrehozzuk a data factoryt.
+A data factory egy vagy több folyamattal rendelkezhet. A folyamaton belül egy vagy több tevékenység lehet. Adja meg például a másolási tevékenység toocopy forrás tooa cél adattárat és adatait egy HDInsight Hive tevékenység toorun a Hive parancsfájl tootransform adatok tooproduct kimeneti adatokat. Kezdjük, az ebben a lépésben hello adat-előállító létrehozása.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. Kattintson a **NEW** (Új) lehetőségre a bal oldali menüben, kattintson az **Data + Analytics** (Adatok + analitika) pontra, majd a **Data Factory** elemre.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. Kattintson a **új** hello bal oldali menüben kattintson **adatok + analitika**, és kattintson a **adat-előállító**.
 
    ![A Create (Létrehozás) panel](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
-3. A **New data factory** (Új data factory) panelen adja meg a **GetStartedDF** nevet.
+3. A hello **új adat-előállító** panelen adja meg **GetStartedDF** a hello nevét.
 
    ![A New data factory (Új data factory) panel](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
 
    > [!IMPORTANT]
-   > Az Azure data factory nevének **globálisan egyedinek** kell lennie. Ha a **Data factory name “GetStartedDF” is not available** (A „GetStartedDF” data factory-név nem érhető el) hibaüzenetet kapja: Módosítsa a nevet (például sajátnévGetStartedDF-re) és próbálkozzon újra a létrehozással. A Data Factory-összetevők elnevezési szabályait a [Data Factory - Naming Rules](data-factory-naming-rules.md) (Data Factory – Elnevezési szabályok) című témakörben találhatja.
+   > az Azure data factory hello hello nevének kell lennie **globálisan egyedi**. Ha hello hibaüzenetet kapja: **nem érhető el adat-előállító "GetStartedDF"**. Módosítsa a hello adat-előállítóban (például yournameGetStartedDF) hello nevét, majd próbálja meg újra létrehozni. A Data Factory-összetevők elnevezési szabályait a [Data Factory - Naming Rules](data-factory-naming-rules.md) (Data Factory – Elnevezési szabályok) című témakörben találhatja.
    >
-   > A data factory neve később **DNS**-névként regisztrálható, így nyilvánosan láthatóvá válhat.
+   > hello adat-előállító nevét hello regisztrálva előfordulhat, hogy legyen egy **DNS** hello jövőben nevet, és ezért a nyilvánosan láthatóvá válnak.
    >
    >
-4. Jelölje ki azt az **Azure-előfizetést**, ahol létre szeretné hozni a data factoryt.
-5. Jelöljön ki egy meglévő **erőforráscsoportot**, vagy hozzon létre egyet. Az oktatóanyag elvégzéséhez hozzon létre egy erőforráscsoportot a következő névvel: **ADFGetStartedRG**.
-6. Válassza ki a Data Factory **helyét**. A legördülő listában csak a Data Factory szolgáltatás által támogatott régiók jelennek meg.
-7. Válassza a **Rögzítés az irányítópulton** lehetőséget. 
-8. Kattintson a **Create** (Létrehozás) elemre a **New data factory** (Új data factory) panelen.
+4. Jelölje be hello **Azure-előfizetés** hello data factory toobe létrehozni kívánt.
+5. Jelöljön ki egy meglévő **erőforráscsoportot**, vagy hozzon létre egyet. Az oktatóanyagban hello nevű erőforráscsoport létrehozása: **ADFGetStartedRG**.
+6. Jelölje be hello **hely** hello adat-előállító esetében. Csak a Data Factory szolgáltatásnak hello által támogatott régiók hello legördülő listában jelennek meg.
+7. Válassza ki **PIN-kód toodashboard**. 
+8. Kattintson a **létrehozása** a hello **új adat-előállító** panelen.
 
    > [!IMPORTANT]
-   > Data Factory-példány létrehozásához a [Data Factory közreműködője](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) szerepkör tagjának kell lennie az előfizetés/erőforráscsoport szintjén.
+   > toocreate adat-előállító példányok hello tagjának kell lennie [Data Factory közreműködői](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) szerepkör hello előfizetés-erőforráscsoport szintjén.
    >
    >
-7. Az irányítópulton megjelenő csempén a következő állapotleírás látható: Data Factory üzembe helyezése.    
+7. Hello irányítópult állapotú csempe hello következő látja: telepítését adat-előállítóban.    
 
    ![A data factory létrehozásának állapota](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
-8. Gratulálunk! Sikeresen létrehozta első data factoryjét. A data factory sikeres létrehozása után megjelenik a data factory oldal, amely megjeleníti a data factory tartalmát.     
+8. Gratulálunk! Sikeresen létrehozta első data factoryjét. Miután hello adat-előállító létrehozása sikerült, oldal akkor jelenik meg hello adatok gyári, amely jelzi, hogy hello hello adat-előállító tartalmát.     
 
     ![A Data Factory panel](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
 
-A data factoryban a folyamat létrehozása előtt először létre kell hoznia néhány Data Factory-entitást. Először társított szolgáltatásokat kell létrehoznia, amelyek adattárakat/számítási szolgáltatásokat társítanak az adattárhoz, majd bemeneti és kimeneti adatkészleteket kell meghatároznia, amelyek a társított adattárakban lévő bemeneti/kimeneti adatokat képviselik, végül létrehozhatja a folyamatot egy olyan tevékenységgel, amely ezeket az adatkészleteket használja.
+Mielőtt létrehozna egy folyamat hello adat-előállítóban, kell toocreate néhány adat-előállító entitások először. Először létre kell hoznia összekapcsolt szolgáltatások toolink adatok tárolók/kiszámítja tooyour adatok tárolására, adja meg a bemeneti és kimeneti adatkészletek toorepresent bemeneti/kimeneti adatai csatolt adatok áruházakból és majd hozzon létre egy tevékenység által használt ezek az adatkészletek hello folyamat.
 
 ## <a name="create-linked-services"></a>Társított szolgáltatások létrehozása
-Ebben a lépésben az Azure Storage-fiókját és egy igény szerinti Azure HDInsight-fürtöt társít az adat-előállítóhoz. Ebben a példában az Azure Storage-fiók a bemeneti és a kimeneti adatokat tárolja a folyamathoz. A HDInsight társított szolgáltatás a mintában szereplő folyamat tevékenységében meghatározott Hive-szkriptet futtatja. Határozza meg, hogy mely [adattárat](data-factory-data-movement-activities.md)/[számítási szolgáltatásokat](data-factory-compute-linked-services.md) használja a forgatókönyvben, és társítsa ezeket a szolgáltatások a data factoryhoz társított szolgáltatások létrehozásával.  
+Ebben a lépésben csatolja a az Azure Storage-fiók és az igény szerinti Azure HDInsight fürt tooyour adat-előállítóban. hello tartás hello hello adatcsatorna Ez a példa a bemeneti és kimeneti adatok Azure Storage-fiók. HDInsight kapcsolódó szolgáltatás hello használt toorun hello folyamatának Ez a példa hello tevékenységben megadott Hive parancsfájl. Mi azonosítása [adattár](data-factory-data-movement-activities.md)/[szolgáltatások számítási](data-factory-compute-linked-services.md) a forgatókönyvben használt, és ezen szolgáltatások toohello adat-előállító hivatkozás összekapcsolt szolgáltatások létrehozásával.  
 
 ### <a name="create-azure-storage-linked-service"></a>Azure Storage társított szolgáltatás létrehozása
-Ebben a lépésben társítja az Azure Storage-fiókot a data factoryjához. A jelen oktatóanyag esetében ugyanazt az Azure Storage-fiókot fogja használni a bemeneti/kimeneti adatok és a HQL-parancsfájl tárolásához.
+Ebben a lépésben az Azure Storage-fiók tooyour adat-előállító hivatkozásra. Ebben az oktatóanyagban hello használata azonos Azure Storage-fiók toostore bemeneti/kimeneti adatok és hello HQL parancsfájlt.
 
-1. A **GetStartedDF** **DATA FACTORY** panelén kattintson az **Author and deploy** (Fejlesztés és üzembe helyezés) elemre. Ekkor meg kell jelennie a Data Factory Editornak.
+1. Kattintson a **Szerző és központi telepítése** a hello **adat-előállító** paneljén **GetStartedDF**. Hello Data Factory Editor kell megjelennie.
 
    ![Az Author and deploy (Fejlesztés és üzembe helyezés) csempe](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
 2. Kattintson a **New data store** (Új adattár) elemre, és válassza az **Azure Storage** elemet.
 
    ![Új adattár – Azure Storage – menü](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
-3. A szerkesztőben megjelenik az Azure Storage társított szolgáltatás létrehozására szolgáló JSON-parancsfájl.
+3. Megtekintheti az hello JSON-parancsfájl létrehozásához egy Azure Storage társított szolgáltatásnak hello-szerkesztőben.
 
    ![Azure Storage társított szolgáltatás](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
-4. Az **account name** kifejezést cserélje az Azure Storage-fiókja nevére, az **account key** kifejezést pedig az Azure Storage-fiók kulcsára. A tárelérési kulcs lekéréséről többet is megtudhat, ha elolvassa a tárelérési kulcsok megtekintésével, másolásával és újragenerálásával kapcsolatos információkat [A tárfiók kezelése](../storage/common/storage-create-storage-account.md#manage-your-storage-account) című részben.
-5. A társított szolgáltatás üzembe helyezéséhez kattintson a parancssáv **Deploy** (Üzembe helyezés) elemére.
+4. Cserélje le **fióknév** hello nevű Azure-tárfiókot és **fiókkulcs** kulcsával hello hozzáférés hello Azure storage-fiók. toolearn hogyan tooget tárhelyét a hozzáférési kulcs, hogyan tooview, másolása és újragenerálása tárolási hívóbetűk a hello adatainak megjelenítéséhez [a tárfiók kezelése](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+5. Kattintson a **telepítés** a hello parancssávon toodeploy kapcsolódó hello szolgáltatást.
 
     ![A Deploy (Üzembe helyezés) gomb](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
 
-   A társított szolgáltatás sikeres üzembe helyezését követően megjelenik a **Draft-1** (Vázlat-1) ablak, amelynek bal oldalán, fanézetben látható az **AzureStorageLinkedService** szolgáltatás.
+   Hello társított szolgáltatás telepítése után sikeresen hello **vázlat-1** ablak kell eltűnnek, és látni **AzureStorageLinkedService** a hello bal oldali fanézetben hello.
 
     ![Storage társított szolgáltatás a menüben](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)    
 
 ### <a name="create-azure-hdinsight-linked-service"></a>Azure HDInsight társított szolgáltatás létrehozása
-Ebben a lépésben egy igény szerinti HDInsight-fürtöt társít a data factoryhoz. A HDInsight-fürtöt a rendszer automatikusan létrehozza a futásidő során, majd törli a feldolgozás befejezését követően, miután egy adott ideig tétlen volt.
+Ebben a lépésben egy igény szerinti HDInsight fürt tooyour adat-előállító hivatkozásra. az automatikusan létrehozott futásidőben és törlése után feldolgozásra és üresjárati hello megadott időtartamig hello HDInsight-fürthöz.
 
-1. A **Data Factory Editorban** kattintson ide: **... More** (... További), kattintson a **New compute** (Új számítási példány) elemre, majd válassza az **On-demand HDInsight cluster** (Igény szerinti HDInsight-fürt) lehetőséget.
+1. A hello **Data Factory Editor**, kattintson a **... More** (... További), kattintson a **New compute** (Új számítási példány) elemre, majd válassza az **On-demand HDInsight cluster** (Igény szerinti HDInsight-fürt) lehetőséget.
 
     ![A New compute (Új számítás) elem](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
-2. Másolja és illessze be a következő kódrészletet a **Draft-1** (Vázlat-1) ablakba. A JSON-kódrészlet megadja az igény szerinti HDInsight-fürt létrehozásához használt tulajdonságokat.
+2. Másolja és illessze be a következő kódrészletet toohello hello **vázlat-1** ablak. hello JSON részlet használt toocreate hello HDInsight fürt igény hello tulajdonságokat ismerteti.
 
     ```JSON
     {
@@ -127,38 +127,38 @@ Ebben a lépésben egy igény szerinti HDInsight-fürtöt társít a data factor
     }
     ```
 
-    Az alábbi táblázat ismerteti a kódrészletben használt JSON-tulajdonságokat:
+    hello következő táblázat ismerteti hello részlet használt hello JSON-tulajdonságok:
 
    | Tulajdonság | Leírás |
    |:--- |:--- |
-   | ClusterSize |Megadja a HDInsight-fürt méretét. |
-   | TimeToLive | Megadja, hogy a HDInsight-fürt mennyi ideig lehet tétlen, mielőtt törölné a rendszer. |
-   | linkedServiceName | Ez megadja a HDInsight által előállított naplók tárolására szolgáló tárfiókot. |
+   | ClusterSize |HDInsight-fürt hello hello méretét adja meg. |
+   | TimeToLive | Adott hello hello HDInsight-fürtjéhez, üresjárati idejét határozza meg, törlés előtt. |
+   | linkedServiceName | Megadja a hello tárfiókja, amely a HDInsight által létrehozott használt toostore hello naplókat. |
 
-    Vegye figyelembe a következő szempontokat:
+    Vegye figyelembe a következő pontok hello:
 
-   * A Data Factory létrehoz egy **Linux-alapú** HDInsight-fürtöt a JSON-fájllal. További információkért lásd: [On-demand HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) (Igény szerinti HDInsight társított szolgáltatás).
+   * hello adat-előállító létrehoz egy **Linux-alapú** a hello JSON meg HDInsight-fürthöz. További információkért lásd: [On-demand HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) (Igény szerinti HDInsight társított szolgáltatás).
    * Igény szerinti HDInsight-fürt helyett **saját HDInsight-fürtöt** is használhat. További információ: [HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) (HDInsight társított szolgáltatás).
-   * A HDInsight-fürt létrehoz egy **alapértelmezett tárolót** a JSON-fájlban megadott blob-tárolóban (**linkedServiceName**). A fürt törlésekor a HDInsight nem törli ezt a tárolót. Ez a működésmód szándékos. Igény szerinti HDInsight társított szolgáltatás esetén a rendszer a szeletek feldolgozásakor mindig létrehoz egy HDInsight-fürtöt, kivéve, ha van meglévő élő fürt (**timeToLive**). A fürt automatikusan törlődik a feldolgozás megtörténtekor.
+   * hello HDInsight-fürtöt hoz létre egy **alapértelmezett tároló** az Ön által megadott hello JSON hello blob storage (**linkedServiceName**). HDInsight nem törli a tárolót hello fürt törlésekor. Ez a működésmód szándékos. Igény szerinti HDInsight társított szolgáltatás esetén a rendszer a szeletek feldolgozásakor mindig létrehoz egy HDInsight-fürtöt, kivéve, ha van meglévő élő fürt (**timeToLive**). hello feldolgozása hello fürt automatikusan törlődnek.
 
-       Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nincs szüksége rájuk a feladatokkal kapcsolatos hibaelhárításhoz, törölheti őket a tárolási költségek csökkentése érdekében. A tárolók neve a következő mintát követi: „adf**yourdatafactoryname**-**linkedservicename**-datetimestamp”. Az Azure Blob Storage-tárból olyan eszközökkel törölheti a tárolókat, mint például a [Microsoft Storage Explorer](http://storageexplorer.com/).
+       Ahogy egyre több szelet lesz feldolgozva, egyre több tároló jelenik meg az Azure Blob Storage-tárban. Ha nem kell őket hello feladatok hibaelhárítási, érdemes lehet a toodelete őket tooreduce hello tárolási költségeket. ezekhez a tárolókhoz hello nevei, hajtsa végre a minta: "adf**yourdatafactoryname**-**linkedservicename**- datetimestamp". Használjon például az eszközök [Microsoft Tártallózó](http://storageexplorer.com/) toodelete tárolókat az az Azure blob-tároló.
 
      További információkért lásd: [On-demand HDInsight Linked Service](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) (Igény szerinti HDInsight társított szolgáltatás).
-3. A társított szolgáltatás üzembe helyezéséhez kattintson a parancssáv **Deploy** (Üzembe helyezés) elemére.
+3. Kattintson a **telepítés** a hello parancssávon toodeploy kapcsolódó hello szolgáltatást.
 
     ![Igény szerinti HDInsight társított szolgáltatás üzembe helyezése](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
-4. Győződjön meg arról, hogy a bal oldali fanézetben megjelenik az **AzureStorageLinkedService** és a **HDInsightOnDemandLinkedService**.
+4. Ellenőrizze, hogy látható mindkét **AzureStorageLinkedService** és **HDInsightOnDemandLinkedService** a hello bal oldali fanézetben hello.
 
     ![Fanézet a társított szolgáltatásokkal](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
 
 ## <a name="create-datasets"></a>Adatkészletek létrehozása
-Ebben a lépésben adatkészleteket hoz létre, amelyek a Hive-feldolgozás bemeneti és kimeneti adatait képviselik. Ezek az adatkészletek az oktatóanyag során korábban létrehozott **AzureStorageLinkedService** szolgáltatásra hivatkoznak. A társított szolgáltatás egy Azure Storage-fiókra mutat, az adatkészletek pedig meghatározzák a bemeneti és kimeneti adatokat tartalmazó tárban lévő tárolót, mappát és fájlnevet.   
+Ebben a lépésben létrehozni adatkészletek toorepresent hello bemeneti és kimeneti adatai Hive feldolgozásra. Ezek az adatkészletek tekintse meg a toohello **AzureStorageLinkedService** Ez az oktatóanyag korábbi részében létrehozott. hello társított szolgáltatás pontok tooan Azure Storage-fiókot, és adja meg tároló, mappa, fájl neve adatkészletek hello tárolóban, amely tárolja a bemeneti és kimeneti adatokat.   
 
 ### <a name="create-input-dataset"></a>Bemeneti adatkészlet létrehozása
-1. A **Data Factory Editorban** kattintson ide: **... More** (... További) a parancssávon, kattintson a **New dataset** (Új adathalmaz) elemre, és válassza az **Azure Blob Storage** lehetőséget.
+1. A hello **Data Factory Editor**, kattintson a **... További** hello parancssávon kattintson **új adatkészlet**, és válassza ki **Azure Blob Storage tárolóban**.
 
     ![New dataset (Új adatkészlet)](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
-2. Másolja és illessze be a következő kódrészletet a Draft-1 (Vázlat-1) ablakba. A JSON-kódrészletben hozza létre az **AzureBlobInput** nevű adatkészletet, amely a folyamat egyik tevékenységének bemeneti adatait képviseli. Emellett határozza meg azt is, hogy a bemeneti adatok az **adfgetstarted** nevű blob-tárolóban és az **inputdata** nevű mappában találhatók.
+2. Másolja és illessze be a következő kódrészletet toohello vázlat-1 ablak hello. Hello JSON részlet, nevű adatkészlet létrehozásához **AzureBlobInput** hello feldolgozási soros tevékenység bemeneti adatokat képvisel, amelyek. Emellett megadhatja, hogy hello bemeneti adatok nevű hello blob tárolóban található **adfgetstarted** és nevű hello mappát **inputdata**.
 
     ```JSON
     {
@@ -183,27 +183,27 @@ Ebben a lépésben adatkészleteket hoz létre, amelyek a Hive-feldolgozás beme
         }
     }
     ```
-    Az alábbi táblázat ismerteti a kódrészletben használt JSON-tulajdonságokat:
+    hello következő táblázat ismerteti hello részlet használt hello JSON-tulajdonságok:
 
    | Tulajdonság | Leírás |
    |:--- |:--- |
-   | type |A tulajdonság beállításának értéke **AzureBlob**, mert az adatok egy Azure Blob Storage-tárban találhatók. |
-   | linkedServiceName |A korábban létrehozott **AzureStorageLinkedService** szolgáltatásra vonatkozik. |
-   | folderPath | A bemeneti blobokat tartalmazó **blobtárolót** és **mappát** adja meg. | 
-   | fileName |Ez a tulajdonság nem kötelező. Ha kihagyja, az összes fájl ki lesz választva a folderPath útvonalról. Ebben az oktatóanyagban csak az **input.log** feldolgozása történik meg. |
-   | type |Mivel a naplófájlok szövegformátumúak, a **TextFormat** típust kell beállítani. |
-   | columnDelimiter |A naplófájlokban lévő oszlopok **vesszővel (`,`)** vannak elválasztva. |
-   | frequency/interval |A frequency (gyakoriság) beállítás értéke **Month** (Hónap), az interval (időköz) beállítás értéke **1**, tehát a bemeneti szeletek havonta érhetők el. |
-   | external | Ez a tulajdonság a **true** (igaz) értékre van állítva, ha a bemeneti adatokat nem ez a folyamat hozta létre. Mivel ebben az oktatóanyagban a bemeneti naplófájlt nem ez a folyamat hozta létre, a tulajdonság értéke „igaz”. |
+   | type |hello type tulajdonság beállítása túl**AzureBlob** , mert az adatok találhatók az Azure blob Storage tárolóban. |
+   | linkedServiceName |Toohello hivatkozik **AzureStorageLinkedService** korábban létrehozott. |
+   | folderPath | Adja meg a hello blob **tároló** és hello **mappa** , amely tartalmazza a bemeneti BLOB. | 
+   | fileName |Ez a tulajdonság nem kötelező. Ha ez a tulajdonság nincs megadva, az összes hello fájlok hello folderPath leltárhoz. Ebben az oktatóanyagban csak hello **input.log** dolgoz fel. |
+   | type |hello naplófájlok szöveges formátumú, így használjuk **szöveges**. |
+   | columnDelimiter |oszlopok hello naplófájlokban határolja **vesszővel karakter (`,`)** |
+   | frequency/interval |gyakoriságának beállítása túl**hónap** és időköz **1**, ami azt jelenti, hogy hello bemeneti szeletek havi érhetők el. |
+   | external | Ez a tulajdonság értéke túl**igaz** hello bemeneti adatok nem jön létre, ez az adatcsatorna. Ebben az oktatóanyagban hello input.log fájl nem jön létre ez az adatcsatorna, így hello tulajdonság tootrue hivatott. |
 
     Ezekről a JSON-tulajdonságokról további tudnivalók az [Azure Blob-összekötőről](data-factory-azure-blob-connector.md#dataset-properties) szóló cikkben olvashatók.
-3. Az újonnan létrehozott adatkészlet üzembe helyezéséhez kattintson a parancssáv **Deploy** (Üzembe helyezés) elemére. Az adatkészletnek meg kell jelennie a bal oldali fanézetben.
+3. Kattintson a **telepítés** a toodeploy hello az újonnan létrehozott adatkészlet hello parancssávon. Meg kell jelennie a hello bal oldali fanézetben hello hello adatkészlet.
 
 ### <a name="create-output-dataset"></a>Kimeneti adatkészlet létrehozása
-Most a kimeneti adatkészletet hozza létre, amely az Azure Blob Storage-tárban tárolt kimeneti adatokat jelöli.
+Hello kimeneti adatkészlet toorepresent hello kimeneti tárolt adatok hello Azure Blob-tároló létrehozása
 
-1. A **Data Factory Editorban** kattintson ide: **... More** (... További) a parancssávon, kattintson a **New dataset** (Új adathalmaz) elemre, és válassza az **Azure Blob Storage** lehetőséget.  
-2. Másolja és illessze be a következő kódrészletet a Draft-1 (Vázlat-1) ablakba. A JSON-kódrészletben hozza létre az **AzureBlobOutput** nevű adatkészletet, és határozza meg a Hive-parancsfájl által előállított adatok szerkezetét. Emellett határozza meg azt is, hogy az eredmények tárolása az **adfgetstarted** nevű blob-tárolóban és a **partitioneddata** nevű mappában történjen. Az **availability** (rendelkezésre állás) szakasz meghatározza, hogy a kimeneti adatkészlet előállítása havonta történik.
+1. A hello **Data Factory Editor**, kattintson a **... További** hello parancssávon kattintson **új adatkészlet**, és válassza ki **Azure Blob Storage tárolóban**.  
+2. Másolja és illessze be a következő kódrészletet toohello vázlat-1 ablak hello. Hello JSON részlet, nevű adatkészlet létrehozásához **AzureBlobOutput**, és hello struktúra hello Hive parancsfájl által létrehozott hello adatok megadásával. Emellett megadhatja, hogy hello eredmények nevű hello blob tárolóban kell tárolni **adfgetstarted** és nevű hello mappát **partitioneddata**. Hello **rendelkezésre állási** szakaszban határozza meg, hogy hello kimeneti adatkészlet havonta jön létre.
 
     ```JSON
     {
@@ -225,22 +225,22 @@ Most a kimeneti adatkészletet hozza létre, amely az Azure Blob Storage-tárban
       }
     }
     ```
-    A tulajdonságok leírását a **Bemeneti adatkészlet létrehozása** című szakaszban tekintheti meg. Külső adatkészlet esetén nem kell beállítani az external (külső) tulajdonságot, mert az adatkészletet a Data Factory szolgáltatás állítja elő.
-3. Az újonnan létrehozott adatkészlet üzembe helyezéséhez kattintson a parancssáv **Deploy** (Üzembe helyezés) elemére.
-4. Ellenőrizze az adatkészlet létrehozása sikeres volt-e.
+    Lásd: **létrehozni hello bemeneti adatkészletet** szakasz ezeket a tulajdonságokat leírását. Be kell állítani nem hello külső tulajdonság egy kimeneti adatkészletet, hello dataset hozzák hello Data Factory szolgáltatásnak.
+3. Kattintson a **telepítés** a toodeploy hello az újonnan létrehozott adatkészlet hello parancssávon.
+4. Győződjön meg arról, hogy hello adatkészlet sikeresen létrejött-e.
 
     ![Fanézet a társított szolgáltatásokkal](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
 
 ## <a name="create-pipeline"></a>Folyamat létrehozása
-Ebben a lépésben létrehozza a **HDInsightHive** tevékenységgel rendelkező első adatcsatornát. A bemeneti szelet havonta érhető el (frequency: Month, interval: 1), a kimeneti szelet előállítása havonta történik, és a tevékenység scheduler (ütemező) tulajdonsága szintén a hónap értékre van állítva. A kimeneti adatkészlet és a tevékenységütemező beállításainak egyezniük kell. Jelenleg a kimeneti adatkészlet vezérli az ütemezést, ezért kimeneti adatkészletet akkor is létre kell hoznia, ha a tevékenység nem állít elő semmilyen kimenetet. Ha a tevékenység nem fogad semmilyen bemenetet, kihagyhatja a bemeneti adatkészlet létrehozását. Az alábbi JSON-fájlban használt tulajdonságok magyarázata a szakasz végén található.
+Ebben a lépésben létrehozza a **HDInsightHive** tevékenységgel rendelkező első adatcsatornát. Bemeneti szelet érhető havonta (gyakoriság: hónap, időköz: 1), a kimeneti szelet havonta jön létre, és hello Feladatütemező hello tevékenység is tulajdonsága toomonthly. hello kimeneti adatkészlet és hello tevékenység Feladatütemező hello beállításait meg kell egyeznie. Kimeneti adatkészlet jelenleg milyen meghajtók hello ütemezését, így még akkor is, ha hello tevékenység nem ad kimenetet kell létrehoznia egy kimeneti adatkészletet. Ha hello tevékenység egyetlen bemeneti nem veszi, kihagyhatja létrehozása hello bemeneti adatkészletet. a következő JSON hello használt hello tulajdonságok hello végén ebben a szakaszban lévő magyarázatát olvashatja.
 
-1. A **Data Factory Editorban** kattintson a **további parancsokat jelölő három pontra (...)**, majd kattintson a **New pipeline** (Új folyamat) elemre.
+1. A hello **Data Factory Editor**, kattintson a **három ponttal (…) További parancsok** majd **új adatcsatorna**.
 
     ![A New pipeline (Új folyamat) gomb](./media/data-factory-build-your-first-pipeline-using-editor/new-pipeline-button.png)
-2. Másolja és illessze be a következő kódrészletet a Draft-1 (Vázlat-1) ablakba.
+2. Másolja és illessze be a következő kódrészletet toohello vázlat-1 ablak hello.
 
    > [!IMPORTANT]
-   > A JSON-fájlban cserélje a **storageaccountname** kifejezést a tárfiókja nevére.
+   > Cserélje le **storageaccountname** hello nevű hello JSON a storage-fiókot.
    >
    >
 
@@ -289,111 +289,111 @@ Ebben a lépésben létrehozza a **HDInsightHive** tevékenységgel rendelkező 
     }
     ```
 
-    A JSON-kódrészletben létrehoz egy folyamatot, amely egyetlen tevékenységből áll, és a tevékenység a Hive használatával dolgozza fel az adatokat egy HDInsight-fürtön.
+    Hello JSON részlet egy folyamatot, amely tartalmaz egy adott tevékenység által használt Hive tooprocess adatokat a HDInsight-fürtök létrehozásához.
 
-    A **partitionweblogs.hql** Hive-parancsfájl tárolása az Azure Storage-fiókban (az **AzureStorageLinkedService** nevű scriptLinkedService szolgáltatás által megadva), és az **adfgetstarted** tároló **script** mappájában történik.
+    hello Hive parancsfájl, **partitionweblogs.hql**, hello Azure storage-fiók tárolva van (hello scriptLinkedService nevű által megadott **AzureStorageLinkedService**), majd a  **parancsfájl** hello tároló mappa **adfgetstarted**.
 
-    A **defines** (meghatározza) szakasz meghatározza a futásidő beállításait, amelyek Hive konfigurációs értékekként (például ${hiveconf:inputtable}, ${hiveconf:partitionedtable}) lesznek átadva a Hive-parancsfájlnak.
+    Hello **meghatározása** szakaszban használt toospecify hello futtatási beállítások Hive értékként toohello hive parancsfájl átadott (például ${hiveconf: inputtable}, {hiveconf:partitionedtable} $).
 
-    A folyamat **start** (kezdés) és **end** (befejezés) tulajdonságai a folyamat aktív időszakát határozzák meg.
+    Hello **start** és **end** hello folyamatának tulajdonságok hello hello adatcsatorna aktív időszakát határozza meg.
 
-    A tevékenység JSON-fájljában meg van határozva, hogy a Hive-parancsfájl a **linkedServiceName** – **HDInsightOnDemandLinkedService** által meghatározott számítási szolgáltatáson fut.
+    Hello tevékenység JSON-NÁ, meghatározza, hogy hello Hive parancsfájl futó hello által megadott hello számítási **linkedServiceName** – **HDInsightOnDemandLinkedService**.
 
    > [!NOTE]
-   > A példában használt JSON-tulajdonságokkal kapcsolatos részletekért lásd „A folyamat JSON-fájlja” szakaszt a [Folyamatok és tevékenységek az Azure Data Factoryban](data-factory-create-pipelines.md) című témakörben.
+   > "Adatcsatorna JSON" című [folyamatok és az Azure Data Factory tevékenységek](data-factory-create-pipelines.md) hello példában használt JSON-tulajdonságok vonatkozó további információért.
    >
    >
-3. Ellenőrizze az alábbiakat:
+3. Erősítse meg a következő hello:
 
-   1. Az **input.log** fájl létezik az Azure blob-tároló **adfgetstarted** tárolójának **inputdata** mappájában.
-   2. A **partitionweblogs.hql** fájl létezik az Azure blob-tároló **adfgetstarted** tárolójának **script** mappájában. Ha nem látja ezeket a fájlokat, hajtsa végre [Az oktatóanyag áttekintése](data-factory-build-your-first-pipeline.md) című cikkben előfeltételként felsorolt lépéseket.
-   3. Ellenőrizze, hogy a folyamat JSON-fájljában lecserélte-e a **storageaccountname** kifejezést a tárfiókja nevére.
-4. A folyamat üzembe helyezéséhez kattintson a parancssáv **Deploy** (Üzembe helyezés) elemére. Mivel a **start** (kezdés) és az **end** (befejezés) időpontok múltbeli értékekre vannak beállítva, és az **isPaused** tulajdonság értéke false (hamis), a folyamat (a folyamatban foglalt tevékenység) az üzembe helyezés után azonnal fut.
-5. Győződjön meg arról, hogy a folyamat megjelenik a fanézetben.
+   1. **input.log** fájl megtalálható-e hello **inputdata** mappában található hello **adfgetstarted** hello Azure blob storage tárolója
+   2. **partitionweblogs.hql** fájl megtalálható-e hello **parancsfájl** mappában található hello **adfgetstarted** hello Azure blob storage tárolója. Teljes hello előfeltételként szükséges lépések hello [oktatóanyag – áttekintés](data-factory-build-your-first-pipeline.md) Ha nem látja ezeket a fájlokat.
+   3. Győződjön meg arról, hogy lecseréli **storageaccountname** hello nevet, a tárfiók hello a csővezeték-JSON.
+4. Kattintson a **telepítés** a toodeploy hello csővezeték hello parancssávon. Hello óta **start** és **end** az elmúlt hello beállítása és **isPaused** van a (hello feldolgozási soros tevékenységek) set toofalse, hello csővezeték azonnal telepítése után.
+5. Ellenőrizze, hogy látható-e hello fanézetben hello csővezeték-e.
 
     ![A fanézet a folyamattal](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
 6. Gratulálunk, sikeresen létrehozta első folyamatát!
 
 ## <a name="monitor-pipeline"></a>Folyamat figyelése
 ### <a name="monitor-pipeline-using-diagram-view"></a>Folyamat figyelése diagramnézetben
-1. A Data Factory Editor paneljeinek a bezárásához és a Data Factory panelre való visszatéréshez kattintson az **X**, majd a **Diagram** elemre.
+1. Kattintson a **X** tooclose Data Factory Editor paneleken toonavigate biztonsági toohello adat-előállító panelt, és kattintson **Diagram**.
 
     ![Diagram csempe](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
-2. A diagramnézet áttekintést nyújt az oktatóanyagban használt folyamatokról és adatkészletekről.
+2. Hello Diagram nézet hello folyamatok, és ebben az oktatóanyagban használt adatkészletek áttekintése látható.
 
     ![Diagramnézet](./media/data-factory-build-your-first-pipeline-using-editor/diagram-view-2.png)
-3. A folyamat összes tevékenységének megtekintéséhez kattintson a jobb gombbal a folyamatra a diagramban, majd kattintson a Feldolgozási sor megnyitása elemre.
+3. az összes tevékenység hello sorban, kattintson a jobb gombbal kimenetátirányítási mechanizmusával hello ábra, majd kattintson a nyitott folyamat tooview.
 
     ![Folyamat megnyitása menü](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-menu.png)
-4. Győződjön meg arról, hogy a HDInsightHive tevékenység megjelenik a folyamatban.
+4. Győződjön meg arról, hogy megjelenik-e hello adatcsatorna hello HDInsightHive tevékenysége.
 
     ![Folyamat megnyitása nézet](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-view.png)
 
-    Az előző nézethez való visszatéréshez az oldal tetején lévő navigációs menüben kattintson a **Data factory** elemre.
-5. A **diagramnézetben** kattintson duplán az **AzureBlobInput** adatkészletre. Győződjön meg arról, hogy a szelet **Ready** (Kész) állapotú. Eltarthat néhány percig, amíg a szelet Ready (Kész) állapotúként jelenik meg. Ha ez azután sem történik meg, hogy vár néhány percet, ellenőrizze, hogy a megfelelő tárolóba (adfgetstarted) és mappába (inputdata) helyezte-e a bemeneti fájlt (input.log).
+    toonavigate biztonsági toohello előző nézetével, kattintson a **adat-előállító** hello navigációs menüjében hello tetején.
+5. A hello **diagramnézet**, kattintson duplán a hello dataset **AzureBlobInput**. Győződjön meg arról, hogy hello szelet a **készen** állapotát. Azt is tarthat néhány percet a hello szelet tooshow üzemkész állapotban. Várja meg a némi várakozás után történik, ha megjelenítéséhez hello bemeneti fájl (input.log) hello jobb tároló (adfgetstarted) és a mappa (inputdata).
 
    ![Kész állapotú bemeneti szelet](./media/data-factory-build-your-first-pipeline-using-editor/input-slice-ready.png)
-6. Kattintson az **X** elemre az **AzureBlobInput** panel bezárásához.
-7. A **diagramnézetben** kattintson duplán az **AzureBlobOutput** adatkészletre. Látni fogja, hogy a szelet feldolgozás alatt áll.
+6. Kattintson a **X** tooclose **AzureBlobInput** panelen.
+7. A hello **diagramnézet**, kattintson duplán a hello dataset **AzureBlobOutput**. Láthatja, hogy hello szelet, amely folyamatban van.
 
    ![Adatkészlet](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
-8. A feldolgozás befejeztével a szelet **Ready** (Kész) állapotúra vált.
+8. Ha nem hajtja végre, megjelenik az hello szeletre **készen** állapotát.
 
    ![Adatkészlet](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png)  
 
    > [!IMPORTANT]
-   > Az igény szerinti HDInsight-fürt létrehozása általában eltart egy ideig (körülbelül 20 percig). Ezért a folyamat várhatóan       **körülbelül 30 perc** alatt dolgozza fel a szeletet.
+   > Az igény szerinti HDInsight-fürt létrehozása általában eltart egy ideig (körülbelül 20 percig). Ezért várt hello folyamat túl érvénybe **körülbelül 30 percet** tooprocess hello szelet.
    >
    >
 
-9. Ha a szelet **Ready** (Kész) állapotú, a kimeneti adatok **adfgetstarted** Blob Storage-tárolójában ellenőrizze a **partitioneddata** mappát.  
+9. Ha hello szelet belül van **készen áll a** állapot, ellenőrizze a hello **partitioneddata** hello mappájában **adfgetstarted** a blob-tároló hello tárolóhoz kimeneti adatokat.  
 
    ![kimeneti adatok](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
-10. A szelet részleteinek az **Adatszelet** panelen való megtekintéséhez kattintson a szeletre.
+10. Hello szelet toosee részleteit a kattintson egy **adatszelet** panelen.
 
    ![Adatszelet részletei](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)  
-11. Kattintson egy tevékenységfuttatásra az **Activity runs list** (Tevékenységfuttatások listája) területen a tevékenységfuttatás (ebben az esetben Hive-tevékenység) részleteinek az **Activity run details** (Tevékenységfuttatás részletei) ablakban való megjelenítéséhez.   
+11. Hello futtatása tevékenység kattintson **tevékenység fut lista** toosee adatait egy tevékenység futtatását (esetünkben Hive tevékenység) egy **tevékenység fut részletek** ablak.   
 
    ![Tevékenységfuttatás részletei](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)    
 
-   A naplófájlokban láthatja a végrehajtott Hive-lekérdezést és az állapotadatokat. A naplók hasznosak bármilyen hiba esetén a hibaelhárításban.
+   Hello naplófájlokból láthatja, hogy végre lett hajtva hello Hive-lekérdezések és állapotára vonatkozó információkat. A naplók hasznosak bármilyen hiba esetén a hibaelhárításban.
    További részletekért tekintse meg a [Monitor and manage pipelines using Azure portal blades](data-factory-monitor-manage-pipelines.md) (Folyamatok figyelése és felügyelete az Azure Portal paneleinek használatával) című cikket.
 
 > [!IMPORTANT]
-> A szelet sikeres feldolgozásakor a rendszer törli a bemeneti fájlt. Ezért ha újra le szeretné futtatni a szeletet, vagy újra el szeretné végezni az oktatóanyagban foglaltakat, töltse fel a bemeneti fájlt (input.log) az adfgetstarted tároló inputdata mappájába.
+> hello bemeneti fájl törlése hello szelet feldolgozása sikeresen megtörtént. Ezért ha szeretné, hogy toorerun hello szelet, vagy újra hello oktatóanyag, feltöltési hello bemeneti fájl (input.log) toohello inputdata mappa hello adfgetstarted tároló.
 >
 >
 
 ### <a name="monitor-pipeline-using-monitor--manage-app"></a>Folyamat figyelése a Monitor & Manage alkalmazással
-A folyamatok figyeléséhez a Monitor & Manage alkalmazást is használhatja. Az alkalmazás használatával kapcsolatos részletes információkért tekintse meg a [Monitor and manage Azure Data Factory pipelines using Monitoring and Management App](data-factory-monitor-manage-app.md) (Azure Data Factory-folyamatok figyelése és felügyelete a Monitoring and Management használatával) című cikket.
+Is figyelheti, & alkalmazás toomonitor kezelése a folyamatok. Az alkalmazás használatával kapcsolatos részletes információkért olvassa el a [Monitor and manage Azure Data Factory pipelines using Monitoring and Management App](data-factory-monitor-manage-app.md) (Azure Data Factory-folyamatok figyelése és felügyelete a Monitoring and Management használatával) című cikket.
 
-1. Kattintson a **Monitor & Manage** csempére a Data Factory kezdőlapján.
+1. Kattintson a **figyelő & kezelése** hello kezdőlap a data factory csempére.
 
     ![Monitor & Manage csempe](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png)
-2. Meg kell jelennie a **Monitor & Manage alkalmazásnak**. Módosítsa a **kezdési idő** és a **befejezési idő** értékét, hogy megfeleljen a folyamat kezdési és befejezési idejének, és kattintson az **Apply** (Alkalmaz) elemre.
+2. Meg kell jelennie a **Monitor & Manage alkalmazásnak**. Változás hello **kezdési időpont** és **befejező időpontja** toomatch indítsa el és befejezési időpontja, a folyamat, és kattintson a **alkalmaz**.
 
     ![Monitor & Manage alkalmazás](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png)
-3. Válasszon egy tevékenységablakot az **Activity Windows** (Tevékenységablakok) listában a részleteinek a megtekintéséhez.
+3. Egy tevékenység ablakban válassza a hello **tevékenység Windows** listában toosee részleteit.
 
     ![Tevékenységablakok részletei](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
 
 ## <a name="summary"></a>Összefoglalás
-Az oktatóanyag során létrehozott egy Azure data factoryt, amely egy HDInsight Hadoop-fürtön futtatott Hive-parancsfájllal dolgozza fel az adatokat. Az Azure Portal Data Factory Editor eszközét használta a következő lépések végrehajtásához:  
+Ebben az oktatóanyagban az Azure data factory tooprocess adatok Hive parancsfájl futtatásával a HDInsight hadoop-fürthöz létrehozott. A lépéseket követve hello Azure portál toodo hello a Data Factory Editor hello használt:  
 
 1. Létrehozott egy Azure **data factoryt**.
 2. Létrehozott két **társított szolgáltatást**:
-   1. Az **Azure Storage** társított szolgáltatást, amely a bemeneti és kimeneti adatokat tároló Azure blob-tárolót társítja a data factoryval.
-   2. Az **Azure HDInsight** igény szerinti társított szolgáltatást, amely egy igény szerinti HDInsight Hadoop-fürtöt társít a data factoryval. Az Azure Data Factory létrehoz egy HDInsight Hadoop-fürtöt, amely igény szerint dolgozza fel a bemeneti adatokat és állítja elő a kimeneti adatokat.
-3. Létrehozott két **adatkészletet**, amelyek leírják a bemeneti és kimeneti adatokat az adatcsatorna HDInsight Hive-tevékenysége számára.
+   1. **Az Azure Storage** kapcsolódó szolgáltatás toolink az Azure blob storage, amely a bemeneti/kimeneti fájlok toohello adat-előállító tárolja.
+   2. **Az Azure HDInsight** igény kapcsolódó szolgáltatás toolink egy igény szerinti HDInsight Hadoop fürthöz toohello adat-előállítóban. Az Azure Data Factory egy HDInsight Hadoop fürthöz just-in-time tooprocess bemeneti adatok és a által előállított kimeneti adatokat hoz létre.
+3. Két létrehozott **adatkészletek**, leírják hello folyamat HDInsight Hive tevékenység bemeneti és kimeneti adatokat.
 4. Létrehozott egy **folyamatot** egy **HDInsight Hive**-tevékenységgel.
 
 ## <a name="next-steps"></a>Következő lépések
-Az oktatóanyag során létrehozott egy folyamatot egy adatátalakítási tevékenységgel (HDInsight-tevékenység), amely Hive-parancsfájlt futtat egy igény szerinti HDInsight-fürtön. Ha tudni szeretné, hogyan használhatja a Másolás tevékenységet az adatok Azure-blobból Azure SQL Database adatbázisba történő másolásához, tekintse meg a következő cikket: [Tutorial: Copy data from an Azure blob to Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) (Oktatóanyag: adatok másolása Azure-blobból Azure SQL Database adatbázisba).
+Az oktatóanyag során létrehozott egy folyamatot egy adatátalakítási tevékenységgel (HDInsight-tevékenység), amely Hive-parancsfájlt futtat egy igény szerinti HDInsight-fürtön. Hogyan toouse egy Azure Blob tooAzure SQL, a másolási tevékenység toocopy adatait: toosee [oktatóanyag: adatok másolása az Azure blob tooAzure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
 ## <a name="see-also"></a>Lásd még:
 | Témakör | Leírás |
 |:--- |:--- |
-| [Folyamatok](data-factory-create-pipelines.md) |Ennek a cikknek a segítségével megismerheti a Azure Data Factory folyamatait és tevékenységeit, és megtudhatja, hogyan hozhat létre velük teljes körű, adatvezérelt munkafolyamatokat saját forgatókönyvéhez vagy vállalkozásához. |
+| [Folyamatok](data-factory-create-pipelines.md) |Ez a cikk segít megérteni a folyamatok és az Azure Data Factory tevékenységeket, és hogyan toouse tooconstruct végpont adatvezérelt munkafolyamatok a forgatókönyv vagy üzleti őket. |
 | [Adatkészletek](data-factory-create-datasets.md) |Ennek a cikknek a segítségével megismerheti az adatkészleteket az Azure Data Factoryban. |
-| [Ütemezés és végrehajtás](data-factory-scheduling-and-execution.md) |Ez a cikk ismerteti az Azure Data Factory-alkalmazásmodell ütemezési és végrehajtási aspektusait. |
-| [Folyamatok figyelése és felügyelete a Monitoring App használatával](data-factory-monitor-manage-app.md) |Ez a cikk ismerteti, hogyan figyelheti és felügyelheti a folyamatokat, illetve hogyan kereshet bennük hibákat a Monitoring & Management App használatával. |
+| [Ütemezés és végrehajtás](data-factory-scheduling-and-execution.md) |Ez a cikk ismerteti az Azure Data Factory alkalmazásmodell hello ütemezés és a végrehajtási szempontjait. |
+| [Folyamatok figyelése és felügyelete a Monitoring App használatával](data-factory-monitor-manage-app.md) |Ez a cikk ismerteti, hogyan toomonitor, kezelése és hibakeresése folyamatok használatával hello figyelés & a felügyeleti alkalmazás. |

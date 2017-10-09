@@ -1,6 +1,6 @@
 ---
-title: "Windows-alkalmazások futtatása bármely Azure RemoteAppet használó eszközön | Microsoft Docs"
-description: "Ismerje meg, hogyan oszthatja meg bármelyik Windows-alkalmazást a felhasználóival az Azure RemoteApp segítségével."
+title: "aaaRun bármely Windows-alkalmazások bármely eszközön és az Azure RemoteApp |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooshare bármelyik Windows-alkalmazást a felhasználóival az Azure RemoteApp segítségével."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -14,109 +14,109 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 348e154f8398b5e60ad5a698cd319fa381de2fa5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 750f3b881e0cb671ff6e8f3e851bccdf2262d156
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-any-windows-app-on-any-device-with-azure-remoteapp"></a>Windows-alkalmazások futtatása bármely Azure RemoteAppet használó eszközön
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Bárhol, bármilyen eszközön, akár azonnal futtathat Windows-alkalmazásokat – egyszerűen az Azure RemoteApp használatával. Legyen szó akár egy 10 éve írt egyéni alkalmazásról, akár egy Office-alkalmazásról, felhasználói nincsenek többé egy adott operációs rendszerhez (például a Windows XP-hez) kötve néhány alkalmazás miatt.
+Bárhol, bármilyen eszközön, akár azonnal futtathat Windows-alkalmazásokat – egyszerűen az Azure RemoteApp használatával. Egy 10 éve írt egyéni alkalmazásról, vagy akár egy Office-alkalmazást, a felhasználók többé nem kell kötött toobe tooa adott operációs rendszerrel (például Windows XP) néhány alkalmazás.
 
-Az Azure RemoteApp segítségével a felhasználók a saját Android- vagy Apple-készülékeiken is ugyanazt a felhasználói élményt élvezhetik, mint Windows rendszeren (vagy Windows Phone-telefonokon). Ehhez a Windows-alkalmazását Windows rendszerű virtuális gépeken tároljuk az Azure-ban, így a felhasználók bárhonnan elérhetik ezeket, ha rendelkeznek internetkapcsolattal. 
+Az Azure RemoteApp segítségével a felhasználók a saját Android vagy is és az Apple-eszközök hello ugyanazt a felhasználói élményt élvezhetik, mint Windows rendszeren (vagy Windows Phone-telefonokon). Ehhez a Windows-alkalmazását Windows rendszerű virtuális gépeken tároljuk az Azure-ban, így a felhasználók bárhonnan elérhetik ezeket, ha rendelkeznek internetkapcsolattal. 
 
-A továbbiakban egy példát mutatunk be arra, hogy ezt pontosan hogyan teheti meg.
+Olvassa el a példa pontosan hogyan toodo ez.
 
-Ebben a cikkben az Access programot fogjuk megosztani az összes felhasználónkkal. Azonban ehelyett BÁRMELYIK alkalmazás használható. Ha alkalmazását Windows Server 2012 R2 rendszerű számítógépre telepíti, az alábbi lépésekkel mindig megoszthatja azt. Tekintse át az [alkalmazás követelményeit](remoteapp-appreqs.md), és ellenőrizze, hogy működni fog-e.
+Ebben a cikkben tooshare Access programot fogjuk az összes felhasználónkkal. Azonban ehelyett BÁRMELYIK alkalmazás használható. Mindaddig, amíg az alkalmazás a Windows Server 2012 R2 számítógépen is telepíthető, megoszthatja azt az alábbi hello lépéseket használhatja. Tekintse át hello [alkalmazáskövetelmények](remoteapp-appreqs.md) toomake meg arról, hogy működni fog.
 
-Fontos megjegyezni, hogy mivel az Access egy adatbázis, és szeretnénk, hogy az adatbázis használható legyen, néhány további lépést is elvégzünk, hogy a felhasználók hozzáférhessenek az Access adatmegosztásához. Ha az Ön alkalmazása nem adatbázis, vagy nincs szükség arra, hogy a felhasználók hozzáférhessenek egy adatmegosztáshoz, akkor az oktatóanyag erre vonatkozó lépéseit kihagyhatja.
+Vegye figyelembe, hogy hozzáférést egy adatbázist, és szeretnénk, hogy adatbázis toobe hasznos, mert mindaddig kell végre néhány további lépés toolet felhasználók adjon hello Access adatmegosztásához eléréséhez. Ha az alkalmazása nem adatbázis, vagy nincs szükség a felhasználók toobe képes tooaccess egy fájlmegosztást, ezeket a lépéseket kihagyhatja az oktatóanyag
 
 > [!NOTE]
-> <a name="note"></a>A jelen oktatóprogram elvégzéséhez Azure-fiókra van szükség:
+> <a name="note"></a>Ez az oktatóanyag kell egy Azure-fiók toocomplete:
 > 
-> * [Ingyenesen is létrehozhat egy Azure-fiókot](https://azure.microsoft.com/free/?WT.mc_id=A261C142F): A kapott kreditek használatával kipróbálhatja a fizetős Azure-szolgáltatásokat, sőt, azok lejárta után is megtarthatja a fiókot, és továbbra is használhatja az ingyenes Azure-szolgáltatásokat (amilyen például a Websites). A bankkártyáját semmilyen költség nem terheli, hacsak Ön kifejezetten nem módosítja beállításait ennek engedélyezéséhez.
+> * Is [nyissa meg az Azure-fiók szabad](https://azure.microsoft.com/free/?WT.mc_id=A261C142F): jóváírásokat kap használhatja ki tootry fizetős Azure-szolgáltatásokat, és még azok lejárta után is megtarthatja hello fiókot és használhatja az ingyenes Azure-szolgáltatások, például webhelyekhez. A hitelkártya soha nem lesz felszámítva, kivéve, ha explicit módon a beállítások módosításához és kérje meg a toobe számítjuk fel.
 > * [Aktiválhatja MSDN-előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F): Az MSDN-előfizetés minden hónapban biztosít Önnek krediteket, amelyekkel fizetős Azure-szolgáltatásokat használhat.
 > 
 > 
 
 ## <a name="create-a-collection-in-remoteapp"></a>Katalógus létrehozása a RemoteAppben
-Első lépésként hozzon létre egy gyűjteményt. Ez a gyűjtemény lesz az alkalmazásai és a felhasználói tárolója. Minden gyűjtemény egy rendszerképen alapul – létrehozhatja a saját rendszerképét, vagy használhatja azt, amelyet az előfizetéséhez kapott. Ebben az oktatóanyagban az Office 2013 próbaverziójának rendszerképét használjuk – ebben található az alkalmazás, amelyet meg szeretnénk osztani.
+Első lépésként hozzon létre egy gyűjteményt. az alkalmazások és felhasználók tárolója hello gyűjtemény lesz. Minden gyűjtemény egy rendszerképen alapul – létrehozhatja a saját rendszerképét, vagy használhatja azt, amelyet az előfizetéséhez kapott. Ebben az oktatóanyagban használjuk-próba kép hello Office 2013 – hello alkalmazást, hogy szeretnénk tooshare tartalmaz.
 
-1. Az Azure portálon görgessen le a bal oldali navigációs fában, amíg meg nem jelenik a RemoteApp. Nyissa meg azt az oldalt.
+1. Az Azure-portálon hello görgessen le a hello bal oldali navigációs fában amíg megjelenik a RemoteApp. Nyissa meg azt az oldalt.
 2. Kattintson a **RemoteApp-gyűjtemény létrehozása** lehetőségre.
 3. Kattintson a **Gyors létrehozás** gombra, és adjon meg egy nevet a gyűjtemény számára.
-4. Válassza ki a gyűjtemény létrehozásához használni kívánt régiót. A lehető legjobb élmény érdekében azt a régiót válassza, amely földrajzilag a legközelebb esik ahhoz a helyhez, ahonnan a felhasználói elérik majd az alkalmazást. Például ebben az oktatóanyagban a felhasználók Redmondban, Washington államban találhatóak. Az ehhez legközelebbi Azure-régió az **USA nyugati régiója**.
-5. Válassza ki a használni kívánt számlázási csomagot. Az alapszintű számlázási csomag 16 felhasználót helyez egy nagyméretű Azure virtuális gépre, míg a standard számlázási csomag esetében 10 felhasználó található egy nagyméretű Azure virtuális gépen. Általában az alapszintű csomag adatbevitel típusú munkafolyamatok esetében működik jól. Egy termelékenységi alkalmazás, például az Office mellé a standard tervet érdemes választani.
-6. Végül válassza ki az Office 2013 Professional rendszerképet. Ez a rendszerkép tartalmazza Office 2013-alkalmazásokat. Emlékeztető: ez a rendszerkép csak próbaverziójú gyűjteményekhez és POC-khez használható, éles gyűjteményekben nem.
+4. Válassza ki a gyűjtemény toouse toocreate kívánt hello régiót. Hello legjobb élmény érdekében régiót hello földrajzilag legközelebb van a felhasználói hozzáférésének helyétől hello app toohello helyét. Például ebben az oktatóanyagban hello felhasználók találhatók Redmond, Washington. hello legközelebbi Azure-régió az **USA nyugati régiója**.
+5. Válassza ki a kívánt toouse hello számlázási csomagot. hello alapszintű számlázási csomag 16 felhasználót helyez egy nagyméretű Azure virtuális Gépet, miközben hello standard számlázási csomag esetében 10 felhasználó található egy nagyméretű Azure virtuális Gépen. Általános példaként alapszintű hello esetében működik jól adatok adatbevitel típusú munkafolyamatok. Egy termelékenységi alkalmazás, például az Office célszerű hello standard csomag.
+6. Végül válassza ki a hello Office 2013 Professional rendszerképet. Ez a rendszerkép tartalmazza Office 2013-alkalmazásokat. Emlékeztető: ez a rendszerkép csak próbaverziójú gyűjteményekhez és POC-khez használható, éles gyűjteményekben nem.
 7. Most kattintson a **RemoteApp-gyűjtemény létrehozása** lehetőségre.
 
 ![Felhőalapú gyűjtemény létrehozása a RemoteAppben](./media/remoteapp-anyapp/ra-anyappcreatecollection.png)
 
-Ez elindítja a gyűjtemény létrehozását, de a folyamat akár egy órát is igénybe vehet.
+Ekkor elindul a gyűjtemény létrehozása, de tooan óra is eltarthat.
 
-Most már készen áll arra, hogy hozzáadja a felhasználóit.
+Így már készen áll a tooadd még a felhasználók.
 
-## <a name="share-the-app-with-users"></a>Az alkalmazás megosztása a felhasználókkal
-Miután a gyűjteményt sikeresen létrehozta, ideje közzétenni az Accesst a felhasználók számára, és megadni, hogy mely felhasználók férhessenek hozzá.
+## <a name="share-hello-app-with-users"></a>Felhasználókkal való megosztás hello alkalmazás
+Ha a gyűjtemény sikeresen létrejött, idő toopublish hozzáférés toousers és hozzáférési tooit rendelkező hello felhasználók hozzáadása.
 
-Ha a gyűjtemény létrehozása közben elnavigált az Azure RemoteApp csomóponttól, akkor az Azure kezdőlapról lépjen vissza oda.
+Ha lépjen másik lapra hello Azure RemoteApp csomóponttól hello gyűjtemény létrehozása közben, kezdje azáltal, hogy a biztonsági tooit hello Azure kezdőlapról módon.
 
-1. Kattintson a korábban létrehozott gyűjteményre a további beállítások eléréséhez és a gyűjtemény konfigurálásához.
+1. Kattintson a további beállítások létrehozott korábbi tooaccess hello gyűjteményre, és konfiguráljon hello gyűjteményt.
    ![Új felhőalapú RemoteApp-gyűjtemény](./media/remoteapp-anyapp/ra-anyappcollection.png)
-2. A **Közzététel** lapon kattintson a képernyő alján látható **Közzététel** elemre, majd kattintson **Start menü programjainak közzététele** lehetőségre.
+2. A hello **közzétételi** lapra, majd **közzététel** üdvözlő képernyőt, és kattintson a hello alján **Start menü programjainak közzététele**.
    ![RemoteApp-program közzététele](./media/remoteapp-anyapp/ra-anyapppublish.png)
-3. Válassza ki a listából a közzétenni kívánt alkalmazásokat. Ebben az oktatóanyagban az Accesst választjuk. Kattintson a **Befejezés** gombra. Várja meg, míg az alkalmazások közzététele befejeződik.
+3. Válassza ki a kívánt hello listából toopublish hello alkalmazásokat. Ebben az oktatóanyagban az Accesst választjuk. Kattintson a **Befejezés** gombra. Várjon, amíg hello alkalmazások toofinish közzététel.
    ![Az Access közzététele a RemoteAppben](./media/remoteapp-anyapp/ra-anyapppublishaccess.png)
-4. Miután az alkalmazás közzététele befejeződött, lépjen a **Felhasználói hozzáférés** lapra, és vegye fel az összes felhasználót, akinek hozzáférésre van szüksége az alkalmazásokhoz. Adja meg a felhasználók felhasználónevét (e-mail-címét), majd kattintson a **Mentés** gombra.
+4. Hello alkalmazás közzététele befejeződött, miután látogasson toohello **felhasználói hozzáférés** lapon tooadd hello tooyour alkalmazások eléréséhez szükséges összes felhasználó. Adja meg a felhasználók felhasználónevét (e-mail-címét), majd kattintson a **Mentés** gombra.
 
-![Felhasználók hozzáadása a RemoteApphez](./media/remoteapp-anyapp/ra-anyappaddusers.png)
+![Felhasználók tooRemoteApp hozzáadása](./media/remoteapp-anyapp/ra-anyappaddusers.png)
 
-1. Itt az ideje értesíteni a felhasználókat az új alkalmazásokról, és arról, hogyan érhetik el ezeket. Ehhez küldjön a felhasználóinak egy e-mailt, amely a távoli asztali ügyfél letöltési URL-címére irányítja őket.
-   ![A RemoteApp ügyféloldali letöltési URL-címe](./media/remoteapp-anyapp/ra-anyappurl.png)
+1. Idő tootell, a felhasználókat arról, hogy új alkalmazásokról, és hogyan tooaccess őket. toodo, küldjön egy e-mailt toohello távoli asztali ügyfél letöltési URL-CÍMRE mutat őket.
+   ![RemoteApp hello ügyfél letöltési URL-címe](./media/remoteapp-anyapp/ra-anyappurl.png)
 
-## <a name="configure-access-to-access"></a>Az Access elérésének konfigurálása
-Egyes alkalmazások további konfigurálást igényelnek azután, hogy üzembe helyezte őket a RemoteAppen keresztül. Az Access esetében egy fájlmegosztást fogunk létrehozni az Azure-ban, amelyhez bármely felhasználó hozzáférhet. (Ha ezt nem szeretné megtenni, a felhőalapú gyűjteményünk helyett létrehozhat egy [hibrid gyűjteményt](remoteapp-create-hybrid-deployment.md), amely lehetővé teszi, hogy a felhasználók a helyi hálózaton férhessenek hozzá fájlokhoz és információkhoz.) Ezután meg kell kérnünk a felhasználóinkat, hogy a számítógépük egyik helyi lemezét képezzék le az Azure-fájlrendszerre.
+## <a name="configure-access-tooaccess"></a>Hozzáférés tooAccess konfigurálása
+Egyes alkalmazások további konfigurálást igényelnek azután, hogy üzembe helyezte őket a RemoteAppen keresztül. Különösen hozzáféréshez, a rendszer minden olyan felhasználó hozzáférő Azure fájlmegosztás folyamatos toocreate. (Ha nem szeretné, hogy toodo, létrehozhat egy [hibrid gyűjtemény](remoteapp-create-hybrid-deployment.md) [helyett a felhőalapú gyűjteményünk, amely lehetővé teszi, hogy a felhasználók férhessenek hozzá fájlokhoz és információk a helyi hálózaton.) Ezt követően kell tootell a felhasználók toomap egy helyi meghajtó a számítógépen toohello Azure-fájlrendszerre.
 
-Az első részt Ön mint a rendszergazda végzi el. Ezután néhány lépést a felhasználóinak kell elvégeznie.
+hello első része hello rendszergazdaként teheti meg. Ezután néhány lépést a felhasználóinak kell elvégeznie.
 
-1. Először tegye közzé a parancssori felületet (cmd.exe). A **Közzététel** lapon válassza a **cmd** elemet, majd kattintson a **Közzététel > Program közzététele elérési út használatával** lehetőségre.
-2. Adja meg az alkalmazás nevét és az elérési utat. Ebben az esetben a név legyen „Fájlkezelő”, az elérési út pedig „%SYSTEMDRIVE%\windows\explorer.exe”.
-   ![Tegye közzé a cmd.exe fájlt.](./media/remoteapp-anyapp/ra-publishcmd.png)
-3. Most hozzon létre egy Azure [Storage-fiókot](../storage/common/storage-create-storage-account.md). Mi az „accessstorage” nevet adtuk a sajátunknak, válasszon Ön is valamilyen beszédes nevet. (A Hegylakó után szabadon: csak egy „accessstorage” maradhat.)![Azure-tárfiókunk](./media/remoteapp-anyapp/ra-anyappazurestorage.png)
-4. Most lépjen vissza az irányítópultra, és nézze meg a tároló elérési útját (végponthelyét). Erre később még szükség lesz, ezért másolja ki valahová.
-   ![A tárfiók elérési útja](./media/remoteapp-anyapp/ra-anyappstoragelocation.png)
-5. Miután a tárfiók elkészült, a következő lépésben az elsődleges elérési kulcsra lesz szükség. Kattintson az **Elérési kulcsok kezelése** lehetőségre, majd másolja ki az elsődleges elérési kulcsot.
-6. Ezután állítsa be a tárfiók környezetét, és hozzon létre egy új fájlmegosztást az Access számára. Futtassa a következő parancsmagokat egy emelt szintű Windows PowerShell-ablakban:
+1. Első lépésként közzétételi hello parancssori felület (cmd.exe). A hello **közzétételi** lapon jelölje be **cmd**, és kattintson a **közzététel > program közzététele elérési út használatával**.
+2. Adja meg a hello app és hello elérési hello nevét. A célra használják "Fájlkezelő" hello nevét és "% SYSTEMDRIVE%\windows\explorer.exe" hello elérési útjával.
+   ![Hello cmd.exe fájl közzététele.](./media/remoteapp-anyapp/ra-publishcmd.png)
+3. Most egy Azure toocreate [tárfiók](../storage/common/storage-create-storage-account.md). Azt is "accessstorage," nevű, adjon meg egy nevet, amely jelentéssel bíró tooyou. (toomisquote Highlander, lehetnek, hogy csak egy "accessstorage.") ![Az Azure storage-fiók](./media/remoteapp-anyapp/ra-anyappazurestorage.png)
+4. Most lépjen vissza tooyour irányítópult érheti hello elérési tooyour storage (végponthelyét). Erre később még szükség lesz, ezért másolja ki valahová.
+   ![hello tárfiók elérési útja](./media/remoteapp-anyapp/ra-anyappstoragelocation.png)
+5. A következő hello storage-fiók létrehozása után meg kell hello elsődleges elérési kulcsát. Kattintson a **elérési kulcsok kezelése**, és ezután másolási hello elsődleges elérési kulcsát.
+6. Most hello tárfiók hello környezet beállítása, és Új fájlmegosztás létrehozása a hozzáférés. Futtassa a következő parancsmagokat egy emelt szintű Windows PowerShell-ablakban hello:
    
         $ctx=New-AzureStorageContext <account name> <account key>
         $s = New-AzureStorageShare <share name> -Context $ctx
    
-    Mi ezeket a parancsmagokat futtatjuk le:
+    Ezért a megosztás, az alábbiak hello parancsmagokat futtatjuk le:
    
         $ctx=New-AzureStorageContext accessstorage <key>
         $s = New-AzureStorageShare <share name> -Context $ctx
 
-Ezután a felhasználókon a sor. Először kérje meg a felhasználóit, hogy telepítsenek egy [RemoteApp-ügyfelet](remoteapp-clients.md). Ezután a felhasználóknak hozzá kell rendelniük egy meghajtót a fiókjukból az Ön által létrehozott Azure-fájlmegosztáshoz, és hozzá kell adniuk az Access-fájljaikat. Ezt a következőképpen tehetik meg:
+Most akkor a hello felhasználókon a sor. Először kérje meg a felhasználóit, hogy telepítsenek egy [RemoteApp-ügyfelet](remoteapp-clients.md). A következő hello felhasználók egy meghajtót a fiók toothat Azure fájl megosztása létrehozott toomap kell, és adja hozzá a fájlok elérése. Ezt a következőképpen tehetik meg:
 
-1. A RemoteApp-ügyfélben nyissa meg a közzétett alkalmazások listáját. Indítsa el a cmd.exe programot.
-2. Futtassa a következő parancsot a számítógép egy meghajtójának a fájlmegosztáshoz rendeléséhez:
+1. Hello RemoteApp-ügyfelet, az access hello közzétett alkalmazást. Indítsa el a hello cmd.exe programot.
+2. Futtassa a következő parancs toomap hello egy meghajtót a számítógép toohello fájlmegosztásból:
    
         net use z: \\<accountname>.file.core.windows.net\<share name> /u:<user name> <account key>
    
-    Ha a **/persistent** paramétert yes értékűre állítja, a meghajtó hozzárendelése minden munkamenetben megmarad.
-3. Ezután indítsa el a Fájlkezelő alkalmazást a RemoteAppból. Másolja a fájlmegosztásba a megosztott alkalmazásban használni kívánt Access-fájlokat.
+    Ha hello **/ persistent** paraméter tooyes hello csatlakoztatott meghajtó minden munkamenetben megmarad.
+3. Ezután indítsa el a hello fájlkezelő alkalmazást a Remoteappból. Hello megosztott app toohello fájlmegosztásban toouse kívánt Access-fájlokat másolni.
    ![Access-fájlok elhelyezése Azure-megosztásban](./media/remoteapp-anyapp/ra-anyappuseraccess.png)
-4. Végül nyissa meg az Accesst, majd nyissa meg az imént megosztott adatbázist. Azt kellene látnia, hogy az Accessben az adatok a felhőből futnak.
-   ![Egy igazi Access-adatbázis a felhőből futtatva](./media/remoteapp-anyapp/ra-anyapprunningaccess.png)
+4. Végül nyissa meg az Accesst, és majd nyissa meg az imént megosztott hello adatbázis. Az adatok, az Access hello felhőből kell megjelennie.
+   ![Egy igazi Access-adatbázis hello felhőből fut](./media/remoteapp-anyapp/ra-anyapprunningaccess.png)
 
 Most már bármelyik eszközön használhatja az Accesst, ha telepít hozzá egy RemoteApp-ügyfelet.
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
 ## <a name="next-steps"></a>Következő lépések
 Most, hogy elsajátította gyűjtemények létrehozását, próbáljon meg létrehozni egy [Office 365-öt használó gyűjteményt](remoteapp-tutorial-o365anywhere.md). Vagy hozzon létre egy [hibrid gyűjteményt](remoteapp-create-hybrid-deployment.md), amely hozzáfér a helyi hálózatához.
 

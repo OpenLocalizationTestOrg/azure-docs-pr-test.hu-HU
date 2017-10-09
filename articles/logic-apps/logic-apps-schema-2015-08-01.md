@@ -1,5 +1,5 @@
 ---
-title: "Séma frissíti 1 – 2015. augusztus előzetes verzió – Azure Logic Apps |} Microsoft Docs"
+title: "aaaSchema frissíti 1 – 2015. augusztus előzetes verzió – Azure Logic Apps |} Microsoft Docs"
 description: "Az Azure Logic Apps JSON-meghatározások létrehozása a séma verziója 2015-08-01. dátumú előnézeti"
 author: stepsic-microsoft-com
 manager: anneta
@@ -15,38 +15,38 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 05/31/2016
 ms.author: LADocs; stepsic
-ms.openlocfilehash: 35d7a56d5607dcc18a4407c65b92962d3d0dcd1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 950cd18a27aa1859c4f0b6116de3fb8699d746c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schema-updates-for-azure-logic-apps---august-1-2015-preview"></a>Az Azure Logic Apps - 2015. augusztus 1 preview sémafrissítések
 
-Az új séma- és API-t az Azure Logic Apps verzió magában foglalja a fontos fejlesztést tartalmaz, amelyek a logic apps megbízhatóbb és könnyebben használható:
+Az új séma- és API-t az Azure Logic Apps verzió magában foglalja a fontos fejlesztést tartalmaz, amelyek a logic apps több megbízható és egyszerűbb toouse:
 
-*   A **APIApp** művelettípus frissítése, hogy egy új [ **APIConnection** ](#api-connections) művelet típusa.
-*   **Ismételje meg a** neve módosult az [ **Foreach**](#foreach).
-*   A [ **HTTP-figyelő** API-alkalmazás](#http-listener) már nincs szükség.
+*   Hello **APIApp** művelet típus frissített tooa új [ **APIConnection** ](#api-connections) művelet típusa.
+*   **Ismételje meg a** túl a rendszer átnevezi[**Foreach**](#foreach).
+*   Hello [ **HTTP-figyelő** API-alkalmazás](#http-listener) már nincs szükség.
 *   Gyermek munkafolyamatok hívása használ egy [új séma](#child-workflows).
 
 <a name="api-connections"></a>
-## <a name="move-to-api-connections"></a>API-kapcsolatok áthelyezése
+## <a name="move-tooapi-connections"></a>Helyezze át a tooAPI kapcsolatok
 
-A legnagyobb módosítása, hogy már nem kell API-alkalmazások üzembe helyezés az Azure-előfizetéssel, így API-kat is használhatja. Az alábbiakban a módszereket, hogy API-kat:
+hello legnagyobb változás az, hogy már nem rendelkezik toodeploy API-alkalmazások az Azure-előfizetése, hogy használhassa az API-k. Itt módon hello API-k használhatók:
 
 * Felügyelt API-k
 * Az egyéni webes API-k
 
-Mindkét lehetőség némileg eltérően kell kezelni, mert a felügyelet és az üzemeltetési modellek nem egyezik. Ez a modell egyik előnye, még az Azure erőforráscsoportban már nem korlátozódik telepített erőforrások esetén. 
+Mindkét lehetőség némileg eltérően kell kezelni, mert a felügyelet és az üzemeltetési modellek nem egyezik. Ez a modell egyik előnye most már nem korlátozódik az Azure erőforráscsoport üzembe helyezett tooresources. 
 
 ### <a name="managed-apis"></a>Felügyelt API-k
 
 A Microsoft kezeli az egyes API-k a nevünkben, például az Office 365, a Salesforce, a Twitter és az FTP. Használhatja az egyes felügyelt API-k-van, például a Bing fordítására, míg más konfigurációs. Ez a konfiguráció elnevezése egy *kapcsolat*.
 
-Például Office 365 használatakor kell létrehoznia az Office 365 bejelentkezési jogkivonatot tartalmaz egy kapcsolatot. Ez a token biztonságosan tárolhassa és frissítése, hogy a Logic Apps alkalmazást mindig meghívhatja az Office 365 API-t. Azt is megteheti Ha azt szeretné, az SQL- vagy FTP-kiszolgálóhoz való csatlakozáshoz, kell létrehoznia, amely rendelkezik a kapcsolati karakterlánc kapcsolatot. 
+Például Office 365 használatakor kell létrehoznia az Office 365 bejelentkezési jogkivonatot tartalmaz egy kapcsolatot. Ez a token biztonságosan tárolhassa és, hogy a Logic Apps alkalmazást mindig hívhatja meg az Office 365 API hello frissülnek. Azt is megteheti Ha azt szeretné, hogy tooconnect tooyour SQL vagy az FTP-kiszolgáló, kell létrehoznia, amely rendelkezik a kapcsolati karakterlánc hello kapcsolatot. 
 
-Ez a definíció az e műveletek végrehajtása nevezzük `APIConnection`. Itt látható egy példa, amely behívja az Office 365 e-mailt küldhet kapcsolatot:
+Ez a definíció az e műveletek végrehajtása nevezzük `APIConnection`. Itt látható egy példa, amely behívja az Office 365 toosend egy e-mailt kapcsolatot:
 
 ```
 {
@@ -75,17 +75,17 @@ Ez a definíció az e műveletek végrehajtása nevezzük `APIConnection`. Itt l
 }
 ```
 
-A `host` célja a bemeneti adatok része, amely egyedi API kapcsolatok, és fonókábel részeket tartalmazza: `api` és `connection`.
+Hello `host` célja a bemeneti adatok része, amely egyedi tooAPI kapcsolatokat, és fonókábel részeket tartalmazza: `api` és `connection`.
 
-A `api` a futtatókörnyezet URL-CÍMÉT, amely a felügyeli, ahol API van-e tárolva van. Megtekintheti az összes elérhető felügyelt API-k hívásával `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`.
+Hello `api` hello futásidejű URL-CÍMÉT, amely a felügyeli, ahol API van-e tárolva van. Megtekintheti a rendelkezésre álló összes hello felügyelt API-k hívásával `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`.
 
-API-t használ, amikor előfordulhat, hogy az API-t, vagy előfordulhat, hogy nem rendelkezik ilyennel *kapcsolódási paraméterek* definiálva. Ha nem az API-t, nem *kapcsolat* szükséges. Ha az API-t, létre kell hoznia egy kapcsolatot. A kapcsolat létrehozása a nevet, amely meg van. Majd hivatkozzon a neve a `connection` objektum belül a `host` objektum. Kapcsolat létrehozása egy erőforráscsoport, hívja meg:
+API-t használ, amikor előfordulhat, hogy hello API, vagy előfordulhat, hogy nem rendelkezik ilyennel *kapcsolódási paraméterek* definiálva. Ha hello API nem, nem *kapcsolat* szükséges. Ha hello API, létre kell hoznia egy kapcsolatot. hello létrehozott kapcsolat hello névvel rendelkezik, amelynek választja. Majd hivatkozhat hello neve a hello `connection` belül hello objektum `host` objektum. egy kapcsolat egy erőforráscsoport, a hívást a toocreate:
 
 ```
 PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/providers/Microsoft.Web/connections/{name}?api-version=2015-08-01-preview
 ```
 
-A következő szervezethez:
+A szervezet a következő hello:
 
 ```
 {
@@ -94,7 +94,7 @@ A következő szervezethez:
       "id": "/subscriptions/{subid}/providers/Microsoft.Web/managedApis/azureblob"
     },
     "parameterValues": {
-        "accountName": "{The name of the storage account -- the set of parameters is different for each API}"
+        "accountName": "{hello name of hello storage account -- hello set of parameters is different for each API}"
     }
   },
   "location": "{Logic app's location}"
@@ -104,7 +104,7 @@ A következő szervezethez:
 ### <a name="deploy-managed-apis-in-an-azure-resource-manager-template"></a>Felügyelt API-k az Azure Resource Manager sablon telepítése
 
 Létrehozhat egy teljes alkalmazás az Azure Resource Manager-sablonok, mindaddig, amíg az interaktív bejelentkezés nem szükséges.
-Bejelentkezési szükség, ha minden, az Azure Resource Manager sablon állíthat be, de továbbra is meg kell keresse fel a portálra, ahol a kapcsolatok engedélyezéséhez. 
+Bejelentkezési szükség, ha minden hello Azure Resource Manager sablonnal állíthat be, de továbbra is fennáll toovisit hello portál tooauthorize hello kapcsolatok. 
 
 ```
     "resources": [{
@@ -194,13 +194,13 @@ Bejelentkezési szükség, ha minden, az Azure Resource Manager sablon állítha
     }]
 ```
 
-Ebben a példában, hogy a kapcsolatok csak olyan erőforrásokat, amelyek az erőforráscsoportban élő látható. A felügyelt API-k az előfizetésben elérhető hivatkozó.
+Ebben a példában, hogy hello kapcsolatok csak olyan erőforrásokat, amelyek az erőforráscsoportban élő látható. Hivatkozó hello felügyelt API-k elérhető tooyou az előfizetésben.
 
 ### <a name="your-custom-web-apis"></a>Az egyéni webes API-k
 
-Ha a saját API-k, nem Microsoft által felügyelt is, használja a beépített **HTTP** művelet hívására őket. Ideális élményt akkor a Swagger-végpont az API-érdemes felfedi. Ez a végpont lehetővé teszi, hogy a Logic App Designer lehet megjeleníteni az adatokat, és kiírja az API. Swagger a Tervező is csak jeleníti meg a be- és kimenetekkel nem átlátszó JSON-objektumként.
+Ha a saját API-k, nem Microsoft által felügyelt is, használja a hello beépített **HTTP** művelet toocall őket. Ideális élményt akkor a Swagger-végpont az API-érdemes felfedi. A végpont lehetővé teszi, hogy a hello Logic App Designer toorender hello bemeneti adatokat, és kiírja az API. A Swagger hello designer is csak jeleníti meg a hello bemenetekhez és kimenetekhez nem átlátszó JSON-objektumként.
 
-Az új bemutató példa `metadata.apiDefinitionUrl` tulajdonság:
+Egy példa ábrázoló hello Ez új `metadata.apiDefinitionUrl` tulajdonság:
 
 ```
 {
@@ -219,13 +219,13 @@ Az új bemutató példa `metadata.apiDefinitionUrl` tulajdonság:
 }
 ```
 
-Ha az Azure App Service Web API működteti, a Web API automatikusan megjelenik a Tervező elérhető műveletek listáját. Ha nem, illessze be az URL-címet közvetlenül kell. A Swagger-végpont kell lennie a hitelesítés nélküli is használható a Logic App Designer, habár maga a API bármilyen módszerrel, amely támogatja a Swagger biztonságossá teheti.
+Ha az Azure App Service Web API működteti, a Web API automatikusan hello designer elérhető műveletek hello listájában jelenik meg. Ha nem, vannak toopaste hello URL-címet közvetlenül. hello Swagger-végpont nem hitelesített toobe használható a Logic App Designer hello kell lennie, bár hello API maga bármilyen módszerrel, amely támogatja a Swagger biztonságossá teheti.
 
 ### <a name="call-deployed-api-apps-with-2015-08-01-preview"></a>Hívás a 2015-08-01. dátumú előnézeti API-alkalmazások telepítése
 
-Ha korábban telepítette az API-alkalmazások, hívása az alkalmazás és a **HTTP** művelet.
+Ha korábban telepítette az API-alkalmazások, hívása hello hello alkalmazás **HTTP** művelet.
 
-Ha a Dropbox segítségével tulajdonságlista-fájlok, például a **2014 12-01. dátumú előnézeti** verzió sémadefiníciót előfordulhat, hogy hasonlót:
+Például, ha a Dropbox toolist fájlokat, használja a **2014 12-01. dátumú előnézeti** verzió sémadefiníciót előfordulhat, hogy hasonlót:
 
 ```
 {
@@ -266,7 +266,7 @@ Ha a Dropbox segítségével tulajdonságlista-fájlok, például a **2014 12-01
 }
 ```
 
-Ehhez a példához hasonló egyenértékű HTTP-művelet hogyan hozhat létre, amíg változatlan marad a Logic app-definíciót a Paraméterek szakaszban:
+Hello egyenértékű HTTP-művelet ehhez a példához hasonló hogyan hozhat létre, amíg változatlan marad a Logic app-definíciót hello hello paraméterek szakaszban:
 
 ```
 {
@@ -298,18 +298,18 @@ Ehhez a példához hasonló egyenértékű HTTP-művelet hogyan hozhat létre, a
 | A művelet tulajdonság | Leírás |
 | --- | --- |
 | `type` |`Http`ahelyett, hogy`APIapp` |
-| `metadata.apiDefinitionUrl` |Ez a művelet a Logic App Designer használatához a metaadat-végpontjához, amely értékekből összeállított a következők:`{api app host.gateway}/api/service/apidef/{last segment of the api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
-| `inputs.uri` |Értékekből összeállított:`{api app host.gateway}/api/service/invoke/{last segment of the api app host.id}/{api app operation}?api-version=2015-01-14` |
+| `metadata.apiDefinitionUrl` |toouse Ez a művelet a Logic App Designer hello hello metaadat-végpontjához, amely értékekből összeállított tartalmazza:`{api app host.gateway}/api/service/apidef/{last segment of hello api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
+| `inputs.uri` |Értékekből összeállított:`{api app host.gateway}/api/service/invoke/{last segment of hello api app host.id}/{api app operation}?api-version=2015-01-14` |
 | `inputs.method` |Mindig`POST` |
-| `inputs.body` |Az API-alkalmazás paraméterek azonos |
-| `inputs.authentication` |Az API-alkalmazás hitelesítési azonos |
+| `inputs.body` |Azonos toohello API App paraméterek |
+| `inputs.authentication` |Azonos toohello API-alkalmazás hitelesítési |
 
-Ez a módszer minden API-alkalmazás műveletre kell működnie. Ne feledje azonban, hogy a korábbi API-alkalmazások támogatása megszűnt. Ezért át kell helyezni a két előző lehetőségeket, egy felügyelt API-t vagy az egyéni webes API-t üzemeltető.
+Ez a módszer minden API-alkalmazás műveletre kell működnie. Ne feledje azonban, hogy a korábbi API-alkalmazások támogatása megszűnt. Ezért telepítse át a tooone hello a két előző lehetőségeket, egy felügyelt API-t vagy az egyéni webes API-t üzemeltető.
 
 <a name="foreach"></a>
-## <a name="renamed-repeat-to-foreach"></a>Átnevezni a "repeat", "foreach"
+## <a name="renamed-repeat-tooforeach"></a>Átnevezi a "repeat" too'foreach "
 
-A séma korábbi verziójához sok visszajelzései érkezett, amely **ismételje meg a** zavaró, és nem megfelelő rögzíti, amelyek **ismételje meg a** volt, a-each ciklus. Ennek eredményeképpen azt átnevezett `repeat` való `foreach`. Például korábban meg kellene írni:
+Hello előző séma verziójához, mennyi visszajelzései érkezett, amely **ismételje meg a** zavaró, és nem megfelelő rögzíti, amelyek **ismételje meg a** volt, a-each ciklus. Ennek eredményeképpen azt átnevezett `repeat` túl`foreach`. Például korábban meg kellene írni:
 
 ```
 {
@@ -343,11 +343,11 @@ Szeretné most a írni:
 }
 ```
 
-A függvény `@repeatItem()` korábban használt hivatkozhasson rá az az aktuális elem alatt többször is keresztül. Ez a funkció most egyszerűsítve `@item()`. 
+hello függvény `@repeatItem()` volt korábban használt tooreference hello az aktuális elem alatt többször is keresztül. Ez a funkció most egyszerűsített túl`@item()`. 
 
 ### <a name="reference-outputs-from-foreach"></a>Hivatkozás kimeneteinek "foreach"
 
-Az egyszerűség kedvéért a kimeneteinek `foreach` műveletek az objektum nincs burkolójuk `repeatItems`. Miközben az előző kimenetek `repeat` példa volt:
+Az egyszerűség kedvéért hello kiírja a `foreach` műveletek az objektum nincs burkolójuk `repeatItems`. Amíg az előző hello kimenete hello `repeat` példa volt:
 
 ```
 {
@@ -387,7 +387,7 @@ Most ezeket kimenetének létrehozása a következők:
 ]
 ```
 
-Korábban való hivatkozáskor ezek kimenetek a szervezet művelet eléréséhez:
+Korábban tooget toohello törzsét való hivatkozáskor ezek kimenetek hello művelet:
 
 ```
 {
@@ -423,19 +423,19 @@ Most helyette teheti:
 }
 ```
 
-A módosítások a funkciók `@repeatItem()`, `@repeatBody()`, és `@repeatOutputs()` törlődnek.
+A módosítások hello funkciók `@repeatItem()`, `@repeatBody()`, és `@repeatOutputs()` törlődnek.
 
 <a name="http-listener"></a>
 ## <a name="native-http-listener"></a>Natív HTTP-figyelő
 
-A HTTP-figyelő képességek most beépített. Így már nem kell HTTP Listener API-alkalmazások telepítéséhez. Lásd: [hogyan végezheti el a Logic app végpont hívható itt teljes részleteit](../logic-apps/logic-apps-http-endpoint.md). 
+hello HTTP-figyelő most beépített képességei. Így már nem kell toodeploy HTTP Listener API-alkalmazást. Lásd: [kapcsolatos részletek hello toomake a Logic app végpont hívható Itt](../logic-apps/logic-apps-http-endpoint.md). 
 
-A módosítások eltávolítása a `@accessKeys()` függvénynek, amely azt írni a a `@listCallbackURL()` függvény az első a végpont, amikor erre szükség van. Emellett most definiálnia kell legalább egy eseményindító a Logic Apps alkalmazást. Ha azt szeretné, hogy `/run` a munkafolyamat, ezek az eseményindítók egyikét kell: `manual`, `apiConnectionWebhook`, vagy `httpWebhook`.
+A módosítások hello eltávolítása `@accessKeys()` függvénynek, amely azt írni a hello `@listCallbackURL()` függvény az első hello végpont, amikor erre szükség van. Emellett most definiálnia kell legalább egy eseményindító a Logic Apps alkalmazást. Ha azt szeretné, túl`/run` hello munkafolyamat, akkor ezek az eseményindítók egyike: `manual`, `apiConnectionWebhook`, vagy `httpWebhook`.
 
 <a name="child-workflows"></a>
 ## <a name="call-child-workflows"></a>Gyermek-munkafolyamatok hívása
 
-Korábban gyermek munkafolyamatok hívása szükség lesz a munkafolyamat, a hozzáférési jogkivonat beolvasása és a token beilleszteni a logic app-definíciót hívható meg, hogy alárendelt munkafolyamat helyét a. Az új sémával a Logic Apps-motor automatikusan létrehozza a gyermek munkafolyamat futásidőben SAS-kód, nem kell a titkos kulcsok illessze be a definíciót. Például:
+Korábban gyermek munkafolyamatok hívása szükséges toohello munkafolyamat első hello hozzáférési jogkivonatot, és a Beillesztés hello token hello logic app-definíciót toocall, ahová a gyermek a munkafolyamatra címen. Hello új sémával hello Logic Apps motor automatikusan létrehozza a futási időben SAS, Ön nem rendelkezik túl illessze be a titkos kulcsok hello definition hello alárendelt munkafolyamat. Például:
 
 ```
 "mynestedwf": {
@@ -461,20 +461,20 @@ Korábban gyermek munkafolyamatok hívása szükség lesz a munkafolyamat, a hoz
 }
 ```
 
-Egy második fokozása azt hozzáadásakor jogosultságot ad a gyermek-munkafolyamatok teljes hozzáférés a bejövő kérelemre. Ez azt jelenti, hogy a paraméterek átadhatók a *lekérdezések* szakasz és a a *fejlécek* objektum és, hogy a teljes szervezet teljesen adhat meg.
+Egy második fokozása azt hozzáadásakor jogosultságot ad hello gyermek munkafolyamatok teljes hozzáférési toohello bejövő kérelem. Ez azt jelenti, hogy paraméterek átadhatók a hello *lekérdezések* szakasz és hello *fejlécek* objektum és, hogy teljesen definiálhat hello teljes törzsében.
 
-Végezetül a gyermek munkafolyamat szükséges módosítások vannak. Amíg korábban hívhatja az alárendelt munkafolyamat közvetlenül, most meg kell adnia egy eseményindító végpont a szülő hívni a munkafolyamatban. Általában szeretné beállítani, amely rendelkezik egy eseményindító `manual` írja be, és a szülő-definícióban, hogy az eseményindító használja. Megjegyzés: a `host` kifejezetten a tulajdonságnak egy `triggerName` mert mindig meg kell adnia amelynek eseményindítója meghívott.
+Végezetül a szükséges változtatásokat toohello alárendelt munkafolyamat vannak. Amíg korábban hívhatja az alárendelt munkafolyamat közvetlenül, most meg kell adnia egy eseményindító végpont hello szülő toocall hello munkafolyamata. Általában szeretné beállítani, amely rendelkezik egy eseményindító `manual` írja be, és használja, hogy az eseményindító hello szülő-definícióban. Megjegyzés: hello `host` kifejezetten a tulajdonságnak egy `triggerName` mert mindig meg kell adnia amelynek eseményindítója meghívott.
 
 ## <a name="other-changes"></a>Az egyéb módosítások
 
 ### <a name="new-queries-property"></a>Új "lekérdezések" tulajdonság
 
-Minden művelettípusok mostantól egy új bemeneti nevű `queries`. A bemeneti strukturált objektum ahelyett, hogy át kellene kézzel állítsa össze a karakterlánc lehet.
+Minden művelettípusok mostantól egy új bemeneti nevű `queries`. A bemeneti strukturált objektum ahelyett, hogy kézzel tooassemble hello karakterlánc lehet.
 
-### <a name="renamed-parse-function-to-json"></a>Átnevezett "parse()" függvény "json()"
+### <a name="renamed-parse-function-toojson"></a>Átnevezett "parse()" függvény too'json() "
 
-Azt ad hozzá több tartalomtípus hamarosan, így azt átnevezték a `parse()` függvény `json()`.
+Azt hozzá további tartalomtípus hamarosan, így azt átnevezték hello `parse()` függvény túl`json()`.
 
 ## <a name="coming-soon-enterprise-integration-apis"></a>Hamarosan: vállalati integrációs API-k
 
-Felügyelt verziói még a vállalati integrációs API-k, például a AS2 jelenleg nem áll. Ugyanakkor a meglévő üzembe helyezett BizTalk API-k használatával a HTTP-művelet is használhatja. További információkért lásd "A már telepített API-alkalmazások használata" a a [integrációs terv](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/). 
+Nem tudunk hello vállalati integrációs API-k, például a AS2 még a felügyelt verziók. Ugyanakkor a meglévő üzembe helyezett BizTalk API-k keresztül hello HTTP-művelet is használhatja. További információkért lásd "A már telepített API-alkalmazások használata" hello a [integrációs terv](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/). 

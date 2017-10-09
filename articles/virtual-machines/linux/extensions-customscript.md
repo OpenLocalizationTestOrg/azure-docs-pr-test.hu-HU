@@ -1,6 +1,6 @@
 ---
-title: "Egyéni parancsfájlok futtathatók a Linux virtuális gépek Azure-ban |} Microsoft Docs"
-description: "Az egyéni parancsprogramok futtatására szolgáló bővítmény használatával Linux virtuális gép konfigurációs feladatok automatizálásához"
+title: "egyéni parancsfájlok aaaRun Linux virtuális gépek Azure-ban |} Microsoft Docs"
+description: "Linux virtuális gép konfigurációs feladatok automatizálásához hello egyéni parancsprogramok futtatására szolgáló bővítmény használatával"
 services: virtual-machines-linux
 documentationcenter: 
 author: neilpeterson
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: 1dde64aac72c11ccfccf4fdb676279692befaadd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f2c273a5fbd4cd1695aea48fa4bd08e691511e5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-custom-script-extension-with-linux-virtual-machines"></a>Az Azure egyéni parancsprogramok futtatására szolgáló bővítmény használata a Linux virtuális gépek
-Az egyéni parancsprogramok futtatására szolgáló bővítmény és hajtanak végre a parancsfájl az Azure virtuális gépeken. A bővítmény akkor hasznos, ha a feladás egy vagy több központi telepítés konfigurálása, a szoftver telepítése vagy a más beállításokat / kezelési feladatot. Parancsfájlok le: az Azure storage vagy más elérhető internet helyen, vagy a bővítmény futásidejű megadott. Az egyéni parancsprogramok futtatására szolgáló bővítmény integrálódik az Azure Resource Manager-sablonok, és is futtathat az Azure parancssori felület, PowerShell, Azure-portálon vagy az Azure virtuális gép REST API használatával.
+# <a name="using-hello-azure-custom-script-extension-with-linux-virtual-machines"></a>Hello Azure egyéni parancsprogramok futtatására szolgáló bővítmény Linux virtuális gépek használata
+Egyéni parancsprogramok futtatására szolgáló bővítmény hello és hajtanak végre a parancsfájlok az Azure virtuális gépeken. A bővítmény akkor hasznos, ha a feladás egy vagy több központi telepítés konfigurálása, a szoftver telepítése vagy a más beállításokat / kezelési feladatot. Parancsfájlok le: az Azure storage vagy más elérhető internet helyen, vagy megadott toohello bővítmény futási időt. Egyéni parancsprogramok futtatására szolgáló bővítmény hello integrálódik az Azure Resource Manager-sablonok, és is futtathat a hello Azure CLI, PowerShell, Azure-portálon vagy hello Azure virtuális gép REST API használatával.
 
-Ez a dokumentum az Azure parancssori felület és az Azure Resource Manager-sablon az egyéni parancsprogramok futtatására szolgáló bővítmény használatával, és adatokat is a Linux rendszereken hibaelhárítási lépéseket részletezi.
+Ez a dokumentum részletek hogyan toouse hello az egyéni parancsprogramok futtatására szolgáló bővítmény hello Azure CLI és az Azure Resource Manager-sablon, valamint Linux rendszereken hibaelhárítási részleteket.
 
 ## <a name="extension-configuration"></a>Bővítmény konfigurációja
-Az egyéni parancsprogramok futtatására szolgáló bővítmény konfigurációja határozza meg, többek között a parancsfájl helyét és a futtatandó parancsot. Ebben a konfigurációban tárolható konfigurációs fájlok, a parancssorban vagy egy Azure Resource Manager-sablon a megadott. Egy védett konfigurációban, amely titkosított, és csak a virtuális gépen belüli visszafejteni bizalmas adatokat tárolhatja. A védett konfiguráció akkor hasznos, ha a végrehajtási parancs tartalmazza a titkos kulcsokat például a jelszót.
+hello egyéni parancsprogramok futtatására szolgáló bővítmény konfigurációja határozza meg, többek között a parancsfájl helyét és hello parancs toobe futtatásához. Ebben a konfigurációban tárolható konfigurációs fájlokban hello parancssorban vagy egy Azure Resource Manager-sablon a megadott. Bizalmas adatok tárolhatók védett konfigurációban, amely titkosított, és csak visszafejteni hello virtuális gépen belül. hello védett konfiguráció akkor hasznos, ha hello végrehajtási parancs magában foglalja a titkos kulcsokat például a jelszót.
 
 ### <a name="public-configuration"></a>Nyilvános konfigurációja
 Séma:
 
-**Megjegyzés:** -e a tulajdonságnevek megkülönböztetik a kis-és nagybetűket. -Neveket használja az alább látható módon telepítési problémák elkerülése érdekében.
+**Megjegyzés:** -e a tulajdonságnevek megkülönböztetik a kis-és nagybetűket. Hello-neveket használja az tooavoid telepítésekkel kapcsolatos problémákhoz alább látható módon.
 
-* **commandToExecute**: (szükség esetén karakterlánc) a belépési pont parancsprogram végrehajtására szolgáló
-* **fileUris**: (nem kötelező, karakterlánc-tömbben) a letöltendő fájlok URL-címeit.
-* **Timestamp típusú** (nem kötelező, egész szám) segítségével ebben a mezőben csak egy futtassa újból a parancsfájl indítás, ha megváltoztatja ennek a mezőnek értéket.
+* **commandToExecute**: (szükség esetén karakterlánc) belépési pont parancsfájl tooexecute hello
+* **fileUris**: (nem kötelező, karakterlánc-tömbben) hello URL-címéből fájlok toobe le.
+* **Timestamp típusú** (nem kötelező, egész szám) Ez a mező csak tootrigger egy újrafuttatása hello parancsfájl használatára Ez a mező értékének módosításával.
 
 ```json
 {
@@ -48,11 +48,11 @@ Séma:
 ### <a name="protected-configuration"></a>Védett konfiguráció
 Séma:
 
-**Megjegyzés:** -e a tulajdonságnevek megkülönböztetik a kis-és nagybetűket. -Neveket használja az alább látható módon telepítési problémák elkerülése érdekében.
+**Megjegyzés:** -e a tulajdonságnevek megkülönböztetik a kis-és nagybetűket. Hello-neveket használja az tooavoid telepítésekkel kapcsolatos problémákhoz alább látható módon.
 
-* **commandToExecute**: (nem kötelező, karakterlánc) a belépési pont parancsfájl végrehajtására. Ehelyett használja ezt a mezőt, ha a parancs tartalmazza a titkos kulcsok, például jelszavakat.
-* **storageAccountName**: (nem kötelező, karakterlánc) storage-fiók nevét. Ha megadja a tároló hitelesítő adatait, minden fileUris URL-címek az Azure BLOB kell lennie.
-* **storageAccountKey**: (nem kötelező, karakterlánc) storage-fiók hozzáférési kulcsának.
+* **commandToExecute**: (nem kötelező, karakterlánc) belépési pont parancsfájl tooexecute hello. Ehelyett használja ezt a mezőt, ha a parancs tartalmazza a titkos kulcsok, például jelszavakat.
+* **storageAccountName**: (nem kötelező, karakterlánc) storage-fiók hello nevét. Ha megadja a tároló hitelesítő adatait, minden fileUris URL-címek az Azure BLOB kell lennie.
+* **storageAccountKey**: (nem kötelező, karakterlánc) hello hozzáférési kulcsot a tárfiók.
 
 ```json
 {
@@ -63,13 +63,13 @@ Séma:
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-Ha az Azure parancssori felület használatával az egyéni parancsprogramok futtatására szolgáló bővítmény futtatásához, hozzon létre egy konfigurációs fájlban vagy a fájl uri és a parancsfájlt végrehajtó legalább tartalmazó fájlokat.
+Hello Azure CLI toorun hello egyéni parancsprogramok futtatására szolgáló bővítmény használata esetén hozzon létre egy konfigurációs fájlban vagy a minimális hello fájl uri és hello végrehajtási parancsfájlt tartalmazó fájlokat.
 
 ```azurecli
 az vm extension set --resource-group myResourceGroup --vm-name myVM --name customScript --publisher Microsoft.Azure.Extensions --settings ./script-config.json
 ```
 
-Opcionálisan a beállításokat adhat meg a parancsban JSON formátumú karakterlánc. Ez lehetővé teszi a konfigurációját, és végrehajtása során, és egy külön konfigurációs fájl nem adható meg.
+Opcionálisan hello beállításokat adhat meg hello parancsban JSON formátumú karakterlánc. Ez lehetővé teszi a hello konfigurációs toobe megadott végrehajtása közben, és egy külön konfigurációs fájl nélkül.
 
 ```azurecli
 az vm extension set '
@@ -111,7 +111,7 @@ Az Azure CLI-parancsot:
 az vm extension set --resource-group myResourceGroup --vm-name myVM --name customScript --publisher Microsoft.Azure.Extensions --settings ./script-config.json
 ```
 
-**3. példa** – nyilvános konfigurációs fájl használatával adja meg a parancsfájl URI és egy védett konfigurációs fájl használatával adja meg a végrehajtani a parancsot.
+**3. példa** – nyilvános konfigurációs fájlban használt toospecify hello parancsfájl URI, és egy védett konfigurációs fájl használt toospecify hello parancs toobe végre.
 
 Nyilvános konfigurációs fájlban:
 
@@ -136,7 +136,7 @@ az vm extension set --resource-group myResourceGroup --vm-name myVM --name custo
 ```
 
 ## <a name="resource-manager-template"></a>Resource Manager-sablon
-Az Azure egyéni parancsprogramok futtatására szolgáló bővítmény futtatható a virtuális gép központi telepítéskor Resource Manager-sablon használatával. Ehhez a központi telepítési sablont megfelelően formázott JSON hozzá.
+hello Azure egyéni parancsprogramok futtatására szolgáló bővítmény futtatható a virtuális gép központi telepítéskor Resource Manager-sablon használatával. toodo Igen, vegye fel a megfelelően formázott JSON toohello központi telepítési sablont.
 
 ### <a name="resource-manager-examples"></a>Erőforrás-kezelő példák
 **1. példa** -nyilvános konfigurációjától.
@@ -199,32 +199,32 @@ Az Azure egyéni parancsprogramok futtatására szolgáló bővítmény futtatha
 }
 ```
 
-Lásd: a .net Core zene tároló bemutató teljes példa - [zene tároló bemutató](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db).
+Lásd: a .net Core zeneáruház hello teljes például - bemutató [zene tároló bemutató](https://github.com/neilpeterson/nepeters-azure-templates/tree/master/dotnet-core-music-linux-vm-sql-db).
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha az egyéni parancsprogramok futtatására szolgáló bővítmény fut, a parancsfájl létrehozásakor vagy egy olyan könyvtárba, az alábbi példához hasonló letöltött. A parancs kimenetében is menti a könyvtárba, amely a `stdout` és `stderr` fájlt.
+Egyéni parancsprogramok futtatására szolgáló bővítmény hello futtatásakor a hello parancsfájl jön létre, vagy egy hasonló toohello directory, a következő példa letöltött. hello parancs kimenetében is menti a könyvtárba, amely a `stdout` és `stderr` fájlt.
 
 ```bash
 /var/lib/waagent/custom-script/download/0/
 ```
 
-Az Azure parancsprogramok futtatására szolgáló bővítmény hoz létre a napló, amely itt található.
+hello Azure parancsprogramok futtatására szolgáló bővítmény hoz létre a napló, amely itt található.
 
 ```bash
 /var/log/azure/custom-script/handler.log
 ```
 
-Az egyéni parancsprogramok futtatására szolgáló bővítmény végrehajtási állapotát is beolvashatók az Azure parancssori felület segítségével.
+Egyéni parancsprogramok futtatására szolgáló bővítmény hello hello végrehajtási állapotát is beolvashatók az Azure CLI hello.
 
 ```azurecli
 az vm extension list -g myResourceGroup --vm-name myVM
 ```
 
-A kimeneti néz ki a következő szöveget:
+hello kimenete a következő szöveg hello néz ki:
 
 ```azurecli
 info:    Executing command vm extension get
-+ Looking up the VM "scripttst001"
++ Looking up hello VM "scripttst001"
 data:    Publisher                   Name                                      Version  State
 data:    --------------------------  ----------------------------------------  -------  ---------
 data:    Microsoft.Azure.Extensions  CustomScript                              2.0      Succeeded

@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés az Azure File Storage használatába | Microsoft Docs"
-description: "Bevezetés a Microsoft Cloud szolgáltatásban hálózati fájlmegosztásokat biztosító Azure File Storage használatába."
+title: a File storage aaaIntroduction tooAzure |} Microsoft Docs
+description: "Bevezetés tooAzure fájl tárolási, hálózati fájlt biztosító osztja meg a Microsoft Cloud hello"
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: 498af5cffb76e026c9a87127cab238f0f23b668a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fe6826e79c364a6956831d2e273c4342a5fd47f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-file-storage"></a>Bevezetés az Azure File Storage használatába
+# <a name="introduction-tooazure-file-storage"></a>A File storage bemutatása tooAzure
 
-Az Azure File Storage egy felhőalapú hálózati fájlmegosztást kínáló, az iparági szabvány [Server Message Block (SMB)](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx) protokollt és a [Common Internet File System (CIFS)](https://technet.microsoft.com/library/cc939973.aspx) fájlrendszert használó szolgáltatás. Az Azure-fájlmegosztások párhuzamosan csatlakoztathatók az Azure Virtual Machines és a Windows, macOS vagy Linux rendszerek helyszíni üzemelő példányai által. Az általános célú tárfiókok Azure File Storage, Azure Blob Storage és Azure Queue Storage tárolókhoz biztosítanak hozzáférést.
+Az Azure File storage hálózati fájlmegosztást a hello iparági szabványos hello felhő kínáló [Server Message Block (SMB) protokoll](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx) és [Common Internet File System (CIFS)](https://technet.microsoft.com/library/cc939973.aspx). Az Azure-fájlmegosztások párhuzamosan csatlakoztathatók az Azure Virtual Machines és a Windows, macOS vagy Linux rendszerek helyszíni üzemelő példányai által. Egy általános célú tárfiókok biztosít hozzáférést tooAzure a File storage Azure Blob storage és Azure Queue storage.
 
 ## <a name="videos"></a>Videók
 | Az Azure File Storage ismertetése (27 perc) | Az Azure File Storage oktatóanyaga (5 perc)  |
 |-|-|
-| [![Az Azure File Storage ismertetése című videó képernyőképe – kattintson a lejátszáshoz!](./media/storage-files-introduction/azure-files-introduction-video-snapshot1.png)](https://www.youtube.com/watch?v=zlrpomv5RLs) | [![Az Azure File Storage oktatóanyaga című videó képernyőképe – kattintson a lejátszáshoz!](./media/storage-files-introduction/azure-files-introduction-video-snapshot2.png)](https://channel9.msdn.com/Blogs/Azure/Azure-File-storage-with-Windows/) |
+| [![Képernyőfelvétel a hello Introducing Azure File storage video - tooplay kattintson!](./media/storage-files-introduction/azure-files-introduction-video-snapshot1.png)](https://www.youtube.com/watch?v=zlrpomv5RLs) | [![Képernyőfelvétel a hello Azure File storage - oktatóanyag kattintson tooplay!](./media/storage-files-introduction/azure-files-introduction-video-snapshot2.png)](https://channel9.msdn.com/Blogs/Azure/Azure-File-storage-with-Windows/) |
 
 ## <a name="why-azure-file-storage-is-useful"></a>Miért hasznos az Azure File Storage?
 
-Az Azure File Storage segítségével lecserélheti a helyszínen vagy a felhőben tárolt Windows Server, Linux vagy NAS-alapú fájlkiszolgálókat egy operációs rendszert nem igénylő felhőalapú fájlmegosztásra. Az Azure File Storage az alábbi előnyöket biztosítja:
+Az Azure File storage szolgáltatással tooreplace Windows Server, Linux, vagy NAS-alapú fájlkiszolgálókon helyben tárolt vagy megosztani az egy operációs rendszer szabad felhő fájl hello felhőben. Az Azure File storage a következő előnyöket hello rendelkezik:
 
-* **Megosztott hozzáférés** Az Azure-fájlmegosztások támogatják az iparági szabvány SMB protokollt, ezért zökkenőmentesen lecserélheti helyszíni fájlmegosztásait Azure-fájlmegosztásokra, és nem kell aggódnia az alkalmazások kompatibilitása miatt. A fájlmegosztások több gépről, alkalmazásból/példányból való elérésének lehetősége az Azure File Storage egyik jelentős előnye.
+* **Megosztott hozzáférés** Azure fájlmegosztások támogatási hello iparági szabványos SMB protokoll, ami azt jelenti, hogy zökkenőmentesen lecserélheti a helyszíni fájlmegosztások Azure fájlmegosztásokat anélkül, hogy alkalmazás kompatibilitását. Képes tooaccess éppen egy fájl több gépekről és alkalmazások/példány nem egy jelentős előnyt az Azure File storage szolgáltatással.
 
-* **Teljes körűen felügyelt** Az Azure-fájlmegosztások anélkül is létrehozhatók, hogy felügyelnie kellene a hardvereket vagy az operációs rendszert. Ez azt jelenti, hogy nincs szükség a kiszolgáló operációs rendszerének kritikus fontosságú frissítésekkel történő javítására vagy a hibás merevlemezek cseréjére.
+* **Teljes körűen felügyelt** Azure fájlmegosztásokat hello kell toomanage hardver vagy operációs, ami azt jelenti, hogy nincs toodeal hello server operációs rendszer kritikus fontosságú biztonsági frissítések javítását vagy hibás merevlemezek cseréje nélkül is létrehozható.
 
-* **Szkripthasználat és eszköztámogatás** A PowerShell-parancsmagok és az Azure parancssori felület (CLI) használatával az Azure File-megosztásokat az Azure-alkalmazások felügyeletének részeként hozhatja létre, csatlakoztathatja és kezelheti. Azure-fájlmegosztásokat az [Azure Portal](https://portal.azure.com) és az [Azure Storage Explorer](https://storageexplorer.com) használatával hozhat létre és kezelhet. 
+* **Parancsfájl-kezelési és tooling eszköz** PowerShell-parancsmagok és az Azure parancssori felület lehet használt toocreate, csatlakoztathatják és kezelhetik az Azure fájlmegosztások hello felügyeleti az Azure-alkalmazások részeként. Hozhat létre és kezelheti az Azure fájlmegosztások hello segítségével [Azure-portálon](https://portal.azure.com) és hello [Azure Tártallózó](https://storageexplorer.com). 
 
-* **Rugalmasság** Az Azure File Storage szolgáltatást a kezdetektől úgy hozták létre, hogy mindig rendelkezésre álljon. Ha lecseréli helyszíni fájlmegosztásait az Azure File Storage szolgáltatásra, akkor többé nem kell helyi áramkimaradásokkal vagy hálózati hibákkal megküzdenie. 
+* **Rugalmasság** készült Azure File storage a mentése toobe mindig rendelkezésre álló szabad hello. A helyszíni fájlmegosztások lecserélését Azure File storage azt jelenti, hogy már nem kell toowake helyi áramkimaradások vagy hálózati problémák toodeal fel. 
 
-* **Ismerős programozhatóság** Az Azure-ban futó alkalmazások [a fájlrendszer adatátviteli API-jain](https://msdn.microsoft.com/library/system.io.file.aspx) keresztül férhetnek hozzá a megosztás adataihoz. A fejlesztők épp ezért meglévő kódjaik és képességeik felhasználásával áttelepíthetik az alkalmazásokat. A rendszer átviteli API-jai mellett az Azure Storage bármelyik ügyfélkódtárát (például a [.NET-hez](/dotnet/api/overview/azure/storage?view=azure-dotnet) elérhetőt) vagy az [Azure Storage REST API-ját](/rest/api/storageservices/file-service-rest-api) is használhatja.
+* **Jól ismert programozhatóság** az Azure-ban futó alkalmazások adatok hello megosztáson keresztül férhetnek [fájlrendszer adatátviteli API-jain](https://msdn.microsoft.com/library/system.io.file.aspx). A fejlesztők ezért meglévő kódjaik és képességek toomigrate meglévő alkalmazások használhatják fel. Továbbá tooSystem I/O API-k, használhatja bármelyik hello az Azure storage ügyfél szalagtárak, például egy hello [.NET](/dotnet/api/overview/azure/storage?view=azure-dotnet), vagy hello [Azure Storage REST API felülete](/rest/api/storageservices/file-service-rest-api).
 
 Az Azure-fájlmegosztások az alábbiakra használhatók:
 
-* **Helyszíni fájlkiszolgálók lecserélése** Az Azure File Storage használatával teljes mértékben lecserélheti a hagyományos helyszíni fájlkiszolgálókon vagy NAS-eszközökön található fájlmegosztásokat. Az Azure-fájlmegosztások könnyedén csatlakoztathatók a népszerű operációs rendszerekre (például Windows, macOS és Linux), a földrajzi helyüktől függetlenül.
+* **Cserélje le a helyszíni fájlkiszolgálókon** Azure File storage lehet használt toocompletely csere fájlmegosztások hagyományos helyszíni fájlkiszolgálókon és NAS-eszközökön. Ismert operációs rendszerek, például Windows, a macOS és a Linux könnyen is csatlakoztathatja egy Azure-fájlmegosztás, bárhol legyenek is a hello world.
 
 * **Alkalmazások „átemelése”**
 
-    Az Azure File Storage segítségével könnyedén „átemelhetők” az alkalmazások a helyszíni fájlmegosztásokat használó felhőbe, így egyszerűen megoszthatók az adatok az alkalmazás összetevői között. Ennek megvalósítása érdekében minden virtuális gép csatlakozik a fájlmegosztáshoz, és ezután ugyanúgy képes a fájlok olvasására és írására, mint a helyszíni fájlmegosztások esetében.
+    Az Azure File storage könnyen túl közösen használja az "növekedési és az eltolás mértékét megadó" alkalmazások toohello felhő, amelyek a helyi fájl tooshare adatok hello alkalmazás részei között. tooimplement az egyes virtuális gépek toohello fájlmegosztás kapcsolódik, és ezután az olvasási és írási fájljait, ahogy azt egy helyi fájl elleni megosztásához.
 
 * **A felhőalapú fejlesztés egyszerűsítése**
     
-    Az Azure File Storage számos különböző módon segítheti az új felhőalapú fejlesztési projektek egyszerűbbé tételét.
+    Az Azure File storage több különböző módon toosimplify új felhőalapú fejlesztési projekt használható.
     
     * **Megosztott alkalmazásbeállítások**
     
-        Az elosztott alkalmazások egyik jellegzetessége, hogy egy központi helyen található a konfigurációs fájljuk, ahol a számos különböző virtuális gép hozzáférhet. Az ilyen konfigurációs fájlok mostantól az Azure-fájlmegosztásokban is tárolhatók, és az összes alkalmazáspéldány által olvashatók. Ezek a beállítások a REST-felületen keresztül is kezelhetők, ami globális hozzáférést tesz lehetővé a konfigurációs fájlokhoz.
+        Az elosztott alkalmazások közös mintázatát toohave konfigurációs fájlok egy központi helyen, ha azok elérhetők a sok különböző virtuális gépek. Az ilyen konfigurációs fájlok mostantól az Azure-fájlmegosztásokban is tárolhatók, és az összes alkalmazáspéldány által olvashatók. Ezek a beállítások segítségével hello REST-felület, amely lehetővé teszi, hogy a globális hozzáférési toohello konfigurációs fájlok is kezelhetők.
 
     * **Diagnosztika megosztása**
     
-        Az Azure-fájlmegosztások a diagnosztikai fájlok (például naplók, mérőszámok és összeomlási memóriaképek) mentésére is használhatók. Az, hogy ezek a fájlmegosztások az SMB protokollon és a REST-felületen keresztül is elérhetők, lehetővé teszi az alkalmazások számára, hogy különféle elemzési eszközöket hozzanak létre vagy használjanak fel a diagnosztikai adatok feldolgozásához és elemzéséhez.
+        Egy Azure fájlmegosztás használt toosave diagnosztikai naplók, metrikák és összeomlási memóriaképeket fájlokat is lehet. Hello SMB és a REST-felületen keresztül elérhető fájlmegosztások lehetővé teszi az alkalmazások toobuild vagy számos különféle feldolgozási és hello diagnosztikai adatok elemzése elemzésére szolgáló eszközöket használja.
 
     * **Fejlesztés/Tesztelés/Hibakeresés**
 
-        Amikor a fejlesztők vagy rendszergazdák a felhőben végeznek munkálatokat a virtuális gépen, gyakran van szükségük ugyanazokra az eszközökre vagy segédprogramokra. Az ilyen segédprogramok telepítése és kiosztása az egyes virtuális gépekre, ahol éppen szükség van rájuk, sok időt vehet igénybe. Az Azure File Storage szolgáltatással a fejlesztők vagy rendszergazdák a leggyakrabban használt eszközeiket tárolhatják egy fájlmegosztásban, amely könnyedén csatlakoztatható bármely virtuális gépről.
+        Ha a fejlesztők és rendszergazdák hello felhő virtuális gépek dolgozik, azok eszközök vagy segédprogramok gyakran kell. Az ilyen segédprogramok telepítése és kiosztása az egyes virtuális gépekre, ahol éppen szükség van rájuk, sok időt vehet igénybe. Az Azure File storage szolgáltatással a fejlesztők és a rendszergazda tudja tárolni a kedvenc eszközök egy fájlmegosztást, amely lehet könnyen csatlakoztatott toofrom bármely virtuális gép.
         
 ## <a name="how-does-it-work"></a>Hogyan működik?
 
-Az Azure-fájlmegosztások kezelése sokkal egyszerűbb, mint a helyszíni fájlmegosztások esetében. Az alábbi ábra az Azure File Storage kezelési szerkezetét ábrázolja:
+Az Azure-fájlmegosztások kezelése sokkal egyszerűbb, mint a helyszíni fájlmegosztások esetében. a következő diagram hello hello Azure File storage management szerkezetek mutatja be:
 
 ![Fájlstruktúra](./media/storage-files-introduction/files-concepts.png)
 
-* **Storage-fiók** Minden Azure Storage-hozzáférés tárfiókon keresztül valósítható meg. A tárfiókok kapacitásával kapcsolatos további információkért lásd: [Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json) (Méretezhetőségi és teljesítménycélok).
+* **A Tárfiók** összes keresztül férnek hozzá tooAzure tárolási történik egy tárfiókot. A tárfiókok kapacitásával kapcsolatos további információkért lásd: [Scalability and Performance Targets](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json) (Méretezhetőségi és teljesítménycélok).
 
-* **Megosztás** A File Storage-megosztás egy SMB-fájlmegosztás az Azure-ban. Minden könyvtárnak és fájlnak egy szülőmegosztásban kell létrejönnie. Egy fiók korlátlan számú megosztást tartalmazhat, egy megosztás pedig korlátlan számú fájl tárolására használható, egészen a fájlmegosztás maximális 5 TB-os kapacitásáig.
+* **Megosztás** A File Storage-megosztás egy SMB-fájlmegosztás az Azure-ban. Minden könyvtárnak és fájlnak egy szülőmegosztásban kell létrejönnie. Egy fiók korlátlan számú megosztást tartalmazhat, és egy megosztási tárolhatók fájlok mentése toohello 5 TB-os kapacitásáig hello fájlmegosztás korlátlan számú.
 
 * **Könyvtár** Egy választható könyvtár-hierarchia.
 
-* **Fájl** A megosztásban található fájl. Egy fájl akár 1 TB méretű is lehet.
+* **Fájl** egy hello megosztásban található fájl. Lehet, hogy a fájl mentése too1 TB-nál.
 
-* **URL-formátum** A fájlok az alábbi URL-formátummal érhetők el:  
+* **URL-formátum** fájljai megcímezhető hello URL-cím formátuma a következő használatával:  
 
     ```
     https://<storage account>.file.core.windows.net/<share>/<directory/directories>/<file>
@@ -102,14 +102,14 @@ Az Azure-fájlmegosztások kezelése sokkal egyszerűbb, mint a helyszíni fájl
 * [Azure File Storage: zökkenőmentes felhőalapú SMB fájlrendszer Windows és Linux rendszerekhez](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-files-storage-a-frictionless-cloud-smb-file-system-for-windows-and-linux/)
 
 ### <a name="tooling-support-for-azure-file-storage"></a>Azure File Storage-eszköztámogatás
-* [How to use AzCopy with Microsoft Azure Storage (Az AzCopy használata a Microsoft Azure Storage szolgáltatással)](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
-* [Using the Azure CLI with Azure Storage (Az Azure parancssori felülete és az Azure Storage együttes használata)](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
+* [Hogyan toouse Microsoft Azure Storage AzCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
+* [Az Azure Storage hello Azure parancssori felület használatával](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
 
 ### <a name="blog-posts"></a>Blogbejegyzések
 * [Azure File storage is now generally available (Mostantól általánosan elérhető az Azure File Storage)](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
 * [Az Azure File Storage ismertetése](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Introducing Microsoft Azure File Service (A Microsoft Azure File szolgáltatás bemutatása)](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
-* [Adatok áttelepítése Azure File szolgáltatásba ](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
+* [Áttelepítési adatok tooAzure fájl](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
 
 ### <a name="reference"></a>Referencia
 * [Az Azure Storage .NET-hez készült ügyféloldali kódtára – referencia](https://msdn.microsoft.com/library/azure/dn261237.aspx)

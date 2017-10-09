@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Encoder Standard segítségével automatikusan előállítja a sávszélességű létra |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan egy bemeneti feloldási és átviteli sebesség alapján sávszélességű létra automatikus létrehozása a Media Encoder Standard (MES) segítségével. A bemeneti megoldás és sávszélességű soha nem túllépése. Például ha a bemeneti 720p, 3 MB/s, kimeneti lesz 720p legjobb maradnak, és alacsonyabb, mint 3 MB/s sebesség időpontban fog elindulni."
+title: "Azure Media Encoder Standard tooauto aaaUse-létrehozni egy sávszélességű létra |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan toouse Media Encoder Standard (MES) tooauto-létrehozni egy sávszélességű létra hello bemeneti feloldási és átviteli sebesség alapján. hello bemeneti megoldás és sávszélességű soha nem túllépése. Például ha hello bemeneti 720p, 3 MB/s, kimeneti lesz 720p legjobb maradnak, és alacsonyabb, mint 3 MB/s sebesség időpontban fog elindulni."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: b5616aa9f8b15ab576d914fbae89a56f64c27f4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5437f54ac28c42ddd4f9d1986549d6da6261c5da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="use-azure-media-encoder-standard-to-auto-generate-a-bitrate-ladder"></a>Azure Media Encoder Standard segítségével egy sávszélességű létra automatikus létrehozása
+#  <a name="use-azure-media-encoder-standard-tooauto-generate-a-bitrate-ladder"></a>Használja az Azure Media Encoder Standard tooauto-egy sávszélességű létra készítése
 
 ## <a name="overview"></a>Áttekintés
 
-Ez a témakör bemutatja, hogyan sávszélességű létra (sávszélességű felbontású párok) a bemeneti feloldási és átviteli sebesség alapján automatikus létrehozása a Media Encoder Standard (MES) segítségével. Az automatikusan generált előre definiált nem haladhatja meg a bemeneti megoldás és átviteli sebesség. Például ha a bemeneti 720p, 3 MB/s, kimeneti lesz 720p legjobb maradnak, és alacsonyabb, mint 3 MB/s sebesség időpontban fog elindulni.
+Ez a témakör bemutatja, hogyan toouse Media Encoder Standard (MES) tooauto-hello bemeneti feloldási és átviteli sebesség alapján sávszélességű létra (sávszélességű felbontású párok) létrehozása. hello automatikusan generált előre definiált nem haladhatja meg a bemeneti hello megoldás és átviteli sebesség. Például ha hello bemeneti 720p, 3 MB/s, kimeneti lesz 720p legjobb maradnak, és alacsonyabb, mint 3 MB/s sebesség időpontban fog elindulni.
 
 ### <a name="encoding-for-streaming-only"></a>Az adatfolyamként történő csak kódolás
 
-Ha a szándéka az, a forrás videó csak az adatfolyamként történő kódolásához, akkor %d használja, a "adaptív Streameléshez" egy kódolási feladat létrehozásakor beállított. Használatakor a **adaptív Streameléshez** előzetesen létrehozott, a MES kódoló fog intelligens módon cap egy sávszélességű létra. Azonban nem lesz szabályozhatja a kódolás költségek, mivel a szolgáltatás határozza meg, hány rétegek használata, és milyen felbontásban. Példa látható miatt kódolás MES által előállított kimeneti rétegek a **adaptív Streameléshez** beállított Ez a témakör végén. Az eszköz fogja tartalmazni MP4-fájlokat, ahol a hang- és kimeneti nem időosztásos.
+Ha a szándéka az tooencode a videó csak a streaming, akkor Ön %d használja a "Adaptív Streameléshez" hello forrás beállított egy kódolási feladat létrehozásakor. Hello használatakor **adaptív Streameléshez** beállított, hello MES kódoló fog intelligens módon cap egy sávszélességű létra. Azonban nem fog tudni toocontrol hello kódolás költségek, mivel hello szolgáltatást határozza meg, hogy hány rétegek toouse, és milyen felbontásban. Példa látható miatt hello kódolás MES által előállított kimeneti rétegek **adaptív Streameléshez** beállított hello Ez a témakör végén. hello kimeneti eszköz MP4 fájljait fogja tartalmazni, ahol a hang és videó nem időosztásos.
 
 ### <a name="encoding-for-streaming-and-progressive-download"></a>Adatfolyam-továbbításhoz és progresszív letöltés kódolása
 
-Ha a szándéka az, a forrás videó az adatfolyamként történő kódolásához, valamint a progresszív letöltés MP4-fájlok előállításához, akkor %d használja a "tartalom adaptív több sávszélességű MP4" egy kódolási feladat létrehozásakor beállított. Használatakor a **tartalom adaptív több sávszélességű MP4** előzetesen létrehozott, a MES kódoló a fenti kódolási logikák hatálya alá, de most a kimeneti adategységen fogja tartalmazni MP4-fájlokat, ahol hang és videó időosztásos. A MP4-fájlok (például a legmagasabb sávszélességű verzió) valamelyikét használhatja a progresszív letöltés fájlként.
+Ha a szándéka az tooencode előre a forrás videó az adatfolyamként történő tooproduce MP4-fájlok progresszív letöltés, valamint hogy %d használhatják a "Tartalom adaptív több sávszélességű MP4" hello, egy kódolási feladat létrehozásakor. Hello használatakor **tartalom adaptív több sávszélességű MP4** beállított, hello MES kódoló érvényes kódolási logikák a fenti, de most hello kimeneti adategységen fogja tartalmazni MP4-fájlokat adott hang hello és a videó időosztásos. A MP4-fájlok (például hello legmagasabb sávszélességű verzió) valamelyikét használhatja a progresszív letöltés fájlként.
 
 ## <a id="encoding_with_dotnet"></a>A Media Services .NET SDK kódolás
 
-Az alábbi példakód Media Services .NET SDK-t használja a következő feladatok végezhetők el:
+a következő példakód hello Media Services .NET SDK tooperform hello feladatok a következő használja:
 
 - Hozzon létre egy kódolási feladat.
-- A Media Encoder Standard encoder mutató hivatkozás beszerzése.
-- Adja hozzá a feladatot egy kódolási feladatot, és adja meg, hogy használja a **adaptív Streameléshez** előre. 
-- Hozzon létre egy kimeneti eszközt, amely tartalmazza majd a kódolt objektumhoz.
-- Adjon hozzá egy eseménykezelő, ellenőrizze a feladat előrehaladását.
-- A feladat elküldéséhez.
+- Egy hivatkozási toohello Media Encoder Standard encoder beolvasása.
+- A kódolási feladat toohello feladat hozzáadása, és adja meg a toouse hello **adaptív Streameléshez** előre. 
+- Hozzon létre egy kimeneti eszköz, amely kódolású hello eszköz fogja tartalmazni.
+- Adjon hozzá egy esemény kezelő toocheck hello feladat előrehaladását.
+- Hello feladat küldése
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Egy Visual Studio-projekt létrehozása és konfigurálása
 
-Állítsa be a fejlesztési környezetet, és töltse fel az app.config fájlt a kapcsolatadatokkal a [.NET-keretrendszerrel történő Media Services-fejlesztést](media-services-dotnet-how-to-use.md) ismertető dokumentumban leírtak szerint. 
+A fejlesztési környezet kialakítása és feltöltése hello app.config fájl kapcsolatadatok, a [Media Services-fejlesztés a .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Példa
 
@@ -61,7 +61,7 @@ Az alábbi példakód Media Services .NET SDK-t használja a következő feladat
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -80,7 +80,7 @@ Az alábbi példakód Media Services .NET SDK-t használja a következő feladat
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the output using the "Adaptive Streaming" preset.
+            // Encode and generate hello output using hello "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -91,8 +91,8 @@ Az alábbi példakód Media Services .NET SDK-t használja a következő feladat
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -101,11 +101,11 @@ Az alábbi példakód Media Services .NET SDK-t használja a következő feladat
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
+            // means hello output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 
@@ -159,7 +159,7 @@ Az alábbi példakód Media Services .NET SDK-t használja a következő feladat
 
 ## <a id="output"></a>Kimeneti
 
-Ez a szakasz ismerteti a kimeneti rétegek MES miatt kódolás három példái a **adaptív Streameléshez** előre. 
+Ez a szakasz bemutatja a három példák miatt hello kódolás MES által előállított kimeneti rétegek **adaptív Streameléshez** előre. 
 
 ### <a name="example-1"></a>1. példa
 A magasság "1080" és "29.970" képkockasebességhez forrás 6 videó rétegek hoz létre:

@@ -1,5 +1,5 @@
 ---
-title: "Állítsa vissza az Azure SQL Data Warehouse (PowerShell) |} Microsoft Docs"
+title: Azure SQL Data Warehouse (PowerShell) aaaRestore |} Microsoft Docs
 description: "PowerShell feladatok Azure SQL Data Warehouse visszaállítására."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: 6286c0e682bae2d3bf0435a25b8077a53b117b25
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa29a315080b1ed477cc6a051ce15a3202630cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-an-azure-sql-data-warehouse-powershell"></a>Állítsa vissza az Azure SQL Data Warehouse (PowerShell)
 > [!div class="op_single_selector"]
@@ -30,24 +30,24 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Ebben a cikkben, megtudhatja, hogyan lehet visszaállítani az PowerShell használata Azure SQL Data Warehouse.
+Ebben a cikkben megtudhatja, hogyan toorestore egy Azure SQL Data Warehouse PowerShell használatával.
 
 ## <a name="before-you-begin"></a>Előkészületek
-**A DTU-kapacitásának ellenőrzése.** Minden egyes SQL Data Warehouse egy SQL server (pl. myserver.database.windows.net), amely rendelkezik egy alapértelmezett DTU-kvótáról üzemelteti.  SQL Data Warehouse visszaállítása előtt ellenőrizze, hogy az az SQL server elég fennmaradó DTU-kvótáról az adatbázis visszaállítása folyamatban van. DTU-igény kiszámításához, vagy kérjen további DTU, lásd: [DTU-kvótát Módosítás kérése][Request a DTU quota change].
+**A DTU-kapacitásának ellenőrzése.** Minden egyes SQL Data Warehouse egy SQL server (pl. myserver.database.windows.net), amely rendelkezik egy alapértelmezett DTU-kvótáról üzemelteti.  SQL Data Warehouse próbál visszaállítani, győződjön meg arról, hogy az SQL Servert futtató hello adatbázis visszaállítása folyamatban elég fennmaradó DTU-kvótáról hello. toolearn hogyan toocalculate DTU szükséges vagy toorequest több DTU, lásd: [DTU-kvótát Módosítás kérése][Request a DTU quota change].
 
 ### <a name="install-powershell"></a>A PowerShell telepítése
-Azure PowerShell használatához az SQL Data Warehouse szolgáltatással, akkor telepítse az Azure PowerShell 1.0-ás vagy újabb verziója.  A verzió futtatásával ellenőrizheti **Get-Module - ListAvailable-Name AzureRM**.  A legújabb verzió telepíthető [Microsoft Webplatform-telepítő][Microsoft Web Platform Installer].  A legújabb verzió telepítésével kapcsolatban lásd: [How to install and configure Azure PowerShell][How to install and configure Azure PowerShell] (Az Azure PowerShell telepítése és konfigurálása).
+A sorrend toouse Azure PowerShell az SQL Data Warehouse szolgáltatással kell tooinstall verzió Azure PowerShell 1.0-s vagy újabb.  A verzió futtatásával ellenőrizheti **Get-Module - ListAvailable-Name AzureRM**.  a legújabb verzió hello telepíthető [Microsoft Webplatform-telepítő][Microsoft Web Platform Installer].  Hello legújabb verzió telepítésével kapcsolatos további információkért lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt][How tooinstall and configure Azure PowerShell].
 
 ## <a name="restore-an-active-or-paused-database"></a>Az aktív vagy szüneteltetett adatbázis visszaállítása
-A pillanatkép használatát egy adatbázis visszaállítása a [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] PowerShell-parancsmagot.
+egy adatbázis egy pillanatképből toorestore hello használata [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] PowerShell-parancsmagot.
 
 1. Nyissa meg a Windows PowerShellt.
-2. Csatlakozás az Azure-fiókjával, és a fiókjához társított előfizetéseket listája.
-3. Válassza ki az előfizetést, állítani az adatbázist.
-4. Az adatbázis visszaállítási pontok listája
-5. Válassza ki a kívánt visszaállítási pontot a RestorePointCreationDate használatával.
-6. Állítsa vissza az adatbázist a kívánt visszaállítási pontot.
-7. Győződjön meg arról, hogy a visszaállított adatbázis online állapotban.
+2. Csatlakozás Azure-fiók tooyour, és a fiókjához társított előfizetéseket hello listája.
+3. Válassza ki, amely tartalmazza a visszaállított hello adatbázis toobe hello előfizetést.
+4. Lista hello visszaállítási pontok hello adatbázis.
+5. Válassza ki a kívánt hello visszaállítási pont hello RestorePointCreationDate használatával.
+6. Állítsa vissza a hello adatbázis toohello szükségeskonfiguráció-visszaállítási pontot.
+7. Győződjön meg arról, hogy hello visszaállítani az adatbázis online állapotban.
 
 ```Powershell
 
@@ -61,13 +61,13 @@ Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
-# List the last 10 database restore points
+# List hello last 10 database restore points
 ((Get-AzureRMSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName ($DatabaseName).RestorePointCreationDate)[-10 .. -1]
 
 # Or list all restore points
 Get-AzureRmSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
-# Get the specific database to restore
+# Get hello specific database toorestore
 $Database = Get-AzureRmSqlDatabase -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Pick desired restore point using RestorePointCreationDate
@@ -76,25 +76,25 @@ $PointInTime="<RestorePointCreationDate>"
 # Restore database from a restore point
 $RestoredDatabase = Restore-AzureRmSqlDatabase –FromPointInTimeBackup –PointInTime $PointInTime -ResourceGroupName $Database.ResourceGroupName -ServerName $Database.$ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $Database.ResourceID
 
-# Verify the status of restored database
+# Verify hello status of restored database
 $RestoredDatabase.status
 
 ```
 
 > [!NOTE]
-> Miután a visszaállítás befejeződött, a helyreállított adatbázis követve konfigurálhatja [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
+> Miután hello visszaállítás befejeződött, a helyreállított adatbázis követve konfigurálhatja [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-a-deleted-database"></a>Törölt adatbázis visszaállítása
-A törölt adatbázisok visszaállításához használja a [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] parancsmag.
+a törölt adatbázisok toorestore hello használata [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] parancsmag.
 
 1. Nyissa meg a Windows PowerShellt.
-2. Csatlakozás az Azure-fiókjával, és a fiókjához társított előfizetéseket listája.
-3. Válassza ki az előfizetést, amely tartalmazza a visszaállítandó törölt adatbázis.
-4. Az adott törölt adatbázis beolvasása.
-5. A törölt adatbázis visszaállítása.
-6. Győződjön meg arról, hogy a visszaállított adatbázis online állapotban.
+2. Csatlakozás Azure-fiók tooyour, és a fiókjához társított előfizetéseket hello listája.
+3. Válassza ki, amely tartalmazza a visszaállítani törölt hello adatbázis toobe hello előfizetést.
+4. Hello adott törölt adatbázis beolvasása.
+5. Hello törölt adatbázis visszaállítása.
+6. Győződjön meg arról, hogy hello visszaállítani az adatbázis online állapotban.
 
 ```Powershell
 $SubscriptionName="<YourSubscriptionName>"
@@ -107,55 +107,55 @@ Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
-# Get the deleted database to restore
+# Get hello deleted database toorestore
 $DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Restore deleted database
 $RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $DeletedDatabase.ResourceID
 
-# Verify the status of restored database
+# Verify hello status of restored database
 $RestoredDatabase.status
 ```
 
 > [!NOTE]
-> Miután a visszaállítás befejeződött, a helyreállított adatbázis követve konfigurálhatja [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
+> Miután hello visszaállítás befejeződött, a helyreállított adatbázis követve konfigurálhatja [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-from-an-azure-geographical-region"></a>Egy Azure-földrajzi régióban visszaállítása
-Adatbázis helyreállítása, használja a [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] parancsmag.
+egy adatbázis toorecover hello használata [visszaállítási-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] parancsmag.
 
 1. Nyissa meg a Windows PowerShellt.
-2. Csatlakozás az Azure-fiókjával, és a fiókjához társított előfizetéseket listája.
-3. Válassza ki az előfizetést, állítani az adatbázist.
-4. A helyreállítani kívánt adatbázis beolvasása.
-5. Az adatbázist a helyreállítási kérelmet létrehozni.
-6. Ellenőrizze a földrajzi visszaállított adatbázis állapotát.
+2. Csatlakozás Azure-fiók tooyour, és a fiókjához társított előfizetéseket hello listája.
+3. Válassza ki, amely tartalmazza a visszaállított hello adatbázis toobe hello előfizetést.
+4. Hello adatbázis toorecover beolvasása.
+5. Hello adatbázis hello helyreállítási kérelmet létrehozni.
+6. Ellenőrizze a hello földrajzi visszaállított adatbázis hello állapotát.
 
 ```Powershell
 Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName "<Subscription_name>"
 
-# Get the database you want to recover
+# Get hello database you want toorecover
 $GeoBackup = Get-AzureRmSqlDatabaseGeoBackup -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>"
 
 # Recover database
 $GeoRestoredDatabase = Restore-AzureRmSqlDatabase –FromGeoBackup -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourTargetServer>" -TargetDatabaseName "<NewDatabaseName>" –ResourceId $GeoBackup.ResourceID
 
-# Verify that the geo-restored database is online
+# Verify that hello geo-restored database is online
 $GeoRestoredDatabase.status
 ```
 
 > [!NOTE]
-> A visszaállítás befejezése után az adatbázis konfigurálásához lásd: [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
+> tooconfigure hello visszaállítás befejezése után az adatbázis lásd [konfigurálása az adatbázis helyreállítása után][Configure your database after recovery].
 > 
 > 
 
-A helyreállított adatbázis TDE-kompatibilis akkor lesz a forrásadatbázis TDE engedélyezve van.
+hello helyreállított adatbázis TDE-kompatibilis akkor lesz hello forrásadatbázis TDE engedélyezve van.
 
 ## <a name="next-steps"></a>Következő lépések
-Az üzleti folytonosságot biztosító szolgáltatásokat az Azure SQL Database kiadásainak kapcsolatos információkért olvassa el a [Azure SQL Database üzleti folytonosság – áttekintés][Azure SQL Database business continuity overview].
+toolearn kapcsolatos hello üzleti folytonosságot biztosító szolgáltatásokat az Azure SQL Database kiadásának, olvassa el a hello [Azure SQL Database üzleti folytonosság – áttekintés][Azure SQL Database business continuity overview].
 
 <!--Image references-->
 
@@ -163,7 +163,7 @@ Az üzleti folytonosságot biztosító szolgáltatásokat az Azure SQL Database 
 [Azure SQL Database business continuity overview]: ../sql-database/sql-database-business-continuity.md
 [Request a DTU quota change]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [Configure your database after recovery]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Overview]: ./sql-data-warehouse-restore-database-overview.md
 [Portal]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md

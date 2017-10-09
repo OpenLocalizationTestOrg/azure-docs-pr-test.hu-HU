@@ -1,6 +1,6 @@
 ---
 title: "Az Azure Active Directory B2C: Beépített házirendek |} Microsoft Docs"
-description: "A témakör az Azure Active Directory B2C bővíthető szabályzat-keretrendszert és különféle házirend létrehozása"
+description: "A témakör az Azure Active Directory B2C hello bővíthető szabályzat-keretrendszert, és hogyan toocreate különféle házirend"
 services: active-directory-b2c
 documentationcenter: 
 author: sama
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: sama
-ms.openlocfilehash: daad3af089afdf76b930053728bb11a5cf4c2a92
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 24bb85eba30f888c6ea7d0401e05235e8eb6ea79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-built-in-policies"></a>Az Azure Active Directory B2C: Beépített házirendek
 
 
-Az Azure Active Directory (Azure AD) B2C bővíthető szabályzat-keretrendszernek a szolgáltatás alapvető erősségével. Például csak a teljes leírása fogyasztói identitással kapcsolatos műveletet házirendek regisztráció, bejelentkezés és profil szerkesztése. Például a regisztrációs szabályzatban teszi viselkedés szabályozására, a következő beállítások konfigurálása:
+az Azure Active Directory (Azure AD) B2C hello bővíthető szabályzat-keretrendszernek hello core erőssége hello szolgáltatást. Például csak a teljes leírása fogyasztói identitással kapcsolatos műveletet házirendek regisztráció, bejelentkezés és profil szerkesztése. Például a regisztrációs szabályzatban lehetővé teszi a toocontrol viselkedés úgy konfigurálja a következő beállítások hello:
 
-* Fióktípus (közösségi, például a Facebookhoz) és helyi fiókok például az e-mail címeket, amelyek fogyasztókat iratkozzon fel az alkalmazáshoz
-* Attribútumok (például utónév, irányítószámát és cipőméreten) kell lennie az ügyféltől összegyűjtött regisztráció során
+* Fiók típusa (közösségi, például a Facebookhoz) és helyi fiókok például az e-mail címeket, hogy a fogyasztók hello alkalmazás feliratkozott toosign használhatja
+* Attribútumok (például utónév, irányítószámát és cipőméreten) toobe gyűjtött hello felhasználói regisztráció során
 * Az Azure többtényezős hitelesítés
-* Az összes regisztrációs lap megjelenését és működését
-* Információ (amely akkor jelentkezik, mint a jogcím egy jogkivonatba), hogy az alkalmazás esetén a házirendet kap futtatása befejeződött
+* hello megjelenését és működését minden bejelentkezési lap
+* Információ (amely akkor jelentkezik, mint a jogcím egy jogkivonatba), amely az alkalmazás hello kap hello házirend futtatása után
 
-Hozzon létre több, különböző típusú házirendet az Ön bérlőjében, és felhasználja az alkalmazásokban, igény szerint. Házirendek a különböző alkalmazások felhasználhatók. Erre a rugalmasságra segítségével a fejlesztők határozza meg, és módosítsa a fogyasztói identitással kapcsolatos műveletet, a minimális vagy a kód nem módosultak.
+Hozzon létre több, különböző típusú házirendet az Ön bérlőjében, és felhasználja az alkalmazásokban, igény szerint. Házirendek a különböző alkalmazások felhasználhatók. Erre a rugalmasságra lehetővé teszi a fejlesztők toodefine, és módosítsa a fogyasztói identitással kapcsolatos műveletet, a minimális vagy nincs módosítások tootheir kód.
 
-Házirendek állnak rendelkezésre egy egyszerű fejlesztői felületen keresztül. Az alkalmazás elindítja egy házirendet a szabványos HTTP-hitelesítési kérelmek (házirend paraméter átadja a kérésben) használatával, és megkapja a testreszabott jogkivonatot válaszként. Például az egyetlen különbség, hogy a regisztrációs szabályzatban meghívása és invoke egy bejelentkezési házirend kérelmeket között a házirend nevére, amely a "p" lekérdezési karakterlánc-paraméter szerepel:
+Házirendek állnak rendelkezésre egy egyszerű fejlesztői felületen keresztül. Az alkalmazás elindítja egy házirendet a szabványos HTTP-hitelesítési kérelmek (házirend paraméter benyújtása hello kérelem) használatával, és megkapja a testreszabott jogkivonatot válaszként. Hello egyetlen különbség a között, amelyek aktiválják az előfizetési házirend és invoke egy bejelentkezési házirend kérelmeket például hello "p" lekérdezésparaméter karakterlánca használt hello házirend neve:
 
 ```
 
@@ -63,11 +63,11 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 ```
 
-A szabályzat-keretrendszernek kapcsolatos további információkért lásd: [ebben a blogbejegyzésben kapcsolatban az Azure AD B2C meg a nagyvállalati mobilitással és biztonsággal foglalkozó blogban](http://blogs.technet.com/b/ad/archive/2015/11/02/a-look-inside-azuread-b2c-with-kim-cameron.aspx).
+Hello szabályzat-keretrendszernek kapcsolatos további információkért lásd: [ebben a blogbejegyzésben kapcsolatban az Azure AD B2C a hello nagyvállalati mobilitással és biztonsággal foglalkozó blogban](http://blogs.technet.com/b/ad/archive/2015/11/02/a-look-inside-azuread-b2c-with-kim-cameron.aspx).
 
 ## <a name="create-a-sign-up-or-sign-in-policy"></a>Regisztráció vagy bejelentkezés házirend létrehozása
 
-Ez a házirend mindkét fogyasztói előfizetési & bejelentkezési élmény egyetlen konfigurációval kezeli. Fogyasztók le a megfelelő elérési utat (regisztráció vagy bejelentkezés) attól függően, hogy a helyi rendszer vezetett. Azt is bemutatja a jogkivonatokat, amelyek az alkalmazás sikeres regisztrációra vagy bejelentkezések kap tartalmát.  A kód a minta a regisztráció vagy bejelentkezés házirend [érhető el itt](active-directory-b2c-devquickstarts-web-dotnet-susi.md).  Ajánlott maszkolandó, hogy a regisztrációs szabályzatban, és a bejelentkezési házirend keresztül használja ezt a házirendet is.  
+Ez a házirend mindkét fogyasztói előfizetési & bejelentkezési élmény egyetlen konfigurációval kezeli. A fogyasztók hello megfelelő elérési utat (regisztráció vagy bejelentkezés) hello környezettől függően le vannak vezetett. Azt is bemutatja hello tartalmát jogkivonatokat, amelyek hello alkalmazás sikeres regisztrációra vagy bejelentkezések fog kapni.  A kód a minta hello regisztráció vagy bejelentkezés házirend [érhető el itt](active-directory-b2c-devquickstarts-web-dotnet-susi.md).  Ajánlott maszkolandó, hogy a regisztrációs szabályzatban, és a bejelentkezési házirend keresztül használja ezt a házirendet is.  
 
 [!INCLUDE [active-directory-b2c-create-sign-in-sign-up-policy](../../includes/active-directory-b2c-create-sign-in-sign-up-policy.md)]
 
@@ -90,16 +90,16 @@ Ez a házirend mindkét fogyasztói előfizetési & bejelentkezési élmény egy
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
 
 ### <a name="how-do-i-link-a-sign-up-or-sign-in-policy-with-a-password-reset-policy"></a>Hogyan hivatkozásra a jelszó-visszaállítási házirend regisztráció vagy bejelentkezés házirenddel?
-A regisztráció vagy bejelentkezés házirendje (helyi fiókoknál) hoz létre, ha megjelenik egy **elfelejtette jelszó?** tapasztalat első oldalán lévő hivatkozásra. Ez a hivatkozás nem automatikusan eseményindító jelszó alaphelyzetbe állítása házirend. 
+A regisztráció vagy bejelentkezés házirendje (helyi fiókoknál) hoz létre, ha megjelenik egy **elfelejtette jelszó?** hello hello tapasztalat első oldalán lévő hivatkozásra. Ez a hivatkozás nem automatikusan eseményindító jelszó alaphelyzetbe állítása házirend. 
 
-Ehelyett a hiba kódja  **`AADB2C90118`**  küld vissza az alkalmazást. Ez a hibakód kezelni a megadott jelszó-visszaállítási házirend figyelőn kell az alkalmazást. További információkért lásd: a [minta azt mutatja be a módszert is, amely a linking házirendek](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-DotNet-SUSI).
+Ehelyett hello hibakód  **`AADB2C90118`**  tooyour app adja vissza. Az alkalmazás a hibakóddal kell toohandle figyelőn egy adott jelszó-visszaállítási házirend. További információkért lásd: a [minta azt mutatja be a hello módszert is, amely a linking házirendek](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-DotNet-SUSI).
 
 ### <a name="should-i-use-a-sign-up-or-sign-in-policy-or-a-sign-up-policy-and-a-sign-in-policy"></a>A regisztráció vagy bejelentkezés házirend vagy a regisztrációs szabályzatban, és a bejelentkezési házirend érdemes használni?
 Azt javasoljuk, hogy a regisztrációs szabályzatban, és a bejelentkezési házirend keresztül használja a regisztráció vagy bejelentkezés házirend.  
 
-A regisztráció vagy bejelentkezés házirend a bejelentkezési házirend-nál több képességekkel rendelkezik. Lehetővé teszi, hogy lap felhasználói felületének testreszabása és a honosításhoz jobb támogatást. 
+hello regisztráció vagy bejelentkezés házirend hello bejelentkezési házirend-nál több képességekkel rendelkezik. Lehetővé teszi a toouse lap felhasználói felületének testreszabása és a honosításhoz jobb támogatást. 
 
-A bejelentkezési házirend ajánlott, nem kell szerepelnie a házirendeket, ha csak kisebb testreszabási lehetőségek szükséges branding, és szeretné a jelszó alaphelyzetbe állítása azt beépítve.
+hello bejelentkezési házirend ajánlott toolocalize a házirendek nem szükséges, ha csak kisebb testreszabási lehetőségek szükséges branding, és szeretné a jelszó alaphelyzetbe állítása azt beépítve.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Token, munkamenet és egyszeri bejelentkezés konfigurálása](active-directory-b2c-token-session-sso.md)

@@ -1,6 +1,6 @@
 ---
-title: "Nagy mennyiségű adatok feltöltése a Data Lake Store kapcsolat nélküli módszerrel |} Microsoft Docs"
-description: "Adatok másolása az Azure Storage blobs Data Lake store a AdlCopy eszközzel"
+title: "kapcsolat nélküli módszerrel adatok Data Lake Store nagy mennyiségű aaaUpload |} Microsoft Docs"
+description: "Használjon hello AdlCopy eszköz toocopy adatokat az Azure Storage-blobok tooData Lake Store"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: b469c0ebe9838a1ea986cff3043e3008941e9aa9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 42ef75142a26ebfab05d89614782a54c244c4bcb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-importexport-service-for-offline-copy-of-data-to-data-lake-store"></a>Data Lake Store-adatok offline példányát az Azure Import/Export szolgáltatás használata
-Ebből a cikkből megtudhatja, hogyan hatalmas adatok másolása (> 200 GB-os) azokat az Azure Data Lake Store módszerrel offline másolat, például a [Azure Import/Export szolgáltatás](../storage/common/storage-import-export-service.md). Pontosabban ebben a cikkben példa fájl 339,420,860,416 bájt vagy körülbelül 319 GB-TAL a lemezen. Most hívja meg a fájl 319GB.tsv.
+# <a name="use-hello-azure-importexport-service-for-offline-copy-of-data-toodata-lake-store"></a>Hello Azure Import/Export szolgáltatás tooData Lake adattárban offline másolatának használata
+Ebből a cikkből megtudhatja, hogyan toocopy túl nagy adatkészletek (> 200 GB-os) az Azure Data Lake Store offline másolat módszerek, például a hello segítségével történő [Azure Import/Export szolgáltatás](../storage/common/storage-import-export-service.md). Ebben a cikkben példaként használt hello fájl többek között 339,420,860,416 bájt vagy körülbelül 319 GB-TAL a lemezen. Most hívja meg a fájl 319GB.tsv.
 
-Az Azure Import/Export szolgáltatás segítségével átvitele nagy mennyiségű adatok biztonsága érdekében az Azure Blob storage szállítási merevlemez-meghajtók számára egy Azure-adatközpontban.
+hello Azure Import/Export szolgáltatás segít tootransfer nagymennyiségű adat további biztonságosan tooAzure Blob-tároló szállítási merevlemez-meghajtók tooan Azure-adatközpontban.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Mielőtt hozzákezd, rendelkeznie kell a következő:
+Mielőtt hozzákezd, rendelkeznie kell hello következő:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
 * **Azure-tárfiók**.
-* **Egy Azure Data Lake Store-fiók**. Hogyan hozhat létre ilyet, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
+* **Egy Azure Data Lake Store-fiók**. Útmutatást toocreate egy, lásd: [Ismerkedés az Azure Data Lake Store](data-lake-store-get-started-portal.md)
 
-## <a name="preparing-the-data"></a>Az adatok előkészítése
-A Import/Export szolgáltatás használata előtt át kell helyezni az adatfájl törés **azokat, amelyek 200 GB-nál kisebb másolatok** mérete. 200 GB-nál nagyobb fájlokat nem működik az import eszközt. Az oktatóanyag azt ossza fel a fájl minden 100 GB méretű adattömböket írnak. Ehhez a [Cygwin](https://cygwin.com/install.html). Cygwin támogatja a Linux-parancsok. Ebben az esetben használja a következő parancsot:
+## <a name="preparing-hello-data"></a>Hello adatok előkészítése
+Hello Import/Export szolgáltatás használata előtt break hello adatok fájl toobe átvitt **azokat, amelyek 200 GB-nál kisebb másolatok** mérete. hello import eszközt 200 GB-nál nagyobb fájlokat nem működik. Az oktatóanyag azt felosztása hello fájl adattömbök 100 GB. Ehhez a [Cygwin](https://cygwin.com/install.html). Cygwin támogatja a Linux-parancsok. Ebben az esetben használja a következő parancs hello:
 
     split -b 100m 319GB.tsv
 
-A felosztott művelet a következő nevű fájlokat hozza létre.
+hello split művelet a következő neveket hello hozza létre a fájlokat.
 
     319GB.tsv-part-aa
 
@@ -48,28 +48,28 @@ A felosztott művelet a következő nevű fájlokat hozza létre.
     319GB.tsv-part-ad
 
 ## <a name="get-disks-ready-with-data"></a>Felkészülés a lemezek adatokkal
-Kövesse az utasításokat a [az Azure Import/Export szolgáltatás használatával](../storage/common/storage-import-export-service.md) (alatt a **készítse elő a meghajtók** szakasz) a merevlemez-meghajtók előkészítéséhez. Az általános feladatütemezési itt található:
+Hello utasításait követve [hello Azure Import/Export szolgáltatás használata](../storage/common/storage-import-export-service.md) (alatt hello **készítse elő a meghajtók** szakaszban) tooprepare a merevlemez-meghajtók. Itt az általános feladatütemezési hello:
 
-1. Be kell szereznie egy merevlemezt, amely megfelel a követelmény az Azure Import/Export szolgáltatás használt.
-2. Az adatok másolatának tárolására után a szállított az Azure-adatközpontban az Azure storage-fiók azonosítása.
-3. Használja a [Azure Import/Export eszköz](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409), parancssori segédprogramot. Íme egy minta kódrészletet, amely bemutatja, hogyan használhatja az eszközt.
+1. Be kell szereznie egy merevlemezt, amely megfelel a hello követelmény toobe hello Azure Import/Export szolgáltatás használt.
+2. Hello adatok másolatának tárolására után az Azure-adatközpontban szállított toohello Azure storage-fiók azonosítása.
+3. Használjon hello [Azure Import/Export eszköz](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409), parancssori segédprogramot. Íme egy minta kódrészletet, amely bemutatja, hogyan toouse hello eszköz.
 
     ````
     WAImportExport PrepImport /sk:<StorageAccountKey> /t: <TargetDriveLetter> /format /encrypt /logdir:e:\myexportimportjob\logdir /j:e:\myexportimportjob\journal1.jrn /id:myexportimportjob /srcdir:F:\demo\ExImContainer /dstdir:importcontainer/vf1/
     ````
-    Lásd: [az Azure Import/Export szolgáltatás használatával](../storage/common/storage-import-export-service.md) a minta további részletek.
-4. Az előző parancs létrehoz egy napló fájlt a megadott helyen. Ez a napló fájl segítségével az importálási feladat létrehozása a [a klasszikus Azure portálon](https://manage.windowsazure.com).
+    Lásd: [hello Azure Import/Export szolgáltatás használata](../storage/common/storage-import-export-service.md) a minta további részletek.
+4. hello előző parancs naplót hoz létre egy fájlban a következő hello megadott helyre. A napló fájl toocreate az importálási feladat a hello használata [a klasszikus Azure portálon](https://manage.windowsazure.com).
 
 ## <a name="create-an-import-job"></a>Importálási feladat létrehozása
-Mostantól létrehozhat egy importálási feladat található utasítások segítségével [az Azure Import/Export szolgáltatás használatával](../storage/common/storage-import-export-service.md) (alatt a **az importálási feladat létrehozása** szakaszban). Az importálási feladathoz más adatokkal is adja meg a napló-fájlját a merevlemez-meghajtók előkészítése során létrehozott.
+Mostantól létrehozhat egy importálási feladat hello utasításait használatával [hello Azure Import/Export szolgáltatás használata](../storage/common/storage-import-export-service.md) (hello alatt **létrehozás hello importálási feladat** szakaszban). Az importálási feladat más adatokkal is adja meg hello lemezmeghajtók előkészítése során létrehozott hello napló fájlt.
 
-## <a name="physically-ship-the-disks"></a>Fizikailag küldje el a lemezek
-Fizikailag most szállítása a lemezt egy Azure-adatközpontban. Hiba, a adatokat másolja át az Azure Storage blobs szolgáltatásban, az importálási feladat létrehozásakor megadott. Is a feladat létrehozásakor, ha később, a nyomon követési információk választotta mostantól térjen vissza az importálás és frissítés a nyomon követési száma.
+## <a name="physically-ship-hello-disks"></a>Fizikailag küldje el a hello lemezek
+Fizikailag most szállított hello lemezek tooan Azure-adatközpontban. Itt hello adatok másolásakor toohello Azure Storage blobs hello importálási feladat létrehozásakor megadott keresztül. Is hello feladat létrehozásakor választotta tooprovide hello nyomkövetési adatokat később, ha most lépjen vissza tooyour importálási feladat és a frissítés hello követési szám.
 
-## <a name="copy-data-from-azure-storage-blobs-to-azure-data-lake-store"></a>Adatok másolása az Azure Storage blobs szolgáltatásban az Azure Data Lake Store
-Után az importálási feladat állapotát jeleníti meg, hogy végzett, ellenőrizheti, hogy az adatok érhető el az Azure Storage blobs volt megadva. Számos módszer a blobok adatok áthelyezése az Azure Data Lake Store használhatja. Az összes elérhető beállítások adatfeltöltési, lásd: [adatok bevitele a Data Lake Store](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store).
+## <a name="copy-data-from-azure-storage-blobs-tooazure-data-lake-store"></a>Adatok másolása az Azure Storage blobs tooAzure Data Lake Store
+Hello hello állapotának után importálási feladat, hogy végzett, ellenőrizheti, hogy hello Azure Storage blobs volt megadva az rendelkezésre áll-e hello adatokat jeleníti meg. Módszerek toomove, hogy hello adatait blobok tooAzure Data Lake Store számos használhatja. Elérhető lehetőségek adatfeltöltési hello összes, a következő témakörben: [adatok bevitele a Data Lake Store](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store).
 
-Ez a szakasz azt adja meg a JSON-definíciók, amelyek segítségével hozzon létre egy Azure Data Factory-folyamat az adatok másolása. A JSON-definíciókban is használhatja a [Azure-portálon](../data-factory/data-factory-copy-activity-tutorial-using-azure-portal.md), vagy [Visual Studio](../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [Azure PowerShell](../data-factory/data-factory-copy-activity-tutorial-using-powershell.md).
+Ez a szakasz azt biztosít hello JSON-definíciók használható toocreate egy Azure Data Factory-folyamat az adatok másolása. Használhatja a JSON-definíciókban hello [Azure-portálon](../data-factory/data-factory-copy-activity-tutorial-using-azure-portal.md), vagy [Visual Studio](../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [Azure PowerShell](../data-factory/data-factory-copy-activity-tutorial-using-powershell.md).
 
 ### <a name="source-linked-service-azure-storage-blob"></a>Forrás társított szolgáltatás (Azure Storage-blobba)
 ````
@@ -93,9 +93,9 @@ Ez a szakasz azt adja meg a JSON-definíciók, amelyek segítségével hozzon l�
         "type": "AzureDataLakeStore",
         "description": "",
         "typeProperties": {
-            "authorization": "<Click 'Authorize' to allow this data factory and the activities it runs to access this Data Lake Store with your access rights>",
+            "authorization": "<Click 'Authorize' tooallow this data factory and hello activities it runs tooaccess this Data Lake Store with your access rights>",
             "dataLakeStoreUri": "https://<adls_account_name>.azuredatalakestore.net/webhdfs/v1",
-            "sessionId": "<OAuth session id from the OAuth authorization session. Each session id is unique and may only be used once>"
+            "sessionId": "<OAuth session id from hello OAuth authorization session. Each session id is unique and may only be used once>"
         }
     }
 }
@@ -187,23 +187,23 @@ Ez a szakasz azt adja meg a JSON-definíciók, amelyek segítségével hozzon l�
     }
 }
 ````
-További információkért lásd: [helyezze át az adatokat az Azure Storage-blobból az Azure Data Lake Store Azure Data Factory használatával](../data-factory/data-factory-azure-datalake-connector.md).
+További információkért lásd: [áthelyezni az adatokat az Azure Storage blob tooAzure Data Lake Store használatának Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md).
 
-## <a name="reconstruct-the-data-files-in-azure-data-lake-store"></a>Hozza létre újból az Azure Data Lake Store-adatfájlok
-A fájl, 319 GB, és úgy, hogy az Azure Import/Export szolgáltatás használatával sikerült továbbítani túllépte azt le a kisebb méretű fájlok használatába azt. Most, hogy az adatok Azure Data Lake Store-ban, hogy a fájl eredeti méretének is helyreállítására. A következő Azure PowerShell cmldts ehhez használhatja.
+## <a name="reconstruct-hello-data-files-in-azure-data-lake-store"></a>Hozza létre újból az Azure Data Lake Store-adatfájlok hello
+A fájl, 319 GB, és elromlik azt kisebb méretű fájlok be, hogy hello Azure Import/Export szolgáltatás segítségével sikerült továbbítani használatába azt. Most, hogy hello adatokat az Azure Data Lake Store, azt is helyreállítására hello tooits eredeti méretét. Ezért a következő Azure PowerShell cmldts toodo hello is használhatja.
 
 ````
-# Login to our account
+# Login tooour account
 Login-AzureRmAccount
 
 # List your subscriptions
 Get-AzureRmSubscription
 
-# Switch to the subscription you want to work with
+# Switch toohello subscription you want toowork with
 Set-AzureRmContext –SubscriptionId
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
-# Join  the files
+# Join  hello files
 Join-AzureRmDataLakeStoreItem -AccountName "<adls_account_name" -Paths "/importeddatafeb8job/319GB.tsv-part-aa","/importeddatafeb8job/319GB.tsv-part-ab", "/importeddatafeb8job/319GB.tsv-part-ac", "/importeddatafeb8job/319GB.tsv-part-ad" -Destination "/importeddatafeb8job/MergedFile.csv”
 ````
 

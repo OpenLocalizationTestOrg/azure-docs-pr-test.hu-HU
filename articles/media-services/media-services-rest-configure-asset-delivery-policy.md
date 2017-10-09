@@ -1,6 +1,6 @@
 ---
-title: "Konfigurálása az adategység továbbítási házirendjeit Media Services REST API használatával |} Microsoft Docs"
-description: "Ez a témakör bemutatja, hogyan konfigurálhatja a különböző adategység továbbítási házirendjeit Media Services REST API használatával."
+title: "aaaConfiguring adategység továbbítási házirendjeit Media Services REST API használatával |} Microsoft Docs"
+description: "Ez a témakör bemutatja, hogyan tooconfigure különböző adategység továbbítási házirendjeit Media Services REST API használatával."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 7ffbde11b943961dd3a3b5edebd0cfd52429e845
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8203230d570935e17382c598820dbfe42f83f8d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-asset-delivery-policies"></a>Adategység továbbítási házirendjeit konfigurálása
 [!INCLUDE [media-services-selector-asset-delivery-policy](../../includes/media-services-selector-asset-delivery-policy.md)]
 
-Ha azt tervezi, hogy dinamikusan titkosított eszközökre, a Media Services-továbbítási munkafolyamat lépésben továbbítási házirendjeit eszközök konfigurálását végzi. Hogyan szeretné az eszköz kézbesítendő közli az adategység továbbítási házirendjét Media Services: be kell az eszköz dinamikusan csomagolható (például MPEG DASH, HLS, Smooth Streaming, vagy az összes), az eszköz dinamikusan titkosítani szeretné-e, és hogy melyik adatfolyam-protokoll (boríték vagy közös titkosítási).
+Ha azt tervezi, hogy dinamikusan titkosított toodeliver eszközök, hello lépések egyikét a hello Media Services content kézbesítési munkafolyamatot továbbítási házirendjeit eszközök konfigurálását. hogyan szeretné az eszköz toobe kézbesíteni a közli hello objektumtovábbítási szabályzat Media Services: az adatfolyam-továbbítási protokoll kell az eszköz dinamikusan csomagolható (például MPEG DASH, HLS, Smooth Streaming, vagy az összes), toodynamically szeretné-e az eszköz titkosítása és hogyan (boríték vagy közös titkosítási).
 
-Ez a témakör ismerteti, miért és hogyan hozza létre és konfigurálja az adategység továbbítási házirendjeit.
+Ez a témakör ismerteti, miért és hogyan toocreate, és konfigurálja az adategység továbbítási házirendjeit.
 
 >[!NOTE]
->Az AMS-fiók létrehozásakor a rendszer hozzáad egy **alapértelmezett** streamvégpontot a fiókhoz **Leállítva** állapotban. A tartalom streamelésének megkezdéséhez, valamint a dinamikus csomagolás és a dinamikus titkosítás kihasználásához a tartalomstreameléshez használt streamvégpontnak **Fut** állapotban kell lennie. 
+>Az AMS-fiók létrehozásakor egy **alapértelmezett** adatfolyam-továbbítási végpontra tooyour fiók kerül hello **leállítva** állapotát. a dinamikus csomagolás és a dinamikus titkosítás tartalmat, és hajtsa végre a megfelelő előnyeit streaming toostart hello streamvégpontra, amelyből el kívánja toostream tartalom toobe rendelkezik hello **futtató** állapotát. 
 >
->Is hogy fogja tudni használni a dinamikus csomagolás és a dinamikus titkosítás az objektumot kell foglal magában adaptív sávszélességű MP4 vagy Smooth Streaming-fájlsorozattá.
+>Emellett toobe képes toouse dinamikus csomagolás és a dinamikus titkosítás az eszköz tartalmaznia kell egy adaptív sávszélességű MP4 vagy Smooth Streaming-fájlsorozattá készletét.
 
-Eltérő házirendek a azonos eszközhöz alkalmazhat. Például PlayReady-titkosítás beállíthat MPEG DASH vagy HLS, Smooth Streaming és AES Envelope titkosítás. A továbbítási szabályzatban meg nem határozott protokollok streameléshez való használatát a rendszer nem engedélyezi (ilyen lehet például, ha csupán egyetlen szabályzatot állít be, amely kizárólag a HLS-protokoll használatát tartalmazza). Kivételt jelent, ha egyáltalán nem állít be objektumtovábbítási szabályzatot. Ebben az esetben a rendszer az összes protokollt engedélyezi.
+Eltérő házirendek toohello alkalmazhat azonos eszköz. Például alkalmazhat PlayReady titkosítási tooSmooth Streaming és AES Envelope titkosítási tooMPEG DASH vagy HLS. Nincsenek megadva a továbbítási szabályzatban protokollok (például hozzáadhat egy szabályzatban, amely csak HLS hello protokoll) le lesz tiltva streaming. hello kivétel toothis jelent, ha egyáltalán nem állít be objektumtovábbítási szabályzatot egyáltalán. Ezt követően hello törölje a jelet minden protokoll engedélyezett.
 
-Ha egy tárolási titkosított eszköz kézbesíteni szeretné, konfigurálnia kell az adategység továbbítási házirendjét. Mielőtt az eszköz továbbítható, a streamelési kiszolgáló a tárolás titkosítása eltávolítja, és az adatfolyamokat, a tartalom a megadott objektumtovábbítási szabályzat segítségével. Például az Advanced Encryption Standard (AES) boríték titkosítási kulccsal titkosított objektumot, hogy állítsa a házirend típusát **DynamicEnvelopeEncryption**. Tárolás titkosítása és adatfolyamként küldje el az eszköz szövegként, állítsa be a házirend típusát **NoDynamicEncryption**. Az alábbi példák, amelyek bemutatják, hogyan konfigurálhatja ezeket a házirend-típusainak.
+Ha azt szeretné, hogy a tároló titkosított eszköz toodeliver, konfigurálnia kell a hello adategység továbbítási házirendjét. Mielőtt az eszköz továbbítható, hello adatfolyam-kiszolgáló eltávolítása hello tárolás titkosítása és adatfolyamokat a tartalom hello segítségével megadott továbbítási házirendjét. Például toodeliver az eszköz titkosítva Advanced Encryption Standard (AES) boríték titkosítási kulcs, állítsa be a hello házirend típusa túl**DynamicEnvelopeEncryption**. tooremove tárolás titkosítása és az adatfolyam hello eszköz törlése, hello beállítása hello házirend típusa túl**NoDynamicEncryption**. Példák hogyan tooconfigure ezeket a házirend-típusainak kövesse.
 
-Attól függően, hogyan konfigurálja az adategység továbbítási házirendjét lehetővé válik a dinamikus csomag dinamikusan titkosítani és adatfolyamként küldje el a következő adatfolyam-továbbítási protokollok: Smooth Streaming, HLS, MPEG DASH-streameket.
+Attól függően, hogyan hello objektumtovábbítási szabályzat konfigurálása, lenne képes toodynamically csomag kell, dinamikusan titkosítani és adatfolyamként küldje el a következő adatfolyam-továbbítási protokollok hello: Smooth Streaming, HLS, MPEG DASH-streameket.
 
-Az alábbi listában láthatók a formátumok adatfolyam Smooth, HLS, DASH segítségével.
+a következő listán mutatja hello hello formázza toostream Smooth, HLS, DASH használatát.
 
 Smooth Streaming:
 
@@ -53,30 +53,30 @@ MPEG DASH
 {streaming endpoint név-media services fiók name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
 
-További információk az objektumok közzétételéről és a streamelési URL-cím létrehozásáról: [Build a streaming URL](media-services-deliver-streaming-content.md) (Streamelési URL-cím létrehozása).
+Hogyan toopublish egy eszköz és -buildek a streamelési URL-cím: kapcsolatos utasításokat [streamelési URL-cím összeállítása](media-services-deliver-streaming-content.md).
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-* Egy AssetDeliveryPolicy társított egy eszköz, amíg az eszköz számára, hogy létezik egy (adatfolyam) OnDemand-kereső nem törölhető. Az ajánljuk, hogy a házirend törlése előtt távolítsa el a házirend az eszköz.
-* A streamelési lokátorok létrehozásához egy tárolási titkosított eszköz nem hozható létre, ha nincs objektumtovábbítási szabályzat beállítása.  Ha az eszköz nem alkalmaz, a rendszer tájékoztatja egy kereső létrehozása és adatfolyamként küldje el az eszköz nélkül objektumtovábbítási szabályzat szövegként.
-* Több adategység továbbítási házirendjeit egyetlen eszköz társított is rendelkezik, de csak egyik módja egy adott AssetDeliveryProtocol kezelni lehet megadni.  Tehát ha próbál-e a csatolás két továbbítási házirendjeit, adja meg a AssetDeliveryProtocol.SmoothStreaming protokoll, amely hibát eredményez, mert a rendszer nem tudja, melyik úgy, hogy alkalmazza, ha egy ügyfél egy Smooth Streaming-kérelmet küld.
-* Ha egy eszköz rendelkezik egy meglévő streamelési locator, nem egy új házirendet csatolása az eszközhöz, megszünteti az eszköz a meglévő házirend, és nem frissíthetők a továbbítási szabályzatban az eszközhöz társított.  Először azt kell távolítsa el a streamelési locator, állíthatja a házirendeket, és hozza létre a streamelési lokátort.  Az azonos locatorId segítségével használhatja, ha a streamelési locator hozza létre újból, de győződjön meg arról, hogy nem problémákat okozhat az ügyfelek tartalmat a forrás vagy egy alárendelt CDN gyorsítótárazható óta.
+* Egy AssetDeliveryPolicy társított egy eszköz, amíg az eszköz számára, hogy létezik egy (adatfolyam) OnDemand-kereső nem törölhető. hello ajánljuk tooremove hello házirend hello eszközből, hello házirend törlése előtt.
+* A streamelési lokátorok létrehozásához egy tárolási titkosított eszköz nem hozható létre, ha nincs objektumtovábbítási szabályzat beállítása.  Ha hello eszköz nem alkalmaz, hello rendszer tájékoztatja lokátor és adatfolyam hello eszköz a hello törlése nélkül objektumtovábbítási szabályzat létrehozása.
+* Egyetlen eszköz társított több adategység továbbítási házirendjeit is rendelkezik, de csak egyirányú toohandle egy adott AssetDeliveryProtocol adhat meg.  Tehát ha toolink két továbbítási házirendjeit által megadott hello AssetDeliveryProtocol.SmoothStreaming protokoll, amely a hibát okoz, mivel a hello rendszer nem tudja, melyik felel meg szeretné tooapply amikor egy ügyfél Smooth Streaming kérelmet.
+* Ha egy eszköz rendelkezik egy meglévő streamelési locator, nem egy új házirend toohello eszköz hivatkozásra, leválasztását hello eszköz a meglévő házirend, és nem frissíthetők a továbbítási szabályzatban hello eszközhöz társított.  Ön először tooremove hello streamelési locator rendelkezik, állíthatja hello házirendeket és majd hozza újra létre a lokátor hello.  Hello azonos locatorId ismételt létrehozásakor streamelési locator, de hello győződjön meg arról, hogy problémákat nem okozhat az ügyfelek, mivel a tartalom gyorsítótárazható hello származási vagy egy alárendelt CDN által használható.
 
 >[!NOTE]
 
 >A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Kapcsolódás a Media Services szolgáltatáshoz
+## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
 
-Az AMS API-hoz kapcsolódáshoz információkért lásd: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
+>Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
 
 ## <a name="clear-asset-delivery-policy"></a>Objektumtovábbítási szabályzat törlése
 ### <a id="create_asset_delivery_policy"></a>Objektumtovábbítási szabályzat létrehozása
-A következő HTTP-kérést hoz létre, amely meghatározza a dinamikus titkosítás nem alkalmazandó, és a következő protokoll egyik adatfolyam továbbítására objektumtovábbítási szabályzat: MPEG DASH, HLS vagy Smooth Streaming protokollokat. 
+hello következő HTTP-kérelem hoz létre, amelyben toonot alkalmazni a dinamikus titkosítás és toodeliver hello adatfolyam egyik sem szerepel a következő hello protokollok objektumtovábbítási szabályzat: MPEG DASH, HLS vagy Smooth Streaming protokollokat. 
 
-Milyen értékeket is megadhat egy AssetDeliveryPolicy létrehozásakor, témakörben olvashat a [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
+Információk milyen értékeket adhat meg egy AssetDeliveryPolicy létrehozásakor, a következő témakörben: hello [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
 
 A kérelem:
 
@@ -123,7 +123,7 @@ Válasz:
     "LastModified":"2015-02-08T06:21:27.6908329Z"}
 
 ### <a id="link_asset_with_asset_delivery_policy"></a>Kapcsolat eszköz az adategység továbbítási házirendjét
-A következő HTTP-kérelem az adategység továbbítási házirendjét, hogy a megadott eszköz hivatkozásokat tartalmaz.
+a következő HTTP-kérelem hivatkozások hello hello eszköz toohello objektumtovábbítási szabályzat számára megadott.
 
 A kérelem:
 
@@ -146,13 +146,13 @@ Válasz:
 
 
 ## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a>Objektumtovábbítási szabályzat DynamicEnvelopeEncryption
-### <a name="create-content-key-of-the-envelopeencryption-type-and-link-it-to-the-asset"></a>A EnvelopeEncryption típusú tartalomkulcs létrehozása és csatolása az eszközhöz
-DynamicEnvelopeEncryption objektumtovábbítási szabályzat megadása esetén ügyeljen arra, hogy az eszköz kapcsolódik egy tartalomkulcsot a EnvelopeEncryption típusú kell. További információkért lásd: [tartalomkulcs létrehozása](media-services-rest-create-contentkey.md)).
+### <a name="create-content-key-of-hello-envelopeencryption-type-and-link-it-toohello-asset"></a>Hello EnvelopeEncryption típusú tartalomkulcs létrehozása és csatolása toohello eszköz
+DynamicEnvelopeEncryption objektumtovábbítási szabályzat megadása esetén kell toomake meg arról, hogy toolink az eszköz tooa tartalom hello EnvelopeEncryption típus kulcsát. További információkért lásd: [tartalomkulcs létrehozása](media-services-rest-create-contentkey.md)).
 
 ### <a id="get_delivery_url"></a>Kézbesítési URL-cím beszerzése
-A megadott kézbesítési módszert a tartalom kulcs az előző lépésben létrehozott kézbesítési URL beolvasása. Egy ügyfél használ a visszaadott URL-cím kérése az AES-kulccsal, vagy a PlayReady licenc lejátszásához ahhoz a védett tartalomhoz.
+Get hello kézbesítési URL-címe hello megadott hello előző lépésben létrehozott hello tartalomkulcsot a kézbesítési módszert. Egy ügyfél URL-cím toorequest visszaadott hello használ az AES-kulcs vagy egy PlayReady licenc rendelés tooplayback hello védett tartalmakat.
 
-Adja meg az URL-címének a HTTP-kérelem törzse beolvasása. Véd a tartalmaknak a PlayReady, a Media Services PlayReady licenc licenckérési URL-cím kérése 1 használ a keyDeliveryType: {"keyDeliveryType": 1}. Véd-e a tartalom a boríték titkosított, egy kulcs-licenckérési URL-cím kérése az keyDeliveryType 2 megadásával: {"keyDeliveryType": 2}.
+Adja meg hello URL-cím tooget hello típusú hello hello HTTP-kérelem törzsét. Véd a tartalmaknak a PlayReady, a Media Services PlayReady licenc licenckérési URL-cím kérése 1 használ hello keyDeliveryType: {"keyDeliveryType": 1}. Véd-e a tartalom hello boríték titkosított, egy kulcs-licenckérési URL-cím kérése az keyDeliveryType 2 megadásával: {"keyDeliveryType": 2}.
 
 A kérelem:
 
@@ -188,9 +188,9 @@ Válasz:
 
 
 ### <a name="create-asset-delivery-policy"></a>Objektumtovábbítási szabályzat létrehozása
-A következő HTTP-kérést hoz létre a **AssetDeliveryPolicy** dinamikus boríték titkosítási alkalmazandó konfigurált (**DynamicEnvelopeEncryption**) számára a **HLS** protokoll (ebben a példában egyéb protokollok le lesz tiltva streaming). 
+hello következő HTTP-kérelem létrehozása hello **AssetDeliveryPolicy** , amely a konfigurált tooapply dinamikus boríték titkosítás (**DynamicEnvelopeEncryption**) toohello **HLS**protokoll (ebben a példában egyéb protokollok le lesz tiltva streaming). 
 
-Milyen értékeket is megadhat egy AssetDeliveryPolicy létrehozásakor, témakörben olvashat a [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
+Információk milyen értékeket adhat meg egy AssetDeliveryPolicy létrehozásakor, a következő témakörben: hello [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
 
 A kérelem:
 
@@ -232,16 +232,16 @@ Válasz:
 Lásd: [hivatkozás eszköz az adategység továbbítási házirendjét](#link_asset_with_asset_delivery_policy)
 
 ## <a name="dynamiccommonencryption-asset-delivery-policy"></a>Objektumtovábbítási szabályzat DynamicCommonEncryption
-### <a name="create-content-key-of-the-commonencryption-type-and-link-it-to-the-asset"></a>A CommonEncryption típusú tartalomkulcs létrehozása és csatolása az eszközhöz
-DynamicCommonEncryption objektumtovábbítási szabályzat megadása esetén ügyeljen arra, hogy az eszköz kapcsolódik egy tartalomkulcsot a CommonEncryption típusú kell. További információkért lásd: [tartalomkulcs létrehozása](media-services-rest-create-contentkey.md)).
+### <a name="create-content-key-of-hello-commonencryption-type-and-link-it-toohello-asset"></a>Hello CommonEncryption típusú tartalomkulcs létrehozása és csatolása toohello eszköz
+DynamicCommonEncryption objektumtovábbítási szabályzat megadása esetén kell toomake meg arról, hogy toolink az eszköz tooa tartalom hello CommonEncryption típus kulcsát. További információkért lásd: [tartalomkulcs létrehozása](media-services-rest-create-contentkey.md)).
 
 ### <a name="get-delivery-url"></a>Kézbesítési URL-cím beszerzése
-Kézbesítési URL beolvasása a PlayReady kézbesítési módszert a tartalom az előző lépésben létrehozott kulcs. Egy ügyfél a védett tartalmak lejátszásához sorrendben PlayReady licencet lekérni a visszaadott URL-címet használ. További információkért lásd: [kézbesítési URL-cím beszerzése](#get_delivery_url).
+Hello kézbesítési URL-cím beszerzése a hello PlayReady kézbesítési módszert a hello előző lépésben létrehozott hello tartalomkulcsot. Egy ügyfél URL-cím toorequest rendelés tooplayback hello a PlayReady licenc védett tartalom visszaadott hello használ. További információkért lásd: [kézbesítési URL-cím beszerzése](#get_delivery_url).
 
 ### <a name="create-asset-delivery-policy"></a>Objektumtovábbítási szabályzat létrehozása
-A következő HTTP-kérést hoz létre a **AssetDeliveryPolicy** konfigurált alkalmazni a dynamic common encryption (**DynamicCommonEncryption**) számára a **Smooth Streaming**protokoll (ebben a példában egyéb protokollok le lesz tiltva streaming). 
+hello következő HTTP-kérelem létrehozása hello **AssetDeliveryPolicy** , amely konfigurált tooapply a dynamic common encryption (**DynamicCommonEncryption**) toohello **Smooth Streaming**  protokoll (ebben a példában egyéb protokollok le lesz tiltva streaming). 
 
-Milyen értékeket is megadhat egy AssetDeliveryPolicy létrehozásakor, témakörben olvashat a [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
+Információk milyen értékeket adhat meg egy AssetDeliveryPolicy létrehozásakor, a következő témakörben: hello [AssetDeliveryPolicy meghatározásakor használhatja típusok](#types) szakasz.   
 
 A kérelem:
 
@@ -260,14 +260,14 @@ A kérelem:
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":1,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\/PlayReady\/"}]"}
 
 
-Ha a tartalom Widevine DRM segítségével védeni kívánt, frissítse az AssetDeliveryConfiguration értékeket használatára (amely értéke a 7) WidevineLicenseAcquisitionUrl, és adjon meg egy licenctovábbítási szolgáltatása URL-CÍMÉT. A következő AMS-partnereket segítségével Widevine-licencek segítségével: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
+Ha tooprotect a tartalom Widevine DRM segítségével, hello AssetDeliveryConfiguration értékek toouse WidevineLicenseAcquisitionUrl (amely hello értéke a 7) frissítése, és adjon meg egy licenctovábbítási szolgáltatása hello URL-CÍMÉT. Használhatja a következő AMS-partnereket toohelp Widevine-licencek átadná hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
 
 Példa: 
 
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":2,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":7,\"Value\":\"https:\\/\\/example.net\/WidevineLicenseAcquisition\/"}]"}
 
 > [!NOTE]
-> Widevine titkosításakor csak lenne DASH használatával küldött. Győződjön meg arról, ha meg szeretné adni az objektumtovábbítási protokoll kötőjel (2).
+> Widevine titkosításakor csak lenne képes toodeliver kötőjel használatával. Győződjön meg arról, hogy toospecify kötőjel (2) a hello objektumtovábbítási protokoll.
 > 
 > 
 
@@ -278,7 +278,7 @@ Lásd: [hivatkozás eszköz az adategység továbbítási házirendjét](#link_a
 
 ### <a name="assetdeliveryprotocol"></a>AssetDeliveryProtocol
 
-A következő felsorolás ismerteti értékeket adhatja meg az objektumtovábbítási protokoll.
+hello következő felsorolás ismerteti értékeket is hello objektumtovábbítási protokoll.
 
     [Flags]
     public enum AssetDeliveryProtocol
@@ -313,7 +313,7 @@ A következő felsorolás ismerteti értékeket adhatja meg az objektumtovábbí
 
 ### <a name="assetdeliverypolicytype"></a>AssetDeliveryPolicyType
 
-A következő felsorolás ismerteti, állíthatja be a kézbesítési házirend típusú értékeket.  
+hello következő felsorolás ismerteti, állíthatja be hello kézbesítési házirend típusú értékeket.  
 
     public enum AssetDeliveryPolicyType
     {
@@ -323,12 +323,12 @@ A következő felsorolás ismerteti, állíthatja be a kézbesítési házirend 
         None,
 
         /// <summary>
-        /// The Asset should not be delivered via this AssetDeliveryProtocol. 
+        /// hello Asset should not be delivered via this AssetDeliveryProtocol. 
         /// </summary>
         Blocked, 
 
         /// <summary>
-        /// Do not apply dynamic encryption to the asset.
+        /// Do not apply dynamic encryption toohello asset.
         /// </summary>
         /// 
         NoDynamicEncryption,  
@@ -346,7 +346,7 @@ A következő felsorolás ismerteti, állíthatja be a kézbesítési házirend 
 
 ### <a name="contentkeydeliverytype"></a>ContentKeyDeliveryType
 
-A következő felsorolás ismerteti a segítségével konfigurálhatja a kézbesítési módszert az ügyfél a tartalom kulcs értékeket.
+hello következő felsorolás ismerteti tooconfigure hello a kézbesítési módszer hello tartalom kulcs toohello ügyfél értékeket.
     
     public enum ContentKeyDeliveryType
     {
@@ -379,7 +379,7 @@ A következő felsorolás ismerteti a segítségével konfigurálhatja a kézbes
 
 ### <a name="assetdeliverypolicyconfigurationkey"></a>AssetDeliveryPolicyConfigurationKey
 
-A következő felsorolás ismerteti a kulcsok segítségével kéri le a meghatározott konfigurációját objektumtovábbítási szabályzat konfigurálása és értékeket.
+a következő felsorolás hello értékeket is tooconfigure használt kulcsok tooget adott konfigurációja objektumtovábbítási szabályzat ismerteti.
 
     public enum AssetDeliveryPolicyConfigurationKey
     {
@@ -399,22 +399,22 @@ A következő felsorolás ismerteti a kulcsok segítségével kéri le a meghat�
         EnvelopeBaseKeyAcquisitionUrl,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption in Base64 format.
+        /// hello initialization vector toouse for envelope encryption in Base64 format.
         /// </summary>
         EnvelopeEncryptionIVAsBase64,
 
         /// <summary>
-        /// The PlayReady License Acquisition Url to use for common encryption.
+        /// hello PlayReady License Acquisition Url toouse for common encryption.
         /// </summary>
         PlayReadyLicenseAcquisitionUrl,
 
         /// <summary>
-        /// The PlayReady Custom Attributes to add to the PlayReady Content Header
+        /// hello PlayReady Custom Attributes tooadd toohello PlayReady Content Header
         /// </summary>
         PlayReadyCustomAttributes,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption.
+        /// hello initialization vector toouse for envelope encryption.
         /// </summary>
         EnvelopeEncryptionIV,
 

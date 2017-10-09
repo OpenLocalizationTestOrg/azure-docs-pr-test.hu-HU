@@ -1,12 +1,12 @@
-Ha probléma adódik egy virtuális gép VPN-kapcsolaton keresztüli csatlakoztatása során, ellenőrizze az alábbiakat:
+Ha problémája van tooa virtuális gép a VPN-kapcsolaton keresztül csatlakozó, ellenőrizze a hello következőket:
 
 - Ellenőrizze, hogy a VPN-kapcsolat sikeresen létrejött-e.
-- Ellenőrizze, hogy a virtuális gép magánhálózati IP-címéhez csatlakozik-e.
-- Ha tud csatlakozni a virtuális géphez a magánhálózati IP-címmel, de a számítógép nevével nem, ellenőrizze, hogy a DNS-konfiguráció megfelelő-e. A virtuális gépek névfeloldásának működésével kapcsolatos további információkért lásd [a virtuális gépek névfeloldásával](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) foglakozó cikket.
+- Győződjön meg arról, hogy csatlakozik-e virtuális gép hello toohello magánhálózati IP-címet.
+- Csatlakozhat a virtuális gép toohello hello privát IP-cím, de nem hello a számítógép nevét, ellenőrizze, hogy DNS megfelelően van konfigurálva. A virtuális gépek névfeloldásának működésével kapcsolatos további információkért lásd [a virtuális gépek névfeloldásával](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md) foglakozó cikket.
 
-Ha pont–hely kapcsolattal csatlakozik, ellenőrizze az alábbi elemeket is:
+Pont-pont keresztül kapcsolódik, ellenőrizze a következő további elemek hello:
 
-- Az „ipconfig” használatával ellenőrizze annak a számítógépnek az Ethernet-adapteréhez hozzárendelt IPv4-címet, amelyről a kapcsolatot létesíti. Ha az IP-cím azon virtuális hálózat tartományában található, amelyhez csatlakozni kíván, vagy a VPN-ügyfél címkészletének címtartományában, akkor átfedő címtérről beszélünk. Ilyen átfedés esetén a hálózati forgalom nem éri el az Azure-t, és a helyi hálózaton marad.
-- Ellenőrizze, hogy létrejött-e a VPN-ügyfél konfigurációs csomagja azután, hogy a DNS-kiszolgáló IP-címei meg lettek adva a virtuális hálózathoz. Ha frissítette a DNS-kiszolgáló IP-címeit, hozzon létre és telepítsen egy új VPN-ügyfélkonfigurációs csomagot.
+- Használja az "ipconfig" toocheck hello hozzárendelt, amelyből kapcsolódik hello számítógépen toohello Ethernet-adapter IPv4-címmel. Ha hello IP-cím hello Vnetben, amely csatlakozik hello címtartományán belül, vagy a VPNClientAddressPool hello címtartományán belül, egy átfedő címtér hivatkozott tooas. A címtartomány átfedésben van így, hello hálózati forgalom nem elérni az Azure, a helyi hálózaton hello marad.
+- Győződjön meg arról, hogy hello VPN-konfigurációs ügyfélcsomag készítésének után hello DNS-kiszolgáló IP-címek hello VNet lett megadva. Ha hello DNS-kiszolgáló IP-címének frissítése létrehozása, és egy új VPN-konfigurációs ügyfélcsomag telepítéséhez.
 
-Az RDP-kapcsolatok hibaelhárításával kapcsolatos további információkért lásd [a virtuális gép távoli asztali kapcsolatainak hibaelhárításával](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md) foglalkozó cikket.
+Egy RDP-kapcsolat hibaelhárítással kapcsolatos további információkért lásd: [hibaelhárítása távoli asztali kapcsolatok tooa VM](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).

@@ -1,0 +1,99 @@
+---
+title: "a Service Fabric aaaApplication életciklus |} Microsoft Docs"
+description: "Ismerteti a fejlesztés, telepítése, tesztelési, frissítése, karbantartása és a Service Fabric-alkalmazások eltávolítása."
+services: service-fabric
+documentationcenter: .net
+author: rwike77
+manager: timlt
+editor: 
+ms.assetid: 08837cca-5aa7-40da-b087-2b657224a097
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 06/14/2017
+ms.author: ryanwi
+ms.openlocfilehash: 36cd6081010e83cb8226c8f85d1e912ac9eebd00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 10/06/2017
+---
+# <a name="service-fabric-application-lifecycle"></a>A Service Fabric-alkalmazás életciklusa
+És egyéb platformok, az alkalmazás Azure Service Fabric általában végig kell vinnie a következő fázisok hello: tervezési, fejlesztési, tesztelési, telepítési, frissítésére, karbantartási és eltávolítása. A Service Fabric első osztályú támogatást nyújt a felhőalapú alkalmazásokhoz, a központi telepítés, napi felügyeleti és karbantartási tooeventual leszerelése fejlesztési hello alkalmazás teljes életciklusát. hello modell lehetővé teszi, hogy több különböző szerepkörök tooparticipate hello alkalmazás életciklusa az egymástól függetlenül. Ez a cikk ismerteti a hello API-k áttekintését, és megismerkedhet használatukkal hello különböző szerepkörök hello fázisai hello Service Fabric-alkalmazás életciklusa során.
+
+hello alábbi Microsoft Virtual Academy videó ismerteti, hogyan toomanage az alkalmazás-életciklus:<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=My3Ka56yC_6106218965">
+<img src="./media/service-fabric-application-lifecycle/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">
+</a></center>
+
+## <a name="service-model-roles"></a>Szolgáltatás modell szerepkörök
+hello szolgáltatás modell szerepkörök a következők:
+
+* **Fejlesztői szolgáltatás**: házon belül fejlesztett alkalmazásokra moduláris és általános szolgáltatások rendeltetéssel és több hello-alkalmazásokban használt ugyanerre a típusra vagy különböző. Például a queue szolgáltatás használható a jegykiadási alkalmazás (segélyszolgálat) vagy e-kereskedelmi alkalmazás (kosár) létrehozásához.
+* **Alkalmazásfejlesztő**: alkalmazásokat hoz létre szolgáltatások toosatisfy gyűjteménye integrálásával egyes konkrét követelmények és forgatókönyvekhez. Például az elektronikus kereskedelmi webhely előfordulhat, hogy integrálni a "JSON állapotmentes előtér-szolgáltatás," "Árverés állapotalapú alkalmazások és szolgáltatások szolgáltatás" és "Várólista állapotalapú alkalmazások és szolgáltatások szolgáltatás" toobuild egy auctioning megoldás.
+* **Alkalmazás-rendszergazda**: hello alkalmazás konfigurációja (hello konfigurációs Sablonparaméterek kitöltése), a (leképezési tooavailable erőforrások) központi telepítés és a szolgáltatás-minőségi döntéseket. Például egy alkalmazás-rendszergazda úgy dönt, hello területi beállítást (angol nyelvű az Amerikai Egyesült Államokban vagy hello Japánban, például japán) hello alkalmazás. Egy másik üzembe helyezett alkalmazás különböző beállítással is rendelkezhetnek.
+* **Operátor**: alkalmazások hello Alkalmazáskonfiguráció és hello alkalmazás-rendszergazda által meghatározott követelmények alapján telepíti. Operátor például kiépítését és hello alkalmazást telepít, és biztosítja, hogy fut-e az Azure-ban. Operátorok alkalmazás állapotának és teljesítményének adatainak figyelése és hello fizikai infrastruktúra karbantartása, igény szerint.
+
+## <a name="develop"></a>Fejlesztés
+1. A *fejlesztői szolgáltatás* házon belül fejlesztett alkalmazásokra különböző típusú szolgáltatásokat hello segítségével [Reliable Actors](service-fabric-reliable-actors-introduction.md) vagy [Reliable Services](service-fabric-reliable-services-introduction.md) programozási modellt.
+2. A *fejlesztői szolgáltatás* fejlesztett hello szolgáltatástípusok egy szolgáltatás-jegyzékfájl, egy vagy több kódot, a konfiguráció és az adatok csomagból álló deklarációval ismerteti.
+3. Egy *alkalmazásfejlesztő* majd összeállít típusú különböző szolgáltatásokat használó alkalmazások.
+4. Egy *alkalmazásfejlesztő* deklarációval ismerteti hello alkalmazástípus az alkalmazásjegyzékben hivatkozó hello szolgáltatás jegyzékfájlokat hello alkotó szolgáltatások megfelelően felülbírálása és paraméterezése hello alkotó szolgáltatások különböző konfigurációs és központi telepítési beállításokat.
+
+Lásd: [Ismerkedés a Reliable Actors](service-fabric-reliable-actors-get-started.md) és [Reliable Services használatába](service-fabric-reliable-services-quick-start.md) példákat.
+
+## <a name="deploy"></a>Üzembe helyezés
+1. Egy *alkalmazás-rendszergazda* rajzkréta alkalmazás típusa tooa az adott alkalmazást telepített toobe tooa Service Fabric-fürt hello hello hello megfelelő paramétereinek megadásával **ApplicationType**hello alkalmazásjegyzékben elemet.
+2. Egy *operátor* feltöltések alkalmazás csomag toohello fürt lemezképtárolóhoz hello hello segítségével [ **CopyApplicationPackage** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_CopyApplicationPackage_System_String_System_String_System_String_) vagy hello [  **Másolás-ServiceFabricApplicationPackage** parancsmag](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps). hello alkalmazáscsomag hello alkalmazásjegyzék és szervizcsomagok hello gyűjteményét tartalmazza. A Service Fabric hello kép tárolja, amely lehet egy Azure blob-tároló vagy hello szolgáltatást a Service Fabric rendszer hello alkalmazáscsomag alkalmazások telepíti.
+3. Hello *operátor* majd kiépítését hello alkalmazástípus hello cél fürt hello segítségével hello feltöltött alkalmazás csomagból [ **ProvisionApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_ProvisionApplicationAsync_System_String_System_TimeSpan_System_Threading_CancellationToken_), hello [ **Register-ServiceFabricApplicationType** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/register-servicefabricapplicationtype), vagy hello [ **alkalmazás kiépítése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/provision-an-application).
+4. Hello alkalmazás kiépítése után egy *operátor* indítása alkalmazás hello hello hello által szolgáltatott paraméterekkel *alkalmazás-rendszergazda* hello segítségével [  **CreateApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_CreateApplicationAsync_System_Fabric_Description_ApplicationDescription_System_TimeSpan_System_Threading_CancellationToken_), hello [ **New-ServiceFabricApplication** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/new-servicefabricapplication), vagy hello [ **létrehozása Alkalmazás** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/create-an-application).
+5. Miután hello alkalmazás telepítve van, egy *operátor* használ hello [ **CreateServiceAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient#System_Fabric_FabricClient_ServiceManagementClient_CreateServiceAsync_System_Fabric_Description_ServiceDescription_System_TimeSpan_System_Threading_CancellationToken_), hello [  **Új ServiceFabricService** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/new-servicefabricservice), vagy hello [ **szolgáltatás létrehozása** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/create-a-service) toocreate hello alkalmazáshoz új szolgáltatáspéldány alapján rendelkezésre álló szolgáltatás típus.
+6. hello alkalmazás innentől kezdve fut hello Service Fabric-fürt.
+
+Lásd: [alkalmazás üzembe helyezése](service-fabric-deploy-remove-applications.md) példákat.
+
+## <a name="test"></a>Tesztelés
+1. Toohello helyi fejlesztési fürtök vagy egy teszt fürt telepítése után a *fejlesztői szolgáltatás* futtatása beépített feladatátvételi tesztkörnyezet hello hello segítségével [ **FailoverTestScenarioParameters** ](https://docs.microsoft.com/dotnet/api/system.fabric.testability.scenario.failovertestscenarioparameters#System_Fabric_Testability_Scenario_FailoverTestScenarioParameters) és [ **FailoverTestScenario** ](https://docs.microsoft.com/dotnet/api/system.fabric.testability.scenario.failovertestscenario#System_Fabric_Testability_Scenario_FailoverTestScenario) osztályok vagy hello [ **Invoke-ServiceFabricFailoverTestScenario** parancsmag ](/powershell/module/servicefabric/invoke-servicefabricfailovertestscenario?view=azureservicefabricps). hello feladatátvételi tesztkörnyezet egy megadott szolgáltatás továbbra is elérhető, és üzemel éppen fontos átmenetek és a feladatátvétel tooensure keresztül futtatja.
+2. Hello *fejlesztői szolgáltatás* akkor fut hello hello segítségével beépített chaos tesztkörnyezet [ **ChaosTestScenarioParameters** ](https://docs.microsoft.com/dotnet/api/system.fabric.testability.scenario.chaostestscenarioparameters#System_Fabric_Testability_Scenario_ChaosTestScenarioParameters) és [  **ChaosTestScenario** ](https://docs.microsoft.com/dotnet/api/system.fabric.testability.scenario.chaostestscenario#System_Fabric_Testability_Scenario_ChaosTestScenario) osztályok vagy hello [ **Invoke-ServiceFabricChaosTestScenario** parancsmag](/powershell/module/servicefabric/invoke-servicefabricchaostestscenario?view=azureservicefabricps). hello chaos tesztkörnyezet kapott több csomópont, a kódcsomag és a replika hibák véletlenszerűen hello fürtbe.
+3. Hello *fejlesztői szolgáltatás* [teszteli a szolgáltatások közötti kommunikációs](service-fabric-testability-scenarios-service-communication.md) lépés Tesztelési forgatókönyvek, amely körül hello fürt elsődleges replikára változott.
+
+Lásd: [bemutatása toohello hiba az Analysis Services](service-fabric-testability-overview.md) további információt.
+
+## <a name="upgrade"></a>Frissítés
+1. A *fejlesztői szolgáltatás* hello alkotó szolgáltatások hello példányként létrehozott alkalmazás frissíti és / vagy hibák javítások hello szolgáltatás jegyzékfájl új verzióját.
+2. Egy *alkalmazásfejlesztő* felülbírálások és hello konzisztens szolgáltatások konfigurációja és központi telepítési beállítások hello parameterizes és hello alkalmazásjegyzék új verzióját. hello alkalmazásfejlesztő magában foglalja a hello szolgáltatás jegyzékfájlokat új verzióit hello hello alkalmazásba, és hello alkalmazástípus a frissített alkalmazáscsomag új verzióját.
+3. Egy *alkalmazás-rendszergazda* magában foglalja a hello alkalmazástípus új verziójának hello hello cél alkalmazásba hello megfelelő paraméterek frissítésével.
+4. Egy *operátor* feltöltések hello frissített alkalmazás csomag toohello fürt lemezképtárolóhoz hello segítségével [ **CopyApplicationPackage** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_CopyApplicationPackage_System_String_System_String_System_String_) vagy hello [ **Másolási-ServiceFabricApplicationPackage** parancsmag](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps). hello alkalmazáscsomag hello alkalmazásjegyzék és szervizcsomagok hello gyűjteményét tartalmazza.
+5. Egy *operátor* rendelkezések hello cél fürt hello alkalmazás új verziójának hello hello segítségével [ **ProvisionApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_ProvisionApplicationAsync_System_String_System_TimeSpan_System_Threading_CancellationToken_), hello [ **Register-ServiceFabricApplicationType** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/register-servicefabricapplicationtype), vagy hello [ **alkalmazás kiépítése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/provision-an-application).
+6. Egy *operátor* frissítések hello cél toohello új Alkalmazásverzió hello segítségével [ **UpgradeApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_UpgradeApplicationAsync_System_Fabric_Description_ApplicationUpgradeDescription_System_TimeSpan_System_Threading_CancellationToken_), hello [  **Start-ServiceFabricApplicationUpgrade** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/start-servicefabricapplicationupgrade), vagy hello [ **alkalmazás frissítése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/upgrade-an-application).
+7. Egy *operátor* ellenőrzések hello hello frissítés előrehaladását [ **GetApplicationUpgradeProgressAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_GetApplicationUpgradeProgressAsync_System_Uri_System_TimeSpan_System_Threading_CancellationToken_), hello [  **Get-ServiceFabricApplicationUpgrade** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricapplicationupgrade), vagy hello [ **alkalmazás frissítése folyamatban beolvasása** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/get-the-progress-of-an-application-upgrade1).
+8. Ha szükséges, hello *operátor* módosítja, és újra alkalmazza a hello aktuális alkalmazásfrissítés hello segítségével hello paraméterei [ **UpdateApplicationUpgradeAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_UpdateApplicationUpgradeAsync_System_Fabric_Description_ApplicationUpgradeUpdateDescription_System_TimeSpan_System_Threading_CancellationToken_), Hello [ **frissítés-ServiceFabricApplicationUpgrade** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/update-servicefabricapplicationupgrade), vagy hello [ **frissítés alkalmazás frissítése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/update-an-application-upgrade).
+9. Ha szükséges, hello *operátor* visszaállítja a hello aktuális alkalmazásfrissítés hello segítségével [ **RollbackApplicationUpgradeAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_RollbackApplicationUpgradeAsync_System_Uri_System_TimeSpan_System_Threading_CancellationToken_), hello [ **Start-ServiceFabricApplicationRollback** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/start-servicefabricapplicationrollback), vagy hello [ **visszaállítási alkalmazás frissítése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/rollback-an-application-upgrade).
+10. A Service Fabric frissítés hello cél futó alkalmazás hello fürt hello rendelkezésre állását a bennük foglalt szolgáltatások elvesztése nélkül.
+
+Lásd: hello [frissítési oktatóanyag](service-fabric-application-upgrade-tutorial.md) példákat.
+
+## <a name="maintain"></a>Karbantartása
+1. Operációs rendszer frissítések és javítások a Service Fabric kapcsolódási pontok hello Azure-infrastruktúra tooguarantee hello fürtben futó összes hello alkalmazások rendelkezésre állását.
+2. A frissítések és javítások toohello Service Fabric-platformról a Service Fabric frissíti magát hello fürtben futó hello alkalmazások rendelkezésre állásának elvesztése nélkül.
+3. Egy *alkalmazás-rendszergazda* hello hozzáadása vagy eltávolítása a fürtről a csomópontok korábbi kapacitás kihasználtsági adatok és a tervezett jövőbeli igény szerinti elemzése után jóvá.
+4. Egy *operátor* ad hozzá, és eltávolítja a megadott hello csomópontok *alkalmazás-rendszergazda*.
+5. Amikor új csomópontokat ad hozzá tooor meglévő csomópontok hello fürt el lesznek távolítva, a Service Fabric automatikusan kiegyenlíti hello futó alkalmazások hello fürt tooachieve optimális teljesítményt az összes csomópont.
+
+## <a name="remove"></a>Eltávolítás
+1. Egy *operátor* hello: az alkalmazás teljes hello segítségével eltávolítása nélkül hello fürtben futó szolgáltatás adott példányának törlése [ **DeleteServiceAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient#System_Fabric_FabricClient_ServiceManagementClient_DeleteServiceAsync_System_Fabric_Description_DeleteServiceDescription_System_TimeSpan_System_Threading_CancellationToken_) , hello [ **Remove-ServiceFabricService** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/remove-servicefabricservice), vagy hello [ **Szolgáltatástörlés** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/delete-a-service).  
+2. Egy *operátor* is törölhet egy alkalmazáspéldány és szolgáltatásai segítségével hello [ **DeleteApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_DeleteApplicationAsync_System_Fabric_Description_DeleteApplicationDescription_System_TimeSpan_System_Threading_CancellationToken_), hello [ **Remove-ServiceFabricApplication** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/remove-servicefabricapplication), vagy hello [ **alkalmazás törlése** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/delete-an-application).
+3. Miután hello alkalmazás és szolgáltatás leállt, hello *operátor* is leépíteni a következőt: hello segítségével hello alkalmazástípus [ **UnprovisionApplicationAsync** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_UnprovisionApplicationAsync_System_String_System_String_System_TimeSpan_System_Threading_CancellationToken_), Hello [ **Unregister-ServiceFabricApplicationType** parancsmag](https://docs.microsoft.com/powershell/servicefabric/vlatest/unregister-servicefabricapplicationtype), vagy hello [ **leépíteni a következőt: egy alkalmazás** REST-művelet](https://docs.microsoft.com/rest/api/servicefabric/unprovision-an-application). Leépítése hello alkalmazástípus nem hello Lemezképtárolóba hello alkalmazáscsomag eltávolítása. Hello alkalmazáscsomag manuálisan el kell távolítania.
+4. Egy *operátor* hello alkalmazáscsomag eltávolítja a hello hello segítségével Lemezképtárolóba [ **RemoveApplicationPackage** metódus](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.applicationmanagementclient#System_Fabric_FabricClient_ApplicationManagementClient_RemoveApplicationPackage_System_String_System_String_) vagy hello [ **Remove-ServiceFabricApplicationPackage** parancsmag](/powershell/module/servicefabric/remove-servicefabricapplicationpackage?view=azureservicefabricps).
+
+Lásd: [alkalmazás üzembe helyezése](service-fabric-deploy-remove-applications.md) példákat.
+
+## <a name="next-steps"></a>Következő lépések
+További információk fejlesztésével tesztelése és a Service Fabric-alkalmazások és szolgáltatások kezelése::
+
+* [Reliable Actors](service-fabric-reliable-actors-introduction.md)
+* [Reliable Services](service-fabric-reliable-services-introduction.md)
+* [Alkalmazás üzembe helyezése](service-fabric-deploy-remove-applications.md)
+* [Az alkalmazásfrissítés](service-fabric-application-upgrade.md)
+* [Tesztelhetőségi áttekintése](service-fabric-testability-overview.md)

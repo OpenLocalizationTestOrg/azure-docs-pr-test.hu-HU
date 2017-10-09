@@ -1,6 +1,6 @@
 ---
-title: "Azure RemoteApp-lemezkép létrehozása |} Microsoft Docs"
-description: "Tudja meg, hogyan használható az Azure RemoteApp-lemezképek létrehozása"
+title: "Azure RemoteApp lemezkép aaaCreate |} Microsoft Docs"
+description: "További tudnivalók: hello lehetőségeit az Azure RemoteApp-lemezképek létrehozása"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4b8ba6f264f982e03930c5ad4ccdb2d80f2c8665
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54e63b6fa13addfcda96ce581910e1ac48d91e70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-remoteapp-image"></a>Create an Azure RemoteApp image (Azure RemoteApp-rendszerkép létrehozása)
 > [!IMPORTANT]
-> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. A részletekért olvassa el a [bejelentést](https://go.microsoft.com/fwlink/?linkid=821148).
+> Az Azure RemoteApp 2017. augusztus 31-ét követően megszűnik. Olvasási hello [közlemény](https://go.microsoft.com/fwlink/?linkid=821148) részleteiről.
 > 
 > 
 
-Az Azure RemoteApp képek az alkalmazásokat, amelyek megosztása a a felhasználók tárolására használ. (Jelenleg igénybe vehet a lemezkép és közül a felhasználók hozzáférést amikor bejelentkeznek az Azure Remoteappba – a virtuális gépek létrehozására használható.) Egy Azure RemoteApp-gyűjtemény létrehozásához a választott alkalmazások, hogy felhőalapú vagy hibrid-e, akkor először hozzon létre kép az alkalmazások telepítése. Ezután hozzon létre egy gyűjteményt, amely használja ezt a lemezképet, és hozzárendelhet felhasználókat ehhez a gyűjteményhez alkalmazások közzétételére azoknak a felhasználóknak.
+Az Azure RemoteApp képek toohold hello alkalmazásokat a felhasználóival megosztott használja. (Azt a képet, és felhasználása azt toocreate virtuális gépek - közül mi hello felhasználók érhető el, amikor bejelentkeznek az Azure Remoteappba.) toocreate egy Azure RemoteApp-gyűjteményt a választott az alkalmazások, hogy felhőalapú vagy hibrid,-e, először hozzon létre kép az alkalmazások telepítése. Ezután hozzon létre egy gyűjteményt, amely használja ezt a lemezképet, felhasználók toohello gyűjtemény hozzárendelése és alkalmazások toothose felhasználók közzététele.
 
-Több lehetőség közül választhat a létrehozására vagy a lemezképek használatával. A basic [követelmény](remoteapp-imagereqs.md) a képet, hogy futtassa a Windows Server 2012 R2, telepítve van a távoli asztali munkamenetgazda (RDSH) szerepkör. Hogyan le, ahol részek lesznek érdekes.
+Több lehetőség közül választhat a létrehozására vagy a lemezképek használatával. Alapszintű hello [követelmény](remoteapp-imagereqs.md) a képet, hogy futtassa a Windows Server 2012 R2, telepítve hello távoli asztali munkamenetgazda (RDSH) szerepkör. Hogyan le, ahol részek lesznek érdekes.
 
-Amikor a képek rendelkezik a következő beállításokat:
+Hello tooimages ismét a következő lehetőségek közül választhat:
 
-* Lehet importálni és használni egy [lemezkép-alapú Azure virtuális géphez](remoteapp-image-on-azurevm.md). Ez az egyéni beállítások igénylő-üzleti alkalmazások helyes. Testre szabhatja a lemezképet, az alkalmazás működéséhez.
+* Lehet importálni és használni egy [lemezkép-alapú Azure virtuális géphez](remoteapp-image-on-azurevm.md). Ez az egyéni beállítások igénylő-üzleti alkalmazások helyes. Testre szabhatja a hello kép toowork hello alkalmazás.
 * Is [létrehozása és feltöltése az egyéni lemezkép](remoteapp-create-custom-image.md). Ez a helyes, ha már rendelkezik egy olyanra, amely a helyszíni távoli asztali szolgáltatások környezethez használja.
-* Egyikét használhatja a [sablonrendszerképek](remoteapp-images.md) a RemoteApp-előfizetés tartalmazza. Ezeket a lemezképeket jönnek létre, és a RemoteApp csapatától tartja fenn, és néhány szokásos olyan alkalmazásokat tartalmaznak (például az Office suite), elérhetővé teheti a felhasználók számára. Vegye figyelembe, hogy csak az Office 365 Pro Plus kép üzemi környezetben is használható.
+* Hello használhat [sablonrendszerképek](remoteapp-images.md) a RemoteApp-előfizetés tartalmazza. Ezeket a lemezképeket jönnek létre, és hello RemoteApp csapatától tartja fenn, és néhány szokásos alkalmazást az, hogy elérhető tooyour felhasználók (például az hello Office suite) tartalmaznak. Vegye figyelembe, hogy csak hello Office 365 Pro Plus lemezkép üzemi környezetben is használható.
 
-Függetlenül attól, hol szerezheti a lemezképet, vagy hogyan hoz létre, így megértheti érdemes a [alkalmazáskövetelmények](remoteapp-appreqs.md) annak érdekében, hogy az alkalmazás működik jól RemoteApp. Ezt követően a következő lépés, ha a egy [felhő](remoteapp-create-cloud-deployment.md) vagy [hibrid](remoteapp-create-hybrid-deployment.md) gyűjtemény.
+Függetlenül attól, hol szerezheti a lemezképet, vagy hogyan hoz létre, érdemes tisztában lennie hello toomake [alkalmazáskövetelmények](remoteapp-appreqs.md) tooensure, amely az alkalmazás működik jól RemoteApp. Ezt követően hello következő lépésre toocreate egy [felhő](remoteapp-create-cloud-deployment.md) vagy [hibrid](remoteapp-create-hybrid-deployment.md) gyűjtemény.
 

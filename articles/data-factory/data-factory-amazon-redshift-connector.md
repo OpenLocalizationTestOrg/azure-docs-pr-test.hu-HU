@@ -1,6 +1,6 @@
 ---
-title: "Adatok áthelyezése az Amazon Redshift Data Factory használatával |} Microsoft Docs"
-description: "További tudnivalók az Azure Data Factory használatával Amazon Redshift áthelyezni az adatokat."
+title: "használatával a Data Factory Amazon Redshift aaaMove adatait |} Microsoft Docs"
+description: "További tudnivalók az Azure Data Factory használatával Amazon Redshift toomove adatok."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jingwang
-ms.openlocfilehash: bccb941363952bb2251629240a88148a6527d62e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a097320734ebdd57282d250f7fdba35741777f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a>Helyezze át az adatokat az Amazon Redshift Azure Data Factory használatával
-Ez a cikk ismerteti, hogyan a másolási tevékenység során az Azure Data Factoryben az adatok mozgatása Amazon Redshift. A cikk épít, a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést. 
+Ez a cikk azt ismerteti, hogyan toouse hello Azure Data Factory toomove adatait Amazon Redshift a másolási tevékenység. hello cikk épít, hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során. 
 
-Amazon Redshift adatok bármely támogatott fogadó adattárolóhoz másolhatja. A másolási tevékenység által támogatott mosdók adattárolókhoz listájáért lásd: [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Adat-előállító jelenleg a mozgóátlag adatait Amazon Redshift egyéb adattárakhoz, de nem az adatok áthelyezése az egyéb adattárakhoz Amazon Redshift támogatja.
+Amazon Redshift támogatott tooany fogadó adattár adatainak másolhatja. Adattároló mosdók hello másolási tevékenység által támogatott listájáért lásd: [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Adat-előállító jelenleg Amazon Redshift tooother adattárolókhoz, de nem az adatok áthelyezését más adatokat tároló tooAmazon Redshift áthelyezése adatokat.
 
 ## <a name="prerequisites"></a>Előfeltételek
-* Ha a helyszíni adattárolóihoz adatokat helyez át, telepítse [az adatkezelési átjáró](data-factory-data-management-gateway.md) a helyi gépen. Ezt követően hozzáférést adatkezelési átjáró (használata IP-cím a gép) az Amazon Redshift fürt. Lásd: [engedélyezi a hozzáférést a fürthöz](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) utasításokat.
-* Ha egy Azure data Store helyez át adatokat, lásd: [Azure Data Center IP-címtartományok](https://www.microsoft.com/download/details.aspx?id=41653) számítási IP-cím és az Azure-adatok által használt SQL-címtartományok szolgáltatásban.
+* Ha adatok tooan helyszíni adattár helyez át, telepítse [az adatkezelési átjáró](data-factory-data-management-gateway.md) a helyi gépen. Ezt követően Grant adatkezelési átjáró (IP-cím használata hello gép) hello hozzáférés tooAmazon Redshift fürt. Lásd: [engedélyezés hozzáférés toohello fürt](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) utasításokat.
+* Ha tooan az Azure data adattár, lásd: [Azure Data Center IP-címtartományok](https://www.microsoft.com/download/details.aspx?id=41653) hello számítási IP-cím és hello Azure-adatközpont által használt SQL-tartományok.
 
 ## <a name="getting-started"></a>Bevezetés
 A másolási tevékenység, amely helyezi át az adatokat Amazon Redshift forrásból származó különböző eszközök/API-k használatával hozhatja létre egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját. 
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára. 
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban: 
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello: 
 
-1. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory.
-2. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. 
+1. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban.
+2. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. 
 3. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. 
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása az Amazon Redshift adattár használt adat-előállító entitások JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az Amazon Redshift az Azure Blob](#json-example-copy-data-from-amazon-redshift-to-azure-blob) című szakaszát. 
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek az Amazon Redshift adattárolóból használt toocopy adatok JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az Amazon Redshift tooAzure Blob](#json-example-copy-data-from-amazon-redshift-to-azure-blob) című szakaszát. 
 
-A következő szakaszok részletesen bemutatják, amely segítségével az Amazon Redshift megadása a Data Factory tartozó entitások JSON-tulajdonságok: 
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott tooAmazon Redshift részleteit tartalmazzák: 
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat a JSON-elemek szerepelnek Amazon Redshift kapcsolódó szolgáltatásra vonatkozó leírást.
+a következő táblázat hello biztosít JSON-elemek adott tooAmazon Redshift kapcsolódó szolgáltatás leírását.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| type |A type tulajdonságot kell beállítani: **AmazonRedshift**. |Igen |
-| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét az Amazon Redshift. |Igen |
-| port |A TCP-portot, amelyen az Amazon Redshift kiszolgáló ügyfélkapcsolatokat száma. |Nem, alapértelmezett érték: 5439 |
-| adatbázis |Az Amazon Redshift adatbázis nevét. |Igen |
-| felhasználónév |Felhasználó, aki hozzáfér az adatbázis neve. |Igen |
-| jelszó |A felhasználói fiók jelszavát. |Igen |
+| type |hello type tulajdonságot kell beállítani: **AmazonRedshift**. |Igen |
+| kiszolgáló |Kiszolgáló IP-címét vagy állomásnevét kiszolgálónevét hello Amazon Redshift. |Igen |
+| port |Amazon Redshift server hello hello TCP port száma hello toolisten ügyfél-kommunikációhoz használ. |Nem, alapértelmezett érték: 5439 |
+| adatbázis |Hello Amazon Redshift adatbázis neve. |Igen |
+| felhasználónév |Hozzáférés toohello adatbázis-felhasználó nevét. |Igen |
+| jelszó |Hello felhasználói fiókhoz tartozó jelszót. |Igen |
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
-Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
+Szakaszok & meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend hasonlítanak minden adatkészlet esetében (Azure SQL, az Azure blob, Azure-tábla, stb.).
 
-A **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. Tartalmazza az adatokat az adattár a helyére vonatkozó adatokat. A typeProperties szakasz típusú adatkészlet **RelationalTable** (amely tartalmazza az Amazon Redshift dataset) a következő tulajdonságokkal rendelkezik.
+Hello **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. Az adattár hello hello adatok hello helyét ismerteti. hello typeProperties szakasz típusú adatkészlet **RelationalTable** következő tulajdonságai hello (amely tartalmazza az Amazon Redshift dataset) rendelkezik.
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| tableName |A tábla az Amazon Redshift adatbázisban, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
+| tableName |Hello tábla hello Amazon Redshift adatbázis, amelyre a társított szolgáltatás neve hivatkozik. |Nem (Ha **lekérdezés** a **RelationalSource** van megadva) |
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: a [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Az összes tevékenység tulajdonságai, például nevét, leírását, valamint bemeneti és kimeneti táblák és házirendek érhetők el.
+Szakaszok & rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: hello [létrehozása folyamatok](data-factory-create-pipelines.md) cikk. Az összes tevékenység tulajdonságai, például nevét, leírását, valamint bemeneti és kimeneti táblák és házirendek érhetők el.
 
-Mivel a tulajdonságok érhetők el a **typeProperties** szakasz a tevékenység tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Mivel tulajdonságok érhetők el hello **typeProperties** hello tevékenység szakasza tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
-Ha másolási tevékenység forrása típusú **RelationalSource** (amely tartalmazza az Amazon Redshift), a következő tulajdonságok érhetők el typeProperties szakaszában:
+Ha másolási tevékenység forrása típusú **RelationalSource** (amely tartalmazza az Amazon Redshift), typeProperties szakaszában érhetők hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| lekérdezés |Az egyéni lekérdezés segítségével adatokat olvasni. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem (Ha **tableName** a **dataset** van megadva) |
+| lekérdezés |Hello egyéni lekérdezés tooread adatok felhasználásával. |SQL-lekérdezési karakterlánc. Például: Válasszon * from tábla. |Nem (Ha **tableName** a **dataset** van megadva) |
 
-## <a name="json-example-copy-data-from-amazon-redshift-to-azure-blob"></a>JSON-példa: adatok másolása az Amazon Redshift az Azure-Blobba
-Ez a példa bemutatja, hogyan Amazon Redshift adatbázisból származó adatok másolása az Azure Blob Storage tárolóban. Azonban az adatok átmásolhatók **közvetlenül** bármely, a megadott nyelő [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) a másolási tevékenység során az Azure Data Factory használatával.  
+## <a name="json-example-copy-data-from-amazon-redshift-tooazure-blob"></a>JSON-példa: adatok másolása az Amazon Redshift tooAzure Blob
+Ez a példa bemutatja, hogyan toocopy adatait az Amazon Redshift adatbázis tooan Azure Blob Storage tárolóban. Azonban az adatok átmásolhatók **közvetlenül** közölt hello nyelő tooany [Itt](data-factory-data-movement-activities.md#supported-data-stores-and-formats) másolási tevékenység során az Azure Data Factory használatával hello.  
 
-A minta a következő data factory entitások rendelkezik:
+hello minta a következő data factory entitások hello rendelkezik:
 
 * A társított szolgáltatás típusa [AmazonRedshift](#linked-service-properties).
 * A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -89,7 +89,7 @@ A minta a következő data factory entitások rendelkezik:
 * Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [RelationalSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md##copy-activity-properties).
 
-A minta másol adatokat az Amazon Redshift egy lekérdezés eredményét blob minden órában. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta másol adatokat egy lekérdezés eredményét Amazon Redshift tooa BLOB minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
 **Amazon Redshift társított szolgáltatáshoz:**
 
@@ -101,9 +101,9 @@ A minta másol adatokat az Amazon Redshift egy lekérdezés eredményét blob mi
         "type": "AmazonRedshift",
         "typeProperties":
         {
-            "server": "< The IP address or host name of the Amazon Redshift server >",
-            "port": <The number of the TCP port that the Amazon Redshift server uses to listen for client connections.>,
-            "database": "<The database name of the Amazon Redshift database>",
+            "server": "< hello IP address or host name of hello Amazon Redshift server >",
+            "port": <hello number of hello TCP port that hello Amazon Redshift server uses toolisten for client connections.>,
+            "database": "<hello database name of hello Amazon Redshift database>",
             "username": "<username>",
             "password": "<password>"
         }
@@ -126,7 +126,7 @@ A minta másol adatokat az Amazon Redshift egy lekérdezés eredményét blob mi
 ```
 **Amazon Redshift bemeneti adatkészlet:**
 
-Beállítás `"external": true` tájékoztatja a Data Factory szolgáltatásnak, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák. Ez a tulajdonság igaz értékre be egy bemeneti adatkészlet nem a feldolgozási tevékenység által létrehozott.
+Beállítás `"external": true` hello Data Factory szolgáltatásnak tájékoztatja, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák. Ez a tulajdonság tootrue be egy bemeneti adatkészlet nem hello feldolgozási soros tevékenység által létrehozott.
 
 ```json
 {
@@ -148,7 +148,7 @@ Beállítás `"external": true` tájékoztatja a Data Factory szolgáltatásnak,
 
 **Az Azure Blob kimeneti adatkészlet:**
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB a szelet által feldolgozott kezdési ideje alapján dinamikusan történik. A mappa elérési útját használja, év, hónap, nap és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útja hello kezdési ideje év, hónap, nap és óra részét használja.
 
 ```json
 {
@@ -208,7 +208,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 **A folyamat Azure Redshift (RelationalSource) és a fogadó Blob másolási tevékenység:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **RelationalSource** és **fogadó** típusúra **BlobSink**. A megadott SQL-lekérdezést a **lekérdezés** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**RelationalSource** és **fogadó** típusuk értéke túl**BlobSink**. hello SQL-lekérdezésben megadott hello **lekérdezés** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```json
 {
@@ -256,12 +256,12 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 ### <a name="type-mapping-for-amazon-redshift"></a>Az Amazon Redshift leképezésének
-Ahogyan az a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, a másolási tevékenység az eseményforrás-típusnak a következő kétlépéses módszert típusok gyűjtése automatikus típuskonverziók hajtja végre:
+A hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk másolási tevékenység hajt végre típusok toosink típusát Automatikus típusú konverzió a következő kétlépcsős megközelítést hello:
 
-1. A natív eseményforrás-típusnak átalakítása .NET-típusa
-2. .NET-típus konvertálása natív a fogadó típusa
+1. Natív típusok too.NET forrástípus konvertálása
+2. .NET típusú toonative a fogadó típusa konvertálása
 
-Ha adatok áthelyezése Amazon Redshift, a következő megfeleltetéseket használ Amazon Redshift való .NET típusú.
+Adatok tooAmazon Redshift áthelyezésekor hello leképezéseket a következő Amazon Redshift típusok too.NET típusok használtak.
 
 | Amazon Redshift típusa | .NET-alapú típusa |
 | --- | --- |
@@ -278,16 +278,16 @@ Ha adatok áthelyezése Amazon Redshift, a következő megfeleltetéseket haszn�
 | IDŐBÉLYEG |Dátum és idő |
 | SZÖVEG |Karakterlánc |
 
-## <a name="map-source-to-sink-columns"></a>Térkép forrás oszlopok gyűjtése
-A forrás oszlop szerepel a fogadó dataset adatkészlet leképezési oszlopok, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>A forrásoszlopokat toosink leképezése
+toolearn leképezési oszlopok az forrás adatkészlet toocolumns fogadó adatkészletben, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>A relációs források ismételhető Olvasás
-Ha az adatok másolását a relációs adatokat tárol, ismételhetőség tartsa szem előtt, nem kívánt eredmények elkerülése érdekében. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha győződjön meg arról, hogy ugyanazokat az adatokat olvasható függetlenül attól, hogy a szelet futtatása hány alkalommal kell. Lásd: [Repeatable olvasni a relációs források](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
+Amikor az adatok másolása relációs adattároló, tartsa ismételhetőség szem előtt tartva tooavoid nem kívánt eredmények. Az Azure Data Factoryben futtathatja a szelet manuálisan. Beállíthatja úgy is egy adatkészlet újrapróbálkozási házirendje, hogy a szelet akkor fut újra, ha hiba történik. A szelet akkor fut újra, vagy módon, ha van szüksége arról, hogy ugyanazokat az adatokat hello toomake hogyan olvasható függetlenül attól, hogy hányszor a szelet futtatása. Lásd: [Repeatable olvasni a relációs források](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
 
 ## <a name="performance-and-tuning"></a>Teljesítmény- és hangolása
-Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) tájékozódhat az kulcsfontosságú szerepet játszik adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon optimalizálhatja azt, hogy hatás teljesítményét.
+Lásd: [másolási tevékenység teljesítmény- és hangolása útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn tényezők az adatátvitelt jelölik a (másolási tevékenység során) az Azure Data Factory és különböző módokon toooptimize hatás teljesítmény azt.
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd az alábbi cikkeket:
+Tekintse meg a következő cikkek hello:
 
 * [Másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) való a másolási tevékenység során a folyamat létrehozásának lépéseit.

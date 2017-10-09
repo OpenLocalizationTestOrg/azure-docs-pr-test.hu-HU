@@ -1,6 +1,6 @@
 ---
-title: "Prémium szintű Azure Storage áttelepítése virtuális gépek |} Microsoft Docs"
-description: "Prémium szintű Azure Storage telepíthet át a meglévő virtuális gépekre. Prémium szintű Storage nagy teljesítményű, alacsony késésű támogatása az Azure virtuális gépeken futó I/O-igényes munkaterhelések kínál."
+title: "aaaMigrating virtuális gépek tooAzure prémium szintű Storage |} Microsoft Docs"
+description: "Telepítse át a meglévő virtuális gépek tooAzure prémium szintű Storage. Prémium szintű Storage nagy teljesítményű, alacsony késésű támogatása az Azure virtuális gépeken futó I/O-igényes munkaterhelések kínál."
 services: storage
 documentationcenter: na
 author: yuemlu
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: yuemlu
-ms.openlocfilehash: ca893f87b155a92c457e3bf6d9d39aaf86bf5fb3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 19aaf2b7594e570f5a964baa00958a7a8eaae97b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrating-to-azure-premium-storage-unmanaged-disks"></a>Prémium szintű Azure Storage (nem felügyelt lemezek) áttelepítése
+# <a name="migrating-tooazure-premium-storage-unmanaged-disks"></a>Prémium szintű Storage (felügyelet lemezek) áttelepítése tooAzure
 
 > [!NOTE]
-> A cikkből megtudhatja, hogyan telepíthet át egy virtuális Gépet, amely egy nem felügyelt prémium lemezeket használó virtuális géphez nem felügyelt standard lemezek használja. Javasoljuk, hogy Azure felügyelt lemezek használatakor az új virtuális gépek, és a korábbi nem felügyelt lemezek átalakítása felügyelt lemezek. Felügyelt lemezek leíró az alapul szolgáló storage-fiókok, nem szükséges. További információkért lásd: a [felügyelt lemezekhez – áttekintés](../../virtual-machines/windows/managed-disks-overview.md).
+> A cikk ismerteti, hogyan toomigrate egy virtuális gép által használt virtuális gép által használt nem felügyelt standard lemezek tooa nem felügyelt premium lemezek. Javasoljuk, hogy Azure felügyelt lemezek használatakor az új virtuális gépekhez, és, hogy az előző nem felügyelt lemezek toomanaged lemezek konvertálása. Felügyelt lemezek leíró hello alapul szolgáló storage-fiókok, így nem kell. További információkért lásd: a [felügyelt lemezekhez – áttekintés](../../virtual-machines/windows/managed-disks-overview.md).
 >
 
-Prémium szintű Storage nagy teljesítményű, alacsony késésű lemez I/O-igényes munkaterhelések futó virtuális gépek támogatása nyújt. Prémium szintű Azure Storage át kell telepítenie az alkalmazás virtuális gépek lemezei is igénybe vehet a sebesség előnyeit, és ezek a lemezek teljesítményét.
+Prémium szintű Storage nagy teljesítményű, alacsony késésű lemez I/O-igényes munkaterhelések futó virtuális gépek támogatása nyújt. Telepítse át az alkalmazás virtuális lemezek tooAzure prémium szintű Storage is igénybe vehet hello sebesség előnyeit, és ezek a lemezek teljesítményét.
 
-Ez az útmutató célja a prémium szintű Azure Storage jobb új felhasználók zökkenőmentes váltásban az aktuális rendszerből prémium szintű Storage előkészítése. Az útmutató foglalkozik a legfontosabb összetevők, a folyamat három:
+hello Ez az útmutató célja toohelp új prémium szintű Azure Storage jobb felhasználói előkészítése toomake a jelenlegi rendszer tooPremium tárolási zavartalan átmenetet. hello útmutató foglalkozik három hello legfontosabb összetevők, a folyamat:
 
-* [Prémium szintű Storage az áttelepítés tervezése](#plan-the-migration-to-premium-storage)
-* [Készítse elő, és másolja át a virtuális merevlemezek (VHD) prémium szintű Storage](#prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage)
+* [Hello áttelepítési tooPremium tárolás tervezése](#plan-the-migration-to-premium-storage)
+* [Készítse elő és másolási virtuális merevlemezeket (VHD) tooPremium tároló](#prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage)
 * [Prémium szintű Storage használata Azure virtuális gép létrehozása](#create-azure-virtual-machine-using-premium-storage)
 
-Prémium szintű Azure Storage át virtuális gépeket más platformokon, vagy meglévő Azure virtuális gépek áttelepítésére Standard tárolási prémium szintű Storage. Ez az útmutató mindkét két forgatókönyv lépéseit ismerteti. Hajtsa végre a forgatókönyvtől függően vonatkozó szakaszában megadott lépéseket.
+Virtuális gépek áttelepítése a más platformok tooAzure prémium szintű Storage, vagy meglévő Azure virtuális gépek áttelepítésére Standard tárolási tooPremium tároló. Ez az útmutató mindkét két forgatókönyv lépéseit ismerteti. A forgatókönyvtől függően hello vonatkozó szakaszában megadott hello lépéseit kövesse.
 
 > [!NOTE]
-> A szolgáltatás áttekintése és a prémium szintű Storage, a prémium szintű Storage árképzési található: [nagy teljesítményű tárolást Azure virtuális gépek terheléseihez](storage-premium-storage.md). Azt javasoljuk, hogy minden virtuális gép lemezét, prémium szintű Azure Storage magas IOPS igénylő a legjobb teljesítmény érdekében az alkalmazás áttelepítéséhez. Ha a lemez nem igényli a magas iops értéket, korlátozhatja a költségek megőrizve a szabványos tárolóban, a (merevlemezes HDD) meghajtók SSD-k helyett virtuálisgép-lemez adatokat tárolja.
+> A szolgáltatás áttekintése és a prémium szintű Storage, a prémium szintű Storage árképzési található: [nagy teljesítményű tárolást Azure virtuális gépek terheléseihez](storage-premium-storage.md). Azt javasoljuk, hogy minden virtuális gép lemezét magas IOPS tooAzure prémium szintű Storage igénylő hello legjobb teljesítmény érdekében az alkalmazás áttelepítése. Ha a lemez nem igényli a magas iops értéket, korlátozhatja a költségek megőrizve a szabványos tárolóban, a (merevlemezes HDD) meghajtók SSD-k helyett virtuálisgép-lemez adatokat tárolja.
 >
 
-Az áttelepítési folyamat egészében befejezése szükség lehet további műveletek előtt és után az útmutatóban ismertetett lépéseket. Például konfigurálható virtuális hálózatok és a végpontok vagy magának az alkalmazásnak, amely előfordulhat, hogy az alkalmazás bizonyos időre leállítást belül kód módosítása. Ezek a műveletek minden alkalmazáshoz egyedi, és el kell végeznie ezeket az itt ismertetett lépéseket: Ez az útmutató az átállásra teljes prémium szintű Storage, zökkenőmentes lehető együtt.
+Teljes egészében hello áttelepítési folyamat befejezése szükség lehet további műveletek előtt és után a jelen útmutatóban hello lépéseket. Például a virtuális hálózatok és a végpontok konfigurálásához, vagy a kód módosítása hello alkalmazásban, saját magát, és amely előfordulhat, hogy az alkalmazás bizonyos időre leállítást. Ezek a műveletek egyedi tooeach alkalmazás, és el kell végeznie ezeket hello ismertetett lépéseket: Ez az útmutató toomake hello teljes átmenet tooPremium, zökkenőmentes lehető tárolási együtt.
 
-## <a name="plan-the-migration-to-premium-storage"></a>Prémium szintű Storage az áttelepítés tervezése
-Ez a szakasz biztosítja, hogy készen áll az áttelepítési lépéseket a cikkben, és segítséget nyújt a legjobb döntést a virtuális gép és a lemez típusok.
+## <a name="plan-the-migration-to-premium-storage"></a>Hello áttelepítési tooPremium tárolás tervezése
+Ez a szakasz biztosítja, hogy készen áll a toofollow hello áttelepítési cikkben leírt lépéseket, és segít toomake hello legjobb döntést a virtuális gép és a lemez típusok.
 
 ### <a name="prerequisites"></a>Előfeltételek
 * Szüksége lesz egy Azure-előfizetés. Ha még nincs fiókja, létrehozhat egy hónapos [ingyenes próbaverzió](https://azure.microsoft.com/pricing/free-trial/) előfizetés, vagy keresse fel [Azure díjszabása](https://azure.microsoft.com/pricing/) további lehetőségekért.
-* PowerShell-parancsmagokkal hajtható végre, szüksége lesz a Microsoft Azure PowerShell modul. A telepítési helyre és a telepítésre vonatkozó utasításokért lásd: [How to install and configure Azure PowerShell](/powershell/azure/overview) (Az Azure PowerShell telepítése és konfigurálása).
-* Prémium szintű Storage futó Azure virtuális gépek tervezésekor kell használnia a prémium szintű Storage képes a virtuális gépeket. Prémium szintű Storage képes a virtuális gépek a Standard és prémium szintű Storage lemezek is használhatók. Prémium szintű storage lemezek lesz elérhető további VM-típussal a jövőben. További információ az összes elérhető Azure virtuális lemez típusát és méretét: [virtuális gépek méretei](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Felhőszolgáltatások mérete](../../cloud-services/cloud-services-sizes-specs.md).
+* PowerShell-parancsmagok tooexecute, szüksége lesz a hello Microsoft Azure PowerShell modul. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) hello telepítse pont és a telepítési utasításokat.
+* Ha azt tervezi, toouse Azure virtuális gépeken futó a prémium szintű Storage, prémium szintű Storage képes a virtuális gépek toouse hello kell. Prémium szintű Storage képes a virtuális gépek a Standard és prémium szintű Storage lemezek is használhatók. Prémium szintű storage lemezek lesz jövőbeli hello további Virtuálisgép-típusokon érhető el. További információ az összes elérhető Azure virtuális lemez típusát és méretét: [virtuális gépek méretei](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) és [Felhőszolgáltatások mérete](../../cloud-services/cloud-services-sizes-specs.md).
 
 ### <a name="considerations"></a>Megfontolandó szempontok
-Egy Azure virtuális gép támogatja a prémium szintű Storage több lemezt csatolni, így az alkalmazások legfeljebb 256 TB-nyi tárhelyre virtuális gépenként. Prémium szintű Storage az alkalmazások egy második lemez adatátviteli sebessége virtuális gépenként a rendkívül alacsony késleltetésű az olvasási műveletek érhet 80000 iops-értéket (bemeneti/kimeneti műveletek száma másodpercenként) virtuális Gépet és 2000 MB. Virtuális gépek és a lemezek számos lehetősége van. Ez a szakasz célja segíteni olyan beállítás, amely a legjobban megfelel a számítási feladatok kereséséhez.
+Egy Azure virtuális gép támogatja a prémium szintű Storage több lemezt csatolni, hogy az alkalmazások too256 TB-nyi tárhelyre virtuális gépenként legfeljebb tartalmazhat. Prémium szintű Storage az alkalmazások egy második lemez adatátviteli sebessége virtuális gépenként a rendkívül alacsony késleltetésű az olvasási műveletek érhet 80000 iops-értéket (bemeneti/kimeneti műveletek száma másodpercenként) virtuális Gépet és 2000 MB. Virtuális gépek és a lemezek számos lehetősége van. Ez a szakasz az toohelp toofind olyan beállítás, amely a legjobban megfelel a számítási feladathoz.
 
 #### <a name="vm-sizes"></a>A virtuális gépek mérete
-Az Azure virtuális gép mérete paramétereknek szereplő [virtuális gépek méretei](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Tekintse át a virtuális gépek, amely együttműködik a prémium szintű Storage, és válassza ki a leginkább megfelelő virtuális gép méretét, amely a legjobban megfelel a számítási feladatok teljesítményétől. Győződjön meg arról, hogy nincs elegendő sávszélesség érhető el a virtuális Gépet, a lemez forgalom alapjául.
+hello Azure virtuális gép mérete specifikációk szereplő [virtuális gépek méretei](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Tekintse át a virtuális gépek, amely együttműködik a prémium szintű Storage, és válassza ki a hello leginkább megfelelő virtuális gép méretét, amely a legjobban megfelel a számítási feladatok hello teljesítményétől. Győződjön meg arról, hogy nincs elegendő sávszélesség érhető el a virtuális gép toodrive hello lemez forgalom.
 
 #### <a name="disk-sizes"></a>Lemezméretek
-Öt különböző típusú lemezek, amelyek együtt a virtuális Gépet, és mindegyik rendelkezik-e adott iops-érték és átviteli korlátok. Vegye figyelembe a működés felső korlátjának Ha a lemez kiválasztása a virtuális gép alapján a kapacitás, a teljesítmény, méretezhetőség az alkalmazás igényeinek megfelelően, és csúcs tölti be.
+Öt különböző típusú lemezek, amelyek együtt a virtuális Gépet, és mindegyik rendelkezik-e adott iops-érték és átviteli korlátok. Vegye figyelembe a működés felső korlátjának hello lemez kiválasztása a virtuális gép alapján az alkalmazás kapacitása, teljesítmény, méretezhetőség hello igényeinek, és a maximális tölti be.
 
 | Prémium szintű lemezek típusa  | P10   | P20   | P30            | P40            | P50            | 
 |:-------------------:|:-----:|:-----:|:--------------:|:--------------:|:--------------:|
@@ -65,58 +65,58 @@ Az Azure virtuális gép mérete paramétereknek szereplő [virtuális gépek m�
 | IOPS-érték lemezenként       | 500   | 2300  | 5000           | 7500           | 7500           | 
 | Adattovábbítás lemezenként | 100 MB / s | 150 MB / s | 200 MB / s | 250 MB / s | 250 MB / s |
 
-Attól függően, hogy a munkaterhelés annak eldöntése, hogy adatlemeznek a virtuális gép szükséges. Több állandó adatlemezt lehet kapcsolódni a virtuális Gépet. Ha szükséges, a is paritásos a lemezeken, a kapacitás és a kötet teljesítményének növelése érdekében. (Megtudhatja, mi lemez csíkozást [Itt](storage-premium-storage-performance.md#disk-striping).) Ha Ön paritásos prémium szintű Storage adatlemezek használata [tárolóhelyek][4], úgy kell beállítania, egyoszlopos használt lemezek. Ellenkező esetben a csíkozott kötet teljesítménye lehet alacsonyabb, mint a várt forgalom egyenetlen eloszlását miatt a lemezeken. A Linux virtuális gépek használhatják a *mdadm* segédprogram azonos eléréséhez. Cikke [szoftver RAID konfigurálása Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) részleteiről.
+Attól függően, hogy a munkaterhelés annak eldöntése, hogy adatlemeznek a virtuális gép szükséges. Több állandó adatok lemezek tooyour VM csatolható. Ha szükséges, a is paritásos hello lemezek tooincrease hello kapacitást és teljesítményt hello kötet között. (Megtudhatja, mi lemez csíkozást [Itt](storage-premium-storage-performance.md#disk-striping).) Ha Ön paritásos prémium szintű Storage adatlemezek használata [tárolóhelyek][4], úgy kell beállítania, egyoszlopos használt lemezek. Ellenkező esetben hello teljes csíkozott hello kötet lehet a teljesítmény kisebb, mint a várt forgalom toouneven terjesztési miatt hello lemezek között. A Linux virtuális gépek használhatják hello *mdadm* segédprogram tooachieve hello azonos. Cikke [szoftver RAID konfigurálása Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) részleteiről.
 
 #### <a name="storage-account-scalability-targets"></a>Tárfiókra vonatkozó méretezhetőségi célok
-Prémium szintű Storage-fiókok a következő méretezhetőségi célok kívül van a [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md). Ha az alkalmazás követelményeinek túllépi a méretezhetőségi célok egyetlen tárfiók, építenie az alkalmazást több tárfiókot használni, és az adatok particionálása adott tárfiókok között.
+Prémium szintű Storage-fiókok rendelkezik méretezhetőségi célok hozzáadása toohello a következő hello [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md). Ha az alkalmazás követelményeinek ennél nagyobb hello méretezhetőségi célok egyetlen tárfiók, hozza létre a az alkalmazás toouse több tárfiókot, és az adatok particionálása adott tárfiókok között.
 
 | Teljes kapacitásával | A helyileg redundáns tárolás fiók teljes sávszélesség |
 |:--- |:--- |
-| Lemez kapacitás: 35TB<br />Pillanatkép-kapacitás: 10 TB |Legfeljebb 50 Gigabit / másodperc, a bejövő + kimenő |
+| Lemez kapacitás: 35TB<br />Pillanatkép-kapacitás: 10 TB |Too50 Gigabit / másodperc, a bejövő + kimenő mentése |
 
-A prémium szintű Storage specifikációk további információkért tekintse meg [méretezhetőséget és a prémium szintű Storage használatakor Performance Targets](storage-premium-storage.md#scalability-and-performance-targets).
+A prémium szintű Storage specifikációk bővebben hello, tekintse meg [méretezhetőséget és a prémium szintű Storage használatakor Performance Targets](storage-premium-storage.md#scalability-and-performance-targets).
 
 #### <a name="disk-caching-policy"></a>Lemez gyorsítótárazási házirend
-Alapértelmezés szerint a gyorsítótárazási házirend lemez van *csak olvasható* prémium adatok lemezein, és *írható-olvasható* az a prémium szintű operációsrendszer-lemez csatolva a virtuális gép. A konfigurációs beállítás ajánlott az alkalmazás IOs rendszerhez az optimális teljesítmény eléréséhez. Írási műveleteket vagy a csak írható adatlemezek (köztük SQL Server) tiltsa le a lemezt gyorsítótárazás, hogy az alkalmazás jobb teljesítményt érhet el. A meglévő adatlemezek gyorsítótár beállításait is frissítve [Azure Portal](https://portal.azure.com) vagy a *- HostCaching* paramétere a *Set-AzureDataDisk* parancsmag.
+Alapértelmezés szerint a gyorsítótárazási házirend lemez van *írásvédett* az összes hello prémium adatlemezek, és *írható-olvasható* hello prémium operációsrendszer-lemez csatolni a virtuális gép toohello. A konfigurációs beállítás ajánlott tooachieve hello optimális teljesítménye az alkalmazás IOs-hez. Írási műveleteket vagy a csak írható adatlemezek (köztük SQL Server) tiltsa le a lemezt gyorsítótárazás, hogy az alkalmazás jobb teljesítményt érhet el. a meglévő adatlemezek hello gyorsítótár beállításait is frissítve [Azure Portal](https://portal.azure.com) vagy hello *- HostCaching* hello paramétere *Set-AzureDataDisk* parancsmag.
 
 #### <a name="location"></a>Hely
-Jelölje ki a helyet, ahol a prémium szintű Azure Storage áll rendelkezésre. Lásd: [Azure-szolgáltatások régiónként](https://azure.microsoft.com/regions/#services) elérhető helyről naprakész tájékoztatást. A virtuális gépeket, hogy a lemezek, a virtuális gép lesz áruházak sok különböző régiókban azok jobb teljesítményt a tárfiók ugyanabban a régióban található.
+Jelölje ki a helyet, ahol a prémium szintű Azure Storage áll rendelkezésre. Lásd: [Azure-szolgáltatások régiónként](https://azure.microsoft.com/regions/#services) elérhető helyről naprakész tájékoztatást. Virtuális gépek található hello azonos módon, hogy a tárolja a virtuális gép hello ad sok különböző régiókban azok jobb teljesítményt hello lemezeket a tárfiók hello régióban.
 
 #### <a name="other-azure-vm-configuration-settings"></a>Egyéb Azure virtuális gép konfigurációs beállításai
-Egy Azure virtuális gép létrehozásakor a rendszer kéri, hogy az egyes virtuális gép beállításainak konfigurálása. Ne feledje, hogy néhány beállításainak rögzítése élettartama idején a virtuális gép, amíg módosíthatja, vagy később fel más. Tekintse át a Azure virtuális gép konfigurációs beállítások, és győződjön meg arról, hogy ezeknek a konfigurációja megfelelő a munkaterhelési követelményeinek megfelelően.
+Egy Azure virtuális gép létrehozásakor meg kell adnia tooconfigure egyes virtuális gép beállításait. Ne feledje, hogy néhány beállításainak rögzítése a virtuális gép, hello hello élettartama során módosítása, vagy később fel más. Tekintse át a Azure virtuális gép konfigurációs beállítások, és győződjön meg arról, hogy ezek a munkaterhelés igényeihez toomatch megfelelően konfigurálva.
 
 ### <a name="optimization"></a>Optimalizálás
-[Prémium szintű Storage: Nagy teljesítményű kialakítása](storage-premium-storage-performance.md) útmutatást nyújt a prémium szintű Azure Storage használatával nagy teljesítményű alkalmazások létrehozásához. Követheti, hogy az irányelveket, az alkalmazás által használt technológiák alkalmazandó ajánlott eljárások teljesítményének együtt.
+[Prémium szintű Storage: Nagy teljesítményű kialakítása](storage-premium-storage-performance.md) útmutatást nyújt a prémium szintű Azure Storage használatával nagy teljesítményű alkalmazások létrehozásához. Teljesítmény bevált gyakorlatok alkalmazható tootechnologies az alkalmazás által használt együtt hello irányelvek követésével.
 
-## <a name="prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage"></a>Készítse elő, és másolja át a virtuális merevlemezek (VHD) prémium szintű Storage
-A következő szakaszban talál útmutatást a virtuális merevlemezek a virtuális gép előkészítése és a VHD-k másolása az Azure Storage.
+## <a name="prepare-and-copy-virtual-hard-disks-VHDs-to-premium-storage"></a>Készítse elő, és másolja a virtuális merevlemezek (VHD) tooPremium tároló
+a következő szakasz hello előkészítése virtuális merevlemezek a virtuális gépről, és másolja a VHD-k tooAzure tárolási útmutatásokat.
 
-* [1. forgatókönyv: "I vagyok áttelepíti meglévő Azure virtuális gépek a prémium szintű Storage."](#scenario1)
-* [2. forgatókönyv: "I vagyok telepít át virtuális gépeket más platformokon a prémium szintű Storage."](#scenario2)
+* [1. forgatókönyv: "I vagyok áttelepíti meglévő Azure virtuális gépek tooAzure prémium szintű Storage."](#scenario1)
+* [2. forgatókönyv: "I vagyok telepít virtuális gépeket más platformokon tooAzure prémium szintű Storage."](#scenario2)
 
 ### <a name="prerequisites"></a>Előfeltételek
-A virtuális merevlemezeket az áttelepítés előkészítéséhez lesz szüksége:
+virtuális merevlemezek tooprepare hello az áttelepítéshez, szüksége lesz:
 
-* Azure-előfizetéssel, egy tárfiókot, és egy tároló az adott storage-fiókot, amelyhez a VHD-t is másolhatja. Vegye figyelembe, hogy a cél tárfiókkal lehet-e a Standard vagy prémium szintű Storage fiók igényektől függően.
-* Olyan eszköz, amely a virtuális merevlemez generalize, ha azt tervezi, hogy több Virtuálisgép-példányok készíteni. Például a Windows vagy adatb-sysprep Ubuntu a sysprep.
-* Olyan eszköz, amely a VHD-fájl feltöltése a tárfiókba. Lásd: [adatátvitel az AzCopy parancssori segédprogram a](storage-use-azcopy.md) , vagy használjon egy [Azure Tártallózó](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx). Ez az útmutató ismerteti, másolja a VHD-t az AzCopy eszközzel.
+* Azure-előfizetéssel, a tárfiók és egy tárolóját, hogy a tárolási fiók toowhich másolhatja a VHD-t. Vegye figyelembe, hogy a cél tárfiókkal hello lehet-e a Standard vagy prémium szintű Storage fiók igényektől függően.
+* Egy eszköz toogeneralize hello VHD-t, ha azt tervezi, toocreate több Virtuálisgép-példányok belőle. Például a Windows vagy adatb-sysprep Ubuntu a sysprep.
+* Egy eszköz tooupload hello VHD fájl toohello tárfiók. Lásd: [adatátvitel az AzCopy parancssori segédprogram hello](storage-use-azcopy.md) , vagy használjon egy [Azure Tártallózó](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx). Ez az útmutató ismerteti, hogy a virtuális merevlemez hello AzCopy eszközzel másolása.
 
 > [!NOTE]
-> Ha úgy dönt, a szinkron másolatot beállítást az AzCopy, az optimális teljesítmény érdekében másolja a VHD-való futtatásával az eszközöket egy Azure virtuális Gépen, amely a cél tárfiókkal ugyanabban a régióban. Virtuális merevlemez másolása az Azure virtuális gép egy másik régióban található, a teljesítmény csökkenhet.
+> A lehetőséghez szinkron másolatot az AzCopy, az optimális teljesítmény érdekében másolja a VHD-való futtatásával az eszközöket egy Azure virtuális Gépen, amely hello hello cél tárfiókkal megegyező régióban. Virtuális merevlemez másolása az Azure virtuális gép egy másik régióban található, a teljesítmény csökkenhet.
 >
-> Nagy mennyiségű adatot felülírását korlátozott sávszélességű, fontolja meg [az Azure Import/Export szolgáltatás használatával az adatok átviteléhez a Blob Storage](../storage-import-export-service.md); Ez lehetővé teszi, hogy az adatok átvitele a merevlemez egy Azure-adatközpontban szállítási. Az Azure Import/Export szolgáltatás segítségével másolja az adatokat a csak egy standard szintű tárfiókot. Ha az adatokat a standard szintű tárfiókot, használhatja a [másolási Blob API](https://msdn.microsoft.com/library/azure/dd894037.aspx) vagy az AzCopy segítségével az adatok átvitele a prémium szintű storage-fiók.
+> Nagy mennyiségű adatot felülírását korlátozott sávszélességű, fontolja meg [hello Azure Import/Export szolgáltatás tootransfer adatok tooBlob Storage használatával](../storage-import-export-service.md); ez tootransfer lehetővé teszi az adatok szállítási merevlemez-meghajtók tooan Azure Datacenter. Hello Azure Import/Export szolgáltatás toocopy adatok tooa standard szintű tárfiók csak is használhatja. Ha a standard szintű tárfiók hello adatok, vagy hello használhatja [másolási Blob API](https://msdn.microsoft.com/library/azure/dd894037.aspx) vagy AzCopy tootransfer hello adatok tooyour prémium szintű storage-fiók.
 >
-> Ügyeljen arra, hogy a Microsoft Azure csak támogatja-e a rögzített méretű VHD-fájlokat. A VHDX-fájlok vagy a dinamikus VHD-k nem támogatottak. Ha egy dinamikus virtuális merevlemez, átalakíthatja rögzített méretű használata a [Convert-VHD](http://technet.microsoft.com/library/hh848454.aspx) parancsmag.
+> Ügyeljen arra, hogy a Microsoft Azure csak támogatja-e a rögzített méretű VHD-fájlokat. A VHDX-fájlok vagy a dinamikus VHD-k nem támogatottak. Ha egy dinamikus VHD-t, akkor átalakíthatja toofixed méretét hello segítségével [Convert-VHD](http://technet.microsoft.com/library/hh848454.aspx) parancsmag.
 >
 >
 
-### <a name="scenario1"></a>1. forgatókönyv: "I vagyok áttelepíti meglévő Azure virtuális gépek a prémium szintű Storage."
-Meglévő Azure virtuális gépeket telepít át, ha a virtuális gép leállítása, készítse elő a / kívánt VHD típusú virtuális merevlemezeket, és másolja a VHD AzCopy vagy a PowerShell használatával.
+### <a name="scenario1"></a>1. forgatókönyv: "I vagyok áttelepíti meglévő Azure virtuális gépek tooAzure prémium szintű Storage."
+Ha az áttelepítés meglévő Azure virtuális gépek, virtuális gépek leállítási hello készítse elő a virtuális merevlemezek hello típusonkénti kívánt VHD-fájl, és másolja hello VHD AzCopy vagy a PowerShell használatával.
 
-A virtuális gép kell lennie a tiszta állapotot áttelepítéséhez teljesen le. Lesz a leállás addig, amíg az áttelepítés befejeződött.
+hello VM kell toobe toomigrate tiszta le teljesen. Lesz olyan állásidő hello áttelepítésének befejeződéséig.
 
 #### <a name="step-1-prepare-vhds-for-migration"></a>1. lépés Virtuális merevlemezek Felkészülés az áttelepítésre
-Ha a meglévő Azure virtuális gépek áttelepítés prémium szintű Storage, a virtuális merevlemez lehet:
+Ha a meglévő Azure virtuális gépek tooPremium tárolási telepít át, a virtuális merevlemez lehet:
 
 * Általános operációsrendszer-lemezkép elkészítése
 * Egy egyedi operációsrendszer-lemez
@@ -124,53 +124,53 @@ Ha a meglévő Azure virtuális gépek áttelepítés prémium szintű Storage, 
 
 Az alábbiakban azt végezze el a virtuális merevlemez előkészítése 3 forgatókönyvekben.
 
-##### <a name="use-a-generalized-operating-system-vhd-to-create-multiple-vm-instances"></a>Több Virtuálisgép-példány létrehozásához használja az operációs rendszer általánosított virtuális Merevlemezt
-Ha több általános Azure Virtuálisgép-példány létrehozásához használt virtuális Merevlemezt, először meg kell generalize virtuális Merevlemezt a sysprep segédprogrammal. Ez vonatkozik, amely a helyi virtuális merevlemez vagy a felhőben. Sysprep eltávolítása a VHD-t bármely gépen-specifikus adatait.
+##### <a name="use-a-generalized-operating-system-vhd-toocreate-multiple-vm-instances"></a>Egy általános operációs rendszer virtuális merevlemez toocreate több Virtuálisgép-példány használata
+Ha virtuális Merevlemezt, amely lesz használt toocreate több általános Azure Virtuálisgép-példányok, először meg kell generalize virtuális Merevlemezt a sysprep segédprogrammal. Ez vonatkozik, amely a helyi virtuális merevlemez tooa vagy hello felhőben. Sysprep eltávolítása hello VHD-t bármely gépen-specifikus adatait.
 
 > [!IMPORTANT]
-> Készítsen pillanatképet, vagy biztonsági mentése a virtuális gép előtt normalizálása azt. A sysprep fut le fog állni, és a Virtuálisgép-példány felszabadítani. A Windows operációs rendszer virtuális Merevlemezt a sysprep kövesse az alábbi lépéseket. Vegye figyelembe, hogy a Sysprep parancsot futtató van szükség, hogy a virtuális gép leállítása. További információ a Sysprep: [Sysprep áttekintése](http://technet.microsoft.com/library/hh825209.aspx) vagy [Sysprep műszaki útmutatója](http://technet.microsoft.com/library/cc766049.aspx).
+> Készítsen pillanatképet, vagy biztonsági mentése a virtuális gép előtt normalizálása azt. A sysprep fut le fog állni, és hello Virtuálisgép-példány felszabadítani. Kövesse az alábbi Windows operációs rendszer virtuális merevlemez toosysprep lépéseket. Vegye figyelembe, hogy hello a Sysprep parancsot futtatja fogja a szükséges tooshut le hello virtuális gépet. További információ a Sysprep: [Sysprep áttekintése](http://technet.microsoft.com/library/hh825209.aspx) vagy [Sysprep műszaki útmutatója](http://technet.microsoft.com/library/cc766049.aspx).
 >
 >
 
 1. Nyisson meg egy parancssori ablakot rendszergazdaként.
-2. Adja meg a következő parancs futtatásával nyissa meg a Sysprep:
+2. Adja meg a következő parancs tooopen Sysprep hello:
 
     ```
     %windir%\system32\sysprep\sysprep.exe
     ```
 
-3. A rendszer-előkészítő eszközt, jelölje be adja meg a rendszer Out-of-Box élmény (OOBE), jelölje be a Generalize jelölőnégyzetet, válassza ki **leállítási**, és kattintson a **OK**, az alábbi ábrán látható módon. A Sysprep rendszer általánosítja az operációs rendszert, és állítsa le a rendszer.
+3. A hello rendszer-előkészítő eszközt, jelölje be adja meg a rendszer Out-of-Box élmény (OOBE), jelölje be hello Generalize jelölőnégyzetet, válassza ki **leállítási**, és kattintson a **OK**, az alábbi hello ábrán látható módon. Sysprep általánosítja hello operációs rendszert, és a hello rendszer leállítása.
 
     ![][1]
 
-Ubuntu virtuális gép használja a sysprep adatb azonos eléréséhez. Lásd: [adatb-sysprep](http://manpages.ubuntu.com/manpages/precise/man1/virt-sysprep.1.html) további részleteket. További információ a nyílt forráskódú némelyike [Linux Server kiépítés szoftver](http://www.cyberciti.biz/tips/server-provisioning-software.html) más Linux operációs rendszerekhez.
+Egy Ubuntu virtuális gép használata a sysprep adatb tooachieve hello azonos. Lásd: [adatb-sysprep](http://manpages.ubuntu.com/manpages/precise/man1/virt-sysprep.1.html) további részleteket. További információ az egyes hello nyílt forráskódú [Linux Server kiépítés szoftver](http://www.cyberciti.biz/tips/server-provisioning-software.html) más Linux operációs rendszerekhez.
 
-##### <a name="use-a-unique-operating-system-vhd-to-create-a-single-vm-instance"></a>Egyetlen Virtuálisgép-példány létrehozásához használja az operációs rendszer virtuális merevlemez egyedi
-Ha a virtuális gép adatokat igénylő futó alkalmazást, nem generalize a VHD-t. Nem általánosított virtuális merevlemez segítségével hozzon létre egyedi Azure Virtuálisgép-példányt. Például ha a tartományvezérlő van a VHD-t, sysprep végrehajtása megkönnyítő hatástalan tartományvezérlőként. Tekintse át a virtuális Gépet, és azokat a sysprep futtatása előtt a virtuális merevlemez normalizálása hatásának futó alkalmazások.
+##### <a name="use-a-unique-operating-system-vhd-toocreate-a-single-vm-instance"></a>Egy egyedi operációs rendszer virtuális merevlemez toocreate egyetlen Virtuálisgép-példány használata
+Ha hello hello gép adatokat igénylő virtuális gép futó alkalmazást, nem generalize hello VHD-t. Nem általánosított virtuális Merevlemezt lehet használt toocreate egy egyedi Azure Virtuálisgép-példány. Például ha a tartományvezérlő van a VHD-t, sysprep végrehajtása megkönnyítő hatástalan tartományvezérlőként. Tekintse át a virtuális gép és hello hatása rajtuk sysprep futtatása előtt hello VHD normalizálása futó hello alkalmazásokhoz.
 
 ##### <a name="register-data-disk-vhd"></a>Virtuális merevlemez adatlemeze regisztrálása
-Ha adatlemezt kell áttelepíteni az Azure-ban, meg kell győződnie arról az adott adatok lemezeket használó virtuális gépek állnak le.
+Ha rendelkezik Azure toobe adatlemezek át, győződjön meg arról, hogy hello virtuális gépek, amelyek használják a lemezek állnak le ezeket az adatokat.
 
-Prémium szintű Azure Storage másolja a VHD-t, és regisztrálhatja azt kiosztott adatok lemezként az alább ismertetett lépéseket követve.
+Kövesse az alábbiakban toocopy VHD tooAzure prémium szintű Storage hello lépéseket, és regisztrálja kiosztott adatok lemezként.
 
-#### <a name="step-2-create-the-destination-for-your-vhd"></a>2. lépés A cél a virtuális merevlemez létrehozása
-Hozzon létre egy tárfiókot, a virtuális merevlemezek karbantartásához. A virtuális merevlemezek tárolási helyének megtervezésekor, vegye figyelembe a következő szempontokat:
+#### <a name="step-2-create-hello-destination-for-your-vhd"></a>2. lépés Hello cél a virtuális merevlemez létrehozása
+Hozzon létre egy tárfiókot, a virtuális merevlemezek karbantartásához. Vegye figyelembe a where megtervezésekor a következő pontok hello toostore merevlemezek:
 
-* A célként prémium szintű storage-fiók.
-* A tárfiók helyének meg kell egyeznie a prémium szintű Storage kompatibilis Azure virtuális gépek létrehozhat utolsó szakaszában. Nem átmásolni egy új tárfiókot, vagy a igények alapján ugyanazt a tárfiókot használni szeretne.
-* Másolja ki és mentse a tárfiók hívóbetűjét, a cél tárfiókkal a következő szakaszban.
+* hello célként prémium szintű storage-fiók.
+* hello tárfiók helyének meg kell egyeznie a prémium szintű Storage kompatibilis Azure virtuális gépek létrehozhat hello utolsó szakaszában. Új tárfiók tooa vagy terv toouse hello igényei szerint ugyanazt a tárfiókot nem átmásolni.
+* Másolja ki és mentse a hello tárfiók kulcsa hello cél tárfiók hello következő szakaszra.
 
-Az adatlemezek esetén dönthet úgy, hogy néhány adatlemezek tartsa egy standard szintű tárfiókot (például lemezek hűtőre tárhellyel rendelkező), de határozottan javasoljuk, hogy az üzemi alkalmazások és szolgáltatások a prémium szintű storage minden adat áthelyezése.
+Adatlemezek választhatja ki tookeep néhány adatlemezek egy standard szintű tárfiókot (például lemezek hűtőre tárhellyel rendelkező), de határozottan javasoljuk, hogy áthelyezése éles munkaterhelés toouse prémium szintű storage összes adatát.
 
 #### <a name="copy-vhd-with-azcopy-or-powershell"></a>3. lépés. Másolja a VHD AzCopy vagy a PowerShell használatával
-Szüksége lesz a tároló elérési útját és a tárolási fiók kulcs található feldolgozni az alábbi két lehetőség közül. Tároló elérési útja és a tároló kulcsa megtalálható **Azure Portal** > **tárolási**. A tároló URL-címe például a "https://myaccount.blob.core.windows.net/mycontainer/" lesz.
+A tároló elérési útja és a tárolási fiók kulcs tooprocess valamelyik két lehetőséget toofind lesz szüksége. Tároló elérési útja és a tároló kulcsa megtalálható **Azure Portal** > **tárolási**. hello tároló URL-címe például a "https://myaccount.blob.core.windows.net/mycontainer/" lesz.
 
 ##### <a name="option-1-copy-a-vhd-with-azcopy-asynchronous-copy"></a>1. lehetőség: Az AzCopy (aszinkron másolhatja azokat) egy virtuális merevlemez másolása
-Használja az AzCopy, egyszerűen feltöltheti a VHD-t az interneten keresztül. A virtuális merevlemezek méretétől függően ez időt vehet igénybe. Fontos, hogy ellenőrizze a tárfiókok be-és kilépési korlátai, ez a beállítás használata esetén. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) részleteiről.
+Használja az AzCopy, egyszerűen feltöltheti hello VHD hello interneten keresztül. Attól függően, hogy a virtuális merevlemezek hello hello méretét Ez időt vehet igénybe. Ne felejtse el toocheck hello tárfiókok be-és kilépési korlátai, ha ezt a lehetőséget választja. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) részleteiről.
 
 1. Töltse le és telepítse az AzCopy innen: [az AzCopy legújabb verzióját](http://aka.ms/downloadazcopy)
-2. Nyissa meg az Azure PowerShell és a mappában, amelyen telepítve van-e az AzCopy.
-3. A következő parancs segítségével másolja a VHD-fájlt a "Forrás" a "Cél".
+2. Nyissa meg az Azure PowerShell és amelyen telepítve van-e az AzCopy lépjen toohello mappát.
+3. Használjon hello következő parancsot a toocopy hello VHD-fájlt a "Forrás" túl "Cél".
 
     ```azcopy
     AzCopy /Source: <source> /SourceKey: <source-account-key> /Dest: <destination> /DestKey: <dest-account-key> /BlobType:page /Pattern: <file-name>
@@ -182,18 +182,18 @@ Használja az AzCopy, egyszerűen feltöltheti a VHD-t az interneten keresztül.
     AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /SourceKey:key1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /DestKey:key2 /Pattern:abc.vhd
     ```
 
-    Az alábbiakban az AzCopy parancs paraméterei leírása:
+    Az alábbiakban az AzCopy parancs hello használt hello paraméterek leírását:
 
-   * **/ Forrás:  *&lt;forrás&gt;:***  a mappa vagy a tárolási tároló URL-címet, amely a VHD-t tartalmaz.
-   * **/ SourceKey:  *&lt;forrás fiókkulcs&gt;:***  a forrás tárfiók Tárfiók kulcsa.
-   * **/ Dest:  *&lt;cél&gt;:***  másolja a VHD-fájlt tároló tároló URL-címet.
-   * **/ DestKey:  *&lt;cél fiókkulcs&gt;:***  a cél tárfiókkal a Tárfiók kulcsára.
-   * **/ Mintát:  *&lt;Fájlnév&gt;:***  adja meg a fájlnevet a virtuális merevlemez másolása.
+   * **/ Forrás:  *&lt;forrás&gt;:***  hello mappa vagy hello VHD-t tartalmazó tároló tárolói URL.
+   * **/ SourceKey:  *&lt;forrás fiókkulcs&gt;:***  hello forrás tárfiók Tárfiók kulcsa.
+   * **/ Dest:  *&lt;cél&gt;:***  tárolási tároló URL-cím toocopy hello VHD-fájlt.
+   * **/ DestKey:  *&lt;cél fiókkulcs&gt;:***  hello céltárfiókot a Tárfiók kulcsára.
+   * **/ Mintát:  *&lt;Fájlnév&gt;:***  hello hello VHD toocopy a fájl nevének megadása.
 
-AzCopy használatával eszköz, lásd: [adatátvitel az AzCopy parancssori segédprogram a](storage-use-azcopy.md).
+AzCopy használatával eszköz, lásd: [adatátvitel az AzCopy parancssori segédprogram hello](storage-use-azcopy.md).
 
 ##### <a name="option-2-copy-a-vhd-with-powershell-synchronized-copy"></a>2. lehetőség: A PowerShell használatával (Synchronized másolás) virtuális merevlemez másolása
-A PowerShell-parancsmaggal a Start-AzureStorageBlobCopy VHD-fájlt is másolhatja. Az Azure PowerShell az alábbi parancs segítségével másolja a VHD-t. Cserélje le a <> értékei a forrás és cél tárfiók megfelelő értékeivel. Ezen parancs használatához rendelkeznie kell a cél tárfiókkal nevezett VHD-k tárolója. Ha a tároló nem létezik, hozzon létre egyet a parancs futtatása előtt.
+PowerShell-parancsmaggal hello Start-AzureStorageBlobCopy hello VHD-fájlt is másolhatja. Használja a következő parancs az Azure PowerShell toocopy VHD hello. Cserélje le a <> hello értékei a forrás és cél tárfiók megfelelő értékeivel. Ez a parancs, rendelkeznie kell a cél tárfiókkal nevezett VHD-k tárolója toouse. Ha hello tároló nem létezik, hozzon létre egyet hello parancs futtatása előtt.
 
 ```powershell
 $sourceBlobUri = <source-vhd-uri>
@@ -217,41 +217,41 @@ C:\PS> $destinationContext = New-AzureStorageContext  –StorageAccountName "des
 C:\PS> Start-AzureStorageBlobCopy -srcUri $sourceBlobUri -SrcContext $sourceContext -DestContainer "vhds" -DestBlob "myvhd.vhd" -DestContext $destinationContext
 ```
 
-### <a name="scenario2"></a>2. forgatókönyv: "I vagyok telepít át virtuális gépeket más platformokon a prémium szintű Storage."
-Ha az áttelepítés VHD-t a nem - Azure felhőalapú tárolást az Azure-ba, először exportálnia kell a virtuális merevlemez helyi könyvtárba. A teljes forrás könyvtár elérési útja a helyi virtuális merevlemez tároló lesz szüksége van, és az AzCopy segítségével töltse fel az Azure Storage.
+### <a name="scenario2"></a>2. forgatókönyv: "I vagyok telepít virtuális gépeket más platformokon tooAzure prémium szintű Storage."
+Ha a virtuális merevlemez nem Azure felhőalapú tárolást tooAzure telepít, először exportálnia kell hello VHD tooa helyi könyvtárba. Hello teljes forrás könyvtár elérési útja hello helyi virtuális merevlemez tároló lesz szüksége van, és akkor használja az AzCopy tooupload azt tooAzure tároló.
 
-#### <a name="step-1-export-vhd-to-a-local-directory"></a>1. lépés A VHD exportálása egy helyi könyvtárba
+#### <a name="step-1-export-vhd-tooa-local-directory"></a>1. lépés Exportálja a virtuális merevlemez tooa helyi könyvtár
 ##### <a name="copy-a-vhd-from-aws"></a>Másolja a VHD-t AWS
-1. Ha AWS használ, exportálja a EC2 példány az Amazon S3 gyűjtő virtuális. Az Amazon EC2 példányok telepítse az Amazon EC2 parancssori felület (CLI) eszközt, és a létrehozás-példány-export-tevékenység parancsot a EC2 példány exportálni egy VHD-fájl exportálása Amazon dokumentációjában ismertetett lépéseket követve. Használjon **VHD** a lemez &#95; kép &#95; FORMÁTUM változó futtatásakor a **-példány-export-feladat létrehozása** parancsot. Az exportált VHD-fájl kerül az Amazon S3 gyűjtő jelöl ki, a folyamat során.
+1. Ha AWS használ, exportálja a hello EC2 példány tooa az Amazon S3 gyűjtő VHD-n. Hello exportálása Amazon EC2 példányok tooinstall hello Amazon EC2 parancssori felület (CLI) eszköz Amazon dokumentációjában leírt hello lépésekkel, és futtassa a hello-példány-export-feladat létrehozása parancs tooexport hello EC2 példány tooa VHD-fájlt. Lehet, hogy toouse **VHD** hello lemez &#95; kép &#95; Hello futtatásakor formátum változó **-példány-export-feladat létrehozása** parancsot. hello exportált VHD-fájl kerül, a folyamat során megadott hello Amazon S3 gyűjtő.
 
     ```
     aws ec2 create-instance-export-task --instance-id ID --target-environment TARGET_ENVIRONMENT \
       --export-to-s3-task DiskImageFormat=DISK_IMAGE_FORMAT,ContainerFormat=ova,S3Bucket=BUCKET,S3Prefix=PREFIX
     ```
 
-2. Töltse le a VHD-fájlt a S3 gyűjtő. Válassza ki a VHD-fájlt, majd **műveletek** > **letöltése**.
+2. Hello S3 gyűjtő hello VHD-fájl letöltését. Jelölje be hello VHD-fájlt, majd **műveletek** > **letöltése**.
 
     ![][3]
 
 ##### <a name="copy-a-vhd-from-other-non-azure-cloud"></a>Másolja a VHD-t más-Azure felhő
-Ha az áttelepítés VHD-t a nem - Azure felhőalapú tárolást az Azure-ba, először exportálnia kell a virtuális merevlemez helyi könyvtárba. Másolja a teljes forrás könyvtár elérési útja a helyi virtuális merevlemez tárolásához.
+Ha a virtuális merevlemez nem Azure felhőalapú tárolást tooAzure telepít, először exportálnia kell hello VHD tooa helyi könyvtárba. Másolja a hello teljes forrás könyvtár elérési útja hello helyi virtuális merevlemez tárolásához.
 
 ##### <a name="copy-a-vhd-from-on-premises"></a>Másolja a VHD-t a helyszíni
-Ha a VHD-t a helyszíni környezetben telepít, szüksége lesz a virtuális merevlemez tárolásához, a teljes forrás elérési útja. A forrás elérési útja egy helyen vagy kiszolgálómegosztás lehet.
+Ha a VHD-t a helyszíni környezetben telepít, szüksége lesz a hello teljes forrás elérési útja a virtuális merevlemez tárolásához. hello forrás elérési útja egy helyen vagy kiszolgálómegosztás lehet.
 
-#### <a name="step-2-create-the-destination-for-your-vhd"></a>2. lépés A cél a virtuális merevlemez létrehozása
-Hozzon létre egy tárfiókot, a virtuális merevlemezek karbantartásához. A virtuális merevlemezek tárolási helyének megtervezésekor, vegye figyelembe a következő szempontokat:
+#### <a name="step-2-create-hello-destination-for-your-vhd"></a>2. lépés Hello cél a virtuális merevlemez létrehozása
+Hozzon létre egy tárfiókot, a virtuális merevlemezek karbantartásához. Vegye figyelembe a where megtervezésekor a következő pontok hello toostore merevlemezek:
 
-* A céloldali tárfiók lehet standard vagy prémium szintű storage, attól függően, hogy az alkalmazás követelményeinek.
-* A tárfiók régiója meg kell egyeznie a prémium szintű Storage kompatibilis Azure virtuális gépek létrehozhat utolsó szakaszában. Nem átmásolni egy új tárfiókot, vagy a igények alapján ugyanazt a tárfiókot használni szeretne.
-* Másolja ki és mentse a tárfiók hívóbetűjét, a cél tárfiókkal a következő szakaszban.
+* hello cél tárfiók lehet standard vagy prémium szintű storage, attól függően, hogy az alkalmazás követelményeinek.
+* hello tárfiók régiója meg kell egyeznie a prémium szintű Storage kompatibilis Azure virtuális gépek létrehozhat hello utolsó szakaszában. Új tárfiók tooa vagy terv toouse hello igényei szerint ugyanazt a tárfiókot nem átmásolni.
+* Másolja ki és mentse a hello tárfiók kulcsa hello cél tárfiók hello következő szakaszra.
 
-Határozottan javasoljuk, a prémium szintű storage üzemi terhelés minden adat áthelyezése.
+Határozottan javasoljuk, áthelyezése éles munkaterhelés toouse prémium szintű storage összes adatát.
 
-#### <a name="step-3-upload-the-vhd-to-azure-storage"></a>3. lépés A VHD-fájlt feltölti az Azure Storage
-Most, hogy a VHD-t a helyi címtárban, AzCopy vagy AzurePowerShell használhatja a .vhd fájl feltöltése az Azure Storage. Mindkét lehetőség itt találhatók:
+#### <a name="step-3-upload-hello-vhd-tooazure-storage"></a>3. lépés Hello VHD tooAzure tárolási feltöltése
+Most, hogy a virtuális merevlemez hello helyi könyvtárban, az AzCopy vagy AzurePowerShell tooupload hello .vhd fájl tooAzure tárolási is használhatja. Mindkét lehetőség itt találhatók:
 
-##### <a name="option-1-using-azure-powershell-add-azurevhd-to-upload-the-vhd-file"></a>1. lehetőség: Azure PowerShell Add-AzureVhd fel kell töltenie a .vhd fájlt használ.
+##### <a name="option-1-using-azure-powershell-add-azurevhd-tooupload-hello-vhd-file"></a>1. lehetőség: Az Azure PowerShell Add-AzureVhd tooupload hello .vhd fájl használata
 
 ```powershell
 Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
@@ -259,12 +259,12 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
 
 Példa <Uri> előfordulhat, hogy ***"https://storagesample.blob.core.windows.net/mycontainer/blob1.vhd"***. Példa <FileInfo> előfordulhat, hogy ***"C:\path\to\upload.vhd"***.
 
-##### <a name="option-2-using-azcopy-to-upload-the-vhd-file"></a>2. lehetőség: Az AzCopy segítségével a .vhd fájl feltöltése
-Használja az AzCopy, egyszerűen feltöltheti a VHD-t az interneten keresztül. A virtuális merevlemezek méretétől függően ez időt vehet igénybe. Fontos, hogy ellenőrizze a tárfiókok be-és kilépési korlátai, ez a beállítás használata esetén. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) részleteiről.
+##### <a name="option-2-using-azcopy-tooupload-hello-vhd-file"></a>2. lehetőség: Az AzCopy tooupload hello .vhd fájl használata
+Használja az AzCopy, egyszerűen feltöltheti hello VHD hello interneten keresztül. Attól függően, hogy a virtuális merevlemezek hello hello méretét Ez időt vehet igénybe. Ne felejtse el toocheck hello tárfiókok be-és kilépési korlátai, ha ezt a lehetőséget választja. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) részleteiről.
 
 1. Töltse le és telepítse az AzCopy innen: [az AzCopy legújabb verzióját](http://aka.ms/downloadazcopy)
-2. Nyissa meg az Azure PowerShell és a mappában, amelyen telepítve van-e az AzCopy.
-3. A következő parancs segítségével másolja a VHD-fájlt a "Forrás" a "Cél".
+2. Nyissa meg az Azure PowerShell és amelyen telepítve van-e az AzCopy lépjen toohello mappát.
+3. Használjon hello következő parancsot a toocopy hello VHD-fájlt a "Forrás" túl "Cél".
 
     ```azcopy
     AzCopy /Source: <source> /SourceKey: <source-account-key> /Dest: <destination> /DestKey: <dest-account-key> /BlobType:page /Pattern: <file-name>
@@ -276,91 +276,91 @@ Használja az AzCopy, egyszerűen feltöltheti a VHD-t az interneten keresztül.
     AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /SourceKey:key1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /DestKey:key2 /BlobType:page /Pattern:abc.vhd
     ```
 
-    Az alábbiakban az AzCopy parancs paraméterei leírása:
+    Az alábbiakban az AzCopy parancs hello használt hello paraméterek leírását:
 
-   * **/ Forrás:  *&lt;forrás&gt;:***  a mappa vagy a tárolási tároló URL-címet, amely a VHD-t tartalmaz.
-   * **/ SourceKey:  *&lt;forrás fiókkulcs&gt;:***  a forrás tárfiók Tárfiók kulcsa.
-   * **/ Dest:  *&lt;cél&gt;:***  másolja a VHD-fájlt tároló tároló URL-címet.
-   * **/ DestKey:  *&lt;cél fiókkulcs&gt;:***  a cél tárfiókkal a Tárfiók kulcsára.
-   * **/ BlobType: lap:** Megadja, hogy a cél oldalakra vonatkozó blob.
-   * **/ Mintát:  *&lt;Fájlnév&gt;:***  adja meg a fájlnevet a virtuális merevlemez másolása.
+   * **/ Forrás:  *&lt;forrás&gt;:***  hello mappa vagy hello VHD-t tartalmazó tároló tárolói URL.
+   * **/ SourceKey:  *&lt;forrás fiókkulcs&gt;:***  hello forrás tárfiók Tárfiók kulcsa.
+   * **/ Dest:  *&lt;cél&gt;:***  tárolási tároló URL-cím toocopy hello VHD-fájlt.
+   * **/ DestKey:  *&lt;cél fiókkulcs&gt;:***  hello céltárfiókot a Tárfiók kulcsára.
+   * **/ BlobType: lap:** határozza meg, hogy hello cél oldalakra vonatkozó blob.
+   * **/ Mintát:  *&lt;Fájlnév&gt;:***  hello hello VHD toocopy a fájl nevének megadása.
 
-AzCopy használatával eszköz, lásd: [adatátvitel az AzCopy parancssori segédprogram a](storage-use-azcopy.md).
+AzCopy használatával eszköz, lásd: [adatátvitel az AzCopy parancssori segédprogram hello](storage-use-azcopy.md).
 
 ##### <a name="other-options-for-uploading-a-vhd"></a>Más beállításokat a virtuális merevlemez feltöltése
-Feltöltheti a virtuális merevlemez a tárfiókhoz, az alábbi eszközök egyikével:
+Feltöltheti a virtuális merevlemez tooyour tárfiók azt jelenti, hogy a következő hello egyikének használatával:
 
 * [Az Azure Storage másolási Blob API](https://msdn.microsoft.com/library/azure/dd894037.aspx)
 * [Az Azure Storage Explorer feltöltése a BLOB](https://azurestorageexplorer.codeplex.com/)
 * [Storage Import/Export szolgáltatás REST API-referencia](https://msdn.microsoft.com/library/dn529096.aspx)
 
 > [!NOTE]
-> Ajánlott Import/Export szolgáltatás használata, ha becsült a 7 napnál hosszabb idő feltöltése. Használhat [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) becsléséhez adatok méretét és átviteli egység időpontját.
+> Ajánlott Import/Export szolgáltatás használata, ha becsült a 7 napnál hosszabb idő feltöltése. Használhat [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) adatok méretét és átviteli egység tooestimate hello időpontját.
 >
-> Importálási/exportálási segítségével másolja egy standard szintű tárfiókot. Szüksége lesz a prémium szintű storage-fiókra egy eszköz, például az AzCopy standard tárolási másolja.
+> Importálási/exportálási lehet toocopy tooa standard szintű tárfiókot használja. Standard szintű tárolást toopremium tárkonfigurációt AzCopy hasonló eszköz használatával toocopy kell.
 >
 >
 
 ## <a name="create-azure-virtual-machine-using-premium-storage"></a>Prémium szintű Storage használata Azure virtuális gépek létrehozása
-Után a virtuális merevlemez töltenek fel vagy másolja a kívánt tárfiókot, kövesse az ebben a szakaszban található a virtuális merevlemez regisztrálja az operációsrendszer-lemezképek, vagy a forgatókönyvtől függően az operációsrendszer-lemez, és a Virtuálisgép-példány készíteni. A virtuális merevlemez adatlemeze csatolható a virtuális gép létrehozása után.
-Ez a szakasz végén egy áttelepítési parancsfájlt valósul meg. Ez egyszerű parancsprogram nem felel meg minden forgatókönyvben. A parancsfájl az adott helyzetnek megfelelő frissítésére lehet szükség. Ha ezt a parancsfájlt a forgatókönyv vonatkozik-e, olvassa el alább [A Parancsfájlpéldát áttelepítési](#a-sample-migration-script).
+Miután hello VHD szükséges feltöltött vagy másolt toohello tárfiókot, ez a szakasz tooregister hello VHD hello utasításait kövesse az operációsrendszer-lemezképek, vagy a forgatókönyvtől függően az operációsrendszer-lemez, és egy Virtuálisgép-példány készítése. hello adatlemez VHD lehet csatolt toohello virtuális gép létrehozása után.
+Ez a szakasz hello végén egy áttelepítési parancsfájlt valósul meg. Ez egyszerű parancsprogram nem felel meg minden forgatókönyvben. Az adott forgatókönyv szükség lehet tooupdate hello parancsfájl toomatch. Ha ezt a parancsfájlt érvényes tooyour esetben toosee lásd az alábbi [A Parancsfájlpéldát áttelepítési](#a-sample-migration-script).
 
 ### <a name="checklist"></a>Feladatlista
-1. Várja meg, amíg minden, a Másolás VHD lemezek befejeződött.
-2. Ellenőrizze, hogy prémium szintű Storage érhető el a régióban végzi az áttelepítést.
-3. Döntse el, az új Virtuálisgép-sorozat fog használni. A prémium szintű Storage képes legyen, és a méret kell a rendelkezésre állási régióban függően előfordulhat, és igényei szerint.
-4. Döntse el, a pontos használandó Virtuálisgép-méretet. Virtuálisgép-méretet kell lennie, elég nagy legyen rendelkezik adatlemezek számának támogatásához. Például Ha 4 adatlemezek, a virtuális gép 2 vagy több maggal kell rendelkeznie. Fontolja meg is, a feldolgozási kapacitása, memória, és a hálózati sávszélesség igényeinek megfelelően.
-5. Prémium szintű Storage-fiók létrehozása a cél régióban. Ez az a fiók, az új virtuális gép használja.
-6. Az aktuális virtuális gép adatai lesz szüksége, beleértve a megfelelő VHD-blobok és lemezek listáját rendelkezik.
+1. Várja meg, amíg az összes hello VHD lemezek másolása befejeződött.
+2. Ellenőrizze, hogy hello régió áttelepítés prémium szintű Storage áll rendelkezésre.
+3. Döntse el, hello új Virtuálisgép-sorozat fog használni. Egy prémium szintű Storage képes legyen, és hello mérete attól függően, hello rendelkezésre állási hello régióban és igényei alapján kell.
+4. Döntse el, hello pontos Virtuálisgép-méretet fogja használni. Virtuálisgép-méretet kell toobe elég nagy toosupport hello rendelkezik adatlemezek száma. Például Ha 4 adatlemezek, hello VM 2 vagy több maggal kell rendelkeznie. Fontolja meg is, a feldolgozási kapacitása, memória, és a hálózati sávszélesség igényeinek megfelelően.
+5. Prémium szintű Storage-fiók létrehozása hello cél régióban. A rendszer a hello fiókot használja-e hello új virtuális Gépet.
+6. Hello aktuális virtuális gép adatai lesz szüksége, beleértve a lemezek és a megfelelő VHD-blobok hello listája rendelkezik.
 
-Készítse elő az állásidő alkalmazását. Egy tiszta az áttelepítés végrehajtásához, akkor állítsa le a feldolgozás az aktuális rendszerben. Csak ezután beszerezheti a konzisztens állapotú. Ez az új platformon is áttelepíthetők. Állásidő időtartama áttelepítéséhez a lemezeken mennyiségétől függ.
+Készítse elő az állásidő alkalmazását. egy tiszta áttelepítési toodo, vannak toostop összes hello feldolgozási hello aktuális rendszer. Csak ezután beszerezheti tooconsistent állapotát, amely áttelepíthető toohello új platformon. Állásidő időtartama hello adatmennyiséget a hello lemezek toomigrate függ.
 
 > [!NOTE]
-> Az Azure Resource Manager virtuális gép speciális VHD lemez létrehozásakor, tekintse meg [sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) erőforrás-kezelő virtuális gépet a meglévő lemezt telepítéséhez.
+> Az Azure Resource Manager virtuális gép speciális VHD lemez létrehozásakor, tekintse meg túl[sablon](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) erőforrás-kezelő virtuális gépet a meglévő lemezt telepítéséhez.
 >
 >
 
 ### <a name="register-your-vhd"></a>A virtuális merevlemez regisztrálása
-A virtuális gép létrehozása az operációs rendszer virtuális merevlemezről vagy adatlemezt csatolni egy új virtuális Gépet, először regisztrálnia kell őket. Kövesse az alábbi lépéseket attól függően, hogy a VHD-forgatókönyv.
+a virtuális gép operációs rendszer virtuális Merevlemezt vagy egy adatok lemez tooa tooattach toocreate új virtuális Gépet, először regisztrálnia kell őket. Kövesse az alábbi lépéseket attól függően, hogy a VHD-forgatókönyv.
 
-#### <a name="generalized-operating-system-vhd-to-create-multiple-azure-vm-instances"></a>Operációs rendszer virtuális merevlemez létrehozása több Azure Virtuálisgép-példányok általánosítva
-Miután általánosított virtuális Merevlemezt az operációsrendszer-lemezképek feltöltése a tárfiókba, regisztrálja azt egy **Azure Virtuálisgép-lemezkép** , hogy egy vagy több Virtuálisgép-példányok hozhat létre belőle. A következő PowerShell-parancsmagok segítségével regisztrálja a virtuális merevlemez, egy Azure virtuális gép operációsrendszer-lemezképben. Adja meg a teljes tároló URL-cím, ahol VHD lett másolva.
+#### <a name="generalized-operating-system-vhd-toocreate-multiple-azure-vm-instances"></a>Operációs rendszer virtuális merevlemez toocreate általánosítva több Azure Virtuálisgép-példányok
+Az operációsrendszer-lemezképek általánosított virtuális merevlemez feltöltése toohello tárfiókot, után regisztrálja azt egy **Azure Virtuálisgép-lemezkép** , hogy egy vagy több Virtuálisgép-példányok hozhat létre belőle. A következő PowerShell-parancsmagok tooregister hello a VHD-t használja egy Azure virtuális gép operációsrendszer-lemezképben. Adja meg a hello teljes tároló URL-CÍMÉT adott VHD lett másolva.
 
 ```powershell
 Add-AzureVMImage -ImageName "OSImageName" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/osimage.vhd" -OS Windows
 ```
 
-Másolja ki és mentse az új Azure Virtuálisgép-lemezkép nevét. A fenti példa, hogy a rendszer *OSImageName*.
+Másolja ki és mentse az új Azure Virtuálisgép-lemezkép hello nevét. Hello a fenti példában az is *OSImageName*.
 
-#### <a name="unique-operating-system-vhd-to-create-a-single-azure-vm-instance"></a>Egyedi, operációs rendszer virtuális merevlemez egyetlen Azure Virtuálisgép-példány létrehozása
-Az egyedi az operációs rendszer virtuális merevlemez feltöltése a tárfiókba, után regisztrálja azt egy **Azure operációsrendszer-lemez** , hogy egy Virtuálisgép-példányt hozhat létre belőle. PowerShell-parancsmagok segítségével regisztrálja a VHD-t Azure operációsrendszer-lemezként. Adja meg a teljes tároló URL-cím, ahol VHD lett másolva.
+#### <a name="unique-operating-system-vhd-toocreate-a-single-azure-vm-instance"></a>Egyedi operációs rendszer virtuális merevlemez toocreate egyetlen Azure Virtuálisgép-példány
+Hello után egyedi az operációs rendszer virtuális merevlemez az feltöltött toohello tároló fiókot, regisztrálja őket, mint egy **Azure operációsrendszer-lemez** , hogy egy Virtuálisgép-példányt hozhat létre belőle. A virtuális merevlemez az alábbi PowerShell-parancsmagok tooregister használja Azure operációsrendszer-lemezként. Adja meg a hello teljes tároló URL-CÍMÉT adott VHD lett másolva.
 
 ```powershell
 Add-AzureDisk -DiskName "OSDisk" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/osdisk.vhd" -Label "My OS Disk" -OS "Windows"
 ```
 
-Másolja ki és mentse az új Azure operációsrendszer-lemez neve. A fenti példa, hogy a rendszer *OSDisk*.
+Másolja ki és mentse az új Azure operációsrendszer-lemez hello nevét. Hello a fenti példában az is *OSDisk*.
 
-#### <a name="data-disk-vhd-to-be-attached-to-new-azure-vm-instances"></a>Adatok lemez virtuális merevlemez csatolva legyen új Azure Virtuálisgép-példányokat
-Miután a virtuális merevlemez adatlemeze tárfiókkal töltheti fel, regisztrálja egy Azure-adatlemez, úgy, hogy az új DS-méretek, DSv2-méretek és GS adatsorozat Azure Virtuálisgép-példány csatolható.
+#### <a name="data-disk-vhd-toobe-attached-toonew-azure-vm-instances"></a>Adatok lemez VHD toobe csatolt toonew Azure Virtuálisgép-példányokat
+Hello virtuális merevlemez adatlemeze feltöltése után toostorage fiók, regisztrálja egy Azure-adatlemez, így azok csatolt tooyour új DS méretek, DSv2-méretek és GS adatsorozat Azure Virtuálisgép-példány.
 
-PowerShell-parancsmagok segítségével regisztrálja a virtuális merevlemez egy Azure-adatok tárolására. Adja meg a teljes tároló URL-cím, ahol VHD lett másolva.
+A PowerShell-parancsmagok tooregister a VHD-t használja az Azure-adatlemez. Adja meg a hello teljes tároló URL-CÍMÉT adott VHD lett másolva.
 
 ```powershell
 Add-AzureDisk -DiskName "DataDisk" -MediaLocation "https://storageaccount.blob.core.windows.net/vhdcontainer/datadisk.vhd" -Label "My Data Disk"
 ```
 
-Másolja ki és mentse az új Azure-adatlemez nevét. A fenti példa, hogy a rendszer *DataDisk*.
+Másolja ki és mentse az új Azure-adatlemez hello nevét. Hello a fenti példában az is *DataDisk*.
 
 ### <a name="create-a-premium-storage-capable-vm"></a>Prémium szintű Storage képes a virtuális gép létrehozása
-Egyszer operációsrendszer-lemezképet, vagy az operációsrendszer-lemez van regisztrálva, új DS-méretek, DSv2-sorozat vagy GS sorozatnak virtuális gép létrehozása. Fogja használni az operációs rendszeri lemezkép vagy operációs rendszer Lemeznév regisztrált. Válassza ki a virtuális gép a prémium szintű Storage rétegtől. Az alábbi példában használjuk a *Standard_DS2* Virtuálisgép-méretet.
+Az operációsrendszer-lemezképek egyszer hello vagy operációsrendszer-lemez van regisztrálva, hozzon létre egy új DS-méretek, DSv2-sorozat vagy GS sorozatnak virtuális gép. T hello operációs rendszeri lemezkép vagy operációs rendszer Lemeznév regisztrált fog használni. Válassza ki a Virtuálisgép-típussá hello hello prémium szintű Storage réteg alapján. Az alábbi példában használjuk hello *Standard_DS2* Virtuálisgép-méretet.
 
 > [!NOTE]
-> A lemez mérete győződjön meg arról, hogy megegyezzen a kapacitás és teljesítmény követelményeket, valamint az elérhető Azure lemezméret frissítése.
+> Frissítés hello lemez mérete toomake meg arról, hogy megegyezzen a kapacitás és a teljesítményre vonatkozó követelmények és a hello Azure rendelkezésre álló lemezterület méretét.
 >
 >
 
-Kövesse az új virtuális gép létrehozása az alábbi lépésről lépésre PowerShell-parancsmagok. Első lépésként állítsa be a következő általános paramétereket:
+Hajtsa végre hello lépésről lépésre PowerShell-parancsmagok alatt toocreate hello új virtuális Gépet. Első lépésként állítsa be az általános paraméterek hello:
 
 ```powershell
 $serviceName = "yourVM"
@@ -378,10 +378,10 @@ Először hozzon létre egy felhőalapú szolgáltatás, amelyben, amelyen az ú
 New-AzureService -ServiceName $serviceName -Location $location
 ```
 
-Ezt a forgatókönyvtől függően létrehozni az operációsrendszer-lemezképek vagy az operációs rendszer lemezének regisztrált az Azure Virtuálisgép-példány.
+Ezután a forgatókönyvtől függően hozzon létre hello Azure Virtuálisgép-példány vagy hello operációsrendszer-lemezképek vagy regisztrált operációsrendszer-lemezt.
 
-#### <a name="generalized-operating-system-vhd-to-create-multiple-azure-vm-instances"></a>Operációs rendszer virtuális merevlemez létrehozása több Azure Virtuálisgép-példányok általánosítva
-Hozzon létre egy vagy több új DS adatsorozat Azure Virtuálisgép-példányára használatával a **Azure operációsrendszer-lemezképek** regisztrált. Adja meg a operációsrendszer-lemezképek nevét a Virtuálisgép-konfiguráció, amikor új virtuális gép létrehozása az alább látható módon.
+#### <a name="generalized-operating-system-vhd-toocreate-multiple-azure-vm-instances"></a>Operációs rendszer virtuális merevlemez toocreate általánosítva több Azure Virtuálisgép-példányok
+Hozzon létre egy vagy több új DS adatsorozat Azure Virtuálisgép-példányok hello használata az hello **Azure operációsrendszer-lemezképek** regisztrált. Adja meg a operációsrendszer-lemezképek nevét hello Virtuálisgép-konfiguráció, amikor új virtuális gép létrehozása az alább látható módon.
 
 ```powershell
 $OSImage = Get-AzureVMImage –ImageName "OSImageName"
@@ -393,8 +393,8 @@ Add-AzureProvisioningConfig -Windows –AdminUserName $adminUser -Password $admi
 New-AzureVM -ServiceName $serviceName -VM $vm
 ```
 
-#### <a name="unique-operating-system-vhd-to-create-a-single-azure-vm-instance"></a>Egyedi, operációs rendszer virtuális merevlemez egyetlen Azure Virtuálisgép-példány létrehozása
-Új létrehozása DS adatsorozat Azure virtuális gép példány a **Azure operációsrendszer-lemez** regisztrált. Adja meg az operációs rendszer lemezének neve a Virtuálisgép-konfiguráció, ha az új virtuális gép létrehozása az alább látható módon.
+#### <a name="unique-operating-system-vhd-toocreate-a-single-azure-vm-instance"></a>Egyedi operációs rendszer virtuális merevlemez toocreate egyetlen Azure Virtuálisgép-példány
+Hozzon létre új DS adatsorozat Azure virtuális példányt hello segítségével **Azure operációsrendszer-lemez** regisztrált. Adja meg az operációs rendszer lemezének neve hello Virtuálisgép-konfiguráció, amikor új virtuális gép létrehozása hello alább látható módon.
 
 ```powershell
 $OSDisk = Get-AzureDisk –DiskName "OSDisk"
@@ -404,12 +404,12 @@ $vm = New-AzureVMConfig -Name $vmName -InstanceSize $vmSize -DiskName $OSDisk.Di
 New-AzureVM -ServiceName $serviceName –VM $vm
 ```
 
-Adjon meg más Azure Virtuálisgép-adatok, például egy felhőalapú szolgáltatás, régió, tárfiókot, a rendelkezésre állási csoport és gyorsítótárazási házirend. Vegye figyelembe, hogy a Virtuálisgép-példány csak futó operációs rendszer vagy az adatlemezek együtt, a kijelölt felhőalapú szolgáltatás, valamint régió és tárolási fiók kell lenniük és ugyanazon a helyen az alapul szolgáló virtuális merevlemezek lemezek.
+Adjon meg más Azure Virtuálisgép-adatok, például egy felhőalapú szolgáltatás, régió, tárfiókot, a rendelkezésre állási csoport és gyorsítótárazási házirend. Vegye figyelembe, hogy hello Virtuálisgép-példány közös elhelyezésű társított operációs rendszerrel kell lennie, vagy adatlemezek, így hello kijelölt felhőalapú szolgáltatás, valamint régió és tárolási fiók kell lenniük hello az alapul szolgáló virtuális merevlemezek lemezek hello és ugyanazon a helyen.
 
 ### <a name="attach-data-disk"></a>Adatlemez csatolása
-Végül Ha adatlemezt VHD regisztrálta, csatolja az új prémium szintű Storage kompatibilis Azure virtuális gépen.
+Végül, ha regisztrált adatok lemez VHD-k, csatolja őket toohello új prémium szintű Storage kompatibilis Azure virtuális Gépen.
 
-Használja a következő PowerShell-parancsmag adatlemezt csatolni az új virtuális Gépet, és adja meg a gyorsítótárazási házirendet. Az alábbi példában a gyorsítótárazási házirend beállítása *ReadOnly*.
+Használja a következő PowerShell parancsmagot tooattach adatok lemez toohello új virtuális Gépet, és adja meg a gyorsítótárazási házirend hello. Hello az alábbi példában a gyorsítótárazási házirend értéke túl*ReadOnly*.
 
 ```powershell
 $vm = Get-AzureVM -ServiceName $serviceName -Name $vmName
@@ -420,55 +420,55 @@ Update-AzureVM  -VM $vm
 ```
 
 > [!NOTE]
-> További lépésekre lehet szükség az alkalmazás, amely támogatja az útmutató nem vonatkoznak.
+> Előfordulhat, hogy további lépéseket szükséges toosupport az alkalmazás, amely nem elegendő az útmutatóban.
 >
 >
 
 ### <a name="checking-and-plan-backup"></a>Ellenőrzése és a biztonsági mentés tervezése
-Ha az új virtuális gép fut, hozzáférhessenek megegyező bejelentkezési azonosítóval, és jelszó van, mint az eredeti virtuális gép, és győződjön meg arról, hogy minden az elvárásoknak megfelelően működik. Az összes beállítás a csíkozott kötetek, beleértve az új virtuális gép jelen lehet.
+Egyszer hello új virtuális gép működik-e és fut, a hozzáférés segítségével hello azonos felhasználónév és jelszó megegyezik az eredeti virtuális gép hello, és győződjön meg arról, hogy minden a várt módon működik. Összes hello beállításának, köztük a hello csíkozott kötetek jelen lehet új virtuális gép hello.
 
-Az utolsó lépése az, hogy a biztonsági mentési terv, és az új virtuális gép karbantartási ütemezését az alkalmazás igények alapján.
+hello utolsó lépése tooplan biztonsági mentésének és karbantartásának ütemezése hello hello alkalmazásnak alapuló új virtuális gép.
 
 ### <a name="a-sample-migration-script"></a>Egy áttelepítési parancsfájlt
-Ha több virtuális gép áttelepítése, automatizálás PowerShell-parancsprogramok hasznos lehet. Az alábbiakban látható egy minta parancsfájlt, amely automatizálja az áttelepítés a virtuális gépek. Megjegyzés: alábbi parancsfájl, amely csak egy példa, és nincsenek a jelenlegi virtuális gép lemezeivel kapcsolatos tett néhány feltételezéseket. A parancsfájl az adott helyzetnek megfelelő frissítésére lehet szükség.
+Ha több virtuális gépek toomigrate, automatizálás PowerShell-parancsprogramok hasznos lehet. Az alábbiakban látható egy minta parancsfájlt, amely automatizálja a virtuális gép hello áttelepítését. Megjegyzés: alább parancsfájl, amely csak egy példa, és nincsenek hello aktuális virtuális gép lemezeivel kapcsolatos tett néhány feltételezéseket. Az adott forgatókönyv szükség lehet tooupdate hello parancsfájl toomatch.
 
-Az Előfeltételek a következők:
+hello Előfeltételek a következők:
 
 * Klasszikus Azure virtuális gépek létrehozásakor.
-* A forrás operációs rendszer és a forrás adatok lemezek vannak ugyanabban a tárfiókban és az ugyanabban a tárolóban. Ha az operációs rendszer és a adatok lemezek nem ugyanazon a helyen, AzCopy vagy az Azure PowerShell használatával virtuális merevlemezek másolja át a storage-fiókok és a tárolók. Tekintse meg az előző lépésben: [másolási VHD AzCopy vagy a PowerShell használatával](#copy-vhd-with-azcopy-or-powershell). Ezt a parancsfájlt a forgatókönyvnek megfelelő szerkesztése egy újabb választási lehetőség, de azt javasoljuk, mert az egyszerűbb és gyorsabb AzCopy vagy a PowerShell használatával.
+* A forrás operációs rendszer és a forrás adatok lemezek vannak ugyanabban a tárfiókban és az ugyanabban a tárolóban. Ha az operációs rendszer és a lemezek adatok nincsenek az azonos hello helyezze, használhatja a storage-fiókok és a tárolók AzCopy vagy az Azure PowerShell toocopy virtuális merevlemezeket. Tekintse meg az előző lépésben toohello: [másolási VHD AzCopy vagy a PowerShell használatával](#copy-vhd-with-azcopy-or-powershell). A parancsfájl toomeet szerkesztése adott esetben más választási lehetőség, de azt javasoljuk, mert az egyszerűbb és gyorsabb AzCopy vagy a PowerShell használatával.
 
-Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az adatait, és frissítse a parancsfájlt, amellyel felelnek meg az adott forgatókönyv.
+hello automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az adatait, és frissítse az Ön konkrét forgatókönyvei hello parancsfájl toomatch.
 
 > [!NOTE]
-> A meglévő parancsfájl használatával nem őrzi meg a hálózati konfigurációt a forrás virtuális gép. Szüksége lesz az ismételt-config a hálózati beállításokat az áttelepített virtuális gépeken.
+> Hello meglévő parancsfájl használatával nem őrzi meg a virtuális gép – forrásként hello hálózati konfigurációját. Toore-config hello hálózati beállításokat kell az áttelepített virtuális gépeken.
 >
 >
 
 ```
     <#
     .Synopsis
-    This script is provided as an EXAMPLE to show how to migrate a VM from a standard storage account to a premium storage account. You can customize it according to your specific requirements.
+    This script is provided as an EXAMPLE tooshow how toomigrate a VM from a standard storage account tooa premium storage account. You can customize it according tooyour specific requirements.
 
     .Description
-    The script will copy the vhds (page blobs) of the source VM to the new storage account.
-    And then it will create a new VM from these copied vhds based on the inputs that you specified for the new VM.
-    You can modify the script to satisfy your specific requirement, but please be aware of the items specified
-    in the Terms of Use section.
+    hello script will copy hello vhds (page blobs) of hello source VM toohello new storage account.
+    And then it will create a new VM from these copied vhds based on hello inputs that you specified for hello new VM.
+    You can modify hello script toosatisfy your specific requirement, but please be aware of hello items specified
+    in hello Terms of Use section.
 
     .Terms of Use
     Copyright © 2015 Microsoft Corporation.  All rights reserved.
 
     THIS CODE AND ANY ASSOCIATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
-    EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY
-    AND/OR FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE, INABILITY TO USE, OR
-    RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
+    EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED toohello IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND/OR FITNESS FOR A PARTICULAR PURPOSE. hello ENTIRE RISK OF USE, INABILITY tooUSE, OR
+    RESULTS FROM hello USE OF THIS CODE REMAINS WITH hello USER.
 
     .Example (Save this script as Migrate-AzureVM.ps1)
 
     .\Migrate-AzureVM.ps1 -SourceServiceName CurrentServiceName -SourceVMName CurrentVMName –DestStorageAccount newpremiumstorageaccount -DestServiceName NewServiceName -DestVMName NewDSVMName -DestVMSize "Standard_DS2" –Location "Southeast Asia"
 
     .Link
-    To find more information about how to set up Azure PowerShell, refer to the following links.
+    toofind more information about how tooset up Azure PowerShell, refer toohello following links.
     http://azure.microsoft.com/documentation/articles/powershell-install-configure/
     http://azure.microsoft.com/documentation/articles/storage-powershell-guide-full/
     http://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/
@@ -476,43 +476,43 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     #>
 
     Param(
-    # the cloud service name of the VM.
+    # hello cloud service name of hello VM.
     [Parameter(Mandatory = $true)]
     [string] $SourceServiceName,
 
-    # The VM name to copy.
+    # hello VM name toocopy.
     [Parameter(Mandatory = $true)]
     [String] $SourceVMName,
 
-    # The destination storage account name.
+    # hello destination storage account name.
     [Parameter(Mandatory = $true)]
     [String] $DestStorageAccount,
 
-    # The destination cloud service name
+    # hello destination cloud service name
     [Parameter(Mandatory = $true)]
     [String] $DestServiceName,
 
-    # the destination vm name
+    # hello destination vm name
     [Parameter(Mandatory = $true)]
     [String] $DestVMName,
 
-    # the destination vm size
+    # hello destination vm size
     [Parameter(Mandatory = $true)]
     [String] $DestVMSize,
 
-    # the location of destination VM.
+    # hello location of destination VM.
     [Parameter(Mandatory = $true)]
     [string] $Location,
 
-    # whether or not to copy the os disk, the default is only copy data disks
+    # whether or not toocopy hello os disk, hello default is only copy data disks
     [Parameter(Mandatory = $false)]
     [Bool] $DataDiskOnly = $true,
 
-    # how frequently to report the copy status in sceconds
+    # how frequently tooreport hello copy status in sceconds
     [Parameter(Mandatory = $false)]
     [Int32] $CopyStatusReportInterval = 15,
 
-    # the name suffix to add to new created disks to avoid conflict with source disk names
+    # hello name suffix tooadd toonew created disks tooavoid conflict with source disk names
     [Parameter(Mandatory = $false)]
     [String]$DiskNameSuffix = "-prem"
 
@@ -522,7 +522,7 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     #  Verify Azure PowerShell module and version
     #######################################################################
 
-    #import the Azure PowerShell module
+    #import hello Azure PowerShell module
     Write-Host "`n[WORKITEM] - Importing Azure PowerShell module" -ForegroundColor Yellow
     $azureModule = Import-Module Azure -PassThru
 
@@ -538,7 +538,7 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     }
 
 
-    #Check the Azure PowerShell module version
+    #Check hello Azure PowerShell module version
     Write-Host "`n[WORKITEM] - Checking Azure PowerShell module verion" -ForegroundColor Yellow
     If ($azureModule.Version -ge (New-Object System.Version -ArgumentList "0.8.14"))
     {
@@ -560,60 +560,60 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     }
     else
     {
-        Write-Host "[ERROR] - There is no valid Azure subscription found in PowerShell. Please refer to this article http://azure.microsoft.com/documentation/articles/powershell-install-configure/ to connect an Azure subscription. Exiting." -ForegroundColor Red
+        Write-Host "[ERROR] - There is no valid Azure subscription found in PowerShell. Please refer toothis article http://azure.microsoft.com/documentation/articles/powershell-install-configure/ tooconnect an Azure subscription. Exiting." -ForegroundColor Red
         Exit
     }
 
 
     #######################################################################
-    #  Check if the VM is shut down
-    #  Stopping the VM is a required step so that the file system is consistent when you do the copy operation.
+    #  Check if hello VM is shut down
+    #  Stopping hello VM is a required step so that hello file system is consistent when you do hello copy operation.
     #  Azure does not support live migration at this time..
     #######################################################################
 
     if (($sourceVM = Get-AzureVM –ServiceName $SourceServiceName –Name $SourceVMName) -eq $null)
     {
-        Write-Host "[ERROR] - The source VM doesn't exist in the current subscription. Exiting." -ForegroundColor Red
+        Write-Host "[ERROR] - hello source VM doesn't exist in hello current subscription. Exiting." -ForegroundColor Red
         Exit
     }
 
     # check if VM is shut down
     if ( $sourceVM.Status -notmatch "Stopped" )
     {
-        Write-Host "[Warning] - Stopping the VM is a required step so that the file system is consistent when you do the copy operation. Azure does not support live migration at this time. If you'd like to create a VM from a generalized image, sys-prep the Virtual Machine before stopping it." -ForegroundColor Yellow
-        $ContinueAnswer = Read-Host "`n`tDo you wish to stop $SourceVMName now? Input 'N' if you want to shut down the VM manually and come back later.(Y/N)"
+        Write-Host "[Warning] - Stopping hello VM is a required step so that hello file system is consistent when you do hello copy operation. Azure does not support live migration at this time. If you'd like toocreate a VM from a generalized image, sys-prep hello Virtual Machine before stopping it." -ForegroundColor Yellow
+        $ContinueAnswer = Read-Host "`n`tDo you wish toostop $SourceVMName now? Input 'N' if you want tooshut down hello VM manually and come back later.(Y/N)"
         If ($ContinueAnswer -ne "Y") { Write-Host "`n Exiting." -ForegroundColor Red;Exit }
         $sourceVM | Stop-AzureVM
 
-        # wait until the VM is shut down
+        # wait until hello VM is shut down
         $VMStatus = (Get-AzureVM –ServiceName $SourceServiceName –Name $vmName).Status
         while ($VMStatus -notmatch "Stopped")
         {
-            Write-Host "`n[Status] - Waiting VM $vmName to shut down" -ForegroundColor Green
+            Write-Host "`n[Status] - Waiting VM $vmName tooshut down" -ForegroundColor Green
             Sleep -Seconds 5
             $VMStatus = (Get-AzureVM –ServiceName $SourceServiceName –Name $vmName).Status
         }
     }
 
-    # exporting the sourve vm to a configuration file, you can restore the original VM by importing this config file
+    # exporting hello sourve vm tooa configuration file, you can restore hello original VM by importing this config file
     # see more information for Import-AzureVM
     $workingDir = (Get-Location).Path
     $vmConfigurationPath = $env:HOMEPATH + "\VM-" + $SourceVMName + ".xml"
-    Write-Host "`n[WORKITEM] - Exporting VM configuration to $vmConfigurationPath" -ForegroundColor Yellow
+    Write-Host "`n[WORKITEM] - Exporting VM configuration too$vmConfigurationPath" -ForegroundColor Yellow
     $exportRe = $sourceVM | Export-AzureVM -Path $vmConfigurationPath
 
 
     #######################################################################
-    #  Copy the vhds of the source vm
-    #  You can choose to copy all disks including os and data disks by specifying the
-    #  parameter -DataDiskOnly to be $false. The default is to copy only data disk vhds
-    #  and the new VM will boot from the original os disk.
+    #  Copy hello vhds of hello source vm
+    #  You can choose toocopy all disks including os and data disks by specifying the
+    #  parameter -DataDiskOnly toobe $false. hello default is toocopy only data disk vhds
+    #  and hello new VM will boot from hello original os disk.
     #######################################################################
 
     $sourceOSDisk = $sourceVM.VM.OSVirtualHardDisk
     $sourceDataDisks = $sourceVM.VM.DataVirtualHardDisks
 
-    # Get source storage account information, not considering the data disks and os disks are in different accounts
+    # Get source storage account information, not considering hello data disks and os disks are in different accounts
     $sourceStorageAccountName = $sourceOSDisk.MediaLink.Host -split "\." | select -First 1
     $sourceStorageKey = (Get-AzureStorageKey -StorageAccountName $sourceStorageAccountName).Primary
     $sourceContext = New-AzureStorageContext –StorageAccountName $sourceStorageAccountName -StorageAccountKey $sourceStorageKey
@@ -625,25 +625,25 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     # Create a container of vhds if it doesn't exist
     if ((Get-AzureStorageContainer -Context $destContext -Name vhds -ErrorAction SilentlyContinue) -eq $null)
     {
-        Write-Host "`n[WORKITEM] - Creating a container vhds in the destination storage account." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Creating a container vhds in hello destination storage account." -ForegroundColor Yellow
         New-AzureStorageContainer -Context $destContext -Name vhds
     }
 
 
     $allDisksToCopy = $sourceDataDisks
-    # check if need to copy os disk
+    # check if need toocopy os disk
     $sourceOSVHD = $sourceOSDisk.MediaLink.Segments[2]
     if ($DataDiskOnly)
     {
-        # copy data disks only, this option requires deleting the source VM so that dest VM can boot
-        # from the same vhd blob.
-        $ContinueAnswer = Read-Host "`n`t[Warning] You chose to copy data disks only. Moving VM requires removing the original VM (the disks and backing vhd files will NOT be deleted) so that the new VM can boot from the same vhd. This is an irreversible action. Do you wish to proceed right now? (Y/N)"
+        # copy data disks only, this option requires deleting hello source VM so that dest VM can boot
+        # from hello same vhd blob.
+        $ContinueAnswer = Read-Host "`n`t[Warning] You chose toocopy data disks only. Moving VM requires removing hello original VM (hello disks and backing vhd files will NOT be deleted) so that hello new VM can boot from hello same vhd. This is an irreversible action. Do you wish tooproceed right now? (Y/N)"
         If ($ContinueAnswer -ne "Y") { Write-Host "`n Exiting." -ForegroundColor Red;Exit }
         $destOSVHD = Get-AzureStorageBlob -Blob $sourceOSVHD -Container vhds -Context $sourceContext
-        Write-Host "`n[WORKITEM] - Removing the original VM (the vhd files are NOT deleted)." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Removing hello original VM (hello vhd files are NOT deleted)." -ForegroundColor Yellow
         Remove-AzureVM -Name $SourceVMName -ServiceName $SourceServiceName
 
-        Write-Host "`n[WORKITEM] - Waiting utill the OS disk is released by source VM. This may take up to several minutes."
+        Write-Host "`n[WORKITEM] - Waiting utill hello OS disk is released by source VM. This may take up tooseveral minutes."
         $diskAttachedTo = (Get-AzureDisk -DiskName $sourceOSDisk.DiskName).AttachedTo
         while ($diskAttachedTo -ne $null)
         {
@@ -654,7 +654,7 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     }
     else
     {
-        # copy the os disk vhd
+        # copy hello os disk vhd
         Write-Host "`n[WORKITEM] - Starting copying os disk $($disk.DiskName) at $(get-date)." -ForegroundColor Yellow
         $allDisksToCopy += @($sourceOSDisk)
         $targetBlob = Start-AzureStorageBlobCopy -SrcContainer vhds -SrcBlob $sourceOSVHD -DestContainer vhds -DestBlob $sourceOSVHD -Context $sourceContext -DestContext $destContext -Force
@@ -670,7 +670,7 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
         # copy all data disks
         Write-Host "`n[WORKITEM] - Starting copying data disk $($disk.DiskName) at $(get-date)." -ForegroundColor Yellow
         $targetBlob = Start-AzureStorageBlobCopy -SrcContainer vhds -SrcBlob $blobName -DestContainer vhds -DestBlob $blobName -Context $sourceContext -DestContext $destContext -Force
-        # update the media link to point to the target blob link
+        # update hello media link toopoint toohello target blob link
         $disk.MediaLink = $targetBlob.ICloudBlob.Uri.AbsoluteUri
     }
 
@@ -678,7 +678,7 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
     $diskComplete = @()
     do
     {
-        Write-Host "`n[WORKITEM] - Waiting for all disk copy to complete. Checking status every $CopyStatusReportInterval seconds." -ForegroundColor Yellow
+        Write-Host "`n[WORKITEM] - Waiting for all disk copy toocomplete. Checking status every $CopyStatusReportInterval seconds." -ForegroundColor Yellow
         # check status every 30 seconds
         Sleep -Seconds $CopyStatusReportInterval
         foreach ( $disk in $allDisksToCopy)
@@ -708,11 +708,11 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
 
     #######################################################################
     #  Create a new vm
-    #  the new VM can be created from the copied disks or the original os disk.
-    #  You can ddd your own logic here to satisfy your specific requirements of the vm.
+    #  hello new VM can be created from hello copied disks or hello original os disk.
+    #  You can ddd your own logic here toosatisfy your specific requirements of hello vm.
     #######################################################################
 
-    # Create a VM from the existing os disk
+    # Create a VM from hello existing os disk
     if ($DataDiskOnly)
     {
         $vm = New-AzureVMConfig -Name $DestVMName -InstanceSize $DestVMSize -DiskName $sourceOSDisk.DiskName
@@ -722,15 +722,15 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
         $newOSDisk = Add-AzureDisk -OS $sourceOSDisk.OS -DiskName ($sourceOSDisk.DiskName + $DiskNameSuffix) -MediaLocation $destOSVHD.ICloudBlob.Uri.AbsoluteUri
         $vm = New-AzureVMConfig -Name $DestVMName -InstanceSize $DestVMSize -DiskName $newOSDisk.DiskName
     }
-    # Attached the copied data disks to the new VM
+    # Attached hello copied data disks toohello new VM
     foreach ($dataDisk in $sourceDataDisks)
     {
-        # add -DiskLabel $dataDisk.DiskLabel if there are labels for disks of the source vm
+        # add -DiskLabel $dataDisk.DiskLabel if there are labels for disks of hello source vm
         $diskLabel = "drive" + $dataDisk.Lun
         $vm | Add-AzureDataDisk -ImportFrom -DiskLabel $diskLabel -LUN $dataDisk.Lun -MediaLocation $dataDisk.MediaLink
     }
 
-    # Edit this if you want to add more custimization to the new VM
+    # Edit this if you want tooadd more custimization toohello new VM
     # $vm | Add-AzureEndpoint -Protocol tcp -LocalPort 443 -PublicPort 443 -Name 'HTTPs'
     # $vm | Set-AzureSubnet "PubSubnet","PrivSubnet"
 
@@ -738,32 +738,32 @@ Az automatizálási parancsfájl lejjebb tekinthetők meg. Szöveg cseréje az a
 ```
 
 #### <a name="optimization"></a>Optimalizálás
-Az aktuális Virtuálisgép-konfiguráció kifejezetten az működnek jól Standard lemezek szabható testre. Például a teljesítmény növelése érdekében azáltal, hogy sok csíkozott kötetek használatával. Például helyett 4 lemezek külön-külön a prémium szintű Storage, esetleg képes optimalizálni a költségeket azzal, hogy egyetlen lemezre. Optimalizálás, például a szükséges eseti alapon kell kezelni, és egyéni lépéseket igényelnek az áttelepítés után. Emellett vegye figyelembe, hogy ez a folyamat jól nem feltétlenül alkalmas adatbázisok és a lemez elrendezése, a telepítő definiált függő alkalmazások.
+Az aktuális Virtuálisgép-konfigurációt testre szabható kifejezetten toowork jól igazodik a Standard lemezek. Például tooincrease hello teljesítmény sok csíkozott kötetek használatával. Például helyett 4 lemezek külön-külön a prémium szintű Storage, előfordulhat, hogy el tudja toooptimize hello költség azzal, hogy egyetlen lemez. Optimalizálás, például a kezelt eseti alapon kell toobe, és egyéni lépéseket igényelnek a hello áttelepítés után. Emellett vegye figyelembe, hogy ez a folyamat jól nem feltétlenül alkalmas adatbázisok és hello lemez elrendezése hello beállítása meghatározott függő alkalmazások.
 
 ##### <a name="preparation"></a>Előkészítése
-1. Az áttelepítéshez egyszerű a korábbi szakaszban leírtak szerint. Optimalizálás végrehajtására kerül sor az új virtuális Gépet az áttelepítés után.
-2. Adja meg az új lemez méretét, az optimalizált konfigurálásához szükséges.
-3. Határozza meg, és az új lemez paramétereknek aktuális lemezek vagy kötetek hozzárendelését.
+1. Teljes hello egyszerű áttelepítési hello a korábbi szakaszban. Hello történik optimalizálás hello áttelepítés után új virtuális Gépet.
+2. Adja meg a hello optimalizált hello konfigurálásához szükséges új lemez méretét.
+3. Leképezési hello aktuális lemezek vagy kötetek toohello új lemez előírások határozza meg.
 
 ##### <a name="execution-steps"></a>Végrehajtási lépések
-1. Hozzon létre új lemezek a megfelelő méretek a prémium szintű Storage virtuális Gépre.
-2. Bejelentkezés a virtuális gép és az adatok másolása az aktuális kötetről, hogy az új lemezt, amely, hogy a köteten van leképezve. Ehhez a jelenlegi köteteket, amelyeket egy új lemezre van leképezve.
-3. Ezután a váltson át az új lemezek beállításainak módosítása, és a régi kötetet leválasztani.
+1. Hozzon létre hello új lemezek hello megfelelő méretek a prémium szintű Storage VM hello.
+2. Bejelentkezési toohello virtuális gép, és másolja hello adatait hello kötet toohello új lemezhez, amely leképezhető toothat kötet. Ehhez az toomap tooa új lemez igénylő összes hello aktuális kötet.
+3. A következő hello alkalmazás beállítások tooswitch toohello új lemezek módosítsa, majd hello régi kötetet leválasztani.
 
-Az alkalmazás a jobb teljesítmény érdekében lemez hangolása, olvassa el [alkalmazások teljesítményének optimalizálása](storage-premium-storage-performance.md#optimizing-application-performance).
+A lemez teljesítmény növelése érdekében hello alkalmazás hangolása, tekintse meg az túl[alkalmazások teljesítményének optimalizálása](storage-premium-storage-performance.md#optimizing-application-performance).
 
 ### <a name="application-migrations"></a>Alkalmazás-áttelepítések
-Adatbázisok és más összetett alkalmazások lehet szükség különleges lépések az alkalmazás-szolgáltató az áttelepítés által definiált konfigurációjának kialakításához. Tekintse meg a megfelelő alkalmazás dokumentációját. Például általában adatbázisok telepíthetők át a biztonsági mentés és visszaállítás.
+Adatbázisok és más összetett alkalmazások lehet szükség különleges lépések hello alkalmazás szolgáltató hello áttelepítéshez NSA. Toorespective alkalmazás dokumentációjában tájékozódhat. Például általában adatbázisok telepíthetők át a biztonsági mentés és visszaállítás.
 
 ## <a name="next-steps"></a>Következő lépések
-A virtuális gépek meghatározott forgatókönyvek a következő cikkekben találhat:
+Tekintse meg a következő virtuális gépek meghatározott forgatókönyvek erőforrásait hello:
 
 * [Az Azure virtuális gépek közötti Storage-fiókok áttelepítése](https://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/)
-* [Hozzon létre, és a Windows Server VHD feltöltése az Azure-bA.](../../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-* [Létrehozás és a Linux operációs rendszert tartalmazó virtuális merevlemez feltöltése](../../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [Virtuális gépek áttelepítési Amazon AWS a Microsoft Azure](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
+* [Hozzon létre, és töltse fel a Windows Server VHD tooAzure.](../../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Létrehozásával, majd ismét feltölteni a virtuális merevlemez a Contains hello Linux operációs rendszer](../../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [Amazon AWS tooMicrosoft Azure virtuális gépek áttelepítése](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
 
-A következő források további információt az Azure Storage és az Azure virtuális gépek lásd még:
+A következő erőforrások toolearn további információk az Azure Storage és az Azure virtuális gépek hello lásd még:
 
 * [Azure Storage](https://azure.microsoft.com/documentation/services/storage/)
 * [Az Azure virtuális gépek](https://azure.microsoft.com/documentation/services/virtual-machines/)

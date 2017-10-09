@@ -1,5 +1,5 @@
 ---
-title: "(elavult) Túlélési elemzése Azure Machine Learning segítségével |} Microsoft Docs"
+title: "aaa(deprecated) túlélési elemzése Azure Machine Learning segítségével |} Microsoft Docs"
 description: "(elavult) Túlélési elemzés esemény előfordulása valószínűség"
 services: machine-learning
 documentationcenter: 
@@ -16,47 +16,47 @@ ms.date: 01/06/2017
 ms.author: zhangya
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 7d4066d5f15a39c428d8035257c4841f9b3cc775
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: af946d8df5ba650a9d74fbabbe3b15d3a07dd508
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-survival-analysis"></a>(elavult) Túlélési elemzés
 
 > [!NOTE]
-> A Microsoft DataMarket használatból van, és ez az API már elavult. 
+> a Microsoft DataMarket hello használatból van, és ez az API már elavult. 
 > 
-> Sok hasznos példa kísérletek és API-k a [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). A gyűjtemény kapcsolatos további információkért lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sok hasznos példa kísérletek és API-kat az található hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Gyűjteményelem hello kapcsolatos további információkért lásd: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Sok esetben a fő alatt assessment eredménye érdeklő esemény időt. Más szóval a kérdés "Ha ez az esemény történik?" meg kell adnia. Példaként, fontolja meg az olyan helyzetekben, ahol az adatokat ismerteti az eltelt idő (nap, év, távolság, stb.) csak az egyik fontos (elleni relapse, kapott doktori fok, berendezés pad hibája) esemény következik be. Az adatok minden példánya (egy türelmet student, egy autó, stb.) egy adott objektumot jelöli.
+Sok esetben a hello fő alatt assessment eredménye hello tooan esemény iránt. Más szóval hello kérdés "Ha ez az esemény történik?" meg kell adnia. Példaként, fontolja meg az olyan helyzetekben, ahol hello adatokat ismerteti hello futása közben eltelt idő (nap, év, távolság, stb.) addig hello iránt (elleni relapse, kapott doktori fok, berendezés pad hibája) esemény akkor következik be. Minden példánya hello adatokat (a türelmet student, egy autó, stb.) egy adott objektumot jelöli.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/survivalanalysis) a "Mi az a valószínűsége annak, hogy az eseményt egyik fontos idő n objektum x történik?" kérdésre adott válaszok Egy túlélési elemzési modellt biztosít, a webszolgáltatás lehetővé teszi a felhasználók adatokat a modell betanítását és tesztelik azt. A fő téma a kísérlet során eltelt idő hosszát modellezésére érdeklő az esemény akkor következik be, amíg. 
+Ez [webszolgáltatás](https://datamarket.azure.com/dataset/aml_labs/survivalanalysis) megválaszolja hello kérdést a "hello annak valószínűségét, hogy egyik fontos esemény hello Újdonságok történik idő n objektum x?" Egy túlélési elemzési modellt biztosít, a webszolgáltatás lehetővé teszi, hogy a felhasználók toosupply tootrain hello adatmodell, és tesztelik azt. hello fő téma hello kísérlet nem toomodel hello hossza hello eltelt idő, amíg érdeklő hello esemény akkor következik be. 
 
-> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De a webszolgáltatás célja is példa bemutatja, hogyan Azure Machine Learning webszolgáltatások fölött R-kód létrehozásához használható kiszolgálásához. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. A webszolgáltatás majd közzé az Azure piactéren, és felhasználók és eszközök által felhasznált világszerte a szerző, a webszolgáltatás által infrastruktúra beállítás nélkül.  
+> Ez a webszolgáltatás kell fenntartania – potenciálisan végig a mobilalkalmazások a webhelyen keresztül, vagy akár a helyi számítógépen, a felhasználókat például. De hello hello webszolgáltatás célja is tooserve példa bemutatja, hogyan Azure Machine Learning webszolgáltatások használt toocreate fölött R-kód is lehet. Az R-kód csupán néhány sornyi és az Azure Machine Learning Studio egy gombját kattint egy kísérlet hozható létre az R-kód és webszolgáltatásként közzé. hello webszolgáltatás majd lehet közzétett toohello Azure piactéren, és a felhasználók és eszközök által felhasznált között hello world hello Szerző hello webszolgáltatás infrastruktúra beállítás nélkül.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Felhasználási webszolgáltatás
-A bemeneti adatok séma, a webszolgáltatás a következő táblázatban látható. Hat adatra van szükség a bemeneti: betanítási adatok, az adatok tesztelés, idő érdeklő "idő" indexét dimenzió, "event" dimenzió és a változó típusok indexe (folyamatos vagy tényező). A betanítási adatok képviselt karakterláncot, ahol a sorokat is vesszővel elválasztott, és az oszlopok pontosvesszővel válassza el egymástól. Az adatok szolgáltatások száma kvórummodellje rugalmas. A bemeneti karakterlánc szereplő összes elem számnak kell lennie. A betanítási adatok a "time" dimenzió jelez a kiindulási pont, a vizsgálat (a fogadó kábítószerrel kezelés programok, kezdési doktori tanulmány, egy autó megkezdi a vezeti stb student türelmet.) óta eltelt idő (nap, év, távolság, stb.) meghatározása csak az egyik fontos (a beteg visszaadó kábítószerrel használatra, a student megszerezni a doktori fok, a car rendelkező berendezés pad hiba stb.) az esemény akkor következik be. Az "event" dimenzió azt jelzi, hogy egyik fontos az esemény akkor következik be, a vizsgálat végén. Érték "esemény = 1" azt jelenti, hogy az egyik fontos az esemény akkor következik be, a "time" dimenzió; által jelzett időpontra "esemény = 0" azt jelenti, hogy az eseményt egyik fontos nem történt meg a "time" dimenzió által jelzett időn által.
+hello bemeneti adatok séma hello webszolgáltatás hello a következő táblázatban látható. Hat adatra van szükség hello bemenetként: betanítási adatok, a vizsgálati adatok, érdeklő idő, a "time" dimenzió hello indexe, hello index "event" dimenzió és hello változó (folyamatos vagy tényező). hello betanítási adatok karakterláncot, ahol hello sorok vesszővel vannak elválasztva, és pontosvesszővel elválasztott hello oszlopok képviseli. Néhány hello szolgáltatás hello adatok kvórummodellje rugalmas. A bemeneti karakterlánc hello összes hello elem számokkal kell megadni. Hello betanítási adatok, a "hello"időbeli dimenzió jelzi hello kiindulópontjaként hello tanulmányozzák (egy türelmet kábítószerrel kezelés programok, student kezdési doktori tanulmány, egy autó toobe kezdési fogadása óta eltelt időegységek (nap, év, távolság, stb.) hello száma hajtott, stb.) amíg hello iránt (hello türelmet visszaadó toodrug használati, hello student beszerzését hello doktori fok, hello car rendelkező berendezés pad hiba stb.) az esemény akkor következik be. hello "event" dimenzió meghatározza, hogy egyik fontos hello esemény hello vizsgálat hello végén. Érték "esemény = 1" azt jelenti, hogy hello érdeklő esemény kerül sor, hello "idő" dimenzió; által jelzett hello időpontban "esemény = 0" hello "idő" dimenzió által jelzett hello idő szerint nem történt, azt jelenti, hogy az egyik fontos esemény hello.
 
 * trainingdata - karakterlánc. Vesszővel elválasztott sorok és oszlopok pontosvesszővel válassza el egymástól. Minden egyes sorára "Idődimenzió", "event" dimenzió és előrejelzőjének változót tartalmaz.
 * testingdata - adatokat tartalmazó előrejelzőjének változók egy adott objektum tartalmaz egy sort.
-* time_of_interest - érdeklődési n során eltelt idő.
-* index_time – a "time" dimenzió (1-től kezdődő) oszlop indexét.
-* index_event - az adatoszlop indexe az "event" dimenzió (1-től kezdődő).
+* time_of_interest - érdeklődési n hello eltelt időt.
+* index_time - hello oszlopindex hello "idő" dimenzió (1-től kezdődő).
+* index_event - hello oszlopindex hello "event" dimenzió (1-től kezdődő).
 * variable_types - karakterlánc pontosvesszővel válassza el az azt elválasztóként. 0 folyamatos változók és a 1 tényező változók jelenti.
 
-A kimenete által egy adott időpontban bekövetkező eseményhez valószínűségét. 
+hello eredménye hello valószínűségértékének inverzét által egy adott időpontban bekövetkező esemény. 
 
-> Ez a szolgáltatás az Azure piactéren kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
+> Ez a szolgáltatás az Azure piactér hello kihelyezett egy OData-szolgáltatás; a POST vagy GET módszerrel elnevezése lehet. 
 > 
 > 
 
-Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/SurvivalAnalysis.aspx)). 
+Többféleképpen is az automatizált módon hello szolgáltatás fel (egy példa alkalmazás [Itt](http://microsoftazuremachinelearning.azurewebsites.net/SurvivalAnalysis.aspx)). 
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>C#-kódban a webes szolgáltatások felhasználásához megkezdése:
     public class Input
@@ -93,14 +93,14 @@ Többféleképpen is az automatizált módon a szolgáltatás fel (egy példa al
 
 
 
-Ez a vizsgálat értékelése a következőképpen történik. Feltéve, hogy az adatok célja, hogy eltelt idő modellezhető csak a két kezelés programok kapó betegeknél kábítószerrel használati visszaállításához. A kimenet a webes szolgáltatás olvasások: betegek 35 évnél fiatalabb alatt, hogy előző kábítószer-kezelés 2 többször, hosszú helyi kezelés program véve és heroin és a kokain felhasználású, térjen vissza a kábítószerrel használati valószínűségét 95.64 % 500 nap.
+Ez a vizsgálat hello értékelése a következőképpen történik. Feltéve, hogy hello cél hello adatok toomodel hello eltelt idő, amíg hello hello betegeknél hello két kezelés programok kapó toodrug használati vissza. hello kimeneti hello web service olvasások: betegek 35 évnél fiatalabb alatt, hogy előző kábítószer-kezelés 2 többször, véve hello hosszú helyi kezelés program, és heroin és a kokain felhasználású hello valószínűségértékének inverzét toohello kábítószerrel használati visszaadó 95.64 %-a 500 nap.
 
 ## <a name="creation-of-web-service"></a>Webes szolgáltatás létrehozása
-> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy Képernyőkép a kísérlet, amely a webes szolgáltatás, és példa kód létre minden egyes belül modulok.
+> Ez a webszolgáltatás Azure Machine Learning segítségével lett létrehozva. Az ingyenes próbaverzió, valamint a bevezető videó kísérletek létrehozásával és [közzétételi webes szolgáltatások](machine-learning-publish-a-machine-learning-web-service.md), lásd: [azure.com/ml](http://azure.com/ml). Az alábbiakban van egy képernyőfelvétel a hello webes szolgáltatás, és példa kódot az egyes hello modulok hello kísérlet belül létrehozott hello kísérlet.
 > 
 > 
 
-Azure Machine Learning belül egy új üres kísérlet létrehozásához és két [R-parancsfájl végrehajtása] [ execute-r-script] modulok lekért a munkaterület-kiszolgálóra. Az adatok séma, amely egy egyszerű készült [R-parancsfájl végrehajtása][execute-r-script], amely megadja, hogy a bemeneti adatok séma a webszolgáltatáshoz. Ez a modul majd csatolva van a második [R-parancsfájl végrehajtása] [ execute-r-script] modult, amely a fő munka. Ez a modul az adatok előfeldolgozása, a modell létrehozásának és az előrejelzés végzi. Az adatok előfeldolgozási lépésben a bemeneti adatok hosszú karakterlánc által képviselt át legyenek-e, és adatok keret alakítja át. A modell épület lépésben egy külső R csomagot "survival_2.37-7.zip" első telepítésekor túlélési elemzés elvégzéséhez. Majd a "coxph" függvény végrehajtása után egy sorozat adatfeldolgozási feladatok. A "coxph" függvény túlélési elemzéshez részleteit az R dokumentációjában olvasható. Az előrejelzés lépésben egy tesztelési példány van megadva a "surfit" függvény a betanított modell, és a tesztelési példány túlélési görbe "görbe" változóként jön létre. Végezetül fontos idő valószínűségét kapott. 
+Azure Machine Learning belül egy új üres kísérlet létrehozásához és két [R-parancsfájl végrehajtása] [ execute-r-script] modulok lekért hello munkaterület-kiszolgálóra. hello adatok jött létre séma egy egyszerű [R-parancsfájl végrehajtása][execute-r-script], amely megadja, hogy hello bemeneti adatok séma hello webszolgáltatáshoz. Ez a modul az majd toohello második kapcsolódó [R-parancsfájl végrehajtása] [ execute-r-script] modult, amely a fő munka. Ez a modul az adatok előfeldolgozása, a modell létrehozásának és az előrejelzés végzi. Hello adatok előfeldolgozási lépésben hello bemeneti adatokat egy hosszú karakterlánc által meghatározott át legyenek-e, és adatok keret alakítja át. Hello modell épület lépésben egy külső R csomagot "survival_2.37-7.zip" első telepítésekor túlélési elemzés elvégzéséhez. Majd hello "coxph" függvény végrehajtása után egy sorozat adatfeldolgozási feladatok. hello részletek hello "coxph" függvény túlélési elemzéshez hello R dokumentációjában olvasható. Hello előrejelzés lépésben a tesztelési példánya van megadva a betanított modell hello "surfit" hello funkcióval, és hello túlélési görbe tesztelési példányhoz tartozó hozzák "görbe" változóként. Végezetül hello idő érdeklő hello valószínűségét kapott. 
 
 ### <a name="experiment-flow"></a>Kísérlet folyamata:
 ![Kísérlet folyamata][1]
@@ -118,7 +118,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
 
     sampleInput=data.frame(trainingdata,testingdata,time_of_interest,index_time,index_event,variable_types)
 
-    maml.mapOutputPort("sampleInput"); #send data to output port
+    maml.mapOutputPort("sampleInput"); #send data toooutput port
 
 #### <a name="module-2"></a>A modul 2:
     #Read data from input port
@@ -148,7 +148,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
     install.packages("src/packages_survival/survival_2.37-7.zip",lib=".",repos=NULL,verbose=TRUE)
     library(survival)
 
-    # Prepare to build model
+    # Prepare toobuild model
     attach(mydata)
 
     for (i in 1:n_col){ mydata[,i]=as.numeric(mydata[,i])} 
@@ -160,7 +160,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
     variable_types = unlist(strsplit(as.character(variable_types),";"))
 
     len = length(v_predictors)
-    c="" # Construct the execution string
+    c="" # Construct hello execution string
     for (i in 1:len){
     if(i==len){
     if(variable_types[i]!=0){ c=paste(c, "factor(",v_predictors[i],")",sep="")}
@@ -174,7 +174,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
     f=paste(f,c)
     f=paste(f,", data=mydata )")
 
-    # Fit a Cox proportional hazards model and get the predicted survival curve for a testing instance 
+    # Fit a Cox proportional hazards model and get hello predicted survival curve for a testing instance 
     fit=eval(parse(text=f))
 
     testingdata = as.data.frame(matrix(testingdata, ncol=len,byrow = TRUE),stringsAsFactors=FALSE)
@@ -183,7 +183,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
 
     curve=survfit(fit,testingdata)
 
-    # Based on user input, find the event occurrence probability
+    # Based on user input, find hello event occurrence probability
     position_closest=which.min(abs(prob_event$time - time_of_interest))
 
     if(prob_event[position_closest,"time"]==time_of_interest){# exact match
@@ -196,7 +196,7 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
     }else{output=(prob_event[position_closest,"prob"]+prob_event[position_closest+1,"prob"])/2}
     }
 
-    #Pull out results to send to web service
+    #Pull out results toosend tooweb service
     output=paste(round(100*output, 2), "%") 
     maml.mapOutputPort("output"); #output port
 
@@ -204,10 +204,10 @@ Azure Machine Learning belül egy új üres kísérlet létrehozásához és ké
 
 
 ## <a name="limitations"></a>Korlátozások
-A webszolgáltatás szolgáltatás változók (oszlop) csak numerikus értékeket vehet igénybe. Az "event" oszlop csak 0 vagy 1 értéket vehet igénybe. A "idő" oszlopot kell pozitív egész számnak kell lennie.
+A webszolgáltatás szolgáltatás változók (oszlop) csak numerikus értékeket vehet igénybe. hello "event" oszlop csak 0 vagy 1 értéket vehet igénybe. hello "idő" oszlopot toobe pozitív egész számnak kell.
 
 ## <a name="faq"></a>GYIK
-Gyakori kérdések a felhasználás a webszolgáltatás vagy az Azure piactéren közzétételt, lásd: [Itt](machine-learning-marketplace-faq.md).
+Gyakori kérdések a felhasználás hello webszolgáltatás vagy az Azure piactér közzétételi toohello, lásd: [Itt](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-survival-analysis/survive_img2.png
 

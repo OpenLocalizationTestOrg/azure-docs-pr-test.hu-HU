@@ -17,14 +17,14 @@
 
 <sup>1</sup>Az alapértelmezett korlátok az ajánlat kategóriája (pl. ingyenes próba, használatalapú fizetés) és a sorozat (Dv2, F, G stb.) szerint változnak.
 
-<sup>2</sup>Ebbe a standard és a prémium szintű tárfiókok is beletartoznak. Ha több mint 200 tárfiókra van szüksége, nyújtson be egy kérést az [Azure ügyfélszolgálatán](https://azure.microsoft.com/support/faq/) keresztül. Az Azure Storage csapata kiértékeli az Ön vállalkozását, és jóváhagyhat legfeljebb 250 tárfiókot.
+<sup>2</sup>Ebbe a standard és a prémium szintű tárfiókok is beletartoznak. Ha több mint 200 tárfiókra van szüksége, nyújtson be egy kérést az [Azure ügyfélszolgálatán](https://azure.microsoft.com/support/faq/) keresztül. hello Azure Storage csapat lesz az üzleti esetek és jóváhagyhatja too250 storage-fiókok létrehozása.
 
-<sup>3</sup>Az előfizetésenként alkalmazott címkék számának nincs korlátja. Az erőforrásonként vagy erőforráscsoportonként alkalmazható címkék száma legfeljebb 15 lehet. A Resource Manager csak akkor adja meg az előfizetésben használt [egyedi címkenevek és értékek listáját](/rest/api/resources/tags#Tags_List), ha a címkék száma nem több 10 000-nél. Ugyanakkor az erőforrásokat címke alapján akkor is meg lehet keresni, ha a címkék száma meghaladja a 10 000-et.  
+<sup>3</sup>Az előfizetésenként alkalmazott címkék számának nincs korlátja. egy erőforrás vagy erőforráscsoport címkék hello száma korlátozott too15. Erőforrás-kezelő csak adja vissza egy [egyedi címkenév és értékek listájáról](/rest/api/resources/tags#Tags_List) Ha címkék hello száma 10 000 vagy kevesebb hello előfizetésben. Azonban továbbra is található erőforrás kódcímke Ha hello száma meghaladja a 10 000-re.  
 
-<sup>4</sup>Ezek a funkciók már nem szükségesek az Azure-erőforráscsoportok és az Azure Resource Manager használatához.
+<sup>4</sup>ezek a funkciók már nem szükségesek az Azure erőforráscsoport-sablonok és hello Azure Resource Manager.
 
 > [!NOTE]
-> Fontos kiemelni, hogy a virtuálisgép-magokra egy régió szerinti teljes korlát és egy régió szerinti sorozatonkénti (Dv2, F stb.) korlát is vonatkozik, amelyek egymástól függetlenek.  Például tegyük fel, hogy egy előfizetés az USA keleti régiójára vonatkozó teljes magkorlátja 30, az A sorozatú magkorlátja 30, és a D sorozatú magkorlátja is 30.  Ez az előfizetés üzembe helyezhet 30 A1 virtuális gépet, 30 D1 virtuális gépet, vagy a kettő valamilyen kombinációját, amely nem haladja meg az összesen 30 magot (pl. 10 A1 virtuális gép és 20 D1 virtuális gép).  
+> Virtuális gép maggal rendelkező egy regionális teljes korlátját, valamint a területi mérete (Dv2, F stb.) adatsorozat korlát külön-külön a kényszerített fontos tooemphasize.  Például tegyük fel, hogy egy előfizetés az USA keleti régiójára vonatkozó teljes magkorlátja 30, az A sorozatú magkorlátja 30, és a D sorozatú magkorlátja is 30.  Ez az előfizetés volna kell toodeploy 30 A1 virtuális gépek, illetve 30 D1 virtuális gépek újra, vagy kombinációja hello két tooexceed összesen 30 mag (például 10 A1 virtuális gépek és 20 D1 virtuális gépeken).  
 > <!-- -->
 > 
 > 

@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: eae4c112accaefa8bd1bf85f7b43badc2f491dfd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cc7add6273e66aadeca9a4915a44f5edf61a0a59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting"></a>Hibaelhárítás
 
@@ -28,21 +28,21 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="ti-sensortag-cannot-be-connected"></a>Nem lehet csatlakozni a TI SensorTag
 
-SensorTag kapcsolódási problémák elhárításához használja a [SensorTag app](http://processors.wiki.ti.com/index.php/SensorTag_User_Guide#SensorTag_App_user_guide).
+tootroubleshoot SensorTag kapcsolódási problémák, használja a hello [SensorTag app](http://processors.wiki.ti.com/index.php/SensorTag_User_Guide#SensorTag_App_user_guide).
 
 ### <a name="have-an-issue-with-intel-nuc"></a>Probléma lehet az Intel NUC
 
-A rendszerindítási problémák megoldásához tekintse meg [Intel NUC nem rendszerindító hibaelhárítási](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005845.html).
+tootroubleshoot rendszerindítási problémák, tekintse meg a túl[Intel NUC nem rendszerindító hibaelhárítási](http://www.intel.com/content/www/us/en/support/boards-and-kits/000005845.html).
 
-Operációs rendszerrel kapcsolatos problémák megoldásához tekintse meg [Intel NUC operációs rendszer hibaelhárítási](http://www.intel.com/content/www/us/en/support/boards-and-kits/000006018.html).
+tootroubleshoot operációs rendszerrel kapcsolatos problémák, tekintse meg a túl[Intel NUC operációs rendszer hibaelhárítási](http://www.intel.com/content/www/us/en/support/boards-and-kits/000006018.html).
 
-Egyéb problémák elhárításához tekintse meg [villogni és az Intel NUC-e sípoló kódokat](http://www.intel.com/content/www/us/en/support/boards-and-kits/intel-nuc-boards/000005854.html).
+tootroubleshoot más olyan problémák, tekintse meg a túl[villogni és az Intel NUC-e sípoló kódokat](http://www.intel.com/content/www/us/en/support/boards-and-kits/intel-nuc-boards/000005854.html).
 
 ## <a name="nodejs-package-issues"></a>NODE.js csomag problémák
 
 ### <a name="no-response-during-gulp-tasks"></a>Gulp műveletek során nincs válasz.
 
-Ha a futó feladatok gulp problémákat tapasztal, adhat hozzá a `--verbose` hibakeresési lehetőséget. Állítsa le a jelenlegi gulp feladatok használatával próbál `Ctrl + C`, és futtassa a következő parancsot a konzolablakban tekintse meg a hibakeresési üzeneteket. A részletes hibaüzenetek a konzol kimeneti jelenhet meg.
+Ha a futó feladatok gulp problémákat tapasztal, adhat hozzá hello `--verbose` hibakeresési lehetőséget. Próbálja tooterminate aktuális gulp feladatok használatával `Ctrl + C`, majd a futtatási hello végrehajtja a parancsot a konzol ablakot toosee hibakeresési üzeneteket. A részletes hibaüzenetek a konzol kimeneti jelenhet meg.
 
 ```bash
 gulp --verbose
@@ -50,35 +50,35 @@ gulp --verbose
 
 ### <a name="device-discovery-issues"></a>Eszköz-felderítési problémák
 
-A gyakori problémák elhárításában súgó a `discover-sensortag` parancs, ellenőrizze a [wiki lapján](https://wiki.archlinux.org/index.php/bluetooth#Bluetoothctl).
+A Súgó hello gyakori problémák elhárításában `discover-sensortag` paranccsal, ellenőrizze a hello [wiki lapján](https://wiki.archlinux.org/index.php/bluetooth#Bluetoothctl).
 
 ### <a name="npm-issues"></a>npm problémák
 
-Próbálja meg frissíteni az npm-csomagot a következő parancs futtatásával:
+Próbálja meg tooupdate az npm csomag hello a következő parancs futtatásával:
 
 ```bash
 npm install -g npm
 ```
 
-Ha a probléma továbbra is fennáll, hagyja meg a megjegyzéseit, ez a cikk végén, vagy hozzon létre egy GitHub probléma a [minta tárház](https://github.com/azure-samples/iot-hub-c-intel-nuc-gateway-getting-started).
+Ha hello probléma továbbra is fennáll, hagyja meg a megjegyzéseit, ez a cikk végén hello, vagy hozzon létre egy GitHub probléma a [minta tárház](https://github.com/azure-samples/iot-hub-c-intel-nuc-gateway-getting-started).
 
 ## <a name="remote-debugging"></a>Távoli hibakeresés
 > Alább utasításokat úgy van kialakítva, ebben az oktatóanyagban használt node.js parancsfájlokat hibakereséshez.
-### <a name="run-the-sample-application-in-debug-mode"></a>Futtassa a mintaalkalmazást hibakeresési módban
+### <a name="run-hello-sample-application-in-debug-mode"></a>Hibakeresési módban hello mintaalkalmazás futtatása
 
-Futtassa a mintaalkalmazást hibakeresési módban a következő parancs futtatásával:
+Futtassa a mintaalkalmazást hello hibakeresési módban hello a következő parancs futtatásával:
 
 ```bash
 gulp run --debug
 ```
 
-Amikor készen áll a hibakeresési motor, megjelennie `Debugger listening on port 5858` a konzol kimeneti.
+Amikor készen áll a hello hibakeresési motor, láthatja `Debugger listening on port 5858` a konzol kimeneti hello.
 
-### <a name="configure-visual-studio-code-to-connect-to-the-remote-device"></a>Visual Studio Code kapcsolódni a távoli eszköz konfigurálása
+### <a name="configure-visual-studio-code-tooconnect-toohello-remote-device"></a>Visual Studio Code tooconnect toohello távoli eszközök konfigurálása
 
-1. Nyissa meg a **Debug** a bal oldali panelen.
-2. Kattintson a zöld **Start Debugging** (F5) gombra. A Visual Studio Code megnyílik egy `launch.json` fájlt.
-3. Frissítés a `launch.json` fájlt az alábbi tartalommal. Cserélje le `[device hostname or IP address]` , a tényleges eszköz IP-címét vagy állomásnevét nevét.
+1. Nyissa meg hello **Debug** a hello bal oldali panelen.
+2. Kattintson a zöld hello **Start Debugging** (F5) gombra. A Visual Studio Code megnyílik egy `launch.json` fájlt.
+3. Frissítés hello `launch.json` hello tartalom a következő fájl. Cserélje le `[device hostname or IP address]` hello tényleges IP cím vagy állomásnév eszköznévvel.
 
    ``` json
    {
@@ -102,23 +102,23 @@ Amikor készen áll a hibakeresési motor, megjelennie `Debugger listening on po
 
 ![Távoli hibakeresési konfigurálása](./media/iot-hub-gateway-kit-lessons/troubleshooting/remote_debugging_configuration.png)
 
-### <a name="attach-to-the-remote-application"></a>A távoli alkalmazás csatlakoztatása
+### <a name="attach-toohello-remote-application"></a>Toohello távoli alkalmazás csatlakoztatása
 
-Kattintson a zöld **Start Debugging** a hibakeresés (F5) gombra.
+Kattintson a zöld hello **Start Debugging** (F5) gomb toostart hibakeresést.
 
-Olvasási [Visual STUDIO Code JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) további információt a hibakereső.
+Olvasási [Visual STUDIO Code JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) toolearn hello hibakereső többet.
 
 ![Hibakeresési BLA-minta](./media/iot-hub-gateway-kit-lessons/troubleshooting/debugging_ble_sample.png)
 
 ## <a name="azure-cli-issues"></a>Az Azure CLI-problémák
 
-Az Azure parancssori felület (CLI) preview build. Megoldásokat keres, használhatja a [Preview telepítése útmutató](https://github.com/Azure/azure-cli/blob/master/doc/preview_install_guide.md).
+az Azure parancssori felület (CLI) hello preview build. tooseek megoldások hello használható [Preview telepítése útmutató](https://github.com/Azure/azure-cli/blob/master/doc/preview_install_guide.md).
 
-Ha az eszköz hibáit, a fájl egy [probléma](https://github.com/Azure/azure-cli/issues) a a **problémák** a GitHub-tárház szakasza.
+Ha hello eszközzel hibáit, a fájl egy [probléma](https://github.com/Azure/azure-cli/issues) a hello **problémák** hello GitHub-tárház szakasza.
 
-A Súgó gyakori problémák elhárításához, tekintse meg a [információs](https://github.com/Azure/azure-cli/blob/master/README.rst).
+Segítséget a gyakori problémák elhárításához, ellenőrizze a hello [információs](https://github.com/Azure/azure-cli/blob/master/README.rst).
 
-Ha megfelel a "Egy olyan verzióra, amely eleget tesz a követelmény nem található", futtassa a következő parancsot a pip frissítése a legújabb verzióra.
+Ha megfelel a "Nem található olyan verzióra, amely eleget tesz a hello követelmény", adjon futtatási hello következő parancsot a tooupgrade pip toolastest verziója.
 
 ```bash
 python -m pip install --upgrade pip
@@ -128,47 +128,47 @@ python -m pip install --upgrade pip
 
 ### <a name="legacy-installation-issues-macos"></a>A hagyományos telepítési problémák (macOS)
 
-A pip telepítése, amikor egy engedély hibát vált ki, ha régebbi csomagok vannak telepítve a **su** engedélyek. Ebben az esetben az okozza, hogy a Python brew (macOS) használatával egy korábban elindított telepítése nincs teljesen eltávolítva. A korábbi telepítés egyes pip csomagok létrehozásakor a gyökérszintű, amely azt eredményezi, az engedély hiba. A megoldás, hogy távolítsa el azokat a legfelső szintű telepített csomagokat. Ez a feladat befejezéséhez tegye a következőket:
+A pip telepítése, amikor egy engedély hibát vált ki, ha régebbi csomagok vannak telepítve a **su** engedélyek. Ebben az esetben az okozza, hogy a Python brew (macOS) használatával egy korábban elindított telepítése nincs teljesen eltávolítva. A korábbi telepítés egyes pip csomagok hello engedély hibát okoz a legfelső szintű lettek létrehozva. megoldás hello tooremove azokat a csomagokat, legfelső szintű telepítve van. Ez a feladat használható a következő lépéseket toocomplete hello:
 
-1. Nyissa meg a következőt: `/usr/local/lib/python2.7/site-packages`
+1. Nyissa meg túl`/usr/local/lib/python2.7/site-packages`
 2. Legfelső szintű által létrehozott csomagok:`ls -l | grep root`
 3. A 2. lépésben csomagok eltávolításához:`sudo rm -rf {package name}`
 4. Telepítse újra a Python.
 
 ## <a name="azure-iot-hub-issues"></a>Az Azure IoT Hub-problémák
 
-Ha már sikeresen létesített az Azure IoT hub, az Azure parancssori felület segítségével, és kezelheti az eszközöket, amelyek csatlakozik, az IoT hub eszköz van szüksége, próbálkozzon a következő eszközök.
+Ha sikeresen korábban létesített a hello Azure CLI Azure IoT hubot, és egy eszköz toomanage hello eszközök tooyour IoT-központ csatlakozó van szüksége, próbálkozzon a következő eszközök hello.
 
 ### <a name="device-explorer"></a>Eszköz Explorer
 
-[Eszköz Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) Windows helyi gépen fut, és az Azure IoT hub csatlakozik. A következő kommunikál [IoT-központok végpontjai](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-devguide/):
+[Eszköz Explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) Windows helyi gépen fut, és az Azure IoT-központ tooyour csatlakozik. Hello következő kommunikál [IoT-központok végpontjai](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-devguide/):
 
-- Az IoT hub regisztrált eszköz Identitáskezelés szeretnék telepíteni és kezelni az eszközöket.
-- Eszköz-felhő, figyelheti az IoT hub az eszközről küldött üzenetek fogadása
-- Így küldhet üzeneteket az eszközök az IoT hub a felhőből eszközre küldése
+- Eszköz identity management tooprovision és az IoT hub regisztrált eszközök kezeléséhez.
+- Eszköz-felhő, megfigyelheti, hogy az eszköz tooyour IoT hub küldött üzenetek fogadása
+- Úgy is küldhet üzenetet tooyour eszközök az IoT hub a felhőből eszközre küldése
 
-Az IoT hub kapcsolati karakterlánc ebből az eszközből készülék képességeinek használatához konfigurálása.
+Konfigurálja az IoT hub kapcsolati karakterlánc az eszköz toouse belül minden képességet.
 
 ### <a name="iothub-explorer"></a>IOT hubbal-explorer
 
-[IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) egy minta többplatformos parancssori felület eszköz eszközügyfeleken kezelésére. Az eszköz segítségével az identitásjegyzékhez lévő eszközök kezeléséhez, eszköz-a-felhőbe küldött üzeneteket figyelése és felhő eszközparancsok küldése.
+[IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) egy olyan minta többplatformos parancssori felület eszköz toomanage eszközügyfeleitől. Hello eszköz toomanage hello eszközeiket használják a hello identitásjegyzékhez, figyelheti az eszköz a felhőbe küldött üzeneteket, és felhő eszközparancsok küldése.
 
-Az IOT hubbal-explorer eszköz legújabb (előzetes) verziójának telepítéséhez futtassa a következő parancsot:
+tooinstall hello legújabb (előzetes) verzióját hello IOT hubbal-explorer eszköz, futtassa a következő parancs hello:
 
 ```bash
 npm install -g iothub-explorer@latest
 ```
 
-További segítség minden IOT hubbal-explorer parancsot és paramétereket, futtassa a következő parancsot:
+További segítséget tooget összes hello az IOT hubbal-explorer parancsot és paramétereket, futtassa a következő parancs hello:
 
 ```bash
 iothub-explorer help
 ```
 
-### <a name="the-azure-portal"></a>Az Azure-portálon
+### <a name="hello-azure-portal"></a>hello Azure-portálon
 
-Egy teljes parancssori felület segítségével létrehozhatja és az Azure erőforrások kezeléséhez. Érdemes lehet használni a [Azure-portálon](https://azure.microsoft.com/en-us/documentation/articles/azure-portal-overview/) kiépítéséhez, kezeléséhez, és hibakeresése az Azure-erőforrások.
+Egy teljes parancssori felület segítségével létrehozhatja és az Azure erőforrások kezeléséhez. Érdemes lehet toouse hello [Azure-portálon](https://azure.microsoft.com/en-us/documentation/articles/azure-portal-overview/) toohelp kiépítését, kezelése és hibakeresése az Azure-erőforrások.
 
 ## <a name="azure-storage-issues"></a>Az Azure tárolási problémák
 
-[A Microsoft Azure Tártallózó (előzetes verzió)](http://storageexplorer.com/) egy különálló alkalmazás, a Microsoft, amelyek segítségével a Windows, a macOS és a Linux Azure Storage-adatokkal dolgozni. Ez az eszköz segítségével, a tábla csatlakozhat, és azt az adatok megtekintéséhez. Az eszköz segítségével az Azure Storage problémák elhárításához.
+[A Microsoft Azure Tártallózó (előzetes verzió)](http://storageexplorer.com/) egy különálló alkalmazás, a Microsoft használható toowork macOS, Linux és a Windows Azure Storage-adatokkal. Az eszköz használatával tooyour tábla csatlakozhat, és azt hello adatok megtekintéséhez. Az eszköz tootroubleshoot használhatja az Azure tárolási problémák.

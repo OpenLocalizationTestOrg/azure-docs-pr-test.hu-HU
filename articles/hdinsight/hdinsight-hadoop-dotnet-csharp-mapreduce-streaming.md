@@ -1,6 +1,6 @@
 ---
-title: "C# használata a hdinsight - Azure Hadoop MapReduce |} Microsoft Docs"
-description: "Megtudhatja, hogyan használja a C# Azure HDInsight Hadoop MapReduce megoldások létrehozásához."
+title: a HDInsight - Azure hadoop MapReduce C# aaaUse |} Microsoft Docs
+description: "Megtudhatja, hogyan toouse C# toocreate MapReduce-megoldások Azure HDInsight Hadoop."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,52 +16,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: adb454e56378a800c671614735aec78b6851aeb2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dd8b684e74155bc1a37d4ab8d6f9033276ef5aa3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-c-with-mapreduce-streaming-on-hadoop-in-hdinsight"></a>C# használata a hdinsight Hadoop streamelési MapReduce
 
-Ismerje meg, hogyan használható a C# MapReduce megoldás létrehozása a HDInsight.
+Megtudhatja, hogyan toouse C# toocreate hdinsight MapReduce megoldást.
 
 > [!IMPORTANT]
-> A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md).
+> Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md).
 
-Hadoop streamelési egy segédprogram, amely lehetővé teszi egy parancsfájl vagy végrehajtható fájllal MapReduce-feladatok futtatásához. Ebben a példában a .NET a hozzárendelést és a word-count megoldások nyomáscsökkentő végrehajtásához használatos.
+Hadoop streamelési egy segédprogram, amely lehetővé teszi egy parancsfájl vagy végrehajtható fájllal toorun MapReduce-feladatok. Ebben a példában a .NET használt tooimplement hello hozzárendelést és a word-count megoldások nyomáscsökkentő.
 
 ## <a name="net-on-hdinsight"></a>A HDInsight .NET
 
-__Linux-alapú HDInsight__ fürtök használata [monó (https://mono-project.com)](https://mono-project.com) .NET-alkalmazások futtatására. Monó verzió 4.2.1 megtalálható HDInsight 3.5-ös verziója. Monó részét képező HDInsight-verzión további információkért lásd: [HDInsight összetevő verziók](hdinsight-component-versioning.md). Monó adott verzióját használja, tekintse meg a [telepítés vagy frissítés monó](hdinsight-hadoop-install-mono.md) dokumentum.
+__Linux-alapú HDInsight__ fürtök használata [monó (https://mono-project.com)](https://mono-project.com) toorun .NET-alkalmazások. Monó verzió 4.2.1 megtalálható HDInsight 3.5-ös verziója. Monó részét képező HDInsight hello verzióján további információkért lásd: [HDInsight összetevő verziók](hdinsight-component-versioning.md). Monó, egy adott verziójához toouse lásd: hello [telepítés vagy frissítés monó](hdinsight-hadoop-install-mono.md) dokumentum.
 
 A .NET-keretrendszer verzióival is kompatibilisek monó további információkért lásd: [monó kompatibilitási](http://www.mono-project.com/docs/about-mono/compatibility/).
 
 ## <a name="how-hadoop-streaming-works"></a>Hadoop streamelési működése
 
-Az adatfolyamként történő ebben a dokumentumban használt folyamat alapvetően a következőképpen történik:
+hello a használt adatfolyam-ebben a dokumentumban folyamat alapvetően a következőképpen történik:
 
-1. Hadoop STDIN az adatok továbbítja a leképező (mapper.exe ebben a példában).
-2. A hozzárendelést feldolgozza az adatokat, és tabulátorral tagolt kulcs/érték párok az STDOUT bocsát ki.
-3. A kimeneti Hadoop olvasni, és ezután átadja a nyomáscsökkentő (ebben a példában reducer.exe) a STDIN.
-4. A nyomáscsökkentő tabulátorral tagolt kulcs/érték párok beolvassa, feldolgozza az adatokat, és majd bocsát ki az eredmény tabulátorral tagolt kulcs/érték párként STDOUT-on.
-5. A kimeneti Hadoop olvasni és írni a kimeneti könyvtár.
+1. Hadoop STDIN adatleképező toohello (ebben a példában mapper.exe) továbbítja.
+2. hello leképező hello adatokat dolgozza fel, és tabulátorral tagolt kulcs/érték párok tooSTDOUT bocsát ki.
+3. hello kimeneti Hadoop olvasni, és ezután átadja STDIN toohello nyomáscsökkentő (reducer.exe ebben a példában).
+4. hello nyomáscsökkentő tabulátorral tagolt hello kulcs/érték párok beolvassa, feldolgozza a hello adatokat és majd bocsát ki hello eredmény tabulátorral tagolt kulcs/érték párként STDOUT-on.
+5. hello kimeneti Hadoop olvashatják és írt toohello kimeneti könyvtár.
 
 A streaming további információkért lásd: [Hadoop Streamelési (https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html)](https://hadoop.apache.org/docs/r2.7.1/hadoop-streaming/HadoopStreaming.html).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-* Egy írást, és C#-kódban, amelynek célpontja a .NET-keretrendszer 4.5 felépítése ismeretét. A jelen dokumentumban leírt lépések a Visual Studio 2017 használja.
+* Egy írást, és C#-kódban, amelynek célpontja a .NET-keretrendszer 4.5 felépítése ismeretét. Ez a dokumentum használatát a Visual Studio 2017 hello szükséges lépések.
 
-* A fürt .exe fájlok feltöltése módja. A jelen dokumentumban leírt lépések a Data Lake Tools for Visual Studio használatával a fájlok feltöltése a fürt elsődleges tárhelyére.
+* Módon tooupload .exe fájlok toohello fürt. hello jelen dokumentumban leírt lépések használata hello Data Lake Tools Visual Studio tooupload hello fájlok tooprimary hello fürt tárolóhelyét.
 
 * Az Azure PowerShell vagy SSH-ügyfél.
 
 * A Hadoop on HDInsight-fürt. A fürtök létrehozásáról további információk: [HDInsight-fürtök létrehozása](hdinsight-provision-clusters.md).
 
-## <a name="create-the-mapper"></a>Hozzon létre a leképezője
+## <a name="create-hello-mapper"></a>Hozzon létre hello leképezője
 
-A Visual Studióban hozzon létre egy új __Konzolalkalmazás__ nevű __leképező__. Az alkalmazás a következő kódot használhatja:
+A Visual Studióban hozzon létre egy új __Konzolalkalmazás__ nevű __leképező__. A következő kód hello alkalmazás hello használata:
 
 ```csharp
 using System;
@@ -74,14 +74,14 @@ namespace mapper
         static void Main(string[] args)
         {
             string line;
-            //Hadoop passes data to the mapper on STDIN
+            //Hadoop passes data toohello mapper on STDIN
             while((line = Console.ReadLine()) != null)
             {
                 // We only want words, so strip out punctuation, numbers, etc.
                 var onlyText = Regex.Replace(line, @"\.|;|:|,|[0-9]|'", "");
                 // Split at whitespace.
                 var words = Regex.Matches(onlyText, @"[\w]+");
-                // Loop over the words
+                // Loop over hello words
                 foreach(var word in words)
                 {
                     //Emit tab-delimited key/value pairs.
@@ -94,11 +94,11 @@ namespace mapper
 }
 ```
 
-Miután létrehozta az alkalmazást, összeállítani, eredményezett a `/bin/Debug/mapper.exe` fájlt a projekt könyvtárában.
+Hello alkalmazás létrehozása után összeállítani, tooproduce hello `/bin/Debug/mapper.exe` hello projekt fájl.
 
-## <a name="create-the-reducer"></a>A nyomáscsökkentő létrehozása
+## <a name="create-hello-reducer"></a>Hello nyomáscsökkentő létrehozása
 
-A Visual Studióban hozzon létre egy új __Konzolalkalmazás__ nevű __nyomáscsökkentő__. Az alkalmazás a következő kódot használhatja:
+A Visual Studióban hozzon létre egy új __Konzolalkalmazás__ nevű __nyomáscsökkentő__. A következő kód hello alkalmazás hello használata:
 
 ```csharp
 using System;
@@ -119,19 +119,19 @@ namespace reducer
             {
                 // Data from Hadoop is tab-delimited key/value pairs
                 var sArr = line.Split('\t');
-                // Get the word
+                // Get hello word
                 string word = sArr[0];
-                // Get the count
+                // Get hello count
                 int count = Convert.ToInt32(sArr[1]);
 
-                //Do we already have a count for the word?
+                //Do we already have a count for hello word?
                 if(words.ContainsKey(word))
                 {
-                    //If so, increment the count
+                    //If so, increment hello count
                     words[word] += count;
                 } else
                 {
-                    //Add the key to the collection
+                    //Add hello key toohello collection
                     words.Add(word, count);
                 }
             }
@@ -147,9 +147,9 @@ namespace reducer
 }
 ```
 
-Miután létrehozta az alkalmazást, összeállítani, eredményezett a `/bin/Debug/reducer.exe` fájlt a projekt könyvtárában.
+Hello alkalmazás létrehozása után összeállítani, tooproduce hello `/bin/Debug/reducer.exe` hello projekt fájl.
 
-## <a name="upload-to-storage"></a>Töltse fel a tároló
+## <a name="upload-toostorage"></a>Toostorage feltöltése
 
 1. A Visual Studióban nyissa meg a **Server Explorer**.
 
@@ -157,29 +157,29 @@ Miután létrehozta az alkalmazást, összeállítani, eredményezett a `/bin/De
 
 3. Ha a rendszer kéri, adja meg Azure-előfizetés hitelesítő adatait, és kattintson **bejelentkezés**.
 
-4. Bontsa ki a kívánja telepíteni az alkalmazást a HDInsight-fürthöz. A szöveg bejegyzés __(alapértelmezett Tárfiók)__ szerepel.
+4. Bontsa ki, hogy az alkalmazás kívánja toodeploy hello HDInsight-fürthöz. Hello szöveg bejegyzés __(alapértelmezett Tárfiók)__ szerepel.
 
-    ![A tárfiók a fürt megjelenítő Server Explorer](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/storage.png)
+    ![Server Explorer hello tárfiók hello fürt megjelenítése](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/storage.png)
 
-    * Ez a bejegyzés bővíthetők, ha az egy __Azure Storage-fiók__ a fürt alapértelmezett tárolóként. A fürt az alapértelmezett tároló a fájlok megtekintéséhez bontsa ki a bejegyzést, és majd kattintson duplán a __(alapértelmezett tároló)__.
+    * Ez a bejegyzés bővíthetők, ha az egy __Azure Storage-fiók__ hello fürt alapértelmezett tárolóként. tooview hello fájlok hello alapértelmezett tároló hello fürt, bontsa ki a hello bejegyzést, és kattintson duplán a hello __(alapértelmezett tároló)__.
 
-    * Ez a bejegyzés nem bonthatók ki, ha az __Azure Data Lake Store__ a fürt alapértelmezett tárolóként. A fürt az alapértelmezett tároló a fájlok megtekintéséhez kattintson duplán a __(alapértelmezett Tárfiók)__ bejegyzés.
+    * Ez a bejegyzés nem bonthatók ki, ha az __Azure Data Lake Store__ hello fürt hello alapértelmezett tárolóként. tooview hello fájlok hello alapértelmezett tároló hello fürt, kattintson duplán a hello __(alapértelmezett Tárfiók)__ bejegyzés.
 
-5. Az .exe fájlok feltöltéséhez használja a következő módszerek egyikét:
+5. tooupload hello .exe fájlok, a hello a következő módszerek valamelyikével:
 
-    * Ha használ egy __Azure Storage-fiók__, kattintson a Feltöltés ikonra, és keresse a **bin\debug** mappát a **leképező** projekt. Végül válassza ki a **mapper.exe** fájlt, és kattintson a **Ok**.
+    * Ha használ egy __Azure Storage-fiók__, hello Feltöltés ikonra, és tallózással keressen toohello **bin\debug** hello mappa **leképező** projekt. Végül válassza ki a hello **mapper.exe** fájlt, és kattintson a **Ok**.
 
         ![Töltse fel az ikon](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/upload.png)
     
-    * Ha használ __Azure Data Lake Store__, kattintson a jobb gombbal egy üres területre a fájl az átjáróra a listában, majd válassza ki __feltöltése__. Végül válassza ki a **mapper.exe** fájlt, és kattintson a **nyitott**.
+    * Ha használ __Azure Data Lake Store__, kattintson a jobb gombbal egy üres területre a hello felsoroló, és válassza __feltöltése__. Végül válassza ki a hello **mapper.exe** fájlt, és kattintson a **nyitott**.
 
-    Egyszer a __mapper.exe__ befejezte a feltöltést, ismételje meg a feltöltési folyamat számára a __reducer.exe__ fájlt.
+    Egyszer hello __mapper.exe__ feltöltése befejeződött, ismétlődő hello feltöltési folyamat a hello __reducer.exe__ fájlt.
 
 ## <a name="run-a-job-using-an-ssh-session"></a>Egy feladat futtatása: SSH-munkamenetet használatával
 
-1. Az SSH használata a HDInsight-fürthöz való csatlakozáshoz. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. SSH tooconnect toohello HDInsight-fürt használatára. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. A következő parancs használatával indítsa el a MapReduce feladatot:
+2. A következő parancs toostart hello MapReduce feladatot hello egyikét használja:
 
     * Ha használ __Data Lake Store__ alapértelmezett tárolóként:
 
@@ -193,22 +193,22 @@ Miután létrehozta az alkalmazást, összeállítani, eredményezett a `/bin/De
         yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files wasb:///mapper.exe,wasb:///reducer.exe -mapper mapper.exe -reducer reducer.exe -input /example/data/gutenberg/davinci.txt -output /example/wordcountout
         ```
 
-    Az alábbi lista ismerteti, hogy minden paraméter funkciója:
+    hello a következő lista ismerteti, hogy minden paraméter funkciója:
 
-    * `hadoop-streaming.jar`: A jar-fájlra, amely tartalmazza az adatfolyam-továbbítási MapReduce-funkciókat.
-    * `-files`: Hozzáadja a `mapper.exe` és `reducer.exe` fájlok ebben a projektben. A `adl:///` vagy `wasb:///` előtt minden fájl elérési útját a fürt tárolóhelyét alapértelmezett gyökérmappájában.
-    * `-mapper`: Meghatározza, hogy melyik fájlt a leképező valósítja meg.
-    * `-reducer`: Meghatározza, hogy melyik fájlt a nyomáscsökkentő valósítja meg.
-    * `-input`: A bemeneti adatok.
-    * `-output`: A kimeneti könyvtár.
+    * `hadoop-streaming.jar`: hello jar-fájlra, amely a MapReduce funkció streaming hello tartalmazza.
+    * `-files`: Hello hozzáadja `mapper.exe` és `reducer.exe` fájlok toothis feladat. Hello `adl:///` vagy `wasb:///` előtt minden fájl hello elérési toohello hello fürt tárolóhelyét alapértelmezett gyökérmappájában.
+    * `-mapper`: Adja meg, melyik fájl hello leképező valósítja meg.
+    * `-reducer`: Adja meg, melyik fájl hello nyomáscsökkentő valósítja meg.
+    * `-input`: hello bemeneti adatai.
+    * `-output`: hello kimeneti könyvtár.
 
-3. Miután befejeződött a MapReduce feladatot, használja az eredmények megtekintéséhez a következő:
+3. Amikor hello MapReduce feladat befejeződik, használja a következő tooview hello eredmények hello:
 
     ```bash
     hdfs dfs -text /example/wordcountout/part-00000
     ```
 
-    A következő szöveget a parancs által visszaadott adatok példája:
+    hello következő szöveg látható egy példa a parancs által visszaadott hello adatok:
 
         you     1128
         young   38
@@ -222,11 +222,11 @@ Miután létrehozta az alkalmazást, összeállítani, eredményezett a `/bin/De
 
 ## <a name="run-a-job-using-powershell"></a>Egy feladat futtatása: PowerShell-lel
 
-A következő PowerShell-parancsfájl segítségével MapReduce feladatot futtatni, és töltse le az eredményeket.
+A következő PowerShell-parancsfájl toorun MapReduce feladatot hello használata és hello eredmények letöltéséhez.
 
-[!code-powershell[fő](../../powershell_scripts/hdinsight/use-csharp-mapreduce/use-csharp-mapreduce.ps1?range=5-87)]
+[!code-powershell[main](../../powershell_scripts/hdinsight/use-csharp-mapreduce/use-csharp-mapreduce.ps1?range=5-87)]
 
-A parancsprogram kéri a fürt bejelentkezési nevét és jelszavát, és a HDInsight-fürt nevét. Ha a feladat befejeződik, a rendszer letölti a kimenet a `output.txt` fájl a könyvtárban, a parancsfájl futtatása a. A következő szöveg látható egy példa az adatokat a `output.txt` fájlt:
+A parancsprogram kéri hello fürt bejelentkezési nevét és jelszavát, valamint hello HDInsight-fürt neve. Miután hello feladat befejeződött, hello eredménye a letöltött toohello `output.txt` fájl hello directory hello parancsfájlban a van futott. hello következő szöveg látható egy példa hello hello adatok `output.txt` fájlt:
 
     you     1128
     young   38

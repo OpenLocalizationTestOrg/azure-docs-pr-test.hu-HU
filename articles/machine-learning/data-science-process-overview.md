@@ -1,6 +1,6 @@
 ---
-title: "Az Azure csapata adatok tudományos folyamat áttekintése |} Microsoft Docs"
-description: "A prediktív elemzési megoldások és intelligens alkalmazások adatok-tudományos módszertannal nyújt."
+title: "aaaAzure Team adatok tudományos folyamat áttekintése |} Microsoft Docs"
+description: "Adatok tudományos módszertana toodeliver prediktív elemzési megoldásokat és intelligens alkalmazások."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev;
-ms.openlocfilehash: 006a1465a7cdced1878111beee709c8da4bc310f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2ba03585a6f6f855faaa3b5c0c75149cad0a88bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="team-data-science-process-overview"></a>Team adatok tudományos folyamat áttekintése
 
-A csapat adatok tudományos folyamat (TDSP) egy gyors, fokozatos adatok tudományos módszertana prediktív elemzési megoldások és intelligens alkalmazások hatékonyan továbbítani. TDSP javítja a csoportos együttműködés és megismerését. Az ajánlott eljárásokról és szerkezetek a Microsoft és más az iparág adatok tudományos kezdeményezések sikeres végrehajtásának megkönnyítése érdekében a lepárlása tartalmaz. A cél, segítségével a vállalatok teljes mértékben vegye figyelembe az analytics program előnyeit.
+hello Team adatok tudományos folyamat (TDSP) egy gyors iteratív adatok tudományos módszertana toodeliver prediktív elemzési megoldások és intelligens alkalmazások hatékony. TDSP javítja a csoportos együttműködés és megismerését. Tartalmaz egy lepárlása hello ajánlott eljárások és szerkezetek a Microsoft és más hello iparágban hello adatok tudományos kezdeményezések sikeres végrehajtásának megkönnyítése érdekében. hello célja toohelp vállalatok teljes mértékben vegye figyelembe az analytics program hello előnyeit.
 
-Ez a cikk áttekintése TDSP és fő összetevőit. Számos különböző eszközök nyújtunk általános leírását itt a folyamat, amely végrehajtható legyen. Részletes leírása a tevékenységeket és a folyamat az életciklus részt szerepkörök további csatolt témakörökben találhatók. A Microsoft eszközök és infrastruktúra, amely a TDSP megvalósíthatja a csoportok használatával adott használatával TDSP megvalósításához is útmutatást.
+Ez a cikk áttekintése TDSP és fő összetevőit. Számos különböző eszközök nyújtunk általános leírását itt hello folyamat, amely végrehajtható. Részletesebb leírását hello tevékenységeket és hello életciklusának hello folyamat az érintett szerepkörök további csatolt témakörökben találhatók. Hogyan is biztosít a Microsoft eszközök és infrastruktúra tooimplement hello TDSP használjuk a csoportban az adott használatával TDSP tooimplement hello útmutatást.
 
-## <a name="key-components-of-the-tdsp"></a>A TDSP fő összetevői
+## <a name="key-components-of-hello-tdsp"></a>Hello TDSP fő összetevői
 
-A következő fő összetevőket TDSP foglalja magában:
+A legfontosabb összetevők a következő hello TDSP foglalja magában:
 
 - A **adatok tudományos életciklus** meghatározása
 - A **szerkezetének szabványosított**
@@ -38,13 +38,13 @@ A következő fő összetevőket TDSP foglalja magában:
 
 ## <a name="data-science-lifecycle"></a>Adatok tudományos életciklusa
 
-A csapat adatok tudományos folyamat (TDSP) biztosít egy életciklussal, az adatok tudományos projektek fejlesztésének szerkezetének. Az életciklus kezdetétől a végéig, projektek általában követve azok végrehajtásakor, lépéseit mutatja be.
+hello Team adatok tudományos folyamat (TDSP) biztosítja az adatok tudományos projektek életciklus toostructure hello fejlesztői. hello életciklus hello lépéseit, a start toofinish, amelyek projektek általában végrehajtás sorolja fel.
 
-Ha az adatok egy másik tudományos életciklusát, például a [SZÍNELOSZLÁS-DM](https://wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining), [KDD](https://wikipedia.org/wiki/Data_mining#Process) vagy a szervezet saját egyéni folyamat ezen fejlesztési életciklusának kontextusában a feladatalapú TDSP továbbra is használhatja. Magas szinten a különböző módszereit, amelyek rendelkeznek nagy közös. 
+Ha az adatok egy másik tudományos életciklusát, például a [SZÍNELOSZLÁS-DM](https://wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining), [KDD](https://wikipedia.org/wiki/Data_mining#Process) vagy a szervezet saját egyéni folyamat továbbra is használhatja ezeket a fejlesztői környezetében hello feladatalapú TDSP hello életciklusának. Magas szinten a különböző módszereit, amelyek rendelkeznek nagy közös. 
 
-Életciklus úgy tervezték, adatok tudományos projektek intelligens alkalmazások részét képezi. Ezek az alkalmazások központi telepítése a machine learning vagy mesterséges eszközintelligencia modellek prediktív elemzési. Felderítési adatok tudományos projektek vagy alkalmi analytics projektek is is előnyt az ezt a folyamatot. Azonban ebben az esetben egyes leírt lépések nincs feltétlenül szükség.    
+Életciklus úgy tervezték, adatok tudományos projektek intelligens alkalmazások részét képezi. Ezek az alkalmazások központi telepítése a machine learning vagy mesterséges eszközintelligencia modellek prediktív elemzési. Felderítési adatok tudományos projektek vagy alkalmi analytics projektek is is előnyt az ezt a folyamatot. Azonban ebben az esetben egyes leírt hello lépések nincs feltétlenül szükség.    
 
-A TDSP életciklus ismételt végrehajtott öt fő szakaszból áll:
+hello TDSP életciklus ismételt végrehajtott öt fő szakaszból áll:
 
 * **Üzleti ismertetése**
 * **Adatok megszerzését és ismertetése**
@@ -52,36 +52,36 @@ A TDSP életciklus ismételt végrehajtott öt fő szakaszból áll:
 * **Üzembe helyezés**
 * **Ügyfelek**
 
-Íme egy vizuális ábrázolását a **Team adatok tudományos folyamat életciklus**. 
+Íme hello vizuális ábrázolását **Team adatok tudományos folyamat életciklus**. 
 
 ![TDSP-életciklus](./media/data-science-process-overview/tdsp-lifecycle.png) 
 
-A célok, a feladatok és a dokumentáció összetevők minden szakaszra a TDSP életciklus a [Team adatok tudományos folyamat életciklus](data-science-process-lifecycle.md) témakör. Ezekről a feladatokról és az összetevők társított projekt szerepkörök:
+hello célokat, feladatok és minden szakaszra hello életciklus TDSP a dokumentáció összetevők ismertetett hello [Team adatok tudományos folyamat életciklus](data-science-process-lifecycle.md) témakör. Ezekről a feladatokról és az összetevők társított projekt szerepkörök:
 
 - Megoldásokért felelős mérnök
 - Projektmenedzsert
 - Adatelemző
 - Projektvezető 
 
-Az alábbi ábra a (kékkel jelölt) feladatok és ezeket a szerepköröket (a függőleges tengely) (a vízszintes tengely) életciklus minden szakaszhoz tartozó összetevők (zöld) a rács nézetét biztosítja. 
+hello következő ábra áttekintést nyújt a rács (kékkel jelölt) hello feladatok és összetevők (zöld) a hello életciklus (a hello vízszintes tengely) minden szakaszhoz tartozó ezeket a szerepköröket (a függőleges tengely hello). 
 
 ![TDSP-szerepkörök-és-feladatok](./media/data-science-process-overview/tdsp-tasks-by-roles.png)
 
 ## <a name="standardized-project-structure"></a>Szabványos projekt struktúra
 
-Minden projekt könyvtárstruktúra megosztása és sablonok használata a projekt dokumentumok rendelkező megkönnyíti, hogy a csoport tagjai a projektjeikhez kapcsolatos információk megkereséséhez. A verziókezelő rendszert (virtuális) Git, TFS vagy Subversion Csoportalapú együttműködés engedélyezése kód és a dokumentumok tárolódnak. Feladatok és a szolgáltatások nyomkövetési rendszer például Jira gyors projektben nyomon követése, Rally, a Visual Studio Team Services lehetővé teszi, hogy a kód az egyedi szolgáltatások közelebb követési. Ilyen követési is lehetővé teszi, hogy csapatokkal az beszerzése jobban a becsült költség. TDSP azt javasolja, hogy egy külön tárház minden olyan projekthez létrehozását versioning, információ-biztonság és együttműködés virtuális. Az összes projektet, melyekben szabványosított struktúráját segít intézményi Tudásbázis összeállítása a szervezet.
+Minden projekt könyvtárstruktúra megosztása és sablonok használata a projekt dokumentumok rendelkező megkönnyíti a hello csapat tagjai toofind a projektek adatait. A verziókezelő rendszert (virtuális) például a Git, TFS vagy Subversion tooenable Csoportalapú együttműködés kód és a dokumentumok tárolódnak. Feladatok és a szolgáltatások nyomkövetési rendszer például Jira gyors projektben nyomon követése, Rally, a Visual Studio Team Services lehetővé teszi, hogy az egyedi szolgáltatások hello kód közelebb nyomon követése. Ilyen követési azt is lehetővé teszi, hogy a csoportok tooobtain jobban a becsült költség. TDSP azt javasolja, hogy egy külön tárház minden olyan projekthez hello virtuális versioning, információ-biztonság és együttműködés létrehozását. hello összes projektek segít build intézményi Tudásbázis-szerkezet szabványosított hello szervezeten belül.
 
-A szabványos helyekre szükséges dokumentumok és mappastruktúrát nyújtunk sablonok. A gyökérmappa-szerkezetében rendezi a fájlokat, amelyek tartalmazzák az adatok feltárása és a szolgáltatás kivonása kódját, majd, jegyezze fel modell ismétlési. Ezek a sablonok megkönnyítik a csoport tagjai, melyben megismerheti a mások által végzett munka, illetve új tagok hozzáadása csoportokhoz. Könnyen megtekintése és módosítása a dokumentum sablonok markdown formátumban. Adjon meg minden olyan projekthez biztosítását, hogy jól meghatározott-e a problémát, és, termékek esetében megfelel-e a várt minőségi hasonló fontos kérdések ellenőrzőlisták a sablonok használatával. Példák erre vonatkozóan:
+A szabványos helyekre szükséges dokumentumok és hello mappaszerkezet nyújtunk sablonok. A gyökérmappa-szerkezetében hello fájlokat, amelyik tartalmazza az adatok feltárása és a szolgáltatás kivonása kódját, és jegyezze fel, amelyek modell ismétlési rendezi. Ezek a sablonok megkönnyítik a csapat tagjai toounderstand dolgozott mások és tooadd új tagok tooteams. Könnyen tooview és frissítés dokumentum sablonok markdown formátumban. Sablonok tooprovide ellenőrzőlisták az alábbiakhoz hasonló fontos kérdések használata minden egyes projekt tooinsure hello probléma jól meghatározott, és a termékek felel meg a várt hello minőségi. Példák erre vonatkozóan:
 
-- a dokumentum az üzleti probléma és a projekt hatókörének projekt okleveles
-- adatot jelentenek a dokumentum a struktúra és a nyers adatok
-- a dokumentum a származtatott szolgáltatásai modell jelentések
+- a projekt okleveles toodocument hello üzleti probléma és hello projekt hatóköre
+- adatok toodocument hello struktúra és a nyers adatok hello jelentések
+- modell jelentések toodocument hello származtatott szolgáltatások
 - modell metrikák: ROC görbék vagy MSE például
 
 
 ![TDSP-könyvtárak](./media/data-science-process-overview/tdsp-dir-structure.png)
 
-A könyvtárstruktúra a klónozható [Github](https://github.com/Azure/Azure-TDSP-ProjectTemplate).
+hello könyvtárstruktúrát a klónozható [Github](https://github.com/Azure/Azure-TDSP-ProjectTemplate).
 
 ## <a name="infrastructure-and-resources-for-data-science-projects"></a>Infrastruktúra- és tudományos projektekhez erőforrások
 
@@ -92,7 +92,7 @@ TDSP megosztott elemzés és a tárolási infrastruktúrák kezelése ajánláso
 - big Data típusú adatok (Hadoop vagy külső) fürtök 
 - Machine learning szolgáltatás. 
 
-A felhőbeli vagy helyszíni az elemzés és tároló-infrastruktúra lehet. Ez a nyers és feldolgozott adatkészletek tárolására. Ez az infrastruktúra lehetővé teszi, hogy reprodukálható elemzés. Is elkerülhető a másolást, ami inkonzisztenciát és szükségtelen infrastruktúra fenntartási költségeit. Eszközök itt találhatók a megosztott erőforrások kiépítéséhez, nyomon követése, és minden csapattag adott erőforrásokhoz való biztonságos engedélyezése. Akkor is célszerű rendelkezik projekt tagokat hozzon létre egy egységes számítási környezetet. Különböző tagja majd replikálja, és kísérletek ellenőrzése.
+hello felhőalapú vagy helyszíni hello elemzés és tároló-infrastruktúra lehet. Ez a nyers és feldolgozott adatkészletek tárolására. Ez az infrastruktúra lehetővé teszi, hogy reprodukálható elemzés. Is elkerülhető a másolást, ami tooinconsistencies és szükségtelen infrastruktúra fenntartási költségeit. Eszközök megadott tooprovision hello megosztott erőforrások, nyomon követése, és biztonságosan lehetővé teszi minden team tag tooconnect-toothose erőforrások vannak. Akkor is célszerű rendelkezik projekt tagokat hozzon létre egy egységes számítási környezetet. Különböző tagja majd replikálja, és kísérletek ellenőrzése.
 
 Íme egy példa egy csoport több projekten dolgozik, és különböző felhőalapú analytics infrastruktúra összetevőinek megosztása.
 
@@ -101,9 +101,9 @@ A felhőbeli vagy helyszíni az elemzés és tároló-infrastruktúra lehet. Ez 
 
 ## <a name="tools-and-utilities-for-project-execution"></a>Eszközöket és segédprogramokat projekt végrehajtása
 
-A legtöbb szervezetben folyamatok bevezetéséről kihívást. Az eszközök valósítja meg az adatok tudományos folyamat és életciklus súgó alacsonyabb korlátainak és növelje a konzisztenciájának azok elfogadását. TDSP tartalmaz egy kezdeti eszközök és parancsfájlok jump-start a csapaton belüli TDSP elfogadását. Emellett segít a adatok tudományos életciklusának például az adatok feltárása és alapterv modellezési gyakori feladatokat automatizálja. Nincs megosztott eszközök és segédprogramok történő a csoport megosztott kód tárházba közre egyéni felhasználók számára előírt jól definiált szerkezetben. A csoport vagy a szervezet más projektek majd is javítható ezeket az erőforrásokat. TDSP terveket is eszközöket és segédprogramokat, ha a teljes közösségi hozzájárulás engedélyezése. A TDSP segédprogramok a klónozható [Github](https://github.com/Azure/Azure-TDSP-Utilities).
+A legtöbb szervezetben folyamatok bevezetéséről kihívást. A megadott eszközök tooimplement hello tudományos folyamata és életciklus súgó alacsonyabb hello korlátok tooand növelése hello konzisztenciájának azok elfogadását. TDSP tartalmaz egy kezdeti eszközeinek és parancsfájljainak toojump indítási elfogadását TDSP belül egy csoportnak. Emellett segít automatizálható néhány gyakori feladatok hello hello adatok tudományos életciklusának például az adatok feltárása és alapterv modellezési. Nincs jól definiált szerkezetben megadott egyéni toocontribute megosztott eszközök és segédprogramok történő a csoport megosztott kód tárházba. Más projektek belül hello csapat vagy szervezet hello majd is javítható ezeket az erőforrásokat. TDSP is tervezi az eszközök és segédprogramok toohello teljes Közösség tooenable hello hozzájárulásokat. a klónozható hello TDSP segédprogramok [Github](https://github.com/Azure/Azure-TDSP-Utilities).
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Team tudományos folyamata: Szerepköröket és feladatokat](https://github.com/Azure/Microsoft-TDSP/blob/master/Docs/roles-tasks.md) bemutatja azokat a kulcsfontosságú személyzet szerepkörök és a kapcsolódó feladatok a folyamattal szabványosítja adatok tudományos csoport. 
+[Team tudományos folyamata: Szerepköröket és feladatokat](https://github.com/Azure/Microsoft-TDSP/blob/master/Docs/roles-tasks.md) hello kulcsfontosságú személyzet szerepkörök és a kapcsolódó feladatok a folyamattal szabványosítja adatok tudományos csoport ismerteti. 

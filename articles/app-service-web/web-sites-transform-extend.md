@@ -1,6 +1,6 @@
 ---
-title: "Az Azure App Service web app speciális konfigurálása és bővítményei"
-description: "Az Azure App Service web app alkalmazásban az ApplicationHost.config fájl átalakítása és adja hozzá a magánhálózati kiterjesztésének egyéni felügyeleti feladatok engedélyezéséhez a XML-dokumentum Transformation(XDT) nyilatkozatok."
+title: "aaaAzure webalkalmazást az App Service speciális konfigurálása és bővítményei"
+description: "XML-dokumentum Transformation(XDT) nyilatkozatok tootransform hello ApplicationHost.config fájlt használja a az Azure App Service web app és tooadd magánhálózati kiterjesztésének tooenable egyéni felügyeleti műveletek."
 author: cephalin
 writer: cephalin
 editor: mollybos
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/25/2016
 ms.author: cephalin
-ms.openlocfilehash: 314d3a954e712b829e7cf5eb37b23b31670f976b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 873347ac13113d1ac989cba29128382c81dcfcca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-web-app-advanced-config-and-extensions"></a>Az Azure App Service web app speciális konfigurálása és bővítményei
-A [XML-dokumentum átalakítása](http://msdn.microsoft.com/library/dd465326.aspx) (XDT) nyilatkozatok, alakíthatja át a [ApplicationHost.config](http://www.iis.net/learn/get-started/planning-your-iis-architecture/introduction-to-applicationhostconfig) fájl az Azure App Service szolgáltatásban a webalkalmazásban. XDT nyilatkozatok segítségével adja hozzá a magánhálózati kiterjesztésének egyéni web app felügyeleti műveletek engedélyezéséhez. A cikk tartalmaz egy mintát PHP Manager webalkalmazás-bővítmény, amely lehetővé teszi a webes felületen keresztül PHP-beállítások kezelését.
+A [XML-dokumentum átalakítása](http://msdn.microsoft.com/library/dd465326.aspx) (XDT) nyilatkozatok, hello alakíthatja át [ApplicationHost.config](http://www.iis.net/learn/get-started/planning-your-iis-architecture/introduction-to-applicationhostconfig) fájl az Azure App Service szolgáltatásban a webalkalmazásban. XDT nyilatkozatok tooadd magánhálózati kiterjesztésének tooenable egyéni web app felügyeleti műveletek is használható. A cikk tartalmaz egy mintát PHP Manager webalkalmazás-bővítmény, amely lehetővé teszi a webes felületen keresztül PHP-beállítások kezelését.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a id="transform"></a>Speciális konfigurációs ApplicationHost.config keresztül
-Az App Service platform biztosít a rugalmasság és a vezérlés webes alkalmazások konfigurálása. Bár a szabványos IIS ApplicationHost.config konfigurációs fájl nincs közvetlen szerkeszthető az App Service-ben, a platform támogatja deklaratív ApplicationHost.config átalakító modellben XML dokumentum átalakítása (XDT).
+App Service platform hello rugalmasságot és biztosít webes alkalmazások konfigurálása. Bár az App Service közvetlen szerkesztésre hello szabványos IIS ApplicationHost.config konfigurációs fájl nem érhető el, hello platformja támogatja a deklaratív ApplicationHost.config átalakító modellben XML dokumentum átalakítása (XDT).
 
-Kihasználhatják ezt a funkciót átalakító, hozzon létre egy ApplicationHost.xdt fájlt XDT tartalom, és helyezze a webhely gyökeréhez (d:\home\site) alatt a [Kudu konzol](https://github.com/projectkudu/kudu/wiki/Kudu-console). Szükség lehet a Web App módosítások érvénybe lépéséhez indítsa újra.
+tooleverage ezt átalakítás a funkciót, akkor hozzon létre egy ApplicationHost.xdt fájlt XDT tartalom és hello webhely gyökeréhez (d:\home\site) a hello alá helyezni [Kudu konzol](https://github.com/projectkudu/kudu/wiki/Kudu-console). Módosítások tootake hatás toorestart hello webalkalmazás szükséges.
 
-A következő applicationHost.xdt minta bemutatja, hogyan új egyéni környezeti változó hozzáadása a webes alkalmazás, amely használja a PHP 5.4-es.
+a következő applicationHost.xdt minta hello jeleníti meg, hogyan tooadd egy új egyéni környezeti változó tooa webalkalmazás, amely használja a PHP 5.4-es.
 
 ```xml
 <?xml version="1.0"?>
@@ -48,46 +48,46 @@ A következő applicationHost.xdt minta bemutatja, hogyan új egyéni környezet
 </configuration>
 ```
 
-A naplófájl átalakító állapotával és részleteivel kapcsolatban az FTP gyökérkönyvtárából LogFiles\Transform alatt érhető el.
+A naplófájl átalakító állapotával és részleteivel kapcsolatban hello FTP gyökérkönyvtárából LogFiles\Transform alatt érhető el.
 
 További példákért lásd: [https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples](https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples).
 
 **Megjegyzés**<br />
-A modulok listájáról elemek `system.webServer` nem távolítható el, és újra, de kiegészítések az lehetségesek.
+Hello listájához a elemek `system.webServer` nem távolítható el, és újra, de kiegészítéseket toohello lista is előfordulhatnak.
 
 ## <a id="extend"></a>A webalkalmazás kiterjesztése
 ### <a id="overview"></a>Saját webalkalmazás-bővítmény áttekintése
-App Service webalkalmazás-bővítmény támogatja a felügyeleti műveletekhez bővítési pontjaként. Tulajdonképpen egy App Service platform funkciói előre telepített kiterjesztéseket valósíthatók meg. Az előre telepített platform bővítmények nem módosítható, amíg hozhat létre és magánhálózati kiterjesztésének konfigurálása a saját webes alkalmazást. Ez a funkció is XDT nyilatkozatok támaszkodik. A kulcs egy saját webalkalmazás-bővítmény létrehozásának lépései a következők:
+App Service webalkalmazás-bővítmény támogatja a felügyeleti műveletekhez bővítési pontjaként. Tulajdonképpen egy App Service platform funkciói előre telepített kiterjesztéseket valósíthatók meg. Hello előre telepített platform bővítményei nem módosíthatók, amíg hozhat létre és magánhálózati kiterjesztésének konfigurálása a saját webes alkalmazást. Ez a funkció is XDT nyilatkozatok támaszkodik. hello kulcs egy saját webalkalmazás-bővítmény létrehozásának lépései a következők hello következő:
 
 1. Webalkalmazás-bővítmény **tartalom**: bármely támogatja az App Service webalkalmazás létrehozása
 2. Webalkalmazás-bővítmény **deklaráció**: ApplicationHost.xdt-fájl létrehozása
-3. Webalkalmazás-bővítmény **telepítési**: a SiteExtensions mappában található tartalom elhelyezése`root`
+3. Webalkalmazás-bővítmény **telepítési**: hello SiteExtensions mappában található a tartalom elhelyezése`root`
 
-A webes alkalmazás belső hivatkozásokat az alkalmazás elérési útja a ApplicationHost.xdt fájl megadott relatív elérési kell mutatnia. Bármi is módosul az ApplicationHost.xdt fájl web app újrahasznosítást igényel.
+Belső hivatkozások hello webalkalmazás tooa elérési útja relatív toohello alkalmazás elérési útja hello ApplicationHost.xdt fájlban megadott kell mutatnia. Minden olyan változás toohello ApplicationHost.xdt fájlt web app újrahasznosítást igényel.
 
 **Megjegyzés:**: további információt a fő elemei a [https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions).
 
-A részletes része létrehozásának és egy személyes webalkalmazás-bővítmény engedélyezése a lépéseit mutatja be. A PHP Manager példa, amely a következő forráskódja letölthető [https://github.com/projectkudu/PHPManager](https://github.com/projectkudu/PHPManager).
+A részletes belefoglalt tooillustrate hello lépései létrehozásával és engedélyezésével a saját webalkalmazás-bővítmény. például hello PHP kezelő, amely a következőképpen letölthető a forráskód hello [https://github.com/projectkudu/PHPManager](https://github.com/projectkudu/PHPManager).
 
 ### <a id="SiteSample"></a>Webes alkalmazás bővítmény példa: PHP-kezelő
-PHP-kezelő egy webalkalmazás-bővítmény, amely lehetővé teszi, hogy a webes alkalmazás rendszergazdák könnyen beállításainak megtekintése és konfigurálása a PHP webes felületen keresztül közvetlenül módosítja a PHP .ini fájlokat ahelyett, hogy. Php-hez tartozó általános konfigurációs fájljai közé a php.ini fájlt a Program Files alatt és a. a webes alkalmazás gyökérkönyvtárában található user.ini fájlt. A php.ini fájl nincs az App Service platformon közvetlenül szerkeszthető, mert a PHP-kezelő bővítmény használja a. user.ini fájl beállítás módosítások alkalmazásához.
+PHP-kezelő rendszer egy webalkalmazás-bővítmény, amely lehetővé teszi, hogy a webes alkalmazás rendszergazdák tooeasily nézet, és a webes felületen keresztül közvetlenül toomodify PHP .ini-fájlokat ahelyett PHP-beállítások konfigurálása. Php-hez tartozó általános konfigurációs fájljai közé hello php.ini fájlt a Program Files és hello található. a webalkalmazás gyökérmappájában hello user.ini fájlba. Mivel hello php.ini fájl nem közvetlenül szerkeszthetők a hello App Service platform, a PHP-kezelő bővítmény hello használja-e a hello. user.ini fájl tooapply változás.
 
-#### <a id="PHPwebapp"></a>A PHP-kezelő webalkalmazás
-Az alábbiakban áttekintjük a kezdőlap a PHP-kezelő központi telepítés:
+#### <a id="PHPwebapp"></a>hello PHP Manager webalkalmazás
+hello az alábbiakban látható hello kezdőlapján hello PHP Manager telepítése:
 
 ![TransformSitePHPUI][TransformSitePHPUI]
 
-Ahogy látja, a webalkalmazás-bővítmény van, hasonlóan egy rendszeres webalkalmazást, de egy további ApplicationHost.xdt fájl a gyökérmappában található azon a web app (további információt a ApplicationHost.xdt fájl érhetők el a cikk a következő szakaszban) helyezni.
+Ahogy látja, a webalkalmazás-bővítmény hasonlóan rendszeres webalkalmazást, de egy további ApplicationHost.xdt fájl hello gyökérmappájában hello web app (hello ApplicationHost.xdt fájllal kapcsolatos további részletekért érhetők el az e hello a következő szakaszban van-e a cikk).
 
-A PHP-kezelő bővítmény létrejött, a Visual Studio ASP.NET MVC 4 webalkalmazás sablonja segítségével. A következő nézetet a Megoldáskezelőből a PHP-kezelő bővítmény szerkezetét mutatja.
+PHP-kezelő bővítmény hello hello Visual Studio ASP.NET MVC 4 webalkalmazás sablon használatával lett létrehozva. hello következő nézet megoldáskezelőjében jeleníti meg a PHP-kezelő bővítmény hello hello szerkezete.
 
 ![TransformSiteSolEx][TransformSiteSolEx]
 
-A szükséges i/o-fájl csak speciális logikát annak jelzésére, hogy hol helyezkedik el a wwwroot könyvtárat a webalkalmazás. Az alábbi példakód mutatja, a környezeti változó "OTTHONI" jelzi a webes alkalmazás gyökérútvonalát, és a wwwroot elérési út lehet létrehozni "site\wwwroot" hozzáfűzésével:
+hello szükséges i/o-fájl csak speciális logikát tooindicate ahol hello wwwroot könyvtárat hello webalkalmazás. Módon hello következő példát mutat be, hello környezeti változó "OTTHONI" hello webes alkalmazás elérési útjának gyökeréhez és hello wwwroot elérési út lehet létrehozni "site\wwwroot" hozzáfűzésével jelzi:
 
 ```csharp
 /// <summary>
-/// Gives the location of the .user.ini file, even if one doesn't exist yet
+/// Gives hello location of hello .user.ini file, even if one doesn't exist yet
 /// </summary>
 private static string GetUserSettingsFilePath()
 {
@@ -102,22 +102,22 @@ private static string GetUserSettingsFilePath()
 ```
 
 
-Miután a könyvtár elérési útja, rendszeres fájl i/o-műveletek segítségével olvasási és írási fájlokat.
+Miután hello könyvtár elérési útja, használhatja a rendszeres fájl i/o-műveletek tooread és toofiles írni.
 
-Egy pont a webalkalmazás-bővítmény járjon el a belső hivatkozások kezelésének tekintetében.  Ha esetleges hivatkozások a HTML-fájlok, amelyek biztosítják a webes alkalmazás belső mutató hivatkozások abszolút elérési utakat is van, bizonyosodjon meg ezeket a hivatkozásokat, a bővítmény neve, a legfelső szintű vannak $a. Ez szükséges, mert a bővítmény a legfelső szintű most "/`[your-extension-name]`/" nem csak "/", ezért minden belső hivatkozások frissíteni kell ennek megfelelően. Tegyük fel, hogy a kód a következő mutató hivatkozást tartalmaz:
+Egy pont a figyelmeztetés a webalkalmazás-bővítmény hello kezelésére vonatkozó belső hivatkozások tekintetében.  Ha a HTML-fájlok, amelyek a webalkalmazásban toointernal hivatkozások abszolút elérési utakat biztosítanak a hivatkozásokat, győződjön meg ezeket a hivatkozásokat, a bővítmény neve, a legfelső szintű vannak $a. Ez van szükség, mert hello legfelső szintű a bővítmény jelenleg "/`[your-extension-name]`/" nem csak "/", ezért minden belső hivatkozások frissíteni kell ennek megfelelően. Tegyük fel, hogy a kód egy hivatkozás toohello következőket tartalmazza:
 
 `"<a href="/Home/Settings">PHP Settings</a>"`
 
-Ha a kapcsolat a webalkalmazás-bővítmény része, a hivatkozás a következő formátumban kell lennie:
+Ha hello hivatkozás egy webalkalmazás-bővítmény része, hello hivatkozás kell a következő képernyő hello:
 
 `"<a href="/[your-site-name]/Home/Settings">Settings</a>"`
 
-Ennek a követelménynek úgy vagy kerülheti használatával csak relatív elérési utakat, a webes alkalmazás belül, illetve az ASP.NET alkalmazásokat, használja a `@Html.ActionLink` metódus, amely létrehozza a megfelelő hivatkozásokra.
+Ez a követelmény csak relatív elérési utakat a webes alkalmazás belül, vagy a kis-és ASP.NET-alkalmazások hello hello segítségével segítségével úgy kerülheti `@Html.ActionLink` hello megfelelő hivatkozásokat hoz meg metódust.
 
-#### <a id="XDT"></a>A applicationHost.xdt fájl
-A webalkalmazás-bővítmény a kódját a %HOME%\SiteExtensions kerül\[a bővítmény neve]. Felhívjuk ezt a bővítményt legfelső szintű.  
+#### <a id="XDT"></a>hello applicationHost.xdt fájl
+a webalkalmazás-bővítmény hello kódját kerül a %HOME%\SiteExtensions\[a bővítmény neve]. Felhívjuk a hello bővítmény gyökér.  
 
-A webalkalmazás-bővítmény regisztrálására az applicationHost.config fájl, szüksége helyezhető el a kiterjesztés legfelső szintű ApplicationHost.xdt nevű fájl. A ApplicationHost.xdt fájl tartalma a következő legyen:
+tooregister a webalkalmazás-bővítmény hello applicationHost.config fájlt, kell tooplace hello bővítmény legfelső szintű ApplicationHost.xdt nevű fájl. hello hello ApplicationHost.xdt fájl tartalmának az alábbinak kell lennie:
 
 ```xml
 <?xml version="1.0"?>
@@ -125,7 +125,7 @@ A webalkalmazás-bővítmény regisztrálására az applicationHost.config fájl
   <system.applicationHost>
     <sites>
       <site name="%XDT_SCMSITENAME%" xdt:Locator="Match(name)">
-        <!-- NOTE: Add your extension name in the application paths below -->
+        <!-- NOTE: Add your extension name in hello application paths below -->
         <application path="/[your-extension-name]" xdt:Locator="Match(path)" xdt:Transform="Remove" />
         <application path="/[your-extension-name]" applicationPool="%XDT_APPPOOLNAME%" xdt:Transform="Insert">
           <virtualDirectory path="/" physicalPath="%XDT_EXTENSIONPATH%" />
@@ -136,9 +136,9 @@ A webalkalmazás-bővítmény regisztrálására az applicationHost.config fájl
 </configuration>
 ```
 
-A nevét jelöli ki a bővítmény neve a bővítmény gyökérmappában található azonos nevű kell lennie.
+hello nevét jelöli ki a bővítmény neve a bővítmény gyökérmappára hello ugyanazt a nevet kell lennie.
 
-Ennek a hatása hozzáadása egy új alkalmazás elérési útját a `system.applicationHost` az SCM helyhez tartozik, a helyek listáját. Az SCM hely adott hozzáférési hitelesítő adatokkal rendelkező hely felügyeleti végpont. Az URL-cím van `https://[your-site-name].scm.azurewebsites.net`.  
+Ennek hatása hello hozzáadása egy új alkalmazás elérési útja toohello `system.applicationHost` hello SCM helyhez tartozik, a helyek listáját. hello SCM hely adott hozzáférési hitelesítő adatokkal rendelkező hely felügyeleti végpontját. Hello URL-cím van `https://[your-site-name].scm.azurewebsites.net`.  
 
 ```xml
 <system.applicationHost>
@@ -155,7 +155,7 @@ Ennek a hatása hozzáadása egy új alkalmazás elérési útját a `system.app
       <application path="/" applicationPool="[your-website]">
         <virtualDirectory path="/" physicalPath="D:\Program Files (x86)\SiteExtensions\Kudu\1.24.20926.5" />
       </application>
-      <!-- Note the custom changes that go here -->
+      <!-- Note hello custom changes that go here -->
       <application path="/[your-extension-name]" applicationPool="[your-website]">
         <virtualDirectory path="/" physicalPath="C:\DWASFiles\Sites\[your-website]\VirtualDirectory0\SiteExtensions\[your-extension-name]" />
       </application>
@@ -166,23 +166,23 @@ Ennek a hatása hozzáadása egy új alkalmazás elérési útját a `system.app
 ```
 
 ### <a id="deploy"></a>A webes alkalmazás bővítmény telepítése
-A webalkalmazás-bővítmény telepítése, az FTP használatával a webalkalmazás számára a fájlok másolása a `\SiteExtensions\[your-extension-name]` mappa a webes alkalmazás, amelyre szeretné, a bővítmény telepítéséhez.  Győződjön meg arról, a ApplicationHost.xdt fájl másolása ezen a helyen. Engedélyezi a bővítményt a webalkalmazás újraindítása.
+tooinstall a webalkalmazás-bővítmény, FTP toocopy összes hello fájlokat használhatja, a webes alkalmazás toohello `\SiteExtensions\[your-extension-name]` kívánja tooinstall hello bővítmény hello webalkalmazás mappát.  Lehet, hogy toocopy hello ApplicationHost.xdt fájl toothis helyét is. Indítsa újra a webalkalmazás-tooenable hello bővítmény.
 
-A webalkalmazás-bővítmény, látni kell:
+A webalkalmazás-bővítmény, képes toosee kell lennie:
 
 `https://[your-site-name].scm.azurewebsites.net/[your-extension-name]`
 
-Vegye figyelembe, hogy az URL-cím a következőképpen néz csak az URL-címet a webalkalmazás, azzal a különbséggel, hogy HTTPS PROTOKOLLT használ, és tartalmazza a ".scm".
+Vegye figyelembe, hogy hello URL-cím a következőképpen néz csak hello URL-címet a webalkalmazás, azzal a különbséggel, hogy a HTTPS PROTOKOLLT használ, és a ".scm" tartalmazza.
 
-A webalkalmazás összes titkos (nem előre telepített) bővítmények letiltása fejlesztési és vizsgálatok során a kulccsal az alkalmazásbeállítások hozzáadásával lehetséges `WEBSITE_PRIVATE_EXTENSIONS` és érték `0`.
+A webalkalmazás-bővítmények lehetséges toodisable összes titkos (nincs előre telepítve) fejlesztési és a vizsgálatok alatt adja hozzá az alkalmazásbeállítások hello kulccsal `WEBSITE_PRIVATE_EXTENSIONS` és érték `0`.
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- IMAGES -->
 [TransformSitePHPUI]: ./media/web-sites-transform-extend/TransformSitePHPUI.png

@@ -1,5 +1,5 @@
 ---
-title: "Ismerkedés az Azure SQL adatszinkronizálás (előzetes verzió) |} Microsoft Docs"
+title: "aaaGetting (előzetes verzió) Azure SQL adatszinkronizálás használatába |} Microsoft Docs"
 description: "Ez az oktatóanyag segítséget nyújt a Ismerkedés az Azure SQL adatszinkronizálás (előzetes verzió)."
 services: sql-database
 documentationcenter: 
@@ -15,192 +15,192 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/08/2017
 ms.author: douglasl
-ms.openlocfilehash: 2d0f9d7f32ad79f49d58165d734b9df4af862835
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 666d09237e42acc23ae3c8c81e60734a413f5949
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-sql-data-sync-preview"></a>Ismerkedés az Azure SQL adatszinkronizálás (előzetes verzió)
-Ebben az oktatóanyagban elsajátíthatja, hogyan Azure SQL Data szinkronizálás beállítása az Azure SQL Database és az SQL Server-példányokat tartalmazó hibrid szinkronizálási csoportok létrehozásával. Az új szinkronizálási csoport teljes van konfigurálva, és a beállított ütemezés szerint szinkronizálja.
+Ebben az oktatóanyagban elsajátíthatja, hogyan tooset be Azure SQL adatszinkronizálás hozzon létre egy hibrid szinkronizálású csoport, amely tartalmazza az Azure SQL Database és az SQL Server-példány. hello új szinkronizálású csoport teljes van beállítva, és a beállított ütemezés hello szinkronizálja.
 
 Ez az oktatóanyag feltételezi, hogy rendelkezik-e legalább némi tapasztalattal az SQL Database és SQL-kiszolgálóval. 
 
 SQL adatszinkronizálás áttekintését lásd: [szinkronizálni az adatokat](sql-database-sync-data.md).
 
-Teljes PowerShell-példák bemutatják, hogyan konfigurálja az SQL adatszinkronizálás tekintse meg a következő cikkeket:
--   [A PowerShell szolgáltatás használatával több Azure SQL-adatbázisok közötti szinkronizálása](scripts/sql-database-sync-data-between-sql-databases.md)
--   [Egy Azure SQL-adatbázis és a helyszíni SQL Server-adatbázisok közötti szinkronizálása a PowerShell használatával](scripts/sql-database-sync-data-between-azure-onprem.md)
+A teljes PowerShell példák hogyan tooconfigure SQL adatszinkronizálás, tekintse meg a következő cikkek hello:
+-   [PowerShell toosync több Azure SQL-adatbázist használja](scripts/sql-database-sync-data-between-sql-databases.md)
+-   [Egy Azure SQL-adatbázis és a helyszíni SQL Server-adatbázisok közötti PowerShell toosync használata](scripts/sql-database-sync-data-between-azure-onprem.md)
 
 > [!NOTE]
-> Az Azure SQL Data szinkronizálás, korábban, az MSDN-en, állítsa be a teljes műszaki dokumentáció áll rendelkezésre, egy. PDF-dokumentumokat. Töltse le [Itt](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true).
+> hello teljes műszaki dokumentáció az Azure SQL Data szinkronizálás, korábban, az MSDN-en, állítsa be áll rendelkezésre, mert egy. PDF-dokumentumokat. Töltse le [Itt](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true).
 
 ## <a name="step-1---create-sync-group"></a>1. lépés – a sync-csoport létrehozása
 
-### <a name="locate-the-data-sync-settings"></a>Keresse meg az adatok szinkronizálási beállítások
+### <a name="locate-hello-data-sync-settings"></a>Keresse meg a beállítások hello adatok szinkronizálása
 
-1.  A böngészőben navigáljon az Azure-portálon.
+1.  A böngészőben nyissa meg a toohello Azure-portálon.
 
-2.  Keresse meg az SQL-adatbázisok az irányítópultra, illetve az SQL-adatbázisok ikon a portál az eszköztáron.
+2.  Hello portal keresse meg az SQL-adatbázisok az irányítópultra, illetve hello SQL-adatbázisok ikon hello eszköztáron.
 
     ![Azure SQL-adatbázisok listája](media/sql-database-get-started-sql-data-sync/datasync-preview-sqldbs.png)
 
-3.  Az a **SQL-adatbázisok** panelen válassza ki a meglévő SQL-adatbázis adatszinkronizálás hub-adatbázisként használni kívánt. Az SQL-adatbázis panel nyílik meg.
+3.  A hello **SQL-adatbázisok** panelen, jelölje be hello meglévő SQL-adatbázis, amelyet toouse, hello hub adatbázis az adatok szinkronizálása. hello SQL adatbázis panel nyílik meg.
 
-4.  A kiválasztott adatbázishoz az SQL adatbázis paneljén válassza **az egyéb adatbázisokra szinkronizálási**. Az adatszinkronizálás panel nyílik meg.
+4.  Hello SQL adatbázis paneljén hello kijelölt adatbázis kiválasztása **tooother adatbázisok szinkronizálása**. hello adatszinkronizálás panel nyílik meg.
 
-    ![Szinkronizálni kívánt más adatbázisok beállítás](media/sql-database-get-started-sql-data-sync/datasync-preview-newsyncgroup.png)
+    ![Szinkronizálási tooother adatbázisok lehetősége](media/sql-database-get-started-sql-data-sync/datasync-preview-newsyncgroup.png)
 
 ### <a name="create-a-new-sync-group"></a>Hozzon létre egy új szinkronizálási csoportot
 
-1.  Az adatszinkronizálás panelen válassza ki a **új szinkronizálású csoport**. A **új szinkronizálású csoport** panel nyílik meg az 1. lépésben, **szinkronizálási csoport létrehozása**, kijelölt. A **adatok szinkronizálása csoport létrehozása** panel is megnyílik.
+1.  Hello adatszinkronizálás paneljén válassza **új szinkronizálású csoport**. Hello **új szinkronizálású csoport** panel nyílik meg az 1. lépésben, **szinkronizálási csoport létrehozása**, kijelölt. Hello **adatok szinkronizálása csoport létrehozása** panel is megnyílik.
 
-2.  Az a **adatok szinkronizálása csoport létrehozása** panelen tegye a következőket:
+2.  A hello **adatok szinkronizálása csoport létrehozása** panelen dolgok következő hello:
 
-    1.  Az a **szinkronizálási csoportnév** mezőbe írja be az új szinkronizálási csoport nevét.
+    1.  A hello **szinkronizálási csoportnév** mezőbe írja be a hello új szinkronizálási csoport nevét.
 
-    2.  Az a **szinkronizálási metaadatokat tároló adatbázis** területen válassza ki, hogy hozzon létre egy új adatbázist (ajánlott), vagy használjon már meglévő adatbázist.
+    2.  A hello **szinkronizálási metaadatokat tároló adatbázis** területen válassza ki, hogy toocreate egy új adatbázist (ajánlott) vagy toouse egy meglévő adatbázist.
 
         > [!NOTE]
-        > A Microsoft azt javasolja, hogy hozzon létre egy új, üres adatbázis kívánja használni, mint a szinkronizálás metaadatokat tároló adatbázis. Adatszinkronizálás hoz létre táblák az adatbázisban, és a gyakori munkaterhelés futtatja. Ez az adatbázis automatikusan megosztva a szinkronizálási metaadatokat tároló adatbázis az összes, a szinkronizálási csoportok a kiválasztott régióban. A szinkronizálás metaadatokat tároló adatbázis, a neve vagy a szolgáltatási szint nélkül eldobása nem módosítható.
+        > A Microsoft azt javasolja, hogy hozzon létre egy új, üres adatbázis toouse, hello szinkronizálási metaadatokat tároló adatbázis. Adatszinkronizálás hoz létre táblák az adatbázisban, és a gyakori munkaterhelés futtatja. Ez az adatbázis automatikusan megosztva hello szinkronizálási metaadatokat tároló adatbázis az összes, a szinkronizálási csoportok hello a kiválasztott régióban. Hello szinkronizálási metaadatokat tároló adatbázis, a neve vagy a szolgáltatási szint nélkül eldobása nem módosítható.
 
-        Ha úgy döntött, hogy **új adatbázis**, jelölje be **új adatbázis létrehozása.** A **SQL-adatbázis** panel nyílik meg. Az a **SQL-adatbázis** panelen nevet, és konfigurálja az új adatbázist. Válassza ki **OK**.
+        Ha úgy döntött, hogy **új adatbázis**, jelölje be **új adatbázis létrehozása.** Hello **SQL-adatbázis** panel nyílik meg. A hello **SQL-adatbázis** panelen nevet, és konfigurálja a hello új adatbázist. Válassza ki **OK**.
 
-        Ha úgy döntött, hogy **létező adatbázis használata**, a listáról válassza ki az adatbázist.
+        Ha úgy döntött, hogy **létező adatbázis használata**, jelölje be hello adatbázis hello listából.
 
-    3.  Az a **automatikus szinkronizálás** szakaszban, először válassza **a** vagy **ki**.
+    3.  A hello **automatikus szinkronizálás** szakaszban, először válassza **a** vagy **ki**.
 
-        Ha úgy döntött, hogy **a**, a a **szinkronizálási gyakoriság** szakaszt, adjon meg egy számot, és válassza ki a másodperc, perc, órák vagy napok.
+        Ha úgy döntött, hogy **a**, a hello **szinkronizálási gyakoriság** szakaszt, adjon meg egy számot, és válassza ki a másodperc, perc, órák vagy napok.
 
         ![Adja meg a szinkronizálás gyakorisága](media/sql-database-get-started-sql-data-sync/datasync-preview-syncfreq.png)
 
-    4.  Az a **ütközésének feloldása** területen válassza ki a "Hub wins" vagy "Tag wins."
+    4.  A hello **ütközésének feloldása** területen válassza ki a "Hub wins" vagy "Tag wins."
 
         ![Adja meg az ütközések feloldása](media/sql-database-get-started-sql-data-sync/datasync-preview-conflictres.png)
 
-    5.  Válassza ki **OK** , és várja meg az új szinkronizálási csoport létrehozása és telepítése.
+    5.  Válassza ki **OK** és várja meg, hello új szinkronizálási csoport toobe létrehozása és telepítése.
 
 ## <a name="step-2---add-sync-members"></a>2. lépés – szinkronizálás tagok hozzáadása
 
-Után az új szinkronizálási csoport létrehozása és telepítése, 2. lépés **szinkronizálási tagok hozzáadása**, kijelölt a **új szinkronizálású csoport** panelen.
+Miután hello új szinkronizálású csoport létrehozása és telepítése, 2. lépés **szinkronizálási tagok hozzáadása**, hello kijelölt **új szinkronizálású csoport** panelen.
 
-Az a **Hub adatbázis** területen adja meg a meglévő hitelesítő adatait az SQL-adatbázis kiszolgálóra, amelyen a központ adatbázis található. Ne adjon meg *új* ebben a szakaszban a hitelesítő adatokat.
+A hello **Hub adatbázis** területen adja meg a meglévő hitelesítő hello hello SQL adatbázis-kiszolgáló a mely hello hub adatbázisa található. Ne adjon meg *új* ebben a szakaszban a hitelesítő adatokat.
 
-![Központi adatbázis szinkronizálása csoport hozzáadva](media/sql-database-get-started-sql-data-sync/datasync-preview-hubadded.png)
+![Központi adatbázis toosync csoport hozzá lett adva](media/sql-database-get-started-sql-data-sync/datasync-preview-hubadded.png)
 
 ## <a name="add-an-azure-sql-database"></a>Egy Azure SQL adatbázis hozzáadása
 
-Az a **Tagadatbázis** szakaszban, és opcionálisan adja hozzá az Azure SQL Database szinkronizálási csoporthoz kiválasztásával **hozzáadása egy Azure-adatbázis**. A **Azure-adatbázis beállítása** panel nyílik meg.
+A hello **Tagadatbázis** szakaszban, és opcionálisan adja hozzá az Azure SQL Database toohello szinkronizálású csoport kiválasztásával **hozzáadása egy Azure-adatbázis**. Hello **Azure-adatbázis beállítása** panel nyílik meg.
 
-Az a **Azure-adatbázis beállítása** panelen tegye a következőket:
+A hello **Azure-adatbázis beállítása** panelen dolgok következő hello:
 
-1.  Az a **szinkronizálási tagneve** mezőbe, adjon meg egy nevet az új szinkronizálási tag. Ez a név nem azonos azzal maga az adatbázis nevét.
+1.  A hello **szinkronizálási tagneve** mezőbe, adjon meg egy nevet hello új szinkronizálási tag. Ez a név nem azonos azzal hello maga hello adatbázis nevét.
 
-2.  Az a **előfizetés** mező mellett válassza ki a társított Azure-előfizetés más célra.
+2.  A hello **előfizetés** mezőjét, jelölje be hello társított Azure-előfizetés más célra.
 
-3.  Az a **Azure SQL Server** mező mellett válassza ki a meglévő SQL adatbázis-kiszolgáló.
+3.  A hello **Azure SQL Server** mezőjét, jelölje be hello meglévő SQL adatbázis-kiszolgáló.
 
-4.  Az a **Azure SQL Database** mező mellett válassza ki a meglévő SQL-adatbázis.
+4.  A hello **Azure SQL Database** mezőjét, jelölje be hello meglévő SQL-adatbázis.
 
-5.  Az a **szinkronizálási irányban** mező, jelölje be kétirányú szinkronizálás, a központi vagy a központ.
+5.  A hello **szinkronizálási irányban** mező mellett válassza ki a kétirányú szinkronizálás, toohello Hub, vagy a központ hello.
 
     ![Új SQL-adatbázis szinkronizálási tag hozzáadása](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadding.png)
 
-6.  Az a **felhasználónév** és **jelszó** mezők, adja meg a meglévő hitelesítő adatait az SQL-adatbázis kiszolgálóra, amelyen a tagok adatbázisa található. Ne adjon meg *új* ebben a szakaszban a hitelesítő adatokat.
+6.  A hello **felhasználónév** és **jelszó** mezők, adja meg a hello meglévő hitelesítő adatait, mely hello tagadatbázis helyezkedik hello SQL adatbázis-kiszolgáló. Ne adjon meg *új* ebben a szakaszban a hitelesítő adatokat.
 
-7.  Válassza ki **OK** , és várja meg az új szinkronizálási tag létrehozása és telepítése.
+7.  Válassza ki **OK** és várja meg, hello új szinkronizálási tag toobe létrehozása és telepítése.
 
     ![Új SQL-adatbázis szinkronizálási tag hozzá lett adva.](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadded.png)
 
 ## <a name="add-an-on-premises-sql-server-database"></a>A helyszíni SQL Server adatbázis hozzáadása
 
-Az a **Tagadatbázis** szakaszban, és opcionálisan adja hozzá egy helyi SQL Server a szinkronizálási csoport kiválasztásával **adja hozzá az On-Premises adatbázis**. A **konfigurálása a helyszíni** panel nyílik meg.
+A hello **Tagadatbázis** szakaszban, és opcionálisan adja hozzá egy helyi SQL Server toohello szinkronizálású csoport kiválasztásával **adja hozzá az On-Premises adatbázis**. Hello **konfigurálása a helyszíni** panel nyílik meg.
 
-Az a **konfigurálása a helyszíni** panelen tegye a következőket:
+A hello **konfigurálása a helyszíni** panelen dolgok következő hello:
 
-1.  Válassza ki **válassza ki a szinkronizálási ügynök átjáró**. A **válassza ki a szinkronizálási ügynök** panel nyílik meg.
+1.  Válassza ki **válasszon hello szinkronizálási ügynök átjáró**. Hello **válassza ki a szinkronizálási ügynök** panel nyílik meg.
 
-    ![A szinkronizálási ügynök átjáró kiválasztása](media/sql-database-get-started-sql-data-sync/datasync-preview-choosegateway.png)
+    ![Hello szinkronizálási ügynök átjáró kiválasztása](media/sql-database-get-started-sql-data-sync/datasync-preview-choosegateway.png)
 
-2.  A a **válassza ki a szinkronizálási ügynök átjáró** panelen válassza ki, hogy egy meglévő ügynököt, vagy hozzon létre egy új ügynököt.
+2.  A hello **válasszon hello szinkronizálási ügynök átjáró** panelen válassza ki e toouse egy meglévő ügynököt, vagy hozzon létre egy új ügynököt.
 
-    Ha úgy döntött, hogy **meglévő ügynökök**, válassza ki a meglévő ügynököt a listából.
+    Ha úgy döntött, hogy **meglévő ügynökök**, válassza ki a meglévő ügynököt hello listából hello.
 
-    Ha úgy döntött, hogy **hozzon létre egy új ügynök**, tegye a következőket:
+    Ha úgy döntött, hogy **hozzon létre egy új ügynök**, dolgok következő hello:
 
-    1.  A szinkronizálási ügynök ügyfélszoftver töltse le a megadott, és telepítse azt a számítógépet, amelyen az SQL Server is található.
+    1.  A megadott hivatkozás hello ügynök szinkronizálási hello ügyfélszoftver letöltése, és telepítse azt hello számítógép hello SQL Server.
  
         > [!IMPORTANT]
-        > Meg kell nyitnia az 1433-as kimenő TCP port ahhoz, hogy az ügyfélügynök kommunikálni a kiszolgálóval a tűzfalon.
+        > Hogy tooopen kimenő TCP 1433-as port a hello tűzfal toolet hello ügyfélügynök hello kiszolgálóval való kommunikációhoz.
 
 
-    2.  Adjon meg egy nevet az ügynök.
+    2.  Adjon meg egy nevet hello ügynök.
 
     3.  Válassza ki **létrehozása és a kulcs létrehozása**.
 
-    4.  Az ügynök kulcs másolása a vágólapra.
+    4.  Hello ügynök kulcs toohello vágólapra másolása.
         
         ![Új szinkronizálási ügynök létrehozása](media/sql-database-get-started-sql-data-sync/datasync-preview-selectsyncagent.png)
 
-    5.  Válassza ki **OK** bezárásához a **válassza ki a szinkronizálási ügynök** panelen.
+    5.  Válassza ki **OK** tooclose hello **válassza ki a szinkronizálási ügynök** panelen.
 
-    6.  Keresse meg az SQL Server-számítógépen és az ügyfél-szinkronizálási ügynök alkalmazás futtatásához.
+    6.  Hello SQL Server-számítógépen keresse meg és hello szinkronizálási Ügyfélügynök-alkalmazás futtatása.
 
-        ![Az adatok szinkronizálása az ügyfélalkalmazás ügynök](media/sql-database-get-started-sql-data-sync/datasync-preview-clientagent.png)
+        ![hello adatok szinkronizálása az ügyfélalkalmazás ügynök](media/sql-database-get-started-sql-data-sync/datasync-preview-clientagent.png)
 
-    7.  Válassza ki a szinkronizálási ügynök alkalmazás **nyújt ügynök kulcs**. A **szinkronizálási metaadatok adatbázis konfigurációja** párbeszédpanel.
+    7.  Hello szinkronizálási ügynök alkalmazásban, válassza ki a **nyújt ügynök kulcs**. Hello **szinkronizálási metaadatok adatbázis konfigurációja** párbeszédpanel.
 
-    8.  Az a **szinkronizálási metaadatok adatbázis konfigurációja** párbeszédpanelen illessze be az ügynök kulcs másolása az Azure portálról. A meglévő hitelesítő adatok is biztosítanak a Azure SQL Database kiszolgálón, amelyen a metaadatokat tároló adatbázis található. (Ha létrehozott egy új metaadatokat tároló adatbázis, az adatbázis van a központ adatbázis ugyanazon a kiszolgálón.) Válassza ki **OK** , és várja meg a konfiguráció befejezéséhez.
+    8.  A hello **szinkronizálási metaadatok adatbázis konfigurációja** párbeszédpanelen illessze be hello ügynök kulcs átmásolva hello Azure-portálon. Emellett azokat a hello hello Azure SQL Database kiszolgálón, mely hello a metaadatokat tároló adatbázis található meglévő hitelesítő adatokat. (Ha létrehozott egy új metaadatokat tároló adatbázis, az adatbázis nem a hello hello hub adatbázis ugyanazon a kiszolgálón.) Válassza ki **OK** és hello konfigurációs toofinish várja.
 
-        ![Adja meg az ügynök kulcsot és a kiszolgáló hitelesítő adatait](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
+        ![Hello ügynök kulcsot és a kiszolgáló hitelesítő adatok megadása](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
 
         >   [!NOTE] 
-        >   Ha a tűzfal hibaüzenet jelenik meg ezen a ponton, hogy egy tűzfalszabály létrehozása az Azure SQL Server-számítógépen a bejövő forgalom engedélyezésére. A szabály manuálisan hozhat létre, a portálon, de előfordulhat, hogy ez egyszerűbbé teszi az SQL Server Management Studio (SSMS) létrehozásához. Az SSMS próbálja meg az Azure-on a központ adatbázishoz való kapcsolódáshoz. Adja meg a nevét, \<hub_database_name\>. database.windows.net. Kövesse a párbeszédpanelen konfigurálhatja az Azure tűzfalszabályt. Térjen vissza az ügyfél-szinkronizálási ügynök alkalmazást.
+        >   Ha a tűzfal hibaüzenet jelenik meg ezen a ponton, hogy toocreate tűzfalszabály Azure tooallow érkező forgalmat hello SQL Server-számítógépen. Hello szabály manuálisan is létrehozhat, hello portálon, de azt tapasztalhatja, könnyebben toocreate azt az SQL Server Management Studio (SSMS). A szolgáltatáshoz az SSMS próbálja ki a tooconnect toohello hub adatbázis Azure-on. Adja meg a nevét, \<hub_database_name\>. database.windows.net. Kövesse hello hello párbeszédpanel bezárásához tooconfigure hello Azure tűzfalszabály. Térjen vissza toohello szinkronizálási Ügyfélügynök alkalmazást.
 
-    9.  Az ügyfél-szinkronizálási ügynök alkalmazásban kattintson **regisztrálása** egy SQL Server-adatbázis regisztrálására az ügynököt. A **SQL Server-konfigurációs** párbeszédpanel.
+    9.  Hello szinkronizálási Ügyfélügynök alkalmazásban kattintson **regisztrálása** tooregister hello ügynököt az SQL Server-adatbázis. Hello **SQL Server-konfigurációs** párbeszédpanel.
 
         ![Hozzáadása és az SQL Server-adatbázisok konfigurálása](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-adddb.png)
 
-    10. Az a **SQL Server-konfigurációs** párbeszédpanelen válassza ki, hogy az SQL Server-hitelesítés vagy a Windows-hitelesítés használatával csatlakoznak-e. Ha SQL Server-hitelesítést választja, adja meg a meglévő hitelesítő adatait. Adja meg az SQL Server nevét és a szinkronizálni kívánt adatbázis nevét. Válassza ki **tesztkapcsolat** a beállításainak ellenőrzéséhez. Válassza ki **mentése**. A regisztrált adatbázis listájában jelenik meg.
+    10. A hello **SQL Server-konfigurációs** párbeszédpanelen válassza ki azt hogy tooconnect SQL Server-hitelesítést vagy a Windows-hitelesítés használatával. Ha úgy dönt, hogy az SQL Server-hitelesítést, írja be a hello meglévő hitelesítő adatok. Adja meg hello SQL Server nevét és hello hello adatbázis nevét, amelyet az toosync. Válassza ki **tesztkapcsolat** tootest a beállításokat. Válassza ki **mentése**. hello regisztrált adatbázis hello listájában jelenik meg.
 
         ![SQL Server-adatbázis most már regisztrálva van](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-dbadded.png)
 
-    11. Most már bezárhatja az ügyfél-szinkronizálási ügynök alkalmazást.
+    11. Most már bezárhatja hello szinkronizálási Ügyfélügynök alkalmazást.
 
-    12. A portálon a a **konfigurálása a helyszíni** panelen válassza **válassza ki az adatbázist.** A **adatbázis kijelölése** panel nyílik meg.
+    12. A hello hello portálról **konfigurálása a helyszíni** panelen válassza **válasszon hello adatbázis.** Hello **adatbázis kijelölése** panel nyílik meg.
 
-    13. Az a **adatbázis kijelölése** panelen, a a **szinkronizálási tagneve** mezőbe, adjon meg egy nevet az új szinkronizálási tag. Ez a név nem azonos azzal maga az adatbázis nevét. A listáról válassza ki az adatbázist. Az a **szinkronizálási irányban** mező, jelölje be kétirányú szinkronizálás, a központi vagy a központ.
+    13. A hello **adatbázis kijelölése** paneljén, hello **szinkronizálási tagneve** mezőbe, adjon meg egy nevet hello új szinkronizálási tag. Ez a név nem azonos azzal hello maga hello adatbázis nevét. Válassza ki a hello adatbázis hello listából. A hello **szinkronizálási irányban** mező mellett válassza ki a kétirányú szinkronizálás, toohello Hub, vagy a központ hello.
 
-        ![Jelölje ki a helyi adatbázist](media/sql-database-get-started-sql-data-sync/datasync-preview-selectdb.png)
+        ![Válassza ki a helyi adatbázis hello](media/sql-database-get-started-sql-data-sync/datasync-preview-selectdb.png)
 
-    14. Válassza ki **OK** bezárásához a **adatbázis kijelölése** panelen. Válassza ki **OK** bezárásához a **konfigurálása a helyszíni** panel megnyitásához, és várja meg az új szinkronizálási tag létrehozása és telepítése. Végezetül kattintson **OK** bezárásához a **szinkronizálási tagok kiválasztása** panelen.
+    14. Válassza ki **OK** tooclose hello **adatbázis kijelölése** panelen. Válassza ki **OK** tooclose hello **konfigurálása a helyszíni** panel megnyitásához, és a hello várakozás új tag toobe létrehozott és telepített szinkronizálása. Végezetül kattintson **OK** tooclose hello **szinkronizálási tagok kiválasztása** panelen.
 
-        ![A helyi adatbázis szinkronizálási csoportba felvett](media/sql-database-get-started-sql-data-sync/datasync-preview-onpremadded.png)
+        ![A helyi adatbázis hozzáadta a toosync csoportot](media/sql-database-get-started-sql-data-sync/datasync-preview-onpremadded.png)
 
-3.  Csatlakozás SQL adatszinkronizálás és a helyi ügynök, adja hozzá a felhasználónevet a szerepkörhöz `DataSync_Executor`. Adatszinkronizálás ezt a szerepkört az SQL Server-példányt hoz létre.
+3.  Adatszinkronizálás tooconnect tooSQL és hello helyi ügynök, vegye fel a szerepkörben toohello `DataSync_Executor`. Adatszinkronizálás hello SQL Server-példányon hoz létre ehhez a szerepkörhöz.
 
 ## <a name="step-3---configure-sync-group"></a>3. lépés - a szinkronizálási csoport konfigurálása
 
-Miután az új szinkronizálási csoporttagok létrehozott és telepített, 3. lépés, **konfigurálása szinkronizálású csoport**, kijelölt a **új szinkronizálású csoport** panelen.
+Miután új szinkronizálási csoporttagok hello létrehozott és telepített, 3. lépés, **konfigurálása szinkronizálású csoport**, hello kijelölt **új szinkronizálású csoport** panelen.
 
-1.  Az a **táblák** panelen válassza a szinkronizálási listájáról adatbázis csoport tagjai, és válassza **frissítési séma**.
+1.  A hello **táblák** panelen válassza egy adatbázis szinkronizálási hello listája csoport tagjai, és válassza **frissítési séma**.
 
-2.  Az elérhető táblák listájában jelölje ki a szinkronizálni kívánt táblák.
+2.  Rendelkezésre álló táblák hello listában jelölje ki, hogy szeretné-e toosync hello táblákat.
 
-    ![Válassza ki a szinkronizálandó táblák](media/sql-database-get-started-sql-data-sync/datasync-preview-tables.png)
+    ![Válassza ki a táblák toosync](media/sql-database-get-started-sql-data-sync/datasync-preview-tables.png)
 
-3.  Alapértelmezés szerint a táblázat összes oszlopa van kiválasztva. Ha nem szeretné szinkronizálni az oszlopok, tiltsa le az oszlopok nem kívánt szinkronizálására vonatkozó négyzet jelölését. Ne feledje, hogy a kiválasztott elsődleges kulcsként megadott oszlop.
+3.  Alapértelmezés szerint hello táblázat összes oszlopa van kiválasztva. Ha toosync összes hello oszlopok nem szeretné, tiltsa le a hello oszlopok, hogy nem szeretné, hogy toosync hello jelölőnégyzetét. Győződjön meg arról, hogy a kiválasztott tooleave hello elsődleges kulcsként megadott oszlop.
 
-    ![Jelöljön ki mezőket szinkronizálása](media/sql-database-get-started-sql-data-sync/datasync-preview-tables2.png)
+    ![Válassza ki a mezőket toosync](media/sql-database-get-started-sql-data-sync/datasync-preview-tables2.png)
 
 4.  Végül válassza ki **mentése**.
 
 ## <a name="next-steps"></a>Következő lépések
-Gratulálok. Létrehozott egy szinkronizálású csoport, amely tartalmazza az SQL Database-példányt, és egy SQL Server-adatbázis.
+Gratulálunk! Létrehozott egy szinkronizálású csoport, amely tartalmazza az SQL Database-példányt, és egy SQL Server-adatbázis.
 
 SQL Database és SQL adatszinkronizálás kapcsolatos további információkért lásd:
 
--   [A teljes SQL adatszinkronizálás műszaki dokumentáció letöltése](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)
--   [Töltse le az SQL Data szinkronizálási REST API dokumentációja](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
+-   [Hello teljes adatszinkronizálás SQL műszaki dokumentáció letöltése](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)
+-   [Hello SQL adatok szinkronizálása REST API-dokumentáció letöltése](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
 -   [SQL-adatbázis – áttekintés](sql-database-technical-overview.md)
 -   [Adatbázis életciklusának kezelésére](https://msdn.microsoft.com/library/jj907294.aspx)

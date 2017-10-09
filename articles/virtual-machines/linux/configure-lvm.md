@@ -1,6 +1,6 @@
 ---
-title: "LVM konfigurálása a Linux rendszerű virtuális gép |} Microsoft Docs"
-description: "Megtudhatja, hogyan LVM konfigurálása Linux az Azure-ban."
+title: "a Linux rendszerű virtuális gép LVM aaaConfigure |} Microsoft Docs"
+description: Megtudhatja, hogyan tooconfigure LVM Linux az Azure-ban.
 services: virtual-machines-linux
 documentationcenter: na
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 7926627aaa3f0da935131f491d927ab5cb4b35c9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8daf792d87c6bb3d91a2eddcd01cfab34fd28cff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-lvm-on-a-linux-vm-in-azure"></a>A Linux virtuális gép az Azure-ban LVM konfigurálása
-Ez a dokumentum bemutatja az logikai kötet Manager (LVM) konfigurálása az Azure virtuális gépen. Is megvalósítható LVM konfigurálása a virtuális géphez csatolt lemezen, alapértelmezés szerint a legtöbb felhő lemezképek nem lesz konfigurálva az operációsrendszer-lemezképet a LVM. Ez a duplikált kötet csoportok problémák elkerülése érdekében, ha az operációs rendszer lemezének valaha is egy másik virtuális Géphez van csatolva az azonos terjesztési és típusa, azaz a helyreállítás során. Ezért ajánlott, csak az adatlemezek LVM használandó.
+Ez a dokumentum bemutatja, hogyan lehet hogyan tooconfigure logikai kötet Manager (LVM) az Azure virtuális gépen. Bár ez megvalósítható tooconfigure lemezen LVM csatolt toohello virtuális gép, alapértelmezés szerint a legtöbb felhő lemezképek nem fognak LVM konfigurált hello operációsrendszer-lemezzel. Ez az ismétlődő kötet csoportok tooprevent problémákat, ha az operációsrendszer-lemez van legalább egyszer hello csatolt tooanother hello a virtuális gép ugyanahhoz felosztáshoz és a típus, azaz a helyreállítás során. Ezért ajánlott csak toouse LVM hello adatok lemezeken.
 
 ## <a name="linear-vs-striped-logical-volumes"></a>Csíkozott köteteken tárolni logikai és lineáris
-A fizikai lemezek számát egyesítése egyetlen tárolóköteten LVM használható. Alapértelmezés szerint LVM általában létrehoz lineáris logikai kötetek, ami azt jelenti, hogy a fizikai tároló együtt összefűzendő-e. Ebben az esetben olvasási/írási műveletek általában csak kapnak egyetlen lemezre. Ezzel szemben azt is létrehozhat ahol olvasási és írási elosztott több olyan lemezt, a kötet (azaz a RAID0 hasonlóan) csoportban lévő logikai csíkozott. A teljesítményre vonatkozó megfontolásból valószínűleg érdemes a logikai kötetek paritásos, hogy az olvasások és írások használják a mellékelt adatok lemezek.
+LVM lehet használt toocombine egy egyetlen tárolókötethez való fizikai lemezek számát. Alapértelmezés szerint LVM általában létrehoz lineáris logikai kötetek, ami azt jelenti, hogy együtt össze van-e fűzve hello fizikai tároló. Ebben az esetben olvasási/írási műveletek általában csak küld tooa egy lemezt. Ezzel szemben is létrehozhatunk olyan logikai csíkozott olvasási és írási esetén elosztott toomultiple lemezek hello kötet csoportból (azaz hasonló tooRAID0). Valószínűleg teljesítmény érdekében érdemes toostripe a logikai köteteket, hogy az olvasások és írások használják a mellékelt adatok lemezek.
 
-Ez a dokumentum azt ismerteti, hogyan több adatlemezek egyesítése egyetlen köteten csoport, majd hozza létre a logikai csíkozott kötetek. Az alábbi lépéseket történő együttműködésre a legtöbb terjesztéseket némileg általánosítva vannak. A legtöbb esetben a segédprogramok és munkafolyamatok kezelése az Azure-on LVM nincsenek alapvetően más, mint más környezetekben. Szokásos módon is tekintse át a Linux forgalmazójával dokumentációk és ajánlott eljárások az adott terjesztési LVM használatával.
+Ez a dokumentum ismerteti, hogyan toocombine több adat lemezek kötetéről csoportba, és majd a csíkozott logikai kötet létrehozása. hello az alábbi lépésekre némileg általánosított toowork a legtöbb terjesztéseket. A legtöbb esetben hello segédprogramok és munkafolyamatok kezelése az Azure-on LVM nincsenek alapvetően más, mint más környezetekben. Szokásos módon is tekintse át a Linux forgalmazójával dokumentációk és ajánlott eljárások az adott terjesztési LVM használatával.
 
 ## <a name="attaching-data-disks"></a>Adatlemez csatlakoztatása
-Egy általában érdemes legalább két üres adatlemezekkel rendelkező start LVM használatakor. IO igényei szerint, ha szeretné, csatlakoztassa a szabványos tároló, a legfeljebb 500 IO/ps / lemez vagy a prémium szintű storage, legfeljebb 5000 IO/ps lemezenként tárolt lemezeket. Ez a cikk nem kerül részletes kiépíteni, és a Linux virtuális gép adatlemezt csatolni. A Microsoft Azure cikke [lemezt csatlakoztatni](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) egy üres adatlemezt csatolni egy Linux virtuális gépet az Azure részletes útmutatást.
+Egy általában érdemes toostart két vagy több üres adatlemezekkel rendelkező LVM használatakor. IO igényei szerint, kiválaszthatja a tooattach tárolódnak a standard szintű tárolást, a másolatot IO too500 ps / lemez vagy a prémium szintű storage IO too5000 ps lemezenként fel a lemezeket. Ez a cikk nem kerül részletes hogyan tooprovision, és csatlakoztassa az adatok lemezek tooa Linux virtuális gép. Tekintse meg a Microsoft Azure-cikk hello [lemezt csatlakoztatni](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) részletes útmutató hogyan tooattach egy üres adatok lemezre tooa Linux virtuális gépet az Azure.
 
-## <a name="install-the-lvm-utilities"></a>Telepítse a LVM segédeszközöket
+## <a name="install-hello-lvm-utilities"></a>Hello LVM segédeszközök telepítése
 * **Ubuntu**
 
     ```bash  
@@ -58,16 +58,16 @@ Egy általában érdemes legalább két üres adatlemezekkel rendelkező start L
     sudo zypper install lvm2
     ```
 
-    A SLES11 is szerkeszteni kell `/etc/sysconfig/lvm` és `LVM_ACTIVATED_ON_DISCOVERED` az "Engedélyezés":
+    A SLES11 is szerkeszteni kell `/etc/sysconfig/lvm` és `LVM_ACTIVATED_ON_DISCOVERED` túl "Engedélyezés":
 
     ```sh   
     LVM_ACTIVATED_ON_DISCOVERED="enable" 
     ```
 
 ## <a name="configure-lvm"></a>LVM konfigurálása
-A jelen útmutató indulunk ki csatolt adatok három lemezt, amely lesz lesz az `/dev/sdc`, `/dev/sdd` és `/dev/sde`. Előfordulhat, hogy ezek nem mindig a azonos útvonalneveket a virtuális gépen. Futtathatja a(z)`sudo fdisk -l`"vagy hasonló paranccsal listát készíthet a rendelkezésre álló lemezek.
+A jelen útmutató indulunk ki csatolt adatok három lemezt, amely kifejezés tooas `/dev/sdc`, `/dev/sdd` és `/dev/sde`. Vegye figyelembe, hogy ezeket nem lehet a virtuális gép ugyanazon útvonalneveket hello legyen. Futtathatja a(z)`sudo fdisk -l`"vagy hasonló parancs toolist a rendelkezésre álló lemezek.
 
-1. Készítse elő a fizikai kötetekre:
+1. Készítse elő a hello fizikai kötetekre:
 
     ```bash    
     sudo pvcreate /dev/sd[cde]
@@ -76,40 +76,40 @@ A jelen útmutató indulunk ki csatolt adatok három lemezt, amely lesz lesz az 
     Physical volume "/dev/sde" successfully created
     ```
 
-2. Hozzon létre egy kötet csoportot. Ebben a példában a kötet csoport hívjuk `data-vg01`:
+2. Hozzon létre egy kötet csoportot. Ebben a példában hívjuk hello kötet csoport `data-vg01`:
 
     ```bash    
     sudo vgcreate data-vg01 /dev/sd[cde]
     Volume group "data-vg01" successfully created
     ```
 
-3. A logikai kötetek létrehozása. A parancs azt alább hoz létre a következő nevű egyetlen logikai kötet `data-lv01` span a teljes kötet csoport, de vegye figyelembe, hogy azt is megvalósítható a több logikai köteteket a kötet csoport létrehozásához.
+3. Hello logikai kötetek létrehozása. hello azt az alábbi parancs létrehoz nevű egyetlen logikai kötet `data-lv01` toospan hello teljes kötet csoport, de ne feledje, hogy azt is megvalósítható toocreate több logikai kötet hello kötet csoportban.
 
     ```bash   
     sudo lvcreate --extents 100%FREE --stripes 3 --name data-lv01 data-vg01
     Logical volume "data-lv01" created.
     ```
 
-4. A logikai kötet formázása
+4. Kötet formázásának hello logikai
 
     ```bash  
     sudo mkfs -t ext4 /dev/data-vg01/data-lv01
     ```
    
    > [!NOTE]
-   > SLES11 használatával `-t ext3` ext4 helyett. SLES11 csak olvasási hozzáférést ext4 fájlrendszerek támogatja.
+   > SLES11 használatával `-t ext3` ext4 helyett. SLES11 csak olvasási hozzáféréssel tooext4 fájlrendszerek támogatja.
 
-## <a name="add-the-new-file-system-to-etcfstab"></a>Az új fájlrendszer /etc/fstab hozzáadása
+## <a name="add-hello-new-file-system-tooetcfstab"></a>Hello új fájl rendszer túl/etc/fstab hozzáadása
 > [!IMPORTANT]
-> Nem megfelelő módosítása a `/etc/fstab` fájl meghiúsulását eredményezheti. Ha nem ismeri, olvassa el a telepítési dokumentációban talál információkat arról a fájl megfelelően szerkesztése. Is javasolt biztonsági másolatot a `/etc/fstab` fájl szerkesztése előtt jön létre.
+> Nem megfelelően szerkesztése hello `/etc/fstab` fájl meghiúsulását eredményezheti. Ha nem ismeri, tekintse meg toohello terjesztési dokumentációjában olvashat, hogyan tooproperly szerkesztheti a fájlt. Is ajánlott, amelyek a biztonsági másolatának hello `/etc/fstab` fájl szerkesztése előtt jön létre.
 
-1. Létrehozhat például az új fájlrendszer, a megfelelő csatlakozási pont:
+1. Hozzon létre szükséges hello csatlakoztatási pontot az új fájlrendszer, például:
 
     ```bash  
     sudo mkdir /data
     ```
 
-2. Keresse meg a logikai elérési útjával
+2. Keresse meg a hello logikai kötet elérési útja
 
     ```bash    
     lvdisplay
@@ -118,22 +118,22 @@ A jelen útmutató indulunk ki csatolt adatok három lemezt, amely lesz lesz az 
     ....
     ```
 
-3. Nyissa meg `/etc/fstab` egy szövegszerkesztőben, és adja hozzá a bejegyzést az új fájlrendszer, például:
+3. Nyissa meg `/etc/fstab` egy szövegszerkesztőben, és adja hozzá egy bejegyzést a hello új fájlrendszer, például:
 
     ```bash    
     /dev/data-vg01/data-lv01  /data  ext4  defaults  0  2
     ```   
     Ezt követően mentse és zárja be `/etc/fstab`.
 
-4. Tesztelhető, hogy a `/etc/fstab` bejegyzés helyességét:
+4. Tesztelje, hogy hello `/etc/fstab` bejegyzés helyességét:
 
     ```bash    
     sudo mount -a
     ```
 
-    Ha ezt a parancsot egy hibaüzenet ellenőrizze a szintaxist a `/etc/fstab` fájlt.
+    Ha ezt a parancsot egy hibaüzenet ellenőrizze hello hello szintaxist `/etc/fstab` fájlt.
    
-    Ezután futtassa a `mount` parancsot annak biztosítására, hogy a fájlrendszer van csatlakoztatva:
+    Ezután futtassa az hello `mount` parancs tooensure hello fájlrendszer van csatlakoztatva:
 
     ```bash    
     mount
@@ -143,7 +143,7 @@ A jelen útmutató indulunk ki csatolt adatok három lemezt, amely lesz lesz az 
 
 5. (Választható) A FailSafe rendszerindító paraméterek`/etc/fstab`
    
-    Terjesztések valamelyikét tartalmazza a `nobootwait` vagy `nofail` csatlakoztatási fel paraméterek a `/etc/fstab` fájlt. Ezek a paraméterek hibák engedélyezése, ha egy adott fájlrendszer csatlakoztatása és a Linux rendszer akkor is, ha az nem csatolható fel a RAID fájlrendszer megfelelően elindulni. További információt ezekről a paraméterekről a terjesztési dokumentációjában tájékozódhat.
+    Terjesztések tartalmaz vagy hello `nobootwait` vagy `nofail` toohello hozzáadott paraméterek csatlakoztatási `/etc/fstab` fájlt. Ezek a paraméterek hibák engedélyezése, ha egy adott fájlrendszer csatlakoztatása és hello Linux rendszer toocontinue tooboot engedélyezi, akkor is, ha nem tooproperly csatlakoztatási hello RAID fájlrendszer. További információ ezekről a paraméterekről tooyour terjesztési dokumentációjában tájékozódhat.
    
     (Ubuntu). példa:
 
@@ -152,17 +152,17 @@ A jelen útmutató indulunk ki csatolt adatok három lemezt, amely lesz lesz az 
     ```
 
 ## <a name="trimunmap-support"></a>TRIM/UNMAP támogatása
-Egyes Linux kernelek támogatja a vágás/UNMAP műveleteket elveti a nem használt blokkok a lemezen. Ezek a műveletek elsősorban hasznosak standard tárolási tájékoztatja Azure törölt lapok már nem érvényesek, és is elvesznek. Lapok elvetése költség mentheti, ha nagy fájlok létrehozása, majd törli őket.
+Egyes Linux kernelek vágást/UNMAP műveletek toodiscard támogatja a nem használt blokkok hello lemezen. Ezek a műveletek elsősorban hasznosak standard tárolási tooinform Azure törölt lapok már nem érvényes, és is elvesznek. Lapok elvetése költség mentheti, ha nagy fájlok létrehozása, majd törli őket.
 
-Két módon vágást engedélyezése támogatja a Linux virtuális gép van. A szokásos módon olvassa el a terjesztési az ajánlott módszer:
+Két módon tooenable vágást támogatja a Linux virtuális Gépet. A szokásos módon olvassa el a terjesztési hello ajánlott megközelítést alkalmazva:
 
-- Használja a `discard` lehetőség a csatlakoztatási `/etc/fstab`, például:
+- Használjon hello `discard` lehetőség a csatlakoztatási `/etc/fstab`, például:
 
     ```bash 
     /dev/data-vg01/data-lv01  /data  ext4  defaults,discard  0  2
     ```
 
-- Bizonyos esetekben a `discard` lehetőség is van a teljesítményre. Alternatív megoldásként futtathatja a `fstrim` manuálisan parancsot a parancssorból, vagy adja hozzá a crontab rendszeresen futtatásához:
+- Az egyes esetekben hello `discard` lehetőség is van a teljesítményre. Alternatív megoldásként futtathatja a hello `fstrim` manuálisan parancsot a parancssorból hello, vagy felveheti Ön is tooyour crontab toorun rendszeresen:
 
     **Ubuntu**
 

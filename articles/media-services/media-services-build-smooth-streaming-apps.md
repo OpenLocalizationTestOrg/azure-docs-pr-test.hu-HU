@@ -1,6 +1,6 @@
 ---
-title: "Windows Áruházbeli alkalmazás oktatóanyag Streaming sima |} Microsoft Docs"
-description: "Útmutató az Azure Media Services segítségével hozzon létre egy C# Windows Áruházbeli alkalmazást a lejátszás Smooth Stream XML MediaElement vezérlőt tartalom."
+title: "aaaSmooth Streaming Windows Áruházbeli alkalmazás oktatóanyag |} Microsoft Docs"
+description: "Ismerje meg, hogyan szabályozza a toouse Azure Media Services toocreate egy C# Windows Áruházbeli alkalmazással rendelkező XML MediaElement a tooplayback Smooth Stream tartalmát."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: juliako
-ms.openlocfilehash: c9bb3b1915543fea3561cb309f55c4e8a74ded6d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b02aa2c7f68fe22a23ea846d72fdd23bfba2b19c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-build-a-smooth-streaming-windows-store-application"></a>Egy Smooth Streaming Windows áruház-alkalmazás létrehozása
+# <a name="how-toobuild-a-smooth-streaming-windows-store-application"></a>Hogyan tooBuild Smooth Streaming Windows Áruházbeli alkalmazás
 
-A Smooth Streaming ügyfél SDK a Windows 8 lehetővé teszi, hogy a fejlesztők számára a Windows Áruházbeli alkalmazások játszhatja igény szerinti és élő Smooth Streaming tartalmát. Tartalom Smooth Streaming alapvető lejátszását, mellett az SDK-t is biztosít gazdag jellegzetességeket, például Microsoft PlayReady védelmi, minőségi korlátozást, Live DVR, hangadatfolyam váltás, figyeli a állapot frissítéseket (például a minőségi megváltozik) és hibaesemények, és így tovább. A támogatott szolgáltatás további információkért lásd: a [kibocsátási megjegyzéseket](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes). További információkért lásd: [Player keretrendszer Windows 8](http://playerframework.codeplex.com/). 
+hello Smooth Streaming ügyfél SDK a Windows 8 lehetővé teszi, hogy a fejlesztők toobuild Windows Áruházbeli alkalmazásokat, amelyek játszhatja igény szerinti és élő Smooth Streaming tartalmát. Ezenkívül toohello Smooth Streaming is tartalom, hello SDK alapvető lejátszását gazdag olyan funkciókat biztosít, például a Microsoft PlayReady védelmi, minőségi korlátozást, Live DVR, hangadatfolyam váltás, állapot frissítéseket (például a minőségi megváltozik a figyeli ) és a hibaesemények, és így tovább. Hello támogatott szolgáltatások további információkért lásd: hello [kibocsátási megjegyzéseket](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes). További információkért lásd: [Player keretrendszer Windows 8](http://playerframework.codeplex.com/). 
 
 Ez az oktatóanyag során négy tapasztalatokat tartalmazza:
 
 1. Alapszintű zökkenőmentes adatfolyam áruház-alkalmazás létrehozása
-2. A csúszka sávjának Media végrehajtási vezérlésére hozzáadása
+2. A csúszka tooControl hello Media folyamatjelző sáv hozzáadása
 3. Válassza ki a Smooth Streaming adatfolyamok
 4. Válassza ki a Smooth Streaming nyomon követi
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Windows 8 rendszeren futó 32 bites vagy 64 bites. Beszerezheti [Windows 8 Enterprise Evaluation](http://msdn.microsoft.com/evalcenter/jj554510.aspx) msdn.
-* A Visual Studio 2012 vagy Visual Studio Express 2012 (vagy újabb verzió). A próbaverzió a kaphat [Itt](http://www.microsoft.com/visualstudio/11/downloads).
+* A Visual Studio 2012 vagy Visual Studio Express 2012 (vagy újabb verzió). Beszerezheti a hello próbaverzióját [Itt](http://www.microsoft.com/visualstudio/11/downloads).
 * [Microsoft Smooth Streaming ügyfél SDK a Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home).
 
-A kész megoldást az egyes letölthető MSDN fejlesztői mintakódok (Kódgalériából): 
+az egyes befejeződött hello megoldás letölthető MSDN fejlesztői mintakódok (Kódgalériából): 
 
 * [1 rész](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) – egy egyszerű Windows 8 Smooth Streaming Media Player 
 * [2 rész](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) – egy egyszerű Windows 8 Smooth Streaming Media Player a csúszka a vezérlő, 
@@ -45,22 +45,22 @@ A kész megoldást az egyes letölthető MSDN fejlesztői mintakódok (Kódgalé
 
 ## <a name="lesson-1-create-a-basic-smooth-streaming-store-application"></a>1. lecke: Alapvető zökkenőmentes adatfolyam áruház-alkalmazás létrehozása
 
-Ez a lecke hoz létre a Windows Áruházbeli alkalmazások számára, hogy Smooth Stream egy MediaElement Control tartalom.  A futó alkalmazások néz ki:
+Ez a lecke hoz létre egy Windows Áruházbeli alkalmazással rendelkező MediaElement vezérlő tooplay Smooth Stream tartalom.  hello futó alkalmazás néz ki:
 
 ![Példa a Smooth Streaming Windows Áruházbeli alkalmazás][PlayerApplication]
 
-További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejlesztése kiváló alkalmazások a Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx). Ez a lecke az alábbi eljárásokat tartalmazza:
+További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejlesztése kiváló alkalmazások a Windows 8](http://msdn.microsoft.com/windows/apps/br229512.aspx). Ez a lecke hello az alábbi eljárásokat tartalmazza:
 
 1. Windows áruház-projekt létrehozása
-2. A felhasználói felület (XAML) tervezése
-3. Módosítsa a fájl mögötti kódban
-4. Fordítsa le, és az alkalmazás tesztelése
+2. Tervezési hello felhasználói felület (XAML)
+3. Módosítsa a fájl mögötti kódban hello
+4. Fordítsa le és hello alkalmazás tesztelése
 
-**A Windows áruház-projekt létrehozása**
+**a Windows áruház projekt toocreate**
 
 1. Visual Studio 2012 vagy újabb fut.
-2. Kattintson a **File** (Fájl) menüben a **New** (Új), majd a **Project** (Projekt) elemre.
-3. Új projekt párbeszédpanelen írja be vagy válassza ki a következő értékeket:
+2. A hello **fájl** menüben kattintson a **új**, és kattintson a **projekt**.
+3. Hello új projekt párbeszédpanel ha típusa, vagy jelölje be a következő hello értékeket:
 
 | Név | Érték |
 | --- | --- |
@@ -73,10 +73,10 @@ További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejles
 
 1. Kattintson az **OK** gombra.
 
-**A Smooth Streaming ügyfél SDK mutató hivatkozás hozzáadása**
+**egy hivatkozási toohello Smooth Streaming ügyfél SDK tooadd**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **SSPlayer**, és kattintson a **hivatkozás hozzáadása**.
-2. Írja be vagy válassza ki az alábbi értékeket:
+2. Írja be vagy válassza ki a következő értékek hello:
 
 | Név | Érték |
 | --- | --- |
@@ -85,12 +85,12 @@ További információ a Windows Áruházbeli alkalmazások fejlesztése: [fejles
 
 1. Kattintson az **OK** gombra. 
 
-Miután hozzáadta a hivatkozásokat, ki kell választania a megcélzott platform (x64 vagy x86), Any CPU platform konfiguráció hozzáadása hivatkozások fog működni.  A megoldáskezelőben látni fogja, sárga figyelmeztető megjelölés ezek hozzá hivatkozásokat.
+A felvett hello hivatkozik, hello megcélzott platform (x64 vagy x86) ki kell választania, Any CPU platform konfiguráció hozzáadása hivatkozások fog működni.  A megoldáskezelőben látni fogja, sárga figyelmeztető megjelölés ezek hozzá hivatkozásokat.
 
-**Megtervezheti a player felhasználói felülete**
+**toodesign hello player felhasználói felülete**
 
-1. A Megoldáskezelőben kattintson duplán **MainPage.xaml** való megnyitásához a tervezési nézetben.
-2. Keresse meg a  **&lt;rács&gt;**  és  **&lt;/Grid&gt;**  az XAML-fájlt, és a két címkék között az alábbi kódot:
+1. A Megoldáskezelőben kattintson duplán **MainPage.xaml** tooopen azt hello kialakításában megtekintése.
+2. Keresse meg a hello  **&lt;rács&gt;**  és  **&lt;/Grid&gt;**  címkék hello XAML-fájl, és a Beillesztés hello következő kódot a két hello címkék között:
 
          <Grid.RowDefinitions>
 
@@ -135,27 +135,27 @@ Miután hozzáadta a hivatkozásokat, ki kell választania a megcélzott platfor
             <TextBox x:Name="txtStatus" FontSize="10" Width="700" VerticalAlignment="Center"/>
          </StackPanel>
    
-   A MediaElement vezérlő lejátszás adathordozó segítségével. A csúszka sliderProgress nevű media végrehajtási vezérlésére használható a következő lecke.
-3. Nyomja le az **CTRL + S** fájl mentéséhez.
+   hello MediaElement vezérlő használt tooplayback media. hello csúszkavezérlő sliderProgress nevű folyamatban hello következő lecke toocontrol hello adathordozó használható.
+3. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-A MediaElement vezérlő nem támogatja a Smooth Streaming tartalom out-of-box. A Smooth Streaming támogatását engedélyezi, regisztrálnia kell a Smooth Streaming bájtos-adatfolyam kezelő kiterjesztésű és MIME-típus.  Regisztrálásához a MediaExtensionManager.RegisterByteStremHandler módszer használatával a Windows.Media névtér.
+hello MediaElement vezérlő nem támogatja a Smooth Streaming tartalom out-of-box. tooenable hello Smooth Streaming támogatást, regisztrálnia kell a Smooth Streaming bájtos-adatfolyam hello kezelő kiterjesztésű és MIME-típus.  tooregister, hello Windows.Media névtér hello MediaExtensionManager.RegisterByteStremHandler módszert használja.
 
-Az XAML-fájl, a néhány eseménykezelők vezérlők társítva.  Meg kell adnia azokat eseménykezelők.
+Az XAML-fájl az egyes eseménykezelők társított hello vezérlők.  Meg kell adnia azokat eseménykezelők.
 
-**A fájl mögötti kódban módosítása**
+**toomodify hello fájl mögötti kódban**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. A fájl felső részén adja hozzá a következő using utasítást:
+2. Hello fájl hello tetején adja hozzá a hello következő using utasítást:
    
         using Windows.Media;
-3. Elején a **MainPage** osztályban adja hozzá a következő adatelem:
+3. Hello hello elején **MainPage** osztály, adja hozzá a következő adatelem hello:
    
          private MediaExtensionManager extensions = new MediaExtensionManager();
-4. Végén a **MainPage** konstruktor, adja hozzá a következő sort:
+4. Hello hello végén **MainPage** konstruktor, adja hozzá az alábbi két hello:
    
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "text/xml");
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "application/vnd.ms-sstr+xml");
-5. Végén a **MainPage** osztály, az alábbi kódot:
+5. Hello hello végén **MainPage** osztály, illessze be a kódját a következő hello:
    
          # region UI Button Click Events
          private void btnPlay_Click(object sender, RoutedEventArgs e)
@@ -182,7 +182,7 @@ Az XAML-fájl, a néhány eseménykezelők vezérlők társítva.  Meg kell adni
          }
          else
          {
-             txtStatus.Text = "Click the Play button to play the media source.";
+             txtStatus.Text = "Click hello Play button tooplay hello media source.";
          }
          }
          private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -194,68 +194,68 @@ Az XAML-fájl, a néhány eseménykezelők vezérlők társítva.  Meg kell adni
          private void sliderProgress_PointerPressed(object sender, PointerRoutedEventArgs e)
          {
 
-         txtStatus.Text = "Seek to position " + sliderProgress.Value;
+         txtStatus.Text = "Seek tooposition " + sliderProgress.Value;
          mediaElement.Position = new TimeSpan(0, 0, (int)(sliderProgress.Value));
          }
          # endregion
 
-A sliderProgress_PointerPressed eseménykezelő itt van definiálva.  Nincsenek további munkálatok ehhez működéséhez, ez az oktatóanyag következő lecke tárgyalja.
-6. Nyomja le az **CTRL + S** fájl mentéséhez.
+hello sliderProgress_PointerPressed eseménykezelő itt van definiálva.  Nincsenek további works toodo tooget akkor működik, amelyek szerepelnek hello a jelen oktatóanyag következő lecke.
+6. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-A kész fájl mögötti kódban kell kinéznie:
+hello végzett hello fájl mögötti kódban kell kinéznie:
 
 ![A Visual Studio, Smooth Streaming Windows Áruházbeli alkalmazás Codeview][CodeViewPic]
 
-**Fordításához és az alkalmazás tesztelése**
+**toocompile és tesztelési hello alkalmazás**
 
-1. Az a **BUILD** menüben kattintson a **Configuration Manager**.
-2. Változás **aktív megoldás platform** a fejlesztői platform kereséséhez.
-3. Nyomja le az **F6** összeállítani a projektet. 
-4. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
-5. A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik. 
-6. Kattintson a **forrás beállítása**. Mivel **automatikus lejátszása** engedélyezve van alapértelmezés szerint az adathordozót kell lejátszása automatikusan.  Az adathordozó segítségével szabályozhatja a **lejátszása**, **szünet** és **leállítása** gombok.  A függőleges csúszkát media kötet szabályozhatja.  Azonban a vízszintes csúszkát media végrehajtási szabályozásának teljesen még nem használható. 
+1. A hello **BUILD** menüben kattintson a **Configuration Manager**.
+2. Változás **aktív megoldás platform** toomatch a fejlesztői platform.
+3. Nyomja le az **F6** toocompile hello projekt. 
+4. Nyomja le az **F5** toorun hello alkalmazás.
+5. Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik. 
+6. Kattintson a **forrás beállítása**. Mivel **automatikus lejátszása** media automatikusan játszik hello alapértelmezés szerint engedélyezve van.  Hello media hello segítségével szabályozhatja **lejátszása**, **szünet** és **leállítása** gombokat.  Hello media kötet hello függőleges csúszka segítségével szabályozhatja.  Azonban hello vízszintes csúszkán szabályozása hello media folyamatban teljesen még nincs implementálva. 
 
-Lesson1 befejeződött.  Ez a lecke Smooth Streaming tartalmak lejátszásához MediaElement vezérlőelem segítségével.  A következő lecke adhat egy csúszkát a Smooth Streaming tartalom állapotának vezérlésére.
+Lesson1 befejeződött.  Ez a lecke egy MediaElement vezérlő tooplayback Smooth Streaming tartalmat használ.  Hello a következő leckében adhat egy Smooth Streaming tartalom hello csúszkát toocontrol hello előrehaladását.
 
-## <a name="lesson-2-add-a-slider-bar-to-control-the-media-progress"></a>2. lecke: Hozzáadása egy csúszkát a szabályozhatja a Media folyamatban
+## <a name="lesson-2-add-a-slider-bar-toocontrol-hello-media-progress"></a>2. lecke: Egy csúszkát tooControl hello Media folyamatjelző sáv hozzáadása
 
-1. lecke egy Windows Áruházbeli alkalmazással egy MediaElement XAML-vezérléssel lejátszásához médiatartalom Smooth Streaming létrehozott.  Néhány alapvető adathordozó funkciók, például a start, stop, várjon származik.  Ez a lecke a csúszka sávjának fog hozzáadni az alkalmazáshoz.
+1. lecke a Windows Áruházbeli alkalmazások egy MediaElement XAML vezérlő tooplayback médiatartalom Smooth Streaming segítségével létrehozott.  Néhány alapvető adathordozó funkciók, például a start, stop, várjon származik.  Ez a lecke adhat a csúszka sávjának vezérlő toohello alkalmazás.
 
-Ebben az oktatóanyagban egy időzítő segítségével frissítse a csúszka helyzete a MediaElement vezérlő aktuális helyzete alapján.  A csúszka kezdő és záró idő is élő tartalmak esetén frissítésre szorulnak.  Ez jobban kezelhető az adaptív forrás frissítés esemény.
+Ebben az oktatóanyagban egy időzítő tooupdate hello csúszka helyzete hello MediaElement vezérlő aktuális helyzete hello alapján használjuk.  hello csúszkát indítsa el, és a Befejezés időpontja is élő tartalmak esetén frissíteni kell toobe.  Ez jobban kezelhető hello adaptív forrás frissítés esemény.
 
-Források olyan objektumok, amelyek hozhat létre a media adatokat.  A forrás-feloldó URL-címe vagy bájtos adatfolyam vesz igénybe, és létrehozza a megfelelő médiaforrást az adott tartalmakra vonatkozóan.  A forrás-feloldó szabványos módja a források létrehozásához az alkalmazásokhoz. 
+Források olyan objektumok, amelyek hozhat létre a media adatokat.  hello forrás feloldó egy URL-címe vagy bájtos adatfolyam vesz igénybe, és létrehozza a hello megfelelő médiaforrást az adott tartalomhoz.  hello forrás feloldó hello alkalmazások toocreate források hello általános esetben. 
 
-Ez a lecke az alábbi eljárásokat tartalmazza:
+Ez a lecke hello az alábbi eljárásokat tartalmazza:
 
-1. Regisztrálja a Smooth Streaming-kezelő 
-2. Az adaptív forrás manager szintű eseménykezelőinek hozzáadása
-3. Az adaptív forrás eseménykezelőinek hozzáadása
+1. Hello Smooth Streaming kezelő regisztrálása 
+2. Hello adaptív forrás manager szintű eseménykezelőinek hozzáadása
+3. Hello adaptív forrás szintű eseménykezelőinek hozzáadása
 4. Az eseménykezelők MediaElement hozzáadása
 5. Adja hozzá a csúszka kapcsolódó vonalkódja
-6. Fordítsa le, és az alkalmazás tesztelése
+6. Fordítsa le és hello alkalmazás tesztelése
 
-**A Smooth Streaming bájtos-adatfolyam kezelő regisztrálja, és adja át a propertyset**
+**tooregister hello Smooth Streaming bájtos-adatfolyam-kezelő és pass hello propertyset**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. A fájl elején adja hozzá a következő using utasítást:
+2. Elején hello hello fájlt, adja hozzá a hello következő using utasítást:
 
         using Microsoft.Media.AdaptiveStreaming;
-3. A MainPage osztály elején a következő adatok tagok hozzáadása:
+3. Elején hello hello MainPage osztály, adja hozzá a következő adattagok hello:
 
          private Windows.Foundation.Collections.PropertySet propertySet = new Windows.Foundation.Collections.PropertySet();             
          private IAdaptiveSourceManager adaptiveSourceManager;
-4. Belül a **MainPage** konstruktor, után az alábbi kódot a **ez. Components(); inicializálása**  vonal- és a regisztrációs kód az előző leckében sorok:
+4. Belső hello **MainPage** konstruktor, adja hozzá a következő kód után hello hello **ez. Components(); inicializálása**  vonal- és hello regisztrációs kód sorok hello előző lecke:
 
-        // Gets the default instance of AdaptiveSourceManager which manages Smooth 
+        // Gets hello default instance of AdaptiveSourceManager which manages Smooth 
         //Streaming media sources.
         adaptiveSourceManager = AdaptiveSourceManager.GetDefault();
-        // Sets property key value to AdaptiveSourceManager default instance.
+        // Sets property key value tooAdaptiveSourceManager default instance.
         // {A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}" must be hardcoded.
         propertySet["{A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}"] = adaptiveSourceManager;
-5. Belül a **MainPage** konstruktor, módosítsa a két RegisterByteStreamHandler módszerek hozzáadása az oda-paraméterek:
+5. Belső hello **MainPage** konstruktor, módosítsa a két hello RegisterByteStreamHandler módszerek tooadd hello oda-paramétereket:
 
          // Registers Smooth Streaming byte-stream handler for ".ism" extension and, 
-         // "text/xml" and "application/vnd.ms-ss" mime-types and pass the propertyset. 
+         // "text/xml" and "application/vnd.ms-ss" mime-types and pass hello propertyset. 
          // http://*.ism/manifest URI resources will be resolved by Byte-stream handler.
          extensions.RegisterByteStreamHandler(
 
@@ -269,15 +269,15 @@ Ez a lecke az alábbi eljárásokat tartalmazza:
             ".ism", 
             "application/vnd.ms-sstr+xml", 
          propertySet);
-6. Nyomja le az **CTRL + S** fájl mentéséhez.
+6. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-**Az adaptív forrás manager szintű eseménykezelő**
+**tooadd hello adaptív forrás manager szintű eseménykezelő**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. Belül a **MainPage** osztályban adja hozzá a következő adatelem:
+2. Belső hello **MainPage** osztály, adja hozzá a következő adatelem hello:
    
      személyes AdaptiveSource adaptiveSource = null;
-3. Végén a **MainPage** osztályban adja hozzá a következő eseménykezelő:
+3. Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelő hello:
    
          # region Adaptive Source Manager Level Events
          private void mediaElement_AdaptiveSourceOpened(AdaptiveSource sender, AdaptiveSourceOpenedEventArgs args)
@@ -287,19 +287,19 @@ Ez a lecke az alábbi eljárásokat tartalmazza:
          }
 
          # endregion Adaptive Source Manager Level Events
-4. Végén a **MainPage** konstruktor, adja hozzá a következő sort az adaptív forrás open esemény előfizetni:
+4. Hello hello végén **MainPage** konstruktor, adja hozzá a következő sor toosubscribe toohello adaptív forrás open esemény hello:
    
          adaptiveSourceManager.AdaptiveSourceOpenedEvent += 
            new AdaptiveSourceOpenedEventHandler(mediaElement_AdaptiveSourceOpened);
-5. Nyomja le az **CTRL + S** fájl mentéséhez.
+5. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-**Adaptív forrás szintű eseménykezelők hozzáadása**
+**tooadd adaptív forrás szintű eseménykezelők**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. Belül a **MainPage** osztályban adja hozzá a következő adatelem:
+2. Belső hello **MainPage** osztály, adja hozzá a következő adatelem hello:
    
      személyes AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   személyes jegyzék manifestObject;
-3. Végén a **MainPage** osztályban adja hozzá a következő eseménykezelők:
+3. Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelők hello:
 
          # region Adaptive Source Level Events
          private void mediaElement_ManifestReady(AdaptiveSource sender, ManifestReadyEventArgs args)
@@ -322,7 +322,7 @@ Ez a lecke az alábbi eljárásokat tartalmazza:
          }
 
          # endregion Adaptive Source Level Events
-4. Végén a **mediaElement AdaptiveSourceOpened** módszer, adja hozzá a következő kódot az események előfizetni:
+4. Hello hello végén **mediaElement AdaptiveSourceOpened** módszer, adja hozzá a következő kód toosubscribe toohello események hello:
    
          adaptiveSource.ManifestReadyEvent +=
 
@@ -333,14 +333,14 @@ Ez a lecke az alábbi eljárásokat tartalmazza:
          adaptiveSource.AdaptiveSourceFailedEvent += 
 
             mediaElement_AdaptiveSourceFailed;
-5. Nyomja le az **CTRL + S** fájl mentéséhez.
+5. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-Az azonos események adaptív forrás Manager szinten is, amely az alkalmazásban lévő összes adathordozót elemére közös funkciók kezelésére használható érhetők el. Minden egyes AdaptiveSource saját eseményeket is tartalmazza, és minden AdaptiveSource események átkerül a AdaptiveSourceManager.
+hello azonos események állnak rendelkezésre adaptív forrás Manager szinten is, amely funkció közös tooall media elemek hello alkalmazásban kezelésére használható. Minden egyes AdaptiveSource saját eseményeket is tartalmazza, és minden AdaptiveSource események átkerül a AdaptiveSourceManager.
 
-**Media elem eseménykezelők hozzáadása**
+**tooadd Media elem eseménykezelők**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. Végén a **MainPage** osztályban adja hozzá a következő eseménykezelők:
+2. Hello hello végén **MainPage** osztály, adja hozzá a következő eseménykezelők hello:
 
          # region Media Element Event Handlers
          private void MediaOpened(object sender, RoutedEventArgs e)
@@ -362,29 +362,29 @@ Az azonos események adaptív forrás Manager szinten is, amely az alkalmazásba
          }
 
          # endregion Media Element Event Handlers
-3. Végén a **MainPage** konstruktor aláírása az azokhoz az eseményekhez, adja hozzá a következő kódot:
+3. Hello hello végén **MainPage** konstruktor, adja hozzá a következő kód toosubscript toohello események hello:
 
          mediaElement.MediaOpened += MediaOpened;
          mediaElement.MediaEnded += MediaEnded;
          mediaElement.MediaFailed += MediaFailed;
-4. Nyomja le az **CTRL + S** fájl mentéséhez.
+4. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-**Adja hozzá a csúszka sávjának kapcsolódó kódot**
+**kapcsolódó vonalkód tooadd csúszka**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. A fájl elején adja hozzá a következő using utasítást:
+2. Elején hello hello fájlt, adja hozzá a hello következő using utasítást:
       
         using Windows.UI.Core;
-3. Belül a **MainPage** osztályban adja hozzá a következő Adattagok:
+3. Belső hello **MainPage** osztály, adja hozzá a következő adattagok hello:
    
          public static CoreDispatcher _dispatcher;
          private DispatcherTimer sliderPositionUpdateDispatcher;
-4. Végén a **MainPage** konstruktor, adja hozzá a következő kódot:
+4. Hello hello végén **MainPage** konstruktor, adja hozzá a következő kód hello:
    
          _dispatcher = Window.Current.Dispatcher;
          PointerEventHandler pointerpressedhandler = new PointerEventHandler(sliderProgress_PointerPressed);
          sliderProgress.AddHandler(Control.PointerPressedEvent, pointerpressedhandler, true);    
-5. Végén a **MainPage** osztály, adja hozzá a következő kódot:
+5. Hello hello végén **MainPage** osztály, adja hozzá a következő kód hello:
 
          # region sliderMediaPlayer
          private double SliderFrequency(TimeSpan timevalue)
@@ -469,7 +469,7 @@ Az azonos események adaptív forrás Manager szinten is, amely az alkalmazásba
          # endregion sliderMediaPlayer
       
 >[!NOTE]
->Módosíthatja a felhasználói felület szálán nem UI-szálból CoreDispatcher szolgál. Esetén a dispatcher száltól szűk többé kíván frissíteni a felhasználói felületi elem által megadott kézbesítő használhat fejlesztői.  Példa:
+>CoreDispatcher toohello felhasználói felület szálából nem UI-szálból használt toomake módosítások. Esetén a dispatcher száltól szűk keresztmetszet fejlesztői választható UI-elemet által biztosított toouse kézbesítő többé tooupdate százalékát.  Példa:
    
          await sliderProgress.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { TimeSpan 
 
@@ -477,38 +477,38 @@ Az azonos események adaptív forrás Manager szinten is, amely az alkalmazásba
          double absvalue  = (int)Math.Round(timespan.TotalSeconds, MidpointRounding.AwayFromZero); 
 
          sliderProgress.Maximum = absvalue; }); 
-6. Végén a **mediaElement_AdaptiveSourceStatusUpdated** módszer, adja hozzá a következő kódot:
+6. Hello hello végén **mediaElement_AdaptiveSourceStatusUpdated** módszer, adja hozzá a következő kód hello:
 
          setSliderStartTime(args.StartTime);
          setSliderEndTime(args.EndTime);
-7. Végén a **MediaOpened** módszer, adja hozzá a következő kódot:
+7. Hello hello végén **MediaOpened** módszer, adja hozzá a következő kód hello:
 
          sliderProgress.StepFrequency = SliderFrequency(mediaElement.NaturalDuration.TimeSpan);
          sliderProgress.Width = mediaElement.Width;
          setupTimer();
-8. Nyomja le az **CTRL + S** fájl mentéséhez.
+8. Nyomja le az **CTRL + S** toosave hello fájlt.
 
-**Fordításához és az alkalmazás tesztelése**
+**toocompile és tesztelési hello alkalmazás**
 
-1. Nyomja le az **F6** összeállítani a projektet. 
-2. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
-3. A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik. 
+1. Nyomja le az **F6** toocompile hello projekt. 
+2. Nyomja le az **F5** toorun hello alkalmazás.
+3. Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik. 
 4. Kattintson a **forrás beállítása**. 
-5. A csúszka sávjának tesztelése.
+5. Teszt hello csúszka.
 
-2. lecke befejeződött.  Ez a lecke hozzáadott alkalmazás egy csúszkát. 
+2. lecke befejeződött.  Ez a lecke hozzáadott egy csúszkát tooapplication. 
 
 ## <a name="lesson-3-select-smooth-streaming-streams"></a>3. lecke: Válassza ki a Smooth Streaming adatfolyamok
-Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetnek a tartalomátvitelre kezelésére képes.  Ez a lecke teszi lehetővé megjelenítők adatfolyamok kiválasztásához. Ez a lecke az alábbi eljárásokat tartalmazza:
+Smooth Streaming több nyelv zeneszámok, amelyek választható hello hozzáférhetnek a toostream képes-e.  Ez a lecke teszi lehetővé megjelenítők tooselect adatfolyamokat. Ez a lecke hello az alábbi eljárásokat tartalmazza:
 
-1. Az XAML-fájl módosítása
-2. A kód behand fájl módosítása
-3. Fordítsa le, és az alkalmazás tesztelése
+1. Hello XAML-fájl módosítása
+2. Hello kód behand fájl módosítása
+3. Fordítsa le és hello alkalmazás tesztelése
 
-**Az XAML-fájl módosítása**
+**toomodify hello XAML-fájl**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.
-2. Keresse meg &lt;Grid.RowDefinitions&gt;, és módosítja a RowDefinitions, azok a következőhöz hasonló:
+2. Keresse meg &lt;Grid.RowDefinitions&gt;, és módosítja a hello RowDefinitions, azok a következőhöz hasonló:
    
          <Grid.RowDefinitions>            
             <RowDefinition Height="20"/>
@@ -517,7 +517,7 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
          </Grid.RowDefinitions>
-3. Belül a &lt;rács&gt;&lt;/Grid&gt; címkék, adja hozzá a listbox vezérlő megadásához, így a felhasználók a rendelkezésre álló adatfolyamok listájának, és válassza ki az adatfolyamokat a következő kódot:
+3. Belső hello &lt;rács&gt;&lt;/Grid&gt; címkék hozzáadása hello következő kódot toodefine egy listbox vezérlőt, így a felhasználók elérhető adatfolyamok hello tartalmazó lista, és válassza ki az adatfolyamok:
 
          <Grid Name="gridStreamAndBitrateSelection" Grid.Row="3">
             <Grid.RowDefinitions>
@@ -542,12 +542,12 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                 </ListBox>
             </StackPanel>
          </Grid>
-4. Nyomja le az **CTRL + S** menti a módosításokat.
+4. Nyomja le az **CTRL + S** toosave hello módosításokat.
 
-**A fájl mögötti kódban módosítása**
+**toomodify hello fájl mögötti kódban**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. Az SSPlayer névtéren belül adjon meg egy új osztályt:
+2. Hello SSPlayer névtéren belül adjon meg egy új osztályt:
    
         #region class Stream
    
@@ -574,7 +574,7 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                 get { return isCheckedValue; }
                 set
                 {
-                    // mMke the video stream always checked.
+                    // mMke hello video stream always checked.
                     if (stream.Type == MediaStreamType.Video)
                     {
                         isCheckedValue = true;
@@ -593,21 +593,21 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
             }
         }
         #endregion class Stream
-3. A MainPage osztály elején adja hozzá a következő változó definíciók:
+3. A hello MainPage osztály hello elején adja hozzá a következő változó definíciók hello:
    
          private List<Stream> availableStreams;
          private List<Stream> availableAudioStreams;
          private List<Stream> availableTextStreams;
          private List<Stream> availableVideoStreams;
-4. Az MainPage osztály adja hozzá a következő régióban:
+4. Belül hello MainPage osztály adja hozzá a következő régióban hello:
    
         #region stream selection
         ///<summary>
-        ///Functionality to select streams from IManifestStream available streams
+        ///Functionality tooselect streams from IManifestStream available streams
         /// </summary>
    
-        // This function is called from the mediaElement_ManifestReady event handler 
-        // to retrieve the streams and populate them to the local data members.
+        // This function is called from hello mediaElement_ManifestReady event handler 
+        // tooretrieve hello streams and populate them toohello local data members.
         public void getStreams(Manifest manifestObject)
         {
             availableStreams = new List<Stream>();
@@ -622,7 +622,7 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                     Stream newStream = new Stream(manifestObject.AvailableStreams[i]);
                     newStream.isChecked = false;
    
-                    //populate the stream lists based on the types
+                    //populate hello stream lists based on hello types
                     availableStreams.Add(newStream);
    
                     switch (newStream.ManifestStream.Type)
@@ -638,7 +638,7 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                             break;
                     }
    
-                    // Select the default selected streams from the manifest.
+                    // Select hello default selected streams from hello manifest.
                     for (int j = 0; j<manifestObject.SelectedStreams.Count; j++)
                     {
                         string selectedStreamName = manifestObject.SelectedStreams[j].Name;
@@ -656,12 +656,12 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
             }
         }
    
-        // This function set the list box ItemSource
+        // This function set hello list box ItemSource
         private async void refreshAvailableStreamsListBoxItemSource()
         {
             try
             {
-                //update the stream check box list on the UI
+                //update hello stream check box list on hello UI
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableStreams.ItemsSource = availableStreams; });
             }
@@ -687,7 +687,7 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                 }
             }
    
-            // Select the frist video stream from the list if no video stream is selected
+            // Select hello frist video stream from hello list if no video stream is selected
             if (!isOneVideoSelected)
             {
                 availableVideoStreams[0].isChecked = true;
@@ -701,11 +701,11 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
                 {
                     selectedStreams.Add(availableAudioStreams[j].ManifestStream);
                     isOneAudioSelected = true;
-                    txtStatus.Text = "The audio stream is changed to " + availableAudioStreams[j].ManifestStream.Name;
+                    txtStatus.Text = "hello audio stream is changed too" + availableAudioStreams[j].ManifestStream.Name;
                 }
             }
    
-            // Select the frist audio stream from the list if no audio steam is selected.
+            // Select hello frist audio stream from hello list if no audio steam is selected.
             if (!isOneAudioSelected)
             {
                 availableAudioStreams[0].isChecked = true;
@@ -736,46 +736,46 @@ Smooth Streaming több nyelv zeneszámok, amelyek választható a hozzáférhetn
             }
         }
         #endregion stream selection
-5. Keresse meg a mediaElement_ManifestReady metódust, az alábbi kódot a függvény végén hozzáfűzése:
+5. Keresse meg a hello mediaElement_ManifestReady metódus, a következő kódot a hello végén hello függvény hello hozzáfűzése:
    
         getStreams(manifestObject);
         refreshAvailableStreamsListBoxItemSource();
    
-    Amikor készen áll a MediaElement jegyzék, a kódot a rendelkezésre álló adatfolyamok listájának lekérése, tölti fel a felhasználói felület listát a listában.
-6. Az MainPage osztály keresse meg a felhasználói felület gombok események régió parancsára, és adja hozzá az a következő függvény definíciójának:
+    Ezért MediaElement jegyzékfájl készen áll, amikor hello kód hello elérhető adatfolyamok listájának lekérése, tölti fel hello felhasználói felület lista hello listájával.
+6. Hello MainPage osztály, belül található hello UI gombokat események régió kattintson, és adja hozzá a következő függvény definíciójának hello:
    
         private void btnChangeStream_Click(object sender, RoutedEventArgs e)
         {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
    
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
    
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
         }
 
-**Fordításához és az alkalmazás tesztelése**
+**toocompile és tesztelési hello alkalmazás**
 
-1. Nyomja le az **F6** összeállítani a projektet. 
-2. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
-3. A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik. 
+1. Nyomja le az **F6** toocompile hello projekt. 
+2. Nyomja le az **F5** toorun hello alkalmazás.
+3. Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik. 
 4. Kattintson a **forrás beállítása**. 
-5. Az alapértelmezett nyelv a audio_eng. Próbálja audio_eng és audio_es közötti váltáshoz. Everytime, egy új adatfolyam választja, a Küldés gombra kell kattintania.
+5. hello alapértelmezett nyelv a audio_eng. Próbálja meg tooswitch audio_eng és audio_es között. Everytime, válasszon egy új adatfolyam, hello Elküldés gombra kell kattintania.
 
-3. lecke befejeződött.  Ez a lecke adja hozzá a képességet az adatfolyamok válassza.
+3. lecke befejeződött.  Ez a lecke hello funkció toochoose adatfolyamok adja hozzá.
 
 ## <a name="lesson-4-select-smooth-streaming-tracks"></a>4. lecke: Válassza ki a Smooth Streaming nyomon követi
-Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket (átviteli sebességek) és a megoldások kódolású több videó fájlokat tartalmazza. Ez a lecke teszi lehetővé felhasználóknak, hogy nyomon követi. Ez a lecke az alábbi eljárásokat tartalmazza:
+Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket (átviteli sebességek) és a megoldások kódolású több videó fájlokat tartalmazza. Ez a lecke lehetővé teszi felhasználók tooselect követi nyomon. Ez a lecke hello az alábbi eljárásokat tartalmazza:
 
-1. Az XAML-fájl módosítása
-2. A kód behand fájl módosítása
-3. Fordítsa le, és az alkalmazás tesztelése
+1. Hello XAML-fájl módosítása
+2. Hello kód behand fájl módosítása
+3. Fordítsa le és hello alkalmazás tesztelése
 
-**Az XAML-fájl módosítása**
+**toomodify hello XAML-fájl**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **adatforrásnézet-tervezőből**.
-2. Keresse meg a &lt;rács&gt; nevű címke **gridStreamAndBitrateSelection**, a következő kódot a címke végén hozzáfűzése:
+2. Keresse meg a hello &lt;rács&gt; hello nevű címke **gridStreamAndBitrateSelection**, a következő kód hello címke hello végén hello hozzáfűzése:
    
          <StackPanel Name="spBitRateSelection" Grid.Row="1" Grid.Column="1">
          <StackPanel Orientation="Horizontal">
@@ -791,12 +791,12 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
              </ListBox.ItemTemplate>
          </ListBox>
          </StackPanel>
-3. Nyomja le az **CTRL + S** helykiszolgálójához módosítások mentése
+3. Nyomja le az **CTRL + S** toosave ő változik
 
-**A fájl mögötti kódban módosítása**
+**toomodify hello fájl mögötti kódban**
 
 1. A Megoldáskezelőben kattintson a jobb gombbal **MainPage.xaml**, és kattintson a **nézet kód**.
-2. Az SSPlayer névtéren belül adjon meg egy új osztályt:
+2. Hello SSPlayer névtéren belül adjon meg egy új osztályt:
    
         #region class Track
         public class Track
@@ -834,17 +834,17 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             //public Track() { }
         }
         #endregion class Track
-3. A MainPage osztály elején adja hozzá a következő változó definíciók:
+3. A hello MainPage osztály hello elején adja hozzá a következő változó definíciók hello:
    
         private List<Track> availableTracks;
-4. Az MainPage osztály adja hozzá a következő régióban:
+4. Belül hello MainPage osztály adja hozzá a következő régióban hello:
    
         #region track selection
         /// <summary>
-        /// Functionality to select video streams
+        /// Functionality tooselect video streams
         /// </summary>
    
-        /// This Function gets the tracks for the selected video stream
+        /// This Function gets hello tracks for hello selected video stream
         public void getTracks(Manifest manifestObject)
         {
             availableTracks = new List<Track>();
@@ -878,7 +878,7 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             }
         }
    
-        // This function gets the video stream that is playing
+        // This function gets hello video stream that is playing
         private IManifestStream getVideoStream()
         {
             IManifestStream videoStream = null;
@@ -893,12 +893,12 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             return videoStream;
         }
    
-        // This function set the UI list box control ItemSource
+        // This function set hello UI list box control ItemSource
         private async void refreshAvailableTracksListBoxItemSource()
         {
             try
             {
-                // Update the track check box list on the UI 
+                // Update hello track check box list on hello UI 
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableVideoTracks.ItemsSource = availableTracks; });
             }
@@ -908,7 +908,7 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             }        
         }
    
-        // This function creates a list of the selected tracks.
+        // This function creates a list of hello selected tracks.
         private void createSelectedTracksList(List<IManifestTrack> selectedTracks)
         {
             // Create a list of selected tracks
@@ -921,7 +921,7 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             }
         }
    
-        // This function selects the tracks based on user selection 
+        // This function selects hello tracks based on user selection 
         private void changeTracks(List<IManifestTrack> selectedTracks)
         {
             IManifestStream videoStream = getVideoStream();
@@ -935,32 +935,32 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
             }
         }
         #endregion track selection
-5. Keresse meg a mediaElement_ManifestReady metódust, az alábbi kódot a függvény végén hozzáfűzése:
+5. Keresse meg a hello mediaElement_ManifestReady metódus, a következő kódot a hello végén hello függvény hello hozzáfűzése:
    
          getTracks(manifestObject);
          refreshAvailableTracksListBoxItemSource();
-6. Az MainPage osztály keresse meg a felhasználói felület gombok események régió parancsára, és adja hozzá az a következő függvény definíciójának:
+6. Hello MainPage osztály, belül található hello UI gombokat események régió kattintson, és adja hozzá a következő függvény definíciójának hello:
    
          private void btnChangeStream_Click(object sender, RoutedEventArgs e)
          {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
 
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
 
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
          }
 
-**Fordításához és az alkalmazás tesztelése**
+**toocompile és tesztelési hello alkalmazás**
 
-1. Nyomja le az **F6** összeállítani a projektet. 
-2. Az alkalmazás futtatásához nyomja le az **F5** billentyűt.
-3. A lap tetején az alkalmazás használja az alapértelmezett Smooth Streaming URL-címet, vagy adjon meg egy másik. 
+1. Nyomja le az **F6** toocompile hello projekt. 
+2. Nyomja le az **F5** toorun hello alkalmazás.
+3. Hello alkalmazás hello tetején hello alapértelmezett Smooth Streaming URL-címet használja, vagy adjon meg egy másik. 
 4. Kattintson a **forrás beállítása**. 
-5. Alapértelmezés szerint a nyomon követi a video-adatfolyammá alakítja az összes kijelölt. A átviteli sebesség módosítások kísérletezhet, jelölje ki a legalacsonyabb átviteli sebesség, és válassza ki a legnagyobb átviteli sebességet. Minden egyes módosítása után kattintson a küldés.  A jó minőségű módosításokat is láthatják.
+5. Alapértelmezés szerint összes hello nyomon követi a hello video-adatfolyammá alakítja ki van jelölve. tooexperiment hello bit arány módosításokat, válassza ki a hello legalacsonyabb átviteli sebesség érhető el, és válassza a hello legnagyobb átviteli sebesség érhető el. Minden egyes módosítása után kattintson a küldés.  Hello videominőséget módosításokat is láthatják.
 
-4. lecke befejeződött.  Ez a lecke adja hozzá a Funkciók kiválasztása nyomon követi.
+4. lecke befejeződött.  Ez a lecke hozzáadása hello funkció toochoose követi nyomon.
 
 ## <a name="media-services-learning-paths"></a>Media Services képzési tervek
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -969,7 +969,7 @@ Egy Smooth Streaming bemutató különböző szolgáltatásminőségi szinteket 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="other-resources"></a>Egyéb erőforrások:
-* [A speciális funkciók Smooth Streaming Windows 8 JavaScript alkalmazás létrehozása](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
+* [Hogyan toobuild egy Smooth Streaming Windows 8 JavaScript-alkalmazást, az összetett funkciók](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
 * [Zökkenőmentes adatfolyam műszaki áttekintése](http://www.iis.net/learn/media/on-demand-smooth-streaming/smooth-streaming-technical-overview)
 
 [PlayerApplication]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-1.png

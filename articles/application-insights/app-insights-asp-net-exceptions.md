@@ -1,5 +1,5 @@
 ---
-title: "Diagnosztizálja a hibákat és kivételeket a webalkalmazásokban az Azure Application insights szolgáltatással |} Microsoft Docs"
+title: "aaaDiagnose hibákat és kivételeket a webes alkalmazásokat az Azure Application insights szolgáltatással |} Microsoft Docs"
 description: "ASP.NET alkalmazások együtt – kéréstelemetria kivételei rögzíti."
 services: application-insights
 documentationcenter: .net
@@ -13,23 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 7eeacdc6677ccdebb1653e94a163ecb47090b7ee
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8930e6d2b29f83ea635c4ecb7afd11fc1d97d085
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnose-exceptions-in-your-web-apps-with-application-insights"></a>Kivételek az Application insights szolgáltatással a webalkalmazások diagnosztizálásához
-Az élő webalkalmazását kivételek által jelentett [Application Insights](app-insights-overview.md). Sikertelen kérelmek hozhatók kivételeket és az ügyfél és a kiszolgáló, az eseményeket, így gyorsan felderítheti az az oka.
+Az élő webalkalmazását kivételek által jelentett [Application Insights](app-insights-overview.md). Sikertelen kérelmek hozhatók kivételeket és hello ügyfél és a kiszolgáló, az eseményeket, így gyorsan diagnosztizálhatja a hello okok.
 
 ## <a name="set-up-exception-reporting"></a>Kivétel jelentéskészítés beállítása
-* Szeretné, hogy a kiszolgáló alkalmazás jelentett kivételek:
+* a kiszolgáló alkalmazás jelentett toohave kivételek:
   * Telepítés [Application Insights SDK](app-insights-asp-net.md) az alkalmazás kódjában, vagy
   * Az IIS webkiszolgálón: futtatása [Application Insights Agent](app-insights-monitor-performance-live-website-now.md); vagy
-  * Azure-webalkalmazásokban: vegye fel a [Application Insights-bővítmény](app-insights-azure-web-apps.md)
-  * Java-webalkalmazások: telepítse a [Java-ügynök](app-insights-java-agent.md)
-* Telepítse a [JavaScript részlet](app-insights-javascript.md) a weblapok a böngésző kivételeket.
-* Egyes alkalmazás-keretrendszerbeli vagy az egyes beállítások néhány további lépések elvégzésével további kivételeket kell:
+  * Azure-webalkalmazásokban: hello hozzáadása [Application Insights-bővítmény](app-insights-azure-web-apps.md)
+  * Java-webalkalmazások: telepítés hello [Java-ügynök](app-insights-java-agent.md)
+* Telepítse a hello [JavaScript részlet](app-insights-javascript.md) a weblapok toocatch böngésző kivételek a.
+* Az egyes alkalmazás-keretrendszerbeli vagy néhány beállításokkal, szükség tootake néhány további lépést toocatch további kivételek:
   * [Web Forms keretrendszerre](#web-forms)
   * [MVC](#mvc)
   * [Webes API-1.*](#web-api-1)
@@ -37,77 +37,77 @@ Az élő webalkalmazását kivételek által jelentett [Application Insights](ap
   * [WCF](#wcf)
 
 ## <a name="diagnosing-exceptions-using-visual-studio"></a>Visual Studio használatával kivételek diagnosztizálásáról
-Nyissa meg az alkalmazás megoldást a Visual Studio, a hibakeresés érdekében.
+Nyissa meg a hello app megoldást a Visual Studio toohelp a hibakeresés.
 
-Futtassa az alkalmazást, és a kiszolgálón vagy a fejlesztői gépen F5 használatával.
+A kiszolgálón vagy a fejlesztői gépen F5 használatával hello alkalmazás fut.
 
-Nyissa meg az Application Insights keresési ablak a Visual Studio, majd állítsa be az alkalmazás származó események megjelenítéséhez. Hibakeresése, közben ehhez csak az Application Insights gombra kattintva.
+A Visual Studio hello Application Insights keresési ablak megnyitásához, majd állítsa be toodisplay események az alkalmazásból. Hibakeresése, közben ehhez csak hello Application Insights gombra kattintva.
 
-![Kattintson jobb gombbal a projektre, és válassza ki az Application Insights, nyissa meg.](./media/app-insights-asp-net-exceptions/34.png)
+![Kattintson a jobb gombbal a projekt hello, és válassza ki az Application Insights részére, nyissa meg.](./media/app-insights-asp-net-exceptions/34.png)
 
-Figyelje meg, hogy a jelentésben csak kivételek szűrheti.
+Figyelje meg, hogy hello jelentés tooshow csak kivételek szűrheti.
 
 *Nincsenek kivételek megjelenítő? Lásd: [kivételek rögzítése](#exceptions).*
 
-Kattintson a Veremkivonat megjelenítendő kivételjelentést.
-Kattintson az alábbi veremkivonatban, a megfelelő kódot fájl megnyitásához egy sor mutató hivatkozást.  
+Kattintson egy kivétel jelentés tooshow a Veremkivonat.
+Kattintson egy sor mutató hivatkozás megadásával hello Veremkivonat, tooopen hello vonatkozó forráskód fájlja.  
 
-A kódban figyelje meg, hogy a CodeLens a kivételek adatait jeleníti meg:
+Hello kódban figyelje meg, hogy a CodeLens hello kivételek adatait jeleníti meg:
 
 ![Kivételek CodeLens értesítés.](./media/app-insights-asp-net-exceptions/35.png)
 
-## <a name="diagnosing-failures-using-the-azure-portal"></a>Az Azure portál használatával hibák diagnosztizálása
-Az alkalmazás az Application Insights áttekintésében, a hibák képet jeleníti meg a kivételek diagramok, és nem sikerült a HTTP-kérelmekre, és a kérelmek listája URL-címek, amelyek a leggyakoribb ügyfélellenőrzési hibák okozzák.
+## <a name="diagnosing-failures-using-hello-azure-portal"></a>Hello Azure-portál használatával hibák diagnosztizálása
+Hello Application Insights az alkalmazás áttekintésében hello hibák csempe elsajátíthatja, hogy a kivételek diagramok és sikertelen HTTP-kérelmekre együtt hello listája kérelem URL-címek, amelyek hello leggyakoribb hibákhoz vezethet.
 
 ![Válassza ki a beállítások, hibák](./media/app-insights-asp-net-exceptions/012-start.png)
 
-Kattintson a kivételt, ahol a részletek megtekintéséhez és Veremkiíratás egyedi előfordulása eléréséhez a listán sikertelen kivétel típusok egyike:
+Kattintson valamelyik hello keresztül nem sikerült a kivétel típusú hello lista tooget tooindividual eseményeket a hello kivétel, ahol hello részleteinek és Veremkivonat:
 
-![Válasszon ki egy példányt a sikertelen kérelmek és a kivétel részletei, a kivétel-példányokban kívánja beolvasni.](./media/app-insights-asp-net-exceptions/030-req-drill.png)
+![Válasszon ki egy példányt a sikertelen kérelmek, valamint a kivétel részletes adatai alapján, majd a tooinstances hello kivétel.](./media/app-insights-asp-net-exceptions/030-req-drill.png)
 
-**Másik lehetőségként** indítsa el a kérelmek listája és a hozzá kapcsolódó kivételeket található.
+**Másik lehetőségként** hello lista-tól kezdődnek, és kivételeket kapcsolódó tooit található.
 
 *Nincsenek kivételek megjelenítő? Lásd: [kivételek rögzítése](#exceptions).*
 
 
 ## <a name="custom-tracing-and-log-data"></a>Egyéni nyomkövetés és naplóadatok
-Diagnosztikai adatok lekérése az alkalmazáshoz megadott, szúrhat be a saját telemetriai adatokat küldeni a kódot. Ez a kérelem, nézet és egyéb automatikusan gyűjtött adatok mellett diagnosztikai keresési jelenik meg.
+diagnosztikai adatok adott tooyour app tooget, kód toosend beszúrásához saját telemetriai adatokat. Ez a diagnosztikai keresési hello kérelem, nézet és egyéb automatikusan gyűjtött adatok mellett jelenik meg.
 
 Több lehetőség közül választhat:
 
-* [A trackevent() függvény](app-insights-api-custom-events-metrics.md#trackevent) tipikus felhasználási területe a használati szokásokat, figyelés, de az is elküldi az adatokat az egyéni események diagnosztikai keresésben. Események megnevezett, és képes továbbítani az kapcsolatikarakterlánc-tulajdonságokat és amelyen is numerikus metrikák [szűrheti a diagnosztikai keresések](app-insights-diagnostic-search.md).
+* [A trackevent() függvény](app-insights-api-custom-events-metrics.md#trackevent) tipikus felhasználási területe a használati szokásokat, de is küld jelenik meg adat az egyéni események diagnosztikai keresési hello figyelése. Események megnevezett, és képes továbbítani az kapcsolatikarakterlánc-tulajdonságokat és amelyen is numerikus metrikák [szűrheti a diagnosztikai keresések](app-insights-diagnostic-search.md).
 * [TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) lehetővé teszi, hogy hosszabb adatküldés például a POST-adatokat.
 * [TrackException()](#exceptions) küld kivételeseményekhez megadhat veremkiíratásokat. [További tudnivalók a kivételek](#exceptions).
 * Ha már használ egy naplózási keretrendszert, például a Log4Net vagy NLog, akkor [lesznek a naplók rögzítése](app-insights-asp-net-trace-logs.md) és lássák a diagnosztikai keresési kérelem és a kivétel adatai mellett.
 
-Ezek az események megtekintéséhez nyissa meg a [keresési](app-insights-diagnostic-search.md), nyissa meg a szűrő, és válassza a egyéni esemény, nyomkövetésre, vagy kivétel.
+toosee ezeket az eseményeket, nyissa meg a [keresési](app-insights-diagnostic-search.md), nyissa meg a szűrő, és válassza a egyéni esemény, nyomkövetésre, vagy kivétel.
 
 ![Részletezés](./media/app-insights-asp-net-exceptions/viewCustomEvents.png)
 
 > [!NOTE]
-> Ha az alkalmazása sok telemetriát hoz létre, az adaptív mintavételezési modul automatikusan csökkenti a portálra küldött mennyiséget, és csupán az eseményeket megjelenítő töredékeket küld. Események azonos művelet részét képező fog kell vagy legyen kiválasztva csoportként, úgy, hogy a kapcsolódó események közti léphet. [További információk a mintavétel.](app-insights-sampling.md)
+> Az alkalmazás nagy mennyiségű telemetriai adatokat állít elő, ha hello adaptív mintavételi modul automatikusan toohello portal reprezentatív része események küldése által küldött hello kötet csökkenti. Események eszköz részét képező hello kell kiválasztott vagy nincs kijelölve csoportosan ugyanazt a műveletet úgy, hogy a kapcsolódó események közti léphet. [További információk a mintavétel.](app-insights-sampling.md)
 >
 >
 
-### <a name="how-to-see-request-post-data"></a>Kérelem POST adatainak megtekintése
-Szolgáltatáskérés részleteinek nem tartalmazza az alkalmazást a POST híváson a küldött adatokat. Az adatok jelentette:
+### <a name="how-toosee-request-post-data"></a>Hogyan toosee POST-adatokat kér
+Szolgáltatáskérés részleteinek nem tartalmazhat tooyour app elküldve a POST híváson hello adatokat. Ezek az adatok jelentett toohave:
 
-* [Az SDK telepítése](app-insights-asp-net.md) a alkalmazás projektben.
-* Helyezze be a kódot az alkalmazás hívása [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace). A POST-adatokat küldenek a üzenet paraméter. Nincs a megengedett méretet, a megadott korlát, meg kell próbálnia úgy, hogy az alapvető adatok küldése.
-* A sikertelen kérelmek vizsgálatánál található a társított nyomkövetési adatokat.  
+* [Hello SDK telepítése](app-insights-asp-net.md) a alkalmazás projektben.
+* Helyezze be a kódot az alkalmazás toocall [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace). Hello POST-adatokat küldenek hello üzenet paraméter. Nincs mérete engedélyezett toohello, t érdemes kipróbálni! toosend csak hello lényeges adat.
+* A sikertelen kérelmek vizsgálatánál található hello tartozó nyomkövetési adatokat.  
 
 ![Részletezés](./media/app-insights-asp-net-exceptions/060-req-related.png)
 
 ## <a name="exceptions"></a>Kivételeket és a kapcsolódó diagnosztikai adatokat rögzítése
-Először nem jelenik meg a portálon a kivételeket, amelyek az alkalmazás hibákhoz vezethet. Látni fogja, a böngésző kivételek (használata a [JavaScript SDK](app-insights-javascript.md) a weblapok). De a legtöbb kivételek az IIS által észlelt, és el kell írni a kód azok bit.
+Először nem jelenik meg a portál hello hello hibákhoz vezethet az alkalmazás összes kivétel. Látni fogja, a böngésző kivételek (hello használata [JavaScript SDK](app-insights-javascript.md) a weblapok). A legtöbb kivételek az IIS által észlelt és toowrite kód toosee bit van, de azokat.
 
 A következőket teheti:
 
-* **Kivételek explicit módon jelentkezzen** kód beszúrásával a kivételkezelők jelentheti a kivételeket.
-* **Kivételek automatikusan rögzítése** úgy konfigurálja az ASP.NET keretrendszer. A szükséges kiegészítés eltérőek a keretrendszer különböző típusú.
+* **Kivételek explicit módon jelentkezzen** úgy kód kivétel kezelők tooreport hello kivételek.
+* **Kivételek automatikusan rögzítése** úgy konfigurálja az ASP.NET keretrendszer. hello szükséges kiegészítés eltérőek a keretrendszer különböző típusú.
 
 ## <a name="reporting-exceptions-explicitly"></a>Explicit módon Reporting kivételek
-A legegyszerűbb módja TrackException() hívásakor be egy kivételkezelőbe.
+hello legegyszerűbb módja a tooinsert egy hívás tooTrackException() a egy kivételkezelőbe.
 
 JavaScript
 
@@ -137,7 +137,7 @@ C#
        var measurements = new Dictionary <string, double>
          {{"Users", currentGame.Users.Count}};
 
-       // Send the exception telemetry:
+       // Send hello exception telemetry:
        telemetry.TrackException(ex, properties, measurements);
     }
 
@@ -155,21 +155,21 @@ VISUAL BASIC
       Dim measurements = New Dictionary (Of String, Double)
       measurements.Add("Users", currentGame.Users.Count)
 
-      ' Send the exception telemetry:
+      ' Send hello exception telemetry:
       telemetry.TrackException(ex, properties, measurements)
     End Try
 
-A tulajdonságok és a mérési paraméterek megadása nem kötelező, de hasznos a [szűrést és a hozzáadása](app-insights-diagnostic-search.md) további információt. Például ha egy alkalmazás futtatható több játékok, találta egy adott játékkal kapcsolatos összes kivétel jelentéseket. Szeretné, hogy mindegyik szótár elemek is hozzáadhat.
+hello tulajdonságok és mérések paraméterek megadása nem kötelező, de hasznos a [szűrést és a hozzáadása](app-insights-diagnostic-search.md) további információt. Például ha egy alkalmazás futtatható több játékok, találta az összes hello kivétel jelentések kapcsolódó tooa játék. Hozzáadáshoz annyi, ha Ön például tooeach szótárban.
 
 ## <a name="browser-exceptions"></a>Böngészőkivételek
 A legtöbb webböngésző kivételek jelenti.
 
-Ha a weblap tartalmazza a parancsfájlok tartalomkézbesítési hálózat vagy a más tartományokban, győződjön meg arról, a script kód attribútuma ```crossorigin="anonymous"```, és a kiszolgáló által küldött [CORS fejlécek](http://enable-cors.org/). Ez lehetővé teszi a veremkivonatot és részletes lekérése nem kezelt JavaScript-kivételeknek az ezekhez az erőforrásokhoz.
+Ha a weblap tartalmazza a parancsfájlok tartalomkézbesítési hálózat vagy a más tartományokban, győződjön meg arról, a script kód hello attribútummal rendelkezik ```crossorigin="anonymous"```, és adott hello a kiszolgáló elküldi [CORS fejlécek](http://enable-cors.org/). Ez lehetővé teszi egy Veremkivonat tooget és ezeket az erőforrásokat a nem kezelt JavaScript-kivételek adatai.
 
 ## <a name="web-forms"></a>Web Forms keretrendszerre
-Web Forms keretrendszerre a HTTP-modulja lesznek képesek a kivételek gyűjtése, ha nincs átirányítja a CustomErrors konfigurálva van.
+Web Forms keretrendszerre hello HTTP-modul is képes toocollect hello kivételek nincs konfigurálva a CustomErrors átirányítások esetén.
 
-De ha rendelkezik active átirányításokat, adja hozzá a következő sorokat Global.asax.cs Application_Error funkciójának. (Ha adja hozzá a Global.asax fájl még nem rendelkezik.)
+De ha aktív átirányításokat, adja hozzá a következő sorokat toohello Application_Error függvényt Global.asax.cs hello. (Ha adja hozzá a Global.asax fájl még nem rendelkezik.)
 
 *C#*
 
@@ -185,7 +185,7 @@ De ha rendelkezik active átirányításokat, adja hozzá a következő sorokat 
 
 
 ## <a name="mvc"></a>MVC
-Ha a [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) konfiguráció `Off`, akkor kivételeket elérhető lesz a [HTTP-modulja](https://msdn.microsoft.com/library/ms178468.aspx) gyűjtéséhez. Azonban ha `RemoteOnly` (alapértelmezett), vagy `On`, akkor a kivétel törlődik, és nem érhető el az Application Insights segítségével automatikusan begyűjtik a rendszer. Ezt úgy javíthatja ki, amely felülbírálásával a [System.Web.Mvc.HandleErrorAttribute osztály](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx), és a felülbírált osztály alkalmazása, ahogy az alábbi különböző MVC verzióihoz ([github forrás](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs)):
+Ha hello [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) konfiguráció `Off`, majd kivételeket lesz elérhető a hello [HTTP-modulja](https://msdn.microsoft.com/library/ms178468.aspx) toocollect. Azonban ha `RemoteOnly` (alapértelmezett), vagy `On`, majd hello kivétel törlődik, és nem érhető el, az Application Insights tooautomatically gyűjtése. Ezt úgy javíthatja ki, amely hello felülbírálásával [System.Web.Mvc.HandleErrorAttribute osztály](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx), és felül hello osztály alkalmazása hello különböző verziójához MVC alább látható módon ([github forrás](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs)):
 
     using System;
     using System.Web.Mvc;
@@ -200,7 +200,7 @@ Ha a [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) konfigurá
         {
             if (filterContext != null && filterContext.HttpContext != null && filterContext.Exception != null)
             {
-                //If customError is Off, then AI HTTPModule will report the exception
+                //If customError is Off, then AI HTTPModule will report hello exception
                 if (filterContext.HttpContext.IsCustomErrorEnabled)
                 {   //or reuse instance (recommended!). see note above  
                     var ai = new TelemetryClient();
@@ -213,7 +213,7 @@ Ha a [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) konfigurá
     }
 
 #### <a name="mvc-2"></a>MVC 2
-A HandleError attribútum cserélje le a tartományvezérlőket az új attribútumot.
+Hello HandleError attribútum cserélje le a tartományvezérlőket az új attribútumot.
 
     namespace MVC2App.Controllers
     {
@@ -244,7 +244,7 @@ FilterConfig.cs globális szűrőként regisztrálja a AiHandleErrorAttribute:
     {
       public static void RegisterGlobalFilters(GlobalFilterCollection filters)
       {
-        // Default replaced with the override to track unhandled exceptions
+        // Default replaced with hello override tootrack unhandled exceptions
         filters.Add(new AiHandleErrorAttribute());
       }
     }
@@ -273,7 +273,7 @@ Bírálja felül System.Web.Http.Filters.ExceptionFilterAttribute:
       }
     }
 
-Felülbírált attribútum hozzáadása adott tartományvezérlők, vagy vegye fel a globális szűrőkonfigurációt a register osztályban:
+Adja hozzá a felülbírált attribútum toospecific tartományvezérlők, vagy vegye fel globális szűrőkonfigurációt toohello hello register osztályban:
 
     using System.Web.Http;
     using WebApi1.x.App_Start;
@@ -297,7 +297,7 @@ Felülbírált attribútum hozzáadása adott tartományvezérlők, vagy vegye f
 
 [Minta](https://github.com/AppInsightsSamples/WebApi_1.x_UnhandledExceptions)
 
-Nincsenek olyan esetek számát, amelyet a kivételszűrők nem tudja kezelni. Példa:
+Nincsenek olyan esetek számát, amelyet hello kivételszűrők nem tudja kezelni. Példa:
 
 * A vezérlő konstruktorok kivételek.
 * Az üzenet kezelők kivételek.
@@ -326,7 +326,7 @@ Iexceptionlogger felület egy megvalósításának hozzáadása:
       }
     }
 
-Adja hozzá a register-szolgáltatásaira ezt:
+Adja hozzá a toohello szolgáltatások register:
 
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
@@ -357,8 +357,8 @@ Adja hozzá a register-szolgáltatásaira ezt:
 
 Alternatív megoldásként sikerült:
 
-1. Cserélje le a csak ExceptionHandler IExceptionHandler egyéni végrehajtását. Csak ezt nevezik, amikor a keretrendszer továbbra is képes, mely válaszüzenetet küldeni (nem amikor a kapcsolat megszakadt példányhoz) kiválasztása
-2. Kivétel szűrők (leírtak a Web API 1.x tartományvezérlőkön a fenti szakaszban) - hívása nem minden esetben.
+1. Cserélje le csak egy egyéni végrehajtásának IExceptionHandler ExceptionHandler hello. Csak ennek meghívása az hello keretrendszer esetén is képes toochoose mely válasz üzenet toosend (amikor például hello kapcsolat megszakadt. nem)
+2. Kivétel szűrők (leírtak hello szakasz a webes API 1.x tartományvezérlőkön a fenti) - hívása nem minden esetben.
 
 ## <a name="wcf"></a>WCF
 Adjon hozzá egy osztály, amely kibővíti az attribútumot, és megvalósítja az IErrorHandler és az IServiceBehavior.
@@ -412,7 +412,7 @@ Adjon hozzá egy osztály, amely kibővíti az attribútumot, és megvalósítja
       }
     }
 
-Az attribútum hozzáadása a szolgáltatás hitelesítés megvalósításához:
+Hello attribútum toohello szolgáltatás megvalósítások hozzáadása:
 
     namespace WcfService4
     {
@@ -424,19 +424,19 @@ Az attribútum hozzáadása a szolgáltatás hitelesítés megvalósításához:
 [Minta](https://github.com/AppInsightsSamples/WCFUnhandledExceptions)
 
 ## <a name="exception-performance-counters"></a>Kivétel teljesítményszámlálói
-Ha rendelkezik [az Application Insights-ügynök telepítése](app-insights-monitor-performance-live-website-now.md) a kiszolgálón, és a kivételeket, .NET mérhető diagram kaphat. Ez magában foglalja a kezelt, mind a nem kezelt .NET-kivételek.
+Ha rendelkezik [hello Application Insights-ügynök telepítve](app-insights-monitor-performance-live-website-now.md) a kiszolgálón, és hello kivételek, .NET mérhető diagram kaphat. Ez magában foglalja a kezelt, mind a nem kezelt .NET-kivételek.
 
 Nyissa meg a metrika Explorer panelt, új diagram hozzáadása, és válassza ki **kivétel arány**, a teljesítményszámlálók felsorolt.
 
-A .NET-keretrendszer sebessége alapján kiszámítja kivételek száma számbavételi időközönként történik, és elosztja a időköz hosszát.
+hello .NET-keretrendszer hello arány kivételek száma hello leltár időközönkénti és hello időköz hello hosszát elosztjuk számítja ki.
 
-Vegye figyelembe, hogy a "Kivételek" count TrackException jelentések alapján számítja ki az Application Insights portáljáról eltérő lesz. A mintavételi időköze különböző, és az SDK nem küldje TrackException jelentések összes kezelt és kezeletlen kivételek.
+Vegye figyelembe, hogy az eltérő lesz hello "kivétel" count hello Application Insights portál TrackException jelentések alapján számítja ki. hello mintavételi időköze különböző, és hello SDK nem küldje minden kezelt és kezeletlen kivételek TrackException a jelentésekre.
 
 ## <a name="video"></a>Videó
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
 
 ## <a name="next-steps"></a>Következő lépések
-* [REST, SQL és más függőségek hívásainak figyelése](app-insights-asp-net-dependencies.md)
+* [REST, SQL és egyéb hívások toodependencies figyelése](app-insights-asp-net-dependencies.md)
 * [Lapbetöltési idők, a böngésző kivételeket és a AJAX-hívások figyelése](app-insights-javascript.md)
 * [A figyelő teljesítményszámlálói](app-insights-performance-counters.md)

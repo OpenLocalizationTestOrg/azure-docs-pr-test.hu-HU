@@ -1,6 +1,6 @@
 ---
-title: "Parancssori felület példa-egy Azure SQL-adatbázis létrehozása |} Microsoft Docs"
-description: "Az Azure parancssori felület a példaként megadott parancsfájlt az SQL-adatbázis létrehozása"
+title: "aaaCLI példa-Azure SQL-adatbázis létrehozása |} Microsoft Docs"
+description: "Az Azure CLI például parancsfájl-toocreate SQL-adatbázis"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,29 +16,29 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 908898ca691d2b53b9f54afa60c41e091163bd50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d54e284e19f16387813e24d7beb7ab048a39263
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-cli-to-create-a-single-azure-sql-database-and-configure-a-firewall-rule"></a>Parancssori felület használatával hozzon létre egy Azure SQL-adatbázis és a tűzfalszabályok konfigurálása
+# <a name="use-cli-toocreate-a-single-azure-sql-database-and-configure-a-firewall-rule"></a>CLI toocreate egy Azure SQL-adatbázis használata és a tűzfalszabályok beállítása
 
-Az Azure CLI mintaparancsfájl egy Azure SQL Database adatbázist hoz létre, és egy kiszolgálószintű tűzfalszabály konfigurálása. Miután a parancsfájl sikeresen lefutott, az SQL-adatbázis elérhető az összes Azure-szolgáltatások és a konfigurált IP-címet. 
+Az Azure CLI mintaparancsfájl egy Azure SQL Database adatbázist hoz létre, és egy kiszolgálószintű tűzfalszabály konfigurálása. Hello parancsfájl sikeres futtatása után hello elérhető SQL-adatbázis az összes Azure-szolgáltatások és hello konfigurált IP-címét. 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Ha a parancssori felület helyi telepítése és használata mellett dönt, a témakörben leírt lépésekhez az Azure parancssori felületének 2.0-s vagy annál újabb verzióját kell futtatnia. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-azurecli-interactive[fő](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "SQL-adatbázis létrehozása")]
+[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "Create SQL Database")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot és a vele társított összes erőforrást.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport és a vele társított összes erőforrást.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
@@ -46,19 +46,19 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
 | [az csoport létrehozása](/cli/azure/group#create) | Az összes erőforrás tároló erőforrás csoportot hoz létre. |
-| [az sql-kiszolgáló létrehozása](/cli/azure/sql/server#create) | Az SQL-adatbázist futtató logikai kiszolgáló létrehozása. |
-| [az sql server tűzfal létrehozása](/cli/azure/sql/server/firewall-rule#create) | Engedélyezi a kiszolgálón lévő összes SQL-adatbázis elérését a megadott IP-címtartomány egy tűzfalszabályt hoz létre. |
-| [az sql-adatbázis létrehozása](/cli/azure/sql/db#create) | Az SQL-adatbázis létrehozása a logikai kiszolgálón. |
+| [az sql-kiszolgáló létrehozása](/cli/azure/sql/server#create) | Hogy a gazdagépek hello SQL Database logikai kiszolgáló létrehozása. |
+| [az sql server tűzfal létrehozása](/cli/azure/sql/server/firewall-rule#create) | Létrehoz egy tűzfal szabály tooallow hozzáférés tooall SQL-adatbázisok hello megadott IP-címtartomány a hello kiszolgálóján. |
+| [az sql-adatbázis létrehozása](/cli/azure/sql/db#create) | Hello SQL Database logikai kiszolgáló hello hoz létre. |
 | [az csoport törlése](/cli/azure/resource#delete) | Egy olyan erőforráscsoport, beleértve az összes beágyazott erőforrások törlése. |
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információ az Azure parancssori felület: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
+Az Azure CLI hello további információkért lásd: [Azure CLI dokumentáció](https://docs.microsoft.com/cli/azure/overview).
 
-További SQL-adatbázis CLI parancsfájl minták megtalálhatók a [dokumentáció az Azure SQL Database](../sql-database-cli-samples.md).
+További SQL-adatbázis CLI parancsfájl minták hello található [dokumentáció az Azure SQL Database](../sql-database-cli-samples.md).
 

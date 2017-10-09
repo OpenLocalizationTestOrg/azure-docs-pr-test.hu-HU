@@ -28,13 +28,13 @@
 | SLA | |<p> |99.9% |99.95%<sup>10</sup> |99.95%<sup>10</sup> |
 
 <sup>1</sup>alkalmazások és a tárolási kvótákat is egy App Service-csomag hacsak másként nem jelezzük.  
-<sup>2</sup>a tényleges száma tárolhatja, ezeknek a gépeknek az alkalmazások az alkalmazások tevékenységét, a gép példányok és a megfelelő erőforrás-használat méretétől függ.  
+<sup>2</sup>hello tényleges száma tárolhatja, ezek a gépek alkalmazások hello tevékenység hello alkalmazások, hello mérete hello gép példányok, és megfelelő erőforrás-használat hello függ.  
 <sup>3</sup>dedikált példányok különböző méretű lehet. Lásd: [App Service szolgáltatás díjszabása](https://azure.microsoft.com/pricing/details/data-transfers/pricing/details/app-service/) további részleteket.  
-<sup>4</sup>prémium csomagban lehetővé teszi, hogy legfeljebb 50 kiszámítja példányok (függvényében a rendelkezésre állás), és 500 GB lemezterület használata az App Service Environment-környezetek esetén, és 20 számítási példányok és 250 GB tárhely ellenkező esetben.  
-<sup>5</sup>a tárolási kapacitás a teljes tartalom mérete összes alkalmazások között ugyanazt az App Service-csomag. További tárolási lehetőségek érhetők el [App Service Environment-környezet](../articles/app-service-web/app-service-web-configure-an-app-service-environment.md#storage)  
-<sup>6</sup>ezeket az erőforrásokat csak korlátozottan fizikai erőforrások dedikált példányokon (a példány mérete és a példányok száma).  
-<sup>7</sup>Ha egy alkalmazás az alapszintű rétegben két példányokhoz, 350 egyidejű kapcsolatok az egyes két példánya van.  
-<sup>8</sup>prémium csomagban lehetővé teszi a biztonsági mentés gyakoriságát, legfeljebb 5 percenként le App Service Environment-környezetek használatakor és 50 napi időpontot egyéb.  
-<sup>9</sup>egyéni végrehajtható fájlok és/vagy parancsfájlok futtatása az igény szerinti, ütemezés szerint, vagy folyamatosan háttérfeladatként belül az App Service-példány. A folyamatos WebJobs-végrehajtáshoz folyamatos üzem szükséges. Az ütemezett WebJobs-végrehajtás csak az Azure Scheduler Ingyenes vagy Standard rétegével használható. Webjobs-feladatok, futtathat egy App Service-példány számára előre meghatározott korlátozva van, de mi az alkalmazás kódjának van végrehajtását megkísérlő függő gyakorlati határát.   
+<sup>4</sup>prémium csomagban lehetővé teszi, hogy másolatot too50 kiszámítja példányok (tulajdonos tooavailability) és 500 GB lemezterület az App Service Environment-környezetek és 20 használatakor számítási példányok és 250 GB tárhely ellenkező esetben.  
+<sup>5</sup>hello tárolási kapacitása hello összesített tartalomméret összes alkalmazások között ugyanazt az App Service-csomag. További tárolási lehetőségek érhetők el [App Service Environment-környezet](../articles/app-service-web/app-service-web-configure-an-app-service-environment.md#storage)  
+<sup>6</sup>ezeket az erőforrásokat csak korlátozottan fizikai erőforrások dedikált hello példányokon (hello példányméretének és hello példányok száma).  
+<sup>7</sup>Ha egy alkalmazás hello alapszintű rétegben tootwo példányát, 350 egyidejű kapcsolatok az egyes hello két példánya van.  
+<sup>8</sup>prémium csomagban lehetővé teszi a biztonsági mentés gyakoriságát le tooevery be 5 perc használata az App Service Environment-környezetek esetén, és 50 napi időpontot egyéb.  
+<sup>9</sup>egyéni végrehajtható fájlok és/vagy parancsfájlok futtatása az igény szerinti, ütemezés szerint, vagy folyamatosan háttérfeladatként belül az App Service-példány. A folyamatos WebJobs-végrehajtáshoz folyamatos üzem szükséges. Az ütemezett WebJobs-végrehajtás csak az Azure Scheduler Ingyenes vagy Standard rétegével használható. A webjobs-feladatok egy App Service-példány futtatható hello száma előre definiált korlátozva van, de gyakorlati határát, milyen hello alkalmazáskód toodo próbál függnek.   
 <sup>10</sup>használó központi telepítések több példányt az Azure Traffic Manager konfigurálva a feladatátvételi előírt 99,95 %-os SLA-t.  
 

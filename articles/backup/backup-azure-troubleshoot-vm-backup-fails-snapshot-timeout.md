@@ -1,6 +1,6 @@
 ---
 title: "Azure biztonsági mentési hiba elhárítása: Vendég ügynök állapota nem érhető el |} Microsoft Docs"
-description: "A jelenség, az az oka, és a megoldások Azure biztonsági mentési hibák kapcsolatos hiba: nem tudott kommunikálni a Virtuálisgép-ügynök"
+description: "A jelenség, okait és az Azure biztonsági mentési hibák kapcsolódó tooerror megoldások: nem tudott kommunikálni a hello Virtuálisgép-ügynök"
 services: backup
 documentationcenter: 
 author: genlin
@@ -15,115 +15,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: genli;markgal;
-ms.openlocfilehash: 6ed651bb8caafd18cec93e68ac70e27f92133e5c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 724c61ba80d0a9ef91a5f8543ae72bb86968881b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-backup-failure-issues-with-agent-andor-extension"></a>Azure biztonsági mentési hiba elhárítása: ügynök és/vagy kiterjesztés problémái
 
-A cikkben az ügynök és Virtuálisgép-bővítmény kommunikációs a problémával kapcsolatos biztonsági mentési hibák elhárításához hibaelhárítási lépéseket.
+Ez a cikk ismerteti a biztonsági mentési hibák megoldása hibaelhárítási lépéseket toohelp kapcsolódó tooproblems ügynök és Virtuálisgép-bővítmény kommunikál.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-## <a name="vm-agent-unable-to-communicate-with-azure-backup"></a>Nem lehet kommunikálni az Azure biztonsági mentés Virtuálisgép-ügynök
-Miután regisztrálja, és egy virtuális Gépet az Azure Backup szolgáltatás a ütemezése, a biztonsági mentés kezdeményezi a a feladat úgy pont időponthoz kötött pillanatképet készít a virtuális gép ügynökkel folytatott kommunikáció. A következő feltételek megakadályozhatja, hogy a pillanatfelvételt a elindul, ami viszont biztonsági mentés sikertelen. Kövesse az alábbi lépéseket a megadott sorrendben, majd próbálja megismételni a műveletet.
-##### <a name="cause-1-the-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [a virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
-##### <a name="cause-2-the-agent-is-installed-in-the-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>2. ok: [az ügynök telepítve van-e a virtuális Géphez, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
-##### <a name="cause-3-the-agent-installed-in-the-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>3. ok: [a virtuális gépen telepített ügynök elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
-##### <a name="cause-4-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>4. ok: [pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
-##### <a name="cause-5-the-backup-extension-fails-to-update-or-loadthe-backup-extension-fails-to-update-or-load"></a>5. ok: [frissítése vagy nem tölthető be nem sikerül a tartalék mellék](#the-backup-extension-fails-to-update-or-load)
+## <a name="vm-agent-unable-toocommunicate-with-azure-backup"></a>Virtuálisgép-ügynök nem toocommunicate az Azure Backup szolgáltatással
+Miután regisztrálja, és egy virtuális Gépet a hello Azure Backup szolgáltatás ütemezése, a biztonsági mentés kezdeményezi a hello feladat úgy hello VM ügynök tootake időpontban pillanatkép folytatott kommunikáció. Hello a következő feltételek bármelyike hello pillanatfelvételét elindul, ami viszont tooBackup hiba előfordulhat. Kövesse az alábbi lépéseket a megadott sorrendben hello, majd próbálja megismételni a műveletet.
+##### <a name="cause-1-hello-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [hello virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
+##### <a name="cause-2-hello-agent-is-installed-in-hello-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>2. ok: [hello ügynök telepítve van a virtuális gép hello, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
+##### <a name="cause-3-hello-agent-installed-in-hello-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>3. ok: [hello ügynök van telepítve, a virtuális gép hello elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
+##### <a name="cause-4-hello-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>4. ok: [hello pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
+##### <a name="cause-5-hello-backup-extension-fails-tooupdate-or-loadthe-backup-extension-fails-to-update-or-load"></a>5. ok: [hello tartalék mellék tooupdate vagy betöltése sikertelen](#the-backup-extension-fails-to-update-or-load)
 
-## <a name="snapshot-operation-failed-due-to-no-network-connectivity-on-the-virtual-machine"></a>Pillanatkép-művelet meghiúsult, mert nincs hálózati kapcsolat a virtuális gépen
-Miután regisztrálja, és egy virtuális Gépet az Azure Backup szolgáltatás ütemezése, biztonsági mentés indít el a feladat által a biztonsági mentés Virtuálisgép-bővítmény időpontban pillanatképének elkészítéséhez kommunikál. A következő feltételek megakadályozhatja, hogy a pillanatfelvételt a elindul, ami viszont biztonsági mentés sikertelen. Kövesse az alábbi lépéseket a megadott sorrendben, majd próbálja megismételni a műveletet.
-##### <a name="cause-1-the-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [a virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
-##### <a name="cause-2-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>2. ok: [pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
-##### <a name="cause-3-the-backup-extension-fails-to-update-or-loadthe-backup-extension-fails-to-update-or-load"></a>3. ok: [frissítése vagy nem tölthető be nem sikerül a tartalék mellék](#the-backup-extension-fails-to-update-or-load)
+## <a name="snapshot-operation-failed-due-toono-network-connectivity-on-hello-virtual-machine"></a>Pillanatkép művelet hello virtuális gépen toono hálózati kapcsolat miatt nem sikerült
+Miután regisztrálja, és egy virtuális Gépet a hello Azure Backup szolgáltatás ütemezése, a biztonsági mentés kezdeményezi a hello feladat úgy hello VM tartalék mellék tootake egy pont időponthoz kötött pillanatképet kommunikál. Hello a következő feltételek bármelyike hello pillanatfelvételét elindul, ami viszont tooBackup hiba előfordulhat. Kövesse az alábbi lépéseket a megadott sorrendben hello, majd próbálja megismételni a műveletet.
+##### <a name="cause-1-hello-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [hello virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
+##### <a name="cause-2-hello-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>2. ok: [hello pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
+##### <a name="cause-3-hello-backup-extension-fails-tooupdate-or-loadthe-backup-extension-fails-to-update-or-load"></a>3. ok: [hello tartalék mellék tooupdate vagy betöltése sikertelen](#the-backup-extension-fails-to-update-or-load)
 
 ## <a name="vmsnapshot-extension-operation-failed"></a>VMSnapshot bővítmény művelete sikertelen volt
 
-Miután regisztrálja, és egy virtuális Gépet az Azure Backup szolgáltatás ütemezése, biztonsági mentés indít el a feladat által a biztonsági mentés Virtuálisgép-bővítmény időpontban pillanatképének elkészítéséhez kommunikál. A következő feltételek megakadályozhatja, hogy a pillanatfelvételt a elindul, ami viszont biztonsági mentés sikertelen. Kövesse az alábbi lépéseket a megadott sorrendben, majd próbálja megismételni a műveletet.
-##### <a name="cause-1-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>1. ok: [pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
-##### <a name="cause-2-the-backup-extension-fails-to-update-or-loadthe-backup-extension-fails-to-update-or-load"></a>2. ok: [frissítése vagy nem tölthető be nem sikerül a tartalék mellék](#the-backup-extension-fails-to-update-or-load)
-##### <a name="cause-3-the-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>3. ok: [a virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
-##### <a name="cause-4-the-agent-is-installed-in-the-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>4. ok: [az ügynök telepítve van-e a virtuális Géphez, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
-##### <a name="cause-5-the-agent-installed-in-the-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>5. ok: [a virtuális gépen telepített ügynök elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
+Miután regisztrálja, és egy virtuális Gépet a hello Azure Backup szolgáltatás ütemezése, a biztonsági mentés kezdeményezi a hello feladat úgy hello VM tartalék mellék tootake egy pont időponthoz kötött pillanatképet kommunikál. Hello a következő feltételek bármelyike hello pillanatfelvételét elindul, ami viszont tooBackup hiba előfordulhat. Kövesse az alábbi lépéseket a megadott sorrendben hello, majd próbálja megismételni a műveletet.
+##### <a name="cause-1-hello-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>1. ok: [hello pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
+##### <a name="cause-2-hello-backup-extension-fails-tooupdate-or-loadthe-backup-extension-fails-to-update-or-load"></a>2. ok: [hello tartalék mellék tooupdate vagy betöltése sikertelen](#the-backup-extension-fails-to-update-or-load)
+##### <a name="cause-3-hello-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>3. ok: [hello virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
+##### <a name="cause-4-hello-agent-is-installed-in-hello-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>4. ok: [hello ügynök telepítve van a virtuális gép hello, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
+##### <a name="cause-5-hello-agent-installed-in-hello-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>5. ok: [hello ügynök van telepítve, a virtuális gép hello elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
 
-## <a name="unable-to-perform-the-operation-as-the-vm-agent-is-not-responsive"></a>Nem sikerült végrehajtani a műveletet, a Virtuálisgép-ügynök nem válaszol
+## <a name="unable-tooperform-hello-operation-as-hello-vm-agent-is-not-responsive"></a>Nem lehet tooperform hello műveletet, mert hello Virtuálisgép-ügynök nincs rugalmas
 
-Miután regisztrálja, és egy virtuális Gépet az Azure Backup szolgáltatás ütemezése, biztonsági mentés indít el a feladat által a biztonsági mentés Virtuálisgép-bővítmény időpontban pillanatképének elkészítéséhez kommunikál. A következő feltételek megakadályozhatja, hogy a pillanatfelvételt a elindul, ami viszont biztonsági mentés sikertelen. Kövesse az alábbi lépéseket a megadott sorrendben, majd próbálja megismételni a műveletet.
-##### <a name="cause-1-the-agent-is-installed-in-the-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>1. ok: [az ügynök telepítve van-e a virtuális Géphez, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
-##### <a name="cause-2-the-agent-installed-in-the-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>2. ok: [a virtuális gépen telepített ügynök elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
-##### <a name="cause-3-the-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>3. ok: [a virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
+Miután regisztrálja, és egy virtuális Gépet a hello Azure Backup szolgáltatás ütemezése, a biztonsági mentés kezdeményezi a hello feladat úgy hello VM tartalék mellék tootake egy pont időponthoz kötött pillanatképet kommunikál. Hello a következő feltételek bármelyike hello pillanatfelvételét elindul, ami viszont tooBackup hiba előfordulhat. Kövesse az alábbi lépéseket a megadott sorrendben hello, majd próbálja megismételni a műveletet.
+##### <a name="cause-1-hello-agent-is-installed-in-hello-vm-but-is-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>1. ok: [hello ügynök telepítve van a virtuális gép hello, de nem válaszol a (virtuális gépekhez Windows)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
+##### <a name="cause-2-hello-agent-installed-in-hello-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>2. ok: [hello ügynök van telepítve, a virtuális gép hello elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
+##### <a name="cause-3-hello-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>3. ok: [hello virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
 
-## <a name="backup-failed-with-an-internal-error---please-retry-the-operation-in-a-few-minutes"></a>Biztonsági mentés egy belső hiba miatt nem sikerült – próbálja megismételni a műveletet, néhány perc múlva
+## <a name="backup-failed-with-an-internal-error---please-retry-hello-operation-in-a-few-minutes"></a>Biztonsági mentés egy belső hiba miatt nem sikerült – hello művelet néhány perc múlva próbálkozzon újra
 
-Miután regisztrálja, és egy virtuális Gépet az Azure Backup szolgáltatás ütemezése, biztonsági mentés indít el a feladat által a biztonsági mentés Virtuálisgép-bővítmény időpontban pillanatképének elkészítéséhez kommunikál. A következő feltételek megakadályozhatja, hogy a pillanatfelvételt a elindul, ami viszont biztonsági mentés sikertelen. Kövesse az alábbi lépéseket a megadott sorrendben, majd próbálja megismételni a műveletet.
-##### <a name="cause-1-the-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [a virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
-##### <a name="cause-2-the-agent-installed-in-the-vm-but-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>2. ok: [az ügynök telepítve azonban nem válaszol a virtuális gép (Windows virtuális gépek)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
-##### <a name="cause-3-the-agent-installed-in-the-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>3. ok: [a virtuális gépen telepített ügynök elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
-##### <a name="cause-4-the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>4. ok: [pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
-##### <a name="cause-5-the-backup-extension-fails-to-update-or-loadthe-backup-extension-fails-to-update-or-load"></a>5. ok: [frissítése vagy nem tölthető be nem sikerül a tartalék mellék](#the-backup-extension-fails-to-update-or-load)
+Miután regisztrálja, és egy virtuális Gépet a hello Azure Backup szolgáltatás ütemezése, a biztonsági mentés kezdeményezi a hello feladat úgy hello VM tartalék mellék tootake egy pont időponthoz kötött pillanatképet kommunikál. Hello a következő feltételek bármelyike hello pillanatfelvételét elindul, ami viszont tooBackup hiba előfordulhat. Kövesse az alábbi lépéseket a megadott sorrendben hello, majd próbálja megismételni a műveletet.
+##### <a name="cause-1-hello-vm-has-no-internet-accessthe-vm-has-no-internet-access"></a>1. ok: [hello virtuális gép nincs Internet-hozzáféréssel rendelkező](#the-vm-has-no-internet-access)
+##### <a name="cause-2-hello-agent-installed-in-hello-vm-but-unresponsive-for-windows-vmsthe-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>2. ok: [hello-ügynök van telepítve a virtuális gép hello azonban nem válaszoló (a Windows-alapú virtuális gépek)](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
+##### <a name="cause-3-hello-agent-installed-in-hello-vm-is-out-of-date-for-linux-vmsthe-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>3. ok: [hello ügynök van telepítve, a virtuális gép hello elavult (a Linux virtuális gépek)](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
+##### <a name="cause-4-hello-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-takenthe-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>4. ok: [hello pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.](#the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken)
+##### <a name="cause-5-hello-backup-extension-fails-tooupdate-or-loadthe-backup-extension-fails-to-update-or-load"></a>5. ok: [hello tartalék mellék tooupdate vagy betöltése sikertelen](#the-backup-extension-fails-to-update-or-load)
 
 
 ## <a name="causes-and-solutions"></a>Okait és megoldásait
 
-### <a name="the-vm-has-no-internet-access"></a>A virtuális gép nincs Internet-hozzáféréssel rendelkező
-Az üzembe helyezése: követelményeknek a virtuális gép nincs Internet-hozzáféréssel rendelkező, vagy korlátozások miatt helyen tagadni a hozzáférést az Azure-infrastruktúra rendelkezik.
+### <a name="hello-vm-has-no-internet-access"></a>virtuális gép hello nincs Internet-hozzáféréssel rendelkező
+Hello üzembe helyezése: követelményeknek hello virtuális gép nincs Internet-hozzáféréssel rendelkező, vagy helyben korlátozásokat, amelyek megakadályozzák a hozzáférés toohello Azure-infrastruktúra rendelkezik.
 
-A megfelelő működéshez, a tartalék mellék használatához az Azure nyilvános IP-címek hozzáférés szükséges. A bővítmény parancsokat küld egy Azure Storage végpontot (HTTP URL-cím) a pillanatképek a virtuális gépek kezeléséhez. Ha a kiterjesztés nem érhető el a nyilvános interneten, biztonsági mentés végül sikertelen.
+helytelenül lett a toofunction hello biztonságimásolat-bővítményhez olyan kapcsolat toohello Azure nyilvános IP-címek. hello bővítmény küld parancsokat tooan Azure Storage végpontot (HTTP URL-cím) toomanage hello pillanatképek a virtuális gép hello. Ha hello bővítményt nélküli hozzáférés toohello nyilvános Internet, végül a biztonsági mentés sikertelen lesz.
 
 ####  <a name="solution"></a>Megoldás
-A probléma megoldása érdekében próbálkozzon az alábbi módszerek valamelyikét.
-##### <a name="allow-access-to-the-azure-datacenter-ip-ranges"></a>Az Azure datacenter IP-címtartományok hozzáférés engedélyezése
+tooresolve hello problémát, próbálja az itt felsorolt hello módszerek.
+##### <a name="allow-access-toohello-azure-datacenter-ip-ranges"></a>Engedélyezi a hozzáférést toohello Azure datacenter IP-címtartományok
 
-1. Szerezze be a [Azure datacenter IP-címek listája](https://www.microsoft.com/download/details.aspx?id=41653) eléréséhez.
-2. Az IP-címek feloldása futtatásával a **New-NetRoute** parancsmagot egy emelt szintű PowerShell-ablakban az Azure virtuális gépen. A parancsmag futtatása rendszergazdaként.
-3. Az IP-címek való hozzáférés engedélyezéséhez szabályok hozzáadása a hálózati biztonsági csoporthoz, ha rendelkezik ilyennel.
+1. Szerezze be a hello [Azure datacenter IP-címek listája](https://www.microsoft.com/download/details.aspx?id=41653) tooallow elérésére.
+2. IP-címek hello feloldása hello futtatásával **New-NetRoute** parancsmag hello Azure virtuális gép, egy emelt szintű PowerShell-ablakban. Hello parancsmag futtatása rendszergazdaként.
+3. tooallow hozzáférés toohello IP-címek, szabályok toohello hálózati biztonsági csoport hozzáadása, ha rendelkezik ilyennel.
 
-##### <a name="create-a-path-for-http-traffic-to-flow"></a>A HTTP-forgalom áramlását az elérési utat hoz létre
+##### <a name="create-a-path-for-http-traffic-tooflow"></a>A HTTP-forgalom tooflow elérési utat hoz létre
 
-1. Ha korlátozásait a hálózati hely (például a hálózati biztonsági csoport) található, a forgalmat a HTTP-proxy kiszolgáló telepítése
-2. Engedélyezi az Internet elérését a HTTP-proxy kiszolgáló, a szabályok hozzáadása a hálózati biztonsági csoporthoz, ha rendelkezik ilyennel.
+1. Ha korlátozásait a hálózati hely (például a hálózati biztonsági csoport) található, telepíthet egy HTTP-proxy kiszolgáló tooroute hello forgalom.
+2. tooallow hozzáférés toohello Internet hello HTTP-proxy kiszolgáló, szabályok toohello hálózati biztonsági csoport hozzáadása, ha rendelkezik ilyennel.
 
-Megtudhatja, hogyan állíthat be egy HTTP-proxy a virtuális gép biztonsági mentésekhez, lásd: [készítse elő a környezetet a biztonsági mentése Azure virtuális gépek](backup-azure-vms-prepare.md#using-an-http-proxy-for-vm-backups).
+Hogyan tooset egy HTTP-proxy a virtuális gép biztonsági mentése: toolearn [készítse elő a környezetet tooback Azure virtuális gépek](backup-azure-vms-prepare.md#using-an-http-proxy-for-vm-backups).
 
-Abban az esetben felügyelt lemezt használ, szükség lehet egy további port (8443) nyitása a tűzfalon a.
+Abban az esetben felügyelt lemezt használ, szükség lehet egy további port (8443) megnyitása a hello tűzfalak.
 
-### <a name="the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>Az ügynök telepítve azonban nem válaszol a virtuális gép (Windows virtuális gépek)
+### <a name="hello-agent-installed-in-hello-vm-but-unresponsive-for-windows-vms"></a>hello-ügynök van telepítve a virtuális gép hello azonban nem válaszoló (a Windows-alapú virtuális gépek)
 
 #### <a name="solution"></a>Megoldás
-A Virtuálisgép-ügynök előfordulhat, hogy sérült, vagy a szolgáltatás esetleg leállt. A Virtuálisgép-ügynök újbóli telepítése segít az a legújabb verzióra, és indítsa újra a kommunikációt.
+Virtuálisgép-ügynök hello előfordulhat, hogy sérült, vagy hello szolgáltatás előfordulhat, hogy le lett állítva. Hello VM ügynök újbóli telepítése segítene hello legújabb verzióra, és indítsa újra a hello kommunikációt.
 
-1. Ellenőrizze, hogy a virtuális gép (services.msc) szolgáltatásban futó Windows Vendégügynök szolgáltatás. Próbálja meg, indítsa újra a Vendégügynök Windows-szolgáltatást, és a biztonsági mentése<br>
+1. Ellenőrizze, hogy a Windows vendég ügynökszolgáltatás (services.msc) szolgáltatást futtató virtuális gép hello. Próbálja meg hello Windows vendég ügynök szolgáltatás újraindításához, majd biztonsági mentés hello kezdeményezni<br>
 2. Ha nem látható a szolgáltatások, ellenőrizze a programok és szolgáltatások, hogy Windows vendég ügynökszolgáltatás telepítve van.
-4. Ha Ön megtekintheti a Programok telepítése és szolgáltatások a Windows-Vendégügynök eltávolításához.
-5. Töltse le és telepítse a [ügynök MSI legfrissebb verzióját](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). A telepítés befejezéséhez rendszergazdai jogosultságok szükségesek.
-6. Ezután meg kell Windows Vendégügynök services szolgáltatások megtekintése
-7. Próbálja meg futtatni egy a-igény szerinti/ad hoc biztonsági mentés "Biztonsági mentés most" gombra kattintva a portálon.
+4. Ha a programok és szolgáltatások eltávolítása hello Windows Vendégügynök képes tooview.
+5. Töltse le és telepítse a hello [ügynök MSI legfrissebb verzióját](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409). Rendszergazdai jogosultságok toocomplete hello telepítési van szüksége.
+6. Majd a szolgáltatások képesek tooview Windows Vendégügynök szolgáltatásaira kell lennie
+7. Próbálja meg futtatni egy a-igény szerinti/ad hoc biztonsági mentés most elemre kattintva "biztonsági másolat" hello portálon.
 
-Emellett ellenőrizze a virtuális gép rendelkezik  **[a rendszeren telepítve a .NET 4.5](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)**. Szükséges, hogy a Virtuálisgép-ügynök a szolgáltatással való kommunikációra az
+Emellett ellenőrizze a virtuális gép rendelkezik  **[hello rendszeren telepítve a .NET 4.5](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed)**. Szükséges, hogy az hello VM ügynök toocommunicate hello szolgáltatásban
 
-### <a name="the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms"></a>A virtuális gépen telepített ügynök elavult (a Linux virtuális gépek)
+### <a name="hello-agent-installed-in-hello-vm-is-out-of-date-for-linux-vms"></a>hello ügynök van telepítve, a virtuális gép hello elavult (a Linux virtuális gépek)
 
 #### <a name="solution"></a>Megoldás
-Legtöbb ügynök vagy bővítmény kapcsolódó hibák Linux virtuális gépek elavult Virtuálisgép-ügynök befolyásoló problémákat okozzák. A probléma megoldásához kövesse az alábbi általános irányelveket:
+Legtöbb ügynök vagy bővítmény kapcsolódó hibák Linux virtuális gépek elavult Virtuálisgép-ügynök befolyásoló problémákat okozzák. tootroubleshoot probléma, kövesse az alábbi általános irányelveket:
 
-1. Kövesse az utasításokat [Linux ügynök frissítése](../virtual-machines/linux/update-agent.md).
+1. Kövesse az utasításokat hello [hello Linux Virtuálisgép-ügynök frissítése](../virtual-machines/linux/update-agent.md).
 
  >[!NOTE]
- >A Microsoft *erősen ajánlott* frissíteni az ügynököt csak egy terjesztési-tárházat. Nem ajánlott közvetlenül a Githubból a kód letöltése és frissítése. Ha a legújabb-ügynök nem érhető el a terjesztéshez, ügyfélszolgálatához terjesztési kapcsolatos utasításokat a telepítéshez. A legújabb ügynököt ellenőrzéséhez nyissa meg a [Windows Azure Linux ügynök](https://github.com/Azure/WALinuxAgent/releases) a GitHub-tárházban lapján.
+ >A Microsoft *erősen ajánlott* csak egy terjesztési tárház hello ügynököt frissíteni. Nem ajánlott közvetlenül a Githubból hello kód letöltése és frissítése. Ha hello legújabb ügynök nem érhető el a terjesztéshez, ügyfélszolgálatához terjesztési útmutatást tooinstall azt. hello legutóbbi ügynök, nyissa meg toohello toocheck [Windows Azure Linux ügynök](https://github.com/Azure/WALinuxAgent/releases) hello GitHub-tárházban lapján.
 
-2. Győződjön meg arról, hogy az Azure-ügynök fut a virtuális Gépet a következő parancs futtatásával:`ps -e`
+2. Győződjön meg arról, hogy hello Azure-ügynök fut hello VM hello a következő parancs futtatásával:`ps -e`
 
- Ha a folyamat nem fut, indítsa újra a következő parancsokkal:
+ Ha hello folyamat nem fut, indítsa újra a következő parancsok hello segítségével:
 
  * Az Ubuntu:`service walinuxagent start`
  * Az egyéb terjesztéseket:`service waagent start`
 
-3. [Konfigurálja az automatikus újraindítás ügynököt](https://github.com/Azure/WALinuxAgent/wiki/Known-Issues#mitigate_agent_crash).
-4. Egy új teszt biztonsági mentés futtatására. Ha a hiba továbbra is fennáll, gyűjtse össze a következő naplók kapcsolódnak az ügyfél virtuális gépről:
+3. [Hello automatikus újraindítás ügynök konfigurálása](https://github.com/Azure/WALinuxAgent/wiki/Known-Issues#mitigate_agent_crash).
+4. Egy új teszt biztonsági mentés futtatására. Ha hello hiba továbbra is fennáll, gyűjtse össze hello naplók hello az ügyfél virtuális gépről a következő:
 
    * /var/lib/waagent/*.XML
    * /var/log/waagent.log
@@ -131,44 +131,44 @@ Legtöbb ügynök vagy bővítmény kapcsolódó hibák Linux virtuális gépek 
 
 Ha a részletes naplózást az waagent kérjük, kövesse az alábbi lépéseket:
 
-1. A /etc/waagent.conf fájlban keresse meg a következő sort: **részletes naplózás engedélyezése (y |} n)**
-2. Módosítsa a **Logs.Verbose** értéket  *n*  való *y*.
-3. A módosítás mentéséhez, és indítsa újra waagent ebben a szakaszban az előző lépéseket követve.
+1. Hello /etc/waagent.conf fájlban keresse meg a következő sor hello: **részletes naplózás engedélyezése (y |} n)**
+2. Változás hello **Logs.Verbose** értéket  *n*  túl*y*.
+3. Hello módosítás mentéséhez, és indítsa újra waagent hello a jelen szakaszban szereplő korábbi lépéseket követve.
 
-### <a name="the-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>A pillanatkép állapotát nem sikerült beolvasni vagy a pillanatkép nem végezhető
-A virtuális gép biztonsági mentése támaszkodik egy pillanatkép parancs kiadása az alapul szolgáló tárolási fiók. Biztonsági mentés sikertelen lehet, mert nem érhető el a tárfiók, vagy a pillanatkép-feladat végrehajtása késik.
+### <a name="hello-snapshot-status-cannot-be-retrieved-or-a-snapshot-cannot-be-taken"></a>hello pillanatkép állapotát nem sikerült beolvasni vagy pillanatkép nem végezhető.
+egy pillanatkép parancs toohello alapul szolgáló tárfiókot kiállító hello virtuális gép biztonsági mentése támaszkodik. Biztonsági mentés sikertelen lehet, mert nincs hozzáférési toohello tárfiók, vagy késleltetve hello hello pillanatkép-feladat végrehajtása.
 
 #### <a name="solution"></a>Megoldás
-A következő okok miatt jöhet létre pillanatkép-feladat sikertelensége:
+a következő feltételek hello okozhat a pillanatkép-feladat sikertelensége:
 
 | Ok | Megoldás |
 | --- | --- |
-| A virtuális Gépnek legyen beállítva SQL Server biztonsági másolat. | Alapértelmezés szerint a virtuális gép biztonsági mentése fut a VSS teljes biztonsági mentés a Windows virtuális gépeken. A virtuális gépeken futó SQL Server-alapú kiszolgálók és az SQL Servert mentés konfigurálva van, pillanatkép végrehajtási késések fordulhat elő.<br><br>Ha a biztonsági mentés hibát tapasztal egy pillanatkép probléma miatt, állítsa be a következő beállításkulcsot:<br><br>**[HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\BCDRAGENT] "USEVSSCOPYBACKUP"="TRUE"** |
-| A virtuális gép állapotát jelentett nem megfelelő, mert a virtuális gép RDP a leállítása. | Ha leállítja a virtuális gép távoli asztal protokoll (RDP), ellenőrizze, helyes-e a virtuális gép állapotának meghatározásához a portálon. Ha nem megfelelő, használatával állítsa le a virtuális Gépet a portálon a **leállítási** a virtuális gép irányítópulton lehetőséget. |
-| Azonos felhőalapú szolgáltatásából sok virtuális gép biztonsági mentése egy időben vannak konfigurálva. | Akkor célszerű felülbírálásokkal a mentési ütemezések virtuális gépek azonos felhőalapú szolgáltatásából. |
-| A virtuális gép fut, magas CPU és memória-használatot. | Ha a virtuális gép magas CPU-használat (több mint 90 %-) vagy a magas memóriahasználatban fut, a pillanatkép-feladat várólistára, és késleltetett, és végül időtúllépéssel leáll. Ilyen esetben próbálkozzon egy igény szerinti biztonsági mentést. |
-| A virtuális gép nem tud a gazdagép/háló címet a DHCP-Kiszolgálótól. | A Vendég típusú infrastruktúra-szolgáltatási virtuális gép biztonsági mentésre működéséhez engedélyezni kell a DHCP.  Ha a virtuális gép nem olvasható be a gazdagép/háló címet a DHCP-válasz 245, ez nem töltse le, vagy kiterjesztések futtatása. Ha statikus magánhálózati IP-címe van szüksége, úgy kell beállítania, a platform keresztül. A DHCP-beállítást a virtuális Gépen belül balra engedélyezni kell. További információkért lásd: [egy statikus belső privát IP-cím beállítása](../virtual-network/virtual-networks-reserved-private-ip.md). |
+| hello VM SQL Server biztonsági mentés konfigurálva van. | Alapértelmezés szerint az hello VM biztonsági mentés VSS teljes biztonsági mentés futó Windows virtuális gépek. A virtuális gépeken futó SQL Server-alapú kiszolgálók és az SQL Servert mentés konfigurálva van, pillanatkép végrehajtási késések fordulhat elő.<br><br>Ha biztonsági mentés hibát tapasztal egy pillanatkép probléma miatt, állítsa be a következő beállításkulcs hello:<br><br>**[HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\BCDRAGENT] "USEVSSCOPYBACKUP"="TRUE"** |
+| hello virtuális gép állapotát jelentette megfelelően, mert hello virtuális gép RDP a leállítása. | Ha kikapcsolja a virtuális gép távoli asztal protokoll (RDP) hello, ellenőrizze a portál toodetermine hello hello virtuális gép állapota megfelelő-e. Ha nem megfelelő, használatával állítsa le virtuális gép hello hello portálon hello **leállítási** hello VM irányítópulton lehetőséget. |
+| Sok virtuális gép ugyanazon a felhőalapú szolgáltatás vannak hello a konfigurált tooback mentése hello ugyanannyi időt vesz igénybe. | A bevált gyakorlat toospread hello biztonsági mentés ütemezésének virtuális gépek a hello ki ugyanaz a felhőalapú szolgáltatás. |
+| hello VM a magas CPU és memória kihasználtsága fut. | Ha magas CPU-használat (több mint 90 %-) vagy a magas memóriahasználatban hello virtuális gép fut, hello pillanatkép-feladat várólistára, és késleltetett, és végül időtúllépéssel leáll. Ilyen esetben próbálkozzon egy igény szerinti biztonsági mentést. |
+| hello virtuális gép nem tud hello gazdagép/háló címet a DHCP-Kiszolgálótól. | DHCP engedélyezve kell lennie az infrastruktúra-szolgáltatási virtuális gép biztonsági mentési toowork hello hello Vendég.  Hello virtuális gép nem tud hello gazdagép/háló címet a DHCP-válaszban 245, azt nem töltse le, vagy nem futtatható a kiterjesztést. Ha statikus magánhálózati IP-címe van szüksége, úgy kell beállítania, hello platformon keresztül. hello DHCP-beállítást engedélyezni kell hagyni a virtuális gép hello belül. További információkért lásd: [egy statikus belső privát IP-cím beállítása](../virtual-network/virtual-networks-reserved-private-ip.md). |
 
-### <a name="the-backup-extension-fails-to-update-or-load"></a>A tartalék mellék nem tudja frissíteni vagy nem tölthető be
+### <a name="hello-backup-extension-fails-tooupdate-or-load"></a>tartalék mellék hello tooupdate vagy betöltése sikertelen
 Nem tölthetők be bővítmények, ha a biztonsági mentés meghiúsul, mert a pillanatkép nem végezhető.
 
 #### <a name="solution"></a>Megoldás
 
-**A Windows-vendégek:** győződjön meg arról, hogy a iaasvmprovider szolgáltatás engedélyezve van, és indítási típust *automatikus*. Ha a szolgáltatás nem így van konfigurálva, engedélyezheti annak meghatározásához, hogy a következő biztonsági mentés sikeres.
+**A Windows-vendégek:** győződjön meg arról, hogy hello iaasvmprovider szolgáltatás engedélyezve van, és az indítási típust *automatikus*. Ha így hello szolgáltatás nincs konfigurálva, engedélyezze azt toodetermine e hello következő biztonsági mentés sikeres lesz.
 
-**A Linux-vendégek:** VMSnapshot legújabb verziójának ellenőrzése, Linux (a biztonsági mentés által használt kiterjesztés) érték 1.0.91.0.<br>
+**A Linux-vendégek:** ellenőrizze hello legújabb VMSnapshot Linux (biztonsági mentés által használt hello kiterjesztés) verziószáma 1.0.91.0.<br>
 
 
-Ha a tartalék mellék még mindig nem tudja frissíteni vagy nem tölthető be, kényszerítheti az VMSnapshot bővítményt, hogy a bővítmény eltávolításával töltve. A következő biztonsági mentési kísérlet újrabetöltést végez a bővítményt.
+Ha hello tartalék mellék továbbra sem sikerül tooupdate vagy terhelés, kényszerítheti hello VMSnapshot bővítmény toobe hello bővítmény távolítsa el a módosítás. hello következő biztonsági mentési kísérlet hello bővítmény újrabetöltést végez.
 
-Távolítsa el a bővítményt, tegye a következőket:
+toouninstall hello kiterjesztés, a következő hello:
 
-1. Nyissa meg az [Azure Portal](https://portal.azure.com/).
-2. Keresse meg a virtuális Gépet, amely a biztonsági mentési problémái vannak.
+1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com/).
+2. Keresse meg a virtuális Gépet, amely a biztonsági mentési problémák vannak az hello.
 3. Kattintson a **beállítások**.
 4. Kattintson a **bővítmények**.
 5. Kattintson a **Vmsnapshot bővítmény**.
 6. Kattintson a **eltávolítása**.
 
-Ez az eljárás azt eredményezi, a bővítmény a következő biztonsági mentés során újra kell telepíteni.
+Ez az eljárás azt eredményezi, hello bővítmény toobe újratelepítése hello következő biztonsági mentés során.
 

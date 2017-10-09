@@ -1,53 +1,53 @@
 <!--author=alkohli last changed: 01/18/17 -->
 
-#### <a name="to-install-updates-via-the-azure-portal"></a>Frissítések telepítése az Azure Portalon keresztül
+#### <a name="tooinstall-updates-via-hello-azure-portal"></a>tooinstall frissítések hello Azure-portálon keresztül
 
-1. Nyissa meg a StorSimple-eszközkezelőt, és válassza az **Eszközök** elemet. A szolgáltatáshoz csatlakozó eszközök listájából válassza ki a frissíteni kívánt eszközt, majd kattintson rá. 
+1. Nyissa meg a StorSimple Device Manager tooyour, és válassza ki **eszközök**. Eszközök csatlakoztatott tooyour szolgáltatás hello listáról válassza ki, majd kattintson a kívánt tooupdate hello eszköz. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate1m.png) 
 
-2. A **Beállítások** panelen kattintson az **Eszközfrissítések** elemre. 
+2. A hello **beállítások** panelen kattintson a **eszközfrissítésekhez**. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate2m.png)  
 
-3. Megjelenik a szoftverfrissítések elérhetőségét jelző üzenet. A frissítések kereséséhez a **Vizsgálat** gombot is használhatja.
+3. Megjelenik egy üzenet, ha hello rendszerekhez szoftverfrissítések érhetők el. frissítések toocheck, kattintva **vizsgálata**.
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate3m1.png)
 
-    A vizsgálat indításáról és sikeres befejezéséről értesítést kap.
+    Ön értesítést fog kapni hello vizsgálat elindul, és sikeresen befejeződik.
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate5m.png)
 
-4. Ha elkészült a frissítések vizsgálata, kattintson a **Frissítések letöltése** gombra. 
+4. Amikor hello frissítések vizsgálata, kattintson a **frissítések letöltése**. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate6m.png)
 
-5. Az **Új frissítések** panel tájékoztatja arról, hogy a frissítések letöltése után meg kell erősítenie a telepítésüket. Kattintson az **OK** gombra.
+5. A hello **új frissítések** panelen hello frissítések letöltését követően újra kell tooconfirm hello telepítési hello információk áttekintése. Kattintson az **OK** gombra.
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate7m.png)
 
-6. A feltöltés indításáról és sikeres befejezéséről értesítést kap.
+6. Értesítést kap hello feltöltés elindul, és sikeresen befejeződik.
 
      ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate8m.png)
 
-5. Az **Eszközfrissítések** panelen kattintson a **Telepítés** elemre.
+5. A hello **eszközfrissítésekhez** panelen kattintson a **telepítése**.
 
      ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate11m1.png)   
 
-6. Az **Új frissítések** panelen a rendszer figyelmezteti, hogy a frissítési folyamat megszakítja az eszköz egyéb folyamatait. Mivel a virtuális tömb egy egyetlen csomóponttal rendelkező eszköz, ezért az eszköz a frissítést követően újraindul. Ez megszakítja a folyamatban lévő I/O-műveleteket. A frissítések telepítéséhez kattintson az **OK** gombra. 
+6. A hello **új frissítések** panelen figyelmeztet hello ez őket. Mivel a virtuális tömb egy egycsomópontos eszköz, hello eszköz újraindul, frissítését követően. Ez megszakítja a folyamatban lévő I/O-műveleteket. Kattintson a **OK** tooinstall hello frissítések. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate12m.png) 
 
-7. A telepítési feladat indításáról értesítést kap. 
+7. Hello telepítési feladat elindításakor értesítést kap. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate13m.png)
 
-8.  A telepítési feladat sikeres befejezése után a telepítés eredményeinek megtekintéséhez kattintson a **Feladat megtekintése** hivatkozásra az **Eszközfrissítések** panelen. 
+8.  Hello telepítési feladat sikeres befejeződése után kattintson **feladat megtekintése** hello hivatkozásra **eszközfrissítésekhez** panel toomonitor hello telepítését. 
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate15m1.png)
 
-    Ezzel továbblép a **Frissítések telepítése** panelre. A feladatról részletes információt itt talál.
+    Ezzel megnyitná toohello **frissítések telepítése** panelen. Itt hello feladat részletes információkat tekintheti meg.
 
     ![eszköz frissítése](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate16m1.png)
 
-9. A frissítések sikeres telepítéséről értesítést láthat az **Eszközfrissítések** panelen. 
+9. Hello frissítés sikeres telepítését követően megjelenik egy üzenet toothis hatása hello **eszközfrissítésekhez** panelen. 

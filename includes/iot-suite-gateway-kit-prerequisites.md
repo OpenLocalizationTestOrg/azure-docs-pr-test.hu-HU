@@ -1,22 +1,22 @@
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez aktív Azure-előfizetésre lesz szüksége.
+toocomplete ebben az oktatóanyagban aktív Azure-előfizetés szükséges.
 
 > [!NOTE]
 > Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk-free-trial].
 
 ### <a name="required-software"></a>Szükséges szoftverek
 
-SSH-ügyfél van szüksége ahhoz, hogy a parancssor az Intel NUC a távoli eléréséhez a asztali számítógépen.
+SSH-ügyfél az Ön tooremotely hozzáférés hello parancs sor a hello Intel NUC asztali gépen tooenable kell.
 
 - A Windows tartalmaz egy SSH-ügyfél. Azt javasoljuk, [PuTTY](http://www.putty.org/).
-- A legtöbb Linux terjesztéseket, a Mac OS közé tartoznak az SSH parancssori segédprogramot.
+- A legtöbb Linux terjesztéseket, a Mac OS parancssori segédprogram hello a SSH közé
 
 ### <a name="required-hardware"></a>Szükséges hardver
 
-Ahhoz, hogy a parancssor az Intel NUC a távoli csatlakozás egy asztali számítógépen.
+Egy asztali számítógépen tooenable meg tooconnect távolról toohello parancs sor a hello Intel NUC.
 
-[Az IoT kereskedelmi átjáró Kit][lnk-starter-kits]. Ez az oktatóanyag a csomagot a következő elemeket használja:
+[Az IoT kereskedelmi átjáró Kit][lnk-starter-kits]. Ez az oktatóanyag használja a következő elemek hello Kit hello:
 
 - Intel® NUC Kit DE3815TYKE 4G memória és a Bluetooth bővítése kártya
 - Energiagazdálkodási adapter

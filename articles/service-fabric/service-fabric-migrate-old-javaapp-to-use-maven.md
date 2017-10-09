@@ -1,6 +1,6 @@
 ---
-title: "Migrálás a Java SDK-ból a Mavenbe – Régi Azure Service Fabric Java-alkalmazások frissítése a Maven használatára | Microsoft Docs"
-description: "Frissítse a még a Service Fabric Java SDK-t használó régebbi Java-alkalmazásokat, hogy a Service Fabric Java-függőségeiket a Mavenből kérjék le. A beállítás elvégzését követően a régebbi Java-alkalmazások fel tudnak majd épülni."
+title: "a Java SDK tooMaven - aaaMigrate régi Azure Service Fabric Java-alkalmazások toouse Maven frissítése |} Microsoft Docs"
+description: "Frissítés hello régebbi Java-alkalmazások toouse hello Service Fabric Java SDK, amellyel a Maven toofetch Service Fabric Java függőségek. A telepítés befejezése után a régebbi Java-alkalmazások lenne képes toobuild."
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: saysa
-ms.openlocfilehash: 2123c5f26d77045bd22af56a844fdbf222930e7b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11b979facd7b3865141a6d3a035a6021dd06ca0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="update-your-previous-java-service-fabric-application-to-fetch-java-libraries-from-maven"></a>Korábbi Java Service Fabric-alkalmazások frissítése a Java-kódtárak a Mavenből történő lekérésére
-Nemrégiben áthelyeztük a Service Fabric Java bináris fájlokat a Service Fabric Java SDK-ból a Mavenen futó tárakba. A **mavencentral** paranccsal mostantól lekérheti a legújabb Service Fabric Java-függőségeket. Ennek a gyors üzembehelyezési útmutatónak a segítségével Yeoman-sablonok vagy az Eclipse használatával frissítheti a korábban a Service Fabric Java SDK-val való használatra létrehozott meglévő Java-alkalmazásait, hogy a Maven-alapú build kompatibilis legyen azokkal.
+# <a name="update-your-previous-java-service-fabric-application-toofetch-java-libraries-from-maven"></a>Az előző Java Service Fabric application toofetch Java-könyvtárakat a Maven frissítése
+A hello Service Fabric Java SDK tooMaven üzemeltető nemrég került át Service Fabric Java bináris fájljait. Mostantól a **mavencentral** toofetch hello legújabb Service Fabric Java függőségek. A gyors üzembe helyezési segítségével frissíti a meglévő Java-alkalmazások, amelyek korábban létrehozott toobe használt sablon vagy Eclipse toobe kompatibilis hello alapú Maven build a Service Fabric Java SDK, vagy Yeoman használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
-1. Először is el kell távolítania a meglévő Java SDK-t.
+1. Először meg kell toouninstall meglévő Java SDK hello.
 
   ```bash
   sudo dpkg -r servicefabricsdkjava
   ```
-2. Telepítse a legújabb Service Fabric parancssori felületet az [itt](service-fabric-cli.md) leírt lépések végrehajtásával.
+2. Telepítés hello legújabb Service Fabric CLI következő hello leírt lépéseket [Itt](service-fabric-cli.md).
 
-3. A Service Fabric Java-alkalmazások létrehozásához és szerkesztéséhez mindenképp telepíteni kell a JDK 1.8-at és a Gradle-t. Ha a JDK 1.8 (openjdk-8-jdk) és a Gradle még nincsenek telepítve, a következő futtatásával telepítheti azokat –
+3. toobuild és hello Service Fabric Java-alkalmazások dolgoznak, van szüksége, hogy Ön JDK 1.8 Gradle telepítve és tooensure. Ha még nincs telepítve, futtatható következő tooinstall hello JDK 1.8 (openjdk-8-jdk) és a Gradle -
 
  ```bash
  sudo apt-get install openjdk-8-jdk-headless
  sudo apt-get install gradle
  ```
-4. Az [itt](service-fabric-application-lifecycle-sfctl.md) leírt lépések végrehajtásával frissítse az alkalmazás telepítési/eltávolítási szkriptjeit, hogy azok az új Service Fabric parancssori felületet használják. Referenciaként tekintse meg az első lépéseket bemutató [példákat](https://github.com/Azure-Samples/service-fabric-java-getting-started).
+4. Frissítés hello telepítési/eltávolítási parancsfájlok, az alkalmazás toouse hello új Service Fabric CLI említett hello lépések [Itt](service-fabric-application-lifecycle-sfctl.md). Olvassa el a kezdeti lépések tooour [példák](https://github.com/Azure-Samples/service-fabric-java-getting-started) referenciaként.
 
 >[!TIP]
-> A Service Fabric Java SDK eltávolítása után a Yeoman nem fog működni. Az [itt](service-fabric-create-your-first-linux-application-with-java.md) leírt előfeltételeket követve helyezze üzembe a Service Fabric Yeoman Java-sablongenerátort.
+> Service Fabric Java SDK hello az Eltávolítás után Yeoman nem fog működni. Hajtsa végre az említett hello Előfeltételek [Itt](service-fabric-create-your-first-linux-application-with-java.md) toohave Service Fabric Yeoman Java sablon generátor mentése, valamint működik.
 
 ## <a name="service-fabric-java-libraries-on-maven"></a>Service Fabric Java-kódtárak a Mavenben
-A Service Fabric Java-kódtárak a Mavenben üzemelnek. A függőségeket a projektek ``pom.xml`` vagy ``build.gradle`` fájljában adhatja hozzá a **mavenCentral** Service Fabric Java-kódtárainak használatához.
+A Service Fabric Java-kódtárak a Mavenben üzemelnek. Hello függőségek hello adhat hozzá ``pom.xml`` vagy ``build.gradle`` a projektek toouse Service Fabric Java szalagtárak a **mavenCentral**.
 
 ### <a name="actors"></a>Aktorok
 
@@ -90,7 +90,7 @@ A Service Fabric állapotmentes szolgáltatás támogatása az alkalmazáshoz.
 ### <a name="others"></a>Egyéb
 #### <a name="transport"></a>Átvitel
 
-Az átviteli réteg támogatása a Service Fabric Java-alkalmazáshoz. Ezt a függőséget nem kell kifejezetten hozzáadnia a Reliable Actor- vagy Service-alkalmazásaihoz, hacsak a programozást nem az átviteli réteg szintjén végzi.
+Az átviteli réteg támogatása a Service Fabric Java-alkalmazáshoz. Nem kell tooexplicitly adja hozzá a függőség tooyour megbízható szereplő vagy szolgáltatásalkalmazások, kivéve, ha hello a szállítási rétegben a programot.
 
   ```XML
   <dependency>
@@ -111,7 +111,7 @@ Az átviteli réteg támogatása a Service Fabric Java-alkalmazáshoz. Ezt a fü
 
 #### <a name="fabric-support"></a>Fabric-támogatás
 
-A natív Service Fabric-futtatókörnyezettel kommunikáló Service Fabric rendszerszintű támogatása. Ezt a függőséget nem kell kifejezetten hozzáadnia a Reliable Actor- vagy Service-alkalmazásaihoz. A rendszer automatikusan lekéri azt a Mavenből a fent említett további függőségek hozzáadásakor.
+Rendszer szintű támogatás a Service Fabric, amely toonative Service Fabric-futtatókörnyezet-kiszolgálóhoz. Nem kell tooexplicitly hozzáadása a megbízható szereplő függőségi tooyour vagy szolgáltatásalkalmazás. Ez lekérdezi automatikusan lekérni a Maven, amikor felveszi hello más függőségeket.
 
   ```XML
   <dependency>
@@ -133,7 +133,7 @@ A natív Service Fabric-futtatókörnyezettel kommunikáló Service Fabric rends
 
 ## <a name="migrating-service-fabric-stateless-service"></a>A Service Fabric állapotmentes szolgáltatás migrálása
 
-A meglévő Service Fabric állapotmentes Java-szolgáltatás a Mavenből lekért Service Fabric-függőségek használatával való létrehozásához frissítenie kell a ``build.gradle`` fájlt a szolgáltatásban. Korábban ez az alábbihoz hasonló volt –
+toobe képes toobuild tooupdate hello kell a meglévő Service Fabric állapotmentes Java szolgáltatást a Service Fabric-függőségek Maven a lehívott használatával, ``build.gradle`` belüli hello szolgáltatást. Korábban használt toobe például a következőképpen-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -166,7 +166,7 @@ task copyDeps <<{
     }
 }
 ```
-Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –
+Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében
 ```
 repositories {
         mavenCentral()
@@ -219,20 +219,20 @@ task copyDeps <<{
     }
 }
 ```
-Általánosságban véve, ha szeretne átfogó képet kapni arról, hogy a felépítési szkriptek hogyan néznek ki egy Service Fabric állapotmentes Java-szolgáltatásban, tekintse meg az első lépéseket bemutató példáinkban szereplő bármelyik mintát. Itt van például a [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) az EchoServer-mintához.
+Általában tooget átfogó képet arról, hogyan hello build script alábbihoz hasonlóan fog kinézni a Service Fabric állapotmentes Java szolgáltatás számára, olvassa el a tooany minta az első lépéseket példákban. Íme hello [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) hello EchoServer minta.
 
 ## <a name="migrating-service-fabric-actor-service"></a>A Service Fabric aktorszolgáltatás migrálása
 
-A meglévő Service Fabric-aktor Java-alkalmazás a Mavenből lekért Service Fabric-függőségek használatával való létrehozásához frissítenie kell a ``build.gradle`` fájlt az illesztőcsomagban és a Service csomagban. Ha TestClient csomaggal is rendelkezik, azt is frissítenie kell. Tehát például a ``Myactor`` aktor esetében az alábbi helyeken kell frissítést végeznie –
+toobe képes toobuild tooupdate hello kell a meglévő Service Fabric szereplő Java-alkalmazások használatával a Service Fabric-függőségek Maven a lehívott, ``build.gradle`` fájl belül hello felületet, és a hello szolgáltatás csomagban. Ha TestClient csomaggal rendelkezik, akkor tooupdate is, amely. Igen, a aktor ``Myactor``, hello következő lenne tooupdate - kell hello helyek
 ```
 ./Myactor/build.gradle
 ./MyactorInterface/build.gradle
 ./MyactorTestClient/build.gradle
 ```
 
-#### <a name="updating-build-script-for-the-interface-project"></a>Az illesztőprojekt felépítési szkriptjének frissítése
+#### <a name="updating-build-script-for-hello-interface-project"></a>Build script hello felület projekt frissítése
 
-Korábban ez az alábbihoz hasonló volt –
+Korábban használt toobe például a következőképpen-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -240,7 +240,7 @@ dependencies {
 .
 .
 ```
-Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –
+Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében
 ```
 repositories {
     mavenCentral()
@@ -271,9 +271,9 @@ compileJava.dependsOn(explodeDeps)
 .
 ```
 
-#### <a name="updating-build-script-for-the-actor-project"></a>Az aktorprojekt felépítési szkriptjének frissítése
+#### <a name="updating-build-script-for-hello-actor-project"></a>Build script hello szereplő projekt frissítése
 
-Korábban ez az alábbihoz hasonló volt –
+Korábban használt toobe például a következőképpen-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -312,7 +312,7 @@ task copyDeps<< {
     }
 }
 ```
-Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –
+Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében
 ```
 repositories {
     mavenCentral()
@@ -370,9 +370,9 @@ task copyDeps<< {
 }
 ```
 
-#### <a name="updating-build-script-for-the-test-client-project"></a>A tesztügyfélprojekt felépítési szkriptjének frissítése
+#### <a name="updating-build-script-for-hello-test-client-project"></a>Build script hello teszt ügyfél projekt frissítése
 
-Ezek a módosítások hasonlóak az előző szakasz, azaz az aktorprojekt esetében leírt módosításokhoz. Korábban a Gradle-szkript az alábbihoz hasonló volt –
+Változás az előző szakaszban, ez azt jelenti, hogy a hello szereplő projekt tárgyalt hasonló toohello módosítások. Korábban a gradle-lel használt parancsfájl toobe, például az alábbiak szerint - hello
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -412,7 +412,7 @@ task copyDeps<< {
         }
 }
 ```
-Most azonban a függőségek a Mavenből való lekéréséhez a **frissített** ``build.gradle`` fájlban a vonatkozó részek a következőképp néznek ki –
+Most, toofetch hello függőségek a Mavenben, hello **frissítése** ``build.gradle`` az alábbiak szerint - kellene hello megfelelő részében
 ```
 repositories {
     mavenCentral()
@@ -476,4 +476,4 @@ task copyDeps<< {
 
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren Yeoman használatával](service-fabric-create-your-first-linux-application-with-java.md)
 * [Az első Service Fabric Java-alkalmazás létrehozása és üzembe helyezése Linux rendszeren az Eclipse Service Fabric beépülő modul használatával](service-fabric-get-started-eclipse.md)
-* [Service Fabric-fürtök használata a Service Fabric parancssori felületén](service-fabric-cli.md)
+* [Kommunikál a Service Fabric-fürtök hello Service Fabric parancssori felület használatával](service-fabric-cli.md)

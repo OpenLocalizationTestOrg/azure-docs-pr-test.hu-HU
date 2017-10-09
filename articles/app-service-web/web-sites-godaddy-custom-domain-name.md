@@ -1,6 +1,6 @@
 ---
-title: "Egyéni tartománynév beállítása az Azure App Service (GoDaddy)"
-description: "A GoDaddy tartomány nevét az Azure Web Apps használata"
+title: "az Azure App Service (GoDaddy) egy egyéni tartománynevet aaaConfigure"
+description: "Ismerje meg, hogyan toouse a tartomány nevére az Azure Web Apps GoDaddy"
 services: app-service
 documentationcenter: 
 author: erikre
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
-ms.openlocfilehash: 158c5dc06f83e16633d3c2fbb4eb27d3e8af030c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48158ee752f9833249bbf85adf80f572d1c68486
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-custom-domain-name-in-azure-app-service-purchased-directly-from-godaddy"></a>Egyéni (közvetlenül a GoDaddytől vásárolt) tartománynév konfigurálása az Azure App Service-ben
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
 
 [!INCLUDE [intro](../../includes/custom-dns-web-site-intro.md)]
 
-Ha tartományi Azure App Service Web Apps keresztül vásárolt, akkor tekintse meg az utolsó lépésében [tartomány vásárlása Web Apps](custom-dns-web-site-buydomains-web-app.md).
+Ha a tartomány Azure App Service Web Apps keresztül vásárolt, majd tekintse meg az utolsó lépésében toohello [tartomány vásárlása Web Apps](custom-dns-web-site-buydomains-web-app.md).
 
 Ez a cikk útmutatás segítségével egy egyéni tartománynevet, közvetlenül a megvásárolt [GoDaddy](https://godaddy.com) rendelkező [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
 
@@ -39,52 +39,52 @@ Ez a cikk útmutatás segítségével egy egyéni tartománynevet, közvetlenül
 <a name="bkmk_configurecname"></a>
 
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>Az egyéni tartomány DNS-rekord hozzáadása
-Az egyéni tartomány társítandó egy webalkalmazást az App Service-ben, hozzá kell adnia egy új bejegyzést a DNS-tábla az egyéni tartomány GoDaddy által biztosított eszközök segítségével. Az alábbi lépések segítségével keresse meg a DNS-eszközök a GoDaddy.com
+tooassociate egy webalkalmazást az App Service szolgáltatásban az egyéni tartományt, hozzá kell adnia egy új bejegyzést hello DNS-tábla az egyéni tartomány GoDaddy által biztosított eszközök segítségével. Következő lépések toolocate hello DNS-eszközök a GoDaddy.com hello használata
 
-1. Jelentkezzen be GoDaddy.com fiókját, és válassza ki **saját fiók** , majd **a tartományok kezelése**. Válassza ki a tartománynév, amely az Azure-webalkalmazásban használ, és válassza ki a legördülő menü **kezelése DNS**.
+1. Jelentkezzen be GoDaddy.com tooyour fiókot, és válassza ki **saját fiók** , majd **a tartományok kezelése**. Jelölje be hello legördülő menü hello tartománynév toouse kívánja az Azure-webalkalmazásban a, és válassza ki a **kezelése DNS**.
    
     ![GoDaddy tartozó egyéni tartomány lap](./media/web-sites-godaddy-custom-domain-name/godaddy-customdomain.png)
-2. Az a **tartományhoz részleteinek** lapon, görgessen a **DNS-zónafájlját** fülre. Ez az a és a tartománynévhez tartozó DNS-rekordok módosításának használt szakasz.
+2. A hello **tartományhoz részleteinek** párbeszédpanelen görgessen toohello **DNS-zónafájlját** fülre. Ez a hello szakasz hozzáadása és módosítása a tartománynévhez tartozó DNS-rekordokat.
    
     ![DNS-zónafájlját lap](./media/web-sites-godaddy-custom-domain-name/godaddy-zonetab.png)
    
-    Válassza ki **rekord hozzáadása** hozzáadni egy meglévő rekordot.
+    Válassza ki **rekord hozzáadása** tooadd meglévő bejegyzés.
    
-    A **szerkesztése** egy létező bejegyzést, válassza ki a toll & papír a bejegyzés mellett.
+    túl**szerkesztése** egy létező bejegyzést, jelölje be hello toll & papír ikon hello bejegyzés mellett.
    
    > [!NOTE]
-   > Új rekord hozzáadása előtt vegye figyelembe, hogy a GoDaddy már hozott létre DNS-rekordjainak a népszerű altartományok (nevű **állomás** -szerkesztőben), mint **e-mail**, **fájlok**, **mail**, és mások számára. Ha létezik-e már a használni kívánt nevet, módosítsa az új létrehozása helyett a meglévő rekord.
+   > Új rekord hozzáadása előtt vegye figyelembe, hogy a GoDaddy már hozott létre DNS-rekordjainak a népszerű altartományok (nevű **állomás** -szerkesztőben), mint **e-mail**, **fájlok**, **mail**, és mások számára. Ha hello neve toouse kívánja már létezik, módosítsa a hello meglévő rekord létrehozása egy új helyett.
    > 
    > 
-3. Amikor felvesz egy bejegyzést, először ki kell választani a rekord típusát.
+3. A rekord felvételekor hello rekordtípus először ki kell választania.
    
     ![Válassza ki a rekord típusa](./media/web-sites-godaddy-custom-domain-name/godaddy-selectrecordtype.png)
    
-    Ezután meg kell adnia a **állomás** (az egyéni tartomány vagy altartomány) és amit a rendszergazda **mutat**.
+    Ezután meg kell adnia hello **állomás** (egyéni tartomány és altartomány hello) és amit a rendszergazda **mutat**.
    
     ![zóna rekord hozzáadása](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
-   * Hozzáadásakor egy **(állomás) erőforrásrekord** -meg kell adni a **állomás** mező vagy  **@**  (gyökértartomány neve, mint például jelképez **contoso.com**,) * (több altartományok egyeztetéséhez helyettesítő) vagy a altartomány szeretné használni (például **www**.) Meg kell adni a **mutat** mezőről az Azure-webalkalmazásban IP-címét.
-   * Hozzáadásakor egy **(aliast) CNAME rekord** -meg kell adni a **állomás** mezőről az altartomány szeretné használni. Például **www**. Meg kell adni a **mutat** mezőről az **. azurewebsites.net** tartománynevét, az Azure-webalkalmazásban. Például **contoso.azurewebsites.net**.
+   * Hozzáadásakor egy **(állomás) rekord** -meg kell adni a hello **állomás** mező tooeither  **@**  (gyökértartomány neve, mint például jelképez  **a contoso.com**,) * (több altartományok egyeztetéséhez helyettesítő) vagy hello altartomány toouse kívánja (például **www**.) Meg kell adni a hello **mutat** toohello IP-címét az Azure-webalkalmazásban mezőben.
+   * Hozzáadásakor egy **(aliast) CNAME rekord** -meg kell adni a hello **állomás** mező toohello altartomány toouse kívánja. Például **www**. Meg kell adni a hello **mutat** mező toohello **. azurewebsites.net** tartománynevét, az Azure-webalkalmazásban. Például **contoso.azurewebsites.net**.
 4. Kattintson a **hozzáadása egy másik**.
-5. Válassza ki **TXT** , a rekordtípust, majd adja meg a **állomás** értékének  **@**  és egy **mutat** értékének  **&lt;yourwebappname&gt;. azurewebsites.net**.
+5. Válassza ki **TXT** hello rekord típusa, majd adja meg a **állomás** értékének  **@**  és egy **mutat** értékének  **&lt;yourwebappname&gt;. azurewebsites.net**.
    
    > [!NOTE]
-   > A TXT-rekord segítségével Azure ellenőrizze a tartomány az A rekord vagy az első TXT-rekord saját. Miután a tartomány lett leképezve: a webalkalmazás az Azure portálon, a TXT-rekord bejegyzés lehet eltávolítani.
+   > A TXT-rekord hello rekord vagy hello első TXT rekord szerint hello tartomány saját Azure toovalidate használják. Miután hello tartományhoz már csatlakoztatott toohello webalkalmazás hello Azure portálon, a TXT-rekord bejegyzés lehet eltávolítani.
    > 
    > 
-6. Hozzáadása után, vagy ha a bejegyzések módosítása, kattintson a **Befejezés** menti a módosításokat.
+6. Hozzáadása után, vagy ha a bejegyzések módosítása, kattintson a **Befejezés** toosave módosításokat.
 
 <a name="enabledomain"></a>
 
-## <a name="enable-the-domain-name-on-your-web-app"></a>A tartomány nevét a webalkalmazásban engedélyezése
+## <a name="enable-hello-domain-name-on-your-web-app"></a>A webalkalmazásban hello tartománynév engedélyezése
 [!INCLUDE [modes](../../includes/custom-dns-web-site-enable-on-web-site.md)]
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 

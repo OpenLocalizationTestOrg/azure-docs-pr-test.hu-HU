@@ -1,6 +1,6 @@
 ---
-title: "Solr telepítése Linux-alapú hdinsight - Azure a parancsfájlművelet használatával |} Microsoft Docs"
-description: "Ismerje meg, Solr Parancsfájlműveletek Linux-alapú HDInsight Hadoop-fürtök telepítése."
+title: "aaaUse parancsfájlművelet tooinstall a Linux-alapú HDInsight - Azure Solr |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooinstall Solr a Linux-alapú HDInsight Hadoop clusters Parancsfájlműveletek használatával."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,71 +16,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: larryfr
-ms.openlocfilehash: ad930ca023a36fa5874483873c82fdba11d117c7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4c179032b95ae187f1830d8927f8796372fa8ebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-and-use-solr-on-hdinsight-hadoop-clusters"></a>Telepítheti és használhatja Solr HDInsight Hadoop-fürtök
 
-Útmutató: Azure HDInsight Solr telepítése parancsfájlművelet segítségével. Solr egy hatékony keresési platform, és a Hadoop által kezelt adatok vállalati szintű keresési funkciókat biztosít.
+Megtudhatja, hogyan tooinstall Solr on Azure HDInsight-parancsfájlművelet használatával. Solr egy hatékony keresési platform, és a Hadoop által kezelt adatok vállalati szintű keresési funkciókat biztosít.
 
 > [!IMPORTANT]
-    > A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 > [!IMPORTANT]
-> A dokumentumban használt parancsfájlpélda Solr 4.9 egy adott konfigurációval telepíti. Ha azt szeretné, a Solr fürt konfigurálásához a különböző gyűjteményekhez, szilánkok, sémákat, replikákat, stb., módosítania kell a parancsfájl és Solr bináris fájljait.
+> a dokumentumban használt hello mintaparancsfájl Solr 4.9 egy adott konfigurációval telepíti. Ha azt szeretné, hogy tooconfigure hello Solr fürt különböző gyűjteményeket, szilánkok, sémákat, replikákat, stb., módosítania kell hello parancsfájl és Solr bináris fájljait.
 
 ## <a name="whatis"></a>Mi az a Solr
 
-[Apache Solr](http://lucene.apache.org/solr/features.html) egy vállalati keresési platform, amely lehetővé teszi az adatok hatékony teljes szöveges keresés. Hadoop lehetővé teszi a tárolásához és kezeléséhez az adatok óriási mennyiségben, Apache Solr biztosít a keresési képességek gyorsan az adatok lekéréséhez.
+[Apache Solr](http://lucene.apache.org/solr/features.html) egy vállalati keresési platform, amely lehetővé teszi az adatok hatékony teljes szöveges keresés. Hadoop lehetővé teszi a tárolásához és kezeléséhez az adatok óriási mennyiségben, Apache Solr hello keresési képességeket biztosít tooquickly lekérése hello adatokat.
 
 > [!WARNING]
-> A HDInsight-fürt összetevői Microsoft teljes mértékben támogatja.
+> A Microsoft hello HDInsight-fürt összetevői teljes mértékben támogatja.
 >
-> Egyéni összetevők, például Solr, minden üzleti szempontból ésszerű terméktámogatási segítséget nyújtanak a probléma további hibaelhárításához. Előfordulhat, hogy a Microsoft támogatási nem egyéni összetevőkkel kapcsolatos problémák megoldásához. Szükség lehet a nyílt forráskódú Közösségek szólítsa meg, ha segítségre van szüksége. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
+> Egyéni összetevők, például Solr, minden üzleti szempontból ésszerű támogatási toohelp fogadni, toofurther hello problémával kapcsolatos hibaelhárítás elősegítéséhez. A Microsoft támogatási nem lehet egyéni összetevőkkel tudja tooresolve kapcsolatos problémák. Szükség lehet tooengage hello nyílt forráskódú Közösségek segítségért. Például nincsenek sok közösségi webhelyek használható, például: [MSDN fórum hdinsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Is Apache projektek rendelkezik projekt helyek [http://apache.org](http://apache.org), például: [Hadoop](http://hadoop.apache.org/).
 
-## <a name="what-the-script-does"></a>A parancsfájl funkciója
+## <a name="what-hello-script-does"></a>Milyen hello parancsprogram
 
-Ezt a parancsfájlt a HDInsight-fürt hajt végre a következő módosításokat:
+Ezt a parancsfájlt a következő módosításokat toohello HDInsight-fürt hello teszi:
 
 * 4.9 Solr történő telepítése`/usr/hdp/current/solr`
-* Létrehoz egy felhasználói **solrusr**, amely a Solr szolgáltatás futtatására szolgál
-* Készletek **solruser** tulajdonosa`/usr/hdp/current/solr`
+* Létrehoz egy felhasználói **solrusr**, vagyis használt toorun hello Solr szolgáltatás
+* Készletek **solruser** hello tulajdonosaként`/usr/hdp/current/solr`
 * Hozzáad egy [Upstart](http://upstart.ubuntu.com/) konfigurációjához, amely Solr automatikusan elindul.
 
 ## <a name="install"></a>A Parancsfájlműveletek segítségével Solr telepítése
 
-Egy HDInsight-fürtök Solr telepítendő parancsfájlt a következő helyen érhető el:
+Egy minta parancsfájlt tooinstall Solr egy HDInsight-fürt hello a következő helyen érhető el:
 
     https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
 
-Hozzon létre egy fürtöt, amely rendelkezik a telepített Solr, kövesse a lépéseket a a [HDInsight-fürtök létrehozása](hdinsight-hadoop-create-linux-clusters-portal.md) dokumentum. A létrehozási folyamat során a következő lépések segítségével Solr telepítése:
+toocreate telepítve Solr rendelkező fürtnek, használjon hello szükséges lépések hello [HDInsight-fürtök létrehozása](hdinsight-hadoop-create-linux-clusters-portal.md) dokumentum. Hello létrehozási folyamat során a következő lépéseket tooinstall Solr hello használata:
 
-1. Az a __fürt összefoglaló__ panelen, select__Advanced settings__, majd __parancsfájl-műveletek__. Az űrlap feltöltéséhez használja az alábbi információkat:
+1. A hello __fürt összefoglaló__ panelen, select__Advanced settings__, majd __parancsfájl-műveletek__. A következő információk toopopulate hello űrlap hello használata:
 
-   * **NÉV**: Adja meg a parancsfájlművelet rövid nevét.
+   * **NÉV**: Adjon meg egy rövid nevet hello parancsfájlművelet.
    * **PARANCSFÁJL URI azonosítója**: https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
    * **HEAD**: ezt a beállítást
    * **MUNKAVÉGZŐ**: ezt a beállítást
-   * **ZOOKEEPER**: ezt a beállítást a Zookeeper csomóponton telepítése
+   * **ZOOKEEPER**: Ez a beállítás tooinstall hello Zookeeper csomóponton ellenőrzése
    * **PARAMÉTEREK**: ezt a mezőt hagyja üresen
 
-2. Alján a **parancsfájl-műveletek** panelen, használja a **válasszon** gombra kattintva mentse a konfigurációt. Végül a **következő** gombra kattintva visszatérhet a __fürt összegzése__
+2. Hello hello alján **parancsfájl-műveletek** panelen, használjon hello **válasszon** gombok toosave hello beállítása. Végül, használja a hello **következő** gomb tooreturn toohello __fürt összegzése__
 
-3. Az a __fürt összefoglaló__ lapon jelölje be __létrehozása__ a fürt létrehozásához.
+3. A hello __fürt összefoglaló__ lapon jelölje be __létrehozása__ toocreate hello fürt.
 
 ## <a name="usesolr"></a>Solr használata a Hdinsightban
 
 > [!IMPORTANT]
-> Ebben a szakaszban a lépések bemutatják, Solr alapvető funkciókat. Solr használatával kapcsolatos további információkért lásd: a [Apache Solr hely](http://lucene.apache.org/solr/).
+> Ebben a szakaszban található lépéseket hello alapszolgáltatásai Solr bemutatása. Solr használatával kapcsolatos további információkért lásd: hello [Apache Solr hely](http://lucene.apache.org/solr/).
 
 ### <a name="index-data"></a>Index adatok
 
-Az alábbi lépések segítségével Példa adatok hozzáadása a Solr, és majd lekérdezése:
+A következő lépéseket tooadd példa adatok tooSolr hello használja, és majd lekérdezése:
 
-1. Csatlakozzon SSH-val a HDInsight-fürthöz:
+1. Csatlakozzon az SSH használatával toohello HDInsight-fürt:
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -89,34 +89,34 @@ Az alábbi lépések segítségével Példa adatok hozzáadása a Solr, és majd
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
      > [!IMPORTANT]
-     > A jelen dokumentum lépéseit az SSL-protokollbújtatás való csatlakozáskor használandó a Solr webes felhasználói felületen. Ezen lépések használatához, az SSL-protokollbújtatás létrehozására és a böngésző használják majd beállítása.
+     > A jelen dokumentum lépéseit az SSL protokollbújtatás tooconnect toohello Solr webes felhasználói felület használja. Ezek a lépések toouse, kell létesítenie az SSL protokollbújtatás, és konfigurálja a böngésző toouse azt.
      >
-     > További információkért lásd: a [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
+     > További információkért lásd: hello [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
 
-2. Az alábbi parancsokkal Solr index mintaadatok rendelkezik:
+2. A következő parancsok toohave Solr index mintaadatok hello használata:
 
     ```bash
     cd /usr/hdp/current/solr/example/exampledocs
     java -jar post.jar solr.xml monitor.xml
     ```
 
-    A következő kimenetet visszaadja a konzolhoz:
+    hello következő kimenetet visszaadja toohello konzol:
 
         POSTing file solr.xml
         POSTing file monitor.xml
         2 files indexed.
-        COMMITting Solr index changes to http://localhost:8983/solr/update..
+        COMMITting Solr index changes toohttp://localhost:8983/solr/update..
         Time spent: 0:00:01.624
 
-    A `post.jar` segédprogram hozzáadja a **solr.xml** és **monitor.xml** az index a dokumentumokat.
+    Hello `post.jar` segédprogram hozzáadja hello **solr.xml** és **monitor.xml** dokumentumok toohello index.
   
-3. Használja a következő parancsot lekérdezéséhez Solr REST API:
+3. A következő parancs tooquery hello Solr REST API hello használata:
 
     ```bash
     curl "http://localhost:8983/solr/collection1/select?q=*%3A*&wt=json&indent=true"
     ```
 
-    Ez a parancs keres **collection1** megfelelő dokumentumokhoz  **\*:\***  (kódolva \*% 3A\* a lekérdezési karakterláncban). A következő JSON-dokumentum a válasz példája:
+    Ez a parancs keres **collection1** megfelelő dokumentumokhoz  **\*:\***  (kódolva \*% 3A\* hello a lekérdezési karakterláncban). a következő JSON-dokumentum hello hello válasz példája:
 
             "response": {
                 "numFound": 2,
@@ -125,7 +125,7 @@ Az alábbi lépések segítségével Példa adatok hozzáadása a Solr, és majd
                 "docs": [
                   {
                     "id": "SOLR1000",
-                    "name": "Solr, the Enterprise Search Server",
+                    "name": "Solr, hello Enterprise Search Server",
                     "manu": "Apache Software Foundation",
                     "cat": [
                       "software",
@@ -136,9 +136,9 @@ Az alábbi lépések segítségével Példa adatok hozzáadása a Solr, és majd
                       "Optimized for High Volume Web Traffic",
                       "Standards Based Open Interfaces - XML and HTTP",
                       "Comprehensive HTML Administration Interfaces",
-                      "Scalability - Efficient Replication to other Solr Search Servers",
+                      "Scalability - Efficient Replication tooother Solr Search Servers",
                       "Flexible and Adaptable with XML configuration and Schema",
-                      "Good unicode support: héllo (hello with an accent over the e)"
+                      "Good unicode support: héllo (hello with an accent over hello e)"
                     ],
                     "price": 0,
                     "price_c": "0,USD",
@@ -170,48 +170,48 @@ Az alábbi lépések segítségével Példa adatok hozzáadása a Solr, és majd
                 ]
               }
 
-### <a name="using-the-solr-dashboard"></a>A Solr irányítópult használata
+### <a name="using-hello-solr-dashboard"></a>Hello Solr irányítópult használata
 
-A Solr irányítópult a webes felhasználói felület, amely lehetővé teszi, hogy a webböngészőn keresztül Solr alkalmazásában. A Solr irányítópult nincs felfedve, közvetlenül a HDInsight-fürtök az interneten. Az SSH-alagút segítségével-e férni. További információ az SSH-alagút használatával, lásd: a [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
+hello Solr irányítópult a webes felhasználói felület, amely lehetővé teszi a Solr toowork webböngésző segítségével. hello Solr irányítópult közvetlenül a hello Internet a HDInsight-fürtjéhez nem lesz közzétéve. Egy SSH-alagút tooaccess használhatja azt. További információ az SSH-alagút használatával, lásd: hello [használata SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) dokumentum.
 
-Az SSH-alagút létesítése, tegye a következőket a Solr irányítópult használata:
+Az SSH-alagút létesítése, használja a következő lépéseket toouse hello Solr irányítópult hello:
 
-1. Határozza meg az elsődleges headnode a host name:
+1. Hello host name hello elsődleges headnode határozzák meg:
 
-   1. SSH használatával csatlakozhat az átjárócsomóponthoz. Például: `ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`.
+   1. SSH tooconnect toohello átjárócsomóponthoz használja. Például: `ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`.
 
-       További információ az SSH használatával, tekintse meg a [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+       További információ az SSH használatával, lásd: hello [az SSH a Hdinsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-   2. Az alábbi parancs segítségével a teljesen minősített nevének beolvasása:
+   2. A következő parancs tooget hello teljesen minősített állomásnév hello használata:
 
         ```bash
         hostname -f
         ```
 
-        Ez a parancs értéket ad vissza a következő állomás neve hasonlít:
+        Ez a parancs visszaadja a gazdagép neve a következő érték hasonló toohello:
 
             hn0-myhdi-nfebtpfdv1nubcidphpap2eq2b.ex.internal.cloudapp.net
 
-        Az érték lett visszaadva, akkor akkor menteni, mert a rendszer később.
+        Hello érték lett visszaadva, akkor menteni, mert a rendszer később.
 
-2. A böngészőben csatlakozzon a **http://HOSTNAME:8983/solr / #/**, ahol **ÁLLOMÁSNÉV** az előző lépésben maghatározott neve.
+2. A böngészőben csatlakozzon túl**http://HOSTNAME:8983/solr / #/**, ahol **ÁLLOMÁSNÉV** hello előző lépésben maghatározott hello neve.
 
-    A kérelem az SSH-alagút, a fürt Solr webes felhasználói felületén keresztül történik. A lap jelenik meg az alábbi képen hasonlít:
+    hello kérelem hello SSH alagút toohello Solr webes felhasználói felület a fürt keresztül történik. hello lap jelenik meg a következő kép hasonló toohello:
 
     ![Solr irányítópult képe](./media/hdinsight-hadoop-solr-install-linux/solrdashboard.png)
 
-3. A bal oldali ablaktáblán, használja a **Core választó** legördülő listán válassza ki a **collection1**. Több bejegyzést kell őket alatt jelennek meg **collection1**.
+3. Hello bal oldali ablaktáblán, használja a hello **Core választó** legördülő tooselect **collection1**. Több bejegyzést kell őket alatt jelennek meg **collection1**.
 
-4. Az alábbi bejegyzései **collection1**, jelölje be **lekérdezés**. Töltse fel adatokkal a lapon a következő értékeket használja:
+4. Az alábbi hello bejegyzései **collection1**, jelölje be **lekérdezés**. A következő értékek toopopulate hello keresőoldalt hello használata:
 
-   * Az a **q** szöveget adja meg a  **\*:**\*. Ez a lekérdezés a indexelt dokumentumok Solr adja vissza. Ha szeretne keresni egy adott karakterláncot belül a dokumentumokhoz, karakterláncokat Itt adhatja meg.
-   * Az a **wt** szöveg mezőben adja meg a kimeneti formátum. Alapértelmezett érték a **json**.
+   * A hello **q** szöveget adja meg a  **\*:**\*. Ez a lekérdezés minden olyan hello dokumentumok indexelt Solr adja vissza. Ha azt szeretné, toosearch hello dokumentumok belül egy adott karakterláncot, karakterláncokat Itt adhatja meg.
+   * A hello **wt** szövegmezőben, jelölje be hello kimeneti formátum. Alapértelmezett érték a **json**.
 
-     Végül válassza ki a **lekérdezés végrehajtása** gombra a keresési pate alján.
+     Végül válassza ki a hello **lekérdezés végrehajtása** hello keresési pate hello alján gombra.
 
-     ![Parancsfájlművelet használni ahhoz, hogy a fürt](./media/hdinsight-hadoop-solr-install-linux/hdi-solr-dashboard-query.png)
+     ![Parancsfájlművelet toocustomize egy fürt használja.](./media/hdinsight-hadoop-solr-install-linux/hdi-solr-dashboard-query.png)
 
-     A kimenet a korábban hozzáadott az indexhez két dokumentumot ad vissza. A kimenet a következő JSON-dokumentum hasonlít:
+     hello kimeneti toohello hozzáadásának két dokumentumok korábbi index hello adja vissza. a kimeneti hello van a hasonló toohello következő JSON-dokumentum:
 
            "response": {
                "numFound": 2,
@@ -220,7 +220,7 @@ Az SSH-alagút létesítése, tegye a következőket a Solr irányítópult hasz
                "docs": [
                  {
                    "id": "SOLR1000",
-                   "name": "Solr, the Enterprise Search Server",
+                   "name": "Solr, hello Enterprise Search Server",
                    "manu": "Apache Software Foundation",
                    "cat": [
                      "software",
@@ -231,9 +231,9 @@ Az SSH-alagút létesítése, tegye a következőket a Solr irányítópult hasz
                      "Optimized for High Volume Web Traffic",
                      "Standards Based Open Interfaces - XML and HTTP",
                      "Comprehensive HTML Administration Interfaces",
-                     "Scalability - Efficient Replication to other Solr Search Servers",
+                     "Scalability - Efficient Replication tooother Solr Search Servers",
                      "Flexible and Adaptable with XML configuration and Schema",
-                     "Good unicode support: héllo (hello with an accent over the e)"
+                     "Good unicode support: héllo (hello with an accent over hello e)"
                    ],
                    "price": 0,
                    "price_c": "0,USD",
@@ -267,7 +267,7 @@ Az SSH-alagút létesítése, tegye a következőket a Solr irányítópult hasz
 
 ### <a name="starting-and-stopping-solr"></a>Indítása és leállítása Solr
 
-A következő parancsok segítségével manuálisan állítsa le és indítsa el a Solr:
+A következő parancsok toomanually állítsa le és indítsa el a Solr hello használata:
 
 ```bash
 sudo stop solr
@@ -276,21 +276,21 @@ sudo start solr
 
 ## <a name="backup-indexed-data"></a>Biztonsági mentési indexelt adatokat
 
-Adatok biztonsági mentésének Solr az alapértelmezett tárhelyre, a fürt tegye a következőket:
+A következő lépéseket tooback Solr adatok toohello alapértelmezett szolgáltatás a fürt telepítése hello használata:
 
-1. Csatlakozzon a fürthöz SSH használatával, akkor a gazdagép nevét, az átjárócsomópont a következő paranccsal:
+1. Csatlakozzon az SSH használatával toohello fürt, majd a következő parancs tooget hello host name hello átjárócsomópont hello használata:
 
     ```bash
     hostname -f
     ```
 
-2. Az alábbi parancs segítségével készít pillanatképet az indexelt adatokat. Cserélje le **ÁLLOMÁSNÉV** az előző parancs által visszaadott nevű:
+2. A következő parancs toocreate indexelt hello adatok pillanatképe hello használata. Cserélje le **ÁLLOMÁSNÉV** hello előző parancs által visszaadott hello nevű:
 
     ```bash
     curl http://HOSTNAME:8983/solr/replication?command=backup
     ```
 
-    A válasz a következő XML hasonlít:
+    a rendszer a következő XML hasonló toohello hello választ:
 
         <?xml version="1.0" encoding="UTF-8"?>
         <response>
@@ -301,19 +301,19 @@ Adatok biztonsági mentésének Solr az alapértelmezett tárhelyre, a fürt teg
           <str name="status">OK</str>
         </response>
 
-3. Módosítsa a könyvtárat a `/usr/hdp/current/solr/example/solr`. Nincs gyűjtemény itt alkönyvtárat. Minden gyűjtemény könyvtár neve tartalmazza a `data` ahhoz a gyűjteményhez a pillanatképet tartalmazó könyvtárat.
+3. Módosítsa a könyvtárat túl`/usr/hdp/current/solr/example/solr`. Nincs gyűjtemény itt alkönyvtárat. Minden gyűjtemény könyvtár neve tartalmazza a `data` hello pillanatkép hello gyűjtemény tartalmazó könyvtárat.
 
-4. A pillanatkép mappája a tömörített archívum létrehozása, használja a következő parancsot:
+4. a tömörített archívum hello pillanatkép mappa, a következő parancs használata hello toocreate:
 
     ```bash
     tar -zcf snapshot.20150806185338855.tgz snapshot.20150806185338855
     ```
 
-    Cserélje le a `snapshot.20150806185338855` a nevet a gyűjtemény a pillanatkép értékeket.
+    Cserélje le a hello `snapshot.20150806185338855` hello nevet a gyűjtemény hello pillanatkép értékeket.
 
-    Ezzel a paranccsal létrejön az archívum neve **snapshot.20150806185338855.tgz**, amely tartalmazza a tartalmát a **snapshot.20150806185338855** directory.
+    Ez a parancs létrehozza az archívumot nevű **snapshot.20150806185338855.tgz**, hello hello tartalmát tartalmazó **snapshot.20150806185338855** könyvtár.
 
-5. Majd tárolhatja az archívum a fürt elsődleges Storage a következő parancsot:
+5. Majd tárolhatja elsődleges tárolóhely hello archív toohello fürt hello a következő parancsot:
 
     ```bash
     hdfs dfs -put snapshot.20150806185338855.tgz /example/data
@@ -323,8 +323,8 @@ Solr biztonsági mentés és visszaállítás használatához további informác
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Giraph telepíthető a HDInsight-fürtök](hdinsight-hadoop-giraph-install-linux.md). A HDInsight Hadoop-fürtök Giraph telepítése a fürt testreszabási használatával. Giraph lehetővé teszi a végrehajtását diagramfeldolgozás Hadoop használatával, és az Azure HDInsight használható.
+* [Giraph telepíthető a HDInsight-fürtök](hdinsight-hadoop-giraph-install-linux.md). Fürt testreszabási tooinstall Giraph a HDInsight Hadoop-fürtök használata. Giraph lehetővé teszi a Hadoop használatával tooperform diagramfeldolgozás, és az Azure HDInsight használható.
 
-* [A HDInsight-fürtökön Hue telepítése](hdinsight-hadoop-hue-linux.md). HDInsight Hadoop-fürtök a Hue telepítése fürt testreszabási használata Hue olyan fürtökkel a Hadoop fürtök folytatott kommunikációhoz használható webalkalmazás.
+* [A HDInsight-fürtökön Hue telepítése](hdinsight-hadoop-hue-linux.md). HDInsight Hadoop-fürtök fürt testreszabási tooinstall Hue használja. Hue, a webalkalmazások a használt toointeract egy Hadoop-fürthöz.
 
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md

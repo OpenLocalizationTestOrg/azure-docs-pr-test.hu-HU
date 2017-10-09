@@ -1,6 +1,6 @@
 ---
-title: "Szakítsa meg, és az Azure importálási/exportálási feladatok törlése |} Microsoft Docs"
-description: "Megtudhatja, hogyan megszakításához és a Microsoft Azure Import/Export szolgáltatás feladatok törlése."
+title: "aaaCancel és az Azure importálási/exportálási feladatok törlése |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocancel és törlési feladatok a Microsoft Azure Import/Export szolgáltatás hello."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: e0a7ff391e5a03ed563912dea54c7cfe73111bcf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d2aba510dafd0ca9a10f5643f721e7059a6a8f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="canceling-and-deleting-azure-importexport-jobs"></a>A megszakítás és az Azure importálási/exportálási feladatok törlése
 
-Kérheti, hogy a feladatok megszakadnak ahhoz, hogy az a `Packaging` állapot meghívásával a [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) művelet és a beállítás a `CancelRequested` elem `true`. A feladat meg lesz szakítva legjobb alapon. Ha meghajtók jelenleg másolja át az adatokat, adatok továbbra is helyezhető át, akkor is megszakítását kérték.
+Kérheti, hogy a feladat szakítható meg, mielőtt hello `Packaging` állapot szerint hívó hello [frissítés Feladattulajdonság](/rest/api/storageimportexport/jobs#Jobs_Update) művelet és a beállítás hello `CancelRequested` elem túl`true`. hello feladat megszakad legjobb alapon. Ha meghajtók adatátvitel hello folyamatán, adatok megszakítását kérték után is át toobe továbbra is.
 
- A megszakított feladatok helyezi át a `Completed` állapot és 90 nap, amikor a rendszer törli azt meg kell őrizni.
+ A megszakított feladatok áthelyezi toohello `Completed` állapot és 90 nap, amikor a rendszer törli azt meg kell őrizni.
 
- Törli a feladatot, hívja meg a [törlése feladat](/rest/api/storageimportexport/jobs#Jobs_Delete) művelet előtt a feladat rendelkezik-e kiadva (*azaz*, amíg a feladat a `Creating` állapot). Törölheti is a feladat a esetén a `Completed` állapotát. Egy feladat törlését követően annak adatait és állapotát már nincs a REST API-t vagy az Azure-portálon keresztül érhető el.
+ egy feladat toodelete hívás hello [törlése feladat](/rest/api/storageimportexport/jobs#Jobs_Delete) művelet előtt hello feladat van kiadva (*azaz*, hello feladat hello közben `Creating` állapot). Törölheti a feladatok is ha hello `Completed` állapotát. Egy feladat törlését követően annak adatait és állapotát már nem érhetők el hello REST API-n keresztül, vagy hello Azure-portálon.
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Az Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)
+* [Hello Import/Export szolgáltatás REST API használatával](storage-import-export-using-the-rest-api.md)

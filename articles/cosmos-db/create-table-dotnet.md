@@ -1,5 +1,5 @@
 ---
-title: "Azure Cosmos DB .NET-alkalmazás létrehozása a Table API-val | Microsoft Docs"
+title: "egy Azure Cosmos DB .NET alkalmazást, amely aaaBuild hello tábla API |} Microsoft Docs"
 description: "Bevezetés az Azure Cosmos DB Table API-jának .NET-alapú használatába"
 services: cosmos-db
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/22/2017
 ms.author: arramac
-ms.openlocfilehash: 29e7eebda5177d6e852ef04ad82d9d38a8d30ed8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bdd4f8ec45407962b3d2cb26aa814a20cfc62173
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-net-application-using-the-table-api"></a>Azure Cosmos DB: .NET-alkalmazás létrehozása a Table API-val
+# <a name="azure-cosmos-db-build-a-net-application-using-hello-table-api"></a>Az Azure Cosmos DB: Hello tábla API használatával .NET-alkalmazás létrehozása
 
-Az Azure Cosmos DB a Microsoft globálisan elosztott, többmodelles adatbázis-szolgáltatása. Segítségével gyorsan létrehozhat és lekérdezhet dokumentum, kulcs/érték és gráf típusú adatbázisokat, amelyek mindegyike felhasználja az Azure Cosmos DB középpontjában álló globális elosztási és horizontális skálázhatósági képességeket. 
+Az Azure Cosmos DB a Microsoft globálisan elosztott többmodelles adatbázis-szolgáltatása. Gyorsan hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és horizontális skálázhatóságot képességekről az Azure-Cosmos adatbázis hello core lekérdezése. 
 
-Ez a rövid útmutató bemutatja, hogyan hozhat létre az Azure Portal segítségével egy Azure Cosmos DB-fiókot, majd abban egy táblát. Ezután kódot írunk az entitások beillesztésére, frissítésére és törlésére és futtatunk pár lekérdezést az új [Windows Azure Storage prémium tábla](https://aka.ms/premiumtablenuget) NuGet-csomag előzetes verziójának használatával. Ennek a függvénytárnak az osztályai és a metódusainak aláírásai megegyeznek a nyilvános [Windows Azure Storage SDK-ban](https://www.nuget.org/packages/WindowsAzure.Storage) elérhetőkkel, de ez a verzió ezenfelül képes Azure Cosmos DB-fiókokhoz is kapcsolódni a [Table API](table-introduction.md) előzetes verziójának használatával. 
+A gyors üzembe helyezési bemutatja, hogyan toocreate egy Azure Cosmos DB fiókot, és hozzon létre egy táblát a fiókban hello Azure-portál használatával. Akkor lesz majd írási kód tooinsert, update és delete entitásokat és egyes lekérdezések futtatása használatával hello új [Windows Azure Storage prémium tábla](https://aka.ms/premiumtablenuget) NuGet-csomagot (előzetes verzió). Ez a függvénytár hello azonos osztályok és hello nyilvános metódus-aláírása [Windows Azure Storage szolgáltatás SDK](https://www.nuget.org/packages/WindowsAzure.Storage), de hello képességét tooconnect tooAzure Cosmos DB fiókok használatával hello [tábla API](table-introduction.md) (előzetes verzió). 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ingyenes** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)t. Ügyeljen arra, hogy engedélyezze az **Azure Development** használatát a Visual Studio telepítése során.
+Ha még nincs telepítve a Visual Studio 2017, töltse le és használja a hello **szabad** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Győződjön meg arról, hogy engedélyezze **Azure fejlesztési** hello Visual Studio telepítése során.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -43,36 +43,36 @@ Ha nincs telepítve a Visual Studio 2017, letöltheti és használhatja az **ing
 
 ## <a name="add-sample-data"></a>Mintaadatok hozzáadása
 
-Az Adatkezelő előzetes verziójának segítségével adatokat adhat hozzá az új táblához.
+Most tooyour új adattábla adatok kezelővel (előzetes verzió) használatával adhat hozzá.
 
 1. Az Adatkezelőben bontsa ki a **minta tábla** pontot, és kattintson az **Entitások**, ezután pedig az **Entitás hozzáadása** lehetőségre.
 
-   ![Új dokumentumok létrehozása az Azure Portal Adatkezelőjében](./media/create-table-dotnet/azure-cosmosdb-data-explorer-new-document.png)
-2. Adja meg a PartitionKey és a RowKey mező adatait és kattintson az **Entitás hozzáadása** lehetőségre.
+   ![Hozzon létre új entitások az adatkezelő a hello Azure-portálon](./media/create-table-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+2. Most adatok toohello PartitionKey érték és RowKey érték jelölését, és kattintson a **entitás hozzáadása**.
 
-   ![A partíciókulcs és a sorkulcs beállítása új entitások számára](./media/create-table-dotnet/azure-cosmosdb-data-explorer-new-entity.png)
+   ![Állítsa be partíciós kulcs és egy új entitás Sorkulcsa hello](./media/create-table-dotnet/azure-cosmosdb-data-explorer-new-entity.png)
   
-    Most már az Adatkezelővel további entitásokat is hozzá tud adni a táblához, szerkesztheti őket, és lekérdezéseket is indíthat. Az Adatkezelőben továbbá skálázhatja az átviteli sebességet, és tárolt eljárásokat, felhasználói függvényeket és triggereket adhat hozzá a táblához.
+    Most több entitások tooyour tábla hozzáadásához, szerkesztéséhez az entitások vagy adatkezelő az adatok lekérdezése. Adatkezelő akkor is, ahol az átviteli sebesség méretezhető és tárolt eljárások, felhasználó által megadott függvények és eseményindítók tooyour tábla.
 
-## <a name="clone-the-sample-application"></a>A mintaalkalmazás klónozása
+## <a name="clone-hello-sample-application"></a>Klónozza a mintaalkalmazást hello
 
-Most pedig klónozunk egy Table-alkalmazást a GitHubról, beállítjuk a kapcsolati karakterláncot, majd futtatni fogjuk az alkalmazást. Látni fogja, milyen egyszerű az adatokkal programozott módon dolgozni. 
+Most tegyük klónozza a githubból, állítsa be a hello kapcsolati karakterláncot, és futtassa azt egy tábla alkalmazást. Láthatja, milyen egyszerűen adatokkal toowork programozott módon. 
 
-1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és a `cd` paranccsal lépjen egy munkakönyvtárba.  
+1. Nyisson meg egy git terminálablakot, például a git bash eszközt, és `cd` tooa munkakönyvtárát.  
 
-2. Futtassa a következő parancsot a mintatárház klónozásához. 
+2. Futtassa a következő parancs tooclone hello minta tárház hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-table-dotnet-getting-started.git
     ```
 
-3. Ezután nyissa meg a megoldásfájlt a Visual Studióban. 
+3. Ezután nyissa meg a hello megoldásfájlt a Visual Studio. 
 
-## <a name="review-the-code"></a>A kód áttekintése
+## <a name="review-hello-code"></a>Tekintse át a hello kódot
 
-Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs fájlt: az itt található kódsorok hozzák létre az Azure Cosmos DB erőforrásokat. 
+Most Meggyőződünk arról, mi történik a hello app gyors áttekintése. Nyissa meg hello Program.cs fájlt, és, hogy ezek a sorok, a kód létrehozása hello Azure Cosmos DB erőforrások találhat. 
 
-* A CloudTableClient inicializálásra kerül.
+* hello CloudTableClient inicializálva van.
 
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString); 
@@ -86,7 +86,7 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs f�
     table.CreateIfNotExists();
     ```
 
-* Létrejön egy új táblázattároló. Láthatja, hogy ez a kód nagyon hasonló a normál Azure Table Storage SDK-hoz. 
+* Létrejön egy új táblázattároló. Megfigyelheti, hogy a kód nagyon hasonló tooregular Azure Table storage SDK. 
 
     ```csharp
     CustomerEntity item = new CustomerEntity()
@@ -101,60 +101,60 @@ Tekintsük át, hogy mi történik az alkalmazásban. Nyissa meg a Program.cs f�
 
 ## <a name="update-your-connection-string"></a>A kapcsolati karakterlánc frissítése
 
-Most pedig frissítjük a kapcsolati karakterláncot, hogy az alkalmazása kommunikálni tudjon az Azure Cosmos DB-szolgáltatással. 
+Most azt frissítése hello kapcsolati karakterlánc adatokat, az alkalmazás tooAzure Cosmos DB működik. 
 
-1. Nyissa meg az app.config fájlt a Visual Studióban. 
+1. A Visual Studióban nyissa meg a hello app.config fájlt. 
 
-2. Az [Azure Portalon](http://portal.azure.com/) az Azure Cosmos DB bal oldali navigációs menüjében kattintson a **Kapcsolati karakterlánc** elemre. Ezután az új panelen kattintson a kapcsolati karakterlánc másolás gombjára. 
+2. A hello [Azure-portálon](http://portal.azure.com/), hello Azure Cosmos DB bal oldali navigációs menü, kattintson a **kapcsolati karakterlánc**. Hello új panelen kattintson a Másolás gombra hello hello kapcsolati karakterláncot kell megadnia. 
 
-    ![Keresse meg és másolja ki a Végpont és a Fiókkulcs mezőket a Kapcsolati karakterlánc panelen](./media/create-table-dotnet/keys.png)
+    ![Megtekintése és másolása hello végpont és a Fiókkulcsot hello kapcsolati karakterlánc panelen](./media/create-table-dotnet/keys.png)
 
-3. Az értéket illessze be az app.config fájlba a PremiumStorageConnectionString értékéhez. 
+3. Hello érték beillesztése hello app.config fájl hello PremiumStorageConnectionString hello értékeként. 
 
     `<add key="PremiumStorageConnectionString" 
         value="DefaultEndpointsProtocol=https;AccountName=MYSTORAGEACCOUNT;AccountKey=AUTHKEY;TableEndpoint=https://COSMOSDB.documents.azure.com" />`    
 
-    A StandardStorageConnectionString értékét nem szükséges megváltoztatnia.
+    Hello StandardStorageConnectionString, mert a hagyhatja.
 
-Ezzel frissítette az alkalmazást az összes olyan információval, amely az Azure Cosmos DB-vel való kommunikációhoz szükséges. 
+Most már frissítette az alkalmazást az Azure Cosmos DB toocommunicate szükséges összes hello információval. 
 
-## <a name="run-the-web-app"></a>A webalkalmazás futtatása
+## <a name="run-hello-web-app"></a>Hello webes alkalmazás futtatása
 
-1. A Visual Studióban kattintson a jobb gombbal a **PremiumTableGetStarted** projektre a **Megoldáskezelőben**, majd kattintson a **NuGet-csomagok kezelése** elemre. 
+1. A Visual Studióban, kattintson a jobb gombbal a hello **PremiumTableGetStarted** a projekt **Megoldáskezelőben** majd **NuGet-csomagok kezelése**. 
 
-2. A NuGet **Tallózás** mezőjébe írja be a *WindowsAzure.Storage-PremiumTable* kifejezést.
+2. A hello NuGet **Tallózás** mezőbe írja be *windowsazure.Storage kifejezésre-PremiumTable*.
 
-3. Jelölje be az **Előzetes verzió is** jelölőnégyzetet. 
+3. Ellenőrizze a hello **közé tartoznak az előzetes** mezőbe. 
 
-4. Az eredmények közül telepítse a **WindowsAzure.Storage-PremiumTable** függvénytárat. Ez telepíti az Azure Cosmos DB Table API csomag előzetes verzióját és annak összes függőségét. Vegye figyelembe, hogy ez a NuGet-csomag eltér az Azure Table Storage által használt Windows Azure Storage csomagtól. 
+4. Hello eredmények közül telepítse a hello **windowsazure.Storage kifejezésre-PremiumTable** könyvtárban. Ez telepíti a hello preview Azure Cosmos DB tábla API csomag, valamint az összes függősége. Vegye figyelembe, hogy a csomag egy másik NuGet hello Windows Azure Storage csomag használják az Azure Table storage-nál. 
 
-5. Az alkalmazás futtatásához nyomja le a CTRL + F5 billentyűkombinációt.
+5. Kattintson a CTRL + F5 toorun hello alkalmazás.
 
-    A konzolablakban követheti az adatok hozzáadásának, beolvasásának, lekérdezésének, cseréjének és a táblából történő törlésének folyamatait. Miután a parancsfájl futása befejeződött, nyomjon le egy tetszőleges billentyűt a konzolablak bezárásához. 
+    hello konzolablak hozzáadott, lekérését, lekérdezése, cseréje és hello táblából törölt hello adatokat jeleníthet meg. Hello parancsfájl befejezése után nyomja le az bármely főbb tooclose hello console ablakban. 
     
-    ![A gyors útmutató lépéseinek konzolkimenete](./media/create-table-dotnet/azure-cosmosdb-table-quickstart-console-output.png)
+    ![Hello gyors üzembe helyezés a konzol kimeneti](./media/create-table-dotnet/azure-cosmosdb-table-quickstart-console-output.png)
 
-6. Ha meg szeretné tekinteni az új entitásokat az Adatkezelőben, tegye megjegyzésbe a program.cs fájl 188-208. sorait – így azokat nem kell törölni – , majd ezután futtassa újra a mintakódot. 
+6. Ha azt szeretné, hogy toosee hello új entitások Data Explorer, a program.cs fájlban, ezért azok nem törlődnek, 188-208 sorok csak megjegyzésbe futtassa újból hello minta. 
 
-    Ezután lépjen vissza az Adatkezelőbe, kattintson a **Frissítés** gombra, bontsa ki a **people** táblát, kattintson az **Entitások** elemre és máris munkához láthat az új adatokkal. 
+    Most lépjen vissza tooData Explorerben (Megoldáskezelőben) kattintson **frissítése**, bontsa ki a hello **személyek** táblázatban, majd kattintson **entitások**, és majd ezekkel az új adatokkal. 
 
     ![Új entitások az Adatkezelőben](./media/create-table-dotnet/azure-cosmosdb-table-quickstart-data-explorer.png)
 
-## <a name="review-slas-in-the-azure-portal"></a>Tekintse át az SLA-kat az Azure Portalon
+## <a name="review-slas-in-hello-azure-portal"></a>Tekintse át a szolgáltatásiszint-szerződések a hello Azure-portálon
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Ha az alkalmazást már nem használja, akkor a következő lépésekkel a mintaalkalmazás által létrehozott összes erőforrást törölheti az Azure Portalon: 
+Toocontinue toouse az alkalmazás nem fog, ha törli az összes erőforrást hozta létre a gyors üzembe helyezés hello az Azure-portálon az alábbi lépésekkel hello: 
 
-1. Az Azure Portal bal oldali menüjében kattintson az **Erőforráscsoportok** lehetőségre, majd kattintson a létrehozott erőforrás nevére. 
-2. Az erőforráscsoport lapján kattintson a **Törlés** elemre, írja be a törölni kívánt erőforrás nevét a szövegmezőbe, majd kattintson a **Törlés** gombra.
+1. A hello hello Azure-portálon a bal oldali menüből, kattintson az **erőforráscsoportok** és kattintson a létrehozott hello erőforrás hello nevét. 
+2. Az erőforrás csoport lapján kattintson a **törlése**, írja be a hello szövegmező hello erőforrás toodelete hello nevét, és kattintson **törlése**.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a rövid útmutatóban bemutattuk, hogyan lehet Azure Cosmos DB-fiókot létrehozni, hogyan lehet az Adatkezelő segítségével táblát készíteni, és hogyan lehet futtatni az alkalmazást.  Most már le tudja kérdezni adatait a Table API segítségével.  
+A gyors üzembe helyezés hogy megtanulta, hogyan toocreate Azure Cosmos DB adatait, hozzon létre egy táblát hello adatkezelő használatával, és futtassa az alkalmazást.  Most már tudja kérdezni hello tábla API használata esetén az adatok.  
 
 > [!div class="nextstepaction"]
-> [Lekérdezés a Table API használatával](tutorial-query-table.md)
+> [A lekérdezés hello tábla API használatával](tutorial-query-table.md)
 

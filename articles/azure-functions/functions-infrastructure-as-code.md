@@ -1,6 +1,6 @@
 ---
-title: "Erőforrások telepítése az Azure Functions függvény alkalmazások automatizálása |} Microsoft Docs"
-description: "Ismerje meg, hogyan hozhat létre egy Azure Resource Manager-sablon, amely a függvény alkalmazást telepíti."
+title: "az Azure Functions függvény alkalmazások aaaAutomate erőforrások telepítése |} Microsoft Docs"
+description: "Megtudhatja, hogyan toobuild egy Azure Resource Manager-sablon, amely a függvény alkalmazást telepíti."
 services: Functions
 documtationcenter: na
 author: lindydonna
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 15496e4ab2858b2aa319d53f1c438a259a3d5e49
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0df0d4ef9fe93213f7b1cb1d1e6b4e14f8b3a30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>Az Azure Functions függvény alkalmazás erőforrás-telepítés automatizálása
 
-Az Azure Resource Manager-sablon segítségével függvény alkalmazás telepítése. Ez a cikk ismerteti a szükséges erőforrások és a paraméterek úgy. Előfordulhat, hogy kell telepítenie további erőforrások, attól függően, a [eseményindítók és kötések](functions-triggers-bindings.md) az függvény alkalmazásban.
+Az Azure Resource Manager sablon toodeploy egy függvény alkalmazást is használhatja. Ez a cikk ismerteti a hello szükséges erőforrások és a paraméterek úgy. Szükség lehet további források toodeploy, attól függően, hogy hello [eseményindítók és kötések](functions-triggers-bindings.md) az függvény alkalmazásban.
 
 Sablonok létrehozásával kapcsolatos további információkért lásd: [Azure Resource Manager-sablonok készítése](../azure-resource-manager/resource-group-authoring-templates.md).
 
@@ -56,9 +56,9 @@ Egy Azure storage-fiók egy függvény app szükség. Általános célú fiók, 
 }
 ```
 
-Emellett a Tulajdonságok `AzureWebJobsStorage` és `AzureWebJobsDashboard` app beállítások a webhely konfigurációs kell megadni. Az Azure Functions futtatókörnyezettel használja a `AzureWebJobsStorage` kapcsolati karakterlánc belső várólisták létrehozásához. A kapcsolati karakterlánc `AzureWebJobsDashboard` Azure Table storage és power naplózásakor használatos a **figyelő** lapon a portálon.
+Emellett a Tulajdonságok hello `AzureWebJobsStorage` és `AzureWebJobsDashboard` Alkalmazásbeállítások hello hely konfigurációban kell megadni. hello Azure Functions futtatókörnyezete használja hello `AzureWebJobsStorage` kapcsolati karakterlánc toocreate belső várólisták. kapcsolati karakterlánc hello `AzureWebJobsDashboard` használt toolog tooAzure Table storage és a tápkábelek hello van **figyelő** hello portálon lapon.
 
-Ezek a tulajdonságok vannak megadva a `appSettings` gyűjtemény a `siteConfig` objektum:
+Ezeket a tulajdonságokat meg van határozva a hello `appSettings` hello gyűjtemény `siteConfig` objektum:
 
 ```json
 "appSettings": [
@@ -74,11 +74,11 @@ Ezek a tulajdonságok vannak megadva a `appSettings` gyűjtemény a `siteConfig`
 
 ### <a name="hosting-plan"></a>Üzemeltetési terv
 
-Az üzemeltetési terv meghatározásának függ, hogy használ-e a felhasználási vagy App Service-csomag. Lásd: [a fogyasztás terven függvény alkalmazás telepítése](#consumption) és [függvény alkalmazás az App Service-csomag telepítése](#app-service-plan).
+hello üzemeltetési terv meghatározásának hello függ, hogy használ-e a felhasználási vagy App Service-csomag. Lásd: [hello fogyasztás terven függvény alkalmazás telepítése](#consumption) és [függvény alkalmazás az App Service-csomag hello telepítése](#app-service-plan).
 
 ### <a name="function-app"></a>Függvény alkalmazás
 
-A függvény app erőforrás van definiálva típusú erőforrások használatával **Microsoft.Web/Site** és fajta **functionapp**:
+hello függvény app erőforrás van definiálva típusú erőforrások használatával **Microsoft.Web/Site** és fajta **functionapp**:
 
 ```json
 {
@@ -95,15 +95,15 @@ A függvény app erőforrás van definiálva típusú erőforrások használatá
 
 <a name="consumption"></a>
 
-## <a name="deploy-a-function-app-on-the-consumption-plan"></a>A felhasználási terven függvény alkalmazás telepítése
+## <a name="deploy-a-function-app-on-hello-consumption-plan"></a>A hello fogyasztás terv függvény alkalmazás telepítése
 
-Két különböző módban is futtathatja egy függvény alkalmazás: a fogyasztás terv és az App Service-csomag. A felhasználási terv automatikusan osztja ki a számítási teljesítményt, a kódja fut, kimenő terhelés kezelésére, szükség szerint arányosan, és majd arányosan csökken, amikor a kód nem fut. Igen nem kell a tétlen virtuális gépek után kell fizetnie, és nem kell előzetesen tartalékkapacitás. Üzemeltetési tervek kapcsolatos további információkért lásd: [Azure Functions használat és az App Service csomagokban](functions-scale.md).
+Egy függvény alkalmazás két különböző módban is futtathatja: hello felhasználás a terv és az App Service-csomag hello. a kód fut-e, méretezi kimenő szükséges toohandle terhelés, és majd arányosan csökken, amikor a kód nem fut a hello fogyasztás terv automatikusan számítási teljesítményt foglal le. Igen toopay tétlen virtuális gépek nem rendelkezik, és tooreserve kapacitás nincs előre. További információ az üzemeltető terveket, toolearn lásd: [Azure Functions használat és az App Service csomagokban](functions-scale.md).
 
 Lásd: a minta Azure Resource Manager sablon [függvény app a fogyasztás terv].
 
 ### <a name="create-a-consumption-plan"></a>Felhasználás terv létrehozása
 
-A felhasználási terv "kiszolgálófarm" erőforrás különleges típusú. Használatával megadja a `Dynamic` értékét a `computeMode` és `sku` tulajdonságok:
+A felhasználási terv "kiszolgálófarm" erőforrás különleges típusú. Megadja azt a hello `Dynamic` hello értéke `computeMode` és `sku` tulajdonságok:
 
 ```json
 {
@@ -121,7 +121,7 @@ A felhasználási terv "kiszolgálófarm" erőforrás különleges típusú. Has
 
 ### <a name="create-a-function-app"></a>Függvényalkalmazás létrehozása
 
-Emellett a fogyasztás terv kell két további beállítások a webhely konfigurációs: `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` és `WEBSITE_CONTENTSHARE`. Ezek a tulajdonságok konfigurálása a tárolási fiók és a fájl elérési útja az alkalmazáskódot függvény és a konfiguráció tárolásához.
+Emellett a fogyasztás terv kell hello Helykonfiguráció két további beállítások: `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` és `WEBSITE_CONTENTSHARE`. Ezek a tulajdonságok konfigurálása hello tárolási fiók és a fájlelérési út hello függvény alkalmazáskódot és konfigurációs tároló.
 
 ```json
 {
@@ -166,9 +166,9 @@ Emellett a fogyasztás terv kell két további beállítások a webhely konfigur
 
 <a name="app-service-plan"></a> 
 
-## <a name="deploy-a-function-app-on-the-app-service-plan"></a>Egy függvény alkalmazás az App Service-csomag telepítése
+## <a name="deploy-a-function-app-on-hello-app-service-plan"></a>Az App Service-csomag hello függvény alkalmazás telepítése
 
-Az App Service-csomag a függvény alkalmazás fut, a Basic, Standard és Premium termékváltozat, a webalkalmazások hasonló dedikált virtuális gépeken. Az App Service-csomag működésével kapcsolatos részletekért lásd: a [Azure App Service-csomagok részletes áttekintése](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
+Az App Service-csomag hello a függvény alkalmazás fut, a Basic, Standard és Premium termékváltozat hasonló tooweb alkalmazásokra dedikált virtuális gépeken. App Service-csomag hello működésével kapcsolatos részletekért lásd: hello [Azure App Service-csomagok részletes áttekintése](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md). 
 
 Lásd: a minta Azure Resource Manager sablon [függvény alkalmazást az Azure App Service-csomag].
 
@@ -192,12 +192,12 @@ Lásd: a minta Azure Resource Manager sablon [függvény alkalmazást az Azure A
 
 ### <a name="create-a-function-app"></a>Függvényalkalmazás létrehozása 
 
-Miután kijelölt egy beállítást, a függvény-alkalmazás létrehozása. Az alkalmazás a tároló, amely a függvények.
+Miután kijelölt egy beállítást, a függvény-alkalmazás létrehozása. hello app hello tároló, amely a függvények.
 
-A függvény az alkalmazás rendelkezik sok gyermekszintű erőforrása, amely a központi telepítésre, beleértve az alkalmazásbeállítások és az adatforrás beállításokat is használhatja. Előfordulhat, hogy meg távolítsa el a **sourcecontrols** gyermek-erőforrás és a, valamint egy másik [rendszerbe állítási beállításának](functions-continuous-deployment.md) helyette.
+A függvény az alkalmazás rendelkezik sok gyermekszintű erőforrása, amely a központi telepítésre, beleértve az alkalmazásbeállítások és az adatforrás beállításokat is használhatja. Akkor is előfordulhat, hogy válasszon tooremove hello **sourcecontrols** gyermek-erőforrás és a, valamint egy másik [rendszerbe állítási beállításának](functions-continuous-deployment.md) helyette.
 
 > [!IMPORTANT]
-> Az alkalmazás sikeres közzétételéhez Azure Resource Manager használatával, fontos megérteni, hogyan vannak telepítve az erőforrások az Azure-ban. A következő példában a legfelső szintű konfigurációk használatával alkalmazhatók **siteConfig**. Fontos állítsa be ezeket a konfigurációkat a legfelső szintű, mert ezek a funkciók futási és telepítési motor információáramlás. Legfelső szintű adatokat a gyermek előtt meg kell adni **sourcecontrols vagy webes** erőforrás vonatkozik. Bár ezek a beállítások konfigurálására a gyermekszintű lehetséges **config/appSettings** erőforrás, a függvény app telepítenie kell bizonyos esetekben *előtt* **config/appSettings**  vonatkozik. Például használata esetén a funkciók [Logic Apps](../logic-apps/index.md), a függvények egy másik erőforrás függősége.
+> toosuccessfully az alkalmazás telepítése Azure Resource Manager használatával, a fontos toounderstand hogyan vannak telepítve az erőforrások az Azure-ban. A következő példa hello, a legfelső szintű konfigurációk használatával alkalmazhatók **siteConfig**. Fontos tooset ezeket a konfigurációkat a felső szinten, mert azok átadja toohello funkciók futási és telepítési motor információkat is. Legfelső szintű adatokat hello gyermek előtt meg kell adni **sourcecontrols vagy webes** erőforrás vonatkozik. Bár lehetséges tooconfigure ezeket a beállításokat a hello gyermekszintű **config/appSettings** erőforrás, a függvény app telepítenie kell bizonyos esetekben *előtt* **config/appSettings**  vonatkozik. Például használata esetén a funkciók [Logic Apps](../logic-apps/index.md), a függvények egy másik erőforrás függősége.
 
 ```json
 {
@@ -252,25 +252,25 @@ A függvény az alkalmazás rendelkezik sok gyermekszintű erőforrása, amely a
 }
 ```
 > [!TIP]
-> Ez a sablon által a [projekt](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file) app beállítások értéket, amely beállítja a alapkönyvtárának, amelyben a funkciók telepítési motor (Kudu) megkeresi telepíthető. A funkciók vannak a tárházban almappájában a **src** mappát. Igen, az előző példában azt állítsa be az alkalmazás beállítások értéket `src`. Ha a funkciók a tárház gyökérkönyvtárában, vagy ha nem telepíti a verziókövetésből, eltávolíthatja az alkalmazás beállításainak érték.
+> Ez a sablon által hello [projekt](https://github.com/projectkudu/kudu/wiki/Customizing-deployments#using-app-settings-instead-of-a-deployment-file) app beállítások értéket, amely beállítja a hello alapkönyvtárának mely hello a funkciók telepítési motor (Kudu) megkeresi telepíthető. A funkciók vannak a tárházban hello almappájában **src** mappát. Igen, a fenti példa hello, hivatott hello app beállítások érték túl`src`. Ha a funkciók hello a tárház gyökérkönyvtárában, vagy ha nem telepíti a verziókövetésből, eltávolíthatja az alkalmazás beállításainak érték.
 
 ## <a name="deploy-your-template"></a>A sablon telepítése
 
-A sablon telepítéséhez az alábbi módokon használhatja:
+Használhatja a következő módokon toodeploy hello bármelyikét a sablont:
 
 * [PowerShell](../azure-resource-manager/resource-group-template-deploy.md)
 * [Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md)
 * [Azure Portal](../azure-resource-manager/resource-group-template-deploy-portal.md)
 * [REST API](../azure-resource-manager/resource-group-template-deploy-rest.md)
 
-### <a name="deploy-to-azure-button"></a>Telepítse az Azure gomb
+### <a name="deploy-tooazure-button"></a>TooAzure gomb telepítése
 
-Cserélje le ```<url-encoded-path-to-azuredeploy-json>``` rendelkező egy [URL-kódolású](https://www.bing.com/search?q=url+encode) nyers elérési útja verzióját a `azuredeploy.json` fájlt a Githubon.
+Cserélje le ```<url-encoded-path-to-azuredeploy-json>``` rendelkező egy [URL-kódolású](https://www.bing.com/search?q=url+encode) hello nyers elérési útja verzióját a `azuredeploy.json` fájlt a Githubon.
 
 Íme egy példa a markdown használó:
 
 ```markdown
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
+[![Deploy tooAzure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/<url-encoded-path-to-azuredeploy-json>)
 ```
 
 Íme egy példa a HTML formátumú:
@@ -281,10 +281,10 @@ Cserélje le ```<url-encoded-path-to-azuredeploy-json>``` rendelkező egy [URL-k
 
 ## <a name="next-steps"></a>Következő lépések
 
-Fejleszthet, és az Azure Functions konfigurálásával kapcsolatos további tudnivalókért.
+További tudnivalók toodevelop és az Azure Functions konfigurálása.
 
 * [Az Azure Functions fejlesztői segédanyagai](functions-reference.md)
-* [Az Azure-függvény Alkalmazásbeállítások konfigurálása](functions-how-to-use-azure-function-app-settings.md)
+* [Hogyan tooconfigure Azure működni Alkalmazásbeállítások](functions-how-to-use-azure-function-app-settings.md)
 * [Az első Azure-függvény létrehozása](functions-create-first-azure-function.md)
 
 <!-- LINKS -->

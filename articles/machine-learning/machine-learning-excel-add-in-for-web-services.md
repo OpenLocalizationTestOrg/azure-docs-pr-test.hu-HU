@@ -1,6 +1,6 @@
 ---
-title: "Excel-bővítmény a Machine Learning webszolgáltatások |} Microsoft Docs"
-description: "Hogyan használható az Azure Machine Learning webszolgáltatások közvetlenül az Excel programban programozás nélkül."
+title: "aaaExcel bővítmény a Machine Learning webszolgáltatások |} Microsoft Docs"
+description: "Azure Machine Learning Web toouse hogyan közvetlenül az Excel services-programozás nélkül."
 services: machine-learning
 documentationcenter: 
 author: tedway
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/14/2017
 ms.author: tedway;garye
-ms.openlocfilehash: 0d60dd87bbdd4d3eafac0f8876cc9e41412a53ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c52f40d33c9907f284e4750afe47181dc3365fe5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="excel-add-in-for-azure-machine-learning-web-services"></a>Excel-bővítmény az Azure Machine Learning webszolgáltatásokhoz
-Excel megkönnyíti a webszolgáltatások közvetlenül a szükséges kód írása nélkül.
+Excel segítségével könnyen toocall webszolgáltatások közvetlenül hello kell toowrite kódok nélkül.
 
-## <a name="steps-to-use-an-existing-web-service-in-the-workbook"></a>A munkafüzet egy meglévő webes szolgáltatás használatának lépéseit
+## <a name="steps-toouse-an-existing-web-service-in-hello-workbook"></a>Egy meglévő webszolgáltatás hello munkafüzetben szereplő lépéseket tooUse
 
-1. Nyissa meg a [minta Excel-fájl](http://aka.ms/amlexcel-sample-2), amely Excel-bővítmény és a Titanic utasok adatait tartalmazza.
-2. Válassza ki a webszolgáltatás rákattintva-"Titanic túlélő Előrejelzőjének (Excel-bővítmény minta) [Pontszám]" Ebben a példában.
+1. Nyissa meg hello [minta Excel-fájl](http://aka.ms/amlexcel-sample-2), tartalmazó hello Excel-bővítmény, és az utasok adatait hello Titanic.
+2. Kattintással válassza ki a hello webszolgáltatás-"Titanic túlélő Előrejelzőjének (Excel-bővítmény minta) [Pontszám]" Ebben a példában.
    
     ![Válassza ki a webszolgáltatás][01]
-3. Ehhez szükséges, hogy a **Predict** szakasz.  Ez a munkafüzet már tartalmaz adatot, de üres a munkafüzet az Excel programban a cella kijelöléséhez és kattintson a **mintaadatokkal**.
-4. Válassza ki az adatokat a fejlécek és a bemeneti adatok tartomány ikonra.  Győződjön meg arról, hogy a "adataimat fejlécekkel rendelkezik" jelölőnégyzet be van jelölve.
-5. A **kimeneti**, adja meg a cella számát, ahol azt szeretné, hogy a kimenet, például "H1" Itt.
+3. Ezzel megnyitná toohello **Predict** szakasz.  Ez a munkafüzet már tartalmaz adatot, de üres a munkafüzet az Excel programban a cella kijelöléséhez és kattintson a **mintaadatokkal**.
+4. Válassza ki a fejlécek hello adatok és hello bemeneti adatok tartomány ikonra.  Győződjön meg arról, hogy hello "adataimat fejlécekkel rendelkezik" jelölőnégyzet be van jelölve.
+5. A **kimeneti**, adja meg hello cella kívánt kimeneti toobe, például "H1" hello itt.
 6. Kattintson a **előrejelzése**.
    
     ![A szakasz előrejelzése][02]
 
-A webes szolgáltatás, vagy használja a meglévő webszolgáltatás. Egy webszolgáltatás-bővítmény telepítésével kapcsolatos további információkért lásd: [útmutató 5. lépés: központi telepítése az Azure Machine Learning Web service](machine-learning-walkthrough-5-publish-web-service.md).
+A webes szolgáltatás, vagy használja a meglévő webszolgáltatás. Egy webszolgáltatás-bővítmény telepítésével kapcsolatos további információkért lásd: [útmutató 5. lépés: hello Azure Machine Learning webszolgáltatás telepítése](machine-learning-walkthrough-5-publish-web-service.md).
 
-A webszolgáltatáshoz API-kulcs beszerzése. Ahol elvégezhető ez a művelet függ a klasszikus Machine Learning webszolgáltatás egy új Machine Learning-webszolgáltatás közzététele e.
+A webszolgáltatáshoz hello API-kulcs beszerzése. Ahol elvégezhető ez a művelet függ a klasszikus Machine Learning webszolgáltatás egy új Machine Learning-webszolgáltatás közzététele e.
 
 **A klasszikus webszolgáltatás** 
 
-1. A Machine Learning Studióban, kattintson a **WEBSZOLGÁLTATÁSOK** szakaszt a bal oldali ablaktáblán, és válassza ki a webszolgáltatás.
+1. A Machine Learning Studióban, kattintson a hello **WEBSZOLGÁLTATÁSOK** szakasz hello bal oldali ablaktáblán, majd válassza ki a hello webszolgáltatáshoz.
    
     ![Studio válasszon egy webszolgáltatás-bővítmény][04]
-2. Másolja az API-kulcsot a webszolgáltatáshoz.
+2. Másolja az API-kulcs hello hello webszolgáltatáshoz.
    
     ![Studio API-kulcs][05]
-3. Az a **IRÁNYÍTÓPULT** a webszolgáltatás lapra, majd a **kérelem/válasz** hivatkozásra.
-4. Keresse meg a **kérelem URI-azonosítója** szakasz.  Másolja ki és mentse az URL-címet.
+3. A hello **IRÁNYÍTÓPULT** hello webszolgáltatáshoz lapra, majd hello **kérelem/válasz** hivatkozásra.
+4. Keresse meg hello **kérelem URI-azonosítója** szakasz.  Másolja ki és mentse a hello URL-CÍMÉT.
 
 > [!NOTE]
-> Már lehetséges a jelentkezzen be a [Azure Machine Learning webszolgáltatások](https://services.azureml.net) portálra, ahol az adott klasszikus Machine Learning webszolgáltatás API-kulcs beszerzése.
+> Már lehetséges toosign történő hello [Azure Machine Learning webszolgáltatások](https://services.azureml.net) portál tooobtain hello API-kulcs egy klasszikus Machine Learning webszolgáltatáshoz.
 > 
 > 
 
 **Új webszolgáltatás**
 
-1. Az a [Azure Machine Learning webszolgáltatások](https://services.azureml.net) portálon kattintson **webszolgáltatások**, majd válassza a webes szolgáltatás. 
+1. A hello [Azure Machine Learning webszolgáltatások](https://services.azureml.net) portálon kattintson **webszolgáltatások**, majd válassza a webes szolgáltatás. 
 2. Kattintson a **felhasználásához**.
-3. Keresse meg a **alapvető fogyasztási adatai** szakasz. Másolja ki és mentse a **elsődleges kulcs** és a **kérés-válasz** URL-CÍMÉT.
+3. Keresse meg hello **alapvető fogyasztási adatai** szakasz. Másolja ki és mentse a hello **elsődleges kulcs** és hello **kérés-válasz** URL-CÍMÉT.
 
-## <a name="steps-to-add-a-new-web-service"></a>Lépések végrehajtásával adja hozzá egy új webszolgáltatás-bővítmény
+## <a name="steps-tooadd-a-new-web-service"></a>Lépéseket tooAdd egy új webszolgáltatás-bővítmény
 
-1. A webes szolgáltatás, vagy használja a meglévő webszolgáltatás. Egy webszolgáltatás-bővítmény telepítésével kapcsolatos további információkért lásd: [útmutató 5. lépés: központi telepítése az Azure Machine Learning Web service](machine-learning-walkthrough-5-publish-web-service.md).
+1. A webes szolgáltatás, vagy használja a meglévő webszolgáltatás. Egy webszolgáltatás-bővítmény telepítésével kapcsolatos további információkért lásd: [útmutató 5. lépés: hello Azure Machine Learning webszolgáltatás telepítése](machine-learning-walkthrough-5-publish-web-service.md).
 2. Kattintson a **felhasználásához**.
-3. Keresse meg a **alapvető fogyasztási adatai** szakasz. Másolja ki és mentse a **elsődleges kulcs** és a **kérés-válasz** URL-CÍMÉT.
-4. Az Excel programban, lépjen a **webszolgáltatások** szakasz (Ha a **Predict** területen kattintson a Vissza gombra kattintva a webes szolgáltatások listáját).
+3. Keresse meg hello **alapvető fogyasztási adatai** szakasz. Másolja ki és mentse a hello **elsődleges kulcs** és hello **kérés-válasz** URL-CÍMÉT.
+4. Az Excel programban, lépjen a toohello **webszolgáltatások** szakasz (Ha Ön a hello **Predict** hello vissza toogo toohello webes szolgáltatások listájában kattintson).
    
-    ![Ugrás a webes szolgáltatás kiválasztása][03]
+    ![Nyissa meg tooWeb szolgáltatás kiválasztása][03]
 5. Kattintson a **webszolgáltatás hozzáadása**.
-6. Az URL-cím illessze be az Excel-bővítmény szövegmező feliratú **URL-cím**.
-7. Az API/elsődleges kulcs illessze be a mezőbe **API-kulcs**.
+6. Hello URL-cím illessze be az Excel-bővítmény szövegmező feliratú hello **URL-cím**.
+7. Beillesztés hello API/elsődleges kulcs feliratú hello szövegmezőbe **API-kulcs**.
 8. Kattintson az **Add** (Hozzáadás) parancsra.
    
     ![URL-CÍMÉT és API-kulcsát egy klasszikus webszolgáltatáshoz.][06]
-9. A webszolgáltatás hajtsa végre az előző szakasz utasításait, "Lépéseket egy meglévő webes szolgáltatás használatára."
+9. toouse hello webszolgáltatás, kövesse az utasításokat megelőző hello, "Lépések tooUse egy meglévő webes szolgáltatás."
 
 ## <a name="sharing-your-workbook"></a>A munkafüzet megosztása
-Mentse a munkafüzetet, ha a hozzáadott webszolgáltatások API/elsődleges kulcsa is menti. Ez azt jelenti, hogy csak ossza meg a munkafüzetet megbízható személlyel.
+Ha a munkafüzet mentéséhez hello API/elsődleges kulcs hello web Services hozzáadott is menti. Ez azt jelenti, hogy csak ossza meg hello munkafüzet megbízható személlyel.
 
-Kérje meg a következő szakaszban megjegyzés vagy a kérdéseket a [fórum](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409).
+Bármely kérdései vannak a következő megjegyzés szakasz vagy a hello a [fórum](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409).
 
 [01]: ./media/machine-learning-excel-add-in-for-web-services/image1.png
 [02]: ./media/machine-learning-excel-add-in-for-web-services/image2.png

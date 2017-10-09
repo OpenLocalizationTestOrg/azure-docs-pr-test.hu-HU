@@ -1,0 +1,2 @@
+> [!NOTE]
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../articles/azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Microsoft azt javasolja, hogy az új központi telepítéseknél helyett hello klasszikus üzembe helyezési modellel hello Resource Manager telepítési modell használatát bemutatja.

@@ -1,6 +1,6 @@
 ---
-title: "Bemutatják, hogyan használhatja a Salesforce-összekötőt a logic Apps alkalmazásait |} Microsoft Docs"
-description: "Az Azure App service logic Apps alkalmazások létrehozása A Salesforce-összekötő API-jával különféle műveleteket végezhet a Salesforce-objektumokon."
+title: "aaaLearn toouse hello Salesforce-összekötőt a logic Apps alkalmazásait |} Microsoft Docs"
+description: "Az Azure App service logic Apps alkalmazások létrehozása hello Salesforce összekötő biztosít egy API toowork Salesforce objektummal."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/05/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c2e2efd356382df9404f5c4ed54f24758b2cd22b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b14b41fa8a4648b4f0090472dc0f9575bf13a2ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-salesforce-connector"></a>A Salesforce-összekötő az első lépései
-A Salesforce-összekötő API-jával különféle műveleteket végezhet a Salesforce-objektumokon.
+# <a name="get-started-with-hello-salesforce-connector"></a>Hello Salesforce összekötőjével első lépései
+hello Salesforce összekötő biztosít egy API toowork Salesforce objektummal.
 
-Használandó [a csatlakozókat](apis-list.md), először hozzon létre egy logikai alkalmazást. Elkezdheti által [logikai alkalmazás létrehozása most](../logic-apps/logic-apps-create-a-logic-app.md).
+toouse [a csatlakozókat](apis-list.md), először toocreate logikai alkalmazás. Elkezdheti által [logikai alkalmazás létrehozása most](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-to-salesforce-connector"></a>Kapcsolódás a Salesforce-összekötő
-A Logic Apps alkalmazást bármely szolgáltatás hozzáférni, először hozzon létre egy *kapcsolat* a szolgáltatáshoz. A [kapcsolat](connectors-overview.md) biztosít a logikai alkalmazás és egy másik szolgáltatás közötti kapcsolat.  
+## <a name="connect-toosalesforce-connector"></a>Csatlakozás tooSalesforce összekötő
+A Logic Apps alkalmazást férhetnek hozzá a szolgáltatáshoz, először jóvá kell toocreate egy *kapcsolat* toohello szolgáltatás. A [kapcsolat](connectors-overview.md) biztosít a logikai alkalmazás és egy másik szolgáltatás közötti kapcsolat.  
 
-### <a name="create-a-connection-to-salesforce-connector"></a>Kapcsolatot létesíthet a Salesforce-összekötő
-> [!INCLUDE [Steps to create a connection to Salesforce Connector](../../includes/connectors-create-api-salesforce.md)]
+### <a name="create-a-connection-toosalesforce-connector"></a>Kapcsolat tooSalesforce összekötő létrehozása
+> [!INCLUDE [Steps toocreate a connection tooSalesforce Connector](../../includes/connectors-create-api-salesforce.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-trigger"></a>Salesforce összekötő eseményindítók
-Egy eseményindító nem egy eseményt, a logikai alkalmazás definiált munkafolyamat indításához használható. [További tudnivalók az eseményindítók](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Egy eseményindító nem lehet a logikai alkalmazás definiált használt toostart hello munkafolyamat esemény. [További tudnivalók az eseményindítók](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-> [!INCLUDE [Steps to create a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
+> [!INCLUDE [Steps toocreate a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
 > 
 > 
 
 ## <a name="add-a-condition"></a>Feltétel hozzáadása
-> [!INCLUDE [Steps to create a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
+> [!INCLUDE [Steps toocreate a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-action"></a>A Salesforce-összekötő művelettel
-Egy művelet során a logikai alkalmazás definiált munkafolyamat által végzett. [További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Egy művelet által definiált logikai alkalmazás hello munkafolyamat során. [További információ a műveletek](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-> [!INCLUDE [Steps to create a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
+> [!INCLUDE [Steps toocreate a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
 > 
 > 
 
 ## <a name="connector-specific-details"></a>Összekötő-specifikus részletei
 
-Bármely eseményindítók és a swagger definiált műveletek megtekintése, és semmilyen határnak a Lásd még: a [connector részleteket](/connectors/salesforce/). 
+Bármely eseményindítók és hello swagger definiált műveletek megtekintése, és semmilyen határnak hello a Lásd még: [connector részleteket](/connectors/salesforce/). 
 
 ## <a name="next-steps"></a>Következő lépések
 [Logikai alkalmazás létrehozása](../logic-apps/logic-apps-create-a-logic-app.md)

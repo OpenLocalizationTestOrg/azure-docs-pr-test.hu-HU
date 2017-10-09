@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület - figyelő"
-description: "További tudnivalók az Azure Mobile Engagement segítségével alkalmazással kapcsolatos valós idejű adatok figyelése"
+title: "aaaAzure Mobile Engagement felhasználói felület - figyelő"
+description: "Megtudhatja, hogyan toomonitor az alkalmazás használatával az Azure Mobile Engagement valós idejű adatokat"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5f8a02e35db93585e0fe46d77b3ad18b94c99597
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a581e4166bc88e6ee7aa784d4047c94533685b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-monitor-real-time-data-about-your-application"></a>Az alkalmazással kapcsolatos valós idejű adatok figyelése
-Ez a cikk ismerteti a **FIGYELŐ** lapján a **a Mobile Engagement** portálon. Használja a **a Mobile Engagement** portal felügyeletét és kezelését a mobile apps szolgáltatásban. Vegye figyelembe, hogy a portál használatának megkezdéséhez először hozzon létre egy **Azure Mobile Engagement** fiók. 
+# <a name="how-toomonitor-real-time-data-about-your-application"></a>Hogyan toomonitor valós idejű adatok az alkalmazással kapcsolatos
+Ez a cikk ismerteti a hello **FIGYELŐ** hello lapján **a Mobile Engagement** portálon. Hello használata **a Mobile Engagement** portál toomonitor és a mobilalkalmazások kezelése. Vegye figyelembe, hogy először toocreate hello portálon toostart egy **Azure Mobile Engagement** fiók. 
 
-A figyelő a szakasz a felhasználói felület valós idejű elemzési információkat nyújt, és lehetővé teszi riasztások beállítása a küszöbértékek elérésekor a legtöbb pedig ugyanazok az adatok rendelkezésre álló korábban az a [ANALYTICS](mobile-engagement-user-interface-analytics.md) szakasza a felhasználói felületen. Tekintse meg a **szószedet** szakasz a [fogalmak](http://go.microsoft.com/fwlink/?LinkId=525555) definíciójának kifejezések és rövidítések elemzés és -figyelő a témakör (például a következő: aktív felhasználói, új felhasználó, a felhasználó őrzi meg, a munkamenet, a felhasználói elérési útja Graph, felhasználók térkép, követési URL-címek, trendeket, tevékenység, esemény, feladat, hiba, további információ, összeomlási és App-info).
+felhasználói felület hello figyelő szakasza hello valós idejű elemzési információkat nyújt, és lehetővé teszi tooset riasztások küszöbértékek elérésekor a legtöbb hello azonos hagyományosan hello elérhető információkat [ANALYTICS](mobile-engagement-user-interface-analytics.md) szakasza hello felhasználói felületén. Lásd: hello **szószedet** hello szakasz [fogalmak](http://go.microsoft.com/fwlink/?LinkId=525555) definíciójának kifejezések és rövidítések elemzés és -figyelő a témakör (például hello következő: aktív felhasználói, új felhasználó, a felhasználó őrzi meg, a munkamenet, Felhasználói elérési Graph, felhasználók térkép, követési URL-címek, trendeket, tevékenység, esemény, feladat, hiba, további információ, összeomlási és App-info).
 
 > [!NOTE]
-> Sok szakasza a **a Mobile Engagement** portál felhasználói felületének tartalmaz a **megjelenítése SÚGÓ** gombra. Nyomja le az erre a gombra kattintva szakasz környezetfüggő ismertetése.
+> Hello sok szakasza **a Mobile Engagement** portál felhasználói felületének tartalmazhat hello **megjelenítése SÚGÓ** gombra. Nyomja meg a gomb tooget szakasz környezetfüggő tájékozódhat.
 > 
 > 
 
 ## <a name="monitor---sessions-jobs-events-errors-and-crashes"></a>A figyelő - munkamenetek, feladatok, eseményeket, hibákat, és az összeomlások
-Láthatja, hogy hány felhasználó jelenleg munkamenet és adott képernyők, vagy konkrét műveletek során a rendszer. Felhasználói tevékenység munkamenetek, feladatok, eseményeket, hibákat, és az összeomlások osztva tekintheti meg. Tekintse meg az aktuális információkat, és az utolsó óra, nap vagy hét adatainak megjelenítése. Minden egyes kategóriát vagy a rendezési információt adott munkamenet, feladat, esemény, hiba, és összeomlási tekintheti meg.  Élő figyelési akkor hasznos, ha van egy uptick működés közben jobb a leküldéses értesítés elküldése után esemény, például a leküldéses kampány során használandó.
+Láthatja, hogy hány felhasználó jelenleg munkamenet és adott képernyők, vagy konkrét műveletek során a rendszer. Felhasználói tevékenység munkamenetek, feladatok, eseményeket, hibákat, és az összeomlások osztva tekintheti meg. Hello aktuális információk, és hello adatainak megjelenítése hello elmúlt egy óra, nap vagy hét. Tekintse meg az egyes kategóriák hello információk, vagy munkamenet, feladat, esemény, hiba és összeomlási adott hello rendezéshez.  Élő figyelése esetén hasznos toouse esemény, például a leküldéses kampány toosee során van egy uptick művelet jobb a leküldéses értesítés elküldése után.
 
 ![Monitor1][14]  
 
 ## <a name="troubleshooting-with-monitor---events---details"></a>Hibaelhárítás az figyelő - események - részletek
-Generál egy eseményt az alkalmazás a vizsgálati eszköz, és hogy a figyelő - események - részletek az egyik legegyszerűbb módja az Eszközazonosítót található a vizsgálati eszköz, és győződjön meg arról, hogy Azure Mobile Engagement-integráció Analytics, figyelés, és Az alkalmazásból szegmensek működik. Miután az eszköz azonosítója a vizsgálati eszköz, hozzáadhatja a vizsgálati eszközök "Fiók – eszközök". Ha az esemény nem hozható létre, győződjön meg arról, hogy az SDK az Android vagy iOS/webes/Windows/Windows Phone-alkalmazás megfelelően integrált Azure Mobile Engagement.
+Generál egy eseményt az alkalmazás a vizsgálati eszköz, és hogy a figyelő - események - részletek egyike hello a vizsgálati eszköz és a tooconfirm azonosító az eszközt, hogy Azure Mobile Engagement-integráció elemzés, figyelés, a legegyszerűbb módszer toofind és Az alkalmazásból szegmensek működik. Miután a vizsgálati eszköz Eszközazonosító hello, hozzáadhatja a "Fiók – eszközök" tooyour teszteszközök. Ha az esemény nem hozható létre, győződjön meg arról, hogy Azure Mobile Engagement megfelelően integrált hello SDK az Android vagy iOS/webes/Windows/Windows Phone-alkalmazás.
 
 További információkért lásd: [SDK-dokumentáció][Link 5]
 
 ![Monitor2][15]  
 
 ## <a name="troubleshooting-with-monitor---crashes---details"></a>Hibaelhárítás az figyelő - összeomlik - részletek
-Összeomlási információkat annak meghatározásához, hogy az alkalmazás összeomló miért - összeomlás - figyelő adatait az alkalmazásra vonatkozó tekintheti meg. Az SDK a kibocsátási megjegyzésekben egyes verzióihoz készült Android vagy iOS/webes/Windows/Windows Phone SDK minden verziójának ismert problémái is kell meg.
+Összeomlási információkat toohelp határozza meg, miért összeomló az alkalmazás - összeomlás - figyelő adatait az alkalmazásra vonatkozó tekintheti meg. Akkor is egyes verzióihoz hello SDK hello kibocsátási megjegyzésekben hello Android vagy iOS/webes/Windows/Windows Phone SDK minden verziójának ismert problémái keresi.
 
 További információkért lásd: [SDK-dokumentáció – kibocsátási megjegyzések][Link 5]
 
 ![Monitor3][16]
 
 ## <a name="monitor---alerts"></a>Monitor - riasztás
-Riasztások, automatikusan küldjön el Önnek e-mailben vagy csevegőüzenetekkel feltételei is megadható. (Minden XMPP-kompatibilis szolgáltatás például a Google GTalk vagy az Apple iChat támogatottak.) Riasztások egy előre definiált kártevőészlelés küszöbértéket (>) nagyobb vagy kisebb, mint (<) egy bizonyos számú munkamenetek, feladatok, eseményeket, hibákat vagy összeomlik / másodpercben, perc vagy óra alapulnak. Riasztások figyelése egy adott típusú összes tevékenységet, vagy csak figyelése egy adott feladat, esemény vagy hiba. 
+A riasztások automatikusan elküldött e-mailben vagy csevegőüzenetekkel tooyou feltételek is megadható. (Minden XMPP-kompatibilis szolgáltatás például a Google GTalk vagy az Apple iChat támogatottak.) Riasztások egy előre definiált kártevőészlelés küszöbértéket (>) nagyobb vagy kisebb, mint (<) egy bizonyos számú munkamenetek, feladatok, eseményeket, hibákat vagy összeomlik / másodpercben, perc vagy óra alapulnak. Riasztások figyelése egy adott típusú összes tevékenységet, vagy csak figyelése egy adott feladat, esemény vagy hiba. 
 
-A minimális azonosítási időköz, amely beállítás perc alatt, győződjön meg arról, hogy a riasztás aktiválása esetén soha nem értesítést fog kapni 1-nél több / megadott időköz az egyazon riasztáshoz tartozó két értesítés közötti időtartamot is megadható.
+A minimális azonosítási időköz, amely hello minimális mérete ahhoz, hogy több azonos riasztás meg arról, hogy a riasztás aktiválása esetén kapjon toomake hello tartozó két értesítés, mint 1 értesítési / megadott időköz az egyes is megadható.
 
 ![Monitor4][17]
 

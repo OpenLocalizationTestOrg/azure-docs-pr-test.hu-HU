@@ -1,5 +1,5 @@
 ---
-title: "NODE.js példák Azure Cosmos DB |} Microsoft Docs"
+title: "Azure Cosmos DB aaaNode.js példák |} Microsoft Docs"
 description: "Node.js példák a githubon található Azure Cosmos DB, beleértve a CRUD műveletek az általános feladatok."
 keywords: "NODE.js-példák"
 services: cosmos-db
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: moderakh
-ms.openlocfilehash: 602615c2434b7ab11ec55f2427c76cf1730b1379
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55c8ebb9ff425aeeaa49fd0738649d33556a1635
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-nodejs-examples"></a>Az Azure Cosmos DB Node.js példák
 > [!div class="op_single_selector"]
@@ -30,25 +30,25 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Minta megoldások, amelyek a CRUD műveletek és más olyan gyakori műveleteket Azure Cosmos DB erőforrások szerepelnek a [azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) GitHub-tárházban. Ez a cikk a következő információkat tartalmazza:
+Minta megoldások, amelyek a CRUD műveletek és más olyan gyakori műveleteket Azure Cosmos DB erőforrások szerepelnek hello [azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) GitHub-tárházban. Ez a cikk a következő információkat tartalmazza:
 
-* Az egyes a Node.js példa feladatokra mutató hivatkozásokat projektfájlok.
-* A kapcsolódó API mutató hivatkozások tartalom hivatkozik.
+* Hivatkozások toohello feladatok hello Node.js példa projektfájlokat mindegyikében.
+* Hivatkozások toohello kapcsolódó API-referencia-tartalom.
 
 **Előfeltételek**
 
-1. Azure-fiókot használni a Node.js példákat lesz szüksége:
-   * [Ingyenesen is létrehozhat egy Azure-fiókot](https://azure.microsoft.com/pricing/free-trial/): A kapott kreditek használatával kipróbálhatja a fizetős Azure-szolgáltatásokat, sőt, azok lejárta után is megtarthatja a fiókot, és továbbra is használhatja az ingyenes Azure-szolgáltatásokat (amilyen például a Websites). A bankkártyáját semmilyen költség nem terheli, hacsak Ön kifejezetten nem módosítja beállításait ennek engedélyezéséhez.
+1. Egy Azure-fiók toouse kell a Node.js példákat:
+   * Is [nyissa meg az Azure-fiók szabad](https://azure.microsoft.com/pricing/free-trial/): jóváírásokat kap használhatja ki tootry fizetős Azure-szolgáltatásokat, és még azok lejárta után is megtarthatja hello fiókot és használhatja az ingyenes Azure-szolgáltatások, például webhelyekhez. A hitelkártya soha nem lesz felszámítva, kivéve, ha explicit módon a beállítások módosításához és kérje meg a toobe számítjuk fel.
      * Is [aktiválhatja a Visual Studio előfizetői előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/): A Visual Studio-előfizetéssel biztosít Önnek krediteket minden hónapban, fizetős Azure-szolgáltatásokat is használhat.
-2. Emellett szükség van a [Node.js SDK](documentdb-sdk-node.md).
+2. Szükség hello [Node.js SDK](documentdb-sdk-node.md).
    
    > [!NOTE]
-   > Minden minta önálló, maga beállítja, és a szükségtelenné vált maga után. Így a minták ki több hívások [DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection). Minden alkalommal, amikor ez történik, az előfizetés alapján számlázzuk a létrehozott gyűjtemény teljesítményszint / használati 1 órában.
+   > Minden minta önálló, maga beállítja, és a szükségtelenné vált maga után. Így a hello minták ki több hívások túl[DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection). Minden alkalommal, amikor ez történik, az előfizetés alapján számlázzuk használati hello teljesítményszinttel hello gyűjtemény létrehozása / 1 órában.
    > 
    > 
 
 ## <a name="database-examples"></a>Adatbázis-példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DatabaseManagement/app.js) fájlt a [DatabaseManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DatabaseManagement) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DatabaseManagement/app.js) hello fájljának [DatabaseManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DatabaseManagement) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |
@@ -59,7 +59,7 @@ A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Da
 | [Adatbázis törlése](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DatabaseManagement/app.js#L133-L144) |[DocumentClient.deleteDatabase](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteDatabase) |
 
 ## <a name="collection-examples"></a>Gyűjtemény példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/CollectionManagement/app.js) fájlt a [CollectionManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/CollectionManagement) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/CollectionManagement/app.js) hello fájljának [CollectionManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/CollectionManagement) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |
@@ -72,12 +72,12 @@ A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Co
 | [A gyűjtemény törlése](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.CollectionManagement/app.js#L204-L215) |[DocumentClient.deleteCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteCollection) |
 
 ## <a name="document-examples"></a>A dokumentum példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DocumentManagement/app.js) fájlt a [DocumentManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DocumentManagement) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/DocumentManagement/app.js) hello fájljának [DocumentManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/DocumentManagement) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |
 | [Dokumentumok létrehozása](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L153-L177) |[DocumentClient.createDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createDocument) |
-| [Az adatcsatorna-gyűjtemény dokumentum olvasása](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L179-L189) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
+| [Adatcsatorna-gyűjtemény hello dokumentum olvasása](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L179-L189) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
 | [Olvassa el a dokumentum-azonosító szerint](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L191-L201) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument) |
 | [Olvassa el a dokumentumot, csak akkor, ha a dokumentum megváltozott](https://github.com/Azure/azure-documentdb-node/blob/0778eadea7abb2af41e8c22a239dc872c584f421/samples/DocumentManagement/app.js#L79-L107) |[DocumentClient.readDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#readDocument)<br/>[RequestOptions.accessCondition](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
 | [A dokumentumok lekérdezés](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L82-L110) |[DocumentClient.queryDocuments](http://azure.github.io/azure-documentdb-node/DocumentClient.html#queryDocuments) |
@@ -86,13 +86,13 @@ A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Do
 | [Dokumentum törlése](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.DocumentManagement/app.js#L122-L133) |[DocumentClient.deleteDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#deleteDocument) |
 
 ## <a name="indexing-examples"></a>Az indexelő példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/IndexManagement/app.js) fájlt a [IndexManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/IndexManagement) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/IndexManagement/app.js) hello fájljának [IndexManagement](https://github.com/Azure/azure-documentdb-node/tree/master/samples/IndexManagement) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |
 | [Hozzon létre gyűjteményt alapértelmezett indexelő](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L657-L701) |[DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection) |
 | [Manuálisan index egy adott dokumentum](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L185-L238) |[RequestOptions.indexingDirective: "include"](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
-| [Egy adott dokumentum manuálisan kizárása az index](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L120-L183) |[RequestOptions.indexingDirective: 'kizárása"](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
+| [Egy adott dokumentum manuálisan kizárása hello index](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L120-L183) |[RequestOptions.indexingDirective: 'kizárása"](http://azure.github.io/azure-documentdb-node/global.html#RequestOptions) |
 | [Használja a Lusta indexelő tömeges importálással, vagy olvassa el a nehéz gyűjtemények](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L240-L269) |[IndexingMode.Lazy](http://azure.github.io/azure-documentdb-node/global.html#IndexingMode) |
 | [Indexelő felvenni egy dokumentum egyedi elérési utak](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L433-L444) |[IndexingPolicy.IncludedPaths](http://azure.github.io/azure-documentdb-node/global.html#IndexingPolicy) |
 | [Egyes elérési utak kizárása a indexelő](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L427-L450) |[IndexingPolicy.ExcludedPath](http://azure.github.io/azure-documentdb-node/global.html#IndexingPolicy) |
@@ -103,7 +103,7 @@ A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/In
 Az indexelő kapcsolatos további információkért lásd: [Azure Cosmos DB házirendek indexelő](indexing-policies.md).
 
 ## <a name="server-side-programming-examples"></a>Kiszolgálóoldali programozási példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/ServerSideScripts/app.js) fájlt a [ServerSideScripts](https://github.com/Azure/azure-documentdb-node/tree/master/samples/ServerSideScripts) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/ServerSideScripts/app.js) hello fájljának [ServerSideScripts](https://github.com/Azure/azure-documentdb-node/tree/master/samples/ServerSideScripts) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |
@@ -113,7 +113,7 @@ A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Se
 További információ a kiszolgálóoldali programozása: [Azure Cosmos DB kiszolgálóoldali programozása: tárolt eljárások, eseményindítók adatbázis és a felhasználó által megadott függvények](programming.md).
 
 ## <a name="partitioning-examples"></a>Particionálás példák
-A [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Partitioning/app.js) fájlt a [particionálására](https://github.com/Azure/azure-documentdb-node/tree/master/samples/Partitioning) projekt mutatja be a következő feladatok végezhetők el.
+Hello [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Partitioning/app.js) hello fájljának [particionálására](https://github.com/Azure/azure-documentdb-node/tree/master/samples/Partitioning) projekt bemutatja, hogyan tooperform hello a következő feladatokat.
 
 | Tevékenység | API-referencia |
 | --- | --- |

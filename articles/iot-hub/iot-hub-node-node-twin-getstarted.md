@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT Hub eszköz twins (csomópont) |} Microsoft Docs"
-description: "Hogyan használható az Azure IoT Hub eszköz twins címkéket, majd az IoT Hub-lekérdezést. Az Azure IoT SDK for Node.js használatával megvalósítható a szimulált eszköz alkalmazást és egy szolgáltatás-alkalmazást, amely hozzáadja a címkéket és az IoT Hub-lekérdezés futtatása."
+title: "aaaGet Azure IoT Hub eszköz twins (csomópont) használatába |} Microsoft Docs"
+description: "Hogyan toouse Azure IoT Hub eszköz twins tooadd címkéket, majd az IoT Hub-lekérdezést. Használhatja az Azure IoT SDK-k hello Node.js tooimplement hello szimulált eszköz alkalmazás és egy szolgáltatás-alkalmazást, amely hello címkék hozzáadása, és az IoT-központ lekérdezés hello futtatja."
 services: iot-hub
 documentationcenter: node
 author: fsautomata
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: elioda
-ms.openlocfilehash: 633c9fd4f8a1d017d93148f8c2e860ccba14238c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d60b8c3de85e9285e496b86e27d4ee31a0554a1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-node"></a>Ismerkedés az eszköz twins (csomópont)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-Ez az oktatóanyag végén meg kell két Node.js konzol alkalmazásokat:
+Ez az oktatóanyag végén hello hogy két Node.js konzol alkalmazásokat:
 
 * **AddTagsAndQuery.js**, a Node.js háttér-alkalmazás, amely címkét ad hozzá, és lekérdezi az eszköz twins.
-* **TwinSimulatedDevice.js**, a Node.js-alkalmazás, amely egy eszköz, amely összeköti az IoT hub korábban létrehozott eszköz identitású szimulálja, és jelenti a kapcsolat állapotát.
+* **TwinSimulatedDevice.js**, a Node.js-alkalmazás, amely olyan eszköz, amely tooyour IoT-központ a korábban létrehozott hello eszközidentitás szimulálja, és jelenti a kapcsolat állapotát.
 
 > [!NOTE]
-> A cikk [Azure IoT SDK-k] [ lnk-hub-sdks] használható eszközt és a háttér-alkalmazások az Azure IoT SDK-k információt nyújt.
+> hello cikk [Azure IoT SDK-k] [ lnk-hub-sdks] információkat nyújt azokról hello Azure IoT SDK-k toobuild használt eszköz és a háttér-alkalmazásokat.
 > 
 > 
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban hello a következőkre lesz szüksége:
 
 * A Node.js 0.10.x vagy újabb verziója.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
@@ -42,21 +42,21 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-the-service-app"></a>A service-alkalmazás létrehozása
-Ebben a szakaszban hoz létre egy Node.js-Konzolalkalmazás, a társított eszközök a két hely metaadatok hozzáadó **myDeviceId**. Ezután lekérdezi az eszköz twins tárolja az IoT hub, az eszközök az Egyesült Államok, és a mobilhálózat kapcsolat jelentő megfelelően kiválasztása.
+## <a name="create-hello-service-app"></a>Hello service-alkalmazás létrehozása
+Ebben a szakaszban hoz létre egy Node.js-Konzolalkalmazás, amely hely metaadatok toohello eszköz iker társított **myDeviceId**. Ezután hello eszköz twins hello IoT-központ hello található hello eszközök kiválasztása tárolja SZÁMUNKRA, és jelentik a mobilhálózat kapcsolatot, majd hello lekérdezések.
 
-1. Hozzon létre egy új üres nevű **addtagsandqueryapp**. Az a **addtagsandqueryapp** mappa, hozzon létre egy új package.json fájlt parancsot a parancssorba az alábbi parancs segítségével. Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **addtagsandqueryapp**. A hello **addtagsandqueryapp** mappa, hozzon létre egy új package.json fájlt a következő parancsot a parancssorba hello segítségével. Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. A parancssorba a **addtagsandqueryapp** mappa telepítéséhez a következő parancsot a **azure-IOT hubbal** csomag:
+2. A parancssorban hello **addtagsandqueryapp** mappa, futtassa a következő parancs tooinstall hello hello **azure-IOT hubbal** csomag:
    
     ```
     npm install azure-iothub --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy új **AddTagsAndQuery.js** fájlt a **addtagsandqueryapp** mappa.
-4. Adja hozzá a következő kódot a **AddTagsAndQuery.js** fájlt, és lecserélni az **{iot hub kapcsolati karakterlánc}** helyőrző a hub létrehozása után másolja az IoT-központ kapcsolati karakterlánccal:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **AddTagsAndQuery.js** hello fájlban **addtagsandqueryapp** mappa.
+4. Adja hozzá a következő kód toohello hello **AddTagsAndQuery.js** fájlt, és helyettesítő hello **{iot hub kapcsolati karakterlánc}** helyőrzőt hello a hub létrehozása után másolja az IoT-központ kapcsolati karakterlánc:
    
         'use strict';
         var iothub = require('azure-iothub');
@@ -87,16 +87,16 @@ Ebben a szakaszban hoz létre egy Node.js-Konzolalkalmazás, a társított eszk�
             }
         });
    
-    A **beállításjegyzék** vezérlőnek eszköz twins a szolgáltatás együttműködhet szükséges összes módszert. Az előző kód először inicializálja a **beállításjegyzék** objektumot, majd beolvassa az eszköz iker a **myDeviceId**, és végül frissíti a címkék a kívánt helyre információkkal.
+    Hello **beállításjegyzék** vezérlőnek minden hello módszerek szükséges toointeract az eszköz twins hello szolgáltatásból. hello előző kód először inicializálja hello **beállításjegyzék** objektumot, majd beolvassa az eszköz iker hello **myDeviceId**, és végül frissíti a címkék szükséges hello helyére vonatkozó információkat.
    
-    A címkék frissítése után hívja a **queryTwins** függvény.
-5. Adja hozzá a következő kódot végén **AddTagsAndQuery.js** megvalósításához a **queryTwins** függvény:
+    Hello után hello frissítése címkéket az hívások hello **queryTwins** függvény.
+5. Adja hozzá a következő kódot a hello végén hello **AddTagsAndQuery.js** tooimplement hello **queryTwins** függvény:
    
         var queryTwins = function() {
             var query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
@@ -105,46 +105,46 @@ Ebben a szakaszban hoz létre egy Node.js-Konzolalkalmazás, a társított eszk�
             query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43' AND properties.reported.connectivity.type = 'cellular'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43 using cellular network: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
             });
         };
    
-    Az előző kód két lekérdezést hajt végre: az első csak az eszköz twins található eszközök kiválasztja a **Redmond43** gépek és a második rendszerint a lekérdezést csak azokat az eszközöket is keresztül mobilhálózati kapcsolódó kiválasztásához.
+    hello előző kód két lekérdezést hajt végre: először a választ csak hello eszköz twins hello található eszközök hello **Redmond43** gépek és hello második refines hello lekérdezés tooselect csak hello csatlakozó eszközöket is keresztül mobilhálózati.
    
-    Vegye figyelembe, hogy az előző kód, amikor létrehozza a **lekérdezés** objektumazonosító, a visszaadott dokumentumok maximális számát határozza meg. A **lekérdezés** objektum tartalmaz egy **hasMoreResults** logikai tulajdonság, amely segítségével meghívni a **nextAsTwin** módszerek több alkalommal fordult elő az összes eredmények beolvasásához. A metódus hívása **következő** eredmények, amelyek az eszköz twins például összesítési lekérdezések eredményeit nem érhető el.
-6. Futtassa az alkalmazást:
+    Vegye figyelembe, hogy hello előző kóddal, amikor hello létrehozza **lekérdezés** objektumazonosító, a visszaadott dokumentumok maximális számát határozza meg. Hello **lekérdezés** objektum tartalmaz egy **hasMoreResults** használható tooinvoke hello logikai tulajdonság **nextAsTwin** módszerek összes tooretrieve eredmények több alkalommal. A metódus hívása **következő** eredmények, amelyek az eszköz twins például összesítési lekérdezések eredményeit nem érhető el.
+6. Futtassa az alkalmazást hello:
    
         node AddTagsAndQuery.js
    
-    Megjelenik az eredmények között egy eszközön a lekérdezés kérni a minden eszköz a mappában lévő **Redmond43** és a lekérdezés, amely korlátozza az eredmények mobilhálózati használó eszközök sem.
+    A hello eredményei egy eszközhöz hello lekérdezés kérése minden eszköz a mappában lévő kell megjelennie **Redmond43** nincs hello lekérdezés, amely korlátozza a hello mobilhálózati használó toodevices elkészítéséig.
    
     ![][1]
 
-A következő szakaszban létrehoz egy eszköz-alkalmazást, amely a kapcsolódási adatokat, és módosítja az előző szakaszban a lekérdezés eredménye.
+Hello a következő szakaszban egy eszköz-alkalmazást, amely jelent hello csatlakozási adatokat hoz létre, és módosításokat hello hello előző szakaszban hello lekérdezés eredménye.
 
-## <a name="create-the-device-app"></a>Az eszköz-alkalmazás létrehozása
-Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, létrehozhat **myDeviceId**, és az eszköz iker által jelentett tulajdonságok a információkat, hogy mobilhálózat használata csatlakozik tartalmazzák majd a frissítéseket.
+## <a name="create-hello-device-app"></a>Hello eszköz alkalmazás létrehozása
+Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely a tooyour hub, létrehozhat **myDeviceId**, és majd a frissítések az eszköz két által jelentett tulajdonságok toocontain hello információt, hogy használatával mobilhálózathoz csatlakozik.
 
 > [!NOTE]
-> Ilyenkor eszköz twins elérhetők csak a MQTT protokollal IoT-központ csatlakozó eszközökről. Tekintse meg a [MQTT támogatási] [ lnk-devguide-mqtt] miként a meglévő eszköz alkalmazásának módját MQTT használatára.
+> Ilyenkor eszköz twins elérhetők, csak az eszközök, tooIoT központi csatlakozás hello MQTT protokoll használatával. Tekintse meg a toohello [MQTT támogatási] [ lnk-devguide-mqtt] a cikk útmutatást tooconvert meglévő eszköz alkalmazás toouse MQTT.
 > 
 > 
 
-1. Hozzon létre egy új üres nevű **reportconnectivity**. Az a **reportconnectivity** mappa, hozzon létre egy új package.json fájlt parancsot a parancssorba az alábbi parancs segítségével. Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **reportconnectivity**. A hello **reportconnectivity** mappa, hozzon létre egy új package.json fájlt a következő parancsot a parancssorba hello segítségével. Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. A parancssorba a **reportconnectivity** mappa telepítéséhez a következő parancsot a **azure iot-eszközök**, és **azure-iot-eszközök – mqtt** csomag:
+2. A parancssorban hello **reportconnectivity** mappa, futtassa a következő parancs tooinstall hello hello **azure iot-eszközök**, és **azure-iot-eszközök – mqtt** csomag :
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy új **ReportConnectivity.js** fájlt a **reportconnectivity** mappa.
-4. Adja hozzá a következő kódot a **ReportConnectivity.js** fájlt, és lecserélni a **{eszköz kapcsolati karakterlánc}** helyőrző a létrehozásautánmásoljaeszközkapcsolatikarakterlánccalrendelkező**myDeviceId** eszközidentitás:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **ReportConnectivity.js** hello fájlban **reportconnectivity** mappa.
+4. Adja hozzá a következő kód toohello hello **ReportConnectivity.js** fájlt, és helyettesítő hello **{eszköz kapcsolati karakterlánc}** helyőrző hello eszköz kapcsolati karakterlánccal másolt hello létrehozásakor **myDeviceId** eszközidentitás:
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -182,13 +182,13 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, lét
         }
         });
    
-    A **ügyfél** vezérlőnek az eszköz twins az eszközről interaktív szükséges összes módszert. Az előző kód után állíthatja a **ügyfél** objektumazonosító, beolvassa az eszköz iker a **myDeviceId** , és frissíti a jelentett tulajdonsága a kapcsolati információ.
-5. Az eszköz alkalmazás futtatása
+    Hello **ügyfél** vezérlőnek minden hello módszerek toointeract van szüksége az eszköz twins hello eszközről. hello előző kód után inicializálja a hello **ügyfél** objektum beolvassa az eszköz iker hello **myDeviceId** , és frissíti a jelentett tulajdonsága hello kapcsolódási információt.
+5. Hello eszköz alkalmazás futtatása
    
         node ReportConnectivity.js
    
-    Az üzenet `twin state reported`.
-6. Most, hogy az eszköz jelentette a kapcsolat adatait, akkor mindkét lekérdezések meg kell jelennie. Lépjen vissza a **addtagsandqueryapp** mappa, és futtassa újból a lekérdezést:
+    Hello üzenet `twin state reported`.
+6. Most, hogy hello eszköz jelentette a kapcsolati információ meg kell jelennie mindkét lekérdezések. Nyissa meg újra a hello **addtagsandqueryapp** hello mappa, és futtassa le újra:
    
         node AddTagsAndQuery.js
    
@@ -197,13 +197,13 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely kapcsolódik a hub, lét
     ![][3]
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy új IoT Hubot konfigurált az Azure-portálon, majd létrehozott egy eszközidentitást az IoT Hub identitásjegyzékében. Fel van véve eszköz metaadatait címkék egy háttér-alkalmazásból, és a szimulált eszköz alkalmazásának megírt az eszköz a két jelentés eszköz kapcsolódási adatok. Megtudta, ezt az információt az SQL-szerű IoT Hub lekérdezési nyelv lekérdezése is.
+Ebben az oktatóanyagban egy új IoT hub konfigurálva hello Azure-portálon, és hozza létre a hello IoT hub identitásjegyzékhez egy eszközidentitás. Eszköz metaadatait címkeként felvett egy háttér-alkalmazást, és a szimulált eszköz kapcsolat app tooreport eszközadatokat megírt hello eszköz iker a. Azt is megtanulta, hogyan tooquery ezt az információt hello SQL-szerű IoT Hub lekérdezési nyelv.
 
-A következő források segítségével megtudhatja, hogyan:
+A következő erőforrások toolearn hogyan használja hello számára:
 
-* telemetriai adatokat küldhet az eszközökről a [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
-* eszköz iker kívánt tulajdonságokkal rendelkező eszközök konfigurálása a [használata szükséges eszközök tulajdonságok] [ lnk-twin-how-to-configure] oktatóanyagban
-* az interaktív (például bekapcsolásával a felhasználó által felügyelt alkalmazásból ventilátor), eszközök szabályozásának a [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
+* telemetriai adatokat küldhet a hello eszközökről [Ismerkedés az IoT-központ] [ lnk-iothub-getstarted] oktatóanyagban
+* eszközök, eszköz iker kívánt tulajdonságok használata hello konfigurálása [használata szükséges tulajdonságok tooconfigure eszközök] [ lnk-twin-how-to-configure] oktatóanyagban
+* interaktív (például bekapcsolásával a felhasználó által felügyelt alkalmazásból ventilátor), eszközeinek vezérléséhez a hello [közvetlen módszerekkel] [ lnk-methods-tutorial] oktatóanyag.
 
 <!-- images -->
 [1]: media/iot-hub-node-node-twin-getstarted/service1.png

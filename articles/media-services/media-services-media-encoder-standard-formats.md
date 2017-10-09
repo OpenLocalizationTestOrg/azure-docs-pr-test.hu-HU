@@ -1,5 +1,5 @@
 ---
-title: "Media Encoder Standard formátumok és kodekek"
+title: "aaaMedia Encoder Standard formátumok és kodekek"
 description: "Ez a témakör áttekintést nyújt a Media Encoder Standard formátumok és kodekek."
 services: media-services
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 1115408443e11c8b0d26b83217c5f63e4b6ba819
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 51a67f372dff579383ffcfa988e8f4d38ad44a72
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="media-encoder-standard-formats-and-codecs"></a>Media Encoder Standard-formátumok és -kodekek
-Ez a dokumentum a leggyakrabban használt importálási és exportálási fájlformátumot is használhatja a Media Encoder Standard listáját tartalmazza.
+Ez a dokumentum hello leggyakrabban használt importálási és exportálási fájlformátumot is használhatja a Media Encoder Standard listáját tartalmazza.
 
 ## <a name="input-containerfile-formats"></a>Adjon meg tároló/fájlformátum
 | Fájlformátumok (fájlkiterjesztések) | Támogatott |
@@ -39,30 +39,30 @@ Ez a dokumentum a leggyakrabban használt importálási és exportálási fájlf
 | QuickTime (.mov) |Igen |
 
 > [!NOTE]
-> Újabb van a gyakrabban észlelt kiterjesztések listája. Media Encoder Standard támogatja számos más (például: .m2ts, .mpeg2video, .qt). Ha egy fájl kódolása próbál, és egy hibaüzenet jelenik meg a formátum nem támogatott kapcsolatos, adja meg a visszajelzés [Itt](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/).
+> Fölött található gyakrabban észlelt hello fájlkiterjesztések listája. Media Encoder Standard támogatja számos más (például: .m2ts, .mpeg2video, .qt). Ha tooencode egy fájl meg, és hello formátum nem támogatott kapcsolatos hibaüzenetet kap, adja meg a visszajelzés [Itt](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/).
 > 
 > 
 
 ### <a name="audio-formats-in-input-containers"></a>A bemeneti tárolók hang formátumok
-Media Encoder Standard támogatja a következő hang formátumú bemeneti tárolókban lévő elvégzéséhez:
+Media Encoder Standard támogatja a következő bemeneti tárolókban lévő hang formátumok könyv hello:
 
 * MXF, GXF és QuickTime fájlok, amely rendelkezik a időosztásos sztereó zeneszámok vagy 5.1 minták
 
 vagy
 
-* Amikor a hang végzik, külön PCM nyomon követi, de a csatorna hozzárendelését (sztereó vagy 5.1) a fájlok metaadatait is származtatható MXF, GXF és QuickTime fájlok
+* Amennyiben hello hang külön PCM nyomon követi, de hello csatorna leképezési végzik MXF, GXF és QuickTime fájlok (toostereo vagy 5.1) is hello fájlok metaadatait származtatható
 
-Vegye figyelembe a támogató, explicit vagy felhasználó által megadott csatorna leképezés a közeljövőben megadni.
+Vegye figyelembe a támogató, explicit vagy felhasználó által megadott csatorna leképezést fogja megadni a jövőben közelében hello.
 
 ## <a name="input-video-codecs"></a>A bemeneti videó kodekek
 | A bemeneti videó kodekek | Támogatott |
 | --- | --- | --- | --- |
-| 8 bit/10-bites, legfeljebb 4 AVC: 2:2, beleértve a AVCIntra |8 bites 4:2:0. és 4:2:2. régiója |
+| AVC 8 bit/10-bites too4:2:2, beleértve a AVCIntra mentése |8 bites 4:2:0. és 4:2:2. régiója |
 | (A MXF) Avid DNxHD |Igen |
 | DVCPro/DVCProHD (a MXF) |Igen |
 | Digitális videót (DV) (AVI-fájlokban szereplő) |Igen |
 | JPEG 2000 |Igen |
-| MPEG-2 (legfeljebb 422 profil és a magas szintű; például XDCAM, XDCAM HD, XDCAM IMX, CableLabs® és D10 Variant típusú adatok is beleértve) |Akár 422 profil |
+| MPEG-2 (too422 profil és a magas szintű; például XDCAM, XDCAM HD, XDCAM IMX, CableLabs® és D10 Variant típusú adatok is beleértve) |Too422 profil mentése |
 | MPEG-1 |Igen |
 | VC-1/WMV9 |Igen |
 | Canopus HQ/HQX |Nem |
@@ -79,7 +79,7 @@ Vegye figyelembe a támogató, explicit vagy felhasználó által megadott csato
 ## <a name="input-audio-codecs"></a>Bemeneti hang kodekek
 | Bemeneti hang kodekek | Támogatott |
 | --- | --- | --- | --- |
-| AAC (AAC-LC, AAC-HE és AAC-HEv2; akár 5.1) |Igen |
+| AAC (AAC-LC, AAC-HE és AAC-HEv2; too5.1 mentése) |Igen |
 | 2. réteg MPEG |Igen |
 | MP3 (MPEG-1 hang réteg 3) |Igen |
 | Windows Media hang |Igen |
@@ -94,7 +94,7 @@ Vegye figyelembe a támogató, explicit vagy felhasználó által megadott csato
 | Dolby® digitális plusz (E-AC3) |Nem |
 
 ## <a name="output-formats-and-codecs"></a>Kimeneti formátumok és kodekek
-A következő táblázat a kodekeket és a fájl formátumot, az Exportálás támogatott.
+a következő táblázat hello hello kodekek és a fájl formátuma támogatott az exportált sorolja fel.
 
 | Fájlformátum | Videó kodek | Hang kodek |
 | --- | --- | --- |
@@ -110,5 +110,5 @@ A következő táblázat a kodekeket és a fájl formátumot, az Exportálás t�
 ## <a name="see-also"></a>Lásd még:
 [Az Azure Media Services kódolási igény tartalom](media-services-encode-asset.md)
 
-[A Media Encoder Standard kódolással](media-services-dotnet-encode-with-media-encoder-standard.md)
+[Hogyan tooencode a Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md)
 

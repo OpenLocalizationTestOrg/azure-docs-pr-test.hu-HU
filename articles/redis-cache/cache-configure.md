@@ -1,6 +1,6 @@
 ---
-title: "Azure Redis Cache konfigurálása |} Microsoft Docs"
-description: "Azure Redis Cache Redis alapértelmezett konfigurációjának megértéséhez, valamint megtudhatja, hogyan konfigurálhatja az Azure Redis Cache példányt"
+title: Azure Redis Cache aaaHow tooconfigure |} Microsoft Docs
+description: "Az Azure Redis Cache hello alapértelmezett Redis konfigurációjának megértéséhez, valamint megtudhatja, hogyan tooconfigure az Azure Redis gyorsítótár-példányokon"
 services: redis-cache
 documentationcenter: na
 author: steved0x
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 08/22/2017
 ms.author: sdanie
-ms.openlocfilehash: 0274e58eb2e83202d4dbc58da0c67d0fdde22ede
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 46bffb74cdf40e0e0a99c3a83dbe06d6fe1ea65b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-azure-redis-cache"></a>Azure Redis Cache konfigurálása
-Ez a témakör ismerteti, hogyan lehet felülvizsgálata és aktualizálása céljából az Azure Redis Cache példány konfigurációját, és hozzá van rendelve az alapértelmezett Redis kiszolgálókonfiguráció az Azure Redis Cache példány.
+# <a name="how-tooconfigure-azure-redis-cache"></a>Hogyan tooconfigure Azure Redis Cache-gyorsítótár
+Ez a témakör ismerteti, hogyan tooreview és frissítés hello konfigurációját az Azure Redis Cache példányt, és magában foglalja az hello alapértelmezett Redis kiszolgáló beállítása az Azure Redis Cache példány.
 
 > [!NOTE]
-> Konfigurálásához és használatához prémium gyorsítótár-funkciók további információkért lásd: [adatmegőrzési konfigurálása](cache-how-to-premium-persistence.md), [hogyan konfigurálhatja a fürtözést](cache-how-to-premium-clustering.md), és [virtuális hálózat támogatásának konfigurálása ](cache-how-to-premium-vnet.md).
+> Konfigurálásához és használatához prémium gyorsítótár-funkciók további információkért lásd: [hogyan tooconfigure adatmegőrzési](cache-how-to-premium-persistence.md), [hogyan fürtszolgáltatás tooconfigure](cache-how-to-premium-clustering.md), és [hogyan támogatják a virtuális hálózati tooconfigure ](cache-how-to-premium-vnet.md).
 > 
 > 
 
 ## <a name="configure-redis-cache-settings"></a>Redis gyorsítótár beállításainak konfigurálása
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
 
-Az Azure Redis Cache-gyorsítótár beállításai vannak tekinthetők meg és konfigurálni a **Redis Cache** panel használatával a **erőforrás menü**.
+Az Azure Redis Cache-gyorsítótár beállításai vannak tekinthetők meg és hello konfigurált **Redis Cache** hello segítségével panel **erőforrás menü**.
 
 ![Redis gyorsítótár beállításai](./media/cache-configure/redis-cache-settings.png)
 
-Megtekintheti és a következő beállításokat használja a **erőforrás menü**.
+Tekintheti meg és konfigurálja a következő beállításokat a hello hello **erőforrás menü**.
 
 * [Áttekintés](#overview)
 * [Tevékenységnapló](#activity-log)
@@ -75,25 +75,25 @@ Megtekintheti és a következő beállításokat használja a **erőforrás men�
 
 ### <a name="activity-log"></a>Tevékenységnapló
 
-Kattintson a **tevékenységnapló** művelet elvégezhető a gyorsítótár megtekintéséhez. Is segítségével szűrés bontsa ki az ebben a nézetben más erőforrások. A vizsgálati naplók munkáról bővebben lásd: [naplózási műveletek a Resource Manager](../azure-resource-manager/resource-group-audit.md). Azure Redis Cache események figyelésével kapcsolatos további információkért lásd: [műveletek és a riasztások](cache-how-to-monitor.md#operations-and-alerts).
+Kattintson a **tevékenységnapló** tooview műveleteket végezni a gyorsítótárhoz. Is használhatja szűrési tooexpand a nézet tooinclude más erőforrásokat. A vizsgálati naplók munkáról bővebben lásd: [naplózási műveletek a Resource Manager](../azure-resource-manager/resource-group-audit.md). Azure Redis Cache események figyelésével kapcsolatos további információkért lásd: [műveletek és a riasztások](cache-how-to-monitor.md#operations-and-alerts).
 
 ### <a name="access-control-iam"></a>Hozzáférés-vezérlés (IAM)
 
-A **hozzáférés-vezérlés (IAM)** szakasz támogatja a szerepköralapú hozzáférés-vezérlést (RBAC) a szervezetek számára követelményeknek a access management egyszerűen és pontosan Azure-portálon. További információkért lásd: [az Azure portál szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md).
+Hello **hozzáférés-vezérlés (IAM)** szakasz támogatja a szerepköralapú hozzáférés-vezérlést (RBAC) hello Azure portál toohelp szervezetek megfelel az access management igényeik egyszerűen és pontosan. További információkért lásd: [hello Azure portál szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md).
 
 ### <a name="tags"></a>Címkék
 
-A **címkék** szakasz segítséget nyújt az erőforrások rendszerezése. További információkért lásd: [az Azure-erőforrások rendszerezése címkék használatával](../azure-resource-manager/resource-group-using-tags.md).
+Hello **címkék** szakasz segítséget nyújt az erőforrások rendszerezése. További információkért lásd: [Using címkéket tooorganize az Azure-erőforrások](../azure-resource-manager/resource-group-using-tags.md).
 
 
 ### <a name="diagnose-and-solve-problems"></a>Problémák diagnosztizálása és megoldása
 
-Kattintson a **Diagnosztizálás és problémák megoldására** megoldása érdekében ezeket a gyakori problémák és stratégiák meg kell adni.
+Kattintson a **Diagnosztizálás és problémák megoldására** toobe a gyakori problémák és stratégiák előírt megoldása.
 
 
 
 ## <a name="settings"></a>Beállítások
-A **beállítások** szakasz lehetővé teszi a eléréséhez, és a következő beállításokat a gyorsítótárhoz.
+Hello **beállítások** szakasz lehetővé teszi a tooaccess, és a gyorsítótár beállításait a következő hello konfigurálása.
 
 * [Tárelérési kulcsok](#access-keys)
 * [Speciális beállítások](#advanced-settings)
@@ -112,31 +112,31 @@ A **beállítások** szakasz lehetővé teszi a eléréséhez, és a következő
 
 
 ### <a name="access-keys"></a>Elérési kulcs
-Kattintson a **hívóbetűk** megtekintéséhez vagy a gyorsítótár elérési kulcsainak újragenerálása. Ezeket a kulcsokat a gyorsítótárhoz kapcsolódó ügyfelek által használt.
+Kattintson a **hívóbetűk** tooview vagy újragenerálása hello elérési kulcsainak a gyorsítótárhoz. Ezek a kulcsok tooyour gyorsítótár kapcsolódó hello ügyfelek által használt.
 
 ![Redis gyorsítótár elérési kulcsainak](./media/cache-configure/redis-cache-manage-keys.png)
 
 ### <a name="advanced-settings"></a>Speciális beállítások
-A következő beállításokat a **speciális beállítások** panelen.
+hello alábbi beállításainak konfigurálása a hello **speciális beállítások** panelen.
 
 * [Hozzáférési portok](#access-ports)
 * [Memória házirendek](#memory-policies)
 * [Kulcstérértesítések használatával értesítések (Speciális beállítások)](#keyspace-notifications-advanced-settings)
 
 #### <a name="access-ports"></a>Hozzáférési portok
-A nem SSL hozzáférés alapértelmezés szerint le van tiltva az új gyorsítótárakhoz. A nem SSL port engedélyezéséhez kattintson **nem** a **engedélyezi a hozzáférést csak SSL keresztül** a a **speciális beállítások** panel megnyitásához, és kattintson **mentése**.
+A nem SSL hozzáférés alapértelmezés szerint le van tiltva az új gyorsítótárakhoz. tooenable hello nem SSL port, kattintson a **nem** a **csak SSL keresztül hozzáférést** a hello **speciális beállítások** panel megnyitásához, és kattintson **mentése**.
 
 ![A redis Cache hozzáférési portok](./media/cache-configure/redis-cache-access-ports.png)
 
 <a name="maxmemory-policy-and-maxmemory-reserved"></a>
 #### <a name="memory-policies"></a>Memória házirendek
-A **Maxmemory házirend**, **maxmemory fenntartott**, és **maxfragmentationmemory fenntartott** beállításait a **speciális beállítások** panelen konfigurálhatja a memória-házirendeket, a gyorsítótár.
+Hello **Maxmemory házirend**, **maxmemory fenntartott**, és **maxfragmentationmemory fenntartott** hello beállítások **speciális beállítások**panel hello memória házirendek hello gyorsítótár konfigurálása.
 
 ![Redis gyorsítótár Maxmemory házirend](./media/cache-configure/redis-cache-maxmemory-policy.png)
 
-**Maxmemory házirend** a kiürítés irányelvet konfigurál a gyorsítótárban, és lehetővé teszi a következő kiürítési házirendek közül választhat:
+**Maxmemory házirend** hello kiürítés irányelvet hello gyorsítótár, és lehetővé teszi a következő kiürítési házirendek hello toochoose:
 
-* `volatile-lru`-Ez az alapértelmezett beállítás.
+* `volatile-lru`-Ez az alapértelmezett hello.
 * `allkeys-lru`
 * `volatile-random`
 * `allkeys-random`
@@ -145,47 +145,47 @@ A **Maxmemory házirend**, **maxmemory fenntartott**, és **maxfragmentationmemo
 
 További információ `maxmemory` házirendek, lásd: [kiürítés házirendek](http://redis.io/topics/lru-cache#eviction-policies).
 
-A **maxmemory fenntartott** beállítással memória MB-ban, amely nem gyorsítótár műveletek, például a feladatátvétel során replikációs számára van fenntartva. Ha az érték lehetővé teszi, hogy a Redis server egységesebb, amikor változik a terhelés. Ez az érték nagyobb munkaterhelésekhez, amelyek írni a gyakori kell beállítani. Amikor memória a műveletek számára van fenntartva, nem érhető el a gyorsítótárazott adatok tárolására.
+Hello **maxmemory fenntartott** beállítással hello memóriamennyiség (MB), amely nem gyorsítótár műveletek, például a feladatátvétel során replikációs számára van fenntartva. Ha az érték lehetővé teszi toohave Redis server egységesebb amikor változik a terhelés. Ez az érték nagyobb munkaterhelésekhez, amelyek írni a gyakori kell beállítani. Amikor memória a műveletek számára van fenntartva, nem érhető el a gyorsítótárazott adatok tárolására.
 
-A **maxfragmentationmemory fenntartott** beállítással memória MB-ban, amely a memória töredezettségét befogadásához van fenntartva. Ha az érték lehetővé teszi egy egységesebb Redis-kiszolgálót, ha a gyorsítótár megtelt vagy megközelíti a teljes telepítési és a töredezettséget arány is nagy. Amikor memória a műveletek számára van fenntartva, nem érhető el a gyorsítótárazott adatok tárolására.
+Hello **maxfragmentationmemory fenntartott** beállítással hello memóriamennyiség, amely a memória töredezettségét fenntartott tooaccommodate MB-ban. Ha az érték lehetővé teszi toohave Redis server egységesebb amikor hello gyorsítótár megtelt, vagy a Bezárás toofull és hello töredezettsége arány is nagy. Amikor memória a műveletek számára van fenntartva, nem érhető el a gyorsítótárazott adatok tárolására.
 
-Érdemes egy új foglalás memóriaméretnél kiválasztásakor (**maxmemory fenntartott** vagy **maxfragmentationmemory fenntartott**) milyen hatással van a módosítás az egy gyorsítótár, amely már fut. nagy mennyiségű adatot. Például ha 49 GB adatot 53 GB gyorsítótár rendelkezik, majd módosítsa a Foglalás 8 GB, ezzel eldobja a maximális rendelkezésre álló memória, a rendszer le 45 GB. Ha az aktuális `used_memory` vagy a `used_memory_rss` értékek magasabbak, mint az új 45 GB-os korlátját, akkor a rendszer lesz, amíg adatok kizárása `used_memory` és `used_memory_rss` 45 GB alatt van. A kiürítési növelheti a kiszolgáló terhelés és a memória töredezettsége. További információt a gyorsítótár mérőszámokat például `used_memory` és `used_memory_rss`, lásd: [elérhető és a jelentéskészítés intervallumok](cache-how-to-monitor.md#available-metrics-and-reporting-intervals).
+Egy új foglalás memóriaméretnél kiválasztásakor egy dolog tooconsider (**maxmemory fenntartott** vagy **maxfragmentationmemory fenntartott**) milyen hatással van a módosítás az egy gyorsítótár, amely már fut. nagy mennyiségű adatot. Például ha 49 GB adatot 53 GB gyorsítótár rendelkezik, majd hello foglalási érték too8 GB, ezzel eldobja hello maximális memória hello rendszer too45 GB le. Ha az aktuális `used_memory` vagy a `used_memory_rss` értékek magasabbak hello új 45 GB-os korlátját, majd hello rendszer tooevict adatokat fog rendelkezni, amíg `used_memory` és `used_memory_rss` 45 GB alatt van. A kiürítési növelheti a kiszolgáló terhelés és a memória töredezettsége. További információt a gyorsítótár mérőszámokat például `used_memory` és `used_memory_rss`, lásd: [elérhető és a jelentéskészítés intervallumok](cache-how-to-monitor.md#available-metrics-and-reporting-intervals).
 
 > [!IMPORTANT]
-> A **maxmemory fenntartott** és **maxfragmentationmemory fenntartott** beállítások csak érhetők el a Standard és Premium gyorsítótárazza.
+> Hello **maxmemory fenntartott** és **maxfragmentationmemory fenntartott** beállítások csak érhetők el a Standard és Premium gyorsítótárazza.
 > 
 > 
 
 #### <a name="keyspace-notifications-advanced-settings"></a>Kulcstérértesítések használatával értesítések (Speciális beállítások)
-Kulcstérértesítések használatával értesítések konfigurálása a redis a **speciális beállítások** panelen. Kulcstérértesítések használatával értesítések engedélyezése az ügyfelek értesítéseket meghatározott események bekövetkezésekor.
+Kulcstérértesítések használatával értesítések konfigurálása a hello redis **speciális beállítások** panelen. Kulcstérértesítések használatával értesítések engedélyezése az ügyfelek tooreceive értesítések bizonyos események megtörténtekor.
 
 ![Redis gyorsítótár speciális beállításai](./media/cache-configure/redis-cache-advanced-settings.png)
 
 > [!IMPORTANT]
-> Kulcstérértesítések használatával értesítések és a **értesítés kulcstérértesítések használatával-események** beállítás csak akkor érhetők Standard és Premium gyorsítótárak esetében.
+> Kulcstérértesítések használatával értesítéseket és hello **értesítés kulcstérértesítések használatával-események** beállítás csak akkor érhetők Standard és Premium gyorsítótárak esetében.
 > 
 > 
 
-További információkért lásd: [Redis kulcstérértesítések használatával értesítések](http://redis.io/topics/notifications). Mintakód, tekintse meg a [KeySpaceNotifications.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/KeySpaceNotifications.cs) fájlt a [Hello world](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) minta.
+További információkért lásd: [Redis kulcstérértesítések használatával értesítések](http://redis.io/topics/notifications). Mintakód, lásd: hello [KeySpaceNotifications.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/KeySpaceNotifications.cs) hello fájlban [Hello world](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) minta.
 
 
 <a name="recommendations"></a>
 ## <a name="redis-cache-advisor"></a>Redis gyorsítótár Advisor
-A **Redis gyorsítótár Advisor** csempe megjeleníti a gyorsítótár javaslatok. A normál működés során nincsenek ajánlatok jelennek meg. 
+Hello **Redis gyorsítótár Advisor** csempe megjeleníti a gyorsítótár javaslatok. A normál működés során nincsenek ajánlatok jelennek meg. 
 
 ![Javaslatok](./media/cache-configure/redis-cache-no-recommendations.png)
 
-Ha például magas memóriahasználat, a hálózati sávszélesség vagy a kiszolgáló terhelését a gyorsítótár a műveletek során a feltételek teljesülnek egy riasztás jelenik meg a **Redis Cache** panelen.
+Azokat a feltételeket a gyorsítótár például magas memóriahasználat, a hálózati sávszélesség vagy a kiszolgáló terhelését hello műveletek során fordul elő, ha egy riasztás jelenik meg hello **Redis Cache** panelen.
 
 ![Javaslatok](./media/cache-configure/redis-cache-recommendations-alert.png)
 
-További információ található a **javaslatok** panelen.
+További információ a hello **javaslatok** panelen.
 
 ![Javaslatok](./media/cache-configure/redis-cache-recommendations.png)
 
-A metrikák a figyelheti a [diagramok figyelési](cache-how-to-monitor.md#monitoring-charts) és [használati diagramok](cache-how-to-monitor.md#usage-charts) szakasza a **Redis Cache** panelen.
+A metrikák hello a figyelheti [diagramok figyelési](cache-how-to-monitor.md#monitoring-charts) és [használati diagramok](cache-how-to-monitor.md#usage-charts) hello szakasza **Redis Cache** panelen.
 
-Minden tarifacsomag különböző korlátai ügyfélkapcsolatokat, a memória és a sávszélesség rendelkezik. Ha a gyorsítótár maximális kapacitás metrikákat megközelíti egy huzamosabb ideig keresztül, az ajánlás jön létre. További információ a metrikák és korlátai vizsgálja felül a **javaslatok** eszköz, a következő táblázatban találja:
+Minden tarifacsomag különböző korlátai ügyfélkapcsolatokat, a memória és a sávszélesség rendelkezik. Ha a gyorsítótár maximális kapacitás metrikákat megközelíti egy huzamosabb ideig keresztül, az ajánlás jön létre. Hello metrikák és korlátai hello vizsgálja felül további információt **javaslatok** eszköz, tekintse meg a következő táblázat hello:
 
 | Redis gyorsítótár metrika | További információ |
 | --- | --- |
@@ -194,38 +194,38 @@ Minden tarifacsomag különböző korlátai ügyfélkapcsolatokat, a memória é
 | A kiszolgálóterhelés |[Használati diagramok - Redis-kiszolgáló terhelését](cache-how-to-monitor.md#usage-charts) |
 | Memóriahasználat |[Gyorsítótár teljesítmény - mérete](cache-faq.md#cache-performance) |
 
-Frissítse a gyorsítótárat, kattintson a **frissítés most** a tarifacsomag módosítása és [méretezési](#scale) a gyorsítótárhoz. Tarifacsomag kiválasztásáról további információkért lásd: [milyen Redis Cache-ajánlatot és méretet használjam?](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
+tooupgrade a gyorsítótár kattintson **frissítés most** toochange hello IP-címek és [méretezési](#scale) a gyorsítótárhoz. Tarifacsomag kiválasztásáról további információkért lásd: [milyen Redis Cache-ajánlatot és méretet használjam?](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
 
 
 ### <a name="scale"></a>Méretezés
-Kattintson a **méretezési** lehet megtekinteni vagy módosítani a gyorsítótár tarifacsomag. A méretezés további információkért lásd: [Scale Azure Redis Cache hogyan](cache-how-to-scale.md).
+Kattintson a **méretezési** tooview, vagy módosítsa hello IP-címek a gyorsítótárhoz. A méretezés további információkért lásd: [hogyan tooScale Azure Redis Cache-gyorsítótár](cache-how-to-scale.md).
 
 ![Redis gyorsítótár tarifacsomag](./media/cache-configure/pricing-tier.png)
 
 <a name="cluster-size"></a>
 
 ### <a name="redis-cluster-size"></a>Redis foglalásiegység-méret
-Kattintson a **(előzetes verzió) Redis fürtméret** futó a fürt méretének módosításához prémium gyorsítótár fürtözési engedélyezve van.
+Kattintson a **(előzetes verzió) Redis fürtméret** toochange hello fürtméret futó Premium gyorsítótár fürtözési engedélyezve van.
 
 > [!NOTE]
-> Vegye figyelembe, hogy közben az Azure Redis Cache prémium szintjének kiadott általános rendelkezésre állási, a fürtméret Redis funkció jelenleg előzetes verzióban érhetők.
+> Vegye figyelembe, hogy közben hello Azure Redis Cache prémium szint lett tooGeneral rendelkezésre állás érdekében hello fürtméret Redis funkció, amely jelenleg előzetes verzió.
 > 
 > 
 
 ![Redis foglalásiegység-méret](./media/cache-configure/redis-cache-redis-cluster-size.png)
 
-A fürt méretének módosításához használja a csúszkát, vagy írjon be egy számot 1 és 10 között a **Shard száma** szöveges értéket, majd kattintson **OK** mentéséhez.
+toochange hello fürtméret hello csúszkával, vagy írjon be egy számot 1 és 10 közötti hello **Shard száma** szöveges értéket, majd kattintson **OK** toosave.
 
 > [!IMPORTANT]
-> Redis fürtszolgáltatás csak érhető el prémium gyorsítótárak esetében. További információk: [How to configure clustering for a Premium Azure Redis Cache](cache-how-to-premium-clustering.md) (Fürtözés konfigurálása prémium szintű Azure Redis Cache-gyorsítótárhoz).
+> Redis fürtszolgáltatás csak érhető el prémium gyorsítótárak esetében. További információkért lásd: [hogyan fürtözése a Premium Azure Redis Cache tooconfigure](cache-how-to-premium-clustering.md).
 > 
 > 
 
 
 ### <a name="redis-data-persistence"></a>Redis-adatmegőrzés
-Kattintson a **Redis-adatmegőrzés** engedélyezése, letiltása, vagy konfigurálja a prémium szintű gyorsítótár adatainak megőrzését. Azure Redis Cache Redis-adatmegőrzés használatával biztosít [Rekordadatbázis adatmegőrzési](cache-how-to-premium-persistence.md#configure-rdb-persistence) vagy [AOF adatmegőrzési](cache-how-to-premium-persistence.md#configure-aof-persistence).
+Kattintson a **Redis-adatmegőrzés** tooenable, letiltása, vagy konfigurálja a prémium szintű gyorsítótár adatainak megőrzését. Azure Redis Cache Redis-adatmegőrzés használatával biztosít [Rekordadatbázis adatmegőrzési](cache-how-to-premium-persistence.md#configure-rdb-persistence) vagy [AOF adatmegőrzési](cache-how-to-premium-persistence.md#configure-aof-persistence).
 
-További információkért lásd: [konfigurálása prémium szintű Azure Redis Cache megőrzését](cache-how-to-premium-persistence.md).
+További információkért lásd: [hogyan tooconfigure megőrzését egy prémium szintű Azure Redis Cache](cache-how-to-premium-persistence.md).
 
 
 > [!IMPORTANT]
@@ -234,33 +234,33 @@ További információkért lásd: [konfigurálása prémium szintű Azure Redis 
 > 
 
 ### <a name="schedule-updates"></a>Frissítések ütemezése
-A **frissítések ütemezése** panel lehetővé teszi, hogy a gyorsítótár Redis-kiszolgáló frissítések karbantartási időszakot. 
+Hello **frissítések ütemezése** panel lehetővé teszi a toodesignate Redis server frissítései, a gyorsítótár egy karbantartási időszakot. 
 
 > [!IMPORTANT]
-> A karbantartási időszak csak a kiszolgálói frissítések Redis vonatkozik, és nem az összes Azure-bA frissít, vagy frissíti az operációs rendszer, a gyorsítótár üzemeltető virtuális gépek.
+> hello karbantartási időszak vonatkozzon, csak tooRedis kiszolgáló, és nem tooany Azure frissíti, vagy toohello hello hello gyorsítótár üzemeltető virtuális gépek operációs rendszerének frissítése.
 > 
 > 
 
 ![Frissítések ütemezése](./media/cache-configure/redis-schedule-updates.png)
 
-Adja meg a karbantartási időszak, ellenőrizze a kívánt napok, és adja meg a karbantartási időszak kezdő időpontja minden nap, és kattintson **OK**. Vegye figyelembe, hogy a karbantartási ablak időpontja UTC szerint. 
+toospecify karbantartási időszak, ellenőrizze a szükségeskonfiguráció-hello nap és hello karbantartási időszak kezdő időpontja minden nap adja meg, majd kattintson **OK**. Vegye figyelembe, hogy hello karbantartási ablak időpontja UTC szerint. 
 
 > [!IMPORTANT]
-> A **frissítések ütemezése** funkciót csak érhető el prémium réteghez gyorsítótárainak. További információt és útmutatást lásd: [Azure Redis Cache felügyeleti - frissítések ütemezése](cache-administration.md#schedule-updates).
+> Hello **frissítések ütemezése** funkciót csak érhető el prémium réteghez gyorsítótárainak. További információt és útmutatást lásd: [Azure Redis Cache felügyeleti - frissítések ütemezése](cache-administration.md#schedule-updates).
 > 
 > 
 
 ### <a name="geo-replication"></a>Georeplikáció
 
-A **georeplikáció** panel lehetővé teszi a csatolás két Premium szint Azure Redis Cache példányt. Egy gyorsítótár az elsődleges társított gyorsítótár, míg a másik a másodlagos csatolt gyorsítótár van kijelölve. A másodlagos csatolt gyorsítótár csak olvashatóvá válik, és az elsődleges gyorsítótár írt adatokat a rendszer replikálja a másodlagos csatolt gyorsítótár. Ez a funkció a gyorsítótár Azure-régiók közötti replikáció használható.
+Hello **georeplikáció** panel lehetővé teszi a csatolás két Premium szint Azure Redis Cache példányt. Egy gyorsítótár hello elsődleges csatolt gyorsítótárat és más, mint hello másodlagos csatolt gyorsítótár hello van kijelölve. hello másodlagos csatolt gyorsítótár csak olvashatóvá válik, és adatok írásbeli toohello elsődleges gyorsítótár toohello másodlagos csatolt gyorsítótár replikálva. Ez a funkció használt tooreplicate a gyorsítótár Azure-régiók közötti lehet.
 
 > [!IMPORTANT]
-> **A georeplikáció** lehetőség csak a prémium szintű réteghez gyorsítótárainak. További információt és útmutatást lásd: [georeplikáció konfigurálása az Azure Redis Cache](cache-how-to-geo-replication.md).
+> **A georeplikáció** lehetőség csak a prémium szintű réteghez gyorsítótárainak. További információt és útmutatást lásd: [hogyan tooconfigure georeplikáció az Azure Redis Cache](cache-how-to-geo-replication.md).
 > 
 > 
 
 ### <a name="virtual-network"></a>Virtual Network
-A **virtuális hálózati** szakasz lehetővé teszi, hogy a virtuális hálózat beállításait a gyorsítótárhoz. A prémium szintű gyorsítótár virtuális hálózaton létrehozásával kapcsolatos információkat támogatja, és a beállítások frissítése, lásd: [konfigurálása a virtuális hálózat támogatja a Premium Azure Redis Cache](cache-how-to-premium-vnet.md).
+Hello **virtuális hálózati** szakasz lehetővé teszi a gyorsítótár tooconfigure hello virtuális hálózati beállításait. A prémium szintű gyorsítótár virtuális hálózaton létrehozásával kapcsolatos információkat támogatja, és a beállítások frissítése, lásd: [hogyan tooconfigure a virtuális hálózati támogatása a Premium Azure Redis Cache](cache-how-to-premium-vnet.md).
 
 > [!IMPORTANT]
 > Virtuális hálózati beállítások csak érhetők el a prémium szintű gyorsítótárak konfigurált VNET támogató gyorsítótár létrehozása során. 
@@ -269,11 +269,11 @@ A **virtuális hálózati** szakasz lehetővé teszi, hogy a virtuális hálóza
 
 ### <a name="firewall"></a>Tűzfal
 
-Kattintson a **tűzfal** megtekintéséhez és a Premium Azure Redis Cache tűzfalszabályok konfigurálása.
+Kattintson a **tűzfal** tooview és tűzfalszabályok beállítása a prémium szintű Azure Redis Cache.
 
 ![Tűzfal](./media/cache-configure/redis-firewall-rules.png)
 
-A tűzfalszabályok kezdő és záró IP-címtartománnyal rendelkező adhatja meg. Tűzfalszabályok konfigurálásakor csak a megadott IP-címtartományok érkező ügyfélkapcsolatokat is elérheti a gyorsítótárban. Egy tűzfalszabály mentésekor a rendszer nincs rövid késleltetés előtt a szabály érvényben. Ez a késés van általában kevesebb mint egy perc.
+A tűzfalszabályok kezdő és záró IP-címtartománnyal rendelkező adhatja meg. Tűzfalszabályok konfigurálásakor csak hello érkező ügyfélkapcsolatokat megadott, az IP-címtartományok toohello gyorsítótár kapcsolódhatnak. Egy tűzfalszabály mentésekor a rendszer nincs rövid késleltetés előtt hello szabály érvényben. Ez a késés van általában kevesebb mint egy perc.
 
 > [!IMPORTANT]
 > Azure Redis Cache rendszerek figyelése a kapcsolatok mindig engedélyezettek, még akkor is, ha a tűzfal-szabályok úgy vannak konfigurálva.
@@ -283,19 +283,19 @@ A tűzfalszabályok kezdő és záró IP-címtartománnyal rendelkező adhatja m
 > 
 
 ### <a name="properties"></a>Tulajdonságok
-Kattintson a **tulajdonságok** a gyorsítótárhoz, beleértve a gyorsítótár végpontjához és portok vonatkozó információk megtekintése.
+Kattintson a **tulajdonságok** tooview információt a gyorsítótár, beleértve a gyorsítótár végpontjához hello és portok.
 
 ![Redis gyorsítótár tulajdonságai](./media/cache-configure/redis-cache-properties.png)
 
 ### <a name="locks"></a>Zárolások
-A **zárolja** szakasz lehetővé teszi, hogy egy előfizetés, erőforráscsoportból vagy erőforrás véletlen törlése vagy a kritikus erőforrásokat módosítása a munkahely más felhasználóinak megelőzése érdekében zárolja. További információ: [Erőforrások zárolása az Azure Resource Manager eszközzel](../azure-resource-manager/resource-group-lock-resources.md).
+Hello **zárolja** szakasz lehetővé teszi a toolock előfizetés, erőforrás vagy az erőforrás tooprevent véletlen törlése vagy a kritikus erőforrásokat módosítása a munkahely más felhasználóinak. További információ: [Erőforrások zárolása az Azure Resource Manager eszközzel](../azure-resource-manager/resource-group-lock-resources.md).
 
 ### <a name="automation-script"></a>Automatizálási parancsfájl
 
-Kattintson a **automatizálási parancsfájl** felépítéséhez és az üzembe helyezett erőforrások a későbbi telepítési sablon exportálása. A sablonok használatának kapcsolatos további információkért lásd: [telepítése Azure Resource Manager-sablonok erőforrások](../azure-resource-manager/resource-group-template-deploy.md).
+Kattintson a **automatizálási parancsfájl** toobuild és a telepített erőforrások a későbbi telepítési sablon exportálása. A sablonok használatának kapcsolatos további információkért lásd: [telepítése Azure Resource Manager-sablonok erőforrások](../azure-resource-manager/resource-group-template-deploy.md).
 
 ## <a name="administration-settings"></a>Felügyeleti beállítások
-A beállítások a **felügyeleti** szakasz lehetővé teszi a gyorsítótár a következő felügyeleti feladatokat hajthat végre. 
+hello szolgáltatásbeállításai hello **felügyeleti** szakasz lehetővé teszi a következő felügyeleti feladatok a gyorsítótárhoz tooperform hello. 
 
 ![Adminisztráció](./media/cache-configure/redis-cache-administration.png)
 
@@ -305,11 +305,11 @@ A beállítások a **felügyeleti** szakasz lehetővé teszi a gyorsítótár a 
 
 
 ### <a name="importexport"></a>Import/Export
-Importálási/exportálási egy Azure Redis Cache adatok felügyeleti művelet, amely lehetővé teszi a gyorsítótárban lévő adatok importálása és exportálása Redis gyorsítótár-adatbázis (Rekordadatbázis) pillanatkép prémium gyorsítótárában egy Azure Storage-fiók oldalakra vonatkozó blob exportálására és importálásra. Importálási/exportálási lehetővé teszi különböző Azure Redis Cache-példányok közötti áttelepítése vagy a gyorsítótár adatokkal használat előtt.
+Importálási/exportálási során Azure Redis Cache adatok felügyeleti, amely lehetővé teszi által importálás és exportálás a Redis Cache-adatbázis (Rekordadatbázis) pillanatkép prémium gyorsítótár tooa oldalakra vonatkozó blob egy Azure Storage-fiók hello gyorsítótár tooimport és exportálási adatokat. Importálási/exportálási lehetővé teszi a különböző Azure Redis Cache példányai között toomigrate vagy hello gyorsítótár adatokkal használat előtt.
 
-Importálás a Redis-kiszolgáló futtatja a felhő vagy a környezet, beleértve a futó Linux, Windows vagy bármely felhőalapú szolgáltató, például az Amazon Web Services, míg mások Redis vinnie a Redis-kompatibilis Rekordadatbázis fájlok használható. Adatok importálása egyszerű módja a gyorsítótár létrehozásához előre megadott adatokkal. Az importálási folyamat során az Azure Redis Cache Rekordadatbázis fájlokat az Azure storage betölti a memóriába, és majd szúrja be a kulcsokat a gyorsítótárba.
+Importálás használt toobring Redis kompatibilis Rekordadatbázis fájlokat minden futtató bármely felhő és a környezet, beleértve a futó Linux, Windows vagy bármely felhőalapú szolgáltató, például az Amazon Web Services, míg mások Redis Redis-kiszolgáló lehet. Adatok importálása egy egyszerűen toocreate egy előre megadott adatokkal gyorsítótár. Hello importálási folyamat során az Azure Redis Cache hello Rekordadatbázis fájlok az Azure storage betölti a memóriába, és, majd a kívánt hello kulcsok hello gyorsítótárba.
 
-Exportálás lehetővé teszi az Azure Redis Cache Redis kompatibilis Rekordadatbázis fájlok a tárolt adatok exportálását. Ez a szolgáltatás segítségével tárolt adatok mozgatása egy Azure Redis Cache példányt, vagy egy másik Redis-kiszolgálóhoz. Az exportálási folyamat során egy ideiglenes fájl jön létre a virtuális Gépen, amelyen az Azure Redis Cache server-példányt, és a fájl feltöltése a kijelölt tárfiókkal. Az exportálási művelet befejezése után a vagy állapota sikeres végrehajtásával vagy hibajelzéssel az ideiglenes fájl törlődik.
+Exportálás lehetővé teszi tooexport hello adatok Azure Redis Cache tooRedis kompatibilis Rekordadatbázis fájlokat tárolja. Ez a szolgáltatás toomove adatokat egy Azure Redis Cache példány tooanother vagy tooanother Redis-kiszolgáló is használhatja. VM állomások hello Azure Redis Cache server-példány, és hello fájl kijelölve tárfiók feltöltött toohello hello hello exportálás során ideiglenes fájl jön létre. Hello az exportálási művelet befejezése után a vagy állapota sikeres végrehajtásával vagy hibajelzéssel hello ideiglenes fájl törlődik.
 
 > [!IMPORTANT]
 > Prémium szintű réteghez gyorsítótárainak importálási/exportálási csak érhető el. További információt és útmutatást lásd: [importálhat és exportálhat adatokat az Azure Redis Cache](cache-how-to-import-export-data.md).
@@ -317,15 +317,15 @@ Exportálás lehetővé teszi az Azure Redis Cache Redis kompatibilis Rekordadat
 > 
 
 ### <a name="reboot"></a>Újraindítás
-A **újraindítás** panel lehetővé teszi, hogy a gyorsítótár a csomópontok újraindítását. A rendszer újraindítása funkció lehetővé teszi a rugalmasságot az alkalmazás tesztelése, ha sikertelen. a gyorsítótár-csomópont.
+Hello **újraindítás** panel lehetővé teszi a gyorsítótár tooreboot hello csomópontok. Az újraindítás funkció lehetővé teszi, hogy Ön tootest a rugalmasságot az alkalmazás egy gyorsítótár-csomópont hibája esetén.
 
 ![Újraindítás](./media/cache-configure/redis-cache-reboot.png)
 
-Ha a prémium szintű gyorsítótár fürtözési engedélyezve van, mely szilánkok újraindítását a gyorsítótár választhatja meg.
+Ha a prémium szintű gyorsítótár fürtözési engedélyezve van, mely szilánkok hello gyorsítótár tooreboot a választhatja meg.
 
 ![Újraindítás](./media/cache-configure/redis-cache-reboot-cluster.png)
 
-Indítsa újra a gyorsítótár egy vagy több csomópontot, válassza ki a kívánt csomópontokat, majd **újraindítás**. Ha a prémium szintű gyorsítótár fürtözési engedélyezve van, jelölje ki a shard(s) újraindíthatja, és kattintson a **újraindítás**. Néhány perc múlva a kijelölt csomópont újraindítása, és amelyeket biztonsági online néhány percen belül.
+tooreboot a gyorsítótár egy vagy több csomópontján válasszon szükséges hello csomópontot, majd kattintson a **újraindítás**. Ha a prémium szintű gyorsítótár fürtözési engedélyezve van, jelölje ki a hello shard(s) tooreboot, és kattintson **újraindítás**. Néhány perc elteltével hello kijelölt csomópont újraindítás, és néhány percen belül újra online állapotba kerülnek.
 
 > [!IMPORTANT]
 > Minden tarifacsomagok Újraindítás most érhető el. További információt és útmutatást lásd: [Azure Redis Cache felügyeleti - újraindítás](cache-administration.md#reboot).
@@ -335,7 +335,7 @@ Indítsa újra a gyorsítótár egy vagy több csomópontot, válassza ki a kív
 
 ## <a name="monitoring"></a>Figyelés
 
-A **figyelés** szakasz lehetővé teszi a diagnosztika és a Redis Cache-figyelés konfigurálása. Azure Redis Cache-figyelés és diagnosztika további információkért lásd: [figyelése Azure Redis Cache](cache-how-to-monitor.md).
+Hello **figyelés** szakasz lehetővé teszi a tooconfigure diagnosztikai és a Redis Cache figyelését. Azure Redis Cache-figyelés és diagnosztika további információkért lásd: [hogyan toomonitor Azure Redis Cache-gyorsítótár](cache-how-to-monitor.md).
 
 ![Diagnosztika](./media/cache-configure/redis-cache-diagnostics.png)
 
@@ -344,23 +344,23 @@ A **figyelés** szakasz lehetővé teszi a diagnosztika és a Redis Cache-figyel
 * [Diagnosztika](#diagnostics)
 
 ### <a name="redis-metrics"></a>Redis metrikák
-Kattintson a **metrikák Redis** való [metrikák megtekintése](cache-how-to-monitor.md#view-cache-metrics) a gyorsítótárhoz.
+Kattintson a **metrikák Redis** túl[metrikák megtekintése](cache-how-to-monitor.md#view-cache-metrics) a gyorsítótárhoz.
 
 ### <a name="alert-rules"></a>A riasztási szabályok
 
-Kattintson a **riasztási szabályok** Redis Cache mérőszámok alapján értesítések konfigurálása. További információkért lásd: [riasztások](cache-how-to-monitor.md#alerts).
+Kattintson a **riasztási szabályok** tooconfigure riasztások a Redis Cache metrikák alapján. További információkért lásd: [riasztások](cache-how-to-monitor.md#alerts).
 
 ### <a name="diagnostics"></a>Diagnosztika
 
-Gyorsítótár-metrikát a Azure figyelő alapesetben [30 napig tárolja a](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#store-and-archive) , majd törölni. Továbbra is fennáll, a 30 napnál hosszabb gyorsítótár metrikáját, kattintson a **diagnosztika** való [a tárfiók konfigurálása](cache-how-to-monitor.md#export-cache-metrics) gyorsítótár diagnosztika tárolására.
+Gyorsítótár-metrikát a Azure figyelő alapesetben [30 napig tárolja a](../monitoring-and-diagnostics/monitoring-overview-azure-monitor.md#store-and-archive) , majd törölni. toopersist a 30 napnál hosszabb gyorsítótár metrikáját kattintson **diagnosztika** túl[hello tárfiók konfigurálása](cache-how-to-monitor.md#export-cache-metrics) használt toostore gyorsítótár diagnosztika.
 
 >[!NOTE]
->Mellett a gyorsítótár metrikákat Storage archiválás, is [adatfolyamként küldje el azokat az Eseményközpontok felé, vagy küldje el a Naplóelemzési](../monitoring-and-diagnostics/monitoring-overview-metrics.md#export-metrics).
+>A hozzáadása tooarchiving a gyorsítótár metrikák toostorage is [tooan eseményközpont adatfolyam formájában, vagy küldhet nekik tooLog Analytics](../monitoring-and-diagnostics/monitoring-overview-metrics.md#export-metrics).
 >
 >
 
 ## <a name="support--troubleshooting-settings"></a>Támogatási és hibaelhárítási beállítások
-A beállítások a **támogatási + hibaelhárítási** szakasz a gyorsítótár kapcsolatos problémák megoldása lehetőségeket biztosít.
+hello szolgáltatásbeállításai hello **támogatási + hibaelhárítási** szakasz a gyorsítótár kapcsolatos problémák megoldása lehetőségeket biztosít.
 
 ![Támogatási + hibaelhárítása](./media/cache-configure/redis-cache-support-troubleshooting.png)
 
@@ -368,64 +368,64 @@ A beállítások a **támogatási + hibaelhárítási** szakasz a gyorsítótár
 * [Új támogatási kérelem](#new-support-request)
 
 ### <a name="resource-health"></a>Erőforrás állapota
-**Erőforrás állapota** az erőforrás figyeli, és jelzi, hogy ha a várt módon fut.. Az Azure Resource health szolgáltatással kapcsolatos további információkért lásd: [Azure-erőforrás állapotának áttekintése](../resource-health/resource-health-overview.md).
+**Erőforrás állapota** az erőforrás figyeli, és jelzi, hogy ha a várt módon fut.. Hello Azure Resource health service kapcsolatos további információkért lásd: [Azure-erőforrás állapotának áttekintése](../resource-health/resource-health-overview.md).
 
 > [!NOTE]
-> Erőforrás állapota jelenleg nem készíthető jelentés a virtuális hálózat található Azure Redis Cache példány állapotának. További információkért lásd: [minden gyorsítótár-funkciók esetén egy virtuális hálózat a gyorsítótárhoz működik?](cache-how-to-premium-vnet.md#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
+> Erőforrás állapota jelenleg nem tudja tooreport hello egészségügyi üzemeltetett virtuális hálózatban Azure Redis Cache példány. További információkért lásd: [minden gyorsítótár-funkciók esetén egy virtuális hálózat a gyorsítótárhoz működik?](cache-how-to-premium-vnet.md#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 > 
 > 
 
 ### <a name="new-support-request"></a>Új támogatási kérelem
-Kattintson a **új támogatja a kérelem** a gyorsítótárhoz támogatási kérést nyithat.
+Kattintson a **új támogatja a kérelem** tooopen egy támogatási kérést a gyorsítótárhoz.
 
 
 
 
 
 ## <a name="default-redis-server-configuration"></a>Alapértelmezett Redis-kiszolgálókonfiguráció
-Új Azure Redis Cache példányt az alábbi alapértelmezett értékekkel Redis konfigurációs vannak konfigurálva.
+Új Azure Redis Cache példány alapértelmezett Redis konfigurációs értékeket a következő hello vannak konfigurálva.
 
 > [!NOTE]
-> Ebben a szakaszban a beállítások használatával nem módosítható a `StackExchange.Redis.IServer.ConfigSet` metódust. Ha ez a módszer egy ebben a szakaszban szereplő parancsok nevezik, az alábbihoz hasonló kivétel történik:  
+> Ebben a szakaszban hello-beállítások használatával nem lehet megváltoztatni hello `StackExchange.Redis.IServer.ConfigSet` metódust. Ha ezt a módszert nevezik ebben a szakaszban hello parancsok egyikét, egy kivétel hasonló toohello következő fordul elő:  
 > 
 > `StackExchange.Redis.RedisServerException: ERR unknown command 'CONFIG'`
 > 
-> Bármely értékek, amelyek konfigurálhatók, például **maximális memória-házirenddel**, az Azure portálon vagy a parancssori felügyeleti eszközök, például az Azure parancssori felület vagy a PowerShell segítségével konfigurálható.
+> Bármely értékek, amelyek konfigurálhatók, például **maximális memória-házirenddel**, hello Azure-portálon vagy a parancssori felügyeleti eszközök, például az Azure parancssori felület vagy a PowerShell segítségével konfigurálható.
 > 
 > 
 
 | Beállítás | Alapértelmezett érték | Leírás |
 | --- | --- | --- |
-| `databases` |16 |Az adatbázis alapértelmezett érték 16, de be lehet állítani egy másik számot, a tarifacsomag alapján. <sup>1</sup> az alapértelmezett adatbázis DB 0, kiválaszthatja, hogy egy másik kapcsolati alapját használatával `connection.GetDatabase(dbid)` ahol `dbid` közötti szám `0` és `databases - 1`. |
-| `maxclients` |Ez a tarifacsomag függ<sup>2</sup> |Ez az egyidejűleg engedélyezett kapcsolódó ügyfelek maximális számát. A korlát elérését követően a Redis bezárul minden új kapcsolatot, és a "ügyfelek maximális száma elérte a" hiba újra. |
-| `maxmemory-policy` |`volatile-lru` |Maxmemory házirend az beállítása a hogyan Redis választja ki, mit és mikor `maxmemory` (ajánlat választotta, a gyorsítótár létrehozása után a gyorsítótár méretét) elérésekor. Azure Redis Cache segítségével az alapértelmezett beállítás: `volatile-lru`, amely a kulcsok távolítja el a jelszólejárat LRU algoritmus használatával. Ezt a beállítást kell megadni az Azure portálon. További információkért lásd: [memória házirendek](#memory-policies). |
-| `maxmemory-samples` |3 |A memóriahasználat LRU és minimális TTL algoritmusok közelítő algoritmusok pontos algoritmusok helyett. Alapértelmezés szerint Redis ellenőrzések három kulcsok és kivételezések azt, amelyik kevesebb nemrég lett megadva. |
-| `lua-time-limit` |5,000 |Maximális végrehajtási idő ezredmásodpercben Lua parancsfájlra. Ha eléri a maximális végrehajtási ideje, Redis naplózza, hogy egy parancsfájl még végrehajtása után a maximális engedélyezett idő, és hiba történt a lekérdezések megválaszolásához kezdődik. |
+| `databases` |16 |hello alapértelmezett számú adatbázis 16, de be lehet állítani egy másik száma alapján hello IP-címek. <sup>1</sup> hello alapértelmezett adatbázis DB 0, kiválaszthatja, hogy egy másik kapcsolati alapját használatával `connection.GetDatabase(dbid)` ahol `dbid` közötti szám `0` és `databases - 1`. |
+| `maxclients` |IP-címek hello függ<sup>2</sup> |Hello engedélyezett azonos kapcsolódó ügyfelek maximális száma hello idő. Hello korlát elérését követően a Redis bezárása hello új kapcsolatok egy "elért ügyfelek maximális száma" hibát ad vissza. |
+| `maxmemory-policy` |`volatile-lru` |Maxmemory házirend hello beállítás hogyan választja ki a Redis milyen tooremove amikor `maxmemory` (hello hello gyorsítótár létrehozásakor kiválasztott ajánlat hello gyorsítótár) méretet. Azure Redis Cache hello alapértelmezett a beállítás `volatile-lru`, amely hello kulcsok távolítja el a jelszólejárat LRU algoritmus használatával. Ez a beállítás hello Azure-portálon konfigurálható. További információkért lásd: [memória házirendek](#memory-policies). |
+| `maxmemory-samples` |3 |toosave memória, a LRU és a minimális TTL algoritmusok is közelítő algoritmusok pontos algoritmusok helyett. Alapértelmezés szerint Redis ellenőrzések három kulcsok és kivételezések hello egy kisebb mostanában használt. |
+| `lua-time-limit` |5,000 |Maximális végrehajtási idő ezredmásodpercben Lua parancsfájlra. Hello maximális végrehajtási idő elérésekor a Redis naplózza, hogy egy parancsfájl még végrehajtása után hello maximális engedélyezett idő, és hiba tooreply tooqueries kezdődik. |
 | `lua-event-limit` |500 |Parancsfájl esemény sor maximális mérete. |
-| `client-output-buffer-limit` `normalclient-output-buffer-limit` `pubsub` |0 032mb 8mb 60 0 |Az ügyfél kimeneti puffer korlátok segítségével kényszerítheti az ügyfelek, amelyek nem adatainak olvasása elég gyors kiszolgálóról (gyakori oka az, hogy Pub/Sub ügyfél nem lehet felhasználni a lehető leghamarabb a közzétevő születik őket üzenetek) valamilyen okból megszakad. További információkért lásd: [http://redis.io/topics/clients](http://redis.io/topics/clients). |
+| `client-output-buffer-limit` `normalclient-output-buffer-limit` `pubsub` |0 032mb 8mb 60 0 |hello ügyfél kimeneti puffer korlátok lehetnek ügyfelek, amelyek nem adatok beolvasása hello server elég gyors (gyakori oka az, hogy Pub/Sub ügyfelet nem lehet gyors hello publisher születik őket felhasználni üzenetek) valamilyen okból tooforce leválasztása használt. További információkért lásd: [http://redis.io/topics/clients](http://redis.io/topics/clients). |
 
 <a name="databases"></a>
-<sup>1</sup>vonatkozó korlát `databases` eltér az egyes Azure Redis Cache IP-címek és a gyorsítótár létrehozásakor állítható be. Ha nincs `databases` beállítás során megadott gyorsítótár létrehozását, az alapértelmezett érték 16.
+<sup>1</sup>hello korlát `databases` eltér az egyes Azure Redis Cache IP-címek és a gyorsítótár létrehozásakor állítható be. Ha nincs `databases` beállítás van megadva gyorsítótár létrehozása során hello alapértelmezett érték 16.
 
 * Basic és Standard gyorsítótárak
-  * C0 csomag (250 MB) gyorsítótár - legfeljebb 16 adatbázisok
-  * C1 (1 GB-os) gyorsítótár - legfeljebb 16 adatbázisok
-  * C2 csomag (2,5 GB) gyorsítótár - legfeljebb 16 adatbázisok
-  * C3 csomag (6 GB) gyorsítótár - legfeljebb 16 adatbázisok
-  * C4 (13 GB) gyorsítótár - legfeljebb 32 adatbázisok
-  * C5 (26 GB) gyorsítótár - legfeljebb 48 adatbázisok
-  * C6 (53 GB) gyorsítótár - legfeljebb 64 adatbázisok
+  * C0 csomag (250 MB) gyorsítótár - too16 adatbázisok
+  * C1 (1 GB-os) gyorsítótár - too16 adatbázisok
+  * C2 csomag (2,5 GB) gyorsítótár - too16 adatbázisok
+  * C3 csomag (6 GB) gyorsítótár - too16 adatbázisok
+  * C4 (13 GB) gyorsítótár - too32 adatbázisok
+  * C5 (26 GB) gyorsítótár - too48 adatbázisok
+  * C6 (53 GB) gyorsítótár - too64 adatbázisok
 * Prémium szintű gyorsítótárak
-  * Legfeljebb 16 adatbázisok (6 GB - 60 GB) – P1
-  * Legfeljebb 32 adatbázisok (13 GB - 130 GB) – P2
-  * P3 (26 GB - 260 GB) – akár 48 adatbázisok
-  * P4 (53 GB - 530 GB) – akár 64 adatbázisok
-  * Engedélyezve - Redis-fürt minden prémium gyorsítótárak Redis-fürt csak használatát támogatja az adatbázis 0, a `databases` korlátozza a prémium szintű gyorsítótár engedélyezve van a Redis-fürt hatékonyan értéke 1 és a [kiválasztása](http://redis.io/commands/select) parancs nem engedélyezett. További információkért lásd: [van saját ügyfélalkalmazás fürtszolgáltatással használandó végezze el a módosításokat?](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+  * (6 GB - 60 GB) – P1 too16 adatbázisok
+  * (13 GB - 130 GB) – P2 too32 adatbázisok
+  * (26 GB - 260 GB) – P3 too48 adatbázisok
+  * P4 (53 GB - 530 GB) – too64 adatbázisok
+  * Engedélyezve - Redis-fürt minden prémium gyorsítótárak Redis fürt csak 0-adatbázis úgy hello támogatja `databases` korlátozza a prémium szintű gyorsítótár engedélyezve van a Redis-fürt hatékonyan érték 1 és hello [válasszon](http://redis.io/commands/select) parancs nem engedélyezett. További információkért lásd: [van toomake bármely módosítások toomy ügyfél alkalmazás toouse fürtszolgáltatás?](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
 
 Adatbázisokkal kapcsolatos további információkért lásd: [Mik azok a Redis-adatbázisok?](cache-faq.md#what-are-redis-databases)
 
 > [!NOTE]
-> A `databases` beállítás csak a gyorsítótár létrehozása során konfigurált, és csak a PowerShell, a parancssori felületen vagy a más felügyeleti ügyfelek lehet. Példa konfigurálása `databases` gyorsítótár létrehozása PowerShell használatával, lásd: [New-AzureRmRedisCache](cache-howto-manage-redis-cache-powershell.md#databases).
+> Hello `databases` beállítás csak a gyorsítótár létrehozása során konfigurált, és csak a PowerShell, a parancssori felületen vagy a más felügyeleti ügyfelek lehet. Példa konfigurálása `databases` gyorsítótár létrehozása PowerShell használatával, lásd: [New-AzureRmRedisCache](cache-howto-manage-redis-cache-powershell.md#databases).
 > 
 > 
 
@@ -433,21 +433,21 @@ Adatbázisokkal kapcsolatos további információkért lásd: [Mik azok a Redis-
 <sup>2</sup> `maxclients` eltér az egyes Azure Redis Cache tarifacsomagra vált.
 
 * Basic és Standard gyorsítótárak
-  * C0 csomag (250 MB) gyorsítótár - legfeljebb 256 kapcsolatok
-  * C1 (1 GB-os) gyorsítótár - legfeljebb 1000 kapcsolatok
-  * C2 csomag (2,5 GB) gyorsítótár - legfeljebb 2000 kapcsolatok
-  * C3 csomag (6 GB) gyorsítótár - legfeljebb 5000 kapcsolatok
-  * C4 (13 GB) gyorsítótár - legfeljebb 10 000 kapcsolatok
-  * C5 (26 GB) gyorsítótár - legfeljebb 15 000 kapcsolatok
-  * C6 (53 GB) gyorsítótár - legfeljebb 20 000 kapcsolatok
+  * C0 csomag (250 MB) gyorsítótár - too256 kapcsolatok
+  * C1 (1 GB-os) gyorsítótár - too1 mentése, 000 kapcsolatok
+  * C2 csomag (2,5 GB) gyorsítótár - too2 mentése, 000 kapcsolatok
+  * C3 csomag (6 GB) gyorsítótár - too5 mentése, 000 kapcsolatok
+  * C4 (13 GB) gyorsítótár - too10 mentése, 000 kapcsolatok
+  * C5 (26 GB) gyorsítótár - too15 mentése, 000 kapcsolatok
+  * C6 (53 GB) gyorsítótár - too20 mentése, 000 kapcsolatok
 * Prémium szintű gyorsítótárak
-  * P1 (6 GB - 60 GB) – akár 7500 kapcsolatok
-  * P2 (13 GB - 130 GB) – akár 15 000 kapcsolatok
-  * P3 (26 GB - 260 GB) – akár 30 000 kapcsolatok
-  * P4 (53 GB - 530 GB) – akár 40 000 kapcsolatok
+  * (6 GB - 60 GB) – P1 too7, 500 kapcsolatok mentése
+  * (13 GB - 130 GB) – P2 too15, 000 kapcsolatok mentése
+  * (26 GB - 260 GB) – P3 too30, 000 kapcsolatok mentése
+  * P4 (53 GB - 530 GB) – too40, 000 kapcsolatok mentése
 
 > [!NOTE]
-> Miközben lehetővé teszi, hogy minden egyes gyorsítótár méretének *legfeljebb* bizonyos számú kapcsolatok, minden egyes való kapcsolat rendelkezik terhet társítva. Erre példa ilyen terheléssel lehet Processzor- és memóriahasználatról miatt a TLS/SSL-titkosítást. A megadott gyorsítótárméret maximális kapcsolódási korlátja azt feltételezi, hogy egy némileg betöltött gyorsítótár. Ha tölthető be a kapcsolat terhelés *plus* az Ügyfélműveletek terhelése meghaladja a rendszer a kapacitás, a gyorsítótár is kapacitás problémákba ütközhetnek, még akkor is, ha nem lépik túl a gyorsítótár jelenlegi mérete a kapcsolathoz megadott korlátot.
+> Miközben lehetővé teszi, hogy minden egyes gyorsítótár méretének *legfeljebb* bizonyos számú kapcsolatok, minden kapcsolat tooRedis rendelkezik terhet társítva. Erre példa ilyen terheléssel lehet Processzor- és memóriahasználatról miatt a TLS/SSL-titkosítást. a megadott gyorsítótárméret hello maximális kapcsolathoz megadott korlátot azt feltételezi, hogy egy némileg betöltött gyorsítótár. Ha a kapcsolat terhelés betöltése *plus* Ügyfélműveletek a terhelés meghaladja a kapacitását hello rendszerhez, hello gyorsítótár kapacitás problémákat tapasztalhat, még akkor is, ha nem lépik túl a gyorsítótár jelenlegi mérete hello hello kapcsolathoz megadott korlátot.
 > 
 > 
 
@@ -455,7 +455,7 @@ Adatbázisokkal kapcsolatos további információkért lásd: [Mik azok a Redis-
 
 ## <a name="redis-commands-not-supported-in-azure-redis-cache"></a>A parancsok nem támogatott az Azure Redis Cache redis
 > [!IMPORTANT]
-> Microsoft által felügyelt konfigurálása és kezelése az Azure Redis Cache példányt, mert a következő parancsok le vannak tiltva. Ha megpróbálja meghívni őket, hasonló hibaüzenetet kap `"(error) ERR unknown command"`.
+> Microsoft által felügyelt konfigurálása és kezelése az Azure Redis Cache példányt, mert hello következő parancsok le vannak tiltva. Ha tooinvoke próbálja őket, túl a hasonló hibaüzenetet kap`"(error) ERR unknown command"`.
 > 
 > * BGREWRITEAOF
 > * BGSAVE
@@ -472,45 +472,45 @@ Adatbázisokkal kapcsolatos további információkért lásd: [Mik azok a Redis-
 Redis parancsokkal kapcsolatos további információkért lásd: [http://redis.io/commands](http://redis.io/commands).
 
 ## <a name="redis-console"></a>Redis-konzol
-Az Azure Redis Cache példány használatával biztonságosan kiadhatja parancsok a **Redis konzol**, az Azure portálon, minden gyorsítótár rétege számára elérhető.
+Biztonságosan kiadhatja parancsok tooyour Azure Redis Cache példány hello segítségével **Redis konzol**, a hello Azure-portál a gyorsítótár minden csomagban elérhető.
 
 > [!IMPORTANT]
-> - A Redis-konzol nem tud együttműködni [VNET](cache-how-to-premium-vnet.md). Ha a gyorsítótár egy virtuális hálózat része, csak a virtuális hálózaton lévő ügyfelek is gyorsítótár-hozzáféréshez. Konzol Redis fut a helyi böngészőben, amely a virtuális hálózaton kívül, mert nem tud kapcsolódni a gyorsítótárhoz.
-> - Nem minden Redis-parancsok az Azure Redis Cache támogatottak. Le vannak tiltva, az Azure Redis Cache Redis-parancsok listáját lásd az előző [parancsok nem támogatott az Azure Redis Cache Redis](#redis-commands-not-supported-in-azure-redis-cache) szakasz. Redis parancsokkal kapcsolatos további információkért lásd: [http://redis.io/commands](http://redis.io/commands).
+> - hello Redis-konzol nem tud együttműködni [VNET](cache-how-to-premium-vnet.md). Ha a gyorsítótár egy virtuális hálózat része, csak a virtuális hálózat hello ügyfelek hello gyorsítótár férhet hozzá. Konzol Redis fut a helyi böngészőben, amely hello virtuális hálózaton kívül, mert tooyour gyorsítótár nem tud kapcsolódni.
+> - Nem minden Redis-parancsok az Azure Redis Cache támogatottak. Le vannak tiltva, az Azure Redis Cache Redis-parancsok listáját, tekintse meg az előző hello [parancsok nem támogatott az Azure Redis Cache Redis](#redis-commands-not-supported-in-azure-redis-cache) szakasz. Redis parancsokkal kapcsolatos további információkért lásd: [http://redis.io/commands](http://redis.io/commands).
 > 
 > 
 
-A Redis-konzol megnyitásához kattintson a **konzol** a a **Redis Cache** panelen.
+tooaccess hello Redis konzol, kattintson a **konzol** a hello **Redis Cache** panelen.
 
 ![Redis-konzol](./media/cache-configure/redis-console-menu.png)
 
-A gyorsítótárpéldány elleni parancsok kiadását, egyszerűen csak írja be a kívánt parancsot a konzolba.
+tooissue parancsok a gyorsítótárpéldány ellen, egyszerűen típus hello a keresett parancs hello konzolba.
 
 ![Redis-konzol](./media/cache-configure/redis-console.png)
 
 
-### <a name="using-the-redis-console-with-a-premium-clustered-cache"></a>A Redis-konzol használata egy fürtözött prémium gyorsítótár
+### <a name="using-hello-redis-console-with-a-premium-clustered-cache"></a>Hello segítségével a prémium konzolon Redis gyorsítótár fürtözött
 
-A Redis-konzol használata a prémium fürtözött gyorsítótár, ha a gyorsítótár egyetlen shard a parancsok adhat ki. A parancs kiadni egy adott shard, először kapcsolódnia kell a kívánt shard a shard kiválasztójának kattintva.
+Ha a gyorsítótár hello Redis-konzol használata a prémium fürtözött, parancsok tooa egyetlen shard hello gyorsítótár adhat ki. tooissue parancs tooa adott shard, először kapcsolódik toohello kívánt shard hello shard objektumválasztó kattintva.
 
 ![Redis-konzol](./media/cache-configure/redis-console-premium-cluster.png)
 
-Ha megkísérli a csatlakoztatott shard mint egy másik shard tárolt hívóbetű, az alábbihoz hasonló hibaüzenetet kap.
+Ha egy kulcsot, amely egy másik shard van tárolva, mint a csatlakoztatott shard hello tooaccess kísérli meg, egy hiba üzenet hasonló toohello a következő üzenet jelenik meg.
 
 ```
 shard1>get myKey
 (error) MOVED 866 13.90.202.154:13000 (shard 0)
 ```
 
-Az előző példában a shard 1 a kijelölt shard, de `myKey` található shard 0, ahogy azt a `(shard 0)` a hibaüzenet a következő része. Ebben a példában eléréséhez `myKey`, és válassza ki a shard 0 a shard objektumválasztó használata, majd adja ki a kívánt parancsot.
+Hello előző példában shard 1: hello kijelölt shard, de `myKey` található a szilánkcímtárban 0, hello jelöli `(shard 0)` hello hibaüzenet része. Ebben a példában tooaccess `myKey`, jelölje be shard 0 használatával hello shard objektumválasztó, majd a probléma hello szükséges parancsot.
 
 
-## <a name="move-your-cache-to-a-new-subscription"></a>Helyezze át a gyorsítótár egy új előfizetés
-Egy új előfizetést a gyorsítótár a gombra kattintva áthelyezheti **áthelyezése**.
+## <a name="move-your-cache-tooa-new-subscription"></a>Helyezze át a gyorsítótár tooa új előfizetés
+A gyorsítótár tooa új előfizetés kattintva áthelyezheti **áthelyezése**.
 
 ![Helyezze át a Redis gyorsítótár](./media/cache-configure/redis-cache-move.png)
 
-Az erőforrások áthelyezése az egyik erőforráscsoportból a másikba, és a másik egy előfizetés információkért lásd: [erőforrások áthelyezése új erőforráscsoportba vagy előfizetésbe](../azure-resource-manager/resource-group-move-resources.md).
+Az erőforrások áthelyezése egy erőforrás csoport tooanother, és egy előfizetés tooanother információkért lásd: [erőforrások toonew erőforráscsoportba vagy előfizetésbe áthelyezése](../azure-resource-manager/resource-group-move-resources.md).
 
 ## <a name="next-steps"></a>Következő lépések
 * További információ a Redis-parancsok használatával: [hogyan futtathatom Redis parancsok?](cache-faq.md#how-can-i-run-redis-commands)

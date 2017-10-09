@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Service Fabric CLI minták"
+title: "Service Fabric CLI minták aaaAzure"
 description: "Az Azure Service Fabric CLI minták"
 services: service-fabric
 documentationcenter: service-fabric
@@ -16,18 +16,18 @@ ms.workload: service-fabric
 ms.date: 08/22/2017
 ms.author: adegeo
 ms.custom: mvc
-ms.openlocfilehash: ffe94435d7d606506cbba2abb794f40fe9104df0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dee855a78d9cc99c82cf720dbd79b0e2bf72a5d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-fabric-cli-samples"></a>Az Azure Service Fabric CLI minták
 
-A következő táblázat mutató hivatkozásokat tartalmaz [Service Fabric CLI](service-fabric-cli.md) parancsfájlok mintának, hogy a Service Fabric fürt, alkalmazások és szolgáltatások kezelése.
+hello következő tábla hivatkozásokat tartalmaz túl[Service Fabric CLI](service-fabric-cli.md) parancsfájlok mintának, hogy a Service Fabric fürt, alkalmazások és szolgáltatások kezelése.
 
 | | |
 |-|-|
 | **Alkalmazások kezelése** ||
-| [Alkalmazás üzembe helyezése](./scripts/cli-deploy-application.md)| Alkalmazás üzembe helyezése a fürthöz.|
+| [Alkalmazás üzembe helyezése](./scripts/cli-deploy-application.md)| Az alkalmazás tooa fürt központi telepítése.|
 | [Alkalmazások eltávolítása](./scripts/cli-remove-application.md)| Az alkalmazás eltávolítása egy fürtről.|

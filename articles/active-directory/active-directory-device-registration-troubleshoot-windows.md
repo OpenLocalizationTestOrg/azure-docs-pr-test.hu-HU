@@ -1,6 +1,6 @@
 ---
-title: "Hibaelhárítás az automatikus regisztráció az Azure AD-tartomány csatlakoztatott számítógépek Windows 10 és Windows Server 2016 |} Microsoft Docs"
-description: "A Windows 10 és Windows Server 2016 automatikus regisztráció az Azure AD-tartomány hibaelhárítási csatlakoztatott számítógépeit."
+title: "aaaTroubleshooting hello automatikus regisztráció az Azure AD-tartományhoz csatlakoztatott számítógépekre Windows 10 és Windows Server 2016 |} Microsoft Docs"
+description: "A Windows 10 és Windows Server 2016 hello automatikus regisztráció az Azure AD-tartomány hibaelhárítási csatlakoztatott számítógépeit."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,22 +14,22 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: 5b7f95f302f716d9221b5fae59aa2df5c956a524
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3795323ce9392368b412b3e1208868431e59a74b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad--windows-10-and-windows-server-2016"></a>Hibaelhárítás az automatikus regisztráció tartomány csatlakoztatott számítógépeit az Azure AD – a Windows 10 és Windows Server 2016
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad--windows-10-and-windows-server-2016"></a>Hibaelhárítás az automatikus regisztráció tartomány csatlakoztatott számítógépek tooAzure AD – Windows 10 és Windows Server 2016
 
-Ez a témakör a következő alkalmazható a következő ügyfelekre:
+Ez a témakör a következő ügyfelek alkalmazható toohello:
 
 -   Windows 10
 -   Windows Server 2016
 
-Egyéb Windows-ügyfelein, lásd: [automatikus regisztráció tartomány hibaelhárítási csatlakoztatott számítógépeit az Azure AD Windows régebbi ügyfelek](active-directory-device-registration-troubleshoot-windows-legacy.md).
+Egyéb Windows-ügyfelein, lásd: [automatikus regisztráció tartomány hibaelhárítási csatlakoztatott számítógépek tooAzure AD a Windows régebbi verziójú kliensek](active-directory-device-registration-troubleshoot-windows-legacy.md).
 
-Ez a témakör feltételezi, hogy konfigurálta a tartományhoz csatlakoztatott eszközök automatikus regisztráció megfelelően ismertetett [konfigurálása a Windows-tartományhoz csatlakoztatott eszközök automatikus regisztrálása az Azure Active Directoryval](active-directory-device-registration-get-started.md) támogatásához a következő esetekben:
+Ez a témakör feltételezi, hogy konfigurálta a tartományhoz csatlakoztatott eszközök automatikus regisztráció megfelelően ismertetett [hogyan tooconfigure az automatikus regisztráció, a Windows-tartományhoz az Azure Active Directoryval eszközök](active-directory-device-registration-get-started.md) a következő forgatókönyvek toosupport hello:
 
 - [Eszközalapú feltételes hozzáférés](active-directory-conditional-access-automatic-device-registration-setup.md)
 
@@ -38,16 +38,16 @@ Ez a témakör feltételezi, hogy konfigurálta a tartományhoz csatlakoztatott 
 - [Vállalati Windows Hello](active-directory-azureadjoin-passport-deployment.md)
 
 
-Ez a dokumentum a lehetséges problémák megoldásához nyújt hibaelhárítási útmutatót. 
+Ez a dokumentum hogyan tooresolve potenciális problémák nyújt hibaelhárítási útmutatót. 
 
-A regisztrációt a Windows támogatott 2015. November 10. frissítés vagy újabb verzió.  
-A évforduló frissítés engedélyezéséhez a fenti helyzetekben használatát javasoljuk.
+hello regisztrációs támogatott a hello Windows 2015. November 10. frissítés vagy újabb verzió.  
+Hello évforduló frissítés engedélyezéséhez a fenti helyzetekben hello használatát javasoljuk.
 
-## <a name="step-1-retrieve-the-registration-status"></a>1. lépés: A regisztráció állapotának lekérése 
+## <a name="step-1-retrieve-hello-registration-status"></a>1. lépés: Hello regisztrációs állapotának lekérése 
 
-**A regisztrációs állapot beolvasása:**
+**tooretrieve hello regisztrációs állapotát:**
 
-1. Nyissa meg a parancssort rendszergazdaként.
+1. Nyissa meg a hello parancssort rendszergazdaként.
 
 2. Típus **dsregcmd/status**
 
@@ -57,7 +57,7 @@ A évforduló frissítés engedélyezéséhez a fenti helyzetekben használatát
    | Az eszköz állapotát |}+----------------------------------------------------------------------+
     
         AzureAdJoined : YES
-     EnterpriseJoined: Nincs DeviceId: 5820fbe9-60c8-43b0-bb11-44aee233e4e7 ujjlenyomat: B753A6679CE720451921302CA873794D94C6204A KeyContainerId: bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider: Microsoft Platform titkosításszolgáltató TpmProtected: Igen KeySignTest:: emelt szintű tesztelése kell futtatnia.
+     EnterpriseJoined: Nincs DeviceId: 5820fbe9-60c8-43b0-bb11-44aee233e4e7 ujjlenyomat: B753A6679CE720451921302CA873794D94C6204A KeyContainerId: bae6a60b-1d2f-4d2a-a298-33385f6d05e9 KeyProvider: Microsoft Platform titkosításszolgáltató TpmProtected: Igen KeySignTest:: futtassa emelt szintű kell tootest.
                   IDP: login.windows.net TenantId: 72b988bf-86f1-41af-91ab-2d7cd011db47 TenantName: Contoso AuthCodeUrl: https://login.microsoftonline.com/msitsupp.microsoft.com/oauth2/authorize AccessTokenUrl: https://login.microsoftonline.com/ msitsupp.microsoft.com/oauth2/token MdmUrl: https://enrollment.manage-beta.microsoft.com/EnrollmentServer/Discovery.svc MdmTouUrl: https://portal.manage-beta.microsoft.com/TermsOfUse.aspx dmComplianceUrl: https:// Portal.Manage-Beta.microsoft.com/?portalAction=Compliance SettingsUrl: eyJVcmlzIjpbImh0dHBzOi8va2FpbGFuaS5vbmUubWljcm9zb2Z0LmNvbS8iLCJodHRwczovL2thaWxhbmkxLm9uZS5taWNyb3NvZnQuY29tLyJdfQ == JoinSrvVersion: 1.0-ás JoinSrvUrl: https:// enterpriseregistration.windows.net/EnrollmentServer/device/ JoinSrvId: urn: ms-drs:enterpriseregistration.windows.net KeySrvVersion: 1.0-ás KeySrvUrl: https://enterpriseregistration.windows.net/EnrollmentServer/key/ KeySrvId: urn: ms-drs: enterpriseregistration.Windows.NET DomainJoined: Igen tartománynév: CONTOSO
     
     +----------------------------------------------------------------------+
@@ -71,53 +71,53 @@ A évforduló frissítés engedélyezéséhez a fenti helyzetekben használatát
 
 
 
-## <a name="step-2-evaluate-the-registration-status"></a>2. lépés: A regisztráció állapotának kiértékelésére. 
+## <a name="step-2-evaluate-hello-registration-status"></a>2. lépés: Hello regisztrációs állapotának kiértékelésére. 
 
-Tekintse át a következő mezőket, és győződjön meg arról, hogy rendelkezik-e a várt értékek:
+Tekintse át a következő mezők hello, és győződjön meg arról, hogy rendelkezik-e hello várt értékek:
 
 ### <a name="azureadjoined--yes"></a>AzureAdJoined: Igen  
 
-Ez a mező jeleníti meg, hogy az eszköz regisztrálva van-e az Azure ad-val. Amennyiben az értéke, a "Nem", regisztrációs nem fejeződött be. 
+Ez a mező jeleníti meg, hogy hello eszköz regisztrálva van-e az Azure ad-val. Hello értéket jeleníti meg, mint a "Nem", ha regisztrációs nem fejeződött be. 
 
 **Lehetséges okok:**
 
-- A számítógép regisztrációjához hitelesítés sikertelen.
+- Hello számítógép regisztrálása nem sikerült a hitelesítés.
 
-- Nincs olyan szervezet, amely a számítógép nem észlelhetők egy HTTP-proxy
+- HTTP-proxy van hello olyan szervezet, amely nem észlelhetők hello számítógép
 
-- A számítógép nem érhető el, az Azure AD hitelesítésében vagy Azure DRS a regisztrációhoz
+- hello számítógép nem érhető el, az Azure AD hitelesítésében vagy Azure DRS a regisztrációhoz
 
-- A számítógép nem lehet a szervezet belső hálózaton vagy a VPN a közvetlen sor a láthatáron egy a helyszíni AD-tartományvezérlő.
+- hello számítógép nem lehet hello szervezet belső hálózaton vagy a VPN közvetlen tooan a helyszíni AD-tartományvezérlő.
 
-- Ha a számítógép TPM-mel, valószínűleg rossz állapotban.
+- Ha hello számítógép TPM-mel, valószínűleg rossz állapotban.
 
-- Előfordulhat, a szolgáltatások egy helytelen konfiguráció című dokumentumban korábban feljegyzett, hogy ellenőrizze újra kell. Gyakori példák:
+- Nem lehet egy helytelen konfiguráció, a szolgáltatások hello dokumentumban korábban feljegyzett, akkor kell tooverify újra. Gyakori példák:
 
     - Az összevonási kiszolgálón nincs engedélyezve a WS-Trust végpontok
 
     - Az összevonási kiszolgáló integrált Windows-hitelesítés segítségével a hálózat nem teszi lehetővé bejövő hitelesítés számítógépekről.
 
-    - Nincs szolgáltatáskapcsolódási pont objektum mutat, a ellenőrzött tartomány nevét az Azure ad-ben az Active Directory-erdőben, ahol a számítógép tartozik
+    - Nincs tooyour ellenőrzött tartomány nevét az Azure AD oldalra mutat, ahol hello a számítógép tartozik hello AD-erdő szolgáltatáskapcsolódási pont objektum
 
 ---
 
 ### <a name="domainjoined--yes"></a>DomainJoined: Igen  
 
-Ez a mező jeleníti meg, hogy az eszköz csatlakozott a helyi Active Directory-e. Amennyiben az értéke **nem**, az eszköz nem automatikus regisztrációját az Azure ad-val. Először ellenőrizze a, hogy az eszköz csatlakozik a helyszíni Active Directory előtt is regisztrálja az Azure ad-val. Ha a számítógép csatlakoztatása az Azure AD közvetlenül keres, lépjen további információ az Azure Active Directory csatlakozási képességeivel kapcsolatos.
+Ez a mező látható, hogy hello eszköz illesztett tooan a helyszíni Active Directory-e. Amennyiben másként hello értéke **nem**, hello eszköz nem automatikus regisztrációját az Azure ad-val. Először ellenőrizze, hogy hello eszköz illesztések toohello a helyszíni Active Directory előtt is regisztrálja az Azure ad-val. Ha hello számítógép tooAzure AD közvetlenül csatlakoztatná keres, nyissa meg az Azure Active Directory csatlakozási képességekre vonatkozó tooLearn.
 
 ---
 
 ### <a name="workplacejoined--no"></a>WorkplaceJoined: nincs  
 
-Ez a mező jeleníti meg, hogy az Azure ad-vel, de (munkahelyhez csatlakoztatott jelölésű) személyes eszközként regisztrálja az eszközt. Ez az érték "Nem", a tartományhoz csatlakozó számítógépen az Azure ad-vel regisztrált jelenjen meg, azonban ha igen, mert mutat azt jelenti, hogy a munkahelyi vagy iskolai fiókkal lett hozzáadva a számítógép regisztráció befejezése előtt. Ebben az esetben a fiók lesz figyelembe véve, ha a Windows 10 (Ha a "Futtatás" vagy a parancssori ablakban futó a WinVer parancs 1607) évforduló frissítés verzióját használja.
+Ez a mező jeleníti meg, hogy hello eszköz regisztrálva van-e, és az Azure AD, de (munkahelyhez csatlakoztatott jelölésű) személyes eszközként. Ezt az értéket, a "Nem" jelenjen meg a tartományhoz csatlakoztatott számítógép regisztrálva az Azure AD, azonban azt mutatja, az azt jelenti, hogy Igen, mert egy munkahelyi vagy iskolai fiókot a hozzáadott előzetes toohello számítógép épp regisztrációs volt. Ebben az esetben hello fiókot figyelmen kívül ha Windows 10 (ha hello WinVer parancs futtatása hello a "Futtatás" vagy egy parancssori ablakot 1607) hello évforduló frissítés verzióját használja.
 
 ---
 
 ### <a name="wamdefaultset--yes-and-azureadprt--yes"></a>WamDefaultSet: Igen és AzureADPrt: Igen
   
-Ezek a mezők megjelenítése, hogy az Azure AD-követően az eszközre való bejelentkezéskor rendelkezik sikeresen hitelesíteni a felhasználót. Ha ezek megjelenítése "Nem", a következők okozhatják:
+Ezek a mezők megjelenítése hello felhasználó sikeresen hitelesítette tooAzure AD toohello eszköz aláírásakor. Ha azok megjelenítése "Nem" hello a következők okozhatják:
 
-- Hibás tárolási kulcs (STK) az eszköz regisztrálásakor (Ellenőrizze az emelt szintű futtatása közben KeySignTest) társított TPM.
+- Hibás tárolási (STK) TPM hello eszköz regisztrálásakor (ellenőrzés hello KeySignTest emelt szintű futtatása közben) társított kulcs.
 
 - Másodlagos bejelentkezési Azonosítóval
 
@@ -125,4 +125,4 @@ Ezek a mezők megjelenítése, hogy az Azure AD-követően az eszközre való be
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információkért lásd: a [automatikus eszközregisztráció – gyakori kérdések](active-directory-device-registration-faq.md) 
+További információkért lásd: hello [automatikus eszközregisztráció – gyakori kérdések](active-directory-device-registration-faq.md) 

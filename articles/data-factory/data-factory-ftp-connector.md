@@ -1,6 +1,6 @@
 ---
-title: "Adatok áthelyezése az FTP-kiszolgáló Azure Data Factory használatával |} Microsoft Docs"
-description: "Tudnivalók az adatok áthelyezése az Azure Data Factory használatával FTP-kiszolgálóhoz."
+title: "Azure Data Factory használatával az FTP-kiszolgáló adatait aaaMove |} Microsoft Docs"
+description: "Megtudhatja, hogyan toomove adatokat az Azure Data Factory használatával FTP-kiszolgálóhoz."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: jingwang
-ms.openlocfilehash: f8f31f3a2ee02c964737dd32145499f3dcfd0624
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c707e29532b2a8a870603948cb6150ab857bd6ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-an-ftp-server-by-using-azure-data-factory"></a>Adatok áthelyezése az FTP-kiszolgáló Azure Data Factory használatával
-Ez a cikk ismerteti, hogyan a másolási tevékenység során az Azure Data Factoryben az adatok mozgatása az FTP-kiszolgálóhoz. Buildekről nyújtanak a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amelynek során adatátvitel a másolási tevékenység az általános áttekintést.
+Ez a cikk azt ismerteti, hogyan toouse hello másolási tevékenység az Azure Data Factory toomove adatok az FTP-kiszolgálóhoz. -Buildekről nyújtanak a hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikket, amely adatmozgás általános áttekintést hello másolási tevékenység során.
 
-Adatok átmásolhatja az FTP-kiszolgáló bármely támogatott fogadó adattárolóhoz. A másolási tevékenység által támogatott mosdók adattárolókhoz listájáért lásd: a [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Adat-előállító jelenleg támogatja áthelyezése adatok kizárólag az FTP-kiszolgáló az egyéb adattárakhoz, de nem adatok áthelyezését más adatokat tárolja, FTP-kiszolgálón. Az támogatja-e mind a helyszíni és felhőalapú FTP-kiszolgálók.
+Az FTP kiszolgáló támogatott tooany fogadó adattár adatainak másolhatja. Az adatok támogatott tárolja, a fogadók esetében hello másolási tevékenység, lásd: hello [adattárolókhoz támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Adat-előállító jelenleg csak egy FTP-kiszolgáló tooother adatok áthelyezése adatait tárolja, de nem az adatok áthelyezése más adatok tooan FTP-kiszolgáló tárolja. Az támogatja-e mind a helyszíni és felhőalapú FTP-kiszolgálók.
 
 > [!NOTE]
-> A másolási tevékenység nem törli a forrásfájl, miután sikerült átmásolni a cél. Ha a forrásfájl törlése után sikeres másolatot van szüksége, létrehozhat egy egyéni a fájl törlésére, és használja a tevékenységet a feldolgozási. 
+> hello másolási tevékenység nem hello forrásfájl törlése, miután sikeresen másolt toohello cél. Ha egy sikeres másolása után toodelete hello forrásfájl van szüksége, hozzon létre egy egyéni tevékenység toodelete hello fájlt, és hello tevékenység hello folyamat. 
 
 ## <a name="enable-connectivity"></a>Kapcsolat engedélyezése
-Ha áthelyezi adatait egy **helyszíni** adatokat (például az Azure Blob storage) tárolására, telepítése és használata az adatkezelési átjáró felhő FTP-kiszolgálót. Az adatkezelési átjáró egy olyan ügyfélügynök, a helyszíni számítógépre telepített, és lehetővé teszi a felhőszolgáltatások csatlakozás egy helyszíni erőforráshoz. További információkért lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md). A beállítás részletes utasításokat az átjáró össze, és használata, lásd: [adatokat a helyszíni helyek és a felhő közötti áthelyezése](data-factory-move-data-between-onprem-and-cloud.md). Az átjáró, FTP-kiszolgálóhoz való kapcsolódáshoz használja, akkor is, ha a kiszolgáló az az Azure-infrastruktúrák (IaaS) szolgáltatás virtuális gépként (VM).
+Ha áthelyezi adatait egy **helyszíni** FTP server tooa felhőalapú adattároló (már például tooAzure Blob Storage tárolóban van hátra), telepítéséhez, és az adatkezelési átjáró használatához. Az adatkezelési átjáró hello olyan ügyfélügynök, amelynek a helyszíni gépre van telepítve, és lehetővé teszi a felhőalapú szolgáltatások tooconnect tooan helyszíni erőforrás. További információkért lásd: [az adatkezelési átjáró](data-factory-data-management-gateway.md). Hello átjáró beállításával és használatával, akkor a részletes útmutatót lásd: [adatokat a helyszíni helyek és a felhő közötti áthelyezése](data-factory-move-data-between-onprem-and-cloud.md). Akkor is, ha hello server az Azure-infrastruktúra (IaaS) szolgáltatás virtuális gépként (VM) hello átjáró tooconnect tooan FTP-kiszolgáló használ.
 
-Az átjáró telepíthető ugyanarra a helyi számítógépen vagy infrastruktúra-szolgáltatási virtuális gép az FTP-kiszolgálóként is. Azt javasoljuk azonban, hogy telepítse az átjáró, egy másik számítógépre, vagy az infrastruktúra-szolgáltatási virtuális gép az Erőforrásverseny elkerülése érdekében, és a jobb teljesítmény érdekében. Az átjáró egy külön számítógépen való telepítésekor a gép érhessék el az FTP-kiszolgálón kell lennie.
+Már lehetséges tooinstall hello átjáró hello megegyezik a helyszíni gépen vagy infrastruktúra-szolgáltatási virtuális gép hello FTP-kiszolgálóhoz. Azt javasoljuk azonban hello átjáró telepítése egy másik számítógépre, vagy az infrastruktúra-szolgáltatási virtuális gép tooavoid Erőforrásverseny, és a jobb teljesítmény érdekében. Hello átjáró egy külön számítógépen való telepítésekor hello gépnek képes tooaccess hello FTP-kiszolgálón kell lennie.
 
 ## <a name="get-started"></a>Bevezetés
 A másolási tevékenység, amely FTP forrásból származó adatokat a különböző eszközök vagy API-k használatával helyezi át a feldolgozási sor hozhatja létre.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **Data Factory másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) gyors útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **Data Factory másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját.
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára.
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban:
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello:
 
-1. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory.
-2. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok.
+1. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban.
+2. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet.
 3. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel.
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök vagy API-k (kivéve a .NET API-t) használ, amikor az a JSON formátum használatával adja meg a Data Factory entitások. Adatok másolása egy FTP-adattároló használt adat-előállító entitások JSON-definíciók minta, tekintse meg a [JSON-példa: adatok másolása az FTP-kiszolgáló az Azure blob](#json-example-copy-data-from-ftp-server-to-azure-blob) című szakaszát.
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök vagy API-k (kivéve a .NET API-t) használ, akkor határozzák meg a Data Factory entitások hello JSON formátumban. Az adat-előállító entitások, amelyek egy FTP-adattároló használt toocopy adatait JSON-definíciók minta, lásd: hello [JSON-példa: adatok másolása az FTP-kiszolgáló tooAzure blobból](#json-example-copy-data-from-ftp-server-to-azure-blob) című szakaszát.
 
 > [!NOTE]
-> Támogatott tömörítési formátumú és használatával kapcsolatos részletekért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
+> Fájl- és tömörítési formátum támogatott toouse kapcsolatos részletekért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-A következő szakaszok részletesen bemutatják, amely segítségével határozza meg a Data Factory entitások adott FTP-JSON-tulajdonságok.
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott tooFTP részleteit tartalmazzák.
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
-A következő táblázat ismerteti a JSON-elemek szerepelnek az FTP-kapcsolódó szolgáltatásra vonatkozó.
+hello a következő táblázat ismerteti a JSON elemek adott tooan kapcsolódó FTP-szolgáltatás.
 
 | Tulajdonság | Leírás | Szükséges | Alapértelmezett |
 | --- | --- | --- | --- |
-| type |Válassza az FTP-kiszolgáló. |Igen |&nbsp; |
-| állomás |Adja meg a nevét vagy az FTP-kiszolgáló IP-címét. |Igen |&nbsp; |
-| AuthenticationType |Adja meg a hitelesítés típusát. |Igen |Alapszintű, a névtelen |
-| felhasználónév |Adja meg a felhasználót, aki hozzáfér az FTP-kiszolgálóhoz. |Nem |&nbsp; |
-| jelszó |Adja meg a felhasználó (felhasználónév) jelszavát. |Nem |&nbsp; |
-| encryptedCredential |Adja meg a titkosított hitelesítő adatokat, az FTP-kiszolgáló eléréséhez. |Nem |&nbsp; |
-| gatewayName |Adja meg az átjáró nevét az adatkezelési átjáró helyszíni FTP-kiszolgálóhoz való kapcsolódáshoz. |Nem |&nbsp; |
-| port |Adja meg a portot, amelyet az FTP-kiszolgáló figyel. |Nem |21 |
-| enableSsl |Adja meg, hogy a TLS/SSL csatornán FTP használata. |Nem |Igaz |
-| enableServerCertificateValidation |Adja meg, hogy engedélyezze a kiszolgálói SSL-tanúsítvány hitelesítése a TLS/SSL csatornán keresztül FTP használata esetén. |Nem |Igaz |
+| type |Állítsa be a tooFtpServer. |Igen |&nbsp; |
+| állomás |Adja meg a hello nevét vagy IP-cím hello FTP-kiszolgáló. |Igen |&nbsp; |
+| AuthenticationType |Adja meg a hello hitelesítési típus. |Igen |Alapszintű, a névtelen |
+| felhasználónév |Adja meg a hello felhasználó, aki rendelkezik hozzáférési toohello FTP-kiszolgálóhoz. |Nem |&nbsp; |
+| jelszó |Adja meg (felhasználónév) hello felhasználó hello jelszavát. |Nem |&nbsp; |
+| encryptedCredential |Adja meg a hello titkosított hitelesítő adat tooaccess hello FTP-kiszolgálót. |Nem |&nbsp; |
+| gatewayName |Adja meg hello hello átjárót az adatkezelési átjáró tooconnect tooan helyszíni FTP-kiszolgáló. |Nem |&nbsp; |
+| port |Adja meg, melyik hello FTP-kiszolgáló figyel hello port. |Nem |21 |
+| enableSsl |Adja meg, hogy toouse FTP SSL/TLS-csatornán keresztül. |Nem |Igaz |
+| enableServerCertificateValidation |Adja meg, hogy tooenable server SSL tanúsítvány érvényesítése a TLS/SSL csatornán keresztül FTP használata esetén. |Nem |Igaz |
 
 ### <a name="use-anonymous-authentication"></a>Névtelen hitelesítés
 
@@ -141,25 +141,25 @@ A következő táblázat ismerteti a JSON-elemek szerepelnek az FTP-kapcsolódó
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
 Szakaszok és meghatározása adatkészletek esetében elérhető tulajdonságok teljes listáját lásd: [adatkészletek létrehozása](data-factory-create-datasets.md). Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében.
 
-A **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. A dataset típusra vonatkozó adatokat tartalmazza. A **typeProperties** szakasz egy adatkészlet típusú **fájlmegosztási** tulajdonságai a következők:
+Hello **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. Adott toohello adathalmaztípushoz információkat biztosít. Hello **typeProperties** szakasz egy adatkészlet típusú **fájlmegosztási** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| folderPath |Részleges azt a mappát. Használja az escape-karakter "\" a speciális karakterek a karakterláncban. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** mappa elérési utak alapján szelet kezdési és befejezési dátum-idő. |Igen |
-| fileName |Adja meg a fájl nevét a **folderPath** Ha azt szeretné, hogy a tábla egy adott fájlra a mappában. Ha nem ad meg ehhez a tulajdonsághoz értéket, a tábla a mappában lévő összes fájlt mutat.<br/><br/>Ha **Fájlnév** nincs megadva egy kimeneti adatkészletet, a létrehozott fájl neve nem a következő formátumban: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
-| fileFilter |Adjon meg egy szűrőt, amely használatával a fájlok egy részét jelölje ki a **folderPath**, ahelyett, hogy minden fájl.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2014-1-?.txt"`<br/><br/> **fileFilter** egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. Ez a tulajdonság nem támogatott a Hadoop elosztott fájlrendszerrel (HDFS). |Nem |
-| partitionedBy |Használatával adja meg a dinamikus **folderPath** és **Fájlnév** idő adatsorozat adatok. Megadhat például egy **folderPath** , amely az adatok óránkénti paraméteres. |Nem |
-| Formátumban | A következő formátumban típusok támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Állítsa be a **típus** tulajdonság a formátuma a következő értékek egyikét. További információkért lásd: a [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátum](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha szeretné átmásolni a fájlokat, mivel ezek között a fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a Formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
-| Tömörítés | Adja meg a típus és az adatok tömörítése szintjét. Támogatott típusok a következők **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**, és a támogatott szintek a következők **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
-| useBinaryTransfer |Adja meg, hogy a bináris átviteli mód használatára. Az értékek a következők igaz a bináris mód (Ez az alapértelmezett érték), és hamis értéket ASCII. A tulajdonság csak akkor használható, típusú a társított kapcsolódószolgáltatás-típus esetén: FTP-kiszolgáló. |Nem |
+| folderPath |Részleges toohello mappát. Használja az escape-karakter "\" hello karakterlánc speciális karakter. Lásd: [minta kapcsolódó szolgáltatás és az adatkészlet-definíciók](#sample-linked-service-and-dataset-definitions) példákat.<br/><br/>Ez a tulajdonság a kombinálhatja **partitionBy** toohave mappák elérési útjaiban szelet alapján kezdési és befejezési dátum-idő. |Igen |
+| fileName |Meg kell adnia hello fájl hello nevet hello **folderPath** Ha azt szeretné, hogy hello tábla toorefer tooa adott fájl hello mappában. Ha nem ad meg semmilyen értéket ehhez a tulajdonsághoz, hello tábla mutat tooall fájlok hello mappában.<br/><br/>Ha **Fájlnév** nincs megadva egy kimeneti adatkészlet hello név hello létrehozott fájl formátuma a következő hello van: <br/><br/>Adatok. <Guid>.txt (Példa: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Nem |
+| fileFilter |Adja meg a szűrő használt toobe tooselect fájlok egy részének hello **folderPath**, ahelyett, hogy minden fájl.<br/><br/>Két érték engedélyezett: `*` (több karaktert) és `?` (egyetlen karakter).<br/><br/>1. példa:`"fileFilter": "*.log"`<br/>2. példa:`"fileFilter": 2014-1-?.txt"`<br/><br/> **fileFilter** egy bemeneti fájlmegosztási adatkészlet esetében alkalmazható. Ez a tulajdonság nem támogatott a Hadoop elosztott fájlrendszerrel (HDFS). |Nem |
+| partitionedBy |Dinamikus toospecify használt **folderPath** és **Fájlnév** idő adatsorozat adatok. Megadhat például egy **folderPath** , amely az adatok óránkénti paraméteres. |Nem |
+| Formátumban | a következő formátumban típusok hello támogatottak: **szöveges**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **típus** tulajdonság alapján formátum tooone ezeket az értékeket. További információkért lásd: hello [szövegformátum](data-factory-supported-file-and-compression-formats.md#text-format), [Json formátumban](data-factory-supported-file-and-compression-formats.md#json-format), [az Avro formátum](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc formátum](data-factory-supported-file-and-compression-formats.md#orc-format), és [Parquet formátumban ](data-factory-supported-file-and-compression-formats.md#parquet-format) szakaszok. <br><br> Ha azt szeretné toocopy fájlok, mivel ezek között a fájlalapú tárolók (bináris másolhatja azokat), hagyja ki a hello formátum szakasz mindkét bemeneti és kimeneti adatkészlet-definíciókban. |Nem |
+| Tömörítés | Adja meg a hello típusát és hello adatok tömörítése szintjét. Támogatott típusok a következők **GZip**, **Deflate**, **BZip2**, és **ZipDeflate**, és a támogatott szintek a következők **Optimal** és **leggyorsabb**. További információkért lásd: [formátumú és tömörítést az Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Nem |
+| useBinaryTransfer |Adja meg, hogy toouse hello bináris átviteli módot. hello értékek: true bináris mód (Ez az alapértelmezett érték hello), és hamis értéket ASCII. Ez a tulajdonság csak használható, ha hello társított társított szolgáltatás típusa típusú: FTP-kiszolgáló. |Nem |
 
 > [!NOTE]
 > **Fájlnév** és **fileFilter** nem használható egyszerre.
 
-### <a name="use-the-partionedby-property"></a>A partionedBy tulajdonsággal
-Az előző szakaszban említett, megadhat egy dinamikus **folderPath** és **Fájlnév** idő adatsorozat adatokhoz a **partitionedBy** tulajdonság.
+### <a name="use-hello-partionedby-property"></a>Hello partionedBy tulajdonság
+Hello előző szakaszban említett, megadhat egy dinamikus **folderPath** és **Fájlnév** idő adatsorozat adatokhoz hello **partitionedBy** tulajdonság.
 
-Idő adatsorozat adatkészleteket, az ütemezés és a szeletek kapcsolatos további tudnivalókért lásd: [adatkészletek létrehozása](data-factory-create-datasets.md), [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md), és [folyamatok létrehozása](data-factory-create-pipelines.md).
+toolearn idő adatsorozat adatkészleteket, ütemezés és szeletek, lásd: [adatkészletek létrehozása](data-factory-create-datasets.md), [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md), és [folyamatok létrehozása](data-factory-create-pipelines.md).
 
 #### <a name="sample-1"></a>1. példa
 
@@ -170,7 +170,7 @@ Idő adatsorozat adatkészleteket, az ütemezés és a szeletek kapcsolatos tov�
     { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
 ],
 ```
-Ebben a példában {szelet} cseréli a Data Factory rendszer változó SliceStart, megadott formátumban (YYYYMMDDHH) értékét. A szelet kezdete a SliceStart hivatkozik. A mappa elérési útja eltér az egyes szeletek. (Például wikidatagateway/wikisampledataout/2014100103 vagy wikidatagateway/wikisampledataout/2014100104.)
+Ebben a példában {szelet} adat-előállító rendszer változó SliceStart hello érték helyére, a hello formázza a megadott (YYYYMMDDHH). hello SliceStart toostart idő hello szelet hivatkozik. hello mappa elérési útja eltér az egyes szeletek. (Például wikidatagateway/wikisampledataout/2014100103 vagy wikidatagateway/wikisampledataout/2014100104.)
 
 #### <a name="sample-2"></a>2. példa
 
@@ -185,23 +185,23 @@ Ebben a példában {szelet} cseréli a Data Factory rendszer változó SliceStar
     { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
 ],
 ```
-Ebben a példában év, hónap, nap, és SliceStart idején ki kell olvasni a által használt külön változók a **folderPath** és **Fájlnév** tulajdonságait.
+Ebben a példában hello év, hónap, nap és SliceStart idején ki kell olvasni a külön változók hello által használt **folderPath** és **Fájlnév** tulajdonságait.
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
 Szakaszok és a rendelkezésre álló tevékenységek meghatározó tulajdonságok teljes listáját lásd: [folyamatok létrehozása](data-factory-create-pipelines.md). Az összes tevékenység tulajdonságai, például nevét, leírását, valamint bemeneti és kimeneti táblák és házirendek érhetők el.
 
-Tulajdonságok érhetők el a **typeProperties** szakasz a tevékenység, másrészt a tevékenységek minden típusának eltérők lehetnek. A másolási tevékenységhez a típus tulajdonságokat. az adatforrások és mosdók függenek.
+Tulajdonságok érhetők el hello **typeProperties** szakasza hello tevékenységet, hello ugyanakkor, tevékenységek minden típusának függenek. Hello másolási tevékenységhez hello típustulajdonságokat hello típusú források és mosdók függenek.
 
-A másolási tevékenység, ha az adatforrás típusú **FileSystemSource**, a következő tulajdonság érhető el **typeProperties** szakasz:
+A másolási tevékenység, ha hello adatforrás típusú **FileSystemSource**, a következő tulajdonság hello érhető el **typeProperties** szakasz:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | --- | --- | --- | --- |
-| Rekurzív |Azt jelzi, hogy az adatok olvasható rekurzív módon az almappákat, vagy csak a megadott mappát. |IGAZ, hamis (alapértelmezés) |Nem |
+| Rekurzív |Azt jelzi, hogy hello adatolvasás rekurzív módon hello almappák, vagy csak a megadott mappa hello. |IGAZ, hamis (alapértelmezés) |Nem |
 
-## <a name="json-example-copy-data-from-ftp-server-to-azure-blob"></a>JSON-példa: adatok másolása az FTP-kiszolgáló az Azure-Blobba
-Ez a példa bemutatja, hogyan adatok másolása az FTP-kiszolgálóhoz az Azure Blob Storage tárolóban. Azonban adatok átmásolhatók közvetlenül a megadott mosdók bármelyikét a [adatokról és formátumok támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats), a másolási tevékenység során a Data Factory használatával.  
+## <a name="json-example-copy-data-from-ftp-server-tooazure-blob"></a>JSON-példa: adatok másolása az FTP-kiszolgáló tooAzure Blob
+Ez a példa bemutatja, hogyan egy FTP-kiszolgáló tooAzure Blob-tároló toocopy adatait. Azonban adatok átmásolhatók, közvetlenül a hello tooany fogadók esetében a megadott hello [adatokról és formátumok támogatott](data-factory-data-movement-activities.md#supported-data-stores-and-formats), adat-előállítóban hello másolási tevékenység használatával.  
 
-Az alábbi példák megadják minta JSON-definíciókat tartalmazzon, segítségével hozzon létre egy folyamatot [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md):
+hello alábbi példák megadják minta JSON-definíciók használható toocreate folyamat használatával [Azure-portálon](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), vagy [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md):
 
 * A társított szolgáltatás típusa [FTP-kiszolgáló](#linked-service-properties)
 * A társított szolgáltatás típusa [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)
@@ -209,17 +209,17 @@ Az alábbi példák megadják minta JSON-definíciókat tartalmazzon, segítség
 * Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties)
 * A [csővezeték](data-factory-create-pipelines.md) a másolási tevékenység által használt [FileSystemSource](#copy-activity-properties) és [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)
 
-A minta másol adatokat az FTP-kiszolgáló egy Azure blob minden órában. A mintákat a következő szakaszok ismertetik ezeket a mintákat használt JSON-tulajdonságok.
+hello minta másol adatokat az FTP-kiszolgáló tooan Azure blob minden órában. Ezeket a mintákat használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
 ### <a name="ftp-linked-service"></a>Kapcsolódó FTP-szolgáltatás
 
-Ebben a példában a felhasználói nevet és jelszót egyszerű szövegként egyszerű hitelesítést használ. Használhatja a következő módszerek valamelyikével:
+Ebben a példában hello felhasználónevet és jelszót a szövegként egyszerű hitelesítést használ. A következő módokon hello egyikét is használhatja:
 
 * A névtelen hitelesítés
 * Egyszerű hitelesítés titkosított hitelesítő adatokkal
 * FTP-keresztül SSL/TLS (ftps-t)
 
-Tekintse meg a [FTP társított szolgáltatás](#linked-service-properties) szakasz a különböző típusú hitelesítés használható.
+Lásd: hello [FTP társított szolgáltatás](#linked-service-properties) szakasz a különböző típusú hitelesítés használható.
 
 ```JSON
 {
@@ -250,9 +250,9 @@ Tekintse meg a [FTP társított szolgáltatás](#linked-service-properties) szak
 ```
 ### <a name="ftp-input-dataset"></a>FTP-bemeneti adatkészlet
 
-Ez az adatkészlet hivatkozik az FTP-mappa `mysharedfolder` és fájl `test.csv`. A feldolgozási sor átmásolja a fájlt a cél.
+Ez az adatkészlet hivatkozik toohello FTP mappa `mysharedfolder` és fájl `test.csv`. hello csővezeték hello fájl toohello cél másolja.
 
-Beállítás **külső** való **igaz** tájékoztatja a Data Factory szolgáltatásnak, hogy az adatkészlet data factoryval való külső, és egy adat-előállító tevékenység nem hozzák.
+Beállítás **külső** túl**igaz** hello Data Factory szolgáltatásnak tájékoztatja, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -276,7 +276,7 @@ Beállítás **külső** való **igaz** tájékoztatja a Data Factory szolgálta
 
 ### <a name="azure-blob-output-dataset"></a>Azure Blob kimeneti adatkészlet
 
-Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mappa elérési útját a BLOB dinamikusan értékeli ki, az időpontnak a szelet által feldolgozott alapján. A mappa elérési útját használja, év, hónap, nap, és a kezdési idő órában részeit.
+Adatot ír tooa új blob minden órában (gyakoriság: óra, időköz: 1). hello mappa elérési útja hello BLOB dinamikusan értékeli ki, hello szelet által feldolgozott hello kezdési ideje alapján. hello mappa elérési útját használja hello év, hónap, nap és óra részei hello kezdési ideje.
 
 ```JSON
 {
@@ -337,7 +337,7 @@ Adatot ír egy új blob minden órában (gyakoriság: óra, időköz: 1). A mapp
 
 ### <a name="a-copy-activity-in-a-pipeline-with-file-system-source-and-blob-sink"></a>A másolási tevékenység során a rendszer forrás- és a blob fájlgyűjtő egy folyamaton belül
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **FileSystemSource**, és a **fogadó** típusúra **BlobSink**.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek, és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**FileSystemSource**, és hello **fogadó** típusuk értéke túl**BlobSink**.
 
 ```JSON
 {
@@ -377,11 +377,11 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 > [!NOTE]
-> Képezze le a fogadó adatkészletből oszlopok forrás adatkészletből oszlopokat, lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+> Tekintse meg a forrás adatkészlet toocolumns fogadó adatkészletből toomap oszlopokat [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd az alábbi cikkeket:
+Tekintse meg a következő cikkek hello:
 
-* Című témakörben olvashat kulcsfontosságú szerepet játszik az adatátvitelt jelölik a (másolási tevékenység) a Data Factory és különböző módokon optimalizálása azt hatás teljesítmény, a [másolása tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md).
+* toolearn kulccsal kapcsolatos tényezők adatátvitelt jelölik a (másolási tevékenység) az adat-előállítót, és különböző módokon toooptimize hatás teljesítmény, lásd: hello [másolása tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md).
 
-* A másolási tevékenység során a folyamat létrehozásának részletes leírása, tekintse meg a [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* A másolási tevékenység során a folyamat létrehozása részletes ismertetését lásd: hello [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).

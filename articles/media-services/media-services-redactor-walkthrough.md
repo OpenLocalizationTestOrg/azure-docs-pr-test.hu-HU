@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Médiaelemzés használatával forgatókönyv lapok kivonás |} Microsoft Docs"
-description: "Ez a témakör bemutatja a részletes útmutatást tartalmaz egy Azure Media Services Explorer (AMSE) és az Azure Media Redactor Vizualizálója (nyílt forráskódú eszköz) használatával teljes kivonási munkafolyamat futtatásához."
+title: "az Azure Médiaelemzés használatával forgatókönyv aaaRedact lapok |} Microsoft Docs"
+description: "Ez a témakör ismerteti részletesen hogyan toorun egy teljes kivonási munkafolyamat Azure Media Services Explorer (AMSE) és az Azure Media Redactor Vizualizálója (nyílt forráskódú eszköz) használatával."
 services: media-services
 documentationcenter: 
 author: Lichard
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: rli; juliako;
-ms.openlocfilehash: c0c622237f8cdca65fb6933f14cc21e9eb9ac036
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ab28f4052b73fdb74fcd5766235eab35402a0c9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics-walkthrough"></a>Az Azure Médiaelemzés használatával forgatókönyv lapok kivonása
 
 ## <a name="overview"></a>Áttekintés
 
-**Az Azure Media Redactor** van egy [Azure Médiaelemzés használatával](media-services-analytics-overview.md) media processzor (MP), amely a felhőben méretezhető arcfelismerési kivonási nyújt. Arcfelismerési kivonási lehetővé teszi, hogy a videó ahhoz, hogy a kijelölt személyeket felületei életlenítés módosíthatja. Érdemes lehet nyilvános biztonsági és hírek media helyzetekben használhatja a tapasztalt kivonási szolgáltatás. Több lapokat tartalmazó felvételei, néhány perc múlva a kivonás a manuálisan órát is igénybe vehet, de ezzel a szolgáltatással a tapasztalt kivonási folyamat néhány egyszerű lépésben szükséges. További információkért lásd: [ez](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
+**Az Azure Media Redactor** van egy [Azure Médiaelemzés használatával](media-services-analytics-overview.md) media processzor (MP), amely méretezhető arcfelismerési kivonási hello felhőben nyújt. Arcfelismerési kivonási lehetővé teszi, hogy Ön toomodify a rendelés tooblur felületei kijelölt személyek a videó. Érdemes lehet toouse hello arcfelismerési kivonási szolgáltatás nyilvános biztonsági és hírek media forgatókönyvekben. Több lapokat tartalmazó felvételei, néhány percet is igénybe vehet óra tooredact manuálisan, de a szolgáltatás hello arcfelismerési a kivonási folyamat néhány egyszerű lépésben szükséges. További információkért lásd: [ez](https://azure.microsoft.com/blog/azure-media-redactor/) blog.
 
-Vonatkozó további információért **Azure Media Redactor**, tekintse meg a [Arcfelismerési kivonási áttekintése](media-services-face-redaction.md) témakör.
+Vonatkozó további információért **Azure Media Redactor**, lásd: hello [Arcfelismerési kivonási áttekintése](media-services-face-redaction.md) témakör.
 
-Ez a témakör bemutatja a részletes útmutatást tartalmaz egy Azure Media Services Explorer (AMSE) és az Azure Media Redactor Vizualizálója (nyílt forráskódú eszköz) használatával teljes kivonási munkafolyamat futtatásához.
+Ez a témakör ismerteti részletesen hogyan toorun egy teljes kivonási munkafolyamat Azure Media Services Explorer (AMSE) és az Azure Media Redactor Vizualizálója (nyílt forráskódú eszköz) használatával.
 
-A **Azure Media Redactor** felügyeleti csomag jelenleg előzetes verzió. Érhető el az összes Azure-régiók, valamint Amerikai Egyesült államokbeli kormányzati és Kína adatközpontokban. Ez az előnézet jelenleg díjmentesen. A jelenlegi kiadásban 10 perces korlátozva van a feldolgozott videó hossza.
+Hello **Azure Media Redactor** felügyeleti csomag jelenleg előzetes verzió. Érhető el az összes Azure-régiók, valamint Amerikai Egyesült államokbeli kormányzati és Kína adatközpontokban. Ez az előnézet jelenleg díjmentesen. Hello a jelenlegi kiadásban 10 perces korlátozva van a feldolgozott videó hossza.
 
 További információkért lásd: [ez](https://azure.microsoft.com/en-us/blog/redaction-preview-available-globally) blog.
 
 ## <a name="azure-media-services-explorer-workflow"></a>Az Azure Media Services Explorer munkafolyamat
 
-A legegyszerűbb Ismerkedés a Redactor módja a nyílt forráskódú AMSE eszköz használata a githubon. Keresztül egyszerűsített munkafolyamat futtatása **kombinált** mód, ha nincs szüksége a jegyzet json és a tapasztalt jpg képek a hozzáférést.
+hello legegyszerűbb módja tooget használatába Redactor toouse hello nyílt forráskódú AMSE eszköz a githubon. Keresztül egyszerűsített munkafolyamat futtatása **kombinált** mód, ha már nem kell használni toohello jegyzet json vagy hello arcfelismerési jpg lemezképet.
 
 ### <a name="download-and-setup"></a>A letöltés és telepítés
 
-1. Töltse le az AMSE eszköz [Itt](https://github.com/Azure/Azure-Media-Services-Explorer).
-1. Jelentkezzen be a Media Services-fiók, a szolgáltatás-kulcs használatával.
+1. Töltse le az AMSE eszköz hello [Itt](https://github.com/Azure/Azure-Media-Services-Explorer).
+1. Jelentkezzen be a szolgáltatás kulccsal Media Services-fiók tooyour.
 
-    A fiók neve és a legfontosabb információk beszerzéséhez látogasson el az [Azure-portálra](https://portal.azure.com/), és válassza ki AMS-fiókját. Válassza a beállítások > kulcsok. A Kulcsok kezelése ablakban megtalálja a fiók nevét, valamint az elsődleges és másodlagos kulcsot. Másolja ki a fióknév és az elsődleges kulcs értékeit.
+    tooobtain hello fióknevet és a kulcsadatokat, nyissa meg toohello [Azure-portálon](https://portal.azure.com/) válassza ki az AMS-fiók. Válassza a beállítások > kulcsok. hello kezelése kulcsok windows hello-fiók nevét jeleníti meg, és hello elsődleges és másodlagos kulcsot. Másolja a hello fióknevet és a hello elsődleges kulcs.
 
 ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough001.png)
 
@@ -57,69 +57,69 @@ A legegyszerűbb Ismerkedés a Redactor módja a nyílt forráskódú AMSE eszk�
 
 ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough003.png)
 
-A kimenet egy jegyzetek json-fájl, arc helyadatok, valamint minden észlelt felületen jpg tartalmazza. 
+hello kimeneti egy jegyzetek json-fájl, arc helyadatok, valamint minden észlelt felületen jpg tartalmazza. 
 
 ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough004.png)
 
 ###<a name="second-pass--redact-mode"></a>Második fázis – mód kivonása
 
-1. Az első fázisban a töltse fel az eredeti video asset a kimeneti, és állítsa be elsődleges eszközként. 
+1. Töltse fel az eredeti video asset toohello hello első fázis kimenetét, és állítsa be elsődleges eszközként. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough005.png)
 
-2. (Választható) A kivonás kívánt azonosító Sortöréssel elválasztott listáját tartalmazó "Dance_idlist.txt" fájl feltöltése. 
+2. (Választható) Töltse fel egy "Dance_idlist.txt" fájlt, amely hello tooredact kívánja azonosítók Sortöréssel elválasztott listáját tartalmazza. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough006.png)
 
-3. (Választható) Végezze el a módosításokat a annotations.json fájlba, például a határoló mező határait növelését. 
-4. A kimeneti adategységen az első fázisban a kattintson a jobb gombbal, válassza ki a Redactor, futtassa a **Redact** mód. 
+3. (Választható) Hogy bármely módosításokat toohello annotations.json fájl például növelése hello határoló mező határait. 
+4. Hello kimeneti eszköz az első fázis hello kattintson a jobb gombbal, válassza ki a hello Redactor, futtassa a hello **Redact** mód. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough007.png)
 
-5. Töltse le, vagy a végső kivont kimeneti adategységen fájlmegosztás. 
+5. Töltse le, vagy a megosztási hello végső kivont kimenetet eszköz. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough008.png)
 
 ##<a name="azure-media-redactor-visualizer-open-source-tool"></a>Azure Media Redactor Vizualizálója nyílt forráskódú eszköz
 
-Egy nyílt forráskódú [vizualizálója eszköz](https://github.com/Microsoft/azure-media-redactor-visualizer) célja, hogy segítségével a fejlesztők a jegyzetek formátumú elemzése, és a kimeneti használatával indítása.
+Egy nyílt forráskódú [vizualizálója eszköz](https://github.com/Microsoft/azure-media-redactor-visualizer) nemrég kezdte hello jegyzetek formátumú elemzése, és hello kimeneti használatával kialakított toohelp fejlesztők.
 
-Után a projekt futtatásához a tárházban klónozását, akkor töltse le a FFMPEG a [hivatalos webhely](https://ffmpeg.org/download.html).
+Hello tárház rendelés toorun hello projektben klónozását kell toodownload FFMPEG a saját [hivatalos webhely](https://ffmpeg.org/download.html).
 
-Ha egy fejlesztő a jegyzet JSON-adatok elemzése, nyissa meg Models.MetaData minta kód példákat.
+Ha egy fejlesztő tooparse hello JSON jegyzet adatokat próbált, nyissa meg Models.MetaData minta kód példákat.
 
-### <a name="set-up-the-tool"></a>Az eszköz beállítása
+### <a name="set-up-hello-tool"></a>Hello eszköz beállítása
 
-1.  Töltse le, és a teljes megoldás létrehozásához. 
+1.  Töltse le és hello teljes megoldás felépítéséhez. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough009.png)
 
 2.  Töltse le a FFMPEG [Itt](https://ffmpeg.org/download.html). Ez a projekt eredetileg fejlesztettek verzió be1d324 (2016-10-04) a statikus hivatkozást. 
-3.  A kimeneti mappában, amelyben AzureMediaRedactor.exe ffmpeg.exe és ffprobe.exe másolja. 
+3.  Másolja a ffmpeg.exe és ffprobe.exe toohello AzureMediaRedactor.exe megegyező kimeneti mappában. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough010.png)
 
 4. Futtassa a AzureMediaRedactor.exe. 
 
-### <a name="use-the-tool"></a>Az eszköz használatával
+### <a name="use-hello-tool"></a>Hello eszközzel
 
-1. A videó az Azure Media Services-fiókban Redactor felügyeleti csomag az elemzési módot a feldolgozni. 
-2. Töltse le az eredeti videó fájl- és a kivonási kimenetét, mert a feladat elemzése. 
-3. Futtassa a vizualizálója alkalmazást, és válassza ki a fenti fájlok. 
+1. A videó az Azure Media Services-fiókban hello Redactor felügyeleti csomag az elemzési módot a feldolgozni. 
+2. Töltse le a hello eredeti videofájl és a kivonási hello hello kimenete, mert a feladat elemzése. 
+3. Hello vizualizálója alkalmazás futtatásához, és válassza ki a fenti hello fájlok. 
 
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough011.png)
 
-4. Tekintse meg a fájlt. Válassza ki, mely lapok lehetőséget a jobb oldali az oldalsávon keresztül szeretné. 
+4. Tekintse meg a fájlt. Válassza ki azt az oldal akkor tooblur hello oldalsávon a hello keresztül szeretné jobb. 
     
     ![Arcszerkesztés](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough012.png)
 
-5.  Az alsó szövegmező frissíteni fogja a tapasztalt azonosítók. Ezek az azonosítók "idlist.txt" nevű fájl létrehozása Sortöréssel elválasztott listáját. 
+5.  hello alsó szövegmező hello arcfelismerési azonosítók frissíteni fogja. Ezek az azonosítók "idlist.txt" nevű fájl létrehozása Sortöréssel elválasztott listáját. 
 
     >[!NOTE]
-    > A idlist.txt ANSI kell menteni. ANSI mentéséhez használja a Jegyzettömböt.
+    > ANSI hello idlist.txt kell menteni. A Jegyzettömb toosave ANSI használható.
     
-6.  A feltöltés a kimeneti adategységen az 1. lépésben. Az eredeti videó feltöltése, valamint az ehhez az eszközhöz, és állítsa be elsődleges eszközként. 
-7.  Ez az eszköz "Redact" módban fusson kivonási feladat végső beolvasandó kivont videó. 
+6.  Töltse fel a fájl toohello kimeneti adategységen 1. lépésben. Töltse fel a hello eredeti videó toothis eszköz is, és állítsa be elsődleges eszközként. 
+7.  Ez az eszköz "Redact" mód tooget hello végső kivont videó kivonási feladat fut. 
 
 ## <a name="next-steps"></a>Következő lépések 
 

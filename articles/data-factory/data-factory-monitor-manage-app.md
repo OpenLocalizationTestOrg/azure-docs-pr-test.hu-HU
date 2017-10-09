@@ -1,6 +1,6 @@
 ---
-title: "Megfigyelés és kezelés adatok folyamatok - Azure |} Microsoft Docs"
-description: "Útmutató: a figyelés és a felügyeleti alkalmazás segítségével Azure adat-előállítók és a folyamatok felügyeletét és kezelését."
+title: "aaaMonitor és adatok folyamatok - Azure kezelése |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse figyelés és a felügyeleti alkalmazás toomonitor hello és Azure adat-előállítók és folyamatok kezelése."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,309 +14,309 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: spelluru
-ms.openlocfilehash: d5a2d1f3d85b8a2212326cfcfd0ba5d80356b769
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e4ef6ec5fb8ebc9bda0be7899a39a51d58403d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-the-monitoring-and-management-app"></a>Figyelheti és kezelheti az Azure Data Factory adatcsatornák a figyelés és felügyelet alkalmazással
+# <a name="monitor-and-manage-azure-data-factory-pipelines-by-using-hello-monitoring-and-management-app"></a>Figyelheti és kezelheti az Azure Data Factory folyamatok hello figyelés és felügyelet alkalmazással
 > [!div class="op_single_selector"]
 > * [Az Azure portálon vagy az Azure PowerShell használatával](data-factory-monitor-manage-pipelines.md)
 > * [Használatával figyelése és a felügyeleti alkalmazás](data-factory-monitor-manage-app.md)
 >
 >
 
-A cikkből megtudhatja, hogyan használható a figyelés és a felügyeleti alkalmazás figyeléséhez, kezeléséhez és az adat-előállító adatcsatornák debug. Tájékoztatást kaphat az hibáiról riasztásokat létrehozásával kapcsolatos információkat is biztosít. Ismerkedés az alkalmazás által a következő videolejátszás használatával:
+Ez a cikk ismerteti, hogyan toouse hello figyelés és a felügyeleti alkalmazás toomonitor, kezelése és az adat-előállító adatcsatornák hibakeresését. Azt is megtudhatja hogyan toocreate riasztások hibáiról értesítés tooget. Ismerkedés hello alkalmazás használatával a következő néznek hello által videót:
 
 > [!NOTE]
-> A felhasználói felületen látható módon a videó előfordulhat, hogy nem egyeznek pontosan kapcsolatban a portálon. Némileg régebbi, de fogalmak változatlan marad. 
+> hello felhasználói felülete látható hello videó előfordulhat, hogy nem egyeznek pontosan kapcsolatban a hello portálon. Némileg régebbi, de fogalmak hello továbbra is azonos. 
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-Data-Factory-Monitoring-and-Managing-Big-Data-Piplines/player]
 >
 
-## <a name="launch-the-monitoring-and-management-app"></a>Indítsa el a figyelés és a felügyeleti alkalmazás
-A figyelő és a felügyeleti alkalmazás indításához kattintson a **figyelő & kezelése** csempét a **adat-előállító** a data factory paneljén.
+## <a name="launch-hello-monitoring-and-management-app"></a>Hello figyelés és a felügyeleti alkalmazás indítása
+toolaunch hello figyelése és a felügyeleti alkalmazás, kattintson a hello **figyelő & kezelése** hello csempét **adat-előállító** a data factory paneljét.
 
-![A Data Factory kezdőlapon figyelési csempe](./media/data-factory-monitor-manage-app/MonitoringAppTile.png)
+![Hello adat-előállító kezdőlapján csempe figyelése](./media/data-factory-monitor-manage-app/MonitoringAppTile.png)
 
-Meg kell jelennie egy külön ablakban nyissa meg a figyelés és a felügyeleti alkalmazás.  
+Nyisson meg egy külön ablakban hello figyelés és a felügyeleti alkalmazás kell megjelennie.  
 
 ![Figyelési és felügyeleti alkalmazás](./media/data-factory-monitor-manage-app/AppLaunched.png)
 
 > [!NOTE]
-> Ha azt látja, hogy a webböngésző akadt-e a "Engedélyező...", törölje a jelet a **külső cookie-k blokkolását, és a helyadatok** jelölőnégyzet – vagy a tárolás során is garantálják az kiválasztva, hozzon létre egy kivételt **login.microsoftonline.com**, és próbálja meg újra megnyitni az alkalmazás.
+> Ha azt látja, hogy hello webböngésző akadt-e a "Engedélyező...", törölje a jelet hello **külső cookie-k blokkolását, és a helyadatok** jelölőnégyzet – vagy a tárolás során is garantálják az kiválasztva, hozzon létre egy kivételt **login.microsoftonline.com** , majd próbálkozzon újra a tooopen hello alkalmazást.
 
 
-A középső ablaktáblán tevékenység Windows listájában látni egy tevékenység ablakban tevékenység minden egyes futtatásához. Például ha a tevékenység öt órán keresztül óránkénti futásra ütemezett, látni öt tevékenység windows társított öt adatszeletek. Ha nem látja a lista alján tevékenységablakok, tegye a következőket:
+Hello tevékenység Windows hello középső ablaktábla listájában megjelenik egy tevékenység ablakban tevékenység minden egyes futtatásához. Például ha hello ütemezett tevékenység toorun óránkénti rendelkezik öt órát, látható öt tevékenység windows társított öt adatszeletek. Ha nem lát tevékenység windows hello listában hello lap alján, a hello, a következő:
  
-- Frissítés a **kezdési időpont** és **befejező időpontja** szűrők felel meg a kezdési és befejezési időpontjai között a folyamat, és kattintson a lap tetején a **alkalmaz** gombra.  
-- A tevékenység Windows lista nem frissül automatikusan. Kattintson a **frissítése** gombra az eszköztáron a **tevékenység Windows** listája.  
+- Frissítés hello **kezdési időpont** és **befejező időpontja** szűrők hello felső toomatch hello: start és befejezési időpontja, a folyamat, és kattintson a hello **alkalmaz** gombra.  
+- hello tevékenység Windows lista nem frissül automatikusan. Kattintson a hello **frissítése** hello gombjára a hello **tevékenység Windows** lista.  
 
-Ha még nem rendelkezik a Data Factory alkalmazás teszteléséhez ezeket a lépéseket, tegye az oktatóanyag: [adatok másolása az Blob-tároló az SQL-adatbázis használata a Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+Ha még nem rendelkezik a Data Factory alkalmazás tootest ezeket a lépéseket, hello oktatóanyag: [adatokat másolni a Blob Storage tooSQL adatbázis használata a Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-## <a name="understand-the-monitoring-and-management-app"></a>A megfigyelés és a felügyeleti alkalmazás
-A bal oldali vannak a három lappal: **erőforrás-kezelő**, **figyelési nézetei**, és **riasztások**. Az első lap (**erőforrás-kezelő**) alapértelmezés szerint engedélyezett.
+## <a name="understand-hello-monitoring-and-management-app"></a>Figyelés és a felügyeleti alkalmazás hello ismertetése
+Nincsenek hello bal oldali három lappal: **erőforrás-kezelő**, **figyelési nézetei**, és **riasztások**. hello első lapon (**erőforrás-kezelő**) alapértelmezés szerint engedélyezett.
 
 ### <a name="resource-explorer"></a>Erőforrás-kezelő
-Tekintse át a következőket:
+Hello következő jelenik meg:
 
-* Az erőforrás-kezelő **fanézetben** a bal oldali ablaktáblán.
-* A **diagramnézet** a középső ablaktáblán a lap tetején.
-* A **tevékenység Windows** lista alján a középső ablaktáblán.
-* A **tulajdonságok**, **tevékenység ablak Explorer**, és **parancsfájl** lapokon a jobb oldali ablaktáblán.
+* az erőforrás-kezelő hello **fanézetben** hello bal oldali ablaktáblán.
+* Hello **diagramnézet** hello felső hello középső ablaktáblán.
+* Hello **tevékenység Windows** lista hello alsó hello középső ablaktáblán.
+* Hello **tulajdonságok**, **tevékenység ablak Explorer**, és **parancsfájl** lapok hello jobb oldali ablaktáblán.
 
-Az erőforrás-kezelőben lásd: összes erőforrást (adatcsatornák, adatkészleteket, összekapcsolt szolgáltatások) fanézetben adat-előállító. Amikor kijelöl egy objektumot az erőforrás-kezelőben:
+Az erőforrás-kezelőben lásd: összes erőforrást (adatcsatornák, adatkészleteket, összekapcsolt szolgáltatások) fanézetben hello adat-előállítóban. Amikor kijelöl egy objektumot az erőforrás-kezelőben:
 
-* A társított adat-előállító entitás ki van jelölve, a Diagram nézetben.
-* [Hozzárendelt tevékenység windows](data-factory-scheduling-and-execution.md) emel ki a tevékenységet Windows lista alján.  
-* A kiválasztott objektum tulajdonságait a Tulajdonságok ablak jobb oldali ablaktáblán jelennek meg.
-* A kijelölt objektum JSON-definícióból jelenik meg, ha van ilyen. Például: a társított szolgáltatás, a DataSet adatkészlet vagy folyamat.
+* hello entitás ki van jelölve, a Diagram nézet hello adat-előállító tartozik.
+* [Hozzárendelt tevékenység windows](data-factory-scheduling-and-execution.md) hello tevékenység Windows listában hello alsó vannak kiemelve.  
+* hello kijelölt objektum tulajdonságainak hello hello jobb oldali hello tulajdonságai ablakban láthatók.
+* hello JSON-definícióból hello kijelölt objektum jelenik meg, ha van ilyen. Például: a társított szolgáltatás, a DataSet adatkészlet vagy folyamat.
 
 ![Erőforrás-kezelő](./media/data-factory-monitor-manage-app/ResourceExplorer.png)
 
-Tekintse meg a [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md) cikk tevékenység windows kapcsolatos további részletes információt.
+Lásd: hello [ütemezés és a végrehajtás](data-factory-scheduling-and-execution.md) cikk tevékenység windows kapcsolatos további részletes információt.
 
 ### <a name="diagram-view"></a>Diagramnézet
-A Diagram nézetben az adat-előállító egytáblás üveg felügyeletéhez és a data factory és az eszközök kezeléséhez biztosít. Ha a Diagram nézetben kiválaszt egy adat-előállító entitás (dataset/pipeline):
+egy adat-előállító Diagramnézetében hello egytáblás, üveghatású toomonitor biztosít, és a data factory és az eszközök kezelése. Ha bejelöli a Data Factory entitás (dataset/pipeline) a Diagram nézet hello:
 
-* A data factory entitás a faszerkezetes nézetben kiválasztott van.
-* A társított tevékenység windows a tevékenység Windows listán vannak kiemelve.
-* A Tulajdonságok ablakban láthatók a kiválasztott objektum tulajdonságait.
+* hello data factory entitás hello faszerkezetes nézetben kiválasztott.
+* hello hozzárendelt tevékenység windows hello tevékenység Windows listán vannak kiemelve.
+* hello kijelölt objektum tulajdonságainak hello hello tulajdonságai ablakban láthatók.
 
-Ha a folyamat (nem a szünetel) engedélyezve van, a zöld vonallal is látható:
+Ha hello folyamat engedélyezve van (nem szünetel), a zöld vonallal is látható:
 
 ![A folyamat fut](./media/data-factory-monitor-manage-app/PipelineRunning.png)
 
-Szüneteltetése, folytatása vagy jelölje ki azt a diagram nézetben és a gombok segítségével a parancssávon folyamat leáll.
+Szüneteltetése, folytatása vagy hello diagram nézetben jelölje ki azt, és hello gombokkal hello parancssávon folyamat leáll.
 
-![A parancssávon felfüggesztése vagy folytatása](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+![/ Szüneteltet hello parancssávon](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
  
-Nincsenek három gombok a tölcsér a Diagram nézetben. A második gomb segítségével felfüggeszti a folyamatot. Felfüggesztése nem leállítja a futó tevékenységeket, és lehetővé teszi, hogy folytatható befejezésig. A harmadik gomb megszakítja a folyamatot, és a meglévő tevékenységek végrehajtása leáll. Az első gombra a folyamat folytatódik. Ha a feldolgozási sor fel van függesztve, a folyamat színe megváltozik. Például egy felfüggesztett folyamat néz ki az alábbi képen: 
+Nincsenek három gombok hello adatcsatorna a Diagram nézet hello. Hello második gomb toopause hello folyamat is használhatja. Felfüggesztése nem a jelenleg futó tevékenységek hello leáll, és lehetővé teszi, hogy folytatni toocompletion. hello harmadik gomb hello folyamat megáll, és a meglévő tevékenységek végrehajtása leáll. hello első gomb hello folyamat folytatódik. Ha a feldolgozási sor fel van függesztve, hello csővezeték hello színe megváltozik. Például egy felfüggesztett folyamat a következőképpen néz a kép a következő hello: 
 
 ![Feldolgozási sor felfüggesztve](./media/data-factory-monitor-manage-app/PipelinePaused.png)
 
-A Ctrl billentyűt használja a többszörös kiválasztási két vagy több folyamatok segítségével. A gombok segítségével felfüggesztése vagy folytatása több folyamatok egyszerre.
+Segítségével többszörös kiválasztási két vagy több folyamatok hello Ctrl billentyűt. Használhat hello parancs sáv gombok toopause/Folytatás több folyamatok egyszerre.
 
-Kattintson a jobb gombbal egy folyamatot is, és beállítások is választhatók felfüggesztése, folytatása vagy egy folyamat leáll. 
+Akkor is a jobb gombbal a feldolgozási sorban lévő és válassza a beállítások toosuspend folytatásához, vagy a folyamat leáll. 
 
 ![Az adatcsatorna helyi menü](./media/data-factory-monitor-manage-app/right-click-menu-for-pipeline.png)
 
-Kattintson a **nyitott folyamat** megtekintéséhez az összes tevékenység a feldolgozási beállítás. 
+Hello kattintson **nyitott folyamat** toosee hello folyamat összes hello tevékenység lehetőséget. 
 
 ![Folyamat megnyitása menü](./media/data-factory-monitor-manage-app/OpenPipelineMenu.png)
 
-A megnyitott csővezeték nézetben tekintse meg a sorban az összes tevékenység. Ebben a példában csak egy tevékenység nincs: másolási tevékenység. 
+Megnyitott hello csővezeték nézetben lásd: az összes tevékenység hello folyamat. Ebben a példában csak egy tevékenység nincs: másolási tevékenység. 
 
 ![Megnyitott folyamat](./media/data-factory-monitor-manage-app/OpenedPipeline.png)
 
-Lépjen vissza az előző nézetével, kattintson a navigációs menü felső részén adat-előállító.
+toogo biztonsági toohello előző nézetével, kattintson a hello adat-előállító hello navigációs menüjében hello tetején.
 
-Az adatcsatorna nézetben egy kimeneti adatkészletet, vagy amikor az egér átvitele a kimeneti adatkészlet kiválasztása után megjelenik a tevékenység Windows előugró ablak, hogy az adatkészlethez.
+Hello csővezeték nézetben amikor kijelöl egy kimeneti adatkészletet, vagy amikor az egér átvitele hello kimeneti adatkészletet, látható hello tevékenység Windows előugró ablak, hogy a DataSet.
 
 ![Tevékenység Windows előugró ablak](./media/data-factory-monitor-manage-app/ActivityWindowsPopup.png)
 
-Egy tevékenység ablakban ki azt a részletek megtekintéséhez kattintson a **tulajdonságok** a jobb oldali ablak.
+Egy tevékenység ablak toosee a Részletek gombra ki azt a hello **tulajdonságok** hello jobb oldali ablak.
 
 ![Tevékenység ablak tulajdonságai](./media/data-factory-monitor-manage-app/ActivityWindowProperties.png)
 
-A jobb oldali ablaktáblában váltani a **tevékenység ablak Explorer** lap további részletek megtekintéséhez.
+Hello jobb oldali ablaktáblában kapcsoló toohello **tevékenység ablak Explorer** toosee további részletek lap.
 
 ![Tevékenység ablak Explorer](./media/data-factory-monitor-manage-app/ActivityWindowExplorer.png)
 
-Azt is láthatja, **változók feloldva** az egyes futtatására tett kísérlet egy tevékenység a **kísérletek** szakasz.
+Azt is láthatja, **változók feloldva** az egyes futtatására tett kísérlet egy tevékenység hello **kísérletek** szakasz.
 
 ![Megoldott változók](./media/data-factory-monitor-manage-app/ResolvedVariables.PNG)
 
-Váltás a **parancsfájl** fülre a JSON-parancsfájl definícióból a kijelölt objektum megtekintéséhez.   
+Váltás toohello **parancsfájl** toosee hello JSON parancsfájl definíciója hello kijelölt objektum fülre.   
 
 ![Parancsfájl lap](./media/data-factory-monitor-manage-app/ScriptTab.png)
 
 Tevékenység windows három helyen tekintheti meg:
 
-* A tevékenység Windows előugró ablak az a Diagram nézet (középső ablaktábla).
-* A tevékenység ablak Explorer, a jobb oldali ablaktáblán.
-* A tevékenység Windows listája az alsó ablaktáblán.
+* a Diagram nézet (középső ablaktábla) hello előugró tevékenység Windows hello.
+* hello tevékenység ablak Explorer hello jobb oldali ablaktáblán.
+* hello tevékenység Windows hello alsó ablaktábla listáján.
 
-A tevékenység Windows előugró ablak és tevékenység ablak Explorer görgetve az előző héten és a következő hét a jobb és bal nyíl használatával.
+Hello tevékenység Windows előugró üzenet és a tevékenység ablak Explorer görgetve toohello előző hét, és hello segítségével jövő héten hello jobb és bal nyíl.
 
 ![Tevékenység ablak Explorer balra vagy jobbra nyíl](./media/data-factory-monitor-manage-app/ActivityWindowExplorerLeftRightArrows.png)
 
-A Diagram nézet alján megjelenik az ilyen gombokat: Nagyítás a, Kicsinyítés, nagyítás beállítása, Nagyítás 100 %-os, Elrendezés zárolása. A **zárolási elrendezés** gomb megakadályozza a táblák és folyamatok véletlen áthelyezését a Diagram nézetben. Alapértelmezés szerint le van. Kapcsolja ki, és entitások Navigálás a diagramban. Kapcsolja ki, ha az utolsó gomb segítségével táblák és folyamatok automatikus formázása. Az egér kerekének használatával is bejövő vagy kimenő ráközelíthet.
+Hello diagramnézet hello alsó részén, az ilyen gombokat látja: Nagyítás, Kicsinyítés, nagyítás tooFit Nagyítás 100 %-os, Elrendezés zárolása. Hello **zárolási elrendezés** gomb megakadályozza a táblák és folyamatok véletlen áthelyezését a hello Diagram nézetben. Alapértelmezés szerint le van. Kapcsolja ki, és entitások Navigálás hello diagramban. Kapcsolja ki, amikor hello utolsó gomb tooautomatically pozíció táblák és folyamatok is használhatja. Bejövő vagy kimenő hello egérkerék használatával is nagyítás.
 
 ![Diagram nézet Nagyítás parancsok](./media/data-factory-monitor-manage-app/DiagramViewZoomCommands.png)
 
 ### <a name="activity-windows-list"></a>A tevékenységek Windows listája
-A tevékenység Windows a középső ablaktáblán alján megjelenik az erőforrás-kezelővel vagy a Diagram nézetben kiválasztott adatkészlet összes tevékenység windows. Alapértelmezés szerint a lista van, csökkenő sorrendben, ami azt jelenti, hogy megjelenik-e a legújabb tevékenység ablak tetején.
+hello tevékenység Windows hello középső ablaktábláján hello alján megjelenik minden tevékenység windows hello adatkészlet hello erőforrás-kezelő vagy hello Diagram nézetben kiválasztott. Alapértelmezés szerint hello listát csökkenő sorrendben, ami azt jelenti, hogy megjelenik-e hello legújabb tevékenység ablak hello felső van.
 
 ![A tevékenységek Windows listája](./media/data-factory-monitor-manage-app/ActivityWindowsList.png)
 
-Ebben a listában nem frissülnek automatikusan, ezért a frissítés gombra az eszköztáron kézi frissítéséhez.  
+Ebben a listában nem automatikusan, frissítse, használjon hello frissítés gomb hello eszköztár toomanually frissíti.  
 
-Tevékenység windows a következő állapotok valamelyikében lehet:
+Tevékenység windows hello a következő állapotok valamelyikében lehet:
 
 <table>
 <tr>
     <th align="left">status</th><th align="left">A részállapot</th><th align="left">Leírás</th>
 </tr>
 <tr>
-    <td rowspan="8">Várakozás</td><td>ScheduleTime</td><td>Az idő a tevékenység időszakot még nem érkezett.</td>
+    <td rowspan="8">Várakozás</td><td>ScheduleTime</td><td>hello tevékenység ablak toorun hello ideje még nem érkezett.</td>
 </tr>
 <tr>
-<td>DatasetDependencies</td><td>A fölérendelt függőségek nem állnak készen.</td>
+<td>DatasetDependencies</td><td>hello fölérendelt függőségek nem állnak készen.</td>
 </tr>
 <tr>
-<td>ComputeResources</td><td>A számítási erőforrások nem érhetők el.</td>
+<td>ComputeResources</td><td>hello számítási erőforrások nem érhetők el.</td>
 </tr>
 <tr>
-<td>ConcurrencyLimit</td> <td>Az összes Tevékenységpéldány futtatásával elfoglalva más tevékenység windows.</td>
+<td>ConcurrencyLimit</td> <td>Minden hello Tevékenységpéldány futtatásával elfoglalva más tevékenység windows.</td>
 </tr>
 <tr>
-<td>ActivityResume</td><td>A tevékenység szüneteltetve van, és nem futtatható a tevékenység windows folytatásáig.</td>
+<td>ActivityResume</td><td>hello tevékenység szüneteltetve van, és nem futtatható tevékenység windows hello folytatásáig.</td>
 </tr>
 <tr>
-<td>Próbálja meg újra</td><td>A tevékenység végrehajtási lesz hajtva.</td>
+<td>Próbálja meg újra</td><td>hello tevékenység végrehajtási lesz hajtva.</td>
 </tr>
 <tr>
 <td>Ellenőrzés</td><td>Érvényesítés még a még nem indult el.</td>
 </tr>
 <tr>
-<td>ValidationRetry</td><td>Érvényesítés újrapróbálására vár.</td>
+<td>ValidationRetry</td><td>Érvényesítési újrapróbált várakozási toobe.</td>
 </tr>
 <tr>
 <tr>
 <td rowspan="2">Esetbejegyzések</td><td>Ellenőrzése</td><td>Ellenőrzése folyamatban van.</td>
 </tr>
 <td>-</td>
-<td>A tevékenység ablakban feldolgozása folyamatban van.</td>
+<td>hello tevékenység ablakban feldolgozása folyamatban van.</td>
 </tr>
 <tr>
-<td rowspan="4">Nem sikerült</td><td>Időtúllépésbe került</td><td>A tevékenység végrehajtási tevékenység által megengedett érték időt vett igénybe.</td>
+<td rowspan="4">Nem sikerült</td><td>Időtúllépésbe került</td><td>hello tevékenység végrehajtási hello tevékenység által megengedett érték időt vett igénybe.</td>
 </tr>
 <tr>
-<td>Törölve</td><td>A tevékenység ablakban felhasználói művelet megszakította.</td>
+<td>Törölve</td><td>hello tevékenység ablakban felhasználói művelet megszakította.</td>
 </tr>
 <tr>
 <td>Ellenőrzés</td><td>Sikertelen volt.</td>
 </tr>
 <tr>
-<td>-</td><td>Tevékenységéhez generált vagy érvényesítése nem sikerült.</td>
+<td>-</td><td>hello tevékenység ablakban toobe jön létre, vagy ha ellenőrizni nem sikerült.</td>
 </tr>
-<td>Készen áll</td><td>-</td><td>A tevékenység ablakban készen áll a felhasználásra.</td>
-</tr>
-<tr>
-<td>Kihagyva</td><td>-</td><td>A tevékenység ablak nincs feldolgozva.</td>
+<td>Készen áll</td><td>-</td><td>hello tevékenység ablakban készen áll a felhasználásra.</td>
 </tr>
 <tr>
-<td>None</td><td>-</td><td>Egy tevékenység ablakban létezett egy eltérő állapottal, de alaphelyzetbe lett állítva.</td>
+<td>Kihagyva</td><td>-</td><td>hello tevékenység ablak nem lett feldolgozva.</td>
+</tr>
+<tr>
+<td>None</td><td>-</td><td>Egy tevékenység ablakban tooexist használja egy eltérő állapottal, de alaphelyzetbe lett állítva.</td>
 </tr>
 </table>
 
 
-Ha a listában egy tevékenység ablakban gombra kattint, megjelenik az részleteit a a **tevékenység Windows Explorer** vagy a **tulajdonságok** a jobb oldali ablak.
+Ha egy tevékenység ablakban hello listában gombra kattint, megjelenik az részleteit a hello **tevékenység Windows Explorer** vagy hello **tulajdonságok** hello jobb oldali ablak.
 
 ![Tevékenység ablak Explorer](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-2.png)
 
 ### <a name="refresh-activity-windows"></a>Tevékenység windows frissítése
-A részletek nem automatikusan frissülnek, ezért a frissítés (második) gombra a parancssávon manuális frissítéséhez a windows a tevékenységek listája.  
+hello részletek nem automatikusan frissülnek, ezért hello frissítési (gomb hello második) a hello parancssávon toomanually frissítési hello tevékenységek windows listája.  
 
 ### <a name="properties-window"></a>Tulajdonságok ablak
-A Tulajdonságok ablak van, a figyelés és a felügyeleti alkalmazás a jobb szélső panelén.
+hello tulajdonságai ablakban hello figyelés és a felügyeleti alkalmazás hello jobb szélső panelén megtalálható.
 
 ![Tulajdonságok ablak](./media/data-factory-monitor-manage-app/PropertiesWindow.png)
 
-Megjeleníti az erőforrás-kezelő (fanézetben), a Diagram nézet vagy a tevékenység Windows listán kijelölt elem tulajdonságai.
+Megjeleníti az erőforrás-kezelő (fanézetben) hello kiválasztott hello elem tulajdonságai Diagram nézetet, vagy a tevékenység Windows listája.
 
 ### <a name="activity-window-explorer"></a>Tevékenység ablak Explorer
-A **tevékenység ablak Explorer** időszak van a figyelés és a felügyeleti alkalmazás a jobb szélső panelén. A tevékenység ablakban, a tevékenység Windows előugró ablakban vagy a tevékenység Windows listában kiválasztott részleteit jeleníti meg.
+Hello **tevékenység ablak Explorer** időszak van hello figyelés és a felügyeleti alkalmazás hello jobb szélső panelén. Hello tevékenység ablakban hello tevékenység Windows előugró ablak vagy hello tevékenység Windows listán kijelölt részleteit jeleníti meg.
 
 ![Tevékenység ablak Explorer](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-3.png)
 
-Egy másik tevékenység ablak tetején naptár nézetben kattintással lehet váltani. Lásd az előző hét vagy a következő hét tevékenység windows tetején a bal oldali/jobbra gomb is használja.
+Tooanother tevékenység ablakban hello naptár nézetben hello felső kattintva válthat. Hello/jobbra bal oldali gomb használatának hello felső toosee tevékenység windows hello az előző hét vagy jövő héten hello is.
 
-Segítségével gombokat az alsó ablaktáblában futtassa újra a tevékenység ablakban, vagy frissítse a részletek ablaktáblájában.
+Hello eszköztár gombjaival hello alsó ablaktáblán toorerun hello tevékenység ablakban, vagy hello részletek hello ablaktáblán frissítése.
 
 ### <a name="script"></a>Szkript
-Használhatja a **parancsfájl** fülre kattintva megtekintheti a kijelölt adat-előállító entitás (társított szolgáltatás, adatkészlet vagy csővezeték) JSON-definícióból.
+Használhatja a hello **parancsfájl** lapon tooview hello JSON-definícióból hello a kiválasztott adat-előállító entitás (társított szolgáltatás, adatkészlet vagy csővezeték).
 
 ![Parancsfájl lap](./media/data-factory-monitor-manage-app/ScriptTab.png)
 
 ## <a name="use-system-views"></a>Rendszer-nézetek
-A figyelés és felügyelet alkalmazást tartalmaz, előre összeállított rendszernézetek (**legutóbbi tevékenységek windows**, **sikertelen volt a tevékenység windows**, **folyamatban lévő tevékenységek windows**), amelyek lehetővé teszik, hogy a data factory legutóbbi/nem sikerült/folyamatban tevékenységablakok megtekintése.
+hello figyelés és a felügyeleti alkalmazás tartalmaz előre elkészített rendszernézetek (**legutóbbi tevékenységek windows**, **sikertelen volt a tevékenység windows**, **folyamatban lévő tevékenységek windows**), lehetővé teszi a data factory tooview legutóbbi/nem sikerült/folyamatban lévő tevékenységek időszakokat.
 
-Váltás a **figyelési nézetei** lapon kattintson a bal oldalon.
+Váltás toohello **figyelési nézetei** fülre kattintva hello bal oldalon.
 
 ![Figyelési nézetek lap](./media/data-factory-monitor-manage-app/MonitoringViewsTab.png)
 
-Jelenleg nincsenek három rendszernézetek támogatott. Válassza ki a legutóbbi tevékenységek windows, a sikertelen tevékenységet windows vagy a folyamatban lévő tevékenységek windows a tevékenység Windows listában (középső ablaktábla alján) lehetőséget.
+Jelenleg nincsenek három rendszernézetek támogatott. Válasszon egy lehetőséget toosee legutóbbi tevékenységek windows, a sikertelen tevékenységet windows vagy a folyamatban lévő tevékenységek windows hello tevékenység Windows listában (alján hello hello középső ablaktábla).
 
-Ha bejelöli a **legutóbbi tevékenységek windows** beállítást, megjelenik minden legutóbbi tevékenységek windows csökkenő sorrendben a **utolsó kísérlet ideje**.
+Ha bejelöli hello **legutóbbi tevékenységek windows** beállítást, megjelenik minden legutóbbi tevékenységek windows hello csökkenő **utolsó kísérlet ideje**.
 
-Használhatja a **sikertelen volt a tevékenység windows** nézetre, és tekintse meg a listában az összes sikertelen tevékenység windows. Egy meghiúsult tevékenységet ablak az információk a részletes listáján válassza ki a **tulajdonságok** ablakban vagy a **tevékenység ablak Explorer**. A naplók a sikertelen tevékenységet időszak is letöltheti.
+Használhatja a hello **sikertelen volt a tevékenység windows** megtekintéséhez toosee összes sikertelen tevékenység windows hello listáján. Válassza ki a sikertelen tevékenységek ablakát hello lista toosee részleteit a hello **tulajdonságok** ablak vagy hello **tevékenység ablak Explorer**. A naplók a sikertelen tevékenységet időszak is letöltheti.
 
 ## <a name="sort-and-filter-activity-windows"></a>Rendezésére és szűrésére tevékenység windows
-Módosítsa a **kezdési időpont** és **befejező időpontja** beállításai a szűrő tevékenység windows parancsra a parancssávon. A kezdési és befejezési időpontjának módosítása után a gombra a tevékenység Windows listájának frissítése a befejező időpont mellett.
+Változás hello **kezdési időpont** és **befejező időpontja** toofilter tevékenység windows hello parancssávon beállításait. Hello kezdési és befejezési időpontjának módosítása után kattintson hello gomb következő toohello befejezési idő toorefresh hello tevékenység Windows listára.
 
 ![Kezdő és befejező időpontja](./media/data-factory-monitor-manage-app/StartAndEndTimes.png)
 
 > [!NOTE]
-> Minden alkalommal jelenleg a figyelés és a felügyeleti alkalmazás UTC formátumban.
+> Minden alkalommal jelenleg hello figyelés és a felügyeleti alkalmazás UTC formátumban.
 >
 >
 
-Az a **tevékenység Windows lista**, kattintson az oszlop nevét (például: állapot).
+A hello **tevékenység Windows lista**, kattintson egy hello neve (például: állapot).
 
 ![Tevékenység Windows lista oszlop menü](./media/data-factory-monitor-manage-app/ActivityWindowsListColumnMenu.png)
 
-Tegye a következőket:
+Mindent hello következő:
 
 * Rendezés növekvő sorrendben.
 * Rendezés csökkenő sorrendben.
 * Szűrés egy vagy több (kész, Várakozás, és így tovább).
 
-Ha szűrőt ad meg egy olyan oszlop, tekintse meg a szűrő gombra az adott oszlop, amely azt jelzi, hogy az oszlopban szereplő értékek szűrt értékek engedélyezett.
+Ha szűrőt ad meg egy olyan oszlop, lásd: engedélyezve van az adott oszlop, amely azt jelzi, hogy hello hello oszlopban szereplő értékek szűrt értékek hello a szűrő gombra.
 
-![A tevékenység Windows lista oszlopon szűrése](./media/data-factory-monitor-manage-app/ActivityWindowsListFilterInColumn.png)
+![Egy oszlop hello tevékenység Windows lista alapján szűrés](./media/data-factory-monitor-manage-app/ActivityWindowsListFilterInColumn.png)
 
-Szűrő törlése használhatja ugyanabban az előugró ablakban. A tevékenység Windows lista az összes szűrő törlése, kattintson a szűrő törlése gombra a parancssávon.
+Használhatja ugyanazt az előugró ablakban tooclear szűrők hello. Minden tevékenység Windows hello listát szűrők tooclear hello törlése gomb hello parancssávon kattintson.
 
-![A tevékenység Windows lista az összes szűrő törlése](./media/data-factory-monitor-manage-app/ClearAllFiltersActivityWindowsList.png)
+![Hello tevékenység Windows lista az összes szűrő törlése](./media/data-factory-monitor-manage-app/ClearAllFiltersActivityWindowsList.png)
 
 ## <a name="perform-batch-actions"></a>Kötegelt műveleteket
 ### <a name="rerun-selected-activity-windows"></a>Futtassa újra a kijelölt tevékenység windows
-Egy tevékenység ablak, kattintson a lefelé mutató nyílra az első parancs sáv gombhoz válassza ki és **újrafuttatása** / **futtassa újra a előtt folyamat**. Ha bejelöli a **futtassa újra a előtt folyamat** beállítás, az összes felsőbb szintű tevékenység windows is Újrafuttatja.
+Egy tevékenység ablak, kattintson a lefelé mutató nyíl hello első sáv parancsgomb hello válassza ki és **újrafuttatása** / **futtassa újra a előtt folyamat**. Hello kiválasztásakor **futtassa újra a előtt folyamat** beállítás, az összes felsőbb szintű tevékenység windows is Újrafuttatja.
     ![Futtassa újra a műveletet egy tevékenység ablak](./media/data-factory-monitor-manage-app/ReRunSlice.png)
 
-Is több tevékenység windows listáján válassza ki, és futtassa újra a azokat egy időben. Tevékenység windows állapota alapján szűrni kívánt (például: **sikertelen**) –, majd futtassa újra a sikertelen tevékenységet windows a problémát, amelynek hatására a tevékenység windows sikertelen kijavítása után. Lásd a következő tevékenység windows listájában szűrés vonatkozó további információért.  
+Is több tevékenység windows hello listában jelölje ki, és futtatnia őket: hello ugyanannyi időt vesz igénybe. Érdemes lehet toofilter tevékenység windows hello állapota alapján (például: **sikertelen**) –, majd futtassa újra a sikertelen hello tevékenység windows hello tevékenység windows toofail okozó hello a probléma kijavítása után. Tekintse meg a következő tevékenység windows hello listában szűrése szakaszát hello.  
 
 ### <a name="pauseresume-multiple-pipelines"></a>Több folyamatok szüneteltet
-A Ctrl billentyűt használja a multiselect két vagy több folyamatok segítségével. A (amely emel ki az alábbi képen piros téglalap) gombok segítségével/szüneteltet őket.
+Segítségével multiselect két vagy több folyamatok hello Ctrl billentyűt. Hello gombok (amely a következő kép hello hello piros téglalap kijelölt) is használhat toopause/Folytatás őket.
 
-![A parancssávon felfüggesztése vagy folytatása](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
+![/ Szüneteltet hello parancssávon](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
 
 ## <a name="create-alerts"></a>Riasztások létrehozása
-A **riasztások** lap lehetővé teszi, hogy hozzon létre riasztást és nézet/Szerkesztés/törlés meglévő riasztást. Akkor is is tiltása/engedélyezése egy riasztást. A riasztások lapon megtekintéséhez kattintson a **riasztások** fülre.
+Hello **riasztások** lap lehetővé teszi, hogy hozzon létre riasztást és nézet/Szerkesztés/törlés meglévő riasztást. Akkor is is tiltása/engedélyezése egy riasztást. toosee hello riasztások lapján, kattintson a hello **riasztások** fülre.
 
 ![Riasztások lap](./media/data-factory-monitor-manage-app/AlertsTab.png)
 
-### <a name="to-create-an-alert"></a>Riasztás létrehozása
-1. Kattintson a **hozzáadása riasztás** hozzáadása egy riasztást. Megjelenik a **részletek** lap.
+### <a name="toocreate-an-alert"></a>toocreate riasztás
+1. Kattintson a **hozzáadása riasztás** tooadd riasztást. Megjelenik a hello **részletek** lap.
 
     ![Riasztások – Részletek lap létrehozása](./media/data-factory-monitor-manage-app/CreateAlertDetailsPage.png)
-2. Adja meg a **neve** és **leírás** a riasztást, majd kattintson a **következő**. Megjelenik a **szűrők** lap.
+2. Adja meg a hello **neve** és **leírás** hello riasztást, majd kattintson a **következő**. Megtekintheti az hello **szűrők** lap.
 
     ![Riasztások – szűrők lap létrehozása](./media/data-factory-monitor-manage-app/CreateAlertFiltersPage.png)
-3. Válassza ki a **esemény**, **állapot**, és **részállapot** (nem kötelező), hogy szeretné-e a Data Factory szolgáltatás riasztás létrehozása, és kattintson a **következő**. Megjelenik a **címzettek** lap.
+3. Jelölje be hello **esemény**, **állapot**, és **részállapot** (nem kötelező), amelyet az toocreate a Data Factory szolgáltatásnak a riasztásra, majd kattintson **tovább**. Megtekintheti az hello **címzettek** lap.
 
     ![Riasztások – címzettek lap létrehozása](./media/data-factory-monitor-manage-app/CreateAlertRecipientsPage.png)
-4. Válassza ki a **E-mail-előfizetés rendszergazdái** lehetőséget és/vagy adjon meg egy **további rendszergazdai e-mail**, és kattintson a **Befejezés**. Meg kell jelennie a listában a riasztást.
+4. SELECT hello **E-mail-előfizetés rendszergazdái** lehetőséget és/vagy adjon meg egy **további rendszergazdai e-mail**, és kattintson a **Befejezés**. Hello riasztás hello listában kell megjelennie.
 
     ![Riasztások listája](./media/data-factory-monitor-manage-app/AlertsList.png)
 
-A riasztáslistában Szerkesztés/Törlés/tiltása/engedélyezése egy riasztást a riasztás társított gombok használatával.
+Hello riasztáslistában gombokkal hello társított hello riasztási tooedit/Törlés/tiltása/engedélyezése egy riasztást.
 
 ### <a name="eventstatussubstatus"></a>A részállapot/esemény/állapota
-A következő táblázat a rendelkezésre álló eseményeket és állapotokat (és részállapotok) listáját tartalmazza.
+hello következő táblázat elérhető eseményeket és állapotokat (és részállapotok) hello listája.
 
 | esemény neve | status | A részállapot |
 | --- | --- | --- |
@@ -327,8 +327,8 @@ A következő táblázat a rendelkezésre álló eseményeket és állapotokat (
 | Igény szerinti HDI-fürtnek sikeresen létrehozva |Sikeres |-|
 | Igény szerinti HDI-fürtnek törlése |Sikeres |-|
 
-### <a name="to-edit-delete-or-disable-an-alert"></a>Szerkesztése, törlése, vagy tiltsa le a riasztás
+### <a name="tooedit-delete-or-disable-an-alert"></a>tooedit, törlése, vagy tiltsa le a riasztás
 
-A (pirossal kiemelt) következő gombok segítségével szerkesztése, törlése, vagy tiltsa le a riasztást.
+Használja a (pirossal kiemelt) gombok tooedit, delete vagy tiltsa le a riasztás a következő hello.
 
 ![Riasztások gombok](./media/data-factory-monitor-manage-app/AlertButtons.png)

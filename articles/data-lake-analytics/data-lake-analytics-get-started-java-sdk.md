@@ -1,6 +1,6 @@
 ---
-title: "Data Lake Analytics Java SDK használata alkalmazások fejlesztéséhez |} Microsoft Docs"
-description: "Az Azure Data Lake Analytics Java SDK használata alkalmazások fejlesztéséhez"
+title: "aaaUse Data Lake Analytics Java SDK toodevelop alkalmazások |} Microsoft Docs"
+description: "Az Azure Data Lake Analytics Java SDK toodevelop alkalmazások használata"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: 795d9ec0b0cac5d74673404f1d0d851393336df0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d975812fe659ed34ee9befd37ee7c0bf50d3414
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-java-sdk"></a>Az Azure Data Lake Analytics használatának első lépései a Java SDK-val
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Útmutató: Azure Data Lake-fiók létrehozása és végezhet el olyan alapvető műveleteket, mint például mappák létrehozása, és töltse le a fájlokat, a fiók törlése, és feltöltése feladatok használata az Azure Data Lake Analytics Java SDK használatával. További információ a Data Lake: [Azure Data Lake Analytics](data-lake-analytics-overview.md).
+Ismerje meg, hogyan toouse hello Azure Data Lake Analytics Java SDK toocreate Azure Data Lake-fiókot, és alapvető műveleteket, mint például mappák létrehozása, fájlok feltöltését és letöltését adatokat, törölje a fiókját, és a feladatok használatát. További információ a Data Lake: [Azure Data Lake Analytics](data-lake-analytics-overview.md).
 
-Az oktatóanyag során elkészít egy Java-konzolalkalmazást minták a gyakori felügyeleti feladatokat, valamint vizsgálati adatok létrehozás és elküld egy feladatot tartalmazó.  Ha ugyanezt az oktatóanyagot más támogatott eszközök használatával szeretné elvégezni, kattintson a szakasz tetején található fülekre.
+Az oktatóanyag során elkészít egy Java-konzolalkalmazást minták a gyakori felügyeleti feladatokat, valamint vizsgálati adatok létrehozás és elküld egy feladatot tartalmazó.  toogo keresztül hello ugyanezt az oktatóanyagot más használatával támogatott eszközöket, kattintson a hello lapok hello látható az ebben a szakaszban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 * Java fejlesztői készlet (JDK) 8 (a Java 1.8-as verzióját használja).
-* IntelliJ vagy egyéb megfelelő Java fejlesztőkörnyezet. Nem kötelező, de ajánlott. Az alábbi utasítások az IntelliJ-t használják.
+* IntelliJ vagy egyéb megfelelő Java fejlesztőkörnyezet. Nem kötelező, de ajánlott. az alábbi hello utasítások az intellij-t használják.
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/).
-* Hozzon létre egy Azure Active Directory- (AAD-) alkalmazást, és kérje le az **ügyfél-azonosítóját**, a **bérlőazonosítóját** és a **kulcsát**. További információ az AAD-alkalmazásokról és útmutató az ügyfél-azonosító lekéréséhez: [Create Active Directory application and service principal using portal](../azure-resource-manager/resource-group-create-service-principal-portal.md) (Active Directory-alkalmazás és egyszerű szolgáltatás létrehozása a portál használatával). A válasz URI és a kulcs a portálon is elérhető lesz az alkalmazás és a kulcs létrehozását követően.
+* Hozzon létre egy Azure Active Directory- (AAD-) alkalmazást, és kérje le az **ügyfél-azonosítóját**, a **bérlőazonosítóját** és a **kulcsát**. További információt az AAD-alkalmazások és utasításokat hogyan tooget egy ügyfél-Azonosítót, lásd: [létrehozása az Active Directory-alkalmazás és szolgáltatás egyszerű portálon](../azure-resource-manager/resource-group-create-service-principal-portal.md). hello Reply URI és kulcs is elérhető lesz a hello portálról hello alkalmazást hoz létre, és a kulcs jön létre.
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>Hogyan végezhető el a hitelesítés az Azure Active Directory használatával?
-Az alábbi kódrészlet a **nem interaktív** hitelesítéshez biztosít kódot, amely során az alkalmazás maga biztosítja saját hitelesítő adatait.
+hello kódrészletben biztosít kódját **nem interaktív** hitelesítési, ahol hello alkalmazás maga biztosítja saját hitelesítő adatait.
 
-Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, hogy erőforrásokat hozzon létre az Azure-ban. **Határozottan ajánlott**, hogy a jelen oktatóanyagban csak közreműködői jogosultságokat adjon az alkalmazásnak egy új, nem használt és üres erőforráscsoporthoz az Azure-előfizetésben.
+Szüksége lesz toogive az alkalmazás engedélyt toocreate erőforrások az Azure-ban ez az oktatóanyag toowork. Az **erősen ajánlott** csak biztosítják az alkalmazás közreműködői engedélyekkel tooa új, nem használt és üres erőforráscsoporthoz az Azure-előfizetéséhez Ez az oktatóanyag hello alkalmazásában.
 
 ## <a name="create-a-java-application"></a>Java-alkalmazás létrehozása
-1. Nyissa meg az IntelliJ-t, és hozzon létre egy Java-projektet a **Parancssori alkalmazás** sablon használatával.
-2. Kattintson a jobb gombbal a képernyő bal oldalán található projektre, majd kattintson az **Add Framework Support** (Keretrendszer-támogatás felvétele) elemre. Válassza a **Maven** lehetőséget, majd kattintson az **OK** gombra.
-3. Nyissa meg az újonnan létrehozott **„pom.xml”** fájlt, majd illessze be a következő szövegrészletet a **\</version>** és a **\</project>** címkék közé:
+1. Nyissa meg az intellij-t, és hozzon létre egy új Java-projektet hello segítségével **parancssori alkalmazás** sablont.
+2. Kattintson a jobb gombbal a képernyő bal oldalán hello hello projekt, és kattintson a **keretrendszer-támogatás hozzáadása**. Válassza a **Maven** lehetőséget, majd kattintson az **OK** gombra.
+3. Nyissa meg az újonnan létrehozott hello **"pom.xml"** fájlt, és adja hozzá a következő szövegrészletet közötti hello hello  **\<version >** címke és hello  **\< /project >** címke:
 
     >[!NOTE]
-    >Ez a lépés nem ideiglenes, amíg az Azure Data Lake Analytics SDK elérhető válik a Mavenben. Amikor az SDK elérhető válik a Mavenben, a cikket frissítjük. Az SDK minden jövőbeni frissítése elérhető lesz a Mavenen keresztül.
+    >Ez a lépés nem ideiglenes, amíg a hello Azure Data Lake Analytics SDK elérhető válik a Mavenben. Ez a cikk fog frissülni, amint hello SDK elérhető válik a Mavenben. Az összes jövőbeli frissítései toothis SDK lesz a mavenen keresztül.
     >
 
         <repositories>
@@ -95,13 +95,13 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
-4. Nyissa meg a **fájl**, majd **beállítások**, majd **Build**, **végrehajtási**, **telepítési**. Válassza ki **buildet**, **Maven**, **importálása**. Ezután ellenőrizze **Import Maven projektek automatikusan**.
-5. Nyissa meg **Main.java** , és cserélje le a meglévő kódblokkot az alábbi kódra. Emellett adja meg a paraméterek a kódrészletet, többek között **localFolderPath**, **_adlaAccountName**, **_adlsAccountName**, **_resourceGroupName** , és cserélje le a helyőrzőket **CLIENT-ID**, **CLIENT-SECRET**, **TENANT-ID**, és **SUBSCRIPTION-ID**.
+4. Nyissa meg túl**fájl**, majd **beállítások**, majd **Build**, **végrehajtási**, **telepítési**. Válassza ki **buildet**, **Maven**, **importálása**. Ezután ellenőrizze **Import Maven projektek automatikusan**.
+5. Nyissa meg **Main.java** és a következő kód csere hello meglévő kódblokkot az hello. Emellett hello értéket ad a paraméterek hello kódrészletet, például a **localFolderPath**, **_adlaAccountName**, **_adlsAccountName**, **_ resourceGroupName** , és cserélje le a helyőrzőket **CLIENT-ID**, **CLIENT-SECRET**, **TENANT-ID**, és  **ELŐFIZETÉS-azonosító**.
 
-    Ez a kód végighalad a Data Lake Store és a Data Lake Analytics-fiókokat hozhat létre, -fájlok létrehozásáról a tárolóban, a feladat futtatását, feladat állapota első, feladatkiemenetét letöltése és végül törli a fiókot.
+    Ez a kód kerül hello folyamatot, amely fájlok létrehozásával hello tárolóban, Data Lake Store és a Data Lake Analytics fiókokat hozhat létre fut egy feladat, feladat állapota első, feladatkiemenetét letöltése és végül a hello fiók törlése.
 
    > [!NOTE]
-   > Az Azure Data Lake szolgáltatásnak van egy ismert hibája.  Ha a példaalkalmazás megszakad vagy hibába ütközik, előfordulhat, hogy manuálisan kell törölnie a szkript által létrehozott Data Lake Store- és Data Lake Analytics-fiókokat.  Ha nem ismeri a portált, [Az Azure Data Lake Analytics kezelése az Azure Portal használatával](data-lake-analytics-manage-use-portal.md) útmutatóból elsajátíthatja az első lépéseket.
+   > Jelenleg egy ismert probléma az Azure Data Lake szolgáltatás hello.  Ha hello mintaalkalmazás megszakad, vagy hibát észlel, szükség lehet a toomanually delete hello Data Lake Store & Data Lake Analytics fiókok hello parancsfájlt hoz létre.  Ha még nem ismeri a hello Portal, hello [kezelése Azure Data Lake Analytics Azure portál használatával](data-lake-analytics-manage-use-portal.md) útmutató segítséget.
    >
    >
 
@@ -149,9 +149,9 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
                 _subId =  "<SUBSCRIPTION-ID>";
                 _clientId = "<CLIENT-ID>";
 
-                _clientSecret = "<CLIENT-SECRET>"; // TODO: For production scenarios, we recommend that you replace this line with a more secure way of acquiring the application client secret, rather than hard-coding it in the source code.
+                _clientSecret = "<CLIENT-SECRET>"; // TODO: For production scenarios, we recommend that you replace this line with a more secure way of acquiring hello application client secret, rather than hard-coding it in hello source code.
 
-                String localFolderPath = "C:\\local_path\\"; // TODO: Change this to any unused, new, empty folder on your local machine.
+                String localFolderPath = "C:\\local_path\\"; // TODO: Change this tooany unused, new, empty folder on your local machine.
 
                 // Authenticate
                 ApplicationTokenCredentials creds = new ApplicationTokenCredentials(_clientId, _tenantId, _clientSecret, null);
@@ -176,14 +176,14 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
                 WaitForNewline("Accounts displayed.", "Creating files.");
 
                 // Create a file in Data Lake Store: input1.csv
-                // TODO: these change order in the next patch
+                // TODO: these change order in hello next patch
                 byte[] bytesContents = "123,abc".getBytes();
                 _adlsFileSystemClient.getFileSystemOperations().create(_adlsAccountName, "/input1.csv", bytesContents, true);
 
                 WaitForNewline("File created.", "Submitting a job.");
 
-                // Submit a job to Data Lake Analytics
-                UUID jobId = SubmitJobByScript("@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob");
+                // Submit a job tooData Lake Analytics
+                UUID jobId = SubmitJobByScript("@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob");
                 WaitForNewline("Job submitted.", "Getting job status.");
 
                 // Wait for job completion and output job status
@@ -219,13 +219,13 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
                 _adlaClient.setSubscriptionId(_subId);
             }
 
-            // Helper function to show status and wait for user input
+            // Helper function tooshow status and wait for user input
             public static void WaitForNewline(String reason, String nextAction)
             {
                 if (nextAction == null)
                     nextAction = "";
 
-                System.out.println(reason + "\r\nPress ENTER to continue...");
+                System.out.println(reason + "\r\nPress ENTER toocontinue...");
                 try{System.in.read();}
                 catch(Exception e){}
 
@@ -262,12 +262,12 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
                 adlaParameters.setName(_adlaAccountName);
                 adlaParameters.setProperties(adlaProperties);
 
-                    /* If this line generates an error message like "The deep update for property 'DataLakeStoreAccounts' is not supported", please delete the ADLS and ADLA accounts via the portal and re-run your script. */
+                    /* If this line generates an error message like "hello deep update for property 'DataLakeStoreAccounts' is not supported", please delete hello ADLS and ADLA accounts via hello portal and re-run your script. */
 
                 _adlaClient.getAccountOperations().create(_resourceGroupName, _adlaAccountName, adlaParameters);
             }
 
-            //todo: this changes in the next version of the API
+            //todo: this changes in hello next version of hello API
             public static void CreateFile(String path, String contents, boolean force) throws IOException, CloudException {
                 byte[] bytesContents = contents.getBytes();
 
@@ -307,7 +307,7 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
             }
 
             // Submit a U-SQL job by providing script contents.
-            // Returns the job ID
+            // Returns hello job ID
             public static UUID SubmitJobByScript(String script, String jobName) throws IOException, CloudException {
                 UUID jobId = java.util.UUID.randomUUID();
                 USqlJobProperties properties = new USqlJobProperties();
@@ -340,12 +340,12 @@ Ahhoz, hogy az oktatóanyag működjön, engedélyeznie kell az alkalmazásnak, 
             }
         }
 
-1. Kövesse az utasításokat az alkalmazás futtatásához és befejezéséhez.
+1. Hajtsa végre a hello kér toorun és teljes hello alkalmazás.
 
 ## <a name="see-also"></a>Lásd még:
-* Ha ugyanezt az oktatóanyagot más eszközök használatával szeretné megtekinteni, kattintson az oldal tetején található lapválasztókra.
-* Egy összetettebb lekérdezés megtekintéséhez lásd: [Analyze Website logs using Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md) (Webhelyek naplóinak elemzése az Azure Data Lake Analytics használatával).
-* Ismerkedés a U-SQL-alkalmazások fejlesztésével: [Develop U-SQL scripts using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md) (U-SQL-parancsfájlok fejlesztése a Data Lake Tools for Visual Studio használatával).
-* A U-SQL nyelv megismerése: [Get started with Azure Data Lake Analytics U-SQL language](data-lake-analytics-u-sql-get-started.md) (Ismerkedés az Azure Data Lake Analytics U-SQL nyelvével). és [U-SQL language reference](http://go.microsoft.com/fwlink/?LinkId=691348) (U-SQL nyelvi referencia).
-* Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure Portallal).
-* A Data Lake Analytics áttekintése: [Azure Data Lake Analytics overview](data-lake-analytics-overview.md) (Az Azure Data Lake Analytics áttekintése).
+* toosee hello ugyanaz az oktatóanyagot más eszközök használatával hello szeretné a hello hello lap tetején kattintson.
+* egy összetettebb lekérdezés toosee lásd [elemzés webhely naplózza az Azure Data Lake Analytics használatával](data-lake-analytics-analyze-weblogs.md).
+* megkezdődött a U-SQL-alkalmazások fejlesztésével tooget lásd [Data Lake Tools for Visual Studio használatával fejlesztése U-SQL-parancsfájlok](data-lake-analytics-data-lake-tools-get-started.md).
+* toolearn U-SQL, lásd: [Ismerkedés az Azure Data Lake Analytics U-SQL nyelv](data-lake-analytics-u-sql-get-started.md), és [U-SQL nyelvi referencia](http://go.microsoft.com/fwlink/?LinkId=691348).
+* Felügyeleti feladatok: [Manage Azure Data Lake Analytics using Azure Portal](data-lake-analytics-manage-use-portal.md) (Az Azure Data Lake Analytics kezelése az Azure portállal).
+* a Data Lake Analytics áttekintésének tooget lásd [Azure Data Lake Analytics áttekintése](data-lake-analytics-overview.md).

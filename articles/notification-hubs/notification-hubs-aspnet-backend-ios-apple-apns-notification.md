@@ -1,6 +1,6 @@
 ---
-title: "Azure Notification Hubs – felhasználók értesítése iOS rendszerhez .NET-háttérrendszerrel"
-description: "Megtudhatja, hogyan küldhetők leküldéses értesítések az Azure-ban a felhasználók számára. Kódminták Objective-C és a háttérkiszolgáló .NET API-t."
+title: "aaaAzure Notification Hubs – felhasználók értesítése iOS rendszerhez .NET-háttérrendszerrel"
+description: "Ismerje meg, toosend a leküldéses értesítések toousers az Azure-ban. Kódminták Objective-C és hello .NET API hello háttérkiszolgáló."
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,68 +14,68 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 0fa7a886e1ecb0a90b6aebc1dbf9ef0c6ce1acf1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 56aed5b04d2d985b3f0e50c58991607f07b61248
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-notify-users-for-ios-with-net-backend"></a>Azure Notification Hubs – felhasználók értesítése iOS rendszerhez .NET-háttérrendszerrel
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>Áttekintés
-Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűsíti a leküldéses értesítések mobil platformokhoz fogyasztói, valamint a vállalati alkalmazások eléréséhez. Az oktatóanyag bemutatja, hogyan küldhetők az Azure Notification Hubs használatával leküldéses értesítések adott alkalmazásfelhasználónak, meghatározott eszközre. ASP.NET WebAPI háttérrendszerből használt hitelesíti az ügyfeleket, és értesítéseket, ahogy az az útmutató témakör [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).
+Leküldéses értesítési támogatás az Azure-ban lehetővé teszi tooaccess egy könnyen kezelhető, multiplatform és kibővített leküldéses infrastruktúrában, ami jelentősen egyszerűbb a leküldéses értesítések a mobile fogyasztói, valamint a vállalati alkalmazások hello végrehajtása platformok. Ez az oktatóanyag toouse Azure Notification Hubs toosend a leküldéses értesítések tooa adott alkalmazás felhasználói az adott eszközön. ASP.NET WebAPI háttérrendszerből használt tooauthenticate ügyfelek és toogenerate értesítéseket, ahogy hello útmutatást a témakör az [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).
 
 > [!NOTE]
-> Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md). Ez az oktatóanyag egyben a előfeltételeit a [(iOS) biztonságos leküldéses](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) oktatóanyag.
-> Ha szeretné használni a háttérszolgáltatás Mobile Apps, tekintse meg a [Mobile Apps első lépések leküldéses](../app-service-mobile/app-service-mobile-ios-get-started-push.md).
+> Ez az oktatóanyag feltételezi, hogy létrehozta és leírtak szerint konfigurálta az értesítési központ [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md). Ez az oktatóanyag egyben hello előfeltétel toohello [(iOS) biztonságos leküldéses](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) oktatóanyag.
+> Ha a háttérkiszolgáló szolgáltatásként toouse Mobile Apps, lásd: hello [Mobile Apps első lépések leküldéses](../app-service-mobile/app-service-mobile-ios-get-started-push.md).
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
 ## <a name="modify-your-ios-app"></a>Az iOS-alkalmazás módosítása
-1. Nyissa meg a létrehozott alkalmazás egylapos megtekintése a [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) oktatóanyag.
+1. Nyissa meg hello egylapos alkalmazás megtekintése hello létrehozott [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) oktatóanyag.
    
    > [!NOTE]
-   > Ebben a szakaszban feltételezzük, hogy a projekt egy üres szervezetnév van konfigurálva. Ha nem, akkor be kell illesztenie a szervezet neve, az összes osztály nevét.
+   > Ebben a szakaszban feltételezzük, hogy a projekt egy üres szervezetnév van konfigurálva. Ha nem, akkor tooprepend a szervezet neve tooall osztály nevét.
    > 
    > 
-2. A Main.storyboard adja hozzá az összetevőket az objektumtárból alatt a képernyőfelvételen látható módon.
+2. Adja hozzá a Main.storyboard hello összetevők hello objektum könyvtárból alatt hello képernyőfelvételen látható módon.
    
     ![][1]
    
-   * **Felhasználónév**: a helyőrző szöveg A UITextField *adjon meg felhasználónevet*, azonnal eredmények címkével, és a bal és jobb margó korlátozott a küldés alatt, és a küldési eredmények címke alatt.
-   * **Jelszó**: a helyőrző szöveg A UITextField *jelszó megadása*, azonnal a felhasználónév alatt szöveges mezőt, és korlátozott, a bal és jobb margó és a felhasználónév szövegmezőt alatt. Ellenőrizze a **szövegbeviteli biztonságos** attribútum megtekintő lehetőséget a *vissza kulcs*.
-   * **Jelentkezzen be**: A UIButton feliratú azonnal a jelszó szövegmező alatt, és törölje a jelet a **engedélyezve** attribútumok megtekintő lehetőséget a *vezérlő – tartalom*
-   * **WNS**: címke és kapcsoló ahhoz, hogy a Windows értesítési szolgáltatás értesítést küld, ha a központi telepítés le van. Tekintse meg a [Windows bevezetés](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) oktatóanyag.
-   * **GCM**: címke és a kapcsoló az értesítés küldését a Google Cloud Messaging, ha a központi telepítés lett. Lásd: [Android bevezetés](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.
-   * **APNS**: címke és kapcsoló engedélyezése az Apple Platform Notification szolgáltatással küldött.
-   * **Recipent felhasználónév**: a helyőrző szöveg A UITextField *címzett felhasználónév címke*, azonnal a GCM alatt címkével, és a bal és jobb margó és a GCM-címke alatt korlátozott.
+   * **Felhasználónév**: a helyőrző szöveg A UITextField *adjon meg felhasználónevet*, azonnal hello alatt eredmények címke és a bal oldali korlátozott toohello küldését és jobb margók és hello alatt küldése az eredmények címke.
+   * **Jelszó**: a helyőrző szöveg A UITextField *jelszó megadása*, azonnal kijelölése hello felhasználónév szövegmezőt és korlátozott toohello bal és jobb margók és hello felhasználónév szövegmező alatt. Ellenőrizze a hello **szövegbeviteli biztonságos** hello attribútum megtekintő lehetőséget a *vissza kulcs*.
+   * **Jelentkezzen be**: A UIButton feliratú azonnal hello jelszó szövegmező alatt, és törölje a hello **engedélyezve** hello attribútumok megtekintő lehetőséget a *vezérlő – tartalom*
+   * **WNS**: címke és kapcsoló tooenable küldése hello értesítési Windows értesítési szolgáltatásával, ha a telepítő hello központ le van. Lásd: hello [Windows bevezetés](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) oktatóanyag.
+   * **GCM**: címke és kapcsoló tooenable küldése hello értesítési tooGoogle Cloud Messaging, ha a telepítő hello központ le van. Lásd: [Android bevezetés](notification-hubs-android-push-notification-google-gcm-get-started.md) oktatóanyag.
+   * **APNS**: címke és kapcsoló tooenable küldése hello Apple Platform Notification szolgáltatáshoz értesítést toohello.
+   * **Recipent felhasználónév**: a helyőrző szöveg A UITextField *címzett felhasználónév címke*, azonnal alatt hello GCM címke és korlátozott toohello bal és jobb margók és hello GCM alatt címkézését.
 
-    Néhány összetevőt hozzáadott a [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) oktatóanyag.
+    Néhány összetevőt hozzáadott hello [Ismerkedés a Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) oktatóanyag.
 
-1. **CTRL** ViewController.h húzza a összetevői a nézetben, és adja hozzá ezek új értékesítési lehetőségek.
+1. **CTRL** az egérrel húzzon át hello nézet tooViewController.h hello összetevőket, és adja hozzá ezek új értékesítési lehetőségek.
    
         @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
         @property (weak, nonatomic) IBOutlet UITextField *PasswordField;
         @property (weak, nonatomic) IBOutlet UITextField *RecipientField;
         @property (weak, nonatomic) IBOutlet UITextField *NotificationField;
    
-        // Used to enable the buttons on the UI
+        // Used tooenable hello buttons on hello UI
         @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
         @property (weak, nonatomic) IBOutlet UIButton *SendNotificationButton;
    
-        // Used to enabled sending notifications across platforms
+        // Used tooenabled sending notifications across platforms
         @property (weak, nonatomic) IBOutlet UISwitch *WNSSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *GCMSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *APNSSwitch;
    
         - (IBAction)LogInAction:(id)sender;
-2. A ViewController.h, adja hozzá a következő `#define` alatt az importálási utasítást. Helyettesítő a *< írja be a háttérkiszolgáló végpont\>*  helyőrző a célként megadott URL-címet, a háttéralkalmazás az előző szakaszban központi telepítéséhez használt. Például *http://you_backend.azurewebsites.net*.
+2. A ViewController.h, adja hozzá a hello következő `#define` alatt az importálási utasítást. Helyettesítő hello *< írja be a háttérkiszolgáló végpont\>*  helyőrzőt hello használt toodeploy a háttéralkalmazás hello előző szakaszban cél URL-címe. Például *http://you_backend.azurewebsites.net*.
    
         #define BACKEND_ENDPOINT @"<Enter Your Backend Endpoint>"
-3. A projekt, hozzon létre egy új **Cocoa Touch osztály** nevű **RegisterClient** való az ASP.NET-háttér létrehozott. Hozzon létre a osztályt való öröklődés `NSObject`. Majd adja hozzá a következő kódot a RegisterClient.h a.
+3. A projekt, hozzon létre egy új **Cocoa Touch osztály** nevű **RegisterClient** az ASP.NET-háttér létrehozott hello toointerface. Hozzon létre hello osztályt való öröklődés `NSObject`. Majd adja hozzá a következő kódot a hello RegisterClient.h hello.
    
         @interface RegisterClient : NSObject
    
@@ -87,7 +87,7 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
         -(instancetype) initWithEndpoint:(NSString*)Endpoint;
    
         @end
-4. A RegisterClient.m frissítés a `@interface` szakasz:
+4. Hello RegisterClient.m frissítse hello `@interface` szakasz:
    
         @interface RegisterClient ()
    
@@ -102,7 +102,7 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
                     tags:(NSSet*)tags andCompletion:(void(^)(NSURLResponse*, NSError*))completion;
    
         @end
-5. Cserélje le a `@implementation` című szakasza a következő kóddal RegisterClient.m.
+5. Cserélje le a hello `@implementation` hello RegisterClient.m a következő kód hello szakaszában.
 
         @implementation RegisterClient
 
@@ -261,32 +261,32 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
 
         @end
 
-    A fenti kódot valósítja meg az útmutató a cikkben ismertetett logika [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) a háttéralkalmazás NSURLSession REST elvégzéséhez használt hívások, és helyileg tárolja a registrationId NSUserDefaults adott vissza által az értesítési központban.
+    a fenti hello kódot megvalósítja hello útmutatást a cikkben ismertetett hello logika [az alkalmazás háttérrendszeréből regisztrálása](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) NSURLSession használatával tooperform REST meghívja tooyour háttéralkalmazás és NSUserDefaults toolocally tároló hello hello értesítési központ által visszaadott registrationId.
 
-    Vegye figyelembe, hogy ez az osztály van szükség a tulajdonsága **authorizationHeader** kell beállítani a megfelelő működéshez. A tulajdonság értéke a **ViewController** osztály a bejelentkezés után.
+    Vegye figyelembe, hogy ez az osztály van szükség a tulajdonsága **authorizationHeader** toobe rendelés toowork megfelelően beállítva. A tulajdonság értéke által hello **ViewController** osztály után hello jelentkezzen be.
 
-1. A ViewController.h, adjon hozzá egy `#import` RegisterClient.h utasítást. Ezután adjon hozzá egy; az az eszköz jogkivonatát, és hivatkozás egy `RegisterClient` a példányt a `@interface` szakasz:
+1. A ViewController.h, adjon hozzá egy `#import` RegisterClient.h utasítást. Majd adjon hozzá egy; hello eszköz jogkivonat, és hivatkozzon tooa `RegisterClient` példánya a hello `@interface` szakasz:
    
         #import "RegisterClient.h"
    
         @property (strong, nonatomic) NSData* deviceToken;
         @property (strong, nonatomic) RegisterClient* registerClient;
-2. ViewController.m, adja hozzá a belső metódust nyilatkozatot a `@interface` szakasz:
+2. ViewController.m, adja hozzá a titkos metódus deklarációjában a hello `@interface` szakasz:
    
         @interface ViewController () <UITextFieldDelegate, NSURLConnectionDataDelegate, NSXMLParserDelegate>
    
-        // create the Authorization header to perform Basic authentication with your app back-end
+        // create hello Authorization header tooperform Basic authentication with your app back-end
         -(void) createAndSetAuthenticationHeaderWithUsername:(NSString*)username
                         AndPassword:(NSString*)password;
    
         @end
 
 > [!NOTE]
-> Az alábbi kódrészletben nincs a biztonságos hitelesítési séma, helyettesítse be a végrehajtása a **createAndSetAuthenticationHeaderWithUsername:AndPassword:** , az adott hitelesítési mechanizmus, amely létrehoz egy hitelesítési jogkivonatot a register ügyfél osztály, például az OAuth, az Active Directory által.
+> hello alábbi részlet nem egy biztonságos hitelesítési séma, helyettesítse be hello hello végrehajtásának **createAndSetAuthenticationHeaderWithUsername:AndPassword:** , az adott hitelesítési mechanizmus egy hello register ügyfél osztály, például az OAuth, az Active Directory által használt hitelesítési jogkivonat toobe létrehozó.
 > 
 > 
 
-1. Ezt a a `@implementation` ViewController.m szakasza adja hozzá az alábbi kód, amely hozzáadja a beállítás a eszköz token és hitelesítési fejléc végrehajtására.
+1. Ezt a hello `@implementation` ViewController.m szakasza adja hozzá a következő kód, amely hello megvalósítási beállítás hello eszköz token és hitelesítési fejléc hozzáadása hello.
    
         -(void) setDeviceToken: (NSData*) deviceToken
         {
@@ -311,8 +311,8 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
             return YES;
         }
    
-    Vegye figyelembe, hogyan az eszköz jogkivonatát beállítás lehetővé teszi, hogy a Bejelentkezés gombra. Ennek oka az, a bejelentkezési művelet részeként a view vezérlő regisztrálja, a leküldéses értesítések az a háttéralkalmazás. Emiatt nem szeretnénk bejelentkezési művelet elérhetők lesznek, amíg az eszköz jogkivonatát megfelelően be van állítva. Mindaddig, amíg a korábbi történik, az utóbbi előtt használata is leválasztja a leküldéses regisztráció a bejelentkezéshez.
-2. A ViewController.m, az alábbi kódtöredékek segítségével valósítja meg a műveletet a a **bejelentkezés** gombra és a értesítést küldeni az ASP.NET-háttérrendszerből használatával metódust.
+    Vegye figyelembe, hogyan beállítás hello eszköz jogkivonatát lehetővé teszi, hogy hello bejelentkezés gombra. Ennek az az oka hello bejelentkezési művelet részeként a hello nézetvezérlő regisztrálja a leküldéses értesítések az hello háttéralkalmazás. Emiatt nem szeretnénk bejelentkezési művelet toobe elérhető keretein belül hello eszköz jogkivonatát megfelelően be van állítva. Hello leküldéses regisztráció a bejelentkezéshez hello is absztrakcióhoz, mindaddig, amíg hello volt ez utóbbi hello előtt történik.
+2. A ViewController.m, használja az alábbi kódtöredékek tooimplement hello tartozó műveleti módszer a hello a **bejelentkezés** gombra, és egy metódus toosend hello értesítési üzenet használatával hello ASP.NET-háttérrendszerből.
    
        - (IBAction) LogInAction: (id) küldő {/ / hitelesítési fejléc létrehozásáról és a nyilvántartás ügyfél NSString * felhasználónév = saját maga. UsernameField.text;   NSString * jelszó = saját maga. PasswordField.text;
    
@@ -322,15 +322,15 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
 
         -SendNotificationASPNETBackend (a "void"): (NSString*) pns UsernameTag: (NSString*) usernameTag üzenetet: (NSString*) üzenet {NSURLSession* munkamenet = [NSURLSession sessionWithConfiguration: [ NSURLSessionConfiguration defaultSessionConfiguration] delegált: üres delegateQueue:nil];
 
-            A pns-sel és a username címke a többi URL-címet paraméterekként átadása a háttérrendszer által igényelt NSURL * requestURL ASP.NET = [által igényelt NSURL URLWithString: [NSString stringWithFormat:@"%@/api/notifications? pns = % @& to_tag = % @", BACKEND_ENDPOINT, pns, usernameTag]];
+            A hello többi URL-cím toohello ASP.NET háttér által igényelt NSURL * requestURL paraméterként hello pns-sel és a username címke átadni = [által igényelt NSURL URLWithString: [NSString stringWithFormat:@"%@/api/notifications? pns = % @& to_tag = % @", BACKEND_ENDPOINT, pns, usernameTag]];
 
             NSMutableURLRequest * kérelem = [NSMutableURLRequest requestWithURL:requestURL];    [lekérő setHTTPMethod:@"POST"];
 
-            A utánzatait authenticationheader beszerezni a register-ügyfél NSString * authorizationHeaderValue = [NSString stringWithFormat:@"Basic % @", self.registerClient.authenticationHeader];    [lekérő setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
+            Hello utánzatait authenticationheader lehívása hello register ügyfél NSString * authorizationHeaderValue = [NSString stringWithFormat:@"Basic % @", self.registerClient.authenticationHeader];    [lekérő setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
 
-            Az értesítési üzenet törzse hozzáadása [setValue:@"application/json;charset=utf-8 kérelem" forHTTPHeaderField:@"Content-Type"];    [setHTTPBody kérése: [üzenet dataUsingEncoding:NSUTF8StringEncoding]];
+            Adja hozzá a hello értesítési üzenet törzse [setValue:@"application/json;charset=utf-8 kérelem" forHTTPHeaderField:@"Content-Type"];    [setHTTPBody kérése: [üzenet dataUsingEncoding:NSUTF8StringEncoding]];
 
-            Hajtsa végre a send notification REST API-t az ASP.NET háttér NSURLSessionDataTask * dataTask = [munkamenet dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError  *Hiba történt) {NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) választ;        Ha (hiba || httpResponse.statusCode! = 200) {NSString* állapot = [NSString stringWithFormat:@"Error állapota a(z) % @: % d\nError: %@\n", pns, httpResponse.statusCode, hiba];            dispatch_async(dispatch_get_main_queue(), ^ {/ szöveg hozzáfűzése, mert minden 3 PNS-hívások is előfordulhat, hogy rendelkezik információval nézet [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];            });            NSLog(status);        }
+            Hello ASP.NET háttér NSURLSessionDataTask * dataTask hello send notification REST API-t végrehajtása [munkamenet dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError  *= Hiba történt) {NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) választ;        Ha (hiba || httpResponse.statusCode! = 200) {NSString* állapot = [NSString stringWithFormat:@"Error állapota a(z) % @: % d\nError: %@\n", pns, httpResponse.statusCode, hiba];            dispatch_async(dispatch_get_main_queue(), ^ {/ szöveg hozzáfűzése, mert az összes 3 PNS-hívások is információk tooview [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];            });            NSLog(status);        }
 
                 if (data != NULL)
                 {
@@ -341,7 +341,7 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
             }];    [dataTask folytatása]; }
 
 
-1. A művelet frissíti a **értesítés küldése** gombot használja az ASP.NET-háttérrendszerből és bármely, a kapcsoló által engedélyezett PNS küldeni.
+1. A hello hello műveletének frissítése **értesítés küldése** toouse hello ASP.NET-háttérrendszerből gombra, és a kapcsoló által engedélyezett PNS tooany küldése.
 
         - (IBAction)SendNotificationMessage:(id)sender
         {
@@ -368,15 +368,15 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
 
 
 
-1. A függvény **ViewDidLoad**, adja hozzá a következő példányt létrehozni a RegisterClient példány és állítsa be a szövegmezők delegáltja.
+1. A függvény **ViewDidLoad**adja hozzá a következő tooinstantiate hello RegisterClient példány hello és állítsa be a szövegmezők hello delegált.
    
        self.UsernameField.delegate = self;
        self.PasswordField.delegate = self;
        self.RecipientField.delegate = self;
        self.registerClient = [[RegisterClient alloc] initWithEndpoint:BACKEND_ENDPOINT];
-2. Most már a **AppDelegate.m**, távolítsa el a módszer a tartalom **alkalmazás: didRegisterForPushNotificationWithDeviceToken:** , és cserélje le a következő meggyőződni arról, hogy a view vezérlő a legújabb eszköz jogkivonatát APNs lekért tartalmazza:
+2. Most a **AppDelegate.m**, távolítsa el az összes hello tartalom hello metódus **alkalmazás: didRegisterForPushNotificationWithDeviceToken:** és cserélje le, hogy a következő toomake hello, hello nézet a tartományvezérlő hello APNs lekért legutóbbi eszköz jogkivonatát tartalmazza:
    
-       // Add import to the top of the file
+       // Add import toohello top of hello file
        #import "ViewController.h"
    
        - (void)application:(UIApplication *)application
@@ -385,23 +385,23 @@ Leküldéses értesítési támogatás az Azure-ban lehetővé teszi egy könnye
            ViewController* rvc = (ViewController*) self.window.rootViewController;
            rvc.deviceToken = deviceToken;
        }
-3. Végül a **AppDelegate.m**, győződjön meg arról, hogy a következő metódust:
+3. Végül a **AppDelegate.m**, győződjön meg arról, hogy a következő metódus hello:
    
        - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
            NSLog(@"%@", userInfo);
            [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
        }
 
-## <a name="test-the-application"></a>Az alkalmazás tesztelése
-1. Az xcode-ban az alkalmazás futtatása egy fizikai iOS-eszközön (leküldéses értesítések nem fog működni a szimulátor).
-2. Az iOS-alkalmazás felhasználói felületén adja meg egy felhasználónevet és jelszót. Bármilyen karakterlánc is lehetnek, de mindkét kell ugyanaz a karakterláncértéke. Kattintson a **bejelentkezés**.
+## <a name="test-hello-application"></a>Teszt hello alkalmazás
+1. Az XCode-ban hello alkalmazás futtatása egy fizikai iOS-eszközön (leküldéses értesítések hello szimulátor fog működni).
+2. A hello iOS-alkalmazás felhasználói felületén írja be a felhasználónevet és jelszót. Bármilyen karakterlánc is lehetnek, de azok hello lehet ugyanaz a karakterlánc értéke. Kattintson a **bejelentkezés**.
    
     ![][2]
 3. Meg kell jelennie egy előugró ablak regisztráció sikeres ad tájékoztatást. Kattintson az **OK** gombra.
    
     ![][3]
-4. Az a **címzett felhasználónév címke* szöveg mezőbe írja be a felhasználó nevét címke használt egy másik eszköz regisztrációját.
-5. Adjon meg egy értesítési üzenetet, és kattintson a **értesítés küldése**.  Csak azokat az eszközöket, amelyek a címzett felhasználói név címkével regisztráció a értesítési üzenet.  Csak azoknak a felhasználóknak továbbítja.
+4. A hello **címzett felhasználónév címke* szöveg mezőbe írja be a hello felhasználói név címke használt hello regisztrálása egy másik eszközről.
+5. Adjon meg egy értesítési üzenetet, és kattintson a **értesítés küldése**.  Csak egy regisztrációs hello címzett felhasználói név címkével rendelkező hello eszköz hello értesítési üzenetet küld.  Csak továbbítás toothose felhasználók.
    
     ![][4]
 

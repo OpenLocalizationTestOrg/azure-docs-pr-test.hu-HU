@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directory-integráció a Splunk vállalati és Splunk felhő |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Splunk vállalati és Splunk felhő között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Splunk vállalati és Splunk felhő között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/09/2017
 ms.author: jeedes
-ms.openlocfilehash: b78e9b7161207a74880e912241d5e965b353d1c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9bb6817cb31dce684cd9cc1c567fa3efc8906ad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-splunk-enterprise-and-splunk-cloud"></a>Oktatóanyag: Azure Active Directory-integráció a Splunk vállalati és Splunk felhő
 
-Ebben az oktatóanyagban elsajátíthatja Splunk vállalati és Splunk felhő integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Splunk vállalati és Splunk felhőalapú Azure Active Directory (Azure AD).
 
-Splunk vállalati és Splunk felhő integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Splunk vállalati és Splunk felhő integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja, aki hozzáfér Splunk vállalati és Splunk felhőalapú Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Splunk vállalati és Splunk felhő egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen - a klasszikus Azure portálon
+- Szabályozhatja az Azure AD, aki hozzáféréssel rendelkezik tooSplunk vállalati és Splunk felhő
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSplunk vállalati és Splunk felhő egyszeri bejelentkezés (SSO) és az Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello a klasszikus Azure portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálja az Azure AD-integrációs Splunk vállalati és Splunk felhő, a következőkre van szükség:
+az Azure AD-integráció a Splunk vállalati és Splunk felhő tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy Splunk vállalati vagy Splunk felhő SSO engedélyezve előfizetés
 
 
 >[!NOTE]
->Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+>tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 >
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, beszerezheti a [egy hónapos próbaverzió](https://azure.microsoft.com/pricing/free-trial/).
@@ -52,186 +52,186 @@ Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javasla
 ## <a name="scenario-description"></a>Forgatókönyv leírása
 Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben.
 
-Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. Splunk vállalati és Splunk felhő hozzáadása a gyűjteményből
+1. Hello gyűjteményből Splunk vállalati és Splunk felhő hozzáadása
 2. Azure AD egyszeri bejelentkezés tesztelése és konfigurálása
 
 
-## <a name="add-splunk-enterprise-and-splunk-cloud-from-the-gallery"></a>Splunk vállalati és Splunk felhő hozzáadása a gyűjteményből
-Az Azure AD integrálása a Splunk vállalati és Splunk felhő konfigurálásához kell hozzáadnia Splunk vállalati és a felhő Splunk a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="add-splunk-enterprise-and-splunk-cloud-from-hello-gallery"></a>Adja hozzá a Splunk vállalati és Splunk felhő hello gyűjteményből
+tooconfigure hello Splunk vállalati és integrációját Splunk felhő az Azure AD-be, meg kell a tooadd Splunk vállalati, és Splunk felhő hello gyűjtemény tooyour listája felügyelt SaaS-alkalmazásokhoz.
 
-**A gyűjteményből Splunk vállalati és Splunk felhő hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Splunk vállalati és Splunk felhő hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
 
     ![Active Directory][1]
 
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
 
-3. A könyvtár nézetben a alkalmazások nézet megnyitásához kattintson **alkalmazások** a felső menüben.
+3. tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
 
     ![Alkalmazások][2]
 
-4. Kattintson a **Hozzáadás** az oldal alján.
+4. Kattintson a **Hozzáadás** hello lap hello alján.
 
     ![Alkalmazások][3]
 
-5. Az a **mi történjen a teendő** párbeszédpanel, kattintson a **hozzáadhat egy alkalmazást a katalógusból**.
+5. A hello **miről szeretne toodo** párbeszédpanel, kattintson **hello gyűjteményből alkalmazás hozzáadása**.
 
     ![Alkalmazások][4]
 
-6. Írja be a keresőmezőbe, **Splunk vállalati vagy Splunk felhő**.
+6. Hello keresési mezőbe, írja be a **Splunk vállalati vagy Splunk felhő**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_01.png)
 
-7. Az eredmények ablaktáblájában válassza **Splunk vállalati és Splunk felhő**, és kattintson a **Complete** hozzáadása az alkalmazáshoz.
+7. Hello eredmények ablaktábláján jelöljön ki **Splunk vállalati és Splunk felhő**, és kattintson a **Complete** tooadd hello alkalmazás.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_02.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés tesztelése és konfigurálása
 Ebben a szakaszban az Azure AD egyszeri bejelentkezést a vállalati Splunk tesztelése és konfigurálása, és Splunk felhő "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD tudnia kell, a partner felhasználó Splunk vállalati és Splunk felhő Újdonságok egy felhasználó számára az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a Splunk Enterprise és Splunk felhő közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói Splunk vállalati és Splunk felhő tooa felhasználói az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello Splunk vállalati és Splunk felhő közötti kapcsolat kapcsolatot kell toobe létrejött.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** Splunk vállalati és Splunk felhő.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** Splunk vállalati és Splunk felhő.
 
-Az Azure AD az egyszeri bejelentkezés Splunk vállalati és Splunk felhő tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és Splunk vállalati és Splunk felhőalapú Azure AD az egyszeri bejelentkezés tesztelési, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Splunk vállalati és Splunk felhő tesztfelhasználó létrehozása](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)**  - kell rendelkeznie a partner Britta Simon Splunk vállalati és Splunk felhő, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Splunk vállalati és Splunk felhő tesztfelhasználó létrehozása](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)**  -toohave Britta Simon Splunk vállalati és Splunk felhőben található, az Azure AD csatolt toohello ábrázolása rá, hogy valami.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban engedélyezze az Azure AD egyszeri Bejelentkezést a klasszikus portálon, és egyszeri bejelentkezés konfigurálása az Splunk vállalati és Splunk felhőalapú alkalmazásokhoz.
+Ebben a szakaszban engedélyezze az Azure AD egyszeri Bejelentkezést hello a klasszikus portálon, és egyszeri bejelentkezés konfigurálása az Splunk vállalati és Splunk felhőalapú alkalmazásokhoz.
 
 
-**Konfigurálja az Azure AD az egyszeri bejelentkezés Splunk vállalati és Splunk felhő, hajtsa végre az alábbi lépéseket:**
+**Splunk vállalati és Splunk felhőalapú Azure AD az egyszeri bejelentkezés tooconfigure hajtsa végre a lépéseket követve hello:**
 
-1. A klasszikus portálon a a **Splunk vállalati és Splunk felhő** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** megnyitásához a **konfigurálása egyszeri bejelentkezéshez** párbeszédpanel.
+1. Hello klasszikus portál, a hello **Splunk vállalati és Splunk felhő** alkalmazás integráció lapján, kattintson a **konfigurálása egyszeri bejelentkezéshez** tooopen hello **konfigurálása egyszeri bejelentkezéshez** párbeszédpanel.
      
     ![Egyszeri bejelentkezés konfigurálása][6] 
 
-2. Az a **hová felhasználók bejelentkezhetnek a Splunk vállalati és Splunk felhő** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **tovább**.
+2. A hello **hová a tooSplunk vállalati felhasználók toosign és Splunk felhő** lapon jelölje be **az Azure AD az egyszeri bejelentkezés**, és kattintson a **következő**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_03.png) 
 
-3. Az a **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, a következő lépésekkel:
+3. A hello **Alkalmazásbeállítások konfigurálása** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_04.png) 
-  1. Az a **URL-cím bejelentkezési** szövegmező, írja be az URL-címet használják-e a felhasználók bejelentkezés az Splunk vállalati és Splunk felhő alkalmazáshoz, a következő minta használatával:`https://<splunkserverUrl>/en-US/app/launcher/home`
-  2. Az a **azonosító** szövegmezőhöz a Splunk kiszolgáló URL-címét.
-  3. Az a **válasz URL-CÍMEN** szövegmező, írja be a következő mintával az URL-cím:`https://<splunkserver>/saml/acs`
+  1. A hello **URL-cím bejelentkezési** szövegmező, a felhasználók toosign a tooyour Splunk vállalati és mintát a következő hello használó Splunk felhőalapú alkalmazások által használt típus hello URL:`https://<splunkserverUrl>/en-US/app/launcher/home`
+  2. A hello **azonosító** szövegmezőhöz típus hello kiszolgáló URL-CÍMÉT a Splunk.
+  3. A hello **válasz URL-CÍMEN** szövegmezőhöz típus hello URL-cím a következő mintát hello elé:`https://<splunkserver>/saml/acs`
   4. Kattintson a **Tovább** gombra.
  
-4. Az a **Splunk vállalati és Splunk felhő egyszeri bejelentkezés konfigurálásáról** lapon, a következő lépésekkel:
+4. A hello **Splunk vállalati és Splunk felhő egyszeri bejelentkezés konfigurálásáról** lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_05.png)
-  1. Kattintson a **metaadatok letöltése**, majd mentse a fájlt a számítógépen.
+  1. Kattintson a **metaadatok letöltése**, majd mentse hello fájlt a számítógépen.
   2. Kattintson a **Tovább** gombra.
 
-5. Ahhoz, hogy az alkalmazáshoz konfigurált SSO, forduljon a Splunk vállalati és Splunk felhő támogatási csoport, és adja meg azokat a következő:
+5. az alkalmazáshoz konfigurált SSO tooget Forduljon Splunk vállalati és Splunk felhő támogatási csoport, és adja meg hello következő:
 
-    * A letöltött **federaton metaadatok**
-6. A klasszikus portálon, válassza ki az egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**.
+    * letöltött hello **federaton metaadatok**
+6. A klasszikus portálon hello, válassza ki a hello egyszeri bejelentkezés konfigurációs megerősítő, és kattintson **következő**.
     
     ![Az Azure AD-egyszeri bejelentkezés][10]
 
-7. Az a **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
+7. A hello **az egyszeri bejelentkezés megerősítő** kattintson **Complete**.  
  
     ![Az Azure AD-egyszeri bejelentkezés][11]
 
 ### <a name="create-an-azure-ad-test-user"></a>Hozzon létre egy Azure AD-teszt felhasználó
-Ebben a szakaszban Britta Simon neve a klasszikus portálon tesztfelhasználó létrehozása.
+Ebben a szakaszban a tesztfelhasználó hello Britta Simon neve a klasszikus portálon létrehozta.
 
 ![Az Azure AD-felhasználó létrehozása][20]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **a klasszikus Azure portálon**, a bal oldali navigációs ablaktábláján kattintson **Active Directory**.
+1. A hello **a klasszikus Azure portálon**, a hello bal oldali navigációs panelen, kattintson a **Active Directory**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_09.png) 
 
-2. Az a **Directory** listára, válassza ki a könyvtárat, amelyhez a címtár-integrációs engedélyezni szeretné.
+2. A hello **Directory** listában, jelölje be hello directory kívánt tooenable címtár-integráció.
 
-3. A felhasználók listájának megjelenítéséhez a felső menüben, kattintson a **felhasználók**.
+3. toodisplay hello azoknak a felhasználóknak, hello menüben található hello felső részén kattintson **felhasználók**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_03.png) 
 
-4. Lehetőségre a **felhasználó hozzáadása** párbeszédpanel alján, az eszköztárban kattintson **felhasználó hozzáadása**.
+4. tooopen hello **felhasználó hozzáadása** párbeszédpanelen hello eszköztár hello alján, kattintson a **felhasználó hozzáadása**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_04.png) 
 
-5. Az a **adja meg azt a felhasználó** párbeszédpanel lapon, a következő lépésekkel:
+5. A hello **adja meg azt a felhasználó** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_05.png) 
   1. A felhasználó típusát válassza ki az új felhasználót a szervezetében.
-  2. A felhasználó nevében **szövegmező**, típus **BrittaSimon**.
+  2. A felhasználónév hello **szövegmező**, típus **BrittaSimon**.
   3. Kattintson a **Tovább** gombra.
 
-6.  Az a **felhasználói profil** párbeszédpanel lapon, a következő lépésekkel:
+6.  A hello **felhasználói profil** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
   
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_06.png) 
-  1. Az a **Utónév** szövegmezőhöz típus **Britta**.  
-  2. Az a **Vezetéknév** szövegmezőhöz típusa, **Simon**.
-  3. Az a **megjelenített név** szövegmezőhöz típus **Britta Simon**.
-  4. Az a **szerepkör** listáról válassza ki **felhasználói**.
+  1. A hello **Utónév** szövegmezőhöz típus **Britta**.  
+  2. A hello **Vezetéknév** szövegmezőhöz típusa, **Simon**.
+  3. A hello **megjelenített név** szövegmezőhöz típus **Britta Simon**.
+  4. A hello **szerepkör** listáról válassza ki **felhasználói**.
   5. Kattintson a **Tovább** gombra.
 
-7. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
+7. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lap, kattintson a **létrehozása**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_07.png) 
 
-8. Az a **ideiglenes jelszó beszerzése** párbeszédpanel lapon, a következő lépésekkel:
+8. A hello **ideiglenes jelszó beszerzése** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_08.png) 
-  1. Jegyezze fel az értéket a **új jelszó**.
+  1. Írja le hello hello értékének **új jelszó**.
   2. Kattintson a **Befejezés** gombra.   
 
 ### <a name="create-a-splunk-enterprise-and-splunk-cloud-test-user"></a>Splunk vállalati és Splunk felhő tesztfelhasználó létrehozása
 
-Ebben a szakaszban Britta Simon Splunk vállalati és Splunk felhő nevű felhasználó létrehozása. Splunk vállalati és Splunk felhő támogatási csoport hozzáadása a felhasználók a vállalati Splunk és Splunk felhő platform működik.
+Ebben a szakaszban Britta Simon Splunk vállalati és Splunk felhő nevű felhasználó létrehozása. Támogatási csoport tooadd hello felhasználók hello Splunk vállalati és Splunk Cloud platform adjon működik az Splunk vállalati és Splunk felhő.
 
 
-### <a name="assign-the-azure-ad-test-user"></a>Rendelje hozzá az Azure AD-teszt felhasználó
+### <a name="assign-hello-azure-ad-test-user"></a>Rendelje hozzá az Azure AD hello tesztfelhasználó számára
 
-Ebben a szakaszban Azure SSOy saját hozzáférés biztosítása az Splunk vállalati és a felhő Splunk használandó Britta Simon engedélyezi.
+Ebben a szakaszban Britta Simon toouse saját hozzáférés tooSplunk vállalati és Splunk felhőalapú Azure SSOy engedélyezi.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon Splunk vállalati és Splunk felhő hozzárendelése, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooSplunk vállalati és Splunk felhő, hajtsa végre a lépéseket követve hello:**
 
-1. A klasszikus portál megnyitásához az alkalmazások megtekintése a könyvtár nézetben kattintson **alkalmazások** a felső menüben.
+1. Klasszikus portál hello tooopen hello alkalmazások megtekintése, hello könyvtár nézetben kattintson **alkalmazások** hello felső menüjében.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Splunk vállalati és Splunk felhő**.
+2. Hello alkalmazások listában válassza ki a **Splunk vállalati és Splunk felhő**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_50.png) 
 
-3. Kattintson a felső menüben **felhasználók**.
+3. Hello hello felső menüben kattintson a **felhasználók**.
 
     ![Felhasználó hozzárendelése][203]
 
-4. A felhasználók listában válassza ki a **Britta Simon**.
+4. Hello felhasználók listában válassza ki a **Britta Simon**.
 
-5. Kattintson az alsó eszköztár **hozzárendelése**.
+5. Hello alján hello eszköztárában kattintson **hozzárendelése**.
 
     ![Felhasználó hozzárendelése][205]
 
 ### <a name="test-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD SSOonfiguration a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD SSOonfiguration hello hozzáférési Panel segítségével tesztelheti.
 
-A Splunk vállalati kattint, és a hozzáférési Panel Splunk felhő csempére, amikor meg kell beolvasása automatikusan bejelentkezett az Splunk vállalati és Splunk felhő alkalmazására.
+Hello Splunk vállalati és a hozzáférési Panel hello Splunk felhő csempe kattintáskor automatikusan bejelentkezett tooyour Splunk vállalati és Splunk felhő alkalmazás szerezheti be.
 
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

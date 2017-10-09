@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management Lapvezérlők |} Microsoft Docs"
-description: "További tudnivalók a Lapvezérlők fejlesztői portál sablonok az Azure API Management használható."
+title: "az API Management Lapvezérlők aaaAzure |} Microsoft Docs"
+description: "További információk a hello Lapvezérlők fejlesztői portál sablonok az Azure API Management használható."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 1ce0657aebe34d093ae94281de208c929067742a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a16a6fce197c0a2e14807ac21e81a9a73b515b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-api-management-page-controls"></a>Az Azure API Management Lapvezérlők
-Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztői használható portál sablonok.  
+Az Azure API Management vezérlők hello fejlesztői portál sablonok használható a következő hello biztosít.  
   
- A vezérlő használatához helyezze el a kívánt helyre a fejlesztői portálon sablonban. Néhány szabályozza, mint például a [alkalmazás-műveletek](#app-actions) kontrolljához paraméterekkel rendelkezik, az alábbi példában látható módon.  
+ a vezérlő toouse helyezze el szükséges hello helyen hello fejlesztői portálsablon. Egyes vezérlők, például a hello [alkalmazás-műveletek](#app-actions) kontrolljához rendelkezik paraméterekkel, ahogy az alábbi példa hello.  
   
 ```xml  
 <app-actions params="{ appId: '{{app.id}}' }"></app-actions>  
 ```  
   
- A paraméterek értékeit az adatmodell a sablon részeként átadott a. A legtöbb esetben egyszerűen illessze be a megadott példa minden vezérlőjének, ahhoz, hogy a megfelelő működéséhez. A paraméterértékek további információkért lásd: az adatszakasz modell minden sablon egy vezérlő használja.  
+ hello hello paraméter értékét a átadott hello adatmodell hello sablon részeként. A legtöbb esetben egyszerűen illessze be a hello megadott példa minden vezérlőjének, amíg toowork megfelelően. Hello paraméterértékeket a további információkért lásd: modell adatszakasz hello minden sablon egy vezérlő használja.  
   
- A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+ A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ## <a name="developer-portal-template-page-controls"></a>Fejlesztői portálsablon Lapvezérlők  
   
@@ -52,7 +52,7 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
 -   [előfizetés-Mégse](#subscription-cancel)  
   
 ##  <a name="app-actions"></a>alkalmazás-műveletek  
- A `app-actions` vezérlő felhasználói felülete lehetőséget nyújt az alkalmazások a felhasználó oldalon a fejlesztői portálra való interakció.  
+ Hello `app-actions` vezérlő felhasználói felülete lehetőséget nyújt az alkalmazások hello felhasználói profil lapon hello developer portálon.  
   
  ![alkalmazás &#45; műveletek vezérlő](./media/api-management-page-controls/APIM-app-actions-control.png "APIM alkalmazás-műveletek vezérlő")  
   
@@ -66,15 +66,15 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
   
 |Paraméter|Leírás|  
 |---------------|-----------------|  
-|Alkalmazásazonosító|Az alkalmazás azonosítója.|  
+|Alkalmazásazonosító|hello hello alkalmazás azonosítója.|  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `app-actions` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `app-actions` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [Alkalmazások](api-management-user-profile-templates.md#Applications)  
   
 ##  <a name="basic-signin"></a>Basic-bejelentkezés  
- A `basic-signin` vezérlő egy felügyeletét biztosítja, a felhasználói bejelentkezési a bejelentkezési oldal a fejlesztői portálra található információk gyűjtéséhez.  
+ Hello `basic-signin` vezérlő egy felügyeletét biztosítja, a hello adatok gyűjtését a felhasználói bejelentkezési oldal hello developer portálon bejelentkezhet.  
   
  ![Basic &#45; signin vezérlő](./media/api-management-page-controls/APIM-basic-signin-control.png "APIM basic-signin vezérlő")  
   
@@ -88,12 +88,12 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `basic-signin` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `basic-signin` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [bejelentkezés](api-management-page-templates.md#SignIn)  
   
 ##  <a name="paging-control"></a>lapozófájl-vezérlő  
- A `paging-control` lapozás a fejlesztői portálon lapokat biztosít, amelyek elemek listájának megjelenítéséhez.  
+ Hello `paging-control` lapozás a fejlesztői portálon lapokat biztosít, amelyek elemek listájának megjelenítéséhez.  
   
  ![vezérlő lapozási](./media/api-management-page-controls/APIM-paging-control.png "APIM lapozási vezérlő")  
   
@@ -107,7 +107,7 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `paging-control` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `paging-control` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [API-lista](api-management-api-templates.md#APIList)  
   
@@ -116,7 +116,7 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
 -   [Termékek listáját](api-management-product-templates.md#ProductList)  
   
 ##  <a name="providers"></a>szolgáltatók  
- A `providers` vezérlő vezérlőt biztosít a bejelentkezési oldalon a fejlesztői portálra hitelesítésszolgáltatókat kiválasztását.  
+ Hello `providers` vezérlője egy vezérlő kiválasztásának hitelesítésszolgáltatók a hello bejelentkezési oldal hello developer portálon.  
   
  ![szolgáltatók vezérlő](./media/api-management-page-controls/APIM-providers-control.png "APIM szolgáltatók vezérlő")  
   
@@ -130,12 +130,12 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `providers` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `providers` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [bejelentkezés](api-management-page-templates.md#SignIn)  
   
 ##  <a name="search-control"></a>keresési-vezérlő  
- A `search-control` keresési funkciókat biztosítja a fejlesztői portál által felügyelt oldalak felhívásainak elemek listájának megjelenítéséhez.  
+ Hello `search-control` keresési funkciókat biztosítja a fejlesztői portál által felügyelt oldalak felhívásainak elemek listájának megjelenítéséhez.  
   
  ![Keresés vezérlő](./media/api-management-page-controls/APIM-search-control.png "APIM keresési vezérlőelemet")  
   
@@ -149,14 +149,14 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `search-control` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `search-control` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [API-lista](api-management-api-templates.md#APIList)  
   
 -   [Termékek listáját](api-management-product-templates.md#ProductList)  
   
 ##  <a name="sign-up"></a>-előfizetés  
- A `sign-up` vezérlő egy felügyeletét biztosítja, a bejelentkezési oldal a fejlesztői portálra a felhasználói profillal kapcsolatos információk gyűjtéséhez.  
+ Hello `sign-up` vezérlő biztosít egy vezérlő hello bejelentkezési oldal hello developer portálon a felhasználói profillal kapcsolatos információk gyűjtéséhez.  
   
  ![bejelentkezési &#45; vezérlő legfeljebb](./media/api-management-page-controls/APIM-sign-up-control.png "APIM előfizetési vezérlő")  
   
@@ -170,12 +170,12 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `sign-up` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `sign-up` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [feliratkozni](api-management-page-templates.md#SignUp)  
   
 ##  <a name="subscribe-button"></a>előfizetés gomb  
- A `subscribe-button` vezérlőt biztosít a felhasználót, hogy a termék előfizetés.  
+ Hello `subscribe-button` vezérlőt biztosít a felhasználó tooa termék előfizetés.  
   
  ![előfizetés &#45; vezérlőelem](./media/api-management-page-controls/APIM-subscribe-button-control.png "APIM előfizetés gomb vezérlőelem")  
   
@@ -189,12 +189,12 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
  nincs.  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `subscribe-button` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `subscribe-button` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [A termék](api-management-product-templates.md#Product)  
   
 ##  <a name="subscription-cancel"></a>előfizetés-Mégse  
- A `subscription-cancel` vezérlő vezérlőt biztosít a felhasználó oldalon a fejlesztői portálra való előfizetés megszakítása.  
+ Hello `subscription-cancel` vezérlője egy vezérlő törlésének egy előfizetés tooa termék hello felhasználói profil lapon hello developer portálon.  
   
  ![előfizetés &#45; szakítsa meg a vezérlő](./media/api-management-page-controls/APIM-subscription-cancel-control.png "APIM előfizetés-Mégse vezérlő")  
   
@@ -210,13 +210,13 @@ Az Azure API Management a következő vezérlőelemeket biztosítja a fejlesztő
   
 |Paraméter|Leírás|  
 |---------------|-----------------|  
-|subscriptionId|Megszakítja az előfizetés azonosítója.|  
-|CancelUrl|Az előfizetés szakítsa meg az URL-CÍMÉT.|  
+|subscriptionId|hello előfizetés toocancel hello azonosítója.|  
+|CancelUrl|hello előfizetés szakítsa meg az URL-CÍMÉT.|  
   
 ### <a name="developer-portal-templates"></a>Fejlesztői portál sablonok  
- A `subscription-cancel` vezérlő a következő fejlesztői portál sablonok is használható.  
+ Hello `subscription-cancel` hello fejlesztői portál sablonok a következő vezérlő is használható.  
   
 -   [A termék](api-management-product-templates.md#Product)
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

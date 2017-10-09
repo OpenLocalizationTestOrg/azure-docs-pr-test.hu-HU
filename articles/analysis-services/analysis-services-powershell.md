@@ -1,5 +1,5 @@
 ---
-title: "A PowerShell segítségével az Azure Analysis Services kezelése |} Microsoft Docs"
+title: aaaManage Azure Analysis Services a PowerShell-lel |} Microsoft Docs
 description: "Az Azure Analysis Services kezelése a PowerShell használatával."
 services: analysis-services
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: owend
-ms.openlocfilehash: 95593053950f96a83e093c29516e9f66ebad53bf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bc4250bf77b5a0d86c1049ee57493bcf2a1f0c1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-analysis-services-with-powershell"></a>A PowerShell segítségével az Azure Analysis Services kezelése
 
-Ez a cikk ismerteti az Azure Analysis Services-kiszolgáló és adatbázis-felügyeleti feladatok végrehajtásához használt PowerShell-parancsmagokkal. 
+Ez a cikk ismerteti a PowerShell-parancsmagok tooperform Azure Analysis Services-kiszolgáló és adatbázis felügyeleti feladatokat. 
 
-Server kezelési feladatainak létrehozása kiszolgáló törlése, felfüggesztése vagy folytatása a kiszolgáló műveletek vagy módosítása a szolgáltatási szint (réteg) például az Azure Resource Manager (AzureRM) parancsmagok használata. Egyéb feladatok hozzáadásával vagy eltávolításával szerepkör tagjai például adatbázisok kezeléséhez, feldolgozás, vagy a particionálás parancsmagokat használja az SQL Server Analysis Services, ugyanazon SQL Server-moduljában található.
+Server kezelési feladatainak például létrehozása vagy kiszolgáló törlése, felfüggesztése vagy folytatása a kiszolgáló műveletek vagy hello szolgáltatási szint (réteg) módosítása az Azure Resource Manager (AzureRM) parancsmagok használata. Egyéb feladatok adatbázisok kezeléséhez, például fel szerepkör tagjai, feldolgozás, vagy nem használható parancsmagokkal particionálás szereplő hello SQL Server Analysis Services azonos SqlServer modul.
 
 ## <a name="permissions"></a>Engedélyek
-A legtöbb PowerShell feladatok szükséges rendszergazdai jogosultságokkal rendelkezik az Analysis Services-kiszolgáló felügyeli. Felügyelet nélküli műveletek PowerShell ütemezett feladatok, amelyek. Az ütemező futtatásához használt fiók rendszergazdai jogosultságokkal kell rendelkeznie az Analysis Services-kiszolgálóhoz. 
+A legtöbb PowerShell feladatok szükséges kezelt hello Analysis Services kiszolgálón rendszergazdai jogosultsággal rendelkezik. Felügyelet nélküli műveletek PowerShell ütemezett feladatok, amelyek. hello Feladatütemező hello használt fiók rendszergazdai jogosultságokat kell hello Analysis Services-kiszolgálóhoz. 
 
-A kiszolgáló műveleteket AzureRm-parancsmagok használatával, a fiók vagy a Feladatütemező futtató fiók is szerepkörhöz kell tartoznia a tulajdonos az erőforrás a [átruházásához hozzáférés-vezérlés (RBAC)](../active-directory/role-based-access-control-what-is.md). 
+A kiszolgáló műveleteket AzureRm-parancsmagok használatával, a fiók vagy hello használt ütemező fiók is tartoznia kell toohello tulajdonosi szerepkör hello erőforrás a [átruházásához hozzáférés-vezérlés (RBAC)](../active-directory/role-based-access-control-what-is.md). 
 
 ## <a name="server-operations"></a>Kiszolgáló műveletei 
-Az Azure Analysis Services-parancsmagok szerepelnek a [AzureRM.AnalysisServices](https://www.powershellgallery.com/packages/AzureRM.AnalysisServices) összetevő modul. AzureRM parancsmag-modulok telepítése, lásd: [Azure Resource Manager parancsmagjainak](/powershell/azure/overview) a PowerShell-galériában.
+Az Azure Analysis Services-parancsmagok hello szerepelnek [AzureRM.AnalysisServices](https://www.powershellgallery.com/packages/AzureRM.AnalysisServices) összetevő modul. tooinstall AzureRM parancsmag modulok: [Azure Resource Manager parancsmagjainak](/powershell/azure/overview) a PowerShell-galériában hello.
 
 |Parancsmag|Leírás| 
 |------------|-----------------| 
-|[Export-AzureAnalysisServicesInstance](/powershell/module/azurerm.analysisservices/export-azureanalysisservicesinstancelog)|Exportálja a napló fájlba.| 
+|[Export-AzureAnalysisServicesInstance](/powershell/module/azurerm.analysisservices/export-azureanalysisservicesinstancelog)|Export toofile naplózása.| 
 |[Get-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/get-azurermanalysisservicesserver)|Lekérdezi a server-példány részletes adatait.|  
 |[Új AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/new-azurermanalysisservicesserver)|Hoz létre egy kiszolgálópéldányt.|
 |[Remove-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/remove-azurermanalysisservicesserver)|Eltávolítja a server-példányt.|  
 |[Suspend-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/suspend-azurermanalysisservicesserver)|Felfüggeszti a server-példányt.| 
 |[RESUME-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/resume-azurermanalysisservicesserver)|A server-példány folytatja.|  
 |[Set-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/set-azurermanalysisservicesserver)|A server-példány módosítása.|   
-|[Teszt-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/test-azurermanalysisservicesserver)|Teszteli a kiszolgálópéldány megléte.| 
+|[Teszt-AzureRmAnalysisServicesServer](/powershell/module/azurerm.analysisservices/test-azurermanalysisservicesserver)|A server-példány tesztek hello megléte.| 
 
 ## <a name="database-operations"></a>Adatbázis-műveletek
 
-Az Azure Analysis Services-adatbázis üzemeltetése azonos használja [SqlServer](https://www.powershellgallery.com/packages/SqlServer) SQL Server Analysis Services modul. Azonban nem minden parancsmagok Azure Analysis Services használata támogatott. 
+Az Azure Analysis Services adatbázis műveletei pedig hello azonos [SqlServer](https://www.powershellgallery.com/packages/SqlServer) SQL Server Analysis Services modul. Azonban nem minden parancsmagok Azure Analysis Services használata támogatott. 
 
-Az SQL Server modul adja meg a tevékenység-specifikus adatbázis parancsmagokat, valamint az általános célú Invoke-ASCmd parancsmag, amely egy táblázatos modell Scripting Language (TMSL) lekérdezés vagy parancsfájl fogadja. Az SQL Server modulban a következő parancsmagok Azure Analysis Services használata támogatott.
+hello SqlServer modul adja meg a tevékenység-specifikus adatbázis parancsmagokat, valamint hello általános célú Invoke-ASCmd parancsmag, amely fogad egy táblázatos modell Scripting Language (TMSL) lekérdezés vagy parancsfájl. hello hello SqlServer modul a következő parancsmagok használhatók az Azure Analysis Services.
 
   
 |Parancsmag|Leírás|
 |------------|-----------------| 
-|[Adja hozzá RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Tag hozzáadása egy adatbázis-szerepkör.| 
+|[Adja hozzá RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Egy tag tooa adatbázis-szerepkör hozzáadása.| 
 |[Biztonsági mentés-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet)|Analysis Services-adatbázis biztonsági mentése.|  
 |[Remove-RoleMember](https://msdn.microsoft.com/library/hh510173.aspx)|Tag eltávolítása egy adatbázis-szerepkör.|   
 |[Invoke-ASCmd](https://msdn.microsoft.com/library/hh479579.aspx)|Hajtsa végre a TMSL parancsfájlt.|

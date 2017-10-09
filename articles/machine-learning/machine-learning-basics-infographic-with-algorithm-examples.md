@@ -1,6 +1,6 @@
 ---
 title: "Infographic: A gép tanulás alapjainak - algoritmus példák |} Microsoft Docs"
-description: "A machine learning alapjai könnyen érthető áttekintését algoritmus vonatkozó példákat tartalmaz. A letölthető infographic legtöbb gépi tanulási a kérdések ismerteti."
+description: "A machine learning alapjai könnyen érthető áttekintését algoritmus vonatkozó példákat tartalmaz. hello letölthető infographic legtöbb gépi tanulási a kérdések ismerteti."
 keywords: "Machine learning alapjai algoritmus példák gépi tanulás kezdők, a machine learning kérdéseket, a népszerű algoritmusok, algoritmus infographic"
 services: machine-learning
 documentationcenter: 
@@ -15,29 +15,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: garye
-ms.openlocfilehash: 03d5b53f63fddb95f369e2673f4c3430d50d6614
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a703021454fde76f770b2f6c8420b9ba2488d768
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="downloadable-infographic-machine-learning-basics-with-algorithm-examples"></a>Letölthető infografika: a gépi tanulás alapjai algoritmuspéldákkal
-Töltse le a machine learning alapjai további információt a machine learning gyakori kérdések megválaszolása használt népszerű algoritmusok könnyen érthető infographic áttekintése. Algoritmus példák segítségével a machine learning kezdő melyik algoritmust használja, és azok még felhasználási területének ismertetése.
+Töltse le a gépi tanulási népszerű használt algoritmusok tooanswer közös gépi tanulás kérdésekkel kapcsolatos alapvető tudnivalók toolearn könnyen érthető infographic áttekintése. Algoritmus példák segítségével hello machine learning kezdő megértéséhez, mely algoritmusok toouse és mi most használhatók.
 
 ## <a name="popular-algorithms-in-machine-learning-studio"></a>A Machine Learning Studióban népszerű algoritmusok
-[Az Azure Machine Learning Studio](https://studio.azureml.net/) a prediktív elemzés algoritmusok hatalmas katalógusában tartalmaz. A infographic - regressziós, anomáliadetektálás, fürtözési és besorolási - algoritmusok négy népszerű termékcsaládok azonosítja, és hivatkozásokat ad működő szereplő példák a [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/). A gyűjtemény példa kísérletek és oktatóprogramot kínál, amelyek bemutatják, hogyan lehet alkalmazni ezeket az algoritmusokat sok valós megoldásokban tartalmazza.
+[Az Azure Machine Learning Studio](https://studio.azureml.net/) a prediktív elemzés algoritmusok hatalmas katalógusában tartalmaz. hello infographic négy népszerű családok - regressziós, anomáliadetektálás, fürtözési és besorolási - algoritmusokat azonosítja, valamint hivatkozásokat tooworking szereplő példák a [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/). hello gyűjtemény példa kísérletek és oktatóprogramot kínál, amelyek bemutatják, hogyan lehet alkalmazni ezeket az algoritmusokat sok valós megoldásokban tartalmazza.
 
-## <a name="download-the-infographic-with-algorithm-examples"></a>Töltse le a infographic algoritmus-példákkal
-**[Letöltés: Infographic a machine learning alapjai algoritmus példák (PDF) mutató hivatkozásokkal](http://download.microsoft.com/download/0/5/A/05AE6B94-E688-403E-90A5-6035DBE9EEC5/machine-learning-basics-infographic-with-algorithm-examples.pdf)**
+## <a name="download-hello-infographic-with-algorithm-examples"></a>Töltse le a hello infographic algoritmus-példákkal
+**[Letöltés: Infographic a machine learning alapjai hivatkozások tooalgorithm példákkal (PDF)](http://download.microsoft.com/download/0/5/A/05AE6B94-E688-403E-90A5-6035DBE9EEC5/machine-learning-basics-infographic-with-algorithm-examples.pdf)**
 
 ![Infographic: Gépi tanulási algoritmus példákkal alapjait. Népszerű algoritmusokat. A Machine learning kezdőknek.](./media/machine-learning-basics-infographic-with-algorithm-examples/machine-learning-basics-infographic-with-algorithm-examples.png)
 
 ## <a name="more-help-with-algorithms-for-beginners-and-advanced-users"></a>További segítség algoritmusok a kezdő és a tapasztalt felhasználók
-* A különböző típusú gépi tanulási algoritmusok, hogy mire szolgál, és a megfelelőt a megoldás kiválasztása mélyebb tárgyalását lásd: [algoritmusok kiválasztása a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
-* Kategória a Machine Learning Studióban elérhető összes gépi tanulási algoritmusok listájáért lásd: [inicializálása modell] [ initialize-model] a Machine Learning Studio algoritmus és a modul segítségével.
+* Gépi tanulási algoritmusok, hogy mire szolgál, és hogyan toochoose hello megfelelőt a megoldás különböző típusú hello mélyebb tárgyalását lásd: [hogyan toochoose algoritmusok használata a Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md).
+* Az összes hello gépi tanulási algoritmusok a Machine Learning Studióban elérhető kategória szerint listájáért lásd: [inicializálása modell] [ initialize-model] hello Machine Learning Studio algoritmus és a modul segítségével.
 * Teljes betűrendben listáját az algoritmusok és a modulok a Machine Learning Studióban, tekintse meg a [a Machine Learning Studio moduljai A-Z listában] [ a-z-list] a Machine Learning Studio algoritmus és a modul segítségével.
-* Ha szeretne egy letölthető és kinyomtatható diagramot a Machine Learning Studio funkcióiról, tekintse meg [Az Azure Machine Learning Studio funkcióit bemutató diagram](machine-learning-studio-overview-diagram.md) című cikket.
-* A Cortana Intelligence Gallery és a rendelkezésre álló számos Közösség által készített erőforrások áttekintését, lásd: [megosztást, és felderítik a Cortana Intelligence Gallery erőforrások](machine-learning-gallery-how-to-use-contribute-publish.md).
+* Lásd a toodownload és nyomtatási ábrázoló diagram, amely áttekintést nyújt a Machine Learning Studio funkcióiról hello [Azure Machine Learning Studio képességeit áttekintő diagram](machine-learning-studio-overview-diagram.md).
+* Áttekintést hello Cortana Intelligence Gallery és hello sok Közösség által készített forrásanyag is elérhető van, a következő témakörben: [megosztás és a Cortana Intelligence Gallery hello erőforrások felderítéséhez](machine-learning-gallery-how-to-use-contribute-publish.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

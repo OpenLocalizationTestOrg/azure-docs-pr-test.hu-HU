@@ -1,6 +1,6 @@
 ---
-title: "Azure-sablonok között összetett értéket átadni |} Microsoft Docs"
-description: "Azt mutatja be megközelítés használatos összetett objektumok állapotadatok megosztása Azure Resource Manager-sablonok és a kapcsolt sablonok használata ajánlott."
+title: "aaaPass összetett értékek tartománya: Azure-sablonok |} Microsoft Docs"
+description: "Azt mutatja be ajánlott megközelítés használatos összetett objektumok tooshare állapot adatait az Azure Resource Manager-sablonok és a csatolt sablonok használatával."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/26/2016
 ms.author: tomfitz
-ms.openlocfilehash: 23cc4321159a87b61c177b11381646af8bd9eb35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72df1dee351446cea6ce15269e6db288b1f1db79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="share-state-to-and-from-azure-resource-manager-templates"></a>Fájlmegosztási állapot és az Azure Resource Manager-sablonok
-Ez a témakör gyakorlati tanácsok a kezelése és megosztása a sablonokon belüli állapotát jeleníti meg. A paraméterek és változók ebben a témakörben szereplő példák az objektumtípus adhat meg a telepítési követelményeket kényelmesen rendszerezéséhez. Ezekben a példákban a saját objektumok, amelyek a környezetben jelentéssel bírnak valósíthat meg.
+# <a name="share-state-tooand-from-azure-resource-manager-templates"></a>Megosztás állapot tooand Azure Resource Manager-sablonok alapján
+Ez a témakör gyakorlati tanácsok a kezelése és megosztása a sablonokon belüli állapotát jeleníti meg. hello paraméterek és változók ebben a témakörben szereplő példák hello típusú objektumok definiálhat tooconveniently rendezheti a telepítési követelményeket. Ezekben a példákban a saját objektumok, amelyek a környezetben jelentéssel bírnak valósíthat meg.
 
-Ez a témakör egy nagyobb tanulmány részét képezi. Olvassa el a teljes dokumentum, le kell töltenie [globális osztály Resource Manager sablonok szempontok és eljárások bizonyítása](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf).
+Ez a témakör egy nagyobb tanulmány részét képezi. Töltse le a teljes papír tooread hello [globális osztály Resource Manager sablonok szempontok és eljárások bizonyítása](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf).
 
 ## <a name="provide-standard-configuration-settings"></a>Adja meg a szabványos konfigurációs beállítások
-Helyett a sablont, amely a teljes és számos változata kínál, a közös minta arra, hogy a kijelölt ismert konfigurációk. Érvényben a felhasználók kiválaszthatják például védőfal kis, közepes és nagy szabványos pólóra méretét. Más pólóra méretű például a termék ajánlatokat, community edition vagy enterprise edition. Más esetekben lehet munkaterhelés-specifikus konfigurációk egy technológia – például a térkép csökkentése vagy a nem sql.
+Helyett a sablont, amely a teljes és számos változata kínál, egy közös mintát a kijelölt ismert konfigurációk tooprovide. Érvényben a felhasználók kiválaszthatják például védőfal kis, közepes és nagy szabványos pólóra méretét. Más pólóra méretű például a termék ajánlatokat, community edition vagy enterprise edition. Más esetekben lehet munkaterhelés-specifikus konfigurációk egy technológia – például a térkép csökkentése vagy a nem sql.
 
-Összetett objektumok, amelyek tartalmazzák a gyűjtött adatokat, más néven "tulajdonságcsomagok" változók létrehozása, és az adatokat az erőforrás deklarációja alapjául a sablonban. Ezt a módszert biztosít az ügyfelek különböző méretű előre konfigurált megfelelő, ismert konfigurációk. Ismert konfigurációk nélkül felhasználók sablon kell önállóan méretezése fürtön határozza meg, figyelembe a platform erőforrás-korlátozások és számításokat végezni az eredményül kapott particionálás storage-fiókok és egyéb erőforrások (mert a fürt méretét és az erőforrás azonosításához megkötések). Azonkívül, hogy hatékonyabb működését az ügyfél, néhány ismert konfigurációk könnyebben is támogatja, és segít a következők támogatásával sűrűség magasabb szintű.
+Összetett objektumok, amelyek tartalmazzák a gyűjtött adatokat, más néven "tulajdonságcsomagok" változók létrehozása és a sablonban lévő adatok toodrive hello erőforrás nyilatkozatot használva. Ezt a módszert biztosít az ügyfelek különböző méretű előre konfigurált megfelelő, ismert konfigurációk. Ismert konfigurációk nélkül hello sablon felhasználók kell fürt méretezése a platform erőforrás korlátozó saját, tényező határozza meg, és tegye matematikai tooidentify hello eredő storage-fiókok és egyéb erőforrások particionálás (toocluster mérete miatt és erőforrás-korlátozások). Továbbá toomaking hello ügyfél hatékonyabb működését, néhány ismert konfigurációk egyszerűbb toosupport és sűrűség magasabb szintű fájlmegosztásba nyújt segítséget.
 
-A következő példa bemutatja, hogyan adja meg a gyűjtött adatokat a lapblobok az összetett objektumokat tartalmazó változókat. A gyűjtemények megadása a virtuális gép méretét, a hálózati beállításokat, az operációs rendszeri beállítások és a rendelkezésre állási beállítások használt értékek.
+a következő példa azt mutatja meg hogyan hello toodefine változókat, amelyek tartalmazzák a gyűjtött adatokat jelképező összetett objektumra. hello gyűjtemények megadása a virtuális gép méretét, a hálózati beállításokat, az operációs rendszeri beállítások és a rendelkezésre állási beállítások használt értékek.
 
     "variables": {
       "tshirtSize": "[variables(concat('tshirtSize', parameters('tshirtSize')))]",
@@ -109,9 +109,9 @@ A következő példa bemutatja, hogyan adja meg a gyűjtött adatokat a lapblobo
       }
     }
 
-Figyelje meg, hogy a **tshirtSize** változó összefűzi egy paraméteren keresztül megadott pólóra méretét (**kis**, **Közepes**, **nagy** ) a szöveg **tshirtSize**. Ez a változó segítségével pólóra méret társított összetett objektumot változója beolvasása.
+Figyelje meg, hogy hello **tshirtSize** változó összefűzi egy paraméteren keresztül megadott hello Póló mérete (**kis**, **Közepes**, **nagy**) toohello szöveg **tshirtSize**. A változó tooretrieve hello társított összetett objektumot változó használata pólóra méret.
 
-Ezek a változók a sablonban később majd hivatkozhat. Nevű változókat és a Tulajdonságok lehetőséget egyszerűbbé teszi a sablonok szintaxisát, és megkönnyíti, hogy tudni, hogy a környezetben. A következő példa egy erőforrás értékeinek beállításához korábban megjelenített objektumok használatával történő telepítéséről határozza meg. A Virtuálisgép-méretet lekérésével értékét állítsa például `variables('tshirtSize').vmSize` során az értéket, a lemez méretét veszi át a `variables('tshirtSize').diskSize`. Ezenkívül csatolt sablon URI-JÁNAK értéke beállított `variables('tshirtSize').vmTemplate`.
+Ezek a változók később hello sablonban majd hivatkozhat. hello képességét tooreference nevű-változók és azok tulajdonságaival egyszerűbbé teszi a hello sablonok szintaxisát, és teszi, hogy könnyen toounderstand környezetben. a következő példa hello egy erőforrás toodeploy hello objektumok előzőleg bemutatott tooset értékek használatával határozza meg. Hello Virtuálisgép-méretet lekérésével hello értékét állítsa például `variables('tshirtSize').vmSize` hello érték során hello lemez méretét veszi át a `variables('tshirtSize').diskSize`. Emellett a csatolt sablon hello értékkel van beállítva a hello URI `variables('tshirtSize').vmTemplate`.
 
     "name": "master-node",
     "type": "Microsoft.Resources/deployments",
@@ -166,23 +166,23 @@ Ezek a változók a sablonban később majd hivatkozhat. Nevű változókat és 
       }
     }
 
-## <a name="pass-state-to-a-template"></a>A sablonok hozzáférési állapota
+## <a name="pass-state-tooa-template"></a>Hozzáférési állapot tooa sablon
 Megosztott állapot paramétereknek, hogy közvetlenül a telepítés során a sablonba.
 
-A következő táblázat a sablonok a gyakran használt paraméterek.
+a következő tábla listák általánosan használt paraméterek a sablonok hello.
 
 | Név | Érték | Leírás |
 | --- | --- | --- |
-| location |Az Azure-régiók korlátozott listájából karakterlánc |A hely, ahol az erőforrások telepítése. |
-| storageAccountNamePrefix |Karakterlánc |A Tárfiók, ahol a virtuális gép lemezeinek kerülnek egyedi DNS-neve |
-| Tartománynév |Karakterlánc |A nyilvánosan elérhető jumpbox VM formátumú tartománynevet: **{tartománynév}. { hely}.cloudapp.com** például: **mydomainname.westus.cloudapp.azure.com** |
-| adminUsername |Karakterlánc |A virtuális gépek felhasználónév |
-| adminPassword |Karakterlánc |A virtuális gépek jelszava |
-| tshirtSize |A korlátozott listájából karakterlánc kínált pólóra méretek |A nevesített skálázási egység méretét kiépítését. Például "Kicsi", "közepes", "Nagy" |
-| virtualNetworkName |Karakterlánc |A fogyasztó kívánja használni a virtuális hálózat neve. |
-| enableJumpbox |Korlátozott listájából (engedélyezett vagy letiltott) karakterlánc |A paraméter, amely azonosítja, hogy a környezet egy jumpbox engedélyezi-e. Értékek: "engedélyezve", "Letiltva" |
+| location |Az Azure-régiók korlátozott listájából karakterlánc |hello hely, ahol hello erőforrások telepítése. |
+| storageAccountNamePrefix |Karakterlánc |Hello Tárfiókot, ahol hello virtuális gép lemezeinek kerülnek egyedi DNS-neve |
+| Tartománynév |Karakterlánc |Hello nyilvánosan elérhető jumpbox VM hello formátumban tartománynevet: **{tartománynév}. { hely}.cloudapp.com** például: **mydomainname.westus.cloudapp.azure.com** |
+| adminUsername |Karakterlánc |Virtuális gépek hello tartozó felhasználónév |
+| adminPassword |Karakterlánc |Virtuális gépek hello jelszavát |
+| tshirtSize |A korlátozott listájából karakterlánc kínált pólóra méretek |hello nevű méretezési egység méretének tooprovision. Például "Kicsi", "közepes", "Nagy" |
+| virtualNetworkName |Karakterlánc |Hello fogyasztói hello virtuális hálózat neve toouse szeretne. |
+| enableJumpbox |Korlátozott listájából (engedélyezett vagy letiltott) karakterlánc |Paraméter, amely azonosítja az e tooenable egy jumpbox hello környezethez. Értékek: "engedélyezve", "Letiltva" |
 
-A **tshirtSize** az előző szakaszban használt paraméter típusúként van definiálva:
+Hello **tshirtSize** hello előző szakaszban használt paraméter típusúként van definiálva:
 
     "parameters": {
       "tshirtSize": {
@@ -194,21 +194,21 @@ A **tshirtSize** az előző szakaszban használt paraméter típusúként van de
           "Large"
         ],
         "metadata": {
-          "Description": "T-shirt size of the MongoDB deployment"
+          "Description": "T-shirt size of hello MongoDB deployment"
         }
       }
     }
 
 
-## <a name="pass-state-to-linked-templates"></a>Állapot átadása kapcsolt sablonok
-Csatolt sablonok való csatlakozáskor gyakran statikus vegyesen használ, és létrehozott változókat.
+## <a name="pass-state-toolinked-templates"></a>Továbbítsa állapot toolinked sablonok
+Ha toolinked sablonok, gyakran statikus vegyesen használ, és létrehozott változókat.
 
 ### <a name="static-variables"></a>Statikus változó
-Statikus változó gyakran használják arra, hogy alapértékek, például a használt URL-, egy sablon egész.
+Statikus változók értékei gyakran használt tooprovide alap, például a használt URL-, egy sablon egész.
 
-A következő sablon cikkből a `templateBaseUrl` a sablon legfelső szintű helyét adja meg a Githubon. A következő sorban összeállít egy új változót `sharedTemplateUrl` , amely összefűzi a megosztott erőforrások sablon ismert nevű alap URL-címet. A sor alatt egy összetett objektum változó fogja tárolni Póló mérete, ha az alap URL-címet a ismert konfiguráció sablon helyére összefűzendő és tárolja a `vmTemplate` tulajdonság.
+A következő sablon cikkből hello `templateBaseUrl` hello gyökerét hello sablon meghatározza a Githubon. hello következő sor összeállít egy új változót `sharedTemplateUrl` , amely összefűzi hello alap URL-cím elé hello ismert hello megosztott erőforrások sablon nevét. Adott sor alatt egy összetett objektum változó akkor használt toostore pólóra méretétől, melynél hello alap URL-cím összefűzött toohello ismert konfiguráció sablon helyére, és a rendszer a hello `vmTemplate` tulajdonság.
 
-Ezt a módszert használja az az előnye, hogy a sablon helye megváltozik, ha csak módosítani szeretné az egyik helyen, amely továbbítja azokat a kapcsolt sablonok teljes statikus változó.
+hello ezt a módszert előnye, hogy ha hello sablon helye megváltozik, csak kell toochange hello statikus változó az egyik helyen, amely továbbítja azokat a teljes kapcsolódó hello sablonok.
 
     "variables": {
       "templateBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/postgresql-on-ubuntu/",
@@ -230,13 +230,13 @@ Ezt a módszert használja az az előnye, hogy a sablon helye megváltozik, ha c
     }
 
 ### <a name="generated-variables"></a>Létrehozott változók
-Statikus változó mellett a több változók generálása dinamikusan történik. Ez a szakasz azonosítja az egyes létrehozott változók a gyakori hibatípusokat.
+Továbbá toostatic változók több változók generálása dinamikusan történik. Ez a szakasz azonosítja a legelterjedtebb fajtáit hello közös létrehozott változókat.
 
 #### <a name="tshirtsize"></a>tshirtSize
-A fenti példákban a létrehozott változó tisztában.
+A fenti hello példákban a létrehozott változó tisztában.
 
 #### <a name="networksettings"></a>networkSettings
-Kapacitás, funkció, vagy végpont hatókörön belüli megoldássablonban a kapcsolt sablonok általában létre meglévő erőforrásokat a hálózaton. Egy egyszerű megközelítése, hogy egy összetett objektumot használja a hálózati beállítások tárolásához adja meg azokat a kapcsolt sablonok.
+A kapacitás, a funkció vagy a végpont hatókörön belüli megoldássablonban, hello kapcsolt sablonok általában létrehozása meglévő erőforrások hálózaton. Egy egyszerű megközelítése toouse egy összetett objektum toostore hálózati beállításokat, és adja meg azokat toolinked sablonok.
 
 Hálózati beállítások kommunikáció például alább látható.
 
@@ -258,7 +258,7 @@ Hálózati beállítások kommunikáció például alább látható.
     }
 
 #### <a name="availabilitysettings"></a>availabilitySettings
-A csatolt sablonok létrejött erőforrásokat gyakran kerülnek egy rendelkezésre állási csoportot. A következő példában a rendelkezésre állási készlet neve meg van adva, de is a tartalék tartomány és a frissítési tartományok száma használatára.
+A csatolt sablonok létrejött erőforrásokat gyakran kerülnek egy rendelkezésre állási csoportot. A következő példa hello hello rendelkezésre állási készlet neve van megadva, és is hello tartalék tartományt, és tartományi száma toouse frissítéséhez.
 
     "availabilitySetSettings": {
       "name": "pgsqlAvailabilitySet",
@@ -266,10 +266,10 @@ A csatolt sablonok létrejött erőforrásokat gyakran kerülnek egy rendelkezé
       "udCount": 5
     }
 
-Ha több rendelkezésre állási csoportok (például egy fő csomópontok) és egy másik adatok csomópontok előtagjaként is használhatja a nevét, adjon meg több rendelkezésre állási csoportok, vagy a modell létrehozásához egy adott pólóra méretű változót korábban bemutatott kövesse.
+Ha több rendelkezésre állási csoportok (például egy fő csomópontok) és egy másik adatok csomópontok előtagjaként is használhatja a nevét, adjon meg több rendelkezésre állási csoportok, vagy hello modell létrehozásához egy adott pólóra méretű változót korábban bemutatott kövesse.
 
 #### <a name="storagesettings"></a>storageSettings
-Csatolt sablonok gyakran megosztott tárolási részleteit. Az alábbi példában egy *storageSettings* objektum tartalmazza a tárolási fiók és a tároló neve adatait.
+Csatolt sablonok gyakran megosztott tárolási részleteit. Az alábbi hello példában egy *storageSettings* objektum ismerteti hello tárolási fiók és a tároló nevét.
 
     "storageSettings": {
         "vhdStorageAccountName": "[parameters('storageAccountName')]",
@@ -278,9 +278,9 @@ Csatolt sablonok gyakran megosztott tárolási részleteit. Az alábbi példába
     }
 
 #### <a name="ossettings"></a>osSettings
-Csatolt sablonok szükség lehet operációs rendszer beállításait átadása különféle csomópontok különböző ismert konfigurációs típusok között. Egy összetett objektum tárolására és megosztására operációsrendszer-információkat egyszerűen és is megkönnyíti több operációs rendszer választást is támogatnak a központi telepítéshez.
+A csatolt sablonokkal szükség lehet az toopass operációs rendszer beállításait toovarious csomópontok típusú különböző ismert konfigurációs típusok között. Egy összetett objektumot egy egyszerűen toostore és megosztási operációsrendszer-információkat, és megkönnyíti a könnyebb toosupport több operációs rendszer lehetőség központi telepítéshez.
 
-A következő példa bemutatja egy objektumot *osSettings*:
+hello alábbi példa bemutatja egy objektumot *osSettings*:
 
     "osSettings": {
       "imageReference": {
@@ -292,7 +292,7 @@ A következő példa bemutatja egy objektumot *osSettings*:
     }
 
 #### <a name="machinesettings"></a>machineSettings
-A létrehozott változó *machineSettings* core változók a virtuális gép létrehozása vegyesen tartalmazó összetett objektum. A változók közé tartoznak a rendszergazdai felhasználónevet és jelszót, egy virtuális gép nevét, és az operációs rendszer Képhivatkozás előtagot.
+A létrehozott változó *machineSettings* core változók a virtuális gép létrehozása vegyesen tartalmazó összetett objektum. hello változók közé tartoznak a rendszergazdai felhasználónevet és jelszót, hello virtuális gép nevét egy előtagot és egy operációs rendszer lemezképének mutató hivatkozás.
 
     "machineSettings": {
         "adminUsername": "[parameters('adminUsername')]",
@@ -306,17 +306,17 @@ A létrehozott változó *machineSettings* core változók a virtuális gép lé
         }
     },
 
-Vegye figyelembe, hogy *osImageReference* értékeinek lekéri a *osSettings* a fő sablonban definiált változó. Ez azt jelenti, hogy a virtuális gépek könnyen módosíthatja az operációs rendszer – teljes egészében vagy egy sablon fogyasztó beállítás alapján.
+Vegye figyelembe, hogy *osImageReference* lekéri hello hello értékeinek *osSettings* hello fő sablonban definiált változó. Ez azt jelenti, hogy könnyen módosíthatja a virtuális gépek hello operációs rendszer – teljes egészében vagy sablon felhasználóinak hello beállítás alapján.
 
 #### <a name="vmscripts"></a>vmScripts
-A *vmScripts* objektum részletesen ismerteti a parancsfájlok letöltésére és végrehajtására a Virtuálisgép-példány, beleértve a külső és belső hivatkozik. Kívül hivatkozásokat tartalmaznak az infrastruktúra.
-Belső hivatkozásokat tartalmaznak, a telepített szoftvereket és a konfigurációs.
+Hello *vmScripts* objektumra a hello parancsfájlok toodownload kapcsolatos részleteket tartalmaz, és egy Virtuálisgép-példány, beleértve a külső és belső hivatkozások hajt végre. Kívülről való hivatkozások hello infrastruktúra is.
+Belső hivatkozások hello telepített szoftvereket és a konfigurációs tartalmazza.
 
-Használja a *scriptsToDownload* tulajdonság a parancsfájlok töltse le a virtuális gép listázásához. Ez az objektum parancssori argumentumokat használni a különböző típusú műveleteket mutató hivatkozásokat is tartalmaz. Ilyen műveletek közé tartoznak az alapértelmezett telepítés minden egyes csomóponton, egy telepítés, amelyen az összes csomópont telepítése után és lehet, hogy a megadott sablonkonfigurációs vonatkozó további parancsfájlok végrehajtása.
+Hello használata *scriptsToDownload* tulajdonság toolist hello parancsfájlok toodownload toohello virtuális gép. Ez az objektum is tartalmaz hivatkozásokat toocommand-sor argumentumok különféle műveletek. Ilyen műveletek közé tartoznak, hello alapértelmezett telepítés minden egyes csomóponton, egy telepítés, amely minden csomópont telepítése után fut és esetlegesen a sablonban megadott adott tooa további parancsfájlok végrehajtása.
 
-Ebben a példában a MongoDB, amelyhez szükséges egy soron képes biztosítani a magas rendelkezésre állású telepítésére használt sablon származik. A *arbiterNodeInstallCommand* hozzá lett adva *vmScripts* a soron telepítéséhez.
+Ebben a példában a MongoDB, amely egy soron toodeliver magas rendelkezésre állást igényel használt sablon toodeploy származik. Hello *arbiterNodeInstallCommand* túl hozzá lett adva*vmScripts* tooinstall hello soron.
 
-A változók szakaszban, ahol megtalálja a változókat, amelyek meghatározzák az adott szöveget, futtassa a parancsfájlt a megfelelő értékekkel.
+hello változók szakaszban, ahol található hello változókat, amelyek meghatározzák a hello adott szöveg tooexecute hello parancsfájl hello megfelelő értékekkel.
 
     "vmScripts": {
         "scriptsToDownload": [
@@ -330,9 +330,9 @@ A változók szakaszban, ahol megtalálja a változókat, amelyek meghatározzá
 
 
 ## <a name="return-state-from-a-template"></a>Egy sablonból visszatérési állapota
-Nem csak is át adatokat sablonba, megoszthatja a hívó sablon vissza az adatokat. Az a **kimenete** szakasz csatolt sablon, megadhatja a kulcs/érték párok, amelyeket a Forrássablon lehet használni.
+Nem csak egy sablonba át adatokat, is megosztás hátsó toohello hívó sablon. A hello **kimenete** szakasz csatolt sablon, megadhatja a kulcs/érték párok, amelyeket a hello Forrássablon lehet használni.
 
-A következő példa bemutatja, hogyan felelt meg a magánhálózati IP-cím, egy csatolt sablon hozott létre.
+hello következő példa bemutatja, hogyan toopass hello magánhálózati IP-cím egy csatolt sablon hozott létre.
 
     "outputs": {
         "masterip": {
@@ -341,11 +341,11 @@ A következő példa bemutatja, hogyan felelt meg a magánhálózati IP-cím, eg
          }
     }
 
-A fő sablonon belül az adatokat a következő szintaxissal:
+Hello fő sablont, belül használható hello szintaxisa a következő adatokat:
 
     "[reference('master-node').outputs.masterip.value]"
 
-A kifejezés a kimenetek szakasz vagy az erőforrások terület a fő sablon használható. A kifejezés nem használható a változók szakaszban, mert a futásidejű állapot támaszkodnak. Ez az érték a fő sablonból visszaállításához használja:
+Ebben a kifejezésben hello kimenetek szakasz vagy hello források szakaszában hello fő sablont is használhatja. Hello kifejezés nem használható hello változók szakaszban, mert hello futásidejű állapot támaszkodnak. tooreturn hello fő sablont, használja ezt az értéket:
 
     "outputs": {
       "masterIpAddress": {
@@ -353,10 +353,10 @@ A kifejezés a kimenetek szakasz vagy az erőforrások terület a fő sablon has
         "type": "string"
       }
 
-A csatolt sablon kimenetek szakaszának segítségével a virtuális gép adatlemezek vissza egy példát, lásd: [hozzon létre egy virtuális gép több adatlemezek](resource-group-create-multiple.md).
+Hello használatának példája adja kimenetként, egy virtuális géphez csatolt sablon tooreturn adatlemezek szakaszában, a következő témakörben: [hozzon létre egy virtuális gép több adatlemezek](resource-group-create-multiple.md).
 
 ## <a name="define-authentication-settings-for-virtual-machine"></a>Virtuális gép hitelesítési beállításainak megadása
-A konfigurációs beállításokat a korábban bemutatott minta segítségével adja meg a hitelesítési beállításokat a virtuális gép. Egy sikeres paramétert hoz létre a hitelesítés típusát.
+Hello használható konfigurációs beállítások toospecify hello hitelesítési beállításait a virtuális gépek korábban bemutatott minta. Hello típusú hitelesítés sikeres paramétere hoz létre.
 
     "parameters": {
       "authenticationType": {
@@ -372,7 +372,7 @@ A konfigurációs beállításokat a korábban bemutatott minta segítségével 
       }
     }
 
-A különböző hitelesítési típusok változók hozzáadta, és ez a paraméter értéke alapján központi telepítéshez használt egy változó tárolásához típusát.
+Hozzáadhat hello különböző hitelesítési típust és egy változó toostore, mely a hello paraméter értékének hello alapján központi telepítéshez használt változókat.
 
     "variables": {
       "osProfile": "[variables(concat('osProfile', parameters('authenticationType')))]",
@@ -400,7 +400,7 @@ A különböző hitelesítési típusok változók hozzáadta, és ez a paramét
       }
     }
 
-A virtuális gép meghatározásakor beállíthatja a **osProfile** létrehozott változóhoz.
+Hello virtuális gép definiálásakor meg hello **osProfile** létrehozott toohello változó.
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -410,5 +410,5 @@ A virtuális gép meghatározásakor beállíthatja a **osProfile** létrehozott
 
 
 ## <a name="next-steps"></a>Következő lépések
-* A sablon szakaszai további tudnivalókért lásd: [Azure Resource Manager sablonok készítése](resource-group-authoring-templates.md)
-* A sablonon belül elérhető funkciókat, olvassa el [Azure Resource Manager Sablonfüggvényei](resource-group-template-functions.md)
+* hello sablon hello szakaszai toolearn lásd [Azure Resource Manager sablonok készítése](resource-group-authoring-templates.md)
+* a sablonon belül elérhető toosee hello funkciók lásd [Azure Resource Manager Sablonfüggvényei](resource-group-template-functions.md)

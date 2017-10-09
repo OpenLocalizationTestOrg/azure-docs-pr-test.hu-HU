@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database-séma kezelése több-bérlős alkalmazásban | Microsoft Docs"
+title: "egy több-bérlős alkalmazásban aaaManage Azure SQL Database séma |} Microsoft Docs"
 description: "Több bérlő sémájának kezelése Azure SQL Database-t használó több-bérlős alkalmazásban"
 keywords: "sql database-oktatóanyag"
 services: sql-database
@@ -16,17 +16,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/28/2017
 ms.author: billgib; sstein
-ms.openlocfilehash: 78d76efb88bf11fa18a416b59e6f881539141232
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ea946e556808dabd60dd39cb8173d0512d4bddec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-schema-for-multiple-tenants-in-the-wingtip-saas-application"></a>A több bérlő a Wingtip SaaS-alkalmazás a séma kezelése
+# <a name="manage-schema-for-multiple-tenants-in-hello-wingtip-saas-application"></a>A több bérlő hello Wingtip SaaS-alkalmazás a séma kezelése
 
-A [első Wingtip Szolgáltatottszoftver-oktatóanyag](sql-database-saas-tutorial.md) bemutatja, hogyan az alkalmazás egy bérlő adatbázis létesítéséhez és regisztrálja a katalógusban. Bármely alkalmazás, például a Wingtip SaaS-alkalmazás verzióinformációk lesz, és esetenként esetén a módosítások adatbázisba. A módosítások a következők lehetnek: új vagy módosított séma, új vagy módosított referenciaadatok és rutin adatbázis-karbantartási feladatok az alkalmazás optimális teljesítményének biztosítása érdekében. A SaaS-alkalmazásokkal ezeket a módosításokat koordinált módon kell üzembe helyezni valószínűleg nagyszámú bérlői adatbázison. A módosítások lehet a jövőben bérlői adatbázisok van szükségük a kiépítési folyamat szóló.
+Hello [első Wingtip Szolgáltatottszoftver-oktatóanyag](sql-database-saas-tutorial.md) bemutatja, hogyan hello app egy bérlő adatbázis létesítéséhez és hello katalógus regisztrálásához. Bármely alkalmazás, például a Wingtip SaaS-alkalmazás változik, adott idő alatt, és esetenként hello módosítások toohello adatbázis szükséges. Változások a következők lehetnek új vagy módosított séma, új vagy módosított referenciaadatok és rutin adatbázis karbantartási feladatok tooensure optimális alkalmazás teljesítménye. Egy SaaS-alkalmazáshoz ezek a változások kell egy bérlő adatbázisok potenciálisan nagy járműflotta összehangolt módon telepített toobe. Ezek a módosítások toobe a jövőbeni bérlői adatbázisok, toobe szóló hello létesítésének folyamatát kell használnia kell.
 
-Ez az oktatóanyag két forgatókönyvet ismertet: referenciaadat-frissítések üzembe helyezése az összes bérlőhöz, és index visszaadása a referenciaadatokat tartalmazó táblázathoz. A [rugalmas feladatok](sql-database-elastic-jobs-overview.md) szolgáltatás hajthatók végre ezeket a műveleteket között egyetlen bérlő számára, és a *arany* bérlői adatbázis, amely sablonként szolgál, az új adatbázisokat.
+Ez az oktatóanyag ismerteti, két forgatókönyv - hivatkozás adatok frissítéseinek telepítéséhez az összes bérlőre vonatkozó és index hello retuning hello hivatkozási adatokat tartalmazó tábla. Hello [rugalmas feladatok](sql-database-elastic-jobs-overview.md) szolgáltatás összes bérlők és hello ezeket a műveleteket használt tooexecute van *arany* bérlői adatbázis, amely sablonként szolgál, az új adatbázisokat.
 
 Ezen oktatóanyag segítségével megtanulhatja a következőket:
 
@@ -38,92 +38,92 @@ Ezen oktatóanyag segítségével megtanulhatja a következőket:
 > * Index létrehozása a táblához az összes bérlői adatbázisban
 
 
-Az oktatóanyag teljesítéséhez meg kell felelnie az alábbi előfeltételeknek:
+Ez az oktatóanyag, győződjön meg arról, hogy hello a következő előfeltételek teljesülését toocomplete:
 
-* A Wingtip SaaS-alkalmazás telepítve van. Kevesebb mint öt perc alatt telepítéséhez lásd: [központi telepítése és vizsgálja meg a Wingtip SaaS-alkalmazáshoz](sql-database-saas-tutorial.md)
+* hello Wingtip SaaS-alkalmazás telepítve van. toodeploy öt percen belül, lásd: [központi telepítése és felfedezése hello Wingtip SaaS-alkalmazáshoz](sql-database-saas-tutorial.md)
 * Az Azure PowerShell telepítve van. A részletekért lásd: [Ismerkedés az Azure PowerShell-lel](https://docs.microsoft.com/powershell/azure/get-started-azureps)
-* Telepítve van az SQL Server Management Studio (SSMS) legújabb verziója. [Az SSMS letöltése és telepítése](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
+* hello legújabb verziója az SQL Server Management Studio (SSMS) van telepítve. [Az SSMS letöltése és telepítése](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)
 
-*Ez az oktatóanyag az SQL Database szolgáltatás egy korlátozott előzetes verziójának funkcióit használja (Elastic Database-feladatok). Ha szeretné elvégezni ezt az oktatóanyagot, küldje el az előfizetés-azonosítóját az SaaSFeedback@microsoft.com címre, tárgyként megadva a subject=Elastic Jobs Preview szöveget. Miután megkapta a megerősítést az előfizetésének engedélyezéséről, [töltse le és telepítse a legújabb kiadás előtti feladatok parancsmagjait](https://github.com/jaredmoo/azure-powershell/releases). Ez az előnézet korlátozva, így forduljon SaaSFeedback@microsoft.com kapcsolatos kérdésekre, vagy a támogatási szolgálathoz.*
+*Ez az oktatóanyag hello SQL adatbázis-szolgáltatás, amely egy korlátozott előzetes verziójú (a rugalmas adatbázis-feladatok) funkcióit használja. Ha ez az oktatóanyag kívánja toodo, adja meg az előfizetés-azonosítóval tooSaaSFeedback@microsoft.com témát = a rugalmas feladatok megtekintése. Hogy az előfizetés engedélyezve van, megerősítés megjelenése után [töltse le és telepítse a hello legújabb kiadás előtti feladatok parancsmagok](https://github.com/jaredmoo/azure-powershell/releases). Ez az előnézet korlátozva, így forduljon SaaSFeedback@microsoft.com kapcsolatos kérdésekre, vagy a támogatási szolgálathoz.*
 
 
-## <a name="introduction-to-saas-schema-management-patterns"></a>Az SaaS-sémakezelési minták bemutatása
+## <a name="introduction-toosaas-schema-management-patterns"></a>Bevezetés tooSaaS séma felügyeleti minták
 
-Az adatbázisonkénti egyetlen bérlőt alkalmazó SaaS-mintából fakadó adatelkülönítésnek számos előnye van, ugyanakkor a sok adatbázis karbantartása és kezelése miatt tovább növeli a bonyolultságot. [Rugalmas feladatok](sql-database-elastic-jobs-overview.md) elősegíti az SQL-adatréteg felügyeletét és kezelését. A feladatok lehetővé teszik a feladatok (T-SQL-szkriptek) adatbáziscsoportokon történő, felhasználói interakciótól vagy beviteltől független biztonságos és megbízható futtatását. Ez a módszer használható a séma és a közös referenciaadat-változások üzembe helyezésére egy alkalmazás összes bérlőjében. Az Elastic Jobs feladatok az új bérlők létrehozására használt adatbázis *arany* másolatának karbantartására is használhatók, hogy mindig a legújabb sémával és referenciaadatokkal rendelkezzen.
+hello adatbázisonként egybérlős SaaS mintát hello adatok elkülönítési eredmények az sokféleképpen előnyeit, de: hello ugyanannyi időt vesz igénybe a hello nagyobb fokú összetettségével karbantartása és kezelésének számos más adatbázis vezet be. [Rugalmas feladat](sql-database-elastic-jobs-overview.md) elősegíti a felügyeleti és hello SQL adatrétegbeli kezelése. Feladatok lehetővé teszik a toosecurely és megbízhatóan, független a felhasználói interakcióktól vagy bemenettől, (T-SQL-parancsfájlok) feladatokat futtathat adatbázisok csoportja. Ez a módszer az alkalmazás összes bérlők között használt toodeploy séma és a közös hivatkozás adatváltozásokat lehet. Rugalmas feladat is lehet használt toomaintain egy *arany* hello adatbázis másolatát használt toocreate új bérlők mindenhol hello legutóbbi séma és a referencia-adatokat biztosítva.
 
 ![képernyő](media/sql-database-saas-tutorial-schema-management/schema-management.png)
 
 
 ## <a name="elastic-jobs-limited-preview"></a>Az Elastic Jobs korlátozott előzetes verziója
 
-Megjelent az Elastic Jobs új verziója, amely most az Azure SQL Database integrált funkciója (nincs szükség hozzá további szolgáltatásokra vagy összetevőkre). Ez Elastic Jobs-nak ez az új verziója jelenleg korlátozott előzetes verzió. Ez a korlátozott előzetes verzió jelenleg a PowerShellt támogatja feladatfiókok létrehozásához és a T-SQL-t a feladatok létrehozásához és kezeléséhez.
+Megjelent az Elastic Jobs új verziója, amely most az Azure SQL Database integrált funkciója (nincs szükség hozzá további szolgáltatásokra vagy összetevőkre). Ez Elastic Jobs-nak ez az új verziója jelenleg korlátozott előzetes verzió. A korlátozott előzetes jelenleg támogatja a PowerShell toocreate feladat fiókok és a T-SQL toocreate és feladatok kezelése.
 
 > [!NOTE]
-> *Ez az oktatóanyag az SQL Database szolgáltatás egy korlátozott előzetes verziójának funkcióit használja (Elastic Database-feladatok). Ha szeretné elvégezni ezt az oktatóanyagot, küldje el az előfizetés-azonosítóját az SaaSFeedback@microsoft.com címre, tárgyként megadva a subject=Elastic Jobs Preview szöveget. Miután megkapta a megerősítést az előfizetésének engedélyezéséről, [töltse le és telepítse a legújabb kiadás előtti feladatok parancsmagjait](https://github.com/jaredmoo/azure-powershell/releases). Ez az előnézet korlátozva, így forduljon SaaSFeedback@microsoft.com kapcsolatos kérdésekre, vagy a támogatási szolgálathoz.*
+> *Ez az oktatóanyag hello SQL adatbázis-szolgáltatás, amely egy korlátozott előzetes verziójú (a rugalmas adatbázis-feladatok) funkcióit használja. Ha ez az oktatóanyag kívánja toodo, adja meg az előfizetés-azonosítóval tooSaaSFeedback@microsoft.com témát = a rugalmas feladatok megtekintése. Hogy az előfizetés engedélyezve van, megerősítés megjelenése után [töltse le és telepítse a hello legújabb kiadás előtti feladatok parancsmagok](https://github.com/jaredmoo/azure-powershell/releases). Ez az előnézet korlátozva, így forduljon SaaSFeedback@microsoft.com kapcsolatos kérdésekre, vagy a támogatási szolgálathoz.*
 
-## <a name="get-the-wingtip-application-scripts"></a>A Wingtip alkalmazásszkriptek beolvasása
+## <a name="get-hello-wingtip-application-scripts"></a>Hello Wingtip alkalmazás parancsfájlok beolvasása
 
-A Wingtip Szolgáltatottszoftver-parancsfájlok és az alkalmazás forráskódjához érhetők el a [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github-tárház. [Töltse le a Wingtip Szolgáltatottszoftver-parancsfájlok lépéseket](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+hello Wingtip Szolgáltatottszoftver-parancsfájlok és az alkalmazás forráskódjához találhatók hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) github-tárház. [Lépések toodownload hello Wingtip SaaS parancsfájlok](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 ## <a name="create-a-job-account-database-and-new-job-account"></a>Feladatfiók-adatbázis és új feladatfiók létrehozása
 
-Ennek az oktatóanyagnak a használatához a PowerShell-lel létre kell hoznia a feladatfiók-adatbázis és a feladatfiókot. Az Elastic Jobs az MSDB-hez és a SQL-ügynökhöz hasonlóan az Azure SQL Database-t használja a feladatdefiníciók, feladatállapotok és -előzmények tárolására. A feladatfiók létrehozása után azonnal létrehozhatja és figyelheti a feladatokat.
+Ez az oktatóanyag szükséges PowerShell toocreate hello feladat fiók adatbázis és a feladat a fiókot használja. Például MSDB és az SQL Agent a rugalmas feladatok egy Azure SQL adatbázis-toostore feladatdefiníciók, feladat állapota és előzményei. Hello feladat-fiók létrehozása után hozzon létre, és figyelheti a feladat azonnal.
 
-1. Nyissa meg a ...\\Tanulási modulok\\Sémakezelés\\*Demo-SchemaManagement.ps1* fájlt a **PowerShell ISE** parancssorában.
-1. A szkriptek futtatásához nyomja le az **F5** billentyűt.
+1. Nyissa meg... \\Tanulási modulok\\séma felügyeleti\\*bemutató-SchemaManagement.ps1* a hello **PowerShell ISE**.
+1. Nyomja le az **F5** toorun hello parancsfájl.
 
-A *Demo-SchemaManagement.ps1* szkript a *Deploy-SchemaManagement.ps1* szkriptet hívja a **jobaccount** nevű *S2* adatbázis katalóguskiszolgálón történő létrehozásához. Ezután létrehozza a feladatfiókot, paraméterként átadva a feladatfiók nevű adatbázist a feladatfiók-létrehozási hívásnak.
+Hello *bemutató-SchemaManagement.ps1* parancsfájl hívások hello *telepítés-SchemaManagement.ps1* toocreate parancsfájl egy *S2* nevű adatbázis **jobaccount** hello katalógus kiszolgálón. Ezután hello feladat fiók hello jobaccount adatbázis típusra vonatkozó hívásként paraméter toohello feladat fiók létrehozását hoz létre.
 
-## <a name="create-a-job-to-deploy-new-reference-data-to-all-tenants"></a>Feladat létrehozása új referenciaadatok bevezetéséhez az összes bérlőn
+## <a name="create-a-job-toodeploy-new-reference-data-tooall-tenants"></a>Hozzon létre egy feladatot toodeploy új hivatkozás adatok tooall bérlők
 
-Az egyes bérlői adatbázisok helyszíntípuskészleteket tartalmaznak, amelyek a helyszínen üzemeltetett eseménytípusokat határozzák meg. Ebben a gyakorlatban frissítést helyezhet üzembe az összes bérlői adatbázison két további helyszíntípus hozzáadásához: *Motorkerékpár-verseny* és *Úszóklub*. Ezek a helyszíntípusok megfelelnek a bérlő eseményalkalmazásában látható háttérképnek.
+Az egyes bérlői adatbázisok, amelyek meghatározzák az eseményeket, amelyek egy helyszínére, üzemeltetett hello típusú helyszínére típusok készletét tartalmazza. Ebben a gyakorlatban telepít egy frissítési tooall hello bérlői adatbázisok tooadd két további helyszínére típusok: *Motorkerékpárja Racing* és *úszó Club*. Helyszínére típusaival hello bérlői események alkalmazás látható toohello háttérkép felelnek meg.
 
-Kattintson a Helyszíntípus legördülő menüre, és ellenőrizze, hogy csak 10 helyszíntípus-lehetőség legyen elérhető, és hogy a „Motorkerékpár-verseny” és az „Úszóklub” ne szerepeljen a listán.
+Hello helyszínére típus legördülő menüjében kattintson, és ellenőrizze, hogy csak 10 helyszínére típus lehetőségek érhetők el, és kifejezetten adott Motorkerékpárja Racing és az "Úszó Club" nem tartoznak hello listában.
 
-Most hozzon létre egy feladatot, amely frissíti a *VenueTypes* táblát az összes bérlői adatbázisban, és adja hozzá az új helyszíntípusokat.
+Most hozzon létre egy feladat tooupdate hello *VenueTypes* tábla összes hello bérlői adatbázisokban, és adja hozzá a hello új helyszínére típusokat.
 
-Új feladat létrehozásához a feladatfiók létrehozásakor a feladatfiók adatbázisban létrehozott feladatkészletek rendszer által tárolt folyamatait használjuk.
+toocreate egy új feladatot, azt használata a feladatok rendszer tárolt eljárások hello feladat fiók létrehozásakor hello jobaccount adatbázisban létrehozni.
 
-1. Nyissa meg az SSMS-t, és kapcsolódjon a katalóguskiszolgálóhoz: catalog-\<user\>.database.windows.net kiszolgáló
-1. Kapcsolódjon a bérlői kiszolgálóhoz is: tenants1-\<user\>.database.windows.net
-1. Keresse meg a *contosoconcerthall* adatbázist a *tenants1* kiszolgálón, és kérdezze le a *VenueTypes* táblát annak a megerősítéséhez, hogy a *Motorkerékpár-verseny* és az *Úszóklub* **nem szerepel** az eredménylistán.
-1. Nyissa meg a ... \\Tanulási modulok\\Sémakezelés\\DeployReferenceData.sql fájlt
-1. Az utasítás módosítása: beállítása @wtpUser = &lt;felhasználói&gt; és a Wingtip alkalmazás telepítésekor használt felhasználói helyettesítésére
-1. Ellenőrizze, hogy kapcsolódik-e a feladatfiók adatbázishoz, és nyomja le az **F5** billentyűt a szkript futtatásához
+1. Nyissa meg a szolgáltatáshoz az SSMS és toohello katalóguskiszolgáló csatlakozzon: katalógus -\<felhasználói\>. database.windows.net kiszolgáló
+1. Toohello bérlői kiszolgáló is csatlakozhat: tenants1 -\<felhasználói\>. database.windows.net
+1. Keresse meg a toohello *contosoconcerthall* hello adatbázis *tenants1* kiszolgáló és a lekérdezés hello *VenueTypes* tábla tooconfirm, amely *Motorkerékpárja Racing*  és *úszó Club* **nem** hello eredménylistában.
+1. Nyissa meg hello fájl... \\Tanulási modulok\\séma felügyeleti\\DeployReferenceData.sql
+1. Hello utasítás módosítása: beállítása @wtpUser = &lt;felhasználói&gt; és helyettesítse hello Wingtip alkalmazás telepítésekor használt hello felhasználói érték
+1. Győződjön meg arról, csatlakoztatott toohello jobaccount adatbázis, és nyomja le az **F5** hello parancsfájl futtatásához
 
-* Az **sp\_add\_target\_group** létrehozza a DemoServerGroup nevű célcsoportot, most hozzá kell adnunk a céltagokat.
-* **SP\_hozzáadása\_cél\_csoport\_tag** ad hozzá egy *server* céltípust tag, amely úgy ítéli meg, hogy a kiszolgálón belüli összes adatbázis (Megjegyzés: Ez a tenants1 -&lt;felhasználói&gt; a bérlő adatbázisokat tartalmazó kiszolgáló) időpontban feladat végrehajtási szerepelnie kell a feladatot, a második hozzáadásával egy *adatbázis* tagtípus, kifejezetten a "arany" adatbázis (basetenantdb) a katalógus - található cél&lt;felhasználói&gt; kiszolgáló, és végül egy másik *adatbázis* csoport tagja céltípust egy újabb oktatóanyagban használt adhocanalytics-adatbázist tartalmazza.
+* **SP\_hozzáadása\_cél\_csoport** hoz létre a hello célcsoport neve DemoServerGroup, igazolnia kell, hogy tooadd cél tagok most.
+* **SP\_hozzáadása\_cél\_csoport\_tag** ad hozzá egy *server* céloz tag típusa, amely úgy ítéli meg, hogy a kiszolgálón (Megjegyzés: Ez a hello tenants1-belüliösszesadatbázis&lt; Felhasználói&gt; hello bérlői adatbázisokat tartalmazó kiszolgáló) időpontban feladat végrehajtási fel kell venni hello feladat hello második hozzáadásával egy *adatbázis* tag céltípust, kifejezetten hello "arany" adatbázis () basetenantdb), amely a katalógus - helyezkedik el&lt;felhasználói&gt; kiszolgáló, és végül egy másik *adatbázis* csoport tag típusa tooinclude hello adhocanalytics céladatbázis egy újabb oktatóanyagban használt.
 * Az **sp\_add\_job** létrehoz egy „Referenciaadat-telepítés” nevű feladatot
-* **SP\_hozzáadása\_feladatlépés használja** hoz létre a T-SQL parancs szövege a referenciatábla VenueTypes frissítése tartalmazó feladat lépésének
-* A szkript fennmaradó nézetei megjelenítik, hogy léteznek-e az objektumok, és figyelik a feladat-végrehajtást. Tekintse át a értéket használja ezeket a lekérdezéseket a **életciklus** határozza meg, ha a feladat sikeresen befejeződött az összes bérlői és a két további adatbázisait a referenciatábla tartalmazó oszlop.
+* **SP\_hozzáadása\_feladatlépés használja** hoz létre a T-SQL parancsot szöveg tooupdate hello referenciatábla, VenueTypes tartalmazó hello feladat lépésének
+* hello fennmaradó nézetek hello parancsfájl megjelenítése hello objektumok és a figyelő feladat végrehajtása hello megléte. Használja a lekérdezések tooreview hello állapotértéket hello **életciklus** amikor hello feladat sikeresen befejezte az összes bérlői és hello két további adatbázisait hello összefoglaló táblázatot tartalmazó oszlop toodetermine.
 
-1. Keresse meg az SSMS-ben a *contosoconcerthall* adatbázist a *tenants1* kiszolgálón, és kérdezze le a *VenueTypes* táblát annak a megerősítéséhez, hogy a *Motorkerékpár-verseny* és az *Úszóklub* **most már szerepel** az eredménylistán.
+1. A szolgáltatáshoz az SSMS, keresse meg a toohello *contosoconcerthall* hello adatbázis *tenants1* kiszolgáló és a lekérdezés hello *VenueTypes* tábla tooconfirm, amely *Motorkerékpárja Racing* és *úszó Club* **vannak** most a hello eredmények listájában.
 
 
-## <a name="create-a-job-to-manage-the-reference-table-index"></a>Feladat létrehozása a referenciatábla indexének kezeléséhez
+## <a name="create-a-job-toomanage-hello-reference-table-index"></a>Egy feladat toomanage hello hivatkozás tábla index létrehozása
 
-Az előző gyakorlathoz hasonlóan, ebben a gyakorlatban létrehoz egy feladatot a referenciatábla elsődleges kulcsához tartozó index újraépítéséhez, amely a rendszergazda gyakori adatbázis-kezelési művelete, miután nagy mennyiségű adat töltődött be a táblába.
+Hasonló toohello előző gyakorlat, ebben a gyakorlatban létrehoz egy feladat toorebuild hello index hello hivatkozás tábla elsődleges kulcsa, egy tipikus adatbázis felügyeleti műveletet a rendszergazda egy nagy méretű adatok betöltése után előfordulhat, hogy végre egy táblába.
 
-Hozzon létre egy feladatot ugyanannak a feladatnak a „system” által tárolt eljárásait használva.
+Hozzon létre egy feladatot, hello segítségével azonos feladatok "rendszer" tárolt eljárás.
 
-1. Nyissa meg a szolgáltatáshoz az SSMS és kapcsolódjon a katalógus -&lt;felhasználói&gt;. database.windows.net kiszolgáló
-1. Nyissa meg a ...\\Tanulási modulok\\Sémakezelés\\.sql fájlt
-1. Kattintson a jobb gombbal, válassza ki a kapcsolat, és kapcsolódjon a katalógus -&lt;felhasználói&gt;. database.windows.net kiszolgáló, ha még nincs csatlakoztatva
-1. Ellenőrizze, hogy kapcsolódik-e a jobaccount adatbázishoz, és nyomja le az F5 billentyűt a parancsprogram futtatásához
+1. Nyissa meg a szolgáltatáshoz az SSMS, és csatlakozzon toohello katalógus -&lt;felhasználói&gt;. database.windows.net kiszolgáló
+1. Nyissa meg hello fájl... \\Tanulási modulok\\séma felügyeleti\\OnlineReindex.sql
+1. Kattintson a jobb gombbal, válassza ki a kapcsolat, csatlakozás toohello katalógus -&lt;felhasználói&gt;. database.windows.net kiszolgáló, ha még nincs csatlakoztatva
+1. Győződjön meg arról, csatlakoztatott toohello jobaccount adatbázis, és nyomja le az F5 toorun hello parancsfájl
 
 * Az sp\_add\_job létrehoz egy „Online Reindex PK\_\_VenueTyp\_\_265E44FD7FD4C885” nevű új feladatot
-* Az sp\_add\_jobstep létrehozza a T-SQL-parancsszöveget tartalmazó feladatlépést az index frissítéséhez
+* SP\_hozzáadása\_feladatlépés használja hello feladat lépésének T-SQL parancsot szöveges tooupdate hello indexet tartalmazó hoz létre.
 
 
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ennek az oktatóanyagnak a segítségével megtanulta a következőket:
+Ez az oktatóanyag bemutatta, hogyan végezheti el az alábbi műveleteket:
 
 > [!div class="checklist"]
 
-> * Feladatfiók létrehozása több bérlőben történő lekérdezéshez
+> * Hozzon létre egy feladat fiók tooquery több bérlő között
 > * Az összes bérlői adatbázis adatainak frissítése
 > * Index létrehozása a táblához az összes bérlői adatbázisban
 
@@ -132,6 +132,6 @@ Ennek az oktatóanyagnak a segítségével megtanulta a következőket:
 
 ## <a name="additional-resources"></a>További források
 
-* [További oktatóprogramot kínál, amelyek a Wingtip SaaS-alkalmazás telepítésében épül](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* [További oktatóprogramot kínál, amelyek épül hello Wingtip SaaS-alkalmazás központi telepítése](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Kiterjesztett felhőalapú adatbázisok kezelése](sql-database-elastic-jobs-overview.md)
 * [Horizontálisan felskálázott felhőalapú adatbázisok létrehozása és kezelése](sql-database-elastic-jobs-create-and-manage.md)

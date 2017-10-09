@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: robinsh
-ms.openlocfilehash: 9e5eed35334f1b95441b8181c8e90645be78b389
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 31d0aa67b6ca58b75b432ae94f93ebcf6d730380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-about-azure-iaas-vm-disks-and-managed-and-unmanaged-premium-disks"></a>Azure IaaS virtuális gép és a kezelt és kezeletlen premium lemezek kapcsolatos gyakori kérdések
 
@@ -28,67 +28,67 @@ Ebben a cikkben megválaszolunk néhány Azure felügyelt lemezek és a prémium
 
 **Mi az Azure Managed lemezek?**
 
-Felügyelt lemezek olyan szolgáltatás, amely egyszerűbbé teszi a Lemezkezelés Azure IaaS virtuális gépek kezelése a tárolási fiók kezelése az Ön által. További információkért lásd: a [felügyelt lemezekhez – áttekintés](storage-managed-disks-overview.md).
+Felügyelt lemezek olyan szolgáltatás, amely egyszerűbbé teszi a Lemezkezelés Azure IaaS virtuális gépek kezelése a tárolási fiók kezelése az Ön által. További információkért lásd: hello [felügyelt lemezekhez – áttekintés](storage-managed-disks-overview.md).
 
 **Ha egy standard szintű felügyelt lemezes I készíteni egy meglévő VHD-t, amely 80 GB, mennyi lesz, amely költségeket, me?**
 
-80 GB-os virtuális merevlemezről létrehozott egy standard szintű felügyelt lemezes a rendszer a következő elérhető standard méretű lemez méretet, amelyet egy S10 lemez. Most a S10 lemez díjszabás alapján számítjuk fel. További tájékoztatás a [díjszabási lapon](https://azure.microsoft.com/pricing/details/storage) olvasható.
+80 GB-os virtuális merevlemezről létrehozott egy standard szintű felügyelt lemezes hello tovább érhető el standard méretű lemez méretet, amelyet egy S10 lemez, a rendszer. Függően toohello S10 lemez árképzési most számítjuk fel. További információkért lásd: hello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/storage).
 
 **Vannak-e a standard szintű felügyelt lemez tranzakciós költségeket?**
 
-Igen. Minden tranzakció még fizetnie. További tájékoztatás a [díjszabási lapon](https://azure.microsoft.com/pricing/details/storage) olvasható.
+Igen. Minden tranzakció még fizetnie. További információkért lásd: hello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/storage).
 
-**Az egy standard szintű felügyelt lemezes I megterheljük a lemezen lévő adatok tényleges mérete, vagy a lemez kiosztott kapacitást?**
+**Az egy standard szintű felügyelt lemezes I megterheljük hello hello lemezen tárolt adatok tényleges mérete hello vagy hello lemez kapacitását kiépített hello?**
 
-A lemez kiosztott kapacitást alapján még fel. További tájékoztatás a [díjszabási lapon](https://azure.microsoft.com/pricing/details/storage) olvasható.
+Most felszámított hello lemez kapacitását kiépített hello alapján. További információkért lásd: hello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/storage).
 
 **Hogyan azonos a nem felügyelt lemezek felügyelt premium lemezek árképzési?**
 
-A felügyelt premium lemezek árképzési megegyezik a nem felügyelt premium lemezek.
+hello árképzési felügyelt premium lemezek a ugyanaz, mint a nem felügyelt premium lemezek hello.
 
-**A tárfiók típusa (Standard vagy prémium) a kezelt lemezek is megváltozik?**
+**Módosíthatja a hello tárfiók típusa (Standard vagy prémium) a kezelt lemezek?**
 
-Igen. Az Azure-portálon, a PowerShell vagy az Azure parancssori felület használatával módosíthatja a tárfiók típusa a felügyelt lemezek.
+Igen. Hello tárfióktípus a felügyelt lemezek hello Azure-portálon, a PowerShell vagy a hello Azure parancssori felület használatával módosíthatja.
 
-**Van mód, hogy lehet másolni, vagy egy felügyelt lemezes exportálása a titkos storage-fiók?**
+**Van mód, hogy lehet másolni, vagy egy felügyelt lemezes tooa titkos tárfiók exportálása?**
 
-Igen. A felügyelt lemezek exportálhatja az Azure-portálon, a PowerShell vagy az Azure parancssori felület használatával.
+Igen. A felügyelt lemezek hello Azure-portálon, a PowerShell vagy a hello Azure CLI segítségével exportálhatja.
 
-**Az Azure-tárfiók VHD-fájl használatával hozzon létre egy felügyelt lemezes egy másik előfizetést?**
+**Használható az Azure storage-fiók toocreate felügyelt lemezes a VHD-fájl egy másik előfizetést?**
 
 Nem.
 
-**Az Azure-tárfiók VHD-fájl használatával hozzon létre egy felügyelt lemezes egy másik régióban?**
+**Használható az Azure storage-fiók toocreate felügyelt lemezes a VHD-fájl egy másik régióban?**
 
 Nem.
 
 **Vannak-e a felügyelt lemezeket használó ügyfelek skálázási korlátozások?**
 
-Kezelt lemezek megszünteti a társított tárfiókok korlátok. Azonban a előfizetésenként felügyelt lemezek számát korlátozódik 2000 alapértelmezés szerint. Ezt a számot növelheti a támogatási hívása.
+Felügyelt lemezek kiküszöböli hello korlátok társított tárfiókokat. Előfizetésenként felügyelt lemezek hello száma azonban korlátozott too2, alapértelmezés szerint 000. Támogatási tooincrease hívhatják ezt a számot.
 
 **Eltarthat egy kezelt lemez növekményes pillanatképet?**
 
-Nem. Az aktuális pillanatkép-készítés révén felügyelt lemezes teljes másolata. Azonban azt tervezi, hogy a jövőben támogatja a növekményes pillanatképek.
+Nem. hello aktuális pillanatkép-készítés révén felügyelt lemezes teljes másolata. Azonban azt tervezi, toosupport növekményes pillanatképek a jövőbeli hello.
 
 **Virtuális gépek rendelkezésre állási csoport által felügyelt és nem kezelt lemezek kombinációja állhat?**
 
-Nem. A virtuális gépek rendelkezésre állási csoportba kell használnia, vagy az összes felügyelt lemeznek, vagy a nem felügyelt összes lemez. Amikor létrehoz egy rendelkezésre állási csoportot, kiválaszthatja a használni kívánt lemezek milyen típusú.
+Nem. hello virtuális gépek rendelkezésre állási csoportba kell használnia, vagy az összes felügyelt lemeznek, vagy a nem felügyelt összes lemez. Amikor létrehoz egy rendelkezésre állási csoportot, válassza a lemezek milyen típusú toouse szeretné.
 
-**Felügyelt lemezek van az alapértelmezett beállítás, az Azure-portálon?**
+**Hello Azure-portálon kezelt lemezek hello alapértelmezett beállítás van?**
 
-Jelenleg nem de ez a jövőben lesz az alapértelmezett.
+Jelenleg nem de válik a jövőbeli hello hello alapértelmezett.
 
 **Hozhat létre egy üres felügyelt lemezes?**
 
-Igen. Üres lemez hozhat létre. Felügyelt lemezes hozhatók létre függetlenül a virtuális gépek, például egy virtuális Géphez való csatlakoztatás nélkül.
+Igen. Üres lemez hozhat létre. Felügyelt lemezes hozhatók létre függetlenül a virtuális gépek például tooa virtuális gép csatlakoztatás nélkül.
 
-**Mi a támogatott tartalék tartományok számának a rendelkezésre állási beállítása felügyelt lemezeket használó?**
+**Mi az a hello támogatott tartalék tartományainak száma egy rendelkezésre állási csoport által felügyelt lemezeket használó?**
 
-Attól függően, hogy a régió, ahol a rendelkezésre állási csoport által felügyelt lemezeket használó a támogatott tartalék tartományok számának, 2 vagy 3.
+Attól függően, hogy hello régió, ahol felügyelt lemezeket használó hello rendelkezésre állási csoport a támogatott hello tartalék tartományainak száma 2 vagy 3.
 
-**Hogyan van a standard szintű tárfiók beállítása diagnosztikai?**
+**Standard szintű tárfiók hello beállítása diagnosztika hogyan van?**
 
-A Virtuálisgép-diagnosztika titkos tárolási fiók beállítása. A jövőben tervezzük diagnosztika váltani kezelt lemezeken is.
+A Virtuálisgép-diagnosztika titkos tárolási fiók beállítása. A jövőbeli hello, hogy terv tooswitch diagnosztika tooManaged lemezeket is.
 
 **Milyen típusú szerepköralapú hozzáférés-vezérlés támogatásának felügyelt lemezek érhető el?**
 
@@ -98,20 +98,20 @@ Felügyelt lemezek által támogatott három fő alapértelmezett szerepkörök:
 * Társszerző: Hozzáférés kivételével mindent felügyelhetnek
 * Olvasó: Mindent megtekinthetnek, de nem módosítható
 
-**Van mód, hogy lehet másolni, vagy egy felügyelt lemezes exportálása a titkos storage-fiók?**
+**Van mód, hogy lehet másolni, vagy egy felügyelt lemezes tooa titkos tárfiók exportálása?**
 
-A csak olvasható közös hozzáférésű jogosultságkód URI lekérése a felügyelt lemezes és a segítségével a saját tárolási fiók vagy a helyszíni tárolási másolja.
+A csak olvasható közös hozzáférésű jogosultságkód felügyelt hello URI-JÁNAK lemez, és ezzel toocopy hello tartalma tooa titkos tárolási fiók vagy a helyszíni tárolási kérheti le.
 
 **A felügyelt lemezes másolatát hozhat létre?**
 
-Ügyfelek pillanatkép készítése a felügyelt lemezek és a pillanatkép segítségével hozzon létre egy másik kezelt lemezre.
+Ügyfelek pillanatképet készít a felügyelt lemezeket, és egy másik felügyelt lemezes hello pillanatkép toocreate használhatja.
 
 **Nem felügyelt lemezek továbbra is támogatottak?**
 
-Igen. Nem felügyelt és a felügyelt támogatjuk. Javasoljuk, hogy új munkaterhelések esetén használja a felügyelt lemezeit, és az aktuális munkaterheléseket telepít át kezelt lemezek.
+Igen. Nem felügyelt és a felügyelt támogatjuk. Javasoljuk, hogy új munkaterhelések esetén használja a felügyelt lemezeit, és telepítse át a jelenlegi munkaterhelés toomanaged lemezek.
 
 
-**Ha megkezdtem 128 GB-os lemez létrehozása, és növelje a 130 GB-os méret, I megterheljük a következő lemez méretét (512 GB)?**
+**Ha megkezdtem 128 GB-os lemez létrehozása, és növelje hello mérete too130 GB, I megterheljük a hello következő lemezméretet (512 GB)?**
 
 Igen.
 
@@ -123,11 +123,11 @@ Azure-lemezeket felügyelt jelenleg csak a helyileg redundáns tárolás felügy
 
 Nem. Ez a funkció jelenleg nem támogatott. 
 
-**Módosítható a számítógép neve tulajdonság amikor egy speciális (nem hozta létre a rendszer-előkészítő eszközzel vagy általánosított) operációsrendszer-lemez a virtuális gép létrehozásához használt?**
+**Módosítható hello számítógép name tulajdonság esetén egy speciális (nem hello rendszer-előkészítő eszköz használatával létrehozott vagy általánosított) operációs rendszer tárolására használt tooprovision egy virtuális Gépet?**
 
-Nem. A számítógép name tulajdonság nem frissíthető. Az új virtuális gép örökli a szülő virtuális gép, amelyen az operációsrendszer-lemez létrehozásához használt. 
+Nem. Hello számítógép name tulajdonság nem frissíthető. hello új virtuális gép örökli azt hello szülő virtuális gép, amely használt toocreate hello operációsrendszer-lemez volt. 
 
-**Hol találnak a minta Azure Resource Manager-sablonok felügyelt lemezzel rendelkező virtuális gépek létrehozásához?**
+**Hol találnak a minta Azure Resource Manager sablonok toocreate virtuális gépek felügyelt lemezek?**
 * [Felügyelt lemezekkel sablonok listája](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)
 * https://github.com/chagarw/MDPP
 
@@ -137,9 +137,9 @@ Nem. A számítógép name tulajdonság nem frissíthető. Az új virtuális gé
 
 Igen.
 
-**A titkosítási kulcsok kezelő?**
+**Kezelő hello titkosítási kulcsokat?**
 
-A Microsoft kezeli a titkosítási kulcsokat.
+A Microsoft kezeli a hello titkosítási kulcsokat.
 
 **Képes-e letiltása Storage szolgáltatás titkosítási a felügyelt lemezek?**
 
@@ -147,30 +147,30 @@ Nem.
 
 **Érhető Storage szolgáltatás titkosítási csak meghatározott régióiba?**
 
-Nem. Érhető el minden olyan régióban, amennyiben rendelkezésre áll-e felügyelt lemezek. Felügyelt lemezek minden nyilvános régiók és Németországban érhető el.
+Nem. Érhető el minden, amennyiben rendelkezésre áll-e felügyelt lemezek hello régióban. Felügyelt lemezek minden nyilvános régiók és Németországban érhető el.
 
 **Hogyan tudhatom meg titkosítottak, ha a felügyelt lemezes?**
 
-A felügyelt lemezes az Azure-portálon az Azure CLI és PowerShell létrehozásának ideje talál. Ha az időpont után 2017. június 9., a lemez titkosítva. 
+Felügyelt lemezes létrehozásának hello Azure-portálon hello Azure CLI és PowerShell hello időpontja talál. Ha hello idő után 2017. június 9., a lemez titkosítva. 
 
 **Hogyan titkosíthatja a meglévő lemezek 2017. június 10. előtt létrehozott?**
 
-Től 2017. június 10. a meglévő felügyelt lemezekre írt új adatokat automatikusan titkosítva. Azt is tervezi, hogy a meglévő adatok titkosítása, és a titkosítás aszinkron módon történik a háttérben. Ha meglévő adatokat most titkosítani kell, hozzon létre egy másolatot a lemezen. Új lemez titkosítva legyen.
+2017. június 10., frissítésétől felügyelt tooexisting lemezek új adatokat automatikusan titkosítva. Azt is tervez tooencrypt meglévő adatok és hello titkosítási hello háttérben aszinkron módon történik. Ha meglévő adatokat most titkosítani kell, hozzon létre egy másolatot a lemezen. Új lemez titkosítva legyen.
 
-* [Felügyelt lemezeket másolja az Azure parancssori felület használatával](https://docs.microsoft.com/en-us/azure/storage/scripts/storage-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription?toc=%2fcli%2fmodule%2ftoc.json)
+* [Másolja át a felügyelt lemezek hello Azure parancssori felület használatával](https://docs.microsoft.com/en-us/azure/storage/scripts/storage-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription?toc=%2fcli%2fmodule%2ftoc.json)
 * [Felügyelt lemezeket másolja a PowerShell használatával](https://docs.microsoft.com/en-us/azure/storage/scripts/storage-windows-powershell-sample-copy-managed-disks-to-same-or-different-subscription?toc=%2fcli%2fmodule%2ftoc.json)
 
 **Felügyelt pillanatfelvételek és lemezképek titkosítva van?**
 
 Igen. Az összes kezelt pillanatképeket és lemezképek létrehozása után 2017. június 9., automatikusan titkosítva vannak. 
 
-**Is virtuális gépek is átalakítása nem felügyelt a storage-fiókok vagy kezelt lemezek korábban titkosított lévő lemezek?**
+**Képes virtuális gépek is átalakítása nem felügyelt lemezek tárfiókokban vagy korábban titkosított toomanaged lemez található?**
 
 Igen
 
 **A felügyelt lemezes vagy a pillanatképet egy exportált VHD-t is titkosítva lesznek?**
 
-Nem. De ha egy virtuális Merevlemezt egy titkosított tárfiókba történő exportálását egy titkosított kezelt lemez vagy a pillanatképet, majd titkosítva van. 
+Nem. De ha egy virtuális merevlemez tooan exportálnia titkosított tárfiók egy titkosított felügyelt lemezes vagy a pillanatkép, majd titkosítva van. 
 
 ## <a name="premium-disks-managed-and-unmanaged"></a>Prémium szintű lemezekhez: felügyelt és nem felügyelt
 
@@ -178,43 +178,43 @@ Nem. De ha egy virtuális Merevlemezt egy titkosított tárfiókba történő ex
 
 Igen.
 
-**Csatolható prémium és standard adatlemezek is, amely nem támogatja a prémium szintű Storage, például a D, Dv2, G vagy F adatsorozat mérete több?**
+**Prémium szintű és a standard lemezek tooa mérete adatsorozat, amely nem támogatja a prémium szintű Storage, például a D, Dv2, G vagy F adatsorozat csatolható?**
 
-Nem. Csak a standard adatlemezek csatolhat a virtuális gépek, amelyek nem használják, amely támogatja a prémium szintű Storage mérete több.
+Nem. Csak szabványos adatok lemezek tooVMs, amelyek nem használják, amely támogatja a prémium szintű Storage mérete több csatolható.
 
 **Ha egy meglévő virtuális merevlemezről, de a 80 GB prémium adatlemezt hozok létre, mennyire, amely ára?**
 
-80 GB-os virtuális merevlemezről létrehozott prémium adatlemezt a rendszer a következő érhető el prémium szintű lemez méretet, amelyet P10 lemez. Most a P10 lemez díjszabás alapján számítjuk fel.
+80 GB-os virtuális merevlemezről létrehozott prémium adatlemezt P10 lemez hello tovább érhető el prémium szintű lemez méretének kell kezelni. Függően toohello P10 lemez árképzési most számítjuk fel.
 
-**Vannak-e a prémium szintű Storage tranzakciós költségek?**
+**Vannak-e tranzakciós költségek toouse prémium szintű Storage?**
 
-Nincs minden lemez méretét, amelyet adott határral kiosztott iops-érték és az átvitel meg egy rögzített költséget. Az egyéb költségekkel kimenő sávszélesség és a pillanatkép-kapacitást, ha van ilyen. További tájékoztatás a [díjszabási lapon](https://azure.microsoft.com/pricing/details/storage) olvasható.
+Nincs minden lemez méretét, amelyet adott határral kiosztott iops-érték és az átvitel meg egy rögzített költséget. hello egyéb költségek olyan kimenő sávszélesség és a pillanatkép-kapacitást, ha van ilyen. További információkért lásd: hello [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/storage).
 
-**Az iops-érték és a teljesítményt, amelyek szeretnék lekérheti a lemezgyorsítótár korlátai**
+**Az iops-érték és a teljesítményt, amelyek szeretnék hello lemezgyorsítótár lekérheti hello korlátai**
 
-A kombinált korlátozhatja a gyorsítótár és a DS-ben több helyi SSD is core 4000 iops-értéket core másodpercenként 33 MB. A GS adatsorozat 5000 iops teljesítményt nyújtanak core és 50 MB / s / core kínál.
+gyorsítótár kombinált korlátairól hello és DS azokat a helyi SSD core 4000 iops-értéket és core másodpercenként 33 MB. hello GS adatsorozat 5000 iops teljesítményt nyújtanak core és 50 MB / s / core kínál.
 
-**A lemezek felügyelt virtuális gépek támogatja a helyi SSD?**
+**A lemezek felügyelt virtuális gépek támogatott helyi SSD hello van?**
 
-A helyi SSD az ideiglenes tároló, a lemezek felügyelt virtuális gépek részét képező. Nincs ingyenesen a ideiglenes tárolására. Azt javasoljuk, hogy nem használja a helyi SSD az alkalmazásadatok tárolására, mert azt az Azure Blob storage nem megőrzött.
+hello helyi SSD az ideiglenes tároló, amely megtalálható a felügyelt lemezek virtuális Géphez. Nincs ingyenesen a ideiglenes tárolására. Azt javasoljuk, hogy nem használja a helyi SSD toostore az alkalmazásadatok, mert azt az Azure Blob storage nem megőrzött.
 
-**Vannak-e bármilyen következményekkel VÁGÁSHOZ a premium lemezek használatát?**
+**Nincs hello bármely következményekkel használatban vannak a VÁGÁSHOZ a premium lemezek?**
 
-Nincs vágás használatához Azure-lemezeket vagy Premium vagy a standard lemezek hátránya van.
+Nincs Nincs vágás vagy prémium szintű Azure-lemezeket vagy a standard lemezek hátránya toohello használatát.
 
 ## <a name="new-disk-sizes-managed-and-unmanaged"></a>Új lemezméret: felügyelt és nem felügyelt
 
-**Mi az a legnagyobb lemez méretét a támogatott operációs rendszer és az adatlemezek?**
+**Mi az az hello támogatott operációs rendszer és az adatlemezek legnagyobb lemez méretét?**
 
-A partíció típusa, amely Azure támogatja az operációsrendszer-lemez a fő rendszerindító rekord (MBR). Egy lemezt a fő rendszertöltő rekord formátum támogatja legfeljebb 2 TB-os méret. A legnagyobb, amely Azure támogatja az operációsrendszer-lemez mérete 2 TB. Azure akár 4 TB adatlemezek támogatja. 
+hello partíció, amely Azure támogatja az operációsrendszer-lemez típus hello fő rendszertöltő rekord (MBR). hello MBR formátumhoz too2 TB fel a lemez méretét. hello legnagyobb Azure támogatja az operációsrendszer-lemez mérete 2 TB. Azure legfeljebb too4 TB adatlemezek támogat. 
 
-**Mi az a legnagyobb blob mérete támogatott?**
+**Mi az az hello legnagyobb blob oldalméret támogatott?**
 
-A legnagyobb blob mérete, amely támogatja az Azure rendszeren 8 TB (8,191 GB). Nagyobb, mint 4 TB-os (4095 GB) egy virtuális Géphez csatlakozik, adatok vagy az operációs rendszer lemezek lapblobokat nem támogatottak.
+hello legnagyobb lap blob, amely támogatja az Azure mérete 8 TB (8,191 GB). Nagyobb, mint 4 TB-os (4095 GB) kapcsolódó tooa VM adatok vagy az operációs rendszer lemezek lapblobokat nem támogatottak.
 
-**Kell létrehozni, csatolja, átméretezése és 1 TB-nál nagyobb lemezek feltöltése Azure eszközök új verziójának segítségével?**
+**Toouse újabb verzióra kell az Azure-eszközök toocreate, csatolja, méretezze át, és töltse fel az 1 TB-nál nagyobb lemezek?**
 
-Nem kell frissíteni a meglévő Azure-eszközök létrehozására, csatolja, és 1 TB-nál nagyobb lemezek átméretezése. Töltse fel a VHD-fájl a helyszíni közvetlenül az Azure oldalakra vonatkozó blob vagy nem felügyelt lemezt, kell használnia az eszköz legújabb beállítása:
+Nem kell tooupgrade a meglévő Azure-eszközök toocreate, csatolja vagy 1 TB-nál nagyobb lemezek átméretezése. a VHD fájlt tooupload helyszíni közvetlenül tooAzure oldalakra vonatkozó blob vagy nem felügyelt lemez, toouse hello legújabb eszköz beállítása szükséges:
 
 |Azure-eszközök      | Támogatott verziók                                |
 |-----------------|---------------------------------------------------|
@@ -222,23 +222,23 @@ Nem kell frissíteni a meglévő Azure-eszközök létrehozására, csatolja, é
 |Az Azure CLI 1-es verzió     | Verziószám 0.10.13: Előfordulhat, hogy 2017 kiadás vagy újabb verzió|
 |AzCopy           | 6.1.0 verziószám: június 2017 kiadás vagy újabb verzió|
 
-Az Azure parancssori felület v2 és Azure Tártallózó támogatása hamarosan elérhető. 
+az Azure parancssori felület v2 és Azure Tártallózó hello támogatása hamarosan elérhető. 
 
 **Nem felügyelt lemezek vagy lapblobokat támogatott P4 és P6 mérete?**
 
 Nem. P4 (32 GB) és P6 (64 GB-os) lemezméret csak felügyelt lemezek támogatottak. Nem felügyelt lemezek és a lapblobokat támogatása hamarosan elérhető.
 
-**Ha a meglévő prémium szintű felügyelt lemez kevesebb, mint 64 GB-os jött létre a kisebb lemezt (körülbelül 2017. június 15.) engedélyezése előtt, hogyan azt számlázása?**
+**Ha a meglévő prémium szintű felügyelt lemez kevesebb, mint 64 GB-os hozták létre, mielőtt hello kisebb lemezt engedélyezése (körülbelül 2017. június 15.), hogyan azt számlázása?**
 
-Meglévő kis premium lemezek kisebb, mint 64 GB-os továbbra is fizetnie kell ezért a P10 tarifacsomag alapján. 
+64 GB-nál kisebb meglévő kis premium lemezek továbbra is számlázva toobe függően toohello P10 tarifacsomagot. 
 
-**Hogyan válthat a lemez réteg P4 vagy P6 P10 a 64 GB-nál kisebb kis premium lemezek?**
+**Hogyan átválthatja hello lemez réteg 64 GB-nál kisebb kis premium lemezek P10 tooP4 vagy P6?**
 
-Pillanatkép készítése a kis kapacitású lemezeket, és ezután automatikusan Váltás az árképzési szint P4 vagy a kiosztott mérete alapján P6 lemez létrehozása. 
+Pillanatkép készítése a kis kapacitású lemezeket, és hozzon létre egy lemez tooautomatically kapcsoló hello árképzési szint tooP4 vagy P6 kiépített hello mérete alapján. 
 
 
 ## <a name="what-if-my-question-isnt-answered-here"></a>Mi történik, ha a fentiekben itt nem választ?
 
-Ha kérdését itt nem látható, ossza meg velünk, és segítünk talált választ. A megjegyzések is közzétesz egy kérdést, ez a cikk végén. Az Azure Storage csapat és a Közösség más tagjaival kapcsolatos cikkben bevonásához, használja az MSDN [Azure Storage fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata).
+Ha kérdését itt nem látható, ossza meg velünk, és segítünk talált választ. Ez a cikk végén hello kérdés beküldheti hello megjegyzésekben. tooengage hello Azure Storage-csapattal és a Közösség más tagjaival kapcsolatos ebben a cikkben használja hello MSDN [Azure Storage fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata).
 
-Kérelem szolgáltatások, a kérelmek és ötleteket a a [Azure Storage-visszajelzési fórumon](https://feedback.azure.com/forums/217298-storage).
+toorequest szolgáltatásokat nyújt a kérelmek és ötleteket toohello [Azure Storage-visszajelzési fórumon](https://feedback.azure.com/forums/217298-storage).

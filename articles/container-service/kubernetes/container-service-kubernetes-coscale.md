@@ -1,5 +1,5 @@
 ---
-title: "Egy Azure Kubernetes fürt CoScale figyelése |} Microsoft Docs"
+title: "egy Azure Kubernetes aaaMonitor fürt CoScale |} Microsoft Docs"
 description: "Az Azure Tárolószolgáltatásban CoScale használatával Kubernetes fürt figyelése"
 services: container-service
 documentationcenter: 
@@ -17,43 +17,43 @@ ms.workload: na
 ms.date: 05/22/2017
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: f894191baced710fc0f5a8c8692df98033341a48
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f835e82d2be3afe1d85070bd0bf69649cc6dd2ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-an-azure-container-service-kubernetes-cluster-with-coscale"></a>Egy Azure-tároló szolgáltatás Kubernetes fürt CoScale figyelése
 
-Ebben a cikkben azt megmutatja, hogyan telepítheti a [CoScale](https://www.coscale.com/) agent figyelje az összes csomópontot és az Azure Tárolószolgáltatásban Kubernetes fürt a tárolók. Ez a konfiguráció CoScale rendelkező fiók szükséges. 
+Ez a cikk azt mutatja be toodeploy hello [CoScale](https://www.coscale.com/) az Azure Tárolószolgáltatásban fürt minden csomópontján és a tárolók a Kubernetes ügynök toomonitor. Ez a konfiguráció CoScale rendelkező fiók szükséges. 
 
 
 ## <a name="about-coscale"></a>CoScale kapcsolatos 
 
-CoScale egy felügyeleti platform, metrikákkal és eseményekkel gyűjt az összes tároló több vezénylési platformokon. CoScale kínál a teljes verem Kubernetes környezetek figyelése. Képi megjelenítések és az elemzések biztosít az összes rétegének a veremben: az operációs rendszer, Kubernetes, Docker és a tárolók belül futó alkalmazások. CoScale kínál számos beépített figyelési irányítópultok, és nem rendelkezik, ahhoz, hogy operátorok és a fejlesztők gyors található infrastruktúra és az alkalmazás számos beépített anomáliadetektálás.
+CoScale egy felügyeleti platform, metrikákkal és eseményekkel gyűjt az összes tároló több vezénylési platformokon. CoScale kínál a teljes verem Kubernetes környezetek figyelése. Képi megjelenítések és az elemzések biztosít az összes rétegének hello verem: hello az operációs rendszer, Kubernetes, Docker és a tárolók belül futó alkalmazások. CoScale kínál számos beépített figyelési irányítópultok, és beépített anomáliadetektálási észlelési tooallow operátorok rendelkezik, és a fejlesztők toofind infrastruktúra és az alkalmazás problémák gyors.
 
 ![Felhasználói felület coScale](./media/container-service-kubernetes-coscale/coscale.png)
 
-Amint ez a cikk, a ügynökök való futtatásra a Szolgáltatottszoftver-megoldás CoScale Kubernetes fürtön is telepítheti. Ha meg szeretné tartani az adatokat a helyszíni, CoScale is rendelkezésre áll a helyszíni telepítéshez.
+Amint ez a cikk, ügynökök telepíthető egy Kubernetes fürt toorun CoScale, mint a Szolgáltatottszoftver-megoldás. Ha azt szeretné, tookeep az adatok helyszíni, CoScale is rendelkezésre áll a helyszíni telepítéshez.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Először [CoScale-fiók létrehozása](https://www.coscale.com/free-trial).
+Először túl[CoScale-fiók létrehozása](https://www.coscale.com/free-trial).
 
 Ez az útmutató feltételezi, hogy rendelkezik [a Kubernetes Azure Tárolószolgáltatási fürt létrehozott](container-service-kubernetes-walkthrough.md).
 
-Azt is feltételezi, hogy a `az` Azure CLI és `kubectl` eszközök vannak telepítve.
+Azt is feltételezi, hogy rendelkezik-e hello `az` Azure CLI és `kubectl` eszközök vannak telepítve.
 
-Ha tesztelheti a `az` eszköz futtatásával telepítve:
+Ha hello tesztelheti `az` eszköz futtatásával telepítve:
 
 ```azurecli
 az --version
 ```
 
-Ha nem rendelkezik a `az` eszköz telepítve, az e-mail utasításokat is [Itt](/cli/azure/install-azure-cli).
+Ha még nem rendelkezik hello `az` eszköz telepítve, az e-mail utasításokat is [Itt](/cli/azure/install-azure-cli).
 
-Ha tesztelheti a `kubectl` eszköz futtatásával telepítve:
+Ha hello tesztelheti `kubectl` eszköz futtatásával telepítve:
 
 ```bash
 kubectl version
@@ -65,26 +65,26 @@ Ha nem rendelkezik `kubectl` telepítve, futtatható:
 az acs kubernetes install-cli
 ```
 
-## <a name="installing-the-coscale-agent-with-a-daemonset"></a>Egy DaemonSet a CoScale ügynök telepítése
-[DaemonSets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) a tároló egyetlen példány futhat az a fürt minden egyes állomás Kubernetes használják.
-Fontosságúak tökéletes választás, például a CoScale ügynök figyelőügynökök futtatásához.
+## <a name="installing-hello-coscale-agent-with-a-daemonset"></a>Egy DaemonSet hello CoScale ügynök telepítése
+[DaemonSets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) rendszer által használt Kubernetes toorun a tároló egyetlen példány hello fürt minden állomáson.
+Fontosságúak tökéletes megoldás például hello CoScale ügynök figyelőügynökök futtatásához.
 
-Miután CoScale jelentkezik be, lépjen a [lap](https://app.coscale.com/) CoScale ügynökök telepítése a fürt egy DaemonSet használatával. A CoScale felhasználói felület lépéseit az interaktív konfigurációs hozzon létre egy ügynök és a teljes Kubernetes fürt figyelni.
+Miután tooCoScale a bejelentkezést, lépjen a toohello [lap](https://app.coscale.com/) tooinstall CoScale ügynököt a fürt egy DaemonSet használatával. hello CoScale felhasználói felület interaktív konfigurációs lépéseket toocreate biztosít, az ügynök és a figyelő a teljes Kubernetes fürt indításának.
 
 ![CoScale ügynök konfigurálása](./media/container-service-kubernetes-coscale/installation.png)
 
-A megadott parancsot az ügynököt a fürt elindításához:
+toostart hello ügynök hello fürtön, futtassa a megadott hello parancsot:
 
-![Indítsa el a CoScale ügynök](./media/container-service-kubernetes-coscale/agent_script.png)
+![Indítsa el a hello CoScale ügynök](./media/container-service-kubernetes-coscale/agent_script.png)
 
-Ennyi az egész! Ha az ügynök működik és elérhető, meg kell jelennie a konzol adatainak néhány perc múlva. Látogasson el a [lap](https://app.coscale.com/) tekintse meg a fürt összegzését, további konfigurálásra, és tekintse meg az irányítópultok, mint a **Kubernetes fürt áttekintése**.
+Ennyi az egész! Ha hello ügynökök megfelelően működik, akkor jelenik meg: hello adatai néhány perc múlva. A Microsoft hello [lap](https://app.coscale.com/) toosee összegzését a fürt további konfigurációs lépések, és ellenőrizze, például hello irányítópultok **Kubernetes fürt áttekintése**.
 
 ![Kubernetes fürtök – áttekintés](./media/container-service-kubernetes-coscale/dashboard_clusteroverview.png)
 
-A CoScale ügynök automatikusan új gépek a fürt központi telepítése. Az ügynök a frissítések automatikus verziójának kiadásakor.
+hello CoScale ügynök automatikusan új gépek hello fürt központi telepítése. hello ügynök frissítések automatikus verziójának kiadásakor.
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-Tekintse meg a [dokumentáció CoScale](http://docs.coscale.com/) és [blog](https://www.coscale.com/blog) figyelési megoldásoknak CoScale további információt. 
+Lásd: hello [dokumentáció CoScale](http://docs.coscale.com/) és [blog](https://www.coscale.com/blog) figyelési megoldásoknak CoScale további információt. 
 

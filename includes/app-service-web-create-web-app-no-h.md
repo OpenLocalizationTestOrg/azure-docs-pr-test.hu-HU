@@ -1,14 +1,14 @@
-Az [ az webapp create](/cli/azure/webapp#create) paranccsal hozzon létre egy [webalkalmazást](../articles/app-service-web/app-service-web-overview.md) a `myAppServicePlan` App Service-csomagban. 
+Hozzon létre egy [webalkalmazás](../articles/app-service-web/app-service-web-overview.md) a hello `myAppServicePlan` hello az App Service-csomag [az webalkalmazás létrehozása](/cli/azure/webapp#create) parancsot. 
 
-A webalkalmazás üzemeltetési tárterületet biztosít a kódhoz, valamint megadja az üzembe helyezett alkalmazás megtekintéséhez szükséges URL-címet.
+hello web app üzemeltetési helyet biztosít a kódot, és egy URL-cím tooview hello telepített alkalmazás biztosítja.
 
-Az alábbi parancsban cserélje ki az *\<app_name>* nevet egy egyedi névre (érvényes karakterek: `a-z`, `0-9` és `-`). Ha az `<app_name>` nem egyedi, a következő hibaüzenet jelenik meg: „A megadott <alkalmazás_neve> névvel már létezik webhely.” A webalkalmazás alapértelmezett URL-címe `https://<app_name>.azurewebsites.net`. 
+Hello a következő parancsban cserélje le  *\<alkalmazás_neve >* egyedi névvel (érvényes karakterek: `a-z`, `0-9`, és `-`). Ha `<app_name>` van nem egyedi, a hibaüzenet hello hiba "A megadott nevű < alkalmazásnév > webhely már létezik." az alapértelmezett hello webalkalmazás URL-címe hello `https://<app_name>.azurewebsites.net`. 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-A webalkalmazás létrehozása után az Azure CLI az alábbi példához hasonló információkat jelenít meg:
+Hello webalkalmazás létrehozásakor hello Azure CLI információkat a következő példa hasonló toohello jeleníti meg:
 
 ```json
 {
@@ -38,7 +38,7 @@ A webalkalmazás létrehozása után az Azure CLI az alábbi példához hasonló
 }
 ```
 
-Az újonnan létrehozott webapp megtekintéséhez tallózással keresse meg a helyet.
+Keresse meg az újonnan létrehozott webalkalmazás toohello hely toosee.
 
 ```bash
 http://<app_name>.azurewebsites.net

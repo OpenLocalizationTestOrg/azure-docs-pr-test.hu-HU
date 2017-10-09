@@ -1,5 +1,5 @@
 ---
-title: "Több hiba után indított bejelentkezések"
+title: "aaaSign modulok több hiba után"
 description: "Ez a jelentés azt jelzi, felhasználók, akik a sikeres bejelentkezést követően több egymást követő sikertelen bejelentkezési kísérlet után."
 services: active-directory
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: e55e0145adbdb1f41a8b8753d5555f20e96bf161
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48d137dc3abf65287cb3b9ba8a6ff10340f6741f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-after-multiple-failures"></a>Több hibát követő bejelentkezések
 Ez a jelentés azt jelzi, felhasználók, akik a sikeres bejelentkezést követően több egymást követő sikertelen bejelentkezési kísérlet után. Lehetséges okok a következők:
 
-* Felhasználói kellett elfelejti a jelszavát</li><li>Felhasználó az áldozat sikeres jelszó-előállító találgatásos támadás kényszerítése
+* Felhasználói kellett elfelejti a jelszavát</li><li>Felhasználó hello áldozata sikeres jelszó-előállító találgatásos támadás
 
-Ez a jelentés eredményeinek megtudhatja, hány egymást követő sikertelen bejelentkezési kísérlete sikeres bejelentkezés előtt készített és az első sikeres bejelentkezés társított időbélyeg.
+Ez a jelentés eredményeinek jelennek meg, hány egymást követő sikertelen bejelentkezési kísérletek előzetes toohello sikeres bejelentkezés hello és társított időbélyeg hello első sikeres bejelentkezés.
 
-**Beállítások jelentés**: a lehető legkevesebb egymást követő sikertelen bejelentkezési kísérletek kell a jelentés megjelenítése előtt konfigurálható. Amikor módosítja ezt a beállítást fontos megjegyezni, hogy ezeket a módosításokat nem alkalmazandó összes meglévő sikertelen bejelentkezési modulok jelenleg jelenik meg a meglévő jelentés. Azonban akkor fog alkalmazni, az összes későbbi bejelentkezések. Ez a jelentés módosításai csak licenccel rendelkező rendszergazdák is végezhető.
+**Beállítások jelentés**: hello minimális számú egymást követő sikertelen bejelentkezési kísérletek kell hello jelentés megjelenítése előtt konfigurálhatja. Állítaná toothis van módosításokat fontos toonote, hogy a módosítások nem lesznek alkalmazott tooany meglévő sikertelen bejelentkezések a meglévő jelentés jelenleg látható. Azonban alkalmazott tooall későbbi bejelentkezések fogja. A licenccel rendelkező rendszergazdák csak is végezhető módosítások toothis jelentés.
 
 ![Több hiba után indított bejelentkezések](./media/active-directory-reporting-sign-ins-after-multiple-failures/signInsAfterMultipleFailures.PNG)
 

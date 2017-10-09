@@ -1,6 +1,6 @@
 ---
-title: "Használjon dinamikus telemetriai |} Microsoft Docs"
-description: "Ez az oktatóanyag megtudhatja, hogyan használható az Azure IoT Suite távoli felügyeleti előkonfigurált megoldás dinamikus telemetriai."
+title: dinamikus telemetriai aaaUse |} Microsoft Docs
+description: "Hajtsa végre az ezen oktatóanyag toolearn hogyan toouse dinamikus telemetriai hello Azure IoT Suite távoli figyelési előre konfigurált megoldás."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>Dinamikus telemetriai adatokat a távoli felügyeleti előkonfigurált megoldás
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a>Dinamikus telemetriai adatok használata a távoli felügyeleti előkonfigurált megoldás hello
 
-Dinamikus telemetriai lehetővé teszi bármely telemetriai adatokat küldött a távoli felügyeleti előkonfigurált megoldás megjelenítése. A szimulált eszköz, amely az előkonfigurált megoldás üzembe helyezéséhez telemetriát hőmérséklet és a páratartalom, amely az irányítópulton jelenítheti meg. Ha meglévő szimulált eszközök testreszabása, hozzon létre új szimulált eszköz, vagy fizikai eszközök csatlakoztatása az előkonfigurált megoldás az egyéb telemetriai értékek, például a külső hőmérséklet, RPM vagy szélsebesség küldhet. Majd jelenítheti meg az irányítópulton a további telemetriai adatokat.
+Dinamikus telemetriai lehetővé teszi, hogy Ön toovisualize bármely távoli felügyeleti előkonfigurált megoldás küldött telemetriai toohello. Szimulált hello eszközök, amelyek az előre konfigurált hello megoldással telepítése telemetriát hőmérséklet és a páratartalom, amely hello irányítópulton jelenítheti meg. Ha meglévő szimulált eszköz szabja testre, hozzon létre új szimulált eszköz, vagy csatlakoztassa a fizikai eszközök előre konfigurált toohello megoldás például hello külső hőmérséklet, RPM vagy szélsebesség telemetriai értékekhez küldhet. Majd jelenítheti meg a további hello irányítópult telemetriai adatokat.
 
-Ez az oktatóanyag egy egyszerű Node.js szimulált eszköz könnyen módosíthatja dinamikus telemetriai kísérletezhet használja.
+Ebben az oktatóanyagban egy egyszerű Node.js szimulált-eszközt használ., hogy a dinamikus telemetriai tooexperiment könnyen módosíthatja.
 
-Az oktatóanyag elvégzéséhez szüksége lesz:
+toocomplete ebben az oktatóanyagban lesz szüksége:
 
 * Aktív Azure-előfizetés. Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk_free_trial].
 * [NODE.js] [ lnk-node] verzió 0.12.x vagy újabb.
@@ -40,10 +40,10 @@ Az operációs rendszereken, például a Windows vagy Linux, ahol telepítheti a
 
 ## <a name="add-a-telemetry-type"></a>A telemetria-típus hozzáadása
 
-A következő lépés, hogy a telemetriai adatok új értékek vannak beállítva a Node.js szimulált eszköz állítja elő:
+következő lépés hello tooreplace hello telemetriai hello Node.js szimulált eszköz egy új értékhalmazt állítja elő:
 
-1. A Node.js szimulált eszköz leállításához írja be a **Ctrl + C** a parancssor vagy a rendszerhéj.
-2. A remote_monitoring.js fájlban megtekintheti a meglévő hőmérséklet, a páratartalom és a külső hőmérséklet telemetriai alapadatokhoz értékeit. Adja meg az alapadatokhoz értékét **rpm** az alábbiak szerint:
+1. Állítsa le hello Node.js szimulált eszköz beírásával **Ctrl + C** a parancssor vagy a rendszerhéj.
+2. Hello remote_monitoring.js fájl, a hello alapadatokhoz értékek hello meglévő hőmérséklet, páratartalom és külső hőmérséklet telemetriai látható. Adja meg az alapadatokhoz értékét **rpm** az alábbiak szerint:
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ A következő lépés, hogy a telemetriai adatok új értékek vannak beállítv
     var rpm = 200;
     ```
 
-3. A Node.js szimulált eszköz használ a **generateRandomIncrement** függvény véletlenszerű növekmény hozzáadása alapszintű adatértékek remote_monitoring.js fájlban. Ügyfélfuttatási a **rpm** érték hozzáadásával egy kódsort a meglévő randomizations után az alábbiak szerint:
+3. hello Node.js szimulált eszköz által használt hello **generateRandomIncrement** alapadatokhoz értékek hello remote_monitoring.js fájl tooadd egy véletlenszerű növekmény toohello működni. Ügyfélfuttatási hello **rpm** érték hozzáadásával egy kódsort hello meglévő randomizations után az alábbiak szerint:
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ A következő lépés, hogy a telemetriai adatok új értékek vannak beállítv
     rpm += generateRandomIncrement();
     ```
 
-4. Az eszköz küld az IoT-központ a JSON-adattartalmat az új rpm érték hozzáadása:
+4. Hello új rpm érték toohello JSON hasznos hello eszköz küld tooIoT Hub hozzáadása:
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ A következő lépés, hogy a telemetriai adatok új értékek vannak beállítv
     });
     ```
 
-5. Futtassa a szimulált eszköz Node.js, a következő parancsot:
+5. Futtassa a hello Node.js szimulált eszköz hello a következő parancs használatával:
 
     `node remote_monitoring.js`
 
-6. Az új RPM telemetriai típus fog megjelenni a diagram az irányítópulton a láthatja:
+6. Hello új RPM telemetriai típus fog megjelenni a diagram hello hello irányítópult láthatja:
 
-![Az irányítópult RPM hozzáadása][image3]
+![Adja hozzá a RPM toohello irányítópult][image3]
 
 > [!NOTE]
-> Tiltsa le, majd engedélyezze a a Node.js-eszköz szükség a **eszközök** lap állapotúként jelenik meg azonnal az irányítópulton.
+> Előfordulhat, hogy toodisable kell, és engedélyeznie kell a Node.js-eszközön hello hello **eszközök** hello irányítópult toosee hello változás azonnal lapján.
 
-## <a name="customize-the-dashboard-display"></a>Az irányítópult megjelenítéséhez
+## <a name="customize-hello-dashboard-display"></a>Hello irányítópult megjelenítéséhez
 
-A **eszközinformáció** hibaüzenet is tartalmazza az eszköz küldhet az IoT-központ telemetriai adatok metaadatait. A metaadatok lehet meghatározni az telemetriai adatokat küld az eszközre. Módosítsa a **deviceMetaData** felvenni a remote_monitoring.js fájlban egy **Telemetriai** definíció alábbi a **parancsok** definition. A következő kódrészletben látható kódot a **parancsok** definition (ne feledje hozzáadni egy `,` után a **parancsok** definition):
+Hello **eszközinformáció** üzenetet tartalmazhatnak metaadatok kapcsolatos hello telemetriai hello eszköz tooIoT Hub küldhet. A metaadatok hello eszköz küldi hello telemetriai típusokat adhat meg. Hello módosítása **deviceMetaData** hello remote_monitoring.js fájl tooinclude értéket egy **Telemetriai** definícióját a következő hello **parancsok** definíciója. hello következő kódrészletet látható hello **parancsok** definition (lehet, hogy tooadd egy `,` után hello **parancsok** definition):
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ A **eszközinformáció** hibaüzenet is tartalmazza az eszköz küldhet az IoT-
 ```
 
 > [!NOTE]
-> A távoli felügyeleti megoldás hasonlítsa össze a metaadat-definíciójában a telemetriai adatok adatfolyam adatokat nem használja.
+> hello távoli felügyeleti megoldás nem toocompare hello metaadat-definíciójában hello telemetriai adatfolyam adatokat használ.
 
 
-Hozzáadása egy **Telemetriai** definícióját, ahogy az előző kódrészletet az nem változtatja meg az irányítópult viselkedését. Azonban a metaadatok is lehetnek egy **DisplayName** attribútum az irányítópult megjelenítéséhez. Frissítés a **Telemetriai** metaadat-definíciójában, ahogy az a következő kódrészletet:
+Hozzáadása egy **Telemetriai** definícióját, ahogy az előző hello kódrészletet nem változtatja meg a hello irányítópult hello viselkedését. Azonban hello metaadatok is lehetnek egy **DisplayName** toocustomize hello megjelenítési hello irányítópulton attribútum. Frissítés hello **Telemetriai** metaadat-definíciójában, ahogy az alábbi részlet hello:
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ Hozzáadása egy **Telemetriai** definícióját, ahogy az előző kódrészlete
 ]
 ```
 
-Az alábbi képernyőfelvételen látható, hogyan Ez a változás módosítja az irányítópulton a diagram jelmagyarázatának:
+hello alábbi képernyőfelvételen látható hogyan módosítja a ezt a módosítást a hello diagram jelmagyarázatának hello irányítópult:
 
-![A diagram jelmagyarázatának testreszabása][image4]
+![Diagram jelmagyarázatának hello testreszabása][image4]
 
 > [!NOTE]
-> Tiltsa le, majd engedélyezze a a Node.js-eszköz szükség a **eszközök** lap állapotúként jelenik meg azonnal az irányítópulton.
+> Előfordulhat, hogy toodisable kell, és engedélyeznie kell a Node.js-eszközön hello hello **eszközök** hello irányítópult toosee hello változás azonnal lapján.
 
-## <a name="filter-the-telemetry-types"></a>A telemetria-típusok szűrése
+## <a name="filter-hello-telemetry-types"></a>Hello telemetriai típusok szűrése
 
-Alapértelmezés szerint a diagram az irányítópulton látható minden adatsort a telemetria-adatfolyamban. Használhatja a **eszközinformáció** metaadatok az adott telemetriai típusok a diagram a megjelenítését. 
+Alapértelmezés szerint hello hello irányítópult minden adatsort ábrázolja hello telemetriai adatfolyamban. Használhatja a hello **eszközinformáció** metaadatok toosuppress hello adott telemetriai hello diagram megjelenítését. 
 
-Ahhoz, hogy a diagram megjelenítése csak a hőmérséklet és a páratartalom telemetriai, hagyja el **ExternalTemperature** a a **eszközinformáció** **Telemetriai** metaadat az alábbiak szerint:
+toomake hello diagram megjelenítése csak hőmérséklet és a páratartalom telemetriai, hagyja el a **ExternalTemperature** a hello **eszközinformáció** **Telemetriai** metaadat az alábbiak szerint:
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ Ahhoz, hogy a diagram megjelenítése csak a hőmérséklet és a páratartalom 
 ]
 ```
 
-A **külső hőmérséklet** a diagram már nem jelenik meg:
+Hello **külső hőmérséklet** hello diagramon már nem jelenik meg:
 
-![Az irányítópult telemetriai adatok szűrése][image5]
+![Szűrő hello telemetriai adatokat hello irányítópult][image5]
 
-Ez a módosítás csak a diagram megjelenítési érinti. A **ExternalTemperature** adatértékek továbbra is tárolja, a háttérbeli feldolgozás érhető el.
+Ez a módosítás csak hello diagram megjelenítési érinti. Hello **ExternalTemperature** adatértékek továbbra is tárolja, a háttérbeli feldolgozás érhető el.
 
 > [!NOTE]
-> Tiltsa le, majd engedélyezze a a Node.js-eszköz szükség a **eszközök** lap állapotúként jelenik meg azonnal az irányítópulton.
+> Előfordulhat, hogy toodisable kell, és engedélyeznie kell a Node.js-eszközön hello hello **eszközök** hello irányítópult toosee hello változás azonnal lapján.
 
 ## <a name="handle-errors"></a>Hibák kezelésének
 
-A diagramon megjelenítendő egy adatfolyam a **típus** a a **eszközinformáció** metaadatok meg kell egyeznie a telemetriai adatok értékeinek adatok típusát. Például, ha a metaadatok azt jelenti, hogy a **típus** páratartalom adatok az **int** és egy **dupla** páratartalom telemetriai adatok nem jelennek meg a diagramra, majd a telemetriai adatok adatfolyamban található. Azonban a **páratartalom** értékek továbbra is tárolja, a háttér-feldolgozási érhető el.
+Egy data stream toodisplay hello diagramon, a a **típus** a hello **eszközinformáció** metaadatok hello telemetriai értékek adattípusa hello egyeznie kell. Például, ha a hello metaadatok határozza meg, hogy hello **típus** páratartalom adatok az **int** és egy **dupla** hello telemetriai adatfolyam megtalálható, majd hello páratartalom telemetriai does hello diagramon nem jeleníti meg. Azonban hello **páratartalom** értékek továbbra is tárolja, a háttér-feldolgozási érhető el.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy korábban már látott dinamikus telemetriai használata, többet is megtudhat arról, hogyan az előkonfigurált megoldásokat eszköz adatai: [eszköz információk metaadatait a távoli figyelési megoldást előre konfigurált][lnk-devinfo].
+Most, hogy megtudhatta, hogyan toouse dinamikus telemetriai, áttekintheti, hogyan hello előre konfigurált megoldásokkal kapcsolatos használja, eszköz adatai: [eszköz információk metaadatok hello távoli figyelési megoldást előre konfigurált] [ lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

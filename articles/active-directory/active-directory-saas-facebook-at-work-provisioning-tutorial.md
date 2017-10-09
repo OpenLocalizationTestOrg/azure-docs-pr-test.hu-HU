@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: A felhasználók átadása által Facebook munkahelyi konfigurálása |} Microsoft Docs"
-description: "Megtudhatja, hogyan automatikusan ellátásához, majd leépíti a felhasználói fiókok Azure ad-munkahelyi Facebook által."
+description: "Ismerje meg, hogyan tooautomatically kiépítése és deaktiválás rendelkezés felhasználói fiókot, a Facebook által az Azure AD tooWorkplace."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,78 +13,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: a347eedbf5511dc83e1bc7721667441cfb87cb59
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 33d294dbc8f441b29138408b3c9ca41f2141f8af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configure-workplace-by-facebook-for-user-provisioning"></a>Oktatóanyag: A felhasználók átadása által Facebook munkahelyi konfigurálása
 
-Ez az oktatóanyag a lépéseket az Azure Active Directory (Azure AD) a munkahelyhez Facebook által automatikusan rendelkezni és deaktiválás rendelkezés felhasználói fiók szükséges.
+Az oktatóanyag azt mutatja be, a szükséges lépéseket tooautomatically hello kiépítése és leépíti a felhasználói fiókok Azure Active Directory (Azure AD) tooWorkplace által Facebook-on.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs munkahelyi által Facebook, a következőkre lesz szüksége:
+az Azure AD-integráció a munkahely által Facebook tooconfigure, következőkre lesz szüksége hello:
 
 - Az Azure AD szolgáltatásra
 - A munkahelyi Facebook egyszeri bejelentkezés (SSO) által engedélyezett előfizetés
 
-Ez az oktatóanyag lépéseit teszteléséhez hajtsa végre az ezek az ajánlások:
+Ebben az oktatóanyagban tootest hello lépéseit kövesse az alábbi ajánlásokat:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, beszerezheti a [egy hónapos próbaverzió ajánlat](https://azure.microsoft.com/pricing/free-trial/).
 
-## <a name="assign-users-to-workplace-by-facebook"></a>Felhasználók hozzárendelése munkahelyi által Facebook-on
+## <a name="assign-users-tooworkplace-by-facebook"></a>Rendelje hozzá a felhasználók tooWorkplace által Facebook-on
 
-Az Azure AD egy fogalom, más néven "hozzárendeléseket" alapján határozza meg, mely felhasználók kell kapnia a kiválasztott alkalmazásokhoz való hozzáférés. Automatikus fiók felhasználókiépítése keretében csak a felhasználók és a csoportokat, amelyek számára az Azure AD alkalmazás szinkronizálva.
+Az Azure AD egy fogalom, mely felhasználók hozzáférési tooselected alkalmazásokat kell látnia "hozzárendelések" toodetermine nevű használja. Automatikus felhasználói fiók kiépítése hello kontextusában csak hello felhasználók és csoportok tooan alkalmazás az Azure ad-ben rendelt szinkronizálva.
 
-A létesítési szolgáltatás engedélyezése és konfigurálása, előtt döntse el, mely felhasználók és csoportok az Azure AD határoz meg a felhasználókat, akik a Facebook-alkalmazást a munkahelyi hozzáférés szükséges. Majd rendelhet ezeket a felhasználókat a munkahelyi Facebook-alkalmazást a utasításait követve [egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
+Hello szolgáltatás, kiépítés engedélyezése és konfigurálása eldönti mely felhasználók és csoportok az Azure AD képviselő hello felhasználók számára, akik kell tooyour munkahelyi által Facebook-alkalmazást. Facebook-alkalmazás által a felhasználók tooyour munkahelyi rendelheti a következő témakör utasításait: hello [hozzárendelése egy felhasználóhoz vagy csoporthoz tooan vállalati alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
 
 >[!IMPORTANT]
->*   A létesítési konfiguráció tesztelése egyetlen hozzárendelésével által Facebook munkahelyi Azure AD-felhasználó. További felhasználók és csoportok hozzárendelése a később.
->*   A felhasználó által Facebook munkahelyi rendel, ki kell választania egy érvényes felhasználói szerepkörnek. Az alapértelmezett szerepkör nem működik történő üzembe helyezéséhez.
+>*   Teszt hello egyetlen hozzárendelésével konfigurációs kiépítése az Azure AD felhasználói tooWorkplace által Facebook-on. További felhasználók és csoportok hozzárendelése a később.
+>*   Ha egy felhasználó tooWorkplace által Facebook, ki kell választania egy érvényes felhasználói szerepkörnek. hello alapértelmezett szerepkör nem működik történő üzembe helyezéséhez.
 
 ## <a name="enable-automated-user-provisioning"></a>Az automatikus felhasználó-kiépítés engedélyezése
 
-Ez a szakasz végigvezeti az Azure AD csatlakozik a felhasználói fiók kiépítése munkahelyi API által a Facebook-on. Azt is megtudhatja, hogyan a létesítési szolgáltatás létrehozása, frissítése és tiltsa le a munkahelyi Facebook által hozzárendelt felhasználói fiókjainak konfigurálása. Ez a felhasználó és az Azure AD-csoport-hozzárendelés alapul.
+Ez a szakasz végigvezeti az Azure AD toohello felhasználói fiókja munkahelyi API által a Facebook-kiépítés kapcsolódás. Azt is megtudhatja, hogyan tooconfigure hello létesítési szolgáltatás toocreate frissítése, és tiltsa le a munkahelyi Facebook által hozzárendelt felhasználói fiókok. Ez a felhasználó és az Azure AD-csoport-hozzárendelés alapul.
 
 >[!Tip]
->Másik lehetőségként engedélyezze SAML-alapú egyszeri bejelentkezés a munkahelyi által Facebook, az a megjelenő utasításokat követve a [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés automatikus kiépítés, függetlenül konfigurálhatók, abban az esetben, ha ez a két funkció egészítik ki egymást.
+>Dönthet úgy is tooenabled SAML-alapú egyszeri bejelentkezés által Facebook, a munkahelyi fiókhoz az hello hello megjelenő utasításokat követve [Azure-portálon](https://portal.azure.com). Egyszeri bejelentkezés automatikus kiépítés, függetlenül konfigurálhatók, abban az esetben, ha ez a két funkció egészítik ki egymást.
 
-### <a name="configure-user-account-provisioning-to-workplace-by-facebook-in-azure-ad"></a>Az Azure AD által Facebook munkahelyi kiépítés felhasználói fiók beállítása
+### <a name="configure-user-account-provisioning-tooworkplace-by-facebook-in-azure-ad"></a>Az Azure AD által Facebook tooWorkplace kiépítés felhasználói fiók beállítása
 
-Az Azure AD képes való automatikus szinkronizálása a munkahelyi Facebook által hozzárendelt felhasználói fiók adatait. Az automatikus szinkronizálás lehetővé teszi, hogy a munkahelyi hozzáférés előtt megpróbálja az első alkalommal jelentkeznek be a felhasználók hitelesítéséhez szükséges adatok megszerzéséhez Facebook által. Azt is deszerializálni látja el felhasználók a munkahely által Facebook amikor hozzáférés az Azure AD vissza lett vonva.
+Az Azure AD által támogatott hello képességét tooautomatically szinkronizálása hello fiók részleteinek felhasználók tooWorkplace Facebook által hozzárendelt. Az automatikus szinkronizálás lehetővé teszi, hogy a munkahelyi Facebook tooget hello adatok tooauthorize felhasználók a hozzáférés érdekében előtt kell őket toosign a hello az első alkalommal próbált. Azt is deszerializálni látja el felhasználók a munkahely által Facebook amikor hozzáférés az Azure AD vissza lett vonva.
 
-1. Az a [Azure-portálon](https://portal.azure.com), jelölje be **Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**.
+1. A hello [Azure-portálon](https://portal.azure.com), jelölje be **Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**.
 
-2. Ha már beállította az egyszeri bejelentkezés munkahelyi által Facebook, keresse meg a munkahely által Facebook példányát keresési mező használatával. Máskülönben válassza **Hozzáadás** keresse meg a **által Facebook munkahelyi** az alkalmazás katalógusában. Válassza ki **által Facebook munkahelyi** a keresési eredmények közül, és adja hozzá az alkalmazások listáját.
+2. Ha már beállította az egyszeri bejelentkezés munkahelyi által Facebook, keresse meg a munkahely által Facebook példányát hello keresési mező használatával. Máskülönben válassza **Hozzáadás** keresse meg a **által Facebook munkahelyi** hello alkalmazás gyűjteményben. Válassza ki **által Facebook munkahelyi** hello a keresési eredményekben, és adja hozzá tooyour alkalmazások listáját.
 
-3. A munkahely által Facebook példányát, majd válassza ki és a **kiépítési** fülre.
+3. A munkahely által Facebook példányát, majd válassza ki és hello **kiépítési** fülre.
 
-4. Állítsa be **kiépítési üzemmódját** való **automatikus**. 
+4. Állítsa be **kiépítési üzemmódban** túl**automatikus**. 
 
     ![Képernyőfelvétel a munkahelyi által Facebook üzembe helyezési lehetőségek](./media/active-directory-saas-facebook-at-work-provisioning-tutorial/provisioning.png)
 
-5. A a **rendszergazdai hitelesítő adataival** területen adja meg a **titkos Token** és a **bérlői URL-cím** a munkahelyének Facebook-rendszergazda.
+5. A hello **rendszergazdai hitelesítő adataival** területen adja meg a hello **jogkivonat titkos kulcs** és hello **bérlői URL-cím** a munkahelyének Facebook-rendszergazda.
 
-6. Válassza ki az Azure-portálon **kapcsolat tesztelése** biztosításához az Azure AD csatlakozhat a munkahelyi Facebook-alkalmazást. Ha nem sikerül, győződjön meg arról, hogy a munkahelyi Facebook-fiókkal Team rendszergazdai jogosultságokkal rendelkezik.
+6. Hello Azure-portálon, válassza ki **kapcsolat tesztelése** tooensure az Azure AD kapcsolódhatnak munkahelyi tooyour által Facebook-alkalmazást. Ha hello létesített kapcsolat megszakad, győződjön meg arról, hogy a munkahelyi Facebook-fiókkal Team rendszergazdai jogosultságokkal rendelkezik egy.
 
-7. Adja meg az e-mail címet vagy egy csoport, az üzembe helyezési hiba értesítéseket kapjanak a **értesítő e-mailt** mezőben, majd jelölje be a jelölőnégyzetet.
+7. Adja meg a hello e-mail címet vagy egy csoport létesítési hiba értesítések a hello kapjanak **értesítő e-mailt** mezőben, majd jelölje be a hello jelölőnégyzetet.
 
 8. Kattintson a **Mentés** gombra.
 
-9. A hozzárendelések szakaszban válassza ki a **szinkronizálása Azure Active Directory-felhasználók által Facebook munkahelyi**.
+9. A hello hozzárendelések szakaszt, válassza a **szinkronizálása Azure Active Directory-felhasználók tooWorkplace által Facebook**.
 
-10. Az a **attribútum-leképezésekhez** szakaszban, tekintse át a felhasználói attribútumok az Azure AD munkahelyi által szinkronizált Facebook-on. A kiválasztott attribútumok **egyező** tulajdonságok kell egyeznie a felhasználói fiókok, a munkahely által használt Facebook a frissítési műveletek. Véglegesítse a módosításokat, jelölje be **mentése**.
+10. A hello **attribútum-leképezésekhez** szakaszban, tekintse át az Azure AD tooWorkplace Facebook által szinkronizált hello felhasználói attribútumok. kiválasztott attribútumok hello **egyező** tulajdonságok: használt toomatch hello tartozó felhasználói fiókok által Facebook munkahelyi frissítési műveleteket. toocommit a módosításokat, válassza ki **mentése**.
 
-11. Ahhoz, hogy a munkahely által Facebook, a szolgáltatás kiépítését az Azure AD a **beállítások** területen módosítsa a **kiépítési állapot** való **a**.
+11. tooenable hello Azure AD létesítési szolgáltatás által a Facebook, a munkahelyi fiókhoz hello **beállítások** területen módosítsa a hello **kiépítési állapot** túl**a**.
 
 12. Kattintson a **Mentés** gombra.
 
-Automatikus kiépítés konfigurálásával kapcsolatos további információkért lásd: [a Facebook-dokumentáció](https://developers.facebook.com/docs/facebook-at-work/provisioning/cloud-providers).
+További információt a tooconfigure automatikus kiépítés, lásd: [Facebook-dokumentáció hello](https://developers.facebook.com/docs/facebook-at-work/provisioning/cloud-providers).
 
-Mostantól létrehozhat egy olyan fiókot. Várjon 20 percig győződjön meg arról, hogy a munkahelyi fiók lett szinkronizálva a Facebook által.
+Mostantól létrehozhat egy olyan fiókot. Várjon, amíg fel hello fiókot töltött tooverify tooWorkplace Facebook által szinkronizált too20 perc.
 
 ## <a name="additional-resources"></a>További források
 

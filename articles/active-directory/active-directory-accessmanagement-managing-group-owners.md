@@ -1,6 +1,6 @@
 ---
-title: "További lépések a csoportok használatával access Management szolgáltatáshoz |} Microsoft Docs"
-description: "Hogyan speciális-a következőre vonatkozó biztonsági csoportok és erőforrásokhoz való hozzáférés kezelése ezek a csoportok használatával történő kezelése."
+title: "csoportok használata kezelési lépések aaaNext |} Microsoft Docs"
+description: "Hogyan speciális-a következőre vonatkozó biztonsági csoportok kezelése és hogyan toouse ezen csoportok toomanage hozzáférés tooa erőforrás."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,37 +15,37 @@ ms.topic: article
 ms.date: 07/25/2017
 ms.author: curtand
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 82fbeb379e90add09f7c569111053f6e9b1bc9c5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4fd55f893290fac3551a130f29bd12709cf551e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-owners-for-a-group"></a>Egy csoport tulajdonosainak kezelése
-Amennyiben az erőforrás tulajdonosa hozzá van rendelve hozzáférést egy erőforráshoz egy Azure Active Directory-csoportba, a csoport tagsága kezeli a csoport tulajdonosa. Az erőforrás tulajdonosa hatékonyan felhasználók hozzárendelése az erőforrást a csoport tulajdonosa engedélyt ad.
+Amennyiben az erőforrás tulajdonosa hozzá van rendelve az access tooa erőforrás tooan az Azure AD-csoport, hello csoport tagságának hello hello csoport tulajdonosa végzi. hello erőforrás tulajdonosa hatékonyan ad hello engedély tooassign felhasználók toohello erőforrás toohello hello csoport tulajdonosa.
 
 > [!IMPORTANT]
-> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. 
+> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. 
 
 ## <a name="assigning-group-ownership"></a>Csoport tulajdonjogának hozzárendelése
-**Egy olyan tulajdonost hozzáadása egy csoporthoz**
+**tooadd egy tulajdonos tooa csoport**
 
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
-2. Válassza ki a **csoportok** lapra, és nyissa meg a csoportot, amelyhez hozzá szeretné adni a tulajdonosai számára.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
+2. Jelölje be hello **csoportok** fülre, és ezután nyissa meg hello csoport tooadd tulajdonosai számára.
 3. Válassza ki **adja hozzá a tulajdonosok**.
-4. Az a **adja hozzá a tulajdonosok** lapon, válassza ki a felhasználót, hogy ez a csoport tulajdonosa hozzá, és győződjön meg arról, hogy ez a név a **kijelölt** ablaktáblán.
+4. A hello **adja hozzá a tulajdonosok** lapra, válassza hello felhasználói tooadd szeretné, hogy ez a csoport hello tulajdonosaként, és győződjön meg arról, hogy ez a név jelenik meg toohello **kijelölt** ablaktáblán.
 
-**Egy olyan tulajdonost eltávolítása egy csoportból**
+**a csoport tulajdonosa tooremove**
 
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
-2. Válassza ki a **csoportok** lapot, és nyissa meg a csoportot, amely a el kívánja távolítani a tulajdonosa.
-3. Válassza ki a **tulajdonosok** fülre.
-4. Válassza ki a csoportból eltávolítani, majd válassza ki a kívánt tulajdonosát **eltávolítása**.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
+2. Jelölje be hello **csoportok** fülre, és ezután nyissa meg hello csoport, amelyet tooremove tulajdonos.
+3. Jelölje be hello **tulajdonosok** fülre.
+4. Jelölje be hello tulajdonos, hogy szeretné, hogy tooremove ebből a csoportból, és válassza **eltávolítása**.
 
 ## <a name="additional-information"></a>További információ
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.
 
-* [Erőforráshozzáférés-kezelés Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
+* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
 * [Azure Active Directory-parancsmagok csoportbeállítások konfigurálásához](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Mi az az Azure Active Directory?](active-directory-whatis.md)

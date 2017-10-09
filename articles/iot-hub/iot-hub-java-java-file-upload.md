@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub Java eszközökről fájlok feltöltése |} Microsoft Docs"
-description: "Hogyan tölt fel az eszközről a felhőbe Javához készült Azure IoT-eszközök SDK használatával. Egy Azure blob tároló feltöltött fájlok tárolják."
+title: "eszközök tooAzure IoT Hub Java aaaUpload fájlokat |} Microsoft Docs"
+description: "Hogyan tooupload fájljainak eszköz toohello felhő Javához készült Azure IoT-eszközök SDK használatával. Egy Azure blob tároló feltöltött fájlok tárolják."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: dobett
-ms.openlocfilehash: c917a3b3e16f1e84f202d6c87a04faf642266701
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e305fe61bf7ca0aeb2c092bc2c7efebdc78d4f68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-files-from-your-device-to-the-cloud-with-iot-hub"></a>Az eszközről a felhőbe, IoT-központ fájlok feltöltése
+# <a name="upload-files-from-your-device-toohello-cloud-with-iot-hub"></a>Az IoT hubbal eszköz toohello felhőből fájlok feltöltése
 
 [!INCLUDE [iot-hub-file-upload-language-selector](../../includes/iot-hub-file-upload-language-selector.md)]
 
-Ez az oktatóanyag épít, a kód a [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) mutatjuk be, hogyan használható az oktatóanyag a [fájl feltöltése képességeit az IoT-központ](iot-hub-devguide-file-upload.md) feltölteni a fájlt [Azure blob tárolási](../storage/index.md). Az oktatóanyag bemutatja, hogyan számára:
+Ez az oktatóanyag hello hello kód épül [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) oktatóanyag tooshow, hogyan toouse hello [fájl feltöltése képességeit az IoT-központ](iot-hub-devguide-file-upload.md) tooupload fájl túl[ Az Azure blob storage](../storage/index.md). hello oktatóanyag bemutatja, hogyan számára:
 
 - Biztonságosan adjon meg egy eszközt az Azure blob URI-fájl feltöltése.
-- Az IoT-központ fájl feltöltése értesítések használatával indul el, az alkalmazás háttérbeli fájl feldolgozása.
+- Az IoT-központ feltöltés értesítések tootrigger feldolgozása hello fájl az alkalmazás háttérbeli hello használata.
 
-A [Ismerkedés az IoT-központ](iot-hub-java-java-getstarted.md) és [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) oktatóanyagok alapvető eszköz-felhő és a felhő eszközre üzenetkezelési funkcióit az IoT-központ megjelenítése. A [folyamat eszköz felhőbe küldött üzeneteket](iot-hub-java-java-process-d2c.md) az oktatóanyag leírja, hogy megbízhatóan tárolja az eszköz a felhőbe küldött üzeneteket az Azure blob storage. Bizonyos esetekben azonban leképezése nem az eszközök elküldik üzenetbe a viszonylag kis eszközről a felhőbe, amely az IoT-központ fogadja az adatokat könnyen. Példa:
+Hello [Ismerkedés az IoT-központ](iot-hub-java-java-getstarted.md) és [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) oktatóanyagok hello alapvető eszköz-felhő és a felhő eszközre üzenetkezelési funkcióit az IoT-központ megjelenítése. Hello [folyamat eszköz felhőbe küldött üzeneteket](iot-hub-java-java-process-d2c.md) az oktatóanyag leírja a módon tooreliably tároló eszközről a felhőbe üzeneteket az Azure blob Storage tárolóban. Bizonyos esetekben azonban leképezése nem hello adatokat az eszközök elküldik üzenetbe hello viszonylag kis eszközről a felhőbe, amely az IoT-központ fogadja könnyen. Példa:
 
 * Nagy fájlok, amelyek képeket
 * Videók
 * Nagy gyakoriságú lekérdező vibráció adatok
 * Valamilyen előre feldolgozott adatokat.
 
-Ezek a fájlok jellemzően eszközökkel, mint a felhőben feldolgozható [Azure Data Factory](../data-factory/index.md) vagy a [Hadoop](../hdinsight/index.md) verem. Ha egy eszközről kell felvidéki fájlok, a biztonsága és megbízhatósága szempontjából az IoT-központ továbbra is használhatja.
+Ezek a fájlok jellemzően hello felhő eszközökkel, mint a feldolgozott kötegelt [Azure Data Factory](../data-factory/index.md) vagy hello [Hadoop](../hdinsight/index.md) verem. Ha egy eszközről tooupland fájlok van szüksége, hello biztonsága és megbízhatósága szempontjából az IoT-központ továbbra is használhatja.
 
-Ez az oktatóanyag végén két Java konzol alkalmazások futtatása:
+Ez az oktatóanyag végén hello két Java konzol alkalmazások futtatása:
 
-* **Szimulált eszköz**, az alkalmazás létrehozása az [IoT hubbal küldési felhőből eszközre küldött üzenetek] oktatóanyag módosított változatát. Ez az alkalmazás az IoT hub által biztosított SAS URI-k használata tárolási feltölt egy fájlt.
+* **Szimulált eszköz**, hello alkalmazás hello [IoT hubbal küldési felhőből eszközre küldött üzenetek] az oktatóanyagban létrehozott egy módosított verziója. Ez az alkalmazás feltölt egy fájlt toostorage az IoT hub által biztosított SAS URI-k használata.
 * **olvasási-fájl-feltöltési-értesítési**, amely fájl feltöltése értesítéseket fogad az IoT hub.
 
 > [!NOTE]
-> Az IoT-központ Azure IoT-eszközök SDK-k segítségével számos eszköz platformok és nyelvek (például C, a .NET és a Javascript) támogatja. Tekintse meg a [Azure IoT fejlesztői központ] az eszköz csatlakoztatása az Azure IoT Hub részletes útmutatást.
+> Az IoT-központ Azure IoT-eszközök SDK-k segítségével számos eszköz platformok és nyelvek (például C, a .NET és a Javascript) támogatja. Tekintse meg a toohello [Azure IoT fejlesztői központ] részletesen ismerteti a tooconnect az eszköz tooAzure IoT-központot.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
-* A legújabb [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* hello legújabb [Java használata Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 3](https://maven.apache.org/install.html)
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot](http://azure.microsoft.com/pricing/free-trial/) néhány perc alatt.)
 
@@ -56,34 +56,34 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 
 ## <a name="upload-a-file-from-a-device-app"></a>Egy eszköz alkalmazás-fájl feltöltése
 
-Ebben a szakaszban módosítsa az eszköz alkalmazás létrehozott [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) lehet feltölteni a fájlt az IoT-központot.
+Ebben a szakaszban létrehozott hello eszközalkalmazás módosítása [IoT Hub-felhő eszközre üzenetek](iot-hub-java-java-c2d.md) tooupload fájl tooIoT hubot.
 
-1. Egy képfájl másolja a `simulated-device` mappa, és nevezze át `myimage.png`.
+1. Másolja át egy kép fájl toohello `simulated-device` mappa, és nevezze át `myimage.png`.
 
-1. Egy szövegszerkesztőben nyissa meg a `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Egy szövegszerkesztőben nyissa meg hello `simulated-device\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. Adjon hozzá a változó; a **App** osztály:
+1. Adja hozzá a hello Változódeklaráció toohello **App** osztály:
 
     ```java
     private static String fileName = "myimage.png";
     ```
 
-1. Fájl feltöltése visszahívási állapotüzenetek feldolgozásához, adja hozzá a következő beágyazott osztályt a **App** osztály:
+1. tooprocess feltöltés visszahívása állapotüzenetek fájlt, adja hozzá a következő hello beágyazott osztály toohello **App** osztály:
 
     ```java
-    // Define a callback method to print status codes from IoT Hub.
+    // Define a callback method tooprint status codes from IoT Hub.
     protected static class FileUploadStatusCallBack implements IotHubEventCallback {
       public void execute(IotHubStatusCode status, Object context) {
-        System.out.println("IoT Hub responded to file upload for " + fileName
+        System.out.println("IoT Hub responded toofile upload for " + fileName
             + " operation with status " + status.name());
       }
     }
     ```
 
-1. Az IoT-központ képek feltöltése, adja hozzá az alábbi metódust a **App** osztályt a képek feltöltése az IoT-központ:
+1. tooupload képek tooIoT Hub, adja hozzá a következő metódus toohello hello **App** osztály tooupload lemezképek tooIoT Hub:
 
     ```java
-    // Use IoT Hub to upload a file asynchronously to Azure blob storage.
+    // Use IoT Hub tooupload a file asynchronously tooAzure blob storage.
     private static void uploadFile(String fullFileName) throws FileNotFoundException, IOException
     {
       File file = new File(fullFileName);
@@ -94,14 +94,14 @@ Ebben a szakaszban módosítsa az eszköz alkalmazás létrehozott [IoT Hub-felh
     }
     ```
 
-1. Módosítsa a **fő** metódust kell meghívni a **uploadFile** módszer, ahogy az a következő kódrészletet:
+1. Módosítsa a hello **fő** metódus toocall hello **uploadFile** módszer, ahogy az alábbi részlet hello:
 
     ```java
     client.open();
 
     try
     {
-      // Get the filename and start the upload.
+      // Get hello filename and start hello upload.
       String fullFileName = System.getProperty("user.dir") + File.separator + fileName;
       uploadFile(fullFileName);
       System.out.println("File upload started with success");
@@ -114,7 +114,7 @@ Ebben a szakaszban módosítsa az eszköz alkalmazás létrehozott [IoT Hub-felh
     MessageSender sender = new MessageSender();
     ```
 
-1. A következő paranccsal hozhat létre a **szimulált eszköz** alkalmazás és a hibák:
+1. Használjon hello következő parancsot a toobuild hello **szimulált eszköz** alkalmazás és a hibák:
 
     ```cmd/sh
     mvn clean package -DskipTests
@@ -124,17 +124,17 @@ Ebben a szakaszban módosítsa az eszköz alkalmazás létrehozott [IoT Hub-felh
 
 Ebben a szakaszban hozzon létre egy Java-Konzolalkalmazás, hogy a fájl feltöltése értesítési üzeneteket fogad az IoT-központot.
 
-Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szakasz befejezéséhez. A kapcsolati karakterlánc található a [Azure-portálon](https://portal.azure.com/) a a **megosztott hozzáférési házirend** panelen.
+Hello kell **iothubowner** kapcsolati karakterlánc az IoT-központ toocomplete az ebben a szakaszban. Hello kapcsolati karakterlánc az hello található [Azure-portálon](https://portal.azure.com/) a hello **megosztott hozzáférési házirend** panelen.
 
-1. Nevű Maven-projekt létrehozása **olvasás-fájl-feltöltési-értesítési** parancsot a parancssorba az alábbi parancs segítségével. Megjegyzés: Ez a parancs egy egyetlen, hosszú parancsot:
+1. Nevű Maven-projekt létrehozása **olvasás-fájl-feltöltési-értesítési** a következő parancsot a parancssorba hello segítségével. Megjegyzés: Ez a parancs egy egyetlen, hosszú parancsot:
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-file-upload-notification -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-1. A parancssorban keresse meg az új `read-file-upload-notification` mappát.
+1. A parancssorban keresse meg az új toohello `read-file-upload-notification` mappa.
 
-1. Egy szövegszerkesztőben nyissa meg a `pom.xml` fájlt a `read-file-upload-notification` mappa, és adja hozzá a következő függőség a **függőségek** csomópont. A függőség hozzáadása lehetővé teszi, hogy a **IOT hubbal-java-szolgáltatásügyfél** csomag kommunikáljon az IoT-központ szolgáltatás az alkalmazásban:
+1. Egy szövegszerkesztőben nyissa meg hello `pom.xml` hello fájlban `read-file-upload-notification` mappa, és adja hozzá a következő függőségi toohello hello **függőségek** csomópont. Hello-függőség felvétele lehetővé teszi toouse hello **IOT hubbal-java-szolgáltatásügyfél** az alkalmazás toocommunicate az IoT hub szolgáltatással-csomagot:
 
     ```xml
     <dependency>
@@ -145,13 +145,13 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
     ```
 
     > [!NOTE]
-    > Ellenőrizze, hogy a legújabb **iot-szolgáltatásügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
+    > Ellenőrizze, hogy hello legújabb verziójának **iot-szolgáltatásügyfél** használatával [Maven keresési](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
 
-1. Mentse és zárja be a `pom.xml` fájlt.
+1. Mentse és zárja be a hello `pom.xml` fájlt.
 
-1. Egy szövegszerkesztőben nyissa meg a `read-file-upload-notification\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Egy szövegszerkesztőben nyissa meg hello `read-file-upload-notification\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. Adja hozzá a következő **importálási** utasításokat a fájlhoz:
+1. Adja hozzá a következő hello **importálása** utasítások toohello fájlt:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.*;
@@ -161,7 +161,7 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
     import java.util.concurrent.Executors;
     ```
 
-1. A következő osztály szintű változók hozzáadásával a **App** osztály:
+1. Adja hozzá a következő osztály változók toohello hello **App** osztály:
 
     ```java
     private static final String connectionString = "{Your IoT Hub connection string}";
@@ -169,10 +169,10 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
     private static FileUploadNotificationReceiver fileUploadNotificationReceiver = null;
     ```
 
-1. A fájl feltöltése, a konzol adatainak nyomtatásához adja hozzá a következő beágyazott osztályt a **App** osztály:
+1. hello fájl feltöltése toohello konzol tooprint információt adja hozzá a hello következő beágyazott osztály toohello **App** osztály:
 
     ```java
-    // Create a thread to receive file upload notifications.
+    // Create a thread tooreceive file upload notifications.
     private static class ShowFileUploadNotifications implements Runnable {
       public void run() {
         try {
@@ -196,7 +196,7 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
     }
     ```
 
-1. Indítsa el a szál, amely figyeli a fájl feltöltése értesítések, adja hozzá az alábbi kódot a **fő** módszert:
+1. toostart hello szál, amely figyeli a fájl feltöltése értesítések, adja hozzá a következő kód toohello hello **fő** módszert:
 
     ```java
     public static void main(String[] args) throws IOException, URISyntaxException, Exception {
@@ -205,16 +205,16 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
       if (serviceClient != null) {
         serviceClient.open();
 
-        // Get a file upload notification receiver from the ServiceClient.
+        // Get a file upload notification receiver from hello ServiceClient.
         fileUploadNotificationReceiver = serviceClient.getFileUploadNotificationReceiver();
         fileUploadNotificationReceiver.open();
 
-        // Start the thread to receive file upload notifications.
+        // Start hello thread tooreceive file upload notifications.
         ShowFileUploadNotifications showFileUploadNotifications = new ShowFileUploadNotifications();
         ExecutorService executor = Executors.newFixedThreadPool(1);
         executor.execute(showFileUploadNotifications);
 
-        System.out.println("Press ENTER to exit.");
+        System.out.println("Press ENTER tooexit.");
         System.in.read();
         executor.shutdownNow();
         System.out.println("Shutting down sample...");
@@ -224,51 +224,51 @@ Van szüksége a **iothubowner** kapcsolati karakterlánc az IoT hub, ez a szaka
     }
     ```
 
-1. Mentse és zárja be a `read-file-upload-notification\src\main\java\com\mycompany\app\App.java` fájlt.
+1. Mentse és zárja be a hello `read-file-upload-notification\src\main\java\com\mycompany\app\App.java` fájlt.
 
-1. A következő paranccsal hozhat létre a **olvasás-fájl-feltöltési-értesítési** alkalmazás és a hibák:
+1. Használjon hello következő parancsot a toobuild hello **olvasás-fájl-feltöltési-értesítési** alkalmazás és a hibák:
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="run-the-applications"></a>Az alkalmazások futtatása
+## <a name="run-hello-applications"></a>Hello alkalmazások futtatásához
 
-Készen áll arra, hogy futtassa az alkalmazásokat.
+Most már készen áll a toorun hello alkalmazások áll.
 
-A parancsot a parancssorba a `read-file-upload-notification` mappa, a következő parancsot:
-
-```cmd/sh
-mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
-```
-
-A parancsot a parancssorba a `simulated-device` mappa, a következő parancsot:
+A parancssorba a hello `read-file-upload-notification` mappa, futtassa a következő parancs hello:
 
 ```cmd/sh
 mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
 ```
 
-Az alábbi képernyőfelvételen látható kimenetét a **szimulált eszköz** alkalmazást:
+A parancssorba a hello `simulated-device` mappa, futtassa a következő parancs hello:
+
+```cmd/sh
+mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
+```
+
+hello következő képernyőfelvétel a hello hello kimeneti **szimulált eszköz** alkalmazást:
 
 ![Szimulált eszköz alkalmazás kimenete](media/iot-hub-java-java-upload/simulated-device.png)
 
-Az alábbi képernyőfelvételen látható kimenetét a **olvasás-fájl-feltöltési-értesítési** alkalmazást:
+hello következő képernyőfelvétel a hello hello kimeneti **olvasás-fájl-feltöltési-értesítési** alkalmazást:
 
 ![Olvasási-fájl-feltöltési-értesítés alkalmazás kimenete](media/iot-hub-java-java-upload/read-file-upload-notification.png)
 
-A portál segítségével a tároló, konfigurálta a feltöltött fájl megtekintése:
+Hello portál tooview hello feltöltött fájl konfigurált hello tároló használható:
 
 ![Fájl feltöltése](media/iot-hub-java-java-upload/uploaded-file.png)
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóprogramban megismerte fájlfeltöltéseket eszközökről leegyszerűsítése érdekében az IoT-központ fájl feltöltése funkcióinak használatát. IoT hub-szolgáltatások és a forgatókönyvet a következő cikkek az eltérések felfedezése továbbra is:
+Ebben az oktatóanyagban megtanulta, hogyan toouse hello fájlfeltöltés toosimplify fájlfeltöltések eszközökről az IoT-központ képességeit. A következő cikkek hello tooexplore IoT hub-szolgáltatások és a forgatókönyv folytatása:
 
 * [Programozott módon létrehoz egy IoT-központot][lnk-create-hub]
-* [C SDK bemutatása][lnk-c-sdk]
+* [Bevezetés tooC SDK][lnk-c-sdk]
 * [Az Azure IoT SDK-k][lnk-sdks]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [Egy eszköz szimulálva IoT oldala][lnk-iotedge]
 

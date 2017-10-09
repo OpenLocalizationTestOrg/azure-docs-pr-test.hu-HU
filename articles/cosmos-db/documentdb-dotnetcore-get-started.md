@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB: DocumentDB API bevezetés .NET Core oktatóanyaggal | Microsoft Docs"
-description: "Oktatóanyag, amely létrehoz egy online adatbázist és egy C# konzolalkalmazást az Azure Cosmos DB DocumentDB API .NET SDK Core használatával."
+description: "Ez az oktatóanyag létrehoz egy online adatbázist és a C# konzolalkalmazást hello Azure Cosmos DB DocumentDB API .NET Core SDK használatával."
 services: cosmos-db
 documentationcenter: .net
 author: arramac
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: arramac
-ms.openlocfilehash: 7536978bbb1e41b6484b66fd1b51c900fc3e545d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5e7efb327252e9e73e9b2a340820eeecc6937fa5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-getting-started-with-the-documentdb-api-and-net-core"></a>Azure Cosmos DB: DocumentDB API és .NET Core bevezetés
+# <a name="azure-cosmos-db-getting-started-with-hello-documentdb-api-and-net-core"></a>Az Azure Cosmos DB: Hello DocumentDB API és a .NET Core első lépések
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -31,68 +31,68 @@ ms.lasthandoff: 08/18/2017
 >  
 > 
 
-Üdvözöljük a DocumentDB API Azure Cosmos DB Ismerkedés a .NET Core-oktatóanyag! Az oktatóanyag lépéseinek követésével egy olyan konzolalkalmazást készít, amely Azure Cosmos DB-erőforrásokat hoz létre és kérdez le.
+A DocumentDB API toohello Azure Cosmos DB Ismerkedés a .NET Core-oktatóanyag – Üdvözöljük! Az oktatóanyag lépéseinek követésével egy olyan konzolalkalmazást készít, amely Azure Cosmos DB-erőforrásokat hoz létre és kérdez le.
 
 Az oktatóanyag a következőket ismerteti:
 
-* Azure Cosmos DB-fiók létrehozása és csatlakoztatása
+* Hoz létre és csatlakoztatja tooan Azure Cosmos DB fiók
 * A Visual Studio megoldás konfigurálása
 * Online adatbázis létrehozása
 * Gyűjtemény létrehozása
 * JSON-dokumentumok létrehozása
-* A gyűjtemény lekérdezése
+* Hello gyűjtemény lekérdezése
 * Dokumentum cseréje
 * Dokumentum törlése
-* Adatbázis törlése
+* Hello adatbázis törlése
 
-Nincs elég ideje? Ne aggódjon! A teljes megoldás elérhető a [GitHubon](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started). A gyors utasításokért ugorjon [A teljes megoldás beszerzése szakaszra](#GetSolution).
+Nincs elég ideje? Ne aggódjon! a teljes megoldás hello érhető [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started). Ugrás a toohello [hello teljes megoldás szakaszának beolvasása](#GetSolution) gyors utasításokért.
 
-A Xamarin iOS, Android vagy űrlapok szeretne a DocumentDB API és a .NET Core SDK használata alkalmazás? Lásd: [használó alkalmazások mobil a Xamarinnal és Azure Cosmos DB](mobile-apps-with-xamarin.md).
+Toobuild szeretné, hogy a Xamarin iOS, Android vagy űrlapok DocumentDB API és a .NET Core SDK használata alkalmazás hello? Lásd: [használó alkalmazások mobil a Xamarinnal és Azure Cosmos DB](mobile-apps-with-xamarin.md).
 
 > [!NOTE]
-> Az Azure Cosmos DB .NET Core SDK ebben az oktatóanyagban használt még nem kompatibilis az univerzális Windows Platform (UWP-) alkalmazásokat. A .NET Core SDK UWP-alkalmazásokat is támogató előzetes verziójáért küldjön e-mailt a következő címre: [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
+> hello Azure Cosmos DB .NET Core SDK ebben az oktatóanyagban használt még nem kompatibilis az univerzális Windows Platform (UWP-) alkalmazásokat. A .NET Core SDK-t támogató UWP-alkalmazások hello előzetes verzióját, e-mailek küldése túl[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com).
 
 Most pedig lássunk neki!
 
 ## <a name="prerequisites"></a>Előfeltételek
-Győződjön meg róla, hogy rendelkezik az alábbiakkal:
+Győződjön meg arról, hogy a következő hello:
 
 * Aktív Azure-fiók. Ha még nincs fiókja, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/). 
-    * Másik lehetőségként használhatja az [Azure Cosmos DB Emulatort](local-emulator.md) az oktatóanyaghoz.
+    * Másik lehetőségként használhatja a hello [Azure Cosmos DB emulátor](local-emulator.md) ehhez az oktatóanyaghoz.
 * [Visual Studio 2017](https://www.visualstudio.com/vs/) 
-    * Ha MacOS vagy Linux rendszeren dolgozik, a parancssorból is fejleszthet .NET Core-alkalmazásokat, ha telepíti a [.NET Core SDK-t](https://www.microsoft.com/net/core#macos) a választott platformra. 
-    * Ha Windows rendszeren dolgozik, a parancssorból is fejleszthet .NET Core alkalmazásokat, ha telepíti a [.NET Core SDK-t](https://www.microsoft.com/net/core#windows). 
+    * Ha MacOS vagy Linux dolgozik, parancssori hello .NET Core alkalmazásokat fejleszthet hello telepítésével [.NET Core SDK](https://www.microsoft.com/net/core#macos) hello platform az Ön által választott. 
+    * Ha a Windows dolgozik, parancssori hello .NET Core alkalmazásokat fejleszthet hello telepítésével [.NET Core SDK](https://www.microsoft.com/net/core#windows). 
     * Használhat saját szerkesztőt is, vagy letöltheti az ingyenes [Visual Studio Code](https://code.visualstudio.com/) alkalmazást, amely Windows, Linux és MacOS rendszeren egyaránt működik. 
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>1. lépés: Azure Cosmos DB-fiók létrehozása
-Hozzunk létre egy Azure Cosmos DB-fiókot. Ha van már olyan fiókja, amelyet használni szeretne, ugorjon előre a [Visual Studio megoldás beállítása](#SetupVS) című lépésre. Ha az Azure Cosmos DB Emulatort használja, kövesse az [Azure Cosmos DB Emulatornál](local-emulator.md) leírt lépéseket az emulátor telepítéséhez, majd ugorjon előre a [Visual Studio Solution beállítása](#SetupVS) című lépésre.
+Hozzunk létre egy Azure Cosmos DB-fiókot. Ha már rendelkezik toouse kívánt fiókkal, akkor kihagyhatja azokat, amelyek túl[a Visual Studio megoldás beállítása](#SetupVS). Ha hello Azure Cosmos DB Emulator használata esetén kövesse hello készítésével [Azure Cosmos DB emulátor](local-emulator.md) toosetup hello emulátor, és hagyja ki azokat, amelyek túl[a Visual Studio megoldás beállítása](#SetupVS).
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a id="SetupVS"></a>2. lépés: A Visual Studio megoldás beállítása
 1. Nyissa meg a **Visual Studio 2017-et** a számítógépén.
-2. A **Fájl** menüben válassza az **Új**, majd a **Projekt** elemet.
-3. A **New Project** (Új projekt) párbeszédpanelen válassza a **Templates** (Sablonok)  / **Visual C#** / **.NET Core**/**Console Application (.NET Core)** (Konzolalkalmazás (.NET Core)) elemet, adja a projektnek a **DocumentDBGettingStarted** nevet, majd kattintson az **OK** gombra.
+2. A hello **fájl** menüjében válassza **új**, és válassza a **projekt**.
+3. A hello **új projekt** párbeszédablakban válassza **sablonok** / **Visual C#** / **.NET Core** / **Console Application (a .NET Core)**, a projekt elnevezése **DocumentDBGettingStarted**, és kattintson a **OK**.
 
-   ![Képernyőfelvétel az Új projekt ablakról](./media/documentdb-dotnetcore-get-started/nosql-tutorial-new-project-2.png)
-4. A **Solution Explorer** (Megoldáskezelő) felületén kattintson a jobb gombbal a **DocumentDBGettingStarted** elemre.
-5. Ezután továbbra is a menüben kattintson a **Manage NuGet Packages…** (NuGet-csomagok kezelése…) lehetőségre.
+   ![Képernyőfelvétel a hello új projekt ablakról](./media/documentdb-dotnetcore-get-started/nosql-tutorial-new-project-2.png)
+4. A hello **Megoldáskezelőben**, kattintson a jobb gombbal **DocumentDBGettingStarted**.
+5. Ne maradjanak hello menüben, kattintson a **NuGet-csomagok kezelése...** .
 
-   ![A Projekt jobb gombos kattintással elérhető menüjének képernyőfelvétele](./media/documentdb-dotnetcore-get-started/nosql-tutorial-manage-nuget-pacakges.png)
-6. A **NuGet** lapon kattintson a **Browse** (Tallózás) elemre az ablak tetején, majd írja be az **azure documentdb** kifejezést a keresőmezőbe.
-7. A találatok között keresse meg a **Microsoft.Azure.DocumentDB.Core** elemet, majd kattintson a **Telepítés** lehetőségre.
-   A .NET Core DocumentDB ügyfélkódtárának csomagazonosítója a következő: [Microsoft.Azure.DocumentDB.Core](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core). Ha a .NET-keretrendszer olyan verzióját célozza meg (például net461), amelyet ez a .NET Core NuGet csomag nem támogat, használja a [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)-t, amely a .NET-keretrendszer 4.5-ös verziójától kezdődően minden verziót támogat.
-8. Amikor a rendszer kéri, fogadja el a NuGet-csomag telepítését és a licencmegállapodást.
+   ![Képernyőfelvétel a hello jobbra a hello projekt helyi](./media/documentdb-dotnetcore-get-started/nosql-tutorial-manage-nuget-pacakges.png)
+6. A hello **NuGet** lapra, majd **Tallózás** hello és írja be a hello tetején **az azure documentdb** hello Keresés mezőbe.
+7. Hello eredmények belül található **Microsoft.Azure.DocumentDB.Core** kattintson **telepítése**.
+   a DocumentDB ügyféloldali kódtára a .NET Core hello hello csomag azonosítója [Microsoft.Azure.DocumentDB.Core](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core). Ha a .NET-keretrendszer olyan verzióját célozza meg (például net461), amelyet ez a .NET Core NuGet csomag nem támogat, használja a [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)-t, amely a .NET-keretrendszer 4.5-ös verziójától kezdődően minden verziót támogat.
+8. Hello kér, fogadja el a hello NuGet csomag telepítése és hello licencszerződést.
 
-Remek! Most, hogy befejeztük a beállítást, lássunk neki a kód megírásának! A [GitHubon](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) megtalálhatja az oktatóanyagban szereplő kódprojekt befejezett változatát.
+Remek! Most, hogy befejeztük hello beállítása, először néhány kódot ír. A [GitHubon](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) megtalálhatja az oktatóanyagban szereplő kódprojekt befejezett változatát.
 
-## <a id="Connect"></a>3. lépés: Csatlakozás egy Azure Cosmos DB-fiókhoz
-Először adja hozzá az alábbi hivatkozásokat a C# alkalmazás elejéhez a Program.cs fájlban:
+## <a id="Connect"></a>3. lépés: Csatlakozás tooan Azure Cosmos DB fiók
+Először adja hozzá ezeket a C#-alkalmazás, hello Program.cs fájl elejéhez toohello hivatkozik:
 
 ```csharp
 using System;
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
@@ -102,49 +102,49 @@ using Newtonsoft.Json;
 ```
 
 > [!IMPORTANT]
-> Az oktatóanyag befejezéséhez mindenképpen adja hozzá az alábbi függőségeket.
+> A rendezés toocomplete ebben az oktatóanyagban, mindenképpen adja hozzá a hello függőségeket.
 
 Most adja hozzá ezt a két állandót és az *ügyfél* változót a *Program* nyilvános osztály alatt.
 
 ```csharp
 class Program
 {
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     private const string EndpointUri = "<your endpoint URI>";
     private const string PrimaryKey = "<your key>";
     private DocumentClient client;
 ```
 
-Ezután látogasson el az [Azure-portálra](https://portal.azure.com) az URI és az elsődleges kulcs beszerzéséért. Az Azure Cosmos DB URI és primary key szükség, hogy hova kell csatlakoznia, hogy az alkalmazás, illetve Azure Cosmos DB megbízik az alkalmazás kapcsolat.
+A következő head toohello [Azure Portal](https://portal.azure.com) tooretrieve URI és elsődleges kulcs. hello Azure Cosmos DB URI és elsődleges kulcs szükség az alkalmazás toounderstand ahol tooconnect esetén és Azure Cosmos DB tootrust az alkalmazás által létesített kapcsolatban.
 
-Az Azure Portalon lépjen a Azure Cosmos DB-fiókra, majd kattintson a **Kulcsok** elemre.
+A hello Azure portál, keresse meg a tooyour Azure Cosmos DB fiókot, és kattintson **kulcsok**.
 
-Másolja ki az URI-t a portálról, és illessze be a program.cs fájl `<your endpoint URI>` elemébe. Ezután másolja ki a PRIMARY KEY kulcsot a portálról, és illessze be a `<your key>` elembe. Ha az Azure Cosmos DB Emulatort használja, használjon `https://localhost:8081` értéket végpontként, valamint a jól definiált engedélyezési kulcsot a [Fejlesztés az Azure Cosmos DB Emulator használatával](local-emulator.md) című részből. Mindenképp távolítsa el a < és a > jelet, azonban az idézőjeleket hagyja meg a végpont és a kulcs körül.
+Hello portálról hello URI másolja és illessze be azt `<your endpoint URI>` hello program.cs fájlban. Ezután másolási elsődleges kulcs hello hello portálról, és illessze be azt `<your key>`. Hello Azure Cosmos DB emulátor használata `https://localhost:8081` hello végpont és hello jól meghatározott hitelesítési kulcsát, [hogyan toodevelop használatával hello Azure Cosmos DB emulátor](local-emulator.md). Győződjön meg arról, hogy tooremove hello < és >, de hagyjon hello a végpont és a kulcs dupla idézőjelbe.
 
-![Képernyőfelvétel a NoSQL-oktatóanyagban a C# konzolalkalmazás létrehozásához használt Azure-portálról. Megjelenít egy Azure Cosmos DB-fiókot, amelyen az ACTIVE központ, az Azure Cosmos DB-fiók panelén lévő KEYS gomb, valamint a Kulcsok panelen lévő URI, PRIMARY KEY és SECONDARY KEY értékek vannak kiemelve][keys]
+![Képernyőfelvétel a hello hello NoSQL-oktatóanyag toocreate a C# Konzolalkalmazás által használt Azure-portálról. Egy Azure Cosmos DB megjeleníti a fiók, hello ACTIVE központ, a hello hello Azure Cosmos DB fiók panelén lévő KEYS gomb és hello URI, elsődleges és másodlagos kulcsot értékek kiemelésével a hello (kulcsok) panelén][keys]
 
-Először létrehozunk egy új **DocumentClient** példányt az első lépések alkalmazáshoz.
+Hello első lépések alkalmazáshoz hozzon létre egy új példányát hello először foglalkozunk **DocumentClient**.
 
-A **Fő** metódus alatt adja hozzá a **GetStartedDemo** elnevezésű új aszinkron feladatot, amely létrehozza nekünk az új **DocumentClient** példányt.
+Alább hello **fő** módszer, vegye fel a elnevezésű új aszinkron feladatot **GetStartedDemo**, amely létrehozza nekünk az új **DocumentClient**.
 
 ```csharp
 static void Main(string[] args)
 {
 }
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task GetStartedDemo()
 {
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 }
 ```
 
-Adja hozzá a következő kódot az aszinkron feladat **Fő** metódusból való futtatásához. A **Fő** metódus észleli a kivételeket, és a konzolba írja azokat.
+Hello következő kódot toorun az aszinkron feladat hozzáadása a **fő** metódust. Hello **fő** metódus kivételeket, és azt toohello konzol írja azokat.
 
 ```csharp
 static void Main(string[] args)
 {
-        // ADD THIS PART TO YOUR CODE
+        // ADD THIS PART tooYOUR CODE
         try
         {
                 Program p = new Program();
@@ -162,44 +162,44 @@ static void Main(string[] args)
         }
         finally
         {
-                Console.WriteLine("End of demo, press any key to exit.");
+                Console.WriteLine("End of demo, press any key tooexit.");
                 Console.ReadKey();
         }
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás létrehozásához és futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toobuild gombra, és hello alkalmazás futtatásához.
 
-Gratulálunk! Sikeresen csatlakozott egy Azure Cosmos DB-fiókhoz. Most vessünk egy pillantást az Azure Cosmos DB-erőforrások használatára.  
+Gratulálunk! Sikeresen csatlakozott tooan Azure Cosmos DB fiók, most vessünk egy pillantást a Azure Cosmos DB erőforrásokat.  
 
 ## <a name="step-4-create-a-database"></a>4. lépés: Adatbázis létrehozása
-Mielőtt hozzáadja a kódot az adatbázis létrehozásához, adjon hozzá egy segédmetódust a konzolba való íráshoz.
+Az adatbázis létrehozásához hello kód hozzáadása előtt adjon hozzá egy segédmetódust toohello konzol írásához.
 
-Másolja, majd illessze be a **WriteToConsoleAndPromptToContinue** metódust a **GetStartedDemo** metódus alá.
+Másolja és illessze be a hello **WriteToConsoleAndPromptToContinue** hello metódust **GetStartedDemo** metódust.
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
 {
         Console.WriteLine(format, args);
-        Console.WriteLine("Press any key to continue ...");
+        Console.WriteLine("Press any key toocontinue ...");
         Console.ReadKey();
 }
 ```
 
-Az Azure Cosmos DB [adatbázis](documentdb-resources.md#databases) használatával hozható létre a [Documentclient](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) metódusában a **DocumentClient** osztály. Az adatbázis a JSON-dokumentumtároló gyűjtemények között particionált logikai tárolója.
+Az Azure Cosmos DB [adatbázis](documentdb-resources.md#databases) hello segítségével hozhatók létre [Documentclient](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) hello metódusában **DocumentClient** osztály. Egy adatbázis a JSON-dokumentumtároló gyűjtemények között particionált logikai tárolója hello.
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba az ügyfél létrehozása alatt. Ezzel létrehoz egy *FamilyDB* elnevezésű adatbázist.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** metódus hello ügyfél létrehozása alatt. Ezzel létrehoz egy *FamilyDB* elnevezésű adatbázist.
 
 ```csharp
 private async Task GetStartedDemo()
 {
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     await this.client.CreateDatabaseIfNotExistsAsync(new Database { Id = "FamilyDB_oa" });
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen létrehozott egy Azure Cosmos DB-adatbázist.  
 
@@ -207,39 +207,39 @@ Gratulálunk! Sikeresen létrehozott egy Azure Cosmos DB-adatbázist.
 > [!WARNING]
 > A **CreateDocumentCollectionAsync** létrehoz egy fenntartott adattovábbítási kapacitással rendelkező új gyűjteményt, amely költségeket von maga után. További részletekért látogasson el az [árképzést ismertető oldalra](https://azure.microsoft.com/pricing/details/cosmos-db/).
 
-Egy [gyűjtemény](documentdb-resources.md#collections) a **DocumentClient** osztály [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) metódusának használatával hozható létre. A gyűjtemény egy JSON-dokumentumokat és a kapcsolódó JavaScript-alkalmazáslogikát tartalmazó tároló.
+A [gyűjtemény](documentdb-resources.md#collections) hello segítségével hozhatók létre [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) hello metódusában **DocumentClient** osztály. A gyűjtemény egy JSON-dokumentumokat és a kapcsolódó JavaScript-alkalmazáslogikát tartalmazó tároló.
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba az adatbázis létrehozása alatt. Ezzel létrehoz egy *FamilyCollection_oa* elnevezésű dokumentumgyűjteményt.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** metódus hello adatbázis létrehozása alatt. Ezzel létrehoz egy *FamilyCollection_oa* elnevezésű dokumentumgyűjteményt.
 
 ```csharp
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
     await this.client.CreateDatabaseIfNotExists("FamilyDB_oa");
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     await this.client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri("FamilyDB_oa"), new DocumentCollection { Id = "FamilyCollection_oa" });
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen létrehozott egy Azure Cosmos DB-dokumentumgyűjteményt.  
 
 ## <a id="CreateDoc"></a>6. lépés: JSON-dokumentumok létrehozása
-A [dokumentumok](documentdb-resources.md#documents) a **DocumentClient** osztály [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) metódusának használatával hozhatók létre. A dokumentumok a felhasználó által megadott (tetszőleges) JSON-tartalmak. Most már beilleszthetünk egy vagy több dokumentumot. Ha már rendelkezik az adatbázisban tárolni kívánt adatokat, használhatja az Azure Cosmos DB [adatáttelepítési eszközét](import-data.md).
+A [dokumentum](documentdb-resources.md#documents) hello segítségével hozhatók létre [Documentclient](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) hello metódusában **DocumentClient** osztály. A dokumentumok a felhasználó által megadott (tetszőleges) JSON-tartalmak. Most már beilleszthetünk egy vagy több dokumentumot. Ha van olyan adat, milyen toostore az adatbázisban, használhatja az Azure Cosmos DB [adatáttelepítési eszközét](import-data.md).
 
-Először létre kell hozni egy **Család** osztályt, amely ebben a mintában az Azure Cosmos DB-ben tárolt objektumokat képviseli. Létrehozunk még egy **Szülő**, **Gyermek**, **Háziállat** és **Cím** alosztályt is a **Család** osztályban való használatra. Ne feledje, hogy a dokumentumoknak rendelkezniük kell egy **Azonosító** tulajdonsággal, amely a JSON-fájlban **id**-ként van szerializálva. Az osztályok létrehozásához adja hozzá az alábbi belső alosztályokat a **GetStartedDemo** metódus után.
+Először létre kell toocreate egy **termékcsalád** osztály, amely a mintában Azure Cosmos DB tárolt objektumokat képviseli. Létrehozunk még egy **Szülő**, **Gyermek**, **Háziállat** és **Cím** alosztályt is a **Család** osztályban való használatra. Ne feledje, hogy a dokumentumoknak rendelkezniük kell egy **Azonosító** tulajdonsággal, amely a JSON-fájlban **id**-ként van szerializálva. Az osztályok létrehozásához adja hozzá a következő belső alosztályok után hello hello **GetStartedDemo** metódust.
 
-Másolja, majd illessze be a **Család**, **Szülő**, **Gyermek**, **Háziállat** és **Cím** osztályokat a **WriteToConsoleAndPromptToContinue** metódus alá.
+Másolja és illessze be a hello **termékcsalád**, **szülő**, **gyermek**, **háziállat**, és **cím** osztályokat Hello **WriteToConsoleAndPromptToContinue** metódust.
 
 ```csharp
 private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
 {
     Console.WriteLine(format, args);
-    Console.WriteLine("Press any key to continue ...");
+    Console.WriteLine("Press any key toocontinue ...");
     Console.ReadKey();
 }
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 public class Family
 {
     [JsonProperty(PropertyName = "id")]
@@ -283,10 +283,10 @@ public class Address
 }
 ```
 
-Másolja, majd illessze be a **CreateFamilyDocumentIfNotExists** metódust a **CreateDocumentCollectionIfNotExists** metódus alá.
+Másolja és illessze be a hello **CreateFamilyDocumentIfNotExists** metódust a **CreateDocumentCollectionIfNotExists** metódust.
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task CreateFamilyDocumentIfNotExists(string databaseName, string collectionName, Family family)
 {
     try
@@ -309,16 +309,16 @@ private async Task CreateFamilyDocumentIfNotExists(string databaseName, string c
 }
 ```
 
-Ezután szúrjon be két dokumentumot, egyet az Andersen családhoz, egyet pedig a Wakefield családhoz.
+Majd szúrja be két dokumentumot, egyet mindegyik hello Andersen családhoz, majd hello Wakefield családhoz.
 
-Másolja, majd illessze be a `// ADD THIS PART TO YOUR CODE` után álló kódot a **GetStartedDemo** metódusba, a dokumentumgyűjtemény létrehozása alatt.
+Másolja és illessze be a következő hello kód `// ADD THIS PART tooYOUR CODE` tooyour **GetStartedDemo** metódusba hello dokumentumgyűjtemény létrehozása alatt.
 
 ```csharp
 await this.CreateDatabaseIfNotExists("FamilyDB_oa");
 
 await this.CreateDocumentCollectionIfNotExists("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 Family andersenFamily = new Family
 {
         Id = "Andersen.1",
@@ -385,37 +385,37 @@ Family wakefieldFamily = new Family
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen létrehozott két Azure Cosmos DB-dokumentumot.  
 
-![A diagram a NoSQL-oktatóanyagban a C# konzolalkalmazás létrehozásához használt fiók, online adatbázis, gyűjtemény és dokumentumok hierarchikus kapcsolatát ábrázolja.](./media/documentdb-dotnetcore-get-started/nosql-tutorial-account-database.png)
+![Diagram szemléltető hello hierarchikus kapcsolatát hello fiók hello online adatbázis, gyűjtemény hello és hello NoSQL-oktatóanyag toocreate által használt hello dokumentumok a C# Konzolalkalmazás](./media/documentdb-dotnetcore-get-started/nosql-tutorial-account-database.png)
 
 ## <a id="Query"></a>7. lépés: Az Azure Cosmos DB-erőforrások lekérdezése
-Az Azure Cosmos DB támogatja az egyes gyűjteményekben tárolt JSON-dokumentumokon végzett [részletes lekérdezéseket](documentdb-sql-query.md).  Az alábbi kódminta több olyan lekérdezést mutat be – az Azure Cosmos DB SQL-szintaxis és a LINQ használatával egyaránt – amelyeket az előző lépésben beszúrt dokumentumokon futtathatunk.
+Az Azure Cosmos DB támogatja az egyes gyűjteményekben tárolt JSON-dokumentumokon végzett [részletes lekérdezéseket](documentdb-sql-query.md).  hello következő mintakód bemutatja, több olyan lekérdezést, mert mindkét Azure Cosmos DB SQL használatával szintaxisát, valamint a LINQ -, amely azt is futtathatók hello azt hello előző lépésben beszúrt dokumentumokat.
 
-Másolja, majd illessze be a **ExecuteSimpleQuery** metódust a **CreateFamilyDocumentIfNotExists** metódus alá.
+Másolja és illessze be a hello **ExecuteSimpleQuery** metódust a **CreateFamilyDocumentIfNotExists** metódust.
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private void ExecuteSimpleQuery(string databaseName, string collectionName)
 {
     // Set some common query options
     FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
 
-        // Here we find the Andersen family via its LastName
+        // Here we find hello Andersen family via its LastName
         IQueryable<Family> familyQuery = this.client.CreateDocumentQuery<Family>(
                 UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions)
                 .Where(f => f.LastName == "Andersen");
 
-        // The query is executed synchronously here, but can also be executed asynchronously via the IDocumentQuery<T> interface
+        // hello query is executed synchronously here, but can also be executed asynchronously via hello IDocumentQuery<T> interface
         Console.WriteLine("Running LINQ query...");
         foreach (Family family in familyQuery)
         {
             Console.WriteLine("\tRead {0}", family);
         }
 
-        // Now execute the same query via direct SQL
+        // Now execute hello same query via direct SQL
         IQueryable<Family> familyQueryInSql = this.client.CreateDocumentQuery<Family>(
                 UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
                 "SELECT * FROM Family WHERE Family.LastName = 'Andersen'",
@@ -427,37 +427,37 @@ private void ExecuteSimpleQuery(string databaseName, string collectionName)
                 Console.WriteLine("\tRead {0}", family);
         }
 
-        Console.WriteLine("Press any key to continue ...");
+        Console.WriteLine("Press any key toocontinue ...");
         Console.ReadKey();
 }
 ```
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba a második dokumentum létrehozása alá.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** metódus hello második dokumentum létrehozása alatt.
 
 ```csharp
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeres lekérdezést végzett egy Azure Cosmos DB-gyűjteményen.
 
-Az alábbi diagram bemutatja, hogyan indít hívást az Azure Cosmos DB SQL-lekérdezési szintaxisa a létrehozott gyűjteményre. Ugyanez a logika vonatkozik a LINQ-lekérdezésekre is.
+hello következő diagram azt ábrázolja, hogyan hello Azure Cosmos adatbázis SQL-lekérdezés szintaxisa hívást hello gyűjtemény létrehozása, és hello ugyanez a logika vonatkozik toohello LINQ-lekérdezésekre is.
 
-![A NoSQL-oktatóanyagban a C# konzolalkalmazás létrehozásához használt lekérdezés hatókörét és jelentését ábrázoló diagram.](./media/documentdb-dotnetcore-get-started/nosql-tutorial-collection-documents.png)
+![A C# Konzolalkalmazás hello NoSQL-oktatóanyag toocreate használja és hello lekérdezés jelentését hello hatókör ábrázoló diagram](./media/documentdb-dotnetcore-get-started/nosql-tutorial-collection-documents.png)
 
-A [FROM](documentdb-sql-query.md#FromClause) kulcsszó kihagyható a lekérdezésből mert Azure Cosmos adatbázis-lekérdezések hatóköre eleve egyetlen gyűjtemény. Ezért a „FROM Families f” lecserélhető a „FROM root r” vagy bármilyen tetszőleges változónévre. A DocumentDB úgy veszi, hogy a Families, a root vagy a tetszőleges változónév alapértelmezés szerint az aktuális gyűjteményre hivatkozik.
+Hello [FROM](documentdb-sql-query.md#FromClause) kulcsszó nem kötelező, hello lekérdezésben, mert Azure Cosmos DB lekérdezések már hatókörön belüli tooa egyetlen gyűjtemény. Ezért a „FROM Families f” lecserélhető a „FROM root r” vagy bármilyen tetszőleges változónévre. A DocumentDB következtethető ki, hogy családok, legfelső szintű vagy hello változó neve választja, hivatkozás hello aktuális gyűjtemény alapértelmezés szerint.
 
 ## <a id="ReplaceDocument"></a>8. lépés: JSON-dokumentumok cseréje
 Az Azure Cosmos DB támogatja a JSON-dokumentumok cseréjét.  
 
-Másolja, majd illessze be a **ReplaceFamilyDocument** metódust az **ExecuteSimpleQuery** metódus alá.
+Másolja és illessze be a hello **ReplaceFamilyDocument** metódust a **ExecuteSimpleQuery** metódust.
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task ReplaceFamilyDocument(string databaseName, string collectionName, string familyName, Family updatedFamily)
 {
     try
@@ -472,15 +472,15 @@ private async Task ReplaceFamilyDocument(string databaseName, string collectionN
 }
 ```
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba a lekérdezés végrehajtása alá. Ezáltal a dokumentum cseréje után ismét ugyanaz a lekérdezés fog lefutni a megváltozott dokumentum megtekintéséhez.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** metódus hello lekérdezés végrehajtása alá. Miután kicserélte hello dokumentum, ez fog futni hello azonos újra lekérdezése tooview hello megváltozott dokumentum.
 
 ```csharp
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO YOUR CODE
-// Update the Grade of the Andersen Family child
+// ADD THIS PART tooYOUR CODE
+// Update hello Grade of hello Andersen Family child
 andersenFamily.Children[0].Grade = 6;
 
 await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
@@ -488,17 +488,17 @@ await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen lecserélt egy Azure Cosmos DB-dokumentumot.
 
 ## <a id="DeleteDocument"></a>9. lépés: JSON-dokumentumok törlése
 Az Azure Cosmos DB támogatja a JSON-dokumentumok törlését.  
 
-Másolja, majd illessze be a **DeleteFamilyDocument** metódust a **ReplaceFamilyDocument** metódus alá.
+Másolja és illessze be a hello **DeleteFamilyDocument** metódust a **ReplaceFamilyDocument** metódust.
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task DeleteFamilyDocument(string databaseName, string collectionName, string documentName)
 {
     try
@@ -513,86 +513,86 @@ private async Task DeleteFamilyDocument(string databaseName, string collectionNa
 }
 ```
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba a második lekérdezés végrehajtása alá.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** metódus hello második lekérdezés végrehajtása alá.
 
 ```csharp
 await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
 
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO CODE
+// ADD THIS PART tooCODE
 await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen törölt egy Azure Cosmos DB-dokumentumot.
 
-## <a id="DeleteDatabase"></a>10. lépés: Az adatbázis törlése
-A létrehozott adatbázis törlésével az adatbázis és az összes gyermekerőforrás (gyűjtemények, dokumentumok stb.) is törlődik.
+## <a id="DeleteDatabase"></a>10. lépés: Hello adatbázis törlése
+A létrehozott adatbázis törlésével hello eltávolítja hello adatbázis és az összes gyermekerőforrás (gyűjtemények, dokumentumok stb.).
 
-Másolja, majd illessze be az alábbi kódot a **GetStartedDemo** metódusba a dokumentum törlése alá az adatbázis és az összes gyermek-erőforrás törléséhez.
+Másolás és beillesztés hello következő code tooyour **GetStartedDemo** hello dokumentum metódust toodelete hello adatbázis és az összes gyermek-erőforrás törlése.
 
 ```csharp
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
 await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
 
-// ADD THIS PART TO CODE
-// Clean up/delete the database
+// ADD THIS PART tooCODE
+// Clean up/delete hello database
 await this.client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri("FamilyDB_oa"));
 ```
 
-Nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás futtatásához.
+Nyomja le az hello **DocumentDBGettingStarted** toorun gombra az alkalmazás.
 
 Gratulálunk! Sikeresen törölt egy Azure Cosmos DB-adatbázist.
 
 ## <a id="Run"></a>11. lépés: Futtassa a teljes C# konzolalkalmazást!
-A Visual Studióban nyomja meg a **DocumentDBGettingStarted** gombot az alkalmazás hibakeresési módban történő létrehozásához.
+Nyomja le az hello **DocumentDBGettingStarted** gombra a Visual Studio toobuild hello alkalmazás hibakeresési módban.
 
-A konzolablakban az első lépések alkalmazás kimenetének kell megjelennie. A kimenet megjeleníti a hozzáadott lekérdezések eredményeit, amelynek meg kell egyeznie az alábbi mintaszöveggel.
+Meg kell jelennie az első lépések alkalmazás hello konzolablakban hello kimenetét. hello kimenet hello hello eredményét megjeleníti azt hozzá, és meg kell felelnie az alábbi hello mintaszöveggel lekérdezések.
 
 ```
 Created FamilyDB_oa
-Press any key to continue ...
+Press any key toocontinue ...
 Created FamilyCollection_oa
-Press any key to continue ...
+Press any key toocontinue ...
 Created Family Andersen.1
-Press any key to continue ...
+Press any key toocontinue ...
 Created Family Wakefield.7
-Press any key to continue ...
+Press any key toocontinue ...
 Running LINQ query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Running direct SQL query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Replaced Family Andersen.1
-Press any key to continue ...
+Press any key toocontinue ...
 Running LINQ query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Running direct SQL query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Deleted Family Andersen.1
-End of demo, press any key to exit.
+End of demo, press any key tooexit.
 ```
 
-Gratulálunk! Elvégezte az oktatóanyagot, és egy működőképes C# konzolalkalmazással rendelkezik!
+Gratulálunk! Hello az oktatóanyag elvégzése után, és van egy működő C# konzolalkalmazást!
 
-## <a id="GetSolution"></a> Az oktatóanyagban szereplő teljes megoldás beszerzése
-A cikkben szereplő összes mintát tartalmazó GetStarted-megoldás összeállításához az alábbiakra lesz szüksége:
+## <a id="GetSolution"></a>Hello teljes oktatóanyag megoldás beszerzése
+toobuild hello GetStarted-megoldás, amely tartalmazza az összes hello minta ebben a cikkben, szüksége lesz a következő hello:
 
 * Aktív Azure-fiók. Ha még nincs fiókja, létrehozhat egy [ingyenes fiókot](https://azure.microsoft.com/free/).
 * Egy [Azure Cosmos DB fiók][create-documentdb-dotnet.md#create-account].
-* A GitHubon elérhető [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) megoldás.
+* Hello [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) megoldás elérhető a Githubon.
 
-A DocumentDB API hivatkozásainak Azure Cosmos DB .NET Core SDK-t a Visual Studio visszaállításához kattintson a jobb gombbal a **GetStarted** Megoldáskezelőben, majd megoldás **engedélyezése NuGet-csomagok visszaállításának**. Következő lépésként a Program.cs fájlban frissítse az EndpointUrl és az AuthorizationKey értékeket leírtak szerint [csatlakozás Azure Cosmos DB fiók](#Connect).
+toorestore hello hivatkozások toohello DocumentDB API for Azure Cosmos DB .NET Core SDK-t a Visual Studióban, kattintson a jobb gombbal a hello **GetStarted** Megoldáskezelőben, majd megoldás **engedélyezése NuGet-csomagok visszaállításának**. Következő lépésként hello Program.cs fájlban frissítse hello végponti URL-cím és az AuthorizationKey értékeket a [tooan Azure Cosmos DB fiók csatlakozás](#Connect).
 
 ## <a name="next-steps"></a>Következő lépések
 * Összetettebb ASP.NET MVC-oktatóanyagot szeretne? Lásd: [ASP.NET MVC oktatóprogram: webalkalmazás fejlesztése a Azure Cosmos DB](documentdb-dotnet-application.md).
-* A Xamarin iOS, Android vagy űrlapok fejlesztése a DocumentDB API-t használó Azure Cosmos DB .NET Core SDK alkalmazások? Lásd: [használó alkalmazások mobil a Xamarinnal és Azure Cosmos DB](mobile-apps-with-xamarin.md).
-* Méret- és teljesítménytesztelést szeretne végezni az Azure Cosmos DB használatával? Lásd: [teljesítmény és méretezhetőség, az Azure Cosmos DB tesztelése](performance-testing.md)
-* Megtudhatja, hogyan [figyelő Azure Cosmos DB kéréseket, a használati és a tárolási](monitor-accounts.md).
-* Futtasson lekérdezéseket a minta-adatkészleteken a [Query Playground](https://www.documentdb.com/sql/demo) (Tesztlekérdezések) használatával.
-* A programozási modellel kapcsolatos további információkért lásd: [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
+* Toodevelop szeretné, hogy a Xamarin iOS, Android vagy űrlapok DocumentDB API-t használó hello Azure Cosmos DB .NET Core SDK-t? Lásd: [használó alkalmazások mobil a Xamarinnal és Azure Cosmos DB](mobile-apps-with-xamarin.md).
+* Szeretné, hogy tooperform méretezés és teljesítmény Azure Cosmos DB tesztelték? Lásd: [teljesítmény és méretezhetőség, az Azure Cosmos DB tesztelése](performance-testing.md)
+* Ismerje meg, hogyan túl[figyelő Azure Cosmos DB kéréseket, a használati és a tárolási](monitor-accounts.md).
+* A minta-adatkészleteken hello lekérdezéseinek futtatásához [Tesztlekérdezéseket](https://www.documentdb.com/sql/demo).
+* toolearn hello programozási modell kapcsolatos további információkért lásd: [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
 
 [create-documentdb-dotnet.md#create-account]: create-documentdb-dotnet.md#create-account
 [keys]: media/documentdb-dotnetcore-get-started/nosql-tutorial-keys.png

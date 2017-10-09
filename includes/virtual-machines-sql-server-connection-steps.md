@@ -1,80 +1,80 @@
-### <a name="open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine"></a>A Windows-tűzfal TCP-portjainak megnyitása az Adatbázismotor alapértelmezett példányában
-1. Csatlakozzon a virtuális géphez a távoli asztalról. Részletes útmutatás a virtuális géphez való csatlakozásról: [SQL virtuális gép megnyitása a távoli asztalról](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md#open-the-vm-with-remote-desktop).
-2. Miután bejelentkezett, a kezdőképernyőn írja be a **WF.msc** szöveget, majd nyomja le az ENTER billentyűt.
+### <a name="open-tcp-ports-in-hello-windows-firewall-for-hello-default-instance-of-hello-database-engine"></a>Nyissa meg a TCP-portok hello adatbázismotor alapértelmezett példánya hello hello a Windows tűzfal
+1. Csatlakoztassa a toohello virtuális gépet a távoli asztalról. A virtuális gép toohello csatlakozó részletes utasításokért lásd: [nyisson meg egy SQL virtuális gép távoli asztal](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md#open-the-vm-with-remote-desktop).
+2. Miután hello kezdőképernyőjén naplózza, írja be a **WF.msc**, majd nyomja le az ENTER BILLENTYŰT.
    
-    ![A tűzfalprogram elindítása](./media/virtual-machines-sql-server-connection-steps/12Open-WF.png)
-3. A **fokozott biztonságú Windows tűzfal** bal oldali ablaktábláján kattintson jobb gombbal a **Bejövő szabályok** elemre, majd a műveletpanelen az **Új szabály** lehetőségre.
+    ![Hello tűzfal Program elindítása](./media/virtual-machines-sql-server-connection-steps/12Open-WF.png)
+3. A hello **fokozott biztonságú Windows tűzfal**, a hello bal oldali ablaktáblán kattintson a jobb gombbal **bejövő szabályok**, és kattintson a **új szabály** hello művelet ablaktáblában.
    
     ![Új szabály](./media/virtual-machines-sql-server-connection-steps/13New-FW-Rule.png)
-4. Az **Új bejövő szabály varázsló** párbeszédpanel **Szabálytípus** területén válassza a **Port** lehetőséget, és kattintson a **Tovább** gombra.
-5. A **Protokoll és portok** párbeszédpanelen használja az alapértelmezett **TCP** beállítást. Az **Adott helyi portok** mezőben írja be az Adatbázismotor példányának portszámát (**1433** az alapértelmezett példányhoz, vagy végpont lépésének választott magánhálózati portja).
+4. A hello **új bejövő szabály varázsló** párbeszédpanel **szabálytípus**, jelölje be **Port**, és kattintson a **következő**.
+5. A hello **protokoll és portok** párbeszédpanelen alapértelmezés használata hello **TCP**. A hello **adott helyi portok** mezőbe, majd típus hello portszámát hello adatbázismotor példánya hello (**1433** hello alapértelmezett példány vagy a magánhálózati port hello hello végpont lépésben kiválasztott).
    
     ![1433-as TCP-port](./media/virtual-machines-sql-server-connection-steps/14Port-1433.png)
 6. Kattintson a **Tovább** gombra.
-7. A **Művelet** párbeszédpanelen válassza a **Kapcsolat engedélyezése** lehetőséget, majd kattintson a **Tovább** gombra.
+7. A hello **művelet** párbeszédpanelen jelölje ki **hello csatlakozás engedélyezése**, és kattintson a **következő**.
    
-    **Biztonsági megjegyzés:** A **Csak akkor engedélyezze a kapcsolatot, ha biztonságos** beállítással fokozhatja a biztonságot. Ha a környezethez további biztonsági beállításokat szeretne megadni, válassza ezt a lehetőséget.
+    **Biztonsági Megjegyzés:** Selecting **hello csatlakozás engedélyezése, ha biztonságos** növelheti a biztonságot. Válassza ezt a lehetőséget, ha szeretné tooconfigure további biztonsági beállítások a környezetben.
    
     ![Kapcsolatok engedélyezése](./media/virtual-machines-sql-server-connection-steps/15Allow-Connection.png)
-8. A **Profil** párbeszédpanelen válassza a **Nyilvános**, **Privát** és a **Tartomány** lehetőséget. Ezután kattintson a **Next** (Tovább) gombra.
+8. A hello **profil** párbeszédpanelen jelölje ki **nyilvános**, **titkos**, és **tartomány**. Ezután kattintson a **Next** (Tovább) gombra.
    
-    **Biztonsági megjegyzés:** A **Nyilvános** beállítással engedélyezi az internetelérést. Amikor csak lehetséges, válasszon egy szigorúbb profilt.
+    **Biztonsági Megjegyzés:** Selecting **nyilvános** lehetővé teszi a hozzáférést keresztül hello internet. Amikor csak lehetséges, válasszon egy szigorúbb profilt.
    
     ![Nyilvános profil](./media/virtual-machines-sql-server-connection-steps/16Public-Private-Domain-Profile.png)
-9. A **Név** párbeszédpanelen írjon be egy nevet és leírást a szabályhoz, majd kattintson a **Befejezés** lehetőségre.
+9. A hello **neve** párbeszédpanelen írja be egy nevet és leírást a szabályhoz, és kattintson **Befejezés**.
    
     ![Szabály neve](./media/virtual-machines-sql-server-connection-steps/17Rule-Name.png)
 
-Szükség szerint nyisson meg további portokat a többi összetevőhöz. További információ: [A Windows Tűzfal konfigurálása SQL Server-hozzáféréshez](http://msdn.microsoft.com/library/cc646023.aspx).
+Szükség szerint nyisson meg további portokat a többi összetevőhöz. További információkért lásd: [hello Windows tűzfal tooAllow SQL Server-hozzáférés konfigurálása](http://msdn.microsoft.com/library/cc646023.aspx).
 
-### <a name="configure-sql-server-to-listen-on-the-tcp-protocol"></a>Az SQL Server konfigurálása a TCP-protokoll figyeléséhez
+### <a name="configure-sql-server-toolisten-on-hello-tcp-protocol"></a>SQL Server toolisten konfigurálja a TCP protokoll hello
 
 [!INCLUDE [Enable TCP](virtual-machines-sql-server-connection-tcp-protocol.md)]
 
 ### <a name="configure-sql-server-for-mixed-mode-authentication"></a>Az SQL Server konfigurálása vegyes módú hitelesítéshez
-Az SQL Server Adatbázismotor nem használhatja a Windows-hitelesítést egy tartománykörnyezet nélkül. Ha az Adatbázismotorhoz egy másik számítógépről szeretne csatlakozni, konfigurálja az SQL Servert vegyes módú hitelesítéshez. A vegyes módú hitelesítés az SQL Server-hitelesítést és a Windows-hitelesítést is lehetővé teszi.
+SQL Server adatbázismotor hello nem használható Windows-hitelesítés nélkül tartományi környezetben. tooconnect toohello adatbázismotor egy másik számítógépről, SQL Server konfigurálása a vegyes módú hitelesítést. A vegyes módú hitelesítés az SQL Server-hitelesítést és a Windows-hitelesítést is lehetővé teszi.
 
 > [!NOTE]
 > Előfordulhat, hogy a vegyes módú hitelesítés konfigurálása nem szükséges, ha az Azure Virtual Networköt egy már konfigurált tartománykörnyezettel konfigurálta.
 > 
 > 
 
-1. A virtuális géphez csatlakozva a kezdőlapon írja be az **SQL Server Management Studio** kifejezést, és kattintson a kijelölt ikonra.
+1. Miközben csatlakoztatott toohello virtuális gép hello Start lap, írja be a **SQL Server Management Studio** és hello kijelölt ikonra.
    
-    A Management Studio első megnyitásakor annak létre kell hoznia a felhasználó Management Studio-környezetét. Ez eltarthat néhány pillanatig.
-2. A Management Studio ezután megjeleníti a **Kapcsolódás a kiszolgálóhoz** párbeszédpanelt. A **Kiszolgálónév** mezőbe írja be a virtuális gép nevét, így az Object Explorerrel kapcsolódhat az Adatbázismotorhoz (A virtuális gép neve helyett a **(helyi)** kifejezést vagy egy pontot is megadhat mint **kiszolgálónév**). Válassza a **Windows-hitelesítés** lehetőséget, és írja a ***saját_virtuális gép_neve*\saját_helyi_rendszergazda** szöveget a **Felhasználónév** mezőbe. Kattintson a **Connect** (Csatlakozás) gombra.
+    hello azt hello felhasználók Management Studio környezet létre kell hoznia a Management Studio első megnyitásakor. Ez eltarthat néhány pillanatig.
+2. Management Studio megadja hello **tooServer csatlakozás** párbeszédpanel megnyitásához. A hello **kiszolgálónév** mezőjébe hello virtuális gép tooconnect toohello adatbázismotor hello Object Explorer hello nevét (hello is használhatja a virtuális gép neve helyett **(helyi)** vagy egy egyetlen időszak hello **kiszolgálónév**). Válassza ki **Windows-hitelesítés**, és hagyja  ***virtuális_gép_neve*\your_local_administrator** a hello **felhasználónév** mezőbe. Kattintson a **Connect** (Csatlakozás) gombra.
    
-    ![Csatlakozás kiszolgálóhoz](./media/virtual-machines-sql-server-connection-steps/19Connect-to-Server.png)
-3. Az SQL Server Management Studio Object Explorer felületén kattintson jobb gombbal az SQL Server példányának nevére (a virtuális gép nevére), majd a **Tulajdonságok** lehetőségre.
+    ![Csatlakozás tooServer](./media/virtual-machines-sql-server-connection-steps/19Connect-to-Server.png)
+3. Az SQL Server Management Studio Object Explorer ablaktáblában kattintson a jobb gombbal a hello példány az SQL Server (hello virtuális gép neve) hello nevét, és kattintson **tulajdonságok**.
    
     ![Kiszolgáló tulajdonságai](./media/virtual-machines-sql-server-connection-steps/20Server-Properties.png)
-4. A **Biztonság** lap **Kiszolgálóhitelesítés** területén válassza az **SQL Server és Windows-hitelesítési mód** lehetőséget, majd kattintson az **OK** gombra.
+4. A hello **biztonsági** lap **kiszolgálóhitelesítés**, jelölje be **SQL Server és a Windows-hitelesítés üzemmód**, és kattintson a **OK** .
    
     ![A hitelesítési mód kiválasztása](./media/virtual-machines-sql-server-connection-steps/21Mixed-Mode.png)
-5. Az SQL Server Management Studio párbeszédpanelen kattintson az **OK** gombra az SQL Server újraindítását kérő üzenet elfogadásához.
+5. A hello SQL Server Management Studio párbeszédpanelen kattintson a **OK** tooacknowledge hello követelmény toorestart SQL Server.
 6. Az Object Explorerben kattintson a jobb gombbal a kiszolgálóra, majd az **Újraindítás** lehetőségre. (Ha az SQL Server Agent fut, azt is újra kell indítani.)
    
     ![Újraindítás](./media/virtual-machines-sql-server-connection-steps/22Restart2.png)
-7. Az SQL Server Management Studio párbeszédpanelen kattintson az **Igen** lehetőségre az SQL Server újraindításának megerősítését kérő üzenet elfogadásához.
+7. A hello SQL Server Management Studio párbeszédpanelen kattintson a **Igen** , amelyet az SQL Server toorestart tooagree.
 
 ### <a name="create-sql-server-authentication-logins"></a>SQL Server-hitelesítési bejelentkezés létrehozása
-Ha az Adatbázismotorhoz egy másik számítógépről szeretne csatlakozni, létre kell hoznia legalább egy SQL Server hitelesítési bejelentkezést.
+tooconnect toohello adatbázismotor egy másik számítógépről, létre kell hoznia legalább egy SQL Server-hitelesítési bejelentkezési névként.
 
-1. Az SQL Server Management Studio Object Explorer felületén bontsa ki azon kiszolgáló példányának mappáját, amelyben létre szeretné hozni az új bejelentkezést.
-2. Kattintson a jobb gombbal a **Biztonság** mappára, mutasson az **Új** lehetőségre, és válassza a **Bejelentkezés...**  lehetőséget.
+1. SQL Server Management Studio Object Explorerben bontsa ki a hello mappa kívánt toocreate hello új bejelentkezés hello server-példány.
+2. Kattintson a jobb gombbal hello **biztonsági** mappára, mutasson túl**új**, és válassza ki **bejelentkezési...** .
    
     ![Új bejelentkezés](./media/virtual-machines-sql-server-connection-steps/23New-Login.png)
-3. A **Bejelentkezés – Új** párbeszédpanel **Általános** lapján adja meg az új felhasználó nevét a **Bejelentkezési név** mezőben.
+3. A hello **- új bejelentkezés** párbeszédpanel hello **általános** lapján adja meg hello hello új felhasználó hello **bejelentkezési név** mezőbe.
 4. Kattintson az **SQL Server-hitelesítés** lehetőségre.
-5. A **Jelszó** mezőbe írja be az új felhasználó jelszavát. Adja meg újra a jelszót a **Jelszó megerősítése** mezőben.
-6. Válassza ki a szükséges jelszókényszerítési beállításokat (**Jelszóházirend kényszerítése**, **Jelszóelévülés kényszerítése** és **A felhasználónak módosítania kell a jelszavát a következő bejelentkezéskor**). Ha ezt a bejelentkezést saját célra használja, nem szükséges jelszómódosítást kérnie a következő bejelentkezéshez.
-7. Az **Alapértelmezett adatbázis** listából válasszon ki egy alapértelmezett adatbázist a bejelentkezéshez. Az alapértelmezett beállítás a **master**. Ha még nem hozott létre egy felhasználói adatbázist, hagyja meg a **master** beállítást.
+5. A hello **jelszó** mezőbe írja be a jelszót hello új felhasználó. Adjon meg, hogy a jelszó újra hello **jelszó megerősítése** mezőbe.
+6. Válassza ki a hello kényszerítési jelszóbeállításokat szükséges (**jelszó házirend**, **kényszerítése a jelszó lejárati**, és **kell változtatni a jelszót a következő bejelentkezésekor**). Ha ehhez a bejelentkezéshez használ a szolgáltatást, nem kell toorequire jelszó módosítása hello következő bejelentkezésekor.
+7. A hello **alapértelmezett adatbázis** listára, válassza ki az alapértelmezett adatbázis hello bejelentkezési azonosítóhoz. **fő** hello alapértelmezett ezt a beállítást. Ha még nem hozott létre a felhasználói adatbázis, hagyja üresen ezt a túl beállítása**fő**.
    
     ![Bejelentkezési tulajdonságok](./media/virtual-machines-sql-server-connection-steps/24Test-Login.png)
-8. Ha ez az első létrehozott bejelentkezése, célszerű lehet SQL Server-rendszergazdaként megadnia a bejelentkezést. Ebben az esetben a **Kiszolgálói szerepkörök** lapon jelölje be a **sysadmin** jelölőnégyzetet.
+8. Ha ez hello első bejelentkezés hoz létre, érdemes lehet toodesignate ehhez a bejelentkezéshez egy SQL Server rendszergazdaként. Ha igen, hello **kiszolgálói szerepkörök** ellenőrzése lapon **sysadmin**.
    
    > [!NOTE]
-   > A sysadmin rögzített kiszolgálói szerepkör tagjai teljes vezérlést kapnak az Adatbázismotor felett. A szerepkör tagságát így gondosan határozza meg.
+   > Hello SysAdmin (rendszergazda) rögzített kiszolgálói szerepkör tagjai rendelkeznek a teljes körű vezérlést biztosítanak hello adatbázismotor. A szerepkör tagságát így gondosan határozza meg.
    > 
    > 
    

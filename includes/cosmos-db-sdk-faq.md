@@ -1,24 +1,24 @@
-**1. Hogyan ügyfelek értesítést fog kapni a leköszönő SDK?**
+**1. Hogyan ügyfelek értesítést fog kapni az SDK kivonása hello?**
 
-12 hónapos előzetes értesítéssel a támogatás megszűnésével leköszönő SDK egy támogatott SDK zökkenőmentes átmenet megkönnyítése érdekében a Microsoft nyújt. További az ügyfelek az különböző kommunikációs csatornák – Azure felügyeleti portálon, fejlesztői központban, blogbejegyzés, értesítést fog kapni, és közvetlen kommunikációt hozzárendelt szolgáltatás-rendszergazdák.
+12 hónapos előzetes értesítéssel toohello végéhez az SDK eltávolítása a rendelés toofacilitate egy zökkenőmentes átmenet tooa hello támogatott SDK a Microsoft nyújt. További az ügyfelek különböző kommunikációs csatornákon – Azure felügyeleti portálon, a fejlesztői központban, blogbejegyzésben keresztül értesítést kap, és közvetlen kommunikációt tooassigned szolgáltatás-rendszergazdák.
 
-**2. Az ügyfelek 12 hónap során egy "visszaállítandó" kivont DocumentDB SDK-t használó alkalmazások hozhat létre?** 
+**2. Az ügyfelek hello 12 hónap során egy "visszaállítandó" kivont DocumentDB SDK-t használó alkalmazások hozhat létre?** 
 
-Igen, az ügyfelek létrehozásához, telepítéséhez és módosíthatja a 12 hónap türelmi időszak alatt a "visszaállítandó" kivont DocumentDB SDK-t használó alkalmazások teljes hozzáféréssel rendelkeznek. A 12 hónap türelmi időszak alatt az ügyfelek javasolja, hogy egy újabb támogatott verzióra DocumentDB SDK szükség szerint telepítse át.
+Igen, az ügyfelek fogja tooauthor teljes hozzáféréssel rendelkezik, telepíteni és megváltoztatni azokat az alkalmazásokat a DocumentDB SDK használatával "visszaállítandó" hello kivont hello 12 hónap türelmi időszak alatt. Hello 12 hónap türelmi időszak, során a felhasználók számára a megfelelő DocumentDB SDK elkeverni toomigrate tooa újabb támogatott verzióját.
 
-**3. Képes ügyfelek létrehozásával és módosításával a értesítési 12 hónapos időszak után kivont DocumentDB SDK-t használó alkalmazások?**
+**3. Képes ügyfelek létrehozásával és módosításával a hello 12 hónap értesítési idő után kivont DocumentDB SDK-t használó alkalmazások?**
 
-12 hónapos értesítési időszak után az SDK rendszerből. A DocumentDB platformja nem lesz engedélyezett a DocumentDB egy kivont SDK használata alkalmazások elérését. További, a Microsoft nem vevő támogatást nyújt a kivont SDK-val.
+Hello 12 hónap értesítési idő után hello SDK rendszerből. Egy kivont SDK használata alkalmazások bármely hozzáférés tooDocumentDB hello DocumentDB platform nem lesz engedélyezett. További a Microsoft nem nyújt ügyfél-támogatási szolgálatához hello SDK visszavonva.
 
-**4. Mi történik a futó alkalmazások az ügyfél által használt DocumentDB SDK-verzió nem támogatott?**
+**4. Mi történik, tooCustomer a futó alkalmazások által használt DocumentDB SDK-verzió nem támogatott?**
 
-A program elutasítja a DocumentDB szolgáltatás egy kivont SDK verziójával való kapcsolódáshoz tett bármilyen kísérletet. 
+A program elutasítja a DocumentDB szolgáltatás egy kivont SDK verziójával tooconnect toohello tett bármilyen kísérletet. 
 
-**5. Új szolgáltatásait és funkcióit alkalmazandó összes nem lejárt SDK?**
+**5. Új szolgáltatásait és funkcióit lesz alkalmazott tooall nem lejárt SDK-k?**
 
-Új szolgáltatásait és funkcióit kizárólag hozzáadódik új verziók. Az SDK régi, nem lejárt verziójának használatakor a documentdb kérelmek továbbra is működnek az előző, de Ön nem rendelkezik semmilyen új képességekkel rendelkezik hozzáféréssel.  
+Új szolgáltatásait és funkcióit kizárólag megkapja toonew verziók. Használata a kérelmek tooDocumentDB SDK hello régi, nem lejárt, verziója továbbra is működnek az előző, de Ön nem rendelkezik hozzáféréssel tooany új képességeket.  
 
 **6. Mit tegyek, ha nem lehet frissíteni a határidő előtt az alkalmazást?**
 
-Azt javasoljuk, hogy frissítsen a legújabb SDK lehető leghamarabb. Az SDK a használatból való kivonást címkézett fog követően az alkalmazás frissítése a 12 hónapon keresztül. Ha, valamilyen okból nem az alkalmazás frissítéséhez a időkereten belül vegye fel a kapcsolatot a [Cosmos DB Team](mailto:askcosmosdb@microsoft.com) és azok Segítségkérés a megadott időpont előtt.
+Azt javasoljuk, hogy frissítse toohello lehető legkorábban SDK legújabb. Miután egy SDK címkézett használatból való kivonást a az alkalmazás 12 hónapon keresztül tooupdate fog rendelkezni. Ha, valamilyen okból nem a időkereten belül az alkalmazás frissítéséhez lépjen kapcsolatba a hello [Cosmos DB Team](mailto:askcosmosdb@microsoft.com) és azok segítségkérés hello levágási dátum elé.
 

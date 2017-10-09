@@ -1,6 +1,6 @@
 ---
 title: "Párhuzamosan fennálló ExpressRoute- és helyek közötti VPN-kapcsolatok konfigurálása: klasszikus: Azure | Microsoft Docs"
-description: "A cikk bemutatja az ExpressRoute- és egy helyek közötti VPN-kapcsolat konfigurálását, amelyek párhuzamosan használhatók a klasszikus üzembehelyezési modellben."
+description: "Ez a cikk bemutatja, hogyan ExpressRoute és hello klasszikus telepítési modell egyszerre is használható, pont-pont VPN-kapcsolat konfigurálása."
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: charwen
-ms.openlocfilehash: 09d1649f0ca0cf4ca464d95b29461cad3fe51788
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: abb30fff55e8ec243f2920c5b2f70c43717755fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-expressroute-and-site-to-site-coexisting-connections-classic"></a>Párhuzamos ExpressRoute- és párhuzamos helyek közötti kapcsolatok konfigurálása (klasszikus)
 > [!div class="op_single_selector"]
@@ -28,41 +28,41 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-A helyek közötti VPN és az ExpressRoute konfigurálásának lehetősége több előnnyel jár. A helyek közötti VPN-t konfigurálhatja biztonságos feladatátvételi útvonalként az ExpressRoute számára, vagy használhat helyek közötti VPN-eket is a nem ExpressRoute-on keresztül kapcsolódó helyekhez való csatlakozáshoz. A cikkben mindkét forgatókönyv lépéseit ismertetjük. Ez a cikk a klasszikus üzembehelyezési modellre vonatkozik. Ez a konfiguráció a portálon nem érhető el.
+Hello képességét tooconfigure telephelyek közötti VPN és ExpressRoute több előnye is van. Telephelyek közötti VPN elérési útnak biztonságos feladatátvétel konfigurálása ExressRoute, vagy használja a pont-pont VPN tooconnect toosites nem ExpressRoute keresztül csatlakozó. Bemutatjuk hello lépéseket tooconfigure mindkét forgatókönyvet ebben a cikkben. Ez a cikk vonatkozik toohello klasszikus üzembe helyezési modellben. Ez a konfiguráció hello portál nem érhető el.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
-**Tudnivalók az Azure üzembehelyezési modellekről**
+**Tudnivalók az Azure üzembe helyezési modelljeiről**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 > [!IMPORTANT]
-> Az ExpressRoute-kapcsolatcsoportokat előre konfigurálni kell, mielőtt végrehajtaná az alábbi utasításokat. Mielőtt folytatná az alábbi lépésekkel, az útmutatásoknak megfelelően [hozzon létre egy ExpressRoute-kapcsolatcsoportot](expressroute-howto-circuit-classic.md) és [konfigurálja az útválasztást](expressroute-howto-routing-classic.md).
+> ExpressRoute-Kapcsolatcsoportok előre konfigurálni kell az alábbi hello utasítások végrehajtása előtt. Győződjön meg arról, hogy követte hello útmutatók túl[ExpressRoute-kapcsolatcsoportot létrehozni](expressroute-howto-circuit-classic.md) és [konfigurálja az útválasztást](expressroute-howto-routing-classic.md) az alábbi hello lépések végrehajtása előtt.
 > 
 > 
 
 ## <a name="limits-and-limitations"></a>Korlátok és korlátozások
 * **A tranzit útválasztás nem támogatott.** Nem hajthat végre útválasztást (az Azure-on keresztül) a helyek közötti VPN használatával csatlakoztatott helyi hálózat és az ExpressRoute használatával csatlakoztatott helyi hálózat között.
-* **A pont–hely kapcsolat nem támogatott.** Pont–hely típusú VPN-kapcsolatok nem engedélyezhetők az ExpressRoute-hoz csatlakozó VNet felé. A Pont–hely VPN és az ExpressRoute nem létezhet ugyanazon VNeten belül.
-* **A kényszerített bújtatás nem engedélyezhető a helyek közötti VPN-átjárón.** Az internetes forgalmat csak a helyszíni hálózatra „kényszerítheti” az ExpressRoute-on keresztül.
-* **Az alapszintű termékváltozat átjárója nem támogatott.** Nem Basic SKU-átjárót kell használnia [ExpressRoute-](expressroute-about-virtual-network-gateways.md) és [VPN-átjáróként](../vpn-gateway/vpn-gateway-about-vpngateways.md).
+* **A pont–hely kapcsolat nem támogatott.** Nem lehet engedélyezni a pont-pont VPN kapcsolatok toohello ugyanazt a virtuális hálózatot, amely csatlakoztatott tooExpressRoute. Pont-pont VPN- és ExpressRoute nem lehet hello az azonos virtuális hálózaton.
+* **A kényszerített bújtatás hello telephelyek közötti VPN-átjáró nem engedélyezhető.** Csak "kényszerítheti" minden Internet adathoz kötött forgalom hátsó tooyour a helyi hálózaton keresztül ExpressRoute.
+* **A Basic SKU-átjáró nem támogatott.** Nem alapszintű Termékváltozat átjáró kell használnia az mindkét hello [ExpressRoute-átjáró](expressroute-about-virtual-network-gateways.md) és hello [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md).
 * **Kizárólag az útvonalalapú VPN-átjáró támogatott.** Útvonalalapú [VPN-átjárót](../vpn-gateway/vpn-gateway-about-vpngateways.md) kell használnia.
-* **A VPN-átjáróhoz statikus útvonalat kell konfigurálni.** Ha a helyi hálózat az ExpressRoute-hoz és a helyek közötti VPN-hez is csatlakozik, konfigurálnia kell egy statikus útvonalat a helyi hálózaton a helyek közötti VPN-kapcsolat a nyilvános internetre történő átirányításához.
-* **Elsőként az ExpressRoute-átjárót kell konfigurálnia.** Először az ExpressRoute-átjárót kell létrehoznia, mielőtt felvenné a helyek közötti VPN-átjárót.
+* **A VPN-átjáróhoz statikus útvonalat kell konfigurálni.** Ha a helyi hálózathoz csatlakoztatott tooboth ExpressRoute és a pont-pont VPN, rendelkeznie kell a helyi hálózati tooroute hello pont-pont VPN-kapcsolat toohello konfigurált statikus útvonal nyilvános internethez.
+* **Elsőként az ExpressRoute-átjárót kell konfigurálnia.** Létre kell hoznia hello ExpressRoute-átjárót először hello telephelyek közötti VPN átjáró hozzáadása előtt.
 
 ## <a name="configuration-designs"></a>Konfigurációs tervek
 ### <a name="configure-a-site-to-site-vpn-as-a-failover-path-for-expressroute"></a>Helyek közötti VPN konfigurálása feladatátvételi útvonalként az ExpressRoute számára
-Konfigurálhat egy helyek közötti VPN-kapcsolatot tartalékként az ExpressRoute számára. Ez csak az Azure privát társviszony-létesítési útvonalhoz társított virtuális hálózatokra vonatkozik. Az Azure nyilvános és a Microsoft társviszony-létesítésekhez nem létezik VPN-alapú feladatátvételi megoldás. Minden esetben az ExpressRoute-kapcsolatcsoport az elsődleges kapcsolat. Az adatok csak akkor lesznek a helyek közötti VPN-útvonalon továbbítva, ha az ExpressRoute-kapcsolatcsoport meghibásodik. 
+Konfigurálhat egy helyek közötti VPN-kapcsolatot tartalékként az ExpressRoute számára. Ez vonatkozik csak toovirtual hálózatok csatolt toohello Azure magánhálózati társviszony-létesítési elérési útja. Az Azure nyilvános és a Microsoft társviszony-létesítésekhez nem létezik VPN-alapú feladatátvételi megoldás. hello ExpressRoute-kapcsolatcsoportot mindig hello elsődleges kapcsolat. Adatok halad keresztül hello telephelyek közötti VPN elérési út csak akkor, ha ExpressRoute-kapcsolatcsoportot hello sikertelen. 
 
 > [!NOTE]
-> Bár a rendszer az ExpressRoute-kapcsolatcsoportot részesíti előnyben a helyek közötti VPN helyett, ha az útvonalak megegyeznek, az Azure a leghosszabb előtag-megfeleltetéssel választja ki a célcsomag útvonalát.
+> Habár ExpressRoute-kapcsolatcsoportot pont-pont VPN-kapcsolaton keresztül előnyben részesített a mindkét útvonalak vannak hello azonos, Azure használandó hello leghosszabb előtag egyezés toochoose hello útvonal hello csomagok cél felé.
 > 
 > 
 
 ![Egyidejű jelenlét](media/expressroute-howto-coexist-classic/scenario1.jpg)
 
-### <a name="configure-a-site-to-site-vpn-to-connect-to-sites-not-connected-through-expressroute"></a>Helyek közötti VPN konfigurálása az ExpressRoute használatával nem csatlakozó helyekhez
-A hálózatát konfigurálhatja úgy is, hogy egyes helyek közvetlenül az Azure-hoz kapcsolódnak helyek közötti VPN-en keresztül, míg más helyek az ExpressRoute használatával kapcsolódnak. 
+### <a name="configure-a-site-to-site-vpn-tooconnect-toosites-not-connected-through-expressroute"></a>Egy ExpressRoute keresztül nem kapcsolódik telephelyek közötti VPN-tooconnect toosites konfigurálása
+Beállíthatja, hogy a hálózat, ahol egyes helyek csatlakoznak közvetlenül tooAzure pont-pont VPN-kapcsolaton keresztül, és az egyes helyek ExpressRoute keresztül csatlakoznak. 
 
 ![Egyidejű jelenlét](media/expressroute-howto-coexist-classic/scenario2.jpg)
 
@@ -71,28 +71,28 @@ A hálózatát konfigurálhatja úgy is, hogy egyes helyek közvetlenül az Azur
 > 
 > 
 
-## <a name="selecting-the-steps-to-use"></a>A használni kívánt lépések kiválasztása
-Két különböző eljáráscsoport közül választhat az egyidejűleg használható kapcsolatok konfigurálásához. A konfigurálás választott módja attól függ, hogy rendelkezik-e meglévő virtuális hálózattal, amelyhez csatlakozni szeretne, vagy egy új virtuális hálózatot szeretne létrehozni.
+## <a name="selecting-hello-steps-toouse"></a>Hello lépéseket toouse kiválasztása
+Nincsenek az eljárások toochoose a rendelés tooconfigure kapcsolatok, amely egyszerre is használható két különböző csoportjai számára. hello konfigurációs eljárás választhat, hogy van-e egy meglévő virtuális hálózatot, hogy azt szeretné, hogy tooconnect, vagy azt szeretné, hogy egy új virtuális hálózat toocreate függ.
 
-* Nem rendelkezem VNettel, és létre kell hoznom egyet.
+* Nem rendelkezik egy VNet és egy toocreate kell.
   
-    Ha még nem rendelkezik virtuális hálózattal, ez az eljárás lépésről lépésre végigvezeti az új virtuális hálózat létrehozásának folyamatán a klasszikus üzembehelyezési modellnek megfelelően, valamint az új ExpressRoute- és helyek közötti VPN-kapcsolatok létrehozásának folyamatán. A konfiguráláshoz kövesse a cikk az [Új virtuális hálózat és egyidejű kapcsolatok létrehozása](#new) szakaszában foglalt lépéseket.
+    Ha még nem rendelkezik virtuális hálózat, ez az eljárás végigvezeti hello klasszikus üzembe helyezési modellel, és új ExpressRoute és a pont-pont VPN-kapcsolatok létrehozása új virtuális hálózat létrehozása. tooconfigure, hajtsa végre hello hello cikk szakaszban található lépéseket [toocreate egy új virtuális hálózat és vizsgálatát a kísérő kapcsolatok](#new).
 * Már rendelkezem egy klasszikus üzembehelyezési modell szerinti VNettel.
   
-    Előfordulhat, hogy már rendelkezik üzemelő virtuális hálózattal egy létező helyek közötti VPN- vagy ExpressRoute-kapcsolattal. A cikk [Egyidejű kapcsolatok konfigurálása meglévő VNet számára](#add) szakasza végigvezeti az átjáró törlésének, majd az új ExpressRoute- és helyek között VPN-kapcsolatok létrehozásának folyamatán. Ügyeljen arra, hogy az új kapcsolatok létrehozásakor a lépéseket szigorú sorrendben kell végrehajtani. Az átjárók és kapcsolatok létrehozására ne használja más cikkek utasításait.
+    Előfordulhat, hogy már rendelkezik üzemelő virtuális hálózattal egy létező helyek közötti VPN- vagy ExpressRoute-kapcsolattal. a cikk szakasz hello [tooconfigure coexsiting kapcsolatok egy már meglévő vnet](#add) hello átjáró törlése folyamatban, és új ExpressRoute- és telephelyek közötti VPN-kapcsolatok létrehozására, majd részletesen ismerteti. Vegye figyelembe, hogy ha hello új kapcsolatok létrehozására, hello lépéseket kell végrehajtania nagyon meghatározott sorrendben. Ne használjon más cikkek toocreate hello utasításait, az átjárók és kapcsolatok.
   
-    Ebben az eljárásban az egyidejű kapcsolatok létrehozásához törölnie kell az átjárót, majd új átjárókat kell konfigurálnia. Ez azt jelenti, hogy a helyszínek közötti kapcsolatok esetében állásidővel kell számolnia, amíg törli és újra létrehozza az átjárót és a kapcsolatokat, azonban a virtuális gépeket és a szolgáltatásokat nem kell áttelepítenie egy új virtuális hálózatra. Ha megfelelően vannak konfigurálva, a virtuális gépek és a szolgáltatások továbbra is képesek lesznek kommunikálni a terheléselosztón keresztül az átjáró konfigurálása közben.
+    Ebben az eljárásban, amely egyszerre is használható kapcsolatok létrehozására lesz igényelnek, toodelete az átjáró, és adja meg új átjárók. Ez azt jelenti, hogy a létesítmények közötti kapcsolatok állásidő során törölje és hozza létre újra az átjárót és a kapcsolatok, de nem kell toomigrate bármely, a virtuális gépek vagy szolgáltatások tooa új virtuális hálózat. A virtuális gépek és szolgáltatások is ki tudja toocommunicate keresztül hello terheléselosztó amíg az átjáró konfigurálásának, ha így konfigurálva toodo.
 
-## <a name="new"></a>Új virtuális hálózat és egyidejű kapcsolatok létrehozása
+## <a name="new"></a>új virtuális hálózat toocreate és vizsgálatát a kísérő kapcsolatok
 Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és ExpressRoute-kapcsolatok létrehozásának módját ismerteti.
 
-1. Az Azure PowerShell-parancsmagok legújabb verzióit kell telepítenie. A PowerShell-parancsmagok telepítésével kapcsolatban további információ: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview). Vegye figyelembe, hogy az ehhez a konfigurációhoz használt parancsmagok eltérőek lehetnek az Ön által már ismertektől. Ügyeljen arra, hogy az ebben az útmutatóban meghatározott parancsmagokat használja. 
-2. Hozzon létre egy sémát a virtuális hálózat számára. Az új konfigurációs sémával kapcsolatos információkért lásd: [Azure Virtual Network konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+1. Tooinstall hello legújabb verziójára hello Azure PowerShell-parancsmagok lesz szüksége. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) hello PowerShell-parancsmagok telepítéséről további információt. Előfordulhat, hogy ehhez a konfigurációhoz fogjuk hello parancsmagok némileg eltérő mi, előfordulhat, hogy ismernie kell. Adható meg, hogy toouse hello parancsmagok ezeket az utasításokat. 
+2. Hozzon létre egy sémát a virtuális hálózat számára. Hello konfigurációs séma kapcsolatos további információkért lásd: [Azure Virtual Network konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
    
-    Amikor létrehozza a sémát, mindenképp a következő értékeket használja:
+    A séma létrehozásakor ellenőrizze, a következő értékek hello használja:
    
-   * A virtuális hálózat átjáró-alhálózata /27 vagy egy rövidebb előtag kell legyen (például /26 vagy /25).
-   * Az átjáró kapcsolattípusa: „Dedikált”.
+   * hello átjáróalhálózatot hello virtuális hálózat /27 vagy egy rövidebb előtaggal (például /26 vagy /25) kell lennie.
+   * hello átjáró kapcsolat típusa "Dedikálnak".
      
              <VirtualNetworkSite name="MyAzureVNET" Location="Central US">
                <AddressSpace>
@@ -114,24 +114,24 @@ Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és
                  </ConnectionsToLocalNetwork>
                </Gateway>
              </VirtualNetworkSite>
-3. Az xml-sémafájl létrehozása és konfigurálása után töltse fel a fájlt. Ezzel létrejön a virtuális hálózat.
+3. Miután létrehozásához, és az XML-sémafájl konfigurálásához, hello-fájl feltöltése. Ezzel létrejön a virtuális hálózat.
    
-    A fájl feltöltéséhez használja a következő parancsmagot, és cserélje le az értéket saját értékre.
+    A következő parancsmag tooupload hello a fájlt, hello érték helyett a saját használja.
    
         Set-AzureVNetConfig -ConfigurationPath 'C:\NetworkConfig.xml'
-4. <a name="gw"></a>Hozzon létre egy ExpressRoute-átjárót. Ne felejtse megadni a GatewaySKU paraméterben a *Standard*, a *HighPerformance* vagy az *UltraPerformance* értéket, a GatewayType paraméterben pedig a *DynamicRouting* értéket.
+4. <a name="gw"></a>Hozzon létre egy ExpressRoute-átjárót. Lehet, hogy toospecify, GatewaySKU hello *szabványos*, *HighPerformance*, vagy *UltraPerformance* és hello GatewayType, *DynamicRouting*.
    
-    Használja a következő mintát, és cserélje le az értékeket saját értékekre.
+    A következő mintát, és hello értékeket a saját hello használata.
    
         New-AzureVNetGateway -VNetName MyAzureVNET -GatewayType DynamicRouting -GatewaySKU HighPerformance
-5. Csatlakoztassa az ExpressRoute-átjárót az ExpressRoute-kapcsolatcsoporthoz. A lépés végrehajtásával létrejön a kapcsolat a helyszíni hálózat és az Azure között az ExpressRoute-on keresztül.
+5. Hello ExpressRoute átjáró toohello ExpressRoute-kapcsolatcsoportot hivatkozásra. Ez a lépés befejezése után, a helyszíni hálózat között az Azure ExpressRoute, keresztül hello kapcsolat létrejött.
    
         New-AzureDedicatedCircuitLink -ServiceKey <service-key> -VNetName MyAzureVNET
-6. <a name="vpngw"></a>Ezután hozza létre a webhelyek közötti VPN-átjárót. A GatewaySKU paraméterben a *Standard*, a *HighPerformance* vagy az *UltraPerformance* értéket, a GatewayType paraméterben pedig a *DynamicRouting* értéket kell megadnia.
+6. <a name="vpngw"></a>Ezután hozza létre a webhelyek közötti VPN-átjárót. hello GatewaySKU kell *szabványos*, *HighPerformance*, vagy *UltraPerformance* és hello GatewayType kell *DynamicRouting*.
    
         New-AzureVirtualNetworkGateway -VNetName MyAzureVNET -GatewayName S2SVPN -GatewayType DynamicRouting -GatewaySKU  HighPerformance
    
-    A virtuális hálózati átjáró beállításainak, köztük az átjáróazonosítónak és a nyilvános IP-címnek a lekéréséhez használja a `Get-AzureVirtualNetworkGateway` parancsmagot.
+    tooretrieve hello virtuális hálózati átjáró beállításának, köztük hello Átjáróazonosító és hello nyilvános IP-cím, használja a hello `Get-AzureVirtualNetworkGateway` parancsmag.
    
         Get-AzureVirtualNetworkGateway
    
@@ -140,7 +140,7 @@ Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és
         LastEventData        :
         GatewayType          : DynamicRouting
         LastEventTimeStamp   : 5/29/2015 4:41:41 PM
-        LastEventMessage     : Successfully created a gateway for the following virtual network: GNSDesMoines
+        LastEventMessage     : Successfully created a gateway for hello following virtual network: GNSDesMoines
         LastEventID          : 23002
         State                : Provisioned
         VIPAddress           : 104.43.x.y
@@ -153,14 +153,14 @@ Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és
         OperationDescription : Get-AzureVirtualNetworkGateway
         OperationId          : 42773656-85e1-a6b6-8705-35473f1e6f6a
         OperationStatus      : Succeeded
-7. Hozzon létre egy helyi VPN-átjáró entitást. Ez a parancs nem konfigurálja a helyszíni VPN-átjárót. Ehelyett a helyi átjáró beállításai, például a nyilvános IP-cím és a helyszíni címtér megadására szolgál, hogy az Azure VPN-átjáró kapcsolódhasson hozzá.
+7. Hozzon létre egy helyi VPN-átjáró entitást. Ez a parancs nem konfigurálja a helyszíni VPN-átjárót. Ehelyett tooprovide hello helyi átjáró beállításai, például a hello nyilvános IP-cím lehetővé teszi, hello helyszíni címtér, így hello Azure VPN-átjáró képes kapcsolódni tooit.
    
    > [!IMPORTANT]
-   > A netcfg nem határozza meg a helyek közötti VPN helyi helyét. Ez a parancsmag a helyi hely paramétereinek meghatározására szolgál. Ez egyik portálon és a netcfg-fájlon keresztül sem határozható meg.
+   > hello hello telephelyek közötti VPN a hely nincs definiálva a hello netcfg. Ehelyett ez a parancsmag toospecify hello helyi paraméterek kell használnia. Nem lehet definiálni, vagy a portálon, vagy hello netcfg fájl használatával.
    > 
    > 
    
-    Használja a következő mintát, és cserélje le az értékeket saját értékekre.
+    A következő mintát, hello értékeket cserélje le a saját hello használata.
    
         New-AzureLocalNetworkGateway -GatewayName MyLocalNetwork -IpAddress <MyLocalGatewayIp> -AddressSpace <MyLocalNetworkAddress>
    
@@ -169,7 +169,7 @@ Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és
    > 
    > 
 
-    A virtuális hálózati átjáró beállításainak, köztük az átjáróazonosítónak és a nyilvános IP-címnek a lekéréséhez használja a `Get-AzureVirtualNetworkGateway` parancsmagot. Tekintse meg a következő példát.
+    tooretrieve hello virtuális hálózati átjáró beállításának, köztük hello Átjáróazonosító és hello nyilvános IP-cím, használja a hello `Get-AzureVirtualNetworkGateway` parancsmag. Tekintse meg a következő példa hello.
 
         Get-AzureLocalNetworkGateway
 
@@ -182,41 +182,41 @@ Az eljárás a VNetek, valamint az egyidejűleg jelenlévő helyek közötti és
         OperationStatus      : Succeeded
 
 
-1. Konfigurálja helyi VPN-eszközét, hogy az új átjáróhoz csatlakozzon. A VPN-eszköz konfigurálása során használja a 6. lépésben lekért információkat. A VPN-eszköz konfigurálásával kapcsolatos további információkért lásd: [VPN-eszköz konfigurálása](../vpn-gateway/vpn-gateway-about-vpn-devices.md).
-2. Csatlakoztassa az Azure-on a helyek közötti VPN-átjárót a helyi átjáróhoz.
+1. A helyi VPN-eszköz tooconnect toohello új átjáró konfigurálása. A VPN-eszköz konfigurálásakor az 6. lépésben lekért hello információkat használja. A VPN-eszköz konfigurálásával kapcsolatos további információkért lásd: [VPN-eszköz konfigurálása](../vpn-gateway/vpn-gateway-about-vpn-devices.md).
+2. Hivatkozás hello telephelyek közötti VPN átjáró Azure toohello helyi átjáró.
    
-    Ebben a példában a connectedEntityId a helyi átjáró, amely a `Get-AzureLocalNetworkGateway` futtatásával azonosítható. A virtualNetworkGatewayId a `Get-AzureVirtualNetworkGateway` parancsmag használatával azonosítható. A lépés után létrejön a kapcsolat a helyszíni hálózat és az Azure között a helyek közötti VPN-kapcsolaton keresztül.
+    Ebben a példában a connectedEntityId: hello helyi átjáró azonosítója, amely futtatásával `Get-AzureLocalNetworkGateway`. Hello segítségével virtualNetworkGatewayId található `Get-AzureVirtualNetworkGateway` parancsmag. Ez a lépés után hello telephelyek közötti VPN-kapcsolaton keresztül a helyi hálózat és az Azure közötti hello kapcsolat létrejött.
 
         New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>
 
-## <a name="add"></a>Egyidejű kapcsolatok konfigurálása meglévő VNet számára
-Ha már rendelkezik meglévő virtuális hálózattal, ellenőrizze az átjáró-alhálózat méretét. Ha az átjáró-alhálózat /28 vagy /29, először törölnie kell a virtuális hálózati átjárót, és növelnie kell az átjáró-alhálózat méretét. A jelen szakaszban ismertetett lépések bemutatják, mindez hogyan valósítható meg.
+## <a name="add"></a>egy már meglévő virtuális hálózatot tooconfigure coexsiting kapcsolatok
+Ha egy meglévő virtuális hálózattal rendelkezik, ellenőrizze a hello átjáró alhálózati méretét. Ha hello átjáróalhálózatot /28 vagy /29, először hello virtuális hálózati átjáró törlése és hello átjáró alhálózati méretének növelése. hello lépéseket ebben a szakaszban megtudhatja, hogyan toodo, amely.
 
-Ha az átjáró-alhálózat /27 vagy nagyobb, és a virtuális hálózat ExpressRoute-on keresztül csatlakozik, kihagyhatja az alábbi lépéseket, és továbbléphet a [„6. lépés – Helyek közötti VPN-átjáró létrehozása”](#vpngw) lépésre az előző szakaszban.
+Ha hello átjáróalhálózatot /27 vagy nagyobb és hello virtuális hálózati ExpressRoute keresztül csatlakozik, hello lépéseket kihagyhatja, és folytassa túl["6. lépés – --webhelyek közötti VPN átjáró létrehozása"](#vpngw) hello előző szakaszban.
 
 > [!NOTE]
-> Amikor törli a meglévő átjárót, megszakad a helyi helyszínek kapcsolata a virtuális hálózattal, amíg ezen a konfiguráción dolgozik.
+> Meglévő átjáró hello törlésekor a helyi helyi hello kapcsolat tooyour virtuális hálózati elvész, ezt a konfigurációt a munka során.
 > 
 > 
 
-1. Az Azure Resource Manager PowerShell-parancsmagjainak legújabb verzióit kell telepítenie. A PowerShell-parancsmagok telepítésével kapcsolatban további információ: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview). Vegye figyelembe, hogy az ehhez a konfigurációhoz használt parancsmagok eltérőek lehetnek az Ön által már ismertektől. Ügyeljen arra, hogy az ebben az útmutatóban meghatározott parancsmagokat használja. 
-2. Törölje a meglévő ExpressRoute- vagy helyek közötti VPN-átjárót. Használja a következő parancsmagot, és cserélje le az értékeket saját értékekre.
+1. Tooinstall hello legújabb verziójára hello Azure Resource Manager PowerShell-parancsmagok lesz szüksége. Lásd: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview) hello PowerShell-parancsmagok telepítéséről további információt. Előfordulhat, hogy ehhez a konfigurációhoz fogjuk hello parancsmagok némileg eltérő mi, előfordulhat, hogy ismernie kell. Adható meg, hogy toouse hello parancsmagok ezeket az utasításokat. 
+2. Hello meglévő expressroute-on vagy a telephelyek közötti VPN-átjáró törlése. A következő parancsmag, hello értékeket cserélje le a saját hello használata.
    
         Remove-AzureVNetGateway –VnetName MyAzureVNET
-3. Exportálja a virtuális hálózati sémát. Használja a következő PowerShell-parancsmagot, és cserélje le az értékeket saját értékekre.
+3. Hello virtuális hálózati séma exportálása. A következő PowerShell-parancsmag, hello értékeket cserélje le a saját hello használata.
    
         Get-AzureVNetConfig –ExportToFile “C:\NetworkConfig.xml”
-4. Szerkessze a hálózat konfigurációs sémáját, hogy az átjáró-alhálózat /27 vagy egy rövidebb előtag legyen (például /26 vagy /25). Tekintse meg a következő példát. 
+4. Hello hálózati konfigurációs fájl séma módosítsa hello átjáróalhálózatot, de /27 egy rövidebb előtaggal (például /26 vagy /25). Tekintse meg a következő példa hello. 
    
    > [!NOTE]
-   > Ha már nincs elegendő IP-cím a virtuális hálózaton az átjáró-alhálózat méretének növeléséhez, további IP-címtereket kell hozzáadnia. Az új konfigurációs sémával kapcsolatos információkért lásd: [Azure Virtual Network konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+   > Ha még nem rendelkezik elegendő a virtuális hálózati tooincrease hello átjáró alhálózat méretét az IP-címek, meg kell tooadd további IP-címterület. Hello konfigurációs séma kapcsolatos további információkért lásd: [Azure Virtual Network konfigurációs séma](https://msdn.microsoft.com/library/azure/jj157100.aspx).
    > 
    > 
    
           <Subnet name="GatewaySubnet">
             <AddressPrefix>10.17.159.224/27</AddressPrefix>
           </Subnet>
-5. Ha az előző átjáró helyek közötti VPN volt, a kapcsolat típusát is át kell állítania **Dedicated** értékre.
+5. Ha az előző átjáró volt a telephelyek közötti VPN, módosítania kell hello kapcsolat típusa túl**dedikált**.
    
                  <Gateway>
                   <ConnectionsToLocalNetwork>
@@ -225,8 +225,8 @@ Ha az átjáró-alhálózat /27 vagy nagyobb, és a virtuális hálózat Express
                     </LocalNetworkSiteRef>
                   </ConnectionsToLocalNetwork>
                 </Gateway>
-6. Ezen a ponton egy átjáró nélküli VNettel rendelkezik. Új átjárók létrehozásához és a kapcsolatok véglegesítéséhez folytathatja az előző lépéssorban foglalt [4. lépés – ExpressRoute-átjáró létrehozása](#gw) lépéssel.
+6. Ezen a ponton egy átjáró nélküli VNettel rendelkezik. új toocreate-átjárók és a kapcsolatokat, folytassa a [4. lépés – hozzon létre egy ExpressRoute-átjáró](#gw), míg a talált a fenti lépéseket hello.
 
 ## <a name="next-steps"></a>Következő lépések
-További információ az ExpressRoute-tal kapcsolatban: [ExpressRoute – Gyakori kérdések](expressroute-faqs.md).
+ExpressRoute kapcsolatos további információkért lásd: hello [ExpressRoute – gyakori kérdések](expressroute-faqs.md)
 

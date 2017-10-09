@@ -1,6 +1,6 @@
 ---
-title: "A rugó rendszerindító alkalmazás közzététele egy Docker-tároló, az intellij-t az Azure-eszközkészlet használatával |} Microsoft Docs"
-description: "Útmutató a webes alkalmazás a Microsoft Azure is közzé egy Docker-tároló az intellij-t az Azure-eszközkészlet használatával."
+title: "a rugó rendszerindító alkalmazást egy Docker-tároló segítségével aaaPublish hello Azure eszközkészlet IntelliJ |} Microsoft Docs"
+description: "Megtudhatja, hogyan toopublish egy webes alkalmazás tooMicrosoft Azure-bA egy Docker-tároló segítségével hello Azure eszközkészlet intellij-t."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,75 +14,75 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: robmcm
-ms.openlocfilehash: b771238934183c953615ac33c42a275d80657556
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8964cb33fd8f61a39f091633ae9074d9658232fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-the-azure-toolkit-for-intellij"></a>A rugó rendszerindító alkalmazás közzététele egy Docker-tároló, az intellij-t az Azure-eszközkészlet használatával
+# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-hello-azure-toolkit-for-intellij"></a>A rugó rendszerindító alkalmazás közzététele egy Docker-tároló, IntelliJ hello Azure eszközkészlet használatával
 
-A [rugó keretrendszer] egy nyílt forráskódú megoldás, amely a fejlesztőket Java vállalati szintű alkalmazásokat. A beépített több népszerű projektek a platform egyik [rugó rendszerindító], amely lehetővé teszi egy egyszerűsített megközelítés önálló Java-alkalmazások létrehozása.
+Hello [rugó keretrendszer] egy nyílt forráskódú megoldás, amely a fejlesztőket Java vállalati szintű alkalmazásokat. Hello több népszerű projektekre beépített a platform egyik [rugó rendszerindító], amely lehetővé teszi egy egyszerűsített megközelítés önálló Java-alkalmazások létrehozása.
 
-[Docker] egy nyílt forráskódú megoldás, amely a fejlesztőket automatizálja a központi telepítési méretezés és a tárolók a futó alkalmazások kezelését.
+[Docker] egy nyílt forráskódú megoldás, amely a fejlesztőket automatizálásához hello telepítési méretezés és a tárolók a futó alkalmazások kezelését.
 
-Ez az oktatóanyag végigvezeti a központi telepítése egy rugó rendszerindító alkalmazásra, amely egy Docker-tároló Microsoft Azure az intellij-t az Azure-eszközkészlet használatával.
+Ez az oktatóanyag bemutatja, hogyan hello lépéseket toodeploy egy rugó rendszerindító alkalmazásra, amely egy Docker-tároló tooMicrosoft Azure IntelliJ hello Azure eszközkészlet használatával.
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## <a name="clone-the-default-spring-boot-docker-repo"></a>A alapértelmezett rugó rendszerindító Docker tárház klónozása
+## <a name="clone-hello-default-spring-boot-docker-repo"></a>Hello alapértelmezett rugó rendszerindító Docker tárház klónozása
 
-A következő lépések végigvezetik a rugó rendszerindító Docker-tárház klónozása IntelliJ használatával. Ha azt szeretné, a parancssor használatára, lásd: [rugó rendszerindító alkalmazást az Azure Tárolószolgáltatásban Linux központilag][Deploy Spring Boot on Linux in ACS].
+hello következő lépések végigvezetik hello rugó rendszerindító Docker tárház klónozása IntelliJ használatával. Ha azt szeretné, hogy a parancssor toouse, [rugó rendszerindító alkalmazást az Azure Tárolószolgáltatásban Linux központilag][Deploy Spring Boot on Linux in ACS].
 
 1. Nyissa meg az intellij-t.
 
-1. Az üdvözlőképernyőn jelölje ki a **GitHub** beállítást a **tekintse meg a verziókövetés** listája.
+1. Hello üdvözlőképernyőn jelölje ki a hello **GitHub** hello beállítása **tekintse meg a verziókövetés** listája.
 
    ![GitHub Verziókövetés beállítása][CL01]
 
-1. Adja meg a hitelesítő adatok, ha a rendszer kéri-e jelentkezni.
+1. Adja meg a hitelesítő adatokat, ha a kért toolog.
 
-   * Ha a felhasználónév/jelszó segítségével bejelentkezni a Githubon:
+   * Ha a felhasználónév/jelszó toolog tooGitHub használ:
 
       ![A GitHub-felhasználónevét és a jelszó megadása párbeszédpanel][CL02a]
 
-   * Ha egy jogkivonatot használ próbál bejelentkezni a Githubon:
+   * Ha egy token toolog tooGitHub használ:
 
       ![A GitHub-token megadása párbeszédpanel][CL02b]
 
-1. Adja meg **https://github.com/spring-guides/gs-spring-boot-docker.git** a tárház URL-címet, adja meg a helyi elérési út és a mappa adatait, és kattintson **Klónozás**.
+1. Adja meg **https://github.com/spring-guides/gs-spring-boot-docker.git** hello tárház URL-címhez, adja meg a helyi elérési út és a mappa adatait, és kattintson **Klónozás**.
 
    ![Klónozott tárház párbeszédpanel][CL03]
 
-1. Amikor a rendszer kéri az IntelliJ-projekt létrehozása, válassza ki a **nem**.
+1. Amikor felszólítja az IntelliJ projektre, válassza toocreate **nem**.
 
-   ![Az IntelliJ-projekt létrehozása elutasítása][CL04]
+   ![Az IntelliJ-projektek toocreate elutasítása][CL04]
 
-1. Az üdvözlőoldalon kattintson **projekt importálása**.
+1. A hello kezdőlapján kattintson **projekt importálása**.
 
    ![Importálja a projekt kiválasztása][CL05]
 
-1. Keresse meg az elérési utat, ahol a rugó rendszerindító tárház klónozott, válassza ki a **teljes** mappa a gyökérszintű, majd **OK**.
+1. Keresse meg a hello elérési utat, ahol hello rugó rendszerindító tárház klónozott, válassza ki a hello **teljes** mappa hello gyökérszintű, majd **OK**.
 
    ![Válasszon egy mappát az importálás][CL06]
 
 1. Amikor a rendszer kéri, válassza ki a **Create project meglévő forrásokból származó**.
 
-   ![Lehetőség meglévő forrásokból projekt létrehozása][CL07]
+   ![A beállítás toocreate meglévő forrásokból projekt][CL07]
 
-1. Írja be a projekt nevét, vagy fogadja el az alapértelmezett, ellenőrizze a helyes elérési útját a **teljes** mappa, és kattintson **következő**.
+1. Írja be a projekt nevét vagy hello alapértelmezés elfogadásához, ellenőrizze a helyes elérési utat toohello hello **teljes** mappa, és kattintson **következő**.
 
-   ![Adja meg a projekt neve][CL08]
+   ![Adja meg a hello projekt neve][CL08]
 
 1. Az importálás könyvtárak testreszabása, és kattintson a **következő**.
 
    ![Válassza ki a könyvtárak][CL09]
 
-1. Tekintse át az importáláshoz, majd kattintson a könyvtárak **következő**.
+1. Tekintse át a hello szalagtárak tooimport, majd **következő**.
 
    ![Tekintse át a projekt függvénytárak][CL10]
 
-1. Tekintse át a modul szerkezete, majd a **következő**.
+1. Tekintse át a hello modul szerkezete, majd **következő**.
 
    ![Tekintse át a modul szerkezete][CL11]
 
@@ -94,19 +94,19 @@ A következő lépések végigvezetik a rugó rendszerindító Docker-tárház k
 
    ![A Befejezés gombra.][CL13]
 
-IntelliJ importálja a rugó rendszerindító alkalmazás projektként, és a struktúra jeleníti meg, ha az importálás befejeződik.
+Az IntelliJ hello rugó rendszerindító alkalmazás projektként importálja, és hello struktúra megjelenít, amikor hello befejeződött.
 
 ![Az IntelliJ rugó rendszerindító alkalmazás][CL14]
 
 ## <a name="build-your-spring-boot-app"></a>A rugó rendszerindító build alkalmazás
 
-### <a name="build-the-app-by-using-the-maven-pom"></a>Az alkalmazás összeállítása a Maven POM használatával
+### <a name="build-hello-app-by-using-hello-maven-pom"></a>Hozza létre a hello alkalmazását hello Maven POM használatával
 
-1. Nyissa meg a Maven eszköz ablakot, ha már nincs megnyitva. Kattintson a **nézet** > **Windows eszköz** > **Maven-projektek**.
+1. Hello Maven eszköz ablak nyílik meg, ha már nincs megnyitva. Kattintson a **nézet** > **Windows eszköz** > **Maven-projektek**.
 
    ![Eszköz Windows és a Maven-projektek parancsok][BU01]
 
-1. A Maven eszköz ablakban kattintson a jobb gombbal **csomag** válassza **Maven Build futtatása**. (Ha a Maven project nem jelenik meg automatikusan, kattintson a **újbóli importálása** a Maven eszköztár ikonjára.)
+1. Hello Maven-eszköz ablakában kattintson a jobb gombbal **csomag** válassza **Maven Build futtatása**. (Ha a Maven project nem jelenik meg automatikusan, kattintson a hello **újbóli importálása** hello Maven eszköztár ikonjára.)
 
    ![Maven Build parancs futtatása][BU02]
 
@@ -116,7 +116,7 @@ IntelliJ importálja a rugó rendszerindító alkalmazás projektként, és a st
 
 ### <a name="create-a-deployment-ready-artifact"></a>A telepítés kész eltérés létrehozása
 
-A rugó rendszerindító alkalmazás közzétételéhez létrehozásához szükséges a telepítés kész összetevő. Ehhez a következő lépések szükségesek:
+toopublish a rugó rendszerindító alkalmazást, a telepítés kész összetevő toocreate van szüksége. A lépéseket követve hello használata:
 
 1. Nyissa meg a webalkalmazás-projektet az intellij-t.
 
@@ -124,11 +124,11 @@ A rugó rendszerindító alkalmazás közzétételéhez létrehozásához szüks
 
    ![Projekt struktúra parancs][ART01]
 
-1. Kattintson a zöld plusz (**+**) az összetevő hozzáadásához kattintson a szimbólum **JAR**, és kattintson a **üres**.
+1. Kattintson a zöld plusz hello (**+**) tooadd összetevő szimbólumának, kattintson a **JAR**, és kattintson a **üres**.
 
    ![Összetevő felvétele][ART02]
 
-1. Annak biztosítása, hogy nem adja hozzá a ".jar" kiterjesztést közben az összetevő neve, és adja meg a célmappában Maven kimenetének.
+1. Az összetevő neve eközben nem tooadd kiterjesztés ".jar" hello, és adja meg az Maven kimeneti hello hello célmappa.
 
    ![Adja meg az összetevő tulajdonságai][ART03]
 
@@ -136,13 +136,13 @@ A rugó rendszerindító alkalmazás közzétételéhez létrehozásához szüks
 
    a. Kattintson a **jegyzékfájl létrehozása**.
 
-      ![A jegyzékfájl létrehozása gombra][ART04a]
+      ![Hello jegyzékfájl létrehozása gombra][ART04a]
 
-   b. Válassza ki az alapértelmezett elérési összetevő, és kattintson a **OK**.
+   b. Válassza ki a hello alapértelmezett elérési hello összetevő, és kattintson a **OK**.
 
       ![Adja meg az összetevő elérési útja][ART04b]
 
-   c. Kattintson a három pont (**...** ) a fő osztályban található.
+   c. Hello három pont gombra (**...** ) toolocate hello fő osztályban.
 
       ![Keresse meg a fő osztály][ART04c]
 
@@ -152,65 +152,65 @@ A rugó rendszerindító alkalmazás közzétételéhez létrehozásához szüks
 
 1. Kattintson az **OK** gombra.
 
-   ![A projekt struktúra párbeszédpanel bezárásához.][ART05]
+   ![Zárja be a hello szerkezetének párbeszédpanel][ART05]
 
 > [!NOTE]
-> Az IntelliJ összetevők létrehozásával kapcsolatos további információkért lásd: [konfigurálása összetevők] a JetBrains webhelyen.
+> Az IntelliJ összetevők létrehozásával kapcsolatos további információkért lásd: [konfigurálása összetevők] hello JetBrains webhelyen.
 >
 
-### <a name="build-the-artifact-for-deployment"></a>A központi telepítés összetevő létrehozása
+### <a name="build-hello-artifact-for-deployment"></a>Központi telepítés hello összetevő létrehozása
 
 1. Kattintson a **Build**, és kattintson a **összetevők**.
 
    ![Az összetevők parancs létrehozása][BU04]
 
-1. Ha a **Build összetevő** helyi menü megjelenik, kattintson a **Build**.
+1. Ha hello **Build összetevő** helyi menü megjelenik, kattintson a **Build**.
 
    ![Build összetevő a helyi menü][BU05]
 
-A rugó rendszerindító alkalmazás befejezett összetevő IntelliJ megjelenjen-e a projekt eszköz ablakban.
+A rugó rendszerindító alkalmazás befejeződött hello összetevő IntelliJ megjelenjen-e hello projekt eszköz ablakban.
 
    ![Létrehozott összetevő][BU06]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>A webalkalmazás közzététele az Azure-bA egy Docker-tároló használatával
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>A webes alkalmazás tooAzure közzététele egy Docker-tároló használatával
 
-1. Ha nem bejelentkezett az Azure-fiókjába, kövesse a lépéseket [bejelentkezési utasításokat az Azure-eszközkészlet az IntelliJ][Azure Sign In for IntelliJ].
+1. Ha nincs bejelentkezve tooyour Azure-fiókra, kövesse hello [bejelentkezési utasításokat hello Azure eszközkészlet az IntelliJ][Azure Sign In for IntelliJ].
 
-1. A Project Explorer eszköz ablakban kattintson a jobb gombbal a projektre, majd válassza ki **Azure** > **Docker-tároló közzététel**.
+1. Hello Project Explorer eszköz ablakában kattintson a jobb gombbal a hello projektet, és válassza **Azure** > **Docker-tároló közzététel**.
 
    ![Docker-tároló parancsként közzététele][PU01]
 
-1. Ha a **Docker-tároló központi telepítése az Azure-on** párbeszédpanel jelenik meg, a meglévő Docker-gazdagépekből jelennek meg. Ha egy meglévő gazdagépre telepíti, a 4. lépés kihagyhatja. Ellenkező esetben a következő lépések segítségével gazdagép létrehozása:
+1. Ha hello **Docker-tároló központi telepítése az Azure-on** párbeszédpanel jelenik meg, a meglévő Docker-gazdagépekből jelennek meg. Ha úgy dönt, hogy toodeploy tooan meglévő állomás, kihagyhatja toostep 4. Ellenkező esetben használja a következő lépéseket toocreate állomás hello:
 
-   a. Kattintson a zöld plusz (**+**) szimbólum.
+   a. Kattintson a zöld plusz hello (**+**) szimbólum.
 
       ![Új Docker-gazdagép hozzáadása][PU02]
 
-   b. Ha a **Docker állomás létrehozása** párbeszédpanel jelenik meg, dönthet úgy, hogy fogadja el az alapértelmezett vagy az egyéni beállításait az új Docker-állomáshoz is megadhat. (Különböző beállításának részletes leírását lásd: [egy Docker-tároló egy webalkalmazást az intellij-t az Azure-eszközkészlet használatával közzététel][Publish Container with Azure Toolkit].) Kattintson a **következő** amikor megadott mely beállításokat kívánják használni.
+   b. Ha hello **Docker állomás létrehozása** párbeszédpanel jelenik meg, dönthet, hogy tooaccept hello alapértelmezett értékeket, vagy megadhatja az egyéni beállításait az új Docker-állomáshoz. (A részletes leírását hello különböző beállításairól [a webes alkalmazás is egy Docker-tároló közzé a IntelliJ hello Azure eszközkészlet használatával][Publish Container with Azure Toolkit].) Kattintson a **következő** esetén mely beállítások toouse megadott.
 
       ![Adja meg a Docker állomás beállításai][PU03a]
 
-   c. Választhat egy az Azure key vault a meglévő bejelentkezési hitelesítő adatok használatát, vagy dönthet úgy, új Docker bejelentkezési hitelesítő adatok megadásához. Kattintson a **Befejezés** Ha megadta a beállításokat.
+   c. Az az Azure key vault közül választhat a meglévő toouse bejelentkezési hitelesítő adatok, vagy dönthet úgy tooenter új Docker bejelentkezési hitelesítő adatokat. Kattintson a **Befejezés** Ha megadta a beállításokat.
 
       ![Docker állomás hitelesítő adatok megadása][PU03b]
 
 1. Válassza ki a Docker-állomás, és kattintson a **következő**.
 
-   ![Válassza ki a Docker állomás használata][PU04]
+   ![Válassza ki a hello Docker állomás toouse][PU04]
 
-1. Az utolsó oldalán a **Docker-tároló központi telepítése az Azure-on** párbeszédpanelen adja meg a következő beállításokat:
+1. Hello utolsó oldalán hello **Docker-tároló központi telepítése az Azure-on** párbeszédpanelen adja meg az alábbi beállítások hello:
 
-   a. Adjon meg egy egyéni nevet, a tároló, amely üzemelteti a Docker-tároló választhat, vagy elfogadhatja az alapértelmezett.
+   a. Dönthet toospecify hello tárolót a Docker-tároló futtató egyéni nevet, vagy elfogadhatja az alapértelmezett hello.
 
-   b. Adja meg a TCP-portok a docker-állomás a következő szintaxissal: *[külső port]*:*[belső port]*. Például **80:8080** megadja egy külső port a 80-as és az alapértelmezett belső rugó rendszerindító port a 8080-as.
+   b. Adja meg a TCP-portok hello a docker állomás hello a következő szintaxis használatával: *[külső port]*:*[belső port]*. Például **80:8080** egy külső port a 80-as és hello alapértelmezett belső rugó rendszerindító port a 8080-as határozza meg.
    
-      Ha testreszabta a belső port (például a a application.yml fájl szerkesztésével), meg kell adnia a portszámot a megfelelő irányításához megtörténik az Azure-ban.
+      Ha a belső port testreszabott (például a hello application.yml fájl szerkesztésével), szüksége toospecify hello portszám hello megfelelő útválasztási toooccur az Azure-ban.
 
    c. Ezek a beállítások konfigurálása után kattintson **Befejezés**.
 
    ![Egy Docker-tároló az Azure telepítéséhez][PU05]
 
-1. Ha az Azure-eszközkészlet közzététele befejeződött, az Azure tevékenységnapló megjeleníti **közzétett** az állapot.
+1. Amikor hello Azure eszközkészlet közzététele befejeződött, hello Azure tevékenységnapló megjeleníti **közzétett** hello állapot.
 
    ![Docker-gazdagép telepítése sikeres volt][PU06]
 
@@ -218,7 +218,7 @@ A rugó rendszerindító alkalmazás befejezett összetevő IntelliJ megjelenjen
 
 [!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
-A rugó rendszerindító alkalmazások létrehozása az IntelliJ segítségével további módszerekkel kapcsolatos további tudnivalókért lásd: [rugó rendszerindító projektek létrehozása](https://www.jetbrains.com/help/idea/creating-spring-boot-projects.html) a JetBrains webhelyen.
+toolearn további módszereket biztosít a rugó rendszerindító alkalmazások IntelliJ, használatával kapcsolatban lásd: [rugó rendszerindító projektek létrehozása](https://www.jetbrains.com/help/idea/creating-spring-boot-projects.html) hello JetBrains webhelyen.
 
 <!-- URL List -->
 

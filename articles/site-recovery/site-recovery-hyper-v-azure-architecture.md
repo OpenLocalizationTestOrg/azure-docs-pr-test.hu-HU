@@ -1,5 +1,5 @@
 ---
-title: "Hogyan működik a Hyper-V-replikáció az Azure-ba a Site Recoveryben? | Microsoft Docs"
+title: "aaaHow Hyper-V replikáció tooAzure munka a Site Recovery szolgáltatásban működik? | Microsoft Docs"
 description: "Ez a cikk ismerteti, hogyan működik a Hyper-V-replikáció az Azure Site Recoveryben"
 services: site-recovery
 documentationcenter: 
@@ -16,87 +16,86 @@ ms.date: 06/14/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: site-recovery-architecture-hyper-v-to-azure
-ms.openlocfilehash: 6fa952af93033f82effdef418903fc93d94dd05c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e982806b4d6cdec2f71f82d8c73c17cc50ad3c33
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-does-hyper-v-replication-to-azure-work"></a>Hogyan működik a Hyper-V-replikáció az Azure-ba?
+# <a name="how-does-hyper-v-replication-tooazure-work"></a>Hogyan működik a Hyper-V replikáció tooAzure?
 
-Ebből a cikkből megismerheti az architektúrát és az Azure-ba történő Hyper-V-replikáció munkafolyamatát az [Azure Site Recovery](site-recovery-overview.md) szolgáltatás használatával.
+Ez a cikk toounderstand hello architektúra és a munkafolyamatokat a hello segítségével a Hyper-V replikáció tooAzure olvasási [Azure Site Recovery](site-recovery-overview.md) szolgáltatás.
 
-Megjegyzéseit a cikk alján, vagy az [Azure Recovery Services fórumban](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) teheti közzé.
+Ez a cikk vagy hello hello alsó megjegyzések utáni [Azure Recovery Services fórumon](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-A következőket replikálhatja az Azure-ba:
+A következő tooAzure hello replikálhatja:
 - **Hyper-V VMM-mel**: System Center Virtual Machine Manager-felhőkben (VMM-felhőkben) felügyelt helyszíni Hyper-V-gazdagépeken található virtuális gépek. A gazdagépek bármilyen [támogatott operációs rendszert](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers) futtathatnak. A [Hyper-V és az Azure által támogatott](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows) bármilyen vendég operációs rendszert futtató Hyper-V-alapú virtuális gépet replikálhat.
-- **Hyper-V VMM nélkül**: VMM-felhőkben nem felügyelt Hyper-V-gazdagépeken található helyszíni virtuális gépek. A gazdagépek a [támogatott operációs rendszerek](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions) bármelyikét futtathatják. A [Hyper-V és az Azure által támogatott](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows) bármilyen vendég operációs rendszert futtató Hyper-V-alapú virtuális gépet replikálhat.
+- **Hyper-V VMM nélkül**: VMM-felhőkben nem felügyelt Hyper-V-gazdagépeken található helyszíni virtuális gépek. Gazdagépek futtatható bármely hello [támogatott operációs rendszerek](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions). A [Hyper-V és az Azure által támogatott](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows) bármilyen vendég operációs rendszert futtató Hyper-V-alapú virtuális gépet replikálhat.
 
 
 ## <a name="architectural-components"></a>Az architektúra összetevői
 
 **Terület** | **Összetevő** | **Részletek**
 --- | --- | ---
-**Azure** | Az Azure-ban szüksége van egy Microsoft Azure-fiókra, és Azure Storage-fiókra és egy Azure-hálózatra. | A Storage és a hálózat lehet Resource Manager-alapú vagy klasszikus fiók.<br/><br/> A replikált adatokat a tárfiók tárolja, ha pedig feladatátvétel következik be a helyszíni helyről, a rendszer Azure virtuális gépeket hoz létre a replikált adatokkal.<br/><br/> Az Azure virtuális gépek a létrejöttükkor csatlakoznak az Azure virtuális hálózathoz.
-**VMM-kiszolgáló** | VMM-felhőkben lévő Hyper-V-gazdagépek | Ha a Hyper-V-gazdagépeket VMM felhőben felügyeli, a Recovery Services-tárolóban regisztrálja a VMM-kiszolgálót.<br/><br/> A VMM-kiszolgálón telepítse a Site Recovery Providert az Azure-ral való replikáció vezényléséhez.<br/><br/> A hálózatleképezés konfigurálásához logikai és virtuálisgép-hálózatokat is be kell állítania. Egy virtuálisgép-hálózatot össze kell kötnie egy felhőhöz társított logikai hálózattal.
-**Hyper-V gazdagép** | A Hyper-V-kiszolgálók VMM-kiszolgálóval vagy anélkül is üzembe helyezhetők. | Ha nincs VMM-kiszolgáló, a Site Recovery Providert a gazdagépen kell telepíteni, hogy vezényelni tudja az internetes replikációt a Site Recoveryval. Ha van VMM-kiszolgáló, a Provider azon van telepítve, és nem a gazdagépen.<br/><br/> A Recovery Services-ügynököt a gazdagépen kell telepíteni az adatreplikáció kezelése érdekében.<br/><br/> A Provider és az Agent kommunikációja biztonságos, titkosított csatornákon történik. Ezenfelül az Azure-tárfiókba replikált adatok is titkosítást kapnak.
-**Hyper-V virtuális gépek** | A Hyper-V gazdakiszolgálón legalább egy virtuális gépnek kell lennie. | A virtuális gépekre semmit nem kell explicit módon telepíteni
+**Azure** | Az Azure-ban szüksége van egy Microsoft Azure-fiókra, és Azure Storage-fiókra és egy Azure-hálózatra. | A Storage és a hálózat lehet Resource Manager-alapú vagy klasszikus fiók.<br/><br/> Hello tárfiók tárolja a replikált adatok, és az Azure virtuális gépek replikálása hello adatokkal jönnek létre, ha a feladatátvétel a helyszíni helyről.<br/><br/> hello Azure virtuális gépek Azure-beli virtuális hálózat toohello csatlakozás, ha a jönnek létre.
+**VMM-kiszolgáló** | VMM-felhőkben lévő Hyper-V-gazdagépek | Ha a VMM-felhőkben felügyelt Hyper-V-gazdagépek, Recovery Services-tároló hello hello VMM-kiszolgáló regisztrálása.<br/><br/> A VMM-kiszolgálón hello hello Site Recovery Provider tooorchestrate replikációs az Azure-ral telepítése.<br/><br/> Logikai van szüksége, és a Virtuálisgép-hálózatok tooconfigure hálózatleképezés beállításához. A Virtuálisgép-hálózat hello felhőhöz társított logikai hálózati csatolt tooa kell lennie.
+**Hyper-V gazdagép** | A Hyper-V-kiszolgálók VMM-kiszolgálóval vagy anélkül is üzembe helyezhetők. | Ha nem a VMM-kiszolgáló, a Site Recovery Provider telepítve van a hello állomás tooorchestrate replikálásához a Site Recovery keresztül hello hello internet. A VMM-kiszolgáló esetén hello szolgáltató telepítve van rajta, nem pedig hello állomás.<br/><br/> hello állomás toohandle adatreplikáció hello Recovery Services Agent ügynök van telepítve.<br/><br/> A szolgáltató hello és hello ügynök kommunikációit a biztonságos és titkosított. Ezenfelül az Azure-tárfiókba replikált adatok is titkosítást kapnak.
+**Hyper-V virtuális gépek** | Egy vagy több hello Hyper-V gazdakiszolgálón futó virtuális gépek van szüksége. | Mit kell virtuális gépekre telepített tooexplicitly
 
 ## <a name="deployment-steps"></a>A központi telepítés lépései
 
-1. **Azure**: Állítsa be az Azure-összetevőket. Javasoljuk, hogy a Site Recovery üzembe helyezésének megkezdése előtt hozza létre a Storage- és hálózati fiókokat.
+1. **Azure**: beállítása hello Azure összetevőket. Javasoljuk, hogy a Site Recovery üzembe helyezésének megkezdése előtt hozza létre a Storage- és hálózati fiókokat.
 2. **Tároló**: Hozzon létre egy Recovery Services-tárolót a Site Recoveryhez, és konfigurálja a tároló beállításait, például konfigurálja a forrás- és célbeállításokat, állítson be egy replikációs szabályzatot és engedélyezze a replikációt.
 3. **Forrás és cél**:
-    - **Hyper-V gazdagépek-VMM-felhőkben**: A forrásbeállítások részeként töltse le és telepítse az Azure Site Recovery Providert a VMM-kiszolgálóra, az Azure Recovery Services-ügynököt minden Hyper-V-gazdagépre. A forrás a VMM-kiszolgáló lesz. A cél az Azure.
-    - Hyper-V-gazdagépek VMM nélkül: Amikor megadja a forrásbeállításokat, letölti és telepíti a Providert és az ügynököt minden egyes Hyper-V-gazdagépre. Az üzembe helyezés során egy Hyper-V-helyre gyűjti az összes gazdagépet, és ezt a helyet adja meg forrásként. A cél az Azure.
+    - **Hyper-V gazdagépek a VMM-felhőkben**: az adatforrás-beállítások megadása a részeként, töltse le és hello Azure Site Recovery Provider telepítése hello VMM-kiszolgálón, és minden Hyper-V gazdagépen hello Azure Recovery Services Agent ügynököt. hello lesznek hello VMM-kiszolgálón. hello Azure célja.
+    - Hyper-V gazdagépeket VMM nélkül: az adatforrás-beállítások megadása esetén töltse le, és hello szolgáltató és az ügynök telepítése minden Hyper-V gazdagépen. Központi telepítése során hello állomások gyűjt be a Hyper-V hely, és adja meg a hely hello forrásaként. hello Azure célja.
 
-    ![A VMM/Hyper-V replikálást az Azure-](./media/site-recovery-components/arch-onprem-onprem-azure-vmm.png) ![Hyper-V helyek replikációs az Azure-bA](./media/site-recovery-components/arch-onprem-azure-hypervsite.png)
+    ![A VMM/Hyper-V replikáció tooAzure](./media/site-recovery-components/arch-onprem-onprem-azure-vmm.png) ![Hyper-V hely replikációs tooAzure](./media/site-recovery-components/arch-onprem-azure-hypervsite.png)
 
 
-4. **Replikációs házirend**: Létrehoz egy replikációs házirendet a Hyper-V-helyhez vagy a VMM-felhőhöz. A házirendet ezután a rendszer minden, a helyen vagy a felhőben lévő gazdagépen található virtuális gépre alkalmazza.
-5. **Replikáció engedélyezése**: Engedélyezi a replikációt a Hyper-V-alapú virtuális gépek számára. A kezdeti replikálás a replikációs házirend beállításainak megfelelően történik. Az adatváltozásokat a rendszer nyomon követi, és az Azure változáskülönbözeteinek replikálása a kezdeti replikálás befejezése után kezdődik meg. Az elemek nyomon követett módosításait a rendszer .hrl fájlokban tárolja.
-6. **Feladatátvétel tesztelése**: Egy tesztcélú feladatátvétel futtatásával ellenőrzi, hogy minden a vártnak megfelelően működik-e.
+4. **Replikációs szabályzat**: hello Hyper-V hely vagy a VMM-felhő replikációs házirend létrehozása. hello házirend alkalmazott tooall virtuális gépek gazdagépén hello hely vagy a felhőben található.
+5. **Replikáció engedélyezése**: Engedélyezi a replikációt a Hyper-V-alapú virtuális gépek számára. Kezdeti replikáció hello replikációs házirend-beállításoknak megfelelően. Adatok változások nyomon követése, és a különbözeti módosítások tooAzure replikálása hello kezdeti replikáció befejezését követően megkezdődik. Az elemek nyomon követett módosításait a rendszer .hrl fájlokban tárolja.
+6. **Feladatátvételi teszt**: futtatja, a teszt feladatátvételi toomake meg arról, hogy minden a várt módon működik.
 
 További információk az üzembe helyezésről:
-- [Bevezetés a Hyper-V-alapú virtuális gépek az Azure-ba történő replikálásába – VMM-mel](site-recovery-vmm-to-azure.md)
-- [Bevezetés a Hyper-V-alapú virtuális gépek az Azure-ba történő replikálásába – VMM nélkül](site-recovery-hyper-v-site-to-azure.md)
+- [Hyper-V virtuális gép replikációs tooAzure - és a VMM az első lépései](site-recovery-vmm-to-azure.md)
+- [Ismerkedés a Hyper-V virtuális gép replikációs tooAzure - VMM nélkül](site-recovery-hyper-v-site-to-azure.md)
 
 ## <a name="hyper-v-replication-workflow"></a>A Hyper-V replikálás munkafolyamata
 
 ### <a name="enable-protection"></a>Védelem engedélyezése
 
-1. Miután engedélyezte a védelmet egy Hyper-V-alapú virtuális gép esetében az Azure Portalon vagy a helyszíni környezetben, elindul a **Védelem engedélyezése** feladat.
-2. A feladat ellenőrzi, hogy a gép megfelel-e az előfeltételeknek, mielőtt meghívja a [CreateReplicationRelationship](https://msdn.microsoft.com/library/hh850036.aspx) metódust, amely az Ön által megadott beállításoknak megfelelően beállítja a replikációt.
-3. A feladat elindítja a kezdeti replikációt a [StartReplication](https://msdn.microsoft.com/library/hh850303.aspx) metódus meghívásával egy teljes körű virtuálisgép-replikáció elindítása céljából, majd a virtuális gépek virtuális lemezeit továbbítja az Azure-ba.
-4. A feladatot a **Feladatok** lapon követheti nyomon.
-        ![Feladatok listája](media/site-recovery-hyper-v-azure-architecture/image1.png) ![Védelem engedélyezésének részletei](media/site-recovery-hyper-v-azure-architecture/image2.png)
+1. Miután engedélyezte a Hyper-V virtuális gépek védelmét, a hello Azure-portálon vagy a helyszíni hello **engedélyezni a védelmet** kezdődik.
+2. hello feladat ellenőrzi, hogy hello a gép megfelel az előfeltételeknek, hello meghívása előtt [CreateReplicationRelationship](https://msdn.microsoft.com/library/hh850036.aspx), tooset hello-beállítások konfigurálása a replikáció.
+3. hello feladat elindul a kezdeti replikáció hello figyelőn [StartReplication](https://msdn.microsoft.com/library/hh850303.aspx) metódus tooinitialize teljes Virtuálisgép-replikációt és küldési hello VM virtuális lemezek tooAzure.
+4. Figyelheti a feladat hello hello **feladatok** fülre.      ![Feladatok listája](media/site-recovery-hyper-v-azure-architecture/image1.png)![Védelem engedélyezésének részletei](media/site-recovery-hyper-v-azure-architecture/image2.png)
 
 ### <a name="initial-replication"></a>Kezdeti replikálás
 
 1. A kezdeti replikálás indításakor egy [pillanatfelvétel készül a Hyper-V-alapú virtuális gépről](https://technet.microsoft.com/library/dd560637.aspx).
-2. A rendszer egyenként replikálja a virtuális merevlemezeket, amíg az összes át nem lesz másolva az Azure-ba. Ez a virtuális gép méretétől és a hálózat sávszélességétől függően eltarthat egy ideig. A hálózathasználat optimalizálásával kapcsolatban lásd [a helyszíni környezetből Azure-ba irányuló védelem hálózati sávszélesség-használatának kezelését](https://support.microsoft.com/kb/3056159) ismertető cikket.
-3. Ha módosítják a lemezt, miközben a kezdeti replikáció folyamatban van, a Hyper-V-replikációkövető nyomon követi a módosításokat replikálási naplók (.hrl) formájában. Ezek a fájlok ugyanabban a mappában találhatók, mint a lemezek. Minden lemezhez tartozik egy .hrl-fájl, amelyet a rendszer továbbít a másodlagos tárterületre.
-4. A pillanatkép- és a naplófájlok a kezdeti replikáció végrehajtása közben is lemezerőforrásokat használnak.
-5. A kezdeti replikáció befejeztével a rendszer törli a virtuális gép pillanatképét. A rendszer a naplózott lemezmódosításokat szinkronizálja, és egyesíti a szülőlemezzel.
+2. Virtuális merevlemezek replikálását csak az összes másolt tooAzure fontosságúak. Sikerült az időigényes, attól függően, hogy hello Virtuálisgép-méretet, és a hálózati sávszélességre. toooptimize a hálózat használatát, lásd: [hogyan toomanage helyszíni tooAzure védelem hálózati sávszélesség használatának](https://support.microsoft.com/kb/3056159).
+3. Ha a lemezen változások történnek, amíg a kezdeti replikáció folyamatban van, hello Hyper-V Replica Replication Tracker mint Hyper-V replikálási naplók (.hrl) nyomon követi ezeket a módosításokat. Ezek a fájlok találhatók hello hello lemezek ugyanabban a mappában. Minden lemezhez tartozik egy .hrl-fájl toosecondary tárolási elküldendő.
+4. hello pillanatkép és a naplófájlok fájlok lemezerőforrásokat használnak, amíg a kezdeti replikáció folyamatban van.
+5. Hello kezdeti replikáció befejezése után hello VM pillanatkép törlését. Hello naplóban rögzített változásokat szinkronizálja, és egyesített toohello szülőlemezt.
 
 
 ### <a name="finalize-protection"></a>Védelem véglegesítése
 
-1. A kezdeti replikálás befejezése után a **Védelem véglegesítése a virtuális gépen** feladat konfigurálja a hálózatot és más replikáció utáni beállításokat a virtuális gép védelméhez.
+1. Hello kezdeti replikáció befejezését követően, hello **védelem véglegesítése a virtuális gép hello** feladat hálózati és a replikációt követő egyéb beállításokat konfigurálja, hogy hello virtuális gép védett.
     ![Védelem véglegesítése feladat](media/site-recovery-hyper-v-azure-architecture/image3.png)
-2. Azure-ba történő replikálás esetén előfordulhat, hogy módosítania kell a virtuális gép beállításait, hogy az készen álljon a feladatátvételre. Ezen a ponton érdemes lehet feladatátvételi tesztet futtatni, amellyel ellenőrizheti, hogy minden megfelelően működik-e.
+2. Ha tooAzure replikál, akkor tootweak hello beállítások hello virtuális gép, hogy készen áll a feladatátvételt. Ezen a ponton futtatása a teszt feladatátvételi toocheck minden a várt módon működik.
 
 ### <a name="delta-replication"></a>Változásreplikáció
 
-1. A kezdeti replikálást követően a replikációs beállításoknak megfelelően elindul a változások szinkronizálása.
-2. A Hyper-V-replikációkövető a virtuális merevlemezek változásait .hrl fájlokban követi nyomon. Minden replikációra konfigurált lemezhez tartozik egy .hrl fájl. A rendszer a naplót a kezdeti replikáció befejezését követően küldi át az ügyfél tárfiókjába. A napló az Azure-ba való továbbítása alatt a rendszer az elsődleges lemez változásait egy másik naplófájlban követi nyomon ugyanabban a könyvtárban.
-3. A kezdeti és a változásreplikáció során a virtuális gép figyelése a virtuálisgép-nézetben lehetséges. [További információk](site-recovery-monitoring-and-troubleshooting.md#monitor-replication-health-for-virtual-machines).  
+1. Hello kezdeti replikálás után elindul a változások szinkronizálása replikációs beállításoknak megfelelően.
+2. Hyper-V Replica Replication Tracker hello hello módosítások tooa virtuális merevlemez .hrl-fájlok formájában követi nyomon. Minden replikációra konfigurált lemezhez tartozik egy .hrl fájl. Ez a napló toohello ügyfél tárfiókjával küldött kezdeti replikáció befejezése után. Amikor a napló az átvitel közben tooAzure, hello elsődleges lemez hello változásait követi egy másik naplófájlt, a hello ugyanabban a könyvtárban.
+3. Kiindulási és különbözeti replikálás során hello VM hello Virtuálisgép-nézetet a figyelheti. [További információk](site-recovery-monitoring-and-troubleshooting.md#monitor-replication-health-for-virtual-machines).  
 
 ### <a name="replication-synchronization"></a>Replikációszinkronizálás
 
-1. Ha nem sikerül a változások replikálása, és a teljes replikáció túl sok sávszélességet vagy időt venne igénybe, a rendszer a virtuális gépet megjelöli újraszinkronizálásra. Ha például a .hrl-fájlok mérete eléri a lemezkapacitás 50%-át, a rendszer kijelöli a virtuális gépet újraszinkronizálásra.
-2.  Az újraszinkronizálás kiszámítja a forrás és a cél virtuális gépek ellenőrzőösszegeit, és ezek alapján csak a változtatott adatokat továbbítja, így segít csökkenti az adatmennyiséget. Az újraszinkronizálás egy rögzített blokkméretű csonkoló algoritmust alkalmaz, amelyben a forrás- és a célfájlok rögzített méretű adattömbökre vannak osztva. A rendszer kiszámítja az egyes adattömbök ellenőrző összegét, majd ezeket összevetve megállapítja, hogy mely blokkokat kell a forrásból átmásolni a célba.
-3. Az újraszinkronizálás befejezését követően folytatódik a normál változásreplikálás. Alapértelmezés szerint a rendszer automatikusan munkaidőn kívüli időpontra ütemezi az újraszinkronizálást, de manuálisan is elvégezhető a virtuális gép újraszinkronizálása. Például manuálisan folytathatja az újraszinkronizálást, ha hálózatkimaradás vagy egyéb kimaradás következik be. Ehhez jelölje ki a virtuális gépet a portálon, majd válassza az **Újraszinkronizálás** elemet.
+1. Ha nem sikerül a változások replikálása, és a teljes replikáció túl sok sávszélességet vagy időt venne igénybe, a rendszer a virtuális gépet megjelöli újraszinkronizálásra. Például ha hello .hrl-fájlok elérnék hello lemez méretének 50 %-át, majd hello VM lesz megjelölve az újraszinkronizálás.
+2.  Az újraszinkronizálás minimálisra hello hello forrás és cél virtuális gépek ellenőrzőösszegeit, és csak a hello különbözeti adatokat küld által elküldött adatok mennyisége. Az újraszinkronizálás egy rögzített blokkméretű csonkoló algoritmust alkalmaz, amelyben a forrás- és a célfájlok rögzített méretű adattömbökre vannak osztva. Az egyes adattömbök ellenőrzőösszegeket akkor jönnek létre, és összehasonlítja a toodetermine, amely megakadályozza a hello forrás kell toobe alkalmazott toohello céltól.
+3. Az újraszinkronizálás befejezését követően folytatódik a normál változásreplikálás. Alapértelmezés szerint az újraszinkronizálás automatikusan munkaidőn kívüli ütemezett toorun, de egy virtuális gépet manuálisan szinkronizálja újra. Például manuálisan folytathatja az újraszinkronizálást, ha hálózatkimaradás vagy egyéb kimaradás következik be. toodo e, jelölje be hello VM hello portálon > **újraszinkronizálása**.
 
     ![Manuális újraszinkronizálás](media/site-recovery-hyper-v-azure-architecture/image4.png)
 
@@ -107,8 +106,8 @@ Ha hiba lép fel a replikáció során, a rendszer automatikusan újrapróbálko
 
 **Kategória** | **Részletek**
 --- | ---
-**Helyreállíthatatlan hibák** | A rendszer nem kísérli meg a helyreállításukat. A virtuális gép állapota **Kritikusra** vált, és rendszergazdai beavatkozás szükséges. Ilyen hibák például a következők: sérült VHD-lánc; a virtuálisgép-replika érvénytelen állapota; hálózati hitelesítési hibák: engedélyezési hibák; „a virtuális gép nem található” hibák (önálló Hyper-V-kiszolgálók esetén).
-**Helyreállítható hibák** | A rendszer minden replikálási időközben újrapróbálkozik exponenciális visszalépéssel, amely az újrapróbálkozás időközét az első kísérlet kezdetétől számított 1, 2, 4, 8 és 10 percre növeli. Ha a hiba nem szűnik meg, a rendszer 30 percenként újrapróbálkozik. Példák: hálózati hibák; nem elegendő lemezterületből fakadó hibák; alacsony memóriaállapot. |
+**Helyreállíthatatlan hibák** | A rendszer nem kísérli meg a helyreállításukat. A virtuális gép állapota **Kritikusra** vált, és rendszergazdai beavatkozás szükséges. Ezek a hibák például:; VHD-lánc megszakadt Érvénytelen állapot hello replika virtuális gép; Hálózati hitelesítési hibák: hitelesítési hibák; Virtuális gép nem található a hibák (az önálló Hyper-V kiszolgálók)
+**Helyreállítható hibák** | A próbálkozások minden replikációs időköztől, használja az exponenciális vissza-ki, amely növeli a hello újrapróbálkozási időköz hello indítás hello első kísérlet 1, 2, 4, 8, és 10 perc. Ha a hiba nem szűnik meg, a rendszer 30 percenként újrapróbálkozik. Példák: hálózati hibák; nem elegendő lemezterületből fakadó hibák; alacsony memóriaállapot. |
 
 ## <a name="protection-and-recovery-lifecycle"></a>A védelem és helyreállítás életciklusa
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect szinkronizálása: szűrésének beállítása |} Microsoft Docs"
-description: "Ismerteti az Azure AD Connect-szinkronizálás szűrőjének konfigurálása."
+description: "Azt ismerteti, hogyan tooconfigure szűrést a Azure AD Connect szinkronizálási szolgáltatás."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,289 +14,289 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 064642ebb9cafb0c6e1b3ff306241182a95215cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 97979b508c560a6de6cb091b1b621bc1d51b25c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-configure-filtering"></a>Az Azure AD Connect szinkronizálása: a szűrés konfigurálása
-Szűrés segítségével szabályozhatja mely objektumok jelennek meg az Azure Active Directory (Azure AD) a helyi címtárban lévő. Az alapértelmezett konfiguráció összes objektumok minden tartományban a konfigurált erdők vesz igénybe. Ez általában az ajánlott konfiguráció. Felhasználók Office 365-munkaterhelések, például az Exchange Online és Skype vállalati verzióra, a kihasználhassa a teljes globális címlista, hogy e-mailek küldése és mindenki hívja. Az alapértelmezett konfigurációnál akkor ugyanazt a felhasználói élményt, hogy azok az Exchange vagy a Lync egy helyszíni példánnyal.
+Szűrés segítségével szabályozhatja mely objektumok jelennek meg az Azure Active Directory (Azure AD) a helyi címtárban lévő. hello alapértelmezett konfiguráció összes objektum minden tartományban konfigurált hello erdőkben vesz igénybe. Általában ez az ajánlott konfiguráció hello. Felhasználók Office 365-munkaterhelések, például az Exchange Online és Skype vállalati verzióra, a kihasználhassa a teljes globális címlista, hogy e-mailek küldése és mindenki hívja. Hello alapértelmezett konfigurációval akkor hello azonos tapasztalhat, hogy egy helyszíni Exchange-hez vagy a Lync végrehajtásának kell azokat.
 
-Egyes esetekben azonban Ön szükséges néhány módosítást az alapértelmezett konfigurációt. Néhány példa:
+Egyes esetekben azonban Ön szükséges egyes módosítások toohello alapértelmezett konfigurációs. Néhány példa:
 
-* Tervezi a [több Azure Active directory-topológia](active-directory-aadconnect-topologies.md#each-object-only-once-in-an-azure-ad-tenant). Akkor szükséges, egy szűrőt szabályozásához, hogy mely objektumok egy adott lettek szinkronizálva az Azure AD-címtár.
-* A próbaüzem futtatja az Azure vagy Office 365, és csak kívánt a felhasználók egy része az Azure ad-ben. A kis próbaüzem fontos nem szeretné, hogy a funkció bemutatásához egy teljes globális címlista.
+* Azt tervezi, hogy toouse hello [több Azure Active directory-topológia](active-directory-aadconnect-topologies.md#each-object-only-once-in-an-azure-ad-tenant). Akkor kell a szűrő toocontrol, mely objektumok érhetők szinkronizált tooa bizonyos Azure Active directory tooapply.
+* A próbaüzem futtatja az Azure vagy Office 365, és csak kívánt a felhasználók egy része az Azure ad-ben. Hello kis próbaüzem nincs fontos toohave egy teljes globális címlista toodemonstrate hello funkciót.
 * Számos szolgáltatás és egyéb nem kívánt Azure AD-ben megbízhatóságának fiókok rendelkezik.
-* Megfelelőségi okokból bármely felhasználói fiókok a helyszíni ne törölje. Csak letilthatja azokat. De az Azure ad-ben, azt szeretné, aktív fiókok meglétét.
+* Megfelelőségi okokból bármely felhasználói fiókok a helyszíni ne törölje. Csak letilthatja azokat. De az Azure AD-csak aktív fiókok toobe található.
 
-Ez a cikk bemutatja, hogyan konfigurálhatja a különböző szűrési módszereket.
+Ez a cikk ismerteti, hogyan tooconfigure hello különböző szűrési módszerek.
 
 > [!IMPORTANT]
-> A Microsoft nem támogatja a módosítása, vagy az Azure AD Connect szinkronizálási kívül a hivatalosan ismertetett műveletek működő. Ezek a műveletek okozhatja az Azure AD Connect szinkronizálási szolgáltatás inkonzisztens vagy nem támogatott állapotban. Ennek eredményeképpen a Microsoft nem adhatók meg a technikai támogatási szolgálathoz az ilyen környezetekben.
+> A Microsoft nem támogatja a módosítása, vagy az Azure AD Connect szinkronizálási hello műveletek hivatalosan ismertetett kívül működő. Ezek a műveletek okozhatja az Azure AD Connect szinkronizálási szolgáltatás inkonzisztens vagy nem támogatott állapotban. Ennek eredményeképpen a Microsoft nem adhatók meg a technikai támogatási szolgálathoz az ilyen környezetekben.
 
 ## <a name="basics-and-important-notes"></a>Alapvető tudnivalók és fontos megjegyzések
-Az Azure AD Connect szinkronizálási szolgáltatás engedélyezheti a bármikor szűrést. Indítsa el a címtár-szinkronizálás alapértelmezett konfigurációja, és a szűrés konfigurálása, ha a program kiszűri az objektumok már nem szinkronizálódnak az Azure AD. Ez a változás miatt objektumokat az Azure ad-ben korábban szinkronizált, de majd szűrve voltak törlődnek az Azure ad-ben.
+Az Azure AD Connect szinkronizálási szolgáltatás engedélyezheti a bármikor szűrést. Indítsa el a címtár-szinkronizálás alapértelmezett konfigurációja, és a szűrés konfigurálása, ha ki van szűrve hello objektumok nem lesznek szinkronizált tooAzure AD. Ez a változás miatt objektumokat az Azure ad-ben korábban szinkronizált, de majd szűrve voltak törlődnek az Azure ad-ben.
 
-Szűrésének módosítása előtt győződjön meg arról, hogy Ön [tiltsa le az ütemezett feladatot](#disable-scheduled-task) , akkor véletlenül ne exportálja a módosításokat, amelyek még nem még ellenőrizve csak akkor lehet helyes.
+Módosítások toofiltering elvégzése előtt győződjön meg arról, hogy Ön [hello ütemezett feladat letiltása](#disable-scheduled-task) , akkor véletlenül ne exportálja a módosítások még nem még ellenőrizte, hogy helyes-e toobe.
 
-Szűrés eltávolíthatja egyszerre sok objektumot, mert kívánt győződjön meg arról, hogy az új szűrőket helyesen-e a módosításokat az Azure AD-exportálás megkezdése előtt. Miután megadta a konfigurációs lépések, Határozottan javasoljuk, hogy kövesse a [ellenőrzési lépések](#apply-and-verify-changes) exportálása és az Azure AD-módosítások előtt.
+Mert szűrés eltávolítása hello sok objektumait azonos idő, szeretne arról, hogy az új szűrőket helyesen-e bármely exportálása előtt toomake tooAzure AD változik. Miután végrehajtotta hello konfigurációs lépések, Határozottan javasoljuk, hogy kövesse a hello [ellenőrzési lépések](#apply-and-verify-changes) módosítások tooAzure AD ellenőrizze és exportálása előtt.
 
-Sok objektumok törlése véletlenül a szolgáltatás elleni "[véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)" alapértelmezés szerint be van kapcsolva. Törlése miatt (alapértelmezés szerint 500) szűrés sok objektum esetén kövesse a cikk a törlések fel az Azure AD lehetővé szeretné.
+a beállítást, akkor törölje a nagy objektumokat, véletlenül hello tooprotect "[véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)" alapértelmezés szerint be van kapcsolva. Ha sok objektumot miatt törli toofiltering (alapértelmezés szerint 500), ez a cikk tooallow hello toofollow hello lépéseket kell törli toogo tooAzure AD keresztül.
 
-2015. November előtti használatakor a build ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)), módosítja egy szűrő konfigurálása, és használja a jelszó-szinkronizálás, minden jelszavak egy teljes szinkronizálási események indítása a konfiguráció befejezése után kell használnia. Indítás, a teljes jelszó-szinkronizálás lépéseiért lásd: [indul el, a teljes szinkronizálás az összes jelszavak](active-directory-aadconnectsync-troubleshoot-password-synchronization.md#trigger-a-full-sync-of-all-passwords). Ha a számítógép összeállítási 1.0.9125 vagy újabb verzióját, majd a normál **teljes szinkronizálás** művelet is számítja ki, hogy szinkronizálni, és ha ezt a kiegészítő lépést már nincs szükség.
+2015. November előtti használatakor a build ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)) olyan módosítás tooa szűrő konfigurációs és a jelszó-szinkronizálás használja, akkor szükséges, a teljes szinkronizálás az összes jelszavak tootrigger hello konfiguráció befejezése után. Hogyan tootrigger jelszó teljes szinkronizálás lépéseiért lásd: [indul el, a teljes szinkronizálás az összes jelszavak](active-directory-aadconnectsync-troubleshoot-password-synchronization.md#trigger-a-full-sync-of-all-passwords). Ha a build 1.0.9125 vagy újabb, majd hello regular **teljes szinkronizálás** művelet is számítja ki, hogy szinkronizálni, és ha ezt a kiegészítő lépést már nincs szükség.
 
-Ha **felhasználói** objektumok véletlenül törölték az Azure AD egy szűrési hiba miatt, létrehozhatja a felhasználói objektumok Azure AD-ben a szűrési beállítások eltávolításával. Majd újból szinkronizálhatja a címtárakat. Ez a művelet visszaállítja a felhasználók a Lomtár Azure AD-ben. Más típusú objektumokat azonban nem törlés visszavonása. Például ha véletlenül törli egy biztonsági csoportot, és való hozzáférés-vezérlési lista erőforrást, a csoport és a hozzáférés-vezérlési listák nem állítható helyre.
+Ha **felhasználói** objektumok véletlenül törölték az Azure AD egy szűrési hiba miatt, létrehozhatja hello felhasználói objektumok Azure AD-ben a szűrési beállítások eltávolításával. Majd újból szinkronizálhatja a címtárakat. Ez a művelet visszaállítja az hello felhasználók hello Lomtárból Azure AD-ben. Más típusú objektumokat azonban nem törlés visszavonása. Például ha véletlenül törli egy biztonsági csoportot, és a használt tooACL erőforrás volt, hello csoport és a hozzáférés-vezérlési listák nem állítható helyre.
 
-Az Azure AD Connect csak egyszer figyelembe kell lennie a hatókör-objektumok törlése. Ha egy másik szinkronizálási motor által létrehozott objektumok az Azure ad-ben, és ezeket az objektumokat nem, a hatókör, hozzáadása a szűrés nem távolítja azokat. Például ha megkezdése a teljes címtár teljes másolatának az Azure ad-ben létrehozott DirSync-kiszolgálóval, és a szűrés engedélyezve van az elejétől párhuzamosan egy új Azure AD Connect szinkronizálási kiszolgáló telepít, az Azure AD Connect nem távolítja el a felesleges DirSync által létrehozott objektumok.
+Az Azure AD Connect csak törli az objektumok, hogy egyszer figyelembe toobe hatókörében. Ha egy másik szinkronizálási motor által létrehozott objektumok az Azure ad-ben, és ezeket az objektumokat nem, a hatókör, hozzáadása a szűrés nem távolítja azokat. Például ha megkezdése a teljes címtár teljes másolatának az Azure ad-ben létrehozott DirSync-kiszolgálóval, és egy új Azure AD Connect szinkronizálási kiszolgáló telepít szűrése engedélyezve hello elejétől párhuzamosan, az Azure AD Connect nem távolítja el a felesleges hello a DirSync által létrehozott objektumok.
 
-A szűrési konfigurációs megőrződik telepíteni vagy frissíteni az Azure AD Connect egy újabb verzióra. Célszerű mindig ajánlott eljárás, győződjön meg arról, hogy a konfiguráció nem volt akaratlanul módosította frissítés után egy újabb verzióra az első szinkronizálási ciklust futtatása előtt.
+Szűrés konfigurációs hello megőrződik telepíteni vagy frissíteni az Azure AD Connect tooa újabb verziója. Az mindig a bevált gyakorlat tooverify, amely a konfigurációs hello véletlenül nem változik a frissítési tooa újabb verziójú hello első szinkronizálási ciklust futtatása előtt.
 
-Ha egynél több erdővel rendelkezik, majd telepítenie kell minden erdőbe (feltéve, hogy, hogy szeretné-e az összes azonos konfigurációjának) Ez a témakör ismerteti a szűrési konfigurációkat.
+Ha egynél több erdővel rendelkezik, akkor telepítenie kell az ebben a témakörben tooevery erdő ismertetett konfigurációval szűrés hello (feltéve, hogy a kívánt hello azonos konfigurációját az összes).
 
-### <a name="disable-the-scheduled-task"></a>Az ütemezett feladat letiltása
-A beépített ütemezési, amely elindítja a szinkronizálási ciklust 30 percenként letiltásához kövesse az alábbi lépéseket:
+### <a name="disable-hello-scheduled-task"></a>Tiltsa le a hello ütemezett feladat
+toodisable hello beépített ütemezési, amely elindítja a szinkronizálási ciklust 30 percenként, kövesse az alábbi lépéseket:
 
-1. Ugrás a PowerShell kérése.
-2. Futtatás `Set-ADSyncScheduler -SyncCycleEnabled $False` az ütemező letiltása.
-3. Végezze el a módosításokat, amelyek szerepelnek a cikkben.
-4. Futtatás `Set-ADSyncScheduler -SyncCycleEnabled $True` az ütemező ismét engedélyeznie.
+1. Nyissa meg tooa PowerShell-promptot.
+2. Futtatás `Set-ADSyncScheduler -SyncCycleEnabled $False` toodisable hello Feladatütemező.
+3. Változtatásokat hello szerepelnek ebben a cikkben.
+4. Futtatás `Set-ADSyncScheduler -SyncCycleEnabled $True` tooenable hello Feladatütemező újra.
 
 **Ha az Azure AD Connect build 1.1.105.0 előtt**  
-Az ütemezett feladat, amely elindítja a szinkronizálási ciklust három óránként letiltásához kövesse az alábbi lépéseket:
+toodisable hello ütemezett feladatot, amely elindítja a szinkronizálási ciklust 3 óra, kövesse az alábbi lépéseket:
 
-1. Start **Feladatütemező** a a **Start** menü.
-2. Közvetlenül a **Feladatütemező könyvtár**, nevű feladat található **Azure AD Sync Scheduler**, kattintson a jobb gombbal, majd válassza **letiltása**.  
+1. Start **Feladatütemező** a hello **Start** menü.
+2. Közvetlenül a **Feladatütemező könyvtár**, keresés hello feladat nevű **Azure AD Sync Scheduler**, kattintson a jobb gombbal, majd válassza **letiltása**.  
    ![A Feladatütemező](./media/active-directory-aadconnectsync-configure-filtering/taskscheduler.png)  
-3. Mostantól konfigurációs módosítások és a szinkronizálási motor manuálisan futtassa a **Synchronization Service Managert** konzol.
+3. Mostantól konfigurációs módosításokat és hello szinkronizálási motor manuálisan futtassa a hello **Synchronization Service Managert** konzol.
 
-A szűrési módosítások elvégzése után ne feledje, hogy térjen vissza és **engedélyezése** újra a feladatot.
+A szűrési módosítások elvégzése után ne feledje toocome vissza és **engedélyezése** hello feladat újra.
 
 ## <a name="filtering-options"></a>Szűrési beállítások
-A következő szűrési konfiguráció esetében a címtár-Szinkronizáló eszköz alkalmazhatók:
+A következő szűrési konfigurációs típusok toohello címtár-Szinkronizáló eszköz hello alkalmazhatja:
 
-* [**Csoportalapú**](#group-based-filtering): szűrés egyetlen csoport alapján csak konfigurálható a kezdeti telepítés a telepítési varázsló segítségével.
-* [**Tartományi**](#domain-based-filtering): Ez a beállítás használatával kiválaszthatja, mely tartományok szinkronizálása az Azure AD. Is hozzá és távolíthat el tartományokat abból a szinkronizálási motor konfigurációját, amikor módosítja a helyszíni infrastruktúra az Azure AD Connect szinkronizálási szolgáltatás telepítése után.
-* [**Szervezeti egység (OU) – alapú**](#organizational-unitbased-filtering): Ez a beállítás használatával kiválaszthatja, amely szervezeti egységek szinkronizálása az Azure AD. Ez a beállítás akkor a kiválasztott szervezeti minden objektum esetében.
-* [**Attribútumalapú**](#attribute-based-filtering): Ez a beállítás használatával szűrheti a objektumokon attribútumértékei alapján objektumok. A különböző objektumtípusokra különböző szűrőket is lehet.
+* [**Csoportalapú**](#group-based-filtering): szűrés egyetlen csoport alapján csak konfigurálható a kezdeti telepítés hello telepítés varázsló használatával.
+* [**Tartományi**](#domain-based-filtering): Ez a beállítás használatával kiválaszthatja, mely tartományok tooAzure AD szinkronizálása. Is hozzá és távolíthat el tartományokat abból hello szinkronizálási motor konfigurációját, amikor módosításokat tooyour a helyszíni infrastruktúra az Azure AD Connect szinkronizálási szolgáltatás telepítése után.
+* [**Szervezeti egység (OU) – alapú**](#organizational-unitbased-filtering): Ez a beállítás használatával kiválaszthatja, melyik szervezeti egységek tooAzure AD szinkronizálása. Ez a beállítás akkor a kiválasztott szervezeti minden objektum esetében.
+* [**Attribútumalapú**](#attribute-based-filtering): Ez a beállítás használatával objektumok hello objektumokon attribútumértékei alapján szűrheti. A különböző objektumtípusokra különböző szűrőket is lehet.
 
-Egyszerre több szűrési beállítások is használhatja. Például használhatja OU-alapú szűrés csak egy szervezeti egység az objektumok tartalmazza. Egy időben segítségével attribútum alapú szűrés objektumok további szűréséhez. Több szűrési módszerek, a szűrők használata logikai "és" a szűrők között.
+Használhat több szűrési beállítások hello ugyanannyi időt vesz igénybe. Például használhatja OU-alapú szűrés tooonly objektumokat tartalmaznak egy szervezeti egységben. At hello azonos időben, Attribútumalapú szűrési toofilter hello objektumok további használható. Több szűrési módszerek, hello szűrők használata logikai "és" hello szűrők között.
 
 ## <a name="domain-based-filtering"></a>Tartományalapú szűrés
-A szakasz a tartomány szűrő konfigurálásának lépéseit ismerteti. Ha hozzáadott vagy eltávolított tartományok az erdőben, az Azure AD Connect telepítése után, akkor is a szűrési beállítások frissítése.
+Ez a rész nyújt hello lépéseket tooconfigure a tartomány szűrő. Ha hozzáadott vagy eltávolított tartományok az erdőben, az Azure AD Connect telepítése után, akkor is tooupdate hello konfigurációs szűrést.
 
-Az előnyben részesített módosítása a tartományalapú szűrés módja a telepítővarázsló futtatása, és válassza [tartományok és szervezeti egységek szűrése](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). A varázsló automatizálja a ebben a témakörben ismertetett feladatokat.
+hello előnyben részesített módon toochange tartományalapú szűrés hello telepítési varázslót és módosítása [tartományok és szervezeti egységek szűrése](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). hello telepítővarázsló üdvözlő feladataival ebben a témakörben ismertetett automatizálja.
 
-Ha Ön a varázsló nem futtatható a telepítés bármilyen okból csak kövesse ezeket a lépéseket.
+Ha valamilyen okból kifolyólag nem toorun hello telepítővarázsló most csak kövesse ezeket a lépéseket.
 
 Szűrési konfigurálása tartományi alábbi lépésekből áll:
 
-1. [Válassza ki a tartományok](#select-domains-to-be-synchronized) a szinkronizálás szerepeltetni kívánt.
-2. Minden hozzáadott, és a tartomány eltávolítása, a [futtatási profil](#update-run-profiles).
+1. [Válassza ki a hello tartományok](#select-domains-to-be-synchronized) , amelyet az tooinclude hello szinkronizálásban.
+2. Az egyes felvétele, illetve eltávolítása a tartományhoz, módosítsa a hello [futtatási profil](#update-run-profiles).
 3. [Alkalmazza, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
-### <a name="select-the-domains-to-be-synchronized"></a>Válassza ki a szinkronizálandó tartományok
-A tartomány szűrő megadásához hajtsa végre az alábbi lépéseket:
+### <a name="select-hello-domains-toobe-synchronized"></a>Jelölje be hello tartományok toobe szinkronizálása
+tooset hello tartomány szűréséhez hello a következő lépéseket:
 
-1. Jelentkezzen be a kiszolgálóra, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja a **ADSyncAdmins** biztonsági csoport.
-2. Start **szinkronizálási szolgáltatás** a a **Start** menü.
-3. Válassza ki **összekötők**, majd a a **összekötők** listára, válassza ki az összekötő típusú **Active Directory tartományi szolgáltatások**. A **műveletek**, jelölje be **tulajdonságok**.  
+1. Jelentkezzen be, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja hello toohello server **ADSyncAdmins** biztonsági csoport.
+2. Start **szinkronizálási szolgáltatás** a hello **Start** menü.
+3. Válassza ki **összekötők**, és a hello **összekötők** listára, válassza ki a hello összekötő hello típusú **Active Directory tartományi szolgáltatások**. A **műveletek**, jelölje be **tulajdonságok**.  
    ![Összekötő tulajdonságai](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
 4. Kattintson a **könyvtárpartíciók konfigurálása**.
-5. Az a **válassza ki az a címtárpartíciókat** listában válassza ki, és törölje a tartományok, igény szerint. Győződjön meg arról, hogy csak azokat a partíciókat szinkronizálni kívánt vannak-e jelölve.  
+5. A hello **válassza ki az a címtárpartíciókat** listában válassza ki, és törölje a tartományok, igény szerint. Győződjön meg arról, hogy vannak-e jelölve, hogy szeretné-e toosynchronize csak hello partíciókat.  
    ![Partíciók](./media/active-directory-aadconnectsync-configure-filtering/connectorpartitions.png)  
-   Ha megváltoztatta a helyszíni Active Directory-infrastruktúrát és a hozzáadott vagy tartományok eltávolítja az erdőt, majd kattintson a **frissítése** gombra kell kattintania a frissített listáját. Frissítésekor, megkérdezi a hitelesítő adatokat. Adja meg a hitelesítő adatok olvasási joggal rendelkező Windows Server Active Directory. Nem kell lennie a felhasználót, hogy a rendszer előre feltöltve a párbeszédpanelen.  
+   Ha megváltoztatta a helyszíni Active Directory-infrastruktúrát és a hozzáadott vagy tartományok távolítva hello erdő, majd kattintson a hello **frissítése** gomb tooget frissített listáját. Frissítésekor, megkérdezi a hitelesítő adatokat. Adjon olvasási hozzáférési tooWindows Server Active Directory rendelkező bármely hitelesítő adatokat. Az előre feltöltve hello párbeszédpanelen toobe hello felhasználó nem rendelkezik.  
    ![Frissítés szükséges](./media/active-directory-aadconnectsync-configure-filtering/refreshneeded.png)  
-6. Amikor elkészült, zárja be a **tulajdonságok** kattintva párbeszédpanel **OK**. Ha eltávolította a tartományok az erdőből származó, egy előugró üzenet szerint, hogy egy tartomány el lett távolítva, és ez a konfiguráció törlődnek.
-7. Továbbra is úgy, hogy a [futtatási profil](#update-run-profiles).
+6. Amikor elkészült, zárja be a hello **tulajdonságok** kattintva párbeszédpanel **OK**. Ha eltávolította a tartományok hello erdőből, előugró üzenet jelzi, hogy egy tartomány el lett távolítva, és ez a konfiguráció törlődnek.
+7. Továbbra is tooadjust hello [futtatási profil](#update-run-profiles).
 
-### <a name="update-the-run-profiles"></a>A futtatási profil frissítése
-Ha a tartomány szűrő frissítése is módosítania a futtatási profil.
+### <a name="update-hello-run-profiles"></a>Futtatás hello-profil frissítése
+Ha a tartomány szűrő módosította, tooupdate futtatása hello profilok is kell.
 
-1. Az a **összekötők** listában, győződjön meg arról, hogy az összekötő, amely az előző lépésben módosította van kiválasztva. A **műveletek**, jelölje be **Configure Run Profiles**.  
+1. A hello **összekötők** listában, győződjön meg arról, hogy hello hello előző lépésben megváltoztató csatlakozó van kiválasztva. A **műveletek**, jelölje be **Configure Run Profiles**.  
    ![Futtatási profil 1 összekötő](./media/active-directory-aadconnectsync-configure-filtering/connectorrunprofiles1.png)  
-2. Keresse meg, és azonosíthatja a következő profilokat:
+2. Keresse meg, és azonosíthatja a profilok a következő hello:
     * Teljes importálás
     * Teljes szinkronizálás
     * Különbözeti importálás
     * A különbözeti szinkronizálás
     * Exportálás
-3. Az egyes profilok, állítsa be a **hozzáadott** és **eltávolított** tartományok.
-    1. Minden egyes az öt profilok esetében a következő lépések az egyes **hozzáadott** tartomány:
-        1. Válassza ki a futtatási profil, és kattintson a **új lépés**.
-        2. Az a **konfigurálása lépés** lap a **típus** legördülő menüben válassza a lépés neve megegyezik a profilt, konfigurálja a típust. Ezután kattintson a **Next** (Tovább) gombra.  
+3. Az egyes profilok beállítása hello **hozzáadott** és **eltávolított** tartományok.
+    1. Az egyes hello öt profilok hello lépéseket követve minden **hozzáadott** tartomány:
+        1. Futtatás hello-profil kiválasztása, és kattintson a **új lépés**.
+        2. A hello **konfigurálása lépés** hello-oldalon, **típus** legördülő menüben válassza hello lépés típusa hello azonos nevét, ahogy hello-profilhoz, amikor a konfigurálja. Ezután kattintson a **Next** (Tovább) gombra.  
         ![Futtatási profil 2 összekötő](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)  
-        3. Az a **összekötő-konfiguráció** lap a **partíció** legördülő menüben válassza ki a tartományt, amelyikhez a tartomány szűrő való felvételét nevét.  
+        3. A hello **összekötő-konfiguráció** lap hello **partíció** legördülő menü, hogy felvett tooyour tartomány szűrő hello tartomány válassza hello nevét.  
         ![Futtatási profil 3 összekötő](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)  
-        4. Bezárja a **kísérleti profilba konfigurálása** párbeszédpanel, kattintson a **Befejezés**.
-    2. Minden egyes az öt profilok esetében a következő lépések az egyes **eltávolított** tartomány:
-        1. Válassza ki a futtatási profil.
-        2. Ha a **érték** , a **partíció** attribútum GUID, válassza ki a futtatási lépés, és kattintson a **lépés törlése**.  
+        4. tooclose hello **kísérleti profilba konfigurálása** párbeszédpanel, kattintson a **Befejezés**.
+    2. Az egyes hello öt profilok hello lépéseket követve minden **eltávolított** tartomány:
+        1. Válassza ki a futtatni hello-profil.
+        2. Ha hello **érték** a hello **partíció** attribútum GUID, jelölje be hello futtatása lépést, és kattintson **lépés törlése**.  
         ![Futtatási profil 4 összekötő](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)  
-    3. Ellenőrizze a módosítást. Minden olyan tartományban, a szinkronizálni kívánt lépésben szereplő minden futtatási profilnál kell szerepelnie.
-4. Bezárja a **Configure Run Profiles** párbeszédpanel, kattintson a **OK**.
-5.  A konfigurálás befejezéséhez, futtatnia kell egy **teljes importálás** és egy **különbözeti szinkronizálási**. Továbbra is a szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
+    3. Ellenőrizze a módosítást. Minden olyan tartományhoz, amelyet az toosynchronize szereplő minden futtatási profilnál lépésben szerepelnie kell.
+4. tooclose hello **Configure Run Profiles** párbeszédpanel, kattintson a **OK**.
+5.  toocomplete hello konfigurációban kell toorun egy **teljes importálás** és egy **különbözeti szinkronizálási**. Továbbra is hello szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
 ## <a name="organizational-unitbased-filtering"></a>Szervezeti egység-alapú szűrés
-Az előnyben részesített módosítása OU-alapú szűrés módja a telepítővarázsló futtatása, és válassza [tartományok és szervezeti egységek szűrése](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). A varázsló automatizálja a ebben a témakörben ismertetett feladatokat.
+hello előnyben részesített módon toochange OU-alapú szűrés hello telepítési varázslót és módosítása [tartományok és szervezeti egységek szűrése](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering). hello telepítővarázsló üdvözlő feladataival ebben a témakörben ismertetett automatizálja.
 
-Ha Ön a varázsló nem futtatható a telepítés bármilyen okból csak kövesse ezeket a lépéseket.
+Ha valamilyen okból kifolyólag nem toorun hello telepítővarázsló most csak kövesse ezeket a lépéseket.
 
-Szervezeti egység-alapú szűrés konfigurálásához tegye a következőket:
+tooconfigure szervezeti egység-alapú szűrés hello a következő lépéseket:
 
-1. Jelentkezzen be a kiszolgálóra, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja a **ADSyncAdmins** biztonsági csoport.
-2. Start **szinkronizálási szolgáltatás** a a **Start** menü.
-3. Válassza ki **összekötők**, majd a a **összekötők** listára, válassza ki az összekötő típusú **Active Directory tartományi szolgáltatások**. A **műveletek**, jelölje be **tulajdonságok**.  
+1. Jelentkezzen be, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja hello toohello server **ADSyncAdmins** biztonsági csoport.
+2. Start **szinkronizálási szolgáltatás** a hello **Start** menü.
+3. Válassza ki **összekötők**, és a hello **összekötők** listára, válassza ki a hello összekötő hello típusú **Active Directory tartományi szolgáltatások**. A **műveletek**, jelölje be **tulajdonságok**.  
    ![Összekötő tulajdonságai](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
-4. Kattintson a **címtárpartíciók konfigurálása**, válassza ki a tartományt, konfigurálása, és kattintson a kívánt **tárolók**.
-5. Amikor a rendszer kéri, adja meg minden hitelesítő adat olvasási hozzáférést a helyszíni Active Directory. Nem kell lennie a felhasználót, hogy a rendszer előre feltöltve a párbeszédpanelen.
-6. Az a **tárolók kijelölése** párbeszédpanel mezőben, törölje a jelet a nem kívánt szinkronizálása a felhőalapú címtárban, majd a szervezeti egységek **OK**.  
-   ![Szervezeti egységek, a tárolók kijelölése párbeszédpanel](./media/active-directory-aadconnectsync-configure-filtering/ou.png)  
-   * A **számítógépek** tároló ki kell választani a Windows 10-es számítógépeken sikeresen szinkronizálásának engedélyezése az Azure AD. Ha a tartományhoz csatlakoztatott számítógépek egyéb szervezeti egységek találhatók, ellenőrizze, azok van kiválasztva.
-   * Ha több, megbízhatósági kapcsolattal rendelkező erdővel rendelkezik, használja a **ForeignSecurityPrincipals** tárolót. Ez a tároló lehetővé teszi az erdők közötti biztonsági csoporttagságok feloldását.
-   * A **RegisteredDevices** Ha engedélyezte az eszközök visszaírásához funkció OU kell választani. Ha egy másik visszaírási szolgáltatás, például a csoportok visszaírásához győződjön meg arról, ezeket a helyeket van kiválasztva.
-   * Válassza ki a bármely egyéb szervezeti egység, ahol a felhasználók, a iNetOrgPersons, a csoportokat, a névjegyeket és a számítógépek találhatók. A képen látható minden hozzá a ManagedObjects szervezeti egység található.
-   * Használatakor a csoport-alapú szűrés, majd a szervezeti egységre, amelyben a csoport nem található kell foglalni.
-   * Vegye figyelembe, hogy beállítható, hogy a szűrési konfiguráció befejezése után hozzáadott új szervezeti egységek szinkronizálva, vagy nincsenek szinkronizálva. Lásd a következő szakaszát.
-7. Amikor elkészült, zárja be a **tulajdonságok** kattintva párbeszédpanel **OK**.
-8. A konfigurálás befejezéséhez, futtatnia kell egy **teljes importálás** és egy **különbözeti szinkronizálási**. Továbbra is a szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
+4. Kattintson a **címtárpartíciók konfigurálása**, jelölje be hello tartomány tooconfigure szeretne, és kattintson **tárolók**.
+5. Amikor a rendszer kéri, adja meg a hitelesítő adatok az olvasási hozzáférés tooyour a helyszíni Active Directory. Az előre feltöltve hello párbeszédpanelen toobe hello felhasználó nem rendelkezik.
+6. A hello **tárolók kijelölése** egyértelmű hello szervezeti egységek, hogy nem szeretné, és a felhő címtárának hello toosynchronize, és kattintson a párbeszédpanelen **OK**.  
+   ![Szervezeti egységek hello tárolók kijelölése párbeszédpanel](./media/active-directory-aadconnectsync-configure-filtering/ou.png)  
+   * Hello **számítógépek** tároló számára a Windows 10 számítógépek toobe sikeresen kell szinkronizálnia a tooAzure AD ki. Ha a tartományhoz csatlakoztatott számítógépek egyéb szervezeti egységek találhatók, ellenőrizze, azok van kiválasztva.
+   * Hello **ForeignSecurityPrincipals** Ha több erdő megbízhatósági kapcsolatok a tárolót kell választani. Ez a tároló lehetővé teszi, hogy az erdők közötti biztonsági csoport tagsága toobe feloldva.
+   * Hello **RegisteredDevices** OU választják, ha engedélyezte a hello eszköz visszaírási szolgáltatás. Ha egy másik visszaírási szolgáltatás, például a csoportok visszaírásához győződjön meg arról, ezeket a helyeket van kiválasztva.
+   * Válassza ki a bármely egyéb szervezeti egység, ahol a felhasználók, a iNetOrgPersons, a csoportokat, a névjegyeket és a számítógépek találhatók. Hello képen látható minden hozzá hello ManagedObjects szervezeti egység található.
+   * Csoport-alapú szűrés használatakor majd hello ahol hello csoport OU kell foglalni.
+   * Vegye figyelembe, hogy beállítható, hogy új szervezeti egységek szűrése konfigurációs hello befejeződése után hozzáadott szinkronizálva, vagy nincsenek szinkronizálva. Lásd az hello következő szakaszát.
+7. Amikor elkészült, zárja be a hello **tulajdonságok** kattintva párbeszédpanel **OK**.
+8. toocomplete hello konfigurációban kell toorun egy **teljes importálás** és egy **különbözeti szinkronizálási**. Továbbra is hello szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
 ### <a name="synchronize-new-ous"></a>Új szervezeti egységek szinkronizálása
-Alapértelmezés szerint új szervezeti egységek szűrése konfigurálása után létrehozott szinkronizálódnak. Ez az állapot jelzi jelölőnégyzet be van jelölve. Néhány sub szervezeti is törölheti. Ahhoz, hogy ez a viselkedés, a jelölőnégyzetre kattintva fehér, a kék jel (az alapértelmezett állapotába) válik. Ezután törölje bármely sub-ou-k esetében, amelyek nem kívánja szinkronizálni.
+Alapértelmezés szerint új szervezeti egységek szűrése konfigurálása után létrehozott szinkronizálódnak. Ez az állapot jelzi jelölőnégyzet be van jelölve. Néhány sub szervezeti is törölheti. tooget ezt a viselkedést hello jelölőnégyzetre kattintva fehér, a kék jel (az alapértelmezett állapotába) válik. Bármely sub-szervezeti egységek, hogy nem szeretné, hogy toosynchronize majd eltávolításához.
 
-Ha minden sub-szervezeti egység szinkronizálva van, a mező esetén fehér, a kék jel.  
+Minden sub-szervezeti egység szinkronizálva van, majd hello be fehér, a kék jel.  
 ![Minden kiválasztott be a szervezeti egység](./media/active-directory-aadconnectsync-configure-filtering/ousyncnewall.png)
 
-Ha néhány sub szervezeti már nincs bejelölve, akkor a lista Szürke fehér jelölést.  
+Néhány sub szervezeti jelöletlen törölték, majd hello be Szürke fehér jelölést.  
 ![Néhány sub-szervezeti egységek nincs bekapcsolva a szervezeti egység](./media/active-directory-aadconnectsync-configure-filtering/ousyncnew.png)
 
 Ezzel a konfigurációval ManagedObjects alapján létrehozott új szervezeti egység szinkronizálva.
 
-Az Azure AD Connect telepítővarázsló mindig létrehozza ezt a konfigurációt.
+hello Azure AD Connect telepítővarázsló mindig létrehozza ezt a konfigurációt.
 
 ### <a name="dont-synchronize-new-ous"></a>Új szervezeti egységek nincs szinkronizálás
-Beállíthatja, hogy a szinkronizálási motor nem szinkronizálja az új szervezeti egységek, a szűrési konfiguráció befejezése után. Ez az állapot jelzi a felhasználói felületen, a mező nincs bejelölve a szürkén jelenik meg. Ahhoz, hogy ez a viselkedés, jelölje be a nem változik fehér, a jelölőnégyzet nincs bejelölve. Válassza ki a szinkronizálni kívánt sub-szervezeti.
+Konfigurálhatja a hello szinkronizálási motor toonot szinkronizálása új szervezeti egységek szűrése konfigurációs hello befejeződése után. Ebben az állapotban jelzett hello UI hello mező nincs bejelölve a szürkén jelenik meg. tooget ezt a viselkedést hello jelölőnégyzetre kattintva válik fehér, a jelölőnégyzet nincs bejelölve. Válassza ki a hello sub-ou-k esetében, amelyet az toosynchronize.
 
-![A legfelső szintű nincs bekapcsolva a szervezeti egység](./media/active-directory-aadconnectsync-configure-filtering/oudonotsyncnew.png)
+![Hello legfelső szintű nincs bekapcsolva a szervezeti egység](./media/active-directory-aadconnectsync-configure-filtering/oudonotsyncnew.png)
 
 Ezzel a konfigurációval ManagedObjects alapján létrehozott új szervezeti egység nincs szinkronizálva.
 
 ## <a name="attribute-based-filtering"></a>Attribútum-alapú szűrés
-Győződjön meg arról, hogy használja a 2015. November ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)) vagy újabb építése működéséhez lépéseket.
+Győződjön meg arról, hogy használata hello 2015. November ([1.0.9125](active-directory-aadconnect-version-history.md#1091250)) vagy későbbi buildre ezek lépések toowork.
 
-Attribútum-alapú szűrés módja a leginkább rugalmas objektumok szűrése. Használhatja a hatványa [deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md) szinte minden szempontja, hogy ha egy objektum szinkronizálva az Azure AD szabályozására.
+Attribútum-alapú szűrés hello legrugalmasabb módon toofilter objektumok. Használhatja a hello hatványa [deklaratív kiépítés](active-directory-aadconnectsync-understanding-declarative-provisioning.md) toocontrol szinte minden szempontját, ha egy objektum van szinkronizálva tooAzure AD.
 
-Alkalmazhat [bejövő](#inbound-filtering) szűrni az Active Directoryból a metaverzumba, és [kimenő](#outbound-filtering) az Azure AD a metaverzumba szűrésére. Azt javasoljuk, hogy bejövő szűrés, mert ez a legegyszerűbb fenntartásához alkalmazni. Csak akkor ajánlott a kimenő szűrést, ha ez szükséges akkor egynél több erdőből származó objektumok csatlakozni, mielőtt értékelésére akkor kerül sor.
+Alkalmazhat [bejövő](#inbound-filtering) az Active Directory toohello metaverse, szűrési és [kimenő](#outbound-filtering) hello metaverse tooAzure AD a szűrés. Azt javasoljuk, hogy bejövő szűrés, mert hello legegyszerűbb toomaintain alkalmazni. Csak akkor ajánlott a kimenő szűrést, ha egynél több erdőből származó toojoin objektumok ez szükséges akkor, mielőtt hello értékelésére akkor kerül sor.
 
 ### <a name="inbound-filtering"></a>Bejövő szűrése
-Bejövő szűrése az alapértelmezett konfigurációt használja, ahol is az Azure AD-objektumok a metaverzum-attribútum nincs beállítva egy értékre szinkronizálandó cloudFiltered kell rendelkeznie. Ha ez az attribútum értéke **igaz**, akkor az objektum nincs szinkronizálva. Nem állítható be **hamis**, úgy lett kialakítva. Győződjön meg arról, más szabályok is képes közre érték, ez az attribútum csak várt értékük **igaz** vagy **NULL** (távol).
+Bejövő szűrés hello alapértelmezett konfigurációt használ, ahol tooAzure AD fog objektumok hello metaverzum-attribútum cloudFiltered nincs beállítva a tooa érték toobe szinkronizálva kell rendelkeznie. Ha ez az attribútum értéke túl**igaz**, majd hello objektum nincs szinkronizálva. Nem szabad lennie állítva, akkor túl**hamis**, úgy lett kialakítva. a toomake, más szabályok hello képességét toocontribute egy értéke, ez az attribútum csak kellene toohave hello értékek **igaz** vagy **NULL** (távol).
 
-A bejövő szűrés, használja a power **hatókör** meghatározni, mely objektumok szinkronizálásához, vagy nem szinkronizálja. Ez azért, ahol meg módosítani lehet a saját szervezet igényeinek megfelelően. A hatókör-modul egy **csoport** és egy **záradék** annak megállapításához, amikor a szinkronizálási szabály hatóköre. A csoport egy vagy több záradékot tartalmaz. Nincs logikai "és" több záradékot, és több csoportok közötti logikai "vagy" között.
+A bejövő szűrés hello hatványa használja **hatókör** toodetermine toosynchronize objektumot, vagy nem szinkronizálja. Ez a panelen módosításának toofit saját szervezete követelményeinek. hello hatókör modul rendelkezik egy **csoport** és egy **záradék** toodetermine hatókörében szinkronizálási szabály esetén. A csoport egy vagy több záradékot tartalmaz. Nincs logikai "és" több záradékot, és több csoportok közötti logikai "vagy" között.
 
 Ossza meg velünk Példaként tekintse meg:  
 ![Hatókör](./media/active-directory-aadconnectsync-configure-filtering/scope.png)  
 Ez értelmezendő **(részleg = informatikai) vagy (részleg = értékesítés és c = US)**.
 
-A következő mintákat és lépéseket a user objektum használja példaként, de ezzel minden objektum esetében.
+A következő hello minták és lépések, hello felhasználói objektum, például használatát, de ezzel az összes objektumtípus.
 
-A következő mintában a sorrend értékét 50 kezdődik. Ez a szám nem lehet, de 100-nál kisebbnek kell lennie.
+A következő minták hello hello sorrend érték 50 kezdődik. Ez a szám nem lehet, de 100-nál kisebbnek kell lennie.
 
 #### <a name="negative-filtering-do-not-sync-these"></a>Negatív szűrése: "szinkronizálja ezeket"
-A következő példában a kiszűrhetők (nem szinkronizálása) minden felhasználó ahol **extensionAttribute15** értéke **NoSync**.
+A következő példa hello, a kiszűrhetők (nem szinkronizálása) minden felhasználó ahol **extensionAttribute15** hello értéke **NoSync**.
 
-1. Jelentkezzen be a kiszolgálóra, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja a **ADSyncAdmins** biztonsági csoport.
-2. Start **szinkronizálási szabályok szerkesztő** a a **Start** menü.
+1. Jelentkezzen be, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja hello toohello server **ADSyncAdmins** biztonsági csoport.
+2. Start **szinkronizálási szabályok szerkesztő** a hello **Start** menü.
 3. Győződjön meg arról, hogy **bejövő** van kiválasztva, és kattintson a **új szabály hozzáadása**.
-4. Adjon a szabálynak egy nevet, például a "*a az AD-felhasználó DoNotSyncFilter*". Jelölje ki a megfelelő erdőt, jelölje be **felhasználói** , a **CS objektumtípus**, és válassza ki **személy** , a **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amely jelenleg nem használja egy másik szinkronizálási szabály (például 50), és kattintson a **következő**.  
+4. Adjon hello szabály egy leíró nevet, például "*a az AD-felhasználó DoNotSyncFilter*". Jelölje be hello megfelelő erdő, jelölje be **felhasználói** hello, **CS objektumtípus**, és válassza ki **személy** hello, **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amely jelenleg nem használja egy másik szinkronizálási szabály (például 50), és kattintson a **következő**.  
    ![Bejövő 1 leírása](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)  
-5. A **Scoping szűrő**, kattintson a **csoport hozzáadása**, és kattintson a **záradék hozzáadása**. A **attribútum**, jelölje be **ExtensionAttribute15**. Győződjön meg arról, hogy **operátor** értéke **egyenlő**, és írja be az értéket **NoSync** a a **érték** mezőbe. Kattintson a **Tovább** gombra.  
+5. A **Scoping szűrő**, kattintson a **csoport hozzáadása**, és kattintson a **záradék hozzáadása**. A **attribútum**, jelölje be **ExtensionAttribute15**. Győződjön meg arról, hogy **operátor** értéke túl**egyenlő**, és hello értéket **NoSync** a hello **érték** mezőbe. Kattintson a **Tovább** gombra.  
    ![Bejövő 2 hatókör](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)  
-6. Hagyja a **csatlakozás** szabályok üres, és kattintson a **következő**.
-7. Kattintson a **hozzáadása átalakítása**, jelölje be a **FlowType** , **állandó**, és válassza ki **cloudFiltered** , a **Target attribútummal**. Az a **forrás** szövegmezőben **igaz**. Kattintson a **Hozzáadás** a szabály mentéséhez.  
+6. Hagyja hello **csatlakozás** szabályok üres, és kattintson a **következő**.
+7. Kattintson a **hozzáadása átalakítása**, jelölje be hello **FlowType** , **állandó**, és válassza ki **cloudFiltered** hello,  **Cél attribútum**. A hello **forrás** szövegmezőben **igaz**. Kattintson a **Hozzáadás** toosave hello szabály.  
    ![Bejövő 3 átalakítása](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
-8. A konfigurálás befejezéséhez, futtatnia kell egy **Full sync**. Továbbra is a szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
+8. toocomplete hello konfigurációban kell toorun egy **Full sync**. Továbbra is hello szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
 #### <a name="positive-filtering-only-sync-these"></a>Pozitív szűrése: "csak szinkronizálás ezek"
-Pozitív szűrési kifejezése több kihívást jelenthet, mert is figyelembe kell vennie, amelyek nem kell szinkronizálni, például konferenciaterem nyilvánvaló objektumok. Az alapértelmezett szűrő a out-of-box szabály felülbírálása is fog **a az AD - felhasználó csatlakozás**. Az egyéni szűrő létrehozásakor győződjön meg arról, hogy kritikus rendszerobjektumok, a replikációs ütközés objektumok, különleges postaládák és a szolgáltatásfiókok nem tartalmazza az Azure AD Connect.
+Pozitív szűrési kifejezése lehet további kihívást, mert nincsenek szinkronizálva, például konferenciaterem nyilvánvaló toobe tooconsider objektumokat is rendelkezik. Biztosan is folyamatos toooverride hello alapértelmezett szűrő hello out-of-box szabályban **a az AD - felhasználó csatlakozás**. Az egyéni szűrő létrehozásakor ellenőrizze, hogy toonot tartalmaznak kritikus rendszerobjektumok, replikációs ütközés objektumok, különleges postaládák és szolgáltatásfiókok hello az Azure AD Connect.
 
-A pozitív szűrési beállításnál két szinkronizálási szabály. Kell egy szabály (vagy több) a megfelelő szinkronizálandó objektumok körét. Második általános szinkronizálási szabály, amely a összes objektum, amely olyan objektum, amely szinkronizálnia kell még nem még meg is kell.
+hello pozitív szűrési beállításnál két szinkronizálási szabály. Az objektumok toosynchronize hello megfelelő hatókörű egy szabály (vagy több) szükséges. Második általános szinkronizálási szabály, amely a összes objektum, amely olyan objektum, amely szinkronizálnia kell még nem még meg is kell.
 
-A következő példában csak szinkronizálás felhasználói objektumok, ahol a részleg attribútum értéke a **értékesítési**.
+A következő példa hello, csak szinkronizálás ahol hello részleg attribútum értéke hello felhasználói objektumok **értékesítési**.
 
-1. Jelentkezzen be a kiszolgálóra, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja a **ADSyncAdmins** biztonsági csoport.
-2. Start **szinkronizálási szabályok szerkesztő** a a **Start** menü.
+1. Jelentkezzen be, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja hello toohello server **ADSyncAdmins** biztonsági csoport.
+2. Start **szinkronizálási szabályok szerkesztő** a hello **Start** menü.
 3. Győződjön meg arról, hogy **bejövő** van kiválasztva, és kattintson a **új szabály hozzáadása**.
-4. Adjon a szabálynak egy nevet, például a "*a az AD-felhasználó értékesítési szinkronizálása*". Jelölje ki a megfelelő erdőt, jelölje be **felhasználói** , a **CS objektumtípus**, és válassza ki **személy** , a **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amelyet egy másik szinkronizálási szabály (például 51) jelenleg nem használ, és kattintson a **következő**.  
+4. Adjon hello szabály egy leíró nevet, például "*a az AD-felhasználó értékesítési szinkronizálása*". Jelölje be hello megfelelő erdő, jelölje be **felhasználói** hello, **CS objektumtípus**, és válassza ki **személy** hello, **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amelyet egy másik szinkronizálási szabály (például 51) jelenleg nem használ, és kattintson a **következő**.  
    ![Bejövő 4 leírása](./media/active-directory-aadconnectsync-configure-filtering/inbound4.png)  
-5. A **Scoping szűrő**, kattintson a **csoport hozzáadása**, és kattintson a **záradék hozzáadása**. A **attribútum**, jelölje be **részleg**. Győződjön meg arról, hogy operátor beállításai **egyenlő**, és írja be az értéket **értékesítési** a a **érték** mezőbe. Kattintson a **Tovább** gombra.  
+5. A **Scoping szűrő**, kattintson a **csoport hozzáadása**, és kattintson a **záradék hozzáadása**. A **attribútum**, jelölje be **részleg**. Győződjön meg arról, hogy túl van-e állítva a operátor**egyenlő**, és írja be a hello érték **értékesítési** hello a **érték** mezőbe. Kattintson a **Tovább** gombra.  
    ![Bejövő 5 hatókör](./media/active-directory-aadconnectsync-configure-filtering/inbound5.png)  
-6. Hagyja a **csatlakozás** szabályok üres, és kattintson a **következő**.
-7. Kattintson a **hozzáadása átalakítása**, jelölje be **állandó** , a **FlowType**, és válassza ki a **cloudFiltered** , a **Target attribútummal**. Az a **forrás** mezőbe írja be **hamis**. Kattintson a **Hozzáadás** a szabály mentéséhez.  
+6. Hagyja hello **csatlakozás** szabályok üres, és kattintson a **következő**.
+7. Kattintson a **hozzáadása átalakítása**, jelölje be **állandó** hello, **FlowType**, és jelölje be hello **cloudFiltered** hello,  **Cél attribútum**. A hello **forrás** mezőbe írja be **hamis**. Kattintson a **Hozzáadás** toosave hello szabály.  
    ![Bejövő 6 átalakítása](./media/active-directory-aadconnectsync-configure-filtering/inbound6.png)  
-   Ez az egy különleges esetben, ha explicit módon beállította cloudFiltered **hamis**.
-8. Most már tudunk a catch – minden szinkronizálási szabály létrehozásához. Adjon a szabálynak egy nevet, például a "*a az AD-felhasználó Catch – minden szűrő*". Jelölje ki a megfelelő erdőt, jelölje be **felhasználói** , a **CS objektumtípus**, és válassza ki **személy** , a **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amelyet egy másik szinkronizálási szabály (például 99) jelenleg nem használ. Kijelölt magasabb (képest alacsonyabb fontossági sorrenddel) az előző szinkronizálási szabály sorrend értéke. De korábban is hagyta valamennyi hely, hogy további szűrési szinkronizálási szabályok később veheti fel, ha el szeretné indítani a további szervezeti egységek szinkronizálása. Kattintson a **Tovább** gombra.  
+   Ez egy különleges esetben, ha explicit módon beállított cloudFiltered túl az**hamis**.
+8. Most már tudunk toocreate hello általános szinkronizálási szabály. Adjon hello szabály egy leíró nevet, például "*a az AD-felhasználó Catch – minden szűrő*". Jelölje be hello megfelelő erdő, jelölje be **felhasználói** hello, **CS objektumtípus**, és válassza ki **személy** hello, **MV-objektum típusa**. A **kapcsolattípus**, jelölje be **csatlakozás**. A **sorrend**, írjon be egy értéket, amelyet egy másik szinkronizálási szabály (például 99) jelenleg nem használ. Kijelölt magasabb (képest alacsonyabb fontossági sorrenddel) hello előző szinkronizálási szabály sorrend értéke. De hogy is hagyta valamennyi hely, hogy további szűrési szinkronizálási szabályok később veheti fel, ha azt szeretné, hogy további szervezeti egységek szinkronizálása toostart. Kattintson a **Tovább** gombra.  
    ![Bejövő 7 leírása](./media/active-directory-aadconnectsync-configure-filtering/inbound7.png)  
-9. Hagyja **Scoping szűrő** üres, és kattintson a **következő**. Egy üres szűrőnév azt jelzi, hogy a szabály minden objektumokra alkalmazandó.
-10. Hagyja a **csatlakozás** szabályok üres, és kattintson a **következő**.
-11. Kattintson a **hozzáadása átalakítása**, jelölje be **állandó** , a **FlowType**, és válassza ki **cloudFiltered** , a **Target attribútummal**. Az a **forrás** mezőbe írja be **igaz**. Kattintson a **Hozzáadás** a szabály mentéséhez.  
+9. Hagyja **Scoping szűrő** üres, és kattintson a **következő**. Egy üres szűrőnév jelzi, hogy hello szabály alkalmazása toobe tooall objektumok.
+10. Hagyja hello **csatlakozás** szabályok üres, és kattintson a **következő**.
+11. Kattintson a **hozzáadása átalakítása**, jelölje be **állandó** hello, **FlowType**, és válassza ki **cloudFiltered** hello,  **Cél attribútum**. A hello **forrás** mezőbe írja be **igaz**. Kattintson a **Hozzáadás** toosave hello szabály.  
     ![Bejövő 3 átalakítása](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)  
-12. A konfigurálás befejezéséhez, futtatnia kell egy **Full sync**. Továbbra is a szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
+12. toocomplete hello konfigurációban kell toorun egy **Full sync**. Továbbra is hello szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
-Ha kell, ahol több objektum szerepel a szinkronizálási első típusú további szabályok is létrehozhat.
+Ha szeretné, további objektumokat vegye hello szinkronizálásban hello első típusú további szabályok is létrehozhat.
 
 ### <a name="outbound-filtering"></a>Kimenő szűrése
-Néhány esetben szükség a szűrés csak azt követően a objektumok van összekapcsolva a metaverzumban. Például előfordulhat, hogy legyen kell vizsgálni az erőforráserdőből a levél attribútum, és a userPrincipalName attribútum a fiók erdőből meghatározni, ha egy objektum szinkronizálnia kell. Ezekben az esetekben hoz létre a kimenő forgalomra vonatkozó szabály szűrés.
+Egyes esetekben szükséges toodo hello szűrés csak hello objektumok hello metaverse a tartományhoz csatlakoztatás után. Például hello levél attribútum hello erőforráserdőből és hello userPrincipalName attribútum hello fiók erdőből, ha egy objektum szinkronizálnia kell toodetermine szükséges toolook lehet. Ezekben az esetekben hello kimenő forgalomra vonatkozó szabály szűrés hello hoz létre.
 
-Ebben a példában a szűrést, hogy csak a felhasználók, amelyek rendelkeznek a levelezés és a userPrincipalName végződése módosítása @contoso.com szinkronizálja a rendszer:
+Ebben a példában módosítja hello szűrés, hogy csak a felhasználók, amelyek rendelkeznek a levelezés és a userPrincipalName végződése @contoso.com szinkronizálja a rendszer:
 
-1. Jelentkezzen be a kiszolgálóra, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja a **ADSyncAdmins** biztonsági csoport.
-2. Start **szinkronizálási szabályok szerkesztő** a a **Start** menü.
+1. Jelentkezzen be, amelyen fut az Azure AD Connect szinkronizálási szolgáltatás egy olyan fiókkal, amely tagja hello toohello server **ADSyncAdmins** biztonsági csoport.
+2. Start **szinkronizálási szabályok szerkesztő** a hello **Start** menü.
 3. A **szabályok típusa**, kattintson a **kimenő**.
-4. Nevű szabályban található **ki az aad-be – felhasználói csatlakozás**, és kattintson a **szerkesztése**.
-5. Az előugró ablakban fogadja a hívást **Igen** egy példányát a szabály létrehozásához.
-6. A a **leírás** lapján módosítsa **sorrend** nem használt érték, például az 50.
-7. Kattintson a **Scoping szűrő** a bal oldali navigációs, és kattintson a **Hozzáadás záradék**. A **attribútum**, jelölje be **mail**. A **operátor**, jelölje be **megadott módon VÉGZŐDŐ**. A **érték**, típus  **@contoso.com** , és kattintson a **Hozzáadás záradék**. A **attribútum**, jelölje be **userPrincipalName**. A **operátor**, jelölje be **megadott módon VÉGZŐDŐ**. A **érték**, típus  **@contoso.com** .
+4. Keresés hello szabály nevű **tooAAD – felhasználói csatlakozás kimenő**, és kattintson a **szerkesztése**.
+5. Hello előugró ablakban fogadja a hívást **Igen** toocreate hello szabály egy példányát.
+6. A hello **leírás** lapján módosítsa **sorrend** tooan nem használt érték, például az 50.
+7. Kattintson a **Scoping szűrő** a bal oldali navigációs hello, és kattintson a **Hozzáadás záradék**. A **attribútum**, jelölje be **mail**. A **operátor**, jelölje be **megadott módon VÉGZŐDŐ**. A **érték**, típus  **@contoso.com** , és kattintson a **Hozzáadás záradék**. A **attribútum**, jelölje be **userPrincipalName**. A **operátor**, jelölje be **megadott módon VÉGZŐDŐ**. A **érték**, típus  **@contoso.com** .
 8. Kattintson a **Save** (Mentés) gombra.
-9. A konfigurálás befejezéséhez, futtatnia kell egy **Full sync**. Továbbra is a szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
+9. toocomplete hello konfigurációban kell toorun egy **Full sync**. Továbbra is hello szakasz olvasása [alkalmaz, és a módosítások ellenőrzéséhez](#apply-and-verify-changes).
 
 ## <a name="apply-and-verify-changes"></a>Alkalmazza, és a módosítások ellenőrzéséhez
-Miután a konfigurációs módosításokat hajtott végre, telepítenie kell őket az objektumok, amelyek már a rendszerben. Emellett előfordulhat, hogy az objektumok, amelyek jelenleg nem a Szinkronizáló vezérlő fel kell dolgozni (és a szinkronizálási motor rendszernek végig kell olvasnia a forrásrendszerben ismét ellenőrizze a tartalmat a).
+Miután a konfigurációs módosításokat hajtott végre, telepítenie kell őket toohello objektumok, amelyek már hello rendszerben. Is lehet, hogy fel kell dolgozni a hello objektumok, amelyek jelenleg nem a szinkronizálási motor hello (és hello szinkronizálási motor tooread hello forrásrendszerben újra tooverify benne lévő tartalom).
 
-Ha módosította a konfiguráció segítségével **tartomány** vagy **szervezeti egység** szűrés, majd végre kell hajtani egy **teljes importálás**, utána pedig **különbözeti szinkronizálás**.
+Ha módosította hello konfigurációját a **tartomány** vagy **szervezeti egység** szűréshez, akkor szükséges, hogy toodo egy **teljes importálás**, utána pedig **különbözeti szinkronizálás**.
 
-Ha módosította a konfiguráció segítségével **attribútum** szűrés, majd végre kell hajtani egy **teljes szinkronizálás**.
+Ha módosította hello konfigurációját a **attribútum** szűréshez, akkor szükséges, hogy toodo egy **teljes szinkronizálás**.
 
-Hajtsa végre az alábbi lépéseket:
+Hello a következő lépéseket:
 
-1. Start **szinkronizálási szolgáltatás** a a **Start** menü.
-2. Válassza ki **összekötők**. Az a **összekötők** listára, válassza ki az összekötőt, ha olyan konfigurációs módosítást korábban végzett. A **műveletek**, jelölje be **futtatása**.  
+1. Start **szinkronizálási szolgáltatás** a hello **Start** menü.
+2. Válassza ki **összekötők**. A hello **összekötők** listára, válassza ki az összekötőt, ha olyan konfigurációs módosítást korábban végzett hello. A **műveletek**, jelölje be **futtatása**.  
    ![Összekötő futtatása](./media/active-directory-aadconnectsync-configure-filtering/connectorrun.png)  
-3. A **futtatási profil**, válassza ki az előző szakaszban említett a műveletet. Ha két műveletek futtatására van szüksége, futtassa a második az elsőt befejeződése után. (A **állapot** oszlop **üresjáratban** a kijelölt összekötő.)
+3. A **futtatási profil**, válassza ki, amely hello előző szakaszban említett hello műveletet. Ha toorun két műveletet kell, második után hello futtatási hello első befejeződött. (hello **állapot** oszlop **üresjáratban** kijelölt hello összekötő.)
 
-A szinkronizálás után az összes módosítás exportálható előkészített. Valójában a módosítása előtt az Azure ad-ben, ellenőrizze, hogy helyesen-e ezek a változások szeretné.
+Hello szinkronizálás után az összes változtatások előkészített toobe exportált. Ténylegesen hello módosítása előtt az Azure ad-ben, azt szeretné, hogy helyesen-e ezek a változások tooverify.
 
-1. Nyisson meg egy parancsablakot, és navigáljon a `%Program Files%\Microsoft Azure AD Sync\bin`.
+1. Nyisson meg egy parancsablakot, és nyissa meg túl`%Program Files%\Microsoft Azure AD Sync\bin`.
 2. Futtassa az `csexport "Name of Connector" %temp%\export.xml /f:x` parancsot.  
-   Az összekötő neve szerepel a szinkronizálási szolgáltatás. A "contoso.com – AAD" hasonló névvel rendelkezik az Azure AD.
+   hello összekötő hello neve nem található szinkronizálási szolgáltatás. Rendelkezik egy neve hasonló too"contoso.com – AAD" az Azure AD.
 3. Futtassa az `CSExportAnalyzer %temp%\export.xml > %temp%\export.csv` parancsot.
-4. Most már rendelkezik a % temp %, amely megfelel a Microsoft Excel export.csv nevű fájl. Ez a fájl exportálni, módosításokat tartalmaz.
-5. A szükséges módosításokat az adatok vagy konfiguráció, és futtassa ezeket a lépéseket újra (importálás, szinkronizálás, és győződjön meg arról) addig, amíg exportálni kívánt módosításokkal nem várt.
+4. Most már rendelkezik a % temp %, amely megfelel a Microsoft Excel export.csv nevű fájl. Ezt a fájlt az exportált toobe készül minden hello módosításokat tartalmaz.
+5. Hello szükséges változtatások toohello adatok vagy konfiguráció, és futtassa lépések újra (importálás, szinkronizálás, és győződjön meg arról) csak a változtatásokat, hogy kapcsolatos exportált toobe hello várt.
 
-Ha elkészült, exportálja a módosításokat az Azure AD.
+Ha elkészült, exportálja a hello módosítások tooAzure AD.
 
-1. Válassza ki **összekötők**. Az a **összekötők** listára, válassza ki az Azure AD-összekötőt. A **műveletek**, jelölje be **futtatása**.
+1. Válassza ki **összekötők**. A hello **összekötők** listára, válassza ki a hello Azure AD-összekötőt. A **műveletek**, jelölje be **futtatása**.
 2. A **futtatási profil**, jelölje be **exportálása**.
-3. Ha a konfigurációs módosítások sok objektumok törlése, majd hibaüzenet jelenik meg az exportált Ha száma több, mint a beállított küszöbértéket (alapértelmezésben 500). Ha ezt a hibaüzenetet látja, akkor le kell tiltania ideiglenesen a "[véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)" funkció.
+3. Ha a konfigurációs módosítások sok objektumok törlése, majd hibaüzenet jelenik meg hello exportálás Ha hello száma több, mint a konfigurált hello küszöbértéket (alapértelmezésben 500). Ha ezt a hibaüzenetet látja, akkor meg kell tootemporarily letiltása hello "[véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)" funkció.
 
-Most azt az idő az ütemező ismét engedélyeznie.
+Most már idő tooenable hello Feladatütemező újra.
 
-1. Start **Feladatütemező** a a **Start** menü.
-2. Közvetlenül a **Feladatütemező könyvtár**, nevű feladat található **Azure AD Sync Scheduler**, kattintson a jobb gombbal, majd válassza **engedélyezése**.
+1. Start **Feladatütemező** a hello **Start** menü.
+2. Közvetlenül a **Feladatütemező könyvtár**, keresés hello feladat nevű **Azure AD Sync Scheduler**, kattintson a jobb gombbal, majd válassza **engedélyezése**.
 
 ## <a name="group-based-filtering"></a>Csoport-alapú szűrés
-Beállíthatja, hogy az Azure AD Connect használatával telepítse először csoport alapú szűrés [egyéni telepítési](active-directory-aadconnect-get-started-custom.md#sync-filtering-based-on-groups). Kísérleti központi telepítés célja, ha azt szeretné, hogy a szinkronizálandó objektumok csak egy kis készletét. Csoport-alapú szűrés letiltása esetén nem engedélyezhető újra. Rendelkezik *nem támogatott* biztonságicsoport-alapú szűrés egyéni konfiguráció használatához. Ez a szolgáltatás konfigurálása a telepítési varázsló használatával csak támogatott. A próbaüzem végrehajtását, majd a más szűrési lehetőségek valamelyikével ebben a témakörben. A csoport-alapú szűrés együtt OU-alapú szűrés használatakor a kapcsolnia, amelyben a csoportot és annak tagjait is szerepelnie kell.
+Szűrési hello Csoportalapú először az Azure AD Connect telepítését használatával is beállíthat [egyéni telepítési](active-directory-aadconnect-get-started-custom.md#sync-filtering-based-on-groups). Az a célja, hogy az a próbatelepítések, ha azt szeretné, hogy a szinkronizált objektumokat toobe csak egy kis készletét. Csoport-alapú szűrés letiltása esetén nem engedélyezhető újra. Rendelkezik *nem támogatott* toouse csoport alapú szűrést a egyéni konfiguráció. Azt csak támogatott tartalmaz tooconfigure Ez a szolgáltatás hello telepítés varázsló használatával. A próbaüzem végrehajtását, majd valamelyikével hello más szűrési beállítások ebben a témakörben. A csoport-alapú szűrés együtt OU-alapú szűrés használatakor hello kapcsolnia, amelyben hello csoportot és annak tagjait is szerepelnie kell.
 
-Több AD-erdővel szinkronizálásakor beállíthatja egy másik csoportot minden egyes címtárösszekötőben megadásával csoport alapú szűrés. Ha kívánja szinkronizálni a felhasználó egy Active Directory erdőben, és ugyanahhoz a felhasználóhoz van egy vagy több megfelelő FSP (idegen rendszerbiztonsági tag) objektumokat más AD-erdőkkel, meg kell győződnie arról, hogy a user objektum és a megfelelő FSP objektumok jelenleg belül Csoportalapú korlátozza hatókör. Ha egy vagy több FSP objektum szűréssel Csoportalapú kizárva, a user objektum nem fognak szinkronizálódni az Azure ad Szolgáltatásba.
+Több AD-erdővel szinkronizálásakor beállíthatja egy másik csoportot minden egyes címtárösszekötőben megadásával csoport alapú szűrés. Ha egy felhasználó egy Active Directory-erdőben kívánja toosynchronize és hello ugyanaz a felhasználó egy vagy több megfelelő FSP (idegen rendszerbiztonsági tag) objektumokat más AD-erdőkkel, győződjön meg arról, hogy hello felhasználói objektum, a minden a megfelelő FSP objektum Csoportalapú belül van-e szűrési hatókör. Ha egy vagy több hello FSP objektumok szűréssel Csoportalapú kizárva, hello felhasználói objektum nem lesz szinkronizált tooAzure AD.
 
 ## <a name="next-steps"></a>Következő lépések
 - További információ [az Azure AD Connect szinkronizálási szolgáltatás](active-directory-aadconnectsync-whatis.md) konfigurációs.

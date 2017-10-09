@@ -1,6 +1,6 @@
 ---
-title: "Az Azure PowerShell-parancsfájl minta - webes alkalmazás csatlakoztatása SQL-adatbázishoz |} Microsoft Docs"
-description: "Az Azure PowerShell-parancsfájl minta - webes alkalmazás csatlakoztatása SQL-adatbázishoz"
+title: "aaaAzure PowerShell parancsfájl minta - web app tooa SQL adatbázis csatlakoztatása |} Microsoft Docs"
+description: "Az Azure PowerShell-parancsfájl minta - web app tooa SQL adatbázis csatlakoztatása"
 services: app-service\web
 documentationcenter: 
 author: syntaxc4
@@ -16,25 +16,25 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 5312bf6b81d1cc48490b71c3f77323cca23e1559
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8f80b940378d020cbcaec2c1bbc28bae1a3ef35a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-a-sql-database"></a>Webes alkalmazás csatlakoztatása SQL-adatbázishoz
+# <a name="connect-a-web-app-tooa-sql-database"></a>Webes alkalmazás tooa SQL adatbázis csatlakoztatása
 
-Ebben a forgatókönyvben, megtudhatja, hogyan Azure SQL-adatbázis és az Azure-webalkalmazás létrehozása. Az SQL-adatbázis majd összekapcsolja a webes alkalmazás alkalmazás-beállításokkal.
+Ebben a forgatókönyvben megtudhatja, hogyan toocreate Azure SQL-adatbázis és egy Azure webes alkalmazást. Majd hello SQL adatbázis toohello web app használatával Alkalmazásbeállítások csatolást.
 
-Szükség esetén telepítse az Azure PowerShell található utasítás használatával a [Azure PowerShell útmutató](/powershell/azure/overview), majd futtassa a `Login-AzureRmAccount` kapcsolat létrehozása az Azure-ral.
+Szükség esetén telepítse az Azure PowerShell használatával hello utasítás található hello hello [Azure PowerShell útmutató](/powershell/azure/overview), majd futtassa a `Login-AzureRmAccount` toocreate Azure kapcsolatot.
 
 ## <a name="sample-script"></a>Mintaparancsfájl
 
-[!code-powershell[fő](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "webes alkalmazás csatlakoztatása SQL-adatbázishoz")]
+[!code-powershell[main](../../../powershell_scripts/app-service/connect-to-sql/connect-to-sql.ps1?highlight=13 "Connect a web app tooa SQL database")]
 
 ## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, a web app és az összes kapcsolódó erőforrások.
+Hello parancsfájl minta futtatása után a következő parancs hello lehet használt tooremove hello erőforráscsoport, a web app és az összes kapcsolódó erőforrások.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>Parancsfájl ismertetése
 
-A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs adott dokumentációjára mutató hivatkozásokat.
+A parancsfájl a következő parancsok hello. Minden egyes parancsa hello tábla hivatkozások toocommand adott dokumentációját.
 
 | Parancs | Megjegyzések |
 |---|---|
@@ -56,6 +56,6 @@ A parancsfájl a következő parancsokat. Minden egyes parancsa a tábla-parancs
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
+Hello Azure PowerShell modul további információkért lásd: [Azure PowerShell dokumentációs](/powershell/azure/overview).
 
-Azure App Service Web Apps további Azure Powershell-példák találhatók a [Azure PowerShell-példák](../app-service-powershell-samples.md).
+Azure App Service Web Apps további Azure Powershell-példák találhatók hello [Azure PowerShell-példák](../app-service-powershell-samples.md).

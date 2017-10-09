@@ -1,6 +1,6 @@
 ---
-title: "HDInsight-alkalmazások – Azure közzététele |} Microsoft Docs"
-description: "További információk a HDInsight-alkalmazások létrehozásáról és közzétételéről."
+title: "aaaPublish HDInsight-alkalmazások – Azure |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate és a HDInsight-alkalmazások közzététele."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 6aa66cac35bc317fc87003e6c3d824544c53de88
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7da0aa53828563e50ef372df901e1ba541fb40be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-hdinsight-applications-into-the-azure-marketplace"></a>HDInsight-alkalmazások közzététele az Azure Piactéren
-A HDInsight-alkalmazások olyan alkalmazások, amelyeket a felhasználók egy Linux-alapú HDInsight-fürtre telepíthetnek. Ezek az alkalmazások lehetnek a Microsoft, független szoftvergyártók (ISV-k) vagy a felhasználók fejlesztései. Ebből a cikkből megismerheti, hogyan tehet közzé HDInsight-alkalmazások az Azure piactéren.  Az Azure Piactéren történő közzétételre vonatkozó általános információkat lásd a cikkben, amely azzal foglalkozik, [hogyan lehet ajánlatot közzétenni az Azure Piactéren](../marketplace-publishing/marketplace-publishing-getting-started.md).
+# <a name="publish-hdinsight-applications-into-hello-azure-marketplace"></a>Hello Azure piactér HDInsight-alkalmazások közzététele
+A HDInsight-alkalmazások olyan alkalmazások, amelyeket a felhasználók egy Linux-alapú HDInsight-fürtre telepíthetnek. Ezek az alkalmazások lehetnek a Microsoft, független szoftvergyártók (ISV-k) vagy a felhasználók fejlesztései. Ebből a cikkből megismerheti, hogyan toopublish hello Azure piactér HDInsight-alkalmazásokat.  Hello Azure piactéren történő közzétételre vonatkozó általános információkért lásd: [közzététele egy ajánlat toohello Azure piactér](../marketplace-publishing/marketplace-publishing-getting-started.md).
 
-A HDInsight-alkalmazások a *saját licenc használata (BYOL)* modellt használják, amelyben az alkalmazás szolgáltatója felel az alkalmazást licenceléséért a végfelhasználók számára, és az Azure a végfelhasználóknak csak az általuk létrehozott erőforrásokért számol fel költséget, például a HDInsight-fürtért és a hozzá tartozó virtuális gépekért/csomópontokért. Az alkalmazás maga Azure szolgáltatáson keresztül nem történik.
+A HDInsight-alkalmazások használata hello *kapcsolja a saját licenc használata (BYOL)* modell, ahol alkalmazás szolgáltató hello alkalmazás tooend-felhasználók licencelési felelős és a végfelhasználók csak felszámított az Azure-erőforrások hello azok Hozzon létre, például a HDInsight-fürt hello és annak virtuális Gépekért/csomópontokért. Számlázási magának hello alkalmazásnak Azure szolgáltatáson keresztül nem történik.
 
 Más HDInsight alkalmazással kapcsolatos cikk:
 
-* [HDInsight-alkalmazások telepítése](hdinsight-apps-install-applications.md): Megtudhatja, hogyan telepíthet HDInsight-alkalmazásokat a fürtjeire.
-* [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md) (Egyéni HDInsight-alkalmazások telepítése): útmutató az egyéni HDInsight-alkalmazások telepítéséhez és teszteléséhez.
+* [HDInsight-alkalmazások telepítése](hdinsight-apps-install-applications.md): megtudhatja, hogyan tooinstall egy HDInsight-alkalmazás tooyour fürtök.
+* [Egyéni HDInsight-alkalmazások telepítése](hdinsight-apps-install-custom-applications.md): megtudhatja, hogyan tooinstall és tesztelési egyéni HDInsight-alkalmazások.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az alkalmazást a piactéren elküldéséhez kell létrehozta és tesztelte az alkalmazást. Lásd az alábbi cikkeket:
+toosubmit az egyéni alkalmazás toohello piactér kell létrehozta és tesztelte az alkalmazást. Tekintse meg a következő cikkek hello:
 
-* [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md) (Egyéni HDInsight-alkalmazások telepítése): útmutató az egyéni HDInsight-alkalmazások telepítéséhez és teszteléséhez.
+* [Egyéni HDInsight-alkalmazások telepítése](hdinsight-apps-install-custom-applications.md): megtudhatja, hogyan tooinstall és tesztelési egyéni HDInsight-alkalmazások.
 
-Kell is regisztrálta a fejlesztői fiókját. Lásd: [publish an offer to the Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md) (Ajánlat közzététele az Azure Piactéren) és [Create a Microsoft Developer account](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md) (Microsoft Developer-fiók létrehozása).
+Kell is regisztrálta a fejlesztői fiókját. Lásd: [közzététele egy ajánlat toohello Azure piactér](../marketplace-publishing/marketplace-publishing-getting-started.md) és [Microsoft Developer-fiók létrehozása](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md).
 
 ## <a name="define-application"></a>Alkalmazás meghatározása
-Az alkalmazások két lépésben tehetők közzé az Azure Piactéren.  Először meg kell adni egy **createUiDef.json** fájlt, amely meghatározza, hogy az alkalmazás melyik fürtökkel legyen kompatibilis, ezután pedig közzé kell tenni a sablont az Azure Portalról. Az alábbiakban egy createUiDef.json mintafájl.
+Nincsenek két lépésben tehetők közzé alkalmazásokat toohello Azure piactéren.  A meghatározásához először egy **createUiDef.json** fájl tooindicate, amely az alkalmazás-fürtök legyen kompatibilis, és tegye közzé a hello sablon hello Azure-portálon. a következő szakasz hello egy createUiDef.json mintafájl látható.
 
     {
         "handler": "Microsoft.HDInsight",
@@ -55,60 +55,60 @@ Az alkalmazások két lépésben tehetők közzé az Azure Piactéren.  Előszö
 
 | Mező | Leírás | Lehetséges értékek |
 | --- | --- | --- |
-| types |Azok a fürttípusok, amelyekkel az alkalmazás kompatibilis. |Hadoop, HBase, Storm, Spark (vagy ezek kombinációi) |
-| tiers |Azok a fürtrétegek, amelyekkel az alkalmazás kompatibilis. |Standard, Premium (vagy mindkettő) |
-| versions |Azok a HDInsight-fürttípusok, amelyekkel az alkalmazás kompatibilis. |3.4 |
+| types |hello fürttípusok, amelyekkel hello alkalmazás kompatibilis. |Hadoop, HBase, Storm, Spark (vagy ezek kombinációi) |
+| tiers |hello fürtrétegek, amelyekkel hello alkalmazás kompatibilis. |Standard, Premium (vagy mindkettő) |
+| versions |hello HDInsight-fürttípusok, amelyekkel hello alkalmazás kompatibilis. |3.4 |
 
 ## <a name="application-install-script"></a>Alkalmazás telepítési parancsfájlja
-Amikor az alkalmazás telepítve van (vagy egy meglévő vagy új) egy fürt egy élcsomópontot jön létre, és az alkalmazás telepítési parancsfájl fut rajta.
+Amikor az alkalmazás telepítve van (vagy egy meglévő vagy új) egy fürt egy élcsomópontot jön létre, és hello alkalmazás telepítési parancsfájl fut rajta.
   > [!IMPORTANT]
-  > A telepítési parancsfájl alkalmazásnevek nevét egy adott fürtben, az alábbi formátumban egyedinek kell lennie.
+  > hello neve hello alkalmazás telepítési parancsfájl nevét egy adott fürtben egyedinek kell lennie a formátum a következő hello rendelkező.
   > 
   > name": "[concat('hue-install-v0','-' ,uniquestring(‘applicationName’)]"
   > 
-  > A parancsfájl nevét három rész alkotja:
+  > Vegye figyelembe, hogy nincsenek a parancsfájl nevét három részből toohello:
   > 
-  > 1. A parancsfájl nevének előtagja, amelynek tartalmaznia kell az alkalmazás nevét vagy egy, az alkalmazáshoz kapcsolódó nevet.
+  > 1. A parancsfájl nevének előtagja, amelynek tartalmaznia kell vagy hello alkalmazás neve, vagy a név megfelelő toohello alkalmazás.
   > 2. Egy „-” kötőjel az olvashatóság kedvéért.
-  > 3. Egy egyedi karakterláncfüggvény, amelynek a paramétere az alkalmazás neve.
+  > 3. Egy egyedi karakterláncfüggvény, amelynek paraméter hello hello alkalmazás neve.
   > 
-  > Például a fentiből a következő lesz a megőrzött parancsfájlműveletek listáján: hue-install-v0-4wkahss55hlas. A JSON hasznos adatokra a következő helyen talál példát: [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
+  > Példa: a fenti hello említi váljon: hue-install-v0-4wkahss55hlas hello a megőrzött Parancsfájlműveletek listáján. A JSON hasznos adatokra a következő helyen talál példát: [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
   > 
-A telepítési parancsfájl a következő jellemzőkkel kell rendelkeznie:
-1. Győződjön meg arról, hogy a parancsfájl az idempotent. A parancsfájl több hívásainak kell előállítania ugyanazt az eredményt.
-2. A parancsfájl verziószámmal kell lennie. Amikor frissíti vagy módosítások tesztelését, hogy az ügyfelek számára, az alkalmazást telepíteni kívánt, nem érintettek használható a parancsfájl egy másik helyre. 
-3. Adja hozzá a megfelelő naplózási minden ponton és parancsfájlok. A parancsfájl naplók általában az egyetlen lehetőség az alkalmazás telepítési problémák hibakeresését.
-4. Győződjön meg arról, hogy hívások külső-szolgáltatások vagy az erőforrások megfelelő újrapróbálkozások, hogy az átmeneti hálózati probléma nincs hatással a telepítés.
-5. Ha a parancsfájl a csomóponton indul szolgáltatások, győződjön meg arról, hogy a szolgáltatások folyamatosan figyelemmel kísért és automatikus indításra esetén a csomópont újraindul konfigurálva.
+hello telepítési parancsfájl hello a következő jellemzőkkel kell rendelkeznie:
+1. Győződjön meg arról, hogy hello parancsfájl idempotent. Több hívások toohello parancsfájl kell előállítania hello ugyanazt az eredményt.
+2. hello parancsfájl verziószámmal kell lennie. Amikor frissíti vagy módosítások tesztelését, hogy az ügyfelek számára, tooinstall hello alkalmazás próbál, nem érintettek használható hello parancsfájl egy másik helyre. 
+3. Adja hozzá a megfelelő naplózási toohello parancsfájlok minden ponton. Általában a parancsfájl naplók hello hello csak úgy toodebug alkalmazás telepítési hibák vannak.
+4. Győződjön meg arról, hogy hívások tooexternal services vagy az erőforrások megfelelő újrapróbálkozások, hogy hello telepítési átmeneti hálózati probléma nem érinti.
+5. Ha a parancsfájl szolgáltatások hello csomóponton indul, győződjön meg arról, hogy hello szolgáltatások figyeli toostart csomópont újraindítások esetén automatikusan konfigurálva.
 
 ## <a name="package-application"></a>Alkalmazás becsomagolása
-Hozzon létre egy zip fájlt, amely tartalmazza a HDInsight-alkalmazások telepítéséhez szükséges összes fájlt. A zip-fájl szükséges [alkalmazás közzététele](#publish-application).
+Hozzon létre egy zip fájlt, amely tartalmazza a HDInsight-alkalmazások telepítéséhez szükséges összes fájlt. A zip-fájl szükséges hello [alkalmazás közzététele](#publish-application).
 
 * [createUiDefinition.json](#define-application).
 * mainTemplate.json. Az [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md) (Egyéni HDInsight-alkalmazások telepítése) részben megtekinthet egy mintát.
 * Minden kötelező parancsfájl.
 
 > [!NOTE]
-> Az alkalmazás fájljai (köztük az esetleges webalkalmazások fájljai) bármilyen nyilvánosan elérhető végponton lehetnek.
+> hello az alkalmazás fájljai (ideértve webalkalmazás fájljait, ha van ilyen) bármely nyilvánosan elérhető végponton található.
 > 
 
 ## <a name="publish-application"></a>Az alkalmazás közzététele
-A HDInsight-alkalmazások közzétételéhez kövesse az alábbi lépéseket:
+Hajtsa végre a következő lépéseket toopublish HDInsight-alkalmazások hello:
 
-1. Jelentkezzen be az [Azure közzétételi portáljára](https://publish.windowsazure.com/).
-2. Új megoldássablon létrehozásához kattintson a bal oldalon létható **Solution templates** (Megoldássablonok) gombra.
+1. Jelentkezzen be toohello [Azure közzétételi portáljára](https://publish.windowsazure.com/).
+2. Kattintson a **megoldás sablonok** hello bal oldali toocreate egy új megoldássablon az.
 3. Adjon meg egy címet, és kattintson **Create a new solution template** (Új megoldássablon létrehozása) elemre.
-4. Kattintson a **Create Dev Center account and join the Azure program** (Fiók létrehozása a Fejlesztői Központban és csatlakozás az Azure programhoz) lehetőségre, és regisztrálja a vállalatát, ha ezt még nem tette meg.  Lásd: [Create a Microsoft Developer account](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md) (Microsoft Developer-fiók létrehozása).
-5. Kattintson a **Define some Topologies to get Started** (Topológiák megadása a kezdéshez) elemre. A megoldássablon egy hozzá tartozó topológia "szülőeleme". Egy ajánlat/megoldássablonban több topológiát is megadhat. Amikor egy ajánlatot a rendszer előkészítésre továbbít, topológiájával együtt az összes hozzá tartozó topológia. 
-6. Adja meg a topológia nevét, majd kattintson a pluszjelre.
-7. Adja meg az új verziót, majd kattintson a pluszjelre.
-8. Töltse fel az [Alkalmazás becsomagolása](#package-application) szakaszban előkészített zip fájlt.  
-9. Kattintson a **Request Certification** (Tanúsítvány kérése) gombra. A Microsoft hitelesítő csapata áttekinti a fájlokat, és hitelesíti a topológiát.
+4. Kattintson a **létrehozás fejlesztői központban regisztrált fiókjában és a csatlakozás hello Azure program** tooregister a vállalat, ha még nem tette meg.  Lásd: [Create a Microsoft Developer account](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md) (Microsoft Developer-fiók létrehozása).
+5. Kattintson a **határozza meg az egyes topológiák tooget elindítva**. A megoldássablon van egy "szülőeleme" tooall továbbítja. Egy ajánlat/megoldássablonban több topológiát is megadhat. Amikor egy ajánlatot a rendszer előkészítésre toostaging, topológiájával együtt az összes hozzá tartozó topológia. 
+6. Adja meg a topológia nevét, és kattintson a hello plusz jel.
+7. Adjon meg egy új verziója, és kattintson a plusz jelre hello.
+8. Feltöltés zip-fájl hello előkészített [alkalmazás becsomagolása](#package-application).  
+9. Kattintson a **Request Certification** (Tanúsítvány kérése) gombra. hello Microsoft hitelesítő csapata áttekinti a hello fájlokat, és igazolja hello topológia.
 
 ## <a name="next-steps"></a>Következő lépések
-* [HDInsight-alkalmazások telepítése](hdinsight-apps-install-applications.md): Megtudhatja, hogyan telepíthet HDInsight-alkalmazásokat a fürtjeire.
-* [Egyéni HDInsight-alkalmazások telepítése](hdinsight-apps-install-custom-applications.md): telepítése egy közzé nem tett HDInsight-alkalmazást.
-* [Customize Linux-based HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster-linux.md) (Linux-alapú HDInsight-fürtök testreszabása parancsfájlműveletek segítségével): megtudhatja, hogyan telepíthet további alkalmazásokat parancsfájlműveletek használatával.
-* [Create Linux-based Hadoop clusters in HDInsight using Azure Resource Manager templates](hdinsight-hadoop-create-linux-clusters-arm-templates.md) (Linux-alapú Hadoop-fürtök létrehozása a HDInsightban Azure Resource Manager-sablonok segítségével): Megtudhatja, hogyan hívhat meg Resource Manager-sablonokat HDInsight-fürtök létrehozásához.
-* [Use empty edge nodes in HDInsight](hdinsight-apps-use-edge-node.md) (Üres élcsomópontok használata a HDInsightban): a cikk bemutatja, hogyan lehet üres élcsomópontot használni egy HDInsight-fürt elérésére, HDInsight-alkalmazások tesztelésére és HDInsight-alkalmazások üzemeltetésére.
+* [HDInsight-alkalmazások telepítése](hdinsight-apps-install-applications.md): megtudhatja, hogyan tooinstall egy HDInsight-alkalmazás tooyour fürtök.
+* [Egyéni HDInsight-alkalmazások telepítése](hdinsight-apps-install-custom-applications.md): megtudhatja, hogyan toodeploy egy közzé nem tett HDInsight-alkalmazás tooHDInsight.
+* [Parancsfájlművelet Linux-alapú HDInsight-fürtök testreszabása](hdinsight-hadoop-customize-cluster-linux.md): megtudhatja, hogyan toouse parancsfájlművelet tooinstall további alkalmazásokat.
+* [Linux-alapú Hadoop-fürtök létrehozása a Hdinsightban Azure Resource Manager-sablonok használatával](hdinsight-hadoop-create-linux-clusters-arm-templates.md): megtudhatja, hogyan toocall Resource Manager sablonok toocreate HDInsight-fürtök.
+* [Üres peremhálózati csomópontok használata a Hdinsightban](hdinsight-apps-use-edge-node.md): megtudhatja, hogyan toouse egy üres él HDInsight-fürthöz való hozzáférés, a HDInsight-alkalmazások tesztelése és üzemeltetési csomópont HDInsight-alkalmazások.
 

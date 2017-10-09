@@ -1,6 +1,6 @@
 ---
-title: "Az adatok feltárása és Spark modellezés speciális |} Microsoft Docs"
-description: "HDInsight Spark használja az adatok feltárása és kereszt-ellenőrzési és hyperparameter optimalizálással bináris osztályozás és regressziós modell betanításához."
+title: "az adatok feltárása aaaAdvanced és a Spark modellezési |} Microsoft Docs"
+description: "HDInsight Spark toodo adatfeltárás használja, és a kereszt-ellenőrzési és hyperparameter optimalizálással bináris osztályozás és regressziós modell betanításához."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: e6bf6bd3c905f077841ef166540337a251b91ad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 055c342857fd732633cec9810de69cee61db973d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-data-exploration-and-modeling-with-spark"></a>Speciális adatáttekintés és modellezés a Spark segítségével
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-Ez a forgatókönyv HDInsight Spark az adatok feltárása és bináris osztályozás és kereszt-ellenőrzési használatával regressziós modell betanítása és hyperparameter optimalizálása mintán a következőt: út taxiköltség és 2013 dataset díjszabás. Az végigvezeti a lépéseken, a [adatok tudományos folyamat](http://aka.ms/datascienceprocess), végpontok közötti, egy HDInsight Spark-fürt kezelése és az Azure BLOB használatával tárolja az adatokat, majd a modellt. A folyamat felderíti és az Azure Storage-Blobból adatok visualizes, és ezután előkészíti az adatokat a prediktív modellek létrehozásához. A megoldás code, és a megfelelő előkészítésére megjelenítése Python használatban van. Ezek a modellek buildre, a Spark MLlib eszközkészlet bináris osztályozás és regressziós modellezéshez hatékony feladatok elvégzésére. 
+Ez az útmutató a HDInsight Spark toodo feltárására és vonat bináris adatosztályozási és kereszt-ellenőrzési használatával regressziós modellt használja, és hyperparameter optimalizálása mintán hello NYC út taxiköltség és 2013 dataset díjszabás. Az végigvezeti hello a hello [adatok tudományos folyamat](http://aka.ms/datascienceprocess), -végpontok közötti, egy HDInsight Spark használó fürt feldolgozásra, és Azure-blobok toostore hello adatok és hello modellek. hello folyamat felderíti és az Azure Storage-Blobból adatok visualizes, és ezután előkészíti az hello adatok toobuild prediktív modelleket. Python lett használt toocode hello megoldás és tooshow hello vonatkozó előkészítésére. Ezek a modellek hello Spark MLlib eszközkészlet toodo bináris osztályozás és feladatok modellezési regressziós buildre. 
 
-* A **bináris osztályozási** feladat-e a út tipp fizetett előrejelzése céljából. 
-* A **regressziós** feladata más tip szolgáltatások alapján tipp mennyisége előre jelezni. 
+* Hello **bináris osztályozási** feladata toopredict tipp fizetett hello út van-e. 
+* Hello **regressziós** feladata toopredict hello összeg hello tipp más tip szolgáltatások alapján. 
 
-A modellezési lépések a kód bemutatja, hogyan képzése, értékelje ki és mentse a modell típusonkénti is tartalmaznak. A témakör néhány, az azonos alapoktól a [adatok feltárása és Spark modellezés](machine-learning-data-science-spark-data-exploration-modeling.md) témakör. De azt a több "kiemelt" abban, hogy a kereszt-ellenőrzési az optimális pontos besorolási és regressziós modell betanítása abszolút hyperparameter is használja. 
+hello modellezési lépéseket is hogyan tootrain, értékelje ki és mentse a modellt különböző típusú kódot tartalmaznak. hello a témakör néhány ugyanaz, mint a hello szabad hello [adatok feltárása és Spark modellezés](machine-learning-data-science-spark-data-exploration-modeling.md) témakör. De azt a több "kiemelt" abban, hogy a kereszt-ellenőrzési az abszolút tootrain optimális pontos besorolási és regressziós modell hyperparameter is használja. 
 
-**Kereszt-ellenőrzési (KtgE)** egy technika, amely értékeli a milyen mértékben a modellek betanítása adatokat egy ismert csoportján használatúvá történő előrejelzésére részeit, amelyen az még nincs betanítva adatkészletek.  A közös megvalósított, hogy a DataSet adatkészlet felosztani K modellrészt és majd a ciklikus multiplexeléssel egy, a modellrészt a modell betanításához. A modell előrejelzéses pontosan, ha ez nem a modell betanításához használandó modellrészek a független adatkészletét tesztelése képességét megfelelőségét ellenőrizni kell.
+**Kereszt-ellenőrzési (KtgE)** egy technika, amely értékeli a milyen mértékben a modellek betanítása adatokat egy ismert csoportján használatúvá toopredicting hello részeit, amelyen az még nincs betanítva adatkészletek.  Egy közös megvalósított toodivide K modellrészt az adatkészletet, és ezután a ciklikus multiplexeléssel a egy hello modellrészt hello modell betanításához. hello modell tooprediction pontosan elleni hello független adatkészlet a nem használt modellrészek tootrain hello modellben tesztelésekor hello képességét megfelelőségét ellenőrizni kell.
 
-**Hyperparameter optimalizálási** a probléma általában azzal a céllal, az algoritmus egy független adatkészlet teljesítményének biztosítása optimalizálása a tanulási algoritmus hiperparamétereket készlete kiválasztása. **Hiperparamétereket** értékeket, amelyeket meg kell adni a modell betanítási eljárás kívül vannak. Ezek az értékek feltételezéseket hatással lehet a rugalmasság és a modell pontosságát. Döntési fák hiperparamétereket, például a kívánt mélysége és a fában levelek például rendelkeznek. Támogatási vektoros gépeknél (SVMs) szükség van a téves besorolás szövegminősítési kifejezés beállítását. 
+**Hyperparameter optimalizálási** hello probléma általában a hello célja egy független adatkészlet hello algoritmus teljesítményének biztosítása optimalizálása a tanulási algoritmus hiperparamétereket készlete kiválasztása. **Hiperparamétereket** olyan értékek, amelyek kívül hello modell betanítási eljárást meg kell adni. Ezek az értékek feltételezéseket befolyásolhatja a hello rugalmasságot és hello modellek pontosságát. Döntési fák például rendelkezik hiperparamétereket, például a hello szükséges mélységében és hello fában leaves száma. Támogatási vektoros gépeknél (SVMs) szükség van a téves besorolás szövegminősítési kifejezés beállítását. 
 
-A közös itt használt hyperparameter optimalizálás végrehajtására módja a rács keresést, vagy egy **paraméter ismétlés**. Ez több végrehajtása keresztül értékek részletes keresést a hyperparameter terület megadott részhalmazának tanulási algoritmus. Keresztellenőrzési megadhatja az optimális eredmények elérése érdekében a rács keresési algoritmus által előállított korlátoznia a teljesítmény metrikát. KtgE használt hyperparameter elvégzésekor mindig segítségével például overfitting egy modell betanítási adatok, hogy a modell megőrzi az általános adatkészletet, amelyből a betanítási adatok kibontotta alkalmazandó kapacitás korlát problémák.
+A közös módon tooperform hyperparameter optimalizálása itt használt rács keresést, vagy egy **paraméter ismétlés**. Ez a tanulási algoritmus hello hyperparameter terület megadott részhalmazának keresztül hello értékek részletes keresést végrehajtásához áll. Keresztellenőrzési megadhatja a teljesítmény metrika toosort hello optimális eredmények hello rács keresési algoritmus által előállított ki. KtgE használt hyperparameter elvégzésekor mindig segít korlátot problémák, például overfitting egy modell tootraining adatokat, így hello modell olyan hello kapacitás tooapply toohello általános adatok készletét, mely hello betanítási adatok ki lett olvasni.
 
-A modellek használjuk logisztikai és lineáris regressziós, véletlenszerű erdők és átmenetes súlyozott fák tartalmazza:
+hello modellek használjuk logisztikai és lineáris regressziós, véletlenszerű erdők és átmenetes súlyozott fák tartalmazza:
 
-* [A SGD lineáris regressziós](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) egy lineáris regressziós modellt, amely Stochastic átmenetes módszeren (SGD) módszerrel és optimalizálási, valamint a szolgáltatás skálázás tipp összegek előre fizetett. 
-* [A LBFGS logisztikai regresszió](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.classification.LogisticRegressionWithLBFGS) vagy a "logit" regresszió egy regressziós modell kategorikus adatok besorolása ehhez a függő változó esetén használható. LBFGS egy látszólagos Newton optimalizálási algoritmus, amely megközelíti a Broyden – Fletcher – Goldfarb – Shanno (BFGS) algoritmus csak korlátozott mennyiségű memóriát használ, és a gépi tanulás széles körben használt.
-* [Véletlenszerű erdők](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) döntési fák együttes vannak.  Összekapcsolásának sok döntési fa overfitting kockázatának csökkentéséhez. Véletlenszerű erdők regressziós és besorolási használ, és kezelni tud a kategorikus szolgáltatásokat, és annak a multiclass adatbesorolás beállításai. Azok szolgáltatás skálázás nem igényelnek, és képesek nemlinearitás rögzítése és kapcsolati funkció. Véletlenszerű erdők a legtöbb sikeres gépi tanulási modellek besorolás és regressziós egyikét.
-* [Színátmenet súlyozott fák](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBTs) együttes döntési fák. GBTs ismételt adatvesztés függvény minimalizálása érdekében a döntési fák betanítása. GBTs regressziós és besorolási használ és kezelni tud a kategorikus szolgáltatásokat, nincs szükség a méretezés szolgáltatás és képesek nemlinearitás rögzítése és kapcsolati funkció. Is is szerepel a multiclass-adatbesorolás beállításai.
+* [A SGD lineáris regressziós](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) egy lineáris regressziós modellt, amely Stochastic átmenetes módszeren (SGD) módszerrel és optimalizálási, valamint a szolgáltatás toopredict hello tipp összegek skálázás fizetett. 
+* [A LBFGS logisztikai regresszió](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.classification.LogisticRegressionWithLBFGS) vagy a "logit" regresszió egy regressziós modell kategorikus toodo adatbesorolást hello függő változó esetén használható. LBFGS egy látszólagos Newton optimalizálási algoritmus, amely megközelíti hello Broyden – Fletcher – Goldfarb – Shanno (BFGS) algoritmus csak korlátozott mennyiségű memóriát használ, és a gépi tanulás széles körben használt.
+* [Véletlenszerű erdők](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests) döntési fák együttes vannak.  Sok döntési fák algoritmus tooreduce hello kockázatát overfitting össze azokat. Véletlenszerű erdők regressziós és besorolási használ, és kezelni tud a kategorikus funkciók és bővíthető toohello multiclass adatbesorolás beállításai. Nincs szükségük szolgáltatás méretezés és a képes toocapture nemlinearitás és a szolgáltatás kapcsolatait. Véletlenszerű erdők hello legtöbb sikeres gépi tanulási modellek besorolás és regressziós egyikét.
+* [Színátmenet súlyozott fák](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBTs) együttes döntési fák. GBTs vonat döntési fák ismételt toominimize adatvesztés függvényt. GBTs regressziós és besorolási használ és kezelni tud a kategorikus szolgáltatásokat, nincs szükség a méretezés szolgáltatás, és képes toocapture nemlinearitás és kapcsolati funkció. Is is szerepel a multiclass-adatbesorolás beállításai.
 
-Példák KtgE és Hyperparameter modellezési ismétlés láthatók a bináris osztályozási problémához. Egyszerűbb (nélkül paraméter halmokat) be regressziós feladatok fő témakört. De a függelékben használata rugalmas net lineáris regressziós és KtgE az véletlenszerű erdő regressziós használatával ismétlés paraméter érvényesítése is ismertet. A **nettó rugalmas** rendeződik regressziós metódus van, az eljárást, mint az 1. és 2. szintű metrikák lineáris regressziós modellt, amely lineárisan illeszkedő egyesíti a [szabadkézi](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29) és [peremmel](https://en.wikipedia.org/wiki/Tikhonov_regularization) módszerek.   
+Példák KtgE és Hyperparameter modellezési ismétlés hello bináris osztályozási problémához láthatók. Egyszerűbb (nélkül paraméter el) be hello fő témakört regressziós feladatokhoz. De hello függelékben használata rugalmas net lineáris regressziós és KtgE az véletlenszerű erdő regressziós használatával ismétlés paraméter érvényesítése is ismertet. Hello **nettó rugalmas** rendeződik regressziós metódus az illesztés lineáris regressziós modellek, amelyek lineárisan egyesíti az 1. és 2. szintű metrikák hello hello az eljárást, [szabadkézi](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29) és [peremmel](https://en.wikipedia.org/wiki/Tikhonov_regularization) módszerek.   
 
 > [!NOTE]
-> Bár a Spark MLlib eszközkészlet célja, hogy működik a nagy adatkészleteket, viszonylag kis minta (KB. 30 Mb használatával 170K sorok, az eredeti NYC adatkészlet hamarosan 0,1 %) használható itt kényelmét szolgálja. Az itt megadott gyakorlat 2 munkavégző csomópontokhoz a HDInsight-fürtök a hatékony (KB) a fut. Ugyanazt a kódot, kisebb módosításokkal nagyobb-adatmennyiség megfelelő módosításával az adatokat a memóriában, és a fürt méretének módosítása feldolgozásához használható.
+> Bár hello Spark MLlib eszközkészlet tervezett toowork a nagy adatkészleteket, viszonylag kis minta (KB. 30 Mb használatával 170K sorok, hello eredeti NYC adatkészlet hamarosan 0,1 %) használható itt kényelmét szolgálja. az alábbi hello a gyakorlatban 2 munkavégző csomópontokhoz a HDInsight-fürtök a hatékony (KB) a fut. hello ugyanazt a kódot, kisebb módosításokkal lehet használt tooprocess nagyobb-adatmennyiség memóriájában lévő adatok gyorsítótárazása és hello fürt méretének módosítása megfelelő módosításával.
 > 
 > 
 
 ## <a name="setup-spark-clusters-and-notebooks"></a>A telepítő: A Spark-fürtök és notebookok
-Beállítási lépéseket és kód okat ebben a forgatókönyvben egy HDInsight Spark 1.6 használatával. De Jupyter notebookok HDInsight Spark 1.6-os és a Spark 2.0 fürtök rendelkeznek. A jegyzetfüzetek és a hozzájuk hivatkozások leírása szerepelnek a [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) az azokat tartalmazó GitHub-tárházban. Ezenkívül a kód itt és a csatolt jegyzetfüzetekben általános és a Spark-fürt kell működnie. Ha nem használja a HDInsight Spark, a fürt beállítása, és lehet, hogy a felügyeleti lépések némileg eltér az itt látható. Kényelmi célokat szolgál az alábbiakban a Jupyter notebookok Spark 1.6-os és 2.0-s verzióját kell futtatni a pyspark kernel a Jupyter Notebook kiszolgáló mutató hivatkozásokat:
+Beállítási lépéseket és kód okat ebben a forgatókönyvben egy HDInsight Spark 1.6 használatával. De Jupyter notebookok HDInsight Spark 1.6-os és a Spark 2.0 fürtök rendelkeznek. Hello jegyzetfüzet és -hivatkozások toothem leírása szerepelnek hello [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) az azokat tartalmazó hello GitHub-tárházban. Ezenkívül hello kód itt kapcsolódó hello jegyzetfüzetekben általános és a Spark-fürt működnek. Ha nem használja a HDInsight Spark, hello fürttelepítés, és lehet, hogy a felügyeleti lépések némileg eltér az itt látható. Kényelmi célokat szolgál az alábbiakban hello hivatkozások toohello Jupyter notebookok Spark 1.6-os és futtatása a Jupyter Notebook server hello hello pyspark kernel 2.0 toobe:
 
 ### <a name="spark-16-notebooks"></a>Spark 1.6-os notebookok
 
@@ -59,26 +59,26 @@ Beállítási lépéseket és kód okat ebben a forgatókönyvben egy HDInsight 
 
 ### <a name="spark-20-notebooks"></a>Spark 2.0 notebookok
 
-[Spark2.0-pySpark3-Machine-Learning-Data-Science-Spark-Advanced-Data-exploration-Modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb): Ez a fájl információkat nyújt az adatok feltárása, modellezéséhez, és a Spark 2.0 fürtök pontozási végrehajtásához.
+[Spark2.0-pySpark3-Machine-Learning-Data-Science-Spark-Advanced-Data-exploration-Modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb): Ez a fájl bemutatja, hogyan tooperform adatok feltárása, modellezés és Spark 2.0 pontozási fürtök.
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>Telepítő: tárolóhelyek, könyvtárak, és az előre definiált Spark környezet
-Spark el tudja olvasni és írni az Azure Storage-blobba (más néven WASB). A meglévő adatok tárolása nem tudja feldolgozni használata Spark- és az eredmények WASB újra tárolja.
+## <a name="setup-storage-locations-libraries-and-hello-preset-spark-context"></a>Beállítása: tárolóhelyek, könyvtárak és hello beállított Spark környezet
+A Spark az képes tooread és írási tooAzure tárolási Blob (más néven WASB). Így a meglévő tárolt adatok dolgozhatók használata Spark, hello tárolt újra WASB eredménye.
 
-A WASB modellek vagy a fájlok mentéséhez az elérési utat kell megadni megfelelően. Az alapértelmezett tároló, a Spark-fürt csatolva egy elérési utat kezdetű használatával lehet hivatkozni: "wasb: / / /". Más helyeken által hivatkozott "wasb: / /".
+toosave modellek vagy WASB fájlokat, a hello elérési utat kell toobe-e megadva. hello alapértelmezett tároló csatolt toohello Spark-fürt lehet hivatkozni egy elérési utat kezdetű használatával: "wasb: / / /". Más helyeken által hivatkozott "wasb: / /".
 
 ### <a name="set-directory-paths-for-storage-locations-in-wasb"></a>Tárolási helye a WASB set könyvtár elérési útja
-A következő példakód határozza meg a helyét, olvassa el az adatokat, valamint a, amelyhez a modell mentésekor modell tároló könyvtár elérési útja:
+hello alábbi kódminta helyét adja meg hello hello adatok toobe olvassa el, és mentett hello hello modell tároló könyvtár toowhich hello modell kimeneti elérési útja:
 
-    # SET PATHS TO FILE LOCATIONS: DATA AND MODEL STORAGE
+    # SET PATHS tooFILE LOCATIONS: DATA AND MODEL STORAGE
 
     # LOCATION OF TRAINING DATA
     taxi_train_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Train.tsv";
 
 
-    # SET THE MODEL STORAGE DIRECTORY PATH 
-    # NOTE THAT THE FINAL BACKSLASH IN THE PATH IS NEEDED.
+    # SET hello MODEL STORAGE DIRECTORY PATH 
+    # NOTE THAT hello FINAL BACKSLASH IN hello PATH IS NEEDED.
     modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/";
 
     # PRINT START TIME
@@ -90,7 +90,7 @@ A következő példakód határozza meg a helyét, olvassa el az adatokat, valam
 DateTime.DateTime (2016, 4, 18., 17, 36, 27 és 832799)
 
 ### <a name="import-libraries"></a>Könyvtárak importálása
-Importálás szükséges kódtárak a következő kóddal:
+Importálás a következő kód hello szükséges könyvtárak:
 
     # LOAD PYSPARK LIBRARIES
     import pyspark
@@ -109,28 +109,28 @@ Importálás szükséges kódtárak a következő kóddal:
 
 
 ### <a name="preset-spark-context-and-pyspark-magics"></a>Spark és az PySpark magics az adott néven beállítás
-A Jupyter notebookok kapnak PySpark kernelt beállításkészletet kontextusban rendelkezik. Így nem kell beállítani a Spark, vagy Hive-környezeteket elindítása az alkalmazás használata előtt explicit módon fejleszt. Ezek a környezetek érhetők el, alapértelmezés szerint. Ezek a környezetek a következők:
+Jupyter notebookok kapnak hello PySpark kernelt beállításkészletet kontextusban rendelkezik. Így nem kell tooset hello Spark- vagy Hive-környezeteket explicit módon fejleszt hello alkalmazás használatának megkezdése előtt. Ezek a környezetek érhetők el, alapértelmezés szerint. Ezek a környezetek a következők:
 
 * sc - a Spark 
 * az sqlContext - struktúra
 
-A PySpark kernel tartalmaz néhány előre definiált "magics", amelyeket speciális meghívhatja a parancsok %%. Nincsenek két ilyen parancsot a következő kód mintákat használt.
+hello PySpark kernel tartalmaz néhány előre definiált "magics", amelyeket speciális meghívhatja a parancsok %%. Nincsenek két ilyen parancsot a következő kód mintákat használt.
 
-* **%% helyi** határozza meg, amely a kódot az egymás utáni sorok helyileg hajthatnak végre. Kód érvényes Python-kódot kell lennie.
-* **%% sql -o <variable name>**  végrehajtja a Hive-lekérdezések a sqlContext ellen. Ha az -o paramétert, a lekérdezés eredménye megőrződjön-e az a %%, egy Pandas DataFrame helyi Python-környezetben.
+* **%% helyi** Megadja, hogy egymás utáni sorok hello kód helyben végrehajtott toobe. Kód érvényes Python-kódot kell lennie.
+* **%% sql -o <variable name>**  végrehajtja a Hive-lekérdezések hello az sqlContext ellen. Hello -o paramétert fogad el, ha a hello hello lekérdezés eredménye hello megőrződjenek %%, egy Pandas DataFrame helyi Python-környezetben.
 
-További információ a Jupyter notebookokból és az előre meghatározott kernelek "magics", amely a biztosítanak, lásd: [HDInsight Spark Linux és a Jupyter notebookok elérhető kernelek a HDInsight-fürtök](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md).
+További információ a Jupyter notebookokból és az előre megadott hello hello kernelek "magics", amely a biztosítanak, lásd: [HDInsight Spark Linux és a Jupyter notebookok elérhető kernelek a HDInsight-fürtök](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md).
 
 ## <a name="data-ingestion-from-public-blob"></a>A nyilvános blob adatfeldolgozást:
-Az első lépés az adatok tudományos folyamatban az adatok helyét az adatok feltárása és modellezési környezet forrásokból vizsgálandó. Ebben a környezetben a forgatókönyv külső. Ez a szakasz a kód feladatok sorozatát befejezéséhez:
+hello hello adatok tudományos folyamat első lépéseként tooingest hello adatok toobe helyét az adatok feltárása és modellezési környezetbe forrásokból elemzése. Ebben a környezetben a forgatókönyv külső. Ez a szakasz hello kód toocomplete feladatok sorozatát:
 
-* betöltési modellezni adatok minta
-* olvassa a bemeneti adatkészletet (.tsv fájlként tárolja)
-* formázza és az adatok törlése
+* betöltési hello adatok minta toobe modellezése
+* olvassa el a hello bemeneti adatkészletet (.tsv fájlként tárolja)
+* formátum és tiszta hello adatok
 * Hozzon létre és objektumok (RDDs vagy adatkeretek) a memóriában gyorsítótárazása
 * regisztrálja az SQL-környezetben temp-táblázatként.
 
-A kód adatfeldolgozást az itt látható.
+Itt található adatfeldolgozást hello kódját.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -138,7 +138,7 @@ A kód adatfeldolgozást az itt látható.
     # IMPORT FILE FROM PUBLIC BLOB
     taxi_train_file = sc.textFile(taxi_train_file_loc)
 
-    # GET SCHEMA OF THE FILE FROM HEADER
+    # GET SCHEMA OF hello FILE FROM HEADER
     schema_string = taxi_train_file.first()
     fields = [StructField(field_name, StringType(), True) for field_name in schema_string.split('\t')]
     fields[7].dataType = IntegerType() #Pickup hour
@@ -175,33 +175,33 @@ A kód adatfeldolgozást az itt látható.
         .drop('direct_distance').drop('surcharge')\
         .filter("passenger_count > 0 and passenger_count < 8 AND payment_type in ('CSH', 'CRD') AND tip_amount >= 0 AND tip_amount < 30 AND fare_amount >= 1 AND fare_amount < 150 AND trip_distance > 0 AND trip_distance < 100 AND trip_time_in_secs > 30 AND trip_time_in_secs < 7200" )
 
-    # CACHE & MATERIALIZE DATA-FRAME IN MEMORY. GOING THROUGH AND COUNTING NUMBER OF ROWS MATERIALIZES THE DATA-FRAME IN MEMORY
+    # CACHE & MATERIALIZE DATA-FRAME IN MEMORY. GOING THROUGH AND COUNTING NUMBER OF ROWS MATERIALIZES hello DATA-FRAME IN MEMORY
     taxi_df_train_cleaned.cache()
     taxi_df_train_cleaned.count()
 
     # REGISTER DATA-FRAME AS A TEMP-TABLE IN SQL-CONTEXT
     taxi_df_train_cleaned.registerTempTable("taxi_train")
 
-    # PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+    # PRINT HOW MUCH TIME IT TOOK tooRUN hello CELL
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
 
-Cella fent ideje: 276.62 másodperc
+Idő tooexecute cella fent: 276.62 másodperc
 
 ## <a name="data-exploration--visualization"></a>Az adatok feltárása & képi megjelenítés
-Miután az adatok külső üzembe, az tudományos folyamat következő lépése hoz mélyrehatóbb ismereteket szerezhet az adatok feltárása és a képi megjelenítés keresztül. Ebben a részben azt vizsgálja meg az SQL-lekérdezések használatával taxi adatok és a cél változók és a visual hálózatfelügyeleti potenciális funkcióit megrajzolásához. Pontosabban azt megrajzolásához utas számát taxi való adatváltások számát, a gyakoriság tipp díjak és hogyan tippek változhat fizetési mennyiségét, és írja be a gyakoriságát.
+Miután hello adatok Spark üzembe, hello hello adatok tudományos folyamat következő lépésének nem toogain bemutatják hello az adatok feltárása és -megjelenítésre. Ez a szakasz azt hello taxi adatokat, az SQL-lekérdezések és a rajzolási hello cél változók és a potenciális szolgáltatások visual hálózatfelügyeleti vizsgálja meg. Pontosabban azt megrajzolásához utas számát taxi utakat, hello gyakoriságát tipp díjak, és hogyan tippek változhat fizetési mennyiségét, és írja be a hello gyakoriságát.
 
-### <a name="plot-a-histogram-of-passenger-count-frequencies-in-the-sample-of-taxi-trips"></a>A mintában taxi utak utas száma gyakoriságértékek listáját hisztogram ábrázolása
-A kód és a további részletek a minta és az adatok ábrázolására helyi magic lekérdezése SQL magic segítségével.
+### <a name="plot-a-histogram-of-passenger-count-frequencies-in-hello-sample-of-taxi-trips"></a>A hisztogram hello mintában taxi utak utas száma gyakoriságértékek listáját ábrázolása
+A kód és a későbbi kódtöredékek SQL magic tooquery hello minta és helyi magic tooplot hello adatok használni.
 
-* **SQL magic (`%%sql`)** a HDInsight PySpark kernel a sqlContext könnyen beágyazott HiveQL lekérdezéseket támogatja. A (-o VARIABLE_NAME) argumentum az SQL-lekérdezés kimenetét a Jupyter kiszolgálón egy Pandas DataFrame, továbbra is fennáll.. Ez azt jelenti, hogy a helyi módban érhető el.
-* A  **`%%local` magic** kód futtatása helyben a Jupyter kiszolgálón, amely a HDInsight-fürt headnode szolgál. Általában akkor használják `%%local` magic után a `%%sql -o` magic lekérdezés futtatására szolgál. Az -o paraméter szeretné megőrizni a helyileg az SQL-lekérdezés kimenetét. Ezt követően a `%%local` magic elindítja a kódrészleteket helyileg futtatni a helyileg tárolt SQL-lekérdezések eredményének következő készletét. A kimeneti automatikusan történik, a kód futtatása után.
+* **SQL magic (`%%sql`)** hello HDInsight PySpark kernel lekérdezéseket támogat, könnyen beágyazott HiveQL hello az sqlContext ellen. hello (-o VARIABLE_NAME) argumentum hello kimeneti hello SQL-lekérdezés egy Pandas DataFrame hello Jupyter kiszolgálón, továbbra is fennáll.. Ez azt jelenti, hogy hello helyi módban érhető el.
+* Hello  **`%%local` magic** van toorun kód helyileg használt hello Jupyter kiszolgálón, amely hello headnode hello HDInsight-fürt. Általában akkor használják `%%local` magic után hello `%%sql -o` magic használt toorun lekérdezést. hello -o paraméter szeretné megőrizni a hello SQL lekérdezés helyileg hello kimenetét. Majd hello `%%local` magic eseményindítók hello kód kódtöredékek toorun helyileg elleni hello kimeneti hello SQL lekérdezések helyileg megőrzött következő készletét. hello kimeneti automatikusan történik, hello kód futtatása után.
 
-Ez a lekérdezés lekéri a utazgatással utas száma szerint. 
+Ez a lekérdezés lekéri a hello utazgatással utas száma szerint. 
 
     # PLOT FREQUENCY OF PASSENGER COUNTS IN TAXI TRIPS
 
@@ -210,23 +210,23 @@ Ez a lekérdezés lekéri a utazgatással utas száma szerint.
     SELECT passenger_count, COUNT(*) as trip_counts FROM taxi_train WHERE passenger_count > 0 and passenger_count < 7 GROUP BY passenger_count
 
 
-Ez a kód létrehoz egy helyi adatok-keret a lekérdezés eredményében, és az adatok tevékenységtérkép. A `%%local` magic létrehoz egy helyi adatok-keret, `sqlResults`, a matplotlib ábrázolásához használható. 
+Ez a kód létrehoz egy helyi adatok-keret hello lekérdezés kimeneti és tevékenységtérkép hello adatok. Hello `%%local` magic létrehoz egy helyi adatok-keret, `sqlResults`, a matplotlib ábrázolásához használható. 
 
 > [!NOTE]
-> A PySpark magic ebben a bemutatóban több alkalommal van használva. Nagy adatmennyiség esetén a kell minta lehet adatok-keret létrehozásához a helyi memóriához.
+> A PySpark magic ebben a bemutatóban több alkalommal van használva. Nagy adatmennyiség hello esetén meg kell minta toocreate elfér a helyi memória adatok-keret.
 > 
 > 
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER
     %%local
 
-    # USE THE JUPYTER AUTO-PLOTTING FEATURE TO CREATE INTERACTIVE FIGURES. 
-    # CLICK ON THE TYPE OF PLOT TO BE GENERATED (E.G. LINE, AREA, BAR ETC.)
+    # USE hello JUPYTER AUTO-PLOTTING FEATURE tooCREATE INTERACTIVE FIGURES. 
+    # CLICK ON hello TYPE OF PLOT tooBE GENERATED (E.G. LINE, AREA, BAR ETC.)
     sqlResults
 
-Útjaira által utas száma ábrázolásához kód
+Íme hello kód tooplot hello utazgatással utas száma
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     import matplotlib.pyplot as plt
     %matplotlib inline
@@ -244,10 +244,10 @@ Ez a kód létrehoz egy helyi adatok-keret a lekérdezés eredményében, és az
 
 ![Gyakoriság utak utas száma szerint](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/frequency-of-trips-by-passenger-count.png)
 
-Között számos különböző típusú megjelenítések (táblázat, torta, vonal, terület vagy sáv) segítségével kiválaszthatja a **típus** a notebook menü gombjai. A sáv rajzot itt jelenik meg.
+Hello segítségével számos különböző típusú megjelenítések (táblázat, torta, vonal, terület vagy sáv) választható **típus** hello Jegyzetfüzet menü gombokat. hello sáv rajzot itt jelenik meg.
 
 ### <a name="plot-a-histogram-of-tip-amounts-and-how-tip-amount-varies-by-passenger-count-and-fare-amounts"></a>Tipp összegek és hogyan függ a tipp összeg utas számát és a jegy ára összegek hisztogram ábrázolásához.
-Használja a mintaadatokat egy SQL-lekérdezést...
+Egy SQL-lekérdezés toosample adatokat használja.
 
     # SQL SQUERY
     %%sql -q -o sqlResults
@@ -262,9 +262,9 @@ Használja a mintaadatokat egy SQL-lekérdezést...
         AND tip_amount < 25
 
 
-Ez a kód cella használja az SQL-lekérdezést három előkészítésére az adatokat.
+Ez a kód cella hello SQL lekérdezés toocreate három előkészítésére hello adatokat használ.
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     %matplotlib inline
 
@@ -302,17 +302,17 @@ Ez a kód cella használja az SQL-lekérdezést három előkészítésére az ad
 ![Tipp összeg jegy ára mennyiség szerint](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/tip-amount-by-fare-amount.png)
 
 ## <a name="feature-engineering-transformation-and-data-preparation-for-modeling"></a>A funkció modellezési mérnöki csapathoz, átalakítás és adatok előkészítése
-Ez a szakasz ismerteti, és lehetővé teszi a kód készíti elő az adatok ML modellezési használható használt eljárásokat. Azt mutatja be a következő feladatok elvégzéséhez:
+Ez a szakasz ismerteti és eljárások hello kódját használt tooprepare adatokat ML modellezési használható. Azt illusztrálja, hogyan toodo hello a következő feladatokat:
 
 * Hozzon létre egy új szolgáltatás üzemideje (óra) a forgalom idő bins particionálás
 * Index és a közbeni kódolása kategorikus szolgáltatások
 * Gépi tanulás függvényekké bemeneti címkézett pont objektumok létrehozása
-* Hozzon létre egy véletlenszerű alárendelt mintavétel az adatok, és ossza képzési és egy tesztelési
+* Hozzon létre egy véletlenszerű alárendelt mintavételi hello adatok, és ossza képzési és egy tesztelési
 * A szolgáltatás skálázás
 * A memóriában objektumok
 
 ### <a name="create-a-new-feature-by-partitioning-traffic-times-into-bins"></a>Hozzon létre egy új szolgáltatás a bins forgalom alkalommal particionálás
-A kód bemutatja, hogyan hozhat létre egy új szolgáltatás a bins forgalom alkalommal particionálás és az eredményül kapott adatok keret memóriában gyorsítótárazásának. Gyorsítótárazás vezet továbbfejlesztett végrehajtási idő ahol elosztott rugalmas adatkészleteket (RDDs) és adatkeretek használják ismételten. Igen azt a gyorsítótár RDDs és adatkeretek, a forgatókönyv több lépésből áll.
+Ez a kód bemutatja, hogyan toocreate forgalom felosztásával új szolgáltatása alkalommal fordult elő a bins, majd hogyan toocache hello eredményül kapott adatok keret a memóriában. Gyorsítótárazás vezet tooimproved végrehajtási idő ahol elosztott rugalmas adatkészleteket (RDDs) és adatkeretek használják ismételten. Igen azt a gyorsítótár RDDs és adatkeretek, a forgatókönyv több lépésből áll.
 
     # CREATE FOUR BUCKETS FOR TRAFFIC TIMES
     sqlStatement = """
@@ -328,8 +328,8 @@ A kód bemutatja, hogyan hozhat létre egy új szolgáltatás a bins forgalom al
     taxi_df_train_with_newFeatures = sqlContext.sql(sqlStatement)
 
     # CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
-    # THE .COUNT() GOES THROUGH THE ENTIRE DATA-FRAME,
-    # MATERIALIZES IT IN MEMORY, AND GIVES THE COUNT OF ROWS.
+    # hello .COUNT() GOES THROUGH hello ENTIRE DATA-FRAME,
+    # MATERIALIZES IT IN MEMORY, AND GIVES hello COUNT OF ROWS.
     taxi_df_train_with_newFeatures.cache()
     taxi_df_train_with_newFeatures.count()
 
@@ -338,11 +338,11 @@ A kód bemutatja, hogyan hozhat létre egy új szolgáltatás a bins forgalom al
 126050
 
 ### <a name="index-and-one-hot-encode-categorical-features"></a>Index és egy közbeni kódolása kategorikus szolgáltatások
-Ez a szakasz bemutatja, hogyan index, vagy a modellezési függvényekké bemeneti kategorikus szolgáltatások kódolása. A modellezési és MLlib feladatai szükséges szolgáltatások kategorikus bemeneti adatokkal indexelt vagy használata előtt kódolású előrejelzése. 
+Ez a szakasz bemutatja, hogyan tooindex vagy funkciók modellezési hello a bemenő kategorikus funkciói kódolása. hello modellezési és MLlib feladatai szükséges szolgáltatások kategorikus bemeneti adatokkal indexelt vagy kódolású előrejelzése előzetes toouse. 
 
-A modelltől függően szeretnénk index vagy kódolás különböző módon. Például Logistic és lineáris regressziós modell igényelnek egy közbeni kódolását, ahol, például három kategóriába szolgáltatás minden egyes tartalmazó 0 vagy 1 attól függően, hogy egy megfigyelési kategória három funkció oszlopokba bővíthetők. MLlib biztosít [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) függvényét egy közbeni kódolást. A kódoló címke indexek oszlop bináris vektorok értékű legfeljebb egyetlen egy-egy oszlop rendeli hozzá. Ez a kódolás lehetővé teszi, hogy a várt numerikus fontos funkciók, például logisztikai regresszió kategorikus szolgáltatások alkalmazandó algoritmusokat.
+Hello modelltől függően tooindex kell, vagy más módon kódolás. Például Logistic és lineáris regressziós modell igényelnek egy közbeni kódolását, ha, például három kategóriába szolgáltatás minden egyes tartalmazó 0 vagy 1 attól függően, hogy egy megfigyelési hello kategória három funkció oszlopokba bővíthetők. MLlib biztosít [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) toodo egy közbeni kódolás működik. A kódoló leképezi a címke indexek tooa oszlop bináris vektorok értékű legfeljebb egyetlen egy-egy oszlophoz. Ez a kódolás lehetővé teszi, hogy a várt numerikus fontos funkciók, például logisztikai regresszió algoritmusokat alkalmazott toobe toocategorical szolgáltatásokat.
 
-Index és kategorikus szolgáltatások kódolja a kód itt látható:
+Itt található kód tooindex hello és kódolása kategorikus szolgáltatások:
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -352,7 +352,7 @@ Index és kategorikus szolgáltatások kódolja a kód itt látható:
 
     # INDEX AND ENCODE VENDOR_ID
     stringIndexer = StringIndexer(inputCol="vendor_id", outputCol="vendorIndex")
-    model = stringIndexer.fit(taxi_df_train_with_newFeatures) # Input data-frame is the cleaned one from above
+    model = stringIndexer.fit(taxi_df_train_with_newFeatures) # Input data-frame is hello cleaned one from above
     indexed = model.transform(taxi_df_train_with_newFeatures)
     encoder = OneHotEncoder(dropLast=False, inputCol="vendorIndex", outputCol="vendorVec")
     encoded1 = encoder.transform(indexed)
@@ -381,17 +381,17 @@ Index és kategorikus szolgáltatások kódolja a kód itt látható:
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
 
-Cella fent ideje: 3.14 másodpercben
+Idő tooexecute cella fent: 3.14 másodpercben
 
 ### <a name="create-labeled-point-objects-for-input-into-ml-functions"></a>Gépi tanulás függvényekké bemeneti címkézett pont objektumok létrehozása
-Ez a szakasz a kód bemutatja, hogyan kategorikus szöveges adatok címkézett pont adattípusú értékként index és kódolással azt. Ez felkészíti a beállításhoz képzése és MLlib logisztikai regresszió és egyéb besorolási modell teszteléséhez használandó. Címkézett pont objektum rugalmas elosztott adatkészletek (RDD) formázott oly módon, hogy a bemeneti adatként ML algoritmusok MLlib a legtöbb van szükség. A [pont feliratú](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) egy helyi vektor, sűrű vagy ritka, társítva van egy címke-válasz.
+Ez a szakasz bemutatja, hogyan tooindex kategorikus szöveg adattípushoz címkézett pont adatokat, és hogyan kód tooencode azt. Ez felkészíti használt toobe tootrain és tesztelési MLlib logisztikai regresszió és egyéb besorolási modell. Címkézett pont objektum rugalmas elosztott adatkészletek (RDD) formázott oly módon, hogy a bemeneti adatként ML algoritmusok MLlib a legtöbb van szükség. A [pont feliratú](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) egy helyi vektor, sűrű vagy ritka, társítva van egy címke-válasz.
 
-Ez a kód index és a bináris osztályozási funkciói szöveg kódolása.
+Itt található kód tooindex hello és bináris osztályozási funkciói szöveg kódolása.
 
     # FUNCTIONS FOR BINARY CLASSIFICATION
 
@@ -415,7 +415,7 @@ Ez a kód index és a bináris osztályozási funkciói szöveg kódolása.
         return  labPt
 
 
-Ez a kód kódolásához és lineáris regressziós elemzési szolgáltatásainak kategorikus szöveg index.
+Ez hello kód tooencode és index kategorikus szöveg szolgáltatások lineáris regressziós elemzés céljából.
 
     # FUNCTIONS FOR REGRESSION WITH TIP AMOUNT AS TARGET VARIABLE
 
@@ -437,8 +437,8 @@ Ez a kód kódolásához és lineáris regressziós elemzési szolgáltatásaina
         return  labPt
 
 
-### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>Hozzon létre egy véletlenszerű alárendelt mintavétel az adatok, és ossza képzési és egy tesztelési
-Ez a kód hoz létre egy véletlenszerű mintavételi (25 % itt használt) adatok. Bár nem szükséges ehhez a példához a mérete miatt a DataSet adatkészlet, bemutatjuk, hogyan lehet mintát itt az adatokat. Ezután tudja, hogyan használja, a saját probléma, ha szükséges. Ha minták nagy, ez is tanítási modell jelentős időt takaríthat meg. Ezután azt ossza fel a minta egy képzési (Itt 75 %) és egy tesztelési részét (25 %-os itt) használata a besorolás és regressziós modellezéshez hatékony.
+### <a name="create-a-random-sub-sampling-of-hello-data-and-split-it-into-training-and-testing-sets"></a>Hozzon létre egy véletlenszerű alárendelt mintavételi hello adatok, és ossza képzési és egy tesztelési
+Ez a kód hoz létre egy véletlenszerű mintavételi hello adatok (25 % használata). Bár nem szükséges ehhez a példához hello dataset toohello mérete miatt, bemutatjuk, hogyan lehet mintát itt hello adatok. Akkor tudja hogyan toouse a saját probléma, ha szükséges. Ha minták nagy, ez is tanítási modell jelentős időt takaríthat meg. Ezután azt felosztása hello minta képzési része (Itt 75 %) és egy tesztelési részét (25 %-os itt) toouse besorolási és regressziós modellezéshez hatékony.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -475,21 +475,21 @@ Ez a kód hoz létre egy véletlenszerű mintavételi (25 % itt használt) adato
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI**
 
-Cella fent ideje: 0.31 másodperc
+Idő tooexecute cella fent: 0.31 másodperc
 
 ### <a name="feature-scaling"></a>A szolgáltatás skálázás
-Szolgáltatás skálázást, más néven adatok normalizálási biztosítja, hogy szolgáltatások széles körben folyósított értékekkel van nem a megadott túlzott mérjük a objektív függvényben. A szolgáltatás által használt skálázás kódját a [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) méretezési egység eltérése a szolgáltatásokat. Ez biztosítja MLlib lineáris regressziós rendelkező Stochastic átmenetes módszeren (SGD) használható. SGD egy népszerű más gépi tanulási modellek például rendeződik regresszió vagy támogatási vektoros gépek (SVM) számos különféle képzési algoritmus.   
+Szolgáltatás skálázást, más néven adatok normalizálási biztosítja, hogy széles körben folyósított értékekkel funkciók vannak nem a megadott túlzott mérjük hello objektív függvényben. hello szolgáltatás méretezéshez használ a hello [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) tooscale hello szolgáltatások toounit eltérése. Ez biztosítja MLlib lineáris regressziós rendelkező Stochastic átmenetes módszeren (SGD) használható. SGD egy népszerű más gépi tanulási modellek például rendeződik regresszió vagy támogatási vektoros gépek (SVM) számos különféle képzési algoritmus.   
 
 > [!TIP]
-> Találtunk, amelyeknek a LinearRegressionWithSGD algoritmust kell skálázás funkció-és nagybetűket.   
+> Találtunk, amelyeknek hello LinearRegressionWithSGD algoritmus toobe bizalmas toofeature méretezés.   
 > 
 > 
 
-Ez a kód méretezési változók a regularized lineáris SGD algoritmus való használatra.
+Itt található hello kód tooscale változók rendeződik hello lineáris SGD algoritmus való használatra.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -516,14 +516,14 @@ Ez a kód méretezési változók a regularized lineáris SGD algoritmus való h
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI**
 
-Cella fent ideje: 11.67 másodperc
+Idő tooexecute cella fent: 11.67 másodperc
 
 ### <a name="cache-objects-in-memory"></a>A memóriában objektumok
-A modell betanítására és tesztelésére ML algoritmusok szükséges idő a bemeneti adatok keret objektumok az osztályozás, regressziós és szolgáltatásokat méretezni gyorsítótárazásával csökkenthető.
+hello idő betanításra és tesztelésre ML algoritmusok hello bemeneti adatok keret objektumok az osztályozás, regressziós és szolgáltatásokat méretezni gyorsítótárazásával csökkenthető.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -547,14 +547,14 @@ A modell betanítására és tesztelésére ML algoritmusok szükséges idő a b
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI** 
 
-Cella fent ideje: 0.13 másodperc
+Idő tooexecute cella fent: 0.13 másodperc
 
 ## <a name="predict-whether-or-not-a-tip-is-paid-with-binary-classification-models"></a>Függetlenül attól, tipp bináris osztályozási modellekkel való fizetnek előrejelzése
-Ez a szakasz bemutatja, hogyan használható három modelleket használnak becslése a bináris osztályozási feladatát tipp taxi útnak fizetnek-e. A modell jelenik meg a következő:
+Ez a szakasz bemutatja, hogyan használható három modelleket használnak hello bináris osztályozási feladatát előrejelzésére tipp taxi útnak fizetnek-e. hello modell jelenik meg a következő:
 
 * Logisztikai regresszió 
 * Véletlenszerű erdő
@@ -566,24 +566,24 @@ Egyes modellek kód szakasz felépítése lépéseket oszlik:
 2. **A modell kiértékelése** a metrikák a teszt adatkészlet
 3. **Modell mentése** BLOB a jövőbeni felhasználásához
 
-Két módon abszolút paraméterrel megmutatjuk, hogyan ehhez a kereszt-ellenőrzési (KtgE):
+Megmutatjuk, hogyan toodo kereszt-ellenőrzési (KtgE) két módon abszolút paraméterrel:
 
-1. Használatával **általános** egyéni kód, amely a MLlib bármely algoritmushoz és bármely paraméter alkalmazható algoritmusban állítja be. 
-2. Használja a **pySpark CrossValidator csővezeték függvény**. Vegye figyelembe, hogy CrossValidator Spark 1.5.0 néhány korlátozásai: 
+1. Használatával **általános** algoritmusban beállítja egyéni kód, amely lehet alkalmazott tooany algoritmus MLlib és tooany paraméterben. 
+2. Hello segítségével **pySpark CrossValidator csővezeték függvény**. Vegye figyelembe, hogy CrossValidator Spark 1.5.0 néhány korlátozásai: 
    
    * Adatcsatorna modellek nem lehet menteni, megőrzött állapotú későbbi felhasználásra.
    * Nem használható a modellben minden paraméterhez.
    * Nem minden MLlib algoritmus használható.
 
-### <a name="generic-cross-validation-and-hyperparameter-sweeping-used-with-the-logistic-regression-algorithm-for-binary-classification"></a>Érvényesítési és a hyperparameter abszolút bináris osztályozási a logisztikai regresszió algoritmussal használt általános
-Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és logisztikai regresszió modell mentése [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) , amely képes-e tipp fizetnek NYC taxi út és a jegy ára adatkészlet útnak. A modell betanítása érvényesítési (KtgE) és a hyperparameter abszolút megvalósítva, amelyek használhatók a tanulási algoritmusok MLlib az egyik egyéni kód használatával.   
+### <a name="generic-cross-validation-and-hyperparameter-sweeping-used-with-hello-logistic-regression-algorithm-for-binary-classification"></a>Érvényesítési és a hyperparameter abszolút bináris osztályozási hello logisztikai regresszió algoritmussal használt általános
+Ebben a szakaszban hello kód bemutatja, hogyan tootrain, értékelje ki, és mentse egy logisztikai regresszió modell [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) , amely képes-e tipp fizetnek hello NYC taxi út és a jegy ára adatkészlet útnak. hello modell betanítása közötti érvényesítési (KtgE) és hyperparameter abszolút egyéni kód, amely a tanulási algoritmus a MLlib hello alkalmazott tooany megvalósítva.   
 
 > [!NOTE]
-> Az egyéni KtgE kód végrehajtása több percig is eltarthat.
+> az egyéni KtgE kód hello végrehajtása több percig is eltarthat.
 > 
 > 
 
-**A KtgE és hyperparameter abszolút logisztikai regresszió modell betanításához**
+**Hello logisztikai regresszió tanítási KtgE és hyperparameter abszolút használatával**
 
     # LOGISTIC REGRESSION CLASSIFICATION WITH CV AND HYPERPARAMETER SWEEPING
 
@@ -602,7 +602,7 @@ Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és log
     paramGrid = list(ParameterGrid(grid))
     numModels = len(paramGrid)
 
-    # SET NUM FOLDS AND NUM PARAMETER SETS TO SWEEP ON
+    # SET NUM FOLDS AND NUM PARAMETER SETS tooSWEEP ON
     nFolds = 3;
     h = 1.0 / nFolds;
     metricSum = np.zeros(numModels);
@@ -652,16 +652,16 @@ Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és log
                                                   intercept=True)
 
 
-    # PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
-    # NOTE: There are 20 coefficient terms for the 10 features, 
-    #       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+    # PRINT COEFFICIENTS AND INTERCEPT OF hello MODEL
+    # NOTE: There are 20 coefficient terms for hello 10 features, 
+    #       and hello different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
     print("Coefficients: " + str(logitBest.weights))
     print("Intercept: " + str(logitBest.intercept))
 
     # PRINT ELAPSED TIME    
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
@@ -670,11 +670,11 @@ Együttható: [0.0082065285375,-0.0223675576104,-0.0183812028036, - 3.4812457806
 
 INTERCEPT:-0.0111216486893
 
-Cella fent ideje: 14.43 másodperc
+Idő tooexecute cella fent: 14.43 másodperc
 
-**A szabványos metrikák bináris osztályozási modell kiértékelése**
+**Standard metrikák hello bináris osztályozási modell kiértékelése**
 
-Ebben a szakaszban a kód bemutatja, hogyan egy test-adatkészlet, beleértve a ROC-görbe rajzot logisztikai regresszió modellt kiértékeléséhez.
+Ebben a szakaszban hello kód bemutatja, hogyan tooevaluate logisztikai regresszió modellhez tartozó adatok-TesztKészlet, beleértve a hello: ROC-görbe rajzot ellen.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -714,7 +714,7 @@ Ebben a szakaszban a kód bemutatja, hogyan egy test-adatkészlet, beleértve a 
     # PRINT ELAPSED TIME    
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
@@ -731,22 +731,22 @@ Visszahívása = 0.984174341679
 
 F1 Pontozása = 0.984174341679
 
-Cella fent ideje: 2.67 másodpercben
+Idő tooexecute cella fent: 2.67 másodpercben
 
-**A: ROC-görbe ábrázolásához.**
+**Hello: ROC-görbe ábrázolásához.**
 
-A *predictionAndLabelsDF* táblaként, regisztrálva van *tmp_results*, az előző cella. *tmp_results* segítségével do lekérdezések és a kimeneti eredmények keretbe sqlResults adatok-ábrázolásához. A kód itt látható.
+Hello *predictionAndLabelsDF* táblaként, regisztrálva van *tmp_results*, hello előző cella. *tmp_results* is használt toodo lekérdezések és eredmények kimeneti keretbe hello sqlResults adatok-ábrázolásához. Itt található hello kódot.
 
     # QUERY RESULTS                              
     %%sql -q -o sqlResults
     SELECT * from tmp_results
 
 
-Ez a kód előrejelzéseket készítsen, és a ROC-görbe megrajzolásához.
+Ez hello kód toomake előrejelzéseket és rajzot hello: ROC-görbe.
 
     # MAKE PREDICTIONS AND PLOT ROC-CURVE
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES                              
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES                              
     %%local
     %matplotlib inline
     from sklearn.metrics import roc_curve,auc
@@ -776,7 +776,7 @@ Ez a kód előrejelzéseket készítsen, és a ROC-görbe megrajzolásához.
 
 **A jövőbeni felhasználásához blob modellt megőrzése**
 
-Ebben a szakaszban a kód bemutatja, hogyan mentse a logisztikai regresszió modellt felhasználásra.
+Ebben a szakaszban hello kód bemutatja, hogyan toosave hello logisztikai regresszió modell felhasználásra.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -794,18 +794,18 @@ Ebben a szakaszban a kód bemutatja, hogyan mentse a logisztikai regresszió mod
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 
 **KIMENETI**
 
-Cella fent ideje: 34.57 másodperc
+Idő tooexecute cella fent: 34.57 másodperc
 
 ### <a name="use-mllibs-crossvalidator-pipeline-function-with-logistic-regression-elastic-regression-model"></a>MLlib tartozó CrossValidator csővezeték függvény használata logisztikai regresszió (rugalmas regresszió) modell
-Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és logisztikai regresszió modell mentése [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) , amely képes-e tipp fizetnek NYC taxi út és a jegy ára adatkészlet útnak. A modell betanítása érvényesítési (KtgE) és hyperparameter abszolút megvalósítva a MLlib CrossValidator csővezeték függvénnyel a KtgE paraméter ismétlés közötti.   
+Ebben a szakaszban hello kód bemutatja, hogyan tootrain, értékelje ki, és mentse egy logisztikai regresszió modell [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) , amely képes-e tipp fizetnek hello NYC taxi út és a jegy ára adatkészlet útnak. hello modell betanítása keresztellenőrzési (KtgE) használatával, és hyperparameter abszolút megvalósítva a hello MLlib CrossValidator csővezeték függvény a KtgE paraméter ismétlés.   
 
 > [!NOTE]
-> A MLlib KtgE kód végrehajtása több percig is eltarthat.
+> a MLlib KtgE kód hello végrehajtása több percig is eltarthat.
 > 
 > 
 
@@ -835,7 +835,7 @@ Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és log
                         evaluator=BinaryClassificationEvaluator(),
                         numFolds=3)
 
-    # CONVERT TO DATA-FRAME: THIS DOES NOT RUN ON RDDs
+    # CONVERT tooDATA-FRAME: THIS DOES NOT RUN ON RDDs
     trainDataFrame = sqlContext.createDataFrame(oneHotTRAINbinary, ["features", "label"])
 
     # TRAIN WITH CROSS-VALIDATION
@@ -851,23 +851,23 @@ Ebben a szakaszban a kód bemutatja, hogyan betanítása, értékelje ki és log
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds";
 
 **KIMENETI**
 
-Cella fent ideje: 107.98 másodperc
+Idő tooexecute cella fent: 107.98 másodperc
 
-**A: ROC-görbe ábrázolásához.**
+**Hello: ROC-görbe ábrázolásához.**
 
-A *predictionAndLabelsDF* táblaként, regisztrálva van *tmp_results*, az előző cella. *tmp_results* segítségével do lekérdezések és a kimeneti eredmények keretbe sqlResults adatok-ábrázolásához. A kód itt látható.
+Hello *predictionAndLabelsDF* táblaként, regisztrálva van *tmp_results*, hello előző cella. *tmp_results* is használt toodo lekérdezések és eredmények kimeneti keretbe hello sqlResults adatok-ábrázolásához. Itt található hello kódot.
 
     # QUERY RESULTS
     %%sql -q -o sqlResults
     SELECT label, prediction, probability from tmp_results
 
-Ez a kód a: ROC-görbe megrajzolásához.
+Itt található hello kód tooplot hello: ROC-görbe.
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES 
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES 
     %%local
     from sklearn.metrics import roc_curve,auc
 
@@ -894,7 +894,7 @@ Ez a kód a: ROC-görbe megrajzolásához.
 ![Logisztikai regresszió: ROC-görbe MLlib tartozó CrossValidator használatával](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/mllib-crossvalidator-roc-curve.png)
 
 ### <a name="random-forest-classification"></a>Véletlenszerű erdő besorolás
-Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse egy véletlenszerű erdő regressziós, amely képes-e tipp fizetnek NYC taxi út és a jegy ára adatkészlet útnak.
+Ebben a szakaszban hello kód mutatja be, hogyan tootrain, értékelje ki, és mentse egy véletlenszerű erdő regressziós, amely képes-e tipp fizetnek hello NYC taxi út és a jegy ára adatkészlet útnak.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -913,7 +913,7 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse
                                            categoricalFeaturesInfo=categoricalFeaturesInfo,
                                            numTrees=25, featureSubsetStrategy="auto",
                                            impurity='gini', maxDepth=5, maxBins=32)
-    ## UN-COMMENT IF YOU WANT TO PRING TREES
+    ## UN-COMMENT IF YOU WANT tooPRING TREES
     #print('Learned classification forest model:')
     #print(rfModel.toDebugString())
 
@@ -935,17 +935,17 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
 
 ROC területen = 0.985336538462
 
-Cella fent ideje: 26.72 másodperc
+Idő tooexecute cella fent: 26.72 másodperc
 
 ### <a name="gradient-boosting-trees-classification"></a>Átmenet kiemelési fák besorolás
-Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki, és átmenetes kiemelési fák modell, amely képes-e tipp egy út a következőt: taxi út a fizetett mentéséhez és díjszabás adatkészlet.
+Ebben a szakaszban hello kód bemutatja, hogyan tootrain, értékelje ki, és átmenetes kiemelési fák modell, amely képes-e tipp hello NYC taxi út és a jegy ára adatkészlet útnak fizetnek mentése.
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -958,7 +958,7 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki, és átme
 
     gbtModel = GradientBoostedTrees.trainClassifier(indexedTRAINbinary, categoricalFeaturesInfo=categoricalFeaturesInfo,
                                                     numIterations=10)
-    ## UNCOMMENT IF YOU WANT TO PRINT TREE DETAILS
+    ## UNCOMMENT IF YOU WANT tooPRINT TREE DETAILS
     #print('Learned classification GBT model:')
     #print(bgtModel.toDebugString())
 
@@ -980,38 +980,38 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki, és átme
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI**
 
 ROC területen = 0.985336538462
 
-Cella fent ideje: 28.13 másodpercben
+Idő tooexecute cella fent: 28.13 másodpercben
 
 ## <a name="predict-tip-amount-with-regression-models-not-using-cv"></a>Tipp összeg előrejelzése regressziós modellek (nem használ KtgE)
-Ez a szakasz bemutatja, hogyan három használja a regressziós tevékenység modellek: előre jelezni az egyéb tip szolgáltatások alapján taxi útnak tipp összeg. A modell jelenik meg a következő:
+Ez a szakasz bemutatja, hogyan használható három modellek hello regressziós feladathoz: hello tipp kifizetett taxi útnak más tip szolgáltatások alapján előre jelezni. hello modell jelenik meg a következő:
 
 * Lineáris regressziós rendeződik
 * Véletlenszerű erdő
 * Átmenet kiemelési fák
 
-Ezek a modellek leírt a Bevezetés. Egyes modellek kód szakasz felépítése lépéseket oszlik: 
+Ezek a modellek leírt hello bevezetés. Egyes modellek kód szakasz felépítése lépéseket oszlik: 
 
 1. **A modell betanítási** egy paraméterhalmaz adatok
 2. **A modell kiértékelése** a metrikák a teszt adatkészlet
 3. **Modell mentése** BLOB a jövőbeni felhasználásához   
 
-> Az AZURE Megjegyzés: Kereszt-ellenőrzési nem használható ebben a szakaszban a három regressziós modell mivel ez a logisztikai regresszió modellek adatai látható volt. Példa bemutatja, hogyan használható az KtgE rugalmas nettó a lineáris regressziós a függelék – az ebben a témakörben találhatók.
+> Az AZURE Megjegyzés: Kereszt-ellenőrzési nem használható hello három regressziós modellt ebben a szakaszban mivel ennek részletes hello logisztikai regresszió modellek látható volt. Egy példa látható, hogyan toouse a rugalmas nettó KtgE lineáris regressziós a hello függelék – az ebben a témakörben találhatók.
 > 
-> AZURE Megjegyzés: Az a tapasztalat, lehet LinearRegressionWithSGD modellek konvergencia problémákat, és paraméterekkel kell lennie, gondosan az beszerzése egy érvényes modell megváltozott/optimalizált. A változók jelentősen skálázás elősegíti a konvergencia. Rugalmas nettó regressziós, a függelékben ehhez a témakörhöz helyett LinearRegressionWithSGD is használható.
+> AZURE Megjegyzés: Az a tapasztalat lehet LinearRegressionWithSGD modellek konvergencia problémákat, és a paraméterek kell toobe megváltozott/optimalizált gondosan érvényes modellt kéréséhez. A változók jelentősen skálázás elősegíti a konvergencia. Rugalmas nettó regressziós hello függelék toothis témakörben látható LinearRegressionWithSGD helyett is használható.
 > 
 > 
 
 ### <a name="linear-regression-with-sgd"></a>A SGD lineáris regressziós
-A kódot az itt látható egy lineáris regressziós optimális stochastic átmenetes módszeren (SGD) használó betanítása méretezett szolgáltatások használatának, pontozása, értékelje ki és mentse a modellt az Azure Blob Storage (WASB).
+hello kód ebben a szakaszban bemutatja, hogyan toouse méretezhető szolgáltatások tootrain egy lineáris regressziós stochastic átmenetes módszeren (SGD) használó optimális, és hogyan tooscore, értékelje ki, és mentse hello modellt az Azure Blob Storage (WASB).
 
 > [!TIP]
-> Az a tapasztalat LinearRegressionWithSGD modellek konvergencia problémái lehetnek, és paraméterek kell lennie a megváltozott/optimalizálva gondosan megszerezni egy érvényes modell. A változók jelentősen skálázás elősegíti a konvergencia.
+> Az a tapasztalat hello konvergencia LinearRegressionWithSGD modellek problémái lehetnek, és paraméterekkel kell toobe megváltozott/optimalizált gondosan kéréséhez érvényes modellt. A változók jelentősen skálázás elősegíti a konvergencia.
 > 
 > 
 
@@ -1025,12 +1025,12 @@ A kódot az itt látható egy lineáris regressziós optimális stochastic átme
     from pyspark.mllib.evaluation import RegressionMetrics
     from scipy import stats
 
-    # USE SCALED FEATURES TO TRAIN MODEL
+    # USE SCALED FEATURES tooTRAIN MODEL
     linearModel = LinearRegressionWithSGD.train(oneHotTRAINregScaled, iterations=100, step = 0.1, regType='l2', regParam=0.1, intercept = True)
 
-    # PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
-    # NOTE: There are 20 coefficient terms for the 10 features, 
-    #       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+    # PRINT COEFFICIENTS AND INTERCEPT OF hello MODEL
+    # NOTE: There are 20 coefficient terms for hello 10 features, 
+    #       and hello different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
     print("Coefficients: " + str(linearModel.weights))
     print("Intercept: " + str(linearModel.intercept))
 
@@ -1051,7 +1051,7 @@ A kódot az itt látható egy lineáris regressziós optimális stochastic átme
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI**
 
@@ -1063,13 +1063,13 @@ GYÖKÁTLAGOS = 1.23485131376
 
 R-sqr = 0.597963951127
 
-Cella fent ideje: 38.62 másodperc
+Idő tooexecute cella fent: 38.62 másodperc
 
 ### <a name="random-forest-regression"></a>Véletlenszerű erdő regressziós
-Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse egy véletlenszerű erdő modellt, hogy a NYC taxi út adatok tipp összeg előrejelzi.   
+Ebben a szakaszban hello kód mutatja be, hogyan tootrain, értékelje ki, és mentse egy véletlenszerű erdő modellt, amely képes tipp hello NYC taxi út adatok mennyiségét.   
 
 > [!NOTE]
-> Kereszt-ellenőrzési abszolút egyéni kód használatával paraméterrel a függelékben valósul meg.
+> Kereszt-ellenőrzési abszolút egyéni kód használatával paraméterrel hello függelékben valósul meg.
 > 
 > 
 
@@ -1089,7 +1089,7 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse
     rfModel = RandomForest.trainRegressor(indexedTRAINreg, categoricalFeaturesInfo=categoricalFeaturesInfo,
                                         numTrees=25, featureSubsetStrategy="auto",
                                         impurity='variance', maxDepth=10, maxBins=32)
-    # UN-COMMENT IF YOU WANT TO PRING TREES
+    # UN-COMMENT IF YOU WANT tooPRING TREES
     #print('Learned classification forest model:')
     #print(rfModel.toDebugString())
 
@@ -1111,7 +1111,7 @@ Ebben a szakaszban a kód bemutatja, hogyan képzése, értékelje ki és mentse
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 **KIMENETI**
 
@@ -1119,10 +1119,10 @@ GYÖKÁTLAGOS = 0.931981967875
 
 R-sqr = 0.733445485802
 
-Cella fent ideje: 25.98 másodperc
+Idő tooexecute cella fent: 25.98 másodperc
 
 ### <a name="gradient-boosting-trees-regression"></a>Átmenet kiemelési fák regressziós
-Ebben a szakaszban a kód bemutatja, hogyan betanítása, kiértékeléséhez és átmenetes kiemelési fák modell, amely képes tipp összeg a következőt: taxi út adatok mentése.
+Ebben a szakaszban hello kód bemutatja, hogyan tootrain, értékelje ki, és mentése átmenetes kiemelési fák modell, amely képes tipp hello NYC taxi út adatok mennyiségét.
 
 ** Betanítása és kiértékelése **
 
@@ -1161,7 +1161,7 @@ Ebben a szakaszban a kód bemutatja, hogyan betanítása, kiértékeléséhez é
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
@@ -1170,11 +1170,11 @@ GYÖKÁTLAGOS = 0.928172197114
 
 R-sqr = 0.732680354389
 
-Cella fent ideje: 20.9 másodperc
+Idő tooexecute cella fent: 20.9 másodperc
 
 **Ábrázolása**
 
-*tmp_results* az előző cella Hive tábla néven van regisztrálva. Kerülnek a kimenetbe az eredményeket a táblából a *sqlResults* adatok-keret ábrázolásához. A kód itt látható
+*tmp_results* hello előző cella Hive tábla néven van regisztrálva. A hello kimeneti eredményei hello táblából *sqlResults* adatok-keret ábrázolásához. Íme hello kódot
 
     # PLOT SCATTER-PLOT BETWEEN ACTUAL AND PREDICTED TIP VALUES
 
@@ -1183,9 +1183,9 @@ Cella fent ideje: 20.9 másodperc
     SELECT * from tmp_results
 
 
-A Jupyter kiszolgálóval az adatok ábrázolása a kód itt látható.
+Itt az hello kód tooplot hello adatai hello Jupyter kiszolgáló használatával.
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     import numpy as np
 
@@ -1202,10 +1202,10 @@ A Jupyter kiszolgálóval az adatok ábrázolása a kód itt látható.
 ![Tényleges-vs-előre jelezni-tipp-díjak](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/actual-vs-predicted-tips.png)
 
 ## <a name="appendix-additional-regression-tasks-using-cross-validation-with-parameter-sweeps"></a>A függelék: További regressziós feladatok keresztellenőrzési használata paraméter el
-E függelék rugalmas net használ lineáris regressziós KtgE módjáról és az egyéni kód használatával a véletlenszerű erdő regressziós paraméter ismétlés KtgE módjáról kódját tartalmazza.
+E függelék tartalmaz kód ábrázoló hogyan toodo KtgE rugalmas net használata lineáris regresszió, és hogyan toodo KtgE paraméterrel sweep véletlenszerű erdő regressziós az egyéni kód használatával.
 
 ### <a name="cross-validation-using-elastic-net-for-linear-regression"></a>Kereszt-nettó rugalmas használatát lineáris regressziós érvényesítése
-Ebben a szakaszban a kódot a kereszt-ellenőrzési rugalmas net használ lineáris regressziós és kiértékelheti a modell vizsgálati adatok alapján mutatja.
+Ebben a szakaszban hello kód mutatja be, hogyan toodo kereszt-érvényesítési lineáris regressziós nettó rugalmas használ, és hogyan tooevaluate hello modell vizsgálati adatok alapján.
 
     ###  CV USING ELASTIC NET FOR LINEAR REGRESSION
 
@@ -1229,7 +1229,7 @@ Ebben a szakaszban a kódot a kereszt-ellenőrzési rugalmas net használ lineá
                                   .build() 
 
     # DEFINE PIPELINE 
-    # SIMPLY THE MODEL HERE, WITHOUT TRANSFORMATIONS
+    # SIMPLY hello MODEL HERE, WITHOUT TRANSFORMATIONS
     pipeline = Pipeline(stages=[lr])
 
     # DEFINE CV WITH PARAMETER SWEEP
@@ -1238,7 +1238,7 @@ Ebben a szakaszban a kódot a kereszt-ellenőrzési rugalmas net használ lineá
                         evaluator=RegressionEvaluator(),
                         numFolds=3)
 
-    # CONVERT TO DATA FRAME, AS CROSSVALIDATOR WON'T RUN ON RDDS
+    # CONVERT tooDATA FRAME, AS CROSSVALIDATOR WON'T RUN ON RDDS
     trainDataFrame = sqlContext.createDataFrame(oneHotTRAINreg, ["features", "label"])
 
     # TRAIN WITH CROSS-VALIDATION
@@ -1249,34 +1249,34 @@ Ebben a szakaszban a kódot a kereszt-ellenőrzési rugalmas net használ lineá
     testDataFrame = sqlContext.createDataFrame(oneHotTESTreg, ["features", "label"])
 
     # MAKE PREDICTIONS ON TEST DOCUMENTS
-    # cvModel uses the best model found (lrModel).
+    # cvModel uses hello best model found (lrModel).
     predictionAndLabels = cv_model.transform(testDataFrame)
 
-    # CONVERT TO DF AND SAVE REGISER DF AS TABLE
+    # CONVERT tooDF AND SAVE REGISER DF AS TABLE
     predictionAndLabels.registerTempTable("tmp_results");
 
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
 
-Cella fent ideje: 161.21 másodperc
+Idő tooexecute cella fent: 161.21 másodperc
 
 **R-SQR metrikájú kiértékelése**
 
-*tmp_results* az előző cella Hive tábla néven van regisztrálva. Kerülnek a kimenetbe az eredményeket a táblából a *sqlResults* adatok-keret ábrázolásához. A kód itt látható
+*tmp_results* hello előző cella Hive tábla néven van regisztrálva. A hello kimeneti eredményei hello táblából *sqlResults* adatok-keret ábrázolásához. Íme hello kódot
 
     # SELECT RESULTS
     %%sql -q -o sqlResults
     SELECT label,prediction from tmp_results
 
 
-Ez a kód R-sqr kiszámításához.
+Itt található hello kód toocalculate R-sqr.
 
-    # RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+    # RUN hello CODE LOCALLY ON hello JUPYTER SERVER AND IMPORT LIBRARIES
     %%local
     from scipy import stats
 
@@ -1291,7 +1291,7 @@ Ez a kód R-sqr kiszámításához.
 R-sqr = 0.619184907088
 
 ### <a name="cross-validation-with-parameter-sweep-using-custom-code-for-random-forest-regression"></a>Kereszt-ellenőrzési az egyéni kód használatával a véletlenszerű erdő regressziós paraméter ismétlés
-Ebben a szakaszban a kódot a kereszt-ellenőrzési az egyéni kód használatával a véletlenszerű erdő regressziós paraméter törlési és kiértékelheti a modell vizsgálati adatok alapján mutatja.
+Ebben a szakaszban hello kód mutatja be, hogyan toodo kereszt-ellenőrzési paraméter ismétlés egyéni kód használatával véletlenszerű erdő visszavonták, és hogyan tooevaluate hello modell vizsgálati adatok alapján.
 
     # RECORD START TIME
     timestart= datetime.datetime.now()
@@ -1310,7 +1310,7 @@ Ebben a szakaszban a kódot a kereszt-ellenőrzési az egyéni kód használatá
     ## SPECIFY LEVELS OF CATEGORICAL VARIBLES
     categoricalFeaturesInfo={0:2, 1:2, 2:6, 3:4}
 
-    # SPECIFY NUMFOLDS AND ARRAY TO HOLD METRICS
+    # SPECIFY NUMFOLDS AND ARRAY tooHOLD METRICS
     nFolds = 3;
     numModels = len(paramGrid)
     h = 1.0 / nFolds;
@@ -1370,7 +1370,7 @@ Ebben a szakaszban a kódot a kereszt-ellenőrzési az egyéni kód használatá
     # PRINT ELAPSED TIME
     timeend = datetime.datetime.now()
     timedelta = round((timeend-timestart).total_seconds(), 2) 
-    print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+    print "Time taken tooexecute above cell: " + str(timedelta) + " seconds"; 
 
 
 **KIMENETI**
@@ -1379,10 +1379,10 @@ GYÖKÁTLAGOS = 0.906972198262
 
 R-sqr = 0.740751197012
 
-Cella fent ideje: 69.17 másodperc
+Idő tooexecute cella fent: 69.17 másodperc
 
 ### <a name="clean-up-objects-from-memory-and-print-model-locations"></a>Memória és a nyomtatási modell helyekről objektumainak eltávolítása
-Használjon `unpersist()` jelenleg a memóriában lévő objektumok törlése.
+Használjon `unpersist()` jelenleg a memóriában lévő toodelete objektumok.
 
     # UNPERSIST OBJECTS CACHED IN MEMORY
 
@@ -1413,7 +1413,7 @@ Használjon `unpersist()` jelenleg a memóriában lévő objektumok törlése.
 
 [122] PythonRDD RDD PythonRDD.scala a következő: 43
 
-** Nyomtatás fájlok elérési útját modell a fogyasztás notebook használhatók. ** Használnak, és egy független adatkészlet pontozása, meg kell másolja és illessze be a következő fájl neve a "használat jegyzetfüzet".
+** Nyomtatás elérési toomodel fájlok toobe hello fogyasztás notebook szerepel. ** tooconsume és pontszám független-adatkészlet, toocopy kell, és illessze be a következő fájl neve a "Használat notebook" hello.
 
     # PRINT MODEL FILE LOCATIONS FOR CONSUMPTION
     print "logisticRegFileLoc = modelDir + \"" + logisticregressionfilename + "\"";
@@ -1439,7 +1439,7 @@ BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassificatio
 BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-05-0316_52_18.827237"
 
 ## <a name="whats-next"></a>A következő lépések
-Most, hogy a Spark MlLib regressziós és besorolási modell hozott létre, készen áll útmutató pontozása, és ezek a modellek kiértékeléséhez.
+Most, hogy a korábban létrehozott regressziós és besorolási modell hello Spark MlLib, áll készen toolearn hogyan tooscore és ezek a modellek kiértékeléséhez.
 
-**Modellhez tartozó felhasználás:** pontozása és kiértékelheti a besorolás és regressziós modellek létrehozása ebben a témakörben, lásd: [pontszám és értékelje ki a Spark-beépített machine learning modellek](machine-learning-data-science-spark-model-consumption.md).
+**Modellhez tartozó felhasználás:** toolearn hogyan tooscore és értékelje ki a létrehozott ebben a témakörben hello besorolási és regressziós modell, lásd: [pontszám és értékelje ki a Spark-beépített machine learning modellek](machine-learning-data-science-spark-model-consumption.md).
 

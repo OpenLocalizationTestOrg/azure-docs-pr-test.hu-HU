@@ -1,6 +1,6 @@
 ---
-title: "Azure Automation ütemezései segítségével |} Microsoft Docs"
-description: "Az automatizálási ütemezések használatával ütemezhető a runbookok az Azure Automationben automatikus indításra. Ismerteti, hogyan létrehozásához és kezeléséhez az ütemezés szerint, így képes automatikusan elindít egy runbookot egy adott időpontban vagy egy ismétlődő ütemezés szerint."
+title: az Azure Automationben aaaSchedules |} Microsoft Docs
+description: "Az automatizálási ütemezések toostart Azure Automation runbookjai használt tooschedule automatikusan. Ismerteti, hogyan toocreate és az ütemezés kezelése, így képes automatikusan elindít egy runbookot egy adott időpontban vagy egy ismétlődő ütemezés szerint."
 services: automation
 documentationcenter: 
 author: MGoedtel
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/13/2016
 ms.author: magoedte
-ms.openlocfilehash: 140bea93c4563666e8cfdf356eaf87500c1aca8e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 888a5d15fd3442a2b8ab18dd8b0eb4ab9ad0c0d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduling-a-runbook-in-azure-automation"></a>Runbook ütemezése az Azure Automationben
-A megadott időben elindítani Azure Automation forgatókönyv ütemezése, csatolható egy vagy több ütemezés. Ütemezés beállítható úgy, hogy a runbookok a klasszikus Azure portálon, és az Azure-portálon a runbookok egyszeri és egy ismétlődés óránkénti futtatási vagy napi ütemezés, ütemezhető őket heti, havi, a hét meghatározott napjain vagy a hónap napjait, vagy a hónap adott napja.  Egy runbook több ütemezéssel is lehet társítani, és egy ütemezés szerint lehet kapcsolni több runbook.
+egy runbook tooschedule az Azure Automation toostart egy megadott időpontban, csatolás tooone vagy további ütemezéseket. Ütemezés szerint lehet konfigurált tooeither egyszer vagy ismétlődés óránkénti futtassa, vagy a runbookokat hello a klasszikus Azure portálon lévő és a runbookokat hello Azure-portálon a napi ütemezés is ütemezheti őket hello napjain vagy heti, havi, adott napon hello hét hónapban, vagy egy adott hello hónap napja.  Egy runbook csatolt toomultiple ütemezéseket, és ütemezés rendelkezhet több hozzá kapcsolt forgatókönyvből tooit.
 
 > [!NOTE]
 > Ütemezés jelenleg nem támogatják az Azure Automation DSC-konfigurációk.
@@ -29,7 +29,7 @@ A megadott időben elindítani Azure Automation forgatókönyv ütemezése, csat
 > 
 
 ## <a name="windows-powershell-cmdlets"></a>Windows PowerShell-parancsmagjai
-A következő táblázatban található parancsmagokkal létrehozása és kezelése a Windows PowerShell segítségével az Azure Automationben ütemezések segítségével. Részét képezi a [Azure PowerShell modul](/powershell/azure/overview).
+hello parancsmagok a következő táblázat hello használt toocreate és a Windows PowerShell segítségével az Azure Automationben ütemezések kezelésére. Ezek hello részét képezi [Azure PowerShell modul](/powershell/azure/overview).
 
 | Parancsmagok | Leírás |
 |:--- |:--- |
@@ -37,7 +37,7 @@ A következő táblázatban található parancsmagokkal létrehozása és kezel�
 | [Get-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/get-azurermautomationschedule) |Ütemezés lekérése. |
 | [Új AzureRmAutomationSchedule](/powershell/module/azurerm.automation/new-azurermautomationschedule) |Létrehoz egy új ütemezést. |
 | [Remove-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/remove-azurermautomationschedule) |Eltávolítja az ütemezés szerint. |
-| [Set-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/set-azurermautomationschedule) |Meglévő ütemezés tulajdonságainak beállítása. |
+| [Set-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/set-azurermautomationschedule) |Hello meglévő ütemezés tulajdonságainak beállítása. |
 | [Get-AzureRmAutomationScheduledRunbook](/powershell/module/azurerm.automation/set-azurermautomationscheduledrunbook) |Lekéri a runbookok ütemezett. |
 | [Register-AzureRmAutomationScheduledRunbook](/powershell/module/azurerm.automation/register-azurermautomationscheduledrunbook) |Az ütemezés szerint egy runbook társítja. |
 | [AzureRmAutomationScheduledRunbook regisztrációjának törlése](/powershell/module/azurerm.automation/unregister-azurermautomationscheduledrunbook) |Egy runbook ütemezés dissociates. |
@@ -45,38 +45,38 @@ A következő táblázatban található parancsmagokkal létrehozása és kezel�
 | [Get-AzureAutomationSchedule](/powershell/module/azure/get-azureautomationschedule?view=azuresmps-3.7.0) |Ütemezés lekérése. |
 | [Új AzureAutomationSchedule](/powershell/module/azure/new-azureautomationschedule?view=azuresmps-3.7.0) |Létrehoz egy új ütemezést. |
 | [Remove-AzureAutomationSchedule](/powershell/module/azure/remove-azureautomationschedule?view=azuresmps-3.7.0) |Eltávolítja az ütemezés szerint. |
-| [Set-AzureAutomationSchedule](/powershell/module/azure/set-azureautomationschedule?view=azuresmps-3.7.0) |Meglévő ütemezés tulajdonságainak beállítása. |
+| [Set-AzureAutomationSchedule](/powershell/module/azure/set-azureautomationschedule?view=azuresmps-3.7.0) |Hello meglévő ütemezés tulajdonságainak beállítása. |
 | [Get-AzureAutomationScheduledRunbook](/powershell/module/azure/get-azureautomationscheduledrunbook?view=azuresmps-3.7.0) |Lekéri a runbookok ütemezett. |
 | [Register-AzureAutomationScheduledRunbook](/powershell/module/azure/register-azureautomationscheduledrunbook?view=azuresmps-3.7.0) |Az ütemezés szerint egy runbook társítja. |
 | [AzureAutomationScheduledRunbook regisztrációjának törlése](/powershell/module/azure/unregister-azureautomationscheduledrunbook?view=azuresmps-3.7.0) |Egy runbook ütemezés dissociates. |
 
 ## <a name="creating-a-schedule"></a>Ütemezés létrehozása
-A runbookok új ütemtervet hozhat létre az Azure portálon, a klasszikus portálon, vagy a Windows PowerShell használatával. Új ütemezés létrehozására, ha egy runbook egy ütemezést az Azure klasszikus vagy az Azure portál használatával is rendelkezik.
+Hello Azure-portálon a runbookok új ütemtervet hozhat létre a klasszikus portálon hello, vagy a Windows PowerShell használatával. Akkor is hello lehetőséget egy új ütemezést, ha egy runbook tooa ütemezéshez hello klasszikus Azure vagy az Azure-portálon.
 
 > [!NOTE]
-> Azure Automation szolgáltatásbeli használni fog a legújabb modulok az Automation-fiók egy új ütemezett feladat futtatásakor.  A runbookok és a folyamatok automatizálásához azok érintő elkerülése először tesztelje a runbookokat, amely rendelkezik ütemezések kapcsolódik egy tesztelési dedikált Automation-fiók.  Ezzel a kapacitásprofillal szemben érvényesíti a ütemezett runbookok továbbra is megfelelően működjenek, és ha nem, akkor további hibaelhárítása és a frissített runbook-verzió üzemi áttelepítése előtt szükséges változtatások alkalmazásához.  
->  Az Automation-fiók nem automatikusan megkapja modulok új verzióit csak frissítette azokat manuálisan kiválasztásával a [frissítés Azure modulok](automation-update-azure-modules.md) parancsát a **modulok** panelen. 
+> Azure Automation szolgáltatásbeli használni fog hello legújabb modulok az Automation-fiók egy új ütemezett feladat futtatásakor.  a runbookok és hello érintő tooavoid folyamatok automatizálása, először tesztelje a runbookokat, amely rendelkezik ütemezések kapcsolódik egy tesztelési dedikált Automation-fiók.  Ezzel a kapacitásprofillal szemben érvényesíti a ütemezett runbookok továbbra is toowork megfelelően, és ha nem, akkor további hibákat, és alkalmazni frissítése hello runbook előtt szükséges áttelepítése verzió tooproduction módosítása.  
+>  Az Automation-fiók nem automatikusan megkapja modulok új verzióit csak frissítette azokat manuálisan hello kiválasztásával [frissítés Azure modulok](automation-update-azure-modules.md) hello kapcsolót **modulok** panelen. 
 >  
 
-### <a name="to-create-a-new-schedule-in-the-azure-portal"></a>Új ütemezés létrehozása az Azure-portálon
-1. Az Azure portálon, az automation-fiók, kattintson a **eszközök** csempére kattintva nyissa meg a **eszközök** panelen.
-2. Kattintson a **ütemezések** csempére kattintva nyissa meg a **ütemezések** panelen.
-3. Kattintson a **ütemezés hozzáadása** a panel tetején.
-4. Az a **új ütemezés** panelen adjon meg egy **neve** és opcionálisan egy **leírás** az új ütemezés.
-5. Válassza ki, hogy az ütemezés futtatásához egy alkalommal vagy feladatról ütemezés kiválasztásával **egyszer** vagy **ismétlődési**.  Választásakor **egyszer** adjon meg egy **kezdési időpont** majd **létrehozása**.  Ha **ismétlődési**, adja meg egy **kezdési időpont** és a gyakoriság, milyen gyakran szeretné a runbook ismételje meg a-az **óra**, **nap**, **hét**, vagy **hónap**.  Ha **hét** vagy **hónap** a legördülő listából a **ismétlődési beállítást** fog megjelenni a panelen és kiválasztáskor, a **ismétlődési beállítást** panel számára jelenik meg, és kiválaszthatja a hét napja, ha a kiválasztott **hét**.  Ha a kiválasztott **hónap**, szerint is választhat **létrehozását** vagy a naptáron a hónap adott napjaira és végezetül szeretné futtatni a hónap utolsó napján, vagy nem, és kattintson a **OK**.   
+### <a name="toocreate-a-new-schedule-in-hello-azure-portal"></a>toocreate egy új ütemezést a hello Azure-portálon
+1. Kattintson az automation-fiók, az Azure-portálon hello hello **eszközök** csempe tooopen hello **eszközök** panelen.
+2. Kattintson a hello **ütemezések** csempe tooopen hello **ütemezések** panelen.
+3. Kattintson a **ütemezés hozzáadása** hello panel hello tetején.
+4. A hello **új ütemezés** panelen adjon meg egy **neve** és opcionálisan egy **leírás** hello új ütemezés.
+5. Válassza ki az e hello ütemezése egyszer, vagy feladatról ütemezés kiválasztásával **egyszer** vagy **ismétlődési**.  Választásakor **egyszer** adjon meg egy **kezdési időpont** majd **létrehozása**.  Választásakor **ismétlődési**, adjon meg egy **kezdési időpont** és milyen gyakran hello runbook toorepeat - érdemes, az hello gyakoriságát **óra**, **nap**, **hét**, illetve ha **hónap**.  Ha **hét** vagy **hónap** hello legördülő listából hello **ismétlődési beállítást** fog megjelenni hello panelen és kiválasztáskor, hello **ismétlődési a beállítás** panel számára jelenik meg, és hello hét napja, választhat, ha a kiválasztott **hét**.  Ha a kiválasztott **hónap**, szerint is választhat **létrehozását** vagy hello hónap adott napjaira hello naptár, és végül szeretné, hogy toorun azt a hello hónap utolsó napján hello, vagy nem, és kattintson a **OK** .   
 
-### <a name="to-create-a-new-schedule-in-the-azure-classic-portal"></a>Új ütemezés létrehozása a klasszikus Azure portálon
-1. A klasszikus Azure portálon válassza ki az Automation, és válassza az Automation-fiók nevét.
-2. Válassza ki a **eszközök** fülre.
-3. Az ablak alján kattintson **beállítás hozzáadása**.
+### <a name="toocreate-a-new-schedule-in-hello-azure-classic-portal"></a>egy új ütemezést, a klasszikus Azure portálon hello toocreate
+1. A hello a klasszikus Azure portálon válassza ki az Automation, és válassza a hello Automation-fiók nevét.
+2. Jelölje be hello **eszközök** fülre.
+3. Hello ablak hello alul kattintson **beállítás hozzáadása**.
 4. Kattintson a **ütemezés hozzáadása**.
-5. Adjon meg egy **neve** és opcionálisan egy **leírás** az új schedule.your az ütemezés futtatásához **egyszer**, **óránkénti**, **napi**, **heti**, vagy **havi**.
-6. Adjon meg egy **kezdete** és egyéb beállítások kiválasztott ütemezéstípustól függően.
+5. Adjon meg egy **neve** és opcionálisan egy **leírás** hello új schedule.your az ütemezés futtatásához **egyszer**, **óránkénti**, **Napi**, **heti**, vagy **havi**.
+6. Adjon meg egy **kezdete** és egyéb beállítások hello típusú kiválasztott ütemezéstípustól függően.
 
-### <a name="to-create-a-new-schedule-with-windows-powershell"></a>Új ütemezés létrehozása a Windows PowerShell használatával
-Használhatja a [New-AzureAutomationSchedule](/powershell/module/azure/new-azureautomationschedule?view=azuresmps-3.7.0) parancsmag új ütemezés létrehozása az Azure Automationben klasszikus runbookok vagy [New-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/new-azurermautomationschedule) parancsmaggal a runbookok az Azure portálon. Meg kell adnia az ütemezés és a gyakoriság fusson kezdési idejét.
+### <a name="toocreate-a-new-schedule-with-windows-powershell"></a>a Windows PowerShell használatával új ütemezés toocreate
+Használhatja a hello [New-AzureAutomationSchedule](/powershell/module/azure/new-azureautomationschedule?view=azuresmps-3.7.0) parancsmag toocreate egy új ütemezést, az Azure Automationben klasszikus runbookok vagy [New-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/new-azurermautomationschedule) parancsmaggal runbookokat hello Azure a portál. Meg kell adnia hello kezdési idejét hello ütemezése és hello gyakorisága fusson.
 
-Az alábbi Példaparancsok szemléltetik a 15. és az Azure Resource Manager parancsmagjával havonta 30 ütemezés létrehozása.
+hello következő minta parancsok megjelenítése hogyan toocreate hello ütemezésének 15 és az Azure Resource Manager parancsmagjával havonta 30.
 
     $automationAccountName = "MyAutomationAccount"
     $scheduleName = "Sample-MonthlyDaysOfMonthSchedule"
@@ -84,34 +84,34 @@ Az alábbi Példaparancsok szemléltetik a 15. és az Azure Resource Manager par
     $scheduleName -StartTime "7/01/2016 15:30:00" -MonthInterval 1 `
     -DaysOfMonth Fifteenth,Thirtieth -ResourceGroupName "ResourceGroup01"
 
-Az alábbi Példaparancsok szemléltetik hozzon létre egy új ütemezést, amely a minden nap 3:30 PM 2015. január 20 kezdődően az Azure szolgáltatásfelügyelet parancsmagjával.
+a következő Példaparancsok hello megjelenítése hogyan toocreate egy új ütemezést, amely fut minden nap du. 3:30 2015. január 20 kezdődően az Azure szolgáltatásfelügyelet parancsmagjával.
 
     $automationAccountName = "MyAutomationAccount"
     $scheduleName = "Sample-DailySchedule"
     New-AzureAutomationSchedule –AutomationAccountName $automationAccountName –Name `
     $scheduleName –StartTime "1/20/2016 15:30:00" –DayInterval 1
 
-## <a name="linking-a-schedule-to-a-runbook"></a>Ütemezés összekapcsolása runbookkal
-Egy runbook több ütemezéssel is lehet társítani, és egy ütemezés szerint lehet kapcsolni több runbook. Ha a runbook paraméterekkel rendelkezik, majd is értékeket ad meg a számukra. Adjon meg értéket minden kötelező paraméterhez, és előfordulhat, hogy adjon meg értékeket a választható paramétereket.  Ezeket az értékeket fogja használni minden alkalommal, amikor a runbook az ütemezés szerint elindult.  Ugyanaz a runbook egy másik ütemezés csatolja, és adjon meg másik paraméterértékeket.
+## <a name="linking-a-schedule-tooa-runbook"></a>Egy ütemezés tooa runbook csatolása
+Egy runbook csatolt toomultiple ütemezéseket, és ütemezés rendelkezhet több hozzá kapcsolt forgatókönyvből tooit. Ha a runbook paraméterekkel rendelkezik, majd is értékeket ad meg a számukra. Adjon meg értéket minden kötelező paraméterhez, és előfordulhat, hogy adjon meg értékeket a választható paramétereket.  Ezeket az értékeket minden alkalommal, amikor az ütemezés szerint elindult hello runbook fogja használni.  Csatolhat hello ugyanazon runbook tooanother ütemezést, és adja meg a különböző paraméterértékeket.
 
-### <a name="to-link-a-schedule-to-a-runbook-with-the-azure-portal"></a>Az ütemezés összekapcsolása runbookkal a az Azure-portálon
-1. Az Azure portálon, az automation-fiók, kattintson a **Runbookok** csempére kattintva nyissa meg a **Runbookok** panelen.
-2. Kattintson az ütemezni kívánt runbook nevére.
-3. Ha a runbook jelenleg nem kapcsolódik egy ütemezést, majd nyílik létrehozhat egy új ütemezést, vagy meglévő ütemezés mutató hivatkozást.  
-4. Ha a runbook paraméterekkel rendelkezik, válassza a beállítás **(alapértelmezett: Azure) futtatási beállítások módosítása** és a **paraméterek** panel oszlik, ahol megadhatja a ennek megfelelően.  
+### <a name="toolink-a-schedule-tooa-runbook-with-hello-azure-portal"></a>toolink ütemezés tooa runbookkal hello Azure-portálon
+1. Kattintson az automation-fiók, az Azure-portálon hello hello **Runbookok** csempe tooopen hello **Runbookok** panelen.
+2. Kattintson a hello runbook tooschedule hello nevét.
+3. Ha hello runbook nem jelenleg csatolt tooa ütemezést, majd hoz adott hello beállítás toocreate kell egy új ütemezést vagy meglévő ütemezés tooan hivatkozásra.  
+4. Ha hello runbook paraméterekkel rendelkezik, kiválaszthatja a hello beállítást **(alapértelmezett: Azure) futtatási beállítások módosítása** és hello **paraméterek** panel oszlik be hello információ ennek megfelelően.  
 
-### <a name="to-link-a-schedule-to-a-runbook-with-the-azure-classic-portal"></a>Az ütemezés összekapcsolása runbookkal a klasszikus Azure portálon
-1. A klasszikus Azure portálon, válassza ki a **Automation** és kattintson az Automation-fiók nevét.
-2. Válassza ki a **Runbookok** fülre.
-3. Kattintson az ütemezni kívánt runbook nevére.
-4. Kattintson a **ütemezés** fülre.
-5. Ha a runbook jelenleg nem kapcsolódik egy ütemezéshez, akkor nyílik lehetőség **hivatkozásra egy új ütemezést** vagy **meglévő ütemezés mutató hivatkozás**.  Ha a runbook jelenleg hozzá van kapcsolva egy ütemezést, kattintson a **hivatkozás** ezek a beállítások eléréséhez az ablak alján.
-6. Ha a runbook paraméterekkel rendelkezik, a rendszer kéri, ezek értékeinek megadására.  
+### <a name="toolink-a-schedule-tooa-runbook-with-hello-azure-classic-portal"></a>a klasszikus Azure portálon hello ütemezés tooa runbookokhoz toolink
+1. Hello a klasszikus Azure portálon, válassza ki **Automation** majd hello Automation-fiók nevét.
+2. Jelölje be hello **Runbookok** fülre.
+3. Kattintson a hello runbook tooschedule hello nevét.
+4. Kattintson a hello **ütemezés** fülre.
+5. Ha hello runbook nem jelenleg csatolt tooa ütemezést, akkor az aktiválási hello beállítás túl**tooa új ütemezés hivatkozás** vagy **tooan meglévő ütemezés hivatkozás**.  Ha hello a runbook jelenleg csatolt tooa ütemezést, kattintson a **hivatkozás** : hello alsó részén hello ablak tooaccess ezeket a beállításokat.
+6. Ha hello runbook paraméterekkel rendelkezik, felkéri ezek értékeinek megadására.  
 
-### <a name="to-link-a-schedule-to-a-runbook-with-windows-powershell"></a>Ütemezés összekapcsolása runbookkal a Windows PowerShell
-Használhatja a [Register-AzureAutomationScheduledRunbook](http://msdn.microsoft.com/library/azure/dn690265.aspx) összekapcsolhat egy ütemezést egy klasszikus runbookhoz vagy [Register-AzureRmAutomationScheduledRunbook](/powershell/module/azurerm.automation/register-azurermautomationscheduledrunbook) parancsmaggal a runbookok az Azure portálon.  A paraméterek paraméterrel megadhatja a gyermekrunbook paramétereinek értékeit. Lásd: [Runbook elindítása az Azure Automationben](automation-starting-a-runbook.md) a paraméterértékek meghatározásáról a további információt.
+### <a name="toolink-a-schedule-tooa-runbook-with-windows-powershell"></a>a Windows PowerShell-lel ütemezés tooa runbook toolink
+Használhatja a hello [Register-AzureAutomationScheduledRunbook](http://msdn.microsoft.com/library/azure/dn690265.aspx) toolink ütemezés tooa klasszikus runbook vagy [Register-AzureRmAutomationScheduledRunbook](/powershell/module/azurerm.automation/register-azurermautomationscheduledrunbook) parancsmaggal runbookokat hello Azure-portálon a.  Hello paraméterek paraméterrel megadhatja hello gyermekrunbook paramétereinek értékeit. Lásd: [Runbook elindítása az Azure Automationben](automation-starting-a-runbook.md) a paraméterértékek meghatározásáról a további információt.
 
-A következő mintaparancsok bemutatják, hogyan kapcsolhat össze egy ütemezést egy runbookhoz, az Azure Resource Manager parancsmaggal paraméterekkel.
+hello következő minta parancsok megjelenítése hogyan toolink az Azure Resource Manager parancsmaggal paraméterekkel ütemezés tooa runbook.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Test-Runbook"
@@ -120,7 +120,7 @@ A következő mintaparancsok bemutatják, hogyan kapcsolhat össze egy ütemezé
     Register-AzureRmAutomationScheduledRunbook –AutomationAccountName $automationAccountName `
     –Name $runbookName –ScheduleName $scheduleName –Parameters $params `
     -ResourceGroupName "ResourceGroup01"
-A következő mintaparancsok bemutatják, miként kapcsolhat össze egy ütemezést egy Azure szolgáltatásfelügyeleti parancsmaggal paraméterekkel.
+hello következő minta parancsok megjelenítése hogyan toolink egy Azure szolgáltatásfelügyeleti parancsmaggal paraméterekkel ütemezés szerint.
 
     $automationAccountName = "MyAutomationAccount"
     $runbookName = "Test-Runbook"
@@ -130,33 +130,33 @@ A következő mintaparancsok bemutatják, miként kapcsolhat össze egy ütemez�
     –Name $runbookName –ScheduleName $scheduleName –Parameters $params
 
 ## <a name="disabling-a-schedule"></a>Ütemezés letiltása
-Ha letilt egy ütemezést, minden hozzá kapcsolt forgatókönyvre nem fog működni, hogy ütemezés szerint. Manuálisan ütemezésének letiltása, vagy az ütemezések gyakorisággal lejárati idő beállítása a létrehozott. A lejárati idő elérésekor a ütemezés letiltásra kerül.
+Ha letilt egy ütemezést, minden hozzá kapcsolt forgatókönyvből tooit nem fog működni, hogy ütemezés szerint. Manuálisan ütemezésének letiltása, vagy az ütemezések gyakorisággal lejárati idő beállítása a létrehozott. Hello lejárati idő elérésekor hello ütemezés letiltásra kerül.
 
-### <a name="to-disable-a-schedule-from-the-azure-portal"></a>Azure-portálról ütemezésének letiltása
-1. Az Azure portálon, az automation-fiók, kattintson a **eszközök** csempére kattintva nyissa meg a **eszközök** panelen.
-2. Kattintson a **ütemezések** csempére kattintva nyissa meg a **ütemezések** panelen.
-3. Kattintson a Részletek panel megnyitásához ütemezés nevét.
-4. Változás **engedélyezett** való **nem**.
+### <a name="toodisable-a-schedule-from-hello-azure-portal"></a>toodisable egy ütemezéshez hello Azure-portálon
+1. Kattintson az automation-fiók, az Azure-portálon hello hello **eszközök** csempe tooopen hello **eszközök** panelen.
+2. Kattintson a hello **ütemezések** csempe tooopen hello **ütemezések** panelen.
+3. Kattintson egy ütemezés tooopen hello részleteit megjelenítő panelen hello nevére.
+4. Változás **engedélyezve** túl**nem**.
 
-### <a name="to-disable-a-schedule-from-the-azure-classic-portal"></a>A klasszikus Azure portálon ütemezésének letiltása
-Az ütemezés részleteit megjelenítő oldalon az ütemezés a klasszikus Azure portálon ütemezés letilthatja.
+### <a name="toodisable-a-schedule-from-hello-azure-classic-portal"></a>egy ütemezés, a klasszikus Azure portálon hello toodisable
+Letilthatja a klasszikus Azure portálon hello ütemezés részleteit megjelenítő oldalon hello ütemezés hello ütemezés szerint.
 
-1. A klasszikus Azure portálon válassza ki az Automation, és kattintson az Automation-fiók nevét.
-2. Válassza az eszközök lapot.
-3. Kattintson a nevére, nyissa meg annak információs lapját a kívánt ütemezést.
-4. Változás **engedélyezett** való **nem**.
+1. A hello a klasszikus Azure portálon válassza ki az Automation, és kattintson a hello Automation-fiók nevét.
+2. Hello eszközök lapon válassza ki.
+3. Kattintson egy ütemezés tooopen hello nevét annak információs lapját.
+4. Változás **engedélyezve** túl**nem**.
 
-### <a name="to-disable-a-schedule-with-windows-powershell"></a>A Windows PowerShell-lel ütemezésének letiltása
-Használhatja a [Set-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690270.aspx) parancsmag klasszikus runbook meglévő ütemezés tulajdonságainak módosításához vagy [Set-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/set-azurermautomationschedule) parancsmaggal a runbookok az Azure portálon. Az ütemezés letiltásához adja meg a **hamis** a a **IsEnabled** paraméter.
+### <a name="toodisable-a-schedule-with-windows-powershell"></a>a Windows PowerShell-lel ütemezés toodisable
+Használhatja a hello [Set-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690270.aspx) parancsmag toochange hello klasszikus runbook meglévő ütemezés tulajdonságainak vagy [Set-AzureRmAutomationSchedule](/powershell/module/azurerm.automation/set-azurermautomationschedule) parancsmaggal runbookokat hello Azure a portál. toodisable hello ütemezése, adja meg **hamis** a hello **IsEnabled** paraméter.
 
-Az alábbi Példaparancsok szemléltetik egy runbook az Azure Resource Manager parancsmagjával ütemezésének letiltása.
+hello következő minta parancsok megjelenítése hogyan toodisable annak ütemezését, hogy egy runbook az Azure Resource Manager parancsmagjával.
 
     $automationAccountName = "MyAutomationAccount"
     $scheduleName = "Sample-MonthlyDaysOfMonthSchedule"
     Set-AzureRmAutomationSchedule –AutomationAccountName $automationAccountName `
     –Name $scheduleName –IsEnabled $false -ResourceGroupName "ResourceGroup01"
 
-Az alábbi Példaparancsok szemléltetik az Azure szolgáltatásfelügyelet parancsmaggal ütemezésének letiltása.
+a következő Példaparancsok hello bemutatják, hogyan egy ütemezés használatával toodisable hello Azure szolgáltatásfelügyelet parancsmag.
 
     $automationAccountName = "MyAutomationAccount"
     $scheduleName = "Sample-DailySchedule"
@@ -164,5 +164,5 @@ Az alábbi Példaparancsok szemléltetik az Azure szolgáltatásfelügyelet para
     –Name $scheduleName –IsEnabled $false
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerkedés az Azure Automation runbookjai, lásd: [Runbook elindítása az Azure Automationben](automation-starting-a-runbook.md) 
+* Lásd az Azure Automation runbookjai használatába tooget [Runbook elindítása az Azure Automationben](automation-starting-a-runbook.md) 
 

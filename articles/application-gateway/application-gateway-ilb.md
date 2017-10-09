@@ -1,6 +1,6 @@
 ---
-title: "Az Azure alkalmazás átjáró használata belső elosztott terhelésű |} Microsoft Docs"
-description: "Ezen a lapon egy Azure-alkalmazás átjáró konfigurálása egy belső elosztott terhelésű végpont utasításokat tartalmazza."
+title: "Azure Application Gateway belső terheléselosztóval aaaUsing |} Microsoft Docs"
+description: "Ezen a lapon nyújt útmutatást tooconfigure egy Azure Application Gateway egy belső elosztott terhelésű végponthoz"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: d6f3af61934c8c645be1f2c6b4c056fc7ee2e3aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 272ef84a02f92a8521c35aad6f1d9f9bf1675718
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-with-an-internal-load-balancer-ilb"></a>Alkalmazásátjáró létrehozása belső Load Balancerrel (ILB)
 
@@ -26,25 +26,25 @@ ms.lasthandoff: 07/11/2017
 > * [Klasszikus Azure PowerShell](application-gateway-ilb.md)
 > * [Azure Resource Manager PowerShell](application-gateway-ilb-arm.md)
 
-Alkalmazásátjáró Internet felé néző virtuális IP-cím vagy egy belső végpont nem kommunikál az internettel, más néven belső Load Balancer (ILB) végpont is kell konfigurálni. Az átjáró konfigurálása egy ILB akkor hasznos, a belső üzleti alkalmazások nem kommunikál az internettel. Is célszerű a szolgáltatások vagy rétegek, egy többrétegű alkalmazást, amely a nem kommunikál az internettel biztonsági határ helyezkedik el, de továbbra is szükséges a ciklikus multiplexelés terheléselosztási, a munkamenet tölcsérútvonalak vagy az SSL-lezárást belül. Ez a cikk részletesen ismerteti egy Application Gateway ILB-hez történő konfigurálásának lépéseit.
+Alkalmazásátjáró Internet felé néző virtuális IP-cím vagy egy belső végpont nem lesz közzétéve toohello kell konfigurálni az internet, más néven belső Load Balancer (ILB) végpont. Belső üzleti alkalmazások közötti kapcsolat nincs felfedve toointernet hello átjáró konfigurálása egy ILB. Is célszerű a szolgáltatások vagy rétegek, egy többrétegű alkalmazást, amely az egy biztonsági határ nem lesz közzétéve toointernet helyezkedik el, de továbbra is szükséges a ciklikus multiplexelés terheléselosztási, a munkamenet tölcsérútvonalak vagy az SSL-lezárást belül. Ez a cikk bemutatja, hogyan hello lépéseket tooconfigure egy ILB az Alkalmazásátjáró.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-1. Telepítse az Azure PowerShell-parancsmagok a Webplatform-telepítővel történő legújabb verzióját. Töltse le, és telepítse a legújabb verziót a **Windows PowerShell** szakasza a [letöltési oldala](https://azure.microsoft.com/downloads/).
+1. Hello Azure PowerShell-parancsmaggal hello Webplatform-telepítő legújabb verziójának telepítéséhez. Töltse le, és telepítse hello legújabb verziót a hello **Windows PowerShell** hello szakasza [letöltési oldala](https://azure.microsoft.com/downloads/).
 2. Győződjön meg arról, hogy rendelkezik-e egy működő virtuális alhálózattal rendelkező hálózatot érvényes.
-3. Ellenőrizze, a virtuális hálózaton, vagy egy nyilvános IP-cím/VIP hozzárendelve a háttérkiszolgálók rendelkezik.
+3. Ellenőrizze, rendelkezik háttérkiszolgálók hello virtuális hálózatban, vagy egy nyilvános IP-cím/VIP hozzárendelve.
 
-Alkalmazásátjáró létrehozásához a megadott sorrendben hajtsa végre az alábbi lépéseket. 
+toocreate Alkalmazásátjáró, hajtsa végre a következő lépéseket a hello sorrendben hello. 
 
 1. [Alkalmazásátjáró létrehozása](#create-a-new-application-gateway)
-2. [Az átjáró konfigurálása](#configure-the-gateway)
-3. [Állítsa be az átjáró konfigurálása](#set-the-gateway-configuration)
-4. [Az átjáró elindítása](#start-the-gateway)
-5. [Az átjáró ellenőrzése](#verify-the-gateway-status)
+2. [Hello átjáró konfigurálása](#configure-the-gateway)
+3. [Hello átjáró konfigurációjának beállítása](#set-the-gateway-configuration)
+4. [Indítsa el a hello átjáró](#start-the-gateway)
+5. [Hello átjáró ellenőrzése](#verify-the-gateway-status)
 
 ## <a name="create-an-application-gateway"></a>Alkalmazásátjáró létrehozása:
 
-**Az átjáró létrehozása**, használja a `New-AzureApplicationGateway` parancsmag, az értékeket a saját cserélje le. Ne feledje, hogy az átjáró használati díjának felszámolása nem indul el ezen a ponton. A használati díj felszámolása egy későbbi lépésnél kezdődik, amikor az átjáró sikeresen elindul.
+**toocreate hello átjáró**, használja a hello `New-AzureApplicationGateway` hello értékeket cserélje le a saját, a parancsmag. Vegye figyelembe, hogy számlázással hello átjáró nem indul el ezen a ponton. Számlázási egy későbbi lépésben, akkor kezdődik, amikor hello átjáró sikeresen elindult.
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -58,9 +58,9 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
 ```
 
-**Érvényesítéséhez** , hogy az átjáró lett létrehozva, használja a `Get-AzureApplicationGateway` parancsmag. 
+**toovalidate** , hogy hello átjáró lett létrehozva, használhatja a hello `Get-AzureApplicationGateway` parancsmag. 
 
-A minta *leírás*, *InstanceCount*, és *GatewaySize* opcionális paraméterek. Az *InstanceCount* alapértelmezett értéke 2, a maximális értéke pedig 10. A *GatewaySize* alapértelmezett értéke Közepes. Kis és nagy más elérhető értékek. *VIP* és *DnsName* jelennek meg az üres, mert az átjáró még nem kezdődött meg. Ezek kitöltése akkor történik, amikor az átjáró futó állapotba kerül. 
+Hello mintában *leírás*, *InstanceCount*, és *GatewaySize* opcionális paraméterek. az alapértelmezett érték hello *InstanceCount* 2, maximális értéke 10. az alapértelmezett érték hello *GatewaySize* közepes. Kis és nagy más elérhető értékek. *VIP* és *DnsName* jelennek meg az üres mert hello átjáró még nem kezdődött meg. Miután hello átjáró fut. hello jön létre. 
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -81,25 +81,25 @@ VirtualIPs:
 DnsName:
 ```
 
-## <a name="configure-the-gateway"></a>Az átjáró konfigurálása
-Egy alkalmazás átjáró konfigurálása több érték áll. Az értékek is kötődik együtt a konfiguráció létrehozásához.
+## <a name="configure-hello-gateway"></a>Hello átjáró konfigurálása
+Egy alkalmazás átjáró konfigurálása több érték áll. hello értékeket is kötődik együtt tooconstruct hello konfigurációs.
 
-Az értékek a következők:
+hello értékek a következők:
 
-* **Kiszolgáló háttérkészlet:** e a háttérkiszolgálók IP-címek listáját. A felsorolt IP-címek vagy a virtuális hálózat alhálózathoz kell tartoznia, vagy egy nyilvános IP-cím/VIP kell lennie. 
-* **Háttérkiszolgáló-készlet beállításai:** Minden készlet rendelkezik olyan beállításokkal, mint a port, a protokoll vagy a cookie-alapú affinitás. Ezek a beállítások egy adott készlethez kapcsolódnak, és a készlet minden kiszolgálójára érvényesek.
-* **Az elülső rétegbeli portot:** Ez a port nem a nyilvános portot nyit meg az Alkalmazásátjáró. Amikor a forgalom eléri ezt a portot, a port átirányítja az egyik háttérkiszolgálóra.
-* **Figyelő:** a figyelő rendelkezik egy elülső rétegbeli portot, a protokollt (Http vagy Https, amelyek kis-és nagybetűket), és az SSL-tanúsítvány neve (ha az SSL beállításának-kiszervezés). 
-* **Szabály:** a szabály a figyelő és a kiszolgáló háttérkészlet van kötve, és határozza meg, melyik kiszolgáló háttérkészlet a forgalom legyenek irányítva, ha a találatok száma a egy adott figyelő. Jelenleg csak a *basic* szabály támogatott. A *basic* szabály a ciklikus időszeleteléses terheléselosztás.
+* **Kiszolgáló háttérkészlet:** IP-címek, a háttérkiszolgálók hello hello listáját. hello IP-címek felsorolt vagy kell tartoznia, mint toohello VNet subnet, vagy egy nyilvános IP-cím/VIP kell lennie. 
+* **Háttérkiszolgáló-készlet beállításai:** Minden készlet rendelkezik olyan beállításokkal, mint a port, a protokoll vagy a cookie-alapú affinitás. Ezek a beállítások esetén tooa kapcsolt verem és a hello készlet alkalmazott tooall-kiszolgálók.
+* **Az elülső rétegbeli portot:** Ez a port nem hello nyilvános portot nyit meg hello Alkalmazásátjáró. Forgalom találatok ezt a portot, és ezután lekérdezi a hello háttérkiszolgálók átirányított tooone.
+* **Figyelő:** hello figyelő rendelkezik egy elülső rétegbeli portot, a protokollt (Http vagy Https, amelyek kis-és nagybetűket), és hello SSL tanúsítvány neve (ha az SSL beállításának-kiszervezés). 
+* **Szabály:** hello szabály hello figyelő és a kiszolgáló háttérkészlet hello van kötve, és azt határozza meg, melyik háttér címkészletet hello forgalom irányított toowhen találatok száma a egy adott figyelő. Jelenleg csak hello *alapvető* szabály használata támogatott. Hello *alapvető* szabály-e időszeletelés terheléselosztási.
 
-A konfigurációs hogyan hozhat létre, vagy hozzon létre egy konfigurációs objektumot, vagy egy konfigurációs XML-fájl használatával. A konfiguráció létrehozásához egy konfigurációs XML-fájl használatával, használja az alábbi minta.
+A konfigurációs hogyan hozhat létre, vagy hozzon létre egy konfigurációs objektumot, vagy egy konfigurációs XML-fájl használatával. tooconstruct egy konfigurációs XML-fájl, használjon hello segítségével a konfigurációs minta alatt.
 
-Vegye figyelembe a következőket:
+Vegye figyelembe a következőket hello:
 
-* A *frontendipconfiguration osztálya lehet* elem Alkalmazásátjáró konfigurálható egy ILB vonatkozó ILB részleteit ismerteti. 
-* Az előtér-IP- *típus* "Private" értékre kell állítani
-* A *StaticIPAddress* kell beállítani a kívánt belső IP-, amelyen az átjáró fogadja a forgalmat. Vegye figyelembe, hogy a *StaticIPAddress* elem nem kötelező megadni. Ha nincs olyan elérhető belső IP-címet a telepített alhálózatból be van állítva, van kiválasztva. 
-* Értékét a *neve* elemben megadott *FrontendIPConfiguration* a HTTPListener használandó *FrontendIP* tekintse meg a FrontendIPConfiguration elemet.
+* Hello *frontendipconfiguration osztálya lehet* elem hello ILB részletek vonatkozó Alkalmazásátjáró konfigurálható egy ILB írja le. 
+* hello előtér-IP- *típus* too'Private állítható be "
+* Hello *StaticIPAddress* kell beállítani kívánt toohello belső IP-mely hello az átjáró fogadja a forgalmat. Vegye figyelembe, hogy hello *StaticIPAddress* elem nem kötelező megadni. Ha nincs olyan elérhető belső IP-címet a telepített hello alhálózatból be van állítva, van kiválasztva. 
+* hello értékének hello *neve* elemben megadott *FrontendIPConfiguration* hello HTTPListener használandó *FrontendIP* elem toorefer toohello FrontendIPConfiguration.
   
   **Konfigurációs XML-minta**
 ```xml
@@ -156,8 +156,8 @@ Vegye figyelembe a következőket:
 ```
 
 
-## <a name="set-the-gateway-configuration"></a>Állítsa be az átjáró konfigurálása
-A következő lesznek állítva az Alkalmazásátjáró. Használhatja a `Set-AzureApplicationGatewayConfig` parancsmag egy konfigurációs objektumot, vagy egy konfigurációs XML-fájlt. 
+## <a name="set-hello-gateway-configuration"></a>Hello átjáró konfigurációjának beállítása
+A következő beállításokat a hello Alkalmazásátjáró. Használhatja a hello `Set-AzureApplicationGatewayConfig` parancsmag egy konfigurációs objektumot, vagy egy konfigurációs XML-fájlt. 
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
@@ -171,12 +171,12 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   9b995a09-66fe-2944-8b67-9bb04fcccb9d
 ```
 
-## <a name="start-the-gateway"></a>Az átjáró indítása
+## <a name="start-hello-gateway"></a>Indítsa el a hello átjáró
 
-Az átjáró konfigurálása után indítsa el az átjárót a `Start-AzureApplicationGateway` parancsmaggal. Az Application Gateway használati díjának felszámolása az átjáró sikeres indítása után kezdődik. 
+Ha hello átjáró van konfigurálva, a hello `Start-AzureApplicationGateway` parancsmag toostart hello átjáró. Alkalmazásátjáró számlázás megkezdése után hello átjáró sikeresen elindult. 
 
 > [!NOTE]
-> A `Start-AzureApplicationGateway` parancsmag előfordulhat, hogy akár 15-20 percig tarthat. 
+> Hello `Start-AzureApplicationGateway` parancsmag is igénybe vehet fel toocomplete too15-20 perc. 
 > 
 > 
 
@@ -192,12 +192,12 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   fc592db8-4c58-2c8e-9a1d-1c97880f0b9b
 ```
 
-## <a name="verify-the-gateway-status"></a>Az átjáró állapotának ellenőrzése
+## <a name="verify-hello-gateway-status"></a>Hello az átjáró állapotának megerősítése
 
-Használja a `Get-AzureApplicationGateway` parancsmag az átjáró állapotának ellenőrzéséhez. Ha `Start-AzureApplicationGateway` sikeres volt az előző lépésben, az állapot kell *futtató*, és a Vip és DnsName érvényes bejegyzést kell rendelkeznie. Ez a példa bemutatja a parancsmag az első sorba a kimeneti követ. Ez a példa az átjáró fut, és készen áll a forgalom igénybe vehet. 
+Használjon hello `Get-AzureApplicationGateway` parancsmag toocheck hello átjáró állapotának. Ha `Start-AzureApplicationGateway` hello állapotban kell lennie sikeres hello előző lépésben, *futtató*, és a hello Vip DnsName kell állnia, és érvényes bejegyzések. Ez a példa bemutatja hello parancsmag hello első sor hello kimeneti követi. Ez a példa hello átjáró fut, és készen áll a tootake forgalom. 
 
 > [!NOTE]
-> Az Alkalmazásátjáró konfigurálva van a konfigurált ILB végpont 10.0.0.10 ebben a példában a forgalom fogadására.
+> hello Alkalmazásátjáró van konfigurálva tooaccept-forgalom zárása a hello 10.0.0.10 ILB végpontja konfigurált ebben a példában.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest 

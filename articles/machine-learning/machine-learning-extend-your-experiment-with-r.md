@@ -1,6 +1,6 @@
 ---
-title: "Kiterjeszti a az R nyelv használatával |} Microsoft Docs"
-description: "How Azure Machine Learning Studio funkcióit az R nyelv használatával kiterjesztése az R-parancsfájl végrehajtása modul használatával."
+title: "aaaExtend a az R nyelv használatával |} Microsoft Docs"
+description: "Hogyan tooextend hello R-parancsfájl végrehajtása modul használatával hello Azure Machine Learning Studio funkcióit hello R nyelv használatával."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: fe207ef917980be8b554ad9c08176d108b19fb71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 396489f26f367a744922af65e04f056c7afa1399
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="extend-your-experiment-with-r"></a>A kísérletek bővítése R-rel
-Azure Machine Learning Studio funkcióit keresztül az R nyelv használatával kiterjesztheti a [R-parancsfájl végrehajtása] [ execute-r-script] modul.
+Hello R nyelv használatával hello Azure Machine Learning Studio funkcióit hello segítségével kiterjesztheti [R-parancsfájl végrehajtása] [ execute-r-script] modul.
 
-Ez a modul több bemeneti adatkészletek fogad, és egyetlen dataset kimenetként eredményez. Az R-parancsfájl beírhatja a **R-parancsfájl** paramétere a [R-parancsfájl végrehajtása] [ execute-r-script] modul.
+Ez a modul több bemeneti adatkészletek fogad, és egyetlen dataset kimenetként eredményez. R-parancsfájl írja be a hello **R-parancsfájl** hello paramétere [R-parancsfájl végrehajtása] [ execute-r-script] modul.
 
-Minden modul bemeneti portját a következőhöz hasonló kód használatával éri el:
+Minden egyes hello modul bemeneti porthoz kód hasonló toohello alábbi használatával éri el:
 
     dataset1 <- maml.mapInputPort(1)
 
 ## <a name="listing-all-currently-installed-packages"></a>Az összes jelenleg telepített csomagok listázása
-Módosíthatja a telepített csomagok listáját. A jelenleg telepített csomagok listáját található [R csomagok támogatott Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt741980.aspx).
+módosíthatja a hello telepített csomagok listáját. A jelenleg telepített csomagok listáját található [R csomagok támogatott Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt741980.aspx).
 
-Is kaphat a teljes, a jelenlegi telepített csomagok listáját az alábbi kódot írja be a [R-parancsfájl végrehajtása] [ execute-r-script] modul:
+Is kaphat a hello befejeződött, a jelenlegi telepített csomagok listáját írja be a következő kódot a hello hello [R-parancsfájl végrehajtása] [ execute-r-script] modul:
 
     out <- data.frame(installed.packages(,,,fields="Description"))
     maml.mapOutputPort("out")
 
-Ez a csomagok listájában küld kimeneti portját a [R-parancsfájl végrehajtása] [ execute-r-script] modul.
-Tekintse meg a csomag listáját, csatlakoztassa a átalakítás modult például [CSV átalakítása] [ convert-to-csv] a bal oldali kimeneti a [R-parancsfájl végrehajtása] [ execute-r-script] modul, Futtassa a kísérletet, majd kattintson a konverziós modul kimenete, és válassza ki **letöltése**. 
+Ez küldi hello csomagok toohello kimeneti portjára hello listája [R-parancsfájl végrehajtása] [ execute-r-script] modul.
+tooview hello csomag listában, például csatlakoztassa a átalakítás modult [tooCSV átalakítása] [ convert-to-csv] hello kimenete balra toohello [R-parancsfájl végrehajtása] [ execute-r-script]modul hello kísérlet futtatásához kattintson hello kimeneti hello konverziós modul, és válassza a **letöltése**. 
 
-![Töltse le a "CSV való átalakítása" modul kimenete](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
+![Töltse le a "TooCSV átalakítani" modul kimenete](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
 
 
 <!--
-For convenience, here is the [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
+For convenience, here is hello [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
 -->
 
 ## <a name="importing-packages"></a>Csomagok importálása
-Csomagok, amelyek még nincsenek telepítve a következő parancsok segítségével importálhatja a [R-parancsfájl végrehajtása] [ execute-r-script] modul:
+Csomagok, amelyek még nincsenek telepítve a következő parancsokat a hello hello segítségével importálhatja [R-parancsfájl végrehajtása] [ execute-r-script] modul:
 
     install.packages("src/my_favorite_package.zip", lib = ".", repos = NULL, verbose = TRUE)
     success <- library("my_favorite_package", lib.loc = ".", logical.return = TRUE, verbose = TRUE)
 
-Ha a `my_favorite_package.zip` fájl tartalmazza a csomag.
+Ha hello `my_favorite_package.zip` fájl tartalmazza a csomag.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

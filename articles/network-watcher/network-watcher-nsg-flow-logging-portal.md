@@ -1,6 +1,6 @@
 ---
-title: "Hálózati biztonsági csoport folyamata naplók Azure hálózati figyelőt kezelése |} Microsoft Docs"
-description: "Ez a lap ismerteti, hogyan Azure hálózati figyelőt hálózati biztonsági csoport folyamata kezelése"
+title: "aaaManage hálózati biztonsági csoport folyamata naplók Azure hálózati figyelőt |} Microsoft Docs"
+description: "Ezen a lapon azt ismerteti, hogyan naplózza az toomanage hálózati biztonsági csoport folyamata az Azure hálózati figyelőt"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 41cb5ffab9bd3a3bed75ffdb6a7383ca1690f810
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb250337ab9d1a0c0d0d3569c00bc221dd102a3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-group-flow-logs-in-the-azure-portal"></a>Hálózati biztonsági csoport folyamata naplók az Azure portálon kezelése
+# <a name="manage-network-security-group-flow-logs-in-hello-azure-portal"></a>Hálózati biztonsági csoport folyamata naplók az Azure-portálon hello kezelése
 
 > [!div class="op_single_selector"]
 > - [Azure Portal](network-watcher-nsg-flow-logging-portal.md)
@@ -29,76 +29,76 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
 
-Hálózati biztonsági csoport folyamata feldolgozásra egyik funkciója, amely lehetővé teszi, hogy tekintse meg a hálózati biztonsági csoporton keresztül bemenő és kimenő IP-forgalom hálózati figyelőt. A folyamat naplók JSON formátumban vannak megírva, és a fontos információkat, beleértve: 
+Hálózati biztonsági csoport folyamata feldolgozásra egyik funkciója, amely lehetővé teszi az IP-bemenő és kimenő forgalmat a hálózati biztonsági csoporton keresztül tooview információt hálózati figyelőt. A folyamat naplók JSON formátumban vannak megírva, és a fontos információkat, beleértve: 
 
 - Kimenő és bejövő forgalom szabály alapon.
-- A hálózati adapterre alkalmazza a folyamatot.
-- a folyamat (forrás vagy a cél IP, forrás vagy a cél port, protocol) 5 rekordos információt.
+- Hálózati adapterre folyamata hello hello vonatkozik.
+- hello folyamata (forrás vagy a cél IP, forrás vagy a cél port, protocol) 5 rekordos információt.
 - Információ arról, hogy forgalom engedélyezett vagy megtagadott.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt példányt](network-watcher-create.md). A forgatókönyv emellett feltételezi, hogy egy rendelkezik egy erőforráscsoportot, egy érvényes virtuális géppel.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt példányt](network-watcher-create.md). hello is feltételezzük, hogy egy meg van-e egy érvényes virtuális géppel erőforráscsoport.
 
 ## <a name="register-insights-provider"></a>Elemzések szolgáltató regisztrálása
 
-A folyamat sikeres, működéséhez naplózás a **Microsoft.Insights** szolgáltató regisztrálva kell lennie. Regisztrálja a szolgáltatót, hogy a következő lépéseket: 
+A folyamat sikeres legyen, hello az naplózási toowork **Microsoft.Insights** szolgáltató regisztrálva kell lennie. tooregister hello szolgáltató, a következő lépéseket hajtsa végre a megfelelő hello: 
 
-1. Ugrás a **előfizetések**, majd válassza ki az előfizetést, amelyekhez folyamata naplók engedélyezése. 
-2. Az a **előfizetés** panelen válassza **erőforrás-szolgáltató**. 
-3. Nézze meg a szolgáltatók listáját, és ellenőrizze, hogy a **microsoft.insights** szolgáltató regisztrálva van. Ha nem, akkor válasszon **regisztrálása**.
+1. Nyissa meg túl**előfizetések**, majd válassza ki a kívánt tooenable folyamata naplók hello előfizetés. 
+2. A hello **előfizetés** panelen válassza **erőforrás-szolgáltató**. 
+3. Nézze meg hello szolgáltatók listáját, és győződjön meg arról, hogy hello **microsoft.insights** szolgáltató regisztrálva van. Ha nem, akkor válasszon **regisztrálása**.
 
 ![Nézet szolgáltatók][providers]
 
 ## <a name="enable-flow-logs"></a>Attribútumfolyam naplók engedélyezése
 
-Ezeket a lépéseket tenni a folyamatot, amely a hálózati biztonsági csoport folyamata naplók engedélyezése.
+Ezen lépések hello folyamatot, amely a hálózati biztonsági csoport folyamata naplók engedélyezése.
 
 ### <a name="step-1"></a>1. lépés
 
-Nyissa meg a hálózati figyelőt példányhoz, és válassza ki **NSG Flow naplózza**.
+Nyissa meg tooa hálózati figyelőt példányt, és válassza ki **NSG Flow naplózza**.
 
 ![Attribútumfolyam naplók – áttekintés][1]
 
 ### <a name="step-2"></a>2. lépés
 
-Válassza ki a hálózati biztonsági csoportot a listából.
+Válassza ki a hálózati biztonsági csoport hello listából.
 
 ![Attribútumfolyam naplók – áttekintés][2]
 
 ### <a name="step-3"></a>3. lépés 
 
-A a **adatfolyam-naplói beállításainak** panelen állítsa a állapotát **a**, és majd a tárfiók konfigurálása.  Amikor elkészült, válassza ki a **OK**. Válassza ki **mentése**.
+A hello **adatfolyam-naplói beállításainak** panelen hello állapot beállítása túl**a**, majd konfigurálja a storage-fiók.  Amikor elkészült, válassza ki a **OK**. Válassza ki **mentése**.
 
 ![Attribútumfolyam naplók – áttekintés][3]
 
 ## <a name="download-flow-logs"></a>Attribútumfolyam naplók letöltése
 
-Attribútumfolyam naplók a storage-fiók mentése. Töltse le a folyamat naplók megtekintheti őket.
+Attribútumfolyam naplók a storage-fiók mentése. A folyamat naplók tooview letölteni azokat.
 
 ### <a name="step-1"></a>1. lépés
 
-Folyamat naplók letöltéséhez kiválasztása **folyamata naplók letölthető konfigurált tárfiókok**. Ebben a lépésben megnyitná a tárolási fiók nézetet adja meg a mely naplók letöltéséhez.
+toodownload folyamat naplókat, válassza ki **folyamata naplók letölthető konfigurált tárfiókok**. Ez a lépés viszi tooa tárolási fiók nézetet adja meg a mely naplók toodownload.
 
 ![Adatfolyam-naplói beállításainak][4]
 
 ### <a name="step-2"></a>2. lépés
 
-Nyissa meg a megfelelő tárolási fiók. Válassza ki **tárolók** > **insights-napló-networksecuritygroupflowevent**.
+Nyissa meg a megfelelő tárfiók toohello. Válassza ki **tárolók** > **insights-napló-networksecuritygroupflowevent**.
 
 ![Adatfolyam-naplói beállításainak][5]
 
 ### <a name="step-3"></a>3. lépés
 
-Nyissa meg a folyamat napló helye, válassza ki, majd válassza ki **letöltése**.
+Nyissa meg hello folyamata napló helye toohello, válassza ki azt, és válassza ki **letöltése**.
 
 ![Adatfolyam-naplói beállításainak][6]
 
-A napló szerkezete kapcsolatos információkért látogasson el a [hálózati biztonsági csoport folyamata napló áttekintése](network-watcher-nsg-flow-logging-overview.md).
+Hello struktúra hello napló kapcsolatos információkért látogasson el a [hálózati biztonsági csoport folyamata napló áttekintése](network-watcher-nsg-flow-logging-overview.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan [jelenítheti meg az NSG folyamata naplók a powerbi-jal](network-watcher-visualize-nsg-flow-logs-power-bi.md).
+Ismerje meg, hogyan túl[jelenítheti meg az NSG folyamata naplók a powerbi-jal](network-watcher-visualize-nsg-flow-logs-power-bi.md).
 
 <!-- Image references -->
 [1]: ./media/network-watcher-nsg-flow-logging-portal/figure1.png

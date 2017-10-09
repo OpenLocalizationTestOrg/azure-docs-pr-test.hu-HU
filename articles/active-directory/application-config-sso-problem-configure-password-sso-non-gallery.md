@@ -1,6 +1,6 @@
 ---
-title: "A probléma jelszó egyszeri bejelentkezés nem galéria alkalmazások konfigurálása |} Microsoft Docs"
-description: "A gyakori problémák személyek arcfelismerési áttekinteni jelszó egyszeri bejelentkezéshez, amelyek nem szerepelnek az Azure AD Application Gallery egyéni nem galéria-alkalmazások konfigurálása"
+title: "jelszó egyszeri bejelentkezés nem galéria alkalmazások konfigurálása aaaProblem |} Microsoft Docs"
+description: "Hello gyakori problémák személyek arcfelismerési áttekinteni az Azure AD Application Gallery hello jelszó egyszeri bejelentkezést az egyéni, amelyek nem szerepelnek a listán nem galéria-alkalmazások konfigurálása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 9c76b6f3495e2dd759a156fcef97b57aece8d632
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3aee0a4c525bb3da338da2da0882ec572cf0e5e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="problem-configuring-password-single-sign-on-for-a-non-gallery-application"></a>A probléma jelszó egyszeri bejelentkezés nem galéria alkalmazások konfigurálása
 
-Ez a cikk segítenek megérteni a gyakori problémák személyek arcfelismerési konfigurálásakor **jelszó egyszeri bejelentkezés** nem galéria alkalmazással.
+Ez a cikk segítséget toounderstand hello gyakori problémák személyek arcfelismerési konfigurálásakor **jelszó egyszeri bejelentkezés** nem galéria alkalmazással.
 
-## <a name="how-to-capture-sign-in-fields-for-an-application"></a>Az alkalmazás bejelentkezési mezők rögzítése
+## <a name="how-toocapture-sign-in-fields-for-an-application"></a>Hogyan toocapture bejelentkezés egy alkalmazás mezők
 
 Bejelentkezési mező rögzítési csak a támogatott bejelentkezési lap HTML-kompatibilis, és **nem támogatott a nem szabványos bejelentkezési lapok**, például a Flash, vagy egyéb nem HTML-kompatibilis technológiákat használó.
 
@@ -33,228 +33,228 @@ Az egyéni alkalmazások rögzítheti a bejelentkezési mező két módja van:
 
 -   Manuális bejelentkezési mező rögzítése
 
-**Automatikus bejelentkezés mező rögzítési** jól működik a legtöbb HTML-kompatibilis bejelentkezési lapok, ha azok **jól ismert DIV azonosítóit a felhasználónevet és jelszót adjon meg** mező. A működés módja a HTML-KÓDBAN a lapon található a feltételeknek megfelelő DIV azonosítók lekaparást és azt a jelszavakat, később is visszajátszásos, majd mentse a, hogy az alkalmazás metaadatai.
+**Automatikus bejelentkezés mező rögzítési** jól működik a legtöbb HTML-kompatibilis bejelentkezési lapok, ha azok **hello felhasználónevet és jelszót adjon meg a jól ismert DIV azonosítók** mező. hello a működés módja lekaparást hello HTML a hello lap toofind feltételeknek megfelelő DIV azonosítók és azt később visszajátszásos jelszavak tooit, majd mentse a, hogy az alkalmazás metaadatai.
 
-**Manuális bejelentkezési mező rögzítési** abban az esetben is használható, amely az alkalmazás **szállító nem címke** a bejelentkezéshez használt beviteli mezők. Manuális bejelentkezési mező rögzítési is használható abban az esetben, ha a **szállító Renderelés több mező** lehet, amely automatikusan észleli. Az Azure AD tárolhatja az adatokat, a bejelentkezési oldal, a lehető legtöbb mezők mindaddig, amíg Ön mondja el, ha ezen mezők szerepelnek a lap.
+**Manuális bejelentkezési mező rögzítési** alkalmazás hello hello esetekben használható **szállító nem címke** hello bemeneti bejelentkezéshez használt mezőkkel. Manuális bejelentkezési mező rögzítési is használható hello esetben, amikor hello **szállító Renderelés több mező** lehet, amely automatikusan észleli. Az Azure AD is tárolja az adatokat a sok mezőből áll, amelyek hello a Bejelentkezés lapon mindaddig, amíg Ön mondja el, ahol ezek a mezők vannak hello oldalon.
 
-Általában **automatikus bejelentkezési mező rögzítése nem működik, ha mindig javasoljuk, hogy a manuális beállítás közben.**
+Általában **automatikus bejelentkezési mező rögzítése nem működik, ha mindig javasoljuk, hogy közben hello manuális beállítás.**
 
-### <a name="how-to-automatically-capture-sign-in-fields-for-an-application"></a>Az alkalmazás bejelentkezési mezők automatikusan rögzítése
+### <a name="how-tooautomatically-capture-sign-in-fields-for-an-application"></a>Hogyan tooautomatically rögzítése az alkalmazás bejelentkezési mezők
 
-Konfigurálása **jelszó-alapú egyszeri bejelentkezést** egy alkalmazást, amely a **automatikus bejelentkezési mező rögzítési**, kövesse az alábbi lépéseket:
+tooconfigure **jelszó-alapú egyszeri bejelentkezést** egy alkalmazást, amely a **automatikus bejelentkezési mező rögzítési**, kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-  * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+  * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki az egyszeri bejelentkezés konfigurálni kívánt alkalmazást.
+6.  Válassza ki a kívánt tooconfigure egyszeri bejelentkezés hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson a **egyszeri bejelentkezés** az alkalmazás bal oldali navigációs menüjében.
+7.  Ha hello alkalmazás betölt, kattintson a hello **egyszeri bejelentkezés** hello alkalmazás bal oldali navigációs menüjében.
 
-8.  Válassza ki a módot **jelszóalapú bejelentkezés.**
+8.  Jelölje be hello mód **jelszóalapú bejelentkezés.**
 
-9.  Adja meg a **bejelentkezési URL-cím**. Ez az URL-CÍMÉT ahol adja meg a felhasználók a felhasználónevével és jelszavával bejelentkezni. **Biztosítsa, hogy a bejelentkezési mező látható, akkor adja meg a megadott URL-címen**.
+9.  Adja meg a hello **bejelentkezési URL-cím**. Ez a hello URL-cím, ahol felhasználók adja meg a felhasználónevet és jelszót toosign a számára. **Biztosítsa, hogy hello bejelentkezési mezőben látható megadta hello URL-címen**.
 
-10. Kattintson a **Mentés** gombra.
+10. Kattintson a hello **mentése** gombra.
 
-11. Ha így tesz, azt fogja automatikusan scrape a felhasználónévhez URL-címet, és jelszó beviteli mező, és biztonságos átvitelére a jelszavakat, hogy a hozzáférési panel bővítmény használó alkalmazások az Azure AD használatára.
+11. Teheti meg, amely azt fogja automatikusan scrape URL-címet a felhasználónév és jelszó beviteli mező, és lehetővé teszik toouse az Azure AD toosecurely továbbítja a jelszavakat toothat alkalmazás hello hozzáférési panel bővítmény használatával.
 
-## <a name="how-to-manually-capture-sign-in-fields-for-an-application"></a>Manuálisan rögzítése az alkalmazás bejelentkezési mezők
+## <a name="how-toomanually-capture-sign-in-fields-for-an-application"></a>Hogyan toomanually rögzítése az alkalmazás bejelentkezési mezők
 
-Bejelentkezési mezőket manuálisan rögzítéséhez kell a hozzáférési Panel bővítmény telepítve és **nem fut az InPrivate-, incognito vagy privát módban.** A bővítmény telepítéséhez kövesse a [a hozzáférési Panel bővítmény telepítése](#i-cannot-manually-detect-sign-in-fields-for-my-application) szakasz.
+mezők toomanually rögzítési bejelentkezés kell hello hozzáférési Panel bővítmény telepítve és **nem fut az InPrivate-, incognito vagy privát módban.** tooinstall hello böngészőbővítmény, hajtsa végre hello lépéseit hello [hogyan tooinstall hello hozzáférési Panel bővítmény](#i-cannot-manually-detect-sign-in-fields-for-my-application) szakasz.
 
-Konfigurálása **jelszó-alapú egyszeri bejelentkezést** egy alkalmazást, amely a **manuális bejelentkezési mező rögzítési**, kövesse az alábbi lépéseket:
+tooconfigure **jelszó-alapú egyszeri bejelentkezést** egy alkalmazást, amely a **manuális bejelentkezési mező rögzítési**, kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-   * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+   * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki az egyszeri bejelentkezés konfigurálni kívánt alkalmazást.
+6.  Válassza ki a kívánt tooconfigure egyszeri bejelentkezés hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson a **egyszeri bejelentkezés** az alkalmazás bal oldali navigációs menüjében.
+7.  Ha hello alkalmazás betölt, kattintson a hello **egyszeri bejelentkezés** hello alkalmazás bal oldali navigációs menüjében.
 
-8.  Válassza ki a módot **jelszóalapú bejelentkezés.**
+8.  Jelölje be hello mód **jelszóalapú bejelentkezés.**
 
-9.  Adja meg a **bejelentkezési URL-cím**. Ez az URL-CÍMÉT ahol adja meg a felhasználók a felhasználónevével és jelszavával bejelentkezni. **Biztosítsa, hogy a bejelentkezési mező látható, akkor adja meg a megadott URL-címen**.
+9.  Adja meg a hello **bejelentkezési URL-cím**. Ez a hello URL-cím, ahol felhasználók adja meg a felhasználónevet és jelszót toosign a számára. **Biztosítsa, hogy hello bejelentkezési mezőben látható megadta hello URL-címen**.
 
-10. Kattintson a **Mentés** gombra.
+10. Kattintson a hello **mentése** gombra.
 
-11. Ha így tesz, azt fogja automatikusan scrape a felhasználónévhez URL-címet, és jelszó beviteli mező, és biztonságos átvitelére a jelszavakat, hogy a hozzáférési panel bővítmény használó alkalmazások az Azure AD használatára. Abban az esetben, ez nem sikerül, akkor **állítsa át a bejelentkezési módot manuális bejelentkezési mező rögzíti** által folytatni szeretné a 12. lépés.
+11. Teheti meg, amely azt fogja automatikusan scrape URL-címet a felhasználónév és jelszó beviteli mező, és lehetővé teszik toouse az Azure AD toosecurely továbbítja a jelszavakat toothat alkalmazás hello hozzáférési panel bővítmény használatával. Hello esetében, hogy ez nem sikerül, akkor **hello bejelentkezési mód toouse manuális bejelentkezési mező rögzítési módosítása** folytatással toostep 12.
 
 12. Kattintson a **konfigurálása &lt;appname&gt; jelszó egyszeri bejelentkezési beállítások**.
 
-13. Válassza ki a **manuálisan észleli a bejelentkezési mező** konfigurációs beállítást.
+13. Jelölje be hello **manuálisan észleli a bejelentkezési mező** konfigurációs beállítást.
 
 14. Kattintson az **OK** gombra.
 
 15. Kattintson a **Save** (Mentés) gombra.
 
-16. Kövesse a képernyőn a hozzáférési Panel használatára.
+16. Hello kövesse a képernyőn utasításokat toouse hello hozzáférési Panel.
 
 ## <a name="i-see-a-we-couldnt-find-any-sign-in-fields-at-that-url-error"></a>A "Minden bejelentkezés mezőt, hogy az URL-címen nem található" hiba
 
-Ezt a hibaüzenetet látja, ha a bejelentkezési mezők automatikus észlelése nem sikerült. A probléma megoldásához próbálja meg manuális bejelentkezési mező észlelési lépéseit követve a [manuálisan rögzítése az alkalmazás bejelentkezési mezők](#how-to-manually-capture-sign-in-fields-for-an-application) szakasz.
+Ezt a hibaüzenetet látja, ha a bejelentkezési mezők automatikus észlelése nem sikerült. a problémát, próbálja meg manuális bejelentkezési mező észlelését, a következő hello szükséges lépések hello tooresolve [hogyan toomanually rögzítése az alkalmazás bejelentkezési mezők](#how-to-manually-capture-sign-in-fields-for-an-application) szakasz.
 
-## <a name="i-see-an-unable-to-save-single-sign-on-configuration-error"></a>"Egyszeri bejelentkezést a konfiguráció mentéséhez, nem" látható hiba
+## <a name="i-see-an-unable-toosave-single-sign-on-configuration-error"></a>"Nem toosave-konfiguráció egyszeri bejelentkezést." hibaüzenet
 
-Ritka esetekben az egyszeri bejelentkezés beállításainak frissítése sikertelen lehet. Hárítsa el a próbálja az egyszeri bejelentkezés konfigurációjának mentése újra.
+Ritka esetekben hello egyszeri bejelentkezés konfigurációjának frissítése sikertelen lehet. a hello egyszeri bejelentkezés konfigurációjának mentése újra próbálja tooresolve.
 
-Ha ez továbbra is egységesen sikertelen, nyissa meg a támogatási esetet, és adja meg az összegyűjtött adatokat a [a portál értesítései részleteinek megtekintése](#i-cannot-manually-detect-sign-in-fields-for-my-application) és [segítség kérése értesítési részletek küld egy támogatási szakértőhöz](#how-to-get-help-by-sending-notification-details-to-a-support-engineer) szakaszok.
+Ha ez továbbra is toofail következetesen, nyissa meg a támogatási esetet, és adja meg a hello összegyűjtött hello információt [hogyan toosee hello adatait a portál értesítései](#i-cannot-manually-detect-sign-in-fields-for-my-application) és [hogyan segíthet az tooget részletek tooa értesítés küldése támogatja a visszafejtés](#how-to-get-help-by-sending-notification-details-to-a-support-engineer) szakaszok.
 
 ## <a name="i-cannot-manually-detect-sign-in-fields-for-my-application"></a>I nem manuálisan észlel bejelentkezési mezőket az alkalmazáshoz
 
-Láthatja, ha manuális észlelése nem működik az viselkedésmódok közé:
+Előfordulhat, ha manuális észlelése nem működik látható hello viselkedésmódok közé:
 
--   A manuális rögzítési folyamat működéséhez jelent meg, de a rögzített mezők nem volt megfelelő
+-   hello manuális rögzítési folyamat toowork jelent meg, de nem volt megfelelő rögzített hello mezők
 
--   A jobb oldali mezők nem beolvasni a kijelölt a rögzítési folyamat végrehajtása során
+-   hello jobb mezők nem beolvasni a kijelölt hello rögzítési folyamat végrehajtása során
 
--   A rögzítési folyamat veszi át me az alkalmazás bejelentkezési oldalt, a várt, de semmi nem történik
+-   hello rögzítési folyamat veszi át me toohello alkalmazás bejelentkezési lap elvárásoknak megfelelően, de semmi nem történik
 
--   Kézi rögzítési úgy tűnik, hogy működik, de az SSO nem fordulhat elő, ha a hozzáférési panelen igényelheti az alkalmazás a felhasználók keresse meg.
+-   Kézi rögzítési toowork megjelenik, de SSO nem kerül sor, amikor a felhasználók megnyitják a hozzáférési Panel hello toohello alkalmazás.
 
-Ellenőrizze az alábbiakat, ha ezeket a problémákat tapasztal:
+Ha ezeket a problémákat tapasztal, ellenőrizze a hello következőket:
 
--   Győződjön meg arról, hogy rendelkezik-e a hozzáférési panel bővítmény legújabb verziója **telepítve** és **engedélyezett** a lépések a [a hozzáférési Panel bővítmény telepítése](#how-to-install-the-access-panel-browser-extension) szakasz.
+-   Győződjön meg arról, hogy rendelkezik-e hello hozzáférési panel bővítmény legújabb verziója hello **telepített** és **engedélyezett** hello hello utasításait követve [hogyan tooinstall hello hozzáférési Panel böngésző bővítmény](#how-to-install-the-access-panel-browser-extension) szakasz.
 
--   Győződjön meg arról, hogy nem kívánt a rögzítési folyamat közben a böngésző a **incognito, inPrivate vagy privát mód**. A hozzáférési panel bővítmény e mód nem támogatott.
+-   Győződjön meg arról, hogy nem kívánt hello rögzítési folyamat közben a böngésző a **incognito, inPrivate vagy privát mód**. hello hozzáférési panel bővítmény e mód nem támogatott.
 
--   Győződjön meg arról, hogy a felhasználók nem próbál bejelentkezni az alkalmazás a hozzáférési panelen igényelheti közben a **incognito, inPrivate vagy privát mód**. A hozzáférési panel bővítmény e mód nem támogatott.
+-   Győződjön meg arról, hogy a felhasználók nem próbálja hello hozzáférési panelén közben toohello alkalmazásban toosign **incognito, inPrivate vagy privát mód**. hello hozzáférési panel bővítmény e mód nem támogatott.
 
--   Próbálja meg a manuális rögzítési folyamat ismét, annak biztosítása, a vörös jelölőket keresztül a megfelelő mezőket.
+-   Próbálja meg újból hello manuális rögzítését, piros hello jelölők teljesülnek keresztül hello megfelelő mezőket.
 
--   Ha a kézi rögzítési folyamat úgy tűnik, hogy leállását, vagy a bejelentkezési oldal nem semmit (a fenti 3. eset), ismételje meg a manuális rögzítési folyamat. De ezúttal a folyamat befejezése után nyomja le az **F12** gombra kattintva nyissa meg a böngésző fejlesztői konzolján. Egyszer, nyissa meg a **konzol** és írja be **window.location= "&lt;a az alkalmazás konfigurálásakor megadott URL-címet adja meg a bejelentkezési&gt;"** , és nyomja le az **Enter**. A kényszerített egy lap átirányítási, amely a rögzítési folyamat befejezéséhez, és tárolja a mezőket, amelyeknek már rögzített.
+-   Ha hello manuális rögzítési folyamat toohang úgy tűnik, vagy hello bejelentkezési oldal nem semmit (3. eset fent), próbálja hello manuális rögzítési folyamat újra. De hello folyamat, nyomja meg az hello befejezése után most **F12** tooopen gombra a böngésző fejlesztői konzolján. Egyszer, nyissa meg a hello **konzol** és típus **window.location= "&lt;hello bejelentkezési hello app konfigurálásakor megadott URL-címet adjon meg&gt;"** , és nyomja le az  **Adja meg**. A kényszerített egy lap átirányítási hello rögzítési folyamat befejezéséhez és hello mezők rögzített kell tárolni.
 
-Ha ezek egyike sem működik, meg, segítünk. Nyisson meg egy támogatási esetet mi próbált, valamint begyűjtött információ részleteit a [a portál értesítései részleteinek megtekintése](#i-cannot-manually-detect-sign-in-fields-for-my-application) és [segítség kérése értesítési részletek küld egy támogatási szakértőhöz](#how-to-get-help-by-sending-notification-details-to-a-support-engineer) részek (ha van ilyen).
+Ha ezek egyike sem működik, meg, segítünk. Nyisson meg egy támogatási esetet mi próbált, valamint hello összegyűjtött hello információt hello részleteit [hogyan toosee hello adatait a portál értesítései](#i-cannot-manually-detect-sign-in-fields-for-my-application) és [hogyan segíthet az tooget értesítési adatokat küldjenek tooa támogatása a visszafejtés](#how-to-get-help-by-sending-notification-details-to-a-support-engineer) részek (ha van ilyen).
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>A hozzáférési Panel bővítmény telepítése
+## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Hogyan tooinstall hello hozzáférési Panel bővítmény
 
-A hozzáférési Panel bővítmény telepítéséhez kövesse az alábbi lépéseket:
+tooinstall hello hozzáférési Panel bővítmény, kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [hozzáférési Panel](https://myapps.microsoft.com) valamelyik támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
+1.  Nyissa meg hello [hozzáférési Panel](https://myapps.microsoft.com) valamelyik hello támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
 
-2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési panelen.
+2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési Panel hello.
 
-3.  Válassza ki a szoftver telepítéséhez megkérdezi **telepítés**.
+3.  Hello Rákérdezés azzal a kérdéssel tooinstall hello szoftver, válassza ki **telepítés**.
 
-4.  A böngésző alapján kell irányítani a letöltési hivatkozás. **Adja hozzá** az bővítményt, hogy a böngészőben.
+4.  A böngésző alapján kell irányított toohello letöltési hivatkozását. **Adja hozzá** hello bővítmény tooyour böngésző.
 
-5.  Ha a böngésző, válassza ki vagy **engedélyezése** vagy **engedélyezése** a bővítményt.
+5.  Ha a böngésző kéri, válassza ki a tooeither **engedélyezése** vagy **engedélyezése** hello bővítmény.
 
 6.  Korábban telepítve, **indítsa újra a** a böngésző-munkamenetet.
 
-7.  Jelentkezzen be a hozzáférési panelre, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz.
+7.  Jelentkezzen be a hozzáférési Panel hello, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz.
 
-Az alábbi közvetlen hivatkozások közül a Chrome és Firefox is letöltheti a bővítmény:
+Az alábbi hello közvetlen hivatkozások Chrome és Firefox is letöltheti hello bővítmény:
 
 -   [Chrome hozzáférési Panel bővítmény](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [A Firefox hozzáférési Panel bővítmény](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="how-to-see-the-details-of-a-portal-notification"></a>A portál értesítései részleteinek megtekintése
+## <a name="how-toosee-hello-details-of-a-portal-notification"></a>Hogyan toosee hello adatait a portál értesítései
 
-A portál értesítései részleteit láthatja az alábbi lépéseket követve:
+A portál értesítései hello részleteit láthatja hello alábbi lépéseket követve:
 
-1.  Kattintson a **értesítések** (a harang) ikonra a képernyő jobb felső sarkában az Azure portálon
+1.  Kattintson a hello **értesítések** hello hello Azure portál jobb felső sarkában (hello harang) ikonra
 
-2.  Válassza ki az értesítésekhez egy **hiba** állapota (amelyek a piros (!) mellett).
+2.  Válassza ki az értesítésekhez egy **hiba** (piros (!) következő toothem rendelkezők) állapotát.
 
   >! Vegye figyelembe], nem kattintson az értesítések egy **sikeres** vagy **folyamatban lévő** állapotát.
   >
   >
 
-3.  A Megnyitás a **értesítési részletek** panelen.
+3.  A nyitott hello **értesítési részletek** panelen.
 
-4.  Ez a témakör a problémával kapcsolatos további részletekért megértéséhez.
+4.  Ezt az információt használja saját kezűleg toounderstand több hello probléma vonatkozó részletek.
 
-5.  Ha további segítségre van, a ezek az információk megosztása a támogatási szakember vagy a csoport segítség a probléma megoldásában.
+5.  Ha további segítségre van, is megoszthatja ezeket az információkat a támogatási szakértőhöz vagy hello csoport tooget Terméksúgó a probléma megoldásában.
 
-6.  Kattintson a **másolási** **ikon** jobb oldalán a **hiba másolása** szövegmező megosztani a támogatási szolgálathoz vagy a termék csoport mérnöke értesítés részleteinek másolása.
+6.  Hello kattintson **másolási** **ikon** sarkában hello toohello **másolja át a hiba** szövegmező toocopy összes hello értesítési részletek tooshare és a támogatási szolgálathoz vagy a termék csoport mérnöke.
 
-## <a name="how-to-get-help-by-sending-notification-details-to-a-support-engineer"></a>Segítség kérése értesítési részletek küld egy támogatási szakértőhöz
+## <a name="how-tooget-help-by-sending-notification-details-tooa-support-engineer"></a>Hogyan segíthet az tooget értesítési részletek tooa támogatási szakértőhöz küldése
 
-Nagyon fontos, hogy megosztott **alább felsorolt összes részletes** , ha segítségre van szüksége, így gyorsan segít a támogatási szakértőhöz. Ehhez az egyszerű **elkészíti a képernyőfelvételt** vagy kattintson a **másolási hibaikon**, míg a talált jobb oldalán a **hiba másolása** szövegmező.
+Nagyon fontos, hogy megosztott **összes alább felsorolt részletek hello** , ha segítségre van szüksége, így gyorsan segít a támogatási szakértőhöz. Ehhez egyszerűen az **elkészíti a képernyőfelvételt** vagy hello kattintva **másolási hibaikon**, hello toohello jobbra található **hiba másolása** szövegmező.
 
 ## <a name="notification-details-explained"></a>Értesítési részletek alapján
 
-Az alábbiakban azt ismerteti, több milyen az értesítés azt jelenti, hogy elemeket, és azok példákat.
+az alábbi hello több milyen egyes hello értesítési elemek jelent, és azok által biztosított példák ismerteti.
 
 ### <a name="essential-notification-items"></a>Alapvető értesítési elemek
 
--   **Cím** – az értesítés informatív címet
+-   **Cím** – hello informatív címet hello értesítés
 
     -   Példa – **Application proxy beállításai**
 
--   **Leírás** – Mi történt a művelet leírása
+-   **Leírás** – hello Mi történt hello művelet leírása
 
     -   Példa – **megadott belső URL-cím már használatban van egy másik alkalmazás.**
 
--   **Értesítés azonosítója** – az értesítés egyedi azonosítója
+-   **Értesítés azonosítója** – hello értesítési hello egyedi azonosítója
 
     -   Példa – **clientNotification-2adbfc06-2073-4678-a69f-7eb78d96b068**
 
--   **Ügyfélkérelem-azonosító** – a böngésző által végrehajtott egyedi azonosítója
+-   **Ügyfélkérelem-azonosító** – a böngésző által végrehajtott hello adott kérelem azonosítója
 
     -   Példa – **302fd775-3329-4670-a9f3-bea37004f0bc**
 
--   **Stamp UTC-idő** – a timestamp, amely során az értesítés történt UTC szerint
+-   **Stamp UTC-idő** – hello időbélyeg időintervalluma hello értesítési történt UTC szerint
 
     -   Példa – **2017-03-23T19:50:43.7583681Z**
 
--   **Belső tranzakció azonosítója** – belső azonosítója a Microsoft segítségével, a rendszer keresse meg a hiba
+-   **Belső tranzakció azonosítója** – hello használhatjuk toolook hello hiba a rendszer belső azonosítója
 
     -   Példa – **71a2f329-ca29-402f-aa72-bc00a7aca603**
 
--   **Egyszerű felhasználónév** – a műveletet végző felhasználó
+-   **Egyszerű felhasználónév** – hello műveletet végre hello felhasználó
 
     -   – Példa**tperkins@f128.info**
 
--   **A bérlői azonosító** – az egyedi azonosító a bérlő által, hogy a művelet a felhasználó tagja volt.
+-   **A bérlői azonosító** – hello egyedi Azonosítóját hello olyan bérlő számára, felhasználói hello hello műveletet végrehajtó tagja volt.
 
     -   Példa – **7918d4b5-0442-4a97-be2d-36f9f9962ece**
 
--   **Felhasználói objektum azonosítója** – a művelet a felhasználó egyedi azonosítója
+-   **Felhasználói objektum azonosítója** – hello hello műveletet végre hello felhasználó egyedi azonosítója
 
     -   Példa – **17f84be4-51f8-483a-b533-383791227a99**
 
 ### <a name="detailed-notification-items"></a>Részletes értesítési elemek
 
--   **Megjelenítendő név** – **(üres is lehet)** a hiba részletes megjelenítendő neve
+-   **Megjelenítendő név** – **(üres is lehet)** hello hiba részletes megjelenítendő neve
 
     -   Példa * – **Application proxy beállításai**
 
--   **Állapot** – az értesítésre adott állapota
+-   **Állapot** – hello hello értesítési adott állapota
 
     -   Példa * – **nem sikerült**
 
--   **Objektumazonosító:** – **(üres is lehet)** az objektum azonosítója, amely alapján a művelet végrehajtása
+-   **Objektumazonosító:** – **(üres is lehet)** hello Objektumazonosító alapján mely hello művelet végrehajtása
 
     -   Példa – **8e08161d-f2fd-40ad-a34a-a9632d6bb599**
 
--   **Részletek** – a részletes Mi történt a művelet leírása
+-   **Részletek** – hello részletes Mi történt hello művelet leírása
 
     -   Példa – **belső URL-cím "http://bing.com/" érvénytelen, mert már használatban van**
 
--   **Másolja át a hiba** – kattintson a **másolás ikon** jobb oldalán a **hiba másolása** szövegmező megosztani a támogatási szolgálathoz vagy a termék csoport mérnöke értesítés részleteinek másolása
+-   **Másolja át a hiba** – hello kattintson **másolás ikon** sarkában hello toohello **hiba másolása** szövegmező toocopy összes hello értesítési részletek tooshare a támogatási szolgálathoz vagy a termék csoport visszafejtés
 
     -   – Példa```{"errorCode":"InternalUrl\_Duplicate","localizedErrorDetails":{"errorDetail":"Internal url 'http://google.com/' is invalid since it is already in use"},"operationResults":\[{"objectId":null,"displayName":null,"status":0,"details":"Internal url 'http://bing.com/' is invalid since it is already in use"}\],"timeStampUtc":"2017-03-23T19:50:26.465743Z","clientRequestId":"302fd775-3329-4670-a9f3-bea37004f0bb","internalTransactionId":"ea5b5475-03b9-4f08-8e95-bbb11289ab65","upn":"tperkins@f128.info","tenantId":"7918d4b5-0442-4a97-be2d-36f9f9962ece","userObjectId":"17f84be4-51f8-483a-b533-383791227a99"}```
 
 ## <a name="next-steps"></a>Következő lépések
-[Adja meg az egyszeri bejelentkezés az alkalmazásokba a Proxy](active-directory-application-proxy-sso-using-kcd.md)
+[Adja meg az egyszeri bejelentkezés tooyour alkalmazások alkalmazásproxyval](active-directory-application-proxy-sso-using-kcd.md)
 

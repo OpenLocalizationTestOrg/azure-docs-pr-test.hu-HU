@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Resource Manager sablonfüggvényei - telepítés |} Microsoft Docs"
-description: "A központi telepítési információk beolvasása az Azure Resource Manager-sablonok használatára funkcióit ismerteti."
+title: "aaaAzure Resource Manager sablonfüggvényei - telepítés |} Microsoft Docs"
+description: "Az Azure Resource Manager sablon tooretrieve telepítési információi hello funkciók toouse ismerteti."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: d7e6bcd669d40cb19de44b646505856ecd8f51a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 458c3f740504fdd6799ed24cc386219726737636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deployment-functions-for-azure-resource-manager-templates"></a>Központi telepítési funkciók az Azure Resource Manager sablonokhoz 
 
-Erőforrás-kezelő a következő funkciókat nyújt értékek lekérése a sablon és a központi telepítéshez kapcsolódó értékek szakaszait:
+A Resource Manager biztosít hello alábbi az értékek lekérése hello sablon szakaszok működik, és kapcsolódó toohello telepítési értékeket:
 
 * [központi telepítés](#deployment)
 * [Paraméterek](#parameters)
 * [változók](#variables)
 
-Értékek erőforrásokat, erőforráscsoport-sablonok vagy előfizetések megtekinteni [erőforrás funkciók](resource-group-template-functions-resource.md).
+tooget értékek erőforrásokat, erőforráscsoport-sablonok vagy előfizetések, lásd: [erőforrás funkciók](resource-group-template-functions-resource.md).
 
 <a id="deployment" />
 
 ## <a name="deployment"></a>üzembe helyezés
 `deployment()`
 
-Az aktuális központi telepítési művelet információt ad vissza.
+Hello aktuális telepítési művelet információt ad vissza.
 
 ### <a name="return-value"></a>Visszatérési érték
 
-Ez a funkció a telepítés során átadott objektum adja vissza. A tulajdonságokat a visszaadott objektumot az attól függően változnak, hogy a központi telepítési objektum közlekednek hivatkozásként vagy beágyazott objektumként. Ha a központi telepítési objektum átadása egysoros, többek között használata esetén a **- TemplateFile** az Azure PowerShell helyi fájlra mutat, a visszaadott objektumot paraméternek a következő formátumban:
+Ez a funkció a telepítés során átadott hello-objektumot ad vissza. hello objektumot adott vissza a hello tulajdonságok attól függően változnak, hogy hello központi telepítési objektum közlekednek hivatkozásként vagy beágyazott objektumként. Ha hello központi telepítési objektum átadása egysoros, többek között hello használatakor **- TemplateFile** paraméter az Azure PowerShell toopoint tooa helyi fájlban hello visszaadott objektumnak hello a következő formátumban:
 
 ```json
 {
@@ -61,7 +61,7 @@ Ez a funkció a telepítés során átadott objektum adja vissza. A tulajdonság
 }
 ```
 
-Ha az objektum átadása hivatkozásként, például a használatakor a **- TemplateUri** paraméterrel a távoli objektumra mutat az objektumot ad vissza a következő formátumban: 
+Ha hello objektum átadása hivatkozásként, például amikor használatával hello **- TemplateUri** paraméter toopoint tooa távoli objektum hello objektum eredmény abban az esetben a következő formátumban hello: 
 
 ```json
 {
@@ -87,7 +87,7 @@ Ha az objektum átadása hivatkozásként, például a használatakor a **- Temp
 
 ### <a name="remarks"></a>Megjegyzések
 
-Deployment() használatával kapcsolódik egy másik sablont, az URI a szülő-sablon alapján.
+Deployment() toolink tooanother sablon hello URI hello szülő sablon alapján is használhatja.
 
 ```json
 "variables": {  
@@ -97,7 +97,7 @@ Deployment() használatával kapcsolódik egy másik sablont, az URI a szülő-s
 
 ### <a name="example"></a>Példa
 
-A következő példa a központi telepítési objektum beállítása/beolvasása:
+hello alábbi példa hello központi telepítési objektum beállítása/beolvasása:
 
 ```json
 {
@@ -113,7 +113,7 @@ A következő példa a központi telepítési objektum beállítása/beolvasása
 }
 ```
 
-A fenti példa adja a következő objektumot:
+hello előző példa adja vissza a következő objektum hello:
 
 ```json
 {
@@ -139,24 +139,24 @@ A fenti példa adja a következő objektumot:
 
 <a id="parameters" />
 
-## <a name="parameters"></a>Paraméterek
+## <a name="parameters"></a>paraméterek
 `parameters(parameterName)`
 
-A paraméter értékét adja vissza. A megadott paraméternév definiálni kell a sablon a Paraméterek szakaszban.
+A paraméter értékét adja vissza. hello megadott paraméternév hello paraméterek szakaszban hello sablon definiálni kell.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| parameterName |Igen |Karakterlánc |Vissza a paraméter neve. |
+| parameterName |Igen |Karakterlánc |hello paraméter tooreturn hello neve. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A megadott paraméter értéke.
+hello hello értéket adott paraméter.
 
 ### <a name="remarks"></a>Megjegyzések
 
-Általában használja a paraméterek erőforrás értékeinek beállításához. A következő példa a telepítés során az átadott paraméter értéke a webhely nevének megadása.
+Általában akkor használják tooset erőforrás paraméterértéket. hello alábbi mintakód webhely toohello paraméter értéke üzembe helyezése során átadott hello nevét.
 
 ```json
 "parameters": { 
@@ -176,7 +176,7 @@ A megadott paraméter értéke.
 
 ### <a name="example"></a>Példa
 
-A következő példa bemutatja a paraméterek függvény egy egyszerűsített használata.
+hello következő példa bemutatja egy egyszerűsített hello paraméterek függvény használata.
 
 ```json
 {
@@ -231,14 +231,14 @@ A következő példa bemutatja a paraméterek függvény egy egyszerűsített ha
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | stringOutput | Karakterlánc | 1. lehetőséget |
 | intOutput | int | 1 |
 | objectOutput | Objektum | {"egy": "a", "2": "b"} |
-| arrayOutput | A tömb | [1, 2, 3] |
+| arrayOutput | Tömb | [1, 2, 3] |
 | crossOutput | Karakterlánc | 1. lehetőséget |
 
 <a id="variables" />
@@ -246,21 +246,21 @@ Az alapértelmezett értékeit az előző példából kimenete:
 ## <a name="variables"></a>változók
 `variables(variableName)`
 
-A változó értékét adja vissza. A változók szakaszban a sablon a megadott változónév definiálni kell.
+Beolvasása hello változó értékét. hello megadott változónév hello változók szakaszban hello sablon definiálni kell.
 
 ### <a name="parameters"></a>Paraméterek
 
 | Paraméter | Szükséges | Típus | Leírás |
 |:--- |:--- |:--- |:--- |
-| variableName |Igen |Karakterlánc |Vissza a változó neve. |
+| variableName |Igen |Karakterlánc |hello változó tooreturn hello neve. |
 
 ### <a name="return-value"></a>Visszatérési érték
 
-A megadott változó értékét.
+hello hello megadott változó értékét.
 
 ### <a name="remarks"></a>Megjegyzések
 
-Általában a változókkal egyszerűbbé teheti a sablont hozhat létre csak egyszer összetett értékeket. A következő példa egy egyedi nevet a tárfiók hoz létre.
+Általában akkor használják változók toosimplify a sablont hozhat létre csak egyszer összetett értékeket. hello alábbi példa hoz létre egy egyedi nevet a tárfiók.
 
 ```json
 "variables": {
@@ -284,7 +284,7 @@ A megadott változó értékét.
 
 ### <a name="example"></a>Példa
 
-A példa sablon más változók értékeinek adja vissza.
+hello példa sablon más változók értékeinek adja vissza.
 
 ```json
 {
@@ -322,18 +322,18 @@ A példa sablon más változók értékeinek adja vissza.
 }
 ```
 
-Az alapértelmezett értékeit az előző példából kimenete:
+hello kimenetét hello előző példa hello alapértelmezett értékekkel:
 
 | Név | Típus | Érték |
 | ---- | ---- | ----- |
 | exampleOutput1 | Karakterlánc | myVariable |
-| exampleOutput2 | A tömb | [1, 2, 3, 4] |
+| exampleOutput2 | Tömb | [1, 2, 3, 4] |
 | exampleOutput3 | Karakterlánc | myVariable |
 | exampleOutput4 |  Objektum | {"Tulajdonság1": "érték1", "Tulajdonság2": "érték2"} |
 
 ## <a name="next-steps"></a>Következő lépések
-* A szakaszok az Azure Resource Manager-sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
-* Több sablon egyesíteni, lásd: [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
-* Megadott számú alkalommal felépítésének egy adott típusú erőforrás létrehozása esetén lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
-* A sablon létrehozott központi telepítéséről, olvassa el [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
+* Hello részeiben arról olvashat az Azure Resource Manager sablon ismertetését lásd: [Azure Resource Manager-sablonok készítése](resource-group-authoring-templates.md).
+* toomerge több sablonjainak használatáról [kapcsolt sablonok használata az Azure Resource Manager](resource-group-linked-templates.md).
+* megadott számú alkalommal tooiterate olyan típusú erőforrások létrehozásakor lásd: [erőforrások több példánya létrehozása az Azure Resource Manager](resource-group-create-multiple.md).
+* toosee hogyan toodeploy hello sablon létrehozott, lásd: [Azure Resource Manager-sablon az alkalmazás központi telepítését](resource-group-template-deploy.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Készen állnak adatai az elemzésre? Az adatok kiértékelése - Azure Machine Learning |} Microsoft Docs"
-description: "Ismerje meg, hogy az adatok készen álljon a adattudomány 4 feltételeit. Videó 2 kezdőknek Adattudomány rendelkezik konkrét, meghatározott példák segítséget az alapszintű adatok kiértékelése."
+title: "az adatok és készen áll a adattudomány aaaIs? Az adatok kiértékelése - Azure Machine Learning |} Microsoft Docs"
+description: "Ismerje meg, hogy készen áll a adatok tudományos adatok toobe hello 4 feltételeit. Videó 2 kezdőknek Adattudomány konkrét példák toohelp alapvető adatok próbaverziójának rendelkezik."
 keywords: "a vonatkozó adatok adatok kiértékelése, adatok, adatok feltételek, készen áll a adatok előkészítése"
 services: machine-learning
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: cgronlun
-ms.openlocfilehash: c4a8bc11aec2f71796f589c0af54cc92253e5180
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ef6bb680ace771537157dbdd50a4ccce0a3eb7ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="is-your-data-ready-for-data-science"></a>Készen állnak adatai az elemzésre?
 ## <a name="video-2-data-science-for-beginners-series"></a>2. Videó: Adattudomány kezdők sorozat
-Útmutató az adatokat, hogy ellenőrizze, hogy megfelel-e egyszerű feltételt, készen áll a adattudomány kiértékeléséhez.
+Megtudhatja, hogyan tooevaluate meg arról, hogy készen áll a adattudomány alapvető feltételek toobe megfelel-e az adatok toomake.
 
-Ahhoz, hogy minél hatékonyabb működtetését az adatsorozat, tekintse meg azokat. [Ugrás a videók listája](#other-videos-in-this-series)
+tooget hello hatékonyabb működtetését hello adatsorozat, tekintse meg azokat. [Nyissa meg a videók toohello listája](#other-videos-in-this-series)
 <br>
 
 > [!VIDEO https://channel9.msdn.com/Shows/SupervisionNotRequired/9/player]
@@ -33,81 +33,81 @@ Ahhoz, hogy minél hatékonyabb működtetését az adatsorozat, tekintse meg az
 >
 
 ## <a name="other-videos-in-this-series"></a>A sorozat többi videók
-*Adattudomány kezdőknek* van egy gyors Bevezetés a adattudomány az öt rövid videók.
+*Adattudomány kezdőknek* van egy gyors bevezetés toodata tudományos az öt rövid videók.
 
-* 1. Videó: [az 5 kérdésekre adatok tudományos válaszok](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 perc 14 másodperc)*
+* 1. Videó: [hello 5 kérdésekre adatok tudományos válaszok](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 perc 14 másodperc)*
 * 2. Videó: Az adatok készen áll a adattudomány?
 * 3. Videó: [tegyen fel kérdést a válasz adatokkal](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) *(4 perc 17 másodperc)*
 * 4. Videó: [választ egyszerű modell előrejelzése](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 perc 42 másodperc)*
-* 5. Videó: [mások munkahelyi adattudomány ehhez másolja](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 perc 18 másodperc)*
+* 5. Videó: [mások munkahelyi toodo adattudomány másolása](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 perc 18 másodperc)*
 
 ## <a name="transcript-is-your-data-ready-for-data-science"></a>A Beszélgetés szövegének: Az adatok készen áll a adattudomány?
-Üdvözli a "Az adatok készen áll a adattudomány?" a második videó az adatsorozat *Adattudomány kezdőknek*.  
+Üdvözli a túl "az adatok készen áll a adattudomány?" második videó hello sorozat hello *Adattudomány kezdőknek*.  
 
-Előtt adattudomány adhat meg a kívánt válaszokat, akkor adjon neki néhány kiváló minőségű raw anyagok történő együttműködésre. Csakúgy, mint egy pizzaszósz, annál jobb a kiindulási pont, annál jobb a végső termék összetevők elvégzése. 
+Mielőtt adattudomány adhat meg a kívánt válaszokat hello telepítette, toogive azt az egyes kiváló minőségű raw anyagok toowork. Csakúgy, mint egy pizzaszósz végez, hello a kiindulási pont, jobb hello összetevők hello jobban hello végső termék. 
 
 ## <a name="criteria-for-data"></a>Adatok feltételeit
-Igen adattudomány, ha nincsenek egyes lekéréses együtt szükséges összetevők.
+Igen adattudomány hello esetben van néhány toopull együtt szeretnénk összetevők.
 
 Igazolnia kell, amely adatokat:
 
 * Megfelelő
 * Csatlakoztatva
 * A pontos
-* Elegendő a használata
+* A elég toowork
 
 ## <a name="is-your-data-relevant"></a>Fontos az adatokat?
-Ezért az első összetevő - ellenőriznünk kell a szükséges adatokat.
+Ezért hello első összetevő - ellenőriznünk kell a szükséges adatokat.
 
 ![A vonatkozó adatokat, és irreleváns adatok - adatok kiértékelése](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/relevant-and-irrelevant-data.png)
 
-Tekintse meg a tábla a bal oldalon. Azt kívül Boston sávok hét személyek teljesül, a vér alkohol szintjükre, az utolsó játékban piros Sox batting átlagos és a legközelebbi kényelmi tárolóban tej ára mérni.
+Hello tábla hello bal oldalon tekintse meg. Azt kívül Boston sávok hét személyek teljesül, a vér alkohol szint, hello piros Sox batting átlagos az utolsó játékban és hello ár legközelebbi kényelmi tároló hello tej mérni.
 
-Ezek az összes tökéletesen jogos adatai. Az egyetlen hiba, nincs jelentősége. Ezek a számok között nem nyilvánvaló kapcsolat áll fenn. I akitől tej és a piros Sox batting átlagos aktuális ára, ha nincs semmilyen módon nem lehetett kitalálni a saját vér alkohol tartalom.
+Ezek az összes tökéletesen jogos adatai. Az egyetlen hiba, nincs jelentősége. Ezek a számok között nem nyilvánvaló kapcsolat áll fenn. Ha a megadott, i. meg hello tej és hello piros Sox batting átlagos aktuális árlista, semmilyen módon nem lehetett kitalálni a saját vér alkohol tartalom.
 
-Most tekintse meg a tábla a jobb oldalon. Most azt mérni minden egyes személy háttértár body és számítanak azok volna italok száma.  Minden egyes sorára szereplő számok most kapcsolódik egymáshoz. Ha I akitől a szervezet háttértár és a már korábban Margaritas számát, akkor teheti a saját vér cikkekből alkohol tartalom.
+Most nézze hello tábla jobb oldali hello. Most azt mérni minden egyes személy szervezet tömeges és leltározott hello számát italok már rendelkeztek.  minden egyes sorára hello számok egyéb releváns tooeach áll. I akitől a szervezet háttértár és hello száma már le kellett Margaritas, ha akkor teheti a saját vér cikkekből alkohol tartalom.
 
 ## <a name="do-you-have-connected-data"></a>Tegye csatlakozott adatokat?
-A következő összetevő az csatlakoztatott adatai.
+hello tovább összetevő az csatlakoztatott adatai.
 
 ![Csatlakoztatott vagy leválasztott adat - adatok feltételek, készen áll az adatok](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/connected-vs-disconnected-data.png)
 
-Íme néhány hamburgers minőségének vonatkozó adatokat: hőmérséklet patty súly és minősítési újság helyi étele a rács. De figyelje meg, a bal oldali tábla hiányosságait.
+Íme néhány hamburgers hello minőségének vonatkozó adatokat: hőmérséklet patty súly és minősítési hello helyi étele újság a rács. De hello hézagok hello bal oldali hello táblázatban láthatja.
 
-A legtöbb adatkészletek hiányzik néhány érték. Gyakori megoldás, hogy rendelkezik az ehhez hasonló lyuk és módon kerülő őket. De ha túl sok hiányzik, az adatok elkezdi Svájc közötti sajt tűnik.
+A legtöbb adatkészletek hiányzik néhány érték. Ehhez hasonló közös toohave lyuk és nincsenek módon toowork felhasználókat ezekbe a csoportokba. De ha túl sok hiányzik, az adatok kezdődik, például Svájc közötti sajt toolook.
 
-A tábla a bal oldali tekinti meg, ha nincs, sok hiányzó adatot, hogy nehezen rács hőmérséklet és patty súly közötti kapcsolat bármilyen kapja meg. Íme egy leválasztott adatok.
+Hello tábla hello bal oldali tekinti meg, ha van így sokkal hiányzó adatok mentése rögzített toocome bármilyen közötti kapcsolat a hőmérséklet és patty súly rács. Íme egy leválasztott adatok.
 
-A jobb oldali tábla azonban megtelt, és kész - csatlakoztatott adatok példát.
+hello tábla a jobb oldali hello azonban megtelt, és kész - csatlakoztatott adatok példát.
 
 ## <a name="is-your-data-accurate"></a>Az adatok pontos van?
-A következő igazolnia kell összetevője pontosságát. Az alábbiakban a nyilak találat szeretnénk négy tárolók.
+hello tovább kell összetevője pontosságát. Az alábbiakban négy cél, hogy szeretnénk toohit nyíllal.
 
 ![Hibás adatokat - adatok feltételek és pontos adatok](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/inaccurate-vs-accurate-data.png)
 
-Tekintse meg a cél a jobb felső részén. Az elem-macskaszem körül jobbra szoros csoportosítása van. Természetesen ez pontos. Furcsa viselkedése adattudomány nyelvén, a teljesítmény a cél jobb alá is figyelembe veszi a pontos.
+Tekintse meg hello cél hello jobb felső részén található. Jobb körül hello elem-macskaszem szoros csoportosítása van. Természetesen ez pontos. Furcsa viselkedése adattudomány hello nyelvén, a teljesítmény hello cél jobb oldali alá is figyelembe veszi a pontos.
 
-Ha ezen nyilak közepére meg leképezni, mutatunk be, hogy a rendszer nagyon közel az elem-macskaszem. A nyilak helyezkednek el minden, a cél körül, nem pontos most minősül, de azok még része a elem-macskaszem, így pontos most számít.
+Ha ki ezen nyilak hello közepére toomap, mutatunk be, hogy a rendszer rendkívül szoros toohello elem-macskaszem. hello nyilak helyezkednek el összes körül hello célként, így nem pontos most minősül, de azok még része a hello elem-macskaszem, így pontos most számít.
 
-Most tekintse meg a bal felső cél. Itt a nyilak találati nagyon közel együtt szoros csoportosítása. Pontos fontosságúak, de mivel a központ ki az elem-macskaszem módon pontatlan fontosságúak. És a természetesen a nyilak a bal alsó célzott pontatlan, mind a nem pontos. Ez archer további eljárás szükséges.
+Tekintse meg most hello bal felső cél. Itt a nyilak találati nagyon közel együtt szoros csoportosítása. Pontos fontosságúak, de mivel hello center módon hello elem-macskaszem ki pontos fontosságúak. És a természetesen hello nyilak hello bal alsó cél pontatlan, mind a nem pontos. Ez archer további eljárás szükséges.
 
-## <a name="do-you-have-enough-data-to-work-with"></a>Elegendő adatokra van?
-Végezetül összetevő #4 - igazolnia kell a megfelelő adatokat.
+## <a name="do-you-have-enough-data-toowork-with"></a>Rendelkezik a elég adat toowork?
+Végezetül összetevő #4 - toohave elegendő adatot kell.
 
 ![Elegendő vonatkozó adatok elemzési célú van? Az adatok kiértékelése](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/barely-enough-data.png)
 
-Gondolja, hogy egy ecset stroke elem található a kifestési a tábla minden egyes adatpont. Ha csak néhány őket, lehet, hogy a kifestési közérthető intelligens - nehéz mondja el, mi.
+Gondolja, hogy egy ecset stroke elem található a kifestési a tábla minden egyes adatpont. Ha csak egy része van, lehet, hogy hello kifestési közérthető intelligens – rögzített tootell mi is.
 
-Néhány további ecset vonások való hozzáadásakor a kifestési elindítja az beszerzése kissé tisztább biztosít.
+Ha néhány további ecset Strokes elemek hozzáadásához a kifestési tooget kevés élesebb kezdődik.
 
-Ha alig elég vonások, láthatja, éppen elegendő néhány széleskörű vonatkozó döntések meghozatalában. Ennyi az egész valahol előfordulhat, hogy kívánt látogasson el? A jelek világos, amely a következőképpen néz tiszta vízjel – Igen, ahol fogom szabadságon van.
+Ha alig elég vonások, látható csak elég toomake néhány széleskörű döntések. Ennyi az egész valahol toovisit előfordulhat, hogy kívánt? A jelek világos, amely a következőképpen néz tiszta vízjel – Igen, ahol fogom szabadságon van.
 
-További adatok hozzáadása a kép tisztább válik, és döntéseket lehet részletesebb. Most is megtekinthetik a bal oldali bank a három szállodák. Tudja, valóban tetszik az az előtérben egy architekturális funkcióit. I marad, a harmadik újraindítják.
+További adatok hozzáadása hello kép tisztább válik, és döntéseket lehet részletesebb. Most I is megtekinthetik hello a bal oldali banki hello három szállodák. Tudja, valóban tetszik hello hello előtérben hello architekturális funkcióit. I marad, a harmadik emelet hello.
 
-A megfelelő, csatlakoztatott, pontos adatokat, és ahhoz, hogy rendelkezik minden olyan összetevő, igazolnia kell a tegye néhány kiváló minőségű adattudomány.
+Az adatokat, amelyek megfelelő, csatlakoztatott, pontos és elég, van néhány kiváló minőségű adattudomány kell toodo összes hello összetevők.
 
-Ügyeljen arra, hogy tekintse meg a többi négy videók *Adattudomány kezdőknek* a Microsoft Azure Machine Learning.
+Kell, hogy toocheck hello ki más négy videók *Adattudomány kezdőknek* a Microsoft Azure Machine Learning.
 
 ## <a name="next-steps"></a>Következő lépések
 * [Próbálja meg egy első adatok tudományos kísérletben a Machine Learning Studio](machine-learning-create-experiment.md)
-* [A Microsoft Azure Machine Learning bemutatása beolvasása](machine-learning-what-is-machine-learning.md)
+* [Egy bevezető tooMachine beszerzése a Microsoft Azure tanulási](machine-learning-what-is-machine-learning.md)

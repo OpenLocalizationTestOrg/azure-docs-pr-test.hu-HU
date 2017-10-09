@@ -1,6 +1,6 @@
 ---
-title: "Naplófájl Analytics – gyakori kérdések |} Microsoft Docs"
-description: "Az Azure Naplóelemzés szolgáltatással kapcsolatos gyakran feltett kérdésekre adott válaszokat."
+title: "aaaLog Analytics – gyakori kérdések |} Microsoft Docs"
+description: "Válaszok toofrequently kérdések a hello Azure Naplóelemzés szolgáltatás."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -14,156 +14,156 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: magoedte
-ms.openlocfilehash: 8ddea06b1a90e9b1599466ad4d1c3af7a6dc8ba9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25931f521cbb6ec840184221c6c1a5794b3445f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-faq"></a>Log Analytics – gyakori kérdések
-A Microsoft FAQ a Microsoft Operations Management Suite (OMS) szolgáltatáshoz gyakran feltett kérdésekre listáját. Amennyiben a Naplóelemzési kapcsolatos további kérdése van, a [vitafóruma](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) és kérdéseit. Ha kérdése van gyakori, azt adja hozzá a cikkben, hogy gyorsan és könnyen megtalálhatók.
+A Microsoft FAQ a Microsoft Operations Management Suite (OMS) szolgáltatáshoz gyakran feltett kérdésekre listáját. Ha Log Analyticshez kapcsolatos további kérdése van, lépjen a toohello [vitafóruma](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) és kérdéseit. Ha kérdése van gyakori, azt hozzá toothis cikket, hogy gyorsan és könnyen megtalálhatók.
 
 ## <a name="general"></a>Általános kérdések
 
-### <a name="q-does-log-analytics-use-the-same-agent-as-azure-security-center"></a>Q. Log Analytics használata ugyanaz az ügynök, az Azure Security Center?
+### <a name="q-does-log-analytics-use-hello-same-agent-as-azure-security-center"></a>Q. Naplóelemzési használja hello ugyanaz az ügynök, az Azure Security Center?
 
-A. Korai. június 2017 az Azure Security Center megkezdte a Microsoft Monitoring Agent használatával gyűjt, és adatokat. További tudnivalókért lásd: [Azure Security Center Platform áttelepítési gyakran ismételt kérdések](../security-center/security-center-platform-migration-faq.md).
+A. Korai. június 2017 az Azure Security Center megkezdte hello Microsoft Monitoring Agent toocollect és a tároló adatok felhasználásával. több, lásd: toolearn [Azure Security Center Platform áttelepítési gyakran ismételt kérdések](../security-center/security-center-platform-migration-faq.md).
 
-### <a name="q-what-checks-are-performed-by-the-ad-and-sql-assessment-solutions"></a>Q. A rendszer, mely ellenőrzi az AD és az SQL-értékelési megoldás?
+### <a name="q-what-checks-are-performed-by-hello-ad-and-sql-assessment-solutions"></a>Q. Milyen ellenőrzéseket hajtja végre hello AD és az SQL-értékelési megoldás?
 
-A. A következő lekérdezés az összes elvégzett jelenleg leírását jeleníti meg:
+A. hello következő lekérdezés leírását jeleníti meg az összes elvégzett jelenleg:
 
 ```
 (Type=SQLAssessmentRecommendation OR Type=ADAssessmentRecommendation) | dedup RecommendationId | select FocusArea, ActionArea, Recommendation, Description | sort Type, FocusArea,ActionArea, Recommendation
 ```
 
-Az eredmények majd exportálhatja Excel további ellenőrzésre.
+hello eredmények majd lehet exportált tooExcel további ellenőrzésre.
 
 ### <a name="q-why-do-i-see-something-different-than-oms-in-system-center-operations-manager-console"></a>K: Miért látom azt egy másik, mint *OMS* System Center Operations Manager konzolon?
 
 A: attól függően milyen frissítés összesítése az Operations Manager van, megjelenik egy csomópont *System Center Advisor*, *Operational Insights*, vagy *Naplóelemzési*.
 
-A szöveges karakterlánc frissítés *OMS* szerepel a felügyeleti csomagot kézzel kell importálni. Az aktuális szöveggel és -funkcióinak megtekintéséhez kövesse az utasításokat a legújabb System Center Operations Manager frissítés összesítő KB cikk, és frissítse a konzolt.
+szöveges karakterlánc frissítés túl hello*OMS* szerepel a felügyeleti csomag, amely toobe manuálisan importálni kell. toosee hello aktuális szöveg és a funkciókat, követésével hello hello legújabb System Center Operations Manager frissítés összesítő KB cikk és frissítési hello konzolon.
 
 ### <a name="q-is-there-an-on-premises-version-of-log-analytics"></a>K: van-e egy *helyszíni* Naplóelemzési verzióját?
 
-V: nem. A Naplóelemzési dolgozza fel, és nagy mennyiségű adatot tárolja. Felhő alapú szolgáltatásként Naplóelemzési alkalmas méretezett Ha szükséges, és a környezet összes teljesítményére gyakorolt hatás elkerülése érdekében.
+V: nem. A Naplóelemzési dolgozza fel, és nagy mennyiségű adatot tárolja. Felhő alapú szolgáltatásként Log Analytics képes tooscale felfelé szükség, és bármely teljesítmény hatás tooyour környezetben elkerülése érdekében.
 
 További előnyöket nyújtja:
-- Microsoft futtatja a Naplóelemzési infrastruktúra, így meg lehet spórolni költségek
+- Microsoft fut hello Naplóelemzési infrastruktúra, így meg lehet spórolni költségek
 - A következő szolgáltatás szokásos telepítési frissítések és javítások.
 
 ### <a name="q-how-do-i-troubleshoot-that-log-analytics-is-no-longer-collecting-data"></a>Q. Hogyan hibaelhárítása, hogy a Naplóelemzési már nem gyűjt adatokat?
 
-A:, ha vannak a az ingyenes tarifacsomag, és naponta elküldött 500 MB-nál több adat, adatgyűjtés leáll, a többi nap. Napi korlát elérése gyakori oka, hogy Naplóelemzési leállítja az adatgyűjtést, vagy az adatok akkor jelenik meg, hogy hiányzik.
+A:, ha az ingyenes tarifacsomag hello és 500 MB-nál több adatok naponta elküldött, adatgyűjtés leállítja hello rest hello nap. Az hello napi korlát gyakori oka, hogy a Naplóelemzési leállítja az adatgyűjtést, vagy az adatok tűnik toobe hiányzik.
 
 A Naplóelemzési hoz létre eseményt, típusú *művelet* amikor adatgyűjtés indítása és leállítása. 
 
-Futtassa a következő lekérdezést a keresést, hogy ellenőrizze, hogy vannak napi korlát elérése és hiányzó adat:`Type=Operation OperationCategory="Data Collection Status"`
+Futtassa a következő keresési toocheck lekérdezést, ha hello napi korlát elérése és adathiányos hello:`Type=Operation OperationCategory="Data Collection Status"`
 
-Amikor leállítja az adatgyűjtést, a *OperationStatus* van **figyelmeztetés**. Adatgyűjtés indításakor, a *OperationStatus* van **sikeres**. 
+Amikor adatgyűjtés leáll, hello *OperationStatus* van **figyelmeztetés**. Adatgyűjtés indításakor, hello *OperationStatus* van **sikeres**. 
 
-A következő táblázat ismerteti az oka, hogy leállítja az adatgyűjtést, és folytathatja az adatgyűjtést a javasolt művelet:
+hello következő táblázatban található az oka, hogy leállítja az adatgyűjtést és a javasolt művelet tooresume adatok gyűjtése:
 
-| OK adatgyűjtés leállítása                       | Adatgyűjtés folytatása |
+| OK adatgyűjtés leállítása                       | tooresume adatok gyűjtése |
 | -------------------------------------------------- | ----------------  |
-| Elérte az ingyenes adatok napi korlátot<sup>1</sup>       | Várja meg, amíg a következő napon gyűjtemény automatikus újraindítása, vagy<br> A fizetős tarifacsomag módosítása |
-| Azure-előfizetés miatt felfüggesztett állapotban van: <br> Ingyenes próbaverzió befejeződött <br> Az Azure hozzáférési lejárt <br> Havi költségkeret érhető el (például a az MSDN webhelyen vagy a Visual Studio előfizetői)                          | A szolgáltatás fizetős átalakítása <br> A szolgáltatás fizetős átalakítása <br> Távolítsa el a korlátot, vagy várjon, amíg a korlát alaphelyzetbe állítása |
+| Elérte az ingyenes adatok napi korlátot<sup>1</sup>       | Várja meg, amíg hello követő gyűjtemény tooautomatically újraindításhoz, vagy<br> Változás tooa fizetett tarifacsomag kiválasztása |
+| Azure-előfizetés miatt felfüggesztett állapotban van: <br> Ingyenes próbaverzió befejeződött <br> Az Azure hozzáférési lejárt <br> Havi költségkeret érhető el (például a az MSDN webhelyen vagy a Visual Studio előfizetői)                          | Előfizetés a fizetős tooa átalakítása <br> Előfizetés a fizetős tooa átalakítása <br> Távolítsa el a korlátot, vagy várjon, amíg a korlát alaphelyzetbe állítása |
 
-<sup>1</sup> Ha a munkaterületet az ingyenes tarifacsomag, tehát legfeljebb 500 MB naponkénti adat küldése a szolgáltatást. Ha eléri a napi korlátot, adatgyűjtés leáll, a következő napig. Adatgyűjtés leállítása küldött adatok nem indexelt, és nem érhető el a kereséshez. Adatok gyűjtése folytatódik, ha csak az új adatok feldolgozása következik be. 
+<sup>1</sup> Ha a munkaterületet hello szabad IP-címek, Ön korlátozott toosending 500 MB adatot toohello nap-szolgáltatás esetében. Hello napi korlát elérésekor adatgyűjtés leáll, amíg hello másnap. Adatgyűjtés leállítása küldött adatok nem indexelt, és nem érhető el a kereséshez. Adatok gyűjtése folytatódik, ha csak az új adatok feldolgozása következik be. 
 
-A Naplóelemzési UTC időt használja, és minden nap UTC idő szerint éjfélkor kezdődik. Ha a munkaterületet eléri a napi korlátot, a feldolgozási folytatja a következő UTC nap első órában.
+A Naplóelemzési UTC időt használja, és minden nap UTC idő szerint éjfélkor kezdődik. Hello munkaterület eléri hello napi korlátot, ha a feldolgozási folytatja hello első óra hello következő UTC nap során.
 
 ### <a name="q-how-can-i-be-notified-when-data-collection-stops"></a>Q. Hogyan tudom értesítést kaphat leállítja az adatok gyűjtését?
 
-A: a leírt lépésekkel [riasztási szabályt létrehozni](log-analytics-alerts-creating.md#create-an-alert-rule) értesítést leállítja az adatgyűjtést.
+V: lépésekkel hello ismertetett [riasztási szabályt létrehozni](log-analytics-alerts-creating.md#create-an-alert-rule) toobe értesítést kap, amikor adatgyűjtés leáll.
 
-Amikor leállítja az adatgyűjtést kapcsolatos riasztás létrehozása, ha a:
-- **Név** való *adatgyűjtés leállítása*
-- A **Súlyosság** legyen *Figyelmeztetés*
-- A **Keresési lekérdezés** legyen a következő: `Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
-- **Időablak** való *2 óra*.
-- A **Riasztási időköz** legyen egy óra, mivel a használati adatok csak óránként egyszer frissülnek.
-- A **Riasztások létrehozása a következő alapján:** értéke legyen az *eredmények száma*
-- Az **Eredmények száma** legyen *Nagyobb, mint 0*
+Amikor leállítja az adatgyűjtést hello riasztás létrehozásakor állítsa be a:
+- **Név** túl*adatgyűjtés leállítása*
+- **Súlyossági** túl*figyelmeztetés*
+- **Keresési lekérdezés** túl`Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
+- **Időablak** túl*2 óra*.
+- **Riasztási gyakoriságot** toobe egy órával óta hello használati adatok csak óránként egyszer frissíti.
+- **Riasztás alapján** toobe *eredmények száma*
+- **Találatok száma** toobe *nagyobb, mint 0*
 
-A [műveletek a riasztási szabályokhoz adásával kapcsolatos](log-analytics-alerts-actions.md) részben leírt lépéseket követve konfigurálhat e-mailt, webhookot, vagy runbook-műveletet a riasztási szabályhoz.
+Ismertetett hello lépésekkel [műveletek tooalert szabályok hozzáadása](log-analytics-alerts-actions.md) egy e-mail, a webhook vagy a runbook műveletet a riasztási szabály hello konfigurálása.
 
 
 ## <a name="configuration"></a>Konfiguráció
-### <a name="q-can-i-change-the-name-of-the-tableblob-container-used-to-read-from-azure-diagnostics-wad"></a>Q. Módosítható az az Azure Diagnostics (ÜVEGVATTA) olvasásához használt tábla/blob-tároló neve?
+### <a name="q-can-i-change-hello-name-of-hello-tableblob-container-used-tooread-from-azure-diagnostics-wad"></a>Q. Módosítható hello tábla/blob tároló használt tooread hello neve az Azure Diagnostics (ÜVEGVATTA)?
 
-A. Nem, lehetetlen jelenleg tetszőleges táblák vagy a tárolókat az Azure storage olvasni.
+A. Nem, nincs jelenleg lehetséges tooread tetszőleges táblák vagy a tárolókat az Azure-tárfiókba.
 
-### <a name="q-what-ip-addresses-does-the-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-to-the-log-analytics-service"></a>Q. IP-címek nem Naplóelemzés szolgáltatás használata? Hogyan ellenőrizze, hogy a tűzfal csak a Naplóelemzés szolgáltatás-forgalmát engedélyezi?
+### <a name="q-what-ip-addresses-does-hello-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-toohello-log-analytics-service"></a>Q. IP-címek hello Naplóelemzés szolgáltatás használata? Hogyan ellenőrizze, hogy a tűzfal csak lehetővé teszi, hogy forgalom toohello Naplóelemzés szolgáltatás?
 
-A. A Naplóelemzési szolgáltatás Azure épül. Napló Analytics IP-címek szerepelnek a [Microsoft Azure Datacenter IP-címtartományok](http://www.microsoft.com/download/details.aspx?id=41653).
+A. Log Analytics szolgáltatás hello Azure épül. Napló Analytics IP-címek szerepelnek hello [Microsoft Azure Datacenter IP-címtartományok](http://www.microsoft.com/download/details.aspx?id=41653).
 
-Mivel szolgáltatástelepítések történik, megváltozik a Naplóelemzés szolgáltatás a tényleges IP-címe. A tűzfalon keresztül engedélyezi a DNS-nevek szerepelnek [proxy és tűzfal beállításainak konfigurálása a Naplóelemzési](log-analytics-proxy-firewall.md).
+Mivel szolgáltatástelepítések történik, megváltozik hello Naplóelemzés szolgáltatás hello tényleges IP-címe. hello DNS-nevek tooallow a tűzfalon keresztül leírása a következő [proxy és tűzfal beállításainak konfigurálása a Naplóelemzési](log-analytics-proxy-firewall.md).
 
-### <a name="q-i-use-expressroute-for-connecting-to-azure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>Q. Kapcsolódás Azure ExpressRoute használatával. A Naplóelemzési forgalom használ a saját ExpressRoute-kapcsolatot?
+### <a name="q-i-use-expressroute-for-connecting-tooazure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>Q. ExpressRoute tooAzure csatlakozáshoz használni. A Naplóelemzési forgalom használ a saját ExpressRoute-kapcsolatot?
 
-A. A különböző típusú ExpressRoute forgalom ismerteti a [ExpressRoute dokumentációja](../expressroute/expressroute-faqs.md#supported-services).
+A. ismerteti a különböző típusú hello ExpressRoute forgalom hello [ExpressRoute dokumentációja](../expressroute/expressroute-faqs.md#supported-services).
 
-Log Analytics-forgalom használ a nyilvános társviszony ExpressRoute-kapcsolatcsoportot.
+Forgalom tooLog Analytics hello nyilvános társviszony ExpressRoute-kapcsolatcsoportot használja.
 
-### <a name="q-is-there-a-simple-and-easy-way-to-move-an-existing-log-analytics-workspace-to-another-log-analytics-workspaceazure-subscription"></a>Q. Egy egyszerű és egyszerűen elvégezhető egy meglévő Naplóelemzési munkaterület áthelyezése egy másik Naplóelemzési munkaterület vagy az Azure-előfizetés van?
+### <a name="q-is-there-a-simple-and-easy-way-toomove-an-existing-log-analytics-workspace-tooanother-log-analytics-workspaceazure-subscription"></a>Q. Van egy egyszerű és egyszerűen elvégezhető toomove egy meglévő Naplóelemzési munkaterület tooanother Naplóelemzési munkaterület/Azure-előfizetést?
 
-A. A `Move-AzureRmResource` parancsmag lehetővé teszi, hogy áthelyezése a Naplóelemzési munkaterület, valamint az Automation-fiók egy Azure-előfizetés között. További információkért lásd: [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx).
+A. Hello `Move-AzureRmResource` parancsmag lehetővé teszi, hogy a Naplóelemzési munkaterület, valamint az Automation-fiók áthelyezése egy Azure-előfizetés tooanother. További információkért lásd: [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx).
 
-Ez a módosítás is az Azure portálon hajtható végre.
+Ez a változás is létrehozható hello Azure-portálon.
 
-Adatok áthelyezése egy Naplóelemzési munkaterület másik nem, vagy módosítsa a régiót, amelyben a Naplóelemzési adatokat tárolja.
+Nem tárolt adatok mozgatása egy Naplóelemzési munkaterület tooanother és Naplóelemzési adatok tárolt hello régió módosítása.
 
-### <a name="q-how-do-i-add-log-analytics-to-system-center-operations-manager"></a>K: hogyan Naplóelemzési hozzáadása a System Center Operations Manager?
+### <a name="q-how-do-i-add-log-analytics-toosystem-center-operations-manager"></a>K: hogyan adja hozzá a napló Analytics tooSystem Center Operations Manager?
 
-V: frissítése a legújabb kumulatív frissítése és a felügyeleti csomagok importálása teszi csatlakoztatása az Operations Manager szolgáltatáshoz.
+V: toohello legújabb kumulatív frissítése és a felügyeleti csomagok importálása teszi tooconnect Operations Manager tooLog elemzés.
 
 >[!NOTE]
->Az Operations Manager kapcsolatát szolgáltatáshoz csak érhető el, a System Center Operations Manager 2012 SP1 és újabb verzióihoz.
+>az Operations Manager-kapcsolat tooLog hello Analytics csak érhető el a System Center Operations Manager 2012 SP1 és újabb verziók.
 
-### <a name="q-how-can-i-confirm-that-an-agent-is-able-to-communicate-with-log-analytics"></a>K: hogyan győződhet meg, hogy egy ügynök nem tud kommunikálni a Log Analytics?
+### <a name="q-how-can-i-confirm-that-an-agent-is-able-toocommunicate-with-log-analytics"></a>K: hogyan győződhet meg, hogy egy ügynök nem tudja toocommunicate a Log Analytics?
 
-V: Győződjön meg arról, hogy az ügynök OMS kommunikál, keresse fel: Vezérlőpult, a biztonság és a beállítások, **Microsoft Monitoring Agent**.
+V: tooensure adott hello ügynök képes kommunikálni OMS-ben, Ugrás: Vezérlőpult, a biztonság és a beállítások, **Microsoft Monitoring Agent**.
 
-Az a **Azure Naplóelemzés (OMS)** lapon, a zöld pipa jelzi. Egy zöld pipa ikon megerősíti, hogy az ügynök nem tud kommunikálni az OMS szolgáltatáshoz.
+A hello **Azure Naplóelemzés (OMS)** lapon, a zöld pipa jelzi. Egy zöld pipa ikon megerősíti, hogy az hello ügynök képes toocommunicate a hello OMS szolgáltatáshoz.
 
-Sárga figyelmeztető ikon azt jelenti, hogy az ügynök nehézségekkel OMS problémák kommunikál. Egy leggyakoribb oka, a Microsoft Monitoring Agent szolgáltatása leállt. Helyvezérlés-kezelő használatával indítsa újra a szolgáltatást.
+Sárga figyelmeztető ikon azt jelenti, hogy hello ügynök nehézségekkel OMS problémák kommunikál. Egy leggyakoribb oka, hello Microsoft Monitoring Agent szolgáltatás leállt. Service control manager toorestart hello szolgáltatást használja.
 
 ### <a name="q-how-do-i-stop-an-agent-from-communicating-with-log-analytics"></a>K: hogyan állítsa le a az ügynök kommunikáljon a Log Analytics?
 
-V: a System Center Operations Manager, az Advisor felügyelt számítógép listájából távolítsa el a számítógépet. Az Operations Manager már nem a jelentéskészítő szolgáltatáshoz frissíti az ügynök konfigurációját. Naplóelemzési közvetlenül csatlakoztatott ügynökök, leállíthatja azok keresztül: Vezérlőpult, a biztonság és a beállítások, **Microsoft Monitoring Agent**.
+V: a System Center Operations Manager, távolítsa el a hello számítógép hello Advisor felügyelt számítógép listáról. Az Operations Manager-frissítések hello hello ügynök toono hosszabb jelentés tooLog Analytics konfigurációját. Az ügynökök közvetlenül csatlakoztatott tooLog elemzés, leállíthatja azok keresztül: Vezérlőpult, a biztonság és a beállítások, **Microsoft Monitoring Agent**.
 A **Azure Naplóelemzés (OMS)**, távolítsa el a felsorolt összes munkaterületet.
 
-### <a name="q-why-am-i-getting-an-error-when-i-try-to-move-my-workspace-from-one-azure-subscription-to-another"></a>K: Miért jelenik hiba a saját munkaterület áthelyezése egy Azure-előfizetés másik közben?
+### <a name="q-why-am-i-getting-an-error-when-i-try-toomove-my-workspace-from-one-azure-subscription-tooanother"></a>K: Miért jelenik hiba jelenik meg toomove a saját munkaterületen, egy Azure-előfizetéssel tooanother?
 
-A:, ha az Azure-portált használja, ügyeljen arra, csak a munkaterület az áthelyezés van kijelölve. Nem, válassza a megoldások – ezek automatikusan áthelyezi a munkaterület helyezi át. 
+V: Ha hello Azure-portált használja, győződjön meg arról, csak hello munkaterület hello áthelyezés van kiválasztva. Ne válasszon hello megoldások – automatikusan helyre fog Miután hello munkaterületen. 
 
 Ellenőrizze, hogy Ön a két Azure-előfizetések.
 
 ## <a name="agent-data"></a>Ügynök adatok
-### <a name="q-how-much-data-can-i-send-through-the-agent-to-log-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>Q. Mennyi adatot lehet küldeni az ügynök keresztül szolgáltatáshoz? Van egy / felhasználói adatok maximális mérete?
-A. Az ingyenes csomagban egy napi cap 500 MB / munkaterület állítja be. A standard és premium tervek nincs korlátozva van feltöltött adatok mennyiségét. Felhő alapú szolgáltatásként Log Analytics célja, hogy automatikusan legfeljebb leíró a kötet méretezési érkező ügyfél –, akkor is, ha TB naponta.
+### <a name="q-how-much-data-can-i-send-through-hello-agent-toolog-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>Q. Mennyi adatot lehet küldeni keresztül hello ügynök tooLog Analytics? Van egy / felhasználói adatok maximális mérete?
+A. hello csomagra 500 MB-os napi maximális száma munkaterület állítja be. hello standard és premium tervek nincs korlátozva van hello feltöltött adatok mennyiségét. Felhő alapú szolgáltatásként Naplóelemzési úgy van kialakítva, toohandle hello kötet tooautomatically felskálázott érkező ügyfél –, akkor is, ha TB naponta.
 
-A Naplóelemzési ügynök úgy lett kialakítva, annak érdekében, hogy kevés erőforrást tartalmaz. Ügyfeleink egyik megírt blog kapcsolatos az elvégzett azokat az ügynök, és hogyan impressed voltak szemben. Engedélyezi a megoldások adatmennyiség függ. Részletes információk a adatmennyiség és a megoldás darabolását láthatja a [használati](log-analytics-usage.md) lap.
+hello Naplóelemzési ügynöke (agent) kialakított tooensure kevés erőforrást tartalmaz. Ügyfeleink egyik megírt blog kapcsolatos hello tesztek azok hajt végre a az ügynök, és hogyan impressed voltak. hello adatmennyiség engedélyezi hello megoldások függ. Részletes információk a hello adatmennyiség, és tekintse meg a hello darabolását hello a megoldás [használati](log-analytics-usage.md) lap.
 
-További információkért olvassa a [ügyfél blog](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html) kapcsolatos az alacsony helyigénnyel, az OMS-ügynököt.
+További információkért olvassa a [ügyfél blog](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html) kapcsolatos hello alacsony helyigénnyel, hello OMS-ügynököt.
 
-### <a name="q-how-much-network-bandwidth-is-used-by-the-microsoft-management-agent-mma-when-sending-data-to-log-analytics"></a>Q. Mekkora hálózati sávszélességet a Microsoft Management Agent (MMA) használatos, ha a Log Analyticshez való adatküldés?
+### <a name="q-how-much-network-bandwidth-is-used-by-hello-microsoft-management-agent-mma-when-sending-data-toolog-analytics"></a>Q. Mekkora hálózati sávszélességet hello Microsoft Management Agent (MMA) használják, amikor a küldő adatok tooLog Analytics?
 
-A. Sávszélesség, akkor a függvény az elküldött adatok mennyisége. A rendszer tömöríti az adatokat, a hálózaton keresztül küldött.
+A. A sávszélessége használható funkció hello elküldött adatok mennyisége. A rendszer tömöríti az adatokat, hello hálózaton keresztül küldött.
 
 ### <a name="q-how-much-data-is-sent-per-agent"></a>Q. Mennyi adatot küldött ügynök /?
 
-A. Az ügynök / elküldött adatok mennyisége függ:
+A. egy ügynök elküldött adatok mennyisége hello függ:
 
-* Engedélyezte a megoldások
-* A naplók és a szabály a gyűjtendő kérelemteljesítmény-számlálókat száma
-* A naplókban lévő adatok mennyisége
+* engedélyezte a hello megoldások
+* naplók és a szabály a gyűjtendő kérelemteljesítmény-számlálókat hello száma
+* az adatok hello naplók hello kötet
 
-Az ingyenes tarifacsomag jó módja a előkészítésére több kiszolgálók és a tipikus adatmennyiség mérőműszer. Általános felhasználás jelenik meg a [használati](log-analytics-usage.md) lap.
+hello szabad IP-címek egy jó módszer tooonboard több kiszolgáló, és fel tudja mérni hello tipikus adatmennyiség. Általános felhasználás jelenik meg a hello [használati](log-analytics-usage.md) lap.
 
-A számítógépek számára, amely a WireData ügynök futhasson használja a következő lekérdezést küld a begyűjtött adatok megjelenítéséhez:
+Azok a számítógépek, amelyek képesek toorun hello WireData ügynök használja a következő lekérdezés toosee mennyi adatot küldi hello:
 
 ```
 Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe") (Direction=Outbound) | measure Sum(TotalBytes) by Computer
@@ -172,4 +172,4 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 
 
 ## <a name="next-steps"></a>Következő lépések
-* [Ismerkedés a Naplóelemzési](log-analytics-get-started.md) tudjon meg többet a Naplóelemzési, és működik, és perc múlva.
+* [Ismerkedés a Naplóelemzési](log-analytics-get-started.md) Naplóelemzési és get percben lépéseivel kapcsolatos további toolearn.

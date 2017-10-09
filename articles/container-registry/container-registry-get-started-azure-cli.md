@@ -1,6 +1,6 @@
 ---
-title: "Privát Docker-tárolójegyzék létrehozása – Azure CLI | Microsoft Docs"
-description: "Bevezetés a privát Docker-tárolójegyzékek létrehozásába és kezelésébe az Azure CLI 2.0 segítségével"
+title: "aaaCreate az Docker-tároló beállításjegyzék titkos - Azure parancssori Felülettel |} Microsoft Docs"
+description: "Ismerkedés a létrehozása és kezelése a saját Docker-tároló nyilvántartó, hello Azure CLI 2.0"
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -17,43 +17,43 @@ ms.workload: na
 ms.date: 06/06/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2875f4089231ed12a0312b2c2e077938440365c6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f0d876a70b71a5e1bd564fbc9198f693dfe8a347
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-private-docker-container-registry-using-the-azure-cli-20"></a>Privát Docker-tárolójegyzék létrehozása az Azure CLI 2.0 használatával
-Az [Azure CLI 2.0](https://github.com/Azure/azure-cli) parancsaival létrehozhat egy tároló-beállításjegyzéket, és kezelheti annak beállításait Linux, Mac vagy Windows rendszerű számítógépéről. A tároló-beállításjegyzékeket létrehozhatja és kezelheti az [Azure Portalon](container-registry-get-started-portal.md) vagy programozott módon a tároló-beállításjegyzék [REST API-jával](https://go.microsoft.com/fwlink/p/?linkid=834376) is.
+# <a name="create-a-private-docker-container-registry-using-hello-azure-cli-20"></a>Hozza létre a titkos Docker tároló beállításkulcs hello Azure CLI 2.0 használatával
+Hello parancsokat használhatja [Azure CLI 2.0](https://github.com/Azure/azure-cli) toocreate egy tároló beállításjegyzék és a beállítások kezelése a Linux, Mac vagy Windows számítógépről. Is hozhat létre, és hello segítségével kezeléséhez tároló [Azure-portálon](container-registry-get-started-portal.md) vagy programozott módon hello tároló beállításjegyzék [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376).
 
 
-* Háttér-információkért és a fogalmakkal kapcsolatban lásd [az áttekintést](container-registry-intro.md).
-* A Container Registry parancssori felületének parancsaival (`az acr` parancsok) kapcsolatos segítségért adja át a `-h` paramétert egy parancsnak.
+* Háttér és fogalmak: [hello áttekintése](container-registry-intro.md)
+* A Súgó a tároló beállításjegyzék parancssori felület parancsait (`az acr` parancsok), adja át a hello `-h` paraméter tooany parancsot.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
-* **Azure CLI 2.0**: A CLI 2.0 telepítéshez és megismeréséhez tekintse meg a [telepítési utasításokat](/cli/azure/install-azure-cli). Jelentkezzen be Azure-előfizetésébe az `az login` futtatásával. További információkért lásd a [CLI 2.0 használatának első lépéseit](/cli/azure/get-started-with-azure-cli) ismertető témakört.
-* **Erőforráscsoport**: A tárolójegyzék létrehozása előtt hozzon létre egy [erőforráscsoportot](../azure-resource-manager/resource-group-overview.md#resource-groups), vagy használjon egy meglévő erőforráscsoportot. Győződjön meg arról, hogy az erőforráscsoport olyan helyen található, ahol a Container Registry szolgáltatás [elérhető](https://azure.microsoft.com/regions/services/). Ha a CLI 2.0-val szeretne erőforráscsoportot létrehozni, tekintse meg [a CLI 2.0-referenciát](/cli/azure/group).
-* **Storage-fiók** (nem kötelező): Hozzon létre egy standard Azure [Storage-fiókot](../storage/common/storage-introduction.md) a tárolójegyzékhez a tárolójegyzékkel megegyező helyen. Ha nem ad meg Storage-fiókot, amikor létrehozza a beállításjegyzéket az `az acr create` paranccsal, a parancs létrehoz egyet. Ha a CLI 2.0-val szeretne tárfiókot létrehozni, tekintse meg [a CLI 2.0-referenciát](/cli/azure/storage/account). A Premium Storage jelenleg nem támogatott.
-* **Egyszerű szolgáltatás** (nem kötelező): Ha a parancssori felülettel hoz létre beállításjegyzéket, az alapértelmezés szerint nem lesz elérhető. Igény szerint a beállításjegyzékhez hozzárendelhet egy meglévő Azure Active Directory egyszerű szolgáltatást (vagy létrehozhat és hozzárendelhet egy újat), vagy engedélyezheti a beállításjegyzék rendszergazdai felhasználói fiókját. Ezzel kapcsolatban lásd a cikk későbbi részeit. A beállításjegyzék elérésével kapcsolatos további információkat a [tároló-beállításjegyzékkel való hitelesítéssel kapcsolatos cikkben](container-registry-authentication.md) találhat.
+* **Az Azure CLI 2.0**: tooinstall és hello CLI 2.0 első lépések című hello [telepítési utasításokat](/cli/azure/install-azure-cli). Jelentkezzen be Azure-előfizetés tooyour futtatásával `az login`. További információkért lásd: [Ismerkedés a hello CLI 2.0](/cli/azure/get-started-with-azure-cli).
+* **Erőforráscsoport**: A tárolójegyzék létrehozása előtt hozzon létre egy [erőforráscsoportot](../azure-resource-manager/resource-group-overview.md#resource-groups), vagy használjon egy meglévő erőforráscsoportot. Ellenőrizze, hogy hello erőforráscsoport van egy helyet, ahol hello tároló beállításszolgáltatás [elérhető](https://azure.microsoft.com/regions/services/). egy erőforrás csoport használatával toocreate hello CLI 2.0, lásd: [hello CLI 2.0 hivatkozás](/cli/azure/group).
+* **A tárfiók** (nem kötelező): hozzon létre egy szabványos Azure [tárfiók](../storage/common/storage-introduction.md) tooback hello tároló hello rendszerleíró adatbázis ugyanazon a helyen. Ha nem adja meg a storage-fiók létrehozásakor a beállításjegyzéket `az acr create`, hello parancs létrehoz egyet. a tárolási fiók használatával toocreate CLI 2.0 hello című [hello CLI 2.0 hivatkozás](/cli/azure/storage/account). A Premium Storage jelenleg nem támogatott.
+* **Szolgáltatás egyszerű** (nem kötelező): Ha beállításjegyzékbeli hello CLI létrehozásához, alapértelmezés szerint nincs beállítva a hozzáférés. Igényeitől függően rendelje hozzá egy meglévő Azure Active Directory szolgáltatás egyszerű tooa beállításjegyzék (vagy hozzon létre, és rendelje hozzá egy új), vagy engedélyezze a hello beállításjegyzék rendszergazda felhasználói fiókot. A cikk későbbi részében hello szakaszban talál. Beállításjegyzék-hozzáféréssel kapcsolatos további információkért lásd: [hitelesítés hello tároló rendszerleíró](container-registry-authentication.md).
 
 ## <a name="create-a-container-registry"></a>Tároló-beállításjegyzék létrehozása
-Futtassa az `az acr create` parancsot egy tároló-beállításjegyzék létrehozásához.
+Futtassa a hello `az acr create` parancs toocreate tároló beállításjegyzékbeli.
 
 > [!TIP]
-> A beállításjegyzék létrehozásakor adjon meg egy globálisan egyedi legfelső szintű tartománynevet, amely csak betűket és számokat tartalmaz. A beállításjegyzék neve a példákban `myRegistry1`, de helyettesítsen be egy saját, egyedi nevet.
+> A beállításjegyzék létrehozásakor adjon meg egy globálisan egyedi legfelső szintű tartománynevet, amely csak betűket és számokat tartalmaz. hello beállításjegyzék neve hello példákban `myRegistry1`, de helyettesítse a saját, egyedi nevét.
 >
 >
 
-Az alábbi parancs az *alapszintű* termékváltozattal a minimális paramétereket használja a tárolóregisztrációs adatbázis (`myRegistry1`) `myResourceGroup` erőforráscsoportban való létrehozásához:
+a következő parancsot használja hello minimális paraméterek toocreate tároló beállításjegyzék hello `myRegistry1` hello erőforráscsoportban `myResourceGroup`, és hello segítségével *alapvető* termékváltozat:
 
 ```azurecli
 az acr create --name myRegistry1 --resource-group myResourceGroup --sku Basic
 ```
 
-* A(z) `--storage-account-name` nem kötelező. Ha nincs megadva, a Storage-fiók a beállításjegyzék nevéből és egy időbélyegzőből álló névvel jön létre a megadott erőforráscsoportban.
+* A(z) `--storage-account-name` nem kötelező. Ha nem megadott, a storage-fiók létrejön a neve, amely hello beállításjegyzék neve és hello időbélyegzőnek megadott erőforráscsoport.
 
-A tárolóregisztrációs adatbázis létrehozásakor a kimenet a következő példához hasonló:
+Hello beállításjegyzék létrehozásakor hello kimenete hasonló toohello következő:
 
 ```azurecli
 {
@@ -81,14 +81,14 @@ A tárolóregisztrációs adatbázis létrehozásakor a kimenet a következő p�
 
 Különösen ügyeljen a következőre:
 
-* `id` – Az előfizetésben lévő beállításjegyzék azonosítója, amelyre akkor van szükség, ha egyszerű szolgáltatást szeretne hozzárendelni.
-* `loginServer` – A teljes név, amelyet a [beállításjegyzékbe való bejelentkezéshez](container-registry-authentication.md) ad meg. Ebben a példában a név `myregistry1.exp.azurecr.io` (csak kisbetűkkel).
+* `id`-Előfizetését, ha azt szeretné, hogy a szolgáltatás egyszerű tooassign igénylő hello beállításjegyzék azonosítója.
+* `loginServer`-hello teljesen minősített név túl meg[toohello beállításjegyzék-e jelentkezni](container-registry-authentication.md). Ebben a példában hello neve: `myregistry1.exp.azurecr.io` (kisbetűket).
 
 ## <a name="assign-a-service-principal"></a>Egyszerű szolgáltatás hozzárendelése
-Azure Active Directory egyszerű szolgáltatások beállításjegyzékhez való hozzárendeléséhez a CLI 2.0 parancsait használhatja. A példákban szereplő egyszerű szolgáltatáshoz a tulajdonosi szerepkör van hozzárendelve, de [más szerepköröket](../active-directory/role-based-access-control-configure.md) is hozzárendelhet, ha szeretne.
+Parancssori felület 2.0 parancsok tooassign egy Azure Active Directory szolgáltatás egyszerű tooa beállításjegyzék használja. hello szolgáltatás egyszerű ezekben a példákban szerepét hello tulajdonos, de rendelhet [más szerepkörök](../active-directory/role-based-access-control-configure.md) irányíthatók.
 
-### <a name="create-a-service-principal-and-assign-access-to-the-registry"></a>Egyszerű szolgáltatás létrehozása és hozzáférés biztosítása a beállításjegyzékhez
-Az alábbi parancs tulajdonosi szerepkör szintű hozzáférést biztosít az új egyszerű szolgáltatás számára a `--scopes` paraméterrel átadott beállításjegyzék-azonosítóhoz. Adjon meg egy erős jelszót a `--password` paraméterrel.
+### <a name="create-a-service-principal-and-assign-access-toohello-registry"></a>Egy egyszerű szolgáltatás létrehozása és hozzárendelése hozzáférés toohello beállításjegyzék
+A következő parancs hello, egy új szolgáltatás egyszerű tulajdonos szerepkör hozzáférés toohello beállításjegyzék-azonosító hello átadni kapja `--scopes` paraméter. Adjon meg egy erős jelszót a hello `--password` paraméter.
 
 ```azurecli
 az ad sp create-for-rbac --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/myresourcegroup/providers/Microsoft.ContainerRegistry/registries/myregistry1 --role Owner --password myPassword
@@ -97,7 +97,7 @@ az ad sp create-for-rbac --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx
 
 
 ### <a name="assign-an-existing-service-principal"></a>Meglévő egyszerű szolgáltatás hozzárendelése
-Ha már rendelkezik egyszerű szolgáltatással, és tulajdonosi szerepkör szintű hozzáférést szeretne számára biztosítani a beállításjegyzékhez, futtasson egy, a következő példához hasonló parancsot. Az egyszerű szolgáltatás alkalmazásazonosítóját az `--assignee` paraméterrel lehet átadni:
+Ha már rendelkezik egy egyszerű szolgáltatást, és szeretné, hogy tooassign azt tulajdonos szerepkör hozzáférés toohello beállításjegyzék, futtassa a következő példa egy parancshoz hasonló toohello. Hello szolgáltatás egyszerű Alkalmazásazonosító hello segítségével át `--assignee` paraméter:
 
 ```azurecli
 az role assignment create --scope /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/myresourcegroup/providers/Microsoft.ContainerRegistry/registries/myregistry1 --role Owner --assignee myAppId
@@ -106,7 +106,7 @@ az role assignment create --scope /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx
 
 
 ## <a name="manage-admin-credentials"></a>Rendszergazdai hitelesítő adatok kezelése
-Minden tároló-beállításjegyzékhez automatikusan létrejön egy rendszergazdai fiók, amely alapértelmezés szerint le van tiltva. Az alábbi példák `az acr` parancssori felületi parancsokat mutatnak be a tároló-beállításjegyzék rendszergazdai hitelesítő adatainak kezeléséhez.
+Minden tároló-beállításjegyzékhez automatikusan létrejön egy rendszergazdai fiók, amely alapértelmezés szerint le van tiltva. a következő példák szemléltetik hello `az acr` parancssori felület parancsai toomanage hello rendszergazdai hitelesítő adatait a tároló beállításjegyzék.
 
 ### <a name="obtain-admin-user-credentials"></a>Rendszergazdai hitelesítő adatok beszerzése
 ```azurecli
@@ -124,25 +124,25 @@ az acr update -n myRegistry1 --admin-enabled false
 ```
 
 ## <a name="list-images-and-tags"></a>Képek és címkék listázása
-Az `az acr` parancssori felületi parancsokkal lekérdezheti az adattárakban tárolt képeket és címkéket.
+Használjon hello `az acr` parancssori felület parancsai tooquery hello képek és címkék tárházban.
 
 > [!NOTE]
-> A Container Registry jelenleg nem támogatja a `docker search` parancsot a képek és címkék lekérdezéséhez.
+> Jelenleg, tároló-beállításjegyzék nem támogatja a hello `docker search` parancs tooquery képek és címkék.
 
 
 ### <a name="list-repositories"></a>Adattárak listázása
-A következő példa egy beállításjegyzék adattárait listázza JSON (JavaScript Object Notation) formátumban:
+hello alábbi példa felsorolja a beállításjegyzék (JavaScript Object Notation) JSON formátumban hello adattárak:
 
 ```azurecli
 az acr repository list -n myRegistry1 -o json
 ```
 
 ### <a name="list-tags"></a>Címkék listázása
-A következő példa a **samples/nginx** adattárban lévő címkéket listázza JSON formátumban:
+hello alábbi példa felsorolja a hello hello címkék **minták/nginx** tárház JSON formátumban:
 
 ```azurecli
 az acr repository show-tags -n myRegistry1 --repository samples/nginx -o json
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-* [Az első rendszerkép leküldése a Docker parancssori felületével](container-registry-get-started-docker-cli.md)
+* [Leküldéses az első kép hello Docker parancssori felület használatával](container-registry-get-started-docker-cli.md)

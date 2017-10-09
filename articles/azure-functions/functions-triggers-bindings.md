@@ -1,6 +1,6 @@
 ---
-title: "Eseményindítók és kötések az Azure Functions együttműködve |} Microsoft Docs"
-description: "Megtudhatja, hogyan csatlakozhat eseményindítók és kötések az Azure Functions a kód végrehajtása online események és a felhő alapú szolgáltatások."
+title: "az eseményindítók és kötések az Azure Functions aaaWork |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse eseményindítók és kötések az Azure Functions tooconnect a kód végrehajtása tooonline események és a felhő alapú szolgáltatások."
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: donnam
-ms.openlocfilehash: cc41debb2523df77be4db05817a4c7ac55604439
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb2ebfca172fcc8c0f479adbcfec99e90fc33615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-triggers-and-bindings-concepts"></a>Az Azure Functions eseményindítók és kötések fogalmak
-Az Azure Functions lehetővé teszi a kód válaszul Azure-ban és egyéb szolgáltatások események írása keresztül *eseményindítók* és *kötések*. Ez a cikk eseményindítók elméleti áttekintését és kötések az összes támogatott programozási nyelveket. Funkciókat, amelyek megegyeznek az összes kötését dokumentum ismerteti.
+Az Azure Functions lehetővé teszi az Azure-ban és egyéb szolgáltatások válasz tooevents toowrite kód keresztül *eseményindítók* és *kötések*. Ez a cikk eseményindítók elméleti áttekintését és kötések az összes támogatott programozási nyelveket. Szolgáltatások közös tooall kötések is itt részelemcímkék ismertetését.
 
 ## <a name="overview"></a>Áttekintés
 
-Eseményindítók és kötések egy deklaratív lehetőséget adja meg, hogyan függvényt hívják, és milyen adatokat is működik. A *eseményindító* határozza meg, hogyan függvényt hívják. A függvénynek pontosan egy eseményindító kell rendelkeznie. Eseményindítók olyan adatok, amely általában a tartalom, a függvény kiváltó társítva. 
+Eseményindítók és kötések egy deklaratív módon toodefine hogyan függvényt hívják, és milyen adatokat is működik. A *eseményindító* határozza meg, hogyan függvényt hívják. A függvénynek pontosan egy eseményindító kell rendelkeznie. Eseményindítók olyan adatok, amely általában hello függvény kiváltó hello hasznos lehet társítva. 
 
-Bemeneti és kimeneti *kötések* a kód az adatokhoz történő kapcsolódáshoz deklaratív lehetőséget biztosít. Eseményindítók hasonló, megadhatja a kapcsolati karakterláncokat és egyéb tulajdonságok függvény konfigurációs. Kötések nem kötelező, és egy függvény több bemeneti és a kimeneti kötéseket. 
+Bemeneti és kimeneti *kötések* adjon meg egy deklaratív módon tooconnect toodata, az a kód. Hasonló tootriggers, adja meg a kapcsolati karakterláncokat és egyéb tulajdonságai a függvény konfigurációban. Kötések nem kötelező, és egy függvény több bemeneti és a kimeneti kötéseket. 
 
-Az eseményindítók és kötések, írhat kódot a további általános és nem megoldás biztosítja a szolgáltatások részleteit, amely együttműködik. Egyszerűen vált szolgáltatások bemeneti értékeket a funkciókódot érkező adatokat. A kimeneti adatok (például létrehozhat egy új sor Azure Table Storage-ban) egy másik szolgáltatásba, használja a metódus visszatérési értéke. Vagy ha több érték kimeneti van szüksége, használja a segítő objektuma. Eseményindítók és kötések rendelkezik egy **neve** tulajdonságot, amelynek azonosítója a kódban a kötés elérésére használhat.
+Az eseményindítók és kötések, írhat kódot, amely több általános, és amelyen nem kódba foglalni hello részletek hello szolgáltatás, amellyel kommunikál. Egyszerűen vált szolgáltatások bemeneti értékeket a funkciókódot érkező adatokat. tooanother adatszolgáltatás toooutput (például létrehozhat egy új sor Azure Table Storage-ban), használja a hello hello metódus visszatérési értéke. Vagy ha több értéket kell toooutput, akkor egy segítő objektuma. Eseményindítók és kötések rendelkezik egy **neve** tulajdonságot, amelynek segítségével a kód tooaccess hello kötés azonosítója.
 
-Eseményindítók és kötések is konfigurálhatja a **integráció** az Azure Functions portálon lapján. A színfalak a felhasználói felületen módosítja a customdataexample.xml fájlt *function.json* fájl a függvény. Ez a fájl szerkesztésével módosítása a **speciális szerkesztő**.
+Eseményindítók és kötések konfigurálható hello **integráció** hello Azure Functions portálon lapon. Hello színfalak hello felhasználói felület módosít egy fájlt, úgynevezett *function.json* hello függvény fájl. Ez a fájl szerkesztésével toohello módosítása **speciális szerkesztő**.
 
-A következő táblázat az eseményindítók és kötések az Azure Functions által támogatott. 
+hello következő táblázatban hello eseményindítók és kötések, az Azure Functions által támogatott. 
 
 [!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
 
 ### <a name="example-queue-trigger-and-table-output-binding"></a>Példa: a várólista eseményindító és tábla kimeneti kötése
 
-Tegyük fel, hogy egy új sort írhat Azure Table Storage, amikor az Azure Queue Storage egy új üzenet jelenik meg. Ebben a forgatókönyvben az Azure Queue valósítható eseményindító és egy tábla kimeneti kötése. 
+Tegyük fel, hogy egy új sor tooAzure Table Storage toowrite szüksége, amikor az Azure Queue Storage egy új üzenet jelenik meg. Ebben a forgatókönyvben az Azure Queue valósítható eseményindító és egy tábla kimeneti kötése. 
 
-A várólista eseményindító igényel a következő információkat a **integráció** lapon:
+Várólista eseményindító igényel a következő információk hello hello **integráció** lapon:
 
-* A várólista tárolási fiók kapcsolati karakterláncát tartalmazó az Alkalmazásbeállítás neve
-* A várólista neve
-* A kód beolvassa az üzenetsorban lévő üzenetet tartalmát, mint az azonosító `order`.
+* hello hello tárolási fiók kapcsolati karakterlánc hello várólista tartalmazó hello alkalmazásbeállítás neve
+* hello várólista neve
+* a kód tooread hello tartalmában várólista üdvözlőüzenetére azonosítója, mint hello `order`.
 
-Az Azure Table Storage használja egy kimeneti kötése a következő adatokkal:
+toowrite tooAzure Table Storage egy kimeneti kötése a következő adatok hello használata:
 
-* A tárolási fiók kapcsolati karakterlánc a következő táblázatban található az Alkalmazásbeállítás neve
-* A tábla neve
-* Az azonosító létrehozása kimeneti elemek vagy az eredményül kapott értéket a függvény a kódban.
+* hello hello tárolási fiók kapcsolati karakterlánc hello tábla tartalmazó hello alkalmazásbeállítás neve
+* hello tábla neve
+* a kód toocreate hello azonosító kimeneti elemek vagy hello visszatérési érték a hello függvény.
 
-Kötések app beállítások használata a kapcsolati karakterláncok kényszeríteni a legjobb gyakorlat az, hogy *function.json* szolgáltatás titkos kulcsokat tartalmaz.
+Kapcsolati karakterláncok tooenforce hello bevált gyakorlat az, hogy inkább kötések Alkalmazásbeállítások *function.json* szolgáltatás titkos kulcsokat tartalmaz.
 
-Ezután használja az Azure Storage integrálása a kódban megadott azonosítók.
+Ezt követően a toointegrate az Azure Storage a kódban megadott hello-azonosítók használata.
 
 ```cs
 #r "Newtonsoft.Json"
 
 using Newtonsoft.Json.Linq;
 
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The method return value creates a new row in Table Storage
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello method return value creates a new row in Table Storage
 public static Person Run(JObject order, TraceWriter log)
 {
     return new Person() { 
@@ -85,8 +85,8 @@ public class Person
 ```
 
 ```javascript
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The second parameter to context.done is used as the value for the new row
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello second parameter toocontext.done is used as hello value for hello new row
 module.exports = function (context, order) {
     order.PartitionKey = "Orders";
     order.RowKey = generateRandomId(); 
@@ -100,7 +100,7 @@ function generateRandomId() {
 }
 ```
 
-Itt a *function.json* , amely megfelel a fenti kódot. Vegye figyelembe, hogy ugyanazt a konfigurációt használhatja, függetlenül attól, a függvény végrehajtása nyelvét.
+Íme hello *function.json* , amely megfelel a kód megelőző toohello. Vegye figyelembe, hogy hello azonos konfigurációval is használható, függetlenül hello függvény végrehajtása hello nyelvét.
 
 ```json
 {
@@ -122,7 +122,7 @@ Itt a *function.json* , amely megfelel a fenti kódot. Vegye figyelembe, hogy ug
   ]
 }
 ```
-Megtekintheti és szerkesztheti a tartalmát *function.json* az Azure portálon kattintson a **speciális szerkesztő** beállítást a **integráció** lapon, a függvény.
+tooview és Szerkesztés hello tartalmát *function.json* hello Azure-portálon, kattintson a hello **speciális szerkesztő** hello beállítást **integráció** lapon, a függvény.
 
 További példákat és részleteinek integrálása az Azure Storage: [Azure Functions eseményindítók és kötések az Azure Storage](functions-bindings-storage.md).
 
@@ -130,13 +130,13 @@ További példákat és részleteinek integrálása az Azure Storage: [Azure Fun
 
 Az összes eseményindítók és kötések vannak egy `direction` tulajdonság:
 
-- Az eseményindítók az irány mindig van kapcsolva`in`
+- Az eseményindítók hello irány mindig van kapcsolva`in`
 - Bemeneti és kimeneti kötések használhatják `in` és`out`
-- Néhány kötések támogatja a speciális paraméterirányt `inout`. Ha `inout`, csak a **speciális szerkesztő** érhető el a **integráció** fülre.
+- Néhány kötések támogatja a speciális paraméterirányt `inout`. Ha `inout`, csak hello **speciális szerkesztő** érhető el hello **integráció** lapon.
 
-## <a name="using-the-function-return-type-to-return-a-single-output"></a>A függvény visszatérési típusa használatával egyetlen kimeneti vissza
+## <a name="using-hello-function-return-type-tooreturn-a-single-output"></a>Hello függvény visszatérési típusa tooreturn egyetlen kimeneti használatával
 
-Az előző példa bemutatja, hogyan kimeneti egy kötést, amely használatával a különleges name paramétert adja meg a függvény visszatérési értéke használandó `$return`. (Ez csak akkor támogatott a nyelveket, amelyeken a visszatérési érték, például a C#, JavaScript és F #.) Ha egy függvény több kimeneti kötése, `$return` csak az egyik a kimeneti kötéseket. 
+hello előző példa bemutatja, hogyan toouse hello függvény visszatérési értéke tooprovide kimeneti tooa kötést, amely speciális hello paraméter használatával `$return`. (Ez csak akkor támogatott a nyelveket, amelyeken a visszatérési érték, például a C#, JavaScript és F #.) Ha egy függvény több kimeneti kötése, `$return` hello kimeneti kötések csak az egyik. 
 
 ```json
 // excerpt of function.json
@@ -148,7 +148,7 @@ Az előző példa bemutatja, hogyan kimeneti egy kötést, amely használatával
 }
 ```
 
-Az alábbi megjelenítése Példák hogyan visszatérési típusok használhatók kimeneti kötések C#, JavaScript és F #.
+alább megjelenítése hello példák hogyan visszatérési típusok használhatók kimeneti kötések C#, JavaScript és F #.
 
 ```cs
 // C# example: use method return value for output binding
@@ -171,7 +171,7 @@ public static Task<string> Run(WorkItem input, TraceWriter log)
 ```
 
 ```javascript
-// JavaScript: return a value in the second parameter to context.done
+// JavaScript: return a value in hello second parameter toocontext.done
 module.exports = function (context, input) {
     var json = JSON.stringify(input);
     context.log('Node.js script processed queue message', json);
@@ -189,9 +189,9 @@ let Run(input: WorkItem, log: TraceWriter) =
 
 ## <a name="binding-datatype-property"></a>Kötés dataType tulajdonsága
 
-A .NET használja a bemeneti adatok adatok típusának azonosítására. Használja például a `string` kötődni a várólista eseményindítót, valamint egy bájttömböt olvasni bináris formában.
+A .NET a bemeneti adatok a hello típusok toodefine hello adattípust használja. Használja például a `string` toobind toohello szöveg várólista eseményindító és egy bájt tömb tooread bináris formában.
 
-Például a JavaScriptek dinamikusan beírt nyelven, használja a `dataType` tulajdonság kötése definíciójában. Olvassa el a tartalom HTTP-kérések bináris formátumú, például típust használjon `binary`:
+A dinamikusan begépelt például JavaScript nyelven, használja a hello `dataType` hello kötés definícióban tulajdonság. Például tooread hello bináris formátumú HTTP-kérelem tartalma, hello típust használjon `binary`:
 
 ```json
 {
@@ -205,13 +205,13 @@ Például a JavaScriptek dinamikusan beírt nyelven, használja a `dataType` tul
 Más beállításokat a `dataType` vannak `stream` és `string`.
 
 ## <a name="resolving-app-settings"></a>Alkalmazásbeállítások feloldása
-Ajánlott eljárásként titkos kulcsok és a kapcsolati karakterláncok használatával kell irányítani Alkalmazásbeállítások, nem pedig konfigurációs fájlok. Ez korlátozza, hogy ezeknek a kulcsoknak access, és lehetővé teszi a biztonságos tárolására *function.json* a egy nyilvános verziókövetési tárházzal.
+Ajánlott eljárásként titkos kulcsok és a kapcsolati karakterláncok használatával kell irányítani Alkalmazásbeállítások, nem pedig konfigurációs fájlok. Ez korlátozza a hozzáférést toothese titkos kulcsokat, és lehetővé teszi az biztonságos toostore *function.json* a egy nyilvános verziókövetési tárházzal.
 
-Alkalmazásbeállítások is hasznosak, ha meg szeretné változtatni a konfiguráció a környezet alapján. Például egy tesztkörnyezetben, érdemes lehet egy másik várólista vagy a blob-tároló figyelésére.
+Alkalmazásbeállítások is hasznosak, ha azt szeretné, hogy a hello környezete alapján toochange konfigurációs. Például egy tesztkörnyezetben, érdemes lehet toomonitor különböző várólista vagy a blob storage tárolót.
 
-Alkalmazásbeállítások fakadó problémák megoldásával, amikor egy érték szimpla százalékjelek, például a `%MyAppSetting%`. Vegye figyelembe, hogy a `connection` eseményindítók és kötések tulajdonsága egy különleges esetben, és automatikusan feloldja az értékeket, ha az alkalmazás beállításait. 
+Alkalmazásbeállítások fakadó problémák megoldásával, amikor egy érték szimpla százalékjelek, például a `%MyAppSetting%`. Vegye figyelembe, hogy hello `connection` eseményindítók és kötések tulajdonsága egy különleges esetben, és automatikusan feloldja az értékeket, ha az alkalmazás beállításait. 
 
-A következő példa egy Alkalmazásbeállítás használó várólista eseményindító `%input-queue-name%` elindítani a várólista meghatározásához.
+hello alábbi példa: egy sor eseményindító Alkalmazásbeállítás használó `%input-queue-name%` toodefine hello várólista tootrigger meg.
 
 ```json
 {
@@ -229,9 +229,9 @@ A következő példa egy Alkalmazásbeállítás használó várólista esemény
 
 ## <a name="trigger-metadata-properties"></a>Eseményindító metaadat-tulajdonságainak
 
-Sok eseményindítók mellett a hasznos adatforgalmat egy eseményindító (például az üzenetsorban található üzenetet függvény kiváltó) által biztosított, adja meg a további metaadatokat értékét. Ezeket az értékeket a C# és F # vagy tulajdonságok bemeneti paraméter használható a `context.bindings` JavaScript objektumban. 
+Sok eseményindítók hozzáadása a trigger (például egy olyan függvényt kiváltó hello üzenetsor) által biztosított toohello adatokat tartalmaz, adja meg a további metaadatokat értékét. Ezeket az értékeket a C# és F # vagy hello tulajdonságainak bemeneti paraméter használható `context.bindings` JavaScript objektumban. 
 
-Például egy várólista eseményindító támogatja a következő tulajdonságokkal:
+Például egy várólista eseményindító támogatja hello következő tulajdonságai:
 
 * QueueTrigger - indítására üzenet tartalmát, ha egy érvényes karakterláncot
 * DequeueCount
@@ -241,9 +241,9 @@ Például egy várólista eseményindító támogatja a következő tulajdonság
 * NextVisibleTime
 * PopReceipt
 
-A megfelelő referencia-témakör ismerteti a metaadat-tulajdonságainak minden eseményindító részleteit. Dokumentáció is rendelkezésre áll, az a **integráció** a portál lapján, a a **dokumentáció** című szakaszt a kötési konfigurációja területen.  
+Hello megfelelő referencia-témakör ismerteti a metaadat-tulajdonságainak minden eseményindító részleteit. Dokumentáció is rendelkezésre áll, a hello **integráció** hello portál, a hello lapján **dokumentáció** hello kötés konfigurációs terület szakaszban olvashatók.  
 
-Például blob eseményindítók rendelkezik néhány késések, mivel segítségével várólista eseményindító futtassa a funkciót (lásd: [Blob Storage eseményindító](functions-bindings-storage-blob.md#storage-blob-trigger). Az üzenetsorban lévő üzenetet tartalmaz a blob fájlnevét elindítani a. Használja a `queueTrigger` metaadat-tulajdonságnak adhat meg ezt a viselkedést összes konfigurációjáról, nem pedig a kódot.
+Például, mivel a blob eseményindítók késedelmes rendelkeznek, egy várólista eseményindító toorun a funkció használata (lásd: [Blob Storage eseményindító](functions-bindings-storage-blob.md#storage-blob-trigger). várólista üdvözlőüzenetére hello blob fájlnév tootrigger tartalmazná a. Hello segítségével `queueTrigger` metaadat-tulajdonságnak adhat meg ezt a viselkedést összes konfigurációjáról, nem pedig a kódot.
 
 ```json
   "bindings": [
@@ -263,15 +263,15 @@ Például blob eseményindítók rendelkezik néhány késések, mivel segítsé
   ]
 ```
 
-Egy metaadat-tulajdonságot is használható egy *kötési kifejezés* egy másik kötés, a következő szakaszban leírt módon.
+Egy metaadat-tulajdonságot is használható egy *kötési kifejezés* egy másik kötés, mint a következő szakaszban ismertetett hello.
 
 ## <a name="binding-expressions-and-patterns"></a>Kötelező kifejezések és minták
 
-Az egyik leghatékonyabb részeit, eseményindítók és kötések *kötési kifejezésként*. A kötés belül mintát kifejezések, amelyek ezután felhasználhatók adhat meg más kötésekben vagy a kód. Eseményindító metaadatait is használható a kötési kifejezésként, mint az előző szakaszban leírt minta megjelenítése.
+Egyik leghatékonyabb szolgáltatása hello eseményindítók és kötések *kötési kifejezésként*. A kötés belül mintát kifejezések, amelyek ezután felhasználhatók adhat meg más kötésekben vagy a kód. Eseményindító metaadatait is használható a kötési kifejezésként, mint az előző szakaszban hello hello mintában megjelenítése.
 
-Tegyük fel például, adott blob storage tárolóban, hasonló képek átméretezése szeretné a **kép méret** -sablon a **új függvény** lap. Nyissa meg a **új függvény** -> nyelvi **C#** forgatókönyv -> **minták** -> **ImageResizer-c Sharp**. 
+Tegyük fel például, azt szeretné, hogy az adott blob storage tárolót, hasonló toohello tooresize képek **kép méret** hello sablon **új függvény** lap. Nyissa meg túl**új függvény** -> nyelvi **C#** forgatókönyv -> **minták** -> **ImageResizer-c Sharp**. 
 
-Itt a *function.json* definíciója:
+Íme hello *function.json* definíciója:
 
 ```json
 {
@@ -294,10 +294,10 @@ Itt a *function.json* definíciója:
 }
 ```
 
-Figyelje meg, hogy a `filename` paraméter van megadva a mind a blob eseményindító definícióját, valamint a blob kimeneti kötése. Ez a paraméter funkciókódot is használható.
+Figyelje meg, hogy hello `filename` paraméter van megadva a egyaránt hello blob eseményindító definícióját, valamint hello blob kimeneti kötése. Ez a paraméter funkciókódot is használható.
 
 ```csharp
-// C# example of binding to {filename}
+// C# example of binding too{filename}
 public static void Run(Stream image, string filename, Stream imageSmall, TraceWriter log)  
 {
     log.Info($"Blob trigger processing: {filename}");
@@ -310,7 +310,7 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 
 
 ### <a name="random-guids"></a>Véletlenszerű GUID azonosítók
-Az Azure Functions kényelmi szintaxist tartalmaz a GUID előállítása érdekében a kötéseiben keresztül a `{rand-guid}` kötési kifejezés. Az alábbi példa használja ahhoz, hogy a blob egyedi nevet létrehozni: 
+Az Azure Functions kényelmi szintaxist tartalmaz a kötések hello keresztül a GUID-EK létrehozásának `{rand-guid}` kötési kifejezés. hello következő példában a toogenerate egy egyedi blob neve: 
 
 ```json
 {
@@ -323,7 +323,7 @@ Az Azure Functions kényelmi szintaxist tartalmaz a GUID előállítása érdek�
 
 ### <a name="current-time"></a>Aktuális idő
 
-A kötési kifejezés használható `DateTime`, amely feloldása egy olyan `DateTime.UtcNow`.
+Hello kötési kifejezés használható `DateTime`, amely feloldja túl`DateTime.UtcNow`.
 
 ```json
 {
@@ -334,11 +334,11 @@ A kötési kifejezés használható `DateTime`, amely feloldása egy olyan `Date
 }
 ```
 
-## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a>A kötési kifejezése egyéni bemeneti tulajdonságok kötése
+## <a name="bind-toocustom-input-properties-in-a-binding-expression"></a>Kötési kifejezésekben toocustom bemeneti tulajdonságai más elemekhez köthetők
 
-Kötési kifejezésként tulajdonságok határozzák meg az eseményindító forgalma maga is hivatkozhat. Érdemes lehet például egy olyan webhook megadott fájlnév a blob storage fájlba dinamikusan kötni.
+Kötési kifejezésként is hivatkozhat hello eseményindító hasznos maga definiált tulajdonságai. Például érdemes lehet toodynamically bind tooa blob storage fájlt egy olyan webhook megadott fájlnév.
 
-Például a következő *function.json* tulajdonságot használja `BlobName` az eseményindító forgalma a:
+Például a következő hello *function.json* tulajdonságot használja `BlobName` a hello eseményindító hasznos:
 
 ```json
 {
@@ -365,7 +365,7 @@ Például a következő *function.json* tulajdonságot használja `BlobName` az 
 }
 ```
 
-Ehhez a C# és F #, meg kell határoznia egy POCO, amely meghatározza a mezőket, amelyeknek deszerializálása az eseményindító tartalmaz.
+tooaccomplish Ez a C# és F #, meg kell adnia egy POCO, amely meghatározza a deszerializálása hello mezők hello eseményindító tartalmaz.
 
 ```csharp
 using System.Net;
@@ -387,7 +387,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, str
 }
 ```
 
-A JavaScript JSON-deszerializálás automatikusan történik, és közvetlenül a tulajdonságok használhatók.
+A JavaScript JSON-deszerializálás automatikusan történik, és közvetlenül hello tulajdonságok használhatók.
 
 ```javascript
 module.exports = function (context, info) {
@@ -407,10 +407,10 @@ module.exports = function (context, info) {
 
 ## <a name="configuring-binding-data-at-runtime"></a>Futásidőben kötés adatok konfigurálása
 
-C# és egyéb .NET-nyelveket, használhat egy imperatív kötés mintát, szemben a deklaratív kötések *function.json*. Imperatív kötés akkor hasznos, ha a kötési paraméterekhez kell számítani a Tervező helyett futásidejű időpontban. További tudnivalókért lásd: [imperatív kötéseken keresztül futásidőben kötés](functions-reference-csharp.md#imperative-bindings) a C# fejlesztői útmutatóban.
+C# és egyéb .NET nyelven, akkor használható egy imperatív kötés mintát deklaratív kötések megakadályozását toohello *function.json*. Imperatív kötés akkor hasznos, ha a kötési paraméterekhez kell tervezési helyett futásidejű időpontban számított toobe. toolearn több, lásd: [imperatív kötéseken keresztül futásidőben kötés](functions-reference-csharp.md#imperative-bindings) hello C# fejlesztői útmutatóban.
 
 ## <a name="next-steps"></a>Következő lépések
-Egy adott kötés további információkért tekintse meg a következő cikkeket:
+Egy adott kötés további információkért tekintse meg a következő cikkek hello:
 
 - [HTTP és webhookok](functions-bindings-http-webhook.md)
 - [Időzítő](functions-bindings-timer.md)

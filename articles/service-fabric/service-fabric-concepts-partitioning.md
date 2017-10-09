@@ -1,6 +1,6 @@
 ---
-title: "A Service Fabric szolgáltatások particionálás |} Microsoft Docs"
-description: "A Service Fabric állapotalapú szolgáltatások partícióazonosító ismerteti. Partíciók lehetővé teszi, hogy a helyi gépen adattárolás, adatokat és a számítás is méretezhető együtt."
+title: "a Service Fabric-szolgáltatások aaaPartitioning |} Microsoft Docs"
+description: "Ismerteti, hogyan toopartition Service Fabric állapotalapú szolgáltatások. Partíciók lehetővé teszi, hogy adattárolás hello helyi gépen, adatokat és a számítás is méretezhető együtt."
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,132 +14,132 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: msfussell
-ms.openlocfilehash: 3c1e80305cb65f41a6981b99f69e8b87f89599ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ead48716c08f4212535202ee69d169067d5c6d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="partition-service-fabric-reliable-services"></a>A Service Fabric megbízható szolgáltatások partíció
-Ez a cikk bemutatja azokat a megbízható Azure Service Fabric-szolgáltatások particionálás alapvető fogalmait. A cikkben használt forráskódját is rendelkezésre áll, a [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
+A cikkben egy bevezető toohello Azure Service Fabric megbízható szolgáltatások particionálás alapvető fogalmait. hello hello cikkben használt forráskód is rendelkezésre áll a [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
 
 ## <a name="partitioning"></a>Particionálás
-Particionálás nincs egyedi, hogy a Service Fabric. Ez valójában egy alapvető szerkezet méretezhető szolgáltatások. Egy tágabb értelemben véve a azt gondolja át egy fogalom felosztásával állapota (adatok), particionálás és méretezhetőség és teljesítmény javítása érdekében kisebb elérhető egységekbe számítási. Egy jól ismert particionálás formátuma [adatparticionálás][wikipartition], más néven horizontális.
+Particionálás nincs egyedi tooService háló. Ez valójában egy alapvető szerkezet méretezhető szolgáltatások. Egy tágabb értelemben véve a azt gondolja át particionálás egy fogalom felosztásával állapota (adatok), és kisebb elérhető egységek tooimprove méretezhetőséget és teljesítményt nyújt a számítási. Egy jól ismert particionálás formátuma [adatparticionálás][wikipartition], más néven horizontális.
 
 ### <a name="partition-service-fabric-stateless-services"></a>A Service Fabric állapotmentes szolgáltatások partíció
 Állapotmentes szolgáltatások esetén azt is gondolja át éppen egy logikai egységet a szolgáltatás egy vagy több példányát tartalmazó partíció. 1. ábra mutatja egy állapotmentes szolgáltatások elosztva a fürt egy partíciót öt osztályt.
 
 ![Állapotmentes szolgáltatások](./media/service-fabric-concepts-partitioning/statelessinstances.png)
 
-Valóban két típusa van állapotmentes szolgáltatások megoldások. Az első címtárra olyan szolgáltatás, amely továbbra is fennáll állapotában kívülről, például egy Azure SQL-adatbázis (például egy webhely, amely tárolja a munkamenet-információk és adatok). A második érték csak számítási-szolgáltatások (például egy Számológép vagy kép thumbnailing), amelyeket nem kezel olyan állandó állapotokat.
+Valóban két típusa van állapotmentes szolgáltatások megoldások. hello először egyik olyan szolgáltatás, amely továbbra is fennáll állapotában kívülről, például egy Azure SQL-adatbázis (például egy webhely, amely tárolja a hello munkamenet-információk és adatok). hello második csak számítási-szolgáltatások (például egy Számológép vagy kép thumbnailing), amelyeket nem kezel olyan állandó állapotokat.
 
-A vagy állapotmentes szolgáltatások particionálás esetben egy nagyon ritkán forgatókönyv – a méretezhetőség és rendelkezésre állási általában több példány hozzáadásával érhető el. Csak akkor érdemes megfontolni a állapotmentes szolgáltatások példányok több partíciót, amikor különleges útválasztási kérések teljesítéséhez szüksége.
+A vagy állapotmentes szolgáltatások particionálás esetben egy nagyon ritkán forgatókönyv – a méretezhetőség és rendelkezésre állási általában több példány hozzáadásával érhető el. kérelmek hello csak időtartamát tooconsider toomeet különleges útválasztási van szüksége több partíciót állapotmentes szolgáltatások-példányok esetén.
 
-Tegyük fel fontolja meg egy olyan esetben, ha egy bizonyos tartomány-azonosítóval rendelkező felhasználók csak szolgáltatható által egy adott szolgáltatáspéldány. Ha sikerült partícióazonosító állapotmentes szolgáltatások egy másik példa, amikor egy valóban particionált háttér (pl. szilánkos SQL-adatbázis) rendelkezik, és szeretne szabályozni, mely szolgáltatáspéldány kell írni a adatbázis shard – vagy más belül előkészítő feladatok végrehajtására a állapot nélküli szolgáltatás, amely a azonos particionálási információra van szüksége, a háttér használatban van. Ilyen típusú forgatókönyvek is különböző módon kell megoldani, és nem feltétlenül igényel szolgáltatás particionálást.
+Tegyük fel fontolja meg egy olyan esetben, ha egy bizonyos tartomány-azonosítóval rendelkező felhasználók csak szolgáltatható által egy adott szolgáltatáspéldány. Ha sikerült partícióazonosító állapotmentes szolgáltatások egy másik példa, amikor egy valóban particionált háttér (pl. szilánkos SQL-adatbázis) rendelkezik, és azt szeretné, hogy mely szolgáltatáspéldány kell toohello adatbázis shard--írási vagy más belül előkészítő feladatok végrehajtására toocontrol hello állapotmentes szolgáltatások igénylő hello azonos partíciós információi szerint hello háttér használatban van. Ilyen típusú forgatókönyvek is különböző módon kell megoldani, és nem feltétlenül igényel szolgáltatás particionálást.
 
-Ez a bemutató részében az állapotalapú szolgáltatások összpontosít.
+Ez a bemutató részében hello állapotalapú szolgáltatások összpontosít.
 
 ### <a name="partition-service-fabric-stateful-services"></a>A Service Fabric állapotalapú szolgáltatások partíció
-A Service Fabric megkönnyíti a partíció állapotba (adatok) első osztályú úgy felajánlásával méretezhető állapotalapú szolgáltatások fejlesztéséhez. Fogalmilag, is gondol a partíció egy állapotalapú szolgáltatás, amely nagymértékben megbízható keresztül skálázási egységként [replikák](service-fabric-availability-services.md) , amely az elosztott és a fürt csomópontjai között.
+A Service Fabric teszi könnyen toodevelop méretezhető állapotalapú szolgáltatások első osztályú úgy felajánlásával toopartition állapota (adatok). Fogalmilag, is gondol a partíció egy állapotalapú szolgáltatás, amely nagymértékben megbízható keresztül skálázási egységként [replikák](service-fabric-availability-services.md) , amely az elosztott és hello fürtben található csomópontok között.
 
-A Service Fabric állapotalapú szolgáltatások keretében particionálás határozhatja meg, hogy egy adott szolgáltatáshoz partíció feladata a teljes állapotát a szolgáltatás része hivatkozik. (Ahogy korábban említettük, a partíció egy olyan [replikák](service-fabric-availability-services.md)). A Service Fabric kiváló számítógépben, hogy másik csomópontjára helyezi a partíciókat. Ez lehetővé teszi egy erőforrás csomópontszámkorlát növekedjen őket. Az adatok igények nő, partíciók nő, és a Service Fabric partíciók-csomópontokon keresztüli újra egyensúlyba hozza.. Ez biztosítja, hogy a hardver-erőforrások hatékony alkalmazását.
+A Service Fabric állapotalapú szolgáltatások hello környezetében particionálás hivatkozik toohello folyamat meghatározása, hogy egy adott szolgáltatáshoz partíció feladata hello hello szolgáltatás teljes állapota része. (Ahogy korábban említettük, a partíció egy olyan [replikák](service-fabric-availability-services.md)). A Service Fabric kiváló számítógépben, hogy különböző csomópontokon hello partíciók helyezi. Ez lehetővé teszi őket toogrow tooa csomópont erőforrás korlátját. Hello adatok igények nő, partíciók nő, és a Service Fabric partíciók-csomópontokon keresztüli újra egyensúlyba hozza.. Ez biztosítja, hogy hello további hardver-erőforrások hatékony használatát.
 
-Így például, tegyük fel például, a kiindulási pont 5-csomópontból álló fürt és egy szolgáltatás, amely 10 partíciók és három replikák célja van konfigurálva. Ebben az esetben a Service Fabric ehhez elosztása és a replikák elosztják a fürt és meg szeretné végül két fő [replikák](service-fabric-availability-services.md) csomópontonként.
-Ha most szeretné terjessze ki a fürtöt, 10 csomópontok, a Service Fabric volna egyensúlyba az elsődleges [replikák](service-fabric-availability-services.md) minden 10 csomópontra. Hasonlóképpen akkor vissza 5 csomópontok méretezhető, ha a Service Fabric volna egyensúlyba a replikák a 5 csomópontjai között.  
+toogive például mondja meg az 5-csomópontból álló fürt és a beállított toohave 10 partíciók és három replikák célja egy szolgáltatás elindítása. Ebben az esetben a Service Fabric volna elosztása és hello replikák elosztják a hello fürt--és meg kellene végül két fő [replikák](service-fabric-availability-services.md) csomópontonként.
+Ha most kell tooscale hello too10 fürtcsomópontok ki, a Service Fabric volna egyensúlyba hello elsődleges [replikák](service-fabric-availability-services.md) minden 10 csomópontra. Hasonlóképpen méretezhető csomópontja hátsó too5, ha a Service Fabric volna egyensúlyba összes hello replika hello 5-csomópont között.  
 
-2. ábra 10 partíciók előtt és után a fürt skálázás eloszlását mutatja.
+2. ábrán látható hello terjesztési 10 partíciók előtt és után hello fürt méretezése.
 
 ![Az állapotalapú szolgáltatás](./media/service-fabric-concepts-partitioning/partitions.png)
 
-Ennek eredményeképpen a kibővített érhető el, mivel az ügyfelek kérelmeinek számítógépek különböző pontjain, az alkalmazás általános teljesítmény akkor javul, és adattömböket írnak való versengés csökken.
+Ennek eredményeképpen hello kibővített érhető el, mert ügyfelek számítógépek különböző pontjain, hello alkalmazás általános teljesítmény akkor javul, és az adatok a hozzáférés toochunks versengés csökken.
 
 ## <a name="plan-for-partitioning"></a>Particionálás tervezése
-A szolgáltatás üzembe, mielőtt mindig vegye figyelembe a particionálási stratégia szükséges ahhoz, hogy ki. Különböző módja van, de ezek összpontosítani kell az alkalmazás eléréséhez. Ez a cikk a környezet Mérlegeljük, néhány fontosabb szempontjait.
+A szolgáltatás üzembe, mielőtt mindig érdemes particionálási stratégia, amely szükséges tooscale kimenő hello. Különböző módja van, de ezek milyen hello alkalmazást tooachieve kell összpontosítania. Ez a cikk hello környezethez Mérlegeljük hello némelyike több fontos szempont.
 
-Egy jó megoldás, az állapot, amely lehet particionálni első lépéseként meg kell a struktúra gondolniuk.
+Egy jó megoldás, toothink kapcsolatos hello struktúra, amelyet a particionált, hello első lépéseként toobe hello állapot.
 
-Vegyünk egy egyszerű példa. Ha a szolgáltatás egy countywide lekérdezési létrehozásához, létrehozhat egy partíció mindegyik városhoz megyét a. Ezt követően a szavazatok minden személy tárolhatja a partícióban, amely megfelel a város városban. 3. ábra azt mutatja be, személyek és a város, amelyben található.
+Vegyünk egy egyszerű példa. Ha a szolgáltatás egy countywide lekérdezési toobuild, létrehozhat egy partíció mindegyik városhoz hello megye a. Ezt követően tárolhatja minden személy hello szavazatok hello városban, amely megfelel a toothat város hello partícióban. 3. ábra azt mutatja be, személyek és hello város, amelyben található készlete.
 
 ![Egyszerű partíció](./media/service-fabric-concepts-partitioning/cities.png)
 
-Mivel a feltöltési város széles körben változik, akkor fordulhatnak elő néhány nagy mennyiségű adatot (pl. budapest) tartalmazó partíciókat és a többi partíció csekély állapotú (pl. Kirkland). De mi hatása, hogy a partíciók állapot egyenetlen mennyiségű?
+Mivel hello feltöltési város széles körben változik, akkor előfordulhat, hogy végül néhány nagy mennyiségű adatot (pl. budapest) tartalmazó partíciókat és a többi partíció csekély állapotú (pl. Kirkland). De mi, hogy a partíciók állapot egyenetlen mennyiségű hello hatás?
 
-Ha úgy gondolja, hogy a példában kapcsolatos újra, könnyen láthatja, hogy a partíció, amely tárolja a szavazatok Budapest fogja kapni az egyik Kirkland-nál nagyobb forgalmat. Alapértelmezés szerint a Service Fabric teszi arról, hogy minden egyes csomóponton elsődleges és másodlagos replikák azonos számú kapcsolatban. Így használható a replikák átadott nagyobb forgalmat, míg mások kisebb forgalmat rendelkező csomópont. Lehetőleg célszerű és meleg tesztüzeméhez ilyen fürt elkerülése érdekében.
+Ha úgy gondolja, hogy kapcsolatos hello példa újra, könnyen láthatja, hogy hello partíció, amely tárolja a budapesti kvórumszavazatokat hello kap egy hello Kirkland-nál nagyobb forgalmat. Alapértelmezés szerint a Service Fabric gondoskodik arról, hogy nincs kapcsolatos hello azonos számú elsődleges és másodlagos replikák minden egyes csomóponton. Így használható a replikák átadott nagyobb forgalmat, míg mások kisebb forgalmat rendelkező csomópont. Lehetőleg érdemes tooavoid kiemelt és cold tesztüzeméhez, például a fürtben.
 
-Ennek elkerülése érdekében a particionálási szempontjából két dolgot kell tenni:
+A rendezés tooavoid ezt, a particionálási szempontjából két dolgot kell tenni:
 
-* Próbálja meg a partícióazonosító állapotát, hogy az összes partíciójára egyenletesen vannak elosztva.
-* A szolgáltatás a replikák mindegyike a betöltésének jelentéséhez. (Kapcsolatban tekintse meg a cikk a [metrikák és a betöltés](service-fabric-cluster-resource-manager-metrics.md)). A Service Fabric lehetővé teszi a szolgáltatások, például a memória vagy a rekordok száma által felhasznált betöltésének jelentéséhez. A jelentett mérőszámok alapján, a Service Fabric észleli, hogy az egyes partíciók többinél magasabb terhelés szolgál, és újra egyensúlyba hozza a fürt elérhetővé tétele a megfelelő csomópontok replikák azáltal, hogy a teljes nincs csomópont túl van terhelve.
+* Próbálja toopartition hello állapotát, hogy az összes partíciójára egyenletesen vannak elosztva.
+* Az egyes hello replikák hello szolgáltatás betöltésének jelentéséhez. (Kapcsolatban tekintse meg a cikk a [metrikák és a betöltés](service-fabric-cluster-resource-manager-metrics.md)). A Service Fabric biztosítja hello funkció tooreport hálózati szolgáltatások, például a memória vagy a rekordok száma használni. Jelentett hello mérőszámok alapján, a Service Fabric észleli, hogy az egyes partíciók többinél magasabb terhelés szolgál, és újra egyensúlyba hozza a mozgóátlag replikák toomore megfelelő csomópontok, hello fürt teljes nincs csomópont túl van terhelve.
 
-Néha nem tudja, mennyi adatot lesznek az egyes partíciók eseménysorozatában. Egy általános javasoljuk, hogy szabaddá--először jó particionálási stratégia elfogadásával, amely az adatok egyenletesen legyen a partíciókat és a második, által terjed jelentéskészítési betöltése  Az első módszer megakadályozza, hogy közben a második segítségével zökkenőmentes hozzáférést vagy terheléselosztási ideiglenes különbségeit ki adott idő alatt a szavazó példában bemutatott esetekben.
+Néha nem tudja, mennyi adatot lesznek az egyes partíciók eseménysorozatában. Így egy általános javaslat toodo mindkét--először jó particionálási stratégia elfogadásával, amelyek között osztja el hello adatok egyenletesen hello partíciókat és a második, jelentéskészítési terhelés által.  első módszer hello megakadályozza, hogy a példában szavazás során hello második segítségével zökkenőmentes hozzáférést vagy terheléselosztási ideiglenes különbségeit kimenő időbeli hello helyzet.
 
-Egy másik partíció tervezési célja a először válassza ki a megfelelő számú partíciót.
+Egy másik partíció tervezési célja toochoose hello számát a partíciók toobegin.
 A Service Fabric szempontjából nincs szükség, amely megakadályozza, hogy kezdte meg az magasabb számú partíciót adott esetben a vártnál.
-Feltéve, hogy a maximális számú partíciót valójában egy érvényes megközelítés.
+Feltéve, hogy hello több partíció valójában egy érvényes megközelítés.
 
-Ritka esetekben használható kellene kezdetben kiválasztott számánál több partíciót. Bekövetkeztek a partíciók száma nem módosítható, mert néhány speciális partíció megoldások, például egy új szolgáltatás példányának létrehozásakor az azonos típusú szolgáltatás alkalmazni kellene. Meg kell valósítania néhány ügyféloldali logikát, amely a kérelmeket továbbítja a megfelelő szolgáltatáspéldány, az Ügyfélkód kell karbantartani ügyféloldali ismeretek alapján.
+Ritka esetekben használható kellene kezdetben kiválasztott számánál több partíciót. Hello partíciószám után hello tény nem módosítható, mert kellene tooapply néhány speciális partíció módszerek, például létrehozhat egy új szolgáltatás példányának hello azonos szolgáltatás típusa. Módosítania kell tooimplement néhány ügyféloldali logika, amely továbbítja a hello kérelmek toohello megfelelő szolgáltatáspéldány, az Ügyfélkód kell karbantartani ügyféloldali ismeretek alapján.
 
-Meg kell vizsgálni a particionálás a tervezés, a rendelkezésre álló számítógép-erőforrásokat. Az állapot igények is elérhető, és tárolja, akkor kötött kövesse:
+Meg kell vizsgálni a particionálás tervezési, hello elérhető számítógép-erőforrásokat. Hello állapot igények toobe érhető el, és tárolja, kötött toofollow áll:
 
 * Hálózati sávszélesség korlátja
 * Rendszer memóriakorlátokat
 * Lemez tárolási korlátai
 
-Így mi történik, ha egy futó fürt erőforrás korlátokat futtatja? A válasz, hogy ki lehet egyszerűen terjeszteni a fürt az új követelmények teljesítése.
+Így mi történik, ha egy futó fürt erőforrás korlátokat futtatja? hello választ ki, hogy egyszerűen méretezheti hello fürt tooaccommodate hello új követelményeket kell.
 
-[A kapacitástervezési útmutató](service-fabric-capacity-planning.md) arról, hogyan határozható meg a fürt kell hány csomópontja útmutatást nyújt.
+[kapacitástervezési útmutató hello](service-fabric-capacity-planning.md) útmutatást kínál toodetermine hány csomópontokat a fürthöz kell.
 
 ## <a name="get-started-with-partitioning"></a>Ismerkedés a particionálás
-Ez a szakasz ismerteti, hogyan lásson particionálás a szolgáltatás.
+Ez a szakasz ismerteti, hogyan tooget a szolgáltatás particionálás használatába.
 
 A Service Fabric kiválaszthatja, hogy három partíciós séma kínálja:
 
 * Címkiosztási particionálás (más néven UniformInt64Partition).
 * Nevű particionálást. Ez a modell általában használó alkalmazások is lehet bucketed, a kötött belül adatokkal rendelkeznek. Néhány gyakori példán elnevezett partíciókulcsok használt adatmezők lenne, régiók, postai, felhasználói csoportok vagy egyéb üzleti határokat.
-* Particionálás egypéldányos. A szolgáltatás nem igényel további útválasztási egypéldányos partíciók általában használják. Például a állapotmentes szolgáltatásokhoz használja ezt a particionálási sémát alapértelmezés szerint.
+* Particionálás egypéldányos. Hello szolgáltatást nem igényel további útválasztási egypéldányos partíciók általában használják. Például a állapotmentes szolgáltatásokhoz használja ezt a particionálási sémát alapértelmezés szerint.
 
-Nevű és egypéldányos particionálási sémák a következők: címkiosztási partíciók speciális formája. Alapértelmezés szerint a Visual Studio-sablonok a Service Fabric használatra címkiosztási particionálás, mert az általános és a hasznos azt. Ez a cikk fennmaradó ranged particionálási sémát összpontosít.
+Nevű és egypéldányos particionálási sémák a következők: címkiosztási partíciók speciális formája. Alapértelmezés szerint a Service Fabric használatra hello Visual Studio sablonok címkiosztási particionálás, mert az hello közös és a hasznos egy. hello a cikk hátralévő része hello címkiosztási particionálási sémát összpontosít.
 
 ### <a name="ranged-partitioning-scheme"></a>Címkiosztási particionálási sémát
-Adjon meg egy egész tartomány (a kis és nagy kulcsot által azonosított) és a partíciók (n) számos szolgál. N partíciók, minden egyes felelős a teljes partíció-tartomány egy mozaikként, átfedés nélkül alosztály hoz létre. Például egy ranged particionálási sémát 0 alacsony kulccsal, 99 magas kulcs, és a 4 számát hozna létre négy partíciót alább látható módon.
+Ez az egész használt toospecify (azonosított egy kis és nagy kulcsot) tartomány- és a partíciók (n) száma. N partíciók, minden egyes felelős a hello egy mozaikként, átfedés nélkül alosztály hoz létre teljes partícióazonosító kulcs tartományon. Például egy ranged particionálási sémát 0 alacsony kulccsal, 99 magas kulcs, és a 4 számát hozna létre négy partíciót alább látható módon.
 
 ![Particionálás között](./media/service-fabric-concepts-partitioning/range-partitioning.png)
 
-Általános gyakorlatként javasolt, ha az adatkészlet belül egyedi kulcs alapján kivonatát. Néhány gyakori példán kulcsok lenne, a vehicle azonosító szám (VIN), az alkalmazott azonosítója vagy egy egyedi karakterlánc. Az egyedi kulccsal, majd egy kivonatoló kódot, a kulcs tartomány, a kulcs használandó modulus hoz létre. Az alsó és felső határát az engedélyezett kulcs is megadhat.
+Általános gyakorlatként javasolt toocreate hello adatkészlet belül egyedi kulcs alapján kivonatát. Néhány gyakori példán kulcsok lenne, a vehicle azonosító szám (VIN), az alkalmazott azonosítója vagy egy egyedi karakterlánc. Az egyedi kulcs használatával, hoz majd létre egy kivonatoló modulus hello kulcs tartomány, a toouse a kulcsként. Hello felső és alsó határainak hello megengedett kulcs tartományt is megadhat.
 
 ### <a name="select-a-hash-algorithm"></a>A kivonatoló algoritmus kiválasztása
-A kivonatolás fontos része a kivonatoló algoritmus kijelölése. Egy kell vizsgálni, hogy a cél az, hogy hasonló kulcsok egymást (helység bizalmas kivonatoláshoz) – csoport, vagy ha körben tevékenységet kell terjeszteni összes partíciójára (terjesztési kivonatoláshoz), amely napjainkban egyre általánosabbá.
+A kivonatolás fontos része a kivonatoló algoritmus kijelölése. Egy kell vizsgálni, hogy-e hello cél toogroup hasonló kulcsok egymást (helység bizalmas kivonatoláshoz) –, vagy ha körben tevékenységet kell terjeszteni összes partíciójára (terjesztési kivonatoláshoz), amely napjainkban egyre általánosabbá.
 
-Egy jó kivonatoló algoritmus mutatókat, hogy könnyen számítási, van néhány ütközések, és a kulcsok egyenletesen terjesztett. Egy jó példa egy hatékony kivonatoló algoritmust a [FNV-1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function) kivonatoló algoritmus.
+hello jó terjesztési kivonatoló algoritmus mutatókat, hogy könnyen toocompute, van néhány ütközések, és egyenletesen terjesztett hello kulcsok. Egy jó példa egy hatékony kivonatoló algoritmust, hogy hello [FNV-1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function) kivonatoló algoritmus.
 
-Általános kivonatoló kódot algoritmus lehetőségekért megfelelő erőforrás a [Wikipedia oldalon, kivonatoló függvényeket](http://en.wikipedia.org/wiki/Hash_function).
+Általános kivonatoló kódot algoritmus lehetőségekért helyes erőforrás hello [Wikipedia oldalon, kivonatoló függvényeket](http://en.wikipedia.org/wiki/Hash_function).
 
 ## <a name="build-a-stateful-service-with-multiple-partitions"></a>Több partíciót az állapotalapú szolgáltatás létrehozása
-Hozzuk létre az első megbízható állapotalapú szolgáltatás több partíciókat. Ebben a példában, hol szeretné tárolni a partícióra ugyanazzal a betűvel kezdődő összes Vezetéknév egy nagyon egyszerű alkalmazást fog létrehozni.
+Hozzuk létre az első megbízható állapotalapú szolgáltatás több partíciókat. Ebben a példában fog létrehozni egy nagyon egyszerű alkalmazás toostore kívánt összes utolsó neve az azonos hello a levél hello egyazon partícióra kerüljenek.
 
-Kód írása előtt kell gondolniuk a partíciókat és a partíciós kulcsok. 26 partíciók (egy az ábécé minden betű), de mi van szükség az alacsony és magas kulcsok?
-Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 magas kulcsa, mivel mindegyik betűnek a saját kulcs.
+Kód írása előtt kell toothink hello partíciókról és partíciós kulcsok. Partíciókra van szüksége 26 (egy hello ábécé minden betű), de mi kapcsolatos alacsony és magas kulcsok hello?
+Szeretnénk szó toohave egy partíciót engedélyez betű, azt használatával 0 hello alsó kulcsa és 25 kulcsként hello magas, mert mindegyik betűnek a saját kulcs.
 
 > [!NOTE]
-> Ez egy webfarmos egyszerűsített, valójában a terjesztési egyenetlen lenne. Vezetéknév "S" vagy "M" betűk kezdve gyakoribb, mint az "X" kezdetű vagy az "Y".
+> Ez egy webfarmos egyszerűsített, valójában hello terjesztési egyenetlen lenne. Gyakori hello állók közül. "X" kezdő "S" vagy "M" hello betűket kezdve Vezetéknév vagy az "Y".
 > 
 > 
 
 1. Nyissa meg **Visual Studio** > **fájl** > **új** > **projekt**.
-2. Az a **új projekt** párbeszédpanelen válassza ki a Service Fabric-alkalmazás.
-3. Hívja meg a projekt "AlphabetPartitions".
-4. Az a **szolgáltatás létrehozása** párbeszédpanelen válassza ki **állapotalapú alkalmazások és szolgáltatások** szolgáltatás, és hívja meg az "Alphabet.Processing" az alábbi ábrán látható módon.
+2. A hello **új projekt** párbeszédpanelen válassza ki a Service Fabric-alkalmazás hello.
+3. Hello projekt "AlphabetPartitions" hívása.
+4. A hello **szolgáltatás létrehozása** párbeszédpanelen válassza ki **állapotalapú alkalmazások és szolgáltatások** szolgáltatást, és az "Alphabet.Processing" hívás a hello az alábbi képen látható módon.
        ![Visual Studio új szolgáltatás párbeszédpanelje][1]
 
   <!--  ![Stateful service screenshot](./media/service-fabric-concepts-partitioning/createstateful.png)-->
 
-5. A partíciók számának megadása. Nyissa meg a Applicationmanifest.xml fájlt a AlphabetPartitions projekt ApplicationPackageRoot mappában található, és frissítse a paraméter Processing_PartitionCount 26 alább látható módon.
+5. A partíciók számának hello beállítása. Nyissa meg hello Applicationmanifest.xml fájl található hello ApplicationPackageRoot mappa hello AlphabetPartitions projektet és a frissítés hello paraméter Processing_PartitionCount too26 alább látható módon.
    
     ```xml
     <Parameter Name="Processing_PartitionCount" DefaultValue="26" />
     ```
    
-    Szükség az alább látható módon ApplicationManifest.xml StatefulService elemében LowKey és HighKey tulajdonságainak frissítéséhez.
+    Szükség tooupdate hello LowKey és HighKey tulajdonságok hello StatefulService elemének hello ApplicationManifest.xml alább látható módon.
    
     ```xml
     <Service Name="Processing">
@@ -148,25 +148,25 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
       </StatefulService>
     </Service>
     ```
-6. A szolgáltatás számára érhető el megnyílik egy portot a végpont ServiceManifest.xml (a PackageRoot mappában található), a végpont elem felvétele a Alphabet.Processing szolgáltatás alább látható módon:
+6. Hello szolgáltatás toobe érhető el nyissa meg egy portot a végpont mentése hello végpontelem ServiceManifest.xml (hello PackageRoot mappában található), az alább látható módon Alphabet.Processing szolgáltatás hello hozzáadásával:
    
     ```xml
     <Endpoint Name="ProcessingServiceEndpoint" Port="8089" Protocol="http" Type="Internal" />
     ```
    
-    A szolgáltatás most 26 partíciók belső végpont figyelésére van konfigurálva.
-7. A következő lépésben bírálja felül a `CreateServiceReplicaListeners()` feldolgozási osztály.
+    Hello szolgáltatás most konfigurált toolisten tooan belső végpont 26 partíciókkal.
+7. A következő lépésben toooverride hello `CreateServiceReplicaListeners()` hello feldolgozási osztály.
    
    > [!NOTE]
-   > Ebben a példában feltételezzük, hogy egy egyszerű HttpCommunicationListener használunk. A megbízható szolgáltatás kommunikációja további információkért lásd: [a megbízható kommunikációt modell](service-fabric-reliable-services-communication.md).
+   > Ebben a példában feltételezzük, hogy egy egyszerű HttpCommunicationListener használunk. A megbízható szolgáltatás kommunikációja további információkért lásd: [hello megbízható kommunikáció modell](service-fabric-reliable-services-communication.md).
    > 
    > 
-8. Az URL-címhez, amely figyeli a replika egy ajánlott mintát a következő formátumban: `{scheme}://{nodeIp}:{port}/{partitionid}/{replicaid}/{guid}`.
-    Ezért konfigurálni szeretné a megfelelő végpontok, hogy az ebben a mintában figyelni a kommunikációs figyelő.
+8. Az ajánlott mintázatát hello URL-címet, amely figyeli a replika hello a következő formátumban: `{scheme}://{nodeIp}:{port}/{partitionid}/{replicaid}/{guid}`.
+    Ezért érdemes tooconfigure a kommunikációs figyelő toolisten hello megfelelő végpontok, hogy az ebben a mintában.
    
-    A szolgáltatás több replika előfordulhat, hogy futhat ugyanarra a számítógépre, ezért ez a cím egyedinek kell lennie a replikára. Ezért Partícióazonosító + másodpéldány-azonosító az URL-cím van. HttpListener figyelheti a több címet ugyanazt a portot, amíg az URL-előtagját egyedi.
+    Előfordulhat, hogy a szolgáltatás több replika futó hello ugyanazon a számítógépen, ezért ezt a címet kell toobe egyedi toohello replika. Ezért Partícióazonosító + másodpéldány-azonosító van hello URL-címben. HttpListener figyelheti az azonos port mindaddig, amíg hello URL-előtagját egyedi hello több címen.
    
-    A felesleges GUID van egy speciális eset, amelyen másodlagos replika is a kéréseket kell figyelnie csak olvasható. Ha ez a helyzet, győződjön meg arról, hogy egy új egyedi címet használatos való áttérés menetének elsődleges a másodlagos újra a címek feloldására ügyfelek kényszerítése szeretné. "+" használatos a címet, hogy a replika figyel az összes elérhető gazdagépet (IP, FQDM, localhost stb.) Az alábbi kódot a példáját mutatja be.
+    hello extra GUID van-e egy speciális eset, amelyen másodlagos replika is a kéréseket kell figyelnie csak olvasható. Amikor hello esetben szüksége arra, hogy egy új egyedi címet használja, amikor elsődleges toosecondary tooforce ügyfelek toore feloldása hello cím átállás toomake. "+ a" hello címet, hogy hello replika figyeli az összes elérhető gazdagépet (IP, FQDM, localhost, stb.) hello kódot mutat egy példát használatos.
    
     ```CSharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -192,9 +192,9 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     }
     ```
    
-    Akkor is érdemes megjegyezni, hogy a közzétett URL-cím némileg eltér a figyelő URL-előtagját.
-    A figyelő URL-címet kap arra, hogy HttpListener. A közzétett URL-címe a Service Fabric-szolgáltatás, a szolgáltatásészlelés használt közzétett URL-CÍMÉT. Az ügyfelek ekkor megkérdezi, ehhez a címhez, a felderítés szolgáltatáson keresztül. A cím, az ügyfelek letöltik van szüksége a tényleges IP vagy FQDN-jét a csomópont használata esetén csatlakozhassanak. Ki kell cserélni, "+", a csomópont IP-cím vagy teljes Tartománynevét, ahogy fent látható.
-9. Az utolsó lépés a feldolgozó logika hozzáadása a szolgáltatás alább látható módon.
+    Célszerű is érdemes megjegyezni, hogy hello közzétett URL-címe eltér némileg hello figyelő URL-előtagját.
+    tooHttpListener hello figyelő URL-címet kap. közzétett URL-címe: hello URL-címet, amely közzétett toohello Service Fabric-szolgáltatás, a szolgáltatásészlelés használt hello. Az ügyfelek ekkor megkérdezi, ehhez a címhez, a felderítés szolgáltatáson keresztül. hello címét, hogy az ügyfelek igényeinek toohave hello tényleges IP vagy FQDN-jét hello csomópont beolvasni a rendelés tooconnect. Ezért meg kell tooreplace "+" rendelkező hello csomópont IP-cím vagy FQDN látható a fenti.
+9. hello utolsó lépése tooadd hello feldolgozási logika toohello szolgáltatás alább látható módon.
    
     ```CSharp
     private async Task ProcessInternalRequest(HttpListenerContext context, CancellationToken cancelRequest)
@@ -238,19 +238,19 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     }
     ```
    
-    `ProcessInternalRequest`olvassa be a lekérdezési karakterlánc paraméter hívni a partíció és hívások használt értékek `AddUserAsync` a Vezetéknév hozzáadása a megbízható szótár `dictionary`.
-10. Adjunk állapotmentes szolgáltatások megtekintéséhez, hogy egy adott partíció meghívása a projekthez.
+    `ProcessInternalRequest`olvasási hello hello lekérdezési karakterlánc paraméter használt toocall hello partíció és hívások értékének `AddUserAsync` tooadd hello Vezetéknév toohello megbízható szótár `dictionary`.
+10. Adjuk hozzá egy állapotmentes szolgáltatások toohello projekt toosee hogyan hívása egy adott partíció.
     
-    Ez a szolgáltatás, amely elfogadja a lekérdezési karakterlánc paraméterként a Vezetéknév, meghatározza, hogy a partíciós kulcs, és elküldi a feldolgozás Alphabet.Processing szolgáltatás egyszerű webes felületet funkcionál.
-11. Az a **szolgáltatás létrehozása** párbeszédpanelen válassza ki **Stateless** szolgáltatás, és hívja meg az "Alphabet.Web" alább látható módon.
+    Ez a szolgáltatás egyszerű webes felületet, amely elfogadja a lekérdezési karakterlánc paraméterként hello Vezetéknév, hello partíciós kulcs határozza meg, és elküldi toohello Alphabet.Processing szolgáltatás feldolgozásra funkcionál.
+11. A hello **szolgáltatás létrehozása** párbeszédpanelen válassza ki **Stateless** szolgáltatás, és hívja meg az "Alphabet.Web" alább látható módon.
     
     ![Állapotmentes szolgáltatások képernyőképe](./media/service-fabric-concepts-partitioning/createnewstateless.png).
-12. A végpont-információ a Alphabet.WebApi szolgáltatást egy portot az alább látható módon megnyílik a ServiceManifest.xml frissítésére.
+12. Hello végpont-információ frissítésére hello ServiceManifest.xml a hello Alphabet.WebApi szolgáltatás tooopen be a portot a lent látható módon.
     
     ```xml
     <Endpoint Name="WebApiServiceEndpoint" Protocol="http" Port="8081"/>
     ```
-13. Kell visszaadnia ServiceInstanceListeners webes osztályban. Ebben az esetben választhat egy egyszerű HttpCommunicationListener végrehajtásához.
+13. Tooreturn hello osztályban webes ServiceInstanceListeners gyűjteménye van szüksége. Ebben az esetben választható tooimplement egy egyszerű HttpCommunicationListener.
     
     ```CSharp
     protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -259,14 +259,14 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     }
     private ICommunicationListener CreateInputListener(ServiceContext context)
     {
-        // Service instance's URL is the node's IP & desired port
+        // Service instance's URL is hello node's IP & desired port
         EndpointResourceDescription inputEndpoint = context.CodePackageActivationContext.GetEndpoint("WebApiServiceEndpoint")
         string uriPrefix = String.Format("{0}://+:{1}/alphabetpartitions/", inputEndpoint.Protocol, inputEndpoint.Port);
         var uriPublished = uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
         return new HttpCommunicationListener(uriPrefix, uriPublished, this.ProcessInputRequest);
     }
     ```
-14. Most kell megvalósítani a feldolgozó logika. A HttpCommunicationListener hívások `ProcessInputRequest` Ha kérelem érkezik. Ezért lépjen tovább, és adja hozzá az alábbi kódot.
+14. Most tooimplement hello feldolgozó logika van szüksége. hello HttpCommunicationListener hívások `ProcessInputRequest` Ha kérelem érkezik. Ezért lépjen tovább, és adja hozzá az alábbi hello kódot.
     
     ```CSharp
     private async Task ProcessInputRequest(HttpListenerContext context, CancellationToken cancelRequest)
@@ -290,7 +290,7 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
             string result = await this.httpClient.GetStringAsync(primaryReplicaUriBuilder.Uri);
     
             output = String.Format(
-                    "Result: {0}. <p>Partition key: '{1}' generated from the first letter '{2}' of input value '{3}'. <br>Processing service partition ID: {4}. <br>Processing service replica address: {5}",
+                    "Result: {0}. <p>Partition key: '{1}' generated from hello first letter '{2}' of input value '{3}'. <br>Processing service partition ID: {4}. <br>Processing service replica address: {5}",
                     result,
                     partitionKey,
                     firstLetterOfLastName,
@@ -304,7 +304,7 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
         {
             if (output != null)
             {
-                output = output + "added to Partition: " + primaryReplicaAddress;
+                output = output + "added tooPartition: " + primaryReplicaAddress;
                 byte[] outBytes = Encoding.UTF8.GetBytes(output);
                 response.OutputStream.Write(outBytes, 0, outBytes.Length);
             }
@@ -312,7 +312,7 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     }
     ```
     
-    Rajta lépésről lépésre bemutatjuk. A kód beolvassa a lekérdezési karakterlánc paraméter első betűjének `lastname` történő karakter lehet. Ezután határozza meg a partíciókulcs a levél hexadecimális értéket `A` és a Vezetéknév első betűjének hexadecimális érték közötti.
+    Rajta lépésről lépésre bemutatjuk. hello kód beolvassa hello lekérdezési karakterlánc paraméter első betűjének hello `lastname` történő karakter lehet. Majd, meghatározza, hogy ez a levél hello partíciókulcs hexadecimális értékét hello kivonásával `A` hello hexadecimális értékét hello Vezetéknév első betűjét.
     
     ```CSharp
     string lastname = context.Request.QueryString["lastname"];
@@ -321,19 +321,19 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     ```
     
     Ne feledje, hogy a jelen példában használjuk 26 partíciók partíciónként több partíciós kulccsal.
-    A következő azt beszerzése a szolgáltatás partíció `partition` a kulcs használatával a `ResolveAsync` metódust a `servicePartitionResolver` objektum. `servicePartitionResolver`típusúként van definiálva
+    A következő azt beszerzése hello szolgáltatás partíció `partition` hello segítségével a kulcs `ResolveAsync` hello metódusa `servicePartitionResolver` objektum. `servicePartitionResolver`típusúként van definiálva
     
     ```CSharp
     private readonly ServicePartitionResolver servicePartitionResolver = ServicePartitionResolver.GetDefault();
     ```
     
-    A `ResolveAsync` paraméterekként token a szolgáltatás URI-azonosítója, a partíciós kulcs és a megszakítási metódust vesz igénybe. A szolgáltatás a feldolgozási szolgáltatás URI nem `fabric:/AlphabetPartitions/Processing`. A következő azt lekérése a végpont a partíció.
+    Hello `ResolveAsync` metódust vesz hello szolgáltatás URI-azonosítója, hello partíciókulcs és paraméterekként cancellation jogkivonatot. hello szolgáltatás URI-azonosítója a feldolgozási szolgáltatás hello `fabric:/AlphabetPartitions/Processing`. A következő azt lekérése hello végpont hello partíció.
     
     ```CSharp
     ResolvedServiceEndpoint ep = partition.GetEndpoint()
     ```
     
-    Végül azt a végpont URL-cím és a lekérdezési karakterláncban hozza létre, és a feldolgozási szolgáltatás hívásához.
+    Végül azt hello végpont URL-cím és hello lekérdezési karakterlánc felépítéséhez, és hívja service feldolgozása hello.
     
     ```CSharp
     JObject addresses = JObject.Parse(ep.Address);
@@ -345,8 +345,8 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
     string result = await this.httpClient.GetStringAsync(primaryReplicaUriBuilder.Uri);
     ```
     
-    Ha a feldolgozás befejezése után azt írni a kimeneti vissza.
-15. Az utolsó lépés a szolgáltatás teszteléséhez. A Visual Studio által használt alkalmazás paramétereket a helyi és a felhő üzembe helyezése. A szolgáltatás helyi 26 partíciókkal rendelkező teszteléséhez frissítenie kell a `Local.xml` fájlt a AlphabetPartitions projekt ApplicationParameters mappában alább látható módon:
+    Ha hello feldolgozási végzett, azt visszaírni hello kimeneti.
+15. hello utolsó lépés egy tootest hello szolgáltatás. A Visual Studio által használt alkalmazás paramétereket a helyi és a felhő üzembe helyezése. tootest hello szolgáltatás helyileg 26 partíciókkal van szüksége tooupdate hello `Local.xml` fájl hello AlphabetPartitions projekt hello ApplicationParameters mappában a lent látható módon:
     
     ```xml
     <Parameters>
@@ -354,17 +354,17 @@ Szó szeretnénk / levél egy partíciót, azt használatával 0, a kis és 25 m
       <Parameter Name="WebApi_InstanceCount" Value="1" />
     </Parameters>
     ```
-16. Miután befejezte a központi telepítés, ellenőrizheti a szolgáltatás és a Service Fabric Explorerben a partíciókat.
+16. Miután befejezte a központi telepítés, ellenőrizheti a hello szolgáltatás és a Service Fabric Explorer hello a partíciók száma.
     
     ![Service Fabric Explorer képernyőképe](./media/service-fabric-concepts-partitioning/sfxpartitions.png)
-17. A böngészőben, tesztelheti a particionálási logika megadásával `http://localhost:8081/?lastname=somename`. Látni fogja, hogy minden egyes Vezetéknév ugyanazzal a betűvel kezdődő tárolása az egyazon partícióra kerüljenek.
+17. A böngészőben, tesztelheti a particionálás logika megadásával hello `http://localhost:8081/?lastname=somename`. Látni fogja, hogy minden egyes utolsó, amely kezdetű névvel rendelkező azonos levél tárolása az hello hello egyazon partícióra kerüljenek.
     
     ![Böngésző képernyőképe](./media/service-fabric-concepts-partitioning/samplerunning.png)
 
-A teljes forráskód a minta érhető el a [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
+hello teljes forráskód hello minta nem érhető el a [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions).
 
 ## <a name="next-steps"></a>Következő lépések
-A Service Fabric fogalmak információkért tekintse át a következőket:
+A Service Fabric fogalmakat további információkért lásd: hello következő:
 
 * [A Service Fabric-szolgáltatások rendelkezésre állása](service-fabric-availability-services.md)
 * [Méretezhetőséget biztosít a Service Fabric-szolgáltatások](service-fabric-concepts-scalability.md)

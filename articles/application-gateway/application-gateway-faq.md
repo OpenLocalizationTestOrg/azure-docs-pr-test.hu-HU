@@ -1,6 +1,6 @@
 ---
-title: "Gyakori kérdések az Azure Application Gateway |} Microsoft Docs"
-description: "Ezen a lapon biztosít Azure Application Gateway gyakran feltett kérdésekre adott válaszok"
+title: "Gyakori kérdések az Azure Application Gateway aaaFrequently |} Microsoft Docs"
+description: "Ezen a lapon választ ad toofrequently Azure Application Gateway kapcsolatos kérdések"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: gwallace
-ms.openlocfilehash: 4e6244d92f41e0aa5c8a70db0db2881036984247
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b2df3a82a71a3264d3d34d317d08e4b4f72c6e3e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions-for-application-gateway"></a>Az Alkalmazásátjáró gyakori kérdések
 
@@ -30,9 +30,9 @@ Azure Application Gateway egy alkalmazás kézbesítési vezérlő LÉPETT szolg
 
 **Q. Milyen funkciókat támogatja az Alkalmazásátjáró?**
 
-Alkalmazásátjáró támogatja SSL-feladatkiszervezést és végpontok közötti SSL, webalkalmazási tűzfal, munkamenet cookie-alapú kapcsolat, URL-cím elérési út-alapú útválasztási, több helyet üzemeltető és mások. Támogatott szolgáltatások teljes listájának megtekintéséhez keresse fel a [Alkalmazásátjáró bemutatása](application-gateway-introduction.md)
+Alkalmazásátjáró támogatja SSL kiszervezésével és a záró tooend SSL, webalkalmazási tűzfal, munkamenet cookie-alapú kapcsolat, URL-cím elérési út-alapú útválasztási, több hely üzemeltetéséhez és mások számára. Támogatott szolgáltatások teljes listájának megtekintéséhez keresse fel a [bemutatása tooApplication átjáró](application-gateway-introduction.md)
 
-**Q. Mi az a különbség az Alkalmazásátjáró és az Azure Load Balancer?**
+**Q. Mi az Application Gateway és az Azure Load Balancer hello különbségének?**
 
 Alkalmazásátjáró 7 réteg terheléselosztó, amely azt jelenti, hogy működik együtt a csak internetes forgalmat (HTTP/HTTPS/WebSocket). Például az SSL-lezárást, a munkamenet cookie-alapú kapcsolat és a ciklikus multiplexelés képességek terheléselosztási forgalom támogatja. Terheléselosztó, kiegyensúlyozza forgalom rétegben 4 (TCP/UDP).
 
@@ -42,9 +42,9 @@ Alkalmazás-átjáró támogatja a HTTP, HTTPS és WebSocket.
 
 **Q. Által támogatott ma háttérkészlet részeként?**
 
-Háttérkészlet állhat hálózati adapter virtuálisgép-méretezési csoportok, nyilvános IP-címek, belső IP-címek, teljes tartománynév (FQDN) neve, és több-bérlős vissza-végpontok, például az Azure Web Apps. Alkalmazás átjáró háttér készlettag nem rendelkezésre állási csoportok vannak társítva. Háttér-készletek tagjai között, fürtök és adatközpontok, vagy lehet Azure-on kívüli mindaddig, amíg az IP-kapcsolattal rendelkeznek.
+Háttérkészlet állhat hálózati adapter virtuálisgép-méretezési csoportok, nyilvános IP-címek, belső IP-címek, teljes tartománynév (FQDN) neve, és több-bérlős vissza-végpontok, például az Azure Web Apps. Az Alkalmazásátjáró háttér címkészletet tagjai nem tooan rendelkezésre állási csoport társítva. Háttér-készletek tagjai között, fürtök és adatközpontok, vagy lehet Azure-on kívüli mindaddig, amíg az IP-kapcsolattal rendelkeznek.
 
-**Q. Milyen régiók érhető el a szolgáltatást?**
+**Q. Milyen régiók érhető el hello szolgáltatást?**
 
 Alkalmazásátjáró globális Azure minden területen érhető el. Rendszerben is elérhető [Azure Kína](https://www.azure.cn/) és [Azure Government](https://azure.microsoft.com/en-us/overview/clouds/government/)
 
@@ -54,35 +54,35 @@ Alkalmazásátjáró egy dedikált központi telepítés a virtuális hálózat.
 
 **Q. Van HTTP -> támogatott HTTPS átirányítása?**
 
-Átirányítás használata támogatott. Látogasson el [Alkalmazásátjáró átirányítási áttekintése](application-gateway-redirect-overview.md) további.
+Átirányítás használata támogatott. Látogasson el [Alkalmazásátjáró átirányítási áttekintése](application-gateway-redirect-overview.md) további toolearn.
 
 **Q. Milyen sorrendben figyelői feldolgozása?**
 
-Figyelők dolgoznak fel a rendszer a sorrendben. Ezért ha egy alapszintű figyelő egy bejövő kérelem megfelel feldolgozza azt először.  Többhelyes figyelők egy alapszintű figyelő annak biztosítására, hogy a megfelelő háttér-forgalom érdekében előtt úgy kell konfigurálni.
+Figyelők feldolgozása hello ahhoz, azok láthatók. Ezért ha egy alapszintű figyelő egy bejövő kérelem megfelel feldolgozza azt először.  Többhelyes figyelők úgy kell konfigurálni, mielőtt egy alapszintű figyelő tooensure forgalom irányított toohello megfelelő háttér.
 
 **Q. Hol található Application Gateway IP- és DNS?**
 
-A végpont egy nyilvános IP-címet használ, ha ez az információ található a nyilvános IP-cím erőforrás vagy a – áttekintés oldalra az Alkalmazásátjáró a portálon. A belső IP-címek ez található Áttekintés lap.
+A végpont egy nyilvános IP-címet használ, ha ezek az információk található hello nyilvános IP-cím erőforrás vagy hello – áttekintés oldalra hello Alkalmazásátjáró hello portálon. A belső IP-címek ez található hello áttekintése lapon.
 
-**Q. Az IP- vagy DNS változik az Alkalmazásátjáró életciklusa alatt?**
+**Q. Hello IP- vagy DNS változik az Alkalmazásátjáró hello hello élettartamuk során?**
 
-A VIP módosíthatja, ha az átjáró leállt, és az ügyfél által indított. Alkalmazásátjáró társított DNS nem változtatja meg az átjáró életciklusa alatt. Ezért ajánlott CNAME alias használja, és mutasson a az alkalmazás-átjáró a DNS-címét.
+hello VIP módosíthatja, ha hello átjáró leáll, majd hello ügyfél által indított. hello Alkalmazásátjáró társított DNS hello átjáró hello életciklusa során nem változik. Ezért az ajánlott toouse CNAME alias, majd mutasson az Alkalmazásátjáró hello toohello DNS-címét.
 
 **Q. Alkalmazásátjáró támogatja a statikus IP-címet?**
 
 Nem, az Alkalmazásátjáró nem támogatja a statikus nyilvános IP-címek, de statikus belső IP-címek támogatja.
 
-**Q. Alkalmazásátjáró támogatja a több nyilvános IP-cím az átjárón?**
+**Q. Alkalmazásátjáró támogatja a több nyilvános IP-cím hello átjárón?**
 
 Csak egy nyilvános IP-cím egy Application Gateway esetén támogatott.
 
 **Q. Támogatja az Alkalmazásátjáró x-továbbított-a fejlécek?**
 
-Igen, az Alkalmazásátjáró x-továbbított – az x továbbított protokoll és x továbbított port fejlécek szúr be a kérést továbbítja a háttérkiszolgálón. Az x-továbbított-a fejléc formátuma IP:Port vesszővel tagolt listája. X továbbított protokoll érvényes értékei http vagy HTTPS protokollt. X-továbbított-port, amelyen a kérelmet az Alkalmazásátjáró címen érhető portot határozza meg.
+Igen, Alkalmazásátjáró beszúrása x-továbbított- esetén az x továbbított protokoll és az x továbbított port fejlécek hello kérelem a továbbított toohello háttér. hello x-továbbított-a fejléc formátuma IP:Port vesszővel tagolt listája. hello érvényes x továbbított protokoll értékei http vagy HTTPS protokollt. X továbbított port hello portot mely hello kérésére hello Alkalmazásátjáró címen érhető határozza meg.
 
-**Q. Mennyi időt vesz igénybe egy alkalmazás-átjáró üzembe helyezéséhez? Az Alkalmazásátjáró továbbra is működik, ha frissítése során?**
+**Q. Mennyi ideig tart toodeploy olyan átjárót? Az Alkalmazásátjáró továbbra is működik, ha frissítése során?**
 
-Új Alkalmazásátjáró telepítések esetén is igénybe vehet akár 20 percig kiépítéséhez. Mérete/példányszám módosításai nem zavaró, és ez alatt az idő az átjáró aktív marad.
+Új Alkalmazásátjáró telepítések too20 perc tooprovision is eltarthat. Nincsenek zavaró módosításokat tooinstance mérete és száma, és ebben az időszakban hello átjáró aktív marad.
 
 ## <a name="configuration"></a>Konfiguráció
 
@@ -90,27 +90,27 @@ Igen, az Alkalmazásátjáró x-továbbított – az x továbbított protokoll �
 
 Igen, az Alkalmazásátjáró mindig a rendszer a virtuális hálózati alhálózat. Ez az alhálózat csak tartalmazhat Alkalmazásátjárót.
 
-**Q. A virtuális hálózaton kívüli példányokhoz működik Alkalmazásátjáró?**
+**Q. Alkalmazásátjáró működik a virtuális hálózaton kívüli tooinstances?**
 
-Alkalmazásátjáró működik, hogy a mindaddig, amíg nincs IP-kapcsolatot a virtuális hálózaton kívüli példányára. Ha a háttér címkészletet tagként belső IP-címek használatát tervezi, akkor van szükség [VNETBEN társviszony-létesítés](../virtual-network/virtual-network-peering-overview.md) vagy [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md).
+Alkalmazásátjáró hello mindaddig, amíg nincs IP-kapcsolat van virtuális hálózaton kívüli tooinstances működik. Ha azt tervezi, toouse belső IP-címek, a háttér a készlet tagjainak, akkor azt igényli [VNETBEN társviszony-létesítés](../virtual-network/virtual-network-peering-overview.md) vagy [VPN-átjáró](../vpn-gateway/vpn-gateway-about-vpngateways.md).
 
-**Q. Központi telepítését az alkalmazás átjáróalhálózatot dolgozott?**
+**Q. Központi telepítését bármi más hello Alkalmazásátjáró alhálózat?**
 
-Nem, de telepítheti az alhálózat más alkalmazásátjárót.
+Nem, de telepítheti a más alkalmazásátjárót hello alhálózat.
 
-**Q. Hálózati biztonsági csoportok az Alkalmazásátjáró alhálózat támogatottak?**
+**Q. Hálózati biztonsági csoportok hello Alkalmazásátjáró alhálózaton támogatottak?**
 
-Hálózati biztonsági csoportok az Alkalmazásátjáró alhálózat, a következő korlátozásokkal támogatottak:
+A következő korlátozások hello hello Alkalmazásátjáró alhálózaton hálózati biztonsági csoportok használata támogatott:
 
-* Kivételek kell elhelyezni, a bejövő forgalmat portokon 65503-65534 az háttér health megfelelő működéséhez.
+* Kivételek kell elhelyezni, a bejövő forgalmat a háttérrendszer állapotfigyelő toowork 65503-65534 portok megfelelően.
 
 * Nem blokkolható a kimenő internetkapcsolat.
 
-* Engedélyezni kell az AzureLoadBalancer címke forgalmát.
+* Engedélyezni kell az AzureLoadBalancer címke hello forgalmát.
 
-**Q. Az Alkalmazásátjáró korlátai Tudom növelni a működés felső korlátjának?**
+**Q. Az Alkalmazásátjáró hello korlátai Tudom növelni a működés felső korlátjának?**
 
-Látogasson el [alkalmazás átjáró korlátok](../azure-subscription-service-limits.md#application-gateway-limits) korlátokat megtekintéséhez.
+Látogasson el [alkalmazás átjáró korlátok](../azure-subscription-service-limits.md#application-gateway-limits) tooview hello korlátok.
 
 **Q. Használhatok Alkalmazásátjáró külső és belső forgalmát egyidejűleg?**
 
@@ -120,13 +120,13 @@ Alkalmazásátjáró Igen, támogatja az egy belső IP-cím és egy külső IP-c
 
 Igen, Vnetben társviszony-létesítés támogatott és hasznos a terheléselosztás forgalom más virtuális hálózatok.
 
-**Q. I kommunikálhat a helyszíni kiszolgálók expressroute-on vagy VPN-alagutat csatlakozáskor?**
+**Q. I működik tooon helyszíni kiszolgálók expressroute-on vagy VPN-alagutat csatlakozáskor?**
 
 Igen, mindaddig, amíg forgalom engedélyezve van.
 
 **Q. Rendelkezhet eltérő portokon számos alkalmazás szolgál egy háttérkészletéből?**
 
-Micro service-architektúra esetén támogatott. Kell több különböző portokon mintavétel konfigurálva http-beállítások.
+Micro service-architektúra esetén támogatott. Több http konfigurált beállítások tooprobe eltérő portokon kellene.
 
 **Q. Támogatják egyéni mintavételt helyettesítő karakterekkel vagy reguláris kifejezéssel az érkezett válasz adatait?**
 
@@ -134,51 +134,51 @@ Egyéni mintavételt nem támogatják a helyettesítő karakteres vagy regex ér
 
 **Q. Szabályok feldolgozásának módja?**
 
-Szabályok feldolgozása a sorrendben vannak konfigurálva. Javasoljuk, hogy többhelyes szabályok konfigurálva vannak-e, mielőtt alapvető szabályok csökkenti annak esélyét, hogy forgalom annak biztosítására, hogy a megfelelő háttér, az alapszintű szabály megfelelő forgalmat a többhelyes szabály értékelt előtt port alapján.
+Szabályok feldolgozása hello sorrendben vannak konfigurálva. Javasoljuk, hogy többhelyes szabályok konfigurálva vannak-e, mielőtt alapvető szabályok tooreduce hello esélye annak, hogy az adatforgalom irányított toohello nem megfelelő háttér alapszintű hello szabály alapján előzetes toohello többhelyes portszabály értékelt forgalom megfelelő módon.
 
 **Q. Szabályok feldolgozásának módja?**
 
-Szabályok feldolgozása a létrehozásuk sorrendjében. Javasoljuk, hogy a többhelyes szabályok előtt alapvető szabályok vannak konfigurálva. Többhelyes figyelői először konfigurálásával, ez a konfiguráció csökkentheti annak lehetőségét annak biztosítására, hogy a megfelelő háttér forgalom. Az alapvető szabály megfelelő előtt a többhelyes szabály értékelt port alapján forgalom útválasztási probléma fordulhatnak elő.
+Szabályok feldolgozása hello ahhoz, azok létrehozásakor. Javasoljuk, hogy a többhelyes szabályok előtt alapvető szabályok vannak konfigurálva. Többhelyes figyelői először konfigurálásával, ez a konfiguráció csökkenti a hello esélye annak, hogy a forgalom irányított toohello nem megfelelő háttér legyen. Alapszintű hello szabály alapján előzetes toohello többhelyes portszabály értékelt forgalom megfelelő útválasztási probléma fordulhatnak elő.
 
-**Q. Mi a gazdagép mezőt az egyéni mintavételt jelölésére?**
+**Q. Mi az egyéni mintavételt hello a gazdagép mező jelölésére?**
 
-A gazdagép mező neve a mintavétel történő küldéséhez. Alkalmazandó csak akkor, ha több hely van beállítva az alkalmazás-átjárón, ellenkező esetben használja a "127.0.0.1". Ez az érték eltér a virtuális gép állomásnevét, és formátumú \<protokoll\>://\<állomás\>:\<port\>\<elérési\>.
+A gazdagép mező hello neve toosend hello mintavételi a határozza meg. Alkalmazandó csak akkor, ha több hely van beállítva az alkalmazás-átjárón, ellenkező esetben használja a "127.0.0.1". Ez az érték eltér a virtuális gép állomásnevét, és formátumú \<protokoll\>://\<állomás\>:\<port\>\<elérési\>.
 
-**Q. Telepíthetek engedélyezett néhány forrás IP-címek Alkalmazásátjáró elérésére?**
+**Q. Engedélyezési lista Alkalmazásátjáró hozzáférés tooa telepíthetek kevés forrás IP-cím?**
 
-Ebben a forgatókönyvben végezhető Alkalmazásátjáró alhálózaton NSG-ket használ. A következő korlátozásokat a prioritásuk szerinti a listában szereplő sorrendben az alhálózaton kell rendezni:
+Ebben a forgatókönyvben végezhető Alkalmazásátjáró alhálózaton NSG-ket használ. a következő korlátozások hello a prioritásuk szerinti sorrendben felsorolva hello hello alhálózaton kell rendezni:
 
 * Engedélyezi a bejövő forgalom forrás IP-/ IP-címtartomány.
 
-* Bejövő kérelmek forrásokból származó 65503-65534 portok engedélyezése [háttér állapotfigyelő kommunikációja](application-gateway-diagnostics.md).
+* Az összes források tooports 65503-65534 a bejövő kérések engedélyezése [háttér állapotfigyelő kommunikációja](application-gateway-diagnostics.md).
 
-* Bejövő Azure Load Balancer mintavételt (AzureLoadBalancer címke) és a bejövő virtuális hálózati forgalmat (VirtualNetwork címke) engedélyezése a [NSG](../virtual-network/virtual-networks-nsg.md).
+* Annak engedélyezése, hogy a bejövő Azure Load Balancer mintavételt (AzureLoadBalancer címke) és a bejövő virtuális hálózati forgalom (VirtualNetwork címke) hello [NSG](../virtual-network/virtual-networks-nsg.md).
 
 * Megtagadási minden egyéb bejövő forgalom blokkolása minden szabály.
 
-* Kimenő forgalom az internethez, az összes cél engedélyezése.
+* Engedélyezze a kimenő forgalom toohello internet összes célhoz.
 
 ## <a name="performance"></a>Teljesítmény
 
 **Q. Hogyan támogatja a Alkalmazásátjáró a magas rendelkezésre állás és méretezhetőség?**
 
-Alkalmazásátjáró támogatja a magas rendelkezésre állás elérésére, ha két vagy több példányt. Azure ezek a példányok elosztása az update és a tartalék tartományok győződjön meg arról, hogy minden példány nem egy időben. Alkalmazásátjáró méretezhetőség támogatja több példányát ugyanahhoz az átjáróhoz a terhelés hozzáadásával.
+Alkalmazásátjáró támogatja a magas rendelkezésre állás elérésére, ha két vagy több példányt. Azure ezek a példányok elosztása az összes példány nem meghiúsulhatnak hello frissítés és a tartalék tartományok tooensure ugyanannyi időt vesz igénybe. Alkalmazásátjáró méretezhetőség támogatja több példány hello hozzáadásával azonos átjáró tooshare hello terhelés.
 
 **Q. Hogyan érhetők el vész-Helyreállítási forgatókönyv Alkalmazásátjáró adatközpontjaiban között?**
 
-Ügyfelek használhatják a Traffic Manager forgalom szét több alkalmazás átjáró különböző adatközpontokban.
+Az ügyfelek használhatják a Traffic Manager toodistribute forgalom különböző adatközpontokban több alkalmazás-átjáró között.
 
 **Q. Automatikus skálázással támogatva van?**
 
-Nem, de Alkalmazásátjáró riasztást küldjön, amikor a küszöbérték elérésekor használt átviteli sebesség metrikát. Manuális hozzáadása példányok vagy méretének módosítása nem indítja újra az átjárót, és nem befolyásolja a meglévő forgalom.
+Nem, de Application Gateway használható használt tooalert átviteli metrika, amikor egy küszöbértéket. Példányok hozzáadásának vagy kicserélésének mérete manuálisan hello átjáró nem indul újra, és nem befolyásolja a meglévő forgalom.
 
 **Q. Fel/le OK állásidő, nem manuális méretezési?**
 
 Állásidő nélkül, a frissítési tartományok és a tartalék tartományok között elosztott példányok.
 
-**Q. Módosítható példányméretének a közepes vagy nagyméretű megszakítása nélkül?**
+**Q. Módosítható a közepes toolarge megszakítása nélkül példányméretének?**
 
-Igen, Azure példányok elosztása frissítés és a tartalék tartományok győződjön meg arról, hogy minden példány nem egy időben. Alkalmazásátjáró támogatja, több példányát ugyanahhoz az átjáróhoz a terhelés hozzáadásával méretezés.
+Igen, Azure elosztja példányok nem meghiúsulhatnak, minden példány hello frissítés és a tartalék tartományok tooensure ugyanannyi időt vesz igénybe. Alkalmazás átjáró támogatja a több példánya hozzáadásával skálázás hello azonos átjáró tooshare hello terhelés.
 
 ## <a name="ssl-configuration"></a>SSL-beállítása
 
@@ -186,9 +186,9 @@ Igen, Azure példányok elosztása frissítés és a tartalék tartományok győ
 
 Önaláírt tanúsítványok, a CA-tanúsítványok, és a helyettesítő tanúsítványok támogatottak. EV tanúsítványok használata nem támogatott.
 
-**Q. Mik az aktuális alkalmazás-átjáró által támogatott titkosító csomagok?**
+**Q. Mik azok a hello alkalmazás átjáró által támogatott aktuális titkosító csomagok?**
 
-Az aktuális alkalmazás-átjáró által támogatott titkosító csomagok a következők: Látogasson el: [SSL konfigurálása házirend verziója és az Application Gateway titkosító csomagok](application-gateway-configure-ssl-policy-powershell.md) megtudhatja, hogyan szabhatja testre az SSL-beállítások.
+Az alábbiakban hello hello alkalmazás átjáró által támogatott aktuális titkosító csomagok. Látogasson el: [SSL konfigurálása házirend verziója és az Application Gateway titkosító csomagok](application-gateway-configure-ssl-policy-powershell.md) toolearn hogyan toocustomize SSL-beállítások.
 
 - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
 - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
@@ -217,17 +217,17 @@ Az aktuális alkalmazás-átjáró által támogatott titkosító csomagok a kö
 - TLS_RSA_WITH_3DES_EDE_CBC_SHA
 - TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA
 
-**Q. Alkalmazásátjáró is támogatja a háttér-forgalom újbóli titkosítása?**
+**Q. Alkalmazásátjáró is támogatja a forgalom toohello háttér újbóli titkosítása?**
 
-Igen, a Application Gateway SSL kiszervezési, és a végpontok közötti SSL, amely újból titkosítja a forgalmat a háttérrendszer támogatja.
+Igen, Alkalmazásátjáró támogatja az SSL kiszervezési és end tooend SSL, amely hello forgalom toohello háttér újra titkosítja.
 
-**Q. Konfigurálhatja a SSL házirendet, amellyel szabályozhatja az SSL protokoll verziója?**
+**Q. Konfigurálhatja a SSL házirend toocontrol SSL protokoll verziója?**
 
-Igen, Alkalmazásátjáró TLS1.0 TLS1.1 és TLS1.2 megtagadni konfigurálhatja. Az SSL 2.0 és 3.0 vannak már le van tiltva alapértelmezés szerint, és amelyek nem konfigurálhatók.
+Igen, konfigurálhatja az Application Gateway toodeny TLS1.0 TLS1.1 és TLS1.2. Az SSL 2.0 és 3.0 vannak már le van tiltva alapértelmezés szerint, és amelyek nem konfigurálhatók.
 
 **Q. Titkosítási csomagok és a házirendek sorrendjének is konfigurálni?**
 
-Igen, [titkosító csomagok konfigurációjának](application-gateway-ssl-policy-overview.md) esetén támogatott. Egyéni házirend meghatározása esetén a következő titkosító csomagok legalább egyikét engedélyezni kell. Alkalmazásátjáró háttérbeli felügyeleti az SHA256 titkosítást használ.
+Igen, [titkosító csomagok konfigurációjának](application-gateway-ssl-policy-overview.md) esetén támogatott. Egyéni házirend meghatározása esetén titkosító csomagok a következő hello legalább egyikét engedélyezni kell. Alkalmazásátjáró SHA256 toofor háttér-kezelést használ.
 
 * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 
 * TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
@@ -238,11 +238,11 @@ Igen, [titkosító csomagok konfigurációjának](application-gateway-ssl-policy
 
 **Q. Hány SSL-tanúsítványok támogatottak?**
 
-Legfeljebb 20 SSL támogatottak.
+Másolatot too20 SSL támogatottak.
 
 **Q. A háttérrendszer újbóli titkosítása hány tanúsítványhitelesítést biztosítsanak támogatottak?**
 
-Legfeljebb 10 hitelesítési tanúsítványok az alapértelmezett érték 5 használata támogatott.
+Too10 be a hitelesítési tanúsítványok az alapértelmezett érték 5 támogatottak.
 
 **Q. Nem Alkalmazásátjáró integrálása az Azure Key Vault natív módon?**
 
@@ -250,11 +250,11 @@ Nem, nem integrálva van az Azure Key Vault.
 
 ## <a name="web-application-firewall-waf-configuration"></a>Webes alkalmazás tűzfalat (WAF) konfigurációja
 
-**Q. Nem a WAF SKU kínálnak a Standard Termékváltozat elérhető összes szolgáltatások?**
+**Q. Hello WAF SKU nyújtja a hello Standard Termékváltozat elérhető összes hello szolgáltatások?**
 
-Igen, WAF összes funkcióját támogatja a Standard Termékváltozat.
+WAF Igen, a Standard Termékváltozat hello támogatja az összes hello szolgáltatás.
 
-**Q. Mi az Application Gateway CRS verzió támogatja?**
+**Q. Mi az a hello CRS verziója támogatja a Alkalmazásátjáró?**
 
 Alkalmazásátjáró támogatja CRS [program 2.2.9-es](application-gateway-crs-rulegroups-rules.md#owasp229) és CRS [3.0](application-gateway-crs-rulegroups-rules.md#owasp30).
 
@@ -268,11 +268,11 @@ Nem, a észlelési mód csak naplózza a forgalmat, amely egy WAF szabály elind
 
 **Q. Hogyan testre szabhatja a WAF szabályokat?**
 
-Igen, testre szabható testre szabhatók találhat további tájékoztatást a-e WAF szabályok [testreszabása WAF csoportok és szabályok](application-gateway-customize-waf-rules-portal.md)
+Igen, WAF szabályok lettek testre szabható, hogyan toocustomize őket látogasson el a további információt [testreszabása WAF csoportok és szabályok](application-gateway-customize-waf-rules-portal.md)
 
 **Q. Milyen szabályok jelenleg érhetők el?**
 
-WAF jelenleg CRS [program 2.2.9-es](application-gateway-crs-rulegroups-rules.md#owasp229) és [3.0](application-gateway-crs-rulegroups-rules.md#owasp30), szemben az első 10 biztonsági réseit által a nyitott webes alkalmazás biztonsági Project (OWASP) többségét eredeti biztonsági nyújt található itt [ OWASP első 10 biztonsági réseket](https://www.owasp.org/index.php/Top10#OWASP_Top_10_for_2013)
+WAF jelenleg CRS [program 2.2.9-es](application-gateway-crs-rulegroups-rules.md#owasp229) és [3.0](application-gateway-crs-rulegroups-rules.md#owasp30), első 10 biztonsági réseit által megnyitott webes alkalmazás biztonsági Project (OWASP) itt található hello nyújt elleni hello többségét eredeti biztonsági [OWASP felső 10 biztonsági réseket](https://www.owasp.org/index.php/Top10#OWASP_Top_10_for_2013)
 
 * SQL-injektálás elleni védelem
 
@@ -298,30 +298,30 @@ WAF nem, nem biztosít DDoS megelőzése.
 
 Nincsenek elérhető az Alkalmazásátjáró három naplókat. Ezek a naplók és más diagnosztikai képességek a további tudnivalókért keresse fel [háttér állapot, a diagnosztikai naplók és a metrikák az Alkalmazásátjáró](application-gateway-diagnostics.md).
 
-- **ApplicationGatewayAccessLog** -a hozzáférési napló minden egyes kérelem elküldve az Alkalmazásátjáró előtér tartalmazza. Az adatok a hívó IP, kért, URL-cím válasz késés, bejövő és kimenő adatforgalma visszatérési kód, bájt. Hozzáférési napló gyűjtése 300 másodpercenként. Ez a napló Application Gateway-példányonként egy bejegyzést tartalmaz.
-- **ApplicationGatewayPerformanceLog** – a teljesítmény naplóban rögzíti alapon / példány teljes kérelem kiszolgálása, beleértve az átviteli sebesség bájtban teljesítményadatok, kérelmek teljes száma a kiszolgált egy megfelelő és nem megfelelő háttér-, sikertelen kérelmek száma a példányok száma.
-- **ApplicationGatewayFirewallLog** -a tűzfal a napló tartalmazza, amelyeket a rendszer a webalkalmazási tűzfal a konfigurált Alkalmazásátjáró észlelési vagy megelőzési módban kérelmeket.
+- **ApplicationGatewayAccessLog** -hello hozzáférési napló kérelmet tartalmaz, minden küldött toohello Alkalmazásátjáró előtér. hello adatok hello hívó IP, kért, URL-cím válasz késés, bejövő és kimenő adatforgalma visszatérési kód, bájt. Hozzáférési napló gyűjtése 300 másodpercenként. Ez a napló Application Gateway-példányonként egy bejegyzést tartalmaz.
+- **ApplicationGatewayPerformanceLog** -hello teljesítmény naplófájl rögzíti a teljesítményadatok alapon / példány teljes kérelem kiszolgálása, beleértve az átviteli sebesség (bájt), a kiszolgált kérelmek teljes száma a sikertelen kérelmek száma, a megfelelő és nem kifogástalan háttér-példányok száma.
+- **ApplicationGatewayFirewallLog** -hello tűzfal a napló tartalmazza, amelyeket a rendszer a webalkalmazási tűzfal a konfigurált Alkalmazásátjáró észlelési vagy megelőzési módban kérelmeket.
 
 **Q. Hogyan állapítható meg, ha a háttérkiszolgáló készlettagra megfelelő?**
 
-A PowerShell-parancsmag `Get-AzureRmApplicationGatewayBackendHealth` vagy ellenőrizze a portálon keresztül állapotfigyelő ellátogatva [Alkalmazásdiagnosztika átjáró](application-gateway-diagnostics.md)
+Hello PowerShell-parancsmag `Get-AzureRmApplicationGatewayBackendHealth` vagy hello portálon keresztül állapotát ellenőrizni ellátogatva [Alkalmazásdiagnosztika átjáró](application-gateway-diagnostics.md)
 
-**Q. Mi az a diagnosztikai naplókat a megőrzési házirend?**
+**Q. Mi az az adatmegőrzési hello hello diagnosztika napló?**
 
-Diagnosztikai naplók folyamata az ügyfelek tárfiókba, és ügyfelek állíthatja be az adatmegőrzési, a beállítás alapján. Diagnosztikai naplók is lehet küldeni az Eseményközpont vagy Naplóelemzési. Látogasson el [átjáró Alkalmazásdiagnosztika](application-gateway-diagnostics.md) további részleteket.
+Diagnosztikai naplók folyamat toohello ügyfelek tárfiók, és az ügyfelek hello megőrzési házirend alapján választaniuk be. Diagnosztikai naplók is küldhetők tooan Eseményközpont vagy Naplóelemzési. Látogasson el [átjáró Alkalmazásdiagnosztika](application-gateway-diagnostics.md) további részleteket.
 
 **Q. Hogyan szerezhetek naplók az Alkalmazásátjáró?**
 
-Az Alkalmazásátjáró naplók érhetők el. Kattintson a portál **tevékenységnapló** a menü paneljén az Alkalmazásátjáró a napló elérésére. 
+Az Alkalmazásátjáró naplók érhetők el. Hello portálon kattintson **tevékenységnapló** hello menü panelen a naplók Alkalmazásátjáró tooaccess hello. 
 
 **Q. Beállíthatja a Alkalmazásátjáró riasztások?**
 
-Igen, Alkalmazásátjáró támogatja a riasztások, értesítések metrikák ki vannak konfigurálva.  Alkalmazásátjáró "átviteli", amely konfigurálható egy metrika van riasztást. Riasztások kapcsolatos további információkért látogasson el a [riasztási értesítéseket](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
+Igen, Alkalmazásátjáró támogatja a riasztások, értesítések metrikák ki vannak konfigurálva.  Alkalmazásátjáró "átviteli", amely lehet konfigurált tooalert metrika van. További információ a riasztások, toolearn látogasson el [riasztási értesítéseket](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
 
 **Q. Háttér állapotfigyelő adja vissza állapota ismeretlen, mi okozza ezt az állapotot?**
 
-A leggyakoribb oka a háttérkiszolgálón a hozzáférést egy NSG-t vagy egyéni DNS-megjelenítését blokkolják. Látogasson el [háttér állapot, a diagnosztikai naplózás és a metrikák az Alkalmazásátjáró](application-gateway-diagnostics.md) további.
+hello leggyakoribb oka hozzáférés toohello háttér egy NSG-t vagy egyéni DNS-megjelenítését blokkolják. Látogasson el [háttér állapot, a diagnosztikai naplózás és a metrikák az Alkalmazásátjáró](application-gateway-diagnostics.md) további toolearn.
 
 ## <a name="next-steps"></a>Következő lépések
 
-További információt az Alkalmazásátjáró látogasson el [Alkalmazásátjáró bemutatása](application-gateway-introduction.md).
+Alkalmazásátjáró olvashat toolearn [bemutatása tooApplication átjáró](application-gateway-introduction.md).

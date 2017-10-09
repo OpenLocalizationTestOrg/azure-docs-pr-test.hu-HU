@@ -1,6 +1,6 @@
 ---
-title: "Csatlakozás a MySQL-hez készült Azure Database-hez a Java használatával | Microsoft Docs"
-description: "Az alábbi gyors útmutatóban egy olyan Java-kódminta található, amely a MySQL-hez készült Azure Database csatlakoztatására és adatlekérdezésre használható."
+title: "Java használatával MySQL-adatbázis tooAzure kapcsolati |} Microsoft Docs"
+description: "A gyors üzembe helyezés biztosít egy Java kódminta kérdezhet le adatokat a MySQL-adatbázis egy Azure-adatbázis és tooconnect használhatja."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,39 +11,39 @@ ms.custom: mvc
 ms.topic: hero-article
 ms.devlang: java
 ms.date: 06/20/2017
-ms.openlocfilehash: 6ffcf3b38a3d868dfa10ea2e2a9d097441387d4f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d584b5491d29700b36fae26800c59d93ceb3e265
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-database-for-mysql-use-java-to-connect-and-query-data"></a>A MySQL-hez készült Azure Database: Csatlakozás és adatlekérdezés a Java használatával
-Ebben a gyors útmutatóban azt szemléltetjük, hogy miként lehet Java-alkalmazás használatával csatlakozni a MySQL-hez készült Azure Database-hez. Bemutatjuk, hogy az SQL-utasítások használatával hogyan kérdezhetők le, illeszthetők be, frissíthetők és törölhetők az adatok az adatbázisban. A cikkben ismertetett lépések feltételezik, hogy Ön rendelkezik fejlesztési tapasztalatokkal a Java használatával kapcsolatban, a MySQL-hez készült Azure Database használatában pedig még járatlan.
+# <a name="azure-database-for-mysql-use-java-tooconnect-and-query-data"></a>MySQL az Azure-adatbázishoz: használata Java tooconnect és lekérdezési adatok
+A gyors üzembe helyezés bemutatja, hogyan tooconnect tooan Azure adatbázis a MySQL használata Java-alkalmazások. Azt illusztrálja, hogyan toouse SQL utasítás tooquery beszúrási, frissítési és törlési hello adatbázis adatait. hello cikkben leírt lépések azt feltételezik, hogy ismeri a Java használatával történő fejlesztéséhez, és hogy-e új tooworking MySQL az Azure-adatbázissal.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Ebben a rövid útmutatóban a következő útmutatók valamelyikében létrehozott erőforrásokat használunk kiindulási pontként:
+A gyors üzembe helyezés kiindulási pontként ezek az útmutatók valamelyikével létrehozott hello erőforrást használ:
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure Portal használatával](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure-adatbázis létrehozása MySQL-kiszolgálóhoz az Azure CLI használatával](./quickstart-create-mysql-server-database-using-azure-cli.md)
 
 Emellett a következőket kell elvégezni:
-- Töltse le a [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) JDBC-illesztőprogramot
-- Illessze be a JDBC jar-fájlját (például mysql-connector-java-5.1.42-bin.jar) az alkalmazás osztályútvonalába. Ha problémát tapasztal az itt leírtakkal kapcsolatban, tekintse meg környezete dokumentációját az osztályok elérési útvonalával kapcsolatban (például: [Apache Tomcat](https://tomcat.apache.org/tomcat-7.0-doc/class-loader-howto.html) vagy [Java SE](http://docs.oracle.com/javase/7/docs/technotes/tools/windows/classpath.html)).
-- A MySQL-hez készült Azure Database-kapcsolat biztonsága megnyitott tűzfallal van konfigurálva és az SSL-beállítások úgy vannak megadva, hogy csatlakozni tudjon az alkalmazás.
+- Töltse le a hello JDBC-illesztőt [MySQL összekötő/J](https://dev.mysql.com/downloads/connector/j/)
+- Az alkalmazás classpath amit fel lehetne venni hello JDBC jar-fájlra (például a mysql-összekötő-java-5.1.42-bin.jar). Ha problémát tapasztal az itt leírtakkal kapcsolatban, tekintse meg környezete dokumentációját az osztályok elérési útvonalával kapcsolatban (például: [Apache Tomcat](https://tomcat.apache.org/tomcat-7.0-doc/class-loader-howto.html) vagy [Java SE](http://docs.oracle.com/javase/7/docs/technotes/tools/windows/classpath.html)).
+- Az Azure-adatbázis a MySQL-kapcsolat biztonsági megnyitott hello tűzfallal van konfigurálva, és az SSL-beállítások sikeresen igazodik a az alkalmazás tooconnect.
 
 ## <a name="get-connection-information"></a>Kapcsolatadatok lekérése
-Kérje le a MySQL-hez készült Azure Database-hez való csatlakozáshoz szükséges kapcsolatadatokat. Ehhez szükség lesz a teljes kiszolgálónévre és bejelentkezési hitelesítő adatokra.
+MySQL hello kapcsolat szükséges információkat tooconnect toohello Azure adatbázis beolvasása. Teljesen minősített kiszolgáló nevét és a bejelentkezési hitelesítő adatokat hello van szüksége.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
-2. A bal oldali ablaktáblán kattintson a **Minden erőforrás** lehetőségre, és keressen rá a létrehozott kiszolgálóra (például: **myserver4demo**).
-3. Kattintson a kiszolgálónévre.
-4. Válassza a kiszolgáló **tulajdonságlapját**. Jegyezze fel a **Kiszolgálónevet** és a **Kiszolgáló-rendszergazdai bejelentkezési nevet**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
+2. Hello bal oldali ablaktáblában kattintson **összes erőforrás**, majd keresse meg a létrehozott hello server (például **myserver4demo**).
+3. Hello kiszolgáló nevére kattint.
+4. Jelölje be hello server **tulajdonságok** lap. Jegyezze fel a hello **kiszolgálónév** és **kiszolgálói rendszergazda bejelentkezési név**.
  ![A MySQL-hez készült Azure Database-kiszolgáló neve](./media/connect-java/1_server-properties-name-login.png)
-5. Amennyiben elfelejtette a kiszolgáló bejelentkezési adatait, lépjen az **Overview** (Áttekintés) oldalra, és itt megtudhatja a kiszolgáló rendszergazdájának bejelentkezési nevét, valamint szükség esetén visszaállíthatja a jelszót.
+5. Ha elfelejti a kiszolgálói bejelentkezési adatok, keresse meg a toohello **áttekintése** tooview hello kiszolgálói rendszergazda bejelentkezési név lapon, és ha szükséges, állítsa vissza a hello jelszót.
 
 ## <a name="connect-create-table-and-insert-data"></a>Csatlakozás, táblák létrehozása és adatok beszúrása
-Az alábbi kód használatával csatlakozhat és tölthet be adatokat az **INSERT SQL-utasítással** használt függvény segítségével. A [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus a MySQL-hez való kapcsolódásra szolgál. A [createStatement()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-statements.html) és az execute() metódusok a tábla létrehozásához, illetve törléséhez használatosak. A prepareStatement objektummal hozhatja létre a beszúrási parancsokat, valamint a setString() és a setInt() metódusokkal végezheti el a paraméterértékek kötését. Az executeUpdate() metódussal futtathatja az egyes paraméterkészletekhez tartozó értékek beszúrására szolgáló parancsot. 
+A következő kód tooconnect és hello az adatok betöltése a hello funkcióval használata hello egy **BESZÚRÁSA** SQL-utasításban. Hello [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus használt tooconnect tooMySQL. Módszerek [createStatement()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-statements.html) és az execute() metódus használt toodrop és hello tábla létrehozása. hello prepareStatement célja használt toobuild hello insert utasítással, setString() és setInt() toobind hello paraméterértékeket. Módszer executeUpdate() hello parancsot az egyes paraméterek tooinsert hello értékek futtatja. 
 
-Cserélje le a gazdagép, az adatbázis, a felhasználó és a jelszó paramétereit azokra az értékekre, amelyeket a saját kiszolgáló és adatbázis létrehozásakor adott meg.
+Cserélje le a saját kiszolgáló és az adatbázis létrehozása után a megadott hello értékek hello állomás, az adatbázis, a felhasználói és a password paraméter.
 
 ```java
 import java.sql.*;
@@ -59,7 +59,7 @@ public class CreateTableInsertRows {
         String user = "myadmin@myserver4demo";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -91,13 +91,13 @@ public class CreateTableInsertRows {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Drop previous table of same name if one exists.
@@ -125,7 +125,7 @@ public class CreateTableInsertRows {
                 nRowsInserted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Inserted %d row(s) of data.", nRowsInserted));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
     
             }
             catch (SQLException e)
@@ -134,7 +134,7 @@ public class CreateTableInsertRows {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
@@ -143,9 +143,9 @@ public class CreateTableInsertRows {
 ```
 
 ## <a name="read-data"></a>Adatok olvasása
-Az alábbi kód használatával végezheti el az adatok olvasását a **SELECT** SQL-utasítás segítségével. A [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus a MySQL-hez való kapcsolódásra szolgál. A [createStatement()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-statements.html) és az executeQuery() metódusok csatlakoztatásra és a SELECT-utasítás futtatására szolgálnak. Az eredmények feldolgozása a [ResultSet](https://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html) objektum használatával történik. 
+Használjon hello következő tooread hello adatok kódot egy **válasszon** SQL-utasításban. Hello [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus használt tooconnect tooMySQL. módszerek hello [createStatement()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-statements.html) és executeQuery() használt tooconnect és hello select utasítás futtatásához. hello eredmények használatával dolgozzák fel a [eredményhalmazt](https://docs.oracle.com/javase/tutorial/jdbc/basics/retrieving.html) objektum. 
 
-Cserélje le a gazdagép, az adatbázis, a felhasználó és a jelszó paramétereit azokra az értékekre, amelyeket a saját kiszolgáló és adatbázis létrehozásakor adott meg.
+Cserélje le a saját kiszolgáló és az adatbázis létrehozása után a megadott hello értékek hello állomás, az adatbázis, a felhasználói és a password paraméter.
 
 ```java
 import java.sql.*;
@@ -161,7 +161,7 @@ public class ReadTable {
         String user = "myadmin@myserver4demo";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -193,13 +193,13 @@ public class ReadTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database", e);
+            throw new SQLException("Failed toocreate connection toodatabase", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
     
@@ -222,7 +222,7 @@ public class ReadTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database."); 
+            System.out.println("Failed toocreate connection toodatabase."); 
         }
         System.out.println("Execution finished.");
     }
@@ -230,9 +230,9 @@ public class ReadTable {
 ```
 
 ## <a name="update-data"></a>Adatok frissítése
-Az alábbi kód használatával végezheti el az adatok módosítását az **UPDATE** SQL-utasítás segítségével. A [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus a MySQL-hez való kapcsolódásra szolgál. A [prepareStatement()](http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html) és az executeUpdate() metódusok előkészítésre, valamint az UPDATE-utasítás futtatására szolgálnak. 
+Használjon hello következő toochange hello adatok kódot egy **frissítés** SQL-utasításban. Hello [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus használt tooconnect tooMySQL. módszerek hello [prepareStatement()](http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html) és executeUpdate() használt tooprepare és hello update utasítás futtatása. 
 
-Cserélje le a gazdagép, az adatbázis, a felhasználó és a jelszó paramétereit azokra az értékekre, amelyeket a saját kiszolgáló és adatbázis létrehozásakor adott meg.
+Cserélje le a saját kiszolgáló és az adatbázis létrehozása után a megadott hello értékek hello állomás, az adatbázis, a felhasználói és a password paraméter.
 
 ```java
 import java.sql.*;
@@ -247,7 +247,7 @@ public class UpdateTable {
         String user = "myadmin@myserver4demo";
         String password = "<server_admin_password>";
 
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -265,7 +265,7 @@ public class UpdateTable {
         {
             String url = String.format("jdbc:mysql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -278,13 +278,13 @@ public class UpdateTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database.", e);
+            throw new SQLException("Failed toocreate connection toodatabase.", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Modify some data in table.
@@ -295,7 +295,7 @@ public class UpdateTable {
                 nRowsUpdated += preparedStatement.executeUpdate();
                 System.out.println(String.format("Updated %d row(s) of data.", nRowsUpdated));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -303,7 +303,7 @@ public class UpdateTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
@@ -311,9 +311,9 @@ public class UpdateTable {
 ```
 
 ## <a name="delete-data"></a>Adat törlése
-Az alábbi kód használatával végezheti el az adatok eltávolítását a **DELETE** SQL-utasítás segítségével. A [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus a MySQL-hez való kapcsolódásra szolgál.  A [prepareStatement()](http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html) és az executeUpdate() metódusok előkészítésre, valamint az UPDATE-utasítás futtatására szolgálnak. 
+Használjon hello következő tooremove adatok kódot egy **törlése** SQL-utasításban. Hello [getConnection()](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-usagenotes-connect-drivermanager.html) metódus használt tooconnect tooMySQL.  módszerek hello [prepareStatement()](http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html) és executeUpdate() használt tooprepare és hello update utasítás futtatása. 
 
-Cserélje le a gazdagép, az adatbázis, a felhasználó és a jelszó paramétereit azokra az értékekre, amelyeket a saját kiszolgáló és adatbázis létrehozásakor adott meg.
+Cserélje le a saját kiszolgáló és az adatbázis létrehozása után a megadott hello értékek hello állomás, az adatbázis, a felhasználói és a password paraméter.
 
 ```java
 import java.sql.*;
@@ -328,7 +328,7 @@ public class DeleteTable {
         String user = "myadmin@myserver4demo";
         String password = "<server_admin_password>";
         
-        // check that the driver is installed
+        // check that hello driver is installed
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -347,7 +347,7 @@ public class DeleteTable {
         {
             String url = String.format("jdbc:mysql://%s/%s", host, database);
             
-            // set up the connection properties
+            // set up hello connection properties
             Properties properties = new Properties();
             properties.setProperty("user", user);
             properties.setProperty("password", password);
@@ -360,13 +360,13 @@ public class DeleteTable {
         }
         catch (SQLException e)
         {
-            throw new SQLException("Failed to create connection to database", e);
+            throw new SQLException("Failed toocreate connection toodatabase", e);
         }
         if (connection != null) 
         { 
-            System.out.println("Successfully created connection to database.");
+            System.out.println("Successfully created connection toodatabase.");
         
-            // Perform some SQL queries over the connection.
+            // Perform some SQL queries over hello connection.
             try
             {
                 // Delete some data from table.
@@ -376,7 +376,7 @@ public class DeleteTable {
                 nRowsDeleted += preparedStatement.executeUpdate();
                 System.out.println(String.format("Deleted %d row(s) of data.", nRowsDeleted));
     
-                // NOTE No need to commit all changes to database, as auto-commit is enabled by default.
+                // NOTE No need toocommit all changes toodatabase, as auto-commit is enabled by default.
             }
             catch (SQLException e)
             {
@@ -384,7 +384,7 @@ public class DeleteTable {
             }       
         }
         else {
-            System.out.println("Failed to create connection to database.");
+            System.out.println("Failed toocreate connection toodatabase.");
         }
         System.out.println("Execution finished.");
     }
@@ -393,4 +393,4 @@ public class DeleteTable {
 
 ## <a name="next-steps"></a>Következő lépések
 > [!div class="nextstepaction"]
-> [MySQL-adatbázis migrálása a MySQL-hez készült Azure Database-be memóriakép és visszaállítás használatával](concepts-migrate-dump-restore.md)
+> [A MySQL-adatbázis tooAzure adatbázis áttelepítése a MySQL használata a biztonsági másolat és helyreállítás](concepts-migrate-dump-restore.md)

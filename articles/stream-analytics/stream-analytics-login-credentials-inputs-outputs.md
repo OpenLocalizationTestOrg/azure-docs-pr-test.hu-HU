@@ -1,6 +1,6 @@
 ---
 title: "A Stream Analytics: Elforgatása napló hitelesítő adataival bemenetekhez és kimenetekhez |} Microsoft Docs"
-description: "Útmutató a Stream Analytics bemenetekhez és kimenetekhez hitelesítő adatait."
+description: "Ismerje meg, hogyan tooupdate hello hitelesítő adatait, a Stream Analytics bemenetekhez és kimenetekhez."
 keywords: "a bejelentkezési hitelesítő adatok"
 services: stream-analytics
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 2cb995a3969a8cb025f371ed0ab160cd04b0454d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac2374c539012b66ab390656c5750024e02f6bdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="rotate-login-credentials-for-inputs-and-outputs-in-stream-analytics-jobs"></a>Forgassa el a be- és kimenetekkel a Stream Analytics-feladatok bejelentkezési hitelesítő adatok
 ## <a name="abstract"></a>Absztrakt
-Az Azure Stream Analytics jelenleg nem engedélyezi a felhasználó hitelesítő adatai egy bemeneti/kimeneti cseréje a feladat futása közben.
+Az Azure Stream Analytics jelenleg nem engedélyezi egy bemeneti/kimeneti hello hitelesítő adatok cseréjének hello feladat futása közben.
 
-Azure Stream Analytics nem támogatja az utolsó kimenetből egy feladat folytatása, amíg meg akartunk ahhoz, hogy minimalizálja a leállítási közötti időeltérés és a feladat elindítása és elforgatása a bejelentkezési hitelesítő adatok a teljes folyamatot.
+Azure Stream Analytics nem támogatja az utolsó kimenetből egy feladat folytatása, amíg meg akartunk tooshare hello teljes folyamatot a minimalizálja a hello lag hello leállítása és hello feladat elindítása és elforgatása hello bejelentkezési hitelesítő adatok között.
 
-## <a name="part-1---prepare-the-new-set-of-credentials"></a>1. rész - készítse elő az újonnan létrehozott hitelesítő adatokat:
-Ez a kijelző tulajdonság a következő bemenetek/kimenetek vonatkozik:
+## <a name="part-1---prepare-hello-new-set-of-credentials"></a>1. rész – hello új hitelesítőadat-készletet előkészítése:
+Ebben a részben a következő bemenetek/kimenetek alkalmazható toohello:
 
 * Blob Storage
 * Event Hubs
@@ -38,51 +38,51 @@ Ez a kijelző tulajdonság a következő bemenetek/kimenetek vonatkozik:
 Az egyéb bemenetek/kimenetek folytassa a 2. rész.
 
 ### <a name="blob-storagetable-storage"></a>A BLOB storage-tároló vagy tábla
-1. A tárolási kiterjesztés nyissa meg az Azure felügyeleti portálra:  
+1. Nyissa meg a toohello tárolási kiterjesztés hello Azure Management Portal:  
    ![graphic1][graphic1]
-2. Keresse meg a tároló, a feladat által használt, és lépjen be:  
+2. Keresse meg a feladat által használt hello tárolási, és lépjen be:  
    ![graphic2][graphic2]
-3. Kattintson a elérési kulcsok kezelése parancsot:  
+3. Kattintson a hello elérési kulcsok kezelése parancsot:  
    ![graphic3][graphic3]
-4. Az elsődleges elérési kulcsot és a másodlagos hozzáférési kulcsot közötti **válassza ki a feladat nem használja azt**.
+4. Hello elsődleges elérési kulcsot és a másodlagos elérési kulcsot, hello közötti **válasszon egyet a feladat nem használja hello**.
 5. Találati újragenerálása:  
    ![graphic4][graphic4]
-6. Másolja ki az újonnan létrehozott kulcsot:  
+6. Másolja az újonnan létrehozott hello kulcsot:  
    ![graphic5][graphic5]
-7. Folytassa a 2.
+7. Továbbra is tooPart 2.
 
 ### <a name="event-hubs"></a>Az Event hubs
-1. Nyissa meg az Azure felügyeleti portálra a Service Bus-bővítmény:  
+1. Nyissa meg a toohello Service Bus bővítmény hello Azure Management Portal:  
    ![graphic6][graphic6]
-2. Keresse meg a Service Bus Namespace a feladat által használt, és lépjen be:  
+2. Keresse meg a Service Bus Namespace a feladat által használt hello, és lépjen be:  
    ![graphic7][graphic7]
-3. Ha a feladat egy megosztott elérési házirendet használja a Service Bus Namespace, Ugrás a 6. lépés  
-4. Ugrás az Event Hubs lapon:  
+3. Ha a feladat egy megosztott elérési házirendet használ a Service Bus Namespace hello, jump toostep 6  
+4. Nyissa meg toohello Event Hubs lapon:  
    ![graphic8][graphic8]
-5. Keresse meg a feladat által használt Eseményközpont, és lépjen be:  
+5. Keresse meg a feladat által használt Eseményközpont hello, és lépjen be:  
    ![graphic9][graphic9]
-6. Ugrás a konfigurálása lapon:  
+6. Nyissa meg toohello konfigurálása lapon:  
    ![graphic10][graphic10]
-7. A házirendnév legördülő menüben keresse meg a megosztott elérési házirendet, a feladat használja:  
+7. Házirend neve legördülő hello keresse meg a feladat által használt megosztott hello házirend:  
    ![graphic11][graphic11]
-8. Az elsődleges és a másodlagos kulcs közötti **válassza ki a feladat nem használja azt**.  
+8. Hello elsődleges kulcs és a másodlagos kulcs hello közötti **válasszon egyet a feladat nem használja hello**.  
 9. Találati újragenerálása:  
    ![graphic12][graphic12]
-10. Másolja ki az újonnan létrehozott kulcsot:  
+10. Másolja az újonnan létrehozott hello kulcsot:  
    ![graphic13][graphic13]
-11. Folytassa a 2.  
+11. Továbbra is tooPart 2.  
 
 ### <a name="sql-database"></a>SQL Database
 > [!NOTE]
-> Megjegyzés: szüksége lesz a SQL Database szolgáltatáshoz való kapcsolódáshoz. Fogjuk mutatják be ehhez a felügyeleti élmény használja az Azure felügyeleti portálon, de néhány ügyféloldali eszköz például az SQL Server Management Studio is választhatja, hogy.
+> Megjegyzés: szüksége lesz a tooconnect toohello SQL adatbázis-szolgáltatás. Tooshow hogyan toodo a használatával hello egyszerűbben kezelhető a hello Azure felügyeleti portálon, de úgy is dönthet, toouse egy ügyféloldali eszközzel például SQL Server Management Studio alkalmazást, valamint fogjuk.
 >
 > 
 
-1. Az SQL-adatbázis bővítmény nyissa meg az Azure felügyeleti portálra:  
+1. Nyissa meg a toohello SQL-adatbázis bővítmény hello Azure Management Portal:  
    ![graphic14][graphic14]
-2. Keresse meg a feladat által használt SQL-adatbázis és **a kiszolgálón kattintson** ugyanazon hivatkozásra:  
+2. Keresse meg a feladat által használt SQL-adatbázis hello és **hello kiszolgálón kattintson** menüjének hello azonos sorban:  
    ![graphic15][graphic15]
-3. Kattintson a kezelés parancsot:  
+3. Kattintson a hello kezelése parancsot:  
    ![graphic16][graphic16]
 4. Adatbázis fő típusa:  
    ![graphic17][graphic17]
@@ -90,86 +90,86 @@ Az egyéb bemenetek/kimenetek folytassa a 2. rész.
    ![graphic18][graphic18]
 6. Kattintson az új lekérdezés:  
    ![graphic19][graphic19]
-7. Írja be a következő lekérdezést a < login_name > lecserélését a felhasználó nevét, és lecserél <enterStrongPasswordHere> az új jelszóval:  
+7. Típus a következő a lekérdezést a < login_name > cseréje a felhasználónévvel és lecserél hello <enterStrongPasswordHere> az új jelszóval:  
    `CREATE LOGIN <login_name> WITH PASSWORD = '<enterStrongPasswordHere>'`
 8. Kattintson a Futtatás gombra:  
    ![graphic20][graphic20]
-9. Vissza a lépés 2 és az idő kattintson az adatbázisban:  
+9. Lépjen vissza toostep 2, és most kattintson hello adatbázis:  
    ![graphic21][graphic21]
-10. Kattintson a kezelés parancsot:  
+10. Kattintson a hello kezelése parancsot:  
    ![graphic22][graphic22]
 11. Írja be a felhasználónevét és jelszavát, és kattintson a bejelentkezés:  
    ![graphic23][graphic23]
 12. Kattintson az új lekérdezés:  
    ![graphic24][graphic24]
-13. Adja meg a következő lekérdezés < felhasználónév > lecserélését egy nevet, amely szerint ehhez a bejelentkezéshez (biztosíthat < login_name >, például adott ugyanarra az értékre) adatbázis környezetében azonosítani szeretné és lecserél < login_name > az új felhasználónév:  
+13. Írja be a következő a lekérdezés < felhasználónév > cseréje egy névvel, amellyel tooidentify kíván hello ehhez a bejelentkezéshez, az adatbázis környezetében hello (biztosíthat hello ugyanazt az értéket < login_name >, például adott) és < login_name > cseréje az új felhasználónevet:  
    `CREATE USER <user_name> FROM LOGIN <login_name>`
 14. Kattintson a Futtatás gombra:  
    ![graphic25][graphic25]
-15. Az új felhasználó most már azonos a szerepkörök és az eredeti felhasználó rendelkezik-e jogosultsággal kell biztosítania.
-16. Folytassa a 2.
+15. Most kell adni az új felhasználó hello azonos szerepkörrel és az eredeti felhasználó rendelkezik-e jogosultsággal.
+16. Továbbra is tooPart 2.
 
-## <a name="part-2-stopping-the-stream-analytics-job"></a>2. lépés: A Stream Analytics-feladat leállítása
-1. Nyissa meg az Azure felügyeleti portálra a Stream Analytics-bővítmény:  
+## <a name="part-2-stopping-hello-stream-analytics-job"></a>2. lépés: Leállításával hello Stream Analytics-feladat
+1. Nyissa meg a toohello Stream Analytics bővítmény hello Azure Management Portal:  
    ![graphic26][graphic26]
 2. Keresse meg a feladat, és lépjen be:  
    ![graphic27][graphic27]
-3. Nyissa meg a bemeneti adatok vagy az alapján, hogy a hitelesítő adatok bemenettel vagy kimenettel vannak elforgatása kimenetek lapra.  
+3. Nyissa meg a toohello bemeneti adatokat vagy hello kimenetek lapon e hello hitelesítő adatok bemenettel vagy kimenettel vannak elforgatása alapján.  
    ![graphic28][graphic28]
-4. Kattintson a leállítási parancsot, és erősítse meg a feladat leállt:  
-   ![graphic29][graphic29] várja meg a feladat leállítása.
-5. Keresse meg a bemeneti/kimeneti forgassa el a hitelesítő adatokat a, és lépjen be:  
+4. Kattintson a hello leállítási parancsot, és ellenőrizze a hello feladat leállt:  
+   ![graphic29][graphic29] hello feladat toostop várja.
+5. Keresse meg a kívánt toorotate hitelesítő adatok meg, és nyissa meg azt az hello-bemeneti/kimeneti:  
    ![graphic30][graphic30]
-6. Folytassa a 3.
+6. A folytatáshoz tooPart 3.
 
-## <a name="part-3-editing-the-credentials-on-the-stream-analytics-job"></a>3. lépés: A Stream Analytics-feladat a hitelesítő adatok szerkesztése
+## <a name="part-3-editing-hello-credentials-on-hello-stream-analytics-job"></a>3. rész: Szerkesztés hello-felhasználó hitelesítő adatai hello Stream Analytics-feladat
 ### <a name="blob-storagetable-storage"></a>A BLOB storage-tároló vagy tábla
-1. A Tárfiók kulcsa mező található, és az újonnan létrehozott kulcs beillesztése:  
+1. Hello Tárfiók kulcsa mező található, és az újonnan létrehozott kulcs beillesztése:  
    ![graphic31][graphic31]
-2. Kattintson a Mentés parancsot, és ellenőrizze, hogy a módosítások mentése:  
+2. Hello a Mentés gombra, és ellenőrizze, hogy a módosítások mentése:  
    ![graphic32][graphic32]
 3. A kapcsolat tesztelése automatikusan elindul, amikor menti a módosításokat, győződjön meg arról, amely sikeresen megfelelt.
-4. Folytassa a 4.
+4. A folytatáshoz tooPart 4.
 
 ### <a name="event-hubs"></a>Az Event hubs
-1. Az Event Hub házirend kulcs mező található, és az újonnan létrehozott kulcs beillesztése:  
+1. Hello Event Hub házirend kulcs mezőjében keresse meg és az újonnan létrehozott kulcs beillesztése:  
    ![graphic33][graphic33]
-2. Kattintson a Mentés parancsot, és ellenőrizze, hogy a módosítások mentése:  
+2. Hello a Mentés gombra, és ellenőrizze, hogy a módosítások mentése:  
    ![graphic34][graphic34]
 3. A kapcsolat tesztelése automatikusan elindul, amikor menti a módosításokat, győződjön meg arról, hogy azt sikeresen megfelelt.
-4. Folytassa a 4.
+4. A folytatáshoz tooPart 4.
 
 ### <a name="power-bi"></a>Power BI
-1. Kattintson a megújítás engedélyezése:  
+1. Kattintson a megújítás engedélyezési hello:  
 
    ![graphic35][graphic35]
-2. A következő megerősítő jelenik meg:  
+2. A következő megerősítő hello jelenik meg:  
 
    ![graphic36][graphic36]
-3. Kattintson a Mentés parancsot, és ellenőrizze, hogy a módosítások mentése:  
+3. Hello a Mentés gombra, és ellenőrizze, hogy a módosítások mentése:  
    ![graphic37][graphic37]
 4. A kapcsolat tesztelése automatikusan elindul, amikor a módosítások mentése, győződjön meg arról, hogy sikeresen megfelelt.
-5. Folytassa a 4.
+5. A folytatáshoz tooPart 4.
 
 ### <a name="sql-database"></a>SQL Database
-1. A felhasználónév és a jelszó mező található, és illessze be az újonnan létrehozott hitelesítőadat-készletet a őket:  
+1. Hello felhasználónév és a jelszó mező található, és illessze be az újonnan létrehozott hitelesítőadat-készletet a őket:  
    ![graphic38][graphic38]
-2. Kattintson a Mentés parancsot, és ellenőrizze, hogy a módosítások mentése:  
+2. Hello a Mentés gombra, és ellenőrizze, hogy a módosítások mentése:  
    ![graphic39][graphic39]
 3. A kapcsolat tesztelése automatikusan elindul, amikor menti a módosításokat, győződjön meg arról, hogy azt sikeresen megfelelt.  
-4. Folytassa a 4.
+4. A folytatáshoz tooPart 4.
 
 ## <a name="part-4-starting-your-job-from-last-stopped-time"></a>4. lépés: A feladat kiindulva leállított legutóbbi
-1. A bemeneti/kimeneti elhagyni:  
+1. Hello bemeneti/kimeneti elhagyni:  
    ![graphic40][graphic40]
-2. Kattintson az indítási parancsot:  
+2. Kattintson a hello indítási parancsot:  
    ![graphic41][graphic41]
-3. Válassza ki a feladat utolsó befejezési időpontja, és kattintson az OK gombra:  
+3. Válassza ki a hello feladat utolsó befejezési időpontja, és kattintson az OK gombra:  
    ![graphic42][graphic42]
-4. Folytassa az 5.  
+4. A folytatáshoz tooPart 5.  
 
-## <a name="part-5-removing-the-old-set-of-credentials"></a>5. lépés: Régi megadott hitelesítői eltávolítása
-Ez a kijelző tulajdonság a következő bemenetek/kimenetek vonatkozik:
+## <a name="part-5-removing-hello-old-set-of-credentials"></a>5. lépés: Eltávolítása hello régi hitelesítőadat-készletet
+Ebben a részben a következő bemenetek/kimenetek alkalmazható toohello:
 
 * Blob Storage
 * Event Hubs
@@ -177,18 +177,18 @@ Ez a kijelző tulajdonság a következő bemenetek/kimenetek vonatkozik:
 * Table Storage
 
 ### <a name="blob-storagetable-storage"></a>A BLOB storage-tároló vagy tábla
-Ismételje meg az 1. rész az elérési kulcsot, amely korábban a használt a feladat már nem használt a hozzáférési kulcs megújításához.
+Ismételje meg az 1. rész hello hozzáférési kulcsot a feladat által korábban használt toorenew hello most már nem használt a hozzáférési kulcsot.
 
 ### <a name="event-hubs"></a>Az Event hubs
-Ismételje meg a feladat már nem használt kulcs megújításához korábban használt kulcs 1. rész.
+Ismételje meg az 1. rész hello a feladat által korábban használt kulcs toorenew hello most már nem használt kulcs.
 
 ### <a name="sql-database"></a>SQL Database
-1. A rész 1 7. lépés és írja be a következő lekérdezés < previous_login_name > lecserélését a felhasználó nevét, a feladat által korábban használt lépjen vissza a lekérdezési ablakban:  
+1. Lépjen vissza toohello lekérdezési ablakba rész 1 7. lépés, és írja be a következő lekérdezést, < previous_login_name > lecserélését hello felhasználónevet, a feladat által korábban használt hello:  
    `DROP LOGIN <previous_login_name>`  
 2. Kattintson a Futtatás gombra:  
    ![graphic43][graphic43]  
 
-A következő megerősítő szerezheti be: 
+A következő megerősítő hello szerezheti be: 
 
     Command(s) completed successfully.
 
@@ -196,7 +196,7 @@ A következő megerősítő szerezheti be:
 További támogatásért keresse fel az [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Következő lépések
-* [Az Azure Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [A Stream Analytics bemutatása tooAzure](stream-analytics-introduction.md)
 * [Get started using Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md) (Bevezetés az Azure Stream Analytics használatába)
 * [Scale Azure Stream Analytics jobs](stream-analytics-scale-jobs.md) (Azure Stream Analytics-feladatok méretezése)
 * [Azure Stream Analytics Query Language Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) (Referencia az Azure Stream Analytics lekérdezési nyelvhez)

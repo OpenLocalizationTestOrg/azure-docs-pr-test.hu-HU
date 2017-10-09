@@ -1,6 +1,6 @@
 ---
-title: "Fizikai eszköz használata az Azure IoT peremhálózati |} Microsoft Docs"
-description: "Hogyan lehet egy Texas eszközök SensorTag eszköz segítségével adatokat küldeni az IoT-központ egy málna Pi 3 eszközön futó IoT peremhálózati átjárón keresztül. Az átjáró-Azure IoT peremhálózati t."
+title: "Azure IoT peremhálózati rendelkező fizikai eszköz aaaUse |} Microsoft Docs"
+description: "Hogyan toouse egy Texas eszközök SensorTag eszköz toosend adatok tooan IoT-központot egy málna Pi 3 eszközön futó IoT peremhálózati átjárón keresztül. hello átjáró Azure IoT peremhálózati épül."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,147 +14,147 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: andbuc
-ms.openlocfilehash: 02962a91c739a53dfcf947bcc736e5c293b9384f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2385accdbd99012ad094232653ee47d4e5c7839
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-iot-edge-on-a-raspberry-pi-to-forward-device-to-cloud-messages-to-iot-hub"></a>Egy málna Pi Azure IoT peremhálózati segítségével eszközről a felhőbe üzenetek továbbítására az IoT-központ
+# <a name="use-azure-iot-edge-on-a-raspberry-pi-tooforward-device-to-cloud-messages-tooiot-hub"></a>Azure IoT peremhálózati használatát egy málna Pi tooforward eszköz a felhőbe küldött üzeneteket tooIoT Hub
 
-Ez a forgatókönyv a [Bluetooth alacsony energia minta] [ lnk-ble-samplecode] bemutatja, hogyan használható [Azure IoT peremhálózati] [ lnk-sdk] való:
+Ez a forgatókönyv a hello [Bluetooth alacsony energia minta] [ lnk-ble-samplecode] bemutatja, hogyan toouse [Azure IoT peremhálózati] [ lnk-sdk] számára:
 
-* Eszköz-felhő telemetriai továbbítja az IoT-központ fizikai eszközről.
-* Útvonal parancsokat az IoT-központ fizikai eszköz.
+* Továbbítsa az eszközről a felhőbe telemetriai tooIoT Hub fizikai eszközről.
+* Útvonal-parancsok az IoT-központ tooa fizikai eszközről.
 
 A bemutató tartalma:
 
-* **Architektúra**: a Bluetooth alacsony energia minta fontos architekturális információkat.
-* **Létrehozás és futtatás**: A minta elkészítéséhez és futtatásához szükséges lépések.
+* **Architektúra**: hello Bluetooth alacsony energia minta fontos architekturális információkat.
+* **Létrehozása és futtatása**: hello lépéseket szükséges toobuild és futtatási hello minta.
 
 ## <a name="architecture"></a>Architektúra
 
-A bemutató ismerteti, hogyan lehet létrehozni, és futtassa az IoT-átjárónak egy málna Pi 3 Raspbian Linux futtató. Az átjáró-IoT peremhálózati t. A minta egy Texas eszközök SensorTag Bluetooth alacsony energia (int) eszközt használ hőmérséklet-adatok gyűjtéséért felelős ügyfélfeladatot.
+hello a bemutató ismerteti, hogyan toobuild, és futtassa az IoT-átjárónak egy málna Pi 3 futtató Raspbian Linux. hello átjáró IoT peremhálózati épül. hello minta egy Texas eszközök SensorTag Bluetooth alacsony energia (int) eszköz toocollect hőmérséklet-adatokat használja.
 
-Az IoT-átjárónak futtatásakor azt:
+Az IoT-átjárónak hello futtatásakor azt:
 
-* A Bluetooth alacsony energia (int) protokollt használó SensorTag eszköz csatlakozik.
-* Az IoT-központ a HTTP protokollal csatlakozik.
-* Telemetria továbbítja az SensorTag eszközről IoT-központot.
-* Útvonalak parancsok az IoT-központ az SensorTag eszközre.
+* Kapcsolatot hoz létre tooa SensorTag eszköz hello Bluetooth alacsony energia (int) protokoll használatával.
+* TooIoT Hub csatlakozik hello HTTP protokoll használatával.
+* Hello SensorTag eszköz tooIoT Hub telemetriai továbbítja.
+* Az IoT-központ toohello SensorTag eszközről parancsok irányítja.
 
-Az átjáró a következő IoT peremhálózati modulokat tartalmaz:
+hello IoT peremhálózati modulok a következő hello tartalmaz:
 
-* A *BLA modul* , amely kapcsolódási pontok Generálja az eszköz hőmérséklet adatfogadás az eszközről, és az eszköz parancsainak elküldését.
-* A *BLA felhő eszköz modulra* JSON üzenetek küldi az IoT-központ BLA utasításokat a következőkből fordítja le a *BLA modul*.
-* A *naplózó modul* , amely az összes átjáró üzenet helyi fájlban naplózza.
+* A *BLA modul* , amely egy táblázat eszköz tooreceive hőmérséklet származó adatokkal hello eszköz és küldési parancsok toohello eszköz felületek.
+* A *BLA felhő toodevice modul* , amely az eszköz küldi hello BLA utasításokat az IoT-központ JSON-üzenetek *BLA modul*.
+* A *naplózó modul* , amely az összes átjáró üzenetek tooa helyi fájl naplózza.
 * Egy *identitás hozzárendelési modul* , amely átalakítja az int eszköz MAC-címek és Azure IoT Hub eszköz identitásokat.
-* Egy *IoT-központ modul* , telemetriai adatokat feltölt egy IoT-központot, és eszközparancsok kapott az IoT-központ.
-* A *BLA nyomtató modul* , amely az int eszközről telemetriai értelmezi, és megrendelése formázott adatok hibaelhárítás és hibakeresés engedélyezése a konzolhoz.
+* Egy *IoT-központ modul* , amely feltölt telemetriai adatok tooan IoT-központot, és eszközparancsok fogad egy IoT-központot.
+* A *BLA nyomtató modul* , telemetriai hello BLA eszközről értelmezi, és kiírja a formázott adatok toohello konzol tooenable hibaelhárítási és hibakeresési.
 
-### <a name="how-data-flows-through-the-gateway"></a>Hogyan adatáramlás az átjárón keresztül
+### <a name="how-data-flows-through-hello-gateway"></a>Hogyan adatáramlás hello átjárón keresztül
 
-A következő blokk ábra szemlélteti a telemetriai adatok feltöltési adatok folyamata folyamat:
+a következő blokk diagram hello hello telemetriai adatainak feltöltése adatok folyamata csővezeték mutatja be:
 
 ![Telemetriai adatainak feltöltése átjáró folyamat](media/iot-hub-iot-edge-physical-device/gateway_ble_upload_data_flow.png)
 
-A lépéseket, amelyek telemetriai elem időt vesz igénybe, IoT-központot egy BLA eszközről utazik a következők:
+hello telemetriai elem történik, az a táblázat eszköz tooIoT utazás Hub lépésekre:
 
-1. Az int eszköz hőmérséklet minta hoz létre, és elküldi Bluetooth-on keresztül az átjáró BLA moduljának.
-1. A táblázat modul megkapja a minta, és közzéteszi azokat az átvitelszervező mellett az eszköz MAC-címét.
-1. Az identitás hozzárendelési modul szerzi be ezt az üzenetet, és egy belső tábla segítségével az eszköz MAC-címet jelenti azt, hogy az IoT-központ eszközidentitás. Az IoT-központ eszközidentitás Eszközazonosító és eszközkulcs áll.
-1. Az identitás hozzárendelési modul tesz közzé egy új üzenet, amely tartalmazza a hőmérséklet mintaadatok, az eszközt, az eszköz azonosítója és a eszközkulcs MAC-címét.
-1. Az IoT-központ modulja (identity hozzárendelési modul által előállított) az új üzenetet kap, és közzéteszi azokat az IoT-központ.
-1. A naplózási modul összes üzenetet a broker egy helyi fájlba naplózza.
+1. hello BLA eszköz hőmérséklet minta hoz létre, és elküldi azt Bluetooth toohello BLA modul az hello átjáró keresztül.
+1. hello BLA modul hello minta kap, és közzéteszi azokat toohello broker együtt hello hello eszköz MAC-címét.
+1. hello identitás hozzárendelési modul szerzi be ezt az üzenetet, és az IoT Hub eszköz identitásának egy belső tábla tootranslate hello hello eszköz MAC-címét használja. Az IoT-központ eszközidentitás Eszközazonosító és eszközkulcs áll.
+1. hello identitás hozzárendelési modul tesz közzé egy új hello hőmérséklet mintaadatok, hello eszköz hello Eszközazonosító és hello eszközkulcs hello MAC-címét tartalmazó üzenetet.
+1. az IoT-központ modul hello (hello identitás hozzárendelési modul által előállított) az új üzenetet kap, és közzéteszi azokat tooIoT Hub.
+1. hello naplózó modul hello broker tooa helyi fájl összes üzenetet naplózza.
 
-A következő blokk ábra szemlélteti a eszköz parancs adatok áramlási folyamat:
+a következő blokk diagram hello hello eszköz parancs adatok áramlási folyamat mutatja be:
 
 ![Eszköz parancs átjáró folyamat](media/iot-hub-iot-edge-physical-device/gateway_ble_command_data_flow.png)
 
-1. Az IoT-központ modul rendszeres időközönként lekérdezi az IoT hub új parancs üzenetek.
-1. Az IoT-központ modul új parancs üzenetet kap, ha azt közzé teszi azt az átvitelszervező.
-1. Az identitás hozzárendelési modul szerzi be a parancs üzenetet, és egy belső tábla lefordítani az IoT-központ Eszközazonosítót az eszköz MAC-címet használ. Majd egy új üzenet, amely tartalmazza a célként megadott eszköz MAC-cím az üzenet tulajdonságai térképen tesz közzé.
-1. A lehetséges felhő eszköz modul szerzi be ezt az üzenetet, és fordítja le azt a megfelelő BLA utasítás BLA modul. Majd egy új üzenet tesz közzé.
-1. A táblázat modul szerzi be ezt az üzenetet, és végrehajtja az i/o-utasítás által a BLA eszköz kommunikál.
-1. A naplózási modul naplózza az összes üzenet az átvitelszervező egy lemezen levő fájlra.
+1. hello modul rendszeres időközönként lekérdezi az IoT-központ hello új parancs üzenetek IoT-központot.
+1. Az IoT-központ modul hello új parancs üzenetet kap, ha azt közzéteszi azokat toohello broker.
+1. hello identitás hozzárendelési modul szerzi be üdvözlőüzenetére parancsot, és egy belső tábla tootranslate hello IoT Hub eszköz azonosítója tooa eszköz MAC-címet használ. Majd egy új üzenet hello tulajdonságok memóriatérkép üdvözlőüzenetére hello céleszköz hello MAC-címét tartalmazó tesz közzé.
+1. hello BLA felhő eszköz modul szerzi be ezt az üzenetet, és fordítja le azt hello megfelelő BLA utasítás hello BLA modul. Majd egy új üzenet tesz közzé.
+1. hello BLA modul szerzi be ezt az üzenetet, és végrehajtja a hello i/o-utasítás által hello BLA eszköz kommunikál.
+1. hello naplózási modul hello broker tooa fájlhoz üzenetekhez naplózza.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez aktív Azure-előfizetésre lesz szüksége.
+toocomplete ebben az oktatóanyagban aktív Azure-előfizetés szükséges.
 
 > [!NOTE]
 > Ha nincs fiókja, néhány perc alatt létrehozhat egy ingyenes próbafiókot. További információ: [Ingyenes Azure-fiók létrehozása][lnk-free-trial].
 
-SSH-ügyfél van szüksége az asztali gépen ahhoz, hogy a parancssor a málna Pi a érheti el távolról.
+SSH-ügyfél az Ön tooremotely hozzáférés hello parancs sor a hello málna Pi asztali gépen tooenable kell.
 
 - A Windows tartalmaz egy SSH-ügyfél. Azt javasoljuk, [PuTTY](http://www.putty.org/).
-- A legtöbb Linux terjesztéseket, a Mac OS közé tartoznak az SSH parancssori segédprogramot. További információkért lásd: [SSH használatával Linux és Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md).
+- A legtöbb Linux terjesztéseket, a Mac OS parancssori segédprogram hello a SSH közé További információkért lásd: [SSH használatával Linux és Mac OS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md).
 
 ## <a name="prepare-your-hardware"></a>Készítse elő a hardvert
 
-Ez az oktatóanyag feltételezi, hogy a egy [Texas eszközök SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) egy málna Pi 3 Raspbian futtató eszköz csatlakoztatva.
+Ez az oktatóanyag feltételezi, hogy a egy [Texas eszközök SensorTag](http://www.ti.com/ww/en/wireless_connectivity/sensortag2015/index.html) eszköz csatlakoztatva tooa málna Pi 3 Raspbian futtatása.
 
 ### <a name="install-raspbian"></a>Raspbian telepítése
 
-Segítségével az alábbi lehetőségek valamelyikét Raspbian az málna Pi 3 eszközökre telepíthető.
+Beállítások tooinstall Raspbian következő málna Pi 3 eszközén hello bármelyikét használhatja.
 
-* Raspbian legújabb verziójának telepítéséhez használja a [NOOBS] [ lnk-noobs] grafikus felhasználói felületen.
-* Manuálisan [letöltése] [ lnk-raspbian] és a legújabb a Raspbian operációs rendszer lemezképének írni SD-kártya.
+* tooinstall hello legújabb verziójára Raspbian, használjon hello [NOOBS] [ lnk-noobs] grafikus felhasználói felületen.
+* Manuálisan [letöltése] [ lnk-raspbian] írási és olvasási hello legújabb kép hello Raspbian operációs rendszer tooan SD-kártya.
 
-### <a name="sign-in-and-access-the-terminal"></a>Bejelentkezhet és elérheti a Terminálszolgáltatások
+### <a name="sign-in-and-access-hello-terminal"></a>Bejelentkezhetnek és elérhetik a hello Terminálszolgáltatások
 
-A Terminálszolgáltatások tesztkörnyezetben, a málna Pi eléréséhez két lehetőség közül választhat:
+Két beállítások tooaccess terminál környezettel rendelkezik a málna Pi meg:
 
-* Ha a figyelő a málna Pi csatlakoztatott és a billentyűzeten, használhatja a Raspbian grafikus felhasználói felület egy terminálablakot eléréséhez.
+* Ha a billentyűzet és csatlakoztatott tooyour málna Pi figyelése, használhatja a hello Raspbian grafikus felhasználói Felülettel tooaccess egy terminálablakot.
 
-* A parancssorban meg az SSH használata a asztali gépen málna Pi eléréséhez.
+* Hozzáférés hello parancs vonalát. az SSH használata a asztali gépen málna Pi.
 
-#### <a name="use-a-terminal-window-in-the-gui"></a>A grafikus felhasználói felületen terminálablakot használni
+#### <a name="use-a-terminal-window-in-hello-gui"></a>A grafikus felhasználói Felülettel hello terminálablakot használni
 
-Az alapértelmezett Raspbian a hitelesítő adatok felhasználónév **pi** és a jelszó **málna**. A tálcán a grafikus felhasználói felületén, elindíthatja a **Terminálszolgáltatások** segédprogram használatával egy figyelőt a ikon.
+hello alapértelmezett Raspbian a hitelesítő adatok felhasználónév **pi** és a jelszó **málna**. Hello tálcán hello grafikus felhasználói Felülettel, elindíthatja a hello **Terminálszolgáltatások** segédprogram használatával egy figyelő hello ikon.
 
 #### <a name="sign-in-with-ssh"></a>SSH bejelentkezés
 
-SSH használható parancssori hozzáférést a málna Pi. A cikk [SSH (Secure Shell)] [ lnk-pi-ssh] útmutatás a málna Pi SSH konfigurálása, valamint csatlakozhat a [Windows] [ lnk-ssh-windows] vagy [ Linux és Mac OS][lnk-ssh-linux].
+Parancssori hozzáférést tooyour málna Pi SSH használható. hello cikk [SSH (Secure Shell)] [ lnk-pi-ssh] ismerteti, hogyan tooconfigure a málna Pi az SSH és hogyan tooconnect a [Windows] [ lnk-ssh-windows] vagy [Linux és Mac OS][lnk-ssh-linux].
 
 Jelentkezzen be a felhasználónevet **pi** és a jelszó **málna**.
 
 ### <a name="install-bluez-537"></a>BlueZ 5.37 telepítése
 
-A táblázat modulok konzultáljon a Bluetooth hardver a BlueZ vermen keresztül. A megfelelő működéséhez a modulok BlueZ 5.37 verziójára van szükség. Ezek az utasítások ellenőrizze, hogy BlueZ megfelelő verziója telepítve van.
+hello BLA modulok konzultáljon toohello Bluetooth hardver hello BlueZ verem keresztül. Szükség van BlueZ 5.37 verziója hello modulok toowork megfelelően. Ezek az utasítások ellenőrizze, hogy hello BlueZ megfelelő verziója telepítve van.
 
-1. Állítsa le a jelenlegi bluetooth démon:
+1. Állítsa le a hello aktuális bluetooth démon:
 
     ```sh
     sudo systemctl stop bluetooth
     ```
 
-1. Telepítse a BlueZ függőségek:
+1. Hello BlueZ függőségek telepítése:
 
     ```sh
     sudo apt-get update
     sudo apt-get install bluetooth bluez-tools build-essential autoconf glib2.0 libglib2.0-dev libdbus-1-dev libudev-dev libical-dev libreadline-dev
     ```
 
-1. Töltse le a BlueZ forráskód bluez.org:
+1. Hello BlueZ forráskódja letölthető bluez.org:
 
     ```sh
     wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz
     ```
 
-1. Bontsa ki a forráskód:
+1. Bontsa ki a forráskód hello:
 
     ```sh
     tar -xvf bluez-5.37.tar.xz
     ```
 
-1. Módosítsa a könyvtárat az újonnan létrehozott mappa:
+1. Könyvtárak toohello az újonnan létrehozott mappa módosítása:
 
     ```sh
     cd bluez-5.37
     ```
 
-1. Adja meg a kialakítani BlueZ kódot:
+1. Adja meg a beépített hello BlueZ kód toobe:
 
     ```sh
     ./configure --disable-udev --disable-systemd --enable-experimental
@@ -172,50 +172,50 @@ A táblázat modulok konzultáljon a Bluetooth hardver a BlueZ vermen keresztül
     sudo make install
     ```
 
-1. Systemd-szolgáltatás konfigurációjának módosítása a Bluetooth-on, így az új bluetooth démon a fájlban mutat `/lib/systemd/system/bluetooth.service`. A "ExecStart" sorban cserélje le a következő szöveget:
+1. Systemd bluetooth toohello új bluetooth démon hello fájlban mutat, a szolgáltatás konfigurációjának módosítása `/lib/systemd/system/bluetooth.service`. Hello "ExecStart" sorban cserélje le a következő szöveg hello:
 
     ```conf
     ExecStart=/usr/local/libexec/bluetooth/bluetoothd -E
     ```
 
-### <a name="enable-connectivity-to-the-sensortag-device-from-your-raspberry-pi-3-device"></a>A SensorTag eszközre kapcsolódásának engedélyezése a málna Pi 3 eszközről
+### <a name="enable-connectivity-toohello-sensortag-device-from-your-raspberry-pi-3-device"></a>Kapcsolat toohello SensorTag eszköz a málna Pi 3 eszközről engedélyezése
 
-A minta futtatásához vissza kell igazolnia, hogy a málna Pi 3 a SensorTag eszköz csatlakozhat.
+Futó hello minta előtt meg kell, hogy a málna Pi 3 csatlakozni tud-e toohello SensorTag eszköz tooverify.
 
-1. Győződjön meg arról a `rfkill` segédprogram:
+1. Győződjön meg arról hello `rfkill` segédprogram:
 
     ```sh
     sudo apt-get install rfkill
     ```
 
-1. A málna Pi 3 bluetooth feloldása, és ellenőrizze, hogy a verziószáma **5.37**:
+1. A hello málna Pi 3 bluetooth feloldása, és ellenőrizze, hogy hello verziószáma **5.37**:
 
     ```sh
     sudo rfkill unblock bluetooth
     bluetoothctl --version
     ```
 
-1. Adja meg az interaktív bluetooth rendszerhéj, a bluetooth-szolgáltatás elindítása és hajtható végre a **bluetoothctl** parancs:
+1. tooenter hello interaktív bluetooth rendszerhéj hello bluetooth szolgáltatás kiindulva hajtják végre hello **bluetoothctl** parancs:
 
     ```sh
     sudo systemctl start bluetooth
     bluetoothctl
     ```
 
-1. Adja meg a parancsot **bekapcsolási** energiagazdálkodással fel a Bluetooth-vezérlő. A parancs visszaadja a kimenet az alábbihoz hasonló:
+1. Adja meg a hello parancs **bekapcsolási** toopower hello Bluetooth-vezérlő be. hello parancs kimenete hasonló toohello következő adja vissza:
 
     ```sh
     [NEW] Controller 98:4F:EE:04:1F:DF C3 raspberrypi [default]
     ```
 
-1. Az interaktív bluetooth felületet, adja meg a parancs **vizsgálhat** szolgáltatást a Bluetooth-eszközök. A parancs visszaadja a kimenet az alábbihoz hasonló:
+1. Hello interaktív bluetooth rendszerhéj, adja meg a hello parancsot **vizsgálhat** tooscan bluetooth-eszközök. hello parancs kimenete hasonló toohello következő adja vissza:
 
     ```sh
     Discovery started
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: yes
     ```
 
-1. A SensorTag eszköz felderíthető ügyeljen a kis gombra kattintva (a zöld LED flash kell). A málna Pi 3 kell felderíteni a SensorTag eszköz:
+1. Hello SensorTag eszköz felderíthető tétele hello kis gomb (zöld LED kell flash hello). hello málna Pi 3 hello SensorTag eszköz kell észlelése:
 
     ```sh
     [NEW] Device A0:E6:F8:B5:F6:00 CC2650 SensorTag
@@ -223,19 +223,19 @@ A minta futtatásához vissza kell igazolnia, hogy a málna Pi 3 a SensorTag esz
     [CHG] Device A0:E6:F8:B5:F6:00 RSSI: -43
     ```
 
-    Ebben a példában látható, hogy a MAC-cím a SensorTag eszköz **A0:E6:F8:B5:F6:00**.
+    Ebben a példában láthatja, hogy hello hello SensorTag az eszköz MAC-címét **A0:E6:F8:B5:F6:00**.
 
-1. Kapcsolja ki a megadásával ellenőrzését a **ki vizsgálata** parancs:
+1. Kapcsolja ki hello megadásával ellenőrzését **ki vizsgálata** parancs:
 
     ```sh
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: no
     Discovery stopped
     ```
 
-1. Csatlakozás egy SensorTag-eszközt a MAC-cím megadásával **csatlakozás \<MAC-cím\>**. A következő minta kimenet az átláthatóság rövidítése:
+1. Csatlakozás tooyour SensorTag-eszközt a MAC-cím megadásával **csatlakozás \<MAC-cím\>**. a következő minta kimenet hello jobb érthetőség kedvéért bizonyos rövidítése:
 
     ```sh
-    Attempting to connect to A0:E6:F8:B5:F6:00
+    Attempting tooconnect tooA0:E6:F8:B5:F6:00
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: yes
     Connection successful
     [CHG] Device A0:E6:F8:B5:F6:00 UUIDs: 00001800-0000-1000-8000-00805f9b34fb
@@ -251,32 +251,32 @@ A minta futtatásához vissza kell igazolnia, hogy a málna Pi 3 a SensorTag esz
     [CHG] Device A0:E6:F8:B5:F6:00 Modalias: bluetooth:v000Dp0000d0110
     ```
 
-    > Az eszköz újra GATT jellemzői listázhatja a **lista-attribútumok** parancsot.
+    > Hello GATT jellemzői hello eszközt újra hello listázhatja **lista-attribútumok** parancsot.
 
-1. Most már leválaszthatja a eszköz a a **leválasztása** parancsot, és zárja be a rendszerhéj a bluetooth a **lépjen ki a** parancs:
+1. Most már leválaszthatja hello segítségével hello eszközről **leválasztása** parancsot, és zárja be a hello bluetooth rendszerhéjból hello segítségével **lépjen ki a** parancs:
 
     ```sh
-    Attempting to disconnect from A0:E6:F8:B5:F6:00
+    Attempting toodisconnect from A0:E6:F8:B5:F6:00
     Successful disconnected
     [CHG] Device A0:E6:F8:B5:F6:00 Connected: no
     ```
 
-Most már készen áll a lehetséges IoT peremhálózati minta futtatásához a málna Pi 3.
+Épp most már készen áll a toorun hello BLA IoT peremhálózati minta a málna Pi 3.
 
-## <a name="run-the-iot-edge-ble-sample"></a>Futtathatja a IoT peremhálózati BLA
+## <a name="run-hello-iot-edge-ble-sample"></a>Hello IoT peremhálózati BLA minta futtatásához
 
-Az IoT peremhálózati BLA minta futtatásához kell három feladatok elvégzéséhez:
+toorun hello IoT peremhálózati BLA minta kell toocomplete három feladatok:
 
 * Adja meg az IoT Hub két minta eszköz.
 * Build IoT peremhálózati málna Pi 3 eszközén.
-* Konfigurálja, és futtathatja a BLA málna Pi 3 eszközén.
+* Konfigurálja, és futtasson hello BLA mintát málna Pi 3 eszközén.
 
-Írásának időpontjában IoT peremhálózati csak támogatja BLA modulok Linux rendszert futtató átjárókat.
+Hello írásának időpontjában IoT peremhálózati csak támogatja BLA modulok Linux rendszert futtató átjárókat.
 
 ### <a name="configure-two-sample-devices-in-your-iot-hub"></a>Az IoT Hub két minta eszközök konfigurálása
 
-* [Létrehoz egy IoT-központot] [ lnk-create-hub] az Azure-előfizetéséhez, a nevét a hub forgatókönyv végrehajtásához szükség van. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
-* Hozzáad egy eszközt nevű **SensorTag_01** a IoT-központot, és jegyezze fel az azonosítót és az eszköz kulcsának. Használhatja a [eszköz explorer vagy az IOT hubbal-explorer] [ lnk-explorer-tools] eszközöket, az eszköz hozzáadása az IoT-központ az előző lépésben létrehozott lekérni a kulcsot. Ez az eszköz hozzárendelését az SensorTag eszközre az átjáró konfigurálásakor.
+* [Létrehoz egy IoT-központot] [ lnk-create-hub] az Azure-előfizetéshez kell hello nevét a hub toocomplete Ez a forgatókönyv. Ha nincs fiókja, néhány perc alatt létrehozhat egy [ingyenes fiókot][lnk-free-trial].
+* Hozzáad egy eszközt nevű **SensorTag_01** tooyour IoT-központot, és jegyezze fel az azonosítót és az eszköz kulcsának. Használhatja a hello [eszköz explorer vagy az IOT hubbal-explorer] [ lnk-explorer-tools] eszközök tooadd az eszköz toohello IoT-központ létrehozta az előző lépésben hello és tooretrieve annak kulcsát. Az eszköz toohello SensorTag eszköz hello átjáró konfigurálásakor képeznek le.
 
 ### <a name="build-azure-iot-edge-on-your-raspberry-pi-3"></a>Az Azure IoT peremhálózati létrehozása a Raspberry Pi 3-kiszolgálón
 
@@ -286,29 +286,29 @@ Függőségek telepítése Azure IoT szegély:
 sudo apt-get install cmake uuid-dev curl libcurl4-openssl-dev libssl-dev
 ```
 
-Az alábbi parancsokkal IoT széle és az kezdőkönyvtárához összes submodules klónozása:
+Használjon hello következő tooclone IoT peremhálózati és minden submodules tooyour kezdőkönyvtárral parancsokat:
 
 ```sh
 cd ~
 git clone https://github.com/Azure/iot-edge.git
 ```
 
-Ha rendelkezik a málna Pi 3 IoT peremhálózati összetevőtárházat teljes másolata, hozhat létre a következő parancs használatával, amely tartalmazza az SDK mappából:
+Ha rendelkezik a málna Pi 3 hello IoT peremhálózati tárház teljes másolata, hozhat létre hello parancs hello SDK tartalmazó hello mappából a következő használatával:
 
 ```sh
 cd ~/iot-edge
 ./tools/build.sh  --disable-native-remote-modules
 ```
 
-### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a>Konfigurálja és futtathatja a Generálja a málna Pi 3
+### <a name="configure-and-run-hello-ble-sample-on-your-raspberry-pi-3"></a>Konfigurálja és hello BLA minta futtatásához a málna Pi 3
 
-Bootstrap, és futtathatja, konfigurálnia kell az egyes IoT peremhálózati modul, amely részt vesz az átjáróban. Ebben a konfigurációban megadott JSON-fájlt, és konfigurálnia kell az öt részt vevő IoT peremhálózati modulok. A tárház nevű minta JSON-fájl van **átjáró\_sample.json** használható kiindulási pontként a saját konfigurációs fájl készítéséhez. A fájl a **minták/ble_gateway/src** helyi másolat készítése az IoT-Edge tárház mappájában.
+toobootstrap és futtatási hello minta, konfigurálnia kell minden egyes IoT peremhálózati modul, amely részt vesz az hello átjáró. Ebben a konfigurációban megadott JSON-fájlt, és konfigurálnia kell az öt részt vevő IoT peremhálózati modulok. Nincs JSON mintafájl nevű hello tárházban **átjáró\_sample.json** használható mint hello kiindulópont saját konfigurációs fájl létrehozása. Ez a fájl megtalálható-e hello **minták/ble_gateway/src** hello IoT peremhálózati tárház helyi példányát mappájában.
 
-Az alábbi szakaszok ismertetik a lehetséges minta a konfigurációs fájl szerkesztése, és feltételezik, hogy az IoT-Edge tárház a a **/home/pi/iot-edge /** a málna Pi 3 mappájába. Ha a tárház máshol, ennek megfelelően állítsa be az elérési utakat.
+hello alábbi szakaszok azt ismertetik, hogyan tooedit Ez a konfiguráció hello BLA minta fájlt, és azt feltételezik, hogy hello IoT peremhálózati tárház megtalálható-e hello **/home/pi/iot-edge /** a málna Pi 3 mappájába. Ha hello tárház máshol, módosítsa a hello elérési utak ennek megfelelően.
 
 #### <a name="logger-configuration"></a>Naplózási konfiguráció
 
-Feltéve, hogy az átjáró tárházban található a **/home/pi/iot-edge /** mappa, a naplózási modul konfigurálása az alábbiak szerint:
+Feltéve, hogy hello átjáró tárházban található hello **/home/pi/iot-edge /** mappa, hello naplózó modul konfigurálása az alábbiak szerint:
 
 ```json
 {
@@ -328,7 +328,7 @@ Feltéve, hogy az átjáró tárházban található a **/home/pi/iot-edge /** ma
 
 #### <a name="ble-module-configuration"></a>BLA modul konfigurációja
 
-A minta konfigurációs BLA eszköz azt feltételezi, hogy egy Texas eszközök SensorTag eszközt. Bármely szabványos BLA eszköz, amely működhet, a perifériák GATT kell működnie, de frissítésére lehet szükség a GATT jellemző azonosítók és adatokat. Adja hozzá a SensorTag eszköz MAC-címe:
+hello mintakonfiguráció hello BLA eszköz azt feltételezi, hogy egy Texas eszközök SensorTag eszközt. Bármely szabványos BLA eszköz, amely működhet, a perifériák GATT kell működnie, de szükség lehet a tooupdate hello GATT jellemző azonosítók és adatokat. Adja hozzá az SensorTag eszköz hello MAC-címe:
 
 ```json
 {
@@ -387,11 +387,11 @@ A minta konfigurációs BLA eszköz azt feltételezi, hogy egy Texas eszközök 
 }
 ```
 
-Ha nem használ egy SensorTag eszközt, tekintse át a meghatározásához, hogy szükséges-e frissíteni a GATT jellemző azonosítókat és az adatértékek lehetséges eszköz dokumentációját.
+Ha nem használ egy SensorTag eszközt, tekintse át a Gedélyezése eszköz toodetermine hello dokumentációja tooupdate hello GATT jellemző azonosítókat és az adatértékek szüksége van.
 
 #### <a name="iot-hub-module"></a>Az IoT-központ modulja
 
-Adja hozzá az IoT Hub nevét. A utótag érték általában **azure-devices.net**:
+Adja hozzá az IoT Hub hello nevét. hello utótag érték általában **azure-devices.net**:
 
 ```json
 {
@@ -412,7 +412,7 @@ Adja hozzá az IoT Hub nevét. A utótag érték általában **azure-devices.net
 
 #### <a name="identity-mapping-module-configuration"></a>Identitás-hozzárendelési modul konfigurációja
 
-Adja hozzá a MAC-címet az SensorTag eszköz eszköz azonosítója és kulcsa a **SensorTag_01** felvette az IoT Hub eszköz:
+Adja hozzá a MAC-címét hello a SensorTag eszköz és hello eszköz azonosítója és kulcsa hello **SensorTag_01** hozzáadott tooyour IoT Hub eszköz:
 
 ```json
 {
@@ -465,14 +465,14 @@ Adja hozzá a MAC-címet az SensorTag eszköz eszköz azonosítója és kulcsa a
 
 #### <a name="routing-configuration"></a>Útválasztási konfigurációja
 
-A következő konfigurációs biztosítja a következő útválasztási IoT peremhálózati modulok között:
+hello következő a konfiguráció biztosítja hello következő IoT peremhálózati modulok között:
 
-* A **naplózó** modul kap, és minden üzenetet naplózza.
-* A **SensorTag** modul üzeneteket küld mind a **leképezési** és **BLA nyomtató** modulok.
-* A **leképezési** modul üzeneteket küld a **IOT hubbal** küldendő az IoT Hub modul.
-* A **IOT hubbal** modul küld vissza üzenetek a **leképezési** modul.
-* A **leképezési** modul üzeneteket küld a **BLEC2D** modul.
-* A **BLEC2D** modul küld vissza üzenetek a **Sensor Tag** modul.
+* Hello **naplózó** modul kap, és minden üzenetet naplózza.
+* Hello **SensorTag** modul küld üzeneteket tooboth hello **leképezési** és **BLA nyomtató** modulok.
+* Hello **leképezési** modul küld üzeneteket toohello **IOT hubbal** modul toobe tooyour IoT-központ felküldve.
+* Hello **IOT hubbal** modul küld üzenetek biztonsági toohello **leképezési** modul.
+* Hello **leképezési** modul küld üzeneteket toohello **BLEC2D** modul.
+* Hello **BLEC2D** modul küld üzenetek biztonsági toohello **Sensor Tag** modul.
 
 ```json
 "links" : [
@@ -486,15 +486,15 @@ A következő konfigurációs biztosítja a következő útválasztási IoT pere
  ]
 ```
 
-A minta futtatásához adja át az elérési út a JSON-konfigurációs fájl paramétereként a **gedélyezése\_átjáró** bináris. Az alábbi parancs feltételezi, hogy használja a **gateway_sample.json** konfigurációs fájlt. A parancs végrehajtásához a **iot-edge** a málna Pi mappájában:
+toorun hello minta, mint egy paraméterrel toohello fázis hello elérési toohello JSON konfigurációs fájl **gedélyezése\_átjáró** bináris. hello alábbi parancs feltételezi a hello **gateway_sample.json** konfigurációs fájlt. Ez a parancs végrehajtása a hello **iot-edge** hello málna Pi mappájában:
 
 ```sh
 ./build/samples/ble_gateway/ble_gateway ./samples/ble_gateway/src/gateway_sample.json
 ```
 
-Szükség lehet a kis gombra a SensorTag eszköz könnyebben felderíthetők a minta futtatása előtt.
+Szükség lehet a toopress kis hello gombra hello SensorTag eszköz toomake azt felderíthető hello minta futtatása előtt.
 
-A minta futtatásához használhatja a [eszköz explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) vagy a [IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) az IoT-átjárónak a SensorTag eszközről továbbítja az üzeneteket figyelésére. Például az IOT hubbal-Explorerben figyelheti eszköz-a-felhőbe küldött üzeneteket a következő parancsot:
+Hello minta futtatásához használhatja hello [eszköz explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) vagy hello [IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) eszköz toomonitor hello üzenetek hello IoT peremhálózati átjáró hello SensorTag eszközről továbbítja. Például az IOT hubbal-Explorerben figyelheti eszközről a felhőbe üzenetek hello a következő parancs használatával:
 
 ```sh
 iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
@@ -502,11 +502,11 @@ iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devic
 
 ## <a name="send-cloud-to-device-messages"></a>Üzenetküldés a felhőből az eszközökre
 
-A táblázat modul is támogatja az eszközt az IoT-központ küldő parancsokat. Használhatja a [eszköz explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) vagy a [IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) eszköz, amely a BLA átjáró modul továbbítja az int eszköz be küldési JSON üzenetekre.
+hello BLA modul támogatja az IoT-központ toohello eszközről küldő parancsok is. Használhatja a hello [eszköz explorer](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer) vagy hello [IOT hubbal-explorer](https://github.com/Azure/iothub-explorer) eszköz toosend JSON üzenetek hello BLA átjáró modult toohello BLA eszközön továbbítja.
 
-Ha a Texas eszközök SensorTag eszközt használ, bekapcsolhatja a piros LED-jét, zöld LED-jét, vagy berregő parancsokat küld az IoT-központ. Az IoT-központ küldeni a parancsok, először a következő két JSON-üzenetek küldése sorrendben. Ezután a parancsok a fény vagy berregő bekapcsolása küldhet.
+Ha hello Texas eszközök SensorTag eszközt használ, bekapcsolhatja a piros hello LED-jét, zöld LED vagy berregő parancsokat küld az IoT-központot. Az IoT-központ küldeni a parancsok, először küldése a következő két JSON üzenetek sorrendben hello. Ezután bármelyik hello parancsok tooturn hello fény vagy berregő küldhet.
 
-1. Minden LED és a berregő alaphelyzetbe állítása (kikapcsolni őket):
+1. Alaphelyzetbe állítja az összes LED és hello berregő (kikapcsolni őket):
 
     ```json
     {
@@ -526,9 +526,9 @@ Ha a Texas eszközök SensorTag eszközt használ, bekapcsolhatja a piros LED-j�
     }
     ```
 
-Küldheti el a következő parancsok fény vagy berregő az SensorTag eszköz bekapcsolása:
+Küldheti el a következő parancsok tooturn hello fény vagy hello SensorTag eszközön berregő hello:
 
-* A piros LED bekapcsolása:
+* Piros hello LED bekapcsolása:
 
     ```json
     {
@@ -538,7 +538,7 @@ Küldheti el a következő parancsok fény vagy berregő az SensorTag eszköz be
     }
     ```
 
-* A zöld LED bekapcsolása:
+* Zöld hello LED bekapcsolása:
 
     ```json
     {
@@ -548,7 +548,7 @@ Küldheti el a következő parancsok fény vagy berregő az SensorTag eszköz be
     }
     ```
 
-* Kapcsolja be a berregő:
+* Hello berregő bekapcsolása:
 
     ```json
     {
@@ -560,11 +560,11 @@ Küldheti el a következő parancsok fény vagy berregő az SensorTag eszköz be
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha azt szeretné, IoT peremhálózati tájékozottabbak kapnak, és néhány kódpéldák kísérletezhet, látogasson el az alábbi fejlesztői oktatóanyagok és erőforrások:
+Ha toogain tájékozottabbak IoT széle és az egyes kódpéldák kísérletezhet, keresse fel hello fejlesztői oktatóanyagok és erőforrások:
 
 * [Az Azure IoT él][lnk-sdk]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [IoT Hub fejlesztői útmutató][lnk-devguide]
 

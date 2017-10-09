@@ -1,6 +1,6 @@
 ---
-title: "Segítség a Machine Learning Csevegés támogatási élő |} Microsoft Docs"
-description: "Segítség a valós idejű a Machine Learning a Csevegés támogatási élő szolgáltatással a felhőben."
+title: "a Machine Learning Csevegés támogatási élő aaaGet Súgó |} Microsoft Docs"
+description: "Segítség valós idejű a Machine Learning hello felhőben hello élő csevegés támogatási szolgáltatással."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: garye
-ms.openlocfilehash: f8e624b54578009e55921606a9e37f884faf50c7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7307fb5a91fc58b32872d480b48305d690c14b92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-help-from-machine-learning-live-chat-support"></a>Segítségkérés a Machine Learning ügyfélszolgálatától élő csevegésben
-[Az Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) intuitív interfészt nyújt a machine learning modellek létrehozása. Van egy [gyűjtemény](machine-learning-gallery-how-to-use-contribute-publish.md) példák segítségével hozzákezdhet a Közösség által közzétett. És nincs olyan [fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning) ahol Ön is védheti kérdéseit teheti fel. 
+[Az Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) intuitív interfészt nyújt a machine learning modellek létrehozása. Van egy [gyűjtemény](machine-learning-gallery-how-to-use-contribute-publish.md) példák hello közösségi toohelp által közzétett használatának első lépéseit. És nincs olyan [fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning) ahol megkérheti kérdések toohelp tartsa lesz. 
 
-Azonban néha ugyanúgy kell gyors kérdés feloldásához meg. A [Machine Learning Studio](http://studio.azureml.net/Home) keresse meg a Csevegés ikonra a felső navigációs sáv.  Ha ez az ikon jelenik meg, ez azt jelenti, a termékért felelős csoport tagjai valós idejű segítségével érhető el.
+Azonban néha egyszerűen tooask egy gyors kérdést toounblock meg. A [Machine Learning Studio](http://studio.azureml.net/Home) hello Csevegés ikonra a felső navigációs hello keresi.  Ha megjelenik ez az ikon, azt jelenti, hogy a hello termékért felelős csoport tagjai az online toohelp meg valós időben.
 
 ![Az Azure ML Csevegés](./media/machine-learning-live-chat/AzureMLChatNavBar.png)
 
@@ -31,11 +31,11 @@ Adja meg a kérdés és a válaszok!
 
 ![Az Azure ML csevegés párbeszédpanel](./media/machine-learning-live-chat/AzureMLChat.png)
 
-**Az élő csevegés ikonra nem jelenik meg?**
+**Nem látható Csevegés ikonra élő hello?**
 
-Az élő csevegés személyzettel a Machine Learning csapat tagjai. Ha nem látja a Csevegés ikonra, mert a csoport már nem érhető el. Például lehet normál munkaidőn kívül. 
+hello élő csevegés van gyakran hello Machine Learning csapat tagjai. Ha nem lát hello Csevegés ikonra van, mert hello csoport már nem érhető el. Például lehet normál munkaidőn kívül. 
 
-Akkor is mindig kérdéseit a a [Machine Learning fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning), ahol azok fogja látni a Machine Learning csapat és egyéb tájékozott adatszakértőkön és a fejlesztők tagjai.
+A kérdések mindig hello beküldheti [Machine Learning fórum](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning), ahol azok látják hello Machine Learning csapat és egyéb tájékozott adatszakértőkön és a fejlesztők tagjai.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

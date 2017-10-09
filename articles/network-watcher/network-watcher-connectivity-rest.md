@@ -1,6 +1,6 @@
 ---
-title: "Ellenőrizze a kapcsolatot az Azure hálózati figyelőt - Azure-portál |} Microsoft Docs"
-description: "Ez a lap ismerteti, hogyan ellenőrizze a kapcsolatot a hálózati figyelőt az Azure-portálon"
+title: "Azure hálózati figyelőt - Azure-portálon aaaCheck kapcsolatot |} Microsoft Docs"
+description: "Ez a lap azt ismerteti, hogyan toocheck kapcsolatot a hálózati figyelőt hello Azure-portálon"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,55 +13,55 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: gwallace
-ms.openlocfilehash: ca62bea581acb59d3c3c0b8a204cc9d42de2b27f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8560011906fcce46d31556fc52cbfa671e8e653a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a>Ellenőrizze a kapcsolatot az Azure hálózati figyelőt az Azure portál használatával
+# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a>Ellenőrizze a kapcsolatot az Azure hálózati figyelőt hello Azure-portál használatával
 
 > [!div class="op_single_selector"]
-> - [Portal](network-watcher-connectivity-portal.md)
+> - [Portál](network-watcher-connectivity-portal.md)
 > - [PowerShell](network-watcher-connectivity-powershell.md)
 > - [CLI 2.0](network-watcher-connectivity-cli.md)
 > - [Az Azure REST API-n](network-watcher-connectivity-rest.md)
 
-Megtudhatja, hogyan ellenőrizheti, ha egy közvetlen TCP-kapcsolatot a virtuális gép egy adott végpont is hozható létre kapcsolat használatára.
+Ismerje meg, hogyan hozhatók létre a toouse kapcsolat tooverify, ha egy virtuális gép tooa megadott végpont a közvetlen TCP-kapcsolatot.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez a cikk feltételezi, hogy rendelkezik-e a következőket:
+Ez a cikk feltételezi, hogy rendelkezik-e a következő erőforrások hello:
 
-* Ellenőrizze a kapcsolatot szeretne hálózati figyelőt régióban példánya.
+* Egy példány toocheck kapcsolat kívánt hálózati figyelőt hello régióban.
 
-* Ellenőrizze a kapcsolatot a virtuális gépeket.
+* Virtuális gépek toocheck kapcsolattal.
 
-A PowerShell használatával REST API hívása ARMclient szolgál. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient).
+ARMclient használt toocall hello REST API használatával PowerShell. ARMClient verziója van telepítve, chocolatey [a Chocolatey ARMClient](https://chocolatey.org/packages/ARMClient).
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt.
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A bővítmény telepítése a Windows virtuális gép a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
+> Kapcsolat ellenőrzése van szükség a virtuálisgép-bővítmény `AzureNetworkWatcherExtension`. A virtuális gép Windows hello-bővítmény telepítése a Microsoft [a Windows Azure hálózati figyelő ügynök virtuálisgép-bővítmény](../virtual-machines/windows/extensions-nwa.md) és a Linux virtuális gép helyezést [Azure hálózati figyelő ügynök virtuálisgép-bővítmény Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="register-the-preview-capability"></a>Regisztrálja a előzetes funkció
+## <a name="register-hello-preview-capability"></a>Hello előzetes funkció regisztrálása
 
-Kapcsolat ellenőrzése jelenleg nyilvános előzetes verziójában, regisztrálni kell a szolgáltatás használatához. Ehhez futtassa a következő PowerShell-példa:
+Kapcsolat ellenőrzése jelenleg toouse nyilvános előzetes verziójában ez a szolgáltatás toobe regisztrálni kell. toodo e, futtassa a következő PowerShell-példa hello:
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-Ellenőrizze a regisztráció sikeres volt-e, futtassa a következő Powershell-példa:
+tooverify hello a regisztráció sikeres volt, futtassa a következő Powershell-példa hello:
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-Ha a szolgáltatás megfelelően lett-e regisztrálva, a kimeneti meg kell felelnie a következő:
+Hello szolgáltatás megfelelően lett-e regisztrálva, ha hello kimeneti meg kell felelnie a következő hello:
 
 ```
 FeatureName                             ProviderName      RegistrationState
@@ -71,7 +71,7 @@ AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
 
 ## <a name="log-in-with-armclient"></a>Jelentkezzen be ARMClient
 
-Jelentkezzen be a Azure hitelesítő adataival armclient.
+Jelentkezzen be a Azure hitelesítő adataival tooarmclient.
 
 ```PowerShell
 armclient login
@@ -79,12 +79,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>A virtuális gép beolvasása
 
-Futtassa a következő parancsfájl egy virtuális gép visszaállítására. Ezek az információk szükségesek a kapcsolat futtatásához. 
+A következő parancsfájl tooreturn hello egy virtuális gép futtatásához. Ezek az információk szükségesek a kapcsolat futtatásához. 
 
-A következő kódot a következő változó igényeihez értékek:
+a következő kód hello értékeket a következő változók hello szüksége van:
 
-- **a subscriptionId** -az előfizetés-azonosító használata.
-- **resourceGroupName** -virtuális gépeket tartalmazó erőforráscsoport nevét.
+- **a subscriptionId** -előfizetési azonosító toouse hello.
+- **resourceGroupName** – hello virtuális gépeket tartalmazó erőforráscsoport nevét.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -93,7 +93,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-A virtuális gép Azonosítóját a következő kimeneti használják a következő példa:
+Hello következő kimeneti, hello virtuális gép hello azonosítója szerepel a következő példa hello:
 
 ```json
 ...
@@ -108,9 +108,9 @@ A virtuális gép Azonosítóját a következő kimeneti használják a követke
 }
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a>Ellenőrizze a kapcsolatot a virtuális géphez
+## <a name="check-connectivity-tooa-virtual-machine"></a>Ellenőrizze a kapcsolat tooa virtuális gép
 
-Ebben a példában a cél virtuális gép kapcsolatát ellenőrzi a 80-as porton keresztül.
+Ebben a példában kapcsolat tooa cél virtuális gép ellenőrzi a 80-as porton keresztül.
 
 ### <a name="example"></a>Példa
 
@@ -137,11 +137,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:
+Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:
 
 **Fontos értékek**
 
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -162,7 +162,7 @@ null
 
 ### <a name="response"></a>Válasz
 
-Az előző példában a rendszer a következő választ.  A válaszban a `ConnectionStatus` van **Unreachable**. Láthatja, hogy a mintavételt küldése sikertelen. A kapcsolat a felhasználó által konfigurált miatt a virtuális készülék meghiúsult `NetworkSecurityRule` nevű **UserRule_Port80**, beállítva, hogy a bejövő forgalom blokkolása a 80-as porton. Ezek az információk segítségével kutatás kapcsolódási problémák.
+válasz a következő hello hello előző példa származik.  A válaszban hello `ConnectionStatus` van **Unreachable**. Láthatja, hogy az összes hello mintavételt küldése sikertelen. hello kapcsolat meghiúsult hello virtuális készülék felhasználó által konfigurált esedékes tooa `NetworkSecurityRule` nevű **UserRule_Port80**, konfigurált tooblock bejövő forgalmat a 80-as porton. Ezek az információk használt tooresearch kapcsolódási problémák lehetnek.
 
 ```json
 {
@@ -226,7 +226,7 @@ Az előző példában a rendszer a következő választ.  A válaszban a `Connec
 
 ## <a name="validate-routing-issues"></a>Útválasztási problémák ellenőrzése
 
-A példában egy virtuális gép és a távoli végpont közötti kapcsolatot ellenőrzi.
+hello például a virtuális gépek és a távoli végpont közötti kapcsolatot ellenőrzi.
 
 ### <a name="example"></a>Példa
 
@@ -253,11 +253,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:
+Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:
 
 **Fontos értékek**
 
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -278,7 +278,7 @@ null
 
 ### <a name="response"></a>Válasz
 
-A következő példában a `connectionStatus` jelenik meg, mint **Unreachable**. Az a `hops` részleteket megtekintheti a `issues` , amely a forgalom miatt blokkolta a `UserDefinedRoute`.
+A következő példa hello, hello `connectionStatus` jelenik meg, mint **Unreachable**. A hello `hops` részleteket megtekintheti a `issues` hello forgalom miatt blokkolta tooa `UserDefinedRoute`.
 
 ```json
 {
@@ -322,7 +322,7 @@ A következő példában a `connectionStatus` jelenik meg, mint **Unreachable**.
 
 ## <a name="check-website-latency"></a>Ellenőrizze a webhely késés
 
-A következő példa a webhely csatlakozási ellenőrzi.
+a következő példa ellenőrzések hello kapcsolat tooa webhely hello.
 
 ### <a name="example"></a>Példa
 
@@ -349,11 +349,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:
+Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:
 
 **Fontos értékek**
 
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -374,7 +374,7 @@ null
 
 ### <a name="response"></a>Válasz
 
-A következő válasz láthatja a `connectionStatus` jeleníti meg, mint a **elérhető**. Sikeres kapcsolat esetén a késési értékek találhatók.
+A válasz a következő hello, hogy hello `connectionStatus` jeleníti meg, mint a **elérhető**. Sikeres kapcsolat esetén a késési értékek találhatók.
 
 ```json
 {
@@ -407,9 +407,9 @@ A következő válasz láthatja a `connectionStatus` jeleníti meg, mint a **el�
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a>Ellenőrizze a kapcsolatot a storage-végponthoz
+## <a name="check-connectivity-tooa-storage-endpoint"></a>Ellenőrizze a kapcsolat tooa tárolási végpont
 
-A következő példa a kapcsolat a virtuális gépen blog tárfiókba ellenőrzi.
+hello alábbi példa hello kapcsolatát ellenőrzi a virtuális gép tooa blog tárfiókból.
 
 ### <a name="example"></a>Példa
 
@@ -436,11 +436,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Mivel ez a művelet hosszú fut, az URI, az eredmény a válasz fejlécében vissza, ahogy az a következő választ:
+Mivel ez a művelet hosszú fut, hello hello eredmény URI-JÁNAK eredmény abban az esetben hello válaszfejléc látható hello válasz a következő módon:
 
 **Fontos értékek**
 
-* **Hely** – Ez a tulajdonság tartalmazza az adott az eredmény nem a művelet befejezésekor URI
+* **Hely** -ezt a tulajdonságot tartalmaz hello URI, ahol hello eredmények esetén hello művelet befejeződött.
 
 ```
 HTTP/1.1 202 Accepted
@@ -461,7 +461,7 @@ null
 
 ### <a name="response"></a>Válasz
 
-A következő példa az előző API-hívás futtató válaszát. Az ellenőrzés sikeres, mert a `connectionStatus` tulajdonság jeleníti meg, mint a **elérhető**.  A tárolási blob és a késleltetés eléréséhez szükséges ugrások száma kapcsolatos részleteket rendelkezésre állnak.
+hello következő példa egy hello válasz hello előző API-hívás futtatását. Mivel hello ellenőrzés sikeres, hello `connectionStatus` tulajdonság jeleníti meg, mint a **elérhető**.  Útválasztók ugrásainak szükséges tooreach hello storage-blob és a késleltetés hello száma hello részleteket rendelkezésre állnak.
 
 ```json
 {
@@ -496,7 +496,7 @@ A következő példa az előző API-hívás futtató válaszát. Az ellenőrzés
 
 ## <a name="next-steps"></a>Következő lépések
 
-Csomag rögzíti a virtuális gép a riasztások megtekintésével automatizálása [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
+Ismerje meg, hogyan tooautomate csomagrögzítéseket virtuális gép riasztások megtekintésével [riasztási kiváltott csomagrögzítéssel létrehozása](network-watcher-alert-triggered-packet-capture.md)
 
 Keresése, ha bizonyos adatforgalom engedélyezett a virtuális gép kívül vagy belül ellátogatva [ellenőrizze IP folyamat ellenőrzése](network-watcher-check-ip-flow-verify-portal.md)
 

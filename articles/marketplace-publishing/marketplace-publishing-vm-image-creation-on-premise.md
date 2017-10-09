@@ -1,6 +1,6 @@
 ---
-title: "A helyszíni virtuális gép lemezkép létrehozása a Azure piactérről |} Microsoft Docs"
-description: "Ismerje meg, és hajtsa végre a lépéseket a helyszíni Virtuálisgép-lemezkép létrehozása és telepítése az Azure piactéren mások megvásárlásához."
+title: "egy helyszíni virtuális gép kép hello Azure piactér aaaCreating |} Microsoft Docs"
+description: "Megértésére és hajtható végre hello lépéseket toocreate egy helyszíni Virtuálisgép-lemezkép központi telepítése Azure piactér toohello mások toopurchase."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 04/29/2016
 ms.author: hascipio; v-divte
-ms.openlocfilehash: 8f6b9a9293dc149586e6e5fd55028170ea825b07
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c7a265330f1e494db8d0e981a38ee00d85746bb1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="develop-an-on-premises-virtual-machine-image-for-the-azure-marketplace"></a>A helyszíni virtuálisgép-lemezkép kialakított az Azure piactéren
-Határozottan javasoljuk, hogy a távoli asztal protokoll használatával fejlesztése az Azure virtuális merevlemezeket (VHD) közvetlenül a felhőben. Azonban ha kell, akkor lehet töltse le a virtuális Merevlemezt és fejleszthetők a helyszíni infrastruktúra használatával.  
+# <a name="develop-an-on-premises-virtual-machine-image-for-hello-azure-marketplace"></a>A helyszíni virtuális gép kép hello Azure piactér fejlesztése
+Határozottan javasoljuk, hogy fejlesztése az Azure virtuális merevlemezeket (VHD) közvetlenül hello felhő távoli asztal protokoll használatával. Azonban ha kell, akkor lehetséges toodownload virtuális Merevlemezt és fejleszthetők a helyszíni infrastruktúra segítségével.  
 
-A helyi fejlesztési akkor le kell töltenie az operációs rendszer a létrehozott virtuális gép virtuális Merevlemezét. Ezeket a lépéseket akkor kerül sor lépésben 3.3-as, a rendszer fent.  
+A helyi fejlesztési, le kell töltenie hello operációs rendszer virtuális Merevlemezének hello létrehozott virtuális gép. Ezeket a lépéseket akkor kerül sor lépésben 3.3-as, a rendszer fent.  
 
 ## <a name="download-a-vhd-image"></a>A Virtuálismerevlemez-kép letöltése
 ### <a name="locate-a-blob-url"></a>Keresse meg a blob URL-címe
-Ahhoz, hogy töltse le a VHD-t, keresse meg az operációsrendszer-lemez blob URL-CÍMÉT.
+Rendelés toodownload hello VHD-t először keresse meg az operációsrendszer-lemez hello hello blob URL-címet.
 
-Keresse meg a blob URL-CÍMÉT az új [Microsoft Azure-portálon](https://portal.azure.com):
+Keresse meg új hello blob URL-cím-hello [Microsoft Azure-portálon](https://portal.azure.com):
 
-1. Nyissa meg a **Tallózás** > **virtuális gépek**, majd válassza ki a központilag telepített virtuális gép.
-2. A **konfigurálása**, jelölje be a **lemezek** csempe, a lemezek paneljének megnyitása, amelyen.
+1. Nyissa meg túl**Tallózás** > **virtuális gépek**, és jelölje ki hello telepített virtuális gép.
+2. A **konfigurálása**, jelölje be hello **lemezek** csempe hello lemezek paneljének megnyitása, amelyen.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img01.png)
-3. Válassza ki a **operációsrendszer-lemez**, amely megnyílik egy újabb panel, amely megjeleníti a lemez tulajdonságai, például a virtuális merevlemez helye.
+3. Jelölje be hello **operációsrendszer-lemez**, amely megnyílik egy újabb panel, amely megjeleníti a lemez tulajdonságai, például hello virtuális merevlemez helye.
 4. A blob URL-Címének másolása.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img02.png)
-5. Most törölje a központilag telepített virtuális gép biztonsági lemezek törlése nélkül. A virtuális gép törlése helyett is leállíthatja. Ne töltse le az operációs rendszer virtuális Merevlemezt a virtuális gép futása közben.
+5. Most, törölje hello telepített virtuális gép hello biztonsági lemezek törlése nélkül. Hello VM is leállíthatja a törlés helyett. Ne töltse le az hello operációs rendszer virtuális Merevlemeze hello virtuális gép futása közben.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img03.png)
 
 ### <a name="download-a-vhd"></a>VHD letöltése
-Után tudja, hogy a blob URL-címet, a virtuális merevlemez segítségével letöltheti a [Azure-portálon](http://manage.windowsazure.com/) vagy a PowerShell használatával.  
+Után tudja hello blob URL-címe, letöltheti hello segítségével hello VHD [Azure-portálon](http://manage.windowsazure.com/) vagy a PowerShell használatával.  
 
 > [!NOTE]
-> Ez az útmutató létrehozásának időpontjában töltheti le a virtuális merevlemez funkció még nincs jelen az új Microsoft Azure-portálon.  
+> Ez az útmutató létrehozási hello időpontban hello funkció toodownload virtuális merevlemez még nincs hello új Microsoft Azure-portálon szerepel.  
 > 
 > 
 
-**Töltse le az operációs rendszer virtuális merevlemez a jelenlegi keresztül [Azure-portálon](http://manage.windowsazure.com/)**
+**Töltse le a hello operációs rendszer virtuális Merevlemeze keresztül aktuális hello [Azure-portálon](http://manage.windowsazure.com/)**
 
-1. Ha még nem meg már, jelentkezzen be az Azure-portálon.
-2. Kattintson a **tárolási** fülre.
-3. Válassza ki a tárfiók, amelyen belül a VHD-t tárolja.
+1. Jelentkezzen be Azure-portálon toohello, ha még nem meg már.
+2. Kattintson a hello **tárolási** fülre.
+3. Válassza ki a hello tárfiók belül mely hello tárolja a virtuális merevlemez.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img04.png)
-4. Ez megjeleníti a tárfiók tulajdonságai. Válassza ki a **tárolók** fülre.
+4. Ez megjeleníti a tárfiók tulajdonságai. Jelölje be hello **tárolók** fülre.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img05.png)
-5. Válassza ki a tároló, amely a VHD-t tárolja. Alapértelmezés szerint a portálon létrehozott virtuális merevlemez tárolja a VHD-k tárolója.
+5. Jelölje ki a mely hello tárolja a virtuális merevlemez hello tárolót. Alapértelmezés szerint hello portálon létrehozott hello VHD tárolja a VHD-k tárolója.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img06.png)
-6. Válassza ki a megfelelő operációs rendszer virtuális Merevlemeze összehasonlítva az Ön által mentett egy URL-CÍMÉT.
+6. Válassza ki a hello megfelelő operációs rendszer virtuális Merevlemeze összehasonlítja egy Ön által mentett hello URL-cím toohello.
 7. Kattintson a **Letöltés** gombra.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img07.png)
 
 ### <a name="download-a-vhd-by-using-powershell"></a>Töltse le a virtuális merevlemez PowerShell használatával
-Az Azure portál használata mellett is használhatja a [mentés-AzureVhd](http://msdn.microsoft.com/library/dn495297.aspx) parancsmag használatával töltheti le az operációs rendszer virtuális Merevlemezt.
+Ezenkívül toousing hello Azure-portálon, használhatja a hello [mentés-AzureVhd](http://msdn.microsoft.com/library/dn495297.aspx) parancsmag toodownload hello operációs rendszer virtuális Merevlemezt.
 
         Save-AzureVhd –Source <storageURIOfVhd> `
         -LocalFilePath <diskLocationOnWorkstation> `
@@ -78,52 +78,52 @@ Az Azure portál használata mellett is használhatja a [mentés-AzureVhd](http:
 Például mentés-AzureVhd-forrás "https://baseimagevm.blob.core.windows.net/vhds/BaseImageVM-6820cq00-BaseImageVM-os-1411003770191.vhd" - LocalFilePath "C:\Users\Administrator\Desktop\baseimagevm.vhd" - StorageKey tulajdonságát<String>
 
 > [!NOTE]
-> **Mentés-AzureVhd** is rendelkezik egy **NumberOfThreads** lehetőség, amely segítségével növelheti a párhuzamosságot a rendelkezésre álló sávszélesség ajánlott használhatják a letöltés.
+> **Mentés-AzureVhd** is rendelkezik egy **NumberOfThreads** lehetőség, amely lehet tooincrease párhuzamossági toomake hello lehető legjobb felhasználását rendelkezésre álló sávszélesség használt hello letölthető.
 > 
 > 
 
-## <a name="upload-vhds-to-an-azure-storage-account"></a>Töltse fel a VHD-k a Azure-tárfiók
-Felkészülés a VHD-k a helyszínen, ha szüksége feltöltésükhöz be egy Azure storage-fiókot. Ez a lépés után a virtuális merevlemez létrehozása a helyszínen, de a VM-lemezkép hitelesítő megszerzése előtt történik.
+## <a name="upload-vhds-tooan-azure-storage-account"></a>Töltse fel a VHD-k tooan Azure storage-fiók
+Felkészülés a VHD-k a helyszínen, ha szüksége tooupload őket a tárolási fiók az Azure-ban. Ez a lépés után a virtuális merevlemez létrehozása a helyszínen, de a VM-lemezkép hitelesítő megszerzése előtt történik.
 
 ### <a name="create-a-storage-account-and-container"></a>A tárfiók és tároló létrehozása
-Azt javasoljuk, hogy virtuális merevlemezek egy tárfiókot az Amerikai Egyesült Államokban régióban kell-e töltve. Minden virtuális merevlemez egyetlen termékváltozat egy tárfiókon belül egyetlen tárolót kell helyezni.
+Azt javasoljuk, hogy virtuális merevlemezek egy tárfiókot hello az Amerikai Egyesült Államokban régióban kell-e töltve. Minden virtuális merevlemez egyetlen termékváltozat egy tárfiókon belül egyetlen tárolót kell helyezni.
 
-Hozzon létre egy tárfiókot, használhatja a [Microsoft Azure-portálon](https://portal.azure.com/), PowerShell vagy a Linux parancssori eszközt.  
+toocreate egy tárfiókot, hello használható [Microsoft Azure-portálon](https://portal.azure.com/), PowerShell, vagy hello Linux parancssori eszközt.  
 
-**A storage-fiók létrehozása a Microsoft Azure-portálon**
+**Hozzon létre egy tárfiókot hello Microsoft Azure portálról**
 
 1. Kattintson az **Új** lehetőségre.
 2. Válassza ki **tárolási**.
-3. Töltse ki a tárfiók nevét, és válassza ki a helyet.
+3. Töltse ki a tárfiók neve hello, és válassza ki a helyet.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img08.png)
 4. Kattintson a **Create** (Létrehozás) gombra.
-5. A létrehozott tárfiók panel nyitva kell lennie. Ha nem, válassza ki a **Tallózás** > **Tárfiókok**. A Storage-fiók panelen válassza ki a létrehozott tárfiókban.
+5. storage-fiók létrehozása hello hello paneljén nyitva kell lennie. Ha nem, válassza ki a **Tallózás** > **Tárfiókok**. Hello tárolási fiókot panelen, jelölje ki a létrehozott hello tárfiókban.
 6. Válassza ki **tárolók**.
    
    ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img09.png) 
-7. A tárolók panelen válassza ki a **Hozzáadás**, majd adja meg a tároló neve és a tároló engedélyeit. Válassza ki **titkos** tároló engedélyek.
+7. Hello tárolók paneljén válassza **Hozzáadás**, majd adja meg a tároló nevét és hello tároló engedélyeit. Válassza ki **titkos** tároló engedélyek.
 
 > [!TIP]
-> Azt javasoljuk, hogy hozzon létre egy tároló, amely azt tervezi, hogy közzététele SKU /.
+> Azt javasoljuk, hogy hozzon létre egy tároló, hogy azt tervezi, toopublish SKU /.
 > 
 > 
 
   ![rajz](media/marketplace-publishing-vm-image-creation-on-premise/img10.png)
 
 ### <a name="create-a-storage-account-by-using-powershell"></a>A storage-fiók létrehozása a PowerShell használatával
-A PowerShell használatával hozzon létre egy tárfiókot a [New-AzureStorageAccount](http://msdn.microsoft.com/library/dn495115.aspx) parancsmag.
+A powershellel, hozzon létre egy tárfiókot hello segítségével [New-AzureStorageAccount](http://msdn.microsoft.com/library/dn495115.aspx) parancsmag.
 
         New-AzureStorageAccount -StorageAccountName “mystorageaccount” -Location “West US”
 
-Ezután a tárfiókon belül tárolója használatával hozhat létre a [NewAzureStorageContainer](http://msdn.microsoft.com/library/dn495291.aspx) parancsmag.
+Ezután hello segítségével hozhat létre egy tárolót a tárfiókon belül [NewAzureStorageContainer](http://msdn.microsoft.com/library/dn495291.aspx) parancsmag.
 
         New-AzureStorageContainer -Name “containername” -Permission “Off”
 
 > [!NOTE]
-> Ezeknek a parancsoknak azt feltételezik, hogy az aktuális tárfiók környezetét már be van állítva a PowerShellben.   Tekintse meg [beállítása az Azure PowerShell](marketplace-publishing-powershell-setup.md) kapcsolatban további részleteket a PowerShell-telepítőt.  
+> Azokat a parancsokat azt feltételezik, hogy hello aktuális tárfiók környezetét már be van állítva a PowerShellben.   Tekintse meg a túl[beállítása az Azure PowerShell](marketplace-publishing-powershell-setup.md) kapcsolatban további részleteket a PowerShell-telepítőt.  
 > 
-> ### <a name="create-a-storage-account-by-using-the-command-line-tool-for-mac-and-linux"></a>A storage-fiók létrehozása a parancssori eszközzel a Mac és Linux
+> ### <a name="create-a-storage-account-by-using-hello-command-line-tool-for-mac-and-linux"></a>Hozzon létre egy tárfiókot hello parancssori eszközzel a Mac és Linux
 > A [Linux parancssori eszköz](../virtual-machines/linux/cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), az alábbiak szerint hozzon létre egy tárfiókot.
 > 
 > 
@@ -135,17 +135,17 @@ Az alábbiak szerint hozzon létre egy tárolót.
         azure storage container create containername --account-name mystorageaccount --accountkey <accountKey>
 
 ## <a name="upload-a-vhd"></a>VHD feltöltése
-A tárfiók és tároló létrehozása után feltöltheti az előkészített virtuális merevlemezeket. Használhatja a PowerShell, a Linux parancssori eszköz vagy egyéb Azure Storage felügyeleti eszközöket.
+Hello tárfiók és tároló létrehozása után feltöltheti az előkészített virtuális merevlemezeket. Használhatja a PowerShell, a hello Linux parancssori eszköz vagy az egyéb Azure Storage felügyeleti eszközöket.
 
 ### <a name="upload-a-vhd-via-powershell"></a>A PowerShell segítségével virtuális merevlemez feltöltéséhez
-Használja a [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) parancsmag.
+Használjon hello [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) parancsmag.
 
         Add-AzureVhd –Destination “http://mystorageaccount.blob.core.windows.net/containername/vmsku.vhd” -LocalFilePath “C:\Users\Administrator\Desktop\vmsku.vhd”
 
-### <a name="upload-a-vhd-by-using-the-command-line-tool-for-mac-and-linux"></a>A virtuális merevlemez feltöltéséhez a parancssori eszközzel a Mac és Linux
-Az a [Linux parancssori eszköz](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2), használja a következő: azure virtuálisgép-lemezkép létrehozása <image name> --hely <Location of the data center> – operációs rendszer Linux<LocationOfLocalVHD>
+### <a name="upload-a-vhd-by-using-hello-command-line-tool-for-mac-and-linux"></a>A virtuális merevlemez feltöltéséhez hello parancssori eszközzel a Mac és Linux
+A hello [Linux parancssori eszköz](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2), hello alábbi: azure virtuálisgép-lemezkép létrehozása <image name> --hely <Location of hello data center> – operációs rendszer Linux<LocationOfLocalVHD>
 
 ## <a name="see-also"></a>Lásd még:
-* [Hozzon létre egy virtuálisgép-lemezkép a piactér](marketplace-publishing-vm-image-creation.md)
+* [Hello piactér a virtuális gép lemezkép létrehozása](marketplace-publishing-vm-image-creation.md)
 * [Azure PowerShell telepítése](marketplace-publishing-powershell-setup.md)
 

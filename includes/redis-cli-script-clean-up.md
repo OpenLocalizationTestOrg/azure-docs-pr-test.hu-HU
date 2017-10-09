@@ -1,6 +1,6 @@
-## <a name="clean-up-deployment"></a>Központi telepítés tisztítása 
+## <a name="clean-up-deployment"></a>Az üzemelő példány eltávolítása 
 
-A parancsfájl-minta futtatása után a következő parancs segítségével távolítsa el az erőforráscsoportot, Azure Redis Cache példány és a kapcsolódó erőforrások az erőforráscsoportban.
+Hello parancsfájl minta futtatása után a hello kövesse parancs lehet használt tooremove hello erőforráscsoport, Azure Redis Cache példány és a kapcsolódó erőforrások hello erőforráscsoportban.
 
 ```azurecli
 az group delete --name contosoGroup

@@ -4,16 +4,16 @@
 > * [C#](../articles/iot-hub/iot-hub-csharp-csharp-direct-methods.md)
 > * [Java](../articles/iot-hub/iot-hub-java-java-direct-methods.md)
 
-Az Azure IoT Hub egy teljes körűen felügyelt szolgáltatás, amely lehetővé teszi a megbízható és biztonságos kétirányú kommunikációs eszközök millióira és a megoldás közötti háttér. Előző oktatóanyagok ([Ismerkedés az IoT-központ] és [IoT Hub-felhő eszközre üzenetek]) alapvető eszköz-felhő és a felhő eszközre üzenetkezelési funkcióit az IoT-központ bemutatására. Az IoT-központ is lehetővé teszi az eszközök a felhőből nem tartós módszerek meghívására. Közvetlen módszerek határoz meg egy kérelem-válasz interakció egy HTTP-hívás hasonló eszközökkel abban, hogy sikeres legyen, vagy közvetlenül (után a felhasználó által megadott időtúllépés), hogy a felhasználóknak a hívás állapotáról sikertelen. [Az eszközön közvetlen metódus] [ lnk-devguide-methods] részletesebben közvetlen módszereket írja le, és közvetlen módszerek helyett a felhő-eszközre küldött üzenetek vagy a kívánt tulajdonságok használatával kapcsolatos útmutatást nyújt.
+Az Azure IoT Hub egy teljes körűen felügyelt szolgáltatás, amely lehetővé teszi a megbízható és biztonságos kétirányú kommunikációs eszközök millióira és a megoldás közötti háttér. Előző oktatóanyagok ([Ismerkedés az IoT-központ] és [IoT Hub-felhő eszközre üzenetek]) hello alapvető eszköz-felhő és a felhő eszközre üzenetkezelési funkcióit az IoT-központ bemutatására. Az IoT-központ is lehetővé teszi az hello képességét tooinvoke nem tartós módszerek hello felhőből eszközökön. Közvetlen módszerek határoz meg a kérelem-válasz interakció egy hasonló eszköz tooan HTTP hívható meg abban, hogy sikeres legyen, vagy közvetlenül (felhasználó által meghatározott időtúllépési) után sikertelen a toolet hello felhasználói tudja hello hívás hello állapotát. [Az eszközön közvetlen metódus] [ lnk-devguide-methods] részletesebben közvetlen módszereket írja le, és ha toouse közvetlen módszerek helyett a felhő-eszközre küldött üzenetek vagy a kívánt tulajdonságokkal útmutatást nyújt.
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Az Azure-portál használatával létrehoz egy IoT-központot, és az IoT hub hozzon létre egy eszközidentitás.
-* Hozzon létre egy szimulált eszköz alkalmazást, amely a felhő által hívható közvetlen metódus.
-* Hozzon létre egy konzolalkalmazást, amely közvetlen metódus meghívja a szimulált eszköz alkalmazásban az IoT hub keresztül.
+* Az Azure portál toocreate az IoT-központ hello használata, és az IoT hub hozzon létre egy eszközidentitás.
+* Létrehoz egy szimulált eszköz alkalmazást, amely hello felhő meghívható közvetlen metódus.
+* Hozzon létre egy konzolalkalmazást, amely közvetlen metódus meghívja az IoT hub keresztül hello szimulált eszköz alkalmazásban.
 
 > [!NOTE]
-> Most közvetlen módszerek támogatottak csak eszközöket, amelyek az IoT-központ a MQTT protokoll használatával kapcsolódnak. Tekintse meg a [MQTT támogatási] [ lnk-devguide-mqtt] miként a meglévő eszköz alkalmazásának módját MQTT használatára.
+> Most közvetlen módszereket csak a támogatott eszközök tooIoT központ használatával kapcsolódó levelezőprogramokkal hello MQTT protokoll. Tekintse meg a toohello [MQTT támogatási] [ lnk-devguide-mqtt] a cikk útmutatást tooconvert meglévő eszköz alkalmazás toouse MQTT.
 
 
 [lnk-devguide-methods]: ../articles/iot-hub/iot-hub-devguide-direct-methods.md

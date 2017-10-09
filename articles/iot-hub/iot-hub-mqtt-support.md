@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Hub MQTT támogatás ismertetése |} Microsoft Docs"
-description: "Fejlesztői útmutató - eszközök csatlakoztatása az IoT Hub eszköz felé néző végpont a MQTT protokollal támogatása. Az Azure IoT-eszközök SDK-k MQTT támogatja a beépített kapcsolatos adatokat tartalmaz."
+title: "Azure IoT Hub MQTT támogatási aaaUnderstand |} Microsoft Docs"
+description: "Fejlesztői útmutató - tooan IoT Hub eszköz felé néző végpont használatával csatlakozó eszközök hello MQTT protokoll támogatása. Hello Azure IoT eszközoldali SDK-k beépített MQTT támogatásával kapcsolatos információkat tartalmazza."
 services: iot-hub
 documentationcenter: .net
 author: kdotchkoff
@@ -15,27 +15,27 @@ ms.workload: na
 ms.date: 07/11/2017
 ms.author: kdotchko
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: eab70c1aa9c49a137c2ac1012449d57915fb0d27
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e461687963138987acdf1f4e0e34c453744ea191
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>Az IoT hub a MQTT protokoll segítségével kommunikálnak.
+# <a name="communicate-with-your-iot-hub-using-hello-mqtt-protocol"></a>Az IoT hub hello MQTT protokoll használatával folytatott kommunikációhoz
 
-Az IoT-központ lehetővé teszi, hogy az eszköz kommunikáljon az IoT Hub eszköz végpontjaitól az [MQTT v3.1.1] [ lnk-mqtt-org] protokoll-as port 8883 vagy MQTT v3.1.1 WebSocket protokoll 443-as porton keresztül. Az IoT-központ szükséges összes eszköz kommunikáció biztonságát, a TLS/SSL használatára (emiatt az IoT-központ nem támogatja a nem biztonságos kapcsolatok 1883 porton keresztül).
+Az IoT-központ lehetővé teszi, hogy a eszközök toocommunicate hello IoT Hub eszköz végpontokon hello segítségével [MQTT v3.1.1] [ lnk-mqtt-org] protokoll-as port 8883 vagy MQTT v3.1.1 WebSocket protokoll 443-as porton keresztül. Az IoT-központ szükséges összes eszköz kommunikációs toobe a TLS/SSL használatával biztonságossá (emiatt az IoT-központ nem támogatja a nem biztonságos kapcsolatok 1883 porton keresztül).
 
-## <a name="connecting-to-iot-hub"></a>Kapcsolódás az IoT-központ
+## <a name="connecting-tooiot-hub"></a>TooIoT központi csatlakozás
 
-Egy eszköz a MQTT protokoll használható az IoT-központ keresztül a tárak csatlakozni a [Azure IoT SDK-k] [ lnk-device-sdks] vagy a MQTT használatával protokoll közvetlenül.
+Eszközök bármelyikével hello MQTT protokoll tooconnect tooan IoT-központ hello hello tárak segítségével [Azure IoT SDK-k] [ lnk-device-sdks] vagy közvetlenül hello MQTT protokoll használatával.
 
-## <a name="using-the-device-sdks"></a>Az SDK-k eszközt
+## <a name="using-hello-device-sdks"></a>Hello eszköz SDK-k használata
 
-[Eszközoldali SDK-k] [ lnk-device-sdks] támogató a MQTT protokoll érhetők el a Java, Node.js, C, C# és Python. Az eszköz SDK-k a szabványos IoT-központ kapcsolati karakterlánc használatával kapcsolatot létrehozni az IoT-központ. A MQTT protokoll használatához az ügyfél protokoll paraméter értékre kell állítani **MQTT**. Alapértelmezés szerint az eszköz SDK-k csatlakozzon egy IoT hubot a **CleanSession** jelző beállítása **0** és **QoS 1** és az IoT hub üzenet exchange-hez.
+[Eszközoldali SDK-k] [ lnk-device-sdks] érhetők el, hogy támogatási hello MQTT protokoll Java, Node.js, C, C# és Python. hello eszköz SDK-k használata hello szabványos IoT-központ kapcsolati karakterlánc tooestablish kapcsolat tooan IoT-központot. toouse hello MQTT protokoll hello ügyfél protokoll paramétert kell beállítani túl**MQTT**. Alapértelmezés szerint hello eszköz SDK-k kapcsolódni az IoT-központ tooan hello **CleanSession** jelző beállítva túl**0** és **QoS 1** hello IoT hubbal üzenet exchange-hez.
 
-Ha egy eszköz csatlakozik az IoT-központ, az eszköz SDK-k, amelyek lehetővé teszik az eszköz üzenetek küldését, és az IoT-központ érkező üzenetek fogadására módszerek adja meg.
+Ha egy eszköz csatlakoztatott tooan IoT-központot, hello eszköz SDK-k biztosítanak, amelyek lehetővé teszik az eszköz toosend köszönőüzenetei tooand az IoT-központ érkező üzenetek fogadására módszerek.
 
-A következő táblázat minden támogatott nyelven mintakódok mutató hivatkozásokat tartalmaz, és adja meg a paraméter a kapcsolatot a MQTT protokollal IoT-központ használatával.
+hello következő tábla tartalmaz hivatkozásokat toocode minták egyes nyelv támogatott, és adja meg a hello paraméter toouse tooestablish egy kapcsolat tooIoT Hub hello MQTT protokoll használatával.
 
 | Nyelv | Protokoll paraméter |
 | --- | --- |
@@ -45,78 +45,78 @@ A következő táblázat minden támogatott nyelven mintakódok mutató hivatkoz
 | [C#][lnk-sample-csharp] |TransportType.Mqtt |
 | [Python][lnk-sample-python] |IoTHubTransportProvider.MQTT |
 
-### <a name="migrating-a-device-app-from-amqp-to-mqtt"></a>Egy eszköz alkalmazásának áttelepítése AMQP MQTT
+### <a name="migrating-a-device-app-from-amqp-toomqtt"></a>Egy eszköz alkalmazásának AMQP tooMQTT áttelepítése
 
-Ha használja a [eszköz SDK-k][lnk-device-sdks], az ügyfél inicializálása a protokoll paraméter módosítani, ahogy korábban is hangsúlyoztuk AMQP MQTT történő használatával való váltás kell.
+Hello használata [eszköz SDK-k][lnk-device-sdks], AMQP használatával való váltás tooMQTT módosítani kell hello protokoll paraméter hello ügyfél inicializálása ahogy korábban is hangsúlyoztuk.
 
-Amikor megtenné, ellenőrizze, hogy a következő elemek:
+Annak során, győződjön meg arról, hogy toocheck hello a következő elemek:
 
-* AMQP hibáit sok feltételeket, amíg a MQTT megszakítja a kapcsolatot. A kivételkezelő logikát is eredményeképpen bizonyos változásokat igényelhet.
-* MQTT nem támogatja a *elutasítása* műveletek fogadásakor [felhő-eszközre küldött üzenetek][lnk-messaging]. Ha a háttér-kell az eszköz alkalmazás kapott választ, érdemes lehet [módszerek közvetlen][lnk-methods].
+* AMQP hibáit a sok feltételek MQTT hello kapcsolat leállítása közben. A kivételkezelő logikát is eredményeképpen bizonyos változásokat igényelhet.
+* MQTT nem támogatja a hello *elutasítása* műveletek fogadásakor [felhő-eszközre küldött üzenetek][lnk-messaging]. Ha a háttér-tooreceive hello eszközalkalmazás válaszára kell, érdemes lehet [módszerek közvetlen][lnk-methods].
 
-## <a name="using-the-mqtt-protocol-directly"></a>Közvetlenül a MQTT protokollal
-Ha egy eszköz nem tudja használni az eszköz SDK-k, hogy továbbra is kapcsolódni tud a nyilvános eszköz végpontok a MQTT protokollal 8883 porton. Az a **CONNECT** csomag az eszközt használja a következő értékeket:
+## <a name="using-hello-mqtt-protocol-directly"></a>Hello MQTT protokoll segítségével közvetlenül
+Ha egy eszköz nem használható hello eszköz SDK-k, továbbra is kapcsolódhatnak toohello nyilvános eszköz végpontok hello MQTT protokollal a port 8883. A hello **CONNECT** csomag hello eszközt kell használnia a következő értékek hello:
 
-* Az a **ClientId** mezőben használja a **deviceId**.
-* Az a **felhasználónév** mezőben `{iothubhostname}/{device_id}/api-version=2016-11-14`, ahol a {iothubhostname} az IoT hub teljes CNAME-adatait.
+* A hello **ClientId** mezőben használja a hello **deviceId**.
+* A hello **felhasználónév** mezőben `{iothubhostname}/{device_id}/api-version=2016-11-14`, ahol {iothubhostname} van hello hello IoT hub teljes CName.
 
-    Például, ha az IoT hub neve **contoso.azure-devices.net** , és ha az eszköz nevére **MyDevice01**, a teljes **felhasználónév** mező kelltartalmaznia.`contoso.azure-devices.net/MyDevice01/api-version=2016-11-14`.
-* Az a **jelszó** mezőben egy SAS-jogkivonatot használja. A SAS-jogkivonat formátuma ugyanaz, mint a HTTP és a AMQP protokoll:<br/>`SharedAccessSignature sig={signature-string}&se={expiry}&sr={URL-encoded-resourceURI}`.
+    Például hello neve az IoT hub akkor **contoso.azure-devices.net** , és ha az eszköz nevére hello **MyDevice01**, teljes hello **felhasználónév** mezőt kell tartalmaznia. `contoso.azure-devices.net/MyDevice01/api-version=2016-11-14`.
+* A hello **jelszó** mezőben egy SAS-jogkivonatot használja. SAS-jogkivonat neve hello hello formátuma megegyezik hello hello HTTP és a AMQP protokollok esetében:<br/>`SharedAccessSignature sig={signature-string}&se={expiry}&sr={URL-encoded-resourceURI}`.
 
-    SAS-tokenje kapcsolatos további információkért tekintse meg az eszköz részében [IoT-központ használatával biztonsági jogkivonatokat][lnk-sas-tokens].
+    További információ a SAS-tokenje toogenerate, a hello eszköz című szakaszában talál [IoT-központ használatával biztonsági jogkivonatokat][lnk-sas-tokens].
 
-    Ha tesztelni, használhatja a [eszköz explorer] [ lnk-device-explorer] eszköz segítségével gyorsan egy SAS-jogkivonatot másolja és illessze be a saját kódot:
+    Vizsgálatakor is használhatja hello [eszköz explorer] [ lnk-device-explorer] eszköz tooquickly a SAS-token másolja és illessze be a saját kód létrehozásához:
 
-  1. Lépjen a **felügyeleti** lapján **eszköz Explorer**.
+  1. Nyissa meg toohello **felügyeleti** lapján **eszköz Explorer**.
   2. Kattintson a **SAS-Token** (jobb felső).
-  3. A **SASTokenForm**, válassza ki az eszközt a **DeviceID** legördülő listán. Állítsa be a **TTL**.
-  4. Kattintson a **Generate** a jogkivonat létrehozásához.
+  3. A **SASTokenForm**, jelölje ki az eszköz hello **DeviceID** legördülő listán. Állítsa be a **TTL**.
+  4. Kattintson a **Generate** toocreate a jogkivonatot.
 
-     A SAS-jogkivonat, amely akkor jön létre, ez a struktúra rendelkezik: `HostName={your hub name}.azure-devices.net;DeviceId=javadevice;SharedAccessSignature=SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
+     hello generált SAS-jogkivonat van ez a struktúra: `HostName={your hub name}.azure-devices.net;DeviceId=javadevice;SharedAccessSignature=SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
 
-     Ez a token kívánja használni, mint a részét a **jelszó** MQTT segítségével szeretne csatlakozni a mező: `SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
+     a token toouse, hello részét hello **jelszó** mező tooconnect MQTT használatával van: `SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
 
-MQTT csatlakozni, és válassza le a csomagok, IoT-központot egy eseményt állít ki a a **Operations figyelés** további információkkal, melyek segíthetnek csatlakozási problémák csatorna.
+MQTT csatlakozni, és válassza le a csomagok, IoT-központ kibocsát egy eseménnyel hello **Operations figyelés** csatorna további információkkal, melyek segíthetnek tootroubleshoot kapcsolódási problémák.
 
 ### <a name="sending-device-to-cloud-messages"></a>Eszköz-felhő üzenetek küldése
 
-Sikeres csatlakozás után eszköz üzeneteket küldhetnek az IoT-központ használatával `devices/{device_id}/messages/events/` vagy `devices/{device_id}/messages/events/{property_bag}` , egy **témakör**. A `{property_bag}` elem lehetővé teszi, hogy az eszköz további tulajdonságokkal rendelkező üzenetek küldése egy url-ként kódolt formában. Példa:
+Sikeres csatlakozás után a egy eszköz küldhet üzeneteket tooIoT központ használatával `devices/{device_id}/messages/events/` vagy `devices/{device_id}/messages/events/{property_bag}` , egy **témakör**. Hello `{property_bag}` elem lehetővé teszi, hogy az eszköz toosend köszönőüzenetei további tulajdonságokkal url-kódolású formátumban. Példa:
 
 ```
 RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-encoded(<PropertyName2>)=RFC 2396-encoded(<PropertyValue2>)…
 ```
 
 > [!NOTE]
-> Ez `{property_bag}` elem használja, mint a HTTP protokoll a lekérdezési karakterláncok ugyanazon kódolás.
+> Ez `{property_bag}` elem által használt hello ugyanazon kódolás hello HTTP protokoll a lekérdezési karakterláncok esetében.
 >
 >
 
-Az eszköz alkalmazást is használhatja `devices/{device_id}/messages/events/{property_bag}` , a **lesz a témakör neve** meghatározásához *üzenetek fog* telemetriai üzenetként továbbítását.
+hello eszköz alkalmazást is használhatja `devices/{device_id}/messages/events/{property_bag}` hello, **lesz a témakör neve** toodefine *üzenetek fog* toobe telemetriai üzenetként továbbítja.
 
-- Az IoT-központ nem támogatja a QoS 2 üzeneteket. Ha egy eszköz alkalmazás tesz közzé egy üzenetet, amelyben **QoS 2**, IoT-központ bezárása után a hálózati kapcsolat.
-- Az IoT-központ nem maradnak megőrzése üzeneteket. Ha egy eszköz küld egy üzenetet, amelyben a **megőrzése** jelző értéke 1, az IoT-központ hozzáadja a **x-opt-megőrzése** az üzenetek alkalmazás tulajdonság. Ebben az esetben helyett a megőrzése üzenet megőrzése, IoT-központ számára továbbítja azokat a háttér-alkalmazást.
-- Az IoT-központ csak eszközönként egy aktív MQTT kapcsolatot támogat. Egy új MQTT kapcsolathoz nevében az ugyanazon Eszközazonosítót hatására az IoT-központ, a meglévő kapcsolat megszakad.
+- Az IoT-központ nem támogatja a QoS 2 üzeneteket. Ha egy eszköz alkalmazás tesz közzé egy üzenetet, amelyben **QoS 2**, IoT-központ hello hálózati kapcsolat bezárása után.
+- Az IoT-központ nem maradnak megőrzése üzeneteket. Ha egy eszköz küldi hello üzenet **megőrzése** jelző too1 beállítva, az IoT-központ hozzáadja hello **x-opt-megőrzése** alkalmazás tulajdonság toohello üzenet. Ebben az esetben helyett tárolásakor hello tartsa meg az üzenetet, IoT-központ toohello háttér app továbbítja azokat.
+- Az IoT-központ csak eszközönként egy aktív MQTT kapcsolatot támogat. Egy új MQTT kapcsolathoz nevében hello ugyanazon Eszközazonosítót hatására az IoT-központ toodrop hello meglévő kapcsolat.
 
 További információkért lásd: [fejlesztői útmutató üzenetküldési][lnk-messaging].
 
 ### <a name="receiving-cloud-to-device-messages"></a>Felhő-eszközre küldött üzenetek fogadása
 
-Üzenetek fogadása az IoT-központ, egy eszköz használatával ajánlatos `devices/{device_id}/messages/devicebound/#` , egy **témakör szűrő**. A több szintű helyettesítő  **#**  a témakör szűrő használatával csak az eszköz további tulajdonságok kap, a témakör neve. Az IoT-központ nem teszi lehetővé az használatát, a  **#**  vagy **?** helyettesítő karakterek alárendelt témakörök szűréséhez. Mivel az IoT-központ nem egy általános célú pub-sub üzenetkezelési broker, csak a támogatott dokumentált témakör nevét és a témakör szűrők.
+az IoT-központ tooreceive üzenetek, egy eszközt kell előfizetés `devices/{device_id}/messages/devicebound/#` , egy **témakör szűrő**. több szintű helyettesítő hello  **#**  hello a témakör szűrővel csak tooallow hello tooreceive további eszköztulajdonságok hello témakör neve. Az IoT-központ nem teszi lehetővé a hello hello használata  **#**  vagy **?** helyettesítő karakterek alárendelt témakörök szűréséhez. Mivel az IoT-központ nem egy általános célú pub-sub üzenetkezelési broker, csak a támogatott hello részletes ismertetését lásd a témakör nevét és a témakör szűrők.
 
-Az eszköz nem fogadhat üzeneteket az IoT-központot, amíg sikeresen feliratkozott a eszközspecifikus végpontra, által képviselt a `devices/{device_id}/messages/devicebound/#` témakör szűrő. Sikeres előfizetés létrehozása után az eszköz elindítja a fogadásra csak felhőalapú eszközre elküldött hozzá az előfizetés az időpont után. Ha az eszköz csatlakozik az **CleanSession** jelző beállítása **0**, az előfizetés megőrződjenek különböző munkamenetek között. Ebben az esetben, amikor legközelebb kapcsolódik a **CleanSession 0** az eszköz megkaphatná a függőben lévő forráshoz lett rá elküldött üzenetek. Ha az eszköz által használt **CleanSession** jelző beállítása **1** azonban azt nem bármely üzenetek fogadása az IoT-központ mindaddig, amíg az eszköz-végpont feliratkozva.
+hello eszköz nem kap minden üzenet IoT-központot, amíg nem tooits eszközspecifikus végpont hello által képviselt sikeresen kér le `devices/{device_id}/messages/devicebound/#` témakör szűrő. Sikeres előfizetés létrejötte után hello eszköz elindítja a tooit elküldött hello előfizetés hello idő után csak felhőalapú eszközre üzenetek fogadására. Ha hello eszköz csatlakozik az **CleanSession** jelző beállítva túl**0**, különböző munkamenetek között hello előfizetés megőrződjenek. A következő csatlakozásakor ebben az esetben hello **CleanSession 0** hello eszköz kapja, függőben lévő üzenetek elküldött tooit közben le lett választva. Ha hello eszköz által használt **CleanSession** jelző beállítva túl**1** azonban azt nem bármely üzenetek fogadása az IoT-központ mindaddig, amíg az eszköz-végpont tooits feliratkozva.
 
-Az IoT-központ lekéri az üzeneteket a **témakör** `devices/{device_id}/messages/devicebound/`, vagy `devices/{device_id}/messages/devicebound/{property_bag}` bármely üzenettulajdonságok esetén. `{property_bag}`url-kódolású kulcs/érték párok az üzenet tulajdonságait tartalmazza. Csak alkalmazáshoz és a felhasználó állítható be rendszer tulajdonságai (például **messageId** vagy **correlationId**) a tulajdonságcsomag szerepelnek. Rendszer tulajdonságnevek előtaggal van ellátva  **$** , alkalmazástulajdonságok használja az eredeti tulajdonság nevét nincs előtagja.
+Az IoT-központ lekéri az üzeneteket a hello **témakör** `devices/{device_id}/messages/devicebound/`, vagy `devices/{device_id}/messages/devicebound/{property_bag}` bármely üzenettulajdonságok esetén. `{property_bag}`url-kódolású kulcs/érték párok az üzenet tulajdonságait tartalmazza. Csak alkalmazáshoz és a felhasználó állítható be rendszer tulajdonságai (például **messageId** vagy **correlationId**) hello tulajdonságcsomag szerepelnek. Rendszer tulajdonságnevek rendelkezik hello előtag  **$** , alkalmazástulajdonságok hello eredeti tulajdonságnév használata nincs előtagja.
 
-Ha egy eszköz alkalmazás előfizet egy témakör **QoS 2**, IoT-központ maximális QoS szintjének 1 biztosít a **SUBACK** csomagot. Ezt követően az IoT-központ kézbesíti üzenetek a QoS-1-eszközt.
+Ha egy eszköz alkalmazásának előfizet tooa témakör **QoS 2**, IoT-központ biztosít maximális QoS szintjének 1 hello **SUBACK** csomagot. Ezt követően az IoT-központ üzenetek toohello eszközt QoS 1 nyújt.
 
 ### <a name="retrieving-a-device-twins-properties"></a>Egy eszköz iker tulajdonságainak beolvasása
 
-Először egy eszköz előfizet `$iothub/twin/res/#`, a művelet válaszok fogadására. Ezt követően egy üres üzenetet küld a témakör `$iothub/twin/GET/?$rid={request id}`, ki van töltve értékkel **kérelemazonosító**. A szolgáltatás majd a témakör az eszköz iker adatokat tartalmazó válaszüzenetet küld vissza `$iothub/twin/res/{status}/?$rid={request id}`, azonos **kérelemazonosító** kérés.
+Először egy eszköz túl előfizet`$iothub/twin/res/#`, tooreceive hello művelet válaszokat. Ezután elküldi egy üres üzenet tootopic `$iothub/twin/GET/?$rid={request id}`, megadott értékkel **kérelemazonosító**. hello szolgáltatás majd egy iker eszközadatok hello témakör tartalmazó válaszüzenetet küld vissza `$iothub/twin/res/{status}/?$rid={request id}`, használatával hello azonos  **Kérelemazonosító** hello kérés.
 
 Kérelemazonosító tetszőleges érvényes érték, egy üzenet tulajdonságérték lehet megfelelően [IoT Hub fejlesztői útmutató üzenetküldési][lnk-messaging], és állapota egy egész számként van hitelesítve.
-Az adott válasz törzsének az eszköz iker tulajdonságok szakasza tartalmazza:
+hello adott válasz törzsének hello eszköz iker hello tulajdonságok szakasza tartalmazza:
 
-A szervezet a identitás bejegyzés például a "Tulajdonságok" tag korlátozódik:
+hello törzs hello identitás bejegyzés korlátozott toohello "Tulajdonságok" tag, például:
 
         {
             "properties": {
@@ -132,7 +132,7 @@ A szervezet a identitás bejegyzés például a "Tulajdonságok" tag korlátozó
             }
         }
 
-A lehetséges állapota kódok a következők:
+hello lehetséges állapota kódok a következők:
 
 |status | Leírás |
 | ----- | ----------- |
@@ -144,23 +144,23 @@ További információkért lásd: [eszköz twins fejlesztői útmutató][lnk-dev
 
 ### <a name="update-device-twins-reported-properties"></a>Eszköz iker jelentett tulajdonságainak frissítése
 
-Az alábbi sorrendben ismerteti, hogy egy eszköz frissíti az eszköz a két az IoT hubon jelentett tulajdonságait:
+hello következő feladatütemezési ismerteti, hogy egy eszköz frissíti hello jelentett hello eszköz iker az IoT Hub-tulajdonságokat:
 
-1. Egy eszköz először elő kell a `$iothub/twin/res/#` úgy, hogy a művelet válaszok fogadjon IoT-központ témakör.
+1. Egy eszköz először elő kell fizetnie toohello `$iothub/twin/res/#` IoT-központ témakör tooreceive hello művelet válaszát.
 
-1. Egy eszköz, amely tartalmazza az eszköz iker frissítés üzenetet küld a `$iothub/twin/PATCH/properties/reported/?$rid={request id}` témakör. Ez az üzenet tartalmaz egy **kérelemazonosító** érték.
+1. Egy eszköz, amely tartalmazza a hello eszköz iker frissítés toohello üzenet küldése `$iothub/twin/PATCH/properties/reported/?$rid={request id}` témakör. Ez az üzenet tartalmaz egy **kérelemazonosító** érték.
 
-1. A szolgáltatás ezután elküldi a témakör a jelentett tulajdonsággyűjteményében új ETag értékét tartalmazó válaszüzenetet `$iothub/twin/res/{status}/?$rid={request id}`. A válaszüzenet használ azonos **kérelemazonosító** kérés.
+1. hello szolgáltatást, majd elküldi a válaszüzenetet, amely tartalmazza az új ETag érték hello hello jelentett tulajdonsággyűjteményében témakör `$iothub/twin/res/{status}/?$rid={request id}`. A válaszüzenet által használt azonos hello **kérelemazonosító** hello kérés.
 
-A kérelem üzenettörzs egy JSON-dokumentumában, amely új értékek biztosít a jelentett tulajdonságokat (más tulajdonság vagy metaadatai nem módosíthatók) tartalmazza.
-A JSON-dokumentum minden tagjának frissíti, vagy adja hozzá a megfelelő tag a két eszköz dokumentumban. Egy tag értéke `null`, törli a tagot a tartalmazó objektum. Példa:
+hello kérelem üzenettörzs egy JSON-dokumentumában, amely új értékek biztosít a jelentett tulajdonságokat (más tulajdonság vagy metaadatai nem módosíthatók) tartalmazza.
+Minden tagjának hello JSON-dokumentum frissíti, vagy adja hozzá a megfelelő tag hello hello eszköz iker dokumentumban. Egy tag beállítása túl`null`, törléseket hello objektumot tartalmazó hello tagja. Példa:
 
         {
             "telemetrySendFrequency": "35m",
             "batteryLevel": 60
         }
 
-A lehetséges állapota kódok a következők:
+hello lehetséges állapota kódok a következők:
 
 |status | Leírás |
 | ----- | ----------- |
@@ -173,45 +173,45 @@ További információkért lásd: [eszköz twins fejlesztői útmutató][lnk-dev
 
 ### <a name="receiving-desired-properties-update-notifications"></a>A fogadó kívánt tulajdonságokkal vonatkozó frissítési értesítések
 
-Ha egy eszköz csatlakoztatása az IoT-központ értesítéseket küld a témakör `$iothub/twin/PATCH/properties/desired/?$version={new version}`, tartalmazó végzi el a megoldás háttérrendszeréhez frissítés tartalmát. Példa:
+Ha egy eszköz csatlakozik, IoT-központ küld-e az értesítések toohello témakör `$iothub/twin/PATCH/properties/desired/?$version={new version}`, tartalmazó hello hello megoldás háttérrendszerének által végzett hello frissítés tartalmát. Példa:
 
         {
             "telemetrySendFrequency": "5m",
             "route": null
         }
 
-Tulajdonság frissítései, mint `null` érték azt jelenti, hogy a JSON-objektum tag törlése folyamatban van.
+Tulajdonság frissítései, mint `null` érték azt jelenti, hogy a hello JSON objektum tag törlése folyamatban van.
 
 
 > [!IMPORTANT] 
-> Az IoT-központ állít elő változási értesítéseket csak akkor, ha a csatlakoztatott eszközök is. Ügyeljen arra, hogy implementálja a [eszköz újracsatlakozás folyamat] [ lnk-devguide-twin-reconnection] tartani a kívánt tulajdonságokkal szinkronizálja az IoT-központ és az eszköz alkalmazás között.
+> Az IoT-központ állít elő változási értesítéseket csak akkor, ha a csatlakoztatott eszközök is. Győződjön meg arról, hogy tooimplement hello [eszköz újracsatlakozás folyamat] [ lnk-devguide-twin-reconnection] tookeep hello szükséges tulajdonságok szinkronizálja az IoT Hub és hello eszköz alkalmazás között.
 
 További információkért lásd: [eszköz twins fejlesztői útmutató][lnk-devguide-twin].
 
-### <a name="respond-to-a-direct-method"></a>A közvetlen módszer válaszolni
+### <a name="respond-tooa-direct-method"></a>Válaszoljon tooa közvetlen módszer
 
-Először egy eszközhöz tartozik előfizetés `$iothub/methods/POST/#`. Az IoT-központ metódus kérelmek küldése a következő témakörben `$iothub/methods/POST/{method name}/?$rid={request id}`, vagy egy érvényes JSON-adatokat, vagy egy üres szövegtörzzsel.
+Először egy eszköznek toosubscribe túl`$iothub/methods/POST/#`. Az IoT-központ küld metódus kérelmek toohello témakör `$iothub/methods/POST/{method name}/?$rid={request id}`, vagy egy érvényes JSON-adatokat, vagy egy üres szövegtörzzsel.
 
-Válaszol, az eszközre érvényes JSON vagy üres szövegtörzzsel üzenetet küld a témakör `$iothub/methods/res/{status}/?$rid={request id}`, ahol **kérelemazonosító** meg kell egyeznie a kérelemüzenetet, a és **állapot** egész számnak kell lennie.
+toorespond, hello eszköz üzenetet küld a egy érvényes JSON vagy üres szövegtörzzsel toohello témakör `$iothub/methods/res/{status}/?$rid={request id}`, ahol **kérelemazonosító** rendelkezik egy hello kérelemüzenetet, a hello toomatch és **állapot** toobe rendelkezik egy egész számot .
 
 További információkért lásd: [közvetlen módszer fejlesztői útmutató][lnk-methods].
 
 ### <a name="additional-considerations"></a>Néhány fontos megjegyzés
 
-Végső szempont, mint ha testre szeretné szabni a MQTT protokoll viselkedését a felhő oldalon tekintse át a [Azure IoT protokoll-átjáró] [ lnk-azure-protocol-gateway] , amely lehetővé teszi egy nagy teljesítményű egyéni telepítése felületek, közvetlenül az IoT Hub protokoll-átjáró. Az Azure IoT protokoll átjáró lehetővé teszi az eszköz olyan brownfield MQTT központi telepítések protokoll(ok) más egyéni testreszabását. Ezt a módszert igényel, azonban, hogy futtatja, és egy egyéni protokoll-átjáró működik.
+Végső szempont, mint ha toocustomize hello MQTT protokoll viselkedését hello felhő oldalon tekintse át hello [Azure IoT protokoll-átjáró] [ lnk-azure-protocol-gateway] , amely lehetővé teszi egy nagy teljesítményű toodeploy egyéni protokoll-átjáró, amely közvetlenül az IoT-központ felületek. hello Azure IoT protokoll-átjáró lehetővé teszi, hogy toocustomize hello eszköz protokoll tooaccommodate brownfield MQTT rendszerbe állításához vagy egyéb egyéni protokollok. Ezt a módszert igényel, azonban, hogy futtatja, és egy egyéni protokoll-átjáró működik.
 
 ## <a name="next-steps"></a>Következő lépések
 
-A MQTT protokoll kapcsolatos további tudnivalókért tekintse meg a [MQTT dokumentáció][lnk-mqtt-docs].
+toolearn hello MQTT protokoll, bővebben lásd: hello [MQTT dokumentáció][lnk-mqtt-docs].
 
-Az IoT-központ telepítésének tervezése kapcsolatos további információkért lásd:
+További információ az IoT-központ telepítésének tervezése toolearn lásd:
 
 * [Az IoT-eszközök katalógus Azure Certified][lnk-devices]
 * [Támogatja a további protokollok][lnk-protocols]
 * [Az Event Hubs összehasonlítása][lnk-compare]
 * [Méretezés, a magas rendelkezésre ÁLLÁSÚ és vész-Helyreállítási][lnk-scaling]
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [IoT Hub fejlesztői útmutató][lnk-devguide]
 * [Egy eszköz szimulálva Azure IoT oldala][lnk-iotedge]

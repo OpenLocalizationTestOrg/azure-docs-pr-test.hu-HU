@@ -1,5 +1,5 @@
 ---
-title: "T-SQL-nézetek használata az Azure SQL Data Warehouse |} Microsoft Docs"
+title: "az Azure SQL Data Warehouse aaaUsing T-SQL-nézetek |} Microsoft Docs"
 description: "Tippek a Transact-SQL-nézetek használata az Azure SQL Data Warehouse adattárházzal történő, megoldások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: d2a03be810bd7f792876607ec735eb578b65a3b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3990b133946621691bdfa4b09523d21867470c74
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="views-in-sql-data-warehouse"></a>Az SQL Data Warehouse-nézetek
-Nézetek különösen hasznosak az SQL Data Warehouse. A számos különböző módon a megoldás minőségének használható.  Ez a cikk funkciógazdagabbá teheti a megoldás a nézetek, valamint a korlátozásokat, amelyeket figyelembe kell venni néhány példák mutatja be.
+Nézetek különösen hasznosak az SQL Data Warehouse. Számos különböző módon tooimprove hello minőségének a megoldás használható.  Ez a cikk emel ki, hogyan tooenrich a megoldás a nézetek, valamint toobe igénylő hello korlátozások figyelembe veendő néhány példát.
 
 > [!NOTE]
-> A szintaxis `CREATE VIEW` nem ez a cikk tárgyalja. Tekintse meg a [NÉZET létrehozása] [ CREATE VIEW] cikket az MSDN-en a referencia jellegű információihoz.
+> A szintaxis `CREATE VIEW` nem ez a cikk tárgyalja. Tekintse meg a toohello [NÉZET létrehozása] [ CREATE VIEW] cikket az MSDN-en a referencia jellegű információihoz.
 > 
 > 
 
 ## <a name="architectural-abstraction"></a>Az architektúra absztrakciós
-Egy nagyon gyakori alkalmazásminta újra létre kell hoznia táblák létrehozása tábla AS kiválasztása (CTAS) egy objektum átnevezése mintát, miközben az adatok betöltése után.
+Egy nagyon gyakori alkalmazásminta toore-használatával hozzon létre tábla AS kiválasztása (CTAS) egy objektum átnevezése mintát, miközben az adatok betöltése után táblák létrehozása.
 
-Az alábbi példa új dátum rekordok hozzáadása a dátum dimenzió. Vegye figyelembe, hogyan egy új tabble DimDate_New, először hozzák létre, és lecseréli az eredeti verzióját tartalmazza a majd átnevezték.
+az alábbi példa hello új rekordok tooa dátum dátumdimenzió hozzáadja. Vegye figyelembe, hogyan egy új tabble DimDate_New, létrejön, és majd átnevezett tooreplace hello eredeti verzió hello tábla.
 
 ```sql
 CREATE TABLE dbo.DimDate_New
@@ -47,28 +47,28 @@ SELECT *
 FROM   dbo.DimDate_stg AS stg
 ;
 
-RENAME OBJECT DimDate TO DimDate_Old;
-RENAME OBJECT DimDate_New TO DimDate;
+RENAME OBJECT DimDate tooDimDate_Old;
+RENAME OBJECT DimDate_New tooDimDate;
 
 ```
 
-Ez a módszer azonban táblák jelenik meg, és egy felhasználó, valamint a "tábla nem létezik" hibaüzenet eltűnik eredményez. Nézetek segítségével biztosít a felhasználók egy egységes megjelenítési réteg az alapul szolgáló objektumok váltják fel. Azáltal, hogy a felhasználók férhetnek hozzá az adatokhoz, a nézetek, azt jelenti, hogy a felhasználók nem látják az alapul szolgáló tábla kell. Ez egységes felhasználói élményt nyújt, győződjön meg arról, hogy az adatraktár tervezők is az adatokat az adatmodellbe fejlődnek és teljesítmény maximalizálása CTAS használatával az adatok betöltése a folyamat során.    
+Ez a módszer azonban táblák jelenik meg, és egy felhasználó, valamint a "tábla nem létezik" hibaüzenet eltűnik eredményez. Nézetek lehet használt tooprovide felhasználók egységes megjelenítési réteggel hello alapul szolgáló objektumok váltják fel. Hozzáférés biztosítása a felhasználók által toohello adatok a nézetek azt jelenti, hogy felhasználóknak nem kell toohave látható-e hello alapjául szolgáló tábla. Ennek során győződjön meg arról, hogy a hello data warehouse tervezők hello adatmodell fejlődnek, és teljesítmény maximalizálása a CTAS hello Adatbetöltési folyamat során egységes felhasználói élményt nyújt.    
 
 ## <a name="performance-optimization"></a>Teljesítményoptimalizálás
-Nézetek is kényszeríteni optimalizált teljesítményt illesztést a táblák között állítható be. Például egy nézet építhessék be a redundáns terjesztési kulcs adatmozgás minimalizálása érdekében a csatlakozó feltétel részeként.  Egy másik előnye, hogy egy nézet egy adott lekérdezés vagy csatlakozó mutató kényszerített lehet. Nézetek használata ezen a módon kikapcsolja garantálja, hogy összekapcsolások mindig megtörténik a felhasználóknak jegyezze meg a megfelelő konstruktor a táblákra elkerülése optimális módon.
+Nézetek is lehet túlterhelt tooenforce optimalizált teljesítményt illesztést a táblák között. Például egy nézet egy redundáns terjesztési kulcs való csatlakozás feltételek toominimize adatmozgás hello részeként építhessék be.  Egy másik előnye, hogy a nézet egy adott lekérdezés tooforce vagy csatlakozó mutatót lehet. Nézetek használata ezen a módon kikapcsolja garantálja, hogy összekapcsolások mindig megtörténik az optimális módon elkerülhető az a felhasználók tooremember hello megfelelő konstruktor a táblákra hello szükségességét.
 
 ## <a name="limitations"></a>Korlátozások
-Az SQL Data Warehouse nézetek metaadatok csak olyan.  Ennek következtében a következő beállítások nem érhetők el:
+Az SQL Data Warehouse nézetek metaadatok csak olyan.  Ennek következtében a következő beállítások hello nem érhetők el:
 
 * Nincs kötés séma beállítás
-* Alaptáblát keresztül a nézet nem frissíthető
+* Alaptáblát keresztül hello nézet nem frissíthető
 * Nézetek nem hozható létre az ideiglenes táblák
-* Nem támogatott a KIBONTÁS / NOEXPAND mutató
+* Nem támogatott hello KIBONTÁS / NOEXPAND mutató
 * Nincsenek az SQL Data Warehouse nem indexelt nézetek
 
 ## <a name="next-steps"></a>Következő lépések
 További fejlesztési tippek: [SQL Data Warehouse fejlesztői áttekintés][SQL Data Warehouse development overview].
-A `CREATE VIEW` tekintse meg szintaxis [NÉZET létrehozása][CREATE VIEW].
+A `CREATE VIEW` szintaxis tekintse meg a túl[NÉZET létrehozása][CREATE VIEW].
 
 <!--Image references-->
 

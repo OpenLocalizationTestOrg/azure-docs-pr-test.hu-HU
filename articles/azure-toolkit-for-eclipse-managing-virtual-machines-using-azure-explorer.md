@@ -1,6 +1,6 @@
 ---
-title: "Virtuális gépek felügyelni az eclipse-ben az Azure-kezelővel használatával |} Microsoft Docs"
-description: "Útmutató az Azure virtuális gépek kezeléséhez az Azure-kezelővel az eclipse-ben."
+title: "aaaManage virtuális gépek Azure-kezelőjét az Eclipse hello |} Microsoft Docs"
+description: "Ismerje meg, hogyan toomanage az Azure virtuális gépek használatával hello Azure-kezelőjét az eclipse-ben."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9784e8af9c530078afee06f08a23403a44b0762f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa83ec7546a0a8514842723b51ce8a5af81f98f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-virtual-machines-by-using-the-azure-explorer-for-eclipse"></a>Virtuális gépek kezeléséhez az Azure-kezelővel az eclipse-ben
+# <a name="manage-virtual-machines-by-using-hello-azure-explorer-for-eclipse"></a>Virtuális gépek felügyelni Eclipse hello Azure Explorer használatával
 
-Az Azure-kezelővel, amely része az Azure-eszközkészlet az eclipse-ben, Java fejlesztők egy könnyen kezelhető megoldás biztosít a felhőszolgáltatóknak a virtuális gépek a Azure fiók belül az Eclipse integrált fejlesztési környezeti (IDE).
+hello Azure-kezelővel, amely hello Azure eszköztára Eclipse része, Java-fejlesztők számára, egy könnyen használható megoldást biztosít a felhőszolgáltatóknak a virtuális gépeket az Azure-fiók a hello Eclipse integrált fejlesztési környezeti (IDE) belül.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
@@ -30,116 +30,116 @@ Az Azure-kezelővel, amely része az Azure-eszközkészlet az eclipse-ben, Java 
 
 ## <a name="create-a-virtual-machine-in-eclipse"></a>Virtuális gép létrehozása az eclipse-ben
 
-Virtuális gép létrehozása az Azure Explorerrel, tegye a következőket:
+a virtuális gép hello Azure Explorer használatával toocreate hello a következő:
 
-1. Jelentkezzen be az Azure-fiók használatával a [Eclipse Azure eszköztára bejelentkezési utasítások].
+1. Jelentkezzen be Azure-fiók tooyour hello [hello Azure eszköztára Eclipse bejelentkezési utasítások].
 
-2. Az a **Azure Explorer** megtekintéséhez bontsa ki a **Azure** csomópontot, kattintson a jobb gombbal **virtuális gépek**, és kattintson a **hozzon létre virtuális gép**.
+2. A hello **Azure Explorer** megtekintéséhez bontsa ki a hello **Azure** csomópontot, kattintson a jobb gombbal **virtuális gépek**, és kattintson a **hozzon létre virtuális gép**.
 
-   ![A virtuális gép létrehozása parancs][CR01]  
-   A **hozzon létre új virtuális gépet** varázsló megnyílik.
+   ![Hozzon létre virtuális gép parancs hello][CR01]  
+   Hello **hozzon létre új virtuális gépet** varázsló megnyílik.
 
-3. Az a **válasszon egy előfizetést** ablakban jelölje ki az előfizetését, és kattintson **következő**.
+3. A hello **válasszon egy előfizetést** ablakban jelölje ki az előfizetését, és kattintson **következő**.
 
-   ![A Válasszon egy előfizetés ablak][CR02]
+   ![Válasszon egy előfizetés ablak hello][CR02]
 
-4. Az a **válassza ki a virtuálisgép-lemezkép** ablak, írja be a következő adatokat:
+4. A hello **válassza ki a virtuálisgép-lemezkép** ablak, írja be a következő információ hello:
 
    * **Hely**: határozza meg, ahol létrejön a virtuális gép (például *USA nyugati régiója*).
 
-   * **A Publisher**: Adja meg a kiadó, hozott létre a lemezképet, amellyel a virtuális gép létrehozása (például *Microsoft*).
+   * **A Publisher**: hello publisher fogjuk toocreate a virtuális gép hello kép létrehozott határozza meg (például *Microsoft*).
 
-   * **Ajánlat**: Adja meg a virtuális gép használata a kijelölt közzétételi ajánlat (például *JDK*).
+   * **Ajánlat**: hello virtuális gép toouse ajánlat hello kijelölt közzétételi határozza meg (például *JDK*).
 
-   * **SKU**: Adja meg a Raktározásiegység (SKU) a kijelölt ajánlat használata (például *JDK_8*).
+   * **SKU**: hello raktározási egységhez toouse hello kijelölt ajánlat az határozza meg (például *JDK_8*).
 
-   * **Verzió #**: Adja meg a kiválasztott Termékváltozat használandó verziójának.
+   * **Verzió #**: Adja meg a kiválasztott hello verziójának SKU toouse.
 
-    ![Válassza ki a virtuálisgép-lemezkép ablak][CR03]
+    ![hello válassza ki a virtuálisgép-lemezkép ablak][CR03]
 
 5. Kattintson a **Tovább** gombra.
 
-6. Az a **virtuális gép alapbeállítások** ablak, írja be a következő adatokat:
+6. A hello **virtuális gép alapbeállítások** ablak, írja be a következő információ hello:
 
-   * **Virtuális gép neve**: Adja meg a nevet az új virtuális gépet, amely kizárólag betűvel kezdődhet, és csak betűket, számokat és kötőjeleket tartalmazhat.
+   * **Virtuális gép neve**: hello neve, az új virtuális gépen, amely kizárólag betűvel kezdődhet, és csak betűket, számokat és kötőjeleket tartalmazhat.
 
-   * **Méret**: Adja meg a magok száma és a virtuális gép lefoglalni memóriát.
+   * **Méret**: hello magok száma és a virtuális gép memória tooallocate határozza meg.
 
-   * **Felhasználónév**: Adja meg a rendszergazdai fiók kezeléséhez a virtuális gép létrehozásához.
+   * **Felhasználónév**: hello rendszergazdai fiók toocreate kezelését a virtuális gép határozza meg.
 
-   * **Jelszó** és **megerősítése**: a rendszergazdai fiók jelszavát adja meg.
+   * **Jelszó** és **megerősítése**: az Ön rendszergazdai fiókjának hello jelszót ad meg.
 
-    ![A virtuális gép alapbeállítások ablak][CR04]
+    ![hello virtuális gép alapbeállítások ablak][CR04]
 
 7. Kattintson a **Tovább** gombra.
 
-8. Az a **új Tárfiók létrehozása** ablak, írja be a következő adatokat:
+8. A hello **új Tárfiók létrehozása** ablak, írja be a következő információ hello:
 
-   * **Erőforráscsoport**: Adja meg a virtuális géphez tartozó erőforráscsoport. A következő lehetőségek közül:
-      * **Új**: megadhatja, hogy kívánja-e egy új erőforráscsoport létrehozásához.
-      * **Meglévő**: meghatározza, hogy szeretné-e válasszon egy erőforráscsoportot, amely már társítva van az Azure-fiókjával.
+   * **Erőforráscsoport**: hello erőforrás csoportot a virtuális gép határozza meg. Válasszon egyet az alábbi beállítások hello:
+      * **Új**: megadhatja, hogy kívánja-e toocreate egy új erőforráscsoportot.
+      * **Meglévő**: megadhatja, hogy kívánja-e tooselect egy erőforráscsoport, amely már társítva van az Azure-fiókjával.
 
-      ![Az új Tárfiók létrehozása párbeszédpanel][CR05]
+      ![hello új Tárfiók létrehozása párbeszédpanel][CR05]
 
-   * **A tárfiók**: Adja meg a tárfiók a virtuális gép tárolására használandó. Meglévő tárfiók használata, vagy hozzon létre egy új fiókot.
+   * **A tárfiók**: hello tárolási fiók toouse a virtuális gép tárolásához adja meg. Meglévő tárfiók használata, vagy hozzon létre egy új fiókot.
 
-   * **Virtuális hálózati** és **alhálózati**: Adja meg a virtuális hálózat és az alhálózatot, amely a virtuális gép csatlakozni fog. Használhat egy meglévő hálózati és alhálózati, vagy létrehozhat egy új hálózati és alhálózati. Ha **hozzon létre új**, a következő párbeszédpanel jelenik meg:
+   * **Virtuális hálózati** és **alhálózati**: hello virtuális hálózat és az alhálózatot, amely a virtuális gép csatlakozni fog. Használhat egy meglévő hálózati és alhálózati, vagy létrehozhat egy új hálózati és alhálózati. Ha **hozzon létre új**, hello a következő párbeszédpanel jelenik meg:
 
-      ![Az új virtuális hálózat létrehozása párbeszédpanel][CR06]
+      ![hello új virtuális hálózat létrehozása párbeszédpanel][CR06]
 
-9. Az a **kapcsolódó erőforrások** ablak, írja be a következő adatokat:
+9. A hello **kapcsolódó erőforrások** ablak, írja be a következő információ hello:
 
-   * **Nyilvános IP-cím**: egy külső hálózat irányába néző IP-cím a virtuális géphez. Ha szeretné, hozzon létre egy új IP-címet, vagy ha a virtuális gép nem fog működni a nyilvános IP-cím, választhat **(nincs)**.
+   * **Nyilvános IP-cím**: egy külső hálózat irányába néző IP-cím a virtuális géphez. Választhat toocreate egy új IP-címet, vagy ha a virtuális gép nem fog működni a nyilvános IP-cím, választhat **(nincs)**.
 
    * **Hálózati biztonsági csoport**: Adja meg a virtuális gép egy választható hálózati tűzfal. Kiválaszthatja, hogy egy meglévő tűzfal, vagy ha a virtuális gép nem használja a hálózati tűzfal, akkor választhat **(nincs)**.
 
-   * **A rendelkezésre állási csoport**: határozza meg, opcionális rendelkezésre állási készlet, hogy a virtuális gép tartozhatnak. Válasszon egy meglévő rendelkezésre állási csoportot, vagy hozzon létre egy új rendelkezésre állási készletet, vagy ha a virtuális gép nem fog tartozni egy rendelkezésre állási csoportot, válassza **(nincs)**.
+   * **A rendelkezésre állási csoport**: határozza meg, opcionális rendelkezésre állási készlet, hogy a virtuális gép tartozhatnak. Válasszon egy meglévő rendelkezésre állási csoportot, vagy hozzon létre egy új rendelkezésre állási készletet, vagy ha a virtuális gép nem fog tartozni tooan rendelkezésre állási csoportot, válassza **(nincs)**.
 
-   ![A kapcsolódó erőforrások ablak][CR07]
+   ![hello kapcsolódó erőforrások ablak][CR07]
 
 9. Kattintson a **Befejezés** gombra.  
-  Az új virtuális gépet az Azure Explorer eszköz ablakban jelenik meg.
+  Az új virtuális gép hello Azure Explorer eszköz ablakban jelenik meg.
 
    ![Új virtuális gép][CR08]
 
 ## <a name="restart-a-virtual-machine-in-eclipse"></a>A virtuális gép újraindításához az eclipse-ben
 
-Az eclipse-ben az Azure-kezelővel használatával egy virtuális gép újraindításához tegye a következőket:
+az eclipse-ben hello Azure Explorer használatával egy virtuális gép toorestart hello a következő:
 
-1. Az a **Azure Explorer** nézetben kattintson a jobb gombbal a virtuális gépet, és válassza ki **indítsa újra a**.
+1. A hello **Azure Explorer** nézetben, majd válassza ki és kattintson a jobb gombbal a virtuális gép hello **indítsa újra a**.
 
-   ![A virtuális gép újraindítási parancsnak][RE01]
+   ![virtuális gép újraindítási parancsnak hello][RE01]
 
-2. Kattintson a megerősítés ablakban **Igen**.
+2. Hello ablak, kattintson **Igen**.
 
-   ![Az újraindítás ablak][RE02]
+   ![hello újraindítás ablak][RE02]
 
 ## <a name="shut-down-a-virtual-machine-in-eclipse"></a>Az eclipse-ben a virtuális gép leállítása
 
-Az eclipse-ben az Azure-kezelővel használatával állítsa le a futó virtuális gépek, tegye a következőket:
+hello Azure Explorer használatával az eclipse-ben futó virtuális gép le tooshut hello a következő:
 
-1. Az a **Azure Explorer** nézetben kattintson a jobb gombbal a virtuális gépet, és válassza ki **leállítási**.
+1. A hello **Azure Explorer** nézetben, majd válassza ki és kattintson a jobb gombbal a virtuális gép hello **leállítási**.
 
-   ![A virtuális gép leállítási parancs][SH01]
+   ![hello virtuális gép leállítási parancs][SH01]
 
-2. Kattintson a megerősítés ablakban **Igen**.
+2. Hello ablak, kattintson **Igen**.
 
-   ![A virtuális gép leállítási ablak][SH02]
+   ![virtuális gép leállítási hello ablak][SH02]
 
 ## <a name="delete-a-virtual-machine-in-eclipse"></a>Az eclipse-ben a virtuális gép törlése
 
-Törölje a virtuális gép az eclipse-ben az Azure-kezelővel használatával, tegye a következőket:
+az eclipse-ben hello Azure Explorer használatával egy virtuális gép toodelete hello a következő:
 
-1. Az a **Azure Explorer** nézetben kattintson a jobb gombbal a virtuális gépet, és válassza ki **törlése**.
+1. A hello **Azure Explorer** nézetben, majd válassza ki és kattintson a jobb gombbal a virtuális gép hello **törlése**.
 
-   ![A virtuális gép Delete parancs esetében][DE01]
+   ![hello virtuális gép Delete parancs esetében][DE01]
 
-2. Kattintson a megerősítés ablakban **Igen**.
+2. Hello ablak, kattintson **Igen**.
 
-   ![A virtuális gép törlése ablak][DE02]
+   ![hello törölni a virtuális gépet ablak][DE02]
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure virtuális gépek méretét és a díjszabással kapcsolatos további információkért lásd a következőket:
+Az Azure virtuális gépek méretét és a díjszabással kapcsolatos további információkért tekintse meg a következő erőforrások hello:
 
 * Az Azure virtuális gépek méretét
   * [Az Azure-ban a Windows virtuális gépek méretei]
@@ -148,17 +148,17 @@ Az Azure virtuális gépek méretét és a díjszabással kapcsolatos további i
   * [Windows virtuális gépek – díjszabás]
   * [Linux virtuális gépek – díjszabás]
 
-A Java IDEs az Azure eszközök gazdag kapcsolatos további információkért lásd a következőket:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő erőforrások hello:
 
 * [Eclipse Azure eszköztára]
-  * [What's new in Eclipse Azure eszköztára]
-  * [Az Eclipse-hez készült Azure-eszközkészlet telepítése]
-  * [Eclipse Azure eszköztára bejelentkezési utasítások]
+  * [What's new in hello Eclipse Azure eszköztára]
+  * [Hello Azure eszköztára Eclipse telepítése]
+  * [hello Azure eszköztára Eclipse bejelentkezési utasítások]
   * [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * [What's new in IntelliJ Azure eszköztára]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
-  * [Bejelentkezési utasításokat az Azure-eszközkészlet az intellij-t]
+  * [What's new in hello IntelliJ Azure eszköztára]
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
+  * [Bejelentkezési utasításokat hello Azure eszközkészlet az intellij-t]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
 
 Azure Java használatával kapcsolatos további információkért lásd: [Azure Java fejlesztői központból] és [Java Tools for Visual Studio Team Services].
@@ -169,12 +169,12 @@ Azure Java használatával kapcsolatos további információkért lásd: [Azure 
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ./azure-toolkit-for-intellij.md
 [Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Az Eclipse-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
-[Eclipse Azure eszköztára bejelentkezési utasítások]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Bejelentkezési utasításokat az Azure-eszközkészlet az intellij-t]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's new in Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's new in IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-whats-new.md
+[Hello Azure eszköztára Eclipse telepítése]: ./azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ./azure-toolkit-for-intellij-installation.md
+[hello Azure eszköztára Eclipse bejelentkezési utasítások]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Bejelentkezési utasításokat hello Azure eszközkészlet az intellij-t]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[What's new in hello Eclipse Azure eszköztára]: ./azure-toolkit-for-eclipse-whats-new.md
+[What's new in hello IntelliJ Azure eszköztára]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/

@@ -1,5 +1,5 @@
 ## <a name="specifying-formats"></a>Formátumok meghatározása
-Az Azure Data Factory a következő formátumtípusokat támogatja:
+Az Azure Data Factory támogatja a következő formátumban típusok hello:
 
 * [Szöveges formátum](#specifying-textformat)
 * [JSON formátum](#specifying-jsonformat)
@@ -8,22 +8,22 @@ Az Azure Data Factory a következő formátumtípusokat támogatja:
 * [Parquet formátum](#specifying-parquetformat)
 
 ### <a name="specifying-textformat"></a>TextFormat megadása
-Ha elemezni szeretné a szöveges fájlokat, vagy szöveges formátumban szeretne adatokat írni, állítsa a `format` `type` tulajdonságot **TextFormat** értékre. Emellett megadhatja a következő **választható** tulajdonságokat a `format` szakaszban. A konfigurálással kapcsolatban lásd [A TextFormat használatát bemutató példa](#textformat-example) című szakaszt.
+Ha szeretné, hogy tooparse hello szövegfájlok vagy hello adatírás szöveges formátumú, állítsa be a hello `format` `type` tulajdonság túl**szöveges**. Azt is megadhatja, hello következő **választható** hello tulajdonságok `format` szakasz. Lásd: [szöveges példa](#textformat-example) hogyan szakasz tooconfigure.
 
 | Tulajdonság | Leírás | Megengedett értékek | Kötelező |
 | --- | --- | --- | --- |
-| columnDelimiter |A fájlokban az oszlopok elválasztására használt karakter. Érdemes egy ritka, nem nyomtatható karaktert választania, amely valószínűleg nem szerepel az adatokban, például adja meg a „\u0001” értéket, amely a fejléc kezdetét jelzi. |Csak egy karakter használata engedélyezett. Az **alapértelmezett** érték a **vessző (,)**. <br/><br/>Unicode-karakterek használatához tekintse meg a megfelelő kódot az [Unicode-karakterek listájában](https://en.wikipedia.org/wiki/List_of_Unicode_characters). |Nem |
-| rowDelimiter |A fájlokban a sorok elválasztására használt karakter. |Csak egy karakter használata engedélyezett. Az **alapértelmezett** érték olvasáskor a következő értékek bármelyike: **[„\r\n”, „\r”, „\n”]**, illetve **„\r\n”** írás esetén. |Nem |
-| escapeChar |Az oszlophatároló feloldására szolgáló speciális karakter a bemeneti fájl tartalmában. <br/><br/>Egy táblához nem határozható meg az escapeChar és a quoteChar is. |Csak egy karakter használata engedélyezett. Nincs alapértelmezett érték. <br/><br/>Ha például vessző (,) az oszlophatároló, de a vessző karaktert szeretné megjeleníteni a szövegben (például: „Helló, világ”), megadhatja a „$” karakter feloldójelként, és a „Helló$, világ” karakterláncot használhatja a forrásban. |Nem |
-| quoteChar |Egy karakterláncérték idézéséhez használt karakter. Ekkor az idézőjel-karakterek közötti oszlop- és sorhatárolókat a rendszer a karakterláncérték részeként kezeli. Ez a tulajdonság a bemeneti és a kimeneti adatkészleteken is alkalmazható.<br/><br/>Egy táblához nem határozható meg az escapeChar és a quoteChar is. |Csak egy karakter használata engedélyezett. Nincs alapértelmezett érték. <br/><br/>Ha például vessző (,) az oszlophatároló, de a vessző karaktert szeretné megjeleníteni a szövegben (például: <Helló, világ>), megadhatja a " (angol dupla idézőjel) értéket idézőjel-karakterként, és a "Helló$, világ" karakterláncot használhatja a forrásban. |Nem |
-| nullValue |A null értéket jelölő egy vagy több karakter. |Egy vagy több karakter. Az **alapértelmezett** értékek az **„\N” és „NULL”** olvasás, illetve **„\N”** írás esetén. |Nem |
-| encodingName |A kódolási név megadására szolgál. |Egy érvényes kódolási név. Lásd az [Encoding.EncodingName tulajdonságot](https://msdn.microsoft.com/library/system.text.encoding.aspx). Például: windows-1250 vagy shift_jis. Az **alapértelmezett** érték az **UTF-8**. |Nem |
-| firstRowAsHeader |Megadja, hogy az első sort fejlécnek kell-e tekinteni. A bemeneti adatkészletek első sorát a Data Factory fejlécként olvassa be. A kimeneti adatkészletek első sorát a Data Factory fejlécként írja ki. <br/><br/>[A `firstRowAsHeader` és a `skipLineCount` használatára vonatkozó forgatókönyvekben](#scenarios-for-using-firstrowasheader-and-skiplinecount) tekinthet meg minta-forgatókönyveket. |True (Igaz)<br/>**False (alapértelmezett)** |Nem |
-| skipLineCount |Az adatok bemeneti fájlokból való olvasásakor kihagyandó sorok számát jelzi. Ha a skipLineCount és a firstRowAsHeader tulajdonság is meg van adva, a rendszer először kihagyja a sorokat, majd beolvassa a fejléc-információkat a bemeneti fájlból. <br/><br/>[A `firstRowAsHeader` és a `skipLineCount` használatára vonatkozó forgatókönyvekben](#scenarios-for-using-firstrowasheader-and-skiplinecount) tekinthet meg minta-forgatókönyveket. |Egész szám |Nem |
-| treatEmptyAsNull |Meghatározza, hogy az adatok bemeneti fájlból történő olvasásakor a null vagy üres értékeket null értékként kell-e kezelni. |**True (alapértelmezett)**<br/>False (Hamis) |Nem |
+| columnDelimiter |hello karakter egy fájlban használt tooseparate oszlopok. Érdemes lehet toouse ritka nem nyomtatható karakter, amely valószínűleg nem létezik az adatokon: például adja meg a "\u0001" által képviselt indítsa el a fejléc (SOH). |Csak egy karakter használata engedélyezett. Hello **alapértelmezett** értéke **vesszővel (",")**. <br/><br/>toouse Unicode-karakter, tekintse meg a túl[Unicode-karaktereket](https://en.wikipedia.org/wiki/List_of_Unicode_characters) tooget megfelelő kód hello azt. |Nem |
+| rowDelimiter |hello karakter egy fájlban használt tooseparate sorokat. |Csak egy karakter használata engedélyezett. Hello **alapértelmezett** értéke bármelyik hello követő értékek olvasáskor: **["\r\n", "\r", "\n"]** és **"\r\n"** írás. |Nem |
+| escapeChar |hello speciális karaktert használt oszlop elválasztó tooescape hello bemeneti fájl tartalmát. <br/><br/>Egy táblához nem határozható meg az escapeChar és a quoteChar is. |Csak egy karakter használata engedélyezett. Nincs alapértelmezett érték. <br/><br/>Példa: Ha vesszővel (', '), hello oszlop elválasztó, de szeretné toohave hello vesszővel karaktert hello szövegként (Példa: "Hello, world"), adja meg a "$" hello escape-karakter, és a karakterlánc "Hello$, world" hello forrásból. |Nem |
+| quoteChar |hello kitöltéshez használandó tooquote karakterlánc-érték. hello oszlop- és sorfejlécek határolójelek belül hello idézőjel karakterek hello karakterláncértéket részeként kezelik. Ez a tulajdonság akkor alkalmazható tooboth bemeneti és kimeneti adathalmazokat.<br/><br/>Egy táblához nem határozható meg az escapeChar és a quoteChar is. |Csak egy karakter használata engedélyezett. Nincs alapértelmezett érték. <br/><br/>Például, ha vesszővel (', '), hello oszlop elválasztó, de szeretné toohave vesszővel karaktert hello szöveges (Példa: < Hello, world >), definiálhat "(idézőjelek nélkül), hello idézőjel, és használja a hello karakterlánc"Hello, world"hello forrás. |Nem |
+| nullValue |Egy vagy több karaktert használt toorepresent null értékű. |Egy vagy több karakter. Hello **alapértelmezett** értékei **"\N" és "NULL"** olvasáskor és **"\N"** írás. |Nem |
+| encodingName |Adja meg a hello kódolási név. |Egy érvényes kódolási név. Lásd az [Encoding.EncodingName tulajdonságot](https://msdn.microsoft.com/library/system.text.encoding.aspx). Például: windows-1250 vagy shift_jis. Hello **alapértelmezett** értéke **UTF-8**. |Nem |
+| firstRowAsHeader |Meghatározza, hogy tooconsider hello első sor adatai alkossák fejléc. A bemeneti adatkészletek első sorát a Data Factory fejlécként olvassa be. A kimeneti adatkészletek első sorát a Data Factory fejlécként írja ki. <br/><br/>[A `firstRowAsHeader` és a `skipLineCount` használatára vonatkozó forgatókönyvekben](#scenarios-for-using-firstrowasheader-and-skiplinecount) tekinthet meg minta-forgatókönyveket. |True (Igaz)<br/>**False (alapértelmezett)** |Nem |
+| skipLineCount |Meghatározza a sorok tooskip hello számát, bemeneti fájlok adatainak olvasásakor. Ha skipLineCount és firstRowAsHeader is meg van adva, hello sorok először kimarad, és majd hello fejléc-információ a hello bemeneti fájl olvasásakor. <br/><br/>[A `firstRowAsHeader` és a `skipLineCount` használatára vonatkozó forgatókönyvekben](#scenarios-for-using-firstrowasheader-and-skiplinecount) tekinthet meg minta-forgatókönyveket. |Egész szám |Nem |
+| treatEmptyAsNull |Megadja, hogy a tootreat null vagy üres karakterlánc, a rendszer null értéket, amikor a bemeneti fájl adatainak olvasása. |**True (alapértelmezett)**<br/>False (Hamis) |Nem |
 
 #### <a name="textformat-example"></a>A TextFormat használatát bemutató példa
-A következő minta bemutatja a TextFormat néhány formázási tulajdonságát.
+hello következő példa bemutatja hello formátum tulajdonságok a szöveges.
 
 ```json
 "typeProperties":
@@ -44,29 +44,29 @@ A következő minta bemutatja a TextFormat néhány formázási tulajdonságát.
 },
 ```
 
-`quoteChar` helyett `quoteChar` használatához cserélje le a sort `escapeChar` értékre a következő escapeChar kifejezéssel:
+toouse egy `escapeChar` helyett `quoteChar`, cserélje le a hello sor `quoteChar` a következő escapeChar hello:
 
 ```json
 "escapeChar": "$",
 ```
 
 #### <a name="scenarios-for-using-firstrowasheader-and-skiplinecount"></a>A firstRowAsHeader és a skipLineCount használatára vonatkozó forgatókönyvek
-* Egy nem fájlalapú forrásból másol egy szöveges fájlba, és szeretne hozzáadni egy fejlécsort, amely tartalmazza a séma (például SQL-séma) metaadatait. Ebben a forgatókönyvben adja meg a `firstRowAsHeader` értékét igazként a kimeneti adatkészletben.
-* Egy fejlécsort tartalmazó szöveges fájlból másol egy nem fájlalapú fogadóba, és el szeretné hagyni azt a sort. Adja meg a `firstRowAsHeader` értékét igazként a bemeneti adatkészletben.
-* Egy szöveges fájlból másol, és szeretne kihagyni néhány sort az elejéről, amelyek nem tartalmaznak adatokat vagy fejléc-információkat. Adja meg a `skipLineCount` értékét a kihagyni kívánt sorok számának jelzéséhez. Ha a fájl hátralévő része fejlécsort tartalmaz, a `firstRowAsHeader` is megadható. Ha a `skipLineCount` és a `firstRowAsHeader` is meg van adva, a rendszer először kihagyja a sorokat, majd beolvassa a fejléc-információkat a bemeneti fájlból
+* Nem fájl forrás tooa szöveges fájlból másolja át, és szeretné tooadd hello séma metaadatokat tartalmazó fejléc sor (pl.: SQL-séma). Adja meg `firstRowAsHeader` hello kimeneti adatkészlet ebben a forgatókönyvben a true.
+* A fejléc sor tooa nem fájl fogadó tartalmazó szöveges fájlból másolja át, és szeretné, hogy a sor toodrop. Adja meg `firstRowAsHeader` hello bemeneti adatkészletet, igaz.
+* Másolja át egy szövegfájlból, és szeretné, hogy tooskip néhány sor hello elején, adatok vagy a fejléc adatokat tartalmazó. Adja meg `skipLineCount` tooindicate hello száma sorok toobe kihagyva. Ha hello rest hello fájl tartalmazza a fejléc, azt is megadhatja, `firstRowAsHeader`. Ha mindkét `skipLineCount` és `firstRowAsHeader` megadott, hello sorok először kimarad, és ezután hello fejléc-információ a hello bemeneti fájl olvasásának
 
 ### <a name="specifying-jsonformat"></a>JsonFormat megadása
-A **importálási/exportálási JSON-fájlok használata-a/Azure Cosmos DB van**, lásd: [importálási/exportálási JSON-dokumentumok](../articles/data-factory/data-factory-azure-documentdb-connector.md#importexport-json-documents) című szakaszában találhat az Azure Cosmos DB összekötő adatokkal.
+túl**importálási/exportálási JSON-fájlok használata-be/Azure Cosmos DB van**, lásd: [importálási/exportálási JSON-dokumentumok](../articles/data-factory/data-factory-azure-documentdb-connector.md#importexport-json-documents) szakasz hello Azure Cosmos DB Connector adatokkal.
 
-Ha elemezni szeretné a JSON-fájlokat, vagy JSON formátumban szeretne adatokat írni, állítsa a `format` `type` tulajdonságot **JsonFormat** értékre. Emellett megadhatja a következő **választható** tulajdonságokat a `format` szakaszban. A konfigurálással kapcsolatban lásd [A JsonFormat használatát bemutató példa](#jsonformat-example) című szakaszt.
+Ha szeretné, hogy tooparse hello JSON-fájlokat vagy hello adatírás JSON formátumban, állítsa be a hello `format` `type` tulajdonság túl**JsonFormat**. Azt is megadhatja, hello következő **választható** hello tulajdonságok `format` szakasz. Lásd: [JsonFormat példa](#jsonformat-example) hogyan szakasz tooconfigure.
 
 | Tulajdonság | Leírás | Kötelező |
 | --- | --- | --- |
-| filePattern |Az egyes JSON-fájlokban tárolt adatok mintáját jelzi. Az engedélyezett értékek a következők: **setOfObjects** és **arrayOfObjects**. Az **alapértelmezett** érték a **setOfObjects**. A mintákkal kapcsolatban lásd a [JSON-fájlminták](#json-file-patterns) című szakaszt. |Nem |
-| jsonNodeReference | Ha egy azonos mintával rendelkező tömbmezőben található objektumokat szeretne iterálni, vagy azokból adatokat kinyerni, adja meg a tömb JSON-útvonalát. Ez a tulajdonság csak akkor támogatott, ha JSON-fájlokból másol adatokat. | Nem |
-| jsonPathDefinition | Megadja az egyes oszlopmegfeleltetések JSON-útvonalának kifejezését testre szabott oszlopnevekkel (kezdje kisbetűvel). Ez a tulajdonság csak akkor támogatott, ha JSON-fájlokból másol adatokat, és ki tud nyerni adatokat objektumokból vagy tömbökből. <br/><br/> A gyökérobjektum alatti mezők esetében kezdjen a gyökér $ értékkel. A `jsonNodeReference` tulajdonság által kiválasztott tömbben lévő mezők esetében kezdjen a tömbelemmel. A konfigurálással kapcsolatban lásd [A JsonFormat használatát bemutató példa](#jsonformat-example) című szakaszt. | Nem |
-| encodingName |A kódolási név megadására szolgál. Az érvényes kódolási nevekkel kapcsolatban lásd az [Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) tulajdonságot. Például: windows-1250 vagy shift_jis. Az **alapértelmezett** érték az **UTF-8**. |Nem |
-| nestingSeparator |A beágyazási szinteket elválasztó karakter. Az alapértelmezett érték a „.” (pont). |Nem |
+| filePattern |Minden JSON-fájlban tárolt adatok hello mintát jelzi. Az engedélyezett értékek a következők: **setOfObjects** és **arrayOfObjects**. Hello **alapértelmezett** értéke **setOfObjects**. A mintákkal kapcsolatban lásd a [JSON-fájlminták](#json-file-patterns) című szakaszt. |Nem |
+| jsonNodeReference | Ha tooiterate és az adatok kinyerése egy tömb belül hello objektumok mezőben a hello azonos mintát, adja meg, hogy tömb hello JSON elérési útját. Ez a tulajdonság csak akkor támogatott, ha JSON-fájlokból másol adatokat. | Nem |
+| jsonPathDefinition | Adja meg a hello JSON elérési út minden oszlop leképezése egyéni oszlopnévvel (kisbetűvel kezdődik). Ez a tulajdonság csak akkor támogatott, ha JSON-fájlokból másol adatokat, és ki tud nyerni adatokat objektumokból vagy tömbökből. <br/><br/> A mezők a gyökérszintű objektum esetében indítsa el a legfelső szintű $; belül hello tömb által kiválasztott mező `jsonNodeReference` tulajdonság, hello tömbelem elindítását. Lásd: [JsonFormat példa](#jsonformat-example) hogyan szakasz tooconfigure. | Nem |
+| encodingName |Adja meg a hello kódolási név. Érvényes kódolási nevek hello listájáért lásd: [Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) tulajdonság. Például: windows-1250 vagy shift_jis. Hello **alapértelmezett** értéke: **UTF-8**. |Nem |
+| nestingSeparator |Az karakter, amely használt tooseparate beágyazási szinttel. hello alapértelmezett érték "." (pont). |Nem |
 
 #### <a name="json-file-patterns"></a>JSON-fájlminták
 
@@ -163,11 +163,11 @@ A másolási tevékenység a JSON-fájlok következő mintáit tudja elemezni:
 
 **1. eset: Adatok másolása JSON-fájlokból**
 
-Alább láthatja a figyelembe veendő általános pontokat, valamint két példatípust az adatok JSON-fájlokból való másolásáról:
+Lásd az alábbi minták két típusú adatok másolásakor a JSON-fájlokat, és általános pontok toonote hello:
 
 **1. példa: adatok kigyűjtése objektumból és tömbből**
 
-Ebben a példában egy JSON-gyökérobjektum képződik le egyetlen rekordba táblázatos nézetben. Ha a JSON-fájl a következőt tartalmazza:  
+Ez a minta elvárt egy legfelső szintű JSON-objektum leképezi a táblázatos eredmény toosingle rekord. Ha egy JSON-fájl a következő tartalmat hello:  
 
 ```json
 {
@@ -192,16 +192,16 @@ Ebben a példában egy JSON-gyökérobjektum képződik le egyetlen rekordba tá
     }
 }
 ```
-és az adatok objektumokból és tömbökből való kigyűjtésével szeretné átmásolni egy Azure SQL-táblába az alábbi formátumban:
+és azt szeretné, hogy azt egy Azure SQL táblázatba hello alábbi formázása, kinyeri az adatokat a objektumok és a tömb toocopy:
 
 | id | deviceType | targetResourceType | resourceManagmentProcessRunId | occurrenceTime |
 | --- | --- | --- | --- | --- |
 | ed0e4960-d9c5-11e6-85dc-d7996816aad3 | PC | Microsoft.Compute/virtualMachines | 827f8aaa-ab72-437c-ba48-d8917a7336a3 | 1/13/2017 11:24:37 AM |
 
-A **JsonFormat** típusú bemeneti adatkészlet a következőképpen van meghatározva (részleges meghatározás, csak a fontos részekkel). Pontosabban:
+bemeneti adatkészlet hello **JsonFormat** típusa a következők: (csak hello vonatkozó alkotórészek részleges definícióban). Pontosabban:
 
-- A `structure` szakasz határozza meg a testre szabott oszlopneveket és a megfelelő adattípusokat, miközben átalakítja őket táblázatos adatokká. Ez a szakasz **nem kötelező**, kivéve, ha oszlopleképezést kell végeznie. A további részletekkel kapcsolatban lásd a [Struktúrameghatározások négyszögletes adatkészletek esetén](#specifying-structure-definition-for-rectangular-datasets) című szakaszt.
-- A `jsonPathDefinition` határozza meg az egyes oszlopok JSON-útvonalát, amely jelzi, hogy honnan történjen az adatok kinyerése. Ha adatokat szeretne másolni egy tömbből, az **array[x].property** használatával kinyerheti az adott tulajdonság értékét az x. objektumból, vagy az **array[*].property** használatával rákereshet az értékre az ilyen tulajdonságot tartalmazó összes objektumban.
+- `structure`szakasz határozza meg a testreszabott hello oszlopneveket és a megfelelő adattípus hello tootabular adatok konvertálásakor. Ez a szakasz **választható** kivéve toodo oszlopleképezés van szüksége. A további részletekkel kapcsolatban lásd a [Struktúrameghatározások négyszögletes adatkészletek esetén](#specifying-structure-definition-for-rectangular-datasets) című szakaszt.
+- `jsonPathDefinition`az egyes oszlopok, ahol tooextract hello adatait jelző hello JSON elérési út megadása toocopy adatokat egy olyan tömbből, használhat **tömb [x] .property** hello hello x-edik objektumot, vagy a tulajdonság megadott értéke tooextract használható  **tömb [*] .property** toofind hello értéket az összes ilyen tulajdonságot tartalmazó objektumtól.
 
 ```json
 "properties": {
@@ -238,9 +238,9 @@ A **JsonFormat** típusú bemeneti adatkészlet a következőképpen van meghat�
 }
 ```
 
-**2. példa: a tömbből származó ugyanazon minta keresztalkalmazása több objektumra**
+**2. példa: közötti több objektumnak azonos mintát egy olyan tömbből, hello alkalmazása**
 
-Ebben a példában egy JSON-gyökérobjektumot alakít át több rekorddá táblázatos nézetben. Ha a JSON-fájl a következőt tartalmazza:  
+Ez a minta elvárt tootransform egy legfelső szintű JSON-objektum táblázatos eredményben több bejegyzésekbe. Ha egy JSON-fájl a következő tartalmat hello:  
 
 ```json
 {
@@ -263,7 +263,7 @@ Ebben a példában egy JSON-gyökérobjektumot alakít át több rekorddá tábl
     "city": [ { "sanmateo": "No 1" } ]
 }
 ```
-és szeretné átmásolni egy Azure SQL-táblába az alábbi formátumban, a tömbben lévő adatok egybesimításával, valamint keresztillesztést létrehozni a közös gyökérinformációval:
+és szeretné, hogy azt egy Azure SQL táblázatba hello alábbi formázása, hello hello tömbben található adatok közül egybesimítását toocopy Keresztillesztés információval hello közös legfelső szintű:
 
 | ordernumber | orderdate | order_pd | order_price | city |
 | --- | --- | --- | --- | --- |
@@ -271,11 +271,11 @@ Ebben a példában egy JSON-gyökérobjektumot alakít át több rekorddá tábl
 | 01 | 20170122 | P2 | 13 | [{"sanmateo":"No 1"}] |
 | 01 | 20170122 | P3 | 231 | [{"sanmateo":"No 1"}] |
 
-A **JsonFormat** típusú bemeneti adatkészlet a következőképpen van meghatározva (részleges meghatározás, csak a fontos részekkel). Pontosabban:
+bemeneti adatkészlet hello **JsonFormat** típusa a következők: (csak hello vonatkozó alkotórészek részleges definícióban). Pontosabban:
 
-- A `structure` szakasz határozza meg a testre szabott oszlopneveket és a megfelelő adattípusokat, miközben átalakítja őket táblázatos adatokká. Ez a szakasz **nem kötelező**, kivéve, ha oszlopleképezést kell végeznie. A további részletekkel kapcsolatban lásd a [Struktúrameghatározások négyszögletes adatkészletek esetén](#specifying-structure-definition-for-rectangular-datasets) című szakaszt.
-- A `jsonNodeReference` jelzi az orderlines **tömb** alatti, azonos mintával rendelkező objektumok iterálását, illetve az adatok azokból való kinyerését.
-- A `jsonPathDefinition` határozza meg az egyes oszlopok JSON-útvonalát, amely jelzi, hogy honnan történjen az adatok kinyerése. Ebben a példában az „ordernumber”, az „orderdate” és a „city” a „$.” értékkel kezdődő JSON-útvonallal jelzett gyökérobjektum alatt találhatók, míg az „order_pd” és az „order_price” a „$.” értéket nem tartalmazó tömbelemből származtatott útvonallal vannak meghatározva.
+- `structure`szakasz határozza meg a testreszabott hello oszlopneveket és a megfelelő adattípus hello tootabular adatok konvertálásakor. Ez a szakasz **választható** kivéve toodo oszlopleképezés van szüksége. A további részletekkel kapcsolatban lásd a [Struktúrameghatározások négyszögletes adatkészletek esetén](#specifying-structure-definition-for-rectangular-datasets) című szakaszt.
+- `jsonNodeReference`azt jelzi, ugyanaz a mintát hello hello objektumok tooiterate és hogyan nyerhet ki adatokat **tömb** orderlines.
+- `jsonPathDefinition`az egyes oszlopok, ahol tooextract hello adatait jelző hello JSON elérési út megadása Ebben a példában a "ordernumber", "orderdate oszlopra" és "város" vannak a legfelső szintű objektum kezdve "$.", amíg a "order_pd" és "order_price" meg van határozva, származó hello tömbelem nélkül "$." elérési úttal rendelkező JSON-útvonalhoz.
 
 ```json
 "properties": {
@@ -313,14 +313,14 @@ A **JsonFormat** típusú bemeneti adatkészlet a következőképpen van meghat�
 }
 ```
 
-**Vegye figyelembe a következő szempontokat:**
+**Vegye figyelembe a következő pontok hello:**
 
-* Ha a `structure` és a `jsonPathDefinition` nincs meghatározva a Data Factory-adatkészletben, a másolási tevékenység az első objektumból észleli a sémát, és a teljes objektumot egybesimítja.
-* Ha a JSON-bemenet egy tömböt tartalmaz, a másolási tevékenység alapértelmezés szerint a tömb teljes értékét egy karakterlánccá alakítja át. Választhatja, hogy a `jsonNodeReference` és/vagy a `jsonPathDefinition` használatával kívánja kinyerni belőle az adatokat, vagy ki is hagyhatja ezt a műveletet, ha nem adja meg a `jsonPathDefinition` értékét.
-* Ha ismétlődő nevek szerepelnek ugyanazon a szinten, a másolási tevékenység az utolsót választja ki.
+* Ha hello `structure` és `jsonPathDefinition` nincsenek megadva itt: hello adat-előállító adatkészlet hello másolási tevékenység észleli hello hello első objektum sémáját, és egybesimítására hello teljes objektum.
+* Ha hello JSON-bevitelben tömb, alapértelmezés szerint hello másolási tevékenység alakítja hello teljes tömb érték karakterlánc. Választhat tooextract adatok használatával `jsonNodeReference` és/vagy `jsonPathDefinition`, vagy hagyja ki a nem ad meg a legyen `jsonPathDefinition`.
+* Ha duplikált nevek: hello ugyanazon a szinten, szerzi hello legutóbb hello másolási tevékenység.
 * A tulajdonságnevek megkülönböztetik a kis- és nagybetűket. A rendszer két azonos nevű, de eltérő kis- és nagybetűket tartalmazó tulajdonságot két különálló tulajdonságként kezel.
 
-**2. eset: Adatok írása JSON-fájlba**
+**2. eset: Adatok tooJSON fájl írása**
 
 Ha a következő táblával rendelkezik az SQL Database-ben:
 
@@ -330,7 +330,7 @@ Ha a következő táblával rendelkezik az SQL Database-ben:
 | 2 | 20170120 | 3500 | Patrick |
 | 3 | 20170121 | 4000 | Jason |
 
-és minden egyes objektum esetében egy JSON-objektum írását várja az alábbi formátumban:
+és az egyes rekordokhoz, várt toowrite tooa JSON-objektumból az alábbi formátumban:
 ```json
 {
     "id": "1",
@@ -342,7 +342,7 @@ Ha a következő táblával rendelkezik az SQL Database-ben:
 }
 ```
 
-A **JsonFormat** típusú kimeneti adatkészlet a következőképpen van meghatározva (részleges meghatározás, csak a fontos részekkel). Pontosabban, a `structure` szakasz definiálja a testre szabott tulajdonságneveket a célfájlban, a `nestingSeparator` (az alapértelmezett: „.”) pedig a beágyazási szintet különbözteti meg a névtől. Ez a szakasz **nem kötelező**, kivéve, ha módosítani szeretné a tulajdonság nevét a forrásoszlop nevéhez képest, vagy egyes tulajdonságokat egymásba szeretne ágyazni.
+hello kimeneti adatkészlet **JsonFormat** típusa a következők: (csak hello vonatkozó alkotórészek részleges definícióban). Pontosabban `structure` szakaszban definiálja a testre szabott hello tulajdonságnevek célfájlt, `nestingSeparator` (alapértelmezett érték ".") használt tooidentify hello nest réteg hello neve lesz. Ez a szakasz **választható** kivéve, ha szeretné, hogy toochange hello tulajdonságnév összehasonlítva az forrásoszlop neve, vagy beágyazni hello tulajdonságok.
 
 ```json
 "properties": {
@@ -374,7 +374,7 @@ A **JsonFormat** típusú kimeneti adatkészlet a következőképpen van meghat�
 ```
 
 ### <a name="specifying-avroformat"></a>Az AvroFormat megadása
-Ha elemezni szeretné a Avro-fájlokat, vagy Avro formátumban szeretne adatokat írni, állítsa a `format` `type` tulajdonságot **AvroFormat** értékre. Nem kell meghatároznia semmilyen tulajdonságot a Format szakaszban a typeProperties szakaszon belül. Példa:
+Ha szeretné, hogy tooparse hello az Avro-fájlok vagy az Avro formátum hello adatírás, állítsa be a hello `format` `type` tulajdonság túl**AvroFormat**. Toospecify hello formátum szakasz hello typeProperties szakaszon belül bármely tulajdonságok nem kell. Példa:
 
 ```json
 "format":
@@ -383,14 +383,14 @@ Ha elemezni szeretné a Avro-fájlokat, vagy Avro formátumban szeretne adatokat
 }
 ```
 
-Az Avro formátum Hive-táblákban való használatával kapcsolatban lásd az [Apache Hive oktatóanyagát](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe).
+az Avro-formátumban toouse Hive táblákat, olvassa el a túl[Apache Hive oktatóanyag](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe).
 
-Vegye figyelembe a következő szempontokat:  
+Vegye figyelembe a következő pontok hello:  
 
 * Az [összetett adattípusok](http://avro.apache.org/docs/current/spec.html#schema_complex) nem támogatottak (rekordok, felsorolt típusok, tömbök, leképezések, egyesítések és rögzített típusok).
 
 ### <a name="specifying-orcformat"></a>OrcFormat megadása
-Ha elemezni szeretné a ORC-fájlokat, vagy ORC formátumban szeretne adatokat írni, állítsa a `format` `type` tulajdonságot **OrcFormat** értékre. Nem kell meghatároznia semmilyen tulajdonságot a Format szakaszban a typeProperties szakaszon belül. Példa:
+Ha szeretné, hogy tooparse hello ORC fájlokat vagy hello adatírás ORC formátumban, állítsa be a hello `format` `type` tulajdonság túl**OrcFormat**. Toospecify hello formátum szakasz hello typeProperties szakaszon belül bármely tulajdonságok nem kell. Példa:
 
 ```json
 "format":
@@ -400,17 +400,17 @@ Ha elemezni szeretné a ORC-fájlokat, vagy ORC formátumban szeretne adatokat �
 ```
 
 > [!IMPORTANT]
-> Ha nem **adott állapotban** másol ORC-fájlokat a helyszíni és a felhőbeli adattárolók között, telepítenie kell a JRE (Java-futtatókörnyezet) 8-as verzióját az átjáró számítógépre. A 64 bites átjáróhoz 64 bites JRE, a 32 bites átjáróhoz 32 bites JRE szükséges. Mindkét verziót megtalálja [itt](http://go.microsoft.com/fwlink/?LinkId=808605). Válassza ki a megfelelő verziót.
+> Nem másolása ORC fájlokat **,-van** között a helyszíni és felhőalapú adattároló, az átjáró gépen tooinstall hello JRE 8 (Java Runtime Environment) van szüksége. A 64 bites átjáróhoz 64 bites JRE, a 32 bites átjáróhoz 32 bites JRE szükséges. Mindkét verziót megtalálja [itt](http://go.microsoft.com/fwlink/?LinkId=808605). Válassza ki a hello megfelelő egy.
 >
 >
 
-Vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok hello:
 
 * Az összetett adattípusok nem támogatottak (STRUCT, MAP, LIST, UNION)
-* Az ORC-fájlok három, [tömörítéshez kapcsolódó beállítással](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/) rendelkeznek: NONE, ZLIB, SNAPPY. A Data Factory a három tömörített formátum bármelyikében lévő ORC-fájlokból támogatja az adatok olvasását. Az adatok olvasásához a metaadatokban szereplő tömörítési kodeket használja. Az ORC-fájlokba való írás esetén azonban a Data Factory a ZLIB tömörítést választja, amely az alapértelmezett az ORC-fájlok esetében. Jelenleg nincs lehetőség ennek a viselkedésnek a felülírására.
+* Az ORC-fájlok három, [tömörítéshez kapcsolódó beállítással](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/) rendelkeznek: NONE, ZLIB, SNAPPY. A Data Factory a három tömörített formátum bármelyikében lévő ORC-fájlokból támogatja az adatok olvasását. Használja hello tömörítési kodek hello metaadatok tooread hello adatok van. Azonban tooan ORC fájl írásakor, adat-előállító úgy dönt, ZLIB, ez utóbbi érték az ORC hello alapértelmezett. Jelenleg nincs lehetőség toooverride ezt a viselkedést.
 
 ### <a name="specifying-parquetformat"></a>ParquetFormat megadása
-Ha elemezni szeretné a Parquet-fájlokat, vagy Parquet formátumban szeretne adatokat írni, állítsa a `format` `type` tulajdonságot **ParquetFormat** értékre. Nem kell meghatároznia semmilyen tulajdonságot a Format szakaszban a typeProperties szakaszon belül. Példa:
+Ha szeretné, hogy tooparse hello Parquet fájlok vagy hello adatírás Parquet formátumban, állítsa be a hello `format` `type` tulajdonság túl**ParquetFormat**. Toospecify hello formátum szakasz hello typeProperties szakaszon belül bármely tulajdonságok nem kell. Példa:
 
 ```json
 "format":
@@ -419,11 +419,11 @@ Ha elemezni szeretné a Parquet-fájlokat, vagy Parquet formátumban szeretne ad
 }
 ```
 > [!IMPORTANT]
-> Ha nem **adott állapotban** másol Parquet-fájlokat a helyszíni és a felhőbeli adattárolók között, telepítenie kell a JRE (Java-futtatókörnyezet) 8-as verzióját az átjáró számítógépre. A 64 bites átjáróhoz 64 bites JRE, a 32 bites átjáróhoz 32 bites JRE szükséges. Mindkét verziót megtalálja [itt](http://go.microsoft.com/fwlink/?LinkId=808605). Válassza ki a megfelelő verziót.
+> Nem Parquet fájlok másolása **,-van** között a helyszíni és felhőalapú adattároló, tooinstall hello JRE 8 (Java Runtime Environment) a átjáró számítógépre van szüksége. A 64 bites átjáróhoz 64 bites JRE, a 32 bites átjáróhoz 32 bites JRE szükséges. Mindkét verziót megtalálja [itt](http://go.microsoft.com/fwlink/?LinkId=808605). Válassza ki a hello megfelelő egy.
 >
 >
 
-Vegye figyelembe a következő szempontokat:
+Vegye figyelembe a következő pontok hello:
 
 * Az összetett adattípusok nem támogatottak (MAP, LIST)
-* A Parquet-fájlok a következő tömörítéshez kapcsolódó beállításokat használják: NONE, SNAPPY, GZIP és LZO. A Data Factory a három tömörített formátum bármelyikében lévő ORC-fájlokból támogatja az adatok olvasását. Az adatok olvasásához a metaadatokban szereplő tömörítési kodeket használja. A Parquet-fájlokba való írás esetén azonban a Data Factory a SNAPPY tömörítést választja, amely az alapértelmezett a Parquet-fájlok esetében. Jelenleg nincs lehetőség ennek a viselkedésnek a felülírására.
+* Parquet fájl rendelkezik-e hello alábbi tömörítési kapcsolatos beállítások: NONE, SNAPPY GZIP és LZO. A Data Factory a három tömörített formátum bármelyikében lévő ORC-fájlokból támogatja az adatok olvasását. Hello tömörítési kodek hello metaadatok tooread hello adatokat használ. Azonban tooa Parquet fájl írásakor, adat-előállító úgy dönt, SNAPPY, hello alapértelmezett Parquet formátum. Jelenleg nincs lehetőség toooverride ezt a viselkedést.

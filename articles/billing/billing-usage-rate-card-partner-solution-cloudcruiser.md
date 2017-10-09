@@ -1,6 +1,6 @@
 ---
-title: "A felhő Cruiser és számlázási API-integráció a Microsoft Azure |} Microsoft Docs"
-description: "Egy egyedi terv biztosít a Microsoft Azure számlázási partner felhő Cruiser, az Azure számlázási API integrálása a termék tapasztalataikat.  Ez különösen fontos az Azure és a felhő Cruiser ügyfelek, amelyek segítségével/próbált felhő Cruiser a Microsoft Azure Pack érdekelt."
+title: "aaaCloud Cruiser és a Microsoft Azure számlázási API-integráció |} Microsoft Docs"
+description: "Egy egyedi terv biztosít a Microsoft Azure számlázási partnerek felhő Cruiser a hello Azure számlázási API integrálása a termék tapasztalataikat.  Ez különösen fontos az Azure és a felhő Cruiser ügyfelek, amelyek segítségével/próbált felhő Cruiser a Microsoft Azure Pack érdekelt."
 services: 
 documentationcenter: 
 author: BryanLa
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 02/03/2017
 ms.author: mobandyo;sirishap;bryanla
-ms.openlocfilehash: a05fe5e610f1f0ce216a4b84bf2873b0d081875d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 74cc19bdeed26c6684210736caa0cb365e8f8821
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-cruiser-and-microsoft-azure-billing-api-integration"></a>Felhő Cruiser és a Microsoft Azure számlázási API-integráció
-Ez a cikk ismerteti, hogyan az új Microsoft Azure számlázási API-k összegyűjtött adatok használható felhőalapú Cruiser munkafolyamat költség szimuláció és elemzésére.
+Ez a cikk ismerteti, hogyan hello adatokat gyűjtött új Microsoft Azure számlázási API-k használható felhőalapú Cruiser munkafolyamat hello költség szimuláció és elemzése.
 
 ## <a name="azure-ratecard-api"></a>Az Azure RateCard API
-A RateCard API arány információkat nyújt az Azure-ból. A megfelelő hitelesítő adatokkal rendelkező hitelesítés után kérdezhetők le az API-t Azure, az elérhető szolgáltatások metaadatainak gyűjti az együtt a díjszabás társított a kínálnak azonosítóját.
+hello RateCard API arány információkat nyújt az Azure-ból. Hello megfelelő hitelesítő adatokkal rendelkező hitelesítés után kérdezhetők le hello API toocollect metaadatainak hello szolgáltatások érhető el a Azure-ban együtt hello díjszabás társított a kínálnak azonosítóját.
 
-Az alábbiakban található a megjelenítő az árak a A0 az API minta válaszára (Windows) példány:
+hello az alábbiakban látható hello árakat hello A0 (Windows) megjelenítő hello API minta válaszára példány:
 
     {
         "MeterId": "0e59ad56-03e5-4c3d-90d4-6670874d7e29",
@@ -44,105 +44,105 @@ Az alábbiakban található a megjelenítő az árak a A0 az API minta válaszá
         "MeterStatus": "Active"
     },
 
-### <a name="cloud-cruisers-interface-to-azure-ratecard-api"></a>A felhőalapú Azure RateCard API felületet Cruiser meg
-Felhő Cruiser a RateCard API adatokat különböző módon használhatják fel. Ebben a cikkben bemutatjuk, hogyan használható IaaS annak szimuláció és elemzési munkaterhelés.
+### <a name="cloud-cruisers-interface-tooazure-ratecard-api"></a>A felhő Cruiser tartozó felület tooAzure RateCard API
+Felhő Cruiser hello RateCard API adatokat különböző módon használhatják fel. Ebben a cikkben bemutatjuk, hogyan használt toomake IaaS munkaterhelések költség szimuláció és elemzések lehet-e.
 
-A használati eset bemutatásához, képzelhető el, a munkaterhelés több példánya fut a Microsoft Azure Pack (WAP). A cél, hogy szimulálása a ugyanaz az alkalmazás az Azure-on, és ilyen áttelepítési ezzel járó költségek becslése. A szimuláció létrehozásához a következők két fő feladatok végrehajtását:
+toodemonstrate ez használati eset, képzelhető el, a munkaterhelés több példánya fut a Microsoft Azure Pack (WAP). hello cél van toosimulate azonos munkaterhelés Azure és a becslés hello költségeit ilyen áttelepítés során. A rendezés toocreate a szimuláció, két fő feladatok toobe végre:
 
-1. **Importálás és a folyamat a szolgáltatás adatokat gyűjtött az RateCard API-t.** Ez a feladat a munkafüzetek, ahol a RateCard API kivonatát át legyenek-e, és közzéteszi az új arány terv is történik. Az új csomag arány becsléséhez a Azure árak a szimulációja lesz.
-2. **WAP szolgáltatások és az Azure-szolgáltatásokat a IaaS optimalizálására.** Alapértelmezés szerint WAP szolgáltatások alapján vannak az egyes erőforrások (Processzor, memória mérete, lemez méretét, stb.) amíg az Azure szolgáltatások alapján példányméretének (A0 A1, a2 méretű, stb.). Ez a feladat első is felhő Cruiser ETL-motor hajtja végre, nevű munkafüzetekhez, ha ezeket az erőforrásokat is telepíthet a példány mérete, Azure-példányokon szolgáltatások hasonló.
+1. **Importálás és a folyamat hello szolgáltatás összegyűjtött adatokat a hello RateCard API.** Ez a feladat hello munkafüzetekhez, ahol hello RateCard API hello kivonatát az átalakított és közzétett tooa új arány tervet is történik. Az új arány csomag használni kívánt hello szimulációja tooestimate hello Azure árak.
+2. **WAP szolgáltatások és az Azure-szolgáltatásokat a IaaS optimalizálására.** Alapértelmezés szerint WAP szolgáltatások alapján vannak az egyes erőforrások (Processzor, memória mérete, lemez méretét, stb.) amíg az Azure szolgáltatások alapján példányméretének (A0 A1, a2 méretű, stb.). Ez a feladat első is felhő Cruiser ETL-motor hajtja végre, nevű munkafüzetekhez, ha ezeket az erőforrásokat is telepíthet a példány mérete, hasonló tooAzure példány szolgáltatások.
 
-### <a name="import-data-from-the-ratecard-api"></a>Adatokat importálhat a RateCard API
-Felhő Cruiser munkafüzetek automatikus módszere a gyűjti és feldolgozza a RateCard API adatait adja meg.  ETL (extract-átalakítási-betöltés) munkafüzetek lehetővé teszik a gyűjteményhez, átalakítás és a felhő Cruiser adatbázis közzétételét az adatok konfigurálását.
+### <a name="import-data-from-hello-ratecard-api"></a>Adatokat importálhat hello RateCard API
+Felhő Cruiser munkafüzetek információkkal egy automatizált módon toocollect és a folyamat a hello RateCard API.  ETL (extract-átalakítási-betöltés) munkafüzetek lehetővé teszik tooconfigure hello gyűjtemény, átalakítás és hello felhő Cruiser adatbázis közzétételét az adatokat.
 
-Minden egyes munkafüzet rendelkezhet egy vagy több gyűjteményt, így kiegészíteni vagy kiegészítheti a használati adatokat különböző forrásokból származó információk összefüggéseket. A következő két képernyőképeket bemutatják, hogyan hozzon létre egy új *gyűjtemény* egy meglévő munkafüzet és az adatok importálásához a *gyűjtemény* a RateCard API:
+Minden egyes munkafüzet egy vagy több gyűjteményt, hogy lehetővé teszi a különböző forrásokból toocomplement toocorrelate adatait legyen, vagy kiegészítheti hello használati adatok is. a következő két képernyőképeket megjelenítése hogyan hello új toocreate *gyűjtemény* meglévő munkafüzetet, és adatokat importál hello *gyűjtemény* a hello RateCard API:
 
 ![1. ábra – egy új gyűjtemény létrehozása][1]
 
-![2. ábra - adatok importálása az új gyűjteményből][2]
+![2. ábra – hello új gyűjteményből adatok importálása][2]
 
-Az adatok importálása a munkafüzetbe, után több lépések és átalakítási folyamatok, módosításához és az adatok létrehozásához. Ebben a példában csak dolgozunk infrastruktúra,--szolgáltatás szükségtelen sorok eltávolítása a átalakítása lépéseket is használjuk (IaaS) vagy a rekordok iránt érdeklődik, mivel kapcsolatos szolgáltatások IaaS eltérő.
+Hello hello munkafüzetbe importálás után lehetséges toocreate több lépéseket és átalakítási folyamatok, toomodify és modell hello adatokat. Ebben a példában csak dolgozunk infrastruktúra,--szolgáltatás (IaaS) használjuk hello átalakítása lépéseket tooremove szükségtelen sorokat, vagy rekordokat iránt érdeklődik, mivel kapcsolatos tooservices IaaS eltérő.
 
-Az alábbi képernyőfelvételen látható RateCard API gyűjtött adatok feldolgozásához használt átalakítása lépéseket:
+hello alábbi képernyőfelvételen látható hello átalakítása lépéseket használt RateCard API gyűjtött tooprocess hello adatokat:
 
-![3. ábra - átalakítási lépéseket RateCard API összegyűjtött adatok feldolgozása][3]
+![3. ábra - átalakítási tooprocess gyűjtött adatok lépések RateCard API-n][3]
 
 ### <a name="defining-new-services-and-rate-plans"></a>Tervezi az új szolgáltatásokat és sebesség meghatározása
-Szolgáltatások meghatározását a felhő Cruiser különböző módja van. A beállítások egyike a szolgáltatások importálása a használati adatok. Ezt a módszert gyakran használják az nyilvános felhők, ahol a szolgáltató már definiálva vannak a szolgáltatások használatakor.
+Nincs olyan különböző módokon toodefine szolgáltatások felhő Cruiser. Hello beállítások egyike tooimport hello szolgáltatások hello felhasználás adataiból. Ezt a módszert gyakran használják az nyilvános felhők, ahol hello szolgáltató már definiálva vannak hello szolgáltatás használatakor.
 
-A sebesség megtervezése olyan díjszabás vagy árak, amelyek különböző szolgáltatásokat, az érvényességi dátumait jeleníti vagy ügyfélcsoportot, többek között alapján lehet alkalmazni. Sebesség terveket is használhatja felhő Cruiser szimuláció vagy "Mi, ha" forgatókönyvek, a szolgáltatások változásainak is hatása a felhasználókra a teljes költség, a munkaterhelés létrehozásához.
+A sebesség megtervezése olyan díjszabás vagy árak, amelyek alkalmazott toodifferent szolgáltatások alapján életbelépési dátum vagy ügyfélcsoportot, többek között lehet. Sebesség terveket is használható a felhő Cruiser toocreate szimuláció vagy "Mi, ha" forgatókönyvek, toounderstand hogyan szolgáltatások változásainak hatással lehet a munkaterhelés hello összköltsége.
 
-Ebben a példában a RateCard API szolgáltatás adatait adja meg az új szolgáltatások a felhő Cruiser használjuk. Ugyanúgy használjuk létrehozására egy új arány tervezze meg a felhő Cruiser a díjszabás társított szolgáltatások.
+Ebben a példában a felhő Cruiser hello RateCard API toodefine új szolgáltatások hello szolgáltatás adatait használjuk. Hello azonos módon is használjuk tartozó hello díjszabás toohello szolgáltatások egy új arány tervezze meg a felhő Cruiser toocreate.
 
-Az átalakítási folyamat végén is hozzon létre egy új lépés, és az adatok a RateCard API az új szolgáltatásokat és a díjszabás is közzé lehet.
+Hello átalakítási folyamat végén hello lehetséges toocreate új lépéssel és hello RateCard API hello adatait az új szolgáltatásokat és a díjszabás is közzé.
 
-![4. ábra – a RateCard API adatok közzététele új szolgáltatásokat és díjszabás][4]
+![4. ábra – hello RateCard API hello adatok közzététele új szolgáltatásokat és díjszabás][4]
 
 ### <a name="verify-azure-services-and-rates"></a>Ellenőrizze az Azure-szolgáltatások és díjszabás
-Miután közzétette a szolgáltatások és sebességét, ellenőrizheti a felhő Cruiser importált szolgáltatások listájában *szolgáltatások* lapon:
+Miután közzétette hello szolgáltatások és sebességét, ellenőrizheti a felhő Cruiser importált szolgáltatások listája hello *szolgáltatások* lapon:
 
-![5. ábra – a új szolgáltatások ellenőrzése][5]
+![5. ábra – hello ellenőrzése a új szolgáltatások][5]
 
-Az a *arány tervek* lapon, a "AzureSimulation" együtt a díjszabás importálására a RateCard API hívása új arány terv ellenőrizheti.
+A hello *arány tervek* lapon hello "AzureSimulation" hello aránnyal importált hello RateCard API hívása új arány terv ellenőrizheti.
 
-![6. ábra - az új arány megtervezése és a kapcsolódó díjakat ellenőrzése][6]
+![6. ábra - ellenőrzése hello új arány tervezéséhez és a kapcsolódó díjakat][6]
 
 ### <a name="normalize-wap-and-azure-services"></a>Szabványosíthatja WAP és az Azure-szolgáltatások
-Alapértelmezés szerint a WAP biztosítja a használati adatok alapján a számítási, memória és hálózati erőforrások használatát. Felhő Cruiser segítségével megadhatja a alapú szolgáltatások közvetlenül a foglalási vagy mért használatát ezeket az erőforrásokat. Például egy alapszintű sebesség beállítása minden órában CPU-használat, vagy a példány számára lefoglalt GB díjat számítanak.
+Alapértelmezés szerint a WAP biztosítja a használati adatok alapján hello használata számítási, memória és hálózati erőforrásokat. Felhő Cruiser segítségével megadhatja a alapú szolgáltatások közvetlenül a hello foglalási vagy mért használatát ezeket az erőforrásokat. Egy alapszintű arány megadhatja például, a CPU-használat óránként vagy kell fizetni hello GB tooan példány lefoglalt memória.
 
-Ehhez a példához összehasonlításához között WAP és az Azure, igazolnia kell az erőforrás-használata Azure-szolgáltatásokhoz való majd képezhetők kötegbe WAP összesíteni. Ez a transzformáció könnyen megvalósítható a munkafüzeteket:
+Ebben a példában a rendelés toocompare költségek közötti WAP és az Azure, a tooaggregate hello erőforrás-használata WAP kötegbe, amelyből a csatlakoztatott tooAzure szolgáltatások kell. Ez a transzformáció könnyen megvalósítható hello munkafüzeteket:
 
-![7. ábra - szolgáltatások optimalizálására WAP adatok átalakítása][7]
+![7. ábra – WAP toonormalize adatszolgáltatások átalakítása][7]
 
-Az utolsó lépés: a munkafüzetet, hogy az adatok közzététele a felhőalapú Cruiser adatbázisba. Ezzel a lépéssel a használati adatok most már kötegelt (amelyek az Azure-szolgáltatások) szolgáltatás, és a költségek létrehozásához alapértelmezett díjszabás kötve.
+hello utolsó lépése a hello munkafüzet az toopublish hello adatai hello felhő Cruiser adatbázisba. Ezzel a lépéssel a hello használati adatok van most kötegelve-szolgáltatás (amelyek toohello Azure Services), és a kötött toodefault díjszabás toocreate hello díjakat.
 
-A munkafüzet végén, az adatok feldolgozása a Feladatütemező ad hozzá egy feladatot, és megadhatja a gyakoriságát és időpontját a munkafüzetek futtatásához automatizálható.
+Befejezési hello munkafüzet után automatizálhatja hello adatfeldolgozás hello, hello Feladatütemező ad hozzá egy feladatot, és hello gyakoriságát és hello munkafüzet toorun idejének megadása.
 
 ![8. ábra - munkafüzet ütemezése][8]
 
 ### <a name="create-reports-for-workload-cost-simulation-analysis"></a>Jelentések létrehozása munkaterhelés költség szimuláció elemzés
-Miután a használati gyűjt, és díjak be vannak töltve a felhő Cruiser adatbázisba, azt kihasználhatják a felhő Cruiser Insights modul létrehozása, a költség, amely azt kívánják szimuláció munkaterhelés.
+Miután hello használati gyűjt, és díjak töltődnek be a hello felhő Cruiser adatbázis, azt kihasználhatják a hello felhő Cruiser Insights modul toocreate hello munkaterhelés költség szimuláció, amely azt a felügyelni.
 
-Ahhoz, hogy ez a forgatókönyv bemutatásához, a következő jelentés létrehozott:
+A sorrend toodemonstrate ebben az esetben létrehozott jelentést a következő hello:
 
 ![Költség összehasonlítása][9]
 
-A felső graph költség összehasonlítása szolgáltatások, a munkaterhelés minden egyes konkrét szolgáltatás fut a WAP (sötét kék) és az Azure (könnyű kék) közötti ára összehasonlítása jeleníti meg.
+hello felső graph költség összehasonlítása szolgáltatások összehasonlítása hello ár futó hello munkaterhelés WAP (sötét kék) és az Azure (könnyű kék) közötti minden egyes konkrét szolgáltatás jeleníti meg.
 
-Az alsó grafikon azt ábrázolja, ugyanazokat az adatokat, de részleg által lebontva. Ez azt jelenti, a költségek, a munkaterhelés futtathatnak WAP és az Azure, a különbség a megtakarítások sávon (zöld) együtt minden részleg számára.
+hello alsó grafikon azt ábrázolja, hello ugyanazokat az adatokat azonban részleg által lebontva. Ez látható minden részleg toorun hello költségek a munkaterhelés WAP és az Azure, hello különbség hello megtakarítások sávon (zöld) együtt.
 
 ## <a name="azure-usage-api"></a>Az Azure használati API
 ### <a name="introduction"></a>Bevezetés
-A Microsoft nemrég vezette be az Azure használati API, lehetővé téve a használati adatokat betekintést nyerhet a fogyasztás programozott módon le tudja előfizetők. Ez egy olyan felhőalapú Cruiser ügyfelek számára, kihasználhatja az API-n keresztül elérhető gazdagabb DataSet kiváló híreket.
+A Microsoft új hello Azure használati API-használati adatok toogain betekintést a felhasználás a tooprogrammatically lekéréses előfizetők lehetővé. Ez egy olyan felhőalapú Cruiser ügyfelek számára, kihasználhatja az API-n keresztül elérhető hello gazdagabb dataset kiváló híreket.
 
-Felhő Cruiser kihasználhatják az integráció többféle módon használati API-val. A granularitási (óránkénti használati adatai) és erőforrás-metaadatait az API-n keresztül elérhető rugalmas visszajelzés vagy jóváírási modell támogatásához szükséges dataset biztosít. 
+Felhő Cruiser hello integrációja hello használati API többféle módon használhatják fel. hello granularitási (óránkénti használati adatai) és a metaadatok erőforrásadatok hello keresztül elérhető API hello szükséges dataset toosupport rugalmas visszajelzés vagy jóváírási modellt biztosít. 
 
-Az oktatóanyag azt jelent hogyan felhő Cruiser kihasználhassa az API használati adatok egy példát. Pontosabban azt fogja hozzon létre egy erőforráscsoportot az Azure-on, a fiók struktúra címkéket társíthat, majd húzza, és a felhő Cruiser címke adatait feldolgozási folyamatát írják le.
+Az oktatóanyag azt jelent egy példa a felhő Cruiser hogyan vonatkozhat hello használati API információkat. Pontosabban azt fogja hozzon létre egy erőforráscsoportot az Azure-on, hello fiók struktúra címkéket társíthat, majd húzza és felhő Cruiser adatait hello címke feldolgozása hello folyamatát írják le.
 
-A végső cél, például az alábbi jelentéseket készíthet, és képes lesz elemezni a költségeket és a fogyasztás alapján a fiókot a címkék által kell tennie.
+hello végső célja toobe képes toocreate jelentések, például a következő egy hello, és képes tooanalyze költségeket, és felhasználási hello fiók struktúra által hello címkék alapján.
 
 ![10. ábra - címkék használatával bontása jelentés][10]
 
 ### <a name="microsoft-azure-tags"></a>A Microsoft Azure-címkék
-Az Azure-használati API-n keresztül elérhető adatok nem csak fogyasztási adatai, hanem erőforrás metaadatok, többek között a vele társított címkéket tartalmazza. Címkék az erőforrások rendszerezéséhez, de ahhoz, hogy a hatékony könnyű megoldást biztosítson, biztosítania kell, amely:
+hello Azure használati API keresztül elérhető hello adatok közé tartoznak, nem csak fogyasztási adatai, hanem erőforrás metaadatok, többek között a vele társított címkéket. Címkék tartalmaznak egy egyszerűen tooorganize az erőforrások, de a sorrendje toobe hatékony, tooensure kell, hogy:
 
-* Címkék helyesen vonatkoznak az erőforrások kiépítése során
-* Címkék megfelelően a szervezeti fiók struktúra használati összekötését használt visszajelzési/jóváírás folyamat.
+* Címke található helyesen alkalmazott toohello erőforrások kiépítése során
+* Címkék hello visszajelzési/jóváírás folyamat tootie hello használati toohello szervezeti fiók struktúra megfelelően használják.
 
-Ezeket a követelményeket is lehet kihívást, különösen akkor, ha van a kiépítés vagy díjszabási ügyféloldali manuális folyamat. Helytelenül beírt, hibás vagy még nincs megadva címkék gyakran panaszkodnak a ügyfelek is, ha a címkékkel, és ezek a hibák tehet élettartama a díjszabási oldalon nagyon nehéz feladat.
+Ezeket a követelményeket is lehet kihívást, különösen akkor, ha van hello létesítése vagy díjszabási ügyféloldali manuális folyamat. Helytelenül beírt, hibás vagy még nincs megadva címke található ügyfelek gyakran panaszkodnak, címkékkel és ezeket a hibákat is, hogy a élettartama a hello díjszabási ügyféloldali nagyon nehéz feladat.
 
-Az új Azure használati API-val felhő Cruiser is erőforrás nyújt információkat le, és egy kifinomult ETL eszköz nevű munkafüzetekhez, javítsa ki a közös címkézési hibákat. Reguláris kifejezések és a megfelelési adatok átalakítása, keresztül felhő Cruiser helytelenül címkézett erőforrások azonosíthatja, és alkalmazza a megfelelő címkéket, a megfelelő társítást a fogyasztó az erőforrások biztosítása.
+Hello az új Azure használati API felhő Cruiser is információk címkézés erőforrás lekéréses és egy kifinomult ETL eszköz nevű munkafüzetekhez, javítsa ki a közös címkézési hibákat. Reguláris kifejezések és a megfelelési adatok átalakításában, a felhő Cruiser helytelenül címkézett erőforrások azonosítása és címkékkel hello helyes, hello megfelelő társítást hello erőforrások hello fogyasztói biztosítása.
 
-A díjszabási oldalon felhő Cruiser automatizálja a visszajelzési/jóváírás folyamat, és kihasználhatják a összekötését a megfelelő fogyasztónak (részleg, osztály, projekt, stb.) a használati adatokat. Ezt az automatizálást hatalmas fokozása biztosít, és meggyőződni arról, hogy egy egységes és naplózható díjszabási folyamat.
+Hello díjszabási oldalon, a felhő Cruiser hello visszajelzési/jóváírás folyamat automatizálja, és kihasználhatják a hello címke információk tootie hello használati toohello megfelelő fogyasztói (részleg, osztály, projekt, stb.). Ezt az automatizálást hatalmas fokozása biztosít, és meggyőződni arról, hogy egy egységes és naplózható díjszabási folyamat.
 
 ### <a name="creating-a-resource-group-with-tags-on-microsoft-azure"></a>Erőforráscsoport létrehozása a Microsoft Azure címkékkel
-Ez az oktatóanyag első lépése az, hogy hozzon létre egy erőforráscsoportot az Azure portálon, majd hozza létre az erőforrásokhoz való társítása új címkék. Ehhez a példához azt létrehozni a következő címkékkel: részleg, környezet tulajdonosa, projekt.
+hello első lépés az oktatóanyag toocreate hello Azure-portálon az erőforráscsoport, akkor hozzon létre új címkék tooassociate toohello erőforrásokat. Ehhez a példához azt létrehozni a következő címkék hello: részleg, környezet tulajdonosa, projekt.
 
-Az alábbi képernyőképet megmutatja erőforráscsoport a társított címkékkel.
+hello az alábbi képernyőfelvétel egy minta hello erőforráscsoport társított címkék.
 
 ![11. ábra - erőforráscsoportot az Azure-portál társított címkékkel][11]
 
-A következő lépés, hogy a használati API átemelje az adatokat felhő Cruiser. A használati API jelenleg biztosít a válaszok JSON formátumban. Itt látható egy minta beolvasott adat:
+hello következő lépés az toopull hello információ a használati API hello felhő Cruiser be. Használati API hello jelenleg JSON formátumban válaszokat biztosít. Itt látható egy minta hello beolvasott adat:
 
     {
       "id": "/subscriptions/bb678b04-0e48-4b44-XXXX-XXXXXXX/providers/Microsoft.Commerce/UsageAggregates/Daily_BRSDT_20150623_0000",
@@ -167,59 +167,59 @@ A következő lépés, hogy a használati API átemelje az adatokat felhő Cruis
     },
 
 
-### <a name="import-data-from-the-usage-api-into-cloud-cruiser"></a>Adatokat importálhat a használati API felhő Cruiser
-Felhő Cruiser munkafüzetek automatikus módszere a gyűjti és feldolgozza a használati API adatait adja meg. Az ETL (extract-átalakítási-betöltés) munkafüzetek lehetővé teszi a gyűjteményt, átalakítás és a felhő Cruiser adatbázis közzétételét az adatok konfigurálását.
+### <a name="import-data-from-hello-usage-api-into-cloud-cruiser"></a>Adatokat importálhat felhő Cruiser hello használati API
+Felhő Cruiser munkafüzetek információkkal egy automatizált módon toocollect és a folyamat a hello használati API. Az ETL (extract-átalakítási-betöltés) munkafüzetek lehetővé teszi tooconfigure hello gyűjtemény, átalakítás és hello felhő Cruiser adatbázis közzétételét az adatokat.
 
-Minden egyes munkafüzet rendelkezhet egy vagy több gyűjteményt. Ez lehetővé teszi, hogy kiegészíti vagy kiegészítheti a használati adatokat különböző forrásokból származó információk összefüggéseket. Ehhez a példához létre fogunk hozni egy új lapot az Azure-sablon alapján munkafüzet (*UsageAPI)* , és egy új *gyűjtemény* információkat lehet importálni a használati API.
+Minden egyes munkafüzet rendelkezhet egy vagy több gyűjteményt. Ez lehetővé teszi különböző forrásokból toocomplement vagy bővítsék hello használati adatok toocorrelate adatait. Ehhez a példához létre fogunk hozni egy új lap hello Azure sablon munkafüzet (*UsageAPI)* , és egy új *gyűjtemény* hello használati API tooimport adatait.
 
-![3. ábra - használati API adatokat importálni a UsageAPI lap][12]
+![3. ábra - használati API adatokat importálni a hello UsageAPI lap][12]
 
-Figyelje meg, hogy ez a munkafüzet már rendelkezik-e más lapok szolgáltatások importálása az Azure-ból (*ImportServices*), és a számlázási API a felhasználási adatok feldolgozása (*PublishData*).
+Figyelje meg, hogy ez a munkafüzet már rendelkezik egyéb lapok tooimport szolgáltatások az Azure-ból (*ImportServices*), és feldolgozni a hello felhasználási adatokat a számlázási API hello (*PublishData*).
 
-Ezután használjuk-e a használati API feltölti a *UsageAPI* lap, és az információt a felhasználási adatokat a számlázási API összefüggéseket a a *PublishData* lap.
+Ezután használjuk hello használati API toopopulate hello *UsageAPI* lap, és a összefüggésbe hello információk hello hello számlázási API adataival fogyasztás hello *PublishData* lap.
 
-### <a name="processing-the-tag-information-from-the-usage-api"></a>A a használati API címkeadatok feldolgozása
-Az adatok importálása a munkafüzetbe, után létrehozunk átalakítása lépéseit a *UsageAPI* lap sablonokat a feldolgozáshoz az API-t információival. Első lépés, hogy a "JSON vágási" processzor használja a címkék kinyerése egy mező, majd hozzon létre a mezők a őket (részleg, projekt, tulajdonosa és környezet).
+### <a name="processing-hello-tag-information-from-hello-usage-api"></a>Feldolgozási hello címke adatait hello használati API
+Hello hello munkafüzetbe importálás után nem fog létrehozni átalakítása lépéseket hello *UsageAPI* rendelés tooprocess hello hello API adatait a lap. Első lépés egy "JSON vágási" processzor tooextract hello egy mező a címkéket, majd hozza létre a mezők az egyes egyik (részleg, projekt, tulajdonosa és környezet) toouse.
 
-![4. ábra – hozzon létre új mezőket a címke információ][13]
+![4. ábra – hozzon létre új mezők hello címke információ][13]
 
-Figyelje meg a "Hálózat" szolgáltatás hiányzik a címkeadatok (sárga jelölését), de ellenőrizni tudja, hogy már része a ugyanabban az erőforráscsoportban megnézzük a *ResourceGroupName* mező. A címkék az egyéb erőforrások ezen erőforráscsoportból van, mivel azt ezen információk használatával a hiányzó címkékkel az ennek az erőforrásnak a folyamat későbbi részében.
+Értesítés hello "Hálózat" szolgáltatás hiányzik hello címkeadatokat (sárga jelölését), de ellenőrizni tudja, hogy része hello ugyanabban az erőforráscsoportban hello megtekintésével *ResourceGroupName* mező. Tudunk hello hello címkék ezen erőforráscsoportból más erőforrások, mert az információk tooapply hello címkék toothis erőforrás hello folyamat későbbi részében hiányzik használhatjuk.
 
-A következő lépés az, hogy a címkék információival társítása keresési tábla létrehozása a *ResourceGroupName*. A keresési tábla lesz használható a következő lépésben funkciógazdagabbá teheti az adatokkal együtt címkeinformációkat.
+hello következő lépésre egy keresési tábla társítanak hello adatait hello címkék toohello toocreate *ResourceGroupName*. A keresési tábla használni kívánt hello tovább lépés tooenrich hello adatokkal együtt címkeinformációkat.
 
-### <a name="adding-the-tag-information-to-the-consumption-data"></a>A címke információk hozzáadása a fogyasztási adatokhoz
-Most azt is ugorhat a *PublishData* lap, amely feldolgozza a számlázási API felhasználási adatait, majd adja meg a címkék kinyert mezőket. Ez a folyamat végzi el az előző lépésben létrehozott keresési tábla megnézi használatával a *ResourceGroupName* a keresések kulcsként.
+### <a name="adding-hello-tag-information-toohello-consumption-data"></a>Hello címke információk toohello adatokkal hozzáadása
+Most azt is ugorhat toohello *PublishData* lap, mely folyamatok hello hello számlázási API felhasználási adatait, és adja hozzá a hello címkék kinyert hello mezőket. Ez a folyamat végzi el a hello előző lépésnél hello segítségével létrehozott hello keresési tábla megnézi *ResourceGroupName* hello keresések hello kulcsaként.
 
-![5. ábra – a fiók struktúra, a keresések adataival feltöltése][14]
+![5. ábra – hello fiók struktúra hello keresések hello adataival feltöltése][14]
 
-Figyelje meg, hogy a megfelelő fiók struktúra mezőket a "Hálózat" szolgáltatás alkalmazása megtörtént, a probléma kijavítása a hiányzó címkékkel. Azt is megadni, a fiók struktúra mezők erőforrások "Egyéb", a célként megadott erőforráscsoport nem megkülönböztetéséhez őket a jelentésekre.
+Figyelje meg, hogy hello megfelelő fiók struktúra mezők hello "Hálózat" szolgáltatás alkalmazása megtörtént, a hiányzó címkék hello hello a probléma kijavítása. Azt a célként megadott erőforráscsoport "Egyéb" kívül is feltöltve hello fiók struktúra mezők erőforrások, sorrendben toodifferentiate hello a jelentéseket.
 
-Most már csak ellenőriznünk kell a használati adatok közzététele lépés hozzáadása. Ezzel a lépéssel minden egyes definiálva az arány tervezze meg a szolgáltatás megfelelő díjszabás alkalmazandó a használatra vonatkozó információ, és az eredményül kapott kell fizetni az adatbázisba betöltése.
+Most már csak ellenőriznünk kell tooadd egy lépés toopublish hello használati adatok. Ezzel a lépéssel a hello megfelelő díjszabás minden egyes definiálva az arány tervezze meg a szolgáltatás alkalmazott toohello használati adatainak hello eredményül kapott kell fizetni hello adatbázis betölti az lesz.
 
-A legjobb része, hogy csak akkor kell egyszer végrehajtania ezt a folyamatot. A munkafüzet befejezése után adja hozzá az ütemező egyszerűen, és óránként vagy naponta fog futtatni az ütemezett időpontban. Akkor célszerű csak egy függetlenül attól, hogy új jelentések létrehozásakor, vagy ahhoz, hogy a jelentéssel bíró elemzések lekérése a felhő használati adatok elemzése testreszabása a már meglévőket.
+hello legjobb része, hogy csak rendelkezik ezzel a folyamattal toogo egyszer. Hello munkafüzet befejezése után csupán be kell tooadd azt toohello Feladatütemező és az óránkénti futásra lesz vagy hello naponkénti ütemezett időpontja. Akkor célszerű csak egy függetlenül attól, hogy új jelentések létrehozásakor, vagy meglévőket, a rendelés tooanalyze hello adatok tooget lekérdezhetik a fontos információkat kaphat a felhőhasználat testreszabása.
 
 ### <a name="next-steps"></a>Következő lépések
-* A felhő Cruiser munkafüzeteket és a jelentések létrehozásának részletes utasításokért tekintse meg felhő Cruiser online [dokumentáció](http://docs.cloudcruiser.com/) (érvényes bejelentkezési adatait).  Felhő Cruiser kapcsolatos további információkért forduljon [ info@cloudcruiser.com ](mailto:info@cloudcruiser.com).
-* Lásd: [betekintést nyerhet a Microsoft Azure erőforrás-felhasználás](billing-usage-rate-card-overview.md) az Azure erőforrás-használat és RateCard API-k áttekintését.
-* Tekintse meg a [Azure számlázási REST API-referencia](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c) mindkét API-k bővebben, az Azure Resource Manager által nyújtott API-kat készletét részét képező.
-* Ha szeretné jobb alaposabban tanulmányozhatja a mintakódot, tekintse meg a Microsoft Azure számlázási API Kódminták a [Azure mintakódok](https://azure.microsoft.com/documentation/samples/?term=billing).
+* A felhő Cruiser munkafüzeteket és jelentések létrehozása részletes információkra van szüksége, tekintse meg a tooCloud Cruiser tartozó online [dokumentáció](http://docs.cloudcruiser.com/) (érvényes bejelentkezési adatait).  Felhő Cruiser kapcsolatos további információkért forduljon [ info@cloudcruiser.com ](mailto:info@cloudcruiser.com).
+* Lásd: [betekintést nyerhet a Microsoft Azure erőforrás-felhasználás](billing-usage-rate-card-overview.md) hello Azure erőforrás-használat és RateCard API-khoz áttekintését.
+* Tekintse meg a hello [Azure számlázási REST API-referencia](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c) mindkét API-k bővebben hello Azure Resource Manager által nyújtott API-kat hello készlete részét képező.
+* Ha azt szeretné, hogy toodive hello mintakód be, tekintse meg a Microsoft Azure számlázási API Kódminták a [Azure mintakódok](https://azure.microsoft.com/documentation/samples/?term=billing).
 
 ### <a name="learn-more"></a>További információ
-* Tekintse meg a [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md) bővebb információ az Azure Resource Manager.
+* Lásd: hello [Azure Resource Manager áttekintése](../azure-resource-manager/resource-group-overview.md) cikk toolearn hello Azure Resource Manager többet.
 
 <!--Image references-->
 
 [1]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Create-New-Workbook-Collection.png "1. ábra – egy új gyűjtemény létrehozása"
-[2]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Import-Data-From-RateCard.png "2. ábra - adatok importálása az új gyűjteményből"
-[3]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transformation-Steps-Process-RateCard-Data.png "3. ábra - átalakítási lépéseket RateCard API összegyűjtött adatok feldolgozása"
-[4]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Publish-RateCard-Data-New-Services-Rates.png "4. ábra – a RateCard API adatok közzététele új szolgáltatásokat és díjszabás"
-[5]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing1.png "5. ábra – a új szolgáltatások ellenőrzése"
-[6]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing2.png "6. ábra - az új arány megtervezése és a kapcsolódó díjakat ellenőrzése"
-[7]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transforming-WAP-Normalize-Services.png "7. ábra - szolgáltatások optimalizálására WAP adatok átalakítása"
+[2]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Import-Data-From-RateCard.png "2. ábra – hello új gyűjteményből adatok importálása"
+[3]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transformation-Steps-Process-RateCard-Data.png "3. ábra - átalakítási tooprocess gyűjtött adatok lépések RateCard API-n"
+[4]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Publish-RateCard-Data-New-Services-Rates.png "4. ábra – hello RateCard API hello adatok közzététele új szolgáltatásokat és díjszabás"
+[5]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing1.png "5. ábra – hello ellenőrzése a új szolgáltatások"
+[6]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing2.png "6. ábra - ellenőrzése hello új arány tervezéséhez és a kapcsolódó díjakat"
+[7]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transforming-WAP-Normalize-Services.png "7. ábra – WAP toonormalize adatszolgáltatások átalakítása"
 [8]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Workbook-Scheduling.png "8. ábra - munkafüzet ütemezése"
-[9]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Workload-Cost-Simulation-Report.png "9. ábra - mintajelentés a munkaterhelés költség összehasonlítás forgatókönyv esetében"
+[9]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Workload-Cost-Simulation-Report.png "9. ábra - mintajelentés hello munkaterhelés költség összehasonlítása a forgatókönyvhöz"
 [10]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/1_ReportWithTags.png "10. ábra - címkék használatával bontása jelentés"
 [11]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/2_ResourceGroupsWithTags.png "11. ábra - erőforráscsoportot az Azure-portál társított címkékkel"
-[12]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/3_ImportIntoUsageAPISheet.png "12. ábra - használati API adatokat importálni a UsageAPI lap"
-[13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "13. ábra – hozzon létre új mezőket a címke információ"
-[14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "14. ábra – a fiók struktúra, a keresések adataival feltöltése"
+[12]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/3_ImportIntoUsageAPISheet.png "12. ábra - használati API adatokat importálni a hello UsageAPI lap"
+[13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "13. ábra – hozzon létre új mezők hello címke információ"
+[14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "14. ábra – hello fiók struktúra hello keresések hello adataival feltöltése"

@@ -1,31 +1,31 @@
-1. Egy új ablakban jelentkezzen be az [Azure Portalra](https://portal.azure.com/).
-2. A bal oldali panelen kattintson az **Új**, az **Adatbázisok**, majd az **Azure Cosmos DB** elemre, végül a **Létrehozás** parancsra.
+1. Egy új ablakban toohello bejelentkezés [Azure-portálon](https://portal.azure.com/).
+2. Hello bal oldali ablaktáblában kattintson **új**, kattintson a **adatbázisok**, majd a **Azure Cosmos DB**, kattintson a **létrehozása**.
    
    ![Az Azure Portal Adatbázisok panelje](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-1.png)
 
-3. Az **Új fiók** panelen adja meg az Azure Cosmos DB-fiók kívánt beállításait. 
+3. A hello **új fiók** panelen adja meg az Azure Cosmos DB fiókhoz használni kívánt hello konfigurációt. 
 
     Az Azure Cosmos DB használata esetén négy programozási modell közül választhat: Gremlin (Graph), MongoDB, SQL (DocumentDB) vagy Tábla (kulcs-érték). Jelenleg mindegyikhez külön fiókra van szükség.
        
-    Ebben a rövid útmutatóban a Graph API használatával fogunk programozni, tehát a **Gremlin (gráf)** lehetőséget fogja választani az űrlap kitöltésekor. Ha katalógusalkalmazásból származó dokumentumadatokkal, kulcs/érték (tábla) típusú adatokkal vagy MongoDB-alkalmazásból migrált adatokkal dolgozik, vegye figyelembe, hogy az Azure Cosmos DB magas rendelkezésre állású, globálisan elosztott adatbázis-szolgáltatási platformot tud biztosítani az összes alapvető fontosságú alkalmazáshoz.
+    A gyors üzembe helyezési cikkben azt program elleni hello Graph API-val, tehát **Gremlin (diagramhoz)** , hello űrlap kitöltötte. Ha katalógusalkalmazásból származó dokumentumadatokkal, kulcs/érték (tábla) típusú adatokkal vagy MongoDB-alkalmazásból migrált adatokkal dolgozik, vegye figyelembe, hogy az Azure Cosmos DB magas rendelkezésre állású, globálisan elosztott adatbázis-szolgáltatási platformot tud biztosítani az összes alapvető fontosságú alkalmazáshoz.
 
-    Töltse ki az **Új fiók** panel mezőit. Ehhez használja segítségként az alábbi képernyőképen szereplő információkat – az Ön értékei eltérhetnek a képernyőképen láthatóktól.
+    Töltse ki a hello hello mezőket **új fiók** panelen használatával hello információi hello következő útmutatóként – képernyőfelvétel az értékek eltérhetnek hello képernyőfelvétel a hello értékeket.
  
-    ![Az Azure Cosmos DB új fiók panele](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-2.png)
+    ![Új fiók panelen hello Azure Cosmos DB](./media/cosmos-db-create-dbaccount-graph/create-nosql-db-databases-json-tutorial-2.png)
 
     Beállítás|Ajánlott érték|Leírás
     ---|---|---
-    ID (Azonosító)|*Egyedi érték*|Az Azure Cosmos DB-fiókot azonosító egyedi név. A rendszer a *documents.azure.com* utótaggal egészíti ki a megadott azonosítót az URI létrehozásához, ezért válasszon egyedi, de felismerhető azonosítót. Az azonosító csak kisbetűkből, számokból és a kötőjel (-) karakterből állhat, valamint legalább 3, és legfeljebb 50 karakter hosszú lehet.
-    API|Gremlin (gráf)|Ebben a cikkben a [Graph API](../articles/cosmos-db/graph-introduction.md) használatával programozunk.|
-    Előfizetés|*Az Ön előfizetése*|Az Azure Cosmos DB-fiókhoz használni kívánt Azure-előfizetés. 
-    Erőforráscsoport|*Megegyezik az azonosítóval*|A fiók új erőforráscsoport-neve. Az egyszerűség kedvéért használhat az azonosítójával megegyező nevet. 
-    Hely|*A felhasználókhoz legközelebb eső régió*|Az a földrajzi hely, ahol az Azure Cosmos DB-fiókot üzemeltetni fogja. Válassza ki a felhasználókhoz legközelebb lévő helyet, hogy a lehető leggyorsabb hozzáférést biztosítsa az adatokhoz.
+    ID (Azonosító)|*Egyedi érték*|Az Azure Cosmos DB-fiókot azonosító egyedi név. Mivel *documents.azure.com* van hozzáfűzött toohello adni toocreate az URI, használja a egyedi, de azonosítható ID azonosítójával. hello azonosítója csak kisbetűket, számokat és kötőjel (-) karakter hello tartalmaznia kell, és a 3 too50 karaktereket kell tartalmaznia.
+    API|Gremlin (gráf)|Azt a program hello elleni [Graph API](../articles/cosmos-db/graph-introduction.md) című cikkben.|
+    Előfizetés|*Az Ön előfizetése*|hello Azure-előfizetést, amelyet az toouse Azure Cosmos DB ehhez a fiókhoz. 
+    Erőforráscsoport|*hello azonos érték-azonosító*|hello új erőforráscsoport neve a fiókjához. Az egyszerűség kedvéért is használhatja ugyanazt a nevet hello a azonosítójával. 
+    Hely|*hello régió legközelebbi tooyour felhasználók*|földrajzi helyet, mely toohost hello Azure Cosmos DB fiókját. Válassza ki a hello helyét legközelebbi tooyour felhasználók toogive leggyorsabb hozzáférést toohello adatok hello őket.
 
-4. A fiók létrehozásához kattintson a **Létrehozás** gombra.
-5. A felső eszköztáron kattintson az **Értesítések** ikonra ![az értesítési ikon](./media/cosmos-db-create-dbaccount-graph/notification-icon.png) az üzembe helyezési folyamat monitorozásához.
+4. Kattintson a **létrehozása** toocreate hello fiók.
+5. A hello felső eszköztáron kattintson a hello **értesítések** ikon ![hello értesítési ikon](./media/cosmos-db-create-dbaccount-graph/notification-icon.png) toomonitor hello telepítési folyamat.
 
-    ![Az Azure Portal Értesítések panelje](./media/cosmos-db-create-dbaccount-graph/notification.png)
+    ![hello Azure portál értesítések ablaktábla](./media/cosmos-db-create-dbaccount-graph/notification.png)
 
-6.  Amikor az Értesítések ablak azt jelzi, hogy az üzembe helyezés sikeresen megtörtént, zárja be az értesítési ablakot, és nyissa meg az új fiókot az Irányítópult **Minden erőforrás** csempéjéről. 
+6.  Ha hello értesítések ablakban azt jelzi, hello központi telepítés sikeresen befejeződött, zárja be hello értesítési ablakban, és új fiókot nyitott hello hello **összes erőforrás** hello irányítópult csempét. 
 
-    ![DocumentDB-fiók az Összes erőforrás csempén](./media/cosmos-db-create-dbaccount-graph/azure-documentdb-all-resources.png)
+    ![Minden erőforrás csempe hello a DocumentDB-fiók](./media/cosmos-db-create-dbaccount-graph/azure-documentdb-all-resources.png)

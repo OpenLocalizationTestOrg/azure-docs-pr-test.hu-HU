@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight az Azure Resource Manager eszközeinek át |} Microsoft Docs"
-description: "Azure Resource Manager Fejlesztőeszközök a HDInsight-fürtök áttelepítése"
+title: "a HDInsight tools aaaMigrate tooAzure erőforrás-kezelő |} Microsoft Docs"
+description: "Hogyan HDInsight-fürtök toomigrate tooAzure fejlesztői erőforrás-kezelő eszközei"
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 708d22b9ce53d4dbc07c6bcde0c46dcd238291bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c087ae63d2544e5badae6be9c258f783aa92e2ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrating-to-azure-resource-manager-based-development-tools-for-hdinsight-clusters"></a>A Fejlesztőeszközök Azure Resource Manager-alapú HDInsight-fürtök áttelepítése
+# <a name="migrating-tooazure-resource-manager-based-development-tools-for-hdinsight-clusters"></a>A HDInsight-fürtök áttelepítése tooAzure fejlesztési Resource Manager-alapú eszközök
 
-A HDInsight-ból kivezettük való Azure Service Manager ASM-alapú eszközök hdinsight. Ha használta az Azure PowerShell, az Azure parancssori felület vagy a HDInsight .NET SDK a HDInsight-fürtök együttműködni, hosszúan az Azure Resource Manager ARM-alapú verziói PowerShell parancssori felület és továbbítja a .NET SDK használatával. Ez a cikk mutatók áttelepítése az új ARM-alapú módszert biztosít. Megfelelő esetben ez a cikk is rámutat, a címterület-kezelési és ARM közötti különbségekről megközelítések hdinsight.
+A HDInsight-ból kivezettük való Azure Service Manager ASM-alapú eszközök hdinsight. Ha használta az Azure PowerShell, az Azure parancssori felület vagy hello HDInsight .NET SDK toowork HDInsight-fürtökkel, javasolt toouse hello Azure Resource Manager ARM-alapú verzióiban PowerShell parancssori felület és továbbítja a .NET SDK áll. Ez a cikk ismerteti a mutatók hogyan toomigrate toohello új ARM-alapú módszer. Megfelelő esetben ez a cikk is rámutat hello ASM és ARM megközelítések hdinsight hello különbségei.
 
 > [!IMPORTANT]
-> A címterület-kezelési támogatás PowerShell parancssori felület, és a .NET SDK nem küld a **2017. január 1.**.
+> a címterület-kezelés hello támogatása PowerShell parancssori felület, és a .NET SDK nem küld a **2017. január 1.**.
 > 
 > 
 
-## <a name="migrating-azure-cli-to-azure-resource-manager"></a>Az Azure CLI áttelepítése az Azure Resource Manager számára
-Az Azure parancssori felület most alapértelmezés szerint az Azure Resource Managerrel (ARM) módot, kivéve, ha frissíti a korábbi telepítés; Ebben az esetben előfordulhat, hogy kell használnia a `azure config mode arm` parancs futtatásával váltson az ARM üzemmódban.
+## <a name="migrating-azure-cli-tooazure-resource-manager"></a>Áttelepítése az Azure parancssori felület tooAzure erőforrás-kezelő
+hello Azure CLI most alapértelmezett tooAzure a Resource Manager (ARM) módban, kivéve, ha frissíti a korábbi telepítés; Ebben az esetben szüksége lehet toouse hello `azure config mode arm` tooswitch tooARM üzemmód.
 
-Az alapszintű Azure Service Management (ASM) használatával történő együttműködésre a HDInsight az Azure parancssori felület megadott parancsok esetén ugyanazt az ARM; azonban bizonyos paraméterek és kapcsolók előfordulhat, hogy új neve lehet, és nincsenek sok új paraméter elérhető ARM használatakor. Például használhatja `azure hdinsight cluster create` a Azure virtuális hálózat, amely egy fürt, létre kell hozni, vagy Hive- és Oozie metaadattárhoz megadásához.
+a parancsok alapszintű hello adott hello Azure CLI toowork megadott HDInsight Azure Service Management (ASM) a rendszer hello azonos ARM; használatakor azonban bizonyos paraméterek és kapcsolók előfordulhat, hogy új neve lehet, és nincsenek sok új paraméter elérhető ARM használatakor. Például használhatja `azure hdinsight cluster create` toospecify hello Azure virtuális hálózat, amely egy fürt, létre kell hozni, vagy Hive- és Oozie metaadattárhoz.
 
 A HDInsight Azure Resource Manageren keresztül használatához alapvető parancsok a következők:
 
@@ -42,25 +42,25 @@ A HDInsight Azure Resource Manageren keresztül használatához alapvető paranc
 * `azure hdinsight cluster show`– egy meglévő fürthöz kapcsolatos információk megjelenítése
 * `azure hdinsight cluster list`– ismerteti az Azure-előfizetés a HDInsight-fürtök
 
-Használja a `-h` kapcsolót, hogy a paraméterek és kapcsolók érhető el minden egyes parancsnál.
+Használjon hello `-h` tooinspect hello paraméterek és kapcsolók érhető el minden egyes parancsnál.
 
 ### <a name="new-commands"></a>Új parancsok
 Elérhető az Azure Resource Manager új parancsok a következők:
 
-* `azure hdinsight cluster resize`-dinamikusan változik adhatja meg a fürt feldolgozó csomópontjainak számát
-* `azure hdinsight cluster enable-http-access`-HTTPs-hozzáférést biztosít a fürt (az alapértelmezés)
-* `azure hdinsight cluster disable-http-access`-letiltja a HTTPs-hozzáférés a fürthöz
+* `azure hdinsight cluster resize`-dinamikusan módosítások hello hello fürt feldolgozó csomópontok száma
+* `azure hdinsight cluster enable-http-access`-lehetővé teszi, hogy a HTTPs hozzáférés toohello fürtöt (az alapértelmezés)
+* `azure hdinsight cluster disable-http-access`– HTTPs hozzáférés toohello fürt letiltása
 * `azure hdinsight script-action`-parancsokat biztosít létrehozása vagy kezelése Parancsfájlműveletek egy fürtön
-* `azure hdinsight config`-parancsok biztosít a konfigurációs fájl létrehozása, amely használható a `hdinsight cluster create` parancs használatával adja meg a konfigurációs adatokat.
+* `azure hdinsight config`-parancsok biztosít a konfigurációs fájl létrehozásakor használható hello `hdinsight cluster create` parancs tooprovide konfigurációs adatait.
 
 ### <a name="deprecated-commands"></a>Elavult parancsok
-Ha használja a `azure hdinsight job` parancsok elküldeni a HDInsight-fürtjét, feladatok ezek nem állnak rendelkezésre az ARM-parancsok használatával. Ha programozottan feladatok elküldéséhez a HDInsight parancsfájlok van szüksége, helyette használja a HDInsight által biztosított REST API-k. A REST API-k használatával feladatok elküldésekor további információkért lásd a következő dokumentumokat.
+Ha hello `azure hdinsight job` parancsok toosubmit feladatok tooyour HDInsight-fürtjéhez, ezek nincsenek hello ARM-parancsok keresztül érhető el. Ha tooprogrammatically küldés feladatok tooHDInsight parancsfájlok, Ehelyett használjon hello REST API-k, a HDInsight által biztosított. A REST API-k használatával feladatok elküldésekor további információkért lásd: a következő dokumentumok hello.
 
 * [Hadoop MapReduce-feladatok a HDInsight használata cURL használatával futtassa](hdinsight-hadoop-use-mapreduce-curl.md)
 * [A Hadoop Hive-lekérdezések futtatása a HDInsight használata cURL használatával](hdinsight-hadoop-use-hive-curl.md)
 * [Pig-feladatokhoz Hadoop on HDInsight használata cURL használatával futtassa](hdinsight-hadoop-use-pig-curl.md)
 
-Információk más módjairól MapReduce futtatásához, struktúra, és interaktív módon sertésfelmérés, lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md), [használata a hdinsight Hadoop Hive](hdinsight-use-hive.md), és [a Pig használata a hadooppal HDInsight](hdinsight-use-pig.md).
+Más módokon toorun MapReduce olvashat, struktúra, és interaktív módon sertésfelmérés, lásd: [használata MapReduce a Hadoop on HDInsight](hdinsight-use-mapreduce.md), [használata a hdinsight Hadoop Hive](hdinsight-use-hive.md), és [a Pig használata a hadooppal HDInsight](hdinsight-use-pig.md).
 
 ### <a name="examples"></a>Példák
 **Fürt létrehozása**
@@ -79,7 +79,7 @@ Információk más módjairól MapReduce futtatásához, struktúra, és interak
 * Új parancs (ARM)-`azure hdinsight cluster list`
 
 > [!NOTE]
-> A parancs megadásával az erőforrás csoport használatával `-g` csak a fürtök ad vissza a megadott erőforráscsoportban.
+> A hello parancs megadásával hello erőforrás csoport használatával `-g` csak hello fürtök visszaadható hello megadott erőforráscsoportban.
 > 
 > 
 
@@ -88,22 +88,22 @@ Információk más módjairól MapReduce futtatásához, struktúra, és interak
 * Régi parancs (ASM)-`azure hdinsight cluster show myhdicluster`
 * Új parancs (ARM)-`azure hdinsight cluster show myhdicluster -g myresourcegroup`
 
-## <a name="migrating-azure-powershell-to-azure-resource-manager"></a>Az Azure PowerShell áttelepítése az Azure Resource Manager számára
-Az Azure PowerShell általános információk az Azure Resource Managerrel (ARM) módban található [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
+## <a name="migrating-azure-powershell-tooazure-resource-manager"></a>Áttelepítése az Azure PowerShell tooAzure erőforrás-kezelő
+hello általános információk az Azure PowerShell hello Azure Resource Managerrel (ARM) módban található [az Azure PowerShell használata Azure Resource Managerrel](../powershell-azure-resource-manager.md).
 
-Az Azure PowerShell ARM-parancsmagok telepített-mellé a címterület-kezelési parancsmagokkal is lehet. A két mód a parancsmag elkülönítsék névvel.  Az ARM üzemmódban van *AzureRmHDInsight* való hasonlítás parancsmag nevében szereplő *AzureHDInsight* a címterület-kezelési módban.  Például *New-AzureRmHDInsightCluster* vs. *Új AzureHDInsightCluster*. Paraméterek és kapcsolók hírek nevük lehet, hogy legyen, és nincsenek sok új paraméter elérhető ARM használatakor.  Például több parancsmagok szükséges nevű új kapcsoló *- ResourceGroupName*. 
+hello Azure PowerShell ARM parancsmagok telepített-mellé a címterület-kezelési parancsmagok hello lehet. hello két mód hello parancsmagjait elkülönítsék névvel.  hello ARM üzemmódban van *AzureRmHDInsight* a hello parancsmag neve túl összehasonlításával*AzureHDInsight* hello ASM módban.  Például *New-AzureRmHDInsightCluster* vs. *Új AzureHDInsightCluster*. Paraméterek és kapcsolók hírek nevük lehet, hogy legyen, és nincsenek sok új paraméter elérhető ARM használatakor.  Például több parancsmagok szükséges nevű új kapcsoló *- ResourceGroupName*. 
 
-A HDInsight-parancsmagokat használhatja, csatlakozzon az Azure-fiókjával, és az új erőforráscsoport létrehozása:
+Hello HDInsight-parancsmagokat használhatja, csatlakozzon a tooyour Azure-fiókra, és az új erőforráscsoport létrehozása:
 
 * Login-AzureRmAccount vagy [válasszon-AzureRmProfile](https://msdn.microsoft.com/library/mt619310.aspx). Lásd: [hitelesítéséhez az Azure Resource Manager egyszerű szolgáltatás](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 * [Új-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx)
 
 ### <a name="renamed-cmdlets"></a>Átnevezett parancsmagok
-A HDInsight ASM-parancsmagok a Windows PowerShell-konzolban listázásához:
+toolist hello HDInsight címterület-kezelési parancsmagok a Windows PowerShell-konzolon:
 
     help *azurermhdinsight*
 
-A következő táblázat a címterület-kezelési parancsmagok és a nevek a ARM üzemmódban.
+hello következő táblázatban hello címterület-kezelési parancsmagok és a nevek hello ARM üzemmódban:
 
 | Címterület-kezelési parancsmagok | ARM-parancsmagok |
 | --- | --- |
@@ -136,21 +136,21 @@ A következő táblázat a címterület-kezelési parancsmagok és a nevek a ARM
 | Wait-AzureHDInsightJob |[Várjon, amíg-AzureRmHDInsightJob](https://msdn.microsoft.com/library/mt603834.aspx) |
 
 ### <a name="new-cmdlets"></a>Új parancsmagok
-Az alábbiakban az új parancsmagok, amelyek csak a ARM módban érhető el. 
+Az alábbiakban hello hello új parancsmagokat csak hello ARM módban érhető el. 
 
 **A kapcsolódó parancsmagok parancsfájlművelet:**
 
-* **Get-AzureRmHDInsightPersistedScriptAction**: lekérdezi a megőrzött Parancsfájlműveletek fürt és időrendben sorolja fel azokat, vagy egy megadott megőrzött parancsfájl művelet lekérdezi a részletek. 
-* **Get-AzureRmHDInsightScriptActionHistory**: a parancsfájlművelet előzményeinek lekérdezi a fürt, fordított időrendben sorolja fel, és lekérdezi a korábban végrehajtott parancsfájlművelet részleteit. 
+* **Get-AzureRmHDInsightPersistedScriptAction**: lekérdezi hello megőrzött Parancsfájlműveletek fürt és időrendben sorolja fel azokat, vagy egy megadott megőrzött parancsfájl művelet lekérdezi a részletek. 
+* **Get-AzureRmHDInsightScriptActionHistory**: hello parancsfájlművelet-előzmény lekérdezi a fürt fordított időrendben sorolja fel, és lekérdezi a korábban végrehajtott parancsfájlművelet részleteit. 
 * **Remove-AzureRmHDInsightPersistedScriptAction**: egy megőrzött parancsfájl művelet eltávolítja a HDInsight-fürtöt.
-* **Set-AzureRmHDInsightPersistedScriptAction**: egy megőrzött parancsfájl műveletet kell azelőtti parancsfájlművelet állítja be.
-* **Küldje el AzureRmHDInsightScriptAction**: egy új parancsfájlművelet Azure HDInsight-fürtöt ad meg. 
+* **Set-AzureRmHDInsightPersistedScriptAction**: állítja be a korábban végrehajtott parancsfájl művelet toobe egy megőrzött parancsfájl műveletet.
+* **Küldje el AzureRmHDInsightScriptAction**: egy új parancsfájl művelet tooan Azure HDInsight-fürtöt ad meg. 
 
 További használati információkért lásd: [testreszabása Linux-alapú HDInsight-fürtök használata parancsfájlművelet](hdinsight-hadoop-customize-cluster-linux.md).
 
 **A kapcsolódó parancsmagok Clsuter identitás:**
 
-* **Adja hozzá AzureRmHDInsightClusterIdentity**: ad hozzá egy fürt identitását egy fürt konfigurációs objektumot, hogy a HDInsight-fürt elérhessék az Azure Data Lake tárolja. Lásd: [HDInsight-fürtök létrehozása az Azure PowerShell használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-powershell.md).
+* **Adja hozzá AzureRmHDInsightClusterIdentity**: hozzáadja a fürt identitását tooa konfigurációs objektum érdekében, hogy a hello HDInsight-fürt Azure Data Lake tárolja. Lásd: [HDInsight-fürtök létrehozása az Azure PowerShell használatával a Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-powershell.md).
 
 ### <a name="examples"></a>Példák
 **Fürt létrehozása**
@@ -224,39 +224,39 @@ Régi parancs (ASM):
 * [Küldje el a Pig-feladatokhoz](hdinsight-hadoop-use-pig-powershell.md)
 * [Sqoop feladatok elküldéséhez](hdinsight-hadoop-use-sqoop-powershell.md)
 
-## <a name="migrating-to-the-arm-based-hdinsight-net-sdk"></a>Az ARM-alapú HDInsight .NET SDK áttelepítése
-Az Azure Szolgáltatáskezelés-alapú [(ASM) HDInsight .NET SDK](https://msdn.microsoft.com/library/azure/mt416619.aspx) elavult. Hosszúan használja az Azure Resource Manager-alapú [(ARM) a HDInsight .NET SDK](https://msdn.microsoft.com/library/azure/mt271028.aspx). A következő ASM-alapú HDInsight-csomagok elavulttá válnak.
+## <a name="migrating-toohello-arm-based-hdinsight-net-sdk"></a>Áttelepítése toohello ARM-alapú HDInsight .NET SDK
+hello Azure Szolgáltatáskezelés-alapú [(ASM) HDInsight .NET SDK](https://msdn.microsoft.com/library/azure/mt416619.aspx) elavult. Javasoljuk, toouse áll hello Azure Resource Manager-alapú [(ARM) a HDInsight .NET SDK](https://msdn.microsoft.com/library/azure/mt271028.aspx). hello következő ASM-alapú HDInsight-csomagok elavulttá válnak.
 
 * `Microsoft.WindowsAzure.Management.HDInsight`
 * `Microsoft.Hadoop.Client`
 
-Ez a témakör mutatókat biztosít a további információt az ARM-alapú SDK segítségével bizonyos feladatok elvégzéséhez.
+Ez a szakasz ismerteti a mutatók toomore tooperform bizonyos feladatok hello SDK ARM-alapú.
 
-| Hogyan... az ARM-alapú HDInsight SDK használatával | Hivatkozások |
+| Hogyan... ARM-alapú HDInsight SDK használatával hello | Hivatkozások |
 | --- | --- |
 | .NET SDK használatával a HDInsight-fürtök létrehozása |Lásd: [HDInsight-fürtök létrehozása .NET SDK használatával](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) |
 | A fürt parancsfájlművelet .NET SDK-val testreszabása |Lásd: [testreszabása HDInsight Linux clusters parancsfájlművelet használatával](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-script-action) |
-| Alkalmazások interaktív .NET SDK-val az Azure Active Directory használatával hitelesíti |Lásd: [.NET SDK használatával futtassa Hive lekérdezések](hdinsight-hadoop-use-hive-dotnet-sdk.md). Ebben a cikkben a kódrészletet használja az interaktív hitelesítési módszerrel. |
+| Alkalmazások interaktív .NET SDK-val az Azure Active Directory használatával hitelesíti |Lásd: [.NET SDK használatával futtassa Hive lekérdezések](hdinsight-hadoop-use-hive-dotnet-sdk.md). Ebben a cikkben hello kódrészletet hello interaktív hitelesítési módszert használja. |
 | Alkalmazások nem interaktív .NET SDK-val az Azure Active Directory használatával hitelesíti |Lásd: [a HDInsight nem interaktív alkalmazások létrehozása](hdinsight-create-non-interactive-authentication-dotnet-applications.md) |
 | .NET SDK használatával Hive feladat elküldése |Lásd: [elküldeni a Hive-feladatok](hdinsight-hadoop-use-hive-dotnet-sdk.md) |
 | Elküldeni a Pig feladatot .NET SDK használatával |Lásd: [elküldeni a Pig-feladatokhoz](hdinsight-hadoop-use-pig-dotnet-sdk.md) |
 | .NET SDK használatával Sqoop feladat elküldése |Lásd: [nyújt Sqoop feladatok](hdinsight-hadoop-use-sqoop-dotnet-sdk.md) |
 | Lista HDInsight-fürtök .NET SDK használatával |Lásd: [lista HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#list-clusters) |
 | A HDInsight-fürtök .NET SDK használatával méretezése |Lásd: [méretezési HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#scale-clusters) |
-| A HDInsight-fürtök .NET SDK használatával engedélyezéshez/visszavonáshoz elérésére |Lásd: [Grant/revoke access HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#grantrevoke-access) |
+| GRANT/revoke access tooHDInsight fürtök .NET SDK használatával |Lásd: [Grant/revoke access tooHDInsight fürtök](hdinsight-administer-use-dotnet-sdk.md#grantrevoke-access) |
 | HTTP felhasználó hitelesítő adatait a HDInsight-fürtök .NET SDK használatával |Lásd: [frissítés HTTP felhasználói hitelesítő adatokat a HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#update-http-user-credentials) |
-| Az alapértelmezett tárfiók keresése a HDInsight-fürtök .NET SDK használatával |Lásd: [található az alapértelmezett tárfiókot, a HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#find-the-default-storage-account) |
+| Hello alapértelmezett tárfiók keresése a HDInsight-fürtök .NET SDK használatával |Lásd: [hello alapértelmezett tárfiók keresése a HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#find-the-default-storage-account) |
 | .NET SDK használatával a HDInsight-fürtök törlése |Lásd: [törlése HDInsight-fürtök](hdinsight-administer-use-dotnet-sdk.md#delete-clusters) |
 
 ### <a name="examples"></a>Példák
-A következő példák a hogyan van egy művelet alapján történik a címterület-kezelési alapú SDK és az azzal egyenértékű kódrészletet az ARM-alapú SDK-ban.
+A következő példák a hogyan van egy művelet hello ARM-alapú SDK a hello ASM-alapú SDK és hello egyenértékű kódrészletet használatával történik.
 
 **A fürt CRUD-ügyfél létrehozása**
 
 * Régi parancs (ASM)
   
         //Certificate auth
-        //This logs the application in using a subscription administration certificate, which is not offered in Azure Resource Manager (ARM)
+        //This logs hello application in using a subscription administration certificate, which is not offered in Azure Resource Manager (ARM)
   
         const string subid = "454467d4-60ca-4dfd-a556-216eeeeeeee1";
         var cred = new HDInsightCertificateCredential(new Guid(subid), new X509Certificate2(@"path\to\certificate.cer"));
@@ -264,8 +264,8 @@ A következő példák a hogyan van egy művelet alapján történik a címterü
 * Új parancs (ARM) (egyszerű szolgáltatás engedélyezése)
   
         //Service principal auth
-        //This will log the application in as itself, rather than on behalf of a specific user.
-        //For details, including how to set up the application, see:
+        //This will log hello application in as itself, rather than on behalf of a specific user.
+        //For details, including how tooset up hello application, see:
         //   https://azure.microsoft.com/en-us/documentation/articles/hdinsight-create-non-interactive-authentication-dotnet-applications/
   
         var authFactory = new AuthenticationFactory();
@@ -282,8 +282,8 @@ A következő példák a hogyan van egy művelet alapján történik a címterü
 * Új parancs (ARM) (felhasználói engedélyezési)
   
         //User auth
-        //This will log the application in on behalf of the user.
-        //The end-user will see a login popup.
+        //This will log hello application in on behalf of hello user.
+        //hello end-user will see a login popup.
   
         var authFactory = new AuthenticationFactory();
   

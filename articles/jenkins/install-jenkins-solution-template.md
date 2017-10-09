@@ -1,6 +1,6 @@
 ---
-title: "Jenkins-kiszolgáló létrehozása az Azure-on"
-description: "Jenkins-kiszolgáló telepítése egy Azure-beli linuxos virtuális gépen a Jenkins-megoldássablonból és egy Java-mintaalkalmazás létrehozása."
+title: "egy Azure-Jenkins kiszolgáló aaaCreate"
+description: "Jenkins telepíthető egy Azure Linux virtuális gép hello Jenkins megoldás sablonból, és egy minta Java-alkalmazás létrehozása."
 author: mlearned
 manager: douge
 ms.service: multiple
@@ -10,102 +10,102 @@ ms.topic: hero-article
 ms.date: 08/21/2017
 ms.author: mlearned
 ms.custom: Jenkins
-ms.openlocfilehash: 7bb74f297d52fb25171817175cce64187b397c38
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 82ab2ac52594acba131414b449b608978591d4b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-jenkins-server-on-an-azure-linux-vm-from-the-azure-portal"></a>Jenkins-kiszolgáló létrehozása Azure-beli linuxos virtuális gépen az Azure Portalról
+# <a name="create-a-jenkins-server-on-an-azure-linux-vm-from-hello-azure-portal"></a>Hozzon létre egy Jenkins kiszolgálót egy Azure Linux virtuális gépen a hello Azure-portálon
 
-Ez a rövid útmutató bemutatja, hogyan telepítheti a [Jenkins](https://jenkins.io)-kiszolgálót Ubuntu Linux rendszerű virtuális gépre az Azure-ral való együttműködésre konfigurált eszközökkel és beépülő modulokkal együtt. Ha elkészült, rendelkezni fog egy Azure-ban futó Jenkins-kiszolgálóval, amely egy Java-mintaalkalmazást hoz létre a [GitHubról](https://github.com).
+A gyors üzembe helyezés bemutatja, hogyan tooinstall [Jenkins](https://jenkins.io) az Ubuntu Linux virtuális gép hello eszközök és beépülő modulok konfigurált toowork az Azure-ral. Ha elkészült, rendelkezni fog egy Azure-ban futó Jenkins-kiszolgálóval, amely egy Java-mintaalkalmazást hoz létre a [GitHubról](https://github.com).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 * Azure-előfizetés
-* SSH-hozzáférés a számítógép parancssorából (például Bash felület vagy [PuTTY](http://www.putty.org/))
+* A számítógép parancssorban hozzáférési tooSSH (például hello Bash rendszerhéjat vagy [PuTTY](http://www.putty.org/))
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-the-jenkins-vm-from-the-solution-template"></a>Jenkins virtuális gép létrehozása a megoldássablonból
+## <a name="create-hello-jenkins-vm-from-hello-solution-template"></a>Hello megoldás sablonból hello Jenkins virtuális gép létrehozása
 
-Nyissa meg a [Jenkins áruházbeli rendszerképét](https://azuremarketplace.microsoft.com/marketplace/apps/azure-oss.jenkins?tab=Overview) a webböngészőben, és az oldal bal oldalán válassza a **LETÖLTÉS MOST** lehetőséget. Tekintse át a díjszabás részleteit, és válassza a **Folytatás**, majd a **Létrehozás** lehetőséget a Jenkins-kiszolgáló Azure Portalon történő konfigurálásához. 
+Nyissa meg hello [Jenkins a Piactéri lemezképhez](https://azuremarketplace.microsoft.com/marketplace/apps/azure-oss.jenkins?tab=Overview) a webböngészőt, és válasszon **most az beszerzése informatikai** hello hello lap bal oldalán. Felülvizsgálati hello díjszabás részleteit, és válassza **Folytatás**, majd jelölje be **létrehozása** tooconfigure hello Jenkins kiszolgáló hello Azure-portálon. 
    
 ![Azure Portal párbeszédpanel](./media/install-jenkins-solution-template/ap-create.png)
 
-**Az alapszintű beállítások konfigurálása** lapon töltse ki a következő mezőket:
+A hello **konfigurálja az alapbeállításokat** lapra, adja meg a következő mezők hello:
 
 ![Az alapvető beállítások konfigurálása](./media/install-jenkins-solution-template/ap-basic.png)
 
 * Írja be a **Jenkins** értéket a **Név** mezőbe.
-* Írjon be egy **felhasználónevet**. A felhasználónévnek [egyedi követelményeknek](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm) kell megfelelnie.
-* A **Hitelesítés típusa** mezőben válassza a **Jelszó** lehetőséget, majd adjon meg egy jelszót. A jelszónak legalább egy nagybetűs karaktert, egy számot és egy speciális karaktert is tartalmaznia kell.
-* Az **Erőforráscsoport** mezőben adja meg a **myJenkinsResourceGroup** kifejezést.
-* A **Hely** legördülő menüből válassza az **USA keleti régiója** [Azure-régiót](https://azure.microsoft.com/regions/).
+* Írjon be egy **felhasználónevet**. hello felhasználónevet meg kell felelnie [kapcsolatos követelmények](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm).
+* Válassza ki **jelszó** , hello **hitelesítési típus** és adjon meg egy jelszót. hello ügyeljen arra, hogy egy nagybetűt, számot és egy speciális karaktert.
+* Használjon **myJenkinsResourceGroup** a hello **erőforráscsoport**.
+* Válassza ki a hello **USA keleti régiója** [az Azure-régió](https://azure.microsoft.com/regions/) a hello **hely** legördülő.
 
-Az **OK** lehetőség kiválasztásával lépjen tovább a **További beállítások konfigurálása** lapra. Adjon meg egy egyedi tartománynevet a Jenkins-kiszolgáló azonosításához, majd válassza az **OK** lehetőséget.
+Válassza ki **OK** tooproceed toohello **további beállításokat** fülre. Adjon meg egy egyedi tartomány neve tooidentify hello Jenkins kiszolgálót, és válassza ki **OK**.
 
 ![További beállítások megadása](./media/install-jenkins-solution-template/ap-addtional.png)  
 
- Az ellenőrzés után válassza ismét az **OK** lehetőséget az **Összefoglalás** lapon. Végül válassza a **Vásárlás** lehetőséget a Jenkins virtuális gép létrehozásához. Ha a kiszolgáló készen áll, értesítést fog kapni az Azure Portalon:   
+ Után az ellenőrzés eredménye akkor megfelelő, válassza a **OK** újra a hello **összegzés** fülre. Végül válassza ki **beszerzési** toocreate hello Jenkins virtuális gép. Ha a kiszolgáló készen áll, értesítést kap a hello Azure-portálon:   
 
 ![„A Jenkins készen áll” értesítés](./media/install-jenkins-solution-template/jenkins-deploy-notification-ready.png)
 
-## <a name="connect-to-jenkins"></a>Kapcsolódás a Jenkinshez
+## <a name="connect-toojenkins"></a>Csatlakozás tooJenkins
 
-A webböngészőjében nyissa meg a virtuális gépet (például: http://jenkins2517454.eastus.cloudapp.azure.com/). A Jenkins-konzol nem érhető el nem biztonságos HTTP-n keresztül. Az oldalon szereplő utasítások szerint, SSH-alagút használatával biztonságosan nyithatja meg a Jenkins-konzolt.
+A böngészőben nyissa meg a tooyour virtuális gép (például http://jenkins2517454.eastus.cloudapp.azure.com/). hello Jenkins konzol nem érhető el, nem biztonságos HTTP Protokollon keresztül, így útmutatást a hello lap tooaccess hello Jenkins konzolon biztonságosan a számítógépről SSH-alagúton keresztül.
 
 ![Jenkins zárolásának feloldása](./media/install-jenkins-solution-template/jenkins-ssh-instructions.png)
 
-Állítsa be az alagutat az `ssh` paranccsal az oldal parancssorából. A `username` helyére a virtuális gép korábban, a virtuális gép megoldássablonból történő beállításakor kiválasztott rendszergazdáját írja be.
+Hello alagút használatával hello beállítása `ssh` parancs hello lapon hello parancssorból cseréje `username` hello virtuális gép rendszergazdai jogú felhasználó hello megoldás sablonból hello virtuális gép beállítása során a korábban kiválasztott hello nevére.
 
 ```bash
 ssh -L 127.0.0.1:8080:localhost:8080 jenkinsadmin@jenkins2517454.eastus.cloudapp.azure.com
 ```
 
-Az alagút elindítása után lépjen a http://localhost:8080/ címre a helyi gépen. 
+Miután elindította hello alagút, keresse meg a toohttp://localhost:8080 / a helyi számítógépen. 
 
-Kérje le a kezdeti jelszót az alábbi parancs parancssorbeli futtatásával, miközben SSH-n keresztül kapcsolódik a Jenkinst futtató virtuális géphez.
+Kezdeti jelszó hello lekéréséhez futtassa a következő parancsot a parancssorban hello SSH toohello Jenkins VM keresztül csatlakozik hello.
 
 ```bash
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`.
 ```
 
-Először a kezdeti jelszóval oldja fel a Jenkins-irányítópult zárolását.
+Feloldási hello Jenkins irányítópult hello az első alkalommal a kezdeti jelszó használatával.
 
 ![Jenkins zárolásának feloldása](./media/install-jenkins-solution-template/jenkins-unlock.png)
 
-A következő oldalon válassza az **Install suggested plugins** (Javasolt beépülő modulok telepítése) lehetőséget, majd hozzon létre egy Jenkins-rendszergazdát a Jenkins-irányítópult eléréséhez.
+Válassza ki **javasolt beépülő modulok telepítése** hello a következő lap, és hozzon létre egy Jenkins admin használt felhasználói tooaccess hello Jenkins irányítópultot.
 
 ![Jenkins készen áll!](./media/install-jenkins-solution-template/jenkins-welcome.png)
 
-A Jenkins-kiszolgáló mostantól készen áll a kódok előállítására.
+hello Jenkins kiszolgáló mostantól készen áll a toobuild kódot.
 
 ## <a name="create-your-first-job"></a>Az első feladat létrehozása
 
-A Jenkins-konzolon válassza a **Create new jobs** (Új feladatok létrehozása) lehetőséget, majd adja neki a **mySampleApp** nevet, és válassza a **Freestyle project** (Szabad stílusú projekt), majd az **OK** lehetőséget.
+Válassza ki **hozzon létre új feladatokat** hello Jenkins konzolon, majd nevezze el **mySampleApp** válassza **Freestyle projekt**, majd jelölje be **OK**.
 
 ![Új feladat létrehozása](./media/install-jenkins-solution-template/jenkins-new-job.png) 
 
-A **Source Code Management** (Forráskódkezelés) lapon engedélyezze a **Git** elemet, majd írja be a következő URL-címet a **Repository URL** Adattár URL-címe mezőbe: `https://github.com/spring-guides/gs-spring-boot.git`
+SELECT hello **forrás kód felügyeleti** lapján engedélyezése **Git**, és írja be a következő URL-címet hello **tárház URL-CÍMÉT** mező:`https://github.com/spring-guides/gs-spring-boot.git`
 
-![A Git-tárház meghatározása](./media/install-jenkins-solution-template/jenkins-job-git-configuration.png) 
+![Hello Git-tárház meghatározása](./media/install-jenkins-solution-template/jenkins-job-git-configuration.png) 
 
-A **Build** (Felépítés) lapon válassza az **Add build step** (Felépítési lépés hozzáadása), majd az **Invoke Gradle Script** (Gradle-szkript meghívása) lehetőséget. Válassza a **Use Gradle Wrapper** (Gradle-burkoló használata) lehetőséget, majd a **Wrapper location** (Burkoló helye) mezőbe írja be a `complete`, a **Tasks** (Feladatok) mezőbe pedig a `build` értéket.
+Jelölje be hello **Build** lapra, majd válassza ki **Hozzáadás összeállítása lépés**, **meghívása Gradle parancsfájl**. Válassza a **Use Gradle Wrapper** (Gradle-burkoló használata) lehetőséget, majd a **Wrapper location** (Burkoló helye) mezőbe írja be a `complete`, a **Tasks** (Feladatok) mezőbe pedig a `build` értéket.
 
-![Gradle-burkoló használata a létrehozáshoz](./media/install-jenkins-solution-template/jenkins-job-gradle-config.png) 
+![Hello Gradle burkoló toobuild használata](./media/install-jenkins-solution-template/jenkins-job-gradle-config.png) 
 
-Válassza az **Advanced...** (Speciális) lehetőséget, majd adja meg a `complete` értéket a **Root Build script** (Fő felépítési szkript) mezőben. Kattintson a **Mentés** gombra.
+Válassza az **Advanced...** (Speciális) lehetőséget, majd adja meg `complete` a hello **legfelső szintű Build script** mező. Kattintson a **Mentés** gombra.
 
-![Speciális beállítások megadása a Gradle-burkoló létrehozása lépésben](./media/install-jenkins-solution-template/jenkins-job-gradle-advances.png) 
+![Hello Gradle burkoló build lépésben speciális beállításainak megadása](./media/install-jenkins-solution-template/jenkins-job-gradle-advances.png) 
 
-## <a name="build-the-code"></a>A kód létrehozása
+## <a name="build-hello-code"></a>Hello kód létrehozása
 
-Válassza a **Build Now** (Létrehozás most) lehetőséget a kód fordításához és a mintaalkalmazás becsomagolásához. A build létrehozása után válassza a projekt **Workspace** (Munkaterület) hivatkozását.
+Válassza ki **Build most** toocompile hello kód és a csomag hello mintaalkalmazást. A build befejezése után válassza ki a hello **munkaterület** hello projekt hivatkozásra.
 
-![A munkaterület megkeresése a JAR-fájl buildből történő lekérdezéséhez](./media/install-jenkins-solution-template/jenkins-access-workspace.png) 
+![Keresse meg a toohello munkaterület tooget hello JAR-fájlra a hello build](./media/install-jenkins-solution-template/jenkins-access-workspace.png) 
 
-Navigáljon a `complete/build/libs` könyvtárhoz, és a létrehozás sikerességének ellenőrzéséhez győződjön meg arról, hogy a `gs-spring-boot-0.1.0.jar` fájl megtalálható benne. A Jenkins-kiszolgáló mostantól készen áll saját Azure-projektek létrehozására.
+Keresse meg a túl`complete/build/libs` , és ellenőrizze a hello `gs-spring-boot-0.1.0.jar` van-e, hogy sikeres volt-e a build tooverify. A kiszolgáló jelenleg Jenkins kész toobuild saját projektek az Azure-ban.
 
 ## <a name="next-steps"></a>Következő lépések
 

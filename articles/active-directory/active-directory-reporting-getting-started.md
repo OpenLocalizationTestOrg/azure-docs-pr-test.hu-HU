@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Reporting: első lépések | Microsoft Docs"
-description: "Felsorolja az Azure Active Directory Reportingban elérhető különböző jelentéseket."
+description: "Listák hello az Azure Active Directory reportingban elérhető különböző jelentéseket"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
-ms.openlocfilehash: 5cd1ae6196d9cd63f97dc9d302442280ece23e40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f47875708398391dd7f3efdc56a741fdba273b76
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-active-directory-reporting"></a>Bevezetés az Azure Active Directory Premium Reporting használatába
 ## <a name="what-it-is"></a>Mi ez?
-Az Azure Active Directory (Azure AD) biztonsági, naplózási és tevékenységjelentéseket biztosít a címtárához. A benne foglalt jelentések listája:
+Az Azure Active Directory (Azure AD) biztonsági, naplózási és tevékenységjelentéseket biztosít a címtárához. Itt olvashat egy listát hello jelentéseket tartalmazza:
 
 ### <a name="security-reports"></a>Biztonsági jelentések
 * Bejelentkezések ismeretlen forrásokról
@@ -54,18 +54,18 @@ Az Azure Active Directory (Azure AD) biztonsági, naplózási és tevékenységj
 
 ## <a name="how-it-works"></a>Működés
 ### <a name="reporting-pipeline"></a>Jelentéskészítési folyamat
-A jelentéskészítési folyamat három fő lépésből áll. Minden felhasználói bejelentkezéskor vagy hitelesítéskor a következő történik:
+hello jelentéskészítési folyamat három fő lépésből áll. Minden alkalommal, amikor egy felhasználó bejelentkezik, vagy hitelesítéskor, hello következő történik:
 
-* Először a rendszer hitelesíti a felhasználót (sikeresen vagy sikertelenül), és az eredményt az Azure Active Directory szolgáltatás adatbázisaiban tárolja.
+* Először hello felhasználó hitelesítése (sikeresen vagy sikertelenül), és hello eredmény hello Azure Active Directory szolgáltatás adatbázisaiban tárolja.
 * Rendszeres időközönként minden friss bejelentkezést feldolgoz. Ezen a ponton a rendellenes tevékenységeket észlelő, illetve biztonságos algoritmusok gyanús tevékenységeket keresnek az összes legutóbbi bejelentkezésben.
-* A feldolgozás után a rendszer minden jelentést leír, gyorsítótáraz és kiad a klasszikus Azure portálon.
+* A feldolgozás után hello jelentések írása, a gyorsítótárba, és kiad a klasszikus Azure portálon hello.
 
 ### <a name="report-generation-times"></a>Előállítási idők jelentése
-Az Azure AD platform által feldolgozott hitelesítések és bejelentkezések nagy száma miatt a legutóbb feldolgozott bejelentkezések átlagosan egy órával korábbiak. Ritka esetben akár 8 órát is igénybe vehet a legutóbbi bejelentkezések feldolgozása.
+Lejáró toohello nagy mennyiségű hitelesítések és bejelentkezési hello által feldolgozott modulok az Azure AD platform hello legutóbbi bejelentkezések feldolgozása, átlagosan egy órával korábbiak. Ritka esetekben too8 óra tooprocess hello legutóbbi bejelentkezések azt is tarthat.
 
-A legutóbb feldolgozott bejelentkezést az egyes jelentések tetején megjelenő súgószövegben találja.
+Hello súgószöveg el az egyes jelentések tetején hello megvizsgálásával hello legutóbbi feldolgozott bejelentkezés találja.
 
-![Az egyes jelentések tetején megjelenő súgószöveg](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
+![Az egyes jelentések hello tetején súgószöveg](./media/active-directory-reporting-getting-started/reportingWatermark.PNG)
 
 > [!TIP]
 > Az Azure AD Reporting további dokumentációiért lásd: [View your access and usage reports](active-directory-view-access-usage-reports.md) (A hozzáférési és használati jelentések megtekintése).
@@ -73,25 +73,25 @@ A legutóbb feldolgozott bejelentkezést az egyes jelentések tetején megjelen�
 > 
 
 ## <a name="getting-started"></a>Bevezetés
-### <a name="sign-into-the-azure-classic-portal"></a>Bejelentkezés a klasszikus Azure portálra
-Először globális rendszergazdaként vagy szabályozási ügyintézőként be kell jelentkeznie a [klasszikus Azure portálra](https://manage.windowsazure.com). Emellett Azure-előfizetési szolgáltatási rendszergazdának vagy társadminisztrátornak is kell lennie, vagy a „Hozzáférés az Azure AD-hez” Azure-előfizetést kell használnia.
+### <a name="sign-into-hello-azure-classic-portal"></a>Jelentkezzen be hello a klasszikus Azure portálon
+Először, szüksége lesz toosign történő hello [a klasszikus Azure portálon](https://manage.windowsazure.com) globális vagy megfelelőségi rendszergazdaként. Egy Azure-előfizetés szolgáltatás-rendszergazda vagy társadminisztrátorának kell lennie, vagy használja hello "hozzáférési tooAzure AD" Azure-előfizetés.
 
-### <a name="navigate-to-reports"></a>Navigálás a jelentésekhez
-A jelentések megtekintéséhez nyissa meg a Jelentések lapot a címtár tetején.
+### <a name="navigate-tooreports"></a>Keresse meg a tooReports
+tooview jelentések, keresse meg a toohello jelentések lapot a címtár hello tetején.
 
-Ha most nyitja meg először a jelentéseket, akkor a megtekintésük előtt el kell fogadnia a megjelenő párbeszédpanel feltételeit. A rendszer így győződik meg arról, hogy elfogadható, hogy a szervezet rendszergazdái megtekintik ezeket az adatokat, amelyek egyes országokban bizalmas információnak számítanak.
+Ha az első alkalommal hello jelentések megtekintése, szüksége lesz tooagree tooa párbeszédpanel hello jelentések megtekintése előtt. Ez az, hogy a rendszer a szervezet tooview rendszergazdái elfogadható tooensure ezeket az adatokat, amelyek lehet, hogy egyes országokban bizalmas információnak számítanak.
 
 ![Párbeszédpanel](./media/active-directory-reporting-getting-started/dialogBox.png)
 
 ### <a name="explore-each-report"></a>Az egyes jelentések megismerése
-Lépjen egyenként a jelentésekre, így megtekintheti az összegyűjtött adatokat és a feldolgozott bejelentkezéseket. Itt találja meg [az összes jelentés listáját](active-directory-reporting-guide.md).
+Keresse meg minden jelentés toosee hello gyűjtött adatok típusától és hello bejelentkezések feldolgozása. Megtalálhatja a [összes hello jelentések itt listája](active-directory-reporting-guide.md).
 
 ![Minden jelentés](./media/active-directory-reporting-getting-started/reportsMain.png)
 
-### <a name="download-the-reports-as-csv"></a>A jelentések letöltése CSV-fájlként
-Az egyes jelentések letölthetők CSV-fájlként (vesszővel tagolt adatfájlként). Ezeket a fájlokat felhasználhatja az Excelben, a PowerBI-ban vagy más külső elemzőprogramokban az adatok további elemzéséhez.
+### <a name="download-hello-reports-as-csv"></a>Hello jelentések letöltése CSV-ként
+Az egyes jelentések letölthetők CSV-fájlként (vesszővel tagolt adatfájlként). Ezeket a fájlokat, az Excel, a powerbi-ban vagy a programok toofurther elemezheti az adatokat külső analysis is használhatja.
 
-Ha egy jelentést CSV-formátumban szeretne letölteni, navigáljon a jelentéshez, és kattintson lent a „Letöltés” gombra.
+a jelentés a fürt megosztott kötetei toodownload keresse meg a toohello jelentés, és kattintson a "Letöltés" hello lap alján.
 
 ![Letöltés gomb](./media/active-directory-reporting-getting-started/downloadButton.png)
 
@@ -102,23 +102,23 @@ Ha egy jelentést CSV-formátumban szeretne letölteni, navigáljon a jelentésh
 
 ## <a name="next-steps"></a>Következő lépések
 ### <a name="customize-alerts-for-anomalous-sign-in-activity"></a>Rendellenes bejelentkezési tevékenységek riasztásainak testreszabása
-Navigáljon a „Konfigurálás” lapra a címtárban.
+Keresse meg a könyvtár toohello "Beállítása" lapon.
 
-Görgessen az „Értesítések” szakaszhoz.
+Görgessen toohello "Értesítések" szakaszhoz.
 
-Engedélyezze vagy tiltsa le az „Email Notifications of Anomalous sign-ins” (Értesítés e-mailben a rendellenes bejelentkezésekről) szakaszt.
+Engedélyezi vagy letiltja a hello "E-mail-értesítések a rendellenes bejelentkezések" szakaszhoz.
 
-![Az Értesítések szakasz](./media/active-directory-reporting-getting-started/notificationsSection.png)
+![hello értesítések szakasz](./media/active-directory-reporting-getting-started/notificationsSection.png)
 
-### <a name="integrate-with-the-azure-ad-reporting-api"></a>Integráció az Azure AD Reporting API-val
-Lásd: [Bevezetés a Reporting API használatába](active-directory-reporting-api-getting-started.md).
+### <a name="integrate-with-hello-azure-ad-reporting-api"></a>Azure AD jelentéskészítési API hello integrálása
+Lásd: [Ismerkedés a Reporting API hello](active-directory-reporting-api-getting-started.md).
 
 ### <a name="engage-multi-factor-authentication-on-users"></a>Multi-Factor Authentication engedélyezése a felhasználók számára
 Válasszon ki egy felhasználót egy jelentésben.
 
-Kattintson a képernyő alján található „MFA engedélyezése” gombra.
+Gombra hello "MFA engedélyezése" hello hello képernyő aljára.
 
-![A Multi-Factor Authentication gomb a képernyő alján](./media/active-directory-reporting-getting-started/mfaButton.png)
+![hello multi-factor Authentication gomb üdvözlő képernyőt hello aljához](./media/active-directory-reporting-getting-started/mfaButton.png)
 
 > [!TIP]
 > Az Azure AD Reporting további dokumentációiért lásd: [View your access and usage reports](active-directory-view-access-usage-reports.md) (A hozzáférési és használati jelentések megtekintése).
@@ -127,10 +127,10 @@ Kattintson a képernyő alján található „MFA engedélyezése” gombra.
 
 ## <a name="learn-more"></a>Részletek
 ### <a name="audit-events"></a>Események naplózása
-Megtudhatja, milyen eseményeket naplóz az [Azure Active Directory Reporting Audit Events](active-directory-reporting-audit-events.md) a címtárban.
+Ismerje meg, milyen eseményeket naplóz hello címtár [Azure Active Directory Reporting Audit Events](active-directory-reporting-audit-events.md).
 
 ### <a name="api-integration"></a>API-integráció
-Lásd: [Bevezetés a Reporting API használatába](active-directory-reporting-api-getting-started.md) és [API-referenciadokumentáció](https://msdn.microsoft.com/library/azure/mt126081.aspx).
+Lásd: [Ismerkedés a Reporting API hello](active-directory-reporting-api-getting-started.md) és hello [API-referenciadokumentáció](https://msdn.microsoft.com/library/azure/mt126081.aspx).
 
 ### <a name="get-in-touch"></a>Kapcsolatfelvétel
 Az [aadreportinghelp@microsoft.com](mailto:aadreportinghelp@microsoft.com) e-mail címre bármilyen észrevételét, problémáját vagy kérdését elküldheti.

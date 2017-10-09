@@ -1,6 +1,6 @@
 ---
-title: "MongoDB API Azure Cosmos DB globális telepítési útmutató |} Microsoft Docs"
-description: "Megtudhatja, hogyan beállítani az Azure Cosmos DB globális terjesztési a MongoDB API használatával."
+title: "MongoDB API aaaAzure Cosmos DB globális terjesztési oktatóanyaga |} Microsoft Docs"
+description: "Ismerje meg, hogyan hello MongoDB API toosetup Azure Cosmos DB globális terjesztési használatával."
 services: cosmos-db
 keywords: "globális terjesztési, a mongodb-Protokolltámogatással"
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2747102f4d8cac412b67abc3fd07cfa3661bcee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0fc2d670bb4e21ac5f813f9586b407ba06ccf354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-mongodb-api"></a>How Azure Cosmos DB globális terjesztési a MongoDB API-jával beállítása
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-mongodb-api"></a>Hogyan toosetup Azure Cosmos DB globális terjesztési használatával hello MongoDB API
 
-Ebben a cikkben megmutatjuk, hogyan használható az Azure-portálon Azure Cosmos DB globális terjesztési beállításához, és csatlakoztassa a MongoDB API használatával.
+Ez a cikk megmutatjuk, hogyan toouse hello Azure portál toosetup Azure Cosmos DB globális terjesztési, és csatlakoztassa a hello MongoDB API használatával.
 
-Ez a cikk ismerteti a következő feladatokat: 
+Ez a cikk ismerteti a következő feladatok hello: 
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * Globális terjesztési használatával konfigurálja a [MongoDB API](mongodb-introduction.md)
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési használatával hello konfigurálása [MongoDB API](mongodb-introduction.md)
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
-## <a name="verifying-your-regional-setup-using-the-mongodb-api"></a>A területi beállításai a MongoDB API-jával ellenőrzése
-A globális konfigurációs API belül ellenőrzése a MongoDB futtatásához dupla legegyszerűbb módja a *isMaster()* a Mongo rendszerhéj parancsot.
+## <a name="verifying-your-regional-setup-using-hello-mongodb-api"></a>A területi beállításai hello MongoDB API használatával ellenőrzése
+hello legegyszerűbb módja a dupla ellenőrzése a globális konfigurációs API belül, a MongoDB toorun hello *isMaster()* hello Mongo rendszerhéj parancsot.
 
 Az a Mongo parancskörnyezet:
 
@@ -68,23 +68,23 @@ Példa eredménye:
       }
    ```
 
-## <a name="connecting-to-a-preferred-region-using-the-mongodb-api"></a>A preferált régió a MongoDB API-jával való kapcsolódás
+## <a name="connecting-tooa-preferred-region-using-hello-mongodb-api"></a>Csatlakozás előnyben részesített régióba tooa hello MongoDB API
 
-A MongoDB API lehetővé teszi, hogy adja meg a gyűjtemény írásvédett globálisan elosztott adatbázis beállításait. Mindkét alacsony késési Olvasás és globális magas rendelkezésre állású, javasoljuk a beállítást a gyűjtemény írásvédett preferencia *legközelebbi*. Olvasási előnyként a *legközelebbi* van konfigurálva, az eredetihez legközelebb eső régiót olvasni.
+hello MongoDB API lehetővé teszi, hogy Ön toospecify a gyűjtemény írásvédett globálisan elosztott adatbázis beállításait. Mindkét alacsony késési Olvasás és globális magas rendelkezésre állású, javasoljuk a gyűjtemény írásvédett beállításokat szabályozó beállítás túl*legközelebbi*. Olvasási előnyként a *legközelebbi* konfigurált tooread hello legközelebbi régióban van.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Nearest));
 ```
 
-Az elsődleges alkalmazások olvasási/írási régióhoz és egy másodlagos régióban, a vész-helyreállítási forgatókönyvek, javasolt a beállítást a gyűjtemény írásvédett beállítás *másodlagos előnyben részesített*. Olvasási előnyként a *másodlagos előnyben részesített* van konfigurálva, a másodlagos régióba olvasni, ha az elsődleges régióban nem érhető el.
+Az elsődleges alkalmazások olvasási/írási régióhoz és egy másodlagos régióban, a vész-helyreállítási forgatókönyvek, javasoljuk, a gyűjtemény írásvédett beállítás túl*másodlagos előnyben részesített*. Olvasási előnyként a *másodlagos előnyben részesített* hello másodlagos régióban konfigurált tooread esetén hello elsődleges régió nem érhető el.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.SecondaryPreferred));
 ```
 
-Végül ha szeretné manuálisan adja meg az olvasási régiók. A régió címke belül olvasási igény szerint állíthatja be.
+Végül ha például a toomanually lehet megadni a olvasási régiók. Hello régió címke belül olvasási igény szerint állíthatja be.
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
@@ -92,17 +92,17 @@ var tag = new Tag("region", "Southeast Asia");
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Secondary, new[] { new TagSet(new[] { tag }) }));
 ```
 
-Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti a globális replikált fiókja konzisztencia kezeléséhez olvasásával [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
+Ez azt, hogy ez az oktatóanyag befejezése. Megismerheti, hogyan toomanage hello olvasásával globálisan replikált fiókja konzisztencia [Azure Cosmos DB-ben konzisztenciaszintek](consistency-levels.md). És hogyan globális adatbázis-replikációval kapcsolatos további információk az Azure Cosmos Adatbázisba működik, a következő témakörben: [adatok globálisan Azure Cosmos DB terjesztése](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben az oktatóanyagban ezt a következők:
+Ebben az oktatóanyagban hello következő régebben már kötöttek:
 
 > [!div class="checklist"]
-> * Az Azure portál használatával globális terjesztési konfigurálása
-> * A DocumentDB API-k használatával globális terjesztési konfigurálása
+> * Konfigurálja a globális terjesztési hello Azure-portál használatával
+> * Globális terjesztési hello DocumentDB API-k használatával konfigurálása
 
-Most már folytathatja a következő oktatóanyag megtudhatja, hogyan fejleszthet, helyileg emulátorral Azure Cosmos DB helyi.
+Most már folytathatja a következő útmutató toolearn toohello hogyan helyileg toodevelop hello Azure Cosmos DB helyi emulátor.
 
 > [!div class="nextstepaction"]
-> [Helyileg emulátorral fejlesztése](local-emulator.md)
+> [Hello emulátorral helyileg fejlesztése](local-emulator.md)

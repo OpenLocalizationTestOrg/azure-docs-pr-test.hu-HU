@@ -1,5 +1,5 @@
 ---
-title: "Állítson be egy virtuális gépet IPython Notebook kiszolgálóként |} Microsoft Docs"
+title: "a virtuális gép IPython Notebook kiszolgálóként aaaSet |} Microsoft Docs"
 description: "Állítsa be az Azure virtuális gép tudományos környezetben használható IPython kiszolgálóval speciális elemzésekre."
 services: machine-learning
 documentationcenter: 
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: xibingao;bradsev
-ms.openlocfilehash: 66fd9e5573390ac6faeb82ad5b0f7ddb18d50a77
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 58386140ec7742ade1f7e183ec842a2b09b9dfca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-an-azure-virtual-machine-as-an-ipython-notebook-server-for-advanced-analytics"></a>Azure virtuális gép beállítása IPython Notebook-kiszolgálóként a speciális elemzésekhez
-Ez a témakör azt ismerteti, hogyan felkészítse és konfigurálja az Azure virtuális gép speciális elemzésekre a adatok tudományos környezet részeként használható. A Windows rendszerű virtuális gép támogatási eszközöket, például a IPython Notebook, Azure Tártallózó, AzCopy, valamint más hasznos a speciális elemzés projektek segédeszközök van konfigurálva. Az Azure Tártallózó és AzCopy, például módszereket biztosítanak az kényelmes feltölteni az adatokat az Azure blob storage a helyi számítógépről, vagy a blob storage-ból tölthetik le a helyi számítógépen.
+Ez a témakör bemutatja, hogyan tooprovision és speciális elemzésekre a adatok tudományos környezet részeként használható Azure virtuális gép konfigurálása. támogató eszközöket, például a IPython Notebook, Azure Tártallózó, AzCopy, valamint más hasznos a speciális elemzés projektek segédeszközök hello Windows rendszerű virtuális gép van beállítva. Az Azure Tártallózó és AzCopy, például módszereket biztosítanak az kényelmes tooupload adatok tooAzure blob storage-ának a helyi számítógépen vagy toodownload azt tooyour helyi számítógép blobtárolóból.
 
 ## <a name="create-vm"></a>1. lépés: Általános célú Azure virtuális gép létrehozása
-Ha már rendelkezik egy Azure virtuális gépen, és csupán be szeretne rajta IPython Notebook kiszolgáló beállítása, ezt a lépést kihagyhatja, és folytassa a [2. lépés: a végpont hozzáadása a meglévő virtuális gépből IPython notebookok](#add-endpoint).
+Ha már rendelkezik egy Azure virtuális gépen, és most szeretné, hogy egy IPython Notebook kiszolgáló rajta tooset, ezt a lépést kihagyhatja, és folytassa túl[2. lépés: egy IPython notebookok tooan meglévő virtuális gép végpontjának felvétele](#add-endpoint).
 
-A virtuális gép létrehozása Azure-folyamat elindítása előtt meg kell határoznia a gép feldolgozni az adatokat a projekthez szükséges mérete. Kisebb gépek kevesebb memóriával és kevesebb, mint nagyobb gépek CPU-magokat rendelkezhetnek, de ugyanakkor kevésbé költséges. Gépek típusainak és árakat listájáért lásd: a <a href="http://azure.microsoft.com/pricing/details/virtual-machines/" target="_blank">Virtual Machines díjszabása </a> lap
+A virtuális gép létrehozása Azure hello folyamat elindítása előtt kell toodetermine hello hello gépre, amelyik a projekthez szükséges tooprocess hello adatok méretét. Kisebb gépek kevesebb memóriával és kevesebb, mint nagyobb gépek CPU-magokat rendelkezhetnek, de ugyanakkor kevésbé költséges. Gépek típusainak és árakat, lásd: hello <a href="http://azure.microsoft.com/pricing/details/virtual-machines/" target="_blank">Virtual Machines díjszabása </a> lap
 
-1. Jelentkezzen be <a href="https://manage.windowsazure.com" target="_blank">a klasszikus Azure portálon</a>, és kattintson a **új** bal alsó sarkában. Egy ablakban jelenik meg. Válassza ki **számítási** -> **virtuális gép** -> **FROM GYŰJTEMÉNY**.
+1. Jelentkezzen be túl<a href="https://manage.windowsazure.com" target="_blank">a klasszikus Azure portálon</a>, és kattintson a **új** hello bal alsó sarokban lévő. Egy ablakban jelenik meg. Válassza ki **számítási** -> **virtuális gép** -> **FROM GYŰJTEMÉNY**.
    
     ![Munkaterület létrehozása][24]
-2. A következő lemezképek közül választhat:
+2. A következő lemezképek hello közül választhat:
    
    * Windows Server 2012 R2 Datacenter
    * Windows Server Essentials felhasználói felülete (Windows Server 2012 R2)
      
-     Kattintson a, nyissa meg a következő konfigurációs lap jobb alsó részen jobbra mutató nyílra.
+     Kattintson a jobbra mutató hello alacsonyabb jobb toogo hello tovább konfigurációs lapon hello nyíl.
      
      ![Munkaterület létrehozása][25]
-3. Adjon meg egy nevet a virtuális géphez szeretne létrehozni, válassza ki a gép méretét (alapértelmezett: A3) szeretné az adatokat, a gép érintetlen folyamat méret és milyen teljesítményű alapján (memória mérete és a számítási magok száma), adja meg egy felhasználónevet és jelszót a gép a gépet. Kattintson a jobb nyissa meg a következő konfigurációs lapra mutató nyílra.
+3. Adjon meg egy nevet hello virtuális gép kívánt toocreate, hello gép válassza hello mérete (alapértelmezett: A3) hello adatok hello gép hello mérete alapján van, amelyet tooprocess és teljesítményének kívánt hello gép toobe (memória mérete és hello számítási magok száma) , adjon meg egy felhasználónevet és jelszót hello gép. Kattintson a jobb oldali toogo toohello következő konfigurálólapját hello nyíl.
    
     ![Munkaterület létrehozása][26]
-4. Válassza ki a **régió/AFFINITÁS csoport/virtuális hálózati** , amely tartalmazza a **TÁRFIÓK** , hogy azt tervezi, hogy a virtuális gép számára, és válassza ki, hogy a tárfiók. A lap alján található végpont hozzáadása a **VÉGPONTOK** mezőbe írja be a a végpont neve ("IPython" Itt). Dönthet úgy, mint bármilyen karakterlánc a **neve** a végpontot, és bármely egész számot 0 és 65536 között, amely **elérhető** , a **nyilvános PORT**. A **MAGÁNHÁLÓZATI PORT** kell **9999**. Meg kell **elkerülése érdekében** már tartozik nyilvános portokat használ az internetes szolgáltatások. <a href="http://www.chebucto.ns.ca/~rakerman/port-table.html" target="_blank">Az internetes szolgáltatások által használt portokat</a> van rendelve, és el kell kerülni portokat listáját tartalmazza.
+4. Jelölje be hello **régió/AFFINITÁS csoport/virtuális hálózati** hello tartalmazó **TÁRFIÓK** , hogy a virtuális gép toouse tervezi, és válassza ki a tárfiók. Végpont hozzáadása a hello hello alján **VÉGPONTOK** hello név hello végpont ("IPython" Itt) mezőjében. Dönthet úgy, mint hello bármilyen karakterlánc **neve** hello végpontot, és bármely egész számot 0 és 65536 között, amely **elérhető** , hello **nyilvános PORT**. Hello **MAGÁNHÁLÓZATI PORT** toobe rendelkezik **9999**. Meg kell **elkerülése érdekében** már tartozik nyilvános portokat használ az internetes szolgáltatások. <a href="http://www.chebucto.ns.ca/~rakerman/port-table.html" target="_blank">Az internetes szolgáltatások által használt portokat</a> van rendelve, és el kell kerülni portokat listáját tartalmazza.
    
     ![Munkaterület létrehozása][27]
-5. Kattintson a pipa jelre a virtuális gép elindítása a létesítésének folyamatát kell használnia.
+5. Kattintson a hello pipa toostart hello virtuális gépek létesítésének folyamatát kell használnia.
    
     ![Munkaterület létrehozása][28]
 
-A virtuális gép kiépítési folyamat befejezéséhez 15-25 percig is eltarthat. A virtuális gép létrehozása után a gép kell állapota **futtató**.
+Szükség lehet a 15-25 percig toocomplete hello virtuális gépek létesítésének folyamatát kell használnia. Hello virtuális gép létrehozása után a gép hello állapotának megjelenítése kell **futtató**.
 
 ![Munkaterület létrehozása][29]
 
-## <a name="add-endpoint"></a>2. lépés: A végpont hozzáadása IPython notebookok egy meglévő virtuális géphez
-Ha a virtuális gép útmutató 1. lépésben létrehozott, a végpont IPython jegyzetfüzet már hozzá lett adva, és figyelmen kívül hagyja ezt a lépést.
+## <a name="add-endpoint"></a>2. lépés: IPython notebookok tooan meglévő virtuális gép végpont hozzáadása
+Ha hello 1. lépés utasításai szerint létrehozott hello virtuális gépet, majd IPython jegyzetfüzet hello végpont már hozzá lett adva, és figyelmen kívül hagyja ezt a lépést.
 
-Ha a virtuális gép már létezik, és hozzá kell adnia egy végpontot, amely alatt a klasszikus Azure portálon való első bejelentkezéskor telepíteni fogja a 3. lépésben IPython jegyzetfüzet, válassza ki a virtuális gépet, és adja hozzá a végpont IPython Notebook kiszolgáló. Az alábbi ábra tartalmaz egy Képernyőkép a portálon, a végpont IPython jegyzetfüzet Windows virtuális gépként való hozzáadása után.
+Ha hello virtuális gép már létezik, és IPython Notebook, amely telepíteni fogja az alábbi a 3. lépés tooadd egy olyan végpont szükséges, első bejelentkezési tooAzure klasszikus portál, hello virtuális gépet kijelöli, és IPython Notebook kiszolgáló hello végpont hozzáadása. hello alábbi ábrán is látható tartalmaz egy képernyőfelvétel a hello portál hello végpont IPython jegyzetfüzet tooa Windows rendszerű virtuális gép hozzáadása után.
 
 ![Munkaterület létrehozása][17]
 
 ## <a name="run-commands"></a>3. lépés: IPython jegyzetfüzet és egyéb támogató eszközök telepítése
-A virtuális gép létrehozása után a távoli asztal protokoll (RDP) használatával jelentkezzen be a Windows virtuális gépre. Útmutatásért lásd: [jelentkezzen be a virtuális gép futó Windows Server hogyan](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Nyissa meg a **parancssor** (**nem a Powershell-parancsablakot**), egy **rendszergazda** , és futtassa a következő parancsot.
+Hello virtuális gép létrehozása után használja a távoli asztal protokoll (RDP) toolog toohello Windows virtuális gépen. Útmutatásért lásd: [hogyan tooLog a virtuális gép futó Windows Server tooa](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Nyissa meg hello **parancssor** (**nem hello Powershell-parancsablak**), egy **rendszergazda** és futtatási hello a következő parancsot.
 
     set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
 
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(%script%))"
 
-A telepítés befejeződése után a IPython Notebook kiszolgáló automatikusan a elindult-e a *C:\\felhasználók\\\<felhasználónév\>\\dokumentumok\\IPython notebookok* könyvtár.
+Ha hello telepítésének befejezése után IPython Notebook kiszolgáló a indul el automatikusan hello hello *C:\\felhasználók\\\<felhasználónév\>\\dokumentumok\\IPython Notebookok* könyvtár.
 
-Amikor a rendszer kéri, írja be a jelszót a IPython jegyzetfüzet és a számítógép rendszergazdai jelszót. Ez lehetővé teszi a IPython jegyzetfüzet szolgáltatásként futtathatja a számítógépen.
+Amikor a rendszer kéri, adja meg a jelszót hello IPython jegyzetfüzet és hello hello gép rendszergazdai jelszavát. Ez lehetővé teszi, hogy hello IPython Notebook toorun hello gépen szolgáltatásként.
 
 ## <a name="access"></a>4. lépés: Hozzáférési IPython notebookok egy webböngészőből
-A kiszolgálóhoz való hozzáféréshez IPython Notebook, nyisson meg egy webes böngésző és a bemeneti *https://&#60;virtual számítógép DNS-neve >: &#60; nyilvános port számát >* az URL-cím szövegmezőbe. Itt a *&#60; nyilvános portszám >* kell lennie a portszámot, amikor a IPython Notebook végpont hozzá lett adva.
+tooaccess hello IPython Notebook kiszolgálót, nyissa meg a webes böngésző és a bemeneti *https://&#60;virtual számítógép DNS-neve >: &#60; nyilvános portszám >* hello URL-cím szövegmezőbe. Itt hello *&#60; nyilvános portszám >* amikor hello IPython Notebook végpont hozzá lett adva megadott hello portszámot kell lennie.
 
-A *&#60; virtuális gép DNS-neve >* található a klasszikus Azure portálon. Kattintson a bejelentkezés után a klasszikus portálra **virtuális gépek**, jelölje ki a gépet hozott létre, és válassza ki **IRÁNYÍTÓPULT**, a DNS-neve jelenik meg az alábbiak szerint:
+Hello *&#60; virtuális gép DNS-neve >* hello a klasszikus Azure portálon található. Klasszikus portál toohello a bejelentkezés után kattintson **virtuális gépek**, jelölje be hello gép hozott létre, és válassza ki **IRÁNYÍTÓPULT**, hello DNS-neve jelenik meg az alábbiak szerint:
 
 ![Munkaterület létrehozása][19]
 
-Arról, hogy figyelmeztetést fog történni *van a webhely biztonsági tanúsítványával kapcsolatos problémára* (az Internet Explorer) vagy *a kapcsolat nincs titkos* (Chrome), ahogy az az alábbi ábrán. Kattintson a **továbblépés a webhelyre (nem ajánlott)** (az Internet Explorer) vagy **speciális** , majd  **folytatása a &#60;* DNS-név*> (nem biztonságos) ** (Chrome) a folytatáshoz. Ezután jelszót kér a felhasználótól a korábban megadott telepítőfájlja a IPython notebookok eléréséhez.
+Arról, hogy figyelmeztetést fog történni *van a webhely biztonsági tanúsítványával kapcsolatos problémára* (az Internet Explorer) vagy *a kapcsolat nincs titkos* (Chrome), ahogy az alábbi hello adatok. Kattintson a **Folytatás toothis webhelyre (nem javasolt)** (az Internet Explorer) vagy **speciális** , majd  **túl folytatható &#60;* DNS-név*> (nem biztonságos) ** (Chrome) toocontinue. Ezután jelszót kér a felhasználótól hello IPython notebookok hello megadott korábbi tooaccess meg.
 
 **Az Internet Explorer:**
 ![munkaterület létrehozása][20]
@@ -86,39 +86,39 @@ Arról, hogy figyelmeztetést fog történni *van a webhely biztonsági tanúsí
 **Chrome:**
 ![munkaterület létrehozása][21]
 
-Jelentkezzen be a könyvtár IPython Notebook után *DataScienceSamples* jelennek meg a böngészőben. Ez a könyvtár minta IPython notebookok Microsoft tudományos feladatok elvégzésével felhasználók által megosztott tartalmaz. A minta IPython notebookok a kivett [ **GitHub-tárházban** ](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/iPythonNotebooks) IPython Notebook server-beállítási folyamata során a virtuális gépekhez. A Microsoft kezeli, és ebben a tárházban gyakran frissül. Felhasználók előfordulhat, hogy keresse fel a GitHub-tárházban a közelmúltban frissített minta IPython notebookok eléréséhez.
+Toohello IPython Notebook, egy könyvtárat a bejelentkezés után *DataScienceSamples* fognak megjelenni az hello böngésző. Ez a könyvtár minta IPython notebookok Microsoft toohelp felhasználók viselkedési tudományos feladatok által megosztott tartalmaz. A minta IPython notebookok a kivett [ **GitHub-tárházban** ](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/iPythonNotebooks) toohello virtuális gépek hello IPython Notebook kiszolgáló telepítési folyamat során. A Microsoft kezeli, és ebben a tárházban gyakran frissül. Előfordulhat, hogy felkereshető hello GitHub tárház tooget hello nemrég frissített minta IPython notebookok.
 ![Munkaterület létrehozása][18]
 
-## <a name="upload"></a>5. lépés: Töltse fel a meglévő IPython jegyzetfüzet a helyi gép a IPython Notebook kiszolgálóra
-A felhasználók számára a helyi számítógépeken meglévő IPython jegyzetfüzet feltölteni a virtuális gépeken a IPython Notebook kiszolgálóra könnyű megoldást biztosítson a IPython notebookok. A IPython Notebook webböngészőben való bejelentkezés után kattintson a be a **directory** a IPython Notebook feltöltött. Töltse fel a helyi gépről IPython Notebook .ipynb fájlt, majd válasszon ki a **Fájlkezelőben**, és húzással azt a webböngésző IPython Notebook könyvtárához. Kattintson a **feltöltése** gombra, a .ipynb fájlt feltölteni a IPython Notebook kiszolgálóra. Más felhasználók is indíthatja a webböngésző használatával legyen.
+## <a name="upload"></a>5. lépés: Töltse fel az a helyi számítógép toohello IPython Notebook kiszolgáló egy meglévő IPython Notebook
+IPython notebookok könnyű megoldást biztosítson a felhasználók tooupload egy meglévő IPython jegyzetfüzetet a helyi gép toohello IPython Notebook server hello virtuális gépeken. Miután toohello IPython Notebook webböngészőben jelentkezik be, kattintson a hello **directory** adott IPython Notebook feltöltés hello. Ezt követően válassza a helyi gép hello hello egy IPython Notebook .ipynb fájl tooupload **Fájlkezelőben**, és húzással az toohello IPython Notebook directory hello böngészőben. Kattintson a hello **feltöltése** gomb, tooupload hello .ipynb fájl toohello IPython Notebook kiszolgáló. Más felhasználók is indíthatja a webböngésző használatával legyen.
 
 ![Munkaterület létrehozása][22]
 
 ![Munkaterület létrehozása][23]
 
 ## <a name="shutdown"></a>Állítsa le és vonja kiosztani a virtuális gép, ha nincsenek használatban
-Azure virtuális gépeken árú **csak a valóban használt funkciókért kell fizetnie, amennyit**. Győződjön meg arról, hogy meg vannak nem kiszámlázott amikor nem használja a virtuális gépet, hogy rendelkezik kell lennie a **leállítva (Deallocated)** állapot, ha nincsenek használatban.
+Azure virtuális gépeken árú **csak a valóban használt funkciókért kell fizetnie, amennyit**. nem éppen tooensure számlázva, amikor nem használja a virtuális gépet, rendelkezik toobe hello **leállítva (Deallocated)** állapot, ha nincsenek használatban.
 
 > [!NOTE]
-> Ha leállítja a virtuális gépet a virtuális Gépen belül (a Windows energiagazdálkodási lehetőségek használatával), a virtuális gép le van állítva, de lefoglalt marad. Nem továbbra is fizetnie kell ezért érdekében minden esetben állítsa le a virtuális gépek a [a klasszikus Azure portálon](http://manage.windowsazure.com/). A virtuális Gépet a PowerShell segítségével állítsa le meghívásával **ShutdownRoleOperation** a "PostShutdownAction" egyenlő "StoppedDeallocated".
+> Ha kikapcsolja a virtuális gép hello a virtuális gép (Windows energiagazdálkodási lehetőségek), hello belül hello virtuális gép le van állítva, de továbbra is lefoglalt. nem folytatja a számlázott, toobe tooensure minden esetben állítsa le a virtuális gépek hello [a klasszikus Azure portálon](http://manage.windowsazure.com/). Hello VM Powershell használatával állítsa le meghívásával **ShutdownRoleOperation** a "PostShutdownAction" egyenlő túl "StoppedDeallocated".
 > 
 > 
 
-Állítsa le, és a virtuális gép felszabadítása:
+tooshut le, és hello virtuális gép felszabadítása:
 
-1. Jelentkezzen be a [a klasszikus Azure portálon](http://manage.windowsazure.com/) a fiókjával.  
-2. Válassza ki **virtuális gépek** bal oldali navigációs sávján.
-3. A virtuális gépek listájának megtekintéséhez kattintson a virtuális gép nevére, majd nyissa meg a **IRÁNYÍTÓPULT** lap.
-4. Kattintson a lap alján **LEÁLLÍTÁSI**.
+1. Jelentkezzen be toohello [a klasszikus Azure portálon](http://manage.windowsazure.com/) a fiókjával.  
+2. Válassza ki **virtuális gépek** hello bal oldali navigációs sávon a.
+3. A virtuális gépek hello listájában kattintson a virtuális gépet, majd lépjen toohello hello név **IRÁNYÍTÓPULT** lap.
+4. Hello a hello lap alján, kattintson **LEÁLLÍTÁSI**.
 
 ![Virtuális gép leállítása][15]
 
-A virtuális gép lesz felszabadítása. lehetséges, de nem törlődnek. A klasszikus Azure portálon bármikor előfordulhat, hogy indítsa újra a virtuális gép.
+hello virtuális gép lesz felszabadítása. lehetséges, de nem törlődnek. A klasszikus Azure portálon hello bármikor előfordulhat, hogy indítsa újra a virtuális gép.
 
-## <a name="your-azure-vm-is-ready-to-use-whats-next"></a>Az Azure virtuális gép készen áll a használatra: következő?
-A virtuális gép már a adatok tudományos gyakorlatokban használatra kész. A virtuális gép is az Azure Machine Learning és az Team tudományos folyamat feltárása és feldolgozására, az adatok és más feladatok együtt IPython Notebook kiszolgálóként használatra kész.
+## <a name="your-azure-vm-is-ready-toouse-whats-next"></a>Az Azure virtuális gép készen áll a toouse: következő?
+A virtuális gép már készen áll a toouse az adatok tudományos gyakorlatokban. hello virtuális gép is az Azure Machine Learning és hello Team adatok tudományos folyamat egy IPython Notebook kiszolgálóként hello feltárása és az adatok feldolgozására és más feladatok együtt használatra kész.
 
-A következő lépéseket az adatok tudományos folyamatban leképezett a [tanulási elérési](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) , HDInsight, a folyamat az adatok áthelyezése, illetve mintát, hogy az adatokat az Azure Machine Learning tanulva előkészítésekor lépéseket is lehetnek.
+Team adatok tudományos folyamat leképezett hello hello lépések hello [tanulási elérési](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) , HDInsight, a folyamat az adatok áthelyezése, illetve az Azure Machine learning hello adatokból előkészítésekor minta ott lépéseket is lehetnek. Learning.
 
 [15]: ./media/machine-learning-data-science-setup-virtual-machine/vmshutdown.png
 [17]: ./media/machine-learning-data-science-setup-virtual-machine/add-endpoints-after-creation.png

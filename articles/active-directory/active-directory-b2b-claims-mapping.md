@@ -1,5 +1,5 @@
 ---
-title: "B2B együttműködés a felhasználói jogcímek hozzárendelése az Azure Active Directoryban |} Microsoft Docs"
+title: "aaaB2B együttműködés a felhasználói jogcímek hozzárendelése az Azure Active Directoryban |} Microsoft Docs"
 description: "a jogcímek referencia az Azure Active Directory B2B együttműködés leképezése"
 services: active-directory
 documentationcenter: 
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 5f8559450b24effd40a38879aeae3a8dd03944a3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e26085e91a6004b2f11286ae9c1df133bd47341
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="b2b-collaboration-user-claims-mapping-in-azure-active-directory"></a>B2B együttműködés a felhasználói jogcímek hozzárendelése az Azure Active Directoryban
 
-Az Azure Active Directory (Azure AD) támogatja a SAML-jogkivonat B2B együttműködés felhasználók számára kiállított jogcímek testreszabása. Amikor egy felhasználó hitelesíti magát az alkalmazást, az Azure AD bocsát ki egy SAML-jogkivonat a az alkalmazás, amely tartalmazza az adatokat (vagy jogcímeket), amely egyedileg azonosítja a felhasználóról. Alapértelmezés szerint ez tartalmazza a felhasználó felhasználónevét, e-mail címét, Utónév és Vezetéknév. Megtekintheti vagy szerkesztheti a jogcímek küldése az alkalmazásnak az attribútumok lapon a SAML-jogkivonat.
+Az Azure Active Directory (Azure AD) támogatja az SAML-jogkivonat hello B2B együttműködés felhasználók számára kiállított hello jogcímek testreszabása. Amikor a felhasználók hitelesítése toohello alkalmazás, az Azure AD kibocsát egy SAML token toohello alkalmazást, amely tartalmazza az adatokat (vagy a jogcímek), amely egyedileg azonosítja hello felhasználóról. Alapértelmezés szerint ez magában foglalja a hello felhasználói felhasználó nevét, e-mail címét, Utónév és Vezetéknév. Megtekintheti vagy hello hello attribútumok lap SAML-jogkivonat toohello alkalmazást küldi hello jogcímek szerkesztése.
 
-Előfordulhat, hogy miért szerkesztése a SAML-jogkivonat kiadott jogcímeket kell két lehetséges oka van.
+Ennek oka két miért szükség lehet a hello SAML-jogkivonat kiadott tooedit hello jogcímeket.
 
-1. Az alkalmazás írt eltérő szabályzatkészletet jogcím URI-azonosítók, vagy a jogcímértékek
+1. hello alkalmazás írása egy másik jogcím URI-azonosítók beállítása vagy jogcímértékek toorequire
 
-2. Az alkalmazás által a NameIdentifier jogcímet, mint a felhasználó egyszerű felhasználóneve, az Azure Active Directoryban tárolja.
+2. Az alkalmazás által igényelt hello NameIdentifier jogcím toobe nem hello egyszerű felhasználónév az Azure Active Directoryban tárolja.
 
   ![nézet jogcímek SAML-jogkivonat](media/active-directory-b2b-claims-mapping/view-claims-in-saml-token.png)
 
-Tájékoztatást adhat hozzá és szerkeszthet a jogcímeket, tekintse meg a jogcímek testreszabása, ez a cikk [előre integrált alkalmazások az Azure Active Directoryban a SAML-jogkivonat kiállított jogcímek testreszabása](develop/active-directory-saml-claims-customization.md). A B2B együttműködés a felhasználók, NameID és UPN kereszt-bérlő leképezési biztonsági okokból nem.
+Hogyan tooadd és Szerkesztés jogcímek információkért tekintse meg a jogcímek testreszabása, ez a cikk [hello SAML-jogkivonat előzetesen beépített alkalmazások az Azure Active Directoryban a kiállított jogcímek testreszabása](develop/active-directory-saml-claims-customization.md). A B2B együttműködés a felhasználók, NameID és UPN kereszt-bérlő leképezési biztonsági okokból nem.
 
 
 ## <a name="next-steps"></a>Következő lépések
@@ -42,7 +42,7 @@ Ismerje meg az Azure AD B2B együttműködés további cikkeit:
 
 * [Mi az az Azure AD B2B együttműködés?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B együttműködés felhasználó tulajdonságai](active-directory-b2b-user-properties.md)
-* [Egy szerepkör B2B együttműködés felhasználók hozzáadása](active-directory-b2b-add-guest-to-role.md)
+* [B2B együttműködés felhasználói tooa szerepkör hozzáadása](active-directory-b2b-add-guest-to-role.md)
 * [B2bB együttműködés meghívókat delegálása](active-directory-b2b-delegate-invitations.md)
 * [Dinamikus csoportok és a B2B együttműködés](active-directory-b2b-dynamic-groups.md)
 * [B2B együttműködés kód és a PowerShell-példák](active-directory-b2b-code-samples.md)

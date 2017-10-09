@@ -1,6 +1,6 @@
 ---
-title: "Statikus HTML-webalkalmazás létrehozása az Azure-ban | Microsoft Docs"
-description: "Egy statikus HTML-webalkalmazás üzembe helyezésével megtudhatja, hogy miként futtathat webalkalmazásokat az Azure App Service-ben."
+title: "a statikus HTML aaaCreate webalkalmazás az Azure-ban |} Microsoft Docs"
+description: "Ismerje meg, hogyan toorun webalkalmazásokat az Azure App Service egy statikus HTML üzembe helyezésével mintaalkalmazás."
 services: app-service\web
 documentationcenter: 
 author: rick-anderson
@@ -15,48 +15,48 @@ ms.topic: quickstart
 ms.date: 05/26/2017
 ms.author: riande
 ms.custom: mvc
-ms.openlocfilehash: 42af5b08b8d2ff0c75fd73dcfa61c861647fd2c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: efd8c8189a3aa1ac35602b688eeb31bff6f5a373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-static-html-web-app-in-azure"></a>Statikus HTML-webalkalmazás létrehozása az Azure-ban
 
-Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  Ez a gyorsútmutató egy alapszintű HTML+CSS hely Azure Web Apps szolgáltatásban történő üzembe helyezésén vezeti végig. Az [Azure CLI-vel](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) létrehozhatja a webalkalmazást, a Git szoftver használatával pedig üzembe helyezheti a HTML mintatartalmat a webalkalmazásban.
+Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  A gyors üzembe helyezés bemutatja, hogyan toodeploy egy egyszerű HTML + CSS hely tooAzure webalkalmazások. Hello segítségével hello-webalkalmazás létrehozása [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), és a Git toodeploy minta HTML tartalom toohello webes alkalmazás használatát.
 
 ![Mintaalkalmazás kezdőlapja](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-Az alábbi lépéseket Mac, Windows vagy Linux rendszert futtató gépen is követheti. Az előfeltételek telepítése után a lépések végrehajtása nagyjából öt percet vesz igénybe.
+A lépésekkel hello Mac, a Windows vagy Linux rendszerű gépek használatának alatt. Hello előfeltételek telepítése után tart, körülbelül öt perc toocomplete hello lépéseket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A gyorsútmutató elvégzéséhez:
+toocomplete a gyors üzembe helyezés:
 
 - [A Git telepítése](https://git-scm.com/)
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Ha a CLI helyi telepítését és használatát választja, akkor ehhez a témakörhöz az Azure CLI 2.0-s vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
-## <a name="download-the-sample"></a>A minta letöltése
+## <a name="download-hello-sample"></a>Hello minta letöltése
 
-Egy terminálablakban futtassa a következő parancsot a mintaalkalmazás-tárház helyi számítógépre történő klónozásához.
+Egy terminálablakot futtassa a következő parancs tooclone hello sample app tárház tooyour helyi számítógép hello.
 
 ```bash
 git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-Ezt a terminálablakot használhatja az összes parancs gyorsútmutatóban történő futtatásához.
+Használható a terminálablakot toorun minden hello parancsot a gyors üzembe helyezés.
 
-## <a name="view-the-html"></a>HTML megjelenítése
+## <a name="view-hello-html"></a>Hello HTML megtekintése
 
-Váltson a minta HTML-t tartalmazó könyvtárra. Nyissa meg a *index.html* fájlt a böngészőben.
+Keresse meg a HTML hello mintát tartalmazó toohello könyvtár. Nyissa meg hello *index.html* fájl a böngészőben.
 
 ![Mintaalkalmazás kezdőlapja](media/app-service-web-get-started-html/hello-world-in-browser.png)
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -72,11 +72,11 @@ Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 13, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (11/11), done.
 Writing objects: 100% (13/13), 2.07 KiB | 0 bytes/s, done.
 Total 13 (delta 2), reused 0 (delta 0)
@@ -96,52 +96,52 @@ remote: Copying file: 'README.md'
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>Az alkalmazás megkeresése tallózással
+## <a name="browse-toohello-app"></a>Keresse meg a toohello alkalmazás
 
-Nyissa meg böngészőben az Azure webalkalmazás URL-címét:
+Nyissa meg böngészőben, toohello Azure webes alkalmazás URL-címe:
 
 ```
 http://<app_name>.azurewebsites.net
 ```
 
-Az oldal Azure App Service webalkalmazásként fut.
+az Azure App Service webalkalmazás futtatásához használt hello lap.
 
 ![Mintaalkalmazás kezdőlapja](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-**Gratulálunk!** Elvégezte az első HTML-webapp üzembe helyezését az App Service-ben.
+**Gratulálunk!** Az első HTML-alkalmazás tooApp szolgáltatás telepítése után.
 
-## <a name="update-and-redeploy-the-app"></a>Az alkalmazás frissítése és ismételt üzembe helyezése
+## <a name="update-and-redeploy-hello-app"></a>Frissítse és telepítse újra hello alkalmazást
 
-Egy szövegszerkesztőben nyissa meg az *index.html* fájlt, és hajtson végre módosítást a jelölőnyelvi kódon. Például, módosítsa az „Azure App Service – statikus HTML-mintahely” nevű H1 fejlécet egyszerűen „Azure App Service”-re.
+Nyissa meg hello *index.html* fájlt egy szövegszerkesztőben, és tegye a módosítás toohello jelölés során. Hello H1 címsor módosítsa az "Azure App Service – minta statikus HTML-webhely" toojust például "az Azure App Service".
 
-Mentse a módosításokat a Gitben, majd továbbítsa a kód módosításait az Azure-ba.
+A Git a változtatások véglegesítése a határidő, és majd leküldéses hello kód módosítások tooAzure.
 
 ```bash
 git commit -am "updated HTML"
 git push azure master
 ```
 
-A telepítés befejezése után frissítse a lapot a böngészőben, hogy lássa a változásokat.
+Központi telepítés befejezése után frissítse a böngésző toosee hello módosításokat.
 
 ![Frissített mintaalkalmazás kezdőlapja](media/app-service-web-get-started-html/hello-azure-in-browser-az.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>Az új Azure-webapp kezelése
 
-A létrehozott webalkalmazás felügyeletéhez ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>.
+Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toomanage hello létrehozott webalkalmazás.
 
-A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webalkalmazás nevére.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevét.
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-get-started-html/portal1.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-get-started-html/portal1.png)
 
 Megtekintheti a webalkalmazás Áttekintés oldalát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés. 
 
 ![Az App Service panel az Azure Portalon](./media/app-service-web-get-started-html/portal2.png)
 
-A bal oldali menü az alkalmazás konfigurálásához biztosít különböző oldalakat. 
+hello bal oldali menü különböző oldalain biztosít az alkalmazás konfigurálását. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

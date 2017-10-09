@@ -1,6 +1,6 @@
 ---
-title: "Az Apache Spark on machine learning-alkalmazások Azure hdinsight létrehozása |} Microsoft Docs"
-description: "Lépésenkénti útmutató Apache Spark gépi tanulás alkalmazás elkészítése a HDInsight Spark-fürtök Jupyter notebook használatával"
+title: "aaaBuild Apache Spark gépi tanulási alkalmazások az Azure HDInsight |} Microsoft Docs"
+description: "Lépésenként hogyan toobuild Apache Spark gépi tanulási HDInsight Spark alkalmazás fürtök Jupyter notebook használatával"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,41 +16,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: nitinme
-ms.openlocfilehash: 158ade4612104020e0231794e7123ea5cad6c459
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 332bd89876f7ebf178f7573d6018d064edfe9a8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-apache-spark-machine-learning-applications-on-azure-hdinsight"></a>Az Apache Spark on machine learning-alkalmazások Azure hdinsight létrehozása
 
-Ismerje meg, hogyan hozhat létre egy Apache Spark machine learning, hdinsight Spark-fürt használó alkalmazások. Ez a cikk bemutatja, hogyan használható a Jupyter notebook érhető el a fürt és az alkalmazás teszteléséhez. Az alkalmazás alapértelmezés szerint minden fürtön található HVAC.csv mintaadatokat használja.
+Ismerje meg, hogyan toobuild egy Spark használó Apache Spark machine learning alkalmazások fürt a hdinsight platformon. Ez a cikk bemutatja, hogyan toouse hello Jupyter notebook hello fürt toobuild érhető el, és az alkalmazás teszteléséhez. hello alkalmazás hello HVAC.csv mintaadatok elérhető alapértelmezés szerint minden fürt használja.
 
 **Előfeltételek:**
 
-Az alábbiakkal kell rendelkeznie:
+Hello következő kell rendelkeznie:
 
 * A HDInsight az Apache Spark-fürt. Útmutatásért lásd: [létrehozása az Apache Spark on Azure hdinsight clusters](hdinsight-apache-spark-jupyter-spark-sql.md). 
 
-## <a name="data"></a>Az adatkészlet ismertetése
-Először az alkalmazás összeállítása, mielőtt ossza meg velünk, ismerje meg, amelynek azt létrehozása az alkalmazás és az elemzés végezzük el az adatokat az adatok szerkezete. 
+## <a name="data"></a>Hello adatkészlet ismertetése
+Előtt először hello alkalmazás felépítése, ossza meg velünk ismerje meg, amelyhez azt létre hello és hello típusú műveleteket végezzük el elemzést hello adatokon hello adatok hello szerkezete. 
 
-Ebben a cikkben a mintát használjuk **HVAC.csv** adatfájlt, amely a HDInsight-fürthöz társított Azure Storage-fiók érhető el. A tárfiókon belül a fájl jelenleg **\HdiSamples\HdiSamples\SensorSampleData\hvac**. Töltse le és nyissa meg a CSV-fájl lekérése az adatok pillanatképe.  
+Ebben a cikkben hello mintát használjuk **HVAC.csv** adatfájl elérhető hello hello HDInsight-fürthöz társított Azure Storage-fiók. Hello tárfiókot, belül hello fájl jelenleg **\HdiSamples\HdiSamples\SensorSampleData\hvac**. Töltse le és nyissa meg a hello CSV-fájl tooget hello adatok pillanatképe.  
 
 ![Spark machine learning például használt adatok pillanatképe](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-understand-data.png "Spark machine learning például használt adatok pillanatképe")
 
-Az adatok a cél hőmérséklet és a tényleges hőmérséklet HVAC-rendszerek telepítése épület jeleníti meg. Tételezzük fel, hogy a **rendszer** oszlop felel meg a rendszer Azonosítót és a **SystemAge** oszlop felel meg a HVAC rendszer korábban már az épület helyén évek száma.
+hello adatok hello cél hőmérséklet és a tényleges hőmérséklet hello HVAC-rendszerek telepítése épület jeleníti meg. Tegyük fel hello **rendszer** oszlop felel hello Rendszerazonosító és hello **SystemAge** oszlop felel hello számú éven belülre esik hello HVAC rendszer korábban már hello épület helyén.
 
-Ezek az adatok előre jelezni, hogy egy épületet hotter vagy lesz colder alapján a cél hőmérséklet, a rendszer azonosítója és a rendszer élettartamát a használjuk.
+Az adatok toopredict e épület lesz hotter vagy colder alapján hello cél hőmérséklet, a rendszer Azonosítót és a rendszer kora használjuk.
 
 ## <a name="app"></a>Spark machine learning alkalmazás Spark MLlib
-Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a dokumentum besorolását használjuk. A folyamat azt a dokumentum felosztása szavakat, a szavakat átalakítása egy numerikus szolgáltatás vektoros és végül a egy előrejelzési modell szolgáltatás vektorok és címkék létrehozása. A következő lépésekkel hozhat létre az alkalmazást.
+Ez az alkalmazás egy Spark ML adatcsatorna tooperform dokumentum besorolást használjuk. Hello sorban azt hello dokumentum felosztása szavakat, hello szavak átalakítása egy numerikus szolgáltatás vektor, és végül a egy előrejelzési modell hello szolgáltatás vektorok és címkék létrehozása. Hajtsa végre a következő lépéseket toocreate hello alkalmazás hello.
 
-1. Az [Azure portál](https://portal.azure.com/) kezdőpultján kattintson a Spark-fürthöz tartozó csempére (ha rögzítette azt a kezdőpulton). A fürtöt a következő helyről is megkeresheti: **Browse All (Összes tallózása)** > **HDInsight Clusters** (HDInsight-fürtök).   
-2. A Spark-fürt panelén kattintson a **Fürt irányítópultja Dashboard** lehetőségre, majd a **Jupyter Notebook** elemre. Ha a rendszer felkéri rá, adja meg a fürthöz tartozó rendszergazdai hitelesítő adatokat.
+1. A hello [Azure Portal](https://portal.azure.com/), hello kezdőpulton, kattintson a Spark-fürt hello csempére (ha toohello kezdőpulton rögzítette azt). Tooyour fürt alapján is megtalálhatja **összes tallózása** > **a HDInsight-fürtök**.   
+2. Hello Spark-fürt panelén kattintson **fürt irányítópult**, és kattintson a **Jupyter Notebook**. Ha a rendszer kéri, adja meg hello fürt hello rendszergazdai hitelesítő adataival.
    
    > [!NOTE]
-   > A fürthöz tartozó Jupyter notebookot az alábbi URL-cím böngészőben történő megnyitásával is elérheti. Cserélje le a **CLUSTERNAME** elemet a fürt nevére:
+   > A fürt URL-címet a böngészőben a következő megnyitásakor hello által is hello Jupyter Notebook lehet elérni. Cserélje le **CLUSTERNAME** hello néven a fürt:
    > 
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    > 
@@ -58,10 +58,10 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
 3. Hozzon létre új notebookot. Kattintson a **New** (Új), majd a **PySpark** elemre.
    
     ![Spark machine learning például Jupyter notebook létrehozása](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-create-notebook.png "Spark machine learning például Jupyter notebook létrehozása")
-4. Az új notebook létrejött, és Untitled.pynb néven nyílt meg. A felső részen kattintson a notebook nevére, és adjon meg egy könnyen megjegyezhető nevet.
+4. Új notebook létrejött, és Untitled.pynb hello nevű. Hello notebook neve hello tetején kattintson, és adjon meg egy rövid nevet.
    
     ![Adja meg a notebook neve Spark machine learning például](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-notebook-name.png "notebook nevezze el a Spark machine learning – példa")
-5. Mivel a notebook PySpark kernel használatával jött létre, explicit módon semmilyen tartalmat nem kell létrehozni. Az első kódcella futtatásakor a Spark- és Hive-környezetek automatikusan létrejönnek. Ehhez a forgatókönyvhöz szükséges típusok importálása megkezdése. Illessze be a következő kódrészletet a cella üres, és nyomja le az **SHIFT + ENTER**. 
+5. Mivel a notebook PySpark kernelt hello hozott létre, nem kell toocreate semmilyen tartalmat explicit módon. hello Spark és Hive-környezetek automatikusan létrehozza az Ön hello első kódcella futtatásakor. Ehhez a forgatókönyvhöz szükséges típusok hello importálásával megkezdése. Illessze be az alábbi részlet egy üres cellába hello, és nyomja le az **SHIFT + ENTER**. 
    
         from pyspark.ml import Pipeline
         from pyspark.ml.classification import LogisticRegression
@@ -75,13 +75,13 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
         from pyspark.mllib.classification import LogisticRegressionWithSGD
         from pyspark.mllib.regression import LabeledPoint
         from numpy import array
-6. Meg kell most betölteni az adatokat (hvac.csv), elemzéséhez és a modell betanításához segítségével. Ehhez adja meg egy függvényt, amely ellenőrzi, hogy a tényleges hőmérséklet az épület nagyobb, mint a célként megadott hőmérsékletet. A tényleges hőmérséklet nagyobb, az épület akkor gyakran használt adatok, a értékkel megjelölt **1.0**. A tényleges hőmérséklet kevesebb, az épület akkor cold, a értékkel megjelölt **0,0**. 
+6. Ki kell betölteni hello adatait (hvac.csv), elemzéséhez, és újra tootrain hello modellt használja azt. Ehhez adja meg egy függvényt, amely ellenőrzi, hogy hello tényleges hőmérséklet hello épület hello cél hőmérséklet-nál nagyobb. Hello tényleges hőmérséklet nagyobb, hello épület akkor forró hello értékkel megjelölt **1.0**. Hello tényleges hőmérséklet kisebb, hello épület akkor cold, hello értékkel megjelölt **0,0**. 
    
-    Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+    A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
 
-        # List the structure of data for better understanding. Because the data will be
-        # loaded as an array, this structure makes it easy to understand what each element
-        # in the array corresponds to
+        # List hello structure of data for better understanding. Because hello data will be
+        # loaded as an array, this structure makes it easy toounderstand what each element
+        # in hello array corresponds to
 
         # 0 Date
         # 1 Time
@@ -93,7 +93,7 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
 
         LabeledDocument = Row("BuildingID", "SystemInfo", "label")
 
-        # Define a function that parses the raw CSV file and returns an object of type LabeledDocument
+        # Define a function that parses hello raw CSV file and returns an object of type LabeledDocument
 
         def parseDocument(line):
             values = [str(x) for x in line.split(',')]
@@ -106,29 +106,29 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
 
             return LabeledDocument((values[6]), textValue, hot)
 
-        # Load the raw HVAC.csv file, parse it using the function
+        # Load hello raw HVAC.csv file, parse it using hello function
         data = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
         documents = data.filter(lambda s: "Date" not in s).map(parseDocument)
         training = documents.toDF()
 
 
-1. Konfigurálja a Spark machine learning-feldolgozási folyamat három szakaszból áll: jogkivonatokat létrehozó hashingTF és lr. Mi az, hogy egy folyamat és annak működéséről lásd: További információ <a href="http://spark.apache.org/docs/latest/ml-guide.html#how-it-works" target="_blank">Spark machine learning adatcsatorna</a>.
+1. Konfigurálja a hello Spark gépi tanulás feldolgozási folyamat három szakaszból áll: jogkivonatokat létrehozó hashingTF és lr. Mi az, hogy egy folyamat és annak működéséről lásd: További információ <a href="http://spark.apache.org/docs/latest/ml-guide.html#how-it-works" target="_blank">Spark machine learning adatcsatorna</a>.
    
-    Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+    A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
    
         tokenizer = Tokenizer(inputCol="SystemInfo", outputCol="words")
         hashingTF = HashingTF(inputCol=tokenizer.getOutputCol(), outputCol="features")
         lr = LogisticRegression(maxIter=10, regParam=0.01)
         pipeline = Pipeline(stages=[tokenizer, hashingTF, lr])
-2. A folyamat a képzés dokumentumhoz oszlopnál. Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+2. Hello adatcsatorna toohello képzési dokumentum oszlopnál. A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
    
         model = pipeline.fit(training)
-3. Ellenőrizze a képzés dokumentum ellenőrzőpont az előrehaladást, az alkalmazással. Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+3. Ellenőrizze a hello képzési dokumentum toocheckpoint hello alkalmazással az előrehaladást. A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
    
         training.show()
    
-    Adja meg a kimenet az alábbihoz hasonló:
+    Hello kimeneti hasonló toohello következő adja meg:
    
         +----------+----------+-----+
         |BuildingID|SystemInfo|label|
@@ -155,15 +155,15 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
         |         7|      17 5|  0.0|
         +----------+----------+-----+
 
-    Lépjen vissza, és ellenőrizze a kimeneti szemben a nyers CSV-fájlt. Az első sor a CSV-fájl például ezek az adatok rendelkezik:
+    Lépjen vissza, és ellenőrizze a hello kimeneti hello nyers CSV-fájl alapján. Hello első sor hello CSV-fájl például ezek az adatok rendelkezik:
 
     ![Kimeneti Spark machine learning például pillanatkép adatai](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/spark-machine-learning-output-data.png "kimeneti adatok pillanatképének elkészítéséhez, Spark machine learning például")
 
-    Figyelje meg, hogyan tényleges hőmérséklete kisebb, mint a cél hőmérséklet javasolhat az épület cold. Ezért a következő kimeneti, képzés **címke** az első sorban van **0,0**, ami azt jelenti, hogy az épület nincs gyakran használt adatok.
+    Figyelje meg, hogyan hello tényleges hőmérséklete kisebb, mint hello cél hőmérséklet hello épület javasolhat cold. Ezért hello képzési kimenet, a következő hello **címke** a hello első sor a **0,0**, ami azt jelenti, hogy hello épület nincs gyakran használt adatok.
 
-1. Készítse el adatok a betanított modell tanítását futtatásához. Ehhez az szükséges, azt szeretné továbbítani egy rendszer-Azonosítót és a rendszer kora (jelölése **SystemInfo** képzési kimenet), és a modell volna előre jelezni, hogy az adott rendszer-azonosító és a rendszer kor az épület hotter lenne (1.0 jelölik) vagy (kimaradásával hűvösebben 0,0).
+1. Készítsen elő egy adatkészlet toorun hello betanított modell ellen. toodo Igen, azt volna adja át a rendszer Azonosítót és a rendszer kora (jelölése **SystemInfo** hello képzési kimenet), és hello modell előrejelzése volna e hello felépítése az adott rendszer azonosítója és a rendszer kora kellene lennie hotter (kimaradásával 1.0) vagy a hűtőre () helyén 0,0).
    
-   Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+   A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
    
        # SystemInfo here is a combination of system ID followed by system age
        Document = Row("id", "SystemInfo")
@@ -174,14 +174,14 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
                      (5L, "17 10"),
                      (6L, "7 22")]) \
            .map(lambda x: Document(*x)).toDF() 
-2. Végezetül előrejelzéseket készítsen a a tesztadatokat. Illessze be az alábbi részlet egy cella üres, és nyomja le az **SHIFT + ENTER**.
+2. Végezetül előrejelzéseket készítsen a hello tesztadatokat. A következő kódrészletet egy cella üres, és nyomja meg a Beillesztés hello **SHIFT + ENTER**.
    
         # Make predictions on test documents and print columns of interest
         prediction = model.transform(test)
         selected = prediction.select("SystemInfo", "prediction", "probability")
         for row in selected.collect():
             print row
-3. A következőhöz hasonló kimenetnek kell megjelennie:
+3. Egy kimeneti hasonló toohello következő kell megjelennie:
    
        Row(SystemInfo=u'20 25', prediction=1.0, probability=DenseVector([0.4999, 0.5001]))
        Row(SystemInfo=u'4 15', prediction=0.0, probability=DenseVector([0.5016, 0.4984]))
@@ -190,18 +190,18 @@ Ebben az alkalmazásban a Spark ML folyamat használatával hajtja végre a doku
        Row(SystemInfo=u'17 10', prediction=1.0, probability=DenseVector([0.4925, 0.5075]))
        Row(SystemInfo=u'7 22', prediction=0.0, probability=DenseVector([0.5015, 0.4985]))
    
-   Az első sorból a előrejelzését, láthatja, hogy a 20-as Azonosítójú és 25 évre rendszer korát HVAC rendszer esetében az épület lesz működés közbeni (**előrejelzés = 1.0**). Az előrejelzés 0,0 DenseVector (0.49999) első értéke megfelel-e, és a második érték (0.5001) 1.0 előrejelzését felel meg. A kimenetben, annak ellenére, hogy a második értéke csak kis mértékben nagyobb, a modell bemutatja **előrejelzés = 1.0**.
-4. Az alkalmazás futtatását követően állítsa le a notebookot az erőforrások felszabadítása érdekében. Ehhez a notebook **File** (Fájl) menüjében kattintson a **Close and Halt** (Bezárás és leállítás) elemre. Ezzel leállítja és bezárja a notebookot.
+   Hello első sorában hello előrejelzés, láthatja, hogy a 20-as Azonosítójú és 25 évre rendszer korát HVAC rendszer esetében hello épület lesz működés közbeni (**előrejelzés = 1.0**). hello DenseVector (0.49999) első értéke megfelel-e toohello előrejelzés 0,0-nál, és hello szükséges második értéke (0.5001) toohello előrejelzés 1.0 felel meg. A hello kimeneti, annak ellenére, hogy hello második értéke csak kis mértékben magasabb hello modell mutatja **előrejelzés = 1.0**.
+4. Miután befejezte a hello alkalmazást futtat, akkor leállítási hello notebook toorelease hello erőforrásokat. toodo Igen, a hello **fájl** hello notebook menüjében kattintson **zárja be és Halt**. Ezzel leállítja és Bezárás hello notebookot.
 
 ## <a name="anaconda"></a>Használjon Anaconda scikit – ismerje meg a könyvtár a Spark gépi tanulás
-Az Apache Spark on hdinsight fürtök Anaconda-könyvtárakkal rendelkeznek. Ez magában foglalja a **scikit-további** könyvtár a machine Learning szolgáltatáshoz. A könyvtár is tartalmaz, amelyek közvetlenül a Jupyter notebook minta alkalmazásokat hozhatnak létre különböző adatkészletek. A scikit használatát bemutató példák-könyvtár ismerje meg, lásd: [http://scikit-learn.org/stable/auto_examples/index.html](http://scikit-learn.org/stable/auto_examples/index.html).
+Az Apache Spark on hdinsight fürtök Anaconda-könyvtárakkal rendelkeznek. Ebbe beleértendő az is hello **scikit-további** könyvtár a gépi tanulás. hello könyvtár is használható toobuild alkalmazásokat közvetlenül a Jupyter notebook különböző adatkészletek. A példák segítségével hello scikit-könyvtár ismerje meg, lásd: [http://scikit-learn.org/stable/auto_examples/index.html](http://scikit-learn.org/stable/auto_examples/index.html).
 
 ## <a name="seealso"></a>Lásd még:
 * [Overview: Apache Spark on Azure HDInsight (Áttekintés: Apache Spark on Azure HDInsight)](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>Forgatókönyvek
 * [Spark és BI: Interaktív adatelemzés végrehajtása a Spark on HDInsight használatával, BI-eszközökkel](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark és Machine Learning: A Spark on HDInsight használata az élelmiszervizsgálati eredmények előrejelzésére](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark és Machine Learning: használja a Spark on HDInsight toopredict élelmiszervizsgálati eredmények](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark Streaming: A Spark on HDInsight használata valós idejű streamelési alkalmazások összeállítására](hdinsight-apache-spark-eventhub-streaming.md)
 * [A webhelynapló elemzése a Spark on HDInsight használatával](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -210,15 +210,15 @@ Az Apache Spark on hdinsight fürtök Anaconda-könyvtárakkal rendelkeznek. Ez 
 * [Feladatok távoli futtatása Spark-fürtön a Livy használatával](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Eszközök és bővítmények
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark Scala-alkalmazások létrehozásához és elküldéséhez](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Az IntelliJ IDEA HDInsight-eszközei beépülő moduljának használata Spark-alkalmazások távoli hibaelhárításához](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Toocreate IntelliJ IDEA HDInsight-eszközei beépülő használja, és küldje el a Spark Scala applicatons](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [IntelliJ IDEA toodebug Spark-alkalmazások HDInsight-eszközei beépülő távolról használni](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Zeppelin notebookok használata Spark-fürttel HDInsighton](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Jupyter notebookokhoz elérhető kernelek a HDInsight Spark-fürtjében](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Külső csomagok használata Jupyter notebookokkal](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [A Jupyter telepítése a számítógépre, majd csatlakozás egy HDInsight Spark-fürthöz](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Jupyter telepítse a számítógépre, és csatlakozzon a HDInsight Spark-fürt tooan](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Erőforrások kezelése
-* [Apache Spark-fürt erőforrásainak kezelése az Azure HDInsightban](hdinsight-apache-spark-resource-manager.md)
+* [Az Azure HDInsight hello Apache Spark-fürt erőforrásainak kezelése](hdinsight-apache-spark-resource-manager.md)
 * [Apache Spark-fürtön futó feladatok nyomon követése és hibakeresése a HDInsightban](hdinsight-apache-spark-job-debugging.md)
 
 [hdinsight-versions]: hdinsight-component-versioning.md

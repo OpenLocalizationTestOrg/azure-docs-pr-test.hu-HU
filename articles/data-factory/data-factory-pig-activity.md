@@ -1,6 +1,6 @@
 ---
-title: "A Pig-tevékenység használata az Azure Data Factory adatok átalakítása |} Microsoft Docs"
-description: "Ismerje meg, hogyan használhatja a Pig-tevékenység egy Azure data factoryban a-igény szerint vagy a saját HDInsight-fürtök Pig-parancsfájlok futtatásra."
+title: "a Pig-tevékenység használata az Azure Data Factory aaaTransform adatok |} Microsoft Docs"
+description: "Ismerje meg, hogyan használható egy az Azure data factory toorun Pig-parancsfájlok a Pig tevékenység hello egy a-igény szerint vagy a saját HDInsight-fürt."
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: 182a637ab98955129d269e2afc3ba581aa1a7c03
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ad096c4a9e8603b09f574f6d129b4339a75d381
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-using-pig-activity-in-azure-data-factory"></a>A Pig-tevékenység használata az Azure Data Factory adatok átalakítása
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,10 +33,10 @@ ms.lasthandoff: 07/11/2017
 > * [Data Lake Analytics U-SQL-tevékenység](data-factory-usql-activity.md)
 > * [.NET egyéni tevékenység](data-factory-use-custom-activities.md)
 
-A HDInsight a Pig-tevékenység egy adat-előállítóban [csővezeték](data-factory-create-pipelines.md) Pig lekérdezések végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény szerinti](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, a [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és a támogatott átalakítása tevékenységek általános áttekintést.
+HDInsight Pig tevékenység egy adat-előállítóban hello [csővezeték](data-factory-create-pipelines.md) Pig lekérdezések végrehajtása a [saját](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy [igény](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux-alapú HDInsight-fürthöz. Ez a cikk épít, hello [adatok átalakítása tevékenységek](data-factory-data-transformation-activities.md) cikk, amelynek során az adatok átalakítása és hello támogatott átalakítása tevékenységek általános áttekintést.
 
 > [!NOTE] 
-> Ha most ismerkedik az Azure Data Factory, olvassa végig [Bevezetés az Azure Data Factory](data-factory-introduction.md) hajtsa végre az oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
+> Ha új tooAzure adat-előállítót, olvassa végig [Data Factory bemutatása tooAzure](data-factory-introduction.md) és hello oktatóanyag: [felépítheti első folyamatát adatok](data-factory-build-your-first-pipeline.md) a cikk elolvasása előtt. 
 
 ## <a name="syntax"></a>Szintaxis
 
@@ -79,20 +79,20 @@ A HDInsight a Pig-tevékenység egy adat-előállítóban [csővezeték](data-fa
 ## <a name="syntax-details"></a>Szintaxis részletei
 | Tulajdonság | Leírás | Szükséges |
 | --- | --- | --- |
-| név |A tevékenység neve. |Igen |
-| Leírás |Mire használható a tevékenységet leíró szöveg |Nem |
+| név |Hello tevékenység neve. |Igen |
+| leírás |Milyen hello tevékenységgel a leíró szöveg |Nem |
 | type |HDinsightPig |Igen |
-| Bemenetek |Egy vagy több, a Pig tevékenység által felhasznált bemeneti |Nem |
-| kimenetek |Egy vagy több, a Pig tevékenység által létrehozott kimenet |Igen |
-| linkedServiceName |A HDInsight-fürthöz, a Data Factory kapcsolt szolgáltatásként regisztrált mutató hivatkozás |Igen |
-| Parancsfájl |Adja meg a Pig-parancsprogram beágyazott |Nem |
-| parancsfájl elérési útja |A Pig-parancsprogram egy Azure blob Storage tárolóban tárolja, és adja meg a fájl elérési útját. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. A fájlnév pedig kis-és nagybetűket. |Nem |
-| határozza meg |Kulcs/érték párok paraméterek meghatározni a Pig-parancsprogram belül hivatkozik |Nem |
+| Bemenetek |Hello által használt egy vagy több bemeneti Pig tevékenység |Nem |
+| kimenetek |Egy vagy több állítanak elő által hello Pig tevékenység |Igen |
+| linkedServiceName |A Data Factory kapcsolt szolgáltatásként regisztrált hivatkozás toohello HDInsight-fürt |Igen |
+| Parancsfájl |Adja meg a Pig-parancsprogram beágyazott hello |Nem |
+| parancsfájl elérési útja |Hello Pig-parancsprogram egy Azure blob Storage tárolóban tárolja, és adja meg a hello elérési toohello fájlt. Használja a "script" vagy "scriptPath" tulajdonságot. Mindkettő nem használható együtt. hello fájlnév a kis-és nagybetűket. |Nem |
+| határozza meg |Kulcs/érték párok paraméterek meghatározni hivatkozó belül hello Pig-parancsprogram |Nem |
 
 ## <a name="example"></a>Példa
-Mérlegeljük, elemzés, ahol szeretné azonosítani a vállalat által elindított játékok játékosok szerint fordított idő játék naplók példát.
+Mérlegeljük, játék például elemzés, ha azt szeretné, hogy a vállalat által elindított játékok játékosok által felhasznált tooidentify hello idő naplózza.
 
-A következő játék mintanaplót egy olyan vesszővel (,) elválasztva fájl. A következő mezők – ProfileID, SessionStart, időtartam, SrcIPAddress és GameType tartalmaz.
+a következő játék napló minta hello egy olyan vesszővel (,) elválasztva fájl. A következő mezők – ProfileID, SessionStart, időtartam, SrcIPAddress és GameType hello tartalmaz.
 
 ```
 1809,2014-05-04 12:04:25.3470000,14,221.117.223.75,CaptureFlag
@@ -102,7 +102,7 @@ A következő játék mintanaplót egy olyan vesszővel (,) elválasztva fájl. 
 .....
 ```
 
-A **parancsfájl sertésfelmérés** feldolgozni az adatokat:
+Hello **parancsfájl sertésfelmérés** tooprocess ezeket az adatokat:
 
 ```
 PigSampleIn = LOAD 'wasb://adfwalkthrough@anandsub14.blob.core.windows.net/samplein/' USING PigStorage(',') AS (ProfileID:chararray, SessionStart:chararray, Duration:int, SrcIPAddress:chararray, GameType:chararray);
@@ -114,18 +114,18 @@ PigSampleOut = Foreach GroupProfile Generate PigSampleIn.ProfileID, SUM(PigSampl
 Store PigSampleOut into 'wasb://adfwalkthrough@anandsub14.blob.core.windows.net/sampleoutpig/' USING PigStorage (',');
 ```
 
-A Pig-parancsprogram végrehajtása a Data Factory-folyamathoz, tegye a következőket:
+a Data Factory-folyamathoz, a parancsfájl a Pig tooexecute hello a következő lépéseket:
 
-1. Hozzon létre egy kapcsolódó szolgáltatás regisztrálása [saját HDInsight számítási fürt](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy konfigurálása [igény szerinti HDInsight-fürt](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Most hívható meg a társított szolgáltatás **HDInsightLinkedService**.
-2. Hozzon létre egy [társított szolgáltatás](data-factory-azure-blob-connector.md) üzemeltető Azure Blob Storage a kapcsolat beállításához. Most hívható meg a társított szolgáltatás **StorageLinkedService**.
-3. Hozzon létre [adatkészletek](data-factory-create-datasets.md) mutat a bemeneti és kimeneti adatokat. Most hívható meg a bemeneti adatkészlet **PigSampleIn** és a kimeneti adatkészlet **PigSampleOut**.
-4. A Pig lekérdezés másolja az Azure Blob Storage #2. lépésben beállított fájlba. Ha az Azure storage az adatokat tároló eltérő, amelyen a lekérdezés fájlt, hozzon létre egy külön Azure tárolás társított szolgáltatása. A tevékenység konfigurációban kapcsolódó szolgáltatásra hivatkozhat. Használjon ** scriptPath ** adhatja meg a pig-parancsprogram fájl elérési útját és **scriptLinkedService**. 
+1. Hozzon létre egy kapcsolódó szolgáltatás tooregister [saját HDInsight számítási fürt](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) vagy konfigurálása [igény szerinti HDInsight-fürt](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service). Most hívható meg a társított szolgáltatás **HDInsightLinkedService**.
+2. Hozzon létre egy [társított szolgáltatás](data-factory-azure-blob-connector.md) tooconfigure hello kapcsolat tooAzure a Blob storage hello adatok üzemeltetéséhez. Most hívható meg a társított szolgáltatás **StorageLinkedService**.
+3. Hozzon létre [adatkészletek](data-factory-create-datasets.md) toohello bemeneti és a hello mutató kimeneti adatokat. Most hívás hello bemeneti adatkészlet **PigSampleIn** és a kimeneti adatkészlet hello **PigSampleOut**.
+4. Másolja át egy fájl hello Azure Blob Storage #2. lépésben beállított hello Pig lekérdezés. Ha hello hello adatokat tároló Azure storage hello egy hello lekérdezésfájl üzemeltető eltér, hozzon létre egy külön Azure tárolás társított szolgáltatása. Tekintse meg a kapcsolódó toohello szolgáltatás hello tevékenység konfigurációban. Használjon ** scriptPath ** toospecify hello elérési toopig parancsfájl és **scriptLinkedService**. 
    
    > [!NOTE]
-   > A Pig parancsfájl beágyazottan történjen-e a tevékenység definíciójának használatával is megadhatja a **parancsfájl** tulajdonság. Azonban a Microsoft nem javasolja ezt a módszert használja, a parancsfájl igényeinek, meg kell jelölni a speciális karaktereket, és hibakeresési hibákat okozhat. A bevált gyakorlat követéséhez #4. lépés.
+   > Hello Pig parancsfájl beágyazott hello tevékenységdefinícióban hello használatával is megadhatja **parancsfájl** tulajdonság. Azonban nem javasoljuk ezt a módszert használja, speciális karaktereket a hello parancsfájl escape-karaktersorozatot toobe kell és hibakeresési hibákat okozhat. hello ajánlott toofollow #4. lépés.
    > 
    > 
-5. A folyamat létrehozása a HDInsightPig tevékenységet. Ez a tevékenység HDInsight-fürt Pig-parancsprogram futtatásával dolgozza fel a bemeneti adatok.
+5. Hozzon létre hello csővezeték hello HDInsightPig tevékenység. Ez a tevékenység hello bemeneti adatokat dolgozza fel a HDInsight-fürt Pig-parancsprogram futtatásával.
 
     ```JSON   
     {
@@ -159,15 +159,15 @@ A Pig-parancsprogram végrehajtása a Data Factory-folyamathoz, tegye a követke
       }
     } 
     ```
-6. Az adatcsatornát. Lásd: [folyamatok létrehozása](data-factory-create-pipelines.md) cikkben alább. 
-7. A data factory kiszolgálófigyelési és -kezelési nézetek segítségével folyamat figyelésére. Lásd: [figyelése és kezelése az adat-előállító adatcsatornák](data-factory-monitor-manage-pipelines.md) cikkben alább.
+6. Hello adatcsatornát. Lásd: [folyamatok létrehozása](data-factory-create-pipelines.md) cikkben alább. 
+7. Hello data factory-figyelés használatával hello pipeline és kezelési nézetek figyelése. Lásd: [figyelése és kezelése az adat-előállító adatcsatornák](data-factory-monitor-manage-pipelines.md) cikkben alább.
 
 ## <a name="specifying-parameters-for-a-pig-script"></a>A Pig-parancsprogram paramétereinek megadása
-Tekintse meg a következő példát: játék naplók naponta okozhatnak az Azure Blob Storage és egy mappa a particionált alapján dátuma és időpontja. Szeretné parametrizálja a Pig-parancsprogram és futásidőben dinamikusan adja át a bemeneti mappa helyét, és a kimeneti dátum és idő tárolóhelyeinek is készít.
+Vegye figyelembe a következő példa hello: játék naplók naponta okozhatnak az Azure Blob Storage és egy mappa a particionált alapján dátuma és időpontja. Szeretné, hogy tooparameterize hello Pig-parancsprogram és a futtatás során dinamikusan adja át a hello bemeneti mappájának helye és hello kimeneti dátum és idő tárolóhelyeinek is készít.
 
-A paraméteres Pig-parancsprogram használatához tegye a következőket:
+toouse paraméteres Pig-parancsprogram, hajtsa végre a következő hello:
 
-* Adja meg a paramétereket a **meghatározása**.
+* A hello paramétereit **meghatározása**.
 
     ```JSON  
     {
@@ -205,7 +205,7 @@ A paraméteres Pig-parancsprogram használatához tegye a következőket:
       }
     }
     ```  
-* A Pig-parancsprogram, tekintse meg a paramétereket, a "**$parameterName**" a következő példában látható módon:
+* A Pig-parancsprogram hello, tekintse meg a toohello paramétereket a "**$parameterName**" hello a következő példában látható módon:
 
     ```  
     PigSampleIn = LOAD '$Input' USING PigStorage(',') AS (ProfileID:chararray, SessionStart:chararray, Duration:int, SrcIPAddress:chararray, GameType:chararray);    

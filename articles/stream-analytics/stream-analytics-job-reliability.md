@@ -13,22 +13,22 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 8dc19e1b37082c87d2990ad910d1af786f8b9280
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ac65c93ecb47e93e963dd9869a7af70f73b19c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="guarantee-stream-analytics-job-reliability-during-service-updates"></a>Stream Analytics-feladat megbízhatóságának biztosítása szolgáltatás frissítései során
 
-Egy teljes körűen felügyelt szolgáltatás, amely nem része a funkció új szolgáltatás funkcióit és fejlesztéseit gyors ütemben bevezetése. Ennek eredményeképpen a Stream Analytics heti (vagy gyakoribb) telepítése szolgáltatásfrissítés is rendelkezhetnek. Függetlenül történik, hogy mekkora tesztelése nincs továbbra is fennáll a kockázata, hogy egy meglévő, futó feladat megszakadhat bevezetése egy hiba miatt. Az ügyfelek, akik kritikus adatfolyam feldolgozási feladatok futtatása a kockázatok kell kerülni kell. Az ügyfelek használhatják a kockázatok csökkentése mechanizmusra Azure  **[párosított régió](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  modell. 
+Egy teljes körűen felügyelt szolgáltatás, amely nem része hello funkció toointroduce új szolgáltatás funkcióit és fejlesztéseit gyors ütemben. Ennek eredményeképpen a Stream Analytics heti (vagy gyakoribb) telepítése szolgáltatásfrissítés is rendelkezhetnek. Függetlenül történik, hogy mekkora tesztelése nincs továbbra is fennáll a kockázata, hogy egy meglévő, futó feladat megszakadhat toohello bevezetése egy hiba miatt. Az ügyfelek, akik kritikus adatfolyam feldolgozási feladatok futtatása a kockázatok kell toobe kerülni. A mechanizmus az ügyfelek használhatják tooreduce ennek a veszélyét Azure  **[párosított régió](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  modell. 
 
 ## <a name="how-do-azure-paired-regions-address-this-concern"></a>Hogyan hajtsa végre az Azure párosított régiók ezen probléma megoldásának?
 
-A Stream Analytics biztosítja, hogy külön párosított régiókban feladatok frissülnek. Ennek eredményeképpen nincs elegendő idő hiány között lehetséges legfrissebb hibák azonosítása és javítása azokat a frissítéseket.
+A Stream Analytics biztosítja, hogy külön párosított régiókban feladatok frissülnek. Ennek eredményeképpen nincs elegendő idő hiány között hello frissítések tooidentify lehetséges legfrissebb hibák elhárítása, és elháríthatja a.
 
-_Közép-Indiában kivételével_ (amelynek párosított régió, Dél-Indiában és nem rendelkezik Stream Analytics jelenléte), a Stream Analytics egy frissítés telepítése nem lépne párosított régiók meg egyszerre. A központi telepítések több régióba **ugyanabban a csoportban** fordulhat **egyszerre**.
+_Közép-Indiában hello kivételével_ (amelynek párosított régió, Dél-Indiában és nem rendelkezik Stream Analytics jelenléte), egy frissítés tooStream elemzés nem lépne hello: hello telepítését azonos idő párosított régiók meg. A központi telepítések több régióba **hello a ugyanabban a csoportban** fordulhat elő, **: hello ugyanannyi időt vesz igénybe**.
 
-A cikk a  **[rendelkezésre állását és párosított régiók](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  a legfrissebb információk, amelyen a régiók párosítva van.
+hello foglalkozó  **[rendelkezésre állását és párosított régiók](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)**  hello legtöbb naprakész információt, amelyen a régiók párosítva van.
 
-Ügyfelek központi telepítése azonos feladatok mindkét párosított régió végigvitelével. A Stream Analytics belső figyelési képességek, valamint az ügyfelek is javasolja, hogy a feladatok figyelése, mintha **mindkét** éles feladat. Ha szünet kell lennie a Stream Analytics szolgáltatás frissítés eredménye, eszkalálása megfelelően, és a megfelelő feladat kimeneti alárendelt fogyasztóval feladatátvételt. Eszkalációs támogatásához a párosított régió megakadályozza az új központi telepítés vonatkozzon, és a párosított feladatot integritásának fenntartása.
+Elkeverni toodeploy azonos feladatok párosítva tooboth régiók azokat a felhasználókat. Továbbá a belső figyelési képességek, az ügyfelek Analytics megtalálhatók tooStream ajánlott toomonitor hello feladatok, mintha **mindkét** éles feladat. Ha szünet azonosított toobe hello Stream Analytics szolgáltatás frissítés eredménye, eszkalálása megfelelően, és alsóbb rétegbeli fogyasztók toohello kifogástalan feladat kimenete a feladatátvétel. Eszkalációs toosupport hello párosított régió megakadályozása hello új központi telepítési vonatkozzon, és a párosítva hello feladatok hello integritásának fenntartása.

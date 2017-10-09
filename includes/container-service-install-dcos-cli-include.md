@@ -1,6 +1,6 @@
 ---
-title: "A DC/OS parancssori felület telepítése | Microsoft Docs"
-description: "A DC/OS parancssori felület telepítése."
+title: "DC/OS parancssori felület aaaInstall hello |} Microsoft Docs"
+description: "Hello DC/OS parancssori felület telepítése."
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/10/2016
 ms.author: rogardle
-ms.openlocfilehash: a8ea47f158c0d666340815d2e039995c7483257f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b077c05beff9a5638486ea5efe9df31089e32701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 > [!NOTE]
-> Erre a DC/OS-alapú ACS-fürtökkel végzett munka esetén van szükség. A Swarm-alapú ACS-fürtök esetén erre a lépésre nincs szükség.
+> Erre a DC/OS-alapú ACS-fürtökkel végzett munka esetén van szükség. Nincs nincs szükség toodo a Swarm-alapú ACS-fürtökkel.
 > 
 > 
 
-Először is, [csatlakozzon a DC/OS-alapú ACS-fürthöz](../articles/container-service/container-service-connect.md). Ezután az alábbi parancsok használatával telepítheti a DC/OS parancssori felületet az ügyfélgépre:
+Első, [csatlakozzon a DC/OS-alapú ACS tooyour fürt](../articles/container-service/container-service-connect.md). Miután ezt megtette, telepítheti a DC/OS parancssori felület hello az ügyfélszámítógép az alábbi parancsok hello:
 
 ```bash
 sudo pip install virtualenv
@@ -38,7 +38,7 @@ chmod +x install-optout-dcos-cli.sh
 
 Ha a Python egy régebbi verzióját használja, előfordulhat, hogy „InsecurePlatformWarnings” figyelmeztetésekbe ütközik. Ezek biztonságosan figyelmen kívül hagyhatók.
 
-A parancskörnyezet újraindítása nélküli indításhoz futtassa a következő parancsot:
+A parancskörnyezet újraindítása nélküli lépések sorrendben tooget futtassa:
 
 ```bash
 source ~/.bashrc
@@ -46,7 +46,7 @@ source ~/.bashrc
 
 Új parancskörnyezet indítása esetén ez a lépés elhagyható.
 
-Most meggyőződhet arról, hogy a parancssori felület telepítve van:
+Most is meggyőződhet arról, hogy telepítve van a CLI hello:
 
 ```bash
 dcos --help

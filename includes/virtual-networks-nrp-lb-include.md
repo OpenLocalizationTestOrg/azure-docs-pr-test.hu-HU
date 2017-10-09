@@ -1,15 +1,15 @@
 ## <a name="load-balancer"></a>Load Balancer
-A terheléselosztó szolgál az alkalmazások méretezésére. Tipikus telepítési forgatókönyvek tartalmaz, amely több Virtuálisgép-példányok futó alkalmazások. A Virtuálisgép-példányok által olyan terheléselosztóhoz, amely segíti a különböző példányok hálózati forgalom elosztását vannak fronted. 
+A terheléselosztó az alkalmazások tooscale kívánt használatos. Tipikus telepítési forgatókönyvek tartalmaz, amely több Virtuálisgép-példányok futó alkalmazások. hello Virtuálisgép-példányok által olyan terheléselosztóhoz, amely segít toodistribute hálózati forgalom toohello különböző példányai vannak fronted. 
 
 ![A hálózati adapter által a egyetlen virtuális gép](./media/resource-groups-networking/figure8.png)
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| *frontendipconfiguration osztálya lehet* |a terheléselosztó tartalmazhat egy vagy több előtérbeli IP-címek, más néven a virtuális IP-címek (VIP). Az IP-címeket szolgál a forgalom érkező és nyilvános IP-cím vagy a magánhálózati IP-címe |
-| *backendaddresspools készletek* |Ezek azok a virtuális gép hálózati adaptert, amelyre terhelés eloszlik a társított IP-címek |
-| *esetén a terheléselosztási szabályok* |egy szabály tulajdonság leképezi a megadott előtér-IP és port kombinációján a háttérbeli IP-címek egy készletének – port kombináció. A terheléselosztó erőforrást egyetlen definícióját meghatározhatja, hogy több terheléselosztási szabályok, minden egyes szabály egy első kombinációja tükröző befejező IP-cím és port és a záró IP-cím és port társított virtuális gépek biztonsági. A szabály a háttérkészlethez a több virtuális gép az előtér-készlet egy port |
-| *Mintavétel* |mintavételt lehetővé teszik a Virtuálisgép-példányok állapotának nyomon követéséhez. Ha egy állapotmintáihoz nem sikerül, a virtuálisgép-példányt lesz kívül Elforgatás automatikusan |
-| *inboundNatRules* |NAT-szabályok meghatározása a bejövő forgalom haladnak keresztül az első IP befejezését, majd a háttérbeli IP-címhez egy adott virtuális gép példányhoz elosztott. NAT-szabály egy virtuális gépre a háttérkészlethez előtér-készletben egyetlen port |
+| *frontendipconfiguration osztálya lehet* |a terheléselosztó tartalmazhat egy vagy több előtérbeli IP-címek, más néven a virtuális IP-címek (VIP). A következő IP-címek érkező forgalom hello szolgál, és nyilvános IP-cím vagy a magánhálózati IP-címe |
+| *backendaddresspools készletek* |Ezek a virtuális gép hálózati adapterek toowhich terhelés eloszlik hello társított IP-címek |
+| *esetén a terheléselosztási szabályok* |egy szabály tulajdonság képezi le egy adott előtérbeli IP-cím és port kombinációja tooa set háttérbeli IP-címek és port kombináció. A terheléselosztó erőforrást egyetlen definícióját meghatározhatja, hogy több terheléselosztási szabályok, minden egyes szabály egy első kombinációja tükröző befejező IP-cím és port és a záró IP-cím és port társított virtuális gépek biztonsági. hello szabály hello előtér készlet toomany virtuális gépeken a hello háttérkészlethez egyetlen port |
+| *Mintavétel* |mintavételt lehetővé teszik a Virtuálisgép-példányok állapotát hello tookeep nyomon. Ha nem sikerül egy állapotmintáihoz, hello virtuálisgép-példányt megnyílik kívül Elforgatás automatikusan |
+| *inboundNatRules* |NAT-szabályok meghatározása hello bejövő hello front-end IP átfutó forgalom, és az elosztott toohello háttérbeli IP tooa adott virtuálisgép-példányt. NAT-szabály hello előtér készlet tooone virtuális gépen a háttérkészlethez hello egyetlen port |
 
 Példa a terheléselosztó-sablon Json formátumban:
 
@@ -33,7 +33,7 @@ Példa a terheléselosztó-sablon Json formátumban:
             "Southeast Asia"
           ],
           "metadata": {
-            "description": "Location to deploy"
+            "description": "Location toodeploy"
           }
         },
         "addressPrefix": {

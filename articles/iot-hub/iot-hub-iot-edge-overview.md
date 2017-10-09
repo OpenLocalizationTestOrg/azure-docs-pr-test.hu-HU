@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT peremhálózati áttekintése |} Microsoft Docs"
-description: "Ismerteti az alapvető architekturális fogalmakat az Azure IoT Edge például átjárók, a modulok és a brókerek."
+title: "az Azure IoT peremhálózati aaaOverview |} Microsoft Docs"
+description: "Hello architekturális alapfogalmak Azure IoT peremhálózati például átjárók, a modulok és a brókerek ismerteti."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -13,52 +13,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: ecdd56c91a8fc2011b3d7abe93b9d27c1e1e0bef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 32debc0d4f40cfd7f2cce7cf8c76b12ec18ee2dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-edge-architectural-concepts"></a>Az Azure IoT peremhálózati architekturális fogalmak
 
-Mielőtt bármely mintakód vizsgálja meg, vagy hozzon létre saját IoT Edge használata mező, tisztában kell lennie az alapvető fogalmakat, amelyek az IoT-biztonsági architektúrája.
+Mielőtt bármely mintakód vizsgálja meg, vagy hozzon létre saját IoT Edge használata mező, tisztában kell lennie hello alapvető fogalmakat, amelyek IoT peremhálózati hello architektúrájának.
 
 ## <a name="iot-edge-modules"></a>Az IoT-Edge-modulok
 
-Átjáró használjon létrehozásával és összeállításakor Azure IoT peremhálózati *IoT peremhálózati modulok*. A modulok *üzenetek* használatával cserélnek adatokat egymással. Az egyes modulok üzeneteket fogadnak, végrehajtanak valamilyen műveletet rajtuk, esetleg átalakítják őket új üzenetekké, majd közzéteszik azokat más modulok számára feldolgozásra. Egyes modulok esetleg kizárólag új üzeneteket állítanak elő, és nem dolgoznak fel beérkező üzeneteket. Modulok láncba rendezésével egy adatfeldolgozó folyamat hozható létre, amelynek minden pontján valamely modul valamilyen módon átalakítja az adatokat.
+Átjáró használjon létrehozásával és összeállításakor Azure IoT peremhálózati *IoT peremhálózati modulok*. Modulok használata *üzenetek* tooexchange adatok egymás mellett. Egy modul üzenetet kap, néhány műveletet végez, opcionálisan átalakítja az új üzenetbe, és majd közzéteszi azokat az egyéb modulok tooprocess. Egyes modulok esetleg kizárólag új üzeneteket állítanak elő, és nem dolgoznak fel beérkező üzeneteket. Modulok láncolata adatokat feldolgozó folyamat egyes átalakítás végrehajtja a hello adatokat, hogy a folyamat egy pont a modul hoz létre.
 
 ![Az átjáró moduljainak láncba rendezése az Azure IoT Edge szolgáltatással][1]
 
-Az IoT-Edge a következő összetevőkből áll:
+IoT peremhálózati hello a következő összetevőket tartalmazza:
 
 * Előzetes írásbeli modulokat, amelyek a közös átjáró.
-* Felületek, amelyek segítségével a fejlesztők egyedi modulokat hozhatnak létre.
-* A modulok üzembe helyezéséhez és futtatásához szükséges infrastruktúra.
+* a fejlesztői hello felületek toowrite egyéni modulok használatához.
+* hello infrastruktúra szükséges toodeploy, és hajtson végre modulokat.
 
-Az SDK-t, amely lehetővé teszi, és különböző operációs rendszeren futó átjárók létrehozására absztrakciós réteget biztosít.
+hello SDK absztrakciós réteget biztosít, amely lehetővé teszi toobuild átjárók toorun a különböző operációs rendszerek és platformokon.
 
 ![Az Azure IoT Edge absztrakciós rétege][2]
 
 ## <a name="messages"></a>Üzenetek
 
-Ha úgy képzeljük el, hogy a modulok egymásnak küldözgetnek üzeneteket, könnyen megragadható az átjáró működése mögött rejlő elv, azonban ez nem pontosan így történik. Az IoT-Edge modulok egy broker használatával kommunikálnak egymással. Modulok üzenetek közzététele az átvitelszervező (például a bus, vagy a közzétételi/előfizetési üzenetkezelési mintát használ), és engedélyezze a broker továbbítani az üzenetet csatlakozik hozzá modulok.
+Bár végezni kapcsolatban benyújtása modulok más üzenetek tooeach egy kényelmes módszert arra tooconceptualize hogyan a átjáró működik, akkor nem tükrözik mi történik. IoT biztonsági modulok használata egy broker toocommunicate egymással. Modulok közzététele üzenetek toohello broker (például a bus, vagy a közzétételi/előfizetési üzenetkezelési mintát használ), és hagyja hello broker útvonal hello üzenet toohello modulok csatlakoztatott tooit.
 
-A modul a **Broker_Publish** függvény használatával teszi közzé az üzeneteket a közvetítőn. A közvetítő egy visszahívási függvény használatával továbbítja az üzeneteket az egyes moduloknak. Az üzenetek kulcs/érték tulajdonságokból és tartalmakból állnak, amelyek memóriablokként vannak továbbítva.
+A modul használja hello **Broker_Publish** toopublish üzenet toohello közvetítő működik. hello broker üzenetek tooa modul által a visszahívási függvény meghívása nyújt. Az üzenetek kulcs/érték tulajdonságokból és tartalmakból állnak, amelyek memóriablokként vannak továbbítva.
 
-![A közvetítő szerepe az Azure IoT Edge-ben][3]
+![az Azure IoT Edge Broker hello hello szerepe][3]
 
 ## <a name="message-routing-and-filtering"></a>Üzenettovábbítás és -szűrés
 
-A megfelelő IoT Edge-modulok üzenetek közvetlen két módja van:
+Két módon toodirect üzenetek toohello megfelelő IoT peremhálózati modulok:
 
-* Átadhatók hivatkozásokat tartalmaz, a broker tudja a forrás és a fogadó minden modul az átvitelszervező kell átadni.
-* A modul az üzenet tulajdonságai alapján szűrhet.
+* Hivatkozásokat tartalmaz átadhatók függvénynek adható át toohello broker, hello broker tudja hello forrás és a fogadó minden modulhoz.
+* A modul végezhet üdvözlőüzenetére hello tulajdonságait.
 
-Az egyes moduloknak azonban csak akkor kell foglalkozniuk egy üzenettel, ha azt nekik szánták. Hivatkozások és a hatékony szűrési message üzenet folyamatokat létrehozni.
+A modul kell csak jár el egy üzenetet üdvözlőüzenetére szól, ha. Hivatkozások és a hatékony szűrési message üzenet folyamatokat létrehozni.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ezek a fogalmak alkalmazott minta futtatása, olvassa el [felfedezés Azure IoT peremhálózati architektúra][lnk-hello-world].
+toosee ezekről a fogalmakról minta alkalmazott futtatja, lásd: [felfedezés Azure IoT peremhálózati architektúra][lnk-hello-world].
 
 <!-- Images -->
 [1]: media/iot-hub-iot-edge-overview/modules.png

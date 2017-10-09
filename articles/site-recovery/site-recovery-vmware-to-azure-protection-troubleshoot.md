@@ -1,6 +1,6 @@
 ---
-title: "Az Azure-bA VMware vagy fizikai védelmi hibák elhárítása |} Microsoft Docs"
-description: "Ez a cikk ismerteti a közös VMware gép replikációs hibák, és azokat hibaelhárítása"
+title: "aaaTroubleshoot védelmi hibák VMware vagy fizikai tooAzure |} Microsoft Docs"
+description: "Ez a cikk ismerteti a hello közös VMware gép replikációs hibák, és hogyan tootroubleshoot őket"
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/26/2017
 ms.author: asgang
-ms.openlocfilehash: 6ebec2e06566b1e2d6834fdd81c0d8b2801b80b9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b821e9aa2610482ba1900645fb75e75744dc442f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-on-premises-vmwarephysical-server-replication-issues"></a>Helyszíni VMware vagy fizikai kiszolgáló replikációs problémák elhárítása
-Specifikus hibaüzenet jelenhet meg, ha a VMware virtuális gépek vagy fizikai kiszolgálók Azure Site Recovery segítségével. Ez a cikk részletesen néhány, a hibát, és azok megoldását hibaelhárítási Gyakori hibaüzenetek.
+Specifikus hibaüzenet jelenhet meg, ha a VMware virtuális gépek vagy fizikai kiszolgálók Azure Site Recovery segítségével. Ez a cikk részletek néhány gyakori hibaüzenetek észlelt, és hibaelhárítási lépéseket tooresolve hello őket.
 
 
 ## <a name="initial-replication-is-stuck-at-0"></a>A(z) 0 % elakadt a kezdeti replikálás
-A kezdeti replikációs hibák, a Microsoft terméktámogatási előforduló többsége kiszolgálófolyamat forráskiszolgáló vagy folyamat kiszolgáló Azure közötti kapcsolat problémái miatt.
-A legtöbb esetben is maga az alábbi lépéseket követve ezek a problémák elhárításához.
+A Microsoft terméktámogatási előforduló hello kezdeti replikációs hibák többsége kiszolgálófolyamat forráskiszolgáló vagy folyamat kiszolgáló Azure között tooconnectivity problémák miatt.
+A legtöbb esetben is maga a problémák elhárítására hello az alábbi lépéseket követve.
 
-###<a name="check-the-following-on-source-machine"></a>Ellenőrizze a következőket a VÉDENDŐ GÉPEN
-* A forráskiszolgáló gép parancssorból használja a Telnet pingelni a https-port (alapértelmezett 9443) a Folyamatkiszolgáló, megtekintéséhez, hogy vannak-e a hálózati kapcsolat hibái vagy a tűzfal port problémák elhárítását alább látható módon.
+###<a name="check-hello-following-on-source-machine"></a>Ellenőrizze a VÉDENDŐ GÉPEN hello következőket
+* A forráskiszolgáló gép parancssorból használata Telnet tooping hello Folyamatkiszolgáló https-portja (alapértelmezés szerint 9443) toosee lent látható módon, ha a hálózati kapcsolat hibái vagy tűzfalportot blokkolja a problémákat.
      
     `telnet <PS IP address> <port>`
 > [!NOTE]
-    > Használja a Telnet, ne használjon a PING való kapcsolat teszteléséhez.  Ha Telnet nincs telepítve, kövesse a lépéseket lista [Itt](https://technet.microsoft.com/library/cc771275(v=WS.10).aspx)
+    > Telnet használja, ne használjon PING tootest kapcsolat.  Ha nincs telepítve a Telnet, hajtsa végre a hello lépéseket lista [Itt](https://technet.microsoft.com/library/cc771275(v=WS.10).aspx)
 
-Ha nem lehet csatlakozni, engedélyezze a folyamatkiszolgáló 9443 a bejövő portot, és ellenőrizze, hogy ha a probléma továbbra is kilép. Egyes esetekben, ahol a folyamatkiszolgáló DMZ, amely a problémás volt mögött lett lett.
+Ha nem tooconnect engedélyezése a Folyamatkiszolgáló hello 9443 a bejövő portot, és ellenőrizze, hogy hello a probléma továbbra is kilép. Egyes esetekben, ahol a folyamatkiszolgáló DMZ, amely a problémás volt mögött lett lett.
 
-* A szolgáltatás állapotának ellenőrzése `InMage Scout VX Agent – Sentinel/OutpostStart` Ha még nem fut, valamint ellenőrizze, ha a probléma továbbra is létezik.   
+* Ellenőrizze a szolgáltatás állapotának hello `InMage Scout VX Agent – Sentinel/OutpostStart` Ha nem fut, valamint ellenőrzés esetén hello a probléma továbbra is létezik.   
  
-###<a name="check-the-following-on-process-server"></a>Ellenőrizze a következőket folyamatkiszolgáló
+###<a name="check-hello-following-on-process-server"></a>Ellenőrizze a folyamatkiszolgáló hello következő
 
-* **Ellenőrizze, hogy ha a folyamatkiszolgáló aktívan küldését adatokat az Azure-bA** 
+* **Ha a folyamatkiszolgáló aktívan küldését adatok tooAzure ellenőrzése** 
 
-A Folyamatkiszolgáló gépről nyissa meg a Feladatkezelőt (nyomja meg a Ctrl-Shift-Esc). Nyissa meg a Teljesítmény fülre, és "Nyissa meg az erőforrás-figyelő" hivatkozásra. Az erőforrás-kezelő hálózati lap Ugrás. Ellenőrizze, hogy ha a "Hálózati tevékenységet folyamatokban" cbengine.exe aktívan küld nagy mennyiségű (MB-ban) adat.
+A Folyamatkiszolgáló gépről nyissa meg a hello Feladatkezelő (nyomja meg a Ctrl-Shift-Esc). Nyissa meg toohello teljesítmény fülre, és "Nyissa meg az erőforrás-figyelő" hivatkozásra. Az erőforrás-kezelő tooNetwork lapon lépjen. Ellenőrizze, hogy ha a "Hálózati tevékenységet folyamatokban" cbengine.exe aktívan küld nagy mennyiségű (MB-ban) adat.
 
 ![A replikáció engedélyezése](./media/site-recovery-protection-common-errors/cbengine.png)
 
-Ha nem kövesse az alábbi lépéseket:
+Ha nem hello az alábbi lépéseket követve:
 
-* **Annak ellenőrzése, hogy a folyamatkiszolgáló tud csatlakozni az Azure Blob**: válassza ki, és ellenőrizze a cbengine.exe megtekintéséhez a "TCP-kapcsolatok" a kiszolgáló közötti kapcsolatot folyamat Azure Storage-blob URL-címre van.
+* **Annak ellenőrzése, hogy a folyamatkiszolgáló képes tooconnect Azure Blob**: Jelölje ki és cbengine.exe tooview hello TCP-kapcsolatok toosee ellenőrizze, hogy nincs kapcsolat folyamat tooAzure tárolási blob URL-címe.
 
 ![A replikáció engedélyezése](./media/site-recovery-protection-common-errors/rmonitor.png)
 
-Ha nem majd nyissa meg a Vezérlőpultot > szolgáltatások, ellenőrizze, hogy e a következő szolgáltatások működik, és:
+Ha nem, folytassa a tooControl Panel > szolgáltatások, ellenőrizze, hogy e szolgáltatások a következő hello működik, és:
 
      * cxprocessserver
      * InMage Scout VX Agent – Sentinel/Outpost
@@ -61,33 +61,33 @@ Ha nem majd nyissa meg a Vezérlőpultot > szolgáltatások, ellenőrizze, hogy 
      * Microsoft Azure Site Recovery Service
      * tmansvc
      * 
-(Újra) Indítsa el a szolgáltatást, amely nem fut, és ellenőrizze, hogy a probléma továbbra is léteznek.
+(Újra) Indítsa el a szolgáltatást, amely nem fut, és ellenőrizze, hogy hello a probléma továbbra is léteznek.
 
-* **Ellenőrizze, hogy tud csatlakozni az Azure nyilvános IP-cím 443-as porton-e a folyamatkiszolgáló**
+* **Annak ellenőrzése, hogy a folyamatkiszolgáló képes tooconnect tooAzure nyilvános IP-cím 443-as porton**
 
-Nyissa meg a legújabb CBEngineCurr.errlog `%programfiles%\Microsoft Azure Recovery Services Agent\Temp` keresse meg a: 443-as és a kapcsolódási kísérlet sikertelen volt.
+Nyissa meg a legújabb CBEngineCurr.errlog hello `%programfiles%\Microsoft Azure Recovery Services Agent\Temp` keresse meg a: 443-as és a kapcsolódási kísérlet sikertelen volt.
 
 ![A replikáció engedélyezése](./media/site-recovery-protection-common-errors/logdetails1.png)
 
-Ha problémák vannak, majd a Folyamatkiszolgáló parancssorból, használja a telnet pingelni a 443-as porton CBEngineCurr.currLog található (maszkolva a fenti kép) Azure nyilvános IP-címét.
+Ha problémák vannak, a Folyamatkiszolgáló parancssorból, használja a telnet tooping a Azure nyilvános IP-cím (maszkolva a fenti kép) hello CBEngineCurr.currLog a 443-as porton.
 
       telnet <your Azure Public IP address as seen in CBEngineCurr.errlog>  443
-Ha nem lehet csatlakozni, majd ellenőrizze, ha a hozzáférési probléma okozza-e tűzfal- vagy proxybeállításokat a következő lépésben leírtak szerint.
+Ha nem tooconnect, majd ellenőrizze meg, hogy hello hozzáférési probléma miatt toofirewall vagy a Proxy a következő lépésben leírtak szerint.
 
 
-* **Ellenőrizze, hogy ha a folyamatkiszolgáló IP cím alapú tűzfal nem blokkolja-e hozzáférési**: Ha egy IP-címeken alapuló tűzfalszabályok szabályokat használ a kiszolgálón, majd töltse le a Microsoft Azure Datacenter IP-címtartományok a teljes listáját [Itt](https://www.microsoft.com/download/details.aspx?id=41653) és a tűzfal konfigurációját, és győződjön meg arról, lehetővé teszik az Azure (és a HTTPS (443) port) való adja hozzá.  Engedélyezze az előfizetéshez tartozó Azure-régió, illetve az USA nyugati régiójának IP-tartományait (a hozzáférés-vezérléshez és az identitáskezeléshez szükséges).
+* **Ellenőrizze, hogy ha a folyamatkiszolgáló IP cím alapú tűzfal nem blokkolja-e hozzáférési**: Ha egy IP-címeken alapuló tűzfalszabályok szabályokat használ hello kiszolgálón, majd töltse le hello teljes listája a Microsoft Azure Datacenter IP-címtartományok a [Itt ](https://www.microsoft.com/download/details.aspx?id=41653) tooyour tűzfal konfigurációs tooensure kommunikációs tooAzure (és hello HTTPS (443) port) lehetővé teszik adja hozzá.  Lehetővé teszi az IP-címtartományok hello Azure-régió, az előfizetés, valamint az USA nyugati (hozzáférés-vezérlés és az Identitáskezeléshez használt).
 
-* **Ellenőrizze, hogy ha folyamatkiszolgáló URL-alapú tűzfal nem blokkolja a hozzáférést**: Ha egy URL-cím alapú tűzfalszabályok használ a kiszolgálón, győződjön meg arról, a következő URL-címek hozzáadódnak a tűzfal konfigurációját. 
+* **Ellenőrizze, hogy ha folyamatkiszolgáló URL-alapú tűzfal nem blokkolja a hozzáférést**: Ha egy URL-cím alapú tűzfalszabályok hello kiszolgálón használ, győződjön meg arról, a következő URL-címek hello kerülnek toofirewall konfigurációs. 
      
   `*.accesscontrol.windows.net:` hozzáférés-vezérléshez és identitáskezeléshez
 
   `*.backup.windowsazure.com:` replikációs adatátvitelhez és vezényléshez
 
-  `*.blob.core.windows.net:`A tárfiók, hogy a tároló replikált adatok elérésére használt
+  `*.blob.core.windows.net:`Hozzáférés toohello használt tárfiókot, amely tárolja a replikált adatok
 
   `*.hypervrecoverymanager.windowsazure.com:` replikációkezelési műveletekhez és vezényléshez
 
-  `time.nist.gov`és `time.windows.com`: rendszer és a globális időhöz közötti időszinkronizálást ellenőrizhető.
+  `time.nist.gov`és `time.windows.com`: használt toocheck időszinkronizálást a rendszer és a globális időhöz között.
 
 URL-címéből **Azure Government felhő**:
 
@@ -99,21 +99,21 @@ URL-címéből **Azure Government felhő**:
 
 `* .ugi.backup.windowsazure.us` 
 
-* **Ellenőrizze, hogy ha a proxykiszolgáló beállításait a folyamatkiszolgáló nem blokkolja-e hozzáférési**.  Ha proxykiszolgálót használ, győződjön meg arról, a DNS-kiszolgáló megoldása, a proxykiszolgáló nevét.
-Ellenőrizze, hogy a konfigurációs kiszolgáló telepítése során van megadva. Ugrás a beállításkulcs
+* **Ellenőrizze, hogy ha a proxykiszolgáló beállításait a folyamatkiszolgáló nem blokkolja-e hozzáférési**.  Ha proxykiszolgálót használ, győződjön meg arról, hello DNS-kiszolgáló megoldása, hello proxykiszolgáló nevét.
+toocheck hello konfigurációs kiszolgáló telepítése során van megadva. Nyissa meg tooregistry kulcs
 
     `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Azure Site Recovery\ProxySettings`
 
-Most ellenőrizze, hogy ugyanazokat a beállításokat szolgáltatás alatt álló Azure Site Recovery-ügynök adatküldéshez.
+Most győződjön meg arról, hogy hello Azure Site Recovery ügynök toosend adatok használja ugyanazokat a beállításokat.
 Keresés a Microsoft Azure Backup szolgáltatás 
 
 ![A replikáció engedélyezése](./media/site-recovery-protection-common-errors/mab.png)
 
-Nyissa meg azt, majd kattintson a művelet > tulajdonságainak módosítása. A proxykonfiguráció lapon meg kell jelennie a proxykiszolgáló címét, amely a beállításjegyzékben szereplő beállítások eredményobjektumokról azonosnak kell lennie. Ha nem, akkor módosítsa a címmel.
+Nyissa meg azt, majd kattintson a művelet > tulajdonságainak módosítása. A proxykonfiguráció lapon megtekintheti az hello proxy címe, amely hello beállításjegyzék-beállítások eredményobjektumokról azonosnak kell lennie. Ha nem, változtassa meg a toohello ugyanazt a címet.
 
 ![A replikáció engedélyezése](./media/site-recovery-protection-common-errors/mabproxy.png)
 
-* **Ellenőrizze, ha a sávszélesség-szabályozás nem korlátozott folyamatkiszolgáló**: növelje a sávszélességet, és ellenőrizze, hogy a probléma továbbra is léteznek.
+* **Ellenőrizze, ha a sávszélesség-szabályozás nem korlátozott folyamatkiszolgáló**: hello sávszélesség növelése, és ellenőrizze, hogy hello a probléma továbbra is léteznek.
 
 ##<a name="next-steps"></a>Következő lépések
-Ha további segítségre van szüksége, majd indítsa el a lekérdezés [ASR fórum](https://social.msdn.microsoft.com/Forums/azure/home?forum=hypervrecovmgr). Egy aktív közösségi van, és a mérnökök egyik fog tudni segíteni.
+Ha további segítségre van szüksége, majd indítsa el a lekérdezés túl[ASR fórum](https://social.msdn.microsoft.com/Forums/azure/home?forum=hypervrecovmgr). Egy aktív közösségi van, és a mérnökök egyik képes tooassist meg.

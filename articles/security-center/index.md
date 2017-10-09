@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Security Center dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Ismerje meg az Azure erőforrások biztonsági figyelésének beállítását és a házirendek kezelését. Oktatóanyagok, egy REST API-referencia és egyéb dokumentáció."
+title: "Biztonsági központ dokumentációja – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooset Azure-erőforrások biztonsági monitorozást és kezelését. Oktatóanyagok, egy REST API-referencia és egyéb dokumentáció."
 services: security-center
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 324192324831cbda13f23b784b37efcfd14808d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2bed6a128c7c767687871389f982d6155c6161d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-center-documentation"></a>A Security Center dokumentációja
 
-Ismerje meg a Security Center használatát az Azure-erőforrások biztonságának átláthatóvá és szabályozhatóvá tételéhez.  Oktatóanyagok, egy REST API-referencia és egyéb dokumentációk mutatják be az olyan biztonsági figyelés és házirendkezelés beállítását, amely a biztonsági megoldások széles ökoszisztémájával képes együttműködni.
+Ismerje meg, hogyan toouse Security Center tooget lássák és az ellenőrzése alatt tartja a hello Azure-erőforrások biztonsági.  Oktatóanyagok, a REST API-referenciában és egyéb dokumentációt mutatja be tooset biztonsági monitorozást és kezelését, amely kompatibilis a biztonsági megoldások átfogó ökoszisztémájának alkalmazásával.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,24 +1,24 @@
 ### <a name="record-names"></a>Rekordnevek
 
-Az Azure DNS-ben a rekordok relatív nevek használatával vannak meghatározva. A *teljes* tartománynév (FQDN) tartalmazza a zóna nevét, a *relatív* név azonban nem. Például: a „www” relatív rekordnév a „contoso.com” zónában a „www.contoso.com” teljes tartománynevet adja ki.
+Az Azure DNS-ben a rekordok relatív nevek használatával vannak meghatározva. A *teljesen minősített* tartománynevét (FQDN) tartalmazza hello zóna nevét, mivel egy *relatív* név azonban nem. Például hello relatív rekordnév a "www" a "contoso.com" hello zóna elnevezi hello teljesen minősített rekord "www.contoso.com".
 
-Egy *csúcs*rekord a gyökérnél egy DNS-rekord vagy egy DNS-zóna *csúcsa*. Például a „contoso.com” DNS-zónában a csúcsrekord szintén a „contoso.com” teljes tartománynévvel rendelkezik (ezt néha *csupasz* tartománynévnek is nevezzük).  A szabályok szerint a '@' relatív név csúcsrekordokat jelöl.
+Egy *legfelső pontján* rekord a DNS-rekord hello gyökérkönyvtárában (vagy *legfelső pontján*) a DNS-zónák. Például hello DNS zóna "contoso.com", egy csúcs-rekordot is rendelkezik hello teljesen minősített neve "contoso.com" (elnevezése egy *csupasz* tartományhoz).  Szabály szerint hello relatív neve "@" van használt toorepresent csúcs-rekordokat.
 
 ### <a name="record-types"></a>Rekordtípusok
 
-Minden DNS-rekord rendelkezik névvel és típussal. A rekordok különféle típusokba vannak rendezve attól függően, hogy milyen adatokat tartalmaznak. A leggyakoribb típus az „A” rekord, amely egy nevet képez le egy IPv4-címhez. Egy másik gyakori típus, az „MX” rekord, egy nevet képez le egy levelezési kiszolgálóhoz.
+Minden DNS-rekord rendelkezik névvel és típussal. Rekordok különféle típusokba toohello adatokat tartalmaznak szerint vannak rendszerezve. hello leggyakoribb típus az "A" rekord, amely egy IPv4-címet nevének tooan. Egy másik közös típus, az "MX" rekord, amely neve tooa levelezési kiszolgálóhoz.
 
 Az Azure DNS minden gyakori DNS-rekord típust támogat: A, AAAA, CNAME, MX, NS, PTR, SOA, SRV és TXT. Vegye figyelembe, hogy az [SPF-rekordok TXT-rekordok használatával vannak jelölve](../articles/dns/dns-zones-records.md#spf-records).
 
 ### <a name="record-sets"></a>Rekordhalmazok
 
-Előfordulhat, hogy több, azonos nevű és típusú DNS-rekordot is létre kell hoznia. Tegyük fel például, hogy a „www.contoso.com” webhely két különböző IP-címről is üzemel. A webhelynek két különböző A-rekordra van szüksége a két IP-címhez. Példa egy rekordhalmazra:
+Néha kell toocreate egynél több DNS-rekord egy adott nevű és típusú. Tegyük fel, hogy hello "www.contoso.com" webhely két különböző IP-címek üzemelteti. hello webhelyhez két különböző A-rekordra összes IP-címe. Példa egy rekordhalmazra:
 
     www.contoso.com.        3600    IN    A    134.170.185.46
     www.contoso.com.        3600    IN    A    134.170.188.221
 
-Az Azure DNS minden DNS-rekordot a *rekordhalmazok* használatával kezel. A rekordhalmazok (más néven az *erőforrás*-rekordhalmazok) az egy zónába tartozó, ugyanazzal a névvel és típussal rendelkező DNS-rekordok gyűjteményei. A legtöbb rekordhalmaz egyetlen rekordot tartalmaz. Azonban a fenti példa, melyben a rekordhalmaz egynél több rekordot tartalmaz, sem ritka.
+Az Azure DNS minden DNS-rekordot a *rekordhalmazok* használatával kezel. Rekordhalmaz (más néven a *erőforrás* rekordhalmaz) DNS-rekordok zónában, amelyek azonos nevet és -hello hello hello gyűjteménye ugyanarra a típusra. A legtöbb rekordhalmaz egyetlen rekordot tartalmaz. Azonban például hello a fenti példák rekord csoport több mint egy bejegyzést tartalmaz, nem ritka.
 
-Tegyük fel például, hogy már létrehozott egy A „www” rekordot a „contoso.com” zónában, amely a „134.170.185.46” IP-címre mutat (a fenti első rekord).  A második rekord létrehozása esetén a rekordot a meglévő rekordhalmazhoz kellene hozzáadnia, egy további rekordhalmaz létrehozása helyett.
+Például tegyük fel, hogy már létrehozott egy A rekordot "www" a "contoso.com" hello zóna, mutató toohello IP cím "134.170.185.46" (hello első rekordra fenti).  toocreate hello második rekordot kell felvenni, amely toohello meglévő rekord jegyezze be, nem pedig egy további rekordhalmaz létrehozása.
 
-A SOA és CNAME típusú rekordok kivételt jelentenek ez alól. A DNS-szabványok nem engedélyeznek ugyanazzal a névvel több rekordot ezen típusok esetén, ezért ezek a rekordhalmazok csak egy rekordot tartalmazhatnak.
+hello SOA és CNAME-rekordtípus jelentenek ez alól. hello DNS-szabványokból nem teszi lehetővé több rekordokat hello ezek a típusok neve megegyezik, ezért ezek rekordhalmazok is csak egyetlen rekordot tartalmaz.

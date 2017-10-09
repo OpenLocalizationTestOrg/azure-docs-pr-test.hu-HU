@@ -1,6 +1,6 @@
 ---
-title: "A StorSimple-köteteket kezelése |} Microsoft Docs"
-description: "Elmagyarázza, hozzáadása, módosítása, figyeléséhez, és törölje a StorSimple-köteteket, és hogyan offline állapotba rájuk szükség."
+title: "aaaManage a StorSimple-köteteket |} Microsoft Docs"
+description: "Azt ismerteti, hogyan tooadd, módosítás, figyelése, és törölje a StorSimple-köteteket, és hogyan tootake őket, offline állapotba, ha a szükséges."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/11/2016
 ms.author: v-sharos
-ms.openlocfilehash: 31ed9dad8ba56a3746873b7b35e678e97743fbfe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8dc646261ee2ad8f2b80291518716f4de55b63f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-volumes"></a>A StorSimple Manager szolgáltatással kötetek kezelése
+# <a name="use-hello-storsimple-manager-service-toomanage-volumes"></a>Hello StorSimple Manager szolgáltatás toomanage köteteket
 [!INCLUDE [storsimple-version-selector-manage-volumes](../../includes/storsimple-version-selector-manage-volumes.md)]
 
 ## <a name="overview"></a>Áttekintés
-Ez az oktatóanyag ismerteti, hogyan hozhatja létre és kezelheti a StorSimple eszköz és a StorSimple virtuális eszköz a kötetek a StorSimple Manager szolgáltatás.
+Ez az oktatóanyag azt ismerteti, hogyan toouse StorSimple Manager szolgáltatás toocreate hello és hello StorSimple eszköz és a StorSimple virtuális eszköz a kötetek kezelése.
 
-A StorSimple Manager szolgáltatás a klasszikus Azure portálra, amely lehetővé teszi a StorSimple megoldásban egy egyetlen webes felhasználói felületen keresztüli kezelését kiterjesztése. Kötetek kezelése, valamint használhatja a StorSimple Manager szolgáltatás létrehozása és a StorSimple-szolgáltatások kezelése, megtekintése és eszközök kezeléséhez, megtekintheti a riasztásokat, és megtekintéséhez és kezeléséhez biztonsági mentési házirendek és a biztonságimásolat-katalógus.
+hello StorSimple Manager szolgáltatás a klasszikus Azure-portál, amely lehetővé teszi a StorSimple megoldásban egy egyetlen webes felhasználói felületen keresztüli kezelését hello bővítményeként. Továbbá toomanaging kötetek, a is hello StorSimple Manager szolgáltatás toocreate használja és StorSimple szolgáltatások kezelése, megtekintése és eszközök kezeléséhez, megtekintheti a riasztásokat, és megtekinthető és kezelhető biztonsági mentési házirendek és hello biztonságimásolat-katalógus.
 
 > [!NOTE]
 > Az Azure StorSimple csak dinamikusan kiosztott köteteket hozhat létre. Nem hozható létre teljesen vagy részben kiosztott köteteket az Azure StorSimple rendszeren.
 > 
-> Dinamikus kiosztás egy virtualizációs technológia, amely rendelkezésre álló tár hosszabb legyen, mint a fizikai erőforrásokat jelenik meg. Ahelyett, hogy elegendő tárhely előre foglalással, Azure StorSimple használja a dinamikus kiosztás aktuális követelményeknek éppen elegendő lemezterületet foglaljon le. Felhőalapú tárolás rugalmas jellege elősegíti ezt a módszert használja, mert Azure StorSimple növelheti vagy csökkentheti a felhőalapú tárolást tartalomkérései változó igényeinek kielégítéséhez.
+> Dinamikus kiosztás egy olyan virtualizációs technológia, rendelkezésre álló tár jelenik meg tooexceed fizikai erőforrásokat. Ahelyett, hogy elegendő tárhely előre foglalással, Azure StorSimple használ a vékony létesítési tooallocate éppen elegendő toomeet aktuális lemezterület. felhőalapú tárolás rugalmas jellege hello elősegíti a ezt a módszert használja, mert Azure StorSimple növelheti vagy csökkentheti a felhőalapú tárolás toomeet tartalomkérései változó igényeinek.
 > 
 > 
 
-## <a name="the-volumes-page"></a>A kötetek lap
-A **kötetek** lap lehetővé teszi a tárolókötetek törlődnek a Microsoft Azure StorSimple eszközön a kezdeményezőktől (kiszolgálóktól) való kezelését. A StorSimple eszköz kötetek listáját megjeleníti.
+## <a name="hello-volumes-page"></a>hello kötetek lap
+Hello **kötetek** lap lehetővé teszi a toomanage hello tárolókötetek hello Microsoft Azure StorSimple eszközön a kezdeményezőktől (kiszolgálóktól) törlődnek. Hello kötetek listáját jeleníti meg a StorSimple eszközt.
 
  ![Kötetek lap](./media/storsimple-manage-volumes/HCS_VolumesPage.png)
 
 A kötet attribútumainak állnak:
 
-* **Név** – egy leíró nevet, amely egyedinek kell lennie, és segít azonosítani a kötetet. Ez a név monitoring jelentések, amikor egy adott köteten szűrheti is szerepel.
-* **Állapot** – lehet online vagy offline állapotú. Ha egy köteten, ha a kapcsolat nélküli, nincs látható kezdeményezőktől (kiszolgálóktól), amelyek hozzáférhetnek a kötetet használja.
-* **Kapacitás** – adja meg, hogy nagy a kötet van, a kezdeményező (kiszolgáló) által érzékelt. Kapacitás a kezdeményező (kiszolgáló) tárolt adatok teljes mennyisége határozza meg. Kötetek kiosztása, és a deduplikált adatok. Ez azt jelenti, hogy az eszköz nem előre lefoglalni fizikai tárolási kapacitás, belsőleg vagy a felhő megfelelően konfigurált kötet kapacitása. A kötet kapacitása lefoglalt és felhasznált igény szerint.
-* **Típus** – a kötet típusa rétegzett és archiválási lehet (a altípusa Szintezett)
-* **Hozzáférés** – Itt adhatja meg, amelyek számára engedélyezett a kötet elérésének kezdeményezőktől (kiszolgálóktól). Kezdeményezők, amelyek nem tagjai a hozzáférés-vezérlési rekordot (ACR) a kötet társított nem jelenik meg a kötet.
-* **Figyelési** – adja meg a kötet figyel-e. Egy kötet lesz figyelési létrehozásakor alapértelmezés szerint engedélyezett. Lesz, azonban figyelés, a kötet másolat le kell tiltani. Kötet figyelésének engedélyezéséhez kövesse a figyelő egy kötet.
+* **Név** – egy leíró nevet, amely egyedinek kell lennie, és azonosíthatja a hello kötet. Ez a név monitoring jelentések, amikor egy adott köteten szűrheti is szerepel.
+* **Állapot** – lehet online vagy offline állapotú. Ha egy köteten, ha a kapcsolat nélküli, nincs látható tooinitiators (kiszolgálók), amelyek számára engedélyezett a hozzáférés toouse hello kötet.
+* **Kapacitás** – Megadja, hogyan hello sok esetén, mert a gép hello kezdeményező (kiszolgáló) által érzékelt. Kapacitás hello hello kezdeményező (kiszolgáló) tárolt adatok teljes mennyisége határozza meg. Kötetek kiosztása, és a deduplikált adatok. Ez azt jelenti, hogy az eszköz nem előre lefoglalni fizikai tárolási kapacitás, belsőleg vagy hello felhő tooconfigured kötet kapacitása alapján történik. hello kötet kapacitása lefoglalt és felhasznált igény szerint.
+* **Típus** – hello kötet típus rétegzett vagy archiválási lehet (a altípusa Szintezett)
+* **Hozzáférés** – Itt adhatja meg, amelyek számára engedélyezett a hozzáférés toothis kötet hello kezdeményezőktől (kiszolgálóktól). Kezdeményezők, amelyek nem tagjai a hozzáférés-vezérlési rekordot (ACR) társított hello kötet nem jelenik meg a hello kötet.
+* **Figyelési** – adja meg a kötet figyel-e. Egy kötet lesz figyelési létrehozásakor alapértelmezés szerint engedélyezett. Lesz, azonban figyelés, a kötet másolat le kell tiltani. egy kötet, figyelés tooenable kövesse a figyelő egy kötet hello utasításait.
 
-A leggyakoribb feladatokat hozzárendelt egy kötetet a következők:
+a kötet társított hello leggyakoribb feladatokat a következők:
 
 * Kötet hozzáadása
 * A kötet módosítása
@@ -60,88 +60,88 @@ A leggyakoribb feladatokat hozzárendelt egy kötetet a következők:
 ## <a name="add-a-volume"></a>Kötet hozzáadása
 Ön [kötet létrehozott](storsimple-deployment-walkthrough-u1.md#step-6-create-a-volume) a StorSimple megoldás üzembe helyezése során. Hasonló eljárással hozzáadna egy kötetet.
 
-### <a name="to-add-a-volume"></a>Kötet hozzáadása
-1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **Kötettárolók** fülre.
-2. Válassza ki a kötettároló, és kattintson a nyílra az adott sorban a tárolóhoz társított kötetek elérésére.
-3. Kattintson a **Hozzáadás** az oldal alján. A Hozzáadás egy kötet varázsló elindul.
+### <a name="tooadd-a-volume"></a>a kötet tooadd
+1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **Kötettárolók** fülre.
+2. Válassza ki a kötettároló, és kattintson a hello megfelelő sor tooaccess hello kötetek hello tárolóhoz társított hello nyílra.
+3. Kattintson a **Hozzáadás** hello lap hello alján. Elindítja a hello kötet hozzáadása varázslóban.
    
      ![Vegye fel a kötet varázsló alapbeállítások](./media/storsimple-manage-volumes/AddVolume1.png)
-4. A Kötet hozzáadása varázslóban az **Alapbeállítások** területen tegye a következőket:
+4. Hello hozzá egy kötet varázslóban a **alapbeállítások**, a következő hello:
    
    1. Adjon **nevet** a kötetnek.
-   2. Adja meg a kötethez tartozó **Kiosztott kapacitást** GB-ban vagy TB-ban. A kapacitás egy fizikai eszköz 1 GB és 64 TB-os között kell lennie. A maximális kapacitás, amely egy olyan kötetre a StorSimple virtuális eszköz kiépítése 30 TB.
-   3. Válassza ki a **használat típusa** a köteten. Ha a rétegzett kötetet archív adatokhoz használ, válassza a **kötet használata ritkábban használt archív adatokhoz** jelölőnégyzetet vált az a kötet deduplikációs adattömbméret 512 KB. Ha nem ezt a beállítást, a megfelelő rétegzett kötet 64 KB adattömbméretet fogja használni. Egy nagyobb deduplikációs adattömbméret lehetővé teszi, hogy az eszközt, hogy a nagy mennyiségű archiválási adatok a felhőben való továbbítását. (Rétegzett kötetek volt neve korábban elsődleges kötet.)
-   4. Kattintson a nyíl ikonra ![nyíl ikonra](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)gomba a **további beállításokat** lap.
+   2. Adja meg a hello **kiosztott kapacitást** a kötet GB-ban vagy TB. hello kapacitás egy fizikai eszköz 1 GB és 64 TB-os között kell lennie. hello maximális kapacitás, amely egy olyan kötetre a StorSimple virtuális eszköz kiépítése 30 TB.
+   3. Jelölje be hello **használat típusa** a köteten. Használata rétegzett kötetet archív adatokhoz, hello kiválasztásával hello **kötet használata ritkábban használt archív adatokhoz** jelölőnégyzetet módosítja hello deduplikációs adattömbméret a kötethez tartozó too512 KB. Ha nem ezt a beállítást, a hello megfelelő rétegzett kötet 64 KB adattömbméretet fogja használni. Egy nagyobb deduplikációs adattömbméret lehetővé teszi, hogy a nagy mennyiségű archiválási adatok toohello felhő hello eszköz tooexpedite hello átvitelét. (Rétegzett kötetek volt neve korábban elsődleges kötet.)
+   4. Kattintson a nyíl ikonra hello ![nyíl ikonra](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)toogo toohello **további beállításokat** lap.
       
         ![Vegye fel a kötet varázsló további beállításai](./media/storsimple-manage-volumes/AddVolume2.png)
 5. A **további beállításokat**, adja hozzá egy új hozzáférés-vezérlési rekordot (ACR):
    
-   1. A legördülő listából válassza ki a hozzáférés-vezérlési rekordot (ACR). Másik megoldásként egy új ACR is hozzáadhat. ACRs határozza meg, hogy mely gazdagépek a kötetek férhetnek hozzá az állomás IQN-Nevének megfelelő vele a rekord szerepel.
-   2. Javasoljuk, hogy engedélyezze az alapértelmezett biztonsági mentést az **Alapértelmezett biztonsági mentés engedélyezése ehhez a kötethez** jelölőnégyzet bejelölésével.
-   3. Kattintson a pipa ikonra ![Pipa ikon](./media/storsimple-manage-volumes/HCS_CheckIcon.png) a kötet létrehozása a megadott beállításokkal.
+   1. Válasszon egy hozzáférés-vezérlési rekordot (ACR) hello legördülő listából. Másik megoldásként egy új ACR is hozzáadhat. ACRs határozza meg, hogy mely gazdagépek férhetnek hozzá a kötetek egyező hello hello rekordban szereplő gazdagép IQN.
+   2. Ajánlott engedélyezni a alapértelmezett biztonsági mentés hello kiválasztásával **engedélyezése ehhez a kötethez alapértelmezett biztonsági mentés** jelölőnégyzetet.
+   3. Kattintson a pipa ikonra hello ![Pipa ikon](./media/storsimple-manage-volumes/HCS_CheckIcon.png) hello toocreate hello kötet megadott beállításokat.
 
-Az új kötet már készen áll a használatra.
+Az új kötet már készen áll a toouse.
 
 ## <a name="modify-a-volume"></a>A kötet módosítása
-Bontsa ki, vagy módosítsa a gazdagépek, amelyek a kötethez kell egy kötet módosításával.
+A kötet módosításával, vagy hello kötet elérő állomások hello módosítása tooexpand szükséges.
 
 > [!IMPORTANT]
-> * Ha módosítja a kötet méretét, az eszközön, a kötet mérete kell módosítani a gazdagépen.
-> * A gazdagép-oldali itt leírt lépésekre a Windows Server 2012 (2012R2). Eljárások a Linux vagy más állomás operációs rendszerek eltérőek lesznek. Ha módosítja a kötet olyan operációs rendszert futtató másik gazdagépre tekintse meg a gazdagép operációs rendszer utasításokat.
+> * Hello kötet mérete hello eszközön módosításakor hello kötetméretet kell toobe hello gazdagépen is módosítani.
+> * hello gazdagép-oldali lépéseket az itt ismertetett kell a Windows Server 2012 (2012R2). Eljárások a Linux vagy más állomás operációs rendszerek eltérőek lesznek. Tekintse meg tooyour állomás operációs rendszer utasításokat, ha módosítja egy másik operációs rendszert futtató kiszolgálóra hello köteten.
 > 
 > 
 
-### <a name="to-modify-a-volume"></a>A kötet módosítása
-1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **Kötettároló** fülre. Ezen a lapon táblázatos formában sorolja fel a kötet minden olyan tárolók, amelyek az eszközhöz kapcsolódnak.
-2. Válassza ki a kötettároló, és kattintson rá a tárolóban a kötetek listájának megjelenítéséhez.
-3. Az a **kötetek** lapon jelöljön ki egy kötetet, majd kattintson **módosítás**.
-4. A módosítás kötet varázslóban a **alapbeállítások**, a következőket teheti:
+### <a name="toomodify-a-volume"></a>a kötet toomodify
+1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **Kötettároló** fülre. Ezen a lapon táblázatos formában sorolja fel az összes hello kötettárolók, hello eszköz társított.
+2. Válassza ki a kötettároló, és kattintson rá a toodisplay hello összes hello kötetek listáját hello tárolóban.
+3. A hello **kötetek** lapon jelöljön ki egy kötetet, majd kattintson **módosítás**.
+4. Hello módosítsa kötet varázslóban a **alapbeállítások**, megteheti hello következő:
    
-   * Szerkesztés a **neve** és **típus** választásával rétegzett kötetet archív kötetre módosítani kívánja a **kötet használata ritkábban használt archív adatokhoz** melletti jelölőnégyzetet, hogy módosítsa a deduplikációs adattömbméret a kötethez tartozó 512 KB.
-   * Növelje a **kapacitás kiosztása**. A **kiosztott kapacitást** pedig csak növelni. A kötet nem zsugorítható, létrehozás után.
+   * Hello szerkesztése **neve** és **típus** Ha kívánja toomodify tooan rétegzett kötetet archív kötet hello kiválasztásával **kötet használata ritkábban használt archív adatokhoz** jelölőnégyzet toochange hello deduplikációs adattömbméret a kötethez tartozó too512 KB.
+   * Növelje a hello **kiosztott kapacitást**. Hello **kiosztott kapacitást** pedig csak növelni. A kötet nem zsugorítható, létrehozás után.
      
      > [!NOTE]
-     > A kötettároló nem módosítható, miután egy kötet van hozzárendelve.
+     > Hello kötettároló nem módosítható, miután tooa kötet van hozzárendelve.
      > 
      > 
-5. A **további beállításokat**, a következőket teheti:
+5. A **további beállításokat**, megteheti hello következő:
    
-   * Módosítsa a ACRs, feltéve, hogy a kötet offline állapotban. Ha a kötet online állapotban, akkor offline állapotba először. Tekintse meg a lépéseket [kötet offline állapotba](#take-a-volume-offline) az ACR módosítása előtt.
-   * ACRs listájának módosítása után a kötet offline állapotban.
+   * Módosítsa a hello ACRs, feltéve, hogy a hello kötet offline állapotban. Ha hello kötet online állapotban, szüksége lesz a tootake azt kapcsolat nélküli első. Tekintse meg a toohello lépéseit [kötet offline állapotba](#take-a-volume-offline) előzetes toomodifying hello ACR.
+   * Módosíthatja a ACRs hello listáját, miután hello kötet offline állapotban.
      
      > [!NOTE]
-     > Nem módosítható a **engedélyezése ehhez a kötethez alapértelmezett biztonsági mentés** beállítást a kötethez.
+     > Nem módosíthatja a hello **engedélyezése ehhez a kötethez alapértelmezett biztonsági mentés** hello kötet lehetőséget.
      > 
      > 
-6. A módosítások mentéséhez kattintson a pipa ikonra ![pipa ikon](./media/storsimple-manage-volumes/HCS_CheckIcon.png). A klasszikus Azure portálra egy frissítési kötet üzenetet jelenít meg. Egy üzenetet, jelenít meg, ha a kötet sikeresen frissítve.
-7. Ha egy kötet bővíti, végezze el az alábbi lépéseket a Windows-állomás számítógépen:
+6. A módosítások mentéséhez hello pipa ikonra kattintva ![pipa ikon](./media/storsimple-manage-volumes/HCS_CheckIcon.png). a klasszikus Azure portálon hello egy frissítési kötet üzenetet jelenít meg. Egy üzenetet, jelenít meg, ha hello kötet sikeresen frissítve.
+7. Ha egy kötet bővíti, hajtsa végre a következő lépéseket a Windows-állomás számítógépen hello:
    
-   1. Ugrás a **számítógép-kezelés** ->**felügyeleti lemez**.
+   1. Nyissa meg túl**számítógép-kezelés** ->**Lemezkezelés**.
    2. Kattintson a jobb gombbal **Lemezkezelés** válassza **lemezek újraellenőrzése**.
-   3. A lemezek, jelölje ki a kötetet, amelyeket azért frissített, kattintson a jobb gombbal, és válassza **kötet kiterjesztése**. A kötet kiterjesztése varázsló elindul. Kattintson a **Tovább** gombra.
-   4. Fejezze be a varázslót, az alapértelmezett értékek elfogadásával. A varázsló befejezése után, a kötet mérete nagyobb kell megjelenítenie.
+   3. Válassza a lemezek hello lista hello kötet, amelyeket azért frissített, kattintson a jobb gombbal, és válassza **kötet kiterjesztése**. hello kötet kiterjesztése varázsló elindul. Kattintson a **Tovább** gombra.
+   4. Hello alapértelmezett értékek elfogadásával hello varázsló befejezése. Hello varázsló befejezése után hello kötet mérete nagyobb hello kell megjelennie.
 
-![Videó elérhető](./media/storsimple-manage-volumes/Video_icon.png) **Videó elérhető**
+![Videó elérhető](./media/storsimple-manage-volumes/Video_icon.png)**Videó elérhető**
 
-Bemutató videó bemutatja, hogyan bontsa ki a kötetet, kattintson a [Itt](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/).
+videó toowatch hogyan tooexpand egy köteten, kattintson a [Itt](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/).
 
 ## <a name="take-a-volume-offline"></a>A kötet offline állapotba helyezése
-Szükség lehet egy kötet offline állapotba, ha azt tervezi, hogy módosítsa vagy törölje azt. Ha egy kötet offline állapotban, nincs olvasási és írási hozzáférése érhető el. Szüksége lesz a kötet offline érvénybe az állomáson, valamint az eszközön. A következő lépésekkel kötet offline állapotba.
+Szükség lehet egy kötet offline tootake tervezésekor toomodify vagy törölje azt. Ha egy kötet offline állapotban, nincs olvasási és írási hozzáférése érhető el. Szüksége lesz tootake hello kötet offline hello állomáson, valamint hello eszközön. Hajtsa végre a következő lépéseket tootake egy kötet offline hello.
 
-### <a name="to-take-a-volume-offline"></a>A kötet offline állapotba
-1. Győződjön meg arról, hogy az adott kötet nem offline állapotba helyezése előtt használatban van.
-2. Igénybe offline állapotba a kötet a gazdagépen első. Ezzel a megoldással a köteten adatsérülés lehetséges kockázatát. Tekintse meg az utasításokat a gazda operációs rendszer megadott lépéseket.
-3. Miután a gazdagép offline állapotban, igénybe a kötet offline állapotba az eszközön az alábbi lépések elvégzésével:
+### <a name="tootake-a-volume-offline"></a>a kötet offline tootake
+1. Győződjön meg arról, hogy a szóban forgó hello kötet nem offline állapotba helyezése előtt használatban van.
+2. Igénybe hello kötet offline hello állomás első. Ezzel a megoldással adatsérülés hello köteten lehetséges kockázatát. Lépéseit tekintse meg a gazda operációs rendszer toohello utasításokat.
+3. Miután hello állomás elérhetetlenné válik, igénybe hello kötet offline hello eszközön hello lépések végrehajtásával:
    
-   1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **Kötettárolók** fülre. A **Kötettárolók** lapon táblázatos formában sorolja fel a kötet minden olyan tárolók, amelyek az eszközhöz kapcsolódnak.
-   2. Válassza ki a kötettároló, és kattintson rá a tárolóban a kötetek listájának megjelenítéséhez.
+   1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **Kötettárolók** külön-külön hello **Kötettárolók** összes táblázatos formában listák lap hello kötettárolók, amelyek hello eszközhöz kapcsolódnak.
+   2. Válassza ki a kötettároló, és kattintson rá a toodisplay hello összes hello kötetek listáját hello tárolóban.
    3. Jelöljön ki egy kötetet, majd **offline állapotba**.
-   4. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. A kötet offline állapotban kell.
+   4. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. hello kötet offline állapotban kell.
       
-      Miután egy kötet offline állapotban, a **online állapotba hozás** összetevőn.
+      Miután egy kötet offline állapotban, hello **online állapotba hozás** összetevőn.
 
 > [!NOTE]
-> A **Offline állapotba** parancs kérést küld az eszközt, hogy a kötet offline állapotba. Gazdagépek még mindig használja a kötetet, ha az eredmény megszakadt kapcsolat, de a kötet offline állapotba helyezése nem sikertelen lesz.
+> Hello **Offline állapotba** parancs küld egy kérelem toohello eszköz tootake hello kötet offline állapotba. Gazdagépek hello kötet használják, ha az eredmény megszakadt kapcsolat, de hello kötet offline állapotba helyezése nem sikertelen lesz.
 > 
 > 
 
@@ -151,30 +151,30 @@ Szükség lehet egy kötet offline állapotba, ha azt tervezi, hogy módosítsa 
 > 
 > 
 
-Az alábbi lépésekkel kötet törlése.
+Hajtsa végre a következő lépéseket toodelete kötet hello.
 
-### <a name="to-delete-a-volume"></a>Kötet törlése
-1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **Kötettárolók** fülre.
-2. Válassza ki a kötettároló, amely a törölni kívánt kötet rendelkezik. A kötettároló eléréséhez kattintson a **kötetek** lap.
-3. Ez a tároló társított összes kötet táblázatos formában jelennek meg. A törölni kívánt kötet állapotának ellenőrzéséhez. Ha törli a kötet nem offline állapotban, offline állapotba először lépéseit [kötet offline állapotba](#take-a-volume-offline).
-4. Miután a kötet offline állapotban, kattintson **törlése** az oldal alján.
-5. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. Program törli a kötet és a **kötetek** lapon megjelenik a frissített listáját a tárolóban lévő köteteket.
+### <a name="toodelete-a-volume"></a>a kötet toodelete
+1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **Kötettárolók** fülre.
+2. Válassza ki a kívánt toodelete hello kötet rendelkező hello kötettároló. Kattintson a hello kötet tároló tooaccess hello **kötetek** lap.
+3. Ez a tároló társított összes hello kötetek táblázatos formában jelennek meg. Hello állapotának hello kötet toodelete szeretné. Ha azt szeretné, hogy toodelete hello kötet nem offline állapotban, végezze el az offline első, a következő hello lépéseket szereplő [kötet offline állapotba](#take-a-volume-offline).
+4. Miután hello kötet offline állapotban, kattintson **törlése** hello lap hello alján.
+5. Ha a rendszer megerősítést kér, kattintson az **Igen** gombra. a program törli hello kötet, és hello **kötetek** lapon megjelenik a kötetek hello tárolóban hello frissített listáját.
 
 ## <a name="monitor-a-volume"></a>A kötet figyelése
-Mennyiségi figyelési lehetővé teszi, hogy a kötet I/O-hez kapcsolódó Statisztika gyűjtése. Figyelés az Ön által létrehozott első 32 kötetekhez alapértelmezés szerint engedélyezve van. A további kötetek figyelés alapértelmezés szerint le van tiltva. A klónozott kötetek figyelését is alapértelmezés szerint nincs engedélyezve.
+Mennyiségi figyelési lehetővé teszi egy kötet toocollect I/O-hez kapcsolódó statisztikája. Figyelési hello alapértelmezés szerint engedélyezve van az Ön által létrehozott első 32 kötetek. A további kötetek figyelés alapértelmezés szerint le van tiltva. A klónozott kötetek figyelését is alapértelmezés szerint nincs engedélyezve.
 
-A következő lépésekkel engedélyezhető vagy tiltható le a kötet figyelését.
+Hajtsa végre a következő lépéseket tooenable hello, vagy tiltsa le a kötet megfigyelését.
 
-### <a name="to-enable-or-disable-volume-monitoring"></a>Engedélyezheti vagy tilthatja le a kötet figyelése
-1. Az a **eszközök** lapon válassza ki az eszközt, kattintson rá duplán, és kattintson a **Kötettárolók** fülre.
-2. Válassza ki a kötettároló, ahol a köteten van, és kattintson a eléréséhez a kötettároló a **kötetek** lap.
-3. Ebben a tárolóban társított összes kötet szerepelnek táblázatos megjelenítéséhez. Kattintson, és válassza ki a kötet vagy a kötet Klónozás.
-4. Kattintson a lap alján **módosítás**.
-5. A kötet módosítása varázslóban a **alapbeállítások**, jelölje be **engedélyezése** vagy **tiltsa le a** a a **figyelés** legördülő listából választhatja ki.
+### <a name="tooenable-or-disable-volume-monitoring"></a>tooenable vagy a kötet figyelés letiltásakor
+1. A hello **eszközök** lapon, válassza ki azt hello eszközt, kattintson rá duplán, és kattintson a hello **Kötettárolók** fülre.
+2. Válassza ki, melyik hello köteten található hello kötettároló, és kattintson a hello kötet tároló tooaccess hello **kötetek** lap.
+3. Ez a tároló társított összes hello kötetek hello táblázatos megjelenítési láthatók. Kattintson, és válassza a hello kötet és a kötet Klónozás.
+4. Hello a hello lap alján, kattintson **módosítás**.
+5. Hello kötet módosítása varázslóban a **alapbeállítások**, jelölje be **engedélyezése** vagy **tiltsa le a** a hello **figyelés** legördülő listából választhatja ki.
    
     ![A kötet alapvető beállítások módosítása](./media/storsimple-manage-volumes/HCS_MonitorVolumeM.png)
 
 ## <a name="next-steps"></a>Következő lépések
-* Megtudhatja, hogyan [klónozza a StorSimple-kötet](storsimple-clone-volume.md).
-* Megtudhatja, hogyan [felügyelete a StorSimple eszközt a StorSimple Manager szolgáltatás segítségével](storsimple-manager-service-administration.md).
+* Ismerje meg, hogyan túl[klónozza a StorSimple-kötet](storsimple-clone-volume.md).
+* Ismerje meg, hogyan túl[használata hello StorSimple Manager szolgáltatás tooadminister a StorSimple eszköz](storsimple-manager-service-administration.md).
 

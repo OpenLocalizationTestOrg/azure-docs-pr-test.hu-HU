@@ -1,5 +1,5 @@
 ---
-title: "Az Azure SQL Data Warehouse naplózása |} Microsoft Docs"
+title: az Azure SQL Data Warehouse aaaAuditing |} Microsoft Docs
 description: "Ismerkedés az Azure SQL Data Warehouse naplózás"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 08/21/2017
 ms.author: rortloff;barbkess
-ms.openlocfilehash: f851c82ebeaa647f663d499a4d327c3479e36121
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 948de74fa052ef206cf1aa65c0d81f084b18cb00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="auditing-in-azure-sql-data-warehouse"></a>Az Azure SQL Data Warehouse naplózás
 > [!div class="op_single_selector"]
@@ -28,9 +28,9 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Az SQL Data Warehouse naplózás segítségével az adatbázist a naplózási események jelentkezzen be az Azure Storage-fiók bejegyzéshez. Naplózás segít törvényi megfelelőség fenntartásában, ismerje meg adatbázis-tevékenység, és azok az eltérések és rendellenességek, amelyek üzleti problémát jelenthetnek, vagy a biztonság megsértésére betekintést. Az SQL Data Warehouse naplózását is integrálható a Microsoft Power BI leásási jelentéskészítés és elemzés céljára.
+Az SQL Data Warehouse naplózás segítségével toorecord események az adatbázis tooan naplóban az Azure Storage-fiókban. Naplózás segít törvényi megfelelőség fenntartásában, ismerje meg adatbázis-tevékenység, és azok az eltérések és rendellenességek, amelyek üzleti problémát jelenthetnek, vagy a biztonság megsértésére betekintést. Az SQL Data Warehouse naplózását is integrálható a Microsoft Power BI leásási jelentéskészítés és elemzés céljára.
 
-A naplózási eszközök engedélyezése, és lehetővé teszi a megfelelést a megfelelőségi követelményeket, de nem garantálják megfelelőségi. További információ az Azure programokat, hogy támogatási szabványoknak való megfelelés, a következő témakörben: a <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Azure biztonsági és adatkezelési központ</a>.
+A naplózási eszközök engedélyezése és betartása toocompliance szabványok megkönnyítése, de nem garantálják a megfelelőségi. További információ az Azure programokat, hogy támogatási szabványoknak való megfelelés, a következő témakörben: hello <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Azure biztonsági és adatkezelési központ</a>.
 
 * [Adatbázis naplózási alapjai]
 * [Az adatbázis naplózásának beállítása]
@@ -39,15 +39,15 @@ A naplózási eszközök engedélyezése, és lehetővé teszi a megfelelést a 
 ## <a id="subheading-1"></a>Az Azure SQL Data Warehouse Database Auditing alapjai
 Az SQL Data Warehouse-adatbázis naplózásának teszi lehetővé:
 
-* **Tartsa meg** kijelölt események egy naplóban. Adatbázis-műveleteket kell naplózni kategóriáinak adhat meg.
-* **A jelentés** adatbázis-tevékenység. Előre konfigurált jelentések és egy irányítópult segítségével gyorsan Ismerkedés a tevékenységet és az események naplózásához.
+* **Tartsa meg** kijelölt események egy naplóban. Adatbázis-műveletek toobe naplózva kategóriáinak adhat meg.
+* **A jelentés** adatbázis-tevékenység. Használhat előre konfigurált jelentések és egy irányítópult tooget használatának gyors megkezdése tevékenységet és az események naplózásához.
 * **Elemezze** jelentéseket. Gyanús események, a szokatlan tevékenység és a trendeket találja.
 
-Konfigurálhatja a naplózás a következő kategóriák:
+Konfigurálhatja a naplózás a következő kategóriák hello:
 
-**Egyszerű SQL** és **paraméteres SQL** , amelynek a gyűjtött naplók besorolt  
+**Egyszerű SQL** és **paraméteres SQL** mely hello a gyűjtött naplók besorolt  
 
-* **Adatokhoz való hozzáférés**
+* **Hozzáférés toodata**
 * **Sémaváltozások (DDL)**
 * **Adatok módosításait (DML)**
 * **Fiókok, szerepkörök és engedélyeket (DCL)**
@@ -55,51 +55,51 @@ Konfigurálhatja a naplózás a következő kategóriák:
 
 Minden esemény kategóriához a naplózási **sikeres** és **hiba** műveleteket külön-külön vannak konfigurálva.
 
-A tevékenységek és a naplózott események kapcsolatos további információkért tekintse meg a <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">naplózási napló fájlformátum referenciája (doc fájl letöltése)</a>.
+További információ a hello tevékenységeket és naplóz eseményeket: hello <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">naplózási napló fájlformátum referenciája (doc fájl letöltése)</a>.
 
 Naplók az Azure storage-fiókok vannak tárolva. Megadhatja, hogy az ellenőrzési napló megőrzési időtartam.
 
-A naplózási házirend meghatározása egy adott adatbázis vagy az alapértelmezett házirend-kiszolgáló. Kiszolgáló alapértelmezett naplózási házirend vonatkozik egy kiszolgálón lévő összes adatbázis, amely nem rendelkezik egy adott felülbíráló adatbázis naplózási házirend lett meghatározva.
+A naplózási házirend meghatározása egy adott adatbázis vagy az alapértelmezett házirend-kiszolgáló. Kiszolgáló alapértelmezett naplózási házirend vonatkozik tooall adatbázisok egy kiszolgálón, amely nem rendelkezik egy adott felülbíráló adatbázis naplózási házirend lett meghatározva.
 
 Jelölőnégyzet naplózás használata naplózási beállítása előtt egy ["Régebbi típusú ügyfelekhez."](sql-data-warehouse-auditing-downlevel-clients.md)
 
 ## <a id="subheading-2"></a>Az adatbázis naplózásának beállítása
-1. Indítsa el a <a href="https://portal.azure.com" target="_blank">Azure-portálon</a>.
-2. Lépjen a **beállítások** a naplózni kívánt SQL Data warehouse panelre. Az a **beállítások** panelen válassza **naplózási & Threat detection**.
+1. Indítsa el a hello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a>.
+2. Nyissa meg toohello **beállítások** hello SQL Data Warehouse tooaudit kívánt panel. A hello **beállítások** panelen válassza **naplózási & Threat detection**.
    
     ![][1]
-3. Következő lépésként engedélyezze a nyomkövetést oly módon, kattintson a **ON** gombra.
+3. Ezután engedélyezi a naplózást hello kattintva **ON** gombra.
    
     ![][3]
-4. A naplózási konfiguráció paneljén válassza **tárolási részletek** naplózási naplók tárolási panel megnyitásához. Válassza ki az Azure storage-fiók naplók menteni és, a megőrzési időn. 
+4. Hello naplózás konfigurációs panelen, jelölje ki **tárolási részletek** tooopen hello naplózási naplók tárolás panel. Válassza ki a hello Azure storage-fiók naplók menteni és hello megőrzési időtartam. 
 >[!TIP]
->Ugyanazt a tárfiókot az összes naplózott adatbázis segítségével a legtöbbet hozhatja ki az előre konfigurált jelentések sablonokat.
+>Használjon hello ugyanazt a tárfiókot, az összes naplózott adatbázisok tooget hello hatékonyabb működtetését hello előre konfigurált jelentések sablonok.
    
     ![][4]
-5. Kattintson a **OK** gombra kattintva mentse a tárkonfiguráció részleteit.
-6. A **-NAPLÓZÁS által esemény**, kattintson a **sikeres** és **hiba** lehetőséget az összes esemény naplózása, vagy az egyes kategóriák.
-7. Naplózási adatbázis beállításakor, szükség lehet megváltoztatni a kapcsolati karakterlánc az ügyfél annak érdekében, hogy megfelelően rögzített adatok naplózását. Ellenőrizze a [módosíthatja a kiszolgáló teljes Tartománynevet a kapcsolódási karakterláncban](sql-data-warehouse-auditing-downlevel-clients.md) témakör korábbi verziójú ügyfél-kommunikációhoz.
+5. Kattintson a hello **OK** gomb részletek toosave hello tárkonfiguráció.
+6. A **-NAPLÓZÁS által esemény**, kattintson **sikeres** és **hiba** toolog összes eseményt, vagy válassza ki az egyes kategóriák.
+7. Naplózási adatbázis beállításakor, szükség lehet az adatok naplózását megfelelően rögzített ügyfél tooensure tooalter hello kapcsolati karakterlánca. Ellenőrizze a hello [módosíthatja a kiszolgáló teljes Tartománynevet hello kapcsolat-karakterláncban](sql-data-warehouse-auditing-downlevel-clients.md) témakör korábbi verziójú ügyfél-kommunikációhoz.
 8. Kattintson az **OK** gombra.
 
 ## <a id="subheading-3"></a>Elemezze a vizsgálati naplók és jelentések
-Naplófájlok tárolási táblákon, amelyekhez a gyűjtemény összesítése egy **SQLDBAuditLogs** a telepítéskor választott Azure-tárfiók-előtagot. Megtekintheti a naplófájlok egy eszközzel, mint <a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Azure Tártallózó</a>.
+Naplófájlok tárolási táblákon, amelyekhez a gyűjtemény összesítése egy **SQLDBAuditLogs** hello Azure storage-fiók a telepítés során választott előtagot. Megtekintheti a naplófájlok egy eszközzel, mint <a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Azure Tártallózó</a>.
 
-Előre konfigurált irányítópult jelentéssablon áll rendelkezésre, mert egy <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">letölthető Excel-táblázat</a> naplóadatokat gyorsan elemzéséhez. A naplók a sablon használatához kell Excel 2013 vagy újabb verzió és a Power Query, amely letölthető <a href="http://www.microsoft.com/download/details.aspx?id=39379">Itt</a>.
+Előre konfigurált irányítópult jelentéssablon áll rendelkezésre, mert egy <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">letölthető Excel-táblázat</a> toohelp gyorsan elemez naplóadatait. hello sablonjának toouse a naplókat, és van szükség az Excel 2013 vagy újabb verzió Power Query, amely letölthető <a href="http://www.microsoft.com/download/details.aspx?id=39379">Itt</a>.
 
-A sablon a képzeletbeli mintaadatok rendelkezik, és a napló közvetlenül importálása az Azure-tárfiókot Power Query állíthat be.
+hello sablon a képzeletbeli mintaadatok rendelkezik, és állíthatja be a Power Query tooimport a napló-ről az Azure storage-fiók.
 
 ## <a id="subheading-4"></a>Tárolási kulcs újragenerálása
-Éles akkor valószínűleg a kulcsok rendszeresen frissíteni. Ha a kulcsok frissítése, kell menteni a házirendet. A folyamat a következőképpen történik:
+Éles valószínűleg a tárolási a kulcsok rendszeresen toorefresh áll. A kulcsok frissítése, úgy kell toosave hello házirend. hello folyamat a következőképpen történik:
 
-1. A naplózási konfiguráció panelen (a szakasz naplózásának beállítása fent leírt) kapcsoló a **Tárelérési kulcs** a *elsődleges* való *másodlagos* és **mentése**.
+1. A naplózási konfiguráció panel (naplózás szakasz hello beállítása a fent leírt) hello kapcsoló hello **Tárelérési kulcs** a *elsődleges* túl*másodlagos* és  **MENTÉS**.
 
    ![][4]
-2. Nyissa meg a tárolási konfiguráció paneljét és **újragenerálja** a *elsődleges elérési kulcsot*.
-3. Lépjen vissza a naplózási konfiguráció blade, kapcsoló a **Tárelérési kulcs** a *másodlagos* való *elsődleges* nyomja le az ENTER **mentése**.
-4. Lépjen vissza a felhasználói felület tárolására és **újragenerálja** a *másodlagos elérési kulcsot* (mint a következő előkészítése kulcsok a frissítés.
+2. Nyissa meg toohello tárolási konfiguráció panel és **újragenerálja** hello *elsődleges elérési kulcsot*.
+3. Lépjen vissza a naplózási konfiguráció blade, kapcsoló hello toohello **Tárelérési kulcs** a *másodlagos* túl*elsődleges* nyomja le az ENTER **mentése**.
+4. Lépjen vissza a felhasználói felület toohello tárolási és **újragenerálja** hello *másodlagos elérési kulcsot* (mint hello előkészítése tovább kulcsok a frissítés.
 
 ## <a id="subheading-5"></a>Automatizálási (PowerShell/REST API)
-A következő automation eszközök használatával az Azure SQL Data Warehouse naplózását is konfigurálhatja:
+A következő automation eszközök hello segítségével az Azure SQL Data Warehouse naplózás is konfigurálhatja:
 
 * **PowerShell-parancsmagok**:
 

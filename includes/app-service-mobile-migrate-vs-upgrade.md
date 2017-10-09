@@ -1,5 +1,5 @@
-Az App Service Mobile Services áthelyezése esetén két lehetőség áll rendelkezésre: áttelepítés vagy frissítés. Bármelyiket rendszerében, hozzáférhet az összes, az App Service üzemeltetési lehetőségeit:
+Az áthelyezést a Mobile Services tooApp szolgáltatás két lehetőség: áttelepítés vagy frissítés. Mindkét lehetőség az App Service képességeit üzemeltető hello tooall eléréséhez:
 
-* *Áttelepítés* egy szolgáltatás éppen módosítja az alapul szolgáló környezetben, amelyen a mobil-háttéralkalmazást. Szükségel **nem kódmódosításokat** a mobil ügyfél vagy a mobil kiszolgálóprojektet. Ha az automatizált áttelepítési funkciót használja, ez megőrzi a **service.azure-mobile.net** URL-CÍMÉT. 
-* *Frissítés* egy szolgáltatásnak nincs **kód módosítására** a kiszolgáló és ügyfél-projekt, de lehetővé teszi új mobil SDK szolgáltatásait, például a hitelesítés és a nagyobb rugalmasságot fejlesztések a kiszolgáló-projektet. 
+* *Áttelepítés* egy szolgáltatás éppen módosítja az alapul szolgáló a mobil-háttéralkalmazást üzemeltető környezetben hello. Szükségel **nem kódmódosításokat** tooeither hello mobil ügyfél vagy hello mobil kiszolgálóprojektet. Ha automatikus hello áttelepítési funkciót használja, ez megőrzi a **service.azure-mobile.net** URL-CÍMÉT. 
+* *Frissítés* egy szolgáltatásnak nincs **kód módosítására** tooboth a kiszolgáló és az ügyfél projekthez, de lehetővé teszi új mobil SDK-funkciók, például fejlesztései tooauthentication és nagyobb rugalmasságot tootake előnye a kiszolgáló projekthez. 
 

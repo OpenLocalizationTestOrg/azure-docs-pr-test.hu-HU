@@ -1,6 +1,6 @@
 ## <a name="additional-resources"></a>További források
 
-Szeretne naprakész maradni a termékekkel kapcsolatos híreket illetően? Olvassa [blogunkat], vagy kövessen bennünket a [Twitter] .</br>
+Szeretné, hogy toostay termék híreket toodate másolatot? Olvassa [blogunkat], vagy kövessen bennünket a [Twitter] .</br>
 Funkciókérése van az SQL DW-vel kapcsolatban? Tegye közzé a [UserVoice-on] .</br>
 A termékekkel kapcsolatos kérdése van? Kérdezze meg az [MSDN] .</br>
 Műszaki kérdése van? Tegye fel a [StackOverflow-n].</br>

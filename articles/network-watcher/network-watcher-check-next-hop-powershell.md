@@ -1,6 +1,6 @@
 ---
-title: "Következő Ugrás az Azure hálózati figyelő következő ugrás - PowerShell található |} Microsoft Docs"
-description: "Ez a cikk leírja, hogyan megtalálhatja a következő ugrás típusa van, és használja a PowerShell használatával, a következő ugrás IP-címet."
+title: "az Azure hálózati figyelő következő ugrás - PowerShell aaaFind a következő ugrás |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan található milyen hello a következő ugrás típusa, és ip-cím használatával a következő ugrás PowerShell használatával."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 00161e7c6fb4becdb7d8eab266fa27128e50f8ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdb0b4a02d95fc45c103fe952fc1afa095414c18
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-azure-network-watcher-using-powershell"></a>Megtudhatja, milyen a következő ugrás típusa a következő ugrás funkció használ az Azure hálózati figyelőt PowerShell használatával
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-azure-network-watcher-using-powershell"></a>Megtudhatja, milyen hello következő ugrás típusa hello következő ugrás funkció használ az Azure hálózati figyelőt PowerShell használatával
 
 > [!div class="op_single_selector"]
 > - [Azure Portal](network-watcher-check-next-hop-portal.md)
@@ -29,21 +29,21 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [Az Azure REST API-n](network-watcher-check-next-hop-rest.md)
 
-Következő ugrás csak a hálózati figyelő, amely a képességét get biztosít, a következő ugrás típusa és az IP-cím a megadott virtuális gép alapján. Ez a szolgáltatás akkor hasznos, meghatározni, hogy ha egy virtuális gép elhagyó forgalomra halad át egy átjárót, az interneten vagy a virtuális hálózatok a cél eléréséhez.
+Következő Ugrás az egyik funkciója, amely lehetővé teszi, hello hálózati figyelőt le hello következő ugrás típusa és a megadott virtuális gépen alapuló IP-címet. A szolgáltatás akkor hasznos, ha egy virtuális gép elhagyó forgalomra halad át egy átjáró, az interneten vagy a virtuális hálózatok tooget tooits cél meghatározására.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ebben a forgatókönyvben szüksége lesz az Azure-portálon a következő ugrás típusa és az IP-cím kereséséhez.
+Ebben a forgatókönyvben hello Azure portál toofind hello következő ugrás típusa és IP-címet fogja használni.
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) létrehozása egy hálózati figyelőt. A forgatókönyv feltételezi, hogy létezik-e egy erőforráscsoportot, egy érvényes virtuális géppel használandó.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt. hello is feltételezzük, hogy létezik-e egy érvényes virtuális géppel erőforrás csoport toobe használt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-A forgatókönyv, a cikkben szereplő használja a következő ugrás, egyik funkciója, amely a következő ugrás típusa és az IP-cím erőforrás megkeresése hálózati figyelőt. Következő ugrás kapcsolatos további információkért látogasson el a [következő ugrásaként áttekintése](network-watcher-next-hop-overview.md).
+a cikkben szereplő hello forgatókönyv használja a következő ugrás, egyik funkciója, amely megkeresi hello következő ugrás típusa és IP-cím erőforrás hálózati figyelőt. toolearn következő ugrásaként kapcsolatos további információkért látogasson el [következő ugrásaként áttekintése](network-watcher-next-hop-overview.md).
 
 ## <a name="retrieve-network-watcher"></a>Hálózati figyelőt beolvasása
 
-Az első lépés a hálózati figyelőt példányának lekéréséhez. A `$networkWatcher` változó átadása a következő ugrási parancsmag ellenőrzése.
+hello első lépéseként tooretrieve hello hálózati figyelőt példány. Hello `$networkWatcher` változó átadása toohello következő ugrás parancsmag ellenőrzése.
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
@@ -52,18 +52,18 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="get-a-virtual-machine"></a>A virtuális gép beolvasása
 
-Következő ugrás a virtuális gép a következő ugrás és a következő ugrás IP-címét adja vissza. A virtuális gép azonosítóját a parancsmag szükség. Ha már ismeri az Azonosítót a virtuális gép használja, kihagyhatja ezt a lépést.
+Következő ugrás a virtuális gép hello következő ugrás és hello hello következő ugrás IP-címét adja vissza. A virtuális gép azonosítóját hello parancsmag szükség. Ha már ismeri hello virtuális gép toouse hello azonosítója, kihagyhatja ezt a lépést.
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
 ```
 
 > [!NOTE]
-> Következő ugrás megköveteli, hogy a virtuális gép erőforrásához lefoglalt futtatásához.
+> Következő ugrás megköveteli, hogy hello VM erőforrás toorun van lefoglalva.
 
-## <a name="get-the-network-interfaces"></a>A hálózati adapterek beolvasása
+## <a name="get-hello-network-interfaces"></a>Hello hálózati illesztők beolvasása
 
-A virtuális gépen egy hálózati adapter IP-címe szükséges, ebben a példában beolvassuk a hálózati adaptert egy virtuális gépen. Ha már ismeri a virtuális gépen vizsgálni kívánt IP-cím, kihagyhatja ezt a lépést.
+hello hello virtuális gépen egy hálózati adapter IP-címe szükséges, ebben a példában beolvassuk hello hálózati adaptert egy virtuális gépen. Ha már ismeri a hello IP-címet, amelyet szeretne tootest hello virtuális gépen ezt a lépést kihagyhatja.
 
 ```powershell
 $Nics = Get-AzureRmNetworkInterface | Where {$_.Id -eq $vm.NetworkProfile.NetworkInterfaces.Id.ForEach({$_})}
@@ -71,7 +71,7 @@ $Nics = Get-AzureRmNetworkInterface | Where {$_.Id -eq $vm.NetworkProfile.Networ
 
 ## <a name="get-next-hop"></a>Következő ugrás beolvasása
 
-Most közvetlen telepítésnek a `Get-AzureRmNetworkWatcherNextHop` parancsmag. Azt adja át a parancsmag a hálózati figyelőt, a virtuális gép azonosítója, a forrás IP-cím és a cél IP-címét. Ebben a példában a cél IP-címét, hogy egy virtuális Gépet egy másik virtuális hálózaton. Nincs a virtuális hálózati átjáró a két virtuális hálózatok között.
+Most közvetlen telepítésnek hello `Get-AzureRmNetworkWatcherNextHop` parancsmag. Azt adja át a hello parancsmag hello hálózati figyelőt, virtuális gép azonosítója, forrás IP-címet, és a cél IP-címét. Ebben a példában a hello cél IP-cím tooa virtuális gép egy másik virtuális hálózaton. Nincs a virtuális hálózati átjáró hello virtuális hálózatok között.
 
 ```powershell
 Get-AzureRmNetworkWatcherNextHop -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id -SourceIPAddress $nics[0].IpConfigurations[0].PrivateIpAddress  -DestinationIPAddress 10.0.2.4 
@@ -79,7 +79,7 @@ Get-AzureRmNetworkWatcherNextHop -NetworkWatcher $networkWatcher -TargetVirtualM
 
 ## <a name="review-results"></a>Tekintse át az eredményeket
 
-Amikor végzett, a eredményei. Továbbá az erőforrás típusa a következő ugrás IP-címet adja vissza. Az ebben az esetben a virtuális hálózati átjáró nyilvános IP-címét is.
+Amikor végzett, hello eredményei. továbbá az erőforrás típusát hello hello következő ugrás IP-címet adja vissza. Az ebben az esetben is hello virtuális hálózati átjáró hello nyilvános IP-címét.
 
 ```
 NextHopIpAddress NextHopType           RouteTableId 
@@ -87,7 +87,7 @@ NextHopIpAddress NextHopType           RouteTableId
 13.78.238.92     VirtualNetworkGateway Gateway Route
 ```
 
-Az alábbi listában a jelenleg rendelkezésre álló NextHopType értékeket mutatja:
+hello alábbi lista mutatja azokat hello jelenleg rendelkezésre álló NextHopType értékeket:
 
 **Következő ugrás típusa**
 
@@ -101,7 +101,7 @@ Az alábbi listában a jelenleg rendelkezésre álló NextHopType értékeket mu
 
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan ellátogatva programozott módon tekintse át a hálózati biztonsági csoport beállításainak [NSG naplózás hálózati figyelőt](network-watcher-nsg-auditing-powershell.md)
+Megtudhatja, hogyan tooreview programozott módon látogasson el a hálózati biztonsági csoport beállításainak [NSG naplózás hálózati figyelőt](network-watcher-nsg-auditing-powershell.md)
 
 
 

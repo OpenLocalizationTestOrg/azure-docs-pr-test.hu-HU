@@ -1,5 +1,5 @@
 ---
-title: "Dedikált csoportok az Azure Active Directoryban |} Microsoft Docs"
+title: az Azure Active Directoryban aaaDedicated csoportok |} Microsoft Docs
 description: "Hogyan dedikált csoportok áttekintése az Azure Active Directory és a létrehozott hogyan működnek."
 services: active-directory
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: curtand
-ms.openlocfilehash: d9decd5de6a5bafc525edc5b04c82701185088ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8feec6e1a4e6b384470392d3043caeeec2b03dd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dedicated-groups-in-azure-active-directory"></a>Dedikált csoportok az Azure Active Directoryban
-Az Azure Active Directory (Azure AD) a dedikált csoportok funkció automatikusan létrehozza és tölti fel az előre definiált az Azure AD-csoportok tagságát. Dedikált csoportok tagjai nem adható hozzá, vagy a klasszikus Azure portálon, a Windows PowerShell-parancsmagok segítségével távolítja el vagy programon keresztül.
+Az Azure Active Directory (Azure AD) a hello dedikált csoportok funkció automatikusan létrehozza, és tölti fel az előre definiált az Azure AD-csoportok tagságát. Dedikált csoportok tagjai nem adható hozzá, vagy eltávolított használatával hello Azure klasszikus portál, a Windows PowerShell-parancsmagok, illetve programozott módon.
 
 > [!NOTE]
 > Dedikált csoportok szükséges, hogy a van rendelve egy Azure AD Premium-licenc
 >
-> * A szabály a csoporton felügyelő rendszergazda
-> * a felhasználók, akik ki van jelölve a szabály a csoport tagjai
+> * hello felügyelő rendszergazdához; csoporton hello szabály
+> * minden felhasználó, aki hello szerint be vannak jelölve szabály toobe hello csoport tagjai
 >
 >
 
-**Dedikált csoportok engedélyezése**
+**tooenable dedikált csoportok**
 
-1. Az a [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
-2. Válassza ki a **csoportok** lapra, és nyissa meg a szerkeszteni kívánt csoportot.
-3. Válassza ki a **konfigurálása** lapot, és utána állítsa be **dedikált csoportok engedélyezése** való **Igen**.
+1. A hello [a klasszikus Azure portálon](https://manage.windowsazure.com), jelölje be **Active Directory**, majd nyissa meg a munkahely címtárában.
+2. Jelölje be hello **csoportok** fülre, és azt szeretné, hogy tooedit majd nyitott hello csoport.
+3. Jelölje be hello **konfigurálása** lapot, és utána állítsa be **dedikált csoportok engedélyezése** túl**Igen**.
 
-Amennyiben a dedikált csoportok engedélyezése kapcsoló értéke **Igen**, további engedélyezheti a könyvtárat úgy, hogy az összes felhasználó dedikált csoport automatikus létrehozásához a **az "Összes felhasználó" csoport** váltani **Igen**. Is szerkesztheti a kijelölt csoport nevét írja be azt a **"Minden felhasználó" megjelenített név csoport** mező.
+Dedikált csoportok engedélyezéséhez váltson hello túl beállítása után**Igen**, további engedélyezheti hello directory tooautomatically hello minden felhasználó dedikált csoport létrehozásához hello beállítása **az "Összes felhasználó" csoport** Váltás túl**Igen**. Is szerkesztheti a kijelölt csoport hello nevét írja be a hello **"Minden felhasználó" megjelenített név csoport** mező.
 
-A minden felhasználó csoportban a azonos engedélyek hozzárendelése a címtárban szereplő összes felhasználó használható. Például biztosíthat minden felhasználó a könyvtár hozzáférés SaaS-alkalmazás az összes felhasználó dedikált csoport hozzáférést rendel az alkalmazás.
+hello minden felhasználói csoport használható tooassign hello azonos tooall hello felhasználók engedélyeinek a címtárban. Például a könyvtár hozzáférési tooa SaaS-alkalmazás minden felhasználó is megadta, ha a hozzáférés az összes felhasználó dedikált csoport toothis alkalmazás hello hozzárendelése.
 
-A dedikált minden felhasználó csoportban a címtárban, beleértve a vendégek és a külső felhasználók felhasználókat tartalmazza. Ha egy csoportot kell, amely nem tartalmazza a külső felhasználók számára, akkor ez által csoportot hoz létre egy attribútum-alapú dinamikus szabály például a következő érhető el:
+dedikált hello minden felhasználó csoportban hello könyvtárban, beleértve a vendégek és a külső felhasználók felhasználókat tartalmazza. Ha egy csoportot kell, amely nem tartalmazza a külső felhasználók számára, akkor ez által csoportot hoz létre egy attribútum-alapú dinamikus szabály például hello következő érhető el:
 
                 (user.userPrincipalName -notContains "#EXT#@")
 
-Egy csoport, amely nem tartalmazza az összes vendégek például a következő szabályt használni:
+Egy csoport, amely nem tartalmazza az összes vendégek például hello következő szabályt használni:
 
                 (user.userType -ne "Guest")
 
-Információk a dinamikus csoporttagsághoz kapcsolódó *speciális* (akár többszörös összehasonlítást is tartalmazó) szabályok létrehozásáról: [Using attributes to create advanced rules](active-directory-accessmanagement-groups-with-advanced-rules.md) (Attribútumok használata speciális szabályok létrehozásához).
+arról, hogyan toolearn toocreate *speciális* (szabályok többszörös összehasonlítást is tartalmazó) szabályok dinamikus csoporttagság, lásd: [toocreate attribútumok használata speciális szabályok](active-directory-accessmanagement-groups-with-advanced-rules.md).
 
 ### <a name="next-steps"></a>Következő lépések
 E cikkekben további információk találhatók az Azure Active Directoryval kapcsolatban.
 
-* [Erőforráshozzáférés-kezelés Azure Active Directory-csoportokkal](active-directory-manage-groups.md)
+* [Hozzáférés tooresources kezelése az Azure Active Directoryval](active-directory-manage-groups.md)
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
 * [Mi az az Azure Active Directory?](active-directory-whatis.md)
 * [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md)

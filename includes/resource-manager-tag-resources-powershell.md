@@ -1,10 +1,10 @@
-Az AzureRm.Resources modul 3.0-s verziója jelentős változásokat hozott a címkék használata terén. A továbblépés előtt ellenőrizze, milyen verziót használ:
+Hello AzureRm.Resources modul 3.0-s verziója működése címkékkel jelentős módosításokat tartalmazza. A továbblépés előtt ellenőrizze, milyen verziót használ:
 
 ```powershell
 Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 ```
 
-Ha 3.0-s vagy annál újabb verziót, a témakörben szereplő példák alkalmazhatók az Ön által használt környezetre. Ha a 3.0-nál régebbi verzióval rendelkezik, először [frissítsen egy újabb verzióra](/powershell/azureps-cmdlets-docs/) a PowerShell-galériával vagy a Webplatform-telepítővel, és csak ezt követően lépjen tovább.
+Ha az eredmények megjelenítéséhez verzió 3.0-s vagy újabb hello példákat a témakör a környezetben használható. Ha a 3.0-nál régebbi verzióval rendelkezik, először [frissítsen egy újabb verzióra](/powershell/azureps-cmdlets-docs/) a PowerShell-galériával vagy a Webplatform-telepítővel, és csak ezt követően lépjen tovább.
 
 ```powershell
 Version
@@ -12,13 +12,13 @@ Version
 3.5.0
 ```
 
-*Erőforráscsoportok* meglévő címkéinek megtekintéséhez használja a következőt:
+toosee hello meglévő címkék egy *erőforráscsoport*, használja:
 
 ```powershell
 (Get-AzureRmResourceGroup -Name examplegroup).Tags
 ```
 
-A szkript a következő formátumot adja vissza:
+Ez a parancsfájl hello a következő formátumban adja vissza:
 
 ```powershell
 Name                           Value
@@ -27,39 +27,39 @@ Dept                           IT
 Environment                    Test
 ```
 
-*Megadott erőforrás-azonosítóval rendelkező erőforrás* meglévő címkéinek megtekintéséhez használja a következőt:
+toosee hello meglévő címkék egy *erőforrása, amely egy megadott erőforrás-azonosító*, használja:
 
 ```powershell
 (Get-AzureRmResource -ResourceId {resource-id}).Tags
 ```
 
-Vagy *megadott névvel és erőforráscsoporttal rendelkező erőforrás* meglévő címkéinek megtekintéséhez használja a következőt:
+Vagy toosee hello meglévő címkék egy *erőforrást, amely rendelkezik a megadott névvel és erőforrás csoport*, használja:
 
 ```powershell
 (Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
 ```
 
-*Adott címkével rendelkező erőforráscsoportok* lekéréséhez használja a következőt:
+tooget *egy adott címkét tartalmazó erőforráscsoportokat*, használja:
 
 ```powershell
 (Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name 
 ```
 
-*Adott címkével rendelkező erőforrások* lekéréséhez használja a következőt:
+tooget *egy adott címkével rendelkező erőforrások*, használja:
 
 ```powershell
 (Find-AzureRmResource -TagName Dept -TagValue Finance).Name
 ```
 
-Minden alkalommal, amikor címkével lát el egy erőforrást vagy erőforráscsoportot, felülírja a hozzá tartozó korábbi címkéket. Ezért különböző megközelítéseket kell alkalmaznia annak függvényében, hogy az adott erőforrás vagy erőforráscsoport rendelkezik-e címkével. 
+Minden alkalommal, amikor a címkék tooa erőforrás vagy egy erőforráscsoport alkalmazásához, felülírhatja hello meglévő címkét az adott erőforrás vagy az erőforráscsoportot. Ezért hello erőforrás vagy erőforráscsoport rendelkezik-e meglévő címkék alapján másik módszert kell használnia. 
 
-Ha *meglévő címkék nélküli erőforráscsoporthoz* szeretne címkéket adni, használja a következőt:
+tooadd címkéket tooa *erőforráscsoport meglévő címkék nélkül*, használja:
 
 ```powershell
 Set-AzureRmResourceGroup -Name examplegroup -Tag @{ Dept="IT"; Environment="Test" }
 ```
 
-Ha *meglévő címkékkel rendelkező erőforráscsoporthoz* szeretne címkéket adni, kérje le a meglévő címkéket, adja hozzá az új címkét, és alkalmazza ismét a címkéket:
+tooadd címkéket tooa *meglévő címkékkel rendelkező erőforráscsoport*, hello meglévő címkék beolvasása, hello új címke hozzáadása, és alkalmazza újra hello címkék:
 
 ```powershell
 $tags = (Get-AzureRmResourceGroup -Name examplegroup).Tags
@@ -67,13 +67,13 @@ $tags += @{Status="Approved"}
 Set-AzureRmResourceGroup -Tag $tags -Name examplegroup
 ```
 
-Ha *meglévő címkék nélküli erőforráshoz* szeretne címkéket adni, használja a következőt:
+tooadd címkéket tooa *meglévő címkék nélkül erőforrás*, használja:
 
 ```powershell
 Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName examplevnet -ResourceGroupName examplegroup
 ```
 
-Ha *meglévő címkékkel rendelkező erőforráshoz* szeretne címkéket adni, használja a következőt:
+tooadd címkéket tooa *meglévő címkék erőforrást*, használja:
 
 ```powershell
 $tags = (Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
@@ -81,7 +81,7 @@ $tags += @{Status="Approved"}
 Set-AzureRmResource -Tag $tags -ResourceName examplevnet -ResourceGroupName examplegroup
 ```
 
-Ha az erőforráscsoport összes címkéjét szeretné alkalmazni a csoport erőforrásaira, és *nem szeretné megőrizni az erőforrások meglévő címkéit*, használja a következő szkriptet:
+minden tooapply egy erőforrás tooits erőforrások, a címkéket és *nem őriz meg a meglévő címkék hello erőforrások*, a következő parancsfájl hello használata:
 
 ```powershell
 $groups = Get-AzureRmResourceGroup
@@ -91,7 +91,7 @@ foreach ($g in $groups)
 }
 ```
 
-Ha az erőforráscsoport összes címkéjét szeretné alkalmazni a csoport erőforrásaira, és *nem szeretné megőrizni az erőforrások meglévő, nem ismétlődő címkéit*, a következő szkriptet kell használnia:
+minden tooapply egy erőforrás tooits erőforrások, a címkéket és *megtartja a meglévő címkéket az erőforrásokat, amelyek nincsenek ismétlődések*, a következő parancsfájl hello használata:
 
 ```powershell
 $groups = Get-AzureRmResourceGroup
@@ -113,7 +113,7 @@ foreach ($g in $groups)
 }
 ```
 
-Az összes címke eltávolításához adjon át egy üres kivonattáblát:
+tooremove található összes kódcímkének, egy üres kivonattábla át:
 
 ```powershell
 Set-AzureRmResourceGroup -Tag @{} -Name examplegroup

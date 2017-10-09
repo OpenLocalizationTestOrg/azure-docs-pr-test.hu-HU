@@ -1,6 +1,6 @@
 ---
-title: "Gyermek-erőforrás meghatározásához az Azure-sablon alapján |} Microsoft Docs"
-description: "Bemutatja, hogyan állítsa be az erőforrás típusát és a gyermek-erőforrás nevét az Azure Resource Manager-sablonok"
+title: "aaaDefine gyermek erőforrás az Azure-sablon alapján |} Microsoft Docs"
+description: "Bemutatja, hogyan tooset hello erőforrástípus és az Azure Resource Manager-sablon a gyermek-erőforrás nevét"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5b6ce5526f354008eb4a697deec737876f22391f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c502c589100d7ae864d7fb01b5ba10ddfaf92592
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-name-and-type-for-child-resource-in-resource-manager-template"></a>A Resource Manager-sablon nevét és típusát gyermek erőforrás beállítása
-Sablon létrehozásakor meg gyakran meg kell adnia a gyermek erőforrása, amely a szülő erőforrás kapcsolódik. A sablon tartalmazhat például egy SQL server és adatbázis. Az SQL-kiszolgáló a szülő erőforrás, az adatbázis pedig a gyermek-erőforrás. 
+Sablon létrehozásakor gyakran kell tooinclude kapcsolódó tooa szülő erőforrás gyermek erőforrásra. A sablon tartalmazhat például egy SQL server és adatbázis. hello SQL server hello szülő erőforrás, hello adatbázis pedig hello gyermek-erőforrás. 
 
-A gyermek erőforrástípus formátuma:`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
+hello hello gyermek erőforrástípus formátuma:`{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`
 
-A gyermek-erőforrás neve formátuma:`{parent-resource-name}/{child-resource-name}`
+hello hello gyermek erőforrás nevének formátuma:`{parent-resource-name}/{child-resource-name}`
 
-Azonban adnia típusa és neve menübeállításoktól függően e beágyazott a szülő erőforrás belül, vagy a saját legfelső szintjén sablonban. Ez a témakör bemutatja, hogyan legyen kezelve mindkét megközelítés.
+Azonban adnia hello típusa és neve a sablon a menübeállításoktól függően e beágyazott hello szülő erőforrás belül, vagy a saját hello felső szintjén. Ez a témakör bemutatja, hogyan mindkét toohandle közelít.
 
-Amikor egy erőforrást egy teljesen minősített hivatkozást hozhat létre, típusa és neve a szegmensek egyesítése sorrendje nem egyszerűen a két összefűzése.  A névtér után inkább sorozatát *típusnév/* a legjobban megfelel a legkevésbé egyedi párok:
+Egy teljesen minősített hivatkozás tooa erőforrás térített hello rendelés toocombine szegmensek hello típusból név pedig nem egyszerűen hello két összefűzése.  Hello névtér után inkább sorozatát *típusnév/* párok a legkevésbé egyedi toomost adott:
 
 ```json
 {resource-provider-namespace}/{parent-resource-type}/{parent-resource-name}[/{child-resource-type}/{child-resource-name}]*
@@ -40,7 +40,7 @@ Példa:
 `Microsoft.Compute/virtualMachines/myVM/extensions/myExt`megfelelő `Microsoft.Compute/virtualMachines/extensions/myVM/myExt` helytelen
 
 ## <a name="nested-child-resource"></a>Beágyazott gyermektevékenységének erőforrás
-A legegyszerűbben úgy adja meg a gyermek-erőforrás beágyazásához azt a szülő erőforrás belül. A következő példa bemutatja egy olyan SQL Server ágyazott SQL-adatbázis.
+hello legegyszerűbb módja toodefine gyermek erőforrás toonest rá hello szülő erőforrás. a következő példa azt mutatja meg, egy SQL Server ágyazva egy SQL-adatbázis hello.
 
 ```json
 {
@@ -59,10 +59,10 @@ A legegyszerűbben úgy adja meg a gyermek-erőforrás beágyazásához azt a sz
 }
 ```
 
-A gyermek-erőforrás, a típusuk értéke `databases` , de a teljes erőforrás típusa `Microsoft.Sql/servers/databases`. Nincs megadva `Microsoft.Sql/servers/` mivel feltételezzük, hogy a szülő erőforrás típusból. A gyermek-erőforrás neve legyen `exampledatabase` , de a teljes nevet tartalmazza a szülő nevének. Nincs megadva `exampleserver` mivel feltételezzük, hogy a szülő erőforrás.
+Hello gyermek erőforrás, akkor hello típusának beállítása túl`databases` , de a teljes erőforrás típusa `Microsoft.Sql/servers/databases`. Nincs megadva `Microsoft.Sql/servers/` mivel feltételezzük hello szülő erőforrás típusból. hello gyermek-erőforrás neve túl van-e állítva`exampledatabase` , de hello teljes nevét hello szülő nevének tartalmazza. Nincs megadva `exampleserver` mivel feltételezzük hello szülő erőforrás.
 
 ## <a name="top-level-child-resource"></a>Legfelső szintű gyermek-erőforrás
-Megadhatja, hogy a gyermek-erőforrás legfelső szintjén. Előfordulhat, hogy ezt a módszert használja, ha az a szülő erőforrás nem ugyanazt a sablont, vagy ha szeretné használni `copy` több gyermek-erőforrás létrehozása. Ezt a módszert használja adja meg a teljes erőforrás típusát, és a szülő erőforrás neve tartalmazza a gyermek-erőforrás neve.
+Gyermek-erőforrás hello hello felső szintjén adhat meg. Előfordulhat, hogy ezt a módszert használja, ha az hello szülő erőforrás nem hello azonos sablont, vagy ha szeretné, hogy toouse `copy` toocreate több gyermek-erőforrás. Ezt a módszert hello teljes erőforrástípust biztosít, és tartalmazza a hello szülő erőforrás nevét az hello gyermek-erőforrás neve.
 
 ```json
 {
@@ -81,8 +81,8 @@ Megadhatja, hogy a gyermek-erőforrás legfelső szintjén. Előfordulhat, hogy 
 }
 ```
 
-Az adatbázis egy gyermek-erőforrás a kiszolgálóra, annak ellenére, hogy a sablonban ugyanazon a szinten vannak definiálva.
+hello adatbázisa egy gyermek-erőforrás toohello kiszolgáló annak ellenére, hogy az azonos szinten hello sablonban hello vannak definiálva.
 
 ## <a name="next-steps"></a>Következő lépések
-* Sablonok létrehozásával kapcsolatos ajánlások, lásd: [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](resource-manager-template-best-practices.md).
+* A fenyegetés elhárítására vonatkozó javaslatokról toocreate sablonjainak használatáról [ajánlott eljárások Azure Resource Manager-sablonok létrehozásához](resource-manager-template-best-practices.md).
 * Például több gyermek erőforrások létrehozásának, [erőforrások az Azure Resource Manager sablonokban több példányának telepítése](resource-group-create-multiple.md).

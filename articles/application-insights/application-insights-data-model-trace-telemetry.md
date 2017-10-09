@@ -1,5 +1,5 @@
 ---
-title: "Azure Application Insights Telemetria-adatmodell - nyomkövetési Telemetria |} Microsoft Docs"
+title: "aaaAzure Application Insights Telemetria adatmodell - nyomkövetési Telemetria |} Microsoft Docs"
 description: "Application Insights – nyomkövetési telemetria tartozó adatmodell"
 services: application-insights
 documentationcenter: .net
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: e1da0d6a6fbd9ca5486936c326ade667d7b01006
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfdee958e07d57448ff41abc5cd33bfd05dac090
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="trace-telemetry-application-insights-data-model"></a>Nyomkövetési telemetria: Application Insights adatmodell
 
-Nyomkövetési telemetria (a [Application Insights](app-insights-overview.md)) jelöli `printf` stílus nyomkövetési utasítás szöveget keres. `Log4Net`, `NLog`, és más szöveges naplófájl-bejegyzéseket az ilyen típusú példányok van lefordítva. A nyomkövetés nem lehet mérési egy bővíthetőségi.
+Nyomkövetési telemetria (a [Application Insights](app-insights-overview.md)) jelöli `printf` stílus nyomkövetési utasítás szöveget keres. `Log4Net`, `NLog`, és más szöveges naplófájl-bejegyzéseket az ilyen típusú példányok van lefordítva. hello nyomkövetési nem lehet mérési egy bővíthetőségi.
 
 ## <a name="message"></a>Üzenet
 

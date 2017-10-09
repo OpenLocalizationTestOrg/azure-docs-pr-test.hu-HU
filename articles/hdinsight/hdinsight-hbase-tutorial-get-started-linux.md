@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés a HDInsight egy HBase-példájába – Azure | Microsoft Docs"
-description: "Kövesse ezt az Apache HBase-példát a HDInsight-alapú Hadoop használatának megkezdéséhez. Táblákat hozhat létre a HBase rendszehéjból, és lekérdezheti azokat a Hive eszközzel."
+title: "aaaGet használatába a HDInsight - Azure HBase például |} Microsoft Docs"
+description: "Hajtsa végre az Apache HBase példa toostart a HDInsight hadoop használatával. A HBase rendszerhéjjal hello táblák létrehozása, és lekérdezheti Hive eszközzel."
 keywords: "hbasecommand,hbase példa"
 services: hdinsight
 documentationcenter: 
@@ -16,65 +16,65 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: jgao
-ms.openlocfilehash: bbd8a838062795ee03ae02dc5e3fd45d841a6e17
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 43419780142b320b16180a2b1f25020dee2f7a11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-an-apache-hbase-example-in-hdinsight"></a>Bevezetés a HDInsight egy Apache HBase-példájába
 
-Megtudhatja, hogyan hozhat létre HBase-fürtöket a HDInsight eszközben, illetve hogyan hozhat létre HBase táblákat és lekérdezéstáblákat a Hive eszközzel. A HBase-re vonatkozó általános információért lásd: [HDInsight HBase overview][hdinsight-hbase-overview] (A HDInsight HBase áttekintése).
+Ismerje meg, hogyan toocreate a HDInsight HBase-fürtöt létre HBase táblákat és lekérdezéstáblákat a Hive. A HBase-re vonatkozó általános információért lásd: [HDInsight HBase overview][hdinsight-hbase-overview] (A HDInsight HBase áttekintése).
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az alábbi HBase-példa kipróbálásához a következőkkel kell rendelkeznie:
+A HBase példa megkísérlése előtt a következő elemek hello kell rendelkeznie:
 
 * **Azure-előfizetés**. Lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * [Biztonságos rendszerhéj (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md). 
 * [curl](http://curl.haxx.se/download.html).
 
 ## <a name="create-hbase-cluster"></a>HBase-fürt létrehozása
-Az alábbi eljárás egy Azure Resource Manager-sablont használ egy 3.4 verziójú Linux-alapú HBase-fürt és a függő Azure Storage-fiók létrehozására. Az eljárásban és egyéb fürtlétrehozási módszerekben használt paraméterek megértéséhez lásd: [Create Linux-based Hadoop clusters in HDInsight](hdinsight-hadoop-provision-linux-clusters.md) (Linux-alapú Hadoop-fürtök létrehozása a HDInsightban).
+hello alábbi eljárás egy Azure Resource Manager sablon toocreate 3.4-es verziójú Linux-alapú HBase fürt és hello függő alapértelmezett Azure Storage-fiókot használ. hello eljárás és egyéb Fürtlétrehozási módszerek használt toounderstand hello paraméterek lásd [hdinsight létrehozása Linux-alapú Hadoop-fürtök](hdinsight-hadoop-provision-linux-clusters.md).
 
-1. Az alábbi képre kattintva megnyithatja a sablont az Azure Portalon. A sablon egy nyilvános blobtárolóban található. 
+1. Kattintson a következő kép tooopen hello sablon hello Azure-portálon hello. hello sablon a következő nyilvános blobtárolóban található. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. Az **Egyéni üzembe helyezés** panelen adja meg a következő értékeket:
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. A hello **egyéni telepítési** panelen adja meg a következő értékek hello:
    
-   * **Előfizetés**: Válassza ki a fürt létrehozásához használt Azure-előfizetést.
+   * **Előfizetés**: válassza ki az Azure-előfizetéssel, amely használt toocreate hello fürt.
    * **Erőforráscsoport**: Hozzon létre egy Azure Resource Management-csoportot, vagy használjon egy meglévőt.
-   * **Location** (Hely): Adja meg az erőforráscsoport helyét. 
-   * **Fürt neve**: Adjon nevet a HBase-fürtnek.
-   * **A fürt bejelentkezési neve és jelszava**: Az alapértelmezett bejelentkezési név az **admin**.
-   * **SSH-felhasználónév és jelszó**: Az alapértelmezett felhasználónév az **sshuser**.  Ezt át lehet nevezni.
+   * **Hely**: hello erőforráscsoport hello helyének megadása. 
+   * **ClusterName**: Adjon meg egy nevet hello HBase-fürtöt.
+   * **A fürt bejelentkezési nevet és jelszót**: hello alapértelmezett bejelentkezési név az **admin**.
+   * **SSH-felhasználónév és jelszó**: hello alapértelmezett felhasználónév az **sshuser**.  Ezt át lehet nevezni.
      
      Más paraméterek opcionálisak.  
      
-     Minden egyes fürt az Azure Storage-fióktól függ. A fürtök törlése után az adatok megmaradnak a tárfiókban. A fürt alapértelmezett tárfiókneve a fürt neve a „store” kifejezéssel kiegészítve. A név szoftveresen kötött a sablonváltozók szakaszban.
-3. Válassza az **I agree to the terms and conditions stated above** (Elfogadom a fenti feltételeket) lehetőséget majd kattintson a **Purchase** (Vásárlás) gombra. Egy fürt létrehozása nagyjából 20 percet vesz igénybe.
+     Minden egyes fürt az Azure Storage-fióktól függ. Ha töröl egy fürtöt, hello adatok megmaradnak, hello tárfiókban. hello fürt alapértelmezett tárfiókneve hello fürt neve a "store" kifejezéssel kiegészítve. Szoftveresen kötött a sablonváltozók szakaszban hello.
+3. Válassza ki **toohello feltételek és kikötések fenti elfogadom**, és kattintson a **beszerzési**. Körülbelül 20 percet toocreate fürt szükséges.
 
 > [!NOTE]
-> A HBase-fürtök törlése után egy másik HBase-fürtöt hozhat létre ugyanazon alapértelmezett blobtárolóval. Az új fürt felveszi az eredeti fürtben létrehozott HBase-táblákat. Az inkonzisztenciák elkerülése érdekében javasoljuk, hogy a fürt törlése előtt tiltsa le a HBase-táblákat.
+> HBase-fürtök törlése után egy másik HBase-fürtöt hello használatával létrehozhat alapértelmezett blob tárolóhoz. Új fürt hello szerzi be hello eredeti fürtben létrehozott hello HBase táblákat. tooavoid inkonzisztenciákat, ajánlott letiltani hello HBase táblákat hello fürt törlése előtt.
 > 
 > 
 
 ## <a name="create-tables-and-insert-data"></a>Táblák létrehozása és adatok beszúrása
-Az SSH-val HBase-fürtökhöz csatlakozhat, majd a HBase-rendszerhéjjal HBase-táblákat hozhat létre, adatokat szúrhat be, és adatokat kérdezhet le. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
+SSH tooconnect tooHBase fürtök használata, és használhatja a HBase rendszerhéjjal toocreate HBase táblákat, adatok, illetve adatait kérdezi le. További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-A legtöbbek számára az adatok táblázatos formátumban jelennek meg:
+A legtöbbek számára adatokat hello táblázatos formátumban jelenik meg:
 
 ![HDInsight HBase táblázatos adatok][img-hbase-sample-data-tabular]
 
-A HBase-ben, amely a BigTable implementációja, ugyanezen adatok a következőképpen néznek ki:
+A HBase (BigTable megvalósítása), hello azonos adatok láthatóhoz hasonló:
 
 ![HDInsight HBase BigTable-adatok][img-hbase-sample-data-bigtable]
 
 
-**A Hbase-rendszerhéj használata**
+**toouse hello HBase rendszerhéj**
 
-1. Az SSH-ból futtassa az alábbi HBase-parancsot:
+1. Az SSH-ból futtassa a következő HBase parancs hello:
    
     ```bash
     hbase shell
@@ -103,20 +103,20 @@ A HBase-ben, amely a BigTable implementációja, ugyanezen adatok a következők
     get 'Contacts', '1000'
     ```
    
-    Ugyanazokat az eredményeket látja, mint a vizsgálat parancs használatakor, mert csak egy sor van.
+    Azonos eredmények hello látnak kell hello vizsgálat parancs használatával, mert csak egy sorból áll.
    
-    A Hbase-táblasémáról további információért lásd: [Introduction to HBase Schema Design][hbase-schema] (Bevezetés a Hbase-sématervezésbe). További Hbase-parancsokért lásd: [Apache HBase reference guide][hbase-quick-start] (Apache HBase referencia-útmutató).
-5. Kilépés a rendszerhéjból
+    Hello HBase táblasémát kapcsolatos további információkért lásd: [bemutatása tooHBase Schema Design][hbase-schema]. További Hbase-parancsokért lásd: [Apache HBase reference guide][hbase-quick-start] (Apache HBase referencia-útmutató).
+5. Kilépés hello rendszerhéj
    
     ```hbaseshell
     exit
     ```
 
-**Adatok kötegelt betöltése a névjegyek HBase-táblába**
+**toobulk adatok betöltése hello névjegyek HBase táblájába**
 
 A HBase több módszert tartalmaz az adatok táblába töltéséhez.  További információ: [Bulk loading](http://hbase.apache.org/book.html#arch.bulk.load) (Kötegelt betöltés).
 
-Egy minta adatfájl található a következő nyilvános blobtárolóban található: *wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*.  Az adatfájl tartalma a következő:
+Egy minta adatfájl található a következő nyilvános blobtárolóban található: *wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*.  hello hello adatfájl tartalma:
 
     8396    Calvin Raji      230-555-0191    230-555-0191    5415 San Gabriel Dr.
     16600   Karen Wu         646-555-0113    230-555-0192    9265 La Paz
@@ -129,32 +129,32 @@ Egy minta adatfájl található a következő nyilvános blobtárolóban találh
     4761    Caleb Alexander  670-555-0141    230-555-0199    4775 Kentucky Dr.
     16443   Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
-Igény szerint létrehozhat egy szövegfájlt, és feltöltheti a fájlt a saját tárfiókjába. Az utasításokért lásd: [Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data] (Adatok feltöltése Hadoop-feladatokhoz a HDInsightban).
+Lehetősége van hozzon létre egy szövegfájlt, és töltse fel a hello fájl tooyour saját tárfiók. Hello útmutatásért lásd: [feltölteni az adatokat a HDInsight Hadoop-feladatok][hdinsight-upload-data].
 
 > [!NOTE]
-> Ez az eljárás az utolsó eljárás során létrehozott Contacts HBase táblát használja.
+> Ez az eljárás során létrehozott az utolsó eljárás hello hello Contacts HBase táblát használja.
 > 
 
-1. Az SSH-ból futtassa az alábbi parancsot, hogy az adatfájlt StoreFiles-fájllá alakítsa, és a Dimporttsv.bulk.output által meghatározott relatív elérési úton tárolja.  Ha a HBase rendszerhéjban van, a kilépés paranccsal lépjen ki.
+1. Az SSH-ból futtassa a következő parancs tootransform hello tooStoreFiles fájlt, és a Dimporttsv.bulk.output által meghatározott relatív elérési úton tárolja hello.  Ha a HBase rendszerhéjban, használja a hello kilépési parancs tooexit.
 
     ```bash   
     hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name,Personal:Phone,Office:Phone,Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
     ```
 
-2. Futtassa a következő parancsot, hogy adatokat töltsön fel az /example/data/storeDataFileOutput mappából a HBase táblába:
+2. Futtassa a következő parancs tooupload hello adatok /example/data/storeDataFileOutput toohello HBase tábla hello:
    
     ```bash
     hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
     ```
 
-3. Megnyithatja a HBase rendszerhéjat, és a vizsgálat paranccsal listázhatja a tábla tartalmát.
+3. Nyissa meg a HBase rendszerhéjjal hello és hello vizsgálat parancs toolist hello tábla tartalmát használja.
 
-## <a name="use-hive-to-query-hbase"></a>A Hive használata a HBase lekérdezéséhez
+## <a name="use-hive-tooquery-hbase"></a>Hive tooquery HBase használata
 
-A HBase táblákban lévő adatokat a Hive eszközzel kérdezheti le. Ebben a szakaszban egy, a HBase-táblára leképezést biztosító Hive-táblát hoz létre, amellyel lekérdezheti a HBase-táblában lévő adatokat.
+A HBase táblákban lévő adatokat a Hive eszközzel kérdezheti le. Ebben a szakaszban hoz létre olyan Hive táblát, amely leképezhető toohello HBase tábla és a HBase táblában tooquery hello adatokat használja.
 
-1. Nyissa meg a **PuTTY** eszközt, és csatlakozzon a fürthöz.  Lásd az előző eljárás utasításait.
-2. Az SSH-munkamenetből a következő paranccsal indíthatja el a Beeline-t:
+1. Nyissa meg **PuTTY**, és csatlakoztassa toohello fürtöt.  Lásd: hello hello az előző eljárás utasításait.
+2. Hello SSH-munkamenetet használja a következő parancs toostart Beeline hello:
 
     ```bash
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
@@ -162,7 +162,7 @@ A HBase táblákban lévő adatokat a Hive eszközzel kérdezheti le. Ebben a sz
 
     A Beeline-nal kapcsolatos további információkért lásd [a Hive és a Hadoop együttes, a Beeline-nal történő használatát a HDInsightban](hdinsight-hadoop-use-hive-beeline.md) ismertető cikket.
        
-3. Futtassa a következő HiveQL-szkriptet, hogy egy, a HBase-táblára leképező Hive-táblát hozzon létre. Ellenőrizze, hogy létrehozta-e az oktatóanyag korábbi részében hivatkozott mintatáblát az utasítás futtatása előtt a HBase rendszerhéjjal.
+3. Futtassa a következő HiveQL-parancsfájlt toocreate hello olyan Hive táblát, amely leképezhető toohello HBase tábla. Győződjön meg arról, hogy létrehozta hello HBase rendszerhéj használatával, az utasítás futtatása előtt az oktatóanyag korábbi részében hivatkozott mintatáblát hello.
 
     ```hiveql   
     CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
@@ -171,7 +171,7 @@ A HBase táblákban lévő adatokat a Hive eszközzel kérdezheti le. Ebben a sz
     TBLPROPERTIES ('hbase.table.name' = 'Contacts');
     ```
 
-4. Futtassa a következő HiveQL-parancsfájlt a HBase-tábla adatainak lekérdezéséhez:
+4. Futtassa a következő HiveQL parancsfájl tooquery hello adatok hello HBase tábla hello:
 
     ```hiveql   
     SELECT count(rowkey) FROM hbasecontacts;
@@ -179,16 +179,16 @@ A HBase táblákban lévő adatokat a Hive eszközzel kérdezheti le. Ebben a sz
 
 ## <a name="use-hbase-rest-apis-using-curl"></a>HBase REST API-k használata Curl használatával
 
-A REST API védelméről [alapszintű hitelesítés](http://en.wikipedia.org/wiki/Basic_access_authentication) gondoskodik. Mindig biztonságos HTTP-n (HTTPS-en) keresztül kell kéréseket végeznie, hogy a hitelesítő adatait biztonságos módon küldje el a kiszolgálónak.
+hello REST API védelméről [az egyszerű hitelesítés](http://en.wikipedia.org/wiki/Basic_access_authentication). Kérések mindig biztonságos HTTP (HTTPS) toohelp győződjön meg arról, hogy a hitelesítő adatait biztonságos módon küldje toohello server kell végezzen.
 
-2. Használja az alábbi parancsot a meglévő HBase-táblák listázásához:
+2. A következő parancs toolist hello meglévő HBase táblák hello használata:
 
     ```bash
     curl -u <UserName>:<Password> \
     -G https://<ClusterName>.azurehdinsight.net/hbaserest/
     ```
 
-3. Használja az alábbi parancsot egy új, kétoszlopos családokkal rendelkező HBase-tábla létrehozásához:
+3. A következő parancs toocreate egy új HBase tábla két oszlopcsaláddal hello használata:
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -199,8 +199,8 @@ A REST API védelméről [alapszintű hitelesítés](http://en.wikipedia.org/wik
     -v
     ```
 
-    A séma a JSon formátumban van megadva.
-4. Használja az alábbi parancsot néhány adat beviteléhez:
+    hello séma hello JSon formátumban van megadva.
+4. Használja a következő parancs tooinsert hello néhány adat:
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -211,14 +211,14 @@ A REST API védelméről [alapszintű hitelesítés](http://en.wikipedia.org/wik
     -v
     ```
    
-    A -d kapcsolóban megadott értékeket a base64 használatával kell kódolnia. A példában:
+    Meg kell, hogy base64 kódolása hello -d kapcsolón megadott hello értékeket. Hello példa:
    
    * MTAwMA==: 1000
    * UGVyc29uYWw6TmFtZQ==: Personal:Name
    * Sm9obiBEb2xl: John Dole
      
-     A [false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) lehetővé teszi több (kötegelt) érték beszúrását.
-5. Használja az alábbi parancsot egy sor lekéréséhez:
+     [hamis sorkulcsa](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) tooinsert lehetővé teszi több (kötegelt) értéket.
+5. A következő parancs tooget sor hello használata:
    
     ```bash 
     curl -u <UserName>:<Password> \
@@ -232,30 +232,30 @@ További információ a HBase REST-ről: [Apache HBase Reference Guide](https://
 > [!NOTE]
 > A HBase nem támogatja a Thriftet a HDInsightban.
 >
-> Amikor a Curl vagy más REST kommunikációt használ a WebHCattel, hitelesítenie kell a kéréseket a HDInsight fürt rendszergazdája felhasználónevének és jelszavának megadásával. A fürtnevet a kérések a kiszolgálóhoz küldéséhez használt egységes erőforrás-azonosító (URI) részeként is használnia kell.
+> Használata Curl vagy más REST kommunikációt használ a Webhcattel, hitelesítenie kell hello kérelmek hello felhasználónevet és jelszót hello HDInsight fürt rendszergazdája által. Hello egységes erőforrás-azonosító (URI) részeként használt toosend hello kérelmek toohello server hello fürtnév is kell használnia:
 > 
 >   
 >        curl -u <UserName>:<Password> \
 >        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
 >   
->    A következőhöz hasonló választ kell kapnia:
+>    Egy hasonló toohello választ, a következő választ kell kapnia:
 >   
 >        {"status":"ok","version":"v1"}
    
 
 
 ## <a name="check-cluster-status"></a>A fürt állapotának ellenőrzése
-A HBase a HDInsightban a fürtök megfigyelésére szolgáló webes felhasználói felülettel kapható. A webes felhasználói felülettel a régiók statisztikáit vagy információit kérheti le.
+A HBase a HDInsightban a fürtök megfigyelésére szolgáló webes felhasználói felülettel kapható. Hello webes felhasználói felület használatával, kérhet statisztikáit vagy információit régiók.
 
-**A HBase mesterfelületének elérése**
+**tooaccess hello HBase fő felhasználói felület**
 
-1. Jelentkezzen be az Ambari webes felületre a https://&lt;Fürtnév>.azurehdinsight.net címen.
-2. Kattintson a **HBase** elemre a bal oldali menüben.
-3. Kattintson a **Gyorshivatkozások** elemre a lap tetején, mutasson az aktív Zookeeper-csomópont hivatkozására, majd kattintson a **HBase-mesterfelület** elemre.  A felület egy új böngészőlapon nyílik meg:
+1. Jelentkezzen be a hello hello Ambari webes felhasználói felületén a https://&lt;Clustername >. azurehdinsight.net.
+2. Kattintson a **HBase** hello bal oldali menüből.
+3. Kattintson a **Gyorshivatkozások** hello hello oldal, pont toohello a Zookeeper csomópont hivatkozás aktív, és kattintson a **HBase fő felhasználói felület**.  felhasználói felület hello meg van nyitva egy másik böngészőben lapon:
 
   ![HDInsight HBase HMaster felhasználói felülete](./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-hmaster-ui.png)
 
-  A HBase-mesterfelület az alábbi részeket tartalmazza:
+  hello HBase fő felhasználói felülete a következő szakaszok hello tartalmazza:
 
   - régiós kiszolgálók
   - biztonsági mentési főkiszolgálók
@@ -263,8 +263,8 @@ A HBase a HDInsightban a fürtök megfigyelésére szolgáló webes felhasznál�
   - feladatok
   - szoftverattribútumok
 
-## <a name="delete-the-cluster"></a>A fürt törlése
-Az inkonzisztenciák elkerülése érdekében javasoljuk, hogy a fürt törlése előtt tiltsa le a HBase-táblákat.
+## <a name="delete-hello-cluster"></a>Hello fürt törlése
+tooavoid inkonzisztenciákat, ajánlott letiltani hello HBase táblákat hello fürt törlése előtt.
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -273,9 +273,9 @@ Az inkonzisztenciák elkerülése érdekében javasoljuk, hogy a fürt törlése
 Ha problémába ütközik a HDInsight-fürtök létrehozása során, tekintse meg [a hozzáférés-vezérlésre vonatkozó követelményeket](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Következő lépések
-Ebből a cikkből megismerhette, hogyan hozhat létre HBase-fürtöt, hogyan hozhat létre táblákat, és hogyan tekintheti meg ezen táblák adatait a HBase-rendszerhéjból. Azt is megtanulta, hogyan használhat Hive-lekérdezést a HBase-táblákban lévő adatokon, és hogyan használhatja a HBase C# REST API-kat egy HBase-tábla létrehozásához és adatok lekérdezéséhez a táblából.
+Ebben a cikkben megtanulta, hogyan toocreate HBase-fürtöt, és hogyan toocreate tábla és nézet hello ezen táblák adatait hello HBase rendszerhéjból. Is megtanulta, hogyan toouse a struktúra a HBase táblákat, és hogyan toouse hello HBase C# REST API-k toocreate lévő adatok lekérdezése egy HBase tábla és hello tábla adatainak lekérése.
 
-További tudnivalókért lásd:
+toolearn több, lásd:
 
 * [HDInsight HBase overview][hdinsight-hbase-overview] (A HDInsight HBase áttekintése): A HBase egy Apache, nyílt forráskódú, a Hadoopra épülő NoSQL-adatbázis, amely véletlenszerű hozzáférést és erős konzisztenciát biztosít a nagy mennyiségű strukturálatlan és félig strukturált adatok számára.
 

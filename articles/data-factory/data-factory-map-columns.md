@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Data Factoryben az adatkészlet oszlopok leképezése |} Microsoft Docs"
-description: "Megtudhatja, hogyan Forrásoszlopok leképezése cél oszlopok."
+title: Azure Data Factory aaaMapping dataset oszlopai |} Microsoft Docs
+description: "Ismerje meg, hogyan toomap forrás oszlopok toodestination oszlopok."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: a50661b377cfbbff3f1f762342cb275d5da82cea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f78d4af675bec0a70e5f6e83ec1ffb511408b5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-source-dataset-columns-to-destination-dataset-columns"></a>A dataset Forrásoszlopok leképezése cél adatkészlet oszlopok
-Adja meg, hogyan megadott oszlopoknak a "szerkezetének" forrás tábla térkép oszlop szerepel a fogadó tábla "structure" oszlopleképezés is használható. A **columnMapping** tulajdonság érhető el a **typeProperties** a másolási tevékenység szakasza.
+# <a name="map-source-dataset-columns-toodestination-dataset-columns"></a>Forrás adatkészlet oszlopok toodestination dataset oszlop leképezése
+Oszlopleképezés hogyan megadott oszlopoknak megadott hello forrás tábla térkép toocolumns "structure" hello "structure" fogadó tábla használt toospecify lehet. Hello **columnMapping** tulajdonság érhető el hello **typeProperties** hello másolási tevékenység szakasza.
 
-Oszlop leképezése a következő szituációkat ismerteti:
+Oszlop leképezése a következő forgatókönyvek hello támogatja:
 
-* A forrás adatkészlet-szerkezetekben összes oszlop összes oszlop szerepel a fogadó adatkészlet-szerkezetekben van leképezve.
-* A forrás adatkészlet-szerkezetekben oszlopok egy részét az összes oszlop szerepel a fogadó adatkészlet-szerkezetekben van leképezve.
+* Minden oszlop hello forrás adatkészlet-szerkezetekben hello fogadó adatkészlet-szerkezetekben csatlakoztatott tooall oszlopok.
+* Hello forrás adatkészlet-szerkezetekben hello oszlopok csoportja csatlakoztatott tooall oszlopok hello fogadó adatkészlet-szerkezetekben.
 
-Hiba feltételek, amelyek kivételt a következők:
+Az alábbiakban hello hiba feltételek, amelyek kivétel:
 
-* Kevesebb oszlopot vagy több oszlop szerepel a "structure" fogadó tábla mint a leképezésben megadott.
+* Kevesebb oszlopot vagy több oszlop szerepel hello "structure" fogadó tábla mint hello leképezésben megadott.
 * Ismétlődő leképezés.
-* SQL-lekérdezés eredménye nem rendelkezik a leképezésben megadott oszlopnév.
+* SQL-lekérdezés eredménye nincs hello leképezésben megadott oszlop neve.
 
 > [!NOTE]
-> A következő mintákat az Azure SQL és az Azure Blob, de bármely adattároló, amely támogatja a téglalap alakú adatkészletek vonatkoznak. Állítsa be úgy a DataSet adatkészlet és a társított szolgáltatás definíciók példákban az adatok a megfelelő adatforrás.
+> hello következő mintákat az Azure SQL és az Azure Blob, de alkalmazható tooany adattároló, amely támogatja a téglalap alakú adatkészletek. Állítsa be úgy a DataSet adatkészlet és a társított szolgáltatás definíciói példák toopoint toodata hello megfelelő adatforrás.
 
-## <a name="sample-1--column-mapping-from-azure-sql-to-azure-blob"></a>Oszlopleképezés, az Azure SQL-ből az Azure-blobhoz 1 – minta
-Ez a példa a bemeneti táblájának struktúrája, és egy Azure SQL adatbázis SQL táblázat mutat.
+## <a name="sample-1--column-mapping-from-azure-sql-tooazure-blob"></a>Az Azure SQL-tooAzure blobból oszlopleképezés 1 – minta
+Ez a példa hello bemeneti táblájának struktúrája, és az Azure SQL-adatbázis tooa SQL táblázat mutat.
 
 ```json
 {
@@ -70,7 +70,7 @@ Ez a példa a bemeneti táblájának struktúrája, és egy Azure SQL adatbázis
 }
 ```
 
-Ez a példa a kimeneti táblához tartozik egy struktúra, és az Azure blob Storage tárolóban lévő blob mutat.
+Ez a példa hello eredménytábla struktúrája, és az Azure blob Storage tárolóban tooa blob mutat.
 
 ```json
 {
@@ -103,7 +103,7 @@ Ez a példa a kimeneti táblához tartozik egy struktúra, és az Azure blob Sto
 }
 ```
 
-A következő JSON egy folyamaton belül határozza meg a másolási tevékenység. A forrás oszlop szerepel a fogadó leképezve oszlopokat (**columnMappings**) használatával a **fordító** tulajdonság.
+a következő JSON hello a másolási tevékenység során a folyamat határozza meg. hello oszlopok forrásból leképezve a fogadó toocolumns (**columnMappings**) hello segítségével **fordító** tulajdonság.
 
 ```json
 {
@@ -137,8 +137,8 @@ A következő JSON egy folyamaton belül határozza meg a másolási tevékenys�
 
 ![Oszlop-hozzárendelési folyamat](./media/data-factory-map-columns/column-mapping-flow.png)
 
-## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-to-azure-blob"></a>Az SQL-lekérdezést az Azure SQL-ből az Azure-blobhoz oszlopleképezés 2 – minta
-Ez a példa egy SQL-lekérdezés segítségével adatok kinyerése az Azure SQL helyett egyszerűen adja meg a táblanevet és az oszlop neve "structure" szakasz. 
+## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-tooazure-blob"></a>Az Azure SQL-tooAzure blobból SQL-lekérdezés oszlopleképezés 2 – minta
+Ez a példa egy SQL-lekérdezésben használt tooextract adatokat az Azure SQL hello táblanév, az oszlopnevek hello egyszerűen megadása "structure" szakaszban helyett. 
 
 ```json
 {
@@ -170,13 +170,13 @@ Ez a példa egy SQL-lekérdezés segítségével adatok kinyerése az Azure SQL 
         }
 }
 ```
-Ebben az esetben a lekérdezés eredményeinek először képezi le a "structure" forrás megadott oszlopok. A következő forrás "structure" oszlopok vannak leképezve oszlop szerepel a fogadó "structure" columnMappings megadott szabályait.  Tegyük fel, hogy a lekérdezés 5 oszlopok, két további oszlop, mint a forrás "structure" adja vissza.
+Ebben az esetben hello lekérdezés eredményei "structure" forrás megadott első csatlakoztatott toocolumns. A következő forrás "structure" hello oszlopok csatlakoztatott toocolumns a fogadó "structure" columnMappings megadott szabályait.  Tegyük fel, hogy hello lekérdezés 5 oszlopok, két további oszlop, mint a "structure" forrás hello adja vissza.
 
 **Oszlop-hozzárendelési folyamat**
 
 ![Oszlop leképezése adatfolyam-2](./media/data-factory-map-columns/column-mapping-flow-2.png)
 
 ## <a name="next-steps"></a>Következő lépések
-Olvassa el a másolási tevékenység az oktatóanyag: 
+A másolási tevékenység az oktatóanyag hello cikke: 
 
-- [A Blob Storage az SQL Database-adatok másolása](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Másolja az adatokat a Blob Storage tooSQL adatbázis](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)

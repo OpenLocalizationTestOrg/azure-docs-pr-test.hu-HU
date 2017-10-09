@@ -1,6 +1,6 @@
 ---
-title: "Az Azure CDN-végpont eszközök előzetes betöltése |} Microsoft Docs"
-description: "Megtudhatja, hogyan előzetes betöltése Azure CDN-végpont gyorsítótárazott tartalmat."
+title: "Azure CDN-végpont aaaPre terhelési eszközök |} Microsoft Docs"
+description: "Ismerje meg, hogyan toopre terhelésű gyorsítótárazott tartalom Azure CDN-végpont."
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 1f2dcd9a91bb6e883cbef06373c1acd98bf8d45f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 08ac4b834f1ac8ce59d22e65fa8adea11bafcf17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="pre-load-assets-on-an-azure-cdn-endpoint"></a>Eszközök előzetes betöltése Azure CDN-végponton
 [!INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
-Alapértelmezés szerint eszközök először gyorsítótárba kerüljenek-e, erre felkérést kapnak. Ez azt jelenti, hogy az első kérésre minden régióban hosszabb időt vehet igénybe, mivel a peremhálózati kiszolgálóinak nem kell a tartalom gyorsítótárazva, és továbbítja a kérelmet az eredeti kiszolgálóra kell. Előre a tartalom betöltése elkerülhető az első találati késés.
+Alapértelmezés szerint eszközök először gyorsítótárba kerüljenek-e, erre felkérést kapnak. Ez azt jelenti, hogy minden egyes régió hello első kérelmet hosszabb időt vehet igénybe, mivel hello peremhálózati kiszolgálóinak nem kell hello tartalom gyorsítótárazva, és tooforward hello kérelem toohello eredeti kiszolgálóra lesz szüksége. Előre a tartalom betöltése elkerülhető az első találati késés.
 
-Mellett jobb felhasználói élményt biztosít, a gyorsítótárazott eszközök előzetes betöltése is csökkentheti a forráskiszolgáló hálózati forgalmat.
+Továbbá tooproviding jobb felhasználói élmény, a gyorsítótárazott eszközök előzetes betöltése hálózati forgalmat a hello eredeti kiszolgálóra is csökkentheti.
 
 > [!NOTE]
-> Eszközök előzetes betöltése esetén hasznos nagy események vagy a tartalmat, hogy a felhasználók számára, például egy új movie kiadás vagy szoftverfrissítés nagy számú egyidejűleg elérhetővé válnak.
+> Előzetes betöltését az eszközök akkor hasznos, ha nagy események vagy tartalom, amely elérhetővé válik egy időben elérhető tooa sok felhasználó, például egy új movie kiadás vagy szoftverfrissítés.
 > 
 > 
 
 Ez az oktatóanyag bemutatja, hogyan előzetes betöltését a gyorsítótárazott tartalom minden Azure CDN peremhálózati csomópontján.
 
 ## <a name="walkthrough"></a>Útmutatás
-1. Az a [Azure Portal](https://portal.azure.com), keresse meg a CDN-profilt, amely tartalmazza a előzetes betöltése kívánt végpont.  A profil panelje megnyílik.
-2. Kattintson a végpont a listában.  A végpont panel nyílik meg.
-3. A CDN-végpont paneljéről a terhelés gombra.
+1. A hello [Azure Portal](https://portal.azure.com), keresse meg a terhelési toopre kívánja hello végpont tartalmazó toohello CDN-profil.  hello-profil panelje megnyílik.
+2. Kattintson a hello végpont hello listában.  hello végpont panel nyílik meg.
+3. Hello CDN-végpont panelen kattintson a hello Betöltés gombra.
    
     ![CDN-végpont panelje](./media/cdn-preload-endpoint/cdn-endpoint-blade.png)
    
-    Ekkor megnyílik a terhelés panel.
+    hello terhelés panel nyílik meg.
    
     ![CDN-betöltési panelje](./media/cdn-preload-endpoint/cdn-load-blade.png)
-4. Írja be a betölteni kívánt minden egyes eszköz elérési útját (például `/pictures/kitten.png`) található a **elérési** szövegmező.
+4. Hello elérési útját adja meg minden egyes eszköz tooload kívánja (pl. `/pictures/kitten.png`) a hello **elérési** szövegmező.
    
    > [!TIP]
-   > További **elérési** szövegmezők lehetővé teszi több eszközök listájának összeállítása szöveg megadása után jelenik meg.  Eszközök a három ponttal (…) gombra kattintva törölheti a listából.
+   > További **elérési** szövegmezők megjelenik a szöveges tooallow megadása után toobuild több eszközök listáját.  Eszközök hello listából hello három ponttal (…) gombra kattintva törölheti.
    > 
-   > Elérési út lehet egy relatív URL-címet, amely megfelel a következő [reguláris kifejezés](https://msdn.microsoft.com/library/az24scfc.aspx):  
+   > Elérési út lehet egy relatív URL-címet, amely megfelel a következő hello [reguláris kifejezés](https://msdn.microsoft.com/library/az24scfc.aspx):  
    > >Egy egyetlen fájl elérési útját betöltése `@"^(?:\/[a-zA-Z0-9-_.%=\u0020]+)+$"`;  
    > >A lekérdezési karakterlánc egyetlen fájl betöltése`@"^(?:\?[-_a-zA-Z0-9\/%:;=!,.\+'&\u0020]*)?$";`  
    > 
@@ -58,7 +58,7 @@ Ez az oktatóanyag bemutatja, hogyan előzetes betöltését a gyorsítótárazo
    > 
    
     ![Betöltési gomb](./media/cdn-preload-endpoint/cdn-load-paths.png)
-5. Kattintson a **terhelés** gombra.
+5. Kattintson a hello **terhelés** gombra.
    
     ![Betöltési gomb](./media/cdn-preload-endpoint/cdn-load-button.png)
 

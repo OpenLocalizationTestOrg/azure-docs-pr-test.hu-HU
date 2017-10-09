@@ -1,6 +1,6 @@
 ---
-title: "A DocumentDB API teljesítményszintet |} Microsoft Docs"
-description: "További információk a hogyan DocumentDB API teljesítményszintek lehetővé teszik a tároló / alapon átviteli lefoglalni."
+title: "aaaDocumentDB API teljesítményszintet |} Microsoft Docs"
+description: "További információk a hogyan DocumentDB API teljesítményszintek lehetővé teszik a tooreserve átviteli / tároló alapon."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,42 +15,42 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d4733e57eb760dbb8e8ca96f6ba55671d1742f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 716bc11ae238dbb0feebf004ed8d5f8a7515ec6f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>A S1, S2 és S3 teljesítményszintet kivonása
+# <a name="retiring-hello-s1-s2-and-s3-performance-levels"></a>Hello S1, S2 és S3 teljesítményszintet kivonása
 
 > [!IMPORTANT] 
-> A cikkben szereplő S1, S2 és S3 teljesítményszintet használatból van, és már nem érhetők el az új DocumentDB API-fiókokat.
+> hello S1, S2 és S3 teljesítményszintet cikkben említett használatból van, és már nem érhetők el az új DocumentDB API-fiókokat.
 >
 
-Ez a cikk áttekintést S1, S2 és S3 teljesítményszintet, és ismerteti, hogyan a gyűjteményeket, a teljesítmény szinteket használó telepíti át az egypartíciós gyűjtemények 2017 augusztus 1. a. A cikk elolvasása után képes lesz a következő kérdések megválaszolásához:
+Ez a cikk áttekintést S1, S2 és S3 teljesítményszintet, és ismerteti, hogyan hello gyűjteményeket, a teljesítmény szinteket használó lesz az áttelepített toosingle partíció gyűjtemények 2017 augusztus 1.. A cikk elolvasása után be fog tudni tooanswer hello a következő kérdéseket:
 
-- [Miért van a S1, S2 és S3 teljesítmény szintek hatókörről?](#why-retired)
-- [Hogyan hajtsa végre az egypartíciós gyűjtemények és a particionált gyűjtemények hasonlítsa össze a S1, S2, S3 teljesítményszintet?](#compare)
-- [Mit kell tennie, az adatok folyamatos hozzáférés érdekében?](#uninterrupted-access)
-- [Hogyan változik a saját gyűjteményembe az áttelepítést követően?](#collection-change)
-- [Hogyan fogja módosítani a saját számlázási I vagyok történő áttelepítése után az egypartíciós gyűjtemények?](#billing-change)
+- [Miért van hello S1, S2 és S3 teljesítmény szintek hatókörről?](#why-retired)
+- [Hogyan hajtsa végre az egypartíciós gyűjtemények és a particionált gyűjtemények összehasonlítása toohello S1, S2, S3 teljesítményszintet?](#compare)
+- [Mi készíthetek kell toodo tooensure folyamatos toomy adatok eléréséhez?](#uninterrupted-access)
+- [Hogyan változik a saját gyűjteményembe hello áttelepítése után?](#collection-change)
+- [Hogyan fogja módosítani a a számlázási után áttelepített toosingle partíció gyűjtemények vagyok?](#billing-change)
 - [Mi történik, ha több mint 10 GB tárhelyet kell?](#more-storage-needed)
-- [Módosítható a S1, S2 és S3 között teljesítményszintet 2017. augusztus 1. előtt?](#change-before)
+- [Módosítható hello S1, S2 és S3 teljesítményszintet 2017. augusztus 1. előtt között?](#change-before)
 - [Milyen operációs rendszer, hogy ha a gyűjtemény át lett telepítve?](#when-migrated)
-- [Hogyan tudom át az S1, S2, S3 teljesítményszintek az egypartíciós gyűjtemények önállóan?](#migrate-diy)
+- [Hogyan hello S1, S2, S3 teljesítmény szintek toosingle partíció gyűjtemények önállóan át?](#migrate-diy)
 - [Hogyan vagyok feladatátvétele a Ha az ügyfél egy EA vagyok?](#ea-customer)
 
 <a name="why-retired"></a>
 
-## <a name="why-are-the-s1-s2-and-s3-performance-levels-being-retired"></a>Miért van a S1, S2 és S3 teljesítmény szintek hatókörről?
+## <a name="why-are-hello-s1-s2-and-s3-performance-levels-being-retired"></a>Miért van hello S1, S2 és S3 teljesítmény szintek hatókörről?
 
-A S1, S2 és S3 teljesítményszintet biztosít, amely DocumentDB API gyűjtemények nyújt rugalmasságot. S1, S2, S3 teljesítményszintet, az átviteli sebesség és a tárolási kapacitás előre beállított és nem ajánlja fel a rugalmasság. Azure Cosmos DB kínál testreszabása az átviteli sebesség és tárterület, felkínálva sokkal nagyobb rugalmasságot biztosít arra, hogy a méretezés pedig az igényeinek módosítása.
+hello S1, S2 és S3 teljesítményszintet nem ajánlat hello rugalmasságot biztosít, amely DocumentDB API gyűjtemények nyújt, hajtsa végre. Hello S1, S2, S3 teljesítményszintet, mindkét hello átviteli sebesség és a tárolási kapacitás előre beállított és nem ajánlja fel a rugalmasság. Azure Cosmos DB kínál: hello képességét toocustomize az átviteli sebesség és tárterület, felkínálva a lehetőséget tooscale sokkal nagyobb rugalmasságot igényeinek módosítása.
 
 <a name="compare"></a>
 
-## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-to-the-s1-s2-s3-performance-levels"></a>Hogyan hajtsa végre az egypartíciós gyűjtemények és a particionált gyűjtemények hasonlítsa össze a S1, S2, S3 teljesítményszintet?
+## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-toohello-s1-s2-s3-performance-levels"></a>Hogyan hajtsa végre az egypartíciós gyűjtemények és a particionált gyűjtemények összehasonlítása toohello S1, S2, S3 teljesítményszintet?
 
-Az alábbi táblázat összehasonlítja az átviteli sebesség és tárterület beállításait az egypartíciós gyűjtemények, a particionált gyűjtemények és S1, S2, S3 teljesítményszintet. Íme egy példa a amerikai keleti régiója 2 régió:
+a következő táblázat hello hello átviteli sebesség és tárterület rendelkezésre álló lehetőségek az egypartíciós gyűjtemények, a particionált gyűjtemények és S1, S2, S3 teljesítményszintet hasonlítja össze. Íme egy példa a amerikai keleti régiója 2 régió:
 
 |   |Particionált gyűjtemény|Az egypartíciós gyűjtemény|S1|S2|S3|
 |---|---|---|---|---|---|
@@ -63,103 +63,103 @@ Az ügyfél egy EA folytatja? Ha igen, tekintse meg a [hogyan vagyok I csökkent
 
 <a name="uninterrupted-access"></a>
 
-## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>Mit kell tennie, az adatok folyamatos hozzáférés érdekében?
+## <a name="what-do-i-need-toodo-tooensure-uninterrupted-access-toomy-data"></a>Mi készíthetek kell toodo tooensure folyamatos toomy adatok eléréséhez?
 
-Semmi, Cosmos DB kezeli, az áttelepítés. Ha egy S1, S2 vagy S3 gyűjteményt, a jelenlegi gyűjtemény telepíti át a 2017. július 31 egypartíciós gyűjtemény. 
+Semmi, Cosmos DB hello áttelepítési az Ön kezeli. Ha egy S1, S2 vagy S3 gyűjteményt, a jelenlegi gyűjtemény lesz áttelepített tooa egypartíciós gyűjtemény 2017. július 31. 
 
 <a name="collection-change"></a>
 
-## <a name="how-will-my-collection-change-after-the-migration"></a>Hogyan változik a saját gyűjteményembe az áttelepítést követően?
+## <a name="how-will-my-collection-change-after-hello-migration"></a>Hogyan változik a saját gyűjteményembe hello áttelepítése után?
 
-Ha egy S1 gyűjteményt, akkor telepíti át egy egypartíciós gyűjtemény átviteli sebességgel 400 RU/mp. 400 RU/mp a legalacsonyabb átviteli sebesség érhető el az egypartíciós gyűjtemények. Azonban a 400 RU/mp a költsége az egypartíciós gyűjtemény célja megközelítőleg azonos, amelyben meg volt fizető S1 gyűjteményének és 250 RU/mp –, így nem kell fizet az extra 150 RU/mp elérhető.
+Ha egy S1 gyűjteményt, fogja áttelepített tooa egypartíciós gyűjtemény 400 RU/s átviteli sebességgel. 400 RU/mp hello legalacsonyabb átviteli sebesség érhető el az egypartíciós gyűjtemények. Az egypartíciós gyűjtemény körülbelül megegyezik az Ön volt az S1 gyűjteménnyel fizető hello hello 400 RU/mp és 250 RU/mp – így a nem fizet hello költsége azonban nagyon 150 RU/mp elérhető tooyou hello.
 
-Ha egy S2 gyűjteményt, akkor telepíti át egy 1 KB-os RU/mp egypartíciós gyűjtemény. Nincs változás az átviteli szinten jelenik meg.
+Ha egy S2 gyűjteményt, fogja áttelepített tooa egypartíciós gyűjtemény 1 K RU/mp. Nincs változás tooyour átviteli szint jelenik meg.
 
-Ha egy S3 gyűjteményt, akkor telepíti át egy egypartíciós gyűjtemény 2,5 K RU/mp. Nincs változás az átviteli szinten jelenik meg.
+Ha egy S3 gyűjteményt, fogja áttelepített tooa egypartíciós gyűjtemény 2,5 K RU/mp. Nincs változás tooyour átviteli szint jelenik meg.
 
-Minden ezekben az esetekben miután áttelepítette a gyűjteményt, meg fog tudni az átviteli szintű testreszabása, vagy skálázhatja azt felfelé és lefelé alacsony késésű hozzáférést biztosítani a felhasználók igény szerint. Átviteli szintjének módosítása után a gyűjtemény át lett telepítve, egyszerűen nyissa meg a Cosmos DB fiók az Azure portálon, kattintson a Scale, válassza ki a gyűjteményt, és az alábbi képernyőfelvételen látható módon adja meg az átviteli szintű:
+Az egyes ezekben az esetekben miután áttelepítette a gyűjteményt, hoz kell tudni toocustomize az átviteli szintű, vagy szükséges tooprovide alacsony késésű hozzáférést tooyour felhasználóként vertikális fel-le azt. toochange hello átviteli szintű után a gyűjtemény át lett telepítve, egyszerűen nyissa meg a Cosmos DB fiók hello Azure-portálon, kattintson a Scale, válassza ki a gyűjtemény és hello átviteli szint, majd beállításához, ahogy az alábbi képernyőfelvétel a hello:
 
-![Az Azure portálon átviteli méretezése](./media/performance-levels/portal-scale-throughput.png)
+![Hogyan tooscale átviteli sebesség mértéke a hello Azure-portálon](./media/performance-levels/portal-scale-throughput.png)
 
 <a name="billing-change"></a>
 
-## <a name="how-will-my-billing-change-after-im-migrated-to-the-single-partition-collections"></a>Hogyan fogja módosítani a saját számlázási I vagyok történő áttelepítése után az egypartíciós gyűjtemények?
+## <a name="how-will-my-billing-change-after-im-migrated-toohello-single-partition-collections"></a>Hogyan fogja módosítani a a számlázási után áttelepített toohello az egypartíciós gyűjtemények vagyok?
 
-Feltéve, hogy 10 S1 gyűjtemények, 1 GB tárhelyet minden, a US keleti terület rendelkezik, és ezek 10 S1 gyűjteményt telepít át, a 10 az egypartíciós gyűjtemények: 400 RU/mp (minimális). A számlázási következőképpen fog kinézni, ha a 10 az egypartíciós gyűjtemények esetében a teljes hónap:
+Feltéve, hogy 10 S1 gyűjtemények, 1 GB tárhelyet minden hello amerikai keleti terület, és a gyűjteményt telepít át, a 10 S1 gyűjtemények too10 egypartíciós: 400 RU/mp (hello minimális szintet). A számlázási a Ha a hello 10 az egypartíciós gyűjtemények esetében a teljes hónap következőképpen fog kinézni:
 
-![Hogyan S1 tarifacsomag 10 gyűjtemények összehasonlítja 10 gyűjtemények használatával az egypartíciós gyűjtemény díjszabása](./media/performance-levels/s1-vs-standard-pricing.png)
+![Hogyan S1 tarifacsomag 10 gyűjtemények hasonlítja össze a too10 gyűjtemények használatával az egypartíciós gyűjtemény díjszabása](./media/performance-levels/s1-vs-standard-pricing.png)
 
 <a name="more-storage-needed"></a>
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>Mi történik, ha több mint 10 GB tárhelyet kell?
 
-E rendelkezik egy gyűjtemény egy S1, S2 vagy S3 teljesítményszint szükséges, vagy ezek mindegyike rendelkezik, 10 GB-os kapacitású, a Cosmos DB adatáttelepítés eszközzel az adatok áttelepítéséhez egy particionált gyűjtemény gyakorlatilag az egypartíciós gyűjtemény korlátlan tárterület. A particionált gyűjtemény előnyeivel kapcsolatos információk: [particionálás és az Azure Cosmos Adatbázisba skálázás](documentdb-partition-data.md). A S1, S2, S3 vagy az egypartíciós gyűjtemény egy particionált gyűjtemény áttelepítésével kapcsolatos információkért lásd: [egypartíciós telepít át a particionált gyűjtemények](documentdb-partition-data.md#migrating-from-single-partition). 
+Rendelkezik egy gyűjtemény egy S1, S2 vagy S3 teljesítményszint szükséges, vagy az egypartíciós gyűjtemény, ezek mindegyike rendelkezik, 10 GB tárterület érhető el, hogy az adatok tooa particionált gyűjtemény gyakorlatilag hello Cosmos DB adatáttelepítési eszköz toomigrate használhatja korlátlan tárterület. Egy particionált gyűjtemény hello előnyöket kapcsolatos információk: [particionálás és az Azure Cosmos Adatbázisba skálázás](documentdb-partition-data.md). További információ toomigrate a S1, S2, S3 vagy az egypartíciós gyűjtemény tooa particionált gyűjtemény, lásd: [toopartitioned egypartíciós gyűjtemények áttelepítése](documentdb-partition-data.md#migrating-from-single-partition). 
 
 <a name="change-before"></a>
 
-## <a name="can-i-change-between-the-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>Módosítható a S1, S2 és S3 között teljesítményszintet 2017. augusztus 1. előtt?
+## <a name="can-i-change-between-hello-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>Módosítható hello S1, S2 és S3 teljesítményszintet 2017. augusztus 1. előtt között?
 
-S1, S2 és S3 teljesítménnyel csak meglévő fiókok tudják módosítani, és módosítsa a teljesítmény szintű rétegek a portálon vagy programozottan. 2017. augusztus 1., amelyet a S1, S2 és S3 teljesítményszintet már nem lesz elérhető. Ha egy egypartíciós gyűjtemény S1, S3 vagy S3 módosítja, a S1, S2 vagy S3 teljesítményszintet nem lehet visszatérni.
+S1, S2 és S3 teljesítménnyel csak meglévő fiókok képes toochange kell, és a teljesítmény szintű rétegek hello portálon vagy programozottan az alter. 2017. augusztus 1. hello S1, S2, és S3 teljesítményszintet többé nem érhető el. S1, S3 vagy S3 tooa egypartíciós gyűjtemény módosításakor S1, S2 vagy S3 teljesítményszintet toohello nem lehet visszatérni.
 
 <a name="when-migrated"></a>
 
 ## <a name="how-will-i-know-when-my-collection-has-migrated"></a>Milyen operációs rendszer, hogy ha a gyűjtemény át lett telepítve?
 
-Az áttelepítés 2017. július 31 fordulhat elő. Ha a S1 alkalmazó gyűjteményt, S2 vagy S3 teljesítményszintet, a Cosmos DB csapata kapcsolatba lép Önnel e-mailben történik az áttelepítés előtt. Az áttelepítés befejezése után, a 2017. augusztus 1., az Azure-portálon jelenik meg, hogy a gyűjtemény használja, a Standard díjszabás.
+hello áttelepítési 2017. július 31 fordulhat elő. Ha a gyűjtemény hello S1, S2 használó, vagy S3 teljesítményszintet, hello Cosmos DB team felveszi Önnel a e-mailben történik hello áttelepítés előtt. Hello áttelepítés akkor fejeződött be, a 2017. augusztus 1., hello Azure-portálon fognak megjelenni, hogy a gyűjtemény használja, a Standard díjszabás.
 
-![Bemutatja, hogyan ellenőrizheti a gyűjtemény át lett telepítve, a standard tarifacsomag](./media/performance-levels/portal-standard-pricing-applied.png)
+![Hogyan tooconfirm a gyűjtemény már áttelepített toohello a Standard tarifacsomag](./media/performance-levels/portal-standard-pricing-applied.png)
 
 <a name="migrate-diy"></a>
 
-## <a name="how-do-i-migrate-from-the-s1-s2-s3-performance-levels-to-single-partition-collections-on-my-own"></a>Hogyan tudom át az S1, S2, S3 teljesítményszintek az egypartíciós gyűjtemények önállóan?
+## <a name="how-do-i-migrate-from-hello-s1-s2-s3-performance-levels-toosingle-partition-collections-on-my-own"></a>Hogyan hello S1, S2, S3 teljesítmény szintek toosingle partíció gyűjtemények önállóan át?
 
-A S1, S2 és S3 teljesítményszintek az Azure portál használatával az egypartíciós gyűjtemények áttelepíthetők vagy programon keresztül. Ehhez a saját augusztus 1 rugalmas átviteli lehetőségekről az egypartíciós gyűjtemények kihasználják előtt, vagy áthelyezni, a gyűjtemények a 2017. július 31.
+Hello S1, S2, telepíthet át, és S3 teljesítmény szinteken toosingle partíció gyűjtemények használatával hello Azure-portálon vagy programozottan. Ehhez a saját előtt augusztus 1 toobenefit hello rugalmas átviteli közül az egypartíciós gyűjtemények érhető el, vagy a gyűjteményeket, a 2017. július 31 áthelyezni.
 
-**Az Azure portál használata az egypartíciós gyűjtemények áttelepítése**
+**toomigrate toosingle partíció gyűjtemények hello Azure-portál használatával**
 
-1. A a [ **Azure-portálon**](https://portal.azure.com), kattintson a **Azure Cosmos DB**, majd válassza ki a Cosmos DB fiók módosítása. 
+1. A hello [ **Azure-portálon**](https://portal.azure.com), kattintson a **Azure Cosmos DB**, majd válassza ki a hello Cosmos DB fiók toomodify. 
  
-    Ha **Azure Cosmos DB** értéke nem az Ugrósávon kattintson >, görgessen **adatbázisok**, jelölje be **Azure Cosmos DB**, majd válassza ki a DocumentDB-fiók.  
+    Ha **Azure Cosmos DB** még nincs a hello Ugrósávon, kattintson a >, görgessen túl**adatbázisok**, jelölje be **Azure Cosmos DB**, majd válassza ki a hello DocumentDB-fiók.  
 
-2. Erőforrás menüjében a **tárolók**, kattintson a **méretezési**, válassza ki a gyűjteményt, és kattintson a legördülő listából módosításához **árképzési szintjében**. Előre definiált átviteli használatával fiókok jogosultak az S1, S2 vagy S3 tarifacsomagot.  A a **válasszon tarifacsomagot** panelen kattintson **szabványos** felhasználói átviteli módosítsa, majd **válasszon** menteni a módosítást.
+2. Hello erőforrás menü alatti **tárolók**, kattintson **méretezési**, válassza ki a hello gyűjtemény toomodify hello legördülő listából, és kattintson **Tarifacsomagot**. Előre definiált átviteli használatával fiókok jogosultak az S1, S2 vagy S3 tarifacsomagot.  A hello **válasszon tarifacsomagot** panelen kattintson a **szabványos** toochange toouser által megadott átviteli sebességet, és kattintson a **válassza ki** toosave a módosítás.
 
-    ![A beállítások panelről, hol változtatható meg az átviteli sebesség értéket ábrázoló képernyőfelvétel](./media/performance-levels/change-performance-set-thoughput.png)
+    ![Képernyőfelvétel a hello panelen – képernyőfelvétel, amelyen toochange hello átviteli érték](./media/performance-levels/change-performance-set-thoughput.png)
 
-3. Vissza a **méretezési** panelen a **Tarifacsomagot** változott **szabványos** és a **átviteli sebesség (RU/mp)** mezőben jelenik meg az alapértelmezett érték 400 értéke. Állítsa be az átviteli sebesség 400 és 10 000 között [egységek kérelem](request-units.md)/second (RU/mp). A **havi számla becsült** a lap frissítések, automatikusan a havi költségeket becsült alján. 
+3. Vissza a hello **méretezési** panelen, hello **Tarifacsomagot** túl megváltozott**szabványos** és hello **átviteli sebesség (RU/mp)** mezőben jelenik meg, amely egy 400 alapértelmezett értéke. Set hello átviteli sebesség 400 és 10 000 között [egységek kérelem](request-units.md)/second (RU/mp). Hello **havi számla becsült** hello hello alján lap automatikusan frissül, tooprovide havi költségeket hello becslése. 
 
     >[!IMPORTANT] 
-    > Miután menti a módosításokat, és helyezze át a Standard tarifacsomag, nem állítható vissza a S1, S2 vagy S3 teljesítmény szintre.
+    > Miután menti a módosításokat, és helyezze át a Standard tarifacsomag toohello, nem állítható vissza toohello S1, S2 vagy S3 teljesítményszintet.
 
-4. Kattintson a **mentése** menti a módosításokat.
+4. Kattintson a **mentése** toosave a módosításokat.
 
-    Ha azt állapítja meg, hogy van szüksége további átviteli sebesség (nagyobb, mint 10000 RU/mp) vagy további tárhelyet (10GB-nál nagyobb) particionált gyűjtemény hozható létre. Az egypartíciós gyűjtemény egy particionált gyűjtemény áttelepítéséhez lásd: [egypartíciós telepít át a particionált gyűjtemények](documentdb-partition-data.md#migrating-from-single-partition).
+    Ha azt állapítja meg, hogy van szüksége további átviteli sebesség (nagyobb, mint 10000 RU/mp) vagy további tárhelyet (10GB-nál nagyobb) particionált gyűjtemény hozható létre. az egypartíciós gyűjtemény tooa particionált gyűjtemény toomigrate lásd: [toopartitioned egypartíciós gyűjtemények áttelepítése](documentdb-partition-data.md#migrating-from-single-partition).
 
     > [!NOTE]
-    > Standard S1, S2 vagy S3 módosítása 2 percet is igénybe vehet.
+    > S1, S2 vagy S3 tooStandard korlátlanról too2 percet igénybe vehet.
     > 
     > 
 
-**A .NET SDK használatával az egypartíciós gyűjtemények áttelepítése**
+**toomigrate toosingle partíció gyűjtemények hello .NET SDK használatával**
 
-A gyűjtemények teljesítményszintet módosítására vonatkozóan egy másik lehetőség az SDK-k keresztül történik. Ez a szakasz csak hozzá van rendelve egy gyűjtési teljesítmény módosítása szinten használatával a [DocumentDB .NET API](documentdb-sdk-dotnet.md), de a folyamat hasonló, ha az egyéb SDK-k.
+A gyűjtemények teljesítményszintet módosítására vonatkozóan egy másik lehetőség az SDK-k keresztül történik. Ez a szakasz csak hozzá van rendelve egy gyűjtési teljesítmény módosítása szinten használatával a [DocumentDB .NET API](documentdb-sdk-dotnet.md), hello folyamata hasonló, ha a Csomagjától, de.
 
-Íme egy kódrészletet a a gyűjtemény átviteli sebességének módosítása a 5 000 kérelemegység / másodperc:
+Íme egy kódrészletet módosítására hello gyűjtemény átviteli too5 000 kérelemegység / másodperc:
     
 ```C#
-    //Fetch the resource to be updated
+    //Fetch hello resource toobe updated
     Offer offer = client.CreateOfferQuery()
                       .Where(r => r.ResourceLink == collection.SelfLink)    
                       .AsEnumerable()
                       .SingleOrDefault();
 
-    // Set the throughput to 5000 request units per second
+    // Set hello throughput too5000 request units per second
     offer = new OfferV2(offer, 5000);
 
-    //Now persist these changes to the database by replacing the original resource
+    //Now persist these changes toohello database by replacing hello original resource
     await client.ReplaceOfferAsync(offer);
 ```
 
-Látogasson el [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) további példákat és a további tudnivalók az ajánlat módszerek:
+Látogasson el [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) tooview további példákat és a további tudnivalók az ajánlat módszerek:
 
 * [**ReadOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readofferasync.aspx)
 * [**ReadOffersFeedAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readoffersfeedasync.aspx)
@@ -170,11 +170,11 @@ Látogasson el [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.d
 
 ## <a name="how-am-i-impacted-if-im-an-ea-customer"></a>Hogyan vagyok feladatátvétele a Ha az ügyfél egy EA vagyok?
 
-Nagyvállalati ügyfelek az aktuális szerződés végéig védett ár is.
+Nagyvállalati ügyfelek az aktuális szerződés hello végéig védett ár is.
 
 ## <a name="next-steps"></a>Következő lépések
-Tarifa- és Azure Cosmos DB adatok kezelésével kapcsolatos további tudnivalókért ismerheti meg ezeket az erőforrásokat:
+További információ az árak és Azure Cosmos DB, az adatok kezelése toolearn ismerheti meg ezeket az erőforrásokat:
 
-1.  [Particionálás adatokat az Adatbázisba az Cosmos](documentdb-partition-data.md). Az egypartíciós tároló particionált tárolók, valamint tippek az zökkenőmentesen méretezési jó particionálási stratégia megvalósítása közötti különbségek megértése.
-2.  [Cosmos DB árképzési](https://azure.microsoft.com/pricing/details/cosmos-db/). További információk a telepítés átviteli sebesség és a tároló felhasználása költsége.
-3.  [Egységek kérelem](request-units.md). Ismerje meg, a felhasználás átviteli különböző művelet-típusok, például a rekordhoz olvasási, írási, lekérdezés.
+1.  [Particionálás adatokat az Adatbázisba az Cosmos](documentdb-partition-data.md). Ismerje meg az egypartíciós tároló particionált tárolók, valamint a particionálási stratégia tooscale zökkenőmentesen végrehajtási tippek hello különbsége.
+2.  [Cosmos DB árképzési](https://azure.microsoft.com/pricing/details/cosmos-db/). További információk a telepítés átviteli sebesség és a tároló felhasználása hello költség.
+3.  [Egységek kérelem](request-units.md). Ismerje meg különböző művelet-típusok, például a rekordhoz olvasási, írási, lekérdezés átviteli hello fogyasztás.

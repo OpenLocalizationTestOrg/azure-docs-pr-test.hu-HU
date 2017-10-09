@@ -1,5 +1,5 @@
 ---
-title: "Azure Event Hubs-névtér létrehozása és a Rögzítés funkció engedélyezése sablon használatával | Microsoft Docs"
+title: "egy Azure Event Hubs névtér és az engedélyezés rögzítése a sablon használatával aaaCreate |} Microsoft Docs"
 description: "Azure Event Hubs-névtér létrehozása egy eseményközponttal és a Rögzítés funkció engedélyezése az Azure Resource Manager sablonjának használatával"
 services: event-hubs
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/28/2017
 ms.author: sethm
-ms.openlocfilehash: 19bbb51868e767aa1d15f4574628b7fd36607207
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a43b4e8d690ae825047e8a9d609bfda89cf2a06f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-event-hubs-namespace-with-an-event-hub-and-enable-capture-using-an-azure-resource-manager-template"></a>Event Hubs-névtér létrehozása egy eseményközponttal és a Rögzítés funkció engedélyezése az Azure Resource Manager-sablonjának használatával
 
-Ez a cikk ismerteti egy olyan Azure Resource Manager-sablon használatát, amely egy Event Hubs-névteret hoz létre egy Event Hubs-példánnyal, valamint leírja az eseményközpont [Capture funkciójának](event-hubs-capture-overview.md) engedélyezését is. A cikk leírja továbbá, hogyan kell meghatározni, hogy mely erőforrások lesznek üzembe helyezve, és hogyan kell meghatározni az üzembe helyezés végrehajtásakor megadandó paramétereket. Ez a sablont használhatja a saját környezeteiben, vagy testre is szabhatja a saját követelményeinek megfelelően.
+Ez a cikk bemutatja, hogyan toouse Azure Resource Manager-sablon, amely hoz létre egy Event Hubs névtér egy esemény hub-példány és is lehetővé teszi, hogy hello [rögzítése funkció](event-hubs-capture-overview.md) hello event hub. hello cikkből megtudhatja, hogyan toodefine erőforrások vannak telepítve, és hogyan toodefine paramétereket megadott, amikor hello központi telepítés végrehajtása. Ez a sablon használhat saját rendszerekhez, vagy testre szabhatja, toomeet igényeinek.
 
-Ez a cikk azt is bemutatja, hogyan adhatja meg, hogy a rendszer az Azure Storage-blobokban vagy egy Azure Data Lake Store-ban rögzítse az eseményeket, az Ön által kiválasztott célhely alapján.
+Ez a következő cikket is bemutatja, hogyan az, hogy a események kerülnek rögzítésre Azure Storage Blobsba vagy egy Azure Data Lake Store toospecify hello alapján választja cél.
 
 A sablonok létrehozásáról további információkat az [Authoring Azure Resource Manager templates][Authoring Azure Resource Manager templates] (Azure Resource Manager-sablonok készítése) című témakörben talál.
 
 További információk az Azure-erőforrások elnevezési szabályainak mintáiról és gyakorlati megoldásairól: [Az Azure-erőforrások elnevezési szabályai][Azure Resources naming conventions].
 
-Az összes sablon eléréséhez kattintson az alábbi GitHub-hivatkozásokra:
+Hello teljes sablonok kattintson a GitHub-hivatkozásokat a következő hello:
 
-- [Eseményközpont és a Rögzítés tárolóban sablon engedélyezése][Event Hub and enable Capture to Storage template] 
-- [Eseményközpont és a Rögzítés Azure Data Lake Store-ban sablon engedélyezése][Event Hub and enable Capture to Azure Data Lake Store template]
+- [Event hub és engedélyezése rögzítési tooStorage sablon][Event Hub and enable Capture tooStorage template] 
+- [Event hub és engedélyezése rögzítési tooAzure Data Lake Store sablon][Event Hub and enable Capture tooAzure Data Lake Store template]
 
 > [!NOTE]
-> A legújabb sablonokért keresse fel az [Azure-gyorssablonok][Azure Quickstart Templates] gyűjteményt, és keressen az Event Hubs kifejezésre.
+> toocheck hello legújabb sablonok, látogasson el a hello [Azure gyors üzembe helyezési sablonokat] [ Azure Quickstart Templates] -dokumentumtárban és keressen rá az Event Hubs.
 > 
 > 
 
@@ -44,51 +44,51 @@ Az összes sablon eléréséhez kattintson az alábbi GitHub-hivatkozásokra:
 
 Ezzel a sablonnal egy Event Hubs-névteret helyez üzembe eseményközponttal, továbbá engedélyezi az [az Event Hubs Rögzítés funkcióját](event-hubs-capture-overview.md).
 
-Az [Event Hubs](event-hubs-what-is-event-hubs.md) egy eseményfeldolgozási szolgáltatás, amely az Azure-ba irányuló, nagy léptékű esemény- és telemetriabevitelt biztosít alacsony késéssel és nagy megbízhatósággal. Az Event Hubs Capture funkciója lehetővé teszi a streamelt Event Hubs-adatok automatikus továbbítását az Azure Blob Storage-ba vagy az Azure Data Lake Store-ba egy megadott időtartamon belül vagy az Ön által kiválasztott méretegységekben.
+[Az Event Hubs](event-hubs-what-is-event-hubs.md) egy Eseményfeldolgozási szolgáltatás használt tooprovide esemény- és telemetriabevitelt érkező tooAzure nagy méretű, alacsony késéssel és nagy megbízhatósággal. Esemény hubok rögzítése lehetővé teszi, hogy Ön tooautomatically hello adatfolyam-adatokat az Event Hubs tooAzure Blob storage szolgáltatásban vagy az Azure Data Lake Store, egy adott időszakra vagy mérete időköze a fájlmegosztásba.
 
-Kattintson az alábbi gombra az Event Hubs Azure Storage-ba való rögzítésének engedélyezéséhez:
+Kattintson a gombra tooenable Event Hubs rögzítheti az Azure Storage a következő hello:
 
-[![Üzembe helyezés az Azure-ban](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture%2Fazuredeploy.json)
 
-Kattintson az alábbi gombra az Event Hubs Azure Data Lake Store-ba való rögzítésének engedélyezéséhez:
+Kattintson a következő gomb tooenable Event Hubs rögzítheti az Azure Data Lake Store hello:
 
-[![Üzembe helyezés az Azure-ban](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture-for-adls%2Fazuredeploy.json)
+[![TooAzure telepítése](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-eventhubs-create-namespace-and-enable-capture-for-adls%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>Paraméterek
 
-Az Azure Resource Managerrel meghatározhatja a sablon üzembe helyezésekor megadandó értékek paramétereit. A sablonban található egy `Parameters` nevű rész, amely magába foglalja az összes paraméterértéket. Azokhoz az értékekhez adjon meg paramétert, amelyek az üzembe helyezendő projekt vagy az üzembe helyezési környezet alapján változhatnak. Ne adjon meg olyan paramétereket olyan értékhez, amelyek nem változnak. A sablonban minden egyes paraméterérték az üzembe helyezendő erőforrások megadásához lesz felhasználva.
+Az Azure Resource Manager paraméterek megadása értékek keresi toospecify hello sablon telepítésekor. hello sablon tartalmaz nevű szakaszban `Parameters` , amely tartalmazza az összes hello paraméterértékeket. Ezeket az értékeket, amelyek módosítják a hello projekt telepít vagy alapján hello környezet esetében helyez üzembe egy paramétert meg kell határozni. Paraméterei nem adják meg, az értékek, amelyek mindig azonos hello. Minden egyes paraméterérték hello sablon toodefine hello telepített erőforrások esetén használatos.
 
-A sablon a következő paramétereket adja meg.
+hello a sablon a következő paraméterek hello határozza meg.
 
 ### <a name="eventhubnamespacename"></a>eventHubNamespaceName
 
-A létrehozni kívánt [Event Hubs-névtér](event-hubs-create.md) neve.
+hello hello neve [Event Hubs névtér](event-hubs-create.md) toocreate.
 
 ```json
 "eventHubNamespaceName":{  
      "type":"string",
      "metadata":{  
-         "description":"Name of the EventHub namespace"
+         "description":"Name of hello EventHub namespace"
       }
 }
 ```
 
 ### <a name="eventhubname"></a>eventHubName
 
-Az [Event Hubs-névtérben](event-hubs-create.md) létrehozott eseményközpont neve.
+hello event hubs hello létrehozott hello nevének [Event Hubs névtér](event-hubs-create.md).
 
 ```json
 "eventHubName":{  
     "type":"string",
     "metadata":{  
-        "description":"Name of the event hub"
+        "description":"Name of hello event hub"
     }
 }
 ```
 
 ### <a name="messageretentionindays"></a>messageRetentionInDays
 
-A napok száma, amíg az üzenetek meg lesznek őrizve az eseményközpontban. 
+nap tooretain köszönőüzenetei hello eseményközpont hello száma. 
 
 ```json
 "messageRetentionInDays":{
@@ -97,14 +97,14 @@ A napok száma, amíg az üzenetek meg lesznek őrizve az eseményközpontban.
     "minValue":"1",
     "maxValue":"7",
     "metadata":{
-       "description":"How long to retain the data in event hub"
+       "description":"How long tooretain hello data in event hub"
      }
  }
 ```
 
 ### <a name="partitioncount"></a>partitionCount
 
-Az eseményközpontban létrehozandó partíciók száma.
+az eseményközpont hello partíciók toocreate hello száma.
 
 ```json
 "partitionCount":{
@@ -120,7 +120,7 @@ Az eseményközpontban létrehozandó partíciók száma.
 
 ### <a name="captureenabled"></a>captureEnabled
 
-A Rögzítés funkció engedélyezése az eseményközpontban.
+Engedélyezze a rögzítési a hello eseményközpontot.
 
 ```json
 "captureEnabled":{
@@ -130,13 +130,13 @@ A Rögzítés funkció engedélyezése az eseményközpontban.
     "false",
     "true"],
     "metadata":{
-        "description":"Enable or disable the Capture for your event hub"
+        "description":"Enable or disable hello Capture for your event hub"
     }
  }
 ```
 ### <a name="captureencodingformat"></a>captureEncodingFormat
 
-Az eseményadat szerializálásához megadott kódolási formátum.
+hello kódolási formátum tooserialize hello esemény adatok megadása.
 
 ```json
 "captureEncodingFormat":{
@@ -145,14 +145,14 @@ Az eseményadat szerializálásához megadott kódolási formátum.
     "allowedValues":[
     "Avro"],
     "metadata":{
-        "description":"The encoding format in which Capture serializes the EventData"
+        "description":"hello encoding format in which Capture serializes hello EventData"
     }
 }
 ```
 
 ### <a name="capturetime"></a>captureTime
 
-Az az időintervallum, amelyben az Event Hubs Capture elkezdi az adatok rögzítését.
+hello alatt az időtartam alatt, amelyben Event Hubs rögzítése kezdődik hello adatok rögzítéséhez.
 
 ```json
 "captureTime":{
@@ -161,13 +161,13 @@ Az az időintervallum, amelyben az Event Hubs Capture elkezdi az adatok rögzít
     "minValue":60,
     "maxValue":900,
     "metadata":{
-         "description":"the time window in seconds for the capture"
+         "description":"hello time window in seconds for hello capture"
     }
 }
 ```
 
 ### <a name="capturesize"></a>captureSize
-Az a méretegység, amelynek elérésekor a Capture funkció elkezdi az adatok rögzítését.
+hello mérete időköz, amit rögzítési kezdi hello adatok rögzítéséhez.
 
 ```json
 "captureSize":{
@@ -176,14 +176,14 @@ Az a méretegység, amelynek elérésekor a Capture funkció elkezdi az adatok r
     "minValue":10485760,
     "maxValue":524288000,
     "metadata":{
-        "description":"The size window in bytes for capture"
+        "description":"hello size window in bytes for capture"
     }
 }
 ```
 
 ###<a name="capturenameformat"></a>captureNameFormat
 
-Az Event Hubs Capture által használt névformátum az Avro-fájlok írásakor. Vegye figyelembe, hogy a Capture névformátumának tartalmaznia kell a következő mezőket: `{Namespace}`, `{EventHub}`, `{PartitionId}`, `{Year}`, `{Month}`, `{Day}`, `{Hour}`, `{Minute}` és `{Second}`. Ezek a mezők bármilyen sorrend szerint rendezhetők, elválasztó karakterekkel vagy azok nélkül.
+hello névformátum Event Hubs rögzítése toowrite hello az Avro-fájlok által használt. Vegye figyelembe, hogy a Capture névformátumának tartalmaznia kell a következő mezőket: `{Namespace}`, `{EventHub}`, `{PartitionId}`, `{Year}`, `{Month}`, `{Day}`, `{Hour}`, `{Minute}` és `{Second}`. Ezek a mezők bármilyen sorrend szerint rendezhetők, elválasztó karakterekkel vagy azok nélkül.
  
 ```json
 "captureNameFormat": {
@@ -198,51 +198,51 @@ Az Event Hubs Capture által használt névformátum az Avro-fájlok írásakor.
 
 ### <a name="apiversion"></a>apiVersion
 
-A sablon API-verziója.
+hello sablon hello API verzióját.
 
 ```json
  "apiVersion":{  
     "type":"string",
     "defaultValue":"2015-08-01",
     "metadata":{  
-        "description":"ApiVersion used by the template"
+        "description":"ApiVersion used by hello template"
     }
  }
 ```
 
-Ha az Azure Storage-ot választja célhelyként, használja a következő paramétereket.
+A következő paraméterek, ha úgy dönt, Azure Storage a célként hello használja.
 
 ### <a name="destinationstorageaccountresourceid"></a>destinationStorageAccountResourceId
 
-A Rögzítés használatához egy Azure Storage-fiókhoz tartozó erőforrás-azonosító szükséges, amellyel engedélyezheti a rögzítést a választott Storage-fiókban.
+Rögzítési van szükség, egy Azure Storage fiók erőforrás azonosítója tooenable tooyour rögzítése Storage-fiók szükséges.
 
 ```json
  "destinationStorageAccountResourceId":{
     "type":"string",
     "metadata":{
-        "description":"Your existing Storage account resource ID where you want the blobs be captured"
+        "description":"Your existing Storage account resource ID where you want hello blobs be captured"
     }
  }
 ```
 
 ### <a name="blobcontainername"></a>blobContainerName
 
-A blobtároló, amelyben rögzíti az eseményadatokat.
+hello mely toocapture a blob-tároló az eseményadatok.
 
 ```json
  "blobContainerName":{
     "type":"string",
     "metadata":{
-        "description":"Your existing storage container in which you want the blobs captured"
+        "description":"Your existing storage container in which you want hello blobs captured"
     }
 }
 ```
 
-Ha az Azure Data Lake Store-t választja célhelyként, használja az alábbi paramétereket. Az engedélyeket arra a Data Lake Store-útvonalra kell beállítania, ahol az eseményeket rögzíteni kívánja. Az engedélyek beállítását lásd [ebben a cikkben](event-hubs-capture-enable-through-portal.md#capture-data-to-an-azure-data-lake-store-account).
+Ha úgy dönt, az Azure Data Lake Store a célként a következő paraméterek hello használja. A Data Lake Store elérési úton, tooCapture hello esemény használni kívánt engedélyeket kell beállítani. tooset engedélyek, lásd: [Ez a cikk](event-hubs-capture-enable-through-portal.md#capture-data-to-an-azure-data-lake-store-account).
 
 ###<a name="subscriptionid"></a>subscriptionId
 
-Az Event Hubs-névtér és az Azure Data Lake Store előfizetés-azonosítója. Mindkét erőforráshoz azonos előfizetés-azonosítónak kell tartoznia.
+Hello Event Hubs névtér és az Azure Data Lake Store az előfizetés-azonosító. Mindkét ezeket az erőforrásokat hello alatt kell lennie ugyanazon előfizetés-azonosító.
 
 ```json
 "subscriptionId": {
@@ -255,7 +255,7 @@ Az Event Hubs-névtér és az Azure Data Lake Store előfizetés-azonosítója. 
 
 ###<a name="datalakeaccountname"></a>dataLakeAccountName
 
-A rögzített események Azure Data Lake Store-neve.
+hello Azure Data Lake Store nevét hello eseményeket rögzíteni.
 
 ```json
 "dataLakeAccountName": {
@@ -268,7 +268,7 @@ A rögzített események Azure Data Lake Store-neve.
 
 ###<a name="datalakefolderpath"></a>dataLakeFolderPath
 
-A rögzített események célmappájának elérési útja.
+hello célmappa elérési útját a hello eseményeket rögzíteni.
 
 ```json
 "dataLakeFolderPath": {
@@ -279,9 +279,9 @@ A rögzített események célmappájának elérési útja.
 }
 ```
 
-## <a name="resources-to-deploy-for-azure-storage-as-destination-to-captured-events"></a>Az Azure Storage-ban történő eseményrögzítéshez üzembe helyezendő erőforrások
+## <a name="resources-toodeploy-for-azure-storage-as-destination-toocaptured-events"></a>Cél toocaptured eseményként is rögzíti az Azure Storage erőforrások toodeploy
 
-Létrehoz egy **EventHubs** típusú névteret egy eseményközponttal, valamint engedélyezi az Azure Blob Storage-ba való rögzítést is.
+Létrehoz egy névtér, típus **EventHubs**egy eseményközpontot, valamint lehetővé teszi, hogy a Blob Storage tooAzure rögzítése.
 
 ```json
 "resources":[  
@@ -328,9 +328,9 @@ Létrehoz egy **EventHubs** típusú névteret egy eseményközponttal, valamint
    ]
 ```
 
-## <a name="resources-to-deploy-for-azure-data-lake-store-as-destination"></a>Az Azure Data Lake Store célhelyként való használatához üzembe helyezendő erőforrások
+## <a name="resources-toodeploy-for-azure-data-lake-store-as-destination"></a>Az Azure Data Lake Store jelölje ki célként erőforrások toodeploy
 
-Létrehoz egy **EventHubs** típusú névteret egy eseményközponttal, valamint engedélyezi az Azure Data Lake Store-ba való rögzítést is.
+Létrehoz egy névtér, típus **EventHubs**, egy eseményközpontot, és is lehetővé teszi, hogy rögzítési tooAzure Data Lake Store.
 
 ```json
  "resources": [
@@ -375,19 +375,19 @@ Létrehoz egy **EventHubs** típusú névteret egy eseményközponttal, valamint
     ]
 ```
 
-## <a name="commands-to-run-deployment"></a>Az üzembe helyezést futtató parancsok
+## <a name="commands-toorun-deployment"></a>Parancsok toorun központi telepítés
 
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
 
-Helyezze üzembe a sablont az Azure Storage-ba történő Event Hubs-rögzítés engedélyezéséhez:
+Az Event Hubs rögzítése sablon tooenable üzembe helyezés Azure Storage:
  
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-capture/azuredeploy.json
 ```
 
-Helyezze üzembe a sablont az Azure Data Lake Store-ba történő Event Hubs-rögzítés engedélyezéséhez:
+Az Event Hubs rögzítése sablon tooenable üzembe helyezés az Azure Data Lake Store:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-capture-for-adls/azuredeploy.json
@@ -413,9 +413,9 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Event Hubs Rögzítés funkcióját az [Azure Portal](https://portal.azure.com) segítségével is konfigurálhatja. További információért tekintse meg az [Enable Event Hubs Capture using the Azure portal](event-hubs-capture-enable-through-portal.md) (Az Event Hubs Rögzítés funkciójának engedélyezése az Azure Portalon) című témakört.
+Beállíthatja úgy is Event Hubs rögzítése keresztül hello [Azure-portálon](https://portal.azure.com). További információkért lásd: [engedélyezése Event Hubs rögzítése segítségével hello Azure-portálon](event-hubs-capture-enable-through-portal.md).
 
-Az alábbi webhelyeken további információt talál az Event Hubsról:
+További információ az Event Hubs érhetők el a következő hivatkozások hello:
 
 * [Event Hubs – áttekintés](event-hubs-what-is-event-hubs.md)
 * [Eseményközpont létrehozása](event-hubs-create.md)
@@ -424,5 +424,5 @@ Az alábbi webhelyeken további információt talál az Event Hubsról:
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
 [Azure Resources naming conventions]: https://azure.microsoft.com/documentation/articles/guidance-naming-conventions/
-[Event hub and enable Capture to Storage template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture
-[Event hub and enable Capture to Azure Data Lake Store template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture-for-adls
+[Event hub and enable Capture tooStorage template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture
+[Event hub and enable Capture tooAzure Data Lake Store template]: https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-capture-for-adls

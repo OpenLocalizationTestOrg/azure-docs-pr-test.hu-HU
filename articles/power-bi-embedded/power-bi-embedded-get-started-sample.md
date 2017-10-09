@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés egy minta segítségével"
-description: "A Power BI Embedded, interaktív Power BI-jelentések hozzáadása az üzleti intelligenciát biztosító alkalmazásba SDK segítségével"
+title: "a minta használatába aaaGet"
+description: "A Power BI Embedded, interaktív Power BI-jelentéseket az üzleti intelligenciát biztosító alkalmazásba SDK tooadd használata"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/02/2017
 ms.author: asaxton
-ms.openlocfilehash: c3cb1763f807220a4a829f410d7eb77974b25776
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fef9dd8e0f734b748b930d3f85ad4b517d9661e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>Bevezetés a Power BI Embedded minta használatába
 
-A **Microsoft Power BI Embedded**, akkor integrálható a Power BI-jelentéseket jobbra a webhelyen vagy az alkalmazásokat. Ebben a cikkben lesz bemutatása után, hogy a **Power BI Embedded** get elindított minta.
+A **Microsoft Power BI Embedded**, akkor integrálható a Power BI-jelentéseket jobbra a webhelyen vagy az alkalmazásokat. Ebben a cikkben azt is bemutatják a toohello **Power BI Embedded** get elindított minta.
 
-Ahhoz, hogy nyissa meg a további, valószínűleg érdemes a következő erőforrások mentéséhez. Akkor lesz hasznos, ha integrálása a Power BI-jelentéseket a minta alkalmazást és a saját túl.
+Ahhoz, hogy nyissa meg a további, érdemes a következő erőforrások toosave hello. Akkor lesz hasznos, ha integrálása a Power BI-jelentéseket hello mintaalkalmazás és a saját alkalmazásai túl.
 
 * [Munkaterület webes mintaalkalmazás](http://go.microsoft.com/fwlink/?LinkId=761493)
 * [A Power BI Embedded API-referencia](https://msdn.microsoft.com/en-US/library/azure/mt711507.aspx)
@@ -33,26 +33,26 @@ Ahhoz, hogy nyissa meg a további, valószínűleg érdemes a következő erőfo
 * [JavaScript-jelentés beágyazása minta](https://microsoft.github.io/PowerBI-JavaScript/demo)
 
 > [!NOTE] 
-> Mielőtt is beállíthat, és futtassa a Power BI Embedded első lépések minta, legalább egy létrehozásához szükséges **munkaterület-csoport** az Azure-előfizetésben. Hogyan hozzon létre egy **munkaterület-csoportok** az Azure portál itt talál: [Ismerkedés a Power BI Embedded](power-bi-embedded-get-started.md).
+> Konfigurálhatja és futtatási hello Power BI Embedded első lépések minta, kell legalább egy toocreate **munkaterület-csoport** az Azure-előfizetésben. toolearn hogyan toocreate egy **munkaterület-csoportok** hello Azure Portal látható [Ismerkedés a Power BI Embedded](power-bi-embedded-get-started.md).
 
-## <a name="configure-the-sample-app"></a>A mintaalkalmazás konfigurálása
+## <a name="configure-hello-sample-app"></a>Hello mintaalkalmazás konfigurálása
 
-Bemutatjuk, keresztül érik el a mintaalkalmazás futtatásához szükséges összetevőket a Visual Studio fejlesztési környezet beállítása.
+Bemutatjuk, a Visual Studio fejlesztői környezetben tooaccess hello összetevők szükséges toorun hello mintaalkalmazás beállításának lépésein.
 
-1. Töltse le és csomagolja ki a [Power BI Embedded - jelentés integrálásához webalkalmazás](http://go.microsoft.com/fwlink/?LinkId=761493) mintát a Githubon.
-2. Nyissa meg **Power bi-embedded.sln** a Visual Studióban. Szükség lehet végrehajtani a **-csomag** a NuGET-Csomagkezelő konzol frissítéséhez a csomagokat a megoldásban használt parancsot.
-3. A megoldás felépítéséhez.
-4. Futtassa a **ProvisionSample** konzolalkalmazást. A minta-Konzolalkalmazás munkaterület kiépíteni, és PBIX-fájl importálása.
-5. Kiépítéséhez egy új **munkaterület**, válassza az 1. lehetőség – **gyűjtési felügyeleti**, és választhatja meg a 6., **új munkaterület kiépítése**
-6. Importálhatja egy új **jelentés**, válassza ki a 2. lehetőség – **jelentést a felügyeleti**, majd válassza ki a 3. lehetőség – **pbix-fájlt asztali importálása fájlból egy munkaterület**.
+1. Töltse le és csomagolja ki a hello [Power BI Embedded - jelentés integrálásához webalkalmazás](http://go.microsoft.com/fwlink/?LinkId=761493) mintát a Githubon.
+2. Nyissa meg **Power bi-embedded.sln** a Visual Studióban. Előfordulhat, hogy tooexecute hello **-csomag** hello NuGET Package Manager Console rendelés tooupdate hello csomagok ebben a megoldásban használt parancsot.
+3. Hello megoldás felépítéséhez.
+4. Futtassa a hello **ProvisionSample** konzolalkalmazást. A konzol hello mintaalkalmazást munkaterület kiépíteni, és PBIX-fájl importálása.
+5. új tooprovision **munkaterület**, válassza az 1. lehetőség – **gyűjtési felügyeleti**, és választhatja meg a 6., **új munkaterület kiépítése**
+6. új tooimport **jelentés**, válassza ki a 2. lehetőség – **felügyeleti jelentést**, majd válassza ki a 3. lehetőség – **importálási pbix-fájlt asztali fájlt a munkaterületre**.
 
-7. Adja meg a **munkaterület-csoportok** nevét, és **hozzáférési kulcs**. Ezek kaphat a **Azure Portal**. További információt az beszerzése a **a hozzáférési kulcsot**, lásd: [Power BI API elérési kulcsainak megtekintése](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) a Ismerkedés a Microsoft Power BI Embedded.
+7. Adja meg a **munkaterület-csoportok** nevét, és **hozzáférési kulcs**. Ezeket a hello kaphat **Azure Portal**. toolearn kapcsolatos további tooget a **hozzáférési kulcs**, lásd: [Power BI API elérési kulcsainak megtekintése](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) a Ismerkedés a Microsoft Power BI Embedded.
 
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
-8. Másolja ki és mentse az újonnan létrehozott **munkaterület azonosítója** használatára a cikk későbbi részében. Után a **munkaterület azonosítója** van létrehozva, megtalálja a **Azure Portal**.
+8. Másolja ki és mentse az újonnan létrehozott hello **munkaterület azonosítója** toouse a cikk későbbi részében. Hello után **munkaterület azonosítója** van létrehozva, megtalálhatja hello **Azure Portal**.
 
     ![](media/powerbi-embedded-get-started-sample/workspace-id.png)
-9. A PBIX-fájl importálása a **munkaterület**, a beállításnak a **6. Egy meglévő munkaterületre pbix-fájlt asztali importfájl**. Ha még nem rendelkezik a PBIX-fájl lesz szüksége, letöltheti a [kiskereskedelmi elemzési minta pbix-fájlt](http://go.microsoft.com/fwlink/?LinkID=780547).
+9. a pbix-fájlt tooimport fájlt a **munkaterület**, a beállításnak a **6. Egy meglévő munkaterületre pbix-fájlt asztali importfájl**. Ha még nem rendelkezik a PBIX-fájl lesz szüksége, érdemes letöltenie hello [kiskereskedelmi elemzési minta pbix-fájlt](http://go.microsoft.com/fwlink/?LinkID=780547).
 10. Ha a rendszer kéri, adjon meg egy rövid nevet a **Dataset**.
 
 A következőhöz hasonló választ kell megjelennie:
@@ -63,15 +63,15 @@ Checking import state... Succeeded
 ```
 
 > [!NOTE]
-> A PBIX-fájl tartalmazza a közvetlen lekérdezés kapcsolatokat, ha futtatja a kapcsolót 7 a kapcsolati karakterláncok frissítésére.
+> Ha a PBIX-fájl tartalmazza a közvetlen lekérdezés kapcsolatokat, futtassa a beállítás 7 tooupdate hello kapcsolati karakterláncokat.
 
-Ezen a ponton rendelkezik egy Power BI pbix-fájlt a jelentés importálni a **munkaterület**. Most hogyan futtathat vizsgáljuk meg a **Power BI Embedded** elindított minta webalkalmazás beolvasása.
+Ezen a ponton rendelkezik egy Power BI pbix-fájlt a jelentés importálni a **munkaterület**. Most hogyan nézzük toorun hello **Power BI Embedded** elindított minta webalkalmazás beolvasása.
 
-## <a name="run-the-sample-web-app"></a>A webes mintaalkalmazás futtatása
-A webes alkalmazás minta egy jeleníti meg az importált jelentések mintaalkalmazás a **munkaterület**. Ez a webes alkalmazás minta konfigurálása.
+## <a name="run-hello-sample-web-app"></a>Hello webes mintaalkalmazás futtatása
+hello web app minta egy jeleníti meg az importált jelentések mintaalkalmazás a **munkaterület**. Ez hogyan tooconfigure hello web app minta.
 
-1. Az a **Power bi embedded** Visual Studio megoldás, kattintson a jobb gombbal a **EmbedSample** webalkalmazást, és válassza a **beállítás kezdőprojektként**.
-2. A **web.config**, a a **EmbedSample** webalkalmazást, módosítsa a **appSettings**: **AccessKey**,  **WorkspaceCollection** nevét, és **WorkspaceId**.
+1. A hello **Power bi embedded** Visual Studio megoldás, a jobb oldali kattintson hello **EmbedSample** webalkalmazást, és válassza a **beállítás kezdőprojektként**.
+2. A **web.config**, a hello **EmbedSample** webalkalmazást, hello szerkesztése **appSettings**: **AccessKey**,  **WorkspaceCollection** nevét, és **WorkspaceId**.
 
     ```
     <appSettings>
@@ -81,28 +81,28 @@ A webes alkalmazás minta egy jeleníti meg az importált jelentések mintaalkal
         <add key="powerbi:WorkspaceId" value="" />
     </appSettings>
     ```
-3. Futtassa a **EmbedSample** webalkalmazást.
+3. Futtassa a hello **EmbedSample** webalkalmazást.
 
-Miután lefuttatta a **EmbedSample** webalkalmazás, a bal oldali navigációs panelen tartalmaznia kell egy **jelentések** menü. Az importált jelentés megtekintéséhez bontsa ki a **jelentések**, és kattintson a jelentés. Ha importálta a [kiskereskedelmi elemzési minta pbix-fájlt](http://go.microsoft.com/fwlink/?LinkID=780547), a minta webalkalmazás néz ki:
+Miután lefuttatta a hello **EmbedSample** webalkalmazás, hello bal oldali navigációs panelen tartalmaznia kell egy **jelentések** menü. Bontsa ki a tooview hello jelentés importált, **jelentések**, és kattintson a jelentés. Ha az importált hello [kiskereskedelmi elemzési minta pbix-fájlt](http://go.microsoft.com/fwlink/?LinkID=780547), hello minta webalkalmazás néz ki:
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-sample-left-nav.png)
 
-Miután rákattintott egy jelentést, a **EmbedSample** webalkalmazás kell kinéznie ezt:
+A jelentés gombra kattintva hello **EmbedSample** webalkalmazás kell kinéznie ezt:
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
-## <a name="explore-the-sample-code"></a>A mintakód felfedezés
+## <a name="explore-hello-sample-code"></a>Hello mintakód felfedezés
 
-A **Microsoft Power BI Embedded** minta egy példa-webalkalmazást, amely bemutatja, hogyan integrálható **Power BI** jelentések az alkalmazásba. Egy Model-View-Controller (MVC) tervezési mintát használ, ajánlott eljárások bemutatásához. Ez a szakasz a mintakódot, amely belül részei kiemeli a **Power bi embedded** web app megoldás. A Model-View-Controller (MVC) mintát elválasztja a tartományhoz, a megjelenítési és a műveletek a felhasználói bevitel három különálló osztályokba alapján modellezési: modell, megtekintése és vezérlő. MVC kapcsolatos további információkért lásd: [ismerje meg, az ASP.NET kapcsolatos](http://www.asp.net/mvc).
+Hello **Microsoft Power BI Embedded** minta egy példa-webalkalmazást, amely bemutatja, hogyan toointegrate **Power BI** jelentések az alkalmazásba. Akkor használja, a Model-View-Controller (MVC) tervezési minta toodemonstrate ajánlott eljárások. Ez a szakasz kiemeli a hello mintakód, amely belül hello részei **Power bi embedded** web app megoldás. hello Model-View-Controller (MVC) mintát elválasztja hello modellezési hello tartomány, a hello bemutató és a felhasználói bevitel három különálló osztályokba alapuló hello műveletek: modell, megtekintése és vezérlő. toolearn MVC, kapcsolatos további információkért lásd: [ismerje meg, az ASP.NET kapcsolatos](http://www.asp.net/mvc).
 
-A **Microsoft Power BI Embedded** mintakód választja el az alábbiak szerint. Az egyes szakaszokon a fájl nevét, hogy könnyedén megtalálhatja a kód a minta a Power bi-embedded.sln megoldás tartalmazza.
+Hello **Microsoft Power BI Embedded** mintakód választja el az alábbiak szerint. Az egyes szakaszokon hello fájlnév, hogy könnyedén megtalálhatja a hello kód hello minta a Power bi-embedded.sln megoldás hello tartalmazza.
 
 > [!NOTE]
-> Ez a szakasz a mintakód bemutatja, hogyan bejegyzésre kerültek-e a kód összegzését. A teljes minta megtekintéséhez töltse be a Power bi-embedded.sln megoldást a Visual Studióban.
+> Ez a szakasz az hello mintakód bemutatja, hogyan hello kód írása történt összegzését. tooview hello teljes mintát, töltse be a Power bi-embedded.sln hello megoldást a Visual Studióban.
 
 ### <a name="model"></a>Modell
 
-A minta egy **ReportsViewModel** és **ReportViewModel**.
+hello a minta egy **ReportsViewModel** és **ReportViewModel**.
 
 **ReportsViewModel.cs**: jelenti. a Power BI-jelentéseket.
 
@@ -122,7 +122,7 @@ A minta egy **ReportsViewModel** és **ReportViewModel**.
 
 ### <a name="connection-string"></a>Kapcsolati karakterlánc
 
-A kapcsolati karakterláncnak a következő formátumúnak kell lennie:
+hello kapcsolati karakterlánc formátuma a következő hello kell lennie:
 
 ```
 Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
@@ -132,14 +132,14 @@ Gyakori kiszolgáló és az adatbázis attribútumok használata sikertelen lesz
 
 ### <a name="view"></a>Nézet
 
-A **nézet** kezeli a képernyőt a Power bi **jelentések** és a Power BI **jelentés**.
+Hello **nézet** kezeli a Power bi hello megjelenítési **jelentések** és a Power BI **jelentés**.
 
-**Reports.cshtml**: ismétlés **Model.Reports** létrehozásához egy **ActionLink**. A **ActionLink** össze a következőképpen történik:
+**Reports.cshtml**: ismétlés **Model.Reports** toocreate egy **ActionLink**. Hello **ActionLink** össze a következőképpen történik:
 
 | Rész | Leírás |
 | --- | --- |
-| Cím |A jelentés nevét. |
-| Lekérdezési karakterlánc |A jelentés azonosítója mutató hivatkozás |
+| Cím |Hello jelentés neve. |
+| Lekérdezési karakterlánc |A hivatkozás toohello jelentés azonosítóját. |
 
     <div id="reports-nav" class="panel-collapse collapse">
         <div class="panel-body">
@@ -155,7 +155,7 @@ A **nézet** kezeli a képernyőt a Power bi **jelentések** és a Power BI **je
         </div>
     </div>
 
-Report.cshtml: Állítsa be a **Model.AccessToken**, és a Lambda kifejezést **PowerBIReportFor**.
+Report.cshtml: Hello beállítása **Model.AccessToken**, és a Lambda kifejezés hello **PowerBIReportFor**.
 
     @model ReportViewModel
 
@@ -168,7 +168,7 @@ Report.cshtml: Állítsa be a **Model.AccessToken**, és a Lambda kifejezést **
 
 ### <a name="controller"></a>Tartományvezérlő
 
-**DashboardController.cs**: egy PowerBIClient sikeres létrehoz egy **alkalmazási jogkivonatának**. A JSON webes jogkivonat (JWT) jön létre a **aláírási kulcs** lekérni a **hitelesítő adatok**. A **hitelesítő adatok** példányának létrehozásához használt **PowerBIClient**. Ha egy példánya már **PowerBIClient**, GetReports() és GetReportsAsync() hívása.
+**DashboardController.cs**: egy PowerBIClient sikeres létrehoz egy **alkalmazási jogkivonatának**. A JSON webes jogkivonat (JWT) jönnek létre hello **aláírási kulcs** tooget hello **hitelesítő adatok**. Hello **hitelesítő adatok** vannak használt toocreate példányának **PowerBIClient**. Ha egy példánya már **PowerBIClient**, GetReports() és GetReportsAsync() hívása.
 
 CreatePowerBIClient()
 
@@ -223,13 +223,13 @@ A feladat<ActionResult> jelentés (karakterlánc reportId)
 
 ### <a name="integrate-a-report-into-your-app"></a>A jelentések integrálásához az alkalmazásba
 
-Ha már van egy **jelentés**, használhat egy **IFrame** beágyazása a Power BI **jelentés**. Íme egy kódrészletet a a powerbi.js a **Microsoft Power BI Embedded** minta.
+Ha már van egy **jelentés**, használhat egy **IFrame** tooembed hello Power BI **jelentés**. Íme egy kódrészletet a hello powerbi.js a **Microsoft Power BI Embedded** minta.
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
 ## <a name="filter-reports-embedded-in-your-application"></a>Az alkalmazásba beágyazandó szűrő jelentések
 
-A beágyazott jelentések szűrését elvégezheti egy URL-cím szintaxisával. Ehhez az szükséges, hozzáadhat egy **$filter** lekérdezési karakterlánc paraméter egy **eq** az iFrame src URL-cím meghatározott szűrőt tartalmazó operátort. A szűrő lekérdezés szintaxisa a következő:
+A beágyazott jelentések szűrését elvégezheti egy URL-cím szintaxisával. toodo, hozzáadhat egy **$filter** lekérdezési karakterlánc paraméter egy **eq** operátor tooyour iFrame src url megadott hello szűrő. Hello szűrő lekérdezés szintaxisa a következő:
 
 ```
 https://app.powerbi.com/reportEmbed
@@ -238,7 +238,7 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [!NOTE]
-> A {tableName/fieldName} nem tartalmazhat szóközt és speciális karaktereket. A {fieldValue} egyetlen kategorikus értéket enged.  
+> A {tableName/fieldName} nem tartalmazhat szóközt és speciális karaktereket. hello {fieldValue} egyetlen kategorikus értéket fogad el.  
 
 ## <a name="see-also"></a>Lásd még:
 
@@ -248,4 +248,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 [Új jelentés létrehozása adatkészletből](power-bi-embedded-create-report-from-dataset.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [JavaScript beágyazási minta](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-További kérdései vannak? [Tegye próbára a Power BI közösségét](http://community.powerbi.com/)
+További kérdései vannak? [Próbálja meg a Power BI-Közösség hello](http://community.powerbi.com/)

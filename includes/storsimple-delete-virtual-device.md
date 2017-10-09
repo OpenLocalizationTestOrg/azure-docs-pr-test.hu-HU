@@ -1,6 +1,6 @@
-#### <a name="to-delete-a-virtual-device"></a>Virtuális eszköz törlése
+#### <a name="toodelete-a-virtual-device"></a>a virtuális eszköz toodelete
 
-1. Jelentkezzen be a klasszikus Azure portálra.
-2. Kattintson a **Virtual Machines** lehetőségre, majd válasszon ki egy virtuális eszközt.
-3. Kattintson a **Törlés** elemre, és válassza a virtuális gép összes lemezének törlésére vonatkozó lehetőséget.
+1. Jelentkezzen be toohello a klasszikus Azure portálon.
+2. Kattintson a **virtuális gépek**, majd válassza ki hello virtuális eszköz és.
+3. Kattintson a **törlése** toodelete hello virtuális gépek lemezei válassza.
 

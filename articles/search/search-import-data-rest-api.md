@@ -1,6 +1,6 @@
 ---
-title: "Adatok feltöltése (REST API – Azure Search) | Microsoft Docs"
-description: "Megismerkedhet az adatfeltöltéssel az Azure Search szolgáltatás indexébe, a REST API használatával."
+title: "AAA \"feltölteni az adatokat (REST API - Azure Search) |} Microsoft dokumentumok\""
+description: "Ismerje meg, hogyan tooupload az tooan indexe az Azure Search használatával hello REST API-t."
 services: search
 documentationcenter: 
 author: ashmaka
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: ashmaka
-ms.openlocfilehash: f22a33ed86fbfc46dfa732239263a49f34c4afee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ba1336012d1f0f6d6d6c933e16aa879afb9b824
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-data-to-azure-search-using-the-rest-api"></a>Adatfeltöltés az Azure Search szolgáltatásba a REST API használatával
+# <a name="upload-data-tooazure-search-using-hello-rest-api"></a>Feltöltés tooAzure keresési használatával végzett hello REST API-n
 > [!div class="op_single_selector"]
 >
 > * [Áttekintés](search-what-is-data-import.md)
@@ -30,43 +30,43 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Jelen cikk az Azure Search-indexbe történő adatimportálást mutatja be az [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/) használatával.
+Ez a cikk bemutatja, hogyan toouse hello [Azure Search REST API](https://docs.microsoft.com/rest/api/searchservice/) tooimport adatokat az Azure Search-index.
 
 A bemutató elindítása előtt [létre kell hoznia egy Azure Search-indexet](search-what-is-an-index.md).
 
-A dokumentumok REST API használatával az indexbe történő küldéséhez egy HTTP POST kérést fog kiadni az index URL-címének végpontján. A HTTP-kérés törzse egy olyan JSON-objektum, amely tartalmazza a hozzáadni, módosítani vagy törölni kívánt dokumentumokat.
+Az rendelések toopush hello REST API használatával az indexbe egy HTTP POST kérelem tooyour index URL-végpontjának állít ki. HTTP-kérelem törzse hello dokumentumokat toobe hozzáadott, módosított és törölt tartalmazó JSON-objektum hello hello törzsét.
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>Azonosítsa az Azure Search szolgáltatás rendszergazdai API-kulcsát
-Ha a REST API használatával HTTP-kérések kiadását végzi a szolgáltatáson, *mindegyik* API-kérésnek tartalmaznia kell az Ön által üzembe helyezett Search szolgáltatáshoz létrehozott API-kulcsot. Érvényes kulcs birtokában kérelmenként létesíthető megbízhatósági kapcsolat a kérést küldő alkalmazás és az azt kezelő szolgáltatás között.
+HTTP-kérelmeket küldhet a REST API-t hello szolgáltatást kiállításához *minden* API-kérelem hello api-kulcsot hello keresőszolgáltatáshoz generált tartalmaznia kell. Érvényes kulcs birtokában létesít megbízhatósági, egy kérelem alapon hello küldő hello kérelem és a kezelő hello szolgáltatás között.
 
-1. A szolgáltatás API-kulcsainak megkereséséhez bejelentkezhet az [Azure Portalra](https://portal.azure.com/).
-2. Nyissa meg az Azure Search szolgáltatáspaneljét
-3. Kattintson a „Kulcsok” ikonra
+1. toofind a szolgáltatás api-kulcsokat, bármikor beléphet toohello [Azure-portálon](https://portal.azure.com/)
+2. Nyissa meg tooyour Azure Search szolgáltatás paneljét
+3. Kattintson a hello "Kulcsok" ikonra
 
 A szolgáltatás *rendszergazdai kulcsokkal* és *lekérdezési kulcsokkal* fog rendelkezni.
 
-* Az elsődleges és másodlagos *rendszergazdai kulcsok* teljes jogosultságot biztosítanak az összes művelethez, beleértve a szolgáltatás felügyeletének, valamint az indexek, indexelők és adatforrások létrehozásának és törlésének képességét. Két kulcs létezi, tehát ha az elsődleges kulcs újbóli létrehozása mellett dönt, a másodlagos kulcsot továbbra is használhatja (ez fordítva is igaz).
-* A *lekérdezési kulcsok* csak olvasási hozzáférést biztosítanak az indexekhez és a dokumentumokhoz, és általában a keresési kéréseket kibocsátó ügyfélalkalmazások számára vannak kiosztva.
+* Az elsődleges és másodlagos *adminisztrációs kulcsok* teljes körű tooall műveleteket, köztük a hello képességét toomanage hello szolgáltatást biztosítania hozzon létre, és törölje az indexek, az indexelők és az adatforrások. Két kulcs van, hogy a Folytatás toouse hello másodlagos kulcsát. Ha úgy dönt, hogy tooregenerate hello elsődleges kulcs, és fordítva.
+* A *lekérdezési kulcsok* adjon olvasási hozzáférést tooindexes és a dokumentumok és keresési kérelmeket kibocsátó általában elosztott tooclient alkalmazások.
 
-Egy indexbe történő adatimportáláshoz az elsődleges vagy a másodlagos rendszergazdai kulcsok bármelyikét használhatja.
+Az adatok importálása egy index hello célokra is használhatja az elsődleges vagy másodlagos adminisztrátori kulcsot.
 
-## <a name="decide-which-indexing-action-to-use"></a>A használni kívánt indexelési művelet megadása
-A REST API használatakor JSON-kéréstörzsekkel ellátott HTTP POST kéréseket fog kiadni az Azure Search-index végponti URL-címére. A HTTP-kéréstörzsben lévő JSON-objektum egyetlen „value” nevű egyedi JSON-tömböt fog tartalmazni. A tömbben lévő JSON-objektumok az indexhez hozzáadni, abban frissíteni vagy abból törölni kívánt dokumentumokat képviselik.
+## <a name="decide-which-indexing-action-toouse"></a>Döntse el, melyik indexelési művelet toouse
+Hello REST API használata esetén a HTTP POST-kérésnél állít ki a JSON kérelem szervek tooyour Azure Search-index a végpont URL-címmel. a HTTP-kérés törzsében hello JSON-objektumot fog tartalmazni egyetlen JSON-tömb nevű, "érték" tartalmazó dokumentumok tooadd tooyour index milyen képviselő JSON-objektumok, frissítése vagy törlése.
 
-A „value” tömbben található minden JSON-objektum egy-egy indexelendő dokumentumot képvisel. Ezen objektumok mindegyike tartalmazza a dokumentum kulcsát, valamint megadja a végrehajtani kívánt indexelési műveletet (például feltöltés, egyesítés vagy törlés). Attól függően, hogy az alábbi műveletek közül melyiket választja ki, az egyes dokumentumok esetében csak bizonyos mezők lesznek kötelezően megjelenítendők:
+Minden egyes hello "érték" tömb JSON-objektum egy dokumentum toobe indexelt jelöli. Az objektumok hello dokumentum kulcsot tartalmaz, és adja meg a szükséges hello indexelési művelet (feltöltési, egyesítési, törlés, stb.). Attól függően, amely alatt úgy dönt, műveletek hello csak bizonyos mezők szerepelnie kell függvénykötésnek nyilvántartott egyes dokumentumok:
 
 | @search.action | Leírás | Az egyes dokumentumok kötelező mezői | Megjegyzések |
 | --- | --- | --- | --- |
-| `upload` |Az `upload` művelet működése hasonló az „upsert” (frissítés/beszúrás) műveletéhez, ahol a rendszer az új dokumentumot beilleszti, ha pedig már létező dokumentumról van szó, akkor frissíti/kicseréli azt. |billentyű, továbbá a meghatározni kívánt egyéb mezők |Létező dokumentum frissítése/cseréje esetén a kérésben nem megadott mezők beállítása a következő lesz: `null`. Ez történik abban az esetben is, ha a mező korábban nem null értékre lett beállítva. |
-| `merge` |Egy meglévő dokumentumot frissít a megadott mezőkkel. Ha a dokumentum nem található az indexben, az egyesítés meg fog hiúsulni. |billentyű, továbbá a meghatározni kívánt egyéb mezők |A rendszer az egyesítési művelet során megadott mezőkre cseréli a dokumentum meglévő mezőit. Ez `Collection(Edm.String)` típusú mezőket tartalmaz. Ha például a dokumentum egy `["budget"]` értékű `tags` mezőt tartalmaz, és egyesítést hajt végre a `tags` mező `["economy", "pool"]` értékével, a `tags` mező végső értéke `["economy", "pool"]` lesz. Nem pedig a következő lesz: `["budget", "economy", "pool"]`. |
-| `mergeOrUpload` |Ha az indexben már létezik az adott kulccsal ellátott dokumentum, ezen művelet viselkedése hasonló lesz a `merge` műveletéhez. Ha nem létezik ilyen dokumentum, a művelet viselkedése az `upload` új dokumentum esetében mutatott viselkedésének fog megfelelni. |billentyű, továbbá a meghatározni kívánt egyéb mezők |- |
-| `delete` |Eltávolítja a megadott dokumentumot az indexből. |csak billentyű |A rendszer figyelmen kívül hagyja a kulcsmezőn kívül megadott mezőket. Ha egyetlen mezőt kíván eltávolítani a dokumentumból, e helyett használja a `merge` műveletet, és a mező számára explicit módon adja meg a null értéket. |
+| `upload` |Egy `upload` művelete hasonló tooan "upsert", ahol hello dokumentum lesz beszúrni, ha új, majd frissíteni vagy lecserélni rá. |billentyűt, és bármely más mezők toodefine kívánja |Ha egy meglévő dokumentum frissítése vagy cseréje, bármely hello kérelemben nincs megadva mező rendelkezik-e a mező értéke túl`null`. Ez akkor fordul elő, akkor is, ha hello mező korábban megadott tooa értéke nem lehet null. |
+| `merge` |Egy meglévő dokumentum hello található frissítések megadott mezőket. Ha hello dokumentum hello index nem létezik, hello egyesítés sikertelen lesz. |billentyűt, és bármely más mezők toodefine kívánja |Bármely egyesítésével megadott mező felül fogja írni a létező mező hello hello dokumentumban. Ez `Collection(Edm.String)` típusú mezőket tartalmaz. Például akkor, ha hello dokumentum tartalmaz egy mező `tags` értékű `["budget"]` és értékkel egyesítésével végrehajtása `["economy", "pool"]` a `tags`, végső értéke hello hello `tags` mező kitöltése `["economy", "pool"]`. Nem pedig a következő lesz: `["budget", "economy", "pool"]`. |
+| `mergeOrUpload` |Ez a művelet viselkedik `merge` Ha hello kulcs már megadott dokumentum hello index már létezik. Ha hello dokumentum nem létezik, hasonlóan viselkedik `upload` egy új dokumentumot. |billentyűt, és bármely más mezők toodefine kívánja |- |
+| `delete` |Hello megadott dokumentum eltávolítása hello index. |csak billentyű |A mezőket, akkor adjon meg eltérő hello kulcsmező figyelmen kívül hagyja. Ha azt szeretné, hogy a dokumentum egy egyéni mező tooremove, `merge` helyette és egyszerűen állítsa be az hello mezőt explicit módon toonull. |
 
 ## <a name="construct-your-http-request-and-request-body"></a>A HTTP-kérés és a kérés törzsének létrehozása
-Most, hogy összegyűjtötte az indexelési műveletekhez szükséges mezők értékeit, készen áll a tulajdonképpeni HTTP-kérés és a JSON-kérés törzsének létrehozására az adatok importálásához.
+Most, hogy az index műveletekhez szükséges mezőértékek hello összegyűjtötte, készen áll a tooconstruct hello tényleges HTTP-kérelem és a JSON kérelem törzse tooimport adatait.
 
 #### <a name="request-and-request-headers"></a>Kérés és kérésfejlécek
-Az URL-címben meg kell majd adnia a szolgáltatás nevét, az index nevét (ami ebben az esetben „hotels”), valamint a megfelelő API-verziót (a jelen dokumentum kiadásakor érvényes API-verzió: `2016-09-01`). Meg kell határoznia a `Content-Type` és `api-key` kérésfejléceket is. Az utóbbi esetében használja a szolgáltatás rendszergazdai kulcsainak egyikét.
+Hello URL-címében, szüksége lesz tooprovide a szolgáltatás nevét, index neve ("Hotels" nevű ebben az esetben), valamint hello megfelelő API-verzió (hello aktuális API-verzió `2016-09-01` dokumentum közzétételének hello időben). Szüksége lesz a toodefine hello `Content-Type` és `api-key` kérelem fejlécei. Az utóbbi hello használja a szolgáltatás adminisztrációs kulcsok egyikét.
 
     POST https://[search service].search.windows.net/indexes/hotels/docs/index?api-version=2016-09-01
     Content-Type: application/json
@@ -110,7 +110,7 @@ Az URL-címben meg kell majd adnia a szolgáltatás nevét, az index nevét (ami
             "@search.action": "mergeOrUpload",
             "hotelId": "3",
             "baseRate": 129.99,
-            "description": "Close to town hall and the river"
+            "description": "Close tootown hall and hello river"
         },
         {
             "@search.action": "delete",
@@ -122,13 +122,13 @@ Az URL-címben meg kell majd adnia a szolgáltatás nevét, az index nevét (ami
 
 Ebben az esetben a következő keresési műveleteket használjuk: `upload`, `mergeOrUpload` és `delete`.
 
-Jelen példában feltételezzük, hogy a „hotels” index már fel van töltve dokumentumokkal. Figyelje meg, hogy az `mergeOrUpload` használatakor nem volt szükséges megadni a dokumentumban szereplő összes mezőt, illetve hogy a `delete` használatakor kizárólag a dokumentumkulcsot (`hotelId`) adtuk meg.
+Jelen példában feltételezzük, hogy a „hotels” index már fel van töltve dokumentumokkal. Vegye figyelembe, hogyan jelenleg nem rendelkezett toospecify minden hello lehetséges dokumentum mező használata esetén `mergeOrUpload` , és hogyan azt csak meghatározott hello dokumentum kulcs (`hotelId`) használatakor `delete`.
 
-Vegye figyelembe azt is, hogy egyetlen indexelési kérésbe legfeljebb 1000 dokumentumot (vagy 16 MB adatmennyiséget) foglalhat.
+Emellett vegye figyelembe, hogy csak akkor szerepelhet too1000 dokumentumok (vagy 16 MB) egyetlen indexelési kérelemben.
 
 ## <a name="understand-your-http-response-code"></a>A HTTP válaszkód ismertetése
 #### <a name="200"></a>200
-Az indexelési kérés sikeres elküldését követően HTTP-választ fog kapni a következő állapotkóddal: `200 OK`. A HTTP-válasz JSON-törzse a következő lesz:
+Az indexelési kérés sikeres elküldését követően HTTP-választ fog kapni a következő állapotkóddal: `200 OK`. hello hello HTTP-válasz törzsében JSON a következők:
 
 ```JSON
 {
@@ -144,7 +144,7 @@ Az indexelési kérés sikeres elküldését követően HTTP-választ fog kapni 
 ```
 
 #### <a name="207"></a>207
-Ha az indexelés legalább egy elem esetében meghiúsult, a rendszer a következő állapotkódot fogja visszaadni: `207`. A HTTP-válasz JSON-törzse fogja tartalmazni a sikertelen indexelésű dokumentum(ok) adatait.
+Ha az indexelés legalább egy elem esetében meghiúsult, a rendszer a következő állapotkódot fogja visszaadni: `207`. hello hello HTTP-válasz törzsében JSON hello sikertelen dokumentum információkat tartalmaznak.
 
 ```JSON
 {
@@ -152,7 +152,7 @@ Ha az indexelés legalább egy elem esetében meghiúsult, a rendszer a követke
         {
             "key": "unique_key_of_document",
             "status": false,
-            "errorMessage": "The search service is too busy to process this document. Please try again later."
+            "errorMessage": "hello search service is too busy tooprocess this document. Please try again later."
         },
         ...
     ]
@@ -160,22 +160,22 @@ Ha az indexelés legalább egy elem esetében meghiúsult, a rendszer a követke
 ```
 
 > [!NOTE]
-> Ez leggyakrabban azt jelenti, hogy a Search szolgáltatás terhelése elérte azt a pontot, amelytől kezdve az indexelési kérések `503` válaszokat adnak vissza. Ebben az esetben határozottan javasoljuk az ügyfélkód visszahívását és az újrapróbálkozás előtt egy kis várakozást. Ezzel a rendszer számára időt ad a helyreállításra, így a jövőbeni kérések nagyobb eséllyel lesznek sikeresek. A gyors újrapróbálkozásokkal csupán az adott szituációt állandósítja.
+> Ez gyakran azt jelenti, hogy hello betöltése a Search szolgáltatás közel jár a pont, ahol kérelmek indexelő megkezdődik tooreturn `503` válaszokat. Ebben az esetben határozottan javasoljuk az ügyfélkód visszahívását és az újrapróbálkozás előtt egy kis várakozást. Ekkor kap hello rendszer bizonyos idő toorecover növelése hello esélyét, hogy a későbbi kérelmek sikeres lesz. A kérelmek gyorsan újrapróbálkozás csak meghosszabbítása hello helyzet.
 >
 >
 
 #### <a name="429"></a>429
-Az indexenkénti dokumentumszám-kvóta túllépésekor a rendszer a következő állapotkódot fogja visszaadni: `429`.
+Az állapotkódot `429` során túllépte a kvótát a dokumentumok / index hello száma adja vissza.
 
 #### <a name="503"></a>503
-Ha az indexelés a kérésben szereplő összes elem esetében meghiúsult, a rendszer a következő állapotkódot fogja visszaadni: `503`. Ez a hibaüzenet azt jelzi, hogy a rendszer terhelése nagy, és a kérés jelenleg nem dolgozható fel.
+Az állapotkódot `503` Ha hello kérelem hello elemek egyike sikeresen indexelt eredmény. Ez a hiba azt jelenti, hogy, hogy hello rendszer nagy terhelésnek van kitéve, és jelenleg nem lehet feldolgozni a kérését.
 
 > [!NOTE]
-> Ebben az esetben határozottan javasoljuk az ügyfélkód visszahívását és az újrapróbálkozás előtt egy kis várakozást. Ezzel a rendszer számára időt ad a helyreállításra, így a jövőbeni kérések nagyobb eséllyel lesznek sikeresek. A gyors újrapróbálkozásokkal csupán az adott szituációt állandósítja.
+> Ebben az esetben határozottan javasoljuk az ügyfélkód visszahívását és az újrapróbálkozás előtt egy kis várakozást. Ekkor kap hello rendszer bizonyos idő toorecover növelése hello esélyét, hogy a későbbi kérelmek sikeres lesz. A kérelmek gyorsan újrapróbálkozás csak meghosszabbítása hello helyzet.
 >
 >
 
 További információk a dokumentumokkal végzett műveletekről, illetve a sikeres/meghiúsult műveletekre adott rendszerválaszokról: [Dokumentumok hozzáadása, frissítése vagy törlése](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents). További információk a meghiúsult műveletek esetében visszaadható HTTP-állapotkódokról: [HTTP-állapotkódok (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).
 
 ## <a name="next-steps"></a>Következő lépések
-Az Azure Search-index feltöltését követően készen áll a dokumentumkeresési lekérdezések kiadásának elindítására. Részletes információk: [Az Azure Search-index lekérdezése](search-query-overview.md).
+Után feltöltése az Azure Search-index, a lekérdezések toosearch dokumentumok kiállító készen toostart lesz. Részletes információk: [Az Azure Search-index lekérdezése](search-query-overview.md).

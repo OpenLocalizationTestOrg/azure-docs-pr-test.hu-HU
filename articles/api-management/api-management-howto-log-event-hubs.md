@@ -1,6 +1,6 @@
 ---
-title: "Hogyan naplózza az eseményeket az Azure Event Hubs az Azure API Management |} Microsoft Docs"
-description: "Megtudhatja, hogyan naplózza az eseményeket az Azure Event Hubs az Azure API Management."
+title: "aaaHow toolog események tooAzure Event Hubs az Azure API Management |} Microsoft Docs"
+description: "Megtudhatja, hogyan toolog események tooAzure Event Hubs az Azure API Management."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,92 +14,92 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: a310236179677046ec49930b07cfdffdadc37974
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09ca65fc48a874467c6662858f7594e9b19fcdb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-log-events-to-azure-event-hubs-in-azure-api-management"></a>Hogyan naplózza az eseményeket az Azure Event Hubs az Azure API Management
-Az Azure Event Hubs egy kiválóan méretezhető adatbefogadási szolgáltatás, amely másodpercenként több millió esemény fogadására képes, így a csatlakoztatott eszközök és alkalmazások által létrehozott nagy mennyiségű adatot egyszerűen feldolgozhatja és elemezheti. Az Event Hubs úgy működik, mint a "bejárati ajtón" egy eseményfolyamat számára, és amennyiben az eseményközpontnak összegyűjtött adatok átalakíthatók, és bármilyen valós idejű elemzési szolgáltató vagy kötegelési/tárolóadapter segítségével tárolják. Az Event Hubs elválasztja az eseménystreamek létrehozását azok felhasználásától, így az események felhasználói a saját ütemezésüknek megfelelően férhetnek hozzá az eseményekhez.
+# <a name="how-toolog-events-tooazure-event-hubs-in-azure-api-management"></a>Hogyan toolog események tooAzure Event Hubs az Azure API Management
+Az Azure Event Hubs egy kiválóan méretezhető adatbefogadási szolgáltatás, amely több millió esemény fogadására képes, így egyszerűen feldolgozhatja és elemezheti az adatokat a csatlakoztatott eszközök és alkalmazások által létrehozott nagy mennyiségű hello. Az Event Hubs úgy működik, mint egy eseményfolyamat számára "bejárati ajtón" hello, és amennyiben az eseményközpontnak összegyűjtött adatok átalakíthatók, és bármilyen valós idejű elemzési szolgáltató vagy kötegelési/tárolóadapter segítségével tárolják. Az Event Hubs hello éles tartozó események hello felhasználásától, az adatfolyam leválasztja az, hogy az eseményfelhasználók férhetnek hozzá a saját ütemezésüknek hello események.
 
-Ez a cikk egy kiegészítő, hogy a [integrálni Azure API Management az Event Hubs](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/) videó ismerteti, hogyan lehet az Azure Event Hubs API Management naplózása és.
+Ez a cikk egy kiegészítő toohello [integrálni Azure API Management az Event Hubs](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/) videót, és bemutatja, hogyan toolog API Management eseményeket az Azure Event Hubs.
 
 ## <a name="create-an-azure-event-hub"></a>Hozzon létre egy Azure Event Hubs
-Egy új Eseményközpont létrehozásához jelentkezzen be a [a klasszikus Azure portálon](https://manage.windowsazure.com) kattintson **új**->**alkalmazásszolgáltatások**->**Service Bus**->**Eseményközpont**->**Gyorslétrehozás**. Adja meg az Eseményközpont nevét régióban, válasszon egy előfizetést, és jelöljön ki egy névteret. Ha korábban még nem létrehozott névtér létrehozhat egyet, írja be a nevet adja meg a **Namespace** szövegmező. Az összes tulajdonság konfigurálása után kattintson **hozzon létre egy új Eseményközpont** az Eseményközpont létrehozásához.
+egy új Eseményközpont, bejelentkezési toohello toocreate [a klasszikus Azure portálon](https://manage.windowsazure.com) kattintson **új**->**alkalmazásszolgáltatások**->**Service Bus**  -> **Eseményközpont**->**Gyorslétrehozás**. Adja meg az Eseményközpont nevét régióban, válasszon egy előfizetést, és jelöljön ki egy névteret. Ha korábban még nem létrehozott névtér létrehozhat egyet, írja be egy nevet a hello **Namespace** szövegmező. Az összes tulajdonság konfigurálása után kattintson **hozzon létre egy új Eseményközpont** toocreate hello Eseményközpontot.
 
 ![Eseményközpont létrehozása][create-event-hub]
 
-Ezután keresse meg a **konfigurálása** az új Eseményközpont lapra, és hozzon létre két **megosztott hozzáférési házirendek**. Neve az elsőt **küldő** , és adjon neki **küldése** engedélyek.
+Ezután keresse meg a toohello **konfigurálása** az új Eseményközpont lapra, és hozzon létre két **megosztott hozzáférési házirendek**. Name hello első **küldő** , és adjon neki **küldése** engedélyek.
 
 ![Küldő házirend][sending-policy]
 
-Neve a másikat **fogadása**, adjon neki **figyelésére** engedélyeket, majd kattintson **mentése**.
+Name hello második **fogadása**, adjon neki **figyelésére** engedélyeket, majd kattintson **mentése**.
 
 ![A fogadó házirend][receiving-policy]
 
-Minden megosztott elérési házirend lehetővé teszi, hogy az alkalmazások és az Event Hubs az események küldéséhez és fogadásához. Ezek a házirendek a kapcsolati karakterláncok szeretne használni, keresse meg a **irányítópult** a Eseményközpont, majd kattintson a lap **kapcsolatadatok**.
+Minden megosztott elérési házirend lehetővé teszi az alkalmazások toosend és események tooand fogadása hello Eseményközpontot. Ezek a házirendek tooaccess hello kapcsolati karakterláncainak toohello keresse meg **irányítópult** hello Eseményközpont, és kattintson a lap **kapcsolatadatok**.
 
 ![Kapcsolati karakterlánc][event-hub-dashboard]
 
-A **küldő** kapcsolati karakterlánc használatos naplózási eseményeket, és a **fogadása** az Event Hubs-események letöltésekor használt kapcsolati karakterlánc.
+Hello **küldő** kapcsolati karakterlánc használatos naplózási eseményeket, és hello **fogadása** hello Eseményközpont-események letöltésekor használt kapcsolati karakterlánc.
 
 ![Kapcsolati karakterlánc][event-hub-connection-string]
 
 ## <a name="create-an-api-management-logger"></a>Az API Management naplózó létrehozása
-Most, hogy egy Eseményközpontot,-e a következő lépéssel konfigurálhatja a [naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) az API-kezelés szolgáltatást, hogy az események bejelentkezhetnek az Eseményközpontba.
+Most, hogy egy Eseményközpontot, hello következő lépésre-e tooconfigure egy [naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) az API-kezelés szolgáltatást, hogy az események toohello Eseményközpont írhasson a naplóba.
 
-Az API Management-figyelő szoftverek használatával vannak konfigurálva a [API Management REST API](http://aka.ms/smapi). Előtt először a REST API használatával, olvassa el a [Előfeltételek](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#Prerequisites) , és győződjön meg arról, hogy [engedélyezve van a REST API eléréséhez](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#EnableRESTAPI).
+Az API Management-figyelő szoftverek hello használatával konfigurálhatók [API Management REST API](http://aka.ms/smapi). A használata előtt hello REST API hello először, tekintse át a hello [Előfeltételek](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#Prerequisites) , és győződjön meg arról, hogy [hozzáférés toohello REST API engedélyezve](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#EnableRESTAPI).
 
-Hozzon létre egy naplózó, hajtsa végre egy HTTP PUT-kérelmet a következő URL-cím sablonja segítségével.
+egy naplózó toocreate egy HTTP PUT-kérelmet a következő URL-cím sablon hello segítségével ellenőrizze.
 
 `https://{your service}.management.azure-api.net/loggers/{new logger name}?api-version=2014-02-14-preview`
 
-* Cserélje le `{your service}` az API Management szolgáltatáspéldány nevét.
-* Cserélje le `{new logger name}` az új naplózó a kívánt néven. Ez a név fog hivatkozni, amikor konfigurálja a [napló eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) házirend
+* Cserélje le `{your service}` hello nevű az API Management service-példány.
+* Cserélje le `{new logger name}` hello kívánt nevet az új naplózó együtt. Ez a név fog hivatkozni, hello konfigurálásakor [napló eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) házirend
 
-A következő fejlécek hozzáadása a kéréshez.
+Adja hozzá a következő fejlécek toohello kérelem hello.
 
 * Content-Type: az application/json
 * Engedélyezési: SharedAccessSignature 58...
-  * Generálása kapcsolatos utasításokat a `SharedAccessSignature` lásd [Azure API Management REST API Authentication](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-authentication).
+  * Hello generálása kapcsolatos utasításokat `SharedAccessSignature` lásd [Azure API Management REST API Authentication](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-authentication).
 
-Adja meg a kérelem törzsében, az alábbi sablon használatával.
+Adja meg a sablon a következő hello segítségével hello kérés törzsében.
 
 ```json
 {
   "type" : "AzureEventHub",
   "description" : "Sample logger description",
   "credentials" : {
-    "name" : "Name of the Event Hub from the Azure Classic Portal",
+    "name" : "Name of hello Event Hub from hello Azure Classic Portal",
     "connectionString" : "Endpoint=Event Hub Sender connection string"
     }
 }
 ```
 
-* `type`meg kell `AzureEventHub`.
-* `description`egy leírást a naplózó biztosít, és szükség esetén egy nulla hosszúságú karakterlánc lehet.
-* `credentials`tartalmazza a `name` és `connectionString` az Azure Event hubs.
+* `type`be kell állítani túl`AzureEventHub`.
+* `description`hello naplózó leírását biztosít, és szükség esetén egy nulla hosszúságú karakterlánc lehet.
+* `credentials`hello tartalmaz `name` és `connectionString` az Azure Event hubs.
 
-Ha elvégezte a kérelmet, ha a naplózó létrejön egy állapotkódját `201 Created` adja vissza.
+Ha elvégezte hello kérelmet, ha a hello naplózó létrejön egy állapotkódját `201 Created` adja vissza.
 
 > [!NOTE]
-> Más lehetséges visszatérési kódok és azok okok: [hozzon létre egy naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity#PUT). Hogy hogyan hajtsa végre az egyéb műveletek, például a listában, update és delete, lásd: a [naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) entitás dokumentációját.
+> Más lehetséges visszatérési kódok és azok okok: [hozzon létre egy naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity#PUT). toosee hogyan végezhet el más műveleteket, például a listában, update és delete, lásd: hello [naplózó](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) entitás dokumentációját.
 >
 >
 
 ## <a name="configure-log-to-eventhubs-policies"></a>Napló-eventhubs-szabályzatok konfigurálása
-Miután beállította a naplózó az API Management, beállíthatja a napló-eventhubs a kívánt események naplózása. A napló-eventhubs házirend a bejövő házirend szakaszban vagy a kimenő házirend szakaszban használható.
+Után a naplózó az API Management van konfigurálva, a napló-eventhubs házirendek toolog szükséges hello események állíthatja be. hello napló-eventhubs házirend használható vagy hello a bejövő házirend szakasz vagy hello kimenő házirend szakaszban.
 
-Házirendek konfigurálásához, jelentkezzen be a [Azure-portálon](https://portal.azure.com), keresse meg az API Management szolgáltatást, és kattintson **Publisher portal** közzétevő-portál eléréséhez.
+tooconfigure házirendek, bejelentkezési toohello [Azure-portálon](https://portal.azure.com), keresse meg a tooyour API Management szolgáltatást, és kattintson **Publisher portal** tooaccess hello publisher portálon.
 
 ![Közzétevő portál][publisher-portal]
 
-Kattintson a **házirendek** a bal oldali API Management menüben válasszon ki a kívánt termék és API-t, és kattintson a **házirend hozzáadása**. Ebben a példában egy házirendet, amellyel visszaigazolása azt a **Echo API** a a **korlátlan** termék.
+Kattintson a **házirendek** hello balra hello API-kezelés parancsára, válassza ki a kívánt termék hello és API-t, és kattintson **házirend hozzáadása**. Ebben a példában azt adja hozzá a házirend toohello **Echo API** a hello **korlátlan** termék.
 
 ![Házirend hozzáadása][add-policy]
 
-Vigye a kurzort a a `inbound` házirend szakaszban, és kattintson a **EventHub napló** házirend beszúrására a `log-to-eventhub` Házirendsablon utasítás.
+Vigye a kurzort hello `inbound` házirend szakaszt, és kattintson a hello **napló tooEventHub** házirend tooinsert hello `log-to-eventhub` Házirendsablon utasítást.
 
 ![Házirendszerkesztő][event-hub-policy]
 
@@ -109,11 +109,11 @@ Vigye a kurzort a a `inbound` házirend szakaszban, és kattintson a **EventHub 
 </log-to-eventhub>
 ```
 
-Cserélje le `logger-id` az API Management-naplózó az előző lépésben konfigurált nevével.
+Cserélje le `logger-id` hello API Management naplózó hello előző lépésben konfigurált hello nevére.
 
-Használhat egy kifejezést, amely egy karakterláncot ad vissza, az értéknek a `log-to-eventhub` elemet. Ebben a példában a dátum és idő, szolgáltatásnév, kérelemazonosító, kérelem IP-cím és műveletnév tartalmazó karakterláncot a rendszer naplózza.
+Bármely kifejezés, amely egy karakterláncot ad vissza, hello hello értékként használható `log-to-eventhub` elemet. Ebben a példában a karakterlánc hello dátum és az idő, a szolgáltatás neve, a kérelem azonosítója, a kérelem IP-cím és a művelet neve kerül.
 
-Kattintson a **mentése** a frissített házirend konfigurációjának mentéséhez. Amint a rendszer menti a házirend és aktív eseményeket naplózza a kijelölt eseményközpontba.
+Kattintson a **mentése** toosave hello házirend beállításainak frissítése. Amint azok mentésekor hello házirend aktív, és eseményeket naplózott toohello Eseményközpont kijelölt is.
 
 ## <a name="next-steps"></a>Következő lépések
 * További tudnivalók az Azure Event Hubs

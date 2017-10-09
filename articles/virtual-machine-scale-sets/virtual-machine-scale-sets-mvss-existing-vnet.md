@@ -1,6 +1,6 @@
 ---
 title: "Egy már meglévő virtuális hálózatot az Azure méretezési készlet sablonban hivatkozhat |} Microsoft Docs"
-description: "Útmutató: virtuális hálózat hozzáadása egy meglévő Azure virtuálisgép-méretezési csoport sablon"
+description: "Ismerje meg, hogyan tooadd a virtuális hálózati tooan meglévő Azure virtuálisgép-méretezési csoport sablon"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: negat
-ms.openlocfilehash: 28117d467b491704aed8d45e5eba42530579dfa2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3034b577e17abc4643dc26d7c38ad643fa26322
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-reference-to-an-existing-virtual-network-in-an-azure-scale-set-template"></a>Adjon hozzá egy meglévő virtuális hálózathoz való hivatkozást Azure méretezési készlet sablonban
+# <a name="add-reference-tooan-existing-virtual-network-in-an-azure-scale-set-template"></a>Hivatkozás tooan meglévő virtuális hálózat hozzáadása a sablon egy Azure méretezési beállítása
 
-Ez a cikk bemutatja, hogyan lehet módosítani a [minimális életképes méretezési sablon](./virtual-machine-scale-sets-mvss-start.md) való üzembe helyezés helyett egy új létrehozása meglévő virtuális hálózat.
+Ez a cikk bemutatja, hogyan toomodify hello [minimális életképes méretezési sablon](./virtual-machine-scale-sets-mvss-start.md) toodeploy létrehozni meglévő virtuális hálózatban egy új létrehozása helyett.
 
-## <a name="change-the-template-definition"></a>Módosítsa a sablon-definíciót
+## <a name="change-hello-template-definition"></a>Hello sablonleírásnak módosítása
 
-A minimális életképes méretezési sablon beállítása látható [Itt](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), és a sablon a méretezési készletben meglévő virtuális hálózatban való üzembe helyezésének látható [Itt](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Ez a sablon létrehozásához használt különbözeti vizsgáljuk meg (`git diff minimum-viable-scale-set existing-vnet`) adat által adat:
+A minimális életképes méretezési sablon beállítása látható [Itt](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), és a sablon telepítéséhez hello méretezési készletben létrehozni meglévő virtuális hálózatban látható [Itt](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Ez a sablon hello használt különbözeti toocreate vizsgáljuk meg (`git diff minimum-viable-scale-set existing-vnet`) adat által adat:
 
-Első lépésként azt adja meg a `subnetId` paraméter. Ez a karakterlánc továbbítódnak a méretezési készlet konfigurációja, amely lehetővé teszi a méretezés, a virtuális gépek telepítéséhez a korábban létrehozott alhálózati azonosító állíthat be. Ez a karakterlánc a következő formátumban kell lennie: `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Például a skála telepítendő beállítani egy meglévő virtuális hálózat névvel `myvnet`, alhálózati `mysubnet`, erőforráscsoport `myrg`, és az előfizetés `00000000-0000-0000-0000-000000000000`, a subnetId lenne: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
+Első lépésként azt adja meg a `subnetId` paraméter. Ez a karakterlánc fog átadását hello méretezési készlet konfigurációja, így hello méretezési tooidentify hello előre létrehozott alhálózati toodeploy virtuális gépek be. Ez a karakterlánc hello formátumúnak kell lennie: `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Például toodeploy hello méretezési létrehozni meglévő virtuális hálózatban nevű `myvnet`, alhálózati `mysubnet`, erőforráscsoport `myrg`, és az előfizetés `00000000-0000-0000-0000-000000000000`, hello subnetId lenne: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
 
 ```diff
      },
@@ -42,7 +42,7 @@ Első lépésként azt adja meg a `subnetId` paraméter. Ez a karakterlánc tov�
    },
 ```
 
-Ezt követően a virtuális hálózati erőforrás törölheti azt a `resources` tömbben, mert azt egy meglévő virtuális hálózatot használ, és nem szükséges telepítenie egy új.
+A következő azt törölheti hello virtuális hálózati erőforrás hello `resources` tömbben, mert azt egy meglévő virtuális hálózatot használ, és nem szükséges toodeploy egy újat.
 
 ```diff
    "variables": {},
@@ -70,7 +70,7 @@ Ezt követően a virtuális hálózati erőforrás törölheti azt a `resources`
 -    },
 ```
 
-A virtuális hálózat már létezik a sablon telepítése előtt, nincs szükség a dependsOn záradékot a méretezési készletben, a virtuális hálózathoz meg. Ebből kifolyólag azt ezek a sorok törlése:
+hello virtuális hálózat már létezik hello sablon telepítése előtt, így nincs szükség toospecify a dependsOn záradékot a skálától hello beállítása toohello virtuális hálózat. Ebből kifolyólag azt ezek a sorok törlése:
 
 ```diff
      {
@@ -86,7 +86,7 @@ A virtuális hálózat már létezik a sablon telepítése előtt, nincs szüks�
          "capacity": 2
 ```
 
-Végül azt adjon át a `subnetId` a felhasználó által megadott paraméter (használata helyett `resourceId` ahhoz, hogy a virtuális hálózat azonosítóját azonos környezetben, amely, mi a minimális életképes méretezési sablon does).
+Végül azt adjon át hello `subnetId` hello felhasználó által megadott paraméter (használata helyett `resourceId` egy vnetet az azonos környezetben, amely milyen hello minimális életképes méretezési sablon does hello tooget hello azonosítója).
 
 ```diff
                        "name": "myIpConfig",

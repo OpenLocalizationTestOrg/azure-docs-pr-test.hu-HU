@@ -1,6 +1,6 @@
 ---
-title: "Adatok leküldése Search-index használatával a Data Factory |} Microsoft Docs"
-description: "További tudnivalók az adatok Azure Data Factory használatával küldje le az Azure Search-Index."
+title: "aaaPush adatok tooSearch index Data Factory használatával |} Microsoft Docs"
+description: "Megtudhatja, hogyan toopush adatok tooAzure Search-Index Azure Data Factory használatával."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,82 +14,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: 5c617c7a2f2eb4da2164ce5f802354a64dfd1fa1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f2d973d0a2c24d6448e2d59e37e24503aa433018
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="push-data-to-an-azure-search-index-by-using-azure-data-factory"></a>Elküldik az adatokat az Azure Search-index Azure Data Factory használatával
-A cikkből megtudhatja, hogyan használható a másolási tevékenység során elküldik az adatokat egy támogatott forráshierarchiából adattárból az Azure Search-index. A forrás oszlop a felsorolt támogatott forrás adattárolókhoz a [támogatott források és mosdók](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Ez a cikk épít, a [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amely adatmozgás általános áttekintést során másolási tevékenység és a támogatott adatokat tároló kombinációja.
+# <a name="push-data-tooan-azure-search-index-by-using-azure-data-factory"></a>Adatok tooan Azure Search-index leküldéses Azure Data Factory használatával
+Ez a cikk ismerteti, hogyan toouse hello másolási tevékenység toopush támogatott forrásadatok adattároló tooAzure Search-index. Támogatott forráshierarchiából adattárolókhoz hello forrásoszlopa hello szereplő [támogatott források és mosdók](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tábla. Ez a cikk épít, hello [adatok mozgása tevékenységek](data-factory-data-movement-activities.md) cikk, amely adatmozgás általános áttekintést során másolási tevékenység és a támogatott adatokat tároló kombinációja.
 
 ## <a name="enabling-connectivity"></a>Kapcsolat engedélyezése
-Ahhoz, hogy a Data Factory service csatlakozás helyszíni adattárolóihoz, telepítse az adatkezelési átjáró a helyszíni környezetben. Átjáró telepíthető ugyanazon a számítógépen a forrásadatok állomások tároló vagy egy külön számítógépen erőforrás esetén az adattár versengő elkerülése érdekében.
+tooallow Data Factory szolgáltatásnak csatlakozás helyszíni adattár tooan, az adatkezelési átjáró telepítése a helyszíni környezetben. Átjáró telepíthető hello ugyanaz a gép, amelyen hello forrásadatok tárolja, vagy egy másik számítógépre tooavoid hello adatokkal erőforrások használják a tárolja.
 
-Az adatkezelési átjáró csatlakozik a helyszíni adatforrások felhőszolgáltatások biztonságának és kezelésének módja. Lásd: [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) szóló cikkben olvashat az adatkezelési átjáró.
+Az adatkezelési átjáró csatlakozik a helyszíni adatok források toocloud szolgáltatások biztonságos és felügyelt módon. Lásd: [helyezze át az adatokat a helyszíni és a felhő között](data-factory-move-data-between-onprem-and-cloud.md) szóló cikkben olvashat az adatkezelési átjáró.
 
 ## <a name="getting-started"></a>Bevezetés
-A másolási tevékenység során, az leküldi adatok egy forrás adattárból Azure Search-index különböző eszközök/API-k használatával létrehozhat egy folyamatot.
+A másolási tevékenység, amely a leküldéses értesítések adatok egy forrás adatokat tároló tooAzure Search-index a különböző eszközök/API-k használatával létrehozhat egy folyamatot.
 
-Hozzon létre egy folyamatot a legegyszerűbb módja használatára a **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) létrehozásával egy folyamatot, az adatok másolása varázsló segítségével gyorsan útmutatást.
+hello legegyszerűbb módja toocreate adatcsatorna toouse hello **másolása varázsló**. Lásd: [oktatóanyag: hozzon létre egy folyamatot, másolása varázslóval](data-factory-copy-data-wizard-tutorial.md) hello másolása adatok varázslóval adatcsatorna létrehozásával gyors útmutatást.
 
-Az alábbi eszközöket használhatja a folyamatokat létrehozni: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager sablon**, **.NET API**, és **REST API**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) hozzon létre egy folyamatot a másolási tevékenység részletes útmutatóját. 
+Használhatja a következő eszközök toocreate adatcsatorna hello: **Azure-portálon**, **Visual Studio**, **Azure PowerShell**, **Azure Resource Manager-sablon** , **.NET API**, és **REST API-t**. Lásd: [másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) részletesen toocreate a másolási tevékenység az adatcsatorna számára. 
 
-Akár az eszközök vagy API-k, hajtsa végre a következő lépésekkel hozza létre egy folyamatot, amely mozgatja az adatokat a forrás-tárolóban a fogadó tárolóban: 
+Akár hello eszközök vagy API-k, hajtsa végre a következő lépéseket toocreate egy folyamatot, amely áthelyezi a forrásadatok az adattároló tooa fogadó adattár hello: 
 
-1. Hozzon létre **összekapcsolt szolgáltatások** bemeneti és kimeneti adatok csatolásához tárolja a a data factory.
-2. Hozzon létre **adatkészletek** a másolási művelet bemeneti és kimeneti adatok. 
+1. Hozzon létre **összekapcsolt szolgáltatások** toolink bemeneti és kimeneti adatok tárolók tooyour adat-előállítóban.
+2. Hozzon létre **adatkészletek** toorepresent bemeneti és kimeneti adatok hello a másolási művelet. 
 3. Hozzon létre egy **csővezeték** , amely fogad egy bemeneti adatkészlet és egy kimeneti adatkészletet másolási tevékenységgel. 
 
-A varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és a feldolgozási sor) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások a JSON formátum használatával.  Adatok másolása az Azure Search-index használt adat-előállító entitások JSON-definíciók minta, lásd: [JSON-példa: adatok másolása az helyszíni SQL Server az Azure Search-index](#json-example-copy-data-from-on-premises-sql-server-to-azure-search-index) című szakaszát. 
+Hello varázsló használatakor a Data Factory entitások (összekapcsolt szolgáltatások adatkészletek és hello pipeline) JSON-definíciók automatikusan létrejönnek. Eszközök/API-k (kivéve a .NET API-t) használata esetén adja meg a Data Factory entitások hello JSON formátumban.  Az adat-előállító entitások, amelyek használt toocopy adatok tooAzure Search-index JSON-definíciók minta, lásd: [JSON-példa: adatok másolása a helyszíni SQL Server tooAzure Search-index](#json-example-copy-data-from-on-premises-sql-server-to-azure-search-index) című szakaszát. 
 
-A következő szakaszok részletesen bemutatják, amely segítségével az Azure Search-Index megadása a Data Factory tartozó entitások JSON-tulajdonságok:
+a következő szakaszok hello JSON-tulajdonságok esetében használt toodefine adat-előállító entitások adott tooAzure Search-Index részleteit tartalmazzák:
 
 ## <a name="linked-service-properties"></a>A kapcsolódószolgáltatás-tulajdonságok
 
-A következő táblázat ismerteti, amelyek a kapcsolódó Azure Search szolgáltatásra vonatkozó JSON-elemek szerepelnek.
+hello a következő táblázat ismerteti, amelyek adott toohello csatolt Azure Search szolgáltatás JSON-elemek szerepelnek.
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| type | A type tulajdonságot kell beállítani: **AzureSearch**. | Igen |
-| URL-címe | Az Azure Search szolgáltatás URL-címe. | Igen |
-| kulcs | Az Azure Search szolgáltatás adminisztrációs kulcsot. | Igen |
+| type | hello type tulajdonságot kell beállítani: **AzureSearch**. | Igen |
+| URL-címe | Hello Azure Search szolgáltatás URL-címe. | Igen |
+| kulcs | Adminisztrátori kulcsot a hello Azure Search szolgáltatás. | Igen |
 
 ## <a name="dataset-properties"></a>Adatkészlet tulajdonságai
 
-Illetve meghatározásához adatkészletek rendelkezésre álló tulajdonságok teljes listáját lásd: a [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében. A **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. A typeProperties szakasz egy adatkészlet típusú **AzureSearchIndex** tulajdonságai a következők:
+Illetve meghatározásához adatkészletek rendelkezésre álló tulajdonságok teljes listáját lásd: hello [adatkészletek létrehozása](data-factory-create-datasets.md) cikk. Például struktúra, a rendelkezésre állás és a házirend a DataSet adatkészlet JSON hasonlítanak minden adatkészlet esetében. Hello **typeProperties** szakaszban nem egyezik az adatkészlet egyes típusú. a DataSet hello típusú szakasz hello typeProperties **AzureSearchIndex** rendelkezik hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Szükséges |
 | -------- | ----------- | -------- |
-| type | A type tulajdonságot meg kell **AzureSearchIndex**.| Igen |
-| indexName | Az Azure Search-index neve. Adat-előállító nem hoz létre az indexet. Az index az Azure Search léteznie kell. | Igen |
+| type | hello type tulajdonság túl be kell állítani**AzureSearchIndex**.| Igen |
+| indexName | Hello Azure Search-index neve. Adat-előállító nem hoz létre hello index. az Azure Search léteznie kell a hello index. | Igen |
 
 
 ## <a name="copy-activity-properties"></a>Másolási tevékenység tulajdonságai
-Szakaszok és tevékenységek meghatározásához rendelkezésre álló tulajdonságok teljes listáját lásd: a [folyamatok létrehozása](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, bemeneti és kimeneti tábláinak és különböző házirendek tulajdonságok minden típusú tevékenységek érhetők el. Mivel a typeProperties szakaszban rendelkezésre álló tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók típusától függően.
+Szakaszok és tevékenységek meghatározásához rendelkezésre álló tulajdonságok teljes listáját lásd: hello [folyamatok létrehozása](data-factory-create-pipelines.md) cikk. Például a nevét, leírását, bemeneti és kimeneti tábláinak és különböző házirendek tulajdonságok minden típusú tevékenységek érhetők el. Mivel a hello typeProperties szakaszban rendelkezésre álló tulajdonságok tevékenységek minden típusának függenek. A másolási tevékenység során két érték források és mosdók hello típusától függően.
 
-A másolási tevékenység, ha a fogadó típusa nem **AzureSearchIndexSink**, a következő tulajdonságok érhetők el typeProperties szakaszában:
+A másolási tevékenység, ha hello fogadó hello típusú **AzureSearchIndexSink**, typeProperties szakaszában érhetők hello következő tulajdonságai:
 
 | Tulajdonság | Leírás | Megengedett értékek | Szükséges |
 | -------- | ----------- | -------------- | -------- |
-| WriteBehavior | Megadja, hogy egyesíteni vagy cserélje le, ha az index már létezik egy dokumentumot. Tekintse meg a [WriteBehavior tulajdonság](#writebehavior-property).| Egyesítés (alapértelmezett)<br/>Feltöltés| Nem |
-| WriteBatchSize | Amikor a puffer mérete eléri writeBatchSize feltölti az adatok be az Azure Search-index. Tekintse meg a [WriteBatchSize tulajdonság](#writebatchsize-property) részleteiről. | 1-1 000. Alapértelmezett érték 1000. | Nem |
+| WriteBehavior | Meghatározza, hogy toomerge vagy cserélje le a dokumentum már létezik hello index. Lásd: hello [WriteBehavior tulajdonság](#writebehavior-property).| Egyesítés (alapértelmezett)<br/>Feltöltés| Nem |
+| WriteBatchSize | Fájlfeltöltések hello Azure Search-index az adatokat, amikor hello puffer mérete eléri writeBatchSize. Lásd: hello [WriteBatchSize tulajdonság](#writebatchsize-property) részleteiről. | 1 too1 000. Alapértelmezett érték 1000. | Nem |
 
 ### <a name="writebehavior-property"></a>WriteBehavior tulajdonság
-AzureSearchSink upserts adatok írásakor. Ez azt jelenti történő írásakor egy dokumentumot, ha a dokumentum kulcs már létezik az Azure Search-index, az Azure Search frissíti a meglévő dokumentumról, hanem egy ütközés Kivétel kiváltása.
+AzureSearchSink upserts adatok írásakor. Más szóval történő írásakor egy dokumentumot, ha hello dokumentum kulcs már létezik a hello Azure Search-index, az Azure Search frissíti hello meglévő dokumentumról, hanem egy ütközés Kivétel kiváltása.
 
-A AzureSearchSink az alábbi két upsert viselkedésmódok biztosít a (AzureSearch SDK használatával):
+hello AzureSearchSink két upsert viselkedések (AzureSearch SDK használatával) a következő hello biztosítja:
 
-- **Egyesítési**: kombinálhatja az összes oszlop az új dokumentum a meglévővel. Az oszlop, null értéket ad meg az új dokumentum a meglévő ütemezés értékét megőrződik.
-- **Töltse fel**: az új dokumentum lecseréli a meglévő fájlt. Nincs megadva az új dokumentum oszlopokhoz a beállítás értéke be NULL értékre van-e egy nem null értéket a meglévő dokumentum vagy sem.
+- **Egyesítési**: hello új dokumentum hello oszlopok egyesíthető egy meglévő hello. Az új dokumentum hello null értékű oszlopokhoz hello értéket egy meglévő hello megőrződik.
+- **Töltse fel**: hello új dokumentum cserél hello meglévőt. Nincs megadva a hello új dokumentum oszlopok hello értéke toonull van-e egy nem null értéket hello meglévő dokumentum vagy sem.
 
-Az alapértelmezett viselkedés **egyesítése**.
+hello alapértelmezett viselkedése **egyesítése**.
 
 ### <a name="writebatchsize-property"></a>WriteBatchSize tulajdonság
-Az Azure Search szolgáltatás egy kötegelt dokumentumok írása támogatja. A kötegelt 1-1 000 műveletek is tartalmazhat. Egy műveletet a feltöltési/egyesítési művelet egy dokumentum kezeli.
+Az Azure Search szolgáltatás egy kötegelt dokumentumok írása támogatja. A kötegelt 1 too1, 000 műveletek is tartalmazhat. Egy művelet egy dokumentum tooperform hello feltöltés/egyesítési művelet kezeli.
 
 ### <a name="data-type-support"></a>Adattípus-támogatás
-Az alábbi táblázat felsorolja, hogy az Azure Search adattípus támogatott-e, vagy nem.
+hello alábbi táblázat megadja, hogy egy Azure Search adattípus támogatott-e, vagy nem.
 
 | Az Azure Search-adattípus | Az Azure Search fogadó támogatott |
 | ---------------------- | ------------------------------ |
@@ -102,9 +102,9 @@ Az alábbi táblázat felsorolja, hogy az Azure Search adattípus támogatott-e,
 | Karakterlánc-tömbben | N |
 | GeographyPoint | N |
 
-## <a name="json-example-copy-data-from-on-premises-sql-server-to-azure-search-index"></a>JSON-példa: adatok másolása az helyszíni SQL Server az Azure Search-index
+## <a name="json-example-copy-data-from-on-premises-sql-server-tooazure-search-index"></a>JSON-példa: adatok másolása a helyszíni SQL Server tooAzure Search-index
 
-A következő példában:
+a következő példa azt mutatja be hello:
 
 1.  A társított szolgáltatás típusa [AzureSearch](#linked-service-properties).
 2.  A társított szolgáltatás típusa [OnPremisesSqlServer](data-factory-sqlserver-connector.md#linked-service-properties).
@@ -112,9 +112,9 @@ A következő példában:
 4.  Egy kimeneti [dataset](data-factory-create-datasets.md) típusú [AzureSearchIndex](#dataset-properties).
 4.  A [csővezeték](data-factory-create-pipelines.md) , a másolási tevékenység által használt [SqlSource](data-factory-sqlserver-connector.md#copy-activity-properties) és [AzureSearchIndexSink](#copy-activity-properties).
 
-A minta másol idősorozat adatokat a helyszíni SQL Server adatbázis az Azure Search-index óránként. Ez a minta használt JSON-tulajdonságok a mintákat a következő szakaszok ismertetik.
+hello minta másol idősorozat adatokat a helyszíni SQL Server adatbázis tooan Azure Search-index óránként. Ez a minta használt hello JSON-tulajdonságok hello mintát a következő szakaszok ismertetik.
 
-Első lépésként a telepítő az adatkezelési átjáró a helyi számítógépen. Az utasítások szerepelnek a [adatokat a helyszíni helyek és a felhő közötti áthelyezése](data-factory-move-data-between-onprem-and-cloud.md) cikk.
+Első lépésként a telepítő hello az adatkezelési átjáró a helyi számítógépen. hello utasítások szerepelnek hello [adatokat a helyszíni helyek és a felhő közötti áthelyezése](data-factory-move-data-between-onprem-and-cloud.md) cikk.
 
 **Az Azure Search kapcsolódó szolgáltatás:**
 
@@ -148,9 +148,9 @@ Első lépésként a telepítő az adatkezelési átjáró a helyi számítógé
 
 **SQL Server bemeneti adatkészlet**
 
-A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" SQL Server és a "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz. Lekérheti az egyetlen adatkészlet ugyanazon adatbázis több tábla keresztül, de egyetlen tábla a dataset tableName typeProperty kell használni.
+hello minta azt feltételezi, hogy létrehozott egy tábla "MyTable" SQL Server és a "timestampcolumn" nevű adatsorozat időadatok oszlopot tartalmaz. Több tábla belül azonos adatbázist egyetlen dataset, de egy táblát kell használni az hello dataset tableName typeProperty hello keresztül kérdezheti le.
 
-"External" beállítása: "true" tájékoztatja Data Factory szolgáltatásnak, hogy az adatkészlet data factoryval való külső, és egy tevékenység adat-előállító nem hozzák.
+"External" beállítása: "true" tájékoztatja Data Factory szolgáltatásnak, hogy hello dataset külső toohello adat-előállítót, és egy tevékenység hello adat-előállítóban nem hozzák.
 
 ```JSON
 {
@@ -179,7 +179,7 @@ A minta azt feltételezi, hogy létrehozott egy tábla "MyTable" SQL Server és 
 
 **Az Azure Search kimeneti adatkészlet:**
 
-A minta másolja az adatokat az Azure Search-index nevű **termékek**. Adat-előállító nem hoz létre az indexet. A minta teszteléséhez index létrehozása ezen a néven. Hozzon létre az Azure Search-index a azonos számú oszlopot, mint a bemeneti adatkészletet. Új bejegyzések kerülnek az Azure Search-index óránként.
+hello minta másolatok adatok tooan Azure Search-index nevű **termékek**. Adat-előállító nem hoz létre hello index. tootest hello mintát, index létrehozása ezen a néven. Hozzon létre hello Azure Search-index hello azonos számú oszlopot hasonlóan hello bemeneti adatkészletet. Új bejegyzések kerülnek toohello Azure Search-index óránként.
 
 ```JSON
 {
@@ -200,7 +200,7 @@ A minta másolja az adatokat az Azure Search-index nevű **termékek**. Adat-el�
 
 **Másolási tevékenység során a folyamat az SQL-forrás és fogadó Azure Search-Index:**
 
-A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és kimeneti adatkészletek használatára van konfigurálva, és óránkénti futásra nem ütemezték. Az adatcsatorna JSON-definícióból a **forrás** típusúra **SqlSource** és **fogadó** típusúra **AzureSearchIndexSink**. A megadott SQL-lekérdezést a **SqlReaderQuery** tulajdonság kiválasztása az adatok másolása az elmúlt órában.
+hello folyamat másolatot tevékenységet tartalmaz, amely konfigurált toouse hello bemeneti és kimeneti adatkészletek és ütemezett toorun óránként. Hello adatcsatorna JSON-definícióból, hello **forrás** típusuk értéke túl**SqlSource** és **fogadó** típusuk értéke túl**AzureSearchIndexSink**. hello SQL-lekérdezésben megadott hello **SqlReaderQuery** tulajdonság jelöli ki hello adatok hello toocopy óránként túlra.
 
 ```JSON
 {  
@@ -249,7 +249,7 @@ A feldolgozási sor tartalmazza a másolási tevékenység, amely a bemeneti és
 }
 ```
 
-Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba történő `executionLocation` tulajdonság megadása kötelező. Az alábbi JSON kódrészletben láthatja a másolási tevékenység során a szükséges módosítást `typeProperties` példaként. Ellenőrizze [felhőalapú adattároló közötti másolásához](data-factory-data-movement-activities.md#global) szakaszban a támogatott értékek és a további részleteket.
+Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba történő `executionLocation` tulajdonság megadása kötelező. hello JSON alábbi kódrészletben láthatja a másolási tevékenység során szükséges hello módosítása `typeProperties` példaként. Ellenőrizze [felhőalapú adattároló közötti másolásához](data-factory-data-movement-activities.md#global) szakaszban a támogatott értékek és a további részleteket.
 
 ```JSON
 "typeProperties": {
@@ -265,7 +265,7 @@ Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba 
 
 
 ## <a name="copy-from-a-cloud-source"></a>A felhő forrás másolása
-Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba történő `executionLocation` tulajdonság megadása kötelező. Az alábbi JSON kódrészletben láthatja a másolási tevékenység során a szükséges módosítást `typeProperties` példaként. Ellenőrizze [felhőalapú adattároló közötti másolásához](data-factory-data-movement-activities.md#global) szakaszban a támogatott értékek és a további részleteket.
+Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba történő `executionLocation` tulajdonság megadása kötelező. hello JSON alábbi kódrészletben láthatja a másolási tevékenység során szükséges hello módosítása `typeProperties` példaként. Ellenőrizze [felhőalapú adattároló közötti másolásához](data-factory-data-movement-activities.md#global) szakaszban a támogatott értékek és a további részleteket.
 
 ```JSON
 "typeProperties": {
@@ -279,12 +279,12 @@ Ha a másolt adatok egy felhőalapú adattárból Azure Search szolgáltatásba 
 }
 ```
 
-A másolási tevékenység definíciójának fogadó adatkészletből oszlopok forrás adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
+Forrás adatkészlet toocolumns hello másolási tevékenységdefinícióban fogadó adatkészletből oszlopokat is leképezheti. További információkért lásd: [Azure Data Factory dataset oszlopai leképezési](data-factory-map-columns.md).
 
 ## <a name="performance-and-tuning"></a>Teljesítmény és finomhangolás  
-Tekintse meg a [másolási tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md) adatátvitelt jelölik a (másolási tevékenység) és a különböző módokon azt optimalizálása hatása teljesítmény kulcsfontosságú szerepet játszik tájékozódhat.
+Lásd: hello [másolási tevékenység teljesítmény- és hangolási útmutató](data-factory-copy-activity-performance.md) kulcsról toolearn hatás teljesítmény adatátvitelt jelölik a (másolási tevékenység), és különböző módokon toooptimize tényezők azt.
 
 ## <a name="next-steps"></a>Következő lépések
-Lásd az alábbi cikkeket:
+Tekintse meg a következő cikkek hello:
 
 * [Másolási tevékenység oktatóanyag](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) való a másolási tevékenység során a folyamat létrehozásának lépéseit.

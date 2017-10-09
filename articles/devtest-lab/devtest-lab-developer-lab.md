@@ -1,6 +1,6 @@
 ---
-title: "Használja az Azure DevTest Labs szolgáltatásban a fejlesztők számára |} Microsoft Docs"
-description: "Útmutató: Azure DevTest Labs fejlesztői helyzetekben használhatja."
+title: "aaaUse Azure DevTest Labs szolgáltatásban a fejlesztők számára |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Azure DevTest Labs fejlesztői forgatókönyvek esetén."
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: tarcher
-ms.openlocfilehash: c187819e9392908c8979556f80e8c94739eb14d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 16a3ef47c9fcbca3050dd50db5b472a9a1e3c62c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-devtest-labs-for-developers"></a>Használja az Azure DevTest Labs szolgáltatásban a fejlesztők számára
-Azure DevTest Labs szolgáltatásban több kulcs forgatókönyv végrehajtásához használható, de egy elsődleges forgatókönyv magában foglalja a DevTest Labs segítségével fejlesztési gazdagépeken a fejlesztők számára. Ebben a forgatókönyvben a DevTest Labs alábbi előnyöket nyújtja:
+Az Azure DevTest Labs szolgáltatásban használt tooimplement sok főbb forgatókönyvek, de hello elsődleges forgatókönyvek közül magában foglalja a DevTest Labs toohost fejlesztési gépek segítségével a fejlesztők számára lehet. Ebben a forgatókönyvben a DevTest Labs alábbi előnyöket nyújtja:
 
 - A fejlesztők gyorsan építhető ki az igény szerinti fejlesztési gépeik.
 - A fejlesztők könnyen teste szabhatja a fejlesztési gépeikhez, amikor erre szükség van.
@@ -31,103 +31,103 @@ Azure DevTest Labs szolgáltatásban több kulcs forgatókönyv végrehajtásáh
 
 ![DevTest Labs használatát képzés](./media/devtest-lab-developer-lab/devtest-lab-developer-lab.png)
 
-Ebből a cikkből megismerheti fejlesztői követelmények teljesítéséhez használható különböző Azure DevTest Labs-szolgáltatások és a részletes lépéseket, amelyek követésével egy tesztlabor beállításához.
+Ebből a cikkből megismerheti használt toomeet fejlesztői követelmények és részletes lépéseket, hogy másolatot labor tooset követheti hello Azure DevTest Labs szolgáltatásokra vonatkozó.
 
 ## <a name="implementing-developer-environments-with-azure-devtest-labs"></a>Azure DevTest Labs végrehajtási fejlesztői környezetek
-1. **A labor létrehozása** 
+1. **Hello labor létrehozása** 
    
-    Labs szerepelnek a Azure DevTest Labs szolgáltatásban. Labor létrehozása után feladatokat végezheti el például a felhasználók (fejlesztők) hozzáadása a labor szabályozására a költségek, gyorsan, hozhat létre virtuális gép lemezképek meghatározása és egyéb házirendek beállítása.  
+    Labs hello Azure DevTest Labs szolgáltatásban a kiindulási pontjaként. Labor létrehozása után a feladatokat, mint a felhasználók (fejlesztők) toohello labor, a beállítás házirendek toocontrol költségek, gyorsan, hozhat létre virtuális gép lemezképek meghatározása és a több hozzáadását végezheti el.  
    
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [Labor létrehozása a Azure DevTest Labs szolgáltatásban](devtest-lab-create-lab.md) |Útmutató a labor létrehozása a Azure DevTest Labs szolgáltatásban az Azure portálon. |
+   | [Labor létrehozása a Azure DevTest Labs szolgáltatásban](devtest-lab-create-lab.md) |Ismerje meg, hogyan toocreate egy Azure DevTest Labs labor hello Azure-portálon. |
 2. **Hozzon létre a virtuális gépek beépített piactéren elérhető rendszerkép és az egyéni lemezképek használatával percek alatt** 
    
-    Válasszon az előre elkészített képek széles képek az Azure piactéren, és elérhetővé tétele a tesztkörnyezetben. Ha az előre elkészített lemezképeket nem megfelelnek az elvárásainak, hozzon létre egy virtuális gépet egy előre elkészített lemezkép az Azure piactérről, telepíteni a szoftvert, amelyekre szüksége van, és a virtuális gép mentése az, amikor egyéni lemezképként, amikor egyéni kép is létrehozhat.
+    Válassza ki az előre elkészített képek széles képek hello Azure piactér a, és hello, amikor elérhetővé teszi azokat. Ha hello előre elkészített lemezképek nem megfelelnek az elvárásainak, hozzon létre egy virtuális gép hello laborban egyéni lemezképként az Azure piactér van szüksége, minden hello szoftver telepítése és a virtuális gép mentése hello előre elkészített lemezkép használatával, amikor egyéni lemezkép is létrehozhat.
 
-    Ha egyéni lemezképek fog használni, érdemes lehet egy kép gyári létrehozásához, és a lemezképek terjesztése. Egy kép gyári egy olyan konfigurációs, kód megoldás, rendszeresen készítésére és a beállított képek automatikusan továbbítja. Ez menti a rendszer az alap operációs rendszer virtuális gép létrehozása után kézzel konfigurálásához szükséges időt.
+    Ha egyéni lemezképek fog használni, fontolja meg egy kép gyári toocreate használatát, és a lemezképek terjesztése. Egy kép gyári egy olyan konfigurációs, kód megoldás, rendszeresen készítésére és a beállított képek automatikusan továbbítja. Ez menti hello szükséges idő toomanually hello rendszer konfigurálása után a virtuális gépek hello jött létre az operációs rendszer alapjául.
   
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [Azure piactéren elérhető rendszerkép konfigurálása](devtest-lab-configure-marketplace-images.md) |Megtudhatja, hogyan zajlik engedélyezett Azure piactéren elérhető rendszerkép, így kijelölésnél érhetők el a lemezképek csak kívánja a fejlesztők számára.|
-   | [Egyéni lemezkép létrehozása](devtest-lab-create-template.md) |Létrehozhat egyéni rendszerképeket a szoftvert, hogy a fejlesztők gyorsan létre tud hozni egy virtuális Gépet, az egyéni lemezkép használatával kell előre telepítésével.|
-   | [Kép gyári megismerése](https://blogs.msdn.microsoft.com/devtestlab/2017/04/17/video-custom-image-factory-with-azure-devtest-labs/) |Bemutató videó ismerteti, hogyan állítson be, és egy kép gyári használja.|
+   | [Azure piactéren elérhető rendszerkép konfigurálása](devtest-lab-configure-marketplace-images.md) |Megtudhatja, hogyan engedélyezett Azure piactéren elérhető rendszerkép zajlik, a kijelölés csak hello lemezképek elérhetővé kívánja hello fejlesztők számára.|
+   | [Egyéni lemezkép létrehozása](devtest-lab-create-template.md) |Hozzon létre egy egyéni lemezképet kell, hogy a fejlesztők gyorsan létre tud hozni egy virtuális gép hello egyéni lemezkép használatával hello szoftver előtti telepítésével.|
+   | [Kép gyári megismerése](https://blogs.msdn.microsoft.com/devtestlab/2017/04/17/video-custom-image-factory-with-azure-devtest-labs/) |Bemutató videó ismerteti, hogyan tooset össze, és egy kép gyári használja.|
 
 3. **A fejlesztői gépek újrafelhasználható sablonok létrehozása** 
    
-    Az Azure DevTest Labs képlet egy virtuális gép létrehozásához használt alapértelmezett tulajdonság értékek listáját. Képlet létrehozhatja a laborban lemezkép, a Virtuálisgép-méretet (kombinációja Processzor és memória szempontjából) és egy virtuális hálózatot válassza háttérszínnek. Minden egyes fejlesztői tekintse meg a képlet a laborkörnyezetben, és segítségével hozzon létre egy virtuális Gépet. 
+    A Azure DevTest Labs szolgáltatásban képlet alapértelmezett tulajdonság értékek listájának használt toocreate egy virtuális Gépet. Létrehozhat egy képletet hello laborkörnyezetben ki kép, a Virtuálisgép-méretet (kombinációja Processzor és memória szempontjából) és a virtuális hálózati. Mindegyik fejlesztő látható hello képlet hello laborban és toocreate egy virtuális gép használja. 
    
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [Virtuális gépek létrehozása a DevTest Labs képletek kezelése](devtest-lab-manage-formulas.md) |Ismerje meg, hogyan is létrehozhat egy képletet fel egy lemezképet, a Virtuálisgép-méretet (Processzor és memória szempontjából kombinációja) és a virtuális hálózat.|
+   | [DevTest Labs képletek toocreate virtuális gépek kezelése](devtest-lab-manage-formulas.md) |Ismerje meg, hogyan is létrehozhat egy képletet fel egy lemezképet, a Virtuálisgép-méretet (Processzor és memória szempontjából kombinációja) és a virtuális hálózat.|
 
-4. **Ahhoz, hogy rugalmas VM testreszabási összetevők létrehozása**
+4. **Az összetevők tooenable rugalmas VM testreszabási létrehozása**
 
-   Összetevők segítségével telepítheti és konfigurálhatja az alkalmazás, egy virtuális gép kiépítése után. Az összetevők lehetnek:
+   Az összetevők használt toodeploy, és állítsa be az alkalmazását, a virtuális gép kiépítése után. Az összetevők lehetnek:
 
-   - A virtuális Gépen – például ügynökök, a Fiddler és a Visual Studio telepíteni kívánt eszközök.
-   - A virtuális Gépen – például egy tárház klónozása futtatni kívánt műveletek.
-   - Tesztelni kívánt alkalmazások.
+   - Az eszközök, amelyet a Virtuálisgép - hello például ügynökök, a Fiddler és a Visual Studio tooinstall.
+   - A Virtuálisgép - hello toorun kívánt például egy tárház klónozása műveleteket.
+   - Az alkalmazások, amelyet az tootest.
 
    Sok az összetevők még elérhető, a-kész. A saját egyéni összetevők hozhat létre, ha azt szeretné, további testreszabási saját igényeinek.
 
-   Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+   További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [Egyéni összetevők létrehozása a DevTest Labs szolgáltatásban virtuális Géphez](devtest-lab-artifact-author.md) |A virtuális gépek a saját egyéni összetevők létrehozása a tesztkörnyezetben.|
-   | [Egyéni összetevők és az Azure Resource Manager sablonokban használható Azure DevTest Labs szolgáltatásban tárolni egy Git-tárház hozzáadása](devtest-lab-add-artifact-repo.md) |Útmutató az egyéni összetevők tárolása a saját privát Git-tárház.|
+   | [Egyéni összetevők létrehozása a DevTest Labs szolgáltatásban virtuális Géphez](devtest-lab-artifact-author.md) |A labor létrehozása a saját egyéni összetevők hello virtuális gépekhez.|
+   | [Adja hozzá a Git tárház toostore egyéni összetevők és az Azure Resource Manager sablonokban használható Azure DevTest Labs szolgáltatásban](devtest-lab-add-artifact-repo.md) |Megtudhatja, hogyan toostore az egyéni összetevők a saját privát Git-tárház.|
 
 5. **Költségek szabályozása**
    
-    Az Azure DevTest Labs lehetővé teszi, hogy meg kell adnia egy házirendet a laborban a, amikor a fejlesztők által létrehozott virtuális gépek maximális száma. 
+    Az Azure DevTest Labs lehetővé teszi tooset házirend hello labor toospecify hello maximálisan megengedett számú hello, amikor a fejlesztők által létrehozott virtuális gépek. 
    
-    Ha a fejlesztői csapat tartozik egy munkahelyi ütemezést, és a virtuális gépek leállítása a nap adott időpontban, és automatikusan indítsa újra őket a következő napon, könnyen elvégezhető, amely a laborkörnyezetben automatikus leállítás be- és az automatikus indítási házirendek beállításával. 
+    Ha a fejlesztői csapat tartozik egy ütemezés működik, és szeretné, hogy toostop hello virtuális gépeinek hello nap adott időpontban, és automatikusan indítsa újra őket követő hello, könnyen elvégezhető, amely beállítása automatikus leállítás be- és az automatikus indítási szabályzatok hello tesztkörnyezetben. 
    
-    Végül alkalmazásfejlesztés befejeződése után törölheti a virtuális gépek egyszerre egy PowerShell-parancsfájl futtatásával. 
+    Végül alkalmazásfejlesztés befejeződése után törölheti hello virtuális gépeinek egyszerre egy PowerShell-parancsfájl futtatásával. 
    
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
-   
-   | Tevékenység | Ismertetett témák |
-   | --- | --- |
-   | [Laborszabályzatok definiálása](devtest-lab-set-lab-policy.md) |A labor házirendek beállításával kapcsolatos költségek szabályozását. |
-   | [Törölje a labor virtuális gépeken, egy PowerShell-parancsfájl használatával](devtest-lab-faq.md#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab) |Egyetlen művelettel összes labs törölni fejlesztési befejeződött.|
-
-1. **Virtuális hálózat hozzáadása a virtuális gépek** 
-   
-    DevTest Labs hoz létre egy új virtuális hálózatot (VNET), ha a labor létrehozása. Ha konfigurálta a saját virtuális Hálózatot – például használatával expressroute-on vagy a telephelyek közötti VPN – adhat hozzá a VNETET a labor virtuális hálózati beállításait úgy, hogy az elérhető virtuális gépek létrehozásakor.
-
-    Emellett nincs Azure Active Directory tartományi csatlakozási összetevő érhető el, akkor csatlakozik egy virtuális Gépet egy tartományhoz a virtuális gép létrehozásakor. 
-   
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [A Azure DevTest Labs szolgáltatásban virtuális hálózat konfigurálása](devtest-lab-configure-vnet.md) |Útmutató: virtuális hálózat konfigurálása a Azure DevTest Labs szolgáltatásban az Azure portál használatával.|
+   | [Laborszabályzatok definiálása](devtest-lab-set-lab-policy.md) |Hello laborban házirendek beállításával kapcsolatos költségek szabályozását. |
+   | [Törölje az összes hello labor virtuális gépeken, egy PowerShell-parancsfájl használatával](devtest-lab-faq.md#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab) |Törli az összes hello labs egyetlen művelettel, ha fejlesztési befejeződött.|
 
-6. **A labor megosztása minden fejlesztői**
+1. **A virtuális gép virtuális hálózati tooa hozzáadása** 
    
-    Labs közvetlenül elérhető a fejlesztők a megosztott kapcsolaton keresztül. Még nincs Azure-fiókot, hogy mindaddig, amíg azok rendelkeznek egy [Microsoft-fiók](devtest-lab-faq.md#what-is-a-microsoft-account). A fejlesztők más fejlesztők által létrehozott virtuális gépek nem látható.  
+    DevTest Labs hoz létre egy új virtuális hálózatot (VNET), ha a labor létrehozása. Ha konfigurálta a saját virtuális Hálózatot – például használatával expressroute-on vagy a telephelyek közötti VPN – a virtuális hálózat tooyour labor virtuális hálózati beállításait úgy, hogy az elérhető virtuális gépek létrehozásakor is hozzáadhat.
+
+    Emellett nincs Azure Active Directory tartományi csatlakozási összetevő érhető el, amely virtuális gép tooa tartományhoz fog csatlakozni, hello virtuális gép létrehozásakor. 
    
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |
-   | [Egy fejlesztő a Azure DevTest Labs szolgáltatásban labor hozzáadása](devtest-lab-add-devtest-user.md) |Az Azure-portál használatával adja hozzá a fejlesztők a laborkörnyezetben.|
-   | [Adja hozzá a fejlesztők a labor egy PowerShell-parancsfájl használatával](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell) |PowerShell használatával automatizálhatja a labor hozzáadása fejlesztők. |
-   | [Szerezzen be egy hivatkozást a laborkörnyezetben](devtest-lab-faq.md#how-do-i-share-a-direct-link-to-my-lab) |Ismerje meg, hogyan fejlesztők közvetlenül hozzáférhetnek a labor hivatkozáson keresztül.|
+   | [A Azure DevTest Labs szolgáltatásban virtuális hálózat konfigurálása](devtest-lab-configure-vnet.md) |Ismerje meg, hogyan tooconfigure Azure DevTest Labs segítségével a virtuális hálózat hello Azure-portálon.|
+
+6. **Minden egyes fejlesztői hello labor megosztása**
+   
+    Labs közvetlenül elérhető a fejlesztők a megosztott kapcsolaton keresztül. Még nincs toohave az Azure-fiók, mindaddig, amíg azok rendelkeznek egy [Microsoft-fiók](devtest-lab-faq.md#what-is-a-microsoft-account). A fejlesztők más fejlesztők által létrehozott virtuális gépek nem látható.  
+   
+    További hello hivatkozásokat a következő táblázat hello parancsával:
+   
+   | Tevékenység | Ismertetett témák |
+   | --- | --- |
+   | [Fejlesztői tooa labor hozzáadása a Azure DevTest Labs szolgáltatásban](devtest-lab-add-devtest-user.md) |Hello Azure portál tooadd fejlesztők tooyour labor használja.|
+   | [Adja hozzá a fejlesztők toohello tesztlabor egy PowerShell-parancsfájl használatával](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell) |A fejlesztők tooyour labor hozzáadása PowerShell tooautomate használja. |
+   | [Hivatkozás toohello labor beolvasása](devtest-lab-faq.md#how-do-i-share-a-direct-link-to-my-lab) |Ismerje meg, hogyan fejlesztők közvetlenül hozzáférhetnek a labor hivatkozáson keresztül.|
 
 7. **Labor létrehozása a további csapatokra automatizálása** 
    
-    Labor létrehozása, egyéni beállításokat, beleértve a Resource Manager-sablonok létrehozásával, és újra és újra létre azonos labs segítségével automatizálható. 
+    Labor létrehozása, egyéni beállításait, például úgy, hogy a Resource Manager-sablon létrehozása és használata azt újra és újra toocreate azonos labs automatizálható. 
    
-    Az alábbi táblázatban szereplő hivatkozásokra kattintva, ahol további:
+    További hello hivatkozásokat a következő táblázat hello parancsával:
    
    | Tevékenység | Ismertetett témák |
    | --- | --- |

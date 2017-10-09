@@ -1,14 +1,14 @@
-Jelentkezzen be a tartományszolgáltatója webhelyére.
+Jelentkezzen be a tartomány szolgáltató toohello webhelyet.
 
-Keresse meg a DNS-rekordok kezelésére szolgáló oldalt. Minden tartományszolgáltató saját felülettel rendelkezik a DNS-rekordok kezelésére, ezért tekintse meg a szolgáltatói dokumentációt. A webhely **Tartománynév**, **DNS** vagy **Névkiszolgáló kezelése** címkével ellátott területeit keresse. 
+Hello lapon található a következő DNS-rekordok kezelése. Minden tartomány szolgáltató rendelkezik saját DNS rekordok felülettel, ezért tekintse át a hello szolgáltató dokumentációját. Hello hely feliratú területek keressen **tartománynév**, **DNS**, vagy **neve kezelő**. 
 
-A DNS-rekordok oldala gyakran a fiókadatok megtekintésekor jelenik meg, majd itt keresse meg például a **Saját tartományok** hivatkozást. Lépjen erre az oldalra, és keressen egy **Zónafájl**, **DNS-rekordok**, **Speciális konfiguráció** vagy hasonló nevű hivatkozást.
+Gyakran, megtalálhatja hello DNS-rekordok oldalon megtekintésével a fiók adatait, és ezután keres, mint egy hivatkozást **a tartományok**. Lépjen toothat lapra, és keresse meg a hivatkozást, amellyel nevű hasonlót **zónafájl**, **DNS-rekordok**, vagy **speciális konfigurációs**.
 
-A következő képernyőkép egy DNS-rekordokat tartalmazó oldalra mutat példát:
+hello alábbi képernyőfelvételen látható egy példa egy DNS-rekordok oldalon:
 
 ![DNS-rekordokat tartalmazó oldal példája](./media/app-service-web-access-dns-records-no-h/example-record-ui.png)
 
-A példaként szolgáló képernyőképen a **Hozzáadás** lehetőséggel hozhat létre rekordokat. Egyes szolgáltatók eltérő hivatkozásokat használnak a különböző rekordtípusok hozzáadásához. Erről is a szolgáltató dokumentációjában talál további információt.
+Hello példa a képernyőfelvételen látható választja **Hozzáadás** toocreate rekord. Egyes szolgáltatók különböző hivatkozások tooadd különböző rekordtípusokhoz rendelkezik. Ebben az esetben dokumentációjában hello szolgáltató.
 
 > [!NOTE]
-> Bizonyos szolgáltatók (például a GoDaddy) esetében a DNS-rekordok módosításai csak a külön **Módosítások mentése** hivatkozás kiválasztása után lépnek életbe. 
+> Az egyes szolgáltatók, köztük a GoDaddy, módosítások tooDNS rekordok nem érvénybe amíg ki nem választ egy külön **módosítások mentése** hivatkozásra. 

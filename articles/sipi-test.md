@@ -1,6 +1,6 @@
 ---
 title: "Sipi fájl tesztelése |} Microsoft Docs"
-description: "Fájl tesztelése ReadyForTest függőségek ellenőrzése"
+description: "Toocheck ReadyForTest fájlfüggőségek tesztelése"
 services: active-directory-b2c
 documentationcenter: 
 author: Sipi
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/13/2017
 ms.author: Sipi
-ms.openlocfilehash: 871d58818dcbaee5f7a5f07c19e2297ec6459a6f
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: afd3dc94dfb30926b316256fb06a768a391004f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sipi-test-file"></a>Sipi fájl tesztelése
 
-Ez a gyors útmutató pár percben összefoglalja egy alkalmazás regisztrálásának folyamatát egy Microsoft Azure Active Directory (Azure AD) B2C-bérlőben. Az útmutató befejeztével az alkalmazás regisztrálva lesz és használatra készen áll az Azure B2C-bérlőben.
+Ez a gyors útmutató pár percben összefoglalja egy alkalmazás regisztrálásának folyamatát egy Microsoft Azure Active Directory (Azure AD) B2C-bérlőben. Amikor végzett, az alkalmazás regisztrálva van hello Azure B2C-bérlőben.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A felhasználói regisztrációt és bejelentkezést elfogadó alkalmazás létrehozásához először regisztrálnia kell az alkalmazást egy Azure Active Directory B2C-bérlővel. Hozzon létre egy saját bérlőt az [Azure AD B2C bérlő létrehozása](active-directory-b2c-get-started.md) részben ismertetett lépések segítségével.
+a felhasználói regisztrációt és bejelentkezést elfogadó alkalmazás toobuild, először tooregister hello alkalmazás Azure Active Directory B2C-bérlő. Című rész lépéseit hello segítségével könnyebben nyerhet saját bérlőt [az Azure AD B2C bérlő létrehozása](active-directory-b2c-get-started.md).
 
-Az Azure Portal Azure AD B2C paneljén létrehozott alkalmazásokat ugyanarról a helyről kell kezelnie. Ha a B2C-alkalmazásokat a PowerShell vagy egy másik portál használatával szerkeszti, a rendszer nem támogatja többé az alkalmazásokat, és nem fognak működni az Azure AD B2C-vel. További részletek a [hibás alkalmazások](#faulted-apps) szakaszban. 
+Az Azure AD B2C hello panel az hello Azure-portálon létrehozott alkalmazások felügyelni a hello ugyanazon a helyen. Ha manuálisan szerkeszti a PowerShell vagy egy másik portálon hello B2C alkalmazások, nem támogatott lesz, és nem működik együtt az Azure AD B2C. A részleteket a hello [hibát jelzett az alkalmazások](#faulted-apps) szakasz. 
 
-## <a name="navigate-to-b2c-settings"></a>Navigálás a B2C beállításaihoz
+## <a name="navigate-toob2c-settings"></a>Keresse meg a tooB2C beállítások
 
-Jelentkezzen be az [Azure Portalra](https://portal.azure.com/) a B2C-bérlő globális rendszergazdájaként. 
+Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/) , hello hello B2C bérlő globális rendszergazdája. 
 
 [!INCLUDE [active-directory-b2c-switch-b2c-tenant](../includes/active-directory-b2c-switch-b2c-tenant.md)]
 
-Válassza ki a következő lépéseket a regisztrálandó alkalmazás típusától függően:
+Válassza ki a következő lépések regisztrál hello alkalmazás típusától függően:

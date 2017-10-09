@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT-eszközök SDK C-hez |} Microsoft Docs"
-description: "Ismerkedés az Azure IoT-eszközök SDK C-hez, és megtudhatja, hogyan hozzon létre egy IoT-központot kommunikáló eszközön futó alkalmazások."
+title: "aaaThe Azure IoT-eszközök SDK C-hez |} Microsoft Docs"
+description: "Ismerkedés a hello Azure IoT-eszközök SDK C-hez, és megtudhatja, hogyan toocreate eszközeinek alkalmazásait, amely kommunikálni az IoT-központ."
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -14,108 +14,108 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: obloch
-ms.openlocfilehash: 459b630f28fe48064f4ba280974f3fdbdb82f0a6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9e20742e6ea513c124bfaf28f02f6fba86170daf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-device-sdk-for-c"></a>Az Azure IoT-eszközök SDK C-hez
 
-A **Azure IoT-eszközök SDK** úgy tervezték, hogy az üzenetek üzenetek küldése és fogadása egyszerűbbé szalagtárak készlete a **Azure IoT Hub** szolgáltatás. Az SDK-t és egy adott platform célzó eltérő változata van, de ez a cikk ismerteti a **C-hez készült SDK Azure IoT-eszközök**.
+Hello **Azure IoT-eszközök SDK** szalagtárak készlete tervezett toosimplify hello folyamat tooand fogadó üzenetek üzenetet küldeni a hello **Azure IoT Hub** szolgáltatás. SDK-t és egy adott platform célzó hello eltérő változata van, de ez a cikk ismerteti a hello **C-hez készült SDK Azure IoT-eszközök**.
 
-Az Azure IoT-eszközök SDK c ANSI C maximalizálása hordozhatóságát (C99) nyelven van megírva. A szolgáltatás elérhetővé teszi a könyvtárak az való működésre több platformokon és eszközökön, különösen akkor, ha a lemez minimalizálja a szolgáltatást, és memóriaigény prioritását.
+hello Azure IoT-eszközök SDK c ANSI C (C99) toomaximize hordozhatósága nyelven van megírva. A szolgáltatás révén hello szalagtárak jól alkalmazható toooperate több platformokon és eszközökön, különösen akkor, ha minimalizálja a lemez és a memóriaigény prioritását.
 
-Számos platformon, amelyre az SDK-t tesztelték van (lásd: a [Azure IoT eszköz katalógus hitelesített](https://catalog.azureiotsuite.com/) részletekért). Bár ez a cikk a Windows-platformon futó mintakód forgatókönyvek tartalmaz, akkor a jelen cikkben ismertetett kódot megegyezik a támogatott platformok tartományán keresztül.
+Nincsenek mely hello az SDK-t tesztelték platformok széles körének (lásd: hello [Azure IoT eszköz katalógus hitelesített](https://catalog.azureiotsuite.com/) részletekért). Bár ez a cikk a Windows hello platformon futó mintakód forgatókönyvek tartalmaz, akkor hello kód cikkben leírt megegyezik hello támogatott platformok tartományán keresztül.
 
-Ez a cikk bemutatja az Azure IoT-eszközök SDK architektúrája a c kiszolgálóra. Azt mutatja be az eszköz kódtár inicializálása adatokat küldeni az IoT-központ és üzenetek fogadása. A cikkben szereplő információkat kell lennie ahhoz, hogy az SDK használatának első, de a szalagtárakkal kapcsolatos további információkra mutató hivatkozások is biztosít.
+Ez a cikk bemutatja a toohello architektúra az hello Azure IoT-eszközök SDK a c kiszolgálóra. Azt mutatja be, hogyan tooinitialize hello hálózatieszköz-könyvtár adatok tooIoT Hub, üzeneteket küldjön és fogadjon abból. a cikkben szereplő információkat hello legyen elég tooget hello SDK használatának, de hello szalagtárak mutatók tooadditional adatait is tartalmazza.
 
 ## <a name="sdk-architecture"></a>SDK-architektúra
 
-Megtalálhatja az [ **C-hez készült SDK Azure IoT-eszközök** ](https://github.com/Azure/azure-iot-sdk-c) GitHub tárház és nézet adatai az API-nak a [C API-referencia](https://azure.github.io/azure-iot-sdk-c/index.html).
+Hello található [ **C-hez készült SDK Azure IoT-eszközök** ](https://github.com/Azure/azure-iot-sdk-c) hello API hello a GitHub tárház és nézet adatai [C API-referencia](https://azure.github.io/azure-iot-sdk-c/index.html).
 
-A könyvtárak legújabb verziója található a **fő** a tárház főágába:
+hello hello könyvtárak legújabb verziója található hello **fő** hello tárház főágába:
 
   ![](media/iot-hub-device-sdk-c-intro/01-MasterBranch.PNG)
 
-* Az SDK alapvető megvalósítása szerepel a **IOT hubbal\_ügyfél** mappát, amely tartalmazza az SDK-ban a legalacsonyabb API réteg végrehajtásának: a **IoTHubClient** könyvtár. A **IoTHubClient** könyvtár végrehajtási nyers üzenetkezelési üzenetek küldése az IoT-központ és az üzenetek fogadása az IoT-központ API-kat tartalmaz. Ha ezt a szalagtárat, üzenet szerializálási végrehajtásáért felelős, de egyéb adatainak kommunikál az IoT-központ történik meg.
-* A **szerializáló** mappa tartalmazza súgófunkciókat és példák bemutatják a előtt Azure IoT Hub küldése szerializálni az adatokat az ügyféloldali kódtár segítségével. A szerializáló használata nem kötelező, és biztosítja a könnyebb. Használatához a **szerializáló** könyvtár, modell, amely meghatározza az IoT-központ és az üzenetek kap, várhatóan küldött adatok megadása. Ha a modell van definiálva, az SDK-t biztosít, amelynek segítségével egyszerűen dolgozhat eszközről a felhőbe és felhő eszközre üzenetek anélkül, hogy szerializációs részleteinek API felületéhez. A könyvtár más nyílt forráskódú tárak, amelyek megvalósítják az átviteli protokollal például MQTT és AMQP függ.
-* A **IoTHubClient** könyvtár más nyílt forráskódú szalagtárak függ:
-  * A [Azure C megosztott segédprogram](https://github.com/Azure/azure-c-shared-utility) könyvtárban, amely több Azure-hoz kapcsolódó C SDK között szükséges alapvető feladatokhoz (például karakterláncok, lista manipuláció és IO) közös funkciókat biztosít.
-  * A [Azure uAMQP](https://github.com/Azure/azure-uamqp-c) könyvtárban, és azt egy AMQP korlátozott erőforrás eszközök optimalizálva ügyféloldali megvalósítása.
-  * A [Azure uMQTT](https://github.com/Azure/azure-umqtt-c) könyvtárban, amely segíti a MQTT protokoll megvalósítását egy általános célú függvénytár, és korlátozott erőforrás eszközök optimalizálva.
+* hello hello SDK alapvető végrehajtásának van hello **IOT hubbal\_ügyfél** hello legalacsonyabb API réteg hello SDK hello végrehajtásának tartalmazó mappa: hello **IoTHubClient** könyvtárban. Hello **IoTHubClient** könyvtár végrehajtási üzenetek tooIoT Hub üzenetek küldése és fogadása az IoT-központ az üzenetküldési nyers API-kat tartalmaz. Ha ezt a szalagtárat, üzenet szerializálási végrehajtásáért felelős, de egyéb adatainak kommunikál az IoT-központ történik meg.
+* Hello **szerializáló** mappája súgófunkciókat és minták, amelyek bemutatják, hogyan tooserialize adatok küldése a tooAzure IoT Hub használata előtt hello ügyféloldali kódtára tartalmaz. hello szerializáló hello használata nem kötelező, és a könnyebb biztosítja. toouse hello **szerializáló** könyvtár, egy modell, amely meghatározza az adatok toosend tooIoT Hub és hello köszönőüzenetei tooreceive származó várt megadása. Miután hello modell van definiálva, hello SDK használható biztosít, amely lehetővé teszi API felületéhez tooeasily az eszközről a felhőbe, és anélkül, hogy a felhő eszközre üzenetek hello szerializálási részleteit. hello könyvtár más nyílt forráskódú tárak, amelyek megvalósítják az átviteli protokollal például MQTT és AMQP függ.
+* Hello **IoTHubClient** könyvtár más nyílt forráskódú szalagtárak függ:
+  * Hello [Azure C megosztott segédprogram](https://github.com/Azure/azure-c-shared-utility) könyvtárban, amely több Azure-hoz kapcsolódó C SDK között szükséges alapvető feladatokhoz (például karakterláncok, lista manipuláció és IO) közös funkciókat biztosít.
+  * Hello [Azure uAMQP](https://github.com/Azure/azure-uamqp-c) könyvtárban, és azt egy AMQP korlátozott erőforrás eszközök optimalizálva ügyféloldali megvalósítása.
+  * Hello [Azure uMQTT](https://github.com/Azure/azure-umqtt-c) könyvtárba, amely egy általános célú függvénytár végrehajtási hello MQTT protokoll, és korlátozott erőforrás eszközök optimalizálva.
 
-Ezek a könyvtárak használata kódpéldákat megnézzük megérteni. A következő szakaszok végigvezetik Önt az alkalmazásokra, amelyek szerepelnek az SDK számos. Ez a forgatókönyv biztosítani fogja a helyes működését a különböző képességeinek a architekturális rétegek az SDK és az API-k működése bemutatása.
+Ezek a könyvtárak használata könnyebb toounderstand kódpéldákat megnézzük. a következő szakaszok hello végigvezetik Önt hello alkalmazásokra, amelyek szerepelnek a hello SDK számos. Ez a forgatókönyv adjon meg helyes érzi, hogy a hello hello architekturális rétegek hello SDK és az API-k működnek bemutatása toohow hello különböző képességeire.
 
-## <a name="before-you-run-the-samples"></a>A minták futtatása előtt
+## <a name="before-you-run-hello-samples"></a>Mielőtt újra lefuttatja hello minták
 
-A minták c futtathatja az Azure IoT-eszközök SDK, előtt [hozzon létre egy példányt az IoT-központ szolgáltatás](iot-hub-create-through-portal.md) az Azure-előfizetésben. Fejezze be a következő feladatokat:
+Hello Azure IoT-eszközök SDK hello minták c futtathat, előtt [hello IoT-központ szolgáltatás példányának létrehozása](iot-hub-create-through-portal.md) az Azure-előfizetésben. Fejezze be a következő feladatok hello:
 
 * A fejlesztőkörnyezet előkészítése
 * Szerezze be a hitelesítő adatai.
 
 ### <a name="prepare-your-development-environment"></a>A fejlesztőkörnyezet előkészítése
 
-Csomagok (például NuGet Windows vagy apt_get Debian és Ubuntu) közös platformok kapnak, és a minták használja ezeket a csomagokat, ha elérhető. Bizonyos esetekben kell lefordítani az SDK-t a vagy az eszközön. Ha az SDK fordítási szüksége, tekintse meg [a fejlesztőkörnyezet előkészítése](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md) a GitHub-tárházban.
+Csomagok (például NuGet Windows vagy apt_get Debian és Ubuntu) közös platformok kapnak, és hello minták használja ezeket a csomagokat, ha elérhető. Bizonyos esetekben kell toocompile hello SDK számára, vagy az eszközön. Ha toocompile hello SDK van szüksége, tekintse meg [a fejlesztőkörnyezet előkészítése](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md) hello GitHub-tárházban.
 
-A minta alkalmazáskód beszerzéséhez töltse le az SDK-t a Githubról. A forrás a példányt a **fő** ága a [GitHub-tárházban](https://github.com/Azure/azure-iot-sdk-c).
+tooobtain hello alkalmazás kódmintában letöltési hello SDK a Githubon verzióját. Hello forrás példányának lekérése hello **fő** hello ága [GitHub-tárházban](https://github.com/Azure/azure-iot-sdk-c).
 
 
-### <a name="obtain-the-device-credentials"></a>Szerezze be a hitelesítő adatai
+### <a name="obtain-hello-device-credentials"></a>Hello eszköz hitelesítő adatok beszerzése
 
-Most, hogy a forrás mintakód, a következő lépés az eszköz hitelesítő adatokat lekérni. Az eszközök hozzáférhetnek az IoT-központ először hozzá kell az eszközt biztosít az IoT-központ identitásjegyzékhez. Az eszköz hozzáadásakor le, amelyekre szüksége van az eszköz kell kapcsolódnia kell az IoT hub eszköz hitelesítő adatokat. A következő szakaszban tárgyalt mintaalkalmazások ezeket a hitelesítő adatokat várt formájában egy **eszköz kapcsolati karakterlánc**.
+Most, hogy hello minta forráskódját, hello következő lépésként toodo tooget eszköz hitelesítő adatokat. Egy eszköz toobe képes tooaccess az IoT-központ, a hozzá kell adnia hello eszköz toohello IoT-központ identitásjegyzékhez. Az eszköz hozzáadásakor kap az hello eszköz toobe képes tooconnect toohello IoT-központ szükséges eszköz hitelesítő adatokat. hello a következő szakaszban tárgyalt hello mintaalkalmazások ezeket a hitelesítő adatokat várt hello formája egy **eszköz kapcsolati karakterlánc**.
 
-Számos nyílt forráskódú eszköz kezeléséhez az IoT hub van.
+Számos nyílt forráskódú eszközök toohelp kezelheti az IoT hub van.
 
 * Egy nevű Windows-alkalmazás [eszköz explorer](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer).
 * A platformok közötti node.js parancssori eszköz neve [IOT hubbal-explorer](https://github.com/azure/iothub-explorer).
 
-Ez az oktatóanyag használja a grafikus *eszköz explorer* eszköz. Használhatja a *IOT hubbal-explorer* eszköze, ha szeretné használni a parancssori eszköz.
+Ez az oktatóanyag használja grafikus hello *eszköz explorer* eszköz. Is használhatja a hello *IOT hubbal-explorer* eszköze, ha jobban szeret toouse parancssori eszközt.
 
-Az eszköz explorer eszközt az Azure IoT szolgáltatás-tárakat használ az IoT-központ, beleértve az eszközök különféle funkciók elvégzésére. Ha az eszköz explorer eszköz segítségével hozzáad egy eszközt, az eszközhöz kapott egy kapcsolati karakterláncot. Ez a kapcsolati karakterlánc a minta-alkalmazások futtatására van szüksége.
+hello eszköz explorer eszköz különböző funkciókat használ hello Azure IoT szolgáltatás szalagtárak tooperform az IoT-központot, beleértve az eszközök. Hello eszköz explorer eszköz tooadd eszköz használatakor az eszközhöz kapott egy kapcsolati karakterláncot. A kapcsolati karakterlánc toorun hello mintaalkalmazások van szüksége.
 
-Ha nem ismeri az eszköz explorer eszközzel, az alábbi eljárás ismerteti, hogyan használhatja hozzáad egy eszközt, és szerezze be az eszköz kapcsolati karakterláncot.
+Ha nem ismeri a hello eszköz explorer eszközzel, a következő eljárás hello ismerteti hogyan toouse azt tooadd egy eszköz, és szerezze be az eszköz kapcsolati karakterláncot.
 
-Az eszköz explorer eszköz telepítéséhez tekintse át [az IoT Hub-eszközöknek eszköz kezelővel](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer).
+tooinstall hello eszköz explorer eszköz, lásd: [toouse hogyan eszköz Explorer hello IoT Hub-eszközöknek](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer).
 
-Amikor futtatja a programot, ez az interfész jelenik meg:
+Hello program futtatásakor ez az interfész jelenik meg:
 
   ![](media/iot-hub-device-sdk-c-intro/03-DeviceExplorer.PNG)
 
-Adja meg a **IoT Hub kapcsolati karakterlánc** a első mezőben, majd kattintson a **frissítés**. Ebben a lépésben konfigurálja az eszközt, hogy kommunikáljon az IoT-központ.
+Adja meg a **IoT Hub kapcsolati karakterlánc** hello az első mezőben, majd kattintson **frissítés**. Ez a lépés hello eszköz konfigurálja, hogy kommunikáljon az IoT-központ.
 
-Az IoT-központ kapcsolati karakterlánc konfigurálását, kattintson a **felügyeleti** lapon:
+Az IoT-központ kapcsolati karakterlánc hello konfigurálását, kattintson hello **felügyeleti** lapon:
 
   ![](media/iot-hub-device-sdk-c-intro/04-ManagementTab.PNG)
 
-Ez a lap majdnem, amelyeken kezelheti az IoT hub-ben regisztrált eszközök.
+Ez a lap majdnem, amelyeken kezelheti az IoT hub-ben regisztrált hello eszközök.
 
-Egy eszköz kattintva hozhat létre a **létrehozása** gombra. Olyan előre megadott kulcsokat (elsődleges és másodlagos) egy párbeszédpanelt jelenít meg. Adjon meg egy **Eszközazonosító** majd **létrehozása**.
+Hello kattintva hozhat létre egy eszköz **létrehozása** gombra. Olyan előre megadott kulcsokat (elsődleges és másodlagos) egy párbeszédpanelt jelenít meg. Adjon meg egy **Eszközazonosító** majd **létrehozása**.
 
   ![](media/iot-hub-device-sdk-c-intro/05-CreateDevice.PNG)
 
-Amikor az eszköz jön létre, az eszközök frissítések a regisztrált eszközökkel, beleértve a most létrehozott egy listán. Az új eszköz a jobb gombbal, az ebben a menüben jelenik meg:
+Hello eszköz létrehozásakor hello eszközök frissítések minden hello regisztrált eszközökkel, például egy újonnan létrehozott hello listában. Az új eszköz a jobb gombbal, az ebben a menüben jelenik meg:
 
   ![](media/iot-hub-device-sdk-c-intro/06-RightClickDevice.PNG)
 
-Ha úgy dönt, **másolja a kijelölt eszközre vonatkozóan a kapcsolati karakterlánc**, az eszköz kapcsolati karakterláncot a vágólapra másolódik. Tartsa meg az eszköz kapcsolati karakterlánc másolatát. Meg kell az alábbi szakaszokban ismertetett mintaalkalmazások futtatásakor.
+Ha úgy dönt, **másolja a kijelölt eszközre vonatkozóan a kapcsolati karakterlánc**, hello eszköz kapcsolati karakterláncot a vágólapra másolt toohello. Hello eszköz kapcsolati karakterlánc egy példányát megőrizni. Meg kell hello a következő részekben leírt hello mintaalkalmazások futtatásakor.
 
-A fenti lépések végrehajtását, készen áll arra, hogy elindítsa néhány kódot. Mindkét minták állandó rendelkezik, amely lehetővé teszi, hogy adjon meg egy kapcsolati karakterláncot fő forrásfájl tetején. Például a megfelelő sor a **IOT hubbal\_ügyfél\_minta\_mqtt** alkalmazás a következőképpen jelenik meg.
+Hello fenti lépések végrehajtását, hamarosan kész toostart bizonyos kód futtatásával. Mindkét minták állandó rendelkezik, amely lehetővé teszi egy kapcsolati karakterláncot tooenter hello fő forrásfájl hello tetején. Például a megfelelő sor a hello hello **IOT hubbal\_ügyfél\_minta\_mqtt** alkalmazás a következőképpen jelenik meg.
 
 ```c
 static const char* connectionString = "[device connection string]";
 ```
 
-## <a name="use-the-iothubclient-library"></a>A IoTHubClient könyvtárban
+## <a name="use-hello-iothubclient-library"></a>Hello IoTHubClient könyvtárban
 
-Belül a **IOT hubbal\_ügyfél** mappájában a [azure iot-sdk--c](https://github.com/azure/azure-iot-sdk-c) -tárházban, van egy **minták** nevű mappát, amely tartalmazza az alkalmazás **IOT hubbal\_ügyfél\_minta\_mqtt**.
+Hello belül **IOT hubbal\_ügyfél** hello mappájában [azure iot-sdk--c](https://github.com/azure/azure-iot-sdk-c) -tárházban, van egy **minták** mappába, amelyben egy alkalmazás nevű **IOT hubbal\_ügyfél\_minta\_mqtt**.
 
-A Windows-verzión a **IOT hubbal\_ügyfél\_minta\_mqtt** alkalmazás tartalmazza a következő Visual Studio megoldás:
+Windows-verzión hello hello **IOT hubbal\_ügyfél\_minta\_mqtt** alkalmazás tartalmazza a Visual Studio megoldás a következő hello:
 
   ![](media/iot-hub-device-sdk-c-intro/12-iothub-client-sample-mqtt.PNG)
 
 > [!NOTE]
-> Ha megnyitja a projektet a Visual Studio 2017, fogadja el az utasításokat a legújabb verzióra a projekt átirányítása.
+> Ha megnyitja a projektet a Visual Studio 2017, fogadja el a hello kér tooretarget hello projekt toohello legújabb verziójára.
 
 Ez a megoldás egyetlen projektet tartalmaz. Nincsenek telepítve az ebben a megoldásban négy NuGet-csomagok:
 
@@ -124,18 +124,18 @@ Ez a megoldás egyetlen projektet tartalmaz. Nincsenek telepítve az ebben a meg
 * Microsoft.Azure.IoTHub.IoTHubClient
 * Microsoft.Azure.umqtt
 
-Mindig van szüksége a **Microsoft.Azure.C.SharedUtility** csomag, amikor az SDK kezel. Ez a minta a MQTT protokollt használja, ezért meg kell adni a **Microsoft.Azure.umqtt** és **Microsoft.Azure.IoTHub.MqttTransport** csomagok (van egyenértékű csomagjai amqp-t és HTTP). Mivel a mintát használ a **IoTHubClient** könyvtár, fel kell venni a **Microsoft.Azure.IoTHub.IoTHubClient** csomag a megoldásban.
+Folyamatosan hello **Microsoft.Azure.C.SharedUtility** amikor dolgozunk hello SDK csomagot. Ez a minta hello MQTT protokollt használja, ezért meg kell adni hello **Microsoft.Azure.umqtt** és **Microsoft.Azure.IoTHub.MqttTransport** (nincsenek egyenértékű csomagok AMQP és HTTP csomagok ). Mivel hello mintát használ hello **IoTHubClient** könyvtár, is magában kell foglalnia hello **Microsoft.Azure.IoTHub.IoTHubClient** csomag a megoldásban.
 
-A mintaalkalmazáshoz végrehajtására is megtalálhatja a **IOT hubbal\_ügyfél\_minta\_mqtt.c** forrásfájl.
+Hello megvalósítási hello mintaalkalmazás hello található **IOT hubbal\_ügyfél\_minta\_mqtt.c** forrásfájl.
 
-Az alábbi lépéseket a mintaalkalmazás segítségével végigvezetik mi van kell használniuk a **IoTHubClient** könyvtárban.
+hello következő lépések használják a minta alkalmazás toowalk le toouse hello mi szükséges a **IoTHubClient** könyvtárban.
 
-### <a name="initialize-the-library"></a>A kódtár inicializálása
+### <a name="initialize-hello-library"></a>Hello kódtár inicializálása
 
 > [!NOTE]
-> A könyvtárakkal használatának megkezdése, előtt szükség lehet néhány platform-specifikus inicializálási végrehajtásához. Például ha AMQP használatához Linux inicializálja a OpenSSL-könyvtárban. A minták a [GitHub-tárházban](https://github.com/Azure/azure-iot-sdk-c) segédprogram függvény **platform\_init** mikor az ügyfél elindul, és hívja meg a **platform\_deinit** függvény való kilépés előtt. Ezek a funkciók platform.h fejlécfájlt van deklarálva. Ezeket a funkciókat a célplatformot a definíciók vizsgálja meg a [tárház](https://github.com/Azure/azure-iot-sdk-c) annak meghatározásához, hogy szükséges-e a platform-specifikus inicializálási kód szerepeljenek az ügyfél.
+> Mielőtt az hello szalagtárak használatának megkezdése, szükséges tooperform néhány platform-specifikus inicializálása. Ha azt tervezi, toouse AMQP Linux például kell hello OpenSSL kódtár inicializálása. hello minták hello [GitHub-tárházban](https://github.com/Azure/azure-iot-sdk-c) hello segédprogram függvény **platform\_init** amikor hello ügyfél elindul, és hívja meg hello **platform\_deinit**  függvény való kilépés előtt. Ezek a funkciók hello platform.h fejlécfájlt van deklarálva. Vizsgálja meg ezeket a funkciókat a célplatformot a hello hello definíciók [tárház](https://github.com/Azure/azure-iot-sdk-c) toodetermine e szükséges tooinclude bármely platform-specifikus inicializálási kód az ügyfél.
 
-A könyvtárakkal elindításához foglaljon le egy IoT-központ ügyfél leíró:
+hello könyvtárakkal toostart először lefoglalni egy IoT-központ ügyfél leíró:
 
 ```c
 if ((iotHubClientHandle = IoTHubClient_LL_CreateFromConnectionString(connectionString, MQTT_Protocol)) == NULL)
@@ -147,16 +147,16 @@ else
     ...
 ```
 
-Adja meg az eszköz kapcsolati karakterlánc szerezte be az eszköz explorer eszközből a függvény egy példányát. Is megjelölhetők használt kommunikációs protokollt. Ez a példa MQTT, de amqp-t és HTTP is lehetősége.
+Hello eszköz kapcsolati karakterláncot kapott, hello eszköz explorer eszköz toothis függvény másolatát át. Is megjelölhetők hello kommunikációs protokollt toouse. Ez a példa MQTT, de amqp-t és HTTP is lehetősége.
 
-Ha rendelkezik olyan érvényes **IOT HUBBAL\_ügyfél\_KEZELNI**, megkezdheti a hívja az API-k és az IoT-központ üzeneteket küldjön és fogadjon.
+Ha rendelkezik olyan érvényes **IOT HUBBAL\_ügyfél\_KEZELNI**, hívja az API-k toosend hello elindíthatja és tooand üzenetek fogadása az IoT-központ.
 
 ### <a name="send-messages"></a>Üzenetek küldése
 
-A mintaalkalmazás üzeneteket küldhet az IoT hub beállítja a hurok. A következő kódrészletet:
+hello mintaalkalmazás állít be egy hurok toosend üzenetek tooyour IoT-központot. a következő kódrészletet hello:
 
 - Létrehoz egy üzenetet.
-- Tulajdonság hozzáadása az üzenetet.
+- Hozzáad egy tulajdonság toohello üzenetet.
 - Üzenet küldése.
 
 Először hozzon létre egy üzenetet:
@@ -188,7 +188,7 @@ do
             }
             else
             {
-                (void)printf("IoTHubClient_LL_SendEventAsync accepted message [%d] for transmission to IoT Hub.\r\n", (int)iterator);
+                (void)printf("IoTHubClient_LL_SendEventAsync accepted message [%d] for transmission tooIoT Hub.\r\n", (int)iterator);
             }
         }
     }
@@ -199,7 +199,7 @@ do
 } while (g_continueRunning);
 ```
 
-Minden alkalommal, amikor egy üzenetet küld, meg kell adnia egy hivatkozást egy visszahívási függvény, amelyet az adatok elküldése során. Ebben a példában a visszahívási függvény hívása esetén **SendConfirmationCallback**. Az alábbi kódrészletben láthatja a visszahívási függvény:
+Minden alkalommal, amikor egy üzenetet küld, meg kell adnia egy referencia tooa visszahívási függvény hello adatküldést hív meg. Ebben a példában a hello visszahívási függvény hívása esetén **SendConfirmationCallback**. a következő kódrészletet hello a visszahívási függvény jeleníti meg:
 
 ```c
 static void SendConfirmationCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCallback)
@@ -212,11 +212,11 @@ static void SendConfirmationCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, v
 }
 ```
 
-Vegye figyelembe a hívást a **IoTHubMessage\_Destroy** működik, ha az üzenettel elkészült. Ez a funkció ennyi helyet szabadít a feladatoknak az üzenet létrehozásakor.
+Vegye figyelembe a hello hívás toohello **IoTHubMessage\_Destroy** működik, ha üdvözlőüzenetére végzett. Ez a funkció ennyi helyet szabadít hello erőforrások lefoglalt üdvözlőüzenetére létrehozásakor.
 
 ### <a name="receive-messages"></a>Hibaüzenetek
 
-Egy üzenet fogadását egy aszinkron művelet. Először regisztrálnia a visszahívás meghívni, amikor az eszköz egy üzenetet kapja:
+Egy üzenet fogadását egy aszinkron művelet. Először hello visszahívási tooinvoke regisztrálása, amikor hello eszköz üzenetet kapja:
 
 ```c
 if (IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, ReceiveMessageCallback, &receiveContext) != IOTHUB_CLIENT_OK)
@@ -229,13 +229,13 @@ else
 ...
 ```
 
-Az utolsó paramétere "void" mutató függetlenül szeretné. A minta egész mutató, de akkor lehet, hogy olyan összetettebb adatszerkezet mutató hivatkozások. Ez a paraméter lehetővé teszi, hogy működik a funkció a hívó rendelkező megosztott állapot visszahívási függvényt.
+hello utolsó paraméter értéke a "void" mutató toowhatever szeretné. Hello mintát, az egész számnak mutató tooan is, de ez lehet egy mutató tooa összetettebb adatstruktúra. Ez a paraméter lehetővé teszi, hogy a hello visszahívási függvény toooperate a függvény hello hívó rendelkező megosztott állapot.
 
-Amikor az eszköz üzenetet kap, a regisztrált visszahívási függvényt hívják. A visszahívási függvény kéri le:
+Hello eszköz üzenetet kap, amikor hello regisztrált visszahívási függvényt hívják. A visszahívási függvény kéri le:
 
-* Üzenet azonosítója és az üzenet korrelációs azonosítója.
-* Az üzenet tartalmát.
-* Az üzenet egyéni tulajdonságokat.
+* hello üzenetazonosítója és hello üzenet korrelációs azonosítója.
+* hello üzenet tartalma.
+* Egyéni tulajdonságok hello üzenetből.
 
 ```c
 static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -261,19 +261,19 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
     // Message content
     if (IoTHubMessage_GetByteArray(message, (const unsigned char**)&buffer, &size) != IOTHUB_MESSAGE_OK)
     {
-        (void)printf("unable to retrieve the message data\r\n");
+        (void)printf("unable tooretrieve hello message data\r\n");
     }
     else
     {
         (void)printf("Received Message [%d]\r\n Message ID: %s\r\n Correlation ID: %s\r\n Data: <<<%.*s>>> & Size=%d\r\n", *counter, messageId, correlationId, (int)size, buffer, (int)size);
-        // If we receive the work 'quit' then we stop running
+        // If we receive hello work 'quit' then we stop running
         if (size == (strlen("quit") * sizeof(char)) && memcmp(buffer, "quit", size) == 0)
         {
             g_continueRunning = false;
         }
     }
 
-    // Retrieve properties from the message
+    // Retrieve properties from hello message
     mapProperties = IoTHubMessage_Properties(message);
     if (mapProperties != NULL)
     {
@@ -302,34 +302,34 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT ReceiveMessageCallback(IOTHUB_MESSAGE_HA
 }
 ```
 
-Használja a **IoTHubMessage\_GetByteArray** működnek, mint az üzenet, amely ebben a példában a karakterlánc beolvasása.
+Használjon hello **IoTHubMessage\_GetByteArray** függvény tooretrieve hello üzenet, amely ebben a példában a karakterlánc.
 
-### <a name="uninitialize-the-library"></a>A könyvtár meghívná
+### <a name="uninitialize-hello-library"></a>Meghívná hello könyvtár
 
-Amikor elkészült, eseményeket küldő és fogadó üzenetek, akkor is meghívná az IoT-könyvtárban. Ehhez adja ki a következő függvény hívásához szükséges:
+Ha elkészült a küldő események, és fogadja az üzeneteket, hello IoT könyvtár is meghívná. toodo Igen, a következő függvény hívásához szükséges hello adja ki:
 
 ```
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-Ez a hívás területet szabadít fel az erőforrások korábban le van foglalva a **IoTHubClient\_CreateFromConnectionString** függvény.
+A hívás szabaddá korábban le van foglalva hello hello erőforrások **IoTHubClient\_CreateFromConnectionString** függvény.
 
-Ahogy látja, nem az üzeneteket küldjön és fogadjon a **IoTHubClient** könyvtárban. A könyvtár kommunikál az IoT-központot, beleértve a használandó protokoll részleteit kezeli (a fejlesztői szempontjából, ez a lehetőség egy egyszerű konfiguráció).
+Ahogy látja, könnyen toosend és üzenetek fogadása az hello **IoTHubClient** könyvtárban. hello könyvtár kezeli az IoT-központot, mely protokoll toouse beleértve folytatott kommunikáció hello részleteit (hello fejlesztői hello szempontjából, ez a lehetőség egy egyszerű konfiguráció).
 
-A **IoTHubClient** kódtár is biztosít a pontos szabályozhatják, hogyan kell szerializálni az adatokat az IoT-központ küld az eszköz. Egyes esetekben ez az érték előnyös, de más nem kívánt az érintett megvalósításához tartozó részlet. Ha ez a helyzet, akkor érdemes használatával a **szerializáló** függvénytár, amely a következő szakaszban ismertetett.
+Hello **IoTHubClient** kódtár is biztosít a pontos szabályozhatják, hogyan tooserialize hello adatok az eszköz küld tooIoT központ. Egyes esetekben ez az érték előnyös, de az mások számára nem szeretné, hogy az érintett toobe egy megvalósítási részletek is. Ha hello esetben érdemes, a hello **szerializáló** hello a következő szakaszban ismertetett könyvtárban.
 
-## <a name="use-the-serializer-library"></a>A szerializáló könyvtárban
+## <a name="use-hello-serializer-library"></a>Hello szerializáló könyvtárban
 
-Hasonlóak a **szerializáló** könyvtár helyezkedik el, a a **IoTHubClient** könyvtár az SDK-ban. Használja a **IoTHubClient** könyvtár az IoT-központ, de a mögöttes kommunikáció hozzáadja az terheket üzenet szerializálási való eltávolításához a fejlesztőtől származó modellezési képességekkel. Hogyan a szalagtár works legjobb bemutatott példa szerint.
+Fogalmilag hello **szerializáló** könyvtárban található fölött hello **IoTHubClient** hello SDK szalagtár. Hello használ **IoTHubClient** könyvtár a kommunikáció az IoT-központ, de a mögöttes hello hello terheket üzenet szerializálási való eltávolításához hello fejlesztőtől származó modellezési lényeges képességét biztosítja. Hogyan a szalagtár works legjobb bemutatott példa szerint.
 
-Belül a **szerializáló** mappájában a [azure iot-sdk--c tárház](https://github.com/Azure/azure-iot-sdk-c), van egy **minták** nevű mappát, amely tartalmazza az alkalmazás **simplesample\_mqtt**. Ez a minta Windows verziója a következő Visual Studio megoldás tartalmazza:
+Belső hello **szerializáló** hello mappájában [azure iot-sdk--c tárház](https://github.com/Azure/azure-iot-sdk-c), van egy **minták** nevű mappát, amely tartalmazza az alkalmazás **simplesample \_mqtt**. Ez a minta hello Windows verzió magában foglalja a Visual Studio megoldás a következő hello:
 
   ![](media/iot-hub-device-sdk-c-intro/14-simplesample_mqtt.PNG)
 
 > [!NOTE]
-> Ha megnyitja a projektet a Visual Studio 2017, fogadja el az utasításokat a legújabb verzióra a projekt átirányítása.
+> Ha megnyitja a projektet a Visual Studio 2017, fogadja el a hello kér tooretarget hello projekt toohello legújabb verziójára.
 
-A fenti példában az a több NuGet-csomagok foglalja magában:
+Csakúgy, mint a korábbi minta hello, ez egy több NuGet-csomagot tartalmazza:
 
 * Microsoft.Azure.C.SharedUtility
 * Microsoft.Azure.IoTHub.MqttTransport
@@ -337,15 +337,15 @@ A fenti példában az a több NuGet-csomagok foglalja magában:
 * Microsoft.Azure.IoTHub.Serializer
 * Microsoft.Azure.umqtt
 
-Most láthatta, ezeket a csomagokat az előző minta a legtöbb, de **Microsoft.Azure.IoTHub.Serializer** új. Ez a csomag szükséges használata esetén a **szerializáló** könyvtár.
+Most láthatta, ezeket a csomagokat hello korábbi minta a legtöbb, de **Microsoft.Azure.IoTHub.Serializer** új. Ez a csomag szükséges használata esetén hello **szerializáló** könyvtár.
 
-A mintaalkalmazáshoz végrehajtásának megtalálhatja a **simplesample\_mqtt.c** fájlt.
+Hello mintaalkalmazás hello végrehajtásának hello található **simplesample\_mqtt.c** fájlt.
 
-A következő szakaszok ismerteti a minta kulcs részei között.
+hello alábbiakban ismerteti a minta hello kulcs részei között.
 
-### <a name="initialize-the-library"></a>A kódtár inicializálása
+### <a name="initialize-hello-library"></a>Hello kódtár inicializálása
 
-A munka megkezdéséhez a **szerializáló** könyvtár, hívja az API-k inicializálása:
+hello használata toostart **szerializáló** könyvtár, hívás hello inicializálási API-kat:
 
 ```c
 if (serializer_init(NULL) != SERIALIZER_OK)
@@ -374,13 +374,13 @@ else
 ...
 ```
 
-A hívás a **szerializáló\_init** függvény egyszeri hívás és inicializálja az alapul szolgáló könyvtár. Ezután meghívja a **IoTHubClient\_inden\_CreateFromConnectionString** -függvény, mint az azonos API a **IoTHubClient** minta. Ez a hívás beállítja az eszköz kapcsolati karakterlánc (Ez a hívás is, ha úgy dönt, hogy a protokoll használni kívánt). Ez a minta MQTT használja, mint az átvitel, de AMQP vagy HTTP használhatja.
+hello hívás toohello **szerializáló\_init** függvény egyszeri hívás és inicializál hello alapul szolgáló könyvtár. Ezután meghívja a hello **IoTHubClient\_inden\_CreateFromConnectionString** függvénynek, amely van hello hello hasonlóan azonos API **IoTHubClient** minta. Ez a hívás beállítja az eszköz kapcsolati karakterlánc (Ez a hívás is, ha úgy dönt, hogy hello protokoll toouse szeretné). Ez a minta hello átvitelhez MQTT használ, de AMQP vagy HTTP.
 
-Végezetül hívja a **létrehozása\_MODELL\_példány** függvény. **WeatherStation** a modell névtere és **ContosoAnemometer** a modell neve. A modell-példány létrehozása után üzenetek küldése és fogadása indításához használhatja. Fontos azonban megérteni milyen modell.
+Végezetül hívás hello **létrehozása\_MODELL\_példány** függvény. **WeatherStation** hello névtér hello modell és **ContosoAnemometer** hello modell hello neve van. Hello modell példány létrehozása után is használhatja az üzenetek toostart küldése és fogadása. Azt azonban fontos toounderstand milyen modell.
 
-### <a name="define-the-model"></a>A modell meghatározása
+### <a name="define-hello-model"></a>Hello modellt
 
-Egy modell a(z) a **szerializáló** könyvtár határozza meg, az üzenetek, amely az eszköz küldhet az IoT-központ és az üzenetek, az úgynevezett *műveletek* megkaphatja a modellezési nyelven. A modell és a C makrók használatával megadhatja a **simplesample\_mqtt** mintaalkalmazást:
+Egy modell a(z) hello **szerializáló** könyvtár határozza meg, amely az eszköz küld tooIoT Hub és hello nevezett üzenetváltással kezdődnek, köszönőüzenetei *műveletek* hello modellezési nyelv, amely fogadja a. A modellek, mint hello C makrók használatával meghatározásához **simplesample\_mqtt** mintaalkalmazást:
 
 ```c
 BEGIN_NAMESPACE(WeatherStation);
@@ -396,29 +396,29 @@ WITH_ACTION(SetAirResistance, int, Position)
 END_NAMESPACE(WeatherStation);
 ```
 
-A **MEGKEZDÉSÉHEZ\_NÉVTÉR** és **END\_NÉVTÉR** makrók is igénybe vehet a névtér a modell argumentumként. Valószínű, hogy bármi ezek makrók között-e a modell vagy modellek és a adatstruktúrák, amelyek a modellek.
+Hello **MEGKEZDÉSÉHEZ\_NÉVTÉR** és **END\_NÉVTÉR** mindkét makrók hello névtér hello modell argumentumként igénybe vehet. Valószínű, hogy semmit, ezek a makrók között-e a modell vagy a modellek és a hello adatstruktúrák hello modellek használó hello meghatározása.
 
-Ebben a példában nincs nevű egyetlen modellt **ContosoAnemometer**. Ez a modell határozza meg, amely az eszköz küldhet az IoT-központ adatok kétféle: **DeviceId** és **szélsebesség**. Az eszköz megkaphatja három műveleteket (üzenet) is definiálja: **TurnFanOn**, **TurnFanOff**, és **SetAirResistance**. Minden adatelemre típussal rendelkezik, és minden művelet nevét (és nem kötelező paraméterek).
+Ebben a példában nincs nevű egyetlen modellt **ContosoAnemometer**. Ez a modell határozza meg, hogy az eszköz küldhet tooIoT Hub adatok kétféle: **DeviceId** és **szélsebesség**. Az eszköz megkaphatja három műveleteket (üzenet) is definiálja: **TurnFanOn**, **TurnFanOff**, és **SetAirResistance**. Minden adatelemre típussal rendelkezik, és minden művelet nevét (és nem kötelező paraméterek).
 
-Az adatok és a modellben definiált műveletek határozza meg, hogy üzeneteket küldhet IoT-központot, és az eszközre küldött üzenetek válaszol API felületéhez. Ez a modell használatának legjobb értendő egy példán keresztül.
+hello adatok és a hello modellben definiált műveletek határozza meg, hogy toosend üzenetek tooIoT Hub használja, és beállíthatja küldött toomessages toohello eszköz válaszára API felületéhez. Ez a modell használatának legjobb értendő egy példán keresztül.
 
 ### <a name="send-messages"></a>Üzenetek küldése
 
-A modell határozza meg az IoT-központ küldhet adatokat. Ebben a példában, hogy azt jelenti, hogy egy, a két adatelemek segítségével meghatározott a **WITH_DATA** makró. Nincs több lépésre van szükség a küldési **DeviceId** és **szélsebesség** az IoT-központ értékeket. Az első is, hogy az adatokat szeretne küldeni:
+hello modell hello adatokat küldhet a központ tooIoT határozza meg. Ebben a példában, amely azt jelenti, hogy egy hello hello segítségével meghatározott két adatelemek **WITH_DATA** makró. Van több lépéseket szükséges toosend **DeviceId** és **szélsebesség** értékek tooan IoT-központot. hello először tooset hello adatokat toosend:
 
 ```c
 myWeather->DeviceId = "myFirstDevice";
 myWeather->WindSpeed = avgWindSpeed + (rand() % 4 + 2);
 ```
 
-A korábban meghatározott modell lehetővé teszi, hogy meg kell adnia az értékeket úgy, hogy tagjai egy **struct**. A következő szerializálni az üzenetet szeretne küldeni:
+hello korábban meghatározott modell lehetővé teszi tooset hello értékek úgy, hogy tagjai egy **struct**. A következő szerializálni kívánt toosend üdvözlőüzenetére:
 
 ```c
 unsigned char* destination;
 size_t destinationSize;
 if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->WindSpeed) != CODEFIRST_OK)
 {
-    (void)printf("Failed to serialize\r\n");
+    (void)printf("Failed tooserialize\r\n");
 }
 else
 {
@@ -427,7 +427,7 @@ else
 }
 ```
 
-Ezt a kódot az eszközről-a-felhőbe a pufferbe rendezi sorba (által hivatkozott **cél**). A kódot, majd meghívja a **sendMessage** függvény az üzenetet az IoT hubhoz:
+Ez a kód rendezi sorba hello eszközről a felhőbe tooa puffer (által hivatkozott **cél**). hello kódot, majd meghívja hello **sendMessage** toosend hello üzenet tooIoT Központ működéséhez:
 
 ```c
 static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
@@ -436,17 +436,17 @@ static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsign
     IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray(buffer, size);
     if (messageHandle == NULL)
     {
-        printf("unable to create a new IoTHubMessage\r\n");
+        printf("unable toocreate a new IoTHubMessage\r\n");
     }
     else
     {
         if (IoTHubClient_LL_SendEventAsync(iotHubClientHandle, messageHandle, sendCallback, (void*)(uintptr_t)messageTrackingId) != IOTHUB_CLIENT_OK)
         {
-            printf("failed to hand over the message to IoTHubClient");
+            printf("failed toohand over hello message tooIoTHubClient");
         }
         else
         {
-            printf("IoTHubClient accepted the message for delivery\r\n");
+            printf("IoTHubClient accepted hello message for delivery\r\n");
         }
         IoTHubMessage_Destroy(messageHandle);
     }
@@ -455,7 +455,7 @@ static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const unsign
 ```
 
 
-A második utolsó paraméterének **IoTHubClient\_inden\_SendEventAsync** hivatkozás a visszahívási függvénynek, amely nevezzük, amikor az adatok elküldése megtörtént. Itt kell megadni a visszahívási függvény a minta:
+második toolast paramétere hello **IoTHubClient\_inden\_SendEventAsync** hivatkozás tooa visszahívási függvény nevezzük, amikor hello adatok elküldése megtörtént. Íme hello visszahívási függvény hello mintában:
 
 ```c
 void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCallback)
@@ -468,25 +468,25 @@ void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCal
 }
 ```
 
-A második paraméter mutató felhasználói környezet; az azonos kapott **IoTHubClient\_inden\_SendEventAsync**. Ebben az esetben a környezetben egy egyszerű számlálót, de bármilyen lehet.
+hello második paramétere mutató toouser kontextusban; azonos kapott túl hello**IoTHubClient\_inden\_SendEventAsync**. Ebben az esetben hello környezetben egy egyszerű számlálót, de bármilyen lehet.
 
-Ez minden, az eszközről a felhőbe üzenetküldésre van. Fedik le a bal oldali egyedül, hogyan üzeneteket fogadni.
+Ez minden toosending eszközről a felhőbe üzenetek van. hello csak a bal oldali toocover dolog van hogyan tooreceive üzeneteket.
 
 ### <a name="receive-messages"></a>Hibaüzenetek
 
-Egy üzenet működik mint fogadó üzenetek hogyan működnek a **IoTHubClient** könyvtárban. Először regisztrálnia üzenet visszahívási függvény:
+Egy üzenet fogadását működik, hasonlóképpen toohello üzenetek működéséhez a hello **IoTHubClient** könyvtárban. Először regisztrálnia üzenet visszahívási függvény:
 
 ```c
 if (IoTHubClient_LL_SetMessageCallback(iotHubClientHandle, IoTHubMessage, myWeather) != IOTHUB_CLIENT_OK)
 {
-    printf("unable to IoTHubClient_SetMessageCallback\r\n");
+    printf("unable tooIoTHubClient_SetMessageCallback\r\n");
 }
 else
 {
 ...
 ```
 
-Ezután ír a visszahívási függvény, amelyet ha egy üzenet jelenik meg:
+Ezután ír hello visszahívási függvény, amelyet ha egy üzenet jelenik meg:
 
 ```c
 static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -496,7 +496,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
     size_t size;
     if (IoTHubMessage_GetByteArray(message, &buffer, &size) != IOTHUB_MESSAGE_OK)
     {
-        printf("unable to IoTHubMessage_GetByteArray\r\n");
+        printf("unable tooIoTHubMessage_GetByteArray\r\n");
         result = IOTHUBMESSAGE_ABANDONED;
     }
     else
@@ -505,7 +505,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
         char* temp = malloc(size + 1);
         if (temp == NULL)
         {
-            printf("failed to malloc\r\n");
+            printf("failed toomalloc\r\n");
             result = IOTHUBMESSAGE_ABANDONED;
         }
         else
@@ -524,9 +524,9 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
 }
 ```
 
-Ez a kód bolierplate--azonos minden megoldás. Ez a függvény az üzenetet kap, és gondoskodik összegzésére, valamint a megfelelő függvény hívása keresztül **EXECUTE\_parancs**. A hívott függvény a modellben műveletek definíciója ezen a ponton függ.
+Ez a kód bolierplate--azt rendelkezik hello azonos bármely, a megoldás. Ez a funkció hello üzenetet kap, és gondoskodik összegzésére, valamint megfelelő funkciót toohello hello hívás túl**EXECUTE\_parancs**. hello függvény hívása ezen a ponton a modell hello műveletek hello meghatározása függ.
 
-Ha egy műveletet a modell, módosítania nevezzük, amikor az eszköz megkapja a megfelelő üzenetet függvény végrehajtásához. Ha például a modell határozza meg a műveletet:
+A modell műveletet ad meg, amikor Ön szükséges tooimplement nevezzük, amikor az eszköz megkapja a megfelelő üdvözlőüzenetére függvényt. Ha például a modell határozza meg a műveletet:
 
 ```c
 WITH_ACTION(SetAirResistance, int, Position)
@@ -538,18 +538,18 @@ Adja meg a függvény a következő aláírást:
 EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 {
     (void)device;
-    (void)printf("Setting Air Resistance Position to %d.\r\n", Position);
+    (void)printf("Setting Air Resistance Position too%d.\r\n", Position);
     return EXECUTE_COMMAND_SUCCESS;
 }
 ```
 
-Vegye figyelembe, hogyan függvény neve megegyezik-e a művelet neve, a modell és, hogy a függvény paraméterei egyeznek-e a művelet a megadott paraméter. Az első paraméter megadása mindig kötelező, és a modell példányának mutatót tartalmaz.
+Vegye figyelembe, hogyan hello hello függvény neve megegyezik hello hello művelet hello modellben és, hogy hello hello függvény paraméterei egyeznek-e a hello hello a művelethez megadott paraméterek közül. hello első paraméter megadása mindig kötelező, és a modell mutató toohello példányát tartalmazza.
 
-Ha az eszköz az aláírásnak megfelelő üzenetet kap, a megfelelő függvény hívása esetén. Ezért vezérelt kell megadni a bolierplate kódot **IoTHubMessage**, üzenetek fogadására csak egy egyszerű függvény a modellben megadott műveleteket meghatározása.
+Hello eszköz az aláírásnak megfelelő üzenetet kap, hello megfelelő függvény neve. Ezért vezérelt tooinclude hello bolierplate kóddal a rendelkező **IoTHubMessage**, üzenetek fogadására csak egy egyszerű függvény a modellben megadott műveleteket meghatározása.
 
-### <a name="uninitialize-the-library"></a>A könyvtár meghívná
+### <a name="uninitialize-hello-library"></a>Meghívná hello könyvtár
 
-Amikor elkészült, adatokat küldő és fogadó üzenetek, akkor is meghívná az IoT-könyvtár:
+Amikor elkészült adatokat küldő, és fogadja az üzeneteket, hello IoT könyvtár is meghívná:
 
 ```c
 ...
@@ -560,15 +560,15 @@ Amikor elkészült, adatokat küldő és fogadó üzenetek, akkor is meghívná 
 serializer_deinit();
 ```
 
-Mindegyik funkcióhoz három igazodik a korábban ismertetett három inicializálási funkciók. Ezen API-k hívása biztosítja, hogy a korábban kiosztott erőforrásokat ingyenes.
+Mindegyik funkcióhoz három hello a fentiekben ismertetett három inicializálási funkciók igazodik. Ezen API-k hívása biztosítja, hogy a korábban kiosztott erőforrásokat ingyenes.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ez a cikk a tárak használatának alapjaival jelez a **C-hez készült SDK Azure IoT-eszközök**. Elegendő információt az SDK tartalma megérteni a megadott, az architektúra és első lépések a Windows-minták használata. A következő cikk leírja, hogy az SDK által, amely ismerteti, hogy továbbra is fennáll. [további információk a IoTHubClient könyvtár](iot-hub-device-sdk-c-iothubclient.md).
+Ebben a cikkben szereplő hello hello hello tárak használatának alapjaival **C-hez készült SDK Azure IoT-eszközök**. Az rendelkezik külön elegendő információt toounderstand hello SDK, az architektúra, és hogyan tooget hello használata Windows minták tartalmát. hello a következő cikk alapján, amely ismerteti, hogy továbbra is hello SDK hello leírása [további: hello IoTHubClient library](iot-hub-device-sdk-c-iothubclient.md).
 
-Az IoT-központ fejlesztésével kapcsolatos további tudnivalókért tekintse meg a [Azure IoT SDK-k][lnk-sdks].
+az IoT-központ fejlesztésével kapcsolatos további toolearn lásd: hello [Azure IoT SDK-k][lnk-sdks].
 
-Az IoT-központ képességeit további megismeréséhez lásd:
+toofurther megismerkedhet az IoT-központ hello képességeit, lásd:
 
 * [Egy eszköz szimulálva Azure IoT oldala][lnk-iotedge]
 

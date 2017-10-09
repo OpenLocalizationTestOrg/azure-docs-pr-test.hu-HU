@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Stream Analytics adatvezérelt hibakeresést a feladat ábra keresztül |} Microsoft Docs"
-description: "A Stream Analytics-feladat hibaelhárítása a feladat ábra és metrikák használatával."
+title: "aaa Azure Stream Analytics adatvezérelt hibakeresést keresztül hello feladat diagram |} Microsoft Docs"
+description: "A Stream Analytics-feladat hibaelhárítása hello feladat ábra és metrikák használatával."
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 05/01/2017
 ms.author: jeffstok
-ms.openlocfilehash: 4e5949232e8377b7697eaebf96eacdc31c4f5422
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1af884d485bebb06b034da01a13f7f8240516571
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="data-driven-debugging-by-using-the-job-diagram"></a>Adatalapú hibakeresést keresztül a feladat ábra
+# <a name="data-driven-debugging-by-using-hello-job-diagram"></a>Adatalapú hibakeresést keresztül hello feladat diagramja
 
-A feladat ábra: a **figyelés** panel az Azure portál segítségével jelenítheti meg a feladat folyamat. Azt illusztrálja, bemenetek, kimenetek és lekérdezések lépéseit. A feladat ábra segítségével vizsgálja meg a metrikák minden egyes lépést, a problémák elhárításakor gyorsabban elkülöníteni a probléma forrását.
+hello feladat ábra: hello **figyelés** panel az Azure-portálon hello segítségével jelenítheti meg a feladat folyamat. Azt illusztrálja, bemenetek, kimenetek és lekérdezések lépéseit. Egyes lépéseihez szükséges hello feladat ábra tooexamine hello metrikák is használhat, toomore gyorsan különítse el a probléma forrásának hello összefüggő problémák megoldásakor.
 
-## <a name="using-the-job-diagram"></a>A feladat ábra használatával
+## <a name="using-hello-job-diagram"></a>Hello feladat ábra használatával
 
-Az Azure-portálon alatt a Stream Analytics-feladatot, miközben **támogatási + hibaelhárítás**, jelölje be **feladat ábra**:
+Az Azure-portálon hello alatt a Stream Analytics-feladatot, miközben **támogatási + hibaelhárítás**, jelölje be **feladat ábra**:
 
 ![A metrika - hely feladat diagramja](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-1.png)
 
-Válassza ki az összes lekérdezés lépést a lekérdezés-szerkesztő ablakban megfelelő szakaszában talál. A lépés metrika diagramot az oldalon egy alsó ablaktáblán jelennek meg.
+A lekérdezés-szerkesztő ablakban jelölje ki minden egyes lekérdezés lépés toosee hello megfelelő szakaszához. Hello lépés metrika diagramot az alsó ablaktáblában hello lapon jelenik meg.
 
 ![A metrika - alapvető feladat feladat diagramja](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-2.png)
 
-A partíciók az Azure Event Hubs bemeneti megtekintéséhez válasszon **...** A helyi menü megjelenik. A bemeneti egyesülés is látható.
+Válassza ki a toosee hello partíciók hello Azure Event Hubs bemeneti, **...** A helyi menü megjelenik. Hello bemeneti egyesülés is látható.
 
 ![A metrika - feladat ábra bontsa ki a partíció](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-3.png)
 
-A metrika csak egyetlen partícióra diagramot, jelölje ki a partíció csomópont. A metrikák jelennek meg a lap alján.
+toosee hello metrika diagramot csak egy olyan partíciót, jelölje be hello partíció csomópont. hello metrikák hello lap hello alján jelennek meg.
 
 ![A metrika - további metrikák feladat diagramja](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-4.png)
 
-A metrikák diagramot egyesülés megtekintéséhez jelölje ki az egyesülés csomópontot. Az alábbi ábra mutatja, hogy események nem eldobni vagy módosítani.
+toosee hello metrikák diagramot egyesülés, jelölje be hello egyesülés csomópont. a következő diagram hello látható, hogy egyetlen esemény sem volt eldobni módosul.
 
 ![A metrika - feladat ábra rács](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-5.png)
 
-A metrika értékét, és az idő a részletek megtekintéséhez, majd a diagram.
+toosee hello részletei hello metrika értékét, és az idő, pont toohello diagram.
 
 ![Diagram metrikákat a sikertelen feladat - vigye](./media/stream-analytics-job-diagram-with-metrics/stream-analytics-job-diagram-with-metrics-portal-6.png)
 
 ## <a name="troubleshoot-by-using-metrics"></a>Hibaelhárítása mérőszámok segítségével
 
-A **QueryLastProcessedTime** metrika azt jelzi, ha egy adott lépésre adatokat kapott. A topológia megtekintésével is dolgozhat visszafelé a kimeneti processzor, hogy mely lépés nem kapja az adatokat. Ha a lépés nem sikerül adatokat, ugorjon a lekérdezés azt megelőzően. Ellenőrizze, hogy rendelkezik-e az előző lekérdezés lépés egy olyan időkeretet, és ha elegendő idő az megfelelt kimeneti adatokat. (Vegye figyelembe, időpont windows rendszer diagramobjektum a óra.)
+Hello **QueryLastProcessedTime** metrika azt jelzi, ha egy adott lépésre adatokat kapott. Hello topológia megtekintésével is dolgozhat visszafelé hello kimeneti processzor toosee mely lépés nem kapja az adatokat. Ha a lépés nem sikerül adatokat, nyissa meg azt megelőzően toohello lekérdezés lépést. Ellenőrizze, hogy hello előző lekérdezés lépést tartalmaz egy olyan időkeretet, és hogy elég idő telt meg toooutput adatokat. (Megjegyzés: Ez idő windows illesztett toohello óra.)
  
-Ha az előző lekérdezés lépés egy bemeneti processzor, használja a bemeneti metrikák amely választ adhat ezekre a következő célzott kérdésekre. Segít meghatározni, hogy egy feladat van adat lekérésekor a bemeneti forrásból. Ha a lekérdezés particionálva van, vizsgálja meg az összes partíciót.
+Ha hello előző lekérdezés lépés egy bemeneti processzor, akkor hello bemeneti metrikák toohelp válasz hello célzott kérdések a következő. Segít meghatározni, hogy egy feladat van adat lekérésekor a bemeneti forrásból. Ha hello lekérdezés particionálása, vizsgálja meg az egyes partíciók.
  
 ### <a name="how-much-data-is-being-read"></a>Mennyi adatot olvasása?
 
-*   **InputEventsSourcesTotal** olvasható adatok egységek száma. Ha például a blobok száma.
-*   **InputEventsTotal** olvasási események száma. Ez a metrika partíciónként érhető el.
-*   **InputEventsInBytesTotal** olvasott bájtok száma.
+*   **InputEventsSourcesTotal** hello olvasható adatok egységek száma. Például hello számú blobot.
+*   **InputEventsTotal** események olvasása hello száma. Ez a metrika partíciónként érhető el.
+*   **InputEventsInBytesTotal** hello olvasott bájtok száma.
 *   **InputEventsLastArrivalTime** minden fogadott események a várólistában levő időpontja frissül.
  
 ### <a name="is-time-moving-forward-if-actual-events-are-read-punctuation-might-not-be-issued"></a>Az idő soron? Ha tényleges események olvasható, előfordulhat, hogy nem adható ki absztrakt.
 
-*   Az **InputEventsLastPunctuationTime** megadja, hogy mikor adtak ki írásjelek, az idő előrehaladása érdekében. Ha nem jelenik meg absztrakt, adatfolyama is blokkolnánk a hozzáférését.
+*   **InputEventsLastPunctuationTime** azt jelzi, ha egy absztrakt bocsátotta tookeep idő áthelyezése előre. Ha nem jelenik meg absztrakt, adatfolyama is blokkolnánk a hozzáférését.
  
-### <a name="are-there-any-errors-in-the-input"></a>Vannak-e hibák a bemeneti adatok?
+### <a name="are-there-any-errors-in-hello-input"></a>Vannak-e hibák hello bemeneti?
 
 *   **InputEventsEventDataNullTotal** null adattal rendelkező események száma.
 *   **InputEventsSerializerErrorsTotal** nem deszerializálhatók megfelelően események száma.
@@ -76,20 +76,20 @@ Ha az előző lekérdezés lépés egy bemeneti processzor, használja a bemenet
  
 ### <a name="are-events-being-dropped-or-adjusted"></a>Események eldobott vagy igazítva?
 
-*   **InputEventsEarlyTotal** eseményeket, amelyek egy alkalmazás időbélyeg előtt a magas vízjel száma.
-*   **InputEventsLateTotal** eseményeket, amelyek egy alkalmazás időbélyeg után a magas vízjel száma.
-*   **InputEventsDroppedBeforeApplicationStartTimeTotal** a szám események eldobása előtt a feladat kezdési időpont.
+*   **InputEventsEarlyTotal** hello eseményeket, amelyek egy alkalmazás időbélyeg előtt hello magas vízjel száma.
+*   **InputEventsLateTotal** hello eseményeket, amelyek egy alkalmazás időbélyeg után hello magas vízjel száma.
+*   **InputEventsDroppedBeforeApplicationStartTimeTotal** hello számú események eldobott hello feladat kezdési időpont előtt.
  
 ### <a name="are-we-falling-behind-in-reading-data"></a>Amelyek azt alá tartozó az adatok olvasása közben?
 
-*   **InputEventsSourcesBackloggedTotal** jelzi, hogy hány több üzenetet kell az Event Hubs és Azure IoT Hub bemeneti adatok olvasását.
+*   **InputEventsSourcesBackloggedTotal** jelzi, hogy hány több üzenetet kell toobe Event Hubs és Azure IoT Hub bemeneti című témakörben találhat.
 
 
 ## <a name="get-help"></a>Segítségkérés
 Ha további segítségre van szüksége, próbálkozzon a [Azure Stream Analytics-fórumot](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Következő lépések
-* [A Stream Analytics bemutatása](stream-analytics-introduction.md)
+* [Bevezetés tooStream elemzés](stream-analytics-introduction.md)
 * [A Stream Analytics használatába](stream-analytics-real-time-fraud-detection.md)
 * [Stream Analytics-feladatok méretezése](stream-analytics-scale-jobs.md)
 * [Stream Analytics lekérdezési nyelvi referencia](https://msdn.microsoft.com/library/azure/dn834998.aspx)

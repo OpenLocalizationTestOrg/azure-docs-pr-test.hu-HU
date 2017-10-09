@@ -1,0 +1,2 @@
+Ha az Azure nem problémával az ebben a cikkben, látogasson el az Azure-fórumok hello [MSDN és hello a Stack Overflow](https://azure.microsoft.com/support/forums/). A probléma utáni ezek fórumokon, vagy túl post[ @AzureSupport a Twitteren](https://twitter.com/AzureSupport). Egy Azure támogatási kérést is küldhet. egy támogatási kérést, a hello toosubmit [az Azure támogatási](https://azure.microsoft.com/support/options/) lapon jelölje be **segítségre van szüksége**.
+

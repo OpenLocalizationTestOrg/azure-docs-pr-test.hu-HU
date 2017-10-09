@@ -1,6 +1,6 @@
 ---
-title: "Apache Storm például Java-topológiák - Azure HDInsight |} Microsoft Docs"
-description: "Útmutató Apache Storm-topológiák létrehozása a Java hozzon létre egy példa a word-count topológiához."
+title: "aaaApache Storm például Java-topológiák - Azure HDInsight |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate Apache Storm-topológiák Java nyelven hozzon létre egy példa word száma topológia."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -17,23 +17,23 @@ ms.workload: big-data
 ms.date: 07/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
-ms.openlocfilehash: 36285fbaf1da3c566d338bd5612eebad327eaf50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 54fa9dc3c93ddad83ac861f3101f50f80117d804
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-apache-storm-topology-in-java"></a>Hozzon létre egy Apache Storm-topológia a Java nyelven
 
-Útmutató az Apache Storm egy Java-alapú topológiák létrehozását is. A Storm-topológia, amely egy word-count alkalmazást hoz létre. Maven használatával hozza létre, és a projekt csomag. Ezt követően megtanulhatja a fluxus keretrendszerrel topológia meghatározása.
+Megtudhatja, hogyan toocreate alatt futó Apache Storm egy Java-alapú topológiáját. A Storm-topológia, amely egy word-count alkalmazást hoz létre. Maven toobuild és a csomag hello projekt használja. Ezt követően megismerheti, hogyan hello fluxus keretrendszer toodefine hello topológia használatával.
 
 > [!NOTE]
-> Fluxus keretében elérhető Storm 0.10.0-s vagy újabb verzió. A Storm 0.10.0-s HDInsight 3.3 és 3.4 érhető el.
+> hello fluxus keretrendszer elérhető Storm 0.10.0-s vagy újabb verzió. A Storm 0.10.0-s HDInsight 3.3 és 3.4 érhető el.
 
-A jelen dokumentumban leírt lépések elvégzése után a topológia telepítene a HDInsight alatt futó Apache Storm.
+Ebben a dokumentumban hello lépések végrehajtását követően hello topológia tooApache HDInsight alatt futó Storm telepítheti.
 
 > [!NOTE]
-> Ebben a dokumentumban létrehozott Storm-topológia példák befejezett verzióját [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount).
+> A befejezett hello Storm-topológia példák létre ebben a dokumentumban verziója érhető el [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -45,21 +45,21 @@ A jelen dokumentumban leírt lépések elvégzése után a topológia telepíten
 
 ## <a name="configure-environment-variables"></a>Környezeti változók konfigurálása
 
-A következő környezeti változók Java és a JDK telepítésekor lehet beállítani. Azonban ellenőrizni kell, hogy léteznek, illetve a rendszer a megfelelő értékeket tartalmaz.
+hello következő környezeti változó lehet beállítani a Java és hello JDK telepítésekor. Azonban ellenőrizni kell, hogy léteznek, illetve hello a rendszer tartozó helyes értékeket tartalmaz.
 
-* **JAVA_HOME** -érdemes mutasson a mappát, ahová a Java-futtatókörnyezet (JRE) telepítve van. Például egy Unix vagy Linux terjesztési nem rendelkezhet hasonló érték `/usr/lib/jvm/java-7-oracle`. A Windows rendszerben kellene hasonló érték`c:\Program Files (x86)\Java\jre1.7`
+* **JAVA_HOME** -hello Java-futtatókörnyezet (JRE) futtató toohello directory kell mutatnia. Például egy Unix vagy Linux terjesztési nem rendelkezhet hasonló érték túl`/usr/lib/jvm/java-7-oracle`. A Windows rendszerben kellene hasonló érték túl`c:\Program Files (x86)\Java\jre1.7`
 
-* **Elérési út** -tartalmaznia kell a következő elérési utak:
+* **Elérési út** -elérési utak a következő hello tartalmaznia kell:
 
-  * **JAVA_HOME** (vagy ezzel egyenértékű elérési útja)
+  * **JAVA_HOME** (vagy ezzel egyenértékű elérési hello)
 
-  * **JAVA_HOME\bin** (vagy ezzel egyenértékű elérési útja)
+  * **JAVA_HOME\bin** (vagy ezzel egyenértékű elérési hello)
 
-  * A mappát, ahová a Maven telepítve van
+  * hello mappát, ahová a Maven telepítve van
 
 ## <a name="create-a-maven-project"></a>Maven-projekt létrehozása
 
-A parancssorból az alábbi parancs segítségével nevű Maven-projekt létrehozása **WordCount**:
+Hello parancssorból használható hello következő parancsot a toocreate nevű Maven-projektté **WordCount**:
 
 ```bash
 mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=com.microsoft.example -DartifactId=WordCount -DinteractiveMode=false
@@ -70,22 +70,22 @@ mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupI
 >
 > `mvn archetype:generate "-DarchetypeArtifactId=maven-archetype-quickstart" "-DgroupId=com.microsoft.example" "-DartifactId=WordCount" "-DinteractiveMode=false"`
 
-Ez a parancs létrehoz egy könyvtárat nevű `WordCount` az aktuális helyen, amely tartalmazza egy alapszintű Maven project. A `WordCount` könyvtár a következő elemeket tartalmazza:
+Ezzel a paranccsal létrejön egy nevű könyvtár `WordCount` hello aktuális helyen, amely tartalmazza egy alapszintű Maven project. Hello `WordCount` könyvtár hello a következő elemeket tartalmazza:
 
-* `pom.xml`: A Maven project beállításait tartalmazza.
+* `pom.xml`: Hello Maven project beállításait tartalmazza.
 * `src\main\java\com\microsoft\example`: Az alkalmazás kódját tartalmazza.
 * `src\test\java\com\microsoft\example`: Az alkalmazás a tesztek tartalmazza. 
 
-### <a name="remove-the-generated-example-code"></a>A generált kód eltávolítása
+### <a name="remove-hello-generated-example-code"></a>Távolítsa el a generált hello példakód
 
-A generált vizsgálat és az alkalmazásfájlok törlése:
+Generált hello tesztelése és hello alkalmazásfájlok törlése:
 
 * **src\test\java\com\microsoft\example\AppTest.Java**
 * **src\main\java\com\microsoft\example\App.Java**
 
 ## <a name="add-maven-repositories"></a>Adja hozzá a Maven tárházak
 
-HDInsight Hortonworks Data Platform (HDP) alkalmazásban, alapul, ezért azt javasoljuk, töltse le a függőségek az Apache Storm-projektek a Hortonworks tárház használatával. Az a __pom.xml__ fájlban adja hozzá a következő XML-kód után a `<url>http://maven.apache.org</url>` sor:
+A HDInsight alatt futó Apache Storm projektjeikbe hello Hortonworks tárház toodownload függőségek használatát javasoljuk, hello Hortonworks Data Platform (HDP) alapul. A hello __pom.xml__ fájlt, adja hozzá az XML hello után a következő hello `<url>http://maven.apache.org</url>` sor:
 
 ```xml
 <repositories>
@@ -126,42 +126,42 @@ HDInsight Hortonworks Data Platform (HDP) alkalmazásban, alapul, ezért azt jav
 
 ## <a name="add-properties"></a>Tulajdonságok hozzáadása
 
-Maven lehetővé teszi tulajdonságok nevű projektszintű értékek adhatók meg. Az a __pom.xml__, adja hozzá a következő karakterlánc után a `</repositories>` sor:
+Maven lehetővé teszi tulajdonságok nevű toodefine projektszintű értékeket. A hello __pom.xml__, adja hozzá a következő szöveg után hello hello `</repositories>` sor:
 
 ```xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!--
-    This is a version of Storm from the Hortonworks repository that is compatible with HDInsight.
+    This is a version of Storm from hello Hortonworks repository that is compatible with HDInsight.
     -->
     <storm.version>1.0.1.2.5.3.0-37</storm.version>
 </properties>
 ```
 
-Ezután már használhatja ezt az értéket a többi szakasza pedig a `pom.xml`. Például a Storm összetevőiről verzióját meghatározásakor használhatja `${storm.version}` rögzített kódolási érték helyett.
+Ezután már használhatja ezt az értéket a többi szakasza pedig hello `pom.xml`. Például Storm-összetevőket hello verziójának meghatározásakor használhatja `${storm.version}` rögzített kódolási érték helyett.
 
 ## <a name="add-dependencies"></a>Adja hozzá a függőségek
 
-Vegyen fel egy függőséget Storm-összetevőket. Nyissa meg a `pom.xml` fájlt, és adja hozzá a következő kódot a `<dependencies>` szakasz:
+Vegyen fel egy függőséget Storm-összetevőket. Nyissa meg hello `pom.xml` fájlt, és adja hozzá a következő kódot a hello hello `<dependencies>` szakasz:
 
 ```xml
 <dependency>
     <groupId>org.apache.storm</groupId>
     <artifactId>storm-core</artifactId>
     <version>${storm.version}</version>
-    <!-- keep storm out of the jar-with-dependencies -->
+    <!-- keep storm out of hello jar-with-dependencies -->
     <scope>provided</scope>
 </dependency>
 ```
 
-Fordítási időben Maven használja ezt az információt kereséséhez `storm-core` a Maven-tárházban. Először a jelek a tárházban a helyi számítógépen. Ha a fájlokat nem létezik, a Maven letölti azokat a nyilvános Maven tárházból, és tárolja őket a helyi tárházban.
+Fordítási időben Maven ezen információk toolook felhasználásra kerül `storm-core` hello Maven tárházban. Először a jelek hello tárházban a helyi számítógépen. Ha hello fájlokat nem létezik, a Maven adattárból hello nyilvános Maven letölti azokat, és tárolja őket a hello helyi tárházban.
 
 > [!NOTE]
-> Figyelje meg a `<scope>provided</scope>` sor ebben a szakaszban. Ez a beállítás közli kizárandó Maven **storm-core** bármely JAR fájlok jönnek létre, mert azt a rendszer biztosítja.
+> Értesítés hello `<scope>provided</scope>` sor ebben a szakaszban. Ez a beállítás arról értesíti a Maven tooexclude **storm-core** bármely JAR fájlok jönnek létre, mert azt hello rendszer biztosítja.
 
 ## <a name="build-configuration"></a>Konfiguráció
 
-Maven beépülő modulok lehetővé teszik a létrehozási szakaszokra a projekt testreszabása. Például hogyan fordítását, akkor a projekt vagy csomagolása, a JAR-fájlra. Nyissa meg a `pom.xml` fájlt, és adja hozzá a következő kódot közvetlenül a fenti a `</project>` sor.
+Maven beépülő modulok lehetővé teszik a hello projekt toocustomize hello build fázisból áll. Például hogyan hello projekt lefordított vagy hogyan toopackage JAR-fájlra be azt. Nyissa meg hello `pom.xml` fájlt, és adja hozzá a következő kódot közvetlenül felett hello hello `</project>` sor.
 
 ```xml
 <build>
@@ -172,11 +172,11 @@ Maven beépülő modulok lehetővé teszik a létrehozási szakaszokra a projekt
 </build>
 ```
 
-Ez a szakasz segítségével adja hozzá a beépülő modulok, erőforrások és egyéb build-konfigurációs beállítások. A teljes körű referenciáért a **pom.xml** fájl című [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html).
+Ebben a szakaszban használt tooadd beépülő modulok, erőforrások és egyéb build-konfigurációs beállítások. A hello teljes körű referenciáért **pom.xml** fájl című [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html).
 
 ### <a name="add-plug-ins"></a>Beépülő modulok hozzáadása
 
-Az Apache Storm-topológiák megvalósított Java a [Exec Maven beépülő modul](http://www.mojohaus.org/exec-maven-plugin/) akkor hasznos, mivel lehetővé teszi a topológia könnyen helyi futtatásához a fejlesztési környezetet. Adja hozzá a következőt a `<plugins>` szakasza a `pom.xml` a beépülő modul Exec Maven-fájl:
+Apache Storm-topológiák Java megvalósított, hello [Exec Maven beépülő modul](http://www.mojohaus.org/exec-maven-plugin/) akkor hasznos, mivel a tooeasily hello topológia futtassa helyileg a fejlesztési környezetet. Adja hozzá a következő toohello hello `<plugins>` hello szakasza `pom.xml` tooinclude hello Exec Maven beépülő modul fájlt:
 
 ```xml
 <plugin>
@@ -201,13 +201,13 @@ Az Apache Storm-topológiák megvalósított Java a [Exec Maven beépülő modul
 </plugin>
 ```
 
-Egy másik hasznos beépülő modul a [Apache Maven fordító beépülő modul](http://maven.apache.org/plugins/maven-compiler-plugin/), amellyel fordítási beállítások módosítása. A módosítások a Java verzióját használó Maven a forrás és cél az alkalmazás.
+Egy másik hasznos beépülő modul az hello [Apache Maven fordító beépülő modul](http://maven.apache.org/plugins/maven-compiler-plugin/), mely van használt toochange fordítási lehetőségeket. hello módosítások hello Maven által hello forrása és célja az alkalmazás a Java-verziót.
 
-* A HDInsight __3.4 vagy korábbi__, állítsa be a forrás és cél a Java-verziót __1.7__.
+* A HDInsight __3.4 vagy korábbi__, hello forrás beállítása és a Java-verzió too__1.7__ céloz.
 
-* A HDInsight __3.5__, állítsa be a forrás és cél a Java-verziót __1.8__.
+* A HDInsight __3.5__, hello forrás beállítása és a Java-verzió too__1.8__ céloz.
 
-Adja hozzá a következő szöveget a `<plugins>` szakasza a `pom.xml` fájlt a az Apache Maven fordító beépülő modul. Ez a példa 1.8, határozza meg, így a célverzió HDInsight 3.5-ös verzióját.
+Adja hozzá a következő szöveget: hello hello `<plugins>` hello szakasza `pom.xml` tooinclude hello Apache Maven fordító beépülő modul fájlt. Ez a példa 1.8, határozza meg, így hello HDInsight célverzió 3.5-ös verzióját.
 
 ```xml
 <plugin>
@@ -223,7 +223,7 @@ Adja hozzá a következő szöveget a `<plugins>` szakasza a `pom.xml` fájlt a 
 
 ### <a name="configure-resources"></a>Erőforrások konfigurálása
 
-Az erőforrások szakasz lehetővé teszi, hogy nem kód erőforrások, például a topológia összetevők által igényelt konfigurációs fájlokat. Ennél a példánál adja hozzá a következő szöveget a `<resources>` szakaszában a "pom.xml fájlt.
+hello erőforrások szakasz lehetővé teszi tooinclude nem kód erőforrások például összetevők hello topológia számára szükséges konfigurációs fájlokat. Ennél a példánál adja hozzá a következő szöveget: hello hello `<resources>` hello szakasza "pom.xml fájlt.
 
 ```xml
 <resource>
@@ -235,29 +235,29 @@ Az erőforrások szakasz lehetővé teszi, hogy nem kód erőforrások, példáu
 </resource>
 ```
 
-Ebben a példában az erőforrások könyvtárat ad a projekt gyökérkönyvtárában (`${basedir}`) olyan erőforrásokat tartalmaz, és a fájlt tartalmazó helyként `log4j2.xml`. Ez a fájl által a topológia a rendszer milyen információkat naplózza konfigurálására szolgál.
+Ez a példa hello erőforrások könyvtárat ad hello hello projekt gyökerében található (`${basedir}`) olyan erőforrásokat tartalmaz, és a hello fájlt tartalmazó helyként `log4j2.xml`. A fájl használt tooconfigure, milyen információt naplózta hello topológia.
 
-## <a name="create-the-topology"></a>A topológia létrehozása
+## <a name="create-hello-topology"></a>Hozzon létre hello topológia
 
 A Java-alapú Apache Storm-topológia áll meg kell írni három összetevő (vagy hivatkozás) a függőség beállításához.
 
-* **Spoutok**: olvassa be a külső adatokat adatforrásokat, és megfelelően kibocsát adatstreamek azokat a topológia.
+* **Spoutok**: olvassa be a külső adatokat adatforrásokat, és megfelelően kibocsát adatstreamek hello topológia be.
 
 * **Boltok**: feldolgozási végez spoutokkal kapcsolatban, vagy más boltokhoz által kibocsátott adatfolyamokat, és megfelelően kibocsát egy vagy több adatfolyamokat.
 
-* **Topológia**: hogyan a spoutokkal kapcsolatban és boltokhoz vannak rendezve, és a belépési pontot nyújt az topológia meghatározása.
+* **Topológia**: hogyan hello spoutok boltokhoz vannak rendezve, és és hello belépési pontot nyújt hello topológia meghatározása.
 
-### <a name="create-the-spout"></a>A spout létrehozása
+### <a name="create-hello-spout"></a>Hello spout létrehozása
 
-Külső adatforrások beállításával kapcsolatos követelmények csökkentése érdekében a következő spout egyszerűen véletlenszerű mondat bocsát ki. A mellékelt spout módosított változatát a [Storm-kezdőpéldák](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter).
+külső adatforrások, tooreduce követelményei hello következő spout egyszerűen véletlenszerű mondat bocsát ki. Egy spout hello mellékelt módosított változatát [Storm-kezdőpéldák](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter).
 
 > [!NOTE]
-> Példa egy egy külső adatforrásból olvasó spout tekintse meg az alábbi példák egyikét:
+> Például egy olyan spout egy külső adatforrásból olvasó tekintse meg a következő példák hello egyikét:
 >
 > * [TwitterSampleSPout](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter/spout/TwitterSampleSpout.java): egy példa spout, amely Twitter olvassa be
 > * [A Storm-Kafka](https://github.com/apache/storm/tree/0.10.x-branch/external/storm-kafka): egy spout, amely Kafka olvassa be
 
-Hozzon létre egy fájlt a spout `RandomSentenceSpout.java` a a `src\main\java\com\microsoft\example` könyvtárra, és használja a következő Java kód tartalma:
+A hello spout, hozzon létre egy fájlt `RandomSentenceSpout.java` a hello `src\main\java\com\microsoft\example` Java-kóddal hello tartalmát, a következő könyvtárra, és használja hello:
 
 ```java
 package com.microsoft.example;
@@ -275,31 +275,31 @@ import java.util.Random;
 
 //This spout randomly emits sentences
 public class RandomSentenceSpout extends BaseRichSpout {
-  //Collector used to emit output
+  //Collector used tooemit output
   SpoutOutputCollector _collector;
-  //Used to generate a random number
+  //Used toogenerate a random number
   Random _rand;
 
-  //Open is called when an instance of the class is created
+  //Open is called when an instance of hello class is created
   @Override
   public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
-  //Set the instance collector to the one passed in
+  //Set hello instance collector toohello one passed in
     _collector = collector;
     //For randomness
     _rand = new Random();
   }
 
-  //Emit data to the stream
+  //Emit data toohello stream
   @Override
   public void nextTuple() {
   //Sleep for a bit
     Utils.sleep(100);
-    //The sentences that are randomly emitted
-    String[] sentences = new String[]{ "the cow jumped over the moon", "an apple a day keeps the doctor away",
-        "four score and seven years ago", "snow white and the seven dwarfs", "i am at two with nature" };
+    //hello sentences that are randomly emitted
+    String[] sentences = new String[]{ "hello cow jumped over hello moon", "an apple a day keeps hello doctor away",
+        "four score and seven years ago", "snow white and hello seven dwarfs", "i am at two with nature" };
     //Randomly pick a sentence
     String sentence = sentences[_rand.nextInt(sentences.length)];
-    //Emit the sentence
+    //Emit hello sentence
     _collector.emit(new Values(sentence));
   }
 
@@ -313,7 +313,7 @@ public class RandomSentenceSpout extends BaseRichSpout {
   public void fail(Object id) {
   }
 
-  //Declare the output fields. In this case, an sentence
+  //Declare hello output fields. In this case, an sentence
   @Override
   public void declareOutputFields(OutputFieldsDeclarer declarer) {
     declarer.declare(new Fields("sentence"));
@@ -322,20 +322,20 @@ public class RandomSentenceSpout extends BaseRichSpout {
 ```
 
 > [!NOTE]
-> Bár ez a topológia csak egy spout, mások is rendelkezhet, amely adatokat különböző forrásokból történő a topológia több.
+> Bár ez a topológia csak egy spout, mások is rendelkezhet, amely adatokat különböző forrásokból történő hello topológia több.
 
-### <a name="create-the-bolts"></a>A boltokhoz létrehozása
+### <a name="create-hello-bolts"></a>Hello boltokhoz létrehozása
 
-Szögek kezelni az adatok feldolgozása. Ez a topológia két boltokhoz használja:
+Szögek hello adatfeldolgozási kezelni. Ez a topológia két boltokhoz használja:
 
-* **SplitSentence**: felosztja a mondatok által kibocsátott **RandomSentenceSpout** az egyes szavakat.
+* **SplitSentence**: hello mondat által kibocsátott felosztja **RandomSentenceSpout** az egyes szavakat.
 
 * **WordCount**: hányszor történt minden szó található.
 
 > [!NOTE]
-> Szögek is végrehajthat, például számítási, adatmegőrzés vagy a külső összetevőkre van szó.
+> Szögek is végrehajthat, például számítási, adatmegőrzés vagy tooexternal összetevők van szó.
 
-Hozzon létre két új fájl `SplitSentence.java` és `WordCount.java` a a `src\main\java\com\microsoft\example` könyvtár. A fájlok használata a tartalom a következő szöveget:
+Hozzon létre két új fájl `SplitSentence.java` és `WordCount.java` a hello `src\main\java\com\microsoft\example` könyvtár. Szöveg hello fájlok hello tartalmát, a következő hello használata:
 
 #### <a name="splitsentence"></a>SplitSentence
 
@@ -354,20 +354,20 @@ import org.apache.storm.tuple.Values;
 //There are a variety of bolt types. In this case, use BaseBasicBolt
 public class SplitSentence extends BaseBasicBolt {
 
-  //Execute is called to process tuples
+  //Execute is called tooprocess tuples
   @Override
   public void execute(Tuple tuple, BasicOutputCollector collector) {
-    //Get the sentence content from the tuple
+    //Get hello sentence content from hello tuple
     String sentence = tuple.getString(0);
-    //An iterator to get each word
+    //An iterator tooget each word
     BreakIterator boundary=BreakIterator.getWordInstance();
-    //Give the iterator the sentence
+    //Give hello iterator hello sentence
     boundary.setText(sentence);
-    //Find the beginning first word
+    //Find hello beginning first word
     int start=boundary.first();
-    //Iterate over each word and emit it to the output stream
+    //Iterate over each word and emit it toohello output stream
     for (int end=boundary.next(); end != BreakIterator.DONE; start=end, end=boundary.next()) {
-      //get the word
+      //get hello word
       String word=sentence.substring(start,end);
       //If a word is whitespace characters, replace it with empty
       word=word.replaceAll("\\s+","");
@@ -414,12 +414,12 @@ public class WordCount extends BaseBasicBolt {
   private static final Logger logger = LogManager.getLogger(WordCount.class);
   //For holding words and counts
   Map<String, Integer> counts = new HashMap<String, Integer>();
-  //How often to emit a count of words
+  //How often tooemit a count of words
   private Integer emitFrequency;
 
   // Default constructor
   public WordCount() {
-      emitFrequency=5; // Default to 60 seconds
+      emitFrequency=5; // Default too60 seconds
   }
 
   // Constructor that sets emit frequency
@@ -429,7 +429,7 @@ public class WordCount extends BaseBasicBolt {
 
   //Configure frequency of tick tuples for this bolt
   //This delivers a 'tick' tuple on a specific interval,
-  //which is used to trigger certain actions
+  //which is used tootrigger certain actions
   @Override
   public Map<String, Object> getComponentConfiguration() {
       Config conf = new Config();
@@ -437,7 +437,7 @@ public class WordCount extends BaseBasicBolt {
       return conf;
   }
 
-  //execute is called to process tuples
+  //execute is called tooprocess tuples
   @Override
   public void execute(Tuple tuple, BasicOutputCollector collector) {
     //If it's a tick tuple, emit all words and counts
@@ -449,13 +449,13 @@ public class WordCount extends BaseBasicBolt {
         logger.info("Emitting a count of " + count + " for word " + word);
       }
     } else {
-      //Get the word contents from the tuple
+      //Get hello word contents from hello tuple
       String word = tuple.getString(0);
       //Have we counted any already?
       Integer count = counts.get(word);
       if (count == null)
         count = 0;
-      //Increment the count and store it
+      //Increment hello count and store it
       count++;
       counts.put(word, count);
     }
@@ -469,15 +469,15 @@ public class WordCount extends BaseBasicBolt {
 }
 ```
 
-### <a name="define-the-topology"></a>A topológia meghatározása
+### <a name="define-hello-topology"></a>Hello topológia meghatározása
 
-A topológia kötelékek a spoutokkal kapcsolatban, és a grafikon, amely meghatározza, hogyan közötti adatáramlás a összetevők együttesen boltok. Párhuzamossági mutatók Storm használó a fürtön belül összetevők példányai létrehozásakor is tartalmazza.
+hello topológia kötelékek hello spoutokkal kapcsolatban, és a grafikon, amely meghatározza, hogyan közötti adatáramlás hello összetevők együttesen boltok. Párhuzamossági mutatók Storm használó hello fürtön belül hello összetevők példányai létrehozásakor is tartalmazza.
 
-Az alábbi képen a grafikon az ebben a topológiában az összetevők egyszerű diagram.
+hello példánycsoportokat egy egyszerű diagram hello gráf ebben a topológiában az összetevőt.
 
-![a spoutokkal kapcsolatban és boltokhoz elrendezéssel bemutató ábra](./media/hdinsight-storm-develop-java-topology/wordcount-topology.png)
+![diagram ábrázoló hello spoutok és boltok elrendezése](./media/hdinsight-storm-develop-java-topology/wordcount-topology.png)
 
-A topológia alkalmazásához hozzon létre egy fájlt `WordCountTopology.java` a a `src\main\java\com\microsoft\example` könyvtár. A fájl tartalmát az alábbira Java használata:
+tooimplement hello topológia, hozzon létre egy fájlt `WordCountTopology.java` a hello `src\main\java\com\microsoft\example` könyvtár. Java-kóddal hello hello fájl tartalmát, a következő hello használata:
 
 ```java
 package com.microsoft.example;
@@ -492,49 +492,49 @@ import com.microsoft.example.RandomSentenceSpout;
 
 public class WordCountTopology {
 
-  //Entry point for the topology
+  //Entry point for hello topology
   public static void main(String[] args) throws Exception {
-  //Used to build the topology
+  //Used toobuild hello topology
     TopologyBuilder builder = new TopologyBuilder();
-    //Add the spout, with a name of 'spout'
+    //Add hello spout, with a name of 'spout'
     //and parallelism hint of 5 executors
     builder.setSpout("spout", new RandomSentenceSpout(), 5);
-    //Add the SplitSentence bolt, with a name of 'split'
+    //Add hello SplitSentence bolt, with a name of 'split'
     //and parallelism hint of 8 executors
-    //shufflegrouping subscribes to the spout, and equally distributes
-    //tuples (sentences) across instances of the SplitSentence bolt
+    //shufflegrouping subscribes toohello spout, and equally distributes
+    //tuples (sentences) across instances of hello SplitSentence bolt
     builder.setBolt("split", new SplitSentence(), 8).shuffleGrouping("spout");
-    //Add the counter, with a name of 'count'
+    //Add hello counter, with a name of 'count'
     //and parallelism hint of 12 executors
-    //fieldsgrouping subscribes to the split bolt, and
-    //ensures that the same word is sent to the same instance (group by field 'word')
+    //fieldsgrouping subscribes toohello split bolt, and
+    //ensures that hello same word is sent toohello same instance (group by field 'word')
     builder.setBolt("count", new WordCount(), 12).fieldsGrouping("split", new Fields("word"));
 
     //new configuration
     Config conf = new Config();
-    //Set to false to disable debug information when
+    //Set toofalse toodisable debug information when
     // running in production on a cluster
     conf.setDebug(false);
 
     //If there are arguments, we are running on a cluster
     if (args != null && args.length > 0) {
-      //parallelism hint to set the number of workers
+      //parallelism hint tooset hello number of workers
       conf.setNumWorkers(3);
-      //submit the topology
+      //submit hello topology
       StormSubmitter.submitTopology(args[0], conf, builder.createTopology());
     }
     //Otherwise, we are running locally
     else {
-      //Cap the maximum number of executors that can be spawned
-      //for a component to 3
+      //Cap hello maximum number of executors that can be spawned
+      //for a component too3
       conf.setMaxTaskParallelism(3);
-      //LocalCluster is used to run locally
+      //LocalCluster is used toorun locally
       LocalCluster cluster = new LocalCluster();
-      //submit the topology
+      //submit hello topology
       cluster.submitTopology("word-count", conf, builder.createTopology());
       //sleep
       Thread.sleep(10000);
-      //shut down the cluster
+      //shut down hello cluster
       cluster.shutdown();
     }
   }
@@ -543,7 +543,7 @@ public class WordCountTopology {
 
 ### <a name="configure-logging"></a>Naplózás konfigurálása
 
-A Storm az Apache Log4j használatával naplózza az információkat. Ha nem konfigurálja a naplózást, a topológia diagnosztikai adatokat bocsát ki. Szabályozhatja, hogy mi a naplózására akkor kerül sor, hozzon létre egy fájlt `log4j2.xml` a a `resources` könyvtár. Az alábbi XML-fájl használata a fájl tartalmát.
+A Storm Apache Log4j toolog információkat használja. Ha nem konfigurálja a naplózási, hello topológia diagnosztikai adatokat bocsát ki. Mi kerül toocontrol hozzon létre egy fájlt `log4j2.xml` a hello `resources` könyvtár. XML hello hello fájl tartalmát, a következő hello használata.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -564,24 +564,24 @@ A Storm az Apache Log4j használatával naplózza az információkat. Ha nem kon
 </Configuration>
 ```
 
-Az XML számára egy új naplózó konfigurálja a `com.microsoft.example` osztályt, amely ebben a példában topológiában a összetevőket tartalmazza. A szintje nyomkövetési a a tranzakciónaplókat tartalmazó, amely minden ebben a topológiában-összetevők által kibocsátott naplózási információkat rögzíti.
+Az XML-kód konfigurálja egy új naplózó a hello `com.microsoft.example` osztályt, amely ebben a példában topológiában hello összetevőket tartalmazza. hello szintje tootrace a a tranzakciónaplókat tartalmazó, amely minden ebben a topológiában-összetevők által kibocsátott naplózási információkat rögzíti.
 
-A `<Root level="error">` szakasz konfigurálja a naplózási gyökérszinten (mindent nem szereplő `com.microsoft.example`) csak a hibák naplózása.
+Hello `<Root level="error">` szakasz hello legfelső szintű a naplózási szint konfigurálása (nem a minden `com.microsoft.example`) tooonly naplózási hiba adatok.
 
 Log4j naplózásának konfigurálásáról további információkért lásd: [http://logging.apache.org/log4j/2.x/manual/configuration.html](http://logging.apache.org/log4j/2.x/manual/configuration.html).
 
 > [!NOTE]
-> Storm verzióját 0.10.0-s és magasabb használata Log4j 2.x. A storm régebbi verzióit használja Log4j 1.x, a naplózási konfiguráció más formátumú használt. A régebbi konfigurációtól tudnivalókért lásd: [http://wiki.apache.org/logging-log4j/Log4jXmlFormat](http://wiki.apache.org/logging-log4j/Log4jXmlFormat).
+> Storm verzióját 0.10.0-s és magasabb használata Log4j 2.x. A storm régebbi verzióit használja Log4j 1.x, a naplózási konfiguráció más formátumú használt. Hello régebbi konfigurációtól tudnivalókért lásd: [http://wiki.apache.org/logging-log4j/Log4jXmlFormat](http://wiki.apache.org/logging-log4j/Log4jXmlFormat).
 
-## <a name="test-the-topology-locally"></a>A topológia helyi tesztelése
+## <a name="test-hello-topology-locally"></a>Teszt hello helyileg topológia
 
-A fájlok mentése után a következő paranccsal helyileg a topológia teszteléséhez.
+Hello fájlok mentése után használja a következő parancs tootest hello topológia helyileg hello.
 
 ```bash
 mvn compile exec:java -Dstorm.topology=com.microsoft.example.WordCountTopology
 ```
 
-Futtatja, a topológia indítási információit jeleníti meg. A következő szöveget a word-count kimeneti példája:
+Futtatja, a hello topológia indítási információkat jeleníti meg. hello következő szövege hello word-count kimeneti példát:
 
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word snow
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word white
@@ -591,29 +591,29 @@ Futtatja, a topológia indítási információit jeleníti meg. A következő sz
     17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word dwarfs
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word snow
 
-Ez a példa napló azt jelzi, hogy a word "és" 113 alkalommal kibocsátását. A szám továbbra is, amíg a topológia fut, mert a spout folyamatosan ugyanazt a mondatok bocsát ki.
+Ez a példa napló azt jelzi, hogy hello word "és" 113 alkalommal kibocsátását. hello száma továbbra is toogo be, amíg hello topológia fut, mert hello spout folyamatosan hello bocsát ki ugyanazt a mondatok.
 
-Egy 5 másodperces időköze van szó kibocsátási és a számok között. A **WordCount** összetevő adatok csak létrehozása egy rekordot érkezésekor van konfigurálva. Adott listának csak kézbesítési öt másodpercenként osztásjelek kéri.
+Egy 5 másodperces időköze van szó kibocsátási és a számok között. Hello **WordCount** -összetevő tooonly adatok létrehozása, ha egy rekordot érkezik. Adott listának csak kézbesítési öt másodpercenként osztásjelek kéri.
 
-## <a name="convert-the-topology-to-flux"></a>A topológia átalakítása fluxus
+## <a name="convert-hello-topology-tooflux"></a>Hello topológia tooFlux átalakítása
 
-Fluxus egy új keretrendszer elérhető Storm 0.10.0-s vagy újabb, amely lehetővé teszi a megvalósítás konfigurációja külön. Az összetevők továbbra is Java vannak definiálva, de a topológia definíciója YAM-fájllal. Csomagdefiníció egy alapértelmezett topológia a projektet, vagy egy önálló fájlt használja, amikor a topológiához. A topológia a Storm elküldésekor segítségével környezeti változókat vagy konfigurációs fájlok feltöltése az YAM-topológia definícióban szereplő értékek.
+Fluxus egy új keretében elérhető Storm 0.10.0-s vagy újabb, amely lehetővé teszi a megvalósítás tooseparate konfigurációja a rendszer. Az összetevők továbbra is Java vannak definiálva, de hello topológia definíciója YAM-fájllal. Csomagdefiníció egy alapértelmezett topológia a projektet, vagy egy önálló fájlt használja, hello topológia elküldésekor. Hello topológia tooStorm elküldésekor hello YAM topológia meghatározása környezeti változókat vagy konfigurációs fájlok toopopulate értékek használhatja.
 
-A YAM fájl határozza meg a topológia és az adatok az összetevők közötti folyamat. Megadhat egy YAM-fájl részeként a jar-fájlra, vagy egy külső YAM-fájl használatával.
+hello YAM fájl hello összetevők toouse hello topológia és a közöttük hello adatfolyama határozza meg. Megadhat egy YAM fájl hello jar-fájl részeként, vagy egy külső YAM-fájl használatával.
 
 Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html).
 
 > [!WARNING]
-> Oka az, hogy egy [hiba (https://issues.apache.org/jira/browse/STORM-2055)](https://issues.apache.org/jira/browse/STORM-2055) Storm 1.0.1-es, előfordulhat, hogy telepíteni szeretné a [Storm fejlesztőkörnyezet](https://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html) fluxus topológiák helyi futtatásához.
+> Esedékes tooa [hiba (https://issues.apache.org/jira/browse/STORM-2055)](https://issues.apache.org/jira/browse/STORM-2055) Storm 1.0.1-es, szükség lehet a tooinstall egy [Storm fejlesztőkörnyezet](https://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html) toorun fluxus topológiák helyileg.
 
-1. Helyezze át a `WordCountTopology.java` fájlt a projekt kívüli. Korábban ezt a fájlt a topológia definiálva, de a fluxus nem szükséges.
+1. Helyezze át a hello `WordCountTopology.java` fájlt kívüli hello projekt. Korábban a fájl a hello topológia definiálva, de a fluxus nem szükséges.
 
-2. Az a `resources` könyvtár, hozzon létre egy fájlt `topology.yaml`. Ez a fájl tartalmát a következő szöveg használható.
+2. A hello `resources` könyvtár, hozzon létre egy fájlt `topology.yaml`. Szöveg hello a fájl tartalmát, a következő hello használata.
 
-        name: "wordcount"       # friendly name for the topology
+        name: "wordcount"       # friendly name for hello topology
         
         config:                 # Topology configuration
-        topology.workers: 1     # Hint for the number of workers to create
+        topology.workers: 1     # Hint for hello number of workers toocreate
         
         spouts:                 # Spout definitions
         - id: "sentence-spout"
@@ -633,8 +633,8 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
         
         streams:                # Stream definitions
             - name: "Spout --> Splitter" # name isn't used (placeholder for logging, UI, etc.)
-            from: "sentence-spout"       # The stream emitter
-            to: "splitter-bolt"          # The stream consumer
+            from: "sentence-spout"       # hello stream emitter
+            to: "splitter-bolt"          # hello stream consumer
             grouping:                    # Grouping type
                 type: SHUFFLE
           
@@ -643,21 +643,21 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
             to: "counter-bolt"
             grouping:
             type: FIELDS
-                args: ["word"]           # field(s) to group on
+                args: ["word"]           # field(s) toogroup on
 
-3. A következő módosításokat a `pom.xml` fájlt.
+3. Ellenőrizze a következő módosításokat toohello hello `pom.xml` fájlt.
    
-   * Adja hozzá a következő új függőséghez a `<dependencies>` szakasz:
+   * Adja hozzá a következő új függőséghez hello hello `<dependencies>` szakasz:
      
         ```xml
-        <!-- Add a dependency on the Flux framework -->
+        <!-- Add a dependency on hello Flux framework -->
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>flux-core</artifactId>
             <version>${storm.version}</version>
         </dependency>
         ```
-   * Adja hozzá a következő beépülő modult a `<plugins>` szakasz. A beépülő modul a létrehozása a projekthez (jar-fájlt) csomag kezeli, és néhány meghatározott átalakítások fluxus alkalmazza, ha a csomag létrehozása.
+   * Adja hozzá a következő beépülő modul toohello hello `<plugins>` szakasz. A beépülő modul hello projekt hello létrehozása (jar-fájlt) csomag kezeli, és néhány átalakítások adott tooFlux vonatkozik hello csomag létrehozásakor.
      
         ```xml
         <!-- build an uber jar -->
@@ -670,7 +670,7 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
                     <!-- Keep us from getting a "can't overwrite file error" -->
                     <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
                     <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                    <!-- We're using Flux, so refer to it as main -->
+                    <!-- We're using Flux, so refer tooit as main -->
                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                         <mainClass>org.apache.storm.flux.Flux</mainClass>
                     </transformer>
@@ -698,41 +698,41 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
         </plugin>
         ```
 
-   * Az a **exec-maven-beépülő modul** `<configuration>` területen módosítsa az értéket a `<mainClass>` való `org.apache.storm.flux.Flux`. Ez a beállítás lehetővé teszi, hogy a kezelni a topológia helyben fut a fejlesztési fluxus.
+   * A hello **exec-maven-beépülő modul** `<configuration>` területen hello értékének módosításához `<mainClass>` túl`org.apache.storm.flux.Flux`. Ez a beállítás lehetővé teszi, hogy a hello topológia helyben fut a fejlesztési fluxus toohandle.
 
-   * Az a `<resources>` területen írja be a következőt a `<includes>`. Az XML-kód tartalmazza a YAM fájlt határozza meg a topológia a projekt részeként.
+   * A hello `<resources>` területen írja be a következő toohello hello `<includes>`. Az XML-kód hello YAM definícióját tartalmazó hello topológia hello projekt részeként tartalmazza.
 
         ```xml
         <include>topology.yaml</include>
         ```
 
-## <a name="test-the-flux-topology-locally"></a>A fluxus topológia helyi tesztelése
+## <a name="test-hello-flux-topology-locally"></a>Hello fluxus topológia helyi tesztelése
 
-1. Használja a következő fordításához és a fluxus topológia Maven használatával hajtható végre:
+1. A következő toocompile hello használja, és hajtsa végre a hello fluxus topológia Maven használatával:
 
     ```bash
     mvn compile exec:java -Dexec.args="--local -R /topology.yaml"
     ```
 
-    Ha a PowerShell használata esetén a következő paranccsal:
+    PowerShell, a következő parancs használata hello használata:
 
     ```bash
     mvn compile exec:java "-Dexec.args=--local -R /topology.yaml"
     ```
 
     > [!WARNING]
-    > Ha a topológia a Storm 1.0.1-es bits használ, ez a parancs sikertelen lesz. Ez a hiba oka [https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055). Ehelyett [Storm a fejlesztési környezet telepítése](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html) és az alábbi információkat.
+    > Ha a topológia a Storm 1.0.1-es bits használ, ez a parancs sikertelen lesz. Ez a hiba oka [https://issues.apache.org/jira/browse/STORM-2055](https://issues.apache.org/jira/browse/STORM-2055). Ehelyett [Storm a fejlesztési környezet telepítése](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html) és hello használja a következő információkat.
 
-    Ha rendelkezik [Storm a fejlesztési környezetben telepített](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html), ehelyett a következő parancsokat használhatja:
+    Ha rendelkezik [Storm a fejlesztési környezetben telepített](http://storm.apache.org/releases/0.10.0/Setting-up-development-environment.html), ehelyett a következő parancsok hello használhatja:
 
     ```bash
     mvn compile package
     storm jar target/WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local -R /topology.yaml
     ```
 
-    A `--local` paraméter fut a topológia helyi módban a fejlesztési környezetet. A `-R /topology.yaml` paramétert használja a `topology.yaml` erőforrás fájlt a jar-fájlra a topológia meghatározása.
+    Hello `--local` paraméter hello topológia módban fut helyi a fejlesztési környezetet. Hello `-R /topology.yaml` paramétert használ hello `topology.yaml` hello jar fájl toodefine hello topológia erőforrás fájlt.
 
-    Futtatja, a topológia indítási információit jeleníti meg. A következő szöveget a kimeneti példája:
+    Futtatja, a hello topológia indítási információkat jeleníti meg. a következő szöveg hello hello kimeneti példája:
 
         17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word snow
         17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word white
@@ -743,7 +743,7 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
 
     Van egy 10 másodperces késleltetési kötegek naplózott adatok között.
 
-2. Másolatot készít a `topology.yaml` fájlt a projektben. Nevezze el az új fájlt `newtopology.yaml`. Az a `newtopology.yaml` fájlt, keresse meg a következő szakaszt, és módosítsa az értéket a `10` való `5`. Ez a módosítás a kibocsátás kötegekben word számok 10 másodperc 5 közötti távolság változik.
+2. Másolatot készít hello `topology.yaml` fájl hello projektből. Nevű hello új fájl `newtopology.yaml`. A hello `newtopology.yaml` fájlt, keresse meg hello következő szakaszt, és hello értékének módosítása `10` túl`5`. A módosítás módosítások hello időközétől kibocsátó Word kötegek száma 10 másodperc too5 a.
 
     ```yaml
     - id: "counter-bolt"
@@ -753,7 +753,7 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
     parallelism: 1
     ```yaml
 
-3. To run the topology, use the following command:
+3. toorun hello topology, use hello following command:
 
     ```bash
     mvn exec:java -Dexec.args="--local /path/to/newtopology.yaml"
@@ -765,25 +765,25 @@ Fluxus további információkért lásd: [fluxus keretrendszer (https://storm.ap
     storm jar target/WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local /path/to/newtopology.yaml
     ```
 
-    Módosítsa a `/path/to/newtopology.yaml` elérési útját az előző lépésben létrehozott newtopology.yaml fájlt. Ez a parancs a newtopology.yaml használja, mint a topológia meghatározása. Mivel jelenleg nem tartozik a `compile` paraméter, a Maven az előző lépésben létrehozott projekt verzióját használja.
+    Változás hello `/path/to/newtopology.yaml` toohello elérési út toohello newtopology.yaml fájl hello előző lépésben létrehozott. Ez a parancs hello newtopology.yaml hello topológia definíciófrissítések használja. Mivel nem magában foglalja az hello `compile` paraméter, a Maven hello projektet egy előző lépésekben hello verzióját használja.
 
-    Ha a topológia elindul, kell figyelje meg, hogy a kibocsátott kötegek között eltelő idő megfelelően newtopology.yaml értéke megváltozott. Így tudja módosítani a konfigurációs fájl YAM anélkül, hogy le kell fordítani a topológia látható.
+    Egyszer hello topológia elindul, kell figyelje meg, hogy a hello idő közötti kibocsátott kötegek newtopology.yaml tooreflect hello értéke megváltozott. Így tudja módosítani a konfigurációs YAM fájl anélkül, hogy toorecompile hello topológia látható.
 
-Ezeket és más szolgáltatások fluxus keretrendszer további információkért lásd: [fluxus (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html).
+Ezeket és más szolgáltatások hello fluxus keretrendszer további információkért lásd: [fluxus (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html).
 
 ## <a name="trident"></a>Trident
 
-Trident egy magas szintű absztrakció, Storm által biztosított. Állapot-nyilvántartó feldolgozási támogatja. Az elsődleges Trident előnye, hogy azt is garantálja, hogy a topológia minden üzenetet csak egyszer dolgozza fel. A Trident ezzel szemben nélkül a topológia is csak garantálja, hogy az üzenetek legalább egyszer fel. Is más különbségek vannak, például a beépített összetevők boltokhoz létrehozása helyett használható. Valójában boltokhoz kevésbé általános összetevők, például a szűrőket, a leképezések és a funkciók helyébe lép.
+Trident egy magas szintű absztrakció, Storm által biztosított. Állapot-nyilvántartó feldolgozási támogatja. hello elsődleges Trident előnye, hogy azt is garantálni hello topológia kerül minden üzenetet csak egyszer dolgozza fel. A Trident ezzel szemben nélkül a topológia is csak garantálja, hogy az üzenetek legalább egyszer fel. Is más különbségek vannak, például a beépített összetevők boltokhoz létrehozása helyett használható. Valójában boltokhoz kevésbé általános összetevők, például a szűrőket, a leképezések és a funkciók helyébe lép.
 
-Trident alkalmazások Maven-projektek használatával is létrehozható. Az alapvető lépéseket használja, az ebben a cikkben bemutatott – csak a kód nem egyezik. Trident is nem (jelenleg) használható fluxus keretében.
+Trident alkalmazások Maven-projektek használatával is létrehozható. Hello használata azonos basic az ebben a cikkben bemutatott lépések – csak hello kód nem egyezik. Trident is nem (jelenleg) használható hello fluxus keretrendszer.
 
-A Trident kapcsolatos további információkért tekintse meg a [Trident API – áttekintés](http://storm.apache.org/documentation/Trident-API-Overview.html).
+A Trident kapcsolatos további információkért lásd: hello [Trident API – áttekintés](http://storm.apache.org/documentation/Trident-API-Overview.html).
 
 A Trident alkalmazás példáért lásd: [trendekkel kapcsolatos témakörök a HDInsight alatt futó Apache Storm Twitter](hdinsight-storm-twitter-trending.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
-Rendelkezik megtudta, hogyan hozhat létre a Storm-topológia Java használatával. Most megtudhatja, hogyan:
+Megtanulta, hogyan toocreate a Storm-topológia Java használatával. Most megtudhatja, hogyan:
 
 * [Központi telepítése és kezelése a HDInsight alatt futó Apache Storm-topológiák](hdinsight-storm-deploy-monitor-topology.md)
 

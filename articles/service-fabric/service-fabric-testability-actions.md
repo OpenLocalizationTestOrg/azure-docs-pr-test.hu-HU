@@ -1,6 +1,6 @@
 ---
-title: "Azure mikroszolgáltatások hibáinak szimulálása |} Microsoft Docs"
-description: "Ez a cikk beszél található a Microsoft Azure Service Fabric tesztelhetőségi műveleteket."
+title: "az Azure mikroszolgáltatások aaaSimulate hibáinak |} Microsoft Docs"
+description: "Ez a cikk beszél található a Microsoft Azure Service Fabric hello tesztelhetőségi műveletek."
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: motanv;heeldin
-ms.openlocfilehash: c8ddc7732999ae555323bebaef60aa34c8f2ec17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bdda1c0c5a40b243ab956c4791afd52e11c4089
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testability-actions"></a>Tesztelhetőségi műveletek
-Ahhoz, hogy egy nem megbízható infrastruktúra szimulálása, Azure Service Fabric biztosít, a fejlesztői, azzal, hogy különböző valós hibák és állapotváltozási adat áramlik szimulálásához. Ezek tesztelhetőségi műveletként érhetők el. A műveletek végezhetők, amelyek egy adott van, állapotváltás vagy érvényesítési alacsony szintű API-k. Ezek a műveletek kombinálásával átfogó Tesztelési forgatókönyvek írhat a szolgáltatások.
+Rendelés toosimulate egy nem megbízható infrastruktúra, az Azure Service Fabric biztosít, hello fejlesztői módon toosimulate a különböző valós hibák és állapotváltozási adat áramlik. Ezek tesztelhetőségi műveletként érhetők el. hello műveletek vannak hello alacsony szintű API-k, amelyek egy adott van, az állapotváltás vagy az érvényesítés. Ezek a műveletek kombinálásával átfogó Tesztelési forgatókönyvek írhat a szolgáltatások.
 
-A Service Fabric biztosít néhány gyakori tesztesetek tevődik össze ezeket a műveleteket. Erősen ajánlott, hogy használhatja a beépített forgatókönyvekben, gondosan kiválasztott közös Állapotváltások és hiba esetekben teszteléséhez. Azonban műveletek segítségével hozzon létre egyéni Tesztelési forgatókönyvek, ha hozzá szeretne adni a forgatókönyvek, amelyek nem tartoznak a beépített forgatókönyvek még vagy egyéni alkalmazás igazított érvényességének.
+A Service Fabric biztosít néhány gyakori tesztesetek tevődik össze ezeket a műveleteket. Erősen ajánlott, hogy használhatja a beépített forgatókönyvekben, gondosan kiválasztott tootest közös Állapotváltások és hiba esetekben. Műveletek azonban lehet használt toocreate egyéni Tesztelési forgatókönyvek, ha a forgatókönyvek, amelyek nem tartoznak hello beépített forgatókönyvek még vagy egyéni alkalmazás igazított tooadd érvényességének használni szeretne.
 
-A műveletek implementációja C# System.Fabric.dll szerelvényben találhatók. A rendszer Fabric PowerShell-modul a Microsoft.ServiceFabric.Powershell.dll szerelvény található. Runtime telepítésének részeként a ServiceFabric PowerShell modul telepítve engedélyezi a használat megkönnyítése érdekében.
+C# hello műveletek implementációja hello System.Fabric.dll szerelvény található. hello rendszer Fabric PowerShell-modul hello Microsoft.ServiceFabric.Powershell.dll szerelvény található. Runtime telepítésének részeként hello ServiceFabric PowerShell-modul a könnyű használatra telepített tooallow.
 
 ## <a name="graceful-vs-ungraceful-fault-actions"></a>Biztonságos és ungraceful tartalék műveletek
 Tesztelhetőségi műveletek két fő gyűjtők sorolhatók:
 
-* Ungraceful hibák: ezek a hibák hibák gépek újraindításának például szimulálásához, és dolgozza fel az összeomlások. Ebben az esetben a hibákat a végrehajtási környezet folyamat váratlanul leáll. Ez azt jelenti, hogy az állapot nem karbantartás előtt ismét elindul az alkalmazás futtatható.
-* Sikeres-e hibák: ezek a hibák szimulálása szabályos műveletek, például a replika helyezi át, és elhagyta a(z) terheléselosztást által indított. Ezekben az esetekben a szolgáltatás lekérdezi egy értesítés, amely a Bezárás gombra, és mielőtt kilépne a állapotot fel tudja szabadítani.
+* Ungraceful hibák: ezek a hibák hibák gépek újraindításának például szimulálásához, és dolgozza fel az összeomlások. Ebben az esetben a hibákat hello végrehajtási környezet folyamat váratlanul leáll. Ez azt jelenti, hogy hello állapot nélküli karbantartása hello alkalmazás újra indítása előtt futtatható.
+* Sikeres-e hibák: ezek a hibák szimulálása szabályos műveletek, például a replika helyezi át, és elhagyta a(z) terheléselosztást által indított. Ebben az esetben hello szolgáltatás lekérdezi egy értesítés, amely hello zárja be, és mielőtt kilépne hello állapot fel tudja szabadítani.
 
-Jobb minőségű ellenőrzéséhez futtassa le a szolgáltatást és az üzleti alkalmazások és szolgáltatások közben, hogy a különböző szabályos és ungraceful hibák. Ungraceful hibák forgatókönyvek, ahol a szolgáltatás-folyamat váratlanul kilép közepén egyes munkafolyamat megadásával. A szolgáltatás replika Service Fabric által történt visszaállítása után ellenőrzi a helyreállítási elérési úton található. Ez segít, tesztelje az adatok konzisztenciájának, és hogy a szolgáltatás állapotának karban kell hiba után. Hibák (a szabályos hibák) más készlete tesztelje, hogy a szolgáltatás megfelelően reagál a Service Fabric mozgatásának replikákra. A RunAsync metódusában a megszakítási kezelésének ellenőrzi. A szolgáltatás szüksége van a megszakítási token alatt állítsa be, megfelelően menteni az állapotát, és lépjen ki a RunAsync metódusában.
+Jobb minőségű érvényesítéshez hello szolgáltatás futtatásához és az üzleti munkaterhelés közben, hogy a különböző szabályos és ungraceful hibák. Ungraceful hibák gyakorolja forgatókönyvek, ahol hello szolgáltatás folyamat váratlanul kilép néhány munkafolyamat hello közepén. A vizsgálatok hello helyreállítási elérési úton található hello szolgáltatás replika Service Fabric által történt visszaállítása után. Ez segít tesztelése az adatok konzisztenciájának, és hogy hello szolgáltatás állapotának karban kell hiba után. hello más hibák (hello szabályos hibák) készletét tesztelje, hogy helyesen hello szolgáltatás reagál a Service Fabric mozgatásának tooreplicas. Megszakítási kezelésének ellenőrzi a hello RunAsync metódusában. hello szolgáltatás toocheck igényeihez hello cancellation token alatt állítsa be megfelelően menteni az állapotát és kilépés hello RunAsync metódusában.
 
 ## <a name="testability-actions-list"></a>Tesztelhetőségi műveletek listája
 | Műveletek | Leírás | Felügyelt API | PowerShell-parancsmag | Biztonságos/ungraceful hibák |
 | --- | --- | --- | --- | --- |
-| CleanTestState |Eltávolítja az összes teszt állapota a fürt esetén a teszt illesztőprogram rossz leállítására. |CleanTestStateAsync |Remove-ServiceFabricTestState |Nem alkalmazható |
+| CleanTestState |Eltávolítja az összes hello teszt állapota hello fürt esetén a hibás leállítást hello teszt illesztőprogram. |CleanTestStateAsync |Remove-ServiceFabricTestState |Nem alkalmazható |
 | InvokeDataLoss |Adatvesztés kapott egy szolgáltatás partícióra. |InvokeDataLossAsync |Invoke-ServiceFabricPartitionDataLoss |Biztonságos |
 | InvokeQuorumLoss |Egy adott állapot-nyilvántartó szolgáltatása partíció elhelyezi a kvórum elvesztése. |InvokeQuorumLossAsync |Invoke-ServiceFabricQuorumLoss |Biztonságos |
-| Elsődleges áthelyezése |A megadott elsődleges replika az állapotalapú szolgáltatás áthelyezése a megadott fürtcsomópont. |MovePrimaryAsync |MOVE-ServiceFabricPrimaryReplica |Biztonságos |
-| Másodlagos áthelyezése |A jelenlegi másodlagos másodpéldány egy állapotalapú szolgáltatás áthelyezése egy másik fürtcsomópontra. |MoveSecondaryAsync |MOVE-ServiceFabricSecondaryReplica |Biztonságos |
-| RemoveReplica |Replika hiba szimulálja által replika eltávolítása egy fürtből. Ez a replika bezárul, és állapotba kerül, hogy szerepkör "None", a fürt összes állapotában eltávolítása. |RemoveReplicaAsync |Remove-ServiceFabricReplica |Biztonságos |
-| RestartDeployedCodePackage |A kód csomag folyamat hibájának szimulálja egy egy fürt egy csomópontján telepített kódcsomag újraindításával. Ez a minden felhasználó szolgáltatás replika üzemeltetett újraindul, hogy a folyamat kód csomag folyamat megszakítása. |RestartDeployedCodePackageAsync |Újraindítás-ServiceFabricDeployedCodePackage |Ungraceful |
+| Elsődleges áthelyezése |A kurzor hello megadott állapotalapú szolgáltatási toohello megadott fürtcsomópont elsődleges másodpéldány. |MovePrimaryAsync |MOVE-ServiceFabricPrimaryReplica |Biztonságos |
+| Másodlagos áthelyezése |Az állapotalapú szolgáltatás tooa másik fürtcsomópont másodlagos másodpéldány aktuális hello helyezi. |MoveSecondaryAsync |MOVE-ServiceFabricSecondaryReplica |Biztonságos |
+| RemoveReplica |Replika hiba szimulálja által replika eltávolítása egy fürtből. Ez hello replika bezárul, és ismerhetik azt toorole "None", eltávolítja az összes szerinti hello fürtből. |RemoveReplicaAsync |Remove-ServiceFabricReplica |Biztonságos |
+| RestartDeployedCodePackage |A kód csomag folyamat hibájának szimulálja egy egy fürt egy csomópontján telepített kódcsomag újraindításával. Ez a újraindul, hogy a folyamat minden hello felhasználói szolgáltatás üzemeltetett replikák hello kód csomag folyamat megszakítása. |RestartDeployedCodePackageAsync |Újraindítás-ServiceFabricDeployedCodePackage |Ungraceful |
 | A RestartNode |A Service Fabric-fürt Csomóponthiba szimulálja egy csomópont újraindításával. |RestartNodeAsync |Újraindítás-ServiceFabricNode |Ungraceful |
 | RestartPartition |A datacenter blackout vagy a fürt blackout forgatókönyv szimulálja néhány vagy az összes partíció replikák újraindításával. |RestartPartitionAsync |Restart-ServiceFabricPartition |Biztonságos |
-| RestartReplica |A replika hiba szimulálja a megőrzött replika újraindításával fürtben, a replika bezárása, és majd megnyitni. |RestartReplicaAsync |Újraindítás-ServiceFabricReplica |Biztonságos |
+| RestartReplica |A replika hiba szimulálja egy megőrzött replikát újraindításával fürtben, hello replika bezárása, és majd megnyitni. |RestartReplicaAsync |Újraindítás-ServiceFabricReplica |Biztonságos |
 | A StartNode |A csomópont elindul egy fürt, amely már le van állítva. |StartNodeAsync |Start-ServiceFabricNode |Nem alkalmazható |
-| Stopnode parancs |Egy Csomóponthiba szimulálja a fürt egyik csomópontjában levő leállításával. A csomópont le maradnak, amíg StartNode nevezik. |StopNodeAsync |Stop-ServiceFabricNode |Ungraceful |
-| ValidateApplication |A rendelkezésre állási és, hogy bizonyos hiba a rendszerbe után általában az alkalmazáson belül minden Service Fabric-szolgáltatás állapotát ellenőrzi. |ValidateApplicationAsync |Teszt-ServiceFabricApplication |Nem alkalmazható |
-| ValidateService |A rendelkezésre állás és a Service Fabric-szolgáltatás állapotát ellenőrzi a általában után néhány tartalék hogy a rendszerbe. |ValidateServiceAsync |Teszt-ServiceFabricService |Nem alkalmazható |
+| Stopnode parancs |Egy Csomóponthiba szimulálja a fürt egyik csomópontjában levő leállításával. hello csomópont le maradnak, amíg StartNode nevezik. |StopNodeAsync |Stop-ServiceFabricNode |Ungraceful |
+| ValidateApplication |Hello rendelkezésre állását és, hogy néhány tartalék hello rendszerbe után általában az alkalmazáson belül minden Service Fabric-szolgáltatás állapotát ellenőrzi. |ValidateApplicationAsync |Teszt-ServiceFabricApplication |Nem alkalmazható |
+| ValidateService |Hello rendelkezésre állás és a Service Fabric-szolgáltatás állapotát ellenőrzi a általában után néhány tartalék hogy hello rendszerbe. |ValidateServiceAsync |Teszt-ServiceFabricService |Nem alkalmazható |
 
 ## <a name="running-a-testability-action-using-powershell"></a>PowerShell-lel tesztelhetőségi műveletek futtatása
-Az oktatóanyag bemutatja, hogyan tesztelhetőségi műveletet futtatni a PowerShell használatával. Megtudhatja, hogyan egy tesztelhetőségi művelet futtatásához helyi (1-box) fürt vagy egy Azure-fürttel. Microsoft.Fabric.Powershell.dll--a Service Fabric PowerShell-modul – a Microsoft Service Fabric MSI telepítésekor automatikusan telepítve van. A modul automatikusan betöltődik, amikor megnyit egy PowerShell-parancssorba.
+Az oktatóanyag bemutatja, hogyan toorun egy tesztelhetőségi művelet PowerShell használatával. Megtudhatja, hogyan toorun egy tesztelhetőségi műveletet a helyi (1-box) fürt vagy egy Azure-fürttel. Microsoft.Fabric.Powershell.dll – hello Service Fabric PowerShell-modul – telepíti a rendszer automatikusan telepíti a Microsoft Service Fabric MSI hello. hello modul automatikusan betöltődik, amikor megnyit egy PowerShell-parancssorba.
 
 Útmutató szegmensek:
 
@@ -62,13 +62,13 @@ Az oktatóanyag bemutatja, hogyan tesztelhetőségi műveletet futtatni a PowerS
 * [Egy műveletet futtatni egy Azure-fürttel](#run-an-action-against-an-azure-cluster)
 
 ### <a name="run-an-action-against-a-one-box-cluster"></a>Egy műveletet futtatni egy beépített fürt
-Egy tesztelhetőségi művelet futtatni a helyi fürthöz, először csatlakozzon a fürthöz, és nyissa meg a PowerShell-parancssorba rendszergazdai módban. Ossza meg velünk tekintse meg a **újraindítás-ServiceFabricNode** művelet.
+toorun egy tesztelhetőségi műveletet a helyi fürthöz, először kapcsolódik toohello fürt és a rendszergazda módban megnyitott hello PowerShell-parancssorba. Ossza meg velünk nézze meg hello **újraindítás-ServiceFabricNode** művelet.
 
 ```powershell
 Restart-ServiceFabricNode -NodeName Node1 -CompletionMode DoNotVerify
 ```
 
-Itt a művelet **újraindítás-ServiceFabricNode** "1. csomópont" nevű csomópont futtatja. A végrehajtási mód határozza meg, hogy azt kell nem ellenőrizze, hogy az újraindítás-csomópont művelet ténylegesen sikeres volt. Adja meg a befejezési módot, mint a "Hitelesítés", akkor ellenőrizheti, hogy sikerült-e ténylegesen az újraindítási művelete. Helyett a nevével adja meg közvetlenül a csomópont, megadhatja a partíciós kulcs és milyen típusú replika, az alábbiak szerint:
+Itt hello művelet **újraindítás-ServiceFabricNode** "1. csomópont" nevű csomópont futtatja. hello végrehajtási mód határozza meg, hogy azt nem ellenőrizze hogy hello újraindítás-csomópont művelet ténylegesen sikeres volt. Adja meg hello befejezési mint a "Hitelesítés" módnál azt tooverify hogy ténylegesen hello újraindítási művelete sikeresen befejeződött. Helyett a nevével adja meg közvetlenül hello csomópont, megadhatja azt a kulcsot és hello partíciófajta replika, az alábbiak szerint:
 
 ```powershell
 Restart-ServiceFabricNode -ReplicaKindPrimary  -PartitionKindNamed -PartitionKey Partition3 -CompletionMode Verify
@@ -83,20 +83,20 @@ Connect-ServiceFabricCluster $connection
 Restart-ServiceFabricNode -NodeName $nodeName -CompletionMode DoNotVerify
 ```
 
-**Újraindítás-ServiceFabricNode** használatával indítsa újra a Service Fabric-csomópont a fürtben. Ezzel leállítja a Fabric.exe folyamatban, ami fog indítsa újra az összes, a rendszer szolgáltatás és a felhasználó szolgáltatás replikák adott csomóponton található alkotóelem. Ez az API a szolgáltatás tesztelése segítségével fedje fel a feladatátvételi helyreállítási elérési út mentén hibák. Ennek segítségével szimulálása a fürtben lévő csomópontok hibáit.
+**Újraindítás-ServiceFabricNode** kell használt toorestart a Service Fabric egy fürt csomópontja. Ezzel leállítja a hello Fabric.exe folyamat, amely újraindítja az összes hello rendszer szolgáltatás és a felhasználó szolgáltatás üzemeltetett replikák ezen a csomóponton. Az API tootest a szolgáltatás segítségével fedik le a hibák hello feladatátvételi helyreállítási elérési út mentén. Ennek segítségével szimulálhatja hello fürtben lévő csomópontok hibáit.
 
-Az alábbi képernyőfelvételen látható a **újraindítás-ServiceFabricNode** tesztelhetőségi parancs működés közben.
+hello alábbi képernyőfelvételen látható hello **újraindítás-ServiceFabricNode** tesztelhetőségi parancs működés közben.
 
 ![](media/service-fabric-testability-actions/Restart-ServiceFabricNode.png)
 
-Az első kimeneti **Get-ServiceFabricNode** (a Service Fabric PowerShell-modul a parancsmag) jeleníti meg, hogy a helyi fürt rendelkezik-e az öt csomóponttal: Node.1 Node.5 számára. A tesztelhetőségi (parancsmag) művelet után **újraindítás-ServiceFabricNode** a csomópont végrehajtása nevű Node.4, látható, hogy a csomópont hasznos üzemidő alaphelyzetbe lett állítva.
+hello az első kimeneti hello **Get-ServiceFabricNode** (hello Service Fabric PowerShell-modul a parancsmag) jeleníti meg, hogy hello helyi fürt az öt csomóponttal rendelkezik: Node.1 tooNode.5. Hello tesztelhetőségi művelet (parancsmag) után **újraindítás-ServiceFabricNode** hello csomóponton végrehajtása nevű Node.4, látható, hogy hello csomópont hasznos üzemidő alaphelyzetbe lett állítva.
 
 ### <a name="run-an-action-against-an-azure-cluster"></a>Egy műveletet futtatni egy Azure-fürttel
-Tesztelhetőségi műveletek futtatása (a PowerShell használatával) egy Azure fürtön hajtották hasonlít a helyi fürtön hajtották a műveletek futtatása. Az egyetlen különbség az, hogy helyett a helyi fürthöz, a művelet futtatása előtt kell először csatlakozzon az Azure-fürttel.
+A helyi fürthöz hasonló toorunning hello műveletet tesztelhetőségi műveletek futtatása (a PowerShell használatával) egy Azure fürtön hajtották. hello egyetlen különbség az, hogy helyett csatlakozó toohello helyi fürthöz, a hello művelet futtatása előtt kell tooconnect toohello Azure először a fürt.
 
 ## <a name="running-a-testability-action-using-c35"></a>C &#35; használatával tesztelhetőségi műveletek futtatása
-C# használatával tesztelhetőségi műveletet futtatni, először meg kell FabricClient használatával csatlakozzon a fürthöz. A művelet futtatásához szükséges paraméterek majd beszerzése. Különböző paraméterek használhatók ugyanaz a művelet futtatásához.
-A RestartServiceFabricNode művelet megnézi, egy futtassa módja a fürtben lévő csomópont információk (a csomópont neve és csomópont azonosítója) segítségével.
+toorun egy tesztelhetőségi művelet C# használatával, előbb kell tooconnect toohello fürt FabricClient használatával. Beszereznie hello szükséges paramétereket toorun hello művelet. Különböző paraméterek használhatók toorun hello műveletet.
+Megnézi hello RestartServiceFabricNode művelet, hello csomópont információk (a csomópont neve és csomópont azonosítója) segítségével van egyirányú toorun hello fürtben.
 
 ```csharp
 RestartNodeAsync(nodeName, nodeInstanceId, completeMode, operationTimeout, CancellationToken.None)
@@ -104,16 +104,16 @@ RestartNodeAsync(nodeName, nodeInstanceId, completeMode, operationTimeout, Cance
 
 A paraméter magyarázata:
 
-* **CompleteMode** határozza meg, hogy a mód nem ellenőrizze, hogy sikerült-e ténylegesen az újraindítási művelete. Adja meg a befejezési módot, mint a "Hitelesítés", akkor ellenőrizheti, hogy sikerült-e ténylegesen az újraindítási művelete.  
-* **OperationTimeout** beállítja azt az időtartamot, amíg a művelet befejezését, mielőtt egy TimeoutException kivétel történt az.
-* **CancellationToken** lehetővé teszi, hogy a függőben lévő hívása szakítható meg.
+* **CompleteMode** határozza meg, hogy hello üzemmód nem ellenőriznie kell, hogy sikerült-e ténylegesen hello újraindítási művelete. Adja meg hello befejezési mint a "Hitelesítés" módnál azt tooverify hogy ténylegesen hello újraindítási művelete sikeresen befejeződött.  
+* **OperationTimeout** beállítása hello hello művelet toofinish idő, mielőtt egy TimeoutException kivétel történt.
+* **CancellationToken** lehetővé teszi, hogy a függőben lévő hívás toobe megszakítva.
 
-Helyett a nevével adja meg közvetlenül a csomópont, megadhatja a partíciós kulcs és a replika típusú keresztül.
+Adja meg közvetlenül a hello csomópont neve, azt a kulcsot és hello partíciófajta replika adhatja.
 
 További információkért lásd: [partitionselector osztályt és replicaselector osztályt](#partition_replica_selector).
 
 ```csharp
-// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll
+// Add a reference tooSystem.Fabric.Testability.dll and System.Fabric.dll
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,10 +136,10 @@ class Test
         Console.WriteLine("Starting RestartNode test");
         try
         {
-            //Restart the node by using ReplicaSelector
+            //Restart hello node by using ReplicaSelector
             RestartNodeAsync(clusterConnection, serviceName).Wait();
 
-            //Another way to restart node is by using nodeName and nodeInstanceId
+            //Another way toorestart node is by using nodeName and nodeInstanceId
             RestartNodeAsync(clusterConnection, nodeName, nodeInstanceId).Wait();
         }
         catch (AggregateException exAgg)
@@ -180,9 +180,9 @@ class Test
 
 ## <a name="partitionselector-and-replicaselector"></a>Partitionselector osztályt és replicaselector osztályt
 ### <a name="partitionselector"></a>Partitionselector osztályt
-Partitionselector osztályt tesztelhetőségi felfedett segítő, és válassza ki a tesztelhetőségi műveletek végrehajtásához egy adott partícióra szolgál. Egy adott partícióra válassza, ha a Partícióazonosító előzetesen ismert használható. Vagy megadhatja a partíciós kulcs, és a művelet feloldja a Partícióazonosító belső. Lehetősége is van egy véletlenszerű partíció kiválasztása.
+Partitionselector osztályt tesztelhetőségi felfedett segítő és van egy adott használt tooselect partícióazonosító mely tooperform a hello tesztelhetőségi műveletek. Egy adott partícióra használt tooselect lehet, ha hello Partícióazonosító előzetesen is ismert. Vagy megadhatja a hello partíciós kulcs, és hello művelet belső hello Partícióazonosító fel. Akkor is hello lehetőség kiválasztásával egy véletlenszerű partíció.
 
-A segítő használatához a partitionselector osztályt objektum létrehozása, és válassza ki a partíciót a Select * módszerek egyikének használatával. Az API-hoz, írja elő, akkor továbbítja a partitionselector osztályt objektumban. Ha nincs lehetőség van kiválasztva, alapértelmezés szerint egy véletlenszerű partícióra.
+toouse a segítő létrehozása hello partitionselector osztályt objektum és hello partíció hello Select * módszerek egyikének használatával. Hello partitionselector osztályt objektum toohello API írja elő, akkor továbbítja. Ha nincs lehetőség van kiválasztva, tooa véletlenszerű partíció alapértelmezés szerint.
 
 ```csharp
 Uri serviceName = new Uri("fabric:/samples/InMemoryToDoListApp/InMemoryToDoListService");
@@ -204,9 +204,9 @@ PartitionSelector uniformIntPartitionSelector = PartitionSelector.PartitionKeyOf
 ```
 
 ### <a name="replicaselector"></a>Replicaselector osztályt
-Replicaselector osztályt tesztelhetőségi felfedett segítő, és használja, válasszon egy replikát a tesztelhetőségi műveletek végrehajtásához. Válasszon egy adott replikát, ha a másodpéldány-azonosító előzetesen ismert használható. Ezenkívül lehetősége nyílik egy elsődleges másodpéldány, vagy egy véletlenszerű másodlagos kiválasztása. Replicaselector osztályt partitionselector osztályt, származik, ezért meg kell a replika és a partíció, amelyen a tesztelhetőségi művelet elvégezni kívánt egyaránt.
+Replicaselector osztályt tesztelhetőségi felfedett segítő és van használt toohelp kiválasztani a replikát a mely tooperform hello tesztelhetőségi műveletek. Egy adott replika használt tooselect lehet, ha előzetesen ismert hello másodpéldány-azonosító. Ezenkívül hello lehetőség kiválasztásával egy elsődleges másodpéldány, vagy egy véletlenszerű másodlagos rendelkezik. Replicaselector osztályt a partitionselector osztályt osztályból származik, ezért meg kell tooselect mindkét hello replika és hello partíciót, amelyen tooperform hello tesztelhetőségi művelet kívánja.
 
-Ez a segédprogram használatához replicaselector osztályt objektum létrehozása, és állítsa be a kívánt válassza ki a replika és a partíció. Majd továbbíthatja azt be, amely ezt az API-t. Ha nincs lehetőség van kiválasztva, alapértelmezés szerint egy véletlenszerű replika és a véletlenszerű partíció.
+a segítő toouse replicaselector osztályt objektum létrehozása, és állítsa be a kívánt módon hello tooselect hello replika- és hello partíció. Majd továbbíthatja azt hello API, amely igényli azt be. Ha nincs lehetőség van kiválasztva, tooa véletlenszerű replika és a véletlenszerű partíció alapértelmezés szerint.
 
 ```csharp
 Guid partitionIdGuid = new Guid("8fb7ebcc-56ee-4862-9cc0-7c6421e68829");
@@ -216,10 +216,10 @@ long replicaId = 130559876481875498;
 // Select a random replica
 ReplicaSelector randomReplicaSelector = ReplicaSelector.RandomOf(partitionSelector);
 
-// Select the primary replica
+// Select hello primary replica
 ReplicaSelector primaryReplicaSelector = ReplicaSelector.PrimaryOf(partitionSelector);
 
-// Select the replica by ID
+// Select hello replica by ID
 ReplicaSelector replicaByIdSelector = ReplicaSelector.ReplicaIdOf(partitionSelector, replicaId);
 
 // Select a random secondary replica
@@ -228,7 +228,7 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
 
 ## <a name="next-steps"></a>Következő lépések
 * [Tesztelhetőségi forgatókönyvek](service-fabric-testability-scenarios.md)
-* A szolgáltatás tesztelése
+* Hogyan tootest a szolgáltatás
   * [Szolgáltatás-munkaterhelések során hibák szimulálása](service-fabric-testability-workload-tests.md)
   * [Szolgáltatások közötti kommunikációs hibái](service-fabric-testability-scenarios-service-communication.md)
 

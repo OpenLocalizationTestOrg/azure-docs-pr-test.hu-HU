@@ -1,24 +1,24 @@
 <!--author=SharS last changed: 06/22/2016-->
 
-### <a name="to-configure-and-register-the-device"></a>Az eszköz konfigurálása és regisztrálása
-1. Nyissa meg a Windows PowerShell felületet a StorSimple-eszköz soros konzoljában. Az erre vonatkozó utasítások [A PuTTY használata az eszköz soros konzoljához való csatlakozáshoz](../articles/storsimple/storsimple-8000-deployment-walkthrough-gov-u2.md#use-putty-to-connect-to-the-device-serial-console) című szakaszban találhatók. **Pontosan kövesse az ismertetett eljárást, különben nem fog tudni hozzáférni a konzolhoz.**
-2. A megnyitott munkamenetben nyomja le egyszer az **Enter** billentyűt a parancssor megjelenítéséhez.
-3. Ekkor a rendszer arra kéri, hogy válassza ki az eszközhöz beállítani kívánt nyelvet. Válassza ki a nyelvet, majd nyomja le az **Enter** billentyűt.
+### <a name="tooconfigure-and-register-hello-device"></a>hello eszköz tooconfigure és regisztrálása
+1. Hozzáférés hello Windows PowerShell felületet a StorSimple eszköz soros konzoljához a. Lásd: [PuTTY használata tooconnect toohello eszköz soros konzoljához](../articles/storsimple/storsimple-8000-deployment-walkthrough-gov-u2.md#use-putty-to-connect-to-the-device-serial-console) utasításokat. **Lehet, hogy toofollow hello eljárás pontosan vagy nem fog tudni tooaccess hello konzol.**
+2. Hello megnyitott munkamenetben, nyomja le a **Enter** egy idő tooget egy parancssori ablakot.
+3. Rákérdezéses toochoose hello nyelvi, hogy milyen tooset az eszközhöz lesz. Adja meg a hello nyelv, és nyomja le az **Enter**.
    
     ![StorSimple-eszköz konfigurálása és regisztrálása, 1](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice1-gov-include.png)
-4. A soros konzol megjelenő menüjében válassza az 1. lehetőséget a teljes körű hozzáféréssel való bejelentkezéshez.
+4. Hello soros konzol menüben megjelenő válassza a 1. lehetőség toolog a teljes hozzáféréssel.
    
     ![StorSimple-eszköz regisztrálása, 2](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice2-gov-include.png)
-5. A következő lépésekkel adja meg az eszköz minimális szükséges hálózati beállításait.
+5. Hajtsa végre a következő lépéseket tooconfigure hello minimálisan szükséges hálózati beállításokat az eszközhöz hello.
    
    > [!IMPORTANT]
-   > Ezeket a konfigurálási lépéseket az eszköz aktív vezérlőjén kell elvégezni. A vezérlő állapota a soros konzol menüjének címsorában látható. Ha nem csatlakozik az aktív vezérlővel, válassza le, és csatlakozzon újra az aktív vezérlőhöz.
+   > Ezeket a konfigurációs lépéseket kell toobe hello hello eszköz aktív vezérlőjén végre. hello soros konzol menü hello vezérlő állapotát a szalagcím üdvözlőüzenetére jelzi. Ha vannak nem toohello aktív vezérlő, válassza le, és csatlakoztassa a toohello aktív vezérlő.
    
-   1. Írja be a jelszót a parancssorba. Az eszköz alapértelmezett jelszava: **Password1**.
-   2. Írja be a következő parancsot:
+   1. Hello parancssorba írja be a jelszavát. hello eszköz alapértelmezett jelszava: **jelszó1**.
+   2. Írja be a következő parancs hello:
       
         `Invoke-HcsSetupWizard`
-   3. Ekkor megjelenik egy telepítővarázsló az eszköz hálózati beállításainak konfigurálásához. Adja meg a következő információkat:
+   3. A telepítő varázsló jelenik meg toohelp hello hello eszköz hálózati beállításainak konfigurálása. Adja meg a következő információ hello:
       
       * DATA 0 hálózati adapterén IP-címe
       * Alhálózati maszk
@@ -27,52 +27,52 @@
       * Az elsődleges NTP-kiszolgáló IP-címe
       
       > [!NOTE]
-      > Előfordulhat, hogy az alhálózati maszk és a DNS-beállítások alkalmazása néhány percet vár.
+      > Előfordulhat, hogy toowait hello alhálózati maszk és a DNS-beállítások toobe alkalmazása néhány percig.
     
    4. Igény szerint állítsa be a proxy-webkiszolgáló.
       
       > [!IMPORTANT]
-      > Bár a webproxy konfigurálása nem kötelező, vegye figyelembe, hogy ha olyan webproxyt használ, csak konfigurálhatja azt itt. További információ: [Configure web proxy for your device](../articles/storsimple/storsimple-configure-web-proxy.md) (Webproxy beállítása az eszközhöz).
+      > Bár a webproxy konfigurálása nem kötelező, vegye figyelembe, hogy ha olyan webproxyt használ, csak konfigurálhatja azt itt. További információ: túl[az eszköz webalkalmazás-proxy konfigurálása](../articles/storsimple/storsimple-configure-web-proxy.md).
      
-6. Használja a Ctrl + C billentyűket a telepítővarázslóból való kilépéshez.
-8. Futtassa az alábbi parancsmagot, mutasson az eszköz a Microsoft Azure Government Portal (mert alapértelmezés szerint a nyilvános klasszikus Azure portálra mutat). Ez mindkét tartományvezérlők újraindul. Azt javasoljuk, hogy egyszerre kapcsolódó mindkét vezérlőket, hogy a tartományvezérlők újraindításakor láthatóvá két PuTTY munkamenet használja.
+6. Ctrl + C billentyűkombinációval tooexit hello beállítása varázsló.
+8. Futtassa a következő parancsmag toopoint hello eszköz toohello a Microsoft Azure Government portálon (mert alapértelmezés szerint mutat toohello nyilvános a klasszikus Azure portálon) hello. Ez mindkét tartományvezérlők újraindul. Azt javasoljuk, hogy használja-e két PuTTY munkamenet toosimultaneously csatlakozás tooboth vezérlőket, hogy a tartományvezérlők újraindításakor láthatóvá.
    
     `Set-CloudPlatform -AzureGovt_US`
    
-   Egy megerősítő üzenet jelenik meg. Fogadja el az alapértelmezett (**Y**).
-9. Futtassa a telepítő folytatja a következő parancsmagot:
+   Egy megerősítő üzenet jelenik meg. Fogadja el az alapértelmezett hello (**Y**).
+9. Futtassa a következő parancsmag tooresume telepítő hello:
    
     `Invoke-HcsSetupWizard`
    
     ![A telepítővarázsló folytatása](./media/storsimple-configure-and-register-device-gov-u2/HCS_ResumeSetup-gov-include.png)
    
-10. Fogadja el a hálózati beállításokat. Egy érvényesítési üzenet jelenik meg, ha elfogadja, hogy egyes beállítások.
-11. Biztonsági okokból az eszköz rendszergazdai jelszava az első munkamenet végeztével lejár, így ezt most meg kell változtatnia. Amikor a rendszer erre kéri, adjon meg az eszközhöz egy rendszergazdai jelszót. Az eszköz rendszergazdai jelszavának 8–15 karakter hosszúságúnak kell lennie. A jelszónak az alábbiak közül hármat tartalmaznia kell: kisbetűk, nagybetűk, számok és speciális karakterek.
+10. Fogadja el a hello hálózati beállításokat. Egy érvényesítési üzenet jelenik meg, ha elfogadja, hogy egyes beállítások.
+11. Biztonsági okokból hello eszköz rendszergazdai jelszava hello első munkamenet végeztével lejár, és szüksége lesz a toochange informatikai most. Amikor a rendszer erre kéri, adjon meg az eszközhöz egy rendszergazdai jelszót. Az eszköz rendszergazdai jelszavának 8–15 karakter hosszúságúnak kell lennie. hello jelszó közül hármat tartalmaznia kell következő hello:, kisbetű, nagybetű, numerikus és speciális karaktereket.
     
     <br/>![StorSimple-eszköz regisztrálása, 5](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice5_gov-include.png)
-12. A telepítővarázsló utolsó lépéseként regisztrálja az eszközt a StorSimple-eszközkezelő szolgáltatásban. Ehhez szüksége lesz a szolgáltatás regisztrációs kulcsának beolvasott [2. lépés: Szolgáltatásregisztrációs kulcs lekérése](../articles/storsimple/storsimple-8000-deployment-walkthrough-gov-u2.md#step-2-get-the-service-registration-key). Előfordulhat, hogy a regisztrációs kulcs megadása után 2–3 percet várni kell az eszköz regisztrálására.
+12. hello hello telepítővarázsló utolsó lépésként regisztrálja az eszközt hello StorSimple Device Manager szolgáltatást. Ezt akkor lesz kell hello beolvasott Szolgáltatásregisztrációs kulcs [2. lépés: hello Szolgáltatásregisztrációs kulcs lekérése](../articles/storsimple/storsimple-8000-deployment-walkthrough-gov-u2.md#step-2-get-the-service-registration-key). Hello regisztrációs kulcsot fogja tartalmazni, miután szükséges toowait 2-3 percet hello eszköz regisztrálva van-e.
     
     > [!NOTE]
-    > A Ctrl + C billentyűkombinációval bármikor kiléphet a varázslóból. Ha minden hálózati beállítást megadott (a Data 0 IP-címe, alhálózati maszk és átjáró), akkor a bejegyzéseket megőrzi a rendszer.
+    > Minden alkalommal tooexit hello beállítása varázsló, is használja a Ctrl + C. Ha a megadott összes hello hálózati beállításokat (a Data 0, alhálózati maszk és átjáró IP-cím), a bejegyzéseket megőrzi a rendszer.
     
     ![A StorSimple regisztrációs folyamat](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegistrationProgress-gov-include.png)
-13. Az eszköz regisztrálása után megjelenik egy szolgáltatásadat-titkosítási kulcs. Másolja ki ezt a kulcsot, és mentse egy biztonságos helyre. **Ezt a kulcsot meg kell adni a szolgáltatás regisztrációs kulcsot, további eszközök regisztrálása a StorSimple Device Manager szolgáltatásban.** További információk a kulccsal kapcsolatban: [A StorSimple biztonsági megoldásai](../articles/storsimple/storsimple-8000-security.md).
+13. Hello eszköz regisztrálása után megjelenik egy szolgáltatásadat-titkosítási kulcs. Másolja ki ezt a kulcsot, és mentse egy biztonságos helyre. **Ezt a kulcsot nem kötelező megadni a hello szolgáltatás regisztrációs kulcs tooregister további eszközök hello StorSimple Device Manager szolgáltatást.** Tekintse meg a túl[StorSimple biztonsági](../articles/storsimple/storsimple-8000-security.md) ezt a kulcsot további információt.
     
     ![StorSimple-eszköz regisztrálása, 7](./media/storsimple-configure-and-register-device-gov-u2/HCS_RegisterYourDevice7_gov-include.png)
     > [!IMPORTANT]
-    > Ha ki szeretné másolni a szöveget a soros konzol ablakából, egyszerűen jelölje ki azt. A szöveget ezután a vágólapra vagy bármilyen szövegszerkesztőbe beillesztheti.
+    > toocopy hello szöveg hello soros konzol ablakából, egyszerűen jelölje ki a hello szöveget. Ezután meg kell tudni toopaste hello vágólapra vagy bármilyen szövegszerkesztővel azt.
     > 
-    > Ne használjon **Ctrl + C** a szolgáltatásadat-titkosítási kulcs másolása. Használatával **Ctrl + C** miatt a telepítővarázslóból való kilépéshez. Ennek eredményeképpen az eszköz rendszergazdai jelszava nem változik meg, és az eszköz visszaállítja az alapértelmezett jelszót.
+    > Ne használjon **Ctrl + C** toocopy hello szolgáltatásadat-titkosítási kulcs. Használatával **Ctrl + C** miatt a tooexit hello beállítása varázsló. Ennek eredményeképpen hello eszköz rendszergazdai jelszava nem változik, és hello eszköz visszaállítja toohello alapértelmezett jelszót.
     
-14. Lépjen ki a soros konzolból.
-15. Térjen vissza az Azure Government portálra, és kövesse az alábbi lépéseket:
+14. Kilépés hello soros konzolon.
+15. Térjen vissza a toohello Azure Government portálon, és végezze el az alábbi lépésekkel hello:
     
-    1. Nyissa meg a StorSimple-eszközkezelő szolgáltatást.
-    2. Kattintson az **Eszközök** elemre. Az eszközök a listából az, hogy-e ddeploying eszköz azonosítására. Győződjön meg arról, hogy az eszköz sikeresen csatlakozott a szolgáltatás által állapotát. Az eszköznek **Online** állapotúnak kell lennie.
+    1. Nyissa meg tooyour StorSimple Device Manager szolgáltatást.
+    2. Kattintson az **Eszközök** elemre. Az eszközök hello listáról, hogy-e ddeploying hello eszköz azonosítására. Győződjön meg arról, hogy hello eszköz sikeresen csatlakozott toohello szolgáltatás hello állapot megkeresésével. hello Eszközállapot kell **Online**.
             
-        Ha az eszköz állapota **Offline**, akkor várjon néhány percet, amíg az eszköz online állapotú nem lesz.
+        Ha hello eszköz állapota **Offline**, néhány perc alatt az online hello eszköz toocome várja.
        
-        Ha az eszköz néhány perc eltelte után is offline állapotú, akkor ellenőrizze, hogy a tűzfallal védett hálózat [a StorSimple-eszköz hálózati követelményeiben](../articles/storsimple/storsimple-8000-system-requirements.md) leírtak szerint van-e beállítva.
+        Ha hello eszköz továbbra is kapcsolat nélküli üzemmódban néhány perc múlva, akkor meg kell, hogy a tűzfallal védett hálózat lett konfigurálva, a toomake [hálózati követelményei a StorSimple eszköz](../articles/storsimple/storsimple-8000-system-requirements.md).
        
-        Ellenőrizze, hogy a 9354-es port kimenő kommunikációra nyitva van-e, mivel az a StorSimple-eszközkezelő szolgáltatás és az eszköz közötti kommunikációt lebonyolító Service Bus működéséhez szükséges.
+        Győződjön meg arról, hogy 9354-es port kimenő kommunikációra nyitva-e, ez használható hello service bus által a StorSimple Device Manager szolgáltatás-és eszköz közötti kommunikációt.
 

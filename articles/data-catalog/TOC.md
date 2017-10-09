@@ -14,13 +14,13 @@
 ## [Adatforrások felfedezése](data-catalog-how-to-discover.md)
 ## [Adatforrások ellátása megjegyzésekkel](data-catalog-how-to-annotate.md)
 ## [Adatforrások dokumentálása](data-catalog-how-to-documentation.md)
-## [Kapcsolódás adatforrásokhoz](data-catalog-how-to-connect.md)
+## [Csatlakozás toodata források](data-catalog-how-to-connect.md)
 ## [Big data típusú adatforrások használata](data-catalog-how-to-big-data.md)
 ## [Adatforrások adatprofiljának készítése](data-catalog-how-to-data-profile.md)
 ## [Adategységek felügyelete](data-catalog-how-to-manage.md)
 ## [Keresések mentése és adatobjektumok kitűzése](data-catalog-how-to-save-pin.md)
-## [Az üzleti szószedet összeállítása](data-catalog-how-to-business-glossary.md)
-## [Biztonságos hozzáférés az adatkatalógushoz](data-catalog-how-to-secure-catalog.md)
+## [Állítson be hello üzleti szószedet](data-catalog-how-to-business-glossary.md)
+## [Biztonságos hozzáférés toodata katalógus](data-catalog-how-to-secure-catalog.md)
 ## [Kapcsolódó adategységek megtekintése](data-catalog-how-to-view-related-data-assets.md) 
 
 # Referencia

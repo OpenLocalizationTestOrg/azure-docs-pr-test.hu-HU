@@ -1,6 +1,6 @@
 ---
-title: "Hogyan kérhet egy adathordozó használatával REST processzorpéldány |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy adathordozó feldolgozó összetevő kódolni, formátum konvertálni, titkosítása vagy visszafejtése médiatartalom Azure Media Services."
+title: "Hogyan REST-példány using Media processzor tooget aaa |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy adathordozó processzor összetevő tooencode formátum konvertálni, titkosítani, illetve visszafejteni a médiatartalom Azure Media Services."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 4ad90ad979c5bd74fc55155098c88d5c13cb12e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9f423648ab73c90405c64895ce0f5b6a457862e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-a-media-processor-instance"></a>Egy Media processzorpéldány beszerzése
+# <a name="how-tooget-a-media-processor-instance"></a>Hogyan tooget Media processzorpéldány
 > [!div class="op_single_selector"]
 > * [.NET](media-services-get-media-processor.md)
 > * [REST](media-services-rest-get-media-processor.md)
@@ -28,11 +28,11 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Áttekintés
-A Media Services media processzort összetevő, amely kezeli a különleges feldolgozási feladat, például a kódolása titkosítása vagy visszafejtése médiatartalom az átalakítás formátumban. Általában létrehozhat egy adathordozó processzor kódolása, titkosítása vagy alakítsa át a formátum a médiatartalom feladat létrehozásakor.
+A Media Services media processzort összetevő, amely kezeli a különleges feldolgozási feladat, például a kódolása titkosítása vagy visszafejtése médiatartalom az átalakítás formátumban. Általában létrehozásakor media processzort egy feladat tooencode létrehozásakor, titkosítására, illetve hello formátum médiatartalom konvertálni.
 
 ## <a name="azure-media-processors"></a>Az Azure media processzor 
 
-A következő témakör sorolja fel az adathordozó processzorok:
+a következő témakör hello sorolja fel az adathordozó processzorok:
 
 * [Kódolási media processzor](scenarios-and-availability.md#encoding-media-processors)
 * [Elemzés media processzor](scenarios-and-availability.md#analytics-media-processors)
@@ -40,16 +40,16 @@ A következő témakör sorolja fel az adathordozó processzorok:
 >[!NOTE]
 >A Media Services entitások elérésekor be kell meghatározott fejlécmezők és értékek a HTTP-kérelmekre. További információkért lásd: [a Media Services REST API fejlesztési telepítő](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Kapcsolódás a Media Services szolgáltatáshoz
+## <a name="connect-toomedia-services"></a>Connect tooMedia szolgáltatások
 
-Az AMS API-hoz kapcsolódáshoz információkért lásd: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
+Hogyan tooconnect toohello AMS API-ról: kapcsolatos [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat.
+>Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI.
 
 ## <a name="get-a-media-processor"></a>Egy media processzor beolvasása
 
-A következő REST-hívást bemutatja, hogyan kérhet egy adathordozó processzor-példány nevét (ebben az esetben **Media Encoder Standard**). 
+REST-hívást a következő hello bemutatja, hogyan tooget media processzort példány neve (ebben az esetben **Media Encoder Standard**). 
 
 A kérelem:
 
@@ -89,5 +89,5 @@ Válasz:
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy hogyan kérhet egy adathordozó processzorpéldány ismeri, navigáljon a [egy eszköz kódolással](media-services-rest-get-started.md) témakör, amely tartalmazza a Media Encoder Standard segítségével egy eszköz kódolása.
+Most, hogy hogyan nyissa meg a media processzorpéldány tooget toohello [hogyan tooEncode egy eszköz](media-services-rest-get-started.md) témakör, amely bemutatja, hogyan toouse hello Media Encoder Standard tooencode egy eszköz.
 

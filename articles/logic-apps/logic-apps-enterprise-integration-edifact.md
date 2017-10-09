@@ -1,5 +1,5 @@
 ---
-title: "EDIFACT üzenetek B2B vállalati integrációs - Azure Logic Apps |} Microsoft Docs"
+title: "aaaEDIFACT üzenetek B2B vállalati integrációs - Azure Logic Apps |} Microsoft Docs"
 description: "Exchange EDIFACT üzenetek B2B vállalati integráció az Azure Logic Apps EDI-formátumban"
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -15,86 +15,86 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/26/2016
 ms.author: LADocs; jonfan
-ms.openlocfilehash: fc9a0068de5f9464133eec0b043fbba1dc0fbde7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 496fadcda58de2d36459202b839b0a63c9e5857c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="exchange-edifact-messages-for-enterprise-integration-with-logic-apps"></a>A logic apps vállalati integrációs Exchange EDIFACT-üzenetek
 
-EDIFACT üzenetváltásra az Azure Logic Apps, mielőtt EDIFACT-egyezmény létrehozása, és tárolja, hogy a szerződés integrációs fiókját. Az alábbiakban a szükséges lépéseket EDIFACT-egyezmény létrehozása.
+EDIFACT üzenetváltásra az Azure Logic Apps, mielőtt EDIFACT-egyezmény létrehozása, és tárolja, hogy a szerződés integrációs fiókját. Az alábbiakban hello lépései toocreate EDIFACT szerződést.
 
 > [!NOTE]
-> Ezen a lapon a EDIFACT szolgáltatásaira vonatkozik, amelyek az Azure Logic Apps. További információkért lásd: [X12](logic-apps-enterprise-integration-x12.md).
+> Ezen a lapon hello EDIFACT szolgáltatásaira vonatkozik, amelyek az Azure Logic Apps. További információkért lásd: [X12](logic-apps-enterprise-integration-x12.md).
 
 ## <a name="before-you-start"></a>Előkészületek
 
-A szükséges elemeket itt található:
+Itt van szüksége hello elemeket:
 
 * Egy [integrációs fiók](../logic-apps/logic-apps-enterprise-integration-accounts.md) , amely már definiált és az Azure-előfizetéshez társított  
 * Legalább két [partnerek](logic-apps-enterprise-integration-partners.md) , amely már definiálva vannak az integráció-fiókban
 
 > [!NOTE]
-> Amikor egy szerződést hoz létre, a üzeneteket fogadni, vagy küld és a partner tartalma a szerződés típusának meg kell egyeznie.
+> Ha létrehoz egy szerződést, hello tartalom hello üzeneteket fogadni, vagy küldjön hello partnertől tooand hello szerződés típusának meg kell egyeznie a.
 
 Miután [integrációs-fiók létrehozása](../logic-apps/logic-apps-enterprise-integration-accounts.md) és [adja hozzá a partnerek](logic-apps-enterprise-integration-partners.md), EDIFACT szerződés ezeket a lépéseket követve hozhat létre.
 
 ## <a name="create-an-edifact-agreement"></a>EDIFACT-egyezmény létrehozása 
 
-1.  Jelentkezzen be az [Azure Portalra](http://portal.azure.com "Azure Portal") A bal oldali menüben válassza ki a **további szolgáltatások**.
+1.  Jelentkezzen be toohello [Azure-portálon](http://portal.azure.com "Azure-portálon"). Hello bal oldali menüben válassza ki a **további szolgáltatások**.
 
     > [!TIP]
-    > Ha nem lát **további szolgáltatások**, lehetséges, hogy először bontsa ki a menüben. Jelölje be a becsukott menü felső részén **megjelenítése menü**.
+    > Ha nem lát **további szolgáltatások**, lehetséges, hogy tooexpand hello menü először. Hello összecsukott hello menü felső részén válassza **megjelenítése menü**.
 
     ![A bal oldali menüben válassza a "Szolgáltatás"](./media/logic-apps-enterprise-integration-edifact/edifact-0.png)
 
-2. A keresőmezőbe írja be a "integrációt" a szűrőhöz. Az eredmények listájában válassza **integrációs fiókok**.
+2. Hello a keresőmezőbe írja be a "integrációt" a szűrőhöz. Hello eredmények listában válassza ki a **integrációs fiókok**.
 
     ![A "integrációt" szűrheti, válassza ki a "Integrációs fiókok"](./media/logic-apps-enterprise-integration-edifact/edifact-1-3.png)
 
-3. Az a **integrációs fiókok** panelt megnyitó, válassza ki az integráció fiókra, amelyhez a szerződést létrehozásához.
+3. A hello **integrációs fiókok** panelt megnyitó, jelölje be hello integrációs fiókra, amelyhez toocreate hello szerződést.
 Ha nem lát minden integrációs fiókok [hozzon létre egyet első](../logic-apps/logic-apps-enterprise-integration-accounts.md "integrációs fiókokkal kapcsolatos összes").  
 
-    ![Válassza ki azt az integráció fiókot, a szerződés létrehozásának a helyét](./media/logic-apps-enterprise-integration-edifact/edifact-1-4.png)
+    ![Ha toocreate hello megállapodás integrációs fiók kiválasztása](./media/logic-apps-enterprise-integration-edifact/edifact-1-4.png)
 
-4. Válassza ki a **megállapodások** csempére. Ha egy megállapodások csempe nem rendelkezik, először vegye fel a csempe.   
+4. Válassza ki a hello **megállapodások** csempére. Ha egy megállapodások csempe nem rendelkezik, először adjon hozzá hello csempe.   
 
     ![Válassza a "Szerződés" csempe](./media/logic-apps-enterprise-integration-edifact/edifact-1-5.png)
 
-5. Szerződések paneljén válassza **Hozzáadás**.
+5. Hello megállapodások paneljén megjelenő válassza **Hozzáadás**.
 
     ![Válassza a "Hozzáadás"](./media/logic-apps-enterprise-integration-edifact/edifact-agreement-2.png)
 
-6. A **Hozzáadás**, adjon meg egy **neve** a szerződés. A **szerződés típusának**, jelölje be **EDIFACT**. Válassza ki a **fogadó Partner**, **gazdagép identitását**, **Vendég Partner**, és **Vendég identitás** a szerződés.
+6. A **Hozzáadás**, adjon meg egy **neve** a szerződés. A **szerződés típusának**, jelölje be **EDIFACT**. Jelölje be hello **fogadó Partner**, **gazdagép identitását**, **Vendég Partner**, és **Vendég identitás** a szerződés.
 
     ![Adja meg a szerződés részletei](./media/logic-apps-enterprise-integration-edifact/edifact-1.png)
 
     | Tulajdonság | Leírás |
     | --- | --- |
-    | Név |A szerződés nevét |
+    | Név |Hello szerződés neve |
     | A szerződés típusa | EDIFACT kell lennie. |
-    | Fogadó Partner |Egy szerződést kell a gazdagép és a Vendég partner. A fogadó partner szervezet, amely beállítja a szerződés jelöli. |
-    | Gazdagép identitását |A fogadó partner azonosítója |
-    | Vendég Partner |Egy szerződést kell a gazdagép és a Vendég partner. A Vendég partnert a szervezet, amely a gazdagép partnerrel üzleti jelöli. |
-    | Vendég identitás |A Vendég partner azonosítója |
-    | Beállítások |Minden szerződés által fogadott üzenetek alkalmazni ezeket a tulajdonságokat. |
-    | Beállítások küldése |Ezeket a tulajdonságokat a szerződés által küldött összes üzenet vonatkozik. |
+    | Fogadó Partner |Egy szerződést kell a gazdagép és a Vendég partner. hello fogadó partner által konfigurált házirendsablonok hello megállapodás hello szervezet jelöli. |
+    | Gazdagép identitását |Hello fogadó partner azonosítója |
+    | Vendég Partner |Egy szerződést kell a gazdagép és a Vendég partner. hello Vendég partner hello szervezet, amely hello állomás partnerrel üzleti jelöli. |
+    | Vendég identitás |Hello Vendég partner azonosítója |
+    | Beállítások |Ezeket a tulajdonságokat a szerződés által fogadott üzenetek küldési tooall alkalmazni. |
+    | Beállítások küldése |Ezek a Tulajdonságok tooall üzeneteket a szerződés vonatkozik. |
 
 ## <a name="configure-how-your-agreement-handles-received-messages"></a>Hogyan a szerződés leírók fogadott üzenetek konfigurálása
 
-Most, hogy a szerződés tulajdonságok beállítása, beállíthatja a módját a jelen szerződés azonosítja, és kezeli a bejövő üzenetek és a szerződés partnerétől kapott.
+Most, hogy hello megállapodás tulajdonságok beállítása, beállíthatja a módját a jelen szerződés azonosítja, és kezeli a bejövő üzenetek és a szerződés partnerétől kapott.
 
 1.  A **Hozzáadás**, jelölje be **fogadási beállítások**.
-Állítsa be ezeket a tulajdonságokat a partnerrel, amely az üzenetek Önnel a szerződés alapján. Lásd: e szakasz táblázatai tulajdonság leírásait.
+Állítsa be ezeket a tulajdonságokat a szerződés hello partnerrel, amely az üzenetek Önnel alapján. Tulajdonságleírások tekintse meg e szakasz táblázatai hello.
 
     **Beállítások** van felosztva ezekben a szakaszokban: azonosítók, visszaigazolás, sémákat, vezérlő számok, érvényesítése és belső beállítások.
 
     ![Konfigurálja a "Kapják meg a beállításokat"](./media/logic-apps-enterprise-integration-edifact/edifact-2.png)  
 
-2. Miután elkészült, ügyeljen arra, hogy a beállítások mentéséhez válasszon **OK**.
+2. Miután elkészült, győződjön meg arról, hogy toosave a beállítások kiválasztásával **OK**.
 
-Most már a szerződés készen áll a bejövő üzenetek, amelyek megfelelnek a kiválasztott beállítások kezeléséhez.
+Mostantól a szerződés készen toohandle bejövő üzenetek tooyour tartó kiválasztott beállításokat.
 
 ### <a name="identifiers"></a>Azonosítók
 
@@ -107,67 +107,67 @@ Most már a szerződés készen áll a bejövő üzenetek, amelyek megfelelnek a
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Üzenet visszaigazolása (CONTRL) |Válassza ezt a jelölőnégyzetet a műszaki (CONTRL) visszaigazolás a interchange küldő való visszatéréshez. A visszaigazolás nem jut hozzá a interchange küldő, a szerződés küldése beállítások alapján. |
-| A nyugtázási (CONTRL) |Válassza ezt a jelölőnégyzetet a működési (CONTRL) visszaigazolás térjen vissza a interchange küldő a nyugtázás a rendszer elküldi a interchange küldő, a szerződés küldése beállítások alapján. |
+| Üzenet visszaigazolása (CONTRL) |Válassza ki a jelölőnégyzet tooreturn egy műszaki (CONTRL) visszaigazolás toohello interchange küldő. hello visszaigazolás küldött toohello interchange küldő küldési beállítások hello hello szerződés alapján. |
+| A nyugtázási (CONTRL) |Válassza ezt a funkcionális (CONTRL) visszaigazolás toohello interchange küldő hello visszaigazolás küldött toohello interchange küldő küldési beállítások hello hello szerződés alapján jelölőnégyzet tooreturn. |
 
 ### <a name="schemas"></a>Sémák
 
 | Tulajdonság | Leírás |
 | --- | --- |
 | UNH2.1 (TÍPUS) |Válassza ki a tranzakció készlet típusa. |
-| UNH2.2 (VERZIÓ) |Adja meg az üzenet verziószáma. (Minimális, egy karakter; maximális, három karakter). |
-| UNH2.3 (KIADÁS) |Adja meg az üzenet kiadás száma. (Minimális, egy karakter; maximális, három karakter). |
-| UNH2.5 (TÁRSÍTOTT HOZZÁRENDELT KÓD) |Adja meg a hozzárendelt kódot. (Legfeljebb hat karakterből állnak. Csak alfanumerikus karakterekből állhat). |
+| UNH2.2 (VERZIÓ) |Adja meg a hello üzenet verziószáma. (Minimális, egy karakter; maximális, három karakter). |
+| UNH2.3 (KIADÁS) |Adja meg a hello üzenet kiadás száma. (Minimális, egy karakter; maximális, három karakter). |
+| UNH2.5 (TÁRSÍTOTT HOZZÁRENDELT KÓD) |Adja meg a hozzárendelt hello kódot. (Legfeljebb hat karakterből állnak. Csak alfanumerikus karakterekből állhat). |
 | UNG2.1 (APP-KÜLDŐAZONOSÍTÓ) |Adjon meg egy alfanumerikus érték legalább egy karaktert és egy legfeljebb 35 karakter hosszú lehet. |
 | UNG2.2 (A KÜLDŐ ALKALMAZÁS KÓD MINŐSÍTŐ) |Adjon meg egy alfanumerikus érték egy legfeljebb négy karakter hosszú lehet. |
-| SÉMA |Válassza ki a korábban feltöltött sémát használni kívánt társított integrációs fiókjából. |
+| SÉMA |Jelölje be hello korábban feltöltött sémát, toouse társított integrációs fiókjából. |
 
 ### <a name="control-numbers"></a>Vezérlő számok
 | Tulajdonság | Leírás |
 | --- | --- |
-| Ellenőrző szám Interchange ismétlődések letiltása |Ismétlődő kereszteződéseket blokkolására, jelölje be ezt a tulajdonságot. Választásakor a EDIFACT dekódolási művelet ellenőrzi, kapott adatcserét adatcsere-ellenőrző szám (UNB5) nem egyezik meg a korábban feldolgozott interchange ellenőrzési számot. Ha találat esetén elvégez, az adatcsere nincs feldolgozva. |
-| Ismétlődő UNB5 ellenőrzésének gyakorisága (napokban) |Ha úgy döntött, hogy engedélyezi a duplikált interchange vezérlő számok, megadhatja a napok számát mikor kell végrehajtani az ellenőrzést, azzal, hogy a megfelelő értékre állítja ezt a beállítást. |
-| Csoport-ellenőrzőszám ismétlődésének letiltása |Letilthatja felcserélődések számokkal duplikált csoportokhoz vezérlő (UNG5), jelölje be ezt a tulajdonságot. |
-| Tranzakciókészlet-ellenőrzőszám ismétlődésének letiltása |Letilthatja felcserélődések számokkal ismétlődő tranzakció set vezérlő (UNH1), jelölje be ezt a tulajdonságot. |
-| EDIFACT nyugtázási ellenőrző szám |A tranzakció set hivatkozási számok használatra megadását a nyugtázás, adja meg egy értéket az előtag, hivatkozási számos és egy utótagként. |
+| Ellenőrző szám Interchange ismétlődések letiltása |ismétlődő kereszteződéseket tooblock, válassza ezt a tulajdonságot. Választásakor hello EDIFACT dekódolási művelet ellenőrzi a hello interchange ellenőrző szám (UNB5) kapott hello adatcserét nem egyezik meg a korábban feldolgozott interchange ellenőrzési számot. Ha találat esetén elvégez, majd hello interchange nem lett feldolgozva. |
+| Ismétlődő UNB5 ellenőrzésének gyakorisága (napokban) |Ha úgy dönt, hogy toodisallow ismétlődő interchange vezérlő számok, megadhatja a hello napok számát, amelyek mikor tooperform hello ellenőrizze, mivel a hello megfelelő értékre állítja ezt a beállítást. |
+| Csoport-ellenőrzőszám ismétlődésének letiltása |a duplikált csoportokhoz vezérlő számok (UNG5) felcserélődések tooblock, jelölje be ezt a tulajdonságot. |
+| Tranzakciókészlet-ellenőrzőszám ismétlődésének letiltása |tooblock felcserélődések számokkal ismétlődő tranzakció set vezérlő (UNH1), jelölje be ezt a tulajdonságot. |
+| EDIFACT nyugtázási ellenőrző szám |toodesignate hello tranzakció hivatkozási számok való használatra beállított nyugtázás, hello előtag, hivatkozási számos és egy utótagot adjon meg egy értéket. |
 
 ### <a name="validations"></a>Ellenőrzések
 
-Érvényesítési sorokban befejeződése után, egy másik automatikusan kerül. Ha nem adja meg az összes szabály, érvényesítési használja az "Alapértelmezett" sorhoz.
+Érvényesítési sorokban befejeződése után, egy másik automatikusan kerül. Ha nem adja meg az összes szabály, érvényesítési hello "Alapértelmezett" sor használja.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Üzenet típusa |Válassza ki a EDI-üzenet típusa. |
-| EDI érvényesítése |EDI-érvényesítést hajt végre a séma EDI tulajdonságok, hosszára, üres adatelemek és záró elválasztók által definiált adattípusok. |
-| Kiterjesztett érvényesítése |Ha az adattípus nem EDI, érvényesítési az elem követelménynek, és engedélyezett ismétlési, enumerálások és adatok elem hossza érvényesítési (min vagy max). |
+| Üzenet típusa |Válassza ki a hello EDI-üzenet típusa. |
+| EDI érvényesítése |EDI-érvényesítést hajt végre hello séma EDI tulajdonságok, hosszára, üres adatelemek és záró elválasztók által definiált adattípusok. |
+| Kiterjesztett érvényesítése |Ha hello adattípus nem EDI, érvényesítési hello adatok elem követelmény és engedélyezett ismétlési, enumerálások és adatok elem hossza érvényesítési (min vagy max). |
 | Kezdő/záró nullából engedélyezése |Minden további, kezdő vagy záró nulla, és az szóköz karakter. Ne távolítsa el ezeket a karaktereket. |
 | Trim kezdő/záró nullából |Távolítsa el a kezdő vagy záró nulla és karaktereket. |
-| Záró elválasztó házirend |Záró elválasztók készítése. <p>Válassza ki **nem engedélyezett** záró határoló és elválasztók, a kapott interchange. Ha cseréje a záró határoló és elválasztókat, az adatcsere van deklarálva nem érvényes. <p>Válassza ki **nem kötelező** kereszteződéseket vagy záró határoló és elválasztók nélkül fogadásához. <p>Válassza ki **kötelező** Ha kapott adatcsere rendelkeznie kell záró határoló és elválasztókat. |
+| Záró elválasztó házirend |Záró elválasztók készítése. <p>Válassza ki **nem engedélyezett** tooprohibit záró határoló és elválasztók, hello kapott adatcserét. Ha hello interchange záró határoló és elválasztókat, hello interchange van deklarálva nem érvényes. <p>Válassza ki **nem kötelező** tooaccept felcserélődések vagy záró határoló és elválasztók nélkül. <p>Válassza ki **kötelező** Ha kapott hello interchange rendelkeznie kell záró határoló és elválasztókat. |
 
 ### <a name="internal-settings"></a>Belső beállítások
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Üres XML-címkék létrehozása, ha a záró elválasztók engedélyezve vannak |Válassza ezt a jelölőnégyzetet, az adatcsere küldő záró elválasztók üres XML-címkék közé tartoznak hozzá. |
-| Adatcsere felosztása tranzakciókészletekre – tranzakciókészletek felfüggesztése hiba esetén|Elemzi az egyes tranzakciókra, megadhatja a azokat egy külön XML-dokumentum cseréje a megfelelő boríték a tranzakció-készlethez. Csak a sikertelen érvényesítést fognak tranzakció készletek felfüggesztése. |
-| Adatcsere felosztása tranzakciókészletekre – adatcsere felfüggesztése hiba esetén|Elemzi az egyes tranzakciókra, állítsa be egy külön XML-dokumentum cseréje a úgy, hogy a megfelelő boríték alkalmazza. A teljes adatcsere felfüggesztése, ha a csomópont egy vagy több tranzakció halmazok érvényesítése sikertelen. | 
-| Megőrizheti a adatcsere - tranzakció készletek felfüggeszteni hiba |Az adatcsere érintetlenül hagyja, létrehoz egy XML-dokumentum teljes kötegelt adatcserét. Csak a sikertelen érvényesítés, miközben továbbra is az összes többi tranzakció készletek feldolgozni tranzakció készletek felfüggesztése. |
-| Adatcsere megőrzése – adatcsere felfüggesztése hiba esetén |Az adatcsere érintetlenül hagyja, létrehoz egy XML-dokumentum teljes kötegelt adatcserét. A teljes adatcsere felfüggesztése, ha a csomópont egy vagy több tranzakció halmazok érvényesítése sikertelen. |
+| Üres XML-címkék létrehozása, ha a záró elválasztók engedélyezve vannak |Válassza ki az jelölőnégyzetet toohave hello interchange küldő tartalmazza XML-címkék elválasztók záró üres. |
+| Adatcsere felosztása tranzakciókészletekre – tranzakciókészletek felfüggesztése hiba esetén|Elemzi az egyes tranzakciókra, állítsa be egy külön XML-dokumentum cseréje a hello megfelelő boríték toohello tranzakció készlet alkalmazásával. Felfüggesztheti csak hello tranzakció készleteket érvényesítése sikertelen. |
+| Adatcsere felosztása tranzakciókészletekre – adatcsere felfüggesztése hiba esetén|Elemzi az egyes tranzakciókra, állítsa be egy külön XML-dokumentum cseréje a hello megfelelő boríték alkalmazásával. Hello teljes adatcsere felfüggesztése, ha egy vagy több tranzakció készletet hello interchange érvényesítése sikertelen. | 
+| Megőrizheti a adatcsere - tranzakció készletek felfüggeszteni hiba |Hello interchange érintetlenül hagyja, létrehoz egy XML-dokumentum hello teljes kötegelt adatcserét. Felfüggesztése csak hello tranzakció készleteket érvényesítése sikertelen, miközben továbbra tooprocess minden más tranzakció állítja be. |
+| Adatcsere megőrzése – adatcsere felfüggesztése hiba esetén |Hello interchange érintetlenül hagyja, létrehoz egy XML-dokumentum hello teljes kötegelt adatcserét. Hello teljes adatcsere felfüggesztése, ha egy vagy több tranzakció készletet hello interchange érvényesítése sikertelen. |
 
 ## <a name="configure-how-your-agreement-sends-messages"></a>Hogyan a szerződés küld üzeneteket konfigurálása
 
-Beállíthatja, hogyan a jelen szerződés azonosítja, és a partnerek számára, és ez a szerződés elküldött kimenő üzenetek kezeli.
+Hogyan a jelen szerződés azonosítja, és kezeli a kimenő üzenetek küldését a jelen szerződés tooyour partnerekkel is konfigurálhatja.
 
 1.  A **Hozzáadás**, jelölje be **küldési beállítások**.
-Állítsa be ezeket a tulajdonságokat a partnerrel, aki adatcseréihez használható üzenetek Önnel a szerződés alapján. Lásd: e szakasz táblázatai tulajdonság leírásait.
+Állítsa be ezeket a tulajdonságokat a partnerrel, aki adatcseréihez használható üzenetek Önnel a szerződés alapján. Tulajdonságleírások tekintse meg e szakasz táblázatai hello.
 
     **Küldési beállításainak** van felosztva ezekben a szakaszokban: azonosítók, visszaigazolás, sémákat, borítékok, karakterkészletek és elválasztók, vezérlő számok és érvényesítést.
 
     ![Konfigurálja a "Küldési beállításai"](./media/logic-apps-enterprise-integration-edifact/edifact-3.png)    
 
-2. Miután elkészült, ügyeljen arra, hogy a beállítások mentéséhez válasszon **OK**.
+2. Miután elkészült, győződjön meg arról, hogy toosave a beállítások kiválasztásával **OK**.
 
-Most már a szerződés készen áll a kimenő üzenetek, amelyek megfelelnek a kiválasztott beállítások kezeléséhez.
+A szerződés most már készen áll a kimenő üzenetek tooyour kiválasztott beállítások tartó toohandle áll.
 
 ### <a name="identifiers"></a>Azonosítók
 
@@ -183,74 +183,74 @@ Most már a szerződés készen áll a kimenő üzenetek, amelyek megfelelnek a 
 ### <a name="acknowledgment"></a>Tudomásul vétele
 | Tulajdonság | Leírás |
 | --- | --- |
-| Üzenet visszaigazolása (CONTRL) |Jelölje be ezt a jelölőnégyzetet, ha a központi partner várhatóan kap egy műszaki (CONTRL). A beállítással megadható, hogy a központi partner, aki az üzenetet küld, a Vendég partnertől nyugtázást kéri. |
-| A nyugtázási (CONTRL) |Akkor válassza ezt a jelölőnégyzetet, ha a szolgáltatott partner várhatóan kap egy funkcionális (CONTRL). A beállítással megadható, hogy a központi partner, aki az üzenetet küld, a Vendég partnertől nyugtázást kéri. |
-| SG1-/SG4-hurok létrehozása az elfogadott tranzakciókészletekhez |Ha úgy döntött, hogy egy funkcionális nyugtázási kérelem, jelölje be a jelölőnégyzetet SG1/HK4 hurkok generációja hatályos működési CONTRL nyugták elfogadott tranzakció csoportjai számára. |
+| Üzenet visszaigazolása (CONTRL) |Akkor válassza ezt a jelölőnégyzetet, ha üzemeltetett hello partner tooreceive a műszaki (CONTRL) visszaigazolás vár. Ez a beállítás meghatározza, hogy üzemeltetett hello partner, aki hello üzenetet küld, kérelmek nyugtázást hello Vendég partnerről. |
+| A nyugtázási (CONTRL) |Akkor válassza ezt a jelölőnégyzetet, ha üzemeltetett hello partner tooreceive a működési (CONTRL) visszaigazolás vár. Ez a beállítás meghatározza, hogy üzemeltetett hello partner, aki hello üzenetet küld, kérelmek nyugtázást hello Vendég partnerről. |
+| SG1-/SG4-hurok létrehozása az elfogadott tranzakciókészletekhez |Ha toorequest működési nyugtázási, jelölje ki a jelölőnégyzet tooforce generációja SG1/HK4 hurkok működési CONTRL nyugták elfogadott tranzakció beállítása. |
 
 ### <a name="schemas"></a>Sémák
 | Tulajdonság | Leírás |
 | --- | --- |
 | UNH2.1 (TÍPUS) |Válassza ki a tranzakció készlet típusa. |
-| UNH2.2 (VERZIÓ) |Adja meg az üzenet verziószáma. |
-| UNH2.3 (KIADÁS) |Adja meg az üzenet kiadás száma. |
-| SÉMA |Válassza ki a használandó sémát. Sémák integrációs fiókjában található. A sémák szeretne használni, először az integráció fiók összekötése a Logic Apps alkalmazást. |
+| UNH2.2 (VERZIÓ) |Adja meg a hello üzenet verziószáma. |
+| UNH2.3 (KIADÁS) |Adja meg a hello üzenet kiadás száma. |
+| SÉMA |Válassza ki a hello séma toouse. Sémák integrációs fiókjában található. tooaccess a sémák először csatolja a integrációs fiók tooyour Logic Apps alkalmazást. |
 
 ### <a name="envelopes"></a>Borítékok
 | Tulajdonság | Leírás |
 | --- | --- |
 | UNB8 (feldolgozás prioritását kód) |Adjon meg egy szedett egynél több karakter hosszú. |
 | UNB10 (kommunikációs megállapodás) |Adjon meg egy alfanumerikus érték legalább egy karaktert, és legfeljebb 40 karakter. |
-| UNB11 (tesztelése mutató) |A jelölőnégyzet azt jelzi, hogy a létrehozott interchange vizsgálati adatok |
-| UNA-szegmens (szolgáltatás sztringjére vonatkozó javaslatok) használata |Válassza ezt a jelölőnégyzetet a küldendő adatcserét UNA szegmens létrehozásához. |
-| UNG-szegmensek (funkciócsoport-fejléc) használata |Válassza ezt a jelölőnégyzetet, a Vendég partnernek küldött üzenetek funkcionális csoport fejlécben csoportosítási szegmensek létrehozására. A következő értékeket fogja használni a UNG szegmensek létrehozása: <p>A **UNG1**, adja meg legalább egy karaktert és legfeljebb hat karakterből álló alfanumerikus értékét. <p>A **UNG2.1**, adjon meg egy alfanumerikus érték legalább egy karaktert és egy legfeljebb 35 karakter hosszú lehet. <p>A **UNG2.2**, adjon meg egy alfanumerikus érték egy legfeljebb négy karakter hosszú lehet. <p>A **UNG3.1**, adjon meg egy alfanumerikus érték legalább egy karaktert és egy legfeljebb 35 karakter hosszú lehet. <p>A **UNG3.2**, adjon meg egy alfanumerikus érték egy legfeljebb négy karakter hosszú lehet. <p>A **UNG6**, adja meg legalább egy és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.1**, adja meg legalább egy karaktert és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.2**, adja meg legalább egy karaktert és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.3**, adjon meg egy legalább 1 karakter és 6 karakterből álló alfanumerikus érték. <p>A **UNG8**, adja meg legalább egy karaktert és 14 karakterek alfanumerikus értékét. |
+| UNB11 (tesztelése mutató) |Válasszon a jelölőnégyzet tooindicate, amely generált interchange hello adatok tesztelésére. |
+| UNA-szegmens (szolgáltatás sztringjére vonatkozó javaslatok) használata |Válassza ki a jelölőnégyzet toogenerate egy UNA szegmens hello interchange toobe küldött. |
+| UNG-szegmensek (funkciócsoport-fejléc) használata |Válassza ki a jelölőnégyzet toocreate hello funkcionális csoport fejlécben hello küldött üzenetek toohello Vendég partner szegmensek csoportosítása. hello következő értékei használt toocreate hello UNG szegmensek: <p>A **UNG1**, adja meg legalább egy karaktert és legfeljebb hat karakterből álló alfanumerikus értékét. <p>A **UNG2.1**, adjon meg egy alfanumerikus érték legalább egy karaktert és egy legfeljebb 35 karakter hosszú lehet. <p>A **UNG2.2**, adjon meg egy alfanumerikus érték egy legfeljebb négy karakter hosszú lehet. <p>A **UNG3.1**, adjon meg egy alfanumerikus érték legalább egy karaktert és egy legfeljebb 35 karakter hosszú lehet. <p>A **UNG3.2**, adjon meg egy alfanumerikus érték egy legfeljebb négy karakter hosszú lehet. <p>A **UNG6**, adja meg legalább egy és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.1**, adja meg legalább egy karaktert és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.2**, adja meg legalább egy karaktert és legfeljebb három karakterből álló alfanumerikus értékét. <p>A **UNG7.3**, adjon meg egy legalább 1 karakter és 6 karakterből álló alfanumerikus érték. <p>A **UNG8**, adja meg legalább egy karaktert és 14 karakterek alfanumerikus értékét. |
 
 ### <a name="character-sets-and-separators"></a>Karakterkészletek és elválasztók
 
-Eltérő karakterkészlete, egy másik csoportját az egyes üzenet használandó elválasztó karaktert adhat meg. Ha egy karakterkészletet adott üzenethez a séma nincs megadva, az alapértelmezett karakterkészlet szerepel.
+Eltérő hello karakterkészlet, az egyes üzenet használt elválasztó karaktert toobe különböző szabálykészleteket adhatja meg. Ha egy karakterkészletet nincs megadva, az adott üzenethez a séma, hello alapértelmezett karakterkészlet használata.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| UNB1.1 (rendszerazonosító) |Válassza ki a kimenő interchange alkalmazandó EDIFACT karakterkészletet. |
-| Séma |A legördülő listából válassza ki a sémát. Minden egyes sorára befejezése után a rendszer automatikusan hozzáadja az új sort. A kijelölt séma válassza ki az szerepel, amely szeretné használni, a következő elválasztó leírások alapján. |
-| A bemeneti típus |Válassza ki a bemeneti típusát a legördülő listából. |
-| Az összetevő elválasztó |Önálló összetett adatok elemek, írja be a következőt egy egyetlen karaktert. |
-| Adatok elem elválasztó |Külön egyszerű adatelemek összetett adatelemek belül, adjon meg egy egyetlen karaktert. |
-| Szegmens lezáró |Egy EDI-szegmens jelezheti, írja be a következőt egy egyetlen karaktert. |
-| Utótag |Válassza ki a szegmens azonosítóját használt karakter. Ha egy utótagot ad meg, majd a szegmens lezáró adatok elem lehet üres. Ha a szegmens lezáró üres, majd ki kell jelölnie egy utótagot. |
+| UNB1.1 (rendszerazonosító) |SELECT hello EDIFACT karakter interchange kimenő hello alkalmazott toobe beállítása. |
+| Séma |Válassza ki a séma hello legördülő listából. Minden egyes sorára befejezése után a rendszer automatikusan hozzáadja az új sort. Hello kijelölt séma, a select hello elválasztók beállítása, amelyet az toouse elválasztó leírása a következő hello alapján. |
+| A bemeneti típus |Válasszon egy bemeneti típus hello legördülő listából. |
+| Az összetevő elválasztó |tooseparate összetett adatelemek, adjon meg egy egyetlen karaktert. |
+| Adatok elem elválasztó |tooseparate egyszerű adatelemek belül összetett adatelemek, adjon meg egy egyetlen karaktert. |
+| Szegmens lezáró |egy EDI szegmens tooindicate hello végét adja meg egy egyetlen karaktert. |
+| Utótag |Válassza ki a használt hello szegmensazonosító hello karakter. Ha egy utótagot kijelölni, majd hello szegmens lezáró adatok elem lehet üres. Ha hello szegmens lezáró üres, majd ki kell jelölnie egy utótagot. |
 
 ### <a name="control-numbers"></a>Vezérlő számok
 | Tulajdonság | Leírás |
 | --- | --- |
-| UNB5 (Interchange ellenőrző szám) |Írjon be egy előtagot, egy interchange ellenőrző szám és egy utótagként értékek tartományán. Ezek az értékek egy kimenő interchange létrehozásához használt. Az előtag és utótag opcionálisak, amíg a vezérlő számot kell megadni. Az ellenőrző szám értéke akkor nő, minden új üzenet; az előtag és utótag ugyanaz marad. |
-| UNG5 (csoportos ellenőrző szám) |Írjon be egy előtagot, egy interchange ellenőrző szám és egy utótagként értékek tartományán. Ezeket az értékeket a vezérlő csoportszám létrehozásához használt. Az előtag és utótag opcionálisak, amíg a vezérlő számot kell megadni. Az ellenőrző szám értéke akkor nő, minden új üzenet a maximális érték eléréséig; az előtag és utótag ugyanaz marad. |
-| UNH1 (üzenet fejlécének hivatkozás száma) |Írjon be egy előtagot, egy interchange ellenőrző szám és egy utótagként értékek tartományán. Ezeket az értékeket az üzenet fejlécének hivatkozási szám létrehozásához használt. Az előtag és utótag opcionálisak, amíg a hivatkozási számot kell megadni. A hivatkozási számot értéke akkor nő, minden új üzenet; az előtag és utótag ugyanaz marad. |
+| UNB5 (Interchange ellenőrző szám) |Adja meg az előtag, egy hello interchange ellenőrző szám értékek tartományán és egy utótagként. Ezek az értékek használt toogenerate kimenő cseréje. hello előtag és utótag opcionálisak, amíg hello vezérlő számot kell megadni. hello ellenőrző szám értéke akkor nő, minden új üzenet; hello előtag és az utótag maradnak hello azonos. |
+| UNG5 (csoportos ellenőrző szám) |Adja meg az előtag, egy hello interchange ellenőrző szám értékek tartományán és egy utótagként. Ezek az értékek használt toogenerate hello csoport ellenőrző szám. hello előtag és utótag opcionálisak, amíg hello vezérlő számot kell megadni. hello ellenőrző szám értéke akkor nő, minden új üzenet hello maximális érték eléréséig; hello előtag és az utótag maradnak hello azonos. |
+| UNH1 (üzenet fejlécének hivatkozás száma) |Adja meg az előtag, egy hello interchange ellenőrző szám értékek tartományán és egy utótagként. Ezek az értékek használt toogenerate hello üzenet fejlécének hivatkozási számot. hello előtag és utótag opcionálisak, amíg hello hivatkozási számot kell megadni. hello hivatkozási szám értéke akkor nő, minden új üzenet; hello előtag és az utótag maradnak hello azonos. |
 
 ### <a name="validations"></a>Ellenőrzések
 
-Érvényesítési sorokban befejeződése után, egy másik automatikusan kerül. Ha nem adja meg az összes szabály, érvényesítési használja az "Alapértelmezett" sorhoz.
+Érvényesítési sorokban befejeződése után, egy másik automatikusan kerül. Ha nem adja meg az összes szabály, érvényesítési hello "Alapértelmezett" sor használja.
 
 | Tulajdonság | Leírás |
 | --- | --- |
-| Üzenet típusa |Válassza ki a EDI-üzenet típusa. |
-| EDI érvényesítése |EDI-érvényesítést hajt végre a séma, hosszára, üres adatelemek és záró elválasztók EDI tulajdonságainak által definiált adattípusok. |
-| Kiterjesztett érvényesítése |Ha az adattípus nem EDI, érvényesítési az elem követelménynek, és engedélyezett ismétlési, enumerálások és adatok elem hossza érvényesítési (min vagy max). |
+| Üzenet típusa |Válassza ki a hello EDI-üzenet típusa. |
+| EDI érvényesítése |EDI-érvényesítést hajt végre hello EDI tulajdonságainak hello séma, hosszára, üres adatelemek és záró elválasztók által definiált adattípusok. |
+| Kiterjesztett érvényesítése |Ha hello adattípus nem EDI, érvényesítési hello adatok elem követelmény és engedélyezett ismétlési, enumerálások és adatok elem hossza érvényesítési (min vagy max). |
 | Kezdő/záró nullából engedélyezése |Minden további, kezdő vagy záró nulla, és az szóköz karakter. Ne távolítsa el ezeket a karaktereket. |
 | Trim kezdő/záró nullából |Távolítsa el a kezdő vagy záró nulla karakterből. |
-| Záró elválasztó házirend |Záró elválasztók készítése. <p>Válassza ki **nem engedélyezett** záró határoló és elküldött adatcsere elválasztó. Ha cseréje a záró határoló és elválasztókat, az adatcsere van deklarálva nem érvényes. <p>Válassza ki **nem kötelező** kereszteződéseket vagy záró határoló és elválasztók nélkül küldhet. <p>Válassza ki **kötelező** Ha elküldött cseréje a záró határoló és elválasztókat rendelkeznie kell. |
+| Záró elválasztó házirend |Záró elválasztók készítése. <p>Válassza ki **nem engedélyezett** tooprohibit záró határoló és elválasztók, hello küldött interchange. Ha hello interchange záró határoló és elválasztókat, hello interchange van deklarálva nem érvényes. <p>Válassza ki **nem kötelező** toosend felcserélődések vagy záró határoló és elválasztók nélkül. <p>Válassza ki **kötelező** Ha küldi hello interchange záró határoló és elválasztókat rendelkeznie kell. |
 
 ## <a name="find-your-created-agreement"></a>A létrehozott megállapodás keresése
 
-1.  A szerződés tulajdonságainak a beállítása után a **Hozzáadás** paneljén válassza **OK** hozta létre a szerződést, és az integráció fiók panelen való visszatéréshez.
+1.  Hello a szerződés tulajdonságok beállítása után **Hozzáadás** paneljén válassza **OK** toofinish létrehozása a szerződés és a visszatérési tooyour integrációs fiók panelen.
 
     Az újonnan hozzáadott foglalt most megjelenik a **megállapodások** listája.
 
-2.  Az integrációs fiókok áttekintése is megtekintheti a szerződéseket. Az integráció-fiók panelen válassza **áttekintése**, majd jelölje be a **megállapodások** csempére. 
+2.  Az integrációs fiókok áttekintése is megtekintheti a szerződéseket. Az integráció-fiók panelen válassza **áttekintése**, majd jelölje be hello **megállapodások** csempére. 
 
-    ![Válassza a minden szerződés megtekintéséhez egymás "Szerződés"](./media/logic-apps-enterprise-integration-edifact/edifact-4.png)   
+    ![Válassza ki a "Szerződés" csempe tooview minden szerződés](./media/logic-apps-enterprise-integration-edifact/edifact-4.png)   
 
 ## <a name="view-swagger-file"></a>A Swagger-fájl megtekintése
-A Swagger adatai a EDIFACT-összekötő megtekintése: [EDIFACT](/connectors/edifact/).
+tooview hello Swagger részletek hello EDIFACT-összekötőhöz: [EDIFACT](/connectors/edifact/).
 
 ## <a name="learn-more"></a>Részletek
-* [További tudnivalók a vállalati integrációs csomag](logic-apps-enterprise-integration-overview.md "további információ a vállalati integrációs csomag")  
+* [További tudnivalók a vállalati integrációs csomag hello](logic-apps-enterprise-integration-overview.md "további információ a vállalati integrációs csomag")  
 

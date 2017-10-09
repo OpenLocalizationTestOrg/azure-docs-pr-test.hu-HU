@@ -1,6 +1,6 @@
 ---
-title: "Távoli hozzáférés SharePoint az Azure AD alkalmazásproxy engedélyezése |} Microsoft Docs"
-description: "Alapvető tudnivalók a helyszíni SharePoint-kiszolgáló integrálása az Azure AD-alkalmazásproxy ismerteti."
+title: "az Azure AD alkalmazásproxy aaaEnable távelérési tooSharePoint |} Microsoft Docs"
+description: "Ismerteti hogyan hello alapjairól toointegrate egy helyszíni SharePoint server az Azure AD alkalmazásproxy."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,209 +15,209 @@ ms.date: 07/21/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 97eeec3b3936bcbef6ac3966b890332901bcb153
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ab413462fcaf387e150449df9c97505c4108bcf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-remote-access-to-sharepoint-with-azure-ad-application-proxy"></a>Az Azure AD alkalmazásproxy SharePoint távoli hozzáférés engedélyezése
+# <a name="enable-remote-access-toosharepoint-with-azure-ad-application-proxy"></a>Távelérés tooSharePoint az Azure AD alkalmazásproxy engedélyezése
 
-A cikkből megtudhatja, hogyan integrálható a helyszíni SharePoint-kiszolgáló az Azure Active Directory (Azure AD) alkalmazásproxy.
+Ez a cikk azt ismerteti, hogyan toointegrate egy helyszíni SharePoint server az Azure Active Directory (Azure AD) alkalmazásproxy.
 
-Távelérés SharePoint az Azure AD alkalmazásproxy engedélyezéséhez kövesse az ebben a cikkben részletes szakaszok.
+tooenable távelérési tooSharePoint az Azure AD-alkalmazásproxy, kövesse a cikk részletes hello szakaszai.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Ez a cikk feltételezi, hogy már rendelkezik a SharePoint 2013 vagy újabb a környezetben. Emellett vegye figyelembe a következő előfeltételek teljesülését:
+Ez a cikk feltételezi, hogy már rendelkezik a SharePoint 2013 vagy újabb a környezetben. Emellett vegye figyelembe a következő előfeltételek hello:
 
-* SharePoint natív Kerberos támogatja. Ezért elérő felhasználókat belső helyek távolról az Azure AD-proxyn keresztül történő egyszeri bejelentkezést (SSO) tapasztalatra veheti fel.
+* SharePoint natív Kerberos támogatja. Ezért elérő belső helyek távolról keresztül az Azure AD-alkalmazásproxyval oldható felhasználók számára egy egyszeri bejelentkezés (SSO) tapasztal toohave veheti fel.
 
-* Néhány konfigurációs módosításokat végezni a SharePoint-kiszolgáló van szüksége. Átmeneti környezet használatát javasoljuk. Ezzel a módszerrel teheti frissítések átmeneti kiszolgálóhoz először, és egy tesztelési ciklust, mielőtt éles környezetben felhasználó majd megkönnyítése.
+* Toomake néhány konfigurációs módosítások tooyour SharePoint server szükséges. Átmeneti környezet használatát javasoljuk. Így teheti frissítések tooyour server először átmeneti, és majd lehetővé teszi egy tesztelési ciklust, mielőtt éles környezetben.
 
-* Feltételezzük, hogy Ön már beállított SSL a SharePoint, mert a közzétett URL-címen SSL szükséges. Az SSL protokoll engedélyezve van a belső webhelyen, annak érdekében, hogy hivatkozások küldött/leképezett megfelelően kell. Ha SSL még nincs konfigurálva, lásd: [SSL konfigurálása a SharePoint 2013 rendszerhez](https://blogs.msdn.microsoft.com/fabdulwahab/2013/01/20/configure-ssl-for-sharepoint-2013) utasításokat. Ellenőrizze azt is, hogy az összekötő gép megbíznak kiállítja a tanúsítványt. (A tanúsítvány nem kell nyilvánosan ki.)
+* Feltételezzük, hogy Ön már beállított SSL a SharePoint, mert a hello SSL közzétett URL-cím szükséges. A belső webhelyen, hogy hivatkozások küldött/leképezve megfelelően tooensure toohave SSL Protokollt engedélyezni kell. Ha SSL még nincs konfigurálva, lásd: [SSL konfigurálása a SharePoint 2013 rendszerhez](https://blogs.msdn.microsoft.com/fabdulwahab/2013/01/20/configure-ssl-for-sharepoint-2013) utasításokat. Ne felejtse hello összekötő gép bizalmi kapcsolatok hello tanúsítvány, amely kiadása. (a hello tanúsítványt nem kell nyilvánosan kiadott toobe.)
 
-## <a name="step-1-set-up-single-sign-on-to-sharepoint"></a>1. lépés: Állítsa be az egyszeri bejelentkezés SharePoint
+## <a name="step-1-set-up-single-sign-on-toosharepoint"></a>1. lépés: Az egyszeri bejelentkezés tooSharePoint beállítása
 
-Ügyfeleink ebben az esetben érdemes a legjobb egyszeri Bejelentkezéses felhasználói élmény a háttér-alkalmazások, a SharePoint-kiszolgáló. Ilyenkor közös az Azure AD a felhasználó hitelesítése csak egyszer, mert nem kéri újra hitelesítéshez.
+Ügyfeleink hello legjobb egyszeri Bejelentkezéses felhasználói élmény a háttér-alkalmazások, a SharePoint server ebben az esetben érdemes. Ilyenkor közös az Azure AD hello felhasználó hitelesítése csak egyszer, mert nem kéri újra hitelesítéshez.
 
-A helyszíni alkalmazások esetében szükséges, vagy a Windows-hitelesítés használatára a Kerberos hitelesítési protokoll és a Kerberos által korlátozott delegálás (KCD) nevezett szolgáltatással SSO érhet el. A Kerberos által korlátozott, ha konfigurálva van, lehetővé teszi, hogy az alkalmazásproxy-összekötő windows jegy/jogkivonat beszerzése egy felhasználó még akkor is, ha a felhasználó még nem jelentkezett be a Windowsba közvetlenül. Kerberos által korlátozott Delegálás kapcsolatos további információkért lásd: [Kerberos által korlátozott delegálás áttekintése](https://technet.microsoft.com/library/jj553400.aspx).
+A helyszíni alkalmazások esetében szükséges, vagy a Windows-hitelesítés használatára egyszeri Bejelentkezéses hello Kerberos hitelesítési protokoll és a Kerberos által korlátozott delegálás (KCD) nevű funkció segítségével érhet el. A Kerberos által korlátozott, ha konfigurálva van, lehetővé teszi, hogy hello Application Proxy connector tooobtain windows jegy/a felhasználó jogkivonatát, még akkor is, ha hello nincs bejelentkezett felhasználó tooWindows közvetlenül. toolearn Kerberos által korlátozott Delegálás, kapcsolatos további információkért lásd: [Kerberos által korlátozott delegálás áttekintése](https://technet.microsoft.com/library/jj553400.aspx).
 
-Kerberos által korlátozott Delegálás beállítása a SharePoint server, az eljárásokkal a következő szekvenciális szakaszokban:
+SharePoint-kiszolgáló esetén használjon hello eljárások a következő, egymást követő szakaszok hello fel Kerberos által korlátozott Delegálás tooset:
 
 ### <a name="ensure-that-sharepoint-is-running-under-a-service-account"></a>Győződjön meg arról, hogy a SharePoint szolgáltatásfiók alatt fut.
 
-Először is győződjön meg arról, hogy a meghatározott szolgáltatási fiókkal--nem helyi rendszer, a helyi szolgáltatás vagy a hálózati szolgáltatás fut-e a SharePoint. Ehhez úgy, hogy az egyszerű szolgáltatásnevek (SPN) csatolhat egy érvényes fiókot. SPN-EK, hogyan a Kerberos protokoll azonosítja a különböző szolgáltatások. És a fiókot, hogy később a Kerberos által korlátozott Delegálás konfigurálásához szüksége lesz.
+Először is győződjön meg arról, hogy a meghatározott szolgáltatási fiókkal--nem helyi rendszer, a helyi szolgáltatás vagy a hálózati szolgáltatás fut-e a SharePoint. Ehhez úgy, hogy csatolhat a szolgáltatás egyszerű szolgáltatásnevét (SPN) tooa érvényes fiókot. SPN-EK, hogyan hello Kerberos protokoll azonosítja a különböző szolgáltatások. Akkor lesz szüksége hello fiók és későbbi tooconfigure hello Kerberos által korlátozott Delegálás.
 
-Győződjön meg arról, hogy a helyek egy meghatározott szolgáltatás fiók alatt fut, hajtsa végre az alábbi lépéseket:
+tooensure, amely egy meghatározott szolgáltatási fiókkal futtatja a helyek hajtsa végre a lépéseket követve hello:
 
-1. Nyissa meg a **SharePoint 2013 központi felügyelet** hely.
-2. Ugrás a **biztonsági** válassza **szolgáltatásfiókok konfigurálása**.
-3. Válassza ki **webalkalmazás-készlet - SharePoint - 80**. A beállítások kis mértékben eltérő lehet a webalkalmazás-készlet neve alapján, vagy ha a webes készlet alapértelmezés szerint az SSL.
+1. Nyissa meg hello **SharePoint 2013 központi felügyelet** hely.
+2. Nyissa meg túl**biztonsági** válassza **szolgáltatásfiókok konfigurálása**.
+3. Válassza ki **webalkalmazás-készlet - SharePoint - 80**. hello-beállítások kis mértékben eltérő lehet a webalkalmazás-készlet hello neve alapján, vagy ha hello webes készlet alapértelmezés szerint az SSL használja.
 
   ![Lehetőségek a szolgáltatásfiók konfigurálása](./media/application-proxy-remote-sharepoint/remote-sharepoint-service-web-application.png)
 
-4. Ha **válassza ki a fiókot ehhez az összetevőhöz** van **helyi szolgáltatás** vagy **hálózati szolgáltatás**, fiók létrehozásához szükséges. Ha nem, akkor végzett, és továbbléphet a következő szakasszal.
-5. Válassza ki **új felügyelt fiók regisztrálása**. A fiók létrehozása után meg kell adni **webes alkalmazáskészlet** a fiók használata előtt.
+4. Ha **válassza ki a fiókot ehhez az összetevőhöz** van **helyi szolgáltatás** vagy **hálózati szolgáltatás**, toocreate fiókkal van szüksége. Ha nem, akkor végzett, és továbbléphet a következő szakasz toohello.
+5. Válassza ki **új felügyelt fiók regisztrálása**. A fiók létrehozása után meg kell adni **webes alkalmazáskészlet** hello fiók használata előtt.
 
 > [!NOTE]
-Telepíteni kell egy korábban létrehozott Azure AD-fiókot a szolgáltatáshoz. Javasoljuk, hogy lehetővé tegye egy automatikus jelszóváltoztatáshoz. A lépéseket és a hibaelhárítási problémák az összes kapcsolatos további információkért lásd: [konfigurálása automatikus jelszó módosítása a SharePoint 2013](https://technet.microsoft.com/library/ff724280.aspx).
+A korábban toohave kell hello szolgáltatást az Azure AD-fiókot létrehozni. Javasoljuk, hogy lehetővé tegye egy automatikus jelszóváltoztatáshoz. A lépéseket és a hibaelhárítási problémák hello teljes készletének kapcsolatos további információkért lásd: [konfigurálása automatikus jelszó módosítása a SharePoint 2013](https://technet.microsoft.com/library/ff724280.aspx).
 
 ### <a name="configure-sharepoint-for-kerberos"></a>A Kerberos a SharePoint konfigurálása
 
-Kerberos által korlátozott Delegálás segítségével hajtsa végre az egyszeri bejelentkezés a SharePoint-kiszolgálóra, és ez csak Kerberos működik.
+Kerberos által korlátozott Delegálás tooperform egyszeri bejelentkezés toohello SharePoint server használatakor, és ez csak Kerberos működik.
 
-A SharePoint-webhely a Kerberos-hitelesítés konfigurálása:
+a SharePoint-webhely a Kerberos-hitelesítést tooconfigure:
 
-1. Nyissa meg a **SharePoint 2013 központi felügyelet** hely.
-2. Lépjen **Alkalmazáskezelés**, jelölje be **webes alkalmazásokat kezeléséhez**, és válassza ki a SharePoint-webhelye. Az ebben a példában is **SharePoint - 80**.
+1. Nyissa meg hello **SharePoint 2013 központi felügyelet** hely.
+2. Nyissa meg túl**Alkalmazáskezelés**, jelölje be **webes alkalmazásokat kezeléséhez**, és válassza ki a SharePoint-webhelyét. Az ebben a példában is **SharePoint - 80**.
 
-  ![A SharePoint-webhely kiválasztása](./media/application-proxy-remote-sharepoint/remote-sharepoint-manage-web-applications.png)
+  ![Hello SharePoint-webhely kiválasztása](./media/application-proxy-remote-sharepoint/remote-sharepoint-manage-web-applications.png)
 
-3. Kattintson a **hitelesítésszolgáltatókat** az eszköztáron.
-4. Az a **hitelesítésszolgáltatókat** kattintson **alapértelmezett zóna** a beállítások megtekintéséhez.
-5. Az a **hitelesítés szerkesztése** párbeszédpanel mezőben görgessen lefelé, amíg megjelenik **jogcímek hitelesítési típusok** , és győződjön meg arról, hogy mindkét **Windows-hitelesítés engedélyezése** és **Integrált Windows-hitelesítés** van kiválasztva.
-6. A legördülő listából, ügyeljen arra, hogy **egyeztetés (Kerberos)** van kiválasztva.
+3. Kattintson a **hitelesítésszolgáltatókat** hello eszköztáron.
+4. A hello **hitelesítésszolgáltatókat** kattintson **alapértelmezett zóna** tooview hello beállításait.
+5. A hello **hitelesítés szerkesztése** párbeszédpanel mezőben görgessen lefelé, amíg megjelenik **jogcímek hitelesítési típusok** , és győződjön meg arról, hogy mindkét **Windows-hitelesítés engedélyezése** és  **Integrált Windows-hitelesítés** van kiválasztva.
+6. Hello legördülő mezőben, ügyeljen arra, hogy **egyeztetés (Kerberos)** van kiválasztva.
 
   ![Hitelesítés szerkesztése párbeszédpanel](./media/application-proxy-remote-sharepoint/remote-sharepoint-service-edit-authentication.png)
 
-7. Alján a **hitelesítés szerkesztése** párbeszédpanel, kattintson a **mentése**.
+7. Hello hello alján **hitelesítés szerkesztése** párbeszédpanel, kattintson a **mentése**.
 
-### <a name="set-a-service-principal-name-for-the-sharepoint-service-account"></a>Egy egyszerű szolgáltatásnévvel SharePoint szolgáltatásfiók beállítása
+### <a name="set-a-service-principal-name-for-hello-sharepoint-service-account"></a>Egy egyszerű szolgáltatásnevét hello SharePoint szolgáltatásfiók beállítása
 
-A Kerberos által korlátozott Delegálás konfigurálása előtt kell a SharePoint szolgáltatás konfigurált szolgáltatásfiókként fut azonosítani. Ehhez úgy, hogy egy egyszerű Szolgáltatásnevet. További információkért lásd: [egyszerű szolgáltatásnevek](https://technet.microsoft.com/library/cc961723.aspx).
+Hello Kerberos által korlátozott Delegálás konfigurálásához meg kell tooidentify hello SharePoint szolgáltatást futtató fiókként hello szolgáltatást, amelyet beállított. Ehhez úgy, hogy egy egyszerű Szolgáltatásnevet. További információkért lásd: [egyszerű szolgáltatásnevek](https://technet.microsoft.com/library/cc961723.aspx).
 
-SPN formátuma:
+hello SPN formátuma:
 
 ```
 <service class>/<host>:<port>
 ```
 
-Az egyszerű Szolgáltatásnevet formátumban:
+Hello SPN formátumban:
 
-* _osztály szolgáltatás_ a szolgáltatás egyedi neve. A SharePoint, használhat **HTTP**.
+* _osztály szolgáltatás_ hello szolgáltatás egyedi neve. A SharePoint, használhat **HTTP**.
 
-* _állomás_ a teljes tartománynév vagy a gazdagép, amely a szolgáltatás fut a NetBIOS-nevét. A SharePoint-webhelyre Ez a szöveg lehet szükség az URL-címe, az IIS éppen használt verziójától függően.
+* _állomás_ hello teljesen minősített tartománynév vagy fut a szolgáltatás hello hello gazdagép NetBIOS-nevét. A SharePoint-webhelyre Ez a szöveg módosítania kell toobe hello webhely URL-címe hello, attól függően, hogy hello verzióját, amelyen az IIS.
 
 * _port_ nem kötelező megadni.
 
-Ha a SharePoint-kiszolgáló teljes Tartományneve:
+Ha hello hello SharePoint-kiszolgáló teljes Tartományneve:
 
 ```
 sharepoint.demo.o365identity.us
 ```
 
-Az egyszerű szolgáltatásnév akkor:
+Majd hello SPN van:
 
 ```
 HTTP/ sharepoint.demo.o365identity.us demo
 ```
 
-Is szükség lehet SPN-ek beállítása adott webhelyeken a kiszolgálón. További információkért lásd: [konfigurálja a Kerberos-hitelesítés](https://technet.microsoft.com/library/cc263449(v=office.12).aspx). Figyelmesen elolvassa a következő szakaszban: "Create egyszerű szolgáltatásnevek a webes alkalmazásokhoz, Kerberos-hitelesítést használ."
+Szükség lehet tooset SPN-ek beállítása adott webhelyekhez a kiszolgálón. További információkért lásd: [konfigurálja a Kerberos-hitelesítés](https://technet.microsoft.com/library/cc263449(v=office.12).aspx). Fizessen elolvassa toohello szakasz "Create egyszerű szolgáltatásnevek a webes alkalmazásokhoz, Kerberos-hitelesítést használ."
 
-Ahhoz, hogy az SPN-ek beállítása a legegyszerűbb módja, kövesse a SPN-formátumok, amely már jelen, a helyek lehetnek. A szolgáltatás fiók regisztrálása e SPN-ek másolja. Ehhez tegye a következőket:
+hello tooset SPN-ek a legkönnyebben toofollow hello SPN formátumok már jelen, a helyek lehetnek. Ezen elleni hello szolgáltatásfiók SPN-ek tooregister másolja. toodo ezt:
 
-1. Tallózással keresse meg az egyszerű Szolgáltatásnevet a helyhez egy másik számítógépről.
- Ha így tesz, a Kerberos-jegyek vonatkozó készlete gyorsítótárazza a számítógépen. Ezek a jegyek vetítéséhez webhely SPN tartalmaznak.
+1. Keresse meg a másik gépről SPN hello toohello hely.
+ Amikor, hello vonatkozó beállítva a Kerberos-jegyek hello gépen kerül a gyorsítótárba. Ezek a jegyek hello hello célhelyre vetítéséhez egyszerű Szolgáltatásnevének tartalmaznak.
 
-2. Nevű eszköz használatával lehet lekérni a webhelyre vonatkozóan, az egyszerű szolgáltatásnév [Klist](http://web.mit.edu/kerberos/krb5-devel/doc/user/user_commands/klist.html). Ugyanabban a környezetben, a felhasználó a webhely a böngészőben futó parancsablakban futtassa a következő parancsot:
+2. Nevű eszköz használatával képes lekérni a hello egyszerű Szolgáltatásnevet az adott hely [Klist](http://web.mit.edu/kerberos/krb5-devel/doc/user/user_commands/klist.html). Egy parancsablakban, amely futtatja a hello ugyanabban a környezetben használt hello hely hello böngészőben futtató hello felhasználóként hello a következő parancsot:
 ```
 Klist
 ```
-Klist majd készletet ad vissza, a cél SPN-ek. Ebben a példában a kijelölt érték az SPN szükséges:
+Klist majd cél SPN-ek hello készletet ad vissza. Ebben a példában a kiemelt hello értéke hello SPN szükséges:
 
   ![Példa Klist eredménye](./media/application-proxy-remote-sharepoint/remote-sharepoint-target-service.png)
 
-4. Most, hogy az egyszerű Szolgáltatásnevet, győződjön meg arról, hogy megfelelően van konfigurálva a szolgáltatás fiók, amely korábban a webalkalmazáshoz beállított kell. A következő parancsot a parancssorból futtassa a tartomány rendszergazdája:
+4. Most, hogy hello egyszerű Szolgáltatásnevet, van szüksége arról, hogy megfelelően van konfigurálva a webalkalmazás hello korábban beállított hello szolgáltatásfiók toomake. Futtassa a parancsot követő hello parancssorból hello tartományi rendszergazdaként hello:
 
  ```
  setspn -S http/sharepoint.demo.o365identity.us demo\sp_svc
  ```
 
- Ez a parancs beállítja a SharePoint-szolgáltatás futtatásához használt fiók egyszerű Szolgáltatásnevét _demo\sp_svc_.
+ Ez a parancs beállítása SPN hello hello SharePoint szolgáltatás fut, mint a fiók _demo\sp_svc_.
 
- Cserélje le _http/sharepoint.demo.o365identity.us_ van a Célszámítógéphez, a kiszolgáló és _demo\sp_svc_ a szolgáltatásfiókkal a környezetben. A Setspn parancs megkeresi az egyszerű Szolgáltatásnevet, mielőtt hozzáadja azt. Ebben az esetben előfordulhat, hogy megjelenik egy **ismétlődő SPN-értéket** hiba. Ha ezt a hibaüzenetet látja, győződjön meg arról, hogy az érték a szolgáltatás fiókhoz.
+ Cserélje le _http/sharepoint.demo.o365identity.us_ a hello egyszerű Szolgáltatásnevet a kiszolgáló és _demo\sp_svc_ hello szolgáltatásfiókkal a környezetben. hello hello egyszerű Szolgáltatásnevet a Setspn parancs keres, mielőtt hozzáadja azt. Ebben az esetben előfordulhat, hogy megjelenik egy **ismétlődő SPN-értéket** hiba. Ha megjelenik ez a hiba, ellenőrizze, hogy hello érték hello szolgáltatás fiókhoz.
 
-Ellenőrizheti, hogy az egyszerű Szolgáltatásnevet a Setspn parancs futtatásával a -l beállítással lett hozzáadva. Ez a parancs kapcsolatos további információkért lásd: [Setspn](https://technet.microsoft.com/library/cc731241.aspx).
+Ellenőrizheti, hogy hello SPN paranccsal hello Setspn -l kapcsolóval hello hozzá lett adva. További információk a parancs toolearn lásd [Setspn](https://technet.microsoft.com/library/cc731241.aspx).
 
-### <a name="ensure-that-the-connector-is-set-as-a-trusted-delegate-to-sharepoint"></a>Győződjön meg arról, hogy az összekötő megbízható meghatalmazottként értéke SharePoint
+### <a name="ensure-that-hello-connector-is-set-as-a-trusted-delegate-toosharepoint"></a>Győződjön meg arról, hogy hello összekötő be van állítva egy megbízható delegált tooSharePoint
 
-Konfigurálja a Kerberos által korlátozott Delegálás, hogy az Azure AD alkalmazásproxy delegálhatja a SharePoint szolgáltatás felhasználói identitásokat. Ehhez a felhasználók, akik az Azure Active Directory hitelesített Kerberos-jegyek beolvasása az alkalmazásproxy-összekötő engedélyezése. Majd, hogy a kiszolgáló továbbítja a környezetben a célalkalmazás vagy a SharePoint ebben az esetben.
+Így hello Azure AD alkalmazásproxy-szolgáltatás delegálhatja a felhasználói identitások toohello SharePoint szolgáltatás hello Kerberos által korlátozott Delegálás konfigurálása Ehhez hello alkalmazásproxy-összekötő engedélyezésével tooretrieve Kerberos-jegyek a felhasználók, akik az Azure Active Directory hitelesített. Ezután, hogy a kiszolgáló továbbítja a hello környezetben toohello célalkalmazás vagy SharePoint ebben az esetben.
 
-A Kerberos által korlátozott Delegálás konfigurálásához ismételje meg minden összekötő gép a következő lépéseket:
+tooconfigure hello Kerberos által korlátozott Delegálás, a következő lépéseket az egyes csatlakozó gépek ismétlési hello:
 
-1. Jelentkezzen be a tartományvezérlőbe tartományi rendszergazdaként, és nyisson **Active Directory – felhasználók és számítógépek**.
-2. Az összekötőt futtató számítógépen található. Az ebben a példában is ugyanarra a SharePoint-kiszolgálóra.
-3. Kattintson duplán arra a számítógépre, és kattintson a **delegálás** fülre.
-4. Győződjön meg arról, hogy a delegálás beállítása **a számítógépen csak a megadott szolgáltatások delegálhatók**, majd válassza ki **bármely hitelesítési protokoll**.
+1. Jelentkezzen be egy tartományi rendszergazda tooa tartományvezérlő, és nyisson **Active Directory – felhasználók és számítógépek**.
+2. Hello számítógép, amely összekötő hello megkeresése Ebben a példában ez rendelkezik hello azonos SharePoint-kiszolgáló.
+3. Kattintson duplán a hello számítógépet, majd hello **delegálás** fülre.
+4. Győződjön meg arról, hogy túl van-e beállítva a hello a delegálási beállításokat**a számítógépen megadott delegálás toohello szolgáltatások csak**, majd válassza ki **bármely hitelesítési protokoll**.
 
   ![A delegálási beállításokat](./media/application-proxy-remote-sharepoint/remote-sharepoint-delegation-box.png)
 
-5. Kattintson a **Hozzáadás** gombra, majd **felhasználók vagy számítógépek**, és keresse meg a szolgáltatás fiók.
+5. Hello kattintson **Hozzáadás** gombra, majd **felhasználók vagy számítógépek**, és keresse meg a hello szolgáltatásfiók.
 
-  ![A szolgáltatásfiók SPN hozzáadása](./media/application-proxy-remote-sharepoint/remote-sharepoint-users-computers.png)
+  ![Hello szolgáltatásfiók SPN hozzáadását hello](./media/application-proxy-remote-sharepoint/remote-sharepoint-users-computers.png)
 
-6. Válassza ki azt, amelyik a fiók korábban létrehozott egyszerű szolgáltatásnevek listájának megtekintéséhez.
-7. Kattintson az **OK** gombra. Kattintson a **OK** újra, hogy a módosítások mentéséhez.
+6. Hello SPN-EK, jelölje ki valamelyik hello szolgáltatásfiók korábban létrehozott hello.
+7. Kattintson az **OK** gombra. Kattintson a **OK** újra toosave hello módosításokat.
 
-## <a name="step-2-enable-remote-access-to-sharepoint"></a>2. lépés: A SharePoint távoli hozzáférés engedélyezése
+## <a name="step-2-enable-remote-access-toosharepoint"></a>2. lépés: A távelérés tooSharePoint engedélyezése
 
-Most, hogy a SharePoint Kerberos és a beállított Kerberos által korlátozott Delegálás engedélyezését, készen áll az egyszeri bejelentkezés SharePoint beállítása. Ezután az összekötőről érkező közzéteheti a SharePoint-farm, az Azure AD-proxyn keresztül történő távoli hozzáféréshez.
+Most, hogy engedélyezve van a SharePoint a Kerberos és Kerberos által korlátozott Delegálás konfigurálva, készen áll a tooset egyszeri bejelentkezés tooSharePoint be most. Majd hello-összekötőről származó közzéteheti a távelérés szolgáltatás segítségével az Azure AD-alkalmazásproxy hello SharePoint-farm.
 
-A következő lépésekkel, meg kell a szervezet Azure Active Directory-fiókot a globális rendszergazdai szerepkör tagjai.
+tooperform hello lépéseket követve toobe a szervezet Azure Active Directory-fiók globális rendszergazdai szerepkör hello tagja kell.
 
-1. Jelentkezzen be a [Azure-portálon](https://manage.windowsazure.com) keresse meg az Azure AD-bérlő.
+1. Jelentkezzen be toohello [Azure-portálon](https://manage.windowsazure.com) keresse meg az Azure AD-bérlő.
 2. Kattintson a **alkalmazások**, és kattintson a **Hozzáadás**.
-3. Válassza a **Publish an application that will be accessible from outside your network** (Hálózaton kívülről hozzáférhető alkalmazás közzététele) lehetőséget. Ha nem látja ezt a beállítást, ellenőrizze, hogy Azure AD alapvető van, vagy Premium beállítása a bérlő-e.
-4. Végezze el a lehetőségek az alábbiak szerint:
+3. Válassza a **Publish an application that will be accessible from outside your network** (Hálózaton kívülről hozzáférhető alkalmazás közzététele) lehetőséget. Ha nem látja ezt a beállítást, ellenőrizze, hogy Azure AD alapvető rendelkezik, vagy Premium állítsa be a hello bérlői-e.
+4. Végezze el hello lehetőségek az alábbiak szerint:
  * **Név**: használni kívánt – például értéket **SharePoint**.
- * **Belső URL-cím**: Ez a SharePoint-webhely URL-CÍMÉT az belső, például **https://SharePoint/**. Ebben a példában, ügyeljen arra, hogy használjon **https**.
+ * **Belső URL-cím**: Ez az hello URL hello SharePoint-webhely belső, például **https://SharePoint/**. Ebben a példában, győződjön meg arról, hogy toouse **https**.
  * **Előhitelesítési módszer**: válasszon **az Azure Active Directory**.
 
   ![Egy alkalmazás hozzáadásának beállításai](./media/application-proxy-remote-sharepoint/remote-sharepoint-add-application.png)
 
-5. Az alkalmazás közzététele után kattintson a **konfigurálása** fülre.
-6. Görgessen le a beállítás **állomásneveket, az URL-címet fejlécek**. Az alapértelmezett érték **Igen**. Módosítsa úgy, hogy **nem**.
+5. Miután hello alkalmazás közzé van téve, kattintson a hello **konfigurálása** fülre.
+6. Görgessen lefelé toohello beállítás **állomásneveket, az URL-címet fejlécek**. hello alapértelmezett értéke **Igen**. Módosítsa úgy túl**nem**.
 
- SharePoint használja a _állomásfejléc_ megkeresheti a hely értékét. Emellett ez az érték alapján hivatkozásokat hoz létre. A nettó hatása az győződjön meg arról, hogy minden hivatkozás, amely SharePoint-hoz létre-e a közzétett URL-cím helyesen van-e állítva a külső URL-cím használatára. Az érték **Igen** is lehetővé teszi, hogy az összekötő továbbítja a kérést a háttér-alkalmazás. Azonban a értékre állítását **nem** azt jelenti, hogy az összekötő nem küld a belső neve. Ehelyett az összekötő elküldi az állomásfejléc a közzétett URL-címként a háttér-alkalmazásnak.
+ SharePoint használ hello _állomásfejléc_ érték toolook hello hely fel. Emellett ez az érték alapján hivatkozásokat hoz létre. hello nettó hatása az toomake arról, hogy minden hivatkozás, amely SharePoint-hoz létre egy közzétett URL-címet, amely toouse hello külső URL-cím helyesen van beállítva. Hello érték túl**Igen** is lehetővé teszi, hogy hello összekötő tooforward hello kérelem toohello háttér-alkalmazást. Azonban érték hello túl**nem** azt jelenti, hogy az összekötő hello nem küld hello belső állomásnevet. Ehelyett a hello összekötő hello állomásfejléc küldi hello közzétett URL-cím toohello háttér-alkalmazás.
 
- Emellett győződjön meg arról, hogy a SharePoint URL-címet elfogadja, szüksége egy további konfigurálására a SharePoint-kiszolgálón. Azt teheti a következő szakaszban.
+ Emellett tooensure, hogy a SharePoint fogadja el az URL-cím, egy további konfigurációs hello SharePoint-kiszolgálón kell toocomplete. Azt teheti a következő szakaszban hello.
 
-7. Változás **belső hitelesítési módszer** való **integrált Windows-hitelesítés**. Ha az Azure AD-bérlő a felhőben, amely eltér az egyszerű felhasználónév a helyszíni egyszerű Felhasználónevük használ, akkor ne felejtse el frissíteni **meghatalmazott bejelentkezési identitás** is.
-8. Állítsa be **belső alkalmazás SPN** a korábban beállított értékeket. Tegyük fel például, **http/sharepoint.demo.o365identity.us**.
-9. Rendelje hozzá az alkalmazás a felhasználók megcélzása.
+7. Változás **belső hitelesítési módszer** túl**integrált Windows-hitelesítés**. Ha az Azure AD-bérlőről egy egyszerű felhasználónév, amely nem egyezik a hello UPN helyszíni hello felhőben használ, ne feledje tooupdate **meghatalmazott bejelentkezési identitás** is.
+8. Állítsa be **belső alkalmazás SPN** toohello korábban beállított értékeket. Tegyük fel például, **http/sharepoint.demo.o365identity.us**.
+9. Rendelje hozzá a hello alkalmazás tooyour azon felhasználók megcélzása.
 
-Az alkalmazás az alábbi példához hasonlóan kell kinéznie:
+Az alkalmazás a következő példa hasonló toohello kell kinéznie:
 
   ![Befejezett alkalmazás](./media/application-proxy-remote-sharepoint/remote-sharepoint-internal-application-spn.png)
 
-## <a name="step-3-ensure-that-sharepoint-knows-about-the-external-url"></a>3. lépés: Győződjön meg arról, hogy a SharePoint ismer a külső URL-címe
+## <a name="step-3-ensure-that-sharepoint-knows-about-hello-external-url"></a>3. lépés: Győződjön meg arról, hogy a SharePoint ismer hello külső URL-címe
 
-Az utolsó lépése annak érdekében, hogy a SharePoint található a helyhez, a külső URL-cím alapján lesz jeleníti meg hivatkozások alapján a külső URL-címet. Ehhez a SharePoint-webhely másodlagos hozzáférés-leképezések konfigurálása.
+Az utolsó lépés tooensure, amely SharePoint található hello helyhez hello külső URL-cím alapján lesz jeleníti meg hivatkozások alapján a külső URL-címet. Ehhez másodlagos címek leképezése hello SharePoint-webhely konfigurálása.
 
-1. Nyissa meg a **SharePoint 2013 központi felügyelet** hely.
+1. Nyissa meg hello **SharePoint 2013 központi felügyelet** hely.
 2. A **rendszerbeállítások**, jelölje be **alternatív leképezések konfigurálása**.
 
- Ekkor megnyílik a **másodlagos hozzáférési megfeleltetések** mezőbe.
+ Ekkor megnyílik a hello **másodlagos hozzáférési megfeleltetések** mezőbe.
 
   ![Másodlagos hozzáférési megfeleltetések mezőbe](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access1.png)
 
-3. A legördülő lista melletti **másodlagos hozzáférési leképezési gyűjtemény**, jelölje be **módosítás másodlagos hozzáférési leképezési gyűjtemény**.
+3. Hello legördülő lista melletti **másodlagos hozzáférési leképezési gyűjtemény**, jelölje be **módosítás másodlagos hozzáférési leképezési gyűjtemény**.
 4. Válassza ki a webhely – például **SharePoint - 80**.
 
   ![A hely kiválasztása](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access2.png)
 
-5. Ha szeretné, adja hozzá a közzétett URL-címet vagy egy belső URL-CÍMÉT, vagy egy nyilvános URL-címet. A példa egy nyilvános URL-címet, az extranetről.
-6. Kattintson a **szerkesztése nyilvános URL-címek** a a **Extranet** elérési utat, majd adja meg az elérési út a közzétett alkalmazáshoz, ahogy az előző lépésben. Adja meg például **https://sharepoint-iddemo.msappproxy.net**.
+5. Kiválaszthatja a tooadd hello közzétett URL-címet vagy egy belső URL-CÍMÉT, vagy egy nyilvános URL-címet. Ez a példa extranetes hello egy nyilvános URL-címet használja.
+6. Kattintson a **szerkesztése nyilvános URL-címek** a hello **Extranet** elérési utat, majd adja meg hello elérési útját hello közzétett alkalmazás, ahogy hello előző lépésben. Adja meg például **https://sharepoint-iddemo.msappproxy.net**.
 
-  ![Az elérési út megadása](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access3.png)
+  ![Hello elérési út megadása](./media/application-proxy-remote-sharepoint/remote-sharepoint-alternate-access3.png)
 
 7. Kattintson a **Save** (Mentés) gombra.
 
- A SharePoint-webhely, az Azure AD-alkalmazásproxy külsőleg keresztül érhetők el.
+ SharePoint-webhely hello kívülről az Azure AD-alkalmazásproxy keresztül érhetők el.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Útmutató a helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak](active-directory-application-proxy-get-started.md)
+- [Hogyan tooprovide biztonságos távoli hozzáférés tooon helyszíni alkalmazások](active-directory-application-proxy-get-started.md)
 - [Az Azure AD-alkalmazásproxy összekötők ismertetése](application-proxy-understand-connectors.md)
 - [A SharePoint 2016 és Office Online Server az Azure AD-alkalmazásproxy közzététele](https://blogs.technet.microsoft.com/dawiese/2016/06/09/publishing-sharepoint-2016-and-office-online-server-with-azure-ad-application-proxy/)

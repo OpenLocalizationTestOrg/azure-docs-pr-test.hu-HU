@@ -1,6 +1,6 @@
 ---
-title: "Webalkalmazások létrehozása a Djangóval az Azure-ban"
-description: "A Python webalkalmazás az Azure App Service Web Apps szolgáltatásban történő futtatását bemutató oktatóanyag."
+title: "webalkalmazások aaaCreating djangóval az Azure-ban"
+description: "Ez az oktatóanyag bemutatja a toorunning a Python webalkalmazás az Azure App Service Web Apps."
 services: app-service\web
 documentationcenter: python
 tags: python
@@ -15,21 +15,21 @@ ms.devlang: python
 ms.topic: article
 ms.date: 02/19/2016
 ms.author: huvalo
-ms.openlocfilehash: 388a2db21dd1669b48b3204aaa322d7915905506
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 26a131da358748bd6fe4ee5c114d0a8f91b83cfe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-web-apps-with-django-in-azure"></a>Webalkalmazások létrehozása a Djangóval az Azure-ban
-Ez az oktatóanyag a Python futtatásának első lépéseit mutatja be az [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) felületén. A Web Apps korlátozott ingyenes üzemeltetést és gyors üzembe helyezést kínál, ráadásul a Python alkalmazást is használhatja! Az alkalmazása növekedésével átválthat fizetős üzemeltetésre, valamint integrálhatja alkalmazásába az összes többi Azure-szolgáltatást is.
+Ez az oktatóanyag leírja, hogyan tooget el Python futó [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714). A Web Apps korlátozott ingyenes üzemeltetést és gyors üzembe helyezést kínál, ráadásul a Python alkalmazást is használhatja! Az alkalmazás forgalmához igazítható, megváltoztathatja az toopaid üzemeltető, és integrálhatja az összes hello más Azure-szolgáltatásokkal.
 
-A Django webes keretrendszer használatával fog létrehozni egy alkalmazást (lásd az oktatóanyag alternatív verzióit a [Flask](web-sites-python-create-deploy-flask-app.md) és a [Bottle](web-sites-python-create-deploy-bottle-app.md) használatával). Létre fog hozni egy webalkalmazást az Azure Piactérről, be fogja állítani a Git üzemelő példányt, majd helyileg fogja klónozni a tárházat. Ezt követően helyileg fogja futtatni az alkalmazást, módosításokat fog elvégezni rajta, majd véglegesíteni fogja őket, és el fogja küldeni az Azure-ba. Ez az oktatóanyag ennek a folyamatnak a Windows vagy Mac/Linux operációs rendszeren történő végrehajtását mutatja be.
+Egy alkalmazás hello Django webes keretrendszer használatával hoz létre (lásd az oktatóanyag alternatív verzióit [Flask](web-sites-python-create-deploy-flask-app.md) és [Bottle](web-sites-python-create-deploy-bottle-app.md)). Hello webalkalmazás létrehoz hello Azure Piactérről származó, beállítása a Git üzemelő példányt, és helyileg hello tárház klónozása. Ezután lesz hello alkalmazás helyileg történő futtatása, módosításokat, véglegesítse és küldje le őket tooAzure. Hogyan hello oktatóanyag azt mutatja be toodo ezt a Windows vagy Mac/Linux.
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Ha nem szeretne regisztrálni Azure-fiókot az Azure App Service megismerése előtt, lépjen [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra, ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
@@ -43,27 +43,27 @@ A Django webes keretrendszer használatával fog létrehozni egy alkalmazást (l
 **Megjegyzés:** A TFS-közzététel a Python-projektek esetében jelenleg nem támogatott.
 
 ### <a name="windows"></a>Windows
-Ha még nem telepítette a Python 2.7-es vagy 3.4-es (32 bites) verzióját, javasoljuk a [Python 2.7-hez készült Azure SDK] vagy a [Python 3.4-hez készült Azure SDK] Webplatform-telepítővel történő telepítését. Ezzel többek között a következőket telepíti: a Python 32 bites verziója, setuptools, pip, virtualenv (a Python 32 bites verziója van telepítve az Azure-gazdagépeken). Alternatív megoldásként a Python eszközt a [python.org] webhelyről is beszerezheti.
+Ha még nem telepítette a Python 2.7-es vagy 3.4-es (32 bites) verzióját, javasoljuk a [Python 2.7-hez készült Azure SDK] vagy a [Python 3.4-hez készült Azure SDK] Webplatform-telepítővel történő telepítését. Ez a Python, setuptools, pip, virtualenv stb (az Azure-gazdagépeken hello telepített Python 32 bites) hello 32 bites verzióját telepíti. Alternatív megoldásként a Python eszközt a [python.org] webhelyről is beszerezheti.
 
-A Git esetében a [Git for Windows] vagy a [GitHub for Windows] használatát javasoljuk. Visual Studio használata esetén használhatja a beépített Git-támogatást.
+A Git esetében a [Git for Windows] vagy a [GitHub for Windows] használatát javasoljuk. Ha a Visual Studio használata esetén használhatja hello integrált Git-támogatást.
 
-Szintén javasoljuk a [Python Tools 2.2 for Visual Studio] telepítését. Ez ugyan nem kötelező, de ha rendelkezik az ingyenes Visual Studio Community 2013 vagy Visual Studio Express 2013 for Web alkalmazásokat is magában foglaló [Visual Studio] szoftverrel, a nagyszerű Python IDE előnyeit is élvezheti.
+Szintén javasoljuk a [Python Tools 2.2 for Visual Studio] telepítését. Ez nem kötelező, de ha rendelkezik [Visual Studio], beleértve a hello ingyenes Visual Studio Community 2013 vagy Visual Studio Express 2013 for Web alkalmazásokat, és ekkor kap egy nagyszerű Python IDE.
 
 ### <a name="maclinux"></a>Mac/Linux
 A Python és a Git alkalmazásoknak már telepítve kell lenniük, de győződjön meg arról, hogy a Python verziószáma 2.7-es vagy 3.4-es.
 
 ## <a name="web-app-creation-on-portal"></a>Webalkalmazás létrehozása a portálon
-Saját alkalmazása létrehozásának első lépése egy webalkalmazás létrehozása az [Azure portálon](https://portal.azure.com).
+hello saját alkalmazása létrehozásának első lépése az toocreate hello hello webalkalmazás [Azure Portal](https://portal.azure.com).
 
-1. Jelentkezzen be az Azure portálra, majd kattintson a bal alsó sarokban található **NEW** (ÚJ) gombra.
-2. A keresőmezőbe írja be a „python” kifejezést.
-3. A keresési eredmények közül válassza ki a **Django** elemet (amelyet a PTVS tett közzé), majd kattintson a **Create** (Létrehozás) gombra.
-4. Konfigurálja az új Django-alkalmazást, például új App Service-csomag és egy ahhoz tartozó új erőforráscsoport létrehozásával. Ezt követően kattintson a **Create** (Létrehozás) gombra.
-5. Konfigurálja az újonnan létrehozott webalkalmazáshoz tartozó Git-közzétételt a [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben) részben megadott utasítások szerint.
+1. Jelentkezzen be hello Azure Portal, majd kattintson a hello **új** hello bal alsó sarokban gombjára.
+2. Hello a keresőmezőbe írja be a "python".
+3. Hello keresési eredmények között, válassza ki a **Django** (PTVS által közzétett), majd kattintson a **létrehozása**.
+4. Hello új Django-alkalmazást, például egy új App Service-csomag és egy új erőforráscsoport létrehozása, konfigurálása. Ezt követően kattintson a **Create** (Létrehozás) gombra.
+5. Az újonnan létrehozott webalkalmazáshoz tartozó Git-közzététel konfigurálása: hello utasításokat követve [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md).
 
 ## <a name="application-overview"></a>Az alkalmazás áttekintése
 ### <a name="git-repository-contents"></a>A Git-tárház tartalma
-Az alábbiakban áttekintjük a kiindulási Git-tárházban található fájlokat. A következő szakaszban ezek klónozását fogjuk elvégezni.
+Itt a hello kezdeti Git-tárházban, amely klónozását fogjuk elvégezni hello a következő szakaszban találhat hello fájlok nyújt áttekintést.
 
     \app\__init__.py
     \app\forms.py
@@ -84,15 +84,15 @@ Az alábbiakban áttekintjük a kiindulási Git-tárházban található fájloka
     \DjangoWebProject\urls.py
     \DjangoWebProject\wsgi.py
 
-Az alkalmazás fő forrásai. 3 oldalból (index, névjegy, kapcsolat) áll egy fő elrendezéssel. Példák statikus tartalomra és parancsfájlokra: bootstrap, jquery, modernizr és respond.
+Hello alkalmazás fő forrásai. 3 oldalból (index, névjegy, kapcsolat) áll egy fő elrendezéssel. Példák statikus tartalomra és parancsfájlokra: bootstrap, jquery, modernizr és respond.
 
     \manage.py
 
-A helyi felügyelet és a fejlesztési kiszolgáló támogatása. Válassza ezt a lehetőséget például az alkalmazás helyi futtatásához vagy az adatbázis szinkronizálásához.
+A helyi felügyelet és a fejlesztési kiszolgáló támogatása. Az toorun hello alkalmazás helyileg használatához, szinkronizálása hello adatbázis stb.
 
     \db.sqlite3
 
-Az alapértelmezett adatbázis. Tartalmazza az alkalmazás futtatásához szükséges táblákat, de nem tartalmaz felhasználókat (felhasználó az adatbázis szinkronizálásával hozható létre).
+Az alapértelmezett adatbázis. Hello alkalmazás toorun hello szükséges táblákat tartalmaz, de nem tartalmazza azokat a felhasználókat (hello adatbázis toocreate a felhasználó szinkronizálása).
 
     \DjangoWebProject.pyproj
     \DjangoWebProject.sln
@@ -105,12 +105,12 @@ IIS-proxy a virtuális környezetekhez, valamint távoli hibaelhárítási támo
 
     \requirements.txt
 
-Az alkalmazás számára szükséges külső csomagok. A telepítési parancsfájl elvégzi az ebben a fájlban felsorolt csomagok telepítését.
+Az alkalmazás számára szükséges külső csomagok. hello telepítési parancsfájl elvégzi az ebben a fájlban felsorolt csomagok telepítése hello.
 
     \web.2.7.config
     \web.3.4.config
 
-IIS-konfigurációs fájlok. A telepítési parancsfájl a megfelelő web.x.y.config fájlt fogja használni, és web.config fájlként fogja azt másolni.
+IIS-konfigurációs fájlok. hello telepítési parancsfájl hello megfelelő web.x.y.config használja, és web.config fájlként másolásához.
 
 ### <a name="optional-files---customizing-deployment"></a>Opcionális fájlok – A telepítés testre szabása
 [!INCLUDE [web-sites-python-django-customizing-deployment](../../includes/web-sites-python-django-customizing-deployment.md)]
@@ -119,7 +119,7 @@ IIS-konfigurációs fájlok. A telepítési parancsfájl a megfelelő web.x.y.co
 [!INCLUDE [web-sites-python-customizing-runtime](../../includes/web-sites-python-customizing-runtime.md)]
 
 ### <a name="additional-files-on-server"></a>További fájlok a kiszolgálón
-Egyes fájlok megtalálhatóak ugyan a kiszolgálón, de nem lettek felvéve a Git-tárházba. Ezeket a telepítési parancsfájl hozza létre.
+Egyes fájlok hello kiszolgálón léteznek, de nem kerülnek toohello git-tárház. Ezek hello telepítési parancsfájl hozza létre.
 
     \web.config
 
@@ -127,92 +127,92 @@ IIS-konfigurációs fájl. Minden telepítéshez a web.x.y.config fájlból jön
 
     \env\
 
-Python virtuális környezet. A telepítés során jön létre, ha a webalkalmazáson még nem található kompatibilis virtuális környezet. Megtörténik a requirements.txt fájlban felsorolt csomagok telepítése, a korábban már telepített csomagokat azonban a pip már nem telepíti újra.
+Python virtuális környezet. Telepítése során létrehozott Ha kompatibilis virtuális környezet már nem létezik a hello webalkalmazásban. A requirements.txt fájlban felsorolt csomagok telepítése a pip, de a pip kihagyja a telepítést, ha már telepítve vannak a hello csomagok.
 
-A következő három szakaszban a webalkalmazások fejlesztéséről talál információkat, három különböző környezetben:
+hello következő 3 szakaszok mutatják be, hogyan tooproceed hello a webalkalmazás-e a fejlesztés alatt 3 különböző környezetekben:
 
 * Windows, Python Tools for Visual Studio alkalmazással
 * Windows, parancssorral
 * Mac/Linux, parancssorral
 
 ## <a name="web-app-development---windows---python-tools-for-visual-studio"></a>Webalkalmazás-fejlesztés – Windows – Python Tools for Visual Studio
-### <a name="clone-the-repository"></a>A tárház klónozása
-Első lépésben klónozza a tárházat az Azure Portalon található URL-cím használatával. További információ: [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben).
+### <a name="clone-hello-repository"></a>Hello tárház klónozása
+Első lépésben klónozza hello tárházat hello található URL-cím hello Azure portál használatával. További információkért lásd: [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md).
 
-Nyissa meg a tárház gyökérkönyvtárában található megoldásfájlt (.sln).
+Nyissa meg a hello megoldásfájlt (.sln), hello hello tárház gyökérkönyvtárában található.
 
 ![](./media/web-sites-python-create-deploy-django-app/ptvs-solution-django.png)
 
 ### <a name="create-virtual-environment"></a>Virtuális környezet létrehozása
 Most helyi telepítéshez tartozó virtuális környezetet hozunk létre. Kattintson a jobb gombbal a **Python Environments** (Python-környezetek) elemre, majd válassza az **Add Virtual Environment...** (Virtuális környezet hozzáadása...) lehetőséget.
 
-* Győződjön meg arról, hogy a környezet neve a következő: `env`.
-* Válassza ki az alapszintű értelmezőt. Győződjön meg arról, hogy a Python ugyanazon verzióját használja, mint ami a webalkalmazás esetében ki lett választva (ez az információ az Azure portálon lévő webalkalmazásának runtime.txt fájljában vagy az **Application Settings** (Alkalmazásbeállítások) panelen található meg).
-* Győződjön meg arról, hogy a csomagok letöltése és telepítése be van jelölve.
+* Ellenőrizze, hogy hello név hello környezet `env`.
+* Válassza ki a hello alapszintű értelmezőt. Győződjön meg arról, hogy toouse hello a webalkalmazás kiválasztott Python ugyanazon verzióját (a runtime.txt vagy hello **Alkalmazásbeállítások** panelen található webalkalmazását az Azure portál hello).
+* Ellenőrizze, hogy hello beállítás toodownload és telepítési csomagok be van jelölve.
 
 ![](./media/web-sites-python-create-deploy-django-app/ptvs-add-virtual-env-27.png)
 
-Kattintson a **Create** (Létrehozás) gombra. Ezzel létrejön a virtuális környezet, valamint települnek a requirements.txt fájlban található függőségek.
+Kattintson a **Create** (Létrehozás) gombra. Ezzel hello virtuális környezet létrehozása, és telepítse a Requirements.txt fájlban található függőségek.
 
 ### <a name="create-a-superuser"></a>Felügyelő létrehozása
-Az alkalmazáshoz tartozó adatbázishoz nincs megadva felügyelő. Az alkalmazás bejelentkezési funkciójának vagy a Django felügyeleti felületének használatához (ha úgy dönt, hogy engedélyezi) felügyelőt kell létrehozni.
+hello alkalmazáshoz tartozó hello adatbázishoz nincs megadva felügyelő. A sorrend toouse hello bejelentkezési funkciójának hello alkalmazás vagy hello a Django felügyeleti felülete (Ha úgy dönt, hogy tooenable azt), toocreate felügyelőt lesz szüksége.
 
-A projektmappa parancssorából futtassa a következő parancsot:
+Futtassa a következő parancsot hello parancssori a projektmappa parancssorából:
 
     env\scripts\python manage.py createsuperuser
 
-Kövesse a megjelenő utasításokat a felhasználónév és a jelszó beállításához és egyéb műveletekhez.
+Hajtsa végre a hello kér tooset hello felhasználónevet, jelszót, stb.
 
 ### <a name="run-using-development-server"></a>Futtatás fejlesztési kiszolgálóval
-A hibakeresés elindításához nyomja le az F5 billentyűt, a webböngészőjében. Ekkor automatikusan a helyileg futtatott lap nyílik meg.
+Nyomja le az F5 toostart Hibakeresés és a webböngészőjében automatikusan toohello helyileg futtatott lap ekkor megnyílik.
 
 ![](./media/web-sites-python-create-deploy-django-app/windows-browser-django.png)
 
-Többek között töréspontokat állíthat be a forrásokban, vagy használhatja a figyelőablakokat. A különböző funkciókról további információkat [a Python Tools for Visual Studio dokumentációjában] talál.
+Töréspontokat állíthat hello adatforrások, tekintse meg a windows hello, stb. Lásd: hello [Python Tools for Visual Studio dokumentációjában] hello további információt a különböző szolgáltatások.
 
 ### <a name="make-changes"></a>Módosítások végrehajtása
-Most kísérletezhet azzal, hogy módosításokat hajt végre az alkalmazásforrásokon és/vagy -sablonokon.
+Most kísérletezhet azáltal, hogy a módosítások toohello alkalmazásforrásokon és sablonok.
 
-A módosítások tesztelését követően véglegesítse azokat a Git-tárházba:
+A módosítások tesztelését, követően véglegesítse azokat toohello Git-tárházba:
 
 ![](./media/web-sites-python-create-deploy-django-app/ptvs-commit-django.png)
 
 ### <a name="install-more-packages"></a>További csomagok telepítése
 Az alkalmazása a Python és a Django eszközön kívüli függőségekkel is rendelkezhet.
 
-A pip használatával további csomagokat is telepíthet. Csomag telepítéséhez kattintson a jobb gombbal a virtuális környezetre, majd válassza az **Install Python Package** (Python-csomag telepítése) lehetőséget.
+A pip használatával további csomagokat is telepíthet. tooinstall egy csomagot, kattintson a jobb gombbal a hello virtuális környezetet, és válassza **Python-csomag telepítése**.
 
-Például az Azure Storage, Service Bus és további Azure-szolgáltatásokhoz hozzáférést biztosító, Pythonhoz készült Azure SDK telepítéséhez adja meg az `azure` karakterláncot:
+Például tooinstall hello hozzáférést tud biztosítani tooAzure storage, service bus és további Azure-szolgáltatásokhoz, írja be Pythonhoz készült Azure SDK `azure`:
 
 ![](./media/web-sites-python-create-deploy-django-app/ptvs-install-package-dialog.png)
 
-Kattintson a jobb gombbal a virtuális környezetre, majd a requirements.txt fájl frissítéséhez válassza a **Generate requirements.txt** (requirements.txt fájl létrehozása) lehetőséget.
+Kattintson a jobb gombbal a hello virtuális környezetre, és válassza ki **készítése a requirements.txt** tooupdate Requirements.txt fájlt.
 
-Ezt követően véglegesítse a requirements.txt fájl módosításait a Git-tárházban.
+Ezt követően véglegesítse hello módosítások toorequirements.txt toohello Git-tárházba.
 
-### <a name="deploy-to-azure"></a>Üzembe helyezés az Azure-ban
-Az üzembe helyezés indításához kattintson a **Sync** (Szinkronizálás) vagy a **Push** (Leküldés) lehetőségre. A szinkronizálás lekérési és leküldési funkcióval is rendelkezik.
+### <a name="deploy-tooazure"></a>TooAzure telepítése
+tootrigger a telepítést, kattintson a **szinkronizálási** vagy **leküldéses**. A szinkronizálás lekérési és leküldési funkcióval is rendelkezik.
 
 ![](./media/web-sites-python-create-deploy-django-app/ptvs-git-push.png)
 
-Az első üzembe helyezés hosszabb időt vesz igénybe, mivel ennek során megtörténik többek között a virtuális környezet létrehozása és a csomagok telepítése is.
+hello első központi telepítési időt vesz igénybe, mivel ekkor létrehoz egy virtuális környezethez, a csomagok telepítése, stb.
 
-A Visual Studio nem jeleníti meg az üzembe helyezés állapotát. A kimenet áttekintéséhez lásd: [Hibaelhárítás – Üzembe helyezés](#troubleshooting-deployment).
+A Visual Studio nem jeleníti meg hello hello központi telepítés végrehajtási állapotát. Ha szeretné tooreview hello kimeneti, ld. hello [hibaelhárítás – üzembe helyezés](#troubleshooting-deployment).
 
-A módosítások megtekintéséhez lépjen az Azure URL-címére.
+Keresse meg a toohello Azure URL-cím tooview a módosításokat.
 
 ## <a name="web-app-development---windows---command-line"></a>Webalkalmazás-fejlesztés – Windows – parancssor
-### <a name="clone-the-repository"></a>A tárház klónozása
-Első lépésben klónozza a tárházat az Azure Portalon található URL-cím használatával, majd távoli tárházként vegye fel az Azure-tárházat. További információ: [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben).
+### <a name="clone-hello-repository"></a>Hello tárház klónozása
+Először klónozza hello tárházat hello található URL-cím hello Azure portál használatával, és adja hozzá a távoli hello Azure-tárházat. További információkért lásd: [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md).
 
     git clone <repo-url>
     cd <repo-folder>
     git remote add azure <repo-url>
 
 ### <a name="create-virtual-environment"></a>Virtuális környezet létrehozása
-Fejlesztői célra létre fogunk hozni egy új virtuális környezetet (ezt ne vegye fel a tárházba). A Python virtuális környezetei nem helyezhetőek át, így az alkalmazáson dolgozó összes fejlesztő helyileg hozza létre a sajátját.
+Létrehozunk egy új virtuális környezet fejlesztési célra (nem adja hozzá azt toohello tárház). Így hello alkalmazás dolgozó összes fejlesztő hoz létre a saját helyi, amelyek Python virtuális környezetei nem helyezhetőek át.
 
-Győződjön meg arról, hogy a Python ugyanazon verzióját használja, mint ami a webalkalmazás esetében ki lett választva (ez az információ az Azure portálon lévő webalkalmazásának runtime.txt fájljában vagy az Application Settings (Alkalmazásbeállítások) panelen található meg).
+Győződjön meg arról, hogy toouse hello (a runtime.txt vagy hello alkalmazás beállítások panel webalkalmazását az Azure portál hello) a webalkalmazás kiválasztott Python ugyanazon verzióját.
 
 Python 2.7 esetén:
 
@@ -222,36 +222,36 @@ Python 3.4 esetén:
 
     c:\python34\python.exe -m venv env
 
-Telepítse az alkalmazáshoz esetlegesen szükséges külső csomagokat. A csomagok virtuális környezetben történő telepítéséhez a tárház gyökérkönyvtárában található requirements.txt fájlt használhatja:
+Telepítse az alkalmazáshoz esetlegesen szükséges külső csomagokat. A virtuális környezetben használható hello a requirements.txt fájl hello gyökerében hello tárház tooinstall hello csomagok:
 
     env\scripts\pip install -r requirements.txt
 
 ### <a name="create-a-superuser"></a>Felügyelő létrehozása
-Az alkalmazáshoz tartozó adatbázishoz nincs megadva felügyelő. Az alkalmazás bejelentkezési funkciójának vagy a Django felügyeleti felületének használatához (ha úgy dönt, hogy engedélyezi) felügyelőt kell létrehozni.
+hello alkalmazáshoz tartozó hello adatbázishoz nincs megadva felügyelő. A sorrend toouse hello bejelentkezési funkciójának hello alkalmazás vagy hello a Django felügyeleti felülete (Ha úgy dönt, hogy tooenable azt), toocreate felügyelőt lesz szüksége.
 
-A projektmappa parancssorából futtassa a következő parancsot:
+Futtassa a következő parancsot hello parancssori a projektmappa parancssorából:
 
     env\scripts\python manage.py createsuperuser
 
-Kövesse a megjelenő utasításokat a felhasználónév és a jelszó beállításához és egyéb műveletekhez.
+Hajtsa végre a hello kér tooset hello felhasználónevet, jelszót, stb.
 
 ### <a name="run-using-development-server"></a>Futtatás fejlesztési kiszolgálóval
-A következő paranccsal indíthatja el az alkalmazást egy fejlesztési kiszolgáló alatt:
+A parancs a következő hello indítja el hello alkalmazást egy fejlesztési kiszolgáló alatt:
 
     env\scripts\python manage.py runserver
 
-A konzolon megjelenik az URL-cím és az a port, amelyen a kiszolgáló figyel:
+hello konzol megjeleníti hello URL-cím és port hello kiszolgáló figyel:
 
 ![](./media/web-sites-python-create-deploy-django-app/windows-run-local-django.png)
 
-Ezt követően nyissa meg a webböngészőjében ezt az URL-címet.
+Ezután nyissa meg a webes böngésző toothat URL-CÍMÉT.
 
 ![](./media/web-sites-python-create-deploy-django-app/windows-browser-django.png)
 
 ### <a name="make-changes"></a>Módosítások végrehajtása
-Most kísérletezhet azzal, hogy módosításokat hajt végre az alkalmazásforrásokon és/vagy -sablonokon.
+Most kísérletezhet azáltal, hogy a módosítások toohello alkalmazásforrásokon és sablonok.
 
-A módosítások tesztelését követően véglegesítse azokat a Git-tárházba:
+A módosítások tesztelését, követően véglegesítse azokat toohello Git-tárházba:
 
     git add <modified-file>
     git commit -m "<commit-comment>"
@@ -259,40 +259,40 @@ A módosítások tesztelését követően véglegesítse azokat a Git-tárházba
 ### <a name="install-more-packages"></a>További csomagok telepítése
 Az alkalmazása a Python és a Django eszközön kívüli függőségekkel is rendelkezhet.
 
-A pip használatával további csomagokat is telepíthet. Például az Azure Storage, Service Bus és további Azure-szolgáltatásokhoz hozzáférést biztosító, Pythonhoz készült Azure SDK telepítéséhez írja be a következőt:
+A pip használatával további csomagokat is telepíthet. Például tooinstall hello Azure SDK for Python, amely lehetővé teszi az elérhető tooAzure storage, service bus és további Azure-szolgáltatásokhoz, típus:
 
     env\scripts\pip install azure
 
-Győződjön meg arról, hogy frissítette a requirements.txt fájlt:
+Győződjön meg arról, hogy tooupdate Requirements.txt fájlt:
 
     env\scripts\pip freeze > requirements.txt
 
-Véglegesítse a módosításokat:
+Hello változtatások véglegesítése a határidő:
 
     git add requirements.txt
     git commit -m "Added azure package"
 
-### <a name="deploy-to-azure"></a>Üzembe helyezés az Azure-ban
-Az üzembe helyezés indításához küldje le a módosításokat az Azure-ba:
+### <a name="deploy-tooazure"></a>TooAzure telepítése
+a központi telepítés tootrigger, leküldéses hello tooAzure módosítja:
 
     git push azure master
 
-Itt megtekinthető a telepítési parancsfájl kimenete, amely tartalmazza a virtuális környezet létrehozását, a csomagok telepítését és a web.config fájl létrehozását.
+Hello a telepítési parancsfájl, beleértve a virtuális környezet létrehozását, a csomagok telepítését és a Web.config fájl létrehozását hello kimenetet fog látni.
 
-A módosítások megtekintéséhez lépjen az Azure URL-címére.
+Keresse meg a toohello Azure URL-cím tooview a módosításokat.
 
 ## <a name="web-app-development---maclinux---command-line"></a>Webalkalmazás-fejlesztés – Mac/Linux – parancssor
-### <a name="clone-the-repository"></a>A tárház klónozása
-Első lépésben klónozza a tárházat az Azure Portalon található URL-cím használatával, majd távoli tárházként vegye fel az Azure-tárházat. További információ: [Local Git Deployment to Azure App Service](app-service-deploy-local-git.md) (Helyi Git-üzembehelyezés az Azure App Service-ben).
+### <a name="clone-hello-repository"></a>Hello tárház klónozása
+Először klónozza hello tárházat hello található URL-cím hello Azure portál használatával, és adja hozzá a távoli hello Azure-tárházat. További információkért lásd: [helyi Git-telepítésének tooAzure App Service](app-service-deploy-local-git.md).
 
     git clone <repo-url>
     cd <repo-folder>
     git remote add azure <repo-url>
 
 ### <a name="create-virtual-environment"></a>Virtuális környezet létrehozása
-Fejlesztői célra létre fogunk hozni egy új virtuális környezetet (ezt ne vegye fel a tárházba). A Python virtuális környezetei nem helyezhetőek át, így az alkalmazáson dolgozó összes fejlesztő helyileg hozza létre a sajátját.
+Létrehozunk egy új virtuális környezet fejlesztési célra (nem adja hozzá azt toohello tárház). Így hello alkalmazás dolgozó összes fejlesztő hoz létre a saját helyi, amelyek Python virtuális környezetei nem helyezhetőek át.
 
-Győződjön meg arról, hogy a Python ugyanazon verzióját használja, mint ami a webalkalmazás esetében ki lett választva (ez az információ az Azure portálon lévő webalkalmazásának runtime.txt fájljában vagy az Application Settings (Alkalmazásbeállítások) panelen található meg).
+Győződjön meg arról, hogy toouse hello (a runtime.txt vagy hello alkalmazás beállítások panel webalkalmazását az Azure portál hello) a webalkalmazás kiválasztott Python ugyanazon verzióját.
 
 Python 2.7 esetén:
 
@@ -306,36 +306,36 @@ vagy
 
     pyvenv env
 
-Telepítse az alkalmazáshoz esetlegesen szükséges külső csomagokat. A csomagok virtuális környezetben történő telepítéséhez a tárház gyökérkönyvtárában található requirements.txt fájlt használhatja:
+Telepítse az alkalmazáshoz esetlegesen szükséges külső csomagokat. A virtuális környezetben használható hello a requirements.txt fájl hello gyökerében hello tárház tooinstall hello csomagok:
 
     env/bin/pip install -r requirements.txt
 
 ### <a name="create-a-superuser"></a>Felügyelő létrehozása
-Az alkalmazáshoz tartozó adatbázishoz nincs megadva felügyelő. Az alkalmazás bejelentkezési funkciójának vagy a Django felügyeleti felületének használatához (ha úgy dönt, hogy engedélyezi) felügyelőt kell létrehozni.
+hello alkalmazáshoz tartozó hello adatbázishoz nincs megadva felügyelő. A sorrend toouse hello bejelentkezési funkciójának hello alkalmazás vagy hello a Django felügyeleti felülete (Ha úgy dönt, hogy tooenable azt), toocreate felügyelőt lesz szüksége.
 
-A projektmappa parancssorából futtassa a következő parancsot:
+Futtassa a következő parancsot hello parancssori a projektmappa parancssorából:
 
     env/bin/python manage.py createsuperuser
 
-Kövesse a megjelenő utasításokat a felhasználónév és a jelszó beállításához és egyéb műveletekhez.
+Hajtsa végre a hello kér tooset hello felhasználónevet, jelszót, stb.
 
 ### <a name="run-using-development-server"></a>Futtatás fejlesztési kiszolgálóval
-A következő paranccsal indíthatja el az alkalmazást egy fejlesztési kiszolgáló alatt:
+A parancs a következő hello indítja el hello alkalmazást egy fejlesztési kiszolgáló alatt:
 
     env/bin/python manage.py runserver
 
-A konzolon megjelenik az URL-cím és az a port, amelyen a kiszolgáló figyel:
+hello konzol megjeleníti hello URL-cím és port hello kiszolgáló figyel:
 
 ![](./media/web-sites-python-create-deploy-django-app/mac-run-local-django.png)
 
-Ezt követően nyissa meg a webböngészőjében ezt az URL-címet.
+Ezután nyissa meg a webes böngésző toothat URL-CÍMÉT.
 
 ![](./media/web-sites-python-create-deploy-django-app/mac-browser-django.png)
 
 ### <a name="make-changes"></a>Módosítások végrehajtása
-Most kísérletezhet azzal, hogy módosításokat hajt végre az alkalmazásforrásokon és/vagy -sablonokon.
+Most kísérletezhet azáltal, hogy a módosítások toohello alkalmazásforrásokon és sablonok.
 
-A módosítások tesztelését követően véglegesítse azokat a Git-tárházba:
+A módosítások tesztelését, követően véglegesítse azokat toohello Git-tárházba:
 
     git add <modified-file>
     git commit -m "<commit-comment>"
@@ -343,27 +343,27 @@ A módosítások tesztelését követően véglegesítse azokat a Git-tárházba
 ### <a name="install-more-packages"></a>További csomagok telepítése
 Az alkalmazása a Python és a Django eszközön kívüli függőségekkel is rendelkezhet.
 
-A pip használatával további csomagokat is telepíthet. Például az Azure Storage, Service Bus és további Azure-szolgáltatásokhoz hozzáférést biztosító, Pythonhoz készült Azure SDK telepítéséhez írja be a következőt:
+A pip használatával további csomagokat is telepíthet. Például tooinstall hello Azure SDK for Python, amely lehetővé teszi az elérhető tooAzure storage, service bus és további Azure-szolgáltatásokhoz, típus:
 
     env/bin/pip install azure
 
-Győződjön meg arról, hogy frissítette a requirements.txt fájlt:
+Győződjön meg arról, hogy tooupdate Requirements.txt fájlt:
 
     env/bin/pip freeze > requirements.txt
 
-Véglegesítse a módosításokat:
+Hello változtatások véglegesítése a határidő:
 
     git add requirements.txt
     git commit -m "Added azure package"
 
-### <a name="deploy-to-azure"></a>Üzembe helyezés az Azure-ban
-Az üzembe helyezés indításához küldje le a módosításokat az Azure-ba:
+### <a name="deploy-tooazure"></a>TooAzure telepítése
+a központi telepítés tootrigger, leküldéses hello tooAzure módosítja:
 
     git push azure master
 
-Itt megtekinthető a telepítési parancsfájl kimenete, amely tartalmazza a virtuális környezet létrehozását, a csomagok telepítését és a web.config fájl létrehozását.
+Hello a telepítési parancsfájl, beleértve a virtuális környezet létrehozását, a csomagok telepítését és a Web.config fájl létrehozását hello kimenetet fog látni.
 
-A módosítások megtekintéséhez lépjen az Azure URL-címére.
+Keresse meg a toohello Azure URL-cím tooview a módosításokat.
 
 ## <a name="troubleshooting---package-installation"></a>Hibaelhárítás – Csomagok telepítése
 [!INCLUDE [web-sites-python-troubleshooting-package-installation](../../includes/web-sites-python-troubleshooting-package-installation.md)]
@@ -372,85 +372,85 @@ A módosítások megtekintéséhez lépjen az Azure URL-címére.
 [!INCLUDE [web-sites-python-troubleshooting-virtual-environment](../../includes/web-sites-python-troubleshooting-virtual-environment.md)]
 
 ## <a name="troubleshooting---static-files"></a>Hibaelhárítás – Statikus fájlok
-A Django statikus fájlokat gyűjt. Ez azt jelenti, hogy az összes statikus fájlt eredeti helyükről egyetlen mappába másolja. A jelen alkalmazás esetében a másolás helye: `/static`.
+A Django statikus fájlokat gyűjt hello fogalma rendelkezik. Hello összes statikus fájlt eredeti helyükről fogad, és a tooa egyetlen mappába másolja. Ehhez az alkalmazáshoz, másolja őket túl`/static`.
 
-Ez azért történik, mert a statikus fájlok különböző Django-alkalmazásokból származhatnak. A Django felügyeleti felületeiről származó statikus fájlok például a virtuális környezetben, egy Django-könyvtár almappájában találhatóak. A jelen alkalmazásban megadott statikus fájlok itt találhatóak: `/app/static`. Ahogy egyre több Django-alkalmazást használ, egyre több helyen lesznek statikus fájlok.
+Ez azért történik, mert a statikus fájlok különböző Django-alkalmazásokból származhatnak. Hello hello Django felügyeleti felületeiről származó statikus fájlok például hello virtuális környezetben a Django-könyvtár almappájában található. A jelen alkalmazásban megadott statikus fájlok itt találhatóak: `/app/static`. Ahogy egyre több Django-alkalmazást használ, egyre több helyen lesznek statikus fájlok.
 
-Az alkalmazás hibakeresési módban történő futtatásakor az alkalmazás az eredeti helyükről szolgálja ki a statikus fájlokat.
+Hello alkalmazás hibakeresési módban futó, hello alkalmazás hello statikus fájlt eredeti helyükről szolgálja ki.
 
-Az alkalmazás kiadási módban történő futtatásakor az alkalmazás **nem** szolgálja ki a statikus fájlokat. A fájlok kiszolgálása a webkiszolgáló feladata. A jelen alkalmazás esetében az IIS a következő helyről szolgálja ki a statikus fájlokat: `/static`.
+Hello alkalmazás kiadási módban futó, hello alkalmazás teszi **nem** hello statikus fájlok. Feladata hello hello web server tooserve hello fájlok. Az alkalmazás IIS szolgálja hello származó statikus fájlok `/static`.
 
-A statikus fájlok összegyűjtése automatikusan történik az üzembe helyezési parancsfájl futtatása során, az előzőleg összegyűjtött fájlok törlésével. Ez azt jelenti, hogy a fájlok összegyűjtése minden üzembe helyezés során megtörténik, ami lelassítja kissé a folyamatot, ugyanakkor biztosítja, hogy a potenciális biztonsági kockázatot jelentő elavult fájlok ne legyen elérhetőek.
+statikus fájlok összegyűjtését hello részét hello telepítési parancsfájlt, törölje a korábban összegyűjtött fájlok automatikusan történik. Ez azt jelenti, hogy hello gyűjtemény következik be, minden üzembe helyezés lelassítja kissé a folyamatot, azonban biztosítja, hogy elavult fájlok ne legyen elérhetőek a potenciális biztonsági kockázatot.
 
-Ha ki szeretné hagyni a Django-alkalmazáshoz a statikus fájlok összegyűjtését, használja ezt:
+Ha tooskip statikus fájlok összegyűjtését a Django-alkalmazáshoz használni szeretne:
 
     \.skipDjango
 
-Ezt követően manuálisan kell elvégeznie a gyűjtést a helyi gépen:
+Majd be kell toodo hello gyűjtemény manuálisan a helyi számítógépen:
 
     env\scripts\python manage.py collectstatic
 
-Ezután távolítsa el a `\static` mappát a `.gitignore` elemből, és vegye fel azt a Git-tárházba.
+Távolítsa el a hello `\static` mappát `.gitignore` , és adja hozzá toohello Git-tárházba.
 
 ## <a name="troubleshooting---settings"></a>Hibaelhárítás – Beállítások
-Az alkalmazás számos beállítása módosítható a következő helyen: `DjangoWebProject/settings.py`.
+Hello alkalmazás számos beállítása módosítható `DjangoWebProject/settings.py`.
 
-A hibakeresési mód a fejlesztők kényelme érdekében engedélyezve van. Ez szerencsés módon azzal is jár, hogy helyi futtatáskor anélkül tekintheti meg a képeket és az egyéb statikus tartalmakat, hogy a statikus fájlokat össze kellene gyűjtenie.
+A hibakeresési mód a fejlesztők kényelme érdekében engedélyezve van. Szerencsés módon be fog tudni toosee képek és egyéb statikus tartalmakat futtatásakor helyileg, anélkül, hogy toocollect statikus fájlok.
 
-A hibakeresési mód letiltása:
+toodisable hibakeresési mód:
 
     DEBUG = False
 
-Ha a hibakeresés le van tiltva, az `ALLOWED_HOSTS` értékét módosítani kell úgy, hogy tartalmazza az Azure-gazdagép nevét. Példa:
+Ha a hibakeresés le van tiltva, a következő hello `ALLOWED_HOSTS` igényeinek toobe frissített tooinclude hello Azure-gazdagép nevét. Példa:
 
     ALLOWED_HOSTS = (
         'pythonapp.azurewebsites.net',
     )
 
-vagy az engedélyezéshez:
+vagy tooenable bármely:
 
     ALLOWED_HOSTS = (
         '*',
     )
 
-A gyakorlatban lehetséges, hogy olyan összetettebb műveleteket is végre kíván hajtani, mint a hibakeresési és a kiadási mód közötti váltás, illetve a gazdagépnév beszerzése.
+A gyakorlatban érdemes lehet toodo valami közötti váltás összetettebb toodeal hibakeresését és a kiadási mód, és az első hello állomásnevet.
 
-A környezeti változókat az Azure portál **CONFIGURE** (KONFIGURÁLÁS) lapjának **app settings** (alkalmazásbeállítások) szakaszában állíthatja be.  Ez olyan értékek beállításakor lehet hasznos, amelyeket esetleg nem kíván megjeleníteni a forrásokban (például kapcsolati karakterláncok, jelszavak stb.), illetve amelyeket az Azure és a helyi gép esetében eltérően kíván megadni. A `settings.py` elemben az `os.getenv` használatával kérdezhetők le a környezeti változók.
+Beállíthatja a környezeti változók hello Azure-portálon keresztül **KONFIGURÁLÁSA** lap hello **Alkalmazásbeállítások** szakasz.  Ez lehet hasznos, ha a beállítás értéke lehet, hogy nem szeretné, hogy tooappear a hello forrásokban (kapcsolati karakterláncok, jelszavak stb.), vagy a megjeleníteni kívánt tooset eltérően az Azure és a helyi számítógép között. A `settings.py`, hello környezeti változók használatával kérdezheti `os.getenv`.
 
 ## <a name="using-a-database"></a>Adatbázis használata
-Az alkalmazásban egy sqlite-adatbázis található. Fejlesztési célra ez egy kényelmes és hasznos alapértelmezett adatbázis, mivel nem igényel szinte semmilyen beállítást. Az adatbázis a projektmappa db.sqlite3 fájljában található.
+hello hello alkalmazás részét képező adatbázisa egy sqlite-adatbázis. Ez az egy kényelmes és hasznos alapértelmezett adatbázis toouse fejlesztési, szinte telepítés nem szükséges. hello adatbázis hello hello projektmappa db.sqlite3 fájlt tárolja.
 
-Az Azure a Django-alkalmazásokból könnyen használható adatbázis-szolgáltatásokat kínál. Az [SQL Database] és a [MySQL] Django-alkalmazásból történő használatához kapcsolódó oktatóanyagokban szerepelnek az adatbázis-szolgáltatás létrehozásához és az adatbázis beállításainak `DjangoWebProject/settings.py` elemben történő módosításához szükséges lépések, valamint a telepítéshez szükséges könyvtárak.
+Azure a Django-alkalmazásból könnyen toouse adatbázis-szolgáltatásokat biztosít. Az oktatóanyagok [SQL-adatbázis] és [MySQL] Django-alkalmazásból megjelenítése hello lépéseket szükséges toocreate hello adatbázis-szolgáltatás, hello adatbázis beállításainak módosítását `DjangoWebProject/settings.py`, és hello szalagtárak tooinstall szükséges.
 
-Természetesen ha Ön szeretné kezelni a saját adatbázis-kiszolgálóit, az Azure platformon futó Windows vagy Linux rendszerű virtuális gépek használatával megteheti azt.
+Természetesen Ha toomanage inkább a saját adatbázis-kiszolgálók, megteheti az Azure-on futó Windows vagy Linux rendszerű virtuális gépek használatával.
 
 ## <a name="django-admin-interface"></a>A Django felügyeleti felülete
-Amikor hozzákezd a modelljei felépítéséhez, fel fogja tölteni az adatbázist adatokkal. A Django felügyeleti felületének használatával egyszerűen, interaktív módon vehet fel és szerkeszthet tartalmakat.
+Amikor hozzákezd a modelljei felépítéséhez, érdemes toopopulate hello adatbázist adatokkal. Egyszerűen toodo hozzáadása, és interaktív módon szerkeszthet tartalmakat toouse hello Django felügyeleti felületének.
 
-A felügyeleti felülethez tartozó kód az alkalmazásforrásokban megjegyzésként szerepel, de mivel egyértelműen meg van jelölve, könnyen engedélyezheti azt (keressen rá az „admin” kifejezésre).
+hello felügyeleti felületének hello kódját a hello alkalmazás forrásokban megjegyzésként szerepel, de azt egyértelműen meg van jelölve, könnyen engedélyezheti azt (keressen rá "admin").
 
-Miután engedélyezte, szinkronizálja az adatbázist, futtassa az alkalmazást, majd lépjen a következő helyre: `/admin`.
+Az engedélyezése után hello adatbázis szinkronizálása, hello alkalmazás futtatásához, és keresse meg a túl`/admin`.
 
 ## <a name="next-steps"></a>Következő lépések
-Az alábbi hivatkozásokat követve tudhat meg többet a Django és a Python Tools for Visual Studio alkalmazásokról:
+Hajtsa végre ezeket a Django és a Python Tools kapcsolatos további hivatkozások toolearn Visual Studio:
 
 * [A Django dokumentációja]
-* [a Python Tools for Visual Studio dokumentációjában]
+* [Python Tools for Visual Studio dokumentációjában]
 
 Információk az SQL Database és a MySQL használatáról:
 
 * [Django and MySQL on Azure with Python Tools for Visual Studio] (Django és MySQL az Azure-ban, Python Tools for Visual Studio alkalmazással)
 * [Django and SQL Database on Azure with Python Tools for Visual Studio] (Django és SQL Database az Azure-ban, Python Tools for Visual Studio alkalmazással)
 
-További információ: [Python fejlesztői központban](/develop/python/).
+További információkért lásd: hello [Python fejlesztői központ](/develop/python/).
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!--Link references-->
 [Django and MySQL on Azure with Python Tools for Visual Studio]: web-sites-python-ptvs-django-mysql.md (Django és MySQL az Azure-ban, Python Tools for Visual Studio alkalmazással)
 [Django and SQL Database on Azure with Python Tools for Visual Studio]: web-sites-python-ptvs-django-sql.md (Django és SQL Database az Azure-ban, Python Tools for Visual Studio alkalmazással)
-[SQL Database]: web-sites-python-ptvs-django-sql.md
+[SQL-adatbázis]: web-sites-python-ptvs-django-sql.md
 [MySQL]: web-sites-python-ptvs-django-mysql.md
 
 <!--External Link references-->
@@ -462,5 +462,5 @@ További információ: [Python fejlesztői központban](/develop/python/).
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 for Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Visual Studio]: http://www.visualstudio.com/
-[a Python Tools for Visual Studio dokumentációjában]: http://aka.ms/ptvsdocs
+[Python Tools for Visual Studio dokumentációjában]: http://aka.ms/ptvsdocs
 [A Django dokumentációja]: https://www.djangoproject.com/

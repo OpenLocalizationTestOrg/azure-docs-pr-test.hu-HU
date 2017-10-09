@@ -1,6 +1,6 @@
 ---
-title: "Az App Service szolgáltatások alkalmazás Facebook-hitelesítés konfigurálása"
-description: "Tudnivalók az App Service szolgáltatások alkalmazásbeli Facebook hitelesítés konfigurálása."
+title: "aaaHow tooconfigure Facebook hitelesítési alkalmazásszolgáltatások alkalmazás"
+description: "Megtudhatja, hogyan tooconfigure Facebook hitelesítési alkalmazásszolgáltatások alkalmazás."
 services: app-service
 documentationcenter: 
 author: mattchenderson
@@ -14,50 +14,50 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: c1b4c91d384c56c4f55bf8d31ced250f51c0d837
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 53d03445a2ad17de1d2f69f5e770d14385b48ad4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-your-app-service-application-to-use-facebook-login"></a>App Service-alkalmazás konfigurálása Facebook-bejelentkezés használatához
+# <a name="how-tooconfigure-your-app-service-application-toouse-facebook-login"></a>Hogyan tooconfigure App Service alkalmazás toouse Facebook bejelentkezési adatait
 [!INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
-Ez a témakör bemutatja, hogyan konfigurálhatja az Azure App Service egy hitelesítésszolgáltatót Facebook használandó.
+Ez a témakör bemutatja, hogyan tooconfigure Azure App Service toouse Facebook hitelesítési-szolgáltatóként.
 
-Ebben a témakörben az eljárás végrehajtásához egy hitelesített e-mail címet és a mobiltelefonszám Facebook fiókkal kell rendelkeznie. Hozzon létre egy új Facebook-fiókkal, Ugrás [Facebook.com weboldalt].
+toocomplete hello a jelen témakör eljárásában, fiókkal kell rendelkeznie a Facebook, amelyen egy ellenőrzött és érvényes e-mail címet és egy mobiltelefon számával. toocreate új Facebook-fiókkal, Ugrás túl[Facebook.com weboldalt].
 
 ## <a name="register"></a>Regisztrálhatja alkalmazását Facebook-on
-1. Jelentkezzen be a [Azure-portálon], és keresse meg az alkalmazás. Másolás a **URL-cím**. A Facebook-alkalmazást konfigurálásához használandó.
-2. Egy másik böngészőablakban, navigáljon a [Facebook fejlesztők] webhelyet, és jelentkezzen be a Facebook-fiók hitelesítő adatait.
-3. (Választható) Ha már nem regisztrált, kattintson a **alkalmazások** > **fejlesztőként nyilvántartásba**, majd fogadja el a szabályzatot, és kövesse a regisztráció lépéseit.
+1. Jelentkezzen be toohello [Azure-portálon], és keresse meg a tooyour alkalmazás. Másolás a **URL-cím**. A Facebook-alkalmazást a tooconfigure fogja használni.
+2. Egy másik böngészőablakban, keresse meg a toohello [Facebook fejlesztők] webhelyet, és jelentkezzen be a Facebook-fiók hitelesítő adatait.
+3. (Választható) Ha már nem regisztrált, kattintson a **alkalmazások** > **fejlesztőként nyilvántartásba**, majd fogadja el hello szabályzatot, és hello regisztrációs lépésekkel.
 4. Kattintson a **alkalmazásaimat** > **fel egy új alkalmazást** > **webhely** > **kihagyhatja, és létrehozhat Alkalmazásazonosító**. 
-5. A **megjelenített név**, adjon meg egy egyedi nevet az alkalmazás típusa a **kapcsolattartó E-mail**, válasszon egy **kategória** beállítása az alkalmazáshoz, majd kattintson a **Alkalmazásazonosító létrehozása** és a biztonsági ellenőrzés. Ezzel megnyitná a fejlesztői irányítópult az új Facebook-alkalmazás.
-6. Kattintson a "Bejelentkezés Facebook-on," **Ismerkedés**. Adja hozzá az alkalmazást **átirányítási URI-** való **érvényes OAuth-alapú átirányítási URI-azonosítók**, majd kattintson a **módosítások mentése**. 
+5. A **megjelenített név**, adjon meg egy egyedi nevet az alkalmazás típusa a **kapcsolattartó E-mail**, válasszon egy **kategória** beállítása az alkalmazáshoz, majd kattintson a **Alkalmazásazonosító létrehozása**és hello biztonsági ellenőrzés. Ezzel megnyitná toohello fejlesztői irányítópult az új Facebook-alkalmazás.
+6. Kattintson a "Bejelentkezés Facebook-on," **Ismerkedés**. Adja hozzá az alkalmazást **átirányítási URI-** túl**érvényes OAuth-alapú átirányítási URI-azonosítók**, majd kattintson a **módosítások mentése**. 
    
    > [!NOTE]
-   > Az átirányítási URI megadása az alkalmazás fűzhető hozzá az elérési út az URL-cím */.auth/login/facebook/callback*. Például: `https://contoso.azurewebsites.net/.auth/login/facebook/callback`. Győződjön meg arról, hogy a HTTPS protokollt használ.
+   > Az átirányítási URI megadása hello URL-cím, az alkalmazás hozzáíródik hello elérési */.auth/login/facebook/callback*. Például: `https://contoso.azurewebsites.net/.auth/login/facebook/callback`. Győződjön meg arról, hogy hello HTTPS protokollt használ.
    > 
    > 
-7. Kattintson a bal oldali navigációs **beállítások**. Az a **alkalmazás titkos kulcs** , majd kattintson **megjelenítése**, adja meg a jelszót, ha a kért, majd jegyezze fel a közül **Alkalmazásazonosító** és **alkalmazás titkos kulcs**. Ezek később konfigurálására használt az alkalmazás az Azure-ban.
+7. Kattintson a bal oldali navigációs hello, **beállítások**. A hello **alkalmazás titkos kulcs** , majd kattintson **megjelenítése**, adja meg a jelszót, ha a kért, majd jegyezze fel a hello értékének **Alkalmazásazonosító** és **alkalmazás titkos kulcs**. Használja a későbbi tooconfigure az alkalmazás az Azure-ban.
    
    > [!IMPORTANT]
-   > Az alkalmazás titkos kulcs egy fontos biztonsági hitelesítő adatok. Ne ossza meg senkivel ezt a titkos kulcsot, és eloszthatják azt egy ügyfél-alkalmazással.
+   > hello alkalmazás titkos kulcs egy fontos biztonsági hitelesítő adatok. Ne ossza meg senkivel ezt a titkos kulcsot, és eloszthatják azt egy ügyfél-alkalmazással.
    > 
    > 
-8. A Facebook-fiók, amely az alkalmazás regisztrálása lett megadva a rendszergazda az alkalmazás. Ezen a ponton csak a rendszergazdák jelentkezhetnek be az alkalmazás. Más Facebook fiókok hitelesítéséhez kattintson **App felülvizsgálati** , és engedélyezze **< saját-alkalmazás-neve > tegyék közzé** a Facebook-hitelesítéssel általános nyilvános hozzáférés engedélyezésére.
+8. hello Facebook-fiókhoz használt tooregister hello alkalmazás lépett hello alkalmazás rendszergazda. Ezen a ponton csak a rendszergazdák jelentkezhetnek be az alkalmazás. tooauthenticate más Facebook-fiókba, kattintson a **App felülvizsgálati** , és engedélyezze **< saját-alkalmazás-neve > tegyék közzé** tooenable általános hozzáférésű Facebook-hitelesítéssel.
 
-## <a name="secrets"></a>Hozzáadása Facebook információkat az alkalmazás
-1. Vissza a [Azure-portálon], keresse meg az alkalmazás. Kattintson a **beállítások** > **hitelesítési / engedélyezési**, és győződjön meg arról, hogy **App Service hitelesítés** van **a**.
-2. Kattintson a **Facebook**, illessze be az alkalmazás Azonosítóját és az alkalmazás titkos kulcs értékek, amelyek korábban beszerzett, nem kötelezően bármely hatókörök, az alkalmazás által igényelt engedélyezése, majd kattintson **OK**.
+## <a name="secrets"></a>Hozzáadása Facebook-információk tooyour alkalmazás
+1. Vissza a hello [Azure-portálon], keresse meg a tooyour alkalmazás. Kattintson a **beállítások** > **hitelesítési / engedélyezési**, és győződjön meg arról, hogy **App Service hitelesítés** van **a**.
+2. Kattintson a **Facebook**, illessze be a hello Alkalmazásazonosító és alkalmazás titkos kulcs értékét, amely korábban beszerzett, nem kötelezően bármely hatókörök, az alkalmazás által igényelt engedélyezése, majd kattintson **OK**.
    
     ![][0]
    
-    Alapértelmezés szerint az App Service hitelesítést nyújt, de nem engedélyezett hozzáférés korlátozása a tartalom és API-k. Kell engedélyeznie a felhasználók az alkalmazás kódját.
-3. (Választható) Csak azok a felhasználók hitelesítése Facebook-on a helyhez való hozzáférésének korlátozásához, állítsa be **hitelesítetlen kérés esetén elvégzendő művelet** való **Facebook**. Ehhez szükséges, hogy az összes kérelem hitelesítését, és minden nem hitelesített kérelmek Facebook-hitelesítéshez van átirányítva.
+    Alapértelmezés szerint az App Service hitelesítést nyújt, de nem korlátozza a hitelesített hozzáférést tooyour hely tartalom és API-k. Kell engedélyeznie a felhasználók az alkalmazás kódját.
+3. (Választható) toorestrict hozzáférés tooyour hely tooonly által hitelesített felhasználók Facebook, állítsa be **hitelesítetlen kérés esetén a művelet tootake** túl**Facebook**. Ehhez szükséges, hogy az összes kérelem hitelesítését, és minden nem hitelesített kérelmek átirányított tooFacebook hitelesítéshez.
 4. Konfigurálás hitelesítési végzett, kattintson a **mentése**.
 
-Most már készen áll a Facebook az alkalmazáson belüli hitelesítéshez használandó.
+Most már áll készen toouse Facebook-hitelesítéshez az alkalmazásban.
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 [!INCLUDE [app-service-mobile-related-content-get-started-users](../../includes/app-service-mobile-related-content-get-started-users.md)]

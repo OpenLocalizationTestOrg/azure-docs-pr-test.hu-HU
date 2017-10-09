@@ -1,6 +1,6 @@
 ---
-title: "Azure-tárolót beállításjegyzék adattárak |} Microsoft Docs"
-description: "Azure-tároló beállításjegyzék adattárak Docker lemezképek használata"
+title: "aaaAzure tároló beállításjegyzék adattárak |} Microsoft Docs"
+description: "Hogyan toouse Azure tároló beállításjegyzék tárolóhelyekkel Docker lemezképek"
 services: container-registry
 documentationcenter: 
 author: cristy
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/22/2017
 ms.author: cristyg
-ms.openlocfilehash: dd4feff057269ed7106990bb63eed7fcffa2dbec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 06172a63465838a78a607f268da116d8158789ee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-container-registry-repositories"></a>Azure-tárolót beállításjegyzék adattárak
 
-Az Azure tároló nyilvántartó szolgáltatások és orchestrators számos kompatibilisek. Könnyebb nyomon követheti a forrás-szolgáltatások és az ügynökök, amelyből ACR használatos, azt elindította a Docker fejlécmező az Docker.config fájl használatával.
+Az Azure tároló nyilvántartó szolgáltatások és orchestrators számos kompatibilisek. toomake azt könnyebb tootrack hello forrás szolgáltatások és az ügynökök, amelyből ACR használatos, azt elindította hello Docker fejlécmező hello Docker.config fájl használatával.
 
 
 
-## <a name="viewing-repositories-in-the-portal"></a>A portálon megtekintik adattárak
+## <a name="viewing-repositories-in-hello-portal"></a>Hello Portal adattárak megtekintése
 
-A ACR fejlécek a formátumot követi:
+hello ACR fejlécek hello formátumot követi:
 ```
 X-Meta-Source-Client: <cloud>/<service>/<optionalservicename>
 ```
 
 * Felhő: Azure, Azure verem, vagy más kormányzati vagy ország-specifikus Azure felhők. Azure verem és a kormányzati jelenleg nem támogatott, bár ez a paraméter lehetővé teszi a jövőbeli támogatási.
-* Szolgáltatás: a szolgáltatás nevét.
-* Optionalservicename: szolgáltatások subservices, vagy adjon meg egy SKU nem kötelező paraméter (pl.: webalkalmazások megfeleljen az Azure-beli/app-szolgáltatás vagy-webalkalmazások).
+* Szolgáltatás: hello szolgáltatás neve.
+* Optionalservicename: szolgáltatások subservices, vagy egy SKU toospecify nem kötelező paraméter (pl.: webalkalmazások megfeleljen az Azure-beli/app-szolgáltatás vagy-webalkalmazások).
 
-Partneri szolgáltatások és orchestrators javasolt, hogy adott térközkaraktert használja a telemetriai adatok számára. Felhasználók is módosíthatja a értéket kapott a fejlécre, ha ezt kívánják.
+Partner szolgáltatásai és orchestrators a javasolt toouse specifikus fejléccel értékek toohelp rendelkező a telemetriai adatok. Felhasználók módosíthatja átadott toohello fejléc, ha azok kívánják hello érték is.
 
-Az értékek szeretnénk ACR partnerek számára, hogy az "X-Meta-forrás-ügyfél" mező tölti ki az alábbi:
+hello szeretnénk ACR partnerek toouse toopopulate hello "X-Meta-forrás-ügyfél" mező értékei alatt:
 
 | Szolgáltatás neve              | Fejléc                                |
 | ------------------------- | ------------------------------------- |
@@ -57,4 +57,4 @@ Az értékek szeretnénk ACR partnerek számára, hogy az "X-Meta-forrás-ügyf�
 
 
 ## <a name="next-steps"></a>Következő lépések
-[További tudnivalók nyilvántartó és a támogatott szolgáltatások és orchestrators](container-registry-intro.md)
+[További információ a nyilvántartó és hello támogatott szolgáltatások orchestrators](container-registry-intro.md)

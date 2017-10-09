@@ -1,6 +1,6 @@
 ---
-title: "Az Azure ExpressRoute-Kapcsolatcsoportok és útválasztási tartományok |} Microsoft Docs"
-description: "Ezen a lapon egy áttekintést nyújt az ExpressRoute-Kapcsolatcsoportok és útválasztási tartományok."
+title: "aaaAzure ExpressRoute Kapcsolatcsoportok és útválasztási tartományok |} Microsoft Docs"
+description: "Ezen a lapon ExpressRoute-Kapcsolatcsoportok és útválasztási tartományok hello áttekintést nyújt."
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,69 +14,69 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/03/2017
 ms.author: cherylmc
-ms.openlocfilehash: bbf34d6ccd51091facd4f0dcea4855529e4e92e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1d43cbf668accdd7aa4efb053ea1e9027d10e4a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-circuits-and-routing-domains"></a>ExpressRoute-Kapcsolatcsoportok és útválasztási tartományok
- Kell rendeznie egy *ExpressRoute-kapcsolatcsoportot* a helyszíni infrastruktúra csatlakozni a Microsoft a kapcsolat-szolgáltató használatával. Az alábbi ábra a WAN és a Microsoft közötti kapcsolat egy logikai ábrázolását biztosítja.
+ Kell rendeznie egy *ExpressRoute-kapcsolatcsoportot* tooconnect a helyszíni infrastruktúra tooMicrosoft kapcsolat-szolgáltató használatával. az alábbi ábra hello reprezentációja logikai a WAN és a Microsoft közötti kapcsolatot.
 
 ![](./media/expressroute-circuit-peerings/expressroute-basic.png)
 
 ## <a name="expressroute-circuits"></a>ExpressRoute-Kapcsolatcsoportok
-Egy *ExpressRoute-kapcsolatcsoportot* jelenti. a helyszíni infrastruktúra és a kapcsolat-szolgáltató használatával a Microsoft felhőszolgáltatásai között. Több ExpressRoute-Kapcsolatcsoportok sorba rendezheti. A kapcsolatok azonos vagy különböző régiókban lehet, és a helyi kapcsolat különböző szolgáltatók keresztül lehet csatlakoztatni. 
+Egy *ExpressRoute-kapcsolatcsoportot* jelenti. a helyszíni infrastruktúra és a kapcsolat-szolgáltató használatával a Microsoft felhőszolgáltatásai között. Több ExpressRoute-Kapcsolatcsoportok sorba rendezheti. A kapcsolatok lehet hello azonos vagy különböző régiókban, és különböző kapcsolat szolgáltatók keresztül csatlakoztatott tooyour helyi lehet. 
 
-ExpressRoute-Kapcsolatcsoportok nem felelnek meg a fizikai entitások. Expressroute-kapcsolatcsoporthoz egyedileg azonosít egy szabványos GUID neve (s-kulcs) szolgáltatás kulcsként. A szolgáltatás kulcsa az egyetlen adat, Microsoft, a kapcsolat szolgáltatóját, és Ön között. Az s-kulcs nincs titkos kulcs biztonsági okokból. Van egy ExpressRoute-kapcsolatcsoportot és az s-kulcs közötti társítás 1:1.
+ExpressRoute-Kapcsolatcsoportok tooany fizikai entitások nem képezi le. Expressroute-kapcsolatcsoporthoz egyedileg azonosít egy szabványos GUID neve (s-kulcs) szolgáltatás kulcsként. hello szolgáltatás kulcsa hello egyetlen adat, Microsoft hello kapcsolat szolgáltatójánál és Ön között. hello s-kulcs nincs titkos kulcs biztonsági okokból. Van egy ExpressRoute-kapcsolatcsoportot és hello közötti társítás 1:1 s-kulcs.
 
-Egy ExpressRoute-kapcsolatcsoportot rendelkezhet legfeljebb három független esetében: az Azure nyilvános, Azure személyes és a Microsoft. Két független BGP minden társviszony-létesítés munkamenetek minden azok redundantly magas rendelkezésre állásúként konfigurálva. Van egy 1: n (1 < = N < = 3) ExpressRoute-kapcsolatcsoportot közötti megfeleltetés és útválasztási tartományok. Egy ExpressRoute-kapcsolatcsoportot rendelkezhet közül legalább egy, a két vagy ExpressRoute-kapcsolatcsoportot / engedélyezve az összes három esetében.
+Egy ExpressRoute-kapcsolatcsoportot toothree független esetében legfeljebb tartalmazhat: az Azure nyilvános, Azure személyes és a Microsoft. Két független BGP minden társviszony-létesítés munkamenetek minden azok redundantly magas rendelkezésre állásúként konfigurálva. Van egy 1: n (1 < = N < = 3) ExpressRoute-kapcsolatcsoportot közötti megfeleltetés és útválasztási tartományok. Egy ExpressRoute-kapcsolatcsoportot rendelkezhet közül legalább egy, a két vagy ExpressRoute-kapcsolatcsoportot / engedélyezve az összes három esetében.
 
-A kapcsolatok rögzített sávszélességű (50 MB/s, 100 MB/s, 200 MB/s, 500 MB/s, 1 GB/s, 10 GB/s), és a kapcsolat szolgáltatóját, és társviszony-létesítési helye van leképezve. A sávszélesség választja a kör összes társviszony által megosztott. 
+A kapcsolatok rögzített sávszélességű (50 MB/s, 100 MB/s, 200 MB/s, 500 MB/s, 1 GB/s, 10 GB/s), és a csatlakoztatott tooa kapcsolat szolgáltatóját, és társviszony-létesítési helye. hello sávszélesség választja által megosztott minden hello társviszony hello kör. 
 
 ### <a name="quotas-limits-and-limitations"></a>Kvóták korlátai és korlátozásai
-Alapértelmezett kvótái és korlátai érvényes minden ExpressRoute-kapcsolatcsoportot. Tekintse meg a [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md) kvóták naprakész információkat lapját.
+Alapértelmezett kvótái és korlátai érvényes minden ExpressRoute-kapcsolatcsoportot. Tekintse meg a toohello [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md) kvóták naprakész információkat lapját.
 
 ## <a name="expressroute-routing-domains"></a>ExpressRoute útválasztási tartományok
-Egy ExpressRoute-kapcsolatcsoportot több útválasztási tartomány társítva van: az Azure nyilvános, Azure személyes és a Microsoft. Az útválasztási tartományok mindegyikében útválasztók két konfigurált azonos (aktív-aktív vagy terheléselosztási megosztása konfigurációs) a magas rendelkezésre állás érdekében. Azure-szolgáltatások vannak üzletiként besorolva *Azure nyilvános* és *Azure saját* az IP-címzési séma képviseli.
+Egy ExpressRoute-kapcsolatcsoportot több útválasztási tartomány társítva van: az Azure nyilvános, Azure személyes és a Microsoft. Minden hello útválasztási tartomány két útválasztók konfigurált azonos (aktív-aktív vagy terheléselosztási megosztása konfigurációs) a magas rendelkezésre állás érdekében. Azure-szolgáltatások vannak üzletiként besorolva *Azure nyilvános* és *Azure saját* toorepresent hello IP-címzési séma.
 
 ![](./media/expressroute-circuit-peerings/expressroute-peerings.png)
 
 ### <a name="private-peering"></a>Magánhálózati társviszony-létesítés
-Azure számítási szolgáltatások, azaz a virtuális gépek (IaaS), és a magánhálózati társviszony-létesítési tartomány keresztül csatlakozhatnak felhőszolgáltatásokat (PaaS), amely a virtuális hálózaton belül vannak telepítve. A magánhálózati társviszony-létesítési tartomány tekinthető az alaphálózat a Microsoft Azure megbízható kiterjesztését. A központi hálózat és az Azure virtuális hálózatokról (Vnetekről) közötti kétirányú kapcsolatot állíthat be. A társviszony lehetővé teszi a virtuális gépek csatlakoztatásához és a felhőalapú szolgáltatások közvetlenül a saját privát IP-címek.  
+Azure számítási szolgáltatások, azaz a virtuális gépek (IaaS) és magánhálózati társviszony-létesítési tartomány hello keresztül csatlakozhatnak felhőszolgáltatásokat (PaaS), amely a virtuális hálózaton belül vannak telepítve. hello magánhálózati társviszony-létesítési tartomány az a Microsoft Azure tekinthető toobe az alaphálózat megbízható kiterjesztését. A központi hálózat és az Azure virtuális hálózatokról (Vnetekről) közötti kétirányú kapcsolatot állíthat be. A társviszony lehetővé teszi a csatlakoztathatók toovirtual gépek és felhőszolgáltatások közvetlenül a saját privát IP-címek.  
 
-Több virtuális hálózat csatlakozhat a magánhálózati társviszony-létesítési tartományhoz. Tekintse át a [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) korlátai és korlátozásai információt. Letöltheti a [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md) lap korlátozások naprakész információkat.  Tekintse meg a [útválasztás](expressroute-routing.md) lap részletes információkat a útválasztási konfigurációjáról.
+Egynél több virtuális hálózati toohello magánhálózati társviszony-létesítési tartományhoz csatlakoztathatja. Felülvizsgálati hello [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) korlátai és korlátozásai információt. Hello ellátogathat [Azure-előfizetés és szolgáltatási korlátok, kvóták és megkötések](../azure-subscription-service-limits.md) lap korlátozások naprakész információkat.  Tekintse meg a toohello [útválasztás](expressroute-routing.md) lap részletes információkat a útválasztási konfigurációjáról.
 
 ### <a name="public-peering"></a>Nyilvános társviszony-létesítés
-A nyilvános IP-szolgáltatások, például az Azure tárolás, az SQL-adatbázisok és a webhelyek érhető el. Nyilvános IP-címek, beleértve a virtuális IP-címek a felhőalapú szolgáltatások, a nyilvános társviszony-létesítési útválasztási tartomány segítségével üzemeltetett szolgáltatások közvetlenül kapcsolódni. A nyilvános társviszony-létesítési tartományhoz csatlakozni a Szegélyhálózaton, és csatlakozzon az összes Azure-szolgáltatások a nyilvános IP-címeket az a WAN anélkül, hogy az interneten keresztül csatlakozni. 
+A nyilvános IP-szolgáltatások, például az Azure tárolás, az SQL-adatbázisok és a webhelyek érhető el. Nyilvános IP-címek, beleértve a virtuális IP-címek a felhőalapú szolgáltatások hello nyilvános társviszony-létesítési útválasztási tartomány segítségével üzemeltetett tooservices közvetlenül kapcsolódhatnak. Hello nyilvános társviszony-létesítési tartomány tooyour DMZ csatlakozhat, és csatlakozzon az tooall Azure a nyilvános IP-címeket a WAN tooconnect keresztül nélkül szolgáltatások hello internet. 
 
-Kapcsolat mindig kezdeményezni a WAN Microsoft Azure-szolgáltatásokhoz. Microsoft Azure-szolgáltatások nem tudnak kezdeményeznek kapcsolatokat a hálózatra az útválasztási tartomány segítségével. Nyilvános társviszony engedélyezése után lesz az összes Azure-szolgáltatásokhoz. Jelenleg nem engedélyezi, hogy szelektív válasszon, amelynek azt hirdetési útvonalakat szolgáltatások. Áttekintheti a lista azt Önnek hirdetési keresztül a társviszony-előtaglistát kezel a [Microsoft Azure Datacenter IP-címtartományok](http://www.microsoft.com/download/details.aspx?id=41653) lap. A lap a heti frissül.
+Kapcsolat mindig kezdeményezi a WAN tooMicrosoft Azure szolgáltatások. A Microsoft Azure szolgáltatás nem lesz képes tooinitiate kapcsolatok azokat a hálózaton keresztül az útválasztási tartomány. Nyilvános társviszony engedélyezése után fog tudni tooconnect tooall Azure szolgáltatások. Jelenleg nem teszik lehetővé, amelynek azt hirdetési útvonalakat tooselectively kivételezési szolgáltatások. Azt a hello társviszony keresztül tooyou hirdetési előtagok hello listáját megtekintheti [Microsoft Azure Datacenter IP-címtartományok](http://www.microsoft.com/download/details.aspx?id=41653) lap. heti hello lap tartalmát.
 
-Csak a szükséges útvonalakat használ a hálózaton belüli egyéni útvonal szűrőket adhat meg. Tekintse meg a [útválasztás](expressroute-routing.md) lap részletes információkat a útválasztási konfigurációjáról. 
+Egyéni útvonal szűrőket belül a hálózati tooconsume csak hello útvonalak kell határozhat meg. Tekintse meg a toohello [útválasztás](expressroute-routing.md) lap részletes információkat a útválasztási konfigurációjáról. 
 
-Tekintse meg a [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) keresztül a nyilvános társviszony-létesítési útválasztási tartomány támogatott szolgáltatások olvashat. 
+Lásd: hello [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) hello nyilvános társviszony-létesítési útválasztási tartomány támogatott szolgáltatások olvashat. 
 
 ### <a name="microsoft-peering"></a>Microsoft társviszony-létesítés
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
-Minden más Microsoft online-szolgáltatásokhoz való kapcsolódás (például az Office 365-szolgáltatásokhoz) keresztül a Microsoft társviszony-létesítés lesz. Engedélyezzük a WAN és a Microsoft felhőszolgáltatások keresztül a Microsoft társviszony-létesítési útválasztási tartomány közötti kétirányú kapcsolatot. Csatlakoztatni kell a Microsoft csak nyilvános IP-címek, amelynek a tulajdonosa, vagy a kapcsolat szolgáltatójánál keresztül, és meg kell felelnie a definiált szabályokat. Tekintse meg a [ExpressRoute Előfeltételek](expressroute-prerequisites.md) olvashat.
+Kapcsolat tooall más Microsoft online szolgáltatásokhoz (például Office 365-szolgáltatásokhoz) keresztül hello Microsoft társviszony-létesítés lesz. Engedélyezzük a WAN és a Microsoft felhőszolgáltatások keresztül hello Microsoft társviszony-létesítési útválasztási tartomány közötti kétirányú kapcsolatot. Csak a nyilvános IP-címek, amelynek a tulajdonosa, vagy a kapcsolat szolgáltatójánál keresztül tooMicrosoft felhőszolgáltatások kell csatlakoztatni, és meg kell felelnie a tooall hello definiált szabályok. Lásd: hello [ExpressRoute Előfeltételek](expressroute-prerequisites.md) olvashat.
 
-Tekintse meg a [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) további információk a támogatott szolgáltatások, a költségek és a konfigurációs adatait. Tekintse meg a [helyek ExpressRoute](expressroute-locations.md) lap kapcsolat szolgáltatók ajánlat a Microsoft társviszony-létesítés támogatása a listán szereplő információkat.
+Lásd: hello [gyakori kérdéseket tartalmazó oldal](expressroute-faqs.md) további információk a támogatott szolgáltatások, a költségek és a konfigurációs adatait. Lásd: hello [helyek ExpressRoute](expressroute-locations.md) kapcsolatos adatokat kapcsolat szolgáltatók ajánlat a Microsoft társviszony-létesítés támogatása hello lista lap.
 
 ## <a name="routing-domain-comparison"></a>Útválasztási tartomány összehasonlítása
-Az alábbi táblázat összehasonlítja a három útválasztási tartományok.
+hello az alábbi táblázat összehasonlítja a hello három útválasztási tartományok.
 
 |  | **Magánhálózati társviszony-létesítés** | **Nyilvános társviszony-létesítés** | **A Microsoft társviszony-létesítés** |
 | --- | --- | --- | --- |
 | **Max. támogatott társviszony-létesítés # előtagok** |Alapértelmezés szerint 10 000-re az ExpressRoute Premium 4000 |200 |200 |
 | **Az IP-címtartományok támogatott** |Bármilyen érvényes IPv4-cím a WAN hálózaton belül. |Nyilvános IPv4-címet, vagy a kapcsolat szolgáltatóját. |Nyilvános IPv4-címet, vagy a kapcsolat szolgáltatóját. |
-| **Követelmények száma szerint** |Privát és nyilvános SZÁMAIT. A nyilvános kell saját SZÁMOT, ha úgy dönt, hogy egyetlen módszer alkalmazása. |Privát és nyilvános SZÁMAIT. Azonban igazolnia kell tulajdonjogát, a nyilvános IP-címeket. |Privát és nyilvános SZÁMAIT. Azonban igazolnia kell tulajdonjogát, a nyilvános IP-címeket. |
-| **Útválasztó illesztő IP-címek** |RFC1918 és nyilvános IP-címek |Nyilvános IP-címeket az útválasztási nyilvántartó regisztrálva. |Nyilvános IP-címeket az útválasztási nyilvántartó regisztrálva. |
+| **Követelmények száma szerint** |Privát és nyilvános SZÁMAIT. Kell saját hello nyilvános SZÁMOT, ha úgy dönt, hogy egy toouse. |Privát és nyilvános SZÁMAIT. Azonban igazolnia kell tulajdonjogát, a nyilvános IP-címeket. |Privát és nyilvános SZÁMAIT. Azonban igazolnia kell tulajdonjogát, a nyilvános IP-címeket. |
+| **Útválasztó illesztő IP-címek** |RFC1918 és nyilvános IP-címek |Nyilvános IP-címek az útválasztási nyilvántartó regisztrált tooyou. |Nyilvános IP-címek az útválasztási nyilvántartó regisztrált tooyou. |
 | **Az MD5 kivonatoló támogatása** |Igen |Igen |Igen |
 
-Ha szeretné, legalább egy, az útválasztási tartományok engedélyezéséhez az ExpressRoute-kapcsolatcsoportot részeként. Ha szeretné az útválasztási tartomány elhelyezése a azonos VPN, ha egyetlen útválasztási tartományról való egyesíthetők. Akkor helyezheti is őket másik útválasztási tartományok, a diagram hasonló. Az ajánlott konfiguráció a magánhálózati társviszony-létesítés közvetlenül kapcsolódik a központi hálózathoz, és a nyilvános és a Microsoft társviszony-létesítési hivatkozások csatlakoznak a Szegélyhálózaton.
+Egy vagy több útválasztási tartományok hello tooenable kiválaszthatja az ExpressRoute-kapcsolatcsoportot részeként. Választhat toohave összes hello útválasztási tartomány elhelyezése hello azonos VPN, ha azt szeretné, hogy toocombine egyetlen útválasztási tartományról őket. Akkor helyezheti is őket másik útválasztási tartományok, hasonló toohello diagramja. hello konfigurációs van a magánhálózati társviszony-létesítés csatlakozik közvetlenül toohello alaphálózat, illetve hello nyilvános és a Microsoft társviszony-létesítési hivatkozások csatlakoztatott tooyour DMZ ajánlott.
 
-Ha minden három társviszony-létesítési munkamenetet választja, a BGP-munkamenetek (az egyes társviszony-létesítési egy pár) három párok kell rendelkeznie. A BGP-munkamenet Értékpárokat adjon meg egy magas rendelkezésre állású hivatkozást. Ha réteg 2 kapcsolat szolgáltatók keresztül kapcsolódik, konfigurálása és kezelése a útválasztási felelős fogja. Megtekintésével többet is megtudhat a [munkafolyamatok](expressroute-workflows.md) ExpressRoute beállításához.
+Ha úgy dönt, toohave összes három társviszony-létesítési munkameneteket, a BGP-munkamenetek (az egyes társviszony-létesítési egy pár) három párok kell rendelkeznie. hello BGP munkamenet Értékpárokat adjon meg egy magas rendelkezésre állású hivatkozást. Ha réteg 2 kapcsolat szolgáltatók keresztül kapcsolódik, konfigurálása és kezelése a útválasztási felelős fogja. További hello megtekintésével [munkafolyamatok](expressroute-workflows.md) ExpressRoute beállításához.
 
 ## <a name="next-steps"></a>Következő lépések
 * Találjon egy szolgáltatót. Lásd: [ExpressRoute szolgáltatás szolgáltatók és a helyek](expressroute-locations.md).

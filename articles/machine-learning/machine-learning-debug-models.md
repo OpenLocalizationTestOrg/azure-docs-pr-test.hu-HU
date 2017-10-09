@@ -1,6 +1,6 @@
 ---
-title: "A modell Azure Machine Learning a hibakeresési |} Microsoft Docs"
-description: "Hibák hibakeresése tanítási és pontszám modell által előállított az Azure Machine Learning modulok."
+title: aaaDebug az az Azure Machine Learning modellje |} Microsoft Docs
+description: "Hogyan toodebug által visszaadott hibaüzenetek tanítási és pontszám modell Azure Machine Learning modulok."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bradsev;garye
-ms.openlocfilehash: d4cc94a6395ea45bccf65d9a9f3118ec98cb258d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee38ca8ce38d4fc7add5ba70c80ab9bb2ceaf1d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-your-model-in-azure-machine-learning"></a>A modell hibáinak keresése az Azure Machine Learning rendszerben
 
-Ez a cikk azt ismerteti, miért vagy a következő két hibákat tapasztalhat a modell futtatásakor a lehetséges okok:
+Ez a cikk azt ismerteti, miért vagy a következő két hibák hello szembesülhet modell futtatásakor hello lehetséges okok:
 
-* a [tanítási modell] [ train-model] modul hibát hoz létre. 
-* a [Score Model] [ score-model] modul helytelen eredményt ad. 
+* Hello [tanítási modell] [ train-model] modul hibát hoz létre. 
+* Hello [Score Model] [ score-model] modul helytelen eredményt ad. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
@@ -33,41 +33,41 @@ Ez a cikk azt ismerteti, miért vagy a következő két hibákat tapasztalhat a 
 
 ![image1](./media/machine-learning-debug-models/train_model-1.png)
 
-A [tanítási modell] [ train-model] modul vár a két bemenet:
+Hello [tanítási modell] [ train-model] modul vár a két bemenet:
 
-1. A gépi tanulási modellt az Azure Machine Learning által biztosított modellek a gyűjtemény típusa.
-2. A betanítási adatok, adja meg a változó előre megadott címke oszlophoz (a többi oszlop feltételezhető, hogy szolgáltatásokat lehet).
+1. gépi tanulási modellt az Azure Machine Learning által biztosított modellek hello gyűjteményből hello típusa.
+2. hello egy megadott címke oszlop, amely megadja a betanítási adatok hello változó toopredict (hello más oszlopok feltételezhetően toobe funkciók).
 
-Ez a modul is létrehozhat a hiba a következő esetekben:
+Ez a modul hibát jelez a következő esetekben hello hozhat létre:
 
-1. A címke oszlop helytelenül van megadva. Ez akkor fordulhat elő, ha egynél több oszlop van kijelölve, a címke, vagy helytelen index van kiválasztva. Például a második esetben akkor vonatkozik, ha egy oszlop indexe 30 csak 25 oszlopot egy bemeneti adatkészletet használják.
+1. hello címke oszlop helytelenül van megadva. Ez akkor fordulhat elő, ha egynél több oszlop van kijelölve, címke hello, vagy helytelen index van kiválasztva. Például hello második esetben akkor vonatkozik, ha egy oszlop indexe 30 csak 25 oszlopot egy bemeneti adatkészletet használják.
 
-2. A dataset nem tartalmaz szolgáltatás oszlopot. Például ha a bemeneti dataset adatkészletben csak egy oszlop, amely a címke oszlop van megjelölve, nem lenne nincs funkció, amellyel a modell létrehozása. Ebben az esetben a [tanítási modell] [ train-model] modul hibát eredményez.
+2. hello a dataset nem tartalmaz szolgáltatás oszlopot. Például ha hello bemeneti dataset adatkészletben csak egy oszlop, amely hello címke oszlop van megjelölve, nem lenne nem szolgáltatások mely toobuild hello modellt. Ebben az esetben hello [tanítási modell] [ train-model] modul hibát eredményez.
 
-3. A bemeneti (szolgáltatások vagy címke) az adatkészletben végtelen értékként.
+3. hello bemeneti adatkészletet (szolgáltatások vagy címke) végtelen értéket tartalmazza.
 
 ## <a name="score-model-module-produces-incorrect-results"></a>Score Model-modul helytelen eredményt ad.
 
 ![image2](./media/machine-learning-debug-models/train_test-2.png)
 
-Egy tipikus képzési/tesztelési kísérletben a felügyelt tanítás során a [Split Data] [ split] modul két részre oszt meg az eredeti adathalmazból: egyrészről a modell betanításához szolgál, és egy rész segítségével pontozása hogyan a betanított modell is végez. A betanított modell ezután történik az adatok, amely után az eredmények pontosságának a modell kiértékelése pontozása céljából.
+Egy tipikus képzési/tesztelési kísérletben a felügyelt tanítás során, hello [Split Data] [ split] modul két részre oszt hello eredeti adathalmazból: egyrészről használt tootrain hello modell, és egy rész szolgál tooscore milyen jól betanított modell hello hajt végre. hello betanított modell nem használt tooscore hello tesztadatok, mely után hello eredményei hello modell kiértékelt toodetermine hello pontosságát.
 
-A [Score Model] [ score-model] modul két bemeneti értéket igényel:
+Hello [Score Model] [ score-model] modul két bemeneti értéket igényel:
 
-1. A betanított modell kimenetét a [tanítási modell] [ train-model] modul.
-2. A pontozási adatkészletet, amely eltér a modell betanításához használandó adatkészlet.
+1. A betanított modell kimenete hello [tanítási modell] [ train-model] modul.
+2. Hello dataset eltérő pontozási dataset tootrain hello modellt használja.
 
-Lehetséges, hogy akkor is, ha a kísérlet sikeres, a [Score Model] [ score-model] modul helytelen eredményt ad. Több forgatókönyv szerint, hogy ez okozhatja:
+Azt a lehetséges, hogy annak ellenére, hogy hello kísérlet sikeres, hello [Score Model] [ score-model] modul helytelen eredményt ad. Több forgatókönyvben okozhat a toohappen:
 
-1. Ha a megadott címke kategorikus, és egy regressziós modell betanítása az adatokon, helytelen kimenetnek volna elő a [Score Model] [ score-model] modul. Ez azért van így, mert regressziós megköveteli a folyamatos válasz változó. Ebben az esetben lenne megfelelőbbek, a besorolási modell használatára. 
+1. Hello megadott címke kategorikus, és egy regressziós modell betanítása hello adatokon, ha egy hibás kimeneti volna állítja hello [Score Model] [ score-model] modul. Ez azért van így, mert regressziós megköveteli a folyamatos válasz változó. Ebben az esetben a besorolási modell megfelelőbbek toouse lenne. 
 
-2. Hasonlóképpen, ha a besorolási modell betanítása egy adatkészlethez, hogy a címke oszlopban szereplő számok lebegőpontos, azt nemkívánatos eredményeket hozhat. Ez azért van így, mert besorolás megköveteli, hogy az csak értékek tartományt egy véges, és általában némileg kis készleten osztályok diszkrét válasz változó.
+2. Hasonlóképpen, ha egy besorolási modell betanítása egy adatkészlethez, hogy hello címke oszlopban szereplő számok lebegőpontos, azt nemkívánatos eredményeket hozhat. Ez azért van így, mert besorolás megköveteli, hogy az csak értékek tartományt egy véges, és általában némileg kis készleten osztályok diszkrét válasz változó.
 
-3. Ha a pontozási a dataset nem tartalmaz a modell betanításához használandó összes funkcióját a [Score Model] [ score-model] hibát eredményez.
+3. Ha hello pontozási a dataset nem tartalmaz minden hello használt funkciók tootrain hello modellt, hello [Score Model] [ score-model] hibát eredményez.
 
-4. Ha pontozási adatkészlet egy sort tartalmaz a hiányzó értékeket vagy egy végtelen értéket az összes szolgáltatását, a [Score Model] [ score-model] nem hoznak létre a sorhoz megfelelő kimenetet.
+4. Ha dataset pontozási hello sorában hiányzó értékre, vagy a szolgáltatások bármelyikéhez egy végtelen értéket tartalmaz, hello [Score Model] [ score-model] nem hoznak létre minden olyan kimeneti megfelelő toothat sor.
 
-5. A [Score Model] [ score-model] készíthet azonos kimeneti pontozási adatkészlet összes sort. Ez akkor fordulhat, például döntési erdők használatával, a minta / Levélcsomópont minimális száma nagyobb, mint a rendelkezésre álló példák legyen választása besorolás megkísérlése során.
+5. Hello [Score Model] [ score-model] készíthet azonos kimeneti adatkészlet pontozási hello összes sorát. Ez akkor fordulhat, például döntési erdők használó minta / Levélcsomópont minimális száma hello választása elérhető példák hello nagyobb toobe száma besorolás megkísérlése során.
 
 <!-- Module References -->
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/

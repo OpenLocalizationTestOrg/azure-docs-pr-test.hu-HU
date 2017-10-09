@@ -1,6 +1,6 @@
 ---
-title: "Élő stream továbbítása helyszíni kódolókkal az Azure Portal használatával | Microsoft Docs"
-description: "Ez az ismertető végigkalauzolja egy olyan csatorna létrehozásának folyamatán, amely átmenő közvetítésre van konfigurálva."
+title: "aaaLive adatfolyam helyszíni kódolókkal hello Azure-portál használatával |} Microsoft Docs"
+description: "Ez az oktatóanyag végigvezeti hello létre egy csatornát, amely átmenő közvetítésre van konfigurálva."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 6939e3b31c3c1b514df4c559c2d9408fce122a4e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1fb341e022f66f33903e13e07d3e84c0216cad77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a>Élő stream továbbítása helyszíni kódolókkal az Azure Portal használatával
+# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-hello-azure-portal"></a>Hogyan tooperform élő Stream továbbítása helyszíni kódolókkal hello Azure-portál használatával
 > [!div class="op_single_selector"]
 > * [Portal](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -28,121 +28,121 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Ez az ismertető végigkalauzolja egy olyan **csatorna** létrehozásának folyamatán, amely átmenő közvetítésre van konfigurálva az Azure Portalon. 
+Ez az oktatóanyag végigvezeti hello hello Azure portál toocreate használatával egy **csatorna** , amely átmenő közvetítésre van konfigurálva. 
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az ismertetett eljárás végrehajtásához a következők szükségesek:
+Az alábbiakban hello szükséges toocomplete hello oktatóanyag:
 
 * Egy Azure-fiók. További információkért lásd: [Ingyenes Azure-fiók létrehozása](https://azure.microsoft.com/pricing/free-trial/). 
-* Egy Media Services-fiók. A Media Services-fiók létrehozásáról a [Media Services-fiók létrehozása](media-services-portal-create-account.md) című cikk nyújt tájékoztatást.
+* Egy Media Services-fiók. egy Media Services-fiók toocreate lásd [hogyan tooCreate Media Services-fiók](media-services-portal-create-account.md).
 * Egy webkamera. Például a [Telestream Wirecast kódoló](http://www.telestream.net/wirecast/overview.htm).
 
-Kifejezetten ajánljuk, hogy olvassa el a következő cikkeket:
+A következő cikkek tooreview hello javasoljuk:
 
 * [Azure Media Services RTMP Support and Live Encoders](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/) (Az Azure Media Services RTMP-támogatása és az élő kódolók)
 * [Overview of Live Streaming using Azure Media Services](media-services-manage-channels-overview.md) (Az Azure Media Services segítségével történő élő streamelés áttekintése)
 * [Live streaming with on-premises encoders that create multi-bitrate streams](media-services-live-streaming-with-onprem-encoders.md) (Élő stream továbbítása többszörös átviteli sebességű streamet létrehozó helyszíni kódolókkal)
 
 ## <a id="scenario"></a>Az élő adatfolyamok egy gyakori alkalmazási helyzete
-A következő lépések ismertetik, hogy milyen lépésekkel lehet olyan streamelő alkalmazásokat létrehozni, amelyek átmenő közvetítésre vannak konfigurálva. Ez az oktatóprogram bemutatja, hogyan hozhat létre és kezelhet átmenő csatornát és élő eseményeket.
+hello lépései streamelő alkalmazásokat, amelyek átmenő közvetítésre konfigurált csatornák létrehozni. Ez az oktatóanyag bemutatja, hogyan toocreate átmenő csatornát és élő eseményeket és kezelése.
 
 >[!NOTE]
->Győződjön meg arról, hogy a tartalomstreameléshez használt streamvégpont **Fut** állapotban legyen. 
+>Győződjön meg arról, amelyből el kívánja toostream tartalom streamvégpontra hello hello **futtató** állapotát. 
     
-1. Csatlakoztasson egy videokamerát a számítógéphez. Indítson el és konfiguráljon egy élő helyszíni kódolót, amely többszörös sávszélességű RTMP- vagy fragmentált MP4-streamet állít elő. További tájékoztatást az [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824) (Az Azure Media Services RTMP-támogatása és az élő kódolók) című cikk nyújt.
+1. Csatlakozás egy videokamerát tooa számítógép. Indítson el és konfiguráljon egy élő helyszíni kódolót, amely többszörös sávszélességű RTMP- vagy fragmentált MP4-streamet állít elő. További tájékoztatást az [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824) (Az Azure Media Services RTMP-támogatása és az élő kódolók) című cikk nyújt.
    
     Ezt a lépést a csatorna létrehozása után is el lehet végezni.
 2. Hozzon létre és indítson el egy átmenő csatornát.
-3. Kérje le a Channel ingest URL (Csatorna betöltési URL-címe) értékét. 
+3. Kérje le hello csatorna feldolgozó URL-CÍMÉT. 
    
-    Az élő kódoló a bemeneti URL-címet használva küldi el a streamet a csatornának.
-4. Kérje le a csatorna előnézeti URL-címét. 
+    hello betöltési URL-cím hello élő kódoló toosend hello adatfolyam toohello csatorna által használt.
+4. Hello csatorna előnézeti URL-cím beolvasása. 
    
-    Ezen az URL használatával ellenőrizheti, hogy a csatornája megfelelően fogadja-e az élő adatfolyamot.
+    Az URL-cím tooverify, hogy a csatornája megfelelően fogadja-hello élő adatfolyam használata.
 5. Hozzon létre egy élő eseményt/programot. 
    
-    Az Azure portál használata esetén az élő esemény létrehozása egy objektumot is létrehoz. 
+    Az Azure portál használatával hello, amikor élő esemény létrehozása egy objektumot is létrehoz. 
 
-6. Amikor készen áll a streamelésre és az archiválásra, indítsa el az eseményt/programot.
-7. Ha kívánja, a kódolólónak küldött jelzéssel hirdetést is elindíthat. A hirdetés bekerül a kimenő streambe.
-8. Amikor le kívánja állítani az esemény streamelését és archiválását, állítsa le az eseményt/programot.
-9. Törölje az eseményt/programot (és ha kívánja, törölje az objektumot).     
+6. Amikor készen áll a toostart streamelésre és az archiválásra, indítsa el hello eseményt/programot.
+7. Másik lehetőségként hello élő kódoló jelzett toostart hirdetést is lehet. hello hirdetés bekerül hello kimeneti adatfolyam.
+8. Amikor azt szeretné, hogy toostop streamelésre és az archiválásra hello esemény, állítsa le hello eseményt/programot.
+9. Törölje a hello eseményt/programot (és választhatóan a hello eszköz törlése).     
 
 > [!IMPORTANT]
-> Az [élő stream többszörös átviteli sebességű streamet létrehozó helyszíni kódolókkal történő továbbítását](media-services-live-streaming-with-onprem-encoders.md) ismertető cikkből tájékozódhat a helyszíni kódolókkal és átmenő csatornákkal történő élő streamelés fogalmairól és fontos szempontjairól.
+> Tekintse át [élő Stream továbbítása helyszíni kódolókkal, amely többféle sávszélességű adatfolyamok létrehozása](media-services-live-streaming-with-onprem-encoders.md) kapcsolatos fogalmakat és szempontokat toolearn kapcsolódó toolive Stream továbbítása helyszíni kódolókkal és átmenő csatornákkal.
 > 
 > 
 
-## <a name="to-view-notifications-and-errors"></a>Az értesítések és a hibák megtekintése
-Ha meg szeretné tekinteni az Azure portál által előállított értesítéseket és hibaüzeneteket, kattintson az Értesítés ikonra.
+## <a name="tooview-notifications-and-errors"></a>tooview értesítéseket és hibaüzeneteket
+Ha azt szeretné, hogy tooview értesítések és hibák hello Azure-portálon, kattintson a hello értesítés ikonra.
 
 ![Értesítések](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
 ## <a name="create-and-start-pass-through-channels-and-events"></a>Átmenő csatornák és események létrehozása és elindítása.
-A csatornákhoz események/programok vannak társítva. Ezek lehetővé teszik az élő stream szegmenseinek közzétételét és tárolását. Az eseményeket a csatornák kezelik. 
+A csatorna egy események/programok, amelyek lehetővé teszik a toocontrol hello közzétételét és tárolását élő stream szegmenseinek társítva. Az eseményeket a csatornák kezelik. 
 
-Az **Archive Window** (Archiválás időtartama) beállításnál megadhatja, hogy hány órára szeretné megőrizni a program felvett tartalmát. Ez az érték 5 perc és 25 óra közötti lehet. Az archiválási időtartam határozza meg azt is, hogy mennyi idővel ugorhatnak vissza az ügyfelek az aktuális élő pozíciótól. Az események hosszabbak lehetnek a megadott időtartamnál, de a rendszer folyamatosan eldobja azt a tartalmat, amely korábbi a megadott időtartamnál. Ennek a tulajdonságnak az értéke határozza meg azt is, hogy milyen hosszúra nőhetnek az ügyfél jegyzékfájljai.
+Megadhatja a hello óraszámon belül hello program hello beállítása kívánt tooretain rögzített hello tartalom **archiválási időtartammal** hossza. Ez az érték 5 perc tooa legfeljebb 25 óra közötti állítható be. Az archiválási időtartam is határozzák meg, hogy a hello maximális időtartam ügyfeleket is kérhet időben hello aktuális élő pozíciótól. Események hosszabbak lehetnek hello megadott időtartamig, de a rendszer folyamatosan elveti azokat a tartalmakat, amelyek korábbiak a hello időtartamnál. Ez a tulajdonság értékének is meghatározza, hogy mennyi ideig hello ügyfél jegyzékfájljai milyen mértékben növelhető.
 
-Minden esemény egy objektumhoz van társítva. Az esemény közzétételéhez létre kell hoznia egy OnDemand-lokátort a társított objektumhoz. Ez a lokátor teszi lehetővé az ügyfelek számára megadható streamelő URL-cím összeállítását.
+Minden esemény egy objektumhoz van társítva. toopublish hello esemény, létre kell hoznia egy OnDemand-kereső hello társított eszköz. Ez a lokátor lehetővé teszi, hogy a toobuild tooyour ügyfeleknek biztosítani tudják adatfolyam-továbbítási URL-címet.
 
-Egy csatorna három egyidejűleg zajló esemény támogat, hogy több archívumot lehessen létrehozni ugyanabból a bejövő streamből. Ez lehetővé teszi az események különféle részeinek szükség szerinti közzétételét és archiválását. Az üzleti igény szerint például 6 órát kell archiválni egy programból, de csak az utolsó 10 percet kell közvetíteni. Ezt két egyidejűleg zajló program létrehozásával érheti el. Ebben az esetben állítsa be az egyik programot az esemény 6 órájának archiválására, de ne tegye közzé. A másik programot 10 perc archiválására állítsa be, és tegye is közzé.
+Egy csatorna legfeljebb események egyidejűleg fut, így létrehozhat több archívumot hello toothree támogat egy bejövő streamből. Ez lehetővé teszi toopublish kapcsolatos és archiválási különböző részei egy eseményt, igény szerint. Például az üzleti igény szerint tooarchive program, de toobroadcast 6 óra csak az elmúlt 10 perc. tooaccomplish, toocreate két egyidejűleg zajló program van szüksége. Egy program van beállítva a tooarchive hello esemény 6 óra, de hello program nem lesz közzétéve. hello másik program beállítva tooarchive 10 percig, és a program közzé van téve.
 
 A meglévő élő eseményeket nem szabad újra felhasználni. Ehelyett hozzon létre egy új eseményt minden eseményhez, és indítsa el.
 
-Amikor készen áll a streamelésre és az archiválásra, indítsa el az eseményt. Állítsa le a programot, ha szeretné megállítani az adatfolyam-továbbítást, és archiválni kívánja az eseményt. 
+Amikor készen áll a toostart streamelésre és az archiválásra hello esemény indítása. Állítsa le hello programot, ha azt szeretné, hogy toostop streamelésre és az archiválásra hello esemény. 
 
-Az archivált tartalom törléséhez állítsa le és törölje az eseményt, majd törölje a hozzá társított objektumot. Olyan objektumot nem lehet törölni, amelyet használ egy esemény. Először az eseményt kell törölni. 
+toodelete archivált tartalmat, állítsa le és hello esemény törlése, és törölje a hozzá társított objektumot hello. Egy eszköz nem törölhető, ha egy esemény; használják hello esemény először törölni kell. 
 
-Ha már leállította és törölte is az eseményt, a felhasználók igény szerinti videóként le tudják játszani az archivált tartalmat mindaddig, amíg az objektumot nem törli.
+Állítsa le és a hello esemény törlése után is hello felhasználók állapotban tud toostream az archivált tartalmakat, igény szerint lekért videóként mindaddig, amíg nem törli hello eszköz.
 
-Ha szeretné megtartani az archivált tartalmakat, de nem szeretné elérhetővé tenni őket streamelésre, törölje a streamelési lokátort.
+Ha szeretné tooretain hello archivált tartalom, de nem rendelkezik az adatfolyamként történő elérhetővé, törölje a streamelési locator hello.
 
-### <a name="to-use-the-portal-to-create-a-channel"></a>Csatorna létrehozása a portállal
-Ez a szakasz azt mutatja be, hogyan lehet átmenő csatornát létrehozni a **Gyorslétrehozás** beállítással.
+### <a name="toouse-hello-portal-toocreate-a-channel"></a>toouse hello portál toocreate csatorna
+Ez a szakasz bemutatja, hogyan toouse hello **Gyorslétrehozás** beállítás toocreate átmenő csatornát.
 
 Az átmenő csatornákról az [élő stream többszörös átviteli sebességű streamet létrehozó helyszíni kódolókkal történő továbbítását](media-services-live-streaming-with-onprem-encoders.md) ismertető cikk nyújt részletes tájékoztatást.
 
-1. Az [Azure-portálon](https://portal.azure.com/) válassza ki Azure Media Services-fiókját.
-2. Kattintson a **Settings** (Beállítások) ablak **Live streaming** (Élő stream) elemére. 
+1. A hello [Azure-portálon](https://portal.azure.com/), válassza ki az Azure Media Services-fiók.
+2. A hello **beállítások** ablak, kattintson a **Live streaming**. 
    
     ![Bevezetés](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
    
-    Megjelenik a **Live streaming** (Élő stream) ablak.
-3. A **Quick Create** (Gyorslétrehozás) gombra kattintva létrehozhat egy az RTMP betöltési protokollt használó átmenő csatornát.
+    Hello **élő adatfolyam-** ablak jelenik meg.
+3. Kattintson a **Gyorslétrehozás** toocreate átmenő csatornát a hello RTMP betöltési protokollt.
    
-    Megjelenik a **CREATE A NEW CHANNEL** (Új csatorna létrehozása) ablak.
-4. Nevezze el az új csatornát, és kattintson a **Create** (Létrehozás) gombra. 
+    Hello **új csatorna létrehozása** ablak jelenik meg.
+4. Nevezze el hello új csatornát, és kattintson a **létrehozása**. 
    
-    Ennek hatására létrejön egy, az RTMP-betöltési protokollt használó csatorna.
+    Ez egy átmenő csatornát hello hoz létre RTMP betöltési protokollt.
 
 ## <a name="create-events"></a>Események létrehozása
-1. Válassza ki azt a csatornát, amelyhez eseményt szeretne hozzáadni.
+1. Válassza ki a csatorna toowhich kívánt tooadd egy eseményt.
 2. Kattintson a **Live Event** (Élő esemény) gombra.
 
 ![Esemény](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
 
 ## <a name="get-ingest-urls"></a>A betöltési URL-címek beolvasása
-A csatorna létrehozása után beolvashatja a betöltési URL-címeket. Ezeket kell megadnia az élő kódolónak. A kódoló ezekre az URL-címekre küldi a bemeneti élő streamet.
+Hello csatorna létrehozása után kaphat a betöltési URL-címeket adja meg az élő kódoló toohello. a kódoló hello ezen URL-címek tooinput élő adatfolyam.
 
 ![Létrehozva](./media/media-services-portal-passthrough-get-started/media-services-channel-created.png)
 
-## <a name="watch-the-event"></a>Esemény megtekintése
-Ha meg szeretne tekinteni egy eseményt, kattintson az Azure Portal **Watch** (Megtekintés) elemére. 
+## <a name="watch-hello-event"></a>A figyelési hello esemény
+toowatch hello esemény, kattintson a **figyelési** a streamelési URL-cím az Azure-portál vagy a példány hello hello és a Windows Media Player az Ön által választott. 
 
 ![Létrehozva](./media/media-services-portal-passthrough-get-started/media-services-default-event.png)
 
-Leállítása után az élő esemény automatikusan átalakul igény szerinti tartalommá.
+Élő esemény automatikusan megkapja az átalakított tooon igény szerinti tartalomterjesztésről leállításakor.
 
 ## <a name="clean-up"></a>A fölöslegessé vált elemek eltávolítása
 Az átmenő csatornákról az [élő stream többszörös átviteli sebességű streamet létrehozó helyszíni kódolókkal történő továbbítását](media-services-live-streaming-with-onprem-encoders.md) ismertető cikk nyújt részletes tájékoztatást.
 
-* Egy csatornát csak akkor lehet  leállítani, ha már leállítottak minden, a csatornán közvetített eseményt/programot.  A csatorna leállítását követően nem számítunk fel további díjakat. A betöltési URL-cím nem módosul, ezért a csatorna ismételt elindításához nem szükséges újrakonfigurálni a kódolót.
-* Egy csatornát csak akkor lehet törölni, ha töröltek minden, a csatornán közvetített élő eseményt.
+* Egy csatornát csak akkor, ha le lett állítva az összes események/programok hello csatornán állítható le.  Hello csatorna leállítását követően nem számítunk fel díjakat. Ha toostart kell azt újra, hogy fog rendelkezni hello azonos feldolgozó URL-CÍMÉT, akkor nem kell tooreconfigure a kódoló.
+* Egy csatorna törölhetők, csak akkor, ha hello csatornán összes élő eseményt törölték.
 
 ## <a name="view-archived-content"></a>Archivált tartalom megtekintése
-Ha már leállította és törölte is az eseményt, a felhasználók igény szerinti videóként le tudják játszani az archivált tartalmat mindaddig, amíg az objektumot nem törli. Olyan objektumot nem lehet törölni, amelyet használ egy esemény. Először az eseményt kell törölni. 
+Állítsa le és a hello esemény törlése után is hello felhasználók állapotban tud toostream az archivált tartalmakat, igény szerint lekért videóként mindaddig, amíg nem törli hello eszköz. Egy eszköz nem törölhető, ha egy esemény; használják hello esemény először törölni kell. 
 
-Az objektumok kezeléséhez válassza a **Setting** (Beállítás) elemet, majd kattintson az **Assets** (Objektumok) elemre.
+toomanage az objektumok kiválasztása **beállítás** kattintson **eszközök**.
 
 ![Objektumok](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 

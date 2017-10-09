@@ -1,6 +1,6 @@
 ---
-title: "Folyamatos kézbesítésével távoli hibakeresésének engedélyezése |} Microsoft Docs"
-description: "Útmutató: távoli hibakeresés, ha a folyamatos kézbesítési használatával telepítse az Azure engedélyezése"
+title: "távoli hibakeresés folyamatos kézbesítésével aaaEnable |} Microsoft Docs"
+description: "Megtudhatja, hogyan tooenable távoli hibakeresés folyamatos kézbesítési toodeploy tooAzure használata esetén"
 services: cloud-services
 documentationcenter: .net
 author: kraigb
@@ -14,44 +14,44 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: 7a8a853a93e3e9915f687a20c871444e6a0de50d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d9d9d1cfe5304c9526586a9164f172746a448e4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-remote-debugging-when-using-continuous-delivery-to-publish-to-azure"></a>Távoli hibakeresés folyamatos készregyártással történő azure-os közzététel során
-Engedélyezheti a távoli hibakeresés Azure felhőszolgáltatások vagy a virtuális gépek használatakor [folyamatos kézbesítési](cloud-services-dotnet-continuous-delivery.md) közzététele az Azure-bA az alábbiak szerint.
+# <a name="enable-remote-debugging-when-using-continuous-delivery-toopublish-tooazure"></a>Folyamatos kézbesítési toopublish tooAzure használatakor távoli hibakeresésének engedélyezése
+Engedélyezheti a távoli hibakeresés Azure felhőszolgáltatások vagy a virtuális gépek használatakor [folyamatos kézbesítési](cloud-services-dotnet-continuous-delivery.md) toopublish tooAzure ezeket a lépéseket követve.
 
 ## <a name="enabling-remote-debugging-for-cloud-services"></a>A felhőszolgáltatások távoli hibakeresés engedélyezése
-1. A build Agent, a kezdeti környezet beállítása az Azure-bA a [parancssori létrehozása az Azure-](http://msdn.microsoft.com/library/hh535755.aspx).
-2. Telepítse a távoli hibakeresési futásidejű (msvsmon.exe) szükség, a csomag, mert a **távoli Tools for Visual Studio**.
+1. Hello build ügynökön hello kezdeti környezet beállítása az Azure-bA a [parancssori létrehozása az Azure-](http://msdn.microsoft.com/library/hh535755.aspx).
+2. Mivel hello távoli hibakeresési futásidejű (msvsmon.exe) hello csomag szükséges, telepítse a hello **távoli Tools for Visual Studio**.
 
     * [A Visual Studio 2017 távoli eszközök](https://go.microsoft.com/fwlink/?LinkId=746570)
     * [A Visual Studio 2015 távoli eszközök](https://go.microsoft.com/fwlink/?LinkId=615470)
     * [Távoli Tools for Visual Studio 2013 Update 5](https://www.microsoft.com/download/details.aspx?id=48156)
     
-    Alternatív megoldásként átmásolhatja a távoli hibakeresési bináris fájlok fordítását egy rendszer, amely a Visual Studio telepítve van.
+    Alternatív megoldásként másolhatja a rendszer, amely rendelkezik a telepített Visual Studio hello távoli hibakeresési bináris fájlok fordítását.
 
-3. Hozzon létre egy tanúsítványt, a [tanúsítványok áttekintése Azure-szolgáltatásokhoz](cloud-services-certs-create.md). A .pfx és RDP tanúsítvány-ujjlenyomatot, majd töltse fel a tanúsítvány a cél felhőalapú szolgáltatás.
-4. Az MSBuild parancssorban a következő beállítások segítségével hozza létre, és engedélyezve van a távoli hibakereséssel csomag. (Helyettesítő útvonalakat a rendszer és a projekt fájlt az a szög zárójeles elemek.)
+3. Hozzon létre egy tanúsítványt, a [tanúsítványok áttekintése Azure-szolgáltatásokhoz](cloud-services-certs-create.md). Hello .pfx és RDP tanúsítvány ujjlenyomatát, és töltse fel a hello tanúsítvány toohello cél felhőalapú szolgáltatás.
+4. Használja az alábbi beállítások hello MSBuild parancssori toobuild és a csomag engedélyezett távoli hibakereséssel hello. (Útvonalakat tooyour rendszer és a projekt hello szög zárójeles elemek fájlok helyettesítse.)
    
-        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of the certificate added to the cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path to your VS solution file>"
+        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of hello certificate added toohello cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path tooyour VS solution file>"
    
-    `VSX64RemoteDebuggerPath`az a mappa elérési útját tartalmazó msvsmon.exe a távoli eszközök Visual Studio.
-    `RemoteDebuggerConnectorVersion`a felhőalapú szolgáltatás az Azure SDK-verzió van. Azt is illeszkednie kell a Visual Studio telepített verzióval.
-5. A célszolgáltatás felhő közzétételét az előző lépésben hozott létre a csomag és a .cscfg fájl használatával.
-6. Importálja a tanúsítványt (.pfx-fájl) telepített .NET-keretrendszerhez készült Azure SDK-val Visual Studio üzemeltető számítógépet. Ügyeljen arra, hogy importálja a `CurrentUser\My` tanúsítványtárolójába, ellenkező esetben a Visual Studio hibakereső csatolása sikertelen lesz.
+    `VSX64RemoteDebuggerPath`hello elérési toohello mappa van a Visual Studio tartalmazó msvsmon.exe hello távoli eszközei.
+    `RemoteDebuggerConnectorVersion`a felhőszolgáltatásban hello Azure SDK-verzió van. Azt is illeszkednie kell hello verziója van telepítve, a Visual Studio.
+5. Hello előző lépésben létrehozott hello csomag és a .cscfg fájl használatával toohello cél felhőalapú szolgáltatást teszik közzé.
+6. Hello tanúsítvány (.pfx-fájl) toohello gép, amely rendelkezik a Visual Studio Azure SDK-val telepített .NET-keretrendszerhez készült importálása. Győződjön meg arról, hogy tooimport toohello `CurrentUser\My` tanúsítványtárolójába, ellenkező esetben a Visual Studio csatlakoztatását toohello hibakereső sikertelen lesz.
 
 ## <a name="enabling-remote-debugging-for-virtual-machines"></a>A virtuális gépek távoli hibakeresés engedélyezése
 1. Hozzon létre egy Azure virtuális gépen. Lásd: [Windows Server rendszerű virtuális gép létrehozása](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) vagy [a Visual Studio Azure virtuális gépek létrehozására és kezelésére](../virtual-machines/windows/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
-2. Az a [klasszikus Azure portálon](http://go.microsoft.com/fwlink/p/?LinkID=269851), hogy a virtuális gép a virtuális gép irányítópult megtekintése **RDP tanúsítvány UJJLENYOMATA**. Ez az érték szolgál a `ServerThumbprint` bővítménykonfiguráció értéket.
-3. Hozzon létre egy ügyféltanúsítványt, a [tanúsítványok áttekintése Azure-szolgáltatásokhoz](cloud-services-certs-create.md) (megtartja a .pfx és tanúsítvány-ujjlenyomat RDP).
-4. Azure Powershell telepítése (0.7.4 verzió vagy újabb) a [telepítése és konfigurálása az Azure PowerShell](/powershell/azure/overview).
-5. Futtassa a következő parancsfájlt a RemoteDebug bővítmény engedélyezéséhez. Cserélje le a elérési útja és a személyes adatokat a saját, például a előfizetés nevét, a szolgáltatás neve és az ujjlenyomat.
+2. A hello [klasszikus Azure portálon](http://go.microsoft.com/fwlink/p/?LinkID=269851), hello virtuális gép irányítópult toosee hello virtuális gép megtekintése **RDP tanúsítvány UJJLENYOMATA**. Ez az érték szolgál hello `ServerThumbprint` hello bővítménykonfiguráció értéket.
+3. Hozzon létre egy ügyféltanúsítványt, a [tanúsítványok áttekintése Azure-szolgáltatásokhoz](cloud-services-certs-create.md) (ne a hello .pfx és tanúsítvány-ujjlenyomat RDP).
+4. Azure Powershell telepítése (0.7.4 verzió vagy újabb) a [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+5. Futtassa a következő parancsfájl tooenable hello RemoteDebug bővítmény hello. Cserélje le a hello elérési útja és a személyes adatokat a saját, például a előfizetés nevét, a szolgáltatás neve és az ujjlenyomat.
    
    > [!NOTE]
-   > Ezt a parancsfájlt a Visual Studio 2015 van konfigurálva. Ha a Visual Studio 2013 vagy Visual Studio 2017 használ, módosítsa a `$referenceName` és `$extensionName` hozzárendeléseket alatt `RemoteDebugVS2013` vagy `RemoteDebugVS2017`.
+   > Ezt a parancsfájlt a Visual Studio 2015 van konfigurálva. Ha a Visual Studio 2013 vagy Visual Studio 2017 használ, módosítsa a hello `$referenceName` és `$extensionName` az alábbi hozzárendelések túl`RemoteDebugVS2013` vagy `RemoteDebugVS2017`.
 
     ```powershell   
     Add-AzureAccount
@@ -93,5 +93,5 @@ Engedélyezheti a távoli hibakeresés Azure felhőszolgáltatások vagy a virtu
     $vm | Update-AzureVM
     ```
 
-6. Importálja a tanúsítványt (.pfx) a gép, amely rendelkezik a Visual Studio Azure SDK-val telepített .NET-keretrendszerhez készült.
+6. Hello tanúsítvány (.pfx) toohello gép importálása, amely rendelkezik a Visual Studio Azure SDK-val telepített .NET-keretrendszerhez készült.
 

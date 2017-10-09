@@ -1,6 +1,6 @@
 ---
-title: "WordPress átalakítása többhelyes környezet az Azure App Service-ben"
-description: "Egy meglévő WordPress-webalkalmazás létrehozása az Azure katalógusában révén ismerje és átalakíthatja a WordPress többhelyes telepítés"
+title: aaaConvert WordPress tooMultisite az Azure App Service-ben
+description: "Megtudhatja, hogyan tootake WordPress-webalkalmazás létrehozása az Azure-ban hello gyűjtemény révén, és konvertálja tooWordPress a többhelyes telepítés"
 services: app-service\web
 documentationcenter: php
 author: rmcmurray
@@ -14,118 +14,118 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 4a15fb5e97d2ca57e5883c07651c372c54021c92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1153f0a8043de875f081704cd0a124776758878c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="convert-wordpress-to-multisite-in-azure-app-service"></a>WordPress átalakítása többhelyes környezet az Azure App Service-ben
+# <a name="convert-wordpress-toomultisite-in-azure-app-service"></a>Alakítsa át a WordPress tooMultisite az Azure App Service-ben
 ## <a name="overview"></a>Áttekintés
 *Által [Ben Lobaugh][ben-lobaugh], [Microsoft nyílt technológiák Inc.][ms-open-tech]*
 
-Ebben az oktatóanyagban, megtudhatja, hogyan egy meglévő WordPress-webalkalmazás létrehozása az Azure katalógusában révén és átalakíthatja egy WordPress többhelyes telepítést. Emellett megtudhatja, hogyan rendelhető hozzá egyéni tartományt a telepítés belül alwebhelyek mindegyikének.
+Ebből az oktatóanyagból megtudhatja, hogyan tootake WordPress-webalkalmazás létrehozott Azure-ban és telepítése egy WordPress többhelyes be azt a konvertálás hello gyűjteménye. Emellett megtudhatja, hogyan tooassign egy egyéni tartomány tooeach a hello alwebhelyek belül a telepítést.
 
-Feltételezzük, hogy rendelkezik-e a WordPress egy meglévő telepítését. Ha nem, kövesse az útmutatást [egy WordPress-webhely létrehozása az Azure-ban a gyűjteményből][website-from-gallery].
+Feltételezzük, hogy rendelkezik-e a WordPress egy meglévő telepítését. Ha nem így tesz, adjon követve hello [egy WordPress-webhely létrehozása az Azure-ban hello gyűjteményből][website-from-gallery].
 
-Egy meglévő WordPress konvertálása a többhelyes környezet egyetlen hely telepítésének általában meglehetősen egyszerű, és a kezdeti lépések származhat rögtön a [hozzon létre egy hálózati] [ wordpress-codex-create-a-network] lapot a [WordPress kódex](http://codex.wordpress.org).
+Egy meglévő WordPress konvertálása egyetlen hely telepítési tooMultisite általában meglehetősen egyszerű, és hello Itt a kezdeti lépések származhat rögtön hello [hozzon létre egy hálózati] [ wordpress-codex-create-a-network] oldalon, hello [WordPress kódex](http://codex.wordpress.org).
 
 Lássunk neki.
 
 ## <a name="allow-multisite"></a>Többhelyes konfiguráció engedélyezése
-Először engedélyeznie kell a többhelyes telepítés keresztül a `wp-config.php` fájlt a **WP\_engedélyezése\_TÖBBHELYES** konstans. Két módszer a webes alkalmazás fájlok szerkesztésére: az egyik FTP és a második és a Git segítségével. Ha nincs tisztában a hogyan egyik módszert sem állíthatja, olvassa el az alábbi oktatóanyagok:
+A többhelyes telepítés tooenable keresztül hello először `wp-config.php` hello fájl **WP\_engedélyezése\_a többhelyes telepítés** konstans. A webes alkalmazás fájljai két módszer tooedit nincsenek: hello első az FTP és a Git segítségével második hello segítségével. Ha nem ismeri, hogyan toosetup mindkét eljárás, tekintse meg a következő oktatóanyagok toohello:
 
 * [A MySQL és az FTP-PHP-webhely][website-w-mysql-and-ftp-ftp-setup]
 * [PHP-webhely MySQL és Git][website-w-mysql-and-git-git-setup]
 
-Nyissa meg a `wp-config.php` a szerkesztőben a fájlt, és adja hozzá a következő fenti a `/* That's all, stop editing! Happy blogging. */` sor.
+Nyissa meg hello `wp-config.php` hello szerkesztővel, a fájlt, és adja hozzá hello következő fent hello `/* That's all, stop editing! Happy blogging. */` sor.
 
     /* Multisite */
 
     define( 'WP_ALLOW_MULTISITE', true );
 
-Mindenképpen mentse a fájlt, és töltse fel a kiszolgálóhoz!
+Lehet, hogy toosave hello fájlt, és töltse fel hátsó toohello server!
 
 ## <a name="network-setup"></a>Hálózati beállítás
-Jelentkezzen be a *wp-rendszergazda* területén a webalkalmazást, és meg kell jelennie az új cikket a **eszközök** nevű menü **hálózati beállítás**. Kattintson a **hálózati beállítás** , és töltse ki a hálózat adatait.
+Jelentkezzen be toohello *wp-rendszergazda* , és a webes alkalmazást területe kell megjelennie az hello egy új cikket **eszközök** nevű menü **hálózati beállítás**. Kattintson a **hálózati beállítás** , és töltse ki a hálózat hello részleteit.
 
 ![Hálózati beállítási képernyője][wordpress-network-setup]
 
-Ez az oktatóanyag használja a *alkönyvtár* séma helyet, mert mindig működnek, és azt szeretné állítani minden aloldal egyéni tartományok az oktatóanyag későbbi részében. Azonban lehetővé kell tenni altartomány telepíteni, ha leképez egy tartományhoz, a telepítő a [Azure Portal](https://portal.azure.com) és helyettesítő DNS beállításának megfelelően.
+Ez az oktatóanyag használja hello *alkönyvtár* séma helyet, mert mindig működnek, és azt szeretné állítani minden aloldal egyéni tartományok hello oktatóanyag későbbi részében. Azonban lehetséges toosetup altartomány telepíteni, ha leképez egy tartományba hello keresztül kell [Azure Portal](https://portal.azure.com) és helyettesítő DNS beállításának megfelelően.
 
-További információ a altartomány vs alkönyvtár beállítások: a [többhelyes hálózati típusú] [ wordpress-codex-types-of-networks] a WordPress kódex foglalkozó.
+További információ a altartomány vs alkönyvtár beállítások: hello [többhelyes hálózati típusú] [ wordpress-codex-types-of-networks] hello WordPress kódex foglalkozó.
 
-## <a name="enable-the-network"></a>A hálózati engedélyezése
-A hálózati konfigurálva van az adatbázisban, de egy további lépéssel engedélyezheti a hálózati funkcióit. Véglegesítse a `wp-config.php` beállításait és győződjön meg arról `web.config` megfelelően irányítja a helyekhez.
+## <a name="enable-hello-network"></a>Hello hálózati engedélyezése
+hello hálózati most hello adatbázisban van konfigurálva, de egy további lépés tooenable hello hálózati funkciókat. Hello véglegesítése `wp-config.php` beállításait és győződjön meg arról `web.config` megfelelően irányítja a helyekhez.
 
-Kattintás után a **telepítése** gombra a *hálózati beállítás* lapon WordPress megpróbálja frissíteni a `wp-config.php` és `web.config` fájlokat. Azonban a frissítése sikerült-e a fájlokat mindig ellenőrizze. Ha nem, ezen a képernyőn megjelennek a szükséges frissítéseket. Módosítsa és mentse a fájlokat.
+Hello kattintás után **telepítése** hello gombjára *hálózati beállítás* lapon WordPress megpróbál tooupdate hello `wp-config.php` és `web.config` fájlokat. Azonban mindig ellenőrizze hello fájlok tooensure hello frissítése sikerült-e. Ha nem, ezen a képernyőn megjelennek hello szükséges frissítéseket. Módosítsa és mentse a hello fájlokat.
 
-Elvégzése után ezeket a frissítéseket, szüksége lesz a jelentkezzen ki, majd jelentkezzen be a wp-rendszergazda irányítópult biztonsági.
+Elvégzése után ezeket a frissítéseket, szüksége lesz a kimenő toolog és a naplófájlok hello wp-rendszergazda irányítópult vissza.
 
-Most kell egy további menü feliratú admin menüsávon **saját webhelyek**. Ebben a menüben lehetővé teszi, hogy az új hálózati keresztül vezérlését a **hálózati rendszergazda** irányítópult.
+Most kell egy további menü hello admin sávon feliratú **saját webhelyek**. Ebben a menüben toocontrol lehetővé teszi az új hálózati keresztül hello **hálózati rendszergazda** irányítópult.
 
 ## <a name="adding-custom-domains"></a>Egyéni tartományok hozzáadása
-A [WordPress MU tartomány leképezése] [ wordpress-plugin-wordpress-mu-domain-mapping] beépülő modul segítségével egy kezelheti az egyéni tartományok hozzáadása a hálózat valamelyik helyéhez. Ahhoz, hogy a beépülő modul megfelelően működjenek kell tennie néhány további beállítást, a portál, valamint a tartományregisztrálónál.
+Hello [WordPress MU tartomány leképezése] [ wordpress-plugin-wordpress-mu-domain-mapping] beépülő modul segítségével kezelheti tooadd egyéni tartományok tooany hely a hálózaton. Ahhoz, hogy hello beépülő modul toooperate megfelelően kell toodo néhány további beállítást, a portál hello, valamint a tartományregisztrálónál.
 
-## <a name="enable-domain-mapping-to-the-web-app"></a>A webalkalmazás tartomány hozzárendelésének engedélyezése
-A **szabad** [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) üzemmódja nem támogatja az egyéni tartományok hozzáadása webalkalmazások terv. Váltson át kell **megosztott** vagy **szabványos** mód. Ehhez tegye a következőket:
+## <a name="enable-domain-mapping-toohello-web-app"></a>Tartomány leképezése toohello webalkalmazás engedélyezése
+Hello **szabad** [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) terv üzemmódja nem támogatja az egyéni tartományok tooWeb alkalmazások hozzáadását. Szüksége lesz tooswitch túl**megosztott** vagy **szabványos** mód. toodo ezt:
 
-* Jelentkezzen be az Azure portálon, és keresse meg a webes alkalmazást. 
-* Kattintson a **vertikális felskálázás** lapján **beállítások**.
+* Jelentkezzen be Azure Portal toohello, és keresse meg a webes alkalmazást. 
+* Kattintson a hello **vertikális felskálázás** lapján **beállítások**.
 * A **általános**, válassza *megosztott* vagy *STANDARD*
 * Kattintson a **mentése**
 
-Egy üzenet jelenhet kéri, hogy ellenőrizze a módosítást, és megerősíti, hogy a webalkalmazás most merülhet fel, a költség, attól függően, használatának és beállíthatja a további konfigurálást.
+Előfordulhat, hogy egy üzenet jelenik meg tooverify hello módosítása és a webalkalmazás most fel Önnek a költség, attól függően, használati és egyéb konfigurációkészletet hello tudomásul.
 
-Feldolgozni az új beállítások néhány másodpercet vesz igénybe a tartomány megkezdték egy időben most van.
+Tooprocess hello új beállítások, néhány másodpercig tart most az egy időben toostart beállítása a tartományban van.
 
 ## <a name="verify-your-domain"></a>Ellenőrizze a tartományt
-Mielőtt Azure Web Apps lehetővé teszi, hogy a hely rendelni egy tartományt, először ellenőrizze, hogy rendelkezik-e a tartomány hozzárendelését a engedélyezése. Ehhez hozzá kell adnia egy új CNAME rekordot a DNS-bejegyzés.
+Azure Web Apps toomap egy tartományi toohello hely lehetővé teszi a, mielőtt először tooverify, hogy rendelkezik-e hello engedélyezési toomap hello tartomány. toodo Igen, hozzá kell adnia egy új CNAME rekord tooyour DNS-bejegyzést.
 
-* Jelentkezzen be a tartomány DNS-kezelő
+* Jelentkezzen be tooyour tartomány DNS-kezelő
 * Hozzon létre egy új CNAME *awverify*
-* Pont *awverify* való *awverify. YOUR_DOMAIN.azurewebsites.NET*
+* Pont *awverify* túl*awverify. YOUR_DOMAIN.azurewebsites.NET*
 
-Ez eltarthat egy ideig, a DNS módosítások teljes érvénybe lépjen, így ha az alábbi lépéseket nem működnek, nyissa meg kávészünetet, ellenőrizze, majd térjen vissza, és próbálja meg újból.
+Előfordulhat, hogy teljes körű érvénybe hello DNS módosítások toogo némi időt vesz igénybe, így hello lépések nem működnek, ha nyissa meg kávészünetet, ellenőrizze, majd térjen vissza, és próbálja meg újból.
 
-## <a name="add-the-domain-to-the-web-app"></a>A tartomány hozzáadása a webalkalmazáshoz
-Térjen vissza a webalkalmazás az Azure portálon keresztül, kattintson a **beállítások**, és kattintson a **egyéni tartományok és SSL**.
+## <a name="add-hello-domain-toohello-web-app"></a>Hello tartomány toohello webalkalmazás hozzáadása
+Kattintson a webalkalmazás visszatérési tooyour hello Azure-portálon keresztül **beállítások**, és kattintson a **egyéni tartományok és SSL**.
 
-Ha a *SSL-beállítások* vannak jelenik meg, megjelenik a mezőket, amelyen a webalkalmazás hozzárendelni kívánt összes tartományát bemeneteket. Ha egy tartomány nem szerepel, azt nem elérhetők leképezés belül WordPress, függetlenül attól, hogy a tartomány DNS beállítása.
+Ha hello *SSL-beállítások* vannak jelenik meg, láthatja hello mezők hol kívánja tooassign tooyour webalkalmazás hello tartományok bemeneteket. Ha egy tartomány nem szerepel, azt nem elérhetők leképezés belül WordPress, függetlenül attól, milyen hello tartományi DNS beállítása.
 
 ![Egyéni tartományok párbeszédpanel kezelése][wordpress-manage-domains]
 
-Írja be a tartomány, a szövegmezőbe, után Azure ellenőrzi, hogy a korábban létrehozott CNAME-rekordot. Ha a DNS propagálása nem teljes, egy piros jelző jeleníti meg. Ha sikeres volt, egy zöld pipa jelenik meg. 
+Írja be a tartomány hello szövegmezőbe, után Azure ellenőrzi, hogy hello korábban létrehozott CNAME-rekordot. Ha hello DNS propagálása nem teljes, egy piros jelző jeleníti meg. Ha sikeres volt, egy zöld pipa jelenik meg. 
 
-Jegyezze fel az IP-cím szerepel a párbeszédpanel alján. Szüksége lesz a tartomány az A rekord beállítása.
+Jegyezze fel az IP-cím szerepel a listában hello párbeszédpanel hello alján hello. A tartomány szüksége lesz a toosetup hello rekord.
 
-## <a name="setup-the-domain-a-record"></a>A tartomány egy olyan rekordot beállítása
-Ha a többi lépés sikeres volt, előfordulhat, hogy most rendel a tartományhoz az Azure-webalkalmazásban a DNS A rekord keresztül. 
+## <a name="setup-hello-domain-a-record"></a>A telepítő hello tartomány A rekord
+Hello más lépéseket volt sikeres, ha Ön most jogosult hello tartomány tooyour Azure web apphoz keresztül DNS A rekord. 
 
-Itt megjegyezni, hogy az Azure web apps fogadja el CNAME és az A rekordok, azonban fontos, *kell* egy A rekordot használja a megfelelő tartomány hozzárendelésének engedélyezése. Egy olyan CNAME REKORDOT nem továbbítható egy másik CNAME Ez mit Azure létre az Ön YOUR_DOMAIN.azurewebsites.net.
+Fontos fontos toonote itt, a Azure-webalkalmazásokban azonban CNAME és az A rekordok elfogadja, *kell* egy A rekord tooenable megfelelő tartomány leképezése használja. Egy olyan CNAME REKORDOT nem továbbítható tooanother CNAME, vagyis mi Azure létre az Ön YOUR_DOMAIN.azurewebsites.net.
 
-Az előző lépésben az IP-címet használja, a DNS-kezelő lépjen vissza, és az A rekord ponthoz, hogy az IP-beállítása.
+Az előző lépésben hello hello IP-címet használja, térjen vissza a tooyour DNS-kezelő és a telepítő hello egy rekord toopoint toothat IP-cím.
 
-## <a name="install-and-setup-the-plugin"></a>Telepítse és állítsa be a beépülő modul
-WordPress többhelyes környezet jelenleg nem rendelkezik beépített módszert a egyéni tartományokat. Van azonban egy beépülő modul nevű [WordPress MU tartomány leképezése] [ wordpress-plugin-wordpress-mu-domain-mapping] a funkciót, amely ad meg. Jelentkezzen be a webhely, a hálózati rendszergazda része, és telepítse a **WordPress MU tartomány leképezése** beépülő modul.
+## <a name="install-and-setup-hello-plugin"></a>Telepítéséhez és beállításához hello beépülő modul
+WordPress többhelyes környezet jelenleg nem rendelkezik olyan beépített módszerrel toomap egyéni tartományok. Van azonban egy beépülő modul nevű [WordPress MU tartomány leképezése] [ wordpress-plugin-wordpress-mu-domain-mapping] hello funkció, amely ad meg. Jelentkezzen be a webhely toohello hálózati rendszergazda része, és telepítse a hello **WordPress MU tartomány leképezése** beépülő modul.
 
-Miután telepítette, és a beépülő modul aktiválása, látogasson el **beállítások** > **tartomány leképezése** a beépülő modul konfigurálása. Az első szövegmezőjének *kiszolgáló IP-címe*, adjon meg az IP-cím, a tartomány az A rekord beállítására használatos. Adja meg *beállítások* meg desire (az alapértelmezett beállításokat gyakran rendben), majd kattintson **mentése**.
+Miután telepítése és aktiválása hello beépülő modul, látogasson el a **beállítások** > **tartomány leképezése** tooconfigure hello beépülő modul. Hello első szövegmezőben *kiszolgáló IP-címe*, bemeneti hello toosetup használt IP-cím hello hello tartomány egy olyan rekordot. Adja meg *beállítások* felügyelni (hello alapértelmezett gyakran rendben), majd **mentése**.
 
-## <a name="map-the-domain"></a>A tartomány hozzárendelését
-Látogasson el a **irányítópult** kívánja a tartomány hozzárendelését a helyhez. Kattintson a **eszközök** > **tartomány leképezése** és az új tartomány írja be a szövegmezőbe, majd kattintson **Hozzáadás**.
+## <a name="map-hello-domain"></a>Hello tartományban
+A Microsoft hello **irányítópult** hello hely toomap hello tartomány kívánja. Kattintson a **eszközök** > **tartomány leképezése** és típus hello új tartomány hello szövegmezőben, majd kattintson a **Hozzáadás**.
 
-Alapértelmezés szerint az új tartomány automatikusan létrehozott hely tartományhoz felülíródik. Ha azt szeretné, hogy az új tartományhoz, a jelölőnégyzet küldött összes forgalom a *ebben a blogban elsődleges tartományt* mezőben mentés előtt. Tartományok korlátlan számú hozzá egy helyhez, de csak egy elsődleges lehet.
+Alapértelmezés szerint a hello új tartományt egy átírt toohello automatikusan létrehozott hely tartomány lesz. Ha szeretné toohave új tartomány összes elküldött forgalom toohello, ellenőrizze a hello *ebben a blogban elsődleges tartományt* mezőben mentés előtt. Tartományok tooa hely korlátlan számú adhat hozzá, de csak egy elsődleges lehet.
 
 ## <a name="do-it-again"></a>Hajtsa végre újra
-Az Azure Web Apps lehetővé teszi a tartományok korlátlan számú hozzáadása a webalkalmazáshoz. Szüksége lesz a hajtható végre egy másik tartomány hozzáadása a **ellenőrizze a tartományt** és **beállítása a tartomány egy olyan rekordot** részekben az egyes tartományokhoz.    
+Az Azure Web Apps tooadd tartományok tooa webalkalmazás korlátlan számú engedélyezése. tooadd tooexecute hello szüksége lesz egy másik tartomány **ellenőrizze a tartományt** és **hello tartomány rekord telepítő** részekben az egyes tartományokhoz.    
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [ben-lobaugh]: http://ben.lobaugh.net
 [ms-open-tech]: http://msopentech.com

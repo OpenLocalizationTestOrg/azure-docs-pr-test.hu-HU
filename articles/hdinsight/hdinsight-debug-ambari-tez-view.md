@@ -1,6 +1,6 @@
 ---
-title: "Ambari Tez nézet használata a HDInsight - Azure |} Microsoft Docs"
-description: "Útmutató az Ambari Tez nézet használata a HDInsight-on Tez feladatokhoz."
+title: "a HDInsight - Azure Ambari Tez nézet aaaUse |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse hello Ambari Tez megtekintése a HDInsight toodebug Tez feladatokhoz."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 65d89309b9eea8544b85d16687baa90d49688d77
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5d61bd0403c98284c86982073af91468ae62ac60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-ambari-views-to-debug-tez-jobs-on-hdinsight"></a>Az Ambari nézetek használata a HDInsight-on Tez feladatokhoz
+# <a name="use-ambari-views-toodebug-tez-jobs-on-hdinsight"></a>Az Ambari nézetek toodebug Tez feladatokhoz a HDInsight használata
 
-Az Ambari webes felhasználói felületén, a HDInsight a Tez nézetet tartalmaz, amely megértéséhez, valamint a Tez használó feladatok debug használható. A Tez nézet lehetővé teszi a feladathoz egy grafikonon csatlakoztatott elemek megjelenítése, egyes elemek elemezze és statisztika és naplózási információk lekérdezéséhez.
+hello Ambari webes felhasználói felületén a HDInsight a Tez nézetet tartalmaz, amely lehet Tez használó használt toounderstand és hibakeresési feladatokat. hello Tez nézet lehetővé teszi toovisualize hello feladat csatlakoztatott elemek grafikon elemezze az egyes elemek, valamint statisztikák és naplózási információk beolvasása.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További információkért lásd: [HDInsight-összetevők verziószámozása](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -35,79 +35,79 @@ Az Ambari webes felhasználói felületén, a HDInsight a Tez nézetet tartalmaz
 
 ## <a name="understanding-tez"></a>Tez ismertetése
 
-Tez egy bővíthető keretrendszer, amely a hagyományos MapReduce feldolgozási-nál nagyobb sebesség biztosítja az adatok feldolgozásához. Linux-alapú HDInsight-fürtök az alapértelmezett szolgáltatás a Hive esetén.
+Tez egy bővíthető keretrendszer, amely a hagyományos MapReduce feldolgozási-nál nagyobb sebesség biztosítja az adatok feldolgozásához. Linux-alapú HDInsight-fürtök a Hive hello alapértelmezett motor esetén.
 
-Tez létrehoz egy irányított aciklikus diagramhoz (DAG), amely leírja a feladatok által szükséges műveletek sorrendjét. Egyes műveletek csúcsban hívják, és egy adat, a teljes feladat végrehajtása. A munkahelyi csúcspont szerint tényleges végrehajtása feladat neve, és előfordulhat, hogy a fürt több csomópontja legyen elosztva.
+Tez egy irányított aciklikus diagramhoz (DAG), amely leírja a feladatok által szükséges műveletek sorrendjét hello hoz létre. Egyes műveletek csúcsban nevezik, és hajtható végre egy hello adat általános feladat. hello tényleges csúcspont szerint hello munkaelem végrehajtásának feladat neve és hello fürt több csomópontja között szétoszthatók.
 
-### <a name="understanding-the-tez-view"></a>A Tez nézet ismertetése
+### <a name="understanding-hello-tez-view"></a>Understanding hello Tez megtekintése
 
-A Tez nézet futó folyamatok előzményadatok és információkat is biztosít. Ezeket az információkat jeleníti meg, hogyan oszlik meg a feladat más fürtökre. Feladatok és a csúcsban által használt számlálókat, és a feladathoz kapcsolódó hibainformációk is megjeleníti. Felajánlhatja, hogy a következő esetekben hasznos információkat:
+hello Tez nézet futó folyamatok előzményadatok és a információkat biztosít. Ezeket az információkat jeleníti meg, hogyan oszlik meg a feladat más fürtökre. Feladatok és a csúcsban által használt számlálókat is megjeleníti, és a hibainformációk kapcsolódó toohello feladat. Felajánlhatja, hogy a következő forgatókönyvek hello hasznos információkat:
 
-* Figyelési hosszan futó dolgozza fel a térkép állapotának megtekintése, és a feladatokat.
-* Megtudhatja, hogyan lehet javítani, feldolgozás, vagy sikertelenségének sikeres vagy sikertelen folyamatok előzményadatainak elemzése.
+* Hosszan futó folyamatok figyelése, megtekintése hello térkép előrehaladását, és csökkentheti a feladatokat.
+* Sikeres vagy sikertelen folyamatok toolearn előzményadatainak elemzése, hogyan lehet javítani, feldolgozás, vagy okát.
 
 ## <a name="generate-a-dag"></a>Egy dag-csoport létrehozása
 
-A Tez nézet csak adatokat tartalmaz, ha egy feladatot, amely használja a Tez motor éppen fut, vagy már korábban lefutott. Egyszerű Hive-lekérdezéseket is feloldható Tez használata nélkül. Összetettebb lekérdezi, hogy tegye szűrés csoportosítás, rendezés, illesztéseket, stb. a Tez motort használja.
+hello nézet csak olyan adatokat, ha egy feladat által használt hello Tez motor Tez jelenleg is fut, vagy a korábban lefutott. Egyszerű Hive-lekérdezéseket is feloldható Tez használata nélkül. Összetettebb lekérdezi, hogy tegye szűrés csoportosítás, rendezés, illesztéseket, stb. hello Tez motort használja.
 
-Az alábbi lépések segítségével által használt Tez Hive-lekérdezések futtatása:
+A következő lépéseket toorun által használt Tez Hive-lekérdezések hello használata:
 
-1. Egy böngészőben navigáljon a https://CLUSTERNAME.azurehdinsight.net, ahol **CLUSTERNAME** a HDInsight-fürt neve.
+1. Egy böngészőben nyissa meg a toohttps://CLUSTERNAME.azurehdinsight.net, ahol **CLUSTERNAME** hello neve, a HDInsight-fürthöz.
 
-2. Az oldal tetején a menüből válassza ki a **nézetek** ikonra. Ez az ikon négyzetes több tűnik. Válassza ki a legördülő listában megjelenő, **Hive view**.
+2. Hello oldal hello tetején hello menüben válassza ki a hello **nézetek** ikonra. Ez az ikon négyzetes több tűnik. A megjelenő hello legördülő menüben válassza ki **Hive view**.
 
     ![Hive-nézetek kijelölése](./media/hdinsight-debug-ambari-tez-view/selecthive.png)
 
-3. Ha a Hive nézete betölti, illessze be a következő lekérdezés a lekérdezés-szerkesztő be, és kattintson **hajtható végre**.
+3. Ha hello Hive nézete betölti, Beillesztés hello következő hello Lekérdezésszerkesztő történő lekérdezése, és kattintson **hajtható végre**.
 
         select market, state, country from hivesampletable where deviceplatform='Android' group by market, country, state;
 
-    A feladat befejezése után a megjelenő kimenetnek kell megjelennie a **lekérdezési folyamat eredményei** szakasz. Az eredmény az alábbihoz hasonló legyen:
+    Hello feladat befejezése után jelennek meg hello hello kimenetet kell látnia **lekérdezési folyamat eredményei** szakasz. hello eredmények hasonló toohello szöveg a következő legyen:
 
         market  state       country
         en-GB   Hessen      Germany
         en-GB   Kingston    Jamaica
 
-4. Válassza ki a **napló** fülre. Információ az alábbihoz hasonló jelenik meg:
+4. Jelölje be hello **napló** fülre. Információk a következő szöveg hasonló toohello jelenik meg:
 
         INFO : Session is already open
         INFO :
 
         INFO : Status: Running (Executing on YARN cluster with App id application_1454546500517_0063)
 
-    Mentse a **alkalmazásazonosító** érték, mivel ez az érték a következő szakaszban használható.
+    Mentse a hello **alkalmazásazonosító** érték, mivel ezt az értéket használja a következő szakaszban hello.
 
-## <a name="use-the-tez-view"></a>A Tez nézetben
+## <a name="use-hello-tez-view"></a>Tez nézet hello használata
 
-1. Az oldal tetején a menüből válassza ki a **nézetek** ikonra. Válassza ki a legördülő listában megjelenő, **Tez nézet**.
+1. Hello oldal hello tetején hello menüben válassza ki a hello **nézetek** ikonra. A megjelenő hello legördülő menüben válassza ki **Tez nézet**.
 
     ![Tez nézet kijelölése](./media/hdinsight-debug-ambari-tez-view/selecttez.png)
 
-2. A Tez nézet betöltésekor megjelenik, amely jelenleg fut, vagy hive-lekérdezések listáját a fürtön futottak.
+2. Hello Tez nézet betöltésekor hello fürt futott, amely jelenleg fut, vagy hive-lekérdezések listáját láthatja.
 
     ![Minden DAG](./media/hdinsight-debug-ambari-tez-view/tez-view-home.png)
 
-3. Ha csak egy bejegyzés, a lekérdezés, amely futtatta az előző szakaszban is. Ha több bejegyzést, az oldal tetején a mezők használatával kereshet.
+3. Ha csak egy bejegyzést, az előző szakaszban hello futtatott hello lekérdezés is. Ha több bejegyzés, kereshet hello mezőkkel hello oldal hello tetején.
 
-4. Válassza ki a **Lekérdezésazonosítóval** a Hive-lekérdezések. A lekérdezés információkat jelenít meg.
+4. Jelölje be hello **Lekérdezésazonosítóval** a Hive-lekérdezések. Hello lekérdezés információkat jelenít meg.
 
     ![DAG-részletek](./media/hdinsight-debug-ambari-tez-view/query-details.png)
 
-5. Ezen a lapon a lapok engedélyezi, hogy a következő információk megtekintése:
+5. hello lapok ezen a lapon a következő információk tooview hello engedélyezése:
 
-    * **Részletei lekérdezni**: a Hive-lekérdezés részleteiről.
+    * **Részletei lekérdezni**: hello Hive-lekérdezések adatait.
     * **Az idősor**: mennyi ideig tartott minden szakaszhoz feldolgozási információt.
-    * **Konfigurációk**: ehhez a lekérdezéshez használt konfigurációt.
+    * **Konfigurációk**: hello konfigurálása ehhez a lekérdezéshez használt.
 
-    A __lekérdezés részletei__ hivatkozások segítségével talál információkat a __alkalmazás__ vagy a __DAG__ ehhez a lekérdezéshez.
+    A __lekérdezés részletei__ használhatja hello hivatkozások toofind információ hello __alkalmazás__ vagy hello __DAG__ ehhez a lekérdezéshez.
     
-    * A __alkalmazás__ hivatkozás ehhez a lekérdezéshez a YARN alkalmazással kapcsolatos információkat jeleníti meg. Itt a YARN alkalmazásnaplók végezheti el.
-    * A __DAG__ hivatkozás ehhez a lekérdezéshez irányított aciklikus diagramhoz információit jeleníti meg. Itt megtekintheti a DAG grafikus ábrázolása. A DAG belül a csúcsban információk is megtalálhatók.
+    * Hello __alkalmazás__ hivatkozás hello YARN alkalmazás ehhez a lekérdezéshez információit jeleníti meg. Itt hello YARN alkalmazásnaplók végezheti el.
+    * Hello __DAG__ hivatkozás hello irányított aciklikus diagramhoz ehhez a lekérdezéshez információit jeleníti meg. Itt megtekintheti a hello DAG grafikus ábrázolása. Hello csúcsban belül hello DAG információk is megtalálhatók.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy rendelkezik megtudta, hogyan használja a Tez, további információ [használata a HDInsight Hive](hdinsight-use-hive.md).
+Most, hogy megtanulta, hogyan toouse hello Tez meg, további információ [használata a HDInsight Hive](hdinsight-use-hive.md).
 
-Részletesebb műszaki információkat Tez, lásd: a [Hortonworks Tez lapon](http://hortonworks.com/hadoop/tez/).
+Részletesebb műszaki információkat Tez, lásd: hello [Hortonworks Tez lapon](http://hortonworks.com/hadoop/tez/).
 
-Az Ambari és a HDInsight együttes használatával további információkért lásd: [kezelése HDInsight-fürtök az Ambari webes felhasználói felület használatával](hdinsight-hadoop-manage-ambari.md)
+Az Ambari és a HDInsight együttes használatával további információkért lásd: [hello Ambari webes felhasználói felület használatával kezelheti a HDInsight-fürtök](hdinsight-hadoop-manage-ambari.md)

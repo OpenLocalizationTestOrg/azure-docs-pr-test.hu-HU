@@ -1,6 +1,6 @@
 ---
-title: "Prediktív megoldás a hitelkockázat kiszámításához a Machine Learning használatával | Microsoft Docs"
-description: "Részletes útmutató, amely azt ismerteti, hogyan hozható létre a hitelkockázat értékelésére szolgáló prediktív elemzési megoldás az Azure Machine Learning Studio eszközben."
+title: "aaaA prediktív megoldás a hitelkockázat kiszámításához a Machine Learning |} Microsoft Docs"
+description: "Részletes útmutató, amely hogyan toocreate egy prediktív elemzési megoldás a hitelkockázat kockázatbecslés az Azure Machine Learning Studióban."
 keywords: "hitelkockázat, prediktív elemzési megoldás,kockázatértékelés"
 services: machine-learning
 documentationcenter: 
@@ -15,46 +15,46 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: e1af999b2fde8ffa2a0ffd1b88230f0aaab32b37
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00ed39081e6952b8d03b37a8285d8dc3ddff2cb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-develop-a-predictive-analytics-solution-for-credit-risk-assessment-in-azure-machine-learning"></a>Részletes útmutató: A hitelkockázat értékelésére szolgáló prediktív elemzési megoldás fejlesztése az Azure Machine Learning Studio használatával
 
-Ebben az útmutatóban a prediktív elemzési megoldások Machine Learning Studióban való fejlesztési folyamatát tekintjük át részleteiben. Egy egyszerű modellt fejlesztünk ki a Machine Learning Studióban, majd üzembe helyezzük azt Azure Machine Learning-webszolgáltatásként, ahol a modell új adatokkal végezhet előrejelzéseket. 
+Ebben a bemutatóban vesszük egy kiterjesztett nézze meg a Machine Learning Studio prediktív elemzési megoldás fejlesztése hello folyamatán. Azt a egyszerű modellezése a Machine Learning Studióban, és telepítheti az Azure Machine Learning webszolgáltatás, ahol hello modell is előrejelzésekhez új adatokkal. 
 
 Az útmutatóban leírtak abból indulnak ki, hogy legalább egyszer használta már a Machine Learning Studiót, és hogy valamennyire tisztában van a gépi tanulás fogalmaival. Az útmutató azonban nem feltételezi, hogy a fent említett területeken szakértő lenne.
 
-Ha még soha nem használta az **Azure Machine Learning Studiót**, érdemes lehet [az első adatelemzési kísérlet az Azure Machine Learning Studióban történő létrehozását](machine-learning-create-experiment.md) ismertető oktatóanyaggal kezdenie. Az oktatóanyag végigvezeti a Machine Learning Studio használatának megkezdésén. Bemutatja az alapokat, azt, hogy hogyan húzhat be modulokat a kísérletbe és kapcsolhatja össze azokat, és hogyan futtathatja a kísérletet és tekintheti meg az eredményeket. Egy másik eszköz, amely hasznos lehet az első lépések során, egy diagram, amely áttekintést nyújt a Machine Learning Studio képességeiről. Ezt a következő helyről töltheti le és nyomtathatja ki: [Az Azure Machine Learning Studio képességeit áttekintő diagram](machine-learning-studio-overview-diagram.md).
+Ha soha nem használt **Azure Machine Learning Studio** előtt érdemes a hello oktatóanyagban toostart [létrehozása az Azure Machine Learning Studióban kísérletezhet az első adattudomány](machine-learning-create-experiment.md). Hogy az oktatóanyag végigvezeti a Machine Learning Studio hello az első alkalommal. Ez megjeleníti a alakzatot kísérletbe, hogyan toodrag és vidd modulok hello alapjait összekapcsolhatja őket, hello kísérlet futtatása, és hello eredmények tekintse meg. Egy másik eszköz, amelyek segíthetnek az első lépések egy diagram, amely áttekintést nyújt a Machine Learning Studio funkcióiról hello. Ezt a következő helyről töltheti le és nyomtathatja ki: [Az Azure Machine Learning Studio képességeit áttekintő diagram](machine-learning-studio-overview-diagram.md).
  
-Ha csak most ismerkedik a gépi tanulás területével általánosságban, akkor az alábbi videósorozat hasznos lehet az Ön számára. A videósorozat címe [Adatelemzés kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md), és remek bevezetőt kínál hétköznapi nyelven és elterjedt fogalmak használatával a gépi tanulás témakörébe.
+Ha új toohello mezőt a gépi tanulási általában, van egy videósorozat, amely hasznos tooyou lehet. Azt nevezzük [Adattudomány kezdőknek](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) és azt tudhatja meg egy nagyszerű bemutatása toomachine tanulási mindennapos és fogalmak.
 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
  
 
-## <a name="the-problem"></a>A probléma
+## <a name="hello-problem"></a>hello probléma
 
-Tegyük fel, hogy előrejelzést kell készíteni egy személy hitelkockázatáról az általa kitöltött hitelkérelemben megadott adatok alapján.  
+Tegyük fel, hogy egy személy hitelkockázatáról azok hitelkérelemben megadott hello adatok alapján toopredict van szüksége.  
 
-A hitelkockázat-értékelés összetett probléma, de az útmutató kedvéért leegyszerűsítjük egy kicsit. Ezután ezt példaként használjuk annak bemutatására, hogyan hozható létre prediktív elemzési megoldás a Microsoft Azure Machine Learning segítségével. Ehhez az Azure Machine Learning Studiót és egy Machine Learning-webszolgáltatást használunk majd.  
+A hitelkockázat-értékelés összetett probléma, de az útmutató kedvéért leegyszerűsítjük egy kicsit. Ezután ezt példaként használjuk annak bemutatására, hogyan hozható létre prediktív elemzési megoldás a Microsoft Azure Machine Learning segítségével. toodo az Azure Machine Learning Studio és a gépi tanulás webszolgáltatás használjuk.  
 
-## <a name="the-solution"></a>A megoldás
+## <a name="hello-solution"></a>hello megoldás
 
-Ebben a részletes útmutatóban nyilvánosan elérhető hitelkockázati adatokkal fogunk dolgozni, amelyek alapján kifejlesztünk és betanítunk egy prediktív modellt. Ezután üzembe helyezzük a modellt webszolgáltatásként, hogy mások is használhassák hitelkockázat-értékeléshez.
+Ebben a részletes útmutatóban nyilvánosan elérhető hitelkockázati adatokkal fogunk dolgozni, amelyek alapján kifejlesztünk és betanítunk egy prediktív modellt. Ezután azt modell rendszerbe állítása hello webszolgáltatásként, használat mások számára a hitelkockázat értékelésére.
 
-A hitelkockázat-értékelési megoldás létrehozásához az alábbi lépéseket fogjuk követni:  
+toocreate a hitelkockázat-értékelési megoldás, hogy kövesse az alábbi lépéseket:  
 
 1. [Machine Learning-munkaterület létrehozása](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [Meglévő adatok feltöltése](machine-learning-walkthrough-2-upload-data.md)
 3. [Kísérlet létrehozása](machine-learning-walkthrough-3-create-new-experiment.md)
-4. [A modellek betanítása és kiértékelése](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [A webszolgáltatás üzembe helyezése](machine-learning-walkthrough-5-publish-web-service.md)
-6. [Hozzáférés a webszolgáltatáshoz](machine-learning-walkthrough-6-access-web-service.md)
+4. [Betanítása és kiértékelése hello modellek](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [Hello webszolgáltatás telepítése](machine-learning-walkthrough-5-publish-web-service.md)
+6. [Hello webes szolgáltatás](machine-learning-walkthrough-6-access-web-service.md)
 
 > [!TIP] 
-> Az ebben az útmutatóban kifejlesztett kísérlet működő példányát megtalálja a [Cortana Intelligence Galleryben](https://gallery.cortanaintelligence.com). Lépjen **[a hitelkockázat előrejelzésével kapcsolatos útmutatóra](https://gallery.cortanaintelligence.com/Experiment/Walkthrough-Credit-risk-prediction-1)**, és kattintson az **Open in Studio** (Megnyitás a Studióban) lehetőségre a kísérlet egy példányának a Machine Learning Studio-munkaterületre való letöltéséhez.
+> Ez a forgatókönyv a hello hello kísérlet, amely azt fejlesztése a működő példány található [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com). Nyissa meg túl**[forgatókönyv - jóváírási kockázat előrejelzés](https://gallery.cortanaintelligence.com/Experiment/Walkthrough-Credit-risk-prediction-1)**  kattintson **Megnyitás a Studióban** toodownload hello kísérletben a Machine Learning Studio munkaterületre másolatát.
 > 
-> Ez az útmutató [a hitelkockázat bináris osztályozás útján való előrejelzésével](http://go.microsoft.com/fwlink/?LinkID=525270) kapcsolatos mintakísérlet egyszerűsített verzióján alapul, amely szintén a [Galleryben](http://gallery.cortanaintelligence.com/) érhető el.
+> Ez a forgatókönyv hello mintakísérletet, egyszerűsített verzióján alapul [bináris osztályozás: Credit kockázat előrejelzés](http://go.microsoft.com/fwlink/?LinkID=525270)hello is elérhető, [gyűjtemény](http://gallery.cortanaintelligence.com/).

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Media Services kapcsolatos gyakori kérdések |} Microsoft Docs"
+title: "Gyakori kérdések a Media Services aaaAzure |} Microsoft Docs"
 description: "Gyakori kérdések (GYIK)"
 services: media-services
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: 48f3924d44a084d61c1d38002cd5098094001acb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6d48a5c1291f3c2559d8445921d571718d0a0a6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="frequently-asked-questions"></a>Gyakori kérdések
 
-Ez a cikk foglalkozik az Azure Media Services (AMS) felhasználói Közösség által kiváltott gyakran ismételt kérdések.
+Ez a cikk foglalkozik hello Azure Media Services (AMS) felhasználói Közösség által kiváltott gyakran ismételt kérdések.
 
 ## <a name="general-ams-faqs"></a>Általános AMS – gyakori kérdések
 K: hogyan, méretezhető, indexelő?
 
-V: a fenntartott egységek esetén azonosak kódolás és indexelő feladat. Kövesse az utasításokat [méretezési kódoláshoz fenntartott egységek hogyan](media-services-scale-media-processing-overview.md). **Megjegyzés:** , hogy az indexelő teljesítmény nem érinti a fenntartott egység típusát.
+V: hello szolgáltatás számára fenntartott egység vannak hello azonos kódolás és indexelési feladatok. Kövesse az utasításokat [hogyan tooScale kódoláshoz fenntartott egységek](media-services-scale-media-processing-overview.md). **Megjegyzés:** , hogy az indexelő teljesítmény nem érinti a fenntartott egység típusát.
 
-K: I feltöltött, kódolt és videó közzé. Mi lehet a következő okból: a videó nem tölt meg adatfolyamként való?
+K: I feltöltött, kódolt és videó közzé. Mi lehet hello OK hello videó nem tölt meg toostream azt?
 
-A leggyakoribb okai egy A:, nem rendelkezik a streamvégpontra, amelyről kívánt lejátszását a **futtató** állapotát.  
+V: egyik leggyakoribb oka, nem rendelkezik, amelyből a hello tooplayback kívánt streamvégpontra hello hello **futtató** állapotát.  
 
 K: feladatokat lehet elvégezni egy élő adatfolyam összeállítás?
 
-A: az élő adatfolyamok összeállítás jelenleg nem érhető el Azure Media Services, így előre állítható össze a számítógépen kell.
+A: az élő adatfolyamok összeállítás jelenleg nem érhető el Azure Media Services, ezért létre kell toopre-állítható össze a számítógépen.
 
 K: használhatok Azure CDN élő adatfolyam-továbbítási?
 
-V: Media Services támogatja az Azure CDN integrációja (további információkért lásd: [adatfolyam-továbbítási végpontok kezelése egy Media Services-fiók hogyan](media-services-portal-manage-streaming-endpoints.md)).  Live streaming CDN is használhatja. Az Azure Media Services Smooth Streaming, HLS és MPEG-DASH kimenetek biztosít. Ezek a formátumok adatok átvitele a HTTP Protokollt használja, és a HTTP-gyorsítótárazás előnyök. Élő adatfolyam tényleges videó/hang adatok felosztásának a töredékeket, és az egyes töredék beolvasása gyorsítótárazza a CDN. Csak adattárolási igényeinek frissíteni kell az jegyzék adatai. CDN rendszeresen frissülnek a jegyzék adatokat.
+V: Media Services támogatja az Azure CDN integrációja (további információkért lásd: [hogyan tooManage adatfolyam-továbbítási végpontok Media Services-fiók](media-services-portal-manage-streaming-endpoints.md)).  Live streaming CDN is használhatja. Az Azure Media Services Smooth Streaming, HLS és MPEG-DASH kimenetek biztosít. Ezek a formátumok adatok átvitele a HTTP Protokollt használja, és a HTTP-gyorsítótárazás előnyök. Az élő adatfolyam tényleges videó/hang osztott toofragments és az egyes töredék beolvasása gyorsítótárazza a CDN. Csak adatok igényeinek toobe frissíteni az hello jegyzék adatai. CDN rendszeresen frissülnek a jegyzék adatokat.
 
 K: Does Azure Media services támogatja a tárolni lemezképeket?
 
-A:, ha most szeretne JPEG vagy PNG lemezképeket menteni, azokat az Azure Blob Storage legyen. Nincs a abba a Media Services-fiók kivéve, ha meg szeretné tartani ezeket a videó vagy a hang eszközök társított előnye. Vagy előfordulhat, hogy a képek használják a videókódoló az átfedések kell. Media Encoder Standard felirataként Képek videók felett, és, hogy mi felsorolja JPEG és PNG támogatott formátumok bemeneti. További információkért lásd: [létrehozása átfedések](media-services-advanced-encoding-with-mes.md#overlay).
+V: Ha csupán toostore JPEG vagy PNG-fájlok, az Azure Blob Storage legyen. Nincs juttatás tooputting őket a Media Services fiók, kivéve, ha azt szeretné, hogy azokat a videó vagy a hang eszközök társított tookeep van. Vagy ha lehetséges, hogy a szükséges toouse hello lemezképek, a hello videókódoló átfedések. Media Encoder Standard felirataként Képek videók felett, és, hogy mi felsorolja JPEG és PNG támogatott formátumok bemeneti. További információkért lásd: [létrehozása átfedések](media-services-advanced-encoding-with-mes.md#overlay).
 
-K: Hogyan tudom átmásolhatja eszközök egy Media Services-fiók egy másikra.
+K: hogyan tudja másolni a Media Services-fiók egy tooanother eszközök.
 
-V: eszközök másolhat egy Media Services-fiók egy másikra történő a .NET, használatával [IAsset.Copy](https://github.com/Azure/azure-sdk-for-media-services-extensions/blob/dev/MediaServices.Client.Extensions/IAssetExtensions.cs#L354) kiterjesztésmetódus érhető el a [Azure Media Services .NET SDK-bővítmények](https://github.com/Azure/azure-sdk-for-media-services-extensions/) tárházba. További információkért lásd: [ez](https://social.msdn.microsoft.com/Forums/azure/28912d5d-6733-41c1-b27d-5d5dff2695ca/migrate-media-services-across-subscription?forum=MediaServices) fórum szál.
+A: a Media Services-fiók egy tooanother használata a .NET, toocopy eszközök használata [IAsset.Copy](https://github.com/Azure/azure-sdk-for-media-services-extensions/blob/dev/MediaServices.Client.Extensions/IAssetExtensions.cs#L354) hello elérhető kiterjesztésmetódus [Azure Media Services .NET SDK-bővítmények](https://github.com/Azure/azure-sdk-for-media-services-extensions/) tárházba. További információkért lásd: [ez](https://social.msdn.microsoft.com/Forums/azure/28912d5d-6733-41c1-b27d-5d5dff2695ca/migrate-media-services-across-subscription?forum=MediaServices) fórum szál.
 
-K: Mik azok a fájlok elnevezési az AMS használatakor a támogatott karakterekből álló?
+K: milyen hello támogatott karaktereket az AMS használatakor a fájlok elnevezési?
 
-V: Media Services a IAssetFile.Name tulajdonság értékét használja, amikor az adatfolyam-tartalmak (például http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) a URL-címek kiépítéséhez Emiatt százalék-kódolás nem engedélyezett. Értékét a **neve** tulajdonság nem lehet a következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." a fájlnévkiterjesztés.
+V: Media Services hello hello IAssetFile.Name tulajdonság értékének használja, amikor a hello adatfolyam-tartalmat (például http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) URL-címek kiépítéséhez Emiatt százalék-kódolás nem engedélyezett. hello értékének hello **neve** tulajdonság nem lehet hello következő [százalék kódolás-fenntartott karakterek](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters):! *' ();: @& = + $, /? % # [] ". Emellett csak lehet egy "." hello fájlnévkiterjesztés.
 
-K: hogyan csatlakozzon a többi használatával?
+K: hogyan tooconnect használatával REST?
 
-V: információ az AMS API-hoz kapcsolódáshoz: [elérni az Azure Media Services API-t az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). Sikeresen csatlakoztassa a https://media.windows.net, adja meg egy másik Media Services URI 301 átirányítást fog kapni. Meg kell nyitnia az új URI későbbi hívásokat. 
+V: kapcsolatos információk hogyan tooconnect toohello AMS API-ról: [hozzáférés hello Azure Media Services API az Azure AD-alapú hitelesítés](media-services-use-aad-auth-to-access-ams-api.md). Toohttps://media.windows.net sikeres csatlakozás után kapni fog egy másik Media Services URI megadása 301 átirányítást. Meg kell nyitnia a további hívások toohello új URI. 
 
-K: hogyan lehet videó elforgatása a kódolási során.
+K: hogyan lehet videó elforgatása hello kódolási folyamat során.
 
-Válasz: a [Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md) elforgatási szög által 90/180 vagy 270 támogatja. Az alapértelmezett viselkedés az "Auto", ha megkísérli a Elforgatás metaadatok észlelése a bejövő MP4/MOV fájlban, és ellensúlyozza a azt. Adja meg a következőket **források** elemben, amely a megadott json-készletek egyikét [Itt](media-services-mes-presets-overview.md):
+V: hello [Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md) elforgatási szög által 90/180 vagy 270 támogatja. hello alapértelmezés lesz az "Auto", ahol az megpróbál toodetect hello Elforgatás metaadatok hello bejövő MP4/MOV fájlban, és ellensúlyozza a azt. Adja meg a következőket hello **források** elem tooone hello json készleteket definiált [Itt](media-services-mes-presets-overview.md):
 
     "Version": 1.0,
     "Sources": [

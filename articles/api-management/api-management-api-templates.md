@@ -1,6 +1,6 @@
 ---
-title: API-sablonok az Azure API Management |} Microsoft Docs
-description: "Ismerje meg, hogyan szabhatja testre a fejlesztői portálra az Azure API Management az API-lapok tartalmát."
+title: az Azure API Management aaaAPI sablonok |} Microsoft Docs
+description: "Ismerje meg, hogyan toocustomize hello hello developer portálon az Azure API Management hello API lapok tartalmát."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 3802868470f0f74cd1f895a00195259861ea16f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fdfa76167cfaf3b23b22d6321904f34da077fecb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-templates-in-azure-api-management"></a>API-sablonok az Azure API Management
-Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.  
+Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.  
   
- Ebben a szakaszban a sablonok lehetővé teszi a tartalom a fejlesztői portálra API oldalak testreszabásához.  
+ Ebben a szakaszban hello sablonok lehetővé teszik hello API lapok tartalmát toocustomize hello hello developer portálon.  
   
 -   [API-lista](#APIList)  
 -   [Művelet](#Product)  
@@ -38,10 +38,10 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
     -   [Ruby](#Ruby)  
 
 > [!NOTE]
->  Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat. Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat. A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt. Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg. A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="APIList"></a>API-lista  
- A **API lista** sablon lehetővé teszi az API-lista lap a fejlesztői portálra törzsében testreszabását.  
+ Hello **API lista** sablon teszi hello API lista lap toocustomize hello törzsében hello developer portálon.  
   
  ![Fejlesztői portál API lista](./media/api-management-api-templates/APIM-Developer-Portal-Templates-API-List.png "APIM fejlesztői portál API sablonlista")  
   
@@ -76,7 +76,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- A `API list` sablon előfordulhat, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Hello `API list` sablon használhat hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [lapozófájl-vezérlő](api-management-page-controls.md#paging-control)  
   
@@ -86,7 +86,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|API-k|A gyűjtemény [API-összefoglalót](api-management-template-data-model-reference.md#APISummary) entitásokat.|Az API-kat az aktuális felhasználó számára látható.|  
+|API-k|A gyűjtemény [API-összefoglalót](api-management-template-data-model-reference.md#APISummary) entitásokat.|hello API-k látható toohello aktuális felhasználó.|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -109,7 +109,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="Product"></a>Művelet  
- A **művelet** sablon lehetővé teszi a fejlesztői portálra a művelet lap törzsében testreszabását.  
+ Hello **művelet** sablon teszi hello művelet lap toocustomize hello törzsében hello developer portálon.  
   
  ![Fejlesztői portálon művelet lap](./media/api-management-api-templates/APIM-Developer-Portal-templates-Operation-page.png "APIM fejlesztői portálján sablonok művelet lap")  
   
@@ -335,21 +335,21 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- A `Operation` sablon nem teszi lehetővé a használata [vezérlők lapon](api-management-page-controls.md).  
+ Hello `Operation` sablon nem teszi lehetővé a hello használata [vezérlők lapon](api-management-page-controls.md).  
   
 ### <a name="data-model"></a>Adatmodell  
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|apiId|Karakterlánc|A jelenlegi API azonosítója.|  
-|APINÉV|Karakterlánc|Az API neve.|  
-|apiDescription|Karakterlánc|Az API leírása.|  
-|api-t|[API-összefoglalót](api-management-template-data-model-reference.md#APISummary) entitás.|Az aktuális API-t.|  
-|művelet|[Művelet](api-management-template-data-model-reference.md#Operation)|A megjelenített műveletet.|  
-|sampleUrl|Karakterlánc|Az aktuális művelet URL-CÍMÉT.|  
+|apiId|Karakterlánc|hello aktuális API hello azonosítója.|  
+|APINÉV|Karakterlánc|hello API hello neve.|  
+|apiDescription|Karakterlánc|Hello API leírása.|  
+|api-t|[API-összefoglalót](api-management-template-data-model-reference.md#APISummary) entitás.|hello aktuális API.|  
+|művelet|[Művelet](api-management-template-data-model-reference.md#Operation)|hello jelenleg jelenik meg a műveletet.|  
+|sampleUrl|Karakterlánc|hello URL aktuális hello a művelethez.|  
 |operationMenu|[Művelet menü](api-management-template-data-model-reference.md#Menu)|Ez az API műveletek menü.|  
-|consoleUrl|URI|Az URI-Azonosítóját a **kipróbálás** gombra.|  
-|Minták|A gyűjtemény [kódminta](api-management-template-data-model-reference.md#Sample) entitásokat.|Az aktuális művelet mintakódjainak megtekintése...|  
+|consoleUrl|URI|a hello URI hello **kipróbálás** gombra.|  
+|Minták|A gyűjtemény [kódminta](api-management-template-data-model-reference.md#Sample) entitásokat.|a Kódminták hello hello aktuális művelet...|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -376,7 +376,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -456,7 +456,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -480,7 +480,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -504,7 +504,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -528,7 +528,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -552,7 +552,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -576,7 +576,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -600,7 +600,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -624,7 +624,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
             "headers": [  
                 {  
                     "name": "Ocp-Apim-Subscription-Key",  
-                    "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+                    "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
                     "value": "{subscription key}",  
                     "typeName": "string",  
                     "options": null,  
@@ -639,7 +639,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="CodeSamples"></a>Kódminták  
- Az alábbi sablonok testreszabása a szervezet a művelet lapon egyedi mintakódok teszik lehetővé.  
+ hello alábbi sablonok segítségével toocustomize hello törzsének hello egyedi mintakódok hello művelet lapon.  
   
  ![Fejlesztői portálon sablonok mintakódok](./media/api-management-api-templates/APIM-Developer-Portal-Templates-Code-samples.png "APIM Developer portálon sablonok mintakódok")  
   
@@ -660,7 +660,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 -   [Ruby](#Ruby)  
   
 ###  <a name="Curl"></a>Curl  
- A **DocumentationSamplesCurl** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesCurl** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -678,7 +678,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -700,7 +700,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -713,7 +713,7 @@ curl -v -X {{method}} "{{scheme}}://{{host}}{{path}}{{query | escape }}"
 ```  
   
 ###  <a name="CSharp"></a>C#  
- A **DocumentationSamplesCsharp** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesCsharp** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -731,7 +731,7 @@ namespace CSHttpClientSample
         static void Main()  
         {  
             MakeRequest();  
-            Console.WriteLine("Hit ENTER to exit...");  
+            Console.WriteLine("Hit ENTER tooexit...");  
             Console.ReadLine();  
         }  
   
@@ -857,7 +857,7 @@ namespace CSHttpClientSample
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -879,7 +879,7 @@ namespace CSHttpClientSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -892,12 +892,12 @@ namespace CSHttpClientSample
 ```  
   
 ###  <a name="Stub"></a>Java  
- A **DocumentationSamplesJava** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesJava** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
 ```xml  
-// // This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// // This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 import java.net.URI;  
 import org.apache.http.HttpEntity;  
 import org.apache.http.HttpResponse;  
@@ -953,7 +953,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -975,7 +975,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -988,7 +988,7 @@ public class JavaSample
 ```  
   
 ###  <a name="JavaScript"></a>JavaScript  
- A **DocumentationSamplesJs** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesJs** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -1042,7 +1042,7 @@ public class JavaSample
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -1064,7 +1064,7 @@ public class JavaSample
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1077,7 +1077,7 @@ public class JavaSample
 ```  
   
 ###  <a name="ObjectiveC"></a>Az Objective C  
- A **DocumentationSamplesObjc** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesObjc** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -1154,7 +1154,7 @@ int main(int argc, const char * argv[])
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -1176,7 +1176,7 @@ int main(int argc, const char * argv[])
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1189,13 +1189,13 @@ int main(int argc, const char * argv[])
 ```  
   
 ###  <a name="PHP"></a>A PHP  
- A **DocumentationSamplesPhp** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesPhp** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
 ```xml  
 <?php  
-// This sample uses the Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
+// This sample uses hello Apache HTTP client from HTTP Components (http://hc.apache.org/httpcomponents-client-ga/)  
 require_once 'HTTP/Request2.php';  
   
 $request = new Http_Request2('{{scheme}}://{{host}}{{path}}');  
@@ -1244,7 +1244,7 @@ catch (HttpException $ex)
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -1266,7 +1266,7 @@ catch (HttpException $ex)
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1279,7 +1279,7 @@ catch (HttpException $ex)
 ```  
   
 ###  <a name="Python"></a>Python  
- A **DocumentationSamplesPython** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesPython** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -1362,7 +1362,7 @@ except Exception as e:
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -1384,7 +1384,7 @@ except Exception as e:
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1397,7 +1397,7 @@ except Exception as e:
 ```  
   
 ###  <a name="Ruby"></a>Ruby  
- A **DocumentationSamplesRuby** sablon lehetővé teszi, hogy a művelet lapon kód minták szakaszában kódminta testreszabását.  
+ Hello **DocumentationSamplesRuby** sablon lehetővé teszi, hogy a kód a minta hello kód minták hello művelet lap részében toocustomize.  
   
 #### <a name="default-template"></a>Alapértelmezett sablon  
   
@@ -1433,7 +1433,7 @@ puts response.body
 ```  
   
 #### <a name="controls"></a>Vezérlők  
- A kód a minta-sablonok nem teszik lehetővé az használni [vezérlők lapon](api-management-page-controls.md).  
+ hello kód a minta-sablonok nem hello használatának engedélyezése a [vezérlők lapon](api-management-page-controls.md).  
   
 #### <a name="data-model"></a>Adatmodell  
  [Kódminta](api-management-template-data-model-reference.md#Sample) entitás.  
@@ -1455,7 +1455,7 @@ puts response.body
     "headers": [  
         {  
             "name": "Ocp-Apim-Subscription-Key",  
-            "description": "Subscription key which provides access to this API. Found in your <a href='/developer'>Profile</a>.",  
+            "description": "Subscription key which provides access toothis API. Found in your <a href='/developer'>Profile</a>.",  
             "value": "{subscription key}",  
             "typeName": "string",  
             "options": null,  
@@ -1468,4 +1468,4 @@ puts response.body
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

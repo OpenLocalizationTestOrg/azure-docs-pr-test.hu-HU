@@ -16,5 +16,5 @@
 
 
 > [!WARNING] 
-> A külső gyártótól származó szoftverek Red Hat termékekre történő telepítése befolyásolhatja a Red Hat támogatási feltételeit. Tekintse meg a vonatkozó [cikket a Red Hat tudásbázisában](https://access.redhat.com/articles/1067).
+> A külső szoftvertelepítést Red Hat termékek hatással lehet a hello Red Hat támogatási feltételeit. Lásd: hello [Red Hat Tudásbázis következő cikke](https://access.redhat.com/articles/1067).
 >

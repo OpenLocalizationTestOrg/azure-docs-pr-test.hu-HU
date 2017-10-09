@@ -1,6 +1,6 @@
 ---
-title: "A HDInsight - Azure Hive repülési késleltetés adatok elemzése |} Microsoft Docs"
-description: "Útmutató a Hive használata a Linux-alapú HDInsight felé továbbított adatok elemzésére, majd exportálja az adatokat az SQL Database Sqoop használatával."
+title: "a HDInsight - Azure Hive aaaAnalyze repülési késleltetés adatok |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse tooanalyze felé továbbított adatok a Linux-alapú HDInsight Hive, majd exportálja hello adatok tooSQL adatbázis-Sqoop használatával."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,32 +16,32 @@ ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 8cdc19ac8a517b6d8eefabb5476a686aa252a332
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7830457a7100880dff1c647dde1b4d203bfea3c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>A Linux-alapú HDInsight Hive használatával repülési késleltetés adatok elemzése
 
-Útmutató a Hive használata a Linux-alapú HDInsight repülési késleltetés adatok elemzésére, majd exportálja az adatokat az Azure SQL Database Sqoop használatával.
+Ismerje meg, hogyan tooanalyze repülési késleltetés Hive használata a Linux-alapú HDInsight majd adatexportálás hello adatok tooAzure SQL-adatbázis Sqoop használatával.
 
 > [!IMPORTANT]
-> A jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> hello jelen dokumentumban leírt lépések egy HDInsight-fürt által használt Linux igényelnek. Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ### <a name="prerequisites"></a>Előfeltételek
 
 * **HDInsight-fürtök**. Lásd: [Hadoop használatának megkezdésében a Hive HDInsight Linux rendszeren](hdinsight-hadoop-linux-tutorial-get-started.md) vonatkozó lépéseket egy új Linux-alapú HDInsight-fürtöt hoz létre.
 
-* **Az Azure SQL adatbázis**. Azure SQL-adatbázis használata a cél-tárolóban. Ha egy SQL-adatbázis már nem rendelkezik, tekintse meg a [SQL Database oktatóanyag: SQL-adatbázis létrehozása percben](../sql-database/sql-database-get-started.md).
+* **Azure SQL Database** Azure SQL-adatbázis használata a cél-tárolóban. Ha egy SQL-adatbázis már nem rendelkezik, tekintse meg a [SQL Database oktatóanyag: SQL-adatbázis létrehozása percben](../sql-database/sql-database-get-started.md).
 
-* **Azure parancssori felület (CLI)**. Ha még nem telepítette az Azure parancssori felület, lásd: [telepítése és konfigurálása az Azure parancssori felület](../cli-install-nodejs.md) a további lépéseket.
+* **Azure parancssori felület (CLI)**. Ha még nem telepítette az Azure parancssori felület hello, lásd: [telepítése és konfigurálása az Azure parancssori felület hello](../cli-install-nodejs.md) a további lépéseket.
 
-## <a name="download-the-flight-data"></a>A felé továbbított adatok letöltése
+## <a name="download-hello-flight-data"></a>Hello felé továbbított adatok letöltése
 
-1. Keresse meg a [kutatási és innovatív technológia felügyeleti, iroda szállítására statisztikák][rita-website].
+1. Keresse meg a túl[kutatási és innovatív technológia felügyeleti, szállítására statisztika iroda][rita-website].
 
-2. A lapon válassza ki a következő értékeket:
+2. Hello lapon jelölje be a következő értékek hello:
 
    | Név | Érték |
    | --- | --- |
@@ -51,26 +51,26 @@ ms.lasthandoff: 08/03/2017
 
 3. Kattintson a **Letöltés** gombra.
 
-## <a name="upload-the-data"></a>Az adatok feltöltése
+## <a name="upload-hello-data"></a>Hello adatok feltöltése
 
-1. Az alábbi parancs segítségével a zip-fájl feltöltése a HDInsight fürt átjárócsomópontjába:
+1. A következő parancs tooupload hello zip fájlt toohello HDInsight fürt átjárócsomópontjába hello használata:
 
     ```
     scp FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
     ```
 
-    Cserélje le **Fájlnév** a zip-fájl nevével. Cserélje le **felhasználónév** a HDInsight-fürthöz az SSH-bejelentkezéskor. CLUSTERNAME cserélje le a HDInsight-fürt nevére.
+    Cserélje le **Fájlnév** hello nevű hello zip-fájl. Cserélje le **felhasználónév** hello SSH-bejelentkezéskor hello HDInsight-fürthöz. Cserélje le a FÜRTNÉV hello nevű hello HDInsight-fürt.
 
    > [!NOTE]
-   > Ha a jelszó segítségével hitelesíti az SSH-bejelentkezéskor, kéri a jelszót. A nyilvános kulcs használatakor esetleg használja a `-i` paraméter és a kapcsolódó titkos kulcs elérési útja. Például: `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`.
+   > A jelszó tooauthenticate használatakor az SSH-bejelentkezéskor kéri hello jelszót. Ha a használt nyilvános kulcsot, szükség lehet a toouse hello `-i` paraméter, és adja meg a hello elérési toohello titkos kulccsal. Például: `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`.
 
-2. Miután befejezte a feltöltést, csatlakozzon a fürthöz SSH használatával:
+2. Hello feltöltés befejezése után csatlakoztassa az SSH használatával toohello fürtöt:
 
     ```ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net```
 
     További információ: [Az SSH használata HDInsighttal](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-3. Miután csatlakozott, bontsa ki a .zip fájlt használja a következő:
+3. Miután csatlakozott, használja a következő toounzip hello .zip fájl hello:
 
     ```
     unzip FILENAME.zip
@@ -78,28 +78,28 @@ ms.lasthandoff: 08/03/2017
 
     Ez a parancs egy CSV-fájlt, amely körülbelül 60 MB bontja ki.
 
-4. Az alábbi parancs segítségével hozzon létre egy könyvtárat a HDInsight-tárolóba, majd másolja a fájlt a könyvtárba:
+4. HDInsight tároló parancs toocreate könyvtár következő hello használja, és másolja hello toohello könyvtára:
 
     ```
     hdfs dfs -mkdir -p /tutorials/flightdelays/data
     hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
     ```
 
-## <a name="create-and-run-the-hiveql"></a>Hozzon létre, és a HiveQL futtatása
+## <a name="create-and-run-hello-hiveql"></a>Hozzon létre és futtasson hello HiveQL
 
-Az alábbi lépések segítségével adatokat importálhat a CSV-fájl nevű Hive tábla **késések**.
+Az elnevezett Hive táblát használja hello alábbi lépéseit az hello CSV-fájlból tooimport adatok **késések**.
 
-1. A következő paranccsal hozhat létre és szerkeszthet egy új fájlt **flightdelays.hql**:
+1. Használjon hello következő toocreate parancsot, és egy új fájlt szerkesztése **flightdelays.hql**:
 
     ```
     nano flightdelays.hql
     ```
 
-    Ez a fájl tartalmát a következő szöveg használata:
+    Szöveg hello a fájl tartalmát, a következő hello használata:
 
     ```hiveql
     DROP TABLE delays_raw;
-    -- Creates an external table over the csv file
+    -- Creates an external table over hello csv file
     CREATE EXTERNAL TABLE delays_raw (
         YEAR string,
         FL_DATE string,
@@ -123,16 +123,16 @@ Az alábbi lépések segítségével adatokat importálhat a CSV-fájl nevű Hiv
         NAS_DELAY float,
         SECURITY_DELAY float,
         LATE_AIRCRAFT_DELAY float)
-    -- The following lines describe the format and location of the file
+    -- hello following lines describe hello format and location of hello file
     ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     STORED AS TEXTFILE
     LOCATION '/tutorials/flightdelays/data';
 
-    -- Drop the delays table if it exists
+    -- Drop hello delays table if it exists
     DROP TABLE delays;
-    -- Create the delays table and populate it with data
-    -- pulled in from the CSV file (via the external table defined previously)
+    -- Create hello delays table and populate it with data
+    -- pulled in from hello CSV file (via hello external table defined previously)
     CREATE TABLE delays AS
     SELECT YEAR AS year,
         FL_DATE AS flight_date,
@@ -157,24 +157,24 @@ Az alábbi lépések segítségével adatokat importálhat a CSV-fájl nevű Hiv
     FROM delays_raw;
     ```
 
-2. Mentse a fájlt, használja a **Ctrl + X**, majd **Y** .
+2. toosave hello fájl használata **Ctrl + X**, majd **Y** .
 
-3. Hive elindításához és a **flightdelays.hql** fájlt, a következő paranccsal:
+3. toostart struktúra és futtatási hello **flightdelays.hql** fájlt, a következő parancs hello használata:
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -f flightdelays.hql
     ```
 
    > [!NOTE]
-   > Ebben a példában `localhost` szolgál, mert a HDInsight-fürt, amely hiveserver2-n futtató átjárócsomópontjához csatlakozik.
+   > Ebben a példában `localhost` szolgál, mivel Ön hello HDInsight-fürt, amely hiveserver2-n futtató csatlakoztatott toohello átjárócsomópont.
 
-4. Egyszer a __flightdelays.hql__ parancsfájlt futtató befejeződik, nyisson meg egy interaktív Beeline-munkamenetet a következő paranccsal:
+4. Egyszer hello __flightdelays.hql__ parancsfájlt futtató befejeződik, használja hello következő parancsot egy interaktív Beeline munkamenet tooopen:
 
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
     ```
 
-5. Amikor megjelenik a `jdbc:hive2://localhost:10001/>` kérni, használja a következő lekérdezést adatok lekérése az importált repülési késleltetés adatokat.
+5. Amikor megjelenik a hello `jdbc:hive2://localhost:10001/>` kérni, használja a következő tooretrieve adatait importált hello repülési késleltetés adatokból hello.
 
     ```hiveql
     INSERT OVERWRITE DIRECTORY '/tutorials/flightdelays/output'
@@ -186,47 +186,47 @@ Az alábbi lépések segítségével adatokat importálhat a CSV-fájl nevű Hiv
     GROUP BY origin_city_name;
     ```
 
-    Ez a lekérdezés lekéri a várost, időjárási késést, az átlagos idő együtt, és mentse azt észlelt listáját `/tutorials/flightdelays/output`. Később a Sqoop beolvassa az adatokat a következő helyről, és exportálni onnan az Azure SQL Database.
+    Ez a lekérdezés lekéri a város, hogy a tapasztalt időjárási késéseket, valamint hello átlagos idő késleltetés, és mentse túl listáját`/tutorials/flightdelays/output`. Később Sqoop hello adatokat olvas a következő helyről, és exportálni onnan tooAzure SQL-adatbázis.
 
-6. Lépjen ki a Beeline, írja be a következőt `!quit` a parancssorba.
+6. Adja meg a tooexit Beeline, `!quit` hello a parancssorból.
 
 ## <a name="create-a-sql-database"></a>SQL-adatbázis létrehozása
 
-Ha már rendelkezik egy SQL-adatbázis, ha előbb telepítik azokra a kiszolgáló nevét. Megtalálhatja a kiszolgáló nevére a [Azure-portálon](https://portal.azure.com) kiválasztásával **SQL-adatbázisok**, és majd szűrését a használni kívánt adatbázis nevét. A kiszolgálónév szerepel a **SERVER** oszlop.
+Ha már rendelkezik egy SQL-adatbázis, ha előbb telepítik azokra a hello kiszolgáló nevét. Hello kiszolgálónév hello található [Azure-portálon](https://portal.azure.com) kiválasztásával **SQL-adatbázisok**, majd szűrést hello hello nevét az adatbázis-, és toouse kívánja. hello kiszolgálónév szerepel hello **SERVER** oszlop.
 
-Ha még nem rendelkezik SQL-adatbázis, olvassa el a [SQL Database oktatóanyag: SQL-adatbázis létrehozása percben](../sql-database/sql-database-get-started.md) kattintva létrehozhat egyet. Mentse a kiszolgáló nevét az adatbázis használatos.
+Ha még nem rendelkezik SQL-adatbázis, használja a hello adatokat [SQL Database oktatóanyag: SQL-adatbázis létrehozása percben](../sql-database/sql-database-get-started.md) toocreate egy. Mentse a hello adatbázis hello kiszolgálójának nevét.
 
 ## <a name="create-a-sql-database-table"></a>SQL-adatbázis tábla létrehozása
 
 > [!NOTE]
-> Számos módon csatlakozzon az SQL Database, és hozzon létre egy táblát. Az alábbi lépéseket használata [FreeTDS](http://www.freetds.org/) a a HDInsight-fürthöz.
+> Számos módon tooconnect tooSQL adatbázisban van, és hozzon létre egy táblát. a következő lépéseket használata hello [FreeTDS](http://www.freetds.org/) hello HDInsight-fürtök.
 
 
-1. Az SSH használata a Linux-alapú HDInsight-fürthöz való csatlakozáshoz, és futtassa a következő lépéseket az SSH-munkamenetből.
+1. SSH tooconnect toohello Linux-alapú HDInsight-fürtöt, és hello SSH-munkamenetből a lépéseket követve futtatási hello használata.
 
-2. A következő paranccsal telepítse FreeTDS:
+2. A következő parancs tooinstall FreeTDS hello használata:
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-3. A telepítés befejezése után a következő paranccsal az SQL Database-kiszolgálóhoz való kapcsolódáshoz. Cserélje le **kiszolgálónév** az SQL-adatbázis-kiszolgáló nevével. Cserélje le **adminLogin** és **adminPassword** SQL-adatbázis a bejelentkezéskor. Cserélje le **databaseName** az adatbázis nevével.
+3. Hello telepítés befejezése után használja a következő parancs tooconnect toohello SQL adatbázis-kiszolgáló hello. Cserélje le **kiszolgálónév** hello SQL adatbázis-kiszolgáló nevével. Cserélje le **adminLogin** és **adminPassword** hello bejelentkezéskor SQL-adatbázis. Cserélje le **databaseName** hello adatbázisnévvel.
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    A kimenet az alábbihoz hasonló jelenhet meg:
+    Kimeneti hasonló toohello a következő szöveg jelenik meg:
 
     ```
     locale is "en_US.UTF-8"
     locale charset is "UTF-8"
     using default charset "UTF-8"
-    Default database being set to sqooptest
+    Default database being set toosqooptest
     1>
     ```
 
-4. : A `1>` kéri, adja meg a következő sorokat:
+4. A hello `1>` kéri, adja meg az alábbi hello:
 
     ```
     CREATE TABLE [dbo].[delays](
@@ -237,60 +237,60 @@ Ha még nem rendelkezik SQL-adatbázis, olvassa el a [SQL Database oktatóanyag:
     GO
     ```
 
-    Ha a `GO` utasításban is meg kell adni, az előző utasítások kiértékelése. Ez a lekérdezés egy nevű táblát hoz létre **késések**, a fürtözött index.
+    Ha hello `GO` utasításban is meg kell adni, hello előző utasítás kiértékelése. Ez a lekérdezés egy nevű táblát hoz létre **késések**, a fürtözött index.
 
-    A következő lekérdezés segítségével győződjön meg arról, hogy a tábla jött létre:
+    A következő lekérdezés tooverify, amelyek a tábla hello használata hello jött létre:
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    A kimenet az alábbi szöveghez hasonló:
+    a kimeneti hello hasonló toohello a következő szöveget:
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     databaseName       dbo     delays      BASE TABLE
     ```
 
-5. Adja meg `exit` , a `1>` Rákérdezés a tsql segédprogram kilép.
+5. Adja meg `exit` : hello `1>` tooexit hello tsql segédprogram kérni.
 
 ## <a name="export-data-with-sqoop"></a>A Sqoop adatok exportálása
 
-1. A következő parancs használatával győződjön meg arról, hogy a Sqoop látja-e az SQL-adatbázis:
+1. A következő parancs tooverify, hogy a Sqoop látja-e az SQL-adatbázis hello használata:
 
     ```
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
     ```
 
-    Ez a parancs adatbázisok, beleértve a késést táblájának korábban létrehozott adatbázis listáját adja vissza.
+    Ez a parancs adatbázisok, többek között a hello adatbázis hello késések tábla a korábban létrehozott listáját adja vissza.
 
-2. Az alábbi parancs segítségével exportál adatokat az hivesampletable a mobiledata tábla:
+2. Használjon hello következő parancsot a hivesampletable toohello mobiledata tábla tooexport adatait:
 
     ```
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir '/tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
     ```
 
-    Sqoop a késést táblát tartalmazó adatbázishoz kapcsolódik, és adatokat exportál a `/tutorials/flightdelays/output` könyvtár késések táblához.
+    Sqoop hello késések tábla tartalmazó toohello adatbázis csatlakozik, valamint adatokat exportál hello `/tutorials/flightdelays/output` könyvtár toohello késések táblában.
 
-3. A parancs után használja a TSQL használatával adatbázishoz való kapcsolódáshoz a következőket:
+3. Hello parancs után használja a következő tooconnect toohello adatbázis TSQL használatával hello:
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
 
-    A csatlakozás után a következő utasítások használatával győződjön meg arról, hogy az adatok mobiledata táblához exportált:
+    A csatlakozás után használja a következő, hogy hello adatok volt-e az exportált toohello mobiledata table utasítások tooverify hello:
 
     ```
     SELECT * FROM delays
     GO
     ```
 
-    Meg kell jelennie a tábla adatainak listáját. Típus `exit` való kilépéshez a tsql segédprogramot.
+    Meg kell jelennie hello tábla listáját. Típus `exit` tooexit hello tsql segédprogram.
 
 ## <a id="nextsteps"></a> Következő lépések
 
-További részleteket a hdinsight adatokkal dolgozni, lásd: a következő dokumentumokat:
+toolearn további módszereket toowork adatokkal a Hdinsightban, lásd a következő dokumentumok hello:
 
 * [A Hive használata a HDInsightban][hdinsight-use-hive]
 * [Oozie használata a hdinsight eszközzel][hdinsight-use-oozie]

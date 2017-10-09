@@ -15,33 +15,33 @@ ms.devlang: gremlin
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: khdang
-ms.openlocfilehash: 27c4d945e418b130c68cfde845571eb93658101e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0be5c9b12cdba4a428c809d00e1e68785a9ec1ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-perform-graph-analytics-by-using-spark-and-apache-tinkerpop-gremlin"></a>Azure Cosmos DB: Graph elemzés végrehajtása a Spark és Apache TinkerPop Gremlin használatával
 
-[Az Azure Cosmos DB](introduction.md) Microsoft globálisan elosztott, több modellre adatbázis-szolgáltatás. Hozzon létre, és a dokumentum, a kulcs/érték és a graph-adatbázisok mindegyike kihasználhassa a globális terjesztési és vízszintes méretű képességek Azure Cosmos DB középpontjában lekérdezése. Az Azure Cosmos DB támogatja az online tranzakció-feldolgozási (OLTP) graph használó munkaterhelések [Apache TinkerPop Gremlin](graph-introduction.md).
+[Az Azure Cosmos DB](introduction.md) van globálisan elosztott, több modellre adatbázis-szolgáltatás a Microsoft hello. Hozzon létre, és a dokumentum, a kulcs/érték és a graph adatbázisok, amelyek kihasználhassa hello globális terjesztési és vízszintes méretű képességekről az Azure-Cosmos adatbázis hello core lekérdezése. Az Azure Cosmos DB támogatja az online tranzakció-feldolgozási (OLTP) graph használó munkaterhelések [Apache TinkerPop Gremlin](graph-introduction.md).
 
-[Spark](http://spark.apache.org/) Apache szoftver Foundation projekt, amely az általános célú online analitikus feldolgozási (OLAP) adatok feldolgozási összpontosít. Spark hibrid a memória vagy lemez-alapú elosztott számítási modellt biztosít a Hadoop-MapReduce-modell hasonló. A felhőbeli Apache Spark on segítségével telepíthet [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).
+[Spark](http://spark.apache.org/) Apache szoftver Foundation projekt, amely az általános célú online analitikus feldolgozási (OLAP) adatok feldolgozási összpontosít. Spark hibrid a memória vagy lemez-alapú elosztott számítási modellt biztosít, amely hasonló toohello Hadoop MapReduce modell. Az Apache Spark on hello felhő segítségével telepíthet [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-spark/).
 
-Azure Cosmos DB és Spark kombinálásával végezheti el az OLTP és OLAP munkaterhelések Gremlin használatakor. A gyors üzembe helyezési cikk bemutatja, hogyan Azure Cosmos DB Gremlin lekérdezéseinek futtatásához egy Azure HDInsight Spark-fürtön.
+Azure Cosmos DB és Spark kombinálásával végezheti el az OLTP és OLAP munkaterhelések Gremlin használatakor. Ez gyors üzembe helyezési a cikk bemutatja, hogyan toorun Gremlin lekérdezi szemben Azure Cosmos DB egy Azure HDInsight Spark-fürtön.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Mielőtt futtathatná ezt a mintát, rendelkeznie kell a következő előfeltételekkel:
+Ez a minta futtatásához, a következő előfeltételek hello kell rendelkeznie:
 * Az Azure HDInsight Spark-fürt 2.0
 * JDK 1.8 + (Ha még nem rendelkezik JDK, futtassa `apt-get install default-jdk`.)
 * Maven (Ha még nem rendelkezik Maven, `apt-get install maven`.)
 * Azure-előfizetés ([!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)])
 
-Egy Azure HDInsight Spark-fürt beállításával kapcsolatos információkért lásd: [kiépítés HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).
+További információ mentése az Azure HDInsight Spark-fürt tooset lásd [kiépítés HDInsight-fürtök](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md).
 
 ## <a name="create-an-azure-cosmos-db-database-account"></a>Egy Azure Cosmos DB adatbázisfiók létrehozása
 
-Először hozzon létre egy adatbázis-fiók a Graph API-t a következő módon:
+Először hozzon létre egy adatbázis-fiók hello Graph API hello következő tevékenységek végrehajtásával:
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
@@ -51,11 +51,11 @@ Először hozzon létre egy adatbázis-fiók a Graph API-t a következő módon:
 
 ## <a name="get-apache-tinkerpop"></a>Apache TinkerPop beolvasása
 
-Apache TinkerPop érhető el a következő módon:
+Töltse le az Apache TinkerPop hello következő tevékenységek végrehajtásával:
 
-1. A fő csomópontra a HDInsight-fürt távoli `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.
+1. Távoli toohello főcsomópont hello HDInsight-fürt `ssh tinkerpop3-cosmosdb-demo-ssh.azurehdinsight.net`.
 
-2. Klónozza a TinkerPop3 forráskódot, összeállítani, helyileg, és telepítse Maven-gyorsítótárba.
+2. Klónozza hello TinkerPop3 forráskódját, összeállítani, helyileg, és telepítse tooMaven gyorsítótár.
 
     ```bash
     git clone https://github.com/apache/tinkerpop.git
@@ -63,11 +63,11 @@ Apache TinkerPop érhető el a következő módon:
     mvn clean install
     ```
 
-3. A Spark-Gremlin beépülő modul telepítése 
+3. Hello Spark-Gremlin beépülő modul telepítése 
 
-    a. A telepítés, a beépülő modul szőlőmust kezeli. A tárolóhelyekkel kapcsolatos információi szőlőmust, hogy letölthesse a beépülő modult és annak függőségeit feltöltéséhez. 
+    a. hello beépülő modul telepítésének hello szőlőmust kezeli. Feltöltése szőlőmust hello adattárak adatait, hogy letölthesse hello beépülő modult és annak függőségeit. 
 
-      A szőlőmust konfigurációs fájl létrehozása, ha nincs jelen az `~/.groovy/grapeConfig.xml`. A következő beállításokkal:
+      Hello szőlőmust konfigurációs fájl létrehozása, ha nincs jelen az `~/.groovy/grapeConfig.xml`. A következő beállítások hello használata:
 
     ```xml
     <ivysettings>
@@ -91,7 +91,7 @@ Apache TinkerPop érhető el a következő módon:
 
     b. Indítsa el a Gremlin konzol `bin/gremlin.sh`.
         
-    c. A Spark-Gremlin beépülő modul telepítése verziójával 3.3.0-SNAPSHOT, amely az előző lépésben parancsfájlkezelő:
+    c. Hello Spark-Gremlin beépülő modul telepítése verziójával 3.3.0-SNAPSHOT, amely a korábbi lépésekben hello parancsfájlkezelő:
 
     ```bash
     $ bin/gremlin.sh
@@ -103,7 +103,7 @@ Apache TinkerPop érhető el a következő módon:
     plugin activated: tinkerpop.utilities
     plugin activated: tinkerpop.tinkergraph
     gremlin> :install org.apache.tinkerpop spark-gremlin 3.3.0-SNAPSHOT
-    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart the console to use [tinkerpop.spark]
+    ==>loaded: [org.apache.tinkerpop, spark-gremlin, 3.3.0-SNAPSHOT] - restart hello console toouse [tinkerpop.spark]
     gremlin> :q
     $ bin/gremlin.sh
 
@@ -117,17 +117,17 @@ Apache TinkerPop érhető el a következő módon:
     ==>tinkerpop.spark activated
     ```
 
-4. Ellenőrizze, hogy `Hadoop-Gremlin` , aktivált `:plugin list`. Ez a beépülő modul, mert azt sikerült zavarják a Spark-Gremlin beépülő modul letiltása `:plugin unuse tinkerpop.hadoop`.
+4. Ellenőrizze hogy toosee `Hadoop-Gremlin` , aktivált `:plugin list`. Ez a beépülő modul, mert azt sikerült zavarják a Spark-Gremlin hello beépülő modul letiltása `:plugin unuse tinkerpop.hadoop`.
 
 ## <a name="prepare-tinkerpop3-dependencies"></a>Készítse elő a TinkerPop3 függőségek
 
-Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes jar-függőség a célkönyvtár a Spark- és a Hadoop. Használja a JAR-fájlok, amelyek előre HDI együtt vannak telepítve, és lekéréses a további függőségek csak szükség szerint kivételével.
+Amikor hello előző lépésben a TinkerPop3 beépített, hello folyamat is lekért összes jar-függőség hello célkönyvtár a forráskönyvtárban a Spark- és a Hadoop. Hello JAR-fájlok kivételével, amely előre HDI együtt vannak telepítve, és lekéréses a további függőségek csak szükség szerint használja.
 
-1. Keresse fel a Gremlin konzol tároló könyvtár: `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`. 
+1. Nyissa meg toohello Gremlin konzol tároló könyvtár: `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone`. 
 
-2. Helyezze át az összes JAR-fájlok kivételével a `ext/` való `lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.
+2. Helyezze át az összes JAR-fájlok kivételével a `ext/` túl`lib/`: `find ext/ -name '*.jar' -exec mv {} lib/ \;`.
 
-3. Távolítsa el a szalagtárak jar összes `lib/` , amelyek nem a következők:
+3. Távolítsa el a szalagtárak jar összes `lib/` , hogy nem a hello következő listán:
 
     ```bash
     # TinkerPop3
@@ -174,13 +174,13 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     xml-apis-1.3.04.jar                        
     ```
 
-## <a name="get-the-azure-cosmos-db-spark-connector"></a>Az Azure Cosmos DB Spark-összekötő beolvasása
+## <a name="get-hello-azure-cosmos-db-spark-connector"></a>Hello Azure Cosmos DB Spark összekötő beolvasása
 
-1. Az Azure Cosmos DB Spark-összekötő beolvasása `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` és Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` a [Azure Cosmos DB Spark-összekötő a Githubon](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).
+1. Első hello Azure Cosmos DB Spark összekötő `azure-documentdb-spark-0.0.3-SNAPSHOT.jar` és Cosmos DB Java SDK `azure-documentdb-1.10.0.jar` a [Azure Cosmos DB Spark-összekötő a Githubon](https://github.com/Azure/azure-cosmosdb-spark/tree/master/releases/azure-cosmosdb-spark-0.0.3_2.0.2_2.11).
 
-2. Másik lehetőségként hozhat létre, helyileg. A Spark-Gremlin legújabb verzióját a következővel történt 1.6.1-es Spark, és nem kompatibilis a 2.0.2, Spark az Azure Cosmos DB Spark-összekötő jelenleg használt, mert a legújabb TinkerPop3 kód lefordításához, és manuálisan telepíti a JAR-fájlok kivételével. Tegye a következőket:
+2. Másik lehetőségként hozhat létre, helyileg. Mivel hello legújabb verzióját a Spark-Gremlin 1.6.1-es Spark a következővel történt, és nem kompatibilis a hello Azure Cosmos DB Spark Connector jelenleg használt 2.0.2, Spark hello legújabb TinkerPop3 kód létrehozhatja és manuális telepítése hello JAR-fájlok kivételével. A következő hello:
 
-    a. Az Azure Cosmos DB Spark-összekötő klónozását.
+    a. Hello Azure Cosmos DB Spark összekötő klónozását.
 
     b. Build TinkerPop3 (a korábbi lépésekben tette meg). Telepítse az összes TinkerPop 3.3.0-SNAPSHOT JAR-fájlok kivételével helyileg.
 
@@ -193,9 +193,9 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     mvn install:install-file -Dfile="tinkergraph-gremlin-3.3.0-SNAPSHOT.jar" -DgroupId=org.apache.tinkerpop -DartifactId=tinkergraph-gremlin -Dversion=3.3.0-SNAPSHOT -Dpackaging=jar`
     ```
 
-    c. Frissítés `tinkerpop.version` `azure-documentdb-spark/pom.xml` való `3.3.0-SNAPSHOT`.
+    c. Frissítés `tinkerpop.version` `azure-documentdb-spark/pom.xml` túl`3.3.0-SNAPSHOT`.
     
-    d. A Maven build. A szükséges JAR-fájlok kivételével kerülnek `target` és `target/alternateLocation`.
+    d. A Maven build. hello szükséges JAR-fájlok kivételével kerülnek `target` és `target/alternateLocation`.
 
     ```bash
     git clone https://github.com/Azure/azure-cosmosdb-spark.git
@@ -203,7 +203,7 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     mvn clean package
     ```
 
-3. Másolja a korábban említett JAR-fájlok kivételével egy helyi, ~ / azure-documentdb-spark:
+3. Másolás hello azt már korábban említettük JAR-fájlok kivételével tooa helyi könyvtárat ~ / azure-documentdb-spark:
 
     ```bash
     $ azure-documentdb-spark:
@@ -212,22 +212,22 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     cp target/alternateLocation/azure-documentdb-1.10.0.jar ~/azure-documentdb-spark
     ```
 
-## <a name="distribute-the-dependencies-to-the-spark-worker-nodes"></a>A Spark munkavégző csomópontokhoz függőségek terjesztése 
+## <a name="distribute-hello-dependencies-toohello-spark-worker-nodes"></a>Hello függőségek toohello Spark munkavégző csomópontokhoz terjesztése 
 
-1. Mivel az graph adatok átalakítása TinkerPop3 függ, el kell juttatnia minden Spark munkavégző csomópontokhoz kapcsolódó függőségek.
+1. Mivel Diagramadatok hello átalakítása TinkerPop3 függ, el kell juttatnia hello kapcsolódó függőségek tooall Spark munkavégző csomópontokhoz.
 
-2. Másolja a korábban említett Gremlin függőségek, a CosmosDB Spark összekötő jar és CosmosDB Java SDK a feldolgozó csomópontok a következő módon:
+2. Másolás hello azt már korábban említettük Gremlin függőségek, hello CosmosDB Spark összekötő jar és CosmosDB Java SDK toohello munkavégző csomópontokhoz hello következő tevékenységek végrehajtásával:
 
-    a. Másolja az összes a JAR-fájlok kivételével az `~/azure-documentdb-spark`.
+    a. Másolja az összes hello üveg `~/azure-documentdb-spark`.
 
     ```bash
     $ /home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone:
     cp lib/* ~/azure-documentdb-spark
     ```
 
-    b. A Spark feldolgozó csomópontjaihoz, amely az Ambari irányítópultján a listájának lekérdezése a `Spark2 Clients` listájában a `Spark2` szakasz.
+    b. Spark feldolgozó csomópontjaihoz, amely az hello az Ambari irányítópultján található hello listáját `Spark2 Clients` hello listájában `Spark2` szakasz.
 
-    c. A csomópontok másolja könyvtárhoz.
+    c. Másolja az adott könyvtár tooeach hello csomópontok.
 
     ```bash
     scp -r ~/azure-documentdb-spark sshuser@wn0-cosmos:/home/sshuser
@@ -235,19 +235,19 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     ...
     ```
     
-## <a name="set-up-the-environment-variables"></a>A környezeti változók beállítása
+## <a name="set-up-hello-environment-variables"></a>Hello környezeti változók beállítása
 
-1. A Spark-fürt HDP verziója található. A címtár-név alapján `/usr/hdp/` (például 2.5.4.2-7).
+1. Hello Spark-fürt hello HDP verziója található. Hello directory név alapján `/usr/hdp/` (például 2.5.4.2-7).
 
-2. Állítsa be az összes csomópont hdp.version. Ambari irányítópulton Ugrás **YARN szakasz** > **Configs** > **speciális**, majd tegye a következőket: 
+2. Állítsa be az összes csomópont hdp.version. Ambari irányítópult megtekintéséhez lépjen túl**YARN szakasz** > **Configs** > **speciális**, és ezután hello a következő: 
  
-    a. A `Custom yarn-site`, adja hozzá az új tulajdonság `hdp.version` a fő csomóponton levő HDP verzió értékét. 
+    a. A `Custom yarn-site`, adja hozzá az új tulajdonság `hdp.version` hello értékű hello HDP verzió hello fő csomóponton. 
      
-    b. A konfigurációk mentéséhez. Nincsenek figyelmeztetések, amely figyelmen kívül hagyhatja. 
+    b. Hello konfigurációk mentéséhez. Nincsenek figyelmeztetések, amely figyelmen kívül hagyhatja. 
      
-    c. Az értesítési ikonok jelzik, indítsa újra a YARN és az Oozie-szolgáltatás.
+    c. Hello YARN és az Oozie szolgáltatások újraindításának hello értesítési ikonok jelzik.
 
-3. Állítsa be az alábbi környezeti változókat a fő csomóponton (cserélje le az értékeket szükség szerint):
+3. Környezeti változók hello fő csomóponton (a név felülírandó hello értékeket szükség szerint) a következő set hello:
 
     ```bash
     export HADOOP_GREMLIN_LIBS=/home/sshuser/tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/ext/spark-gremlin/lib
@@ -256,9 +256,9 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     export HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
     ```
 
-## <a name="prepare-the-graph-configuration"></a>Készítse elő a graph-konfiguráció
+## <a name="prepare-hello-graph-configuration"></a>Hello graph konfigurációs előkészítése
 
-1. Egy konfigurációs fájl létrehozása az Azure Cosmos DB kapcsolódási paraméterek és a Spark-beállításokkal, és hogy a `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.
+1. Egy konfigurációs fájl létrehozása hello Azure Cosmos DB kapcsolódási paraméterek és beállítások Spark, és helyezze a `tinkerpop/gremlin-console/target/apache-tinkerpop-gremlin-console-3.3.0-SNAPSHOT-standalone/conf/hadoop/gremlin-spark.properties`.
 
     ```
     gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
@@ -278,7 +278,7 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
     gremlin.spark.persistContext=true
 
-    # Classpath for the driver and executors
+    # Classpath for hello driver and executors
     spark.driver.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     spark.executor.extraClassPath=/usr/hdp/current/spark2-client/jars/*:/home/sshuser/azure-documentdb-spark/*
     
@@ -294,9 +294,9 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     spark.documentdb.preferredRegions=FILLIN
     ```
 
-2. Frissítés a `spark.driver.extraClassPath` és `spark.executor.extraClassPath` tartalmazza a JAR-fájlok, amelyek ebben az esetben terjesztve az előző lépésben kivételével könyvtárának `/home/sshuser/azure-documentdb-spark/*`.
+2. Frissítés hello `spark.driver.extraClassPath` és `spark.executor.extraClassPath` tooinclude hello könyvtárában hello JAR-fájlok kivételével, amelyek ebben az esetben elosztott hello a korábbi lépésben `/home/sshuser/azure-documentdb-spark/*`.
 
-3. Azure Cosmos DB adja meg a következő adatokat:
+3. Adja meg a következő adatok az Azure Cosmos DB hello:
 
     ```
     spark.documentdb.Endpoint=https://FILLIN.documents.azure.com:443/
@@ -307,10 +307,10 @@ Ha az előző lépésben a TinkerPop3 beépített, a folyamat is lekért összes
     #spark.documentdb.preferredRegions=West\ US;West\ US\ 2
     ```
    
-## <a name="load-the-tinkerpop-graph-and-save-it-to-azure-cosmos-db"></a>A TinkerPop graph betölteni, és mentse azt az Azure Cosmos-Adatbázishoz
-Bemutatják, hogyan lehet egy grafikonon megőrizni az Azure Cosmos DB, ebben a példában a használja a TinkerPop TinkerPop modern graph előre definiált. A grafikon Kryo formátumban tárolja, és a TinkerPop tárház találhatók.
+## <a name="load-hello-tinkerpop-graph-and-save-it-tooazure-cosmos-db"></a>Hello TinkerPop graph betölteni, és mentse azt tooAzure Cosmos DB
+toodemonstrate hogyan toopersist be Azure Cosmos DB, ebben a példában használt hello TinkerPop grafikon előre definiált TinkerPop modern grafikon. hello graph Kryo formátumban tárolja, és hello TinkerPop tárház találhatók.
 
-1. Mert Gremlin YARN módban futnak, meg kell nyitnia a Diagramadatok a Hadoop-fájlrendszer érhető el. Az alábbi parancsokkal könyvtár és a helyi graph fájl másolása. 
+1. Mivel Gremlin YARN módban futtatja, meg kell nyitnia hello Diagramadatok hello Hadoop-fájlrendszer érhető el. Használjon hello következő parancsokat toomake könyvtár és hello helyi graph fájl másolása bele. 
 
     ```bash
     $ tinkerpop:
@@ -318,16 +318,16 @@ Bemutatják, hogyan lehet egy grafikonon megőrizni az Azure Cosmos DB, ebben a 
     hadoop fs -copyFromLocal ~/tinkerpop/data/tinkerpop-modern.kryo /graphData/tinkerpop-modern.kryo
     ```
 
-2. Ideiglenesen frissítése a `gremlin-spark.properties` használandó `GryoInputFormat` olvasni a diagramon. Is utalhat `inputLocation` a könyvtárként hoz létre, mint a következőket:
+2. Ideiglenesen frissítése hello `gremlin-spark.properties` toouse fájl `GryoInputFormat` tooread hello grafikon. Is utalhat `inputLocation` hello könyvtár hoz létre, mint hello következő:
 
     ```
     gremlin.hadoop.graphReader=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoInputFormat
     gremlin.hadoop.inputLocation=/graphData/tinkerpop-modern.kryo
     ```
 
-3. Indítsa el az Gremlin konzolját, és hozza létre az megőrizni az adatokat a konfigurált Azure Cosmos DB gyűjteményhez a következő számítási lépéseket:  
+3. Indítsa el Gremlin konzolt, és hozzon létre a következő számítási lépéseket toopersist toohello konfigurált Azure Cosmos DB adatgyűjtés hello:  
 
-    a. A grafikon létrehozása `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.
+    a. Hozzon létre hello graph `graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")`.
 
     b. Használja a SparkGraphComputer írásra `graph.compute(SparkGraphComputer.class).result(GraphComputer.ResultGraph.NEW).persist(GraphComputer.Persist.EDGES).program(TraversalVertexProgram.build().traversal(graph.traversal().withComputer(Computer.compute(SparkGraphComputer.class)),"gremlin-groovy","g.V()").create(graph)).submit().get()`.
 
@@ -346,25 +346,25 @@ Bemutatják, hogyan lehet egy grafikonon megőrizni az Azure Cosmos DB, ebben a 
     ==>result[hadoopgraph[documentdbinputrdd->documentdboutputrdd],memory[size:1]]
     ```
 
-4. Az adatkezelő ellenőrizheti, hogy az adatokat az Azure Cosmos Adatbázishoz nincs megőrizve.
+4. Data Explorer ellenőrizheti, hogy korábban már hello megőrzött tooAzure Cosmos DB.
 
-## <a name="load-the-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>A grafikon betöltése az Azure Cosmos-Adatbázisból, és Gremlin lekérdezések futtatása
+## <a name="load-hello-graph-from-azure-cosmos-db-and-run-gremlin-queries"></a>Hello graph betöltése az Azure Cosmos-Adatbázisból, és Gremlin lekérdezések futtatása
 
-1. A grafikon betöltéséhez szerkesztése `gremlin-spark.properties` beállítása `graphReader` való `DocumentDBInputRDD`:
+1. tooload hello graph-szerkesztése `gremlin-spark.properties` tooset `graphReader` túl`DocumentDBInputRDD`:
 
     ```
     gremlin.hadoop.graphReader=com.microsoft.azure.documentdb.spark.gremlin.DocumentDBInputRDD
     ```
 
-2. A grafikon betöltése, haladnak át az adatokat és Gremlin lekérdezéseket futtathat vele a következő módon:
+2. Betöltési hello diagramot, haladnak át hello adatok, lekérdezések és futtatása Gremlin vele hello következő tevékenységek végrehajtásával:
 
-    a. Indítsa el a Gremlin konzolt `bin/gremlin.sh`.
+    a. Indítsa el a hello Gremlin konzol `bin/gremlin.sh`.
 
-    b. Hozzon létre a diagramon a konfigurációs `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.
+    b. Hozzon létre hello graph hello konfigurációs `graph = GraphFactory.open('conf/hadoop/gremlin-spark.properties')`.
 
     c. Hozzon létre egy grafikonon átjárás SparkGraphComputer `g = graph.traversal().withComputer(SparkGraphComputer)`.
 
-    d. A következő Gremlin graph lekérdezések futtatása:
+    d. Futtassa a következő Gremlin graph lekérdezések hello:
 
     ```bash
     gremlin> graph = GraphFactory.open("conf/hadoop/gremlin-spark.properties")
@@ -397,11 +397,11 @@ Bemutatják, hogyan lehet egy grafikonon megőrizni az Azure Cosmos DB, ebben a 
     ```
 
 > [!NOTE]
-> Részletesebb naplózás, állítsa be a napló szintjén lévő `conf/log4j-console.properties` részletesebb szintjét.
+> toosee részletesebb naplózás, hello naplózási szintjének beállítása az `conf/log4j-console.properties` tooa részletesebb szintjét.
 >
 
 ## <a name="next-steps"></a>Következő lépések
 
-A gyors üzembe helyezési cikkben Azure Cosmos DB és Spark kombinálásával diagramjait munkavégzés hogy megismerte.
+A gyors üzembe helyezési cikkben hogy megismerte hogyan toowork rendelkező Azure Cosmos DB és Spark kombinálásával grafikonokon.
 
 > [!div class="nextstepaction"]

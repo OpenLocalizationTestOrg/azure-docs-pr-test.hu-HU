@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Storage biztonsági útmutatója |} Microsoft Docs"
-description: "A sok védelmének biztosítása az Azure Storage, beleértve többek között a Szerepalapú, Storage szolgáltatás titkosítási, ügyféloldali titkosítás, az SMB 3.0-s és Azure Disk Encryption adatokat."
+title: "aaaAzure tárolási biztonsági útmutatója |} Microsoft Docs"
+description: "Részletek sok védelmének biztosítása az Azure Storage, ideértve, de nem kizárólagosan tooRBAC, Storage szolgáltatás titkosítási, ügyféloldali titkosítás, az SMB 3.0-s és Azure Disk Encryption hello."
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -14,132 +14,132 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
-ms.openlocfilehash: 428dcaa8e842077936b7d9b9cb6ac639844c3961
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d406ff0d6b45c6107d0276ad9e65c331078ce792
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-security-guide"></a>Az Azure Storage biztonsági útmutató
 ## <a name="overview"></a>Áttekintés
-Az Azure Storage biztonsági képességeket, amelyek együtt lehetővé teszik a fejlesztők számára a biztonságos alkalmazások széles választékát nyújtja. A tárfiók magát a szerepköralapú hozzáférés-vezérlés és az Azure Active Directory használatával kell biztonságossá. Adatok védve legyenek az alkalmazás és az Azure közötti átvitel során használatával [ügyféloldali titkosítás](storage-client-side-encryption.md), HTTPS és SMB 3.0-s. Adatok automatikusan titkosítja a írni az Azure Storage használatával állítható be [Storage Service Encryption (SSE)](storage-service-encryption.md). Virtuális gépek által használt operációsrendszer- és adatlemezek titkosítja megadható [Azure Disk Encryption](../security/azure-security-disk-encryption.md). Meghatalmazott hozzáférést biztosít az adatok objektumok az Azure Storage használatával engedélyezhetők [megosztott hozzáférési aláírásokkal](storage-dotnet-shared-access-signature-part-1.md).
+Az Azure Storage a biztonságos alkalmazások toobuild biztonsági képességeket, amelyek együtt lehetővé teszik a fejlesztők széles választékát nyújtja. hello tárfiók magát a szerepköralapú hozzáférés-vezérlés és az Azure Active Directory használatával kell biztonságossá. Adatok védve legyenek az alkalmazás és az Azure közötti átvitel során használatával [ügyféloldali titkosítás](storage-client-side-encryption.md), HTTPS és SMB 3.0-s. Adatok állíthat be, automatikus a titkosítás írásakor toobe tooAzure használatával [Storage Service Encryption (SSE)](storage-service-encryption.md). Virtuális gépek által használt operációsrendszer- és adatlemezek beállítható használatával titkosított toobe [Azure Disk Encryption](../security/azure-security-disk-encryption.md). Delegált hozzáférést toohello adatobjektumainak az Azure Storage használatával engedélyezhetők [megosztott hozzáférési aláírásokkal](storage-dotnet-shared-access-signature-part-1.md).
 
-Ez a cikk nyújt áttekintést. az egyes szolgáltatások az Azure Storage használható. A hivatkozások akkor megadott cikket, amely az egyes szolgáltatások részleteit, egyszerűen tegye további vizsgálatra minden témakör.
+Ez a cikk nyújt áttekintést. az egyes szolgáltatások az Azure Storage használható. Egyes szolgáltatások részleteit, egyszerűen megteheti adják tooarticles hivatkozásokkal további vizsgálatra minden témakör.
 
-Az alábbiakban a témakörök Ez a cikk tárgyalja:
+Az alábbiakban a cikkben szereplő hello témakörök toobe:
 
 * [Felügyeleti Vezérlősík biztonsági](#management-plane-security) – a Tárfiók védelmének biztosítása
 
-  A felügyeleti vezérlősík a tárfiók kezelésére szolgáló erőforrások áll. Ebben a szakaszban lesz döntésről bővebben az Azure Resource Manager telepítési modell és a szerepköralapú hozzáférés-vezérlést (RBAC) használata a storage-fiókok való hozzáférés vezérlése érdekében. A tárfiókok kulcsait, és hogyan generálja újra őket kezelése is előadás.
-* [Adatok biztonsági sík](#data-plane-security) – az adatok hozzáférésének biztonságossá tétele
+  hello felügyeleti vezérlősík hello használt erőforrások toomanage áll a tárfiók. Ebben a szakaszban lesz döntésről bővebben hello Azure Resource Manager üzembe helyezési modellben, és hogyan férhetnek hozzá a toouse szerepköralapú hozzáférés-vezérlést (RBAC) toocontrol tooyour storage-fiókok. A tárfiók kulcsait kezelése is előadás és hogyan tooregenerate őket.
+* [Adatbiztonság Vezérlősík](#data-plane-security) – hozzáférés biztonságossá tétele tooYour adatok
 
-  Ebben a szakaszban megnézzük, amely hozzáférést biztosít a tényleges adatok objektumok tárfiókba blobok, fájlok, üzenetsorokat és táblákat, például megosztott hozzáférési aláírásokkal és hozzáférési házirendek tárolja. Bemutatjuk a szolgáltatásiszint-SAS és a fiók szintű SAS. Azt is megtudhatja, hogyan korlátozhatja az egy adott IP-cím (vagy az IP-címek), hogyan legyen korlátozva a HTTPS protokoll és egy közös hozzáférésű Jogosultságkód visszavonása lejár való várakozás nélkül.
+  Ebben a szakaszban megnézzük, hozzáférést toohello tényleges adatobjektumainak tárfiókba blobok, fájlok, üzenetsorokat és táblákat, például megosztott hozzáférési aláírásokkal és hozzáférési házirendek tárolja. Bemutatjuk a szolgáltatásiszint-SAS és a fiók szintű SAS. Is megtanulhatja, hogyan toolimit férnek hozzá az tooa adott IP-cím (vagy az IP-címek), hogyan toolimit hello protokoll tooHTTPS, és hogyan nem várja meg azt a közös hozzáférésű Jogosultságkód toorevoke tooexpire.
 * [Titkosítás az átvitel során](#encryption-in-transit)
 
-  Ez a szakasz tárgyalja biztosítani az adatokat, ha azt át virtuális gépbe vagy onnan Azure Storage. Ajánlott a HTTPS és a titkosítás, az Azure fájlmegosztások SMB 3.0 által használt használatáról lesz döntésről. Most elindítjuk ügyféloldali titkosítás, mely lehetővé teszi az adatok titkosítását az ügyfélalkalmazás továbbított a tárolóba és az adatok visszafejtéséhez után tárolási kivitt egy pillantást is.
+  Ez a szakasz ismerteti hogyan toosecure adatok átvitel során, vagy abból az Azure Storage. Lesz döntésről bővebben hello HTTPS és hello használja az Azure fájlmegosztások SMB 3.0-titkosítás ajánlott. Most elindítjuk egy pillantást ügyféloldali titkosítás, mely lehetővé teszi tooencrypt hello előtt a tároló ügyfél-alkalmazásokban, és toodecrypt hello adatok tárolási kivitt után is.
 * [Titkosítás inaktív állapotban](#encryption-at-rest)
 
-  Az előadás Storage Service Encryption (SSE), és hogyan engedélyezi azt egy tárfiókot, ami azt eredményezi, a blokkblobokat, lapblobokat, és hozzáfűző blobok Azure tárhelyen, ha az automatikusan titkosított. Hogyan használja az Azure Disk Encryption, és megismerkedhet az alapvető különbséget és az adatok titkosítása és SSE ügyféloldali titkosítás és esetek is fog keresni. Röviden: a FIPS előírásainak való megfelelést az USA fog keresni Kormánya számítógépek.
-* Használatával [tárolási analitika](#storage-analytics) az Azure Storage-hozzáférés naplózása
+  Az előadás Storage Service Encryption (SSE), és hogyan engedélyezi azt egy tárfiókot, ami azt eredményezi, a blokkblobokat, lapblobokat, és hozzáfűző blobok, automatikus a titkosítás, ha a tárolási tooAzure ír. Hogyan használja az Azure Disk Encryption és felfedezés hello alapvető különbséget és az adatok titkosítása és SSE ügyféloldali titkosítás és esetek is fog keresni. Röviden: a FIPS előírásainak való megfelelést az USA fog keresni Kormánya számítógépek.
+* Használatával [tárolási analitika](#storage-analytics) tooaudit hozzáférés az Azure Storage
 
-  Ez a szakasz ismerteti a storage analytics naplók megkeresése a kérelmek. Azt bemutatjuk vessen egy pillantást valós tárolási analitika naplóadatokat, lásd: how to megfejteni a behatolók, hogy a kérelem a Tárfiók hívóbetűjét, megosztott hozzáférési aláírással rendelkező vagy névtelenül, illetve hogy az sikeres vagy sikertelen volt.
+  Ez a szakasz ismerteti, hogyan naplózza az toofind információk hello storage Analytics egy kérelemre vonatkozóan. Azt fogja vessen egy pillantást valós tárolási analitika naplóadatokat, és tekintse meg, hogyan toodiscern, hogy a kérelem hello tárolási kulcsot, a közös hozzáférésű jogosultságkód fiókot, vagy névtelen, illetve hogy az sikeres vagy sikertelen volt.
 * [CORS használatával Fiókértékek ügyfelek engedélyezése](#Cross-Origin-Resource-Sharing-CORS)
 
-  Ez a szakasz beszél hogyan teszi lehetővé az eltérő eredetű erőforrások megosztása (CORS). Lesz döntésről bővebben a tartományok közötti elérést, és hogyan kezelje az Azure Storage épített CORS funkciókkal.
+  Ez a szakasz beszél hogyan tooallow eltérő eredetű erőforrások megosztása (CORS). Tartományok közötti elérést, és hogyan toohandle hello CORS képességek a beépített Azure Storage fogja döntésről.
 
 ## <a name="management-plane-security"></a>Felügyeleti Vezérlősík biztonsága
-A felügyeleti vezérlősík-műveletek hatása a tárfiók maga áll. Például akkor is hozzon létre vagy tárfiók törlése, storage-fiókok listájának beolvasása egy előfizetésben, lekérni a tárfiók kulcsait vagy újragenerálni a tárfiókkulcsokat.
+hello felügyeleti vezérlősík maga hello tárfiók-műveletek áll. Például akkor is hozzon létre vagy tárfiók törlése, storage-fiókok listájának beolvasása egy előfizetésben, hello tárfiókkulcsok beolvasni vagy hello tárfiókkulcsok újragenerálása.
 
-Amikor létrehoz egy új tárfiókot, akkor klasszikus és Resource Manager telepítési modell kiválasztása. Az Azure-erőforrások létrehozása a Klasszikus modell csak mindent hozzáférés az előfizetéshez, és a tárfiók viszont lehetővé teszi.
+Amikor létrehoz egy új tárfiókot, akkor klasszikus és Resource Manager telepítési modell kiválasztása. hello Klasszikus modell erőforrások létrehozása az Azure-ban csak lehetővé teszi, hogy mindent hozzáférés toohello előfizetés, és a tárfiók viszont hello.
 
-Ez az útmutató a Resource Manager modellt, amely az ajánlott módszert storage-fiókok létrehozására összpontosít. Az erőforrás-kezelő storage-fiókok, nem pedig az egész előfizetésre amely elérésére, és szabályozhatja a hozzáférést a szerepköralapú hozzáférés-vezérlést (RBAC) használata felügyeleti és több véges szinten.
+Ez az útmutató hello Resource Manager modellt, ami azt jelenti, hogy a storage-fiókok létrehozásához ajánlott hello összpontosít. Hello erőforrás-kezelő storage-fiókok, ahelyett, hogy teljes előfizetés amely hozzáférési toohello szabályozhatja a hozzáférést a szerepköralapú hozzáférés-vezérlést (RBAC) használatával több véges szintű toohello felügyeleti vezérlősík.
 
-### <a name="how-to-secure-your-storage-account-with-role-based-access-control-rbac"></a>A storage-fiókkal, és a szerepköralapú hozzáférés-vezérlést (RBAC) biztonságossá tétele
-Most szolgáltatással kapcsolatban RBAC van, és hogyan használhatja azt. Minden Azure-előfizetés Azure Active Directoryval rendelkezik. Felhasználók, csoportok és alkalmazások tartalmazza a hozzáférési engedélyt kapnak az Azure-előfizetés a Resource Manager üzembe helyezési modellel használó erőforrások kezelésére. A szerepköralapú hozzáférés-vezérlést (RBAC) nevezzük. A hozzáférés kezeléséhez használja a [Azure-portálon](https://portal.azure.com/), a [Azure CLI-eszközei](../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs), vagy a [Azure Storage erőforrás szolgáltató REST API-k](https://msdn.microsoft.com/library/azure/mt163683.aspx).
+### <a name="how-toosecure-your-storage-account-with-role-based-access-control-rbac"></a>Hogyan toosecure a tárolási fiók szerepköralapú hozzáférés-vezérlést (RBAC)
+Most szolgáltatással kapcsolatban RBAC van, és hogyan használhatja azt. Minden Azure-előfizetés Azure Active Directoryval rendelkezik. Felhasználók, csoportok és alkalmazások tartalmazza a toomanage az Azure-erőforrások hello Azure-előfizetés hello Resource Manager üzembe helyezési modellben használó engedélyezhetők. Ez a hivatkozott tooas szerepköralapú hozzáférés-vezérlést (RBAC). toomanage ez fér hozzá, használhatja a hello [Azure-portálon](https://portal.azure.com/), hello [Azure CLI-eszközei](../cli-install-nodejs.md), [PowerShell](/powershell/azureps-cmdlets-docs), vagy hello [Azure Storage erőforrás szolgáltató REST API-k ](https://msdn.microsoft.com/library/azure/mt163683.aspx).
 
-A Resource Manager modellt helyezett a tárfiók egy erőforrás-csoport és a vezérlés hozzáférés és azon az Azure Active Directoryval bizonyos tárolási fiók kezelése. Például biztosíthat bizonyos felhasználók a tárfiókok kulcsait, elérését, amíg más felhasználók megtekinthetik a tárfiók adatait, de nem tud hozzáférni a tárfiók kulcsait.
+Hello erőforrás-kezelő modellel helyezze hello tárfiók egy erőforrás csoport és a vezérlés hozzáférési toohello felügyeleti vezérlősík bizonyos tárolási fiók az Azure Active Directoryval. Például biztosíthat bizonyos felhasználók hello képességét tooaccess hello tárfiókok kulcsait, amíg más felhasználók hello tárfiók kapcsolatos információk is megtekinthetők, de nem hello tárfiókkulcsok.
 
 #### <a name="granting-access"></a>Hozzáférés biztosítása
-Hozzáférés a megfelelő RBAC szerepkört rendel a felhasználók, csoportok és alkalmazások, a megfelelő hatókörben. Az egész előfizetésre való hozzáférés biztosításához rendelhet hozzá egy szerepkört az előfizetés szintjén. Engedélyek megadása az erőforráscsoporthoz, maga szerint is engedélyezheti a hozzáférést az összes erőforrást erőforráscsoportban. Konkrét erőforrásokat, például a storage-fiókok rendelhet szerepköröket is.
+A hozzáférés hello megfelelő RBAC szerepkör toousers, csoportok és alkalmazások hello megfelelő hatókörben hozzárendelésével. toogrant hozzáférés toohello egész előfizetésre, hogy rendelhet hozzá egy szerepkört hello előfizetés szintjén. Hozzáférés tooall hello erőforrás egy erőforráscsoportban biztosíthat engedélyek toohello erőforráscsoport maga megadásával. Egyes szerepkörök toospecific erőforrások, például a storage-fiókok is hozzárendelhetők.
 
-Az alábbiakban a fő pontokat, meg kell ismernie az RBAC használata a kezelési műveletek, az Azure Storage-fiók eléréséhez:
+Az alábbiakban hello főbb pontjai, hogy kell-e tooknow RBAC tooaccess hello felügyeleti műveletek az Azure Storage-fiók használata:
 
-* Ha hozzáférés hozzárendelése alapvetően rendeljen hozzá egy szerepkört a fiók rendelkezik hozzáféréssel kívánt. Szabályozhatja a hozzáférést a tárolási fiók kezeléséhez használt műveleteket, de nem a data objects a fiókban. Például engedélyt adhat beolvasni a tulajdonságokat a tárfiók (például a redundancia érdekében), de nem a tároló vagy egy belül a Blob Storage tárolóban lévő adatok.
-* Mások számára, hogy rendelkezik hozzáféréssel a data objects a tárfiókban lévő őket engedélyt adhat a tárfiókkulcsokat olvasni, és, hogy a felhasználó használhatja ezeknek a kulcsoknak a BLOB, a várólisták, a táblák és a fájlok eléréséhez.
-* Szerepkörök rendelhetők hozzá egy adott felhasználói fiók, a felhasználók egy csoportját, vagy egy adott alkalmazáshoz.
-* Minden szerepkörhöz műveletek és a nem műveletek listáját. Például a virtuális gép közreműködő szerepkörrel rendelkezik "listKeys" művelet, amely lehetővé teszi, hogy a tárfiók kulcsait kell olvasni. A közreműködői "Nem műveletek" rendelkezik, ilyen például az Active Directory felhasználók hozzáférésének frissítés.
-* Tárolási szerepkörei tartalmazzák (azonban nem csak) a következő:
+* Ha hozzáférés hozzárendelése alapvetően egy szerepkör toohello fiókot, amelyet az toohave hozzáférés rendeljen hozzá. Megadhatja a hozzáférés toohello műveletek toomanage, hogy a tárfiókot, de nem toohello-adatobjektumok hello fiók. Például engedélyt adhat tooretrieve hello tulajdonságainak hello storage-fiók (például a redundancia érdekében), de nem tooa tároló vagy egy belül a Blob Storage tárolóban lévő adatok.
+* Mások toohave engedély tooaccess hello hello tárfiókban lévő adatokat objektumok átadhatja nekik engedély tooread hello tárfiókkulcsok és, hogy a felhasználó használhatja ezeket kulcsok tooaccess hello BLOB, a várólisták, a táblák és a fájlokat.
+* Szerepkörök rendelhetők hozzá tooa adott felhasználói fiók, a felhasználók vagy tooa az adott alkalmazást.
+* Minden szerepkörhöz műveletek és a nem műveletek listáját. Például a hello virtuális gép közreműködő szerepkört "listKeys" művelettel rendelkezik, amely lehetővé teszi, hogy hello tárolási fiók kulcsok toobe olvasni. hello közreműködői "Nem műveletek" van például hello Active Directory a felhasználók hozzáférésének hello frissítése.
+* Tárolási szerepkörei tartalmazzák (azonban nem csak) hello következő:
 
   * Tulajdonos – azok mindent felügyelhetnek, beleértve a hozzáférést.
-  * Közreműködő – azok is végrehajthat a tulajdonos is kivéve hozzáférés hozzárendelése. Ezzel a szerepkörrel rendelkező bármely személy megtekintheti, és a tárfiókkulcsok újragenerálása. A tárfiókok kulcsait, az adatok objektumok eléréséhez.
-  * Olvasó – akkor megtekintheti a titkos kulcsok kivételével a tárfiók adatait. Például ha valaki egy olvasási engedéllyel a tárfiók szerepkört rendel, akkor megtekintheti a storage-fiók tulajdonságait, de nem módosítja a tulajdonságokat és a tárfiók kulcsait megtekintése.
-  * Tárolási fiók közreműködői – kezelésére a tárfiók – elolvasása az előfizetés erőforráscsoportok és erőforrásokat, és hozzon létre és előfizetés erőforrás csoport központi telepítések felügyeletéhez szükséges. A tárfiókok kulcsait, ami viszont azt jelenti, hogy az adatok vezérlősík eléréséhez is eléréséhez.
-  * Felhasználói hozzáférés adminisztrátora – azok is felügyelheti a felhasználók hozzáférését a tárfiókhoz. Például hogy hozzáférést biztosíthat olvasó egy adott felhasználó.
-  * Virtuális gép közreműködő – kezelésére virtuális gépek, de nem a tárfiókot, amelyhez csatlakoznak. Ez a szerepkör is listázhatja a tárfiókok kulcsait, ami azt jelenti, hogy a felhasználó, akinek a szerepkör hozzárendelése frissítheti az adatok vezérlősík.
+  * Közreműködő – azok is végrehajthat hello tulajdonosa is, kivéve hozzáférés hozzárendelése. Ezzel a szerepkörrel rendelkező bármely személy megtekintheti és hello tárfiókkulcsok újragenerálása. Hello tárfiókok kulcsait, az hello adatobjektumainak eléréséhez.
+  * Olvasó – hello tárfiók, kivéve a titkos kulcsok adatait is megtekinthetik. Például ha egy szerepkör hello tárolási fiók toosomeone olvasási engedélyekkel rendelkező, hello tulajdonságok hello tárfiók is megtekinthetik, de nem hajtsa végre a módosításokat toohello tulajdonságok vagy hello tárfiókkulcsok megtekintése.
+  * Tárolási fiók közreműködői – kezelésére hello tárfiók – elolvasása hello előfizetés erőforráscsoportok és erőforrásokat, és hozzon létre és előfizetés erőforrás csoport központi telepítések felügyeletéhez szükséges. Hello tárfiókok kulcsait, ami viszont azt jelenti, hogy hozzáférhessenek a hello adatok vezérlősík is eléréséhez.
+  * Felhasználói hozzáférés adminisztrátora – általa kezelhető a felhasználói hozzáférés toohello tárfiók. Például azok olvasó hozzáférés tooa adott felhasználó megadásához.
+  * Virtuális gép közreműködő – kezelésére virtuális gépek, de nem hello tárolási fiók toowhich vannak csatlakoztatva. Ez a szerepkör készíthetünk hello tárfiókok kulcsait, ami azt jelenti, hogy ehhez a szerepkörhöz hozzárendelt felhasználói toowhom hello hello adatok vezérlősík frissítheti.
 
-    Ahhoz, hogy a felhasználót, hogy a virtuális gép létrehozása rendelkeznek a megfelelő VHD-fájlt létrehozni a tárfiók. Ehhez kell tudni lekérni a tárfiók hívóbetűjét, és adja át az API-t a virtuális gép létrehozása. Ezért ezek is listázhatja a tárfiókkulcsokat, ezzel az engedéllyel kell rendelkezniük.
-* Egyéni szerepkörök definiálása nem olyan funkció, amely lehetővé teszi a különböző műveleteket listájából elérhető Azure-erőforrások a végrehajtható műveletek összeállításához.
-* A felhasználó rendelkezik-e beállítása az Azure Active Directoryban előtt szerepkör rendelhet hozzájuk.
-* Ki megadott vagy visszavont milyen típusú hozzáférést és a akinek, és milyen hatókörben, a PowerShell vagy az Azure parancssori felület jelentést hozhat létre.
+    Ahhoz, hogy egy felhasználó toocreate egy virtuális gépet toobe képes toocreate hello megfelelő VHD-fájlt olyan tárfiókban rendelkeznek. toodo, hogy be kell toobe képes tooretrieve hello tárolási fiók kulcs, és adja át toohello API hello virtuális gép létrehozása. Ezért így azok készíthetünk hello tárfiókkulcsok ezzel az engedéllyel kell rendelkezniük.
+* hello képességét toodefine egyéni szerepkörök olyan szolgáltatás, amely lehetővé teszi a toocompose listájából az elérhető műveleteket, Azure-erőforrások hajtható végre műveletek egy csoportját.
+* hello beállítása az Azure Active Directoryban, mielőtt egy szerepkör toothem toobe van.
+* Hozzon létre egy jelentést, akik nyújtott/visszavont milyen típusú hozzáférést és a akinek, és milyen hatókörben PowerShell használatával, vagy az Azure parancssori felület hello.
 
 #### <a name="resources"></a>Erőforrások
 * [Azure Active Directory szerepköralapú hozzáférés-vezérlése](../active-directory/role-based-access-control-configure.md)
 
-  Ez a cikk az Azure Active Directory szerepkörön alapuló hozzáférés-vezérlését és annak működési módját ismerteti.
+  Ez a cikk ismerteti a hello Azure Active Directory szerepköralapú hozzáférés-vezérlés és annak működéséről.
 * [RBAC: Beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md)
 
-  Ez a cikk részletezi az összes elérhető RBAC beépített szerepkör.
+  Ez a cikk részletesen összes hello beépített szerepkör RBAC érhető el.
 * [A Resource Manager-alapú és a klasszikus üzembe helyezés ismertetése](../azure-resource-manager/resource-manager-deployment-model.md)
 
-  Ez a cikk ismerteti a Resource Manager telepítés és a klasszikus üzembe helyezési modellel, és a Resource Manager és az erőforrás-csoportok használata előnyeinek bemutatása. A Resource Manager modellben az Azure számítási, hálózati és tárolási szolgáltatók működése ismerteti.
-* [Szerepköralapú hozzáférés-vezérlés kezelése REST API-val](../active-directory/role-based-access-control-manage-access-rest.md)
+  Ez a cikk ismerteti a hello Resource Manager üzembe helyezési és a klasszikus üzembe helyezési modellel, és hello erőforrás-kezelő és az erőforrás-csoportok használata hello előnyeit ismerteti. Azt ismerteti, hogyan hello Azure számítási, hálózati és tárolási szolgáltatók működnek hello Resource Manager modellben.
+* [Szerepköralapú hozzáférés-vezérlés a REST API hello kezelése](../active-directory/role-based-access-control-manage-access-rest.md)
 
-  Ez a cikk leírja, hogyan használható a REST API az RBAC kezeléséhez.
+  Ez a cikk bemutatja, hogyan toouse hello REST API toomanage RBAC.
 * [Az Azure Storage erőforrás szolgáltató REST API-referencia](https://msdn.microsoft.com/library/azure/mt163683.aspx)
 
-  Ez egy, az API-k segítségével a tárfiók kezelése programozott módon mutató hivatkozás.
-* [A hitelesítés az Azure Resource Manager API-JÁVAL fejlesztői útmutató](http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/)
+  Ez az API-kat használhatja toomanage a tárfiók programozott módon hello hello referenciája.
+* [Fejlesztői útmutató tooauth Azure Resource Manager API-hoz](http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/)
 
-  Ez a cikk bemutatja, hogyan hitelesítheti a Resource Manager API-k használatával.
+  Ez a cikk bemutatja, hogyan tooauthenticate használatával hello Resource Manager API-k.
 * [Szerepköralapú hozzáférés-vezérlés az Ignite-tól a Microsoft Azure számára](https://channel9.msdn.com/events/Ignite/2015/BRK2707)
 
-  Ez a hivatkozás a Channel 9 2015-ös MS Ignite-konferencia videójára mutat. Ebben a részben arról beszélnek, milyen hozzáférés-kezelési és jelentési képességeket nyújt az Azure, és bemutatják az Azure-előfizetés hozzáférés-biztosításának legjobb gyakorlatait az Azure Active Directory használatával.
+  Ez az a hivatkozás tooa a hello 2015-ös MS ignite-on konferencia a Channel 9 videót. Ebben a munkamenetben, azok szolgáltatással kapcsolatban hozzáférhet a felügyeleti és jelentéskészítési lehetőségeket az Azure-ban, és vizsgálja meg körül tooAzure előfizetések az Azure Active Directoryval hozzáférés biztosítása érdekében ajánlott eljárások.
 
 ### <a name="managing-your-storage-account-keys"></a>A Tárfiók kulcsait kezelése
-Tárfiókkulcsok olyan hozta létre, amely a tárfiók nevét, valamint a tárfiókban tárolt adatok objektumok eléréséhez használható, például blobok, egy táblát, üzenetsor-üzeneteket és Azure File megosztáson belüli Azure 512 bites karakterláncok. A tárolási fiók kulcsok szabályozza a hozzáférést az adatok vezérlősík tárolási fiók hozzáférés szabályozása.
+Tárfiók kulcsokban 512 bites karakterláncok Azure által létrehozott, együtt hello storage-fiók neve, hello tárfiókot, például BLOB, tábla, üzenetsor-üzeneteket és az Azure File-megosztáson található fájlok belüli tárolt használt tooaccess hello adatok objektum lehet. Ellenőrző hozzáférés toohello tárolási fiók kulcsok szabályozza a toohello adatok vezérlősík tárolási fiók hozzáférést.
 
-Minden tárfiók néven "1. kulcs" és "Kulcs 2" a két kulcs van a [Azure-portálon](http://portal.azure.com/) és a PowerShell-parancsmagokkal. Ezek helyreállíthatja segítségével többféle módszer, beleértve, de nem kizárólagosan használatával manuálisan a [Azure-portálon](https://portal.azure.com/), PowerShell, az Azure CLI vagy programozott módon, a .NET a Storage ügyféloldali kódtára vagy az Azure Storage szolgáltatások REST API felülete.
+Minden tárfiók rendelkezik említett két kulcs tooas "Kulcsot 1" és "Kulcs 2" hello [Azure-portálon](http://portal.azure.com/) és a PowerShell-parancsmagok hello. Ezek helyreállíthatja segítségével manuálisan többféle módszer, ideértve, de nem kizárólagosan toousing hello [Azure-portálon](https://portal.azure.com/), PowerShell, hello Azure CLI vagy programozott módon .NET a Storage ügyféloldali kódtára hello vagy hello Azure Storage szolgáltatások REST API-t.
 
-Tetszőleges számú újragenerálni a tárfiókkulcsokat okok miatt van.
+Számos bármely okból tooregenerate a tárfiók kulcsait.
 
 * Előfordulhat, hogy generálja újra őket rendszeresen biztonsági okokból.
-* A tárfiók kulcsait volna generálja újra, ha valaki felügyelt ellophatja egy alkalmazásba, és lekérni a kulcsot, szoftveresen kötött vagy menteni a konfigurációs fájlban adjon teljes hozzáférést a tárfiókhoz.
-* Egy másik eset a kulcs újragenerálása, ha a csapatával használ egy Tártallózó alkalmazást, amely megőrzi a tárfiók hívóbetűjét, és egy csoport tagja. Az alkalmazás akkor is működik, hozzáférést kaphatnak a tárfiók után már nem fontosságúak. Ez oka ténylegesen az elsődleges fiók szintű megosztott hozzáférési aláírásokkal hozza létre őket – használhat egy fiók szintű SAS helyett a tárelérési kulcsok tárolása egy konfigurációs fájlban.
+* A tárfiók kulcsait volna generálja újra, ha valaki toohack felügyelt egy alkalmazásba, és tooyour tárfiók teljes hozzáférési jogosultságot ad hello kulcs szoftveresen kötött vagy menteni a konfigurációs fájl beolvasása.
+* Egy másik eset a kulcs újragenerálása, ha a csapatával használ egy Tártallózó alkalmazást, amely megőrzi hello tárfiók hívóbetűjét, és egyik hello csoport tagjai. hello alkalmazás toowork engedélyezése hozzáférés tooyour tárfiók után már nem fontosságúak folytatni. Ez oka ténylegesen hello elsődleges fiók szintű megosztott hozzáférési aláírásokkal hozza létre őket – használhat egy fiók szintű SAS helyett hello elérési kulcsok tárolása egy konfigurációs fájlban.
 
 #### <a name="key-regeneration-plan"></a>Kulcs újragenerálása terv
-Nem kívánja most újragenerálja a kulcsot, néhány tervezés nélkül használ. Ha így tesz, akkor a tárolási fiók, amely súlyos problémákat okozhat levágási sikerült minden hozzáférés. Ezért két kulcs van. Egyszerre csak egy kulcs kell generálni.
+Nem szeretné, hogy toojust újragenerálása hello kulcs néhány tervezés nélkül használ. Ha így tesz, sikerült levágási minden hozzáférési toothat storage-fiók, amely súlyos problémákat okozhat. Ezért két kulcs van. Egyszerre csak egy kulcs kell generálni.
 
-Mielőtt újragenerálja a kulcsokat, mindenképpen az alkalmazásokat, amelyek a tárfiók függenek, valamint használ az Azure-szolgáltatások listáját. Például ha a tárfiók függő Azure Media Services használ, újra kell szinkronizálnia a tárelérési kulcsokat a médiaszolgáltatással után újragenerálja a kulcsot. Az alkalmazásokat, például a Tártallózó alkalmazással használ, ha szüksége lesz arra, hogy ezeket az alkalmazásokat, valamint az új kulccsal. Vegye figyelembe, hogy ha virtuális gépeket, amelyek VHD-fájlokat a tárfiók vannak tárolva, nem vonatkoznak rá a tárfiókkulcsok újragenerálása által.
+Mielőtt újragenerálja a kulcsokat, lehet, hogy az összes függő hello tárfiók alkalmazásával, valamint használ az Azure-szolgáltatások listáját. Például ha a tárfiók függő Azure Media Services használ, újra kell szinkronizálnia hello hívóbetűk a médiaszolgáltatással után hello kulcs újragenerálása. Ha az alkalmazásokat, például a Tártallózó alkalmazással használ, szüksége lesz a tooprovide hello új kulcsok toothose alkalmazásokat is. Vegye figyelembe, hogy ha virtuális gépeket, amelyek VHD-fájlok hello tárfiók vannak tárolva, nem vonatkoznak rá által hello tárfiókkulcsok újragenerálása.
 
-A kulcsok az Azure-portálon állíthatja helyre. Miután kulcsok újragenerálása van azok tárolási szolgáltatások közötti szinkronizálását. legfeljebb 10 percig is tarthat.
+A kulcsok hello Azure-portálon állíthatja helyre. Miután kulcsok újragenerálása vannak is veszik too10 perc toobe tárolószolgáltatások szinkronizálását.
 
-Ha elkészült, ez az általános folyamat, és részletesen leírja, hogyan kell módosítani a kulcsot. Ebben az esetben a feltételezi, hogy jelenleg használt kulcs 1, és mindent kulcs 2 inkább módosítani kívánja.
+Ha elkészült, ez hello általános folyamata, és részletesen leírja, hogyan kell módosítani a kulcsot. Ebben az esetben hello feltételezése, hogy a jelenleg használt kulcs 1 és fog toochange mindent toouse kulcs 2 helyette.
 
-1. Újragenerálja a kulcsot a 2. Győződjön meg arról, hogy biztonságos. Ez az Azure portálon teheti meg.
-2. Az összes alkalmazást a biztonságitár-kulcs tárolására módosítsa a kulcs új kulcs 2 értéket használja. Tesztelje, és tegye közzé az alkalmazást.
-3. Ha minden az alkalmazások és szolgáltatások működik, és megfelelően fut-e., generálja újra a kulcs 1. Ez biztosítja, hogy birtokában bárki számára, akihez nem kifejezetten adott az új kulcs már nem fog hozzáférni a tárfiókhoz.
+1. Generálja újra, hogy a rendszer biztonságos kulcs 2 tooensure. Ehhez a hello Azure-portálon.
+2. Az összes hello alkalmazások hello biztonságitár-kulcs tárolására módosítsa a hello tárolási kulcs toouse kulcs 2 új értéket. Tesztelje, és tegye közzé hello alkalmazást.
+3. Ha minden hello az alkalmazások és szolgáltatások működik, és megfelelően fut-e., generálja újra a kulcs 1. Ez biztosítja, hogy kifejezetten nincs megadva az új kulcs hello toowhom többé nem lesz toohello tárfiók eléréséhez.
 
-Ha a jelenleg használt kulcs 2, ugyanazzal az eljárással, de a kulcsnevek fordított.
+Ha a jelenleg használt kulcs 2, ugyanezt a folyamatot, de fordított hello kulcsnevek hello is használhatja.
 
-Néhány napon keresztül áttelepítése módosítása egyes alkalmazásokat, az új kulcsot használják, és a közzététel. Után az összes befejezése után meg kell majd lépjen vissza, és a régi kulcs újragenerálása, így már nem működik.
+Minden alkalmazás toouse hello új kulcs módosuló, valamint a közzététel néhány napon keresztül áttelepítheti. Miután végzett az összes, meg kell majd lépjen vissza, és hello régi kulcs újragenerálása, így már nem működik.
 
-Egy másik lehetőség a tárfiók hívóbetűjét elhelyezése egy [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) valamilyen titkos adatot, és rendelkezik az alkalmazások kulcs lekérését onnan. Majd amikor újragenerálja a kulcsot, és frissítse az Azure Key Vault, az alkalmazások nem kell újratelepítése, mert azok felveszi az új kulcsot az Azure Key Vault automatikusan. Vegye figyelembe, hogy az alkalmazás olvassa a kulcsot minden alkalommal, amikor szükség lehet, vagy gyorsítótár, a memória, és használja azt, ha nem sikerül lekérni a kulcsot újra az Azure Key Vaulthoz.
+Másik lehetőség is tooput hello tárfiók kulcsa a egy [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) valamilyen titkos adatot, és az alkalmazások lekérése hello kulcs onnan. Majd hello kulcs újragenerálása és hello Azure Key Vault frissítése, hello alkalmazásokat nem kell újratelepíteni, mert azok felveszi hello új kulcsot az Azure Key Vault hello automatikusan toobe. Vegye figyelembe, hogy akkor is hello alkalmazás hello kulcs olvasásához minden alkalommal, esetleg szükség lenne rá, vagy gyorsítótár, a memória, és ha nem sikerül, használatakor lekérése hello kulcs újra hello Azure Key Vault.
 
-Az Azure Key Vault használatával is egy másik védelmet biztosít a kulcsok számára. Ezt a módszert használja, ha soha nem lesz a tárolási kulcs szoftveresen kötött a konfigurációs fájlban, amely egy, a kulcsok külön engedélye nélkül hozzáférést az adott erőfeszítések eltávolítja.
+Az Azure Key Vault használatával is egy másik védelmet biztosít a kulcsok számára. Ezt a módszert használja, ha soha nem fog hello tárolási kulcs szoftveresen kötött a konfigurációs fájlban, amely valaki fog hozzáférni toohello kulcsok külön engedélye nélkül az adott erőfeszítések eltávolítja.
 
-Egy másik Azure Key Vault előnye is szabályozhatja a hozzáférést a kulcsokat az Azure Active Directoryval. Ez azt jelenti, hogy a néhány olyan alkalmazásokat, amelyek a kulcsok lekérése az Azure Key Vault és tudja, hogy más alkalmazások nem tudják anélkül, hogy azok kifejezetten engedéllyel kellene kulcsok eléréséhez szükséges hozzáférést biztosíthat.
+Az Azure Key Vault használatának másik előnye az Azure Active Directoryval tooyour hívóbetűk is szabályozhatja. Ez azt jelenti, hogy hozzáférési toohello néhány olyan alkalmazásokat, amelyek az Azure Key Vault tooretrieve hello kulcsokat kell, és tudja, hogy más alkalmazások nem lesznek képesek tooaccess hello kulcsok anélkül, hogy azok kifejezetten engedéllyel kellene is meg lehet adni.
 
-Megjegyzés: ajánlott használni a kulcsok közül csak az alkalmazásokat egy időben. Az egyes helyek kulcs 1 és más kulcs 2 használatakor csak akkor tudja forgassa el a kulcsok egy alkalmazás-hozzáférés elvesztése nélkül.
+Megjegyzés: ajánlott toouse csak az egyik hello a kulcsok összes hello az alkalmazásokat azonos idő. Használatakor a kulcs 1 az egyes helyek és a kulcs 2 más, akkor nem lesz képes toorotate kell a kulcsok egy alkalmazás-hozzáférés elvesztése nélkül.
 
 #### <a name="resources"></a>Erőforrások
 * [Az Azure Storage-fiókokról](storage-create-storage-account.md#regenerate-storage-access-keys)
@@ -147,49 +147,49 @@ Megjegyzés: ajánlott használni a kulcsok közül csak az alkalmazásokat egy 
   A cikk áttekintést nyújt a tárfiókok, valamint ismerteti a megtekintése, másolása és tárelérési kulcsok újragenerálása.
 * [Az Azure Storage erőforrás szolgáltató REST API-referencia](https://msdn.microsoft.com/library/mt163683.aspx)
 
-  Ez a cikk a tárfiókkulcsokat beolvasása és a tárfiókkulcsok újragenerálása egy Azure-fiók a REST API használatával meghatározott cikkek mutató hivatkozásokat tartalmaz. Megjegyzés: Ez az erőforrás-kezelő storage-fiókok.
+  Ez a cikk hivatkozások toospecific cikket lekérése során hello tárfiókkulcsok és újragenerálása hello tárfiókkulcsok tartalmaz egy Azure-fiók hello REST API használatával. Megjegyzés: Ez az erőforrás-kezelő storage-fiókok.
 * [A storage-fiókok műveletek](https://msdn.microsoft.com/library/ee460790.aspx)
 
-  Ez a cikk a Service Manager tárolási REST API-referencia a meghatározott cikkek beolvasása és a REST API használatával tárfiókkulcsok újragenerálása mutató hivatkozásokat tartalmaz. Megjegyzés: Ez a klasszikus tárfiókokkal.
-* [Sem kell kulcskezelés – az Azure AD az Azure Storage-adatokkal való hozzáférés kezelése](http://www.dushyantgill.com/blog/2015/04/26/say-goodbye-to-key-management-manage-access-to-azure-storage-data-using-azure-ad/)
+  Hello Storage Service Manager REST API-referencia a cikkben hivatkozások toospecific cikkek beolvasása és hello REST API használatával hello tárfiókkulcsok újragenerálása. Megjegyzés: Ez a klasszikus tárfiókokkal hello.
+* [Tegyük fel például goodbye tookey felügyeleti – az Azure AD hozzáférési tooAzure tárolási adatok kezelése](http://www.dushyantgill.com/blog/2015/04/26/say-goodbye-to-key-management-manage-access-to-azure-storage-data-using-azure-ad/)
 
-  Ez a cikk bemutatja, hogyan Active Directory használata az Azure Storage kulcsok Azure Key Vault való hozzáférés szabályozása. Azt is bemutatja, hogyan újragenerálja a kulcsokat óránként egy Azure Automation-feladat segítségével.
+  Ez a cikk bemutatja, hogyan toouse Active Directory toocontrol hívóbetűk tooyour Azure Storage az Azure Key Vault. Azt is bemutatja, hogyan feladat toouse egy Azure Automation-tooregenerate hello kulcsok óránként.
 
 ## <a name="data-plane-security"></a>Adatbiztonság Vezérlősík
-Adatbiztonság Vezérlősík védi az Azure Storage – a BLOB, a várólisták, a táblák és a fájlok tárolt adatok objektumok módszerek hivatkozik. Is láttuk módszerek titkosítani az adatokat és a biztonsági adatok átvitel során, de hogyan továbblépne hozzáféréssel az objektumokhoz információ?
+Adatbiztonság Vezérlősík használt toosecure hello adatobjektumainak tárolja az Azure Storage – hello BLOB, üzenetsorok, táblák és fájlok toohello módszerek hivatkozik. Is láttuk módszerek tooencrypt hello adatok és a biztonsági hello adatok átvitel során, de hogyan továbblépne hozzáférés engedélyezése toohello objektumok?
 
-Alapvetően két módszer az adatok objektumokban hozzáférés szabályozása. Az első a tárfiókkulcsokat való hozzáférés vezérlése, és a második megosztott hozzáférési aláírásokkal való hozzáférést egy adott időtartamig meghatározott objektumok.
+Alapvetően két módszer ellenőrző hozzáférés toohello adatok magukat az objektumokat. hello először ellenőrző hozzáférés toohello tárfiókkulcsok által, és a hello második megosztott hozzáférési aláírásokkal toogrant access toospecific adatok objektumok egy adott időtartamig.
 
-Megjegyzés: az egyetlen kivétel, hogy nyilvános hozzáférést biztosíthat a blobok úgy, hogy a hozzáférési szint a tároló, amely tárolja a blobok ennek megfelelően. Hozzáférés egy tárolót a Blob vagy tároló állítja be, ha engedélyezi az adott tárolóban lévő blobok nyilvános olvasási hozzáférés. Ez azt jelenti, hogy bárki, aki egy adott tárolóban lévő blob mutató URL-címet is nyissa meg a böngésző segítségével egy közös hozzáférésű Jogosultságkód-nak a tárfiókok kulcsait, vagy nélkül.
+Egy kivétel toonote, hogy nyilvános tooyour blobok hello hozzáférési szint hello tároló, amely hello blobok ennek megfelelően a beállításával engedélyezheti. Ha hozzáférést egy tároló tooBlob vagy a tároló, engedélyezi az adott tároló hello blobok nyilvános olvasási hozzáférését. Ez azt jelenti, hogy bárki, aki egy tooa blob a tárolóban mutató URL-címet is nyissa meg a böngésző segítségével egy közös hozzáférésű Jogosultságkód-nak hello tárfiókok kulcsait, vagy nélkül.
 
 ### <a name="storage-account-keys"></a>Tárfiókkulcsok
-Tárfiókkulcsok olyan 512 bites karakterláncok hozta létre Azure használható, a tárfiók nevét, valamint a tárfiókban tárolt adatok objektumok eléréséhez.
+Tárfiókkulcsok olyan hozta létre, amely a, hello tárfiók neve, valamint használt tooaccess hello adatobjektumainak hello storage-fiókban tárolt Azure 512 bites karakterláncok.
 
-Például akkor is olvassa el a BLOB, üzenetsorok, táblák létrehozása, fájlok írására és módosítására. Ezek a műveletek számos Azure-portálon végezhető el vagy sok Tártallózó alkalmazást egyikével. Is írhat kódot a REST API-t vagy a Storage Ügyfélkódtáraival egyik segítségével hajthatja végre ezeket a műveleteket.
+Például akkor is olvassa el a blobokat tooqueues írási, táblák létrehozása, fájlok, és módosítását. Ezek a műveletek számos segítségével végezheti el hello Azure portálon, vagy sok Tártallózó alkalmazást egyikével. Is írhat kódot toouse hello REST API vagy valamelyik hello Storage Ügyfélkódtáraival tooperform ezeket a műveleteket.
 
-Az a szakaszban leírtaknak megfelelően a [felügyeleti Vezérlősík biztonsági](#management-plane-security), a klasszikus tárfiók adjon teljes hozzáférést az Azure-előfizetés által biztosított a tárolási kulcsok elérhető. A tárolási kulcsokat az Azure Resource Manager modellt használó tárfiókot hozzáférést szerepköralapú hozzáférés-vezérlést (RBAC) szabályozható.
+A hello hello szakaszban leírtaknak megfelelően [felügyeleti Vezérlősík biztonsági](#management-plane-security), a klasszikus tárfiók adjon teljes hozzáférés toohello Azure-előfizetés által biztosított toohello tárolási kulcsok elérhető. Szerepköralapú hozzáférés-vezérlést (RBAC) hozzáférési toohello tároló kulcsainak listázása hello Azure Resource Manager modellt használó tárfiókot szabályozható.
 
-### <a name="how-to-delegate-access-to-objects-in-your-account-using-shared-access-signatures-and-stored-access-policies"></a>Hogyan adhat hozzáférést a fiókját megosztott hozzáférési aláírásokkal és hozzáférési házirendek tárolt objektumok
-Egy közös hozzáférésű Jogosultságkód: URI, amely lehetővé teszi a tárolási objektum hozzáférést biztosíthat, és adja meg például az engedélyeket és a dátum/idő tartomány hozzáférési korlátozásokat lehet rendelni egy biztonsági jogkivonatot tartalmazó karakterlánc.
+### <a name="how-toodelegate-access-tooobjects-in-your-account-using-shared-access-signatures-and-stored-access-policies"></a>Hogyan érik el toodelegate tooobjects a megosztott hozzáférési aláírásokkal és hozzáférési házirendek tárolt fiók
+Egy közös hozzáférésű Jogosultságkód lehet egy biztonsági jogkivonatot tartalmazó karakterlánc csatolt tooa URI, amely lehetővé teszi a toodelegate hozzáférés toostorage objektumokat, és adja meg a hello és hello dátum/idő tartomány hozzáférési korlátozásokat.
 
-Blobok, tárolók, várólista-üzenetek, fájlok és táblák hozzáférést biztosíthat. Táblákkal ténylegesen engedélyt adhat a partíció- és sorfejlécek kulcstartományokkal, amely a felhasználó hozzáférjen szeretné megadásával entitástartományának a tábla elérésére. Például ha földrajzi állapot partíciókulcsú tárolt adatokat, akkor adhat valaki hozzáférést kaliforniai csupán azokat az adatokat.
+Hozzáférés tooblobs, tárolók, várólista-üzenetek, fájlok és táblák megadásához. Táblákkal ténylegesen adhat engedélyt tooaccess hello tábla entitástartományának hello partíció- és sorfejlécek kulcstartományokkal toowhich hello felhasználói toohave hozzáférést szeretne megadásával. Például ha földrajzi állapot partíciókulcsú tárolt adatokat, akkor adhat valaki hozzáférést toojust hello adatok kaliforniai a.
 
-Egy másik példa, előfordulhat, hogy adjon egy webalkalmazás egy SAS-jogkivonatot, amely lehetővé teszi, hogy bejegyzést írni a várólista, és adjon a feldolgozói szerepkör alkalmazás egy SAS-jogkivonat üzenetet az üzenetsorból, és dolgozza fel őket. Vagy nem ad egy ügyfél egy SAS-jogkivonat ezek segítségével a képek feltöltése a Blob Storage tárolót, és engedélyt a webes alkalmazás a képek olvasni. Mindkét esetben nincs kizárás kérdések – minden alkalmazáshoz is hozzáférést kell biztosítani csak a számukra a feladat végrehajtásához szükséges. Ez az megosztott hozzáférési aláírásokkal használatával lehetséges.
+Egy másik példa, előfordulhat, hogy adjon egy webalkalmazás egy SAS-jogkivonatot, amely lehetővé teszi, hogy toowrite bejegyzések tooa várólista, és adjon a feldolgozói szerepkör alkalmazás hello egy SAS-token tooget üzenetek várólistára és dolgozza fel őket. Vagy nem ad egy ügyfél egy SAS-tokennel, akkor tooupload képek tooa tároló használata a Blob Storage tárolóban, és adjon a webes alkalmazás engedély tooread a képek. Mindkét esetben nincs kizárás kérdések – minden alkalmazáshoz is hozzáférést kell biztosítani csak hello, amelyre szükségük van, a rendezés tooperform feladatuknak. Ez az megosztott hozzáférési aláírásokkal hello használata révén nyílik lehetőség.
 
-#### <a name="why-you-want-to-use-shared-access-signatures"></a>Miért érdemes használni a megosztott hozzáférési aláírásokkal
-Miért érdemes használni egy SAS helyett csak a tárfiók kulcsára, amely így sokkal könnyebben kiadása? A tárfiók kulcsára kiadása van például a megosztás a kulcsokat, a tárolási Királyság. Teljes hozzáférést van. Valaki nem sikerült a kulcsok használatára, és töltse fel a teljes zenetár a tárfiókhoz. Ezek nem is vírus fertőzte verziók cserélje le a fájlokat, vagy az adatok ellopására. A tárfiókhoz átruházása a korlátlan hozzáféréssel olyan dolog, amire nem kell enyhén venni.
+#### <a name="why-you-want-toouse-shared-access-signatures"></a>Miért érdemes toouse megosztott hozzáférési aláírásokkal
+Miért érdemes toouse helyett csak a tárfiók kulcsára, amely így sokkal könnyebben kiadása egy SAS? A tárfiók kulcsára kiadása van például a megosztás a tárolási Királyság hello kulcsok. Teljes hozzáférést van. Valaki nem sikerült a kulcsok használatára, és töltse fel a teljes Zene könyvtár tooyour tárfiók. Ezek nem is vírus fertőzte verziók cserélje le a fájlokat, vagy az adatok ellopására. Korlátlan hozzáféréssel tooyour tárfiók átruházása olyan dolog, amire nem kell enyhén venni.
 
-Megosztott hozzáférési aláírásokkal adhat egy ügyfél csak korlátozott mennyiségű időt a szükséges engedélyekkel. Például ha valaki tölti fel a blob-fiókjába, meg lehet adni azokat éppen elegendő idő (attól függően, a blob mérete természetesen) blob feltöltése írási hozzáférést. És ha megváltoztatja döntését, visszavonhatja a hozzáférést.
+Megosztott hozzáférési aláírásokkal adhat egy ügyfél csak a szükséges idő csak korlátozott mennyiségű hello jogosultságok. Például, ha valaki van feltöltése a blob tooyour fiókok, azok írási hozzáférést biztosíthat éppen elegendő idő tooupload hello BLOB (attól függően hello blob mérete hello természetesen). És ha megváltoztatja döntését, visszavonhatja a hozzáférést.
 
-Ezenkívül megadható, hogy a SAS használatával kérelmek egy adott IP-cím vagy IP-címtartomány Azure külső korlátozódnak. Is megkövetelheti, hogy kérések (HTTPS vagy HTTP/HTTPS) egy adott protokoll használatával. Ez azt jelenti, ha szeretné engedélyezi a HTTPS forgalmat, beállíthatja a szükséges protokoll csak HTTPS és HTTP-forgalom le lesz tiltva.
+Emellett megadhatja, hogy a SAS használatával kérelmek bizonyos IP-cím vagy IP-cím a tartomány külső tooAzure korlátozott tooa. Is megkövetelheti, hogy kérések (HTTPS vagy HTTP/HTTPS) egy adott protokoll használatával. Ez azt jelenti, ha csak a HTTPS-forgalom tooallow szeretné, csak a szükséges hello protokoll tooHTTPS állíthatja be, és HTTP-forgalom le lesz tiltva.
 
 #### <a name="definition-of-a-shared-access-signature"></a>A közös hozzáférésű Jogosultságkód meghatározása
-Egy közös hozzáférésű Jogosultságkód egy olyan lekérdezési paraméterek fűzött az erőforráscsoportok mutató URL-címet
+Egy közös hozzáférésű Jogosultságkód lekérdezési paraméterek toohello URL-t, a hello erőforrás lesz hozzáfűzve.
 
-tevékenységszabályzat engedélyezett hozzáférési és az időtartamot, amelynek a hozzáférés engedélyezett. Íme egy példa a; Ezt az URI blob olvasási hozzáférést biztosít a öt perc. Vegye figyelembe, hogy a biztonsági Társítások lekérdezési paramétert kell URL-kódolású, például % 3A kettőspont (:) vagy a szóközt 20 %.
+hello hozzáférésével kapcsolatos információkat engedélyezett, és mennyi ideig mely hello hozzáférés engedélyezett hello biztosít. Íme egy példa a; Ezt az URI tooa blob olvasási hozzáférést biztosít a öt perc. Vegye figyelembe, hogy a biztonsági Társítások lekérdezési paramétert kell URL-kódolású, például % 3A kettőspont (:) vagy a szóközt 20 %.
 
 ```
-http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
+http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL toohello blob)
 ?sv=2015-04-05 (storage service version)
 &st=2015-12-10T22%3A18%3A26Z (start time, in UTC time and URL encoded)
 &se=2015-12-10T22%3A23%3A26Z (end time, in UTC time and URL encoded)
@@ -197,139 +197,139 @@ http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
 &sp=r (read access)
 &sip=168.1.5.60-168.1.5.70 (requests can only come from this range of IP addresses)
 &spr=https (only allow HTTPS requests)
-&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for the authentication of the SAS)
+&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for hello authentication of hello SAS)
 ```
 
-#### <a name="how-the-shared-access-signature-is-authenticated-by-the-azure-storage-service"></a>Hogyan hitelesíti a közös hozzáférésű Jogosultságkód az Azure Storage szolgáltatás
-Amikor a társzolgáltatás a kérelmet kap, a lekérdezési paraméterek fogadja el, és létrehoz egy ugyanazzal a módszerrel a hívó program aláírást. Ezután összeveti a két aláírások. Ha az engedélyt megadják, majd a társzolgáltatás ellenőrizze a tároló verzióját győződjön meg arról, hogy érvényes, győződjön meg arról, hogy az aktuális dátumot és időt a megadott időszakon belül van, győződjön meg arról, hogy a hozzáférést a kért felel meg a kérelmet, stb.
+#### <a name="how-hello-shared-access-signature-is-authenticated-by-hello-azure-storage-service"></a>Hogyan közös hozzáférésű Jogosultságkód által hitelesített hello hello Azure Storage szolgáltatás
+Amikor hello társzolgáltatás hello kérelmet kap, hello lekérdezési paraméterek fogadja el, és létrehoz egy aláírás használatával hello ugyanezt a módszert, mert a hívó program hello. Majd hello két aláírások hasonlítja össze. Ha elfogadja, majd hello tároló szolgáltatást is tekintse hello tárolási szolgáltatás verziója toomake meg arról, hogy érvényes ellenőrizze, hogy hello aktuális dátum és idő hello megadott időszakon belül, ellenőrizze a kért meg arról, hogy hello hozzáférés felel meg a toohello kérelmet, stb.
 
-Például a fenti URL-cím, a Ha az URL-cím helyett egy blobot egy fájlba lett mutat, a kérelem sikertelen lesz, mert ez azt jelenti, hogy a közös hozzáférésű Jogosultságkód egy BLOB. Ha a többi parancs meghívott blob frissíteni, mivel a közös hozzáférésű Jogosultságkód határozza meg, hogy engedélyezett-e a csak olvasási hozzáféréssel fognak működni.
+Például a fenti URL-cím, az Ha hello URL-cím lett mutat tooa fájl helyett a blob, a kérelem sikertelen lesz mert határoz meg, hogy a BLOB van közös hozzáférésű Jogosultságkód hello. Ha hello hívják meg a többi parancs tooupdate blob volt, mivel a hello közös hozzáférésű Jogosultságkód határozza meg, hogy engedélyezett-e a csak olvasási hozzáféréssel fognak működni.
 
 #### <a name="types-of-shared-access-signatures"></a>Közös hozzáférésű Jogosultságkód típusai
-* Egy szolgáltatási szint SAS segítségével tárfiókokban adott erőforrásokhoz férnek hozzá. Ez néhány példát keres a BLOB tároló, blob letöltése, egy tábla egy entitás frissítése, üzeneteket ad hozzá egy üzenetsort vagy fájlt feltölteni a fájlmegosztásba listáját.
-* Egy fiók szintű SAS használatával lehet hozzáférni, amelyeket a szolgáltatásiszint-SAS-kód nem használható. Emellett biztosíthat a beállítások nem használhatók együtt egy szolgáltatási szint SAS-tárolók, táblák, üzenetsorok és fájlmegosztások létrehozásához például erőforrásokhoz. Több szolgáltatásokhoz való hozzáférés egyszerre is megadható. Például előfordulhat, hogy adjon valaki blobok és a tárfiókban lévő fájlok elérését.
+* Egy szolgáltatási szint SAS lehet egy adott erőforráshoz használt tooaccess tárfiókokban. Néhány példa erre a tárolóban lévő blobok listájának lekérése, blob letöltése, egy tábla egy entitás frissítése, üzenetek tooa várólista hozzáadása vagy fájlmegosztás tooa fájl feltöltése.
+* Egy fiók szintű SAS használt tooaccess bármi lehet, hogy a szolgáltatási szint SAS-kód nem használható. Emellett biztosíthat a beállítások tooresources, amelyek nem engedélyezettek a szolgáltatásiszint-SAS-kód, például a hello képességét toocreate tárolók, táblák, üzenetsorok és fájlmegosztások. Toomultiple szolgáltatást egyszerre is megadható. Például előfordulhat, hogy megkapja a valaki tooboth blobok és fájlokat a tárfiókban lévő.
 
 #### <a name="creating-an-sas-uri"></a>Egy SAS URI-azonosító létrehozása
-1. Létrehozhat egy ad hoc URI az igény szerinti meghatározása a lekérdezési paraméterek mindegyikét minden alkalommal, amikor.
+1. Létrehozhat egy ad hoc URI az igény szerinti határozni az összes olyan hello lekérdezési paraméterek minden alkalommal, amikor.
 
    Ez valóban rugalmas, de ha egy olyan logikai készlete, amelyek hasonló minden alkalommal, amikor paraméterek, a tárolt házirend használata segítenek meghatározni.
-2. A tárolt hozzáférési házirend egy teljes tárolóhoz, a fájlmegosztásokhoz, a tábla vagy a várólista hozhat létre. Majd ezzel a alapjául a SAS URI azonosítók hoz létre. Engedélyek tárolt hozzáférési házirendek alapján könnyen visszavonhatók. Minden egyes tároló, a várólista, a tábla vagy a fájlmegosztás definiált legfeljebb 5 házirendek lehet.
+2. A tárolt hozzáférési házirend egy teljes tárolóhoz, a fájlmegosztásokhoz, a tábla vagy a várólista hozhat létre. Ezután ezzel hello alapjául a hello SAS URI-azonosítók hoz létre. Engedélyek tárolt hozzáférési házirendek alapján könnyen visszavonhatók. Akkor is minden egyes tároló, a várólista, a tábla vagy a fájlmegosztás definiált too5 házirendek össze.
 
-   Például ha szeretné, hogy egy adott tárolóban lévő blobok olvasási sokan volt is, létrehozhat egy tárolt hozzáférési házirend, amely szerint a "olvasási hozzáférést" és a ugyanaz lesz minden alkalommal, amikor egyéb beállításait. Ezután egy SAS URI azonosítója a tárolt házirend beállításainak használatával, és a lejárati dátum és idő megadása is létrehozhat. Ennek előnye, hogy ne kelljen adja meg az összes lekérdezési paraméterekhez minden alkalommal.
+   Például ha Ön volt toohave sokan olvasási hello blobot, amely egy adott tárolóhoz, létrehozhat egy tárolt hozzáférési házirend, amely szerint a "olvasási hozzáférést" és egyéb beállításokat, hogy minden alkalommal, amikor hello azonos. Majd hozhat létre egy SAS URI hello beállításainak hello tárolt házirend használatával és hello lejárati dátum/idő megadásával. hello ennek előnye, hogy nincs-e toospecify összes hello lekérdezési paramétert minden esetben.
 
 #### <a name="revocation"></a>Visszavonási
-Tegyük fel, hogy a biztonsági Társítások biztonsága sérült, vagy módosítja azt a vállalati biztonsági vagy az előírásoknak való megfelelés követelmények miatt. Hogyan, visszavonhatja a hozzáférést egy erőforráshoz, hogy a SAS használatával? Függ, hogyan hozza létre a SAS URI-t.
+Tegyük fel, hogy a biztonsági Társítások biztonsága sérült, vagy azt szeretné, hogy toochange azt a vállalati biztonsági vagy az előírásoknak való megfelelés követelmények miatt. Hogyan visszavonása hozzáférés tooa erőforrás, hogy a SAS használatával? Ez attól függ, hogy hogyan létrehozott hello SAS URI-t.
 
-Ha ad hoc URI használata esetén lehetősége van három. SAS-tokenje rövid lejárati házirendek adja ki, és egyszerűen Várjon, amíg a SAS lejár. Nevezze át vagy törölje az erőforrást (feltéve, hogy a jogkivonat egy adott objektum lett hatóköre) is. Módosíthatja a tárfiók kulcsait. Az utolsó lehetőség nagy hatással lehet, attól függően, hogy hány szolgáltatásokat használ, hogy a tárfiók, és valószínűleg nem valami néhány tervezés nélkül szeretné.
+Ha ad hoc URI használata esetén lehetősége van három. SAS-tokenje rövid lejárati házirendek adja ki, és egyszerűen hello SAS tooexpire várja. Nevezze át, vagy (feltéve, hello token hatókörön belüli tooa egyetlen objektumhoz) hello erőforrás törlése. Hello tárfiókkulcsok módosíthatja. Az utolsó lehetőség nagy hatással lehet, attól függően, hogy hány szolgáltatásokat használ, hogy a tárfiók, és valószínűleg nincs meg a kívánt toodo néhány tervezés nélkül.
 
-A tárolt házirend származó SAS használatakor is eltávolíthat, hozzáférés visszavonása a tárolt házirend – ugyanúgy módosíthatja, már lejárt, vagy távolítsa el az egész. Ez azonnal érvénybe lép, és minden SAS létre adott tárolt házirend érvényteleníti. Frissítése, vagy a tárolt házirend eltávolítása is hatás férnek hozzá a meghatározott tárolóban, megosztott fájl tábla, vagy várólista keresztül SAS, ha az ügyfelek készültek, így egy új SAS kérnek, ha a régit válik érvénytelen, de ez működnek jól.
+A tárolt házirend származó SAS használ, ha hozzáférés megszüntetheti a tárolt házirend hello visszavonása – ugyanúgy módosíthatja, már lejárt, vagy teljesen eltávolítja azt. Ez azonnal érvénybe lép, és minden SAS létre adott tárolt házirend érvényteleníti. Frissítése vagy eltávolítása hello hozzáférési házirendben tárolt hatással lehet a férnek hozzá, hogy adott tárolóhoz, a fájlmegosztást, a tábla vagy a várólista SAS keresztül, de ha hello készültek, hogy az ügyfelek egy új SAS kérnek, amikor hello régi érvénytelenné válik, Ez jól működnek.
 
-A tárolt házirend származó SAS használatával lehetővé teszi az adott SAS azonnal visszavonni, mert az ajánlott mindig használjon tárolt hozzáférési házirendek lehetőség.
+Mert a tárolt házirend származó SAS használatával lehetővé teszi, hogy SAS azonnal, a rendszer hello ajánlott bevált gyakorlat tooalways hello képességét toorevoke használja tárolt hozzáférési házirendeket, ha lehetséges.
 
 #### <a name="resources"></a>Erőforrások
-További részletes információt a megosztott hozzáférési aláírásokkal és tárolt hozzáférési házirendeket, kész, de példák olvassa el a következő cikkeket:
+További részletes információt a megosztott hozzáférési aláírásokkal és tárolt hozzáférési házirendeket, kész, de példák tekintse meg a következő cikkek toohello:
 
-* Ezek azok a útmutatót.
+* Ezek a hello útmutatót.
 
   * [Szolgáltatásalapú SAS](https://msdn.microsoft.com/library/dn140256.aspx)
 
     Ez a cikk egy szolgáltatási szint SAS használatával blobokat, az üzenetsor-üzeneteket, a tábla tartományokkal és a fájlok példákat.
   * [A szolgáltatásalapú SAS létrehozása](https://msdn.microsoft.com/library/dn140255.aspx)
   * [SAS fiók létrehozása](https://msdn.microsoft.com/library/mt584140.aspx)
-* Ezek a oktatóanyagok a .NET ügyféloldali kódtár használatával történő létrehozásához a megosztott hozzáférési aláírásokkal és hozzáférési házirendek tárolja.
+* Ezek a oktatóanyagok hello .NET ügyfél könyvtár toocreate megosztott hozzáférési aláírásokkal és a hozzáférési házirendek tárolja.
 
   * [Közös hozzáférésű Jogosultságkód (SAS) használatával](storage-dotnet-shared-access-signature-part-1.md)
-  * [Közös hozzáférésű Jogosultságkód, 2. rész: Létrehozása és SAS-kód a Blob szolgáltatás használatához](storage-dotnet-shared-access-signature-part-2.md)
+  * [Közös hozzáférésű Jogosultságkód, 2. rész: Létrehozása és SAS-kód használata hello Blob szolgáltatás](storage-dotnet-shared-access-signature-part-2.md)
 
-    Ez a cikk tartalmazza a SAS-modell, megosztott hozzáférési aláírásokkal, például annak magyarázatát, és az ajánlott eljárás javaslatok SAS használja. Azt is ismertetjük, a megadott engedélyeket visszavonását.
+    A cikk magyarázatot hello SAS-modell, megosztott hozzáférési aláírásokkal, példákat tartalmaz, és javaslatok hello célszerű SAS használja. Azt is ismertetjük, hello visszavonása hello engedéllyel.
 * A hozzáférés korlátozása IP-címet (IP ACL) alapján
 
   * [Mi az a végpont hozzáférés-vezérlési lista (ACL)?](../virtual-network/virtual-networks-acl.md)
   * [A szolgáltatásalapú SAS létrehozása](https://msdn.microsoft.com/library/azure/dn140255.aspx)
 
-    Ez az a áttekintésével foglalkozó cikkben a szolgáltatásiszint-SAS; Ez magában foglalja az IP-ACLing példát.
+    Ez az hello áttekintésével foglalkozó cikkben a szolgáltatásiszint-SAS; Ez magában foglalja az IP-ACLing példát.
   * [SAS fiók létrehozása](https://msdn.microsoft.com/library/azure/mt584140.aspx)
 
-    Ez az a fiók szintű SAS; a áttekintésével foglalkozó cikkben Ez magában foglalja az IP-ACLing példát.
+    Ez az a fiók szintű SAS; hello áttekintésével foglalkozó cikkben Ez magában foglalja az IP-ACLing példát.
 * Authentication
 
-  * [Az Azure Storage szolgáltatásainak hitelesítése](https://msdn.microsoft.com/library/azure/dd179428.aspx)
+  * [Hello Azure Storage szolgáltatásainak hitelesítése](https://msdn.microsoft.com/library/azure/dd179428.aspx)
 * Közös hozzáférésű Jogosultságkód első lépések útmutató
 
   * [Első lépések útmutató SAS](https://github.com/Azure-Samples/storage-dotnet-sas-getting-started)
 
 ## <a name="encryption-in-transit"></a>Az átvitel során titkosítás
 ### <a name="transport-level-encryption--using-https"></a>Átviteli szintű titkosítást – HTTPS-kapcsolaton keresztül
-Egy újabb lépést kell tennie az Azure Storage-adatok védelme érdekében titkosítja az adatokat, az ügyfél és az Azure Storage között. Az első javasoljuk, hogy mindig a [HTTPS](https://en.wikipedia.org/wiki/HTTPS) protokoll, amely biztosítja a biztonságos kommunikáció érdekében a nyilvános interneten keresztül.
+Egy másik lépés megtétele tooensure hello adatok biztonsága érdekében az Azure Storage tooencrypt hello adatok hello ügyfél és az Azure Storage között. hello első ajánljuk, tooalways hello használata [HTTPS](https://en.wikipedia.org/wiki/HTTPS) protokoll, amely biztosítja a biztonságos kommunikáció érdekében keresztül hello nyilvános internethez.
 
-Ahhoz, hogy egy biztonságos kommunikációs csatornát, mindig használandó HTTPS tárolási objektumokat a REST API-k hívása vagy eléréséhez. Emellett **megosztott hozzáférési aláírásokkal**, amelyek segítségével delegálása az Azure Storage-objektumokhoz való hozzáférést, adja meg, hogy csak a HTTPS protokollt is használható-e a megosztott hozzáférési aláírásokkal, győződjön meg arról, hogy a megfelelő protokollt használja birtokában bárki küldi ki az SAS-tokenje hivatkozások használatával teszi.
+toohave biztonságos kommunikációs csatornát, mindig használandó HTTPS tárolási objektumokat hello REST API-k hívása vagy eléréséhez. Emellett **megosztott hozzáférési aláírásokkal**, amely lehet használt toodelegate tooAzure tárolási objektum eléréséhez, egy beállítás toospecify, hogy csak HTTPS protokoll használható a megosztott hozzáférési aláírásokkal, ezzel biztosítható, hogy birtokában bárki használatakor hello tartalmazza az SAS-tokenje hivatkozások elküldésével hello megfelelő protokollt fogja használni.
 
-Amikor tárfiókok engedélyezésével történt a REST API-k elérésére objektumokat a HTTPS használata kényszerítheti [szükséges átviteli biztonságos](storage-require-secure-transfer.md) a tárfiók. Ha ez engedélyezve van a kapcsolatok HTTP-n keresztül program elutasítja.
+A HTTPS protokoll használatát hello kényszerítheti a következő meghívásakor: hello REST API-k tooaccess objektumok tárfiókokban engedélyezésével [szükséges átviteli biztonságos](storage-require-secure-transfer.md) hello tárfiók. Ha ez engedélyezve van a kapcsolatok HTTP-n keresztül program elutasítja.
 
 ### <a name="using-encryption-during-transit-with-azure-file-shares"></a>Az Azure fájlmegosztások titkosítással továbbítás során
-Az Azure File storage támogatja a HTTPS PROTOKOLLT, ha a REST API használatával, de több általánosan használt SMB-fájlmegosztás a virtuális Géphez van csatolva. SMB 2.1 nem támogatja a titkosítást, tehát kapcsolatokat csak az Azure-ban ugyanabban a régióban belül engedélyezett. Azonban az SMB 3.0 támogatja a titkosítást, és elérhető a Windows Server 2012 R2, Windows 8, Windows 8.1 és Windows 10, lehetővé téve a kereszt-régió eléréséhez, és akkor is igaz, az asztalon hozzáférést.
+Az Azure File storage REST API hello használata esetén támogatja a HTTPS PROTOKOLLT, de gyakrabban használt SMB-fájlmegosztás tooa VM hozzá van kapcsolva. SMB 2.1 nem támogatja a titkosítást, tehát kapcsolatok csak engedélyezett hello belül azonos Azure-régiót. Azonban az SMB 3.0 támogatja a titkosítást, és elérhető a Windows Server 2012 R2, Windows 8, Windows 8.1 és Windows 10, lehetővé téve a kereszt-régió hozzáférni, sőt akár hello asztalon hozzáférés.
 
-Vegye figyelembe, hogy az Azure fájlmegosztások Unix használható, amíg a Linux SMB-ügyfél még támogatja a titkosítást, így csak elérését az Azure-régiót belül. Linux titkosítás támogatása van Linux fejlesztők SMB funkció felelős a programba. Titkosítási adnak hozzá, amikor Ön fog rendelkezésre áll a Linux Azure fájlmegosztás eléréséhez a Windows.
+Vegye figyelembe, hogy az Azure fájlmegosztások Unix használható, amíg hello Linux SMB-ügyfél még támogatja a titkosítást, így csak elérését az Azure-régiót belül. Linux titkosítás támogatása hello terv Linux fejlesztők SMB funkció felelős van. Ha titkosítás adnak hozzá, hogy ugyanazon képessége, egy Azure fájlmegosztás Linux eléréséhez a Windows hello.
 
-A rendszer az Azure-fájlok szolgáltatással titkosítás kényszerítheti a engedélyezésével [szükséges átviteli biztonságos](storage-require-secure-transfer.md) a tárfiók. A REST API-k használata, ha HTTPs megadása kötelező. Az SMB-csak SMB-kapcsolatok, amely támogatja a titkosítást az sikeresen fog csatlakozni.
+Hello Azure fájlok szolgáltatás-titkosítás hello használatát kényszeríthetik engedélyezésével [szükséges átviteli biztonságos](storage-require-secure-transfer.md) hello tárfiók. Ha a REST API-k használatával hello, HTTPs-kapcsolat szükséges. Az SMB-csak SMB-kapcsolatok, amely támogatja a titkosítást az sikeresen fog csatlakozni.
 
 #### <a name="resources"></a>Erőforrások
-* [Az Azure File Storage használata Linuxszal](storage-how-to-use-files-linux.md)
+* [Hogyan toouse Azure File storage Linux](storage-how-to-use-files-linux.md)
 
-  Ez a cikk bemutatja, hogyan csatlakoztatása az Azure-fájlmegosztáshoz egy Linux rendszer- és feltöltése/letöltés fájlok.
+  Ez a cikk bemutatja, hogyan toomount egy Azure-fájl megosztása egy Linux rendszer és a feltöltés/letöltési fájlokon.
 * [Ismerkedés a Windowshoz készült Azure File Storage szolgáltatással](storage-dotnet-how-to-use-files.md)
 
-  Ez a cikk áttekintést nyújt az Azure fájlmegosztások és a csatlakoztatási és használhatja őket a PowerShell és a .NET használatával.
+  Ez a cikk áttekintést nyújt az Azure fájlmegosztások és hogyan toomount, amelyekkel PowerShell és a .NET használatával.
 * [Az Azure File Storage ismertetése](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 
-  Ez a cikk általános Azure File storage számú, és az SMB 3.0-titkosítás vonatkozó technikai részleteket biztosít.
+  Ez a cikk hello általános rendelkezésre állását Azure File storage időről és hello SMB 3.0-titkosítás vonatkozó technikai részleteket biztosít.
 
-### <a name="using-client-side-encryption-to-secure-data-that-you-send-to-storage"></a>Az ügyféloldali titkosítással tárolási küldött adatok védelmét
-Egy másik lehetőség, amelynek segítségével győződjön meg arról, hogy az adatok biztonságos egy ügyfélalkalmazást és a tároló között történő átvitel során az ügyféloldali titkosítás. Az adatok titkosítása az Azure Storage átvitele előtt. Amikor az adatok beolvasása az Azure Storage-ból, az adatok visszafejtése ügyféloldali fogadását követően. Annak ellenére, hogy az adatok titkosítása a hálózaton keresztül is, azt javasoljuk, hogy is használja HTTPS, mert már van, amelyek segítenek az adatok integritásának érintő hálózati hibák beépített adatok integritás-ellenőrzést.
+### <a name="using-client-side-encryption-toosecure-data-that-you-send-toostorage"></a>Ügyféloldali titkosítás toosecure adatokat, hogy küldjön toostorage használatával
+Egy másik lehetőség, amelynek segítségével győződjön meg arról, hogy az adatok biztonságos egy ügyfélalkalmazást és a tároló között történő átvitel során az ügyféloldali titkosítás. hello adattitkosítás átvitel során az Azure Storage előtt. Hello adatok Azure Storage-ból beolvasásakor hello adatok visszafejtése hello ügyféloldalon fogadását követően. Annak ellenére, hogy hello adattitkosítás hello keresztülhaladnak a hálózaton keresztül is, azt javasoljuk, hogy is használja HTTPS, mert már van, amelyek segítenek hello adatok integritásának hello érintő hálózati hibák beépített adatok integritás-ellenőrzést.
 
-Ügyféloldali titkosítás egyben inaktív, az adatok titkosítására, a titkosított formában tárolja az adatokat. Lesz döntésről bővebben Ez a szakasz részletesen a [titkosítását](#encryption-at-rest).
+Ügyféloldali titkosítás megegyezik is található, aktívan, az adatok titkosítására hello adatok a titkosított formában tárolja. Lesz döntésről bővebben a hello szakasz részletesen a [titkosítását](#encryption-at-rest).
 
 ## <a name="encryption-at-rest"></a>Aktívan titkosítása
-Nincsenek három Azure szolgáltatást biztosító titkosítását. Az Azure Disk Encryption az operációsrendszer- és adatlemezek IaaS virtuális gépek titkosítására szolgál. A másik két – ügyféloldali titkosítás és SSE – amelyek mind az Azure Storage-adatok titkosítására használt. Most ezen, tekintse meg a összehasonlítása és tekintse meg, ha azok már nem használható.
+Nincsenek három Azure szolgáltatást biztosító titkosítását. Az Azure Disk Encryption, az operációs rendszer használt tooencrypt hello és adatlemezek infrastruktúra-szolgáltatási virtuális gépeket. egyéb két hello – ügyféloldali titkosítás és SSE – amelyek mindkét használt tooencrypt adatokat az Azure Storage. Most ezen, tekintse meg a összehasonlítása és tekintse meg, ha azok már nem használható.
 
-Ügyféloldali titkosítás használhatja az adattitkosítást átvitel közben (amely a tárolási titkosítás nélkül is tárol), célszerű lehet egyszerűen az átvitel közben HTTPS PROTOKOLLT használja, és az adatok titkosításához automatikusan tárolt néhány lehetőség. Két módon ehhez--Azure Disk Encryption és SSE. Közvetlenül a virtuális gépek által használt operációsrendszer- és adatlemezek az adatok titkosításához használt egyik, és az egyéb Azure Blob Storage írt adatok titkosítására szolgál.
+Használhatja az ügyféloldali titkosítás tooencrypt hello adatok az átvitel során (amely a tárolási titkosítás nélkül is tárol), azonban HTTPS toosimply használja inkább a hello átvitel során, és néhány hello adatok toobe automatikusan titkosított, amikor ez a lehetőség tárolja. Nincsenek két módon toodo ez--Azure Disk Encryption és SSE. Használt egyik toodirectly virtuális gépek által használt operációsrendszer- és adatlemezek hello adatok titkosításához, és más hello tooAzure Blob-tároló felhasznált tooencrypt adatokat.
 
 ### <a name="storage-service-encryption-sse"></a>Storage szolgáltatás titkosítási (SSE)
-SSE lehetővé teszi, hogy a társzolgáltatás automatikusan titkosítja az adatokat, az Azure Storage írásakor. Olvasásakor az adatok Azure Storage-ból, azt a rendszer visszafejti a tároló szolgáltatás által visszaadott előtt. Ez lehetővé teszi, hogy az adatok védelme anélkül, hogy a kód módosítására, vagy adja hozzá a kódot az alkalmazásokat.
+SSE lehetővé teszi, hogy hello tároló szolgáltatás automatikusan hello adatok titkosítása írásakor azt tooAzure tárolási toorequest. Olvasásakor hello adatok Azure Storage-ból, akkor lesz visszafejtve hello tároló szolgáltatás által visszaadott előtt. Ez lehetővé teszi az adatok anélkül, hogy toomodify code, vagy adja hozzá a kódot tooany alkalmazások toosecure.
 
-Ez az a beállítást, amely a teljes tárfiókot vonatkozik. Engedélyezi, és a beállítás értékének módosításával letilthatja ezt a funkciót. Ehhez használhatja az Azure-portálon, PowerShell, az Azure parancssori felület, a tárolási erőforrás-szolgáltató REST API vagy a .NET a Storage ügyféloldali kódtára. Alapértelmezés szerint az SSE ki van kapcsolva.
+Ez az a beállítást, amely a teljes tárfiókot toohello vonatkozik. Engedélyezi, és ez a funkció letiltása hello hello beállítás értékének módosításával. toodo, hello Azure-portálon PowerShell, hello Azure CLI használata, hello Storage erőforrás-szolgáltató REST API vagy hello .NET a Storage ügyféloldali kódtára. Alapértelmezés szerint az SSE ki van kapcsolva.
 
-Ilyenkor a titkosításához használt kulcsok a Microsoft által felügyelt. Azt a kulcsok létrehozásához eredetileg, és tárolja biztonságos kulcsok, valamint rendszeres elforgatási belső Microsoft házirend által definiált konfigurációjának kialakításához. A jövőben meg fog képes kezelni a saját titkosítási kulcsok lekérése, és adja meg a Microsoft által felügyelt kulcsok áttelepítési elérési kulcsok ügyfél által felügyelt.
+Jelenleg a Microsoft hello kulcsok hello titkosításhoz használt felügyeletét. Azt hello kulcsok létrehozásához eredetileg, és a belső Microsoft házirend által meghatározott hello biztonságos tárolására hello kulcsok, valamint a hello rendszeres Elforgatás felügyelete. Jövőbeli hello meg fog beolvasása hello képességét toomanage saját titkosítási kulccsal, és adja meg egy áttelepítési útvonal, a Microsoft által felügyelt kulcsok toocustomer által felügyelt kulcsok.
 
-Ez a funkció a Resource Manager telepítési modellel készült Standard és prémium szintű Storage-fiókok érhető el. SSE csak a blokkblobokat, lapblobokat és hozzáfűző blobok vonatkozik. A más típusú adatok, beleértve a táblák, üzenetsorok és fájlok, nem lesznek titkosítva.
+Ez a szolgáltatás hello erőforrás-kezelő telepítési modellel készült Standard és prémium szintű Storage-fiókok érhető el. SSE csak tooblock blobokat, lapblobokat, vonatkozik, és a hozzáfűző blobokhoz. hello más típusú adatok, beleértve a táblák, üzenetsorok és fájlok, nem lesznek titkosítva.
 
-Adatok titkosítása csak egy, ha SSE engedélyezve van, és az adatok kerülnek a Blob Storage. Engedélyezés vagy letiltás SSE nem befolyásolja a meglévő adatokat. Ez azt jelenti Ha engedélyezi ezt a titkosítást, nem lépjen vissza, és már létező; adatok titkosítása sem fog visszafejteni az adatokat, már létező SSE letiltásakor.
+Csak adattitkosítás SSE engedélyezve van, és hello adatot ír tooBlob tároló. Engedélyezés vagy letiltás SSE nem befolyásolja a meglévő adatokat. Ez azt jelenti Ha engedélyezi ezt a titkosítást, nem lépjen vissza, és már létező; adatok titkosítása sem lesz, ha letiltja az SSE már létezik hello adatok visszafejtését.
 
-Ha szeretne egy klasszikus tárfiókot használja ezt a szolgáltatást, hozzon létre egy új erőforrás-kezelő tárfiókot, és másolja az adatokat az új fiók az AzCopy segítségével.
+Ha azt szeretné, toouse Ez a szolgáltatás egy klasszikus tárfiókot, hozzon létre egy új erőforrás-kezelő tárfiókot, és AzCopy toocopy hello adatok toohello új fiókot használja.
 
 ### <a name="client-side-encryption"></a>Ügyféloldali titkosítás
-Ügyféloldali titkosítás azt említett, az adatok átvitele történik a titkosítás ismertetésekor. Ez a funkció lehetővé teszi a programozott módon az ügyfélalkalmazás mielőtt elküldené a hálózaton keresztül Azure Storage kellene írni, és szoftveres visszafejteni az adatok beolvasása az Azure Storage-ból után az adatok titkosítását.
+A Microsoft említett ügyféloldali titkosítás hello adatokat átvitel közben hello titkosításának ismertetésekor. Ez a funkció lehetővé teszi, hogy Ön tooprogrammatically titkosítani az adatokat egy ügyfélalkalmazást, mielőtt elküldené hello vezetékes toobe tooAzure tárolási írása között, és tooprogrammatically visszafejteni az adatokat az Azure Storage-ból beolvasása után.
 
-Így a titkosítás az átvitel során, de aktívan titkosítás funkciót is biztosít. Vegye figyelembe, hogy bár az adatok titkosítása az átvitel során, ajánlott előnyeit, amelyek segítenek az adatok integritásának érintő hálózati hibák beépített adatok integritás-ellenőrzést a HTTPS protokoll használatával.
+Így a titkosítás az átvitel során, de emellett biztosítja az inaktív titkosítási hello szolgáltatást. Vegye figyelembe, hogy bár a hello adattitkosítás átvitel közben, továbbra is ajánlott hello beépített adatok integritás-ellenőrzést, amelyek segítenek hello adatok integritásának hello érintő hálózati hibák tootake előnyeit HTTPS használatával.
 
-Amennyiben ezzel például ha egy webes alkalmazás, amely BLOB tárolja, és lekéri a blobok, de azt szeretné, hogy az alkalmazás és az adatok a biztonságos lehető. Ebben az esetben használja az ügyféloldali titkosítás. A forgalom között az ügyfél és az Azure Blob szolgáltatás a titkosított erőforrást tartalmaz, és senki sem értelmezheti az adatokat átvitel közben, és a titkos blobok pótlására azt.
+Amennyiben ezzel például ha egy webes alkalmazás, amely BLOB tárolja, és lekéri a blobok, de szeretné hello alkalmazás és adatok toobe megfelelő biztonsága. Ebben az esetben használja az ügyféloldali titkosítás. hello ügyfél és a hello Azure Blob szolgáltatás között hello forgalom titkosítva hello erőforrást tartalmaz, és senki sem hello adatok átvitel értelmezésére és a titkos blobok pótlására azt.
 
-Ügyféloldali titkosítás a Java és a .NET storage ügyfélkódtáraival, amelyek viszont a Azure kulcs tároló API-k, így ahhoz, hogy implementálja igen egyszerű van beépítve. Az adatok titkosítása és visszafejtése folyamatán a boríték módszerrel, és a titkosítás, az egyes tárolási objektum által használt metaadatokat tárol. Például a blobok, tárol, a blob metaadatai között, a várólisták, azt hozzáadja azt minden sor üzenetet.
+Ügyféloldali titkosítás hello Java és hello .NET storage ügyfélkódtáraival, amelyek viszont hello Azure kulcsot tároló API, így az Ön tooimplement igen egyszerű van beépítve. hello adatok titkosítása és visszafejtése hello folyamatán hello boríték módszerrel, és minden egyes tárolási objektum hello titkosításra által használt metaadatokat tárol. Például a blobok, tárolja azt hello blob metaadatai, a várólisták, hozzáadja az tooeach üzenetsorban lévő üzenetet.
 
-A titkosítási magát Ön hozza létre és a saját titkosítási kulcsok kezeléséhez. Használhatja az Azure Storage ügyféloldali kódtár által létrehozott kulcsok, vagy beállíthatja, hogy az Azure Key Vault a kulcsok létrehozásához. A titkosítási kulcsok tárolása a helyszíni kulcstároló, vagy tárolhatja őket az Azure Key Vault. Az Azure Key Vault lehetővé teszi a titkos kulcsok Azure Key Vault a hozzáférést az adott felhasználóknak, az Azure Active Directoryval. Ez azt jelenti, hogy birtokában bárki nem csak az Azure Key Vault olvasni, valamint használata ügyféloldali titkosítási kulcsok.
+Hello titkosítási magát Ön hozza létre és a saját titkosítási kulcsok kezeléséhez. Hello Azure Storage ügyféloldali kódtár által létrehozott kulcsok is használhatja, vagy beállíthatja, hogy az Azure Key Vault hello hello kulcsok létrehozásához. A titkosítási kulcsok tárolása a helyszíni kulcstároló, vagy tárolhatja őket az Azure Key Vault. Az Azure Key Vault lehetővé teszi toogrant hozzáférés toohello titkokat az Azure Key Vault toospecific felhasználók Azure Active Directory használatával. Ez azt jelenti, hogy nem csak birtokában bárki olvashatja hello Azure Key Vault, és lekéréséhez hello kulcsok ügyféloldali titkosítás használata.
 
 #### <a name="resources"></a>Erőforrások
 * [Titkosításához és visszafejtéséhez az Azure Key Vault használatával a Microsoft Azure Storage blobs](storage-encrypt-decrypt-blobs-key-vault.md)
 
-  Ez a cikk bemutatja, hogyan ügyféloldali titkosítás használata az Azure Key Vault, többek között a KEK létrehozása és a PowerShell használatával tárolóban tárolja.
+  Ez a cikk bemutatja, hogyan toouse ügyféloldali titkosítás az Azure Key Vault, beleértve a hogyan toocreate hello KEK és a PowerShell használatával hello tárolóban tárolja.
 * [A Microsoft Azure Storage ügyféloldali titkosítás és az Azure Key Vault](storage-client-side-encryption.md)
 
-  Ez a cikk ügyféloldali titkosítás magyarázatot ad, és példákat a storage ügyféloldali kódtár segítségével titkosításához és visszafejtéséhez a négy tárolási szolgáltatások erőforrásait. Azt is Azure Key Vault szól.
+  Ez a cikk ügyféloldali titkosítás magyarázatot ad, és példák a hello tárolási ügyfél tooencrypt és visszafejtése könyvtárerőforrások hello négy tárolási szolgáltatások használatával. Azt is Azure Key Vault szól.
 
-### <a name="using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines"></a>A virtuális gépek által használt lemezek Azure Disk Encryption titkosítása
-Az Azure Disk Encryption az új szolgáltatása. Ez a funkció lehetővé teszi, hogy az operációs rendszer és az infrastruktúra-szolgáltatási virtuális gép által használt adatok lemezek titkosítását. A Windows a meghajtók titkosítása szabványos BitLocker titkosítás technológia használatával. Linux a lemez titkosítása a DM-Crypt technológia használatával. Ez integrálva van az Azure Key Vault lehetővé teszi a lemez titkosítási kulcsok kezeléséhez, és szabályozhatja.
+### <a name="using-azure-disk-encryption-tooencrypt-disks-used-by-your-virtual-machines"></a>Használja az Azure Disk Encryption tooencrypt lemezt a virtuális gépek által használt
+Az Azure Disk Encryption az új szolgáltatása. Ez a funkció lehetővé teszi tooencrypt hello az operációs rendszer és az infrastruktúra-szolgáltatási virtuális gép által használt adatok lemezek. A Windows hello meghajtók titkosítása szabványos BitLocker titkosítás technológia használatával. A Linux hello lemezek titkosítása hello DM-Crypt technológia használatával. Ez az integrálva van az Azure Key Vault tooallow meg toocontrol és hello lemez titkosítási kulcsok kezeléséhez.
 
-A megoldás a következő szituációkat IaaS virtuális gépek Microsoft Azure-ban engedélyezésekor:
+hello megoldás támogatja a következő forgatókönyvek IaaS virtuális gépek esetén, ha engedélyezve van a Microsoft Azure-ban hello:
 
 * Az Azure Key Vault integrációja
 * Standard szint virtuális gépek: [A, D, DS, G, GS és stb adatsorozat IaaS virtuális gépeket](https://azure.microsoft.com/pricing/details/virtual-machines/)
@@ -343,17 +343,17 @@ A megoldás a következő szituációkat IaaS virtuális gépek Microsoft Azure-
 * A Windows virtuális gépeken, a tárolóhelyek használatával konfigurált titkosítás engedélyezése
 * Minden Azure-nyilvános régió támogatottak.
 
-A megoldás nem támogatja a következő forgatókönyvek, szolgáltatások és technológia a kiadásban:
+hello megoldás nem támogatja a következő forgatókönyvek, funkcióit és technológia hello kiadásban hello:
 
 * Az alapszintű csomag IaaS virtuális gépeket
 * Linux IaaS virtuális gépeket egy operációs rendszer meghajtóján titkosításának letiltása
-* Infrastruktúra-szolgáltatási virtuális gépeket, a klasszikus virtuális gép létrehozási módszer használatával létrehozott
+* Infrastruktúra-szolgáltatási virtuális gépeket hello klasszikus virtuális gép létrehozási módszerének használatával létrehozott
 * Integráció a helyszíni kulcskezelő szolgáltatás
 * Az Azure File storage (megosztott fájlrendszer), a hálózati fájlrendszer (NFS), a dinamikus köteteket és a Windows alapú szoftveres RAID-rendszerek használatára konfigurált virtuális gépek
 
 
 > [!NOTE]
-> A következő Linux terjesztésekről jelenleg támogatott Linux operációs rendszert futtató lemeztitkosítás: RHEL 7.2, CentOS 7.2n és Ubuntu 16.04.
+> A következő Linux terjesztésekről hello jelenleg támogatott Linux operációs rendszert futtató lemeztitkosítás: RHEL 7.2, CentOS 7.2n és Ubuntu 16.04.
 >
 >
 
@@ -364,115 +364,115 @@ Ez a szolgáltatás biztosítja, hogy a virtuális gépek lemezeit a összes ada
 
 ### <a name="comparison-of-azure-disk-encryption-sse-and-client-side-encryption"></a>Az Azure Disk Encryption, az SSE és az ügyféloldali titkosítás összehasonlítása
 #### <a name="iaas-vms-and-their-vhd-files"></a>Infrastruktúra-szolgáltatási virtuális gépek és a VHD-fájlok
-Infrastruktúra-szolgáltatási virtuális gépek által használt lemezek azt javasoljuk, Azure Disk Encryption. Az Azure Storage lemezek biztonsági használt VHD-fájlok titkosítására SSE bekapcsolása, de csak titkosítja a újonnan írt adatok. Ez azt jelenti, hogy hozzon létre egy virtuális Gépet, és engedélyez SSE a tárfiók, amely a VHD-fájl tárolja, ha csak a módosítása titkosítja, nem az eredeti VHD-fájlt.
+Infrastruktúra-szolgáltatási virtuális gépek által használt lemezek azt javasoljuk, Azure Disk Encryption. Ha bekapcsolja a SSE tooencrypt hello VHD-fájlokat, amelyek használt tooback azokat a lemezeket, az Azure Storage, de csak titkosítja a újonnan írt adatok. Ez azt jelenti, hogy hozzon létre egy virtuális Gépet, és engedélyez SSE hello tárfiók, amely a hello VHD-fájl tárolja, ha csak hello módosítása titkosítja, nem hello az eredeti VHD-fájlt.
 
-Ha Ön egy virtuális gép létrehozása lemezkép az Azure piactérről, az Azure-ban egy [másolási sekély](https://en.wikipedia.org/wiki/Object_copying) a kép a tárolási fiók az Azure Storage, és nem titkosított akkor is, ha az SSE engedélyezve van. Miután a virtuális Gépet hoz létre, és elindítja a lemezkép frissítése, SSE indul el az adatok titkosításához. Emiatt érdemes használni az Azure Disk Encryption szeretné teljesen titkosítottak, a lemezképek az Azure piactéren alapján létrehozott virtuális gépeken.
+Ha hello Azure Piactérről származó lemezkép virtuális gép létrehozása az Azure-ban egy [másolási sekély](https://en.wikipedia.org/wiki/Object_copying) hello kép tooyour az Azure Storage és a tárfiók nem titkosított akkor is, ha az SSE engedélyezve van. Hello VM hoz létre, és elindítja a hello lemezkép frissítése után SSE indul hello adatok titkosítására. Ezért ajánlott toouse Azure Disk Encryption virtuális gépeken hello Azure piactér képek alapján létrehozott, ha azt szeretné, teljesen titkosítottak.
 
-Ha később egy előre titkosított virtuális Gépet az Azure a helyszíni, lesz, a titkosítási kulcsok feltöltése az Azure Key Vaultba, és továbbra is a titkosítást használni ezt a virtuális gépet, hogy a helyszínen használt. Az Azure Disk Encryption engedélyezve van ez a forgatókönyv kezelésére.
+Ha később egy előre titkosított virtuális Gépet az Azure a helyszíni, akkor tudja tooupload hello titkosítási kulcsok tooAzure Key Vault, és ezt a virtuális Gépet, hogy a helyszínen használt hello titkosítás használatának folytatásához. Az Azure Disk Encryption engedélyezett toohandle van ebben a forgatókönyvben.
 
-Ha virtuális merevlemez nem titkosított a helyszíni, töltse fel az egyéni lemezképként gyűjteménye, és a virtuális gép kiépítéséhez. Ehhez a Resource Manager-sablonok használatával, kérje meg, hogy a virtuális gép elinduló Azure Disk Encryption bekapcsolás.
+Ha virtuális merevlemez nem titkosított a helyszíni, töltse fel az egyéni lemezképként hello gyűjteménye, és a virtuális gép kiépítéséhez. Ehhez hello Resource Manager-sablonok használatával, kérje meg az tooturn az Azure Disk Encryption amikor azt hello virtuális gép elindul.
 
-Ha hozzá adatlemezt, és csatlakoztassa azt a virtuális Gépet, a lemezen levő adatok bekapcsolhatja Azure Disk Encryption. Először titkosítja az adott adatok lemezek helyi, és hogy a szolgáltatás felügyeleti réteg válasszon lehetőségek elleni tárolási Lusta írási, a tárolási tartalom titkosított.
+Ha hozzá adatlemezt, és csatlakoztassa azt hello VM, bekapcsolhatja a Azure Disk Encryption a lemezen levő adatokat. Először titkosítja az adott adatok lemezek helyi, és hogy hello szolgáltatás alkalmazáskezelési réteg válasszon lehetőségek elleni tárolási Lusta írási, hello tárolási tartalom titkosítása.
 
 #### <a name="client-side-encryption"></a>Ügyféloldali titkosítás
-Ügyféloldali titkosítás a legbiztonságosabb lehetőség titkosítja az adatokat, mert átvitel előtt titkosítja azokat, és titkosítja az adatokat aktívan. Azonban ez nem igényel kód hozzáadása az alkalmazások, a tároló, amely előfordulhat, hogy nem szeretné. Ezekben az esetekben HTTPs használhatja az adatok az átvitel során, és SSE az inaktív adatok titkosítása.
+Ügyféloldali titkosítás a hello Ez a legbiztonságosabb módszer titkosítja az adatokat, mert átvitel előtt titkosítja azokat, és inaktív adatok hello titkosítja. Azonban azt igénylik, hogy a tároló, amely nem használó kód tooyour alkalmazások hozzáadása toodo. Ezekben az esetekben is a HTTPS protokollt használja a adatokat átvitel közben, és az SSE tooencrypt hello adatokat aktívan.
 
-Az ügyféloldali titkosítással táblaentitásokat, az üzenetsor-üzeneteket és a blobok titkosíthatók. Az SSE blobok csak titkosíthatja. Ha módosítania kell, hogy a tábla- és várólista adatok titkosításához, ügyféloldali titkosítás kell használnia.
+Az ügyféloldali titkosítással táblaentitásokat, az üzenetsor-üzeneteket és a blobok titkosíthatók. Az SSE blobok csak titkosíthatja. Ha a tábla- és várólista titkosított adatok toobe van szüksége, ügyféloldali titkosítás kell használnia.
 
-Ügyféloldali titkosítás teljes mértékben az alkalmazás kezeli. Ez a legbiztonságosabb módszer, de kell programozott módosítja az alkalmazás és kulcskezelés folyamatok vezetnek be. Használja ezt a további biztonsági átvitel során, és azt szeretné, hogy a tárolt adatok titkosításához.
+Ügyféloldali titkosítás teljesen hello alkalmazás kezeli. Ez hello legbiztonságosabb módszert használja, de megkövetelik a toomake programozott módosítások tooyour alkalmazás, és kulcskezelés folyamatok helyen. Ha azt szeretné, hogy hello használna ez további biztonsági során átvitel során, és szeretné, hogy a tárolt adatok toobe titkosítva.
 
-Ügyféloldali titkosítás nagyobb terhelést az ügyfélen, és különösen akkor, ha titkosított és nagy mennyiségű adat átvitele a méretezhetőség tervek a fiókot, hogy.
+Ügyféloldali titkosítás hello ügyfél további terhelését, és rendelkezik tooaccount ehhez a méretezhetőség tervek, különösen akkor, ha titkosított és nagy mennyiségű adat átvitele.
 
 #### <a name="storage-service-encryption-sse"></a>Storage szolgáltatás titkosítási (SSE)
-Azure Storage SSE kezeli. SSE használatával nem biztosítja a biztonsági adatok az átvitel során, de az adatok titkosítása, Azure Storage változatlan formában. Nincs hatással a teljesítményre gyakorolt a szolgáltatás használata során.
+Azure Storage SSE kezeli. SSE használatával nem nyújtanak a hello biztonsági hello adatok az átvitel során, de az adattitkosítás hello tooAzure tárolási változatlan formában. Nincs hatással a teljesítményre hello a szolgáltatás használata során.
 
-Csak titkosítása blokkblobokat, hozzáfűző blobokat és lapblobokat SSE használatával. Ha tábla vagy várólista-adatok titkosítására van szüksége, érdemes ügyféloldali titkosítással történik.
+Csak titkosítása blokkblobokat, hozzáfűző blobokat és lapblobokat SSE használatával. Ha tooencrypt tábla vagy várólista adatok van szüksége, érdemes ügyféloldali titkosítással történik.
 
-Ha egy archív vagy a könyvtár a VHD-fájlokat az új virtuális gépek létrehozásának alapjaként használja, hozzon létre egy új tárfiókot, SSE engedélyezése és majd töltse fel a VHD-fájlok ezekhez a fiókokhoz. Ezeket a VHD-fájlok Azure Storage titkosítva legyen.
+Ha egy archív vagy a könyvtár a VHD-fájlokat az új virtuális gépek létrehozásának alapjaként használja, hozzon létre egy új tárfiókot, SSE engedélyezése és hello VHD-fájlok toothat fiók majd feltölteni. Ezeket a VHD-fájlok Azure Storage titkosítva legyen.
 
-Ha az Azure Disk Encryption a lemezt egy virtuális gép, és engedélyezve van a tárfiók a VHD-fájlokat tároló SSE engedélyezve van, akkor fog működni részletes; kétszer titkosított újonnan írt adatok okoz.
+Ha az Azure Disk Encryption hello lemezek egy virtuális gép és a hello VHD-fájlokat tároló hello tárfiók engedélyezve SSE engedélyezve van, akkor fog működni részletes; kétszer titkosított újonnan írt adatok okoz.
 
 ## <a name="storage-analytics"></a>Storage Analytics
-### <a name="using-storage-analytics-to-monitor-authorization-type"></a>Storage Analytics segítségével engedélyezési figyelőtípus
-Minden tárfiók engedélyezheti az Azure Storage Analytics naplózási elvégzéséhez és a metrikák adatainak tárolásához. Ez az egy remek eszköz használatára ellenőrizheti a tárfiók a teljesítményi értékeket, vagy kell elhárítania a storage-fiók, mert teljesítményproblémák lépnek.
+### <a name="using-storage-analytics-toomonitor-authorization-type"></a>Tárolási analitika toomonitor engedélyezési típus használatával
+Minden tárfiók Azure Storage Analytics tooperform naplózás engedélyezése és a metrikák adatainak tárolásához. Egy remek eszköz toouse Ez akkor, ha szeretné, hogy toocheck hello teljesítménymutatók a tárfiók, vagy tootroubleshoot tárfiókot kell végrehajtani, mert a teljesítményproblémák lépnek.
 
-A storage analytics naplók látható egy másik adat tároló elérésekor valaki által használt hitelesítési módszert. Például a Blob-tároló, megtekintheti azokat használni egy közös hozzáférésű Jogosultságkód vagy a tárfiókok kulcsait, vagy ha a blob elérhető nyilvános volt.
+Egy másik adat hello storage analytics naplók látható a hello hitelesítési módszer valaki tároló elérésekor használja. Például a Blob-tároló, megtekintheti azokat használni egy közös hozzáférésű Jogosultságkód vagy hello tárfiókok kulcsait, vagy ha elérhető hello blob lett nyilvános.
 
-Ez valóban akkor hasznos, ha szorosan esetlegesen korán tároló elérésére lehet. Például a Blob Storage tárolóban után állítsa be a tároló összes magán is valósítja meg az SAS-szolgáltatás használata az alkalmazások teljes. Ellenőrizze rendszeresen a naplókat blobok a tárfiókok kulcsait, ami azt jelezheti a biztonság megsértése, érhető el, vagy ha a blobok olyan nyilvános, de nem lehetnek.
+Ez valóban akkor hasznos, ha szorosan hozzáférés toostorage esetlegesen korán lehet. Például a Blob Storage tárolóban után az összes hello tárolók tooprivate is valósítja meg az SAS-szolgáltatás hello használata az alkalmazások teljes. Ezután ellenőrizheti a hello naplók rendszeresen toosee Ha blobok hello tárfiókok kulcsait, ami azt jelezheti a biztonság megsértése, érhető el, vagy ha hello blobok olyan nyilvános, de nem lehetnek.
 
-#### <a name="what-do-the-logs-look-like"></a>Hogyan hajtsa végre a naplók meg?
-Engedélyezi a tárolási fiók metrikák és naplózás az Azure portálon keresztül, analitikai adatok megkezdik gyorsan felhalmozhat után. A naplózás és a metrikák minden szolgáltatás külön; a naplózás csak akkor ír, amikor a forgalom storage-fiókhoz tartozó közben minden percben, óránként vagy naponta, attól függően, hogy hogyan konfigurálja a metrikák lesz naplózva.
+#### <a name="what-do-hello-logs-look-like"></a>Mire hello naplók figyelni például?
+Után engedélyeznie hello tárolási fiók metrikákat és naplózási hello Azure-portálon keresztül, analitikai adatok elindul tooaccumulate gyorsan. hello naplózása és az egyes szolgáltatásokhoz metrikák elkülönül; hello naplózási csak akkor ír, amikor a forgalom a tárfiókban lévő közben hello metrikák naplózza a rendszer, minden percben, óránként vagy naponta, attól függően, hogy hogyan konfigurálja.
 
-A naplók blokkblobokat a tárfiókban $logs nevű tárolóban vannak tárolva. Ebben a tárolóban automatikusan jön létre, ha engedélyezve van a tárolási analitika. A tároló jön létre, nem törölhetők, de törölheti annak tartalmát.
+hello naplók blokkblobokat a hello tárfiókban lévő $logs nevű tárolóban vannak tárolva. Ebben a tárolóban automatikusan jön létre, ha engedélyezve van a tárolási analitika. A tároló jön létre, nem törölhetők, de törölheti annak tartalmát.
 
-A $logs tárolóban a mappa minden egyes szolgáltatás, és majd nincsenek almappái az év/hónap/nap/óra. Az óra a naplók egyszerűen számozása. Ez az mit fog kinézni a mappastruktúrát:
+Hello $logs tárolóban a mappa az egyes szolgáltatásokhoz, és majd nincsenek almappák a hello év/hónap/nap/óra. Az óra egyszerűen számozása hello naplókat. Ez az, hogy milyen hello könyvtárstruktúrát hasonlóan fog kinézni:
 
 ![Naplófájlok megtekintése](./media/storage-security-guide/image1.png)
 
-Azure Storage minden kérést a rendszer naplózza. Íme egy naplófájlba, az első néhány mezőket megjelenítő pillanatképet.
+A rendszer minden kérelem tooAzure tárolási naplózza. Íme egy naplófájlba, hello első néhány mezőket megjelenítő pillanatképet.
 
 ![Pillanatkép egy naplófájl](./media/storage-security-guide/image2.png)
 
-Láthatja, hogy segítségével a naplók tárfiókba hívások bármilyen nyomon.
+Használható hello naplók tootrack hívások tooa tárfiók bármilyen tekintheti meg.
 
 #### <a name="what-are-all-of-those-fields-for"></a>Mik azok a mezők összes?
-Van egy cikket, amely a erőforrásait, szerepel a naplókat, valamint a használatuk sok mezőinek listáját jeleníti meg. A mezők sorrendben listája itt található:
+Nincs tartalmazza hello hello sok mező a hello naplókat, valamint a használatuk felsorolt hello erőforrások az alábbi cikk. A mezők sorrendben hello listája itt található:
 
 ![Pillanatkép a mezők a naplófájlban](./media/storage-security-guide/image3.png)
 
-Azt is érdekli GetBlob vonatkozó bejegyzéseket, és hogyan hitelesítik, így kell a művelet-type "Get-Blob" bejegyzések, a kérelem-állapotának (4<sup>th</sup> oszlop) és a hitelesítési típus (8<sup>th</sup> oszlop).
+Azt is érdekli GetBlob hello bejegyzéseket, és hogyan hitelesítik, ezért azt kell toolook bejegyzések művelet-típussal a "Get-Blob", és állapotának hello kérelem-(4<sup>th</sup> oszlop) és hello engedélyezési típusú (8<sup>th</sup> oszlop).
 
-Például a fenti listaelem első néhány sor a szolgáltatáskérés állapota "Sikeres" és a hitelesítési típus "hitelesített". Ez azt jelenti, hogy a kérelem a tárfiók kulcsa segítségével lett érvényesítve.
+Például a hello első néhány sor a fenti hello listaelem hello kérelem-állapota "Sikeres", amely hello engedélyezési-type "hitelesített". Ez azt jelenti, hogy hello kérelem hello tárfiók kulcsa segítségével lett érvényesítve.
 
 #### <a name="how-are-my-blobs-being-authenticated"></a>Hogyan vannak a blobok hitelesített?
 Három olyan esetekben, amely azt is van.
 
-1. A blob nem nyilvános, és hozzáférés nélkül egy közös hozzáférésű Jogosultságkód egy URL-cím használatával. Ebben az esetben a kérelem-állapota "AnonymousSuccess" és az engedélyezési-típus: "névtelen".
+1. hello blob nyilvános, valamint egy közös hozzáférésű Jogosultságkód nélkül egy URL-cím segítségével hozzáférés. Ebben az esetben hello kérelem-állapota "AnonymousSuccess" és hello engedélyezési-típusa "névtelen".
 
    1.0; 2015-11-17T02:01:29.0488963Z; GetBlob; **AnonymousSuccess**; 200; 124; 37; **Névtelen**; mystorage...
-2. A blob magánjellegű és egy közös hozzáférésű Jogosultságkód volt használva. Ebben az esetben a kérelem-állapota "SASSuccess" és az engedélyezési-típus: "sas".
+2. hello blob magánjellegű és egy közös hozzáférésű Jogosultságkód volt használva. Ebben az esetben hello kérelem-állapota "SASSuccess" és hello engedélyezési-type "sas".
 
    1.0; 2015-11-16T18:30:05.6556115Z; GetBlob; **SASSuccess**; 200; 416; 64; **SAS**; mystorage...
-3. A blob személyes, és a kulcs lett megadva az eléréséhez. Ebben az esetben a kérelem-állapota "**sikeres**"és a hitelesítési típus:"**hitelesített**".
+3. hello blob személyes, és hello biztonságitár-kulcs lett használt tooaccess azt. Ebben az esetben hello kérelem-állapota "**sikeres**"és hello engedélyezési-típus:"**hitelesített**".
 
    1.0; 2015-11-16T18:32:24.3174537Z; GetBlob; **Sikeres**; 206-os; 59; 22; **hitelesített**; mystorage...
 
-A Microsoft Message Analyzer segítségével megtekintheti, és ezek a naplók elemzése. Ez magában foglalja a keresési és szűrési lehetőségeket. Például előfordulhat, hogy a keresni kívánt GetBlob meg, ha a használati mi várható, azaz ellenőrizze, hogy valaki nem fér hozzá a tárfiók nem megfelelően példányai.
+Hello Microsoft Message Analyzert tooview használja, és ezek a naplók elemzése. Ez magában foglalja a keresési és szűrési lehetőségeket. Például érdemes a toosearch példányai GetBlob toosee Ha hello használata várt, azaz toomake meg arról, hogy valaki nem fér hozzá a tárfiók nem megfelelően.
 
 #### <a name="resources"></a>Erőforrások
 * [Storage Analytics](storage-analytics.md)
 
-  Ez a cikk a tárolási analitika és ahhoz, hogyan nyújt áttekintést.
+  Ez a cikk a storage Analytics nyújt áttekintést, és hogyan tooenable őket.
 * [Storage Analytics naplóformátumban](https://msdn.microsoft.com/library/azure/hh343259.aspx)
 
-  Ez a cikk bemutatja a Storage Analytics naplóformátumban, és adatokat, az elérhető mezők, például hitelesítés típusa, amely megadja, hogy a kérelemhez használt hitelesítés típusa.
-* [A figyelő egy Tárfiókot, Azure-portálon](storage-monitor-storage-account.md)
+  Ez a cikk bemutatja, hello Storage Analytics naplóformátumban, és részletek hello elérhető mezők, beleértve a hitelesítés típusa, amely hello hello kéréshez használt hitelesítés típusa.
+* [A figyelő a Tárfiókokat hello Azure-portálon](storage-monitor-storage-account.md)
 
-  Ez a cikk ismerteti, hogyan konfigurálható a metrikák figyelését és a storage-fiókok naplózása.
+  Ez a cikk bemutatja, hogyan tooconfigure a mérőszámok figyelés és naplózás a tárfiók.
 * [Azure Storage Metrics és a naplózás, az AzCopy és a Message Analyzer segítségével végpontok – hibaelhárítás](storage-e2e-troubleshooting.md)
 
-  Ez a cikk beszél hibaelhárítás a Storage Analytics segítségével, és a Microsoft Message Analyzert használatát ismerteti.
+  Ez a cikk beszél hibaelhárítás hello Storage Analytics segítségével, és bemutatja, hogyan toouse hello Microsoft Message Analyzert.
 * [Microsoft Message Analyzer üzemeltetési útmutató](https://technet.microsoft.com/library/jj649776.aspx)
 
-  Ez a cikk a Microsoft Message Analyzert mutató hivatkozás, és egy oktatóanyag, a gyors üzembe helyezési és a szolgáltatás összefoglaló mutató hivatkozásokat tartalmaz.
+  Ez a cikk hello Microsoft Message Analyzert hello hivatkozását, és magában foglalja a hivatkozások tooa oktatóanyag, a gyors üzembe helyezési és a szolgáltatások.
 
 ## <a name="cross-origin-resource-sharing-cors"></a>Eltérő eredetű erőforrások megosztása (CORS)
 ### <a name="cross-domain-access-of-resources"></a>Tartományok közötti elérést erőforrások
-Ha egy tartományban futó webböngésző hajt végre egy HTTP-kérelem erőforrás más tartományokból, ez a lehetőség egy eltérő eredetű HTTP-kérelem. Például a contoso.com helyről HTML-lapot fabrikam.blob.core.windows.net üzemeltetett JPEG-fájlok kérelmet küld. Biztonsági okokból böngészők korlátozza a parancsprogramok, például a JavaScriptek belül kezdeményezett eltérő eredetű HTTP-kérelmekre. Ez azt jelenti, hogy néhány JavaScript-kódot egy weblapon a contoso.com tartományon kéri, hogy a fabrikam.blob.core.windows.net jpeg, amikor a böngésző nem teszi lehetővé a kérelmet.
+Ha egy tartományban futó webböngésző hajt végre egy HTTP-kérelem erőforrás más tartományokból, ez a lehetőség egy eltérő eredetű HTTP-kérelem. Például a contoso.com helyről HTML-lapot fabrikam.blob.core.windows.net üzemeltetett JPEG-fájlok kérelmet küld. Biztonsági okokból böngészők korlátozza a parancsprogramok, például a JavaScriptek belül kezdeményezett eltérő eredetű HTTP-kérelmekre. Ez azt jelenti, hogy ha néhány JavaScript-kódot egy weblapon a contoso.com tartományon kéri, hogy a fabrikam.blob.core.windows.net jpeg, hello böngésző nem engedélyezi a hello kérelem.
 
-Mi nem ezt kell elvégezni az Azure Storage? Is, ha statikus erőforrásokat, például a JSON- vagy XML-adatfájlok tárolja a Blob Storage a Fabrikam tárfiókot használ neve, a tartomány eszközök lesz fabrikam.blob.core.windows.net, és a contoso.com webalkalmazás nem lesz képes azok eléréséhez JavaScript használatával, mert a tartományok eltérőek. Ez akkor is igaz, ha egy Azure Storage szolgáltatások – például a Table Storage – hívni kívánt, térjen vissza a JSON a JavaScript-ügyfél által feldolgozandó adatokat.
+Ez funkciója az Azure Storage toodo rendelkezik? Is, ha statikus erőforrásokat, például a JSON- vagy XML-adatfájlok tárolja a Blob Storage a Fabrikam tárfiókot használ neve, hello tartomány hello eszközök lesz fabrikam.blob.core.windows.net és hello contoso.com webalkalmazás nem lesz képes tooaccess őket JavaScript használatával, mert hello tartományok eltérőek. Ez akkor is igaz, ha a kívánt Azure tárolási szolgáltatások – például a Table Storage – hello egyik toocall JSON-adatok toobe hello JavaScript-ügyfél által feldolgozott visszaadó.
 
 #### <a name="possible-solutions"></a>Lehetséges megoldások
-Egy a probléma megoldásához módja rendelje hozzá az egyéni tartománynév például a "storage.contoso.com" fabrikam.blob.core.windows.net. A probléma oka, hogy csak rendelhet, hogy egyéni tartomány egy tárfiókot. Mi történik, ha az eszközök vannak tárolva több tárfiókot?
+Egyirányú tooresolve Ez az egyéni tartománynév például a "storage.contoso.com" toofabrikam.blob.core.windows.net tooassign. hello probléma, hogy csak rendelhet hozzá, hogy az egyéni tartomány tooone tárfiók. Mi történik, ha hello eszközeit tárolják a több tárfiókot?
 
-A probléma megoldásához úgy, hogy a webes alkalmazás a tároló hívások proxyként működjön. Ez azt jelenti, ha a fájl feltöltése a Blob Storage, a webes alkalmazás ehhez vagy helyileg írják és másolásához Blob-tároló, az ehhez a memóriába az összes és írni a Blob Storage. Alternatív megoldásként egy dedikált webes alkalmazás (például egy webes API), amely feltölti a fájlokat helyileg, és írja őket a Blob Storage lehet írni. Mindkét módszer esetén kell fiók adott funkcióval, ha igények meghatározása a méretezhetőséget.
+Egy másik módja tooresolve toohave hello webes alkalmazás act hello tárolási hívások proxyként azt. Ez azt jelenti, ha egy fájl tooBlob tárolási, hello webalkalmazás volna, vagy helyileg írják, és tooBlob tárolási másolja, vagy az ehhez a memóriába az összes és tooBlob tárolási írni. Alternatív megoldásként egy dedikált webes alkalmazás (például egy webes API), amely hello fájlok feltöltését, majd beírja őket tooBlob tárolási lehet írni. Mindkét módszer esetén, hogy adott funkcióval tooaccount Ha meghatározó hello méretezhetőséget.
 
 #### <a name="how-can-cors-help"></a>Hogyan segíthetnek a CORS?
-Az Azure Storage lehetővé teszi a kereszt-eredetű erőforrások megosztása – a CORS engedélyezése. Minden tárfiók férhetnek hozzá a fiókhoz tartozó tárolási erőforrások tartományokat is megadhat. Például a fent vázolt esetünkben azt is a CORS engedélyezése a fabrikam.blob.core.windows.net tárfiók, és konfigurálja úgy, hogy engedélyezi a hozzáférést a contoso.com felé. A webes alkalmazás contoso.com majd közvetlenül hozzáférhetnek a fabrikam.blob.core.windows.net lévő erőforrásokat.
+Az Azure Storage tooenable CORS – Cross eredetű erőforrások megosztása lehetővé teszi. Minden tárfiók hello erőforrásokhoz, hogy a tárfiók tartományokat is megadhat. Például a mi esetünkben a fent vázolt, azt is hello fabrikam.blob.core.windows.net tárfiók a CORS engedélyezése és tooallow hozzáférés toocontoso.com konfigurálja. Majd hello webes alkalmazás contoso.com közvetlenül a fabrikam.blob.core.windows.net hello erőforrások eléréséhez.
 
-Egy dolog, ami arról értesít, hogy a CORS lehetővé teszi a hozzáférést, de nem biztosít hitelesítést, amely szükséges az összes nem-nyilvános hozzáférés tárolási erőforrások. Ez azt jelenti, akkor csak hozzáférni az blobokat, ha azok nyilvános vagy telepíthet egy közös hozzáférésű Jogosultságkód a megfelelő engedélyt. Táblák, üzenetsorok és fájlok nincs nyilvános hozzáférés, és a SAS-kód szükséges.
+Egy dolog toonote, hogy a CORS lehetővé teszi a hozzáférést, de nem biztosít hitelesítést, amely szükséges az összes nem-nyilvános hozzáférés tároló-erőforrások. Ez azt jelenti, hogy csak blobokat, ha azok nyilvános vagy telepíthet egy közös hozzáférésű Jogosultságkód felkínálva hello megfelelő engedélyekkel. Táblák, üzenetsorok és fájlok nincs nyilvános hozzáférés, és a SAS-kód szükséges.
 
-A CORS alapértelmezés szerint le van tiltva az összes szolgáltatás. Engedélyezheti a CORS hívja service házirendek beállítása a módszerek egyikét a REST API-t vagy a storage ügyféloldali kódtár segítségével. Ha így tesz, meg kell adnia egy CORS szabály, amely az XML-Fájlban. Íme egy példa egy CORS szabályt, amely a szolgáltatás tulajdonságainak beállítása művelet a Blob szolgáltatás használatával egy tárfiók van beállítva. Ennek a műveletnek az Azure Storage a storage ügyféloldali kódtár vagy a REST API-k használatával végezheti el.
+A CORS alapértelmezés szerint le van tiltva az összes szolgáltatás. A CORS hello REST API vagy hello tárolási ügyfél könyvtár toocall hello módszerek tooset hello szolgáltatás házirendek egyikét használatával engedélyezheti. Ha így tesz, meg kell adnia egy CORS szabály, amely az XML-Fájlban. Íme egy példa egy CORS szabályt, amely hello szolgáltatás tulajdonságainak beállítása művelet hello Blob szolgáltatás használ a tárfiók van beállítva. Ennek a műveletnek az Azure Storage hello a storage ügyféloldali kódtára vagy hello REST API-k használatával végezheti el.
 
 ```xml
 <Cors>    
@@ -488,38 +488,38 @@ A CORS alapértelmezés szerint le van tiltva az összes szolgáltatás. Engedé
 
 Ez minden egyes sorára jelenti:
 
-* **AllowedOrigins** ez alapján, mely nem egyező tartományok kérelmezhet és fogadhat adatokat a tárhelyre. Ez azt jelzi, hogy a contoso.com és fabrikam.com kérhetnek az adatok Blob-tároló egy adott tárfiók. A helyettesítő karakter is állíthat (\*) kérelmek eléréséhez minden tartományban engedélyezi.
-* **AllowedMethods** a lista (HTTP-kérelem műveletek) módszer használható, amikor a kérést. Ebben a példában csak a PUT és a GET használható. Beállíthatja a helyettesítő karakter (\*) engedélyezéséhez használt összes módszert.
-* **AllowedHeaders** Ez az a kérelem fejlécében, hogy a forrástartomány adhat meg, amikor a kérést. Ebben a példában minden metaadat fejléc kezdve az x-ms-metaadatok, x-ms-metaadat-tároló és az x-ms-meta-abc engedélyezett. A helyettesítő karakter (\*) azt jelzi, hogy engedélyezi-e a-tól kezdődően fejlécben megadott előtag.
-* **ExposedHeaders** ez alapján mely válaszfejlécek elérhetővé tehető a böngésző számára a kérelmet kibocsátó. Ebben a példában minden kezdve fejléc "x-ms - meta-" megjelenik.
-* **MaxAgeInSeconds** Ez az a maximális időt, hogy a böngésző gyorsítótárazza-e a ellenőrzési beállítások kérelmet. (Az előzetes kérelmekre vonatkozó további információkért ellenőrizze a első cikkben.)
+* **AllowedOrigins** ez alapján, mely nem egyező tartományok kérelmezhet és fogadhat adatokat hello tároló szolgáltatást. Ez azt jelzi, hogy a contoso.com és fabrikam.com kérhetnek az adatok Blob-tároló egy adott tárfiók. Azt is beállíthatja a tooa helyettesítő karakter (\*) tooallow összes tartományok tooaccess kéri.
+* **AllowedMethods** hello listájának módszert (HTTP-kérelem műveletek) használható, amikor hello kérést. Ebben a példában csak a PUT és a GET használható. Beállíthatja a tooa helyettesítő karakter (\*) összes módszerek toobe használt tooallow.
+* **AllowedHeaders** hello kérelem forrástartományt hello fejlécek adhat meg, amikor hello kérést azt. Ebben a példában minden metaadat fejléc kezdve az x-ms-metaadatok, x-ms-metaadat-tároló és az x-ms-meta-abc engedélyezett. hello helyettesítő karakter (\*) azt jelzi, hogy bármely hello fejléc kezdődő megadott előtag engedélyezett.
+* **ExposedHeaders** ez alapján mely válaszfejlécek elérhetővé tehető hello böngésző toohello kérelmet kibocsátó. Ebben a példában minden kezdve fejléc "x-ms - meta-" megjelenik.
+* **MaxAgeInSeconds** hello maximális időt, hogy a böngésző gyorsítótárazza-e a hello ellenőrzési beállítások kérelem azt. (Hello elővizsgálati kérelmekre vonatkozó további információkért ellenőrizze a hello első cikkben.)
 
 #### <a name="resources"></a>Erőforrások
-További információ a CORS és az engedélyezéshez vegye ki ezeket az erőforrásokat.
+További információ a CORS és hogyan tooenable, vegye ki ezeket az erőforrásokat.
 
-* [Eltérő eredetű erőforrások megosztása (CORS) támogatása az Azure Storage szolgáltatásainak az Azure.com-on](storage-cors-support.md)
+* [Hello Azure Storage Services szolgáltatásról az Azure.com webhelyen Cross-Origin Resource Sharing (CORS) támogatása](storage-cors-support.md)
 
-  Ez a cikk áttekintése CORS-t és a különböző tárolószolgáltatások vonatkozó szabályok beállításával.
-* [Eltérő eredetű erőforrások megosztása (CORS) az MSDN Webhelyén az Azure Storage szolgáltatások támogatása](https://msdn.microsoft.com/library/azure/dn535601.aspx)
+  Ez a cikk a CORS és hogyan tooset hello szabályainak hello eltérőek a tárolási szolgáltatások áttekintése.
+* [Hello Azure Storage szolgáltatásainak MSDN Cross-Origin Resource Sharing (CORS) támogatása](https://msdn.microsoft.com/library/azure/dn535601.aspx)
 
-  Ez a CORS-támogatás az Azure Storage szolgáltatások dokumentációját. Ez alkalmazása az egyes társzolgáltatás cikkek hivatkozásainak rendelkezik és példáját mutatja be, és ismerteti az egyes elemei a CORS-fájlban.
+  Ez a CORS-támogatás hello Azure Storage szolgáltatások hello dokumentációját. Ez rendelkezik hivatkozások tooarticles alkalmazása tooeach tároló szolgáltatást, és példáját mutatja be, és egyes elemei hello CORS fájl ismerteti.
 * [A Microsoft Azure Storage: A CORS bemutatása](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/02/03/windows-azure-storage-introducing-cors.aspx)
 
-  Ez a CORS bejelentése, és bemutatja, hogyan használhatja a kezdeti blog cikkre mutató hivatkozást.
+  Ez az egy hivatkozás toohello kezdeti blog cikk a CORS bejelentése és megjelenítő hogyan toouse azt.
 
 ## <a name="frequently-asked-questions-about-azure-storage-security"></a>Azure Storage biztonsági kapcsolatos gyakori kérdések
-1. **Hogyan ellenőrizheti a blobok I virtuális gépbe vagy onnan Azure Storage vagyok átvitel, ha nem használható a HTTPS protokoll sértetlenségének?**
+1. **Hogyan ellenőrizhetem hello integritását I vagy abból az Azure Storage vagyok átvitele a hello HTTPS protokoll nem használható, ha hello blobok?**
 
-   Ha bármilyen okból kell használni a HTTP helyett HTTPS és a blokkblobokhoz dolgozik, használhatja a MD5 ellenőrzése érdekében ellenőrizni az átvitel során a BLOB. Ez segít hálózati transport layer hibák elleni védelem, de nem feltétlenül közvetítő támadások.
+   Ha bármilyen okból HTTP helyett HTTPS, és dolgozunk a blokkblobokhoz toouse van szüksége, használhatja az MD5 ellenőrzése toohelp ellenőrizni hello hello blobok átvitel során. Ez segít hálózati transport layer hibák elleni védelem, de nem feltétlenül közvetítő támadások.
 
    Ha a HTTPS-t, amely átvitelszintű biztonság, akkor használja, MD5 ellenőrzése redundáns és szükségtelen is használhatja.
 
-   További információkért vegye ki a [Azure Blob MD5 áttekintése](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/02/18/windows-azure-blob-md5-overview.aspx).
-2. **Mi a helyzet a FIPS-kompatibilitás a az Egyesült Államok Kormánya?**
+   További információkért vegye ki hello [Azure Blob MD5 áttekintése](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/02/18/windows-azure-blob-md5-overview.aspx).
+2. **Mi a helyzet a FIPS-kompatibilitás az hello USA Kormánya?**
 
-   Az Amerikai Egyesült Államokban Federal Information Processing Standard (FIPS) Egyesült Államok használatra jóváhagyott titkosítási algoritmusokat határozza meg Szövetségi kormányzati számítógépes rendszerek bizalmas adatok védelméről. FIPS engedélyezése a Windows server vagy az asztal mód be van állítva az operációs rendszer, hogy csak a FIPS használatával érvényesített kriptográfiai algoritmusok kell használni. Ha egy alkalmazás nem megfelelő algoritmusok használja, az alkalmazások megszakad. With.NET keretrendszer-verziók 4.5.2 vagy újabb rendszerre, az alkalmazás automatikusan vált, a titkosítási algoritmusok FIPS előírásainak megfelelő algoritmusok használata, ha a számítógép FIPS-módban van.
+   az Amerikai Egyesült Államok Federal Information Processing Standard (FIPS) hello Egyesült Államok használatra jóváhagyott titkosítási algoritmusokat határozza meg Szövetségi kormányzati számítógépes rendszerek védelemre hello a bizalmas adatok. FIPS engedélyezése egy Windows server vagy az asztal mód be van állítva hello az operációs rendszer, hogy csak a FIPS használatával érvényesített kriptográfiai algoritmusok kell használni. Ha egy alkalmazás használja a nem megfelelő algoritmusok, hello alkalmazások megszakad. With.NET keretrendszer-verziók 4.5.2 vagy újabb rendszerre, hello alkalmazás automatikusan vált hello titkosítási algoritmusok toouse FIPS előírásainak megfelelő algoritmusok hello számítógép FIPS-módban van.
 
-   Microsoft hagyja legfeljebb minden ügyfél határozza meg, hogy engedélyezze a FIPS-módban. Úgy véljük, vonzó miatt nem szükséges az ügyfelek, akik nem tartoznak kormányzati szabályozásaikat, hogy alapértelmezés szerint engedélyezi a FIPS-módban van.
+   Microsoft hagyja tooeach ügyfél toodecide fel e tooenable FIPS-módban. Úgy véljük, felhasználók, akik nincsenek tulajdonos toogovernment szabályzat tooenable FIPS-módban alapértelmezés szerint nincs kényszerítő ok.
 
    **Erőforrások**
 
@@ -528,7 +528,7 @@ További információ a CORS és az engedélyezéshez vegye ki ezeket az erőfor
   Blog cikkben FIPS áttekintést, és elmagyarázza, hogy miért ezek nem engedélyezi az FIPS-módban alapértelmezés szerint.
 * [A FIPS 140 érvényesítése](https://technet.microsoft.com/library/cc750357.aspx)
 
-  Ebben a cikkben megtudhatja hogyan Microsoft-termékek és a titkosítási modulok felel meg a FIPS szabványnak esetében az Egyesült Államok Szövetségi Kormánya.
+  Ebben a cikkben megtudhatja hogyan Microsoft-termékek és a titkosítási modulok felel meg hello FIPS szabványnak az hello USA Szövetségi Kormánya.
 * ["Rendszer-kriptográfia: használata FIPS szabványnak megfelelő algoritmusok használata titkosításhoz, kivonatoláshoz és aláíráshoz" biztonsági beállítások hatások a Windows XP és a Windows újabb verzióiban](https://support.microsoft.com/kb/811833)
 
-  Ez a cikk beszél FIPS-módban a régebbi Windows-számítógépek használatát.
+  Ez a cikk beszél hello használata a régebbi Windows-számítógépek FIPS-módban.

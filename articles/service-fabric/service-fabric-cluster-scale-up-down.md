@@ -1,6 +1,6 @@
 ---
-title: "A Service Fabric-fürt bejövő vagy kimenő méretezése |} Microsoft Docs"
-description: "A Service Fabric-fürt bejövő vagy kimenő méretezhető igény szerint úgy, hogy minden csomópont típus vagy virtuális gép méretezési automatikus méretezése szabályainak megfelelően. A Service Fabric-fürt a csomópontok hozzáadásához és eltávolításához"
+title: "a Service Fabric aaaScale fürt bejövő vagy kimenő |} Microsoft Docs"
+description: "Bővítse a Service Fabric-fürt bejövő vagy kimenő toomatch igény szerinti automatikus skálázása szabályok beállítása az egyes csomópont típus vagy virtuális gép méretezési készlet. Hozzáadása vagy eltávolítása, csomópontok tooa Service Fabric-fürt"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/22/2017
 ms.author: chackdan
-ms.openlocfilehash: 32d8fca81c20e77db4ed3aae05d017ccc2ce1be3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 37cfeaf80edc016cf6de017d1c2dc6fbcb8acc2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-service-fabric-cluster-in-or-out-using-auto-scale-rules"></a>Bejövő vagy kimenő automatikus méretezése szabályok használatával a Service Fabric-fürt méretezése
-Virtuálisgép-méretezési csoportok olyan Azure számítási erőforrás, melyekkel telepíthetnek és kezelhetnek olyan virtuális gépek gyűjteménye. Minden csomópont-típus, a Service Fabric-fürt definiált egy külön virtuálisgép-méretezési csoport lett beállítva. Az egyes csomóponttípusok majd méretezhetők a kimenő portok nyitva különböző tulajdonságkészletekkel rendelkező egymástól függetlenül, illetve különböző teljesítmény-mérőszámait rendelkezhet. Azt a további információk a [Service Fabric NodeType tulajdonságok értéke](service-fabric-cluster-nodetypes.md) dokumentum. Mivel a Service Fabric csomóponttípusok a fürt virtuálisgép-méretezési csoportok: a háttér épülnek, kell minden egyes csomópont típus vagy virtuális gép méretezési automatikus méretezése szabályokat.
+Virtuálisgép-méretezési csoportok olyan Azure számítási erőforrás toodeploy használja és a virtuális gépek készletként gyűjteményeinek kezelését is. Minden csomópont-típus, a Service Fabric-fürt definiált egy külön virtuálisgép-méretezési csoport lett beállítva. Az egyes csomóponttípusok majd méretezhetők a kimenő portok nyitva különböző tulajdonságkészletekkel rendelkező egymástól függetlenül, illetve különböző teljesítmény-mérőszámait rendelkezhet. További információk a hello [Service Fabric NodeType tulajdonságok értéke](service-fabric-cluster-nodetypes.md) dokumentum. Hello Service Fabric csomóponttípusok a fürt virtuálisgép-méretezési csoportok: hello háttér épülnek, mivel minden egyes csomópont típus vagy virtuális gép méretezési kell tooset automatikus méretezése szabályokat.
 
 > [!NOTE]
-> Az előfizetés hozzáadása az új virtuális gépek, a fürtöt alkotó elég magok kell rendelkeznie. Jelenleg nem modell ellenőrzi, hogy telepítési idő hiba, hogy a kvótakorlát bármelyikét érte.
+> Az előfizetés elég új virtuális gépek, a fürtöt alkotó hello magok tooadd kell rendelkeznie. Jelenleg nincs Modellellenőrzés, hogy egy központi telepítési idő hiba, ha bármelyik hello kvótakorlát találati.
 > 
 > 
 
-## <a name="choose-the-node-typevirtual-machine-scale-set-to-scale"></a>Válassza ki a csomópont típus vagy virtuális gép méretezési méretezési készletben
-Ön jelenleg nem képes az automatikus méretezése szabályok megadása a virtuálisgép-méretezési csoportok a portál használatával, úgy írja meg nekünk a csomóponttípusok listában, majd automatikus méretezése szabályok hozzá őket a Azure PowerShell (1.0 +) használatával.
+## <a name="choose-hello-node-typevirtual-machine-scale-set-tooscale"></a>Válassza ki a hello csomópont típus vagy virtuális gép méretezési tooscale beállítása
+Jelenleg nem képes toospecify hello automatikus méretezése virtuálisgép-méretezési csoportok hello portálon szabályait, így tudassa velünk Azure PowerShell (1.0 +) toolist hello csomóponttípusok majd automatikus méretezése szabályok toothem.
 
-Ahhoz, hogy a fürtöt alkotó virtuálisgép-méretezési csoport listája, a következő parancsmagok futtatásához:
+a virtuálisgép-méretezési csoport, amely tooget hello listája jött létre a fürthöz, futtassa a következő parancsmagok hello:
 
 ```powershell
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/VirtualMachineScaleSets
@@ -39,78 +39,78 @@ Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Compute/
 Get-AzureRmVmss -ResourceGroupName <RGname> -VMScaleSetName <Virtual Machine scale set name>
 ```
 
-## <a name="set-auto-scale-rules-for-the-node-typevirtual-machine-scale-set"></a>A csomópont típus vagy virtuális gép méretezési automatikus méretezése szabályainak beállítása
-Ha a fürt több csomóponttípusok, majd ismételje meg ezt minden csomópont típusok/virtuális gépek méretezési beállítja, hogy szeretné-e a méretezési (bejövő vagy kimenő). Vegye figyelembe a csomópontok számát, amelyekkel rendelkeznie automatikus skálázás beállítása előtt. A megbízhatósági szint választott célja a rendelkeznie kell az elsődleges csomóponttípusok a csomópontok minimális száma. Tudjon meg többet az [megbízhatóságának](service-fabric-cluster-capacity.md).
+## <a name="set-auto-scale-rules-for-hello-node-typevirtual-machine-scale-set"></a>Hello csomópont típus vagy virtuális gép méretezési automatikus méretezése-szabályok
+Ha a fürt több csomópont-típust, majd ismételje meg a minden egyes csomópont típusok/virtuális gépek méretezési állít be, amelyet tooscale (bejövő vagy kimenő). Csomópontok hello számát figyelembe vennie rendelkeznie kell az automatikus skálázás beállítása előtt. rendelkeznie kell elsődleges csomóponttípus hello csomópontok minimális száma hello célja a kiválasztott hello megbízhatóság szintje. Tudjon meg többet az [megbízhatóságának](service-fabric-cluster-capacity.md).
 
 > [!NOTE]
-> Skálázás le az elsődleges csomópont típus kisebb, mint a minimális számú ellenőrizze a fürt instabil vagy érdekében, hogy. Ez az alkalmazások és a rendszer szolgáltatások adatvesztés vezethet.
+> Skálázás hello elsődleges csomópont típus tooless le, mint hello minimális száma hello fürt instabillá tehetik vagy érdekében, hogy. Az alkalmazások és -szolgáltatások hello adatvesztést eredményezhet.
 > 
 > 
 
-Az automatikus méretezése a szolgáltatás jelenleg nem hajtja a terhelés, az alkalmazások előfordulhat, hogy jelentéskészítési, hogy a Service Fabric. Így az automatikus méretezése kap tisztán célja a teljesítményszámlálót mutat be, a virtuális gép által kibocsátott jelenleg méretezési példányok.  
+Jelenleg hello automatikus méretezése a szolgáltatás nem célja, hogy az alkalmazások is készítőnek tekintene tooService háló hello terhelések. Ezért a idő hello, automatikus méretezése kap tisztán célja a hello teljesítményszámlálók hello virtuálisgép-méretezési készlet példányok mindegyikének által kibocsátott.  
 
-A következő lépések követésével [beállítása az egyes virtuálisgép-méretezési csoport automatikus méretezése](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md).
+A következő lépések követésével [be az egyes virtuálisgép-méretezési csoport automatikus méretezése tooset](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md).
 
 > [!NOTE]
-> A forgatókönyv a vertikális, kivéve, ha a csomóponttípus rendelkezik egy arany vagy ezüst tartóssági szintjének meg kell hívnia a [Remove-ServiceFabricNodeState parancsmag](https://msdn.microsoft.com/library/azure/mt125993.aspx) a megfelelő csomópont névvel.
+> A forgatókönyv vertikális, kivéve, ha a csomóponttípus rendelkezik egy arany vagy ezüst tartóssági szintjének kell toocall hello [Remove-ServiceFabricNodeState parancsmag](https://msdn.microsoft.com/library/azure/mt125993.aspx) hello megfelelő csomópont névvel.
 > 
 > 
 
-## <a name="manually-add-vms-to-a-node-typevirtual-machine-scale-set"></a>Manuálisan a virtuális gépek felvétele egy csomópont típus vagy virtuális gép méretezési
-Minta/utasításait a [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) módosításához a virtuális gépek minden egyes csomóponttípusban számát. 
+## <a name="manually-add-vms-tooa-node-typevirtual-machine-scale-set"></a>Adja hozzá manuálisan a virtuális gépek tooa csomópont típus vagy virtuális gép méretezési csoport
+Hello hello minta/utasításokat követve [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) toochange hello számát a virtuális gépek minden egyes csomóponttípusban. 
 
 > [!NOTE]
-> A virtuális gépek hozzáadása időt vesz igénybe, így nem várható kell azonnali kiegészítése. Adja hozzá a kapacitás és az időt, lehetővé teszik a több mint 10 perc múlva a Virtuálisgép-kapacitást a replikák / elhelyezett, hogy a szolgáltatás, ezért tervezzen.
+> A virtuális gépek hozzáadása időt vesz igénybe, így nem várható hello kiegészítéseket toobe azonnali. Ezért tooadd kapacitástervezés és az idő, mielőtt hello Virtuálisgép-kapacitást hello replikák több mint 10 percig tooallow, / service példányok tooget helyezni.
 > 
 > 
 
-## <a name="manually-remove-vms-from-the-primary-node-typevirtual-machine-scale-set"></a>Manuálisan távolítsa el az elsődleges csomópont típus/virtuális gép méretezési csoport virtuális gépek
+## <a name="manually-remove-vms-from-hello-primary-node-typevirtual-machine-scale-set"></a>Manuálisan távolítsa el virtuális gépek hello elsődleges csomópont típus vagy virtuális gép méretezési csoport
 > [!NOTE]
-> A service fabric rendszer szolgáltatások futtatása az elsődleges csomóponttípusok a fürtön. Ezért soha ne állítsa le vagy csökkentheti a csomóponttípusok található példányok száma kisebb, mint a megbízhatósági szint indokol. Tekintse meg [a részleteket itt megbízhatóság rétegek](service-fabric-cluster-capacity.md). 
+> hello service fabric rendszerszolgáltatások hello elsődleges csomóponttípusok a fürtön futtatni. Ezért soha ne állítsa le vagy csökkentheti a csomóponttípusok található példányok száma hello kisebb, mint hogy milyen hello megbízhatósági szint indokol. Tekintse meg a túl[részleteit itt megbízhatóság rétegen hello](service-fabric-cluster-capacity.md). 
 > 
 > 
 
-Hajtsa végre a következő lépéseket egy Virtuálisgép-példány egyszerre kell. Ez lehetővé teszi a rendszerszolgáltatások (és az állapotalapú szolgáltatások) kell leállítása a Virtuálisgép-példány eltávolítása és a többi csomóponton létrehozott új replikákat.
+Tooexecute kell hello alábbi lépéseit egy Virtuálisgép-példány egyszerre. Ez lehetővé teszi a hello rendszerszolgáltatások (és az állapotalapú szolgáltatások) toobe leállítása ezzel a művelettel eltávolítja a hello Virtuálisgép-példány és a többi csomóponton létrehozott új replikák.
 
-1. Futtatás [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) letiltása a csomópont "RemoveNode" biztonsági mentés fog eltávolítása (az adott típusú csomópont legmagasabb példány).
-2. Futtatás [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) győződjön meg arról, hogy a csomópont valóban átváltott le van tiltva. Ha nem, akkor várjon, amíg a csomópont le van tiltva. Ez a lépés nem hurry.
-3. A minta/utasításait a [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) módosításához a virtuális gépek számát egy adott csomóponttípusban. Az eltávolított-példány a legmagasabb Virtuálisgép-példány. 
-4. Ismételje meg az 1 – 3 igény szerint, de soha nem csökkentheti az elsődleges csomóponttípusok kisebb, mint a megbízhatósági szint indokol található példányok száma. Tekintse meg [a részleteket itt megbízhatóság rétegek](service-fabric-cluster-capacity.md). 
+1. Futtatás [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) leképezési "RemoveNode" toodisable hello csomóponttal fog tooremove (hello adott csomóponttípus legmagasabb példány).
+2. Futtatás [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) meg arról, hogy hello csomópont valóban átváltott toodisabled toomake. Ha nem, akkor várjon, amíg a hello csomópont le van tiltva. Ez a lépés nem hurry.
+3. Hello hello minta/utasításokat követve [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) toochange hello a virtuális gépek számát egy adott csomóponttípusban. hello eltávolított példány hello legmagasabb Virtuálisgép-példány. 
+4. Ismételje meg az 1 – 3 igény szerint, de soha nem csökkentheti a hello elsődleges csomóponttípusok kisebb milyen hello megbízhatósági szint indokol található példányok száma hello. Tekintse meg a túl[részleteit itt megbízhatóság rétegen hello](service-fabric-cluster-capacity.md). 
 
-## <a name="manually-remove-vms-from-the-non-primary-node-typevirtual-machine-scale-set"></a>Manuálisan távolítsa el virtuális gépek nem elsődleges csomópontot típus vagy virtuális gép méretezési csoport
+## <a name="manually-remove-vms-from-hello-non-primary-node-typevirtual-machine-scale-set"></a>Manuálisan távolítsa el virtuális gépek hello nem elsődleges csomópontot típus vagy virtuális gép méretezési csoport
 > [!NOTE]
-> Egy állapotalapú szolgáltatás kell bizonyos számú csomópontok mindig ki kell fenntartani a rendelkezésre állási, a szolgáltatás állapotának megőrzéséhez. : A nagyon minimális van szüksége a csomópontok számát a partíció szolgáltatás a cél replika set számánál. 
+> Egy állapotalapú szolgáltatás kell bizonyos számú csomópontok toobe mindig toomaintain rendelkezésre állását és preserve állapotát a szolgáltatás. Nagyon minimális hello meg kell hello partíció/szolgáltatás csomópontok set egyenlő toohello cél replikaszám hello száma. 
 > 
 > 
 
-Hajtsa végre a következő lépéseket egy Virtuálisgép-példány egyszerre kell. Ez lehetővé teszi a rendszerszolgáltatások (és az állapotalapú szolgáltatások) kell leállítása a távolítja el a Virtuálisgép-példány, és új replikák létrehozott más helyét.
+Hello kell végrehajtani a következő lépéseket egy Virtuálisgép-példány egyszerre hello. Ez lehetővé teszi a toobe leállítása hello a Virtuálisgép-példány eltávolítása hello rendszerszolgáltatások (és az állapotalapú szolgáltatások), és új replikák létrehozott más helyét.
 
-1. Futtatás [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) letiltása a csomópont "RemoveNode" biztonsági mentés fog eltávolítása (az adott típusú csomópont legmagasabb példány).
-2. Futtatás [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) győződjön meg arról, hogy a csomópont valóban átváltott le van tiltva. Ha nem várja meg, amíg a csomópont le van tiltva. Ez a lépés nem hurry.
-3. A minta/utasításait a [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) módosításához a virtuális gépek számát egy adott csomóponttípusban. Ezzel eltávolítja a legmagasabb Virtuálisgép-példány. 
-4. Ismételje meg az 1 – 3 igény szerint, de soha nem csökkentheti az elsődleges csomóponttípusok kisebb, mint a megbízhatósági szint indokol található példányok száma. Tekintse meg [a részleteket itt megbízhatóság rétegek](service-fabric-cluster-capacity.md).
+1. Futtatás [Disable-ServiceFabricNode](https://msdn.microsoft.com/library/mt125852.aspx) leképezési "RemoveNode" toodisable hello csomóponttal fog tooremove (hello adott csomóponttípus legmagasabb példány).
+2. Futtatás [Get-ServiceFabricNode](https://msdn.microsoft.com/library/mt125856.aspx) meg arról, hogy hello csomópont valóban átváltott toodisabled toomake. Ha nem várja meg, amíg hello csomópont le van tiltva. Ez a lépés nem hurry.
+3. Hello hello minta/utasításokat követve [gyors üzembe helyezési sablon gyűjtemény](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing) toochange hello a virtuális gépek számát egy adott csomóponttípusban. Ez a művelet most eltávolítja hello legmagasabb Virtuálisgép-példány. 
+4. Ismételje meg az 1 – 3 igény szerint, de soha nem csökkentheti a hello elsődleges csomóponttípusok kisebb milyen hello megbízhatósági szint indokol található példányok száma hello. Tekintse meg a túl[részleteit itt megbízhatóság rétegen hello](service-fabric-cluster-capacity.md).
 
 ## <a name="behaviors-you-may-observe-in-service-fabric-explorer"></a>Viselkedéshez jelenhet meg a Service Fabric Explorerben
-Amikor a fürt méretezni a Service Fabric Explorer (virtuálisgép-méretezési készlet példányok) a fürt részét képező csomópontok száma fogja tartalmazni.  Akkor a fürt működik, megjelenik a eltávolított csomópontot vagy Virtuálisgép-példány nem megfelelő állapot jelenik meg, kivéve, ha meghívja a [Remove-ServiceFabricNodeState cmd](https://msdn.microsoft.com/library/mt125993.aspx) a megfelelő csomópont névvel.   
+Ha a skálától beállítható egy fürt hello Service Fabric Explorer hello hello fürtbe (virtuálisgép-méretezési készlet példányok) csomópontok száma fogja tartalmazni.  Akkor a fürt működik, akkor megjelenik eltávolított hello csomópontot vagy Virtuálisgép-példány jelenik meg a nem kifogástalan állapotú, kivéve, ha meghívja a [Remove-ServiceFabricNodeState cmd](https://msdn.microsoft.com/library/mt125993.aspx) hello megfelelő csomópont névvel.   
 
-Ez a magyarázat az ilyen viselkedést.
+Ez a viselkedés hello magyarázata itt található.
 
-A felsorolt a Service Fabric Explorerben csomópontja a Service Fabric rendszer szolgáltatásoktól tükre (FM kifejezetten) a fürt kellett/rendelkezik csomópontok száma ismer. Akkor állítsa a virtuálisgép-méretezési, a virtuális gép törölve lett, azonban a FM rendszerszolgáltatás úgy továbbra is értelmezi, vissza határozza meg, hogy a csomópont (a virtuális géphez, amely törölve lett leképezve). Így továbbra is a Service Fabric Explorer (bár a állapota hibás vagy ismeretlen is lehet) a csomóponton megjelenítendő.
+hello a Service Fabric Explorerben felsorolt csomópontra milyen hello Service Fabric rendszerszolgáltatások tükre (FM kifejezetten) csomópontok hello fürt kellett/rendelkezik hello száma ismer. Akkor hello meghatározott virtuálisgép-méretezési, hello virtuális gép törölve lett, azonban a FM rendszerszolgáltatás úgy továbbra is értelmezi, (amelyek csatlakoztatott toohello virtuális Gépet, amely törölve lett) hello csomóponton térjen vissza lesz. Ezért Service Fabric Explorer továbbra is toodisplay csomópontot (bár a hello állapota hibás vagy ismeretlen is lehet).
 
-Győződjön meg arról, hogy a csomópont eltávolítása, a virtuális gép eltávolításakor, hogy két lehetőség közül választhat:
+A sorrend toomake meg arról, hogy a csomópont eltávolítása, a virtuális gép eltávolításakor két lehetőség közül választhat:
 
-1) Válassza ki a tartóssági szint arany vagy ezüst (rendelkezésre álló hamarosan) a csomópont esetében a fürtben, amely lehetővé teszi az infrastruktúra-integrációt. Amely majd automatikusan eltávolítja a csomópontok a rendszerállapot-szolgáltatások (FM) akkor.
-Tekintse meg [a részleteket itt tartóssági szint](service-fabric-cluster-capacity.md)
+1) Válassza ki a tartóssági szint arany vagy ezüst (rendelkezésre álló hamarosan) hello csomópont esetében a fürtben, amely lehetővé teszi az infrastruktúra integrációs hello. Amely majd automatikusan eltávolítja hello csomópontok a rendszerállapot-szolgáltatások (FM) akkor.
+Tekintse meg a túl[hello részleteit itt tartóssági szinten](service-fabric-cluster-capacity.md)
 
-2) Miután a virtuális gép példánya csökkentették, meg kell hívnia a [Remove-ServiceFabricNodeState parancsmag](https://msdn.microsoft.com/library/mt125993.aspx).
+2) Hello Virtuálisgép-példány mérete, ha szüksége van-e toocall hello [Remove-ServiceFabricNodeState parancsmag](https://msdn.microsoft.com/library/mt125993.aspx).
 
 > [!NOTE]
-> Service Fabric-fürtök csomópontokat a folyamatosan rendelkezésre álljon, és állapot - néven "kvórum fenntartása." megőrzése érdekében legyen egy bizonyos számú kell Igen, az általában nem biztonságos, kivéve, ha először elvégezte a fürt összes gép leállítása a [teljes biztonsági mentés a állapot](service-fabric-reliable-services-backup-restore.md).
+> Service Fabric-fürtök csomópontok toobe bizonyos számú fel minden hello időt igénybe rendelés toomaintain rendelkezésre állási és preserve állapotban - hivatkozott tooas "kvórum fenntartása." Így is le minden hello gépeket hello fürt általában nem biztonságos tooshut kivéve, ha először elvégezte a [teljes biztonsági mentés a állapot](service-fabric-reliable-services-backup-restore.md).
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Olvassa el a fürt kapacitás megtervezésének, fürt frissítése és szolgáltatások particionálás is olvashat a következő:
+A következő tooalso olvasási hello fürt kapacitás megtervezésének, fürt frissítése és particionálás szolgáltatások megismerése:
 
 * [A fürt kapacitásának megtervezése](service-fabric-cluster-capacity.md)
 * [Fürt frissítése](service-fabric-cluster-upgrade.md)

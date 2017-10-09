@@ -1,9 +1,9 @@
 * [App Service hitelesítés / engedélyezés áttekintése](../articles/app-service/app-service-authentication-overview.md)
-* [Hitelesítés hozzáadása a webalkalmazáshoz](../articles/app-service-web/app-service-web-get-started-2.md#authenticate-your-users)
-* Hitelesítés hozzáadása a Mobile Apps: [iOS][ios-get-started-users], [Android][android-get-started-users], [univerzális Windows-] [ windows-get-started-users], [Xamarin.Android][xamarin-android-get-started-users], [Xamarin.iOS][xamarin-ios-get-started-users], [Xamarin.Forms] [ xamarin-forms-get-started-users], [Cordova][cordova-get-started-users]  
-  Ismerje meg az App Service hitelesítés hozzáadása a mobilalkalmazás.
+* [Hitelesítési tooa webalkalmazás hozzáadása](../articles/app-service-web/app-service-web-get-started-2.md#authenticate-your-users)
+* Adja hozzá a hitelesítési tooyour mobilalkalmazás: [iOS][ios-get-started-users], [Android][android-get-started-users], [univerzális Windows-] [ windows-get-started-users], [Xamarin.Android][xamarin-android-get-started-users], [Xamarin.iOS][xamarin-ios-get-started-users], [Xamarin.Forms] [ xamarin-forms-get-started-users], [Cordova][cordova-get-started-users]  
+  Megtudhatja, hogyan tooadd App Service hitelesítés tooyour mobilalkalmazás.
 * Az API-alkalmazások hitelesítési: [egyszerű](../articles/app-service-api/app-service-api-dotnet-user-principal-auth.md), [egyszerű szolgáltatásnév](../articles/app-service-api/app-service-api-dotnet-service-principal-auth.md)  
-  Ismerje meg, biztonságossá tétele az API-alkalmazás az App Service-hitelesítéssel.
+  Megtudhatja, hogyan toosecure az API-alkalmazás az App Service-hitelesítéssel.
 
 [android-get-started-users]: ../articles/app-service-mobile/app-service-mobile-android-get-started-users.md
 [cordova-get-started-users]: ../articles/app-service-mobile/app-service-mobile-cordova-get-started-users.md

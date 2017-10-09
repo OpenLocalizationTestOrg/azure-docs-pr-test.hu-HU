@@ -1,16 +1,16 @@
 ## <a name="scenario"></a>Forgatókönyv
-Jobb szemléltetéséhez NSG-k létrehozása, ez a dokumentum az alábbi forgatókönyvet fogja használni.
+toobetter bemutatják, hogyan toocreate NSG-ket, ez a dokumentum használja hello részletesen.
 
 ![VNet-forgatókönyv](./media/virtual-networks-create-nsg-scenario-include/figure1.png)
 
-Ebben a forgatókönyvben egy NSG-t az egyes alhálózatokon hoz létre a **TestVNet** virtuális hálózatban, folyamata az alábbiakban olvasható: 
+Ebben a forgatókönyvben létrehoz egy NSG-t az egyes alhálózatokon lévő hello **TestVNet** virtuális hálózatban, folyamata az alábbiakban olvasható: 
 
-* **NSG-előtérbeli**. Az NSG alkalmazandó előtér a *előtér* alhálózatot, és két szabályt tartalmaz:    
-  * **RDP-szabály**. Ez a szabály lehetővé teszi az RDP-forgalmát a *előtér* alhálózat.
-  * **webalkalmazás-szabály**. Ez a szabály lehetővé teszi a HTTP-forgalom a *előtér* alhálózat.
-* **NSG-háttérrendszer**. A háttérben NSG alkalmazandó a *háttér* alhálózatot, és két szabályt tartalmaz:    
-  * **SQL-szabály**. Ez a szabály lehetővé teszi, hogy az SQL-forgalom csak az *előtér* alhálózat.
-  * **webalkalmazás-szabály**. Ez a szabály letiltja az összes internetes forgalom kötött a *háttér* alhálózat.
+* **NSG-előtérbeli**. hello előtér NSG lesz alkalmazott toohello *előtér* alhálózatot, és két szabályt tartalmaz:    
+  * **RDP-szabály**. Ez a szabály lehetővé teszi az RDP-forgalmát toohello *előtér* alhálózat.
+  * **webalkalmazás-szabály**. Ez a szabály lehetővé teszi a HTTP-forgalom toohello *előtér* alhálózat.
+* **NSG-háttérrendszer**. hello háttér NSG lesz alkalmazott toohello *háttér* alhálózatot, és két szabályt tartalmaz:    
+  * **SQL-szabály**. Ez a szabály lehetővé teszi, hogy csak a hello forgalmát SQL *előtér* alhálózat.
+  * **webalkalmazás-szabály**. Ez a szabály letiltja az összes internetes forgalom kötött a hello *háttér* alhálózat.
 
-Ezek a szabályok kombinációját, hozzon létre egy DMZ-szerű forgatókönyv, ahol a háttérrendszer alhálózati is csak kapnak bejövő forgalmat az SQL az előtér-alhálózatot, és nem fér hozzá az internethez az előtérben lévő alhálózat alhálózat az internettel kommunikál, és fogadni bejövő HTTP-kérelmek csak.
+hello ezek a szabályok kombinációját hozzon létre egy DMZ-szerű forgatókönyv, ahol hello háttér alhálózati csak az SQL hello előtér alhálózatból bejövő forgalom fogadására, és nincs hozzáférési toohello Internet, amíg hello előtér alhálózati kommunikálhatnak hello Internet rendelkezik, és csak a bejövő HTTP-kérelmek fogadásához.
 

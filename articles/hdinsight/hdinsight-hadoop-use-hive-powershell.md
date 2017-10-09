@@ -1,6 +1,6 @@
 ---
-title: "Hadoop Hive használata a hdinsight - Azure PowerShell |} Microsoft Docs"
-description: "HDInsight Hadoop Hive-lekérdezéseket futtatni a PowerShell segítségével."
+title: "aaaUse Hadoop Hive hdinsight - Azure PowerShell használatával |} Microsoft Docs"
+description: "A hdinsight Hadoop PowerShell toorun Hive-lekérdezéseket használhat."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,26 +16,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/16/2017
 ms.author: larryfr
-ms.openlocfilehash: e1cb2e4a1fc82fb43082e79a5feba71b81b3eaa8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e0b72a25c5b12431f837b1a34a63ecc06223528
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-hive-queries-using-powershell"></a>PowerShell-lel Hive-lekérdezések futtatása
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-Ez a dokumentum az Azure PowerShell használatával az Azure-erőforráscsoport módban a Hive-lekérdezések futtatásához egy Hadoop on HDInsight-fürt példaként szolgál.
+Ez a dokumentum egy példát az hello Azure erőforráscsoport mód toorun Hive-lekérdezéseket a Hadoop on HDInsight-fürt az Azure PowerShell használatával.
 
 > [!NOTE]
-> Ez a dokumentum nem biztosít a HiveQL utasításokat a példákban használt mire részletes leírását. Az ebben a példában használt HiveQL információkért lásd: [használata a hdinsight Hadoop Hive](hdinsight-use-hive.md).
+> Ez a dokumentum nem biztosít részletes leírása a hello HiveQL utasítások hello példákban használt tegye. Ebben a példában használt HiveQL hello információkért lásd: [használata a hdinsight Hadoop Hive](hdinsight-use-hive.md).
 
 **Előfeltételek**
 
-* **Egy Azure HDInsight fürt**: nem számít, hogy a fürt Windows vagy Linux-alapú.
+* **Egy Azure HDInsight fürt**: nem számít, hogy az hello fürt Windows vagy Linux-alapú.
 
   > [!IMPORTANT]
-  > A Linux az egyetlen operációs rendszer, amely a HDInsight 3.4-es vagy újabb verziói esetében használható. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux hello azt az egyetlen operációs rendszer, használja a HDInsight 3.4 vagy újabb verziója. További tudnivalókért lásd: [A HDInsight elavulása Windows rendszeren](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * **Munkaállomás Azure PowerShell-lel**.
 
@@ -43,49 +43,49 @@ Ez a dokumentum az Azure PowerShell használatával az Azure-erőforráscsoport 
 
 ## <a name="run-hive-queries-using-azure-powershell"></a>Az Azure PowerShell Hive-lekérdezések futtatása
 
-Az Azure PowerShell biztosít *parancsmagok* , amelyek lehetővé teszik, hogy távolról ugyanúgy futtathatják a HDInsight Hive-lekérdezéseket. Belső, a parancsmagok hívások REST való [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) a HDInsight-fürtre.
+Az Azure PowerShell biztosít *parancsmagok* , amelyek lehetővé teszik Hive-lekérdezések futtatása tooremotely a hdinsight platformon. Belsőleg, hello parancsmagok hívások REST túl[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) hello HDInsight-fürtre.
 
-A következő parancsmagok használhatók egy távoli HDInsight-fürtöt a Hive-lekérdezések futtatásakor:
+hello alábbi parancsmagok használata, amikor egy távoli HDInsight-fürt Hive-lekérdezések futtatása:
 
-* **Adja hozzá-AzureRmAccount**: Azure PowerShell hitelesíti az Azure-előfizetéshez
-* **Új AzureRmHDInsightHiveJobDefinition**: létrehoz egy *definition feladat* a megadott HiveQL utasítások használatával
-* **Start-AzureRmHDInsightJob**: a feladat definíciójához küld HDInsight, elindítja a feladatot, és adja vissza egy *feladat* objektum, amely segítségével a feladat állapotának ellenőrzése
-* **Várjon, amíg-AzureRmHDInsightJob**: a feladat állapotának ellenőrzése a feladatobjektum használja. Arra vár, amíg a feladat befejeződik, vagy a várakozási ideje lejár.
-* **Get-AzureRmHDInsightJobOutput**: a feladat kimenetének beolvasása
-* **Invoke-AzureRmHDInsightHiveJob**: HiveQL utasítás futtatásához használt. Ez a parancsmag blokkolja a lekérdezés befejeződött, majd az eredményeket ad vissza
-* **Használjon-AzureRmHDInsightCluster**: a jelenlegi fürthöz való használatra beállítja a **Invoke-AzureRmHDInsightHiveJob** parancs
+* **Adja hozzá-AzureRmAccount**: hitelesíti az Azure PowerShell tooyour Azure-előfizetés
+* **Új AzureRmHDInsightHiveJobDefinition**: létrehoz egy *definition feladat* hello segítségével megadott HiveQL utasítások
+* **Start-AzureRmHDInsightJob**: hello feladat definition tooHDInsight küld, hello feladat elindul, és adja vissza egy *feladat* objektum, amely lehet használt toocheck hello hello feladat állapota
+* **Várjon, amíg-AzureRmHDInsightJob**: hello objektum toocheck hello feladatállapot hello feladat használja. Arra vár, amíg hello feladat befejeződik, vagy hello várakozási ideje lejár.
+* **Get-AzureRmHDInsightJobOutput**: hello feladat eredményének tooretrieve hello használt
+* **Invoke-AzureRmHDInsightHiveJob**: toorun HiveQL utasítás használható. Ez a parancsmag blokkok hello lekérdezés befejeződött, majd hello eredményt ad vissza.
+* **Használjon-AzureRmHDInsightCluster**: készletek hello hello az aktuális fürt toouse **Invoke-AzureRmHDInsightHiveJob** parancs
 
-A következő lépések bemutatják, hogyan lehet ezeket a parancsmagokat használja a feladat futtatásához a HDInsight fürt:
+hello következő lépések bemutatják, hogyan toouse ezen parancsmagok toorun egy feladat a HDInsight-fürt:
 
-1. Egy szerkesztővel, az alábbi kód, Mentés **hivejob.ps1**.
+1. Egy szerkesztővel, mentse a következő kódot hello **hivejob.ps1**.
 
-    [!code-powershell[fő](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=5-42)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=5-42)]
 
-2. Nyisson meg egy új **Azure PowerShell** parancssort. Módosítsa a könyvtárat, hol található a **hivejob.ps1** fájlt, majd futtassa a parancsfájlt a következő paranccsal:
+2. Nyisson meg egy új **Azure PowerShell** parancssort. Hello könyvtárak toohello módosítani **hivejob.ps1** fájlt, majd a következő parancsfájl toorun hello hello használata:
 
         .\hivejob.ps1
 
-    A parancsprogram futtatásakor kéri a fürt a fürt neve és a HTTPS/rendszergazdai fiók hitelesítő adatait adja meg. Előfordulhat, hogy is kérni fogja-e jelentkezni az Azure-előfizetéshez.
+    Hello parancsprogram futtatásakor felszólító tooenter hello fürt nevét és hello HTTPS/rendszergazdai fiók hitelesítő adatait hello fürt áll. Az Azure-előfizetés tooyour rákérdezéses toolog is lehet.
 
-3. A feladat befejeződik, ha olyan információkat ad vissza a következő thext hasonlít:
+3. Hello feladat befejezése után információkat a következő thext hasonló toohello adja vissza:
 
-        Display the standard output...
+        Display hello standard output...
         2012-02-03      18:35:34        SampleClass0    [ERROR] incorrect       id
         2012-02-03      18:55:54        SampleClass1    [ERROR] incorrect       id
         2012-02-03      19:25:27        SampleClass4    [ERROR] incorrect       id
 
-4. A korábbiak **Invoke-struktúra** segítségével futtassa a lekérdezést, és a válaszra. A következő parancsfájl segítségével tekintse meg az Invoke-struktúra működése:
+4. A korábbiak **Invoke-struktúra** is használt toorun lekérdezés lehet és hello válaszra. A következő parancsfájl toosee Invoke-struktúra működése hello használata:
 
-    [!code-powershell[fő](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=50-71)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=50-71)]
 
-    A kimeneti néz ki a következő szöveget:
+    hello kimenete a következő szöveg hello néz ki:
 
         2012-02-03    18:35:34    SampleClass0    [ERROR]    incorrect    id
         2012-02-03    18:55:54    SampleClass1    [ERROR]    incorrect    id
         2012-02-03    19:25:27    SampleClass4    [ERROR]    incorrect    id
 
    > [!NOTE]
-   > Hosszabb HiveQL lekérdezések esetén használhatja az Azure PowerShell **ide-karakterláncok** parancsmag vagy a HiveQL parancsfájlok. Az alábbi kódrészletben láthatja, hogyan használható a **Invoke-struktúra** parancsmag HiveQL parancsfájl futtatásához. Fel kell tölteni a HiveQL-parancsfájlt, a wasb: / /.
+   > Hosszabb HiveQL lekérdezések esetén használhatja hello Azure PowerShell **ide-karakterláncok** parancsmag vagy a HiveQL parancsfájlok. a következő kódrészletet mutat be hogyan hello toouse hello **Invoke-struktúra** parancsmag toorun HiveQL-parancsfájlt. hello HiveQL-parancsfájlt kell feltöltött toowasb: / /.
    >
    > `Invoke-AzureRmHDInsightHiveJob -File "wasb://<ContainerName>@<StorageAccountName>/<Path>/query.hql"`
    >
@@ -93,10 +93,10 @@ A következő lépések bemutatják, hogyan lehet ezeket a parancsmagokat haszn�
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
 
-Ha nem áll rendelkezésre információ ad vissza, ha a feladat befejeződik, egy meghibásodott feldolgozása során. Hiba történt a feladat információinak megtekintése, adja hozzá a következő végének a **hivejob.ps1** fájl, mentse, majd futtassa újból.
+Ha nem áll rendelkezésre információ ad vissza, ha hello feladat befejeződik, egy meghibásodott feldolgozása során. Ez a feladat információi tooview hiba hozzáadása hello hello toohello végét a következő **hivejob.ps1** fájl, mentse, majd futtassa újból.
 
 ```powershell
-# Print the output of the Hive job.
+# Print hello output of hello Hive job.
 Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $job.JobId `
@@ -104,11 +104,11 @@ Get-AzureRmHDInsightJobOutput `
         -DisplayOutputType StandardError
 ```
 
-Ez a parancsmag írt STDERR a kiszolgálón a feladat futtatásakor olyan információkat ad vissza.
+Ez a parancsmag hello írt információ tooSTDERR hello kiszolgálón hello feladat futtatásakor adja vissza.
 
 ## <a name="summary"></a>Összefoglalás
 
-Ahogy látja, Azure PowerShell könnyedén futtathat Hive-lekérdezéseket a HDInsight-fürtöt, figyelheti a feladat állapotát és a kimeneti beolvasása.
+Ahogy látja, Azure PowerShell biztosít egy egyszerűen toorun Hive-lekérdezéseket a HDInsight-fürtöt, a figyelő hello feladat állapota, hello kimeneti beolvasása.
 
 ## <a name="next-steps"></a>Következő lépések
 

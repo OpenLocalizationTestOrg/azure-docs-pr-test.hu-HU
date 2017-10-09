@@ -1,6 +1,6 @@
 ---
-title: "Azure Diagnostics használatával naplógyűjtéshez |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan állíthat be Azure Diagnostics egy Azure-ban futó Service Fabric-fürt naplóinak gyűjtése."
+title: "Azure Diagnostics használatával aaaCollect naplók |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan naplózza az Azure Diagnostics toocollect be tooset az Azure-ban futó Service Fabric-fürt."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 190a8a393f2e7d74a792db4efa81f94a18b02221
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afbcfbe972b1847ef33bf0539b4398794b1bd56b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>Naplók gyűjtése az Azure Diagnostics használatával
 > [!div class="op_single_selector"]
@@ -27,74 +27,74 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Amikor egy Azure Service Fabric-fürtöt használ, célszerű gyűjteni a egy központi helyen található minden csomópontot. A naplók rendelkezik egy központi helyen segítségével elemezheti és a fürt, vagy a futó alkalmazások és szolgáltatások az adott fürtben található a problémák elhárításához.
+Az Azure Service Fabric-fürtöt használ, esetén a jó ötlet toocollect hello jelentkezik minden hello csomópontról egy központi helyen. Hello naplók rendelkezik egy központi helyen segítségével elemezheti és a fürt, vagy az adott fürtben található futó hello alkalmazások és szolgáltatások a problémák elhárításához.
 
-Egy feltöltése és naplógyűjtéshez módja az Azure Diagnostics bővítménnyel Azure Storage, Azure Application Insights vagy az Azure Event Hubs naplók feltöltését. A napló az értékek nem, amely közvetlenül a tároló, vagy az Event Hubs. De használhat külső folyamat kiolvassa az eseményeket a tárolóból, és helyezze el őket a termék például [Naplóelemzési](../log-analytics/log-analytics-service-fabric.md) vagy egy másik napló elemzési megoldás. [Az Azure Application Insights](https://azure.microsoft.com/services/application-insights/) egy átfogó naplózási keresési és analytics szolgáltatás beépített tartalmaz.
+Egyirányú tooupload és a gyűjtés naplók toouse hello Azure Diagnostics bővítményt, mely feltöltések tooAzure tároló-, Azure Application Insights, és az Azure Event Hubs naplózza. hello naplók hasznosak nem, amely közvetlenül a tároló, vagy az Event Hubs. Azonban egy külső folyamat tooread hello események tárolóból, és helyezze el őket a termék például [Naplóelemzési](../log-analytics/log-analytics-service-fabric.md) vagy egy másik napló elemzési megoldás. [Az Azure Application Insights](https://azure.microsoft.com/services/application-insights/) egy átfogó naplózási keresési és analytics szolgáltatás beépített tartalmaz.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az eszközök segítségével hajtsa végre műveleteket ebben a dokumentumban:
+Ezen eszközök tooperform használja a jelen dokumentum hello műveleteket:
 
-* [Az Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md) (Azure Felhőszolgáltatások azonban az helyes útmutatást és példákat tartalmaz)
+* [Az Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md) (tooAzure Felhőszolgáltatások azonban rendelkezik jó útmutatást és példákat kapcsolatos)
 * [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 * [Azure PowerShell](/powershell/azure/overview)
 * [Az Azure Resource Manager-ügyfél](https://github.com/projectkudu/ARMClient)
 * [Azure Resource Manager-sablon](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-## <a name="log-sources-that-you-might-want-to-collect"></a>Előfordulhat, hogy szeretne gyűjteni napló források
-* **A Service Fabric naplók**: kibocsátott platformnak szabványos esemény-nyomkövetés Windows (ETW) és az EventSource csatorna. Naplók több típusok egyike lehet:
-  * A működési események: műveletek a Service Fabric-platformról végző naplókat. Például alkalmazások és a szolgáltatások, a csomópont állapotváltozások és a frissítési információkat létrehozását.
+## <a name="log-sources-that-you-might-want-toocollect"></a>Napló adatforrások, hogy érdemes-e toocollect
+* **A Service Fabric naplók**: hello platform toostandard esemény Windows (nyomkövetés) és az EventSource csatornák által kibocsátott. Naplók több típusok egyike lehet:
+  * A működési események: hello platform hajtja végre a Service Fabric-műveletek naplókat. Például alkalmazások és a szolgáltatások, a csomópont állapotváltozások és a frissítési információkat létrehozását.
   * [Reliable Actors programozási modell események](service-fabric-reliable-actors-diagnostics.md)
   * [Megbízható Services-programozási modell események](service-fabric-reliable-services-diagnostics.md)
-* **Alkalmazásesemények**: a szolgáltatás kódból kibocsátott, és a Visual Studio sablonok találhatók az EventSource segítőosztály írhatók eseményeket. A naplók írásával az alkalmazásról további információkért lásd: [figyelő és diagnosztizálhatja a helyi számítógép fejlesztési telepítő szolgáltatások](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
+* **Alkalmazásesemények**: a szolgáltatás kódból kibocsátott, és a hello EventSource segítőosztály megadott hello Visual Studio sablonok használatával írt események. Hogyan toowrite naplózza az alkalmazásról további információkért lásd: [figyelő és diagnosztizálhatja a helyi számítógép fejlesztési telepítő szolgáltatások](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
 
-## <a name="deploy-the-diagnostics-extension"></a>A diagnosztika bővítmény telepítése
-Az első lépés a naplók gyűjtésére központi telepítése a diagnosztika bővítmény minden egyes a Service Fabric-fürt a virtuális gépen. A diagnosztika bővítmény naplókat gyűjt mindegyik virtuális gépre, és feltölti a megadott tárfiók. A lépések kissé függően hogy használ-e az Azure portálon vagy az Azure Resource Manager változhat. A lépéseket is függően változnak, hogy a központi telepítés része a fürt létrehozása, vagy egy már létező fürt. Vizsgáljuk meg az egyes forgatókönyv lépéseit.
+## <a name="deploy-hello-diagnostics-extension"></a>Hello diagnosztika bővítmény telepítése
+hello első lépése a naplók gyűjtésére toodeploy hello diagnosztika bővítmény minden egyes hello Service Fabric-fürt hello virtuális gépen. hello diagnosztika bővítmény naplókat gyűjt mindegyik virtuális gépre, és feltölti megadott toohello tárfiók. hogy használ-e hello Azure-portálon vagy az Azure Resource Manager kissé függően változhat a hello lépéseket. hello lépéseket is e hello telepítés része a fürt létrehozása, vagy egy már létező fürt függően változhat. Nézzük hello lépéseket az egyes forgatókönyvek esetében.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-the-portal"></a>A fürt létrehozása a portálon keresztül részeként diagnosztika bővítmény telepítése
-A diagnosztika bővítményt telepíteni a virtuális gépeket a fürt fürt létrehozásának részeként, használhatja a diagnosztikai beállítások panelen a következő ábrán látható. Engedélyezi a Reliable Actors vagy Reliable Services eseménygyűjtés, győződjön meg arról, hogy diagnosztikai beállításai **a** (az alapértelmezett beállítás). A fürt létrehozása után ezeket a beállításokat nem módosíthatja a portál használatával.
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-through-hello-portal"></a>Hello portálon keresztül fürt létrehozásának részeként hello diagnosztika bővítmény telepítése
+toodeploy hello diagnosztika bővítmény toohello virtuális gépek hello fürt fürt létrehozásának részeként, hello diagnosztikai beállítások panelen látható a következő kép hello használja. tooenable Reliable Actors vagy Reliable Services eseménygyűjtés, győződjön meg arról, hogy túl van-e állítva a diagnosztika**a** (hello az alapértelmezett beállítás). Hello fürt létrehozása után ezeket a beállításokat nem módosíthatja hello portál használatával.
 
-![A fürt létrehozása a portálon az Azure diagnosztikai beállításai](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
+![A fürt létrehozásához hello portálon az Azure diagnosztikai beállításai](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
-Az Azure támogatási csapata *szükséges* naplók segíthetnek megoldani az összes Ön által létrehozott támogatási kérelmek támogatásához. Ezek a naplók gyűjtött valós időben, és a storage-fiókok létrehozása az erőforráscsoportban valamelyikében. A diagnosztikai beállítások alkalmazásszintű események beállítása. Ezek az események tartalmazzák [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) események, [Reliable Services](service-fabric-reliable-services-diagnostics.md) eseményeket, és egyes rendszerszintű Service Fabric események Azure Storage tárolja.
+az Azure támogatási csapata hello *szükséges* támogatási naplózza toohelp resolve bármely Ön által létrehozott támogatási kérelmek. Ezek a naplók valós időben gyűjti, és vannak tárolva egy hello storage-fiókok létrehozása hello erőforráscsoportban. hello diagnosztikai beállítások alkalmazásszintű események beállítása. Ezek az események tartalmazzák [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) események, [Reliable Services](service-fabric-reliable-services-diagnostics.md) eseményeket, és néhány rendszerszintű Service Fabric események toobe Azure Storage szolgáltatásban tárolja.
 
-Például termékek [Elasticsearch](https://www.elastic.co/guide/index.html) vagy a saját folyamatának az események lekérheti a tárfiók. Jelenleg nincs mód való vagy készítsen fel a figyelmet, hogy a tábla küldött. Egy folyamat leállását események eltávolítja a tábla nem valósítja meg, ha a tábla egyre nő.
+Például termékek [Elasticsearch](https://www.elastic.co/guide/index.html) vagy a saját folyamatának hello események lekérheti hello tárfiók. Jelenleg nincs módja toofilter vagy karcsúsítása hello küldött eseményeket toohello tábla. Ha nem valósítja meg a folyamat tooremove események hello táblából, hello tábla toogrow továbbra is.
 
-A fürt létrehozásakor a portál használatával erősen ajánlott, hogy töltse le a sablon **OK gombra kattintás előtt** a fürt létrehozásához. További információkért tekintse meg [Azure Resource Manager-sablonok használatával a Service Fabric-fürt beállított](service-fabric-cluster-creation-via-arm.md). A módosítások később, a sablon lesz szüksége, mert nem módosítja a portál használatával.
+A fürt létrehozásakor hello portál használatával erősen ajánlott, hogy töltse le a hello sablon **OK gombra kattintás előtt** toocreate hello fürt. Részletekért lásd a túl[Azure Resource Manager-sablonok használatával a Service Fabric-fürt beállított](service-fabric-cluster-creation-via-arm.md). Szüksége lesz hello sablon toomake módosítások később, mert néhány módosítást hello portál használatával nem hajtható végre.
 
-Sablonok a következő lépések segítségével exportálhatja a portálról. Azonban ezeket a sablonokat is több használata is nehézkes lehet miatt előfordulhat, hogy hiányoznak a szükséges információk null értékeket.
+Exportálhatja sablonok hello portálról hello lépések segítségével. Ezeket a sablonokat lehet azonban nehezebb toouse, mert előfordulhat, hogy hiányoznak a szükséges információk null értékeket.
 
 1. Nyissa meg az erőforráscsoportot.
-2. Válassza ki **beállítások** a beállítások panel megjelenítéséhez.
-3. Válassza ki **központi telepítések** a központi telepítés előzményei panel megjelenítéséhez.
-4. Jelölje ki a telepítést, a központi telepítés részleteinek megjelenítéséhez.
-5. Válassza ki **sablon exportálása** a sablon panel megjelenítéséhez.
-6. Válassza ki **fájlba Mentés** a sablonban, a paraméter és a PowerShell-fájlokat tartalmazó .zip fájl exportálása.
+2. Válassza ki **beállítások** toodisplay hello-beállítások panelen.
+3. Válassza ki **központi telepítések** toodisplay hello telepítési előzmények panelen.
+4. Válassza ki a hello központi telepítés központi telepítési toodisplay hello részleteit.
+5. Válassza ki **sablon exportálása** toodisplay hello sablon panel.
+6. Válassza ki **toofile mentése** tooexport hello sablon, a paraméter és a PowerShell-fájlokat tartalmazó .zip fájl.
 
-Miután exportálta a fájlokat, a módosítások kell. A parameters.json fájl szerkesztése és eltávolítása a **adminPassword** elemet. Ennek következtében a a jelszó kérése a telepítési parancsfájl futtatásakor. Jelenik meg a telepítési parancsfájlt, akkor előfordulhat, hogy javítsa ki a null paraméterértékeket.
+Hello fájlok exportálását követően kell toomake módosítását. Hello parameters.json fájl szerkesztése és eltávolítása hello **adminPassword** elemet. Ennek hatására a hello jelszó kérése, hello telepítési parancsfájl futtatásakor. Amikor hello telepítési parancsfájlt futtatja, lehetséges, hogy toofix null paraméterértékeket.
 
-A letöltött sablonok használata a konfiguráció frissítése:
+toouse hello letöltött sablon tooupdate egy konfigurációt:
 
-1. Bontsa ki a tartalmát a helyi számítógép egyik mappájába.
-2. A tartalom tükrözzék az új konfiguráció módosítása.
-3. Indítsa el a Powershellt, és módosítsa a mappát, amelyikbe kibontotta a tartalmat.
-4. Futtatás **deploy.ps1** , és töltse ki az előfizetés-azonosító, az erőforráscsoport neve (használja ugyanazt a konfiguráció frissítése) és egyedi telepítési nevét.
+1. Bontsa ki a hello tartalma tooa mappát a helyi számítógépen.
+2. Módosítsa a hello tartalma tooreflect hello új konfigurációt.
+3. Indítsa el a Powershellt, és módosítsa a toohello mappát, amelyikbe kibontotta hello tartalmat.
+4. Futtatás **deploy.ps1** , és töltse ki hello előfizetés-azonosító, hello erőforráscsoport-név (használata hello azonos tooupdate hello konfigurációja), és egyedi telepítési nevét.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>A fürt létrehozásának részeként diagnosztika bővítmény telepítése Azure Resource Manager használatával
-Fürt létrehozásához erőforrás-kezelő használatával kell hozzáadnia a diagnosztika konfigurációs JSON a teljes fürt Resource Manager-sablon, a fürt létrehozása előtt. Egy minta öt-Virtuálisgép-fürt Resource Manager sablon nyújtunk a Resource Manager sablon minták részeként hozzáadott diagnosztika konfigurációjával. Ezen a helyen az Azure-minták oldalon láthatja: [öt csomópontból álló fürt diagnosztika Resource Manager sablon példával](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype).
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>Fürt létrehozásának részeként hello diagnosztika bővítmény telepítése Azure Resource Manager használatával
+egy fürt erőforrás-kezelő használatával toocreate, kell tooadd hello diagnosztika konfigurációs JSON toohello teljes fürt Resource Manager sablon hello fürt létrehozása előtt. Egy minta öt-Virtuálisgép-fürt Resource Manager sablon nyújtunk hozzá diagnosztikai konfiguráció tooit a Resource Manager sablon minták részeként. Ezen a helyen hello Azure-minták katalógusban látható: [öt csomópontból álló fürt diagnosztika Resource Manager sablon példával](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype).
 
-A diagnosztika beállítást a Resource Manager-sablon megtekintéséhez nyissa meg az azuredeploy.json fájlt, és keresse meg **IaaSDiagnostics**. A fürt létrehozásához a sablon használatával, jelölje ki a **az Azure telepítéséhez** gomb érhető el az előző kapcsolat.
+toosee hello diagnosztika beállítás hello Resource Manager-sablon, nyitott hello azuredeploy.json fájlt, és keresse meg a **IaaSDiagnostics**. a fürt ezt a sablont, jelölje be hello segítségével toocreate **tooAzure telepítése** gomb hello előző hivatkozás érhető el.
 
-Azt is megteheti, töltse le az erőforrás-kezelő minta, módosítani és hozzon létre egy fürtöt a módosított sablon használatával a `New-AzureRmResourceGroupDeployment` parancsot egy Azure PowerShell-ablakban. Tekintse meg a következő kódot a paraméterek, amelyeket átad a a parancsot. Az erőforráscsoport PowerShell használatával történő központi telepítéséről részletes információkért lásd: a cikk [központi telepítése egy erőforráscsoportot az Azure Resource Manager sablon](../azure-resource-manager/resource-group-template-deploy.md).
+Azt is megteheti, hello erőforrás-kezelő minta letöltése, ellenőrizze a módosítások tooit és hello segítségével hozzon létre egy fürtöt hello módosított sablon `New-AzureRmResourceGroupDeployment` parancsot egy Azure PowerShell-ablakban. Tekintse meg a következő kód hello paraméter jelzi, hogy átadta toohello parancsban hello. Hogyan toodeploy erőforrás szerint kell csoportosítani a PowerShell használatával további információkért lásd: hello cikk [hello Azure Resource Manager sablonnal erőforráscsoport telepítése](../azure-resource-manager/resource-group-template-deploy.md).
 
 ```powershell
 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $pathToARMConfigJsonFile -TemplateParameterFile $pathToParameterFile –Verbose
 ```
 
-### <a name="deploy-the-diagnostics-extension-to-an-existing-cluster"></a>A diagnosztika bővítmény telepítése egy meglévő fürthöz
-Ha egy meglévő fürtöt, amely nem rendelkezik telepített diagnosztika, vagy ha azt szeretné, hogy egy meglévő konfigurációjának módosítása, adja hozzá, vagy frissítheti azt. Módosítsa a Resource Manager-sablon, amellyel a meglévő fürt létrehozása, vagy a sablon letöltéséről a portálon, a fentebb leírt módon. A template.json fájl módosítása a következő feladatok végrehajtásával.
+### <a name="deploy-hello-diagnostics-extension-tooan-existing-cluster"></a>Hello diagnosztika bővítmény tooan meglévő fürt központi telepítése
+Ha egy meglévő fürtöt, amely nem rendelkezik telepített diagnosztika, vagy ha azt szeretné, hogy egy meglévő konfigurációt toomodify, adja hozzá, vagy frissítheti azt. Hello Resource Manager-sablon által használt toocreate hello meglévő fürt módosítása vagy hello sablon letöltése hello portálról korábban leírt módon. Módosítsa a hello template.json fájlt hello a következő feladatok végrehajtásával.
 
-A sablon a források szakaszában ad hozzá egy új tárolási erőforrás hozzáadása.
+Vegyen fel egy új tároló-erőforrás toohello sablont toohello források szakaszában hozzáadásával.
 
 ```json
 {
@@ -112,7 +112,7 @@ A sablon a források szakaszában ad hozzá egy új tárolási erőforrás hozz�
 },
 ```
 
- A következő után vesz fel a Paraméterek szakaszban csak a tárolási fiók definíciók között `supportLogStorageAccountName` és `vmNodeType0Name`. Cserélje le a helyőrzőket *ide kerül a tárfiók neve* a tárfiók nevével.
+ Ezután adja hozzá a toohello paraméterek között szakasz után hello tárolási fiók definíciók `supportLogStorageAccountName` és `vmNodeType0Name`. Cserélje le a helyőrzőket hello *ide kerül a tárfiók neve* hello nevű hello tárfiók.
 
 ```json
     "applicationDiagnosticsStorageAccountType": {
@@ -123,18 +123,18 @@ A sablon a források szakaszában ad hozzá egy új tárolási erőforrás hozz�
       ],
       "defaultValue": "Standard_LRS",
       "metadata": {
-        "description": "Replication option for the application diagnostics storage account"
+        "description": "Replication option for hello application diagnostics storage account"
       }
     },
     "applicationDiagnosticsStorageAccountName": {
       "type": "string",
       "defaultValue": "storage account name goes here",
       "metadata": {
-        "description": "Name for the storage account that contains application diagnostics data from the cluster"
+        "description": "Name for hello storage account that contains application diagnostics data from hello cluster"
       }
     },
 ```
-Ezt követően frissítse a `VirtualMachineProfile` a template.json fájl a következő kódrészletet a bővítmények tömbön belüli szakaszában. Ne feledje hozzáadni vesszővel elején vagy végén, attól függően, hogy hol csatlakoztatva van-e.
+Frissítse a hello `VirtualMachineProfile` hello template.json fájl a következő kód hello bővítmények tömbön belüli hello hozzáadásával szakaszában. Lehet, hogy tooadd hello elején vagy hello végén, attól függően, hogy hol csatlakoztatva van egy vesszővel.
 
 ```json
 {
@@ -191,13 +191,13 @@ Ezt követően frissítse a `VirtualMachineProfile` a template.json fájl a köv
 }
 ```
 
-Lásd a template.json fájl módosítása, után közzé a Resource Manager-sablon. Ha a sablon exportált, a sablon a deploy.ps1 fájlt futtatja addig. Miután telepít, győződjön meg arról, hogy **ProvisioningState** van **sikeres**.
+Hello template.json fájl leírtak módosítása után közzé hello Resource Manager-sablon. Hello sablon exportált, ha a fájl futtatása hello deploy.ps1 addig hello sablont. Miután telepít, győződjön meg arról, hogy **ProvisioningState** van **sikeres**.
 
-## <a name="update-diagnostics-to-collect-health-and-load-events"></a>Frissítse a diagnosztikai állapot gyűjtése és események betöltése
+## <a name="update-diagnostics-toocollect-health-and-load-events"></a>Diagnosztika toocollect állapotát és a betöltési események frissítése
 
-A Service Fabric 5.4 kiadástól kezdve, állapotát és a terheléselosztási metrika események állnak rendelkezésre a gyűjteményhez. Ezek az események tükrözze az állapotfigyelő segítségével a rendszer vagy a kód által előállított eseményeket vagy nem tölthető be, mint jelentéskészítési API-k [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) vagy [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx). Ez lehetővé teszi, hogy összesítésére és idővel állapotának megtekintése és a riasztás állapotát vagy a betöltési események alapján. Ezeket az eseményeket a Visual Studio diagnosztikai eseménynapló adja hozzá megtekintése "Microsoft-ServiceFabric:4:0x4000000000000008" ETW-szolgáltatók listáját.
+Hello 5.4-es verziójában a Service Fabric-től kezdődően állapotát és a terheléselosztási metrika események állnak rendelkezésre a gyűjtemény. Ezek az események tükrözze hello állapotfigyelő segítségével hello rendszer vagy a kód által előállított eseményeket vagy nem tölthető be, mint jelentéskészítési API-k [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) vagy [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx). Ez lehetővé teszi, hogy összesítésére és idővel állapotának megtekintése és a riasztás állapotát vagy a betöltési események alapján. Ezek az események a Visual Studio diagnosztikai eseménynapló hozzáadása tooview "Microsoft-ServiceFabric:4:0x4000000000000008" toohello ETW-hitelesítésszolgáltatók listáját.
 
-Az események összegyűjtésére, tartalmazza a resource manager-sablon módosítása
+toocollect hello események, hello resource manager sablon tooinclude módosítása
 
 ```json
   "EtwManifestProviderConfiguration": [
@@ -212,12 +212,12 @@ Az események összegyűjtésére, tartalmazza a resource manager-sablon módos�
     }
 ```
 
-## <a name="update-diagnostics-to-collect-and-upload-logs-from-new-eventsource-channels"></a>Diagnosztika összegyűjtésére és a naplók feltöltése az új EventSource csatornák frissítése
-Frissíteni a diagnosztikai naplók összegyűjtésére új EventSource csatornák, amelyek megfelelnek egy új alkalmazást, amely a kívánt központi telepítése, hajtsa végre a lépéseket, mint a a [előző szakaszban](#deploywadarm) diagnosztika egy meglévő fürt beállításához.
+## <a name="update-diagnostics-toocollect-and-upload-logs-from-new-eventsource-channels"></a>Diagnosztika toocollect frissítése és a naplók feltöltése az új EventSource csatornák
+tooupdate diagnosztika toocollect naplókat az új EventSource csatornák, amelyek megfelelnek egy új alkalmazást, amely körülbelül toodeploy, hajtsa végre a ugyanaz, mint hello lépések hello [előző szakaszban](#deploywadarm) ad egy meglévő diagnosztikai telepítéshez fürt.
 
-Frissítse a `EtwEventSourceProviderConfiguration` az template.json fájl bejegyzés hozzáadása előtt, a konfiguráció új EventSource csatornák használatával módosítsa a `New-AzureRmResourceGroupDeployment` PowerShell-parancsot. A forrás nevét a kódot, a Visual Studio által létrehozott ServiceEventSource.cs fájl részeként van definiálva.
+Hello frissítése `EtwEventSourceProviderConfiguration` hello új EventSource csatornák hello konfiguráció alkalmazása előtt módosítsa hello segítségével hello template.json tooadd bejegyzések szakasz `New-AzureRmResourceGroupDeployment` PowerShell-parancsot. hello eseményforrás hello nevét a kód hello ServiceEventSource.cs Visual Studio által létrehozott fájl részeként van definiálva.
 
-Ha a forrás saját Eventsource neve, adja hozzá például a következő kódot a saját Eventsource eseményei helyezzen MyDestinationTableName nevű tábla.
+Ha a forrás saját Eventsource neve, például saját Eventsource kód tooplace hello események követően egy táblába MyDestinationTableName nevű hello hozzáadása.
 
 ```json
         {
@@ -229,12 +229,12 @@ Ha a forrás saját Eventsource neve, adja hozzá például a következő kódot
         }
 ```
 
-Gyűjti az teljesítményszámlálók és az eseménynaplók, módosítsa a Resource Manager-sablon a megadott példák felhasználásával [figyelése és diagnosztika Windows virtuális gép létrehozása Azure Resource Manager-sablon használatával](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). A Resource Manager-sablon, majd közzé.
+toocollect teljesítményszámlálók vagy eseménynaplók, hello Resource Manager sablon módosításához megadott hello példák felhasználásával [Windows virtuális gép létrehozása a figyelési és diagnosztikaAzureResourceManager-sablonhasználatával](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Újbóli hello Resource Manager-sablon.
 
 ## <a name="next-steps"></a>Következő lépések
-Milyen eseményeket kell keresnie az problémák elhárítása során részletes ismertetése: az a kibocsátott diagnosztikai eseményei [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) és [Reliable Services](service-fabric-reliable-services-diagnostics.md).
+részletesebben toounderstand milyen eseményeket kell keresnie az közben hibaelhárításával, lásd: a kibocsátott diagnosztikai eseményei hello [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) és [Reliable Services](service-fabric-reliable-services-diagnostics.md).
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
-* [Megtudhatja, hogyan gyűjti a teljesítményszámlálók és a naplókat a diagnosztika bővítmény segítségével](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Ismerje meg, hogyan toocollect teljesítményszámlálókkal és a naplók segítségével hello diagnosztika bővítmény](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [A Naplóelemzési Service Fabric-megoldás](../log-analytics/log-analytics-service-fabric.md)
 

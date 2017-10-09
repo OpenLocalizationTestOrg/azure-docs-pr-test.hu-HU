@@ -1,6 +1,6 @@
 ---
-title: "Windows Phone Silverlight Reach SDK-integráció"
-description: "Windows Phone Silverlight-alkalmazásokhoz az Azure Mobile Engagement Reach integrálása"
+title: "aaaWindows Phone Silverlight Reach SDK-integráció"
+description: "Hogyan tooIntegrate az Azure Mobile Engagement jut, ahol a Windows Phone Silverlight-alkalmazásokhoz"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 0738f33df94d14fbb393bfaaf09e94c6560213cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09c8767216e11963c5c600755ab8d4d11cd92034
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-phone-silverlight-reach-sdk-integration"></a>Windows Phone Silverlight Reach SDK-integráció
-Az integráció az ismertetett eljárást kell követni a [Windows Phone Silverlight Engagement SDK-integráció](mobile-engagement-windows-phone-integrate-engagement.md) Ez az útmutató követése előtt.
+Hello ismertetett hello integrációs eljárást kell követni, [Windows Phone Silverlight Engagement SDK-integráció](mobile-engagement-windows-phone-integrate-engagement.md) Ez az útmutató követése előtt.
 
-## <a name="embed-the-engagement-reach-sdk-into-your-windows-phone-silverlight-project"></a>Az Engagement Reach SDK beágyazása a Windows Phone Silverlight-projekt
-Nincs olyan hozzáadása. `EngagementReach`hivatkozások és erőforrások még a projektben.
+## <a name="embed-hello-engagement-reach-sdk-into-your-windows-phone-silverlight-project"></a>A Windows Phone Silverlight-projektben Engagement Reach SDK hello beágyazása
+Nincs semmi tooadd. `EngagementReach`hivatkozások és erőforrások még a projektben.
 
 > [!TIP]
-> Lemezképek található, testreszabhatja a `Resources` mappa a projekt, különösen a márka ikon (hogy az Engagement ikonra az alapértelmezett).
+> Testre szabhatja a hello található képek `Resources` mappa a projekt, különösen akkor hello márka ikon (adott alapértelmezett toohello Engagement ikon).
 > 
 > 
 
-## <a name="add-the-capabilities"></a>A képességek hozzáadása
-Az Engagement Reach SDK kell néhány további képességeket.
+## <a name="add-hello-capabilities"></a>Hello képességek hozzáadása
+hello Engagement Reach SDK-t kell néhány további képességeket.
 
-Nyissa meg a `WMAppManifest.xml` fájlt, és ne feledje, hogy a következő lehetőségei vannak deklarálva:
+Nyissa meg a `WMAppManifest.xml` fájlt, és ne feledje, hogy a következő képességeket hello deklarált:
 
 * `ID_CAP_PUSH_NOTIFICATION`
 * `ID_CAP_WEBBROWSERCOMPONENT`
 
-Az első egy bejelentési értesítés megjelenítésének használják az MPNS szolgáltatáshoz. A második egy böngésző feladat beágyazása az SDK szolgál.
+hello először egy használják hello MPNS szolgáltatás tooallow hello megjelenítési bejelentési értesítés. hello második használatban tooembed hello SDK be egy böngésző feladatot.
 
-Szerkessze a `WMAppManifest.xml` fájlt, és belül a `<Capabilities />` címke:
+Hello szerkesztése `WMAppManifest.xml` fájlt, és hello belül `<Capabilities />` címke:
 
     <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
     <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
 
-## <a name="enable-the-microsoft-push-notification-service"></a>A Microsoft leküldéses értesítési szolgáltatás engedélyezése
-Ahhoz, hogy a **a Microsoft leküldéses értesítéseket kezelő szolgáltatásában** (MPNS néven) a `WMAppManifest.xml` fájl rendelkeznie kell egy `<App />` rendelkező címke egy `Publisher` attribútum értékének beállítása a projekt nevét.
+## <a name="enable-hello-microsoft-push-notification-service"></a>A Microsoft leküldéses értesítéseket kezelő szolgáltatásában hello engedélyezése
+A sorrend toouse hello **a Microsoft leküldéses értesítéseket kezelő szolgáltatásában** (MPNS néven) a `WMAppManifest.xml` fájl rendelkeznie kell egy `<App />` rendelkező címke egy `Publisher` attribútum a projekt toohello nevének beállítása.
 
-## <a name="initialize-the-engagement-reach-sdk"></a>Az Engagement Reach SDK inicializálása
+## <a name="initialize-hello-engagement-reach-sdk"></a>Hello Engagement Reach SDK inicializálása
 ### <a name="engagement-configuration"></a>Bevonási konfiguráció
-A bevonási konfigurációs központosított a `Resources\EngagementConfiguration.xml` fájlt a projekt.
+hello Engagement konfigurációs rendszer központosított hello `Resources\EngagementConfiguration.xml` fájlt a projekt.
 
-Ezt a fájlt adja meg a reach-konfiguráció szerkesztése:
+A fájl toospecify reach konfigurációjának a szerkesztésével:
 
-* *Nem kötelező*, jelzik, hogy a natív leküldéses (MPNS) aktiválva van, vagy nem közötti `<enableNativePush>` és `</enableNativePush>` címkék, (`true` alapértelmezés szerint).
-* *Nem kötelező*, közötti leküldéses csatorna jelzésére `<channelName>` és `</channelName>` címkék, adja meg, hogy jelenleg lehet-e használni az alkalmazás, vagy hagyja üresen.
+* *Nem kötelező*, jelzik, hogy a natív leküldéses hello (MPNS) aktiválva van, vagy nem közötti `<enableNativePush>` és `</enableNativePush>` címkék, (`true` alapértelmezés szerint).
+* *Nem kötelező*, hello leküldéses csatorna közötti hello nevét jelzi `<channelName>` és `</channelName>` címkék, adja meg a hello azonos, hogy jelenleg lehet-e használni az alkalmazást, vagy hagyja üresen.
 
-Ha azt szeretné, ehelyett meg futásidőben, hívása előtt az Engagement ügynök inicializálása a következő metódust:
+Ha azt szeretné, hogy a futtatókörnyezet ehelyett hívása hello következő toospecify metódus hello Engagement ügynök inicializálása előtt:
 
     /* Engagement configuration. */
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -66,23 +66,23 @@ Ha azt szeretné, ehelyett meg futásidőben, hívása előtt az Engagement ügy
     engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
     engagementConfiguration.Reach.EnableNativePush = true;                  
-    /* [Optional] whether the native push (MPNS) is activated or not. */
+    /* [Optional] whether hello native push (MPNS) is activated or not. */
 
     engagementConfiguration.Reach.ChannelName = "YOUR_PUSH_CHANNEL_NAME";   
-    /* [Optional] Provide the same channel name that your application may currently use. */
+    /* [Optional] Provide hello same channel name that your application may currently use. */
 
     /* Initialize Engagement agent with above configuration. */
     EngagementAgent.Instance.Init(engagementConfiguration);
 
 > [!TIP]
-> Megadhatja az MPNS leküldéses csatorna az alkalmazás nevét. Alapértelmezés szerint az Engagement egy nevet a appId alapján hoz létre. Adja meg a nevét, kivéve, ha szeretné-e használni a leküldéses csatorna Engagement kívül nincs szükség van.
+> Megadhatja, hogy hello hello MPNS leküldéses csatorna az alkalmazás nevét. Alapértelmezés szerint az Engagement hello appId alapján nevét hoz létre. Hogy nincs szükség toospecify hello neve, kivéve, ha azt tervezi, toouse hello leküldéses csatorna Engagement kívül.
 > 
 > 
 
 ### <a name="engagement-initialization"></a>Bevonási inicializálása
-Módosítsa a `App.xaml.cs`:
+Módosítsa a hello `App.xaml.cs`:
 
-* Adja hozzá a `using` utasításokat:
+* Adja hozzá a tooyour `using` utasításokat:
   
       using Microsoft.Azure.Engagement;
 * Helyezze be `EngagementReach.Instance.Init` után csak `EngagementAgent.Instance.Init` a `Application_Launching` :
@@ -92,7 +92,7 @@ Módosítsa a `App.xaml.cs`:
          EngagementAgent.Instance.Init();
          EngagementReach.Instance.Init();
       }
-* Helyezze be `EngagementReach.Instance.OnActivated` a a `Application_Activated` módszert:
+* Helyezze be `EngagementReach.Instance.OnActivated` a hello `Application_Activated` módszert:
   
       private void Application_Activated(object sender, ActivatedEventArgs e)
       {
@@ -101,41 +101,41 @@ Módosítsa a `App.xaml.cs`:
       }
 
 > [!IMPORTANT]
-> A `EngagementReach.Instance.Init` egy dedikált szálat futtat. Nem kell saját kezűleg elvégezni.
+> Hello `EngagementReach.Instance.Init` egy dedikált szálat futtat. Nem rendelkezik toodo azt saját maga.
 > 
 > 
 
 ## <a name="app-store-submission-considerations"></a>Tároló küldésének szempontjai
-Microsoft néhány szabály írja elő, amikor a leküldéses értesítések használata:
+Microsoft néhány szabály írja elő, amikor hello leküldéses értesítésekkel:
 
-A Microsoft [alkalmazás-házirendek] -dokumentáció, szakasz 2.9:
+A hello Microsoft [alkalmazás-házirendek] -dokumentáció, szakasz 2.9:
 
-1) Meg kell kérnie a felhasználót, hogy fogadja el a leküldéses értesítéseket. A beállításokat, majd adja hozzá egy módszerre, amellyel a leküldéses értesítések letiltása.
+1) Meg kell kérnie hello felhasználói tooaccept tooreceive leküldéses értesítéseket. Ezután a beállítások egy módon toodisable hello leküldéses értesítések hozzáadása.
 
-A EngagementReach objektum kezelheti a megújításra-a/lemondásra, két módszert kínál a `EnableNativePush()` és `DisableNativePush()`. Például létrehozhat egy beállítást a beállítások a Váltás az MPNS engedélyezése vagy letiltása.
+hello EngagementReach objektum biztosít két módszer toomanage hello az/opt-lemondáshoz, `EnableNativePush()` és `DisableNativePush()`. Ön nem sikerült, például hozzon létre egy beállítást a váltógomb toodisable hello-beállítások vagy MPNS engedélyezése.
 
-Úgy is dönt, hogy MPNS inaktiválása az Engagement konfigurálással\<windows phone-sdk-reach-konfiguráció\>.
+Azt is eldöntheti, toodeactivate MPNS hello Engagement konfigurálással\<windows phone-sdk-reach-konfiguráció\>.
 
-> 2.9.1) az alkalmazás kell először írja le az értesítéseket meg kell adni, és **szerezze be a felhasználó engedélye (részt)**, és **kell egy olyan mechanizmust, amelyen keresztül a felhasználó is tilthatják le az leküldéses fogadása értesítések**. Az értesítések a Microsoft leküldéses értesítéseket kezelő szolgáltatással megadott a leírás, a felhasználó számára biztosított konzisztensnek kell lennie, és meg kell felelnie az összes alkalmazható [alkalmazás-házirendek] [ Content Policies] és [Adott alkalmazás esetében további követelmények].
+> 2.9.1) hello alkalmazás először le kell írnia a megadott hello értesítések toobe és **hello felhasználó engedélye (részt) beszerzése**, és **kell egy olyan mechanizmus biztosítása mely hello keresztül felhasználó kérheti fogadás kívül leküldéses értesítések**. Az értesítések használatával a Microsoft leküldéses értesítéseket kezelő szolgáltatásában hello megadott hello megadott leírás toohello felhasználói konzisztensnek kell lennie, és meg kell felelnie az összes alkalmazható [alkalmazás-házirendek] [ Content Policies]és [adott alkalmazás esetében további követelmények].
 > 
 > 
 
 2) Ne használjon túl sok leküldéses értesítéseket. Bevonási értesítéseket meg fogja kezelni.
 
-> 2.9.2) az alkalmazás és annak a Microsoft leküldéses értesítéseket kezelő szolgáltatásában kell túlzottan használjon hálózati kapacitás vagy a Microsoft leküldéses értesítéseket kezelő szolgáltatásában, vagy más módon jogosulatlanul terheket egy Windows Phone-vagy más Microsoft eszköz vagy szolgáltatást, amely a sávszélesség túl sok leküldéses értesítések alapján a Microsoft méltányosan, és nem sérüléséhez vagy bármely Microsoft Networkshöz vagy kiszolgálók, vagy bármely harmadik felek kiszolgálóival vagy hálózatokhoz kapcsolódik a Microsoft leküldéses értesítéseket kezelő szolgáltatásában.
+> 2.9.2) hello alkalmazás és a Microsoft leküldéses értesítéseket kezelő szolgáltatásában hello használatát kell nem túl hálózati kapacitás vagy a Microsoft leküldéses értesítéseket kezelő szolgáltatásában hello sávszélesség, vagy más módon jogosulatlanul terheljék a Windows Phone vagy más Microsoft-eszköz vagy szolgáltatás túl sok a leküldéses értesítések alapján a Microsoft méltányosan, és nem sérüléséhez vagy bármely Microsoft Networkshöz vagy kiszolgálók, vagy bármely harmadik felek kiszolgálóihoz vagy hálózatok csatlakoztatott toohello a Microsoft leküldéses értesítéseket kezelő szolgáltatása.
 > 
 > 
 
-3) Ne használja az MPNS criticals információk küldése. Engagement használ MPNS, ezért ez a szabály a kampányok előtér az Engagement létrehozott is vonatkozik.
+3) Ne használja az MPNS toosend criticals információra. Bevonási használ MPNS, ezért ez a szabály is létre hello Engagement előtér-hello kampányok vonatkozik.
 
-> 2.9.3) a Microsoft leküldéses értesítéseket kezelő szolgáltatásában nem lehet, amelyek kritikus vagy egyéb kritikus értesítések befolyásolhatja a fontos információk vagy halál küldéséhez használt, kritikus értesítések korlátozás nélkül ideértve kapcsolódó orvosi eszköz vagy az állapot. A MICROSOFT KIFEJEZETTEN ELHÁRÍT SEMMIFÉLE, HOGY A MICROSOFT LEKÜLDÉSES ÉRTESÍTÉSI SZOLGÁLTATÁS HASZNÁLATÁT VAGY A MICROSOFT LEKÜLDÉSES ÉRTESÍTÉSI SZOLGÁLTATÁSHOZ ÉRTESÍTÉST KÉZBESÍTÉSI FOLYAMATOS, SZABAD VAGY EGYÉB HIBA VALÓSZÍNŰ, HOGY A VALÓS IDEJŰ ALAPON TÖRTÉNIK.
+> 2.9.3) a Microsoft leküldéses értesítéseket kezelő szolgáltatásában használt toosend értesítések, amelyek akkreditált képviseletének kritikus vagy más módon nem lehet hello hatással lehet a kérdések vagy halál, beleértve a korlátozás kritikus értesítések kapcsolódó tooa orvosi eszköz vagy a feltétel nélkül. A MICROSOFT kifejezetten elhárít minden garanciát, hogy hello használata a hello MICROSOFT LEKÜLDÉSES értesítési szolgáltatás vagy KÉZBESÍTÉSI a MICROSOFT LEKÜLDÉSES értesítési szolgáltatás ÉRTESÍTÉSEKET fog kell folyamatos, hiba szabad vagy más módon garantált tooOCCUR ON A valós idejű alapján.
 > 
 > 
 
-**A Microsoft nem garantálja, hogy az alkalmazás az érvényesítési folyamat fogja továbbítani, ha ezek a javaslatok nem veszik figyelembe.**
+**A Microsoft nem garantálja, hogy az alkalmazás továbbítják hello érvényesítési folyamata, ha ezek a javaslatok nem veszik figyelembe.**
 
 ## <a name="handle-data-push-optional"></a>Kezeli az adatleküldés (nem kötelező)
-Ha azt szeretné, hogy az alkalmazás fogadhat Reach adatleküldések, két esemény EngagementReach osztály végrehajtásához rendelkezik:
+Ha azt szeretné, hogy az alkalmazás toobe képes tooreceive Reach adatleküldések, két események tooimplement hello EngagementReach osztály van:
 
     EngagementReach.Instance.DataPushStringReceived += (body) =>
     {
@@ -150,18 +150,18 @@ Ha azt szeretné, hogy az alkalmazás fogadhat Reach adatleküldések, két esem
        return true;
     };
 
-Láthatja, hogy az egyes módszerek visszahívási olyan logikai érték beolvasása. Bevonási egy visszajelzést küld a a háttér-után az adatleküldés terjesztéséhez. A visszahívási hamis értéket ad vissza, ha a `exit` visszajelzés küldése lesz. Ellenkező esetben lesz `action`. Ha nem visszahívási események, be van állítva a `drop` visszajelzést az eredmény engagement.
+Láthatja, hogy az egyes metódus értéket ad vissza egy logikai érték hello a visszahívás. Engagement küld egy visszajelzés tooits háttér-után hello adatleküldés terjesztéséhez. Hello visszahívási hamis értéket ad vissza, ha hello `exit` visszajelzés küldése lesz. Ellenkező esetben lesz `action`. Ha nincs visszahívás hello események, hello `drop` visszajelzés visszaadott tooEngagement.
 
 > [!WARNING]
-> Bevonási nincs Többszörösök visszajelzése van, az adatokat fogadhat. Ha azt tervezi, hogy több kezelők be egy eseményt, vegye figyelembe, hogy a visszajelzés utolsó felel meg egyik küldött. Ebben az esetben ajánlott mindig adja meg ugyanazt az értéket ne használjon egyértelmű visszajelzést az előtér-a.
+> Bevonási nem tud tooreceive Többszörösök visszajelzése van, az adatokat. Ha azt tervezi, tooset több kezelők egy olyan eseményre, vegye figyelembe, hogy hello visszajelzés felel meg toohello legutóbb elküldött. Ebben az esetben ajánlott tooalways értéket ad vissza hello zavaró visszajelzés rendelkező előtér-hello azonos érték tooavoid.
 > 
 > 
 
 ## <a name="customize-ui-optional"></a>(Választható) felhasználói felület testreszabása
 ### <a name="first-step"></a>Első lépés
-Azt teszik lehetővé a reach felhasználói felület testreszabása.
+Azt teszik toocustomize hello reach felhasználói felületén.
 
-Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
+toodo úgy, hogy toocreate hello alosztályát `EngagementReachHandler` osztály.
 
 **Mintakód:**
 
@@ -175,7 +175,7 @@ Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
        }
     }
 
-Állítsa a tartalmát a `EngagementReach.Instance.Handler` mező található az egyéni objektum a `App.xaml.cs` belül osztály a `Application_Launching` metódus.
+Állítsa hello hello tartalmának `EngagementReach.Instance.Handler` mező található az egyéni objektum a `App.xaml.cs` hello osztály `Application_Launching` metódust.
 
 **Mintakód:**
 
@@ -187,16 +187,16 @@ Ehhez létre kell hoznia egy alosztálya a `EngagementReachHandler` osztály.
     }
 
 > [!NOTE]
-> Alapértelmezés szerint az Engagement használja a saját végrehajtásának `EngagementReachHandler`. Nem kell létrehoznia a saját, és ha így tesz, nem kell minden metódus felülbírálására. Az alapértelmezett viselkedés, jelölje be a bevonási objektum.
+> Alapértelmezés szerint az Engagement használja a saját végrehajtásának `EngagementReachHandler`. Nincs toocreate a saját, és ha így tesz, akkor nem kell toooverride minden metódus. hello alapértelmezés tooselect hello Engagement alapobjektum lesz.
 > 
 > 
 
 ### <a name="layouts"></a>Elrendezés
-Alapértelmezés szerint Reach az értesítések és a lap megjelenítése fogja használni a beágyazott erőforrások a dll-fájl.
+Alapértelmezés szerint a Reach hello beágyazott erőforrások hello DLL toodisplay hello értesítések és lapokat fogja használni.
 
-Azonban ha dönt, hogy saját erőforrásokat használnak, a márka, ezen összetevők megfelelően.
+Azonban dönthet úgy is toouse saját erőforrások tooreflect a márka, ezen összetevők.
 
-Ha szeretné felülbírálni az `EngagementReachHandler` a alosztályának kell tudniuk a bevonási a elrendezések használandó módszerek:
+Felülbírálható `EngagementReachHandler` az alosztály tootell Engagement toouse módszerek a elrendezések:
 
 **Mintakód:**
 
@@ -204,17 +204,17 @@ Ha szeretné felülbírálni az `EngagementReachHandler` a alosztályának kell 
 
     public override string GetTextViewAnnouncementUri()
     {
-       // return the path of your own xaml
+       // return hello path of your own xaml
     }
 
     public override string GetWebViewAnnouncementUri()
     {
-       // return the path of your own xaml
+       // return hello path of your own xaml
     }
 
     public override string GetPollUri()
     {
-       // return the path of your own xaml
+       // return hello path of your own xaml
     }
 
     public override EngagementNotificationView CreateNotification(EngagementNotificationViewModel viewModel)
@@ -223,63 +223,63 @@ Ha szeretné felülbírálni az `EngagementReachHandler` a alosztályának kell 
     }
 
 > [!TIP]
-> A `CreateNotification` metódus adhat vissza null értékű. Az értesítés nem jelennek meg, és a reach-kampány a rendszer eldobja.
+> Hello `CreateNotification` metódus adhat vissza null értékű. hello értesítési nem jelennek meg, és hello reach-kampány a rendszer eldobja.
 > 
 > 
 
-Az elrendezés megvalósítási leegyszerűsítése is biztosítunk saját XAML-kódot, amely a kódot is szolgálhatnak. Az Engagement SDK archívumban találhatók (/ src/reach /).
+toosimplify elrendezés Önnél is biztosítunk saját XAML-kódot, amely a kódot is szolgálhatnak. Hello Engagement SDK archívumban találhatók (/ src/reach /).
 
 > [!WARNING]
-> Az általunk biztosított forrásai pontos ugyanazokat a portokat, amelyek jelenleg használják. Ezért ha azokat közvetlenül módosítani szeretné, ne feledje módosítani a névtér és a neve.
+> hello szerzik be a Microsoft hello pontos azonos gazdarendszerhez használjuk. Ezért ha azt szeretné, hogy toomodify azokat közvetlenül, nem elfelejti toochange hello névtér és hello nevét.
 > 
 > 
 
 ### <a name="notification-position"></a>Értesítési pozíciója
-Alapértelmezés szerint bal oldalán található az alkalmazás alján egy alkalmazásbeli értesítés jelenik meg. Ez a viselkedés felülbírálható módosíthatja a `GetNotificationPosition` metódusában a `EngagementReachHandler` objektum.
+Alapértelmezés szerint egy alkalmazásbeli értesítés hello alsó bal oldalán található hello alkalmazás jelenik meg. Ez a viselkedés felülbírálható hello módosítható `GetNotificationPosition` hello metódusában `EngagementReachHandler` objektum.
 
     // In your subclass of EngagementReachHandler
 
     public override EngagementReachHandler.NotificationPosition GetNotificationPosition(EngagementNotificationViewModel viewModel)
     {
-       // return a value of the EngagementReachHandler.NotificationPosition enum (TOP or BOTTOM)
+       // return a value of hello EngagementReachHandler.NotificationPosition enum (TOP or BOTTOM)
     }
 
-Jelenleg, választhat a `BOTTOM` (alapértelmezett) és `TOP` pozíciók.
+Jelenleg, választhat a hello `BOTTOM` (alapértelmezett) és `TOP` pozíciók.
 
 ### <a name="launch-message"></a>Indítsa el az üzenet
-Amikor egy felhasználó egy Rendszerértesítő (egy bejelentési) kattint, az Engagement elindítja az alkalmazást, a leküldéses üzenetek a tartalom betöltése, és a megfelelő kampány lap megjelenítéséhez.
+Ha a felhasználó kattint, a rendszer értesítést (egy bejelentési), Engagement elindítja hello app, hello hello tartalmának betöltése leküldéses üzeneteket, és a megfelelő kampány hello hello lap megjelenítéséhez.
 
-A késleltetés van a indítsa el az alkalmazás és a lap (attól függően, hogy a hálózat sebességétől) megjelenítési között.
+Nincs késleltetés hello indítási hello alkalmazás és hello megjelenítés hello lap (attól függően, hogy a hálózat sebességétől hello) között.
 
-Jelzi a felhasználóknak, hogy valami tölt, egy visual adatok, például egy folyamatjelző vagy egy folyamatjelző kell megadnia. Bevonási nem tudja kezelni, hogy saját magát, de itt néhány kezelők meg.
+valami tölt toohello felhasználói tooindicate, kell biztosítania egy visual adatok, például egy folyamatjelző vagy egy folyamatjelző. Bevonási nem tudja kezelni, hogy saját magát, de itt néhány kezelők meg.
 
-A visszahívás megvalósításához, a következőket kell tennie:
+tooimplement hello visszahívási, tegye:
 
-    /* The application has launched and the content is loading.
+    /* hello application has launched and hello content is loading.
      * You should display an indicator here.
      */
     EngagementReach.Instance.RetrieveLaunchMessageStarted += () => { [...] };
 
-    /* The application has finished loading the content and the page
-     * is about to be displayed.
-     * You should hide the indicator here.
+    /* hello application has finished loading hello content and hello page
+     * is about toobe displayed.
+     * You should hide hello indicator here.
      */
     EngagementReach.Instance.RetrieveLaunchMessageCompleted += () => { [...] };
 
-    /* The content has been loaded, but an error has occurred.
-     * You can provide an information to the user.
-     * You should hide the indicator here.
+    /* hello content has been loaded, but an error has occurred.
+     * You can provide an information toohello user.
+     * You should hide hello indicator here.
      */
     EngagementReach.Instance.RetrieveLaunchMessageFailed += () => { [...] };
 
-Állíthatja be a visszahívást a `Application_Launching` metódusában a `App.xaml.cs` fájlt, mielőtt lehetőleg a `EngagementReach.Instance.Init()` hívható meg.
+A hello visszahívási beállíthatja a `Application_Launching` metódusában a `App.xaml.cs` fájl, lehetőleg előtt hello `EngagementReach.Instance.Init()` hívható meg.
 
 > [!TIP]
-> A felhasználói felület szálából minden kezelő hívja. Nincs a MessageBox vagy a felhasználói felület kapcsolatos valami használatakor foglalkoznia.
+> Minden egyes kezelő felhasználói felület szálából hello hívja. Önnek nincs tooworry MessageBox vagy valami felhasználói felület kapcsolatos használatakor.
 > 
 > 
 
 [alkalmazás-házirendek]:http://msdn.microsoft.com/library/windows/apps/hh184841(v=vs.105).aspx
 [Content Policies]:http://msdn.microsoft.com/library/windows/apps/hh184842(v=vs.105).aspx
-[Adott alkalmazás esetében további követelmények]:http://msdn.microsoft.com/library/windows/apps/hh184838(v=vs.105).aspx
+[adott alkalmazás esetében további követelmények]:http://msdn.microsoft.com/library/windows/apps/hh184838(v=vs.105).aspx
 

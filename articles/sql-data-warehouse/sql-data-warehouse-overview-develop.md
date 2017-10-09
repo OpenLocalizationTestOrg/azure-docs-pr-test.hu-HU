@@ -1,5 +1,5 @@
 ---
-title: "Egy Azure data warehouse adattárházzal erőforrások |} Microsoft Docs"
+title: "egy Azure data warehouse adattárházzal aaaResources |} Microsoft Docs"
 description: "Fejlesztői fogalmak, tervezési döntéseit, javaslatok és az SQL Data Warehouse kódolási eljárások."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,17 +15,17 @@ ms.workload: data-services
 ms.custom: develop
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: b85a4f09e561e429aa5bf46ec680014487fb40c7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67e3a6a3e2664919c3445ea5d5eba251054de020
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-decisions-and-coding-techniques-for-sql-data-warehouse"></a>Tervezési döntések és az SQL Data Warehouse kódolási eljárások
-Tekintse meg a fejlesztési cikkeiben jobb megértése érdekében tervezési döntések, ajánlásokat és kódolási eljárások az SQL Data Warehouse keresztül.
+Tekintse meg a fejlesztési cikkeiben toobetter megérteni a tervezési döntések, ajánlásokat és kódolási eljárások az SQL Data Warehouse.
 
 ## <a name="key-design-decisions"></a>Tervezési döntések
-A következő cikkekben néhány főbb fogalmait és tervezési lépéseket kell teljesítenie kell az SQL Data Warehouse az elosztott adatraktár fejlesztésének ismertetése:
+hello következő cikkekben néhány hello főbb fogalmait és toounderstand szükséges az elosztott data warehouse az SQL Data Warehouse hello fejlesztésének tervezési lépéseket kell teljesítenie:
 
 * [kapcsolatok száma][connections]
 * [egyidejűségi][concurrency]
@@ -50,7 +50,7 @@ A cikkekben, konkrét programozási módszerek, tippeket és javaslatok az SQL D
 * [a változó-hozzárendelés][variable assignment]
 
 ## <a name="next-steps"></a>Következő lépések
-Ha rendelkezik-e a fejlesztési cikkek keresztül tekintse át a [Transact-SQL referencia] [ Transact-SQL reference] oldalon olvashat az SQL Data Warehouse támogatott szintaxisa.
+Ha ki lett hello fejlesztési cikkek keresztül tekintse meg hello keresztül [Transact-SQL referencia] [ Transact-SQL reference] oldalon olvashat az SQL Data Warehouse hello támogatott szintaxis.
 
 <!--Image references-->
 

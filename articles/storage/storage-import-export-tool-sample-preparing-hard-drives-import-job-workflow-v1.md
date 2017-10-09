@@ -1,6 +1,6 @@
 ---
-title: "Adatok előkészítése az Azure Import/Export importálási feladat - v1 merevlemezeit, a minta-munkafolyamat |} Microsoft Docs"
-description: "Lásd: a forgatókönyv a teljes folyamat meghajtók előkészítése az Azure Import/Export szolgáltatás egy importálási feladat."
+title: "aaaSample munkafolyamat tooprep merevlemez-meghajtók az Azure Import/Export importálási feladat - 1-es verzió |} Microsoft Docs"
+description: "Tekintse meg a teljes folyamat hello meghajtók előkészítése az importálási feladat hello Azure Import/Export szolgáltatás egy bemutató."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 313f8c1f3962a943b4c98c530c324ff28aa84c10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f836fc6104d8b4ad5660cb110a62f61b40b0b7ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a>Munkafolyamat-minta a merevlemezek importálási feladatokhoz való előkészítésére
-Ez a témakör végigvezeti a teljes folyamat meghajtók előkészítése az importálási feladat.  
+# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a>Minta munkafolyamat tooprepare merevlemezeit, az importálási feladat
+Ez a témakör bemutatja, hogyan hello teljes folyamata meghajtók előkészítése az importálási feladat.  
   
-Ebben a példában a következő adatok importálása a Windows Azure storage-fiók nevű `mystorageaccount`:  
+Ebben a példában importálja a következő adatok azokat a Windows Azure storage-fiók nevű hello `mystorageaccount`:  
   
 |Hely|Leírás|  
 |--------------|-----------------|  
@@ -32,7 +32,7 @@ Ebben a példában a következő adatok importálása a Windows Azure storage-fi
 |K:\Temp\FavoriteMovie.ISO|A Blu-ray™ lemezképét, 25 GB.|  
 |\\\bigshare\john\music|Letilthatja a zenei fájlok egy hálózati megosztáson, 10 GB-os teljes gyűjteményét.|  
   
-Az importálási feladat ezek az adatok importálása a storage-fiókot a következő célhoz:  
+hello importálási feladat ezek az adatok importálása a következő célhoz hello tárfiók hello:  
   
 |Forrás|Cél virtuális könyvtárat vagy blob|  
 |------------|-------------------------------------------|  
@@ -41,13 +41,13 @@ Az importálási feladat ezek az adatok importálása a storage-fiókot a követ
 |K:\Temp\FavoriteMovie.ISO|https://mystorageaccount.BLOB.Core.Windows.NET/Favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|https://mystorageaccount.BLOB.Core.Windows.NET/Music|  
   
-A hozzárendelést, a fájl a `H:\Video\Drama\GreatMovie.mov` importálhatja, hogy a blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
+Ez a leképezés a hello fájl `H:\Video\Drama\GreatMovie.mov` importált toohello blob lesz `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
   
-Ezt követően annak megállapításához, hogy hány merevlemezek szükségesek, számítási az adatok mérete:  
+Ezt követően toodetermine hány merevlemezek szükségesek, számítási hello hello adatok mérete:  
   
 `5TB + 30GB + 25GB + 10GB = 5TB + 65GB`  
   
-Az ebben a példában két 3 TB-os merevlemezeket elegendőnek kell lennie. Mivel azonban a forráskönyvtár `H:\Video` 5TB adatot, és az egyetlen merevlemez-területtel csak 3TB szükséges hibájához `H:\Video` be a Microsoft Azure Import/Export eszköz futtatása előtt két kisebb könyvtárak: `H:\Video1` és `H:\Video2`. Ebben a lépésben adja eredményül a következő forrás-könyvtárak:  
+Az ebben a példában két 3 TB-os merevlemezeket elegendőnek kell lennie. Mivel azonban hello forráskönyvtár `H:\Video` 5TB adatot, és az egyetlen merevlemez-területtel csak 3TB, szükséges toobreak `H:\Video` történő futtatása előtt két kisebb könyvtárak hello a Microsoft Azure Import/Export eszköz: `H:\Video1` és `H:\Video2`. Ebben a lépésben adja eredményül a következő forrás könyvtárak hello:  
   
 |Hely|Méret|Cél virtuális könyvtárat vagy blob|  
 |--------------|----------|-------------------------------------------|  
@@ -57,9 +57,9 @@ Az ebben a példában két 3 TB-os merevlemezeket elegendőnek kell lennie. Mive
 |K:\Temp\FavoriteMovies.ISO|25 GB|https://mystorageaccount.BLOB.Core.Windows.NET/Favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|10GB|https://mystorageaccount.BLOB.Core.Windows.NET/Music|  
   
- Vegye figyelembe, hogy akkor is, ha a `H:\Video`directory felosztott két könyvtárak a cél virtuális könyvtárba a tárfiókban lévő pontok. Így minden videofájlok megmaradnak az egyetlen `video` a tárfiókban lévő tároló.  
+ Vegye figyelembe, hogy akkor is, ha hello `H:\Video`directory felosztott tootwo könyvtárak, toohello pontok azonos cél virtuális könyvtár hello tárfiókban. Így minden videofájlok megmaradnak az egyetlen `video` hello tárfiókban lévő tároló.  
   
- Ezután a fenti forrás könyvtárak egyenletesen oszlanak a két merevlemez-meghajtóval:  
+ A következő forrás címtárai egyenletesen fent hello elosztott toohello két merevlemez-meghajtóval:  
   
 ||||  
 |-|-|-|  
@@ -70,7 +70,7 @@ Az ebben a példában két 3 TB-os merevlemezeket elegendőnek kell lennie. Mive
 ||K:\Temp\BlueRay.ISO||  
 ||\\\bigshare\john\music||  
   
-Ezenkívül a következő metaadatokat az összes fájl állíthatja be:  
+Ezenkívül a következő összes fájlok metaadatait hello állíthatja be:  
   
 -   **UploadMethod:** Windows Azure Import/Export szolgáltatás  
   
@@ -78,7 +78,7 @@ Ezenkívül a következő metaadatokat az összes fájl állíthatja be:
   
 -   **CreationDate:** 10/1/2013  
   
-Ha szeretné beállítani az importált fájlok metaadatait, hozzon létre egy szövegfájlt, `c:\WAImportExport\SampleMetadata.txt`, a következő tartalommal:  
+importált hello fájlok metaadatait tooset hozzon létre egy szövegfájlt, `c:\WAImportExport\SampleMetadata.txt`, a tartalom a következő hello:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -89,7 +89,7 @@ Ha szeretné beállítani az importált fájlok metaadatait, hozzon létre egy s
 </Metadata>  
 ```
   
-Bizonyos tulajdonságait is beállíthat a `FavoriteMovie.ISO` blob:  
+Hello bizonyos tulajdonságait is beállíthat `FavoriteMovie.ISO` blob:  
   
 -   **Content-Type:** application/octet-stream  
   
@@ -97,7 +97,7 @@ Bizonyos tulajdonságait is beállíthat a `FavoriteMovie.ISO` blob:
   
 -   **A Cache-Control:** no-cache  
   
-A tulajdonságok beállításáról, hozzon létre egy szövegfájlt `c:\WAImportExport\SampleProperties.txt`:  
+tooset ezeket a tulajdonságokat, hozzon létre egy szövegfájlt `c:\WAImportExport\SampleProperties.txt`:  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -108,30 +108,30 @@ A tulajdonságok beállításáról, hozzon létre egy szövegfájlt `c:\WAImpor
 </Properties>  
 ```
   
-Most már készen áll a két merevlemez-meghajtók előkészítése az Azure Import/Export eszköz futtatásához. Vegye figyelembe:  
+Most már készen áll a toorun hello Azure Import/Export eszköz tooprepare hello két merevlemez-meghajtók áll. Vegye figyelembe:  
   
--   Az első meghajtó X meghajtóként lett-e csatlakoztatva.  
+-   az első meghajtó hello X meghajtóként lett-e csatlakoztatva.  
   
--   A második meghajtó Y meghajtóként lett-e csatlakoztatva.  
+-   hello második meghajtó Y meghajtóként lett-e csatlakoztatva.  
   
--   A tárfiók kulcsa `mystorageaccount` van `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
+-   hello hello kulcsának `mystorageaccount` van `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
 
 ## <a name="preparing-disk-for-import-when-data-is-pre-loaded"></a>Lemez előkészítése importálása, amikor az adatok előzetes betöltése
  
- Ha az adatokat, importálandók már megtalálható a lemezen, használja a jelző /skipwrite. Érték /t és /srcdir, mind a lemez importálása előkészítés alatt kell mutatnia. Ha nem minden, az azonos virtuális célkönyvtáron vagy a storage-fiók gyökérkönyvtárában kell a lemezen lévő adatok ugyanaz a parancs minden elkülönítve tartja a /id értékének könyvtár közötti összes futtatása ugyanazon.
+ Ha hello adatok toobe importált már hello lemezen, akkor használja a hello jelző /skipwrite. /T és /srcdir mindkét értékének toohello lemez importálása előkészítés alatt kell mutatnia. Ha az adatok nem mindegyik hello hello lemez kell toogo toohello azonos cél virtuális könyvtár, vagy a főtanúsítvány hello tárfiók, azonos parancsot minden directory külön tartása /id hello értékének futtatási hello azonos keresztül minden futtatásakor.
 
 >[!NOTE] 
->Ne adjon meg Format, azt fogja törölni az adatokat a lemezen. Adja meg, / titkosítása vagy /bk attól függően, hogy a lemez már titkosítva van-e. 
+>Ne adjon meg Format, azt fogja hello lemezen hello adatainak törlése. Adja meg, / titkosítása vagy /bk attól függően, hogy hello lemez már titkosítva van-e. 
 >
 
 ```
-    When data is already present on the disk for each drive run the following command.
+    When data is already present on hello disk for each drive run hello following command.
     WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:x:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt /skipwrite
 ```
 
 ## <a name="copy-sessions---first-drive"></a>Másolja a munkamenet - először meghajtó
 
-Az első meghajtó futtassa az Azure Import/Export eszköz kétszer a két forrás könyvtárak másolása:  
+Hello első meghajtót futtassa hello Azure Import/Export eszköz kétszer két toocopy hello forrás-könyvtárak:  
 
 **Először másolja az munkamenet**
   
@@ -147,7 +147,7 @@ WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Photo /srcdir:H:\Photo /dstd
 
 ## <a name="copy-sessions---second-drive"></a>Másolja a munkamenet - meghajtó másodpercenként
  
-A második meghajtó, futtassa az Azure Import/Export eszköz háromszorosa, egyszer minden egyes a forrás-könyvtárakhoz, és egyszer az önálló Blu-Ray™ lemezképfájl):  
+A hello második meghajtó, futtassa hello Azure Import/Export eszköz háromszor, amennyiben az egyes hello a forrás-könyvtárak, és egyszer az hello önálló Blu-Ray™ fájl kép):  
   
 **Először másolja az munkamenet** 
 
@@ -169,7 +169,7 @@ WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp
 
 ## <a name="copy-session-completion"></a>Másolja a munkamenet befejezése
 
-Miután végzett a másolat munkamenetek, a két meghajtók leválasztása a másolási számítógépről, és küldje el azokat a megfelelő Windows Azure adatközpontba. A két Adatbázisnapló-fájlok feltöltése lesz `FirstDrive.jrn` és `SecondDrive.jrn`, az importálási feladat létrehozásakor a [Windows Azure felügyeleti portálon](https://manage.windowsazure.com/).  
+Hello másolási munkamenetek befejezése után hello két meghajtók leválasztása hello másolási számítógépről, és toohello megfelelő Windows Azure-adatközpont küldje el. Hello két Adatbázisnapló-fájlok feltöltése lesz `FirstDrive.jrn` és `SecondDrive.jrn`, hello hello importálási feladat létrehozásakor [Windows Azure felügyeleti portálon](https://manage.windowsazure.com/).  
   
 ## <a name="next-steps"></a>Következő lépések
 

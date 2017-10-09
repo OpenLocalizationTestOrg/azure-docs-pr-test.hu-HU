@@ -1,6 +1,6 @@
 ---
-title: "Importálási/exportálási adatok használatának Azure Machine Learning webszolgáltatások |} Microsoft Docs"
-description: "Ismerje meg, hogyan használható az adatok importálása és exportálása adatok modulok adatokat küldeni és fogadni webszolgáltatásból."
+title: "az Azure Machine Learning webszolgáltatások Import/Export adatok aaaUsing |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse adatok importálása és exportálása adatok modulok toosend hello és egy webszolgáltatás-bővítmény fogadhat adatokat."
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: 123c8c2b1c5bae268b2a61c185743f2c3920175e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 176380259b15cb338ede61c7f28ba2296b35dd52
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploying-azure-ml-web-services-that-use-data-import-and-data-export-modules"></a>Az Adatok importálása és az Adatok exportálása modult használó Azure ML webszolgáltatások üzembe helyezése
 
-Amikor létrehoz egy prediktív kísérletté, általában hozzáadhat egy webszolgáltatás bemenete és a kimeneti. A kísérlet telepítésekor fogyasztók küldhet és fogadhat adatokat a webszolgáltatás a be- és kimenetekkel keresztül. Egyes alkalmazások a fogyasztói adatoktól adatcsatornáról érhető el vagy már található egy külső adatforrásból, például az Azure Blob Storage tárolóban. Ebben az esetben nincs szükségük olvasása és írása az adatokat, és a webszolgáltatás bemenetei és kimenetei. Ugyanakkor, ehelyett a kötegelt végrehajtási szolgáltatás (BES) segítségével adatokat olvasni az adatforrást, és adatokat importálhat-modullal és a pontozási eredményeinek írni egy másik adatok helye az adatok exportálása modullal.
+Amikor létrehoz egy prediktív kísérletté, általában hozzáadhat egy webszolgáltatás bemenete és a kimeneti. Hello kísérlet telepítésekor fogyasztók küldhet és fogadhat adatokat hello webszolgáltatás hello bemenetekhez és kimenetekhez keresztül. Egyes alkalmazások a fogyasztói adatoktól adatcsatornáról érhető el vagy már található egy külső adatforrásból, például az Azure Blob Storage tárolóban. Ebben az esetben nincs szükségük olvasása és írása az adatokat, és a webszolgáltatás bemenetei és kimenetei. Ugyanakkor, ehelyett hello kötegelt végrehajtási szolgáltatás (BES) tooread adatokat használja az adatok importálása modullal hello adatforrásból és pontozási eredményei tooa különböző adatok helye az adatok exportálása modullal hello írni.
 
-Az adatok importálása és exportálása adatok modulok, olvasni és írni a különböző adatokat, például egy webes URL-Címéhez HTTP, a Hive-lekérdezések, egy Azure SQL-adatbázis, Azure Table storage, Azure Blob Storage tárolóban, a adatcsatorna révén helyét adja meg, vagy egy helyi SQL-adatbázis.
+hello adatok importálása és exportálása adatok modulok, lehet olvasni és toovarious az adatok írása például egy webes URL-Címéhez HTTP, a Hive-lekérdezések, egy Azure SQL-adatbázis, Azure Table storage, Azure Blob Storage tárolóban, a adatcsatorna révén helyét adja meg, vagy egy helyi SQL-adatbázis.
 
-Ez a témakör használja a "minta 5: vonat, tesztelési, Evaluate bináris osztályozási: felnőtt Dataset" sample, és azt feltételezi, hogy a dataset már be van töltve nevű censusdata Azure SQL-táblába.
+Ez a témakör használ hello "minta 5: vonat, tesztelési, Evaluate bináris osztályozási: felnőtt Dataset" sample, és azt feltételezi, hogy hello dataset már be van töltve nevű censusdata Azure SQL-táblába.
 
-## <a name="create-the-training-experiment"></a>A képzési kísérlet létrehozása
-Amikor megnyitja a "minta 5: vonat, tesztelési, Evaluate bináris osztályozási: felnőtt Dataset" mintát használ a minta bináris osztályozási felnőtt nyilvántartásba bevétel adatkészlet. És a kísérlet vászonra az alábbi képen hasonlóan fog kinézni:
+## <a name="create-hello-training-experiment"></a>Hello képzési kísérlet létrehozása
+Hello megnyitásakor "minta 5: vonat, tesztelési, Evaluate bináris osztályozási: felnőtt Dataset" mintát azt használja hello minta bináris osztályozási felnőtt nyilvántartásba bevétel adatkészlet. És hello vásznon a hello kísérlet a következő kép hasonló toohello fog kinézni:
 
-![A kísérlet a kezdeti konfigurálását.](./media/machine-learning-web-services-that-use-import-export-modules/initial-look-of-experiment.png)
+![Kezdeti konfigurációs hello kísérlet.](./media/machine-learning-web-services-that-use-import-export-modules/initial-look-of-experiment.png)
 
-Az adatokat olvasni az Azure SQL táblázat:
+hello Azure SQL-tábla tooread hello adatait:
 
-1. Az adatkészlet-modul törlése.
-2. Összetevők a keresőmezőbe írja be a importálása.
-3. Az eredmények listájában hozzá egy *és adatokat importálhat* modult a kísérletvászonra.
-4. Csatlakozás kimenetét a *és adatokat importálhat* modul bemeneti, a *Clean Missing Data* modul.
-5. A Tulajdonságok panelen, jelölje ki **Azure SQL Database** a a **adatforrás** legördülő menüből.
-6. Az a **adatbázis-kiszolgáló neve**, **adatbázisnév**, **felhasználónév**, és **jelszó** mezőkben adja meg a megfelelő adatokat a az adatbázis.
-7. Az adatbázis lekérdezés mezőben adja meg a következő lekérdezés.
+1. Hello dataset modul törlése.
+2. Hello összetevők keresési mezőbe írja be az importálási.
+3. Hello eredménylistában hozzá egy *és adatokat importálhat* modul toohello kísérlet vászonra.
+4. Csatlakozás hello kimenete *és adatokat importálhat* modul hello bemeneti hello *Clean Missing Data* modul.
+5. A Tulajdonságok panelen, jelölje ki **Azure SQL Database** a hello **adatforrás** legördülő menüből.
+6. A hello **adatbázis-kiszolgáló neve**, **adatbázisnév**, **felhasználónév**, és **jelszó** mezők, adja meg a megfelelő információkat hello az adatbázis.
+7. Hello adatbázis-lekérdezés mezőjébe írja be a következő lekérdezés hello.
    
      Válassza ki a [kora]
    
@@ -60,52 +60,52 @@ Az adatokat olvasni az Azure SQL táblázat:
         [native-country],
         [income]
      a dbo.censusdata;
-8. Kattintson a kísérletvászon alján **futtatása**.
+8. A kísérletvászonra hello hello alján kattintson **futtatása**.
 
-## <a name="create-the-predictive-experiment"></a>A prediktív kísérlet létrehozása
-Ezután a prediktív kísérletté, ahol a webszolgáltatás telepítése beállítása.
+## <a name="create-hello-predictive-experiment"></a>Hello prediktív kísérlet létrehozása
+Ezután hello prediktív kísérletté, ahol a webszolgáltatás telepítése beállítása.
 
-1. A kísérlet vászon alján kattintson **webes szolgáltatások beállítása** válassza **prediktív webszolgáltatás [ajánlott]**.
-2. Távolítsa el a *webszolgáltatás bemenetét* és *webes szolgáltatás kimeneti modulok* a prediktív kísérlet. 
-3. Összetevők keresőmezőbe írja be az exportálás.
-4. Az eredmények listájában hozzá egy *adatok exportálása* modult a kísérletvászonra.
-5. Csatlakozás kimenetét a *Score Model* modul bemeneti, a *adatok exportálása* modul. 
-6. A Tulajdonságok panelen, jelölje ki **Azure SQL Database** meg az adatok cél legördülő listában.
-7. Az a **adatbázis-kiszolgáló neve**, **adatbázisnév**, **kiszolgáló felhasználói fiók nevét**, és **kiszolgáló felhasználói fiók jelszavát** mezőkben adja meg a az adatbázis megfelelő adatokat.
-8. Az a **vesszővel tagolt listája menteni oszlopok** mezőbe írja be a pontozott címkék.
-9. Az a **tábla neve adatmező**, írja be a dbo. ScoredLabels. Ha a tábla nem létezik, létrejön a kísérlet fut, vagy a webes szolgáltatás neve.
-10. Az a **vesszővel tagolt listája datatable oszlopok** mezőbe írja be a ScoredLabels.
+1. A kísérletvászonra hello hello alján kattintson **webes szolgáltatások beállítása** válassza **prediktív webszolgáltatás [ajánlott]**.
+2. Távolítsa el a hello *webszolgáltatás bemenetét* és *webes szolgáltatás kimeneti modulok* hello prediktív kísérlet. 
+3. Hello összetevők keresési mezőbe írja be az exportálás.
+4. Hello eredménylistában hozzá egy *adatok exportálása* modul toohello kísérlet vászonra.
+5. Csatlakozás hello kimenete *Score Model* modul hello bemeneti hello *adatok exportálása* modul. 
+6. A Tulajdonságok panelen, jelölje ki **Azure SQL Database** hello adatok cél legördülő.
+7. A hello **adatbázis-kiszolgáló neve**, **adatbázisnév**, **kiszolgáló felhasználói fiók nevét**, és **kiszolgáló felhasználói fiók jelszavát** mezőkben adja meg az adatbázis hello megfelelő adatokat.
+8. A hello **vesszővel tagolt listája mentett oszlopok toobe** mezőbe írja be a pontozott címkék.
+9. A hello **tábla neve adatmező**, írja be a dbo. ScoredLabels. Hello tábla nem létezik, ha létrejön hello kísérlet futtatása vagy hello webszolgáltatás nevezik.
+10. A hello **vesszővel tagolt listája datatable oszlopok** mezőbe írja be a ScoredLabels.
 
-Ha egy alkalmazás, amely behívja a végső webszolgáltatás ír, érdemes lehet adjon meg egy másik bemeneti lekérdezés vagy a célként megadott táblája futási időben. Konfigurálja ezeket bemenetekhez és kimenetekhez, a webszolgáltatás-paramétereket szolgáltatás használatával állítsa be a *és adatokat importálhat* modul *adatforrás* tulajdonság és a *adatok exportálása* mód adatait cél tulajdonság.  A webszolgáltatás-paramétereket további információkért lásd: a [AzureML webszolgáltatás-paramétereket bejegyzés](https://blogs.technet.microsoft.com/machinelearning/2014/11/25/azureml-web-service-parameters/) a Cortana Intelligence és a Machine Learning Blog.
+Egy alkalmazás írásakor, hogy a hívások hello végső webszolgáltatás, érdemes lehet toospecify egy másik bemeneti lekérdezés vagy a cél táblázatban futási időben. tooconfigure ezek bemenetekhez és kimenetekhez, használja a hello webszolgáltatás-paramétereket szolgáltatás tooset hello *és adatokat importálhat* modul *adatforrás* tulajdonság és hello *adatok exportálása* mód adatok cél tulajdonság.  A webszolgáltatás-paramétereket további információkért lásd: hello [AzureML webszolgáltatás-paramétereket bejegyzés](https://blogs.technet.microsoft.com/machinelearning/2014/11/25/azureml-web-service-parameters/) hello Cortana Intelligence és a Machine Learning Blog.
 
-A webszolgáltatás-paramétereket az importálási és a célként megadott táblája konfigurálása:
+hello importálási lekérdezés és hello céltábla tooconfigure hello webszolgáltatás-paramétereket:
 
-1. A Tulajdonságok panelen az a *és adatokat importálhat* modult, kattintson az ikonra a bal felső sarkában a **adatbázis-lekérdezés** mezőben, majd válassza ki **webszolgáltatási paraméter beállítása**.
-2. A Tulajdonságok panelen az a *adatok exportálása* modult, kattintson az ikonra a bal felső sarkában a **adatok táblanév** mezőben, majd válassza ki **webszolgáltatási paraméter beállítása**.
-3. Alján a *adatok exportálása* modul tulajdonságok panelen, a a **webszolgáltatás-paramétereket** szakaszt, kattintson az adatbázis-lekérdezés és lekérdezés nevezni.
+1. Hello tulajdonságok panelen az hello *és adatokat importálhat* modul, hello hello ikonra kattintson jobb oldalán hello felső **adatbázis-lekérdezés** mezőben, majd válassza ki **webszolgáltatási paraméter beállítása**.
+2. Hello tulajdonságok panelen az hello *adatok exportálása* modul, hello hello ikonra kattintson jobb oldalán hello felső **adatok táblanév** mezőben, majd válassza ki **webszolgáltatási paraméter beállítása**.
+3. Hello hello alján *adatok exportálása* modul tulajdonságok paneljén, hello **webszolgáltatás-paramétereket** szakaszt, kattintson az adatbázis-lekérdezés és lekérdezés nevezni.
 4. Kattintson a **adatok táblanév** és adjon neki **tábla**.
 
-Amikor elkészült, a kísérlet a következő kép hasonlóan kell kinéznie:
+Amikor elkészült, a kísérlet a következő kép hasonló toohello kell kinéznie:
 
 ![Kísérlet végső megjelenését.](./media/machine-learning-web-services-that-use-import-export-modules/experiment-with-import-data-added.png)
 
-Most már telepítheti a kísérlet webszolgáltatásként.
+Most már telepítheti hello kísérlet webszolgáltatásként.
 
-## <a name="deploy-the-web-service"></a>A webszolgáltatás üzembe helyezése
-A klasszikus vagy az új webszolgáltatás telepítése.
+## <a name="deploy-hello-web-service"></a>Hello webszolgáltatás telepítése
+Tooeither telepíthet egy klasszikus vagy az új webszolgáltatás-bővítmény.
 
 ### <a name="deploy-a-classic-web-service"></a>Klasszikus webes szolgáltatás telepítése
-Klasszikus webszolgáltatásként üzembe helyezését, és felhasználását, az alkalmazás létrehozása:
+Klasszikus webszolgáltatásként toodeploy, és hozzon létre egy alkalmazás tooconsume azt:
 
-1. A kísérlet vászon alján kattintson a Futtatás gombra.
-2. Kattintson a Futtatás befejeződésekor **webes szolgáltatás telepítése** válassza **webes szolgáltatás telepítése [klasszikus]**.
-3. A webes szolgáltatás irányítópultján keresse meg az API-kulcs. Másolja ki és mentse későbbi használat céljából.
-4. Az a **alapértelmezett végpont** table, kattintson a **kötegelt végrehajtási** nyissa meg az API-Súgóoldalát mutató hivatkozást.
+1. Hello kísérletvászonra hello alsó részén kattintson a Futtatás gombra.
+2. Futtatás hello befejezése után kattintson **webes szolgáltatás telepítése** válassza **webes szolgáltatás telepítése [klasszikus]**.
+3. Hello webes szolgáltatás irányítópultját keresse meg az API-kulcs. Másolja ki és mentse toouse később.
+4. A hello **alapértelmezett végpont** table, kattintson a hello **kötegelt végrehajtási** hivatkozás tooopen hello API Súgóoldalát.
 5. A Visual Studio, hozzon létre egy C# konzolalkalmazást: **új** > **projekt** > **Visual C#** > **Windows Klasszikus asztal** > **Konzolalkalmazásból (.NET-keretrendszer)**.
-6. Az API segítségével lapon található a **mintakód** szakasz az oldal alján.
-7. Másolja és illessze be a C# mintakód a Program.cs fájlba, és távolítson el minden hivatkozást a blob Storage.
-8. Frissítse az értéket a *apiKey* változó a korábban mentett API-kulccsal.
-9. Keresse meg a kérelem nyilatkozat, és módosítsa a átadott webszolgáltatás-paramétereket a *és adatokat importálhat* és *adatok exportálása* modulok. Ebben az esetben akkor az eredeti lekérdezéssel, de egy új táblázat nevének meghatározása.
+6. Hello API Súgóoldalát, megtalálhatja hello **mintakód** alján hello hello szakasz.
+7. Másolja és hello C# mintakód illessze be a Program.cs fájlt, és távolítsa el az összes hivatkozás toohello blob-tároló.
+8. Hello hello értékét *apiKey* változó korábban mentett hello API-kulccsal.
+9. Keresse meg a hello kérelem nyilatkozat és frissítés hello értékei toohello átadott webszolgáltatás-paramétereket *és adatokat importálhat* és *adatok exportálása* modulok. Ebben az esetben akkor hello eredeti lekérdezéssel, de egy új táblázat nevének meghatározása.
    
         var request = new BatchExecutionRequest() 
         {           
@@ -114,26 +114,26 @@ Klasszikus webszolgáltatásként üzembe helyezését, és felhasználását, a
                 { "Table", "dbo.ScoredTable2" },
             }
         };
-10. Futtassa az alkalmazást. 
+10. Hello alkalmazás futtatásához. 
 
-A Futtatás befejezésekor új tábla hozzáadódik a pontozási eredményeinek tartalmazó adatbázis.
+Futtatás hello befejezésekor egy új hozzá pontozási eredményei hello tartalmazó toohello adatbázis.
 
 ### <a name="deploy-a-new-web-service"></a>Egy új webszolgáltatás-bővítmény telepítése
 
 > [!NOTE] 
-> Egy új webszolgáltatás-bővítmény telepítése, megfelelő engedélyekkel kell rendelkeznie, amelyhez az előfizetést, a webszolgáltatás telepítése. További információkért lásd: [kezelése az Azure Machine Learning webszolgáltatások portál használatával egy webszolgáltatás-bővítmény](machine-learning-manage-new-webservice.md). 
+> toodeploy egy új webszolgáltatás-bővítmény, megfelelő engedélyekkel kell rendelkeznie a hello előfizetés toowhich meg hello webes szolgáltatás telepítéséhez. További információkért lásd: [egy webszolgáltatás-bővítmény hello Azure Machine Learning webszolgáltatások portálon kezelheti](machine-learning-manage-new-webservice.md). 
 
-Telepítsen egy új webszolgáltatás-bővítmény, és felhasználását, az alkalmazás létrehozása:
+egy új webszolgáltatás toodeploy, és hozzon létre egy alkalmazás tooconsume azt:
 
-1. Kattintson a kísérletvászon alján **futtatása**.
-2. Kattintson a Futtatás befejeződésekor **webes szolgáltatás telepítése** válassza **[Új] webes szolgáltatás telepítése**.
-3. Telepítése kísérlet lapon adjon meg egy nevet, a webes szolgáltatás, és válassza ki a tarifacsomagot, majd kattintson **telepítés**.
-4. Az a **gyors üzembe helyezés** kattintson **felhasználás**.
-5. Az a **mintakód** kattintson **kötegelt**.
+1. A kísérletvászonra hello hello alján kattintson **futtatása**.
+2. Futtatás hello befejezése után kattintson **webes szolgáltatás telepítése** válassza **[Új] webes szolgáltatás telepítése**.
+3. Hello telepítése kísérlet lapon adja meg egy nevet a webszolgáltatás, és válassza ki a tarifacsomagot, majd kattintson **telepítés**.
+4. A hello **gyors üzembe helyezés** kattintson **felhasználás**.
+5. A hello **mintakód** kattintson **kötegelt**.
 6. A Visual Studio, hozzon létre egy C# konzolalkalmazást: **új** > **projekt** > **Visual C#** > **Windows Klasszikus asztal** > **Konzolalkalmazásból (.NET-keretrendszer)**.
-7. Másolja és illessze be a C# mintakód a Program.cs fájl.
-8. Frissítse az értéket a *apiKey* változó, a **elsődleges kulcs** található, a **alapvető fogyasztási adatai** szakasz.
-9. Keresse meg a *scoreRequest* nyilatkozat és módosítsa a átadott webszolgáltatás-paramétereket a *és adatokat importálhat* és *adatok exportálása* modulok. Ebben az esetben akkor az eredeti lekérdezéssel, de egy új táblázat nevének meghatározása.
+7. Másolással illessze be a C# mintakód hello a Program.cs fájlba.
+8. Hello hello értékét *apiKey* változó, hello **elsődleges kulcs** hello található **alapvető fogyasztási adatai** szakasz.
+9. Keresse meg a hello *scoreRequest* toohello átadott webszolgáltatás-paramétereket nyilatkozat és a frissítés hello értékei *és adatokat importálhat* és *adatok exportálása* modulok. Ebben az esetben akkor hello eredeti lekérdezéssel, de egy új táblázat nevének meghatározása.
    
         var scoreRequest = new
         {       
@@ -145,5 +145,5 @@ Telepítsen egy új webszolgáltatás-bővítmény, és felhasználását, az al
                 { "Table", "dbo.ScoredTable3" },
             }
         };
-10. Futtassa az alkalmazást. 
+10. Hello alkalmazás futtatásához. 
 

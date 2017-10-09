@@ -1,6 +1,6 @@
 ---
-title: "Számítógép tanulási javaslatok API-dokumentáció |} Microsoft Docs"
-description: "Egy a Microsoft Azure piactéren elérhető javaslatok motor Azure Machine Learning javaslatok API dokumentációjában."
+title: "aaaMachine tanulási javaslatok API-dokumentáció |} Microsoft Docs"
+description: "Egy hello Microsoft Azure piactéren elérhető javaslatok motor Azure Machine Learning javaslatok API dokumentációjában."
 services: machine-learning
 documentationcenter: 
 author: LuisCabrer
@@ -16,17 +16,17 @@ ms.date: 03/31/2017
 ms.author: LuisCa
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 1fba64d78d779344e2895b0d54419186b7584865
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: d1cec228bf23870c05c8ab8df2779b0c3c65b06d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-machine-learning-recommendations-api-documentation"></a>Azure Machine Learning Recommendations – API-dokumentáció
 > [!NOTE]
-> El kell kezdenie a javaslatok API kognitív szolgáltatás helyett jelen verziójában. A javaslatok kognitív szolgáltatás adatokéval ezt a szolgáltatást, és az új szolgáltatások nincs fejlesztik ki. Rendelkezik új szolgáltatásokat, például a kötegelés támogatása, a megfelelőbb API Explorer, a tisztító API felület, egységesebb előfizetési/számlázási élményt, stb.
-> További információ [áttelepítése az új kognitív szolgáltatáshoz](http://aka.ms/recomigrate)
+> El kell kezdenie hello javaslatok API kognitív szolgáltatás helyett jelen verziójában. hello javaslatok kognitív szolgáltatás adatokéval ezt a szolgáltatást, és minden hello új szolgáltatások nincs fejlesztik ki. Rendelkezik új szolgáltatásokat, például a kötegelés támogatása, a megfelelőbb API Explorer, a tisztító API felület, egységesebb előfizetési/számlázási élményt, stb.
+> További információ [áttelepítése toohello új kognitív szolgáltatás](http://aka.ms/recomigrate)
 > 
 > 
 
@@ -35,58 +35,58 @@ Ez a dokumentum a Microsoft Azure Machine Learning javaslatok API-k ábrázol.
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="1-general-overview"></a>1. Általános – áttekintés
-Ez a dokumentum egy API-hivatkozás. Az "Azure Machine Learning javaslat – gyors üzembe" dokumentum kell kezdődnie.
+Ez a dokumentum egy API-hivatkozás. Hello "Azure Machine Learning javaslat – gyors üzembe" dokumentum kell kezdődnie.
 
-Az Azure Machine Learning javaslatok API a következő logikai csoportokra osztható:
+hello Azure Machine Learning javaslatok API a következő logikai csoportok hello osztható:
 
 * <ins>Korlátozások</ins> -javaslatok API-korlátozásokkal.
 * <ins>Általános információk</ins> -információkat a hitelesítés, szolgáltatás URI és versioning.
-* <ins>Basic modell</ins> -API-k, amelyek lehetővé teszik a modellt az alapvető műveleteket (pl. létrehozása, frissítése és modell törlése).
-* <ins>A modell speciális</ins> -API-k, amelyek lehetővé teszik a modellen adatok insights speciális.
-* <ins>A modell az üzleti szabályok</ins> -API-k, amelyek lehetővé teszik, hogy a modell javaslat eredmények üzleti szabályok kezelése.
-* <ins>Katalógus</ins> -API-k, amelyek lehetővé teszik a modell katalógus alapvető műveleteket. A katalógus metaadat-információkat a használati adatok elemek tartalmazza.
-* <ins>A szolgáltatás</ins> -API-k, amelyek lehetővé teszik elemen insights feltölti a katalógus és hogyan lehet ezt az információt jobb javaslatok létrehozásához.
-* <ins>Használati adatok</ins> -API-k, amelyek lehetővé teszik a modell használati adatok alapvető műveleteket. Használati adatok alapvető formájában pár &#60; userId &#62; tartalmazó sorok áll, &#60; itemId &#62;.
-* <ins>Build</ins> -API-k, amelyek lehetővé teszik, hogy a modell build indíthat, és a build kapcsolatos alapvető műveleteket. Ha elvégezte a értékes használati adatok modell build indíthat el.
-* <ins>A javaslat</ins> -API-k, amelyek lehetővé teszik, hogy javaslatokat felhasználását, a build-modell leteltével.
-* <ins>Felhasználói adatok</ins> -API-k, amelyek lehetővé teszik az adatok beolvasása a felhasználó használati adatai.
-* <ins>Értesítések</ins> -API-k, amelyek lehetővé teszik a problémák értesítést szeretne kapni a API műveleteivel kapcsolatos. (Például a használati adatok adatgyűjtést és az események feldolgozása sikertelen a legtöbb jelentik. Egy hiba értesítést generál.)
+* <ins>Basic modell</ins> -API-k, amelyek lehetővé teszik toodo hello alapvető műveleteket modell (pl. létrehozása, frissítése és modell törlése).
+* <ins>A modell speciális</ins> -API-k, amelyek segítségével speciális tooget adatok insights hello modellen.
+* <ins>A modell az üzleti szabályok</ins> -API-k, amelyek lehetővé teszik toomanage üzleti szabályok hello modell javaslat eredmények.
+* <ins>Katalógus</ins> -API-k, amelyek lehetővé teszik a modell katalógus toodo alapvető műveleteket. A katalógus hello elemek hello használati adatok metaadatok információkat tartalmaz.
+* <ins>A szolgáltatás</ins> -API-k, amelyek lehetővé teszik a tooget insights elemen hello katalógusba, és hogyan toouse ezen információk toobuild jobb javaslatokat.
+* <ins>Használati adatok</ins> -API-k, amelyek lehetővé teszik toodo hello modell használati adatok alapvető műveleteket. Használati adatok alapszintű hello képernyőn pár &#60; userId &#62; tartalmazó sorok áll, &#60; itemId &#62;.
+* <ins>Build</ins> – API-k, amelyek lehetővé teszik a modell tootrigger hozza létre, és alapvető műveleteket, amelyek kapcsolódó toothis build tegye. Ha elvégezte a értékes használati adatok modell build indíthat el.
+* <ins>A javaslat</ins> -API-k, amelyek lehetővé teszik tooconsume javaslatok hello build-modell leteltével.
+* <ins>Felhasználói adatok</ins> -API-k, amelyek lehetővé teszik hello felhasználói használati adatok toofetch információkat.
+* <ins>Értesítések</ins> -API-k, amelyek lehetővé teszik a problémák tooreceive értesítések kapcsolatos tooyour API-műveleteket. (Például a használati adatok adatgyűjtést és a legtöbb hello események feldolgozása sikertelen jelentik. Egy hiba értesítést generál.)
 
 ## <a name="2-limitations"></a>2. Korlátozások
-* Előfizetésenként modellek maximális száma érték a 10.
-* Egyes modellek buildek legfeljebb 20.
-* A katalógus rendelkező elemek maximális száma: 100 000.
-* Mindig használati pontok maximális számát ~ 5,000,000. A legrégebbi esetén törlendő újakat feltöltött vagy fogja jelenteni.
-* A FELADÁS egy vagy több (pl. katalógus adatokat importálhat, használati adatok importálása) elküldött adatok maximális mérete 200MB.
-* A maximális elemek száma, amelyek is meg kell adnia a javaslatok beolvasásakor 150.
+* előfizetésenként modellek hello maximális száma érték a 10.
+* egyes modellek buildek hello legfeljebb 20.
+* a katalógus rendelkező elemek maximális számát hello 100 000.
+* mindig használati pontok maximális számát hello ~ 5,000,000. Ha újakat feltöltött vagy fogja jelenteni a legrégebbi hello törlődni fog.
+* hello maximális a FELADÁS egy vagy több (pl. katalógus adatokat importálhat, használati adatok importálása) elküldött adatok mérete 200MB.
+* hello maximális elemek száma, amelyek is meg kell adnia a javaslatok beolvasásakor 150.
 
 ## <a name="3-apis---general-information"></a>3. API-k – általános információk
 ### <a name="31-authentication"></a>3.1. Authentication
-Kérjük, kövesse a Microsoft Azure piactérről irányelveket hitelesítési kapcsolatban. A piactér a Basic vagy az OAuth hitelesítési módszer támogatja.
+Kövesse az kapcsolatos hitelesítési hello Microsoft Azure piactérről útmutatások. hello piactér vagy hello Basic vagy az OAuth hitelesítési módszer támogatja.
 
 ### <a name="32-service-uri"></a>3.2. Szolgáltatás URI-azonosítója
-A szolgáltatás legfelső szintű URI-azonosítóját az Azure Machine Learning javaslatok API-k [itt.](https://api.datamarket.azure.com/amla/recommendations/v3/)
+hello szolgáltatás gyökér URI hello Azure Machine Learning javaslatok API-k [itt.](https://api.datamarket.azure.com/amla/recommendations/v3/)
 
-A teljes szolgáltatás URI kifejezett elemek az OData specifikáció használatával.  
+hello teljes szolgáltatás URI kifejezett elemek hello OData specifikáció használatával.  
 
 ### <a name="33-api-version"></a>3.3. API-verzió
-Minden API-hívás végén, lesz egy lekérdezési paraméter apiVersion, amely 1.0 értékre kell állítani.
+Minden API-hívás fog működni, hello végén apiVersion too1.0 be kell állítania egy lekérdezési paraméter.
 
 ### <a name="34-ids-are-case-sensitive"></a>3.4. Azonosítók különbözőnek számítanak a kis
-Azonosítók, az API-k által visszaadott különbözőnek számítanak a kis és kell használni, így amikor későbbi API-hívásokban paraméterként. Például modellazonosítóját és a katalógus azonosítók különbözőnek számítanak a kis.
+Azonosítók, bármelyik hello API-k, visszaadott különbözőnek számítanak a kis és kell használni, így amikor későbbi API-hívásokban paraméterként. Például modellazonosítóját és a katalógus azonosítók különbözőnek számítanak a kis.
 
 ## <a name="4-recommendations-quality-and-cold-items"></a>4. Javaslatok minőségének és Cold elemek
 ### <a name="41-recommendation-quality"></a>4.1. A javaslat minősége
-A javaslat modellek létrehozásához általában van elegendő, a rendszer tudjon ajánlani. Ettől függetlenül javaslat minőségi függ a használatát, feldolgozása és a katalógus körét. Például ha sok cold elem (elem jelentős használata nélkül), a rendszer rendelkezik-e egy ilyen elem ajánlást megadása, vagy egy ilyen elem használata javasolt egy nehézségek. Ahhoz, hogy a cold elem probléma megoldásához, a rendszer engedélyezi a metaadatok javítása érdekében a javaslatok elemek használatát. A metaadatok szolgáltatások nevezzük. Tipikus szolgáltatásokat egy könyv szerző vagy egy movie szereplő. A kulcs/érték karakterláncok formájában katalógus keresztül szolgáltatást kínál. A teljes fájl formátuma, a katalógus, tekintse meg a [katalógus szakasz importálása](#81-import-catalog-data). 
+A javaslat modellek létrehozása az általában elegendő tooallow hello rendszer tooprovide javaslatok. Ettől függetlenül javaslat minőségének feldolgozott hello használat alapján változik, és hello hello katalógus körét. Például ha sok cold elem (elem jelentős használata nélkül), hello rendszer van-e egy ilyen elem ajánlást megadása, vagy egy ilyen elem használata javasolt egy nehézségek. A sorrend tooovercome hello cold elem probléma hello rendszer lehetővé teszi a metaadatok hello elemek tooenhance hello ajánlások hello használatát. A metaadatok hivatkozott tooas szolgáltatások. Tipikus szolgáltatásokat egy könyv szerző vagy egy movie szereplő. Kulcs/érték karakterláncok hello formában hello katalógus keresztül szolgáltatást kínál. A hello teljes formázás hello katalógusfájl, tekintse meg az toohello [katalógus szakasz importálása](#81-import-catalog-data). 
 
 ### <a name="42-rank-build"></a>4.2. Rangsorolt build
-Szolgáltatások javíthatja a javaslat modell, de ehhez lekérdezhetik a fontos funkciók használatát igényli. Erre a célra egy új build bevezetett - build a sorrend első helyén. A build fog rangsorolja szolgáltatások használhatóságát. Egy olyan jelentéssel bíró szolgáltatása, 2, illetve a hierarchiában felfelé a sorrendet megadó pontszám szolgáltatás.
-Után az ismertetése, a szolgáltatások ezek jelentéssel bíró, jelentéssel bíró szolgáltatások listája (vagy allista) javaslat build kiváltani. E funkció használatát a fejlesztésen esett át a meleg elemek és a cold elemeket is. Meleg elemek használatához a `UseFeatureInModel` build paramétert kell beállítani. Ahhoz, hogy szolgáltatások cold elemek, a `AllowColdItemPlacement` engedélyezni kell a build paramétert.
-Megjegyzés: Nincs lehetőség engedélyezése `AllowColdItemPlacement` engedélyezése nélkül `UseFeatureInModel`.
+Szolgáltatások fokozott hello javaslat modell, de toodo megkövetelik jelentéssel bíró funkciók hello használatát. Erre a célra egy új build bevezetett - build a sorrend első helyén. A build fog rangsorolja hello hasznosságát funkcióját. Egy olyan jelentéssel bíró szolgáltatása, 2, illetve a hierarchiában felfelé a sorrendet megadó pontszám szolgáltatás.
+Után ismertetése hello szolgáltatást ezek jelentéssel bíró, hello lista (vagy allista) jelentéssel bíró funkciók javaslat build kiváltani. Ezek hello fejlesztésen esett át a meleg elemek és a cold elemek szolgáltatásainak lehetséges toouse. A sorrend toouse őket meleg elemek hello `UseFeatureInModel` build paramétert kell beállítani. Rendelés toouse funkciói cold elemekhez, hello `AllowColdItemPlacement` build paramétert engedélyezni kell.
+Megjegyzés: Nincs lehetséges tooenable `AllowColdItemPlacement` engedélyezése nélkül `UseFeatureInModel`.
 
 ### <a name="43-recommendation-reasoning"></a>4.3. A javaslat indoklást
-A javaslat indoklást funkciók használata szerepet játszó másik tényező. Ezenkívül az Azure Machine Learning javaslatok motor szolgáltatások segítségével javaslat magyarázattal (más néven mintafelismerési), a javaslat fogyasztó vezető további abban, hogy a javasolt elemben.
-Ahhoz, hogy indoklást, a `AllowFeatureCorrelation` és `ReasoningFeatureList` paraméterek beállítása előtt kérése ajánlás build kell lennie.
+A javaslat indoklást funkciók használata szerepet játszó másik tényező. Valóban hello Azure Machine Learning javaslatok motor használható szolgáltatások tooprovide javaslat magyarázatokat (más néven mintafelismerési), ami toomore abban, hogy a hello, javasolt a elem a hello javaslat fogyasztói.
+tooenable mintafelismerési, hello `AllowFeatureCorrelation` és `ReasoningFeatureList` paraméterek telepítő előzetes toorequesting javaslat build kell lennie.
 
 ## <a name="5-model-basic"></a>5. Basic modell
 ### <a name="51-create-model"></a>5.1. Modell létrehozása
@@ -107,7 +107,7 @@ Kérést hoz létre "létrehozása a modell".
 
 HTTP-állapotkód: 200
 
-* `feed/entry/content/properties/id`-Tartalmazza a modell.
+* `feed/entry/content/properties/id`-Hello modell eltérő azonosítót tartalmaz.
   **Megjegyzés:**: Modellazonosító a kis-és nagybetűket.
 
 Az OData-XML
@@ -149,7 +149,7 @@ A "get-modell" kérést hoz.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| id |A modell (kis-és nagybetűket) egyedi azonosítója |
+| id |Hello modell (kis-és nagybetűket) egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -158,15 +158,15 @@ A "get-modell" kérést hoz.
 
 HTTP-állapotkód: 200
 
-A modell adatai található a következő elemeket:
+hello a modell adatai a következő elemek hello alatt található:
 
 * `feed/entry/content/properties/Id`-Modell egyedi azonosítója.
 * `feed/entry/content/properties/Name`-Modell neve.
 * `feed/entry/content/properties/Date`-Modell létrehozásának dátumát.
-* `feed/entry/content/properties/Status`-Modell állapota. A következők egyikét:
+* `feed/entry/content/properties/Status`-Modell állapota. Hello a következők egyike:
   * Létre - modell jön létre, és nem tartalmaz Alkalmazáskatalógus és a használati.
   * ReadyForBuild - modell jön létre, és a katalógus és használati tartalmazza.
-* `feed/entry/content/properties/HasActiveBuild`-Azt jelzi, ha a modell sikeresen lett létrehozva.
+* `feed/entry/content/properties/HasActiveBuild`-Azt jelzi, ha hello modell sikeresen lett létrehozva.
 * `feed/entry/content/properties/BuildId`-Modell aktív build azonosítóját.
 * `feed/entry/content/properties/Mpr`-Modell átlagos PERCENTILIS rangsorolási (MPR - ModelInsight további információt talál).
 * `feed/entry/content/properties/UserName`-Modell belső felhasználó felhasználóneve.
@@ -205,7 +205,7 @@ Az OData-XML
     </feed>
 
 ### <a name="53----get-all-models"></a>5.3.    Összes modell lekérése
-Lekéri az összes modellt az aktuális felhasználó.
+Lekéri az összes modellt a hello aktuális felhasználó.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -224,10 +224,10 @@ HTTP-állapotkód: 200
 * `feed/entry/content/properties/Id`-Modell egyedi azonosítója.
 * `feed/entry/content/properties/Name`-Modell neve.
 * `feed/entry/content/properties/Date`-Modell létrehozásának dátumát.
-* `feed/entry/content/properties/Status`-Modell állapota. A következők egyikét:
+* `feed/entry/content/properties/Status`-Modell állapota. Hello a következők egyike:
   * Létre - modell jön létre, és nem tartalmaz Alkalmazáskatalógus és a használati.
   * ReadyForBuild - modell jön létre, és a katalógus és használati tartalmazza.
-* `feed/entry/content/properties/HasActiveBuild`-Azt jelzi, ha a modell sikeresen lett létrehozva.
+* `feed/entry/content/properties/HasActiveBuild`-Azt jelzi, ha hello modell sikeresen lett létrehozva.
 * `feed/entry/content/properties/BuildId`-Modell aktív build azonosítóját.
 * `feed/entry/content/properties/Mpr`-Modell MPR (lásd a ModelInsight olvashat).
 * `feed/entry/content/properties/UserName`-Modell belső felhasználó felhasználóneve.
@@ -270,9 +270,9 @@ Az OData-XML
     </feed>
 
 ### <a name="54----update-model"></a>5.4.    Frissítési modell
-Frissítheti a modell leírása vagy az aktív build azonosítóval.<br>
-<ins>Aktív build azonosító</ins> -minden build minden modell van állítva egy összeállítási. Az aktív build azonosító: az első sikeres build minden új modell. Amennyiben van egy aktív build ID azonosítója és teheti meg ugyanannak a modellnek további alkot, explicit módon állítsa be alapértelmezett build Azonosítóként, ha azt szeretné, hogy szüksége. Felhasznált ajánlásokat, ha nem adja meg a build Azonosítóját, amelynek szeretné használni, amikor az alapértelmezett automatikusan használható.<br>
-Ez az eljárás lehetővé teszi - után egy javaslat modell éles - új modell összeállításához és teszteléséhez őket, mielőtt termelési támogatja azokat.
+Frissítés hello modell leírása, vagy hello aktív build azonosítóját.<br>
+<ins>Aktív build azonosító</ins> -minden build minden modell van állítva egy összeállítási. hello aktív build azonosító: hello első sikeres build minden új modell. Amennyiben van egy aktív build ID azonosítója és további változata hello teszi ugyanannak a modellnek van szüksége tooexplicitly állítsa be úgy, mint hello alapértelmezett build azonosító Ha szeretné. Ha felhasznált ajánlásokat, ha nem adja meg a hello build azonosítója, amelyet toouse, hello alapértelmezett egy automatikusan fog történni.<br>
+Ez az eljárás lehetővé teszi - Miután javaslat modell éles - toobuild új modellek és tesztelését ahhoz, azok előlépteti tooproduction.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -280,10 +280,10 @@ Ez az eljárás lehetővé teszi - után egy javaslat modell éles - új modell 
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| id |A modell (kis-és nagybetűket) egyedi azonosítója |
+| id |Hello modell (kis-és nagybetűket) egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
-| A kérelem törzse |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`<Description>New Description</Description>`<br>`<ActiveBuildId>-1</ActiveBuildId>`<br>` </ModelUpdateParams>`<br><br>Ne feledje, hogy az XML-címkék leírását és ActiveBuildId nem kötelező. Ha nem szeretné állítani a leírás vagy ActiveBuildId, távolítsa el a teljes címke. |
+| A kérelem törzse |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`<Description>New Description</Description>`<br>`<ActiveBuildId>-1</ActiveBuildId>`<br>` </ModelUpdateParams>`<br><br>Ne feledje, hogy hello XML-címkék leírás ActiveBuildId opcionálisak. Ha nem szeretné, hogy tooset leírás vagy ActiveBuildId, hello teljes címke eltávolítása. |
 
 **Válasz**:
 
@@ -298,7 +298,7 @@ Törli a meglévő modell által azonosítóját.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| id |A modell (kis-és nagybetűket) egyedi azonosítója |
+| id |Hello modell (kis-és nagybetűket) egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -331,7 +331,7 @@ Az OData-XML
 
 ## <a name="6-model-advanced"></a>6. Speciális modell
 ### <a name="61----model-data-insight"></a>6.1.    Modell adatok felmérése
-A használati adatok alapján ez a modell a következővel történt a statisztikai adatokat ad vissza.
+Ez a modell a következővel történt hello-használati adatokat statisztikai adatokat ad vissza.
 
 Csak a javaslat build esetén érhető el.
 
@@ -341,7 +341,7 @@ Csak a javaslat build esetén érhető el.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -350,12 +350,12 @@ Csak a javaslat build esetén érhető el.
 
 HTTP-állapotkód: 200
 
-Az adatok tulajdonságainak gyűjteményét adja vissza a rendszer.
+hello adatok tulajdonságainak gyűjteményét adja vissza a rendszer.
 
-* `feed/entry/id/content/properties/key`-Érvényes tulajdonságnév.
-* `feed/entry/id/content/properties/value`-A tulajdonság értékét fogja tárolni.
+* `feed/entry/id/content/properties/key`-Érvényes hello tulajdonságnév.
+* `feed/entry/id/content/properties/value`-Hello tulajdonság értékét tartalmazza.
 
-Az alábbi táblázat az egyes kulcsok értéket mutatja be.
+az alábbi táblázat hello hello szám, amely minden kulcs ábrázol.
 
 | Kulcs | Leírás |
 |:--- |:--- |
@@ -364,11 +364,11 @@ Az alábbi táblázat az egyes kulcsok értéket mutatja be.
 | DensificationNumberOfItems |Cikkek követően nem kell modellezni törlési elemek száma. |
 | DensificationNumberOfUsers |Használati pontok után törlési felhasználók és nem kell modellezni elemek száma. |
 | DensificationNumberOfRecords |Használati pontok után törlési felhasználók és nem kell modellezni elemek száma. |
-| MaxItemLength |A legnépszerűbb elem egyedi felhasználók száma. |
+| MaxItemLength |Hello legnépszerűbb elem egyedi felhasználók száma. |
 | MaxUserLength |Egy felhasználó különálló elemek maximális száma. |
 | MinItemLength |Egy elem egyedi felhasználók maximális száma. |
 | MinUserLength |Egy felhasználó különálló elemek minimális száma. |
-| RawNumberOfItems |A fájlok elemek száma. |
+| RawNumberOfItems |Hello fájlok elemek száma. |
 | RawNumberOfUsers |Mielőtt bármely karbantartási eltávolítási használati pontok száma. |
 | RawNumberOfRecords |Mielőtt bármely karbantartási eltávolítási használati pontok száma. |
 | SamplingNumberOfItems |N/A |
@@ -567,7 +567,7 @@ Az OData-XML
     </feed>
 
 ### <a name="62----model-insight"></a>6.2.    Modell felmérése
-A modell insight értéket ad vissza a aktív összeállítása a vagy (Ha a kapott) adott build.
+Értéket ad vissza a insight hello aktív build a modell vagy (Ha a kapott) adott build.
 
 Csak a javaslat build esetén érhető el.
 
@@ -577,7 +577,7 @@ Csak a javaslat build esetén érhető el.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | buildId |Nem kötelező – sikeres build azonosító szám. |
 | apiVersion |1.0 |
 |  | |
@@ -587,18 +587,18 @@ Csak a javaslat build esetén érhető el.
 
 HTTP-állapotkód: 200
 
-Az adatok tulajdonságainak gyűjteményét adja vissza a rendszer.
+hello adatok tulajdonságainak gyűjteményét adja vissza a rendszer.
 
 * `feed/entry/id/content/properties/key`
 * `feed/entry/id/content/properties/value`
 
-Az alábbi táblázat az egyes kulcsok értéket mutatja be.
+az alábbi táblázat hello hello szám, amely minden kulcs ábrázol.
 
 | Kulcs | Leírás |
 |:--- |:--- |
-| CatalogCoverage |A katalógus részét modellezhető használati mintákat. A további elemeket kell tartalom-alapú szolgáltatásokat. |
-| MPR-hez |Átlagos PERCENTILIS rangsorolási a modellnek. Jobb alsó. |
-| NumberOfDimensions |A mátrix factorization algoritmus által használt dimenziók száma. |
+| CatalogCoverage |Hello katalógus részét modellezhető használati mintákat. hello elemek hello többi tartalom-alapú szolgáltatásokat kell. |
+| MPR-hez |Átlagos PERCENTILIS rangsorolási hello modell. Jobb alsó. |
+| NumberOfDimensions |Hello mátrix factorization algoritmus által használt dimenziók száma. |
 
 Az OData-XML
 
@@ -648,7 +648,7 @@ Az OData-XML
     </feed>
 
 ### <a name="63----get-model-sample"></a>6.3.    Modell minta beolvasása
-Lekérdezi a javaslat modell minta.
+Egy minta hello javaslat modell lekérése.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -656,7 +656,7 @@ Lekérdezi a javaslat modell minta.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -684,115 +684,115 @@ Level 1
     fb8cf7a6-8719-46ee-97d4-92f931d77a3a, Smoke and Mirrors: Short Fictions and Illusions Rating: 0.5188
     8f5fe006-79e4-4679-816b-950989d1db4b, A Place I've Never Been (Contemporary American Fiction) Rating: 0.5156
     d8db4583-cc0f-49ce-bc95-b7fa3491623f, Happiness: A Novel Rating: 0.5156
-50471eec-9aeb-4900-84d7-21567ab18546, If the Buddha Dated: A Handbook for Finding Love on a Spiritual Path
-    cfe922a1-7ca0-4f8d-ad9d-b7cc87bfe0ef, Divine Secrets of the Ya-Ya Sisterhood: A Novel Rating: 0.5266
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5252
+50471eec-9aeb-4900-84d7-21567ab18546, If hello Buddha Dated: A Handbook for Finding Love on a Spiritual Path
+    cfe922a1-7ca0-4f8d-ad9d-b7cc87bfe0ef, Divine Secrets of hello Ya-Ya Sisterhood: A Novel Rating: 0.5266
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5252
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5244
     e2cbf7ad-0636-4117-8b30-298da6df7077, Animal Dreams Rating: 0.5227
     6c818fd3-5a09-417d-9ab4-7ffe090f0fef, Confessions of an Ugly Stepsister: A Novel Rating: 0.5222
-5e97148f-defb-4d74-af2d-80f4763bf531, The Deep End of the Ocean (Oprah's Book Club)
-    5e97148f-defb-4d74-af2d-80f4763bf531, The Deep End of the Ocean (Oprah's Book Club) Rating: 0.537
+5e97148f-defb-4d74-af2d-80f4763bf531, hello Deep End of hello Ocean (Oprah's Book Club)
+    5e97148f-defb-4d74-af2d-80f4763bf531, hello Deep End of hello Ocean (Oprah's Book Club) Rating: 0.537
     5dcbac37-2946-4f2a-a0b3-bbe710f9409a, Up Island: A Novel Rating: 0.5277
     bc5b69db-733b-4346-adde-3927544258f7, Downtown Rating: 0.5275
     31fe5c63-3e5a-48d0-802b-d3b0f989a634, Have a Nice Day: A Tale of Blood and Sweatsocks Rating: 0.5252
-    0adf981a-b65b-4c11-b36b-78aca2f948a2, The Perfect Storm: A True Story of Men Against the Sea Rating: 0.5238
-68f97068-ae1a-4163-9e94-396b800b743d, Modoc: The True Story of the Greatest Elephant That Ever Lived
-    68f97068-ae1a-4163-9e94-396b800b743d, Modoc: The True Story of the Greatest Elephant That Ever Lived Rating: 0.5379
-    6724862e-e4e7-4022-9614-1468d8b902ff, Little House on the Prairie Rating: 0.5345
-    cdedb837-1620-496d-94c4-6ccfed888320, Little House in the Big Woods Rating: 0.5325
-    382164ba-406b-4187-b726-d7a54b9d790d, The Tao of Pooh Rating: 0.5309
-    6a068d6a-bb74-4ba3-b3f2-a956c4f9d1b5, On the Banks of Plum Creek Rating: 0.5285
+    0adf981a-b65b-4c11-b36b-78aca2f948a2, hello Perfect Storm: A True Story of Men Against hello Sea Rating: 0.5238
+68f97068-ae1a-4163-9e94-396b800b743d, Modoc: hello True Story of hello Greatest Elephant That Ever Lived
+    68f97068-ae1a-4163-9e94-396b800b743d, Modoc: hello True Story of hello Greatest Elephant That Ever Lived Rating: 0.5379
+    6724862e-e4e7-4022-9614-1468d8b902ff, Little House on hello Prairie Rating: 0.5345
+    cdedb837-1620-496d-94c4-6ccfed888320, Little House in hello Big Woods Rating: 0.5325
+    382164ba-406b-4187-b726-d7a54b9d790d, hello Tao of Pooh Rating: 0.5309
+    6a068d6a-bb74-4ba3-b3f2-a956c4f9d1b5, On hello Banks of Plum Creek Rating: 0.5285
 37ef8e74-e348-44e5-aabc-1d7f9efcb25b, Men Are from Mars Women Are from Venus: A Practical Guide for Improving Communication and Getting What You Want in Your Relationships
     37ef8e74-e348-44e5-aabc-1d7f9efcb25b, Men Are from Mars, Women Are from Venus: A Practical Guide for Improving Communication and Getting What You Want in Your Relationships Rating: 0.5397
     f2be16d4-5faf-4d32-ab83-7ba74d29261e, Politically Correct Bedtime Stories: Modern Tales for Our Life and Times Rating: 0.5207
     ef732c5c-334b-4d6b-ab82-7255eb7286d0, Honor Among Thieves Rating: 0.5195
-    0b209b8c-7cdd-47fd-b940-05c7ff7c60fc, The Giving Tree Rating: 0.5194
-    883b360f-8b42-407f-b977-2f44ad840877, Scary Stories to Tell in the Dark: Collected from American Folklore (Scary Stories) Rating: 0.5184
-ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: The Craft of Baseball
-    d008dae9-c73a-40a1-9a9b-96d5cf546f36, The Gulag Archipelago 1918-1956: An Experiment in Literary Investigation I-II Rating: 0.5416
-    ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: The Craft of Baseball Rating: 0.5403
+    0b209b8c-7cdd-47fd-b940-05c7ff7c60fc, hello Giving Tree Rating: 0.5194
+    883b360f-8b42-407f-b977-2f44ad840877, Scary Stories tooTell in hello Dark: Collected from American Folklore (Scary Stories) Rating: 0.5184
+ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: hello Craft of Baseball
+    d008dae9-c73a-40a1-9a9b-96d5cf546f36, hello Gulag Archipelago 1918-1956: An Experiment in Literary Investigation I-II Rating: 0.5416
+    ff51b67e-fa8e-4c5e-8f4d-02a928de735d, Men at Work: hello Craft of Baseball Rating: 0.5403
     49dec30e-0adb-411a-b186-48eaabf6f8bc, Fatherland Rating: 0.5394
-    cc7964fd-d30f-478e-a425-93ddbdf094ed, Magic the Gathering: Arena Vol. 1 Rating: 0.5379
-    8a1e9f36-97af-4614-bed9-24e3940a05f3, More Sniglets: Any Word That Doesn't Appear in the Dictionary but Should Rating: 0.5377
+    cc7964fd-d30f-478e-a425-93ddbdf094ed, Magic hello Gathering: Arena Vol. 1 Rating: 0.5379
+    8a1e9f36-97af-4614-bed9-24e3940a05f3, More Sniglets: Any Word That Doesn't Appear in hello Dictionary but Should Rating: 0.5377
 12a6d988-be21-4a09-8143-9d5f4261ba16, A Dream of Eagles
     07b10e28-9e7c-4032-90b7-10acab7f2460, Cryptonomicon Rating: 0.5417
     e4cc5e69-3567-43ab-b00f-f0d8d0506870, Hit List Rating: 0.5416
-    1f1a34c4-9781-49f5-a3cc-acec3ae3c71d, The Family Rating: 0.5371
+    1f1a34c4-9781-49f5-a3cc-acec3ae3c71d, hello Family Rating: 0.5371
     56daeffe-7d48-43cd-8ef8-7dffd0c103d3, Kilo Class Rating: 0.5366
     b2fe511e-5cb9-4a56-b823-2801e63e6a96, Legal Tender Rating: 0.5366
 df87525b-e435-4bd6-8701-4e60ad344e28, Finding Fish
-    56d33036-dfda-46b9-8e2a-76cb03921bb0, The X-Files: Ground Zero Rating: 0.5417
+    56d33036-dfda-46b9-8e2a-76cb03921bb0, hello X-Files: Ground Zero Rating: 0.5417
     0780cde8-6529-4e1d-b6c6-082c1b80e596, Twelve Red Herrings Rating: 0.5416
     df87525b-e435-4bd6-8701-4e60ad344e28, Finding Fish Rating: 0.5408
-    400fe331-2c35-490c-adbc-b28b4b73d56c, Shall We Tell the President? Rating: 0.5383
+    400fe331-2c35-490c-adbc-b28b4b73d56c, Shall We Tell hello President? Rating: 0.5383
     f86ad7d0-5c03-42b3-aebf-13d44aec8b30, Shades of Grace Rating: 0.5358
-de1f62a4-89e6-44d2-aaee-992a4bf093f1, The Map That Changed the World: William Smith and the Birth of Modern Geology
-    de1f62a4-89e6-44d2-aaee-992a4bf093f1, The Map That Changed the World: William Smith and the Birth of Modern Geology Rating: 0.5422
+de1f62a4-89e6-44d2-aaee-992a4bf093f1, hello Map That Changed hello World: William Smith and hello Birth of Modern Geology
+    de1f62a4-89e6-44d2-aaee-992a4bf093f1, hello Map That Changed hello World: William Smith and hello Birth of Modern Geology Rating: 0.5422
     b303538f-e2c6-4a2c-b425-8d21e684fc3e, My Uncle Oswald Rating: 0.5385
-    34b84627-48af-4a4c-96c4-b26fb3863f56, Midnight In the Garden of Good and Evil Rating: 0.5379
-    306cbaa7-b1a8-4142-9d55-e11b5018a7a8, The Street Lawyer Rating: 0.5376
+    34b84627-48af-4a4c-96c4-b26fb3863f56, Midnight In hello Garden of Good and Evil Rating: 0.5379
+    306cbaa7-b1a8-4142-9d55-e11b5018a7a8, hello Street Lawyer Rating: 0.5376
     e53b4baa-8c09-45c4-95c0-b6a26b98770b, Miss Smillas Feeling for Snow Rating: 0.5367
 
 Level 2
 ---------------
-352aaea1-6b12-454d-a3d5-46379d9e4eb2, The Sinister Pig (Hillerman Tony)
-    352aaea1-6b12-454d-a3d5-46379d9e4eb2, The Sinister Pig (Hillerman Tony) Rating: 0.5425
-    74c49398-bc10-4af5-a658-a996a1201254, Children of the Storm (Peters Elizabeth) Rating: 0.5387
-    9ba80080-196e-43fd-8025-391d963f77e7, The Floating Girl Rating: 0.5372
+352aaea1-6b12-454d-a3d5-46379d9e4eb2, hello Sinister Pig (Hillerman Tony)
+    352aaea1-6b12-454d-a3d5-46379d9e4eb2, hello Sinister Pig (Hillerman Tony) Rating: 0.5425
+    74c49398-bc10-4af5-a658-a996a1201254, Children of hello Storm (Peters Elizabeth) Rating: 0.5387
+    9ba80080-196e-43fd-8025-391d963f77e7, hello Floating Girl Rating: 0.5372
     e68f81d5-7745-4cc7-b943-fedb8fcc2ced, Killer Smile (Scottoline Lisa) Rating: 0.5353
     b2fe511e-5cb9-4a56-b823-2801e63e6a96, Legal Tender Rating: 0.5332
 c65c3995-abf7-4c7b-bb3c-8eb5aa9be7a5, Lake Wobegon days
-    0adf981a-b65b-4c11-b36b-78aca2f948a2, The Perfect Storm: A True Story of Men Against the Sea Rating: 0.5433
+    0adf981a-b65b-4c11-b36b-78aca2f948a2, hello Perfect Storm: A True Story of Men Against hello Sea Rating: 0.5433
     c65c3995-abf7-4c7b-bb3c-8eb5aa9be7a5, Lake Wobegon days Rating: 0.543
-    a00ae6ad-4a7f-4211-9836-75ce8834eb11, Sniglets (Snig'lit: Any Word That Doesn't Appear in the Dictionary But Should) Rating: 0.5327
+    a00ae6ad-4a7f-4211-9836-75ce8834eb11, Sniglets (Snig'lit: Any Word That Doesn't Appear in hello Dictionary But Should) Rating: 0.5327
     6f6e192e-0d64-49ca-9b63-f09413ea1ee6, Politically Correct Holiday Stories: For an Enlightened Yuletide Season Rating: 0.5307
     798051a8-147d-4d46-b0dc-e836325029e6, AGE OF INNOCENCE (MOVIE TIE-IN) Rating: 0.5301
 73f3e25a-e996-4162-9ed8-ff3d34075650, O Pioneers! (Penguin Twentieth-Century Classics)
-    cba8163f-6536-436b-8130-47b4a43c827f, Trust No One (The Official Guide to the X-Files Vol. 2) Rating: 0.5434
+    cba8163f-6536-436b-8130-47b4a43c827f, Trust No One (hello Official Guide toohello X-Files Vol. 2) Rating: 0.5434
     5708e4cb-2492-49c0-94a8-cc413eec5d89, Small Gods (Discworld Novels (Paperback)) Rating: 0.5406
     73f3e25a-e996-4162-9ed8-ff3d34075650, O Pioneers! (Penguin Twentieth-Century Classics) Rating: 0.5403
-    d885b0bd-ae4b-452d-bdf2-faa90197dbc9, The Color of Magic Rating: 0.539
-    b133a9c4-4784-4db3-b100-d0d6dffb94d2, The Truth Is Out There (The Official Guide to the X-Files Vol. 1) Rating: 0.5367
-271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why the Winged Whale Sings
-    271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why the Winged Whale Sings Rating: 0.5445
-    2de1c354-90ff-47c5-a0db-1bad7d88ef94, The Salaryman's Wife (Children of Violence Series) Rating: 0.5329
+    d885b0bd-ae4b-452d-bdf2-faa90197dbc9, hello Color of Magic Rating: 0.539
+    b133a9c4-4784-4db3-b100-d0d6dffb94d2, hello Truth Is Out There (hello Official Guide toohello X-Files Vol. 1) Rating: 0.5367
+271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why hello Winged Whale Sings
+    271700a5-854a-4d5a-8409-6b57a5ee4de4, Fluke: Or I Know Why hello Winged Whale Sings Rating: 0.5445
+    2de1c354-90ff-47c5-a0db-1bad7d88ef94, hello Salaryman's Wife (Children of Violence Series) Rating: 0.5329
     d279416e-19c0-43f8-9ec9-a585947879ca, Zen Attitude Rating: 0.5316
-    c8f854d7-3de3-4b23-8217-f4f851670fd4, Revenge of the Cootie Girls: A Robin Hudson Mystery (Robin Hudson Mysteries (Paperback)) Rating: 0.5305
-    8ef4751c-7074-409e-a3ac-d49b222fc864, Where the Wild Things Are Rating: 0.5289
+    c8f854d7-3de3-4b23-8217-f4f851670fd4, Revenge of hello Cootie Girls: A Robin Hudson Mystery (Robin Hudson Mysteries (Paperback)) Rating: 0.5305
+    8ef4751c-7074-409e-a3ac-d49b222fc864, Where hello Wild Things Are Rating: 0.5289
 9ad1b620-0a7b-4543-8673-66d4c3bcb2f1, Their Eyes Were Watching God
     9ad1b620-0a7b-4543-8673-66d4c3bcb2f1, Their Eyes Were Watching God Rating: 0.5446
-    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, The Bean Trees Rating: 0.5389
-    65ecbdd1-131c-40c3-a3d6-d86ca281377a, The God of Small Things Rating: 0.5387
-    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, The Stone Diaries Rating: 0.5355
+    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, hello Bean Trees Rating: 0.5389
+    65ecbdd1-131c-40c3-a3d6-d86ca281377a, hello God of Small Things Rating: 0.5387
+    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, hello Stone Diaries Rating: 0.5355
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5344
-5f17d90a-2604-4fe8-8977-1a280b9098b1, One for the Money (Stephanie Plum Novels (Paperback))
-    5f17d90a-2604-4fe8-8977-1a280b9098b1, One for the Money (Stephanie Plum Novels (Paperback)) Rating: 0.5446
+5f17d90a-2604-4fe8-8977-1a280b9098b1, One for hello Money (Stephanie Plum Novels (Paperback))
+    5f17d90a-2604-4fe8-8977-1a280b9098b1, One for hello Money (Stephanie Plum Novels (Paperback)) Rating: 0.5446
     57169b2b-9a8a-486b-9aac-1ed98ce57168, Final Appeal Rating: 0.5332
     efcb1bc4-7278-4a8f-b491-befde02070d6, Moment of Truth Rating: 0.5329
     1efa91a2-993b-4c43-9f5c-3454fc12612d, Burn Factor Rating: 0.5309
-    24c59962-458a-4ec8-b95d-d694e861919c, At Home in Mitford (The Mitford Years) Rating: 0.5303
-4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: The Boy Who Was Raised As a Girl
-    4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: The Boy Who Was Raised As a Girl Rating: 0.5449
+    24c59962-458a-4ec8-b95d-d694e861919c, At Home in Mitford (hello Mitford Years) Rating: 0.5303
+4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: hello Boy Who Was Raised As a Girl
+    4fd48c46-1a20-4c57-bc7f-a02ef123dc52, As Nature Made Him: hello Boy Who Was Raised As a Girl Rating: 0.5449
     cd5f2c03-20cb-43be-a1fb-3b4233e63222, Pigs in Heaven Rating: 0.5329
-    19985fdb-d07a-4a25-ae4a-97b9cb61e5d1, Love in the Time of Cholera (Penguin Great Books of the 20th Century) Rating: 0.5267
+    19985fdb-d07a-4a25-ae4a-97b9cb61e5d1, Love in hello Time of Cholera (Penguin Great Books of hello 20th Century) Rating: 0.5267
     15689d09-c711-4844-84d8-130a90237b26, Bel Canto Rating: 0.5245
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5235
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5235
 98df28ec-41e7-4fca-b77f-8b0d3109085d, Star Trek Memories
-    f874b5a3-5d40-4436-94ff-0fa1c090ddf5, The Sun Also Rises (A Scribner classic) Rating: 0.5451
+    f874b5a3-5d40-4436-94ff-0fa1c090ddf5, hello Sun Also Rises (A Scribner classic) Rating: 0.5451
     98df28ec-41e7-4fca-b77f-8b0d3109085d, Star Trek Memories Rating: 0.5442
     0ce0014a-9a48-4013-a08a-7f2c11877930, H.M.S. Unseen Rating: 0.5421
-    15316ca6-1e38-425f-893d-691944a47000, More Scary Stories To Tell In The Dark Rating: 0.5409
-    329d5682-3dc3-4206-8aa2-eef4b1032258, Letters from the Earth Rating: 0.54
+    15316ca6-1e38-425f-893d-691944a47000, More Scary Stories tooTell In hello Dark Rating: 0.5409
+    329d5682-3dc3-4206-8aa2-eef4b1032258, Letters from hello Earth Rating: 0.54
 5b9445d5-c072-419c-8d49-6f669bb1b0a9, Daughter of Fortune: A Novel (Oprah's Book Club (Hardcover))
     5b9445d5-c072-419c-8d49-6f669bb1b0a9, Daughter of Fortune: A Novel (Oprah's Book Club (Hardcover)) Rating: 0.5462
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5372
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5372
     604eb3bd-6026-4f51-bffd-9fb54f180400, Family Pictures: A Novel Rating: 0.5341
     8d06d01d-31cd-4678-b6b1-140a67987ce9, Songs in Ordinary Time (Oprah's Book Club (Paperback)) Rating: 0.5334
-    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, The Bean Trees Rating: 0.5319
+    da45c4d5-aba1-413b-a9bd-50df98b1e1d2, hello Bean Trees Rating: 0.5319
 d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
     d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven Rating: 0.5491
-    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, The Poisonwood Bible: A Novel Rating: 0.5401
-    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, The Stone Diaries Rating: 0.5393
+    ff91a483-1ce5-4b37-a6fd-5ffcf21f8745, hello Poisonwood Bible: A Novel Rating: 0.5401
+    c78743bf-7947-4a0c-8db7-8a3bfe69ba70, hello Stone Diaries Rating: 0.5393
     8d06d01d-31cd-4678-b6b1-140a67987ce9, Songs in Ordinary Time (Oprah's Book Club (Paperback)) Rating: 0.5382
     973f8cbd-0846-4f6b-9d28-4dd0d7dc3a19, Pigs in Heaven Rating: 0.5367
 
@@ -800,17 +800,17 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 
 
 ## <a name="7-model-business-rules"></a>7. Modell az üzleti szabályok
-A támogatott szabályok típusai a következők:
+Hello típusú támogatott szabályok a következők:
 
-* <strong>BlockList</strong> -BlockList lehetővé teszi, hogy adja meg a javaslat eredményéből nem kívánt elemek listáját. 
-* <strong>FeatureBlockList</strong> -funkció BlockList lehetővé teszi a blokkolása szolgáltatása értékek alapján.
+* <strong>BlockList</strong> -BlockList lehetővé teszi a tooprovide nem szeretné, hogy hello javaslat eredmények tooreturn elemek listáját. 
+* <strong>FeatureBlockList</strong> -funkció BlockList lehetővé teszi, hogy Ön tooblock elemek szolgáltatása hello értékek alapján.
 
-*Ne küldjön 1000-nél több elemek egy egyetlen blocklist szabályban, vagy a hívás előfordulhat, hogy az időkorlát. Ha 1000-nél több elemet zárolnia kell, hogy több blocklist hívások.*
+*Ne küldjön 1000-nél több elemek egy egyetlen blocklist szabályban, vagy a hívás előfordulhat, hogy az időkorlát. Ha tooblock 1000-nél több elemet kell, hogy több blocklist hívások.*
 
-* <strong>Upsale</strong> -Upsale lehetővé teszi a javaslat eredmények visszaadandó elemek kényszerítéséhez.
-* <strong>Engedélyezési lista</strong> -fehér lista lehetővé teszi csak elemek listájából javaslatokat.
-* <strong>FeatureWhiteList</strong> -funkció fehér lista lehetővé teszi, hogy csak az elemek, amelyekhez az adott termékfejlesztő értékek ajánlani.
-* <strong>PerSeedBlockList</strong> -/ Seed tiltólista lehetővé teszi elemenként javaslat eredményeként nem adható vissza elemek listáját.
+* <strong>Upsale</strong> -Upsale lehetővé teszi a tooenforce elemek tooreturn hello javaslat eredmények között.
+* <strong>Engedélyezési lista</strong> -fehér lista lehetővé teszi, hogy Ön tooonly javaslat elemek listájából javaslatokat.
+* <strong>FeatureWhiteList</strong> -funkció fehér lista lehetővé teszi tooonly ajánlott elemek, amelyek adott termékfejlesztő-értékek.
+* <strong>PerSeedBlockList</strong> - / Seed tiltólista lehetővé teszi, hogy tooprovide egy konfigurációelem-javaslat eredményeként nem adható vissza elemek listáját.
 
 ### <a name="71----get-model-rules"></a>7.1.    Modell szabályok lekérése
 | HTTP-metódus | URI |
@@ -819,7 +819,7 @@ A támogatott szabályok típusai a következők:
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -829,7 +829,7 @@ A támogatott szabályok típusai a következők:
 HTTP-állapotkód: 200
 
 * `feed/entry/content/properties/Id`-Ez a szabály egyedi azonosítója.
-* `feed/entry/content/properties/Type`– A szabály típusa.
+* `feed/entry/content/properties/Type`-Hello szabály típusa.
 * `feed/entry/content/properties/Parameter`-Szabály paraméter.
 
 Az OData-XML
@@ -881,25 +881,25 @@ Az OData-XML
 |  | |
 | A kérelem törzse | |
 
-<ins>Amikor biztosít azonosítónak olyan üzleti szabályok esetén, ügyeljen arra, hogy használja a cikk (azonos azonosítóval, amelyet a katalógus fájlban használt) külső azonosítóját</ins><br>
-<ins>BlockList szabály hozzáadása:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
-<ins>FeatureBlockList szabály hozzáadása:</ins><br>
+<ins>Amikor biztosít azonosítónak olyan üzleti szabályok esetén, győződjön meg arról, hogy toouse hello hello elem külső azonosítója (hello ugyanazzal az azonosítóval hello katalógusfájl használt)</ins><br>
+<ins>tooadd BlockList szabály:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
+<ins>tooadd FeatureBlockList szabály:</ins><br>
 <br>
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins>Upsale szabály hozzáadása:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"],"NumberOfItemsToUpsale":5}</Value></ApiFilter>`<br><br>
-<ins>Engedélyezési szabály hozzáadása:</ins><br>
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins>tooadd egy Upsale szabályt:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"],"NumberOfItemsToUpsale":5}</Value></ApiFilter>`<br><br>
+<ins>tooadd egy engedélyezési szabályt:</ins><br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins>
-<ins>FeatureWhiteList szabály hozzáadása:</ins><br>
+<ins>tooadd FeatureWhiteList szabály:</ins><br>
 <br>
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins>PerSeedBlockList szabály hozzáadása:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins>tooadd PerSeedBlockList szabály:</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-Az API-t adja vissza az újonnan létrehozott szabály a hozzá tartozó részletek. A szabályok tulajdonság lekérhetők a következő elérési utak:
+hello API újonnan létrehozott szabály a részletek hello adja vissza. hello szabályok tulajdonság olvasható be a következő elérési utak hello:
 
 * `feed/entry/content/properties/Id`-Ez a szabály egyedi azonosítója.
-* `feed/entry/content/properties/Type`-A szabály típusa: BlockList vagy Upsale.
+* `feed/entry/content/properties/Type`-Hello szabály típusa: BlockList vagy Upsale.
 * `feed/entry/content/properties/Parameter`-Szabály paraméter.
 
 Az OData-XML
@@ -933,8 +933,8 @@ Az OData-XML
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| filterId |A szűrő egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| filterId |Hello szűrő egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -950,7 +950,7 @@ HTTP-állapotkód: 200
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -961,14 +961,14 @@ HTTP-állapotkód: 200
 
 ## <a name="8-catalog"></a>8. Alkalmazáskatalógus
 ### <a name="81----import-catalog-data"></a>8.1.    Eseménykatalógus-adatok importálása
-Ha ugyanannak a modellnek több hívások több katalógus fájlt feltölteni, azt csak az új katalóguselemek szúrja be. A meglévő elemek marad az eredeti értékekkel. Eseménykatalógus-adatok a metódus nem frissíthető.
+Ha több katalógus fájlok toohello ugyanaz a modell több hívások tölt fel, azt csak hello új katalóguselemek szúrja be. A meglévő elemek hello eredeti értékekkel marad. Eseménykatalógus-adatok a metódus nem frissíthető.
 
-A katalógus adatait a következő formátumot kell követnie:
+hello eseménykatalógus-adatok hello a következő formátumot kell követnie:
 
 * Szolgáltatások – nélkül`<Item Id>,<Item Name>,<Item Category>[,<Description>]`
 * -Szolgáltatásokkal`<Item Id>,<Item Name>,<Item Category>,[<Description>],<Features list>`
 
-Megjegyzés: A fájl maximális mérete 200MB.
+Megjegyzés: hello maximális mérete 200MB.
 
 ** Részletek formázása **
 
@@ -976,9 +976,9 @@ Megjegyzés: A fájl maximális mérete 200MB.
 |:--- |:--- |:--- |:--- |
 | Cikk azonosítója |Igen |[A-z], [a-z], [0-9], [_] &#40; Aláhúzás &#41; [-] &#40; Dash &#41;<br> Maximális hossz: 50 |Egy elem egyedi azonosítója. |
 | Elem neve |Igen |Bármely alfanumerikus karakterek<br> Maximális hossz: 255 |Elem neve. |
-| Elem kategória |Igen |Bármely alfanumerikus karakterek <br> Maximális hossz: 255 |Kategória, amelyhez ez a cikk tartozik (pl. főzés könyvek, tragédiát...); üres is lehet. |
+| Elem kategória |Igen |Bármely alfanumerikus karakterek <br> Maximális hossz: 255 |Kategória toowhich Ez a cikk tartozik (pl. főzés könyvek, tragédiát...); üres is lehet. |
 | Leírás |Nem, kivéve, ha a funkciók jelent-e (de üres lehet) |Bármely alfanumerikus karakterek <br> Maximális hossz: 4000 |Ez az elem leírása. |
-| Szolgáltatások listája |Nem |Bármely alfanumerikus karakterek <br> Maximális hossz: 4000; Szolgáltatások: 20 maximális száma |Szolgáltatás neve vesszővel elválasztott listája modell ajánlás; javítására használható szolgáltatás érték = Lásd: [témakörök speciális](#2-advanced-topics) szakasz. |
+| Szolgáltatások listája |Nem |Bármely alfanumerikus karakterek <br> Maximális hossz: 4000; Szolgáltatások: 20 maximális száma |Szolgáltatás neve vesszővel elválasztott listája = szolgáltatás érték, amely használt tooenhance modell javaslat; Lásd: [témakörök speciális](#2-advanced-topics) szakasz. |
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -987,20 +987,20 @@ Megjegyzés: A fájl maximális mérete 200MB.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| fájlnév |A katalógus szöveges azonosítója.<br>Csak betűk (A-Z, a – z), szám (0-9), kötőjeleket (-) és aláhúzásjelet (_) megengedettek.<br>Maximális hossz: 50 |
+| modelId |Hello modell egyedi azonosítója |
+| fájlnév |Hello katalógus szöveges azonosítója.<br>Csak betűk (A-Z, a – z), szám (0-9), kötőjeleket (-) és aláhúzásjelet (_) megengedettek.<br>Maximális hossz: 50 |
 | apiVersion |1.0 |
 |  | |
-| A kérelem törzse |(A szolgáltatások) például:<br/>2406e770-769c-4189-89de-1c9283f93a96 Clara Callan, megjelenik a könyv leírás szerzői = Richard Wright, közzétevő = Harper Flamingo Kanada, év = 2001<br>21bf8088-b6c0-4509-870c-e1c7ac78304a, elfelejti a helyiségben: A példa (Byzantium könyv), a könyv,, szerzői = Nick Bantock, közzétevő = Harpercollins, év = 1997<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23 Spadework, könyv,, szerzői = komócsin Findley, közzétevő = HarperFlamingo Kanada év = 2001<br>552a1940-21e4-4399-82bb-594b46d7ed54 korlátozás a vadállatok, megjelenik a könyv leírás szerzői = Magnus Mills, közzétevő = Arcade közzétételi év = 1998</pre> |
+| A kérelem törzse |(A szolgáltatások) például:<br/>2406e770-769c-4189-89de-1c9283f93a96 Clara Callan, megjelenik a hello könyv leírása, szerzői = Richard Wright, közzétevő = Harper Flamingo Kanada, év = 2001<br>21bf8088-b6c0-4509-870c-e1c7ac78304a hello Forgetting helyiségben: A példa (Byzantium könyv), a könyv,, szerzői = Nick Bantock, közzétevő = Harpercollins, év = 1997<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23 Spadework, könyv,, szerzői = komócsin Findley, közzétevő = HarperFlamingo Kanada év = 2001<br>552a1940-21e4-4399-82bb-594b46d7ed54 korlátozás a vadállatok, megjelenik a hello könyv leírása, szerzői = Magnus Mills, közzétevő = Arcade közzétételi év = 1998</pre> |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-Az API-t adja vissza az importálás jelentést.
+hello API hello importálási jelentést adja vissza.
 
 * `feed\entry\content\properties\LineCount`-Elfogadott sorok száma.
-* `feed\entry\content\properties\ErrorCount`-Hiba miatt nem beillesztett sorok száma.
+* `feed\entry\content\properties\ErrorCount`-Tooan hiba miatt nem beillesztett sorok száma.
 
 Az OData-XML
 
@@ -1027,7 +1027,7 @@ Az OData-XML
 
 ### <a name="82----get-catalog"></a>8.2.    Katalógus beolvasása
 Lekéri az összes katalóguselemeket.
-A katalógus lesz egyszerre egy lap lekérése. Ha azt szeretné, egy adott indexű beolvasásának, használhatja a $skip odata paraméter. Például ha le szeretné kérdezni 100 pozíciótól kezdődően elemet, adja hozzá a $skip paraméter = 100 kérésre.
+hello katalógus lesz egyszerre egy lap lekérése. Ha azt szeretné, hogy egy adott indexű tooget elemek, hello $skip odata paraméter használható. Például ha azt szeretné, hogy a 100 pozíciótól kezdődően tooget elemek, adja hozzá a hello paramétert $skip = 100 toohello kérelmet.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1035,7 +1035,7 @@ A katalógus lesz egyszerre egy lap lekérése. Ha azt szeretné, egy adott inde
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1044,10 +1044,10 @@ A katalógus lesz egyszerre egy lap lekérése. Ha azt szeretné, egy adott inde
 
 HTTP-állapotkód: 200
 
-A válasz tartalmazza az elemet egy tételt. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz tartalmazza az elemet egy tételt. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
-* `feed/entry/content/properties/ExternalId`-Katalógus külső azonosítója, az ügyfél által a megadottal.
-* `feed/entry/content/properties/InternalId`-Katalógus belső azonosítója, azt, amelyik az Azure Machine Learning javaslatok hozott létre.
+* `feed/entry/content/properties/ExternalId`-Katalógus külső Cikkazonosító, egy olyan hello ügyfél hello.
+* `feed/entry/content/properties/InternalId`-Katalógus belső azonosítója, egy, az Azure Machine Learning javaslatok generált hello.
 * `feed/entry/content/properties/Name`-Katalógus elem neve.
 * `feed/entry/content/properties/Category`-Katalógus cikk kategóriát.
 * `feed/entry/content/properties/Description`-Katalógus leírása.
@@ -1119,7 +1119,7 @@ Az OData-XML
             <m:properties>
                 <d:ExternalId m:type="Edm.String">21BF8088-B6C0-4509-870C-E1C7AC78304A</d:ExternalId>
                 <d:InternalId m:type="Edm.String">ea65e4fa-768c-40b4-92c3-69d3e8178691</d:InternalId>
-                <d:Name m:type="Edm.String">The Forgetting Room: A Fiction (Byzantium Book)</d:Name>
+                <d:Name m:type="Edm.String">hello Forgetting Room: A Fiction (Byzantium Book)</d:Name>
                 <d:Category m:type="Edm.String">Book</d:Category>
                 <d:Description m:type="Edm.String"></d:Description>
                 <d:Metadata m:type="Edm.String"></d:Metadata>
@@ -1135,8 +1135,8 @@ Az OData-XML
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| Token |A Katalóguselem nevű token. Legalább 3 karaktert kell tartalmaznia. |
+| modelId |Hello modell egyedi azonosítója |
+| Token |Token hello katalógus elem neve. Legalább 3 karaktert kell tartalmaznia. |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1145,9 +1145,9 @@ Az OData-XML
 
 HTTP-állapotkód: 200
 
-A válasz tartalmazza az elemet egy tételt. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz tartalmazza az elemet egy tételt. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
-* `feed/entry/content/properties/InternalId`-Katalógus belső azonosítója, azt, amelyik az Azure Machine Learning javaslatok hozott létre.
+* `feed/entry/content/properties/InternalId`-Katalógus belső azonosítója, egy, az Azure Machine Learning javaslatok generált hello.
 * `feed/entry/content/properties/Name`-Katalógus elem neve.
 * `feed/entry/content/properties/Rating`-(későbbi használatra)
 * `feed/entry/content/properties/Reasoning`-(későbbi használatra)
@@ -1184,7 +1184,7 @@ Az OData-XML
 ## <a name="9-usage-data"></a>9. Használati adatok
 ### <a name="91----import-usage-data"></a>9.1.    Használati adatok importálása
 #### <a name="911-uploading-file"></a>9.1.1. Fájl feltöltése
-Ez a szakasz bemutatja, hogyan használati adatok feltöltése egy fájl segítségével. A használati adatokat tartalmazó többször API hívása. Minden használati adatokat a rendszer minden hívások menti.
+Ez a szakasz bemutatja, hogyan tooupload használati adatok egy fájl segítségével. A használati adatokat tartalmazó többször API hívása. Minden használati adatokat a rendszer minden hívások menti.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1192,18 +1192,18 @@ Ez a szakasz bemutatja, hogyan használati adatok feltöltése egy fájl segíts
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| fájlnév |A katalógus szöveges azonosítója.<br>Csak betűk (A-Z, a – z), szám (0-9), kötőjeleket (-) és aláhúzásjelet (_) megengedettek.<br>Maximális hossz: 50 |
+| modelId |Hello modell egyedi azonosítója |
+| fájlnév |Hello katalógus szöveges azonosítója.<br>Csak betűk (A-Z, a – z), szám (0-9), kötőjeleket (-) és aláhúzásjelet (_) megengedettek.<br>Maximális hossz: 50 |
 | apiVersion |1.0 |
 |  | |
-| A kérelem törzse |Használati adatok. Formátum:<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>Név</th><th>Kötelező</th><th>Típus</th><th>Leírás</th></tr><tr><td>Felhasználói azonosító</td><td>Igen</td><td>[A-z], [a-z], [0-9], [_] &#40; Aláhúzás &#41; [-] &#40; Dash &#41;<br> Maximális hossz: 255 </td><td>A felhasználó egyedi azonosítója.</td></tr><tr><td>Cikk azonosítója</td><td>Igen</td><td>[A-z], [a-z], [0-9], [&#95;] &#40; Aláhúzás &#41; [-] &#40; Dash &#41;<br> Maximális hossz: 50</td><td>Egy elem egyedi azonosítója.</td></tr><tr><td>Time</td><td>Nem</td><td>Dátum formátumban: éééé/hh/nnTóó: pp: (pl. 2013 06/20T10:00:00)</td><td>Az adatok időpontja.</td></tr><tr><td>Esemény</td><td>Nincs; Ha a megadott dátum is kell állítani</td><td>A következők egyikét:<br>• Kattintson<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Beszerzési</td><td></td></tr></table><br>Maximális fájlméret: 200MB<br><br>Példa:<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| A kérelem törzse |Használati adatok. Formátum:<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>Név</th><th>Kötelező</th><th>Típus</th><th>Leírás</th></tr><tr><td>Felhasználói azonosító</td><td>Igen</td><td>[A-z], [a-z], [0-9], [_] &#40; Aláhúzás &#41; [-] &#40; Dash &#41;<br> Maximális hossz: 255 </td><td>A felhasználó egyedi azonosítója.</td></tr><tr><td>Cikk azonosítója</td><td>Igen</td><td>[A-z], [a-z], [0-9], [&#95;] &#40; Aláhúzás &#41; [-] &#40; Dash &#41;<br> Maximális hossz: 50</td><td>Egy elem egyedi azonosítója.</td></tr><tr><td>Time</td><td>Nem</td><td>Dátum formátumban: éééé/hh/nnTóó: pp: (pl. 2013 06/20T10:00:00)</td><td>Az adatok időpontja.</td></tr><tr><td>Esemény</td><td>Nincs; Ha a megadott dátum is kell állítani</td><td>Hello a következők egyike:<br>• Kattintson<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Beszerzési</td><td></td></tr></table><br>Maximális fájlméret: 200MB<br><br>Példa:<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
 * `Feed\entry\content\properties\LineCount`-Elfogadott sorok száma.
-* `Feed\entry\content\properties\ErrorCount`-Hiba miatt nem beillesztett sorok száma.
+* `Feed\entry\content\properties\ErrorCount`-Tooan hiba miatt nem beillesztett sorok száma.
 * `Feed\entry\content\properties\FileId`-Fájl azonosítója.
 
 Az OData-XML
@@ -1232,7 +1232,7 @@ Az OData-XML
 
 
 #### <a name="912-using-data-acquisition"></a>9.1.2. Adatgyűjtést használatával
-Ez a szakasz bemutatja, hogyan küldhet események valós idejű Azure Machine Learning ajánlásokat, általában a webhelyről.
+Ez a szakasz bemutatja, hogyan toosend események valós időben tooAzure Machine Learning ajánlásokat, általában a webhelyről.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1242,7 +1242,7 @@ Ez a szakasz bemutatja, hogyan küldhet események valós idejű Azure Machine L
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
 | apiVersion |1.0 |
-| Kérés törzsében |Esemény esetében bevitt adat minden esemény szeretne küldeni. Küldje el a ugyanazon felhasználó vagy a böngésző-munkamenet ugyanazt az Azonosítót a munkamenet-azonosító mezőben. (Lásd az alábbi esemény törzsében mintáját.) |
+| Kérés törzsében |Esemény adatbevitel minden esemény toosend keresi. Küldje el a hello ugyanazon felhasználó vagy a böngésző-munkamenet hello hello munkamenet-azonosító mezőben ugyanazzal az Azonosítóval. (Lásd az alábbi esemény törzsében mintáját.) |
 
 * Példa a "Kattintson" esemény:
   
@@ -1337,7 +1337,7 @@ Ez a szakasz bemutatja, hogyan küldhet események valós idejű Azure Machine L
 
 ### <a name="92----list-model-usage-files"></a>9.2.    Modell használati fájlok listázása
 Lekéri az összes modell fájlok metaadatait.
-A fájlok lesznek használati egy oldalt az attribútumböngészőben egyszerre beolvasott. Minden lap containes 100 elemeket. Ha azt szeretné, egy adott indexű beolvasásának, használhatja a $skip odata paraméter. Például ha le szeretné kérdezni 100 pozíciótól kezdődően elemet, adja hozzá a $skip paraméter = 100 kérésre.
+hello fájlok lesznek használati egy oldalt az attribútumböngészőben egyszerre beolvasott. Minden lap containes 100 elemeket. Ha azt szeretné, hogy egy adott indexű tooget elemek, hello $skip odata paraméter használható. Például ha azt szeretné, hogy a 100 pozíciótól kezdődően tooget elemek, adja hozzá a hello paramétert $skip = 100 toohello kérelmet.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1345,7 +1345,7 @@ A fájlok lesznek használati egy oldalt az attribútumböngészőben egyszerre 
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| forModelId |A modell egyedi azonosítója |
+| forModelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1354,12 +1354,12 @@ A fájlok lesznek használati egy oldalt az attribútumböngészőben egyszerre 
 
 HTTP-állapotkód: 200
 
-A válasz használati fájlonként egy bejegyzést tartalmaz. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz használati fájlonként egy bejegyzést tartalmaz. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `feed\entry\content\properties\Id`-Használati azonosítót.
 * `feed\entry\content\properties\Length`-MB használat a fájl hosszát.
-* `feed\entry\content\properties\DateModified`-A használati fájl létrehozásának dátuma.
-* `feed\entry\content\properties\UseInModel`-E a használati fájllal a modellben.
+* `feed\entry\content\properties\DateModified`-Hello használati fájl létrehozásának dátuma.
+* `feed\entry\content\properties\UseInModel`-E hello használati fájllal hello modellben.
 
 Az OData-XML
 
@@ -1409,10 +1409,10 @@ Lekéri a használati statisztikáit.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | A StartDate |Kezdő dátum. Formátum: éééé/hh/nnTóó: pp: |
 | endDate |Záró dátum. Formátum: éééé/hh/nnTóó: pp: |
-| eventTypes |Vesszővel elválasztott karakterlánc eseménytípusok vagy null az összes eseményének lekérdezése |
+| eventTypes |Vesszővel elválasztott karakterlánc esemény meg kell adnia, vagy null értékű tooget összes esemény |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1421,9 +1421,9 @@ Lekéri a használati statisztikáit.
 
 HTTP-állapotkód: 200
 
-Kulcs/érték elemek gyűjteménye. Mindegyik tartalmazza egy adott esemény típusa óránként csoportosítva események.
+Kulcs/érték elemek gyűjteménye. Mindegyik tartalmazza egy adott esemény típusa óránként csoportosítva eseményeket hello összege.
 
-* `feed\entry[i]\content\properties\Key`– Az idő (óra szerint csoportosítva) és az eseménytípus tartalmazza.
+* `feed\entry[i]\content\properties\Key`-Tartalmaz hello ideje (óra szerint csoportosítva) és hello eseménytípus.
 * `feed\entry[i]\content\properties\Value`-Esemény teljes száma.
 
 Az OData-XML
@@ -1486,7 +1486,7 @@ Az OData-XML
     </feed>
 
 ### <a name="94----get-usage-file-sample"></a>9.4.    Használati fájl minta beolvasása
-Lekéri az első 2KB használati fájl tartalma.
+Lekéri hello használati fájl tartalma első 2 KB lehet.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1494,8 +1494,8 @@ Lekéri az első 2KB használati fájl tartalma.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| fileId |A modellfájl használati egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| fileId |Hello használati modellfájl egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1526,7 +1526,7 @@ Nyers szöveges formátumú választ küld vissza:
 
 
 ### <a name="95----get-model-usage-file"></a>9.5.    Használati modellfájl beolvasása
-Lekéri a használati fájl teljes tartalmát.
+Lekéri a hello hello használati fájl teljes tartalmát.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1534,8 +1534,8 @@ Lekéri a használati fájl teljes tartalmát.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| Mid |A modell egyedi azonosítója |
-| FID |A modellfájl használati egyedi azonosítója |
+| Mid |Hello modell egyedi azonosítója |
+| FID |Hello használati modellfájl egyedi azonosítója |
 | Letöltése |1 |
 | apiVersion |1.0 |
 |  | |
@@ -1584,7 +1584,7 @@ Nyers szöveges formátumú választ küld vissza:
 </pre>
 
 ### <a name="96----delete-usage-file"></a>9.6.    Használati fájl törlése
-A megadott modell használati fájl törlése.
+Hello megadott modell használati fájl törlése.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1592,8 +1592,8 @@ A megadott modell használati fájl törlése.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| fileId |A fájl törlendő egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| fileId |Hello fájl toobe törölt egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1611,7 +1611,7 @@ Törli az összes modell használati fájlt.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1621,12 +1621,12 @@ Törli az összes modell használati fájlt.
 HTTP-állapotkód: 200
 
 ## <a name="10-features"></a>10. Szolgáltatások
-Ez a szakasz bemutatja, hogyan adatbeolvasás funkció, például az importált szolgáltatások és azok értékeit, azok dimenziószáma és a dimenziószáma lett lefoglalva. Szolgáltatások részeként az eseménykatalógus-adatok importálása, és majd a rangsor tartozik amikor rank build hajtja végre.
-A szolgáltatás dimenziószáma használati adatok és típusú elemeket a minta alapján módosíthatja. De konzisztens használati elemek, a dimenziószáma csak kis ingadozását kell rendelkeznie.
-A szolgáltatások rangja egy nem negatív szám. A szám 0 azt jelenti, hogy a szolgáltatás nem lett-e rangsorolva (történik, ha ez az API a sorrendet megadó első build befejezése előtt indít). A dátum, amelyen a dimenziószáma attribútummal volt a pontszám frissesség nevezik.
+Ez a szakasz bemutatja, hogyan tooretrieve funkció információkat, például importált hello szolgáltatások és azok értékeit, az osztályozás, és amikor a dimenziószáma lett lefoglalva. Szolgáltatások importált hello eseménykatalógus-adatok részeként, és majd a rangsor tartozik amikor rank build hajtja végre.
+A szolgáltatás dimenziószáma függően toohello mintát használati adatok és típusú elemeket módosíthatja. De konzisztens használati elemek, hello dimenziószáma csak kis ingadozását kell rendelkeznie.
+szolgáltatások hello rangsorát egy nem negatív szám. hello száma 0 azt jelenti, hogy adott hello szolgáltatás nem volt rangsorolva (történik, ha a hello első rank build API előzetes toohello megvalósításának indításakor). hello dátum, amelyen hello dimenziószáma attribútummal lett hello pontszám frissesség nevezik.
 
 ### <a name="101-get-features-info-for-last-rank-build"></a>10.1. Található szolgáltatások adat (a sorrendet megadó utolsó Buildverziót)
-A szolgáltatás információt, beleértve a prioritást, a legutóbbi sikeres rank buildjéhez kéri le.
+Hello szolgáltatás információt, beleértve a rangsorolási hello utolsó sikeres rank buildjéhez kéri le.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1634,8 +1634,8 @@ A szolgáltatás információt, beleértve a prioritást, a legutóbbi sikeres r
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| samplingSize |Az egyes szolgáltatásokhoz, a katalógusban szereplő adatok alapján is tartalmazzanak száma. <br/>Lehetséges értékek:<br> -1 - összes mintát. <br>0 - nem mintavételi. <br>N - N minták minden szolgáltatás nevét adja vissza. |
+| modelId |Hello modell egyedi azonosítója |
+| samplingSize |Az egyes szolgáltatásokhoz szerint toohello adatok hello-katalógusban szereplő értékek tooinclude száma. <br/>Lehetséges értékek:<br> -1 - összes mintát. <br>0 - nem mintavételi. <br>N - N minták minden szolgáltatás nevét adja vissza. |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1644,18 +1644,18 @@ A szolgáltatás információt, beleértve a prioritást, a legutóbbi sikeres r
 
 HTTP-állapotkód: 200
 
-A válasz szolgáltatás info bejegyzések listáját tartalmazza. Mindegyik bejegyzés tartalmazza:
+hello válasz szolgáltatás info bejegyzések listáját tartalmazza. Mindegyik bejegyzés tartalmazza:
 
 * `feed/entry/content/m:properties/d:Name`-Szolgáltatás neve.
-* `feed/entry/content/m:properties/d:RankUpdateDate`-A dátum, amelyen a dimenziószáma lett lefoglalva Ez a szolgáltatás, más néven pontszám frissesség szolgáltatást. Egy korábbi dátum ("0001-01-01T00:00:00") azt jelenti, hogy a sorrendet megadó építés elvégezték-e.
+* `feed/entry/content/m:properties/d:RankUpdateDate`-A dátum mely hello dimenziószáma volt lefoglalt toothis szolgáltatás, más néven pontszám frissesség szolgáltatást. Egy korábbi dátum ("0001-01-01T00:00:00") azt jelenti, hogy a sorrendet megadó építés elvégezték-e.
 * `feed/entry/content/m:properties/d:Rank`-Funkció dimenziószáma (float). A sorrend első helyén, 2.0-s, illetve a hierarchiában felfelé a helyes szolgáltatásának tekinthető.
-* `feed/entry/content/m:properties/d:SampleValues`-A kért mintavételi mérete legfeljebb értékek vesszővel tagolt listája.
+* `feed/entry/content/m:properties/d:SampleValues`-A kért toohello mintavételi méretét értékek vesszővel tagolt listája.
 
 Az OData-XML
 
     <feed xmlns:base="https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
     <title type="text" />
-    <subtitle type="text">Get the features of a model</subtitle>
+    <subtitle type="text">Get hello features of a model</subtitle>
     <id>https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures?modelId='f13ab2e8-b530-4aa1-86f7-2f4a24714765'&amp;samplingSize='10'&amp;apiVersion='1.0'</id>
     <rights type="text" />
     <updated>2015-01-08T13:15:02Z</updated>
@@ -1705,7 +1705,7 @@ Az OData-XML
 </feed>
 
 ### <a name="102-get-features-info-for-specific-rank-build"></a>10.2. Található szolgáltatások adat (a megadott sorszám Build)
-Például egy adott buildjénél a sorrendet megadó rangsorolási szolgáltatás adatainak beolvasása.
+Hello szolgáltatás adatai, beleértve az adott rank build besorolása hello kéri le.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1713,9 +1713,9 @@ Például egy adott buildjénél a sorrendet megadó rangsorolási szolgáltatá
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| samplingSize |Az egyes szolgáltatásokhoz, a katalógusban szereplő adatok alapján is tartalmazzanak száma.<br/> Lehetséges értékek:<br> -1 - összes mintát. <br>0 - nem mintavételi. <br>N - N minták minden szolgáltatás nevét adja vissza. |
-| rankBuildId |A sorrendet megadó build vagy -1 -nek a sorrendet megadó utolsó buildverziót egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| samplingSize |Az egyes szolgáltatásokhoz szerint toohello adatok hello-katalógusban szereplő értékek tooinclude száma.<br/> Lehetséges értékek:<br> -1 - összes mintát. <br>0 - nem mintavételi. <br>N - N minták minden szolgáltatás nevét adja vissza. |
+| rankBuildId |Hello rank build vagy -1 -nek hello utolsó rank build egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -1724,18 +1724,18 @@ Például egy adott buildjénél a sorrendet megadó rangsorolási szolgáltatá
 
 HTTP-állapotkód: 200
 
-A válasz szolgáltatás info bejegyzések listáját tartalmazza. Mindegyik bejegyzés tartalmazza:
+hello válasz szolgáltatás info bejegyzések listáját tartalmazza. Mindegyik bejegyzés tartalmazza:
 
 * `feed/entry/content/m:properties/d:Name`-Szolgáltatás neve.
-* `feed/entry/content/m:properties/d:RankUpdateDate`-A dátum, amelyen a dimenziószáma lett lefoglalva Ez a szolgáltatás, más néven pontszám frissesség szolgáltatást. Egy korábbi dátum ("0001-01-01T00:00:00") azt jelenti, hogy a sorrendet megadó építés elvégezték-e.
+* `feed/entry/content/m:properties/d:RankUpdateDate`-A dátum mely hello dimenziószáma volt lefoglalt toothis szolgáltatás, más néven pontszám frissesség szolgáltatást. Egy korábbi dátum ("0001-01-01T00:00:00") azt jelenti, hogy a sorrendet megadó építés elvégezték-e.
 * `feed/entry/content/m:properties/d:Rank`-Funkció dimenziószáma (float). A sorrend első helyén, 2.0-s, illetve a hierarchiában felfelé a helyes szolgáltatásának tekinthető.
-* `feed/entry/content/m:properties/d:SampleValues`-A kért mintavételi mérete legfeljebb értékek vesszővel tagolt listája.
+* `feed/entry/content/m:properties/d:SampleValues`-A kért toohello mintavételi méretét értékek vesszővel tagolt listája.
 
 OData
 
     <feed xmlns:base="https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
         <title type="text" />
-        <subtitle type="text">Get the features of a model</subtitle>
+        <subtitle type="text">Get hello features of a model</subtitle>
         <id>https://api.datamarket.azure.com/amla/recommendations/v3/GetModelFeatures?modelId='f13ab2e8-b530-4aa1-86f7-2f4a24714765'&amp;samplingSize='10'&amp;rankBuildId=1000653&amp;apiVersion='1.0'</id>
         <rights type="text" />
         <updated>2015-01-08T13:54:22Z</updated>
@@ -1786,82 +1786,82 @@ OData
 
 
 ## <a name="11-build"></a>11. Felépítés
-  Ez a szakasz ismerteti a különböző API-k buildek kapcsolódik. 3 különböző típusú buildek: javaslat build, a sorrendet megadó build és egy (gyakran vásárolt együtt) FBT build.
+  Ez a szakasz ismerteti a hello különböző API-k kapcsolódó toobuilds. 3 különböző típusú buildek: javaslat build, a sorrendet megadó build és egy (gyakran vásárolt együtt) FBT build.
 
-A javaslat build célja egy előrejelzéseket használt javaslat modell generálásához. (Az ilyen típusú build) előrejelzéseket térjen két verziója:
+hello javaslat build célja egy javaslat modell használt előrejelzéseket toogenerate. (Az ilyen típusú build) előrejelzéseket térjen két verziója:
 
-* I2I – más néven A cikk ajánlottak - elem vagy egy elemlistát, ez a beállítás lesz előrejelzése, amelyek magas érdeklődésére elemek listáját.
-* U2I – más néven Felhasználói elem javaslatok – a megadott felhasználói azonosító (és nem kötelezően elemek listáját) ezt a beállítást fogja előre jelezni, amelyek a megadott felhasználó (és a további elemeket választhat) magas érdeklődésére elemek listáját. A U2I javaslatok a felhasználó a modell készült idejével érdeklő elemeket előzményeinek alapulnak.
+* I2I – más néven Konfigurációelem-tooItem ajánlásokkal – a megadott elem vagy egy lista elemek ezt a beállítást fogja becsülhető, valószínűleg toobe magas érdeklő elemek listáját.
+* U2I – más néven Felhasználói tooItem ajánlásokkal – a megadott felhasználói azonosító (és nem kötelezően elemek listáját) Ez a beállítás lesz előrejelzése, amelyek az adott felhasználó (és a további elemeket választhat) hello magas érdeklő valószínűleg toobe elemek listáját. hello U2I az ajánlások hello felhasználó hello modell készült toohello elérhetőséggel érdeklő elemeket hello előzményeit.
 
-A sorrendet megadó build, amely lehetővé teszi további információk a szolgáltatások használhatóságát műszaki build. Általában a legjobb eredmények eléréséhez a szolgáltatásokat érintő javaslat modell, meg kell tegye a következőket:
+A sorrendet megadó build, amely lehetővé teszi a szolgáltatások hello hasznosságát kapcsolatos toolearn műszaki build. Általában sorrendben tooget hello legjobb eredmény egy javaslat modell szolgáltatások használata esetén, hajtson hello a következő lépéseket:
 
-* Aktiválhatja a sorrendet megadó build, (kivéve, ha a szolgáltatások a pontszám stabil), és várjon, amíg a szolgáltatás pontszámot kap.
-* A szolgáltatások rangja meghívásával beolvasása a [szolgáltatások információ](#101-get-features-info-for-last-rank-build) API.
-* A javaslat build konfigurálása a következő paraméterekkel:
-  * `useFeatureInModel`-Igaz értékre kell beállítani.
-  * `ModelingFeatureList`– Állítsa a 2.0-s vagy több (az egyes holtversenyekben az előző lépésben lekért) megfelelően pontszámot funkcióinak vesszővel tagolt listája.
-  * `AllowColdItemPlacement`-Igaz értékre kell beállítani.
-  * Opcionálisan megadhat `EnableFeatureCorrelation` TRUE és `ReasoningFeatureList` szolgáltatások listájához magyarázatot (általában ugyanaz a szolgáltatások listájában modellezés vagy allista) használni kívánt.
-* Indítás, a javaslat összeállítása a konfigurált adatokkal.
+* Aktiválhatja a sorrendet megadó build, (kivéve, ha a szolgáltatások hello pontszám stabil), és várjon, amíg hello szolgáltatás pontszámot kap.
+* A szolgáltatások hello rangsorát lekérni hívó hello [szolgáltatások információ](#101-get-features-info-for-last-rank-build) API.
+* A javaslat build a következő paraméterek hello konfigurálása:
+  * `useFeatureInModel`-Set tooTrue.
+  * `ModelingFeatureList`-(Szerint toohello egyes holtversenyekben hello előző lépésben lekért) set tooa vesszővel tagolt listája a 2.0-s vagy több jelző pontszámot funkcióinak használatát.
+  * `AllowColdItemPlacement`-Set tooTrue.
+  * Opcionálisan megadhat `EnableFeatureCorrelation` tooTrue és `ReasoningFeatureList` toohello listája toouse magyarázatot (általában szolgáltatások azonos listája szerepel modellezés vagy allista hello) kívánt szolgáltatásokat.
+* Indítás, hello javaslat build hello konfigurált paraméterekkel.
 
-Megjegyzés: Ha nem adja meg a paramétereket (pl. meghívása a javaslat build paraméterek nélkül) vagy nem explicit módon letiltja az funkciók használatát (pl. `UseFeatureInModel` értéke hamis), a rendszer a szolgáltatás kapcsolatos paramétereket a magyarázat beállításához a fenti értékek abban az esetben, ha a sorrend első helyén build létezik-e.
+Megjegyzés: Ha nem adja meg a paramétereket (pl. meghívása hello javaslat build paraméterek nélkül) vagy nem explicit módon letiltja szolgáltatások hello használatát (pl. `UseFeatureInModel` tooFalse beállítása), hello rendszer hello szolgáltatás kapcsolatos paraméterek beállításához toohello viszonylag fenti alapértékeket, abban az esetben, ha a sorrendet megadó build létezik-e.
 
-Nincs a sorrendet megadó build és egyidejűleg ugyanannak a modellnek az ajánlás build futó korlátozva. Ettől függetlenül ugyanannak a modellnek párhuzamosan azonos típusú két változata nem futtatható.
+A sorrendet megadó build futó nincs korlátja, és az ajánlás építése egyidejűleg hello azonos modell. Ettől függetlenül az azonos írja be ugyanazt a modell párhuzamosan hello hello két változata nem futtatható.
 
 Egy (gyakran vásárolt együtt) FBT build még egy másik javaslatok algoritmus nevezik néha "konzervatív" ajánló, ami ideális, amelyek nincsenek homogén jellegű katalógusok (homogén: könyvek, filmek, néhány étele módon; nem homogén: számítógép és eszközök, a tartományok közötti, rendkívül sokféle).
 
-Megjegyzés: Ha a feltöltött fájlok tartalmazzák a nem kötelező mező "eseménytípus" majd FBT a modellezési csak "a Vásárlás" események lesz. Ha nincs eseménytípus biztosítja az összes esemény beszerzési kell tekinteni.
+Megjegyzés: Ha hello feltöltött fájlok tartalmaz hello választható mező "eseménytípus" majd FBT a modellezési csak "a Vásárlás" események használható. Ha nincs eseménytípus biztosítja az összes esemény beszerzési kell tekinteni.
 
 #### <a name="111-build-parameters"></a>11.1 build paraméterek
-Minden build típusú paraméterek (kitaláltak alább) segítségével konfigurálhatók. Ha nem adja meg a paraméterek, a rendszer automatikusan attribútumok értéke a paraméterek build indít el a jelen információ alapján.
+Minden build típusú paraméterek (kitaláltak alább) segítségével konfigurálhatók. Ha nem állít hello paraméterek, a hello rendszer automatikusan attribútum értékek toohello paraméterek toohello információk hello jelen indít el a build szerint.
 
 ##### <a name="1111-usage-condenser"></a>11.1.1. Használati hűtő
-Felhasználók, illetve néhány használati pont cikkeket további zaj mint információkat is tartalmazhatnak. A rendszer megkísérli előrejelzése használati pontok modellben használandó felhasználói/elemenként minimális száma. Ez a szám lesz elemek ItemCutoffLowerBound és ItemCutoffUpperBound paramétereinek megadott tartományt, és a UserCutOffLowerBound és UserCutoffUpperBound paraméterek, a felhasználók által megadott tartományon belül. Az elemek vagy felhasználók hűtő hatással nulla megfelelő határain közül legalább egy beállítást minimálisra csökkenthető.
+Felhasználók, illetve néhány használati pont cikkeket további zaj mint információkat is tartalmazhatnak. hello rendszer toopredict hello minimális használati pontok száma a modellben használt felhasználói/elem toobe próbál. Ez a szám hello ItemCutoffLowerBound és elemeket, és hello UserCutOffLowerBound és UserCutoffUpperBound paramétereket a felhasználó által definiált hello tartomány ItemCutoffUpperBound paramétereinek hello tartományon belüli lesz. hello hűtő hatással elemek vagy felhasználók hello megfelelő határainak toozero közül legalább egy beállítást minimálisra csökkenthető.
 
 ##### <a name="1112-rank-build-parameters"></a>11.1.2. Dimenziószáma build paraméterek
-Az alábbi táblázat mutatja be, hogy a sorrendet megadó build build paramétereinek.
+az alábbi táblázat hello hello build paramétereket a sorrendet megadó build ábrázol.
 
 | Kulcs | Leírás | Típus | Érvényes értéket |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |Kezeli a modell ismétlések száma megjelenik a teljes compute idejét és a modell pontosságát. Minél nagyobb a szám, a nagyobb pontosságot elérhetővé válik, de a számítási idejét hosszabb ideig tart. |Egész szám |10-50 |
-| NumberOfModelDimensions |A dimenziók száma a modellben megkísérli az adatok belül található szolgáltatások száma vonatkozik. Növelje meg a dimenziók lehetővé teszi a nagyobb a pontosabb az eredmények csoportokba kisebb beállításra. Azonban túl sok dimenzióval megakadályozza, hogy a modell találjanak korrelációk elemek között. |Egész szám |10-40 |
-| ItemCutOffLowerBound |Meghatározza a hűtő elem alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| ItemCutOffUpperBound |Meghatározza az elem a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffLowerBound |Meghatározza a hűtő felhasználói alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffUpperBound |Határozza meg a felhasználó a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| NumberOfModelIterations |hello modell hajtja végre az ismétlések száma hello hello jelzi a teljes számítási és hello modell pontosságának. hello magasabb hello számát, nagyobb pontosságot hello elérhetővé válik, de hello számítási idő hosszabb ideig tart. |Egész szám |10-50 |
+| NumberOfModelDimensions |a dimenziók száma hello vonatkozik toohello száma "szolgáltatások" hello modell megpróbál toofind belül az adatokat. Hello dimenziószámának növelése lehetővé teszi a nagyobb pontosabb beállításra hello eredmények kisebb csoportokba. Azonban túl sok dimenzióval megakadályozza hello modell elemek közötti összefüggések keresése. |Egész szám |10-40 |
+| ItemCutOffLowerBound |Hello elem alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| ItemCutOffUpperBound |Elem felső korlátja hello hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffLowerBound |Hello felhasználói alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffUpperBound |Meghatározza a hello hűtő hello felhasználói felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
 
 ##### <a name="1113-recommendation-build-parameters"></a>11.1.3. A javaslat build paraméterek
-Az alábbi táblázat a javaslat build build paramétereinek ábrázol.
+az alábbi táblázat hello hello build paramétereinek javaslat build ábrázol.
 
 | Kulcs | Leírás | Típus | Érvényes értéket |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |Kezeli a modell ismétlések száma megjelenik a teljes compute idejét és a modell pontosságát. Minél nagyobb a szám, a nagyobb pontosságot elérhetővé válik, de a számítási idejét hosszabb ideig tart. |Egész szám |10-50 |
-| NumberOfModelDimensions |A dimenziók száma a modellben megkísérli az adatok belül található szolgáltatások száma vonatkozik. Növelje meg a dimenziók lehetővé teszi a nagyobb a pontosabb az eredmények csoportokba kisebb beállításra. Azonban túl sok dimenzióval megakadályozza, hogy a modell találjanak korrelációk elemek között. |Egész szám |10-40 |
-| ItemCutOffLowerBound |Meghatározza a hűtő elem alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| ItemCutOffUpperBound |Meghatározza az elem a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffLowerBound |Meghatározza a hűtő felhasználói alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffUpperBound |Határozza meg a felhasználó a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| NumberOfModelIterations |hello modell hajtja végre az ismétlések száma hello hello jelzi a teljes számítási és hello modell pontosságának. hello magasabb hello számát, nagyobb pontosságot hello elérhetővé válik, de hello számítási idő hosszabb ideig tart. |Egész szám |10-50 |
+| NumberOfModelDimensions |a dimenziók száma hello vonatkozik toohello száma "szolgáltatások" hello modell megpróbál toofind belül az adatokat. Hello dimenziószámának növelése lehetővé teszi a nagyobb pontosabb beállításra hello eredmények kisebb csoportokba. Azonban túl sok dimenzióval megakadályozza hello modell elemek közötti összefüggések keresése. |Egész szám |10-40 |
+| ItemCutOffLowerBound |Hello elem alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| ItemCutOffUpperBound |Elem felső korlátja hello hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffLowerBound |Hello felhasználói alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffUpperBound |Meghatározza a hello hűtő hello felhasználói felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
 | Leírás |Build leírása. |Karakterlánc |A szöveg, legfeljebb 512 karakter |
-| EnableModelingInsights |A javaslat modell metrikák számítási teszi lehetővé. |Logikai érték |Igaz/hamis |
-| UseFeaturesInModel |Azt jelzi, ha szolgáltatása használható a javaslat modell növelése érdekében. |Logikai érték |Igaz/hamis |
-| ModelingFeatureList |A javaslat növelése érdekében a javaslat építés használandó neveinek vesszővel tagolt listája. |Karakterlánc |Funkcióneveket, legfeljebb 512 karakter |
-| AllowColdItemPlacement |Azt jelzi, ha a javaslat is leküldéses cold elemek szolgáltatás hasonlóság keresztül. |Logikai érték |Igaz/hamis |
+| EnableModelingInsights |Lehetővé teszi toocompute metrikák hello javaslat modellen. |Logikai érték |Igaz/hamis |
+| UseFeaturesInModel |Azt jelzi, ha használható-e a szolgáltatások rendelés tooenhance hello javaslat modellben. |Logikai érték |Igaz/hamis |
+| ModelingFeatureList |Szolgáltatás neve toobe hello ajánlás buildverziót, sorrendben tooenhance hello javaslat használt vesszővel tagolt listája. |Karakterlánc |Funkcióneveket too512 karakter mentése |
+| AllowColdItemPlacement |Azt jelzi, ha hello javaslat is leküldéses cold elemek szolgáltatás hasonlóság keresztül. |Logikai érték |Igaz/hamis |
 | EnableFeatureCorrelation |Azt jelzi, ha szolgáltatások indoklást is használható. |Logikai érték |Igaz/hamis |
-| ReasoningFeatureList |Vesszővel tagolt listája mintafelismerési mondat (pl. javaslat magyarázatokat) használt. |Karakterlánc |Funkcióneveket, legfeljebb 512 karakter |
-| EnableU2I |A személyre szabott javaslat más néven engedélyezése U2I (elem javaslatok felhasználó). |Logikai érték |Igaz/hamis (alapértelmezett értéke igaz) |
+| ReasoningFeatureList |Szolgáltatás neve toobe mintafelismerési mondat (pl. javaslat magyarázatokat) használt vesszővel tagolt listája. |Karakterlánc |Funkcióneveket too512 karakter mentése |
+| EnableU2I |Személyre szabott hello javaslat más néven engedélyezése U2I (felhasználói tooitem javaslatok). |Logikai érték |Igaz/hamis (alapértelmezett értéke igaz) |
 
 ##### <a name="1114-fbt-build-parameters"></a>11.1.4. FBT build paraméterek
-Az alábbi táblázat a javaslat build build paramétereinek ábrázol.
+az alábbi táblázat hello hello build paramétereinek javaslat build ábrázol.
 
 | Kulcs | Leírás | Típus | Érvénytelen érték (alapértelmezett) |
 |:--- |:--- |:--- |:--- |
-| FbtSupportThreshold |Hogyan konzervatív a modell van. Figyelembe kell venni modellezési elemek közös előfordulásainak száma. |Egész szám |3-50 (6) |
-| FbtMaxItemSetSize |Bounds gyakori csoportban lévő elemek száma. |Egész szám |2-3 (2) |
-| FbtMinimalScore |Egy gyakori készlet kell rendelkeznie kell ahhoz, hogy a keresés eredményeit minimális pontszámot. Minél nagyobb a megfelelőbb. |Dupla |0 és újabb (0) |
-| FbtSimilarityFunction |Meghatározza a hasonlóság működnek, mint a build használják. Növekedési előtérbe serendipity, közös előfordulási előtérbe kiszámíthatóságot és Jaccard a két töltött kompromisszumot. |Karakterlánc |cooccurrence, növekedési, jaccard (növekedési) |
+| FbtSupportThreshold |Hogyan konzervatív hello modell. Elemek toobe modellezési infrastruktúrához közös előfordulásainak száma. |Egész szám |3-50 (6) |
+| FbtMaxItemSetSize |Gyakori készletben határainak hello száma. |Egész szám |2-3 (2) |
+| FbtMinimalScore |Egy gyakori készlet kell vissza kellett volna a hello szereplő sorrendben toobe minimális pontszámot annak az eredménye. hello magasabb hello jobb. |Dupla |0 és újabb (0) |
+| FbtSimilarityFunction |Meghatározza a hello hasonlóság függvény toobe hello build használják. Növekedési előtérbe serendipity, közös előfordulási előtérbe kiszámíthatóságot és Jaccard hello két töltött kompromisszumot. |Karakterlánc |cooccurrence, növekedési, jaccard (növekedési) |
 
 ### <a name="112-trigger-a-recommendation-build"></a>11.2. A javaslat Build eseményindító
-  Alapértelmezés szerint ez az API javaslat modell build vált. Elindítani a sorrendet megadó build (ahhoz, hogy szolgáltatások pontozása), a build API variant build típusú paraméterrel kell használni.
+  Alapértelmezés szerint ez az API javaslat modell build vált. a sorrend első helyén tootrigger build (a rendelés tooscore szolgáltatások), hello build API variant build típusú paraméterrel kell használni.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -1870,19 +1870,19 @@ Az alábbi táblázat a javaslat build build paramétereinek ábrázol.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| userDescription |A katalógus szöveges azonosítója. Vegye figyelembe, hogy ha a tárolóhelyek használata akkor kell kódolása % 20 helyette. Tekintse meg a fenti példa.<br>Maximális hossz: 50 |
+| modelId |Hello modell egyedi azonosítója |
+| userDescription |Hello katalógus szöveges azonosítója. Vegye figyelembe, hogy ha a tárolóhelyek használata akkor kell kódolása % 20 helyette. Tekintse meg a fenti példa.<br>Maximális hossz: 50 |
 | apiVersion |1.0 |
 |  | |
-| A kérelem törzse |Ha üres majd a build fogja végrehajtani az alapértelmezett build paraméterekkel.<br><br>Ha be szeretné állítani a build paraméterek, küldje el a paraméterek XML törzsébe, ahogy az alábbi minta. (Lásd a "Paraméterek létrehozása" című szakasz annak magyarázatát, a paraméterek.)`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
+| A kérelem törzse |Ha üres majd hello build fogja végrehajtani hello alapértelmezett build paraméterekkel.<br><br>Ha azt szeretné, hogy tooset hello build paraméterek, hello paraméterek küldése XML formátumban történő hello törzs hasonlóan a következő minta hello. (Lásd "Build paraméterek" hello hello paraméterek előzetesben.)`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-Ez az egy aszinkron API-t. Válaszként elérhetővé válik egy build azonosítója. Ha a build véget ért, kell az "Első buildek állapota az egy modell" API, és keresse meg a választ a build Azonosítóját. Fontos tudni, hogy build is perces óra adatok méretétől függően.
+Ez az egy aszinkron API-t. Válaszként elérhetővé válik egy build azonosítója. Amikor véget ért a hello build tooknow, hello "Beolvasása buildek állapota, a modell" API hívása, és keresse meg a build azonosító hello válaszként. Ne feledje, hogy a build telhet-e a perc toohours hello hello adatok méretétől függően.
 
-Nem lehet felhasználni a build: javaslatok karakterlánccal végződik-e.
+Javaslatok keretein belül hello build vége nem lehet felhasználni.
 
 Érvényes létrehozásának állapota:
 
@@ -1892,9 +1892,9 @@ Nem lehet felhasználni a build: javaslatok karakterlánccal végződik-e.
 * Sikeres – a létrehozási művelet sikeresen befejeződött.
 * Hiba – Build hibával ért véget.
 * Megszakítva - Build megszakították.
-* Kapcsolódó - a build megszakítási kérelmet küldött.
+* Kapcsolódó - hello build megszakítási kérelmet küldött.
 
-Vegye figyelembe, hogy megtalálható-e a build azonosítója a következő elérési úton:`Feed\entry\content\properties\Id`
+Vegye figyelembe, hogy hello build azonosító hello a következő elérési út alatt található:`Feed\entry\content\properties\Id`
 
 Az OData-XML
 
@@ -1943,20 +1943,20 @@ Az OData-XML
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| userDescription |A katalógus szöveges azonosítója. Vegye figyelembe, hogy ha a tárolóhelyek használata akkor kell kódolása % 20 helyette. Tekintse meg a fenti példa.<br>Maximális hossz: 50 |
-| buildType |A meghívni kívánt build típusú: <br/> -Javaslat build "ajánlott" <br> -"Prioritás" rank buildjéhez <br/> -FBT build "Fbt" |
+| modelId |Hello modell egyedi azonosítója |
+| userDescription |Hello katalógus szöveges azonosítója. Vegye figyelembe, hogy ha a tárolóhelyek használata akkor kell kódolása % 20 helyette. Tekintse meg a fenti példa.<br>Maximális hossz: 50 |
+| buildType |Hello build tooinvoke típusa: <br/> -Javaslat build "ajánlott" <br> -"Prioritás" rank buildjéhez <br/> -FBT build "Fbt" |
 | apiVersion |1.0 |
 |  | |
-| A kérelem törzse |Ha üres majd a build fogja végrehajtani az alapértelmezett build paraméterekkel.<br><br>Ha be szeretné állítani a build paraméterek, küldje el XML formátumban a szervezet például az alábbi mintában azokat. (Lásd a "Paraméterek Build" Magyarázat és a paraméterek teljes listája.)`<BuildParametersList><NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance></BuildParametersList>` |
+| A kérelem törzse |Ha üres majd hello build fogja végrehajtani hello alapértelmezett build paraméterekkel.<br><br>Ha azt szeretné, hogy tooset build paraméterek, küldje el XML formátumban történő hello szervezet például a következő minta hello. (Lásd "Build paraméterek" hello magyarázat és hello paraméterek teljes listája.)`<BuildParametersList><NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance></BuildParametersList>` |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-Ez az egy aszinkron API-t. Válaszként elérhetővé válik egy build azonosítója. Ha a build véget ért, kell az "Első buildek állapota az egy modell" API, és keresse meg a választ a build Azonosítóját. Fontos tudni, hogy build is perces óra adatok méretétől függően.
+Ez az egy aszinkron API-t. Válaszként elérhetővé válik egy build azonosítója. Amikor véget ért a hello build tooknow, hello "Beolvasása buildek állapota, a modell" API hívása, és keresse meg a build azonosító hello válaszként. Ne feledje, hogy a build telhet-e a perc toohours hello hello adatok méretétől függően.
 
-Nem lehet felhasználni a build: javaslatok karakterlánccal végződik-e.
+Javaslatok keretein belül hello build vége nem lehet felhasználni.
 
 Érvényes létrehozásának állapota:
 
@@ -1968,7 +1968,7 @@ Nem lehet felhasználni a build: javaslatok karakterlánccal végződik-e.
 * Megszakítva - Build megszakították.
 * Kapcsolódó - Build megszakítás alatt áll.
 
-Vegye figyelembe, hogy megtalálható-e a build azonosítója a következő elérési úton:`Feed\entry\content\properties\Id`
+Vegye figyelembe, hogy hello build azonosító hello a következő elérési út alatt található:`Feed\entry\content\properties\Id`
 
 Az OData-XML
 
@@ -2021,29 +2021,29 @@ Lekéri a buildek és azok állapotát a megadott modell.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| onlyLastBuild |Azt jelzi, hogy a modell létrehozási előzmények vagy csak a legutóbbi build állapotának visszaadása |
+| modelId |Hello modell egyedi azonosítója |
+| onlyLastBuild |Azt jelzi, hogy összes hello tooreturn build hello modell előzmények vagy hello legutóbbi build csak hello állapota |
 | apiVersion |1.0 |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-A válasz tartalmazza a build egy tételt. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz tartalmazza a build egy tételt. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
-* `feed/entry/content/properties/UserName`-Felhasználó nevét.
-* `feed/entry/content/properties/ModelName`-A modell neve.
+* `feed/entry/content/properties/UserName`-Hello felhasználó neve.
+* `feed/entry/content/properties/ModelName`-Hello modell neve.
 * `feed/entry/content/properties/ModelId`-Modell egyedi azonosítója.
-* `feed/entry/content/properties/IsDeployed`-E a buildverziót központilag telepítik (más néven aktív build).
+* `feed/entry/content/properties/IsDeployed`-E hello buildverziót központilag telepítik (más néven aktív build).
 * `feed/entry/content/properties/BuildId`-Build egyedi azonosítója.
-* `feed/entry/content/properties/BuildType`-A build típusú.
-* `feed/entry/content/properties/Status`-Létrehozási állapot. A következők egyike lehet: Hiba történt, épület, várakozik, Cancelling, megszakítva, sikeres.
-* `feed/entry/content/properties/StatusMessage`– Részletes állapotüzenet (csak bizonyos állapotaihoz vonatkozik).
+* `feed/entry/content/properties/BuildType`-Hello build típusú.
+* `feed/entry/content/properties/Status`-Létrehozási állapot. Hello a következők egyike lehet: Hiba történt, épület, várakozik, Cancelling, megszakítva, sikeres.
+* `feed/entry/content/properties/StatusMessage`– Részletes állapotüzenet (csak toospecific állapotok vonatkozik).
 * `feed/entry/content/properties/Progress`-Build (%) folyamatban van.
 * `feed/entry/content/properties/StartTime`-Build kezdési időpontja.
 * `feed/entry/content/properties/EndTime`-A befejezési idő felépítéséhez.
 * `feed/entry/content/properties/ExecutionTime`-Build időtartama.
-* `feed/entry/content/properties/ProgressStep`-A folyamatban lévő build aktuális állapotának részleteit.
+* `feed/entry/content/properties/ProgressStep`-A folyamatban lévő build aktuális szakasza hello adatait.
 
 Érvényes létrehozásának állapota:
 
@@ -2105,28 +2105,28 @@ Lekéri az összes modellt a felhasználói állapotok felépítéséhez.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| onlyLastBuild |Azt jelzi, hogy a modell létrehozási előzményei, vagy csak a legutóbbi build állapotát. |
+| onlyLastBuild |Azt jelzi, hogy összes hello tooreturn build hello modell előzmények vagy hello legutóbbi build csak hello állapotát. |
 | apiVersion |1.0 |
 
 **Válasz**:
 
 HTTP-állapotkód: 200
 
-A válasz tartalmazza a build egy tételt. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz tartalmazza a build egy tételt. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
-* `feed/entry/content/properties/UserName`-Felhasználó nevét.
-* `feed/entry/content/properties/ModelName`-A modell neve.
+* `feed/entry/content/properties/UserName`-Hello felhasználó neve.
+* `feed/entry/content/properties/ModelName`-Hello modell neve.
 * `feed/entry/content/properties/ModelId`-Modell egyedi azonosítója.
-* `feed/entry/content/properties/IsDeployed`-E a buildverziót központilag telepítik.
+* `feed/entry/content/properties/IsDeployed`-E hello buildverziót központilag telepítik.
 * `feed/entry/content/properties/BuildId`-Build egyedi azonosítója.
-* `feed/entry/content/properties/BuildType`-A build típusú.
-* `feed/entry/content/properties/Status`-Létrehozási állapot. A következők egyike lehet: Hiba történt, épület, várakozik, megszakítva, Cancelling, sikeres.
-* `feed/entry/content/properties/StatusMessage`– Részletes állapotüzenet (csak bizonyos állapotaihoz vonatkozik).
+* `feed/entry/content/properties/BuildType`-Hello build típusú.
+* `feed/entry/content/properties/Status`-Létrehozási állapot. Hello a következők egyike lehet: Hiba történt, épület, várakozik, megszakítva, Cancelling, sikeres.
+* `feed/entry/content/properties/StatusMessage`– Részletes állapotüzenet (csak toospecific állapotok vonatkozik).
 * `feed/entry/content/properties/Progress`-Build (%) folyamatban van.
 * `feed/entry/content/properties/StartTime`-Build kezdési időpontja.
 * `feed/entry/content/properties/EndTime`-A befejezési idő felépítéséhez.
 * `feed/entry/content/properties/ExecutionTime`-Build időtartama.
-* `feed/entry/content/properties/ProgressStep`-A folyamatban lévő build aktuális állapotának részleteit.
+* `feed/entry/content/properties/ProgressStep`-A folyamatban lévő build aktuális szakasza hello adatait.
 
 Érvényes létrehozásának állapota:
 
@@ -2182,7 +2182,7 @@ Az OData-XML
 ### <a name="116-delete-build"></a>11.6. Build törlése
 Build törli.
 
-MEGJEGYZÉS: <br>Egy aktív build nem törölhető. A modell frissíteni kell a különböző aktív buildre törlés előtt.<br>Egy folyamatban lévő build nem törölhető. Törölnie kell a build először meghívásával <strong>Szerkesztés megszakítása</strong>.
+MEGJEGYZÉS: <br>Egy aktív build nem törölhető. hello modell lehet frissíteni a tooa különböző aktív build törlés előtt.<br>Egy folyamatban lévő build nem törölhető. Törölnie kell hello build először meghívásával <strong>Szerkesztés megszakítása</strong>.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2190,7 +2190,7 @@ MEGJEGYZÉS: <br>Egy aktív build nem törölhető. A modell frissíteni kell a 
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| buildId |A build egyedi azonosítója. |
+| buildId |Hello build egyedi azonosítója. |
 | apiVersion |1.0 |
 
 **Válasz:**
@@ -2206,7 +2206,7 @@ HTTP-állapotkód: 200
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| buildId |A build egyedi azonosítója. |
+| buildId |Hello build egyedi azonosítója. |
 | apiVersion |1.0 |
 
 **Válasz:**
@@ -2222,7 +2222,7 @@ Lekéri a paraméterek felépítéséhez.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| buildId |A build egyedi azonosítója. |
+| buildId |Hello build egyedi azonosítója. |
 | apiVersion |1.0 |
 
 **Válasz:**
@@ -2234,23 +2234,23 @@ Ez az API a kulcs/érték elemgyűjtemény adja vissza. Minden elem egy paramét
 * `feed/entry/content/properties/Key`-Build paraméter neve.
 * `feed/entry/content/properties/Value`-Build paraméter értékét.
 
-Az alábbi táblázat az egyes kulcsok értéket mutatja be.
+az alábbi táblázat hello hello szám, amely minden kulcs ábrázol.
 
 | Kulcs | Leírás | Típus | Érvényes értéket |
 |:--- |:--- |:--- |:--- |
-| NumberOfModelIterations |Kezeli a modell ismétlések száma megjelenik a teljes compute idejét és a modell pontosságát. Minél nagyobb a szám, a nagyobb pontosságot elérhetővé válik, de a számítási idejét hosszabb ideig tart. |Egész szám |10-50 |
-| NumberOfModelDimensions |A dimenziók száma a modellben megkísérli az adatok belül található szolgáltatások száma vonatkozik. Növelje meg a dimenziók lehetővé teszi a nagyobb a pontosabb az eredmények csoportokba kisebb beállításra. Azonban túl sok dimenzióval megakadályozza, hogy a modell találjanak korrelációk elemek között. |Egész szám |10-40 |
-| ItemCutOffLowerBound |Meghatározza a hűtő elem alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| ItemCutOffUpperBound |Meghatározza az elem a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffLowerBound |Meghatározza a hűtő felhasználói alsó korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
-| UserCutOffUpperBound |Határozza meg a felhasználó a hűtő felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| NumberOfModelIterations |hello modell hajtja végre az ismétlések száma hello hello jelzi a teljes számítási és hello modell pontosságának. hello magasabb hello számát, nagyobb pontosságot hello elérhetővé válik, de hello számítási idő hosszabb ideig tart. |Egész szám |10-50 |
+| NumberOfModelDimensions |a dimenziók száma hello vonatkozik toohello száma "szolgáltatások" hello modell megpróbál toofind belül az adatokat. Hello dimenziószámának növelése lehetővé teszi a nagyobb pontosabb beállításra hello eredmények kisebb csoportokba. Azonban túl sok dimenzióval megakadályozza hello modell elemek közötti összefüggések keresése. |Egész szám |10-40 |
+| ItemCutOffLowerBound |Hello elem alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| ItemCutOffUpperBound |Elem felső korlátja hello hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffLowerBound |Hello felhasználói alsó határa hello hűtő határozza meg. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
+| UserCutOffUpperBound |Meghatározza a hello hűtő hello felhasználói felső korlátja. Tekintse meg a fenti használati hűtő. |Egész szám |2 vagy több (a 0 hűtő letiltása) |
 | Leírás |Build leírása. |Karakterlánc |A szöveg, legfeljebb 512 karakter |
-| EnableModelingInsights |A javaslat modell metrikák számítási teszi lehetővé. |Logikai érték |Igaz/hamis |
-| UseFeaturesInModel |Azt jelzi, ha szolgáltatása használható a javaslat modell növelése érdekében. |Logikai érték |Igaz/hamis |
-| ModelingFeatureList |A javaslat növelése érdekében a javaslat építés használandó neveinek vesszővel tagolt listája. |Karakterlánc |Funkcióneveket, legfeljebb 512 karakter |
-| AllowColdItemPlacement |Azt jelzi, ha a javaslat is leküldéses cold elemek szolgáltatás hasonlóság keresztül. |Logikai érték |Igaz/hamis |
+| EnableModelingInsights |Lehetővé teszi toocompute metrikák hello javaslat modellen. |Logikai érték |Igaz/hamis |
+| UseFeaturesInModel |Azt jelzi, ha használható-e a szolgáltatások rendelés tooenhance hello javaslat modellben. |Logikai érték |Igaz/hamis |
+| ModelingFeatureList |Szolgáltatás neve toobe hello ajánlás buildverziót, sorrendben tooenhance hello javaslat használt vesszővel tagolt listája. |Karakterlánc |Funkcióneveket too512 karakter mentése |
+| AllowColdItemPlacement |Azt jelzi, ha hello javaslat is leküldéses cold elemek szolgáltatás hasonlóság keresztül. |Logikai érték |Igaz/hamis |
 | EnableFeatureCorrelation |Azt jelzi, ha szolgáltatások indoklást is használható. |Logikai érték |Igaz/hamis |
-| ReasoningFeatureList |Vesszővel tagolt listája mintafelismerési mondat (pl. javaslat magyarázatokat) használt. |Karakterlánc |Funkcióneveket, legfeljebb 512 karakter |
+| ReasoningFeatureList |Szolgáltatás neve toobe mintafelismerési mondat (pl. javaslat magyarázatokat) használt vesszővel tagolt listája. |Karakterlánc |Funkcióneveket too512 karakter mentése |
 
 Az OData-XML
 
@@ -2421,7 +2421,7 @@ Az OData-XML
 
 ## <a name="12-recommendation"></a>12. Ajánlás
 ### <a name="121-get-item-recommendations-for-active-build"></a>12.1. Elem javaslatok beolvasása (az aktív build)
-A aktív build típusú javaslatok beszerzése "Ajánlás" vagy "Fbt" mag (bemeneti) elemek listája alapján.
+Hello aktív build típusú javaslatok beszerzése "Ajánlás" vagy "Fbt" mag (bemeneti) elemek listája alapján.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2429,8 +2429,8 @@ A aktív build típusú javaslatok beszerzése "Ajánlás" vagy "Fbt" mag (bemen
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| hogy az elemazonosítók |Az elemek javasolt vesszővel tagolt listája. <br>Ha az aktív build típusú FBT majd küldhet csak egy elemet. <br>Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| hogy az elemazonosítók |Hello elemek toorecommend a vesszővel tagolt listája. <br>Ha hello aktív build küldhet csak egy elemet, majd írja be FBT. <br>Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma <br> Maximális: 150 |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
 | apiVersion |1.0 |
@@ -2439,14 +2439,14 @@ A aktív build típusú javaslatok beszerzése "Ajánlás" vagy "Fbt" mag (bemen
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
-Az alábbi példa egy válasz 10 ajánlott elemet tartalmaz.
+az alábbi hello példa egy válasz 10 ajánlott elemet tartalmaz.
 
 Az OData-XML
 
@@ -2608,28 +2608,28 @@ Egy adott build "Ajánlás" vagy "Fbt" típusú javaslatok beszerzése.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| hogy az elemazonosítók |Az elemek javasolt vesszővel tagolt listája. <br>Ha az aktív build típusú FBT majd küldhet csak egy elemet. <br>Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| hogy az elemazonosítók |Hello elemek toorecommend a vesszővel tagolt listája. <br>Ha hello aktív build küldhet csak egy elemet, majd írja be FBT. <br>Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma <br> Maximális: 150 |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
-| buildId |a build azonosítót használja a javaslat kérelem |
+| buildId |hello azonosító toouse a javaslat kérelem létrehozása |
 | apiVersion |1.0 |
 
 **Válasz:**
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.1
 
 ### <a name="123-get-fbt-recommendations-for-active-build"></a>12.3. (Az aktív build) FBT javaslatok beszerzése
-Tekintse át a javasolt a aktív build típusú, "Fbt" alapján a kezdőérték (bemeneti) elemet.
+Tekintse át a javasolt hello aktív build típusú, "Fbt" alapján a kezdőérték (bemeneti) elemet.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2637,10 +2637,10 @@ Tekintse át a javasolt a aktív build típusú, "Fbt" alapján a kezdőérték 
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| itemId |Ajánlott elemet. <br>Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| itemId |A cikk toorecommend. <br>Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma <br>Maximális: 150 |
-| minimalScore |Minimális pontszám, amelyben egy gyakori készlet kell ahhoz, hogy a keresés eredményeit |
+| minimalScore |Egy gyakori készlet kell vissza kellett volna a hello szereplő sorrendben toobe minimális pontszámot annak az eredménye |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
 | apiVersion |1.0 |
 
@@ -2648,16 +2648,16 @@ Tekintse át a javasolt a aktív build típusú, "Fbt" alapján a kezdőérték 
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott elem beállítása (olyan elemek, amelyek általában a kezdőérték/bemeneti elemszintű együtt vannak vásárolt készlete) tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott elem beállítása (általában hello kezdőérték/bemeneti elemszintű együtt vannak vásárolt elemek készlete) tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id1`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name1`-Az elem nevét.
+* `Feed\entry\content\properties\Name1`-Hello elem nevét.
 * `Feed\entry\content\properties\Id2`– 2. ajánlott azonosítója (opcionális).
-* `Feed\entry\content\properties\Name2`-A 2. (nem kötelező) elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name2`– 2. (nem kötelező) hello-elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
-Az alábbi példa egy válasz 3 ajánlott elem beállítása magában foglalja.
+az alábbi hello példa egy válasz 3 ajánlott elem beállítása magában foglalja.
 
 Az OData-XML
 
@@ -2727,25 +2727,25 @@ Egy adott build "Fbt" típusú javaslatok beszerzése.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| itemId |Ajánlott elemet. <br>Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| itemId |A cikk toorecommend. <br>Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma <br>Maximális: 150 |
-| minimalScore |Minimális pontszám, amelyben egy gyakori készlet kell ahhoz, hogy a keresés eredményeit |
+| minimalScore |Egy gyakori készlet kell vissza kellett volna a hello szereplő sorrendben toobe minimális pontszámot annak az eredménye |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
-| buildId |a build azonosítót használja a javaslat kérelem |
+| buildId |hello azonosító toouse a javaslat kérelem létrehozása |
 | apiVersion |1.0 |
 
 **Válasz:**
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott elem beállítása (olyan elemek, amelyek általában a kezdőérték/bemeneti elemszintű együtt vannak vásárolt készlete) tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott elem beállítása (általában hello kezdőérték/bemeneti elemszintű együtt vannak vásárolt elemek készlete) tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id1`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name1`-Az elem nevét.
+* `Feed\entry\content\properties\Name1`-Hello elem nevét.
 * `Feed\entry\content\properties\Id2`– 2. ajánlott azonosítója (opcionális).
-* `Feed\entry\content\properties\Name2`-A 2. (nem kötelező) elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name2`– 2. (nem kötelező) hello-elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.3
@@ -2753,12 +2753,12 @@ A válasz példa a 12.3
 ### <a name="125-get-user-recommendations-for-active-build"></a>12.5. Felhasználói javaslatok beolvasása (az aktív build)
 A build "Ajánlás" jelölésű aktív build típusú felhasználói javaslatok beszerzése.
 
-Az API-t a felhasználó a használati előzményei alapján előre jelzett elem listáját adja vissza.
+hello API hello felhasználó toohello használati előzményei alapján előre jelzett elem listáját adja vissza.
 
 Megjegyzések: 
 
 1. Nincs felhasználói javaslat FBT buildjéhez van.
-2. Ha az aktív build ezt a módszert fog FBT hibát ad vissza.
+2. Ha hello active van FBT ezt a módszert fog hibát ad vissza.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2766,8 +2766,8 @@ Megjegyzések:
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| Felhasználói azonosítóját |A felhasználó egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| Felhasználói azonosítóját |Hello felhasználó egyedi azonosítója |
 | numberOfResults |Szükséges eredmények száma |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
 | apiVersion |1.0 |
@@ -2776,11 +2776,11 @@ Megjegyzések:
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.1
@@ -2788,12 +2788,12 @@ A válasz példa a 12.1
 ### <a name="126-get-user-recommendations-with-item-list-for-active-build"></a>12.6. Felhasználói javaslatok lekérdezni elemek listáját (az aktív build)
 A build "Ajánlás" jelölésű elemek bejegyzés további listája az aktív build típusú felhasználói javaslatok beszerzése
 
-Az API-t a felhasználó a használati előzményei alapján előre jelzett elem és a további megadott elemek listáját adja vissza.
+hello API hello felhasználói és hello további megadott elemek toohello használati előzményei alapján előre jelzett elem listáját adja vissza.
 
 Megjegyzések: 
 
 1. Nincs felhasználói javaslat FBT buildjéhez van.
-2. Ha az aktív build ezt a módszert fog FBT hibát ad vissza.
+2. Ha hello active van FBT ezt a módszert fog hibát ad vissza.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2801,9 +2801,9 @@ Megjegyzések:
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| Felhasználói azonosítóját |A felhasználó egyedi azonosítója |
-| itemsIds |Az elemek javasolt vesszővel tagolt listája. Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| Felhasználói azonosítóját |Hello felhasználó egyedi azonosítója |
+| itemsIds |Hello elemek toorecommend a vesszővel tagolt listája. Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
 | apiVersion |1.0 |
@@ -2812,11 +2812,11 @@ Megjegyzések:
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.1
@@ -2824,7 +2824,7 @@ A válasz példa a 12.1
 ### <a name="127-get-user-recommendations--of-a-specific-build"></a>12.7. (Az adott build) felhasználói javaslatok beszerzése
 Egy adott build "Ajánlás" típusú felhasználói javaslatok beszerzése.
 
-Az API-t (az adott build szerepel) felhasználó a használati előzményei alapján előre jelzett elem listáját adja vissza.
+hello API (hello adott build szerepel) hello felhasználó toohello használati előzményei alapján előre jelzett elem listáját adja vissza.
 
 Megjegyzés: Nincs FBT buildjéhez nincs felhasználói javaslat.
 
@@ -2834,30 +2834,30 @@ Megjegyzés: Nincs FBT buildjéhez nincs felhasználói javaslat.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| Felhasználói azonosítóját |A felhasználó egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
+| Felhasználói azonosítóját |Hello felhasználó egyedi azonosítója |
 | numberOfResults |Szükséges eredmények száma |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
-| buildId |a build azonosítót használja a javaslat kérelem |
+| buildId |hello azonosító toouse a javaslat kérelem létrehozása |
 | apiVersion |1.0 |
 
 **Válasz:**
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.1
 
 ### <a name="128-get-user-recommendations-with-item-list-of-a-specific-build"></a>12.8. Felhasználói javaslatok beszerzése elem listáját (adott build)
-Egy adott build "Ajánlás" típusú felhasználói javaslatok és további elemek listájának kapják meg.
+Egy adott build "Ajánlás" típusú felhasználói javaslatok és további elemek listáját hello kapják meg.
 
-Az API-t visszaállítja az előre jelzett elem a használati előzményei alapján a felhasználó listáját, valamint a további elemek listáját.
+hello API toohello használati előzmények hello felhasználó és hello további elemek listájának megfelelően előre jelzett elem listáját adja vissza.
 
 Megjegyzés: A Tthere nincs felhasználói javaslat FBT buildjéhez.
 
@@ -2867,55 +2867,55 @@ Megjegyzés: A Tthere nincs felhasználói javaslat FBT buildjéhez.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
-| Felhasználói azonosítóját |A felhasználó egyedi azonosítója |
-| hogy az elemazonosítók |Az elemek javasolt vesszővel tagolt listája. Maximális hossz: 1024 |
+| modelId |Hello modell egyedi azonosítója |
+| Felhasználói azonosítóját |Hello felhasználó egyedi azonosítója |
+| hogy az elemazonosítók |Hello elemek toorecommend a vesszővel tagolt listája. Maximális hossz: 1024 |
 | numberOfResults |Szükséges eredmények száma |
 | includeMetatadata |Jövőbeli használatra, mindig hamis |
-| buildId |a build azonosítót használja a javaslat kérelem |
+| buildId |hello azonosító toouse a javaslat kérelem létrehozása |
 | apiVersion |1.0 |
 
 **Válasz:**
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
-* `Feed\entry\content\properties\Rating`-Értékelése az ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
+* `Feed\entry\content\properties\Rating`-Minősítés hello ajánlás; nagyobb szám azt jelenti, hogy magasabb vetett bizalmat.
 * `Feed\entry\content\properties\Reasoning`-A javaslat mintafelismerési (pl. javaslat magyarázatokat).
 
 A válasz példa a 12.1
 
 ## <a name="13-user-usage-history"></a>13. A felhasználó használati előzményei
-Miután egy javaslat modell lett létrehozva a rendszer engedélyezi a felhasználók előzményei (egy adott felhasználóhoz tartozó elemeket) beolvasása a build használatos.
-Ez az API engedélyezése a felhasználók előzményei beolvasása
+Miután egy javaslat modell készült hello rendszer lehetővé teszi hello build használt tooretrieve hello felhasználók előzményei (cikkeket társított tooa adott felhasználó).
+Ez az API engedélyezése tooretrieve hello felhasználók előzményei
 
-Megjegyzés: a felhasználók előzményei érhető el jelenleg csak a javaslat buildek.
+Megjegyzés: hello felhasználók előzményei érhető el jelenleg csak a javaslat buildek.
 
 ### <a name="131-retrieve-user-history"></a>13.1 beolvasása felhasználók előzményei
-A megadott felhasználói azonosító az aktív build vagy a megadott build használt elem listájának beolvasása.
+Aktív hello elemének beolvasása hello listája összeállítását, vagy a megadott hello hello megadott felhasználói azonosító létrehozása.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
-| GET |A felhasználók előzményei beolvasása az active build.<br/>`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&apiVersion=%271.0%27`<br/><br/>A felhasználó előzményeinek lekérése a megadott build`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&buildId=<int>&apiVersion=%271.0%27`<br/><br/>Példa:`<rootURI>/GetUserHistory?modelId=%2727967136e8-f868-4258-9331-10d567f87fae%27&&userId=%27u_1013%27&apiVersion=%271.0%277` |
+| GET |Hello aktív build hello felhasználók előzményei beolvasása.<br/>`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&apiVersion=%271.0%27`<br/><br/>Build megadott hello hello felhasználók előzményei lekérése`<rootURI>/GetUserHistory?modelId=%27<model_id>%27&userId=%27<userId>%27&buildId=<int>&apiVersion=%271.0%27`<br/><br/>Példa:`<rootURI>/GetUserHistory?modelId=%2727967136e8-f868-4258-9331-10d567f87fae%27&&userId=%27u_1013%27&apiVersion=%271.0%277` |
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |a modell egyedi azonosítóját. |
-| Felhasználói azonosítóját |a felhasználó egyedi azonosítója. |
-| buildId |nem kötelező paraméter, annak jelzésére, hogy mely build a a felhasználók előzményei kell fetch engedélyezése |
+| modelId |hello hello modell egyedi azonosítója. |
+| Felhasználói azonosítóját |hello hello felhasználó egyedi azonosítója. |
+| buildId |nem kötelező paraméter, mely build a hello felhasználók előzményei kell fetch tooindicate engedélyezése |
 | apiVersion |1.0 |
 
 **Válasz:**
 
 HTTP-állapotkód: 200
 
-A válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik a következő adatokat:
+hello válasz egy tételt ajánlott cikk tartalmazza. Mindegyik bejegyzés rendelkezik hello a következő adatokat:
 
 * `Feed\entry\content\properties\Id`-Ajánlott elem azonosítóját.
-* `Feed\entry\content\properties\Name`-Az elem nevét.
+* `Feed\entry\content\properties\Name`-Hello elem nevét.
 * `Feed\entry\content\properties\Rating`– NEM ÁLL RENDELKEZÉSRE.
 * `Feed\entry\content\properties\Reasoning`– NEM ÁLL RENDELKEZÉSRE.
 
@@ -2947,14 +2947,14 @@ Az OData-XML
 </feed>
 
 ## <a name="14-notifications"></a>14. Értesítések
-Az Azure Machine Learning javaslatok létrehozza értesítések, amikor állandó hiba fordulhat elő, a rendszer. Az értesítések 3 típusa van:
+Az Azure Machine Learning javaslatok létrehozza értesítések, amikor állandó hiba fordul elő hello rendszer. Az értesítések 3 típusa van:
 
 1. Build hiba – ezt az értesítést akkor váltódik ki, minden összeállítási hiba.
-2. Hiba – az értesítés feldolgozása adatgyűjtést lesz kiváltva, ha több mint 100 hiba van a használati események száma modell feldolgozása az elmúlt 5 percben.
-3. Javaslat fogyasztás hiba – ezt az értesítést lesz kiváltva, ha van 100-nál több hibák az elmúlt 5 percben az ajánlás kérelmek / modell feldolgozása során.
+2. Hiba – az értesítés feldolgozása adatgyűjtést lesz kiváltva, ha tudunk 100-nál több hibák hello az utolsó 5 perc, a használati események száma modell hello feldolgozása.
+3. Javaslat fogyasztás hiba – ezt az értesítést lesz kiváltva, ha tudunk 100-nál több hibák hello az ajánlás kérelmek / modell hello feldolgozása az utolsó 5 perc.
 
 ### <a name="141-get-notifications"></a>14.1. Értesítéseket
-Lekéri az összes vagy egy egyetlen modell minden értesítést.
+Lekéri az összes vagy egy egyetlen modell minden hello értesítést.
 
 | HTTP-metódus | URI |
 |:--- |:--- |
@@ -2962,7 +2962,7 @@ Lekéri az összes vagy egy egyetlen modell minden értesítést.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |Nem kötelező paraméter. Ha nincs megadva, az összes modell összes értesítéseket fog kapni. <br>Érvénytelen érték: a modell egyedi azonosítóját. |
+| modelId |Nem kötelező paraméter. Ha nincs megadva, az összes modell összes értesítéseket fog kapni. <br>Érvénytelen érték: hello modell egyedi azonosítóját. |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -2973,7 +2973,7 @@ HTTP-állapotkód: 200
 
 Az OData-XML
 
-    The response includes one entry per notification. Each entry has the following data:
+    hello response includes one entry per notification. Each entry has hello following data:
         * feed\entry\content\properties\UserName - Internal user name identification.
         * feed\entry\content\properties\ModelId - Model ID.
         * feed\entry\content\properties\Message - Notification message.
@@ -3013,7 +3013,7 @@ Törli az összes olvasási értesítések levő modell esetén.
 
 | Paraméter neve | Érvényes értékek |
 |:--- |:--- |
-| modelId |A modell egyedi azonosítója |
+| modelId |Hello modell egyedi azonosítója |
 | apiVersion |1.0 |
 |  | |
 | A kérelem törzse |EGYIK SEM |
@@ -3042,6 +3042,6 @@ HTTP-állapotkód: 200
 ## <a name="15-legal"></a>15. Jogi tudnivalók
 Ez a dokumentum biztosított ",-van". Információk és nézetek ebben a dokumentumban, beleértve az URL-cím és az egyéb webhelyhivatkozásokat, értesítés nélkül változhatnak.<br><br>
 A felhasznált példák némelyike csak illusztrációs célokat szolgálnak, és kitalált esetet szemléltet. Nincs valós association vagy a kapcsolat célja, vagy eseményekkel.<br><br>
-Jelen dokumentum nem biztosít semmilyen jogot semmilyen Microsoft-termékben található szellemi tulajdonhoz. Előfordulhat, hogy másolja és használja a dokumentum belső használatra, tájékoztatási céllal.<br><br>
+Ez a dokumentum nem biztosít semmilyen jogot tooany semmilyen Microsoft-termékben található szellemi tulajdonhoz. Előfordulhat, hogy másolja és használja a dokumentum belső használatra, tájékoztatási céllal.<br><br>
 © 2015 Microsoft. Minden jog fenntartva.
 

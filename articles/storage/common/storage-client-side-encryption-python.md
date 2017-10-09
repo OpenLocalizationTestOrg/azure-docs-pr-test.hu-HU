@@ -1,6 +1,6 @@
 ---
-title: "A Microsoft Azure Storage Python ügyféloldali titkosítás |} Microsoft Docs"
-description: "Az Azure Storage ügyféloldali kódtára a Pythonhoz ügyféloldali titkosítás támogatja az Azure Storage-alkalmazások a maximális biztonság érdekében."
+title: "a Microsoft Azure Storage Python aaaClient-kiszolgálóoldali titkosítás |} Microsoft Docs"
+description: "hello Azure Storage ügyféloldali kódtára a Pythonhoz ügyféloldali titkosítás támogatja az Azure Storage-alkalmazások a maximális biztonság érdekében."
 services: storage
 documentationcenter: python
 author: lakasa
@@ -14,176 +14,176 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: lakasa
-ms.openlocfilehash: 25a376b2e54953602b66abc3bae878f09a776a80
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3a52b64f93daf85a55308f8a4bee9c98b2315d4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="client-side-encryption-with-python-for-microsoft-azure-storage"></a>A Microsoft Azure Storage Python ügyféloldali titkosítás
 [!INCLUDE [storage-selector-client-side-encryption-include](../../../includes/storage-selector-client-side-encryption-include.md)]
 
 ## <a name="overview"></a>Áttekintés
-A [Azure Storage ügyféloldali kódtára a Pythonhoz](https://pypi.python.org/pypi/azure-storage) támogatja a titkosított adatok ügyfélalkalmazásokon belüli feltöltése az Azure Storage, és az adatok visszafejtése során az ügyfél letöltése előtt.
+Hello [Azure Storage ügyféloldali kódtára a Pythonhoz](https://pypi.python.org/pypi/azure-storage) támogatja a titkosított adatok ügyfélalkalmazásokon belüli előtt tooAzure tárolási feltöltését, és az adatok visszafejtése toohello ügyfél letöltése során.
 
 > [!NOTE]
-> Az Azure Storage Python kódtár előzetes verzió van.
+> hello Azure Storage Python kódtár előzetes verzió van.
 > 
 > 
 
-## <a name="encryption-and-decryption-via-the-envelope-technique"></a>Titkosítás és visszafejtés keresztül a boríték módszer
-A titkosítási és visszafejtési folyamatok kövesse a boríték módszer.
+## <a name="encryption-and-decryption-via-hello-envelope-technique"></a>Titkosítás és visszafejtés hello boríték technika keresztül
+hello folyamatok titkosítási és visszafejtési hello boríték technika kövesse.
 
-### <a name="encryption-via-the-envelope-technique"></a>A boríték technika keresztül titkosítás
-A boríték technika keresztül titkosítás az alábbi módon működik:
+### <a name="encryption-via-hello-envelope-technique"></a>Titkosítási hello boríték technika keresztül
+Titkosítási hello boríték technika keresztül működik, a következő módon hello:
 
-1. Az Azure storage ügyféloldali kódtár állít elő, a tartalom titkosítási kulcs (CEK), amely a szimmetrikus kulcs egy egyszeri használata.
+1. hello Azure storage ügyféloldali kódtár állít elő, a tartalom titkosítási kulcs (CEK), amely a szimmetrikus kulcs egy egyszeri használata.
 2. Felhasználói adatok titkosítása a CEK használatával.
-3. A CEK ezt követően (titkosított) (KEK-) kulcs titkosítási kulcs használatával. A KEK kulcsazonosítójával azonosíthatók és aszimmetrikus kulcspár vagy egy szimmetrikus kulcs, amely helyileg kezelt lehet.
-   A storage ügyféloldali kódtár maga soha nem KEK elérésére. A könyvtár a kulcs alkalmazásburkoló algoritmus a KEK által biztosított hív meg. Felhasználók maguk dönthetik használandó egyéni szolgáltatók kulcs alkalmazásburkoló/kicsomagolásával Ha szükséges.
-4. A titkosított adatok majd feltöltése az Azure Storage szolgáltatásba. A becsomagolt kulcs néhány további titkosítási metaadatokból együtt tárolt metaadatok (a blob) vagy köztes értékkel, a titkosított adatok (üzenetsor-üzeneteket és táblaentitásokat).
+3. hello CEK ezt követően (titkosított) hello kulcs titkosítási kulcs (KEK) használatával. hello KEK kulcsazonosítójával azonosíthatók és aszimmetrikus kulcspár vagy egy szimmetrikus kulcs, amely helyileg kezelt lehet.
+   hello a storage ügyféloldali kódtára maga soha nem hozzáférés tooKEK. hello könyvtár hello kulcs alkalmazásburkoló algoritmus hello KEK által biztosított hív meg. -Felhasználók eldönthetik toouse egyéni szolgáltatók a kulcs alkalmazásburkoló/kicsomagolásával igény.
+4. hello titkosított adatok van majd toohello Azure Storage szolgáltatás feltöltve. hello becsomagolt kulcs néhány további titkosítási metaadatokból együtt tárolt metaadatok (a blob) vagy köztes értékkel (üzenetsor-üzeneteket és táblaentitásokat) titkosított hello adatokkal.
 
-### <a name="decryption-via-the-envelope-technique"></a>A boríték technika keresztül visszafejtés
-A boríték technika keresztül visszafejtési az alábbi módon működik:
+### <a name="decryption-via-hello-envelope-technique"></a>Visszafejtési hello boríték technika keresztül
+Visszafejtési hello boríték technika keresztül működik, a következő módon hello:
 
-1. Az ügyféloldali kódtár feltételezi, hogy a felhasználó kezeli a fő titkosítási kulcs-(KEK) helyileg. A felhasználónak nem kell tudni, hogy a titkosításhoz használt kulcs. Ehelyett egy kulcs feloldó, amely különböző kulcs azonosítók kulcsok, beállítása is, és használja.
-2. Az ügyféloldali kódtár letölti a titkosított adatokat a szolgáltatás tárolt titkosítási anyagok együtt.
-3. A burkolt tartalom titkosítási kulcs (CEK) nem burkolatlan (visszafejtett) használatával a fő titkosítási kulcsát (KEK). Itt ebben az esetben az ügyféloldali kódtár nem rendelkezik hozzáféréssel a KEK. Egyszerűen meghívja az egyéni szolgáltató kibontásához algoritmus.
-4. A tartalom titkosítási kulcs (CEK) szolgál majd visszafejteni a titkosított adatokat.
+1. hello ügyféloldali kódtár azt feltételezi, hogy hello felhasználó helyileg hello kulcs titkosítási kulcs-(KEK) kezel. hello felhasználónak nem kell tooknow hello adott használt kulcs titkosításhoz. Ehelyett egy kulcs feloldó, amely különböző kulcs azonosítók tookeys mutat, beállítása is, és használja.
+2. hello ügyféloldali kódtár hello titkosított adatok hello szolgáltatásban tárolt titkosítási anyagok és tölti le.
+3. hello burkolt tartalom titkosítási kulcs (CEK) nem burkolatlan (visszafejtett) használatával hello kulcs titkosítási kulcs-(KEK). Itt újra, hello ügyféloldali kódtár nem rendelkezik hozzáféréssel tooKEK. Egyszerűen meghívja a hello egyéni szolgáltató kibontásához algoritmus.
+4. tartalom titkosítási kulcsot (CEK) meg kell majd hello használt toodecrypt Titkosított hello felhasználói adatokat.
 
 ## <a name="encryption-mechanism"></a>Titkosítási módszer
-A storage ügyféloldali kódtár által használt [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) ahhoz, hogy a felhasználói adatok titkosítására. Pontosabban [Cipher Block Chaining (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) AES módban. Minden szolgáltatás működik némileg eltér, azok itt ismertetik.
+hello a storage ügyféloldali kódtára használ [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) rendelés tooencrypt felhasználói adatok. Pontosabban [Cipher Block Chaining (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) AES módban. Minden szolgáltatás működik némileg eltér, azok itt ismertetik.
 
 ### <a name="blobs"></a>Blobok
-Az ügyféloldali kódtár jelenleg csak a teljes blobok titkosítása. Titkosítás támogatott kifejezetten, amikor a felhasználó használja a **létrehozása*** módszerek. A letöltések, mindkettő teljes és a tartomány letöltések támogatottak, és párhuzamos folyamatkezelést biztosítja a feltöltés és letöltés érhető el.
+hello ügyféloldali kódtára jelenleg csak a teljes blobok titkosítása. Pontosabban, titkosítás támogatott hello használatakor **létrehozása*** módszerek. A letöltések, mindkettő teljes és a tartomány letöltések támogatottak, és párhuzamos folyamatkezelést biztosítja a feltöltés és letöltés érhető el.
 
-Titkosítás során az ügyféloldali kódtár létre egy véletlenszerű inicializálási vektor (IV) 16 bájt, 32 bájt véletlenszerű tartalom titkosítási kulcs (CEK) együtt, és hajtsa végre a boríték ezen információk alapján blob adatok titkosítását. A burkolt CEK és néhány további titkosítási metaadatok tárolása ezután, a blob-metaadatok a titkosított blob szolgáltatás együtt.
+Titkosítás során hello ügyféloldali kódtár létre egy véletlenszerű inicializálási vektor (IV) 16 bájt, 32 bájt véletlenszerű tartalom titkosítási kulcs (CEK) együtt, és hajtsa végre a boríték titkosítási hello a blob típusú adatok ezen információk alapján. hello CEK burkolt, és néhány további titkosítási metaadatokból majd tárolja a blob-metaadatok hello titkosított blob hello szolgáltatás együtt.
 
 > [!WARNING]
-> Ha szerkesztése vagy a saját metaadatok a BLOB feltöltése, győződjön meg arról, hogy megőrzi a metaadatok szeretné. A metaadatok nélkül új metaadatokkal tölt fel, ha a becsomagolt CEK, IV és egyéb metaadatokat elvész, és a blob tartalma soha nem lesznek lekérhető újra.
+> Ha szerkeszti, vagy saját metaadatok hello blob feltöltése, módosítani kell, hogy megőrzi a metaadatok tooensure. A metaadatok nélkül új metaadatokkal tölt fel, ha hello burkolt CEK, IV és egyéb metaadatokat elvész, és hello blobtartalom soha nem lesznek lekérhető újra.
 > 
 > 
 
-Egy titkosított blob letöltése magában foglalja a teljes blob használatával a tartalom lekérése a **beolvasása*** kényelmi módszerek. A burkolt CEK kicsomagolják, és ha a felhasználók számára a visszafejtett adatokat a IV (tárolt blob metaadatai ebben az esetben) együtt használja.
+Egy titkosított blob letöltése magában foglalja a hello teljes BLOB hello segítségével hello tartalom lekérésének **beolvasása*** kényelmi módszerek. hello burkolt CEK kicsomagolják, és hello IV együtt használja (tárolt blob metaadatai ebben az esetben) tooreturn visszafejteni hello adatok toohello felhasználók.
 
-Egy tetszőleges tartomány letöltése (**beolvasása*** átadott tartomány paraméterekkel módszerek) a titkosított BLOB magában foglalja a kis mennyiségű sikeresen visszafejtése a kért tartomány használható további adatokat kíván gyűjteni a felhasználók által biztosított tartományon hangolását.
+Egy tetszőleges tartomány letöltése (**beolvasása*** átadott tartomány paraméterekkel módszerek) hello a titkosított blob magában foglalja a megadott sorrendben tooget használható további adatokat kis mennyiségű felhasználók hello tartomány beállítása a kért tartomány toosuccessfully visszafejtése hello.
 
 Blokk blobokat és lapblobokat csak lehet titkosított/visszafejteni a rendszer. Jelenleg nem támogatja a titkosított hozzáfűző blobokat.
 
 ### <a name="queues"></a>Üzenetsorok
-Üzenetsor-üzeneteket tetszőleges méretű lehet, mert az ügyféloldali kódtár egyéni formátum, amely tartalmazza az üzenet szövege az inicializálási vektor (IV) és a titkosított tartalom titkosítási kulcs (CEK) határozza meg.
+Üzenetsor-üzeneteket tetszőleges méretű lehet, mert a hello ügyféloldali kódtára tartalmaz hello inicializálási vektor (IV) és hello titkosított tartalom titkosítási kulcs (CEK) hello üzenetszöveg a egyéni formátum határozza meg.
 
-Titkosítás során az ügyféloldali kódtár hoz létre egy véletlenszerű IV 16 bájt 32 bájt véletlenszerű CEK együtt, és ezen információk alapján a várólista üzenetszöveg boríték titkosítást végez. A burkolt CEK és néhány további titkosítási metaadatokból ezután hozzáadódnak a titkosított üzenetsorban lévő üzenetet. A módosított (lásd alább) tárolása pedig a szolgáltatást.
+Titkosítás során hello ügyféloldali kódtár hoz létre egy véletlenszerű IV 16 bájt 32 bájt véletlenszerű CEK együtt, és ezen információk alapján hello várólista üzenetszöveg boríték titkosítást végez. hello CEK burkolt, és néhány további titkosítási metaadatokból kerülnek toohello titkosított üzenetsorban lévő üzenetet. A módosított (lásd alább) tárolása pedig hello szolgáltatást.
 
 ```
 <MessageText>{"EncryptedMessageContents":"6kOu8Rq1C3+M1QO4alKLmWthWXSmHV3mEfxBAgP9QGTU++MKn2uPq3t2UjF1DO6w","EncryptionData":{…}}</MessageText>
 ```
 
-A becsomagolt kulcs, a visszafejtés során az üzenetsorban lévő üzenetet kivonjuk és kicsomagolják. A IV is kivonjuk az üzenetsorban lévő üzenetet, és együtt a burkolatlan kulcs használatával fejti vissza a várólista állapotüzenet-adatokat. Vegye figyelembe, hogy a titkosítási metaadatokból kis (alatt 500 bájt), ezért azt egy üzenetsor-üzenetet a 64 KB-os korlát felé száma, amíg a hatás kezelhető kell lennie.
+A visszafejtés, során hello becsomagolt kulcs várólista üdvözlőüzenetére kivonjuk és kicsomagolják. hello IV is várólista üdvözlőüzenetére kinyert és kicsomagolják hello kulcs toodecrypt hello várólista üzenet adatokkal együtt használja. Vegye figyelembe, hogy hello paramétertitkosítási metaadatokat kis (alatt 500 bájt), ezért azt egy üzenetsor hello 64 KB-os korlát felé száma, amíg a hello hatás kezelhető kell lennie.
 
 ### <a name="tables"></a>Táblák
-Az ügyféloldali kódtár támogatja a titkosítást az Entitástulajdonságok szúrhatók be, és cserélje le a műveleteket.
+hello ügyfél könyvtár által támogatott titkosítási insert entitás tulajdonságait, és cserélje le a műveleteket.
 
 > [!NOTE]
-> Egyesítési jelenleg nem támogatott. Mivel a Tulajdonságok részhalmazát, előfordulhat, hogy korábban használatával titkosított egy másik kulcsot, egyszerűen csak az új tulajdonságok egyesítése és a metaadatok frissítése adatok elvesztését eredményezi. Az egyesítés vagy megköveteli a már meglévő entitás olvasni a szolgáltatás további szolgáltatás-hívások, vagy tulajdonságonként egy új kulcsot használ, amelyek mindegyikét nem alkalmasak a teljesítményre vonatkozó megfontolásból.
+> Egyesítési jelenleg nem támogatott. Mivel a Tulajdonságok részhalmazát, előfordulhat, hogy korábban használatával titkosított egy másik kulcsot, egyszerűen hello új tulajdonságok egyesítése és hello metaadatainak frissítése adatok elvesztését eredményezi. Így további service hívásai tooread hello már meglévő entitás hello szolgáltatást, vagy tulajdonságonként egy új kulcsot használ, amelyek mindegyikét nem alkalmasak a teljesítményre vonatkozó megfontolásból vagy egyesítés van szükség.
 > 
 > 
 
 Tábla adattitkosítás a következőképpen működik:
 
-1. Felhasználók titkosítandó tulajdonságok megadása
-2. Az ügyféloldali kódtár hoz létre egy "véletlenszerű inicializálási vektor (IV) együtt véletlenszerű tartalom titkosítási kulcs (CEK) 32 bájt összes entitás 16 bájt, és az egyes tulajdonságok való származtatás egy új IV tulajdonságonként hagy a boríték titkosítást végez. Bináris adatok tárolja a titkosított tulajdonságot.
-3. A burkolt CEK és néhány további titkosítási metaadatok tárolása ezután két további fenntartott tulajdonságként. Az első fenntartott tulajdonság (\_ClientEncryptionMetadata1), amely tartalmazza a IV, a verziót és a becsomagolt kulcs karakterlánc tulajdonság. A második fenntartott tulajdonság (\_ClientEncryptionMetadata2) egy bináris tulajdonság, amely tartalmazza a titkosított tulajdonságok. A második tulajdonságban tárolt adatok (\_ClientEncryptionMetadata2) maga is titkosítva.
-4. Ezek fenntartott szükség tovább tulajdonságokra a titkosításhoz, mert felhasználók most már rendelkezik 252 helyett csak 250 egyéni tulajdonságokat. Az entitás teljes mérete 1MB-nál kevesebb kell lennie.
+1. Felhasználók hello tulajdonságok toobe titkosított adja meg.
+2. hello ügyféloldali kódtár hoz létre egy "véletlenszerű inicializálási vektor (IV) 16 bájt véletlenszerű tartalom titkosítási kulcs (CEK) 32 bájt összes entitás együtt, és hello egyes tulajdonságok toobe való származtatás egy új IV / titkosítja a boríték titkosítást végez tulajdonság. bináris adatok titkosítva hello tulajdonság tárolja.
+3. hello CEK burkolt, és néhány további titkosítási metaadatokból két további fenntartott tulajdonságokat, majd tárolódnak. hello először fenntartott tulajdonság (\_ClientEncryptionMetadata1) egy karakterlánc-tulajdonság, amely a IV, a verziót és a becsomagolt kulcs hello információkat tárolja. második fenntartott tulajdonság hello (\_ClientEncryptionMetadata2), amely tárolja a Titkosított hello tulajdonságok hello információ bináris tulajdonsága. a második tulajdonságban tárolt adatok hello (\_ClientEncryptionMetadata2) maga is titkosítva.
+4. Lejáró toothese fenntartott szükség tovább tulajdonságokra a titkosításhoz felhasználók most már rendelkezik 252 helyett csak 250 egyéni tulajdonságokat. hello entitás hello teljes mérete 1MB-nál kevesebb kell lennie.
    
-   Vegye figyelembe, hogy a tulajdonságok csak string titkosíthatók. Ha más típusú tulajdonságok titkosítani kell, azok karakterláncok kell konvertálni. A titkosított karakterláncok tárolja a szolgáltatás bináris tulajdonságként, és telepítésekké lesznek átalakítva vissza karakterláncok (nyers karakterláncok, nem típusú EdmType.STRING EntityProperties) a visszafejtés után.
+   Vegye figyelembe, hogy a tulajdonságok csak string titkosíthatók. Ha más típusú tulajdonságok titkosított toobe, átalakított toostrings kell. Titkosított hello karakterláncok bináris tulajdonságként hello szolgáltatásban tárolja, és a visszafejtés után vissza toostrings (nyers karakterláncok, nem típusú EdmType.STRING EntityProperties) telepítésekké lesznek átalakítva.
    
-   Táblák, a titkosítási házirenden kívül a felhasználók fiók kell adnia a titkosítani kell. Ez a végezhető el a típus értéke EdmType.STRING TableEntity objektumok vagy tárolja ezeket a tulajdonságokat, és igaz értékre kell állítani, vagy a encryption_resolver_function beállítása a tableservice objektum titkosítására. Egy titkosítási feloldó, akkor a függvény egy partíciókulcsot, sorkulcsot és tulajdonságnév veszi, és logikai érték beolvasása, amely jelzi, hogy a tulajdonság titkosítani kell-e. Titkosítás során az ügyféloldali kódtár döntse el, hogy a tulajdonság titkosítani kell-e az átvitel közbeni írása során fogja használni ezt az információt. A delegált is körül hogyan tulajdonságok vannak titkosítva logika lehetőségét biztosítja. (Például, ha X, majd titkosítása A tulajdonság; ellenkező esetben a Tulajdonságok A és b titkosítása) Vegye figyelembe, hogy nincs szükség arra, hogy ezek az információk olvasása vagy entitás lekérdezése közben.
+   A táblák, továbbá toohello titkosítási házirendnek, felhasználók meg kell adnia hello tulajdonságok toobe titkosítva. Végezhető el hello típus set tooEdmType.STRING TableEntity objektumok vagy tárolja ezeket a tulajdonságokat, és a set tootrue vagy beállítás hello encryption_resolver_function hello tableservice objektum titkosítására. Egy titkosítási feloldó, akkor a függvény egy partíciókulcsot, sorkulcsot és tulajdonságnév veszi, és logikai érték beolvasása, amely jelzi, hogy a tulajdonság titkosítani kell-e. Titkosítás során hello ügyféloldali kódtár fogja használni a információk toodecide e tulajdonság titkosítani toohello vezetékes írása közben. hello delegált is körül hogyan tulajdonságok vannak titkosítva logika hello lehetőségét biztosítja. (Például, ha X, majd titkosítása A tulajdonság; ellenkező esetben a Tulajdonságok A és b titkosítása) Vegye figyelembe, hogy az nem szükséges tooprovide ezen információ olvasása vagy entitás lekérdezése közben.
 
 ### <a name="batch-operations"></a>Kötegelt műveletek
-Egy titkosítási házirendek vonatkoznak a kötegben összes sort. Az ügyféloldali kódtár belső létrehoz egy új véletlenszerű IV és a véletlenszerű CEK soronkénti a kötegben. Felhasználók is beállíthatja a kötegben minden művelethez más tulajdonságokkal titkosítására Ez a viselkedés meghatározása a titkosítási feloldó.
-Ha egy kötegelt környezetben vezető hozza létre a tableservice batch() metódussal, a tableservice titkosítási házirend automatikusan alkalmazandó a kötegben. Egy kötegelt explicit módon a konstruktor meghívásával jön létre, ha a titkosítási házirend kell paraméterként átadja és a köteg teljes balra változtatás nélkül.
-Vegye figyelembe, hogy entitások titkosítva legyenek-e, mint a batch a kötegelt titkosítási házirenddel (entitások nincs titkosítva a tableservice titkosítási házirenddel kötegelt véglegesítése időpontjában) való beszúrása.
+Egy titkosítási házirendek vonatkoznak a tooall sorok hello kötegben. hello ügyféloldali kódtár belső létrehoz egy új véletlenszerű IV és a véletlenszerű CEK soronkénti hello kötegben. Azt is kiválaszthatják tooencrypt minden művelethez más tulajdonságokkal hello kötegben definiálásával Ez a viselkedés a hello titkosítási feloldó.
+Ha egy kötegelt hello tableservice batch() metódussal környezetben vezető jön létre, hello tableservice titkosítási házirend automatikusan lesz alkalmazott toohello kötegelt. Egy kötegelt hello konstruktor meghívásával explicit módon jön létre, ha hello titkosítási házirend paraméter és módosítani a hello kötegelt hello élettartama balra kell átadni.
+Vegye figyelembe, hogy az entitások titkosítva legyenek, hello kötegelt hello kötegelt titkosítási házirenddel (entitások nincs titkosítva a hello tableservice titkosítási házirenddel hello kötegelt véglegesítése hello időpontjában) való beszúrása.
 
 ### <a name="queries"></a>Lekérdezések
-Lekérdezési műveletek végrehajtásához meg kell adnia egy kulcs feloldó, amely képes feloldani az eredménykészletben a kulcsokat. Ha a lekérdezés eredményében található entitás nem oldható fel egy szolgáltatót, az ügyféloldali kódtár kivételhibát hiba. A lekérdezés, amely végrehajtja a kiszolgáló oldalán leképezések, az ügyféloldali kódtár felveszi különleges titkosítási metaadat-tulajdonságainak (\_ClientEncryptionMetadata1 és \_ClientEncryptionMetadata2) a kijelölt oszlopok alapértelmezés szerint.
+tooperform lekérdezési műveletek, meg kell adnia egy kulcs feloldó, amely képes tooresolve összes hello hello eredménykészletben kulcsok. Ha hello lekérdezés eredménye található entitás nem lehet feloldani tooa szolgáltató, hello ügyféloldali kódtár kivételhibát hiba. A lekérdezés, amely végrehajtja a kiszolgáló oldalán leképezések, hello ügyféloldali kódtár felveszi hello különleges titkosítási metaadat-tulajdonságainak (\_ClientEncryptionMetadata1 és \_ClientEncryptionMetadata2) alapértelmezett toohello jelölve oszlopok .
 
 > [!IMPORTANT]
 > Vegye figyelembe a fontos pontok ügyféloldali titkosítás használata esetén:
 > 
-> * Ha egy titkosított blob írásakor vagy olvasásakor, használja a teljes blob feltöltése és tartomány/egész blob letöltési parancsok. Egy titkosított blobba protokoll műveletek, például a Put blokk, Put tiltólista, lapok írási vagy törölje a jelet lapok; használatával elkerülése érdekében Ellenkező esetben előfordulhat, hogy a titkosított blob sérült, és nem olvasható teszi.
-> * A táblákhoz hasonló korlátozás létezik. Ügyeljen rá, nem titkosított tulajdonságainak módosítása a paramétertitkosítási metaadatokat frissítése nélkül.
-> * Ha a titkosított blob metaadatai állít be, felülírhatja a szükséges jogokkal, mivel a metaadatok beállítása nem additívak titkosítással kapcsolatos metaadatok. Ez akkor is igaz, a pillanatképek; Ne adjon meg a metaadat egy titkosított blob pillanatképének létrehozása során. Ha metaadatokat be kell állítani, ügyeljen arra, hogy hívja a **get_blob_metadata** módszert, először az aktuális titkosítási metaadatot beszerezni, és közben a metaadatok beállítása egyidejű írási műveletek megakadályozásához.
-> * Engedélyezze a **require_encryption** jelzőt a service objektum a felhasználók számára, amely csak a titkosított adatok együtt kell működnie. További információkért lásd az alábbi.
+> * A olvasása vagy írása tooan mikor titkosítsa a blob, használjon teljes blob feltöltése és tartomány/egész blob letöltési parancsok. Hogy ne kelljen tooan titkosított blob használatával protokoll műveletek, például a Put blokk, Put tiltólista, lapok írási vagy törölje a jelet lapok; Ellenkező esetben előfordulhat, hogy hello titkosított blob sérült, és könnyebben olvasható.
+> * A táblákhoz hasonló korlátozás létezik. Gondos toonot frissítés titkosított tulajdonságok hello paramétertitkosítási metaadatokat frissítése nélkül lehet.
+> * Metaadatok hello titkosított blob állít be, ha szükséges, mivel a metaadatok beállítása nem additívak hello titkosítással kapcsolatos metaadatok felülírhatja. Ez akkor is igaz, a pillanatképek; Ne adjon meg a metaadat egy titkosított blob pillanatképének létrehozása során. Metaadatok be kell állítani, ha kell, hogy toocall hello **get_blob_metadata** metódus első tooget hello aktuális paramétertitkosítási metaadatokat, és elkerülheti a egyidejű írási műveleteket, amíg metaadatok beállítása.
+> * Hello engedélyezése **require_encryption** jelző hello szolgáltatás objektum olyan felhasználóknál, akik csak a titkosított adatok együtt kell működnie. További információkért lásd az alábbi.
 > 
 > 
 
-A storage ügyféloldali kódtár vár a megadott KEK és a kulcs feloldó valósítja meg a következő illesztőfelületet. [Az Azure Key Vault](https://azure.microsoft.com/services/key-vault/) támogatja a Python KEK felügyeleti függőben, és integrálni kell a befejezésekor a tárba.
+hello a storage ügyféloldali kódtára a hello megadott KEK és kulcs feloldó felület következő tooimplement hello vár. [Az Azure Key Vault](https://azure.microsoft.com/services/key-vault/) támogatja a Python KEK felügyeleti függőben, és integrálni kell a befejezésekor a tárba.
 
 ## <a name="client-api--interface"></a>Ügyfél API-ja / felület
-Tárolási szolgáltatás objektum (azaz blockblobservice) létrehozását követően a felhasználó lehet értéket hozzárendelni a mezőket, egy titkosítási házirend alkotó: key_encryption_key, key_resolver_function, és require_encryption. KEK csak a felhasználók megadhatják csak egy feloldó, vagy mindkettőt. key_encryption_key, amely azonosítja a kulcsazonosító, és a logikai biztosít, amely alkalmazásburkoló/kicsomagolásával alapvető kulcs típusa. key_resolver_function feloldásához egy kulcsot a visszafejtés során használt. A megadott kulcs azonosítója érvényes KEK adja vissza. Ez biztosítja a felhasználók több helyen felügyelt több kulcsok közötti részére.
+Tárolási szolgáltatás objektum (azaz blockblobservice) létrehozását követően hello felhasználói előfordulhat, hogy rendeljen értéket egy titkosítási házirend alkotó toohello mezők: key_encryption_key, key_resolver_function, és require_encryption. KEK csak a felhasználók megadhatják csak egy feloldó, vagy mindkettőt. key_encryption_key hello alapvető kulcs típusa, amely azonosítja a kulcsazonosító és hello logika biztosít, amely alkalmazásburkoló/kicsomagolásával. key_resolver_function hello feloldási folyamat során használt tooresolve kulcs. A megadott kulcs azonosítója érvényes KEK adja vissza. Ez lehetővé teszi a felhasználók hello képességét toochoose több helyen felügyelt több kulcsok között.
 
-A KEK meg kell valósítania az alábbi módszerek sikeresen titkosítja az adatokat:
+hello KEK hello következőt kell megvalósítania módszerek toosuccessfully titkosítsa az adatokat:
 
-* wrap_key(cek): a megadott CEK (bájt), az a felhasználó által választott algoritmust használó burkolja. A becsomagolt kulcs adja vissza.
-* get_key_wrap_algorithm(): kulcsok burkolása használt algoritmust adja vissza.
-* get_kid(): a karakterlánc-azonosító a KEK adja vissza.
-  A KEK meg kell valósítania az alábbi módszerek sikerült visszafejteni az adatokat:
-* unwrap_key (cek, algoritmus): a megadott karakterlánc megadott algoritmussal CEK burkolatlan formájában adja vissza.
+* wrap_key(cek): hello becsomagolja megadott CEK (bájt) hello felhasználó választott algoritmust használ. Beolvasása hello becsomagolt kulcs.
+* get_key_wrap_algorithm(): beolvasása hello algoritmust használnak toowrap kulcsok.
+* get_kid(): beolvasása hello karakterlánc kulcs azonosítója a KEK.
+  hello KEK implementálnia kell a következő módszerek toosuccessfully visszafejtése adatok hello:
+* (cek, algoritmus) unwrap_key: hello kicsomagolják hello formája értéket ad vissza a megadott CEK hello karakterlánc algoritmus használatával.
 * get_kid(): egy karakterlánc-azonosítója a KEK adja vissza.
 
-A kulcs feloldó legalább meg kell valósítania egy metódust,, hogy adott kulcsazonosítója, a fenti felületet megvalósító megfelelő KEK adja vissza. Ez a metódus csak a szolgáltatás objektum key_resolver_function tulajdonság társítva van.
+hello kulcs feloldó legalább meg kell valósítania egy metódust,, hogy egy azonosítója, adott hello megfelelő KEK végrehajtási hello illesztő fenti adja vissza. Ez a módszer csak toohello key_resolver_function tulajdonság hello szolgáltatás objektumhoz rendelt toobe.
 
-* A titkosításhoz használja a rendszer mindig, és egy kulcs hiányában hibát eredményez.
+* A titkosításhoz hello kulccsal mindig, és egy kulcs hiányában hello hibát eredményez.
 * A visszafejtéshez:
   
-  * A kulcs feloldó meghívták, ha meg van adva a kulcs beszerzése. A feloldó van megadva, de nem rendelkezik a kulcsazonosító társítás, ha hiba fordul elő.
-  * Ha nincs megadva a feloldó, de egy kulcs van megadva, a kulcs akkor használatos, ha az azonosítója a szükséges kulcs azonosítója megegyezik-e. Az azonosító nem egyezik, ha hiba fordul elő.
+  * Ha meg van adva tooget hello kulcs hello kulcs feloldó meghívták. Hello feloldó van megadva, de nem rendelkezik hello kulcsazonosító társítás, ha hiba fordul elő.
+  * Ha nincs megadva a feloldó, de egy kulcs van megadva, hello kulcs akkor használatos, ha az azonosító szükséges hello kulcs azonosítója megegyezik-e. Hello azonosítója nem egyezik, ha hiba fordul elő.
     
-    A titkosítási minták azure.storage.samples <fix URL>egy BLOB, üzenetsorok és táblák részletesebb végpont forgatókönyv bemutatásához.
-      A KEK és a kulcs feloldó minta implementációja szerepelnek a mintafájlok KeyWrapper és KeyResolver kulcsattribútumokkal.
+    titkosítási minták azure.storage.samples hello <fix URL>egy BLOB, üzenetsorok és táblák részletesebb végpont forgatókönyv bemutatásához.
+      Minta implementációja hello KEK és kulcs feloldó találhatók: hello mintafájlok KeyWrapper és KeyResolver kulcsattribútumokkal.
 
 ### <a name="requireencryption-mode"></a>RequireEncryption mód
-Felhasználók engedélyezheti üzemmódot ahol feltöltések és a letöltött fájl titkosítva kell lennie. Ebben a módban a megpróbálja feltölteni az adatokat egy titkosítási házirend nélkül, vagy a szolgáltatás a nem titkosított adatok letöltése sikertelen lesz az ügyfélen. A **require_encryption** jelzőt a service objektum a viselkedését szabályozza.
+Felhasználók engedélyezheti üzemmódot ahol feltöltések és a letöltött fájl titkosítva kell lennie. Ebben a módban a kísérletek tooupload adatok egy titkosítási házirend és letöltés választható adatokat nem titkosított hello szolgáltatás nélkül az hello ügyfél sikertelen lesz. Hello **require_encryption** hello szolgáltatás objektum vezérlők jelzőt ezt a viselkedést.
 
 ### <a name="blob-service-encryption"></a>BLOB szolgáltatás titkosítási
-Állítsa be a titkosítás házirendmezők blockblobservice objektumon. Minden más kezelik az ügyféloldali kódtár által belsőleg.
+Hello titkosítási házirendmezők hello blockblobservice objektum állítható be. Minden más kezelik hello ügyféloldali kódtár által belsőleg.
 
 ```python
-# Create the KEK used for encryption.
-# KeyWrapper is the provided sample implementation, but the user may use their own object as long as it implements the interface above.
+# Create hello KEK used for encryption.
+# KeyWrapper is hello provided sample implementation, but hello user may use their own object as long as it implements hello interface above.
 kek = KeyWrapper('local:key1') # Key identifier
 
-# Create the key resolver used for decryption.
-# KeyResolver is the provided sample implementation, but the user may use whatever implementation they choose so long as the function set on the service object behaves appropriately.
+# Create hello key resolver used for decryption.
+# KeyResolver is hello provided sample implementation, but hello user may use whatever implementation they choose so long as hello function set on hello service object behaves appropriately.
 key_resolver = KeyResolver()
 key_resolver.put_key(kek)
 
-# Set the KEK and key resolver on the service object.
+# Set hello KEK and key resolver on hello service object.
 my_block_blob_service.key_encryption_key = kek
 my_block_blob_service.key_resolver_funcion = key_resolver.resolve_key
 
-# Upload the encrypted contents to the blob.
+# Upload hello encrypted contents toohello blob.
 my_block_blob_service.create_blob_from_stream(container_name, blob_name, stream)
 
-# Download and decrypt the encrypted contents from the blob.
+# Download and decrypt hello encrypted contents from hello blob.
 blob = my_block_blob_service.get_blob_to_bytes(container_name, blob_name)
 ```
 
 ### <a name="queue-service-encryption"></a>Várólista titkosítását
-Állítsa be a titkosítás házirendmezők queueservice objektumon. Minden más kezelik az ügyféloldali kódtár által belsőleg.
+Hello titkosítási házirendmezők hello queueservice objektum állítható be. Minden más kezelik hello ügyféloldali kódtár által belsőleg.
 
 ```python
-# Create the KEK used for encryption.
-# KeyWrapper is the provided sample implementation, but the user may use their own object as long as it implements the interface above.
+# Create hello KEK used for encryption.
+# KeyWrapper is hello provided sample implementation, but hello user may use their own object as long as it implements hello interface above.
 kek = KeyWrapper('local:key1') # Key identifier
 
-# Create the key resolver used for decryption.
-# KeyResolver is the provided sample implementation, but the user may use whatever implementation they choose so long as the function set on the service object behaves appropriately.
+# Create hello key resolver used for decryption.
+# KeyResolver is hello provided sample implementation, but hello user may use whatever implementation they choose so long as hello function set on hello service object behaves appropriately.
 key_resolver = KeyResolver()
 key_resolver.put_key(kek)
 
-# Set the KEK and key resolver on the service object.
+# Set hello KEK and key resolver on hello service object.
 my_queue_service.key_encryption_key = kek
 my_queue_service.key_resolver_funcion = key_resolver.resolve_key
 
@@ -195,27 +195,27 @@ retrieved_message_list = my_queue_service.get_messages(queue_name)
 ```
 
 ### <a name="table-service-encryption"></a>TABLE szolgáltatás titkosítási
-Egy titkosítási házirend létrehozása és beállítása a lehetőségek a kívül meg kell adnia egy **encryption_resolver_function** a a **tableservice**, vagy állítsa az titkosítása attribútumot a EntityProperty.
+Ezenkívül egy titkosítási házirend toocreating és beállítása a kérelem lehetőségekről, meg kell adnia egy **encryption_resolver_function** a hello **tableservice**, vagy a set hello attribútum titkosítása a hello EntityProperty.
 
-### <a name="using-the-resolver"></a>A feloldó használata
+### <a name="using-hello-resolver"></a>Hello feloldó használata
 
 ```python
-# Create the KEK used for encryption.
-# KeyWrapper is the provided sample implementation, but the user may use their own object as long as it implements the interface above.
+# Create hello KEK used for encryption.
+# KeyWrapper is hello provided sample implementation, but hello user may use their own object as long as it implements hello interface above.
 kek = KeyWrapper('local:key1') # Key identifier
 
-# Create the key resolver used for decryption.
-# KeyResolver is the provided sample implementation, but the user may use whatever implementation they choose so long as the function set on the service object behaves appropriately.
+# Create hello key resolver used for decryption.
+# KeyResolver is hello provided sample implementation, but hello user may use whatever implementation they choose so long as hello function set on hello service object behaves appropriately.
 key_resolver = KeyResolver()
 key_resolver.put_key(kek)
 
-# Define the encryption resolver_function.
+# Define hello encryption resolver_function.
 def my_encryption_resolver(pk, rk, property_name):
         if property_name == 'foo':
                 return True
         return False
 
-# Set the KEK and key resolver on the service object.
+# Set hello KEK and key resolver on hello service object.
 my_table_service.key_encryption_key = kek
 my_table_service.key_resolver_funcion = key_resolver.resolve_key
 my_table_service.encryption_resolver_function = my_encryption_resolver
@@ -224,20 +224,20 @@ my_table_service.encryption_resolver_function = my_encryption_resolver
 my_table_service.insert_entity(table_name, entity)
 
 # Retrieve Entity
-# Note: No need to specify an encryption resolver for retrieve, but it is harmless to leave the property set.
+# Note: No need toospecify an encryption resolver for retrieve, but it is harmless tooleave hello property set.
 my_table_service.get_entity(table_name, entity['PartitionKey'], entity['RowKey'])
 ```
 
 ### <a name="using-attributes"></a>Attribútumok használata
-Fent említett tulajdonság jelölhető titkosításhoz EntityProperty objektum tárolja, és a titkosítás mező.
+Fent említett tulajdonság lehetséges, hogy megjelölve titkosításhoz EntityProperty objektum tárolja őket, és mező hello beállítása titkosításához.
 
 ```python
 encrypted_property_1 = EntityProperty(EdmType.STRING, value, encrypt=True)
 ```
 
 ## <a name="encryption-and-performance"></a>Titkosítás és teljesítmény
-Vegye figyelembe, hogy a tároló eredményezi további teljesítményigény titkosítása. A tartalomkulcs és IV kell létrejönnie, a tartalom titkosítva kell lennie és további metaadatokat kell kell formázva és fel kell tölteni. Ez a terhelés a titkosított adatok mennyisége függvényében. Azt javasoljuk, hogy az ügyfelek mindig tesztelje az alkalmazások fejlesztése során teljesítmény.
+Vegye figyelembe, hogy a tároló eredményezi további teljesítményigény titkosítása. hello kulcs és IV kell létrejönnie, hello tartalom titkosítva kell lennie és további metaadatokat kell formázva és feltöltött tartalom. Ez a terhelés hello titkosított adatok mennyisége függvényében. Azt javasoljuk, hogy az ügyfelek mindig tesztelje az alkalmazások fejlesztése során teljesítmény.
 
 ## <a name="next-steps"></a>Következő lépések
-* Töltse le a [Azure Storage ügyféloldali kódtára a Java PyPi csomag](https://pypi.python.org/pypi/azure-storage)
-* Töltse le a [az Azure Storage ügyféloldali kódtára a Pythonhoz forráskód a Githubról](https://github.com/Azure/azure-storage-python)
+* Töltse le a hello [Azure Storage ügyféloldali kódtára a Java PyPi csomag](https://pypi.python.org/pypi/azure-storage)
+* Töltse le a hello [Azure Storage ügyféloldali kódtára a Python forráskód a Githubról](https://github.com/Azure/azure-storage-python)

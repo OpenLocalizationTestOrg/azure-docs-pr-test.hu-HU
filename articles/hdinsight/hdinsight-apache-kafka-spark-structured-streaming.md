@@ -1,6 +1,6 @@
 ---
-title: "Apache Spark strukturált Streaming Kafka – az Azure HDInsight |} Microsoft Docs"
-description: "Útmutató Apache Spark streaming (DStream) adatok eléréséhez, vagy abból Apache Kafka. Ebben a példában a HDInsight Spark a Jupyter notebook használatával adatok folyamatos átviteléhez."
+title: "Spark strukturált Stream továbbítása Kafka - Azure HDInsight aaaApache |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse Apache Spark (DStream) tooget streamadatok virtuális gépbe vagy onnan Apache Kafka. Ebben a példában a HDInsight Spark a Jupyter notebook használatával adatok folyamatos átviteléhez."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,87 +14,87 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/09/2017
 ms.author: larryfr
-ms.openlocfilehash: 02b49e13e8f54c3d55310f4d2b21c7e09c91fe81
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0837e8fc5ea314e644daed029d596feeb2b02c68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-spark-structured-streaming-with-kafka-preview-on-hdinsight"></a>Használja a hdinsight Spark strukturált Stream továbbítása Kafka (előzetes verzió)
 
-Ismerje meg, hogyan használható a adatokat olvasni az Apache Kafka on Azure HDInsight Spark strukturált Streaming.
+Megtudhatja, hogyan toouse Apache Kafka on Azure HDInsight Spark strukturált Streaming tooread adatokat.
 
-Strukturált Spark streaming olyan adatfolyam feldolgozása a Spark SQL épül. Lehetővé teszi adatfolyam számítások express ugyanaz, mint a batch számítási statikus adatok. A strukturált Streaming további információkért lásd: a [strukturált Streaming programozási útmutató [Alpha]](http://spark.apache.org/docs/2.1.0/structured-streaming-programming-guide.html) az Apache.org webhelyen.
+Strukturált Spark streaming olyan adatfolyam feldolgozása a Spark SQL épül. Lehetővé teszi, tooexpress adatfolyam számítások hello ugyanaz, mint a batch számítási statikus adatok. A strukturált Streaming további információkért lásd: hello [strukturált Streaming programozási útmutató [Alpha]](http://spark.apache.org/docs/2.1.0/structured-streaming-programming-guide.html) az Apache.org webhelyen.
 
 > [!IMPORTANT]
 > Ebben a példában HDInsight 3.6 Spark 2.1 használni. Strukturált Streaming tekinthető __alpha__ Spark 2.1-es verziójának.
 >
-> A jelen dokumentumban leírt lépések, amely tartalmazza a Spark on HDInsight és egy HDInsight-fürt Kafka Azure erőforráscsoport-csoport létrehozása. Ezeken a fürtökön is egy Azure virtuális hálózatot, amely lehetővé teszi a Kafka közvetlenül kommunikálni a Spark-fürtön belül található a fürtön.
+> hello jelen dokumentumban leírt lépések, amely tartalmazza a Spark on HDInsight és egy HDInsight-fürt Kafka Azure erőforráscsoport-csoport létrehozása. Ezeken a fürtökön hello Kafka fürt kommunikálnak mindkét egy Azure virtuális hálózatot, amely lehetővé teszi a Spark-fürt toodirectly hello belül található.
 >
-> Amikor elkészült, a jelen dokumentumban leírt lépések, ne felejtse el a felesleges költségek elkerülése érdekében a fürtök törlése.
+> Amikor elkészült, a jelen dokumentumban leírt lépések hello, ne felejtse el toodelete hello fürtök tooavoid felesleges költségek.
 
-## <a name="create-the-clusters"></a>A fürtök létrehozása
+## <a name="create-hello-clusters"></a>Hello fürtök létrehozása
 
-A HDInsight Apache Kafka nem férhet hozzá a Kafka brókerek a nyilvános interneten keresztül. A Kafka fürt csomópontja azonos Azure virtuális hálózaton, amelyeket a kiszolgálóhoz csatlakozik Kafka kell lennie. Ehhez a példához a Kafka és a Spark-fürtök egy Azure virtuális hálózat található. Az alábbi ábra bemutatja, hogyan kommunikációs a fürtök között zajló kommunikációról:
+A HDInsight Apache Kafka nem biztosít hozzáférést toohello Kafka brókerek képest hello a nyilvános internethez. Kafka fürt hello, amelyeket tooKafka kell lennie a megbeszélések hello hello csomópontként azonos Azure virtuális hálózatban. Ehhez a példához hello Kafka, mind a Spark-fürtök találhatók egy Azure virtuális hálózatra. a következő ábra azt mutatja be, hogyan kommunikációs hello fürtök között zajló kommunikációról hello:
 
 ![Spark és Kafka fürtök egy Azure virtuális hálózatban ábrája](./media/hdinsight-apache-spark-with-kafka/spark-kafka-vnet.png)
 
 > [!NOTE]
-> A virtuális hálózaton belüli kommunikáció a Kafka szolgáltatás korlátozódik. A fürtben, mint az SSH és az Ambari, más szolgáltatások az interneten keresztül is elérhető. A hdinsight eszközzel elérhető nyilvános portokon további információkért lásd: [portok és a HDInsight által használt URI-azonosítók](hdinsight-hadoop-port-settings-for-services.md).
+> hello Kafka szolgáltatás korlátozott toocommunication hello virtuális hálózaton belül. Egyéb szolgáltatások hello fürtön, például az SSH és az Ambari, keresztül is elérhető hello internet. Nyilvános és a HDInsight együttes rendelkezésre álló hello-portok további információkért lásd: [portok és a HDInsight által használt URI-azonosítók](hdinsight-hadoop-port-settings-for-services.md).
 
-Létrehozhat egy Azure virtuális hálózatra, Kafka, és a Spark-fürtök manuális, célszerűbb Azure Resource Manager sablonnal. Az alábbi lépések segítségével telepíthet egy Azure virtuális hálózatot, Kafka, és a Spark-fürtök az Azure-előfizetéshez.
+Bár manuálisan is létrehozhat egy Azure virtuális hálózatra, Kafka és Spark fürtök, ez a beállítás könnyebb toouse Azure Resource Manager-sablonok. Használjon hello alábbi lépéseit toodeploy egy Azure virtuális hálózatra, Kafka, és a Spark-fürtök tooyour Azure-előfizetés.
 
-1. A következő gomb segítségével jelentkezzen be az Azure-ba, és nyissa meg a sablon az Azure portálon.
+1. A tooAzure gomb toosign és hello Azure-portál megnyitása hello sablon hello használata.
     
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet-v4.1.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet-v4.1.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy tooAzure"></a>
     
-    Az Azure Resource Manager sablon itt található: **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet-v4.1.json**.
+    hello Azure Resource Manager sablon itt található: **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet-v4.1.json**.
 
-    Ez a sablon hoz létre a következő erőforrásokat:
+    Ez a sablon a következő erőforrások hello hoz létre:
 
     * Egy Kafka HDInsight 3.5-fürtön.
     * A Spark on HDInsight 3.6 fürtön.
-    * Egy Azure virtuális hálózatot, amely a HDInsight-fürtöt tartalmaz.
+    * Egy Azure virtuális hálózatot, amely tartalmazza a HDInsight-fürtök hello.
 
     > [!IMPORTANT]
-    > A strukturált, ebben a példában használt adatfolyam-továbbítási notebook a Spark on HDInsight 3.6 igényel. Ha a HDInsight Spark egy korábbi verzióját használja, hibák merülnek fel a notebook használatakor.
+    > hello strukturált adatfolyam notebook használt ebben a példában a Spark on HDInsight 3.6 igényel. Ha a HDInsight Spark egy korábbi verzióját használja, hibák merülnek fel hello notebook használatakor.
 
-2. A következő információk segítségével a feltöltik a **egyéni telepítési** panel:
+2. Információk toopopulate hello tételek követően hello használata hello **egyéni telepítési** panel:
    
     ![HDInsight egyéni központi telepítés](./media/hdinsight-apache-spark-with-kafka/parameters.png)
    
-    * **Erőforráscsoport**: hozzon létre egy csoportot, vagy válasszon egy meglévőt. Ez a csoport tartalmazza a HDInsight-fürthöz.
+    * **Erőforráscsoport**: hozzon létre egy csoportot, vagy válasszon egy meglévőt. Ez a csoport hello HDInsight-fürtöt tartalmaz.
 
-    * **Hely**: Adjon meg egy földrajzilag Önhöz legközelebb eső helyet.
+    * **Hely**: Válasszon egy helyet a földrajzi elhelyezkedés alapján Bezárás tooyou.
 
-    * **Fürt neve kiinduló**: Ez az érték használható a Spark alap néven és Kafka fürtök. Ha például **hdi** hoz létre a Spark, spark-hdi__ nevű és egy Kafka fürtön nevű **kafka-hdi**.
+    * **Fürt neve kiinduló**: Ez az érték neveként hello alapszintű hello Spark és Kafka fürtök használható. Ha például **hdi** hoz létre a Spark, spark-hdi__ nevű és egy Kafka fürtön nevű **kafka-hdi**.
 
-    * **A fürt bejelentkezési felhasználónevét**: A rendszergazda felhasználóneve a Spark és Kafka fürt.
+    * **A fürt bejelentkezési felhasználónevét**: hello rendszergazda felhasználóneve hello Spark és Kafka fürt.
 
-    * **A fürt bejelentkezési jelszó**: a Spark és Kafka fürt rendszergazdai jelszóval.
+    * **A fürt bejelentkezési jelszó**: hello rendszergazdai jelszóval hello Spark és Kafka fürt.
 
-    * **SSH-felhasználónév**: az SSH-felhasználó a Spark- és Kafka fürtök létrehozása.
+    * **SSH-felhasználónév**: hello SSH felhasználói toocreate hello Spark és Kafka fürt.
 
-    * **SSH-jelszónak**: a Spark és Kafka fürt SSH-felhasználó jelszavát.
+    * **SSH-jelszónak**: hello SSH felhasználó hello Spark és Kafka fürt hello jelszavát.
 
-3. Olvassa el a **feltételek és kikötések**, majd válassza ki **elfogadom a feltételeket és a fenti feltételek**.
+3. Olvasási hello **feltételek és kikötések**, majd válassza ki **toohello feltételek és kikötések fenti elfogadom**.
 
-4. Végül ellenőrizze **rögzítés az irányítópulton** majd **beszerzési**. A fürt létrehozása nagyjából 20 percet vesz igénybe.
+4. Végül ellenőrizze **PIN-kód toodashboard** majd **beszerzési**. Körülbelül 20 percet toocreate hello fürtök szükséges.
 
-Az erőforrások létrehozása után, ekkor megnyílik az erőforráscsoport panel.
+Létrehozása után a hello erőforrásokat, átirányított toohello erőforráscsoport panel áll.
 
-![A virtuális hálózat és a fürtök erőforráscsoport panel](./media/hdinsight-apache-spark-with-kafka/groupblade.png)
+![Erőforráscsoport panel hello vnet és fürtök](./media/hdinsight-apache-spark-with-kafka/groupblade.png)
 
 > [!IMPORTANT]
-> Figyelje meg, hogy a HDInsight-fürtök neve **spark-BASENAME** és **kafka-BASENAME**, ahol BASENAME a sablonhoz megadott név. Ezeket a neveket a későbbi lépésekben használja, a fürtök történő csatlakozás során.
+> Figyelje meg, hogy vannak-e a HDInsight-fürtök hello hello nevei **spark-BASENAME** és **kafka-BASENAME**, ahol BASENAME toohello sablon megadott hello nevét. Ezeket a neveket használja a későbbi lépésekben toohello fürtök kapcsolódáskor.
 
-## <a name="get-the-kafka-brokers"></a>A Kafka brókerek beolvasása
+## <a name="get-hello-kafka-brokers"></a>Hello Kafka brókerek beolvasása
 
-Ebben a példában a kódot a Kafka broker a fürt állomásai között Kafka csatlakozik. A Kafka broker állomások megkereséséhez használja a következő PowerShell- vagy Bash példa:
+hello ebben a példában kód csatlakozik toohello Kafka replikaszervező hello Kafka fürt gazdagépei. toofind hello Kafka broker gazdagépek, a következő PowerShell- vagy Bash példa hello használata:
 
 ```powershell
-$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"
-$clusterName = Read-Host -Prompt "Enter the Kafka cluster name"
+$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"
+$clusterName = Read-Host -Prompt "Enter hello Kafka cluster name"
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/KAFKA/components/KAFKA_BROKER" `
     -Credential $creds
 $respObj = ConvertFrom-Json $resp.Content
@@ -107,53 +107,53 @@ curl -u admin:$PASSWORD -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clust
 ```
 
 > [!NOTE]
-> Ez a példa vár `$PASSWORD` magában foglalja a fürt bejelentkezési azonosító jelszavának és `$CLUSTERNAME` magában foglalja a Kafka fürt nevét.
+> Ez a példa vár `$PASSWORD` toocontain hello jelszó hello fürt bejelentkezési azonosítóhoz, és `$CLUSTERNAME` toocontain hello hello Kafka fürt nevét.
 >
-> Ez a példa a [jq](https://stedolan.github.io/jq/) segédprogram a JSON-dokumentum kívül az adatok.
+> Ez a példa hello [jq](https://stedolan.github.io/jq/) segédprogram tooparse adatokat hello JSON-dokumentum.
 
-A kimenet az alábbi szöveghez hasonló:
+a kimeneti hello hasonló toohello a következő szöveget:
 
 `wn0-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn1-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn2-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092,wn3-kafka.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net:9092`
 
-Ezt az információt akkor menteni, mert használatban van ebben a dokumentumban a következő szakaszok.
+Ezt az információt akkor menteni, mert a következő szakaszok a jelen dokumentum hello használatban van.
 
-## <a name="get-the-notebooks"></a>A notebookok beolvasása
+## <a name="get-hello-notebooks"></a>Hello notebookok beolvasása
 
-A jelen dokumentumban ismertetett példa kódja megtalálható [https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming](https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming).
+a jelen dokumentumban ismertetett hello például hello kód megtalálható [https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming](https://github.com/Azure-Samples/hdinsight-spark-kafka-structured-streaming).
 
-## <a name="upload-the-notebooks"></a>Töltse fel a notebookok
+## <a name="upload-hello-notebooks"></a>Hello notebookok feltöltése
 
-Az alábbi lépések segítségével töltse fel a notebookok a projektből a Spark on HDInsight-fürt számára:
+Lépéseket tooupload hello notebookok követően – hello projekt tooyour Spark on HDInsight-fürt hello használata:
 
-1. A böngészőben csatlakoztassa a Jupyter notebook a Spark-fürtön. Cserélje le a következő URL-címet, `CLUSTERNAME` a Kafka fürt nevű:
+1. A böngészőben csatlakozzon a toohello Jupyter notebook a Spark-fürtön. Hello a következő URL-címe, cserélje le `CLUSTERNAME` hello nevű a Kafka fürt:
 
         https://CLUSTERNAME.azurehdinsight.net/jupyter
 
-    Amikor a rendszer kéri, adja meg a fürt bejelentkezési (rendszergazda) és a fürt létrehozásakor használt jelszót.
+    Amikor a rendszer kéri, adja meg a hello fürt felhasználónevet (rendszergazda) és hello fürt létrehozásakor használt jelszót.
 
-2. A lap felső jobb oldalán, használja a __feltöltése__ gombra kattintva töltse fel a __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ fájl a fürthöz. Válassza ki __nyitott__ való feltöltés indításához.
+2. Hello felső jobb oldalán álló hello oldal, használja a hello __feltöltése__ gomb tooupload hello __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ toohello fájlfürt. Válassza ki __nyitott__ toostart hello feltöltése.
 
-    ![A feltöltési gomb használatával válassza ki, majd töltse fel a notebook](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-button.png)
+    ![Hello feltöltési gomb tooselect használja, és töltse fel a notebook](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-button.png)
 
-    ![Válassza ki a KafkaStreaming.ipynb fájlt](./media/hdinsight-apache-kafka-spark-structured-streaming/select-notebook.png)
+    ![Hello KafkaStreaming.ipynb fájl kiválasztása](./media/hdinsight-apache-kafka-spark-structured-streaming/select-notebook.png)
 
-3. Keresse a __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ bejegyzés notebookok, és válassza ki a listában __feltöltése__ mellette gombra.
+3. Hello található __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ hello lista notebookok, és válassza ki a bejegyzést __feltöltése__ mellette gombra.
 
-    ![A feltöltési gomb melletti a KafkaStreaming.ipynb bejegyzés segítségével töltse fel a notebook kiszolgáló](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-notebook.png)
+    ![Használjon hello Feltöltés gombra hello KafkaStreaming.ipynb bejegyzés tooupload mellett azt toohello notebook kiszolgáló](./media/hdinsight-apache-kafka-spark-structured-streaming/upload-notebook.png)
 
-4. Ismételje meg a 1-3 betöltése a __Spark-strukturált-adatfolyam-a-Kafka.ipynb__ notebookot.
+4. Ismételje meg a 1-3 tooload hello __Spark-strukturált-adatfolyam-a-Kafka.ipynb__ notebookot.
 
 ## <a name="load-tweets-into-kafka"></a>Twitter-üzeneteket betölthető Kafka
 
-A fájlok feltöltése után válassza a __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ nyissa meg a notebook bejegyzést. Kövesse a notebook Twitter-üzeneteket betölthető Kafka.
+Hello fájlok feltöltése után válassza a hello __adatfolyam-Twitter-üzeneteket-To_Kafka.ipynb__ bejegyzés tooopen hello notebookot. Kövesse hello hello notebook tooload Twitter-üzeneteket Kafka be.
 
 ## <a name="process-tweets-using-spark-structured-streaming"></a>Folyamat Twitter-üzeneteket Spark strukturált adatfolyam használata
 
-Jupyter Notebook kezdőlapján válassza ki a __Spark-strukturált-adatfolyam-a-Kafka.ipynb__ bejegyzés. Kövesse a notebook Twitter-üzeneteket betölteni a Kafka Spark strukturált Streaming használatával.
+Hello Jupyter Notebook kezdőlapját, válassza ki hello __Spark-strukturált-adatfolyam-a-Kafka.ipynb__ bejegyzés. Kövesse hello hello notebook tooload Twitter-üzeneteket a Spark strukturált Streaming használatával Kafka.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Most, hogy megismerte a használata Spark strukturált Streaming rendelkezik, tekintse meg a következő dokumentumok tudhat meg többet a Spark és Kafka használata:
+Most, hogy megtanulta, hogyan toouse Spark strukturált Streaming, tekintse meg a következő dokumentumok toolearn további információk a Spark és Kafka hello:
 
-* [Spark streaming (DStream) rendelkező Kafka használata](hdinsight-apache-spark-with-kafka.md).
+* [Hogyan toouse Spark streamelési (DStream) rendelkező Kafka](hdinsight-apache-spark-with-kafka.md).
 * [Indítsa el a Jupyter Notebook és a Spark on HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md)

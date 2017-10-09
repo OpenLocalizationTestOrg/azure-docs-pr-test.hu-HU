@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN használati minták elemzése |} Microsoft Docs"
-description: "Tekintse meg a használati minták használatával az alábbi jelentések a CDN: sávszélesség, adatokat továbbít, a találatok, gyorsítótár állapotok, gyorsítótári találati aránya, IPV4/IPV6 adatokat továbbít."
+title: "aaaAnalyze Azure CDN használati minták |} Microsoft Docs"
+description: "Tekintse meg a használati minták a CDN használatával a következő jelentések hello: sávszélesség, adatokat továbbít, a találatok, gyorsítótár állapotok, gyorsítótári találati aránya, IPV4/IPV6 adatokat továbbít."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: aadbe872dd3384c8d337b432fb3be69422ca322b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d27e6f60acaed66abb27d860c3a3e2e81c9f60cf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-azure-cdn-usage-patterns"></a>Azure CDN használati minták elemzése
 
 [!INCLUDE[cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
-Az alábbi útmutató végighalad a lépéseket, a kezelés portálon Verizon profilok core-jelentések megtekintéséhez. Előfordulhat, hogy is tárhelyre, az event hubs alapvető analitikai adatok exportál vagy analytics (oms) keresse meg a Verizon és a Akamai [az azure portálon keresztül](cdn-log-analysis.md).
+hello útmutató az alábbi végig kell vinnie hello lépéseket tooview hello core jelentések Verizon profilok hello kezelése portálon. Core analytics adatok toostorage, az event hubs vagy Verizon és a Akamai naplóelemzés (oms) is exportálhat [hello azure portálon keresztül](cdn-log-analysis.md).
 
-Tekintse meg a használati minták a CDN használata a következő:
+Tekintse meg a használati minták a CDN a következő jelentések hello használata:
 
 * Sávszélesség
 * Átvitt adatok
@@ -36,107 +36,107 @@ Tekintse meg a használati minták a CDN használata a következő:
 * Átvitt adatok IPv4/IPV6
 
 ## <a name="accessing-core-reports"></a>Core jelentések használata
-1. A CDN-profil panelje, kattintson a **kezelése** gombra.
+1. A CDN-profil panelje hello, kattintson a hello **kezelése** gombra.
    
     ![CDN-profil panelje kezelése gomb](./media/cdn-reports/cdn-manage-btn.png)
    
-    Megnyitja a CDN-felügyeleti portálon.
-2. Vigye a **Analytics** lapra, és vigye a **Core jelentések** menü.  Kattintson a kívánt jelentést, a menüben.
+    Megnyílik a hello CDN felügyeleti portálon.
+2. Hello az egérmutatót **Analytics** fülre, majd az egérmutatót hello **Core jelentések** menü.  Kattintson a kívánt hello jelentés hello menüben.
    
     ![CDN management portal - Core jelentések menü](./media/cdn-reports/cdn-core-reports.png)
 
 ## <a name="bandwidth"></a>Sávszélesség
-A sávszélesség a jelentés egy grafikonon és az adatok táblázatot, amely tartalmazza a sávszélesség-használat a HTTP és HTTPS adott idő alatt áll. A sávszélesség-használat összes CDN POP vagy egy adott POP keresztül tekintheti meg. Ez lehetővé teszi, hogy a forgalom teljesítményt és a terjesztési megtekintése CDN POP a MB/s között.
+hello sávszélesség jelentés egy grafikonon és az adatok táblázatot hello a sávszélesség-használat a HTTP és HTTPS adott idő alatt áll. Hello sávszélesség az összes CDN POP vagy egy adott POP keresztül tekintheti meg. Ez lehetővé teszi, tooview hello forgalom teljesítményt és a terjesztési CDN POP MB/s mértékegységben.
 
-* Minden peremhálózati csomópont összes csomópontjának hálózati forgalom, vagy válasszon egy adott régióban csomópont a legördülő listából válassza ki.
-* Válassza ki a dátumtartományt megtekintése a mai ezen a héten/e havi adatokat stb. vagy adjon meg egyéni dátumok, majd kattintson a "" Győződjön meg arról, hogy a kiválasztott frissül.
-* Exportálni, és töltse le az adatokat az "Ugrás" melletti excel lap ikonra kattintva.
+* Válasszon csomópontjaihoz peremhálózati toosee forgalom minden csomópont, vagy egy adott régióban csomópont hello legördülő listából válassza.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb. vagy adjon meg egyéni dátumok, majd kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
+* Exportálhatja és hello kattintva hello adatok letöltése mellett található lap ikonra excel túl "lépjen".
 
-A jelentés 5 percenként frissül.
+hello jelentés 5 percenként frissül.
 
 ![Sávszélesség-jelentés](./media/cdn-reports/cdn-bandwidth.png)
 
 ## <a name="data-transferred"></a>Átvitt adatok
-Ez a jelentés egy grafikonon és az adatok táblázatot a forgalom használati HTTP és HTTPS adott idő alatt áll. A forgalom használata az összes CDN POP vagy egy adott POP keresztül tekintheti meg. Ez lehetővé teszi, hogy a forgalom teljesítményt és a terjesztési megtekintése között CDN POP GB-ban.
+Ez a jelentés egy grafikonon és az adatok táblázatot hello forgalom használati HTTP és HTTPS adott idő alatt áll. Az összes CDN POP vagy egy adott POP hello forgalom használati tekintheti meg. Ez lehetővé teszi, tooview hello forgalom teljesítményt és a terjesztési CDN POP GB-ban.
 
-* Válassza ki az összes jegyzetet hálózati forgalom, vagy a legördülő listából válassza ki a régió/csomópont csomópontjaihoz peremhálózati.
-* Válassza ki a dátumtartományt megtekintése a mai ezen a héten/e havi adatokat stb. vagy adjon meg egyéni dátumok, majd kattintson a "" Győződjön meg arról, hogy a kiválasztott frissül.
-* Exportálni, és töltse le az adatokat az "Ugrás" melletti excel lap ikonra kattintva.
+* Minden megjegyzések csomópontjaihoz peremhálózati toosee forgalom válasszon, vagy egy adott régióban csomópont hello legördülő listából válassza.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb. vagy adjon meg egyéni dátumok, majd kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
+* Exportálhatja és hello kattintva hello adatok letöltése mellett található lap ikonra excel túl "lépjen".
 
-A jelentés 5 percenként frissül.
+hello jelentés 5 percenként frissül.
 
 ![Az átvitt adatmennyiség jelentés](./media/cdn-reports/cdn-data-transferred.png)
 
 ## <a name="hits-status-codes"></a>Találatok (állapotkód esetében)
-Ez a jelentés a kérelem állapotkódok a tartalom terjesztési ismerteti. A tartalom minden kérelemnél hoz létre a HTTP-állapotkódot. Az állapotkód: ismerteti, hogyan történik a peremhálózati POP a kérelem kezelése. Például 2xx állapotkódok jelzi, hogy a kérés sikeresen kiszolgálásának ügyfélnek, amíg egy 4xx állapotkód: azt jelzi, hogy hiba történt. HTTP-állapotkód kapcsolatos további tudnivalókért lásd: [állapotkódok](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+Ez a jelentés kérelem állapotkódjai a tartalom terjesztése hello ismerteti. A tartalom minden kérelemnél hoz létre a HTTP-állapotkódot. hello állapotkód: ismerteti, hogyan történik a peremhálózati POP hello kérelem kezelése. Például 2xx állapotkódok jelző hello kérés sikeresen kiszolgálásának tooa ügyfelet, amíg egy 4xx állapotkód: azt jelzi, hogy hiba történt. HTTP-állapotkód kapcsolatos további tudnivalókért lásd: [állapotkódok](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
-* Válassza ki a dátumtartományt megtekintése a mai ezen a héten/e havi adatokat stb. vagy adjon meg egyéni dátumok, majd kattintson a "" Győződjön meg arról, hogy a kiválasztott frissül.
-* Exportálni, és töltse le az adatokat az "Ugrás" melletti excel-táblában.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb. vagy adjon meg egyéni dátumok, majd kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
+* Exportálhatja és hello kattintva hello adatok letöltése mellett található lap az excel túl "lépjen".
 
 ![A találatok jelentés](./media/cdn-reports/cdn-hits.png)
 
 ## <a name="cache-statuses"></a>Gyorsítótárak allapota
-Ez a jelentés a terjesztési találatot eredményező gyorsítótárbeli kereséseinek és az ügyfél kérésében gyorsítótárbeli ismerteti. Mivel a leggyorsabb teljesítmény találatot eredményező gyorsítótárbeli kereséseinek származik, adatok kézbesítési sebességű minimalizálja a gyorsítótárbeli és lejárt találatok optimalizálható. A forrás kiszolgálón, hogy ne rendelje hozzá a "no-cache" válaszfejlécek konfigurálásával, lehetőleg ne a lekérdezési karakterlánc gyorsítótárazás kivéve, ha feltétlenül szükséges és nem gyorsítótárazható válaszkódot elkerülésével gyorsítótárbeli csökkenteni lehet. Találatok elkerülhetők azáltal, hogy egy eszköz lejárt gyorsítótár maximális-életkora mindaddig, amíg az eredeti kiszolgálóra kérelmek számának minimalizálása érdekében a lehető végpontjára.
+Ez a jelentés hello terjesztési találatot eredményező gyorsítótárbeli kereséseinek és az ügyfél kérésében gyorsítótárbeli ismerteti. Hello leggyorsabb teljesítmény találatot eredményező gyorsítótárbeli kereséseinek származik, mert adatok kézbesítési sebességű minimalizálja a gyorsítótárbeli és lejárt találatok is optimalizálhatja. Az eredeti kiszolgáló tooavoid "no-cache" válaszfejlécek hozzárendelése konfigurálásával, lehetőleg ne a lekérdezési karakterlánc gyorsítótárazás kivéve, ha feltétlenül szükséges és nem gyorsítótárazható válaszkódot elkerülésével gyorsítótárbeli csökkenteni lehet. Lejárt a gyorsítótár találatok elkerülhetők azáltal, hogy az eszköz maximális-életkora mindaddig, amíg lehetséges toominimize hello kérelmek toohello eredeti kiszolgálóra száma.
 
 ![Gyorsítótár-állapotok jelentés](./media/cdn-reports/cdn-cache-statuses.png)
 
 ### <a name="main-cache-statuses-include"></a>Fő gyorsítótár állapotok a következők:
-* TCP_HIT: Kiszolgált szélétől. Az objektum a gyorsítótárban volt, és nem nagyobb a maximális életkora volt.
-* TCP_MISS: Kiszolgált a forrásból. Az objektum nem a gyorsítótárban, és a válasz vissza az eredeti volt.
-* TCP_EXPIRED _MISS: kiszolgált forrásból eredete ismételt érvényesítése után. Az objektum a gyorsítótárban volt, de nagyobb a maximális életkora volt. A forrás egy ismételt érvényesítése a felváltja a forrásból új választ gyorsítótár-objektumának eredményezett.
-* TCP_EXPIRED _HIT: kiszolgált szélétől eredete ismételt érvényesítése után. Az objektum a gyorsítótárban volt, de nagyobb a maximális életkora volt. A forrás-kiszolgálóval a ismételt érvényesítése a módosítani kívánt gyorsítótár-objektumának eredményezett.
-* Válassza ki a dátumtartományt megtekintése a mai ezen a héten/e havi adatokat stb. vagy adjon meg egyéni dátumok, majd kattintson a "" Győződjön meg arról, hogy a kiválasztott frissül.
-* Exportálni, és töltse le az adatokat az "Ugrás" melletti excel lap ikonra kattintva.
+* TCP_HIT: Kiszolgált szélétől. hello objektum a gyorsítótárban volt, és nem nagyobb a maximális életkora volt.
+* TCP_MISS: Kiszolgált a forrásból. hello objektum nem a gyorsítótárban és hello válasz hátsó tooorigin.
+* TCP_EXPIRED _MISS: kiszolgált forrásból eredete ismételt érvényesítése után. hello objektum a gyorsítótárban, de nagyobb a maximális életkora volt. A forrás egy ismételt érvényesítése hello gyorsítótár-objektumának származási új válaszára helyébe eredményezett.
+* TCP_EXPIRED _HIT: kiszolgált szélétől eredete ismételt érvényesítése után. hello objektum a gyorsítótárban, de nagyobb a maximális életkora volt. Egy ismételt érvényesítése hello származási kiszolgálóval hello gyorsítótár-objektumának a módosítani kívánt eredményezett.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb. vagy adjon meg egyéni dátumok, majd kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
+* Exportálhatja és hello kattintva hello adatok letöltése mellett található lap ikonra excel túl "lépjen".
 
 ### <a name="full-list-of-cache-statuses"></a>Gyorsítótár-állapotok teljes listája
-* TCP_HIT – amikor egy kérelem kiszolgált a POP-ről az ügyfél ezt az állapotot jelentett. Egy eszköz azonnal kiszolgált POP, amikor az ügyfél legközelebb POP a gyorsítótárban van és van-e egy érvényes élő idő vagy TTL-t. A következő válaszfejlécek TTL határozza meg:
+* TCP_HIT - kérést közvetlenül a hello POP toohello ügyfél kiszolgált van küldött ezt az állapotot. Egy eszköz azonnal kiszolgált hello POP legközelebbi toohello ügyfél vannak gyorsítótárazva, és van egy érvényes élő idő POP vagy TTL-t. A következő válaszfejlécek hello TTL határozza meg:
   
   * A Cache-Control: s-maxage
   * A Cache-Control: maximális-kor
   * Lejár
-* TCP_MISS - azt jelzi, hogy a kért eszköz gyorsítótárazott verzió nem található meg az ügyfél legközelebb POP. Az eszköz kérni fogja az eredeti kiszolgálóra vagy egy eredeti pajzs kiszolgálóra. Ha az eredeti kiszolgálóra vagy a forráskiszolgáló pajzs adja vissza egy eszköz, az ügyfélprogram és az ügyfél és a peremhálózati kiszolgáló gyorsítótárazza. Ellenkező esetben nem 200 állapotkódot (pl. 403 Tiltott, 404 nem található, stb.) adja vissza.
-* TCP_EXPIRED _HIT - Ez az állapot jelent, ha a kérelmeket, amelyek egy-egy lejárt TTL-t, ha az eszköz maximális-életkora érvényessége lejárt, például az eszköz megcélzott állítása és kiszolgálása között a POP-ről az ügyfélnek.
+* TCP_MISS - azt jelzi, hogy a kért eszköz hello gyorsítótárazott verzió nem található a hello POP legközelebbi toohello ügyfél. hello eszköz kérni fogja az eredeti kiszolgálóra vagy egy eredeti pajzs kiszolgálóra. Ha hello eredeti kiszolgálóra vagy hello pajzs forráskiszolgáló adja vissza egy eszköz, toohello ügyfél kiszolgált és hello ügyfél és a hello peremhálózati kiszolgáló gyorsítótárában. Ellenkező esetben nem 200 állapotkódot (pl. 403 Tiltott, 404 nem található, stb.) adja vissza.
+* TCP_EXPIRED _HIT - ezt az állapotot jelentett a kérelmeket, amelyek egy-egy lejárt TTL-t, például amikor hello eszköz maximális-életkora érvényessége lejárt, az eszköz megcélzott kiszolgálásának hello POP toohello ügyfél közvetlenül a Ha.
   
-    Lejárt kérelmet általában annak az eredménye ismételt érvényesítése kérelemben az eredeti kiszolgálóra. Ahhoz, hogy egy TCP_EXPIRED _HIT megtörténik a forrás kiszolgálónak jeleznie kell, hogy az eszköz egy újabb verziója nem létezik. Ilyen helyzet általában frissíti ezt az eszközt a Cache-Control és Expires fejléc.
-* TCP_EXPIRED _MISS – amikor egy lejárt gyorsítótárazott eszköz egy újabb verziója az ügyfélnek a POP-ra a kiszolgált ezt az állapotot jelentett. Ez akkor fordulhat elő, ha egy gyorsítótárazott eszköz Élettartama lejárt (pl. lejárt maximális-életkora) és az eredeti kiszolgálóra adja vissza egy adott eszközre újabb verziója. Az eszköz ezen új verziójával szolgáltató az ügyfélnek a gyorsítótárazott verzió helyett. Továbbá azt a gyorsítótárba fognak kerülni a peremhálózati kiszolgáló és az ügyfélen.
-* CONFIG_NOCACHE - azt jelzi, hogy egy ügyfél-konfigurációs az oldal POP miatt nem sikerült az eszköz a gyorsítótárba helyezésből.
+    Lejárt kérelmet általában egy ismételt érvényesítése kérelem toohello eredeti kiszolgálóra eredményez. Ahhoz, hogy egy TCP_EXPIRED _HIT toooccur hello származási kiszolgálónak jeleznie kell, hogy egy újabb verziója hello eszköz nem létezik. Ilyen helyzet általában frissíti ezt az eszközt a Cache-Control és Expires fejléc.
+* TCP_EXPIRED _MISS - ezt az állapotot jelentett amikor hello POP toohello ügyfélről kiszolgált egy lejárt gyorsítótárazott eszköz egy újabb verziója. Ez akkor fordulhat elő, ha egy gyorsítótárazott eszköz TTL hello lejárt (pl. lejárt maximális-életkora) és hello származási adja meg, hogy az eszköz egy újabb verziója. Az új verzió hello eszköz szolgáltató toohello ügyfél hello gyorsítótárazott helyett. Továbbá azt a gyorsítótárban tartja hello peremhálózati kiszolgáló- és hello.
+* CONFIG_NOCACHE - azt jelzi, hogy egy ügyfél-konfigurációs az oldal POP akadályoznia hello eszköz a gyorsítótárba.
 * Nincs – Ez az állapot azt jelzi, hogy a tartalom frissesség ellenőrzése nem történt meg.
-* TCP_ CLIENT_REFRESH _MISS – amikor egy HTTP-ügyfél (pl. webböngésző) kényszeríti a forráskiszolgálóról egy új verziója elavult eszköz beolvasandó POP él ezt az állapotot jelentett.
+* TCP_ CLIENT_REFRESH _MISS - ezt az állapotot jelentett, amikor egy HTTP-ügyfél (pl. webböngésző) hello forráskiszolgálóról arra kényszeríti az edge POP tooretrieve egy új verziója elavult eszköz.
   
-    Alapértelmezés szerint a kiszolgálóink megakadályozhatják, hogy egy HTTP-ügyfél kényszerítése a peremhálózati kiszolgálóinak beolvasása az eszköz új verziójának a forráskiszolgálóról.
-* TCP_ PARTIAL_HIT - Ez az állapot jelent, ha a bájttartománykéréseket eredményezi a részlegesen gyorsítótárazott eszköz találat. A kért bájttartomány azonnal kiszolgált a a csatlakozási pont az ügyfélhez.
-* UNCACHEABLE – Ha egy eszköz a Cache-Control és Expires fejléc jelzi, hogy azt nem gyorsítótárazza a POP- vagy HTTP-ügyfél által jelentett ezt az állapotot. Az ilyen típusú kérelmek szolgáltatott a forráskiszolgálóról
+    Alapértelmezés szerint a kiszolgálóink megakadályozhatják, hogy egy HTTP-ügyfél kényszerítése a peremhálózati kiszolgáló tooretrieve hello eszközök új verziójának hello forráskiszolgálóról.
+* TCP_ PARTIAL_HIT - Ez az állapot jelent, ha a bájttartománykéréseket eredményezi a részlegesen gyorsítótárazott eszköz találat. hello kért bájttartomány azonnal kiszolgált hello POP toohello ügyfélről.
+* UNCACHEABLE – Ha egy eszköz a Cache-Control és Expires fejléc jelzi, hogy azt nem gyorsítótárazza a POP vagy hello HTTP-ügyfél által jelentett ezt az állapotot. Az ilyen típusú kérelmek szolgáltatott hello forráskiszolgálóról
 
 ## <a name="cache-hit-ratio"></a>Gyorsítótár találati aránya
-Ez a jelentés azt jelzi, hogy közvetlenül a gyorsítótárból volt szolgáltatott gyorsítótárazott kérelem azon százaléka.
+Ez a jelentés azt jelzi, hogy közvetlenül a gyorsítótárból volt szolgáltatott gyorsítótárazott kérések hello aránya.
 
-A jelentés tartalmazza a következő adatokat:
+hello a jelentés tartalmazza a következő adatok hello:
 
-* A kért tartalom a legközelebbi igénylő POP gyorsítótárazva lett.
-* A kérés kiszolgálásának közvetlenül a hálózati szélétől.
-* A kérelem nem volt szükség a forrás-kiszolgálóval ismételt érvényesítése.
+* a kért hello a hello POP legközelebbi toohello kérelmező a tartalom gyorsítótárazva lett.
+* hello kérés kiszolgálásának közvetlenül hello a hálózat széléről.
+* hello kérelem nem volt szükség hello származási kiszolgálóval ismételt érvényesítése.
 
-A jelentés nem tartalmaz:
+hello jelentés nem tartalmaz:
 
-* Ország szűrési beállítások miatt elutasított kérelmek.
+* Toocountry szűrési beállítások miatt elutasított kérelmek.
 * Eszközök fejlécekhez jelzi, hogy azok nem gyorsítótárazza a kérelmeket. Például a Cache-Control: saját, a Cache-Control: no-cache vagy Pragma: no-cache fejlécek megakadályozza, hogy egy eszköz a gyorsítótárba.
 * Tartomány kérelmek bájt részlegesen gyorsítótárazott tartalom.
 
-A képlet: (TCP_ TALÁLATI / (TCP_ TALÁLAT + TCP_MISS)) * 100
+hello képlet: (TCP_ TALÁLATI / (TCP_ TALÁLAT + TCP_MISS)) * 100
 
-* Válassza ki a dátumtartományt megtekintése a mai ezen a héten/e havi adatokat stb. vagy adjon meg egyéni dátumok, majd kattintson a "" Győződjön meg arról, hogy a kiválasztott frissül.
-* Exportálni, és töltse le az adatokat az "Ugrás" melletti excel lap ikonra kattintva.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb. vagy adjon meg egyéni dátumok, majd kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
+* Exportálhatja és hello kattintva hello adatok letöltése mellett található lap ikonra excel túl "lépjen".
 
 ![Gyorsítótár találati arány jelentés](./media/cdn-reports/cdn-cache-hit-ratio.png)
 
 ## <a name="ipv4ipv6-data-transferred"></a>IPv4-/ IPV6 esetén az átvitt adatmennyiség
-Ez a jelentés az IPV4 és IPv6-alapú forgalom használati eloszlását mutatja.
+Ez a jelentés az IPV4 és IPV6 hello használati forgalomeloszlás tartalmazza.
 
 ![IPv4-/ IPV6 esetén az átvitt adatmennyiség](./media/cdn-reports/cdn-ipv4-ipv6.png)
 
-* Jelölje ki a mai ezen a héten/e havi adatokat stb megtekintéséhez, vagy adjon meg egyéni dátumok dátumtartományt.
-* Kattintson az "Ugrás" Győződjön meg arról, hogy a kiválasztott frissül.
+* Válassza ki a dátum tartomány tooview adatainak ma ezen a héten/ebben a hónapban, stb., vagy adjon meg egyéni dátumok.
+* Kattintson az "Ugrás" toomake meg arról, hogy a kiválasztott frissül.
 
 ## <a name="considerations"></a>Megfontolandó szempontok
-Jelentések csak az utolsó 18 hónapon belül hozható létre.
+Jelentések csak hozható létre belül hello utolsó 18 hónap.
 

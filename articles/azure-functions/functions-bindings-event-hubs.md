@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Functions az Event Hubs kötések |} Microsoft Docs"
-description: "Azure Event Hubs kötések az Azure Functions használatának megismerése."
+title: "aaaAzure funkciók Event Hubs kötések |} Microsoft Docs"
+description: "Megértéséhez hogyan toouse Azure Event Hubs kötések Azure Functions."
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,55 +16,55 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/20/2017
 ms.author: wesmc
-ms.openlocfilehash: 19021bef8b7156b3049f43b0275c0ed0c6b22514
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e864f032ad5ac58d318c9843c3844b5642733a70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-event-hubs-bindings"></a>Az Azure Functions az Event Hubs kötések
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Ez a cikk azt ismerteti, hogyan konfigurálhatja és használhatja [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) Azure Functions kötéseit.
+Ez a cikk azt ismerteti, hogyan tooconfigure és [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) Azure Functions kötéseit.
 Az Azure Functions támogatja indítható el, és az Event Hubs kötései kimeneti.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-Ha most ismerkedik az Azure Event Hubs, tekintse meg a [Event Hubs – áttekintés](../event-hubs/event-hubs-what-is-event-hubs.md).
+Ha új tooAzure Event Hubs, lásd: hello [Event Hubs – áttekintés](../event-hubs/event-hubs-what-is-event-hubs.md).
 
 <a name="trigger"></a>
 
 ## <a name="event-hub-trigger"></a>Hub eseményindító
-Az Event Hubs eseményindító segítségével egy event hub eseményfelhasználó küldött esemény válaszolni. Az event hubs az eseményindító beállítása olvasási hozzáféréssel kell rendelkeznie.
+Használjon hello Event Hubs tooan event hub eseményfelhasználó küldött toorespond tooan esemény következik be. Olvasási hozzáférés toohello event hub tooset hello trigger mentése kell rendelkeznie.
 
-Az Event Hubs függvény eseményindító használja a következő JSON-objektum a `bindings` function.json tömbje:
+hello Event Hubs függvény eseményindító használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of the event hub>",
-    "consumerGroup": "Consumer group to use - see below",
+    "path": "<Name of hello event hub>",
+    "consumerGroup": "Consumer group toouse - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-`consumerGroup`egy nem kötelező tulajdonság beállításához használja a [fogyasztói csoportot](../event-hubs/event-hubs-features.md#event-consumers) használt események központban előfizetni. Ha nincs megadva, a `$Default` fogyasztói csoportot használja.  
-`connection`egy Alkalmazásbeállítás, amely tartalmazza a kapcsolati karakterláncot az event hubs névtér nevének kell lennie.
-Másolja a kapcsolati karakterláncot kattintva a **kapcsolatadatok** gombra kattint, az a *névtér*, nem magát az eseményközpontba. Ez a kapcsolati karakterlánc kell rendelkeznie legalább olvasási engedéllyel az eseményindítót.
+`consumerGroup`van egy nem kötelező tulajdonság használt tooset hello [fogyasztói csoportot](../event-hubs/event-hubs-features.md#event-consumers) toosubscribe tooevents használt hello központban. Ha nincs megadva, hello `$Default` fogyasztói csoportot használja.  
+`connection`hello kapcsolati karakterlánc toohello event hub névtér tartalmazó Alkalmazásbeállítás hello nevének kell lennie.
+Másolja a kapcsolati karakterláncot hello kattintva **kapcsolatadatok** hello gombra *névtér*, nem hello eseményközpont magát. Ez a kapcsolati karakterlánc rendelkeznie kell legalább olvasási engedélyek tooactivate hello eseményindító.
 
-[További beállítások](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) egy host.json fájlban, és további Event Hubs eseményindítók megadható.  
+[További beállítások](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) megadott egy host.json a fájl toofurther finom Event Hubs eseményindítók hangolására lehet.  
 
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>Eseményindító kihasználtsága
-Az Event Hubs funkció aktiválása esetén az üzenet, amely elindítja az átad a függvény egy karakterlánc.
+Az Event Hubs funkció aktiválása esetén, amely elindítja az üdvözlőüzenetére átad a hello függvény egy karakterlánc.
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>Eseményindító minta
-Tegyük fel, hogy a következő Event Hubs trigger a `bindings` function.json tömbje:
+Tegyük fel, hogy rendelkezik a következő Event Hubs trigger hello hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -76,7 +76,7 @@ Tegyük fel, hogy a következő Event Hubs trigger a `bindings` function.json t�
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, amelyre bejelentkezik az eseményindító hub üzenet törzsét.
+Lásd: hello nyelvspecifikus minta, amelyre bejelentkezik hello hub eseményindító hello üzenet törzsét.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)
@@ -95,7 +95,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-Az esemény akkor is jelentkezhet egy [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) objektum, amely hozzáférést biztosít az esemény-metaadatok.
+Akkor is jelentkezhet hello esemény egy [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) objektum, amely lehetővé teszi az éri toohello esemény metaadatait.
 
 ```cs
 #r "Microsoft.ServiceBus"
@@ -108,7 +108,7 @@ public static void Run(EventData myEventHubMessage, TraceWriter log)
 }
 ```
 
-Események fogadásához egy kötegben, módosítsa a metódus-aláírás `string[]` vagy `EventData[]`.
+tooreceive események kötegekben, módosítsa a hello metódus-aláírás túl`string[]` vagy `EventData[]`.
 
 ```cs
 public static void Run(string[] eventHubMessages, TraceWriter log)
@@ -143,9 +143,9 @@ module.exports = function (context, myEventHubMessage) {
 <a name="output"></a>
 
 ## <a name="event-hubs-output-binding"></a>Az Event Hubs kimeneti kötése
-Az Event Hubs kimeneti kötése beírni az eseményeket az event hub eseményfelhasználó használja. Események írhat az eseményközpontba a küldési engedéllyel kell rendelkeznie.
+Az Event Hubs használja hello kimeneti kötés toowrite események tooan event hub eseménystreambe. Küldési engedéllyel tooan event hub toowrite események tooit kell rendelkeznie.
 
-A kimeneti kötés használja a következő JSON-objektum a `bindings` function.json tömbje:
+hello kimeneti kötés használja a következő JSON-objektum a hello hello `bindings` function.json tömbje:
 
 ```json
 {
@@ -157,22 +157,22 @@ A kimeneti kötés használja a következő JSON-objektum a `bindings` function.
 }
 ```
 
-`connection`egy Alkalmazásbeállítás, amely tartalmazza a kapcsolati karakterláncot az event hubs névtér nevének kell lennie.
-Másolja a kapcsolati karakterláncot kattintva a **kapcsolatadatok** gombra kattint, az a *névtér*, nem magát az eseményközpontba. Ez a kapcsolati karakterlánc az üzenetet küldeni az eseménystream küldési engedéllyel kell rendelkeznie.
+`connection`hello kapcsolati karakterlánc toohello event hub névtér tartalmazó Alkalmazásbeállítás hello nevének kell lennie.
+Másolja a kapcsolati karakterláncot hello kattintva **kapcsolatadatok** hello gombra *névtér*, nem hello eseményközpont magát. Ez a kapcsolati karakterlánc küldési engedéllyel toosend hello üzenet toohello eseményfelhasználó kell rendelkeznie.
 
 ## <a name="output-usage"></a>Kimeneti használata
-Ez a szakasz bemutatja, hogyan használható az Event Hubs kimeneti a funkciókódot kötelező.
+Ez a szakasz bemutatja, hogyan toouse az Eseményközpontok kimeneti kötelező a funkciókódot.
 
-A következő paraméter típusú kimenetre küldheti a konfigurált eseményközpontba üzenetek:
+A következő paraméter típusa hello a kimenetre küldheti üzenetek konfigurált toohello eseményközpont:
 
 * `out string`
-* `ICollector<string>`(a kimeneti több üzenetek)
+* `ICollector<string>`(toooutput több üzenetek)
 * `IAsyncCollector<string>`(aszinkron verzióját `ICollector<T>`)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Minta kimenet
-Tegyük fel, hogy a következő Event Hubs kimeneti kötések a `bindings` function.json tömbje:
+Tegyük fel, hogy rendelkezik hello következő Event Hubs kimeneti hello kötések `bindings` function.json tömbje:
 
 ```json
 {
@@ -184,7 +184,7 @@ Tegyük fel, hogy a következő Event Hubs kimeneti kötések a `bindings` funct
 }
 ```
 
-Tekintse meg a nyelvspecifikus mintát, amely egy eseményt ír a még akkor is, az adatfolyam.
+Lásd: hello nyelvspecifikus minta egy toohello még akkor is, eseményfelhasználó írja.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -205,7 +205,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
-Vagy, hozzon létre több üzenetet:
+Vagy toocreate több üzenetet:
 
 ```cs
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
@@ -241,7 +241,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-Vagy több üzenetet küldeni.
+Vagy toosend több üzenetet
 
 ```javascript
 module.exports = function(context) {

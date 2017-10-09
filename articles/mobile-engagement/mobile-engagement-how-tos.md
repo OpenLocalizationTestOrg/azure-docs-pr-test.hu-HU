@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Mobile Engagement felhasználói felület - a Reach hogyan"
+title: "Mobile Engagement felhasználói felület – aaaAzure elérni hogyan számára"
 description: "Felhasználói felület és Azure Mobile Engagement áttekintése"
 services: mobile-engagement
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 33a0a9d0c399cb7f0a791c4c16dde2e2d62364ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b6dafd09d894214d4c386f5c6f157a77671606f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-started-using-and-managing-pushes-to-reach-out-to-your-end-users"></a>Első lépések, használata és kezelése a végfelhasználók számára elérhetők a leküldéses értesítések
-Ha az SDK az alkalmazás teljesen integrálva van, is használatának megkezdésében a leküldéses értesítések küldéséhez a felhasználók számára az alkalmazás a felhasználói felület Reach szakasza.  
+# <a name="how-tooget-started-using-and-managing-pushes-tooreach-out-tooyour-end-users"></a>Hogyan tooget használatának és a kimenő tooyour végfelhasználók tooreach kezelése leküldéses értesítések
+Miután hello SDK teljesen integrálva van az alkalmazás, elkezdheti hello hello Reach szakaszának hello felhasználói felület tooPush értesítések toohello felhasználók az alkalmazás segítségével.  
 
 ## <a name="do-your-first-push-notification-campaign"></a>Hajtsa végre az első leküldéses Értesítéses kampány
-* Győződjön meg arról, hogy a Reach integrálva van az alkalmazás az SDK-val. 
+* Győződjön meg arról, hogy a Reach integrálva van az alkalmazás a hello SDK. 
 * Az alkalmazás kiválasztása
 
 ![First1][1]
 
-* Nyissa meg az "Reach" szakaszban, és kattintson a "közlemény"
+* Nyissa meg toohello "Reach" szakaszban, és kattintson a "közlemény"
 
 ![First2][2]
 
@@ -37,19 +37,19 @@ Ha az SDK az alkalmazás teljesen integrálva van, is használatának megkezdés
   
 ![First3][3]
 
-* Válassza ki, hogyan az értesítés kézbesítési, mint alkalmazásbeli csak
+* Válassza ki, hogyan hello értesítési kézbesítési, mint alkalmazásbeli csak
 
 ![First4][4]
 
-* A leküldéses üzenet létrehozása
+* Azt szeretné, hogy toopush hello üzenet létrehozása
 
 ![First5][5]
 
-* A cím írhat az értesítésre kattinthat (nem kötelező).
+* A cím írhat hello értesítésre kattinthat (nem kötelező).
 * Írás a leküldéses üzenet tartalma.
-* Lemezkép feltöltése Vegye figyelembe, hogy a fájl mérete nem haladhatja meg 32768 bájt.
-* Akkor is választhatók ki további beállításokat, de ez az oktatóanyag a fókusz, az azt láthatja, hogy később.
-* Jelölje ki a tartalomtípus csak értesítés
+* Lemezkép feltöltése Vegye figyelembe, hogy a hello hello fájl mérete nem haladhatja meg a 32768 bájt.
+* Hello képességét tooselect további beállítások is rendelkezik, de a jelen oktatóanyag hello felvennie a kijelölést, azt láthatja, hogy később.
+* Csak az értesítésként hello tartalom típusának kiválasztása
 
 ![First6][6]
 
@@ -61,58 +61,58 @@ Ha az SDK az alkalmazás teljesen integrálva van, is használatának megkezdés
 ![Test1][8]
 
 * Regisztrálja az eszközt.
-* Kattintson az eszköz kíván leküldeni a jelölőnégyzetet.
-* Kattintson a "Test" gombra a leküldéses küldeni az eszközön.
+* Kattintson a hello jelölőnégyzetet az hello eszköz toopush szeretné.
+* Kattintson a hello "Test" gomb toosend hello leküldéses toohello eszköz.
 
 ![Teszt2][9]
 
-* Aktiválja a kampányt.
+* Hello kampány aktiválása
 
 ![Teszt3][10]
 
-* Most, hogy létrehozta a kampány csak azt az értesítés a felhasználóknak leküldött aktiválni kell.
+* Most, hogy létrehozta a kampány egyszerűen tooactivate hello értesítési toobe a leküldött tooyour felhasználók.
 
 ## <a name="send-personalized-pushes"></a>Személyre szabott leküldéses értesítések küldése
-* Ez a példa egy leküldéses, ha egy egyéni visszatérítési kódja bekerültek a leküldéses értesítési hoz létre.
+* Ez a példa egy leküldéses, ahol meg egy egyéni visszatérítési kódja hello leküldéses értesítést hoz létre.
 
 ![Personalize1][11]
 
-Személyre szabás működésével úgy lecserélésével a mutató által egy app-info címke a akkor kell győződjön meg arról, hogy a felhasználó rendelkezik-e a megfelelő app-info első. Ebben a példában a megcélzott felhasználók rendelkeznek egy meghatározott rebate_code nevű alkalmazás info címke.
-Ahogy fent látni a leküldéses értesítési tartalom a jelölő ${rebate_code}, amely tájékoztatja arról, hogy azt a tényleges tartalom a app-info címke által cserélni kívánt magában foglalja.
+Személyre szabás működésével úgy lecserélésével a mutató által egy app-info címke a konfigurálnia kell a toomake, hello felhasználónak hello megfelelő app-info először definiálva van. Ez a példa hello megcélzott felhasználók rendelkeznek egy meghatározott rebate_code nevű alkalmazás info címke.
+Ahogy fent látni hello leküldéses értesítési tartalom hello jelölő ${rebate_code}, amely jelzi, hogy a rendszer lecserélve a tényleges tartalom hello hello app-info címke toobe magában foglalja.
 
 > [!WARNING]
-> Ha a felhasználó nincs definiálva a app-info címke, a felhasználó nem kap a leküldéses.
+> Ha hello app-info címke nincs definiálva a következő hello felhasználói, hello felhasználó nem kap hello leküldéses.
 
 * eredménye
 
 ![Personalize2][12]
 
-### <a name="you-can-further-personalize-the-text-your-notification"></a>További személyre szabhatja a szöveget az értesítés
+### <a name="you-can-further-personalize-hello-text-your-notification"></a>További szabhatja hello szöveg az értesítés
 ![Personalize3][13]
 
-* Az értesítés címe
-* És az üzenet tartalma.
-* Válassza ki a közlemény (szöveges vagy webes nézetben)
+* Hello értesítési, többek között a következőket hello címe
+* És üdvözlőüzenetére hello tartalmát.
+* Hirdetmény (szöveges vagy webes nézetben) hello típusának kiválasztása
 
 ![Personalize4][14]
 
-### <a name="the-body-of-an-announcement-may-also-be-personalized-with"></a>A szervezet bejelentés előfordulhat, hogy is az általunk:
-* A műveleti URL-cím kell szeretné testre szabni a kezdőlapja
-* A cím
-* Az üzenet törzsét.
+### <a name="hello-body-of-an-announcement-may-also-be-personalized-with"></a>bejelentés hello törzsét előfordulhat, hogy is az általunk:
+* hello műveleti URL-cím, azt szeretné, hogy kezdőlapján toocustomize hello
+* hello cím
+* hello hello üzenet törzsében.
 
 ## <a name="differentiate-your-push-notification-in-or-out-of-app"></a>A leküldéses értesítési megkülönböztetéséhez (a vagy alkalmazásból)
-* Válassza ki az értesítési fog leküldéses, válassza ki az alkalmazását, nyissa meg a "Elérni" részt, vagy a leküldéses kampány létrehozásához, és nyissa meg az "Értesítések" szakaszhoz.
-* Kattintson a "szállítási mód" szeretné.
-* Kattintson a "Korlátozása tevékenységek" jelölőnégyzetet, ha azt szeretné, hogy az értesítést az adott tevékenységei (képernyői) történik.
+* Válassza ki a hello típusú értesítést fog leküldéses, válassza ki az alkalmazást, toohello "Reach" szakasz lépjen, vagy a leküldéses kampány létrehozásához, és nyissa meg toohello "Értesítések" szakasz.
+* Kattintson a "szállítási mód" hello szeretné.
+* Kattintson a hello "Korlátozása tevékenységek" jelölőnégyzetet, ha azt szeretné, hogy hello értesítési adott tevékenységei (képernyői) történik.
 
 ![Differentiate1][15]
 
 ### <a name="out-of-app-only-delivery-mode"></a>"Csak az alkalmazáson kívül" szállítási mód
 ![Differentiate2][16]
 
-"Csak az alkalmazáson kívül" kézbesítési módot biztosít a leküldéses értesítést, ha az alkalmazáshoz be van zárva. Ez az a szabványos leküldéses értesítést.
-Kiválasztásakor "csak az alkalmazáson kívül" kell már megadta a platform, amely az alkalmazás (APNS vagy GCM) van építve a tanúsítványokat.
+"Csak az alkalmazáson kívül" kézbesítési módot biztosít a leküldéses értesítést, ha hello alkalmazás le van zárva. Ezt az hello szabványos leküldéses értesítést.
+"Csak az alkalmazáson kívül" kiválasztásakor kell már megadott hello a tanúsítványokat a hello platform, amely az alkalmazás van építve (APNS vagy GCM).
 
 ### <a name="see-also"></a>Lásd még:
 * [Apple Push Notification szolgáltatás – tanúsítványok](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – tanúsítvány](http://developer.android.com/google/gcm/index.html) 
@@ -120,75 +120,75 @@ Kiválasztásakor "csak az alkalmazáson kívül" kell már megadta a platform, 
 ### <a name="in-app-only-delivery-mode"></a>"az alkalmazáson belüli csak" szállítási mód
 ![Differentiate3][17]
 
-"Alkalmazásbeli csak" szállítási mód leküldéses értesítéseket biztosít, az alkalmazás futtatásakor.
-Erre az értesítésre nem kell végighaladnia az APNS-GCM rendszer.
-Az alkalmazáson belüli kézbesítési rendszer használhatja, ha a végfelhasználók eléréséhez.
-Teljes körű testre szabhatja az értesítés, és döntse el, ahol tevékenység (képernyő) az értesítés jelenik meg.
+"Alkalmazásbeli csak" szállítási mód leküldéses értesítéseket biztosít, hello alkalmazás futtatásakor.
+Ehhez az értesítéshez nem kell toogo hello APNS keresztül és a GCM-rendszer.
+Hello alkalmazásbeli kézbesítési rendszer tooreach használhatja a végfelhasználók számára.
+Teljes körű hello értesítési testreszabása, és döntse el, a tevékenységet (képernyő) hello értesítés jelenik meg.
 
 ### <a name="anytime-delivery-mode"></a>"Bármikor" szállítási mód
-Kiválaszthatja az "Bármikor" szállítási módban, biztosítja, hogy elérni a végfelhasználó használni tudja, hogy az alkalmazás fut-e.
-"Bármikor" kiválasztásakor kell már megadta a tanúsítványokat a platform, amely az alkalmazás van építve a (APNS vagy GCM). 
+Kiválaszthatja az "Bármikor" szállítási módban, biztosítja, hogy a végfelhasználó használni tudja, hogy hello tooreach alkalmazás fut-e.
+"Bármikor" kiválasztásakor kell már megadott hello platform, amely az alkalmazás (APNS vagy GCM) épít hello tanúsítványokat. 
 
 ## <a name="schedule-a-push-campaign"></a>A leküldéses kampány ütemezése
-### <a name="plan-to-start-a-campaign"></a>Tervezze meg a kampány indítására
+### <a name="plan-toostart-a-campaign"></a>A kampány tooStart megtervezése
 ![Shedule1][18]
 
-A 21 a március, és rendelkezik egy értesítést, hogy tervezett a a 22. a március éjfélkor. Nem kell egy leküldéses ehhez a felület elé maradnak! Megtervezheti, hogy előzetesen a pontos percet a rendszer értesítést küld.
+Hello március 21, és rendelkezik egy bejelentési toomake tervezett a hello március 22nd éjfélkor. Hello felület toodo leküldéses elé toostay nincs! Megtervezheti, hogy előzetesen hello pontos perc a rendszer értesítést küld.
 
-* UN-ellenőrzése a "None" jelölőnégyzetet, és válassza ki a kezdési idő 
-* Válassza ki a dátum és időpont elindítja a leküldéses kampány.
+* UN-ellenőrzési hello "None" jelölőnégyzetet, és válassza ki a kezdési idő 
+* Válassza ki a hello dátum és hello időtartamát toostart hello leküldéses kampány.
 
-### <a name="plan-to-end-a-campaign"></a>Tervezze meg a kampány befejezéséhez
+### <a name="plan-tooend-a-campaign"></a>A kampány tooend megtervezése
 ![Shedule2][19]
 
-Azt szeretné, hogy a kampány du. 3:00 meg a 25 a március leállítására, de Ön tudja róla, hogy akkor van rá.
-A felület leküldéses elé marad nincs! Megtervezheti, hogy előzetesen a pontos percet a kampány befejeződik.
+Azt szeretné, a kampány toostop hello a 25-éig március du. 3:00, de Ön tudja róla, hogy toodo nem lehet azt.
+Hello felület toopush elé toostay nincs! Megtervezheti, hogy előzetesen hello pontos perc a kampány befejeződik.
 
-* Kattintson a "None" a jelölőnégyzet jelölését, vagy válasszon egy befejezési időpontja
-* Válassza ki a dátum és időpont befejezi a leküldéses kampány.
+* Kattintson a hello "None" jelölőnégyzet jelölését, vagy válasszon egy befejezési időpontja
+* Válassza ki a hello dátum és hello időtartamát toofinish hello leküldéses kampány.
 
 ### <a name="end-a-campaign-manually"></a>A kampány manuálisan végén
 ![Shedule3][20]
 
-Alapértelmezés szerint a "None"-jelölőnégyzeteket.
-Ez azt jelenti, hogy a kampány megkezdődik, amint aktiválja a reach szakaszban, és amikor a reach szakasz leáll.
+Alapértelmezés szerint hello "None"-jelölőnégyzeteket.
+Ez azt jelenti, hogy hello kampány megkezdődik, amint hello aktiválnia eléri szakaszban, majd ha leáll a hello end eléri a szakasz.
 
 > [!NOTE]
-> A záró dátum nélküli létrehozott kampányok a leküldéses helyileg tárolja az eszközön, és szerepel, hogy a következő megnyitásakor az alkalmazás akkor is, ha a kampány manuálisan véget ér.
+> A záró dátum nélküli létrehozott kampányok hello leküldéses hello eszköz helyileg tárolja, és szerepel, hogy hello következő megnyitásakor hello alkalmazás akkor is, ha hello kampány manuálisan véget ér.
 
 ## <a name="enhance-a-push-notification-with-a-text-view"></a>A szöveges nézet a leküldéses értesítés javítása
 ### <a name="what-is-a-text-view"></a>Mi az a szöveg nézetet?
 ![TextView1][21]
 
-A szöveges nézet olyan szöveges tartalommal előugró ablak. Az előugró ablak akkor jelenik meg, miután a végfelhasználó a leküldéses értesítésre kattintott.
-A szöveges nézet lehetővé teszi a végfelhasználó használni tudja a további tartalmat. Ez egyben a lehetőség van a művelet, például az alkalmazás-Áruházbeli, a weblap megnyitásakor egy földrajzi helyét keresés indítása e-mail, küldés átirányítása egy lap Ugrás hívása stb...
+A szöveges nézet olyan szöveges tartalommal előugró ablak. Az előugró ablak hello végfelhasználói kattintott hello leküldéses értesítés jelenik meg.
+A szöveges nézet lehetővé teszi a toopresent tartalom tooyour végfelhasználói. Ez egyben hello lehetőség toopresent egy hívás tooaction például Ugrás tooa lap az alkalmazás átirányítása tooa tároló, a weblap megnyitásakor e-mail, küldés, kezdve egy földrajzi helyét keresési stb...
 
 ### <a name="example-text-view"></a>Példa: Szöveges nézet
-* A leküldéses értesítési kampány létrehozásához a "Reach" szakaszban, és nevezze el a kampány
+* A leküldéses értesítési kampány létrehozásához hello "Elérni" szakaszban, és nevezze el a kampány
 
 ![TextView2][22]
 
-* Az üzenet, amely megjelenik majd írni az értesítésre kattinthat.
-* Válassza ki a "text" tartalomtípusa bejelentés
+* Írása, amely megjelenik majd üdvözlőüzenetére hello értesítést.
+* Válassza ki a "text" tartalomtípusa közlemény hello
 
 ![TextView3][23]
 
 > [!NOTE]
 > Amikor a szöveges nézet, azt mindig tartalmaz egy értesítési először. 
 
-* Adja meg a szöveget (kiválasztását követően a szöveg közlemény tartalmát, a szakasz jelenik meg, lehetővé téve adja meg a megjeleníteni kívánt szöveg.)
+* Adja meg a hello szöveg (kiválasztását követően hello szöveg közlemény tartalmát, hello alterület jelenik meg, így toodefine hello szöveg toobe jelenik meg.)
 
 ![TextView4][24]
 
-* A cím az üzenet tetején megjelenő írni.
-* A szöveges nézet fő tartalmának írása.
-* Írjon a tartalmat, amely megjelenik majd az akciógombra kattinthat (Akciógomb lehetővé teszi, hogy az alkalmazás megfelelően egy adott művelet, például az alkalmazás, az alkalmazás-áruházra vagy bármilyen típusú források megadhat egy lap megnyitása).
-* Írás a tartalmat, amely megjelenik majd a Kilépés gombra (a Kilépés gombra kattintva, a szöveges nézet eltűnik.)
-* A leküldéses értesítési kampány létrehozásához, és akkor jelenik meg a kampány listában.
+* Az írási üdvözlőüzenetére hello tetején megjelenő hello cím.
+* Hello fő hello szöveg nézet tartalmának írása.
+* Írjon hello tartalmat, amely megjelenik majd hello akciógombra kattinthat (a Akciógomb lehetővé teszi a hello alkalmazás toomake egy adott művelet, például egy hello alkalmazás tooan App Store-ból vagy bármilyen típusú adatforrások biztosíthat átirányítása lap megnyitása).
+* Írási hello tartalom, amely megjelenik majd a Kilépés gombra hello (hello Kilépés gombra kattintva, hello szöveges nézet eltűnik.)
+* A leküldéses értesítési kampány létrehozásához, és hello kampány lista megjelenik.
 
 ![TextView5][25]
 
-* Aktiválja a leküldéses értesítési kampány történő küldéséhez a szöveges nézet a felhasználók számára.
+* A leküldéses értesítési kampány toosend hello szöveg nézet tooyour felhasználók aktiválása.
 
 ![TextView6][26]
 
@@ -196,51 +196,51 @@ A szöveges nézet lehetővé teszi a végfelhasználó használni tudja a tová
 
 ![TextView7][27]
 
-* A felhasználó kap a értesítési, majd kattintson rá.
-* A szöveges nézet jelenik meg egy előugró ablak, a felhasználó használhatja őket.
+* hello felhasználó megkapja hello értesítést, és kattintson rá.
+* egy előugró lehetővé tevő hello felhasználói toointeract vele hello szöveges nézet jelenik meg.
 
 ## <a name="enhance-a-push-notification-with-a-web-view"></a>A webes nézet a leküldéses értesítés javítása
 ### <a name="what-is-a-web-view"></a>Mi az a webes nézet?
 ![WebView1][28]
 
-A webes nézet egy előugró ablak webtartalmakkal együtt. Ez az előugró ablak akkor jelenik meg, ha a végfelhasználó a leküldéses értesítésre kattintott.
-A webes nézet több interakciót tesz lehetővé a végfelhasználóval.
-Ez az App Store áruházból, például az átirányítási teendő bevezetését lehetőséget is egy weblap megnyitásakor, egy e-mailek küldéséhez, a földrajzi helyét keresés indítása stb...
+A webes nézet egy előugró ablak webtartalmakkal együtt. Az előugró ablak akkor jelenik meg, amikor hello végfelhasználói hello leküldéses értesítési kattintott.
+A webes nézet lehetővé teszi a toohave több interakciót tesz hello végfelhasználói.
+Ez egyben hello lehetőség toopresent egy hívás tooaction, például az átirányítási tooApp tároló, a weblap megnyitásakor e-mail, küldés, kezdve egy földrajzi helyét keresési stb...
 
 ### <a name="example-web-view"></a>Példa: Webes nézet
-* A leküldéses kampány létrehozásához a "Reach" szakaszban, és nevezze el a kampányt.
+* A leküldéses kampány létrehozásához hello "Elérni" szakaszban, és nevezze el a kampányt.
 
 ![WebView2][29]
 
-* Az üzenet, amely megjelenik majd írni az értesítésre kattinthat.
-* Jelölje ki a közlemény tartalomtípus "web"
+* Írása, amely megjelenik majd üdvözlőüzenetére hello értesítést.
+* Jelölje ki "web" hello közlemény tartalom típusa
 
 ![WebView3][30]
 
 ### <a name="about-announcement-types"></a>Kapcsolatos bejelentés típusok:
-* Csak értesítés: egy egyszerű standard szintű értesítési. Azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak a hozzá tartozó műveletet hajtja végre.
-* Szöveg közlemény: egy értesítés, amely kapcsolatba lép a felhasználó számára a szöveges nézet, tekintse meg a legyen.
-* Webes hirdetmény: egy értesítés, amely kapcsolatba lép a felhasználó számára, tekintse meg a következő a webes nézet.
-  Válassza ki a "Web közlemény" tartalmat.
+* Csak értesítés: egy egyszerű standard szintű értesítési. Ami azt jelenti, hogy ha a felhasználó kattint, további nézet nélkül jelenik meg, de csak hello művelet társított tooit történik.
+* Szöveg közlemény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a szöveges nézet.
+* Webes hirdetmény: egy értesítés, amely kapcsolatba lép a hello felhasználói toohave egy pillantást a webes nézet.
+  Válassza ki a hello "Webes hirdetmény" tartalom.
 
 > [!NOTE]
 > Amikor a webes nézet, azt mindig tartalmaz egy értesítési először.
 
-* Adja meg a webes tartalom (kiválasztását követően a webes hirdetmény tartalmat, a szakasz jelenik meg, lehetővé téve adja meg a webes nézet tartalom megjeleníteni kívánt.)
+* Adja meg a webes tartalom hello (kiválasztását követően közlemény hello webtartalom, hello alszakasz jelenik meg, így toodefine hello webes nézet kívánt tartalmat toobe jelenik meg.)
 
 ![WebView4][31]
 
-* A cím az üzenet (nem kötelező) tetején megjelenő írni.
+* (Választható) üdvözlőüzenetére hello tetején megjelenő hello cím írni.
 * Ide írhatja a HTML kódot.
-* Kattintson a Szerkesztés módban gombra kattintva edition váltson, és megjelenését például a forrás.
-* Írjon a tartalmat, amely megjelenik majd az akciógombra kattinthat (Akciógomb lehetővé teszi, hogy az alkalmazás megfelelően egy adott művelet, például az alkalmazás-Áruházbeli vagy bármilyen típusú adatforrások biztosíthat egy lap megnyitása).
-* Írás a tartalmat, amely megjelenik majd a Kilépés gombra (a Kilépés gombra kattintva, a webes nézet eltűnik).
+* Kattintson a Szerkesztés módban gomb tooswitch edition hello forrás, és például megjelenését.
+* Írjon hello tartalmat, amely megjelenik majd hello akciógombra kattinthat (a Akciógomb lehetővé teszi a hello alkalmazás toomake egy adott művelet, például egy hello alkalmazás tooa tároló vagy bármilyen típusú adatforrások biztosíthat átirányítása lap megnyitása).
+* Írási hello tartalom, amely megjelenik majd a Kilépés gombra hello (hello Kilépés gombra kattintva, hello webes nézet eltűnik).
 * eredménye
 
 ![WebView5][32]
 
-* A felhasználó az értesítést fogadó, és kattintson rá.
-* A szöveges nézet jelenik meg egy előugró ablak, a felhasználó használhatja őket.
+* hello felhasználói hello értesítést kapni, és kattintson rá.
+* egy előugró lehetővé tevő hello felhasználói toointeract vele hello szöveges nézet jelenik meg.
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-how-tos/First1.png

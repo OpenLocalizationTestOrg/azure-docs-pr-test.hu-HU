@@ -1,6 +1,6 @@
 ---
-title: "Figyelése, diagnosztizálása és elhárítása az Azure Storage |} Microsoft Docs"
-description: "Használni a szolgáltatásokat, például a tárolási analitika, az ügyféloldali naplózás és más külső eszközök azonosításához, diagnosztizálása és Azure tárolással kapcsolatos problémák elhárításához."
+title: "aaaMonitor, diagnosztizálása és elhárítása az Azure Storage |} Microsoft Docs"
+description: "Az-szolgáltatások, például tárolási analitika, ügyféloldali naplózás, és más külső gyártású eszközöknek tooidentify, diagnosztizálása és Azure tárolással kapcsolatos problémák elhárításához."
 services: storage
 documentationcenter: 
 author: fhryo-msft
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: fhryo-msft
-ms.openlocfilehash: 12db22d1444dc07a45db430c01407f9398e13bad
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 43f34a4ccbc3071cdb489958252498a1f88e1a34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-diagnose-and-troubleshoot-microsoft-azure-storage"></a>Microsoft Azure Storage felügyelete, diagnosztizálása és hibaelhárítása
 [!INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
 ## <a name="overview"></a>Áttekintés
-Diagnosztizálása és elhárítása egy üzemeltetett felhőalapú környezetek elosztott alkalmazásban lévő lehet bonyolultabb, mint a hagyományos környezetekben. Alkalmazások PaaS vagy infrastruktúra-szolgáltatási infrastruktúra, a helyszíni, egy mobileszközön, vagy ezek valamilyen kombinációjára is telepíthető. Általában az alkalmazás hálózati forgalmat is haladnak át a nyilvános és titkos és az alkalmazás használhat több tárolási technológiák, például a Microsoft Azure Storage-táblákat, BLOB, üzenetsorok vagy fájlok mellett egyéb adatokat tárolja, például a relációs- és dokumentumszolgáltatások adatbázisok.
+Diagnosztizálása és elhárítása egy üzemeltetett felhőalapú környezetek elosztott alkalmazásban lévő lehet bonyolultabb, mint a hagyományos környezetekben. Alkalmazások PaaS vagy infrastruktúra-szolgáltatási infrastruktúra, a helyszíni, egy mobileszközön, vagy ezek valamilyen kombinációjára is telepíthető. Általában az alkalmazás hálózati forgalmat is haladnak át a nyilvános és titkos és az alkalmazás használhat több tárolási technológiák, például a Microsoft Azure Storage-táblákat, BLOB, üzenetsorok vagy hozzáadása tooother adatok fájlokat tárolja, például a relációs és dokumentum-adatbázisokat.
 
-Az ilyen alkalmazásokat kezeléséhez sikeresen kell proaktív módon figyelheti azokat, és segít megérteni, hogyan diagnosztizálásához és hibaelhárításához őket, és a függő technológiák minden szempontját. Azure Storage szolgáltatás felhasználóit inkább folyamatosan figyelni a váratlan viselkedés (például a lassabb, mint a szokásos válaszidő) módosításai az alkalmazás által tárolási szolgáltatásokat, és használatát naplózási részletes adatok gyűjtéséhez és részletesen probléma elemzéséhez. A diagnosztika figyelés és naplózás beszerezte nyújt segítséget az alkalmazás észlelt a probléma okának megállapításához. Ezután hibaelhárítást, és határozza meg a megfelelő lépéseket, amelyekkel megoldásáról. Az Azure Storage alapszintű Azure-szolgáltatás, és az ügyfelek központi telepítése az Azure infrastruktúra-megoldások többsége fontos részét képezi. Az Azure Storage kínálja egyszerűbbé teheti a figyelése, diagnosztizálása és a felhőalapú alkalmazásokban tárolási problémák elhárításához.
+toomanage ilyen alkalmazások sikeresen, figyelheti azokat proaktív módon, és megérteni hogyan toodiagnose és hárítsa el őket, és a függő technológiák minden szempontját. Egy Azure Storage szolgáltatás felhasználóként kell folyamatosan figyelni hello tárolási szolgáltatások váratlan viselkedést (például a lassabb, mint a szokásos válaszidő) módosításai az alkalmazás által, és naplózási toocollect használja az adatok és tooanalyze részletes egy probléma merült fel a mélységét. hello diagnosztika figyelés és naplózás le nyújt segítséget, toodetermine hello okának hello adja ki az alkalmazást észlelt. Ezután hello problémával kapcsolatos hibaelhárítás elősegítéséhez és hello megfelelő lépéseket, amelyek tooremediate határozza meg azt. Az Azure Storage alapszintű Azure-szolgáltatás, és, hogy az ügyfelek telepíthetnek toohello Azure infrastruktúra-megoldások többsége hello fontos részét képezi. Az Azure Storage tartalmazza a képességek toosimplify figyelése, diagnosztizálása és a felhőalapú alkalmazásokban tárolási problémák elhárításához.
 
 > [!NOTE]
-> Az Azure File storage nem támogatja a jelenleg naplózását.
+> hello Azure File storage nem támogatja a jelenleg naplózását.
 > 
 
-Gyakorlati végpont Azure Storage-alkalmazások hibáinak elhárításához, váltásról [-végpontok hibaelhárítása az Azure Storage Metrics és a naplózás, az AzCopy és a Message Analyzer segítségével](../storage-e2e-troubleshooting.md).
+A gyakorlati útmutatóban tooend körű hibaelhárítása az Azure Storage-alkalmazásokban, lásd: [-végpontok hibaelhárítása az Azure Storage Metrics és a naplózás, az AzCopy és a Message Analyzer segítségével](../storage-e2e-troubleshooting.md).
 
 * [Bevezetés]
   * [Hogyan szerveződik, ez az útmutató]
@@ -55,150 +55,150 @@ Gyakorlati végpont Azure Storage-alkalmazások hibáinak elhárításához, vá
   * [Időbélyeg helyi időre]
 * [hibaelhárítási útmutatás]
   * [metrika AverageE2ELatency magas és alacsony AverageServerLatency]
-  * [A mérőszámok alacsony AverageE2ELatency és alacsony AverageServerLatency értéket mutatnak, de az ügyfél nagy mértékű késleltetést tapasztal]
+  * [A metrika alacsony AverageE2ELatency és alacsony AverageServerLatency, de hello ügyfél tapasztal nagy késleltetésű]
   * [A mérőszámok magas AverageServerLatency értéket mutatnak]
   * [Váratlan késést tapasztal az üzenetsorban található üzenetek kézbesítésekor]
   * [PercentThrottlingError metrika növelését]
   * [PercentTimeoutError metrika növelését]
   * [A mérőszámok emelkedő PercentNetworkError értéket mutatnak]
-  * [Az ügyfél HTTP 403 (tiltott) üzeneteket fogad]
-  * [Az ügyfél HTTP 404-es (nem található) üzeneteket fogad]
-  * [Az ügyfél HTTP 409 (Ütközés) üzeneteket fogad]
-  * [metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik ClientOtherErrors működésére állapotú tranzakció]
+  * [hello ügyfél HTTP 403 (tiltott) üzeneteket fogad]
+  * [hello ügyfél (nem található) HTTP 404 üzeneteket fogad]
+  * [hello ügyfél HTTP 409 (Ütközés) üzeneteket fogad]
+  * [metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik műveletek tranzakció állapota ClientOtherErrors]
   * [Teljesítmény-mérőszámait váratlan növekedését megjelenítése a tárolási kapacitás-használat]
   * [Váratlan vesznek el virtuális gépeken, amelyek csatlakoztatott virtuális merevlemezek nagy számú tapasztal]
-  * [A probléma merül fel a fejlesztési vagy tesztelési a storage emulator használatával]
-  * [.NET-keretrendszerhez készült Azure SDK telepítése problémák áll kapcsolatban.]
+  * [A probléma merül fel a fejlesztési vagy tesztelési hello storage emulator használatával]
+  * [Áll kapcsolatban problémák hello Azure SDK telepítése a .NET-hez]
   * [Van egy másik probléma storage szolgáltatással]
   * [A Windows Azure File storage problémák elhárítása](../files/storage-troubleshoot-windows-file-connection-problems.md)   
   * [A Linux és Azure File storage problémák elhárítása](../files/storage-troubleshoot-linux-file-connection-problems.md)
 * [mellékletek]
-  * [1 függelék: HTTP és HTTPS-forgalom rögzítése a Fiddler használatával]
-  * [2 függelék: Wireshark használó rögzítheti a hálózati forgalom]
-  * [függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom]
-  * [4. függelék: Segítségével Excel metrikák megtekintése és az adatok naplózása]
+  * [1 függelék: Fiddler toocapture HTTP és HTTPS-forgalom használatával]
+  * [2 függelék: Wireshark toocapture hálózati forgalom használ]
+  * [3 függelék: a Microsoft Message Analyzert toocapture hálózati forgalom használ]
+  * [4. függelék: Excel tooview metrikákat és naplózási adatok használata]
   * [5. függelék: A Visual Studio Team Services az Application insights szolgáltatással figyelését.]
 
 ## <a name="introduction"></a>Bevezetés
-Ez az útmutató bemutatja, hogyan használja a szolgáltatások, például az Azure Storage Analytics, a bejelentkezés az Azure Storage ügyféloldali kódtárat, és más külső eszközök azonosításához, diagnosztizálása és elhárítása az Azure Storage ügyféloldali kapcsolatos hiba lépett fel.
+Ez az útmutató jeleníti meg, hogyan toouse szolgáltatásait, például az Azure Storage Analytics hello Azure Storage ügyféloldali kódtár ügyféloldali naplózási vagy más külső gyártású eszközöknek tooidentify diagnosztizálása és elhárítása az Azure Storage kapcsolatos hiba lépett fel.
 
 ![][1]
 
-Ez az útmutató elsősorban az online szolgáltatások, Azure Storage szolgáltatásainak és az informatikai szakemberek felelős, ilyen online szolgáltatások kezelésére szolgáló használó fejlesztők által olvasandó készült. Ez az útmutató a céljai a következők:
+Ez az útmutató elsősorban az online szolgáltatások, Azure Storage szolgáltatásainak és az informatikai szakemberek felelős, ilyen online szolgáltatások kezelésére szolgáló használó fejlesztők olvasni kívánt toobe is. a jelen útmutató hello céljai a következők:
 
-* Segíti a állapotának és teljesítményének az Azure Storage-fiókokat.
-* Biztosítja, hogy a szükséges eljárások és eszközök segítségével eldöntheti, hogy ha egy hiba vagy probléma merült fel a kérelmet az Azure Storage vonatkozik.
-* Biztosítja, hogy végrehajthatóként útmutatással Azure tárolással kapcsolatos problémák megoldása érdekében.
+* az Azure Storage-fiókok a hello állapotát és teljesítményét karbantartása toohelp.
+* tooprovide való hello szükséges eljárások és eszközök toohelp úgy dönt, ha egy hiba vagy probléma merült fel a kérelmet tooAzure tárolási vonatkozik.
+* hogy végrehajthatóként útmutatással kapcsolatos problémák megoldásához kapcsolódó tooAzure tárolási tooprovide.
 
 ### <a name="how-this-guide-is-organized"></a>Hogyan szerveződik, ez az útmutató
-A szakasz "[a tárolás szolgáltatás figyelése]" állapotának és az Azure Storage szolgáltatások, Azure Storage Analytics Metrics (Storage Metrics) használatával teljesítményének figyelése.
+a szakasz hello "[a tárolás szolgáltatás figyelése]" ismerteti, hogyan toomonitor hello állapotának és teljesítményének az Azure Storage szolgáltatások, Azure Storage Analytics Metrics (Storage Metrics) használatával.
 
-A szakasz "[tárolási problémák diagnosztizálása]" Azure Storage Analytics-naplózás használata (tárhely-naplózás) eseményadatokat ismerteti. Emellett bemutatja, hogyan lehet a klienskódtárak segítségével egyikében létesítményekben az például a Storage ügyféloldali kódtára a .NET vagy az Azure SDK for Java ügyféloldali naplózás engedélyezéséhez.
+a szakasz hello "[tárolási problémák diagnosztizálása]" ismerteti, hogyan toodiagnose állít Azure Storage Analytics-naplózás használata (tárhely-naplózás). Azt is bemutatja, milyen módon tooenable ügyféloldali naplózás használatával hello létesítményekben valamelyik hello klienskódtárak segítségével például hello a Storage ügyféloldali kódtára a .NET-hez és Javához készült Azure SDK hello.
 
-A szakasz "[végpont nyomkövetés]" ismerteti, hogyan hozhatók a különböző naplófájlokat és metrikai adatok tárolt adatokhoz.
+a szakasz hello "[végpont nyomkövetés]" ismerteti, hogyan hozhatók hello szereplő információk különböző naplófájlokat és metrikai adatok.
 
-A szakasz "[hibaelhárítási útmutatás]" nyújt hibaelhárítási útmutatót, néhány tárolással kapcsolatos gyakoribb kapcsolatos probléma, akkor léphetnek fel.
+a szakasz hello "[hibaelhárítási útmutatás]" nyújt hibaelhárítási útmutatót egyes hello közös tárolással kapcsolatos problémák léphetnek fel.
 
-A "[mellékletek]" egyéb eszközzel, Wireshark vagy netmon eszközzel elemzése hálózati csomagadatok, a Fiddler a HTTP/HTTPS-üzenetek, elemzése és a Microsoft Message Analyzert használatával történik az adatok naplózása információkat tartalmaznak.
+hello "[mellékletek]" egyéb eszközzel, Wireshark vagy netmon eszközzel elemzése hálózati csomagadatok, a Fiddler a HTTP/HTTPS-üzenetek, elemzése és a Microsoft Message Analyzert használatával történik az adatok naplózása információkat tartalmaznak.
 
 ## <a name="monitoring-your-storage-service"></a>A storage szolgáltatás figyelése
-Ha ismeri a Windows Teljesítményfigyelő, tulajdonképpen Storage Metrics, hogy a Windows Teljesítményfigyelő-számlálókból egy Azure Storage megfelelője. Storage Metrics található széles választékát metrikák (számlálók a Windows Teljesítményfigyelő terminológia) például a szolgáltatás rendelkezésre állása, a szolgáltatási kérelmek teljes száma, vagy a szolgáltatáshoz tartozó sikeres kérelmek aránya. Az elérhető mérőszámok teljes listáját lásd: [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx). Megadhatja, hogy kívánja-e a tárolás szolgáltatás begyűjtése és összesítése metrikák minden órában vagy percben. Engedélyezheti őket, és figyelheti a storage-fiókok kapcsolatos további információkért lásd: [storage mérőszámainak engedélyezése és megtekintése a metrikai adatok](http://go.microsoft.com/fwlink/?LinkId=510865).
+Ha ismeri a Windows Teljesítményfigyelő, tulajdonképpen Storage Metrics, hogy a Windows Teljesítményfigyelő-számlálókból egy Azure Storage megfelelője. Storage Metrics található széles választékát metrikák (számlálók a Windows Teljesítményfigyelő terminológia) például a szolgáltatás rendelkezésre állása, a tooservice kérelmek teljes száma, vagy a sikeres kérelmek tooservice százalékát. Hello elérhető mérőszámok teljes listáját lásd: [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx). Azt is adja meg, hogy hello tárolási szolgáltatás toocollect és összesített metrikák minden órában vagy percben. További információ a hogyan tooenable metrikák és a figyelő a storage-fiókok: [storage mérőszámainak engedélyezése és megtekintése a metrikai adatok](http://go.microsoft.com/fwlink/?LinkId=510865).
 
-Választhat, hogy mely óránkénti meg szeretne jeleníteni a metrikák a [Azure-portálon](https://portal.azure.com) és értesíthetők a rendszergazdák e-mailben, amikor egy óránkénti mérőszám eléri az adott szabályok konfigurálása. További információkért lásd: [riasztási értesítéseket kapni](/azure/monitoring-and-diagnostics/monitoring-overview-alerts.md). 
+Választhat, hogy mely óránkénti metrikák azt szeretné, hogy a hello toodisplay [Azure-portálon](https://portal.azure.com) és értesíthetők a rendszergazdák e-mailben, amikor egy óránkénti mérőszám eléri az adott szabályok konfigurálása. További információkért lásd: [riasztási értesítéseket kapni](/azure/monitoring-and-diagnostics/monitoring-overview-alerts.md). 
 
-A tároló szolgáltatás segítségével a lehető legkedvezőbb metrikákat gyűjtő, de nem rögzíthet minden tárolási műveletet.
+hello tároló szolgáltatás segítségével a lehető legkedvezőbb metrikákat gyűjtő, de nem rögzíthet minden tárolási műveletet.
 
-Az Azure portálon például a rendelkezésre állási, kérelmek teljes száma és a tárfiókon átlagos várakozási számok metrikák tekintheti meg. Egy értesítési szabályt is beállítva a rendszergazda riasztást küld, ha rendelkezésre állási bizonyos szintű alá süllyed. Megtekinteni az adatokat, hogy meg lehessen vizsgálni egy lehetséges terület a table szolgáltatás sikeres arány nem érik el a 100 %-os (további információkért tekintse meg a szakasz "[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik ClientOtherErrors működésére állapotú tranzakció]").
+Hello Azure-portálon például a rendelkezésre állási, kérelmek teljes száma és a tárfiókon átlagos várakozási számok metrikák megtekintheti. Egy értesítési szabályt is be van állítva tooalert rendszergazda ha rendelkezésre állási bizonyos szintű alá süllyed. Tekinti meg ezeket az adatokat, hogy meg lehessen vizsgálni egy lehetséges terület nem hello tábla szolgáltatás sikeres arány nem érik el a 100 %-os (további információkért lásd: hello szakasz "[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik műveletek tranzakció állapota ClientOtherErrors]").
 
-Az Azure-alkalmazások, azok kifogástalan és teljesítő által várt folyamatosan figyelje:
+Az Azure-alkalmazások tooensure kifogástalan és teljesítő által várt folyamatosan figyelje:
 
-* Néhány alkalmazást, amely lehetővé teszi a baseline metrikáját létrehozó összehasonlíthatja az aktuális adatok, és az Azure storage és az alkalmazás viselkedését jelentős módosításai azonosítása. Az alapkonfiguráció mérőszámok értékeit, sok esetben adott alkalmazást, és ki kell alakítania őket, amikor az alkalmazás teljesítménytesztelési.
-* Percenkénti metrikákat rögzítése, és használja azokat aktívan figyelésére váratlan hibák és rendellenességek észlelését, például a teljesítményt a hiba száma, vagy kérje meg díjszabás.
-* Óránkénti metrikák rögzítése segítségével figyelheti, mint átlagos értékek átlagos hiba száma és igényléséhez díjszabás.
-* Diagnosztikai eszközök használatával később a szakaszban bemutatott lehetséges problémákat vizsgálja "[tárolási problémák diagnosztizálása]."
+* Létrehozó néhány alapterv metrikák alkalmazáshoz, amelyek lehetővé teszik a toocompare aktuális adatokat és az Azure storage és az alkalmazás hello viselkedését jelentős módosításai azonosításához. a baseline metrikákat hello értékeit, sok esetben adott alkalmazás, és ki kell alakítania őket, amikor az alkalmazás teljesítménytesztelési.
+* Percenkénti metrikákat rögzítése, és használatuk toomonitor aktívan váratlan hibák és rendellenességeket, például a hiba számát vagy a kérelem díjszabás teljesítményt.
+* Óránkénti metrikák rögzítése, és használatuk toomonitor átlagos értékeit, mint átlagos hiba száma, és díjszabás kérelem.
+* Diagnosztikai eszközökkel később hello szakaszban bemutatott lehetséges problémákat vizsgálja "[tárolási problémák diagnosztizálása]."
 
-Az alábbi ábrán a diagramok bemutatják, hogyan átlagolási óránkénti metrikáihoz előforduló elrejthetők igényeiben jelentkező tevékenységben. Az óránkénti metrikák jelennek meg kérelmek, állandó száma a metrikák azt mutatják történnek valóban ingadozásokat perc során.
+a következő kép hello hello diagramok bemutatják, hogyan hello átlagolási óránkénti metrikáihoz előforduló elrejthetők igényeiben jelentkező tevékenységben. hello óránkénti metrikák tooshow kérelmek, állandó arányát metrikák azt mutatják, a hely valóban hello ingadozását hello perc során jelennek meg.
 
 ![][3]
 
-Ez a szakasz többi ismerteti, milyen, célszerű figyelemmel kísérni metrikák és okát.
+hello hátralévő részét ez a szakasz ismerteti, milyen, célszerű figyelemmel kísérni metrikák és okát.
 
 ### <a name="monitoring-service-health"></a>Figyelési szolgáltatásának állapota
-Használhatja a [Azure-portálon](https://portal.azure.com) a tároló szolgáltatás (és más Azure-szolgáltatások) állapotának megtekintéséhez a világ minden Azure régióban. Ez lehetővé teszi, hogy azonnal láthatja, ha a vezérlőn kívül problémát érinti a társzolgáltatás használhatja az alkalmazás a régióban.
+Használhatja a hello [Azure-portálon](https://portal.azure.com) tooview hello állapotát hello tárolási szolgáltatás (és más Azure-szolgáltatások) az összes Azure-régiók körül hello world hello. Ez lehetővé teszi toosee azonnal amennyiben kívül a problémát érinti hello társzolgáltatás hello régióban, az alkalmazás használja.
 
-A [Azure-portálon](https://portal.azure.com) is biztosít a különböző Azure-szolgáltatások érintő incidensek értesítések.
-Megjegyzés: Ez az információ korábban rendelkezésre állt, jelszavat és az előzmények, a a [Azure szolgáltatás irányítópultját](http://status.azure.com).
+Hello [Azure-portálon](https://portal.azure.com) különböző Azure-szolgáltatásokat is megadhatja az hello érintő incidensek szóló értesítéseket.
+Megjegyzés: Ez az információ korábban rendelkezésre állt, valamint előzményadatokat a hello [Azure szolgáltatás irányítópultját](http://status.azure.com).
 
-Amíg a [Azure-portálon](https://portal.azure.com) egészségügyi adatokat gyűjt a (belső kibővített figyelés), az Azure adatközpontjaiban belül is érdemes lehet egy kívül a módszert, amelyet rendszeres időközönként érni az Azure által üzemeltetett webalkalmazás több helyről szintetikus tranzakciók létrehozására bevezetése. A szolgáltatás által kínált [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) és az Application Insights for Visual Studio Team Services példák a külső hátránya. A Visual Studio Team Services Application insights szolgáltatással kapcsolatos további információkért lásd: a függelék: "[5 függelék: figyelés az Application Insights for Visual Studio Team Services](#appendix-5)."
+Hello közben [Azure-portálon](https://portal.azure.com) gyűjti állapotadatokat belül hello Azure adatközpontjaiban (belső kibővített figyelés), is érdemes lehet egy külső a megközelítést toogenerate szintetikus tranzakciók, amely rendszeres időközönként bevezetése az Azure által üzemeltetett webalkalmazások több helyen elérését. hello által kínált szolgáltatások [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) és az Application Insights for Visual Studio Team Services példák a külső hátránya. A Visual Studio Team Services Application insights szolgáltatással kapcsolatos további információkért lásd: hello függelék "[5 függelék: figyelés az Application Insights for Visual Studio Team Services](#appendix-5)."
 
 ### <a name="monitoring-capacity"></a>Kapacitásának figyelése
-Storage mérőszámainak csak tárolja a teljesítmény-mérőszámait a blob szolgáltatás, mert a blobok általában fiók tárolt adatok legnagyobb részét (a írásának időpontjában, nincs lehetőség Storage Metrics a figyelheti a táblák és a várólisták). Ezeket az adatokat a megtalálhatja a **$MetricsCapacityBlob** tábla, ha engedélyezte a Blob szolgáltatás figyelését. Storage mérőszámainak rögzíti az adatokat naponta egyszer, és használhatja a értékének a **RowKey** annak meghatározásához, hogy a sor tartalmaz-e olyan entitás, amely kapcsolódik a felhasználói adatok (érték **adatok**) vagy analitikai adatok (érték **analytics**). Minden tárolt entitás tárolókapacitást használt információkat tartalmaz (**kapacitás** bájtban mért) és a tárolók száma (**ContainerCount**) és a blobok (**ObjectCount**) a tárfiókot használja. További információ a kapacitási mérőszámokat tárolja a **$MetricsCapacityBlob** táblázatban, lásd: [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+Storage mérőszámainak csak tárolja a teljesítmény-mérőszámait hello blob szolgáltatáshoz, mert blobok általában fiók tárolt adatok hello legnagyobb részét (hello írásának időpontjában, már nem lehetséges toouse Storage Metrics toomonitor hello kapacitás a táblák és-várólista) . Ezek az adatok találhatók hello **$MetricsCapacityBlob** tábla, ha engedélyezte a Blob szolgáltatás hello figyelését. Storage mérőszámainak rögzíti az adatokat naponta egyszer, és használhatja a hello hello értékének **RowKey** toodetermine hogy hello sor tartalmazza-e olyan entitás, amely toouser adatok vonatkozik (érték **adatok**) vagy analytics adatok () érték **analytics**). Minden tárolt entitás felhasznált terület méretének hello adatait tartalmazza (**kapacitás** bájtban mért) és a tárolók hello jelenlegi száma (**ContainerCount**) és a blobok ( **ObjectCount**) hello tárfiókot használja. Hello kapacitási mérőszámokat hello tárolt kapcsolatos további információk **$MetricsCapacityBlob** táblázatban, lásd: [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
 > [!NOTE]
-> Ezeket az értékeket, hogy a tárfiók kapacitás határain hamarosan eléri a korai figyelmeztetéseket, célszerű figyelemmel kísérni. Az Azure-portálon adhat hozzá a riasztási szabályok, amelyek értesítést küldenek, ha az összesített tárolóhely-használat meghaladja, vagy a megadott küszöbérték alá esik.
+> Ezeket az értékeket, hogy a tárfiók hello kapacitáskorlátait hamarosan eléri a korai figyelmeztetéseket, célszerű figyelemmel kísérni. Hello Azure-portálon Ha összesítő tárolóhely-használat meghaladja vagy alá esik küszöbértékeket, hogy megadja a riasztási szabályok toonotify adhat hozzá.
 > 
 > 
 
-A bináris objektumok, például különféle tárolási objektumok méretének becslése talál segítséget a következő blogbejegyzésben található [az Azure Storage számlázási – sávszélesség, a tranzakciók és a kapacitás](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx).
+Különböző tárolási objektumok, például a blobok hello méretének becslése útmutatásért lásd: hello blogbejegyzésben [az Azure Storage számlázási – sávszélesség, a tranzakciók és a kapacitás](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx).
 
 ### <a name="monitoring-availability"></a>Rendelkezésre állás figyelése
-Figyelje a tárolási szolgáltatások rendelkezésre állását a tárfiókban lévő által az érték a **rendelkezésre állási** az óránként vagy percenkénti metrikákat táblázatok oszlopát – **$MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$MetricsCapacityBlob**. A **rendelkezésre állási** oszlop egy százalékos értéket tartalmaz, amely a szolgáltatás vagy az API-művelet a sor által képviselt rendelkezésre állását mutatja (a **RowKey** jeleníti meg, ha a sor tartalmaz-e a szolgáltatás egészére vagy egy adott API-művelet metrikák).
+Célszerű figyelemmel kísérni hello tárolószolgáltatások hello rendelkezésre állását a tárfiókban lévő hello hello értéket figyelésével **rendelkezésre állási** oszlopa hello óránként vagy percenkénti metrikákat táblák – **$ MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$ MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$ MetricsCapacityBlob**. Hello **rendelkezésre állási** oszlop, amely jelzi a hello rendelkezésre állását hello szolgáltatást vagy hello sor által képviselt hello API művelet százalékos értéket tartalmaz (hello **RowKey** jeleníti meg, hogy hello sort tartalmazza metrikák hello szolgáltatás egésze vagy egy adott API-művelet).
 
-Bármely érték, amely kisebb, mint 100 %-os azt jelzi, hogy bizonyos tárolási kérelmeket nem működnek. Láthatja, hogy miért ezek nem működnek a metrikák adatok, amelyek különböző hiba típusú kérések számát, mint a többi oszlop megvizsgálásával **ServerTimeoutError**. Lásd: várható **rendelkezésre állási** ősszel ideiglenesen 100 % okokból közben a szolgáltatás átmeneti server időtúllépések alatt áthelyezése partíciók jobb terheléselosztásához kérelem; az ügyfélalkalmazás az újrapróbálkozási logika kezelnie kell az ilyen időszakos feltételek. A cikk [Storage Analytics naplózott műveletekkel és az állapotüzenetek](http://msdn.microsoft.com/library/azure/hh343260.aspx) Storage Metrics tartalmaz a tranzakció-típusok listája a **rendelkezésre állási** számítási.
+Bármely érték, amely kisebb, mint 100 %-os azt jelzi, hogy bizonyos tárolási kérelmeket nem működnek. Láthatja, hogy miért ezek nem működnek megvizsgálásával hello metrikai adatok, amelyek különböző típusok kérelmek hello számok, mint a más oszlopok hello **ServerTimeoutError**. Toosee számíthat **rendelkezésre állási** átmeneti kiszolgáló időtúllépése közben hello szolgáltatás áthelyezi toobetter terheléselosztásához kérelem okokból ideiglenesen 100 %-os alá csökken; hello újrapróbálkozási logika az ügyfél-alkalmazásban ilyen időszakos feltételek kell kezelni. hello cikk [Storage Analytics naplózott műveletekkel és az állapotüzenetek](http://msdn.microsoft.com/library/azure/hh343260.aspx) listák hello Storage Metrics tartalmaz a tranzakciótípusok a **rendelkezésre állási** számítási.
 
-A a [Azure-portálon](https://portal.azure.com), amelyek értesítést küldenek, ha a riasztási szabályok is hozzáadhat **rendelkezésre állási** a szolgáltatás a megadott küszöbérték alá esik.
+A hello [Azure-portálon](https://portal.azure.com), a riasztási szabályok toonotify adhat hozzá, ha **rendelkezésre állási** a szolgáltatás a megadott küszöbérték alá esik.
 
-A "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori tárolási szolgáltatás problémákat elérhetőségének ismerteti.
+hello "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori tárolási szolgáltatás problémák kapcsolódó tooavailability ismerteti.
 
 ### <a name="monitoring-performance"></a>A teljesítmény figyelése
-A tárolási szolgáltatások teljesítményének figyeléséhez az óránkénti és percenkénti metrikákat tábla a következő mérőszámokat is használhat.
+hello tárolószolgáltatások toomonitor hello teljesítményétől, a hello használhatja hello metrikák követően óránként és metrikákat táblák perc.
 
-* Az értékek a **AverageE2ELatency** és **AverageServerLatency** oszlopaiban végrehajtásához szükséges átlagos idő a társzolgáltatás vagy API művelet típusa tart kérelmek feldolgozásához. **AverageE2ELatency** azt méri, végpontok közötti késés, amely tartalmazza az olvasni a kérelmet, és a kérelem feldolgozásához szükséges idő mellett küldés szükséges idő (ezért tartalmazza a hálózati késés, ha a kérelem eléri a társzolgáltatás); **AverageServerLatency** biztosítása csak a feldolgozási idő, és ezért nem tartalmazza az összes hálózati késés kommunikál az ügyféllel kapcsolatos. Című témakör "[metrika AverageE2ELatency magas és alacsony AverageServerLatency]" az útmutató információt a miért lehet jelentős különbség a két érték között.
-* Az értékek a **TotalIngress** és **TotalEgress** oszlopok megjelenítése a teljes adatmennyiség bájtban érkező, és ezzel kívül a társzolgáltatás vagy a megadott API-művelet típusra.
-* Az értékek a **TotalRequests** oszlop megjelenítése a társzolgáltatás API művelet fogadó kérelmek teljes száma. **TotalRequests** , amely megkapja a társzolgáltatás kérelmek teljes száma.
+* hello értékek hello **AverageE2ELatency** és **AverageServerLatency** oszlopaiban hello átlagos idő hello társzolgáltatás vagy API művelet típusa tooprocess kérelmek tart. **AverageE2ELatency** egy mérték, amely tartalmazza az idő hello tooread hello kérelem-végpontok közötti késés és hello válasz hozzáadása toohello igénybe vett idő tooprocess hello kérés küldése (ezért tartalmazza a hálózati késés után hello kérése hello társzolgáltatás eléri); **AverageServerLatency** csak hello feldolgozási időt egy mérték, és ezért nem tartalmazza az összes kapcsolódó hálózati késés toocommunicating hello ügyféllel. Című rész hello "[metrika AverageE2ELatency magas és alacsony AverageServerLatency]" az útmutató információt a miért lehet jelentős különbség a két érték között.
+* hello értékek hello **TotalIngress** és **TotalEgress** kívül a társzolgáltatás vagy a megadott API-művelet típusra keresztül tooand várható oszlopaiban hello teljes adatmennyiség bájtban.
+* hello értékek hello **TotalRequests** oszlop megjelenítése hello kérelmek teljes száma, amelyek a társzolgáltatás API művelet hello fogadja. **TotalRequests** hello hello tárolási szolgáltatás fogadja a kérelmek teljes száma.
 
 Általában fogja figyelni a ezek bármelyike váratlan változásokat, azt jelzi, hogy rendelkezik-e a hibát, amely vizsgálatot igényel.
 
-Az a [Azure-portálon](https://portal.azure.com), amelyek értesítést küldenek, ha bármelyik ezt a szolgáltatást a metrikák alá esnek, vagy meghaladnia a küszöbértéket, melyet a riasztási szabályok is hozzáadhat.
+A hello [Azure-portálon](https://portal.azure.com), toonotify, ha bármelyik teljesítménymutatók hello szolgáltatás alá esnek vagy meghaladnia a küszöbértéket, melyet a riasztási szabályok is hozzáadhat.
 
-A "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori tárolási szolgáltatás problémákat a teljesítménnyel kapcsolatos ismerteti.
+hello "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori tárolási szolgáltatás problémák kapcsolódó tooperformance ismerteti.
 
 ## <a name="diagnosing-storage-issues"></a>Tárolási problémák diagnosztizálása
 Számos módon, hogy előfordulhat, hogy tudomást hiba vagy probléma a alkalmazás is van, ezek közé tartoznak:
 
-* Súlyos hiba, amely az alkalmazás összeomlik vagy nem működik.
-* Az eredeti értékeket az előző szakaszban leírtak szerint figyeli a metrikák a jelentős változtatások "[a tárolás szolgáltatás figyelése]."
+* Hello alkalmazás toocrash vagy toostop működő okozó súlyos hiba.
+* Az alapértékek hello metrikák hello előző szakaszban leírtak szerint figyeli a jelentős változtatások "[a tárolás szolgáltatás figyelése]."
 * A felhasználók az alkalmazás, amely egy adott művelet nem fejeződött be, várt módon jelentések vagy, hogy néhány szolgáltatás nem működik.
 * Hibák keletkeztek az alkalmazáson belül, amely jelennek meg a naplófájlokban vagy néhány egyéb értesítési metódussal.
 
-Általában az Azure storage szolgáltatások kapcsolatos problémák egyikébe négy kategóriába sorolhatók:
+Általában problémák kapcsolódó tooAzure tárolószolgáltatások egyikébe négy kategóriába sorolhatók:
 
-* Az alkalmazásnak a teljesítménybeli problémát, vagy a felhasználók által jelentett, vagy a metrikák változása látható.
-* A probléma az Azure Storage-infrastruktúra egy vagy több régióban van.
-* Az alkalmazás hibás, vagy a felhasználók által jelentett, vagy a figyelheti hiba száma metrikák egyik növekedése által feltárt léptek fel.
-* Fejlesztési és tesztelési során előfordulhat, hogy használni a helyi storage emulator; a storage emulator használata kapcsolódik néhány problémák merülhetnek fel.
+* Az alkalmazásnak a teljesítménybeli problémát, a felhasználók által jelentett vagy hello teljesítménymutatók változása látható.
+* A probléma hello Azure tároló-infrastruktúra egy vagy több régióban van.
+* Az alkalmazás hibás, vagy a felhasználók által jelentett, vagy megnövelheti a figyelheti hello hiba száma metrikák egyik által feltárt léptek fel.
+* Fejlesztési és tesztelési során előfordulhat, hogy használni hello helyi storage emulator; kifejezetten a hello storage emulator toousage bizonyos problémák merülhetnek fel.
 
-Az alábbi szakaszok felsorolják a követendő lépések diagnosztizálásához és hibaelhárításához minden ilyen négy kapcsolatos hibákat. A szakasz "[hibaelhárítási útmutatás]" Ez az útmutató későbbi részletgazdagabb a gyakori problémákat tapasztalhat.
+hello alábbi szakaszok felsorolják hello lépéseket kell követni toodiagnose, és minden ilyen négy a problémák elhárításához. a szakasz hello "[hibaelhárítási útmutatás]" Ez az útmutató későbbi részletgazdagabb a gyakori problémákat tapasztalhat.
 
 ### <a name="service-health-issues"></a>Szolgáltatás ügynökállapottal kapcsolatos hibákkal
-Szolgáltatás állapotával kapcsolatos problémák jellemzően a vezérlőn kívül. A [Azure-portálon](https://portal.azure.com) Azure szolgáltatásokkal, beleértve a tárolási szolgáltatások folyamatos problémákkal kapcsolatos információkat biztosít. Választotta írásvédett Georedundáns tárolás a tárfiók létrehozása után, ha az elsődleges helyen nem érhető el az adatok esetén az alkalmazás sikerült váltson ideiglenesen az írásvédett másolatát a másodlagos helyen. Ehhez az szükséges, az alkalmazás kell váltani az elsődleges és másodlagos tárolóhelyek használata között, és lehet csak olvasható adatok a csökkentett módban való működésre. Az Azure Storage ügyfélkódtáraival engedélyezi annak meghatározását, amely is olvasható másodlagos tárterületre abban az esetben, ha egy elsődleges tárolási való olvasás sikertelen újrapróbálkozási házirendje. Az alkalmazás is ismernie kell, hogy idővel konzisztenssé a másodlagos hely adatai. További információkért lásd a következő blogbejegyzésben [Azure tárolási redundancia lehetőségek és az írásvédett Georedundáns redundáns tárolás](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
+Szolgáltatás állapotával kapcsolatos problémák jellemzően a vezérlőn kívül. Hello [Azure-portálon](https://portal.azure.com) Azure szolgáltatásokkal, beleértve a tárolási szolgáltatások folyamatos problémákkal kapcsolatos információkat biztosít. Ha választotta írásvédett Georedundáns tárolás a tárfiók létrehozása után, majd hello eseményben hello elsődleges helyen, éppen nem érhető el az adatok az alkalmazás átállítása volt ideiglenesen toohello írásvédett másolatként hello másodlagos helyen. toodo, ez az alkalmazás képes tooswitch hello elsődleges és másodlagos tárolóhelyek használata között, és képes toowork csak olvasható adatok csökkentett üzemmódban kell. hello Azure Storage ügyfélkódtáraival toodefine által olvasható másodlagos tárolóból, abban az esetben, ha egy elsődleges tárolási való olvasás sikertelen újrapróbálkozási házirendje lehetővé teszi. Az alkalmazás is van szüksége arról, hogy hello adatok hello másodlagos helyen idővel konzisztenssé toobe. További információkért lásd: hello blogbejegyzésben [Azure tárolási redundancia lehetőségek és az írásvédett Georedundáns redundáns tárolás](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
 
 ### <a name="performance-issues"></a>Teljesítménnyel kapcsolatos problémák
-Egy alkalmazás teljesítményének megítélése szubjektív lehet, főképp a felhasználó szemszögéből. Ezért fontos, hogy rendelkezzen olyan alapmértékekkel, amelyek segíthetnek a teljesítménnyel kapcsolatos problémák azonosításában. Számos tényező befolyásolhatja egy Azure storage szolgáltatás alkalmazás ügyfelek szemszögéből teljesítményére. Ezek a tényezők a társzolgáltatás, az ügyfél vagy a hálózati infrastruktúra; előfordulhat, hogy működik. Ezért fontos egy olyan stratégia, azonosítsa a felhasználót a teljesítménycsökkenés oka forrása.
+lehet, hogy egy alkalmazás teljesítménye hello szubjektív, különösen a felhasználók szempontjából. Ezért fontos toohave alapterv metrikák elérhető toohelp azonosította amennyiben előfordulhat, hogy a teljesítménybeli problémát. Számos tényező befolyásolhatja hello teljesítmény az Azure storage szolgáltatás hello ügyfél alkalmazás szempontjából. Ezek a tényezők hello társzolgáltatás, hello ügyfél vagy hello hálózati infrastruktúra; előfordulhat, hogy működik. ezért ez azért fontos toohave hello teljesítményprobléma hello származásának azonosítására szolgáló stratégiát.
 
-Miután azonosította a teljesítménycsökkenés oka a metrikák a oka valószínűleg helyét, majd használhatja a naplófájlok diagnosztizálásához és a probléma további hibaelhárításához kapcsolatos részletes információk.
+Miután azonosította hello hello teljesítményprobléma hello metrikákat a hello oka valószínűleg helyét, ezután a használata hello napló fájlok toofind részletes információkat toodiagnose, és további hello probléma elhárításához.
 
-A szakasz "[hibaelhárítási útmutatás]" kapcsolatos néhány általános teljesítmény kapcsolatban, hogy ez az útmutató későbbi biztosít találkozhat.
+szakasz hello "[hibaelhárítási útmutatás]" kapcsolatos néhány általános teljesítmény kapcsolatban, hogy ez az útmutató későbbi biztosít találkozhat.
 
 ### <a name="diagnosing-errors"></a>Hibák diagnosztizálása
-Az alkalmazás felhasználók is értesíti az ügyfélalkalmazás által jelentett hibákat. Storage mérőszámainak rögzíti számát a tárolási szolgáltatások különböző típusok is, mint **NetworkError**, **ClientTimeoutError**, vagy **AuthorizationError**. Storage Metrics csak számát is különböző típusok rögzíti, miközben szerezhet be további részletes információkat az egyes kérelmek kiszolgálóoldali, az ügyféloldali és hálózati naplók megvizsgálásával. A tároló szolgáltatás által visszaadott HTTP-állapotkód rendszerében általában arra utal, hogy a kérelem sikertelenségének okát.
+Az alkalmazás felhasználók értesítheti a hello ügyfélalkalmazás által jelentett hibák. Storage mérőszámainak rögzíti számát a tárolási szolgáltatások különböző típusok is, mint **NetworkError**, **ClientTimeoutError**, vagy **AuthorizationError**. Storage Metrics csak számát is különböző típusok rögzíti, miközben szerezhet be további részletes információkat az egyes kérelmek kiszolgálóoldali, az ügyféloldali és hálózati naplók megvizsgálásával. Hello hello tároló szolgáltatás által visszaadott HTTP-állapotkód rendszerében általában arra utal, hogy hello kérelem sikertelenségének okát.
 
 > [!NOTE]
-> Ne feledje, hogy Ön látnia néhány átmeneti hiba: például átmeneti hálózati körülmények miatti hibák, vagy az alkalmazáshibák.
+> Ne feledje, hogy számíthat toosee időszakos hibák: például tootransient hálózati problémák miatt hibák, vagy az alkalmazáshibák.
 > 
 > 
 
-A következő erőforrások hasznosak tárolással kapcsolatos állapotának és kódjainak:
+hello következőket hasznosak a tárolással kapcsolatos állapotának és kódjainak:
 
 * [Közös REST API hibakódok](http://msdn.microsoft.com/library/azure/dd179357.aspx)
 * [BLOB szolgáltatás hibakódok](http://msdn.microsoft.com/library/azure/dd179439.aspx)
@@ -207,71 +207,71 @@ A következő erőforrások hasznosak tárolással kapcsolatos állapotának és
 * [Fájl hibakódjai](https://msdn.microsoft.com/library/azure/dn690119.aspx)
 
 ### <a name="storage-emulator-issues"></a>Tárolási emulátor problémák
-Az Azure SDK magában foglalja a storage emulatort, egy fejlesztő munkaállomás futtathatja. Az emulátor szimulálja az Azure storage szolgáltatásainak viselkedését a legtöbb, és hasznos során fejlesztési és tesztelési, így lehetővé teszi a Azure-előfizetés és Azure storage-fiók nélkül az Azure storage-szolgáltatásokat használó alkalmazások futtatásához.
+hello Azure SDK magában foglalja a storage emulatort, egy fejlesztő munkaállomás futtathatja. Az emulátor hello viselkedését hello Azure storage szolgáltatások többsége szimulál, és akkor hasznos, fejlesztési és tesztelési során, így már toorun hello nélkül az Azure storage-szolgáltatásokat használó alkalmazások kell az Azure-előfizetés és Azure storage-fiók.
 
-A "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori problémát észlelt a storage emulator használatával ismerteti.
+hello "[hibaelhárítási útmutatás]" című szakaszában talál néhány gyakori problémát észlelt a hello storage emulator használatával ismerteti.
 
 ### <a name="storage-logging-tools"></a>Tárolási naplózási eszközök
-Tároló-naplózás biztosítja a kiszolgálóoldali naplózása tárolási kérelmeket az Azure-tárfiókot. Kiszolgálóoldali naplózás engedélyezése és az adatok elérését az napló kapcsolatos további információkért lásd: [tárolási naplózás engedélyezése és használata naplóadatok](http://go.microsoft.com/fwlink/?LinkId=510867).
+Tároló-naplózás biztosítja a kiszolgálóoldali naplózása tárolási kérelmeket az Azure-tárfiókot. Hogyan tooenable kiszolgálóoldali naplózási és hozzáférési hello napló adatok kapcsolatos további információkért lásd: [tárolási naplózás engedélyezése és használata naplóadatok](http://go.microsoft.com/fwlink/?LinkId=510867).
 
-A Storage ügyféloldali kódtára a .NET ügyféloldali napló adatokat gyűjthet, amelyek az alkalmazás által végrehajtott tárolási műveletek vonatkozik teszi lehetővé. További információkért lásd: [ügyféloldali naplózás a .NET a Storage ügyféloldali kódtára](http://go.microsoft.com/fwlink/?LinkId=510868).
+hello Storage ügyféloldali kódtára a .NET toocollect ügyféloldali naplóadatokat kapcsolódó toostorage műveleteket végzi el az alkalmazás lehetővé teszi. További információkért lásd: [ügyféloldali naplózás hello .NET a Storage ügyféloldali kódtára](http://go.microsoft.com/fwlink/?LinkId=510868).
 
 > [!NOTE]
-> Bizonyos esetekben (például a SAS-hitelesítési hibák) a felhasználó, amelynek nincs kérelem adatai az található a kiszolgálóoldali tárolási naplófájljai hiba előfordulhat, hogy jelentést. A naplózási képességeket a Storage ügyféloldali kódtár segítségével vizsgálja meg, ha a probléma oka az, az ügyfélen, vagy vizsgálja meg a hálózati Hálózatfigyelő eszközök segítségével.
+> Bizonyos esetekben (például a SAS-hitelesítési hibák) a felhasználó, amelynek nincs kérelem adatai az található hello kiszolgálóoldali tárolási naplófájljai hiba előfordulhat, hogy jelentést. Hello naplózás képességei hello a Storage ügyféloldali kódtára tooinvestigate használja, ha hello hello a probléma oka az ügyfél hello, vagy használja a hálózati eszközök tooinvestigate hello hálózat figyelése.
 > 
 > 
 
 ### <a name="using-network-logging-tools"></a>Hálózati naplózási eszközök használatával
-Részletes információkat szolgáltatnak az adatok ügyfélen és kiszolgálón cseréjét, és a mögöttes hálózati feltételek mellett az ügyfél és kiszolgáló közötti forgalmat is rögzítheti. Hasznos hálózati naplózási eszközök a következők:
+Rögzítheti a hello forgalmat közötti hello ügyfél és kiszolgáló tooprovide részletes információk hello adatok hello ügyfél és kiszolgáló cseréjét és az alapjául szolgáló hálózati körülmények hello. Hasznos hálózati naplózási eszközök a következők:
 
-* [Fiddler](http://www.telerik.com/fiddler) egy szabad webalkalmazás-proxy, amely lehetővé teszi, hogy ellenőrizze a fejlécek és a HTTP és HTTPS kérés- és üzenetek adattartalom hibakeresés. További információkért lásd: [1. függelékében: Fiddler használatával a HTTP és HTTPS-forgalom rögzítésére](#appendix-1).
-* [Microsoft Hálózatfigyelő (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) és [Wireshark](http://www.wireshark.org/) vannak szabad hálózati protokoll lekérdezések, amelyek lehetővé teszik a hálózati protokollok széles köre csomag részletes információk megtekintéséhez. Wireshark kapcsolatos további információkért lásd: "[2. függelékben: Wireshark használó rögzítheti a hálózati forgalom](#appendix-2)".
-* Microsoft Message Analyzert egy olyan eszköz, a Microsoft írja felül a Netmon, és hogy a hálózati csomag adatrögzítés mellett, megtekintése és elemzése a naplóadatok rögzítése más eszközök segítségével. További információkért lásd: "[függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom](#appendix-3)".
-* Ha azt szeretné, a hálózati kapcsolat ellenőrzéséhez ellenőrizze, hogy az ügyfélszámítógép csatlakozhat az Azure storage szolgáltatást a hálózaton keresztül, nem ehhez a szabványos **ping** eszköz az ügyfélen. Azonban használhatja a [ **tcping** eszköz](http://www.elifulkerson.com/projects/tcping.php) kapcsolat ellenőrzése.
+* [Fiddler](http://www.telerik.com/fiddler) egy szabad webalkalmazás-proxy, amely lehetővé teszi tooexamine hello fejlécek és a HTTP és HTTPS kérés- és üzenetek adattartalom hibakeresés. További információkért lásd: [1. függelékében: Fiddler használatával toocapture HTTP és HTTPS-forgalom](#appendix-1).
+* [Microsoft Hálózatfigyelő (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) és [Wireshark](http://www.wireshark.org/) vannak szabad hálózati protokoll lekérdezések, amelyek lehetővé teszik tooview csomag azoknak a hálózati protokollok széles köre. Wireshark kapcsolatos további információkért lásd: "[2. függelékben: használatával Wireshark toocapture hálózati forgalom](#appendix-2)".
+* Microsoft Message Analyzert egy eszköz, amely felülírja a Netmon és, hogy ezenkívül toocapturing hálózati csomagadatok, Microsoft tooview segít, és más eszközök rögzítése hello naplóadatokat elemzése. További információkért lásd: "[függelék: 3: Microsoft Message Analyzert használatával toocapture hálózati forgalom](#appendix-3)".
+* Ha azt szeretné, hogy a hálózati kapcsolat tesztelése toocheck, hogy az ügyfélszámítógép hello hálózaton keresztül kapcsolódhatnak toohello az Azure storage szolgáltatás tooperform, nem ehhez a hello szabványos **ping** eszköz hello ügyfélen. Azonban használhat hello [ **tcping** eszköz](http://www.elifulkerson.com/projects/tcping.php) toocheck kapcsolat.
 
-Sok esetben a naplóadatait tárolási naplózás és a Storage ügyféloldali kódtár elegendőek a probléma diagnosztizálásához, de bizonyos helyzetekben szükség lehet a további tájékoztatáshoz, amely a hálózati naplózási eszközök nyújt. Például a HTTP és HTTPS üzenetek megtekintése a Fiddler segítségével lehetővé teszi fejlécének és adattartalmának bontása, és a tárolási szolgáltatások, amelyek lehetővé teszik, hogy vizsgálja meg, hogyan ügyfélalkalmazás újrapróbálja tárolási műveletek onnan küldött adatok megtekintéséhez. Protokoll elemzőkkel Wireshark például a csomag szintjén teszi TCP-adatok, amelyek lehetővé teszik, hogy elveszett csomagok és a problémák elhárítása engedélyezése fog működni. Az Üzenetelemző HTTP és a TCP rétegek is működnek.
+Sok esetben hello naplóadatait tárolási naplózás és a Storage ügyféloldali kódtára hello elegendő toodiagnose problémát, de bizonyos helyzetekben szükség lehet a részletes információkat biztosít a hálózati naplózási eszközök hello. Például Fiddler tooview használatával újrapróbálja a tárolási műveletek a HTTP és HTTPS üzenetek lehetővé teszi, hogy tooview fejlécének és adattartalmának bontása adatokat küldött tooand hello a tárolási szolgáltatások, amelyek lehetővé teszik hogy tooexamine egy ügyfél alkalmazások. Protokoll elemzőkkel Wireshark például így már tooview TCP-adatok, amelyek lehetővé teszik a tootroubleshoot, elveszett csomagokat és a kapcsolódási problémák hello csomagok szinten működik. Az Üzenetelemző HTTP és a TCP rétegek is működnek.
 
 ## <a name="end-to-end-tracing"></a>Végpont nyomkövetés
-Végpont nyomkövetési naplófájlok számos használatát egy olyan hasznos eljárás kapcsolatos lehetséges problémákat vizsgálja. Is használhatja a dátum/idő adatokat a metrikák adatokból utalhat, hogy hol keressen a részletes információkat, amelyek segítenek a probléma megoldásához a rendszernapló fájljaiban.
+Végpont nyomkövetési naplófájlok számos használatát egy olyan hasznos eljárás kapcsolatos lehetséges problémákat vizsgálja. A metrikák adatokból hello dátum-/ időinformációk utalhat, hogy hol hello naplófájlba hello keresése toostart részletes információk segítik hello problémával kapcsolatos hibaelhárítás elősegítéséhez védelemként is alkalmazhatják.
 
 ### <a name="correlating-log-data"></a>Naplóadatok válaszoknak az összekapcsolása
-Az ügyfélalkalmazásokból napló megtekintésekor hálózati követi, és nagyon fontos tudni összefüggéseket a kiszolgálóoldali tárolási naplózási keresztül a különböző naplófájlokat kéri. A napló-fájlok közé tartoznak a különböző mezők, melyek hasznosak lehetnek a korrelációs azonosítóként számos. Az ügyfél-azonosító a különböző naplókat bejegyzések összefüggéseket leghasznosabb mezőt. Egyes esetekben azonban hasznos lehet a kiszolgáló kérelemazonosító vagy a időbélyegeket használja. A következő szakaszokban ezekről a beállításokról további részleteket.
+Az ügyfélalkalmazásokból napló megtekintésekor követi a hálózat, és kiszolgálóoldali tárolási naplózás azt kritikus toobe képes toocorrelate kérelmek hello különböző naplófájl. hello naplófájlokat, amelyek hasznosak a korrelációs azonosítóként különböző mezők számú tartozik. hello ügyfélkérelem-azonosító hello leghasznosabb mező toouse toocorrelate bejegyzések hello különböző naplókat. Egyes esetekben azonban lehet hasznos toouse hello server kérelemazonosító vagy időbélyeg helyi időre. hello következő szakaszokban ezekről a beállításokról további részleteket.
 
 ### <a name="client-request-id"></a>Ügyfélkérelem-azonosító
-A Storage ügyféloldali kódtár automatikusan hoz létre minden egyes kérés egyedi ügyfélkérelem-azonosító.
+a Storage ügyféloldali kódtára hello automatikusan létrehoz minden kérelem esetén egyedi ügyfélkérelem-azonosító.
 
-* Az ügyféloldali naplóban, amely a Storage ügyféloldali kódtár hoz létre, az ügyfél-azonosító szerepel a **ügyfélkérelem-azonosító** mezőjét, minden naplóbejegyzés kapcsolódó a kérést.
-* A Fiddler rögzített például egy hálózati nyomkövetést, az ügyfél-azonosítót is elérhetővé válik a kérelemüzenetek, mint a **x-ms-client-request-id** HTTP-fejléc értéke.
-* A kiszolgálóoldali tárolási naplózás naplóban az ügyfélkérelem-azonosító az ügyfél kérelem azonosító oszlopban jelenik meg.
+* Hello ügyféloldali naplót, hogy a Storage ügyféloldali kódtára hello hoz létre, hello ügyfélkérelem-azonosító szerepel hello **ügyfélkérelem-azonosító** mezőjét, minden naplóbejegyzés vonatkozó toohello kérelmet.
+* A Fiddler rögzített például egy hálózati nyomkövetést, hello ügyfélkérelem-azonosító kérelemüzenetek látható mint hello **x-ms-client-request-id** HTTP-fejléc értéke.
+* Hello kiszolgálóoldali tárolási naplózás naplóban hello ügyfélkérelem-azonosító hello ügyfél kérelem azonosító oszlopban jelenik meg.
 
 > [!NOTE]
-> A többszörös kéréseket megoszthatók az azonos ügyfél-azonosítót, mivel az ügyfelet hozzá lehet rendelni ezt az értéket (bár a Storage ügyféloldali kódtár automatikusan hozzárendeli az új érték) lehetőség. Bármilyen kísérlet esetén az ügyfél újrapróbálkozások, ossza meg az azonos ügyfélkérelem-azonosító. Egy kötegben, az ügyfél által küldött, ha a kötegelt rendelkezik egyetlen ügyfélkérelem-azonosító.
+> Lehetőség a több kérelmek tooshare hello azonos ügyfélkérelem-azonosító, mert hello ügyfelet hozzá lehet rendelni ezt az értéket (bár a Storage ügyféloldali kódtára hello automatikusan hozzárendel egy új értéket). Újrapróbálkozások hello ügyfélről hello esetben bármilyen kísérlet megosztása hello azonos ügyfélkérelem-azonosító. Hello ügyfélről küldött kötegelt hello esetben hello kötegelt egyetlen ügyfélkérelem-azonosító tartozik.
 > 
 > 
 
 ### <a name="server-request-id"></a>Kiszolgáló azonosítója
-A tároló szolgáltatás automatikusan létrehozza a kérelem kiszolgálóazonosítók.
+hello társzolgáltatás kérelem kiszolgálóazonosítók automatikusan létrehozza.
 
-* A kiszolgáló kérelemazonosító jelenik meg a kiszolgálóoldali tárolási naplózás napló a **Kérelemazonosító fejléc** oszlop.
-* A Fiddler rögzített például egy hálózati nyomkövetést, a kiszolgáló kérelemazonosító válaszüzenetek, megjelenik a **az x-ms-request-id** HTTP-fejléc értéke.
-* Az ügyféloldali naplóban, amely a Storage ügyféloldali kódtár hoz létre, a kiszolgáló kérelemazonosító megjelenik a **művelet szöveg** a naplóbejegyzést, a kiszolgáló válaszára részleteit megjelenítő oszlopában.
+* Hello kiszolgálóoldali tárolási naplózás naplóban, hello server kérelemazonosító megjelenik hello **Kérelemazonosító fejléc** oszlop.
+* A Fiddler rögzített például egy hálózati nyomkövetést, hello server kérelemazonosító jelenik meg a válaszüzenetek hello **az x-ms-request-id** HTTP-fejléc értéke.
+* Hello ügyféloldali naplót, hogy a Storage ügyféloldali kódtára hello hoz létre, hello server kérelemazonosító megjelenik hello **művelet szöveg** hello kiszolgálóválasz részleteit megjelenítő hello naplóbejegyzés oszlopában.
 
 > [!NOTE]
-> A társzolgáltatás mindig egyedi kiszolgálói kérelem azonosítót rendel minden kérést kap, így az ügyfél minden újrapróbálkozások és minden műveletet a kötegben szereplő egy egyedi kiszolgálói kérelem azonosítója.
+> hello tároló szolgáltatás mindig rendeli hozzá egyedi kiszolgálói kérelem azonosítója tooevery kérelmet kap, így minden újrapróbálkozások hello ügyfélről és minden műveletet a kötegben szereplő egy egyedi kiszolgálói kérelem azonosítója.
 > 
 > 
 
-Ha a Storage ügyféloldali kódtár jelez a **StorageException** az ügyfél a **RequestInformation** tulajdonsága tartalmazza egy **RequestResult** objektum, amely tartalmazza egy **ServiceRequestID** tulajdonság. Emellett egy **RequestResult** objektum egy **OperationContext** példány.
+Ha hello okoz-e a Storage ügyféloldali kódtára a **StorageException** hello ügyfél hello **RequestInformation** tulajdonsága tartalmazza egy **RequestResult** objektum, amely tartalmazza a **ServiceRequestID** tulajdonság. Emellett egy **RequestResult** objektum egy **OperationContext** példány.
 
-Az alábbi példakód bemutatja, hogyan kell beállítani egy egyéni **ClientRequestId** csatolásával érték egy **OperationContext** a kérést a társzolgáltatás objektum. Azt is bemutatja, hogyan lehet lekérni a **ServerRequestId** értéket a válaszüzenetben.
+az alábbi hello mintakód bemutatja, hogyan tooset egyéni **ClientRequestId** csatolásával érték egy **OperationContext** objektum hello kérelem toohello tároló szolgáltatást. Azt is bemutatja, hogyan tooretrieve hello **ServerRequestId** hello válaszüzenetet közötti értéket.
 
 ```csharp
-//Parse the connection string for the storage account.
+//Parse hello connection string for hello storage account.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Create an Operation Context that includes custom ClientRequestId string based on constants defined within the application along with a Guid.
+// Create an Operation Context that includes custom ClientRequestId string based on constants defined within hello application along with a Guid.
 OperationContext oc = new OperationContext();
 oc.ClientRequestID = String.Format("{0} {1} {2} {3}", HOSTNAME, APPNAME, USERID, Guid.NewGuid().ToString());
 
@@ -283,13 +283,13 @@ try
     using (var fs = File.OpenWrite(downloadToPath))
     {
         blob.DownloadToStream(fs, null, null, oc);
-        Console.WriteLine("\t Blob downloaded to file: {0}", downloadToPath);
+        Console.WriteLine("\t Blob downloaded toofile: {0}", downloadToPath);
     }
 }
 catch (StorageException storageException)
 {
     Console.WriteLine("Storage exception {0} occurred", storageException.Message);
-    // Multiple results may exist due to client side retry logic - each retried operation will have a unique ServiceRequestId
+    // Multiple results may exist due tooclient side retry logic - each retried operation will have a unique ServiceRequestId
     foreach (var result in oc.RequestResults)
     {
             Console.WriteLine("HttpStatus: {0}, ServiceRequestId {1}", result.HttpStatusCode, result.ServiceRequestID);
@@ -298,23 +298,23 @@ catch (StorageException storageException)
 ```
 
 ### <a name="timestamps"></a>Időbélyeg helyi időre
-Időbélyeg helyi időre segítségével keresse meg a kapcsolódó naplóbejegyzések, de legyen óvatos, ha bármely óraeltérés között az ügyfél és a kiszolgálóra, lehetséges, hogy létezik. Plusz vagy mínusz 15 percenként megfelelő kiszolgálóoldali bejegyzések az ügyfélen időbélyeg alapján kell keresni. Ne feledje, hogy a blobok metrikák tartalmazó blob metaadatai az időtartományt a metrikáihoz tárolja a blob; Ez akkor hasznos, ha sok metrikák blobok ugyanazon perc vagy óra.
+Időbélyeg helyi időre is használható toolocate naplóbejegyzések, azonban az legyen óvatos bármely óra eltérésére hello ügyfél és kiszolgáló, előfordulhat, hogy létezik között. Plusz vagy mínusz 15 percenként megfelelő kiszolgálóoldali bejegyzések hello időbélyeg hello ügyfélen alapján kell keresni. Ne feledje, hogy hello hello blobot tartalmazó metrikák jelzi hello időtartomány hello metrikáihoz tárolt hello blob; blob metaadatait Ez akkor hasznos, ha sok metrikák blobokat hello azonos perc vagy óra.
 
 ## <a name="troubleshooting-guidance"></a>Hibaelhárítási útmutató
-Ez a szakasz segítséget az elemzés céljából, és az Azure storage szolgáltatásainak használata során felmerülő néhány gyakori problémák elhárítása az alkalmazás. Az alábbi lista segítségével keresse meg az adott problémára vonatkozó információt.
+Ez a szakasz segítséget hello diagnosztizálása és hello Azure storage szolgáltatások használata során felmerülő egyes hello kapcsolatos gyakori hibák elhárítása az alkalmazás. Használjon hello toolocate hello információk vonatkozó tooyour meghatározott probléma az alábbi listából.
 
 **Hibaelhárítási döntési fája**
 
 ---
-A probléma kapcsolódik a teljesítmény, a tárolási szolgáltatások közül az egyik?
+A probléma toohello teljesítmény hello tárolási szolgáltatások közül az egyik kapcsolatban áll?
 
 * [metrika AverageE2ELatency magas és alacsony AverageServerLatency]
-* [A mérőszámok alacsony AverageE2ELatency és alacsony AverageServerLatency értéket mutatnak, de az ügyfél nagy mértékű késleltetést tapasztal]
+* [A metrika alacsony AverageE2ELatency és alacsony AverageServerLatency, de hello ügyfél tapasztal nagy késleltetésű]
 * [A mérőszámok magas AverageServerLatency értéket mutatnak]
 * [Váratlan késést tapasztal az üzenetsorban található üzenetek kézbesítésekor]
 
 ---
-A probléma kapcsolódik a tárolási szolgáltatások közül az egyik rendelkezésre állásának?
+A probléma toohello rendelkezésre állási hello tárolási szolgáltatások közül az egyik kapcsolatban áll?
 
 * [PercentThrottlingError metrika növelését]
 * [PercentTimeoutError metrika növelését]
@@ -323,12 +323,12 @@ A probléma kapcsolódik a tárolási szolgáltatások közül az egyik rendelke
 ---
  Az ügyfélalkalmazás fogadja-e egy HTTP-válaszok aránya (például a 404-es) 4XX egy társzolgáltatás?
 
-* [Az ügyfél HTTP 403 (tiltott) üzeneteket fogad]
-* [Az ügyfél HTTP 404-es (nem található) üzeneteket fogad]
-* [Az ügyfél HTTP 409 (Ütközés) üzeneteket fogad]
+* [hello ügyfél HTTP 403 (tiltott) üzeneteket fogad]
+* [hello ügyfél (nem található) HTTP 404 üzeneteket fogad]
+* [hello ügyfél HTTP 409 (Ütközés) üzeneteket fogad]
 
 ---
-[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik ClientOtherErrors működésére állapotú tranzakció]
+[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik műveletek tranzakció állapota ClientOtherErrors]
 
 ---
 [Teljesítmény-mérőszámait váratlan növekedését megjelenítése a tárolási kapacitás-használat]
@@ -337,31 +337,31 @@ A probléma kapcsolódik a tárolási szolgáltatások közül az egyik rendelke
 [Váratlan vesznek el virtuális gépeken, amelyek csatlakoztatott virtuális merevlemezek nagy számú tapasztal]
 
 ---
-[A probléma merül fel a fejlesztési vagy tesztelési a storage emulator használatával]
+[A probléma merül fel a fejlesztési vagy tesztelési hello storage emulator használatával]
 
 ---
-[.NET-keretrendszerhez készült Azure SDK telepítése problémák áll kapcsolatban.]
+[Áll kapcsolatban problémák hello Azure SDK telepítése a .NET-hez]
 
 ---
 [Van egy másik probléma storage szolgáltatással]
 
 ---
 ### <a name="metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency"></a>Metrikák AverageE2ELatency magas és alacsony AverageServerLatency megjelenítése
-Az alábbi ábrán látható a [Azure-portálon](https://portal.azure.com) eszköz figyelési azt szemlélteti, ahol a **AverageE2ELatency** jelentősen nagyobb, mint a **AverageServerLatency**.
+hello az alábbi ábra hello [Azure-portálon](https://portal.azure.com) eszköz figyelési mutat egy példát, amelyben hello **AverageE2ELatency** jelentősen nagyobb, mint hello **AverageServerLatency**.
 
 ![][4]
 
-Vegye figyelembe, hogy a társzolgáltatás csak kiszámítja a metrika **AverageE2ELatency** a sikeres kéréseket, és eltérően **AverageServerLatency**, az ügyfél az adatok küldésére és fogadására a nyugtázás a tárolószolgáltatásból idejét tartalmazza. Ezért közötti különbségek **AverageE2ELatency** és **AverageServerLatency** miatt lassú válaszolni az ügyfélalkalmazás vagy a hálózaton feltételek miatt.
+Vegye figyelembe, hogy hello társzolgáltatás csak kiszámítja hello metrika **AverageE2ELatency** a sikeres kéréseket, és eltérően **AverageServerLatency**, magában foglalja a hello ügyfél szükséges toosend hello hello idő adatok és nyugtázási fogadása hello tároló szolgáltatást. Ezért közötti különbségek **AverageE2ELatency** és **AverageServerLatency** lehet vagy toohello ügyfél alkalmazás éppen miatt lassú toorespond, vagy onnan tooconditions hello hálózaton.
 
 > [!NOTE]
-> Megtekintheti továbbá **E2ELatency** és **ServerLatency** egyéni tárolószolgáltatások művelethez a tárolási naplózási adatok naplózása.
+> Megtekintheti továbbá **E2ELatency** és **ServerLatency** hello tárolási naplózás az egyes tárolási műveletek az adatok naplózása.
 > 
 > 
 
 #### <a name="investigating-client-performance-issues"></a>Ügyfél teljesítménnyel kapcsolatos problémák vizsgálatában
-Az ügyfél lassan válaszol a lehetséges okok közé tartoznak, használjon korlátozott mennyiségű rendelkezésre álló kapcsolatok vagy -szál, vagy éppen kevés az erőforrás, például a Processzor, a memória vagy a hálózati sávszélesség. Előfordulhat, hogy a probléma megoldásához, hatékonyabb (például a használatával a társzolgáltatás aszinkron hívások) ügyfél kódjának a módosítása, vagy a nagyobb virtuális gépek (a több maggal és memória) használatával.
+Hello ügyfél lassan válaszol a lehetséges okok közé tartoznak a rendelkezésre álló kapcsolatok vagy szálak korlátozott számú, illetve ha éppen kevés az erőforrás, például a Processzor, a memória vagy a hálózati sávszélesség. Képes tooresolve hello probléma lehet hello ügyfél kód toobe hatékonyabb (például az aszinkron hívásai toohello tárolási szolgáltatás használatával) módosításával, illetve a nagyobb virtuális gépek (a több maggal és memória) használatával.
 
-A tábla- és várólista szolgáltatások esetén a Nagle algoritmus is eredményezheti, hogy magas **AverageE2ELatency** képest történő **AverageServerLatency**: további információk: a feladás egy vagy több [Nagle tartozó algoritmus nem rövid kis kérelmek felé](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx). Letilthatja a kódban Nagle algoritmus használatával a **ServicePointManager** osztályt a **System.NET névtérbeli** névtér. Akkor tegye ezt meg semmilyen hívásokat a táblázathoz, vagy nyissa meg a várólista-szolgáltatás az alkalmazásban, mert ez nem befolyásolja a már kapcsolatok előtt. Az alábbi példa származik a **Application_Start** a feldolgozói szerepkör metódust.
+Hello tábla és a queue szolgáltatások, a hello Nagle algoritmus is eredményezheti, hogy magas **AverageE2ELatency** túl mint**AverageServerLatency**: további információk: hello utáni [Nagle meg Algoritmus nem rövid kis kérelmek felé](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx). Hello segítségével letilthatja hello Nagle algoritmus kódban **ServicePointManager** hello osztály **System.NET névtérbeli** névtér. Akkor tegye ezt előtt nyissa meg a várólista-szolgáltatás az alkalmazásban, mert ez nem befolyásolja a már kapcsolatok vagy bármely hívások toohello tábla végez. hello alábbi példa származik hello **Application_Start** a feldolgozói szerepkör metódust.
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse(connStr);
@@ -371,38 +371,38 @@ ServicePoint queueServicePoint = ServicePointManager.FindServicePoint(storageAcc
 queueServicePoint.UseNagleAlgorithm = false;
 ```
 
-Ellenőrizni kell az ügyféloldali naplójában hány kérelmeket küld az ügyfélalkalmazást, és ellenőrizze a általános .NET-hez kapcsolódó szűk keresztmetszetek a ügyfélprogram, pl. a CPU, a .NET szemétgyűjtés, a hálózat kihasználtságának vagy a memória. Kiindulási pontként .NET ügyfélalkalmazások hibaelhárításhoz, lásd: [profilkészítési, hibakeresés és nyomkövetés](http://msdn.microsoft.com/library/7fe0dd2y).
+Ellenőrizni kell hello ügyféloldali naplók toosee hány kérelmeket küld az ügyfélalkalmazást, és ellenőrizze a általános .NET-hez kapcsolódó szűk keresztmetszetek a ügyfélprogram, pl. a CPU, a .NET szemétgyűjtés, a hálózat kihasználtságának vagy a memória. Kiindulási pontként .NET ügyfélalkalmazások hibaelhárításhoz, lásd: [profilkészítési, hibakeresés és nyomkövetés](http://msdn.microsoft.com/library/7fe0dd2y).
 
 #### <a name="investigating-network-latency-issues"></a>Hálózati késési problémák kivizsgálása
-A hálózat által okozott magas végpontok közötti késés általában átmeneti feltételek miatt. Mindkét ideiglenes és állandó hálózati problémák, például az eldobott csomagok használatával megvizsgálhatja például Wireshark vagy a Microsoft Message Analyzert eszközök segítségével.
+Hello hálózati okozta magas végpontok közötti késés általában tootransient feltételek miatt. Mindkét ideiglenes és állandó hálózati problémák, például az eldobott csomagok használatával megvizsgálhatja például Wireshark vagy a Microsoft Message Analyzert eszközök segítségével.
 
-Hálózati probléma elhárításához Wireshark használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark használó rögzítheti a hálózati forgalom]."
+Wireshark tootroubleshoot hálózati problémák használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark toocapture hálózati forgalom használ]."
 
-Microsoft Message Analyzert hálózati probléma elhárításához használatával kapcsolatos további információkért lásd: "[függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom]."
+Microsoft Message Analyzert tootroubleshoot hálózati problémák használatával kapcsolatos további információkért lásd: "[3 függelék: a Microsoft Message Analyzert toocapture hálózati forgalom használ]."
 
-### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>Metrika alacsony AverageE2ELatency és alacsony AverageServerLatency, de az ügyfél nagy késleltetésű tapasztal
-Ebben a forgatókönyvben az a legvalószínűbb ok az a tárolási kérelmeket közel jár a társzolgáltatás késleltetése. Ki kell vizsgálni, hogy miért az ügyfél kéréseit nem létesített keresztül, a blob szolgáltatás.
+### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>A metrika alacsony AverageE2ELatency és alacsony AverageServerLatency, de hello ügyfél tapasztal nagy késleltetésű
+Ebben a forgatókönyvben hello ennek legvalószínűbb oka, a késés hello tárolási kérelmeket hello társzolgáltatás elérése. Ki kell vizsgálni, hogy miért hello ügyfél kérelmeinek nem létesített azt toohello blob szolgáltatáson keresztül.
 
-Késlelteti a kérelmek küldését az ügyfél egyik lehetséges oka az, hogy vannak-e rendelkezésre álló kapcsolatok vagy szálak korlátozott számú.
+Egy hello ügyfél küldött kérésekkel késleltetése oka lehet, hogy vannak-e rendelkezésre álló kapcsolatok vagy szálak korlátozott számú.
 
-Emellett ellenőrizze, hogy az ügyfél több újrapróbálkozások hajt végre, és vizsgálja meg az oka, hogy ez a helyzet. Annak megállapításához, hogy az ügyfél több újrapróbálkozások hajt végre, a következőket teheti:
+Ellenőrizze hogy hello ügyfél végrehajtása több újrapróbálkozások, és vizsgálja meg a hello OK, ha ez helyzet hello is. toodetermine hello ügyfél több újrapróbálkozások hajt végre, hogy a következőket teheti:
 
-* Ellenőrizze a tárolási analitika eseménynaplóit. Ha több próbálkozás van folyamatban, látni fogja a több műveletet a azonos ügyfélkérelem-azonosító, de különböző kiszolgálói kérelem azonosítók.
-* Tanulmányozza az ügyfél. A részletes naplózás tájékoztatja arról, hogy újbóli kísérlet történt.
-* A kód hibakereséséhez, és ellenőrizze a tulajdonságait a **OperationContext** a kérelemhez társított objektumot. Ha a rendszer megpróbálja újból végrehajtani a műveletet a rendelkezik, a **RequestResults** tulajdonság több egyedi kiszolgálói kérelem azonosítókat tartalmazza. Ellenőrizheti az egyes kérelmek kezdő és befejező időpontja. További információkért lásd: a kódminta szakaszában [Server Kérelemazonosító].
+* Ellenőrizze a hello tárolási analitika eseménynaplóit. Ha több próbálkozás van folyamatban, látni fogja a több művelet található hello azonos ügyfélkérelem-azonosító, de a másik kiszolgáló kérhetnek azonosítók.
+* Ellenőrizze a hello ügyfél eseménynaplóit. A részletes naplózás tájékoztatja arról, hogy újbóli kísérlet történt.
+* A kód hibakereséséhez, és ellenőrizze a hello hello tulajdonságainak **OperationContext** hello kérelemhez társított objektumot. Ha a rendszer megpróbálja újból végrehajtani a hello művelettel rendelkezik, hello **RequestResults** tulajdonság több egyedi kiszolgálói kérelem azonosítókat tartalmazza. Is ellenőrizze hello kezdési és befejezési időpontja egyes kérésekre vonatkozóan. További információkért lásd: hello kódminta hello szakaszban [Server Kérelemazonosító].
 
-Ha az ügyfél nincs probléma, ki kell vizsgálni a lehetséges hálózati problémák, például a csomagveszteség. Eszközök, például Wireshark vagy a Microsoft Message Analyzer segítségével vizsgálja meg a hálózati problémák.
+Ha nincsenek problémák hello ügyfél, ki kell vizsgálni a lehetséges hálózati problémák, például a csomagveszteség. Eszközök, például Wireshark vagy a Microsoft Message Analyzert tooinvestigate hálózati probléma is használhatja.
 
-Hálózati probléma elhárításához Wireshark használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark használó rögzítheti a hálózati forgalom]."
+Wireshark tootroubleshoot hálózati problémák használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark toocapture hálózati forgalom használ]."
 
-Microsoft Message Analyzert hálózati probléma elhárításához használatával kapcsolatos további információkért lásd: "[függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom]."
+Microsoft Message Analyzert tootroubleshoot hálózati problémák használatával kapcsolatos további információkért lásd: "[3 függelék: a Microsoft Message Analyzert toocapture hálózati forgalom használ]."
 
 ### <a name="metrics-show-high-AverageServerLatency"></a>Metrika magas AverageServerLatency
-Ha nagy **AverageServerLatency** blob letöltési kérelmek, érdemes használni a tárolási naplózási naplókat, ha van-e az azonos blob (vagy bináris objektumok) ismétlődő kérelmek. A blob vonatkozó kérések feltöltésére, ki kell vizsgálni, milyen blokk méretét az ügyfél által használt (például blokkolja a kisebb, mint 64 KB méretű eredményezhet terhek kivéve, ha az olvasási műveletek is a kisebb, mint 64K adattömbök), és ha több ügyfél blokkok feltölteni a párhuzamos azonos blobba. Azt is ellenőrizze igényeiben jelentkező kéréseket eredményező meghaladó számú perc metrikáját a egy második méretezhetőségi célok: is láthatja, hogy "[PercentTimeoutError metrika növelését]."
+A magas hello esetben **AverageServerLatency** blob letöltési kérelmek, érdemes használni a hello toosee tárolási naplózás naplózza, ha ugyanaz a blob-(vagy blobok beállítása) hello ismételt kérés kapcsolódik. BLOB vonatkozó kérések feltöltésére, ki kell vizsgálni, milyen blokk méretét hello ügyfél használ (például legfeljebb 64 KB méretű eredményezhet terhek kivéve hello beolvassa szerepelnek blokkok kevesebb, mint 64K adattömbök), és ha több ügyfél feltölteni blokkol toohello azonos BLOB párhuzamosan. Azt is ellenőrizze igényeiben jelentkező hello kérelmek száma, amelyek egy második méretezhetőségi célok hello túllépését eredményezi a hello perc metrikáját: is láthatja, hogy "[PercentTimeoutError metrika növelését]."
 
-Ha magas **AverageServerLatency** blob letölthető kérelmek ismételt hiba van a kérelmek az azonos blob vagy blobok, akkor érdemes gyorsítótárazása a blobok, Azure Cache vagy az Azure Content Delivery Network (CDN) használatával. A feltöltési kérés kapcsolódik növelheti az átviteli sebesség a nagyobb blokkméret használatával. A lekérdezéseket akkor is valósíthat meg ügyféloldali gyorsítótárazás az ügyfeleken, hogy a lekérdezés ugyanezen műveletek végrehajtásához, és ha az adatok nem módosulnak.
+Ha magas **AverageServerLatency** az blob letöltési kérelmek nincs vannak ismételt kérelmek hello azonos blob vagy elosztott blobokat, majd meg kell vegye figyelembe a blobok Azure Cache használatával gyorsítótárazás vagy hello Azure Content Delivery Network (CDN). A feltöltési kérés kapcsolódik a nagyobb blokkméret használatával javíthatja a hello átviteli sebességet. A lekérdezések tootables esetén is lehetséges tooimplement ügyféloldali gyorsítótárazás hello azonos műveletek lekérdezése, és ahol hello végző ügyfelek adatok ritkán módosulnak.
 
-Magas **AverageServerLatency** értékek rosszul megtervezett táblát vagy lekérdezést, hogy a Keresés eredménye, vagy hajtsa végre a víruskereső append/illesztenie mintát tünete is lehet. Lásd: "[PercentThrottlingError metrika növelését]" További információ.
+Magas **AverageServerLatency** értékek rosszul megtervezett táblák tünete is lehet, vagy az, hogy a Keresés eredménye, vagy hajtsa végre a hello lekérdezések hozzáfűzése/illesztenie elleni mintát. Lásd: "[PercentThrottlingError metrika növelését]" További információ.
 
 > [!NOTE]
 > Egy átfogó ellenőrzőlista teljesítmény ellenőrzőlistát itt találja: [Microsoft Azure tárolási teljesítmény és méretezhetőség ellenőrzőlista](storage-performance-checklist.md).
@@ -410,38 +410,38 @@ Magas **AverageServerLatency** értékek rosszul megtervezett táblát vagy lek�
 > 
 
 ### <a name="you-are-experiencing-unexpected-delays-in-message-delivery"></a>A várólista üzenetkézbesítést váratlan késést tapasztal
-Ha a kérelmet ad hozzá egy üzenetet, amely egy várólista és az idő olvasása az üzenetsorból való elérhetővé válik késleltetés tapasztalja, majd kell venni a probléma diagnosztizálása érdekében az alábbi lépéseket:
+Ha hello idő késleltetés tapasztalja alkalmazás hozzáadja egy üzenet tooa várólista és hello ideje hello várólistából elérhető tooread válik, majd a következő lépéseket toodiagnose hello probléma hello kell tennie:
 
-* Ellenőrizze, hogy az alkalmazás sikeresen hozzáadásával az üzenetek várólistára. Ellenőrizze, hogy az alkalmazás nem újra megpróbálja a **AddMessage** metódus többször előtt sikeresen lezajlottak. A Storage ügyféloldali kódtár naplók bármely, a tárolási műveletek miatti ismételt próbálkozás jeleníti meg.
-* Ellenőrizze, nincs óra eltérésére között a feldolgozói szerepkör, amely az üzenet a várólistában van, és a feldolgozói szerepkör, amely kiolvassa az üzenetet az üzenetsorból, amely megkönnyíti a jelenik meg, mintha késik a feldolgozása.
-* Ellenőrizze, hogy ha a feldolgozói szerepkör, amely olvassa be az üzenetek a várólista nem működik. Ha a várólista-ügyfél a **GetMessage** metódust, de nem tudja válaszolni nyugtázást, az üzenet nem látható, amíg a várólista marad a **invisibilityTimeout** időszakának lejártáig. Ezen a ponton az üzenet feldolgozásához újra elérhetővé válik.
-* Ellenőrizze, hogy ha a várólista hossza nő adott idő alatt. Ez akkor fordulhat elő, ha nem rendelkezik elegendő munkavállalók minden más munkavállalók helyez várakozási üzenetek feldolgozásához használható. Azt is ellenőrizze a mérni kívánt láthatja Ha törlési kéréseket sikertelen és a dequeue üzeneteken, ami azt jelezheti ismétlődő sikertelen kísérlet történt az üzenet törlése.
-* Vizsgálja meg a tárolási naplózás keresse meg a várólista-műveleteket, amelyek rendelkeznek a vártnál nagyobb **E2ELatency** és **ServerLatency** értékek idő szokásosnál hosszabb időszakra.
+* Ellenőrizze, hogy hello alkalmazás sikeresen hozzáadásával hello üzenetek toohello várólista. Ellenőrizze, hogy hello alkalmazás nincs újrapróbálkozás hello **AddMessage** metódus többször előtt sikeresen lezajlottak. a Storage ügyféloldali kódtára naplók hello bármely, a tárolási műveletek miatti ismételt próbálkozás jeleníti meg.
+* Győződjön meg arról nem óra eltérésére hello feldolgozói szerepkör, amely hello toohello üzenetsor és hello feldolgozói szerepkör, amely megkönnyíti a hello várólistából üdvözlőüzenetére olvasó jelenik meg, mintha késik a feldolgozása között.
+* Ellenőrizze, hogy ha hello feldolgozói szerepkör köszönőüzenetei olvasó hello várólistából hibás-e. Ha a várólista ügyfél hello **GetMessage** módszer azonban nem jár sikerrel, a nyugtázást toorespond, üdvözlőüzenetére marad láthatatlan hello várólista hello **invisibilityTimeout** időszakának lejártáig. Ezen a ponton üdvözlőüzenetére feldolgozásának újra elérhetővé válik.
+* Ellenőrizze, hogy ha időbeli hello várólista hossza nő. Ez akkor fordulhat elő, ha nem rendelkezik elegendő munkavállalók elérhető tooprocess összes hello üzenetek, hogy más munkavállalók hello várólista helyez. Azt is ellenőrizze hello metrikák toosee Ha törlése sikertelen lekérdezések és hello created száma üzeneteken, ami azt jelezheti ismétlődő sikertelen próbálkozások toodelete üdvözlőüzenetére.
+* Tanulmányozza hello tárolási naplózása, amelyek rendelkeznek a vártnál nagyobb várólista műveletekhez **E2ELatency** és **ServerLatency** értékek idő szokásosnál hosszabb időszakra.
 
 ### <a name="metrics-show-an-increase-in-PercentThrottlingError"></a>PercentThrottlingError metrika növelését
-Sávszélesség-szabályozási hiba történik, amikor a túllépi a méretezhetőségi célok tároló szolgáltatás. A tároló szolgáltatás ezt a végzi annak érdekében, hogy nincs egyetlen ügyfél vagy a bérlői csökkenti a többi szolgáltatás használhatja. További információkért lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) méretezhetőségi célok storage-fiókok és a storage-fiókok partíciókról teljesítménycéloknak.
+Sávszélesség-szabályozási hiba történik, amikor a túllépi hello méretezhetőségi célok tároló szolgáltatás. hello tárolási szolgáltatásnak nincs a tooensure, amely nem egy ügyfél vagy bérlői hello szolgáltatást használhatják hello költségén mások. További információkért lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) méretezhetőségi célok storage-fiókok és a storage-fiókok partíciókról teljesítménycéloknak.
 
-Ha a **PercentThrottlingError** metrika növelését megjeleníteni, amelyek sávszélesség-szabályozási hiba miatt nem kérelem azon százaléka, ki kell vizsgálni helyzetek egyikében:
+Ha hello **PercentThrottlingError** metrika növelését megjelenítése szabályozási hiba miatt sikertelen kérelemtípusokat hello százalékában, egy két forgatókönyv tooinvestigate van szüksége:
 
 * [PercentThrottlingError átmeneti növekedése]
 * [Állandó növekedése PercentThrottlingError hiba]
 
-Megnövelheti a **PercentThrottlingError** gyakran kerül sor, megnövelheti a storage-kérelmek számát egy időben, vagy ha kezdetben betölteni az alkalmazás tesztelése. Ez lehet, hogy is manifest magát az ügyfél "503-as kiszolgáló foglalt" vagy "500 művelet időtúllépése" HTTP állapotüzenete tárolási műveletek.
+Megnövelheti a **PercentThrottlingError** gyakran kerül sor, hello azonos tárolási kérések száma hello növekedése idő, vagy ha kezdetben betölteni a alkalmazás teszteléséhez. Ez lehet, hogy is manifest magát a hello ügyfél "503-as kiszolgáló foglalt" vagy "500 művelet időtúllépése" HTTP állapotüzenete tárolási műveletek.
 
 #### <a name="transient-increase-in-PercentThrottlingError"></a>PercentThrottlingError átmeneti növekedése
-Ha Ön értékének igényeiben jelentkező **PercentThrottlingError** , amely az alkalmazás a nagy aktivitású időszakok egybe, meg kell valósítania az ügyfél egy exponenciális (lineáris) vissza az újbóli próbálkozások stratégiával ki: Ezzel csökkenthető a partíció azonnali terhelése, és az alkalmazás számára a forgalom igényeiben jelentkező simítja segítségével. A Storage ügyféloldali kódtár segítségével újrapróbálkozási-házirendek implementálásához kapcsolatos további információkért lásd: [Microsoft.WindowsAzure.Storage.RetryPolicies Namespace](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
+Ha Ön igényeiben jelentkező hello értékének **PercentThrottlingError** , hogy a nagy aktivitású időszakok hello alkalmazás egybe, meg kell valósítania az ügyfél egy exponenciális (lineáris) vissza az újbóli próbálkozások stratégiával ki: a a rendszer csökkenthető hello azonnali terhelése hello partíció, és segítenek az alkalmazás toosmooth kimenő forgalmat a teljesítményt. Hogyan tooimplement újrapróbálkozási házirendekkel hello a Storage ügyféloldali kódtára kapcsolatos további információkért lásd: [Microsoft.WindowsAzure.Storage.RetryPolicies Namespace](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
 
 > [!NOTE]
-> Is találkozhat értékének igényeiben jelentkező **PercentThrottlingError** , amely nem esik egybe az alkalmazás a nagy aktivitású időszakokkal: Itt a legvalószínűbb ok az a partíciók terheléselosztás javítása áthelyezését tároló szolgáltatást.
+> Is találkozhat hello értékének igényeiben jelentkező **PercentThrottlingError** , amely nem esik egybe hello alkalmazáshoz a nagy aktivitású időszakokkal: hello Itt a legvalószínűbb ok az partíciók tooimprove terhelés áthelyezését hello társzolgáltatás terheléselosztás.
 > 
 > 
 
 #### <a name="permanent-increase-in-PercentThrottlingError"></a>Állandó növekedése PercentThrottlingError hiba
-Ha Ön folyamatosan magas értéket **PercentThrottlingError** a végleges növelését a tranzakció-köteteket, vagy amikor a kezdeti betöltés hajtja végre a következő teszteli, az alkalmazásra, majd fel kell mérnie, hogy az alkalmazás adattárolási partíciókat használja, és e közeledik egy tárfiók a méretezhetőségi célok. Például ha Ön szabályozás hibákat a várólista (amely számít egyetlen partícióra), majd érdemes további várólisták segítségével a tranzakciók elosztva több partíciót. Ha Ön szabályozás hibák táblán, fontolja meg egy másik particionálási sémát a tranzakciók elosztva több partíciót széles körének partíciókulcs-értékek használatával szeretné. Ennek a problémának egy közös ok: a prepend hozzáfűzése elleni mintát ahol dátumát jelöli ki a partíciós kulcs, és majd egy adott napon összes adatot ír egy partíciót: terhelés, ennek eredményeként a írási szűk keresztmetszetek. Fontolja meg egy másik particionálási tervezési vagy mérlegelje, hogy a blob storage használatával jobb megoldás lehet kell. Kell ellenőrizze, hogy a sávszélesség-szabályozás miatt a forgalom igényeiben jelentkező végbemegy, és vizsgálja meg a minta kérelem simítás módjait.
+Ha Ön folyamatosan magas értéket **PercentThrottlingError** a végleges növelését a tranzakció-köteteket, vagy amikor a kezdeti betöltés hajtja végre a következő teszteli, az alkalmazásra, majd tooevaluate van szüksége az alkalmazás hogyan használja adattárolási partíciókat, és hogy közeledik hello méretezhetőségi célok tárfiókok esetén. Például ha Ön szabályozás hibákat a várólista (amely számít egyetlen partícióra), majd érdemes lehet használni további várólisták toospread hello tranzakciók több partíciót között. Ön szabályozás hibák táblán, ha szüksége használja egy másik particionálási sémát toospread tooconsider a tranzakciók között több partíciót széles körének partíciókulcs-értékek használatával. Ennek a problémának egy közös ok: hello illesztenie hozzáfűzése elleni mintát ahol hello dátum kiválasztható hello partíciós kulcs nevével, és ezután egy adott napon minden adat tooone partíció: terhelés, ennek eredményeként a írási szűk keresztmetszetek. Fontolja meg egy másik particionálási tervezési vagy mérlegelje, hogy a blob storage használatával jobb megoldás lehet kell. Ellenőrizze, ha hello szabályozás miatt a forgalom igényeiben jelentkező végbemegy, és vizsgálja meg a minta kérelem simítás módokat is.
 
-Ha a tranzakciók szét több partíciót, továbbra is kell a méretezhetőségének korlátai, a tárolási fiókjában tudomást. Például ha tíz várólisták a legfeljebb 2000 1KB üzenetek másodpercenkénti feldolgozási, akkor lesz teljes legfeljebb 20 000 üzenetek / másodperc, a tárfiók. Ha kell feldolgozni másodpercenként több mint 20 000 entitások, érdemes lehet több tárfiókot használni. Meg kell is figyelembe kell vennie, hogy méretét a kérelmek és entitások akkor van hatása, ha a társzolgáltatás az ügyfelek azelőtt gyorsítja fel a: Ha nagyobb kérelmek és entitások, akkor előfordulhat, hogy lehet halmozódni hamarabb.
+Ha a tranzakciók szét több partíciót, továbbra is kell tudomást hello méretezhetőségi korlátok hello tárfiók beállítása. Például ha tíz várólisták használt minden egyes feldolgozási hello legfeljebb 2000 1KB-üzenetek / másodperc, akkor lesz hello általános legfeljebb 20 000 üzenetek / másodperc hello tárfiók. Ha tooprocess másodpercenként több mint 20 000 entitások, érdemes lehet több tárfiókot használni. Meg kell is figyelembe kell vennie, hogy a kérelmek hello méretétől és entitások amikor hello társzolgáltatás az ügyfelek azelőtt gyorsítja fel hatással van: Ha nagyobb kérelmek és entitások, akkor előfordulhat, hogy lehet halmozódni hamarabb.
 
-Nem elég hatékony Lekérdezéstervezés is okozhat, hogy elérte a méretezhetőségi korlátok, a táblázat partíciókat. Például, amely egy partíció csak kiválaszt egy százalék entitások, de, amely megvizsgálja egy partíció összes entitásának szűrő egy lekérdezést kell minden egyes entitás eléréséhez. Minden entitás, olvassa el az adott partíció; tranzakciók száma is beleszámít. ezért könnyen képes elérni a méretezhetőségi célok.
+Nem elég hatékony Lekérdezéstervezés is okozhatja toohit hello méretezhetőségi korlátok táblázat partíciókat. Például egy szűrő, amely egy partíció csak kiválaszt egy százalék hello entitások, de, amely megvizsgálja egy partíció összes hello entitásokat tartalmazó lekérdezést kell tooaccess minden entitáshoz. Minden entitás, olvassa el hello partícióban; tranzakciók száma is beleszámít. ezért könnyen képes elérni hello méretezhetőségi célok.
 
 > [!NOTE]
 > A teljesítmény tesztelés egyetlen lekérdezés nem elég hatékony tervet, az alkalmazás kódproblémájáról van.
@@ -449,120 +449,120 @@ Nem elég hatékony Lekérdezéstervezés is okozhat, hogy elérte a méretezhet
 > 
 
 ### <a name="metrics-show-an-increase-in-PercentTimeoutError"></a>PercentTimeoutError metrika növelését
-A metrika növekedése **PercentTimeoutError** a tárolási szolgáltatások egyike. Egy időben az ügyfél fogad az "500 művelet időtúllépése" HTTP-állapot üzenetek nagy mennyiségű tárolási műveletek.
+A metrika növekedése **PercentTimeoutError** a tárolási szolgáltatások egyike. A hello azonos időben, hello ügyfél nagyszámú "500 művelet időtúllépése" HTTP állapotüzeneteket fogad a tárolási műveletek.
 
 > [!NOTE]
-> Ideiglenesen a tárolási szolgáltatásként időtúllépést betöltése kiegyensúlyozza kérelmeket egy új kiszolgálóra helyezi át a partíció jelenhet meg.
+> Ideiglenesen szolgáltatásként hello tárolási időtúllépést kiegyensúlyozza kérelmek betölteni egy partíció tooa új kiszolgálóra helyezi jelenhet meg.
 > 
 > 
 
-A **PercentTimeoutError** mérőszáma egyszerűsítése érdekében a következő metrikákat: **ClientTimeoutError**, **AnonymousClientTimeoutError**, **SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError**, és **SASServerTimeoutError**.
+Hello **PercentTimeoutError** mérőszáma összevonható a metrikák a következő hello: **ClientTimeoutError**, **AnonymousClientTimeoutError**,  **SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError**, és **SASServerTimeoutError**.
 
-A kiszolgáló időkorlátja a kiszolgálón hiba okozza. Az ügyfél-időtúllépések fordulhat elő, mert a kiszolgálón egy művelet túllépte az; az ügyfél által megadott például egy ügyfél a Storage ügyféloldali kódtár segítségével állíthatja be művelet időtúllépés használatával a **ServerTimeout** tulajdonsága a **QueueRequestOptions** osztály.
+hello kiszolgáló időtúllépése hello kiszolgálón hiba okozza. ügyfél-időtúllépések hello fordulhat elő, mert hello kiszolgálón művelet túllépte hello megadott hello ügyfél; például egy ügyfél a Storage ügyféloldali kódtára hello használatával állíthatja be művelet időtúllépés hello segítségével **ServerTimeout** hello tulajdonságának **QueueRequestOptions** osztály.
 
-Kiszolgáló időkorlátja a tároló szolgáltatás, amely további vizsgálatot igényel problémát jelez. Metrikák is használhatja, ha hogy elérte-e a szolgáltatás a méretezhetőségének korlátai, és bármely igényeiben jelentkező a forgalom okozta probléma azonosításához. Ha a probléma időszakos, lehet terheléselosztás miatt a szolgáltatás tevékenység. Ha a probléma állandó, és nem okozza az alkalmazás elérte-e a szolgáltatás a méretezhetőségének korlátai, a problémának a megoldásához kell előléptetése. Az ügyfél-időtúllépések döntse el, ha az időtúllépés értéke egy megfelelő értéket, az ügyfél és vagy az időkorlát értékének megadása a ügyfél módosítása, vagy vizsgálja meg, hogyan javíthatja a teljesítményét a műveletek a tárolás szolgáltatás például a táblázat lekérdezések optimalizálása, vagy az üzenetek méretének csökkentését.
+Kiszolgáló időtúllépése hello tároló szolgáltatás, amely további vizsgálatot igényel problémát jelez. Metrikák toosee is használhatja, ha hogy elérte-e hello méretezhetőségi korlátok hello szolgáltatást és tooidentify bármely igényeiben jelentkező a forgalmat, a probléma okozza. Ha hello probléma időszakos, miatt lehet tooload terheléselosztás tevékenység hello szolgáltatásban. Hello probléma állandó, és nem okozza az alkalmazás szerezze meg a hello méretezhetőségi korlátok hello szolgáltatást, ha előlépteti kell egy támogatási probléma. Az ügyfél-időtúllépések döntse el, ha hello időtúllépés van beállítva megfelelő értéket a tooan hello ügyfél pedig vagy változás hello időtúllépés értékének megadása a hello ügyfél, vagy vizsgálja meg, hogyan javíthatja hello teljesítmény hello műveletek hello storage szolgáltatásban a Példa a tábla lekérdezések optimalizálása, vagy az üzenetek hello méretének csökkentését.
 
 ### <a name="metrics-show-an-increase-in-PercentNetworkError"></a>PercentNetworkError metrika növelését
-A metrika növekedése **PercentNetworkError** a tárolási szolgáltatások egyike. A **PercentNetworkError** mérőszáma egyszerűsítése érdekében a következő metrikákat: **NetworkError**, **AnonymousNetworkError**, és **SASNetworkError**. Ezek akkor, ha a tároló szolgáltatás észleli a hálózati hiba, ha az ügyfél egy tárolási kérést.
+A metrika növekedése **PercentNetworkError** a tárolási szolgáltatások egyike. Hello **PercentNetworkError** mérőszáma összevonható a metrikák a következő hello: **NetworkError**, **AnonymousNetworkError**, és  **SASNetworkError**. Ezek akkor történik, ha a hello tároló szolgáltatás észleli a hálózati hiba, ha hello ügyfél tárolási kérelmet küld.
 
-Ez a hiba leggyakoribb oka egy ügyfél leválasztása időtúllépés járjon le a storage szolgáltatásban. Az ügyfél tudni, miért és mikor az ügyfél bontja a kapcsolatot a társzolgáltatás ki kell vizsgálni a kódot. Vizsgálja meg az ügyfél hálózati problémák Wireshark, Microsoft Message Analyzert vagy Tcping is használja. Ezek az eszközök ismertetett a [mellékletek].
+hello a hiba leggyakoribb oka az ügyfél leválasztása időtúllépés járjon le a hello tároló szolgáltatást. Az ügyfél toounderstand miért és mikor hello ügyfél hello társzolgáltatás bontja a kapcsolatot a hello kódot kell vizsgálni. Wireshark, Microsoft Message Analyzert vagy Tcping tooinvestigate hálózati problémák hello ügyfélről is használható. Ezek az eszközök ismertetett hello [mellékletek].
 
-### <a name="the-client-is-receiving-403-messages"></a>Az ügyfél HTTP 403 (tiltott) üzeneteket fogad
-Ha az ügyfélalkalmazást szűrész HTTP 403 (tiltott) hibák, a legvalószínűbb oka, hogy az ügyfél használ egy lejárt közös hozzáférésű Jogosultságkód (SAS) tárolási kérelmet küld a (bár egyéb lehetséges okok a következők: óra eltérésére, érvénytelen kulcsokat, és üres fejlécekkel együtt). Ha egy lejárt SAS-kulcsot az okot, nem látják azokat a bejegyzéseket a kiszolgálóoldali tárolási naplózás naplóadatokat. Az alábbi táblázat megmutatja, az ügyféloldali naplóból állítja elő a Storage ügyféloldali kódtár, amely bemutatja, hogy ez a probléma lépett fel:
+### <a name="the-client-is-receiving-403-messages"></a>hello ügyfél HTTP 403 (tiltott) üzeneteket fogad
+Ha az ügyfélalkalmazást szűrész HTTP 403 (tiltott) hibák, ennek valószínű oka, hogy hello az ügyfél által használt egy lejárt közös hozzáférésű Jogosultságkód (SAS), tárolási kérelmet küld a (bár egyéb lehetséges okok közé tartoznak az óra eltérésére, érvénytelen kulcsokat, és üres fejlécek). Ha lejárt SAS-kulcs hello OK, nem látják azokat a bejegyzéseket hello kiszolgálóoldali tárolási naplózás naplóadatokat. hello alábbi táblázat megmutatja, amely bemutatja, hogy ez a probléma lépett fel a Storage ügyféloldali kódtára hello által generált hello ügyféloldali naplóból:
 
 | Forrás | A részletességi | A részletességi | Ügyfélkérelem-azonosító | A művelet szöveg |
 | --- | --- | --- | --- | --- |
 | Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |A hely elsődleges hely módban PrimaryOnly művelet elindítása. |
-| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |Indítása szinkron kérelem https://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr = c&amp;si = mypolicy&amp;sig OFnd4Rd7z01fIvh % 2BmcR6zbudIH2F5Ikm % 2FyhNYZEmJNQ % = 3D&amp;api-version = 2014-02-14. |
+| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |Indítása szinkron kérelem toohttps://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr = c&amp;si = mypolicy&amp;sig OFnd4Rd7z01fIvh 2BmcR6zbudIH2F5Ikm % = 2FyhNYZEmJNQ % 3D&amp;api-version = 2014-02-14. |
 | Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |Válaszra való várakozás közben. |
-| Microsoft.WindowsAzure.Storage |Figyelmeztetés |2 |85d077ab-... |Kivétel keletkezett a válaszra való várakozás közben: A távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
+| Microsoft.WindowsAzure.Storage |Figyelmeztetés |2 |85d077ab-... |Kivétel keletkezett a válaszra való várakozás közben: hello távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
 | Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |A válasz érkezett. Állapotkód = 403-as, a kérelem azonosítója = 9d67c64a-64ed-4b0d-9515-3b14bbcdc63d, Content-MD5 = ETag =. |
-| Microsoft.WindowsAzure.Storage |Figyelmeztetés |2 |85d077ab-... |Kivétel történt a művelet során: A távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
-| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |Annak ellenőrzése, ha a műveletet meg kell ismételni. Ismétlések száma = 0, HTTP-állapotkód = 403-as, kivétel = a távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
-| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |A következő helyre van beállítva elsődleges, a hely mód alapján. |
-| Microsoft.WindowsAzure.Storage |Hiba |1 |85d077ab-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hibát adott vissza: (403-as) tiltott. |
+| Microsoft.WindowsAzure.Storage |Figyelmeztetés |2 |85d077ab-... |Kivétel lépett fel az hello művelet közben: hello távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
+| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |Annak ellenőrzése, ha hello műveletet meg kell ismételni. Ismétlések száma = 0, HTTP-állapotkód = 403-as, kivétel = hello távoli kiszolgáló hibát adott vissza: (403-as) tiltott... |
+| Microsoft.WindowsAzure.Storage |Információ |3 |85d077ab-... |tooPrimary hello helyen alapuló hello következő helyre lett állítva. |
+| Microsoft.WindowsAzure.Storage |Hiba |1 |85d077ab-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hello hibát adott vissza: (403-as) tiltott. |
 
-Ebben az esetben kell vizsgálni, miért a SAS-jogkivonat lejár az ügyfélszámítógép elküldi a jogkivonatot a kiszolgálóra:
+Ebben az esetben kell vizsgálni, miért hello SAS-token érvényessége hello ügyfél küldi hello token toohello server előtt:
 
-* Általában a kezdő időpont, amikor létrehoz egy SAS-t egy ügyfélen szeretné azonnal nincs beállítva. Ha a gazdagép a SAS használatával az aktuális idő és a tárolás szolgáltatás létrehozásakor, akkor lehetséges, hogy a társzolgáltatás fogadására, amely még nem érvényes SAS közötti kis óra különbségek vannak.
-* SAS-kód nem egy nagyon rövid lejárati időt kell beállítani. Ebben az esetben kis óra különbségei az SA-kat és a tárolás szolgáltatás létrehozása a gazdagép látszólag lejár a vártnál korábban SAS vezethet.
-* Az SAS-kulcsot a verzió paramétere does (például **sv = 2015-04-05**) felel meg a Storage ügyféloldali kódtár használata verziójának? Azt javasoljuk, hogy mindig a legújabb verzióját használja a [a Storage ügyféloldali kódtára](https://www.nuget.org/packages/WindowsAzure.Storage/).
-* A tárelérési kulcsok újragenerálása, ha ez bármely létező SAS-tokenje érvénytelenné tehetik. Erre akkor lehet problémát, ha az ügyfél gyorsítótár alkalmazások hosszú lejárati idővel rendelkező SAS-tokenje.
+* Általában a kezdő időpont, amikor létrehoz egy SAS-t egy ügyfél toouse azonnal nincs beállítva. Ha kis óra különbségek közötti létrehozásának hello SAS használatával hello állomás hello a jelenlegi idő- és tárolószolgáltatások hello, akkor lehetséges, hogy hello tárolási szolgáltatás tooreceive SAS-kód, amely még nem érvényes.
+* SAS-kód nem egy nagyon rövid lejárati időt kell beállítani. Ebben az esetben hello állomás létrehozásakor kis óra különbségei hello SAS és hello társzolgáltatás vezethet tooa SAS látszólag lejár a vártnál korábban.
+* Hello hello SAS-kulcsot a version paramétert (például **sv = 2015-04-05**) hello használja a Storage ügyféloldali kódtára egyezés hello verzióját? Azt javasoljuk, hogy mindig használjon hello legújabb verziójának hello [a Storage ügyféloldali kódtára](https://www.nuget.org/packages/WindowsAzure.Storage/).
+* A tárelérési kulcsok újragenerálása, ha ez bármely létező SAS-tokenje érvénytelenné tehetik. Erre akkor lehet problémát, ha az ügyfél alkalmazások toocache hosszú lejárati idővel rendelkező SAS-tokenje.
 
-A Storage ügyféloldali kódtár SAS-tokenje létrehozásához használ, majd esetén könnyen összeállíthat egy érvényes tokent. Azonban ha a Storage REST API-t használ, és kézzel jogkivonatokat hoz létre, a biztonsági Társítások figyelmesen olvassa el a témakör [egy közös hozzáférésű Jogosultságkód hozzáférést delegálása](http://msdn.microsoft.com/library/azure/ee395415.aspx).
+A Storage ügyféloldali kódtára toogenerate SAS-tokenje hello használ, majd esetén könnyen toobuild egy érvényes tokent. Azonban ha hello Storage REST API használatával, és hozhat létre kézzel hello SAS-tokenje figyelmesen olvassa el hello témakör [egy közös hozzáférésű Jogosultságkód hozzáférést delegálása](http://msdn.microsoft.com/library/azure/ee395415.aspx).
 
-### <a name="the-client-is-receiving-404-messages"></a>Az ügyfél HTTP 404-es (nem található) üzeneteket fogad
-Ha az ügyfélalkalmazás egy HTTP 404-es (nem található) üzenetet kap, a kiszolgálóról, ez azt jelenti, hogy az objektum az ügyfél próbált használni (például egy entitás, tábla, blob, tároló vagy várólista) nem létezik a tároló szolgáltatást. Számos, ennek lehetséges okai például:
+### <a name="the-client-is-receiving-404-messages"></a>hello ügyfél (nem található) HTTP 404 üzeneteket fogad
+Ha hello ügyfélalkalmazás (nem található) HTTP 404 üzenetben kap hello kiszolgálójáról, ez azt jelenti, adott hello objektum hello ügyfél próbált toouse (például egy entitás, tábla, blob, tároló vagy várólista) nem létezik a hello tároló szolgáltatást. Számos, ennek lehetséges okai például:
 
-* [Az ügyfél vagy egy másik folyamat a korábban az objektum törölve]
+* [hello ügyfél vagy egy másik folyamat korábban törölt hello objektum]
 * [Egy közös hozzáférésű Jogosultságkód (SAS) hitelesítési hiba]
-* [Ügyféloldali JavaScript-kód nincs engedélye az objektumhoz való hozzáférést]
+* [Ügyféloldali JavaScript-kód nem rendelkezik engedéllyel tooaccess hello objektum]
 * [Hálózati hiba]
 
-#### <a name="client-previously-deleted-the-object"></a>Az ügyfél vagy egy másik folyamat a korábban az objektum törölve
-A forgatókönyvek, ahol az ügyfél megpróbálja olvasása, frissítése vagy törölni az adatokat egy társzolgáltatás esetében általában könnyen azonosítható a kiszolgálóoldali naplók egy korábbi művelet, amely a szóban forgó objektum törlése a tárolószolgáltatásból. Nagyon gyakran a naplózási adatokat jeleníti meg, hogy egy másik felhasználó vagy folyamat az objektum törölve. A kiszolgálóoldali tárolási naplózás naplóban művelet-típusa és a kért objektum-kulcs típusú oszlopok megjelenítése objektum törlésekor az ügyfelet.
+#### <a name="client-previously-deleted-the-object"></a>hello ügyfél vagy egy másik folyamat korábban törölt hello objektum
+Forgatókönyvekben, ahol hello ügyfél megpróbál tooread, update vagy a társzolgáltatás általában az adatok könnyen tooidentify hello kiszolgálóoldali egy korábbi művelet hello objektum az adott törölt hello társzolgáltatás naplózza. Nagyon gyakran hello naplóadatokat jeleníti meg, hogy egy másik felhasználó vagy folyamat hello törölt objektum. Hello kiszolgálóoldali tárolási naplózás naplóban hello művelet-típus és a kért objektum-kulcs típusú oszlopok megjelenítése objektum törlésekor az ügyfelet.
 
-A forgatókönyvben, ha egy ügyfél próbál egy olyan objektum beszúrására akkor előfordulhat, hogy azonnal nem válik egyértelművé, ezért az eredmény (nem található) HTTP 404-es választ fényében, hogy az ügyfél egy új objektumot hoz létre. Azonban ha az ügyfél hoz létre egy blobot, képesnek kell lennie a blob-tároló, ha az ügyfél hoz létre a várólista található képesnek kell lennie egy üzenetet, és az ügyfél hozzáadásával egy sort kell lennie a táblázatban találja.
+Hello forgatókönyvben, ha egy ügyfél megpróbál tooinsert objektum akkor előfordulhat, hogy azonnal nem válik egyértelművé, ezért az eredmény (nem található) HTTP 404-es választ fényében, hogy a hello ügyfél hoz létre egy új objektumot. Azonban ha hello ügyfél hoz létre egy blobot, azt kell tudni toofind hello blob tároló, lehet, ha hello ügyfél képes toofind várólista lehet üzenetet hoz létre, és ha hello ügyfél hozzáadásával egy sort kell legyen képes toofind hello tábla.
 
-Az ügyféloldali napló a Storage ügyféloldali kódtára a segítségével megismerheti a részletes ismertetése amikor az ügyfél elküldi a társzolgáltatás bizonyos kérésekre.
+Hello ügyféloldali napló a hello a Storage ügyféloldali kódtára toogain egy részletesebb megértése hello ügyfél küld bizonyos kérésekre toohello tároló szolgáltatást is használhatja.
 
-A következő ügyféloldali napló a Storage ügyféloldali kódtár által generált szemlélteti a problémát, ha az ügyfél akkor hoz létre a BLOB nem található a tárolóban. Ez a napló tartalmazza a tárolási műveletet az alábbiak közül:
+hello hello Storage ügyféloldali kódtár által létrehozott következő ügyféloldali naplófájl látható hello probléma hello ügyfél hello tároló nem található a következő hello blob akkor hoz létre. Ez a napló tartalmazza a következő tárolási műveletek hello:
 
 | Kérelem azonosítója | Művelet |
 | --- | --- |
-| 07b26a5d-... |**DeleteIfExists** metódus a blob-tároló törlése. Vegye figyelembe, hogy ez a művelet tartalmaz egy **HEAD** kérelmet a tároló meglétének ellenőrzése. |
-| e2d06d78... |**CreateIfNotExists** módszer a blob-tároló létrehozása. Vegye figyelembe, hogy ez a művelet tartalmaz egy **HEAD** kérésére, amely ellenőrzi, hogy létezik-e a tárolóban. A **HEAD** 404-es üzenetet adja vissza, de továbbra is. |
-| de8b1c3c-... |**UploadFromStream** metódus létrehozása a blob. A **PUT** kérelem a 404-es üzenettel sikertelen |
+| 07b26a5d-... |**DeleteIfExists** metódus toodelete hello blob tároló. Vegye figyelembe, hogy ez a művelet tartalmaz egy **HEAD** kérelem toocheck hello hello tároló létezésének ellenőrzésével. |
+| e2d06d78... |**CreateIfNotExists** metódus toocreate hello blob tároló. Vegye figyelembe, hogy ez a művelet tartalmaz egy **HEAD** kérésére, amely hello tároló hello meglétét ellenőrzi. Hello **HEAD** 404-es üzenetet adja vissza, de továbbra is. |
+| de8b1c3c-... |**UploadFromStream** metódus toocreate hello blob. Hello **PUT** kérelem a 404-es üzenettel sikertelen |
 
 Naplóbejegyzéseket:
 
 | Kérelem azonosítója | A művelet szöveg |
 | --- | --- |
-| 07b26a5d-... |Kezdő https://domemaildist.blob.core.windows.net/azuremmblobcontainer szinkron kérelmet. |
+| 07b26a5d-... |Szinkron kérések toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer indítása. |
 | 07b26a5d-... |StringToSign = HEAD...x-ms-client-request-id:07b26a5d-...x-ms-date:Tue, 2014. jún 03. 10:33:11 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |Válaszra való várakozás közben. |
 | 07b26a5d-... |A válasz érkezett. Állapotkód = 200 kérés azonosítója = eeead849... Content-MD5 = ETag = &quot;0x8D14D2DC63D059B&quot;. |
-| 07b26a5d-... |Válaszfejlécek sikerült feldolgozni, folytatás a többi részének a műveletet. |
+| 07b26a5d-... |Válaszfejlécek sikerült feldolgozni, folytatás a hello részeinek hello műveletet. |
 | 07b26a5d-... |Választörzs letöltése. |
 | 07b26a5d-... |A művelet sikeresen befejeződött. |
-| 07b26a5d-... |Kezdő https://domemaildist.blob.core.windows.net/azuremmblobcontainer szinkron kérelmet. |
+| 07b26a5d-... |Szinkron kérések toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer indítása. |
 | 07b26a5d-... |StringToSign = DELETE...x-ms-client-request-id:07b26a5d-...x-ms-date:Tue, 2014. jún 03. 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |Válaszra való várakozás közben. |
 | 07b26a5d-... |A válasz érkezett. Állapotkód = 202, kérelem azonosítója = 6ab2a4cf-..., Content-MD5 = ETag =. |
-| 07b26a5d-... |Válaszfejlécek sikerült feldolgozni, folytatás a többi részének a műveletet. |
+| 07b26a5d-... |Válaszfejlécek sikerült feldolgozni, folytatás a hello részeinek hello műveletet. |
 | 07b26a5d-... |Választörzs letöltése. |
 | 07b26a5d-... |A művelet sikeresen befejeződött. |
-| e2d06d78-... |Kezdő https://domemaildist.blob.core.windows.net/azuremmblobcontainer aszinkron kérelem.</td> |
+| e2d06d78-... |Aszinkron kérelem toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer indítása.</td> |
 | e2d06d78-... |StringToSign = HEAD...x-ms-client-request-id:e2d06d78-...x-ms-date:Tue, 2014. jún 03. 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |Válaszra való várakozás közben. |
-| de8b1c3c-... |Kezdő https://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt szinkron kérelmet. |
+| de8b1c3c-... |Szinkron kérések toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt indítása. |
 | de8b1c3c-... |StringToSign = PUT... 64.qCmF+TQLPhq/YYK50mP9ZQ==...x-MS-BLOB-Type:BlockBlob.x-MS-Client-Request-ID:de8b1c3c-...x-MS-Date:TUE, 2014. jún 03. 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer/blobCreated.txt. |
-| de8b1c3c-... |Felkészülés a kérelem adatokat írni. |
-| e2d06d78-... |Kivétel keletkezett a válaszra való várakozás közben: A távoli kiszolgáló hibát adott vissza: (404) nem található. |
+| de8b1c3c-... |Felkészülés a toowrite kérelem adatai. |
+| e2d06d78-... |Kivétel keletkezett a válaszra való várakozás közben: hello távoli kiszolgáló hibát adott vissza: (404) nem található. |
 | e2d06d78-... |A válasz érkezett. Állapotkód: 404-es, a kérelem azonosítója = = 353ae3bc-..., Content-MD5 = ETag =. |
-| e2d06d78-... |Válaszfejlécek sikerült feldolgozni, folytatás a többi részének a műveletet. |
+| e2d06d78-... |Válaszfejlécek sikerült feldolgozni, folytatás a hello részeinek hello műveletet. |
 | e2d06d78-... |Választörzs letöltése. |
 | e2d06d78-... |A művelet sikeresen befejeződött. |
-| e2d06d78-... |Kezdő https://domemaildist.blob.core.windows.net/azuremmblobcontainer aszinkron kérelem. |
+| e2d06d78-... |Aszinkron kérelem toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer indítása. |
 | e2d06d78-... |StringToSign = PUT... 0...x-MS-Client-Request-ID:e2d06d78-...x-MS-Date:TUE, 2014. jún 03. 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |Válaszra való várakozás közben. |
 | de8b1c3c-... |Kérelem az adatok írásakor. |
 | de8b1c3c-... |Válaszra való várakozás közben. |
-| e2d06d78-... |Kivétel keletkezett a válaszra való várakozás közben: A távoli kiszolgáló hibát adott vissza: (409) ütközés... |
+| e2d06d78-... |Kivétel keletkezett a válaszra való várakozás közben: hello távoli kiszolgáló hibát adott vissza: (409) ütközés... |
 | e2d06d78-... |A válasz érkezett. Állapotkód = 409, a kérelem azonosítója = c27da20e-..., Content-MD5 = ETag =. |
 | e2d06d78-... |Csomagletöltési hiba adott válasz törzse. |
-| de8b1c3c-... |Kivétel keletkezett a válaszra való várakozás közben: A távoli kiszolgáló hibát adott vissza: (404) nem található. |
+| de8b1c3c-... |Kivétel keletkezett a válaszra való várakozás közben: hello távoli kiszolgáló hibát adott vissza: (404) nem található. |
 | de8b1c3c-... |A válasz érkezett. Állapotkód: 404-es, a kérelem azonosítója = = 0eaeab3e-..., Content-MD5 = ETag =. |
-| de8b1c3c-... |Kivétel történt a művelet során: A távoli kiszolgáló hibát adott vissza: (404) nem található. |
-| de8b1c3c-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hibát adott vissza: (404) nem található. |
-| e2d06d78-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hibát adott vissza: (409) ütközés... |
+| de8b1c3c-... |Kivétel lépett fel az hello művelet közben: hello távoli kiszolgáló hibát adott vissza: (404) nem található. |
+| de8b1c3c-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hello hibát adott vissza: (404) nem található. |
+| e2d06d78-... |Újrapróbálkozási házirend nem engedélyezi az újrapróbálkozást. Sikertelen a távoli kiszolgálóval hello hibát adott vissza: (409) ütközés... |
 
-Ebben a példában a napló jeleníti meg, hogy az ügyfél van kihagyásos érkező kéréseket a **CreateIfNotExists** érkező kéréseket (... kérelem azonosítója e2d06d78) metódust a **UploadFromStream** metódus (de8b1c3c-...); Ez akkor történik meg, mert az ügyfélalkalmazás aszinkron módon hívja a ezeket a módszereket. Az ügyfél számára, győződjön meg arról, hogy létrehozza a tároló előtt minden adatok feltöltése a blob a tárolóban lévő aszinkron kódot kell módosítani. Ideális esetben a tárolók előre kell létrehoznia.
+Ebben a példában hello naplója azt mutatja, hogy az ügyfél hello van kihagyásos hello kérelmeinek **CreateIfNotExists** metódus (... kérelem azonosítója e2d06d78) hello hello kérelmeinek **UploadFromStream** () metódus de8b1c3c-...); Ez történik, mert hello ügyfélalkalmazás aszinkron módon hívja a ezeket a módszereket. Hello hello ügyfél tooensure, hogy létrehozza hello tároló tooupload megkísérlése előtt minden adat tooa blob a tárolóban lévő aszinkron kódot kell módosítani. Ideális esetben a tárolók előre kell létrehoznia.
 
 #### <a name="SAS-authorization-issue"></a>Egy közös hozzáférésű Jogosultságkód (SAS) hitelesítési hiba
-Ha az ügyfélalkalmazás megpróbálja, amely nem tartalmazza a szükséges engedélyekkel a művelet SAS-kulcsot használ, a tároló szolgáltatás (nem található) HTTP 404 üzenetben visszaadja az ügyfélnek. Egy időben, látni fogja emellett nullától eltérő értéket **SASAuthorizationError** a metrikák a.
+Ha hello ügyfélalkalmazás megpróbál toouse hello szükséges engedélyek hello a művelethez nem tartalmazza az SAS-kulcsot, a hello társzolgáltatás egy HTTP 404-es (nem található) üzenet toohello ügyfél adja vissza. Hello: azonos idő, látni fogja emellett nullától eltérő értéket **SASAuthorizationError** a hello metrikákat.
 
-Az alábbi táblázat a naplózás tárolási naplófájlból kiszolgálóoldali napló mintaüzenet:
+a következő táblázat hello egy minta kiszolgálóoldali naplófájlüzenetre hello tárolási naplózás naplófájl látható:
 
 | Név | Érték |
 | --- | --- |
@@ -578,10 +578,10 @@ Az alábbi táblázat a naplózás tárolási naplófájlból kiszolgálóoldali
 | Ügyfélkérelem-azonosító  | 2d064953-8436-4ee0-aa0c-65cb874f7929 |
 
 
-Ki kell vizsgálni, hogy miért az ügyfélalkalmazás megpróbálja végrehajtania egy műveletet nem kapta meg engedélyeket.
+Ki kell vizsgálni, hogy miért az ügyfélalkalmazás megpróbál tooperform egy művelet nem kapta meg engedélyeket.
 
-#### <a name="JavaScript-code-does-not-have-permission"></a>Ügyféloldali JavaScript-kód nincs engedélye az objektumhoz való hozzáférést
-Ha a JavaScript-ügyfelet kell használnia, és a társzolgáltatás HTTP 404-es üzeneteket ad eredményül, keressen a böngészőben a következő JavaScript-hibák:
+#### <a name="JavaScript-code-does-not-have-permission"></a>Ügyféloldali JavaScript-kód nem rendelkezik engedéllyel tooaccess hello objektum
+Ha a JavaScript-ügyfelet kell használnia, és hello társzolgáltatás HTTP 404-es üzeneteket ad eredményül, keressen a következő JavaScript-hibák hello böngészőben hello:
 
 ```
 SEC7120: Origin http://localhost:56309 not found in Access-Control-Allow-Origin header.
@@ -589,19 +589,19 @@ SCRIPT7002: XMLHttpRequest: Network Error 0x80070005, Access is denied.
 ```
 
 > [!NOTE]
-> Az Internet Explorer az F12 fejlesztői eszközök segítségével nyomon követni az ügyféloldali JavaScript problémák elhárításakor a böngésző és a tárolási szolgáltatás között cserélt üzeneteket.
+> Az Internet Explorer tootrace köszönőüzenetei hello böngésző- és hello tárolási szolgáltatás között váltott, az ügyféloldali JavaScript problémák elhárításakor hello F12 fejlesztői eszközök is használhatja.
 > 
 > 
 
-Ezek a hibák fordulhat elő, mert a webböngésző valósítja meg a [ugyanazt](http://www.w3.org/Security/wiki/Same_Origin_Policy) biztonsági korlátozása, hogy a webes hívja az API-t egy másik tartományban a tartományból a lap származik.
+Ezek a hibák fordulhat elő, mert hello webböngésző megvalósítja hello [ugyanazt](http://www.w3.org/Security/wiki/Same_Origin_Policy) biztonsági korlátozása, hogy a webes API hívása egy másik tartományban hello tartomány hello oldalról származik.
 
-A JavaScript probléma Cross Origin Resource Sharing (CORS) is konfigurálhat a ügyfelet társzolgáltatás. További információkért lásd: [Azure Storage szolgáltatásainak Cross-Origin Resource Sharing (CORS) támogatása](http://msdn.microsoft.com/library/azure/dn535601.aspx).
+toowork hello JavaScript hibát körül, konfigurálhatja Cross Origin Resource Sharing (CORS) a hello tárolási szolgáltatás hello ügyfelet. További információkért lásd: [Azure Storage szolgáltatásainak Cross-Origin Resource Sharing (CORS) támogatása](http://msdn.microsoft.com/library/azure/dn535601.aspx).
 
-A következő példakód bemutatja, hogyan konfigurálja a blob szolgáltatást, hogy a blob storage szolgáltatásban blob eléréséhez a Contoso tartományban futó JavaScript engedélyezése:
+a következő példakód hello bemutatja, hogyan tooconfigure a blob szolgáltatás tooallow hello Contoso tartomány tooaccess blob a blob storage szolgáltatásban futó JavaScript:
 
 ```csharp
 CloudBlobClient client = new CloudBlobClient(blobEndpoint, new StorageCredentials(accountName, accountKey));
-// Set the service properties.
+// Set hello service properties.
 ServiceProperties sp = client.GetServiceProperties();
 sp.DefaultServiceVersion = "2013-08-15";
 CorsRule cr = new CorsRule();
@@ -616,18 +616,18 @@ client.SetServiceProperties(sp);
 ```
 
 #### <a name="network-failure"></a>Hálózati hiba
-Bizonyos körülmények között elveszett hálózati csomagokat a HTTP 404-es üzenetek vissza az ügyfélnek társzolgáltatás vezethet. Például, ha az ügyfélalkalmazást entitás törlése a table szolgáltatásból megjelenik az ügyfél egy tárolási kivétel jelentés throw egy "HTTP 404-es (nem található)" a table szolgáltatásból a hibaállapot-üzeneteket. Ha a tábla a table storage szolgáltatásban vizsgálja meg, megjelenik az, hogy a szolgáltatás minden volt törölni egy entitást, kért.
+Bizonyos körülmények között elveszett csomagokat HTTP 404-es üzenetek toohello ügyfél visszaadó toohello társzolgáltatás is járhat. Például, ha az ügyfélalkalmazást entitás törlése hello table szolgáltatásból megjelenik egy tárolási kivétel jelentés throw hello ügyfél egy "HTTP 404-es (nem található)" hello table szolgáltatásból a hibaállapot-üzeneteket. Hello table storage szolgáltatás hello táblájában vizsgálatánál láthatja, hogy hello szolgáltatás hello entitás volt törölte a kért.
 
-A kivétel részletes adatai az ügyfél tartalmazza a kéréshez a table szolgáltatás által hozzárendelt kérelemazonosító (7e84f12d...): Ez az információ segítségével a keresőkifejezéssel kereshet a kiszolgálóoldali tárolási naplók a kérelem részletes adatait a **kérelemfejlécet-azonosító** oszlop a naplófájlban. A metrikák hibák például ez történik, és kereshet a naplófájlok a metrikák rögzített Ez a hiba ideje alapján azonosítására is használhatja. A naplóbejegyzés jeleníti meg, hogy a törlése nem sikerült egy "HTTP (404) ügyfél más hiba" állapotüzenetet. Az azonos naplóbejegyzés is tartalmaz az ügyfél által generált kérelemazonosító a **ügyfélkérelem-azonosító** oszlop (813ea74f...).
+hello kivétel részletei hello ügyfél hello kérelemazonosító (7e84f12d...) hello table szolgáltatás hello kérelem által hozzárendelt tartalmazza: is használhatja a toolocate hello kérelem adatai hello kiszolgálóoldali tárolási naplókban hello kereséssel  **azonosító-kérelemfejléc** oszlop hello naplófájlban. Hello metrikák tooidentify amikor hibák, mint ez történik, és keressen a hello naplófájlok hello idő hello mérőszámok alapján ez a hiba is használhatja. A napló bejegyzés tartalmazza, amelyek hello törlése sikertelen volt egy "HTTP (404) ügyfél más hiba" állapotüzenetet. hello azonos naplóbejegyzés is hello hello ügyfél által generált hello kérelemazonosító **ügyfélkérelem-azonosító** oszlop (813ea74f...).
 
-A kiszolgálóoldali napló is azonos egy másik belépési **ügyfélkérelem-azonosító** értékét (813ea74f...) a sikeres művelet ugyanaz az entitás, valamint az ugyanazon ügyféltől törlése. A sikeres törlési művelete rövid idő került sor, a sikertelen kérelem törlése előtt.
+hello kiszolgálóoldali napló is egy másik bejegyzés hello azonos **ügyfélkérelem-azonosító** értékét (813ea74f...) a sikeres művelet törlése hello ugyanaz az entitás, és a hello azonos ügyfél. A sikeres törlési művelete rövid idő előtt hello sikertelen törlési kérés történt.
 
-Ebben a forgatókönyvben ennek legvalószínűbb oka az, hogy az ügyfél az entitás delete kérelmet küldött a table szolgáltatás, amely sikeres volt, de nem kapott nyugtázást a kiszolgáló (lehet, hogy oka egy átmeneti hálózati probléma). Az ügyfél ezután automatikusan újra megpróbálja a műveletet (azonos **ügyfélkérelem-azonosító**), és ily módon tett újrapróbálkozás sikertelen volt, mert az entitás már törlődött.
+hello legvalószínűbb oka az ebben a forgatókönyvben az ügyfél által hello hello entitás toohello table szolgáltatás, amely sikeres volt, de nem kapott nyugtázást hello kiszolgáló (lehet, hogy miatt tooa átmeneti hálózati probléma) delete kérelmet küldött. hello ügyfél ezután automatikusan újra megpróbálja hello művelet (használatával hello azonos **ügyfélkérelem-azonosító**), és ily módon tett újrapróbálkozás sikertelen volt, mert hello entitás már törlődött.
 
-Ha a probléma gyakran előfordul, ki kell vizsgálni, miért az ügyfél nem képes a table szolgáltatásból nyugtázásának érkezésére. Ha a probléma időszakos, azt kell feldolgozzák-e a "HTTP (404) nem található" hiba és -e jelentkezni, az ügyfél, azonban az ügyfél továbbra is.
+Ha a probléma gyakran előfordul, ki kell vizsgálni, miért hello az ügyfél nem képes tooreceive nyugták hello table szolgáltatásból. Ha hello probléma időszakos, azt kell hello "HTTP (404) nem található" hiba trap és -e jelentkezni az hello ügyfél, azonban hello ügyfél toocontinue engedélyezése.
 
-### <a name="the-client-is-receiving-409-messages"></a>Az ügyfél HTTP 409 (Ütközés) üzeneteket fogad
-Az alábbi táblázatban láthatók a kiszolgálóoldali keresse meg a két Ügyfélműveletek kivonatát: **DeleteIfExists** után azonnal az **CreateIfNotExists** blob-tároló azonos név használata. Vegye figyelembe, hogy minden ügyfél művelet eredménye két kérelmet a rendszer kiszolgálóra küldi, először egy **GetContainerProperties** kérelem ellenőrizze, hogy a tároló létezik-e, majd a **DeleteContainer** vagy **CreateContainer** kérelmet.
+### <a name="the-client-is-receiving-409-messages"></a>hello ügyfél HTTP 409 (Ütközés) üzeneteket fogad
+hello következő táblázatban a két ügyfélműveleteknél hello kiszolgálóoldali napló kivonatát: **DeleteIfExists** után azonnal az **CreateIfNotExists** használatával hello azonos blobtároló neve. Vegye figyelembe, hogy minden ügyfél művelet eredményezi két küldött kérelmek toohello kiszolgáló, először egy **GetContainerProperties** kérelem toocheck hello tároló létezésének követ hello **DeleteContainer** vagy  **CreateContainer** kérelmet.
 
 | időbélyeg | Művelet | eredménye | Tárolónév | Ügyfélkérelem-azonosító |
 | --- | --- | --- | --- | --- |
@@ -636,61 +636,61 @@ Az alábbi táblázatban láthatók a kiszolgálóoldali keresse meg a két Ügy
 | 05:10:13.8987407 |GetContainerProperties |404 |mmcont |bc881924-... |
 | 05:10:14.2147723 |CreateContainer |409 |mmcont |bc881924-... |
 
-Az ügyfélalkalmazás kódja törli, és azonnal újra létrehozza a blobtárolót az azonos név használata: a **CreateIfNotExists** (ügyfél kérelem azonosítója bc881924-...) metódus idővel a HTTP 409 (Ütközés) hibaüzenettel meghiúsul. Ha törli az ügyfél a blobtárolók, táblák, vagy olyan várólisták esetében egy rövid időszak neve előtt ismét elérhetővé válik.
+hello hello ügyfélalkalmazás kód törli, és azonnal újra létrehozza a hello segítségével blobtárolóban ugyanazzal a névvel: hello **CreateIfNotExists** (ügyfél kérelem azonosítója bc881924-...) metódus végül meghiúsul, és hello HTTP 409 (Ütközés) Hiba történt. Ha egy ügyfél töröl a blobtárolók, táblák, vagy olyan várólisták esetében egy rövid időszak előtt hello neve ismét elérhetővé válik.
 
-Az ügyfélalkalmazás kell használni egyedi tároló neve, ha a törlése és ismételt létrehozása minta közös új tárolók létrehozza.
+Ha hello törlése és ismételt létrehozása minta közös létrehozott új tárolók hello ügyfélalkalmazás egyedi tárolónévnek kell használni.
 
 ### <a name="metrics-show-low-percent-success"></a>Metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik ClientOtherErrors működésére a tranzakció állapota
-A **PercentSuccess** metrika százalékos arányát sikerrel járt-e a HTTP-állapotkód alapján műveleteket rögzíti. A 2XX állapotkódok műveletek száma sikeres, mivel az állapotkódnak 3XX, 4XX és 5XX tartományok műveletek szerint sikertelen és alacsonyabb bájtjai számítanak. a **PercentSucess** Átjárómetrika értékeként. A tranzakció állapota a rögzített ezeket a műveleteket a kiszolgálóoldali tárolási naplófájlokban **ClientOtherErrors**.
+Hello **PercentSuccess** metrika hello százaléka sikerrel járt-e a HTTP-állapotkód alapján műveleteket rögzíti. A 2XX állapotkódok műveletek száma sikeres, mivel az állapotkódnak 3XX, 4XX és 5XX tartományok műveletek számítanak sikertelen és alsó hello **PercentSucess** Átjárómetrika értékeként. Hello kiszolgálóoldali tárolási naplófájlokban, ezek a műveletek vannak rögzített, a tranzakció állapota **ClientOtherErrors**.
 
-Fontos megjegyezni, hogy ezek a műveletek sikeresen befejeződött, és ezért nem befolyásolják a más mutatókat, például a rendelkezésre állási. Néhány művelet, hogy sikeresen végrehajtható legyen, de a sikertelen HTTP-állapotkódok eredményezhet, amely többek között:
+Fontos, hogy ezeket a műveleteket sikeresen befejeződött, és ezért nem befolyásolják a más mutatókat, például a rendelkezésre állás fontos toonote. Néhány művelet, hogy sikeresen végrehajtható legyen, de a sikertelen HTTP-állapotkódok eredményezhet, amely többek között:
 
-* **ResourceNotFound** (nem található 404-es), például a GET kérelem blob, amely nem létezik.
-* **ResouceAlreadyExists** (ütközés 409), például egy **CreateIfNotExist** műveletet, ha az erőforrás már létezik.
-* **ConditionNotMet** (nem módosított 304), például az egy feltételes művelet, például amikor egy ügyfél küld egy **ETag** érték és a HTTP **If-None-Match** fejléc kéréséhez lemezkép csak akkor, ha az utolsó művelet óta frissült.
+* **ResourceNotFound** (nem található 404-es), például a GET kérelem tooa blob, amely nem létezik.
+* **ResouceAlreadyExists** (ütközés 409), például egy **CreateIfNotExist** művelet, ahol a hello erőforrás már létezik.
+* **ConditionNotMet** (nem módosított 304), például az egy feltételes művelet, például amikor egy ügyfél küld egy **ETag** érték és a HTTP **If-None-Match** fejléc toorequest egy lemezképet csak akkor, ha az utolsó művelet hello óta frissítve lett.
 
-Közös REST API hiba megtekintéséhez, amely a tárolási szolgáltatások ad vissza, az oldalon található [közös REST API hibakódok](http://msdn.microsoft.com/library/azure/dd179357.aspx).
+Közös REST API hiba megtekintéséhez hello tárolószolgáltatások visszaadó hello oldalon található [közös REST API hibakódok](http://msdn.microsoft.com/library/azure/dd179357.aspx).
 
 ### <a name="capacity-metrics-show-an-unexpected-increase"></a>Teljesítmény-mérőszámait váratlan növekedését megjelenítése a tárolási kapacitás-használat
-Hirtelen jelenik meg, ha a tárfiókban lévő kapacitás használati váratlan változásai használatával megvizsgálhatja a okok miatt a rendelkezésre állási metrikák; első megtekintésével például növekedése sikertelen törlési kérelmek vezethet, előfordulhat, hogy rendelkezik várhatóan kell szabadítson fel helyet alkalmazás adott karbantartási műveleteket lehet, hogy nem az elvárásoknak megfelelően működik (például azért, mert lejárt a szabadítson fel helyet használt SAS-tokenje) használt blob-tároló mennyiségének olyan növekedése száma.
+Hirtelen jelenik meg, ha a tárfiókban lévő kapacitás használati váratlan változásai használatával megvizsgálhatja a hello okok első megnézzük a rendelkezésre állási metrikák; például sikertelen törlési kérések száma hello növekedése vezethet tooan növelését hello legrövidebb használ alkalmazás adott karbantartási műveleteket, lehet, hogy rendelkezik megfelelő toobe szabadítson fel helyet előfordulhat, hogy nem az elvárásoknak megfelelően működik (a blob-tároló Példa, mert lejárt hello SAS-tokenje szabadítson fel helyet használja).
 
 ### <a name="you-are-experiencing-unexpected-reboots"></a>Váratlan újraindítások Azure virtuális gépek, amelyek csatlakoztatott virtuális merevlemezek nagy számú tapasztal
-Ha egy Azure virtuális gép (VM) ugyanabban a tárfiókban lévő csatlakoztatott virtuális merevlemezek nagy mennyiségű, meghaladhatja a a méretezhetőségi célok, az egyes tárfiók a virtuális gép leállását okozza. Jelölje be a tárfiók percenkénti metrikákat (**TotalRequests**/**TotalIngress**/**TotalEgress**) a teljesítményt, amelyek mérete meghaladja a méretezhetőségi célok tárfiókok esetén. Című témakör "[PercentThrottlingError metrika növelését]" támogatásért, ha sávszélesség-szabályozás történt a tárfiók számára.
+Ha egy Azure virtuális gép (VM) számos csatolt VHD-k, amelyek a hello ugyanazt a tárfiókot, akkor meghaladhatja a hello méretezhetőségi célok hello VM toofail, amely az egyes tárolási fiókot. Ellenőrizni kell a hello percenkénti metrikákat hello tárfiókhoz (**TotalRequests**/**TotalIngress**/**TotalEgress**) a igényeiben jelentkező hello méretezhetőségi célok tárfiókok esetén, amely lehet. Hello című rész "[PercentThrottlingError metrika növelését]" támogatásért, ha sávszélesség-szabályozás történt a tárfiók számára.
 
-Általában minden egyes bemeneti vagy kimeneti művelet a virtuális gép virtuális merevlemez az eszköz **első oldal** vagy **Put lap** az alapul szolgáló oldalakra vonatkozó blob műveleteket. Ezért a környezetnek a becsült IOPS segítségével is rendelkezik egyetlen tárfiókokban alapján az adott viselkedést az alkalmazás hány virtuális merevlemezek finomítsa. Legfeljebb 40 lemezek rendelkező egyetlen tárfiókokban nem ajánlott. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) az aktuális méretezhetőségi célok storage-fiókok részleteit, különösen tárfióknak a típusa tartozó összes kérelem sebesség és a teljes sávszélesség használata.
-Ha a tárfiók túllépte a vonatkozó méretezhetőségi célok, helyezze a virtuális merevlemezek több különböző tárfiókokban a tevékenység minden egyes számlára csökkentése érdekében.
+Általában minden egyes bemeneti vagy kimeneti műveletet a virtuális gép virtuális merevlemez a következőkből fordítja le túl**első oldal** vagy **Put lap** az alapul szolgáló oldalakra vonatkozó blob hello műveleteket. Ezért használható hello becsült IOPS a környezet tootune is rendelkezik egyetlen tárfiókokban alapján hello adott viselkedést az alkalmazás hány virtuális merevlemezeket. Legfeljebb 40 lemezek rendelkező egyetlen tárfiókokban nem ajánlott. Lásd: [Azure Storage méretezhetőségi és teljesítménycéloknak](storage-scalability-targets.md) hello aktuális méretezhetőségi célok storage-fiókok részleteit, különösen hello teljes kérelem sebesség és a teljes sávszélesség hello típusú tárfiókot használ .
+Ha a tárfiók túllépte hello méretezhetőségi célok, helyezze a VHD-k több különböző tárolási fiókok tooreduce hello tevékenységet minden egyes számlára.
 
-### <a name="your-issue-arises-from-using-the-storage-emulator"></a>A probléma merül fel a fejlesztési vagy tesztelési a storage emulator használatával
-Általában a storage emulatorral a fejlesztés során, és ellenőrizze, hogy elkerülése érdekében szükség az Azure storage-fiók. A gyakori problémákat, amik akkor léphetnek fel, a storage emulator használata esetén a következők:
+### <a name="your-issue-arises-from-using-the-storage-emulator"></a>A probléma merül fel a fejlesztési vagy tesztelési hello storage emulator használatával
+Általában hello storage emulatorral a fejlesztés során, és tesztelje tooavoid hello követelmény az Azure storage-fiók. hello storage emulator használatakor előforduló gyakori problémákat hello a következők:
 
-* [A storage emulator az "X" a szolgáltatás nem működik]
-* [Hiba történt "a HTTP-fejlécek egyikéhez értéke nem megfelelő formátumú" a storage emulator használata esetén]
-* [A storage emulator futtatása rendszergazdai jogosultságokra van szüksége]
+* ["X" a szolgáltatás nem működik-e a hello storage emulator]
+* [Hiba történt "hello hello HTTP-fejlécek egyikéhez értéke nem a megfelelő formátumban hello" Ha hello storage emulator használatával]
+* [Futó hello storage emulator rendszergazdai jogosultságokra van szüksége.]
 
-#### <a name="feature-X-is-not-working"></a>A storage emulator az "X" a szolgáltatás nem működik
-A storage emulator nem támogatja a Funkciók, például a szolgáltatás az Azure storage szolgáltatások. További információkért lásd: [Use the Azure Storage Emulator for Development and Testing](storage-use-emulator.md) (Fejlesztés és tesztelés az Azure Storage Emulatorral).
+#### <a name="feature-X-is-not-working"></a>"X" a szolgáltatás nem működik-e a hello storage emulator
+hello storage emulator nem támogatja az összes hello szolgáltatás hello az Azure storage szolgáltatások például hello szolgáltatás. További információkért lásd: [fejlesztés és tesztelés az Azure Storage Emulator használata hello](storage-use-emulator.md).
 
-Ezeket a szolgáltatásokat, és a storage emulator nem támogatja használja az Azure storage szolgáltatás a felhőben.
+Ezen szolgáltatások tárolási hello emulátor nem támogatja, hello felhő hello az Azure storage szolgáltatás használata.
 
-#### <a name="error-HTTP-header-not-correct-format"></a>Hiba történt "a HTTP-fejlécek egyikéhez értéke nem megfelelő formátumú" a storage emulator használata esetén
-Teszteli az alkalmazás, például a Storage ügyféloldali kódtára a helyi storage emulator és metódus hívások elleni használó **CreateIfNotExists** sikertelen, és a hibaüzenet a következő, "a HTTP-fejlécek egyikéhez értéke nem a megfelelő formátumban." Ez azt jelzi, hogy a storage emulator használata verziója nem támogatja a storage ügyféloldali kódtár használata verzióját. A Storage ügyféloldali kódtára a fejlécet ad **x-ms-version** teszi minden kérelemre. Ha a storage emulator nem ismeri fel az értéket a **x-ms-version** fejléc, hogy elutasítja a kérelmet.
+#### <a name="error-HTTP-header-not-correct-format"></a>Hiba történt "hello hello HTTP-fejlécek egyikéhez értéke nem a megfelelő formátumban hello" Ha hello storage emulator használatával
+Teszteli az alkalmazás, például a Storage ügyféloldali kódtár hello elleni hello helyi storage emulator és metódus hívások használó **CreateIfNotExists** hello hibával hibaüzenet "hello hello HTTP-fejlécek egyikéhez értéke nem található hello megfelelő formátumban." Ez azt jelzi, hogy hello hello storage emulator használata verziója nem támogatja a hello verzióját hello storage ügyféloldali kódtár használata. a Storage ügyféloldali kódtára hello hello fejlécet ad **x-ms-version** tooall hello kérelmek teszi. Ha hello storage emulator nem ismeri fel a hello hello érték **x-ms-version** fejléc, hogy elutasítja-hello kérelem.
 
-A tárolási Szalagtári ügyfél naplók segítségével értékének láthatja a **x-ms-version fejlécnek** akkor küld. Azt is láthatja, értékét a **x-ms-version fejlécnek** Fiddler a kérelmek nyomon követésére, az ügyfélalkalmazás használatakor.
+Használhatja a hello tárolási Szalagtári ügyfél naplók toosee hello értékének hello **x-ms-version fejlécnek** akkor küld. Azt is láthatja, hello hello értékének **x-ms-version fejlécnek** Fiddler tootrace hello kérelmek az ügyfélalkalmazás használatakor.
 
-Ebben a forgatókönyvben rendszerint azért fordul elő, ha telepít, és a Storage ügyféloldali kódtár legújabb verzióját használja a storage emulator frissítése nélkül. Meg kell a storage emulator legújabb verziójának telepítéséhez, vagy használjon felhőalapú tárolás helyett az emulátor fejlesztési és tesztelési.
+Ebben a forgatókönyvben rendszerint azért fordul elő, ha telepíti és hello storage emulator frissítése nélkül hello hello Storage ügyféloldali kódtár legújabb verzióját használja. Meg kell hello hello storage emulator legújabb verziójának telepítéséhez, vagy használjon felhőalapú tárolás helyett hello emulátor fejlesztési és tesztelési.
 
-#### <a name="storage-emulator-requires-administrative-privileges"></a>A storage emulator futtatása rendszergazdai jogosultságokra van szüksége
-Kéri a rendszergazdai hitelesítő adatok a storage emulator futtatásakor. Ez csak akkor történik, az első alkalommal a storage emulator vannak inicializálása közben. Miután a storage emulator inicializálta, nem kell újra futtatásához rendszergazdai jogosultságokkal.
+#### <a name="storage-emulator-requires-administrative-privileges"></a>Futó hello storage emulator rendszergazdai jogosultságokra van szüksége.
+Kéri a rendszergazdai hitelesítő adatok hello storage emulator futtatásakor. Ez csak akkor vannak inicializálásakor hello storage emulator hello az első alkalommal fordul elő. Miután hello storage emulator inicializálta, nincs szükség rendszergazdai jogosultságokkal toorun azt újra.
 
-További információkért lásd: [Use the Azure Storage Emulator for Development and Testing](storage-use-emulator.md) (Fejlesztés és tesztelés az Azure Storage Emulatorral). Vegye figyelembe, hogy a Visual Studio, amely rendszergazdai jogosultságokkal is szüksége lesz a storage emulator is lehet inicializálni.
+További információkért lásd: [fejlesztés és tesztelés az Azure Storage Emulator használata hello](storage-use-emulator.md). Vegye figyelembe, hogy akkor is inicializálni a hello storage emulatort, a Visual Studio, amely rendszergazdai jogosultságokkal is szükséges lesz.
 
-### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>.NET-keretrendszerhez készült Azure SDK telepítése problémák áll kapcsolatban.
-A storage emulator telepítése a helyi számítógépen próbálja telepíteni az SDK-t, sikertelen. A telepítési naplófájl tartalmazza az alábbi üzenetek egyike:
+### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>Áll kapcsolatban problémák hello Azure SDK telepítése a .NET-hez
+Tooinstall hello SDK meg, miközben a rendszer tooinstall hello storage emulatort, a helyi gépen sikertelen lesz. hello telepítési naplóját a következő üzenetek hello egyikét tartalmazza:
 
-* CAQuietExec: Hiba: nem érhető el az SQL-példány
-* CAQuietExec: Hiba: nem hozható létre adatbázis
+* CAQuietExec: Hiba: nem tooaccess SQL-példány
+* CAQuietExec: Hiba: nem toocreate adatbázis
 
-Az OK: a meglévő LocalDB telepítési kapcsolatos problémát. Alapértelmezés szerint a storage Emulator LocalDB megőrizni az adatokat, amikor azt szimulálja az Azure storage szolgáltatások. A következő parancsok futtatásával egy parancssori ablakban az SDK telepítése előtt alaphelyzetbe állíthatja a LocalDB példányához.
+hello ok: a meglévő LocalDB telepítési kapcsolatos problémát. Alapértelmezés szerint hello storage emulator LocalDB toopersist adatokat használja, amikor azt hello Azure storage szolgáltatások szimulálja. Futtassa a következő parancsok parancssori ablakban előtt tooinstall hello SDK hello alaphelyzetbe állíthatja a LocalDB példányához.
 
 ```
 sqllocaldb stop v11.0
@@ -699,121 +699,121 @@ delete %USERPROFILE%\WAStorageEmulatorDb3*.*
 sqllocaldb create v11.0
 ```
 
-A **törlése** parancs eltávolítja a régi adatbázisfájlok a storage emulator az előző telepítések.
+Hello **törlése** parancs eltávolítja a régi adatbázisfájlok hello storage emulator az előző telepítések.
 
 ### <a name="you-have-a-different-issue-with-a-storage-service"></a>Van egy másik probléma storage szolgáltatással
-Ha az előző hibaelhárítási szakaszok nem adja meg a problémát tapasztal storage szolgáltatással, el kell fogadnia a következő módon diagnosztizálásának és a hiba elhárításához.
+Ha hello előző hibaelhárítási szakaszok nem tartalmaznak hello problémát tapasztal storage szolgáltatással, el kell fogadnia hello megközelítés toodiagnosing követi, és a hiba elhárításához.
 
-* Ellenőrizze a metrikákat, ha bármi is módosul az a várt viszonyítási viselkedése. A metrikák a esetleg meg tudja határozni, hogy a probléma átmeneti és végleges, és mely tárolási műveletek érinti a problémát.
-* A metrikák információk segítségével keresse meg a kiszolgálóoldali naplóadatokat előforduló hibákat további részletes információt nyújt segítséget. Ezek az információk segítenek elhárításához és hárítsa el a problémát.
-* Ha a kiszolgálóoldali naplókban lévő információk nem elegendő a probléma elhárításához sikeresen, a Storage ügyféloldali kódtár ügyféloldali naplók segítségével vizsgálja meg az ügyfélalkalmazást és a Fiddler, Wireshark vagy Microsoft Message Analyzert, vizsgálja meg a hálózat működését.
+* Ellenőrizze a metrikák toosee, ha bármi is módosul az a várt viszonyítási viselkedése. A hello metrika előfordulhat, hogy lehet a képes toodetermine, hogy hello probléma átmeneti és végleges, és mely tárolási műveletek hello probléma érinti.
+* Hello metrikák információt toohelp keres a kiszolgálóoldali naplóadatokat előforduló hibákat részletesebb információt is használhatja. Ezek az információk segítenek hibaelhárításához és megoldásához hello probléma.
+* Ha hello információ hello kiszolgálóoldali naplók elegendő tootroubleshoot hello probléma sikeresen, használhatja a hello a Storage ügyféloldali kódtára ügyféloldali naplók tooinvestigate hello viselkedését az ügyfélalkalmazást és eszközöket, például a Fiddler, Wireshark, Microsoft Message Analyzert tooinvestigate és a hálózaton.
 
-A Fiddler használatával kapcsolatos további információkért lásd: "[1 függelék: HTTP és HTTPS-forgalom rögzítése a Fiddler használatával]."
+Fiddler használatával kapcsolatos további információkért lásd: "[1 függelék: Fiddler toocapture HTTP és HTTPS-forgalom használatával]."
 
-Wireshark használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark használó rögzítheti a hálózati forgalom]."
+Wireshark használatával kapcsolatos további információkért lásd: "[2 függelék: Wireshark toocapture hálózati forgalom használ]."
 
-Microsoft Message Analyzert használatával kapcsolatos további információkért lásd: "[függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom]."
+Microsoft Message Analyzert használatával kapcsolatos további információkért lásd: "[3 függelék: a Microsoft Message Analyzert toocapture hálózati forgalom használ]."
 
 ## <a name="appendices"></a>Mellékletek
-A mellékletek azt tapasztalhatja hasznos diagnosztizálása és elhárítása az Azure Storage (és az egyéb szolgáltatásokkal) eszközöket írja le. Ezek az eszközök nem része az Azure Storage és harmadik féltől származó termékekre. Így az eszközök ismertetett ezen mellékletek nem tartoznak egyetlen támogatási szerződést, előfordulhat, hogy a Microsoft Azure vagy az Azure Storage, és ezért a kiértékelési folyamat részeként meg kell vizsgálni a licencelési és támogatási lehetőségekről a szolgáltató ezen eszközök.
+hello mellékletek azt tapasztalhatja hasznos diagnosztizálása és elhárítása az Azure Storage (és az egyéb szolgáltatásokkal) eszközöket írja le. Ezek az eszközök nem része az Azure Storage és harmadik féltől származó termékekre. Ilyen bármely támogatási megállapodás, előfordulhat, hogy a Microsoft Azure vagy az Azure Storage nem vonatkozik e mellékletek tárgyalt hello eszközök, és ezért a kiértékelési folyamat részeként meg kell vizsgálni hello licenceléssel és a támogatási lehetőségekről a Ezek az eszközök hello szolgáltatók.
 
-### <a name="appendix-1"></a>1. függelék: A HTTP és HTTPS-forgalom rögzítésére Fiddler segítségével
-[Fiddler](http://www.telerik.com/fiddler) az eszköz a HTTP és HTTPS-forgalmat az ügyfélalkalmazást és a használ az Azure storage szolgáltatás közötti elemzéséhez.
+### <a name="appendix-1"></a>1. függelékében: Használatával Fiddler toocapture HTTP és HTTPS-forgalom
+[Fiddler](http://www.telerik.com/fiddler) az eszköz elemzéséhez hello HTTP és HTTPS-forgalmat az ügyfélalkalmazást és hello használata az Azure storage szolgáltatás között.
 
 > [!NOTE]
-> Fiddler tudja dekódolni a HTTPS-forgalom; olvassa el a Fiddler dokumentáció konfigurációkat annak megértése, hogyan teszi ezt, és a biztonsági vonatkozó következmények ismertetése.
+> Fiddler tudja dekódolni a HTTPS-forgalom; olvassa el hello Fiddler dokumentáció gondosan toounderstand hogyan teszi ezt, és toounderstand hello biztonsági szempontokat.
 > 
 > 
 
-Ebben a függelékben egy rövid útmutató arról, hogyan konfigurálhatja a helyi számítógépen, amelyen telepítette a Fiddler és az Azure storage szolgáltatások közötti forgalom rögzítése a Fiddler.
+Ebben a függelékben rövid bemutatóért hogyan tooconfigure Fiddler toocapture hello helyi számítógép, amelyen telepítette a Fiddler és hello Azure storage szolgáltatások közötti forgalmat.
 
-Miután Fiddler indítása, a helyi számítógépen a HTTP és HTTPS-forgalom rögzítése kezdi. Az alábbiakban néhány hasznos parancsokat szabályozásához a Fiddler:
+Miután Fiddler indítása, a helyi számítógépen a HTTP és HTTPS-forgalom rögzítése kezdi. Az alábbiakban hello szabályozásához a Fiddler néhány hasznos parancsokat:
 
-* Állítsa le és indítsa el a forgalom rögzítése. A főmenü Ugrás **fájl** , majd **forgalom rögzítése** váltáshoz rögzítése a be- és kikapcsolható.
-* Rögzített forgalmi adatok mentése. A főmenü Ugrás **fájl**, kattintson a **mentése**, és kattintson a **minden munkamenet**: Ez lehetővé teszi, hogy a forgalom munkamenet archív fájlba mentése. Töltse be újra a később elemzéshez munkamenet-archívum létrehozása, vagy küldje el, ha a Microsoft támogatási kérelmet.
+* Állítsa le és indítsa el a forgalom rögzítése. Hello főmenü, nyissa meg túl**fájl** majd **forgalom rögzítése** tootoggle rögzítése a be- és kikapcsolható.
+* Rögzített forgalmi adatok mentése. Hello főmenü, nyissa meg túl**fájl**, kattintson a **mentése**, és kattintson a **minden munkamenet**: Ez lehetővé teszi, hogy toosave hello forgalom munkamenet archív fájlba. Töltse be újra a később elemzéshez munkamenet-archívum létrehozása, vagy küldje el, ha a kért tooMicrosoft támogatási.
 
-A Fiddler rögzíti a forgalom mennyiségének korlátozásához használhatja a szűrők, amelyet megadtak a **szűrők** fülre. Az alábbi képernyőfelvételen látható egy szűrő, amely csak a küldött forgalmat rögzíti a **contosoemaildist.table.core.windows.net** tárolási végpont:
+rögzíti a Fiddler forgalom toolimit hello mennyiségének szűrőkkel hello konfigurált **szűrők** a következő képernyőkép külön-külön hello jeleníti meg, amely rögzíti az elküldött forgalom csak toohello szűrő  **contosoemaildist.TABLE.Core.Windows.NET** tárolási végpont:
 
 ![][5]
 
-### <a name="appendix-2"></a>2. függelékben: Wireshark használó rögzítheti a hálózati forgalom
-[Wireshark](http://www.wireshark.org/) van egy hálózati protokollelemző eszköz, amely lehetővé teszi a hálózati protokollok széles köre csomag részletes információk megtekintése.
+### <a name="appendix-2"></a>2. függelékben: Használatával Wireshark toocapture hálózati forgalom
+[Wireshark](http://www.wireshark.org/) van, amely lehetővé teszi tooview hálózati protokollelemző eszköz részletes számos különböző hálózati protokollok csomag adatait.
 
-Az alábbi eljárás bemutatja, hogyan részletes csomagok információit a helyi számítógépről érkező forgalom rögzítésére telepítési Wireshark a table szolgáltatásba az Azure-tárfiókot.
+hello alábbi eljárás bemutatja, hogyan toocapture részletes a forgalmat a helyi számítógépről hello csomagok információit Wireshark toohello table szolgáltatás telepítési az Azure-tárfiókot.
 
 1. Indítsa el a Wireshark a helyi számítógépen.
-2. Az a **Start** területen válassza ki a helyi hálózati adapter vagy az internethez csatlakozó felületek.
+2. A hello **Start** szakaszban, a select hello helyi hálózati adapter vagy a felületek, amelyek csatlakoztatott toohello internet.
 3. Kattintson a **beállítások rögzítése**.
-4. Adja hozzá egy szűrőt, amely a **rögzítési szűrő** szövegmező. Például **contosoemaildist.table.core.windows.net gazdagép** Wireshark csak a table szolgáltatási végpont a által küldött és csomagok rögzítéséhez konfigurálja a **contosoemaildist** tárfiók. Tekintse meg a [rögzítése szűrők teljes listájának](http://wiki.wireshark.org/CaptureFilters).
+4. Adja hozzá a szűrő toohello **rögzítési szűrő** szövegmező. Például **contosoemaildist.table.core.windows.net gazdagép** Wireshark toocapture úgy konfigurálja, csak a csomagok tooor küldött hello table szolgáltatási végpont a hello **contosoemaildist** tároló fiók. Tekintse meg a hello [rögzítése szűrők teljes listájának](http://wiki.wireshark.org/CaptureFilters).
    
    ![][6]
-5. Kattintson a **Start**. Wireshark most rögzíti összes csomagokat küldjön vagy a table szolgáltatási végpont a használata az ügyfélalkalmazást a helyi számítógépen.
-6. Miután végzett, a fő menüben kattintson a **rögzítése** , majd **leállítása**.
-7. A rögzített adatok Wireshark rögzítése fájlba mentése, a főmenü kattintson **fájl** , majd **mentése**.
+5. Kattintson a **Start**. Wireshark most rögzíti az összes hello csomagok küldése tooor hello table szolgáltatási végpont a használata az ügyfélalkalmazást a helyi számítógépen.
+6. Miután végzett, hello fő menüben kattintson a **rögzítése** , majd **leállítása**.
+7. a rögzített adatok Wireshark rögzítése fájlba, a hello főmenü kattintson toosave hello **fájl** , majd **mentése**.
 
-WireShark ki olyan hibákat, amelyek szerepelnek a **packetlist** ablak. Is használhatja a **szakértő Info** ablakban (kattintson **elemzés**, majd **szakértő Info**) a hibák és figyelmeztetések összegzésének megtekintése.
+WireShark ki olyan hibákat, amelyek szerepelnek a hello **packetlist** ablak. Is használhatja a hello **szakértő Info** ablakban (kattintson **elemzés**, majd **szakértő Info**) tooview hibák és figyelmeztetések összegzését.
 
 ![][7]
 
-Úgy is dönt, hogy az alkalmazási rétegre látja a TCP-adatok csomagot jobb gombbal, majd válassza a TCP-adatok megtekintheti **hajtsa végre a TCP-folyam**. Ez különösen fontos, ha a biztonsági másolat nélkül rögzítési szűrő rögzített. További információkért lásd: [következő TCP-adatfolyamok](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html).
+Ekkor is kiválaszthatja tooview hello TCP-adatok, hello alkalmazásréteg látja, az TCP-adatok hello csomagot jobb gombbal, majd válassza **hajtsa végre a TCP-folyam**. Ez különösen fontos, ha a biztonsági másolat nélkül rögzítési szűrő rögzített. További információkért lásd: [következő TCP-adatfolyamok](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html).
 
 ![][8]
 
 > [!NOTE]
-> Wireshark használatával kapcsolatos további információkért lásd: a [Wireshark felhasználók útmutató](http://www.wireshark.org/docs/wsug_html_chunked).
+> Wireshark használatával kapcsolatos további információkért lásd: hello [Wireshark felhasználók útmutató](http://www.wireshark.org/docs/wsug_html_chunked).
 > 
 > 
 
-### <a name="appendix-3"></a>3. függelék: Microsoft Message Analyzert segítségével rögzítheti a hálózati forgalom
-Microsoft Message Analyzert használja a HTTP és HTTPS-forgalom rögzítése a Fiddler hasonló módon, és a hálózati forgalom rögzítése a Wireshark hasonló módon.
+### <a name="appendix-3"></a>3. függelék: Használatával a Microsoft Message Analyzert toocapture hálózati forgalom
+Microsoft Message Analyzert toocapture HTTP és HTTPS-forgalmat a hasonló módon tooFiddler használja, és egy hasonló módon tooWireshark a hálózati forgalom rögzítése.
 
 #### <a name="configure-a-web-tracing-session-using-microsoft-message-analyzer"></a>Egy webes nyomkövetési munkamenet használ a Microsoft Message Analyzert konfigurálása
-Egy webes nyomkövetési munkamenet a Microsoft Message Analyzert, futtassa a Microsoft Message Analyzert alkalmazást használ HTTP és HTTPS-forgalmat, majd a konfigurálása a **fájl** menüben kattintson **rögzítési/nyomkövetési**. Válassza ki a rendelkezésre álló nyomkövetési forgatókönyvek listáját, **webproxy**. Ezt a a **nyomkövetési forgatókönyv konfigurációjának** panelen, a a **HostnameFilter** szövegmező, a tárolási végpontok neveket adhat hozzá (ezekkel a nevekkel megjeleníthetők a [Azure-portálon](https://portal.azure.com)). Például, ha az Azure storage-fiók neve **contosodata**, adja hozzá a következőt a **HostnameFilter** szövegmező:
+egy webes nyomkövetési munkamenet a HTTP és HTTPS-forgalmat használatával a Microsoft Message Analyzert, hello Microsoft Message Analyzert alkalmazás futtatásához, majd a hello tooconfigure **fájl** menüben kattintson a **rögzítési/nyomkövetési**. Rendelkezésre álló nyomkövetési forgatókönyvek hello listában válassza ki a **webproxy**. Ezt a hello **nyomkövetési forgatókönyv konfigurációjának** panel hello **HostnameFilter** szövegmező, a tárolási végpontok hello neveket adhat hozzá (ezekkel a nevekkel hello megjeleníthetők [Azure-portálon](https://portal.azure.com)). Például hello neve az Azure storage-fiók akkor **contosodata**, adja hozzá a következő toohello hello **HostnameFilter** szövegmező:
 
 ```
 contosodata.blob.core.windows.net contosodata.table.core.windows.net contosodata.queue.core.windows.net
 ```
 
 > [!NOTE]
-> A szóköz karakter választja el a gazdagép neve.
+> A szóköz karakter hello állomásnevek elválasztja.
 > 
 > 
 
-Amikor készen áll a nyomkövetési adatok gyűjtése indításához kattintson a **Start With** gombra.
+Amikor készen áll a toostart nyomkövetési adatokat gyűjt, kattintson a hello **Start With** gombra.
 
-További információt a Microsoft Message Analyzert **webproxy** nyomkövetési című [Microsoft-PEF-WebProxy szolgáltató](http://technet.microsoft.com/library/jj674814.aspx).
+További információt a Microsoft Message Analyzert hello **webproxy** nyomon követése, lásd: [Microsoft-PEF-WebProxy szolgáltató](http://technet.microsoft.com/library/jj674814.aspx).
 
-A beépített **webproxy** nyomkövetési Microsoft Message Analyzert a Fiddler alapul; ügyféloldali HTTPS-forgalom rögzítése és nem titkosított HTTPS üzenetek megjelenítése. A **webproxy** works nyomkövetése minden HTTP és HTTPS-forgalom, amely azt hozzáférést ad a nem titkosított üzeneteket helyi proxy konfigurálása.
+beépített hello **webproxy** nyomkövetési Microsoft Message Analyzert a Fiddler alapul; ügyféloldali HTTPS-forgalom rögzítése és nem titkosított HTTPS üzenetek megjelenítése. Hello **webproxy** works nyomkövetése minden HTTP és HTTPS-forgalom, mely hozzáférést toounencrypted üzenetek helyi proxy konfigurálása.
 
 #### <a name="diagnosing-network-issues-using-microsoft-message-analyzer"></a>Microsoft Message Analyzert használata a hálózati problémák diagnosztizálása
-A Microsoft Message Analyzert használata mellett **webproxy** nyomkövetés rögzítése a HTTP/HTTPs-forgalmat az ügyfélalkalmazást és a tárolási szolgáltatás között részleteit, használhatja a beépített **helyi kapcsolat réteg** nyomkövetési rögzítheti a hálózati csomagok információit. Ez lehetővé teszi, hogy hasonló, amely a Wireshark rögzítése és diagnosztizálhatják az adatok rögzítéséhez hálózati problémák, mint eldobott csomagok.
+Ezenkívül toousing hello Microsoft Message Analyzert **webproxy** nyomkövetési toocapture részleteit hello HTTP/HTTPs-forgalom hello ügyfélalkalmazást és hello tárolási szolgáltatás között, használhatja a hello beépített  **Helyi kapcsolat réteg** nyomkövetési toocapture hálózati csomagok információit. Ez lehetővé teszi, hogy Ön toocapture adatok hasonló toothat rendelkező Wireshark rögzítése, és diagnosztizálhatja hálózati problémák, mint eldobott csomagok.
 
-Az alábbi képernyőfelvételen szereplő példán látható **helyi kapcsolat réteg** egy nyomkövetési **tájékoztató** állapotüzenetek a **DiagnosisTypes** oszlop. A megfelelő ikonra kattintva a **DiagnosisTypes** oszlop az üzenet részleteit jeleníti meg. Ebben a példában a kiszolgáló üzenet #305 újraküldött, mert nem kapott nyugtázást az ügyfél:
+hello alábbi képernyőfelvételen szereplő példán látható **helyi kapcsolat réteg** egy nyomkövetési **tájékoztató** hello üzenetek **DiagnosisTypes** oszlop. Kattintson egy ikonra a hello a **DiagnosisTypes** oszlop üdvözlőüzenetére hello részleteit jeleníti meg. Ebben a példában hello server üzenet #305 újraküldött, mert nem kapott nyugtázást hello ügyfélről:
 
 ![][9]
 
-Amikor a nyomkövetési munkamenet hoz létre a Microsoft Message Analyzert, úgy, hogy csökkenti a nyomkövetés a zaj is megadhat. Az a **rögzítése / nyomkövetési** Itt adhatja meg a nyomkövetési lapon kattintson a a **konfigurálása** melletti hivatkozásra **Microsoft-Windows-NDIS-PacketCapture**. Az alábbi képernyőfelvételen látható a konfigurációkat, amelyek a TCP-forgalom három adattárolási szolgáltatások IP-címek szűrése:
+A Microsoft Message Analyzert hello nyomkövetési munkamenet létrehozásakor hello nyomkövetési szűrők tooreduce hello mennyisége zaj adhat meg. A hello **rögzítése / nyomkövetési** lap, ahol megadhatja a hello nyomkövetési, kattintson a hello **konfigurálása** túl melletti hivatkozásra**Microsoft-Windows-NDIS-PacketCapture**. a következő képernyőkép hello jeleníti meg a konfigurációkat, amelyek a TCP-forgalom három tárolási szolgáltatások hello IP-címek szűrése:
 
 ![][10]
 
-A Microsoft Message Analyzer helyi kapcsolat réteg nyomkövetési kapcsolatos további információkért lásd: [Microsoft-PEF-NDIS-PacketCapture szolgáltató](http://technet.microsoft.com/library/jj659264.aspx).
+További információ a Microsoft Message Analyzer helyi kapcsolat réteg nyomkövetési hello: [Microsoft-PEF-NDIS-PacketCapture szolgáltató](http://technet.microsoft.com/library/jj659264.aspx).
 
-### <a name="appendix-4"></a>4. függelék: Segítségével Excel metrikák megtekintése és az adatok naplózása
-Sok eszközei lehetővé teszik a Storage Metrics adatok letöltése az Azure table storage segítségével egyszerűen az adatok betöltése az Excel megtekintése és elemzése tagolt formátumú. Az Azure blob storage tárolási naplózási adatok már Excelbe betöltése tagolt formátumú. Azonban akkor adja hozzá a megfelelő oszlopának fejlécére kattintva rendezhető, a következő információ alapján [Storage Analytics naplóformátumban](http://msdn.microsoft.com/library/azure/hh343259.aspx) és [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+### <a name="appendix-4"></a>4. függelék: Excel tooview metrikákat és naplózási adatok használata
+Sok eszközei lehetővé teszik toodownload hello Storage mérőszámainak adatokat az Azure table storage egy tagolt formátumú, így könnyen tooload hello adatok az Excel programba megtekintése és elemzése. Az Azure blob storage tárolási naplózási adatok már Excelbe betöltése tagolt formátumú. Azonban szüksége lesz tooadd megfelelő oszlopának fejlécére kattintva rendezhető hello információkat a alapú [Storage Analytics naplóformátumban](http://msdn.microsoft.com/library/azure/hh343259.aspx) és [Storage Analytics metrikák táblaséma](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
-Az a tárolási naplózási adatok importálása Excelbe, miután a blob storage-ból tölthetik le:
+tooimport a naplózás tárolási adatokat Excelbe követően letölthető blob-tároló:
 
-* Az a **adatok** menüben kattintson a **a szöveg**.
-* Keresse meg a naplófájlt megtekintheti, és kattintson a kívánt **importálási**.
-* Az 1. lépésében a **varázslóban**, jelölje be **tagolt**.
+* A hello **adatok** menüben kattintson a **a szöveg**.
+* Tallózás toohello naplófájl tooview ki, majd kattintson **importálási**.
+* A hello / 1. lépés **varázslóban**, jelölje be **tagolt**.
 
-Az 1. lépésében a **varázslóban**, jelölje be **pontosvessző** csak elválasztóként idézőjel, válassza a **Szöveghatároló**. Kattintson a **Befejezés** , és válassza ki az adatok helyét a munkafüzetet.
+A hello / 1. lépés **varázslóban**, jelölje be **pontosvessző** , csak elválasztó hello, és válassza ki, hello idézőjel **Szöveghatároló**. Kattintson a **Befejezés** , és válassza ki, ahol tooplace hello munkafüzete adataihoz.
 
 ### <a name="appendix-5"></a>5. függelék: A Visual Studio Team Services az Application insights szolgáltatással figyelését.
-Az Application Insights szolgáltatás Visual Studio Team Services, a teljesítmény és rendelkezésre állásának figyelésére szolgáló részeként is használja. Ez az eszköz a következőket teheti:
+Hello Application Insights szolgáltatás Visual Studio Team Services, a teljesítmény és rendelkezésre állásának figyelésére szolgáló részeként is használja. Ez az eszköz a következőket teheti:
 
-* Ellenőrizze, hogy a webes szolgáltatás megfelelően üzemel és rugalmas. Hogy az alkalmazás egy webhely vagy egy eszköz-alkalmazást, amely egy webszolgáltatás-bővítmény használ, azt a világ különböző helyekről néhány percenként az URL-cím tesztelése, és jelzi, ha probléma van.
-* Gyorsan diagnosztizálhatja a webszolgáltatás kivételek, illetve bármely problémák. Annak megállapítása, ha Processzor- vagy egyéb erőforrások vannak nyújtja, a kivételek az híváslánc megjelenik le, és könnyen megkereshetjük a naplókivonatokat. Ha az alkalmazás teljesítmény elfogadható korlátok alá csökken, elküldhetjük egy e-mailt. .NET- és a Java webes szolgáltatásokat is figyelhet.
+* Ellenőrizze, hogy a webes szolgáltatás megfelelően üzemel és rugalmas. -E az alkalmazás egy webhely vagy egy eszköz-alkalmazást, amely egy webszolgáltatás-bővítmény használ, azt az URL-cím néhány percenként tesztelése hello világ különböző helyekről, és jelzi, ha probléma van.
+* Gyorsan diagnosztizálhatja a webszolgáltatás kivételek, illetve bármely problémák. Annak megállapítása, ha Processzor- vagy egyéb erőforrások vannak nyújtja, a kivételek az híváslánc megjelenik le, és könnyen megkereshetjük a naplókivonatokat. Ha hello alkalmazás teljesítmény elhagyta elfogadható határértékek alatt, elküldhetjük egy e-mailt. .NET- és a Java webes szolgáltatásokat is figyelhet.
 
 További információt a [Mi az Application Insights?](../../application-insights/app-insights-overview.md).
 
@@ -843,7 +843,7 @@ További információt a [Mi az Application Insights?](../../application-insight
 
 [hibaelhárítási útmutatás]: #troubleshooting-guidance
 [metrika AverageE2ELatency magas és alacsony AverageServerLatency]: #metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency
-[A mérőszámok alacsony AverageE2ELatency és alacsony AverageServerLatency értéket mutatnak, de az ügyfél nagy mértékű késleltetést tapasztal]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
+[A metrika alacsony AverageE2ELatency és alacsony AverageServerLatency, de hello ügyfél tapasztal nagy késleltetésű]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
 [A mérőszámok magas AverageServerLatency értéket mutatnak]: #metrics-show-high-AverageServerLatency
 [Váratlan késést tapasztal az üzenetsorban található üzenetek kézbesítésekor]: #you-are-experiencing-unexpected-delays-in-message-delivery
 
@@ -853,29 +853,29 @@ További információt a [Mi az Application Insights?](../../application-insight
 [PercentTimeoutError metrika növelését]: #metrics-show-an-increase-in-PercentTimeoutError
 [A mérőszámok emelkedő PercentNetworkError értéket mutatnak]: #metrics-show-an-increase-in-PercentNetworkError
 
-[Az ügyfél HTTP 403 (tiltott) üzeneteket fogad]: #the-client-is-receiving-403-messages
-[Az ügyfél HTTP 404-es (nem található) üzeneteket fogad]: #the-client-is-receiving-404-messages
-[Az ügyfél vagy egy másik folyamat a korábban az objektum törölve]: #client-previously-deleted-the-object
+[hello ügyfél HTTP 403 (tiltott) üzeneteket fogad]: #the-client-is-receiving-403-messages
+[hello ügyfél (nem található) HTTP 404 üzeneteket fogad]: #the-client-is-receiving-404-messages
+[hello ügyfél vagy egy másik folyamat korábban törölt hello objektum]: #client-previously-deleted-the-object
 [Egy közös hozzáférésű Jogosultságkód (SAS) hitelesítési hiba]: #SAS-authorization-issue
-[Ügyféloldali JavaScript-kód nincs engedélye az objektumhoz való hozzáférést]: #JavaScript-code-does-not-have-permission
+[Ügyféloldali JavaScript-kód nem rendelkezik engedéllyel tooaccess hello objektum]: #JavaScript-code-does-not-have-permission
 [Hálózati hiba]: #network-failure
-[Az ügyfél HTTP 409 (Ütközés) üzeneteket fogad]: #the-client-is-receiving-409-messages
+[hello ügyfél HTTP 409 (Ütközés) üzeneteket fogad]: #the-client-is-receiving-409-messages
 
-[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik ClientOtherErrors működésére állapotú tranzakció]: #metrics-show-low-percent-success
+[metrika alacsony PercentSuccess vagy analytics naplóbejegyzések rendelkezik műveletek tranzakció állapota ClientOtherErrors]: #metrics-show-low-percent-success
 [Teljesítmény-mérőszámait váratlan növekedését megjelenítése a tárolási kapacitás-használat]: #capacity-metrics-show-an-unexpected-increase
 [Váratlan vesznek el virtuális gépeken, amelyek csatlakoztatott virtuális merevlemezek nagy számú tapasztal]: #you-are-experiencing-unexpected-reboots
-[A probléma merül fel a fejlesztési vagy tesztelési a storage emulator használatával]: #your-issue-arises-from-using-the-storage-emulator
-[A storage emulator az "X" a szolgáltatás nem működik]: #feature-X-is-not-working
-[Hiba történt "a HTTP-fejlécek egyikéhez értéke nem megfelelő formátumú" a storage emulator használata esetén]: #error-HTTP-header-not-correct-format
-[A storage emulator futtatása rendszergazdai jogosultságokra van szüksége]: #storage-emulator-requires-administrative-privileges
-[.NET-keretrendszerhez készült Azure SDK telepítése problémák áll kapcsolatban.]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
+[A probléma merül fel a fejlesztési vagy tesztelési hello storage emulator használatával]: #your-issue-arises-from-using-the-storage-emulator
+["X" a szolgáltatás nem működik-e a hello storage emulator]: #feature-X-is-not-working
+[Hiba történt "hello hello HTTP-fejlécek egyikéhez értéke nem a megfelelő formátumban hello" Ha hello storage emulator használatával]: #error-HTTP-header-not-correct-format
+[Futó hello storage emulator rendszergazdai jogosultságokra van szüksége.]: #storage-emulator-requires-administrative-privileges
+[Áll kapcsolatban problémák hello Azure SDK telepítése a .NET-hez]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
 [Van egy másik probléma storage szolgáltatással]: #you-have-a-different-issue-with-a-storage-service
 
 [mellékletek]: #appendices
-[1 függelék: HTTP és HTTPS-forgalom rögzítése a Fiddler használatával]: #appendix-1
-[2 függelék: Wireshark használó rögzítheti a hálózati forgalom]: #appendix-2
-[függelék: 3: Microsoft Message Analyzert használó rögzítheti a hálózati forgalom]: #appendix-3
-[4. függelék: Segítségével Excel metrikák megtekintése és az adatok naplózása]: #appendix-4
+[1 függelék: Fiddler toocapture HTTP és HTTPS-forgalom használatával]: #appendix-1
+[2 függelék: Wireshark toocapture hálózati forgalom használ]: #appendix-2
+[3 függelék: a Microsoft Message Analyzert toocapture hálózati forgalom használ]: #appendix-3
+[4. függelék: Excel tooview metrikákat és naplózási adatok használata]: #appendix-4
 [5. függelék: A Visual Studio Team Services az Application insights szolgáltatással figyelését.]: #appendix-5
 
 <!--Image references-->

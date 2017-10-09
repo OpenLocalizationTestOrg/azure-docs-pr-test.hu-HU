@@ -1,15 +1,15 @@
-## <a name="push-to-azure-from-git"></a>Leküldéses üzenet küldése a Gitből az Azure-ra
+## <a name="push-tooazure-from-git"></a>A Git Push tooAzure
 
-Adjon hozzá egy távoli Azure-mappát a helyi Git-tárházhoz.
+Adjon hozzá egy helyi Git-tárház Azure távoli tooyour.
 
 ```bash
 git remote add azure <URI from previous step>
 ```
 
-A távoli Azure-mappához történő küldéssel helyezze üzembe az alkalmazást. A rendszer rákérdez az előzőleg, az üzembe helyező felhasználó létrehozásakor létrehozott jelszóra. Ügyeljen arra, hogy az [Üzembe helyező felhasználó konfigurálása](#configure-a-deployment-user) szakaszban létrehozott jelszót adja meg, ne azt, amelyet az Azure Portalra való bejelentkezéshez használ.
+Leküldéses toohello Azure távoli toodeploy az alkalmazást. A korábban létrehozott hello központi felhasználói létrehozásakor hello jelszó megadását kéri. Győződjön meg arról, hogy a létrehozott hello jelszó megadása [konfigurálása a központi felhasználói](#configure-a-deployment-user), nem hello jelszó toolog toohello Azure-portált használja.
 
 ```bash
 git push azure master
 ```
 
-A fenti parancs a következő példához hasonló információkat jelenít meg:
+hello előző parancs megjeleníti a toohello hasonló információkat a következő példa:

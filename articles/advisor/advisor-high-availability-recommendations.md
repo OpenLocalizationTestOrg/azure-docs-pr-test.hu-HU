@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Advisor magas rendelkezésre állású javaslatok |} Microsoft Docs"
-description: "Azure Advisor használata az Azure-környezetekhez magas rendelkezésre állásának javítása érdekében."
+title: "aaaAzure Advisor magas rendelkezésre állású javaslatok |} Microsoft Docs"
+description: "Használja az Azure Advisor tooimprove magas rendelkezésre állását az Azure-környezetekhez."
 services: advisor
 documentationcenter: NA
 author: kumudd
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
-ms.openlocfilehash: 23c159471a6e5a7ad9cb545840e8afd3ac72ecba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ac75ce401271f0212d198d7a7dc75ab702b6eda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advisor-high-availability-recommendations"></a>Magas rendelkezésre állású javaslatokat biztosít
 
-Az Azure Advisor segítségével győződjön meg arról, és az üzleti szempontból kritikus fontosságú alkalmazások folytonosságának javításához. Advisor a magas rendelkezésre állású javaslatok beszerezheti a **magas rendelkezésre állású** az Advisor irányítópult.
+Az Azure Advisor segítségével győződjön meg arról, és az üzleti szempontból kritikus fontosságú alkalmazások hello folytonosságának javításához. Magas rendelkezésre állású javaslatok Advisor letölthető hello **magas rendelkezésre állású** hello Advisor irányítópult lapja.
 
-![Az Advisor irányítópult magas rendelkezésre állás gomb](./media/advisor-high-availability-recommendations/advisor-high-availability-tab.png)
+![Magas rendelkezésre állás gomb hello Advisor irányítópult](./media/advisor-high-availability-recommendations/advisor-high-availability-tab.png)
 
 
 ## <a name="ensure-virtual-machine-fault-tolerance"></a>Virtuális gép a hibatűrés érdekében
 
-Az Advisor azonosítja a virtuális gépek, amelyek nem részei egy rendelkezésre állási csoportot és helyezi át a rendelkezésre állási csoportok javasolja. Az alkalmazás redundanciájának garantálása érdekében javasoljuk, hogy a virtuális gépeket legalább kettesével foglalja rendelkezésre állási csoportokba. Ez a konfiguráció biztosítja, hogy vagy a tervezett vagy nem tervezett karbantartási események esetén legalább egy virtuális gép elérhető, és megfelel-e a virtuális gép az Azure SLA-t. Kiválaszthatja a rendelkezésre állási készlet a virtuális gép létrehozásához vagy a virtuális gép hozzáadása egy meglévő rendelkezésre állási csoportot.
+Az Advisor azonosítja a virtuális gépek, amelyek nem részei egy rendelkezésre állási csoportot és helyezi át a rendelkezésre állási csoportok javasolja. Tooyour alkalmazás redundanciájának biztosítása érdekében javasoljuk, hogy legalább két virtuális gép rendelkezésre állási csoportba. Ez a konfiguráció biztosítja, hogy vagy a tervezett vagy nem tervezett karbantartási események esetén legalább egy virtuális gép elérhető, és megfelel-e hello Azure virtuális gép SLA-t. Dönthet úgy, vagy toocreate rendelkezésre állási készlet hello virtuális gép vagy tooadd hello virtuális gép tooan meglévő rendelkezésre állási csoportot.
 
 > [!NOTE]
-> Ha egy rendelkezésre állási csoport létrehozása mellett dönt, hozzá kell adnia legalább egy további virtuális gép bele. Azt javasoljuk, hogy Ön csoporthoz két vagy több virtuális gép rendelkezésre állási beállítása annak érdekében, hogy legalább egy gép érhető kimaradás során.
+> Ha úgy dönt, toocreate rendelkezésre állási beállítása, hozzá kell adnia legalább egy további virtuális gép bele. Azt javasoljuk, hogy két csoportba, vagy további virtuális gépek rendelkezésre állási beállítása tooensure, amely legalább egy gép érhető kimaradás során.
 
 ![Az Advisor javaslat: A virtuális gép redundancia, használja a rendelkezésre állási csoportok](./media/advisor-high-availability-recommendations/advisor-high-availability-create-availability-set.png)
 
 ## <a name="ensure-availability-set-fault-tolerance"></a>Ellenőrizze a rendelkezésre állási csoport hibatűrés 
 
-Az Advisor tartalmazhat egyetlen virtuális gép rendelkezésre állási készleteket azonosítja, és azt javasolja, hogy egy vagy több virtuális gépek hozzáadása. Az alkalmazás redundanciájának garantálása érdekében javasoljuk, hogy a virtuális gépeket legalább kettesével foglalja rendelkezésre állási csoportokba. Ez a konfiguráció biztosítja, hogy vagy a tervezett vagy nem tervezett karbantartási események esetén legalább egy virtuális gép elérhető, és megfelel-e a virtuális gép az Azure SLA-t. Választhat, vagy hozzon létre egy virtuális gépet vagy egy már meglévő virtuális gép, és adja hozzá a rendelkezésre állási csoportot.  
+Az Advisor tartalmazhat egyetlen virtuális gép rendelkezésre állási készleteket azonosítja, és azt javasolja, hogy egy vagy több virtuális gépek tooit hozzáadása. Tooyour alkalmazás redundanciájának biztosítása érdekében javasoljuk, hogy legalább két virtuális gép rendelkezésre állási csoportba. Ez a konfiguráció biztosítja, hogy vagy a tervezett vagy nem tervezett karbantartási események esetén legalább egy virtuális gép elérhető, és megfelel-e hello Azure virtuális gép SLA-t. Virtuális gép vagy egy meglévő virtuális gép toouse és tooadd vagy toocreate kiválaszthatja azt toohello rendelkezésre állási csoportot.  
 
-![Az Advisor javaslat: egy vagy több virtuális gépek felvétele a rendelkezésre állási csoport](./media/advisor-high-availability-recommendations/advisor-high-availability-add-vm-to-availability-set.png)
+![Az Advisor javaslat: egy vagy több virtuális gépek toothis rendelkezésre állási csoport hozzáadása](./media/advisor-high-availability-recommendations/advisor-high-availability-add-vm-to-availability-set.png)
 
 
 ## <a name="ensure-application-gateway-fault-tolerance"></a>Ellenőrizze az alkalmazás átjáró hibatűrés
-Kritikus fontosságú alkalmazások alkalmazás-átjárók vannak kapcsolva, az üzletmenet folytonosságának biztosításához, Advisor azonosítja alkalmazás példányai, amelyek nincsenek beállítva a hibatűrés érdekében, és javaslatot tesz, a szervizelési műveletek is. Az Advisor azonosítja közepes vagy nagy Egypéldányos alkalmazás átjárók, és hozzáadja legalább egy további példányt javasol. Egy vagy több instance kis alkalmazásátjárót azonosítja és a közepes vagy nagy termékváltozatok történő javasolja. Ezek a műveletek ellenőrizze, hogy az átjáró alkalmazáspéldányok megfelelnek a jelenlegi SLA ezekhez az erőforrásokhoz tartozó javasol.
+tooensure hello üzleti folytonossági kritikus fontosságú alkalmazások alkalmazás-átjárók vannak kapcsolva, az Advisor azonosítja az alkalmazás példányai, amelyek nincsenek beállítva a hibatűrés érdekében, és javaslatot tesz, a szervizelési műveletek is . Az Advisor azonosítja közepes vagy nagy Egypéldányos alkalmazás átjárók, és hozzáadja legalább egy további példányt javasol. Egy vagy több instance kis alkalmazásátjárót azonosítja és a áttelepítése toomedium vagy nagy termékváltozatok javasolja. Az Advisor azt javasolja, hogy ezek a műveletek tooensure, hogy az átjáró alkalmazáspéldányok-e a konfigurált toosatisfy hello aktuális SLA követelményeinek ezeket az erőforrásokat.
 
 ![Az Advisor javaslat: két vagy több közepes vagy nagy méretű kérelem átjáró példányok telepítése](./media/advisor-high-availability-recommendations/advisor-high-availability-application-gateway.png)
 
-## <a name="improve-the-performance-and-reliability-of-virtual-machine-disks"></a>A teljesítmény és a virtuális gépek lemezeit megbízhatóságának javítása
+## <a name="improve-hello-performance-and-reliability-of-virtual-machine-disks"></a>A virtuális gép lemezeinek hello teljesítményét és megbízhatóságát javítása
 
-Az Advisor azonosítja a virtuális gépek a standard lemezek és frissítése a premium lemezek javasolja.
+Az Advisor azonosítja a virtuális gépek a standard lemezek és toopremium lemezek frissítését javasolja.
  
-Prémium szintű Storage nagy teljesítményű, alacsony késésű lemez I/O-igényes munkaterhelések futó virtuális gépek támogatása nyújt. Prémium szintű storage-fiókok használó virtuálisgép-lemezek SSD-meghajtót (SSD) adatait tárolják. A legjobb teljesítmény érdekében az alkalmazáshoz azt javasoljuk, hogy az áttelepített a prémium szintű Storage magas IOPS igénylő virtuális gép lemezei. 
+Prémium szintű Storage nagy teljesítményű, alacsony késésű lemez I/O-igényes munkaterhelések futó virtuális gépek támogatása nyújt. Prémium szintű storage-fiókok használó virtuálisgép-lemezek SSD-meghajtót (SSD) adatait tárolják. Hello az alkalmazás legjobb teljesítmény érdekében azt javasoljuk, hogy az áttelepített a magas IOPS toopremium tárolási igénylő virtuális gép lemezei. 
 
-A lemezek nem igényelnek magas iops értéket, ha szabványos Storage fenntartásuk korlátozhatja költségeket. Standard szintű tárolást virtuálisgép-lemez adatokat tárolja a (merevlemezes HDD) meghajtók SSD-k helyett. Ha szeretné, telepítse át a virtuális gépek lemezeit a prémium szintű lemezekhez. A legtöbb virtuális gép termékváltozatok Premium lemezek támogatottak. Azonban néhány esetben, ha szeretné használni a premium lemezek esetén szükség lehet a virtuális gép verziófrissítése termékváltozatok is.
+A lemezek nem igényelnek magas iops értéket, ha szabványos Storage fenntartásuk korlátozhatja költségeket. Standard szintű tárolást virtuálisgép-lemez adatokat tárolja a (merevlemezes HDD) meghajtók SSD-k helyett. A virtuális gép lemezek toopremium lemezek választható toomigrate. A legtöbb virtuális gép termékváltozatok Premium lemezek támogatottak. Azonban bizonyos esetekben, ha azt szeretné, hogy toouse premium lemezek esetén szükség lehet tooupgrade a virtuális gép termékváltozatok is.
 
-![Az Advisor javaslat: a prémium szintű lemezekhez frissítse a virtuális gépek lemezeit megbízhatóságának javítása](./media/advisor-high-availability-recommendations/advisor-high-availability-upgrade-to-premium-disks.png)
+![Az Advisor javaslat: a virtuális gép lemezek hello megbízhatóság javításához a toopremium lemezek frissítésével](./media/advisor-high-availability-recommendations/advisor-high-availability-upgrade-to-premium-disks.png)
 
 ## <a name="protect-your-virtual-machine-data-from-accidental-deletion"></a>A virtuális gép adatainak véletlen törlés elleni védelme
-Az Advisor azonosítja a virtuális gépek, ahol a biztonsági mentés nem engedélyezett, és azt a biztonsági mentés engedélyezését javasolja. Virtuális gép biztonsági mentése beállításával biztosítja az üzleti szempontból kritikus fontosságú adatok rendelkezésre állását, és véletlen törlés vagy -sérülés elleni védelmet nyújt.
+Az Advisor azonosítja a virtuális gépek, ahol a biztonsági mentés nem engedélyezett, és azt a biztonsági mentés engedélyezését javasolja. Virtuális gép biztonsági mentése beállítása hello az üzleti szempontból kritikus fontosságú adatok rendelkezésre állását biztosítja, és véletlen törlés vagy -sérülés elleni védelmet nyújt.
 
-![Az Advisor javaslat: konfigurálja a virtuális gép biztonsági mentése a kritikus fontosságú adatok védelme](./media/advisor-high-availability-recommendations/advisor-high-availability-virtual-machine-backup.png)
+![Az Advisor javaslat: virtuális gép biztonsági mentési tooprotect a kritikus fontosságú adatok konfigurálása](./media/advisor-high-availability-recommendations/advisor-high-availability-virtual-machine-backup.png)
 
 ## <a name="access-high-availability-recommendations-in-advisor"></a>Hozzáférés magas rendelkezésre állású javaslatok Advisor
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
 
-2. Kattintson a bal oldali ablaktáblában **további szolgáltatások**.
+2. Hello bal oldali ablaktáblában kattintson **további szolgáltatások**.
 
-3. A szolgáltatás menü ablaktáblán alatt **figyelés és felügyelet**, kattintson a **Azure Advisor**.  
- Az Advisor irányítópult jelenik meg.
+3. A hello szolgáltatás menü ablaktáblán, a **figyelés és felügyelet**, kattintson a **Azure Advisor**.  
+ hello Advisor irányítópult jelenik meg.
 
-4. Az Advisor irányítópultján kattintson a **magas rendelkezésre állású** lapot, és válassza ki az ajánlások fogadni kívánt előfizetést.
+4. Az hello Advisor irányítópultján kattintson a hello **magas rendelkezésre állású** lapra, majd válassza ki a kívánt tooreceive javaslatok hello előfizetés.
 
 > [!NOTE]
-> Advisor-javaslatokra szeretne használni, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor irányítópulton, és rákattint a **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Az előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* előfizetés, egy erőforráscsoport vagy egy adott erőforrás.
+> Advisor-javaslatokra tooaccess, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor-irányítópult és az kattintással hello hello **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Hello előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* -előfizetéssel, egy erőforráscsoport vagy egy adott erőforrás.
 
 ## <a name="next-steps"></a>Következő lépések
 
 Advisor-javaslatokra kapcsolatos további információkért lásd:
-* [Bevezetés az Azure Advisor](advisor-overview.md)
+* [Bevezetés tooAzure Advisor](advisor-overview.md)
 * [Bevezetés az Advisor használatába](advisor-get-started.md)
 * [Költség javaslatokat biztosít](advisor-performance-recommendations.md)
 * [Teljesítmény javaslatokat biztosít](advisor-performance-recommendations.md)

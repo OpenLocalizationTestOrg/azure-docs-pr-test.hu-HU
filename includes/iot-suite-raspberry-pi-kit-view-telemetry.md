@@ -1,31 +1,31 @@
-## <a name="view-the-telemetry"></a>A telemetriai adatok megtekintése
+## <a name="view-hello-telemetry"></a>Nézet hello telemetriai adat
 
-A málna Pi telemetriai most küld a távoli figyelési megoldást igényelnek. A telemetriai adatokat a megoldás irányítópultján tekintheti meg. A málna Pi a megoldás irányítópultról is küldhet üzeneteket.
+hello málna Pi most küld telemetriai toohello távoli figyelési megoldást igényelnek. Hello telemetriai hello megoldás irányítópultján tekintheti meg. Üzenetek tooyour málna Pi hello megoldás irányítópultról is küldhet.
 
-- Nyissa meg a megoldás irányítópultja.
-- Válassza ki az eszköz a **nézet eszköz** legördülő menüből.
-- A málna Pi a telemetriai adatok megjelenítése az irányítópulton.
+- Keresse meg a toohello megoldás irányítópultja.
+- Válassza ki az eszköz hello **eszköz tooView** legördülő menüből.
+- a hello hello telemetriai málna Pi hello irányítópulton jeleníti meg.
 
-![A málna Pi a telemetriai adatok megjelenítéséhez][img-telemetry-display]
+![Hello málna Pi a telemetriai adatok megjelenítéséhez][img-telemetry-display]
 
-## <a name="act-on-the-device"></a>Az eszközön működésre
+## <a name="act-on-hello-device"></a>Hello eszközön működésre
 
-A megoldás irányítópultról módszerek hívhatók meg a málna Pi. A málna Pi csatlakozik a távoli felügyeleti megoldás, ha az támogatja-e a módszerekkel kapcsolatos információk küld.
+Hello megoldás irányítópultról módszerek hívhatók meg a málna Pi. Hello málna Pi csatlakozáskor toohello távoli figyelési megoldást igényelnek, elküldi az támogatja-e hello módszerekkel kapcsolatos információk.
 
-- A megoldás irányítópulton kattintson **eszközök** és látogasson el a **eszközök** lap. Válassza ki a Raspberry Pi a a **eszközlista**. Válassza a **módszerek**:
+- Hello megoldás irányítópulton kattintson **eszközök** toovisit hello **eszközök** lap. Válassza ki a málna Pi hello **eszközlista**. Válassza a **módszerek**:
 
     ![Az irányítópult eszközök][img-list-devices]
 
-- Az a **metódus meghívása** lapon, válassza ki **LightBlink** a a **metódus** legördülő menüből.
+- A hello **metódus meghívása** lapon, válassza ki **LightBlink** a hello **metódus** legördülő menüből.
 
-- Válasszon **InvokeMethod**. A Pi málna villanás több alkalommal csatlakozik a LED-jét. Az alkalmazás a málna Pi nyugtázás visszaküldi a megoldás irányítópultja:
+- Válasszon **InvokeMethod**. hello LED málna Pi tokenkódot többször toohello csatlakoztatva. hello málna Pi hello alkalmazás küld egy visszaigazoló hátsó toohello megoldás irányítópultja:
 
     ![Módszer előzmények megjelenítése][img-method-history]
 
-- Megváltoztathatja a LED be és ki használja a **ChangeLightStatus** metódust egy **LightStatusValue** beállítása **1** a a vagy **0** a ki.
+- Megváltoztathatja az hello LED be- és kikapcsolását hello segítségével **ChangeLightStatus** metódust egy **LightStatusValue** túl beállítása**1** a a vagy **0** a ki.
 
 > [!WARNING]
-> Ha nem adja meg a távoli figyelési megoldást igényelnek fut az Azure-fiókjával, a futtatásakor a kell fizetni. További információ a felhasználás csökkentése a távoli felügyeleti megoldás futtatása közben: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja az előkonfigurált megoldás törlése az Azure-fiókjával.
+> Ha nem adja meg hello távoli felügyeleti megoldás az Azure-fiókjával fut, a hello futásakor kell fizetni. Hello távoli figyelési megoldást futtatása közben felhasználás csökkentése kapcsolatos további információkért lásd: [konfigurálása Azure IoT Suite megoldások bemutató céljára előre konfigurált][lnk-demo-config]. Ha befejezte, használja előre konfigurált hello megoldás törlése az Azure-fiókjával.
 
 
 [img-telemetry-display]: media/iot-suite-raspberry-pi-kit-view-telemetry/telemetry.png

@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Bus-üzenetsorok használata Python |} Microsoft Docs"
-description: "Útmutató: a Python Azure Service Bus-üzenetsorok használata."
+title: "Python várólisták aaaHow toouse Azure Service Bus |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure Service Bus várólisták a Python."
 services: service-bus-messaging
 documentationcenter: python
 author: sethmanheim
@@ -14,35 +14,35 @@ ms.devlang: python
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm;lmazuel
-ms.openlocfilehash: e1e81ad1d7b4fe0e044917f090cac59dfd5b6332
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bceb84d04ff3445c3087a9c246c583d6630f07af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-queues-with-python"></a>Service Bus-üzenetsorok használata Python
+# <a name="how-toouse-service-bus-queues-with-python"></a>Hogyan toouse Service Bus várólisták Python
 
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Ez a cikk a Service Bus-üzenetsorok használatát ismerteti. A mintákat a Python és -felhasználási nyelven íródtak a [Python Azure Service Bus csomag][Python Azure Service Bus package]. Az ismertetett forgatókönyvek **üzenetsorok üzenetek küldése és fogadása létrehozása**, és **várólisták törlése**.
+Ez a cikk ismerteti, hogyan toouse Service Bus-üzenetsorok. hello minták Python nyelven íródtak, és használja a hello [Python Azure Service Bus csomag][Python Azure Service Bus package]. hello tárgyalt forgatókönyvekben szerepel a **üzenetsorok üzenetek küldése és fogadása létrehozása**, és **várólisták törlése**.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 > [!NOTE]
-> Python telepítéséhez vagy a [Python Azure Service Bus csomag][Python Azure Service Bus package], tekintse meg a [Python a telepítési útmutató](../python-how-to-install.md).
+> Python vagy hello tooinstall [Python Azure Service Bus csomag][Python Azure Service Bus package], lásd: hello [Python a telepítési útmutató](../python-how-to-install.md).
 > 
 > 
 
 ## <a name="create-a-queue"></a>Üzenetsor létrehozása
-A **ServiceBusService** objektum lehetővé teszi a várólisták használata. Adja hozzá a következő kódot programon keresztüli eléréséhez a Service Bus kívánja bármely Python fájl felső részén:
+Hello **ServiceBusService** objektum lehetővé teszi az üzenetsorok toowork. Adja hozzá a következő kód szinte bármilyen Python fájl tooprogrammatically access Service Bus kívánja hello felső hello:
 
 ```python
 from azure.servicebus import ServiceBusService, Message, Queue
 ```
 
-Az alábbi kód létrehoz egy **ServiceBusService** objektum. Cserélje le `mynamespace`, `sharedaccesskeyname`, és `sharedaccesskey` a névtér, közös hozzáférésű jogosultságkód (SAS) kulcs nevét és értékét.
+hello alábbi kód létrehoz egy **ServiceBusService** objektum. Cserélje le `mynamespace`, `sharedaccesskeyname`, és `sharedaccesskey` a névtér, közös hozzáférésű jogosultságkód (SAS) kulcs nevét és értékét.
 
 ```python
 bus_service = ServiceBusService(
@@ -51,13 +51,13 @@ bus_service = ServiceBusService(
     shared_access_key_value='sharedaccesskey')
 ```
 
-A SAS-kulcs nevét és értékét értékeit megtalálhatók a [Azure-portálon] [ Azure portal] kapcsolatadatok, vagy a Visual Studio **tulajdonságok** ablaktáblán, ha a szolgáltatás kiválasztása Szolgáltatásbusz-névtér a Server Explorer (ahogy az előző szakaszban).
+hello hello SAS-kulcs nevét és értékét található hello [Azure-portálon] [ Azure portal] kapcsolatadatok, vagy a Visual Studio hello **tulajdonságok** ablaktábla kiválasztása hello a Server Explorer Service Bus-névtér (hello előző részben leírtak szerint).
 
 ```python
 bus_service.create_queue('taskqueue')
 ```
 
-A `create_queue` metódus is támogatja a további beállításokat, amelyek lehetővé teszik a bírálja felül az alapértelmezett várólista beállításait, például az üzenet time to live (TTL) vagy a várólista maximális hossza. A következő példa a várólista maximális hossza 5 GB, és az élettartam értéke 1 percre állítja be:
+Hello `create_queue` metódus is támogatja a további beállításokat, amelyek lehetővé teszik a toooverride alapértelmezett várólista-beállításokat például üzenet ideje toolive (TTL) vagy a várólista maximális hossza. hello alábbi mintakód hello várólista maximális mérete too5 GB és hello TTL érték too1 perc:
 
 ```python
 queue_options = Queue()
@@ -67,31 +67,31 @@ queue_options.default_message_time_to_live = 'PT1M'
 bus_service.create_queue('taskqueue', queue_options)
 ```
 
-## <a name="send-messages-to-a-queue"></a>Üzenetek küldése egy üzenetsorba
-Egy üzenet küldhető egy Service Bus-üzenetsorba, az alkalmazás hívások a `send_queue_message` metódust a **ServiceBusService** objektum.
+## <a name="send-messages-tooa-queue"></a>Üzenetek tooa várólista küldése
+toosend üzenet tooa Service Bus-üzenetsorba, az alkalmazás meghívja hello `send_queue_message` hello metódusa **ServiceBusService** objektum.
 
-A következő példa bemutatja, hogyan tesztüzenet küldése az üzenetsorba nevű `taskqueue` használatával `send_queue_message`:
+hello következő példa bemutatja, hogyan toosend egy teszt üzenetsor toohello nevű `taskqueue` használatával `send_queue_message`:
 
 ```python
 msg = Message(b'Test Message')
 bus_service.send_queue_message('taskqueue', msg)
 ```
 
-A Service Bus-üzenetsorok a [Standard csomagban](service-bus-premium-messaging.md) legfeljebb 256 KB, a [Prémium csomagban](service-bus-premium-messaging.md) legfeljebb 1 MB méretű üzeneteket támogatnak. A szabványos és az egyéni alkalmazástulajdonságokat tartalmazó fejléc mérete legfeljebb 64 KB lehet. Az üzenetsorban tárolt üzenetek száma korlátlan, az üzenetsor által tárolt üzenetek teljes mérete azonban korlátozva van. Az üzenetsor ezen méretét a létrehozáskor kell meghatározni, és a felső korlátja 5 GB. Kvóták kapcsolatos további információkért lásd: [Service Bus kvóták][Service Bus quotas].
+Service Bus-üzenetsorok támogatja a maximális üzenet mérete 256 KB-os hello [Standard csomagra](service-bus-premium-messaging.md) hello 1 MB [prémium csomagban](service-bus-premium-messaging.md). hello fejléc, beleértve a hello normál és egyéni alkalmazás tulajdonságai, a 64 KB méretű lehet. Az üzenetsorban tárolt üzenetek hello száma nincs korlátozva, de nincs a tengelysapka a hello üzenetsor által tárolt hello üzenetek teljes mérete. Az üzenetsor ezen méretét a létrehozáskor kell meghatározni, és a felső korlátja 5 GB. Kvóták kapcsolatos további információkért lásd: [Service Bus kvóták][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-queue"></a>Üzenetek fogadása egy üzenetsorból
-Üzenetek fogadása egy várólista használja a `receive_queue_message` metódust a **ServiceBusService** objektum:
+Üzenetek fogadása egy üzenetsorból hello segítségével `receive_queue_message` hello metódusa **ServiceBusService** objektum:
 
 ```python
 msg = bus_service.receive_queue_message('taskqueue', peek_lock=False)
 print(msg.body)
 ```
 
-Üzenetek törlődnek a várólistából, mikor olvasott a paramétere `peek_lock` értéke **hamis**. (A betekintés) olvashatja, és az üzenet törlése az üzenetsorból úgy, hogy a paraméter nélkül zárolása `peek_lock` való **igaz**.
+Üzenetek törlődnek hello sorából, amikor olvasott paraméter hello `peek_lock` értéke túl**hamis**. (A betekintés) olvashatja és üdvözlőüzenetére zárolási beállítás hello paraméterrel hello várólista törlése nélkül `peek_lock` túl**igaz**.
 
-Olvasási és az üzenet törlése a fogadási művelet részeként viselkedését a legegyszerűbb modell, és működik a legjobban az forgatókönyvek, amelyben az alkalmazás működését nem dolgoz fel üzenetet meghibásodása. Ennek megértéséhez képzeljen el egy forgatókönyvet, amelyben a fogyasztó kiad egy fogadási kérést, majd összeomlik a feldolgozása előtt. Mivel a Service Bus csak fel az üzenetet, feldolgozottként, majd az alkalmazás újraindításakor és megkezdése az üzenetek fel újra, amikor ki fogja hagyni a az összeomlás előtt feldolgozott üzenetet.
+hello olvasási viselkedését, és üdvözlőüzenetére törlése, hello részét fogadási művelethez hello legegyszerűbb modell, és az forgatókönyvek, amelyben az alkalmazás működését nem dolgoz fel üzenetet a hello esetre, ha nem működik a legjobban. toounderstand, ez egy olyan esetet esetén, amikor hello fogyasztói hello kérés fogadásához, és majd összeomlik a feldolgozása előtt. Csak a Service Bus fel hello üzenetet, feldolgozottként, majd amikor hello alkalmazás újraindul, és megkezdi a üzenetek újra fel, mert ki fogja hagyni, de a üdvözlőüzenetére előzetes toohello összeomlási használni.
 
-Ha a `peek_lock` paraméter értéke **igaz**, a receive két szakaszból álló művelet, amely lehetővé teszi az alkalmazások támogatását, amelyek működését zavarják a hiányzó üzenetek lesz. Amikor a Service Bus fogad egy kérést, megkeresi és zárolja a következő feldolgozandó üzenetet, hogy más fogyasztók ne tudják fogadni, majd visszaadja az alkalmazásnak. A fogadási folyamat második szintjére meghívásával befejezése után az alkalmazás befejezi az üzenet feldolgozását (vagy megbízható módon tárolja a jövőbeli feldolgozáshoz), a **törlése** metódust a **üzenet** objektum. A **törlése** metódus lesz használnak az üzenetet, és távolítsa el a sorból.
+Ha hello `peek_lock` paraméter értéke túl**igaz**, hello kap két szakaszból álló művelet, így a lehető toosupport alkalmazások, amelyek működését zavarják a hiányzó üzenetek lesz. A Service Bus kérelmet kap, ha úgy találja, hello tovább üzenet toobe felhasznált, lezárja tooprevent más fogyasztók fogadni, és toohello alkalmazás visszaadása. Miután hello alkalmazás befejezi hello üzenet feldolgozását (vagy megbízható módon tárolja a jövőbeli feldolgozáshoz), végrehajtja hello második hello fogadási folyamata által hívó hello **törlése** hello metódusa **üzenet** objektum. Hello **törlése** módszert fog hello üzenetet feldolgozottként és eltávolításában hello várólista.
 
 ```python
 msg = bus_service.receive_queue_message('taskqueue', peek_lock=True)
@@ -100,15 +100,15 @@ print(msg.body)
 msg.delete()
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Az alkalmazás-összeomlások és nem olvasható üzenetek kezelése
-A Service Bus olyan funkciókat biztosít, amelyekkel zökkenőmentesen helyreállíthatja az alkalmazás hibáit vagy az üzenetek feldolgozásának nehézségeit. Ha egy fogadó alkalmazás nem tudja feldolgozni az üzenetet valamilyen okból kifolyólag, majd akkor meghívhatja a **zárolásának feloldásához** metódust a **üzenet** objektum. Ennek hatására a Service Bus feloldja az üzenet a várólistában zárolását, és lehetővé teszi a felhasználó az alkalmazás vagy egy másik fogyasztó alkalmazás általi ismételt fogadását.
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Hogyan toohandle omlik össze és nem olvasható üzenetek
+Service Bus zökkenőmentesen helyreállíthatja az alkalmazás vagy egy üzenet feldolgozása problémák hibáinak funkció toohelp biztosít. Ha egy fogadó alkalmazás nem tudja tooprocess hello üzenet valamilyen okból kifolyólag, majd akkor meghívhatja hello **zárolásának feloldásához** hello metódusa **üzenet** objektum. Ezzel a Service Bus toounlock hello üzenet hello várólistában és révén elérhető toobe újbóli fogadását, vagy az hello ugyanaz az alkalmazás vagy egy másik fogyasztó alkalmazás általi fel.
 
-Még nincs hozzárendelve az üzenetsorban lévő időtúllépés, és ha az alkalmazás nem tudja feldolgozni az üzenetet, mielőtt a zárolás időtúllépését lejárta (pl., ha az alkalmazás összeomlik), akkor a Service Bus automatikusan feloldja az üzenet zárolását, és meg fogja teszi elérhető ismételt fogadását.
+Emellett van hello várólistában lévő társított időtúllépés, és ha hello alkalmazás sikertelen tooprocess hello előtt hello zárolás időtúllépését lejárta (pl. Ha hello alkalmazás összeomlik), akkor a Service Bus automatikusan feloldást köszönőüzenetei és a rendelkezésre álló toobe újbóli fogadását.
 
-Abban az esetben, ha az alkalmazás összeomlik, de előtte az üzenet feldolgozása után a **törlése** metódust, akkor az üzenet újból kézbesítve lesz az alkalmazás amikor újraindul. Ezt gyakran nevezik **legalább egyszeri feldolgozásnak**, ez azt jelenti, hogy minden üzenet legalább egyszer dolgoz fel, de bizonyos helyzetekben a a ugyanazon üzenet újbóli kézbesítése is lehet. Ha a forgatókönyvben nem lehetségesek a duplikált üzenetek, akkor az alkalmazásfejlesztőnek további logikát kell az alkalmazásba építenie az üzenetek ismételt kézbesítésének kezeléséhez. Ez gyakran érhető el, használja a **MessageId** az üzenet, amely állandó marad a kézbesítési kísérletek tulajdonságát.
+A hello eseményt, amely hello az alkalmazás összeomlik hello üzenet feldolgozása után, még mielőtt hello **törlése** metódust, akkor üdvözlőüzenetére lesz újból kézbesítve toohello alkalmazás, amikor újraindul. Ezt gyakran nevezik **legalább egyszeri feldolgozásnak**, ez azt jelenti, hogy minden üzenet legalább egyszer dolgoz fel, de bizonyos helyzetekben hello a ugyanazon üzenet újbóli kézbesítése is lehet. Ha hello forgatókönyvben nem lehetségesek, majd alkalmazásfejlesztőnek további logikát tootheir alkalmazás toohandle ismétlődő üzenetkézbesítését. Ez gyakran érhető el hello segítségével **MessageId** hello üzenet, amely állandó marad a kézbesítési kísérletek tulajdonságát.
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy rendelkezik megismerte a Service Bus-üzenetsorok alapjait, tanulmányozza a további.
+Most, hogy megismerte a Service Bus-üzenetsorok alapjait hello rendelkezik, tekintse meg a további cikkek toolearn.
 
 * [Üzenetsorok, témakörök és előfizetések][Queues, topics, and subscriptions]
 

@@ -1,5 +1,5 @@
 ---
-title: "Eszközkezelés az Azure IoT Hub használatával | Microsoft Docs"
+title: "aaaDevice-kezelés az Azure IoT Hub |} Microsoft Docs"
 description: "Az Azure IoT Hub eszközfelügyeleti lehetőségeinek áttekintése: vállalati eszközök életciklusa és eszközfelügyeleti minták, mint például újraindítás, gyári beállítások visszaállítása, belső vezérlőprogram frissítése, konfigurálás, ikereszközök, lekérdezések, feladatok."
 services: iot-hub
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: briz
-ms.openlocfilehash: 6d667d42bfef2ec61b055009210d5621f51c17df
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7e22fb6eb3c541a513b16a047c7c3ef557255532
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-device-management-with-iot-hub"></a>Az IoT Hub-eszközfelügyelet áttekintése
 ## <a name="introduction"></a>Bevezetés
-Az Azure IoT Hub által biztosított szolgáltatások és bővíthetőségi modell segítségével az eszköz- és háttérrendszer-fejlesztők hatékony eszközfelügyeleti megoldásokat építhetnek ki. Az eszközök köre a korlátozott érzékelőktől és az egycélú mikrovezérlőktől az eszközcsoportok kommunikációjának továbbítását végző, nagyteljesítményű átjárókig terjed.  Emellett az IoT-műveletek használati módja és követelményei az egyes iparágak esetében jelentősen eltér.  Ezen eltérések ellenére az Azure IoT Hub-eszközfelügyelet az eszközök és végfelhasználók változatos együttesének igényeihez igazítva biztosítja a szükséges képességeket, mintákat és kódelemtárakat.
+Az Azure IoT Hub hello szolgáltatásokat és a olyan bővíthetőségi modell, amely engedélyezi az eszköz és a háttér-fejlesztők toobuild robusztus Eszközkezelési megoldásokkal nyújt. Korlátozott érzékelők és egycélú mikrovezérlők, toopowerful átjárók, hogy az útvonal-kommunikációt eszközökből álló csoportokat az eszközök közé.  Ezenkívül hello használati esetek és az IoT-operátorok követelményei eltérőek jelentősen iparágakban.  Annak ellenére, hogy ezt a különbséget Eszközkezelés IoT-központ a hello képességeit, és biztosít a minták kód szalagtárak toocater tooa érdekében számos eszközök és a végfelhasználók számára.
 
-A vállalati IoT-megoldások sikeres létrehozásának fontos része annak a stratégiának a megalkotása, amely meghatározza a kezelők számára a folyamatos eszközfelügyelet módját. Az IoT-kezelőknek olyan egyszerű és megbízható eszközökre és alkalmazásokra van szükségük, amelyek segítségével a feladataik stratégiai szempontjaira koncentrálhatnak. Ez a cikk a következő információkat tartalmazza:
+A sikeres vállalati IoT-megoldás létrehozása a kritikus fontosságú része tooprovide stratégia hogyan kezelik az operátorok a hello folyamatos kezelését az eszközök gyűjteménye. Az IoT-operátorok egyszerű és megbízható eszközök és alkalmazások, amelyek lehetővé teszik a hello toofocus azokat a feladatokat a további stratégiai aspektusainak van szükség. Ez a cikk a következő információkat tartalmazza:
 
-* Az Azure IoT Hub-eszközfelügyelet rövid áttekintése.
+* Azure IoT Hub megközelítés toodevice felügyeleti rövid áttekintést.
 * Az általános eszközfelügyeleti alapelvek leírása.
-* Az eszközök életciklusának ismertetése.
+* Eszközök életciklusa hello leírását.
 * Az általános eszközfelügyeleti minták áttekintése.
 
 ## <a name="device-management-principles"></a>Az eszközfelügyelet alapelvei
-Az IoT alkalmazása egyedi eszközfelügyeleti kihívásokat hoz magával, a következő alapelveket pedig a vállalati szintű megoldások mindegyikének magában kell foglalnia:
+IoT számos lehetőséget kínál vele egyedi készletének eszközt felügyeleti kihívást, és minden vállalati szintű megoldást a következő alapelveket hello kell venni:
 
 ![Az eszközfelügyelet alapelveinek ábrája][img-dm_principles]
 
-* **Méretezés és automatizálás**: Az IoT-megoldások olyan egyszerű eszközök alkalmazását igénylik, amelyek képesek a rutinfeladatok automatizálására, valamint amelyekkel eszközök millióinak kezelése oldható meg viszonylag kis kezelői létszámmal. A kezelők napról napra azt várják, hogy távolról, kötegelten kezelhessék az eszközök működését, és a rendszer csak akkor riassza őket, ha olyan hiba történt, amelynek elhárításához a közvetlen beavatkozásukra van szükség.
-* **Nyitottság és kompatibilitás**: az eszközök ökoszisztémája rendkívül szerteágazó. A felügyeleti eszközöket úgy kell kialakítani, hogy alkalmasak legyenek nagy mennyiségű eszközosztály, platform és protokoll befogadására. A kezelőknek képesnek kell lenniük számos eszköztípus kezelésére, a legkorlátozottabb, beágyazott egyutas lapkáktól kezdve a nagyteljesítményű, teljeskörű funkciókkal ellátott számítógépekig.
-* **A környezet figyelése**: az IoT-környezetek dinamikusak és állandóan változnak. A szolgáltatás megbízhatósága létfontosságú. Az eszközfelügyeleti műveleteknek a következő tényezőket kell figyelembe venniük annak biztosításához, hogy a karbantartási állásidő ne befolyásolja a létfontosságú üzleti tevékenységeket, illetve ne idézzen elő veszélyes feltételeket:
+* **Méretezés és automatizálás**: az IoT-megoldások igényel, amely rendszeres feladatok automatizálásához és viszonylag kis műveleteket egyszerű eszközök személyzeti toomanage több millió eszközök. Napi, operátorok várt toohandle eszköz műveletek távolról, egyszerre több, és tooonly riasztást a közvetlen figyelmet igénylő problémák merülhetnek fel.
+* **Nyitottságának és kompatibilitási**: hello eszköz ökoszisztéma számította különböző. Felügyeleti eszközök a következőkhöz ideális tooaccommodate eszközosztályok, platformokról és protokollok számos kell lennie. Operátorok képesnek kell lennie a korlátozott számos különböző típusú eszközök, hello toosupport beágyazott single-folyamat processzorok, a toopowerful és a számítógépek teljesen működőképes.
+* **A környezet figyelése**: az IoT-környezetek dinamikusak és állandóan változnak. A szolgáltatás megbízhatósága létfontosságú. Eszköz felügyeleti műveletek során tényezők tooensure a következő fiók hello kell venni, hogy a karbantartási állásidő nem befolyásolják a kritikus fontosságú üzleti működését és veszélyes feltételek létrehozása:
     * SLA karbantartási időszakok
     * A hálózat és a tápellátás állapota
     * Használatban lévő feltételek
     * Az eszköz földrajzi helyei
-* **Sok szerepkör kiszolgálása**: az IoT-műveletekhez tartozó szerepkörök egyedi munkafolyamatainak és folyamatainak támogatása rendkívül fontos. Az üzemeltetést végző stábnak zökkenőmentesen kell együttműködnie a belső informatikai részlegek által meghatározott korlátozásokkal.  Fenntartható módot kell találniuk továbbá a valós idejű eszközművelet-információk beillesztésére a felettesi és üzletfelügyeleti szerepkörökbe.
+* **Sok szerepkörök szolgáltatás**: hello egyedi munkafolyamatok és a folyamatok IoT műveleti szerepkörök támogatás elengedhetetlen. hello műveleti személyzet harmonikus együttműködve megkötések miatt a belső informatikai részlegek hello.  Akkor is meg kell keresnie, fenntartható módon toosurface valós idejű eszköz műveletek információk toosupervisors és más üzleti vezetői szerepköröket.
 
 ## <a name="device-lifecycle"></a>Az eszközök életciklusa
-Egyes általános eszközfelügyeleti szakaszok minden vállalati IoT-projektben megjelennek. Az Azure IoT-ben az eszközök életciklusának öt szakaszát különböztetjük meg:
+Nincs olyan általános eszköz felügyeleti fázisokra, amelyek közös tooall vállalati IoT-projektek. Az Azure IoT öt szakaszból áll hello eszköz életciklusa belül:
 
-![Az Azure IoT-eszközök életciklusának öt fázisa: tervezés, üzembe helyezés, konfigurálás, figyelés, kivonás][img-device_lifecycle]
+![hello öt Azure IoT eszköz életciklusa fázisa: megtervezése, konfigurálta, konfigurálása, figyeléséhez, kivonása][img-device_lifecycle]
 
-A teljes megoldás megvalósításához számos eszközkezelői követelménynek kell teljesülnie ezen az öt szakaszon belül:
+A öt szakaszok belül van több operátor követelmények, amelyeket teljesített tooprovide teljes körű megoldást:
 
-* **Tervezés**: Lehetővé teszi a kezelők számára olyan eszközmetaadat-séma létrehozását, amellyel egyszerű és pontos lekérdezés végezhető el egy adott eszközcsoporton a tömeges felügyeleteken. Az ikereszközök használatával e metaadatokat címkék és tulajdonságok formájában tárolhatja.
+* **Tervezze meg**: engedélyezze a operátorok toocreate egy eszköz metaadatok séma, amely lehetővé teszi őket tooeasily, és pontosan a lekérdezést, és a csoportot az eszközök tömeges felügyeleti műveleteihez. Hello eszköz iker toostore használhatja az eszköz metaadatait címkék és a Tulajdonságok hello formájában.
   
-    *További információk*: [Ikereszközök – első lépések][lnk-twins-getstarted], [Az ikereszközök áttekintése][lnk-twins-devguide], [Az ikertulajdonságok használata][lnk-twin-properties]
-* **Üzembe helyezés**: Lehetővé teszi az új IoT Hub-eszközök biztonságos üzembe helyezését, valamint a kezelők számára az eszközök képességeinek azonnali elsajátítását.  Az IoT Hub-identitásjegyzék alkalmazásával rugalmas eszközidentitások és -hitelesítő adatok hozhatók létre, illetve egy feladat használatával ez a művelet tömegesen is végrehajtható. Az eszközök felépítését úgy végezze el, hogy azok képességei és állapotai az ikereszköz tulajdonságaiban nyomon követhetőek legyenek.
+    *A további olvasási*: [Ismerkedés az eszköz twins][lnk-twins-getstarted], [eszköz twins ismertetése][lnk-twins-devguide], [hogyan a két eszköztulajdonságok toouse][lnk-twin-properties].
+* **Kiépítés**: biztonságosan új eszközök tooIoT Hub és engedélyezése operátorok tooimmediately felderítése eszközképességek kiépítéséhez.  Hello IoT-központ identitás beállításjegyzék toocreate rugalmas eszköz identitások és a hitelesítő adatokat használja, és ehhez a művelethez egyszerre egy feladat használatával. Build eszközök tooreport a képességek és a feltételek a hello eszköz iker eszköztulajdonságok keresztül.
   
-    *További információk*: [Eszközidentitások kezelése][lnk-identity-registry], [Az eszközidentitások tömeges kezelése][lnk-bulk-identity], [Az ikertulajdonságok használata][lnk-twin-properties]
-* **Konfigurálás**: az eszközök kötegelt konfigurációmódosításainak és belső vezérlőprogramjuk frissítéseinek megkönnyítése üzemi állapotuk és biztonságuk megőrzésével. A kívánt tulajdonságok, illetve közvetlen módszerek és szórásos feladatok használatával ezek az eszközfelügyeleti műveletek tömegesen is végrehajthatók.
+    *A további olvasási*: [eszköz Identitáskezelést][lnk-identity-registry], [felügyeleti eszköz identitások tömeges][lnk-bulk-identity], [Hogyan toouse eszköz iker tulajdonságok][lnk-twin-properties].
+* **Konfigurálása**: tömeges megkönnyítése konfigurációs módosítások és a belső vezérlőprogram frissítése toodevices rendszerállapot és a biztonság megőrzésével. A kívánt tulajdonságok, illetve közvetlen módszerek és szórásos feladatok használatával ezek az eszközfelügyeleti műveletek tömegesen is végrehajthatók.
   
-    *További információk*: [Közvetlen metódusok használata][lnk-c2d-methods], [Közvetlen metódus meghívása egy eszközön][lnk-methods-devguide], [Az ikertulajdonságok használata][lnk-twin-properties], [Feladatok ütemezése és szórása][lnk-jobs], [Feladatok ütemezése több eszközön][lnk-jobs-devguide]
-* **Figyelés**: A teljes eszközgyűjtemény és a folyamatban lévő műveletek állapotának figyelése, valamint a kezelők riasztása az esetlegesen figyelmet érdemlő problémák kapcsán.  Az ikereszközök alkalmazásával az eszközök képesek a valós idejű működési feltételek és a frissítési műveletek állapotának jelentésére. Nagyteljesítményű irányítópulti jelentések hozhatók létre, amelyek az ikereszköz-lekérdezések használatával felszínre hozzák az azonnali intézkedést igénylő problémákat.
+    *A további olvasási*: [közvetlen módszerekkel][lnk-c2d-methods], [meghívni egy közvetlen eszköz metódust][lnk-methods-devguide], [hogyan a két eszköztulajdonságok toouse][lnk-twin-properties], [ütemezés és a szórásos feladatok][lnk-jobs], [több eszközönfeladatokütemezése] [lnk-jobs-devguide].
+* **A figyelő**: eszközök összesített állapota, folyamatban lévő műveletek, és a figyelmet igénylő riasztási operátorok tooissues hello állapotának figyelése.  Hello eszköz iker tooallow eszközök tooreport valós idejű működési feltételek és a frissítési műveletek állapotának vonatkoznak. Build hatékony irányítópult legtöbb azonnali probléma jelentések adott felület hello eszköz iker lekérdezések használatával.
   
-    *További információ*: [Az ikertulajdonságok használata][lnk-twin-properties], [IoT Hub lekérdezési nyelv az ikereszközökhöz és feladatokhoz, valamint az üzenettovábbításhoz][lnk-query-language].
-* **Kivonás**: az eszközök lecserélése vagy leszerelése meghibásodás vagy frissítési ciklus után, illetve a szolgáltatás élettartamának végén.  Az ikereszközök használatával az eszközinformációk abban az esetben is megőrizhetők, ha a fizikai eszközt kicserélik vagy a kivonás során archiválják. Az IoT Hub-identitásjegyzék alkalmazásával lehetséges az eszközidentitások és -hitelesítő adatok biztonságos visszahívása.
+    *A további olvasási*: [hogyan toouse eszköz iker tulajdonságok][lnk-twin-properties], [IoT-központ lekérdezési nyelv eszköz twins, a feladatok és az üzenet-útválasztás] [ lnk-query-language].
+* **Kivonás**: cseréje vagy eszközök leszerelése meghibásodás után, frissítse a ciklus, vagy hello szolgáltatás élettartama hello végén.  Hello eszköz iker toomaintain eszközök adatait használja, ha folyamatban van a hello fizikai eszköz helyett, vagy ha hatókörről archivált. Használja az IoT-központ identitásjegyzékhez hello biztonságosan visszavonásával eszköz identitások és a hitelesítő adatokat.
   
-    *További információk*: [Az ikertulajdonságok használata][lnk-twin-properties], [Eszközidentitások kezelése][lnk-identity-registry]
+    *A további olvasási*: [hogyan toouse eszköz iker tulajdonságok][lnk-twin-properties], [eszköz Identitáskezelést][lnk-identity-registry].
 
 ## <a name="device-management-patterns"></a>Eszközfelügyeleti minták
-Az IoT Hub az alábbi eszközfelügyeleti mintákat engedélyezi.  Az [eszközfelügyeleti oktatóanyagok][lnk-get-started] részletesebben is bemutatják e minták kiterjesztését valós helyzetekre, illetve új minták létrehozását az alapminták alapján.
+Az IoT-központ lehetővé teszi, hogy a következő eszköz felügyeleti minták készlete hello.  Hello [eszköz felügyeleti oktatóanyagok] [ lnk-get-started] mutatja be részletesen tooextend ezek kombinációját toofit a pontos forgatókönyv, és hogyan toodesign új minták alapján ezek alapvető sablonok.
 
-* **Újraindítás** – A háttéralkalmazás közvetlen módszerrel értesíti az eszközt arról, hogy kezdeményezte az újraindítást.  Az eszköz a jelentett tulajdonságokat felhasználva frissíti az eszköz újraindítási állapotát.
+* **Újraindítás** -hello háttér-alkalmazás tájékoztatja hello eszköz közvetlen módszerrel, hogy újraindítást kezdeményezett.  hello eszköz által használt hello jelentett tulajdonságok tooupdate hello újraindítás hello eszköz állapotát.
   
     ![Az eszközfelügyelet újraindítási mintájának ábrája][img-reboot_pattern]
-* **Gyári beállítások visszaállítása** – A háttéralkalmazás közvetlen módszerrel értesíti az eszközt arról, hogy kezdeményezte a gyári beállítások visszaállítását.  Az eszköz a jelentett tulajdonságokat felhasználva frissíti az eszköz gyári visszaállítási állapotát.
+* **Gyári beállítások visszaállítása** -hello háttér-alkalmazás tájékoztatja hello eszköz közvetlen módszerrel, hogy már kezdeményezte a gyári beállításainak visszaállítását.  hello eszköz által használt hello jelentett tulajdonságok tooupdate hello gyári hello eszköz állapotát.
   
     ![Az eszközfelügyelet eszköz gyári alaphelyzetbe állítási mintájának ábrája][img-facreset_pattern]
-* **Konfigurálás** – A háttéralkalmazás az eszköz kívánt tulajdonságait felhasználva konfigurálja az eszközön futó szoftvert.  Az eszköz a jelentett tulajdonságokat felhasználva frissíti az eszköz konfigurálási állapotát.
+* **Konfigurációs** -hello háttér-alkalmazás szükséges hello tulajdonságok tooconfigure szoftver hello eszközön futó használ.  hello eszköz által használt hello jelentett hello eszköz tulajdonságok tooupdate konfigurációs állapotát.
   
     ![Az eszközfelügyelet konfigurációs mintájának ábrája][img-config_pattern]
-* **Belső vezérlőprogram frissítése** – A háttéralkalmazás közvetlen módszerrel értesíti az eszközt arról, hogy kezdeményezte a belső vezérlőprogram frissítését.  Az eszköz többlépéses folyamatot kezdeményez, amelynek keretében megtörténik a belső vezérlőprogram rendszerképének letöltése és alkalmazása, végül pedig az IoT Hub-szolgáltatáshoz történő újracsatlakozás.  A több lépésből álló folyamat során az eszköz a jelentett tulajdonságokat felhasználva frissíti az eszköz előrehaladását és állapotát.
+* **Belső vezérlőprogram frissítési** -hello háttér-alkalmazás tájékoztatja hello eszköz közvetlen módszerrel, hogy már kezdeményezte a belső vezérlőprogram-frissítés.  hello eszköz kezdeményezi a többlépéses folyamatot toodownload hello belső vezérlőprogram-lemezkép, hello belső vezérlőprogram lemezképének alkalmazása, és végül újracsatlakozás toohello IoT-központ szolgáltatás.  Teljes hello többlépéses folyamatot a hello eszköz által használt hello jelentett tulajdonságok tooupdate hello folyamatát és hello eszköz állapotát.
   
     ![Az eszközfelügyelet belsővezérlőprogram-frissítési mintájának ábrája][img-fwupdate_pattern]
-* **Előrehaladási és állapotjelentések** – A megoldás a háttérben ikereszköz-lekérdezéseket futtat több eszközön, így képes az eszközökön futó műveletek állapotának és előrehaladásának jelentésére.
+* **Jelentéskészítési folyamat- és állapot** -hello megoldás háttérrendszerének futtató eszköz iker lekérdezések, azokat az eszközöket, tooreport hello állapotát és előrehaladását hello eszközökön futó műveletek között.
   
     ![Az eszközfelügyelet előrehaladási és állapotmeghatározási jelentéskészítési mintájának ábrája][img-report_progress_pattern]
 
 ## <a name="next-steps"></a>Következő lépések
-Az IoT Hub eszközfelügyeleti szolgáltatásai által biztosított képességek, minták és kódtárak használatával olyan IoT-alkalmazások hozhatók létre, amelyek az eszköz teljes életciklusában képesek megfelelni a vállalati IoT-kezelők követelményeinek.
+hello képességeit, a mintákat és a kód tárak eszközkezelés, biztosít az IoT-központ lehetővé teszik, amelyek megfelelnek a vállalati IoT operátor követelményeinek belül minden eszköz életciklusfázis toocreate IoT-alkalmazásokhoz.
 
-Ha szeretne részletesebben is megismerkedni az IoT Hub eszközfelügyeleti funkcióival, tekintse meg az [eszközfelügyelet első lépéseit][lnk-get-started] bemutató oktatóanyagot.
+IoT Hub-hello eszköz felügyeleti funkciókat megtanulni toocontinue lásd: hello [Ismerkedés az eszközkezelés] [ lnk-get-started] oktatóanyag.
 
 <!-- Images and links -->
 [img-dm_principles]: media/iot-hub-device-management-overview/image4.png

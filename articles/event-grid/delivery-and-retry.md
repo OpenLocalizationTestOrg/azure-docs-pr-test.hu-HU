@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Event rács kézbesítési, és próbálkozzon újra"
+title: "aaaAzure esemény rács kézbesítési, és próbálkozzon újra"
 description: "Ismerteti, hogyan nyújt az Azure esemény rács a eseményeket, és hogyan kezeli az kézbesítetlen üzenetek."
 services: event-grid
 author: djrosanova
@@ -8,32 +8,32 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: darosa
-ms.openlocfilehash: e0f8afdfd84ea3c0c061459c27da285f6ae8957e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 874b3bf8892fbf803ef40f29d0ec10eb50150916
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-message-delivery-and-retry"></a>Esemény rács üzenetkézbesítést, és próbálkozzon újra 
 
 Ez a cikk ismerteti, miként kezeli az Azure esemény rács a kézbesítési nem vonatkozik, az eseményeket.
 
-Esemény rács tartós kézbesítési biztosít. Minden üzenet legalább egyszer az egyes előfizetésekhez biztosítja. Az események küldhetők az egyes előfizetések regisztrált webhook azonnal. A webhook nem átvételét egy eseményt az első kézbesítési kísérlet 60 másodpercen belül, ha az esemény rács kézbesítési esemény újrapróbálkozik.
+Esemény rács tartós kézbesítési biztosít. Minden üzenet legalább egyszer az egyes előfizetésekhez biztosítja. Események azonnal elküldi a rendszer minden egyes előfizetés regisztrálva toohello webhook. Ha egy webhook nem átvételét esemény hello első szállítási 60 másodpercen belül kísérlet, esemény rács újrapróbálja hello esemény kézbesítését.
 
 ## <a name="message-delivery-status"></a>Üzenet kézbesítési állapota
 
-Esemény rács események nyugtázta használja a HTTP válaszkódot. 
+Esemény rács használja az események HTTP válasz kódok tooacknowledge fogadását. 
 
 ### <a name="success-codes"></a>Sikeres kódok
 
-A következő HTTP-válaszkódot azt jelzi, hogy az esemény kézbesítése megtörtént sikeresen a webhook. Esemény rács úgy ítéli meg kézbesítési befejeződött.
+hello következő HTTP-válaszkódot azt jelzi, hogy az esemény szállított sikeresen tooyour webhook. Esemény rács úgy ítéli meg kézbesítési befejeződött.
 
 - 200 OK
 - 202 elfogadott
 
 ### <a name="failure-codes"></a>Hibát kódok
 
-A következő HTTP-válaszkódot azt jelzi, hogy az esemény kézbesítési tett kísérlet meghiúsult. Esemény rács megpróbálja újra elküldeni az esemény. 
+a következő HTTP-válaszkódot hello azt jelzi, hogy az esemény kézbesítési tett kísérlet meghiúsult. Esemény rács újrapróbálkozik toosend hello esemény. 
 
 - 400 Hibás kérés
 - 401 nem engedélyezett
@@ -48,7 +48,7 @@ Bármely más válaszkód vagy hiányoznak a választ egy hibát jelez. Esemény
 
 ## <a name="retry-intervals"></a>Újrapróbálkozási időközök
 
-Esemény rács az exponenciális leállítási újrapróbálkozási házirend esemény kézbesítési használ. A webhook nem válaszol vagy hibakódot ad vissza, ha az esemény rács újrapróbálja kézbesítése a következő ütemezés szerint:
+Esemény rács az exponenciális leállítási újrapróbálkozási házirend esemény kézbesítési használ. A webhook nem válaszol vagy hibakódot ad vissza, ha az esemény rács újrapróbálkozik a következő ütemezés hello kézbesítési:
 
 1. 10 másodperc
 2. 30 másodperc
@@ -58,13 +58,13 @@ Esemény rács az exponenciális leállítási újrapróbálkozási házirend es
 6. 30 perc
 7. 1 óra
 
-Esemény rács intervallumokban újra egy kis véletlenszerű hozzáadja.
+Esemény rács hozzáadja a kisméretű véletlenszerű tooall újrapróbálkozási időközönként.
 
 ## <a name="retry-duration"></a>Ismételje meg az időtartama
 
-Az előzetes Azure esemény rács összes eseményt, amely nem érkeznek meg két órán belül lejár. Általános rendelkezésre állását, mielőtt most 24 órára növekszik. 
+Hello előzetes Azure esemény rács összes eseményt, amely nem érkeznek meg két órán belül lejár. Általánosan rendelkezésre álló verzió előtt a most nagyobb too24 óra lesz. 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* Esemény rácshoz ismertetőért lásd: [esemény rács](overview.md).
-* Ha gyorsan esemény rács segítségével, lásd: [Azure esemény rácshoz hozza létre és útvonal egyéni események](custom-event-quickstart.md).
+* Egy bevezető tooEvent rács, lásd: [esemény rács](overview.md).
+* tooquickly esemény rács használatának megkezdésében című [Azure esemény rácshoz hozza létre és útvonal egyéni események](custom-event-quickstart.md).

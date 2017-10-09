@@ -1,6 +1,6 @@
 ---
 title: "Az Azure AD Connect: Automatikus frissítés |} Microsoft Docs"
-description: "Ez a témakör ismerteti a beépített automatikus frissítési szolgáltatás az Azure AD Connect szinkronizálási szolgáltatás."
+description: "Ez a témakör ismerteti a hello beépített automatikus frissítési szolgáltatás az Azure AD Connect szinkronizálási szolgáltatás."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 15dcfff0a5b10eb0565b450664406ba3f4a8de10
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 70d15eb3adf7758d8a43d278157daa504e059a98
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-automatic-upgrade"></a>Azure AD Connect: automatikus frissítés
 Ez a funkció a build 1.1.105.0 (dátuma: 2016. februári) ban jelent meg.
 
 ## <a name="overview"></a>Áttekintés
-Így biztosítva, az Azure AD Connect telepítése mindig naprakész soha nem volt egyszerűbbé teheti a **automatikus frissítés** szolgáltatás. Ezt a szolgáltatást alapértelmezés szerint az Expressz telepítés és a DirSync frissítés. Amikor megjelenik egy új verziója, a rendszer automatikusan frissíti a telepítést.
+Annak biztosítása, az Azure AD Connect telepítése mindig működik toodate soha nem volt megkönnyíti a hello **automatikus frissítés** szolgáltatás. Ezt a szolgáltatást alapértelmezés szerint az Expressz telepítés és a DirSync frissítés. Amikor megjelenik egy új verziója, a rendszer automatikusan frissíti a telepítést.
 
-Az alábbi alapértelmezés szerint engedélyezve van a automatikus frissítését:
+Automatikus frissítés a következő hello alapértelmezés szerint engedélyezve van:
 
 * A telepítést és a DirSync frissítéseinek Express.
 * SQL Express LocalDB használata, amely a mi expressz beállításokat mindig használjon. DirSync és az SQL Express LocalDB is használhatja.
-* Az AD-fiókot az expressz beállításokat és a DirSync által létrehozott alapértelmezett MSOL_ fiók.
-* A metaverzumban kisebb, mint 100 000 objektummal rendelkezik.
+* hello AD-fiókot az hello alapértelmezett MSOL_ fiók expressz beállításokat és a DirSync által létrehozott.
+* A hello metaverse kisebb, mint 100 000 objektummal rendelkezik.
 
-Automatikus frissítés aktuális állapotának megtekinthetők a PowerShell-parancsmaggal `Get-ADSyncAutoUpgrade`. A következő állapotok rendelkezik:
+automatikus frissítés aktuális állapotának hello hello PowerShell-parancsmaggal lehet megtekinteni `Get-ADSyncAutoUpgrade`. A következő állapotok hello rendelkezik:
 
 | Állapot | Megjegyzés |
 | --- | --- |
 | Engedélyezve |Automatikus frissítés engedélyezve van. |
-| Felfüggesztve |A rendszer csak állítja be. A rendszer már nem jogosult az automatikus frissítések fogadására. |
+| Felfüggesztve |Csak a rendszer hello állítja be. hello rendszer már nem jogosult tooreceive automatikus frissítéseket. |
 | Letiltva |Automatikus frissítés le van tiltva. |
 
-Között módosíthatja **engedélyezve** és **letiltott** rendelkező `Set-ADSyncAutoUpgrade`. Csak a rendszer-et kell beállítania a állapot **felfüggesztett**.
+Között módosíthatja **engedélyezve** és **letiltott** rendelkező `Set-ADSyncAutoUpgrade`. Csak hello rendszer-et kell beállítania hello állapot **felfüggesztett**.
 
-Automatikus frissítés a frissítési infrastruktúra az Azure AD Connect Health használja. Automatikus frissítés működik, győződjön meg arról, hogy megnyitott URL-címek a proxykiszolgáló **az Azure AD Connect Health** dokumentált módon [Office 365 URL-címei és IP-címtartományok](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2).
+Automatikus frissítés az Azure AD Connect Health hello frissítési infrastruktúra használja. Az automatikus frissítési toowork, ellenőrizze, hogy a proxykiszolgáló hello URL-címek indította el **az Azure AD Connect Health** dokumentált módon [Office 365 URL-címei és IP-címtartományok](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2).
 
-Ha a **Synchronization Service Managert** felhasználói felület fut a kiszolgálón, majd a frissítés erre az időre szünetel a felhasználói felület le van zárva.
+Ha hello **Synchronization Service Managert** felhasználói felület hello kiszolgálón fut, majd hello frissítés erre az időre szünetel hello felhasználói felület le van zárva.
 
 ## <a name="troubleshooting"></a>Hibaelhárítás
-Ha a Connect telepítés nem frissülnek magát az elvárásoknak megfelelően, majd kövesse ezeket a lépéseket, hogy megtudja, mi lehet a hiba.
+A Connect telepítés nem frissülnek magát az elvárásoknak megfelelően, kövesse a lépéseket toofind ki, hogy mi lehet a hiba.
 
-Először nem fognak kísérli meg az első napja megjelent egy új verzióra történő automatikus frissítését. Nincs olyan szándékos annak véletlenszerű előtt frissítés kísérlet történik, így nem kell alarmed, ha a telepítés azonnal nincs frissítve.
+Először nem fognak hello próbált automatikus frissítés toobe hello első napja megjelent egy új verziója. Nincs olyan szándékos annak véletlenszerű előtt frissítés kísérlet történik, így nem kell alarmed, ha a telepítés azonnal nincs frissítve.
 
-Ha úgy gondolja, hogy valami nem megfelelő, először futtassa `Get-ADSyncAutoUpgrade` annak érdekében, hogy engedélyezve van az automatikus frissítés.
+Ha úgy gondolja, hogy valami nem megfelelő, először futtassa `Get-ADSyncAutoUpgrade` tooensure automatikus frissítés engedélyezve van.
 
-Ellenőrizzük, hogy a proxy vagy tűzfal nyitotta meg a szükséges URL-címek. Automatikus frissítés használ az Azure AD Connect Health leírtak szerint a [áttekintése](#overview). Ha a proxyt használ, győződjön meg arról, egészségügyi használatára van konfigurálva egy [proxykiszolgáló](../connect-health/active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy). Is tesztelni a [állapotfigyelő kapcsolat](../connect-health/active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service) az Azure ad Szolgáltatásba.
+Ezt követően győződjön meg arról, hello szükséges URL-címek nyitotta meg a proxy vagy tűzfal. Automatikus frissítés használ az Azure AD Connect Health hello leírtak [áttekintése](#overview). Ha proxyt használ, győződjön meg arról, egészségügyi konfigurált toouse lett egy [proxykiszolgáló](../connect-health/active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy). Hello is vizsgálati [állapotfigyelő kapcsolat](../connect-health/active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service) tooAzure AD.
 
-A kapcsolat az Azure AD ellenőrizte az Eventlog megismerhetők idő. Indítsa el az eseménynaplót, és keresse meg a **alkalmazás** az eseménynaplóban talál. A forrás az eseménynaplóban szűrőket hozzá **az Azure AD Connect frissítése** és az esemény Adatazonosító-tartomány **300-399**.  
+Hello kapcsolat tooAzure AD ellenőrizte idő toolook hello Eventlog be. Hello az Eseménynapló elindítása és a hely hello **alkalmazás** az eseménynaplóban talál. Az eseménynaplóban szűrőket hello forrás hozzá **az Azure AD Connect frissítése** és hello esemény Adatazonosító-tartomány **300-399**.  
 ![Automatikus frissítés szűrőt az eseménynaplóban talál](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogfilter.png)  
 
-Most már megtekintheti az Eventlog társított az automatikus frissítés állapotát.  
+Automatikus frissítés állapota hello társított hello Eventlog most már megtekintheti.  
 ![Automatikus frissítés szűrőt az eseménynaplóban talál](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogresult.png)  
 
-A eredménykódja állapotát áttekintést előtag van.
+hello eredménykódja hello állapot áttekintést előtag van.
 
 | Eredmény kódja előtagja | Leírás |
 | --- | --- |
-| Sikeres |A telepítés sikeresen frissítve. |
-| UpgradeAborted |Egy ideiglenes állapot le a frissítést. Újból megpróbálkozik, és az általános gyakorlat, hogy később sikeres-e. |
-| UpgradeNotSupported |A rendszer rendelkezik a konfigurációkat, amelyek az automatikus frissítés alatt a rendszer blokkolja. Megpróbálkozik megjelenítéséhez, ha az állapot változik, de az elvárás, hogy a rendszer manuálisan kell frissíteni. |
+| Sikeres |hello telepítési sikeresen frissítve. |
+| UpgradeAborted |Egy ideiglenes állapot hello frissítés leállt. Újból megpróbálkozik és hello általános gyakorlat, hogy később sikeres-e. |
+| UpgradeNotSupported |hello a rendszer olyan konfigurációt, amely blokkolja az automatikusan frissítendő hello rendszer van. Rendszer toosee akkor használható, ha hello állapotba vált, de hello általános gyakorlat, hogy a rendszer hello manuálisan kell frissíteni. |
 
-Ez egy lista a leggyakrabban használt üzenetek találja. Nem található összes van, de az eredmény üzenet törlése, mely a probléma van.
+Ez egy lista hello leggyakoribb üzenetek találja. Nem található az összes, de az eredmény üdvözlőüzenetére törölje a következő milyen hello probléma van.
 
 | Eredmény üzenet | Leírás |
 | --- | --- |
 | **UpgradeAborted** | |
-| UpgradeAbortedCouldNotSetUpgradeMarker |Nem írható a beállításjegyzékben. |
-| UpgradeAbortedInsufficientDatabasePermissions |A beépített Rendszergazdák csoport nem rendelkezik engedéllyel kell rendelkeznie az adatbázishoz. Frissítsen kézzel a probléma megoldásához az Azure AD Connect legújabb verzióját. |
-| UpgradeAbortedInsufficientDiskSpace |Nincs elegendő lemezterület a frissítés támogatásához. |
-| UpgradeAbortedSecurityGroupsNotPresent |Nem található és nem oldható fel a szinkronizálási motor által használt összes biztonsági csoportokat. |
-| UpgradeAbortedServiceCanNotBeStarted |Az NT-szolgáltatás **Microsoft Azure AD Sync** nem indult el. |
-| UpgradeAbortedServiceCanNotBeStopped |Az NT-szolgáltatás **Microsoft Azure AD Sync** leállítása nem sikerült. |
-| UpgradeAbortedServiceIsNotRunning |Az NT-szolgáltatás **Microsoft Azure AD Sync** nem működik. |
-| UpgradeAbortedSyncCycleDisabled |A SyncCycle beállítás a [Feladatütemező](active-directory-aadconnectsync-feature-scheduler.md) le van tiltva. |
-| UpgradeAbortedSyncExeInUse |A [synchronization service Managert felhasználói felület](active-directory-aadconnectsync-service-manager-ui.md) meg nyitva a kiszolgálón. |
-| UpgradeAbortedSyncOrConfigurationInProgress |A telepítési varázsló fut-e, vagy szinkronizálási kívül az ütemező lett ütemezve. |
+| UpgradeAbortedCouldNotSetUpgradeMarker |Toohello beállításkulcs írása sikertelen volt. |
+| UpgradeAbortedInsufficientDatabasePermissions |hello beépített Rendszergazdák csoport nem rendelkezik engedélyekkel toohello adatbázis. Frissítsen kézzel az Azure AD Connect tooaddress toohello legújabb verzióját a probléma. |
+| UpgradeAbortedInsufficientDiskSpace |Nincs elegendő lemez terület toosupport frissítés. |
+| UpgradeAbortedSecurityGroupsNotPresent |Nem található és nem oldja meg a szinkronizálási motor hello által használt összes biztonsági csoport. |
+| UpgradeAbortedServiceCanNotBeStarted |NT-szolgáltatás hello **Microsoft Azure AD Sync** toostart sikertelen. |
+| UpgradeAbortedServiceCanNotBeStopped |NT-szolgáltatás hello **Microsoft Azure AD Sync** toostop sikertelen. |
+| UpgradeAbortedServiceIsNotRunning |NT-szolgáltatás hello **Microsoft Azure AD Sync** nem működik. |
+| UpgradeAbortedSyncCycleDisabled |hello SyncCycle beállítás hello [Feladatütemező](active-directory-aadconnectsync-feature-scheduler.md) le van tiltva. |
+| UpgradeAbortedSyncExeInUse |Hello [synchronization service Managert felhasználói felület](active-directory-aadconnectsync-service-manager-ui.md) hello nyitva. |
+| UpgradeAbortedSyncOrConfigurationInProgress |hello telepítővarázsló fut, vagy szinkronizálási hello Feladatütemező kívül lett ütemezve. |
 | **UpgradeNotSupported** | |
-| UpgradeNotSupportedCustomizedSyncRules |A konfigurációs felvett el saját egyéni szabályait. |
-| UpgradeNotSupportedDeviceWritebackEnabled |Engedélyezte a [eszközvisszaíró](active-directory-aadconnect-feature-device-writeback.md) szolgáltatás. |
-| UpgradeNotSupportedGroupWritebackEnabled |Engedélyezte a [csoportvisszaírásról](active-directory-aadconnect-feature-preview.md#group-writeback) szolgáltatás. |
-| UpgradeNotSupportedInvalidPersistedState |A telepítés nincs egy expressz beállításokat, vagy a DirSync frissítését. |
-| UpgradeNotSupportedMetaverseSizeExceeeded |Több mint 100 000 objektummal rendelkezik a metaverzumban. |
-| UpgradeNotSupportedMultiForestSetup |Több erdő csatlakozik. A gyorstelepítés csak egy erdő csatlakozik. |
+| UpgradeNotSupportedCustomizedSyncRules |A saját egyéni szabályok toohello konfigurációs hozzáadását. |
+| UpgradeNotSupportedDeviceWritebackEnabled |Engedélyezte a hello [eszközvisszaíró](active-directory-aadconnect-feature-device-writeback.md) szolgáltatás. |
+| UpgradeNotSupportedGroupWritebackEnabled |Engedélyezte a hello [csoportvisszaírásról](active-directory-aadconnect-feature-preview.md#group-writeback) szolgáltatás. |
+| UpgradeNotSupportedInvalidPersistedState |hello telepítési nincs egy expressz beállításokat, vagy a DirSync frissítését. |
+| UpgradeNotSupportedMetaverseSizeExceeeded |A hello metaverse több mint 100 000 objektummal rendelkezik. |
+| UpgradeNotSupportedMultiForestSetup |Több erdő mint toomore csatlakozik. A gyorstelepítés csak tooone erdő csatlakozik. |
 | UpgradeNotSupportedNonLocalDbInstall |Nem használ egy SQL Server Express LocalDB adatbázisban. |
-| UpgradeNotSupportedNonMsolAccount |A [AD-összekötő fiókhoz](active-directory-aadconnect-accounts-permissions.md#active-directory-account) már nem az alapértelmezett MSOL_ fiókot. |
-| UpgradeNotSupportedStagingModeEnabled |A kiszolgáló van beállítva a [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode). |
-| UpgradeNotSupportedUserWritebackEnabled |Engedélyezte a [felhasználó-visszaírás](active-directory-aadconnect-feature-preview.md#user-writeback) szolgáltatás. |
+| UpgradeNotSupportedNonMsolAccount |Hello [AD-összekötő fiókhoz](active-directory-aadconnect-accounts-permissions.md#active-directory-account) már nem hello alapértelmezett MSOL_ fiók. |
+| UpgradeNotSupportedStagingModeEnabled |hello kiszolgáló toobe beállítása [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode). |
+| UpgradeNotSupportedUserWritebackEnabled |Engedélyezte a hello [felhasználó-visszaírás](active-directory-aadconnect-feature-preview.md#user-writeback) szolgáltatás. |
 
 ## <a name="next-steps"></a>Következő lépések
 További információ: [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

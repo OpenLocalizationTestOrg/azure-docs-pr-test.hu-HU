@@ -1,6 +1,6 @@
 ---
-title: "Támogatási lehetőségek és a használatból való kivonást házirend útmutató az Azure vendég operációs rendszer |} Microsoft Docs"
-description: "Mi a Microsoft támogatást tekintetében az Azure vendég operációs rendszeren felhőalapú szolgáltatás által használt információkat tartalmaz."
+title: "Azure vendég operációs rendszer aaaSupportability és a használatból való kivonást házirend útmutató |} Microsoft Docs"
+description: "Mi a Microsoft támogatást toohello felhőalapú szolgáltatás által használt Azure vendég operációs rendszer tekintetében információkat biztosít."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 5/26/2017
 ms.author: raiye
-ms.openlocfilehash: 488a6e144b16c57c137e60b918ee68c78db1a54f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a86c42ac95d12bbf116d900b7afb26fc3fe34e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-supportability-and-retirement-policy"></a>Az Azure vendég operációs rendszer támogatásának és a használatból való kivonást házirend
-Ezen a lapon található információkat az Azure vendég operációs rendszerre vonatkozik ([vendég operációs rendszer](cloud-services-guestos-update-matrix.md)) Felhőszolgáltatások munkavégző és a webes szerepkörök (PaaS). Virtuális gépek (IaaS) nem vonatkozik.
+Ezen az oldalon hello információ vonatkozik toohello Azure vendég operációs rendszer ([vendég operációs rendszer](cloud-services-guestos-update-matrix.md)) Felhőszolgáltatások munkavégző és a webes szerepkörök (PaaS). Nem alkalmazható tooVirtual gépek (IaaS).
 
-A Microsoftnál egy közzétett [házirend támogatja a vendég operációs rendszer](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). A lap azért olvassák most ismerteti, hogyan van megvalósítva a házirendet.
+A Microsoftnál egy közzétett [házirend támogatása vendég operációs rendszer hello](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). hello lap olvas most ismerteti, hogyan van megvalósítva hello házirend.
 
-A házirend
+hello házirend
 
-1. A Microsoft támogatást **legalább a vendég operációs rendszer legújabb két családok**. Család kivonják, az ügyfelek 12 hónapon hivatalos használatból való kivonást egy újabb támogatott vendég operációsrendszer-család frissíteni kell.
-2. A Microsoft támogatást **legalább két legújabb verziójáról a támogatott vendég operációsrendszer-családok**.
-3. A Microsoft támogatást **legalább az Azure SDK legújabb két verziója**. Az SDK verziójának kivonták a rendszerből, ha az ügyfelek a hivatalos kivezetési dátum újabb verzióra való frissítése a 12 hónapon keresztül fog rendelkezni.
+1. A Microsoft támogatást **legalább hello hello vendég operációs rendszer legújabb két termékcsaládok**. Család kivonták a rendszerből, ha a felhasználóknak kell hello hivatalos használatból való kivonást dátum tooupdate tooa újabb támogatott vendég operációsrendszer-család számított 12 hónapig.
+2. A Microsoft támogatást **hello támogatott vendég operációsrendszer-családok legújabb két verziója legalább hello**.
+3. A Microsoft támogatást **hello Azure SDK legújabb két verziója legalább hello**. Amikor a hello SDK elavult verzióját, az ügyfelek hello hivatalos használatból való kivonást dátum tooupdate tooa újabb verziójából származó 12 hónapig fog rendelkezni.
 
-Esetenként, több mint két családok vagy kiadásokban lehet, hogy támogatja. Hivatalos vendég operációs rendszer támogatási információk jelennek meg a [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
+Esetenként, több mint két családok vagy kiadásokban lehet, hogy támogatja. Hivatalos vendég operációs rendszer támogatási információkat megjelenik hello [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
 
 ## <a name="when-a-guest-os-family-or-version-is-retired"></a>Ha a Vendég operációsrendszer-család vagy a verziójával kivonták a rendszerből
-Egy új vendég operációs rendszer **termékcsalád** megjelent a Windows Server operációs rendszer hivatalos új verzióinak megjelenése után egy kis ideig. Megjelent egy új Vendég operációsrendszer-család, amikor a Microsoft fogja vonni a legrégebbi Vendég operációsrendszer-család.
+Egy új vendég operációs rendszer **termékcsalád** némi várakozás után hello Windows Server operációs rendszer a hivatalos verziójának hello kiadásában megjelent. Egy új Vendég operációsrendszer-család jelenik meg, amikor Microsoft hello legrégebbi Vendég operációsrendszer-család fogja vonni.
 
-Új vendég operációs rendszer **verziók** kapcsolatos átfogó MSRC legújabb frissítéseit minden hónapban bevezetett. A rendszeres havi frissítéseket, mert egy vendég operációs rendszer verziója általában letiltott 60 nap után a kiadása. Ez a tevékenység tartja az egyes használható legalább két Vendég operációsrendszer-verziók.
+Új vendég operációs rendszer **verziók** minden hónap tooincorporate hello legújabb MSRC frissítésekkel kapcsolatos új. Hello rendszeres havi frissítéseket, mert a vendég operációs rendszer verziója általában letiltott 60 nap után a kiadása. Ez a tevékenység tartja az egyes használható legalább két Vendég operációsrendszer-verziók.
 
 ### <a name="process-during-a-guest-os-family-retirement"></a>A folyamat során a vendég operációs rendszer termékcsalád kivonása
-A használatból való kivonást elavulásának bejelentéséig, az ügyfelek után 12 hónap "átmenet" időszak előtt a régebbi termékcsalád hivatalosan eltávolítja a szolgáltatásból. A váltás ideje Microsoft belátása szerint is kiterjeszthető. A frissítések lesznek közzétéve a [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
+Hello használatból való kivonást elavulásának bejelentéséig, az ügyfelek után 12 hónap "átmenet" időszak előtt hello régebbi termékcsalád hivatalosan eltávolítja a szolgáltatásból. A váltás ideje, a Microsoft hello belátása is kiterjeszthető. Frissítések lesznek közzétéve a hello [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
 
-A fokozatos használatból való kivonást folyamat megkezdődik az átállási időszak hónap elteltével hat (6). Ebben az időszakban:
+A fokozatos használatból való kivonást folyamat megkezdődik hat (6) hónap hello áttűnés időszak be. Ebben az időszakban:
 
-1. A Microsoft ügyfelei a használatból való kivonást értesítést küld.
-2. Az Azure SDK újabb verziója nem támogatja a kivont Vendég operációsrendszer-család.
-3. Új központi telepítéséhez és a Felhőszolgáltatások redeployments nem engedélyezett a kivont termékcsalád
+1. A Microsoft ügyfelei hello használatból való kivonást értesíti.
+2. hello hello Azure SDK újabb verziója már nincs hello Vendég operációsrendszer-család nem támogatja.
+3. Új központi telepítéséhez és a Felhőszolgáltatások redeployments nem engedélyezett a kivont hello termékcsalád
 
-A Microsoft továbbra is bevezeti, az átállási időszak, a "lejárati dátum" néven ismert utolsó napjáig MSRC frissítéseket tartalmazó új vendég operációs rendszer verziója. A lejárati dátum még mindig fut, a Cloud Services lesz támogatott az Azure garantált szolgáltatási szintje alatt. A Microsoftnál frissítés kényszerítése, törölje vagy szolgáltatások leállítását követően tetszése szerint.
+A Microsoft továbbra is toointroduce hello MSRC frissítéseket tartalmazó hello hello áttűnés időszak alatt hello "lejárati dátum" néven ismert utolsó napján csak új vendég operációs rendszer verziója. A lejárati dátum hello még mindig fut, a Cloud Services rendszer nem minden hello Azure garantált szolgáltatási szintje alatt. A Microsoft hello megítélése tooforce frissítése, törlése vagy szolgáltatások leállítását, hogy a dátum után van.
 
 ### <a name="process-during-a-guest-os-version-retirement"></a>A folyamat során a vendég operációs rendszer verziója kivonása
-Ha az ügyfelek automatikus frissítése a vendég operációs rendszer, akkor soha nem kell foglalkoznia a Vendég operációsrendszer-verziók foglalkozik. Majd mindig a vendég operációs rendszer legújabb verzióját használ.
+Ha az ügyfelek a vendég operációs rendszer tooautomatically frissítés, Vendég operációsrendszer-verziók kezelésével kapcsolatos tooworry soha nem rendelkeznek. Majd mindig Vendég operációs rendszer legújabb verzióját hello használ.
 
-Vendég operációsrendszer-verziók havonta kiadott. Rendszeres kiadásokban arányát, mert egyes verzióihoz rögzített élettartamot rendelkezik.
+Vendég operációsrendszer-verziók havonta kiadott. Rendszeres kiadásokban hello arányát, mert egyes verzióihoz rögzített élettartamot rendelkezik.
 
-Az élettartamot be 60 nap egy verziója "*le van tiltva*". "Letiltott" azt jelenti, hogy eltávolítja-e a verziót a portálról. A verzió már nem állítható be a szolgáltatáskonfigurációs SÉMA konfigurációs fájlból. Meglévő telepítések meghagyott futtatása. Azonban új központi telepítéséhez és a meglévő telepítések kód és a konfigurációs frissítésekről nem engedélyezett.
+60 nap hello élettartamot be, a verzió: "*le van tiltva*". "Letiltott" azt jelenti, hogy hello verziót a rendszer eltávolítja a hello portálon. hello verziója már nem állítható be hello szolgáltatáskonfigurációs SÉMA konfigurációs fájlból. Meglévő telepítések meghagyott futtatása. Azonban nem engedélyezett új központi telepítéséhez és a kód és konfigurációs tooexisting központi telepítését.
 
-Némi várakozás után válik "Letiltva", a vendég operációs rendszer verziója "*lejár*", és minden még fut az adott telepítéshez kényszerített frissíteni, és automatikusan frissíteni a jövőben a vendég operációs rendszer beállítása. Lejárati kötegekben történik, a megfelelő és a lejárati idő időtartama eltérőek lehetnek.
+Némi várakozás után válik "Letiltva", a vendég operációs rendszer verziója hello "*lejár*", és minden még fut az adott telepítéshez kényszerített frissítése vagy tooautomatically frissítés hello vendég operációs rendszer jövőbeli hello beállítására. Lejárati kötegekben történik, így hello időtartam megfelelő tooexpiration eltérőek lehetnek.
 
-Ezek az időszakok Microsoft megítélése megkönnyítése érdekében ügyfél átmenetek hosszabb tehető. A kommunikálja a módosításokat a [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
+Ezeket az időszakokat Microsoft megítélése tooease ügyfél átmenetek hosszabb lehet elvégezni. A módosításokat kommunikálja a hello [Azure vendég operációs rendszereinek kiadásait és SDK-kompatibilitási mátrixát](cloud-services-guestos-update-matrix.md).
 
 ### <a name="notifications-during-retirement"></a>Értesítések során kivonása
-* **Családbiztonsági kivonása** <br>Microsoft blogbejegyzések és a portál értesítései fogja használni. Egy kivont Vendég operációsrendszer-család továbbra is használó ügyfelek hozzárendelt szolgáltatás-rendszergazdák közvetlen kommunikációt (e-mail, portál üzenetek, telefonhívás) keresztül értesítést fog kapni. Ezen a lapon minden változást lesznek közzétéve, és az RSS-hírcsatorna ezen a lapon elején szerepel.
-* **Verzió kivonása** <br>Összes módosítás és az előfordulásuk időpontjában naplózhatja őket dátumok ezen a lapon lesznek közzétéve, és az RSS-hírcsatorna ezen a lapon, beleértve a kiadás, le van tiltva és lejárati elején szerepel. Szolgáltatás-rendszergazdák e-maileket kap, ha egy letiltott vendég operációs rendszer verziója vagy a családot futó központi telepítések. Az e-maileket ütemezése változhatnak. Ezek általában legalább előtt megfelelő, egy hónap, ha a időzítési nem hivatalos szolgáltatásiszint-szerződésben garantált.
+* **Családbiztonsági kivonása** <br>Microsoft blogbejegyzések és a portál értesítései fogja használni. Egy kivont Vendég operációsrendszer-család továbbra is használó ügyfelek közvetlen kommunikációt (e-mail, portál üzenetek, telefonhívás) tooassigned szolgáltatás-rendszergazdák keresztül értesítést fog kapni. Minden változást toothis lap és hello RSS-hírcsatorna ezen a lapon hello elején felsorolt lesznek közzétéve.
+* **Verzió kivonása** <br>Összes módosítás és az előfordulásuk időpontjában naplózhatja őket hello dátumok lesznek közzétéve toothis lap és hello RSS-hírcsatorna ezen a lapon, beleértve a kiadás, le van tiltva és lejárati hello elején szerepel. Szolgáltatás-rendszergazdák e-maileket kap, ha egy letiltott vendég operációs rendszer verziója vagy a családot futó központi telepítések. az e-maileket hello ütemezése változhatnak. Ezek általában legalább előtt megfelelő, egy hónap, ha a időzítési nem hivatalos szolgáltatásiszint-szerződésben garantált.
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
-**Hogyan csökkentheti az áttelepítés hatásai**
+**Hogyan csökkentheti az áttelepítés hatásai hello?**
 
 Azt javasoljuk, hogy használja-e legújabb Vendég operációsrendszer-család a Felhőszolgáltatások tervezéséhez.
 
-1. Indítsa el az áttelepítést egy újabb termékcsalád korai tervezési.
-2. A felhőalapú szolgáltatás, az új termékcsalád futó tesztelése beállítása ideiglenes próbatelepítést.
-3. A vendég operációs rendszer verzió **automatikus** (osVersion = * a a [.cscfg](cloud-services-model-and-package.md#cscfg) fájl), az áttelepítés új Vendég operációsrendszer-verziók automatikusan megtörténik.
+1. Indítsa el az áttelepítési tooa újabb termékcsalád korai tervezési.
+2. Beállítása ideiglenes teszt központi telepítések tootest a hello új termékcsalád futó felhőalapú szolgáltatás.
+3. Állítsa be a vendég operációs rendszer verziója túl**automatikus** (osVersion = * a hello [.cscfg](cloud-services-model-and-package.md#cscfg) fájl), hello áttelepítési toonew Vendég operációsrendszer-verziók automatikusan megtörténik.
 
-**Mi történik, ha a webalkalmazás számára szükséges az operációs rendszer szorosabb integrációt?**
+**Mi történik, ha a webalkalmazás számára szükséges az operációs rendszer hello szorosabb integrációt?**
 
-Ha a webes alkalmazás felépítésére attól függ, hogy az operációs rendszer alapjául szolgáló funkciók, használjon támogatott platform képességei például [indítási feladatok](cloud-services-startup-tasks.md) vagy más bővítési mechanizmusokat. Másik megoldásként használhatja [Azure virtuális gépek](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – infrastruktúra-szolgáltatás), ha az alapul szolgáló operációs rendszer felelős áll.
+Ha a webes alkalmazás felépítésére hello operációs rendszer alapjául szolgáló funkciók függ, használjon támogatott platform képességei például [indítási feladatok](cloud-services-startup-tasks.md) vagy más bővítési mechanizmusokat. Másik megoldásként használhatja [Azure virtuális gépek](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS – infrastruktúra-szolgáltatás), hogy hol áll operációs rendszer alapjául szolgáló hello felelős.
 
 ## <a name="next-steps"></a>Következő lépések
-Tekintse át a legutóbbi [feloldja a vendég operációs rendszer](cloud-services-guestos-update-matrix.md).
+Felülvizsgálati hello legújabb [feloldja a vendég operációs rendszer](cloud-services-guestos-update-matrix.md).

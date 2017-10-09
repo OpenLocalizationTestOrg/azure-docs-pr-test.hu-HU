@@ -1,6 +1,6 @@
 ---
-title: "A Machine Learning webszolgáltatásba web app sablonnal felhasználása |} Microsoft Docs"
-description: "Azure piactér web app sablon segítségével az Azure Machine Learning a prediktív webszolgáltatás felhasználását."
+title: "a Machine Learning webszolgáltatásba web app sablonnal aaaConsume |} Microsoft Docs"
+description: "Web app sablon használata a Azure piactérről tooconsume az Azure Machine Learning a prediktív webes szolgáltatás."
 keywords: "a gépi tanulás webszolgáltatás, operationalization, REST API-t"
 services: machine-learning
 documentationcenter: 
@@ -15,48 +15,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;raymondl
-ms.openlocfilehash: 95aa1fa23d83ec0dcd00870179167e803bafbd16
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1199377bead470807d58ca7f7a667175cbb88450
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consume-an-azure-machine-learning-web-service-with-a-web-app-template"></a>Azure Machine Learning webszolgáltatások használata webalkalmazás-sablonnal
 
-Egyszer már a prediktív modell fejlesztett, és telepítve lett webszolgáltatásként az Azure Machine Learning Studio használatával, vagy eszközökkel, például az R vagy Python, hozzáférhet a operationalized modell egy REST API használatával.
+Egyszer már a prediktív modell fejlesztett, és telepítve lett webszolgáltatásként az Azure Machine Learning Studio használatával, vagy használja az eszközök, például az R vagy Python, van-e hozzáférési hello operationalized modell egy REST API használatával.
 
-Számos módja a REST API-t használnak, és a webes szolgáltatás. Például C#, R vagy Python hozta létre a webszolgáltatás üzembe helyezésekor mintakód használatával írhat egy alkalmazás (elérhető a [Machine Learning Web Services portálra](https://services.azureml.net/quickstart) vagy a webes szolgáltatás irányítópultján a Machine Learning Studióban). Vagy a minta Microsoft Excel-munkafüzet hozott létre az Ön egyszerre is használhatja.
+Számos módon tooconsume hello REST API-t és hello webes szolgáltatás. Például egy alkalmazás írhatnak C# nyelven íródtak, R, vagy Python hello segítségével példakód létrehozza a hello webszolgáltatás üzembe helyezésekor (hello elérhető [Machine Learning Web Services portálra](https://services.azureml.net/quickstart) vagy hello web service irányítópult A Machine Learning Studio). Hello Microsoft Excel-munkafüzet minta létrehozza a hello, vagy ugyanannyi időt vesz igénybe.
 
-A leggyorsabb és legegyszerűbb módja a webes szolgáltatás eléréséhez keresztül elérhető a Web App sablon, de a [Azure Web App piactér](https://azure.microsoft.com/marketplace/web-applications/all/).
+De hello Web App hello elérhető sablonok keresztül van a webszolgáltatás leggyorsabb és legegyszerűbb módja tooaccess hello [Azure Web App piactér](https://azure.microsoft.com/marketplace/web-applications/all/).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="the-azure-machine-learning-web-app-templates"></a>Az Azure Machine Learning Web App sablonok
-A webes alkalmazás sablonok érhető el az Azure piactéren hozhat létre egy egyéni webalkalmazást, hogy ismeri a webszolgáltatás bemeneti adatok és a kívánt eredmény elérése érdekében. Mindössze annyit kell tennie hozzáférést a webes alkalmazás a webszolgáltatás és az adatokat, és a sablon elvégzi a többit, azaz.
+## <a name="hello-azure-machine-learning-web-app-templates"></a>hello Azure Machine Learning Web App sablonok
+hello web app hello Azure piactéren elérhető sablonok hozhat létre egy egyéni webalkalmazást, hogy ismeri a webszolgáltatás bemeneti adatok és a kívánt eredmény elérése érdekében. Mindössze annyit kell toodo hello web access tooyour webszolgáltatás és az adatokat, és hello sablon hello rest.
 
 Két sablonok érhetők el:
 
 * [Az Azure ML kérés-válasz szolgáltatás Web App-sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)
 * [Azure ML kötegelt végrehajtási szolgáltatás Web App-sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)
 
-Minden sablon létrehoz egy minta ASP.NET alkalmazást, az API-URI és kulcs használatával a webszolgáltatáshoz és az Azure web helyként telepíti. A kérés-válasz szolgáltatás (RR-EKET) sablont hoz létre egy webalkalmazást, amely lehetővé teszi a webszolgáltatás számára, hogy egyetlen eredmény egyetlen sornyi adatot küldeni. A kötegelt végrehajtási szolgáltatás (BES) sablont hoz létre egy webalkalmazást, amely lehetővé teszi, hogy hány sornyi adatot több lekéréséhez küldhet.
+Minden sablon egy minta ASP.NET alkalmazást, a webszolgáltatás hello API URI és kulcs használatával hoz létre, és telepíti, a webhely tooAzure. hello kérés-válasz szolgáltatás (RR-EKET) sablon létrehoz egy webalkalmazást, amely lehetővé teszi az adatok toohello web service tooget egyetlen eredmény egyetlen sor toosend. hello kötegelt végrehajtási szolgáltatás (BES) sablon létrehoz egy webalkalmazást, amely lehetővé teszi toosend adatok tooget hány sornyi több eredményt.
 
-Ezek a sablonok használatához nem kódolás szükséges. Csak akkor adja meg, az API-kulcsot és URI, és a sablon épít fel az alkalmazást.
+Nincs kódolási van szükség toouse ezeket a sablonokat. Csak akkor adja meg, hello API-kulcsot és URI-t, és hello sablon buildek hello alkalmazását.
 
-Az API-kulcs és a kérelem URI-azonosítója lekérése egy webszolgáltatás-bővítmény:
+tooget hello API-kulcs és a kérelem URI-azonosítója az adott webszolgáltatás:
 
-1. Az a [Web Services portálra](https://services.azureml.net/quickstart), egy új webszolgáltatás kattintson **webszolgáltatások** tetején. Vagy a klasszikus web service kattintson **klasszikus webszolgáltatások**.
-2. Kattintson a használni kívánt webszolgáltatáshoz.
-3. Klasszikus webszolgáltatáshoz kattintson a használni kívánt végpont.
-4. Kattintson a **felhasználás** tetején.
-5. Másolás a **elsődleges** vagy **másodlagos kulcs** és mentse azt.
-6. Ha a kérés-válasz szolgáltatás (RR-EKET) sablont hoz létre, másolja a **kérés-válasz** URI és mentse azt. Ha egy kötegelt végrehajtási szolgáltatás (BES) sablont hoz létre, másolja a **kötegelt kérelmekben** URI és mentse azt.
+1. A hello [Web Services portálra](https://services.azureml.net/quickstart), egy új webszolgáltatás kattintson **webszolgáltatások** hello tetején. Vagy a klasszikus web service kattintson **klasszikus webszolgáltatások**.
+2. Kattintson a kívánt tooaccess hello webszolgáltatáshoz.
+3. Klasszikus webszolgáltatáshoz kattintson a kívánt tooaccess hello végpont.
+4. Kattintson a **felhasználás** hello tetején.
+5. Másolás hello **elsődleges** vagy **másodlagos kulcs** és mentse azt.
+6. A kérés-válasz szolgáltatás (RR-EKET) sablon létrehozásakor, másolja a hello **kérés-válasz** URI és mentse azt. Ha egy kötegelt végrehajtási szolgáltatás (BES) sablont hoz létre, másolja a hello **kötegelt kérelmekben** URI és mentse azt.
 
 
-## <a name="how-to-use-the-request-response-service-rrs-template"></a>A kérés-válasz szolgáltatás (RR-EKET) sablon használata
-Kövesse az alábbi lépéseket ahhoz, hogy a RR-EKET web app sablon használható az alábbi ábrán is látható.
+## <a name="how-toouse-hello-request-response-service-rrs-template"></a>Hogyan toouse hello kérés-válasz szolgáltatás (RR-EKET) sablon
+Kövesse ezeket lépéseket toouse hello RR-EKET web app-sablon, a hello a következő ábrán látható módon.
 
-![Folyamat RR-EKET webes sablon használata][image1]
+![Folyamat toouse RRS webes sablon][image1]
 
 
 <!--    ![API Key][image3] -->
@@ -67,61 +67,61 @@ Kövesse az alábbi lépéseket ahhoz, hogy a RR-EKET web app sablon használhat
    
     ![Request URI][image4] -->
 
-1. Lépjen a [Azure-portálon](https://portal.azure.com), **bejelentkezési**, kattintson **új**, és adja meg **Azure ML kérés-válasz szolgáltatás Web App**, majd kattintson a **létrehozása**. 
+1. Nyissa meg toohello [Azure-portálon](https://portal.azure.com), **bejelentkezési**, kattintson **új**, és adja meg **Azure ML kérés-válasz szolgáltatás Web App**, kattintson a **Létrehozása**. 
    
-   * Adjon meg egy egyedi nevet a webalkalmazás. A webalkalmazás URL-CÍMÉT a nevét, majd lesz `.azurewebsites.net.` például`http://carprediction.azurewebsites.net.`
-   * Válassza ki az Azure-előfizetés és az alatt a webszolgáltatás fut. szolgáltatások.
+   * Adjon meg egy egyedi nevet a webalkalmazás. hello webalkalmazás URL-címe hello lesz a nevét, majd `.azurewebsites.net.` például`http://carprediction.azurewebsites.net.`
+   * Válassza ki a hello Azure-előfizetés és a szolgáltatások alatt a webszolgáltatás fut..
    * Kattintson a **Create** (Létrehozás) gombra.
      
      ![Webalkalmazás létrehozása][image5]
 
-4. Ha Azure webalkalmazás telepítése befejeződött, kattintson a **URL-cím** az Azure-ban a webalkalmazás-beállítások lapon, vagy adja meg az URL-címet egy webböngészőben. Például: `http://carprediction.azurewebsites.net.`
-5. A webes alkalmazás első futtatásakor, meg kell adni a **API Post URL-címe** és **API-kulcs**.
-   Adja meg a korábban mentett értékeket (**kérelem URI-azonosítója** és **API-kulcs**, illetve).
+4. Ha Azure hello webalkalmazás telepítése befejeződött, kattintson a hello **URL-cím** a webes alkalmazás fiókbeállítási oldalára Azure hello, vagy meg hello URL-címet egy webböngészőben. Például: `http://carprediction.azurewebsites.net.`
+5. Ha a webes alkalmazás első futtatásakor, ekkor megkérdezi, hogy a hello hello **API Post URL-címe** és **API-kulcs**.
+   Adja meg a korábban mentett hello értékek (**kérelem URI-azonosítója** és **API-kulcs**, illetve).
      
      Kattintson a **nyújt**.
      
      ![Adja meg a feladás egy vagy több URI és az API-kulcs][image6]
 
-6. A webes alkalmazás megjelenik a **Web App konfigurációs** az aktuális webes szolgáltatás beállításait tartalmazó lapra. Itt módosíthatja a beállításokat, a webes alkalmazás által használt.
+6. hello webes alkalmazás megjelenik a **Web App konfigurációs** hello aktuális webszolgáltatások beállításai lapon. Itt módosíthatja hello webes alkalmazás által használt toohello beállításokat.
    
    > [!NOTE]
-   > Itt a szolgáltatás beállításainak módosítása csak akkor változik meg azokat a webalkalmazás. Ez az alapértelmezett beállításokat, a webszolgáltatás nem változik. Például, ha módosítja a **leírás** itt nem módosítja a webes szolgáltatás irányítópultján a Machine Learning Studióban látható leírás.
+   > Itt hello szolgáltatás beállításainak módosítása csak akkor változik meg azokat a webalkalmazás. Hello alapértelmezett beállítások a webszolgáltatás nem módosítja. Például, ha módosítja a hello **leírás** itt látható hello webes szolgáltatás irányítópultján a Machine Learning Studióban hello leírás nem módosítja.
    > 
    > 
    
-    Amikor elkészült, kattintson a **módosítások mentése**, és kattintson a **Ugrás a kezdőlapra**.
+    Amikor elkészült, kattintson a **módosítások mentése**, és kattintson a **tooHome lapon lépjen**.
 
-7. A kezdőoldalon a webszolgáltatás küldendő értékeket adhat meg. Kattintson a **Submit** amikor elkészült, és az eredményt adja vissza.
+7. A hello kezdőlap adhatja értékek toosend tooyour webszolgáltatás. Kattintson a **Submit** amikor elkészült, és hello eredményt adja vissza.
 
-Ha vissza szeretne a **konfigurációs** lap megnyitásához válassza a `setting.aspx` a webes alkalmazás lapján. Például: `http://carprediction.azurewebsites.net/setting.aspx.` kérni fogja a írja be újra az API-kulcs - van szüksége, amely a lap eléréséhez, és frissítse a beállításokat.
+Ha azt szeretné, hogy tooreturn toohello **konfigurációs** lapon, nyissa meg toohello `setting.aspx` hello webalkalmazás oldalán. Például: `http://carprediction.azurewebsites.net/setting.aspx.` újra lesz felszólító tooenter hello API-kulcs –, hogy tooaccess hello lapot, és hello-beállítások frissítése van szükség.
 
-Állítsa le, indítsa újra, vagy törölje a webalkalmazást, mint bármely más webalkalmazás az Azure portálon. Mindaddig, amíg fut-e otthoni webcímére navigálhat, és adja meg új értékeket.
+Állítsa le, indítsa újra, vagy az Azure portálon, mint bármely más webalkalmazás hello hello a webalkalmazás törlése. Mindaddig, amíg fut-e otthoni webcímet toohello navigálhat, és adja meg új értékeket.
 
-## <a name="how-to-use-the-batch-execution-service-bes-template"></a>A kötegelt végrehajtási szolgáltatás (BES) sablon használata
-A BES web app sablon használhatja ugyanúgy, mint az RRS sablon, azzal a különbséggel, hogy a létrehozott webalkalmazás lehetővé teszi több sornyi adatot nyújt, és több eredményeket.
+## <a name="how-toouse-hello-batch-execution-service-bes-template"></a>Hogyan toouse hello kötegelt végrehajtási szolgáltatás (BES) sablon
+Használhatja a hello BES azonos módon-sablonként hello RR-EKET, kivéve létrehozott hello webes alkalmazást hello web app-sablon lehetővé teszi a toosubmit több sornyi adatot és több eredményeket.
 
-A bemeneti értékek egy kötegelt végrehajtási webszolgáltatáshoz származhatnak az Azure storage vagy a helyi fájl; az eredményeket egy az Azure storage-tároló tárolja.
-Igen szüksége lesz egy Azure storage tárolót a webes alkalmazás által visszaadott eredményeit, és kész állapotba hozásához a bemeneti adatok lesz szüksége.
+hello bemeneti értékeket a kötegelt végrehajtási webszolgáltatáshoz származhatnak az Azure storage vagy a helyi fájl; hello eredményeket egy az Azure storage-tároló tárolja.
+Igen, akkor lesz szüksége egy Azure storage-tároló toohold hello hello webalkalmazás által visszaadott eredmények, és frissítenie kell tooget a bemeneti adatok készen áll.
 
-![Folyamat BES webes sablon használata][image2]
+![Toouse BES feldolgozni webes sablon][image2]
 
-1. Kövesse ugyanezt az eljárást, mint a RR-EKET sablon, kivéve, nyissa meg a BES webalkalmazás létrehozása [Azure ML kötegelt végrehajtási szolgáltatás Web App sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/) nyissa meg a BES sablont az Azure piactérről elemre kattintva **webalkalmazás létrehozása**.
+1. Hajtsa végre az azonos hello eljárás toocreate hello BES webalkalmazás mint hello RR-EKET sablon, kivéve Ugrás túl[Azure ML kötegelt végrehajtási szolgáltatás Web App sablon](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/) tooopen hello BES sablon Azure piactéren, és kattintson a **webalkalmazás létrehozása** .
 
-2. Adja meg a tárolt eredményt, írja be a cél tároló adatokat a webes alkalmazás kezdőlapján. Ha a webes alkalmazás kérheti le a bemenő érték, vagy egy helyi fájl vagy egy Azure storage-tárolót is megadhat.
+2. hello eredmények tárolt, ahová toospecify hello cél tároló adatokat be hello web app kezdőlap. Ha hello webalkalmazás kérheti le a hello bemeneti értékeket, vagy egy helyi fájl vagy egy Azure storage-tárolót is megadhat.
    Kattintson a **nyújt**.
    
     ![Szolgáltatás adatai][image7]
 
-A web app egy feladat állapota lapon jelenik meg.
-A feldolgozás befejezése lesz az eredményeket az Azure blob storage helyének adni. Lehetősége is van, az eredményeket egy helyi fájl letöltése.
+hello web app egy feladat állapota lapon jelenik meg.
+Hello feladat befejezése fogja az Azure blob storage hello eredmények hello helyét adni. Akkor is hello eredmények tooa helyi fájl letöltése hello lehetőségét.
 
 ## <a name="for-more-information"></a>További információ
-További részletek...
+További információk toolearn...
 
 * Tekintse meg a Machine Learning Studio, a gépi tanulási kísérlet létrehozása [az első kísérlet létrehozása az Azure Machine Learning Studióban](machine-learning-create-experiment.md)
-* a gépi tanulási kísérlet egy webszolgáltatás telepítése tudnivalókat [az Azure Machine Learning webszolgáltatás telepítése](machine-learning-publish-a-machine-learning-web-service.md)
-* a webes szolgáltatás más módon lásd [hogyan kell használni az Azure Machine Learning Web service](machine-learning-consume-web-services.md)
+* Hogyan a machine learning webszolgáltatásként, kísérletezhet toodeploy: [az Azure Machine Learning webszolgáltatás telepítése](machine-learning-publish-a-machine-learning-web-service.md)
+* más módokon tooaccess a webszolgáltatás, lásd: [hogyan tooconsume az Azure Machine Learning Web service](machine-learning-consume-web-services.md)
 
 [image1]: media/machine-learning-consume-web-service-with-web-app-template/rrs-web-template-flow.png
 [image2]: media/machine-learning-consume-web-service-with-web-app-template/bes-web-template-flow.png

@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazásfrissítések hibaelhárítása |} Microsoft Docs"
-description: "Ez a cikk a Service Fabric-alkalmazás és azok megoldását frissítése körül jelentkező gyakori problémákat tárgyalja."
+title: "alkalmazásfrissítések aaaTroubleshooting |} Microsoft Docs"
+description: "Ez a cikk a Service Fabric-alkalmazás frissítése körül jelentkező gyakori problémákat tárgyalja, és hogyan tooresolve őket."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f7f6bc0c29e2b43fbc8e451c5a4a50110b78349e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0f56fa61db9b4e32824623f162dc1bfe7fda0f49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-application-upgrades"></a>Alkalmazásfrissítések hibaelhárítása
-Ez a cikk ismerteti az Azure Service Fabric-alkalmazás és azok megoldását frissítése körül gyakori problémák némelyikéről.
+Ez a cikk ismertet néhány gyakori problémákat hello frissítése az Azure Service Fabric-alkalmazás körül, és hogyan tooresolve őket.
 
 ## <a name="troubleshoot-a-failed-application-upgrade"></a>A hibás alkalmazást-frissítés hibaelhárítása
-Ha egy frissítés sikertelen, a kimenetét a **Get-ServiceFabricApplicationUpgrade** parancs tartalmaz további információt a hiba a hibakereséshez.  Az alábbi listában határozza meg, hogy miként legyen használható a további információt:
+Ha egy frissítés sikertelen, hello hello kimenete **Get-ServiceFabricApplicationUpgrade** parancs hello hiba hibakereséshez további információkat tartalmaz.  hello következő lista megadja, hogy miként legyen használható hello további információt:
 
-1. Azonosítsa a hiba típusa.
-2. A hiba okának azonosításához.
+1. Azonosítsa a hello hiba típusa.
+2. Azonosítsa a hello hiba okát is megadva.
 3. Különítse el a további vizsgálatok esetén egy vagy több hibás összetevőt.
 
-Ez az információ esetén érhető el a Service Fabric észleli a hibát, függetlenül attól, hogy a **FailureAction** visszaállítása vagy a frissítés felfüggesztése.
+Ez az információ esetén érhető el a Service Fabric észleli hello hiba, függetlenül attól, hogy hello **FailureAction** tooroll vissza vagy felfüggesztése hello frissítését.
 
-### <a name="identify-the-failure-type"></a>Azonosítsa a hiba típusa
-A kimenet **Get-ServiceFabricApplicationUpgrade**, **FailureTimestampUtc** azonosítja az időbélyegzőnek (UTC), amelyen a Service Fabric frissítési hibát észlelt, és  **FailureAction** lett elindítva. **Hibaoka** azonosítja a hiba három lehetséges magas szintű okok egyike:
+### <a name="identify-hello-failure-type"></a>Azonosítsa a hello hiba típusa
+Hello kimenetét a **Get-ServiceFabricApplicationUpgrade**, **FailureTimestampUtc** hello időbélyegzőnek (UTC), amellyel frissítési hibát észlelt a Service Fabric azonosítja és  **FailureAction** lett elindítva. **Hibaoka** azonosítja hello hiba három lehetséges magas szintű okok egyike:
 
-1. UpgradeDomainTimeout - azt jelzi, hogy egy adott frissítési tartomány túl sokáig tartott, és **UpgradeDomainTimeout** lejárt.
-2. OverallUpgradeTimeout - azt jelzi, hogy a teljes frissítés túl sokáig tartott, és **UpgradeTimeout** lejárt.
-3. HealthCheck - azt jelzi, hogy egy frissítési tartományt a frissítés után az alkalmazás maradt a meghatározott házirendek szerint sérült és **HealthCheckRetryTimeout** lejárt.
+1. UpgradeDomainTimeout - azt jelzi, hogy egy adott frissítési tartomány tartott túl hosszú toocomplete és **UpgradeDomainTimeout** lejárt.
+2. OverallUpgradeTimeout - azt jelzi, hogy a teljes frissítési hello toocomplete túl sokáig tartott, és **UpgradeTimeout** lejárt.
+3. HealthCheck - azt jelzi, hogy egy frissítési tartományt a frissítés után hello alkalmazás maradt sérült toohello szerint megadott házirendek és **HealthCheckRetryTimeout** lejárt.
 
-Ezek a bejegyzések csak jelenik meg a kimeneti a frissítés sikertelen lesz, és elindítja a visszaállítása. További információk a hiba típusától függően.
+Ezek a bejegyzések csak jelennek meg az hello kimeneti hello frissítés meghiúsul, és elindítja a visszaállítása. További információk a hello hiba hello típusától függően.
 
 ### <a name="investigate-upgrade-timeouts"></a>Vizsgálja meg a frissítési időtúllépések
-Frissítse az időtúllépési hibákat leggyakrabban okozzák a szolgáltatás elérhetőségével kapcsolatos problémákat. Az alábbi eredménye a tipikus, a frissítési ahol szolgáltatás replikák és a példány nem indulnak el az új kódot verzióban. A **UpgradeDomainProgressAtFailure** mező rögzíti a hibát időpontjában függőben lévő frissítési munka pillanatképet.
+Frissítse az időtúllépési hibákat leggyakrabban okozzák a szolgáltatás elérhetőségével kapcsolatos problémákat. hello alábbi eredménye a frissítési tipikus Ha szolgáltatás replikákat vagy a példány nem toostart hello új kódot verzióban. Hello **UpgradeDomainProgressAtFailure** mező hiba hello időpontban függőben lévő frissítési munka pillanatképe rögzíti.
 
 ```
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -78,16 +78,16 @@ ForceRestart                   : False
 UpgradeReplicaSetCheckTimeout  : 00:00:00
 ```
 
-Ebben a példában a frissítése nem sikerült a frissítési tartomány *MYUD1* és két partíció (*744c8d9f-1d26-417e-a60e-cd48f5c098f0* és *4b43f4d8-b26b-424e-9307-7a7a62e79750*) volt akadt-e. A partíciók akadt volt, mert a futtatókörnyezet nem helyezhető el az elsődleges replikára változott (*WaitForPrimaryPlacement*) a célcsomópontokat *csomópont1* és *csomópont4*.
+Ebben a példában a hello frissítése nem sikerült a frissítési tartomány *MYUD1* és két partíció (*744c8d9f-1d26-417e-a60e-cd48f5c098f0* és *4b43f4d8-b26b-424e-9307-7a7a62e79750*) volt akadt-e. hello partíciók akadt volt, mert hello futásidejű nem tooplace elsődleges replikára változott (*WaitForPrimaryPlacement*) a célcsomópontokat *csomópont1* és *csomópont4*.
 
-A **Get-ServiceFabricNode** parancs segítségével ellenőrizze, hogy a két csomópont frissítési tartomány *MYUD1*. A *UpgradePhase* szerint *PostUpgradeSafetyCheck*, ami azt jelenti, hogy a biztonsági ellenőrzést követően a frissítési tartomány minden csomópontja rendelkezik is megjelenhetnek. Ezt az információt a problémát az új verzió az alkalmazás kódjának mutat. A leggyakoribb problémák a Megnyitás vagy elsődleges kódelérési használatával való előléptetést hibákat.
+Hello **Get-ServiceFabricNode** parancs lehet frissítési tartomány a két csomópont által használt tooverify *MYUD1*. Hello *UpgradePhase* szerint *PostUpgradeSafetyCheck*, ami azt jelenti, hogy a biztonsági ellenőrzést követően hello frissítési tartomány minden csomópontja rendelkezik is megjelenhetnek. Ezt az információt mutat tooa lehetséges problémát a hello alkalmazáskód hello új verziójával. hello leggyakoribb problémák nyitott hello vagy előléptetés tooprimary kód elérési hibákat.
 
-Egy *UpgradePhase* a *PreUpgradeSafetyCheck* azt jelenti, hogy a frissítési tartomány előkészítése előtt történt meg az problémák merültek. A leggyakoribb problémák ebben az esetben a Bezárás gombra vagy a lefokozás elsődleges kód elérési utakról a hibákat.
+Egy *UpgradePhase* a *PreUpgradeSafetyCheck* azt jelenti, hogy hello frissítési tartomány előkészítése előtt történt meg az problémák merültek. hello leggyakoribb problémák ebben az esetben olyan hello zárja be, vagy az elsődleges kódelérési lefokozás hibákat.
 
-Az aktuális **UpgradeState** van *RollingBackCompleted*, így az eredeti frissítésének kell elvégezte a visszaállítás **FailureAction**, mely automatikusan összesített biztonsági hiba esetén a frissítés. Ha az eredeti frissítésének elvégezték a kézi **FailureAction**, majd a frissítés kellene inkább kell felfüggesztett állapotban, hogy az élő Hibakeresés az alkalmazás.
+aktuális hello **UpgradeState** van *RollingBackCompleted*, így az eredeti frissítés hello kell elvégezte a visszaállítás **FailureAction**, mely automatikusan visszaállítása hello frissítés sikertelenség esetén. Ha a kézi hello eredeti frissítés elvégezték **FailureAction**, majd hello frissítés helyette lenne egy felfüggesztett állapotban tooallow élő hello alkalmazás hibakeresést.
 
 ### <a name="investigate-health-check-failures"></a>Vizsgálja meg a állapotának ellenőrzése sikertelen
-Különböző problémákat, ami bekövetkezhet a frissítési tartományok összes csomópontjának frissítése, és átadja az biztonsági ellenőrzés befejezése után forrása a állapotának ellenőrzése sikertelen. Az alábbi eredménye egy frissítési hiba miatt sikertelen állapotellenőrzést jellemző. A **UnhealthyEvaluations** mező rögzíti, amely szerint a megadott frissítés alkalmával sikertelen állapotellenőrzést pillanatképe [állapotházirend](service-fabric-health-introduction.md).
+Különböző problémákat, ami bekövetkezhet a frissítési tartományok összes csomópontjának frissítése, és átadja az biztonsági ellenőrzés befejezése után forrása a állapotának ellenőrzése sikertelen. hello alábbi eredménye egy frissítési hiba miatt toofailed állapotellenőrzést jellemző. Hello **UnhealthyEvaluations** mező rögzíti a pillanatkép készítése sikertelen a következő hello idő szerint megadott toohello hello frissítési állapot-ellenőrzési eredményeire [állapotházirend](service-fabric-health-introduction.md).
 
 ```
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -141,22 +141,22 @@ MaxPercentUnhealthyDeployedApplications :
 ServiceTypeHealthPolicyMap              :
 ```
 
-Először vizsgálja állapotának ellenőrzése sikertelen kell a Service Fabric állapotmodell érteni. Ilyen alapos megértése, nélkül is láthatja, hogy a két szolgáltatás sérült állapotban, de: *fabric: / DemoApp/Svc3* és *fabric: / DemoApp/Svc2*, együtt a hiba állapotjelentések ("InjectedFault" Ebben az esetben). Ebben a példában két négy szolgáltatások sérült állapotban, amelyek nem éri el az alapértelmezett cél sérült 0 % (*MaxPercentUnhealthyServices*).
+Először vizsgálja állapotának ellenőrzése sikertelen kell hello Service Fabric állapotmodell érteni. Ilyen alapos megértése, nélkül is láthatja, hogy a két szolgáltatás sérült állapotban, de: *fabric: / DemoApp/Svc3* és *fabric: / DemoApp/Svc2*, hello hiba állapotjelentések ("InjectedFault együtt "Ebben az esetben). Ebben a példában két négy szolgáltatások sérült állapotban, amelyek nem éri el hello alapértelmezett cél sérült 0 % (*MaxPercentUnhealthyServices*).
 
-A frissítés fel lett függesztve, hibás megadásával egy **FailureAction** manuális, ha a frissítés megkezdése. Ez a mód lehetővé teszi vizsgálja meg az élő rendszer a hibás állapotban lévő minden további megtétele előtt.
+hello frissítés fel lett függesztve, hibás megadásával egy **FailureAction** , ha manuális elindítása hello frissítését. Ez a mód lehetővé teszi tooinvestigate hello élő rendszer hello sikertelen állapotban előtt további lépéseket.
 
 ### <a name="recover-from-a-suspended-upgrade"></a>A felfüggesztett frissítés helyreállítása
-A visszaállítás **FailureAction**, az egyetlen helyreállítási szükséges, mert a frissítés automatikusan visszaállítja a meghibásodása esetén. A kézi **FailureAction**, több helyreállítási lehetőség:
+A visszaállítás **FailureAction**, nincs helyreállítási hello frissítés automatikusan visszaállítja a futtatása sikertelen, mert szükség van. A kézi **FailureAction**, több helyreállítási lehetőség:
 
 1.  a visszaállítás eseményindító
-2. Végezze el a frissítési fennmaradó manuális
-3. A figyelt frissítésének folytatása
+2. Manuálisan végezze el a hello maradéka hello frissítése
+3. Folytatás hello figyelt frissítése
 
-A **Start-ServiceFabricApplicationRollback** parancs használható bármikor visszaállítása az alkalmazás indításához. A parancs sikeresen adja vissza, ha a visszaállítási kérelem regisztrálva van a rendszerben, és ezt követően hamarosan elindul.
+Hello **Start-ServiceFabricApplicationRollback** parancs minden alkalommal toostart hello alkalmazás visszaállítása lehet használni. Hello parancs sikeresen adja vissza, ha hello visszaállítási kérés hello rendszerben regisztrálva van, és ezt követően hamarosan elindul.
 
-A **Resume-ServiceFabricApplicationUpgrade** parancs segítségével végezze el a frissítési fennmaradó manuálisan, egyszerre több frissítési tartományt. Ebben az üzemmódban csak biztonsági ellenőrzéseket hajtja végre a rendszer. Nincs több állapotellenőrzést végez. Ez a parancs csak lehet használni a *UpgradeState* látható *RollingForwardPending*, ami azt jelenti, hogy az aktuális frissítési tartomány frissítése befejeződött, de a következő nem indult el (függőben).
+Hello **Resume-ServiceFabricApplicationUpgrade** parancs használható tooproceed keresztül hello hello maradéka frissítse manuálisan, egyszerre több frissítési tartományt. Ebben az üzemmódban csak biztonsági ellenőrzéseket hello rendszer hajtja végre. Nincs több állapotellenőrzést végez. Ez a parancs csak használható, ha hello *UpgradeState* látható *RollingForwardPending*, ami azt jelenti, hogy hello jelenlegi frissítési tartománya befejezte a frissítését, de hello mellett egy nem indult el (függőben).
 
-A **frissítés-ServiceFabricApplicationUpgrade** végrehajtás alatt álló ellenőrzi és folytatni a figyelt frissítés mindkét biztonsági parancs használható.
+Hello **frissítés-ServiceFabricApplicationUpgrade** parancsot a mind biztonsági és állapot-ellenőrzést használt tooresume figyelt hello frissítés alatt elvégezhető.
 
 ```
 PS D:\temp> Update-ServiceFabricApplicationUpgrade fabric:/DemoApp -UpgradeMode Monitored
@@ -180,36 +180,36 @@ ServiceTypeHealthPolicyMap              :
 PS D:\temp>
 ```
 
-A frissítés továbbra is fennáll, a frissítési tartomány, ahol utolsó felfüggesztették és azonos frissítse a paraméterek és az állapotházirendeket, mielőtt használja. Ha szükséges, a frissítési paraméterek és a fenti kimenetben megjelenő állapotházirendeket módosítható ugyanazzal a paranccsal, ha a frissítés folytatása. Ebben a példában a frissítés a figyelt módban, a paraméterek és az állapotházirendeket változatlan folytatódik.
+hello frissítés az hello frissítési tartomány, ahol utolsó a felfüggesztés és a használata hello azonos frissítse a paraméterek és az állapotházirendeket, mielőtt folytatódik. Szükség esetén hello frissítési paraméterek és az állapotházirendeket kimeneti megelőző hello látható azonos parancsot, amikor hello frissítés folytatja hello lehet módosítani. Ebben a példában a figyelt módban, hello paraméterek és változatlan hello állapotházirendeket hello frissítés folytatódik.
 
 ## <a name="further-troubleshooting"></a>További hibaelhárításhoz
-### <a name="service-fabric-is-not-following-the-specified-health-policies"></a>A Service Fabric nem követi a megadott házirendek
+### <a name="service-fabric-is-not-following-hello-specified-health-policies"></a>A Service Fabric nem követi a megadott hello házirendek
 Lehetséges ok: 1:
 
-A Service Fabric összes százalékos fordítja le az entitások (például a replikákat, partíciók és szolgáltatások) állapotának kiértékelését tényleges számok, és mindig teljes entitások kerekít. Például ha a maximálisan engedélyezett *MaxPercentUnhealthyReplicasPerPartition* 21 %, és öt replikákat, akkor a Service Fabric lehetővé teszi, hogy legfeljebb két nem megfelelő állapotú replika (Ez azt jelenti, hogy`Math.Ceiling (5*0.21)`). Ebből kifolyólag állapotházirendeket ennek megfelelően kell állítani.
+A Service Fabric összes százalékos fordítja le az entitások (például a replikákat, partíciók és szolgáltatások) tényleges szám állapotának értékeléséhez, és mindig toowhole entitások kerekít. Például, ha hello maximális *MaxPercentUnhealthyReplicasPerPartition* 21 %, és öt replikákat, majd a Service Fabric lehetővé teszi, hogy másolatot tootwo sérült replikák (Ez azt jelenti, hogy`Math.Ceiling (5*0.21)`). Ebből kifolyólag állapotházirendeket ennek megfelelően kell állítani.
 
 2 lehetséges ok:
 
-Házirendek teljes szolgáltatások és szolgáltatáspéldány nem adott százalékos értékben vannak megadva. Például a frissítés, ha egy alkalmazás négy előtt szolgáltatás példányok A, B, C és D, ahol D szolgáltatás állapota nem megfelelő, de minimális hatással van az alkalmazáshoz. Azt szeretnénk, figyelmen kívül hagyja az ismert sérült szolgáltatás D frissítés során, és a paraméter *MaxPercentUnhealthyServices* 25 %, feltéve, hogy csak A, B és C kell lennie kifogástalan.
+Házirendek teljes szolgáltatások és szolgáltatáspéldány nem adott százalékos értékben vannak megadva. Például a frissítés, ha egy alkalmazás négy előtt szolgáltatás példányok A, B, C és D, ahol D szolgáltatás állapota nem megfelelő, de csekély hatást toohello alkalmazással. Azt szeretnénk, hogy közben a frissítést, és állítsa be hello paraméter nem megfelelő állapotú szolgáltatás D ismert tooignore hello *MaxPercentUnhealthyServices* toobe 25 %, feltéve, hogy csak A, B és C kell toobe kifogástalan.
 
-Azonban a frissítés során D válhat kifogástalan közben C akkor kerül sérült állapotba. A frissítés továbbra is szeretné sikertelen, mert a szolgáltatások csak 25 %-át sérült állapotban. Azonban váratlan hibák miatt váratlanul sérült helyett D. alatt C eredményezi Ebben a helyzetben D kell modellezni egy másik szolgáltatás típusa a, B és c kiszolgálóra. Állapotházirendeket szolgáltatás meg van adva, mert különböző szolgáltatásokhoz különböző sérült százalékos küszöbérték alkalmazhatja. 
+Azonban hello a frissítés során D válhat kifogástalan közben C akkor kerül sérült állapotba. hello frissítés továbbra is szeretné sikertelen, mert csak 25 %-át hello szolgáltatások sérült állapotban. Azonban váratlan hibák miatt tooC alatt váratlanul sérült helyett D. eredményezi Ebben a helyzetben D kell modellezni egy másik szolgáltatás típusa a, B és c kiszolgálóra. Házirendek szolgáltatás meg van adva, mert különböző sérült százalékos küszöbértékek alkalmazott toodifferent szolgáltatások is lehet. 
 
-### <a name="i-did-not-specify-a-health-policy-for-application-upgrade-but-the-upgrade-still-fails-for-some-time-outs-that-i-never-specified"></a>Az alkalmazásfrissítés állapotházirend nem szeretnék adta meg, de néhány soha nem megadott időtúllépési továbbra is sikertelen, a frissítés
-Ha állapotházirendeket nem biztosított a frissítési kérelmet, hogy azok kell venni a *ApplicationManifest.xml* aktuális alkalmazás verziója. Például ha az 1.0-s verziója a 2.0-s verziójában, alkalmazás állapotházirendeket 1.0-s verziója a megadott alkalmazás X frissít szolgálnak. Ha a frissítés egy másik állapotházirend kell használni, majd a házirend kell adni a frissítési API-hívás alkalmazás részeként. A frissítés során csak alkalmazni a házirendeket, az API-hívás megadott. Ha a frissítés befejeződött, a házirendek szerepel a *ApplicationManifest.xml* szolgálnak.
+### <a name="i-did-not-specify-a-health-policy-for-application-upgrade-but-hello-upgrade-still-fails-for-some-time-outs-that-i-never-specified"></a>I nem adta meg az alkalmazásfrissítés állapotházirend, de néhány soha nem megadott időtúllépési továbbra sem sikerül hello frissítése
+Házirendek nem biztosított toohello frissítési kérelmet, ha azok a hello végrehajtott *ApplicationManifest.xml* hello az aktuális alkalmazás verzió. Például ha alkalmazás X 1.0-s verziója tooversion 2.0 rendszert szeretne frissíteni, 1.0-s verziója a megadott alkalmazás állapotházirendeket fogja használni. Ha egy másik állapotházirend hello frissítéshez kell használni, hello házirend hello alkalmazás frissítési API-hívás részeként megadott toobe van szüksége. hello hello API-hívás részeként megadott házirendek csak érvényes hello frissítés során. Hello frissítés végrehajtása után hello házirendek megadott hello *ApplicationManifest.xml* szolgálnak.
 
 ### <a name="incorrect-time-outs-are-specified"></a>Helytelen időtúllépéseket vannak megadva.
-Akkor lehet, hogy rendelkezik már azon, hogy következményeiről időtúllépéseket érvénytelenként van beállítva. Például előfordulhat, hogy egy *UpgradeTimeout* meg kisebb, mint a *UpgradeDomainTimeout*. A válasz hibát ad vissza. Hibák vannak adott vissza, ha a *UpgradeDomainTimeout* kisebb, mint a *HealthCheckWaitDuration* és *HealthCheckRetryTimeout*, vagy ha  *UpgradeDomainTimeout* kisebb, mint a összege *HealthCheckWaitDuration* és *HealthCheckStableDuration*.
+Akkor lehet, hogy rendelkezik már azon, hogy következményeiről időtúllépéseket érvénytelenként van beállítva. Például előfordulhat, hogy egy *UpgradeTimeout* , amely kisebb, mint hello *UpgradeDomainTimeout*. hello választ ki kell, hogy hibát ad vissza. Ha hello visszaküldött hibák *UpgradeDomainTimeout* kisebb, mint a hello összege *HealthCheckWaitDuration* és *HealthCheckRetryTimeout*, vagy ha  *UpgradeDomainTimeout* kisebb, mint a hello összege *HealthCheckWaitDuration* és *HealthCheckStableDuration*.
 
 ### <a name="my-upgrades-are-taking-too-long"></a>Túl sokáig tart a frissítések
-A frissítés befejezéséhez ideje az állapot-ellenőrzési eredményeire és a megadott időtúllépéseket függ. Mennyi ideig tart, telepítése, és az alkalmazás stabilizálását függő állapot-ellenőrzési eredményeire és időtúllépéseket. Túl agresszív a várakozási idő alatt több sikertelen frissítések jelentheti, ezért azt javasoljuk, hosszabb időtúllépéseket konzervatív módon kezdve.
+egy frissítési toocomplete hello ideje hello állapot-ellenőrzési eredményeire és a megadott időtúllépéseket függ. Állapot-ellenőrzési eredményeire és időtúllépéseket függ, hogy mennyi ideig tart toocopy, telepítése és stabilizálását hello alkalmazás. Túl agresszív a várakozási idő alatt több sikertelen frissítések jelentheti, ezért azt javasoljuk, hosszabb időtúllépéseket konzervatív módon kezdve.
 
-Itt gyors frissítő megtalálható a várakozási idő és a frissítési alkalommal együttműködését:
+Íme egy gyors frissítő hogyan hello időtúllépéseket hello frissítési alkalommal használják a:
 
 Frissíti a frissítési tartományok nem tudja elvégezni gyorsabb, mint a *HealthCheckWaitDuration* + *HealthCheckStableDuration*.
 
 Frissítés nem sikerülne addig nem kerülhet sor gyorsabb, mint a *HealthCheckWaitDuration* + *HealthCheckRetryTimeout*.
 
-A frissítési idő egy frissítési tartomány korlátozza *UpgradeDomainTimeout*.  Ha *HealthCheckRetryTimeout* és *HealthCheckStableDuration* mindkettő nem nulla, és az alkalmazás állapotának tartja oda-vissza vált, akkor a frissítés végül időtúllépése a *UpgradeDomainTimeout*. *UpgradeDomainTimeout* számbavételi le egyszer a frissítés az aktuális frissítési tartomány kezdete a kezdődik.
+hello egy frissítési tartomány frissítési idő korlátozza *UpgradeDomainTimeout*.  Ha *HealthCheckRetryTimeout* és *HealthCheckStableDuration* mindkettő nem nulla és hello alkalmazás állapotáról hello tartja oda-vissza vált, akkor hello frissítés végül időtúllépése a *UpgradeDomainTimeout*. *UpgradeDomainTimeout* számbavételi egyszer indítása hello frissítés az aktuális frissítési tartomány hello kezdődik.
 
 ## <a name="next-steps"></a>Következő lépések
 [Az alkalmazás használata a Visual Studio frissítése](service-fabric-application-upgrade-tutorial.md) végigvezeti Önt az alkalmazásfrissítés Visual Studio használatával.
@@ -218,6 +218,6 @@ A frissítési idő egy frissítési tartomány korlátozza *UpgradeDomainTimeou
 
 Szabályozhatja, hogy az alkalmazás használatával frissíti [frissítése paraméterek](service-fabric-application-upgrade-parameters.md).
 
-Az alkalmazásfrissítéseket által használatának megtanulása kompatibilissé [Adatszerializálás](service-fabric-application-upgrade-data-serialization.md).
+Az alkalmazásfrissítéseket Learning kompatibilissé hogyan toouse [Adatszerializálás](service-fabric-application-upgrade-data-serialization.md).
 
-Összetettebb funkciók használata az alkalmazás frissítésekor szakaszra [Speciális témakörök](service-fabric-application-upgrade-advanced.md).
+Ismerje meg, hogyan toouse speciális azáltal túl az alkalmazás frissítésekor funkció[Speciális témakörök](service-fabric-application-upgrade-advanced.md).

@@ -1,6 +1,6 @@
 ---
-title: "Az IntelliJ Azure eszköztára |} Microsoft Docs"
-description: "További tudnivalók az Azure eszközkészlet az intellij-t."
+title: "az IntelliJ eszköztára aaaAzure |} Microsoft Docs"
+description: "További információk a hello Azure eszközkészlet az intellij-t."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,36 +14,36 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: robmcm;asirveda
-ms.openlocfilehash: 75a8880f3d28c290236b87677648fdd915effea2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 59daba34200b4e5efcba9af9eba71b648a0bfa98
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-toolkit-for-intellij"></a>IntelliJ-hez készült Azure-eszközkészlet
-Az IntelliJ Azure eszköztára és sablonok, amelyekkel könnyedén, fejleszthet, teszteléséhez, alkalmazások létrehozása és telepítése az Azure az IntelliJ integrált fejlesztési környezeti (IDE) használatával biztosít. Egy nyílt forráskódú projekt, amelynek a forráskód nem érhető el a a [MIT licenccel a projekt helyről](https://github.com/microsoft/azure-tools-for-java).
+hello Azure eszköztára IntelliJ sablonok és funkciókat, amelyeket felhasználhat tooeasily létrehozása, fejlesztése, teszteléséhez, és Azure-alkalmazások telepítését a hello IntelliJ integrált fejlesztési környezeti (IDE). Egy nyílt forráskódú projekt, amelynek forráskódját, akkor hello [MIT licenccel hello projekt helyről](https://github.com/microsoft/azure-tools-for-java).
 
 > [!NOTE]
-> Az Eclipse IDE egy Azure eszközkészletét is van. További információkért lásd: [Eclipse Azure eszköztára](azure-toolkit-for-eclipse.md).
+> Az Eclipse IDE hello Azure eszközkészletét is van. További információkért lásd: [Eclipse Azure eszköztára](azure-toolkit-for-eclipse.md).
 > 
 > 
 
-## <a name="get-started-with-the-azure-toolkit-for-intellij"></a>Ismerkedés az Azure-eszközkészlet az intellij-t
-A következő cikkek segítséget nyújtanak az intellij-t az Azure-eszközkészlet használatának megkezdéséhez:
+## <a name="get-started-with-hello-azure-toolkit-for-intellij"></a>Ismerkedés az Azure-eszközkészlet hello IntelliJ
+a következő cikkek hello segít az IntelliJ hello Azure eszközkészlet használatának megkezdéséhez:
 
-* [What's new in IntelliJ Azure eszköztára](azure-toolkit-for-intellij-whats-new.md)
-* [Az IntelliJ-hez készült Azure-eszközkészlet telepítése](azure-toolkit-for-intellij-installation.md)
-* [Bejelentkezési utasításokat az Azure-eszközkészlet az intellij-t](azure-toolkit-for-intellij-sign-in-instructions.md)
+* [What's new in hello IntelliJ Azure eszköztára](azure-toolkit-for-intellij-whats-new.md)
+* [Az IntelliJ hello Azure eszközkészlet telepítése](azure-toolkit-for-intellij-installation.md)
+* [Bejelentkezési utasításokat hello Azure eszközkészlet az intellij-t](azure-toolkit-for-intellij-sign-in-instructions.md)
 * [Hello World webalkalmazás létrehozása az intellij-t az Azure](app-service-web/app-service-web-intellij-create-hello-world-web-app.md)
 
-## <a name="use-the-azure-toolkit-for-intellij"></a>Az intellij-t az Azure eszközkészlet használata
-A következő cikkekben azt mutatják be, Azure funkciók hozzáadása a Java-projektek az intellij-t az Azure-eszközkészlet segítségével:
+## <a name="use-hello-azure-toolkit-for-intellij"></a>Az IntelliJ hello Azure eszközkészlet használata
+hello következő cikkeket azt mutatják be az IntelliJ tooadd Azure funkció tooyour Java projektek hello Azure eszközkészlet használatával:
 
-* [Az intellij-t az Azure-kezelővel használatával virtuális gépek kezelése](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
-* [Az intellij-t az Azure-kezelővel a storage-fiókok kezelése](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
-* [A rugó rendszerindító alkalmazás közzététele egy Docker-tároló, az intellij-t az Azure-eszközkészlet használatával](azure-toolkit-for-intellij-publish-spring-boot-docker-app.md)
-* [A webes alkalmazás is egy Docker-tároló közzé a intellij-t az Azure-eszközkészlet használatával](azure-toolkit-for-intellij-publish-as-docker-container.md)
-* [Az IntelliJ Idea HDInsight-eszközei beépülő használata Spark-alkalmazások a HDInsight Spark Linux-fürtök létrehozása](hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Virtuális gépek felügyelni az IntelliJ hello Azure Explorer használatával](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
+* [Az IntelliJ hello Azure Explorer használatával storage-fiókok kezelése](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
+* [A rugó rendszerindító alkalmazás közzététele egy Docker-tároló, IntelliJ hello Azure eszközkészlet használatával](azure-toolkit-for-intellij-publish-spring-boot-docker-app.md)
+* [A webes alkalmazás is egy Docker-tároló közzé a IntelliJ hello Azure eszközkészlet használatával](azure-toolkit-for-intellij-publish-as-docker-container.md)
+* [Használja a HDInsight-eszközei beépülő moduljának IntelliJ IDEA toocreate Spark-alkalmazások a HDInsight Spark Linux-fürtök](hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md)
 
 ## <a name="next-steps"></a>Következő lépések
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure-beli futtató fiók konfigurálása | Microsoft Docs"
-description: "Ez az oktatóanyag végigvezeti az egyszerű biztonsági hitelesítés létrehozásán, tesztelésén és használatán az Azure Automationben."
+title: "egy Azure futtató fiók aaaConfigure |} Microsoft Docs"
+description: "Ez az oktatóanyag bemutatja, hogyan rendszerbiztonsági hitelesítés az Azure Automationben hello létrehozása, tesztelése és példa használatát."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -17,79 +17,79 @@ ms.date: 04/06/2017
 ms.author: magoedte
 ROBOTS: NOINDEX
 redirect_url: /azure/automation/
-redirect_document_id: TRUE
-ms.openlocfilehash: f88c775eba19bb227d0e206d6420c08b57305b92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 06675d2f6b9d8e7260ffaead4f2b2f61c2b98d13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-runbooks-with-an-azure-run-as-account"></a>Runbookok hitelesítése Azure-beli futtató fiókkal
-Ebből a cikkből megtudhatja, hogyan konfigurálhat Azure Automation-fiókot az Azure Portalon. Ehhez a Futtató fiók funkció segítségével hitelesítse az Azure Resource Managerben vagy az Azure Service Managerben erőforrásokat kezelő runbookokat.
+Ez a cikk bemutatja, hogyan tooconfigure egy Azure Automation fiókként hello Azure-portálon. toodo Igen, használja a hello Futtatás mint fiók funkció tooauthenticate runbookok Azure Resource Manager vagy az Azure szolgáltatásfelügyelet erőforrások kezelése.
 
-Amikor egy Automation-fiókot hoz létre az Azure Portalon, automatikusan két fiók jön létre:
+Automation-fiók létrehozásakor a hello Azure-portál automatikusan két fiókokat hozhat létre:
 
-* Egy futtató fiók. Ez a fiók létrehoz egy egyszerű szolgáltatást az Azure Active Directory-ban (Azure AD), valamint egy tanúsítványt. Emellett kiosztja a Közreműködő szerepköralapú hozzáférés-vezérlést (RBAC), amely runbookok használatával kezeli a Resource Manager-erőforrásokat.
-* Egy klasszikus futtató fiókot. Ez a fiók feltölt egy felügyeleti tanúsítványt, amelynek használatával a Szolgáltatásfelügyelet erőforrásai vagy a klasszikus erőforrások kezelhetők runbookokkal.
+* Egy futtató fiók. Ez a fiók létrehoz egy egyszerű szolgáltatást az Azure Active Directory-ban (Azure AD), valamint egy tanúsítványt. Azt is rendel hello közreműködői szerepköralapú hozzáférés-vezérlést (RBAC), amely kezeli a Resource Managerhez tartozó erőforrások runbookok használatával.
+* Egy klasszikus futtató fiókot. Ez a fiók feltölt egy felügyeleti tanúsítványt, amely toomanage szolgáltatásfelügyelet vagy hagyományos erőforrások használt runbookok használatával.
 
-Az Automation-fiók létrehozása leegyszerűsíti a folyamatot, valamint segít a tervezés gyors megkezdésében és a runbookok üzembe helyezésében az automatizálási szükségletek támogatására.
+Az automatizálási fiók egyszerűbben hello és a segítségével gyorsan indítása létrehozása és telepítése a runbookok toosupport létrehozása az automation kell.
 
 A futtató és klasszikus futtató fiókok segítségével a következőket teheti meg:
 
-* Szabványos módot biztosíthat az Azure-hitelesítésre abban az esetben, ha runbookokból származó Resource Manager- vagy Azure Service Management-erőforrásokat felügyel az Azure Portal webhelyen.
-* Automatizálhatja az Azure Alerts szolgáltatásban konfigurálható globális runbookok használatát.
+* Azure egy szabványos utat tooauthenticate adja meg, a runbookokat hello Azure-portálon az erőforrás-kezelő vagy a Service Management erőforrások kezelésekor.
+* Globális runbookokat, konfigurálhatja a Azure riasztások hello használata automatizálásához.
 
 > [!NOTE]
-> Az Automation globális runbookokhoz készült [Azure Alert integrációs funkció](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) használatához szükség van egy futtató és klasszikus futtató fiókokkal konfigurált Automation-fiókra. Kiválaszthat egy olyan Automation-fiókot, amelyhez már tartozik futtató és klasszikus futtató fiók, vagy létrehozhat egy új Automation-fiókot.
+> Hello [Azure riasztási integrációs szolgáltatás](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) az Automation szolgáltatásban, globális runbookok Automation-fiók be van állítva egy futtató fiókot és a klasszikus futtató fiók szükséges. Automation-fiók, amely már definiálva van futtató és a klasszikus futtató fiókokat is kiválaszthatja, vagy dönthet úgy toocreate új Automation-fiók.
 >  
 
-A cikkben bemutatjuk, hogyan hozhat létre Automation-fiókot az Azure Portalról, hogyan frissítheti Automation-fiókját az Azure PowerShell-lel, hogyan kezelheti a fiók konfigurációját, illetve hogyan végezhet hitelesítést a runbookokban.
+Ez a cikk bemutatja, hogyan toocreate hello Azure-portálon az Automation-fiók egy Automation-fiók frissítéséhez, Azure PowerShell használatával, hello fiók konfiguráció kezelése, és a runbookok tudják hitelesíteni magukat.
 
-Az Automation-fiók létrehozása előtt érdemes áttekintenie és megfontolnia a következőket:
+Automation-fiók létrehozása előtt egy jó ötlet toounderstand, és vegye figyelembe a következőket hello:
 
-* Az Automation-fiók létrehozása nincs hatással a korábban a klasszikus vagy a Resource Manager-alapú üzemi modell keretében esetleg már létrehozott Automation-fiókokra.
-* Ez a folyamat kizárólag olyan Automation-fiókok esetében működik, amelyeket az Azure Portalon hozott létre. Ha a klasszikus Azure portálról hoz létre fiókot, a rendszer nem replikálja a futtató fiók konfigurációját.
-* Ha jelenleg rendelkezik olyan runbookokkal és objektumokkal (például ütemezésekkel vagy változókkal), amelyeket klasszikus erőforrások felügyeletére hozott létre, és szeretné, hogy ezek a runbookok hitelesítést végezzenek az új klasszikus futtató fiókkal, a következő lehetőségek közül választhat:
+* Automation-fiók létrehozása nincs hatással lehet, hogy már létrehozott vagy a klasszikus hello, vagy a Resource Manager üzembe helyezési modellben az Automation-fiók.
+* hello folyamat csak a hello Azure-portálon létrehozott Automation-fiók esetén használható. Kísérlet egy fiókot a klasszikus Azure portálon hello toocreate nem replikálja hello Futtatás mint fiók konfigurálásával.
+* Ha már rendelkezik forgatókönyve és eszköze (például ütemezések vagy változók) hely toomanage hagyományos erőforrások, és azt szeretné, hogy a runbookok tooauthenticate hello új klasszikus futtató fiókhoz, hello alábbi módszerekkel:
 
-  * Klasszikus futtató fiók létrehozásához kövesse a „Saját futtató fiók kezelése” szakaszban megadott utasításokat. 
-  * Meglévő fiók frissítéséhez használja „Az Automation-fiók frissítése a PowerShell használatával” szakaszban megadott PowerShell-szkriptet.
-* Ha az új futtató fiókkal és a klasszikus futtató Automation-fiókkal szeretne hitelesítést végezni, a [Hitelesítésikód-példák](#authentication-code-examples) szakaszban található példakód segítségével módosítania kell meglévő runbookjait.
+  * toocreate klasszikus futtató fiókot, hello "Kezelése a futtató fiók" szakasz hello utasításait kövesse. 
+  * tooupdate a meglévő fiók használata hello PowerShell parancsfájl-hello "Az Automation-fiók frissítése a PowerShell használatával" szakaszában.
+* a meglévő runbookok hello hello szakaszban megadott példakódot toomodify szüksége tooauthenticate hello új futtató fiók és a klasszikus Futtatás mint Automation-fiók használatával, [hitelesítésikód-példák](#authentication-code-examples).
 
     >[!NOTE]
-    >A futtató fiók Resource Manager-erőforrásokon, tanúsítványalapú szolgáltatásnévvel történő hitelesítésre szolgál. A klasszikus futtató fiók Service Manager-erőforrásokon, felügyeleti tanúsítvánnyal történő hitelesítésére szolgál.
+    >a Futtatás mint fiók hello erőforrás-kezelő erőforrásoknak hello-alapú szolgáltatás egyszerű hitelesítést szolgál. hello klasszikus Futtatás mint fiók felügyeleti tanúsítvánnyal szolgáltatásfelügyelet erőforrásokon hitelesítéséhez van.
 
-## <a name="create-an-automation-account-from-the-azure-portal"></a>Egy Automation-fiók létrehozása az Azure Portalról
-Ebben a szakaszban olyan Azure Automation-fiókot hoz létre az Azure Portalról, amely egy futtató fiókot és egy klasszikus futtató fiókot is létrehoz.
+## <a name="create-an-automation-account-from-hello-azure-portal"></a>Hello Azure-portálon az Automation-fiók létrehozása
+Ebben a szakaszban hoz létre egy Azure Automation-fiók hello Azure-portálon, ami viszont hoz létre egy futtató fiókot és a klasszikus futtató fiókot.
 
 >[!NOTE]
->Automation-fiók létrehozásához a Szolgáltatás-adminisztrátorok szerepkör tagjának, vagy azon előfizetés társadminisztrátorának kell lennie, amely hozzáférést biztosít az előfizetéshez. Ezenfelül felhasználóként hozzá kell legyen rendelve az előfizetés alapértelmezett Active Directory-példányához. A fiókhoz nem szükséges kiemelt szerepkört rendelni.
+>Automation-fiók toocreate, a hello szolgáltatás-Rendszergazdák szerepkör tagjának vagy hello előfizetést biztosít hozzáférést toohello előfizetés társadminisztrátoraként kell lennie. Meg kell adni egy felhasználói toothat előfizetés alapértelmezett Active Directory-példányként. hello fióknak nem szükséges egy kiemelt szerepkörhöz hozzárendelt toobe.
 >
->Ha nem tagja az előfizetéshez tartozó Active Directory-példánynak, mielőtt hozzáadják az előfizetés társadminisztrátori szerepköréhez, vendégként lesz hozzáadva az Active Directoryhoz. Ez esetben „Nincs engedélye létrehozni…” figyelmeztető üzenetet kap az **Automation-fiók hozzáadása** panelen.
+>Ha nem tagja Active Directory-példányban hello előfizetés hello előfizetés társadminisztrátoraként szerepe toohello vannak adása előtt, hogy megkapja tooActive Directory vendégként. Ebben a példában kapni fog egy "nem rendelkezik engedélyekkel toocreate..." Figyelmeztetés-hello **Automation-fiók hozzáadása** panelen.
 >
->Az először a társadminisztrátori szerepkörhöz hozzáadott felhasználók eltávolíthatók az előfizetéshez tartozó Active Directory-példányból, majd újra hozzáadhatók, így teljes jogú felhasználók lehetnek az Active Directoryban. Ez a helyzet úgy ellenőrizhető, ha az Azure Portal **Azure Active Directory** panelén a **Felhasználók és csoportok** és a **Minden felhasználó** elemre kattint, majd a konkrét felhasználó kiválasztása után a **Profil** elemet választja. A felhasználók profilja alatti **Felhasználó típusa** attribútum értéke ne legyen **Guest** (vendég).
+>Felhasználók, akik toohello közös rendszergazdai szerepkör először eltávolíthatja hello előfizetés Active Directory-példányban, és újból hozzáadták toomake hozzáadták azokat a teljes felhasználói az Active Directoryban. tooverify ebben a helyzetben a hello **Azure Active Directory** hello Azure-portálon kiválasztásával ablaktábláján **felhasználók és csoportok**, kiválasztásával **minden felhasználó** és kiválasztása után adott felhasználó hello kiválasztásával **profil**. hello értékének hello **felhasználótípust** attribútum hello felhasználó profil alapján nem értékűnek kell lennie **vendég**.
 >
 
-1. Jelentkezzen be az Azure Portalra egy olyan fiókkal, amely tagja az Előfizetés-adminisztrátorok szerepkörnek, és emellett az előfizetés társadminisztrátorának is számít.
+1. Jelentkezzen be az Azure portál egy olyan fiókkal, amely hello előfizetés Rendszergazdák szerepkör tagja, és hello előfizetés társadminisztrátoraként toohello.
 
 2. Válassza az **Automation-fiókok** elemet.
 
-3. Az **Automation-fiókok** panelen kattintson a **Hozzáadás** elemre.
-Ekkor megnyílik az **Automation-fiók hozzáadása** panel.
+3. A hello **Automation-fiók** panelen kattintson a **Hozzáadás**.
+Hello **Automation-fiók hozzáadása** panel nyílik meg.
 
- ![Az „Automation-fiók hozzáadása” panel](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
+ ![hello "Hozzáadása Automation-fiók" panel](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
 
    > [!NOTE]
-   > Ha a fiók nem tagja az Előfizetés-adminisztrátorok szerepkörnek, illetve nem az előfizetés társadminisztrátora, az **Automation-fiók hozzáadása** panelen a következő figyelmeztetés jelenik meg:
+   > Ha a fiók nem hello előfizetés Rendszergazdák szerepkör tagja és hello előfizetés társadminisztrátoraként, hello a következő figyelmeztetés jelenik meg hello **Automation-fiók hozzáadása** panel:
    >
    >![Az Automation-fiókhoz kapcsolódó figyelmeztetés hozzáadása](media/automation-sec-configure-azure-runas-account/create-account-without-perms.png)
    >
    >
 
-4. Az **Automation-fiók hozzáadása** panel **Név** mezőjében adjon meg egy nevet az új Automation-fióknak.
+4. A hello **Automation-fiók hozzáadása** paneljén, hello **neve** mezőbe írja be az új Automation-fiók nevét.
 
-5. Ha több előfizetéssel rendelkezik, tegye a következőket:
+5. Ha egynél több előfizetéssel rendelkezik, a hello, a következő:
 
-    a. Az **Előfizetés** területen adjon meg egy előfizetést az új fiókhoz.
+    a. A **előfizetés**, adjon meg egy új fiókot hello.
 
     b. Az **Erőforráscsoport** területen kattintson az **Új létrehozása** vagy a **Meglévő használata** elemre.
 
@@ -98,189 +98,189 @@ Ekkor megnyílik az **Automation-fiók hozzáadása** panel.
 6. Az **Azure-beli futtató fiók létrehozása** területen válassza az **Igen** lehetőséget, majd kattintson a **Létrehozás** elemre.
 
    > [!NOTE]
-   > Ha a **Nem** beállítás kiválasztásával úgy dönt, hogy nem hozza létre a futtató fiókot, egy figyelmeztető üzenet jelenik meg az **Automation-fiók hozzáadása** panelen. A fiók az Azure Portalon jön létre, azonban nem kap megfelelő hitelesítési identitást a klasszikus vagy Resource Manager-alapú előfizetés címtárszolgáltatásában. Következésképpen a fiók az előfizetéshez tartozó erőforrásokhoz sem fér hozzá. Ez megakadályozza, hogy az erre a fiókra hivatkozó runbookok hitelesítést végezhessenek, illetve feladatokat futtathassanak az ezekben az üzemi modellekben található erőforrások alapján.
+   > Ha úgy dönt, nem toocreate hello Futtatás mint fiók kiválasztásával **nem**, megjelenik egy figyelmeztető üzenet hello **Automation-fiók hozzáadása** panelen. Bár a hello-fiók létrehozása az Azure-portálon hello nem rendelkezik a megfelelő hitelesítési identitását a klasszikus vagy erőforrás-kezelő előfizetési címtárszolgáltatás belül. Következésképpen hello fióknak nincs hozzáférési tooresources az előfizetésben. Ez megakadályozza, hogy az erre a fiókra hivatkozó runbookok hitelesítést végezhessenek, illetve feladatokat futtathassanak az ezekben az üzemi modellekben található erőforrások alapján.
    >
-   > ![Figyelmeztető üzenet az „Automation-fiók hozzáadása” panelen](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)
+   > ![Figyelmeztető üzenet hello "Hozzáadása Automation-fiók" panelen](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)
    >
-   > Továbbá, mivel nem hozott létre szolgáltatásnevet, a rendszer nem osztja ki a Közreműködő szerepkört.
+   > Emellett egyszerű hello szolgáltatást nem jön létre, mert hello közreműködői szerepkör nincs hozzárendelve.
    >
 
-7. Amíg az Azure létrehozza az Automation-fiókot, a menü **Értesítések** részén nyomon követheti a folyamat állapotát.
+7. Azure Automation-fiók hello hoz létre, amíg előrehaladásának hello alatt **értesítések** hello menüből.
 
 ### <a name="resources"></a>Erőforrások
-Ha befejeződött az Automation-fiók létrehozása, számos erőforrás automatikusan létrejön. Az erőforrásokat az alábbi két táblázat foglalja össze:
+Ha hello Automation-fiók sikeresen létrejött, a több erőforrás automatikusan létrejönnek meg. a következő két tábla hello hello erőforrások foglalja össze:
 
 #### <a name="run-as-account-resources"></a>Futtató fiók erőforrásai
 
 | Erőforrás | Leírás |
 | --- | --- |
-| AzureAutomationTutorial forgatókönyv | Grafikus mintarunbook, amely bemutatja, hogyan kell a futtató fiókkal hitelesítést végezni, és megjeleníti az összes Resource Manager-alapú erőforrást. |
-| AzureAutomationTutorialScript forgatókönyv | PowerShell-mintarunbook, amely bemutatja, hogyan kell a futtató fiókkal hitelesítést végezni, és megjeleníti az összes Resource Manager-alapú erőforrást. |
-| AzureRunAsCertificate | Tanúsítványobjektum, amely automatikusan létrejön, amikor Automation-fiókot hoz létre, vagy futtatja egy meglévő fiókon az alábbi PowerShell-szkriptet. A tanúsítvány lehetővé teszi az Azure-hitelesítést, így a runbookokból is kezelheti az Azure Resource Manager-erőforrásokat. A tanúsítvány élettartama egy év. |
-| AzureRunAsConnection | Kapcsolatobjektum, amely automatikusan létrejön, amikor Automation-fiókot hoz létre, vagy futtatja egy meglévő fiókon a PowerShell-szkriptet. |
+| AzureAutomationTutorial forgatókönyv | Grafikus példaforgatókönyv, amely bemutatja, hogyan használatával tooauthenticate hello Futtatás mint fiókot, és minden hello Resource Managerhez tartozó erőforrások lekérése. |
+| AzureAutomationTutorialScript forgatókönyv | PowerShell példaforgatókönyv, amely bemutatja, hogyan használatával tooauthenticate hello Futtatás mint fiókot, és minden hello Resource Managerhez tartozó erőforrások lekérése. |
+| AzureRunAsCertificate | automatikusan létrejön egy Automation-fiók létrehozásakor, vagy használja a következő PowerShell-parancsfájl egy létező fiók hello hello tanúsítványeszköz. hello tanúsítvány teszi lehetővé az Azure-ral tooauthenticate, hogy a runbookok Azure Resource Manager-erőforrások kezelése. a tanúsítványnak hello egyéves-élettartamot. |
+| AzureRunAsConnection | hello kapcsolódási eszköz, amely automatikusan létrejön egy Automation-fiók létrehozásakor vagy hello PowerShell-parancsfájl használata a meglévő fiók. |
 
 #### <a name="classic-run-as-account-resources"></a>Klasszikus futtató fiók erőforrásai
 
 | Erőforrás | Leírás |
 | --- | --- |
-| AzureClassicAutomationTutorial forgatókönyv | Grafikus mintarunbook, amely a klasszikus futtató fiók (tanúsítvány) segítségével lekéri az előfizetéshez tartozó, a klasszikus üzemi modellel létrehozott virtuális gépeket, majd megjeleníti a virtuális gépek nevét és állapotát. |
-| AzureClassicAutomationTutorial parancsprogram-forgatókönyv | PowerShell-mintarunbook, amely a klasszikus futtató fiók (tanúsítvány) segítségével lekéri az előfizetéshez tartozó klasszikus virtuális gépeket, majd megjeleníti a virtuális gépek nevét és állapotát. |
-| AzureClassicRunAsCertificate | Automatikusan létrejövő tanúsítványobjektum, amely Azure-hitelesítésre használható, így a klasszikus Azure-erőforrások is kezelhetők a runbookokból. A tanúsítvány élettartama egy év. |
-| AzureClassicRunAsConnection | Automatikusan létrejövő kapcsolatobjektum, amely Azure-hitelesítésre használható, így a klasszikus Azure-erőforrások is kezelhetők a runbookokból. |
+| AzureClassicAutomationTutorial forgatókönyv | Grafikus példaforgatókönyv, amely lekérdezi a hello gépek hello klasszikus telepítési modell használatával egy előfizetésben hello klasszikus futtató fiók (tanúsítvány) használatával hozhatók létre, és ezután ír hello virtuális gép nevét és állapotát. |
+| AzureClassicAutomationTutorial parancsprogram-forgatókönyv | PowerShell példaforgatókönyv, amely lekérdezi az összes előfizetést a klasszikus virtuális gépeinek hello hello klasszikus futtató fiók (tanúsítvány) használatával, és majd hello az írási műveletek a virtuális gép nevét és állapotát. |
+| AzureClassicRunAsCertificate | automatikusan létrehozott hello tanúsítványeszköz használt tooauthenticate az Azure-ral, hogy a runbookok klasszikus Azure-erőforrások kezelése. a tanúsítványnak hello egyéves-élettartamot. |
+| AzureClassicRunAsConnection | hello automatikusan létrehozott kapcsolódási eszköz használata tooauthenticate az Azure-ral, hogy a runbookok klasszikus Azure-erőforrások kezelése. |
 
 ## <a name="verify-run-as-authentication"></a>A futtató fiókos hitelesítés ellenőrzése
-Hajtson végre egy rövid tesztet, amellyel megállapítja, hogy képes-e sikeres hitelesítést végezni az új futtató fiókkal.
+Hajtsa végre egy kis teszt tooconfirm, amely képes sikeresen hitelesíteni hello új futtató fiók használatával.
 
-1. Az Azure Portalon nyissa meg a korábban létrehozott Automation-fiókot.
+1. Hello Azure-portálon nyissa meg a korábban létrehozott hello Automation-fiók.
 
-2. Kattintson a **Runbookok** csempére a forgatókönyvek listájának megnyitásához.
+2. Kattintson a hello **Runbookok** csempe tooopen hello forgatókönyvek listája.
 
-3. Válassza ki az **AzureAutomationTutorialScript** runbookot, majd a runbook elindításához kattintson az **Indítás** gombra. Az alábbi események történnek:
- * Létrejön egy [runbookfeladat](automation-runbook-execution.md), megjelenik a **Feladat** panel, a feladat állapota pedig megjelenik a **Feladat összegzése** csempén.
- * A feladat állapota kezdetben **Várólistán**, ami jelzi, hogy egy felhőbeli runbookfeldolgozó elérhetővé válására vár.
- * Az állapot akkor változik **Indítás** értékre, ha egy feldolgozó elvállalja a feladatot.
- * Amikor a runbook elkezd futni, az állapota **Fut** értékre változik.
- * Ha befejeződik a runbookfeladat, a **Befejezve** állapot jelenik meg.
+3. Jelölje be hello **AzureAutomationTutorialScript** runbookot, és kattintson a **Start** toostart hello runbook. a következő események hello fordulhat elő:
+ * A [runbook-feladat](automation-runbook-execution.md) jön létre, hello **feladat** panel jelenik meg, és hello feladat állapota látható hello **feladat összegzése** csempére.
+ * hello feladatállapot jön létre **várakozik**, azt jelzi, hogy a forgatókönyv-feldolgozók hello felhő toobecome érhető el a vár.
+ * hello állapota lesz **indítása** Ha egy munkavégző jogcímek hello feladat.
+ * hello állapota lesz **futtató** amikor hello runbook elindul.
+ * Amikor hello runbook-feladat futása befejeződött, megjelenik egy állapotának **befejezve**.
 
        ![Security Principal Runbook Test](media/automation-sec-configure-azure-runas-account/job-summary-automationtutorialscript.png)
-4. Ha szeretné megtekinteni a runbook részletes eredményeit, kattintson a **Kimenet** csempére.  
-Az ekkor megjelenő **Kimenet** panelen látható, hogy a runbook sikeresen elvégezte a hitelesítést, és visszaadta az erőforráscsoportban elérhető összes erőforrás listáját.
+4. toosee hello hello runbook részletes eredményét, kattintson a hello **kimeneti** csempére.  
+Hello **kimeneti** panel jelenik meg, melyen hello runbook sikeresen hitelesített és hello erőforráscsoportban elérhető összes erőforrás listáját adja vissza.
 
-5. Zárja be a **Kimenet** panelt, és lépjen vissza a **Feladat összegzése** panelre.
+5. Bezárás hello **kimeneti** panel tooreturn toohello **feladat összegzése** panelen.
 
-6. Zárja be a **Feladat összegzése** panelt és a megfelelő **AzureAutomationTutorialScript** runbook paneljét.
+6. Bezárás hello **feladat összegzése** panelen, a megfelelő hello **AzureAutomationTutorialScript** runbook panelen.
 
 ## <a name="verify-classic-run-as-authentication"></a>A klasszikus futtató fiókos hitelesítés ellenőrzése
-Hajtson végre egy hasonló rövid tesztet annak ellenőrzéséhez, hogy képes-e sikeres hitelesítést végezni az új klasszikus futtató fiókkal.
+Hajtsa végre a hasonló kis tooconfirm, amely képes sikeresen hitelesíteni hello új klasszikus futtató fiók segítségével tesztelheti.
 
-1. Az Azure Portalon nyissa meg a korábban létrehozott Automation-fiókot.
+1. Hello Azure-portálon nyissa meg a korábban létrehozott hello Automation-fiók.
 
-2. Kattintson a **Runbookok** csempére a forgatókönyvek listájának megnyitásához.
+2. Kattintson a hello **Runbookok** csempe tooopen hello forgatókönyvek listája.
 
-3. Válassza ki az **AzureClassicAutomationTutorialScript** runbookot, majd a runbook elindításához kattintson az **Indítás** gombra. Az alábbi események történnek:
+3. Jelölje be hello **AzureClassicAutomationTutorialScript** runbookot, és kattintson a **Start** túl a hello runbook indítása. a következő események hello fordulhat elő:
 
- * Létrejön egy [runbookfeladat](automation-runbook-execution.md), megjelenik a **Feladat** panel, a feladat állapota pedig megjelenik a **Feladat összegzése** csempén.
- * A feladat állapota kezdetben **Várólistán**, ami jelzi, hogy egy felhőbeli runbookfeldolgozó elérhetővé válására vár.
- * Az állapot akkor változik **Indítás** értékre, ha egy feldolgozó elvállalja a feladatot.
- * Amikor a runbook elkezd futni, az állapota **Fut** értékre változik.
- * Ha befejeződik a runbookfeladat, a **Befejezve** állapot jelenik meg.
+ * A [runbook-feladat](automation-runbook-execution.md) jön létre, hello **feladat** panel jelenik meg, és hello feladat állapota látható hello **feladat összegzése** csempére.
+ * hello feladatállapot jön létre **várakozik**, azt jelzi, hogy a forgatókönyv-feldolgozók hello felhő toobecome érhető el a vár.
+ * hello állapota lesz **indítása** Ha egy munkavégző jogcímek hello feladat.
+ * hello állapota lesz **futtató** amikor hello runbook elindul.
+ * Amikor hello runbook-feladat futása befejeződött, megjelenik egy állapotának **befejezve**.
 
     ![Rendszerbiztonsági tag forgatókönyvtesztje](media/automation-sec-configure-azure-runas-account/job-summary-automationclassictutorialscript.png)<br>
-4. Ha szeretné megtekinteni a runbook részletes eredményeit, kattintson a **Kimenet** csempére.  
-Az ekkor megjelenő **Kimenet** panelen látható, hogy a runbook sikeresen elvégezte a hitelesítést, és visszaadta az előfizetésben elérhető összes klasszikus virtuális gép listáját.
+4. toosee hello hello runbook részletes eredményét, kattintson a hello **kimeneti** csempére.  
+Hello **kimeneti** panel jelenik meg, melyen hello runbook sikeresen hitelesített, és visszahelyezi a klasszikus virtuális gépeinek listáját hello előfizetés.
 
-5. Zárja be a **Kimenet** panelt, és lépjen vissza a **Feladat összegzése** panelre.
+5. Bezárás hello **kimeneti** panel tooreturn toohello **feladat összegzése** panelen.
 
-6. Zárja be a **Feladat összegzése** panelt és a megfelelő **AzureAutomationTutorialScript** runbook paneljét.
+6. Bezárás hello **feladat összegzése** panelen, a megfelelő hello **AzureAutomationTutorialScript** runbook panelen.
 
 ## <a name="managing-your-run-as-account"></a>Futtató fiók kezelése
-Az Automation-fiók lejárata előtt meg kell újítania a tanúsítványt. Ha úgy véli, hogy a futtató fiók biztonsága sérült, akkor törölheti, majd újra létrehozhatja a fiókot. Ebben a részben ezeknek a műveleteknek a végrehajtását ismertetjük.
+Egy bizonyos ponton az Automation-fiók lejárta előtt toorenew hello tanúsítványt kell. Ha úgy véli, hogy a Futtatás mint fiók hello feltörték, törlése, és hozza létre újból. Ez a szakasz ismerteti hogyan tooperform ezeket a műveleteket.
 
 ### <a name="self-signed-certificate-renewal"></a>Önaláírt tanúsítvány megújítása
-A futtató fiókhoz létrehozott önaláírt tanúsítvány a létrehozás dátumától számítva egy év múlva jár le. A tanúsítványt bármikor meg lehet újítani a lejárata előtt. A megújításkor a jelenleg érvényes tanúsítványt megőrzi a rendszer, hogy a művelet ne érintse hátrányosan a várólistán lévő vagy aktívan futó runbookokat, amelyek hitelesítést végeznek a futtató fiókkal. A tanúsítvány a lejárati dátumáig érvényes marad.
+hello önaláírt tanúsítványt, amelyet létrehozott hello futtató fiók létrehozásának dátuma hello egy év lejár. A tanúsítványt bármikor meg lehet újítani a lejárata előtt. Amikor megújítja, a hello aktuális érvényes tanúsítványra, hogy legfeljebb vagy aktívan futó ütemezett, és az, hogy azokkal hello Futtatás mint fiókot, runbook érintett nem negatív megtartott tooensure. amíg a lejárati dátum nem érvényes marad hello tanúsítványt.
 
 > [!NOTE]
-> Ha úgy konfigurálta az Automation futtató fiókot, hogy a vállalati hitelesítésszolgáltató által kibocsátott tanúsítványt használja, és ezt a lehetőséget alkalmazza, a vállalati tanúsítvány egy önaláírt tanúsítványra lesz lecserélve.
+> Ha konfigurálta az Automation Futtatás mint fiók toouse a vállalati hitelesítésszolgáltató által kiállított tanúsítványt, és ezt a beállítást használja, hello vállalati tanúsítvány helyébe egy önaláírt tanúsítványt.
 
-A tanúsítvány megújításához tegye a következőket:
+toorenew hello tanúsítvány, a következő hello:
 
-1. Az Azure Portalon nyissa meg az Automation-fiókot.
+1. Hello Azure-portálon nyissa meg a hello Automation-fiók.
 
-2. Az **Automation-fiók** panelen, a **Fióktulajdonságok** ablaktábla **Fiókbeállítások** területén válassza a **Futtató fiókok** lehetőséget.
+2. A hello **Automation-fiók** paneljén, hello **tulajdonságok fiók** ablaktáblán, a **Fiókbeállítások**, jelölje be **futtató fiókok**.
 
     ![Az Automation-fiók tulajdonságpanelje](media/automation-sec-configure-azure-runas-account/automation-account-properties-pane.png)
-3. A **Futtató fiókok** tulajdonságpaneljén válassza ki azt a futtató fiókot vagy klasszikus futtató fiókot, amelynek a tanúsítványát meg kívánja újítani.
+3. A hello **futtató fiókok** tulajdonságok panelére léphet, válassza ki bármelyik hello futtató fiók vagy hello klasszikus Futtatás mint fiókot, amelyet toorenew hello tanúsítványt.
 
-4. A kiválasztott fiók **Tulajdonságok** paneljén kattintson a **Tanúsítvány megújítása** elemre.
+4. A hello **tulajdonságok** hello panelen kiválasztott fiókot, kattintson a **tanúsítvány megújítása**.
 
     ![Futtató fiók tanúsítványának megújítása](media/automation-sec-configure-azure-runas-account/automation-account-renew-runas-certificate.png)
 
-5. A tanúsítvány megújítása során a menü **Értesítések** részén nyomon követheti a folyamat állapotát.
+5. Hello tanúsítvány megújítása folyamatban van, amíg előrehaladásának hello alatt **értesítések** hello menüből.
 
 ### <a name="delete-a-run-as-or-classic-run-as-account"></a>Futtató fiók vagy klasszikus futtató fiók törlése
-Ez a témakör ismerteti, hogyan törölhet és hozhat újra létre futtató fiókot vagy klasszikus futtató fiókot. A művelet során a rendszer megőrzi az Automation-fiókot. A törölt futtató fiókot vagy klasszikus futtató fiókot újra létrehozhatja az Azure Portalon.
+Ez a szakasz ismerteti, hogyan toodelete, majd hozza létre a Futtatás mint vagy a klasszikus futtató fiókot. Ez a művelet végrehajtásakor hello Automation-fiók őrződnek meg. A Futtatás mint vagy a klasszikus futtató fiók törlése után újra létrehozhatja a hello Azure-portálon.
 
-1. Az Azure Portalon nyissa meg az Automation-fiókot.
+1. Hello Azure-portálon nyissa meg a hello Automation-fiók.
 
-2. Az **Automation-fiók** panelen, a fiók tulajdonságait tartalmazó ablaktáblán válassza a **Futtató fiókok** lehetőséget.
+2. A hello **Automation-fiók** hello fiók tulajdonságok panelen, jelölje be a panelt **futtató fiókok**.
 
-3. A **Futtató fiókok** tulajdonságpaneljén válassza ki azt a futtató fiókot vagy klasszikus futtató fiókot, amelyet törölni kíván. Ezután a kiválasztott fiók **Tulajdonságok** paneljén kattintson a **Törlés** elemre.
+3. A hello **futtató fiókok** tulajdonságok panelére léphet, válassza ki bármelyik hello futtató fiók vagy a klasszikus futtató fiókot, amelyet az toodelete. Ezután a hello **tulajdonságok** hello panelen kiválasztott fiókot, kattintson a **törlése**.
 
  ![Futtató fiók törlése](media/automation-sec-configure-azure-runas-account/automation-account-delete-runas.png)
 
-4. A fiók törlése során a menü **Értesítések** részén nyomon követheti a folyamat állapotát.
+4. Hello fiók törlése folyamatban van, amíg előrehaladásának hello alatt **értesítések** hello menüből.
 
-5. A törlés után újra létrehozhatja a fiókot a **Futtató fiókok** tulajdonságpaneljén az **Azure-alapú futtató fiók** lehetőség kiválasztásával.
+5. Hello fiók törlése után újra létrehozhatja a hello **futtató fiókok** hello kiválasztásával a Tulajdonságok panelére léphet létrehozása beállítást **Azure futtató fiók**.
 
- ![Automation futtató fiók újbóli létrehozása](media/automation-sec-configure-azure-runas-account/automation-account-create-runas.png)
+ ![Hozza létre újból hello Automation futtató fiók](media/automation-sec-configure-azure-runas-account/automation-account-create-runas.png)
 
 ### <a name="misconfiguration"></a>Hibás konfiguráció
-Előfordulhat, hogy a futtató fiók vagy klasszikus futtató fiók megfelelő működéséhez szükséges valamelyik konfigurációs elem törlődött, illetve nem megfelelően hozták létre az első beállításkor. Ilyen elemek például a következők:
+Néhány hello futtató vagy a klasszikus futtató fiók toofunction szükséges konfigurációs elemek megfelelő lehet, hogy törölték vagy helytelenül van létrehozva a kezdeti beállítás során. hello elemek a következők:
 
 * Tanúsítványobjektum
 * Kapcsolatobjektum
-* A futtató fiók el lett távolítva a közreműködői szerepkörből
+* A Futtatás mint fiók hello közreműködői szerepkör eltávolították.
 * Egyszerű szolgáltatás vagy alkalmazás az Azure AD-ben
 
-Az előző és más hibás konfigurációk esetében az Automation-fiók észleli a módosításokat, és *Hiányos* állapotot jelez a fiók **Futtató fiókok** tulajdonságpaneljén.
+Az előző hello és helytelen konfigurálása más példányai, hello Automation-fiók észleli hello változik, és egy állapotát jeleníti meg az *hiányos* a hello **futtató fiókok** hello a Tulajdonságok panelen fiók.
 
 ![Hiányos futtatófiók-konfigurációs állapot](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config.png)
 
-Ha kiválasztja a futtató fiókot, a fiók **Tulajdonságok** paneljén a következő hibaüzenet jelenik meg:
+Hello Futtatás mint fiók kiválasztásakor hello fiók **tulajdonságok** ablaktáblán jelennek meg a következő hibaüzenet hello:
 
 ![Hiányos futtatófiók-konfigurációra figyelmeztető üzenet](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config-msg.png).
 
-A futtató fiókkal kapcsolatos hasonló problémákat gyorsan elháríthatja a fiók törlésével és ismételt létrehozásával.
+A Futtatás mint fiók problémák gyorsan megoldható törli, majd újra létrehozza a hello fiók.
 
 ## <a name="update-your-automation-account-by-using-powershell"></a>Az Automation-fiók frissítése a PowerShell használatával
-A PowerShell segítségével frissítheti meglévő Automation-fiókját. Erre a következő esetekben lehet szükség:
+Akkor használhatja PowerShell tooupdate a meglévő Automation-fiókot:
 
-* Létrehozott egy Automation-fiókot, de futtató fiókot nem.
-* Már használ egy, a Resource Manager-erőforrások felügyeletére szolgáló Automation-fiókot, de szeretné frissíteni, hogy runbookos hitelesítést lehetővé tevő futtató fiókot is tartalmazzon.
-* Már használ egy, a klasszikus erőforrások felügyeletére szolgáló Automation-fiókot, de szeretné azt frissíteni, és klasszikus futtató fiókként használni, hogy megtakarítsa az új fiók létrehozásához és a runbookok és objektumok áthelyezéséhez szükséges időt.   
-* Egy futtató és egy klasszikus futtató fiókot szeretne létrehozni a vállalati hitelesítésszolgáltató által kibocsátott tanúsítvánnyal.
+* Automation-fiók létrehozása, de elutasítása toocreate hello futtató fiókot.
+* Már használja egy automatizálási fiókot toomanage Resource Managerhez tartozó erőforrások és tooupdate hello tooinclude hello futtató fiókok kívánt runbook-hitelesítéshez.
+* Az automatizálási fiók toomanage hagyományos erőforrások már használja, és azt szeretné, hogy tooupdate azt toouse hello klasszikus futtató fiókot új fiók létrehozása és a forgatókönyve és eszköze tooit áttelepítése helyett.   
+* Érdemes toocreate egy olyan futtató és a klasszikus futtató fiókot a vállalati hitelesítésszolgáltató (CA) által kiadott tanúsítvánnyal.
 
-A szkriptre a következő előfeltételek vonatkoznak:
+hello parancsfájl a következő előfeltételek hello rendelkezik:
 
-* Ez a szkript kizárólag Windows 10 és Azure Resource Manager 2.01-es vagy újabb modulokkal rendelkező Windows Server 2016 rendszeren futtatható. A korábbi Windows-verziók esetében nem támogatott.
-* Az Azure PowerShell 1.0-s és újabb verziói. Információk a PowerShell 1.0-s kiadásáról: [Az Azure PowerShell telepítése és konfigurálása](/powershell/azure/overview).
-* Olyan Automation-fiók, amelyre az alábbi PowerShell-szkript az *–AutomationAccountName* és az *-ApplicationDisplayName* paraméterek értékeként hivatkozik.
+* hello parancsfájl csak a Windows 10 és Windows Server 2016 futtatható Azure Resource Manager modulok 2.01 és újabb verziók. A korábbi Windows-verziók esetében nem támogatott.
+* Az Azure PowerShell 1.0-s és újabb verziói. További információk hello PowerShell 1.0-s kiadásról: [hogyan tooinstall és konfigurálja az Azure Powershellt](/powershell/azure/overview).
+* Automation-fiók, hello hello értékként hivatkozott *– AutomationAccountName* és *- ApplicationDisplayName* paramétereket a PowerShell-parancsfájl a következő hello.
 
-A szkript végrehajtásához feltétlenül szükséges *SubscriptionID*, *ResourceGroup* és *AutomationAccountName* paraméterek értékének lekéréséhez tegye a következőket:
-1. Az Azure Portalon válassza ki Automation-fiókját az **Automation-fiók** panelen, majd válassza a **Minden beállítás** elemet. 
-2. A **Minden beállítás** panel **Fiókbeállítások** részénél válassza a **Tulajdonságok** lehetőséget. 
-3. Jegyezze fel a **Tulajdonságok** panelen megjelenő értékeket.
+tooget hello értékei *SubscriptionID*, *ResourceGroup*, és *AutomationAccountName*, amely hello parancsfájlok kötelező paraméterek tartoznak, a következő hello:
+1. A hello Azure-portálon, válassza ki az Automation-fiókban lévő hello **Automation-fiók** panelt, és válassza **összes beállítás**. 
+2. A hello **összes beállítás** panel alatt **Fiókbeállítások**, jelölje be **tulajdonságok**. 
+3. Vegye figyelembe a hello hello értékek **tulajdonságok** panelen.
 
-![Az Automation-fiók „Tulajdonságok” panelje](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
+![hello Automation-fiók "Tulajdonságok" panelen](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
 
 ### <a name="create-a-run-as-account-powershell-script"></a>Futtató fiókhoz használható PowerShell-szkript létrehozása
-Ez a PowerShell-szkript a következő konfigurációk támogatását tartalmazza:
+A PowerShell-parancsfájl a következő konfigurációk hello támogatását tartalmazza:
 
 * Futtató fiók létrehozása önaláírt tanúsítvány használatával.
 * Futtató fiók és klasszikus futtató fiók létrehozása önaláírt tanúsítvány használatával.
 * Futtató fiók és klasszikus futtató fiók létrehozása vállalati tanúsítvány használatával.
-* Futtató fiók és klasszikus futtató fiók létrehozása az Azure Government Cloud egyik önaláírt tanúsítványának használatával.
+* Hozzon létre egy futtató fiókot és egy klasszikus futtató fiókot egy önaláírt tanúsítványt a hello Azure Government felhő.
 
-A szkript az alábbi elemeket hozza létre a kiválasztott konfigurációs beállításoktól függően.
+Attól függően, hogy hello konfigurációs beállítást választja a hello parancsfájl a következő elemek hello hoz létre.
 
 **Futtató fiókok esetén:**
 
-* Létrehoz egy Azure AD-alkalmazást, amelynek az exportálása az önaláírt vagy vállalati tanúsítvány nyilvános kulcsával történik, továbbá létrehoz egy egyszerű szolgáltatásfiókot az alkalmazáshoz az Azure AD-ben, és hozzárendeli a Közreműködő szerepkört ehhez a fiókhoz a jelenlegi előfizetésében. Ezt a beállítást bármikor módosíthatja Tulajdonos értékre vagy bármely egyéb szerepkörre. További információk: [Szerepköralapú hozzáférés-vezérlés az Azure Automationben](automation-role-based-access-control.md).
-* Létrehoz egy *AzureRunAsCertificate* nevű Automation-tanúsítványobjektumot a megadott Automation-fiókban. Ez a tanúsítványobjektum tartalmazza az Azure AD-alkalmazás által használt titkos tanúsítványkulcsot.
-* Létrehoz egy *AzureRunAsConnection* nevű Automation-kapcsolatobjektumot a megadott Automation-fiókban. Ez a kapcsolatobjektum magában foglalja az alkalmazásazonosítót, a bérlőazonosítót, az előfizetés-azonosítót és a tanúsítvány ujjlenyomatát.
+* Létrehoz egy Azure AD alkalmazás toobe exportálni vagy hello önaláírt vagy vállalati tanúsítvány nyilvános kulcsát, az Azure AD-hoz létre egy egyszerű szolgáltatásfiók hello alkalmazáshoz, és rendel hello közreműködő szerepkört az aktuális hello fiókhoz előfizetés. Ez a beállítás tooOwner vagy bármilyen más szerepkör módosíthatja. További információk: [Szerepköralapú hozzáférés-vezérlés az Azure Automationben](automation-role-based-access-control.md).
+* Létrehoz egy nevű Automation szolgáltatásbeli tanúsítványeszköz *AzureRunAsCertificate* a hello megadva az Automation-fiók. hello tanúsítványeszköz hello tanúsítvány titkos kulcsa hello Azure AD-alkalmazás által használt tartalmazza.
+* Létrehoz egy nevű Automation szolgáltatásbeli kapcsolateszköz *AzureRunAsConnection* a hello megadva az Automation-fiók. hello kapcsolódási eszköz rendelkezik hello applicationId, tenantId, előfizetés-azonosító és tanúsítvány-ujjlenyomatot.
 
 **Klasszikus futtatófiókok esetében:**
 
-* Létrehoz egy *AzureClassicRunAsCertificate* nevű Automation-tanúsítványobjektumot a megadott Automation-fiókban. Ez a tanúsítványobjektum tartalmazza a felügyeleti tanúsítvány által használt titkos tanúsítványkulcsot.
-* Létrehoz egy *AzureClassicRunAsConnection* nevű Automation-kapcsolatobjektumot a megadott Automation-fiókban. Ez a kapcsolatobjektum tartalmazza az előfizetés nevét, a subscriptionId paramétert, valamint a tanúsítványobjektum nevét.
+* Létrehoz egy nevű Automation szolgáltatásbeli tanúsítványeszköz *AzureClassicRunAsCertificate* a hello megadva az Automation-fiók. hello tanúsítványeszköz hello tanúsítvány titkos kulcsa hello felügyeleti tanúsítvány által használt tartalmazza.
+* Létrehoz egy nevű Automation szolgáltatásbeli kapcsolateszköz *AzureClassicRunAsConnection* a hello megadva az Automation-fiók. hello kapcsolódási eszköz hello előfizetés nevét, a subscriptionId és a tanúsítvány eszköz neve tartalmazza.
 
 >[!NOTE]
-> Ha klasszikus futtató fiók létrehozását választja, a szkript végrehajtása után töltse fel a nyilvános tanúsítványt (.cer fájlnévkiterjesztéssel) annak az előfizetésnek a felügyeleti tárába, amelyben az Automation-fiókot létrehozták.
+> Ha a beállítást vagy a klasszikus futtató fiók létrehozásához, hello parancsfájl végrehajtása után, feltöltés hello nyilvános tanúsítványtároló (.cer kiterjesztésű) toohello felügyeleti hello előfizetés adott hello Automation-fiók hozták létre.
 > 
 
-A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a következőket:
+tooexecute parancsfájl hello és hello-tanúsítvány feltöltése, a következő hello:
 
-1. Mentse el a következő parancsprogramot a számítógépén. Ebben a példában mentse a következő fájlnéven: *New-RunAsAccount.ps1*.
+1. Mentse a parancsfájlt a számítógépen a következő hello. Ebben a példában mentse hello Fájlnév *New-RunAsAccount.ps1*.
 
         #Requires -RunAsAdministrator
          Param (
@@ -350,7 +350,7 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
         $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId
         $GetServicePrincipal = Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id
 
-        # Sleep here for a few seconds to allow the service principal application to become active (ordinarily takes a few seconds)
+        # Sleep here for a few seconds tooallow hello service principal application toobecome active (ordinarily takes a few seconds)
         Sleep -s 15
         $NewRole = New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
         $Retries = 0;
@@ -381,7 +381,7 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
         $AzureRMProfileVersion= (Get-Module AzureRM.Profile).Version
         if (!(($AzureRMProfileVersion.Major -ge 2 -and $AzureRMProfileVersion.Minor -ge 1) -or ($AzureRMProfileVersion.Major -gt 2)))
         {
-           Write-Error -Message "Please install the latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
+           Write-Error -Message "Please install hello latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
            return
         }
 
@@ -408,16 +408,16 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
         $PfxCert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList @($PfxCertPathForRunAsAccount, $PfxCertPlainPasswordForRunAsAccount)
         $ApplicationId=CreateServicePrincipal $PfxCert $ApplicationDisplayName
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $CertifcateAssetName $PfxCertPathForRunAsAccount $PfxCertPlainPasswordForRunAsAccount $true
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionInfo = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
         $TenantID = $SubscriptionInfo | Select TenantId -First 1
         $Thumbprint = $PfxCert.Thumbprint
         $ConnectionFieldValues = @{"ApplicationId" = $ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Thumbprint; "SubscriptionId" = $SubscriptionId}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ConnectionAssetName $ConnectionTypeName $ConnectionFieldValues
 
         if ($CreateClassicRunAsAccount) {
@@ -425,9 +425,9 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
             $ClassicRunAsAccountCertifcateAssetName = "AzureClassicRunAsCertificate"
             $ClassicRunAsAccountConnectionAssetName = "AzureClassicRunAsConnection"
             $ClassicRunAsAccountConnectionTypeName = "AzureClassicCertificate "
-            $UploadMessage = "Please upload the .cer format of #CERT# to the Management store by following the steps below." + [Environment]::NewLine +
-                    "Log in to the Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
-                    "Then click Upload and upload the .cer format of #CERT#"
+            $UploadMessage = "Please upload hello .cer format of #CERT# toohello Management store by following hello steps below." + [Environment]::NewLine +
+                    "Log in toohello Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
+                    "Then click Upload and upload hello .cer format of #CERT#"
 
              if ($EnterpriseCertPathForClassicRunAsAccount -and $EnterpriseCertPlainPasswordForClassicRunAsAccount ) {
              $PfxCertPathForClassicRunAsAccount = $EnterpriseCertPathForClassicRunAsAccount
@@ -442,14 +442,14 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
              CreateSelfSignedCertificate $KeyVaultName $ClassicRunAsAccountCertificateName $PfxCertPlainPasswordForClassicRunAsAccount $PfxCertPathForClassicRunAsAccount $CerCertPathForClassicRunAsAccount $SelfSignedCertNoOfMonthsUntilExpired
         }
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountCertifcateAssetName $PfxCertPathForClassicRunAsAccount $PfxCertPlainPasswordForClassicRunAsAccount $false
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionName = $subscription.Subscription.SubscriptionName
         $ClassicRunAsAccountConnectionFieldValues = @{"SubscriptionName" = $SubscriptionName; "SubscriptionId" = $SubscriptionId; "CertificateAssetName" = $ClassicRunAsAccountCertifcateAssetName}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountConnectionAssetName $ClassicRunAsAccountConnectionTypeName $ClassicRunAsAccountConnectionFieldValues
 
         Write-Host -ForegroundColor red $UploadMessage
@@ -457,9 +457,9 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
 
 2. A számítógépén kattintson a **Start** gombra, majd indítsa el a **Windows PowerShellt** emelt szintű felhasználói jogokkal.
 
-3. Az emelt szintű PowerShell parancssori felületből lépjen abba a mappába, amely az 1. lépésben létrehozott szkriptet tartalmazza.
+3. A hello emelt szintű PowerShell parancssori felület, az 1. lépésben létrehozott hello parancsfájl tartalmazó lépjen toohello mappát.
 
-4. Futtassa a szkriptet a kívánt konfigurációhoz szükséges paraméterértékekkel.
+4. Hajtsa végre a hello parancsfájlt hello paraméter értékének használatával hello konfiguráció szükséges.
 
     **Futtató fiók létrehozása önaláírt tanúsítvány használatával**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $false`
@@ -470,36 +470,36 @@ A szkript végrehajtásához és a tanúsítvány feltöltéséhez tegye a köve
     **Futtató fiók és klasszikus futtató fiók létrehozása vállalati tanúsítvány használatával**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication>  -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true -EnterpriseCertPathForRunAsAccount <EnterpriseCertPfxPathForRunAsAccount> -EnterpriseCertPlainPasswordForRunAsAccount <StrongPassword> -EnterpriseCertPathForClassicRunAsAccount <EnterpriseCertPfxPathForClassicRunAsAccount> -EnterpriseCertPlainPasswordForClassicRunAsAccount <StrongPassword>`
 
-    **Futtató fiók és klasszikus futtató fiók létrehozása az Azure Government Cloud egyik önaláírt tanúsítványának használatával**  
+    **Hozzon létre egy futtató fiókot és egy klasszikus Futtatás mint fiók hello Azure Government felhő önaláírt tanúsítvány használatával**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true  -EnvironmentName AzureUSGovernment`
 
     > [!NOTE]
-    > A rendszer az Azure-ral történő hitelesítést fogja kérni a szkript futtatása után. Jelentkezzen be egy olyan fiókkal, amely tagja az Előfizetés-adminisztrátorok szerepkörnek, és emellett az előfizetés társadminisztrátorának is számít.
+    > Hello parancsfájl által végrehajtott, miután az Azure-ral felszólító tooauthenticate fogja. Olyan fiókkal jelentkezzen be, amely hello előfizetés Rendszergazdák szerepkör tagja, és hello előfizetés társadminisztrátoraként.
     >
     >
 
-A szkript sikeres futtatása után jegyezze fel a következőket:
-* Ha önaláírt nyilvános tanúsítvánnyal (.cer fájl) ellátott klasszikus futtató fiókot hoz létre, a szkript létrehozza és menti a tanúsítványt a számítógépen a PowerShell-munkamenet végrehajtásához használt *%USERPROFILE%\AppData\Local\Temp* felhasználói profilhoz tartozó ideiglenes mappába.
-* Ha egy (.cer formátumú) vállalati tanúsítvánnyal rendelkező klasszikus futtató fiókot hozott létre, használja ezt a tanúsítványt. Kövesse az utasításokat, amelyek bemutatják [a felügyeleti API-tanúsítványok klasszikus Azure portálra való feltöltését](../azure-api-management-certs.md), majd ellenőrizze a hitelesítő adatok konfigurációját a Service Management-erőforrásokkal. Ehhez használja a [Service Management-erőforrásokkal](#sample-code-to-authenticate-with-service-management-resources) való hitelesítéshez használt mintakódot. 
-* Ha *nem* klasszikus futtató fiókot hozott létre, állítsa be a hitelesítést a Resource Manager-erőforrásokkal, valamint ellenőrizze a hitelesítő adatok konfigurációját. Ehhez használja a [Service Management-erőforrásokkal való hitelesítéshez használt mintakódot.](#sample-code-to-authenticate-with-resource-manager-resources)
+Miután hello parancsfájl végrehajtása sikeres, vegye figyelembe a hello következőket:
+* Nyilvános önaláírt tanúsítvány (.cer-fájl) klasszikus futtató fiókot hozta létre, ha hello parancsfájl hoz létre, és a számítógép hello felhasználói profil toohello ideiglenes fájlok mappába menti *%USERPROFILE%\AppData\Local\Temp*, használt tooexecute hello PowerShell-munkamenetben.
+* Ha egy (.cer formátumú) vállalati tanúsítvánnyal rendelkező klasszikus futtató fiókot hozott létre, használja ezt a tanúsítványt. Kövesse az utasításokat hello [feltöltése a felügyeleti API tanúsítvány toohello a klasszikus Azure portálon](../azure-api-management-certs.md), és szolgáltatásfelügyelet erőforrások hello hitelesítőadat-konfiguráció érvényesítése hello segítségével [példakód a szolgáltatás felügyeleti erőforrásról tooauthenticate](#sample-code-to-authenticate-with-service-management-resources). 
+* Ha elvégezte *nem* klasszikus futtató fiók létrehozása, erőforrás-kezelő erőforrások a hitelesítést és hello hitelesítőadat-konfiguráció érvényesítése hello segítségével [példakód azonosítja a felügyeleti szolgáltatás erőforrások](#sample-code-to-authenticate-with-resource-manager-resources).
 
-## <a name="sample-code-to-authenticate-with-resource-manager-resources"></a>Mintakód a Resource Manager-erőforrásokkal történő hitelesítéshez
-A Resource Manager-erőforrások runbookkal való kezeléséhez használhatja az alábbi, az *AzureAutomationTutorialScript* mintaforgatókönyvből származó frissített mintakódot a futtató fiók használatával történő hitelesítéshez.
+## <a name="sample-code-tooauthenticate-with-resource-manager-resources"></a>A minta kód tooauthenticate a Resource Managerhez tartozó erőforrások
+Frissített hello alábbi példakód hello vett *AzureAutomationTutorialScript* példa runbook, a runbookokat hello Futtatás mint fiók toomanage Resource Managerhez tartozó erőforrások használatával tooauthenticate.
 
     $connectionName = "AzureRunAsConnection"
     $SubId = Get-AutomationVariable -Name 'SubscriptionId'
     try
     {
-       # Get the connection "AzureRunAsConnection "
+       # Get hello connection "AzureRunAsConnection "
        $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-       "Signing in to Azure..."
+       "Signing in tooAzure..."
        Add-AzureRmAccount `
          -ServicePrincipal `
          -TenantId $servicePrincipalConnection.TenantId `
          -ApplicationId $servicePrincipalConnection.ApplicationId `
          -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
-       "Setting context to a specific subscription"     
+       "Setting context tooa specific subscription"     
        Set-AzureRmContext -SubscriptionId $SubId              
     }
     catch {
@@ -513,34 +513,34 @@ A Resource Manager-erőforrások runbookkal való kezeléséhez használhatja az
          }
     }
 
-A szkript tartalmaz két további kódsort az előfizetési környezet hivatkozásának támogatásához, így könnyedén tud több előfizetéssel is dolgozni. Egy *SubscriptionId* nevű változó objektum tartalmazza az előfizetés azonosítóját. Az `Add-AzureRmAccount` parancsmag-utasítás után a [`Set-AzureRmContext`](/powershell/module/azurerm.profile/set-azurermcontext) parancsmag a *-SubscriptionId* paraméterkészlettel lesz kiadva. Ha a változó neve túl általános, módosíthatja, hogy tartalmazzon egy előtagot vagy igazodjon más elnevezési konvenciókhoz, és könnyebbé tegye az azonosítását. Alternatív megoldásként a *-SubscriptionId* helyett használhatja a *-SubscriptionName* paraméterkészletet egy megfelelő változóobjektummal.
+több előfizetéssel is működnek, tooeasily toohelp, hello parancsfájl két további sornyi kód, amely támogatja a hivatkozó egy előfizetési kontextust is tartalmaz. Egy változó eszköz nevű *SubscriptionId* hello Azonosítóját hello előfizetés tartalmazza. Hello után `Add-AzureRmAccount` parancsmag utasítás hello [ `Set-AzureRmContext` ](/powershell/module/azurerm.profile/set-azurermcontext) parancsmag van megadva a hello paraméterhalmaz *- SubscriptionId*. Ha hello változó neve túl általános, javítsa ki a tooinclude előtag, vagy használja egy másik elnevezési egyezmény toomake azt könnyebb tooidentify. Másik lehetőségként használhatja a hello paraméterkészletet alakítanak *- SubscriptionName* helyett *- SubscriptionId* a megfelelő változóeszköz.
 
-A runbookban használt hitelesítési parancsmag (`Add-AzureRmAccount`) a *ServicePrincipalCertificate* paraméterkészletet használja. Ez a megoldás a szolgáltatástanúsítvány segítségével, és nem a felhasználói hitelesítő adatokkal végzi el a hitelesítést.
+a hello runbook hitelesítéséhez használt parancsmag hello `Add-AzureRmAccount`, használ hello *ServicePrincipalCertificate* paraméterhalmaz. Hello szolgáltatás egyszerű tanúsítvány, nem a hello felhasználói hitelesítő adatok használatával hitelesíti.
 
-## <a name="sample-code-to-authenticate-with-service-management-resources"></a>Mintakód a Service Manager-erőforrásokkal történő hitelesítéshez
-Ha a klasszikus futtató fiókkal szeretne hitelesítést végezni a klasszikus erőforrások forgatókönyvekkel való felügyeletéhez, használhatja az alábbi, az *AzureClassicAutomationTutorialScript* mintarunbookból származó frissített mintakódot is.
+## <a name="sample-code-tooauthenticate-with-service-management-resources"></a>A minta kód tooauthenticate szolgáltatásfelügyelet erőforrásokkal
+Használhatja a következő frissített mintakód, amely hello forrása hello *AzureClassicAutomationTutorialScript* példa runbook, tooauthenticate klasszikus futtató fiókhoz, toomanage a hagyományos erőforrások hello segítségével a runbookok.
 
     $ConnectionAssetName = "AzureClassicRunAsConnection"
-    # Get the connection
+    # Get hello connection
     $connection = Get-AutomationConnection -Name $connectionAssetName        
 
-    # Authenticate to Azure with certificate
+    # Authenticate tooAzure with certificate
     Write-Verbose "Get connection asset: $ConnectionAssetName" -Verbose
     $Conn = Get-AutomationConnection -Name $ConnectionAssetName
     if ($Conn -eq $null)
     {
-       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in hello Automation account."
     }
 
     $CertificateAssetName = $Conn.CertificateAssetName
-    Write-Verbose "Getting the certificate: $CertificateAssetName" -Verbose
+    Write-Verbose "Getting hello certificate: $CertificateAssetName" -Verbose
     $AzureCert = Get-AutomationCertificate -Name $CertificateAssetName
     if ($AzureCert -eq $null)
     {
-       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in hello Automation account."
     }
 
-    Write-Verbose "Authenticating to Azure with certificate." -Verbose
+    Write-Verbose "Authenticating tooAzure with certificate." -Verbose
     Set-AzureSubscription -SubscriptionName $Conn.SubscriptionName -SubscriptionId $Conn.SubscriptionID -Certificate $AzureCert
     Select-AzureSubscription -SubscriptionId $Conn.SubscriptionID
 

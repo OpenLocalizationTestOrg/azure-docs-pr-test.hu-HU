@@ -1,10 +1,10 @@
 
-1. Jelentkezzen be az [Azure Portal](https://portal.azure.com) > **Recovery Services** szolgáltatásba.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) > **Recovery Services**.
 2. Kattintson az **Új** > **Felügyelet és kezelés** > **Backup és Site Recovery** lehetőségre. 
-3. A **Név** mezőben adja meg a tárolót azonosító rövid nevet. Ha egynél több előfizetéssel rendelkezik, válasszon egyet ezek közül.
-4. [Hozzon létre egy erőforráscsoportot](../articles/azure-resource-manager/resource-group-template-deploy-portal.md), vagy válasszon ki egy meglévőt. Válassza ki a kívánt Azure-régiót. A támogatott régiók megtekintéséhez olvassa el az [Azure Site Recovery – Díjszabás](https://azure.microsoft.com/pricing/details/site-recovery/) című cikknek a földrajzi elérhetőséggel foglalkozó részét.
-5. Ha gyors hozzáférést szeretne a tárolóhoz az irányítópultról, kattintson a **Rögzítés az irányítópulton**, majd a **Létrehozás** gombra.
+3. A **neve**, adjon meg egy rövid nevet tooidentify hello tárolóban. Ha egynél több előfizetéssel rendelkezik, válasszon egyet ezek közül.
+4. [Hozzon létre egy erőforráscsoportot](../articles/azure-resource-manager/resource-group-template-deploy-portal.md), vagy válasszon ki egy meglévőt. Válassza ki a kívánt Azure-régiót. támogatott toocheck régiókban, tekintse meg a cikknek a földrajzi elérhetőséggel [Azure Site Recovery – díjszabás](https://azure.microsoft.com/pricing/details/site-recovery/).
+5. Tooquickly hozzáférés hello tároló hello irányítópultról, kattintson a **PIN-kód toodashboard** majd **létrehozása**.
 
    ![Új tároló](./media/site-recovery-create-vault/new-vault-settings.png)
 
-   Az új tároló megjelenik az **Irányítópult** > **Minden erőforrás** menüben, illetve a központi **Recovery Services-tárolók** panelen.
+   hello új tároló megjelenik hello **irányítópult** > **összes erőforrás** és a fő hello **Recovery Services-tárolók** panelen.

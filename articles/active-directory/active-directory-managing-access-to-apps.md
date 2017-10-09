@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD alkalmazások elérésének kezelése |} Microsoft Docs"
-description: "Ismerteti, hogyan Azure Active Directory lehetővé teszi a szervezetek számára, amely minden felhasználó számára elérhető alkalmazások megadása."
+title: "az Azure AD aaaManaging hozzáférés tooapps |} Microsoft Docs"
+description: "Ismerteti, hogyan Azure Active Directory lehetővé teszi, hogy a szervezetek toospecify hello alkalmazások toowhich minden felhasználónak hozzáférése van."
 services: active-directory
 documentationcenter: 
 author: femila
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: 46e001b440802e0d5d16b7cf75344c7b9ce6fad3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9461b7a1cc8913cd8fb4a4ce0778afe03274935
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-access-to-apps"></a>Az alkalmazásokhoz való hozzáférés kezelése
-A folyamatban lévő kezelési, a használati kiértékelési és a jelentéskészítés továbbra is kihívást követően az alkalmazások integrálva van a szervezet identitásrendszere. Sok esetben a rendszergazdák vagy a segélyszolgálat kell venniük a alkalmazásokhoz való hozzáférés kezelése a folyamatban lévő aktív szerepet. Egyes esetekben hozzárendelés egy általános vagy részlegszintű IT-csoport végzi el. Gyakran, a hozzárendelés döntési célja, hogy az informatikai teszi előtt jóváhagyásra van szükség az üzleti döntéshozó delegálni a hozzárendelés.  Más szervezetek beruházásának egy meglévő automatikus identitások és hozzáférések felügyeleti rendszer, például a szerepköralapú hozzáférés-vezérlést (RBAC) vagy az attribútum-szerepköralapú hozzáférés-vezérlés (ABAC) integrációját. Az integráció és a szabály fejlesztési általában speciális és költséges lehet. Figyelés, vagy a jelentés készítését vagy kezelési módszerrel saját külön költséges és összetett befektetési.
+# <a name="managing-access-tooapps"></a>Hozzáférés tooapps kezelése
+A folyamatban lévő kezelési, a használati kiértékelési és a jelentéskészítés után a folytatáshoz toobe kihívást az alkalmazások integrálva van a szervezet identitásrendszere. Sok esetben a rendszergazdák vagy a segélyszolgálat rendelkezik tootake hozzáférés tooyour alkalmazások kezelése a folyamatban lévő aktív szerepet. Egyes esetekben hozzárendelés egy általános vagy részlegszintű IT-csoport végzi el. Gyakran, a hello hozzárendelés döntési tervezett toobe delegált toohello üzleti döntéshozó, az informatikai teszi előtt jóváhagyásra van szükség hello hozzárendelés.  Más szervezetek beruházásának egy meglévő automatikus identitások és hozzáférések felügyeleti rendszer, például a szerepköralapú hozzáférés-vezérlést (RBAC) vagy az attribútum-szerepköralapú hozzáférés-vezérlés (ABAC) integrációját. Hello integráció és a szabály fejlesztési általában toobe speciális és drága. Figyelés, vagy a jelentés készítését vagy kezelési módszerrel saját külön költséges és összetett befektetési.
 
 ## <a name="how-does-azure-active-directory-help"></a>Hogyan segíti az Azure Active Directory?
- Az Azure AD támogatja a széles körű kezelési konfigurált alkalmazások esetén a megfelelő hozzáférési házirendek automatikus, az attribútum-alapú hozzárendelés (ABAC vagy RBAC forgatókönyvek) kezdve a rendszergazdák kezelése és delegálása könnyedén eléréséhez szervezetek engedélyezése. Az Azure AD könnyen érhető el összetett házirendek egyesítése egyetlen alkalmazás több felügyeleti modellel, és még újra használhatja a portkezelési szabályok az azonos célközönséggel rendelkező alkalmazások között.
+ Az Azure AD által támogatott kiterjedt access management az konfigurált alkalmazásokból, amely lehetővé teszi a szervezetek tooeasily elérése hello megfelelő hozzáférési házirendek közötti automatikus, az attribútum-alapú hozzárendelés (ABAC vagy RBAC forgatókönyv), a delegálással és is beleértve rendszergazdák kezelése. Az Azure ad-val könnyen érhet el összetett házirendek egyesítése egyetlen alkalmazás licencmodellek több felügyeleti és a portkezelési szabályok még akkor is, újra felhasználhatja a különböző alkalmazások az hello is azonos célközönség.
 
 * [Felvétel új vagy meglévő alkalmazások](active-directory-sso-integrate-saas-apps.md)
 
  Az Azure AD alkalmazás-hozzárendelés két elsődleges hozzárendelés mód koncentrál:
 
-* **Egyes hozzárendelés** egy informatikai rendszergazda a címtár globális rendszergazdai jogosultságokkal rendelkező, válassza ki a felhasználói fiókok egyesével történő, és adja meg számukra hozzáférni az alkalmazáshoz.
-* **Csoport-alapú hozzárendelés (fizetős csak az Azure AD)** egy informatikai rendszergazda a címtár globális rendszergazdai jogosultságokkal rendelkező rendelhet hozzá egy csoporthoz az alkalmazást. Adott felhasználók hozzáférést csatlakoznak-e valamilyen a csoport tagjai a időben próbálnak meg hozzáférni az alkalmazáshoz határozza meg. Más szóval rendszergazda hatékonyan hozhat létre egy hozzárendelési szabályt, amely meghatározza, hogy "a hozzárendelt csoport minden tagját hozzáfér az alkalmazás". A hozzárendelési beállításának használata esetén a rendszergazdák is kihasználhatja az Azure AD csoport felügyeleti beállításokat, beleértve a [dinamikus csoportok Attribútumalapú](active-directory-accessmanagement-manage-groups.md), külső rendszer (például a helyszíni Active Directory vagy a Workday), vagy a rendszergazda által kezelt vagy önálló-üzemeltetési felügyelt csoportokat. Egy különálló csoportot könnyen rendelhet több alkalmazás, győződjön meg arról, hogy hozzárendelés affinitás alkalmazások is használ a hozzárendelési szabályok, így csökkentve a teljes felügyelet összetettségét. Vegye figyelembe, hogy beágyazott csoportok tagságát biztonságicsoport-alapú hozzárendelés alkalmazások jelenleg nem támogatottak.
+* **Egyes hozzárendelés** egy informatikai rendszergazda a címtár globális rendszergazdai jogosultságokkal rendelkező felhasználói fiókok egyesével történő kiválasztása, és a hozzáférés engedélyezése toohello alkalmazás.
+* **Csoport-alapú hozzárendelés (fizetős csak az Azure AD)** címtár globális rendszergazdai jogosultságokkal rendelkező egy informatikai rendszergazda is hozzárendelhet egy csoport toohello alkalmazást. Adott felhasználók hozzáférést hello csoport tagjai legyenek hello időpontban megpróbálják tooaccess hello alkalmazás alapján történik. Más szóval rendszergazda hatékonyan hozhat létre egy hozzárendelési szabályt, amely meghatározza, hogy a "hello csoporthoz rendelt minden olyan tagját rendelkezik hozzáférési toohello alkalmazás". A hozzárendelési beállításának használata esetén a rendszergazdák is kihasználhatja az Azure AD csoport felügyeleti beállításokat, beleértve a [dinamikus csoportok Attribútumalapú](active-directory-accessmanagement-manage-groups.md), külső rendszer (például a helyszíni Active Directory vagy a Workday), vagy a rendszergazda által kezelt vagy önálló-üzemeltetési felügyelt csoportokat. Egy különálló csoportot könnyen rendelhető toomultiple alkalmazások, győződjön meg arról, hogy hozzárendelés affinitás alkalmazások is használ a hozzárendelési szabályok, így csökkentve hello teljes felügyelet összetettségét. Vegye figyelembe, hogy beágyazott csoportok tagságát nem támogatottak a csoport-alapú hozzárendelés tooapplications most.
 
 Rendszergazdák e két hozzárendelési módban érhető el minden kívánatos hozzárendelés felügyeleti módszerrel.
 
-Az Azure ad-vel használatát és a hozzárendelés rendszer teljesen integrált része, lehetővé téve a rendszergazdák könnyen hozzárendelés állapota, a hozzárendelési hibákat és a még akkor is, használati jelentést.
+Az Azure ad-vel használatát és a hozzárendelés rendszer teljesen integrált része, a hozzárendelés állapota, hozzárendelési hibák, még akkor is, használati rendszergazdák tooeasily jelentés engedélyezése.
 
 ## <a name="complex-application-assignment-with-azure-ad"></a>Összetett alkalmazások hozzárendelése az Azure ad szolgáltatással
-Érdemes lehet olyan alkalmazások, mint a Salesforce. Számos szervezetben Salesforce elsősorban a marketing- és értékesítési szervezetek. Gyakran a marketing csapat tagjai magas privilegizált hozzáféréssel rendelkező Salesforce, amíg az értékesítési csapat tagjai csak korlátozott hozzáféréssel rendelkeznek. Sok esetben az információkkal dolgozó szakemberek széleskörű sokaságát korlátozta az alkalmazást. Ezek a szabályok alóli kivételek nehezíti a fontos információk. Általában célszerű a marketing vagy értékesítési vezetői csoportokkal egy felhasználó hozzáférést, vagy módosítsa a szerepkörök függetlenül. a általános szabályok megállapítása.
+Érdemes lehet olyan alkalmazások, mint a Salesforce. Számos szervezetben Salesforce elsősorban a hello marketing- és értékesítési szervezetek. Gyakran hello marketing csapat tagjai magas privilegizált hozzáférést tooSalesforce, amíg hello értékesítési csapat tagjai csak korlátozott hozzáféréssel rendelkeznek. Sok esetben az információkkal dolgozó szakemberek széleskörű sokaságát korlátozta access toohello alkalmazást. Kivételek toothese szabályok nehezíti a fontos információk. Gyakran hello korlátain hello marketing vagy értékesítési vezetői csapatok toogrant hozzáférést egy felhasználó vagy a szerepkörök függetlenül. a általános szabályok módosítása.
 
-Az Azure ad-vel alkalmazások, például a Salesforce lehet előre konfigurált az egyszeri bejelentkezés (SSO) és automatizált üzembe helyezést. Ha az alkalmazás van konfigurálva, a rendszergazda létrehozásához, és rendelje hozzá a megfelelő csoportokban egyszeri művelet lehet. Ebben a példában a rendszergazda a következő hozzárendelések hajthatnak végre:
+Az Azure ad-vel alkalmazások, például a Salesforce lehet előre konfigurált az egyszeri bejelentkezés (SSO) és automatizált üzembe helyezést. Miután hello alkalmazás van konfigurálva, a rendszergazda hello egyszeri művelet toocreate igénybe, és rendelje hozzá a megfelelő csoportokban hello. Ebben a példában a rendszergazda a következő hozzárendelések hello hajthatnak végre:
 
-* [Dinamikus csoportok](active-directory-accessmanagement-manage-groups.md) automatikusan képviselő tulajdonságai, például a részleg vagy szerepkör használatával az értékesítés és marketing csapat összes tagja lehet meghatározni:
+* [Dinamikus csoportok](active-directory-accessmanagement-manage-groups.md) lehet meghatározott tooautomatically jelenthet tulajdonságai, például a részleg vagy szerepkör használatával hello értékesítés és marketing csapat összes tagja:
   
-  * Marketing csoport összes tagja lesz rendelve a Salesforce-ban "marketing" szerepkör
-  * Csoportok lesz hozzárendelve a Salesforce-ban "értékesítők" szerepkör értékesítési csoport összes tagja. További pontosítás használhatja, amelyek megfelelnek a különböző Salesforce szerepkörökhöz hozzárendelt regionális értékesítési csoportok több csoporthoz.
-* Ahhoz, hogy a kivételképzési mechanizmus, az egyes szerepkörökhöz kell létrehozni egy önkiszolgáló csoportot. Például a "Salesforce marketing kivétel" csoport egy önkiszolgáló csoportkezelési hozhatók létre. A csoport a Salesforce marketing szerepkör lehet hozzárendelni, és a marketing vezetőségi tagja tehető tulajdonosai. Tagjai a marketing vezetőségi tagja volt hozzáadása vagy eltávolítása a, illesztési házirend, vagy még hagyja jóvá vagy megtagadja a hozzáférést az egyes felhasználók kérelmek való csatlakozáshoz. Ez keresztül adatokat feldolgozó megfelelő élményt tulajdonosai vagy a tagok esetében nem szükséges speciális képzési támogatott.
+  * Marketing csoport összes tagja szeretné rendelni toohello "marketing" szerepkör a Salesforce-ban
+  * Összes tag az értékesítési csapat csoportok szeretné rendelni toohello "értékesítők" szerepkör a Salesforce-ban. Egy további pontosítás használhatja, amelyek megfelelnek a regionális értékesítési csoportok toodifferent Salesforce szerepkört több csoporthoz.
+* tooenable hello kivételképzési mechanizmus egy önkiszolgáló csoportkezelési sikerült létrehozni az egyes szerepkörökhöz. Hello "Salesforce marketing kivétel" csoport például egy önkiszolgáló csoportkezelési hozhatók létre. hello csoport társítható toohello Salesforce marketing szerepkör és a hello marketing vezetőségi tagja is tulajdonosai. Hello marketing vezetőségi tagja sikerült hozzáadása vagy eltávolítása a, illesztési házirend, vagy még jóváhagyása vagy tagok egyes felhasználók kérelmek toojoin megtagadása. Ez keresztül adatokat feldolgozó megfelelő élményt tulajdonosai vagy a tagok esetében nem szükséges speciális képzési támogatott.
 
-Ebben az esetben az összes hozzárendelt felhasználók volna lehet automatikusan hozzáférést kapnak Salesforce, hozzáadásuk különböző csoportokat a szerepkör-hozzárendelés Salesforce frissíteni kell. Felhasználók felderítése és a Microsoft alkalmazás hozzáférési panelre, Office webes ügyfelekkel, vagy még megnyitásával a szervezeti Salesforce bejelentkezési oldal férhetnek hozzá a Salesforce tudná. A rendszergazdák tudnak egyszerűen az Azure AD jelentéskészítési API használatával használati és a hozzárendelés állapotának megtekintéséhez.
+Ebben az esetben az összes hozzárendelt felhasználók lenne automatikusan kiosztott tooSalesforce, mivel ezek a szerepkör-hozzárendelés Salesforce frissíteni kell a hozzáadott toodifferent csoportok. Felhasználók lenne képes toodiscover és Salesforce hello Microsoft alkalmazás hozzáférési panelre, Office webes ügyfelekkel, vagy akár tootheir szervezeti Salesforce bejelentkezési oldal navigálva férhetnek hozzá. A rendszergazdák lenne képes tooeasily használati és a hozzárendelés állapotának megtekintése az Azure AD jelentéskészítési API használatával.
 
-A rendszergazdák is alkalmaz [Azure AD feltételes hozzáférésével](active-directory-conditional-access.md) hozzáférési házirendeket az egyes szerepkörök beállítása. Ezek a házirendek tartalmazhatnak, hogy a hozzáférés a vállalati környezet és még többtényezős hitelesítést vagy az eszköz eléréséhez, az access különböző esetekben kívül engedélyezett.
+A rendszergazdák is alkalmaz [Azure AD feltételes hozzáférésével](active-directory-conditional-access.md) tooset hozzáférési házirendeket az egyes szerepkörök. Ezek a házirendek tartalmazhatnak, hogy hello vállalati környezetben, és még a multi-factor Authentication vagy eszköz követelmények tooachieve hozzáférés különböző esetekben kívül hozzáférés engedélyezett.
 
 ## <a name="how-can-i-get-started"></a>Hogyan lehet kezdjem el?
 Első, ha már nem használja az Azure AD, és egy informatikai rendszergazda:
@@ -60,7 +60,7 @@ Első, ha már nem használja az Azure AD, és egy informatikai rendszergazda:
 Az Azure AD-funkciókat, amelyek lehetővé teszik a fiók megosztása a következők:
 
 * [Csoport-hozzárendelés](active-directory-accessmanagement-self-service-group-management.md)
-* Az Azure AD-alkalmazások hozzáadása
+* Alkalmazások tooAzure AD hozzáadni
 * Ismerkedés a hozzárendelés
 * Alkalmazás-hozzárendelés – gyakori kérdések
 * [Alkalmazás használati irányítópult/jelentések](active-directory-passwords-get-insights.md)

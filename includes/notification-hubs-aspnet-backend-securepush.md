@@ -1,6 +1,6 @@
 ## <a name="webapi-project"></a>WebAPI projekt
-1. A Visual Studióban nyissa meg a **AppBackend** a projekt a **felhasználók értesítése** oktatóanyag.
-2. Notifications.cs, cserélje le a teljes **értesítések** osztály a következő kóddal. Ne felejtse el a helyőrzőket cserélje le a kapcsolati karakterlánc (teljes hozzáférés) az értesítési központot, és a központ nevét. Ezt úgy szerezheti be ezeket az értékeket a [klasszikus Azure portál](http://manage.windowsazure.com). Ez a modul most a különböző biztonságos értesítések küldendő jelöli. A megvalósítás az értesítések tárolódnak adatbázis; Az egyszerűség kedvéért ebben az esetben tároljuk őket a memóriában.
+1. A Visual Studióban nyissa meg a hello **AppBackend** hello létrehozott projekt **felhasználók értesítése** oktatóanyag.
+2. A Notifications.cs, teljes név felülírandó hello **értesítések** a következő kód hello osztályt. Lehet, hogy tooreplace hello helyőrzőt a kapcsolati karakterlánc (teljes hozzáférés) az értesítési központot, és hello központ nevét. Ezt úgy szerezheti be ezeket az értékeket a hello [klasszikus Azure portál](http://manage.windowsazure.com). Ez a modul most hello különböző biztonságos értesítések küldendő jelöli. Egy teljes megvalósításában hello értesítések tárolódnak adatbázis; Az egyszerűség kedvéért ebben az esetben tároljuk őket a memóriában.
    
         public class Notification
         {
@@ -40,7 +40,7 @@
             }
         }
 
-1. NotificationsController.cs, cserélje le a kódot a **NotificationsController** osztály definícióját a következő kóddal. Ez az összetevő valósítja meg az értesítés biztonságosan beolvasása az eszköz olyan módon, és is lehetővé teszi a (a jelen oktatóanyag céljából) való biztonságos leküldéses az eszközökön. Vegye figyelembe, hogy az értesítési központnak küldött, amikor csak értesítést fog kapni, a nyers azonosítójú az értesítés (és nem tényleges üzenet):
+1. NotificationsController.cs, cserélje le hello hello kódot **NotificationsController** definition hello a következő kódot az osztály. Ez az összetevő úgy hello eszköz tooretrieve hello értesítési biztonságosan megvalósítja és is tartalmaz egy módja (a jelen oktatóanyag céljából hello) tootrigger egy biztonságos leküldéses tooyour eszközök. Vegye figyelembe, hogy hello értesítésiközpont toohello értesítést küld, amikor csak értesítést fog kapni, a nyers hello azonosítójú hello értesítési (és nem tényleges üzenet):
    
        public NotificationsController()
        {
@@ -75,8 +75,8 @@
         }
 
 
-Vegye figyelembe, hogy a `Post` metódus most nem küld egy bejelentési értesítést. Az értesítés-azonosítója és a nem bizalmas tartalmat tartalmazó nyers értesítést küld. Emellett győződjön meg arról, a küldési művelet, amelynek nincs konfigurálva az értesítési központ, a hitelesítő adatokat, azok hibákat eredményez a platformok megtételére.
+Vegye figyelembe, hogy hello `Post` metódus most nem küld egy bejelentési értesítést. Csak a hello értesítés azonosítója és a nem bizalmas tartalmat tartalmazó nyers értesítést küld. Továbbá győződjön meg arról, hogy toocomment hello küldési művelethez hello platformokhoz, amelynek nincs konfigurálva az értesítési központ, a hitelesítő adatokat, azok hibákat eredményez.
 
-1. Most azt újra telepíti ezt a webalkalmazást az Azure-webhely annak érdekében, hogy minden eszköz érhető el. Kattintson jobb gombbal az **AppBackend** projektre, és válassza a **Publish** (Közzététel) lehetőséget.
-2. A közzétételi célként válassza az Azure webhelyén. Jelentkezzen be az Azure-fiókjával, és válassza ki a meglévő vagy új webhely létrehozása, és jegyezze fel a a **URL-címre** tulajdonságot a **kapcsolat** fülre. Az oktatóanyag további részében erre az URL-címre fogunk hivatkozni a *háttérrendszer végpontjaként*. Kattintson a **Publish** (Közzététel) gombra.
+1. Most fogjuk újra üzembe helyezni az alkalmazás tooan Azure-webhely rendelés toomake azt minden eszköz érhető el. Kattintson a jobb gombbal a hello **AppBackend** projektre, és válassza ki **közzététel**.
+2. A közzétételi célként válassza az Azure webhelyén. Jelentkezzen be az Azure-fiókjával, és válassza ki a meglévő vagy új webhely létrehozása, és jegyezze fel a hello **URL-címre** hello tulajdonság **kapcsolat** fülre. Toothis URL-CÍMÉRE hivatkozik a *háttér végpont* ebben az oktatóanyagban később. Kattintson a **Publish** (Közzététel) gombra.
 

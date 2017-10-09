@@ -3,7 +3,7 @@ Az Azure DNS egy olyan üzemeltetési szolgáltatás DNS-tartományok, biztosít
 
 | Tulajdonság | Leírás | A minta értéke |
 | --- | --- | --- |
-| **DNSzones** |Tartományi zóna adatainak állomás DNS-rekordok az adott tartományban |/ subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com " |
+| **DNSzones** |Tartomány zóna információk toohost DNS-rekordjait az adott tartományban |/ subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com " |
 
 ### <a name="dns-record-sets"></a>DNS-rekordhalmazok
 DNS-zónák nevű rekordkészlet gyermekobjektum rendelkezik. Rekordhalmazok kivételt jelentenek a DNS-zónák típusonként állomásrekordokat gyűjteménye. Típusok A, AAAA, CNAME, MX, NS, SOA, SRV és TXT.
@@ -31,14 +31,14 @@ Minta DNS-zóna Json formátumban:
         "newZoneName": {
           "type": "String",
           "metadata": {
-              "description": "The name of the DNS zone to be created."
+              "description": "hello name of hello DNS zone toobe created."
           }
         },
         "newRecordName": {
           "type": "String",
           "defaultValue": "www",
           "metadata": {
-              "description": "The name of the DNS record to be created.  The name is relative to the zone, not the FQDN."
+              "description": "hello name of hello DNS record toobe created.  hello name is relative toohello zone, not hello FQDN."
           }
         }
       },
@@ -78,7 +78,7 @@ Minta DNS-zóna Json formátumban:
     }
 
 ## <a name="additional-resources"></a>További források
-Olvassa el a [DNS-zónák REST API dokumentációja ](https://msdn.microsoft.com/library/azure/mt130626.aspx) további információt.
+Olvasási hello [DNS-zónák REST API dokumentációja ](https://msdn.microsoft.com/library/azure/mt130626.aspx) további információt.
 
-Olvassa el a [DNS-rekordhalmazok REST API dokumentációja](https://msdn.microsoft.com/library/azure/mt130627.aspx) további információt.
+Olvasási hello [DNS-rekordhalmazok REST API dokumentációja](https://msdn.microsoft.com/library/azure/mt130627.aspx) további információt.
 

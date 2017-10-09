@@ -1,6 +1,6 @@
 ---
-title: "Engedélyezze az átlátható adattitkosítást az Azure Security Centerben |} Microsoft Docs"
-description: "Ez a dokumentum azt ismerteti, hogyan valósítja meg az Azure Security Center ajánlás ** engedélyezése átlátszó adatok titkosítás **."
+title: "aaaEnable átlátható adattitkosítást az Azure Security Centerben |} Microsoft Docs"
+description: "Ez a dokumentum bemutatja, hogyan tooimplement hello Azure Security Center javaslat ** engedélyezése átlátszó adatok titkosítás **."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 2a2963affdbff3710ad08f86c6ed4e6304335559
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94c6e9a1feddaa48faac6c835d416c4d131cd5c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-in-azure-security-center"></a>Engedélyezze az átlátható adattitkosítást az Azure Security Centerben
-Azure Security Center javasolni fogja engedélyezése átlátszó Data Encryption (TDE) az SQL-adatbázisok, ha a TDE nincs engedélyezve. TDE védi az adatokat, és segítséget nyújt a megfelelőségi követelményeknek való megfelelést az adatbázis, a társított biztonsági másolatok és a tranzakciós naplófájlok nyugalmi, anélkül, hogy az alkalmazást módosítani kellene történő. További részletek további [átlátható adattitkosítást az Azure SQL Database](https://msdn.microsoft.com/library/dn948096).
+Azure Security Center javasolni fogja engedélyezése átlátszó Data Encryption (TDE) az SQL-adatbázisok, ha a TDE nincs engedélyezve. TDE védi az adatokat, és segítséget nyújt a megfelelőségi követelményeknek a adatbázis, a társított biztonsági másolatok és a tranzakciós naplófájlok nyugalmi, anélkül, hogy a módosítások tooyour alkalmazás titkosításával. több lásd toolearn [átlátható adattitkosítást az Azure SQL Database](https://msdn.microsoft.com/library/dn948096).
 
-Ez a javaslat vonatkozik az Azure SQL-szolgáltatás csak; a virtuális gépeken futó SQL nem tartalmaz.
+Ez a javaslat alkalmazása toohello Azure SQL-szolgáltatás csak; a virtuális gépeken futó SQL nem tartalmaz.
 
 > [!NOTE]
-> Ez a dokumentum egy üzembe helyezést szemléltető példa segítségével mutatja be a szolgáltatást.  A dokumentum nem tartalmaz lépésenkénti útmutatót.
+> Ez a dokumentum hello szolgáltatás telepítését bemutató példát használatával vezet be.  A dokumentum nem tartalmaz lépésenkénti útmutatót.
 >
 >
 
-## <a name="implement-the-recommendation"></a>A javaslat megvalósítása
-1. Az a **javaslatok** panelen válassza **átlátható adattitkosítási engedélyezése**.
+## <a name="implement-hello-recommendation"></a>Hello javaslat megvalósítása
+1. A hello **javaslatok** panelen válassza **átlátható adattitkosítási engedélyezése**.
    ![Transzparens adattitkosítás engedélyezése][1]
-2. Ekkor megnyílik a **átlátható adattitkosítási engedélyezése az SQL-adatbázisok** panelen. Válassza ki a TDE engedélyezése az SQL-adatbázis.
-   ![Válassza ki az SQL-adatbázis a TDE engedélyezése][2]
-3. Az a **átlátható adattitkosítás** panelen válassza **ON** adatok titkosítását, és válassza a **mentése** a panel felső szalagon.
+2. Ekkor megnyílik a hello **átlátható adattitkosítási engedélyezése az SQL-adatbázisok** panelen. Jelölje be egy SQL-adatbázis tooenable TDE.
+   ![Az SQL DB tooenable TDE kiválasztása][2]
+3. A hello **átlátható adattitkosítás** panelen válassza **ON** adatok titkosítását, és válassza a **mentése** hello felső szalagon hello panelről.
    ![Kapcsolja be a TDE][3]
 
-   Ha a TDE engedélyezve van a kiválasztott SQL-adatbázis a **titkosítási állapotát** módosul **titkosított**.    
+   Ha a TDE engedélyezve van a hello kijelölt SQL-adatbázis hello **titkosítási állapotát** túl változik**titkosított**.    
 
    ![A titkosítás állapota][4]
 
 ## <a name="see-also"></a>Lásd még:
-Ez a cikk bemutatta megvalósításához a Security Center ajánlás "Engedélyezés átlátható adattitkosítási." Erőforráscsoportoknál kapcsolatos további tudnivalókért olvassa el a következőket:
+Ez a cikk bemutatta, hogyan tooimplement hello Security Center ajánlás "Enable átlátható adattitkosítási." toolearn Erőforráscsoportoknál, kapcsolatos további információkért tekintse meg a hello következőt:
 
 * [Az Azure SQL Database átlátható adattitkosítás](https://msdn.microsoft.com/library/dn948096)
 * [Ismerkedés a transzparens adatok titkosítás (TDE)](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
 
-A Security Centerrel kapcsolatos további információkért olvassa el a következőket:
+További információ a Security Center toolearn hello következő lásd:
 
-* [Biztonsági szabályzatok beállítása az Azure Security Centerben](security-center-policies.md) – Ez a cikk bemutatja, hogyan konfigurálhat biztonsági házirendeket Azure-előfizetései és -erőforráscsoportjai számára.
+* [Biztonsági szabályzatok beállítása az Azure Security Center](security-center-policies.md) – megtudhatja, hogyan tooconfigure biztonsági házirendek az Azure-előfizetések és az erőforráscsoportokat.
 * [Biztonsági javaslatok kezelése az Azure Security Center](security-center-recommendations.md) – megtudhatja, miként könnyítik meg a javaslatok az Azure-erőforrások védelme.
-* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md) – útmutató az Azure-erőforrások állapotának figyelésére.
-* [Biztonsági riasztások kezelése és válaszadás a riasztásokra az Azure Security Centerben](security-center-managing-and-responding-alerts.md) – A biztonsági riasztások kezelése és az azokra való reagálás.
-* [Partneri megoldások monitorozása az Azure Security Centerrel](security-center-partner-solutions.md) – Útmutató a partneri megoldások biztonsági állapotának monitorozásához.
-* [Azure Security Center – gyakran ismételt kérdések](security-center-faq.md) – Gyakran ismételt kérdések a szolgáltatás használatával kapcsolatban.
-* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) --az Azure biztonsági legfrissebb hírek és információ.
+* [Biztonsági állapotfigyelés az Azure Security Center](security-center-monitoring.md) – megtudhatja, hogyan toomonitor hello az Azure-erőforrások állapotát.
+* [Az Azure Security Centerben riasztások kezelése és válaszol toosecurity](security-center-managing-and-responding-alerts.md) – megtudhatja, hogyan toomanage és válaszoljon toosecurity riasztásokat.
+* [Partnermegoldások figyelése az Azure Security Center](security-center-partner-solutions.md) – megtudhatja, hogyan toomonitor hello partneri megoldások biztonsági állapotát.
+* [Azure Security Center: GYIK](security-center-faq.md) – gyakran ismételt kérdések hello szolgáltatás használatával kapcsolatban.
+* [Az Azure biztonsági blog](http://blogs.msdn.com/b/azuresecurity/) – hello legújabb Azure biztonsági hírek és információ lekérése.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-tde-on-sql-databases/enable-tde.png

@@ -1,10 +1,10 @@
 
 
 
-A virtuális gépek Oracle-rendszerképek alapján történő létrehozásához jelentkezzen be az [Azure Portalra](https://portal.azure.com/), kattintson a **Marketplace**, majd a **Compute** elemre, ezt követően pedig a keresőmezőbe írja be az **Oracle** kifejezést. Válasszon ki egy rendszerképet, majd kövesse az utasításokat a rendszerkép a Microsoft Azure-on történő üzembe helyezéséhez. Vegye figyelembe, hogy a Microsoft az [Azure Portalon](https://portal.azure.com/) található Oracle-rendszerképei Windows rendszeren futnak, az Oracle által közzétett Oracle-rendszerképek pedig Oracle Linuxon futnak.
+toocreate virtuális gépek Oracle képek alapuló toohello bejelentkezés [Azure-portálon](https://portal.azure.com/), kattintson a **piactér**, kattintson a **számítási**, és írja be **Oracle**  hello keresőmezőbe. Jelöljön ki egy képet, és kövesse a hello utasításokat tooset hello lemezképet fel a Microsoft Azure. Vegye figyelembe, hogy Oracle lemezképek Microsoft hello a [Azure-portálon](https://portal.azure.com/) Windows fussanak, és Oracle képek Oracle futtathatók Oracle Linux.
 
 ## <a name="windows-based-virtual-machine-images"></a>Windows-alapú virtuálisgép-rendszerképek
-A következő lista azokat az elérhető Oracle virtuálisgép-rendszerképeket tartalmazza, amelyek az Azure-on Windows Serveren futnak. Ezen rendszerképek esetében használatalapú fizetés van érvényben, ami azt jelenti, hogy az Oracle-licencdíjakat tartalmazza a rendszerképek használata. A Microsoft már nem tesz közzé Oracle Database- vagy WebLogic-rendszerképeket az Azure Marketplace-en.  Ettől függetlenül létrehozhatja saját egyéni rendszerképét, illetve a saját licenc használata modellt alkalmazva a Microsoft Azure-on is futtathatja az Oracle szoftvereit. 
+hello hello elérhető Oracle virtuálisgép-rendszerképek a Windows Server az Azure-on futó listája látható. Ezeket a lemezképeket is – használatalapú fizetés, ami azt jelenti, hogy Oracle licenc díjak szerepelnek ezek a lemezképek hello használata. A Microsoft már nem tesz közzé Oracle Database- vagy WebLogic-rendszerképeket az Azure Marketplace-en.  Továbbra is a saját egyéni lemezképet, és hello a saját licenc modellt használja a rendelés toorun Oracle szoftver a Microsoft Azure. 
 
 ### <a name="java-virtual-machine-images"></a>Java virtuálisgép-rendszerképek
 * JDK 8 Windows Server 2012 R2 rendszeren
@@ -12,7 +12,7 @@ A következő lista azokat az elérhető Oracle virtuálisgép-rendszerképeket 
 * JDK 6 Windows Server 2012 rendszeren
 
 ## <a name="oracle-linux-virtual-machine-images"></a>Oracle Linux virtuálisgép-rendszerképek
-A következő lista azokat az előre konfigurált Oracle virtuálisgép-rendszerképeket tartalmazza, amelyek az Azure-on Oracle Linux rendszeren futnak. Ezen rendszerképek esetében a saját licenc használata modellt veheti igénybe, mivel az Oracle-licencdíjakat nem tartalmazza az előre konfigurált virtuálisgép-rendszerképek használata. A saját licencét használhatja az Oracle szoftvereinek Windows vagy Linux rendszert használó egyéni virtuális gépekre való telepítéséhez és futtatásához. További információk az [Oracle-licenckezelésről az Azure-on](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html#support). A virtuális gépek [saját rendszerképek](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) használatával történő létrehozásáról itt olvashat bővebben.
+hello hello elérhető előre konfigurált Oracle virtuálisgép-rendszerképek Oracle Linux Azure-on futó listája látható. Ezeket a lemezképeket, Oracle díjat a saját licenc nem szerepelnek ezen hello használati toobring előre konfigurált virtuális gép képfájljait várható. Kapcsolja a saját licenc tooinstall is, és egyéni virtuális gépeken a Windows vagy Linux Oracle programok futtatása. További információk az [Oracle-licenckezelésről az Azure-on](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html#support). A virtuális gépek [saját rendszerképek](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) használatával történő létrehozásáról itt olvashat bővebben.
 
 * Oracle Database 12c Enterprise Edition Oracle Linux rendszeren
 * Oracle Database 12c Standard Edition Oracle Linux rendszeren

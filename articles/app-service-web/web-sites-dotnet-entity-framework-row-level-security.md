@@ -1,6 +1,6 @@
 ---
 title: "Oktatóprogram: Egy több-bérlős adatbázist Entity Framework és sorszintű biztonsággal rendelkező webalkalmazás"
-description: "Ismerje meg, hogyan fejleszthet egy ASP.NET MVC 5 webalkalmazásnál egy több-bérlős SQL adatbázis backent, Entity Framework és a sorszintű biztonság."
+description: "Ismerje meg, hogyan toodevelop egy ASP.NET MVC 5 webalkalmazás egy több-bérlős SQL adatbázis backent, Entity Framework és sorszintű biztonsággal rendelkező."
 metakeywords: azure asp.net mvc entity framework multi tenant row level security rls sql database
 services: app-service\web
 documentationcenter: .net
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/25/2016
 ms.author: thmullan
-ms.openlocfilehash: ba1bb3d84b462dfebbb2564569517d7336bf54fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1b715e01807032c3f6497c374ce427dd762af141
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-web-app-with-a-multi-tenant-database-using-entity-framework-and-row-level-security"></a>Oktatóprogram: Egy több-bérlős adatbázist Entity Framework és sorszintű biztonsággal rendelkező webalkalmazás
-Ez az oktatóanyag bemutatja, hogyan hozhat létre egy több-bérlős webes alkalmazást egy "[megosztott adatbázis, a közös séma](https://msdn.microsoft.com/library/aa479086.aspx)" bérlős modell használatával az Entity Framework és [sorszintű biztonság](https://msdn.microsoft.com/library/dn765131.aspx). Ebben a modellben egy adatbázis több bérlő adatait tartalmazza, és minden tábla minden sorára társítva van egy "bérlői azonosító". A sorszintű biztonságot (RLS), egy új funkció az Azure SQL Database, ezáltal megakadályozhatja, hogy a bérlők egymás adatokhoz hozzáférő szolgál. Ehhez csak egyetlen, kisebb módosítást az alkalmazáshoz. A bérlői access programot belül maga az adatbázis központosításával, RLS egyszerűbbé teszi az alkalmazás kódjában, és csökkenti a bérlők közötti adatok véletlen kiszivárgásának kockázata.
+Ez az oktatóanyag bemutatja, hogyan toobuild egy több-bérlős webes alkalmazást egy "[megosztott adatbázis, a közös séma](https://msdn.microsoft.com/library/aa479086.aspx)" bérlős modell használatával az Entity Framework és [sorszintű biztonság](https://msdn.microsoft.com/library/dn765131.aspx). Ebben a modellben egy adatbázis több bérlő adatait tartalmazza, és minden tábla minden sorára társítva van egy "bérlői azonosító". A sorszintű biztonságot (RLS), egy új funkció az Azure SQL Database esetén használt tooprevent bérlők egymás adatok hozzáférése. Ehhez csak egyetlen, kisebb módosítást toohello alkalmazást. Központosítása hello bérlői hozzáférési logika hello adatbázis magát RLS hello alkalmazáskód leegyszerűsíti, és csökkenti a bérlők közötti adatok véletlen kiszivárgásának kockázata hello.
 
-Kezdjük az egyszerű kapcsolatkezelő alkalmazás [a hitelesítés és SQL-adatbázis a ASP.NET MVP-alkalmazás létrehozása és telepítése az Azure App Service](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md). Jobb, az alkalmazás lehetővé teszi, hogy minden felhasználó (bérlő) található összes névjegyeket:
+Kezdjük hello egyszerű kapcsolatkezelő alkalmazás [ASP.NET MVP-alkalmazás létrehozása a hitelesítés és SQL-adatbázis, és telepítheti az App Service tooAzure](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md). Jobb most hello alkalmazás lehetővé teszi, hogy minden felhasználó (bérlő) toosee összes névjegy:
 
 ![Ahhoz, hogy a RLS kapcsolatkezelő alkalmazás](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-Before.png)
 
-Néhány kis módosításainak köszönhetően azt támogatni fogják a több-bérlős, ezáltal a felhasználók csak a hozzájuk tartozó ügyfelek láthatók.
+Néhány kis módosításainak köszönhetően azt támogatni fogják a több-bérlős, ezáltal a felhasználók képesek toosee csak hello ügyfelek toothem tartoznak.
 
-## <a name="step-1-add-an-interceptor-class-in-the-application-to-set-the-sessioncontext"></a>1. lépés: Az elfogó osztály hozzáadása az alkalmazásban a SESSION_CONTEXT beállítása
-Meg kell győződnünk egy alkalmazás változás van. Minden alkalmazás felhasználóinak kapcsolódni az adatbázishoz, ugyanazt a kapcsolati karakterláncot (azaz azonos SQL-bejelentkezési) használatával, mert jelenleg nem úgy RLS házirend tudni, hogy mely felhasználói szűrhet kell. Ez a megközelítés nem nagyon gyakori a webes alkalmazások, mert lehetővé teszi, hogy hatékony kapcsolatkészlet, de az azt jelenti, hogy úgy is azonosíthatja az adatbázisból az aktuális alkalmazás felhasználójának kell. A megoldás az, hogy az alkalmazás a jelenlegi felhasználói azonosítóját, a kulcs-érték párból beállítani a [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) után azonnal kapcsolat létesítése előtt végrehajtása lekérdezéseket. SESSION_CONTEXT egy munkamenet-hatókörű kulcs-érték tárolóban, és az RLS-házirend a benne tárolt felhasználói azonosítóját fogja használni a jelenlegi felhasználó azonosítására.
+## <a name="step-1-add-an-interceptor-class-in-hello-application-tooset-hello-sessioncontext"></a>1. lépés: Az elfogó osztály hozzáadása a hello alkalmazás tooset hello SESSION_CONTEXT
+Egy alkalmazás változás toomake van szükségünk van. Minden alkalmazás felhasználóinak csatlakozás toohello adatbázis használatával hello ugyanazt a kapcsolati karakterláncot (azaz azonos SQL-bejelentkezési), jelenleg nincs mód az RLS házirend tooknow felhasználói azt kell szűrhet az. Ez a megközelítés nem nagyon gyakori a webes alkalmazások, mert lehetővé teszi, hogy hatékony kapcsolatkészlet, de az azt jelenti, hogy egy másik módja tooidentify hello aktuális alkalmazás felhasználójának hello adatbázison belül kell. hello megoldás toohave hello alkalmazás beállítása egy kulcs-érték párt a hello aktuális UserId hello [SESSION_CONTEXT](https://msdn.microsoft.com/library/mt590806) után azonnal kapcsolat létesítése előtt végrehajtása lekérdezéseket. SESSION_CONTEXT egy munkamenet-hatókörű kulcs-érték tárolóban, és az RLS házirend fogja használni a felhasználói azonosítóját a benne tárolt hello tooidentify hello aktuális felhasználó.
 
-Adunk hozzá egy [elfogó](https://msdn.microsoft.com/data/dn469464.aspx) (különösen a [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor)), egy új szolgáltatás a Entity Framework (EF) 6, automatikusan beállítani a jelenlegi felhasználói azonosítóját a SESSION_CONTEXT egy T-SQL-utasítás végrehajtásával, amikor az EF megnyit egy kapcsolatot.
+Adunk hozzá egy [elfogó](https://msdn.microsoft.com/data/dn469464.aspx) (különösen a [DbConnectionInterceptor](https://msdn.microsoft.com/library/system.data.entity.infrastructure.interception.idbconnectioninterceptor)), egy új szolgáltatás a Entity Framework (EF) 6, tooautomatically set hello hello SESSION_CONTEXT az aktuális felhasználói azonosítóját a következő futtatásával egy T-SQL utasítást, amikor EF megnyit egy kapcsolatot.
 
-1. Nyissa meg a ContactManager projektet a Visual Studióban.
-2. Kattintson a jobb gombbal a Solution Explorer modellek mappájára, és válassza a Hozzáadás > osztály.
-3. Az új osztály "SessionContextInterceptor.cs" nevet, és kattintson a Hozzáadás gombra.
-4. Cserélje le a SessionContextInterceptor.cs tartalmát az alábbira.
+1. Nyissa meg a hello ContactManager projektet a Visual Studióban.
+2. Kattintson a jobb gombbal a Solution Explorer hello hello Models mappát, és válassza a Hozzáadás > osztály.
+3. Új osztály hello "SessionContextInterceptor.cs" nevet, és kattintson a Hozzáadás gombra.
+4. Cserélje le a következő kód hello SessionContextInterceptor.cs hello tartalmát.
 
 ```
 using System;
@@ -55,7 +55,7 @@ namespace ContactManager.Models
     {
         public void Opened(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
         {
-            // Set SESSION_CONTEXT to current UserId whenever EF opens a connection
+            // Set SESSION_CONTEXT toocurrent UserId whenever EF opens a connection
             try
             {
                 var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
@@ -179,41 +179,41 @@ namespace ContactManager.Models
 }
 ```
 
-Ez az egyetlen alkalmazás módosítása kötelező. Lépjen tovább, és hozza létre, és tegye közzé az alkalmazást.
+Ez az hello egyetlen alkalmazás módosítása kötelező. Lépjen tovább, és hozza létre, és hello alkalmazás közzététele.
 
-## <a name="step-2-add-a-userid-column-to-the-database-schema"></a>2. lépés: Az adatbázis-séma UserId oszlop hozzáadása
-A következő igazolnia kell a UserId oszlop hozzáadása a névjegyek tábla minden egyes sorára társítja a felhasználó (bérlő). A séma közvetlenül az adatbázisban, azt módosítja, így azt nem kell ahhoz, hogy ez a mező szerepeljen az EF adatmodell.
+## <a name="step-2-add-a-userid-column-toohello-database-schema"></a>2. lépés: UserId oszlop toohello adatbázisséma hozzáadása
+A következő igazolnia kell a UserId oszlop toohello névjegyek tábla tooassociate tooadd minden egyes sorára a felhasználó (bérlő). Közvetlenül a hello adatbázis hello séma azt módosítja, így nem tudunk tooinclude ebben a mezőben az EF adatmodell.
 
-Kapcsolódni az adatbázishoz közvetlenül, SQL Server Management Studio vagy Visual Studio használatával, és hajthat végre a következő T-SQL:
+Toohello adatbázis közvetlen csatlakozás SQL Server Management Studio vagy Visual Studio használatával, és majd hajtsa végre a következő T-SQL hello:
 
 ```
 ALTER TABLE Contacts ADD UserId nvarchar(128)
     DEFAULT CAST(SESSION_CONTEXT(N'UserId') AS nvarchar(128))
 ```
 
-A UserId oszlop hozzáadása a kapcsolatok táblához. Nvarchar(128) adattípus használatával felel meg a UserIds a AspNetUsers tábla tárolja, és azt, amely automatikusan be kell lennie a UserId SESSION_CONTEXT jelenleg tárolt újonnan beszúrt sorai a UserId alapértelmezett megkötés létrehozása.
+Ez biztosítja a UserId oszlop toohello névjegyek tábla. Hello nvarchar(128) adatok típusa toomatch hello UserIds hello AspNetUsers táblában tárolt használjuk, és azt, amely az újonnan behelyezett sorok toobe hello SESSION_CONTEXT jelenleg tárolt UserId UserId hello automatikusan be alapértelmezett megkötés létrehozása.
 
-Most már a tábla néz ki:
+Most hello tábla néz ki:
 
 ![SSMS kapcsolatok táblához](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-Contacts.png)
 
-Új partnerek létrehozásakor ezeket lesz automatikusan hozzárendeli a megfelelő felhasználói azonosítót. Bemutató céljára azonban nézzük hozzárendelése néhány a meglévő ügyfeleket egy meglévő felhasználó.
+Új partnerek létrehozásakor ezeket lesz automatikusan hozzárendeli a hello javítsa ki a felhasználói azonosítóját. Bemutató céljára azonban nézzük rendelje hozzá a meglévő ügyfelek tooan felhasználó meglévő néhány.
 
-Ha létrehozta az alkalmazás már néhány felhasználó (pl. használatával helyi, Google vagy Facebook fiókok), a AspNetUsers táblázatban láthatja. Az alábbi képernyőképen látható nincs, amennyiben a csak egy felhasználó.
+Ha létrehozta az alkalmazás már hello néhány felhasználó (pl. használatával helyi, Google vagy Facebook fiókok), hello AspNetUsers táblázatban láthatja. Hello a képernyőfelvételen látható az alábbi nincs, amennyiben a csak egy felhasználó.
 
 ![SSMS AspNetUsers tábla](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
 
-Másolja le az azonosítót user1@contoso.com, majd illessze be az alábbi T-SQL-utasításban. Rendelje hozzá a három ügyfeleket a felhasználói azonosítóját e utasítás végrehajtásához.
+Másolás hello azonosítója a user1@contoso.com, és illessze be az alábbi hello T-SQL-utasításban. Ez a felhasználóazonosító hello kapcsolattartás utasítás tooassociate három hajtható végre.
 
 ```
 UPDATE Contacts SET UserId = '19bc9b0d-28dd-4510-bd5e-d6b6d445f511'
 WHERE ContactId IN (1, 2, 5)
 ```
 
-## <a name="step-3-create-a-row-level-security-policy-in-the-database"></a>3. lépés: A sorszintű biztonsági szabályzat létrehozása az adatbázisban
-Az utolsó lépést, ha egy olyan biztonsági házirendet, amely a felhasználói azonosítóját használja a SESSION_CONTEXT automatikusan a lekérdezések által visszaadott eredmények szűrésére.
+## <a name="step-3-create-a-row-level-security-policy-in-hello-database"></a>3. lépés: A sorszintű biztonsági szabályzat létrehozása a hello adatbázis
+utolsó lépésként hello toocreate hello UserId SESSION_CONTEXT tooautomatically szűrő hello eredmények lekérdezések által visszaadott használó biztonsági házirend.
 
-Amíg az adatbázis továbbra is kapcsolódik, hajtsa végre a következő T-SQL:
+Közben továbbra is csatlakoztatott toohello adatbázis hajtható végre a következő T-SQL hello:
 
 ```
 CREATE SCHEMA Security
@@ -234,18 +234,18 @@ go
 
 ```
 
-Ez a kód három dolgot végzi. Először hoz létre egy új séma központosítása és az RLS-objektumokhoz való hozzáférés korlátozása az ajánlott eljárás. Ezt követően az alkalmazás létrehozza a predikátum függvény, amely egy sor UserId megegyezik a SESSION_CONTEXT UserId visszaadható "1". Végül létrehoz egy olyan biztonsági házirendet, amely ezt a funkciót, az ügyfelek táblán egy szűrési és a blokk predikátum. A szűrő predikátuma hatására a lekérdezések vissza csak azok a sorok, amelyekre az aktuális felhasználóhoz tartozik, és a blokkpredikátumok úgy működik, mint a biztonságos működés érdekében megakadályozhatja, hogy a véletlenül legalább egyszer beszúrni egy sort a megfelelő felhasználói alkalmazás.
+Ez a kód három dolgot végzi. Először hoz létre egy új séma központosítását és hozzáférési toohello RLS objektumok korlátozza az ajánlott eljárás. Ezután létrehoz egy predikátum függvény, amely egy sor UserId hello megegyezik a SESSION_CONTEXT UserId hello visszaadható "1". Végül létrehoz egy olyan biztonsági házirendet, amely felveszi ezt a funkciót egy szűrési és a blokk predikátum hello névjegyek táblán. hello szűrőpredikátum hatására a lekérdezések tooreturn csak azon sorait, amelyek toohello aktuális felhasználó tartozik, és hello blokkpredikátumok úgy működik, mint a biztonságos működés érdekében tooprevent hello alkalmazást legalább egyszer véletlenül beszúrni egy sort a megfelelő felhasználói hello.
 
-Most futtassa az alkalmazást, és jelentkezzen be a user1@contoso.com. Ezt a felhasználót most csak azt hozzárendelt ügyfeleket a felhasználóazonosító korábbi látja:
+Most futtassa hello alkalmazást, és jelentkezzen be a user1@contoso.com. Ez most felhasználónál csak UserId toothis korábban hozzárendelt igazolnia hello ügyfelek:
 
 ![Ahhoz, hogy a RLS kapcsolatkezelő alkalmazás](./media/web-sites-dotnet-entity-framework-row-level-security/ContactManagerApp-After.png)
 
-Ez további, próbálkozzon egy új felhasználó regisztrálása érvényesítéséhez. Nincs a névjegyek, mert nincs hozzárendelt őket látnak. Akkor hozzon létre egy új ügyfelet, ha rendeli hozzá őket, és csak akkor lesz látható legyen.
+toovalidate ez további, próbálkozzon egy új felhasználó regisztrálása. Nincs a névjegyek, mert nincs hozzárendelt toothem látnak. Ha hoznak létre új ügyfél, a rendszer hozzárendel toothem, és csak akkor lesz képes toosee azt.
 
 ## <a name="next-steps"></a>Következő lépések
-Ennyi az egész! A Contact Manager egyszerű webalkalmazást egy több-bérlős, ahol minden felhasználó rendelkezik-e a saját a ismerőslistájába egyik lett alakítva. A sorszintű biztonság, azt már elkerülhető a bérlői access programot az alkalmazás kódjában érvényesítési összetettségét. Az átláthatóság lehetővé teszi, hogy az alkalmazás a valódi üzleti probléma kezelésére összpontosítson, és csökkenti a kockázata, hogy véletlenül megakadályozására adatok, mint az alkalmazás csomagazonosítóját kódbázis növekszik.
+Ennyi az egész! egy több-bérlős, ahol minden felhasználó rendelkezik-e a saját a ismerőslistájába egy egyszerű forduljon Manager webalkalmazás hello lett alakítva. Használ sorszintű biztonsággal, azt is elkerülhető bérlői access programot az alkalmazás kódjában érvényesítési hello összetettségét. Az átláthatóság hello alkalmazás toofocus lehetővé teszi az elvégzendő hello valódi üzleti probléma, és csökkenti véletlenül megakadályozására adatok, mint hello alkalmazás csomagazonosítóját kódbázis hello kockázatát növekszik.
 
-Ez az oktatóanyag rendelkezik mondtam, hogy mit az RLS lehetséges. Például lehet rendelkezik több kifinomult vagy részletes access programot, és lehet tárolni a SESSION_CONTEXT nem csak az aktuális felhasználói azonosítóját. Akkor is lehet [RLS integrálása a rugalmas adatbázis eszközök klienskódtárak segítségével](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) egy kibővített adatrétegbeli több-bérlős szilánkok támogatásához.
+Ez az oktatóanyag csak karcolva hello felületét Mi az az RLS lehetséges rendelkezik. Például lehetséges toohave kifinomultabb vagy részletes access programot, és azok lehetséges toostore csupán hello hello SESSION_CONTEXT az aktuális felhasználói azonosítóját. Lehetőség arra is túl[RLS integrálása hello rugalmas adatbázis eszközök ügyféloldali kódtáraknál](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) toosupport több-bérlős szilánkok a kibővített adatok rétegben.
 
-Ezekkel a lehetőségekkel, túl is dolgozunk RLS még továbbfejlesztésében. Ha kérdése van, ötleteket vagy kíváncsi rá, dolgot tudassa velünk, a megjegyzések. Köszönjük visszajelzését!
+Ezekkel a lehetőségekkel, túl toomake még élvezetesebbé RLS is dolgozunk. Ha kérdése van, ötleteket vagy toosee, milyen dolgot tudassa velünk hello megjegyzések. Köszönjük visszajelzését!
 

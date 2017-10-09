@@ -1,6 +1,6 @@
 ---
-title: "Azure eszközkészlet használata a Hortonworks védőfal IntelliJ |} Microsoft Docs"
-description: "Megtudhatja, hogyan használhat HDInsight eszközöket az Azure-eszközkészlet a Hortonworks védőfal az intellij-t."
+title: "IntelliJ Hortonworks védőfal rendelkező Azure eszköztára aaaUse |} Microsoft Docs"
+description: "Megtudhatja, hogyan toouse HDInsight eszközei Azure eszközkészlet a Hortonworks védőfal az intellij-t."
 keywords: "hadoop-eszközök hive lekérdezés, az intellij, hortonworks védőfal, intellij azure eszköztára"
 services: HDInsight
 documentationcenter: 
@@ -17,81 +17,81 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c49f185db5a035f70a711bf309b973182d94a2b0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2bf97068a9cec99fcc7b4ff9469b91d8cbe2a8d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-hdinsight-tools-for-intellij-with-hortonworks-sandbox"></a>Használja a HDInsight Tools for IntelliJ a Hortonworks védőfal
 
-A HDInsight Tools for IntelliJ használata Apache Scala-alkalmazások fejlesztéséhez és tesztelje az alkalmazásokat a [Hortonworks védőfal](http://hortonworks.com/products/sandbox/) fut a munkaállomáson. 
+Ismerje meg, hogyan toouse a HDInsight Tools for IntelliJ toodevelop Apache Scala-alkalmazások és végül pedig tesztelheti hello az alkalmazások [Hortonworks védőfal](http://hortonworks.com/products/sandbox/) fut a munkaállomáson. 
 
-[IntelliJ IDEA](https://www.jetbrains.com/idea/) fejlesztési számítógép szoftver a Java-integrált fejlesztési környezeti (IDE) van. Kifejlesztett és tesztelt Hortonworks a(z) az alkalmazások, után áthelyezheti őket [Azure HDInsight](hdinsight-hadoop-introduction.md).
+[IntelliJ IDEA](https://www.jetbrains.com/idea/) fejlesztési számítógép szoftver a Java-integrált fejlesztési környezeti (IDE) van. Kifejlesztett és tesztelt Hortonworks a(z) az alkalmazások, után áthelyezheti őket túl[Azure HDInsight](hdinsight-hadoop-introduction.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 Az oktatóanyag elindításának feltétele:
 
-- Hortonworks Data Platform (HDP) 2.4 a helyi környezetben futó Hortonworks a(z). HDP konfigurálásához lásd: [Ismerkedés a Hadoop ökoszisztémájának a virtuális gépen Hadoop védőfalat](hdinsight-hadoop-emulator-get-started.md). 
+- Hortonworks Data Platform (HDP) 2.4 a helyi környezetben futó Hortonworks a(z). tooconfigure HDP, lásd: [megismerheti a hello Hadoop ökoszisztémájának a virtuális gépen Hadoop védőfalat](hdinsight-hadoop-emulator-get-started.md). 
     >[!NOTE]
-    >A HDInsight Tools for IntelliJ csak HDP 2.4 tesztelték. Ahhoz, hogy HDP 2.4, bontsa ki a **Hortonworks védőfal archív** a a [Hortonworks védőfal tölti le a hely](http://hortonworks.com/downloads/#sandbox).
+    >A HDInsight Tools for IntelliJ csak HDP 2.4 tesztelték. tooget HDP 2.4, bontsa ki a **Hortonworks védőfal archív** a hello [Hortonworks védőfal tölti le a hely](http://hortonworks.com/downloads/#sandbox).
 
-- [Java fejlesztői készlet (JDK) 1,8 vagy újabb verzió](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). JDK az intellij-t az Azure-eszközkészlet használata szükséges.
+- [Java fejlesztői készlet (JDK) 1,8 vagy újabb verzió](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). JDK az IntelliJ hello Azure eszközkészlet használata szükséges.
 
-- [IntelliJ IDEA community edition](https://www.jetbrains.com/idea/download) rendelkező a [Scala](https://plugins.jetbrains.com/idea/plugin/1347-scala) beépülő modul és a [IntelliJ Azure eszköztára](../azure-toolkit-for-intellij.md) beépülő modult. A HDInsight Tools for IntelliJ az intellij-t Azure eszköztára részeként érhető el. 
+- [IntelliJ IDEA community edition](https://www.jetbrains.com/idea/download) a hello [Scala](https://plugins.jetbrains.com/idea/plugin/1347-scala) beépülő modul és hello [IntelliJ Azure eszköztára](../azure-toolkit-for-intellij.md) beépülő modult. A HDInsight Tools for IntelliJ hello Azure eszköztára IntelliJ részeként érhető el. 
 
-  A beépülő modulok telepítéséhez tegye a következőket:
+  tooinstall hello beépülő modulok, hello a következő:
 
   1. Nyissa meg az IntelliJ IDEA.
-  2. Az a **üdvözlő** képernyőn válassza ki **konfigurálása**, majd válassza ki **beépülő modulok**.
-  3. Válassza ki **JetBrains telepítése beépülő modul** bal alsó sarokban.
-  4. A keresési funkció segítségével kereshet **Scala**, majd válassza ki **telepítése**.
-  5. Válassza ki **indítsa újra az IntelliJ IDEA** a telepítés befejezéséhez.
-  6. 4. és 5 telepítéséhez megismétli a **IntelliJ Azure eszköztára**. További információkért lásd: [az intellij-t az Azure-eszközkészlet telepítése](../azure-toolkit-for-intellij-installation.md).
+  2. A hello **üdvözlő** képernyőn válassza ki **konfigurálása**, majd válassza ki **beépülő modulok**.
+  3. Válassza ki **JetBrains telepítése beépülő modul** hello bal alsó sarokban.
+  4. Használjon hello keresési funkció toosearch a **Scala**, majd válassza ki **telepítése**.
+  5. Válassza ki **indítsa újra az IntelliJ IDEA** toocomplete hello telepítését.
+  6. 4. és 5 megismétli tooinstall hello **IntelliJ Azure eszköztára**. További információkért lásd: [telepítés hello Azure eszköztára IntelliJ](../azure-toolkit-for-intellij-installation.md).
 
 ## <a name="create-a-spark-scala-application"></a>Spark Scala-alkalmazás létrehozása
 
-Ebben a szakaszban IntelliJ IDEA használatával hoz létre egy minta Scala-projektet. A következő szakaszban kapcsolhat IntelliJ IDEA a Hortonworks védőfal (emulátor) a projekt mentése előtt.
+Ebben a szakaszban IntelliJ IDEA használatával hoz létre egy minta Scala-projektet. A következő szakaszban hello csatolunk IntelliJ IDEA toohello Hortonworks védőfal (emulátor) hello projekt mentése előtt.
 
-1. Nyissa meg az IntelliJ IDEA a munkaállomáson. Az a **új projekt** párbeszédpanelen tegye a következőket:
+1. Nyissa meg az IntelliJ IDEA a munkaállomáson. A hello **új projekt** párbeszédpanel mezőbe hello a következő:
 
    a. Válassza ki **HDInsight** > **a Spark on HDInsight (Scala)**.
 
-   b. Az a **Build eszköz** listára, válassza ki, az igényeknek megfelelően az alábbiak valamelyikét:
+   b. A hello **Build eszköz** listára, válassza ki a következő, tooyour szükség szerint hello valamelyikét:
 
     * **Maven**, Scala-projekt létrehozása varázsló támogatásához
-    * **SBT**, a függőségek kezelésére, és a Scala-projekt létrehozása
+    * **SBT**, hello függőségek kezelése és hello Scala-projekt létrehozása
 
-   ![Az új projekt párbeszédpanel](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-create-scala-project.png)
+   ![hello új projekt párbeszédpanel](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-create-scala-project.png)
 
 2. Válassza ki **következő**.
 
-3. A következő **új projekt** párbeszédpanelen tegye a következőket:
+3. Hello a következő **új projekt** párbeszédpanel mezőbe hello a következő:
 
     ![Az IntelliJ Scala projekt Tulajdonságok létrehozása](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-create-scala-project-properties.png)
 
-    a. Az a **projektnevet** mezőbe írja be a projekt nevét.
+    a. A hello **projektnevet** mezőbe írja be a projekt nevét.
 
-    b. Az a **projekt** mezőbe írja be a projekt helyére.
+    b. A hello **projekt** mezőbe írja be a projekt helyére.
 
-    c. Mellett a **projekt SDK** legördülő listában válassza **új**, jelölje be **JDK**, és adja meg a mappát, a Java JDK 1.7 vagy újabb verziója. Válassza ki **Java 1.8** a Spark-fürt 2.x, vagy válassza ki a **Java 1.7** a Spark 1.x fürthöz. Az alapértelmezett hely: C:\Program Files\Java\jdk1.8.x_xxx.
+    c. Következő toohello **projekt SDK** legördülő listában válassza **új**, jelölje be **JDK**, majd adja meg a hello mappában található Java JDK 1.7 vagy újabb verziója. Válassza ki **Java 1.8** hello Spark 2.x fürt, vagy válassza ki a **Java 1.7** hello Spark 1.x fürthöz. hello alapértelmezett hely: C:\Program Files\Java\jdk1.8.x_xxx.
 
-    d. Az a **Spark verzió** legördülő listából válassza ki, Scala-projekt létrehozása varázsló Spark SDK és Scala SDK integrálja a megfelelő verzióját. Ha a Spark-fürt verziója korábbi, mint 2,0, válassza ki a **Spark 1.x**. Máskülönben válassza **Spark2.x**. A példa Spark 1.6.2 (Scala 2.10.5). Győződjön meg arról, hogy a tárház Scala megjelölve használunk 2.10.x. Ne használja a tárház Scala megjelölve 2.11.x.
+    d. A hello **Spark verzió** legördülő listából válassza ki, Scala-projekt létrehozása varázsló hello a verzió megfelelőségének integrálja a Spark SDK és a Scala SDK. Ha hello Spark-fürt verziója korábbi, mint 2,0, válassza ki a **Spark 1.x**. Máskülönben válassza **Spark2.x**. A példa Spark 1.6.2 (Scala 2.10.5). Ellenőrizze, hogy a megjelölt Scala hello tárház használt 2.10.x. Ne használjon Scala megjelölve hello tárház 2.11.x.
 
 4. Válassza a **Finish** (Befejezés) elemet.
 
-5. Ha a **projekt** nézet még nincs megnyitva, nyomja le az ENTER **Alt + 1** való megnyitásához.
+5. Ha hello **projekt** nézet még nincs megnyitva, nyomja le az ENTER **Alt + 1** tooopen azt.
 
-6. A **Project Explorer**, bontsa ki a projektet, és válassza **src**.
+6. A **Project Explorer**, bontsa ki hello projektet, és válassza **src**.
 
-7. Kattintson a jobb gombbal **src**, mutasson a **új**, majd válassza ki **Scala osztály**.
+7. Kattintson a jobb gombbal **src**, pont túl**új**, majd válassza ki **Scala osztály**.
 
-8. Az a **neve** mezőbe írjon be egy nevet a a **jellegű** mezőben válassza **objektum**, majd válassza ki **OK**.
+8. A hello **neve** mezőbe írjon be egy nevet, a hello **jellegű** mezőben válassza **objektum**, majd válassza ki **OK**.
 
-    ![Az új Scala osztály létrehozása ablak](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-create-new-scala-class.png)
+    ![hello új Scala osztály létrehozása ablak](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-create-new-scala-class.png)
 
-9. A .scala fájlban illessze be a következő kódot:
+9. Hello .scala fájlban illessze be a kódját a következő hello:
 
         import java.util.Random
         import org.apache.spark.{SparkConf, SparkContext}
@@ -127,55 +127,55 @@ Ebben a szakaszban IntelliJ IDEA használatával hoz létre egy minta Scala-proj
             }
         }
 
-10. Az a **Build** menüjében válassza **Build projekt**. Győződjön meg arról, hogy a fordítás sikeresen befejeződött.
+10. A hello **Build** menüjében válassza **Build projekt**. Győződjön meg arról, hogy hello fordítási sikeresen befejeződött.
 
 
-## <a name="link-to-the-hortonworks-sandbox"></a>A Hortonworks védőfal mutató hivatkozás
+## <a name="link-toohello-hortonworks-sandbox"></a>Toohello Hortonworks védőfal hivatkozás
 
-Mielőtt Hortonworks védőfalat (emulátor) is kapcsolhat, egy meglévő IntelliJ alkalmazást kell rendelkeznie.
+Mielőtt tooa Hortonworks védőfal (emulátor) is kapcsolhat, egy meglévő IntelliJ alkalmazást kell rendelkeznie.
 
-Csatolja az emulátor, tegye a következőket:
+toolink tooan emulátor, a következő hello:
 
-1. Nyissa meg a projektet az intellij-t.
+1. Az IntelliJ projekt megnyitása hello.
 
-2. Az a **nézet** menüjében válassza **eszközök Windows**, majd válassza ki **Azure Explorer**.
+2. A hello **nézet** menüjében válassza **eszközök Windows**, majd válassza ki **Azure Explorer**.
 
 3. Bontsa ki a **Azure**, kattintson a jobb gombbal **HDInsight**, majd válassza ki **hivatkozásra az emulátor**.
 
-4. Az a **hivatkozásra egy új emulátor** ablak, írja be a jelszót, hogy Ön a Hortonworks védőfal rendszergazdafiók beállított, adja meg az értékeket az alábbi képernyőfelvételen a hasonló, és válassza **OK**. 
+4. A hello **hivatkozásra egy új emulátor** ablakban adja meg, hogy Ön hello Hortonworks védőfal hello legfelső szintű fiókjához beállított, adja meg a következő képernyőkép hello értékek hasonló toothose, majd válassza ki a hello jelszót **OK** . 
 
-   ![A "Hivatkozás egy új emulátor" ablak](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-link-an-emulator.png)
+   ![hello "Hivatkozásra egy új emulátor" ablak](./media/hdinsight-tools-for-intellij-with-hortonworks-sandbox/intellij-link-an-emulator.png)
 
-5. Az emulátor konfigurálásához jelölje ki **Igen**.
+5. tooconfigure hello emulátor, jelölje be **Igen**.
 
-Ha az emulátorban sikeresen csatlakoztatva van, az emulátor (Hortonworks védőfal) megjelenik a HDInsight-csomópont.
+Ha hello emulátor sikeresen csatlakoztatva van, hello emulátor (Hortonworks védőfal) hello HDInsight csomópont megjelenik.
 
-## <a name="submit-the-spark-scala-application-to-the-hortonworks-sandbox"></a>A Spark Scala-kérelmet a Hortonworks védőfal felé
+## <a name="submit-hello-spark-scala-application-toohello-hortonworks-sandbox"></a>Hello Spark Scala alkalmazás toohello Hortonworks védőfal elküldése
 
-Miután a IntelliJ IDEA emulátorának, elküldheti a a projekthez.
+Miután a IntelliJ IDEA toohello emulátor, elküldheti a projekthez.
 
-Küldje el a projektet az emulátor, tegye a következőket:
+a projekt tooan emulátor toosubmit hello a következő:
 
-1. A **Project Explorer**, kattintson jobb gombbal a projektre, majd válassza ki **küldje el a Spark-alkalmazást, amely**.
+1. A **Project Explorer**, kattintson a jobb gombbal a hello projektet, és válassza **küldje el a külső alkalmazás tooHDInsight**.
 
-2. Tegye a következőket:
+2. A következő hello:
 
-    a. Az a **Spark-fürt (csak Linux)** legördülő listára, válassza ki a helyi Hortonworks védőfal.
+    a. A hello **Spark-fürt (csak Linux)** legördülő listára, válassza ki a helyi Hortonworks védőfal.
 
-    b. Az a **fő osztálynév** mezőben válassza ki vagy adja meg a fő osztály nevét. Ebben az oktatóanyagban a értéke **GroupByTest**.
+    b. A hello **fő osztálynév** mezőben válassza ki vagy hello fő osztály neve. Ebben az oktatóanyagban hello értéke **GroupByTest**.
 
-3. Válassza ki **nyújt**. A feladat elküldése naplók a Spark küldésének eszköz ablakban jelennek meg.
+3. Válassza ki **nyújt**. hello küldésének feladatnaplóit hello Spark küldésének eszköz ablakban láthatók.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- További információk az IntelliJ HDInsight Tools használatával az alkalmazások hdinsight Spark létrehozása, [használata a HDInsight Tools a Spark-alkalmazások HDInsight Spark Linux-fürt létrehozása az IntelliJ Azure eszköztára](hdinsight-apache-spark-intellij-tool-plugin.md).
+- Hogyan toocreate Spark-alkalmazások HDInsight az intellij-t, a HDInsight Tools használatával nyissa meg túl toolearn[használata a HDInsight Tools az IntelliJ toocreate Spark-alkalmazások HDInsight Spark Linux-fürt Azure eszköztára](hdinsight-apache-spark-intellij-tool-plugin.md).
 
-- Az IntelliJ HDInsight eszközök videó megtekintése, keresse fel [a HDInsight Tools bevezetni az IntelliJ Spark fejlesztési](https://www.youtube.com/watch?v=YTZzYVgut6c).
+- a HDInsight Tools for IntelliJ, videó toowatch lépjen túl[a HDInsight Tools bevezetni az IntelliJ Spark fejlesztési](https://www.youtube.com/watch?v=YTZzYVgut6c).
 
-- További információk az eszközkészlet segítségével távolról SSH-n keresztül a HDInsight Spark-alkalmazások hibakeresése, [távolról az IntelliJ SSH-n keresztül a Azure eszközkészlet a HDInsight-fürtök a Spark-alkalmazások hibakeresését](hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh.md).
+- toolearn hogyan toodebug Spark-alkalmazások használatával távolról a hdinsight platformon keresztül SSH-eszközkészlet hello lépjen túl[távolról az IntelliJ SSH-n keresztül a Azure eszközkészlet a HDInsight-fürtök a Spark-alkalmazások hibakeresését](hdinsight-apache-spark-intellij-tool-debug-remotely-through-ssh.md).
 
-- További információk az eszközkészlet távolról segítségével a VPN-en keresztül a HDInsight Spark-alkalmazások hibakeresése, [használata a HDInsight Tools az intellij-t a Spark-alkalmazások HDInsight Spark Linux fürtön távolról Azure eszköztára](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md).
+- toolearn toodebug Spark-alkalmazások használatával hello eszközkészlet távolról a hdinsight platformon keresztül VPN-profilok, hogyan lépjen túl[használata a HDInsight Tools az IntelliJ toodebug Spark-alkalmazások HDInsight Spark Linux fürtön távolról Azure eszköztára](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md).
 
-- További információk a HDInsight Tools for Eclipse használata Spark-alkalmazás létrehozásának, [HDInsight eszközök használata Spark-alkalmazások létrehozása az eclipse-ben Azure eszköztára](hdinsight-apache-spark-eclipse-tool-plugin.md).
+- Hogyan lépjen az Eclipse toocreate egy Spark-alkalmazást, a HDInsight Tools toouse túl toolearn[használata a HDInsight Tools az Eclipse toocreate Spark-alkalmazások Azure eszköztára](hdinsight-apache-spark-eclipse-tool-plugin.md).
 
-- Videót, a HDInsight Tools for Eclipse, Ugrás [használható HDInsight Spark-alkalmazások létrehozása az eclipse-ben eszköz](https://mix.office.com/watch/1rau2mopb6fha).
+- a HDInsight Tools for eclipse-ben videó toowatch lépjen túl[HDInsight eszköz használata az Eclipse toocreate Spark-alkalmazások](https://mix.office.com/watch/1rau2mopb6fha).

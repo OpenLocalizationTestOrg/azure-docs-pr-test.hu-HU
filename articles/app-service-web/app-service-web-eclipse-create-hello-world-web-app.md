@@ -1,6 +1,6 @@
 ---
-title: "Alapszintű Azure-webalkalmazás létrehozása Eclipse használatával |} Microsoft Docs"
-description: "Az oktatóanyag bemutatja, hogyan használható az Azure-eszközkészlet az eclipse-ben Hello World webalkalmazás létrehozása az Azure."
+title: "Alapszintű Azure web app használatával aaaCreate Holdas |} Microsoft Docs"
+description: "Az oktatóanyag bemutatja, hogyan toouse hello Azure eszközkészlet Eclipse toocreate egy Hello World az Azure-webalkalmazást."
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,16 +14,16 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm;asirveda
-ms.openlocfilehash: 683d6828546995a4dc60d8cac0669f356501c723
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2f42e0e7a5b98760ec02fab2fc38f9f07b1156b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-basic-azure-web-app-using-eclipse"></a>Alapszintű Azure-webalkalmazás létrehozása használata az eclipse-ben
-Ez az oktatóanyag bemutatja, hogyan hozhat létre és telepíthet egy alapszintű Hello World alkalmazásról az Azure-ba, a webes alkalmazás segítségével a [Eclipse-hez készült Azure-eszközkészlet]. Egy alapszintű JSP példa az egyszerűség, de hasonló lépésekkel akkor lehet megfelelő, egy Java servlet, az Azure-telepítés illetően.
+Ez az oktatóanyag bemutatja, hogyan toocreate és központi telepítése egy alapszintű Hello World alkalmazás tooAzure webalkalmazásként hello segítségével [Eclipse Azure eszköztára]. Egy alapszintű JSP példa az egyszerűség, de hasonló lépésekkel akkor lehet megfelelő, egy Java servlet, az Azure-telepítés illetően.
 
-Ez az oktatóanyag befejezése után, az alkalmazás majd meg az alábbi ábrához hasonlóan egy webböngészőben megtekintheti:
+Ez az oktatóanyag befejezése után, az alkalmazás a következő ábrán egy webböngészőben megtekintésekor hasonló toohello fog kinézni:
 
 ![Előzetes verziójú Hello World alkalmazás][01]
 
@@ -32,166 +32,166 @@ Ez az oktatóanyag befejezése után, az alkalmazás majd meg az alábbi ábráh
 * Java EE-fejlesztőknek, Luna IDE Holdas vagy újabb. Ez letölthető <http://www.eclipse.org/downloads/>.
 * A Java-alapú webkiszolgáló vagy a kiszolgáló, terjesztési például [Apache Tomcat] vagy [Jetty].
 * Azure-előfizetéssel, amely szerezhető: a <https://azure.microsoft.com/free/> vagy <http://azure.microsoft.com/pricing/purchase-options/>.
-* Az [Eclipse-hez készült Azure-eszközkészlet]. Az Azure-eszközkészlet telepítésével kapcsolatos információkért lásd: [az eclipse-ben az Azure eszközkészlet telepítésével].
+* Hello [Eclipse Azure eszköztára]. Hello Azure eszközkészlet telepítésével kapcsolatos információkért lásd: [telepítése hello Azure eszköztára Eclipse].
 
-## <a name="to-create-a-hello-world-application"></a>Hello World alkalmazás létrehozása
+## <a name="toocreate-a-hello-world-application"></a>toocreate egy Hello World alkalmazásról
 Először először foglalkozunk létrehoz egy Java-projektet.
 
-1. Indítsa el az Eclipse, és válassza a menü **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl** és **új**, majd tegye a következőket: kattintson a **fájl**, kattintson a **új**, kattintson a **projekt...** , bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a **következő**.)
-2. Ebben az oktatóanyagban a nevet a projektnek **MyWebApp**. A képernyő jelenik meg a következőhöz hasonló:
+1. Indítsa el az eclipse-ben, és hello menüben kattintson **fájl**, kattintson a **új**, és kattintson a **dinamikus webes projekt**. (Ha nem lát **dinamikus webes projekt** kattintás után az elérhető projektek tulajdonosaként **fájl** és **új**, majd hello a következő: kattintson a **fájl**, kattintson a **új**, kattintson a **projekt...** , bontsa ki a **webes**, kattintson a **dinamikus webes projekt**, és kattintson a **következő**.)
+2. Ez az oktatóanyag céljából, nevet hello projektnek **MyWebApp**. A képernyő jelenik meg hasonló toohello következő:
    
     ![Új dinamikus webes projekt létrehozása][02]
 3. Kattintson a **Befejezés** gombra.
 4. A Eclipse Project Explorer nézet, bontsa ki a **MyWebApp**. Kattintson a jobb gombbal a **WebContent** (Webes tartalom), majd a **New** (Új) elemre, és végül a **JSP File** (JSP-fájl) elemre.
-5. A a **új JSP-fájl** párbeszédablakban nevezze el a fájl **index.jsp**, mint a szülőmappa **MyWebApp/WebContent**, és kattintson a **következő**.
-6. Az a **JSP-sablon kiválasztása** párbeszédpanel, az oktatóanyag válasszon alkalmazásában **új JSP-fájl (html)**, és kattintson a **Befejezés**.
-7. Megnyitásakor az index.jsp fájl az eclipse-ben, adja hozzá a dinamikusan megjelenő szöveg **Hello World!** a már meglévő `<body>` elemhez. A frissített `<body>` tartalma az alábbihoz kell hasonlítania:
+5. A hello **új JSP-fájl** párbeszédpanelen nevű hello fájl **index.jsp**, hello fölérendelt mappája, tartsa **MyWebApp/WebContent**, és kattintson a **tovább**.
+6. A hello **JSP-sablon kiválasztása** párbeszédpanel, az oktatóanyag válasszon alkalmazásában **új JSP-fájl (html)**, és kattintson a **Befejezés**.
+7. Megnyitásakor az index.jsp fájl az eclipse-ben, adja hozzá a szöveg toodynamically megjelenítési **Hello World!** hello meglévő belül `<body>` elemet. A frissített `<body>` tartalom a következő példa hello kell hasonlítania:
    
     `<body><b><% out.println("Hello World!"); %></b></body>` 
 8. Mentse az index.jsp.
 
-## <a name="to-deploy-your-application-to-an-azure-web-app-container"></a>Egy Azure Web App tárolóhoz az alkalmazás központi telepítése
-Számos módon Azure Java-webalkalmazás-telepíthet. Ez az oktatóanyag leírja a legegyszerűbb egyikét: az alkalmazás telepítve lesz az Azure Web App tároló - semmilyen különleges projekttípus sem további eszközök van szükség. A JDK és a webes tároló szoftver biztosítja az Ön Azure-ban, nincs szükség töltse fel a saját; szüksége a Java-webalkalmazás. Ennek eredményeképpen a közzétételt az alkalmazás érvénybe másodperc, nem perc.
+## <a name="toodeploy-your-application-tooan-azure-web-app-container"></a>toodeploy az alkalmazás tooan Azure Web App tároló
+Számos módon egy Java webes alkalmazás tooAzure-telepíthet. Ez az oktatóanyag leírja az egyik legegyszerűbb hello: az alkalmazás lesz telepített tooan Azure Web App tároló - semmilyen különleges projekttípus sem további eszközök van szükség. hello JDK és hello webes tároló szoftver biztosítja az Ön Azure-ra, így nincs szükség tooupload a saját; szüksége a Java-webalkalmazás. Ennek eredményeképpen hello közzétételi alkalmazás vesz igénybe másodperc, nem perc.
 
 1. A Project Explorer Eclipse meg, kattintson a jobb gombbal **MyWebApp**.
-2. Válassza ki a helyi menü **Azure**, majd kattintson a **Publish Azure Web Apps...**
+2. Hello helyi menüben válasszon ki **Azure**, majd kattintson a **Azure Web Apps közzététel...**
    
     ![Az Azure webes alkalmazás közzététele][03]
    
-    Azt is megteheti, amíg a webes projektet a Project Explorer van jelölve, kattintson a **közzététel** legördülő gomb az eszköztáron és a select **Publish Azure Web Apps,** innen:
+    Azt is megteheti, amíg a webes projektet a Project Explorer hello van jelölve, kattintson hello **közzététel** a hello eszköztár, és válassza a legördülő gomb **Azure Web Apps közzététel** innen:
    
     ![Az Azure webes alkalmazás közzététele][14]
-3. Ha már nem regisztrált az Azure az eclipse-ben, a rendszer kéri, jelentkezzen be az Azure-fiókjába való:
+3. Ha már nem regisztrált az Azure az eclipse-ben, a Azure fiókjába fogja felszólító toosign:
    
     ![Az Azure bejelentkezési párbeszédpanel][04]
    
-    Ha több Azure-fiókra, néhány, a program a bejelentkezési folyamat során a előfordulhat, hogy akkor is, ha úgy tűnik, mintha azonos egynél többször látható. Ha ez történik, folytassa a bejelentkezési utasításokat.
-4. Miután sikeresen bejelentkezett az Azure-fiókjával, a a **előfizetések kezelése oldalt** párbeszédpanelen jelenik meg a hitelesítő adatok társított előfizetések listáját. Ha több előfizetéssel a listában, és ezek csak egy adott részének dolgozni szeretne, akkor előfordulhat, hogy nem kötelező, törölje a jelet meg a használni kívánt. Miután kiválasztotta az előfizetések, kattintson a **Bezárás**.
+    Több Azure fiók, van néhány hello kér során hello jelentkezzen be a folyamat előfordulhat, hogy megjelenik-e egynél többször, még akkor is, ha úgy tűnik, mintha toobe hello azonos. Ha ez történik, továbbra is a következő utasításokat hello bejelentkezés.
+4. Miután sikeresen bejelentkezett az Azure-fiókjával a, hello **előfizetések kezelése oldalt** párbeszédpanelen jelenik meg a hitelesítő adatok társított előfizetések listáját. Ha több felsorolt előfizetések tartoznak, és azt szeretné, hogy az egyik csak egy adott részének toowork, a hello meg a kívánt toouse szükség lehet, hogy jelet. Miután kiválasztotta az előfizetések, kattintson a **Bezárás**.
    
     ![Kezelése előfizetések párbeszédpanel][05]
-5. Ha a **központi telepítése az Azure Web App tárolóhoz** párbeszédpanel jelenik meg, jeleníti meg, hogy a korábban létrehozott webalkalmazás tárolókkal; Ha nem hozott létre tárolót, a lista üres lesz.
+5. Ha hello **központi telepítése a webes alkalmazás tároló tooAzure** párbeszédpanel jelenik meg, jeleníti meg, hogy a korábban létrehozott webalkalmazás tárolókkal; Ha nem hozott létre tárolót, hello listája üres lesz.
    
-    ![Azure Web App tároló párbeszédpanel telepítése][06]
-6. Ha nem hozott létre egy Azure webes alkalmazás tároló előtt, vagy ha azt szeretné, az alkalmazás egy új tároló közzétételére, kövesse az alábbi lépéseket. Egyéb esetben válassza ki a meglévő Web App tároló, és ugorjon a 7 alatt.
+    ![Webes alkalmazás tároló párbeszédpanel tooAzure telepítése][06]
+6. Ha még nem hozott egy Azure webes alkalmazás tároló előtt, vagy ha azt szeretné, hogy toopublish az alkalmazás tooa új tároló, használja a lépéseket követve hello. Ellenkező esetben válassza ki a meglévő Web App tároló, és hagyja ki az alábbi 7 toostep.
    
    1. Kattintson a **új...**
       
-       ![Azure Web App tároló párbeszédpanel telepítése][15]
-   2. A **új webes alkalmazás tároló** párbeszédpanel fog megjelenni:
+       ![Webes alkalmazás tároló párbeszédpanel tooAzure telepítése][15]
+   2. Hello **új webes alkalmazás tároló** párbeszédpanel fog megjelenni:
       
        ![Új webes alkalmazás tároló párbeszédpanel][07a]
-   3. Adjon meg egy **DNS-címke** a webes alkalmazás tároló; ez alkotó a levél DNS-címke a gazdagépre URL-címének a webalkalmazás az Azure-ban. (Vegye figyelembe, hogy a név kell elérhetőnek lennie Azure Web Apps követelmények elnevezési felelnek meg.)
-   4. Az a **webes tároló** legördülő menüben válassza ki a megfelelő szoftver az alkalmazáshoz.
+   3. Adjon meg egy **DNS-címke** a webes alkalmazás tároló; ez alkotó hello levél DNS-címke hello gazdagépre URL-címet a webalkalmazás az Azure-ban. (Vegye figyelembe hello névvel kell érhető el, és tooAzure webalkalmazás-kiosztási követelményeinek felel meg.)
+   4. A hello **webes tároló** legördülő menüre, válassza hello megfelelő szoftvert az alkalmazáshoz.
       
-       Jelenleg Tomcat 8 Tomcat 7 vagy Jetty 9 közül választhat. A kiválasztott szoftverfrissítés legutóbbi terjesztési Azure biztosítja, és akkor fog futni, a legutóbbi terjesztésipont JDK 8 Oracle által létrehozott és az Azure által biztosított.
-   5. Az a **előfizetés** legördülő menüben válassza ki az ehhez a központi telepítéshez használni kívánt előfizetést.
-   6. Az a **erőforráscsoport** legördülő menüben válasszon, amelyhez a webalkalmazás hozzárendelni kívánt erőforráscsoportot. (Az azure erőforráscsoportok lehetővé teszik kapcsolódó erőforrások egy csoportba, így például, hogy törölheti együtt.)
+       Jelenleg Tomcat 8 Tomcat 7 vagy Jetty 9 közül választhat. Kijelölt hello szoftver legújabb terjesztési Azure biztosítja, és akkor fog futni, a legutóbbi terjesztésipont JDK 8 Oracle által létrehozott és az Azure által biztosított.
+   5. A hello **előfizetés** legördülő menüre, válassza hello előfizetés toouse ehhez a központi telepítéshez használni szeretne.
+   6. A hello **erőforráscsoport** legördülő menüben válassza hello erőforráscsoportot, amelyhez tooassociate a webalkalmazás. (Az azure erőforráscsoport-sablonok engedélyezi, akkor toogroup kapcsolódó erőforrások együtt, így például, hogy törölheti együtt.)
       
-       Válasszon ki egy meglévő erőforráscsoportot (ha vannak ilyenek) és a skip. lépés: az alábbi g, vagy használja az alábbi lépéseket egy új erőforráscsoport létrehozásához a következő:
+       (Ha vannak ilyenek) egy meglévő erőforráscsoportot kiválaszthatja, és skip toostep g az alábbi, vagy használjon hello ezeket a következő lépéseket egy új erőforráscsoportot toocreate:
       
       * Kattintson a **új...**
-      * A **új erőforráscsoport** párbeszédpanel fog megjelenni:
+      * Hello **új erőforráscsoport** párbeszédpanel fog megjelenni:
         
           ![Új erőforráscsoport párbeszédpanel][08]
-      * Az a a **neve** szövegmező, adja meg az új erőforráscsoport nevét.
-      * Az a a **régió** legördülő menüben válassza a megfelelő Azure adatközpont-erőforrásnak a helyét.
-      * Választható lehetőség: Alapértelmezés szerint Java 8 legutóbbi terjesztési telepítve lesz az Azure automatikusan a webes alkalmazás tároló, a JVM-et. Azonban is megadhat egy másik verzió és elosztását illetően a JVM-et, ha a webalkalmazás írja elő. A webalkalmazás a JDK megadásához kattintson a **JDK** lapot, és jelölje be az alábbi lehetőségek közül:
+      * A hello hello **neve** szövegmező, adja meg az új erőforráscsoport nevét.
+      * A hello hello **régió** legördülő menüben válassza hello megfelelő Azure adatközpont-erőforrásnak a helyét.
+      * Választható lehetőség: Alapértelmezés szerint Java 8 legutóbbi eloszlásáról telepíti az Azure automatikusan tooyour web app tárolóban a JVM-et. Azonban is megadhat egy másik verziót és a terjesztési hello JVM-et, ha a webalkalmazás számára szükséges. a webalkalmazás JDK toospecify hello kattintson hello **JDK** fülre, és válassza ki a hello alábbi beállítások egyikét:
         
-        * **Az alapértelmezett Azure Web Apps szolgáltatás által kínált JDK telepítése**: Ez a beállítás telepíti a Java 8 legutóbbi eloszlásáról.
-        * **A 3. fél elérhető Azure JDK telepítése**: Ez a beállítás lehetővé teszi a Microsoft Azure által biztosított JDKs listájából válasszon ki.
-        * **A letöltési helyről saját JDK telepítése**: Ezzel a beállítással megadhatja a saját JDK terjesztési, amely kell csomagolni csomagot .zip fájlként, és feltölti a nyilvánosan elérhető letöltési hely vagy egy Azure storage-fiókot, amely rendelkezik a hozzáférés.
+        * **Hello alapértelmezett Azure Web Apps szolgáltatás által kínált JDK telepítése**: Ez a beállítás telepíti a Java 8 legutóbbi eloszlásáról.
+        * **A 3. fél elérhető Azure JDK telepítése**: Ez a beállítás lehetővé teszi toochoose JDKs, amely a Microsoft Azure által biztosított hello listája.
+        * **A letöltési helyről saját JDK telepítése**: Ez a beállítás lehetővé teszi toospecify saját JDK terjesztési, amely egy ZIP-fájlba kell csomagolni, és a nyilvánosan elérhető letöltési hely vagy egy Azure storage-fiók, amelynek tooeither feltöltött, rendelkezik hozzáféréssel.
           
           ![Új webes alkalmazás tároló párbeszédpanel][07b]
    7. Kattintson az **OK** gombra.
-   8. A **App Service-csomag** legördülő menü mutatja az erőforráscsoport kiválasztott társított app service-csomagokról. (App Service-csomagokról a webalkalmazás, az árképzési szint és a számítási példányméretének például a hely információkat adják meg. Egy egyetlen App Service-csomag használható több Web Apps, ezért azt egy adott webalkalmazás telepítésből külön megmarad.)
+   8. Hello **App Service-csomag** legördülő menü hello app service-csomagokról hello erőforráscsoport kiválasztott társított sorolja fel. (App Service-csomagokról adja meg például a Web App alkalmazásban tarifacsomag és hello számítási példányméretének hello hello helyét. Egy egyetlen App Service-csomag használható több Web Apps, ezért azt egy adott webalkalmazás telepítésből külön megmarad.)
       
-       Válasszon ki egy meglévő App Service-csomag (ha vannak ilyenek) és skip h az alábbi lépések, vagy használja az alábbi lépéseket egy új App Service-csomag létrehozása a következő:
+       Kiválaszthat egy meglévő App Service-csomag (ha vannak ilyenek), és hagyja ki az alábbi toostep h, vagy ezek lépések toocreate egy új App Service-csomag a következő hello használata:
       
       * Kattintson a **új...**
-      * A **új App Service-csomag** párbeszédpanel fog megjelenni:
+      * Hello **új App Service-csomag** párbeszédpanel fog megjelenni:
         
           ![Új App Service-csomag párbeszédpanel][09]
-      * Az a a **neve** szövegmező, adjon meg egy nevet az új App Service-csomag.
-      * Az a a **hely** legördülő menüben válassza a megfelelő Azure adatközpont helye a terv.
-      * Az a a **Tarifacsomagot** legördülő menüben válassza ki a megfelelő árképzési séma. Tesztelési célokra választhat **szabad**.
-      * Az a a **Példányméretének** legördülő menüben válassza a terv méretezés a megfelelő példányt. Tesztelési célokra választhat **kis**.
-   9. A fenti lépés befejeződött, a webes alkalmazás új tároló párbeszédpanelen a következő ábra kell hasonlítania:
+      * A hello hello **neve** szövegmező, adjon meg egy nevet az új App Service-csomag.
+      * A hello hello **hely** legördülő menüben válassza hello megfelelő Azure adatközpont hello terv helyét.
+      * A hello hello **Tarifacsomagot** legördülő menüben válassza hello megfelelő hello terv árképzési. Tesztelési célokra választhat **szabad**.
+      * A hello hello **Példányméretének** legördülő menüre, válassza hello megfelelő példányméretének hello terv. Tesztelési célokra választhat **kis**.
+   9. Az összes fenti lépéseket hello befejeződött, hello új webes alkalmazás tároló párbeszédpanelen a következő ábra hello kell hasonlítania:
       
        ![Új webes alkalmazás tároló párbeszédpanel][10]
-   10. Kattintson a **OK** az új webalkalmazáshoz tároló létrehozásának befejezéséhez.
+   10. Kattintson a **OK** toocomplete hello létrehozása az új webalkalmazáshoz tároló.
        
-        Várjon néhány másodpercet, frissíteni kell a webalkalmazás-tárolók listáját, és az újonnan létrehozott webes alkalmazás tároló most már ki a listában.
-7. Most már készen áll az első Azure webalkalmazás üzembe befejezéséhez:
+        Várjon néhány másodpercet hello webalkalmazás tárolók toobe hello listája frissítve, és az újonnan létrehozott webes alkalmazás tároló kijelöli hello listában.
+7. Most már készen áll a toocomplete hello kezdeti telepítése a webes alkalmazás tooAzure áll:
    
-    ![Azure Web App tároló párbeszédpanel telepítése][11]
+    ![Webes alkalmazás tároló párbeszédpanel tooAzure telepítése][11]
    
-    Kattintson a **OK** a kijelölt webalkalmazás tárolóhoz a Java-alkalmazás központi telepítése.
+    Kattintson a **OK** toodeploy a Java-alkalmazás toohello kijelölt webalkalmazás tároló.
    
-    Alapértelmezés szerint az alkalmazás telepítve, a kiszolgáló alkönyvtára lehet. Ha azt szeretné, hogy a legfelső szintű alkalmazás telepíthető központilag, ellenőrizze a **legfelső szintű telepítés** való kattintás előtt jelölőnégyzet **OK**.
-8. Ezt követően kell megjelennie a **Azure tevékenységnapló** nézet, ami a webalkalmazás központi telepítési állapotát jelzi.
+    Alapértelmezés szerint az alkalmazás telepítése, hello alkalmazáskiszolgáló alkönyvtára. Ha azt szeretné, központilag telepített hello gyökéralkalmazás toobe, ellenőrizze a hello **tooroot telepítése** való kattintás előtt jelölőnégyzet **OK**.
+8. Ezt követően megtekintheti az hello **Azure tevékenységnapló** nézetet, amely a webalkalmazás hello központi telepítésének állapotát jelzi.
    
     ![Azure tevékenységnapló][12]
    
-    A webalkalmazás az Azure-bA üzembe helyezésének folyamata gyorsabban csak néhány másodpercig. Ha alkalmazás készen áll, megjelenik egy hivatkozás nevű **közzétett** a a **állapot** oszlop. Amikor a hivatkozásra kattint, a telepített webalkalmazás kezdőlapra eltarthat meg.
+    a webalkalmazás tooAzure telepítési folyamata hello gyorsabban csupán néhány másodpercet toocomplete. Ha alkalmazás készen áll, megjelenik egy hivatkozás nevű **közzétett** a hello **állapot** oszlop. Hello hivatkozásra tart, telepített tooyour webes alkalmazás kezdőlapja.
 
 ## <a name="updating-your-web-app"></a>Webalkalmazás frissítése
 Frissítése egy meglévő Azure-webalkalmazás fut egy gyors és egyszerű eljárás, és frissítési lehetőségei vannak:
 
-* Java-webalkalmazás telepítése frissítheti.
-* Egy webes alkalmazás tárolóhoz további Java-alkalmazást is közzétehet.
+* Java-webalkalmazás telepítése hello frissítheti.
+* Egy további Java-alkalmazás toohello közzététele Web App tárolóhoz.
 
-Mindkét esetben a folyamat megegyezik, és csupán néhány másodpercet vesz igénybe:
+Mindkét esetben hello folyamata azonos, és csupán néhány másodpercet vesz igénybe:
 
-1. Az Eclipse project explorer kattintson a jobb gombbal a Java-alkalmazást szeretne frissíteni, vagy meglévő Web App tároló hozzáadása.
-2. Ha a helyi menü megjelenik, válassza ki a **Azure** , majd **Azure Web Apps közzététel...**
-3. Már már bejelentkezett korábban, mivel látni fogja a meglévő Web App tárolók listája. Jelölje ki a közzétenni vagy újra közzé a Java-alkalmazást, és kattintson a kívánt **OK**.
+1. Az Eclipse project explorer hello kattintson a jobb gombbal hello Java-alkalmazás hozzáadása a webes alkalmazás tároló meglévő tooan vagy tooupdate szeretné.
+2. Amikor hello helyi menü megjelenik, válassza ki a **Azure** , majd **Azure Web Apps közzététel...**
+3. Már már bejelentkezett korábban, mivel látni fogja a meglévő Web App tárolók listája. Válasszon egyet a Java-alkalmazás tooand kattintson újra közzé vagy toopublish kívánt hello **OK**.
 
-Néhány másodperc múlva, a **Azure tevékenységnapló** nézetben megjelenik, a frissített telepítési **közzétett** és nem fogja tudni ellenőrizni a frissített alkalmazást egy webböngészőben.
+Néhány másodperc múlva, hello **Azure tevékenységnapló** nézetben megjelenik, a frissített telepítési **közzétett** , és a frissített alkalmazást egy webböngészőben lesz képes tooverify.
 
 ## <a name="starting-stopping-or-restarting-an-existing-web-app"></a>Indítása, leállítása vagy egy már meglévő webalkalmazás újraindítása
-Indítsa el, vagy állítsa le a meglévő Azure Web Apps tároló, (beleértve az összes telepített Java-alkalmazások azt), használja a **Azure Explorer** nézet.
+toostart vagy állítsa le a meglévő Azure Web Apps tároló, (beleértve az összes telepített hello Java-alkalmazások azt), használhatja a hello **Azure Explorer** nézet.
 
-Ha a **Azure Explorer** nézet még nincs megnyitva, majd kattintva megnyithatja azt **ablak** menü az eclipse-ben, majd kattintson a **nézet megjelenítése**, majd **más...** , majd **Azure**, és kattintson a **Azure Explorer**. Ha korábban nem jelentkezett be, akkor arra fogja kérni teszi.
+Ha hello **Azure Explorer** nézet még nincs megnyitva, majd kattintva megnyithatja azt **ablak** menü az eclipse-ben, majd kattintson a **nézet megjelenítése**, majd **más...** , majd **Azure**, és kattintson a **Azure Explorer**. Ha korábban nem jelentkezett be, amely felszólítja toodo stb.
 
-Ha a **Azure Explorer** nézet jelenik meg, használjon kövesse az alábbi lépéseket indítása vagy leállítása a webalkalmazás: 
+Ha hello **Azure Explorer** nézet jelenik meg, kövesse az alábbi lépéseket toostart használatát, vagy a webalkalmazás leállítása: 
 
-1. Bontsa ki a **Azure** csomópont.
-2. Bontsa ki a **webalkalmazások** csomópont. 
-3. Kattintson a jobb gombbal a kívánt webalkalmazáshoz.
-4. Amikor a helyi menü megjelenik, kattintson a **Start**, **leállítása**, vagy **indítsa újra a**. Vegye figyelembe, hogy a menüjéből választások környezet használatát, így csak a futó webalkalmazás leállítása vagy egy webalkalmazást, ami jelenleg nem fut. Indítsa el.
+1. Bontsa ki a hello **Azure** csomópont.
+2. Bontsa ki a hello **webalkalmazások** csomópont. 
+3. Kattintson a jobb gombbal hello kívánt webalkalmazáshoz.
+4. Amikor hello helyi menü megjelenik, kattintson a **Start**, **leállítása**, vagy **indítsa újra a**. Ne feledje, hogy hello menü döntések környezet használatát, így csak a futó webalkalmazás leállítása vagy egy webalkalmazást, ami jelenleg nem fut. Indítsa el.
    
     ![Egy már meglévő webalkalmazás leállítása][13]
 
 ## <a name="next-steps"></a>Következő lépések
-A Java IDE környezetekhez készült Azure-eszközkészlettel kapcsolatos további információkért lásd az alábbi hivatkozásokat:
+A Java IDEs hello Azure eszközök gazdag kapcsolatos további információkért tekintse meg a következő hivatkozások hello:
 
-* [Eclipse-hez készült Azure-eszközkészlet]
-  * [az eclipse-ben az Azure eszközkészlet telepítésével]
+* [Eclipse Azure eszköztára]
+  * [telepítése hello Azure eszköztára Eclipse]
   * *Hello World webalkalmazás létrehozása az Azure-hoz az eclipse-ben (Ez a cikk)*
-  * [Az Eclipse-hez készült Azure-eszközkészlet újdonságai]
+  * [Újdonságok az Eclipse Azure eszköztára hello]
 * [Az IntelliJ-hez készült Azure-eszközkészlet]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet telepítése]
+  * [Az IntelliJ hello Azure eszközkészlet telepítése]
   * [Hello World webalkalmazás létrehozása az intellij-t az Azure]
-  * [Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]
+  * [Újdonságok az intellij-t Azure eszköztára hello]
 
-Az Azure Javával való használatáról további információ: [Azure Java fejlesztői központ].
+Azure Java használatával kapcsolatos további információkért lásd: hello [Azure Java fejlesztői központból].
 
-Azure Web Apps létrehozásával kapcsolatos további információkért lásd: a [webes alkalmazások – áttekintés].
+Azure Web Apps létrehozásával kapcsolatos további információkért lásd: hello [webes alkalmazások – áttekintés].
 
 [!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 
-[Eclipse-hez készült Azure-eszközkészlet]: ../azure-toolkit-for-eclipse.md
+[Eclipse Azure eszköztára]: ../azure-toolkit-for-eclipse.md
 [Az IntelliJ-hez készült Azure-eszközkészlet]: ../azure-toolkit-for-intellij.md
 [Create a Hello World Web App for Azure in Eclipse]: ./app-service-web-eclipse-create-hello-world-web-app.md
 [Hello World webalkalmazás létrehozása az intellij-t az Azure]: ./app-service-web-intellij-create-hello-world-web-app.md
-[az eclipse-ben az Azure eszközkészlet telepítésével]: ../azure-toolkit-for-eclipse-installation.md
-[Az IntelliJ-hez készült Azure-eszközkészlet telepítése]: ../azure-toolkit-for-intellij-installation.md
-[Az Eclipse-hez készült Azure-eszközkészlet újdonságai]: ../azure-toolkit-for-eclipse-whats-new.md
-[Az IntelliJ-hez készült Azure-eszközkészlet újdonságai]: ../azure-toolkit-for-intellij-whats-new.md
+[telepítése hello Azure eszköztára Eclipse]: ../azure-toolkit-for-eclipse-installation.md
+[Az IntelliJ hello Azure eszközkészlet telepítése]: ../azure-toolkit-for-intellij-installation.md
+[Újdonságok az Eclipse Azure eszköztára hello]: ../azure-toolkit-for-eclipse-whats-new.md
+[Újdonságok az intellij-t Azure eszköztára hello]: ../azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java fejlesztői központ]: https://azure.microsoft.com/develop/java/
+[Azure Java fejlesztői központból]: https://azure.microsoft.com/develop/java/
 [webes alkalmazások – áttekintés]: ./app-service-web-overview.md
 [Apache Tomcat]: http://tomcat.apache.org/
 [Jetty]: http://www.eclipse.org/jetty/

@@ -1,4 +1,4 @@
-Ez a cikk ismerteti a bevált gyakorlatok a futó Windows virtuális gépek (VM) készlete Azure, a méretezhetőséget, a rendelkezésre állási, a kezelhetőségi és a biztonsági figyelmet.
+Ez a cikk ismerteti a Windows rendszerű virtuális gép (VM) Azure-on futó, fizető figyelmet tooscalability, a rendelkezésre állási, a kezelhetőségi és a biztonsági bevált gyakorlatok csoportja.
 
 > [!NOTE]
 > Azure két különböző üzembe helyezési modellel rendelkezik: [Azure Resource Manager] [ resource-manager-overview] és klasszikus. Ez a cikk a Microsoft által az új üzembe helyezésekhez javasolt Resource Managert használja.
@@ -9,36 +9,36 @@ Nem javasoljuk, hogy egyetlen virtuális gépet használjon kritikus fontosság�
 
 ## <a name="architecture-diagram"></a>Architektúradiagram
 
-A virtuális gépek Azure-beli üzembe helyezése során nem csak magára a virtuális gépre van szükség. Számítási, hálózati és tárolási eleme van.
+Egy Azure-ban kiépítés magában foglalja a mint csak a virtuális gépért hello több mozgó elemeket. Számítási, hálózati és tárolási eleme van.
 
-> A [Microsoft letöltőközpontból][visio-download] letölthető egy Visio dokumentum, amely tartalmazza ezt az architektúradiagramot. A diagram a „Számítás – egy VM” oldalon található.
+> A Visio dokumentum, amely tartalmazza az architektúra diagramja hello letölthető [Microsoft letöltőközpontból][visio-download]. Ez az ábra megtalálható hello "Számítási - egyetlen virtuális gép" lapon.
 >
 >
 
 ![[0]][0]
 
-* **Erőforráscsoport.** Az [*erőforráscsoport*][resource-manager-overview] egy tároló, amely kapcsolódó erőforrásokat tárol. Hozzon létre egy erőforráscsoportot, amely a virtuális géphez kapcsolódó erőforrásokat tárolja.
-* **VM**. A virtuális gépet üzembe helyezheti a közzétett rendszerképek listájáról, vagy egy, az Azure Blob Storage-ba feltöltött virtuálismerevlemez-fájlból (VHD).
-* **Operációsrendszer-lemez.** Az operációsrendszer-lemez egy, az [Azure Storage-ban][azure-storage] tárolt VHD. Ez azt jelenti, hogy akkor is működik, ha a gazdagép leáll.
-* **Ideiglenes lemez.** A virtuális gép létrejön egy ideiglenes lemezt (a `D:` Windows meghajtóján). A lemez a gazdagép egyik fizikai meghajtóján található. *Nincs* mentve az Azure Storage-ban, és előfordulhat, hogy törlődik az újraindítások és más VM-életciklusesemények során. Ez a lemez csak ideiglenes adatokat, például lapozófájlokat tárol.
-* **Adatlemezek.** Az [adatlemez][data-disk] egy állandó, az alkalmazásadatokhoz használt VHD. Az adatlemezeket (pl. az operációsrendszer-lemezt) az Azure Storage tárolja.
+* **Erőforráscsoport.** Az [*erőforráscsoport*][resource-manager-overview] egy tároló, amely kapcsolódó erőforrásokat tárol. Csoport toohold hello erőforrások az erőforrás létrehozása a virtuális gép.
+* **VM**. Megadhat egy virtuális Gépet, a közzétett képek listáját, illetve, hogy tooAzure blobtárolóba feltöltött virtuális merevlemez (VHD) fájl.
+* **Operációsrendszer-lemez.** hello operációsrendszer-lemez a tárolt virtuális merevlemez [Azure Storage][azure-storage]. Ez azt jelenti, hogy az továbbra is fennáll, akkor is, ha hello gazdaszámítógépen leáll.
+* **Ideiglenes lemez.** hello virtuális gép létrehozása egy ideiglenes lemezzel (hello `D:` Windows meghajtóján). Ezt a lemezt egy fizikai meghajtóhoz, hello gazdagépen tárolja. *Nincs* mentve az Azure Storage-ban, és előfordulhat, hogy törlődik az újraindítások és más VM-életciklusesemények során. Ez a lemez csak ideiglenes adatokat, például lapozófájlokat tárol.
+* **Adatlemezek.** Az [adatlemez][data-disk] egy állandó, az alkalmazásadatokhoz használt VHD. Adatlemezek Azure Storage, mint az operációs rendszer hello lemezt tárolja.
 * **Virtuális hálózat (VNet) és alhálózat.** Az Azure-ban minden VM egy alhálózatokra osztott virtuális hálózatban van üzembe helyezve.
-* **Nyilvános IP-cím.** Egy nyilvános IP-cím van szükség a virtuális gép kommunikálni&mdash;például a távoli asztal (RDP) keresztül.
-* **Hálózati adapter (NIC)**. A hálózati adapter teszi lehetővé a virtuális gép számára a virtuális hálózattal való kommunikációt.
-* **Hálózati biztonsági csoport (NSG)**. Az [NSG][nsg] segítségével lehet engedélyezni vagy letiltani az alhálózat felé irányuló hálózati forgalmat. Egy NSG-t társíthat egy különálló hálózati adapterhez vagy egy alhálózathoz. Ha egy alhálózathoz társítja, az NSG-szabályok az alhálózat összes virtuális gépére vonatkoznak.
-* **Diagnosztika.** A diagnosztikai naplózás létfontosságú a virtuális gép kezeléséhez és hibaelhárításához.
+* **Nyilvános IP-cím.** A nyilvános IP-cím a virtuális gép hello szükséges toocommunicate&mdash;például a távoli asztal (RDP) keresztül.
+* **Hálózati adapter (NIC)**. a hálózati adapter hello lehetővé teszi, hogy a hello VM toocommunicate hello virtuális hálózattal.
+* **Hálózati biztonsági csoport (NSG)**. Hello [NSG] [ nsg] használt tooallow/megtagadási hálózati forgalom toohello alhálózat. Egy NSG-t társíthat egy különálló hálózati adapterhez vagy egy alhálózathoz. Ha hozzá kell rendelni egy alhálózatot, hello NSG-szabályok érvényesek tooall virtuális gépek alhálózat.
+* **Diagnosztika.** Diagnosztikai naplózás kezelése és a virtuális gép hello hibaelhárítás elengedhetetlen.
 
 ## <a name="recommendations"></a>Javaslatok
 
-Az alábbi javaslatok a legtöbb forgatókönyvre vonatkoznak. Kövesse ezeket a javaslatokat, ha nincsenek ezeket felülíró követelményei.
+a következő ajánlások hello alkalmazni a legtöbb forgatókönyvhöz. Kövesse ezeket a javaslatokat, ha nincsenek ezeket felülíró követelményei.
 
 ### <a name="vm-recommendations"></a>Virtuális gépekre vonatkozó javaslatok
 
-Az Azure számos különféle virtuálisgép-méretet biztosít, de mi a DS és a GS sorozatot ajánljuk, mert ezek a gépméretek támogatják a [Premium Storage][premium-storage] tárolást. Válassza ezen gépméretek egyikét, kivéve, ha speciális számítási feladatokhoz, például nagy teljesítményű feldolgozáshoz kívánja a gépeket használni. Részletekért tekintse meg a [virtuálisgép-méretekkel kapcsolatos][virtual-machine-sizes] szakaszt.
+Azure lehetővé teszi a sok különböző virtuális gépek méretét, de hello DS - és GS-méretek azt javasoljuk, mert ezek méreteket támogatja [prémium szintű Storage][premium-storage]. Válassza ezen gépméretek egyikét, kivéve, ha speciális számítási feladatokhoz, például nagy teljesítményű feldolgozáshoz kívánja a gépeket használni. Részletekért tekintse meg a [virtuálisgép-méretekkel kapcsolatos][virtual-machine-sizes] szakaszt.
 
-Ha meglévő számítási feladatot helyez át az Azure-ba, kezdetnek azt a virtuálisgép-méretet válassza, amely a leginkább egyezik a helyszíni kiszolgálói méretével. Ezután mérje meg a valós számítási feladat teljesítményét a CPU, a memória és a lemez másodpercenkénti bemeneti/kimeneti műveletei (IOPS) figyelembe vételével, és módosítsa a méretet, ha szükséges. Ha több hálózati adapterre van szükség a virtuális géphez, vegye figyelembe, hogy a hálózati adapterek maximális száma a [virtuálisgép-méret][vm-size-tables] függvénye.   
+Ha egy meglévő munkaterhelés tooAzure, hello Virtuálisgép-méretet, amely hello legközelebbi egyezés tooyour útmutató a helyszíni kiszolgálók. Ezután mérték hello teljesítményétől, a tényleges munkaterhelés tiszteletben tartják tooCPU, a memória és a lemezek bemeneti/kimeneti műveletek száma másodpercenként (IOPS), és szükség esetén állítsa be a hello méretét. Ha több hálózati adapter van szüksége a virtuális gép számára, vegye figyelembe, hogy a hálózati adapterek maximális száma hello hello függvénye [Virtuálisgép-méretet][vm-size-tables].   
 
-Amikor üzembe helyezi a virtuális gépet és az egyéb erőforrásokat, meg kell adnia egy régiót. A legjobb megoldás, ha a belső felhasználóihoz vagy ügyfeleihez legközelebb eső régiót választja. Azonban nem minden Virtuálisgép-méretek érhetők el minden régióban. További információkért lásd: [régiói][services-by-region]. A Virtuálisgép-méretek érhető el egy adott régióban listájának megtekintéséhez a következő parancsot az Azure parancssori felület (CLI):
+Ha virtuális gép hello és más erőforrások, meg kell adnia egy régiót. Általában, válasszon egy régiót legközelebbi tooyour belső felhasználók vagy az ügyfelek. Azonban nem minden Virtuálisgép-méretek érhetők el minden régióban. További információkért lásd: [régiói][services-by-region]. toosee hello Virtuálisgép-méretek érhető el egy adott régióban, futtassa a következő Azure parancssori felület (CLI) parancs hello listáját:
 
 ```
 azure vm sizes --location <location>
@@ -48,113 +48,113 @@ További információ a közzétett Virtuálisgép-lemezkép kiválasztása: [ke
 
 ### <a name="disk-and-storage-recommendations"></a>A lemezre és a tárolásra vonatkozó javaslatok
 
-A legjobb lemezes i/o-teljesítmény érdekében javasoljuk [prémium szintű Storage][premium-storage], amely tárolja az adatokat a tartós állapotú meghajtót (SSD). A költség az üzembe helyezett lemez méretétől függően változik. Iops-érték és az átvitel is függ a lemez mérete, így amikor egy lemezt, tényezőket kell figyelembe venni az összes három (kapacitás, IOPS és átviteli).
+A legjobb lemezes i/o-teljesítmény érdekében javasoljuk [prémium szintű Storage][premium-storage], amely tárolja az adatokat a tartós állapotú meghajtót (SSD). Költség hello kiépített lemez méretének hello alapul. Iops-érték és az átvitel is függ a lemez mérete, így amikor egy lemezt, tényezőket kell figyelembe venni az összes három (kapacitás, IOPS és átviteli).
 
-Hozzon létre külön Azure Storage-fiókot minden virtuális géphez a virtuális merevlemezek (VHD-k) tárolására, hogy elkerülje az IOPS-korlátok elérését a tárfiókban.
+Hozzon létre külön az Azure storage-fiókok minden virtuális gép toohold hello virtuális merevlemezek (VHD) sorrendben tooavoid szerezze meg a tárfiókok korlátairól hello iops-érték.
 
-Adjon hozzá egy vagy több adatlemezt. Amikor létrehoz egy új virtuális Merevlemezt, akkor formázatlan. Jelentkezzen be a virtuális gépek a formázza a lemezt. Ha nagy számú adatlemezzel rendelkezik, vegye figyelembe a tárfiók teljes I/O-korlátját. További információkért lásd a [virtuálisgép-lemez korlátaival kapcsolatos][vm-disk-limits] szakaszt.
+Adjon hozzá egy vagy több adatlemezt. Amikor létrehoz egy új virtuális Merevlemezt, akkor formázatlan. Jelentkezzen be hello VM tooformat hello lemez. Ha nagyszámú adatlemezek, figyelembe hello teljes i/o határértékeinek hello tárfiók. További információkért lásd a [virtuálisgép-lemez korlátaival kapcsolatos][vm-disk-limits] szakaszt.
 
-Ha lehetséges, alkalmazásokat telepít a adatlemezt, nem az operációsrendszer-lemezképet. Azonban néhány örökölt alkalmazás-összetevők telepítéséhez a C: meghajtón módosítania kell. Ebben az esetben is [az operációsrendszer-lemez átméretezése] [ resize-os-disk] PowerShell használatával.
+Ha lehetséges, alkalmazásokat telepít a adatlemezt, nem hello operációsrendszer-lemezzel. Előfordulhat azonban, hogy néhány örökölt alkalmazást tooinstall-összetevők a C: meghajtó hello kell. Ebben az esetben is [hello operációsrendszer-lemez átméretezése] [ resize-os-disk] PowerShell használatával.
 
-A legjobb teljesítmény érdekében hozzon létre egy önálló tárfiókot a diagnosztikai naplók tárolására. Egy standard helyileg redundáns tárolási (LRS) fiók elegendő a diagnosztikai naplókhoz.
+A legjobb teljesítmény érdekében hozzon létre egy külön tárfiókot toohold diagnosztikai naplókat. Egy standard helyileg redundáns tárolási (LRS) fiók elegendő a diagnosztikai naplókhoz.
 
 ### <a name="network-recommendations"></a>Hálózatokra vonatkozó javaslatok
 
-A nyilvános IP-cím lehet dinamikus vagy statikus. Alapértelmezés szerint dinamikus.
+hello nyilvános IP-cím dinamikus vagy statikus lehet. hello alapértelmezés szerint dinamikus.
 
-* Akkor foglaljon le [statikus IP-címet][static-ip], ha rögzített, nem módosuló IP-címre van szüksége – például ha egy A rekordot kell létrehoznia a DNS-ben, vagy ha hozzá kell adnia az IP-címet a biztonságos elemek listájához.&mdash;
-* Létrehozhat egy teljes tartománynevet (FQDN) is az IP-címhez. Ezután a DNS-ben regisztrálhat egy, az FQDN-re mutató [CNAME rekordot][cname-record]. További információért tekintse meg a [teljes tartománynév az Azure Portalon való létrehozásával kapcsolatos][fqdn] szakaszt.
+* Tartalék egy [statikus IP-cím] [ static-ip] szüksége van-e a rögzített IP-címet, amely nem változik &mdash; például, ha toocreate kell egy A rekordot a DNS vagy kell hello IP-címek toobe hozzáadott tooa biztonságos listájából.
+* Egy teljesen minősített tartománynevét (FQDN) hello IP-címet is létrehozhat. Ezután rögzítheti egy [CNAME rekord] [ cname-record] a DNS-ben, amely toohello FQDN mutat. További információkért lásd: [hello Azure-portálon hozzon létre egy teljesen minősített tartománynevét][fqdn].
 
-Minden NSG tartalmaz egy [alapértelmezett szabálykészletet][nsg-default-rules], amelyben szerepel egy minden bejövő internetes forgalmat blokkoló szabály. Az alapértelmezett szabályok nem törölhetők, azonban más szabályokkal felülírhatók. Az internetes forgalom engedélyezéséhez hozzon létre olyan szabályokat, amelyek adott portokon engedélyezik a bejövő forgalmat – például a HTTP-hez a 80-as porton.&mdash;  
+Minden NSG tartalmaz egy [alapértelmezett szabálykészletet][nsg-default-rules], amelyben szerepel egy minden bejövő internetes forgalmat blokkoló szabály. hello alapértelmezett szabályokat nem lehet törölni, de más szabályok is felülírja azt. tooenable internetes forgalmat, hozzon létre szabályokat, amelyek engedélyezik a bejövő forgalmat toospecific portok &mdash; például a HTTP a 80-as porton.  
 
-RDP engedélyezéséhez vegyen fel egy NSG-t, amely lehetővé teszi a bejövő forgalom 3389-es TCP-port.
+tooenable RDP, vegyen fel egy NSG-t, amely lehetővé teszi, hogy a bejövő forgalom tooTCP 3389-es portot.
 
 ## <a name="scalability-considerations"></a>Méretezési szempontok
 
-Méretezheti a virtuális gépek felfelé vagy lefelé által [módosítása a Virtuálisgép-méretet](../articles/virtual-machines/windows/sizes.md). Horizontális felskálázáshoz helyezzen két vagy több virtuális gépet egy rendelkezésre állási csoportba egy terheléselosztó mögé. További információkért lásd: [több virtuális gépek Azure-on futó, a méretezhetőség és a rendelkezésre állási][multi-vm].
+Méretezheti a virtuális gépek felfelé vagy lefelé által [hello virtuális gép méretének módosítása](../articles/virtual-machines/windows/sizes.md). kimenő tooscale vízszintesen, üzembe két vagy több virtuális gépek rendelkezésre állási készlet egy terheléselosztó mögött. További információkért lásd: [több virtuális gépek Azure-on futó, a méretezhetőség és a rendelkezésre állási][multi-vm].
 
 ## <a name="availability-considerations"></a>Rendelkezésre állási szempontok
 
 A magasabb rendelkezésre állás érdekében helyezzen üzembe több virtuális gépet egy rendelkezésre állási csoportban. Ez is biztosít egy magasabb [szolgáltatói szerződést] [ vm-sla] (SLA).
 
-A virtuális gépre hatással lehet egy [tervezett karbantartás][planned-maintenance] vagy egy [nem tervezett karbantartás][manage-vm-availability]. Annak megállapításához, hogy a virtuális gép újraindítását egy tervezett karbantartás okozta-e, használja a [virtuális gépek újraindítási naplóit][reboot-logs].
+A virtuális gépre hatással lehet egy [tervezett karbantartás][planned-maintenance] vagy egy [nem tervezett karbantartás][manage-vm-availability]. Használhat [virtuális gép újraindítási naplók] [ reboot-logs] toodetermine, hogy indítsa újra a virtuális gépek tervezett karbantartás okozta.
 
 A VHD-ket a rendszer az [Azure Storage][azure-storage]-ban tárolja, és az Azure Storage a tartósság és a rendelkezésre állás érdekében replikálva van.
 
-A normál műveletek során történő véletlen (például hiba miatti) adatvesztés elleni védelem érdekében érdemes időponthoz kötött biztonsági mentéseket is megvalósítani [blob-pillanatképekkel][blob-snapshot] vagy más eszközzel.
+tooprotect véletlen adatvesztéstől (például hibás felhasználói) miatt a normál működés során, akkor is inkább időpontban – a biztonsági mentéseket, [blob-pillanatképek] [ blob-snapshot] vagy egy másik eszköz.
 
 ## <a name="manageability-considerations"></a>Felügyeleti szempontok
 
-**Erőforráscsoportok.** Szorosan erőforrásokat, amelyek azonos életciklusának osztani azonos PUT [erőforráscsoport][resource-manager-overview]. Erőforráscsoportok üzembe helyezését és megfigyelje az erőforrásokat csoportként és számlázási költségek erőforráscsoport szerint összesítő teszik lehetővé. Az erőforrásokat törölheti is készletenként. Ez nagyon hasznos tesztkörnyezetek esetében. Az erőforrásoknak adjon kifejező nevet, így könnyebb megtalálni egy adott erőforrást és megérteni a szerepét. Lásd: [Az Azure-erőforrások ajánlott elnevezési konvenciói][naming conventions].
+**Erőforráscsoportok.** Szorosan erőforrásaikat, hogy ugyanazon élettartama ciklus történő megosztás hello hello azonos [erőforráscsoport][resource-manager-overview]. Erőforráscsoportok lehetővé teszik toodeploy és a figyelő erőforrásokat csoportként és számlázási költségek erőforráscsoport szerint összesítő. Az erőforrásokat törölheti is készletenként. Ez nagyon hasznos tesztkörnyezetek esetében. Az erőforrásoknak adjon kifejező nevet, Amely lehetővé teszi könnyebb toolocate egy adott erőforrás, és a szerepkör ismertetése. Lásd: [Az Azure-erőforrások ajánlott elnevezési konvenciói][naming conventions].
 
-**Virtuális gépek diagnosztikája.** Engedélyezze a megfigyelést és a diagnosztikát, beleértve az alapvető állapotmetrikákat, a diagnosztikai infrastruktúra naplófájljait és a [rendszerindítási diagnosztikát][boot-diagnostics]. Rendszerindítási diagnosztika segíthetnek diagnosztizálni rendszerindítási hiba, ha a virtuális gép lekérdezi a nonbootable állapot. További információkat [a megfigyelés és a diagnosztika engedélyezésével kapcsolatos][enable-monitoring] szakaszban találhat. Használja a [Azure Naplógyűjtést] [ log-collector] Azure platformon gyűjtését, és feltölti azokat az Azure storage bővítmény.   
+**Virtuális gépek diagnosztikája.** Engedélyezze a megfigyelést és a diagnosztikát, beleértve az alapvető állapotmetrikákat, a diagnosztikai infrastruktúra naplófájljait és a [rendszerindítási diagnosztikát][boot-diagnostics]. Rendszerindítási diagnosztika segíthetnek diagnosztizálni rendszerindítási hiba, ha a virtuális gép lekérdezi a nonbootable állapot. További információkat [a megfigyelés és a diagnosztika engedélyezésével kapcsolatos][enable-monitoring] szakaszban találhat. Használjon hello [Azure Naplógyűjtést] [ log-collector] bővítmény toocollect Azure platformon naplózza, és feltöltheti ezeket tooAzure tárolási.   
 
-A diagnosztika a következő parancssori felületi paranccsal engedélyezhető:
+a következő parancsot a CLI hello lehetővé teszi, hogy a diagnosztika:
 
 ```
 azure vm enable-diag <resource-group> <vm-name>
 ```
 
-**Virtuális gépek leállítása.** Az Azure különbséget tesz a „leállított” és a „felszabadított” állapot között. A leállított virtuális gépek után fizetni kell, a felszabadítottak után azonban nem.
+**Virtuális gépek leállítása.** Az Azure különbséget tesz a „leállított” és a „felszabadított” állapot között. Virtuális gép állapotának hello le van állítva, de nem felszabadított virtuális gép hello esetén van szó.
 
-Virtuális gép felszabadításához használja az alábbi parancssori felületi parancsot:
+A következő parancssori parancsot toodeallocate egy virtuális gép hello használata:
 
 ```
 azure vm deallocate <resource-group> <vm-name>
 ```
 
-Az Azure Portalon a **Leállítás** gombbal szabadítható fel a virtuális gép. Ha azonban az operációs rendszerből állítja le, amikor be van jelentkezve, azzal virtuális gépet leállítja, de *nem* szabadítja fel, tehát továbbra is fizetnie kell a díját.
+Hello Azure-portálon, a hello **leállítása** gomb felszabadítja a virtuális gép hello. Azonban ha leállítja az operációs rendszer bejelentkezett hello keresztül, hello virtuális gép le van állítva, de *nem* felszabadítása. lehetséges, így továbbra is fizetnie kell.
 
-**Virtuális gépek törlése.** Ha töröl egy virtuális gépet, a VHD-k nem törlődnek. Ez azt jelenti, hogy biztonságosan törölheti a virtuális gépet anélkül, hogy adatot vesztene. A tárolásért azonban továbbra is díjat kell fizetnie. A VHD törléséhez törölje a fájlt a [Blob Storage-ból][blob-storage].
+**Virtuális gépek törlése.** Ha töröl egy virtuális Gépet, hello VHD-k nem törlődnek. Ez azt jelenti, hogy biztonságosan törölhető hello VM adatok elvesztése nélkül. A tárolásért azonban továbbra is díjat kell fizetnie. toodelete hello VHD, törölje a hello fájlt [Blob-tároló][blob-storage].
 
-A véletlen törlés megelőzése érdekében használjon [erőforrászárat][resource-lock]. Ezzel zárolhat egy egész erőforráscsoportot, vagy egyes erőforrásokat, például a virtuális gépet.
+tooprevent véletlen törlés, használja a [erőforrás zárolási] [ resource-lock] toolock hello teljes erőforrás csoport vagy zárolási egyéni erőforrások, például hello virtuális gép.
 
 ## <a name="security-considerations"></a>Biztonsági szempontok
 
-Használjon [az Azure Security Center] [ security-center] való központi láthatja az Azure-erőforrások biztonsági állapotát. A Security Center a potenciális biztonsági problémákat figyeli, és biztonsági állapotát a központi telepítés átfogó képet nyújt. A Security Center / Azure-előfizetés úgy van beállítva. Biztonsági adatok gyűjtésének engedélyezése a [a Security Center használata]. Adatgyűjtés engedélyezésekor a rendszer a Security Center automatikusan ellenőrzi a bármely adott előfizetésen belül létrehozott virtuális gépek.
+Használjon [az Azure Security Center] [ security-center] tooget az Azure-erőforrások biztonsági állapotának hello központi nézetét. A Security Center a potenciális biztonsági problémákat figyeli, és hello biztonsági állapotát a központi telepítés átfogó képet nyújt. A Security Center / Azure-előfizetés úgy van beállítva. Biztonsági adatok gyűjtésének engedélyezése a [a Security Center használata]. Adatgyűjtés engedélyezésekor a rendszer a Security Center automatikusan ellenőrzi a bármely adott előfizetésen belül létrehozott virtuális gépek.
 
-**Javítás kezelése.** Ha engedélyezve van, a Security Center ellenőrzi, hogy biztonsági és kritikus frissítések hiányoznak. Használjon [csoportházirend-beállítások] [ group-policy] automatikus rendszer-frissítések engedélyezéséhez a virtuális gépen.
+**Javítás kezelése.** Ha engedélyezve van, a Security Center ellenőrzi, hogy biztonsági és kritikus frissítések hiányoznak. Használjon [csoportházirend-beállítások] [ group-policy] hello VM tooenable automatikus rendszer-frissítések.
 
-**Kártevőirtó.** Ha engedélyezve van, a Security Center ellenőrzi, hogy telepítve van-e a kártevőirtó szoftver. A Security Center az Azure-portálon belül a kártevőirtó szoftver telepítéséhez is használható.
+**Kártevőirtó.** Ha engedélyezve van, a Security Center ellenőrzi, hogy telepítve van-e a kártevőirtó szoftver. Is használhatja a Security Center tooinstall kártevőirtó szoftverek belül hello Azure-portálon.
 
-**Műveletek.** A [szerepköralapú hozzáférés-vezérléssel][rbac] (RBAC) szabályozható az üzembe helyezett Azure-erőforrásokhoz való hozzáférés. Az RBAC lehetővé teszi, hogy engedélyezési szerepköröket rendeljen a fejlesztő és üzemeltető csapata tagjaihoz. Az Olvasó szerepkör például áttekintheti az Azure-erőforrásokat, de nem hozhatja létre, nem kezelheti és nem törölheti őket. Bizonyos szerepkörök kifejezetten egy adott Azure-erőforrástípusra jellemzők. Például a virtuális gép közreműködő szerepkört is indítsa újra a virtuális gép felszabadítása, a rendszergazdai jelszó visszaállítása, hozzon létre egy új virtuális Gépet, illetve stb. Ehhez a referenciaarchitektúrához hasznos lehet még a [DevTest Labs-felhasználó][rbac-devtest] és a [Hálózati közreműködő][rbac-network] [beépített RBAC-szerepkör][rbac-roles]. Egy felhasználóhoz több szerepkört is rendelhető, és létrehozhat egyéni szerepköröket a még részletesebb engedélyek érdekében.
+**Műveletek.** Használjon [szerepköralapú hozzáférés-vezérlés] [ rbac] (RBAC) toocontrol hozzáférés toohello Azure üzembe helyezett erőforrások. Az RBAC rendelhet engedélyezési szerepkörök toomembers a DevOps csoport. Például hello olvasó szerepkört is Azure-erőforrások megtekintése, de nem létrehozása, kezelése vagy törölje őket. Egyes szerepkörök olyan konkrét tooparticular Azure-erőforrás. Például hello virtuális gép közreműködő szerepkört is indítsa újra a virtuális gép felszabadítása, hello rendszergazdai jelszó visszaállítása, hozzon létre egy új virtuális Gépet, illetve stb. Ehhez a referenciaarchitektúrához hasznos lehet még a [DevTest Labs-felhasználó][rbac-devtest] és a [Hálózati közreműködő][rbac-network] [beépített RBAC-szerepkör][rbac-roles]. A felhasználó toomultiple szerepkörök rendelhetők, és még több részletes engedélyeket egyéni szerepköröket is létrehozhat.
 
 > [!NOTE]
-> Az RBAC nem korlátozza a virtuális gépre bejelentkezett felhasználó által végezhető műveleteket. Azokat az engedélyeket a vendég operációs rendszeren lévő fiók típusa határozza meg.   
+> Az RBAC nem korlátozza a hello műveleteket hajthat végre a felhasználó bejelentkezik egy virtuális Gépet. Ezeket az engedélyeket hello vendég operációs rendszer hello fiók típusa határozza meg.   
 >
 >
 
-A helyi rendszergazdai jelszó visszaállítása, futtassa a `vm reset-access` Azure CLI parancsot.
+tooreset hello helyi rendszergazda jelszavát, futtassa a hello `vm reset-access` Azure CLI parancsot.
 
 ```
 azure vm reset-access -u <user> -p <new-password> <resource-group> <vm-name>
 ```
 
-A [vizsgálati naplók][audit-logs] segítségével megtekintheti az üzembe helyezési műveleteket és más virtuálisgép-eseményeket.
+Használjon [naplók] [ audit-logs] toosee kiépítési műveletek és a virtuális gép az eseményeket.
 
-**Adattitkosítás.** Ha titkosítania kell az operációs rendszert és az adatlemezeket, érdemes megfontolnia az [Azure Disk Encryption][disk-encryption] használatát.
+**Adattitkosítás.** Érdemes lehet [Azure Disk Encryption] [ disk-encryption] Ha tooencrypt hello az operációs rendszer és adatlemezek van szükség.
 
 ## <a name="solution-deployment"></a>A megoldás üzembe helyezése
 
-A központi telepítés a referenciaarchitektúra megtalálható [GitHub][github-folder]. Tartalmaz egy virtuális hálózatot, egy NSG-t és egy virtuális gépet. Az architektúra üzembe helyezéséhez kövesse az alábbi lépéseket:
+A központi telepítés a referenciaarchitektúra megtalálható [GitHub][github-folder]. Tartalmaz egy virtuális hálózatot, egy NSG-t és egy virtuális gépet. toodeploy hello architektúra, kövesse az alábbi lépéseket:
 
-1. Kattintson a jobb gombbal a lenti gombra, és válassza a „Link megnyitása új lapon” vagy a „Link megnyitása új ablakban” lehetőséget.  
-   [![Üzembe helyezés az Azure-ban](../articles/guidance/media/blueprints/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fguidance-compute-single-vm%2Fazuredeploy.json)
-2. Ha a hivatkozás megnyílt az Azure Portalon, meg kell adnia néhány beállítás értékét:
+1. Kattintson a jobb gombbal az alábbi hello gombra, jelölje ki vagy "nyitott kapcsolatot új lapon" vagy "Hivatkozás megnyitása új ablak."  
+   [![TooAzure telepítése](../articles/guidance/media/blueprints/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fguidance-compute-single-vm%2Fazuredeploy.json)
+2. Hello hivatkozás hello Azure-portálon nyitotta meg, ha az egyes hello beállításai értékeket kell megadnia:
 
-   * Az **Erőforráscsoport** neve már meg van adva a paraméterfájlban, ezért válassza az **Új létrehozása** lehetőséget és a szövegmezőbe írja az `ra-single-vm-rg` karakterláncot.
-   * Válassza ki a régiót a **Hely** legördülő listából.
-   * Ne szerkessze a **Sablon gyökér szintű URI-je** vagy a **Paraméter gyökér szintű URI-je** szövegmezőt.
-   * Válassza ki **windows** a a **operációsrendszer-típus** legördülő listája.
-   * Tekintse át a használati feltételeket, majd kattintson az **Elfogadom a fenti feltételeket** lehetőségre.
-   * Kattintson a **Vásárlás** gombra.
-3. Várjon, amíg az üzembe helyezés befejeződik.
-4. A paraméter-fájlok közé tartoznak, a kódolt rendszergazda felhasználónevet és jelszót, és erősen ajánlott, hogy azonnal módosíthatja is. Kattintson az Azure Portalon az `ra-single-vm0 ` nevű virtuális gépre. Kattintson a **jelszó-átállítási** a a **támogatási + hibaelhárítási** panelen. A **Mód** legördülő listában válassza a **Jelszó alaphelyzetbe állítása** lehetőséget, majd adjon meg új értéket a **Felhasználónév** és a **Jelszó** mezőben. Az új felhasználó nevének és jelszavának megőrzéséhez kattintson a **Frissítés** gombra.
+   * Hello **erőforráscsoport** neve már definiálva van hello paraméterfájl, ezért select **hozzon létre új** , és írja be `ra-single-vm-rg` hello szövegmezőben.
+   * Jelölje be hello régió a hello **hely** legördülő listája.
+   * Ne módosítsa a hello **sablon legfelső szintű Uri** vagy hello **paraméter legfelső szintű Uri** szövegmezőket.
+   * Válassza ki **windows** a hello **operációsrendszer-típus** legördülő listája.
+   * Tekintse át a hello használati feltételeket, majd kattintson az hello **toohello feltételek és kikötések fenti elfogadom** jelölőnégyzetet.
+   * Kattintson a hello **beszerzési** gombra.
+3. Várjon, amíg hello telepítési toocomplete.
+4. hello paraméter fájlok közé tartoznak, a kódolt rendszergazda felhasználónevet és jelszót, és erősen ajánlott, hogy azonnal módosíthatja is. Kattintson a hello nevű virtuális gép `ra-single-vm0 `a hello Azure-portálon. Kattintson a **jelszó-átállítási** a hello **támogatási + hibaelhárítási** panelen. Válassza ki **jelszó-átállítási** a hello **mód** legördülő mezőben, majd válasszon ki egy új **felhasználónév** és **jelszó**. Kattintson a hello **frissítés** gomb toopersist hello új felhasználónevet és jelszót.
 
-Kapcsolatban további módon telepíthet a referencia-architektúrában információk, az információs fájl a a [útmutatást-single-vm][github-folder]] GitHub mappát.
+További lehetőségek toodeploy olvashat a architektúra hivatkoznak, tekintse meg a hello hello információs fájl [útmutatást-single-vm][github-folder]] GitHub mappát.
 
-## <a name="customize-the-deployment"></a>A központi telepítés testreszabása
-Ha módosítania kell a központi telepítés az igényeinek megfelelő, kövesse az utasításokat a a [információs][github-folder].
+## <a name="customize-hello-deployment"></a>Hello telepítés testreszabása
+Ha toochange hello telepítési toomatch kell az igényeinek, kövesse a hello hello utasításait [információs][github-folder].
 
 ## <a name="next-steps"></a>Következő lépések
 A magasabb rendelkezésre állás érdekében helyezzen üzembe két vagy több virtuális gépet egy terheléselosztó mögött. További információkért tekintse meg a [több virtuális gép Azure-on való futtatását][multi-vm] ismertető szakaszt.

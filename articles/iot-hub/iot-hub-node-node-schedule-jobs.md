@@ -1,6 +1,6 @@
 ---
-title: "Az Azure IoT Hub (csomópont) feladatok ütemezése |} Microsoft Docs"
-description: "How to Schedule a több eszközre közvetlen metódus egy Azure IoT Hub-feladat ütemezése. Az Azure IoT SDK for Node.js használatával megvalósítható a szimulált eszköz alkalmazások és a service-alkalmazást, a feladat futtatásához."
+title: "az Azure IoT Hub (csomópont) aaaSchedule feladatok |} Microsoft Docs"
+description: "Hogyan tooschedule az Azure IoT-központ feladat tooinvoke a közvetlen módszer több eszközön. Hello Azure IoT SDK-k használata Node.js tooimplement hello szimulált eszköz alkalmazások és a app toorun hello feladata."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
-ms.openlocfilehash: 42e594dc6a8a8be619b5652bf8e44cf883650489
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: be293362447fbcddaa3433b66f208f22545fe0c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-and-broadcast-jobs-node"></a>Ütemezés és a feladatok (csomópont)
 
 [!INCLUDE [iot-hub-selector-schedule-jobs](../../includes/iot-hub-selector-schedule-jobs.md)]
 
-Az Azure IoT Hub egy teljes körűen felügyelt szolgáltatás, amely lehetővé teszi egy háttér-alkalmazás létrehozása és nyomon követheti a feladatok ütemezése és eszközök millióira frissítése.  Feladatok is használható a következő műveleteket:
+Az Azure IoT Hub egy teljes körűen felügyelt szolgáltatás, amely lehetővé teszi egy háttér-alkalmazás toocreate és nyomon követése feladatok ütemezése és eszközök millióira frissítése.  A következő műveletek hello feladatok használható:
 
 * Eszköz kívánt tulajdonságainak frissítése
 * Címkék frissítése
 * Közvetlen metódusok
 
-Egy feladat fogalmilag, becsomagolja az alábbi műveletek egyikét, és nyomon követi a folyamatot való összevetéssel az eszközök, eszköz két lekérdezést által definiált végrehajtás.  Például egy háttér-alkalmazást, egy feladat 10 000 eszközök, eszköz iker lekérdezés által megadott, és egy későbbi időpontban ütemezett újraindítás metódus használható.  Az alkalmazás egyes eszközök kap, és az újraindítás metódus végrehajtása majd előrehaladásának.
+Fogalmilag egy feladatot az alábbi műveletek egyikét becsomagolja, és nyomon követi hello való összevetéssel az eszközök, eszköz két lekérdezést által definiált végrehajtás folyamatban van.  Például egy háttér-alkalmazás használhat egy feladat tooinvoke újraindítás metódus 10 000 eszköz, a két eszköz lekérdezés által megadott és ütemezett egy későbbi időpontban.  Az alkalmazás egyes eszközök fogadni és hello újraindítás metódus hajtható végre, majd előrehaladásának.
 
 További információ az egyes képességek a cikkeiben:
 
-* A két eszköz és a tulajdonságok: [Ismerkedés az eszköz twins] [ lnk-get-started-twin] és [oktatóanyag: kettős eszköztulajdonságok használata][lnk-twin-props]
+* A két eszköz és a tulajdonságok: [Ismerkedés az eszköz twins] [ lnk-get-started-twin] és [oktatóanyag: hogyan toouse eszköz iker tulajdonságai][lnk-twin-props]
 * közvetlen módszerek: [IoT Hub fejlesztői útmutató - közvetlen módszerek] [ lnk-dev-methods] és [oktatóanyag: közvetlen módszer][lnk-c2d-methods]
 
 Ez az oktatóanyag a következőket mutatja be:
 
-* Hozzon létre egy közvetlen metódus, amely lehetővé teszi a szimulált eszköz alkalmazást **lockDoor** által a megoldás háttérrendszeréhez hívható.
-* Hozzon létre egy Node.js-Konzolalkalmazás, amely behívja a **lockDoor** közvetlen módszer a alkalmazásban szimulált eszköz egy feladat és a frissítések a kívánt eszköz feladat használatával tulajdonságokkal.
+* Hozzon létre egy közvetlen metódus, amely lehetővé teszi a szimulált eszköz alkalmazást **lockDoor** hello megoldás háttérrendszerének által hívható.
+* Hozzon létre egy Node.js-Konzolalkalmazás, hogy hívások hello **lockDoor** közvetlen módszer használatával egy feladat és a frissítések hello hello szimulált eszköz alkalmazásban szükséges tulajdonságok eszköz feladat használatával.
 
-Ez az oktatóanyag végén két Node.js konzol alkalmazások közül választhat:
+Ez az oktatóanyag végén hello két Node.js konzol alkalmazások közül választhat:
 
-**simDevice.js**, amely az IoT hub eszköz identitással csatlakozik, és megkapja a **lockDoor** közvetlen módszer.
+**simDevice.js**, amelyhez csatlakoznak az IoT-központ tooyour hello eszközidentitás, és megkapja a **lockDoor** közvetlen módszer.
 
-**scheduleJobService.js**, amely közvetlen metódus meghívja a szimulált eszköz alkalmazás és a frissítés az eszköz a két feladat használatával tulajdonságok szükséges.
+**scheduleJobService.js**, amely meghívja a közvetlen módszer hello szimulált eszköz alkalmazás és frissítés hello eszköz iker a kívánt tulajdonságokkal feladat használatával.
 
-Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
+toocomplete ebben az oktatóanyagban a következő hello szüksége:
 
-* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan telepítse a Node.js-ebben az oktatóanyagban a Windows vagy Linux.
+* NODE.js-verzió 0.12.x vagy újabb verzióját, <br/>  [A fejlesztőkörnyezet előkészítése] [ lnk-dev-setup] ismerteti, hogyan tooinstall Node.js ebben az oktatóanyagban a Windows vagy Linux.
 * Aktív Azure-fiók. (Ha nincs fiókja, létrehozhat egy [ingyenes fiókot][lnk-free-trial] néhány perc alatt.)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -58,20 +58,20 @@ Az oktatóanyag teljesítéséhez a következőkre lesz szüksége:
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-a-simulated-device-app"></a>Szimulált eszközalkalmazás létrehozása
-Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a felhőbe, amely elindítja a szimulált eszköz újraindítás és a jelentésben szereplő tulajdonságok segítségével engedélyezése az eszköz iker lekérdezések azonosíthatja azokat az eszközöket, és ha azok utolsó újraindítása után hívja a közvetlen módszer hoz létre.
+Ebben a szakaszban hoz létre egy Node.js-Konzolalkalmazás, amely tooa hello felhő, amely elindítja a szimulált eszköz újraindítás által meghívott közvetlen metódus válaszol, és használja hello jelentett tulajdonságok tooenable eszköz iker lekérdezések tooidentify eszközök, és ha azok utolsó újraindítása.
 
-1. Hozzon létre egy új üres nevű **simDevice**.  Az a **simDevice** mappa, hozzon létre egy package.json fájlt parancsot a parancssorba az alábbi parancs segítségével.  Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **simDevice**.  A hello **simDevice** mappa, hozzon létre egy package.json fájlt a következő parancsot a parancssorba hello segítségével.  Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. Parancsot a parancssorba a a **simDevice** mappa telepítéséhez a következő parancsot a **azure iot-eszközök** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt** csomag:
+2. A parancssorban hello **simDevice** mappa, futtassa a következő parancs tooinstall hello hello **azure iot-eszközök** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt** csomag:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy új **simDevice.js** fájlt a **simDevice** mappa.
-4. Adja hozzá a következő "szükséges" utasítások elején a **simDevice.js** fájlt:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **simDevice.js** hello fájlban **simDevice** mappa.
+4. Adja hozzá a hello következő "megkövetelése a" hello hello indításkor állapotkimutatások **simDevice.js** fájlt:
    
     ```
     'use strict';
@@ -79,63 +79,63 @@ Ebben a szakaszban egy Node.js-Konzolalkalmazás, amely válaszol a felhőbe, am
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. Adjon hozzá egy **connectionString** változót, és ezzel hozzon létre egy **Ügyfél** példányt.  
+5. Adja hozzá a **connectionString** változó, és toocreate használni egy **ügyfél** példány.  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
-6. Adja hozzá a következő függvény kezelni a **lockDoor** metódust.
+6. Adja hozzá a következő függvény toohandle hello hello **lockDoor** metódust.
    
     ```
     var onLockDoor = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
         console.log('Locking Door!');
     };
     ```
-7. Az alábbi kódot a kezelőt regisztrálni a **lockDoor** metódust.
+7. Adja hozzá a következő kód tooregister hello kezelő hello hello **lockDoor** metódust.
    
     ```
     client.open(function(err) {
         if (err) {
-            console.error('Could not connect to IotHub client.');
+            console.error('Could not connect tooIotHub client.');
         }  else {
-            console.log('Client connected to IoT Hub. Register handler for lockDoor direct method.');
+            console.log('Client connected tooIoT Hub. Register handler for lockDoor direct method.');
             client.onDeviceMethod('lockDoor', onLockDoor);
         }
     });
     ```
-8. Mentse és zárja be a **simDevice.js** fájlt.
+8. Mentse és zárja be a hello **simDevice.js** fájlt.
 
 > [!NOTE]
-> Az egyszerűség kedvéért ez az oktatóanyag nem valósít meg semmilyen újrapróbálkozási házirendet. Az éles kódban újrapróbálkozási házirendeket is meg kell valósítania (például egy exponenciális leállítást) a [tranziens hibakezelést][lnk-transient-faults] ismertető MSDN-cikkben leírtak szerint.
+> Ez az oktatóanyag tookeep dolgot egyszerű, nem valósítja meg semmilyen újrapróbálkozási házirendje. Az éles kódban, meg kell valósítania újrapróbálkozási házirendek (például az exponenciális leállítási), hello MSDN-cikkben leírtak [átmeneti hiba kezelése][lnk-transient-faults].
 > 
 > 
 
 ## <a name="schedule-jobs-for-calling-a-direct-method-and-updating-a-device-twins-properties"></a>Ütemezett feladatok közvetlen metódus hívása, és egy eszköz iker tulajdonságainak frissítése
-Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létrehozása **lockDoor** közvetlen módszert használ az eszközön, és az eszköz iker tulajdonságainak frissítéséhez.
+Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létrehozása **lockDoor** egy eszközön, a közvetlen módszer és a frissítés hello eszköz iker tartozó tulajdonságok használatával.
 
-1. Hozzon létre egy új üres nevű **scheduleJobService**.  Az a **scheduleJobService** mappa, hozzon létre egy package.json fájlt parancsot a parancssorba az alábbi parancs segítségével.  Fogadja el az összes alapértelmezett beállítást:
+1. Hozzon létre egy új üres nevű **scheduleJobService**.  A hello **scheduleJobService** mappa, hozzon létre egy package.json fájlt a következő parancsot a parancssorba hello segítségével.  Fogadja el az összes hello alapértelmezett beállításokat:
    
     ```
     npm init
     ```
-2. A parancssorban a a **scheduleJobService** mappa telepítéséhez a következő parancsot a **azure-IOT hubbal** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt** csomag:
+2. A parancssorban hello **scheduleJobService** mappa, futtassa a következő parancs tooinstall hello hello **azure-IOT hubbal** eszköz SDK-csomagot és **azure-iot-eszközök – mqtt**csomag:
    
     ```
     npm install azure-iothub uuid --save
     ```
-3. Egy szövegszerkesztő használatával hozzon létre egy új **scheduleJobService.js** fájlt a **scheduleJobService** mappa.
-4. Adja hozzá a következő "szükséges" utasítások elején a **dmpatterns_gscheduleJobServiceetstarted_service.js** fájlt:
+3. Egy szövegszerkesztő használatával hozzon létre egy új **scheduleJobService.js** hello fájlban **scheduleJobService** mappa.
+4. Adja hozzá a hello következő "megkövetelése a" hello hello indításkor állapotkimutatások **dmpatterns_gscheduleJobServiceetstarted_service.js** fájlt:
    
     ```
     'use strict';
@@ -143,7 +143,7 @@ Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létreho
     var uuid = require('uuid');
     var JobClient = require('azure-iothub').JobClient;
     ```
-5. Adja hozzá a következő változók deklarációja, és cserélje le a helyőrző értékeket:
+5. Adja hozzá a következő változók deklarációja hello, és cserélje le a hello helyőrző értékeket:
    
     ```
     var connectionString = '{iothubconnectionstring}';
@@ -152,7 +152,7 @@ Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létreho
     var maxExecutionTimeInSeconds =  3600;
     var jobClient = JobClient.fromConnectionString(connectionString);
     ```
-6. Adja hozzá a következő függvény használatával figyelheti a feladat végrehajtása:
+6. Adja hozzá a következő függvény, amely lesz hello feladat végrehajtásának használt toomonitor hello hello:
    
     ```
     function monitorJob (jobId, callback) {
@@ -171,13 +171,13 @@ Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létreho
         }, 5000);
     }
     ```
-7. Adja hozzá a ütemezni a feladatot, amely az eszköz metódust hívja a következő kódot:
+7. Adja hozzá a következő kód tooschedule hello feladatot, amely hello eszköz metódust hello:
    
     ```
     var methodParams = {
         methodName: 'lockDoor',
         payload: null,
-        responseTimeoutInSeconds: 15 // Timeout after 15 seconds if device is unable to process method
+        responseTimeoutInSeconds: 15 // Timeout after 15 seconds if device is unable tooprocess method
     };
    
     var methodJobId = uuid.v4();
@@ -201,7 +201,7 @@ Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létreho
         }
     });
     ```
-8. Adja hozzá a következő kódot az eszköz iker frissítése feladat ütemezése:
+8. Adja hozzá a következő kód tooschedule hello feladat tooupdate hello eszköz iker hello:
    
     ```
     var twinPatch = {
@@ -234,31 +234,31 @@ Ebben a szakaszban egy távoli kezdeményező Node.js-Konzolalkalmazás létreho
         }
     });
     ```
-9. Mentse és zárja be a **scheduleJobService.js** fájlt.
+9. Mentse és zárja be a hello **scheduleJobService.js** fájlt.
 
-## <a name="run-the-applications"></a>Az alkalmazások futtatása
-Most már készen áll az alkalmazások futtatására.
+## <a name="run-hello-applications"></a>Hello alkalmazások futtatásához
+Most már áll készen toorun hello alkalmazások.
 
-1. A parancssorban a **simDevice** mappa, a következő parancsot a rendszer újraindítása közvetlen módszer figyelését.
+1. Parancssorba hello hello **simDevice** mappa, futtassa a következő parancs toobegin figyeli a hello újraindítás közvetlen módszer hello.
    
     ```
     node simDevice.js
     ```
-2. A parancssorban a **scheduleJobService** mappa, a következő parancsot az ajtó zárolja, és frissíti a kettős feladatok elindítása
+2. Parancssorba hello hello **scheduleJobService** mappa, futtassa a következő parancs tootrigger hello feladatok toolock hello ajtó és frissítés hello iker hello
    
     ```
     node scheduleJobService.js
     ```
-3. A közvetlen módszer a konzolon eszköz válasz megjelenik.
+3. Hello eszköz válasz toohello közvetlen módszer hello konzolon láthatja.
 
 ## <a name="next-steps"></a>Következő lépések
-Ebben az oktatóanyagban egy feladat ütemezése a közvetlen módszer egy eszköz és a két eszköz tulajdonságok frissítése használt.
+Ebben az oktatóanyagban használt a egy feladat tooschedule közvetlen módszer tooa eszköz és a hello eszköz iker tulajdonságok hello frissítése.
 
-A folytatáshoz, a légkondicionáló frissítést keresztül Ismerkedés az IoT-központ és az eszköz felügyeleti minták például távolról, lásd:
+Ismerkedés az IoT-központ és az eszköz felügyeleti minták például távolról keresztül hello vezeték nélkül belső vezérlőprogram frissítési toocontinue lásd:
 
-[Oktatóanyag: Módjáról a belső vezérlőprogram frissítése][lnk-fwupdate]
+[Oktatóanyag: Hogyan toodo a belső vezérlőprogram frissítése][lnk-fwupdate]
 
-Ismerkedés az IoT-központ a folytatáshoz tekintse meg a [Ismerkedés az Azure IoT peremhálózati][lnk-iot-edge].
+Ismerkedés az IoT-központ toocontinue lásd [Ismerkedés az Azure IoT peremhálózati][lnk-iot-edge].
 
 [lnk-get-started-twin]: iot-hub-node-node-twin-getstarted.md
 [lnk-twin-props]: iot-hub-node-node-twin-how-to-configure.md

@@ -1,6 +1,6 @@
 ---
-title: "Prediktív karbantartás bemutatója | Microsoft Docs"
-description: "Az Azure IoT prediktív karbantartási előre konfigurált megoldás bemutatója."
+title: "aaaPredictive karbantartási forgatókönyv |} Microsoft Docs"
+description: "A forgatókönyv hello Azure IoT – prediktív karbantartási megoldás előre konfigurált."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,66 +15,66 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: a68a8fdc3976ade0d1036d5ed58c8b2eb6d32a5d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 900d6351019489a8e2f4b98908364e3bd14975c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="predictive-maintenance-preconfigured-solution-walkthrough"></a>A prediktív karbantartási előre konfigurált megoldás bemutatója
 
-A prediktív karbantartási előre konfigurált megoldás olyan teljes körű megoldást nyújt az üzleti forgatókönyvekben, amely előrejelzi a meghibásodás várható idejét. Ezt az előre konfigurált megoldást proaktív módon használhatja olyan tevékenységekhez, mint a karbantartás optimalizálása. A megoldás kombinálja a fő Azure IoT Suite-szolgáltatásokat, mint az IoT Hub, a Stream Analytics, valamint egy [Azure Machine Learning][lnk-machine-learning]-munkaterületet. Ezen a munkaterületen egy modell található a repülőmotorok maradék hasznos élettartamának (RUL-jének) előrejelzéséhez egy nyilvános minta adatkészlet alapján. A megoldás az IoT üzleti forgatókönyv teljes megvalósítását biztosítja kiindulópontként, amellyel megtervezheti és megvalósíthatja ezt a megoldást a saját üzleti követelményeinek megfelelően.
+hello előre konfigurált prediktív karbantartási egy olyan végpont megoldás, amely képes hello pont, amely a hiba valószínűleg toooccur üzleti forgatókönyv esetén. Ezt az előre konfigurált megoldást proaktív módon használhatja olyan tevékenységekhez, mint a karbantartás optimalizálása. hello megoldás egyesíti fontos Azure IoT Suite-szolgáltatások, például az IoT-központ, a Stream analytics, és egy [Azure Machine Learning] [ lnk-machine-learning] munkaterületen. A munkaterület modellben, egy nyilvános minta adatkészlet toopredict hello fennmaradó élettartama (Szabályainak) repülőgép motor áll. hello megoldás teljes hello IoT üzleti helyzethez megvalósítja az Ön tooplan kiindulási pontként, megvalósítani a saját speciális üzleti igényeinek megfelelő megoldást.
 
 ## <a name="logical-architecture"></a>Logikai architektúra
 
-A következő diagram az előre konfigurált megoldás logikai összetevőit vázolja fel:
+a következő diagram hello hello logikai összetevőinek előre konfigurált hello megoldás ismerteti:
 
 ![][img-architecture]
 
-A kék elemek Azure-szolgáltatások, amelyek az előre konfigurált megoldás üzembe helyezésének régiójában vannak kiépítve. A régiók listája, amelyekben az előre konfigurált megoldás üzembe helyezhető, az [üzembe helyezés oldalon][lnk-azureiotsuite] jelenik meg.
+kék hello elemek már az Azure-szolgáltatásokkal létesített hello régióban, amelybe telepítette előre konfigurált hello megoldás. hello előre konfigurált hello megoldás telepíthető régiók listáját jeleníti meg a hello [üzembe helyezési oldal][lnk-azureiotsuite].
 
-A zöld elem egy repülőmotort jelképező szimulált eszköz. Az alábbi szakaszban tudhat meg többet ezekről a szimulált eszközökről.
+zöld hello elem a szimulált eszköz, amely egy repülőgép alrendszeren jelöli. Többet tudhat meg ezeket a következő szakasz hello szimulált eszközökkel kapcsolatos.
 
-A szürke elemek az *eszközfelügyeleti* képességeket megvalósító összetevőket jelölik. A prediktív karbantartási előre konfigurált megoldás jelenlegi kiadása nem biztosítja ezeket az erőforrásokat. Az eszközfelügyeletről a [távoli monitorozási előre konfigurált megoldás][lnk-remote-monitoring] szakaszban talál további információt.
+hello szürke elemek-összetevőket képviselő megvalósító *Eszközkezelés* képességeit. hello előre konfigurált prediktív karbantartási megoldás jelenlegi kiadásában hello kiépítése ezeket az erőforrásokat. További információ az eszközkezelés toolearn tekintse meg a toohello [távoli felügyeleti előkonfigurált megoldás][lnk-remote-monitoring].
 
 ## <a name="simulated-devices"></a>Szimulált eszközök
 
-Az előre konfigurált megoldásban a szimulált eszközök repülőmotorokat jelképeznek. A megoldás egyetlen repülőhöz tartozó két motorral van kiépítve. Mindegyik motor négy típusú telemetriát bocsát ki: a 9. érzékelő, a 11. érzékelő, a 14. érzékelő és a 15. érzékelő telemetriáját, amelyek a motor fennmaradó hasznos élettartamának (RUL) kiszámítására szolgáló Machine Learning-modellhez szükséges adatokat biztosítják. Mindegyik szimulált eszköz a következő telemetriai üzeneteket küldi el az IoT Hubnak:
+Előre konfigurált hello a megoldásban a szimulált eszköz repülőgép motor jelöli. hello megoldás tooa egyetlen repülőgép hozzárendelését két motorral lett kiépítve. Minden egyes motor bocsát ki a négy típusú telemetriai: érzékelő 9, érzékelő 11, érzékelő 14 és érzékelő 15 adatokkal hello hello gépi tanulási modell toocalculate hello Szabályainak hello motor szükséges. Minden egyes szimulált eszköz küld hello telemetriai üzenetek tooIoT központ a következő:
 
-*Ciklusszám*. A ciklusok két és tíz óra közti időtartamú befejezett repülőutakat jelölnek. A rendszer félóránként rögzíti a telemetriai adatokat a repülőutak közben.
+*Ciklusszám*. A ciklusok két és tíz óra közti időtartamú befejezett repülőutakat jelölnek. Hello repülési során telemetriai adatokat minden fél óra lesz rögzítve.
 
-*Telemetria*. Négy érzékelő jelzi a motorattribútumokat. Az érzékelők általában a 9. érzékelő, 11. érzékelő, 14. érzékelő és 15. érzékelő felirattal rendelkeznek. Ez a négy érzékelő elegendő telemetriai adatot biztosít ahhoz, hogy hasznos eredmények érkezzenek az RUL-modellről. Az előre konfigurált megoldásban használt modell egy nyilvános adatkészletből jön létre, amely valódi motorérzékelők adatait tartalmazza. További információ a modell eredeti adatkészletből való létrehozásáról: [Cortana Intelligence Gallery Predictive Maintenance Template][lnk-cortana-analytics] (A Cortana Intelligence Gallery prediktív karbantartási sablonja).
+*Telemetria*. Négy érzékelő jelzi a motorattribútumokat. hello érzékelők általános tartalma érzékelő 9, érzékelő 11, érzékelő 14 és érzékelő 15. Ezek a négy érzékelők telemetriai elegendő tooobtain eredményeit hasznosítani hello Szabályainak modellből jelölik. előre konfigurált hello megoldásban használt hello modell, amely tartalmazza az érzékelőadatok valós motor nyilvános adatkészlet készült. Hogyan hello modell hello eredeti adatkészlet alapján készült-e további információkért lásd: hello [Cortana Intelligence Gallery prediktív karbantartási sablon][lnk-cortana-analytics].
 
-A szimulált eszközök a megoldás részét képező IoT Hubról küldött következő parancsokat tudják kezelni:
+Szimulált hello eszközöket képes kezelni hello hello megoldásban hello IoT-központ által küldött parancsokat a következő:
 
 | Parancs | Leírás |
 | --- | --- |
-| StartTelemetry |A szimuláció állapotát vezérli.<br/>Elindítja a telemetriát küldő eszközt |
-| StopTelemetry |A szimuláció állapotát vezérli.<br/>Leállítja a telemetriát küldő eszközt |
+| StartTelemetry |Vezérlők hello hello szimuláció állapotát.<br/>Telemetriai adatok küldését indítása hello eszköz |
+| StopTelemetry |Vezérlők hello hello szimuláció állapotát.<br/>Telemetriai adatok küldése leáll hello eszköz |
 
 Az IoT Hub nyugtázza az eszközparancsokat.
 
 ## <a name="azure-stream-analytics-job"></a>Azure Stream Analytics-feladat
 
-**Feladat: Telemetria** – a bejövő eszköz telemetriastreamjén működik két utasítással.
+**Feladat: Telemetriai** olyan hello bejövő eszköz telemetriai adatfolyam két utasítások segítségével:
 
-* Az első kiválasztja az összes telemetriát az eszközökről, és ezeket az adatokat Blob Storage-ba küldi. Itt a webalkalmazásban jelennek meg.
-* A második kiszámítja az átlagos érzékelőértékeket egy kétperces csúszóablakban, és ezeket az adatokat az eseményközponton keresztül egy **eseményfeldolgozóba** küldi.
+* hello először kiválasztása összes telemetriai adat hello eszközökről és az adattárolás tooblob küld. Itt azt formájában jelenik meg hello web app alkalmazásban.
+* hello második kiszámítja az átlagos érzékelő keresztül egy kétperces csúszóablak értéket, majd elküldi keresztül hello Event hub tooan **eseményfeldolgozóhoz**.
 
 ## <a name="event-processor"></a>Eseményfeldolgozó
-Az **Event Processor Host** egy Azure-beli webes feladatban fut. Az **eseményfeldolgozó** a befejezett ciklusok átlagos érzékelőértékeit kezeli. Ezeket az értékeket azután egy olyan API-ra küldi, amely közzéteszi a betanított modellt egy motor RUL értékének kiszámításához. Az API-t a megoldás részeként üzembe helyezett Machine Learning-munkaterület teszi közzé.
+Hello **esemény processzor állomás** egy Azure webes feladatot futtat. Hello **eseményfeldolgozóhoz** hello átlagos érzékelő értékek befejezett ciklus szükséges időt. Ezután ezen értékek tooan API, amely elérhetővé teszi a betanított modell toocalculate hello Szabályainak egy adja át. Machine Learning-munkaterület hello megoldás részeként ki van építve hello API tesz elérhetővé.
 
 ## <a name="machine-learning"></a>Machine Learning
-A Machine Learning összetevő egy olyan modellt használ, amely valódi repülőgépek adataiból jött lére. Az [azureiotsuite.com][lnk-azureiotsuite] oldalon lévő csempéről érheti el ezt a Machine Learning-munkaterületet a kiépített megoldáshoz. A csempe akkor érhető el, amikor a megoldás **Kész** állapotban van.
+Gépi tanulás összetevő hello valós repülőgép motorok gyűjtött adatokat származó modellt használ. Hello hello csempe a Machine Learning-munkaterület toohello navigálhat [azureiotsuite.com] [ lnk-azureiotsuite] lap kiosztott megoldást. hello csempe esetén érhető el hello megoldás a hello **készen** állapotát.
 
 
 ## <a name="next-steps"></a>Következő lépések
-A prediktív karbantartási előre konfigurált megoldás fő összetevőinek áttekintése után érdemes lehet testre szabni a megoldást. Lásd: [Útmutatás az előre konfigurált megoldások testreszabásáról][lnk-customize].
+Most már megtekintett hello legfontosabb összetevők hello előre konfigurált prediktív karbantartási megoldás, érdemes lehet a toocustomize azt. Lásd: [Útmutatás az előre konfigurált megoldások testreszabásáról][lnk-customize].
 
-Megismerheti az IoT Suite előre konfigurált megoldásának egyéb szolgáltatásait és funkcióit is:
+Akkor is is felfedezheti hello más szolgáltatásokat és képességeket hello előre konfigurált IoT Suite megoldások:
 
 * [Gyakran ismételt kérdések az IoT Suite-ról][lnk-faq]
-* [IoT-biztonság létrehozása az alapoktól][lnk-security-groundup]
+* [A hello IoT biztonsági szabad][lnk-security-groundup]
 
 [img-architecture]: media/iot-suite-predictive-walkthrough/architecture.png
 

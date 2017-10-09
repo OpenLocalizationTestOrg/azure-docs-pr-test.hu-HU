@@ -1,6 +1,6 @@
 ---
-title: "Az Azure SQL Database rugalmas lekérdezési áttekintése |} Microsoft Docs"
-description: "A Rugalmas lekérdezési szolgáltatás áttekintése"
+title: "aaaAzure SQL Database rugalmas lekérdezési áttekintése |} Microsoft Docs"
+description: "Hello rugalmas lekérdezési szolgáltatás áttekintése"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: mlandzic
-ms.openlocfilehash: 9b3151248a1d036117bbdc9af03a98dff71ca535
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: db17f551882cfcae0da67fdda12708baeb6db81c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-elastic-query-overview-preview"></a>Az Azure SQL Database rugalmas lekérdezési áttekintése (előzetes verzió)
-A rugalmas lekérdezés (az előzetes verzió) funkciójával is több adatbázis az Azure SQL Database Transact-SQL-lekérdezés futtatható. Lehetővé teszi a távoli táblákat elérő és a csatlakozás a Microsoft és harmadik féltől származó eszközök (az Excel, Power BI, Tableau, stb.) az adatok rétegek több adatbázisból átfogó lekérdezése közötti adatbázis-lekérdezések végrehajtásához. Ezzel a szolgáltatással horizontális felskálázás lekérdezések nagy adat szintet az SQL-adatbázis és az üzleti intelligenciával jelentések eredményeinek képi megjelenítése.
+hello rugalmas lekérdezés (az előzetes verzió) funkciójával toorun kiterjedő több adatbázis az Azure SQL Database Transact-SQL lekérdezés. Lehetővé teszi tooperform közötti adatbázis-lekérdezések tooaccess távoli táblákat és tooconnect Microsoft és harmadik féltől származó eszközök (az Excel, Power BI, Tableau, stb.) tooquery több adatbázisból adatok rétegek között. Ezzel a szolgáltatással horizontális felskálázás lekérdezések toolarge adat szintet az SQL-adatbázis és az üzleti intelligenciával jelentések hello eredményeinek képi megjelenítése.
 
 
 ## <a name="why-use-elastic-queries"></a>Rugalmas lekérdezések miért érdemes használni?
 
 **Azure SQL Database**
 
-A lekérdezés teljesen a T-SQL Azure SQL-adatbázisok között. Ez lehetővé teszi a távoli adatbázis lekérdezése csak olvasható. Ez lehetővé teszi a jelenlegi helyszíni SQL Server ügyfelek három és négy part nevek vagy csatolt kiszolgáló az SQL-Adatbázist használó alkalmazások áttelepítéséhez.
+A lekérdezés teljesen a T-SQL Azure SQL-adatbázisok között. Ez lehetővé teszi a távoli adatbázis lekérdezése csak olvasható. Ez lehetővé teszi a beállítás a meglévő helyszíni SQL Server ügyfelek toomigrate három és négy part nevek vagy csatolt kiszolgáló tooSQL DB használatával.
 
 **Standard csomagban érhető el**
 
-Rugalmas lekérdezés használata támogatott a szabványos teljesítmény-rétegen a prémium szintű teljesítményszintet mellett. Lásd az alábbi előzetes verzió korlátozásai alacsonyabb teljesítményt rétegek teljesítményének korlátozásai.
+Rugalmas lekérdezési hello szabványos teljesítményszinttel hozzáadása toohello prémium szintű teljesítmény réteg támogatott. Című rész hello az előzetes verzió korlátozásai alatt a teljesítmény alacsonyabb rétegek teljesítményének korlátozásai.
 
-**Távoli adatbázis leküldése**
+**Leküldéses tooremote adatbázisok**
 
-Rugalmas lekérdezések most tolható SQL-paraméterek a távoli adatbázisokhoz végrehajtásra.
+Rugalmas lekérdezések most tolható paraméterek toohello távoli adatbázisai végrehajtásra.
 
 **A tárolt eljárás végrehajtása**
 
@@ -44,85 +44,85 @@ Távoli tárolt eljárás hívások vagy a távoli függvények használatával 
 
 **Rugalmasság**
 
-Rugalmas lekérdezéssel külső táblák most jelentheti a távoli táblák különböző séma vagy tábla neve.
+Rugalmas lekérdezéssel külső táblák most jelentheti tooremote táblák különböző séma vagy tábla neve.
 
 ## <a name="elastic-query-scenarios"></a>Rugalmas lekérdezési forgatókönyvek
 
-A cél, hogy amennyiben több adatbázis hozzájárul az egyetlen teljes eredmény sorok lekérdező forgatókönyvek megkönnyítése. A lekérdezés vagy a felhasználó vagy alkalmazás közvetlenül vagy közvetve útján az adatbázis csatlakozó eszközök állíthatók össze. Ez különösen fontos jelentések, kereskedelmi BI vagy adatok-integrációs eszközök használatával létrehozásakor – vagy bármilyen alkalmazás, és nem módosítható. Rugalmas lekérdezéshez lekérheti az eszközök, például az Excel, a Power BI, a Tableau vagy a Cognos a megszokott SQL Server kapcsolódási élményt több adatbázis között.
-Egy rugalmas lekérdezés lehetővé teszi egy teljes gyűjteményhez az adatbázisok SQL Server Management Studio vagy Visual Studio által kibocsátott lekérdezések használatával egyszerűen hozzáférhetnek, és megkönnyíti a kereszt-adatbázis lekérdezése az Entity Framework vagy más ORM környezetekben. 1. ábra mutatja egy olyan forgatókönyvet, ahol egy meglévő felhőbeli alkalmazás (használó a [elastic database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md)) réteg a kiterjesztett adatok épít, és egy rugalmas lekérdezési adatbázisok közötti jelentéskészítéshez használt.
+hello célja toofacilitate forgatókönyvek, ahol több adatbázis hozzájárul az egyetlen teljes eredmény sorok lekérdezése. hello lekérdezés vagy összeállítható hello felhasználó vagy alkalmazás közvetlenül vagy közvetve eszközökkel, amelyek csatlakoztatott toohello adatbázis. Ez különösen fontos jelentések, kereskedelmi BI vagy adatok-integrációs eszközök használatával létrehozásakor – vagy bármilyen alkalmazás, és nem módosítható. Rugalmas lekérdezéshez lekérheti az eszközök, például az Excel, a Power BI, a Tableau vagy a Cognos hello ismerős SQL Server csatlakozási élmény több adatbázis között.
+Egy rugalmas lekérdezés lehetővé teszi, hogy mennyire egyszerű a hozzáférés tooan teljes gyűjteményt az adatbázisok SQL Server Management Studio vagy Visual Studio által kibocsátott lekérdezések keresztül, és megkönnyíti a kereszt-adatbázis lekérdezése az Entity Framework vagy más ORM környezetekben. 1. ábra mutatja egy olyan forgatókönyvet, ahol egy meglévő felhőbeli alkalmazás (hello használó [elastic database ügyféloldali kódtárának](sql-database-elastic-database-client-library.md)) réteg a kiterjesztett adatok épít, és egy rugalmas lekérdezési adatbázisok közötti jelentéskészítéshez használt.
 
 **1. ábra** kiterjesztett adatszinten használt rugalmas lekérdezés
 
 ![A kiterjesztett adatszinten rugalmas lekérdezés][1]
 
-Az alábbi topológiák jellemző rugalmas lekérdezés forgatókönyvet:
+Rugalmas lekérdezés forgatókönyvet a következő topológiákat hello jellemző:
 
-* **A vertikális particionálás - adatbázisok közötti lekérdezések** (1. topológia): az adatok particionálása függőleges egy adatrétegbeli adatbázisok számú között. A táblák más-más részhalmazához általában a különböző adatbázisokhoz elhelyezve. Ez azt jelenti, hogy a séma nem egyezik, a különböző adatbázisokhoz. Például a készlet összes tábla esetén egy adatbázis míg nyilvántartási kapcsolatos összes táblázatot egy második adatbázison. Ez a topológia gyakori alkalmazási esetekben szükséges átfogó lekérdezése vagy jelentések fordítási adatbázisok táblái között.
-* **Vízszintes particionálására - horizontális** (topológia 2): adatok particionálása vízszintesen szét a sorok méretezett kimenő adatok réteg. Ezt a módszert használja a séma megegyezik a programban részt vevő összes adatbázisra. Ez a megközelítés "horizontális" néven is ismert. Horizontális hajtható végre, és felügyelt használata (1) a rugalmas adatbázis eszközöket, könyvtárakat vagy (2) a önkiszolgáló-horizontális skálázási. Egy rugalmas lekérdezés segítségével lekérdezése vagy fordítsa le a jelentések számos szilánkok között.
+* **A vertikális particionálás - adatbázisok közötti lekérdezések** (1. topológia): hello adatok particionálása függőleges egy adatrétegbeli adatbázisok számú között. A táblák más-más részhalmazához általában a különböző adatbázisokhoz elhelyezve. Ez azt jelenti, hogy adott hello sémája nem egyezik meg a különböző adatbázisokhoz. Például a készlet összes tábla esetén egy adatbázis míg nyilvántartási kapcsolatos összes táblázatot egy második adatbázison. A topológia gyakori alkalmazási esetei szükséges egy tooquery között vagy toocompile jelentések adatbázisok táblái között.
+* **Vízszintes particionálására - horizontális** (topológia 2): adatok particionálása vízszintesen réteg toodistribute sorok méretezett kimenő adatok között. Ezzel a megközelítéssel hello séma megegyezik a programban részt vevő összes adatbázis. Ez a megközelítés "horizontális" néven is ismert. Horizontális hajtható végre, és (1) hello rugalmas adatbázis eszközök tárak vagy (2) önkiszolgáló-horizontális használatával kezelhetők. Egy rugalmas lekérdezési használt tooquery vagy fordítási jelentések számos szilánkok között.
 
 > [!NOTE]
-> Rugalmas lekérdezési működik a legjobban az alkalmi jelentéskészítési forgatókönyvekhez, ahol a feldolgozás része az adatréteg hajtható végre. Jelentéskészítési munkaterhelést vagy adatraktározási forgatókönyvekben összetettebb lekérdezések esetében is érdemes lehet [Azure SQL Data Warehouse](https://azure.microsoft.com/services/sql-data-warehouse/).
+> Rugalmas lekérdezési működik a legjobban az alkalmi jelentéskészítési forgatókönyvekhez, ahol hello adatrétegbeli hello feldolgozási többsége elvégezhető. Jelentéskészítési munkaterhelést vagy adatraktározási forgatókönyvekben összetettebb lekérdezések esetében is érdemes lehet [Azure SQL Data Warehouse](https://azure.microsoft.com/services/sql-data-warehouse/).
 >  
 
 ## <a name="vertical-partitioning---cross-database-queries"></a>A vertikális particionálás - közötti adatbázis-lekérdezések
 
-A kódolási megkezdéséhez tekintse meg [első lépések (a vertikális particionálás) közötti adatbázis-lekérdezés](sql-database-elastic-query-getting-started-vertical.md).
+toobegin kódolási, lásd: [első lépések (a vertikális particionálás) közötti adatbázis-lekérdezés](sql-database-elastic-query-getting-started-vertical.md).
 
-Egy rugalmas lekérdezést, hogy más SQL-adatbázisok számára elérhető SQL-adatbázisban található adatok használható. Ez lehetővé teszi, hogy a lekérdezések bármely távoli SQL adatbázis tábláit hivatkozik egy adatbázisból. Az első lépés célja az egyes távoli adatbázisok külső adatforrás meghatározása. A külső adatforrást, amelyből el kívánja a távoli adatbázis lévő táblák eléréséhez a helyi adatbázisban van definiálva. Nem szükségesek a távoli adatbázishoz. A tipikus függőleges particionálási forgatókönyveket, amelyekben a különböző adatbázisokhoz rendelkeznek különböző sémákat rugalmas lekérdezések segítségével gyakori alkalmazási esetekben, például a referencia-adatokhoz való hozzáférés megvalósításához és adatbázisok közötti lekérdezése.
+Egy rugalmas lekérdezés lehet használt toomake adatokat egy SQL-adatbázis elérhető tooother SQL-adatbázisban található. Ez lehetővé teszi egy adatbázis toorefer tootables lekérdezéseket bármely más távoli SQL-adatbázisban. hello első lépése az toodefine egy külső adatforrásból a minden egyes távoli adatbázishoz. hello külső adatforrás van definiálva, amelyből el kívánja toogain hozzáférés tootables hello távoli adatbázis található hello helyi adatbázisban. Nem módosult a távoli adatbázis hello szükségesek. A tipikus függőleges particionálási forgatókönyveket, amelyekben a különböző adatbázisokhoz rendelkeznek különböző sémákat rugalmas lekérdezések lehetnek használt tooimplement gyakori alkalmazási esetekben, például a hozzáférés tooreference és adatbázisok közötti lekérdezése.
 
 > [!IMPORTANT]
-> Az ALTER ANY külső ADATFORRÁS engedéllyel kell rendelkeznie. Ez az engedély megtalálható az ALTER DATABASE engedéllyel. Az ALTER ANY külső ADATFORRÁS engedélyekre van szükség az alapul szolgáló adatforrásban hivatkozik.
+> Az ALTER ANY külső ADATFORRÁS engedéllyel kell rendelkeznie. Ez az engedély megtalálható hello ALTER DATABASE engedéllyel. Az ALTER ANY külső ADATFORRÁS-engedélyek az alapul szolgáló adatforrás szükséges toorefer toohello is.
 >
 
-**Referenciaadatok**: A topológia hivatkozás adatok felügyeletére használható. Az alábbi ábrán két tábla (T1 és T2) referenciaadatokkal egy dedikált adatbázis tárolja. Rugalmas lekérdezéssel, érhetők el a T1 és T2 táblák távolról más adatbázisból származó az ábrán látható módon. Ha referencia táblákat kis vagy távoli referencia táblába lekérdezések 1 topológiájának használata szelektív predikátumok rendelkezik.
+**Referenciaadatok**: hello topológia hivatkozás adatok felügyeletére használható. Hello az alábbi ábra a referenciaadatok két tábla (T1 és T2) továbbra is egy dedikált adatbázison. Rugalmas lekérdezéssel, érhetők el a T1 és T2 táblák távolról más adatbázisból származó hello ábrán látható módon. Ha referencia táblákat kis vagy távoli referencia táblába lekérdezések 1 topológiájának használata szelektív predikátumok rendelkezik.
 
-**2. ábra** vertikális particionálás - rugalmas lekérdezés a lekérdezés referenciaadatok használatával
+**2. ábra** vertikális particionálás - rugalmas lekérdezési tooquery referenciaadatok használatával
 
-![Vertikális particionálás - rugalmas lekérdezés a lekérdezés referenciaadatok használatával][3]
+![Vertikális particionálás - rugalmas lekérdezési tooquery referenciaadatok használatával][3]
 
-**Adatbázisok közötti lekérdezése**: rugalmas lekérdezések lehetővé teszik a használati esetek igénylő számos SQL-adatbázisok közötti lekérdezése. 3. ábrán látható négy különböző adatbázist: CRM-hez, a szoftverleltár, a HR és a termékek. Egy adatbázis végzett lekérdezések kell egyet vagy mind a más adatbázisok eléréséhez. Rugalmas lekérdezéssel, konfigurálhatja az adatbázis ebben az esetben néhány egyszerű DDL-utasításokban fut a négy adatbázisok mindegyike esetében. Ez egyszeri konfigurálás után egy távoli táblájához való hozzáférés más dolga, mint a T-SQL-lekérdezések, illetve az Üzletiintelligencia-eszközök egy helyi táblára hivatkozik. Ezt a módszert akkor ajánlott, ha a távoli lekérdezéseknél nem eredményeket nagy.
+**Adatbázisok közötti lekérdezése**: rugalmas lekérdezések lehetővé teszik a használati esetek igénylő számos SQL-adatbázisok közötti lekérdezése. 3. ábrán látható négy különböző adatbázist: CRM-hez, a szoftverleltár, a HR és a termékek. Hello adatbázisok közül az egyik végzett lekérdezések is kell elérhető tooone, vagy minden más adatbázisok hello. Rugalmas lekérdezéssel, beállíthatja az adatbázis ebben az esetben egyes hello négy adatbázisok néhány egyszerű DDL-utasításokban futtatásával. Ez egyszeri konfigurálás után hozzáférést tooa távoli tábla egyszerűen tooa helyi táblára hivatkozik, a T-SQL-lekérdezések, illetve a BI-eszközökkel. Ezt a módszert akkor ajánlott, ha a távoli lekérdezéseknél hello nem eredményeket nagy.
 
-**3. ábra** vertikális particionálás - különböző adatbázisok közötti rugalmas lekérdezés a lekérdezés használata
+**3. ábra** vertikális particionálás - különböző adatbázisok közötti rugalmas lekérdezési tooquery használatával
 
-![Vertikális particionálás - különböző adatbázisok közötti rugalmas lekérdezés a lekérdezés használata][4]
+![Vertikális particionálás - különböző adatbázisok közötti rugalmas lekérdezési tooquery használatával][4]
 
-Az alábbi lépéseket a függőleges particionálási forgatókönyvek, amelyek az ugyanazon sémával távoli SQL-adatbázisok található táblázat hozzáférést igényelnek a rugalmas adatbázis-lekérdezéseinek konfigurálása:
+hello lépések konfigurálása a hozzáférés tooa táblában található hello a távoli SQL-adatbázisok azonos igénylő függőleges particionálási forgatókönyvek rugalmas adatbázis-lekérdezéseinek séma:
 
 * [Hozzon létre FŐKULCS](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
 * [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
 * [KÜLSŐ ADATFORRÁS létrehozása/DROP](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource típusú **RDBMS**
 * [A külső tábla létrehozása/DROP](https://msdn.microsoft.com/library/dn935021.aspx) táblanév
 
-Miután a DDL-utasításokban, a "mytable" távoli tábla, mintha egy helyi táblára érheti el. Az Azure SQL Database automatikusan megnyitja a kapcsolatot a távoli adatbázissal, feldolgozza a kérést a távoli adatbázishoz, és az eredményeket ad vissza.
+Miután hello DDL-utasításokban, hello távoli tábla "mytable", mintha egy helyi táblára érheti el. Az Azure SQL Database automatikusan kapcsolat toohello távoli adatbázis megnyitása, feldolgozza a kérést a távoli adatbázis hello és hello eredményeket ad vissza.
 
 ## <a name="horizontal-partitioning---sharding"></a>Vízszintes particionálás - horizontális
-A Rugalmas lekérdezési vízszintesen, azaz particionálva, a szilánkos keresztül jelentéskészítési feladatok elvégzéséhez adatszinten szükség van egy [rugalmas adatbázis shard térkép](sql-database-elastic-scale-shard-map-management.md) képviseli az adatréteg adatbázisait. Általában csak egyetlen shard térképre használatban van ebben a forgatókönyvben, és rugalmas lekérdezési lehetőségeket (átjárócsomópont) dedikált adatbázis lekérdezések jelentéskészítéshez belépési pontként szolgál. Csak a dedikált adatbázis a shard térkép hozzáférésre van szüksége. 4. ábra szemlélteti, ez a topológia és a Rugalmas lekérdezési adatbázis és a shard hozzárendelése és konfigurációja. Az adatbázisok az adatréteg lehet bármely Azure SQL Database verzióját vagy kiadását. A rugalmas adatbázis ügyféloldali kódtár és shard maps létrehozásával kapcsolatos további információkért lásd: [Shard térkép felügyeleti](sql-database-elastic-scale-shard-map-management.md).
+A jelentéskészítési feladatok keresztül a szilánkos, azaz, vízszintesen particionálva, rugalmas lekérdezési tooperform adatszinten szükség van egy [rugalmas adatbázis shard térkép](sql-database-elastic-scale-shard-map-management.md) toorepresent hello adatbázisok hello adatok réteg. Általában csak egyetlen shard térképre használatban van ebben a forgatókönyvben, és rugalmas lekérdezési lehetőségeket (átjárócsomópont) dedikált adatbázis lekérdezések jelentéskészítéshez hello belépési pontként szolgál. Csak a dedikált adatbázis hozzáférés toohello shard térkép kell. 4. ábra szemlélteti, ez a topológia és hello rugalmas lekérdezési adatbázis és a shard hozzárendelése és konfigurációja. hello adatrétegbeli hello adatbázisok lehet bármely Azure SQL Database verzióját vagy kiadását. Hello elastic database ügyféloldali kódtár és shard maps létrehozásával kapcsolatos további információkért lásd: [Shard térkép felügyeleti](sql-database-elastic-scale-shard-map-management.md).
 
 **4. ábra** vízszintes particionálás - rugalmas lekérdezéssel felett horizontálisan skálázott adatok rétegek jelentéskészítéshez
 
 ![Vízszintes particionálás - rugalmas lekérdezéssel felett horizontálisan skálázott adatok rétegek jelentéskészítéshez][5]
 
 > [!NOTE]
-> A rugalmas adatbázis lekérdezése (átjárócsomópont) lehet külön adatbázis, vagy ugyanazt az adatbázist, amelyen a shard leképezés. Bármilyen konfiguráció választja, győződjön meg arról, hogy az adatbázis szolgáltatás- és rétegű elég nagy a bejelentkezési/lekérdezésekre vonatkozó kérelmek várható mennyisége kezelésére.
+> A rugalmas adatbázis lekérdezése (átjárócsomópont) lehet külön adatbázis, vagy hello lehet ugyanaz a gazdagépek hello shard térkép adatbázis. Bármilyen konfiguráció választja, győződjön meg arról, hogy az adatbázis szolgáltatás- és rétegű ez elég magas toohandle hello várható időtartam bejelentkezés/lekérdezésekre vonatkozó kérelmek.
 
-Az alábbi lépéseket a vízszintes particionálási forgatókönyvek tábla hozzáférést igénylő található rugalmas adatbázis-lekérdezéseinek (általában) több távoli SQL-adatbázisok konfigurálása:
+hello lépések konfigurálja a vízszintes particionálási igénylő forgatókönyvek hozzáférés tooa set tábla található rugalmas adatbázis-lekérdezéseinek (általában) több távoli SQL-adatbázisok:
 
 * [Hozzon létre FŐKULCS](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
 * [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
-* Hozzon létre egy [shard térkép](sql-database-elastic-scale-shard-map-management.md) képviselő az adatréteg a rugalmas adatbázis ügyféloldali kódtár segítségével.   
+* Hozzon létre egy [shard térkép](sql-database-elastic-scale-shard-map-management.md) képviselő az adatréteg hello elastic database ügyféloldali kódtár segítségével.   
 * [KÜLSŐ ADATFORRÁS létrehozása/DROP](https://msdn.microsoft.com/library/dn935022.aspx) típusú mydatasource **SHARD_MAP_MANAGER**
 * [A külső tábla létrehozása/DROP](https://msdn.microsoft.com/library/dn935021.aspx) táblanév
 
-Miután elvégezte ezeket a lépéseket, érheti el a "mytable" vízszintes particionált tábla, mintha egy helyi táblára. Az Azure SQL Database automatikusan megnyílik több párhuzamos kapcsolatokat a táblák fizikailag tároló a távoli adatbázisokhoz, feldolgozza a kérelmeket a távoli adatbázisokhoz, és az eredményeket ad vissza.
-További információ a a vízszintes particionálási forgatókönyv találhatók a szükséges lépéseket [vízszintes particionálására rugalmas lekérdezési](sql-database-elastic-query-horizontal-partitioning.md).
+Miután elvégezte ezeket a lépéseket, érheti el hello vízszintesen particionált tábla "mytable", mintha egy helyi táblára. Az Azure SQL Database automatikusan megnyílik több párhuzamos kapcsolatok toohello távoli adatbázis hello táblák fizikailag tároló, a távoli adatbázis hello hello kérelmeket dolgozza fel, és hello eredményeket ad vissza.
+További információ a hello vízszintes particionálási forgatókönyv találhatók a szükséges hello lépéseket [vízszintes particionálására rugalmas lekérdezési](sql-database-elastic-query-horizontal-partitioning.md).
 
-A kódolási megkezdéséhez tekintse meg [Ismerkedés a vízszintes particionálására (horizontális) rugalmas lekérdezési](sql-database-elastic-query-getting-started.md).
+toobegin kódolási, lásd: [Ismerkedés a vízszintes particionálására (horizontális) rugalmas lekérdezési](sql-database-elastic-query-getting-started.md).
 
 ## <a name="t-sql-querying"></a>T-SQL-lekérdezés
-Miután meghatározta a külső adatforrások és a külső táblák, rendszeres SQL Server kapcsolati karakterláncok segítségével csatlakozzon az adatbázishoz, ahol definiálva a a külső táblákra. Ezt követően futtathatja T-SQL-utasítások a külső táblákon végrehajtott a kapcsolat az alábbiakban leírt korlátozásokkal. További információt és példákat a T-SQL-lekérdezések megtalálhatja a dokumentáció témaköröket [vízszintes particionálás](sql-database-elastic-query-horizontal-partitioning.md) és [vertikális particionálás](sql-database-elastic-query-vertical-partitioning.md).
+Miután meghatározta a külső adatforrások és a külső táblák, használhatja rendszeres SQL Server kapcsolati karakterláncok tooconnect toohello adatbázisok ahol definiálva a a külső táblák. Ezt követően futtathatja T-SQL-utasítások a külső táblákon végrehajtott a kapcsolat az alábbiakban leírt hello korlátozásokkal. További információt és példákat a T-SQL-lekérdezések találhatók hello dokumentáció témakörök a [vízszintes particionálás](sql-database-elastic-query-horizontal-partitioning.md) és [vertikális particionálás](sql-database-elastic-query-vertical-partitioning.md).
 
 ## <a name="connectivity-for-tools"></a>Eszközök kapcsolattal
-Rendszeres SQL Server kapcsolati karakterláncok használhatja az alkalmazásokat és BI vagy adatok integrációs eszközök adatbázisok esetén, amelyek külső táblákon való kapcsolódáshoz. Győződjön meg arról, hogy az SQL Server támogatja-e az eszköz adatforrásként. Miután csatlakozott, tekintse meg a lekérdezés rugalmas adatbázis és a külső táblákhoz az adatbázis ugyanúgy, mint bármely más SQL Server adatbázis, amely az eszköz csatlakozhat kellene tennie.
+Rendszeres SQL Server kapcsolati karakterláncok tooconnect is használhatja, az alkalmazások és BI vagy adatok integrációs eszközök toodatabases, amelyek külső táblákon. Győződjön meg arról, hogy az SQL Server támogatja-e az eszköz adatforrásként. Miután csatlakozott, tekintse meg a toohello rugalmas lekérdezési adatbázis és a hello külső tábla az adatbázis, ahogy kellene tennie bármely egyéb SQL Server adatbázis csatlakozni, toowith az eszköz.
 
 > [!IMPORTANT]
 > Hitelesítés az Azure Active Directoryval rugalmas lekérdezési jelenleg nem támogatott.
@@ -130,18 +130,18 @@ Rendszeres SQL Server kapcsolati karakterláncok használhatja az alkalmazásoka
 > 
 
 ## <a name="cost"></a>Költségek
-Rugalmas lekérdezési szerepel, az Azure SQL Database adatbázisok költségét. Vegye figyelembe, hogy a távoli adatbázisok esetén egy másik adatközpont, mint a Rugalmas lekérdezési végpont topológiák támogatottak, de távoli adatbázisokból adatforgalommal regular van szó, [Azure díjszabás](https://azure.microsoft.com/pricing/details/data-transfers/).
+Rugalmas lekérdezési szerepel, az Azure SQL Database adatbázisok hello költségét. Vegye figyelembe, hogy a távoli adatbázisokhoz belül hol áll egy másik adatközpont, mint a Rugalmas lekérdezési végpont hello topológiák támogatottak, de a távoli adatbázisokhoz adatforgalommal regular van szó, [Azure díjszabás](https://azure.microsoft.com/pricing/details/data-transfers/).
 
 ## <a name="preview-limitations"></a>Előzetes verzió korlátozásai
-* Az első rugalmas lekérdezés futtatása is eltarthat néhány percig, amíg a szabványos teljesítmény-rétegen. Ez a Rugalmas lekérdezési funkcionalitás; betöltéséhez szükséges ideje teljesítmény betöltése növeli a magasabb teljesítmény rétegekkel.
+* Az első rugalmas lekérdezés futtatása is eltarthat, tooa hello szabványos teljesítmény-rétegen néhány percig. Most szükség tooload hello rugalmas lekérdezési funkcionalitás; teljesítmény betöltése növeli a magasabb teljesítmény rétegekkel.
 * A külső adatforrások vagy a külső táblákhoz az SSMS vagy az SSDT Scripting még nem támogatott.
-* Importálási/exportálási az SQL DB egyelőre nem támogatják a külső adatforrások és a külső táblákra. Importálási/exportálási használni kell, ha dobható el, ezek az objektumok exportálása előtt, és ezután hozza létre őket importálása után.
-* Rugalmas lekérdezés jelenleg csak támogatja a külső táblákra csak olvasási hozzáféréssel. Azonban használhatja teljes T-SQL funkciókat az adatbázis ahol a külső tábla meg van adva. Ez akkor lehet hasznos, pl. ideiglenes eredményeket, pl. maradnak, válassza ki a < column_list > a < local_table >, illetve tárolt eljárások adja meg a lekérdezés rugalmas adatbázis, amely tekintse meg a külső táblákra.
-* Típus: nvarchar(max), kivéve a LOB-típusok nem támogatottak a külső tábla definíciókat. Megoldás hozhat létre a távoli adatbázis, amely a LOB típusú, típus: nvarchar(max) adat kerül egy nézet, a külső tábla megadása helyett az alaptábla nézet keresztül és majd típussá be az eredeti LOB-típust a lekérdezésekben.
-* A külső táblákon végrehajtott oszlop statisztikai adatainak jelenleg nem támogatottak. Táblák statisztika támogatottak, de manuálisan kell létrehozni.
+* Importálási/exportálási az SQL DB egyelőre nem támogatják a külső adatforrások és a külső táblákra. Ha toouse Import/Export van szüksége, dobható el, ezek az objektumok exportálása előtt, és ezután hozza létre őket importálása után.
+* Rugalmas lekérdezés csak jelenleg csak olvasási hozzáféréssel tooexternal táblákat. Azonban használhatja teljes T-SQL funkciókat hello adatbázison ahol hello külső tábla meg van adva. Ez akkor lehet hasznos, például az ideiglenes eredmények megőrzése használ, például VÁLASSZA < column_list > < local_table > azokat, vagy toodefine tárolt eljárások hello rugalmas adatbázis lekérdezése tooexternal táblák vonatkoznak.
+* Típus: nvarchar(max), kivéve a LOB-típusok nem támogatottak a külső tábla definíciókat. Megoldás hozhat létre hello távoli adatbázis hello LOB típusú adat típus: nvarchar(max) kerül egy nézet, a külső tábla megadása helyett hello alaptábla hello nézet keresztül és majd típussá hello eredeti LOB típusú újra üzembe a lekérdezésekben.
+* A külső táblákon végrehajtott oszlop statisztikai adatainak jelenleg nem támogatottak. Táblák statisztika támogatottak, de manuálisan létrehozott toobe kell.
 
 ## <a name="feedback"></a>Visszajelzés
-Ossza meg a felhasználói élmény kapcsolatos visszajelzéseket rugalmas lekérdezési betartásának vizsgálatára disqus-beszélgetésben teheti az alábbi, az MSDN fórumain vagy Stackoverflow. Folyamatban, a szolgáltatás (hibák, nyers szélén, a szolgáltatás hézagok) visszajelzést különböző érdekelt.
+Ossza meg a felhasználói élmény kapcsolatos visszajelzéseket rugalmas lekérdezési betartásának vizsgálatára disqus-beszélgetésben teheti az alábbi, hello MSDN fórumain, vagy a Stackoverflow. Azt is hello szolgáltatást (hibák, nyers szélén, a szolgáltatás hézagok) visszajelzést különböző.
 
 ## <a name="next-steps"></a>Következő lépések
 

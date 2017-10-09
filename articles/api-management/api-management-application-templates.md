@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management alkalmazássablonok |} Microsoft Docs"
-description: "Ismerje meg, hogyan szabhatja testre a fejlesztői portálra az Azure API Management az alkalmazás lapok tartalmát."
+title: az Azure API Management aaaApplication sablonok |} Microsoft Docs
+description: "Ismerje meg, hogyan toocustomize hello hello lapjain hello developer portálon az Azure API Management tartalmát."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 6d2d44465800219f16866a621d4822614ac9e1dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f4dc078be7163b047ca2e640a9065ba9e5ba709e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-templates-in-azure-api-management"></a>Alkalmazássablonok az Azure API Management
-Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.  
+Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.  
   
- Ebben a szakaszban a sablonok engedélyezi, hogy testre szabhatja a fejlesztői portálra az alkalmazás lapok tartalmát.  
+ Ebben a szakaszban hello sablonok lehetővé teszik toocustomize hello tartalma hello lapjain hello developer portálon.  
   
 -   [– Alkalmazáslista](#ProductList)  
   
 -   [Alkalmazás](#Application)  
   
 > [!NOTE]
->  Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat. Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat. A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt. Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg. A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="ProductList"></a>– Alkalmazáslista  
- A **Alkalmazáslista** sablon lehetővé teszi a fejlesztői portálra az alkalmazás lista lap törzsét testreszabását.  
+ Hello **Alkalmazáslista** sablon teszi hello alkalmazás lista lap toocustomize hello törzsében hello developer portálon.  
   
  ![Lista lap Developer portálon alkalmazássablonok](./media/api-management-application-templates/APIM-Application-List-Page-Developer-Portal-Templates.png "APIM lista lap Developer portálon alkalmazássablonok")  
   
@@ -70,7 +70,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- A `Product list` sablon előfordulhat, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Hello `Product list` sablon használhat hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [lapozófájl-vezérlő](api-management-page-controls.md#paging-control)  
   
@@ -78,9 +78,9 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|Lapozás|[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.|Az alkalmazások gyűjtemény lapozás adatait.|  
-|Alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|Az aktuális felhasználó számára látható alkalmazásokat.|  
-|CategoryName|Karakterlánc|A kategória az alkalmazás.|  
+|Lapozás|[Lapozás](api-management-template-data-model-reference.md#Paging) entitás.|hello lapozás információ hello alkalmazások gyűjtemény.|  
+|Alkalmazások|A gyűjtemény [alkalmazás](api-management-template-data-model-reference.md#Application) entitásokat.|hello alkalmazások látható toohello aktuális felhasználó.|  
+|CategoryName|Karakterlánc|hello kategória az alkalmazás.|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -134,7 +134,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="Application"></a>Alkalmazás  
- A **alkalmazás** sablon lehetővé teszi a fejlesztői portálra az alkalmazás lap törzsét testreszabását.  
+ Hello **alkalmazás** sablon teszi hello alkalmazás lap toocustomize hello törzsében hello developer portálon.  
   
  ![Alkalmazássablonok lap Developer portálon](./media/api-management-application-templates/APIM-Application-Page-Developer-Portal-Templates.png "APIM lap Developer portálon alkalmazássablonok")  
   
@@ -177,7 +177,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- A `Application` sablon nem teszi lehetővé a használata [vezérlők lapon](api-management-page-controls.md).  
+ Hello `Application` sablon nem teszi lehetővé a hello használata [vezérlők lapon](api-management-page-controls.md).  
   
 ### <a name="data-model"></a>Adatmodell  
  [Alkalmazás](api-management-template-data-model-reference.md#Application) entitás.  
@@ -220,4 +220,4 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

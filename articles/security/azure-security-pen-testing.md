@@ -1,6 +1,6 @@
 ---
-title: "Toll tesztelése |} Microsoft Docs"
-description: "A cikk áttekintést a behatolást vagy a biztonság tesztelése (pentest) folyamat, és hogyan hajtsa végre az Azure-infrastruktúra futó alkalmazások elleni pentest."
+title: "aaaPen tesztelése |} Microsoft Docs"
+description: "hello cikk hello behatolást vagy a biztonság (pentest) tesztelésének áttekintést nyújt, és hogyan hajtsa végre az Azure-infrastruktúra futó alkalmazások elleni pentest."
 services: security
 documentationcenter: na
 author: YuriDio
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 070e848f753452953b9e5dfe94799e7c0a314530
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 202c239f46d8693ab7aa85e237235372e743e108
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="pen-testing"></a>Toll tesztelése
-Alkalmazástesztelési és a központi telepítés a Microsoft Azure használatával kapcsolatban a nagyszerű dolog, nem szükséges hozzáfoghat fejlesztéséhez, tesztelése és az alkalmazások központi telepítése a helyszíni infrastruktúra. Az infrastruktúra van a Microsoft Azure platform szolgáltatásaiból által végrehajtott kezeli. Nem kell aggódnia requisitioning, beszerzése, és "lefejtési és halmozott" a saját helyszíni hardverre.
+Hello kiváló dolog Alkalmazástesztelési és a központi telepítés a Microsoft Azure használatával kapcsolatban, hogy nem kell tooput együtt egy a helyszíni infrastruktúra toodevelop, tesztelése és az alkalmazások központi telepítése. Minden hello infrastruktúra van hello Microsoft Azure platform szolgáltatásaiból által végrehajtott kezeli. Tooworry requisitioning, beszerzése, és "lefejtési és halmozott" nem rendelkezik a saját helyszíni hardverre.
 
-Ez remek –, de továbbra is szeretné győződjön meg arról, hogy a normál biztonsági elvégezhető megfelelő gondossággal. Az egyikét kell tennie a behatolást vagy a biztonság tesztelje az alkalmazásokat, központi telepítése az Azure-ban.
+Ez remek –, de továbbra is szükséges, hogy a normál biztonsági elvégezhető toomake megfelelő gondossággal. Egy hello kapcsolatos fontos toodo az behatolást vagy a biztonság teszt hello alkalmazások központi telepítése az Azure-ban.
 
 Előfordulhat, hogy már tudja, hogy elvégzi a Microsoft [behatolást vagy a biztonság, az Azure környezetben végzett teszteléséhez](https://gallery.technet.microsoft.com/Cloud-Red-Teaming-b837392e). Ez segít javítani a platformot, és végig is vezeti a műveletek biztonsági vezérlők javítása, új biztonsági ellenőrzéseire bemutatása és a biztonsági folyamatok javítása.
 
-Jelenleg nem toll meg az alkalmazás teszteléséhez, de azt szeretné, hogy és tesztelése a saját alkalmazásai toll végrehajtandó fog megértését. Amely azért hasznos, mert az alkalmazások biztonságának növeléséhez, amikor segítséget biztonságosabbá teszi a teljes Azure-ökoszisztéma.
+Jelenleg nem toll meg az alkalmazás teszteléséhez, de azt szeretné, hogy és tooperform toll tesztelése a saját alkalmazásai szükség lesz ismertetése. Amely azért hasznos, mert amikor Ön hello megfelelő biztonság érdekében az alkalmazások segítséget biztonságosabbá teszi az egész Azure ökoszisztéma hello.
 
-Amikor Ön toll tesztelje az alkalmazásokat, azt nézhet ki például a támadás a számunkra. A Microsoft [folyamatosan figyelni](http://blogs.msdn.com/b/azuresecurity/archive/2015/07/05/best-practices-to-protect-your-azure-deployment-against-cloud-drive-by-attacks.aspx) a támadási mintákat és fogja elindítani az incidensválasz-folyamata, ha igazolnia kell a. Azt nem oldották meg, és azt nem segítsen nekünk, ha azt indít az incidensekre adott reakciók, a megfelelő gondossággal toll teszteléssel miatt.
+Ha Ön toll tesztelje az alkalmazásokat, azt nézhet toous támadás. A Microsoft [folyamatosan figyelni](http://blogs.msdn.com/b/azuresecurity/archive/2015/07/05/best-practices-to-protect-your-azure-deployment-against-cloud-drive-by-attacks.aspx) a támadási mintákat és fogja elindítani az incidensválasz-folyamata, ha igazolnia kell a. Azt nem oldották meg, és azt nem segítsen nekünk, ha azt indít az incidensekre adott reakciók esedékes tooyour saját gondossággal toll tesztelés miatt.
 
-Mi a teendő ilyenkor?
+Milyen toodo?
 
-Amikor készen áll a toll tesztelje az Azure által kezelt alkalmazásokat, lehetősége van egy [ossza meg velünk](https://portal.msrc.microsoft.com/en-us/engage/pentest). Miután tudjuk, hogy meghatározott tesztek végrehajtását fogja, azt nem véletlenül leállítás meg (például blokkolja a tesztelést IP-cím), mindaddig, amíg a feltételek tesztelés Azure toll megfelelnek a teszteket, és feltételek ismertetett [Microsoft felhő egyesített behatolást vagy a biztonság tesztelés szabályok az Engagement](https://technet.microsoft.com/en-us/mt784683).
+Amikor készen áll a toopen tesztelje az Azure által kezelt alkalmazásokat, lehetősége van túl[ossza meg velünk](https://portal.msrc.microsoft.com/en-us/engage/pentest). Tudjuk, hogy meghatározott tesztek végrehajtása toobe fog, ha azt nem véletlenül (például blokkolja a tesztelést hello IP-cím), leállítása, mindaddig, amíg a tesztek felel meg az toohello Azure toll tesztelési feltételek és kikötések ismertetett[Microsoft felhő egyesített szabályok az Engagement tesztelés behatolás](https://technet.microsoft.com/en-us/mt784683).
 Szabványos teszteket hajthat végre a következők:
 
-* A végpontokat, hogy a vizsgálatok a [megnyitása webes alkalmazás biztonsági Project (OWASP) felső 10 biztonsági réseket](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+* A végpontok toouncover hello vizsgálatainak [megnyitása webes alkalmazás biztonsági Project (OWASP) felső 10 biztonsági réseket](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
 * [Tesztelési fuzz](https://blogs.microsoft.com/cybertrust/2007/09/20/fuzz-testing-at-microsoft-and-the-triage-process/) a végpontok
 * [Port vizsgálatát](https://en.wikipedia.org/wiki/Port_scanner) a végpontok
 
 Teszt nem végezhető el több típus ilyen típusú [szolgáltatásmegtagadásos (DoS)](https://en.wikipedia.org/wiki/Denial-of-service_attack) támadás. Ez magában foglalja a kezdeményezésének egy szolgáltatásmegtagadási támadás önmagában, vagy előfordulhat, hogy határozza meg, bemutatása vagy szolgáltatásmegtagadási támadás bármilyen típusú szimulálása kapcsolódó tesztek végrehajtása.
 
-Készen áll arra, ismerkedjen meg toll tesztelése a Microsoft Azure szolgáltatásban üzemeltetett alkalmazásokat? Ha igen, akkor a központi a keresztül történő a [behatolást vagy a biztonság teszt áttekintése](https://technet.microsoft.com/library/mt784683.aspx) lapon (és kattintson az létrehozása egy tesztelési kérelem gombra az oldal alján. További információ a feltételek és hogyan lehet jelentést Azure vagy bármely más Microsoft szolgáltatással kapcsolatos biztonsági hiányosságokat hasznos mutató hivatkozások tesztelés toll is találhat.
+Biztosan meg készen áll a futó alkalmazások tesztelése a Microsoft Azure-ban toll használatába tooget? Ha igen, akkor a központi, a toohello keresztül [behatolást vagy a biztonság teszt áttekintése](https://technet.microsoft.com/library/mt784683.aspx) lapon (és hello létrehozása alján hello hello tesztelési kérelem gombra kattintson. További információ a feltételek és hogyan lehet jelentést a biztonsági hiányosságokat kapcsolódó tooAzure vagy bármely más Microsoft-szolgáltatást a hasznos hivatkozásokat tesztelés hello toll is találhat.

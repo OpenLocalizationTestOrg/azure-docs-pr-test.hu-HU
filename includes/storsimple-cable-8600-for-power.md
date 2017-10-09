@@ -1,25 +1,25 @@
 <!--author=alkohli last changed: 9/16/15-->
 
 
-#### <a name="to-cable-your-device-for-power"></a>A bekapcsolási az eszköz bekábelezése
+#### <a name="toocable-your-device-for-power"></a>toocable power az eszköz
 > [!NOTE]
-> A StorSimple eszköz mindkét ház redundáns PCMs tartalmazza. Az egyes ház a PCMs telepítve legyen, és csatlakozik a különböző áramforrásokból magas rendelkezésre állásának biztosításához.
+> A StorSimple eszköz mindkét ház redundáns PCMs tartalmazza. Az egyes ház hello PCMs telepíteni kell, és toodifferent power források tooensure magas rendelkezésre állású csatlakoztatva.
 > 
 > 
 
-1. Győződjön meg arról, hogy az összes PCMs power kapcsolókkal megfelelő jogkörrel OFF.
-2. A elsődleges tárolóeszközön csatlakoztassa a tápkábelek mindkét PCMs. A tápkábelek alatt a power kábelezési diagramon piros azonosítja.
-3. Győződjön meg arról, hogy a két PCMs a elsődleges tárolóeszközön külön áramforrásokból.
-4. Ahogy az ábra kábelek a power vezeték csatlakoztatni az állvány Áramelosztó egységekből bekapcsolása.
-5. Ismételje meg a 2 – 4. a EBOD ház.
-6. Kapcsolja be a EBOD ház által az egyes PCM az ON-pozíció a kikapcsolás tükrözés.
-7. Győződjön meg arról, hogy a a EBOD ház úgy, hogy a EBOD vezérlő hátulján zöld LED vannak kapcsolja be van kapcsolva.
-8. Kapcsolja be az elsődleges ház minden PCM kapcsoló átállításával a ON helyre.
-9. Győződjön meg arról, hogy a rendszer a biztosításával, hogy az eszköz tartományvezérlő LED be van kapcsolva.
-10. Ellenőrizze, hogy a kapcsolatot a EBOD vezérlő és az eszköz vezérlő aktív szerint annak ellenőrzése, hogy a négy LED a SAS-port a EBOD vezérlőn melletti zöld.
+1. Győződjön meg arról, hogy minden hello PCMs hello power kapcsolókkal hello OFF állásban van-e.
+2. Hello elsődleges ház, a csatlakozás hello power zsinór tooboth PCMs. az alábbi ábrán, kábelek hello power piros hello tápkábelek azonosítja.
+3. Győződjön meg arról, hogy a hello elsődleges ház használata külön áramforrásokból két PCMs hello.
+4. Hello power zsinór toohello bekapcsolás hello állvány Áramelosztó egységekből, ahogy az ábra kábelek hello power csatolni.
+5. Hello EBOD ház ismételje meg a 2 – 4.
+6. Kapcsolja be a hello EBOD ház minden PCM toohello ON el a kikapcsolás hello átállításával.
+7. Győződjön meg arról, hogy hello EBOD ház úgy, hogy a zöld hello LED hello hello EBOD vezérlő oldalán a vannak-e kapcsolva a ON be van kapcsolva.
+8. Kapcsolja be a hello elsődleges ház által tükrözés minden PCM kapcsoló toohello ON el.
+9. Győződjön meg arról, hogy hello rendszer a hello eszköz vezérlő LED be van kapcsolva biztosításával.
+10. Ellenőrizze, hogy hello kapcsolat hello EBOD vezérlő és hello eszköz vezérlő aktív szerint annak ellenőrzése, hogy hello négy LED következő toohello SAS-portjához hello EBOD vezérlő zöld.
     
     > [!IMPORTANT]
-    > A rendszer magas rendelkezésre állás biztosítása érdekében azt javasoljuk, hogy Ön szigorúan igazodnia kell a energiagazdálkodási séma a következő ábrán is látható kábelek.
+    > tooensure magas rendelkezésre állás a rendszerhez, ajánlott toohello energiagazdálkodási séma hello a következő ábrán látható kábelek szigorúan igazodik.
     > 
     > 
     

@@ -1,5 +1,5 @@
 ---
-title: "Az Azure Service Bus párosítva névterek |} Microsoft Docs"
+title: "a Service Bus aaaAzure párosítva névterek |} Microsoft Docs"
 description: "Megvalósítás részletei párosított névtér és a költséghatékonyság"
 services: service-bus-messaging
 documentationcenter: na
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: sethm
-ms.openlocfilehash: a200ea7937b9f5296c743928a9408897adfba428
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c44b2b95d2228e1ad8075b52634d88a1593d3b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="paired-namespace-implementation-details-and-cost-implications"></a>Névtér megvalósítás részletei megfeleltetni, ráadásul a költségek gyakorolt hatása
-A [PairNamespaceAsync] [ PairNamespaceAsync] módszer használatával egy [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions] példány, látható feladatokat végez az Ön nevében. Nincs vannak költség szempontok a funkció használata esetén, mert működésének megértése ezeket a feladatokat, hogy ez akkor fordul elő, amikor várt viselkedése. Az API-t a következő automatikus viselkedés az Ön nevében végez:
+Hello [PairNamespaceAsync] [ PairNamespaceAsync] módszer használatával egy [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions] példány, látható feladatokat hajtja végre az Ön nevében. Nincs vannak költség szempontok hello funkció használata esetén, mert azok feladatokat, hogy ez akkor fordul elő, amikor hello viselkedés várható hasznos toounderstand is. hello API kapcsolatba lép a hello automatikus viselkedését az Ön nevében a következő:
 
 * Várakozó várólisták létrehozása.
-* Létrehozása egy [MessageSender] [ MessageSender] objektum, amely az üzenetsorok és témakörök-kiszolgálóhoz.
-* Amikor egy üzenetküldési entitásra nem érhető el, küld észlelés, ha az érintett entitásként válik elérhetővé újra megpróbálja ping üzeneteket az entitásban.
-* Választhatóan a "üzenet szivattyúk" gyűjteménye, amelyek áthelyezését a várakozó várólistákról elsődleges várólistára.
-* Az elsődleges és másodlagos bezárni vagy hibás koordinálja [MessagingFactory] [ MessagingFactory] példányok.
+* Létrehozása egy [MessageSender] [ MessageSender] objektum, amely tooqueues vagy témakörök-kiszolgálóhoz.
+* Amikor egy üzenetküldési entitásra nem érhető el, elküldi ping üzenetekre toohello entitás egy kísérlet toodetect amikor újra elérhetővé, hogy az entitás válik.
+* Választhatóan a "üzenet szivattyúk" áll, hogy az áthelyezés üzeneteit hello várakozó várólisták toohello elsődleges várólisták.
+* Koordinálja a hello elsődleges és másodlagos bezárni vagy hibás [MessagingFactory] [ MessagingFactory] példányok.
 
-Magas szinten, a szolgáltatás a következőképpen működik: Ha az elsődleges entitás állapota kifogástalan, nincs viselkedés változások történnek. Ha a [FailoverInterval] [ FailoverInterval] időtartam eltelte, és az elsődleges entitás nem sikeres láthatják küldése után nem átmeneti [MessagingException] [ MessagingException] vagy egy [TimeoutException][TimeoutException], a következő történik:
+Magas szinten, hello szolgáltatást a következőképpen működik: hello elsődleges entitás állapota kifogástalan, ha nincs viselkedés változások történnek. Ha hello [FailoverInterval] [ FailoverInterval] időtartam eltelte és hello elsődleges entitás látja nem sikeres elküldése után nem átmeneti [MessagingException] [ MessagingException] vagy egy [TimeoutException][TimeoutException], akkor fordul elő, a következő viselkedés hello:
 
-1. Az elsődleges entitás műveletek le vannak tiltva, és a rendszer az elsődleges entitás pingeli, amíg a ping-üzenetek kézbesítése sikeresen küldése.
+1. Műveletek toohello elsődleges entitás le vannak tiltva, és hello rendszer ping-üzenetek hello elsődleges entitás, amíg a ping-üzenetek kézbesítése sikeresen küldése.
 2. Egy véletlenszerű várakozó várólista van kiválasztva.
-3. [BrokeredMessage] [ BrokeredMessage] objektumok legyenek átirányítva a kiválasztott várakozó várólista.
-4. A kiválasztott várakozó várólistára küldési művelet sikertelen lesz, ha erre a várólistára lekért elforgatási van, és egy új sor van kiválasztva. Az összes feladó a [MessagingFactory] [ MessagingFactory] példány ismerje meg a hiba.
+3. [BrokeredMessage] [ BrokeredMessage] objektum a kiválasztott várakozó várólista irányított toohello.
+4. Ha nem sikerül egy küldési művelet toohello várakozó várólista választott, hello Elforgatás lekért van erre a várólistára, és egy új sor van kiválasztva. Hello az összes feladó [MessagingFactory] [ MessagingFactory] hello hiba további példányt.
 
-A következő ábra a feladatütemezési jelzik. A küldő először küld üzeneteket.
+a következő ábrán hello hello feladatütemezési jelzik. Első lépésként hello küldő üzeneteket küld.
 
 ![Párhuzamos névterek][0]
 
-Elsődleges queue küldendő hiba esetén a küldő megkezdi egy véletlenszerűen kiválasztott várakozó várólista üzenetküldésre. Egy időben a ping feladat elindítása.
+Hiba toosend toohello elsődleges queue, akkor a hello küldő megkezdi véletlenszerűen kiválasztott várólista várakozó üzenetek tooa küldésekor. Egy időben a ping feladat elindítása.
 
 ![Párhuzamos névterek][1]
 
-Ezen a ponton az üzenetek továbbra a másodlagos várólista és az elsődleges várólistára nem szállított. Az elsődleges queue újra állapota kifogástalan, ha legalább egy folyamat futnia kell a Szifonos. A Szifonos továbbítja az üzeneteket a különböző várakozó várólisták a megfelelő cél entitásokat (üzenetsorok és témakörök).
+Ezen a ponton köszönőüzenetei hello másodlagos várólista továbbra is szerepelnek, és nem szállított toohello elsődleges queue. Ha hello elsődleges queue, kifogástalan újra kell legalább egy folyamat fut hello Szifonos. hello Szifonos nyújt köszönőüzenetei összes hello különböző várakozó fájlok a várólisták toohello megfelelő cél entitásokat (üzenetsorok és témakörök).
 
 ![Párhuzamos névterek][2]
 
-Ez a témakör további része darabot működése részleteit ismerteti.
+Ez a témakör további része hello hello részletes, hogyan darabot ismerteti.
 
 ## <a name="creation-of-backlog-queues"></a>Várakozó várólista létrehozása
-A [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions] objektum lett átadva a [PairNamespaceAsync] [ PairNamespaceAsync] metódus számát jelzi. Várakozó várólisták szeretne használni. Minden tartalék várólista létrejön a következő tulajdonságokkal explicit módon beállítva (minden más érték beállítása a [QueueDescription] [ QueueDescription] alapértelmezett):
+Hello [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOptions] toohello átadott objektum [PairNamespaceAsync] [ PairNamespaceAsync] metódus hello jelzi várakozó fájlok számát a várólisták azt szeretné, hogy toouse. Minden tartalék várólista létrejön a hello következő tulajdonságai explicit módon beállítva (minden más helyen vannak beállítva toohello [QueueDescription] [ QueueDescription] alapértelmezett):
 
 | Elérési út | [elsődleges névtér] / x-servicebus-átvitel / [index] [0, BacklogQueueCount) érték esetén a [index] |
 | --- | --- |
@@ -63,15 +63,15 @@ A [SendAvailabilityPairedNamespaceOptions] [ SendAvailabilityPairedNamespaceOpti
 | EnableDeadLetteringOnMessageExpiration |Igaz |
 | EnableBatchedOperations |Igaz |
 
-Például az első várakozó várólistát létrehozott névtér **contoso** nevű `contoso/x-servicebus-transfer/0`.
+Például hello első várakozó várólista létrehozott névtér **contoso** nevű `contoso/x-servicebus-transfer/0`.
 
-Az üzenetsorok létrehozása, amikor a kód először ellenőrzi, hogy ilyen a várólista létezik-e. Ha a várólista nem létezik, a várólista létrejön. A kód nem "extra" Várakozó várólisták karbantartása. Pontosabban Ha az alkalmazás elsődleges névterű **contoso** öt várakozó várólistára, de az elérési úttal rendelkező várakozó várólista kérelmek `contoso/x-servicebus-transfer/7` létezik, várólistához további várakozó továbbra is megtalálható, de nem használatos. A rendszer explicit módon engedélyezi a felesleges várakozó várólisták is létezhetnek, amelyek nem használhatók. A névtér tulajdonosaként való telepítésért felelős törölje a nem használt vagy nemkívánatos várakozó üzenetsorokkal. Ez a döntés oka, hogy a Service Bus nem tudja, milyen célból létezik a következő névtérbeli a várólisták számára. Továbbá ha a várólista létezik-e a megadott névvel, de nem felel meg a feltételezett [QueueDescription][QueueDescription], majd az OK: a saját módosítható az alapértelmezett viselkedés. Nem garantálja a kód által a várakozó várólisták módosításai legyenek módosítva. Győződjön meg arról, hogy alaposan tesztelje a módosításokat.
+Hello várólisták létrehozásakor a hello kód először ellenőrzi az toosee, ha ilyen a várólista létezik. Ha hello várólista nem létezik, hello várólista létrejön. hello kód nem "extra" Várakozó várólisták karbantartása. Pontosabban, ha hello alkalmazás hello elsődleges névtér **contoso** öt várakozó várólistára, de hello elérési úttal rendelkező várólista várakozó kérelmek `contoso/x-servicebus-transfer/7` létezik, várólistához további várakozó továbbra is megtalálható, de nem használatos. hello rendszer explicit módon engedélyezi a felesleges várakozó várólisták tooexist, amelyek nem használhatók. Hello névtér tulajdonosként Ön felelősséggel tartozik törölje a nem használt vagy nemkívánatos várakozó üzenetsorokkal. hello ehhez a döntéshez oka, hogy a Service Bus nem tudja, milyen célból minden hello várólista a névtérben található. Továbbá ha a várólista hello a megadott névvel, azonban nem felel meg a feltételezett hello [QueueDescription][QueueDescription], majd az OK: a saját hello változó alapértelmezés. Nincs garancia hozhatók módosítások toohello várakozó várólisták a kódot. Győződjön meg arról, hogy tootest a módosítások alaposan.
 
 ## <a name="custom-messagesender"></a>Egyéni MessageSender
-Küldésekor, az összes üzenet végighaladnia belső [MessageSender] [ MessageSender] objektum, amely a szokásos módon viselkedik, ha minden rendben működik, és átirányítja a felhasználókat a várakozó fájlok számát a várólisták, amikor dolgot "törés." Nem átmeneti hiba fogadását követően a felszabadításakor kezdődik. Után egy [TimeSpan] [ TimeSpan] álló időszak a [FailoverInterval] [ FailoverInterval] során, ami nem sikeres üzenetek küldése történik, tulajdonság értéke a feladatátvételi be kell kapcsolni. Ezen a ponton a következőket fordulhat elő, ha minden:
+Küldésekor, az összes üzenet végighaladnia belső [MessageSender] [ MessageSender] objektum, amely a szokásos módon viselkedik, ha minden működik, és átirányítja a toohello várakozó várólisták, amikor dolgot "törés." Nem átmeneti hiba fogadását követően a felszabadításakor kezdődik. Miután egy [TimeSpan] [ TimeSpan] hello álló időszak [FailoverInterval] [ FailoverInterval] során, ami nem sikeres üzenetküldés tulajdonság értéke , hello feladatátvételi be kell kapcsolni. Ezen a ponton hello következő dolgokat okozhat minden egyes entitásnál:
 
-* A ping feladatot hajt végre minden [PingPrimaryInterval] [ PingPrimaryInterval] annak ellenőrzésére, ha az entitás érhető el. Ez a feladat sikeres, ha az entitás azonnal használó összes ügyfél-kódot elindul, új üzeneteket küld az elsődleges névtér.
-* Bármely más feladóktól küldhet, hogy ugyanaz az entitás későbbi kérelmek eredményez a [BrokeredMessage] [ BrokeredMessage] küldi el a várakozó várólista elhelyezkedik módosítani. A módosítás eltávolítja az egyes tulajdonságok a [BrokeredMessage] [ BrokeredMessage] objektumra, és a máshol tárolja azokat. A következő tulajdonság nincs bejelölve, és hozzáadása az új aliast, a Service Bus és az SDK egységesen üzenetek feldolgozásához:
+* A ping feladatot hajt végre minden [PingPrimaryInterval] [ PingPrimaryInterval] toocheck Ha hello entitás érhető el. Ez a feladat sikeres, ha azonnal hello entitás használó összes ügyfél kódot elindul, elsődleges névtér új üzenetek toohello küldése.
+* Ugyanaz az entitás más feladóktól hello eredményez a későbbi kérelmek toosend toothat [BrokeredMessage] [ BrokeredMessage] toobe küldött módosított toosit hello várakozó várólistában. hello módosítása egyes tulajdonságok eltávolítása hello [BrokeredMessage] [ BrokeredMessage] objektumra, és a máshol tárolja azokat. hello következő tulajdonság nincs bejelölve, és hozzáadása az új aliast, amely lehetővé teszi a Service Bus és hello SDK tooprocess üzenetek egységesen:
 
 | Régi tulajdonság neve | Új tulajdonság neve |
 | --- | --- |
@@ -79,23 +79,23 @@ Küldésekor, az összes üzenet végighaladnia belső [MessageSender] [ Message
 | TimeToLive |az x-ms-élettartam |
 | ScheduledEnqueueTimeUtc |x-ms-elérési út |
 
-Az eredeti elérési utat célként is tárolja az üzenetben x-ms-path nevű tulajdonság. Ez a kialakítás lehetővé teszi, hogy az egyetlen várakozó várólista azonos sok entitásokhoz tartozó üzenetek. A tulajdonságok a Szifonos által van lefordítva.
+hello eredeti elérési utat célként is tárolja belül üdvözlőüzenetére x-ms-path nevű tulajdonság. Ez a kialakítás lehetővé teszi, hogy sok entitások toocoexist üzeneteket egyetlen várakozó várólista. hello tulajdonságok vissza által hello Szifonos van lefordítva.
 
-Az egyéni [MessageSender] [ MessageSender] objektum is tapasztal, amikor üzenetek megközelíti a 256 KB-os korlát és feladatátvételi be kell kapcsolni. Az egyéni [MessageSender] [ MessageSender] objektum tárolja az üzeneteket az összes üzenetsorok és témakörök a várakozó várólisták együtt. Ez az objektum keveri együtt a várakozó várólistákon sok elsődleges üzeneteit. Sok ügyfél, amely nem tudja egymás közötti terheléselosztás kezeléséhez, az SDK-val véletlenszerűen választja ki egy várakozó várólista minden [QueueClient] [ QueueClient] vagy [TopicClient] [ TopicClient] hoz létre a kódban.
+egyéni hello [MessageSender] [ MessageSender] objektum is tapasztal, amikor üzenetek hello 256 KB-os korlát közelítse meg, és feladatátvételi be kell kapcsolni. egyéni hello [MessageSender] [ MessageSender] objektum tárolja az üzeneteket az összes üzenetsorok és témakörök hello várakozó várólistára együtt. Ez az objektum keveri sok elsődleges együtt várólistákon hello várakozó üzenetek. sok ügyfél, amely nem tudja, hogy minden más, hello SDK véletlenszerűen közötti terheléselosztás toohandle szerzi várakozó fájlok – egy sor minden [QueueClient] [ QueueClient] vagy [TopicClient] [ TopicClient] hoz létre a kódban.
 
 ## <a name="pings"></a>Ping-üzenetek
-A ping üzenetre egy üres [BrokeredMessage] [ BrokeredMessage] rendelkező a [ContentType] [ ContentType] alkalmazás/vnd.ms-szolgáltatásbusz-ping tulajdonsága és egy [TimeToLive] [ TimeToLive] értéke 1 másodperc. A ping rendelkezik egy különös jellemző a Service Bus: a kiszolgáló soha nem továbbítja a pingelés, ha a hívó kér egy [BrokeredMessage][BrokeredMessage]. Ebből kifolyólag sosem megtudhatja, hogyan kaphatnak, és figyelmen kívül. Minden entitás (egyedi üzenetsor vagy témakör) / [MessagingFactory] [ MessagingFactory] ügyfelenként példányt fog kell program ping üzenetet küld amikor-nek minősíti azokat nem érhető el. Alapértelmezés szerint ez akkor fordul elő percenként. Ping üzenetekre rendszeres Service Bus-üzenetek minősülnek, és sávszélesség és üzenetek eredményezhet. Amint az ügyfelek észlelik, hogy a rendszer nem érhető el, az üzenetek állítsa le.
+A ping üzenetre egy üres [BrokeredMessage] [ BrokeredMessage] rendelkező a [ContentType] [ ContentType] tulajdonsága tooapplication/vnd.ms-szolgáltatásbusz-ping és egy [TimeToLive] [ TimeToLive] értéke 1 másodperc. A ping rendelkezik egy különös jellemző a Service Bus: hello server soha nem továbbítja a pingelés, ha a hívó kér egy [BrokeredMessage][BrokeredMessage]. Ebből kifolyólag sosem toolearn hogyan tooreceive és figyelmen kívül. Minden entitás (egyedi üzenetsor vagy témakör) / [MessagingFactory] [ MessagingFactory] ügyfelenként példányt fog kell program ping üzenetet küld azok által szabott toobe nem érhető el. Alapértelmezés szerint ez akkor fordul elő percenként. Ping üzenetekre toobe rendszeres Service Bus üzenetek minősülnek, és sávszélesség és üzenetek eredményezhet. Amint hello-ügyfelek észlelik, hogy rendelkezésre áll-e hello rendszer, köszönőüzenetei leállítása.
 
-## <a name="the-syphon"></a>A Szifonos
-Az alkalmazás legalább egy végrehajtható program aktívan futnia kell a Szifonos. A Szifonos hajt végre egy hosszú lekérdezési kap, hogy 15 percig tart. Összes entitás érhető el, és 10 várakozó várólisták, amikor az alkalmazást, amelyen a Szifonos meghívja a fogadási művelet 40 alkalommal óránkénti, napi 960 időpontot és 30 napban 28800 alkalommal. Amikor a Szifonos van aktívan üzenetek a várakozó fájlok számát a elsődleges várólistára, a minden üzenet észlel a következő költségek (az üzenet mérete és a sávszélesség szabványos díja valamennyi szakaszában vonatkozik):
+## <a name="hello-syphon"></a>hello Szifonos
+Legalább egy végrehajtható program hello alkalmazásban aktívan futnia kell hello Szifonos. hello Szifonos hajt végre egy hosszú lekérdezési kap, hogy 15 percig tart. Amikor entitásokhoz érhető el, és 10 várakozó várólisták, hello hello Szifonos hívások hello fogadási művelethez 40 alkalommal óránkénti, napi 960 időpontot és 30 napban 28800 alkalommal futtató alkalmazáshoz. Hello Szifonos aktívan üzenetek áthelyezése hello várakozó toohello elsődleges queue-ből, ha minden üzenetet észlel hello költségek (az üzenet mérete és a sávszélesség szabványos díja valamennyi szakaszában vonatkozik) a következő:
 
-1. A várakozó fájlok küldése.
-2. A várakozó kapott.
-3. Az elsődleges küldeni.
-4. Az elsődleges kapott.
+1. Toohello várakozó küldési.
+2. Hello várakozó kapott.
+3. Toohello elsődleges küldése.
+4. Elsődleges hello kapott.
 
 ## <a name="closefault-behavior"></a>Zárja be/tartalék viselkedése
-Az alkalmazásban, amelyen a Szifonos, miután az elsődleges vagy másodlagos [MessagingFactory] [ MessagingFactory] hibákat, vagy le van zárva, nélkül a partnerrel, lehetőség van a jelzett/zárva, és a Szifonos ebben az állapotban észleli a Szifonos működik. Ha a másik [MessagingFactory] [ MessagingFactory] nem zárt 5 másodpercen belül a Szifonos a továbbra is meg van nyitva fog fault [MessagingFactory][MessagingFactory].
+Hello Szifonos, egyszer hello elsődleges vagy másodlagos üzemeltető alkalmazáson belüli [MessagingFactory] [ MessagingFactory] hibákat, vagy le van zárva a partner is hibát jelzett/lezárult és hello nélkül Szifonos észleli, ebben az állapotban , hello Szifonos működik. Ha más hello [MessagingFactory] [ MessagingFactory] nem zárt 5 másodpercen belül hello Szifonos hello továbbra is nyitva fog fault [MessagingFactory] [ MessagingFactory] .
 
 ## <a name="next-steps"></a>Következő lépések
 Lásd: [aszinkron üzenetkezelési mintákat és magas rendelkezésre állású] [ Asynchronous messaging patterns and high availability] részletes információt a Service Bus aszinkron üzenetkezelési. 

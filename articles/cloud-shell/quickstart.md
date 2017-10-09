@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud rendszerhéj (előzetes verzió) gyors üzembe helyezés |} Microsoft Docs"
-description: "Gyors üzembe helyezés az Azure-felhőbe rendszerhéj"
+title: "aaaAzure felhő rendszerhéj (előzetes verzió) gyors üzembe helyezés |} Microsoft Docs"
+description: "Az Azure felhőalapú rendszerhéj hello gyors üzembe helyezés"
 services: 
 documentationcenter: 
 author: jluk
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: juluk
-ms.openlocfilehash: 75676eb0ab784e2adbfd27b170c1dee5599b74ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e60700b92c10c331910dd8bb3c627fe1a024091c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quickstart-for-using-the-azure-cloud-shell"></a>Gyors üzembe helyezés az Azure-felhő rendszerhéj használata
+# <a name="quickstart-for-using-hello-azure-cloud-shell"></a>Gyors üzembe helyezés a hello Azure Cloud rendszerhéj használatával
 
-Ez a dokumentum részletesen az Azure felhőalapú Shell használatával a [Azure-portálon](https://ms.portal.azure.com/).
+Ez a dokumentum részletesen hogyan toouse hello hello az Azure felhőalapú rendszerhéj [Azure-portálon](https://ms.portal.azure.com/).
 
 ## <a name="start-cloud-shell"></a>Indítsa el a felhő rendszerhéj
-1. Indítsa el **felhő rendszerhéj** az Azure portál felső navigációs sáv <br>
+1. Indítsa el **felhő rendszerhéj** hello felső navigációs sávon a hello Azure-portálon <br>
 ![](media/shell-icon.png)
-2. Kiválaszthat egy tárfiókot és Azure fájlmegosztás létrehozása
+2. Válasszon ki egy előfizetés toocreate egy tárfiókot és az Azure-fájlmegosztáshoz
 3. Válassza a "Create a storage"
 
 > [!TIP]
@@ -47,21 +47,21 @@ Hozzon létre egy új erőforráscsoportot "MyRG" nevű WestUS: <br>
 `az group create -l westus -n MyRG` <br>
 
 ### <a name="create-a-linux-vm"></a>Linux rendszerű virtuális gép létrehozása
-Ubuntu virtuális gép létrehozása az új erőforráscsoportban. Az Azure CLI 2.0 SSH-kulcsok létrehozása, és a velük a virtuális gép beállítása. <br>
+Ubuntu virtuális gép létrehozása az új erőforráscsoportban. hello Azure CLI 2.0 hoz létre SSH-kulcsok és a telepítő hello VM őket. <br>
 `az vm create -n my_vm_name -g MyRG --image UbuntuLTS --generate-ssh-keys`
 
 > [!NOTE]
-> A nyilvános és titkos kulcsokat, a virtuális gép hitelesítéséhez használt kerülnek `/User/.ssh/id_rsa` és `/User/.ssh/id_rsa.pub` Azure CLI 2.0 alapértelmezés szerint. Az .ssh mappa a csatolt Azure fájlmegosztás 5 GB-os kép megőrződjenek.
+> a virtuális gép kerülnek használt nyilvános és titkos kulcsok tooauthenticate hello `/User/.ssh/id_rsa` és `/User/.ssh/id_rsa.pub` Azure CLI 2.0 alapértelmezés szerint. Az .ssh mappa a csatolt Azure fájlmegosztás 5 GB-os kép megőrződjenek.
 
 A felhasználónév, a virtuális gép lesz a felhő rendszerhéj használt felhasználónév ($User@Azure:).
 
 ### <a name="ssh-into-your-linux-vm"></a>SSH a Linux virtuális gép be
-1. Keresse meg a virtuális gép nevét, az Azure portál keresési sávon
+1. Keresse meg a virtuális gép nevét, az Azure portál keresősávban hello
 2. Kattintson a "Csatlakozás" gombra, és futtassa:`ssh username@ipaddress`
 
 ![](media/sshcmd-copy.png)
 
-Az SSH-kapcsolatot létesít, akkor meg kell jelennie az Ubuntu üdvözlő kérés.
+Hello SSH-kapcsolatot létesít, akkor meg kell jelennie hello Ubuntu üdvözli a parancssorba.
 ![](media/ubuntu-welcome.png)
 
 ## <a name="cleaning-up"></a>Takarítás 

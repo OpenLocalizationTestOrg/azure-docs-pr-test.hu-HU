@@ -1,6 +1,6 @@
 ---
-title: "Megbízható szereplője időzítők és az emlékeztetők |} Microsoft Docs"
-description: "Bevezetés a Service Fabric Reliable Actors időzítők és az emlékeztetők."
+title: "aaaReliable szereplője időzítők és az emlékeztetők |} Microsoft Docs"
+description: "Bevezetés tootimers és a Service Fabric Reliable Actors emlékeztetők."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 06b026ce06e0f16a77ac238de0af2263f272933c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5116ec1923014e131130b9f4e86dd1e133bbf7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-timers-and-reminders"></a>Aktor időzítők és az emlékeztetők
-Szereplője időzítők vagy emlékeztetők regisztrálásával ütemezhet rendszeres munkát saját magukat. Ez a cikk bemutatja, hogyan használja a időzítők és az emlékeztetők, és a különbségeket ismerteti.
+Szereplője időzítők vagy emlékeztetők regisztrálásával ütemezhet rendszeres munkát saját magukat. Ez a cikk bemutatja, hogyan toouse időzítők és az emlékeztetők és hello különbségeket ismerteti.
 
 ## <a name="actor-timers"></a>Aktor időzítők
-Aktor időzítők adja meg annak érdekében, hogy a visszahívási módszerek tiszteletben tartják a kapcsolja-alapú feldolgozási .NET vagy Java időzítő egyszerű csomagolásának garantálja, hogy a szereplője futtatókörnyezetet biztosít.
+Aktor időzítők adja meg a .NET vagy Java időzítő tooensure egyszerű csomagolásának, hogy hello visszahívási módszerek tiszteletben hello kapcsolja-alapú feldolgozási biztosítja, hogy az hello szereplője futásidejű biztosít.
 
-Szereplője használhatja a `RegisterTimer`(C#) vagy `registerTimer`(Java) és `UnregisterTimer`(C#) vagy `unregisterTimer`(Java) módszerek regisztrálásához és azok időzítők az alaposztályban. Az alábbi példában látható időzítő API-k használatát. Az API-k nagyon hasonlóak a .NET időzítés vagy Java időzítőt. Ebben a példában, amikor az időzítő esedékes, a gyakrabban futásidejű fel fogja hívni a `MoveObject`(C#) vagy `moveObject`(Java) metódust. A metódus garantáltan tiszteletben tartják a kapcsolja-alapú feldolgozási. Ez azt jelenti, hogy más szereplő módszerek vagy időzítő/emlékeztető visszahívások nem lesz folyamatban van a visszahívás végrehajtása befejezéséig.
+Szereplője használható hello `RegisterTimer`(C#) vagy `registerTimer`(Java) és `UnregisterTimer`(C#) vagy `unregisterTimer`az Alap (Java) metódusai tooregister osztály, és azok időzítők törlése. hello az alábbi példában hello időzítő API-k használatát. API-k hello nagyon hasonló toohello .NET időzítés vagy Java időzítő. Ebben a példában, amikor hello időzítő esedékes, hello szereplője futásidejű szolgáltatás fel fogja hívni hello `MoveObject`(C#) vagy `moveObject`(Java) metódust. hello metódus garantáltan toorespect hello kapcsolja-alapú feldolgozási. Ez azt jelenti, hogy más szereplő módszerek vagy időzítő/emlékeztető visszahívások nem lesz folyamatban van a visszahívás végrehajtása befejezéséig.
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -44,9 +44,9 @@ class VisualObjectActor : Actor, IVisualObject
 
         _updateTimer = RegisterTimer(
             MoveObject,                     // Callback method
-            null,                           // Parameter to pass to the callback method
-            TimeSpan.FromMilliseconds(15),  // Amount of time to delay before the callback is invoked
-            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of the callback method
+            null,                           // Parameter toopass toohello callback method
+            TimeSpan.FromMilliseconds(15),  // Amount of time toodelay before hello callback is invoked
+            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of hello callback method
 
         return base.OnActivateAsync();
     }
@@ -93,9 +93,9 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
                     this.registerTimer(
                             (o) -> this.moveObject(o),                        // Callback method
                             "moveObject",
-                            null,                                             // Parameter to pass to the callback method
-                            Duration.ofMillis(10),                            // Amount of time to delay before the callback is invoked
-                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of the callback method
+                            null,                                             // Parameter toopass toohello callback method
+                            Duration.ofMillis(10),                            // Amount of time toodelay before hello callback is invoked
+                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of hello callback method
                     return null;
                 });
     }
@@ -126,16 +126,16 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
 }
 ```
 
-A következő időszak az időzítő elindítja a visszahívás végrehajtása után. Ez azt jelenti, hogy az időzítő leáll, miközben a visszahívás végrehajtása történik, és a visszahívás befejezése után elindult.
+hello hello időzítő következő időszak hello visszahívás végrehajtása után elindul. Ez azt jelenti, hogy hello időzítő leáll, miközben hello visszahívási metódus végrehajtása történik, és hello visszahívás befejezése után elindul.
 
-A szereplője futásidejű a visszahívás befejezése után a szereplő állapotkezelője végrehajtott módosítások mentése. Ha hiba lép fel az állapotmentést, inaktiválja a szereplő objektum, és egy új példány aktív lesz.
+hello szereplője futásidejű módosítások toohello szereplő állapotkezelője hello visszahívás befejezése után menti. Ha hiba lép fel hello állapotmentést, inaktiválja a szereplő objektum, és egy új példány aktív lesz.
 
-Összes időzítő le van állítva, ha a szereplő inaktív szemétgyűjtés részeként. Nincs időzítő visszahívások ezt követően hívják. A szereplője futásidejű is, nem őriz meg az időzítők inaktiválása előtt futó semmilyen információt. Esetén a szereplő bármely időzítők újraaktiválásakor azt a jövőben szükséges regisztrálni. További információkért lásd [szereplő szemétgyűjtés](service-fabric-reliable-actors-lifecycle.md).
+Összes időzítő le van állítva, ha hello szereplő inaktív szemétgyűjtés részeként. Nincs időzítő visszahívások ezt követően hívják. Hello szereplője futásidejű is, nem őriz meg hello időzítők inaktiválása előtt futó semmilyen információt. Toohello szereplő tooregister mentése bármely időzítők a jövőbeli hello újraaktiválásakor szükséges. További információkért lásd: hello szakasz a [szereplő szemétgyűjtés](service-fabric-reliable-actors-lifecycle.md).
 
 ## <a name="actor-reminders"></a>Aktor emlékeztetők
-Emlékeztetők egy olyan mechanizmus való állandó visszahívások egy szereplő a következő alkalommal megadva. Működés időzítők hasonlít. De időzítők, eltérően emlékeztetők által kiváltott minden körülmények addig, amíg a szereplő explicit módon regisztrációjának őket, vagy a szereplő explicit módon törlődik. Pontosabban emlékeztetők által kiváltott szereplő deactivations és a feladatátvétel, mert a szereplője futásidejű továbbra is fennáll, a szereplő emlékeztetők kapcsolatos információkat.
+Buborékemlékeztetők olyan mechanizmus tootrigger állandó visszahívások egy szereplő, a megadott időpontokban. A funkció hasonló tootimers is. De időzítők, eltérően emlékeztetők által kiváltott minden körülmények hello szereplő explicit módon regisztrációjának őket, vagy hello szereplő explicit módon törlődik. Pontosabban emlékeztetők által kiváltott szereplő deactivations és a feladatátvétel mert hello szereplője futásidejű továbbra is fennáll, hello szereplő emlékeztetők kapcsolatos információkat.
 
-Emlékeztető regisztrálásához egy szereplő meghívja a `RegisterReminderAsync` metódus az alaposztályban, megadva a következő példában látható módon:
+Emlékeztető tooregister, egy szereplő meghívja hello `RegisterReminderAsync` megadott hello alaposztályban, ahogy az alábbi példa hello módszer:
 
 ```csharp
 protected override async Task OnActivateAsync()
@@ -161,14 +161,14 @@ protected CompletableFuture onActivateAsync()
     ActorReminder reminderRegistration = this.registerReminderAsync(
             reminderName,
             state,
-            dueTime,    //The amount of time to delay before firing the reminder
-            period);    //The time interval between firing of reminders
+            dueTime,    //hello amount of time toodelay before firing hello reminder
+            period);    //hello time interval between firing of reminders
 }
 ```
 
-Ebben a példában `"Pay cell phone bill"` emlékeztető neve. Ez a karakterlánc, amely a szereplő használatával egyedi módon azonosítja az egy emlékeztető az. `BitConverter.GetBytes(amountInDollars)`(C#) a környezetben a felszólítás társított. Az átkerülnek vissza a szereplő emlékeztető visszahívási argumentumaként azaz `IRemindable.ReceiveReminderAsync`(C#) vagy `Remindable.receiveReminderAsync`(Java).
+Ebben a példában `"Pay cell phone bill"` hello emlékeztető neve. Ez a karakterlánc, amely szereplő használ hello toouniquely emlékeztető azonosításához. `BitConverter.GetBytes(amountInDollars)`(C#) hello emlékeztető társított hello a környezetben. Azt fogja adhatók át hátsó toohello aktor egy argumentum toohello emlékeztető visszahívás, azaz `IRemindable.ReceiveReminderAsync`(C#) vagy `Remindable.receiveReminderAsync`(Java).
 
-Buborékemlékeztetők használó szereplője meg kell valósítania a `IRemindable` csatoló, az alábbi példában látható módon.
+Buborékemlékeztetők használó szereplője meg kell valósítania az hello `IRemindable` csatoló, az alábbi hello példában látható módon.
 
 ```csharp
 public class ToDoListActor : Actor, IToDoListActor, IRemindable
@@ -209,11 +209,11 @@ public class ToDoListActorImpl extends FabricActor implements ToDoListActor, Rem
 
 ```
 
-Emlékeztető kiváltásakor a Reliable Actors futtatókörnyezet által aktivált a `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`a szereplő (Java) metódust. Egy szereplő regisztrálhat több emlékeztetők, és a `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) metódus meghívja Ha bármelyik azok megjelenését elindul. Az aktor is használja a a felszólítás kerül átadásra a `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) módszer mérje fel, melyik emlékeztető lett elindítva.
+Emlékeztető kiváltásakor hello Reliable Actors futtatókörnyezet által aktivált hello `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`hello szereplő (Java) metódust. Egy szereplő regisztrálhat több emlékeztetők, és hello `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) metódus meghívja Ha bármelyik azok megjelenését elindul. hello szereplő használata hello emlékeztető név toohello átadott `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) metódus toofigure milyen emlékeztető lett elindítva.
 
-A futásidejű menti a szereplő szereplője állapotba, ha a `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) hívás befejezését. Ha hiba lép fel az állapotmentést, inaktiválja a szereplő objektum, és egy új példány aktív lesz.
+hello szereplője futásidejű menti hello szereplő állapota akkor hello `ReceiveReminderAsync`(C#) vagy `receiveReminderAsync`(Java) hívás befejezését. Ha hiba lép fel hello állapotmentést, inaktiválja a szereplő objektum, és egy új példány aktív lesz.
 
-Emlékeztető regisztrációját, egy szereplő meghívja a `UnregisterReminderAsync`(C#) vagy `unregisterReminderAsync`(Java) metódust, az alábbi példában látható módon.
+Emlékeztető toounregister, egy szereplő meghívja hello `UnregisterReminderAsync`(C#) vagy `unregisterReminderAsync`(Java) módszer, ahogy az alábbi példák hello.
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
@@ -224,7 +224,7 @@ ActorReminder reminder = getReminder("Pay cell phone bill");
 CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 ```
 
-A fent látható módon a `UnregisterReminderAsync`(C#) vagy `unregisterReminderAsync`(Java) metódus fogad el egy `IActorReminder`(C#) vagy `ActorReminder`(Java) felületet. Az aktor alaposztály támogatja a `GetReminder`(C#) vagy `getReminder`beolvasásához használható metódus (Java) a `IActorReminder`(C#) vagy `ActorReminder`emlékeztető nevében történő (Java) felületet. Ez akkor hasznos, mivel a szereplő nem kell megőrizni a `IActorReminder`(C#) vagy `ActorReminder`által eredményül adott (Java) felületet a `RegisterReminder`(C#) vagy `registerReminder`(Java) metódus hívása.
+A fentiek hello `UnregisterReminderAsync`(C#) vagy `unregisterReminderAsync`(Java) metódus fogad el egy `IActorReminder`(C#) vagy `ActorReminder`(Java) felületet. hello szereplő alaposztály támogatja a `GetReminder`(C#) vagy `getReminder`(Java) metódus, amely használt tooretrieve hello `IActorReminder`(C#) vagy `ActorReminder`hello emlékeztető nevében történő (Java) felületet. Ez akkor hasznos, mivel hello szereplő nem kell toopersist hello `IActorReminder`(C#) vagy `ActorReminder`által eredményül adott hello (Java) felület `RegisterReminder`(C#) vagy `registerReminder`(Java) metódus hívása.
 
 ## <a name="next-steps"></a>Következő lépések
 További tudnivalók a megbízható szereplő események és rögzítve:

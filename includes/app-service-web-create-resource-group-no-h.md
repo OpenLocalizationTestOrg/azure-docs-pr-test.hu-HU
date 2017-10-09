@@ -1,11 +1,11 @@
-Hozzon létre egy erőforráscsoportot az [az group create](/cli/azure/group#create) paranccsal.
+Hozzon létre egy erőforráscsoportot hello [az csoport létrehozása](/cli/azure/group#create) parancsot.
 
 [!INCLUDE [resource group intro text](resource-group.md)]
 
-A következő példában létrehozunk egy *myResourceGroup* nevű erőforráscsoportot a *westeurope* helyen.
+hello alábbi példa létrehoz egy erőforráscsoportot *myResourceGroup* a hello *westeurope* helyét.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westeurope
 ```
 
-Az erőforráscsoportot és az erőforrásokat általában a közelében található régiókban hozhatja létre. Az összes Azure Web Apps-t támogató hely megtekintéséhez futtassa az `az appservice list-locations` parancsot. 
+Általában létrehozhat az erőforrás csoport és hello erőforrások környéken régióban. toosee minden támogatott helyek az Azure Web Apps, futtassa a hello `az appservice list-locations` parancsot. 

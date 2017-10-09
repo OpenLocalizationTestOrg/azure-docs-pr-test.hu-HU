@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés az Azure hálózati figyelőt topológiája |} Microsoft Docs"
-description: "Ezen a lapon a hálózati figyelőt topológia képességek áttekintése"
+title: "az Azure hálózati figyelőt aaaIntroduction tootopology |} Microsoft Docs"
+description: "Ezen a lapon hello hálózati figyelőt topológia képességek áttekintése"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 42443f614b76b8180ac163b9889163021adbf048
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7fa1c5518e4a25a5db999d898a9ee19fd0121db7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-topology-in-azure-network-watcher"></a>Bevezetés az Azure hálózati figyelőt-topológiája
+# <a name="introduction-tootopology-in-azure-network-watcher"></a>Az Azure hálózati figyelőt bemutatása tootopology
 
-Topológia egy grafikonon hálózati erőforrások része virtuális hálózatnak adja vissza. Az ábra a végpontok közötti hálózati kapcsolatot képviselő erőforrások összekapcsolása ábrázolja.
+Topológia egy grafikonon hálózati erőforrások része virtuális hálózatnak adja vissza. hello ábra hello összekapcsolása hello erőforrások toorepresent hello end tooend hálózati kapcsolatot ábrázolja.
 
 ![topológia – áttekintés][1]
 
-A portál topológia adja vissza az erőforrás-objektumból egy egy virtuális hálózati alapján. A kapcsolatok ezek ábrázolva hálózati figyelőt régió kívüli erőforrások erőforrások közötti vonalak, még akkor is, ha az erőforrás a csoport nem jelenik meg. Az erőforrások, az eredmény abban a portál nézet a hálózati összetevők, amelyek grafikon részhalmazát jelentik. A hálózati erőforrások is használhatja a teljes listájának megjelenítéséhez [PowerShell](network-watcher-topology-powershell.md) vagy [REST](network-watcher-topology-rest.md)
+Hello portálon topológia hello erőforrás-objektumból lévő beolvasása a virtuális hálózati alap /. hello kapcsolatok ezek ábrázolva hello erőforrások erőforrások kívül hello hálózati figyelőt régió, közötti vonalak, még akkor is, ha a hello erőforrás csoport nem jelenik meg. hello portál nézetben visszaadott hello erőforrások hello hálózati összetevők, amelyek grafikon részhalmazát jelentik. toosee hello teljes listáját a hálózati erőforrások is használhat [PowerShell](network-watcher-topology-powershell.md) vagy [REST](network-watcher-topology-rest.md)
 
 > [!NOTE]
-> Hálózati figyelőt egy példányát minden egyes régió topológia futtatni kívánt kell megadni.
+> Hálózati figyelőt egy példányát minden egyes régió kívánt toorun topológia kell megadni.
 
-Erőforrások közöttük visszaadott a kapcsolatot, két kapcsolatok alapján van modellezve.
+Erőforrások hello kapcsolat visszaadott közöttük, a két van modellezve.
 
 - **A befoglaltsági** -példa: virtuális hálózat tartalmaz egy hálózati Adaptert tartalmazó alhálózat
 - **Kapcsolódó** -példa: A hálózati adapter kapcsolódik a virtuális gépek
 
 ### <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan lehet lekérni a topológia e nézetében látogasson el a PowerShell használatával [hálózati figyelőt topológia a PowerShell használatával](network-watcher-topology-powershell.md)
+Ismerje meg, hogyan toouse PowerShell tooretrieve hello topológia megtekintéséhez látogasson el [hálózati figyelőt topológia a PowerShell használatával](network-watcher-topology-powershell.md)
 
 <!--Image references-->
 

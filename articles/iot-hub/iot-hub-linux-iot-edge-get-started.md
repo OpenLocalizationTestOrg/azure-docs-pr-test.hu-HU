@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure IoT peremhálózati (Linux) |} Microsoft Docs"
-description: "Útmutató átjáró létrehozásához linuxos számítógépen, és az Azure IoT Edge alapvető fogalmainak, például a moduloknak és a JSON konfigurációs fájloknak a bemutatása."
+title: "aaaGet Azure IoT peremhálózati (Linux) használatába |} Microsoft Docs"
+description: "Hogyan toobuild egy átjáró egy Linux számítógép- és alapfogalmakat például modulok és a JSON-konfigurációs fájlokat az Azure IoT Edge megismerése."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,11 +15,11 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: andbuc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b02d79fcd9cd2a2ef0041aac4e85528263c8d58a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 40aa9c8ddca6a974c361cbb0b453c7d0ddc71b8d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-azure-iot-edge-architecture-on-linux"></a>Az Azure IoT Edge architektúrájának felfedezése Linux rendszeren
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [iot-hub-iot-edge-install-build-linux](../../includes/iot-hub-iot-edge-install-build-linux.md)]
 
-## <a name="how-to-run-the-sample"></a>A minta futtatása
+## <a name="how-toorun-hello-sample"></a>Hogyan toorun hello minta
 
-A **build.sh** szkript a kimenetét a **build** mappában hozza létre, az **iot-edge** adattár helyi példányában. A kimenetet a mintában használt két IoT peremhálózati modulok tartalmazza.
+Hello **build.sh** parancsfájlt hoz létre a kimeneti hello **build** hello helyi példánya mappájában **iot-edge** tárházba. A kimeneti hello a mintában használt két IoT peremhálózati modulok tartalmazza.
 
-A buildszkript a **liblogger.so** fájlt a **build/modules/logger/** mappába, a **libhello\_world.so** fájlt pedig a **build/modules/hello_world/** mappába menti. Az elérési utak használata a **modul elérési útján** értékei, ahogy az az alábbi példa JSON beállításfájl.
+build script helyek hello **liblogger.so** a hello **build/modulok/naplózó/** mappa és **libhello\_world.so** a hello **build / modulok/hello_world/** mappát. Elérési utak használata hello **modul elérési útján** értékeket a következő példa JSON beállítások fájl hello látható módon.
 
-A hello\_world\_sample folyamat egy JSON-konfigurációs fájl elérési útját veszi fel argumentumként a parancssorban. Az alábbi JSON-példafájl az SDK-tárházban a **samples/hello\_world/src/hello\_world\_lin.json** helyen található. A konfigurációs fájl, kivéve, ha módosítja a build parancsfájlt helyezze el az IoT peremhálózati modulok vagy a minta végrehajtható fájlok alapértelmezettől eltérő helyeket működik.
+hello hello\_globális\_minta, amelynek során hello elérési tooa JSON-konfigurációs fájl parancssori argumentum. hello alábbi példa JSON-fájl valósul meg a következő SDK-tárházban hello **minták/hello\_globális/src/hello\_globális\_lin.json**. A konfigurációs fájl működik, kivéve, ha módosítja a hello build script tooplace hello IoT peremhálózati modulok, vagy végrehajtható fájlok alapértelmezettől eltérő helyeket a mintát.
 
 > [!NOTE]
-> A modul az aktuális munkakönyvtárhoz képest relatív útvonalakat használ. A munkamappa az, ahonnan a hello\_world\_sample végrehajtható fájlt elindította, és nem a végrehajtható fájl könyvtára. A JSON konfigurációs mintafájl a „log.txt” naplófájlokat alapértelmezetten az aktuális munkakönyvtárba írja.
+> hello modul elérési útvonalai relatív toohello honnan aktuális munkakönyvtárban hello hello\_globális\_minta végrehajtható indul el, nem hello könyvtárra hello végrehajtható. hello minta JSON konfigurációs fájl alapértelmezett toowriting "log.txt" az aktuális munkakönyvtárban a.
 
 ```json
 {
@@ -73,9 +73,9 @@ A hello\_world\_sample folyamat egy JSON-konfigurációs fájl elérési útját
 }
 ```
 
-1. Keresse meg a **build** mappa gyökérkönyvtárában található a helyi másolat készítése a **iot-edge** tárház.
+1. Keresse meg a toohello **build** hello helyi példánya hello gyökérmappájában mappájában **iot-edge** tárház.
 
-1. Futtassa az alábbi parancsot:
+1. Futtassa a következő parancs hello:
 
     ```sh
     ./samples/hello_world/hello_world_sample ../samples/hello_world/src/hello_world_lin.json`

@@ -1,20 +1,20 @@
-## <a name="log-in-to-the-azure-portal"></a>Jelentkezzen be az Azure portálra.
+## <a name="log-in-toohello-azure-portal"></a>Jelentkezzen be toohello Azure-portálon
 
-Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
 
-## <a name="create-a-blank-sql-database-using-the-azure-portal"></a>Az Azure portál használatával üres SQL-adatbázis létrehozása
+## <a name="create-a-blank-sql-database-using-hello-azure-portal"></a>Hozzon létre egy üres SQL-adatbázist hello Azure-portálon
 
-Az Azure SQL-adatbázis [számítási és tárolási erőforrások](../articles/sql-database/sql-database-service-tiers.md) egy meghatározott készletével együtt jön létre. Az adatbázis egy [Azure-erőforráscsoporton](../articles/azure-resource-manager/resource-group-overview.md) belül egy [Azure SQL Database logikai kiszolgálón](../articles/sql-database/sql-database-features.md) jön létre. 
+Az Azure SQL-adatbázis [számítási és tárolási erőforrások](../articles/sql-database/sql-database-service-tiers.md) egy meghatározott készletével együtt jön létre. hello adatbázist a rendszer létrehoz egy [Azure erőforráscsoport](../articles/azure-resource-manager/resource-group-overview.md) és az egy [Azure SQL Database logikai kiszolgáló](../articles/sql-database/sql-database-features.md). 
 
-Kövesse az alábbi lépéseket egy üres SQL-adatbázis létrehozásához. 
+Kövesse ezeket a lépéseket toocreate üres SQL-adatbázis. 
 
-1. Kattintson az Azure Portal bal felső sarkában található **Új** gombra.
+1. Kattintson a hello **új** hello bal felső sarkában hello Azure-portálon található gombra.
 
-2. Az **Új** panelen válassza az **Adatbázisok** lehetőséget, majd az **Adatbázisok** panelen válassza az **SQL Database** lehetőséget. 
+2. Válassza ki **adatbázisok** a hello **új** lapon, és válassza ki **SQL-adatbázis** a hello **adatbázisok** lap. 
 
    ![Üres-adatbázis létrehozása](../articles/sql-database/media/sql-database-design-first-database/create-empty-database.png)
 
-3. Töltse ki az SQL Database űrlapját a következő információkkal az előző képen látható módon:   
+3. Hello SQL-adatbázis űrlap kitöltése a következő információ, hello kép megelőző hello szerint:   
 
    | Beállítás | Ajánlott érték | Leírás |
    | --------| --------------- | ----------- | 
@@ -24,13 +24,13 @@ Kövesse az alábbi lépéseket egy üres SQL-adatbázis létrehozásához.
    | **Forrás kiválasztása** | Az üres adatbázis | Meghatározza, hogy egy üres adatbázist kell létrehozni. |
    ||||
 
-4. Kattintson a **Kiszolgáló** lehetőségre új kiszolgáló létrehozásához és konfigurálásához az új adatbázis számára. Töltse ki a **új kiszolgáló űrlap** a következő információkat: 
+4. Kattintson a **Server** toocreate és az új adatbázis új kiszolgáló konfigurálása. Töltse ki a hello **új kiszolgáló űrlap** a következő információ hello: 
 
    | Beállítás | Ajánlott érték | Leírás |
    | --------| --------------- | ----------- | 
    | **Kiszolgálónév** | A globálisan egyedi nevet. | Az érvényes kiszolgálónevekkel kapcsolatban lásd az [elnevezési szabályokat és korlátozásokat](https://docs.microsoft.com/azure/architecture/best-practices/naming-conventions) ismertető cikket. | 
    | **Kiszolgálói rendszergazdai bejelentkezés** | Bármilyen érvényes nevet. | Az érvényes bejelentkezési nevekkel kapcsolatban lásd az [adatbázis-azonosítókat](https://docs.microsoft.com/sql/relational-databases/databases/database-identifiers) ismertető cikket.|
-   | **Jelszó** | Bármilyen érvényes jelszót. | A jelszó legalább 8 karakterből kell állnia, és az alábbiak közül hármat tartalmaznia kell: nagybetűk, kisbetűk, számok és nem alfanumerikus karakterek száma. |
+   | **Jelszó** | Bármilyen érvényes jelszót. | A jelszó legalább 8 karakterből kell állnia, és tartalmaznia kell legalább hármat a következő kategóriák hello: nagybetűk, kisbetűk, számok és nem alfanumerikus karakterek száma. |
    | **Hely** | Egyik érvényes helyen sem. | A régiókkal kapcsolatos információkért lásd [az Azure régióit](https://azure.microsoft.com/regions/) ismertető cikket. |
    ||||
 
@@ -38,65 +38,65 @@ Kövesse az alábbi lépéseket egy üres SQL-adatbázis létrehozásához.
 
 5. Kattintson a **Kiválasztás** gombra.
 
-6. Kattintson a **Tarifacsomag** parancsra az új adatbázis szolgáltatás- és teljesítményszintjének megadásához. A jelen oktatóanyag esetében válassza ki a **20 Dtu** és **250** GB tárhelyet.
+6. Kattintson a **tarifacsomag** toospecify hello és teljesítményszintet szolgáltatásszint az új adatbázishoz. A jelen oktatóanyag esetében válassza ki a **20 Dtu** és **250** GB tárhelyet.
 
    ![adatbázis létrehozása-s1](../articles/sql-database/media/sql-database-design-first-database/create-empty-database-pricing-tier.png)
 
 7. Kattintson az **Alkalmaz** gombra.  
 
-8. Válassza ki a **rendezés** az üres adatbázis (a jelen oktatóanyag esetében használja az alapértelmezett érték). Rendezések kapcsolatos további információkért lásd: [rendezések](https://docs.microsoft.com/sql/t-sql/statements/collations)
+8. Válassza ki a **rendezés** hello üres adatbázis (a jelen oktatóanyag esetében használja hello alapértelmezett érték). Rendezések kapcsolatos további információkért lásd: [rendezések](https://docs.microsoft.com/sql/t-sql/statements/collations)
 
-9. Kattintson a **Létrehozás** elemre az adatbázis létrehozásához. Kiépítés kapcsolatos egy perc és fél befejezéséhez vesz igénybe. 
+9. Kattintson a **létrehozása** tooprovision hello adatbázis. Kiépítés kapcsolatos egy perc és fél toocomplete vesz igénybe. 
 
-10. Az eszköztáron kattintson az **Értesítések** parancsra az üzembe helyezési folyamat megfigyeléséhez.
+10. Hello eszköztáron kattintson **értesítések** toomonitor hello telepítési folyamat.
 
    ![értesítés](../articles/sql-database/media/sql-database-get-started-portal/notification.png)
 
-## <a name="create-a-server-level-firewall-rule-using-the-azure-portal"></a>Hozzon létre egy kiszolgálószintű tűzfalszabályt, az Azure portál használatával
+## <a name="create-a-server-level-firewall-rule-using-hello-azure-portal"></a>Hozzon létre egy kiszolgálószintű tűzfalszabályt hello Azure-portál használatával
 
-Az SQL Database szolgáltatás tűzfal a kiszolgáló szintjén hoz létre. Kezdetben a tűzfal megakadályozza, hogy a külső eszközök és alkalmazások nem tudnak csatlakozni a kiszolgálóhoz, vagy a kiszolgálón lévő összes adatbázis. Kapcsolatainak engedélyezését követően egy tűzfalszabály IP-címek megnyitásához. Hajtsa végre az alábbi lépéseket követve létrehozhat egy [SQL-adatbázis kiszolgálószintű tűzfalszabály](../articles/sql-database/sql-database-firewall-configure.md) az ügyfél IP-címhez, és az IP-cím csak a SQL Database tűzfalon külső kapcsolódásának engedélyezése. 
+SQL Database szolgáltatás hello tűzfal hello kiszolgálószintű hoz létre. Kezdetben hello tűzfal megakadályozza, hogy a külső eszközök és alkalmazások toohello server vagy tooany adatbázisok hello kiszolgálón csatlakozzon. Kapcsolatainak engedélyezését követően egy tűzfalszabály tooopen bizonyos IP-címeket. Kövesse az alábbi lépéseket toocreate egy [SQL-adatbázis kiszolgálószintű tűzfalszabály](../articles/sql-database/sql-database-firewall-configure.md) a ügyfél IP-címet, és tooenable külső kapcsolatot csak az IP-cím hello SQL-adatbázis tűzfalon keresztül. 
 
 
 > [!NOTE]
-> Az Azure SQL Database 1433-as porton keresztül kommunikál. SQL-adatbázishoz való csatlakozás csak azt követően a hálózat tűzfala lehetővé teszi, hogy a kimenő adatforgalmat a 1433-as porton keresztül.
+> Az Azure SQL Database 1433-as porton keresztül kommunikál. Adatbázis tooSQL csak azt követően a hálózat hello tűzfal lehetővé teszi, hogy a kimenő adatforgalmat a 1433-as porton keresztül is elérheti.
 
 
-1. Az üzembe helyezés befejezése után kattintson az **SQL-adatbázisok** elemre a bal oldali menüben, majd kattintson a **mySampleDatabase** adatbázisra az **SQL-adatbázisok** lapon. Megnyílik az adatbázis áttekintő oldala, amelyen látható a teljes kiszolgálónév (például: **mynewserver20170313.database.windows.net**), valamint a további konfigurálható beállítások. Későbbi felhasználás céljára másolja ki ezt a teljes kiszolgálónevet.
+1. Hello központi telepítés befejezése után kattintson **SQL-adatbázisok** hello bal oldali menüből, és kattintson a **mySampleDatabase** a hello **SQL-adatbázisok** lap. hello áttekintő lapjára jut a adatbázis megnyílik, teljes mértékben hello megjelenítő minősített kiszolgáló neve (például **mynewserver20170313.database.windows.net**) és további konfigurációs lehetőségeket. Későbbi felhasználás céljára másolja ki ezt a teljes kiszolgálónevet.
 
    > [!IMPORTANT]
-   > A későbbi rövid útmutatók során szüksége lesz erre a teljes kiszolgálónévre a kiszolgálóhoz és az adatbázisokhoz való csatlakozáshoz.
+   > A teljesen minősített neve tooconnect tooyour kiszolgálók és a későbbi gyors üzembe helyezések adatbázisainak van szükség.
    > 
 
    ![kiszolgáló neve](../articles/sql-database/media/sql-database-get-started-portal/server-name.png) 
 
-2. Kattintson a **Kiszolgálótűzfal beállítása** lehetőségre az eszköztáron az előző képen látható módon. Megnyílik az SQL Database kiszolgálóhoz tartozó **Tűzfalbeállítások** oldal. 
+2. Kattintson a **kiszolgáló tűzfalának beállítása** hello eszköztár hello előző ábrának megfelelően. Hello **tűzfalbeállítások** hello SQL Database-kiszolgálóhoz tartozó lapon nyílik meg. 
 
    ![kiszolgálói tűzfalszabály](../articles/sql-database/media/sql-database-get-started-portal/server-firewall-rule.png) 
 
 
-3. Az eszköztár **Ügyfél IP-címének hozzáadása** elemére kattintva vegye fel aktuális IP-címét egy új tűzfalszabályba. A tűzfalszabály az 1433-as portot egy egyedi IP-cím vagy egy IP-címtartomány számára nyithatja meg.
+3. Kattintson a **ügyfél IP-cím hozzáadása** hello eszköztár tooadd meg az aktuális IP-cím tooa Új tűzfalszabály. A tűzfalszabály az 1433-as portot egy egyedi IP-cím vagy egy IP-címtartomány számára nyithatja meg.
 
-4. Kattintson a **Save** (Mentés) gombra. A rendszer létrehoz egy kiszolgálószintű tűzfalszabályt az aktuális IP-címhez, és megnyitja az 1433-as portot a logikai kiszolgálón.
+4. Kattintson a **Save** (Mentés) gombra. Az aktuális IP-címek hello logikai kiszolgálón 1433-as port megnyitása egy kiszolgálószintű tűzfalszabályt jön létre.
 
    ![kiszolgálótűzfal-szabály beállítása](../articles/sql-database/media/sql-database-get-started-portal/server-firewall-rule-set.png) 
 
-4. Kattintson az **OK** gombra, majd zárja be a **Tűzfalbeállítások** lapot.
+4. Kattintson a **OK** , majd zárja be a hello **tűzfalbeállítások** lap.
 
-Most csatlakozhat az Azure SQL adatbázis-kiszolgáló és az adatbázisok egy eszköz, például az SQL Server Management Studio (SSMS) használatával. A kapcsolat az IP-címről, és a korábban létrehozott kiszolgáló-rendszergazdai fiókot használja.
+Most csatlakozhat toohello Azure SQL Database-kiszolgálóhoz és az adatbázisok egy eszköz, például az SQL Server Management Studio (SSMS) használatával. hello kapcsolat az IP-címről, és korábban létrehozott hello kiszolgáló-rendszergazdai fiókot használja.
 
 
 > [!IMPORTANT]
-> Alapértelmezés szerint az összes Azure-szolgáltatás számára engedélyezett a hozzáférés az SQL Database tűzfalán keresztül. Kattintson a **KI** gombra ezen az oldalon az összes Azure-szolgáltatás hozzáférésének letiltásához.
+> Az összes Azure-szolgáltatások alapértelmezés szerint engedélyezve van a hozzáférés hello SQL-adatbázis tűzfalon keresztül. Kattintson a **OFF** meg a lap toodisable az összes Azure-szolgáltatásokhoz.
 
 
-## <a name="get-connection-string-values-using-the-azure-portal"></a>Az Azure portál használatával karakterlánc-értékek-kapcsolat lekérdezése
+## <a name="get-connection-string-values-using-hello-azure-portal"></a>Hello Azure portál használata a kapcsolati karakterlánc-értékek beolvasása
 
-Kérje le az Azure SQL Database kiszolgáló teljes kiszolgálónevét az Azure Portalon. Használja a teljes kiszolgálónevet az SQL Server Management Studióban a kiszolgálóhoz történő csatlakozáshoz.
+Az Azure SQL Database-kiszolgálóhoz hello kiszolgáló teljesen minősített nevet lekérése hello Azure-portálon. Használhat hello teljesen minősített neve tooconnect tooyour kiszolgálók SQL Server Management Studio használatával.
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com/).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com/).
 
-2. Válassza az **SQL-adatbázisok** elemet a bal oldali menüben, majd kattintson az új adatbázisra az **SQL-adatbázisok** oldalon. 
+2. Válassza ki **SQL-adatbázisok** hello bal oldali menüben kattintson a hello adatbázis **SQL-adatbázisok** lap. 
 
-3. Az Azure Portalon az adatbázishoz tartozó lap **Alapvető erőforrások** ablaktábláján keresse meg, majd másolja ki a **Kiszolgáló nevét**.
+3. A hello **Essentials** hello Azure portálon az adatbázis paneljén található, és másolja hello **kiszolgálónév**.
 
    ![kapcsolatadatok](../articles/sql-database/media/sql-database-get-started-portal/server-name.png) 

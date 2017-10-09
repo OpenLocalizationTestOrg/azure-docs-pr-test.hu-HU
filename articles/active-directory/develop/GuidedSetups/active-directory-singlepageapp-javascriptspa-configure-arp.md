@@ -1,5 +1,5 @@
 ---
-title: "Az Azure AD v2 JS SPA interaktív telepítő - a (ARP) konfigurálása |} Microsoft Docs"
+title: "aaaAzure AD v2 JS SPA interaktív telepítés - konfigurálása (ARP) |} Microsoft Docs"
 description: "Hogyan JavaScript SPA-alkalmazások az Azure Active Directory-v2 végpontja (ARP) hozzáférési jogkivonatok igénylő API meghívása"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,41 +13,41 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/01/2017
 ms.author: andret
-ms.openlocfilehash: 708f4ff606d79639de979918a9cacd4ed75db311
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 157f4e342cd684294e24da6ee1fad8a7c2fc266a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="add-the-applications-registration-information-to-your-app"></a>Az alkalmazás regisztrációs adatok hozzáadása az alkalmazáshoz
+## <a name="add-hello-applications-registration-information-tooyour-app"></a>Hello alkalmazás regisztrációs információ tooyour alkalmazás hozzáadása
 
-Ebben a lépésben azt kell konfigurálja az átirányítási URL-cím az alkalmazás regisztrációs adatait, és adja meg az alkalmazásazonosítót a JavaScript SPA-alkalmazáshoz.
+Ebben a lépésben kell tooconfigure hello átirányítási URL-CÍMÉT a alkalmazás regisztrációs adatait, és adja hozzá a hello alkalmazásazonosító tooyour JavaScript SPA-alkalmazáshoz.
 
 ### <a name="configure-redirect-url"></a>Az átirányítási URL-CÍMEK konfigurálása
 
-Konfigurálja a `Redirect URL` a index.html lap a webkiszolgáló URL-CÍMÉT a fenti mezőben, majd kattintson az *frissítés*.
+Hello konfigurálása `Redirect URL` hello URL-címe alapján a webkiszolgáló index.html lapon a fenti mezőben, majd kattintson az *frissítés*.
 
 
 > #### <a name="visual-studio-instructions-for-obtaining-redirect-url"></a>A Visual Studio utasításokat átirányítási URL-cím beszerzése
-> Az átirányítási URL-cím beszerzéséhez hajtsa végre az alábbi utasításokat:
-> 1.    A *Megoldáskezelőben*, válassza ki a projektet, és tekintse meg a `Properties` ablakban (Ha nem látja a Tulajdonságok ablak, nyomja le az `F4`)
-> 2.    Másolja a értéket `URL` a vágólapra:<br/> ![Projekt tulajdonságai](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
-> 3.    Illessze be az érték egy `Redirect URL` Ez a lap tetején kattintson a`Update`
+> tooobtain az átirányítási URL-cím, kövesse az alábbi hello utasítások:
+> 1.    A *Megoldáskezelőben*hello projekt között, nézze meg hello `Properties` ablakban (Ha nem látja a Tulajdonságok ablak, nyomja meg az `F4`)
+> 2.    Másolja a hello értéket `URL` toohello vágólapra:<br/> ![Projekt tulajdonságai](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
+> 3.    Illessze be a hello értéke megegyezik egy `Redirect URL` hello az oldal tetején, majd kattintson`Update`
 
 <p/>
 
 > #### <a name="setting-redirect-url-for-python"></a>Az átirányítási URL-ként Python
-> A Python a web server port parancssorból állíthatja be. Ez az interaktív telepítés a 8080-hivatkozásban, de a kezelőfelület szabadon használhatja az összes rendelkezésre álló portot használ. Minden esetben kövesse az alábbi utasításokat egy átirányítási URL-címet az alkalmazás-regisztrációs adatainak beállításához:<br/>
-> Állítsa be `http://localhost:8080/` , egy `Redirect URL` tetején a lap, vagy használjon `http://localhost:[port]/` egyéni TCP-port használata (Ha *[port]* a egyéni TCP-port száma), és kattintson a "Frissítés"
+> Python hello a webtartalom-kiszolgáló portja parancssorból állíthatók be. Az interaktív telepítés használja a 8080-as porton hello referenciaként, de érzi, hogy a szabad toouse összes rendelkezésre álló portot. Minden esetben kövesse az alábbi tooset hello alkalmazás regisztrációs adatai egy átirányítási URL-cím mentése hello utasításokat:<br/>
+> Állítsa be `http://localhost:8080/` , egy `Redirect URL` az oldal tetején hello, vagy használjon `http://localhost:[port]/` egyéni TCP-port használata (Ha *[port]* hello egyéni TCP-port száma), és kattintson a "Frissítés"
 
 ### <a name="configure-your-javascript-spa-application"></a>A JavaScript SPA-alkalmazások konfigurálása
 
-1.  Hozzon létre egy fájlt `msalconfig.js` tartalmazó az alkalmazás regisztrációs adatait. Ha a Visual Studio használ, válassza ki a project (projekt gyökérmappájában), kattintson a jobb gombbal és válassza ki: `Add`  >  `New Item`  >  `JavaScript File`. Nevezze el`msalconfig.js`
-2.  Adja hozzá a következő kódot a `msalconfig.js` fájlt:
+1.  Hozzon létre egy fájlt `msalconfig.js` tartalmazó hello alkalmazás regisztrációs adatokat. Ha használja a Visual Studio, válassza hello project (projekt gyökérmappájában), kattintson a jobb gombbal, és válassza ki: `Add`  >  `New Item`  >  `JavaScript File`. Nevezze el`msalconfig.js`
+2.  Adja hozzá a következő kód tooyour hello `msalconfig.js` fájlt:
 
 ```javascript
 var msalconfig = {
-    clientID: "[Enter the application Id here]",
+    clientID: "[Enter hello application Id here]",
     redirectUri: location.origin
 };
 ``` 

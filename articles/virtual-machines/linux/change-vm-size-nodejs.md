@@ -1,6 +1,6 @@
 ---
-title: "Linux virtuális gép és az Azure CLI 1.0 átméretezése |} Microsoft Docs"
-description: "Hogyan növelheti vagy csökkentheti a Linux virtuális gépek, a Virtuálisgép-méretet módosításával."
+title: "Linux virtuális gép hello Azure CLI 1.0 és aaaHow tooresize |} Microsoft Docs"
+description: "Hogyan tooscale fel vagy le egy Linux virtuális gépet, módosításával méretezési hello Virtuálisgép-méretet."
 services: virtual-machines-linux
 documentationcenter: na
 author: mikewasson
@@ -16,38 +16,38 @@ ms.workload: infrastructure-services
 ms.date: 05/16/2016
 ms.author: mwasson
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 72f5a3cd6463befd5108040ed166984281bfc5f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43dd955dc2f2dd9d1b2da07ecbfbf2459bcaa4d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resize-a-linux-vm-with-azure-cli-10"></a>Linux virtuális gép az Azure CLI 1.0 és átméretezése
 
 ## <a name="overview"></a>Áttekintés
 
-(VM) virtuális gép kiépítése után méretezheti a virtuális gép felfelé vagy lefelé módosításával a [Virtuálisgép-méretet][vm-sizes]. Néhány esetben először a virtuális gép kell felszabadítani. Ez akkor fordulhat elő, ha új mérete nem érhető el a hardver fürtön, amelyen a virtuális Gépet.
+(VM) virtuális gép kiépítése után méretezheti hello VM felfelé vagy lefelé hello módosításával [Virtuálisgép-méretet][vm-sizes]. Néhány esetben először hello VM kell felszabadítani. Ez akkor fordulhat elő, ha hello új mérete nem érhető el a virtuális gép hello üzemeltető hello hardver fürt.
 
-Ez a cikk bemutatja, hogyan méretezze át a Linux virtuális gépet a [Azure CLI][azure-cli].
+Ez a cikk bemutatja, hogyan tooresize a Linux virtuális gép hello [Azure CLI][azure-cli].
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-- [Az Azure CLI 1.0](#resize-a-linux-vm) – a parancssori felületen a klasszikus és resource management üzembe helyezési modellel (a cikk)
-- [Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
+- [Az Azure CLI 1.0](#resize-a-linux-vm) – a parancssori felületen hello klasszikus és resource management üzembe helyezési modellel (a cikk)
+- [Az Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell
 
 
 ## <a name="resize-a-linux-vm"></a>Linux virtuális gép átméretezése
-Átméretezni egy virtuális Géphez, hajtsa végre az alábbi lépéseket.
+tooresize egy virtuális Gépet, hajtsa végre a lépéseket követve hello.
 
-1. A következő parancssori parancsot. Ez a parancs felsorolja a hardver fürt, ahol a virtuális gép tárolása elérhető Virtuálisgép-méretek.
+1. Futtassa a következő parancsot a CLI hello. Ez a parancs kilistázza hello Virtuálisgép-méretek elérhető hello hardver fürtön, amelyen hello virtuális gép található.
    
     ```azurecli
     azure vm sizes -g myResourceGroup --vm-name myVM
     ```
-2. Ha a kívánt méretet, a következő parancsot a virtuális gép átméretezésével.
+2. Ha hello szükséges méret szerepel, futtassa a következő parancs tooresize hello VM hello.
    
     ```azurecli
     azure vm set -g myResourceGroup --vm-size <new-vm-size> -n myVM  \
@@ -55,10 +55,10 @@ A következő CLI-verziók egyikével elvégezheti a feladatot:
         --boot-diagnostics-storage-uri https://mystorageaccount.blob.core.windows.net/ 
     ```
    
-    A virtuális gép újraindul, a folyamat során. Az újraindítás után a meglévő operációs rendszer és az adatlemezek fogja képezni. Az ideiglenes lemezen semmit elvesznek.
+    hello virtuális gép újraindul, a folyamat során. Hello az újraindítás után a meglévő operációs rendszer és az adatlemezek fogja képezni. Bármi hello ideiglenes lemezen elvesznek.
    
-    Használja a `--enable-boot-diagnostics` beállítás lehetővé teszi, hogy [rendszerindítási diagnosztika][boot-diagnostics], bejelentkezési indítási kapcsolatos hibákat.
-3. Ha a kívánt méretet nem szerepel, a következő parancsokat a virtuális gép felszabadítása méretezze át, és indítsa újra a virtuális Gépet.
+    Használjon hello `--enable-boot-diagnostics` beállítás lehetővé teszi, hogy [rendszerindítási diagnosztika][boot-diagnostics], toolog bármely hibák kapcsolódó toostartup.
+3. Ha hello szükséges méret nem szerepel a listában, egyébként futtassa a következő parancsok toodeallocate hello VM, méretezze át, és indítsa újra hello VM hello.
    
     ```azurecli
     azure vm deallocate -g myResourceGroup myVM
@@ -69,7 +69,7 @@ A következő CLI-verziók egyikével elvégezheti a feladatot:
     ```
    
    > [!WARNING]
-   > A virtuális Géphez rendelt dinamikus IP-címek is a virtuális gép felszabadítása kiadását. Az operációsrendszer- és adatlemezek, nem érintettek.
+   > Virtuális gép hello felszabadítása is dinamikus IP-címek hozzárendelése a virtuális gép toohello kiadását. az operációs rendszer hello és adatlemezek nem érintettek.
    > 
    > 
 

@@ -1,6 +1,6 @@
 ---
 title: "Az Azure AD Connect: Fiókok és engedélyek |} Microsoft Docs"
-description: "Ez a témakör ismerteti a használt, és létrehozott fiókok és a szükséges engedélyek."
+description: "Ez a témakör ismerteti a használt, és létre hello fiókok és a szükséges engedélyekkel."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: billmath
-ms.openlocfilehash: fdd90721b6823c20c1ff27383769bfff24e80eae
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 70a7013e0353d74714ec8a3ff54b3e811789a0b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-accounts-and-permissions"></a>Az Azure AD Connect: Fiókok és engedélyek
-Az Azure AD Connect telepítővarázsló biztosít két különböző elérési utak:
+hello Azure AD Connect telepítővarázsló biztosít két különböző elérési utak:
 
-* A Gyorsbeállítások használatához a varázsló további jogosultságokra van szüksége.  Ez az, hogy azt állíthat be a konfigurációs könnyen, anélkül, hogy a felhasználók létrehozásához és-engedélyek konfigurálása.
-* Az egyéni beállítások a varázsló biztosít további lehetőségek és beállítások. Vannak azonban olyan helyzetek, amelyben ellenőrizze, hogy megfelelő engedélyekkel a saját magának kell.
+* A Gyorsbeállítások használatához hello varázsló több jogosultságra van szüksége.  Ez az, hogy a konfiguráció könnyen, beállítása nélkül toocreate felhasználók vagy -engedélyek konfigurálása.
+* Az egyéni beállítások hello varázsló biztosít további lehetőségek és beállítások. Vannak azonban olyan helyzetek, amelyben tooensure engedélye hello megfelelő saját magának kell.
 
 ## <a name="related-documentation"></a>Kapcsolódó dokumentáció
-Ha Ön nem olvasta be a dokumentáció a [a helyszíni identitások integrálása az Azure Active Directoryval](../active-directory-aadconnect.md), az alábbi táblázat kapcsolódó témakörökre mutató hivatkozásokat tartalmaz.
+Ha a nem olvasta hello dokumentáció [a helyszíni identitások integrálása az Azure Active Directoryval](../active-directory-aadconnect.md), hello alábbi táblázatban hivatkozások toorelated témaköröket.
 
 |Témakör |Hivatkozás|  
 | --- | --- |
@@ -36,25 +36,25 @@ Ha Ön nem olvasta be a dokumentáció a [a helyszíni identitások integrálás
 |Telepítés gyorsbeállítások használatával | [Az Azure AD Connect gyorstelepítése](./active-directory-aadconnect-get-started-express.md)|
 |Telepítés testreszabott beállítások használatával | [Az Azure AD Connect testreszabott telepítése](./active-directory-aadconnect-get-started-custom.md)|
 |Frissítés a DirSync szolgáltatásról | [Frissítés az Azure AD szinkronizáló eszközéről (DirSync)](./active-directory-aadconnect-dirsync-upgrade-get-started.md)|
-|A telepítést követően | [A telepítés ellenőrzése és licencek hozzárendelése](active-directory-aadconnect-whats-next.md)|
+|A telepítést követően | [Hello telepítésének ellenőrzése és licencek hozzárendelése](active-directory-aadconnect-whats-next.md)|
 
 ## <a name="express-settings-installation"></a>Expressz telepítés beállításai
-Az expressz beállításokat a telepítővarázsló az Active Directory tartományi szolgáltatások vállalati rendszergazdai hitelesítő adatokat kér.  Ez a helyzet a helyszíni Active Directory konfigurálható az Azure AD Connect szükséges engedélyekkel. Ha a Dirsync szolgáltatásról frissít, az Active Directory tartományi szolgáltatások vállalati rendszergazdák hitelesítő adatok segítségével a DirSync által használt fiók jelszavának visszaállítása. Szükség az Azure AD globális rendszergazda hitelesítő adatait.
+Az expressz beállításokat hello telepítővarázsló Active Directory tartományi szolgáltatások vállalati rendszergazdai hitelesítő adatokat kér.  Ez a helyzet a helyszíni Active Directory konfigurálható az Azure AD Connect szükséges engedélyekkel. Ha a Dirsync szolgáltatásról frissít, hello AD DS vállalati rendszergazdák hitelesítő adatok a DirSync által használt hello fiók használt tooreset hello jelszavát. Szükség az Azure AD globális rendszergazda hitelesítő adatait.
 
 | Varázslólap | Hitelesítő adatok gyűjtése | Szükséges jogosultságok | A használt |
 | --- | --- | --- | --- |
-| N/A |A telepítővarázsló futtató felhasználó |A helyi kiszolgáló rendszergazdája |<li>A helyi fiók, amely létrehozza a [szinkronizálás a motor szolgáltatásfiók](#azure-ad-connect-sync-service-account). |
-| Csatlakozás az Azure AD szolgáltatáshoz |Az Azure Active directory hitelesítő adatok |Az Azure AD globális rendszergazdai szerepkörrel |<li>Az Azure AD-címtár-szinkronizálás engedélyezése.</li>  <li>Létrehozását a [Azure AD-fiókot](#azure-ad-service-account) lévő szinkronizálási műveletek használt Azure AD-ben.</li> |
-| Csatlakozás az AD DS szolgáltatáshoz |A helyszíni Active Directory hitelesítő adatok |A vállalati rendszergazdák (EA) csoport az Active Directoryban |<li>Létrehoz egy [fiók](#active-directory-account) az Active Directory és az engedélyt. Ez a fiók létrehozása írási és olvasási címtáradatok szinkronizálás során használatos.</li> |
+| N/A |Felhasználó futó hello telepítési varázsló |Hello helyi kiszolgáló rendszergazdája |<li>Hello használt hello helyi fiókot hoz létre [szinkronizálás a motor szolgáltatásfiók](#azure-ad-connect-sync-service-account). |
+| TooAzure AD Connect |Az Azure Active directory hitelesítő adatok |Az Azure AD globális rendszergazdai szerepkörrel |<li>A hello Azure AD-címtár-szinkronizálás engedélyezése.</li>  <li>Hello létrehozása [Azure AD-fiókot](#azure-ad-service-account) lévő szinkronizálási műveletek használt Azure AD-ben.</li> |
+| Csatlakozás tooAD DS |A helyszíni Active Directory hitelesítő adatok |Az Active Directory hello vállalati rendszergazdák (EA) csoport tagjai |<li>Létrehoz egy [fiók](#active-directory-account) az Active Directory és az engedélyek tooit biztosít. Ezt a fiókot hozta létre az használt tooread és írási directory információt szinkronizálás során.</li> |
 
 ### <a name="enterprise-admin-credentials"></a>Vállalati rendszergazdai hitelesítő adatokat
-Ezek a hitelesítő adatok csak a telepítés során használt, és ne lehessen felhasználni a telepítés befejezése után. A vállalati rendszergazdai, nem a tartományi rendszergazda győződjön meg arról az engedélyeket az Active Directory minden tartományban állítható be.
+Ezek a hitelesítő adatok csak hello telepítés során használt, és ne lehessen felhasználni hello telepítés befejezése után. hello vállalati rendszergazdai, nem tartományi rendszergazda hello győződjön meg róla, az Active Directory hello engedélyeit a tartományokban található állítható be.
 
 ### <a name="global-admin-credentials"></a>Globális rendszergazda hitelesítő adataival
-Ezek a hitelesítő adatok csak a telepítés során használt, és ne lehessen felhasználni a telepítés befejezése után. Létrehozására szolgál a [Azure AD-fiókot](#azure-ad-service-account) használja az Azure AD-módosítások szinkronizálása. A fiók is lehetővé teszi, hogy szinkronizálás szolgáltatásként az Azure ad-ben.
+Ezek a hitelesítő adatok csak hello telepítés során használt, és ne lehessen felhasználni hello telepítés befejezése után. Használt toocreate hello [Azure AD-fiókot](#azure-ad-service-account) módosítások tooAzure AD szinkronizálásához használt. hello fiók is lehetővé teszi, hogy szinkronizálás szolgáltatásként az Azure ad-ben.
 
-### <a name="permissions-for-the-created-ad-ds-account-for-express-settings"></a>A létrehozott Active Directory tartományi fiók számára gyorsbeállítások
-A [fiók](#active-directory-account) létrehozott olvasását és írását az AD DS-ben gyorsbeállítások létrehozásakor a következő engedélyekkel rendelkezik:
+### <a name="permissions-for-hello-created-ad-ds-account-for-express-settings"></a>Hello engedélyeinek létrehozott gyorsbeállítások AD DS-fiókjához
+Hello [fiók](#active-directory-account) olvasására vagy írására tooAD DS alábbi gyorsbeállítások létrehozásakor engedélyek hello kell létrehozni:
 
 | Engedély | A használt |
 | --- | --- |
@@ -66,75 +66,75 @@ A [fiók](#active-directory-account) létrehozott olvasását és írását az A
 | Új jelszó létrehozása |Felkészülés a jelszóvisszaírás engedélyezése |
 
 ## <a name="custom-settings-installation"></a>Egyéni beállítások telepítése
-Az Azure AD Connect 1.1.524.0 verziót, és később a lehetőséget, hogy az Active Directory való csatlakozáshoz használt fiók létrehozása az Azure AD Connect varázsló.  A korábbi szükséges, hogy a fiók létrejött-e a telepítés előtt. Ezt a fiókot kell megadni az engedélyeket található [az AD DS-fiók létrehozása](#create-the-ad-ds-account). 
+Az Azure AD Connect 1.1.524.0 verziót, és később hello beállítás toolet hello Azure AD Connect varázsló hello használt fiók tooconnect tooActive könyvtár létrehozása.  A korábbi szükséges, hogy létrejött-e hello fiók hello telepítés előtt. hello engedélyeket kell adnia ezt a fiókot található [hello AD DS-fiók létrehozása](#create-the-ad-ds-account). 
 
 | Varázslólap | Hitelesítő adatok gyűjtése | Szükséges jogosultságok | A használt |
 | --- | --- | --- | --- |
-| N/A |A telepítővarázsló futtató felhasználó |<li>A helyi kiszolgáló rendszergazdája</li><li>A teljes SQL Server használata esetén a felhasználónak kell-e rendszergazdai (SA) SQL-ben</li> |Alapértelmezés szerint hozza létre a helyi fiók, amely a [szinkronizálás a motor szolgáltatásfiók](#azure-ad-connect-sync-service-account). A fiók csak akkor jönnek létre, amikor a rendszergazda nem adja meg egy különös figyelmet. |
-| Szinkronizálási szolgáltatások, a szolgáltatás fiók lehetőséget telepítése |AD vagy a helyi felhasználói fiók hitelesítő adatait |Felhasználó, engedélyekkel a telepítő varázsló |Ha a rendszergazda ad meg egy fiókot, ez a fiók használatos szolgáltatásfiókként a szinkronizálási szolgáltatás. |
-| Csatlakozás az Azure AD szolgáltatáshoz |Az Azure Active directory hitelesítő adatok |Az Azure AD globális rendszergazdai szerepkörrel |<li>Az Azure AD-címtár-szinkronizálás engedélyezése.</li>  <li>Létrehozását a [Azure AD-fiókot](#azure-ad-service-account) lévő szinkronizálási műveletek használt Azure AD-ben.</li> |
-| Csatlakoztassa a címtárakat |A helyi Active Directorybeli hitelesítő adatokat az egyes erdőkhöz az Azure AD-csatlakozó |Az engedélyek a fejlesztendő funkciók engedélyezéséhez, és itt található: függő [az AD DS-fiók létrehozása](#create-the-ad-ds-account) |Ennek a fióknak írási és olvasási címtáradatok szinkronizálás során használatos. |
-| AD FS-kiszolgálók |Minden kiszolgálóhoz, a listában a a varázsló hitelesítő adatait gyűjti, amikor a felhasználó, a varázsló futtatása a bejelentkezési hitelesítő adatok nem elegendőek csatlakozás |Tartományi rendszergazda |Telepítés és konfigurálás a az AD FS kiszolgálói szerepkör. |
-| Webalkalmazás-proxy kiszolgálók |Minden kiszolgálóhoz, a listában a a varázsló hitelesítő adatait gyűjti, amikor a felhasználó, a varázsló futtatása a bejelentkezési hitelesítő adatok nem elegendőek csatlakozás |A célszámítógépen helyi rendszergazdai |Telepítés és konfigurálás a WAP-kiszolgálói szerepkör. |
-| Proxy megbízhatósági hitelesítő adatai |Összevonási szolgáltatás bizalmi kapcsolat hitelesítő adatait (a hitelesítő adatokat a proxy regisztrálása a FS megbízható tanúsítványt használ |Tartományi fiókot, amely az AD FS-kiszolgáló helyi rendszergazdája |A regisztráció FS-WAP megbízható tanúsítvány. |
-| AD FS szolgáltatásfiókjának, "Tartományi felhasználói fiók lehetőség használata" |AD-felhasználói fiókjának hitelesítő adatait |Tartományi felhasználó |Az AD felhasználói fiók, amelynek hitelesítő adatok megadása az AD FS szolgáltatás bejelentkezési fiókként szolgál. |
+| N/A |Felhasználó futó hello telepítési varázsló |<li>Hello helyi kiszolgáló rendszergazdája</li><li>Ha teljes SQL Server rendszert hello felhasználónak kell-e rendszergazdai (SA) SQL-ben</li> |Alapértelmezés szerint létrehoz hello helyi fiók, amely hello [szinkronizálás a motor szolgáltatásfiók](#azure-ad-connect-sync-service-account). hello fiók csak akkor jönnek létre, amikor Üdvözöljük a rendszergazdákat nem ad meg egy különös figyelmet. |
+| Szinkronizálási szolgáltatások, a szolgáltatás fiók lehetőséget telepítése |AD vagy a helyi felhasználói fiók hitelesítő adatait |Felhasználó, engedélyekkel hello telepítő varázsló |Üdvözöljük a rendszergazdákat egy fiókot adja meg, ha ez a fiók használatos hello szolgáltatásfiókként hello szinkronizálási szolgáltatás. |
+| TooAzure AD Connect |Az Azure Active directory hitelesítő adatok |Az Azure AD globális rendszergazdai szerepkörrel |<li>A hello Azure AD-címtár-szinkronizálás engedélyezése.</li>  <li>Hello létrehozása [Azure AD-fiókot](#azure-ad-service-account) lévő szinkronizálási műveletek használt Azure AD-ben.</li> |
+| Csatlakoztassa a címtárakat |Az egyes erdőkhöz, amely csatlakoztatott tooAzure AD a helyi Active Directorybeli hitelesítő adatokat |hello engedélyek függ, mely a szolgáltatások engedélyezése, és itt található: [hello AD DS-fiók létrehozása](#create-the-ad-ds-account) |Ez a fiók akkor használt tooread és írási címtáradatok szinkronizálás során. |
+| AD FS-kiszolgálók |Az egyes kiszolgálók hello listában a hello varázsló hitelesítő adatokat gyűjti, hello bejelentkezési hitelesítő adatok hello felhasználó hello varázsló futtatása esetén elegendő tooconnect |Tartományi rendszergazda |Telepítés és konfigurálás hello AD FS kiszolgálói szerepkör. |
+| Webalkalmazás-proxy kiszolgálók |Az egyes kiszolgálók hello listában a hello varázsló hitelesítő adatokat gyűjti, hello bejelentkezési hitelesítő adatok hello felhasználó hello varázsló futtatása esetén elegendő tooconnect |Helyi rendszergazda hello célszámítógépen |Telepítés és konfigurálás a WAP-kiszolgálói szerepkör. |
+| Proxy megbízhatósági hitelesítő adatai |Összevonási szolgáltatás bizalmi kapcsolat hitelesítő adatait (hello hitelesítő adatok hello proxy használ a tooenroll hello FS megbízható tanúsítványt |Tartományi fiókot, amely hello AD FS-kiszolgáló helyi rendszergazdája |A regisztráció FS-WAP megbízható tanúsítvány. |
+| AD FS szolgáltatásfiókjának, "Tartományi felhasználói fiók lehetőség használata" |AD-felhasználói fiókjának hitelesítő adatait |Tartományi felhasználó |hello AD felhasználói fiók, amelynek hitelesítő adatok megadása az AD FS hello szolgáltatás hello bejelentkezési fiókként szolgál. |
 
-### <a name="create-the-ad-ds-account"></a>Az AD DS-fiók létrehozása
-A fiók, meg kell adnia a **csatlakoztassa a címtárakat** lap szerepelnie kell az Active Directory telepítése előtt.  A megadott szükséges engedélyeket is kell rendelkeznie. A telepítővarázsló nem ellenőrzi az engedélyeket és probléma merül fel csak találhatók meg a szinkronizálás során.
+### <a name="create-hello-ad-ds-account"></a>Active Directory tartományi szolgáltatások hello-fiók létrehozása
+hello a megadott fióknak hello **csatlakoztassa a címtárakat** lap Active Directory korábbi tooinstallation jelen kell lennie.  Megadott hello szükséges engedélyeket is kell rendelkeznie. hello telepítővarázsló nem ellenőrzi a hello engedélyek és probléma merül fel csak találhatók meg a szinkronizálás során.
 
-Engedélyezi szükséges jogosultságokat az függ a választható szolgáltatásokat. Ha több tartományban vannak, az engedélyeket kell adni az erdőben lévő összes tartományban. Ha nem engedélyezi ezeket a szolgáltatásokat, az alapértelmezett **tartományi felhasználó** elegendő.
+Engedélyezi szükséges jogosultságokat hello választható szolgáltatások függ. Ha több tartományban vannak, hello kell adhatók engedélyek hello erdőben lévő összes tartományban. Ha nem engedélyezi a szolgáltatások, hello alapértelmezett **tartományi felhasználó** elegendő.
 
 | Szolgáltatás | Engedélyek |
 | --- | --- |
-| Az msDS-ConsistencyGuid szolgáltatás |Az msDS-ConsistencyGuid attribútum részletes ismertetését lásd: e írási engedélyekkel [tervezési alapelvek - msDS-ConsistencyGuid használata sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor). | 
+| Az msDS-ConsistencyGuid szolgáltatás |Írási engedélyek toohello msDS-ConsistencyGuid attribútum részletes ismertetését lásd: [tervezési alapelvek - msDS-ConsistencyGuid használata sourceAnchor](active-directory-aadconnect-design-concepts.md#using-msds-consistencyguid-as-sourceanchor). | 
 | A jelszó-szinkronizálás |<li>Változások replikálása</li>  <li>Replikálása Directory összes módosítása |
-| Hibrid Exchange-telepítés |Írási engedéllyel a dokumentált attribútumok [Exchange hibrid visszaírási](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback) felhasználók, csoportok és ügyfelek. |
-| Exchange E-mail nyilvános mappa |Olvasási engedéllyel a dokumentált attribútumok [Exchange E-mail nyilvános mappa](active-directory-aadconnectsync-attributes-synchronized.md#exchange-mail-public-folder) nyilvános mappák. | 
-| Jelszóvisszaíró |Írási engedéllyel a dokumentált attribútumok [Ismerkedés a jelszókezeléssel](../active-directory-passwords-writeback.md) a felhasználók számára. |
+| Hibrid Exchange-telepítés |Írás a dokumentált engedélyeket toohello attribútumok [Exchange hibrid visszaírási](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback) felhasználók, csoportok és ügyfelek. |
+| Exchange E-mail nyilvános mappa |Olvasási engedélyek toohello attribútumok dokumentált [Exchange E-mail nyilvános mappa](active-directory-aadconnectsync-attributes-synchronized.md#exchange-mail-public-folder) nyilvános mappák. | 
+| Jelszóvisszaíró |Írás a dokumentált engedélyeket toohello attribútumok [Ismerkedés a jelszókezeléssel](../active-directory-passwords-writeback.md) a felhasználók számára. |
 | Eszközvisszaíró |A PowerShell-parancsfájllal megadott engedélyeket [eszközvisszaíró](active-directory-aadconnect-feature-device-writeback.md). |
 | Group writeback (Csoportvisszaíró) |Olvassa el, létrehozási, frissítési és törlési objektumokat csoport a szinkronizált **Office 365-csoportok**.  További információ: [Csoportvisszaírásról](active-directory-aadconnect-feature-preview.md#group-writeback).|
 
 ## <a name="upgrade"></a>Frissítés
-Az Azure AD Connect egyik verzióról történő frissítésekor egy új kiadását, a következő engedélyekre van szükség:
+Az Azure AD Connect tooa új kiadási verziójához frissítésekor kell hello alábbi engedélyek használata:
 
 | Egyszerű | Szükséges jogosultságok | A használt |
 | --- | --- | --- |
-| A telepítővarázsló futtató felhasználó |A helyi kiszolgáló rendszergazdája |A frissítés bináris fájljait. |
-| A telepítővarázsló futtató felhasználó |ADSyncAdmins tagja |Szinkronizálási szabályok és más konfigurációs módosításokat. |
-| A telepítővarázsló futtató felhasználó |A teljes SQL server használata esetén: DBO (vagy hasonlót), a Szinkronizáló vezérlő adatbázisának |Adatbázis szintű módosításokat végezni, például táblák frissítése új oszlopokkal. |
+| Felhasználó futó hello telepítési varázsló |Hello helyi kiszolgáló rendszergazdája |A frissítés bináris fájljait. |
+| Felhasználó futó hello telepítési varázsló |ADSyncAdmins tagja |TooSync szabályok és egyéb konfigurációs módosítása. |
+| Felhasználó futó hello telepítési varázsló |A teljes SQL server használata esetén: DBO (vagy hasonlót) hello szinkronizálási motor adatbázis |Adatbázis szintű módosításokat végezni, például táblák frissítése új oszlopokkal. |
 
-## <a name="more-about-the-created-accounts"></a>További információ a létrehozott fiókok
+## <a name="more-about-hello-created-accounts"></a>További információ az hello fiókok létrehozása
 ### <a name="active-directory-account"></a>Active Directory-fiókkal
-Ha az expressz beállításokat használja, majd egy fiókot az Active Directoryban, amely a szinkronizáláshoz használt jön létre. A létrehozott fiók az erdő gyökértartományának a felhasználók a tárolóban található, és rendelkezik a név előtagként **MSOL_**. A fiók létrejön egy hosszú összetett jelszót, amely nem jár le. Ha a jelszóházirend abban a tartományban, győződjön meg arról, hogy hosszú, és bonyolultabb jelszavakat szeretné engedélyezni az ehhez a fiókhoz.
+Ha az expressz beállításokat használja, majd egy fiókot az Active Directoryban, amely a szinkronizáláshoz használt jön létre. hello létrehozott fiók hello erdő szintű gyökértartomány hello felhasználók tárolóban található, és rendelkezik a név előtagként **MSOL_**. hello fiók jön létre egy hosszú összetett jelszót, amely nem jár le. Ha a jelszóházirend abban a tartományban, győződjön meg arról, hogy hosszú, és bonyolultabb jelszavakat szeretné engedélyezni az ehhez a fiókhoz.
 
 ![AD-fiókot](./media/active-directory-aadconnect-accounts-permissions/adsyncserviceaccount.png)
 
-Ha egyéni beállításokat használja, majd telepítésért felelős a fiók létrehozásához, a telepítés megkezdése előtt.
+Ha egyéni beállításokat használja, majd való telepítésért felelős hello fiók létrehozása hello telepítésének megkezdése előtt.
 
 ### <a name="azure-ad-connect-sync-service-account"></a>Az Azure AD Connect szinkronizáláshoz használt szolgáltatásfióknak
-A szinkronizálási szolgáltatás eltérő fiókkal is futhat. Csak akkor futtathatók a **virtuális szolgáltatásfiók** (Szállítóspecifikus), egy **csoportosan felügyelt szolgáltatásfiók** (csoportosan felügyelt szolgáltatásfiókot vagy önállóan felügyelt szolgáltatásfiókot), vagy egy felhasználói fiókot. A támogatott beállítások módosított rendelkező a 2017. április kiadása csatlakozás, ha így tesz, friss telepítését. Ha az Azure AD Connect egy korábbi kiadásáról frissít, a további beállítások nem érhetők el.
+hello szinkronizálási szolgáltatás eltérő fiókkal is futhat. Csak akkor futtathatók a **virtuális szolgáltatásfiók** (Szállítóspecifikus), egy **csoportosan felügyelt szolgáltatásfiók** (csoportosan felügyelt szolgáltatásfiókot vagy önállóan felügyelt szolgáltatásfiókot), vagy egy felhasználói fiókot. hello támogatott beállítások módosított rendelkező hello Connect verzióját 2017. április Ha így tesz, friss telepítését. Ha az Azure AD Connect egy korábbi kiadásáról frissít, a további beállítások nem érhetők el.
 
 | Fiók típusa | Telepítési lehetőség | Leírás |
 | --- | --- | --- |
-| [Virtuális fiók](#virtual-service-account) | Az expressz és egyéni, 2017. április és újabb verziók | Ez a beállítás az összes Expressz telepítés, kivéve a tartományvezérlővé való telepítéséhez használt. Az egyéni akkor az alapértelmezett beállítás kivéve, ha egy másik kapcsolót. |
-| [Csoportosan felügyelt szolgáltatásfiók](#group-managed-service-account) | Egyéni, 2017. április és újabb verziók | Ha távoli SQL-kiszolgálót használ, majd javasoljuk a csoportosan felügyelt szolgáltatásfiók használatához. |
+| [Virtuális fiók](#virtual-service-account) | Az expressz és egyéni, 2017. április és újabb verziók | Ez a lehetőség hello használt összes Expressz telepítés, kivéve a tartományvezérlővé való telepítéséhez. Egyéni célszerű hello alapértelmezett beállítást, hacsak egy másik kapcsolót. |
+| [Csoportosan felügyelt szolgáltatásfiók](#group-managed-service-account) | Egyéni, 2017. április és újabb verziók | Ha távoli SQL server, akkor azt javasoljuk toouse csoport felügyelt szolgáltatásfiók. |
 | [Felhasználói fiók](#user-account) | Az expressz és egyéni, 2017. április és újabb verziók | Egy felhasználói fiókot AAD_ előtagként csak telepített Windows Server 2008 és a tartományvezérlőre van telepítve, a telepítés során jön létre. |
 | [Felhasználói fiók](#user-account) | Az expressz és egyéni, 2017. március és korábbi | AAD_ előtagként helyi fiók a telepítés során jön létre. Egyéni telepítés használata esetén egy másik fiókot is megadható. |
 
-Ha a 2017 build március használ Connect vagy korábbi, majd nem, állítsa vissza a szolgáltatásfiók jelszavát, mert a Windows megsemmisít a titkosítási kulcsok biztonsági okokból. A fiók nem módosítható olyan más fiók az Azure AD Connect újratelepítése nélkül. Ha frissít egy elkészítési 2017. április, vagy később, akkor az támogatott a fiók, de a jelszó nem módosíthatja a használt fiók.
+Ha a csatlakozás a 2017. március build használ, vagy korábbi, akkor nem kell alaphelyzetbe óta Windows hello szolgáltatás fiók jelszavának hello megsemmisít hello titkosítási kulcsok biztonsági okokból. Az Azure AD Connect újratelepítése nélkül hello fiók tooany más fiókja nem módosítható. Ha verzióról tooa build 2017. április vagy újabb, majd támogatott toochange hello hello szolgáltatási fiók jelszava de hello művelet végrehajtására használt fiók nem módosítható.
 
 > [!Important]
-> Beállíthatja a szolgáltatásfiók csak az első telepítést. A telepítés befejezése után a szolgáltatásfiók váltása nem támogatott.
+> Hello szolgáltatás fiókja csak első telepítési adhatók meg. Nem támogatott toochange hello szolgáltatásfiók hello telepítés befejezése után.
 
-Ez a táblázat az alapértelmezett ajánlott és támogatott beállítások esetében a szinkronizáláshoz használt szolgáltatásfióknak a.
+Ez a táblázat hello alapértelmezés szerint ajánlott, a, és hello támogatott beállításai szinkronizálva szolgáltatásfiók.
 
 Jelmagyarázat:
 
-- **A félkövér betűvel írott** azt jelzi, az alapértelmezett beállítás, és a legtöbb esetben az ajánlott.
-- *Dőlt* azt jelzi, az ajánlott, ha nem az alapértelmezett beállítás.
+- **A félkövér betűvel írott** hello alapértelmezett beállítás azt jelzi, és a legtöbb esetben hello ajánlott beállítás.
+- *Dőlt* jelzi hello javasolt beállítást, amikor nincs hello alapértelmezett beállítás.
 - 2008 - alapértelmezett beállítás a Windows Server 2008 rendszeren
 - A nem félkövér - támogatott beállítás
-- Helyi fiók – helyi felhasználói fiók a kiszolgálón
+- Helyi fiók – helyi felhasználói fiók hello kiszolgálón
 - Tartományi fiók - tartományi felhasználói fiók
 - önállóan felügyelt szolgáltatásfiókot - [önálló felügyelt szolgáltatásfiók](https://technet.microsoft.com/library/dd548356.aspx)
 - csoportosan felügyelt szolgáltatásfiók - [csoportos felügyelt szolgáltatásfiók](https://technet.microsoft.com/library/hh831782.aspx)
@@ -150,46 +150,46 @@ Virtuális szolgáltatásfiók egy olyan fiókkal, amely egy jelszó és a Windo
 
 ![SZÁLLÍTÓSPECIFIKUS](./media/active-directory-aadconnect-accounts-permissions/aadsyncvsa.png)
 
-A Szállítóspecifikus kívánják használható forgatókönyvek ugyanazon a kiszolgálón a szinkronizálási motor és az SQL esetén. Ha távoli SQL, akkor használja a [csoportosan felügyelt szolgáltatásfiók](#managed-service-account) helyette.
+Szállítóspecifikus hello a hello hello szinkronizálási motor és az SQL esetén a forgatókönyvekben használt tervezett toobe ugyanazon a kiszolgálón. Ha távoli SQL, akkor azt javasoljuk, hogy toouse egy [csoportosan felügyelt szolgáltatásfiók](#managed-service-account) helyette.
 
-Ez a funkció használatához Windows Server 2008 R2 vagy újabb. Ha az Azure AD Connect telepítése Windows Server 2008, majd a telepítés visszaáll használatára egy [felhasználói fiók](#user-account) helyette.
+Ez a funkció használatához Windows Server 2008 R2 vagy újabb. Ha az Azure AD Connect telepítése Windows Server 2008, majd hello telepítési visszavált toousing egy [felhasználói fiók](#user-account) helyette.
 
 #### <a name="group-managed-service-account"></a>Csoportosan felügyelt szolgáltatásfiók
-Ha távoli SQL-kiszolgálón, akkor használatát javasoljuk a **csoport felügyelt szolgáltatásfiók**. Hogyan készíti elő az Active Directory-csoport által felügyelt szolgáltatásfiókhoz további információkért lásd: [csoportosan felügyelt szolgáltatásfiókok áttekintése](https://technet.microsoft.com/library/hh831782.aspx).
+Ha távoli SQL-kiszolgálón, akkor azt javasoljuk, hogy toousing egy **csoport felügyelt szolgáltatásfiók**. További információt a tooprepare az Active Directory csoport által felügyelt szolgáltatásfiók, lásd: [csoportosan felügyelt szolgáltatásfiókok áttekintése](https://technet.microsoft.com/library/hh831782.aspx).
 
-Ezt a beállítást, a használandó a [szükséges összetevők telepítése](active-directory-aadconnect-get-started-custom.md#install-required-components) lapon jelölje be **meglévő szolgáltatásfiók használata**, és válassza ki **felügyelt szolgáltatásfiók**.  
+Ezt a beállítást, a hello toouse [szükséges összetevők telepítése](active-directory-aadconnect-get-started-custom.md#install-required-components) lapon jelölje be **meglévő szolgáltatásfiók használata**, és válassza ki **felügyelt szolgáltatásfiók**.  
 ![SZÁLLÍTÓSPECIFIKUS](./media/active-directory-aadconnect-accounts-permissions/serviceaccount.png)  
-Használata is támogatott egy [önálló felügyelt szolgáltatásfiók](https://technet.microsoft.com/library/dd548356.aspx). Azonban ezek csak használhatók a helyi számítógépen, és nincs előnye is használhatja őket az alapértelmezett virtuális szolgáltatásfiók alatt.
+Célszerű is támogatott toouse egy [önálló felügyelt szolgáltatásfiók](https://technet.microsoft.com/library/dd548356.aspx). Azonban ezek csak a helyi számítógépen hello használható, és nem juttatás toouse van hello alapértelmezett virtuális szolgáltatásfiók alatt őket.
 
-A funkció használatához Windows Server 2012 vagy újabb. Ha egy régebbi operációs rendszert használ, és használjon távoli SQL, akkor kell használni egy [felhasználói fiók](#user-account).
+A funkció használatához Windows Server 2012 vagy újabb. Ha egy régebbi operációs rendszer toouse kell, és használjon távoli SQL, akkor kell használnia egy [felhasználói fiók](#user-account).
 
 #### <a name="user-account"></a>Felhasználói fiók
-A helyi szolgáltatás fiók akkor hozza létre a telepítési varázsló (kivéve, ha meg kell adnia a fiókot használja az egyéni beállítások). A fiók nem előzi **AAD_** és a tényleges szinkronizálási szolgáltatáshoz használt fiókként szándékozik futtatni. Ha az Azure AD Connect tartományvezérlőre telepíti, a fiók a tartományban jön létre. A **AAD_** szolgáltatás fiókja a tartományban kell lennie, ha:
+A helyi szolgáltatás fiók létrehozása hello telepítési varázslóval (kivéve, ha a fiók toouse hello meg a egyéni beállítások). hello fiók van hozzáfűzik **AAD_** és hello tényleges szinkronizálási szolgáltatás toorun, használatos. Ha az Azure AD Connect tartományvezérlőre telepíti, a hello fiók hello tartományban jön létre. Hello **AAD_** szolgáltatásfiók hello tartományban kell lennie, ha:
    - SQL server rendszert futtató távoli kiszolgáló használata
    - egy hitelesítést igénylő proxyt használ
 
 ![Szolgáltatásfiók](./media/active-directory-aadconnect-accounts-permissions/syncserviceaccount.png)
 
-A fiók létrejön egy hosszú összetett jelszót, amely nem jár le.
+hello fiók jön létre egy hosszú összetett jelszót, amely nem jár le.
 
-Ez a fiók biztonságos módon a más fiókoknak a jelszavak tárolására szolgál. Ezek más fiókokat a jelszavak tárolja az adatbázisban titkosított formában. A titkosítási szolgáltatások titkos kulcsú titkosítás Windows Data Protection API (DPAPI) segítségével védi a titkosítás a titkos kulcsok.
+Ez a fiók biztonságos módon más fiókokat használt toostore hello jelszavait hello van. Ezek más fiókokat a jelszavak titkosított hello adatbázisban tárolja. hello titkos kulcsok hello titkosításikulcs hello titkosítási szolgáltatások titkos kulcsú titkosítás Windows Data Protection API (DPAPI) használatával védi.
 
-Ha a teljes SQL-kiszolgálót használ, a szolgáltatásfiók nem a szinkronizálási motor létrehozott adatbázis DBO. A szolgáltatás nem fognak működni, mint bármely más engedélyekkel. Egy SQL-bejelentkezési is létrejön.
+Ha teljes SQL Server használatához hello szolgáltatásfiók hello hello szinkronizálási motor hello létrehozott adatbázis DBO. hello szolgáltatást nem fognak működni, mint bármely más engedélyekkel. Egy SQL-bejelentkezési is létrejön.
 
-A fiók is engedéllyel rendelkezik a fájlokat, beállításkulcsokat és más objektumok, a szinkronizálási motor kapcsolódik.
+hello fiók engedélyek toofiles, beállításkulcsokat és más objektumok kapcsolódó toohello szinkronizálási motor is megkapja.
 
 ### <a name="azure-ad-service-account"></a>Azure AD-szolgáltatásfiók
-A szinkronizálási szolgáltatás használata az Azure AD-fiók jön létre. Ez a fiók a megjelenített név alapján azonosítható.
+Hello szinkronizálási szolgáltatás használata az Azure AD-fiók jön létre. Ez a fiók a megjelenített név alapján azonosítható.
 
 ![AD-fiókot](./media/active-directory-aadconnect-accounts-permissions/aadsyncserviceaccount.png)
 
-A második rész a felhasználónév azonosíthatók a a fiókot használja a kiszolgáló nevét. A képen látható a kiszolgáló neve, FABRIKAMCON. Ha még kiszolgáló átmeneti, minden kiszolgáló rendelkezik saját fiók.
+hello hello szolgáltatásfiókjától hello nevét használja a második részében hello hello felhasználónév azonosítható. Hello kép hello kiszolgáló nevének megadása FABRIKAMCON. Ha még kiszolgáló átmeneti, minden kiszolgáló rendelkezik saját fiók.
 
-A fiók létrejön egy hosszú összetett jelszót, amely nem jár le. Egy különös szerepet kap **szinkronizálási Címtárfiókjainak** , amely jogosult csak címtár-szinkronizálási feladatok elvégzéséhez. Ez a különleges beépített szerepkör nem adható meg az Azure AD Connect varázsló kívül. Az Azure-portálon jeleníti meg ezt a fiókot a szerepkör **felhasználói**.
+hello szolgáltatásfiók létrejön egy hosszú összetett jelszót, amely nem jár le. Egy különös szerepet kap **szinkronizálási Címtárfiókjainak** , amelyhez csak a engedélyek tooperform directory szinkronizálási feladatok. Ez a különleges beépített szerepkör hello Azure AD Connect varázsló kívül nem adható meg. hello Azure-portálon jeleníti meg ezt a fiókot hello szerepkör **felhasználói**.
 
-Nincs maximális hossza 20 szinkronizálási szolgáltatás fiókok Azure AD-ben. A meglévő Azure AD-szolgáltatási fiókok listájának lekérdezése az Azure AD-ben, futtassa a következő Azure AD PowerShell-parancsmagot:`Get-AzureADDirectoryRole | where {$_.DisplayName -eq "Directory Synchronization Accounts"} | Get-AzureADDirectoryRoleMember`
+Nincs maximális hossza 20 szinkronizálási szolgáltatás fiókok Azure AD-ben. tooget hello meglévő az Azure AD szolgáltatás fiókok listáját az Azure AD-ben futtassa a következő Azure AD PowerShell-parancsmag hello:`Get-AzureADDirectoryRole | where {$_.DisplayName -eq "Directory Synchronization Accounts"} | Get-AzureADDirectoryRoleMember`
 
-Eltávolítja a nem használt Azure AD szolgáltatás fiókjai, futtassa a következő Azure AD PowerShell-parancsmagot:`Remove-AzureADUser -ObjectId <ObjectId-of-the-account-you-wish-to-remove>`
+nem használt tooremove az Azure AD szolgáltatásfiókok, futtassa a következő Azure AD PowerShell-parancsmag hello:`Remove-AzureADUser -ObjectId <ObjectId-of-the-account-you-wish-to-remove>`
 
 ## <a name="next-steps"></a>Következő lépések
 További információ: [Helyszíni identitások integrálása az Azure Active Directoryval](../active-directory-aadconnect.md).

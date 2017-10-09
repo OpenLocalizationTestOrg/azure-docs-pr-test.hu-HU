@@ -1,6 +1,6 @@
 ---
-title: "Azure belső terheléselosztó létrehozása – PowerShell | Microsoft Docs"
-description: "Ismerje meg, hogyan hozható létre belső terheléselosztó a PowerShell használatával a Resource Managerben"
+title: "egy Azure belső aaaCreate terheléselosztó - PowerShell |} Microsoft Docs"
+description: "Ismerje meg, hogyan toocreate egy belső terheléselosztó PowerShell erőforrás-kezelő használatával"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 7bd31ab8f52ec5e81f6966000554be46eaa59396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b9657c77aa32a142de49ff7871ed6a396b22223
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-internal-load-balancer-using-powershell"></a>Belső terheléselosztó létrehozása a PowerShell használatával
 
@@ -31,29 +31,29 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](load-balancer-get-started-ilb-classic-ps.md) helyett javasol.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../azure-resource-manager/resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](load-balancer-get-started-ilb-classic-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-A következő lépések elmagyarázzák, hogyan hozható létre belső terheléselosztó az Azure Resource Manager és a PowerShell használatával. Az Azure Resource Managerrel a belső terheléselosztó létrehozásához szükséges elemek konfigurálása egyenként történik, majd a kombinálásukkal létrehozható egy terheléselosztó.
+hello lépések azt ismertetik, hogyan toocreate egy belső terheléselosztó Azure Resource Manager használatával a PowerShell használatával. Az Azure Resource Manager hello elemek toocreate egy belső elosztott terhelésű egyedien vannak konfigurálva és majd egyesített toocreate terheléselosztót.
 
-A terheléselosztó üzembe helyezéséhez a következő objektumokat kell létrehozni és konfigurálni:
+Toocreate kell, és a következő objektumok toodeploy terheléselosztó hello konfigurálása:
 
-* Előtér-IP-konfiguráció – a magánhálózati IP-címet fogja konfigurálni a bejövő hálózati forgalomhoz
-* Háttércímkészlet – azokat a hálózati adaptereket fogja konfigurálni, amelyek az előtér-IP-címkészlettől érkező elosztott terhelésű forgalmat fogadják
-* Terheléselosztási szabályok – a forrás- és a helyi port konfigurációja a terheléselosztóhoz.
-* Mintavételek – konfigurálja az állapotmintákat a virtuálisgép-példányok számára.
-* Bejövő NAT-szabályok – konfigurálja a virtuálisgép-példányok valamelyikének közvetlen elérésére vonatkozó portszabályokat.
+* Záró IP-konfiguráció első - konfigurálja a bejövő hálózati forgalom hello magánhálózati IP-cím
+* Háttér címkészletet - hello hálózati adapter, amely megkapja az előtérbeli IP-készletből származó hello terheléselosztott forgalom fogja konfigurálni.
+* Terheléselosztási szabályok, mert a forrás- és helyi port konfigurálása az hello belső terheléselosztót.
+* Mintavétel - állapot állapotmintáihoz hello hello virtuálisgép-példányok konfigurálja.
+* Bejövő NAT-szabályok – hello port szabályok toodirectly elérhetősége hello virtuálisgép-példányok egyik konfigurálható.
 
 További információkat szerezhet a terheléselosztónak az Azure Resource Managerben használt összetevőiről [Az Azure Resource Manager által nyújtott támogatás a terheléselosztó számára](load-balancer-arm.md) című részben.
 
-A következő lépések elmagyarázzák, hogyan kell terheléselosztót konfigurálni két virtuális gép között.
+hello következő részben megtudhatja, hogyan tooconfigure között két virtuális gép egy terheléselosztó.
 
-## <a name="setup-powershell-to-use-resource-manager"></a>A PowerShell beállítása a Resource Manager használatához
+## <a name="setup-powershell-toouse-resource-manager"></a>A telepítő PowerShell toouse erőforrás-kezelő
 
-Ellenőrizze, hogy a PowerShellhez az Azure-modul legújabb üzemi verziójával rendelkezik-e, és hogy a PowerShell megfelelően van-e beállítva az Azure-előfizetése eléréséhez.
+Győződjön meg arról, hello legújabb éles verziója van hello Azure modul PowerShell, és a PowerShell megfelelően beállítani tooaccess az Azure-előfizetéssel rendelkezik.
 
 ### <a name="step-1"></a>1. lépés
 
@@ -63,17 +63,17 @@ Login-AzureRmAccount
 
 ### <a name="step-2"></a>2. lépés
 
-Keresse meg a fiókot az előfizetésekben
+Hello előfizetések hello fiók ellenőrzése
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-A rendszer arra kéri, hogy végezzen hitelesítést a hitelesítő adataival.
+Rákérdezéses tooAuthenticate fogja a hitelesítő adataival.
 
 ### <a name="step-3"></a>3. lépés
 
-Válassza ki, hogy melyek Azure-előfizetését használja.
+Válassza ki, amely az Azure-előfizetések toouse.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -87,13 +87,13 @@ Hozzon létre egy új erőforráscsoportot (hagyja ki ezt a lépést, ha egy meg
 New-AzureRmResourceGroup -Name NRP-RG -location "West US"
 ```
 
-Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ez szolgál az erőforráscsoport erőforrásainak alapértelmezett helyeként. Győződjön meg arról, hogy a terheléselosztó létrehozására irányuló összes parancs ugyanazt az erőforráscsoportot fogja használni.
+Az Azure Resource Manager megköveteli, hogy minden erőforráscsoport megadjon egy helyet. Ez az erőforráscsoport erőforrások hello alapértelmezett helye szolgál. Ellenőrizze, hogy az összes parancs fogja használni a terheléselosztók toocreate hello azonos erőforráscsoportot.
 
-A fenti példában létrehoztunk egy „NRP-RG” nevű erőforráscsoportot, amelynek a helye az USA nyugati régiója, „West US”.
+Hello jelenleg a fenti példában létrehozott egy erőforráscsoport neve "NRP-RG" és "Velünk nyugati" helyen.
 
 ## <a name="create-virtual-network-and-a-private-ip-address-for-front-end-ip-pool"></a>Virtuális hálózat és magánhálózati IP-cím létrehozása az előtér-IP-címkészlethez
 
-Létrehoz egy alhálózatot a virtuális hálózathoz, és hozzárendeli a $backendSubnet változóhoz
+Létrehoz egy alhálózatot hello virtuális hálózathoz, és hozzárendeli a toovariable $backendSubnet
 
 ```powershell
 $backendSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -AddressPrefix 10.0.2.0/24
@@ -105,15 +105,15 @@ Virtuális hálózat létrehozása:
 $vnet= New-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $backendSubnet
 ```
 
-Létrehozza a virtuális hálózatot, és az lb-subnet-be alhálózatot hozzáadja az NRPVNet virtuális hálózathoz, majd hozzárendeli a $vnet változóhoz
+Hello virtuális hálózatot hoz létre és hello alhálózati toohello lb-alhálózat-lehet virtuális hálózati NRPVNet hozzáadja, és hozzárendeli toovariable $vnet
 
 ## <a name="create-front-end-ip-pool-and-backend-address-pool"></a>Előtér-IP-címkészlet és háttércímkészlet létrehozása
 
-Előtér-IP-címkészlet beállítása a terheléselosztóhoz tartozó bejövő hálózati forgalomhoz, valamint háttér-címkészlet beállítása a kiegyensúlyozott terhelésű forgalom fogadásához.
+Olyan előtérbeli IP-címkészlet a bejövő hello beállítása terheléselosztó hálózati forgalom és a háttérkiszolgáló cím készlet tooreceive hello terheléselosztott forgalom betöltése.
 
 ### <a name="step-1"></a>1. lépés
 
-Előtér IP-címkészlet létrehozása a 10.0.2.5 magánhálózati IP-cím használatával a bejövő hálózati forgalom végpontjául szolgáló 10.0.2.0/24 alhálózathoz.
+Hozzon létre egy hello alhálózati 10.0.2.0/24 hello bejövő hálózati forgalom végpont használandó hello magánhálózati IP-cím 10.0.2.5 használ előtérbeli IP-címkészletet.
 
 ```powershell
 $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -PrivateIpAddress 10.0.2.5 -SubnetId $vnet.subnets[0].Id
@@ -121,7 +121,7 @@ $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -Private
 
 ### <a name="step-2"></a>2. lépés
 
-Állítson be egy háttércímkészletet az előtér-IP-címkészletből bejövő forgalom fogadásához:
+Állítsa be egy háttér címkészletet tooreceive bejövő forgalom használt előtérbeli IP-készletből:
 
 ```powershell
 $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backend"
@@ -129,7 +129,7 @@ $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backen
 
 ## <a name="create-lb-rules-nat-rules-probe-and-load-balancer"></a>LB-szabályok, NAT-szabályok, mintavétel és terheléselosztó létrehozása
 
-Az előtér-IP-készlet és a háttércímkészlet létrehozása után lére kell hoznia a terheléselosztó-erőforráshoz tartozó szabályokat is:
+Miután létrehozta a hello előtérbeli IP-készlet és hello háttércímkészletre, toohello terheléselosztó erőforrást fog tartozni toocreate hello szabályok lesz szüksége:
 
 ### <a name="step-1"></a>1. lépés
 
@@ -143,16 +143,16 @@ $healthProbe = New-AzureRmLoadBalancerProbeConfig -Name "HealthProbe" -RequestPa
 $lbrule = New-AzureRmLoadBalancerRuleConfig -Name "HTTP" -FrontendIpConfiguration $frontendIP -BackendAddressPool $beAddressPool -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80
 ```
 
-A fenti példa a következő elemeket hozza létre:
+hello példa a fenti hoz létre a következő elemek hello:
 
-* egy NAT-szabályt, amely a 3441-es portra érkező összes bejövő forgalmat a 3389-es portra továbbítja.
-* egy második NAT-szabályt, amely a 3442-es portra érkező összes bejövő forgalmat a 3389-es portra továbbítja.
-* egy terheléselosztó-szabályt, amely a nyilvános 80-as portra érkező összes bejövő forgalom terhelését elosztja a háttércímkészletben szereplő 80-as helyi porton.
-* egy mintavételi szabályt, amely a „HealthProbe.aspx” elérési út állapotát fogja ellenőrizni
+* NAT-szabály, amely minden bejövő forgalom tooport 3441 tooport 3389-es kerül.
+* második NAT-szabályt hozhat létre, amely minden bejövő forgalom tooport 3442 tooport 3389-es kerül.
+* olyan terheléselosztó szabályhoz, amely betölti a nyilvános port 80 toolocal 80-as portján hello háttér címkészletet minden bejövő forgalom elosztása.
+* a mintavétel szabályt, amely ellenőrzi a elérési út "HealthProbe.aspx" hello állapotinformációit
 
 ### <a name="step-2"></a>2. lépés
 
-Hozza létre a terheléselosztót az összes objektum (NAT-szabályok, terheléselosztó-szabályok, mintavételi konfigurációk) együttes hozzáadásával:
+Minden objektumok (NAT-szabályok, Load balancer szabályok, mintavételi konfigurációk) együtt hozzáadása hello terheléselosztó létrehozása:
 
 ```powershell
 $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Location "West US" -FrontendIpConfiguration $frontendIP -InboundNatRule $inboundNATRule1,$inboundNatRule2 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
@@ -160,11 +160,11 @@ $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Loc
 
 ## <a name="create-network-interfaces"></a>Hálózati adapterek létrehozása
 
-Miután létrehozta a belső terheléselosztót, meg kell határoznia a NAT-szabályokat és a mintavételeket, illetve hogy mely hálózati adapterek fogadják majd a bejövő, elosztott terhelésű hálózati forgalmat. Ebben az esetben a hálózati adapter önállóan van konfigurálva, és később hozzárendelhető egy virtuális géphez.
+Miután létrehozta a belső terheléselosztó hello, meg kell adnia mely hálózati csatolók hello bejövő hálózati forgalmat, NAT-szabályok és a mintavételi fog kapni. hello hálózati illesztő ebben az esetben külön-külön van konfigurálva, és rendelhető tooa virtuális gépek később.
 
 ### <a name="step-1"></a>1. lépés
 
-A hálózati adapterek létrehozásához olvassa be az erőforrásul szolgáló virtuális hálózatot és alhálózatot:
+Hello erőforrást beolvasni a virtuális hálózati és alhálózati toocreate hálózati adapterek:
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
@@ -172,7 +172,7 @@ $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
 $backendSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet
 ```
 
-Ez a lépés egy olyan hálózati adaptert hoz létre, amely a terheléselosztó háttérkészletéhez fog tartozni, és társítja azt az adott hálózati adapter RDP-jére vonatkozó első NAT-szabályhoz:
+Ebben a lépésben létrehoz egy hálózati adapter, amely toohello load balancer háttérkészlethez tartozik, és hello első NAT-szabályhoz társítani RDP a hálózati adapter:
 
 ```powershell
 $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic1-be -Location "West US" -PrivateIpAddress 10.0.2.6 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[0]
@@ -182,13 +182,13 @@ $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-n
 
 Hozzon létre egy második hálózati adaptert LB-Nic2-BE néven:
 
-Ez a lépés létrehoz egy második hálózati adaptert, hozzárendeli azt a terheléselosztó ugyanazon háttérkészletéhez, és társítja az RDP-hez létrehozott második NAT-szabályhoz:
+Ebben a lépésben létrehoz egy második hálózati adapter, toohello hozzárendelése vissza az azonos terheléselosztóhoz készlet végén, és RDP társítása hello második NAT-szabályának létrehozása:
 
 ```powershell
 $backendnic2= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic2-be -Location "West US" -PrivateIpAddress 10.0.2.7 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[1]
 ```
 
-A végeredmény a következőképpen fog megjelenni:
+hello végeredménynek hello következő jelennek meg:
 
     $backendnic1
 
@@ -240,17 +240,17 @@ Várt kimenet:
 
 ### <a name="step-3"></a>3. lépés
 
-Az Add-AzureRmVMNetworkInterface paranccsal rendelje hozzá a hálózati adaptert egy virtuális géphez.
+Hello parancs Add-AzureRmVMNetworkInterface tooassign hello NIC tooa virtuális gép használja.
 
-A virtuális gép létrehozására és egy hálózati adapterhez történő hozzárendelésére vonatkozó lépésenkénti utasításokat a következő dokumentáció tartalmazza: [Azure-beli virtuális gép létrehozása a PowerShell használatával](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json).
+Hello lépésenkénti utasításokat toocreate egy virtuális gépet, és rendelje hozzá a tooa hálózati adapter található a következő hello dokumentáció: [egy Azure virtuális gép létrehozása PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json).
 
-## <a name="add-the-network-interface"></a>Hálózati adapter hozzáadása
+## <a name="add-hello-network-interface"></a>Hello hálózati adapter hozzáadása
 
-Ha már létrehozott egy virtuális gépet, a hálózati adaptert a következő lépések segítségével adhatja hozzá:
+Ha már létrehozott virtuális gépek, az alábbi lépésekkel hello hello hálózati adapter is hozzáadhat:
 
 ### <a name="step-1"></a>1. lépés
 
-Töltse be a terheléselosztó-erőforrást egy változóba (ha még nem tette meg). A használt változó neve $lb, és ugyanazokat a neveket használja, mint amiket a fent létrehozott terheléselosztó tartalmaz.
+Hello terheléselosztó erőforrást betölteni egy változóba, (Ha ezt nem tette meg, amely még). hello használt változó hívott $lb és a fentiekben létrehozott hello terheléselosztó erőforrást azonos nevek használata hello.
 
 ```powershell
 $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
@@ -258,7 +258,7 @@ $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
 
 ### <a name="step-2"></a>2. lépés
 
-Töltse be a háttér-konfigurációt egy változóba.
+Hello háttér konfigurációs tooa változó betölteni.
 
 ```powershell
 $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
@@ -266,7 +266,7 @@ $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -L
 
 ### <a name="step-3"></a>3. lépés
 
-Töltse be a már létrehozott hálózati adaptert egy változóba. a használt változó neve $nic. A használt hálózati adapter neve ugyanaz, mint a fenti példában.
+Hálózati illesztő már létrehozott hello betölteni egy változóba. hello változónév használt $ hálózati adaptert. hello a hálózati adapter neve használt hello ugyanaz a fenti példa hello számára.
 
 ```powershell
 $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
@@ -274,7 +274,7 @@ $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
 
 ### <a name="step-4"></a>4. lépés
 
-Módosítsa a hálózati adapter háttér-konfigurációját.
+Hello háttér konfigurációjának módosítása hello hálózati adapterén.
 
 ```powershell
 $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
@@ -282,18 +282,18 @@ $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
 
 ### <a name="step-5"></a>5. lépés
 
-Mentse a hálózati adapter objektumot.
+Hello hálózati illesztő objektum mentése.
 
 ```powershell
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-Miután hozzáadott egy hálózati adaptert a terheléselosztó háttérkészlethez, az elkezdi fogadni a hálózati forgalmat az adott terheléselosztó-erőforrásra vonatkozó terheléselosztási szabályok alapján.
+Egy adott hálózati csatoló toohello terheléselosztó háttérkészletének hozzáadása után kezdődik hello terheléselosztási szabályok az adott terheléselosztó erőforrást alapján hálózati forgalom fogadására.
 
 ## <a name="update-an-existing-load-balancer"></a>Meglévő terheléselosztó frissítése
 
 ### <a name="step-1"></a>1. lépés
-A fenti példából származó terheléselosztó felhasználásával a Get-AzureRmLoadBalancer paranccsal rendeljen hozzá egy terheléselosztó objektumot az $slb változóhoz
+A fenti példa hello hello terheléselosztót használ, rendeljen load balancer objektum toovariable használja a Get-AzureRmLoadBalancer $slb
 
 ```powershell
 $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
@@ -301,7 +301,7 @@ $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 
 ### <a name="step-2"></a>2. lépés
 
-A következő példában egy új bejövő NAT-szabályt fog hozzáadni egy meglévő terheléselosztóhoz az előtérkészlet 81-es portját és a háttérkészlet 8181-es portját használva
+A következő példa hello egy új bejövő forgalmat kezelő NAT-szabály hello előtér a 81-es port használatával adhat, és a port 8181 hello vissza az elosztott terhelésű meglévő készlet tooan végén
 
 ```powershell
 $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConfiguration $slb.FrontendIpConfigurations[0] -FrontendPort 81  -BackendPort 8181 -Protocol Tcp
@@ -309,7 +309,7 @@ $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConf
 
 ### <a name="step-3"></a>3. lépés
 
-A Set-AzureLoadBalancer paranccsal mentse az új konfigurációt
+Használja a Set-AzureLoadBalancer hello új konfiguráció mentése
 
 ```powershell
 $slb | Set-AzureRmLoadBalancer
@@ -317,14 +317,14 @@ $slb | Set-AzureRmLoadBalancer
 
 ## <a name="remove-a-load-balancer"></a>Terheléselosztó eltávolítása
 
-A Remove-AzureRmLoadBalancer paranccsal törölje a korábban létrehozott „NRP-LB” nevű terheléselosztót az „NRP-RG” nevű erőforráscsoportból
+Hello parancs Remove-AzureRmLoadBalancer toodelete "NRP-LB" erőforráscsoportban "NRP-RG" nevű nevű korábban létrehozott terheléselosztó használata
 
 ```powershell
 Remove-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 ```
 
 > [!NOTE]
-> A választható -Force kapcsolóval elkerülheti a törlésre vonatkozó kérdést.
+> Használhatja a hello választható kapcsoló - Force tooavoid hello kérdés törlésre.
 
 ## <a name="next-steps"></a>Következő lépések
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure számlázás vállalati API - elosztás és összegzése |} Microsoft Docs"
-description: "Tudnivalók Azure számlázási használati és RateCard API-k, amely biztosítja a trendeket és az Azure erőforrás-felhasználás."
+title: "aaaAzure számlázási vállalati API - egyenleg és összefoglalása |} Microsoft Docs"
+description: "Tudnivalók Azure számlázási használati és RateCard API-k, amelyek az Azure erőforrás-felhasználás és trendek használt tooprovide betekintést."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: f6b149f0e656d2263705048aa5b644f5bb4a5712
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b031de2c347e5abeacd11743cc96024434518918
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---balance-and-summary"></a>Jelentéskészítési API-k, a vállalati ügyfelek - elosztás és összegzése
 
-Az egyenleg és összefoglaló API kínál kiegyensúlyozza, új, Azure piactér szolgáltatási díjak, módosítását, és keretét díjak adatainak havi összegzése.
+hello egyenleg és összefoglaló API kínál kiegyensúlyozza, új, Azure piactér szolgáltatási díjak, módosítását, és keretét díjak adatainak havi összegzése.
 
 
 ##<a name="request"></a>Kérés 
-Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterprise-api.md). Ha a számlázott időszak nincs megadva, majd az aktuális elszámolási időszak adat.
+Közös fejléc tulajdonságok hozzáadott toobe igénylő megadott [Itt](billing-enterprise-api.md). Ha nincs megadva a számlázott időszak, majd a hello aktuális elszámolási időszak adat.
 
 |Módszer | Kérelem URI-azonosítója|
 |-|-|
@@ -35,7 +35,7 @@ Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterp
 |GET| {billingPeriod} {enrollmentNumber} https://consumption.Azure.com/v2/enrollments/ /billingPeriods/ / balancesummary|
 
 > [!Note]
-> API előzetes verzióját használja, a fenti URL-címben v1 v2 cserélje.
+> toouse hello előzetes verzióját API, v2 v1 a fenti URL-cím hello cserélje le.
 >
 
 ## <a name="response"></a>Válasz
@@ -77,11 +77,11 @@ Hozzá kell adni közös fejléc tulajdonságokhoz megadott [Itt](billing-enterp
 
 |Tulajdonság neve| Típus| Leírás
 |-|-|-|
-|id|Karakterlánc|Egy adott számlázási időszakban és a beléptetési egyedi azonosítója|
-|billingPeriodId|Karakterlánc |A számlázott időszak azonosítója|
-|currencyCode|Karakterlánc |A pénznemkódot|
-|beginningBalance|Decimális| A számlázott időszak kezdete egyenlege|
-|endingBalance|Decimális| A befejezési elosztás a számlázott időszak (időszakokra nyissa meg ezt a rendszer naponta frissíti)|
+|id|Karakterlánc|hello egy adott számlázási időszakban és a beléptetési egyedi azonosítója|
+|billingPeriodId|Karakterlánc |hello számlázási időszak-azonosító|
+|currencyCode|Karakterlánc |hello pénznemkódot|
+|beginningBalance|Decimális| hello számlázási időszak kezdete egyenlege hello|
+|endingBalance|Decimális| hello záró egyenleg hello számlázási időszak (időszakokra nyissa meg ezt a rendszer naponta frissíti)|
 |newPurchases|Decimális| Új beszerzési végösszeg|
 |beállításai|Decimális| Teljes módosítás összeg|
 |használata|Decimális| Teljes kötelezettségvállalás használata|

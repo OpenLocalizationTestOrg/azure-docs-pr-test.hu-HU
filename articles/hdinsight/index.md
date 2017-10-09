@@ -1,6 +1,6 @@
 ---
-title: "Az Azure HDInsight dokumentációja – oktatóanyagok és API-referencia | Microsoft Docs"
-description: "Információk a HDInsight-alapú Hadoopról. A dokumentációból megismerheti a Hadoop, Spark, HBase, R-Server stb. használatát a big data-betekintések feldolgozásához, elemzéséhez és kinyeréséhez."
+title: "HDInsight-dokumentáció – oktatóanyagok aaaAzure API-referencia |} Microsoft Docs"
+description: "Információk a HDInsight-alapú Hadoopról. Dokumentációja bemutatja, hogyan toouse Hadoop, Spark, HBase, R-kiszolgáló, és további tooprocess elemzése és a big Data típusú adatok megismerésében."
 services: hdinsight
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 6f16d77f3590bedf9338afc784110c2acff80592
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 592c31863df2e90886c9e9596b1a24edea79e990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="azure-hdinsight-documentation"></a>Azure HDInsight – dokumentáció
 
-Ismerje meg, hogyan használhatja a Hadoopot a HDInsight alatt futó felhőben streamelt vagy előzményadatok elemzésére. Oktatóanyagok és egyéb dokumentáció, amelyek bemutatják a fürtök létrehozását, big data feldolgozását és elemzését, illetve megoldások fejlesztését Hadoop, Spark, HBase, R-Server, Storm vagy a Hadoop-ökoszisztémában található egyéb technológiák használatával.
+Ismerje meg, hogyan toouse Hadoop hello a felhőalapú HDInsight tooanalyze adatfolyam-továbbítási vagy korábbi adatokon. Oktatóanyagok és egyéb dokumentációt is láthat hogyan toocreate fürtök feldolgozni big Data típusú adatok elemzéséhez és a Hadoop, Spark, HBase, megoldások fejlesztésére R-kiszolgáló, a Storm és más technológiák hello Hadoop ökoszisztémájának.
 
 <ul class="panelContent cardsFTitle">
     <li>

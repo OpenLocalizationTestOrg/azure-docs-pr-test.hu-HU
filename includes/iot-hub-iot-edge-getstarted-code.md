@@ -1,6 +1,6 @@
 ## <a name="typical-output"></a>Tipikus kimenet
 
-A következő példa bemutatja a kimeneti által a Hello World PéldaAlkalmazás ír a naplófájlba. A kimenet az olvashatóság érdekében formázva van:
+hello következő példa bemutatja toohello naplófájl írták hello Hello World PéldaAlkalmazás hello kimeneti. hello kimeneti olvashatóságát van formázva:
 
 ```json
 [{
@@ -32,13 +32,13 @@ A következő példa bemutatja a kimeneti által a Hello World PéldaAlkalmazás
 
 ## <a name="code-snippets"></a>Kódrészletek
 
-Ez a szakasz a hello\_world minta kódjának néhány szakaszát tárgyalja.
+Ez a szakasz ismerteti, amelyek néhány hello hello hello kód legfontosabb részeit\_world PéldaAlkalmazás.
 
 ### <a name="iot-edge-gateway-creation"></a>Az IoT-peremhálózati átjáró létrehozása
 
-Meg kell valósítani egy *átjáró folyamat*. A program hoz létre a belső infrastruktúra (broker), az IoT-Edge modulok betölti és konfigurálja az átjáró folyamat. Az IoT Edge-ben megtalálható a **Gateway\_Create\_From\_JSON** függvény, amellyel elindíthat egy átjárót a JSON-fájlokból. Használatához a **átjáró\_létrehozása\_a\_JSON** működik, adja át az elérési út egy JSON-fájl, amely meghatározza az IoT-Edge modulok betöltése.
+Meg kell valósítani egy *átjáró folyamat*. A program hello belső infrastruktúra (hello broker) hoz létre, hello IoT peremhálózati modulok betölti és hello átjáró folyamat konfigurálja. IoT peremhálózati biztosít hello **átjáró\_létrehozása\_a\_JSON** tooenable működéséhez toobootstrap egy átjáró egy JSON-fájlból. toouse hello **átjáró\_létrehozása\_a\_JSON** működik, hello elérési tooa JSON-fájl, amely meghatározza a hello IoT peremhálózati modulok tooload adja át.
 
-A kód találhat meg az átjáró folyamatot a *Hello World* a minta a [main.c] [ lnk-main-c] fájlt. Az olvashatóság érdekében a következő részlet az átjáró folyamatkódjának rövidített verzióját mutatja. Ez a példaprogram létrehoz egy átjárót, majd megvárja, amíg a felhasználó lenyomja az **ENTER** billentyűt, mielőtt lebontja az átjárót.
+Hello kód hello átjáró folyamat hello található *Hello World* hello a minta [main.c] [ lnk-main-c] fájlt. A olvashatóságát, hello alábbi kódrészletben láthatja, egy rövidített hello átjáró folyamat kód. Ez például a program létrehoz egy átjárót, majd vár hello felhasználói toopress hello **ENTER** kulcs, mielőtt azt kiváltó hello átjáró le.
 
 ```c
 int main(int argc, char** argv)
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     GATEWAY_HANDLE gateway;
     if ((gateway = Gateway_Create_From_JSON(argv[1])) == NULL)
     {
-        printf("failed to create the gateway from JSON\n");
+        printf("failed toocreate hello gateway from JSON\n");
     }
     else
     {
@@ -59,16 +59,16 @@ int main(int argc, char** argv)
 }
 ```
 
-A JSON-beállítások fájl IoT peremhálózati modulok betöltése és a modulok közötti kapcsolatok listáját tartalmazza. Minden egyes IoT peremhálózati modul a: kell megadnia.
+hello JSON beállításfájl IoT peremhálózati modulok tooload és hello hivatkozások között hello modulok listáját tartalmazza. Minden egyes IoT peremhálózati modul a: kell megadnia.
 
-* **name**: a modul egyedi neve.
-* **loader**: olyan betöltő, amely képes a kívánt modul betöltésére. A betöltők a különböző modultípusok betöltésére szolgáló bővítménypontok. IoT peremhálózati betöltők számára biztosít a natív C, Node.js, Java és .NET írt modulok. A Hello World PéldaAlkalmazás csak használja a natív C betöltő, mert ez a példa a modulok c nyelven írt dinamikus függvénytárak Különböző nyelveken írt IoT peremhálózati modulok használatával kapcsolatos további információkért lásd: a [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), vagy [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) minták.
-    * **név**: a modul betöltéséhez betöltő nevét.
-    * **entrypoint**: a modult tartalmazó könyvtár elérési útja. Linux rendszeren ez a könyvtár egy .so fájl, Windows rendszeren pedig egy .dll fájl. A belépési pont a használt betöltőtípustól függ. A Node.js betöltő belépési pont egy .js kiterjesztésű fájl. A Java-betöltő belépési pont, egy classpath és az osztályhoz nevet. A .NET-betöltő belépési pont, egy szerelvény és osztály nevét.
+* **név**: hello modul egyedi nevét.
+* **betöltési**: a betöltési, hogy ismeri a hogyan tooload hello szükséges modul. A betöltők a különböző modultípusok betöltésére szolgáló bővítménypontok. IoT peremhálózati betöltők számára biztosít a natív C, Node.js, Java és .NET írt modulok. hello Hello World PéldaAlkalmazás csak használ hello natív C betöltő, mert ez a példa minden hello modul c nyelven írt dinamikus függvénytárak További információ toouse IoT peremhálózati modulok különböző nyelveken írt: hello [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/), [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample), vagy [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) minták.
+    * **név**: használt tooload hello modul hello betöltő hello neve.
+    * **EntryPoint**: hello hello modul tartalmazó elérési út toohello függvénytárra. Linux rendszeren ez a könyvtár egy .so fájl, Windows rendszeren pedig egy .dll fájl. hello belépési pont egy adott toohello típusú betöltő használja. hello Node.js betöltő belépési pont egy olyan .js kiterjesztésű fájl. hello Java betöltő belépési pont, egy classpath és az osztályhoz nevet. hello .NET betöltő belépési pont, egy szerelvény és osztály nevét.
 
-* **args**: a modul által igényelt konfigurációs információk.
+* **argumentum**: a konfigurációs információk hello modulok kell.
 
-A következő kód bemutatja, meg kell adnia az IoT-él a Hello World PéldaAlkalmazás lehetővé tevő modulokat Linux használt JSON. A modul kialakításától függ, hogy egy modulnak szüksége van-e argumentumokra. Ebben a példában a naplózómodul a kimeneti fájl elérési útját használja argumentumként, a hello\_world modul pedig nem rendelkezik argumentumokkal.
+a következő kód bemutatja hello használt JSON toodeclare összes hello hello hello Hello World PéldaAlkalmazás Linux IoT peremhálózati modulokat. Hello tervezési hello modul függ, hogy szükség van-e a modul az argumentumai. Ebben a példában hello naplózó modul függvény olyan argumentumot, hello elérési toohello kimeneti fájljának és hello hello\_globális modulnak argumentum nélkül.
 
 ```json
 "modules" :
@@ -96,14 +96,14 @@ A következő kód bemutatja, meg kell adnia az IoT-él a Hello World PéldaAlka
 ]
 ```
 
-A JSON-fájl is tartalmazza a modulok közötti hivatkozásokat, amelyeket a rendszer átad a közvetítőnek. Egy hivatkozás két tulajdonsággal rendelkezik:
+hello JSON-fájlt a hello modulok toohello broker átadott között hello hivatkozásokat is tartalmaz. Egy hivatkozás két tulajdonsággal rendelkezik:
 
-* **forrás**: egy modul nevét a `modules` területen vagy `\*`.
-* **sink**: modulnév a `modules` szakaszból.
+* **forrás**: egy modul nevét a hello `modules` területen vagy `\*`.
+* **a fogadó**: egy modul nevét a hello `modules` szakasz.
 
-Minden hivatkozás meghatároz egy üzenetútvonalat és irányt. Érkező üzenetek a **forrás** modul szállítják ki a **fogadó** modul. Beállíthatja a **forrás** modul `\*`, amely azt jelzi, hogy a **fogadó** modult a modulok üzeneteket fogad.
+Minden hivatkozás meghatároz egy üzenetútvonalat és irányt. Hello üzeneteit **forrás** modul érkeznek toohello **fogadó** modul. Beállíthatja a hello **forrás** modul túl`\*`, ami azt jelenti, hogy hello **fogadó** modult a modulok üzeneteket fogad.
 
-A következő kód a Linuxon a hello\_world minta moduljai közötti hivatkozások konfigurálásához használt JSON-beállításfájlt mutatja be. A `hello_world` modul által létrehozott összes üzenetet a `logger` modul használja.
+hello következő kód bemutatja, hello JSON használt tooconfigure hivatkozások hello hello használt hello modulok között\_world PéldaAlkalmazás Linux rendszeren. Minden üzenet hello által előállított `hello_world` modul hello által felhasznált `logger` modul.
 
 ```json
 "links":
@@ -117,7 +117,7 @@ A következő kód a Linuxon a hello\_world minta moduljai közötti hivatkozás
 
 ### <a name="helloworld-module-message-publishing"></a>A hello\_world modul üzenet-közzététele
 
-A hello\_world modul által használt kódot felhasználhatja ahhoz, hogy közzétegye a [„hello_world.c”][lnk-helloworld-c] fájlban lévő üzeneteket. Az alábbi részletben a kód egy módosított verziója látható, hozzáfűzött megjegyzésekkel és – az olvashatóság érdekében – kevesebb hibakezelési kóddal:
+Hello hello által használt hello kód található\_hello world modul toopublish üzenetek ["hello_world.c"] [ lnk-helloworld-c] fájlt. hello alábbi kódrészletben láthatja hello kód egy módosított verziója hozzáadott megjegyzésekkel és néhány hibakezelési olvashatóságát eltávolítani kódot:
 
 ```c
 int helloWorldThread(void *param)
@@ -128,18 +128,18 @@ int helloWorldThread(void *param)
     MAP_HANDLE propertiesMap = Map_Create(NULL);
 
     // add a property named "helloWorld" with a value of "from Azure IoT
-    // Gateway SDK simple sample!" to a set of message properties that
-    // will be appended to the message before publishing it. 
+    // Gateway SDK simple sample!" tooa set of message properties that
+    // will be appended toohello message before publishing it. 
     Map_AddOrUpdate(propertiesMap, "helloWorld", "from Azure IoT Gateway SDK simple sample!")
 
-    // set the content for the message
+    // set hello content for hello message
     msgConfig.size = strlen(HELLOWORLD_MESSAGE);
     msgConfig.source = HELLOWORLD_MESSAGE;
 
-    // set the properties for the message
+    // set hello properties for hello message
     msgConfig.sourceProperties = propertiesMap;
 
-    // create a message based on the msgConfig structure
+    // create a message based on hello msgConfig structure
     MESSAGE_HANDLE helloWorldMessage = Message_Create(&msgConfig);
 
     while (1)
@@ -147,11 +147,11 @@ int helloWorldThread(void *param)
         if (handleData->stopThread)
         {
             (void)Unlock(handleData->lockHandle);
-            break; /*gets out of the thread*/
+            break; /*gets out of hello thread*/
         }
         else
         {
-            // publish the message to the broker
+            // publish hello message toohello broker
             (void)Broker_Publish(handleData->brokerHandle, helloWorldMessage);
             (void)Unlock(handleData->lockHandle);
         }
@@ -167,7 +167,7 @@ int helloWorldThread(void *param)
 
 ### <a name="helloworld-module-message-processing"></a>A hello\_world modul üzenetfeldolgozása
 
-A hello\_globális modul soha nem dolgozza fel a más IoT peremhálózati modulok közzététele az átvitelszervező-kezelési üzenetek. A hello\_world modulban ezért az üzenet-visszahívás megvalósítása művelet nélküli függvény.
+hello hello\_globális modul soha nem dolgozza fel, hogy más IoT peremhálózati modulok közzé toohello broker üzeneteket. Hello üzenet visszahívási hello hello a megvalósítása ezért hello\_globális modul műveletvégzés feladata.
 
 ```c
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -178,9 +178,9 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 
 ### <a name="logger-module-message-publishing-and-processing"></a>A naplózómodul üzenet-közzététele és -feldolgozása
 
-A naplózó modul üzeneteket fogad a közvetítőtől, és egy fájlba írja őket. Soha nem tesz közzé üzeneteket. A naplózó modul kódja ezért soha nem hívja meg a **Broker_Publish** függvényt.
+hello naplózó modul hello broker üzeneteket fogad, és írja őket tooa fájlt. Soha nem tesz közzé üzeneteket. Ezért hello naplózó modul hello kód soha nem hívja a hello **Broker_Publish** függvény.
 
-A **Logger_Receive** működni a [logger.c] [ lnk-logger-c] fájl a visszahívást a broker hív meg a tranzakciónaplókat tartalmazó modulra üzenetek továbbítására. Az alábbi részletben egy módosított verzió látható, hozzáfűzött megjegyzésekkel és – az olvashatóság érdekében – kevesebb hibakezelési kóddal:
+Hello **Logger_Receive** hello függvényt [logger.c] [ lnk-logger-c] fájl hello visszahívási hello broker toodeliver üzenetek toohello naplózó modul hív meg. hello alábbi kódrészletben láthatja módosított változat hozzáadott megjegyzésekkel és néhány hibakezelési olvashatóságát eltávolítani kódot:
 
 ```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -190,32 +190,32 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
     struct tm* t = localtime(&temp);
     char timetemp[80] = { 0 };
 
-    // Get the message properties from the message
+    // Get hello message properties from hello message
     CONSTMAP_HANDLE originalProperties = Message_GetProperties(messageHandle); 
     MAP_HANDLE propertiesAsMap = ConstMap_CloneWriteable(originalProperties);
 
-    // Convert the collection of properties into a JSON string
+    // Convert hello collection of properties into a JSON string
     STRING_HANDLE jsonProperties = Map_ToJSON(propertiesAsMap);
 
-    //  base64 encode the message content
+    //  base64 encode hello message content
     const CONSTBUFFER * content = Message_GetContent(messageHandle);
     STRING_HANDLE contentAsJSON = Base64_Encode_Bytes(content->buffer, content->size);
 
-    // Start the construction of the final string to be logged by adding
-    // the timestamp
+    // Start hello construction of hello final string toobe logged by adding
+    // hello timestamp
     STRING_HANDLE jsonToBeAppended = STRING_construct(",{\"time\":\"");
     STRING_concat(jsonToBeAppended, timetemp);
 
-    // Add the message properties
+    // Add hello message properties
     STRING_concat(jsonToBeAppended, "\",\"properties\":"); 
     STRING_concat_with_STRING(jsonToBeAppended, jsonProperties);
 
-    // Add the content
+    // Add hello content
     STRING_concat(jsonToBeAppended, ",\"content\":\"");
     STRING_concat_with_STRING(jsonToBeAppended, contentAsJSON);
     STRING_concat(jsonToBeAppended, "\"}]");
 
-    // Write the formatted string
+    // Write hello formatted string
     LOGGER_HANDLE_DATA *handleData = (LOGGER_HANDLE_DATA *)moduleHandle;
     addJSONString(handleData->fout, STRING_c_str(jsonToBeAppended);
 }
@@ -223,7 +223,7 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ebben a cikkben egy egyszerű, a naplófájlba írja az üzenetek IoT peremhálózati átjáró futtatta. Futtasson egy mintát, amely üzeneteket küld az IoT-központ, lásd: [IoT peremhálózati – eszközről a felhőbe üzeneteket küldeni egy szimulált eszköz használata Linux] [ lnk-gateway-simulated-linux] vagy [IoT peremhálózati – az eszköz-felhő üzenetek küldése egy a Windows, a szimulált eszköz][lnk-gateway-simulated-windows].
+Ebben a cikkben egy egyszerű IoT átjáró írja az üzenetek tooa naplófájl futtatta. toorun egy minta által küldött üzenetek tooIoT Hub, lásd: [IoT peremhálózati – eszközről a felhőbe üzeneteket küldeni egy szimulált eszköz használata Linux] [ lnk-gateway-simulated-linux] vagy [IoT peremhálózati – az eszköz-felhő üzenetek küldése egy a Windows, a szimulált eszköz][lnk-gateway-simulated-windows].
 
 
 <!-- Links -->

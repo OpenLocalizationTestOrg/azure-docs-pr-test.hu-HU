@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directoryban is kezelhető az összes vállalati alkalmazást megtekintése |} Microsoft Docs"
-description: "A vállalati alkalmazásokat kezeléséhez az Azure Active Directoryban a engedélyekkel rendelkező megtekintése"
+title: "az összes vállalati alkalmazások is kezelhető az Azure Active Directoryban hello aaaView |} Microsoft Docs"
+description: "Hogyan toosee hello vállalati alkalmazásokat, hogy rendelkezik hello engedélyek toomanage az Azure Active Directoryban"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
-ms.openlocfilehash: 14b335d14d893640d469508d6f34b4e7ec6bee8b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 269e9e5c7ed185a3f6ed9b020875db10bfaea039
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-all-the-enterprise-apps-that-i-can-manage-in-azure-active-directory"></a>Az Azure Active Directoryban is kezelhető az összes vállalati alkalmazást megtekintése
-Kezelheti a vállalati alkalmazások az Azure Active Directory (Azure AD). Ez magában foglalja, megtekintés, alkalmazásokat, kezelheti, hozzárendelése felhasználókat és csoportokat egy alkalmazáshoz, az alkalmazás például az alkalmazás neve/embléma tulajdonságok karbantartása és, hogy a felhasználók nem lehet bejelentkezni, még akkor is letiltása a kérelmet.
+# <a name="view-all-hello-enterprise-apps-that-i-can-manage-in-azure-active-directory"></a>Megtekintheti az összes is kezelhető hello vállalati alkalmazásokat az Azure Active Directoryban
+Kezelheti a vállalati alkalmazások hello Azure Active Directory (Azure AD). Ez magában foglalja a kezelhető hello alkalmazások megtekintése, felhasználók vagy csoportok tooan alkalmazás hozzárendelése, például hello alkalmazás neve/logója hello alkalmazás tulajdonságai karbantartása és még letiltása az alkalmazás, hogy egy felhasználó sem tooit bejelentkezés.
 
 ## <a name="how-do-i-view-all-my-apps"></a>Hogyan tekinthetem meg az alkalmazások?
-1. Jelentkezzen be a [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely a címtár globális rendszergazdája.
-2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** a szövegmezőbe, majd válassza ki azt a **Enter**.
-3. Az a **Azure Active Directory -** ***directoryname*** (Ez azt jelenti, hogy az Azure AD panelen a kezelt könyvtár) panelen válassza ki **vállalati alkalmazások**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) egy olyan fiókkal, amely hello címtár globális rendszergazdája.
+2. Válassza ki **további szolgáltatások**, adja meg **Azure Active Directory** hello szövegmezőbe, és válassza ki **Enter**.
+3. A hello **Azure Active Directory -** ***directoryname*** (Ez azt jelenti, hogy az Azure AD hello panelen kezelt hello könyvtár) panelen válassza ki **vállalati alkalmazások**.
 
     ![Vállalati alkalmazások megnyitásakor](./media/active-directory-coreapps-view-azure-portal/open-enterprise-apps.png)
-4. Az a **vállalati alkalmazások** panelen válassza **összes alkalmazás**. Ezen a panelen kiválaszthatja alkalmazásokat kezeléséhez, a megjelenített oszlopok sorrendjének megváltoztatásához vagy található (például csak a letiltott alkalmazások) kívánt alkalmazást a tulajdonságlista szűréséhez.
+4. A hello **vállalati alkalmazások** panelen válassza **összes alkalmazás**. Ezen a panelen válassza ki az alkalmazások toomanage, hello látható oszlopok sorrendjének megváltoztatásához vagy szűrő hello lista toofind (például tooview csak a letiltott alkalmazások) kívánt alkalmazást.
 
 ## <a name="next-steps"></a>Következő lépések
-* [Egy felhasználó vagy csoport hozzárendelése egy vállalati alkalmazás](active-directory-coreapps-assign-user-azure-portal.md)
+* [Rendelje hozzá a felhasználó vagy csoport tooan vállalati alkalmazások](active-directory-coreapps-assign-user-azure-portal.md)
 * [Egy felhasználó vagy csoport-hozzárendelés eltávolítása a vállalati alkalmazások](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [Tiltsa le a felhasználói bejelentkezéseket a vállalati alkalmazás](active-directory-coreapps-disable-app-azure-portal.md)
-* [Módosítja a nevét, vagy egy vállalati alkalmazás embléma](active-directory-coreapps-change-app-logo-user-azure-portal.md)
+* [Hello nevének módosítása vagy egy vállalati alkalmazás embléma](active-directory-coreapps-change-app-logo-user-azure-portal.md)

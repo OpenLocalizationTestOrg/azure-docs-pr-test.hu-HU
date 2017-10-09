@@ -1,6 +1,6 @@
 ---
-title: A Cortana Intelligence Gallery Jupyter notebookok |} Microsoft Docs
-description: "A Cortana Intelligence Gallery a Jupyter notebookok felderítése."
+title: aaaCortana Intelligence Gallery Jupyter notebookok |} Microsoft Docs
+description: "A Cortana Intelligence Gallery hello Jupyter notebookok felderítése."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: ff7d5c372500c2cd392ed65a921d8a994b090f23
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 459968ddbcf1da17e6993dd577a90b4dd3847cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-jupyter-notebooks-in-the-cortana-intelligence-gallery"></a>A Cortana Intelligence Gallery a Jupyter notebookok felderítése
+# <a name="discover-jupyter-notebooks-in-hello-cortana-intelligence-gallery"></a>A Cortana Intelligence Gallery hello Jupyter notebookok felderítése
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="jupyter-notebooks"></a>Jupyter-notebookok
 **[Jupyter notebookok](https://gallery.cortanaintelligence.com/notebooks)**  vegye fel a kódot, adatmegjelenítési és dokumentáció egyetlen, interaktív vászonra.
-A katalógusban notebookok oktatóanyagok és részletes magyarázatokat fejlett gépi tanulási módszerek és a megoldások adja meg.
+Hello gyűjtemény jegyzetfüzeteket oktatóanyagok és részletes magyarázatokat fejlett gépi tanulási módszerek és a megoldások adja meg.
 
 ## <a name="discover"></a>Ismertetők
-  A katalógusban notebookok kereshet, nyissa meg a [gyűjteménye](http://gallery.cortanaintelligence.com) kattintson **notebookok** a gyűjtemény kezdőlap tetején.
+  a hello gyűjteménye, nyissa meg hello jegyzetfüzeteket toobrowse [gyűjteménye](http://gallery.cortanaintelligence.com) kattintson **notebookok** hello gyűjtemény kezdőlap hello tetején.
 
- A  **[Jupyter notebookok](https://gallery.cortanaintelligence.com/notebooks)**  lap megjeleníti a legnépszerűbb notebookok listáját.
-Kattintson a **láthatja az összes** összes jegyzetfüzet megtekintéséhez.
-Ezen a lapon keresse meg a katalógusban az összes jegyzetfüzet. Is kereshet; ehhez válassza a bal felső belépés keresési feltételek és a szűrési feltételeket.
+ A  **[Jupyter notebookok](https://gallery.cortanaintelligence.com/notebooks)**  lap megjeleníti a hello legnépszerűbb notebookok listáját.
+Kattintson a **láthatja az összes** tooview összes jegyzetfüzet.
+Ezen a lapon keresse meg a hello gyűjtemény összes jegyzetfüzet. Is kereshet hello lap hello balra a szűrési feltételeket kiválasztásával, és a belépés keresőkifejezéseket hello felső.
 
- Kattintson a notebook nyissa meg a notebook részleteit megjelenítő oldalra, és további információt. Ezen az oldalon megjegyzést, visszajelzést, vagy kérdései vannak a Megjegyzések szakasz keresztül. Barátok vagy a megosztás képességeivel LinkedIn-vagy Twitter munkatársak is megoszthatja azt. Is is e-mailben elküldi a más felhasználók számára a weblap megtekintéséhez a meghívott notebook mutató hivatkozást.
+ Kattintson a notebook tooopen a notebook részleteit megjelenítő oldalra, és olvasható további információ. Ezen az oldalon megjegyzést, visszajelzést, vagy kérdései vannak az hello Megjegyzések szakasz keresztül. Barátaival is megoszthatja, vagy a munkatársak hello segítségével megosztási képességei LinkedIn vagy a Twitteren. A hivatkozás toothe notebook tooinvite más felhasználók tooview hello lapján is e-mail.
 
 ![Ez az elem megosztása ismerősök](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Adja hozzá a saját megjegyzéseit](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>Letöltés
-A Machine Learning Studio munkaterületre letöltheti a notebook másolatát a gyűjteményből.
+A notebook másolatát letöltheti hello gyűjteménye, a Machine Learning Studio munkaterületre.
 
-### <a name="download-from-the-gallery"></a>Töltse le a gyűjteményből
-A gyűjtemény jegyzetfüzet másolatát töltheti le:
+### <a name="download-from-hello-gallery"></a>Töltse le a hello gyűjteménye
+toodownload egy notebook a hello Gallery egy példányát:
 
-1. Nyissa meg a notebook részleteit megjelenítő oldalon a katalógusban
+1. Nyissa meg a hello notebook részleteit megjelenítő oldalra hello gyűjteménye
 2. Kattintson a **Megnyitás a Studióban**
-3. Válassza ki a régiót és a használni kívánt munkaterület
+3. Hello régió és azt szeretné, hogy toouse munkaterület kiválasztása
    
-    ![Nyissa meg a Jupyter notebook a gyűjteményből](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
+    ![Nyissa meg a Jupyter notebook a Gallery hello](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-gallery.png)
 
-Amikor rákattint **Megnyitás a Studióban**, a notebook betöltése a Machine Learning Studio munkaterületre, és (Ha még nem bejelentkeztetjük Studio, a kérni fogja a bejelentkezéshez Microsoft-fiókkal előtt a notebook megnyitása másolja a munkaterületre). A notebook később is található, kattintva **notebookok** Studio kezdőlapjának bal oldalán.
+Amikor rákattint **Megnyitás a Studióban**, hello notebook betöltése a Machine Learning Studio munkaterületre, és megnyitni (ha van már nincs bejelentkezve tooStudio, fogja felszólító toosign be a Microsoft-fiókjával hello előtt notebook másolt tooyour munkaterület). Található hello notebook később kattintva **notebookok** hello bal oldalán található hello Studio kezdőlapja a.
 
 ### <a name="download-in-machine-learning-studio"></a>Töltse le a Machine Learning Studióban
-Is megnyithatja az ugyanazon gyűjtemény notebookok bármelyikét a Machine Learning Studióban használata közben:
+Is megnyithatja hello bármelyikét ugyanazon gyűjtemény notebookok használata a Machine Learning Studióban közben:
 
 1. A Machine Learning Studióban, kattintson a **+ új**
-2. Válassza ki **Notebook** -jegyzetfüzetek a gyűjteményből listája jelenik meg, választhatja ki, vagy használja a keresőmezőt adott jegyzetfüzet található
+2. Válassza ki **Notebook** -jegyzetfüzetek hello gyűjteménye a listája jelenik meg, választhatja ki, vagy egy adott notebook használatával hello keresőmezőbe található
 3. Jegyzetfüzet és válassza ki az egér pont **jegyzetfüzet megnyitása**
    
     ![Nyissa meg a gyűjtemény notebook a Machine Learning Studio belül](media/machine-learning-gallery-jupyter-notebooks/open-notebook-from-studio.png)
 
-A notebook másolatát letölti és a munkaterületen a Machine Learning Studio Jupyter notebookok részén megnyitva.
-A notebook megjelenik, a más notebookok, valamint a a **notebookok** Studio oldalán (a a [Studio kezdőlap](https://studio.azureml.net/), kattintson a **notebookok** a bal oldali).
+Hello notebook másolatát letölti és a Machine Learning Studio a Jupyter notebookok szakasz hello munkaterületén megnyitva.
+hello notebook jelenik meg, és a notebookok a hello **notebookok** Studio oldalán (a hello [Studio kezdőlap](https://studio.azureml.net/), kattintson a **notebookok** hello bal oldali).
 
-**[UGRÁS A A GYŰJTEMÉNY >>](http://gallery.cortanaintelligence.com)**
+**[IGÉNYBE ME toohello GYŰJTEMÉNY >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

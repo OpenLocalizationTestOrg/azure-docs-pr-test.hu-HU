@@ -1,5 +1,5 @@
 ---
-title: "Node.js-webalkalmazás létrehozása az Azure-ban | Microsoft Docs"
+title: "Node.js-webalkalmazás az Azure-ban aaaCreate |} Microsoft Docs"
 description: "Percek alatt üzembe helyezheti első Hello World Node.js-alkalmazását az App Service Web Apps szolgáltatásban."
 services: app-service\web
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.topic: quickstart
 ms.date: 05/05/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: ce845da09a7c088b8a2ba29b818a46a3b41aa4e7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 163edf83b2353755fc9fa2d75aed489038cf7c81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-nodejs-web-app-in-azure"></a>Node.js-webalkalmazás létrehozása az Azure-ban
 
-Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  Ez a gyorsútmutató a Node.js-alkalmazások Azure Web Apps szolgáltatásban történő üzembe helyezésén vezeti végig. Az [Azure CLI-vel](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) létrehozhatja a webalkalmazást, a Git szoftver használatával pedig üzembe helyezheti a Node.js-mintakódot a webalkalmazásban.
+Az [Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) egy hatékonyan méretezhető, önjavító webes üzemeltetési szolgáltatás.  A gyors üzembe helyezés bemutatja, hogyan toodeploy egy Node.js-alkalmazás tooAzure webalkalmazások. Hello segítségével hello-webalkalmazás létrehozása [Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli), és a Git toodeploy minta Node.js kód toohello webes alkalmazás használatát.
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-nodejs-poc/hello-world-in-browser.png)
 
-Az alábbi lépéseket Mac, Windows vagy Linux rendszert futtató gépen is követheti. Az előfeltételek telepítése után a lépések végrehajtása nagyjából öt percet vesz igénybe.   
+A lépésekkel hello Mac, a Windows vagy Linux rendszerű gépek használatának alatt. Hello előfeltételek telepítése után tart, körülbelül öt perc toocomplete hello lépéseket.   
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-for-Node-Developers/Create-a-Nodejs-app-in-Azure-Quickstart/player]   
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A gyorsútmutató elvégzéséhez:
+toocomplete a gyors üzembe helyezés:
 
 * [A Git telepítése](https://git-scm.com/)
 * [Telepítse a Node.js-t és az NPM-et](https://nodejs.org/)
@@ -43,41 +43,41 @@ A gyorsútmutató elvégzéséhez:
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Ha a CLI helyi telepítését és használatát választja, akkor ehhez a témakörhöz az Azure CLI 2.0-s vagy újabb verziójára lesz szükség. A verzió azonosításához futtassa a következőt: `az --version`. Ha telepíteni vagy frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
+Ha Ön tooinstall kiválasztása és hello CLI helyileg, ebben a témakörben van szükség, hogy hello Azure CLI verzióját futtatja, 2.0-s vagy újabb. Futtatás `az --version` toofind hello verziója. Ha tooinstall vagy frissítés van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli). 
 
-## <a name="download-the-sample"></a>A minta letöltése
+## <a name="download-hello-sample"></a>Hello minta letöltése
 
-Egy terminálablakban futtassa a következő parancsot a mintaalkalmazás-tárház helyi számítógépre történő klónozásához.
+Egy terminálablakot futtassa a következő parancs tooclone hello sample app tárház tooyour helyi számítógép hello.
 
 ```bash
 git clone https://github.com/Azure-Samples/nodejs-docs-hello-world
 ```
 
-Ezt a terminálablakot használhatja az összes parancs gyorsútmutatóban történő futtatásához.
+Használható a terminálablakot toorun minden hello parancsot a gyors üzembe helyezés.
 
-Váltson arra a könyvtárra, amelyben a mintakód megtalálható.
+Módosítsa a hello mintakódot tartalmazó toohello könyvtár.
 
 ```bash
 cd nodejs-docs-hello-world
 ```
 
-## <a name="run-the-app-locally"></a>Az alkalmazás futtatása helyben
+## <a name="run-hello-app-locally"></a>Hello alkalmazás helyi futtatása
 
-Az alkalmazás a terminálablak megnyitásával és a `npm start` szkript használatával helyben futtatható a beépített Node.js HTTP-kiszolgáló indításához.
+Hello alkalmazás helyi futtatásához nyisson meg egy terminálablakot, és hello segítségével `npm start` parancsfájl toolaunch hello Node.js HTTP-kiszolgáló a beépített.
 
 ```bash
 npm start
 ```
 
-Nyisson meg egy webböngészőt, majd keresse meg a mintaalkalmazást a http://localhost:1337 címen.
+Nyisson meg egy webböngészőt, és keresse meg a http://localhost:1337 toohello minta alkalmazást.
 
-Az oldalon látható mintaalkalmazáson ekkor a **Hello World** üzenetnek kell megjelennie.
+Megjelenik a hello **Hello World** üzenetet kapott hello mintaalkalmazás hello oldal jelenik meg.
 
 ![A helyileg futó mintaalkalmazás](media/app-service-web-get-started-nodejs-poc/localhost-hello-world-in-browser.png)
 
-A terminálablakban nyomja le a **Ctrl+C** billentyűkombinációt a webkiszolgálóból történő kilépéshez.
+A Terminálszolgáltatások ablakában, nyomja le az **Ctrl + C** tooexit hello webkiszolgáló.
 
-[!INCLUDE [Log in to Azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [Log in tooAzure](../../includes/login-to-azure.md)] 
 
 [!INCLUDE [Configure deployment user](../../includes/configure-deployment-user.md)] 
 
@@ -93,11 +93,11 @@ Ezzel létrehozott egy üres, új webalkalmazást az Azure-ban.
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git.md)] 
 
-[!INCLUDE [Push to Azure](../../includes/app-service-web-git-push-to-azure.md)] 
+[!INCLUDE [Push tooAzure](../../includes/app-service-web-git-push-to-azure.md)] 
 
 ```bash
 Counting objects: 23, done.
-Delta compression using up to 4 threads.
+Delta compression using up too4 threads.
 Compressing objects: 100% (21/21), done.
 Writing objects: 100% (23/23), 3.71 KiB | 0 bytes/s, done.
 Total 23 (delta 8), reused 7 (delta 1)
@@ -119,62 +119,62 @@ remote: Copying file: 'process.json'
 remote: Deleting file: 'hostingstart.html'
 remote: Ignoring: .git
 remote: Using start-up script index.js from package.json.
-remote: Node.js versions available on the platform are: 4.4.7, 4.5.0, 6.2.2, 6.6.0, 6.9.1.
-remote: Selected node.js version 6.9.1. Use package.json file to choose a different version.
+remote: Node.js versions available on hello platform are: 4.4.7, 4.5.0, 6.2.2, 6.6.0, 6.9.1.
+remote: Selected node.js version 6.9.1. Use package.json file toochoose a different version.
 remote: Selected npm version 3.10.8
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
-To https://<app_name>.scm.azurewebsites.net:443/<app_name>.git
+toohttps://<app_name>.scm.azurewebsites.net:443/<app_name>.git
  * [new branch]      master -> master
 ```
 
-## <a name="browse-to-the-app"></a>Az alkalmazás megkeresése tallózással
+## <a name="browse-toohello-app"></a>Keresse meg a toohello alkalmazás
 
-Tallózással keresse meg az üzembe helyezett alkalmazást a webböngésző használatával.
+Keresse meg a webböngésző segítségével toohello telepített alkalmazás.
 
 ```bash
 http://<app_name>.azurewebsites.net
 ```
 
-A Node.js mintakód az Azure App Service webalkalmazásban fut.
+Node.js mintakód hello fut. Ha az Azure App Service web app alkalmazásban.
 
 ![Az Azure-ban futó mintaalkalmazás](media/app-service-web-get-started-nodejs-poc/hello-world-in-browser.png)
 
-**Gratulálunk!** Elvégezte az első Node.js-app üzembe helyezését az App Service-ben.
+**Gratulálunk!** Az első Node.js-alkalmazás tooApp szolgáltatás telepítése után.
 
-## <a name="update-and-redeploy-the-code"></a>A kód frissítése és ismételt üzembe helyezése
+## <a name="update-and-redeploy-hello-code"></a>Frissítse, és telepítse újra a hello kódot
 
-Egy szövegszerkesztő használatával nyissa meg a Node.js-alkalmazáson belüli `index.js` fájlt, majd módosítsa annak szövegét a `response.end` hívásán belül:
+Egy szövegszerkesztőben nyissa meg hello `index.js` hello Node.js-alkalmazás, és győződjön meg szöveg egy kis módosítása toohello hello hívásában túl`response.end`:
 
 ```nodejs
 response.end("Hello Azure!");
 ```
 
-Mentse a módosításokat a Gitben, majd továbbítsa a kód módosításait az Azure-ba.
+A Git a változtatások véglegesítése a határidő, és majd leküldéses hello kód módosítások tooAzure.
 
 ```bash
 git commit -am "updated output"
 git push azure master
 ```
 
-Az üzembe helyezés befejezését követően váltson vissza **Az alkalmazás megkeresése tallózással** lépésben megnyitott böngészőablakra, és frissítse azt.
+Központi telepítés befejezése után kapcsoló hello megnyitott hátsó toohello böngészőablakban **Tallózás toohello app** . lépés:, majd nyomja le a frissítést.
 
 ![Az Azure-ban futó frissített mintaalkalmazás](media/app-service-web-get-started-nodejs-poc/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>Az új Azure-webapp kezelése
 
-A létrehozott webalkalmazás felügyeletéhez ugorjon az <a href="https://portal.azure.com" target="_blank">Azure Portalra</a>.
+Nyissa meg toohello <a href="https://portal.azure.com" target="_blank">Azure-portálon</a> toomanage hello létrehozott webalkalmazás.
 
-A bal oldali menüben kattintson az **App Services** lehetőségre, majd az Azure-webalkalmazás nevére.
+Hello bal oldali menüben kattintson **alkalmazásszolgáltatások**, majd kattintson az Azure-webalkalmazásban hello nevét.
 
-![Navigálás a portálon az Azure-webapphoz](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
+![Portálnavigációjával tooAzure webalkalmazás](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
 
 Megtekintheti a webalkalmazás Áttekintés oldalát. Itt elvégezhet olyan alapszintű felügyeleti feladatokat, mint a tallózás, leállítás, elindítás, újraindítás és törlés. 
 
 ![Az App Service panel az Azure Portalon](media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-detail.png)
 
-A bal oldali menü az alkalmazás konfigurálásához biztosít különböző oldalakat. 
+hello bal oldali menü különböző oldalain biztosít az alkalmazás konfigurálását. 
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Hibakezelés az Azure Automation grafikus runbookokban | Microsoft Docs"
-description: "Ez a cikk ismerteti a hibakezelési logika megvalósítását az Azure Automation grafikus runbookokban."
+title: "az Azure Automation-forgatókönyv grafikus kezelése aaaError |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan tooimplement hibakezelési grafikus Azure Automation-runbook logikája."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/26/2016
 ms.author: magoedte
-ms.openlocfilehash: 12313f7f245d32c33882f1036f7d4b48bfb3ddc5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b9ff01361d2ebd9c0174b074a7a290b1cc2fd1c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="error-handling-in-azure-automation-graphical-runbooks"></a>Hibakezelés az Azure Automation grafikus runbookokban
 
-Az egyik legfontosabb figyelembe veendő runbooktervezési alapelv a runbookokkal kapcsolatban felmerülő különböző helyzetek azonosítása. Az ilyen helyzetek közé tartoznak a sikeres műveletek, a várt hibaállapotok és a váratlan hibafeltételek.
+A kulcs runbook tervezési egyszerű tooconsider azonosítja, hogy a runbook előfordulhat, hogy különböző problémákat. Az ilyen helyzetek közé tartoznak a sikeres műveletek, a várt hibaállapotok és a váratlan hibafeltételek.
 
-A runbookoknak hibakezelési képességekkel is kell rendelkezniük. Ha érvényesíteni szeretné egy tevékenység kimenetét, vagy a grafikus runbookokkal szeretne kezelni egy hibát, akkor használhat egy Windows PowerShell-kóddal végzett tevékenységet, feltételes logikát határozhat meg a tevékenység kimeneti hivatkozására, vagy egyéb módszert is alkalmazhat.          
+A runbookoknak hibakezelési képességekkel is kell rendelkezniük. toovalidate tevékenység kimeneti hello, vagy hiba lép fel grafikus forgatókönyvek kezeléséhez, használhatja a Windows PowerShell tevékenységeket, feltételes logikához hello kimeneti hivatkozásra hello tevékenység megadása, vagy egy másik módszer alkalmazása.          
 
-Gyakran előfordul, hogy ha egy runbooktevékenységgel kapcsolatban megszakítást nem okozó hiba merül fel, akkor a rendszer az az után következő tevékenységeket a hibától függetlenül feldolgozza. A hiba valószínűleg kivételt hoz létre, a lényeg azonban az, hogy a következő tevékenység is lefuthat. A PowerShell ilyen módon kezeli a hibákat.    
+Gyakran Ha egy nem okozó hibát, amely runbook-tevékenység fellép, a következő tevékenység feldolgozása hello hiba függetlenül. hello hiba valószínűleg toogenerate kivételt, de a következő tevékenység hello továbbra is engedélyezett toorun. Ez az hello módon, hogy PowerShell tervezett toohandle hibák.    
 
-A végrehajtás során előforduló PowerShell-hibák megszakítást okozó vagy megszakítást nem okozó típusúak lehetnek. A megszakítást okozó és nem okozó hibák közötti különbség a következő:
+PowerShell végrehajtása során előforduló hibák hello típusú leáll, vagy nem okozó. hello különbségei lezáró és nem okozó hibák a következők:
 
-* **Megszakítást okozó hiba**: A végrehajtás során bekövetkező súlyos hiba, amely teljes egészében megszakítja a parancs (vagy szkript) végrehajtását. Ilyenek például a nem létező parancsmagok, a parancsmag futását megakadályozó szintaktikai hibák vagy az egyéb végzetes hibák.
+* **Leállítja a hiba**: súlyos hiba, amely teljesen leállítja hello parancsot (vagy parancsfájl végrehajtása) végrehajtása közben. Ilyenek például a nem létező parancsmagok, a parancsmag futását megakadályozó szintaktikai hibák vagy az egyéb végzetes hibák.
 
-* **Megszakítást nem okozó hiba**: Nem súlyos hiba, amely a hiba ellenére engedélyezi a végrehajtást. Ilyenek például a műveleti hibák, például a „fájl nem található” vagy az engedélyekkel kapcsolatos problémák.
+* **A nem okozó hibát**: nem súlyos hiba, amely lehetővé teszi a végrehajtását toocontinue annak ellenére, hogy hello hiba. Ilyenek például a műveleti hibák, például a „fájl nem található” vagy az engedélyekkel kapcsolatos problémák.
 
-Az Azure Automation grafikus runbookok kiegészültek a hibakezelés képességével is. A kivételeket mostantól nem megszakító hibákká változtathatja, valamint hibahivatkozásokat hozhat létre a tevékenységek között. Ez a folyamat lehetővé teszi a runbook szerzője számára a hibák észlelését, és a létrejött vagy váratlan feltételek kezelését.  
+Azure Automation grafikus forgatókönyvek továbbfejlesztettük a hello funkció tooinclude hibakezelés. A kivételeket mostantól nem megszakító hibákká változtathatja, valamint hibahivatkozásokat hozhat létre a tevékenységek között. Ez a folyamat lehetővé teszi egy runbook Szerző toocatch hibákat, és felismert vagy váratlan feltételek kezelése.  
 
-## <a name="when-to-use-error-handling"></a>Mikor érdemes hibakezelést használni?
+## <a name="when-toouse-error-handling"></a>Amikor toouse hibakezelés
 
-A kritikus tevékenységekkel kapcsolatos hibák vagy kivételek felmerülésekor fontos megakadályozni a runbook következő tevékenységének feldolgozását, és megfelelően kezelni a hibát. Ez kritikus fontosságú abban az esetben, ha a runbookok valamilyen üzleti vagy szolgáltatási műveleti folyamatot támogatnak.
+Ha egy kritikus tevékenységet, amely egy hiba vagy kivételt jelez, akkor fontos tooprevent hello következő tevékenység a runbook a feldolgozási és toohandle hello hiba megfelelően. Ez kritikus fontosságú abban az esetben, ha a runbookok valamilyen üzleti vagy szolgáltatási műveleti folyamatot támogatnak.
 
-A runbook szerzője minden egyes tevékenységhez, amely hibát eredményezhet, hozzáadhat egy hibahivatkozást, amely bármely más tevékenységre mutathat.  A céltevékenység bármilyen típusú lehet, többek között kóddal végzett tevékenységek, parancsmag meghívása, másik runbook meghívása stb.
+Minden egyes tevékenységhez, amely hibát eredményezhet hello runbook Szerző egy mutató tooany más tevékenység hiba hivatkozást adhat hozzá.  hello céltevékenységre is lehet bármely típusú kód tevékenységek, például egy másik runbook hívja, a parancsmag meghívása, és így tovább.
 
-Emellett a céltevékenység kimenő hivatkozásokat is tartalmazhat. Ezek lehetnek szokványos hivatkozások vagy hibahivatkozások. Ez azt jelenti, hogy a runbook szerzője összetett hibakezelési logikát valósíthat meg anélkül, hogy kóddal végzett tevékenységekre kellene hagyatkoznia. Az ajánlott eljárás egy általános funkciókkal rendelkező dedikált hibakezelési runbook létrehozása, ez azonban nem kötelező. A PowerShell-kóddal végzett tevékenységben szereplő hibakezelési logika pedig nem az egyetlen alternatíva.  
+Ezenkívül hello céltevékenységre is kimenő hivatkozásokat. Ezek lehetnek szokványos hivatkozások vagy hibahivatkozások. Ez azt jelenti, hogy hello runbook Szerző komplex hibakezelő logikai keresésére átrendezésével tooa nélkül is létrehozható tevékenység kód. hello ajánlott gyakorlat az toocreate közös funkcióinak dedikált hibakezelő runbookokhoz, de nincs kötelező. Egy PowerShell-kód nem tevékenység a hibakezelő logikai hello csak lehetőséget.  
 
-Vegyünk példaként egy olyan runbookot, amely egy virtuális gépet próbál elindítani, majd telepíteni rá egy alkalmazást. Ha a virtuális gép nem indul el megfelelően, akkor két műveletet végez:
+Például fontolja meg a runbook toostart megpróbál egy virtuális Gépet, és telepíteni az alkalmazást. Hello virtuális gép nem indul el megfelelően, ha két műveleteket hajtja végre:
 
 1. Értesítést küld a problémáról.
 2. Elindít egy másik runbookot, amely automatikusan új virtuális gépet helyez üzembe.
 
-Az egyik megoldás, ha a hibahivatkozás egy, az 1. lépést kezelő tevékenységre mutat. A **Write-Warning** parancsmagot például összekapcsolhatja a 2. lépéshez szükséges tevékenységgel, például a **Start-AzureRmAutomationRunbook** parancsmaggal.
+Egy megoldás toohave tooan tevékenység leírók lépés egy mutató HIV hiba van. Például kapcsolódhat hello **Write-Warning** parancsmag tooan tevékenység lépés két, például a hello **Start-AzureRmAutomationRunbook** parancsmag.
 
-Ezt a viselkedést a további runbookokban való használat céljából általánosíthatja is, ha a két tevékenységet külön hibakezelési runbookba helyezi a korábban ajánlott útmutatás szerint. A hibakezelési runbook meghívása előtt egyéni üzenetet hozhat létre az eredeti runbook adataiból, majd paraméterként továbbviheti azt a hibakezelési runbookba.
+Ez a viselkedés sok runbookok használatban volt is generalize, két tevékenységet tegyen egy külön hiba kezelési runbook és a korábbi javasolt következő hello útmutatást. Előtt hívja meg a hibakezelő runbookot, akkor képes hello adatokból hello eredeti runbook egyéni üzenetet létrehozni, és akkor továbbítja, hibakezelés runbook paraméter toohello.
 
-## <a name="how-to-use-error-handling"></a>A hibakezelés használata
+## <a name="how-toouse-error-handling"></a>Hogyan toouse hibakezelés
 
-Minden tevékenység rendelkezik a kivételeket nem megszakító hibákká módosító konfigurációval. Alapértelmezés szerint ez a beállítás le van tiltva. Javasoljuk, hogy engedélyezze ezt a beállítást minden olyan tevékenységnél, amely esetében kezelni szeretné a hibákat.  
+Minden tevékenység rendelkezik a kivételeket nem megszakító hibákká módosító konfigurációval. Alapértelmezés szerint ez a beállítás le van tiltva. Azt javasoljuk, hogy engedélyezi-e ezt a beállítást, olyan tevékenységeket, ha azt szeretné, hogy toohandle hibák.  
 
-A konfiguráció engedélyezésével biztosíthatja, hogy a tevékenységben mind a megszakítást okozó, mind a megszakítást nem okozó hibákat megszakítást nem okozó hibaként kezelje a rendszer, amelyeket hibahivatkozás segítségével kezelhet.  
+Ha engedélyezi ezt a konfigurációt, lezáró mind a nem okozó hibák hello tevékenység nem okozó hibák kezeli, és hiba kapcsolattal rendelkező kezelhető vannak biztosítva.  
 
-A konfiguráció beállítását követően hozza létre a hiba kezelésére irányuló tevékenységet. Ha egy tevékenység hibát eredményez, akkor a rendszer a kimenti hibahivatkozásokat követi a szokásos hivatkozások helyett, még akkor is, ha a tevékenység normál kimenetet is eredményez.<br><br> ![Példa egy Automation runbook hibahivatkozásra](media/automation-runbook-graphical-error-handling/error-link-example.png)
+Miután ezt a beállítást, a kezelő hello hiba tevékenység létrehozása. Ha a tevékenység esetleges hibákat, majd hello hivatkozások követi kimenő hiba, és hello rendszeres hivatkozások nem, akkor is, ha hello tevékenység, valamint a rendszeres kimenetet hoz létre.<br><br> ![Példa egy Automation runbook hibahivatkozásra](media/automation-runbook-graphical-error-handling/error-link-example.png)
 
-Az alábbi példában egy runbook egy virtuális gép számítógép nevét tartalmazó változót ad vissza. Ezután a következő tevékenységgel megkísérli a virtuális gép elindítását.<br><br> ![Példa egy Automation runbook hibakezelésére](media/automation-runbook-graphical-error-handling/runbook-example-error-handling.png)<br><br>      
+A következő példa hello, a runbook egy virtuális gép hello számítógép nevét tartalmazó változó kéri le. A következő tevékenység hello toostart hello virtuális gép majd újrapróbálkozik.<br><br> ![Példa egy Automation runbook hibakezelésére](media/automation-runbook-graphical-error-handling/runbook-example-error-handling.png)<br><br>      
 
-A **Get-AutomationVariable** tevékenység és a **Start-AzureRmVm** a kivételek hibákká történő konvertálására vannak konfigurálva.  Ha probléma adódik a változó lekérésével vagy a virtuális gép indításával, akkor hiba jön létre.<br><br> ![Egy Automation runbook hibakezelési tevékenységének beállításai](media/automation-runbook-graphical-error-handling/activity-blade-convertexception-option.png)
+Hello **Get-AutomationVariable** tevékenység és **Start-AzureRmVm** konfigurált tooconvert kivételek tooerrors vannak.  Ha nincsenek hello kapják meg a változó és kezdő problémák hello virtuális gép, majd a hibák akkor jönnek létre.<br><br> ![Egy Automation runbook hibakezelési tevékenységének beállításai](media/automation-runbook-graphical-error-handling/activity-blade-convertexception-option.png)
 
-Az ezen tevékenységekből származó hibahivatkozások egyetlen **hibakezelés** tevékenységbe (kóddal végzett tevékenység) áramlanak. Ez a tevékenység egy egyszerű PowerShell-kifejezéssel van konfigurálva, amely a *Throw* (eldobás) kulcsszó használatával leállítja a feldolgozást, az *$Error.Exception.Message* segítségével pedig lekéri az aktuális kivételt leíró üzenetet.<br><br> ![Példa egy Automation runbook hibakezelési kódra](media/automation-runbook-graphical-error-handling/runbook-example-error-handling-code.png)
+A tevékenységek tooa egyetlen haladjanak hiba hivatkozások **hiba felügyeleti** tevékenység (kód tevékenység). Ez a tevékenység része hello használó egyszerű PowerShell-kifejezést *Throw* feldolgozás, jelszavat kulcsszó toostop *$Error.Exception.Message* tooget hello hello leíró üzenet aktuális kivétel.<br><br> ![Példa egy Automation runbook hibakezelési kódra](media/automation-runbook-graphical-error-handling/runbook-example-error-handling-code.png)
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-* További információk a hivatkozásokról és a grafikus runbookokban szereplő hivatkozástípusokról: [Grafikus létrehozás az Azure Automationben](automation-graphical-authoring-intro.md#links-and-workflow).
+* További információ a hivatkozások és a grafikus forgatókönyvek típusú hivatkozás toolearn lásd [grafikus készítése az Azure Automationben](automation-graphical-authoring-intro.md#links-and-workflow).
 
-* A runbook végrehajtásával, a runbook-feladatok figyelésével, illetve az egyéb technikai részletekkel kapcsolatos további tudnivalókat a [Runbook-feladatok nyomon követése](automation-runbook-execution.md) című rész tartalmazza.
+* További információk a runbook végrehajtása toomonitor runbook feladatokat, valamint egyéb technikai részleteket lásd: hogyan toolearn [nyomon követheti a runbook-feladatok](automation-runbook-execution.md).

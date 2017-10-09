@@ -1,9 +1,9 @@
 ## <a name="clean-up-resources"></a>Az erőforrások eltávolítása
 
-Az előző lépésekben Azure-erőforrásokat hozott létre egy erőforráscsoportban. Ha várhatóan nincs szüksége ezekre az erőforrásokra a későbbiekben, az erőforráscsoport eltávolításával törölheti őket.
+Az előző lépésekben hello létrehozott egy erőforráscsoportot az Azure-erőforrások. Ha nem várt tooneed ezeket az erőforrásokat hello jövőbeli, hello erőforráscsoport törlésével törölhetik azokat.
  
-Az Azure Portal bal oldali menüjében válassza az **Erőforráscsoportok** lehetőséget, majd a **myResourceGroup** elemet.
+Hello hello Azure-portálon a bal oldali menüből, válassza ki a **erőforráscsoportok** majd **myResourceGroup**.
 
-Az erőforráscsoport lapján ellenőrizze, hogy a felsorolt erőforrásokat szeretné-e törölni.
+Hello erőforrás csoport lapon győződjön meg arról, hogy hello felsorolt erőforrások hello meg a kívánt toodelete.
 
-Válassza a **Törlés** elemet, írja be a **myResourceGroup** kifejezést a szövegmezőbe, majd válassza a **Törlés** elemet.
+Válassza ki **törlése**, típus **myResourceGroup** hello szövegmezőbe, és válassza ki **törlése**.

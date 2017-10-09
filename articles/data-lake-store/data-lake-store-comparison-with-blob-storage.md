@@ -1,5 +1,5 @@
 ---
-title: "Azure Storage-Blobból az Azure Data Lake Store összehasonlítása |} Microsoft Docs"
+title: "aaaAzure Azure Storage-Blobba Data Lake Store összehasonlítása |} Microsoft Docs"
 description: "Azure Storage-Blobból az Azure Data Lake Store összehasonlítása"
 services: data-lake-store
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 29f074f1ced5a3f4305d961a98f45e4a3b7792ef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a86553260853b4527992d54782ab1b4d7d20e27f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparing-azure-data-lake-store-and-azure-blob-storage"></a>Az Azure Data Lake Store és az Azure Blob Storage összehasonlítása
-Ebben a cikkben a táblázat összefoglalja, az Azure Data Lake Store és az Azure Blob Storage néhány kulcsfontosságú elemeit, az adatfeldolgozás nagy mentén. Az Azure Blob Storage egy általános célú, méretezhető objektum tároló, amely a tárolási forgatókönyvek széles szolgál. Azure Data Lake Store tárháza kapacitású, amely a big data elemzés munkaterhelések van optimalizálva.
+Ebben a cikkben hello tábla hello különbségei az Azure Data Lake Store és az Azure Blob Storage mentén néhány kulcsfontosságú elemeit, az adatfeldolgozás nagy foglalja össze. Az Azure Blob Storage egy általános célú, méretezhető objektum tároló, amely a tárolási forgatókönyvek széles szolgál. Azure Data Lake Store tárháza kapacitású, amely a big data elemzés munkaterhelések van optimalizálva.
 
 |  | Azure Data Lake Store | Azure Blob Storage |
 | --- | --- | --- |
 | Cél |Optimalizált tárolási megoldás big data elemzés munkaterhelések |Általános célú objektum tárolására számos különböző tárolási forgatókönyvek |
 | Használati esetek |Kötegelt, interaktív, streaming analytics és a machine learning adatok például a naplófájlok, IoT-adatokat, kattintson az adatfolyamokat, nagy adatkészletek |Szöveges vagy bináris adatok, például az alkalmazás bármilyen típusú biztonsági end, a biztonsági mentési adatokat, a adatfolyam-továbbításhoz és általános célú adatok tárolása adathordozó |
-| Fő fogalmak |Data Lake Store-fiók mappát tartalmaz, pedig tartalmazó fájlként tárolt adatok |A tárfiók rendelkezik tárolók, melynek cserébe megvan az adatok BLOB formájában |
+| Fő fogalmak |Data Lake Store-fiók mappát tartalmaz, pedig tartalmazó fájlként tárolt adatok |A tárfiók rendelkezik tárolók, melynek cserébe megvan az adatok BLOB hello formájában |
 | struktúra |Hierarchikus fájlrendszer |Egyszerű névtér objektum tároló |
 | API |REST API HTTPS-KAPCSOLATON keresztül |REST API HTTP/HTTPS-KAPCSOLATON keresztül |
 | Kiszolgálóoldali API |[WebHDFS-kompatibilis REST API-n](https://msdn.microsoft.com/library/azure/mt693424.aspx) |[Az Azure Blob Storage REST API-n](https://msdn.microsoft.com/library/azure/dd135733.aspx) |
 | Hadoop-fájl rendszer ügyfél |Igen |Igen |
 | Adatok műveletek - hitelesítés |Alapján [az Azure Active Directory-identitás](../active-directory/active-directory-authentication-scenarios.md) |A közös titkokat - alapján [Tárelérési kulcsok](../storage/common/storage-create-storage-account.md#manage-your-storage-account) és [megosztott hozzáférési aláírást kulcsok](../storage/common/storage-dotnet-shared-access-signature-part-1.md). |
-| Adatok műveletek - hitelesítési protokoll |OAuth 2.0-s. Hívások tartalmaznia kell egy érvényes jwt-t (JSON Web Token) Azure Active Directory által kiadott |Kivonat-alapú üzenethitelesítési kóddal (HMAC). Hívások tartalmaznia kell egy Base64-kódolású SHA-256 kivonatoló a HTTP-kérelmek egy része felett. |
+| Adatok műveletek - hitelesítési protokoll |OAuth 2.0-s. Hívások tartalmaznia kell egy érvényes jwt-t (JSON Web Token) Azure Active Directory által kiadott |Kivonat-alapú üzenethitelesítési kóddal (HMAC). Hívások tartalmaznia kell egy Base64-kódolású SHA-256 kivonatoló hello HTTP-kérelmek egy része felett. |
 | Adatok műveletek - engedélyezés |POSIX hozzáférés-vezérlési listák (ACL).  Fájl- és szintű Azure Active Directory identitások alapuló hozzáférés-vezérlési listák állítható be. |A fiók szintű engedélyezési – használjon [Tárelérési kulcsok](../storage/common/storage-create-storage-account.md#manage-your-storage-account)<br>A fiók, a tároló vagy a blob engedélyezési - használjon [megosztott hozzáférési aláírási kulcsok](../storage/common/storage-dotnet-shared-access-signature-part-1.md) |
 | Adatok műveletek - naplózás |Érhető el. Lásd: [Itt](data-lake-store-diagnostic-logs.md) információt. |Elérhető |
 | Inaktív adatok titkosítása |Átlátszó, kiszolgálóoldali <ul><li>A szolgáltatás által kezelt kulcsok</li><li>Ügyfél által felügyelt Azure KeyVault kulcsokkal rendelkező</li></ul> |<ul><li>Átlátszó, kiszolgálóoldali</li> <ul><li>A szolgáltatás által kezelt kulcsok</li><li>Ügyfél által felügyelt Azure KeyVault (hamarosan elérhető) kulcsokkal rendelkező</li></ul><li>Ügyféloldali titkosítás</li></ul> |

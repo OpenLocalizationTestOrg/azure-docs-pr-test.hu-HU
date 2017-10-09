@@ -1,6 +1,6 @@
 ---
-title: "Az a Visual Studio Felhőszolgáltatás-alkalmazások hibakeresését emulator express telepítő |} Microsoft Docs"
-description: "Ismerteti, hogyan telepítse a C++ terjeszthető változatának emulátor a Visual Studio Express engedélyezése"
+title: "aaaSetup emulator express toodebug Felhőszolgáltatások alkalmazásokat a Visual Studióban |} Microsoft Docs"
+description: "Azt ismerteti, hogyan tooinstall hello C++ redistributable tooenable emulátor a Visual Studio Express"
 services: cloud-services
 documentationcenter: 
 author: cawa
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/02/2016
 ms.author: cawa
-ms.openlocfilehash: 05d672dcb1335c617bb8d8cae43947bcd5e9ab3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fb506f0b1384f2e52310799eb5ae2a102d777bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-emulator-express-to-debug-cloud-services-application-in-vs-2017"></a>A Visual STUDIO 2017 Felhőszolgáltatások alkalmazás hibakeresése a Emulator Express használatával
-Ez a cikk ismerteti, hogyan Emulator Express az VS 2017 a Felhőszolgáltatás-alkalmazások hibakeresését.
+# <a name="use-emulator-express-toodebug-cloud-services-application-in-vs-2017"></a>Alkalmazásával Emulator Express toodebug Felhőszolgáltatások Visual STUDIO 2017
+Ez a cikk azt ismerteti, hogyan toouse Emulator Express toodebug Felhőszolgáltatások alkalmazások VS 2017.
 
 ## <a name="background-context"></a>Háttér-környezet
-Cloud Services webes és feldolgozói szerepkörök a Visual Studio hibakeresési Emulator Express használja alapértelmezetten. Ez a beállítás a Felhőszolgáltatások tulajdonságai lap van megadva.
+Cloud Services webes és feldolgozói szerepkörök a Visual Studio hibakeresési Emulator Express használja alapértelmezetten. Ez a beállítás van megadva a hello Felhőszolgáltatások projekt Tulajdonságok lapján.
 
 ![Nyissa meg a projekt tulajdonságai][0]
 
 ![Alapértelmezett emulátor expressz legyen kijelölve][1]
 
-A [Visual C++ újraterjeszthető csomag] [ Visual C++ Redistributable] az emulátor által igényelt Visual Studio express. Jelenleg nincs telepítve az Azure áttelepítendő feladatokhoz. F5 hitelesítési módok egy Felhőszolgáltatás-alkalmazások hibakeresését, akkor a Visual Studio telepíteni ezt az összetevőt, és folytassa a hibakeresés volna kérni.
+Hello [Visual C++ újraterjeszthető csomag] [ Visual C++ Redistributable] az emulátor által igényelt Visual Studio express. Jelenleg nincs telepítve az Azure számítási hello. F5 esetén akár többérintéses kézmozdulatokkal toodebug egy Felhőszolgáltatás-alkalmazások, a Visual Studio ehhez kérni tooinstall ezt az összetevőt, és folytassa a hibakeresést.
 
 ![Rákérdezés a C++ újraterjeszthető csomag telepítése][2]
 
-Kattintson az Igen gombra C++ újraterjeszthető csomag telepítését.
+Kattintson az Igen tooinstall C++ újraterjeszthető csomag.
 
 ![C++ terjeszthető változatának telepítése][3]
 
-Nyomja le az F5 újra indítsa el a hibakeresési munkamenetek.
+Nyomja le az F5 újra toolaunch hibakeresési munkamenetek.
 
 ![A hibakeresés elindításához][4]
 
@@ -49,19 +49,19 @@ Nyomja le az F5 újra indítsa el a hibakeresési munkamenetek.
 > 
 
 ## <a name="manual-workaround"></a>Manuális megoldás
-Is telepíthet a [Visual C++ újraterjeszthető csomag] [ Visual C++ Redistributable] manuálisan, és, hogyan Visual Studio telepítve a rendszeren, ugyanaz az eredmény lesz alkalmazva.
+Hello is telepíthet [Visual C++ újraterjeszthető csomag] [ Visual C++ Redistributable] manuálisan, és, hogyan Visual Studio telepítve a rendszeren, ugyanaz az eredmény lesz alkalmazva.
 
 [vcredist_x86.exe][vcredist_x86.exe]
 
 [vcredist_x64.exe][vcredist_x64.exe]
 
 ## <a name="next-steps"></a>Következő lépések
-További tudnivalók a Visual Studio Felhőszolgáltatás-alkalmazások hibakeresését Azure számítógép Emulator használatával: [Emulator Express használatával futtatni, és egy felhőalapú szolgáltatás a helyi számítógépen hibakeresési][Using Emulator Express to run and debug a cloud service on a local machine]
+További információ Azure számítógép emulátor toodebug a Felhőszolgáltatások alkalmazásokat a Visual Studióban: [Emulator Express használatával toorun és hibakeresési egy felhőalapú szolgáltatás a helyi számítógépen][Using Emulator Express toorun and debug a cloud service on a local machine]
 
 [Visual C++ Redistributable]:https://www.microsoft.com/en-us/download/details.aspx?id=30679
 [vcredist_x86.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
 [vcredist_x64.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
-[Using Emulator Express to run and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
+[Using Emulator Express toorun and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
 
 [0]: ./media/cloud-services-emulator-express-fix/vs-05.png
 [1]: ./media/cloud-services-emulator-express-fix/vs-06.png

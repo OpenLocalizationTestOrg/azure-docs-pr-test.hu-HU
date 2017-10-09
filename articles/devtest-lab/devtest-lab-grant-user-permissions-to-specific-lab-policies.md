@@ -1,6 +1,6 @@
 ---
-title: "Felhasználói engedélyek adott labor szabályzatokkal |} Microsoft Docs"
-description: "Útmutató: a DevTest Labs szolgáltatásban minden egyes felhasználói igények alapján adott labor házirendek felhasználói engedélyeket"
+title: "aaaGrant felhasználói engedélyek toospecific labor házirendeket |} Microsoft Docs"
+description: "Ismerje meg, hogyan toogrant felhasználói engedélyek toospecific labor házirendeket a DevTest Labs szolgáltatásban minden egyes felhasználói igények alapján"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: 0bd9f83257834d9681479ba9117c48ffd6d6e166
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35647ab837243188f06566cdf365b67fe33a3865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-user-permissions-to-specific-lab-policies"></a>A konkrét labor házirendek felhasználói engedélyek
+# <a name="grant-user-permissions-toospecific-lab-policies"></a>Felhasználói engedélyek toospecific labor házirendek
 ## <a name="overview"></a>Áttekintés
-Ez a cikk bemutatja, hogyan lehet egy adott labor házirend felhasználók engedélyeket a PowerShell használatával. Ily módon engedélyek alkalmazhatók minden felhasználói igények alapján. Például érdemes egy adott felhasználó megváltoztathatja a virtuális gép házirend-beállításokat, de nem a költségek házirendek megadását.
+Ez a cikk bemutatja, hogyan toouse PowerShell toogrant felhasználók engedélyek tooa adott labor házirend. Ily módon engedélyek alkalmazhatók minden felhasználói igények alapján. Például érdemes toogrant egy adott felhasználói hello képességét toochange hello VM házirend-beállításokat, de nem hello házirendek költsége.
 
 ## <a name="policies-as-resources"></a>Erőforrásként házirendek
-A bemutatott a [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md) RBAC a cikkben lehetővé teszi, hogy az Azure-erőforrások részletes hozzáféréskezelést. Az RBAC használata, feladatokat elkülönítse a DevOps munkacsoporton belül, és csak olyan mértékű hozzáférést biztosítania a felhasználók számára, hogy be kell elvégezni a munkájukat.
+Hello leírtaknak megfelelően [Azure szerepköralapú hozzáférés-vezérlés](../active-directory/role-based-access-control-configure.md) RBAC a cikkben lehetővé teszi, hogy az Azure-erőforrások részletes hozzáféréskezelést. Az RBAC használata, feladatokat elkülönítse a DevOps munkacsoporton belül, és hozzáférési toousers csak hello összegét adja meg, hogy be kell tooperform a feladatokat a.
 
-A DevTest Labs szolgáltatásban, a házirend, amely lehetővé teszi a Szerepalapú művelet erőforrástípus **Microsoft.DevTestLab/labs/policySets/policies/**. Minden tesztkörnyezeti házirend házirend erőforrástípus az erőforráshoz, és hatóköreként RBAC szerepkörhöz is hozzárendelhető.
+A DevTest Labs szolgáltatásban, a házirend, amely lehetővé teszi a hello RBAC művelet erőforrástípus **Microsoft.DevTestLab/labs/policySets/policies/**. Minden tesztkörnyezeti házirend hello házirend erőforrástípus az erőforráshoz, és hozzárendelhető hatókör tooan RBAC szerepkörként.
 
-Például ahhoz, hogy a felhasználók olvasási/írási engedélyeket a **engedélyezett Virtuálisgép-méretek** házirend, akkor létre egy egyéni biztonsági szerepkört, amely kompatibilis a **Microsoft.DevTestLab/labs/policySets/policies/*** a művelet, majd rendelje hozzá a megfelelő felhasználók az egyéni szerepkör hatókörébe tartozó **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**.
+Például a rendelés toogrant felhasználók olvasási/írási engedéllyel toohello **engedélyezett Virtuálisgép-méretek** házirend, akkor létre egy egyéni biztonsági szerepkört, amely kompatibilis a hello **Microsoft.DevTestLab/labs/policySets/policies/** * művelet, és rendelje hozzá hello megfelelő felhasználók toothis egyéni szerepkör hatóköre hello **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**.
 
-Egyéni szerepkörök az RBAC kapcsolatos további tudnivalókért tekintse meg a [egyéni szerepkörök hozzáférés-vezérlés](../active-directory/role-based-access-control-custom-roles.md).
+További információ az egyéni szerepkörök az RBAC, toolearn, lásd: hello [egyéni szerepkörök hozzáférés-vezérlés](../active-directory/role-based-access-control-custom-roles.md).
 
 ## <a name="creating-a-lab-custom-role-using-powershell"></a>PowerShell-lel labor egyéni szerepkör létrehozása
-Ahhoz, hogy az első lépések, olvassa el az alábbi cikket, amely fogja azt ismertetik, hogyan telepítse és konfigurálja az Azure PowerShell-parancsmagok szüksége: [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre).
+A lépések sorrendben tooget, szüksége lesz a következő cikket, amely alapján meghatározható tooread hello hogyan tooinstall és Azure PowerShell-parancsmagok hello konfigurálása: [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre).
 
-Miután beállította az Azure PowerShell-parancsmagok, a következő feladatokat végezheti el:
+Azure PowerShell-parancsmagok hello beállítása után hello a következő feladatokat végezheti el:
 
-* A műveletek/műveleteket egy erőforrás-szolgáltató listázása
+* Egy erőforrás-szolgáltató minden hello műveletek/műveletek listázása
 * Egy adott szerepkörben műveletek listája:
 * Egyéni szerepkör létrehozása
 
-A következő PowerShell-parancsfájl a feladatok végrehajtásához példákat szemlélteti:
+a következő PowerShell-parancsfájl hello példákat szemlélteti tooperform ezeket a feladatokat:
 
-    ‘List all the operations/actions for a resource provider.
+    ‘List all hello operations/actions for a resource provider.
     Get-AzureRmProviderOperation -OperationSearchString "Microsoft.DevTestLab/*"
 
     ‘List actions in a particular role.
@@ -60,10 +60,10 @@ A következő PowerShell-parancsfájl a feladatok végrehajtásához példákat 
     $policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/policySets/policies/*")
     $policyRoleDef = (New-AzureRmRoleDefinition -Role $policyRoleDef)
 
-## <a name="assigning-permissions-to-a-user-for-a-specific-policy-using-custom-roles"></a>Engedélyek hozzárendelése a felhasználó egy adott házirend segítségével egyéni szerepkörök
-Miután meghatározta a egyéni szerepkörök, hozzárendelheti azokat a felhasználókat. Ahhoz, hogy egy egyéni biztonsági szerepkört rendel egy felhasználói, be kell szereznie a **ObjectId** képviselő, hogy a felhasználó. Ehhez használja a **Get-AzureRmADUser** parancsmag.
+## <a name="assigning-permissions-tooa-user-for-a-specific-policy-using-custom-roles"></a>Engedélyek tooa felhasználói egy adott házirend segítségével egyéni szerepkörök hozzárendelése
+Miután meghatározta a egyéni szerepkörök, hozzárendelheti azokat toousers. A sorrend tooassign egy egyéni biztonsági szerepkört tooa felhasználói, be kell szereznie hello **ObjectId** képviselő, hogy a felhasználó. használó, hello toodo **Get-AzureRmADUser** parancsmag.
 
-A következő példában a **ObjectId** , a *SomeUser* felhasználói 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3.
+A következő példa hello, hello **ObjectId** a hello *SomeUser* felhasználói 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3.
 
     PS C:\>Get-AzureRmADUser -SearchString "SomeUser"
 
@@ -71,11 +71,11 @@ A következő példában a **ObjectId** , a *SomeUser* felhasználói 05DEFF7B-0
     -----------                    ----                           --------
     someuser@hotmail.com                                          05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3
 
-Ha elvégezte a **ObjectId** a felhasználó és egy egyéni szerepkör nevét, a felhasználó számára, hogy szerepkört is rendelhet a **New-AzureRmRoleAssignment** parancsmagot:
+Ha elvégezte a hello **ObjectId** hello felhasználói és egyéni szerepkör nevét, akkor is lehet rendelni a hello szerepkör toohello felhasználó **New-AzureRmRoleAssignment** parancsmagot:
 
     PS C:\>New-AzureRmRoleAssignment -ObjectId 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3 -RoleDefinitionName "Policy Contributor" -Scope /subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroupName>/providers/Microsoft.DevTestLab/labs/<LabName>/policySets/policies/AllowedVmSizesInLab
 
-Az előző példában a **AllowedVmSizesInLab** házirendet használja. Használhatja a következő házirendhez:
+Hello előző példában hello **AllowedVmSizesInLab** házirendet használja. Következő szabályzatok hello bármelyikét használhatja:
 
 * MaxVmsAllowedPerUser
 * MaxVmsAllowedPerLab
@@ -85,11 +85,11 @@ Az előző példában a **AllowedVmSizesInLab** házirendet használja. Használ
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>Következő lépések
-Egyszer már engedélyeket felhasználó adott labor házirendek, az alábbiakban néhány lépéseket érdemes figyelembe venni:
+Egyszer Ön már biztosított felhasználói engedélyek toospecific labor házirendek, az alábbiakban néhány következő lépések tooconsider:
 
-* [Biztonságos hozzáférés a laborokhoz](devtest-lab-add-devtest-user.md).
+* [Biztonságos hozzáférés tooa labor](devtest-lab-add-devtest-user.md).
 * [Laborházirendek megadása](devtest-lab-set-lab-policy.md).
 * [Laborsablon létrehozása](devtest-lab-create-template.md).
 * [Egyéni összetevők létrehozása a virtuális géphez](devtest-lab-artifact-author.md).
-* [Összetevőkkel rendelkező virtuális gép hozzáadása egy laborhoz](devtest-lab-add-vm-with-artifacts.md).
+* [Adja hozzá a virtuális gép és az összetevők tooa labor](devtest-lab-add-vm-with-artifacts.md).
 

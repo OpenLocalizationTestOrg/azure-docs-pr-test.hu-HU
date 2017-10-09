@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure-továbbítási WCF továbbítja a .NET |} Microsoft Docs"
-description: "Megtudhatja, hogyan használhatja az Azure továbbítási WCF továbbítók két különböző helyen üzemeltetett alkalmazások kapcsolódáshoz."
+title: "aaaGet Azure továbbítási WCF-továbbítókat használhatnak a .NET használatába |} Microsoft Docs"
+description: "Ismerje meg, hogyan toouse Azure továbbítási WCF továbbítja tooconnect két különböző helyen üzemeltetett alkalmazások."
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,57 +14,57 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: 1af1ac78398d65e6a87f0d24d6198f3dfbc82ffd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a652617fc2e9b7c8d62d39fa914f77df6e3a1771
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-relay-wcf-relays-with-net"></a>A .NET szegélyhálózatába, az Azure-továbbítási WCF használata
-Ez a cikk ismerteti, hogyan használhatja az Azure-továbbítási szolgáltatást. A kódminták C# nyelven íródtak, és a Windows Communication Foundation (WCF) API-t használják a Service Bus-összeállításban található bővítményekkel. Az Azure relayjel kapcsolatos további információkért lásd: a [Azure továbbítási áttekintése](relay-what-is-it.md).
+# <a name="how-toouse-azure-relay-wcf-relays-with-net"></a>Hogyan toouse Azure továbbítási WCF továbbítja a .NET
+Ez a cikk ismerteti, hogyan toouse hello Azure továbbítási szolgáltatás. hello Kódminták C# nyelven íródtak, és hello Windows Communication Foundation (WCF) API használata hello Service Bus-összeállításban található bővítményekkel. Az Azure relayjel kapcsolatos további információkért lásd: hello [Azure továbbítási áttekintése](relay-what-is-it.md).
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="what-is-wcf-relay"></a>Mi az a WCF továbbító?
 
-Az Azure [ *WCF továbbító* ](relay-what-is-it.md) szolgáltatás lehetővé teszi hibrid alkalmazások összeállítását, amelyek egy Azure-adatközpontban és a saját helyszíni vállalati környezetben is futnak. A továbbítási szolgáltatás ezt úgy segíti elő, hogy biztonságosan teszik elérhetővé a anélkül, hogy meg kellene nyitni egy tűzfalkapcsolatot, vagy zavaró módosításokat kellene a vállalati hálózati infrastruktúrában végrehajtani a nyilvános felhőbe, a vállalati hálózaton található Windows Communication Foundation (WCF) szolgáltatásait.
+hello Azure [ *WCF továbbító* ](relay-what-is-it.md) szolgáltatás lehetővé teszi, hogy toobuild hibrid alkalmazások, amelyek egy Azure-adatközpontban és a saját helyszíni vállalati környezetben is futnak. hello továbbítási szolgáltatás ezt úgy segíti elő, toosecurely teszi közzé a Windows Communication Foundation (WCF) szolgáltatásokat, amelyek a vállalati hálózati toohello nyilvános felhőben, anélkül, hogy tooopen egy tűzfalkapcsolatot, vagy igénylő zavaró módosításokat tooa vállalati hálózati infrastruktúrában.
 
 ![A WCF Relay szolgáltatással kapcsolatos fogalmak](./media/service-bus-dotnet-how-to-use-relay/sb-relay-01.png)
 
-Az Azure Relay lehetővé teszi WCF-szolgáltatások üzemeltetését a meglévő vállalati környezetben. Majd delegálhatja figyeli a bejövő munkamenetek és kérések a WCF-szolgáltatások a továbbítási szolgáltatás Azure-ban futó nem megfelelő. Ez lehetővé teszi a szolgáltatások közzétételét az Azure-ban futó alkalmazáskódok, illetve mobil dolgozók vagy külső hálózaton lévő partnerkörnyezetek számára. Továbbító segítségével szabályozhatja, hogy biztonságosan ki férhet hozzá ezeket a szolgáltatásokat a minden részletre kiterjedő szinten. Hatékony és biztonságos módot biztosít a meglévő vállalati megoldásaiból származó alkalmazások és adatok közzétételére, valamint kihasználja a felhő előnyeit.
+Az Azure Relay lehetővé teszi a meglévő vállalati környezetben toohost WCF-szolgáltatások. Figyeli a bejövő munkamenetek és kérések toothese WCF szolgáltatások toohello továbbítási szolgáltatás Azure-ban futó majd delegálhatja. Ez lehetővé teszi, hogy Ön tooexpose ezek Azure-ban vagy toomobile munkavállalók vagy partner extranetes környezetben futó szolgáltatások tooapplication kód. Relay lehetővé teszi toosecurely vezérlő, ki férhet hozzá ezeket a szolgáltatásokat a minden részletre kiterjedő szinten. A hatékony és biztonságos módot tooexpose az alkalmazás funkciói és az adatokat a meglévő vállalati megoldásaiból és előnyeit, hello felhőből biztosít.
 
-A cikkből megtudhatja, hogyan Azure továbbítási segítségével hozzon létre egy WCF-webszolgáltatás a TCP-csatornán kötelező, segítségével két fél között biztonságos párbeszédet megvalósító.
+A cikk ismerteti, hogyan toouse Azure továbbítási toocreate egy WCF-webszolgáltatás kitett TCP-csatornakötéssel tehet, két fél között biztonságos párbeszédet megvalósító használatával.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="get-the-service-bus-nuget-package"></a>A Service Bus NuGet-csomag beszerzése
-A Service Bus API beszerzésének, valamint az alkalmazások az összes Service Bus-függőséggel való konfigurálásának legegyszerűbb módja a [Service Bus NuGet-csomag](https://www.nuget.org/packages/WindowsAzure.ServiceBus) telepítése. A NuGet-csomagnak a projektben való telepítéséhez tegye a következőket:
+## <a name="get-hello-service-bus-nuget-package"></a>Hello Service Bus NuGet-csomag
+Hello [Service Bus NuGet-csomag](https://www.nuget.org/packages/WindowsAzure.ServiceBus) hello legegyszerűbb módja tooget hello Service Bus API és tooconfigure az alkalmazás az összes Service Bus-függőséggel hello van. tooinstall hello NuGet-csomagot a projekt hello a következő:
 
 1. A Megoldáskezelőben kattintson a jobb gombbal a **Hivatkozások** elemre, majd kattintson a **Manage NuGet Packages** (NuGet-csomagok kezelése) parancsra.
-2. Keressen a „Service Bus” kifejezésre, és válassza ki az **Microsoft Azure Service Bus** elemet. Kattintson az **Install** (Telepítés) gombra a telepítés befejezéséhez, majd zárja be a következő párbeszédpanelt:
+2. Keressen a "Service Bus" és a select hello **Microsoft Azure Service Bus** elemet. Kattintson a **telepítése** toocomplete hello telepítését, majd zárja be a következő párbeszédpanel hello:
    
    ![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-13.png)
 
 ## <a name="expose-and-consume-a-soap-web-service-with-tcp"></a>Közzétételére és felhasználására a SOAP-webszolgáltatás TCP-vel
-Egy meglévő SOAP WCF-webszolgáltatás külső felhasználásra történő közzétételéhez módosítania kell a szolgáltatás kötéseit és címeit. Ehhez a konfigurációs fájl módosítására vagy a kód módosítására lehet szükség, attól függően, hogy hogyan állította be és konfigurálta a WCF-szolgáltatásokat. Vegye figyelembe, hogy a WCF lehetővé teszi, hogy több hálózati végpont használatát ugyanabban a szolgáltatásban, tehát megtarthatja a meglévő belső végpontokat egyszerre külső hozzáférés céljából továbbítási végpontok hozzáadása közben.
+egy meglévő WCF SOAP-webszolgáltatás külső felhasználásra tooexpose, gondoskodnia kell módosítások toohello szolgáltatás kötéseit és címeit. Elképzelhető, hogy szükség módosítások tooyour konfigurációs fájl vagy a kód módosítására, attól függően, hogy hogyan hogy állítson be és konfigurálta a WCF-szolgáltatásokat. Vegye figyelembe, hogy a WCF lehetővé teszi toohave több hálózati végpont keresztül hello ugyanazt a szolgáltatást, tehát megtarthatja a meglévő hello külső továbbítási végpontok hozzáadása közben belső végpont hozzáférni: hello azonos idő.
 
-Ebben a feladatban egy egyszerű WCF-szolgáltatás hozza létre, és adja hozzá a továbbítási figyelő. A gyakorlat feltételezi a Visual Studio bizonyos fokú ismeretét, ezért nem ismerteti a projekt létrehozásának minden részletét. Ehelyett magára a kódra összpontosít.
+Ebben a feladatban egy egyszerű WCF-szolgáltatás hozza létre, és adja hozzá a továbbítási figyelő tooit. Ebben a gyakorlatban azt feltételezi, hogy a Visual Studio bizonyos fokú ismeretét, és ezért nem végezze el a projekt létrehozása minden hello részleteit. Ehelyett hello kód összpontosít.
 
-Az alábbi lépések megkezdése előtt végezze el a következő eljárást a környezet beállításához:
+A lépések megkezdése előtt hajtsa végre a következő eljárás tooset be a környezetet hello:
 
-1. A Visual Studióban a megoldáson belül hozzon létre egy konzolalkalmazást, amely két projektet, az „Ügyfél” és a „Szolgáltatás” projektet tartalmaz.
-2. Mindkét projekthez adja hozzá a Service Bus NuGet-csomagot. Ez a csomag hozzáadja a projektekhez az összes szükséges összeállítási referenciát.
+1. Visual Studio hozzon létre egy konzolalkalmazást, amely két projektet tartalmaz, "Ügyfél" és "Szolgáltatás" hello megoldás belül.
+2. Hello Service Bus NuGet csomag tooboth projektek hozzáadásához. Ez a csomag összes hello szükséges szerelvény hivatkozások tooyour projektek hozzáadja.
 
-### <a name="how-to-create-the-service"></a>A szolgáltatás létrehozása
-Először hozza létre a szolgáltatást. Minden WCF-szolgáltatás legalább három különálló részből áll:
+### <a name="how-toocreate-hello-service"></a>Hogyan toocreate hello szolgáltatás
+Először hozzon létre hello szolgáltatást. Minden WCF-szolgáltatás legalább három különálló részből áll:
 
-* Egy szerződés meghatározásából, amely leírja, hogy milyen üzenetek lesznek cserélve és milyen műveletek lesznek meghívva.
+* Amely leírja, milyen üzenetek lesznek cserélve és milyen műveleteket toobe meghívni egy szerződés meghatározásából.
 * A szerződés megvalósítása.
-* Egy állomásból, amely üzemelteti a WCF-szolgáltatást, és amely több végpontot is elérhetővé tesz.
+* Az gazdagépet, amely hello WCF-szolgáltatást futtatja, és elérhetővé teszi a több végpontok.
 
-A jelen szakaszban lévő kódpéldák mindhárom összetevőt tartalmazzák.
+Ebben a szakaszban hello kódpéldák hárítsa el ezeket az összetevőket.
 
-A szerződés egyetlen műveletet, a(z) `AddNumbers` műveletet definiálja, amely két számot ad össze, és visszaadja az eredményt. A(z) `IProblemSolverChannel` interfész lehetővé teszi az ügyfél számára, hogy egyszerűbben kezelje a proxy élettartamát. Az ilyen interfész létrehozása ajánlott eljárás. Érdemes ezt a szerződést egy különálló fájlban elhelyezni, hogy az „Ügyfél” és a „Szolgáltatás” projektből is hivatkozni lehessen a fájlra, de a kódot bemásolhatja mindkét projektbe is.
+hello definiál egy művelettel, `AddNumbers`, amely két számot ad, és hello eredményt adja vissza. Hello `IProblemSolverChannel` felület lehetővé teszi, hogy hello ügyfél toomore, könnyedén kezelhető hello proxy élettartamát. Az ilyen interfész létrehozása ajánlott eljárás. Egy jó ötlet tooput a szerződést egy különálló fájlban definition, hogy a "Ügyfél" és a "Szolgáltatás" projektek is hivatkozni lehessen a fájlt, de hello kód be mindkét projektbe is másolhatja.
 
 ```csharp
 using System.ServiceModel;
@@ -79,7 +79,7 @@ interface IProblemSolver
 interface IProblemSolverChannel : IProblemSolver, IClientChannel {}
 ```
 
-A szerződés elkészült, a megvalósítása a következőképpen történik:
+Hello szerződés elkészült, a hello megvalósítása a következőképpen történik:
 
 ```csharp
 class ProblemSolver : IProblemSolver
@@ -92,7 +92,7 @@ class ProblemSolver : IProblemSolver
 ```
 
 ### <a name="configure-a-service-host-programmatically"></a>Szolgáltatásgazda konfigurálása szoftveresen
-Ha a szerződés és a megvalósítás elkészült, a szolgáltatás üzemeltethető. Az üzemeltetés egy [System.ServiceModel.ServiceHost](https://msdn.microsoft.com/library/system.servicemodel.servicehost.aspx) objektumon belül történik, amely gondoskodik a szolgáltatás felügyelő példányairól, és üzemelteti az üzeneteket figyelő végpontokat. A következő kód egy normál helyi végponttal és egy továbbító végpont mutatja be a megjelenését, egymás mellett, a belső és külső végpontok úgy konfigurálja a szolgáltatást. A *namespace* karakterláncot helyettesítse a névtér nevével, a *yourKey* karakterláncot pedig az előző lépésben beszerzett SAS-kulccsal.
+Hello szerződés és a megvalósítás elkészült üzemeltethető hello szolgáltatást. Üzemeltetési belül történik egy [System.ServiceModel.ServiceHost](https://msdn.microsoft.com/library/system.servicemodel.servicehost.aspx) objektum, amely gondoskodik felügyelő példányairól hello szolgáltatást, és a gazdagépek hello végpontok az üzeneteket. hello alábbira konfigurálja hello szolgáltatást egy normál helyi végponttal és egy továbbító végpont tooillustrate hello megjelenését, egymás mellett, a belső és külső végpontok is. Cserélje le a hello karakterlánc *névtér* a névtér nevével és *yourKey* hello előző telepítő lépésben beszerzett hello SAS-kulccsal.
 
 ```csharp
 ServiceHost sh = new ServiceHost(typeof(ProblemSolver));
@@ -109,27 +109,27 @@ sh.AddServiceEndpoint(
 
 sh.Open();
 
-Console.WriteLine("Press ENTER to close");
+Console.WriteLine("Press ENTER tooclose");
 Console.ReadLine();
 
 sh.Close();
 ```
 
-A példában két végpontot fog létrehozni, amelyek ugyanazon a szerződésmegvalósításhoz tartoznak. Az egyik helyi, egy Azure-továbbítási keresztül van kivetítve. A kettő közötti alapvető a kötéseik jelentik. [NetTcpBinding](https://msdn.microsoft.com/library/system.servicemodel.nettcpbinding.aspx) a helyi egy és [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding#microsoft_servicebus_nettcprelaybinding) a továbbítási végpont és a címek. A helyi végpont egy helyi hálózati címmel rendelkezik egy különálló porttal. A továbbító végpont rendelkezik végpontcímmel karakterlánc `sb`, a névtér nevét, és az elérési út "solver." Ennek eredményeként az URI `sb://[serviceNamespace].servicebus.windows.net/solver`, a szolgáltatás végpontjának azonosítása egy Service Bus (továbbítóként) TCP-végpontként külső teljesen minősített DNS-név. Ha a kódot a helyőrzők behelyettesítésével elhelyezi a **Szolgáltatás** alkalmazás `Main` függvényében, egy működő szolgáltatást kap. Ha azt szeretné, hogy a szolgáltatás kizárólag a továbbítási figyelni, távolítsa el a helyi végpont deklarációját.
+Hello példában két végpontot, amely a hello létrehozása azonos szerződés megvalósítása. Az egyik helyi, egy Azure-továbbítási keresztül van kivetítve. hello fő különbségek hello kötések; [NetTcpBinding](https://msdn.microsoft.com/library/system.servicemodel.nettcpbinding.aspx) a helyi hello és [NetTcpRelayBinding](/dotnet/api/microsoft.servicebus.nettcprelaybinding#microsoft_servicebus_nettcprelaybinding) hello továbbítási végpont és hello címek. hello helyi végpont egy különálló porttal rendelkező helyi hálózati címmel rendelkezik. hello továbbítási végpont rendelkezik végpontcímmel hello karakterlánc `sb`, a névtér nevét, és a hello elérési út "solver." Az eredmény hello URI `sb://[serviceNamespace].servicebus.windows.net/solver`, hello szolgáltatás végpontjának azonosítása egy Service Bus (továbbítóként) TCP-végpontként külső teljesen minősített DNS-név. Helyezi-e hello kód cseréje hello helyőrzőket a hello `Main` hello funkcióját **szolgáltatás** alkalmazás, hogy egy működő szolgáltatást. Ha azt szeretné, hogy a szolgáltatás toolisten kizárólag a hello továbbítási, távolítsa el a hello helyi végpont deklarációját.
 
-### <a name="configure-a-service-host-in-the-appconfig-file"></a>Szolgáltatásgazda konfigurálása az App.config fájlban
-Az állomást az App.config fájl segítségével is konfigurálhatja. A szolgáltatásüzemeltetési kód ez esetben a következő példában látható.
+### <a name="configure-a-service-host-in-hello-appconfig-file"></a>Szolgáltatásgazda konfigurálása hello App.config fájlban
+Hello állomás hello App.config fájl segítségével is konfigurálhatja. hello szolgáltatásüzemeltetési kód ebben az esetben a következő példában hello jelenik meg.
 
 ```csharp
 ServiceHost sh = new ServiceHost(typeof(ProblemSolver));
 sh.Open();
-Console.WriteLine("Press ENTER to close");
+Console.WriteLine("Press ENTER tooclose");
 Console.ReadLine();
 sh.Close();
 ```
 
-A végpontdefiníciók ekkor az App.config fájlba kerülnek. A NuGet-csomag már hozzá van adva a definíciók egy tartományát az App.config fájlhoz, amelyek az Azure-továbbítási szükséges konfigurációs bővítmények. A következő példának, amely pontosan megegyezik az előző kóddal, közvetlenül a **system.serviceModel** elem alatt kell megjelennie. A kódpélda feltételezi, hogy a projekt C# névterének neve **Service**.
-A helyőrzőket cserélje le a továbbítási névtér nevét és a SAS-kulcsot.
+hello App.config fájlba hello végpontdefiníciók. hello NuGet-csomag már hozzáadta definíciók toohello App.config fájlt, számos, amelyeket hello szükséges konfigurációs bővítmények továbbítási Azure. a következő példának, amely pontos hello hello egyenértékű hello előző kóddal, közvetlenül a hello alatt kell megjelennie **system.serviceModel** elemet. A kódpélda feltételezi, hogy a projekt C# névterének neve **Service**.
+Hello helyőrzőket cserélje le a továbbítási névtér nevét és a SAS-kulcsot.
 
 ```xml
 <services>
@@ -156,15 +156,15 @@ A helyőrzőket cserélje le a továbbítási névtér nevét és a SAS-kulcsot.
 </behaviors>
 ```
 
-A módosítások végrehajtása után a szolgáltatás ugyanúgy elindul, mint korábban, de most két élő végponttal: egy helyivel, és eggyel, amely a felhőben figyel.
+Miután elvégezte ezeket a módosításokat, hello szolgáltatás elindul-e, mint korábban, de most két élő végponttal: egy helyivel, és egy figyelő hello felhőben.
 
-### <a name="create-the-client"></a>Az ügyfél létrehozása
+### <a name="create-hello-client"></a>Hello ügyfél létrehozása
 #### <a name="configure-a-client-programmatically"></a>Ügyfél konfigurálása szoftveresen
-A szolgáltatás felhasználásához összeállíthat egy WCF-ügyfelet egy [ChannelFactory](https://msdn.microsoft.com/library/system.servicemodel.channelfactory.aspx) objektum használatával. A Service Bus egy jogkivonat-alapú biztonsági modellt használ, amely a SAS segítségével van megvalósítva. A [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider) osztály egy beépített gyári metódusokat tartalmazó biztonságijogkivonat-szolgáltatót képvisel, amelyek néhány jól ismert jogkivonat-szolgáltatót adnak vissza. A következő példa a [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) metódust használja a megfelelő SAS-jogkivonat beszerzésének kezeléséhez. A név és a kulcs az előző szakaszban leírtak szerint a portálról lekért értékek.
+tooconsume hello szolgáltatást, a WCF-ügyfél segítségével összeállíthat egy [ChannelFactory](https://msdn.microsoft.com/library/system.servicemodel.channelfactory.aspx) objektum. A Service Bus egy jogkivonat-alapú biztonsági modellt használ, amely a SAS segítségével van megvalósítva. Hello [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider) osztály biztonsági jogkivonat-szolgáltató jelöli, amelyek néhány jól ismert jogkivonat-szolgáltatót adnak vissza beépített gyári metódusokat tartalmazó. hello alábbi példában hello [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) metódus toohandle hello hello megfelelő SAS-jogkivonat megszerzése. hello név és kulcs azok hello előző szakaszban leírtak szerint hello portálról beszerzett.
 
-Először hivatkozzon a(z) `IProblemSolver` szerződéskódra, vagy másolja a szolgáltatásból az ügyfélprojektbe.
+Első, referencia vagy másolási hello `IProblemSolver` szerződéskódra hello szolgáltatásból az ügyfélprojektbe.
 
-Ezután cserélje le a kód a `Main` metódus az ügyfél ismét cserélje le a helyőrzőket a továbbítási névtér és SAS-kulcsot.
+Ezután cserélje le a hello hello kód `Main` metódus hello ügyfél újra hello helyőrző szöveg cseréje a továbbítási névterére és SAS-kulcsot.
 
 ```csharp
 var cf = new ChannelFactory<IProblemSolverChannel>(
@@ -180,10 +180,10 @@ using (var ch = cf.CreateChannel())
 }
 ```
 
-Most már lefordíthatja az ügyfelet és a szolgáltatást, futtathatja őket (először a szolgáltatást), így az ügyfél meghívja a szolgáltatást, és a **9** értéket nyomtatja ki. Az ügyfelet és a szolgáltatást futtathatja eltérő gépeken, akár hálózatokon keresztül is, a kommunikáció továbbra is működni fog. Az ügyfélkód a felhőben vagy helyben is futhat.
+Most már lefordíthatja hello ügyfél és a hello szolgáltatást, futtathatja őket (hello szolgáltatás futtatásához először), és hello ügyfél meghívja a hello szolgáltatást, és kiírja **9**. Futtathatja hello ügyfél- és a különböző gépeken, akár hálózatokon keresztül, és hello kommunikáció továbbra is működni fognak. hello Ügyfélkód hello felhőben vagy helyben is futtatható.
 
-#### <a name="configure-a-client-in-the-appconfig-file"></a>Ügyfél konfigurálása az App.config fájlban
-A következő kód bemutatja, hogyan konfigurálhatja az ügyfelet az App.config fájl segítségével.
+#### <a name="configure-a-client-in-hello-appconfig-file"></a>Ügyfél konfigurálása hello App.config fájlban
+hello a következő kód bemutatja, hogyan tooconfigure hello ügyfelet hello App.config fájl.
 
 ```csharp
 var cf = new ChannelFactory<IProblemSolverChannel>("solver");
@@ -193,7 +193,7 @@ using (var ch = cf.CreateChannel())
 }
 ```
 
-A végpontdefiníciók ekkor az App.config fájlba kerülnek. A következő példának, amely megegyezik az előzőekben látható kóddal, közvetlenül alatt kell megjelennie a `<system.serviceModel>` elemet. Itt mint korábban, meg kell cserélje le a helyőrzőket a továbbítási névterére és SAS-kulcsot.
+hello App.config fájlba hello végpontdefiníciók. hello következő példának, amely van hello ugyanaz, mint a korábban felsorolt hello kódot, alatt kell megjelennie közvetlenül hello `<system.serviceModel>` elemet. Itt mint korábban, le kell cserélnie hello helyőrzőket a továbbítási névtér és SAS-kulcsot.
 
 ```xml
 <client>
@@ -216,11 +216,11 @@ A végpontdefiníciók ekkor az App.config fájlba kerülnek. A következő pél
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-Most, hogy megismerte az Azure-továbbító alapok, ezek hivatkozásokat követve tudhat meg többet.
+Most, hogy megismerte az Azure-továbbítási hello alapjait, kövesse az alábbi hivatkozások további toolearn.
 
 * [Mi az az Azure Relay?](relay-what-is-it.md)
 * [Az Azure Service Bus-architektúra áttekintése](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
-* Töltse le a Service Bus-minták [Azure-minták] [ Azure samples] , vagy keresse meg a [Service Bus-minták áttekintése][overview of Service Bus samples].
+* Töltse le a Service Bus-minták [Azure-minták] [ Azure samples] , vagy keresse meg a hello [Service Bus-minták áttekintése][overview of Service Bus samples].
 
 [Shared Access Signature Authentication with Service Bus]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md
 [Azure samples]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2

@@ -1,4 +1,4 @@
-A következő táblázat PolicyBased és RouteBased VPN-átjáró rendszerkövetelményeit sorolja fel. Ez a tábla a Resource Managerre és a klasszikus üzembe helyezési modellre is érvényes. A Klasszikus modell PolicyBased VPN gatewayek ugyanazok, mint statikus átjárók, és útválasztó-alapú gatewayek ugyanazok, mint a dinamikus átjárók.
+a következő tábla listák hello beállítása PolicyBased és RouteBased VPN-átjáró követelményei hello. Ez a táblázat tooboth hello Resource Manager és klasszikus üzembe helyezési modellre vonatkozik. Hello Klasszikus modell PolicyBased VPN-átjárók vannak hello ugyanaz, mint a statikus átjárók, és útválasztó-alapú átjárók vannak hello ugyanaz, mint a dinamikus átjárók.
 
 |  | **PolicyBased alapszintű VPN Gateway** | **RouteBased alapszintű VPN Gateway** | **RouteBased Standard VPN Gateway** | **RouteBased nagy teljesítményű VPN Gateway** |
 | --- | --- | --- | --- | --- |

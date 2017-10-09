@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Azure Application Gateway - Azure CLI 2.0 |} Microsoft Docs"
-description: "Útmutató Alkalmazásátjáró létrehozása az Azure CLI 2.0 erőforrás-kezelő használatával"
+title: egy Azure Application Gateway - aaaCreate Azure CLI 2.0 |} Microsoft Docs
+description: "Ismerje meg, hogyan toocreate használatával Alkalmazásátjáró hello Azure CLI 2.0 az erőforrás-kezelőben"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: 052410db8c7619c7990dc319951a55663f2c2ba1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 952065586cd87d253882438bb779b768d9fd59fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-application-gateway-by-using-the-azure-cli-20"></a>Alkalmazásátjáró létrehozása az Azure CLI 2.0 használatával
+# <a name="create-an-application-gateway-by-using-hello-azure-cli-20"></a>Alkalmazásátjáró létrehozása hello Azure CLI 2.0 használatával
 
 > [!div class="op_single_selector"]
 > * [Azure Portal](application-gateway-create-gateway-portal.md)
@@ -33,23 +33,23 @@ ms.lasthandoff: 08/18/2017
 
 Alkalmazásátjáró egy dedikált virtuális készülék szolgáltatásként, az alkalmazás kézbesítési vezérlő (LÉPETT) biztosító ajánlat különböző réteg 7 betölteni az alkalmazás terheléselosztási képességeit.
 
-## <a name="cli-versions-to-complete-the-task"></a>A feladat befejezéséhez használható CLI-verziók
+## <a name="cli-versions-toocomplete-hello-task"></a>Parancssori felület verziók toocomplete hello feladat
 
-A következő CLI-verziók egyikével elvégezheti a feladatot:
+Hello feladat a következő parancssori felület verziók hello egyikével hajthatja végre:
 
-* [Azure CLI 1.0](application-gateway-create-gateway-cli-nodejs.md) – parancssori felületünk a klasszikus és a Resource Management üzemi modellekhez.
-* [Azure CLI 2.0](application-gateway-create-gateway-cli.md) – a Resource Management üzemi modellhez tartozó parancssori felületek következő generációját képviseli.
+* [Az Azure CLI 1.0](application-gateway-create-gateway-cli-nodejs.md) -hello klasszikus és resource management üzembe helyezési modellel a parancssori felületen.
+* [Az Azure CLI 2.0](application-gateway-create-gateway-cli.md) -a következő generációs CLI hello erőforrás felügyeleti telepítési modell
 
-## <a name="prerequisite-install-the-azure-cli-20"></a>Előfeltétel: Az Azure parancssori felület 2.0 telepítése
+## <a name="prerequisite-install-hello-azure-cli-20"></a>Előfeltétel: Hello Azure CLI 2.0 telepítése
 
-Ebben a cikkben szereplő lépések végrehajtásához kell [telepítse az Azure parancssori felület Mac, Linux és Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+tooperform hello ebben a cikkben ismertetett visszaállítási lépésekkel, túl kell[hello Azure parancssori felület Mac, Linux és Windows (Azure CLI) telepítése](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 > [!NOTE]
 > Ha az Azure-fiók nem rendelkezik, meg kell egyet. Itt regisztrálhat az [ingyenes próbaverzióra](../active-directory/sign-up-organization.md).
 
 ## <a name="scenario"></a>Forgatókönyv
 
-Ebben a forgatókönyvben ismerje meg az Azure portál használatával Alkalmazásátjáró létrehozása.
+Ebben a forgatókönyvben a megismerheti, hogyan egy alkalmazást átjáró, amely toocreate hello Azure-portálon.
 
 Ez a forgatókönyv tartalma:
 
@@ -58,46 +58,46 @@ Ez a forgatókönyv tartalma:
 * Létrehoz egy Appgatewaysubnet nevű alhálózatot, amelynek a CIDR-blokkja 10.0.0.0/28 lesz.
 
 > [!NOTE]
-> Az Alkalmazásátjáró, beleértve az egyéni állapotfigyelő további konfigurációs vizsgálat, háttér címkészletet címeket, és további szabályok is konfigurálva van az Alkalmazásátjáró konfigurálása után, és nem a kezdeti üzembe helyezése során.
+> További konfigurációs hello Alkalmazásátjáró, beleértve az egyéni rendszerállapot-vizsgálat, háttér címkészletet címek és a további szabályok hello Alkalmazásátjáró konfigurálása után, és nem a kezdeti telepítése során konfigurált.
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Az Azure Application Gateway saját alhálózatba van szükség. Amikor egy virtuális hálózat létrehozásával, győződjön meg arról, hogy hagyja-e elég hely a cím több alhálózattal rendelkezik. Miután telepít egy alhálózatra Alkalmazásátjáró, csak további alkalmazásátjárót alhálózathoz lehet hozzáadni.
+Az Azure Application Gateway saját alhálózatba van szükség. Virtuális hálózat létrehozásakor győződjön meg arról, hogy hagyja elég cím terület toohave több alhálózattal. Miután telepít egy alkalmazást tooa átjáróalhálózatot, csak további alkalmazásátjárót toohello alhálózati lehet hozzáadni.
 
-## <a name="log-in-to-azure"></a>Jelentkezzen be az Azure-ba
+## <a name="log-in-tooazure"></a>Jelentkezzen be tooAzure
 
-Nyissa meg a **Microsoft Azure parancssori**, és jelentkezzen be. 
+Nyissa meg hello **Microsoft Azure parancssori**, és jelentkezzen be. 
 
 ```azurecli-interactive
 az login -u "username"
 ```
 
 > [!NOTE]
-> Is `az login` az eszköz bejelentkezéshez írja be a kódot, aka.ms/devicelogin igénylő kapcsoló nélkül.
+> Is `az login` az eszköz bejelentkezéshez írja be a kódot, aka.ms/devicelogin igénylő hello kapcsoló nélkül.
 
-Miután beírta a fenti példában, a kód valósul meg. Nyissa meg a böngészőben a bejelentkezési folyamat folytatásához https://aka.ms/devicelogin.
+Amennyiben az előző példa hello írja be, a kód valósul meg. Keresse meg a böngésző toocontinue hello bejelentkezési folyamat toohttps://aka.ms/devicelogin.
 
 ![cmd megjelenítő eszköz-bejelentkezés][1]
 
-A böngészőben írja be a kapott kódot. Ekkor megnyílik egy bejelentkezési oldalára.
+Hello böngészőben írja be a kapott hello kódot. Biztosan átirányított tooa bejelentkezési oldalára.
 
-![Írja be a kódját a böngésző][2]
+![böngésző tooenter kódot][2]
 
-Ha nincs megadva a kód be van jelentkezve, zárja be a böngészőt, és a forgatókönyv a folytatáshoz.
+Ha nincs megadva hello kód be van jelentkezve, Bezárás hello böngésző toocontinue hello forgatókönyv.
 
 ![sikeres volt][3]
 
-## <a name="create-the-resource-group"></a>Az erőforráscsoport létrehozása
+## <a name="create-hello-resource-group"></a>Hello erőforráscsoport létrehozása
 
-Az Alkalmazásátjáró létrehozása, mielőtt egy erőforráscsoportot hoz létre az Alkalmazásátjáró. Az alábbiakban a parancs látható.
+Mielőtt létrehozna hello Alkalmazásátjáró, egy erőforráscsoport toocontain hello Alkalmazásátjáró jön létre. hello következő hello parancs jeleníti meg.
 
 ```azurecli-interactive
 az group create --name myresourcegroup --location "eastus"
 ```
 
-## <a name="create-the-application-gateway"></a>Application Gateway létrehozása
+## <a name="create-hello-application-gateway"></a>Hello Alkalmazásátjáró létrehozása
 
-A háttérkiszolgáló az IP-címeit az IP-címet a háttérkiszolgálón is. Ezek az értékek lehetnek privát IP-címek a virtuális hálózat, nyilvános IP-cím vagy teljes tartománynevét a háttérkiszolgálókhoz. A következő példa olyan átjárót hoz létre a http-beállítások, a portok és a szabályok további konfigurációs beállításait.
+hello IP-címekre hello háttérkiszolgáló hello IP-címet a háttérkiszolgálón is. Ezek az értékek lehetnek vagy privát IP-címek hello virtuális hálózat, nyilvános IP-cím vagy teljes tartománynevét a háttérkiszolgálókhoz. hello alábbi példa hoz létre a meglévő Alkalmazásátjáró http-beállítások, a portok és a szabályok további konfigurációs beállításait.
 
 ```azurecli-interactive
 az network application-gateway create \
@@ -121,7 +121,7 @@ az network application-gateway create \
 
 ```
 
-Az előző példában látható sok tulajdonságok esetében nem szükséges Alkalmazásátjáró létrehozása közben. A következő kódrészlet példa olyan átjárót hoz létre a szükséges adatokat.
+hello előző példa sok tulajdonságok láthatók, amelyek hello Alkalmazásátjáró létrehozása során nem szükséges. a következő példakód hello Alkalmazásátjáró hoz létre a hello szükséges információkat.
 
 ```azurecli-interactive
 az network application-gateway create \
@@ -137,14 +137,14 @@ az network application-gateway create \
 ```
  
 > [!NOTE]
-> A következő parancs létrehozása során megadható paramétereket listáját: `az network application-gateway create --help`.
+> A következő parancs futtatása létrehozása hello során megadható paramétereket listáját: `az network application-gateway create --help`.
 
-Ez a példa egy alapszintű application gateway alapértelmezett beállításait a figyelő, a háttérkészlet, a backendhttpsettings osztályhoz és a szabályok hoz létre. Ezeket a beállításokat a központi telepítés megfelelően, ha a kiépítés sikeres módosíthatja.
-Ha már van definiálva az előző lépésekben, a létrehozását követően, a háttérkészletben webalkalmazásokat terheléselosztás kezdődik.
+Ez a példa egy alapszintű application gateway hello figyelő, a háttérkészlet, a backendhttpsettings osztályhoz és a szabályok az alapértelmezett beállításokat hoz létre. Módosíthatja a beállítások toosuit a központi telepítés után hello kiépítés sikeres.
+Ha már van definiálva az előző lépésekben létrehozását követően hello hello háttérkészlet webalkalmazásokat terheléselosztás kezdődik.
 
 ## <a name="get-application-gateway-dns-name"></a>Az Application Gateway DNS-nevének beszerzése
 
-Az átjáró létrehozása után a következő lépés a kommunikációra szolgáló előtér konfigurálása. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. Ha szeretné, hogy a végfelhasználók elérjék az Application Gatewayt, használjon egy Application Gateway nyilvános végpontjára mutató CNAME-rekordot. [Egyéni tartománynév konfigurálása az Azure-ban](../dns/dns-custom-domain.md). Alias konfigurálásához az Alkalmazásátjáró és a társított IP-/ DNS-nevét, a PublicIPAddress elem csatolva az Alkalmazásátjáró beolvasása. Az Application Gateway DNS-nevének használatával létrehozhat egy CNAME rekordot, amely a két webalkalmazást erre a DNS-névre irányítja. Az A-bejegyzések használata nem javasolt, mivel a virtuális IP-cím változhat az Application Gateway újraindításakor.
+Hello átjáró létrehozása után hello következő lépésre tooconfigure hello előtér-kommunikációhoz. Nyilvános IP-cím esetén az Application Gateway használatához dinamikusan hozzárendelt DNS-névre van szükség, amely nem valódi név. tooensure a végfelhasználók is találati hello Alkalmazásátjáró, egy olyan CNAME rekordot is használt toopoint toohello nyilvános végpontot hello Alkalmazásátjáró. [Egyéni tartománynév konfigurálása az Azure-ban](../dns/dns-custom-domain.md). tooconfigure alias, hello Alkalmazásátjáró és a társított IP-/ DNS-nevét, hello PublicIPAddress elem csatolt toohello Alkalmazásátjáró beolvasása. hello alkalmazás átjáró DNS-névnek kell lennie a használt toocreate egy olyan CNAME rekordot pontok hello két webes alkalmazások toothis DNS-név. A-rekordok hello használata nem javasolt, mert hello VIP módosíthatja az Alkalmazásátjáró újra kell indítani.
 
 
 ```azurecli-interactive
@@ -189,7 +189,7 @@ az network public-ip show --name "pip" --resource-group "AdatumAppGatewayRG"
 
 ## <a name="delete-all-resources"></a>Az összes erőforrás törlése
 
-A jelen cikkben létrehozott összes erőforrás törléséhez hajtsa végre az alábbi lépéseket:
+toodelete összes erőforrás létrehozása ebben a cikkben teljes hello a következő lépéseket:
 
 ```azurecli-interactive
 az group delete --name AdatumAppGatewayRG
@@ -197,9 +197,9 @@ az group delete --name AdatumAppGatewayRG
  
 ## <a name="next-steps"></a>Következő lépések
 
-Megtudhatja, hogyan hozzon létre egyéni állapotteljesítmény ellátogatva [hozzon létre egy egyéni állapotmintáihoz](application-gateway-create-probe-portal.md)
+Ismerje meg, hogyan toocreate egyéni állapot-mintavételi csomagjai ellátogatva [hozzon létre egy egyéni állapotmintáihoz](application-gateway-create-probe-portal.md)
 
-Megtudhatja, hogyan konfigurálja az SSL-Feladatkiszervezést, és tegye meg a költséges SSL visszafejtési ki a webkiszolgálók ellátogatva [SSL-kiszervezés konfigurálása](application-gateway-ssl-arm.md)
+Ismerje meg, hogyan SSL-Feladatkiszervezést tooconfigure és hajtsa végre a megfelelő hello költséges SSL visszafejtési ki a webkiszolgálók ellátogatva [SSL-kiszervezés konfigurálása](application-gateway-ssl-arm.md)
 
 <!--Image references-->
 

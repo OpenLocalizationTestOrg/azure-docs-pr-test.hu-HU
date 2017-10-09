@@ -1,4 +1,4 @@
-Ez az Azure Functions fejlesztői útmutatót. Ha most ismerkedik az Azure Functions, kezdje a a következőket:
+Ez az Azure Functions fejlesztői útmutatót. Ha új tooAzure funkciók, indítsa el a következő erőforrások hello:
 
 * [Az első függvény létrehozása](../articles/azure-functions/functions-create-first-azure-function.md)
 * [Az Azure Functions fejlesztői segédanyagai](../articles/azure-functions/functions-reference.md)

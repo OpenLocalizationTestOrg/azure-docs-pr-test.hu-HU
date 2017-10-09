@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud Services alkalmazások átalakítása mikroszolgáltatások |} Microsoft Docs"
-description: "Ez az útmutató a felhőalapú szolgáltatások webes és feldolgozói szerepkörök és a Service Fabric állapotmentes szolgáltatások Felhőszolgáltatások telepítenek át a Service Fabric hasonlítja össze."
+title: "Azure Cloud Services alkalmazások toomicroservices aaaConvert |} Microsoft Docs"
+description: "Ez az útmutató összehasonlítja a Cloud Services Web, és feldolgozói szerepkörök és a Service Fabric állapotmentes szolgáltatások toohelp Felhőszolgáltatások tooService háló át."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4ab1f83e88b262b1752300b2786340d9abca8154
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c43b11623b2ba7f6069782a8b7e030c82572a6e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-converting-web-and-worker-roles-to-service-fabric-stateless-services"></a>Útmutató a Service Fabric állapotmentes szolgáltatások webes és feldolgozói szerepkörök alakítása
-A cikkből megtudhatja, hogyan telepíthetők át a felhőalapú szolgáltatások webes és feldolgozói szerepkörök a Service Fabric állapotmentes szolgáltatásokhoz. Ez az a legegyszerűbb áttelepítési út a felhőalapú szolgáltatások a Service Fabric az alkalmazások, amelyek általános architektúrája érintetlen marad többé-kevésbé megegyezik.
+# <a name="guide-tooconverting-web-and-worker-roles-tooservice-fabric-stateless-services"></a>Útmutató tooconverting webes és feldolgozói szerepkörök tooService háló állapotmentes szolgáltatások
+Ez a cikk ismerteti, hogyan toomigrate a felhőalapú szolgáltatások webes és feldolgozói szerepkörök tooService háló állapotmentes szolgáltatásokhoz. Ez az hello legegyszerűbb áttelepítési út a Felhőszolgáltatások tooService háló, az alkalmazások, amelyek általános architektúrája nagyjából érintetlen toostay hello azonos.
 
-## <a name="cloud-service-project-to-service-fabric-application-project"></a>A Service Fabric-alkalmazás projekt felhőszolgáltatás-projekt
- Egy Felhőszolgáltatás-projektet és a Service Fabric-alkalmazás projekt hasonló struktúrával rendelkezik, és mindkét jelentik a telepítési egység, ez azt jelenti, hogy minden egyes alkalmazás - meghatározásához futtassa az alkalmazást a rendszer a teljes csomag. Egy Felhőszolgáltatás-projekt tartalmazza a legalább egy webes vagy feldolgozói szerepköröket. Hasonlóképpen a Service Fabric-alkalmazás projekt tartalmaz egy vagy több szolgáltatás. 
+## <a name="cloud-service-project-tooservice-fabric-application-project"></a>Cloud Service projekt tooService háló projekt
+ Egy Felhőszolgáltatás-projektet és a Service Fabric-alkalmazás projekt rendelkezik egy hasonló szerkezet és mindkét jelentik hello telepítési egység az alkalmazás - Ez azt jelenti, hogy ezek határozzák meg, amely telepített toorun hello-teljes csomag az alkalmazás. Egy Felhőszolgáltatás-projekt tartalmazza a legalább egy webes vagy feldolgozói szerepköröket. Hasonlóképpen a Service Fabric-alkalmazás projekt tartalmaz egy vagy több szolgáltatás. 
 
-A különbség az, hogy a Felhőszolgáltatás-projekt párok az alkalmazás központi telepítése egy virtuális gép üzembe helyezéséhez, és így tartalmazza a virtuális gép konfigurációs beállításai, mivel a Service Fabric-alkalmazás projekt csak egy telepített alkalmazás a Service Fabric-fürt a meglévő virtuális gépeken. A Service Fabric-fürt maga csak a rendszer egyszer, egy Resource Manager-sablon vagy az Azure-portálon keresztül, és több Service Fabric-alkalmazások telepíthetők.
+hello különbség az, hogy a Felhőszolgáltatás-projekt párokat hello hello alkalmazás központi telepítése egy virtuális gép üzembe helyezéséhez, és így tartalmazza a virtuális gép konfigurációs beállításai, mivel a Service Fabric-alkalmazás projekt hello csak határozza meg a központilag telepített alkalmazás a Service Fabric-fürt a meglévő virtuális gépek tooa készlete. hello Service Fabric-fürt maga csak van telepítve, amennyiben a Resource Manager-sablon vagy hello Azure-portálon, és az alkalmazások lehetnek több Service Fabric telepített tooit.
 
 ![A Service Fabric és a Felhőszolgáltatások projekt összehasonlítása][3]
 
-## <a name="worker-role-to-stateless-service"></a>Az állapotmentes szolgáltatások feldolgozói szerepkör
-Elméleti szinten a feldolgozói szerepkör jelöli egy állapot nélküli alkalmazások és szolgáltatások, azaz a munkaterhelés minden példánya azonos és a kérelmek bármikor átirányítható tetszőleges példányra. Minden példány jegyezze meg az előző kérést nem várt. Külső állapottárolóhoz, például az Azure Table Storage vagy Azure Document DB rendszerbe, amely az alkalmazások és szolgáltatások állapotát kezeli. A Service Fabric alkalmazások és szolgáltatások az ilyen típusú állapotmentes szolgáltatások helyőrző jelzi. A legegyszerűbb módja a feldolgozói szerepkör Service Fabric áttelepíti egy állapotmentes szolgáltatások feldolgozói szerepkör kódját alakításával végezhető.
+## <a name="worker-role-toostateless-service"></a>Feldolgozói szerepkör toostateless szolgáltatás
+Elméleti szinten a feldolgozói szerepkör jelöli egy állapot nélküli alkalmazások és szolgáltatások, azaz hello munkaterhelés minden példánya azonos és a kérelmeket a irányított tooany példány bármikor lehet. Minden példány várt tooremember hello előző kérést nem. Állapot: hello munkaterhelés működik, a külső állapottárolóhoz, például az Azure Table Storage vagy Azure Document DB rendszerbe kezeli. A Service Fabric alkalmazások és szolgáltatások az ilyen típusú állapotmentes szolgáltatások helyőrző jelzi. hello legegyszerűbb módszer toomigrating a feldolgozói szerepkör tooService háló feldolgozói szerepkör kódját tooa állapotmentes szolgáltatások átalakításával végezhető.
 
-![Az állapotmentes szolgáltatások feldolgozói szerepkör][4]
+![Feldolgozói szerepkör tooStateless szolgáltatás][4]
 
-## <a name="web-role-to-stateless-service"></a>Webes szerepkör állapotmentes szolgáltatások
-Feldolgozói szerepkör hasonló, a webes szerepkör is képviseli egy állapot nélküli alkalmazások és szolgáltatások, és így fogalmilag azt túl képezhető le a Service Fabric állapotmentes szolgáltatások. Azonban eltérően webes szerepkörök a Service Fabric nem támogatja az IIS. Telepítse át a webes alkalmazás a webes szerepkör állapotmentes szolgáltatások megköveteli a egy webes keretrendszer, amely önállóan üzemel, és nem függ az IIS vagy System.Web, például az ASP.NET Core 1 első áthelyezését.
+## <a name="web-role-toostateless-service"></a>Webes szerepkör toostateless szolgáltatás
+Hasonló tooWorker szerepkör, a webes szerepkör is képviseli egy állapot nélküli alkalmazások és szolgáltatások, és így fogalmilag túl lehet csatlakoztatott tooa Service Fabric állapotmentes szolgáltatások. Azonban eltérően webes szerepkörök a Service Fabric nem támogatja az IIS. toomigrate egy webes szerepkör tooa állapotmentes szolgáltatások a webalkalmazás első áthelyezése tooa webes keretrendszer, amely önállóan üzemel, és nem függ az IIS vagy System.Web, például az ASP.NET Core 1 igényel.
 
 | **Alkalmazás** | **Támogatott** | **Áttelepítési útvonal** |
 | --- | --- | --- |
-| Az ASP.NET Web Forms keretrendszerre |Nem |Az ASP.NET Core 1 MVC átalakítása |
-| ASP.NET MVC |Az áttelepítés |Frissítés az ASP.NET Core 1 MVC |
+| Az ASP.NET Web Forms keretrendszerre |Nem |Átalakítás tooASP.NET alapvető 1 MVC |
+| ASP.NET MVC |Az áttelepítés |Frissítési tooASP.NET alapvető 1 MVC |
 | ASP.NET Web API |Az áttelepítés |Üzemeltetett önálló kiszolgáló vagy az ASP.NET Core 1 |
 | Az ASP.NET Core 1 |Igen |N/A |
 
@@ -105,19 +105,19 @@ namespace Stateless1
 
 ```
 
-Egy elsődleges "Futtatás" felülbírálás feldolgozási kezdőpontjaként egyaránt rendelkezik. A Service Fabric szolgáltatások egyesítése `Run`, `Start`, és `Stop` egy-egy belépési pont, a `RunAsync`. A szolgáltatás működik, ha használatba `RunAsync` elindul, és le kell állnia, ha működik a `RunAsync` metódus CancellationToken leállítási jelzést kapott. 
+A mely toobegin feldolgozása egy elsődleges "Futtatás" felülbírálása egyaránt rendelkezik. A Service Fabric szolgáltatások egyesítése `Run`, `Start`, és `Stop` egy-egy belépési pont, a `RunAsync`. A szolgáltatás működik, ha használatba `RunAsync` elindul, és le kell állnia, ha hello használata `RunAsync` metódus CancellationToken leállítási jelzést kapott. 
 
-Az életciklus és feldolgozói szerepkörök és a Service Fabric szolgáltatás élettartama között számos fontos különbség van:
+Hello életciklusának és feldolgozói szerepkörök és a Service Fabric szolgáltatás élettartama között számos fontos különbség van:
 
-* **Életciklus:** a legnagyobb különbség az, hogy a feldolgozói szerepkör egy virtuális Gépet, és így a virtuális gép, ha a virtuális gép indítása és leállítása eseményeket tartalmazó életciklus kötődik. A Service Fabric-szolgáltatás egy életciklussal, amely nem a virtuális gép életciklusát, ezért nem tartalmazza a események a gazdagép, VM vagy a gép indítása és leállítása, mert nem áll(nak) kapcsolatban van.
-* **Élettartam:** A feldolgozói szerepkör példánya indul, ha a `Run` metódus kilép. A `RunAsync` metódus a Service Fabric-szolgáltatás azonban is végrehajtása, és a szolgáltatáspéldány fel maradnak. 
+* **Életciklus:** hello legnagyobb különbség az, hogy a feldolgozói szerepkör egy virtuális Gépet és annak életciklusa kapcsolt toohello virtuális gép, amely amikor hello VM indítása és leállítása eseményeit tartalmazza. A Service Fabric-szolgáltatás egy életciklussal, amely nem hello VM életciklusát, ezért nem tartalmazza a eseményeket amikor hello gazdagép, VM vagy a gép elindulása és a Leállítás, mert nem áll(nak) kapcsolatban van.
+* **Élettartam:** A feldolgozói szerepkör példánya indul, ha hello `Run` metódus kilép. Hello `RunAsync` metódus a Service Fabric-szolgáltatás azonban futtatható toocompletion és hello szolgáltatáspéldány fel maradnak. 
 
-A Service Fabric egy választható kommunikációs telepítő belépési pontot nyújt az ügyfélkérelmek szolgáltatások. A RunAsync és a kommunikáció belépési pont a Service Fabric szolgáltatások – a szolgáltatás dönthetnek úgy, hogy az ügyfelek kéréseire csak figyelje, illetve csak futtassa egy feldolgozási ciklus, vagy mindkettőt -, ezért a RunAsync metódusában engedélyezett újraindítása nélküli kilépéshez választható felülbírálások a szolgáltatás példány, mert a figyelő az ügyféli kérelmek részére továbbra is.
+A Service Fabric egy választható kommunikációs telepítő belépési pontot nyújt az ügyfélkérelmek szolgáltatások. A hello RunAsync, és a kommunikációs belépési pont is választható felülbírálások szolgáltatásban a Service Fabric - a szolgáltatás előfordulhat, hogy válasszon tooonly figyelési tooclient kérelmeket, vagy csak futtassa egy feldolgozási ciklus, vagy mindkettőt - ezért hello RunAsync metódusában engedélyezett tooexit nélkül újraindítása hello szolgáltatáspéldány, mert az ügyféli kérelmek részére toolisten továbbra is.
 
 ## <a name="application-api-and-environment"></a>Alkalmazás API és a környezet
-A Cloud Services környezet API információkat és az aktuális Virtuálisgép-példány, valamint a más VM szerepkörpéldányokat kapcsolatos információkat biztosít a. A Service Fabric a futásidejű kapcsolatos információkat tartalmaz, és némi információt a csomópont szolgáltatásként fut rajta. 
+hello Felhőszolgáltatások környezet API információkat és a hello aktuális Virtuálisgép-példány és a többi VM szerepkörpéldányokat kapcsolatos információkat biztosít a. A Service Fabric tooits futásidejű vonatkozó információkat, és jelenleg fut egy szolgáltatás hello csomópont kapcsolatos információkat biztosít. 
 
-| **Környezet feladat** | **Cloud Services** | **Service Fabric** |
+| **Környezet feladat** | **Felhőszolgáltatások** | **Service Fabric** |
 | --- | --- | --- |
 | A konfigurációs beállítások és módosítási értesítés |`RoleEnvironment` |`CodePackageActivationContext` |
 | Helyi tároló |`RoleEnvironment` |`CodePackageActivationContext` |
@@ -126,17 +126,17 @@ A Cloud Services környezet API információkat és az aktuális Virtuálisgép-
 | Egyidejű esemény |`RoleEnvironment` |N/A |
 
 ## <a name="configuration-settings"></a>Konfigurációs beállítások
-Konfigurációs beállításai a Felhőszolgáltatások Virtuálisgép-szerepkör állítja be, és a Virtuálisgép-szerepkör minden példányára vonatkoznak. Ezek a beállítások olyan ServiceConfiguration.*.cscfg fájlok beállított kulcs-érték párok, és segítségével érhető el közvetlenül roleenvironment-et. A Service Fabric beállítások érvényesek külön-külön minden szolgáltatáshoz, és mindegyik alkalmazás, nem pedig egy virtuális géphez, mert egy virtuális Gépet, rendelkezhet több szolgáltatásokat és alkalmazásokat. A szolgáltatás három csomagok áll:
+Konfigurációs beállításai a Felhőszolgáltatások Virtuálisgép-szerepkör állítja be, és alkalmazni az adott virtuális gép szerepkör tooall példányok. Ezek a beállítások olyan ServiceConfiguration.*.cscfg fájlok beállított kulcs-érték párok, és segítségével érhető el közvetlenül roleenvironment-et. A Service Fabric beállítások érvényesek külön-külön tooeach szolgáltatás és alkalmazás tooeach ahelyett, hogy tooa virtuális gép, mert egy virtuális Gépet, rendelkezhet több szolgáltatásokat és alkalmazásokat. A szolgáltatás három csomagok áll:
 
-* **Kód:** a szolgáltatás végrehajtható fájlok, bináris fájljai, dll-EK és a szolgáltatás futtatásához szükséges egyéb fájlokat tartalmazza.
+* **Kód:** hello szolgáltatás végrehajtható fájlok, bináris fájljai, dll-EK és egyéb fájlokat tartalmaz egy szolgáltatásnak kell toorun.
 * **A Config:** összes konfigurációs fájlokat és a szolgáltatás beállításait.
-* **Adatok:** a szolgáltatáshoz társított statikus adatfájlokat.
+* **Adatok:** hello szolgáltatás társított statikus adatok fájlt.
 
-Ezeket a csomagokat mindegyikének lehet függetlenül rendszerverzióval ellátott és frissített. Cloud Services hasonló, a konfigurációs csomag programozott módon a következőkkel érhetők el az API-k és események állnak rendelkezésre a szolgáltatás konfigurációs csomag változás értesíteni. A Settings.xml fájlban, mind az alkalmazás beállításainak szakaszában az App.config fájl hasonló programozott hozzáférés kulcs-érték használható. Azonban eltérően Felhőszolgáltatásokat, a Service Fabric config csomag bármely konfigurációs fájlokat tartalmazza tetszőleges méretű XML, JSON, YAM vagy egyéni bináris formátumot. 
+Ezeket a csomagokat mindegyikének lehet függetlenül rendszerverzióval ellátott és frissített. Hasonló tooCloud szolgáltatások, a konfigurációs csomag programozott módon is elérhetők az API-n keresztül, és események elérhető toonotify hello szolgáltatást a konfigurációs csomag megváltoztatása. A Settings.xml fájlban kulcs-érték mind programozott hozzáférés hasonló toohello alkalmazás beállításai szakaszában az App.config fájl használható. Azonban eltérően Felhőszolgáltatásokat, a Service Fabric config csomag bármely konfigurációs fájlokat tartalmazza tetszőleges méretű XML, JSON, YAM vagy egyéni bináris formátumot. 
 
 ### <a name="accessing-configuration"></a>Konfigurációs elérése
 #### <a name="cloud-services"></a>Cloud Services
-Konfigurációs beállítások ServiceConfiguration.*.cscfg keresztül elérhető `RoleEnvironment`. Ezek a beállítások globálisan elérhetők összes szerepkörpéldányt azonos Cloud Service-környezetben.
+Konfigurációs beállítások ServiceConfiguration.*.cscfg keresztül elérhető `RoleEnvironment`. Ezek a beállítások esetén világszerte elérhető tooall szerepkörpéldányt hello azonos Cloud Service-környezetben.
 
 ```C#
 
@@ -145,9 +145,9 @@ string value = RoleEnvironment.GetConfigurationSettingValue("Key");
 ```
 
 #### <a name="service-fabric"></a>Service Fabric
-Minden szolgáltatás van a saját egyéni konfigurációs csomagot. Nincs olyan beépített mechanizmus globális konfigurációs beállítások érhető el a fürt valamennyi alkalmazás. A Service Fabric különleges Settings.xml konfigurációs fájl belül a konfigurációs csomag használata esetén a Settings.xml értékek írhatja felül az alkalmazás szintjén, amely lehetővé teszi az alkalmazás-konfigurációs beállítások.
+Minden szolgáltatás van a saját egyéni konfigurációs csomagot. Nincs olyan beépített mechanizmus globális konfigurációs beállítások érhető el a fürt valamennyi alkalmazás. A Service Fabric különleges Settings.xml konfigurációs fájl belül a konfigurációs csomag használata esetén a Settings.xml értékek írhatja felül hello alkalmazás szinten, amely lehetővé teszi az alkalmazás-konfigurációs beállítások.
 
-Konfigurációs beállítások állnak belül minden szolgáltatáspéldány, a szolgáltatáson keresztül fér hozzá `CodePackageActivationContext`.
+Konfigurációs beállítások állnak belül minden szolgáltatáspéldány hello szolgáltatáson keresztül fér hozzá `CodePackageActivationContext`.
 
 ```C#
 
@@ -168,7 +168,7 @@ using (StreamReader reader = new StreamReader(Path.Combine(configPackage.Path, "
 
 ### <a name="configuration-update-events"></a>A Configuration (update) események
 #### <a name="cloud-services"></a>Cloud Services
-A `RoleEnvironment.Changed` eseménnyel összes szerepkörpéldányt értesítése, ha olyan változás esetén a környezetben, például a konfiguráció módosítása. Ennek segítségével konfigurációfrissítések felhasználása nélkül újrahasznosítási szerepkörpéldányt beállítani, vagy indítsa újra a munkavégző folyamat.
+Hello `RoleEnvironment.Changed` esemény használt toonotify összes szerepkörpéldányt, amikor változás következik be, hello környezetben, például a konfiguráció módosítása. Ez a használt tooconsume konfigurációfrissítések szerepkörpéldányokat újrahasznosítási, vagy indítsa újra a munkavégző folyamat nélkül.
 
 ```C#
 
@@ -176,7 +176,7 @@ RoleEnvironment.Changed += RoleEnvironmentChanged;
 
 private void RoleEnvironmentChanged(object sender, RoleEnvironmentChangedEventArgs e)
 {
-   // Get the list of configuration changes
+   // Get hello list of configuration changes
    var settingChanges = e.Changes.OfType<RoleEnvironmentConfigurationSettingChange>();
 foreach (var settingChange in settingChanges) 
    {
@@ -187,9 +187,9 @@ foreach (var settingChange in settingChanges)
 ```
 
 #### <a name="service-fabric"></a>Service Fabric
-Egy szolgáltatás - kódot, konfiguráció és adatok - három csomag típusa rendelkező események, amelyek tájékoztatást adnak a szolgáltatáspéldány, a csomag frissítése, hozzáadásakor vagy eltávolításakor. Egy szolgáltatás minden típusú több csomagot tartalmazhat. Előfordulhat például, hogy szolgáltatás több konfigurációs csomagot, minden egyes külön-külön rendszerverzióval ellátott és bővíthető. 
+A csomag háromféle hello szolgáltatásban - kódot, konfiguráció és adatok - rendelkező események, amelyek tájékoztatást adnak a szolgáltatáspéldány, a csomag frissítése, hozzáadásakor vagy eltávolításakor. Egy szolgáltatás minden típusú több csomagot tartalmazhat. Előfordulhat például, hogy szolgáltatás több konfigurációs csomagot, minden egyes külön-külön rendszerverzióval ellátott és bővíthető. 
 
-Ezek az események felhasználásához szolgáltatáscsomagok változásairól a szolgáltatáspéldány újraindítása nélkül érhetők el.
+Ezek az események módosulnak elérhető tooconsume service csomagokban hello szolgáltatáspéldány újraindítása nélkül.
 
 ```C#
 
@@ -205,7 +205,7 @@ private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(obje
 ```
 
 ## <a name="startup-tasks"></a>Indítási feladatok
-Indítási feladatokat is az alkalmazás indítása előtt végzett műveleteket. Egy indítási tevékenységhez általában emelt szintű jogosultságokkal telepítő parancsfájlok futtatásához használt. Cloud Services és a Service Fabric támogatja a kezdeti feladatok. A fő különbség, hogy a felhőalapú szolgáltatások indítási feladat van kötve egy virtuális gép már része egy szerepkörpéldányt, mert mivel a Service Fabric egy indítási feladat a szolgáltatást, amely nem kötődik azonban bármely adott virtuális géphez van kötve.
+Indítási feladatokat is az alkalmazás indítása előtt végzett műveleteket. Egy indítási tevékenységhez általánosan használt toorun telepítési parancsfájlokat emelt szintű jogosultságokkal. Cloud Services és a Service Fabric támogatja a kezdeti feladatok. hello fő különbség az, hogy a Felhőszolgáltatás, indítási feladat a feltételekhez tooa virtuális gép, mert része egy szerepkörpéldányt, mivel a Service Fabric egy indítási feladat a feltételekhez tooa szolgáltatás, amely nem a feltételekhez tooany adott virtuális gép.
 
 | Cloud Services | Service Fabric |
 | --- | --- | --- |
@@ -249,13 +249,13 @@ A Service Fabric egy indítási belépési pont úgy van konfigurálva, a Servic
 ``` 
 
 ## <a name="a-note-about-development-environment"></a>Fejlesztői környezet Megjegyzés
-Cloud Services és a Service Fabric vannak integrálva a Visual Studio projektsablonjai, és támogatja a hibakeresés konfigurálását, és a helyi és központi telepítése mind az Azure-bA. Cloud Services és a Service Fabric is adja meg a helyi futtatási környezet. Az különbség, hogy a Felhőszolgáltatás fejlesztői futtatókörnyezetet az Azure környezetbe, az azt futtató emulálja, amíg a Service Fabric nem használja az emulátor – a teljes Service Fabric-futtatókörnyezet fogja használni. A Service Fabric futtatja a helyi fejlesztési számítógépén környezete ugyanabban a környezetben, amely a termelésben futtatja.
+Cloud Services és a Service Fabric amelyek integrálhatók a Visual Studio projektsablonjai, és támogatja a hibakeresés, konfigurálása és telepítése mindkét helyileg és tooAzure. Cloud Services és a Service Fabric is adja meg a helyi futtatási környezet. hello különbség, hogy amíg hello fejlesztői futtatókörnyezet emulálja a felhőalapú szolgáltatás hello Azure környezetben az azt futtató, a Service Fabric nem használja az emulátor – hello teljes Service Fabric-futtatókörnyezet fogja használni. hello Service Fabric-környezet futtatja a helyi fejlesztési számítógépén hello ugyanabban a környezetben, amely a termelésben futtatja.
 
 ## <a name="next-steps"></a>Következő lépések
-További információk a Service Fabric Reliable Services és a Cloud Services és a Service Fabric-alkalmazás architektúra annak megértése, hogyan előnyeit a Service Fabric-szolgáltatások teljes készletének alapvető eltérései.
+További információk a Service Fabric Reliable Services és a felhőalapú szolgáltatások és a Service Fabric application architektúra toounderstand hogyan tootake előnyeit teljes hello beállítása a Service Fabric funkciók alapvető különbségei hello.
 
 * [Bevezetés a Service Fabric Reliable Services használatába](service-fabric-reliable-services-quick-start.md)
-* [Cloud Services és a Service Fabric közötti különbségekről fogalmi útmutató](service-fabric-cloud-services-migration-differences.md)
+* [Cloud Services és a Service Fabric közötti fogalmi útmutató toohello különbségek](service-fabric-cloud-services-migration-differences.md)
 
 <!--Image references-->
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png

@@ -1,6 +1,6 @@
 ---
-title: "Speciális házirendek az Azure API Management |} Microsoft Docs"
-description: "További tudnivalók az Azure API Management használható speciális házirendeket."
+title: "API-felügyeleti házirendek speciális aaaAzure |} Microsoft Docs"
+description: "További tudnivalók az Azure API Management használható házirendek speciális hello."
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 0c65ac74316421a0258f01143baa25ffecb5be3b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8245e7a4c9d432b7b4d362192e357829fcabad55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-advanced-policies"></a>Házirendek speciális API Management
-Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek hello. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AdvancedPolicies"></a>Speciális házirendek  
   
--   [Folyamat szabályozása](api-management-advanced-policies.md#choose) - feltételesen alkalmazza a házirend-utasításoknál logikai értékelése eredményei alapján [kifejezések](api-management-policy-expressions.md).  
+-   [Folyamat szabályozása](api-management-advanced-policies.md#choose) - feltételesen alkalmazza a házirend-utasításoknál logikai hello értékelése hello eredményei alapján [kifejezések](api-management-policy-expressions.md).  
   
--   [Kérés továbbítása a](#ForwardRequest) -továbbítja a kérést a háttérszolgáltatáshoz.
+-   [Kérés továbbítása a](#ForwardRequest) -hello kérelem toohello háttérszolgáltatást továbbítja.
 
--   [Korlátozza a feldolgozási](#LimitConcurrency) -megakadályozza, hogy a házirendek egyszerre legfeljebb a megadott számú kérelem végrehajtása közé.
+-   [Korlátozza a feldolgozási](#LimitConcurrency) -megakadályozza, hogy a házirendek által megadott számú kérelem hello egyszerre egynél több végrehajtása közé.
   
--   [Az Event Hubs napló](#log-to-eventhub) -üzeneteket küld egy Eseményközpontot, határozzák meg a tranzakciónaplókat tartalmazó entitás a megadott formátumban. 
+-   [TooEvent központ naplófájl](#log-to-eventhub) -hello üzeneteket küld a megadott formátumban tooan Eseményközpont határozzák meg a tranzakciónaplókat tartalmazó entitás. 
 
--   [Válasz mock](#mock-response) -megszakításainak-feldolgozási folyamat végrehajtása és közvetlenül a hívó mocked választ ad vissza.
+-   [Válasz mock](#mock-response) -megszakításainak csővezeték-végrehajtási mocked választ ad vissza, és közvetlenül toohello hívó.
   
--   [Próbálja meg újra](#Retry) -újrapróbálkozások zárt házirend utasítás végrehajtása, ha, és amíg a feltétel nem teljesül. Végrehajtási ismételje meg a megadott időközönként, és a legfeljebb a megadott újrapróbálkozások száma.  
+-   [Próbálja meg újra](#Retry) -újrapróbálkozások végrehajtásának hello házirend-utasításoknál zárójelek között, ha és hello feltétel teljesüléséig. Végrehajtási fog ismétlődő hello megadott időközök és mentése megadott toohello újrapróbálkozások száma.  
   
--   [Térjen vissza a válasz](#ReturnResponse) -megszakításainak-feldolgozási folyamat végrehajtása és a közvetlenül a hívó adott választ. 
+-   [Térjen vissza a válasz](#ReturnResponse) -megszakításainak feldolgozási sor végrehajtása és visszaadja a hello megadott válasz közvetlenül toohello hívó. 
   
--   [Egyirányú kérés küldése](#SendOneWayRequest) -kérést küld a megadott URL-cím a válaszra való várakozás nélkül.  
+-   [Egyirányú kérés küldése](#SendOneWayRequest) -elküld egy kérést toohello megadott URL-címet a válaszra való várakozás nélkül.  
   
--   [Kérés küldése](#SendRequest) -kérést küld a megadott URL-cím.  
+-   [Kérés küldése](#SendRequest) -küld egy kérelem toohello megadott URL-CÍMÉT.  
 
--   [Állítsa be a HTTP-proxy](#SetHttpProxy) -lehetővé teszi a továbbított kérelmek egy HTTP-proxyn keresztül.  
+-   [Állítsa be a HTTP-proxy](#SetHttpProxy) -lehetővé teszi egy HTTP-proxyn keresztül továbbított tooroute kérelmeket.  
 
--   [Kérelem módszert állítja be](#SetRequestMethod) -módosíthatja a kérelem HTTP-metódust.  
+-   [Kérelem módszert állítja be](#SetRequestMethod) -lehetővé teszi a kérelmek toochange hello HTTP metódus.  
   
--   [Állítsa be. állapotkód:](#SetStatus) – a HTTP-állapotkód: a megadott értékre változik.  
+-   [Állítsa be. állapotkód:](#SetStatus) -módosítások hello HTTP-állapot kód toohello megadott érték.  
   
 -   [Új érték](api-management-advanced-policies.md#set-variable) -továbbra is fennáll az elnevezett értéket [környezetben](api-management-policy-expressions.md#ContextVariables) változó későbbi eléréshez.  
 
--   [Nyomkövetési](#Trace) -be egy karakterláncot ad a [API Inspector](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) kimeneti.  
+-   [Nyomkövetési](#Trace) -karakterlánc hozzáadja hello [API Inspector](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) kimeneti.  
   
--   [Várjon, amíg](#Wait) -megvárja-e a zárójelek között [küldési kérelmek](api-management-advanced-policies.md#SendRequest), [lehet értéket kiolvasni a gyorsítótár](api-management-caching-policies.md#GetFromCacheByKey), vagy [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) házirendeket befejeződjön, mielőtt továbblép.  
+-   [Várjon, amíg](#Wait) -megvárja-e a zárójelek között [küldési kérelmek](api-management-advanced-policies.md#SendRequest), [lehet értéket kiolvasni a gyorsítótár](api-management-caching-policies.md#GetFromCacheByKey), vagy [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) házirendek toocomplete a folytatás előtt.  
   
 ##  <a name="choose"></a>Folyamata  
- A `choose` házirend utasítások logikai kifejezésen, hasonló az if-majd-más vagy kapcsoló értékelése eredménye alapján a programozási nyelven összeállításához zárt házirend vonatkozik.  
+ Hello `choose` házirend utasítások logikai kifejezésen, ha-akkor más hasonló tooan vagy kapcsoló értékelése hello eredménye alapján a programozási nyelven összeállításához zárt házirend vonatkozik.  
   
 ###  <a name="ChoosePolicyStatement"></a>Házirendutasítás  
   
 ```xml  
 <choose>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <otherwise>   
-        <!— one or more policy statements to be applied if none of the above conditions are true  -->  
+        <!— one or more policy statements toobe applied if none of hello above conditions are true  -->  
 </otherwise>   
 </choose>  
 ```  
   
- A vezérlő adatfolyam házirend tartalmaznia kell legalább egy `<when/>` elemet. A `<otherwise/>` elem nem kötelező megadni. A feltételek `<when/>` elemek kiértékelése sorrendben történik, illetve megjelenésük belül a házirend. Az első határolt házirend nyilatkozatuk `<when/>` feltétel attribútum egyenlő elem `true` lépnek érvénybe. Házirendek határolt a `<otherwise/>` elem, ha van ilyen, alkalmazza a rendszer, ha az összes, a `<when/>` elem feltétel attribútumok `false`.  
+ hello vezérlő adatfolyam házirend tartalmaznia kell legalább egy `<when/>` elemet. Hello `<otherwise/>` elem nem kötelező megadni. A feltételek `<when/>` elemek kiértékelése sorrendben történik, illetve megjelenésük hello házirend. Először határolt hello házirend nyilatkozatuk `<when/>` feltétel attribútum egyenlő elem `true` lépnek érvénybe. Hello határolt házirendek `<otherwise/>` elem, ha van ilyen, alkalmazza a rendszer, ha az összes hello a `<when/>` elem feltétel attribútumok `false`.  
   
 ### <a name="examples"></a>Példák  
   
 ####  <a name="ChooseExample"></a>Példa  
- A következő példa bemutatja egy [set-változó](api-management-advanced-policies.md#set-variable) házirend és a két vezérlése áramlási szabályzatokkal.  
+ hello következő példa bemutatja egy [set-változó](api-management-advanced-policies.md#set-variable) házirend és a két vezérlése áramlási szabályzatokkal.  
   
- A változó szabály beállítása a bejövő szakaszban, és létrehoz egy `isMobile` logikai [környezetben](api-management-policy-expressions.md#ContextVariables) változó értéke igaz, ha a `User-Agent` kérelem fejléc tartalmazza a szöveg `iPad` vagy `iPhone`.  
+ változó szabály hello beállítása megtalálható hello bejövő szakaszt, és létrehoz egy `isMobile` logikai [környezetben](api-management-policy-expressions.md#ContextVariables) változó, amely tootrue van beállítva, ha hello `User-Agent` kérelem fejléc hello szöveget tartalmaz `iPad` vagy `iPhone`.  
   
- Az első ellenőrzési folyamata házirend is a bejövő szakaszban, és feltételesen vonatkozik két egyik [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) értékének attól a `isMobile` környezeti változó.  
+ hello első vezérlő adatfolyam házirend egyben a bejövő szakasz hello és feltételesen alkalmaz egy két [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) attól hello hello értékének `isMobile` környezeti változó.  
   
- A második ellenőrzési folyamata házirend kimenő szakaszában és feltételesen alkalmazza a [XML konvertálása JSON formátumúvá](api-management-transformation-policies.md#ConvertXMLtoJSON) házirend amikor `isMobile` értéke `true`.  
+ hello második ellenőrzési folyamata házirend hello kimenő szakaszban, és feltételesen vonatkozik hello [XML konvertálása tooJSON](api-management-transformation-policies.md#ConvertXMLtoJSON) házirend amikor `isMobile` értéke túl`true`.  
   
 ```xml  
 <policies>  
@@ -117,10 +117,10 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ```  
   
 #### <a name="example"></a>Példa  
- A példa bemutatja, hogyan hajthat végre a tartalom alapján történő szűrés adatelemek eltávolítása a válasz érkezett a háttérszolgáltatás használata esetén a `Starter` termék. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és a 34:30 előretekerés. Megtekinthet egy áttekintést 31:50 kezdjék [a sötét égbolt előrejelzési API](https://developer.forecast.io/) ebben a bemutatóban használt.  
+ Ez a példa bemutatja, hogyan tooperform tartalom alapján történő szűrés adatelemek eltávolítása hello választ kapott hello háttérszolgáltatást hello használatakor `Starter` termék. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és too34:30 előre. Áttekintést 31:50 toosee kezdjék [sötét égbolt előrejelzési API hello](https://developer.forecast.io/) ebben a bemutatóban használt.  
   
 ```xml  
-<!-- Copy this snippet into the outbound section to remove a number of data elements from the response received from the backend service based on the name of the api product -->  
+<!-- Copy this snippet into hello outbound section tooremove a number of data elements from hello response received from hello backend service based on hello name of hello api product -->  
 <choose>  
   <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">  
     <set-body>@{  
@@ -140,27 +140,27 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
 |Válassza a|A gyökérelem.|Igen|  
-|mikor|Az állapotot, amelyet használni a `if` vagy `ifelse` részei a `choose` házirend. Ha a `choose` -házirendben engedélyezve van több `when` szakaszok, azok egymás után értékeli ki. Egyszer a `condition` , hogy amikor egy elem értékelődik ki `true`, további `when` feltételek értékelésének.|Igen|  
-|Ellenkező esetben|A házirend-részlet használható, ha egyike sem tartalmazza a `when` feltételek értékelhetők `true`.|Nem|  
+|mikor|a hello feltétel toouse hello `if` vagy `ifelse` hello részei `choose` házirend. Ha hello `choose` -házirendben engedélyezve van több `when` szakaszok, azok egymás után értékeli ki. Egyszer hello `condition` , hogy amikor egy elem értékeli ki túl`true`, további `when` feltételek értékelésének.|Igen|  
+|Ellenkező esetben|Hello házirend részlet toobe használható, ha nincs hello tartalmaz `when` feltételek kiértékelése túl`true`.|Nem|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Attribútum|Leírás|Szükséges|  
 |---------------|-----------------|--------------|  
-|feltétel = "logikai kifejezés &#124; Logikai állandó"|A logikai kifejezés vagy állandó értékeli ki, ha a tartalmazó `when` házirend-utasítás kiértékelése történik.|Igen|  
+|feltétel = "logikai kifejezés &#124; Logikai állandó"|hello logikai kifejezés, vagy ha hello tartalmazó állandó tooevaluated `when` házirend-utasítás kiértékelése történik.|Igen|  
   
 ###  <a name="ChooseUsage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="ForwardRequest"></a>Kérés továbbítása  
- A `forward-request` házirend továbbítja a bejövő kérelem által a háttérszolgáltatáshoz a kérelemben megadott [környezet](api-management-policy-expressions.md#ContextVariables). A háttérkiszolgáló URL-címe van megadva az API-t [beállítások](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) és módosítható a [be háttérszolgáltatás](api-management-transformation-policies.md) házirend.  
+ Hello `forward-request` házirend továbbítja hello bejövő kérelem toohello háttérszolgáltatást hello kérelemben megadott [környezet](api-management-policy-expressions.md#ContextVariables). hello háttérkiszolgáló URL-címe szerepel hello API [beállítások](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) és hello segítségével módosítható [be háttérszolgáltatás](api-management-transformation-policies.md) házirend.  
   
 > [!NOTE]
->  A csoportházirend-eredményhez eltávolítása a kérelem nem lesznek továbbítva a háttér szolgáltatás és a kimenő szakaszban házirendek kiértékelése azonnal a bejövő szakaszban házirendek sikeres befejezését követően.  
+>  A csoportházirend-eredmények nem lesznek továbbítva toohello háttér szolgáltatás és hello hello kimenő szakaszban házirendek hello kérelem hello házirendek segítségével a hello hello sikeres befejezését követően azonnal kiértékelése eltávolítása bejövő szakasz.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -171,7 +171,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ### <a name="examples"></a>Példák  
   
 #### <a name="example"></a>Példa  
- A következő API-szintű szabályzat továbbítja a háttérszolgáltatáshoz 60 másodperces időtúllépési időköz minden kérelemhez.  
+ hello következő API-szintű szabályzat továbbítja az összes kérelem toohello háttérszolgáltatást 60 másodperces időtúllépési időköz.  
   
 ```xml  
 <!-- api level -->  
@@ -190,7 +190,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ```  
   
 #### <a name="example"></a>Példa  
- Ez a művelet szintű szabályzat használja a `base` elem a háttérrendszer házirend örökli a szülő API-szintű hatókör.  
+ Ez a művelet szintű szabályzat használ hello `base` elem tooinherit hello háttér házirend hello szülő API szintű hatókörből.  
   
 ```xml  
 <!-- operation level -->  
@@ -209,7 +209,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ```  
   
 #### <a name="example"></a>Példa  
- Ez a művelet szintű szabályzat explicit módon továbbítja a háttérszolgáltatáshoz 120 időtúllépés az összes kérelmet, és nem örökli a szülő API-szintű háttér házirend.  
+ Ez a művelet szintű szabályzat explicit módon továbbítja az összes kérelem toohello háttérszolgáltatást egy időkorlát 120, és nem örököl a hello szülő API-szintű háttér házirend.  
   
 ```xml  
 <!-- operation level -->  
@@ -219,7 +219,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
     </inbound>  
     <backend>  
         <forward-request timeout="120"/>   
-        <!-- effective policy. note the absence of <base/> -->  
+        <!-- effective policy. note hello absence of <base/> -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -229,7 +229,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ```  
   
 #### <a name="example"></a>Példa  
- Ez a művelet szintű szabályzat nem továbbítja a kérelem által a háttérszolgáltatáshoz.  
+ Ez a művelet szintű szabályzat nem továbbítja a kérelmek toohello háttérszolgáltatáshoz.  
   
 ```xml  
 <!-- operation level -->  
@@ -238,7 +238,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
         <base/>  
     </inbound>  
     <backend>  
-        <!-- no forwarding to backend -->  
+        <!-- no forwarding toobackend -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -257,18 +257,18 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|Időtúllépés = "integer"|Nem sikerül a időkorlátja, másodpercben. a háttérszolgáltatás hívása előtt.|Nem|Nincs időtúllépés|  
-|hajtsa végre-átirányítások = "true &#124; FALSE"|Megadja, hogy a háttérszolgáltatáshoz átirányítása követi az átjáró vagy visszaérkezik a hívóhoz.|Nem|hamis|  
+|Időtúllépés = "integer"|hello időkorlátja másodpercben előtt hello hívás toohello háttérszolgáltatást sikertelen lesz.|Nem|Nincs időtúllépés|  
+|hajtsa végre-átirányítások = "true &#124; FALSE"|Megadja, hogy hello háttérszolgáltatást átirányítása hello átjáró követ vagy toohello hívó adott vissza.|Nem|hamis|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** háttér  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="LimitConcurrency"></a>A feldolgozási korlátot  
- A `limit-concurrency` házirend megakadályozza, hogy a zárt házirendek egy adott időpontban legfeljebb a megadott számú kérelem végrehajtása. Új kérelmek alapján meghaladó, kerülnek be várólista, amíg a várólista maximális hossza érhető el. Várólista Erőforrásfogyás esetén új kérelmek sikertelenek lesznek azonnal.
+ Hello `limit-concurrency` házirend megakadályozza, hogy a zárt házirendek nagyobb, mint a kérések megadott számát egy adott időben hello végrehajtása. Alapján meghaladó hello küszöbértéket, új kérelmek kerülnek tooa várólista, amíg nem érhető el, hello várólista maximális hossza. Várólista Erőforrásfogyás esetén új kérelmek sikertelenek lesznek azonnal.
   
 ###  <a name="LimitConcurrencyStatement"></a>Házirendutasítás  
   
@@ -281,7 +281,7 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 ### <a name="examples"></a>Példák  
   
 ####  <a name="ChooseExample"></a>Példa  
- A következő példa bemutatja, hogyan legyen korlátozva egy környezeti változó értéke alapján háttérkiszolgálón továbbított kérelmek számát jelenti.
+ hello következő példa bemutatja, hogyan továbbítsa az toolimit kérelmek száma a tooa háttér hello egy környezeti változó értéke alapján.
  
 ```xml  
 <policies>
@@ -305,35 +305,35 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|--------------|  
-|kulcs|Egy karakterláncot. A kifejezés engedélyezett. Meghatározza azt a feldolgozási hatókört. Megoszthatók több házirendet.|Igen|N/A|  
-|maximális száma|Egy egész számot. Megadja, hogy mely adja meg a házirend kérelmek maximális számát.|Igen|N/A|  
-|Időtúllépés|Egy egész számot. A kifejezés engedélyezett. Adja meg másodpercben, egy kérelem várnia kell, mielőtt hibát jelentene, a hatókör megadását "403-as túl sok kérelem"|Nem|Infinity|  
-|maximális hosszúságú várólista|Egy egész számot. A kifejezés engedélyezett. A várólista maximális hosszát határozza meg. A bejövő kérelem próbál meg adja meg a házirend befejeződik a "403-as túl sok kérelem" azonnal amikor a várólista kimerült.|Nem|Infinity|  
+|kulcs|Egy karakterláncot. A kifejezés engedélyezett. Hello párhuzamossági hatókör határozza meg. Megoszthatók több házirendet.|Igen|N/A|  
+|maximális száma|Egy egész számot. Itt adhatja meg, amelyek számára engedélyezett tooenter hello házirend kérelmek maximális számát.|Igen|N/A|  
+|timeout|Egy egész számot. A kifejezés engedélyezett. Hello kérelmet megvárja-e tooenter egy hatókört, mielőtt hibát jelentene, a másodpercek számát adja meg "403-as túl sok kérelem"|Nem|Infinity|  
+|maximális hosszúságú várólista|Egy egész számot. A kifejezés engedélyezett. Hello várólista maximális hosszát határozza meg. Bejövő kérelmek tooenter közben ezzel a házirend-befejeződik a "403-as túl sok kérelem" azonnal amikor hello várólista kimerült.|Nem|Infinity|  
   
 ###  <a name="ChooseUsage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
 
-##  <a name="log-to-eventhub"></a>Az Event Hubs napló  
- A `log-to-eventhub` házirend üzeneteket küld a megadott formátumban határozzák meg a tranzakciónaplókat tartalmazó entitás Eseményközpontban. A név azt jelenti, mert a házirend kijelölt kérés vagy válasz környezeti adatok mentése online vagy kapcsolat nélküli elemzéshez használható.  
+##  <a name="log-to-eventhub"></a>Napló tooEvent Hub  
+ Hello `log-to-eventhub` hello üzenetek megadott formátum tooan határozzák meg a tranzakciónaplókat tartalmazó entitás Eseményközpont házirend küld. Mivel a név azt jelenti, hello házirend kijelölt kérés vagy válasz környezeti adatok mentése online vagy kapcsolat nélküli elemzéshez használható.  
   
 > [!NOTE]
->  Részletes útmutató, az event hubs és a naplózási események konfigurálása, lásd: [útmutató az Azure Event Hubs API Management naplózása](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
+>  Részletes útmutató, az event hubs és a naplózási események konfigurálása, lásd: [hogyan toolog API Management eseményeket az Azure Event Hubs](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
-<log-to-eventhub logger-id="id of the logger entity" partition-id="index of the partition where messages are sent" partition-key="value used for partition assignment">  
-  Expression returning a string to be logged  
+<log-to-eventhub logger-id="id of hello logger entity" partition-id="index of hello partition where messages are sent" partition-key="value used for partition assignment">  
+  Expression returning a string toobe logged  
 </log-to-eventhub>  
   
 ```  
   
 ### <a name="example"></a>Példa  
- Bármilyen karakterlánc értékeként használható Event Hubs be kell jelentkeznie. Ebben a példában a dátum és idő, telepítési szolgáltatás neve, kérelemazonosító, IP-cím és az összes bejövő hívás művelet nevét a rendszer naplózza az event hubs naplózó regisztrálva a `contoso-logger` azonosítója.  
+ Bármilyen karakterlánc hello érték toobe jelentkezett be az Event Hubs használható. Ebben a példában hello dátum és idő, telepítési szolgáltatás neve, kérelemazonosító, IP-cím és az összes bejövő hívások műveletnév naplózó regisztrált hello naplózott toohello eseményközpont `contoso-logger` azonosítója.  
   
 ```xml  
 <policies>  
@@ -351,25 +351,25 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
-|napló-eventhub|A gyökérelem. Ez az elem értéke bejelentkezni az eseményközpont karakterlánc.|Igen|  
+|napló-eventhub|A gyökérelem. hello Ez az elem értéke hello karakterlánc toolog tooyour eseményközpontot.|Igen|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Attribútum|Leírás|Szükséges|  
 |---------------|-----------------|--------------|  
-|naplózó-azonosító|Az API Management szolgáltatásban regisztrált a naplózó azonosítója.|Igen|  
-|partícióazonosító-:|Meghatározza a partíció, ahol az üzenetek küldése történik az index.|Választható. Ez az attribútum nem használható, ha `partition-key` szolgál.|  
-|a partíciókulcs|Meghatározza azt az értéket a partíció-hozzárendelés üzenettémakörbe küldött üzeneteket.|Választható. Ez az attribútum nem használható, ha `partition-id` szolgál.|  
+|naplózó-azonosító|hello hello azonosítója naplózó az API Management szolgáltatásban regisztrált.|Igen|  
+|partícióazonosító-:|Megadja a hello index hello partíció, ahol az üzenetek küldése történik.|Választható. Ez az attribútum nem használható, ha `partition-key` szolgál.|  
+|a partíciókulcs|Adja meg a használt partíció-hozzárendelés elküldött üzenetek hello érték.|Választható. Ez az attribútum nem használható, ha `partition-id` szolgál.|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
 
 ##  <a name="mock-response"></a>Utánzatait válasz  
-A `mock-response`, a névként azt jelenti, API-k és műveletek mock szolgál. Normál feldolgozási sor végrehajtása megszakítja, és a hívó mocked választ ad vissza. A házirend mindig megpróbálja térjen vissza a legmagasabb hűség válaszokat. Válasz tartalom példák, amikor a rendelkezésre álló szívesebben. Minta válaszok létrehozott sémák, a sémák találhatók, és többek között nem. Ha a példák és sémák nem találhatók, nem tartalmú válaszok is megjelennek.
+Hello `mock-response`, hello neveként azt jelenti, toomock API-k és műveletek. Normál feldolgozási sor végrehajtása megszakítja, és egy mocked válasz toohello hívó adja vissza. hello házirend mindig próbálja meg a legmagasabb hűség tooreturn válaszokat. Válasz tartalom példák, amikor a rendelkezésre álló szívesebben. Minta válaszok létrehozott sémák, a sémák találhatók, és többek között nem. Ha a példák és sémák nem találhatók, nem tartalmú válaszok is megjelennek.
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -382,11 +382,11 @@ A `mock-response`, a névként azt jelenti, API-k és műveletek mock szolgál. 
   
 ```xml  
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code. First found content type is used. If no example or schema is found, the content is empty. -->
+status code. First found content type is used. If no example or schema is found, hello content is empty. -->
 <mock-response/>
 
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code and media type. If no example or schema found, the content is empty. -->
+status code and media type. If no example or schema found, hello content is empty. -->
 <mock-response status-code='200' content-type='application/json'/>  
 ```  
   
@@ -400,18 +400,18 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|--------------|  
-|állapotkód-:|Válasz állapotkódja határozza meg, és válassza ki a megfelelő példa vagy séma használatával.|Nem|200|  
-|tartalomtípus|Itt adhatja meg `Content-Type` válasz állomásfejléc-érték, és válassza ki a megfelelő példa vagy séma.|Nem|None|  
+|állapotkód-:|Adja meg a válasz állapotkódja és használt tooselect megfelelő példa vagy séma.|Nem|200|  
+|tartalomtípus|Itt adhatja meg `Content-Type` válasz állomásfejléc-érték és a használt tooselect megfelelő példa vagy séma van.|Nem|None|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő, hiba  
   
 -   **Házirend hatókörök:** minden hatókör
 
 ##  <a name="Retry"></a>Próbálja meg újra  
- A `retry` házirend egyszer végrehajtja az alárendelt házirendeket, és majd újrapróbálkozik a végrehajtás, amíg az újra gombra `condition` válik `false` , vagy próbálkozzon újra `count` kimerült.  
+ Hello `retry` házirend egyszer végrehajtja az alárendelt házirendeket, és majd újrapróbálkozik a végrehajtási, amíg hello újrapróbálkozási `condition` válik `false` , vagy próbálkozzon újra `count` kimerült.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -430,7 +430,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Példa  
- A következő példa egy kérelem a forewarding a rendszer ismét megkísérli legfeljebb algoritmus tízszeresének használatával exponenciális próbálkozzon újra. Mivel `first-fast-retry` beállítva hamis értékre, az összes újrapróbálkozások lépnek a exponsntial újrapróbálkozási algoritmust.  
+ A hello a következő példa kérelem forewarding a rendszer ismét megkísérli tooten időpontokban exponenciális újrapróbálkozási algoritmust használja fel. Mivel a `first-fast-retry` értéke toofalse, minden újrapróbálkozások tulajdonos toohello exponsntial újrapróbálkozási algoritmust.  
   
 ```xml  
   
@@ -450,33 +450,33 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
-|Próbálja meg újra|A gyökérelem. Előfordulhat, hogy bármely egyéb házirendek gyermekelemeinek tartalmazni.|Igen|  
+|retry|A gyökérelem. Előfordulhat, hogy bármely egyéb házirendek gyermekelemeinek tartalmazni.|Igen|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
 |Az állapot|Logikai szövegkonstans vagy [kifejezés](api-management-policy-expressions.md) adja meg, ha az újrapróbálkozások le kell állítani (`false`) vagy továbbra is (`true`).|Igen|N/A|  
-|Száma|Egy pozitív szám, amely megadja az újrapróbálkozások maximális számát kísérlet.|Igen|N/A|  
-|időköz|Próbálja meg egy pozitív szám, a között az újrapróbálkozási időköz megadása másodpercben.|Igen|N/A|  
-|maximális-időköz|Egy pozitív szám, a maximális megadása másodpercben Várjon, amíg az újrapróbálkozási kísérletek közötti időközt. Az exponenciális újrapróbálkozási algoritmust végrehajtásához szolgál.|Nem|N/A|  
-|különbözeti|Egy pozitív szám, a várakozási időközt növekmény megadása másodpercben. A lineáris és exponenciális újrapróbálkozási algoritmust végrehajtására szolgál.|Nem|N/A|  
-|első fast-újrapróbálkozási|Ha beállítása `true` , az első újrapróbálkozások azonnal megtörténik.|Nem|`false`|  
+|Száma|Hello tooattempt az újrapróbálkozások maximális számát megadó pozitív szám.|Igen|N/A|  
+|interval|Egy pozitív szám hello újrapróbálkozások között hello időköz megadása másodpercben.|Igen|N/A|  
+|maximális-időköz|Egy pozitív szám hello maximális időtartamot hello újrapróbálkozások között megadása másodpercben. Használt tooimplement exponenciális újrapróbálkozási algoritmust is.|Nem|N/A|  
+|különbözeti|Egy pozitív szám hello várakozási időközt növekmény megadása másodpercben. Használt tooimplement hello lineáris és exponenciális újrapróbálkozási algoritmust is.|Nem|N/A|  
+|első fast-újrapróbálkozási|Ha túl beállítása `true` , hello első újrapróbálkozások azonnal megtörténik.|Nem|`false`|  
   
 > [!NOTE]
->  Ha csak a `interval` meg van adva, **rögzített** időköz újrapróbálkozások hajtja végre.  
->  Ha csak a `interval` és `delta` vannak megadva, a **lineáris** időköz újrapróbálkozási algoritmust használnak, ahol az újrapróbálkozások közötti várakozási idő kiszámítása a következő képlet - szerint `interval + (count - 1)*delta`.  
->  Ha a `interval`, `max-interval` és `delta` vannak megadva, **exponenciális** időköz újrapróbálkozási algoritmust alkalmazza, ha a várakozási idő a próbálkozások közötti inkább exponenciálisan értéke `interval` számára az érték `max-interval` megfelelően a következő forumula - `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
+>  Ha csak hello `interval` meg van adva, **rögzített** időköz újrapróbálkozások hajtja végre.  
+>  Ha csak hello `interval` és `delta` vannak megadva, a **lineáris** időköz újrapróbálkozási algoritmust használnak, ahol várakozási idő között a számított függően hello a következő képlet - `interval + (count - 1)*delta`.  
+>  Ha hello `interval`, `max-interval` és `delta` vannak megadva, **exponenciális** időköz újrapróbálkozási algoritmust alkalmazza a rendszer, ahol hello várakozási idő hello újrapróbálkozások között inkább exponenciálisan helloértékét`interval`toohello érték `max-interval` toohello következő megfelelően forumula - `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) . Vegye figyelembe, hogy ez a házirend öröklik a gyermek házirend használattal kapcsolatos korlátozásokat.  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) . Vegye figyelembe, hogy ez a házirend öröklik a gyermek házirend használattal kapcsolatos korlátozásokat.  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="ReturnResponse"></a>Válasz visszaadása  
- A `return-response` házirend megszakítja a feldolgozási sor végrehajtása, és egy alapértelmezett vagy egyéni reagálva a hívó adja vissza. Alapértelmezett válasz `200 OK` nem szervezethez. Egyéni válasz egy környezeti változó vagy házirend utasítások keresztül adható meg. Mindkét biztosított, ha a válasz a környezeti változó belül található módosul a a házirend-utasításoknál előtt alatt visszaérkezik a hívóhoz.  
+ Hello `return-response` házirend feldolgozási sor végrehajtása megszakítása és egy alapértelmezett vagy egyéni válasz toohello hívó adja vissza. Alapértelmezett válasz `200 OK` nem szervezethez. Egyéni válasz egy környezeti változó vagy házirend utasítások keresztül adható meg. Mindkét kapnak, amikor hello válasz hello környezeti változó belül található módosul a hello házirend-utasításoknál előtt toohello hívó ad vissza.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -514,17 +514,17 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attribútum|Leírás|Szükséges|  
 |---------------|-----------------|--------------|  
-|válasz-változó-neve|A környezeti változó neve hivatkozni, például felsőbb rétegbeli [küldési-kérelmek](api-management-advanced-policies.md#SendRequest) házirend, és úgy, hogy egy `Response` objektum|Választható.|  
+|válasz-változó-neve|hello hello környezeti változó neve hivatkozni, például felsőbb rétegbeli [küldési-kérelmek](api-management-advanced-policies.md#SendRequest) házirend, és úgy, hogy egy `Response` objektum|Választható.|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="SendOneWayRequest"></a>Egyirányú kérés küldése  
- A `send-one-way-request` házirend a megadott kérést küld a megadott URL-cím a válaszra való várakozás nélkül.  
+ Hello `send-one-way-request` házirend toohello megadott URL-címet a válaszra való várakozás nélkül megadott hello kérést küld.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -539,7 +539,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Példa  
- Ez a minta-házirend használatával példáját mutatja be a `send-one-way-request` egy üzenetet küldeni a Slack Csevegés helyiségben, ha a HTTP válaszkódot nagyobb vagy egyenlő 500 házirend. Ez a minta további információkért lásd: [használata az Azure API Management szolgáltatás a külső services](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Ez a minta-házirend használatával hello példáját mutatja be `send-one-way-request` házirend toosend egy üzenet tooa Slack Csevegés hely hello HTTP-válaszkód nagyobb vagy egyenlő too500 esetén. Ez a minta további információkért lásd: [hello Azure API Management szolgáltatás a külső szolgáltatásokkal](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -572,28 +572,28 @@ status code and media type. If no example or schema found, the content is empty.
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
 |küldési-egy-módon-kérelmek|A gyökérelem.|Igen|  
-|URL-címe|A kérelem URL-CÍMÉT.|Nincs if mód = másolási; Ellenkező esetben igen.|  
-|Módszer|A kérelem HTTP-metódust.|Nincs if mód = másolási; Ellenkező esetben igen.|  
+|URL-címe|hello hello kérelem URL-címe|Nincs if mód = másolási; Ellenkező esetben igen.|  
+|Módszer|hello hello kérelem HTTP-metódus.|Nincs if mód = másolási; Ellenkező esetben igen.|  
 |header|Kérelem fejléce. Használjon több több kérelem fejlécek.|Nem|  
-|Törzs|A kérés törzsében.|Nem|  
+|Törzs|hello kérés törzsében.|Nem|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|mód = "karakterlánc"|Meghatározza, hogy ez egy új kérelmet vagy a jelenlegi kérelem egy példányát. Kimenő módban mód = másolása nem sikerült a kérés törzsében.|Nem|új|  
-|név|A neve a fejléc kell beállítani.|Igen|N/A|  
-|létezik-e művelet|Megadja, milyen műveletet hajtson végre a fejléc már meg van adva. Ez az attribútum a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - lecseréli a meglévő fejléc értékének.<br />-skip – nem helyettesíti a meglévő-fejléc értékét.<br />-hozzáfűzése - az érték hozzáfűzi a meglévő állomásfejléc-érték.<br />-törlés - eltávolítja a fejlécet a kérelemből.<br /><br /> Ha beállítása `override` történő besorolásakor ugyanazzal a névvel több bejegyzést eredményez az összes bejegyzés (amely jelennek meg több alkalommal) megfelelően történő beállítása fejléc; csak a listában szereplő értékek be lesznek állítva az eredményt.|Nem|felülbírálás|  
+|mód = "karakterlánc"|Meghatározza, hogy ez egy új kérelmet vagy a jelenlegi kérelem hello. Kimenő módban mód = másolása nem sikerült hello kérés törzsében.|Nem|új|  
+|név|Hello fejléc toobe set hello nevét adja meg.|Igen|N/A|  
+|létezik-e művelet|Milyen műveletet tootake határozza meg, amikor hello fejléc már meg van adva. Ez az attribútum hello a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - cserél hello értéke hello meglévő fejléc.<br />-skip – nem helyettesíti a hello meglévő állomásfejléc-érték.<br />-hozzáfűzése - hozzáfűzi hello érték toohello meglévő állomásfejléc-érték.<br />-törlés – hello kérelemből eltávolítja hello fejlécet.<br /><br /> Ha értéke túl`override` csak a listában szereplő értékek hello eredmény be lesznek állítva; a hello azonos nevű eredmények hello fejlécben set függően tooall bejegyzéseket tartalmaz, (amelyek jelennek meg több alkalommal) alatt történő besorolásakor több bejegyzést.|Nem|felülbírálás|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="SendRequest"></a>Kérés küldése  
- A `send-request` házirend a megadott kérést küld a megadott URL-cím nem tovább, mint a beállított időtúllépési értéket vár.  
+ Hello `send-request` házirend toohello megadott URL-címe, mint hello beállítása időtúllépés értéke már nem vár a megadott hello kérést küld.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -609,14 +609,14 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Példa  
- Ez a példa bemutatja a hivatkozás győződhet token az engedélyezési-kiszolgálóval. Ez a minta további információkért lásd: [használata az Azure API Management szolgáltatás a külső services](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Ez a példa bemutatja egyirányú tooverify hivatkozás-jogkivonat az engedélyezési-kiszolgálóval. Ez a minta további információkért lásd: [hello Azure API Management szolgáltatás a külső szolgáltatásokkal](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <inbound>  
   <!-- Extract Token from Authorization header parameter -->  
   <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />  
   
-  <!-- Send request to Token Server to validate token (see RFC 7662) -->  
+  <!-- Send request tooToken Server toovalidate token (see RFC 7662) -->  
   <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">  
     <set-url>https://microsoft-apiappec990ad4c76641c6aea22f566efc5a4e.azurewebsites.net/introspection</set-url>  
     <set-method>POST</set-method>  
@@ -651,31 +651,31 @@ status code and media type. If no example or schema found, the content is empty.
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
 |küldési-kérelmek|A gyökérelem.|Igen|  
-|URL-címe|A kérelem URL-CÍMÉT.|Nincs if mód = másolási; Ellenkező esetben igen.|  
-|Módszer|A kérelem HTTP-metódust.|Nincs if mód = másolási; Ellenkező esetben igen.|  
+|URL-címe|hello hello kérelem URL-címe|Nincs if mód = másolási; Ellenkező esetben igen.|  
+|Módszer|hello hello kérelem HTTP-metódus.|Nincs if mód = másolási; Ellenkező esetben igen.|  
 |header|Kérelem fejléce. Használjon több több kérelem fejlécek.|Nem|  
-|Törzs|A kérés törzsében.|Nem|  
+|Törzs|hello kérés törzsében.|Nem|  
   
 ### <a name="attributes"></a>Attribútumok  
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|mód = "karakterlánc"|Meghatározza, hogy ez egy új kérelmet vagy a jelenlegi kérelem egy példányát. Kimenő módban mód = másolása nem sikerült a kérés törzsében.|Nem|új|  
+|mód = "karakterlánc"|Meghatározza, hogy ez egy új kérelmet vagy a jelenlegi kérelem hello. Kimenő módban mód = másolása nem sikerült hello kérés törzsében.|Nem|új|  
 |válasz-változó-name = "karakterlánc"|Ha nincs jelen, `context.Response` szolgál.|Nem|N/A|  
-|Időtúllépés = "integer"|Nem sikerül a időkorlátja, másodpercben. az URL-cím hívása előtt.|Nem|60|  
-|Hiba mellőzése|Ha igaz, és hiba történt a kérelem eredményezi:<br /><br /> -Ha a válasz-változó-név lett megadva, null értéket tartalmaz.<br />-Ha a válasz-változó-neve nincs megadva, a környezetben. Kérés nem fog frissülni.|Nem|hamis|  
-|név|A neve a fejléc kell beállítani.|Igen|N/A|  
-|létezik-e művelet|Megadja, milyen műveletet hajtson végre a fejléc már meg van adva. Ez az attribútum a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - lecseréli a meglévő fejléc értékének.<br />-skip – nem helyettesíti a meglévő-fejléc értékét.<br />-hozzáfűzése - az érték hozzáfűzi a meglévő állomásfejléc-érték.<br />-törlés - eltávolítja a fejlécet a kérelemből.<br /><br /> Ha beállítása `override` történő besorolásakor ugyanazzal a névvel több bejegyzést eredményez az összes bejegyzés (amely jelennek meg több alkalommal) megfelelően történő beállítása fejléc; csak a listában szereplő értékek be lesznek állítva az eredményt.|Nem|felülbírálás|  
+|Időtúllépés = "integer"|hello időkorlátja másodpercben hello hívása előtt toohello URL-cím nem sikerül.|Nem|60|  
+|Hiba mellőzése|Ha igaz, és hello kérik hibát eredményez:<br /><br /> -Ha a válasz-változó-név lett megadva, null értéket tartalmaz.<br />-Ha a válasz-változó-neve nincs megadva, a környezetben. Kérés nem fog frissülni.|Nem|hamis|  
+|név|Hello fejléc toobe set hello nevét adja meg.|Igen|N/A|  
+|létezik-e művelet|Milyen műveletet tootake határozza meg, amikor hello fejléc már meg van adva. Ez az attribútum hello a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - cserél hello értéke hello meglévő fejléc.<br />-skip – nem helyettesíti a hello meglévő állomásfejléc-érték.<br />-hozzáfűzése - hozzáfűzi hello érték toohello meglévő állomásfejléc-érték.<br />-törlés – hello kérelemből eltávolítja hello fejlécet.<br /><br /> Ha értéke túl`override` csak a listában szereplő értékek hello eredmény be lesznek állítva; a hello azonos nevű eredmények hello fejlécben set függően tooall bejegyzéseket tartalmaz, (amelyek jelennek meg több alkalommal) alatt történő besorolásakor több bejegyzést.|Nem|felülbírálás|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="SetHttpProxy"></a>HTTP-proxy beállítása  
- A `proxy` házirendje lehetővé teszi a kérelmek háttérkiszolgálókon egy HTTP-proxyn keresztül továbbítja. Csak a HTTP (nem HTTPS) az átjáró és a proxy között támogatott. Alapszintű, és csak az NTLM-hitelesítés.
+ Hello `proxy` házirendje lehetővé teszi a tooroute továbbított kérelmek toobackends egy HTTP-proxyn keresztül. Csak a HTTP (nem a HTTPS-) átjáró hello és hello proxy között támogatott. Alapszintű, és csak az NTLM-hitelesítés.
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -685,7 +685,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Példa  
-Vegye figyelembe a használatát [tulajdonságok](api-management-howto-properties.md) tartozó felhasználónevet és jelszót a bizalmas adatok tárolása a házirend-dokumentum elkerülése érdekében.  
+Vegye figyelembe a hello használata [tulajdonságok](api-management-howto-properties.md) a bizalmas adatok tárolása hello házirend-dokumentum hello felhasználónév és jelszó tooavoid értékként.  
   
 ```xml  
 <proxy url="http://192.168.1.1:8080" username={{username}} password={{password}} />
@@ -702,19 +702,19 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|URL-cím = "karakterlánc"|Proxy URL http://host:port formájában.|Igen|N/A|  
-|felhasználónév = "karakterlánc"|A proxy-nal való hitelesítéshez használt felhasználónevet.|Nem|N/A|  
-|jelszó = "karakterlánc"|A proxy-hitelesítéshez használandó jelszó.|Nem|N/A|  
+|URL-cím = "karakterlánc"|Proxykiszolgáló URL-címet http://host:port hello formája.|Igen|N/A|  
+|felhasználónév = "karakterlánc"|A hello proxy-hitelesítéshez használt felhasználónevet toobe.|Nem|N/A|  
+|jelszó = "karakterlánc"|A hello proxy-hitelesítéshez használt jelszó toobe.|Nem|N/A|  
 
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   
 -   **Házirend hatókörök:** minden hatókör  
 
 ##  <a name="SetRequestMethod"></a>Set kérés metódus  
- A `set-method` házirend lehetővé teszi a HTTP-kérési metódust egy kérelem módosítását.  
+ Hello `set-method` házirendje lehetővé teszi a toochange hello HTTP-kérési metódust egy kérelem.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -724,7 +724,7 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
 ```  
   
 ### <a name="example"></a>Példa  
- Ez a minta a házirend által használt a `set-method` házirend üzenetet küld a Slack Csevegés helyiségben, ha a HTTP válaszkódot nagyobb vagy egyenlő 500 példáját mutatja be. Ez a minta további információkért lásd: [használata az Azure API Management szolgáltatás a külső services](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Ez a minta házirend hello használó `set-method` házirend egy üzenet tooa Slack Csevegés hely küldése, ha HTTP-válaszkód hello érték nagyobb, mint vagy egyenlő too500 példáját mutatja be. Ez a minta további információkért lásd: [hello Azure API Management szolgáltatás a külső szolgáltatásokkal](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -756,17 +756,17 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Elem|Leírás|Szükséges|  
 |-------------|-----------------|--------------|  
-|set-módszer|A gyökérelem. Az elem értékét adja meg a HTTP-metódus.|Igen|  
+|set-módszer|A gyökérelem. hello elem hello értéke határozza meg a hello HTTP-metódus.|Igen|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="SetStatus"></a>Set-állapotkód:  
- A `set-status` házirend értékűre állítja be a HTTP-állapotkód: a megadott érték.  
+ Hello `set-status` házirend beállítása hello HTTP állapot kód toohello megadott érték.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -776,7 +776,7 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
 ```  
   
 ### <a name="example"></a>Példa  
- Ez a példa bemutatja, hogyan 401-es választ ad vissza, abban az esetben, ha az engedélyezési jogkivonat érvénytelen. További információkért lásd: [külső szolgáltatások az Azure API Management szolgáltatás használata](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
+ A példa bemutatja, hogyan tooreturn 401-es választ, ha hello engedélyezési jogkivonat érvénytelen. További információkért lásd: [hello Azure API Management szolgáltatás a külső services használatával](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
   
 ```xml  
 <choose>  
@@ -802,18 +802,18 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|kód = "integer"|A HTTP-állapotkód való visszatéréshez.|Igen|N/A|  
-|oka = "karakterlánc"|Az az oka az állapotkód: visszaadó leírását.|Igen|N/A|  
+|kód = "integer"|hello HTTP-állapot kódját tooreturn.|Igen|N/A|  
+|oka = "karakterlánc"|A leírás hello hello állapotkód visszaküldésére használatos.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** kimenő, háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
 
 ##  <a name="set-variable"></a>Új érték  
- A `set-variable` házirend deklarál egy [környezetben](api-management-policy-expressions.md#ContextVariables) változó, és egy megadott értéket rendeli az [kifejezés](api-management-policy-expressions.md) vagy egy szöveges karakterlánc. Ha a kifejezés olyan szövegkonstanst tartalmaz karakterláncra lesz konvertálva, és az érték típusa lesz `System.String`.  
+ Hello `set-variable` házirend deklarál egy [környezetben](api-management-policy-expressions.md#ContextVariables) változó, és egy megadott értéket rendeli az [kifejezés](api-management-policy-expressions.md) vagy egy szöveges karakterlánc. Ha hello kifejezés tartalmaz lesz konvertálva szövegkonstans tooa karakterlánc és hello: hello érték lesz `System.String`.  
   
 ###  <a name="set-variablePolicyStatement"></a>Házirendutasítás  
   
@@ -822,7 +822,7 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
 ```  
   
 ###  <a name="set-variableExample"></a>Példa  
- A következő példa bemutatja a változó szabály beállítása a bejövő szakaszban. A set változó házirend hoz létre egy `isMobile` logikai [környezetben](api-management-policy-expressions.md#ContextVariables) változó értéke igaz, ha a `User-Agent` kérelem fejléc tartalmazza a szöveg `iPad` vagy `iPhone`.  
+ hello következő példa bemutatja a változó szabály beállítása a hello bejövő szakasz. A set változó házirend létrehoz egy `isMobile` logikai [környezetben](api-management-policy-expressions.md#ContextVariables) tootrue van beállítva, ha hello változó `User-Agent` kérelem fejléc hello szöveget tartalmaz `iPad` vagy `iPhone`.  
   
 ```xml  
 <set-variable name="IsMobile" value="@(context.Request.Headers["User-Agent"].Contains("iPad") || context.Request.Headers["User-Agent"].Contains("iPhone"))" />  
@@ -838,18 +838,18 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Attribútum|Leírás|Szükséges|  
 |---------------|-----------------|--------------|  
-|név|Annak a változónak a nevét.|Igen|  
-|érték|A változó értékét. Ez lehet egy kifejezést, vagy konstansérték.|Igen|  
+|név|hello hello változó neve.|Igen|  
+|érték|hello hello változó értékét. Ez lehet egy kifejezést, vagy konstansérték.|Igen|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ###  <a name="set-variableAllowedTypes"></a>Engedélyezett típusokkal  
- A használt kifejezések a `set-variable` házirendet a következő alapvető típusok valamelyikét kell visszaadnia.  
+ Hello használt kifejezések `set-variable` házirendet a következő típus hello valamelyikét kell visszaadnia.  
   
 -   System.Boolean  
   
@@ -914,7 +914,7 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
 -   System.DateTime?  
 
 ##  <a name="Trace"></a>Nyomkövetési  
- A `trace` házirend hozzáadja a karakterlánc a [API Inspector](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) kimeneti. A házirend hajtja végre, csak ha nyomkövetés akkor váltódik ki, azaz `Ocp-Apim-Trace` fejléc jelen, és állítsa be a `true` és `Ocp-Apim-Subscription-Key` fejléc szerepel, valamint a rendszergazdai fiókhoz társított érvényes kulcs.  
+ Hello `trace` házirend hozzáadja egy karakterlánc hello [API Inspector](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) kimeneti. hello házirend sorozatot hajthat végre, csak ha nyomkövetés akkor váltódik ki, azaz `Ocp-Apim-Trace` fejléc jelen, és a beállított túl`true` és `Ocp-Apim-Subscription-Key` fejléc szerepel, valamint hello rendszergazdai fiókhoz társított érvényes kulcs.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -936,17 +936,17 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|Forrás|A literál karakterlánc kifejező a trace viewer, és adja meg az üzenet forrása.|Igen|N/A|  
+|Forrás|Karakterlánc literális jelentéssel bíró toohello trace viewer és üdvözlőüzenetére megadását hello forrását.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) .  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) .  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** minden hatókör  
   
 ##  <a name="Wait"></a>várj  
- A `wait` házirend hajt végre annak közvetlenül alárendelt házirendjei párhuzamosan, és megvárja-e az összes vagy annak befejezését, mielőtt ő maga befejeződne közvetlenül alárendelt házirendek egyikét. A várakozási házirend lehetnek azonnali gyermek házirendjeit [küldési kérelmek](api-management-advanced-policies.md#SendRequest), [lehet értéket kiolvasni a gyorsítótár](api-management-caching-policies.md#GetFromCacheByKey), és [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) házirendek.  
+ Hello `wait` házirend hajt végre annak közvetlenül alárendelt házirendjei párhuzamosan, és az összes vagy egy annak közvetlenül alárendelt házirendek toocomplete vár befejeződése után. hello várakozási házirend lehetnek azonnali gyermek házirendjeit [küldési kérelmek](api-management-advanced-policies.md#SendRequest), [lehet értéket kiolvasni a gyorsítótár](api-management-caching-policies.md#GetFromCacheByKey), és [folyamatot szabályozhatja](api-management-advanced-policies.md#choose) házirendek.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -959,7 +959,7 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
 ```  
   
 ### <a name="example"></a>Példa  
- A következő példa kétféle `choose` házirendek közvetlenül alárendelt házirendek, mint a `wait` házirend. Ezek mindegyikének `choose` házirendek hajt végre párhuzamosan. Minden egyes `choose` házirend megpróbálja gyorsítótárazott értéke. Ha a gyorsítótár-tévesztései, háttérszolgáltatás nevezik adni az értékét. Ebben a példában a `wait` házirend végrehajtásához összes közvetlenül alárendelt házirendjeit végrehajtani, mert a `for` attribútum van beállítva `all`.   Ebben a példában a környezeti változók (`execute-branch-one`, `value-one`, `execute-branch-two`, és `value-two`) Ez a példa házirend kereteit deklarált.  
+ A következő példa hello nincsenek két `choose` közvetlenül alárendelt házirendek a hello házirendekben `wait` házirend. Ezek mindegyikének `choose` házirendek hajt végre párhuzamosan. Minden egyes `choose` házirend kísérletek tooretrieve gyorsítótárazott értéket. Ha a gyorsítótár-tévesztései, háttérszolgáltatás tooprovide hello érték neve. Az ebben a példában hello `wait` házirend végrehajtásához összes közvetlenül alárendelt házirendjeit végrehajtani, mert hello `for` attribútum értéke túl`all`.   A példa hello környezeti változók (`execute-branch-one`, `value-one`, `execute-branch-two`, és `value-two`) deklarált hello kereteit ezt például a házirendet.  
   
 ```xml  
 <wait for="all">  
@@ -1003,10 +1003,10 @@ Vegye figyelembe a használatát [tulajdonságok](api-management-howto-propertie
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|A|Meghatározza, hogy a `wait` házirend megvárja-e a minden közvetlenül alárendelt házirendek befejezett vagy egyszerűen lesz. Engedélyezett értékek a következők:<br /><br /> -   `all`-Várjon, amíg befejeződik az összes közvetlenül alárendelt házirendek<br />-a - Várjon, amíg egy-egy közvetlen alárendelt házirend befejezéséhez. Az első közvetlenül alárendelt házirend befejezése után a `wait` házirend befejeződött, és bármely más közvetlenül alárendelt házirendek végrehajtása megszakadt.|Nem|Minden|  
+|A|Meghatározza, hogy hello `wait` házirend megvárja-e a minden közvetlenül alárendelt házirendek toobe befejeződött vagy csak egy. Engedélyezett értékek a következők:<br /><br /> -   `all`-Várjon, amíg az összes közvetlenül alárendelt házirendek toocomplete<br />-a - bármely közvetlenül alárendelt házirend toocomplete várja. Hello első közvetlenül alárendelt házirend befejezése után hello `wait` házirend befejeződött, és bármely más közvetlenül alárendelt házirendek végrehajtása megszakadt.|Nem|Minden|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér  
   

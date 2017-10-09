@@ -1,6 +1,6 @@
 ---
-title: "Ellenőrizze a forgalmat az Azure hálózati figyelő IP Flow ellenőrizze - Azure CLI |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan ellenőrizhető, ha a bejövő és kimenő forgalmat a virtuális gépek engedélyezett vagy megtagadott Azure parancssori felület használatával"
+title: "az Azure hálózati figyelő IP Flow ellenőrizze - Azure CLI aaaVerify forgalom |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan toocheck, ha a virtuális gép forgalom tooor engedélyezett vagy megtagadott Azure parancssori felület használatával"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 0b52257a6c38a4392573672b7190d2269c2f145a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 128a00b4296994551e7e17838a51e6d9de180e21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Ha a forgalom engedélyezett vagy megtagadott vagy a virtuális gép IP Flow ellenőrizze és Azure hálózati figyelőt összetevője ellenőrzése
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Ha a forgalom engedélyezett vagy megtagadott a tooor IP Flow ellenőrizze a virtuális gép alapján Azure hálózati figyelőt összetevője egy ellenőrzése
 
 > [!div class="op_single_selector"]
 > - [Azure Portal](network-watcher-check-ip-flow-verify-portal.md)
@@ -30,31 +30,31 @@ ms.lasthandoff: 07/11/2017
 > - [Az Azure REST API-n](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP-adatfolyam ellenőrzése egy funkciója, amely lehetővé teszi, hogy ellenőrizze, hogy ha a forgalom engedélyezve van-e, vagy a virtuális gép hálózati figyelőt. Ebben a forgatókönyvben akkor hasznos, ha szeretné, hogy a virtuális gép kommunikálhat külső erőforrás- vagy háttéradatbázis aktuális állapotának. IP-adatfolyam győződjön meg arról is használható, ha a hálózati biztonsági csoport (NSG) szabályok konfigurációja megfelelő-e, és hibáinak elhárítása az NSG-szabályok által blokkolt adatfolyamok ellenőrzése. Egy másik oka IP folyamat, ellenőrizze annak biztosítása, amelyet a letiltott forgalmat blokkol megfelelően az NSG.
+IP-adatfolyam ellenőrzése egy funkciója, amely lehetővé teszi tooverify forgalom engedélyezve van a virtuális gép tooor hálózati figyelőt. Ebben a forgatókönyvben hasznos tooget e virtuális gép működik tooan külső erőforrás- vagy háttéradatbázis aktuális állapotának. IP-adatfolyam ellenőrzésére használt tooverify, ha a hálózati biztonsági csoport (NSG) szabályok konfigurációja megfelelő-e, és az NSG-szabályok blokkolt adatfolyamok hibaelhárítása. Egy másik oka IP folyamata győződjön meg arról, amelyet a letiltott tooensure forgalmat blokkol megfelelően hello NSG.
 
-Ez a cikk használja a következő generációs CLI a erőforrás management üzembe helyezési modellel, Azure CLI 2.0, elérhető a Windows, Mac és Linux.
+Ez a cikk használja a következő generációs CLI hello erőforrás management üzembe helyezési modelljével Azure CLI 2.0, elérhető a Windows, Mac és Linux.
 
-Ebben a cikkben szereplő lépések végrehajtásához kell [telepítse az Azure parancssori felület Mac, Linux és Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+tooperform hello ebben a cikkben ismertetett visszaállítási lépésekkel, túl kell[hello Azure parancssori felület Mac, Linux és Windows (Azure CLI) telepítése](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="before-you-begin"></a>Előkészületek
 
-Ez a forgatókönyv azt feltételezi, hogy már követte lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) hozzon létre egy hálózati figyelőt, vagy egy meglévő példánya hálózati figyelőt. A forgatókönyv feltételezi, hogy létezik-e egy erőforráscsoportot, egy érvényes virtuális géppel használandó.
+Ez a forgatókönyv azt feltételezi, hogy már követte hello lépéseit [hozzon létre egy hálózati figyelőt](network-watcher-create.md) toocreate egy hálózati figyelőt, vagy hálózati figyelőt meglévő példányát. hello is feltételezzük, hogy létezik-e egy érvényes virtuális géppel erőforrás csoport toobe használt.
 
 ## <a name="scenario"></a>Forgatókönyv
 
-Ez a forgatókönyv használ IP Flow ellenőrizze ellenőrizheti, ha egy virtuális gép működik egy ismert Bing IP-címre. Ha a forgalmat a rendszer megtagadja, a biztonsági szabály, amely megtagadja a forgalom adja vissza. IP Flow ellenőrizze kapcsolatos további információkért látogasson el a [IP-adatfolyam ellenőrizze áttekintése](network-watcher-ip-flow-verify-overview.md)
+Ez a forgatókönyv használ tooverify IP Flow győződjön meg arról, ha egy virtuális gép működik tooa ismert Bing IP-címet. Ha megtagadja a hello forgalom, hello biztonsági szabály, amely megtagadja a forgalom adja vissza. toolearn IP Flow ellenőrzéséhez kapcsolatos további információkért látogasson el [IP-adatfolyam ellenőrizze áttekintése](network-watcher-ip-flow-verify-overview.md)
 
 ## <a name="get-a-vm"></a>A virtuális gép beolvasása
 
-IP-adatfolyam tesztek bejövő és kimenő forgalmat a virtuális gép IP-címet vagy egy távoli céljához ellenőrzése. A virtuális gép azonosítóját a parancsmag szükség. Ha már ismeri az Azonosítót a virtuális gép használja, kihagyhatja ezt a lépést.
+IP-adatfolyam tesztek forgalom tooor tartozó IP-címet a virtuális gép tooor a távoli célhelyről a ellenőrzése. A virtuális gép azonosítóját hello parancsmag szükség. Ha már ismeri hello virtuális gép toouse hello azonosítója, kihagyhatja ezt a lépést.
 
 ```azurecli
 az vm show --resource-group MyResourceGroup5431 --name MyVM-Web
 ```
 
-## <a name="get-the-nics"></a>A hálózati adapterek beolvasása
+## <a name="get-hello-nics"></a>Hálózati adapter hello beolvasása
 
-A virtuális gépen egy hálózati adapter IP-címe szükséges, ebben a példában beolvassuk a hálózati adaptert egy virtuális gépen. Ha már ismeri a virtuális gépen vizsgálni kívánt IP-cím, kihagyhatja ezt a lépést.
+hello hello virtuális gépen egy hálózati adapter IP-címe szükséges, ebben a példában beolvassuk hello hálózati adaptert egy virtuális gépen. Ha már ismeri a hello IP-címet, amelyet szeretne tootest hello virtuális gépen ezt a lépést kihagyhatja.
 
 ```azurecli
 az network nic show --resource-group MyResourceGroup5431 --name MyNic-Web
@@ -62,18 +62,18 @@ az network nic show --resource-group MyResourceGroup5431 --name MyNic-Web
 
 ## <a name="run-ip-flow-verify"></a>Futtatási IP-adatfolyam ellenőrzése
 
-Most, hogy a fordítás során futtassa a parancsmagot, és futtassa azt a `az network watcher test-ip-flow` parancsmag segítségével tesztelheti a forgalmat. A jelen példában használjuk az első IP-cím első hálózati adapteren
+Most, hogy hello információ szükséges toorun hello parancsmag, hello Futtatás `az network watcher test-ip-flow` parancsmag tootest hello forgalmat. A jelen példában használjuk hello első IP-cím hello első adapteren zajlik.
 
 ```azurecli
 az network watcher test-ip-flow --resource-group resourceGroupName --direction directionInboundorOutbound --protocol protocolTCPorUDP --local ipAddressandPort --remote ipAddressandPort --vm vmNameorID --nic nicNameorID
 ```
 
 > [!NOTE]
-> IP-adatfolyam győződjön meg arról, hogy a virtuális gép erőforrásához lefoglalt futtatásához szükséges.
+> Megköveteli, hogy hello VM erőforrás toorun lefoglalt IP-adatfolyam ellenőrzése.
 
 ## <a name="review-results"></a>Tekintse át az eredményeket
 
-Futtatása után `az network watcher test-ip-flow` eredményeinek, az alábbi példa az előző lépésben adott eredmények.
+Futtatása után `az network watcher test-ip-flow` hello eredményeinek, hello alábbi példa az előző lépésben hello hello eredményének.
 
 ```azurecli
 {
@@ -84,9 +84,9 @@ Futtatása után `az network watcher test-ip-flow` eredményeinek, az alábbi p�
 
 ## <a name="next-steps"></a>Következő lépések
 
-Ha a forgalmat blokkol, és nem kell, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) nyomon követheti a hálózati biztonsági csoport és a biztonsági meghatározott szabályokat.
+Ha a forgalmat blokkol, és nem kell, lásd: [hálózati biztonsági csoportok kezelése](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack hello hálózati biztonsági csoport és a biztonsági szabályok definiált.
 
-Ismerje meg, látogasson el a NSG beállítások naplózandó [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-nsg-auditing-powershell.md).
+Látogasson el a NSG beállítások tooaudit további [naplózás hálózati biztonsági csoportok (NSG) rendelkező hálózati figyelőt](network-watcher-nsg-auditing-powershell.md).
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

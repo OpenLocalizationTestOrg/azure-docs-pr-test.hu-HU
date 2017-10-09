@@ -1,6 +1,6 @@
 ---
-title: "Ismerje meg, a Hadoop védőfalak - emulátor - Azure HDInsight használata |} Microsoft Docs"
-description: "A Hadoop ökoszisztémájának használatával megtanulni elindításához állíthat be egy Hadoop védőfal a Hortonworks Azure virtuális géphez. "
+title: "-emulátor - Azure HDInsight Hadoop védőfalat használatával aaaLearn |} Microsoft Docs"
+description: "learning használatáról toostart hello Hadoop ökoszisztémájának, állíthatja be a Hadoop védőfalak Hortonworks az Azure virtuális géphez. "
 keywords: "hadoop-emulátor, hadoop védőfal"
 editor: cgronlun
 manager: jhubbard
@@ -17,73 +17,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: b701879464205860edd1c097651b532f87bae388
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 91e74f0823fd02e9bb812155a7d09357a77b0736
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-a-hadoop-sandbox-an-emulator-on-a-virtual-machine"></a>Ismerkedés a Hadoop védőfalat, az emulátor egy virtuális gépen
 
-Ismerje meg, a Hadoop védőfal Hortonworks telepítéséről további információt a Hadoop ökoszisztémájának virtuális gépen. A védőfal Hadoop, a Hadoop elosztott fájlrendszerrel (HDFS) és a feladat elküldése helyi fejlesztési környezetet biztosít. Ha ismeri a Hadoop, megkezdheti a Hadoop használatával az Azure HDInsight-fürtök létrehozásával. Első lépések a további információkért lásd: [beolvasása használatába a HDInsight Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md).
+Ismerje meg, hogyan tooinstall hello Hadoop védőfal a Hortonworks meg a virtuális gép toolearn hello Hadoop ökoszisztémájának kapcsolatban. hello védőfal biztosít egy helyi fejlesztési környezet toolearn Hadoop, a Hadoop elosztott fájlrendszerrel (HDFS) és a feladat elküldése. Ha ismeri a Hadoop, megkezdheti a Hadoop használatával az Azure HDInsight-fürtök létrehozásával. A tooget indításának további információkért lásd: [beolvasása használatába a HDInsight Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 * [Oracle VirtualBox](https://www.virtualbox.org/). Töltse le és telepítse azt [Itt](https://www.virtualbox.org/wiki/Downloads).
 
 
 
-## <a name="download-and-install-the-virtual-machine"></a>Töltse le és telepítse a virtuális gép
-1. Keresse meg a [Hortonworks letölti](http://hortonworks.com/downloads/#sandbox).
+## <a name="download-and-install-hello-virtual-machine"></a>Töltse le és telepítse a virtuális gép hello
+1. Keresse meg a toohello [Hortonworks letölti](http://hortonworks.com/downloads/#sandbox).
 
-2. Kattintson a **töltse le a VIRTUALBOX** letölteni a legújabb Hortonworks védőfal a virtuális gép. A letöltés megkezdése előtt Hortonworks regisztrálása kéri. Töltse le a hálózat sebességétől függően egy-két órát vesz igénybe.
+2. Kattintson a **töltse le a VIRTUALBOX** toodownload hello legújabb Hortonworks védőfal a virtuális gép. A Hortonworks rákérdezéses tooregister hello letöltési megkezdése előtt áll. A hálózat sebességétől függően egy tootwo óra toodownload vesz igénybe.
    
     ![Hivatkozás kép VirtualBox a Hortonworks védőfal letöltése](./media/hdinsight-hadoop-emulator-get-started/download-sandbox.png)
-3. A weblapon, kattintson a **virtuális párbeszédpanel importálás** a virtuális gép telepítési utasításokat tartalmazó PDF-fájl letöltésére mutató hivatkozás.
+3. Az azonos weblapon hello, kattintson a hello **importálás virtuális mezőbe az** toodownload hello virtuális gép telepítési utasításokat tartalmazó PDF-fájl csatolása.
 
-Töltse le egy régebbi HDP verzió védőfal, bontsa ki az archív:
+egy régebbi HDP verzió védőfal toodownload bontsa ki a hello archív:
 
 ![Hortonworks védőfal archív](./media/hdinsight-hadoop-emulator-get-started/hortonworks-sandbox-archive.png)
 
 
-## <a name="start-the-virtual-machine"></a>A virtuális gép elindítása
+## <a name="start-hello-virtual-machine"></a>Hello virtuális gép elindítása
 
 1. Nyissa meg az Oracle VM VirtualBox.
-2. A a **fájl** menüben kattintson **importálási készülék**, és adja meg a Hortonworks védőfal kép.
-1. Jelölje ki azt a Hortonworks védőfal **Start**, majd **normál Start**. Miután a virtuális gép a rendszerindítási folyamat befejeződött, bejelentkezési utasítások jeleníti meg.
+2. A hello **fájl** menüben kattintson a **importálási készülék**, majd adja meg a hello Hortonworks védőfal kép.
+1. Jelölje be hello Hortonworks védőfal, kattintson a **Start**, majd **normál Start**. Miután hello virtuális gép hello rendszerindítási folyamat befejeződött, bejelentkezési utasítások jeleníti meg.
    
     ![Normál indítása](./media/hdinsight-hadoop-emulator-get-started/normal-start.png)
-2. Nyisson meg egy webböngészőt, és keresse meg az URL-cím jelenik meg (általában http://127.0.0.1:8888).
+2. Nyisson meg egy webböngészőt, és keresse meg a toohello URL-cím jelenik meg (általában http://127.0.0.1:8888).
 
 ## <a name="set-sandbox-passwords"></a>A védőfal jelszavak beállítása
 
-1. Az a **Ismerkedés** a Hortonworks védőfal lapon jelölje be a lépés **nézet speciális beállítások**. Olvassa el ezen a lapon jelentkezzen be a védőfal SSH használatával. Használja a megadott felhasználónévvel és jelszóval.
+1. A hello **Ismerkedés** hello Hortonworks védőfal lapon válassza ki a lépés **nézet speciális beállítások**. A lap toolog az SSH használatával toohello védőfal hello információkat használja. Hello nevet és jelszót adott meg használja.
    
    > [!NOTE]
-   > Ha nincs telepítve egy SSH-ügyfél, használhatja a webalapú SSH, a virtuális gép által megadott **http://localhost:4200 /**.
+   > Ha nincs telepítve egy SSH-ügyfél, használhatja a hello a virtuális gép a megadott webes SSH hello **http://localhost:4200 /**.
    > 
    
-    Az SSH-létesítsen első alkalommal kéri a rendszergazdafiók jelszavának módosítása. Adjon meg egy új jelszót, amelyet használhat, amikor bejelentkezik az SSH használatával.
+    hello először létesítsen SSH-áll felszólító toochange hello hello root fiókjának jelszavát. Adjon meg egy új jelszót, amelyet használhat, amikor bejelentkezik az SSH használatával.
 
-2. Miután bejelentkezett, adja meg a következő parancsot:
+2. Miután bejelentkezett, adja meg a következő parancs hello:
    
         ambari-admin-password-reset
    
-    Amikor a rendszer kéri, adja meg egy jelszót a Ambari rendszergazdai fiók. Ez használható az Ambari webes felhasználói felületén elérésekor.
+    Amikor a rendszer kéri, adja meg hello Ambari rendszergazdai fiók jelszavát. Ez használható hello Ambari webes felhasználói felületén elérésekor.
 
 ## <a name="use-hive-commands"></a>Hive-parancsok használata
 
-1. Az SSH-kapcsolatot a védőfal alkalmazás a Hive rendszerhéjat indítsa el a következő parancsot:
+1. Egy SSH kapcsolat toohello védőfalak használja a következő parancs toostart hello Hive rendszerhéjat hello:
    
         hive
-2. Amikor a rendszerhéj elindult, használja a következő a táblák, a védőfal által biztosított megtekintése:
+2. Amikor hello rendszerhéj elindult, használja a következő tooview hello táblák hello védőfal által biztosított hello:
    
         show tables;
-3. Használja a következő 10 sorát beolvasni a `sample_07` tábla:
+3. Tooretrieve 10 sorok követően – hello használata hello `sample_07` tábla:
    
         select * from sample_07 limit 10;
 
 ## <a name="next-steps"></a>Következő lépések
-* [Ismerje meg a Visual Studio használata a Hortonworks védőfal](hdinsight-hadoop-emulator-visual-studio.md)
-* [Az a Hortonworks védőfal drótkötelek tanulási](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)
+* [Megtudhatja, hogyan hello Hortonworks védőfal a Visual Studio toouse](hdinsight-hadoop-emulator-visual-studio.md)
+* [Learning hello drótkötelek a hello Hortonworks védőfal](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)
 * [Hadoop oktatóanyag – első lépések HDP](http://hortonworks.com/hadoop-tutorial/hello-world-an-introduction-to-hadoop-hcatalog-hive-and-pig/)
 

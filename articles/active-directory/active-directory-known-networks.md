@@ -1,6 +1,6 @@
 ---
-title: "Hálózatok ismert a klasszikus Azure portálon |} Microsoft Docs"
-description: "Ismert hálózatok konfigurálásával elkerülheti, ha szerepel a bejelentkezési különböző földrajzi régiókból és bejelentkezési modulokat IP-címekről a gyanús tevékenység jelentések a szervezet tulajdonában lévő IP-címek."
+title: "a klasszikus Azure portálon hello aaaKnown hálózatok |} Microsoft Docs"
+description: "Ismert hálózatok konfigurálásával elkerülheti, hogy hello bejelentkezési különböző földrajzi régiókból és bejelentkezési modulokat IP-címekről a gyanús tevékenység jelentések szerepel a szervezete tulajdonában lévő IP-címek."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: e4d51d1d2f09fca34d749879e21d49f785eac35c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec636cdda172cd3baeb1e606dd8d6e1949fbc63b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-networks"></a>Ismert hálózatok
 
@@ -29,38 +29,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 
-Azure Active Directory hozzáférési és használati jelentések segítségével hogy lássák az integritásra és a munkahely címtárában biztonságát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat a vizsgálandó, hogy azok megfelelően megtervezheti kockázatok csökkentésének lehetőségeit.
+Használhatja az Azure Active Directory hozzáférési és használati jelentések toogain láthatósága hello adatintegritási és biztonsági a szervezete címtárát. Ezt az információt a directory-rendszergazda is jobban meghatározhatja, ahol lehetséges biztonsági kockázatokat, hogy azok megfelelően megtervezheti toomitigate kockázatok vizsgálandó.
 
-Lehetséges, hogy a "*több földrajzi területről indított bejelentkezések*"és"*IP-címekről a gyanús tevékenységeket bejelentkezések*" jelentések helytelenül jelzőt a szervezet ténylegesen tulajdonában lévő IP-címeket. 
+Lehetséges, hogy a hello "*több földrajzi területről indított bejelentkezések*"és"*IP-címekről a gyanús tevékenységeket bejelentkezések*" jelentések helytelenül Ez a jelző ténylegesen tulajdonában lévő IP-címek a szervezet. 
 
 Ez történik például is, ha: 
 
-* Az office bejelentkezett az távolról az adatközpont, a San Francisco Boston egy felhasználó elindítja a "Bejelentkezések különböző földrajzi régiókból" jelentés 
-* A felhasználó a szervezet próbál jelentkezhessen be többször egy helytelen jelszót eseményindítók az "IP-címekről a gyanús tevékenységeket bejelentkezések" jelentés 
+* A felhasználó a Boston Office aláírta San Francisco eseményindítók hello "Különböző földrajzi régiókból bejelentkezési ins" jelentés távolról tooyour data Center 
+* A szervezet egy felhasználó megpróbál toosign-meg többször a egy helytelen jelszót eseményindítók hello "IP-címekről a gyanús tevékenységeket bejelentkezési ins" jelentés 
 
-Ezekben az esetekben félrevezető biztonsági jelentések létrehozása érdekében ismert IP-címtartományok kell hozzáadása a listához, a vállalat nyilvános IP-cím.    
+tooprevent ezekben az esetekben a előállítása félrevezető biztonsági jelentések, ismert IP-címtartományok toohello címlista a vállalat nyilvános IP-cím hozzá kell adnia.    
 
-### <a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>Adja hozzá a szervezet nyilvános IP-címtartományok, hajtsa végre az alábbi lépéseket:
+### <a name="tooadd-your-organizations-public-ip-address-ranges-perform-hello-following-steps"></a>tooadd a vállalat nyilvános IP-címtartományt, hajtsa végre az alábbi lépésekkel hello:
 
-1. Bejelentkezés a [Azure felügyeleti portálján](https://manage.windowsazure.com).
+1. Bejelentkezés toohello [Azure felügyeleti portálján](https://manage.windowsazure.com).
 
-2. Kattintson a bal oldali ablaktáblában **Active Directory**. 
+2. Hello bal oldali ablaktáblában kattintson **Active Directory**. 
 
     ![Ismert hálózatok](./media/active-directory-known-networks/known-netwoks-01.png)
 
-3. Az a **Directory** lapra, válassza ki azt a címtárat.
+3. A hello **Directory** lapra, válassza ki azt a címtárat.
 
-4. Kattintson a felső menüben **konfigurálása**. 
+4. Hello hello felső menüben kattintson a **konfigurálása**. 
 
     ![Ismert hálózatok](./media/active-directory-known-networks/known-netwoks-02.png)
 
-5. Lépjen a konfigurálása lapon **a szervezetek nyilvános IP-címtartományok** 
+5. Hello konfigurálása lapon lépjen túl**a szervezetek nyilvános IP-címtartományok** 
 
     ![Ismert hálózatok](./media/active-directory-known-networks/known-netwoks-03.png)
 
 6. Kattintson a **adja hozzá az ismert IP-címtartományok**.
 
-7. Adja hozzá a címtartomány a megjelenő párbeszédpanelen, és amikor elkészült, kattintson a pipa gombra. 
+7. Adja hozzá a címtartomány hello párbeszédpanelt, amely akkor jelenik meg, és kattintson hello gombot, amikor elkészült. 
 
     ![Ismert hálózatok](./media/active-directory-known-networks/known-netwoks-04.png)
 

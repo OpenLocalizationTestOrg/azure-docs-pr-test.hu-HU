@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Import/Export eszköz hibaelhárítása |} Microsoft Docs"
-description: "További tudnivalók azzal kapcsolatban, az az Azure Import/Export eszköz, és hogyan kezelje őket használata során tapasztalt gyakori problémákat."
+title: "aaaTroubleshooting hello Azure Import/Export eszköz |} Microsoft Docs"
+description: "Megismerhet néhány hello tapasztalt gyakori problémákat mutatjuk hello Azure Import/Export eszköz használatakor, és hogyan toohandle őket."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 43b5d5a57df6bdda57a31ff0330ec6eff7aa732c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5445cefe2703edf4d9d285f761433b7b66d8cb6c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-the-azure-importexport-tool"></a>Az Azure Import/Export eszköz hibaelhárítása
-A Microsoft Azure Import/Export eszköz hibaüzeneteket ad vissza, ha fut a problémákat. Ez a témakör néhány gyakori probléma, amely futtathatják azokat.  
+# <a name="troubleshooting-hello-azure-importexport-tool"></a>Hibaelhárítási hello Azure Import/Export eszköz
+Microsoft Azure Import/Export eszköz hello hibaüzenetek adja vissza, ha fut a problémákat. Ez a témakör néhány gyakori probléma, amely futtathatják azokat.  
   
 ## <a name="a-copy-session-fails-what-i-should-do"></a>A másolási munkamenet nem sikerül, mit kell tenni?  
  A másolási munkamenet sikertelensége esetén van két lehetőség közül választhat:  
   
- Ha a hiba Újrapróbálkozást lehetővé tevő, például ha a hálózati megosztás rövid ideig offline állapotban volt, és most újra online állapotba kerül, a Másolás munkamenet folytathatja. Ha a hiba nem Újrapróbálkozást lehetővé tevő, például ha a fájl nem megfelelő forráskönyvtár szerepel a parancssori paraméterek, a Másolás munkamenet megszakítása szeretné. Lásd: [előkészítése merevlemezek hogy az importálás](storage-import-export-tool-preparing-hard-drives-import-v1.md) folytatása és másolási munkamenet megszakítása további információt.  
+ Ha hello hiba Újrapróbálkozást lehetővé tevő, például ha hálózati megosztásra hello offline állapotban volt, a rövid időszak, és most újra online állapotba kerül, folytathatja a hello másolási munkamenet. Ha hello hiba nem Újrapróbálkozást lehetővé tevő, például ha a megadott hello hibás fájl forráskönyvtár hello parancssori paraméterek vannak, akkor tooabort hello másolási munkamenet. Lásd: [előkészítése merevlemezek hogy az importálás](storage-import-export-tool-preparing-hard-drives-import-v1.md) folytatása és másolási munkamenet megszakítása további információt.  
   
 ## <a name="i-cant-resume-or-abort-a-copy-session"></a>Nem lehet folytatni vagy egy másolás munkamenet megszakítása.  
- Ha a példány neve az első másolási munkamenet meghajtóhoz, akkor a hibaüzenet a következő kell nyújtaniuk: "az első másolás munkamenet nem folytatható vagy megszakadt." Ebben az esetben törölje a régi napló fájlt, és futtassa újból a parancsot.  
+ Ha hello példány neve hello első másolás munkamenet meghajtóhoz, majd hello hibaüzenet kell nyújtaniuk: "hello első másolás munkamenet nem folytatható vagy megszakadt." Ebben az esetben törölje hello régi napló fájlt, és futtassa újra hello parancsot.  
   
- Ha a Másolás munkamenet nincs az elsőt a meghajtók, azt is mindig folytatódik vagy megszakadt.  
+ Ha a Másolás munkamenet nem van hello elsőt meghajtóhoz, azt is mindig folytatódik, vagy megszakadt.  
   
-## <a name="i-lost-the-journal-file-can-i-still-create-the-job"></a>A naplófájl elvész, továbbra is létrehozhatók a feladatot?  
- A naplófájl a meghajtók adat másolása az ezen a meghajtón a teljes információkat tartalmaz, és szükség esetén vegyen fel további fájlokat a meghajtóra és az importálási feladat létrehozására használható. Ha a naplófájl elveszik, akkor végezze el újra a meghajtó másolása munkamenetek.  
+## <a name="i-lost-hello-journal-file-can-i-still-create-hello-job"></a>Hello napló fájl elvesztése, továbbra is létrehozhatók hello feladatot?  
+ hello napló fájl meghajtóhoz hello teljes körű információkat toothis adatmeghajtó másolásának tartalmaz, és azt szükséges tooadd további fájlokat toohello meghajtót, azaz használt toocreate az importálási feladat. Ha hello naplófájl elveszik, akkor minden hello másolási munkamenet hello meghajtó tooredo.  
   
 ## <a name="next-steps"></a>Következő lépések
  
-* [Az azure import/export eszköz beállítása](storage-import-export-tool-setup-v1.md)   
+* [Hello azure import/export eszköz beállítása](storage-import-export-tool-setup-v1.md)   
 * [Merevlemezek előkészítése importálási feladatokhoz](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 * [Feladatok állapotának áttekintése a másolási naplófájlok segítségével](storage-import-export-tool-reviewing-job-status-v1.md)   
 * [Importálási feladat javítása](storage-import-export-tool-repairing-an-import-job-v1.md)   

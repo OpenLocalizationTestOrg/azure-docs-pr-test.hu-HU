@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL-bejelentkezések és -felhasználók | Microsoft Docs"
-description: "Megismerheti az SQL Database biztonsági felügyeletét, azon belül is az adatbázis-hozzáférés és a bejelentkezési biztonság felügyeletét a kiszolgálószintű elsődleges fiókon keresztül."
+title: "aaaAzure SQL bejelentkezési adatok és a felhasználók |} Microsoft Docs"
+description: "További információ az SQL-adatbázis biztonsági management, kifejezetten hogyan toomanage adatbázis-hozzáférés és a bejelentkezési biztonsági hello kiszolgálószintű fő fiókon keresztül."
 keywords: "sql database biztonság,adatbázis biztonságának felügyelete,bejelentkezési biztonság,adatbázis biztonsága,adatbázis-hozzáférés"
 services: sql-database
 documentationcenter: 
@@ -17,18 +17,18 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 01/23/2017
 ms.author: rickbyh
-ms.openlocfilehash: 51edd390c065dd7312ecc54694b5a95ecc11eab8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dff889b9fed09146a10008c0d11ca9e71d91df5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="controlling-and-granting-database-access"></a>Adatbázis-hozzáférés szabályozása és biztosítása
 
-Ha a tűzfalszabályok konfigurálása megtörtént, a felhasználók a rendszergazdai fiókok egyikeként, az adatbázis tulajdonosaként vagy az adatbázis felhasználójaként csatlakozhatnak az SQL-adatbázisokhoz.  
+Ha tűzfal-szabályok beállítása megtörtént, személyek is csatlakozzon az tooa SQL-adatbázis rendelkezésre álló hello rendszergazdai fiókok, hello adatbázis tulajdonosa, vagy hello adatbázis adatbázis-felhasználó.  
 
 >  [!NOTE]  
->  Ez a témakör az Azure SQL Server-kiszolgálókra, valamint az Azure SQL Serveren létrehozott SQL Database- és SQL Data Warehouse-adatbázisokra vonatkozik. Az egyszerűség kedvéért a jelen témakörben az SQL Database és az SQL Data Warehouse megnevezése egyaránt SQL Database. 
+>  Ez a témakör az tooAzure SQL server és tooboth SQL-adatbázis és az SQL Data Warehouse adatbázisok hello Azure SQL-kiszolgálón létrehozott vonatkozik. Az egyszerűség kedvéért SQL-adatbázis tooboth SQL-adatbázis és az SQL Data Warehouse hivatkozás során használt. 
 >
 
 > [!TIP]
@@ -37,50 +37,50 @@ Ha a tűzfalszabályok konfigurálása megtörtént, a felhasználók a rendszer
 
 
 ## <a name="unrestricted-administrative-accounts"></a>Nem korlátozott rendszergazdai fiókok
-Kettő rendszergazdaként működő felügyeleti fiók létezik (**Kiszolgálói rendszergazdai** és **Active Directory-rendszergazdai**). Ha azonosítani szeretné ezeket a rendszergazdai fiókokat az SQL-kiszolgáló esetében, nyissa meg az Azure Portalt, és lépjen az SQL-kiszolgáló tulajdonságaira.
+Kettő rendszergazdaként működő felügyeleti fiók létezik (**Kiszolgálói rendszergazdai** és **Active Directory-rendszergazdai**). tooidentify ezeket az SQL server rendszergazdai fiókok nyissa meg a hello Azure-portálon, és keresse meg az SQL server toohello tulajdonságait.
 
 ![SQL Server-rendszergazdák](./media/sql-database-manage-logins/sql-admins.png)
 
 - **Kiszolgálói rendszergazda**   
-Azure SQL Server-kiszolgáló létrehozásakor ki kell jelölnie egy **kiszolgáló-rendszergazdai felhasználónevet**. Az SQL-kiszolgáló ekkor létrehozza a fiókot a master adatbázis egyik bejelentkezési neveként. Ez a fiók SQL Server-hitelesítéssel csatlakozik (felhasználónévvel és jelszóval). Ilyen fiókból csak egy létezhet.   
+Azure SQL Server-kiszolgáló létrehozásakor ki kell jelölnie egy **kiszolgáló-rendszergazdai felhasználónevet**. SQL server fiókot hoz létre, hogy egy bejelentkezésként hello master adatbázisban. Ez a fiók SQL Server-hitelesítéssel csatlakozik (felhasználónévvel és jelszóval). Ilyen fiókból csak egy létezhet.   
 - **Azure Active Directory-rendszergazda**   
-Egy Azure Active Directory-fiók (különálló vagy biztonságicsoport-fiók) is konfigurálható rendszergazdaként. Az Azure AD-rendszergazda konfigurálása nem kötelező, de konfigurálni kell egy Azure AD-rendszergazdát, ha az Azure AD-fiókokat szeretné használni az SQL Database-hez történő csatlakozáshoz. Az Azure Active Directory hozzáférésének konfigurálásáról további információért lásd [az SQL Database-hez vagy az SQL Data Warehouse-hoz az Azure Active Directory-hitelesítéssel történő csatlakozást](sql-database-aad-authentication.md), illetve [az Azure AD MFA és az SQL Database, valamint az SQL Data Warehouse együttes támogatását](sql-database-ssms-mfa-authentication.md) ismertető cikket.
+Egy Azure Active Directory-fiók (különálló vagy biztonságicsoport-fiók) is konfigurálható rendszergazdaként. Nem kötelező tooconfigure az Azure AD-rendszergazdaként, de az Azure AD-rendszergazdának meg kell adni, ha azt szeretné, hogy toouse az Azure AD fiókok tooconnect tooSQL adatbázis. Azure Active Directory elérés konfigurálásával kapcsolatos további információkért lásd: [csatlakozás tooSQL adatbázis vagy az SQL Data Warehouse által használata Azure Active Directory-hitelesítéssel](sql-database-aad-authentication.md) és [SSMS az Azure AD MFA SQL támogatása Adatbázis és az SQL Data Warehouse](sql-database-ssms-mfa-authentication.md).
  
 
-A **kiszolgáló-rendszergazdai** és **Azure AD-rendszergazdai** fiókok az alábbi jellemzőkkel rendelkeznek:
-- Csak ezek a fiókok képesek automatikusan csatlakozni a kiszolgálón található bármely SQL Database-adatbázishoz. (Felhasználói adatbázishoz történő csatlakozáshoz a többi fióknak vagy az adatbázis tulajdonosának kell lennie, vagy felhasználói fiókkal kell rendelkeznie az adatbázisban.)
-- Ezek a fiókok `dbo`-felhasználóként lépnek be a felhasználói adatbázisokba, és minden engedéllyel rendelkeznek az adatbázison belül. (A felhasználói adatbázis tulajdonosa szintén `dbo`-felhasználóként jelentkezik be.) 
-- Ezek a fiókok nem `dbo`-felhasználóként lépnek be a `master` adatbázisba, és korlátozott engedélyekkel rendelkeznek azon belül. 
-- Ezek a fiókok nem tagjai a standard SQL Server `sysadmin` rögzített kiszolgálói szerepkörnek, amely az SQL-adatbázisokban nem érhető el.  
+Hello **kiszolgálói rendszergazda** és **az Azure AD rendszergazdai** fiókok hello a következő jellemzőkkel rendelkezik:
+- Ezek a hello csak fiókok, amely automatikusan képes kapcsolódni az SQL-adatbázis tooany hello kiszolgálón. (tooconnect tooa felhasználói adatbázis, más fiókokat kell hello hello tulajdonosának adatbázis, vagy egy felhasználói fiókkal kell rendelkeznie a hello felhasználói adatbázisban.)
+- Ezeknek a fiókoknak felhasználói adatbázisokat adjon meg hello `dbo` felhasználói és azok jogosult összes hello hello felhasználói adatbázisban. (a felhasználói adatbázis tulajdonosa hello is ír a mezőbe hello adatbázis hello `dbo` felhasználói.) 
+- Ezeknek a fiókoknak ne adjon meg hello `master` hello adatbázis `dbo` felhasználói és azok korlátozott engedélyekkel a főadatbázisban. 
+- Ezek a fiókok nem tagjai hello szabványos SQL Server `sysadmin` rögzített kiszolgálói szerepkör, amely nem érhető el az SQL-adatbázis.  
 - Ezek a fiókok adatbázisokat, bejelentkezéseket, master felhasználókat és kiszolgálószintű tűzfalszabályokat hozhatnak létre, módosíthatnak vagy vethetnek el.
-- Ezek a fiókok tagokat adhatnak hozzá és távolíthatnak el a `dbmanager` és a `loginmanager` szerepkörből.
-- Ezek a fiókok megtekinthetik a `sys.sql_logins` rendszertáblát.
+- Ezek a fiókok hozzáadhat és eltávolíthat tagokat toohello `dbmanager` és `loginmanager` szerepkörök.
+- Ezek a fiókok megtekintheti hello `sys.sql_logins` rendszertáblában.
 
-### <a name="configuring-the-firewall"></a>A tűzfal konfigurálása
-Ha a kiszolgálószintű tűzfal egy önálló IP-címhez vagy -tartományhoz van konfigurálva, az **SQL Server-rendszergazda** és az **Azure Active Directory-rendszergazda** a master adatbázishoz és az összes felhasználói adatbázishoz csatlakozhat. A kezdeti kiszolgálószintű tűzfal az [Azure Portalon](sql-database-get-started-portal.md) konfigurálható a [PowerShell](sql-database-get-started-powershell.md) vagy a [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx) segítségével. A kapcsolat létrehozása után további kiszolgálószintű tűzfalszabályok is konfigurálhatók a [Transact-SQL](sql-database-configure-firewall-settings.md) segítségével.
+### <a name="configuring-hello-firewall"></a>Hello tűzfal konfigurálása
+Ha hello kiszolgálószintű tűzfal van konfigurálva egy egyedi IP-címet vagy tartományt, hello **SQL kiszolgáló rendszergazdája** és hello **Azure Active Directory-rendszergazda** toohello master adatbázis és az összes hello kapcsolódhatnak felhasználói adatbázisokat. hello kezdeti kiszolgálószintű tűzfal konfigurálható hello [Azure-portálon](sql-database-get-started-portal.md)használatával [PowerShell](sql-database-get-started-powershell.md) vagy hello segítségével [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx). A kapcsolat létrehozása után további kiszolgálószintű tűzfalszabályok is konfigurálhatók a [Transact-SQL](sql-database-configure-firewall-settings.md) segítségével.
 
 ### <a name="administrator-access-path"></a>Rendszergazdai hozzáférés elérési útja
-Ha a kiszolgálószintű tűzfal megfelelően van konfigurálva, az **SQL Server-rendszergazda** és az **Azure Active Directory-rendszergazda** olyan ügyféleszközökkel csatlakozhat, mint az SQL Server Management Studio vagy az SQL Server Data Tools. Csak a legújabb verziójú eszközök teszik elérhetővé az összes rendelkezésre álló funkciót és képességet. Az alábbi ábrán a két rendszergazdai fiók tipikus konfigurációja látható.
+Ha hello kiszolgálószintű tűzfal megfelelően van konfigurálva, hello **SQL kiszolgáló rendszergazdája** és hello **Azure Active Directory-rendszergazda** kapcsolódhatnak ügyfél eszközökkel, például az SQL Server Management Studio vagy SQL Server Data Tools összetevővel. Csak hello legújabb eszközök összes hello szolgáltatásokat és képességeket biztosítanak. hello alábbi ábrán egy tipikus konfigurációja hello két rendszergazdai fiókokat.
 
 ![Rendszergazdai hozzáférés elérési útja](./media/sql-database-manage-logins/1sql-db-administrator-access.png)
 
-Amikor nyitott portot használ a kiszolgálószintű tűzfalon, a rendszergazdák bármely SQL Database-adatbázishoz csatlakozhatnak.
+Egy nyitott port hello kiszolgálószintű tűzfal használata esetén a rendszergazdák kapcsolódhatnak tooany SQL-adatbázis.
 
-### <a name="connecting-to-a-database-by-using-sql-server-management-studio"></a>Csatlakozás egy adatbázishoz az SQL Server Management Studióval
-Ha útmutatót szeretne egy kiszolgáló, adatbázis vagy kiszolgálószintű tűzfalszabályok létrehozásához és az SQL Server Management Studio adatbázis-lekérdezéshez való használatához tekintse meg a következőt: [Az Azure SQL Database-kiszolgálók, -adatbázisok és -tűzfalszabályok Azure Portallal és az SQL Server Management Studióval történő használatának első lépései](sql-database-get-started-portal.md).
+### <a name="connecting-tooa-database-by-using-sql-server-management-studio"></a>Csatlakozás tooa adatbázis SQL Server Management Studio használatával
+A kiszolgáló, adatbázis, kiszolgálószintű tűzfal-szabályok létrehozása, és használja az SQL Server Management Studio tooquery adatbázis segédlet, lásd: [Ismerkedés az Azure SQL Database-kiszolgálók, adatbázisok és tűzfalszabályok hello Azure-portál használatával és az SQL Server Management Studio](sql-database-get-started-portal.md).
 
 > [!IMPORTANT]
-> Javasoljuk, hogy mindig a Management Studio legfrissebb verzióját használja, hogy kihasználhassa a Microsoft Azure és az SQL Database legújabb frissítései által nyújtott előnyöket. [Az SQL Server Management Studio frissítése](https://msdn.microsoft.com/library/mt238290.aspx).
+> Javasoljuk, hogy mindig használjon hello Azure és az SQL-adatbázis a frissítések tooMicrosoft szinkronizálva tooremain Management Studio legújabb verzióját. [Az SQL Server Management Studio frissítése](https://msdn.microsoft.com/library/mt238290.aspx).
 
 
 ## <a name="additional-server-level-administrative-roles"></a>További kiszolgálószintű rendszergazdai szerepkörök
-A korábban már tárgyalt kiszolgálószintű rendszergazdai szerepkörökön kívül az SQL Database két korlátozott rendszergazdai szerepkört tesz elérhetővé a master adatbázisban, amelyekhez felhasználói fiókok adhatók, és amelyek hozzáférést biztosítanak adatbázisok létrehozásához vagy bejelentkezések kezeléséhez.
+Továbbá toohello kiszolgálószintű rendszergazdai szerepkörei korábban tárgyalt, SQL-adatbázist biztosít két korlátozott rendszergazdai szerepkörei hello főadatbázis toowhich felhasználói fiókok lehet hozzáadni, amely a engedélyeket tooeither adatbázisok létrehozása vagy kezelése bejelentkezések.
 
 ### <a name="database-creators"></a>Adatbázis-létrehozók
-Ezen rendszergazdai szerepkörök egyike a **dbmanager** szerepkör. Ezen szerepkör tagjai létrehozhatnak új adatbázisokat. A szerepkör használatához hozzon létre egy felhasználót az `master` adatbázisban, majd adja hozzá a felhasználót a **dbmanager** adatbázis-szerepkörhöz. Adatbázis létrehozásához a felhasználónak SQL Server-bejelentkezésen alapuló felhasználónak kell lennie a master adatbázisban, vagy Azure Active Directory-felhasználón alapuló tartalmazottadatbázis-felhasználónak kell lennie.
+Ezek a rendszergazdai szerepkörök egyik hello **dbmanager** szerepkör. Ezen szerepkör tagjai létrehozhatnak új adatbázisokat. toouse ezt a szerepkört hoz létre a felhasználó hello `master` adatbázisról, és hozzáadja a hello felhasználói toohello **dbmanager** adatbázis-szerepkör. adatbázis toocreate, hello vagy kell lennie a felhasználó hello master adatbázisban SQL Server-bejelentkezés alapján tartalmazott adatbázis-felhasználót egy Azure Active Directory felhasználó alapján.
 
-1. Egy rendszergazdai fiókkal csatlakozzon a master adatbázishoz.
-2. Nem kötelező lépés: Hozzon létre egy SQL Server-hitelesítési bejelentkezést a [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) utasítással. Mintautasítás:
+1. Rendszergazdai fiók használatával, csatlakoztassa a toohello fő adatbázist.
+2. Nem kötelező lépés: az SQL Server hitelesítési-bejelentkezés létrehozásával, hello segítségével [hozzon létre bejelentkezési](https://msdn.microsoft.com/library/ms189751.aspx) utasítás. Mintautasítás:
    
    ```
    CREATE LOGIN Mary WITH PASSWORD = '<strong_password>';
@@ -89,9 +89,9 @@ Ezen rendszergazdai szerepkörök egyike a **dbmanager** szerepkör. Ezen szerep
    > [!NOTE]
    > Használjon erős jelszót a bejelentkezési vagy tartalmazottadatbázis-felhasználó létrehozásakor. További információkért lásd az [erős jelszavak](https://msdn.microsoft.com/library/ms161962.aspx) létrehozását ismertető cikket.
     
-   A teljesítmény javítása érdekében a bejelentkezéseket (a kiszolgálószintű elsődleges fiókokat) átmenetileg adatbázisszinten is gyorsítótárazza a rendszer. A hitelesítési gyorsítótár frissítésével kapcsolatban lásd a [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx) használatát ismertető cikket.
+   tooimprove teljesítmény bejelentkezések (kiszolgálószintű résztvevők) ideiglenesen gyorsítótárba kerüljenek-e hello adatbázis szintjén. toorefresh hello hitelesítési gyorsítótárat, lásd: [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx).
 
-3. A master adatbázisban hozzon létre egy felhasználót a [CREATE USER](https://msdn.microsoft.com/library/ms173463.aspx) utasítással. A felhasználó Azure Active Directory-hitelesítésű tartalmazottadatbázis-felhasználó lehet (ha az Azure AD-hitelesítéshez konfigurálta a környezetét), vagy egy SQL Server-hitelesítésű tartalmazottadatbázis-felhasználó, illetve egy SQL Server-hitelesítésű felhasználó, az SQL Server-hitelesítési bejelentkezéstől függően (amelyet az előző lépésben hozott létre). Mintautasítások:
+3. Hello főadatbázisban, hozzon létre egy felhasználó hello segítségével [felhasználó létrehozása](https://msdn.microsoft.com/library/ms173463.aspx) utasítást. hello felhasználói egy Azure Active Directory hitelesítési tartalmazott adatbázis-felhasználó (Ha már konfigurálta a környezetet az Azure AD-alapú hitelesítés), vagy egy SQL Server hitelesítési tartalmazott adatbázis-felhasználó vagy egy SQL Server authentication felhasználóhoz egy SQL-alapú is lehet. Kiszolgálói hitelesítési bejelentkezési névként (hello előző lépésben létrehozott.) Mintautasítások:
    
    ```
    CREATE USER [mike@contoso.com] FROM EXTERNAL PROVIDER;
@@ -99,7 +99,7 @@ Ezen rendszergazdai szerepkörök egyike a **dbmanager** szerepkör. Ezen szerep
    CREATE USER Mary FROM LOGIN Mary; 
    ```
 
-4. Adja az új felhasználót a **dbmanager** adatbázis-szerepkörhöz az [ALTER ROLE](https://msdn.microsoft.com/library/ms189775.aspx) utasítással. Mintautasítások:
+4. Hello új felhasználó, toohello **dbmanager** adatbázis-szerepkör hello segítségével [az ALTER ROLE](https://msdn.microsoft.com/library/ms189775.aspx) utasítást. Mintautasítások:
    
    ```
    ALTER ROLE dbmanager ADD MEMBER Mary; 
@@ -107,69 +107,69 @@ Ezen rendszergazdai szerepkörök egyike a **dbmanager** szerepkör. Ezen szerep
    ```
    
    > [!NOTE]
-   > A dbmanager egy, a master adatbázisban található adatbázis-szerepkör, így csak adatbázis-felhasználót adhat hozzá a dbmanager szerepkörhöz. Nem adhat kiszolgálószintű bejelentkezést az adatbázisszintű szerepkörökhöz.
+   > hello dbmanager, csak akkor adhat hozzá egy adatbázis-felhasználó toohello dbmanager szerepkör a master adatbázis egy adatbázis-szerepkör. Nem adhat hozzá egy kiszolgálószintű bejelentkezéssel toodatabase szintű szerepkört.
     
-5. Szükség esetén konfiguráljon egy tűzfalszabályt úgy, hogy az új felhasználó csatlakozhasson. (Előfordulhat, hogy az új felhasználóra már vonatkozik létező tűzfalszabály.)
+5. Szükség esetén konfiguráljon egy tűzfal szabály tooallow hello új felhasználói tooconnect. (hello új felhasználó előfordulhat, hogy elegendő meglévő tűzfalszabály.)
 
-Most a felhasználó már csatlakozhat a master adatbázishoz, és létrehozhat új adatbázisokat. Az adatbázist létrehozó fiók az adatbázis tulajdonosává válik.
+Most hello felhasználói toohello főadatbázis kapcsolódhatnak, és hozhat létre új adatbázisokat. hello fiók hello adatbázis létrehozása a hello hello adatbázis tulajdonosa lesz.
 
 ### <a name="login-managers"></a>Bejelentkezéskezelők
-A másik rendszergazdai szerepkör a bejelentkezéskezelői szerepkör. Ezen szerepkör tagjai létrehozhatnak új bejelentkezéseket a master adatbázisban. Ha szeretné, elvégezheti ugyanezen lépéseket (bejelentkezést és felhasználót hozhat létre, és a felhasználót a **loginmanager** szerepkörhöz adhatja) annak érdekében, hogy egy felhasználó új bejelentkezéseket hozhasson létre a master adatbázisban. Bejelentkezésre általában nincs szükség, mivel a Microsoft tartalmazottadatbázis-felhasználók használatát javasolja, amelyek az adatbázis szintjén hitelesíthetők a bejelentkezéseken alapuló felhasználók használata helyett. További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál.
+hello más rendszergazdai szerepkör a rendszer hello bejelentkezési manager. A szerepkör tagjai hozhat létre új bejelentkezési identitások hello master adatbázisban. Ha kívánja, akkor fejezheti be hello ugyanazokat a lépéseket (a bejelentkezési és a felhasználó létrehozása, majd adja meg a felhasználó toohello **loginmanager** szerepkör) tooenable a felhasználó új bejelentkezésekre toocreate hello fő. Bejelentkezések általában nem szükséges, mivel tartalmazott adatbázis-felhasználók hitelesítéséhez: hello segítségével a Microsoft javasolja adatbázis szintű felhasználókat bejelentkezések alapján használata helyett. További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál.
 
 ## <a name="non-administrator-users"></a>Nem rendszergazdai felhasználók
-Általában a nem rendszergazdai fiókoknak nincs szükségük a master adatbázis elérésére. Hozzon létre tartalmazottadatbázis-felhasználókat az adatbázis szintjén a [CREATE USER (Transact-SQL)](https://msdn.microsoft.com/library/ms173463.aspx) utasítással. A felhasználó Azure Active Directory-hitelesítésű tartalmazottadatbázis-felhasználó lehet (ha az Azure AD-hitelesítéshez konfigurálta a környezetét), vagy egy SQL Server-hitelesítésű tartalmazottadatbázis-felhasználó, illetve egy SQL Server-hitelesítésű felhasználó, az SQL Server-hitelesítési bejelentkezéstől függően (amelyet az előző lépésben hozott létre). További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál. 
+Általában nem rendszergazdai fiókokat nem kell elérni toohello fő adatbázist. Hozzon létre a tartalmazott adatbázis-felhasználók hello segítségével hello adatbázis szintjén [felhasználó létrehozása (Transact-SQL)](https://msdn.microsoft.com/library/ms173463.aspx) utasítást. hello felhasználói egy Azure Active Directory hitelesítési tartalmazott adatbázis-felhasználó (Ha már konfigurálta a környezetet az Azure AD-alapú hitelesítés), vagy egy SQL Server hitelesítési tartalmazott adatbázis-felhasználó vagy egy SQL Server authentication felhasználóhoz egy SQL-alapú is lehet. Kiszolgálói hitelesítési bejelentkezési névként (hello előző lépésben létrehozott.) További információt a [tartalmazottadatbázis-felhasználókkal kapcsolatos, az adatbázis hordozhatóvá tételével foglalkozó](https://msdn.microsoft.com/library/ff929188.aspx) cikkben talál. 
 
-Felhasználók létrehozásához csatlakozzon az adatbázishoz, és hajtson végre a következő példákhoz hasonló utasításokat:
+toocreate felhasználók toohello adatbázis csatlakozni, és hajtsa végre a utasítások hasonló toohello példák a következő:
 
 ```
 CREATE USER Mary FROM LOGIN Mary; 
 CREATE USER [mike@contoso.com] FROM EXTERNAL PROVIDER;
 ```
 
-A kezdetekben csak a rendszergazdák vagy az adatbázis tulajdonosa hozhat létre felhasználókat. Ha további felhasználókat szeretne felhatalmazni új felhasználók létrehozására, adja a kiválasztott felhasználónak az `ALTER ANY USER` engedélyt egy, a következőhöz hasonló utasítással:
+Csak az egyik hello rendszergazdák vagy hello adatbázis tulajdonosa hello kezdetben felhasználók hozhat létre. tooauthorize további felhasználók toocreate új felhasználók, adja meg, hogy a kiválasztott felhasználó hello `ALTER ANY USER` engedéllyel, például egy utasítás használatával:
 
 ```
-GRANT ALTER ANY USER TO Mary;
+GRANT ALTER ANY USER tooMary;
 ```
 
-Ha további felhasználóknak szeretne teljes elérést biztosítani az adatbázishoz, tegye őket a **db_owner** rögzített adatbázis-szerepkör tagjává az `ALTER ROLE` utasítással.
+toogive további felhasználók teljes körű hozzáférést engedélyezzenek hello adatbázis, adja hozzá őket hello **db_owner** rögzített adatbázis-szerepkör használatával hello `ALTER ROLE` utasítást.
 
 > [!NOTE]
-> A bejelentkezéseken alapuló adatbázis-felhasználók létrehozásának leggyakoribb oka az, ha olyan SQL Server-hitelesítési felhasználókkal rendelkezik, akiknek több adatbázishoz kell hozzáférniük. A bejelentkezésen alapuló felhasználók a bejelentkezéshez vannak kötve, és egyetlen jelszó használható a bejelentkezéshez. Az egyes adatbázisokban lévő tartalmazottadatbázis-felhasználók önálló entitások, és mindegyiknek saját jelszava van. Ez félreértésekhez vezethet a tartalmazott adatbázisok felhasználói esetében, ha nem ugyanazokat a jelszavakat használják.
+> hello leggyakoribb oka toocreate adatbázis felhasználói bejelentkezések alapján akkor, ha rendelkezik kell adatbázisához toomultiple SQL Server-hitelesítési felhasználók. A felhasználók bejelentkezések alapján legyenek a feltételekhez toohello bejelentkezési, és csak egy jelszót, hogy a bejelentkezés változatlan marad. Az egyes adatbázisokban lévő tartalmazottadatbázis-felhasználók önálló entitások, és mindegyiknek saját jelszava van. Ez félreértésekhez vezethet a tartalmazott adatbázisok felhasználói esetében, ha nem ugyanazokat a jelszavakat használják.
 
-### <a name="configuring-the-database-level-firewall"></a>Adatbázisszintű tűzfal konfigurálása
-Ajánlott eljárásként a nem rendszergazdai felhasználóknak csak az általuk használt adatbázisokhoz kell hozzáféréssel rendelkezniük a tűzfalon keresztül. Ahelyett, hogy a kiszolgálószintű tűzfalon keresztül hitelesítené az IP-címüket, és hozzáférést adna nekik az összes adatbázishoz, az [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) utasítással konfigurálja az adatbázisszintű tűzfalat. Az adatbázisszintű tűzfal nem konfigurálható a portálon keresztül.
+### <a name="configuring-hello-database-level-firewall"></a>Hello adatbázis szintű tűzfal konfigurálása
+Ajánlott eljárásként a nem rendszergazda felhasználók csak hello tűzfal toohello adatbázisokat használnak keresztül hozzáféréssel kell rendelkeznie. Helyett engedélyező azok IP-címek a hello kiszolgálószintű tűzfal- és engedélyezése tooall adatbázisokat, használja a hello [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) utasítás tooconfigure hello adatbázis szintű tűzfal. hello adatbázis szintű tűzfal hello portál használatával nem konfigurálható.
 
 ### <a name="non-administrator-access-path"></a>Nem rendszergazdai hozzáférés elérési útja
-Ha az adatbázisszintű tűzfal megfelelően van konfigurálva, az adatbázis felhasználói olyan ügyféleszközökkel csatlakozhatnak, mint az SQL Server Management Studio vagy az SQL Server Data Tools. Csak a legújabb verziójú eszközök teszik elérhetővé az összes rendelkezésre álló funkciót és képességet. Az alábbi ábrán egy tipikus nem rendszergazdai elérési út látható.
+Hello adatbázis szintű tűzfal helyesen van konfigurálva, amikor a hello adatbázis felhasználók kapcsolódhatnak ügyfél eszközök, például az SQL Server Management Studio vagy SQL Server Data Tools használatával. Csak hello legújabb eszközök összes hello szolgáltatásokat és képességeket biztosítanak. hello a következő ábrán egy tipikus nem rendszergazdai hozzáférés elérési útját jeleníti meg.
 
 ![Nem rendszergazdai hozzáférés elérési útja](./media/sql-database-manage-logins/2sql-db-nonadmin-access.png)
 
 ## <a name="groups-and-roles"></a>Csoportok és szerepkörök
-A hatékony hozzáférés-kezelés egyéni bejelentkezési adatok helyett csoportokhoz és szerepkörökhöz rendelt engedélyeket használ. 
+Hatékony kezelési toogroups és ne pedig egyéni felhasználóknak szerepkörök jogosultságait használja. 
 
-- Azure Active Directory-hitelesítés használatakor az Azure Active Directory-felhasználókat helyezze egy Azure Active Directory-csoportba. Hozzon létre a csoportban egy adatbázis-felhasználót. Helyezzen egy vagy több adatbázis-felhasználót egy [adatbázis-szerepkörbe](https://msdn.microsoft.com/library/ms189121), majd rendeljen [engedélyeket](https://msdn.microsoft.com/library/ms191291.aspx) az adatbázis-szerepkörhöz.
+- Azure Active Directory-hitelesítés használatakor az Azure Active Directory-felhasználókat helyezze egy Azure Active Directory-csoportba. Hello csoport tartalmazott adatbázis felhasználót kell létrehozni. Jelölje be egy vagy több adatbázis-felhasználók egy [adatbázis-szerepkör](https://msdn.microsoft.com/library/ms189121) , majd rendelje hozzá [engedélyek](https://msdn.microsoft.com/library/ms191291.aspx) toohello adatbázis-szerepkör.
 
-- SQL Server-hitelesítés használata esetén hozzon létre tartalmazottadatbázis-felhasználókat az adatbázisban. Helyezzen egy vagy több adatbázis-felhasználót egy [adatbázis-szerepkörbe](https://msdn.microsoft.com/library/ms189121), majd rendeljen [engedélyeket](https://msdn.microsoft.com/library/ms191291.aspx) az adatbázis-szerepkörhöz.
+- Ha az SQL Server-hitelesítést használ, hozzon létre tartalmazott adatbázis-felhasználók hello adatbázis. Jelölje be egy vagy több adatbázis-felhasználók egy [adatbázis-szerepkör](https://msdn.microsoft.com/library/ms189121) , majd rendelje hozzá [engedélyek](https://msdn.microsoft.com/library/ms191291.aspx) toohello adatbázis-szerepkör.
 
-Az adatbázis-szerepkörök lehetnek beépített szerepkörök, mint például a **db_owner**, a **db_ddladmin**, a **db_datawriter**, a **db_datareader**, a **db_denydatawriter** vagy a **db_denydatareader**. A **db_owner** általában teljes körű engedélyek biztosítására szolgál néhány felhasználó számára. A többi rögzített adatbázis-szerepkör hasznos az egyszerű adatbázisok fejlesztésének gyors elkezdéséhez, de a legtöbb éles környezetbeli adatbázishoz nem ajánlott. A **db_datareader** rögzített adatbázis-szerepkör csak olvasási hozzáférést biztosít az adatbázis minden táblájához, ami általában több a feltétlenül szükségesnél. Sokkal jobb megoldás a [CREATE ROLE](https://msdn.microsoft.com/library/ms187936.aspx) utasítás használata saját felhasználói adatbázis-szerepkörök létrehozásához, majd az üzleti igényekhez minimálisan szükséges engedélyek beállítása az egyes szerepkörökhöz. Ha a felhasználó egyszerre több szerepkörnek is tagja, akkor a rendszer összesíti az engedélyeket.
+adatbázis-szerepkörök hello lehet hello beépített szerepkörök például **db_owner**, **db_ddladmin**, **db_datawriter**, **db_datareader**, **db_denydatawriter**, és **db_denydatareader**. **db_owner** gyakran használt toogrant teljes jogosultságot kapnak tooonly néhány felhasználó van. hello más rögzített adatbázis-szerepkörök egyszerű adatbázis gyors fejlesztés megszerzése során hasznosak, de a legtöbb éles környezetben használt adatbázisait nem ajánlott. Például hello **db_datareader** rögzített adatbázis-szerepkör biztosít az olvasási hozzáférés tooevery tábla hello adatbázis, amely általában több mint nem feltétlenül szükséges. Sokkal hatékonyabb toouse hello [SZEREPKÖR létrehozása](https://msdn.microsoft.com/library/ms187936.aspx) utasítás toocreate a saját felhasználói adatbázis-szerepkörök, és gondosan engedélyek minden egyes szerepkör hello legalább szükséges hello üzleti igényeknek. Ha egy felhasználó több szerepkör tagja, akkor hello engedélyek az összes összesítése.
 
 ## <a name="permissions"></a>Engedélyek
-Az SQL Database-ben több mint 100 engedély adható vagy tagadható meg külön-külön. Ezek közül számos engedély beágyazott. Egy sémában található `UPDATE` engedély például a séma minden táblájára vonatkozó `UPDATE` engedélyt tartalmazza. A legtöbb engedélyrendszerhez hasonlóan az engedély megtagadása felülírja a megadását. Az engedélyek beágyazott jellege és száma miatt lehetséges, hogy alapos tervezés szükséges az adatbázis megfelelő védelmét biztosító engedélyrendszer kialakításához. Kezdje az [Engedélyek (Adatbázismotor)](https://msdn.microsoft.com/library/ms191291.aspx) szakaszban felsorolt engedélyek listájával, majd tekintse át az engedélyek [poszterméretű ábráját](http://go.microsoft.com/fwlink/?LinkId=229142).
+Az SQL Database-ben több mint 100 engedély adható vagy tagadható meg külön-külön. Ezek közül számos engedély beágyazott. Például hello `UPDATE` engedéllyel rendelkezik a séma tartalmaz hello `UPDATE` engedéllyel, hogy a séma belül minden táblában. A legtöbb engedély rendszerekhez hasonlóan engedély hello szolgáltatásmegtagadásos felülbírálja a támogatás. Beágyazott hello természetét és a engedélyek hello száma miatt is igénybe vehet gondos vizsgálat toodesign egy megfelelő engedélyekkel az rendszer tooproperly az adatbázis védelmét. Hello listája engedélye az kezdődnie [engedélyek (adatbázismotor)](https://msdn.microsoft.com/library/ms191291.aspx) és tekintse át a hello [poszter méretű kép](http://go.microsoft.com/fwlink/?LinkId=229142) hello engedélyek.
 
 
 ### <a name="considerations-and-restrictions"></a>Megfontolandó szempontok és korlátozások
-Az SQL Database bejelentkezéseinek és felhasználóinak kezelésekor vegye figyelembe a következőket:
+Bejelentkezések és a felhasználók az SQL-adatbázis felügyeletekor vegye figyelembe a hello következőket:
 
-* A  **utasítások futtatásához csatlakoznia kell a** master adatbázishoz`CREATE/ALTER/DROP DATABASE`.   
-* A **kiszolgáló-rendszergazdai** bejelentkezéshez tartozó felhasználó nem módosítható és nem vethető el. 
-* A **kiszolgáló-rendszergazdai** bejelentkezés alapértelmezett nyelve az amerikai angol (US-English).
-* Csak a rendszergazdák (**kiszolgáló-rendszergazdai** bejelentkező vagy Azure AD-rendszergazda) és a **master** adatbázis **dbmanager** adatbázis-szerepkörének tagjai rendelkeznek a `CREATE DATABASE` és a `DROP DATABASE` utasítások futtatásához szükséges engedéllyel.
-* A `CREATE/ALTER/DROP LOGIN` utasítások futtatásához csatlakoznia kell a master adatbázishoz. A bejelentkezési adatok használata azonban nem javasolt. Helyette használja a tartalmazott adatbázis felhasználóit.
-* A felhasználói adatbázishoz történő csatlakozáshoz adja meg a kapcsolati karakterláncban szereplő adatbázis nevét.
-* Csak a kiszolgálószintű fő bejelentkező és a **master adatbázis** **loginmanager** adatbázis-szerepkörének tagjai rendelkeznek a `CREATE LOGIN`, `ALTER LOGIN` és `DROP LOGIN` utasítások futtatásához szükséges engedéllyel.
-* A `CREATE/ALTER/DROP LOGIN` és `CREATE/ALTER/DROP DATABASE` utasítások ADO.NET alkalmazáson belüli futtatásakor a paraméteres parancsok futtatása nem engedélyezett. További információkért lásd: [Parancsok és paraméterek](https://msdn.microsoft.com/library/ms254953.aspx).
-* A `CREATE/ALTER/DROP DATABASE` és `CREATE/ALTER/DROP LOGIN` utasítások futtatásakor csak az egyes utasítások lehetnek a Transact-SQL kötegben szereplő egyetlen utasítások. Különben hiba történik. Például a következő Transact-SQL utasítás azt ellenőrzi, hogy az adatbázis létezik-e. Ha igen, akkor meghívja a `DROP DATABASE` utasítást az adatbázis eltávolításához. Mivel a `DROP DATABASE` utasítás nem a köteg egyetlen utasítása, a következő Transact-SQL utasítás futtatása hibát eredményez.
+* Csatlakoztatott toohello kell **fő** adatbázis-hello végrehajtásakor `CREATE/ALTER/DROP DATABASE` utasításokat.   
+* adatbázis-felhasználó megfelelő toohello hello **kiszolgálói rendszergazda** bejelentkezési nem módosítható vagy eldobni. 
+* Amerikai angol az alapértelmezett nyelve hello hello **kiszolgálói rendszergazda** bejelentkezési.
+* Csak a rendszergazdák hello (**kiszolgálói rendszergazda** bejelentkezési vagy Azure AD-rendszergazda) és hello hello tagjai **dbmanager** hello szerepkörrel **fő** adatbázisa tartalmazza engedély tooexecute hello `CREATE DATABASE` és `DROP DATABASE` utasításokat.
+* Csatlakoztatott toohello master adatbázisban kell lennie, hello végrehajtásakor `CREATE/ALTER/DROP LOGIN` utasításokat. A bejelentkezési adatok használata azonban nem javasolt. Helyette használja a tartalmazott adatbázis felhasználóit.
+* tooconnect tooa felhasználói adatbázis hello adatbázis hello kapcsolat-karakterláncban hello nevét kell megadnia.
+* Csak a kiszolgálószintű fő bejelentkezési és hello tagjai hello hello **loginmanager** hello szerepkörrel **fő** adatbázis rendelkezik engedéllyel tooexecute hello `CREATE LOGIN`, `ALTER LOGIN`, és `DROP LOGIN` utasításokat.
+* Hello végrehajtásakor `CREATE/ALTER/DROP LOGIN` és `CREATE/ALTER/DROP DATABASE` egy ADO.NET alkalmazásban utasítások paraméteres parancsokat nem engedélyezett. További információkért lásd: [Parancsok és paraméterek](https://msdn.microsoft.com/library/ms254953.aspx).
+* Hello végrehajtásakor `CREATE/ALTER/DROP DATABASE` és `CREATE/ALTER/DROP LOGIN` utasítások, minden ezekre az utasításokra kell lennie a Transact-SQL kötegben csak utasítás hello. Különben hiba történik. Például hello következő Transact-SQL ellenőrzi, hogy létezik-e hello adatbázis. Ha létezik, egy `DROP DATABASE` utasítás tooremove hello adatbázis neve. Mivel hello `DROP DATABASE` utasítás nem hello csak a következő utasítás hello kötegben, a végrehajtás alatt álló hello következő Transact-SQL-utasítás hibát eredményez.
 
   ```
   IF EXISTS (SELECT [name]
@@ -179,16 +179,16 @@ Az SQL Database bejelentkezéseinek és felhasználóinak kezelésekor vegye fig
   GO
   ```
 
-* A `CREATE USER` utasítás `FOR/FROM LOGIN` beállítással történő futtatásakor ez lehet a Transact-SQL kötegben szereplő egyetlen utasítás.
-* A `ALTER USER` utasítás `WITH LOGIN` beállítással történő futtatásakor ez lehet a Transact-SQL kötegben szereplő egyetlen utasítás.
-* A `CREATE/ALTER/DROP` utasítás használatához a felhasználónak `ALTER ANY USER` engedéllyel kell rendelkeznie az adatbázisban.
-* Ha az adatbázis-szerepkör tulajdonosa szeretne hozzáadni vagy eltávolítani egy felhasználót az adott szerepkörből, akkor a következő hiba léphet fel: **A „Név” felhasználó vagy szerepkör nem található ebben az adatbázisban.** Ez a hiba akkor következik be, ha a felhasználó a tulajdonos számára nem látható. A probléma megoldása érdekében ruházza fel a szerepkör tulajdonosát a `VIEW DEFINITION` engedéllyel. 
+* Hello végrehajtásakor `CREATE USER` hello utasítást `FOR/FROM LOGIN` beállítás, kell lennie a Transact-SQL kötegben csak utasítás hello.
+* Hello végrehajtásakor `ALTER USER` hello utasítást `WITH LOGIN` beállítás, kell lennie a Transact-SQL kötegben csak utasítás hello.
+* túl`CREATE/ALTER/DROP` egy felhasználónak van szüksége a hello `ALTER ANY USER` hello adatbázis engedélyt.
+* Ha egy adatbázis-szerepkör tulajdonosa hello megpróbál tooadd vagy egy másik adatbázis felhasználói tooor, amely az adatbázis-szerepkör eltávolítása, hello a következő hiba fordulhat: **felhasználó vagy a "Name" szerepkör nem létezik az adatbázisban.** Ez a hiba akkor fordul elő, mert hello felhasználó nem látható toohello tulajdonosa. tooresolve a probléma grant hello szerepkör tulajdonosa hello `VIEW DEFINITION` hello felhasználói engedélyt. 
 
 
 ## <a name="next-steps"></a>Következő lépések
 
-- A tűzfalszabályokkal kapcsolatos további információk: [Azure SQL Database-tűzfal](sql-database-firewall-configure.md).
-- Az SQL Database összes biztonsági szolgáltatásáról [az SQL biztonsági szolgáltatásainak áttekintése](sql-database-security-overview.md) biztosít áttekintést.
+- toolearn tűzfalszabályok, bővebben lásd: [Azure SQL Database-tűzfal](sql-database-firewall-configure.md).
+- Minden hello SQL-adatbázis biztonsági funkcióinak áttekintéséért lásd: [SQL biztonsági áttekintése](sql-database-security-overview.md).
 - Az oktatóanyagok esetén lásd: [az Azure SQL Database biztonságos](sql-database-security-tutorial.md).
 - Információk a nézetekről és a tárolt eljárásokról: [Nézetek és tárolt eljárások létrehozása](https://msdn.microsoft.com/library/ms365311.aspx)
-- Információk adatbázis-objektumhoz való hozzáférés biztosításáról: [Adatbázis-objektumhoz való hozzáférés biztosítása](https://msdn.microsoft.com/library/ms365327.aspx)
+- További információ a hozzáférési tooa adatbázis-objektum megadása: [hozzáférés biztosítása tooa adatbázis-objektum](https://msdn.microsoft.com/library/ms365327.aspx)

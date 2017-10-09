@@ -1,0 +1,5 @@
+## <a name="scenario"></a>Forgatókönyv
+Jelen dokumentum részletesen ismerteti a használó központi telepítések, több hálózati adaptert a virtuális gépek az adott forgatókönyv keresztül. Ebben a forgatókönyvben a kétféle IaaS munkaterhelések Azure-ban üzemeltetett rendelkezik. Minden egyes réteg a virtuális hálózatot (VNet) a saját alhálózat lett telepítve. több webkiszolgálók csoportosítva beállítása a magas rendelkezésre állású terheléselosztó hello előtér-rétegből állnak. hello háttér réteg több adatbázis-kiszolgálók tevődik össze. Ezek az adatbázis-kiszolgálók két hálózati adapterrel rendelkező minden, egy adatbázis-hozzáférési telepíti, hello más felügyeleti. hello eset is tartalmazza a hálózati biztonsági csoportokkal (NSG-k) toocontrol hello telepítési forgalom engedélyezett tooeach alhálózatot, és a hálózati adapter. hello az alábbi ábra hello alapvető architektúráját ebben a forgatókönyvben.  
+
+![MultiNIC forgatókönyv](./media/virtual-network-deploy-multinic-scenario-include/Figure1.png)
+

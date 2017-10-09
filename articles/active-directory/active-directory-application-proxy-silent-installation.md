@@ -1,6 +1,6 @@
 ---
-title: "Azure AD alkalmazás alkalmazásproxy-összekötő csendes telepítése |} Microsoft Docs"
-description: "Bemutatja, hogyan adhat az Azure AD alkalmazásproxy-összekötő a helyszíni alkalmazások biztonságos távoli hozzáférést biztosítanak a felügyelet nélküli telepítést."
+title: "aaaSilent Azure AD alkalmazás-Proxy összekötőjének telepítése |} Microsoft Docs"
+description: "Ismerteti, hogyan tooperform az Azure AD alkalmazásproxy-összekötő tooprovide biztonságos távoli hozzáférés tooyour felügyelet nélküli telepítés a helyszíni alkalmazások."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,51 +15,51 @@ ms.date: 08/10/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9e28c89d8f64f0ae3d4150017ca544e606075c45
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ce796ff45a65ba7d5f0f63c02085bdc6af494548
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="silently-install-the-azure-ad-application-proxy-connector"></a>Az Azure AD alkalmazásproxy-összekötő telepítéséhez
-Érdemes lehet küldeni egy telepítési parancsfájlt, több Windows kiszolgálót vagy Windows Server kiszolgálókon, amelyek nem rendelkeznek a felhasználói felület engedélyezve van. Ez a témakör segítségével hozhat létre, amely lehetővé teszi a felügyelet nélküli telepítése és regisztrálása az Azure AD alkalmazásproxy-összekötő a Windows PowerShell-parancsfájl.
+# <a name="silently-install-hello-azure-ad-application-proxy-connector"></a>Csendes telepítéséhez hello Azure AD alkalmazásproxy-összekötő
+Azt szeretné, hogy egy telepítési parancsfájl toomultiple Windows-kiszolgálók vagy tooWindows kiszolgálók, amelyekhez nincs engedélyezve a felhasználói felület toobe képes toosend. Ez a témakör segítségével hozhat létre, amely lehetővé teszi a felügyelet nélküli telepítése és regisztrálása az Azure AD alkalmazásproxy-összekötő a Windows PowerShell-parancsfájl.
 
 Ez a funkció akkor hasznos, ha azt szeretné, hogy:
 
-* Telepítse az összekötőt nincs felhasználói felület réteggel, vagy a gép nem lehet RDP gépek.
+* A gépeken, nincs felhasználói felület réteg vagy RDP toohello gépet nem lehet hello összekötő telepítéséhez.
 * Telepíti és regisztrálja egyszerre sok összekötők.
-* Integrálható a összekötő telepítése és regisztrálása egy másik művelet részeként.
-* Hozzon létre egy szabványos kiszolgálói lemezképet, az összekötő bits tartalmaz, de nincs regisztrálva.
+* Integrálni hello összekötő telepítése és regisztrálása egy másik művelet részeként.
+* Hello összekötő bits tartalmaz, de nincs regisztrálva szabványos kiszolgálói lemezképének létrehozásához.
 
-Alkalmazásproxy egy slim nevű az összekötő a hálózaton belüli Windows Server-szolgáltatás telepítése során. Az alkalmazásproxy-összekötő működéséhez azt ki regisztrálni kell az Azure AD-címtár globális rendszergazdája és jelszóval. Általában ezt az információt is meg kell adni egy előugró párbeszédpanelen összekötő telepítése során. Azonban a Windows PowerShell használatával adja meg a termékregisztrációs adatokat hitelesítőadat-objektum létrehozása. Vagy hozzon létre egy saját tokent, és adja meg a termékregisztrációs adatokat segítségével.
+Alkalmazásproxy egy slim nevű hello összekötő a hálózaton belüli Windows Server-szolgáltatás telepítése során. Az alkalmazásproxy-összekötő toowork hello toobe regisztrálva az Azure AD-címtár globális rendszergazdája és jelszóval rendelkezik. Általában ezt az információt is meg kell adni egy előugró párbeszédpanelen összekötő telepítése során. Azonban használható Windows PowerShell toocreate a hitelesítő objektum tooenter a regisztrációs adatait. Vagy hozzon létre egy saját tokent, és tooenter használja a regisztrációs adatait.
 
-## <a name="install-the-connector"></a>Az összekötő telepítése
-Az összekötő MSIs telepítése nélkül az összekötő regisztrálása az alábbiak szerint:
+## <a name="install-hello-connector"></a>Hello összekötő telepítése
+Hello összekötő MSIs telepítése nélkül hello összekötő regisztrálása az alábbiak szerint:
 
 1. Nyisson meg egy parancssort.
-2. Futtassa a következő parancsot, amelyben a /q a csendes telepítés – azt jelenti, hogy a telepítés nem kéri a végfelhasználói licencszerződés elfogadásához.
+2. Futtassa a következő parancs melyik hello /q jelenti csendes telepítést hello – hello telepítés nem kéri a végfelhasználói licencszerződés tooaccept hello.
    
         AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
-## <a name="register-the-connector-with-azure-ad"></a>Az összekötő regisztrálására az Azure AD
-Az összekötő regisztrálása segítségével két módszer áll rendelkezésre:
+## <a name="register-hello-connector-with-azure-ad"></a>Hello összekötő regisztrálására az Azure AD
+Tooregister hello összekötővel két módszer áll rendelkezésre:
 
-* Egy Windows PowerShell hitelesítő objektumot használ a connector regisztrálása
-* A létrehozott kapcsolat nélküli jogkivonat használatával connector regisztrálása
+* Egy Windows PowerShell hitelesítő objektumot használ hello connector regisztrálása
+* A létrehozott kapcsolat nélküli tokent hello connector regisztrálása
 
-### <a name="register-the-connector-using-a-windows-powershell-credential-object"></a>Egy Windows PowerShell hitelesítő objektumot használ a connector regisztrálása
-1. A Windows PowerShell hitelesítő objektumot létrehozni a következő parancs futtatásával. Cserélje le  *\<felhasználónév\>*  és  *\<jelszó\>*  a felhasználónévvel és a címtár jelszava:
+### <a name="register-hello-connector-using-a-windows-powershell-credential-object"></a>Egy Windows PowerShell hitelesítő objektumot használ hello connector regisztrálása
+1. Hello Windows PowerShell hitelesítő objektumot létrehozni a következő parancs futtatásával. Cserélje le  *\<felhasználónév\>*  és  *\<jelszó\>*  hello felhasználónévvel és jelszóval a címtáron:
    
         $User = "<username>"
         $PlainPassword = '<password>'
         $SecurePassword = $PlainPassword | ConvertTo-SecureString -AsPlainText -Force
         $cred = New-Object –TypeName System.Management.Automation.PSCredential –ArgumentList $User, $SecurePassword
-2. Ugrás a **C:\Program Files\Microsoft AAD App alkalmazásproxy-összekötő** és hitelesítő adatok használata a PowerShell parancsfájl futtatása objektum-létrehozott. Cserélje le *$cred* nevű, a PowerShell hitelesítő objektumot hozott létre:
+2. Nyissa meg túl**C:\Program Files\Microsoft AAD App alkalmazásproxy-összekötő** és hitelesítő adatok használatával hello PowerShell hello parancsprogrammal objektum-létrehozott. Cserélje le *$cred* hello PowerShell hello nevű hitelesítő adatok objektumot hozott létre:
    
         RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Credentials -Usercredentials $cred
 
-### <a name="register-the-connector-using-a-token-created-offline"></a>A létrehozott kapcsolat nélküli jogkivonat használatával connector regisztrálása
-1. Hozzon létre egy kapcsolat nélküli token felhasználva a kódrészletet AuthenticationContext osztály használatával:
+### <a name="register-hello-connector-using-a-token-created-offline"></a>A létrehozott kapcsolat nélküli tokent hello connector regisztrálása
+1. Hozzon létre egy kapcsolat nélküli token hello kódrészletet hello értékekkel hello AuthenticationContext osztály használatával:
 
         using System;
         using System.Diagnostics;
@@ -69,22 +69,22 @@ Az összekötő regisztrálása segítségével két módszer áll rendelkezésr
         {
         #region constants
         /// <summary>
-        /// The AAD authentication endpoint uri
+        /// hello AAD authentication endpoint uri
         /// </summary>
         static readonly Uri AadAuthenticationEndpoint = new Uri("https://login.microsoftonline.com/common/oauth2/token?api-version=1.0");
 
         /// <summary>
-        /// The application ID of the connector in AAD
+        /// hello application ID of hello connector in AAD
         /// </summary>
         static readonly string ConnectorAppId = "55747057-9b5d-4bd4-b387-abf52a8bd489";
 
         /// <summary>
-        /// The reply address of the connector application in AAD
+        /// hello reply address of hello connector application in AAD
         /// </summary>
         static readonly Uri ConnectorRedirectAddress = new Uri("urn:ietf:wg:oauth:2.0:oob");
 
         /// <summary>
-        /// The AppIdUri of the registration service in AAD
+        /// hello AppIdUri of hello registration service in AAD
         /// </summary>
         static readonly Uri RegistrationServiceAppIdUri = new Uri("https://proxy.cloudwebappproxy.net/registerapp");
 
@@ -115,11 +115,11 @@ Az összekötő regisztrálása segítségével két módszer áll rendelkezésr
         }
 
 
-2. Miután a jogkivonatot, hozzon létre egy SecureString a token használatával:
+2. Miután hello jogkivonat, hozzon létre egy SecureString hello token használatával:
 
    `$SecureToken = $Token | ConvertTo-SecureString -AsPlainText -Force`
 
-3. Futtassa a következő Windows PowerShell-parancsot cseréje \<GUID bérlői\> a directory azonosítójú:
+3. A következő Windows PowerShell-parancsot, hogy futási hello \<GUID bérlői\> a directory azonosítójú:
 
    `RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Token -Token $SecureToken -TenantId <tenant GUID>`
 

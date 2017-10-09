@@ -14,107 +14,107 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 299e09ef1bb1b1db9d64447bf4537c7c3a3cfd5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d56ebf27e3015a7f3385ac5a4ddd77ea2c88387f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="administer-group-policy-on-an-azure-ad-domain-services-managed-domain"></a>Csoportházirend a egy Azure AD tartományi szolgáltatások által kezelt tartomány felügyelete
-Az Azure Active Directory tartományi szolgáltatások beépített csoportházirend-objektumok (GPO-k) a "AADDC felhasználók" és "AADDC számítógépek" tárolók magában foglalja. Testre szabhatja a beépített csoportházirend-objektumokat a csoportházirend a kezelt tartományban. A "AAD DC rendszergazdák" csoportba, a felügyelt tartományra hozhat létre a saját egyéni szervezeti egységekhez. Akkor is egyéni csoportházirend-objektumok létrehozása, és kapcsolja őket a egyéni szervezeti egységekhez. A "AAD DC rendszergazdák" csoportba tartozó felhasználók kapnak a felügyelt tartományra csoportházirend felügyeleti jogosultságokkal.
+Az Azure Active Directory tartományi szolgáltatások beépített csoportházirend-objektumok (GPO) hello "AADDC felhasználók" és "AADDC számítógépek" tárolók magában foglalja. Testre szabhatja a beépített csoportházirend-objektumok tooconfigure csoportházirend hello felügyelt tartományon. Emellett hello "AAD DC rendszergazdák" csoportba hozhat létre a saját egyéni szervezeti egységek hello kezelt tartományban. Akkor is egyéni csoportházirend-objektumok létrehozása, és kapcsolja őket toothese egyéni szervezeti egységekhez. Toohello "AAD DC rendszergazdák" csoportba tartozó felhasználók hello által kezelt tartomány csoportházirend felügyeleti jogosultságokat kapnak.
 
 ## <a name="before-you-begin"></a>Előkészületek
-A cikkben szereplő feladatok elvégzéséhez szüksége:
+a cikkben szereplő tooperform hello feladatok lesz szüksége:
 
 1. Egy érvényes **Azure-előfizetés**.
 2. Egy **Azure AD-címtár** -vagy egy helyszíni címtár vagy egy csak felhőalapú directory szinkronizálva.
-3. **Azure AD tartományi szolgáltatások** az Azure AD-címtár engedélyezni kell. Ha még nem tette meg, az összes ismertetett feladatok végrehajtásával a [első lépések útmutató](active-directory-ds-getting-started.md).
-4. A **tartományhoz csatlakoztatott virtuális gép** , amelyből az Azure AD tartományi szolgáltatások által kezelt tartomány felügyelete. Ha egy virtuális gép nem rendelkezik, a című cikkben ismertetett összes feladatok végrehajtásával [egy Windows rendszerű virtuális gép csatlakoztatása felügyelt tartományhoz](active-directory-ds-admin-guide-join-windows-vm.md).
-5. A hitelesítő adatait kell egy **az "AAD DC rendszergazdák" csoportba tartozó felhasználói fiók** a könyvtárban, a felügyelt tartományok csoportházirend felügyeletéhez.
+3. **Azure AD tartományi szolgáltatások** hello Azure Active directory engedélyezni kell. Ha még nem tette meg, kövesse a hello ismertetett feladatok hello [első lépések útmutató](active-directory-ds-getting-started.md).
+4. A **tartományhoz csatlakoztatott virtuális gép** amely felügyelhető a hello Azure AD tartományi szolgáltatások által felügyelt tartományokhoz. Ha egy virtuális gép nem rendelkezik, hajtsa végre a hello a című cikkben ismertetett feladatok hello [tartományhoz egy Windows virtuális gép tooa felügyelt](active-directory-ds-admin-guide-join-windows-vm.md).
+5. Hello hitelesítő adatait kell egy **felhasználói fiókhoz tartozó toohello "AAD DC rendszergazdák" csoport** a könyvtárban, a felügyelt tartományok csoportházirend tooadminister.
 
 <br>
 
-## <a name="task-1---provision-a-domain-joined-virtual-machine-to-remotely-administer-group-policy-for-the-managed-domain"></a>1. feladat – rendszerű távoli felügyelete a felügyelt tartomány csoportházirend tartományhoz csatlakoztatott virtuális gép
-Az Azure AD tartományi szolgáltatások felügyelt tartományok kezelheti távolról már ismerős eszközökkel Active Directory felügyeleti például az Active Directory felügyeleti központ (ADAC) vagy AD PowerShell segítségével. Hasonlóképpen a felügyelt tartomány számára a csoportházirend használatával lehet felügyelni távolról a csoportházirend-felügyeleti eszközök.
+## <a name="task-1---provision-a-domain-joined-virtual-machine-tooremotely-administer-group-policy-for-hello-managed-domain"></a>1 - Provision egy tartományhoz csatlakoztatott virtuális gép tooremotely feladat csoportházirend hello által kezelt tartomány felügyelete
+Az Azure AD tartományi szolgáltatások felügyelt tartományok kezelheti távolról már ismerős eszközökkel Active Directory felügyeleti például az Active Directory felügyeleti központ (ADAC) vagy AD PowerShell hello. Ehhez hasonlóan hello felügyelt tartomány csoportházirend felügyelhető távolról a hello csoportházirend felügyeleti eszközök segítségével.
 
-Az Azure AD-címtár rendszergazdái nem jogosult csatlakozni a távoli asztalon keresztül a felügyelt tartományra tartományvezérlők. A "AAD DC rendszergazdák" csoportba felügyelheti a csoportházirend felügyelt tartományok távolról. Csoportházirend eszközök használhatnak ügyfélszámítógépen Windows Server vagy a felügyelt tartományhoz csatlakozik. A csoportházirend eszközei is telepíthető a Csoportházirend kezelése a Windows Server és a felügyelt tartományhoz csatlakozó ügyfélgépek választható szolgáltatás részeként.
+Az Azure AD-címtár rendszergazdái nem rendelkezik jogosultságokkal tooconnect toodomain tartományvezérlők hello által kezelt tartomány távoli asztalon keresztül. Hello "AAD DC rendszergazdák" csoportba felügyelheti a csoportházirend felügyelt tartományok távolról. Csoportházirend eszközök használhatják a Windows Server vagy Windows-ügyfélen számítógép illesztett toohello felügyelt tartományhoz. Csoportházirend eszközei is telepíthető, mivel hello Csoportházirend kezelése szolgáltatást választható a Windows Server és az ügyfél gépek részét toohello felügyelt tartományhoz csatlakozott.
 
-Az első feladata a Windows Server rendszerű virtuális gép, amely a felügyelt tartományhoz csatlakozik. Útmutatásért tekintse meg a című cikk [Windows Server virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md).
+hello első feladat tooprovision egy Windows Server virtuális gépre, amelyik illesztett toohello által kezelt tartomány. Útmutatásért tekintse meg a toohello cikk címe [csatlakozás egy Windows Server virtuális gép tooan Azure AD tartományi szolgáltatások által kezelt tartomány](active-directory-ds-admin-guide-join-windows-vm.md).
 
-## <a name="task-2---install-group-policy-tools-on-the-virtual-machine"></a>2. feladat – a virtuális gépen a telepítés csoportházirend eszközök
-A következő lépésekkel telepítse a csoport házirend felügyeleti eszközeit a tartományhoz csatlakoztatott virtuális gépen.
+## <a name="task-2---install-group-policy-tools-on-hello-virtual-machine"></a>2. feladat – telepítés csoportházirend eszközök hello virtuális gépen
+Hajtsa végre a következő lépések tooinstall hello csoport házirend felügyeleti eszközök hello tartományhoz csatlakoztatott virtuális gépen hello.
 
-1. Navigáljon a **virtuális gépek** csomópont a klasszikus Azure portálon. Válassza ki a virtuális gépet, az 1. feladatban létrehozott, és kattintson a **Connect** a parancssávon az ablak alján.
+1. Keresse meg a túl**virtuális gépek** hello a klasszikus Azure portálon csomópontja. Válassza ki az 1. feladatban létrehozott hello virtuális gépet, és kattintson a **Connect** hello parancssávon hello ablak hello alján.
 
-    ![Windows virtuális géphez](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
-2. A klasszikus portál felszólítja, hogy a fájl megnyitása vagy mentése egy, a virtuális géphez való kapcsolódáshoz használt ".rdp" kiterjesztéssel. Kattintson a fájl letöltése után.
-3. Bejelentkezés a parancssorba az "AAD DC rendszergazdák" csoportba tartozó felhasználói hitelesítő adatokat használja. Például használjuk "bob@domainservicespreview.onmicrosoft.com" esetünkben.
-4. A kezdőképernyőről nyissa meg a **Kiszolgálókezelő**. Kattintson a **szerepkörök és szolgáltatások hozzáadása** a Kiszolgálókezelő ablakban központi panelén.
+    ![Csatlakoztassa tooWindows virtuális gépet](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
+2. hello klasszikus portál felszólítja tooopen vagy ".rdp" kiterjesztésű fájl, amely használt tooconnect toohello virtuális gép. Kattintson a hello fájl letöltése után.
+3. A parancssorból hello bejelentkezési hello toohello "AAD DC rendszergazdák" csoportba tartozó felhasználó hitelesítő adatait használja. Például használjuk "bob@domainservicespreview.onmicrosoft.com" esetünkben.
+4. Hello kezdőképernyőről nyissa meg a **Kiszolgálókezelő**. Kattintson a **szerepkörök és szolgáltatások hozzáadása** hello központi ablaktáblájában hello Kiszolgálókezelő.
 
     ![Indítsa el a Kiszolgálókezelőt a virtuális gépen](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager.png)
-5. Az a **előkészületek** oldalán a **hozzáadása szerepkörök és szolgáltatások varázsló**, kattintson a **következő**.
+5. A hello **előkészületek** hello oldalán **hozzáadása szerepkörök és szolgáltatások varázsló**, kattintson a **következő**.
 
     ![Mielőtt elkezdené lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-begin.png)
-6. Az a **telepítési típus** lapon, hagyja a **szerepköralapú vagy szolgáltatásalapú telepítés** beállítás be van jelölve, és kattintson **következő**.
+6. A hello **telepítési típus** lapján hello hagyja **szerepköralapú vagy szolgáltatásalapú telepítés** beállítás be van jelölve, és kattintson **következő**.
 
     ![Telepítés típusa lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-type.png)
-7. Az a **kiszolgáló kiválasztása** lapon válassza ki az aktuális virtuális gépet a kiszolgálókészletből, és kattintson a **következő**.
+7. A hello **kiszolgáló kiválasztása** lapon, válassza ki a hello aktuális virtuális gépet hello kiszolgálókészletből, és kattintson **következő**.
 
     ![Kiszolgáló kiválasztása lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-server.png)
-8. Az a **kiszolgálói szerepkörök** kattintson **következő**. Azt e lap kihagyása, mert jelenleg nem telepít szerepköröket a kiszolgálón.
-9. Az a **szolgáltatások** lapon jelölje be a **csoportházirend-kezelő** szolgáltatás.
+8. A hello **kiszolgálói szerepkörök** kattintson **következő**. Azt e lap kihagyása, mert jelenleg nem telepít szerepköröket hello kiszolgálón.
+9. A hello **szolgáltatások** lapra, jelölje be hello **csoportházirend-kezelő** szolgáltatás.
 
     ![Szolgáltatások lapon](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-gp-management.png)
-10. Az a **megerősítő** kattintson **telepítése** telepítheti a Csoportházirend kezelése szolgáltatást a virtuális gépen. Ha a szolgáltatás telepítése sikeresen befejeződött, kattintson **Bezárás** való kilépéshez a **szerepkörök és szolgáltatások hozzáadása** varázsló.
+10. A hello **megerősítő** kattintson **telepítése** tooinstall hello Csoportházirend kezelése szolgáltatást hello virtuális gépen. Ha a szolgáltatás telepítése sikeresen befejeződött, kattintson **Bezárás** tooexit hello **szerepkörök és szolgáltatások hozzáadása** varázsló.
 
     ![Jóváhagyás lap](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-gp-management-confirmation.png)
 
-## <a name="task-3---launch-the-group-policy-management-console-to-administer-group-policy"></a>3. feladat – indítsa el a Csoportházirend kezelése konzol Csoportházirend felügyelete
-A tartományhoz csatlakoztatott virtuális gépen a Csoportházirend kezelése konzol segítségével felügyelheti a csoportházirend a kezelt tartományban.
+## <a name="task-3---launch-hello-group-policy-management-console-tooadminister-group-policy"></a>3 - indítási hello Csoportházirend kezelése konzol tooadminister csoportházirend feladat
+Hello Csoportházirend kezelése konzolon hello tartományhoz csatlakoztatott virtuális gép tooadminister hello kezelt tartományban a csoportházirend is használhatja.
 
 > [!NOTE]
-> Csoportházirend a kezelt tartomány felügyelete a "AAD DC rendszergazdák" csoport tagjának lennie kell.
+> Meg kell toobe hello "AAD DC rendszergazdák" csoportba, tooadminister csoportházirend hello felügyelt tartomány tagja.
 >
 >
 
-1. A kezdőképernyőről kattintson **felügyeleti eszközök**. Megjelenik a **csoportházirend-kezelő** konzol telepítve legyen a virtuális gépen.
+1. Hello kezdőképernyőről kattintson **felügyeleti eszközök**. Megtekintheti az hello **csoportházirend-kezelő** konzol hello virtuális gépre telepítve.
 
     ![Indítsa el a Csoportházirend kezelése](./media/active-directory-domain-services-admin-guide/gp-management-installed.png)
-2. Kattintson a **csoportházirend-kezelő** a Csoportházirend kezelése konzol elindítása.
+2. Kattintson a **csoportházirend-kezelő** toolaunch hello Csoportházirend kezelése konzolt.
 
     ![Csoportházirend-konzol](./media/active-directory-domain-services-admin-guide/gp-management-console.png)
 
 ## <a name="task-4---customize-built-in-group-policy-objects"></a>4. feladat – beépített csoportházirend-objektumok testreszabása
-Két beépített csoportházirend-objektumok (GPO) – egyet-egyet a "AADDC számítógépek" és "AADDC felhasználók" tárolók a kezelt tartományban van. Testre szabhatja a csoportházirend-objektumokat a csoportházirend a kezelt tartományban.
+Nincsenek két beépített csoportházirend-objektumok (GPO) – egyet-egyet a felügyelt tartományok hello "AADDC számítógépek" és "AADDC felhasználók" tárolók. Testre szabhatja a csoportházirend-objektumok tooconfigure csoportházirend hello felügyelt tartományon.
 
-1. Az a **csoportházirend-kezelő** konzol gombra, bontsa ki a **erdő: contoso100.com** és **tartományok** lásd: a csoportházirendek a felügyelt tartományok csomópontok.
+1. A hello **csoportházirend-kezelő** konzolt, kattintson a tooexpand hello **erdő: contoso100.com** és **tartományok** csomópontok toosee hello csoportházirendek a felügyelt tartományok.
 
     ![Beépített csoportházirend-objektumok](./media/active-directory-domain-services-admin-guide/builtin-gpos.png)
-2. Testre szabhatja a beépített csoportházirend-objektumokat a felügyelt tartományok csoport házirendek konfigurálásához. Kattintson a jobb gombbal a csoportházirend-Objektumot, és kattintson a **szerkesztése...**  testreszabása a beépített csoportházirend-objektum. A Helyicsoportházirend-szerkesztő konfigurációs eszköz lehetővé teszi testre szabhatja a csoportházirend-objektum.
+2. Testre szabhatja, hogy a csoportházirend-objektumok tooconfigure beépített csoport házirendek a felügyelt tartományra. Kattintson a jobb gombbal a hello csoportházirend-Objektumot, és kattintson a **szerkesztése...**  toocustomize hello beépített csoportházirend-objektum. hello Helyicsoportházirend-szerkesztő konfigurációs eszköz lehetővé teszi, hogy Ön toocustomize hello csoportházirend-objektum.
 
     ![Beépített csoportházirend-objektum szerkesztéséhez](./media/active-directory-domain-services-admin-guide/edit-builtin-gpo.png)
-3. Ezután már használhatja a **Csoportházirendkezelés-szerkesztő** konzol a beépített csoportházirend-objektum szerkesztéséhez. Például az alábbi képernyőfelvételen látható a beépített "AADDC számítógépek" csoportházirend-objektum testreszabása.
+3. Ezután már használhatja a hello **Csoportházirendkezelés-szerkesztő** konzol tooedit hello beépített csoportházirend-objektum. Ha például a következő képernyőkép hello látható, hogyan toocustomize hello beépített "AADDC számítógépek" csoportházirend-objektum.
 
     ![Csoportházirend-objektum testreszabása](./media/active-directory-domain-services-admin-guide/gp-editor.png)
 
 ## <a name="task-5---create-a-custom-group-policy-object-gpo"></a>5. feladat – hozzon létre egy egyéni házirend objektum (GPO)
-Hozzon létre, vagy a saját egyéni csoportházirend-objektumok importálása. A felügyelt tartományok létrehozott egyéni szervezeti is kapcsolja egyéni csoportházirend-objektumokat. Egyéni szervezeti egységek létrehozásáról további információk: [hozzon létre egy egyéni szervezeti felügyelt tartomány](active-directory-ds-admin-guide-create-ou.md).
+Hozzon létre, vagy a saját egyéni csoportházirend-objektumok importálása. Egyéni csoportházirend-objektumok tooa egyéni is hozzárendelhet a kezelt tartományban létrehozott OU. Egyéni szervezeti egységek létrehozásáról további információk: [hozzon létre egy egyéni szervezeti felügyelt tartomány](active-directory-ds-admin-guide-create-ou.md).
 
 > [!NOTE]
-> Csoportházirend a kezelt tartomány felügyelete a "AAD DC rendszergazdák" csoport tagjának lennie kell.
+> Meg kell toobe hello "AAD DC rendszergazdák" csoportba, tooadminister csoportházirend hello felügyelt tartomány tagja.
 >
 >
 
-1. Az a **csoportházirend-kezelő** konzol, jelölje be az egyéni szervezeti egység (OU). Kattintson a jobb gombbal a szervezeti Egységet, és kattintson a **egy csoportházirend-objektum létrehozása ebben a tartományban, és hivatkozás létrehozása itt...** .
+1. A hello **csoportházirend-kezelő** konzolt, kattintson a tooselect a egyéni szervezeti egységhez (OU). Kattintson a jobb gombbal a hello szervezeti Egységet, és kattintson a **egy csoportházirend-objektum létrehozása ebben a tartományban, és hivatkozás létrehozása itt...** .
 
     ![Egy egyéni csoportházirend-objektum létrehozása](./media/active-directory-domain-services-admin-guide/gp-create-gpo.png)
-2. Adjon meg egy nevet az új csoportházirend-Objektumot, és kattintson **OK**.
+2. Adjon meg egy hello új csoportházirend-objektum nevét, és kattintson a **OK**.
 
     ![Adja meg a csoportházirend-objektum nevét](./media/active-directory-domain-services-admin-guide/gp-specify-gpo-name.png)
-3. Egy új csoportházirend-objektum létrehozása és az egyéni szervezeti Egységhez kapcsolódik. Kattintson a jobb gombbal a csoportházirend-Objektumot, és kattintson a **szerkesztése...**  a menüből.
+3. Létrejön egy új csoportházirend-objektum és tooyour egyéni szervezeti Egységet. Kattintson a jobb gombbal a hello csoportházirend-Objektumot, és kattintson a **szerkesztése...**  hello menüből.
 
     ![Az újonnan létrehozott GPO](./media/active-directory-domain-services-admin-guide/gp-gpo-created.png)
-4. Az újonnan létrehozott csoportházirend-objektum használatával testre szabhatja a **Csoportházirendkezelés-szerkesztő**.
+4. Hello az újonnan létrehozott csoportházirend-objektum hello segítségével testre szabható **Csoportházirendkezelés-szerkesztő**.
 
     ![Új csoportházirend-objektum testreszabása](./media/active-directory-domain-services-admin-guide/gp-customize-gpo.png)
 
@@ -123,6 +123,6 @@ További információk [Csoportházirend kezelése konzol](https://technet.micro
 
 ## <a name="related-content"></a>Kapcsolódó tartalom
 * [Azure AD tartományi szolgáltatások – első lépések útmutató](active-directory-ds-getting-started.md)
-* [Windows Server virtuális gép csatlakoztatása az Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
+* [Csatlakozás egy Windows Server virtuális gép tooan Azure AD tartományi szolgáltatások által felügyelt tartományokhoz](active-directory-ds-admin-guide-join-windows-vm.md)
 * [Azure AD tartományi szolgáltatások által kezelt tartomány felügyelete](active-directory-ds-admin-guide-administer-domain.md)
 * [Csoportházirend kezelése konzol](https://technet.microsoft.com/library/cc753298.aspx)

@@ -1,0 +1,5 @@
+## <a name="pricing"></a>Díjszabás
+
+Az Azure Batch szolgáltatás szabad szolgáltatás; nem hello magát a Batch-fiókhoz tartozó számítjuk fel. Hello az alapul szolgáló a kötegelt megoldások használó Azure számítási erőforrásokat, valamint a hello erőforrások használatának más szolgáltatások, a munkaterhelések futtatásakor van szó. Például van szó, a hello számítási csomópontok (VM) a készletek és tárolja az Azure Storage bemeneti vagy kimeneti a tevékenységek hello adatok. Ehhez hasonlóan hello használatakor [alkalmazáscsomagok](../articles/batch/batch-application-packages.md) szolgáltatás köteg, van szó, a hello Azure Storage-erőforrások az alkalmazáscsomagok tárolására szolgál. További információkért lásd: [Batch-díjszabás](https://azure.microsoft.com/pricing/details/batch/).
+
+[Kis prioritású virtuális gépek](../articles/batch/batch-low-pri-vms.md) jelentősen csökkentheti a kötegelt munkaterhelések hello költségét. További információkért az alacsony prioritású virtuális gépek árképzéséről lásd: [Batch-díjszabás](https://azure.microsoft.com/pricing/details/batch/). 
