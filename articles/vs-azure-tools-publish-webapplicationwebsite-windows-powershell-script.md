@@ -1,6 +1,6 @@
 ---
-title: "(A Windows PowerShell-parancsfájl) közzététele-WebApplicationWebSite |} Microsoft Docs"
-description: "Ismerje meg, hogy egy webes projekt közzététele egy Azure-webhelyen. Ezt a parancsfájlt a szükséges erőforrásokat az Azure-előfizetése hoz létre, ha azok még nem léteznek."
+title: "(a Windows PowerShell-parancsfájl) aaaPublish-WebApplicationWebSite |} Microsoft Docs"
+description: "Ismerje meg, hogyan toopublish egy webes projekt tooan Azure-webhelyen. Ez a parancsfájl hello szükséges erőforrások az Azure-előfizetése hoz létre, ha azok még nem léteznek."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 07d21b7ce6cd8aee1cff704d316e7a2ca8c00437
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d46904e30e3c2e040e57888fa31543e8e366527f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-webapplicationwebsite-windows-powershell-script"></a>(A Windows PowerShell-parancsfájl) közzététele-WebApplicationWebSite
 ## <a name="syntax"></a>Szintaxis
-A webes projekt közzététele egy Azure-webhelyen. A parancsfájl a szükséges erőforrásokat az Azure-előfizetése hoz létre, ha azok még nem léteznek.
+Közzéteszi a webes projekt tooan Azure-webhelyen. hello parancsfájl hello szükséges erőforrások az Azure-előfizetése hoz létre, ha azok még nem léteznek.
 
     Publish-WebApplicationWebSite
     –Configuration <configuration>
@@ -34,69 +34,69 @@ A webes projekt közzététele egy Azure-webhelyen. A parancsfájl a szükséges
 
 
 ## <a name="configuration"></a>Konfiguráció
-A JSON-konfigurációs fájlt, amely leírja a központi telepítés részleteinek elérési útja.
+hello elérési toohello JSON-konfigurációs fájlt, amely hello hello központi telepítés részleteit ismerteti.
 
 | Paraméter | Alapértelmezett érték |
 | --- | --- |
 | Aliasok |Egyik sem |
-| Kötelező megadni? |Igaz |
+| Kötelező? |Igaz |
 | Beosztás |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
 | Helyettesítő karakterek elfogadása? |hamis |
 
 ## <a name="subscriptionname"></a>SubscriptionName
-Az Azure-előfizetés, amelyet a webhely neve.
+hello hello Azure-előfizetést, amelyet szeretne toocreate hello webhely neve.
 
 | Paraméter | Alapértelmezett érték |
 | --- | --- |
 | Aliasok |Egyik sem |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Beosztás |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
 | Helyettesítő karakterek elfogadása? |hamis |
 
 ## <a name="webdeploypackage"></a>WebDeployPackage
-A webhelyen közzétenni a webes telepítési csomag elérési útja. Ezt a csomagot a Visual Studio webhely közzététele varázsló használatával hozhat létre. További információkért lásd: [Ismerkedés az Azure felhőalapú szolgáltatásairól és ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089).
+hello elérési toohello webes telepítési csomag toopublish toohello webhelyet. Ezt a csomagot a Visual Studio hello webhely közzététele varázsló használatával hozhat létre. További információkért lásd: [Ismerkedés az Azure felhőalapú szolgáltatásairól és ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089).
 
 | Paraméter | Alapértelmezett érték |
 | --- | --- |
 | Aliasok |Egyik sem |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Beosztás |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
 | Helyettesítő karakterek elfogadása? |hamis |
 
 ## <a name="databaseserverpassword"></a>DatabaseServerPassword
-A felhasználónevet és jelszót az SQL-adatbázis, az Azure-ban.
+hello felhasználónév és jelszó hello SQL-adatbázis az Azure-ban.
 
 | Paraméter | Alapértelmezett érték |
 | --- | --- |
 | Aliasok |Egyik sem |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Beosztás |nevű |
 | Alapértelmezett érték |Egyik sem |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
 | Helyettesítő karakterek elfogadása? |hamis |
 
 ## <a name="sendhostmessagestooutput"></a>SendHostMessagesToOutput
-Amennyiben az értéke igaz, a nyomtató érkező üzenetek a parancsfájl a kimeneti adatfolyamba.
+Igaz értéke esetén a nyomtatási üzeneteit hello parancsfájl toohello kimeneti adatfolyam.
 
 | Paraméter | Alapértelmezett érték |
 | --- | --- |
 | Aliasok |Egyik sem |
-| Kötelező megadni? |hamis |
+| Kötelező? |hamis |
 | Beosztás |nevű |
 | Alapértelmezett érték |hamis |
 | Fogadja el a feldolgozási sor beviteli? |hamis |
 | Helyettesítő karakterek elfogadása? |hamis |
 
 ## <a name="remarks"></a>Megjegyzések
-A parancsfájl használata létrehozásához teljes leírását fejlesztési és tesztkörnyezetek, lásd: [Windows PowerShell parancsfájlok használata a közzététel a fejlesztési és tesztkörnyezetek](vs-azure-tools-publishing-using-powershell-scripts.md).
+Hogyan toouse hello parancsfájl toocreate fejlesztési és tesztkörnyezetek: teljes leírását [Windows PowerShell-parancsfájlok használatával tooPublish tooDev és a tesztkörnyezetek](vs-azure-tools-publishing-using-powershell-scripts.md).
 
-A JSON-konfigurációs fájl meghatározza, hogy mit telepítendő részletes adatait. Ez magában foglalja a projekt, például a nevét, és a felhasználónév, a webhely létrehozásakor megadott adatokat. Is az adatbázis rendelkezésre, ha van ilyen. A következő kód bemutatja egy példa JSON-konfigurációs fájlt:
+hello JSON-konfigurációs fájlt határozza meg, hogy mit telepített toobe hello részletei. Ez magában foglalja a hello projekt, például hello nevét és a felhasználónév hello webhely létrehozásakor megadott hello adatokat. Is hello adatbázis tooprovision, ha van ilyen. a következő kód hello látható egy példa JSON-konfigurációs fájlt:
 
     {
         "environmentSettings": {
@@ -120,7 +120,7 @@ A JSON-konfigurációs fájl meghatározza, hogy mit telepítendő részletes ad
         }
     }
 
-Szerkesztheti a JSON-konfigurációs fájl módosítása, hogy telepítve van. A webhely szakaszban szükség, de az adatbázis szakaszban nem kötelező megadni.
+Szerkesztheti a hello JSON konfigurációs fájl toochange telepítve van. A webhely szakaszban szükség, de hello adatbázis szakasz nem kötelező megadni.
 
 ## <a name="next-steps"></a>Következő lépések
 További információkért lásd: [Publish-WebApplicationVM (a Windows PowerShell-parancsfájl)](vs-azure-tools-publish-webapplicationvm.md)

@@ -1,6 +1,6 @@
 ---
-title: "A több szolgáltatáskonfiguráció használata Azure-projekt konfigurálása |} Microsoft Docs"
-description: "Útmutató az Azure-felhőszolgáltatás-projekt konfigurálása a ServiceDefinition.csdef és ServiceConfiguration.cscfg fájlok módosításával."
+title: "aaaConfiguring az Azure-projekt használatával több szolgáltatáskonfiguráció |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure az Azure felhőalapú hello ServiceDefinition.csdef és ServiceConfiguration.cscfg fájlok módosításával projektet."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,95 +14,95 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: deb69101e855bcad56b9212736c52ace72631f0a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 14222266093eb876db0ac9ce8d3d17a04c65d1a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-your-azure-project-using-multiple-service-configurations"></a>A több szolgáltatáskonfiguráció használata Azure-projekt konfigurálása
-Egy Azure-felhőszolgáltatás-projekt tartalmazza a két konfigurációs fájlok: ServiceDefinition.csdef és ServiceConfiguration.cscfg. Ezeket a fájlokat az Azure cloud service alkalmazással csomagolva, és az Azure-bA telepítve.
+Egy Azure-felhőszolgáltatás-projekt tartalmazza a két konfigurációs fájlok: ServiceDefinition.csdef és ServiceConfiguration.cscfg. Ezeket a fájlokat az Azure cloud service alkalmazással vannak csomagolva, és tooAzure telepíthetők.
 
-* A **ServiceDefinition.csdef** fájl tartalmazza a metaadatokat, amelyek szükségesek az Azure a felhő szolgáltatásalkalmazás, milyen szerepkörök tartalmaz, beleértve a követelményeket. Ez a fájl is tartalmazza az összes példányára vonatkozó konfigurációs beállításokat. Ezeket a konfigurációs beállításokat az Azure szolgáltatást üzemeltető futásidejű API-val futásidőben olvasható. Ez a fájl nem frissíthető, miközben fut a szolgáltatás az Azure-ban.
-* A **ServiceConfiguration.cscfg** fájl értékek beállítása a a szolgáltatásdefiníciós fájlban meghatározott konfigurációs beállítás, és az egyes szerepkörökhöz futtatásához példányok számát adja meg. Ez a fájl frissíthető az Azure-ban a felhőalapú szolgáltatás futása közben.
+* Hello **ServiceDefinition.csdef** fájl hello hello követelményeinek a felhő szolgáltatásalkalmazás, milyen szerepkörök tartalmaz, beleértve az Azure-környezetéhez szükséges hello metaadatokat tartalmaz. Ez a fájl is tooall példányok vonatkozó konfigurációs beállításokat tartalmaz. Ezeket a konfigurációs beállításokat futásidőben hello Azure szolgáltatást üzemeltető futásidejű API használatával olvasható. Ez a fájl nem frissíthető, miközben fut a szolgáltatás az Azure-ban.
+* Hello **ServiceConfiguration.cscfg** fájl értékek beállítása hello szolgáltatásdefiníciós fájlban meghatározott hello beállításokat, és az egyes szerepkörökhöz példányok toorun hello számát adja meg. Ez a fájl frissíthető az Azure-ban a felhőalapú szolgáltatás futása közben.
 
-A Microsoft Visual Studio Azure eszközei tulajdonságlapjain, melyekkel a fájlokban tárolt konfigurációs beállítások megadásához adjon meg. A tulajdonságlapok, kattintson duplán a szerepkör hivatkozás alatt az Azure cloud service projektben a Megoldáskezelőre, vagy kattintson a jobb gombbal a szerepkör hivatkozás és válassza a **tulajdonságok**, az alábbi ábrán látható módon.
+hello Azure eszközök a Microsoft Visual Studio használható tooset konfigurációs beállításokat a fájlokban tárolt tulajdonságlapokat adja meg. tooaccess hello tulajdonságlapjain, kattintson duplán a hello szerepkör hivatkozás alatti hello Azure cloud service projektben a Megoldáskezelőre, vagy hello szerepkör hivatkozás gombbal és válassza **tulajdonságok**, ahogy az ábra a következő hello.
 
 ![VS_Solution_Explorer_Roles_Properties](./media/vs-azure-tools-multiple-services-project-configurations/IC784076.png)
 
-A szolgáltatásdefiníció és a szolgáltatás konfigurációs fájljait az alapul szolgáló sémák kapcsolatos információkért tekintse meg a [Sémareferenciája](https://msdn.microsoft.com/library/azure/dd179398.aspx). Szolgáltatás konfigurációjával kapcsolatos további információkért lásd: [felhőalapú szolgáltatások konfigurálása](cloud-services/cloud-services-how-to-configure.md).
+Az alapul szolgáló definiált hello szolgáltatás és konfigurációs fájlok sémái hello kapcsolatos információkért lásd: hello [Sémareferenciája](https://msdn.microsoft.com/library/azure/dd179398.aspx). Szolgáltatás konfigurációjával kapcsolatos további információkért lásd: [tooConfigure Cloud Services](cloud-services/cloud-services-how-to-configure.md).
 
 ## <a name="configuring-role-properties"></a>Szerepkör tulajdonságainak konfigurálása
-A webes és feldolgozói szerepkörök tulajdonságlapokat hasonlítanak, habár van néhány különbség, jelölt az alábbi szakaszokban található.
+a webes és feldolgozói szerepkörök hello tulajdonságlapokat hasonlítanak, habár van néhány különbség, a következő részekben hello ki emelni.
 
-Az a **gyorsítótárazását** lapon konfigurálhatja az Azure szolgáltatások gyorsítótárazását.
+A hello **gyorsítótárazását** lapon konfigurálhatja hello Azure gyorsítótárazás a szolgáltatásokat.
 
 ### <a name="configuration-page"></a>Konfiguráció lap
-Az a **konfigurációs** lapon állíthatja be ezeket a tulajdonságokat:
+A hello **konfigurációs** lapon állíthatja be ezeket a tulajdonságokat:
 
 **Példányok**
 
-Állítsa be a **példány** száma a szolgáltatás fusson a szerepkör-példányok száma tulajdonságot.
+Set hello **példány** számolja tulajdonság toohello példányok hello szolgáltatást futtatni ehhez a szerepkörhöz.
 
-Állítsa be a **Virtuálisgép-méretet** tulajdonságot **Extra Small**, **kis**, **Közepes**, **nagy**, vagy **Extra nagy**.  További információkért lásd: [Felhőszolgáltatások mérete](cloud-services/cloud-services-sizes-specs.md).
+Set hello **Virtuálisgép-méretet** tulajdonság túl**Extra Small**, **kis**, **Közepes**, **nagy**, vagy **Extra nagy**.  További információkért lásd: [Felhőszolgáltatások mérete](cloud-services/cloud-services-sizes-specs.md).
 
 **Indítási műveletet** (csak webes szerepkör)
 
-Ez a tulajdonság adja meg, hogy a Visual Studio minden kell elindítani a webböngészőt a HTTP-végpontokról vagy a HTTPS-végpontnak, vagy mindkét, hibakereső indításakor beállítása.
+Állítsa be a tulajdonság toospecify, amely a Visual Studio kell elindítani a webböngészőt végpontok hello HTTP vagy HTTPS-végpontnak hello, vagy mindkét, ha a hibakeresés elindításához.
 
-A HTTPS-végpont lehetőség áll rendelkezésre, csak akkor, ha a HTTPS-végpont már meghatározta a szerepkör. A HTTPS-végpontnak meghatározhatja a **végpontok** tulajdonságlapján.
+hello HTTPS-végpont lehetőség áll rendelkezésre, csak akkor, ha a HTTPS-végpont már meghatározta a szerepkör. Meghatározhatja a HTTPS-végpontnak a hello **végpontok** tulajdonságlapján.
 
-Ha már hozzáadta a HTTPS-végpontnak, a HTTPS-végpont beállítás alapértelmezés szerint engedélyezve van, és a Visual Studio fog elindít egy böngészőt, ezen a végponton, hibakeresés, mellett a böngészőt a HTTP-végpont indítása. A parancs feltételezi, hogy engedélyezve vannak-e a mindkét indítási lehetőséget.
+Már felvett HTTPS-végpontnak, hello HTTPS-végpont beállítás alapértelmezés szerint engedélyezve van, és a Visual Studio fog elindít egy böngészőt, ezen a végponton, hibakeresés, továbbá a HTTP-végpont tooa böngésző indításakor. A parancs feltételezi, hogy engedélyezve vannak-e a mindkét indítási lehetőséget.
 
 **Diagnosztika**
 
-A webes szerepkör alapértelmezés szerint engedélyezve van a diagnosztika. Az Azure-felhőbe projekt- és tárolási szolgáltatásfiókot a helyi storage emulator használata van beállítva. Ha készen áll az Azure telepítéséhez, kiválaszthatja a jelentéskészítő gombra (**...** ) frissítésére a tárfiókot az Azure storage a felhőben. A diagnosztikai adatok vihetők át a tárolási fiók, az igény szerinti vagy automatikusan rendszeres időközönként. Az Azure diagnostics kapcsolatos további információkért lásd: [diagnosztika engedélyezésével az Azure Cloud Services és a virtuális gépek](cloud-services/cloud-services-dotnet-diagnostics.md).
+Hello webes szerepkör alapértelmezés szerint engedélyezve van a diagnosztika. Azure cloud service-projekt hello és a tárfiók toouse hello helyi storage emulator van beállítva. Amikor készen áll a toodeploy tooAzure, kiválaszthatja a hello jelentéskészítő gomb (**...** ) tooupdate hello tárolási fiók toouse hello felhőben az Azure storage. Hello diagnosztikai adatok toohello tárfiók vihetők át, az igény szerinti vagy automatikusan rendszeres időközönként. Az Azure diagnostics kapcsolatos további információkért lásd: [diagnosztika engedélyezésével az Azure Cloud Services és a virtuális gépek](cloud-services/cloud-services-dotnet-diagnostics.md).
 
 ## <a name="settings-page"></a>Beállítások lap
-Az a **beállítások** lap, a szolgáltatás konfigurációs beállítások is hozzáadhat. Konfigurációs beállítások olyan név-érték párok. A szerepkör futó elolvashatják által biztosított osztályokat futásidőben a konfigurációs beállítások értékének a [Azure felügyelt kódtár](http://go.microsoft.com/fwlink?LinkID=171026). Pontosabban a [GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx) metódus egy elnevezett konfigurációs beállítás futásidőben értékét adja vissza.
+A hello **beállítások** lap, a szolgáltatás konfigurációs beállítások is hozzáadhat. Konfigurációs beállítások olyan név-érték párok. Hello szerepkörben futó tudja olvasni a konfigurációs beállításokat futásidőben hello által biztosított osztályokat hello értékek [Azure felügyelt kódtár](http://go.microsoft.com/fwlink?LinkID=171026). Pontosabban hello [GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx) metódus egy elnevezett konfigurációs beállítás futásidőben hello értékét adja vissza.
 
-### <a name="configuring-a-connection-string-to-a-storage-account"></a>A tárfiók kapcsolati karakterláncának konfigurálása
-A kapcsolati karakterlánc egy konfigurációs beállítás, a storage Emulator vagy az Azure-tárfiók kapcsolati és hitelesítési adatokat biztosító. Amikor a kódot kell érheti el az Azure storage szolgáltatások adatait – Ez azt jelenti, hogy a blob, a várólista vagy a tábla adatai – egy szerepkörben futó, akkor határozza meg, hogy a tárfiók kapcsolati karakterláncot.
+### <a name="configuring-a-connection-string-tooa-storage-account"></a>A kapcsolati karakterlánc tooa storage-fiókok konfigurálása
+A kapcsolati karakterlánc egy konfigurációs beállítás hello storage Emulator vagy az Azure-tárfiók kapcsolati és hitelesítési adatokat biztosító. Amikor a kódot kell érheti el az Azure storage szolgáltatások adatait – Ez azt jelenti, hogy a blob, a várólista vagy a tábla adatai – egy szerepkörben futó, hogy toodefine, hogy a tárfiók kapcsolati karakterláncot.
 
-A kapcsolati karakterlánc, amely egy Azure-tárfiókra mutat egy meghatározott formátumot kell követnie. Kapcsolati karakterláncok létrehozásával kapcsolatos további információkért lásd: [konfigurálása Azure Storage kapcsolati karakterláncok](storage/common/storage-configure-connection-string.md).
+Egy kapcsolati karakterláncot, amely az Azure storage-fiók tooan mutat a definiált formátumot kell követnie. További információ toocreate kapcsolati karakterláncok, lásd: [konfigurálása Azure Storage kapcsolati karakterláncok](storage/common/storage-configure-connection-string.md).
 
-Amikor készen áll az Azure storage szolgáltatásainak szemben a szolgáltatás tesztelése, vagy amikor készen áll a felhőalapú szolgáltatás üzembe helyezése az Azure-ba, módosíthatja bármilyen kapcsolati karakterláncok az Azure storage-fiók mutasson értékét. Válassza ki (**...** ) elemre, jelölje be **adja meg a tárfiók hitelesítő adatainak**. Adja meg a fiók adatait, amely tartalmazza a fiók nevét és a fiókkulcsot. Az a **tárolási fiók kapcsolati karakterlánc** párbeszédpanelen adhatja is meg, hogy kívánja-e az alapértelmezett HTTPS-végpontnak (az alapértelmezett beállítás), a HTTP-végpontokról alapértelmezett vagy egyéni végpontokat. Előfordulhat, hogy kívánja használni az egyéni végpontok Ha egy egyéni tartománynevet a szolgáltatásra regisztrált leírtak [blob adatok egyéni tartománynév beállítása az Azure-tárfiók](storage/blobs/storage-custom-domain-name.md).
+Amikor a rendszer készen áll a tootest elleni hello Azure storage szolgáltatások a szolgáltatás, vagy ha kész toodeploy a felhőalapú szolgáltatás tooAzure, módosíthatja bármilyen kapcsolati karakterláncok toopoint tooyour Azure storage-fiók hello értékének. Válassza ki (**...** ) elemre, jelölje be **adja meg a tárfiók hitelesítő adatainak**. Adja meg a fiók adatait, amely tartalmazza a fiók nevét és a fiókkulcsot. A hello **tárolási fiók kapcsolati karakterlánc** párbeszédpanelen is jelezheti, hogy kívánja-e toouse hello alapértelmezett HTTPS-végpontnak (hello alapértelmezett beállítás), HTTP-végpontokról hello alapértelmezett vagy egyéni végpontokat. Dönthet úgy, hogy toouse egyéni végpontokat Ha egy egyéni tartománynevet a szolgáltatásra regisztrált leírtak [blob adatok egyéni tartománynév beállítása az Azure-tárfiók](storage/blobs/storage-custom-domain-name.md).
 
 > [!IMPORTANT]
-> Módosítania kell a kapcsolati karakterláncok az Azure-tárfiók mutassanak, a szolgáltatás telepítése előtt. Ha ezt elmulasztja, ez a szerepkör nem fog elindulni, vagy a inicializálása, foglalt és leállítása állapota okozhat.
+> A szolgáltatás telepítése előtt módosítania kell a kapcsolati karakterláncok toopoint tooan Azure storage-fiók. Toodo hiányában ez a szerepkör nem toostart azt okozhatja, vagy toocycle keresztül hello inicializálása, foglalt és leállítása állapotok.
 > 
 > 
 
 ## <a name="endpoints-page"></a>Végpontok lap
-A feldolgozói szerepkör több HTTP, HTTPS vagy TCP-végpontok is rendelkezhetnek. Végpontok lehetnek a bemeneti végpontok, amelyek külső ügyfelek számára elérhető, vagy a belső végpontok, a szolgáltatásban futó egyéb szerepkörök számára elérhető.
+A feldolgozói szerepkör több HTTP, HTTPS vagy TCP-végpontok is rendelkezhetnek. Végpontok lehetnek a bemeneti végpontok, amelyek elérhető tooexternal ügyfelek, vagy a belső végpontok, amelyek elérhető tooother hello szolgáltatásban futó szerepkörök.
 
-* Egy HTTP-végpont elérhető külső ügyfelek és a böngészők, módosítsa a végpont típusát a felhasználótól, és adjon meg egy nevet és egy nyilvános port számát.
-* Ha HTTPS-végpontnak szeretné elérhetővé tenni külső ügyfelek és a böngészők, a végpont típusának módosítása **bemeneti**, és adjon meg egy nevet, egy nyilvános port számát és a felügyeleti tanúsítvány nevét.
+* toomake HTTP-végpont elérhető tooexternal ügyfelek és a böngészők, módosítsa a hello végpont típusa tooinput, és adjon meg egy nevet és egy nyilvános port számát.
+* egy HTTPS toomake végpont elérhető tooexternal ügyfelek és a böngészők, módosítsa hello végponttípus túl**bemeneti**, és adjon meg egy nevet, egy nyilvános port számát és a felügyeleti tanúsítvány nevét.
   
-    Vegye figyelembe, hogy előtt meg lehet adni egy felügyeleti tanúsítványt meg kell adni a tanúsítvány a a **tanúsítványok** tulajdonságlapján.
-* A végpont belső hozzáférés elérhetővé teszi a felhőszolgáltatásban található más szerepkörök, belső végpont típusának módosítása, és adja meg egy nevet és a lehetséges titkos portok ezen a végponton.
+    Vegye figyelembe, hogy előtt meg lehet adni egy felügyeleti tanúsítványt meg kell adni hello tanúsítványt a hello **tanúsítványok** tulajdonságlapján.
+* más szerepkörök hello felhőalapú szolgáltatás, a belső hozzáféréshez elérhető végpontok toomake hello végpont típusa toointernal módosítsa, majd adjon meg egy nevet és lehetséges titkos portok ezen a végponton.
 
 ## <a name="local-storage-page"></a>Helyi tároló lap
-Használhatja a **helyi tároló** tulajdonságlapján egy vagy több szerepkör helyi tároló-erőforrásokat lefoglalni. A helyi tároló egyik erőforrásához egy fenntartott könyvtárat az Azure virtuális gép szerepkör példánya fut. a fájlrendszerben.
+Hello használható **helyi tároló** tulajdonság lap tooreserve egy vagy több helyi tároló-erőforrások szerepkör. A helyi tároló egyik erőforrásához egy fenntartott könyvtárat a hello fájlrendszerében hello Azure virtuális gép szerepkör példánya fut. a.
 
 ## <a name="certificates-page"></a>Tanúsítványok lap
-Az a **tanúsítványok** lapon tanúsítványok a szerepkörhöz is hozzárendelhető. A hozzáadott tanúsítványok segítségével konfigurálja a HTTPS-végpontnak a **végpontok** tulajdonságlapján.
+A hello **tanúsítványok** lapon tanúsítványok a szerepkörhöz is hozzárendelhető. a HTTPS-végpontnak a hello lehet használt tooconfigure hozzáadott hello tanúsítványok **végpontok** tulajdonságlapján.
 
-A **tanúsítványok** tulajdonságlapján hozzáadja a tanúsítványokkal kapcsolatos adatokat a szolgáltatás konfigurációját. Vegye figyelembe, hogy a tanúsítványok nem vannak csomagolva az szolgáltatással; fel kell tölteni a tanúsítványok külön Azure keresztül a [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885).
+Hello **tanúsítványok** tulajdonságlapján hozzáadja a tanúsítványok tooyour szolgáltatás konfigurációjának adatait. Vegye figyelembe, hogy a tanúsítványok nem vannak csomagolva az szolgáltatással; a tanúsítványok külön-külön kell feltöltenie keresztül hello tooAzure [a klasszikus Azure portálon](http://go.microsoft.com/fwlink/?LinkID=213885).
 
-Egy tanúsítványt a szerepkörrel társítani, adja meg a tanúsítvány nevét. Ez a név segítségével tekintse meg a tanúsítványt a HTTPS-végpontnak konfigurálásakor a **végpontok** tulajdonságlapján. Ezt követően adja meg, hogy a tanúsítványtároló **helyi számítógép** vagy **aktuális felhasználó** és a tároló neve. Végül adja meg a tanúsítvány ujjlenyomatát. Ha a tanúsítvány a jelenlegi User\Personal (a) tároló, a a tanúsítvány ujjlenyomata a tanúsítvány kijelölésével adatokat tartalmazó listát is megadhatja. Bármely más helyen található, adja meg kézzel az ujjlenyomat értékét.
+a szerepkör tanúsítvány tooassociate nevezze el a hello tanúsítványt. A név toorefer toohello tanúsítványt használ, HTTPS-végpontnak hello konfigurálásakor **végpontok** tulajdonságlapján. Ezt követően adja meg, hogy hello tanúsítványtároló **helyi számítógép** vagy **aktuális felhasználó** és hello tároló hello neve. Végül adja meg a hello tanúsítvány ujjlenyomata. Ha hello tanúsítványt az aktuális User\Personal hello (a) tároló, a hello tanúsítvány ujjlenyomata hello tanúsítványt választja adatokat tartalmazó listát is megadhatja. Bármely más helyen található, adja meg kézzel hello ujjlenyomat értékét.
 
-Amikor egy tanúsítványt a tanúsítványtárolóból, összes köztes tanúsítvány automatikusan a konfigurációs beállításokat. A köztes tanúsítványok is fel kell tölteni, az Azure-bA a szolgáltatás az SSL megfelelő konfigurálásához.
+Tanúsítvány hello tanúsítványtárolóból hozzáadásakor összes köztes tanúsítvány automatikusan toohello konfigurációs beállításokat. A köztes tanúsítványok is fel kell tölteni a rendelés toocorrectly tooAzure konfigurálása a szolgáltatás az SSL-hez.
 
-Bármely felügyeleti tanúsítványok társítani a szolgáltatás csak akkor, amikor a felhőben fut a szolgáltatás vonatkozik. Ha a szolgáltatás fut a helyi fejlesztési környezetben, azt a compute emulator által kezelt szabványos tanúsítványt használ.
+Bármely felügyeleti tanúsítványok társítani a szolgáltatás tooyour szolgáltatás alkalmazása, csak akkor, amikor fut hello felhőben. Ha a szolgáltatás hello helyi fejlesztési környezetben fut, az hello compute emulator által kezelt szabványos tanúsítványt használ.
 
-## <a name="configuring-the-azure-cloud-service-project"></a>Az Azure-felhőszolgáltatás-projekt konfigurálása
-Egy teljes Azure-felhőszolgáltatás-projekt vonatkozó beállítások konfigurálásához először megnyitja a helyi menü az adott projekt csomópont, és majd kattintson a Tulajdonságok parancsra nyissa meg a tulajdonságait tartalmazó oldalakon. Az alábbi táblázat a weblapokat meglátogató tulajdonság.
+## <a name="configuring-hello-azure-cloud-service-project"></a>Hello Azure cloud service-projekt konfigurálása
+tooconfigure beállítások tooan teljes Azure-felhőszolgáltatás-projekt, először megnyitja hello helyi menü az adott projekt csomópont, és a majd tulajdonságok tooopen a tulajdonságait tartalmazó oldalakon. a következő táblázat hello tulajdonság weblapokat meglátogató jeleníti meg.
 
 | Tulajdonságlap. | Leírás |
 | --- | --- |
-| Alkalmazás |Ezen a lapon, amely a felhőszolgáltatás-projekt használja, és frissítheti az eszközök aktuális verziójának Azure eszközök verziója információt jeleníthet meg. |
+| Alkalmazás |Ezen a lapon a felhőszolgáltatás-projekt használó Azure eszközök hello verziójával kapcsolatos információk megjelenítése, és frissítheti a hello eszközök toohello jelenlegi verziójával. |
 | Események létrehozása |Ezen a lapon megadhatja előtti és utáni események. |
-| Fejlesztés |Ezen a lapon adhat meg build-konfigurációs utasításokról és a feltételeket, amely alatt a utáni eseményeket futnak. |
-| Web |Ezen a lapon konfigurálhatja a webkiszolgálóra vonatkozó beállításokat. |
+| Fejlesztés |Ezen a lapon adhat meg build-konfigurációs utasításokat és hello feltételek, amely alatt a utáni eseményeket futnak. |
+| Web |Ezen a lapon konfigurálhatja a webkiszolgáló toohello a szoftverközponthoz kapcsolódó beállításokat. |
 

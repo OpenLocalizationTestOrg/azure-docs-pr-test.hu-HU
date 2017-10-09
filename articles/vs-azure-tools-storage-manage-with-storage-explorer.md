@@ -1,5 +1,5 @@
 ---
-title: "Ismerkedés a Tártallózó alkalmazással (előzetes verzió) | Microsoft Docs"
+title: "a Tártallózó (előzetes verzió) használatába aaaGet |} Microsoft Docs"
 description: "Azure tárerőforrások kezelése a Tártallózó alkalmazással (előzetes verzió)"
 services: storage
 documentationcenter: na
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/17/2017
 ms.author: kraigb
-ms.openlocfilehash: 1794a86a4185d587cf184a1f61a5720e2ab65e92
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57737b51baace92858eb07c7dbc3139bd7e041f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-storage-explorer-preview"></a>Ismerkedés a Tártallózó alkalmazással (előzetes verzió)
 ## <a name="overview"></a>Áttekintés
-Az Azure Tártallózó (előzetes verzió) egy különálló alkalmazás, amelynek segítségével egyszerűen dolgozhat Azure Storage-adatokkal Windows, macOS és Linux rendszereken. Ebben a cikkben megismerheti az Azure Storage-fiókok csatlakoztatásának és kezelésének különféle módjait.
+Az Azure Tártallózó (előzetes verzió) egy különálló alkalmazás, amely lehetővé teszi tooeasily dolgozhat Azure Storage-adatokkal Windows, a macOS és a Linux. Ebből a cikkből megismerheti hello csatlakozás az Azure storage-fiókok kezelése tooand különféle módjait.
 
 ![Microsoft Azure Tártallózó (előzetes verzió)][15]
 
 ## <a name="prerequisites"></a>Előfeltételek
 * [A Tártallózó (előzetes verzió) letöltése és telepítése](http://www.storageexplorer.com)
 
-## <a name="connect-to-a-storage-account-or-service"></a>Csatlakozás egy tárfiókhoz vagy -szolgáltatáshoz
-A Tártallózó (előzetes verzió) számos különféle módot kínál a tárfiókokhoz való csatlakozáshoz. Megteheti például a következőt:
-* Csatlakozhat az Azure-előfizetéséhez kapcsolt tárfiókokhoz.
-* Csatlakozhat olyan tárfiókokhoz és szolgáltatásokhoz, amelyek más Azure-előfizetésekből vannak megosztva.
-* Csatlakozhat egy helyi tárolóhoz az Azure Storage Emulator használatával, és kezelheti azt. 
+## <a name="connect-tooa-storage-account-or-service"></a>Csatlakozás tooa tárfiók vagy szolgáltatás
+A Tártallózó (előzetes verzió) számos lehetőséget biztosít tooconnect toostorage fiókok. Megteheti például a következőt:
+* Csatlakozás az Azure-előfizetésekkel társított toostorage fiókokat.
+* Csatlakoztatja a toostorage fiókokat és szolgáltatásokat, megosztott a többi Azure-előfizetések.
+* Csatlakozás tooand helyi tárterület kezelése hello Azure Storage Emulator használatával. 
 
 Emellett használhatja a tárfiókokat a globális és az országos Azure-ban:
 
-* [Csatlakozás Azure-előfizetéshez](#connect-to-an-azure-subscription): Az Azure-előfizetéséhez tartozó tárolási erőforrások kezelése.
-* [Munkavégzés helyi fejlesztési tárterülettel](#work-with-local-development-storage): Helyi tárterület kezelése az Azure Storage Emulator használatával.
-* [Külső tárterület csatolása](#attach-or-detach-an-external-storage-account): Más Azure-előfizetések vagy az országos Azure-felhők alá tartozó tárolási erőforrások kezelése a tárfiók fióknevének, kulcsának és végpontjainak használatával.
-* [Tárfiók csatolása SAS használatával](#attach-storage-account-using-sas): Más Azure-előfizetések alá tartozó tárolási erőforrások kezelése közös hozzáférésű jogosultságkód (SAS) használatával.
-* [Szolgáltatás csatolása SAS használatával](#attach-service-using-sas): Más Azure-előfizetések alá tartozó adott tárolási szolgáltatás (blob tároló, üzenetsor vagy tábla) kezelése SAS használatával.
+* [Csatlakozás Azure-előfizetés tooan](#connect-to-an-azure-subscription): tooyour Azure-előfizetéséhez tartozó tárolási erőforrások kezelése.
+* [Helyi fejlesztési tárolási együttműködve](#work-with-local-development-storage): helyi tárterület kezelése hello Azure Storage Emulator használatával.
+* [Tooexternal tárolási csatolása](#attach-or-detach-an-external-storage-account): tooanother Azure-előfizetéséhez tartozó tárolási erőforrások kezelése vagy a nemzeti Azure felhők hello tárolási fiók nevét, a kulcs és a végpontok segítségével.
+* [A storage-fiók csatolása a SAS használatával](#attach-storage-account-using-sas): a közös hozzáférésű jogosultságkód (SAS) használatával tooanother Azure-előfizetéséhez tartozó tárolási erőforrások kezelése.
+* [Szolgáltatás csatolása a SAS használatával](#attach-service-using-sas): egy adott tárolási szolgáltatás (blob tároló, sor vagy tábla), amely tooanother Azure-előfizetés tartozik egy SAS használatával kezelheti.
 
-## <a name="connect-to-an-azure-subscription"></a>Csatlakozás Azure-előfizetéshez
+## <a name="connect-tooan-azure-subscription"></a>Csatlakozás Azure-előfizetés tooan
 > [!NOTE]
 > Ha nincs Azure-fiókja, [regisztráljon egy ingyenes próbaverzióra](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) vagy [aktiválhatja Visual Studio-előfizetése kiemelt előnyeit](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 >
@@ -53,39 +53,39 @@ Emellett használhatja a tárfiókokat a globális és az országos Azure-ban:
 
     ![Azure-fiók beállításai][0]
 
-2. A bal oldali ablaktábla megjeleníti az összes Microsoft-fiókot, amelybe bejelentkezett. Ha másik fiókhoz szeretne csatlakozni, válassza a **Fiók hozzáadása** lehetőséget, és az útmutatásokat követve jelentkezzen be egy olyan Microsoft-fiókkal, amely legalább egy aktív Azure-előfizetéssel társítva van.
+2. hello bal oldali ablaktáblán megjelennek azok összes hello Microsoft-fiókkal jelentkezett be. tooconnect tooanother fiókját, válassza **vegyen fel egy fiókot**, és kövesse a hello utasításokat toosign be legalább egy aktív Azure-előfizetéssel társított Microsoft-fiókkal.
 
     >[!NOTE]
-    >Jelenleg nem támogatott a csatlakozás az országos Azure felhőkhöz (mint az Azure Germany, az Azure Government vagy az Azure China bejelentkezéssel). Az országos Azure Storage-fiókokhoz való csatlakozással kapcsolatban lásd a „Külső tárfiók csatolása vagy leválasztása” szakaszt.
+    >Csatlakozás Azure (például a Németországi Azure Azure Government és bejelentkezési keresztül Azure Kína) toonational jelenleg nem támogatott. Lásd: hello "Attach vagy külső tárfiók leválasztása" szakaszban arról, hogyan tooconnect toonational Azure storage-fiókok.
 
-3. Amint sikeresen bejelentkezett egy Microsoft-fiókkal, a bal oldali ablaktáblán megjelenik a fiókhoz társított összes Azure-előfizetés. Válassza ki azt az Azure-előfizetést, amellyel dolgozni szeretne, majd válassza az **Alkalmaz** lehetőséget. (Az **Összes előfizetés** kiválasztásával kijelölheti az összes felsorolt Azure-előfizetést, vagy törölheti mindegyik jelölését.)
+3. Miután sikeresen bejelentkezett Microsoft-fiókkal, hello bal oldali ablaktáblán a telepítéskor hello fiókhoz társított Azure-előfizetések. Válassza ki az Azure-előfizetések, amelyek szeretné, hogy a toowork, és válassza hello **alkalmaz**. (Kiválasztásával **előfizetéseket** kiválasztásával vagy hello váltógombok felsorolt Azure-előfizetések.)
 
     ![Azure-előfizetések kiválasztása][3]  
-    A bal oldali ablaktábla megjeleníti a kiválasztott Azure-előfizetésekhez társított összes tárfiókot.
+    hello bal oldali panelen kiválasztott hello Azure-előfizetéssel társított tárfiókokat hello jeleníti meg.
 
     ![Kiválasztott Azure-előfizetések][4]
 
-## <a name="connect-to-an-azure-stack-subscription"></a>Csatlakozás Azure Stack-előfizetéshez
+## <a name="connect-tooan-azure-stack-subscription"></a>Csatlakozás tooan Azure verem előfizetés
 
-Az Azure Stack-előfizetéshez való csatlakozásról további információért lásd: [A Storage Explorer csatlakoztatása Azure Stack-előfizetéshez](azure-stack/azure-stack-storage-connect-se.md).
+Csatlakozás tooan Azure verem előfizetés kapcsolatos információkért lásd: [Tártallózó csatlakozás tooan Azure verem előfizetés](azure-stack/azure-stack-storage-connect-se.md).
 
 ## <a name="work-with-local-development-storage"></a>Munkavégzés helyi fejlesztési tárterülettel
-A Tártallózó (előzetes verzió) segítségével a helyi tárterületen is dolgozhat az Azure Storage Emulator használatával. Így anélkül is írhat kódot a tárterületre és tesztelheti azt, hogy szüksége lenne egy üzembe helyezett tárfiókra az Azure szolgáltatásban (mivel a tárfiókot az Azure Storage Emulator emulálja).
+A Tártallózó (előzetes verzió) használhat elleni helyi tároló hello Azure Storage Emulator használatával. Ez a megközelítés lehetővé teszi kódot a tárterületre és a vizsgálati tárolási írását nélkül feltétlenül egy tárfiókot, Azure-ban telepített mert hello tárfiók hello Azure Storage Emulator tárfiókra.
 
 > [!NOTE]
-> Az Azure Storage Emulator jelenleg kizárólag Windows rendszeren támogatott.
+> csak a Windows hello Azure Storage Emulator jelenleg támogatott.
 >
 >
 
-1. A Tártallózó (előzetes verzió) bal oldali ablaktábláján, bontsa ki a **(Helyi és csatolt)** > **Tárfiókok** > **(Fejlesztés)** csomópontját.
+1. Hello a Tártallózó (előzetes verzió) bal oldali ablaktáblán, bontsa ki a hello **(helyi és kapcsolódó)** > **Tárfiókok** > **(fejlesztés)** csomópont.
 
     ![Helyi fejlesztési csomópont][21]
 
-2. Ha az Azure Storage Emulator még nincs telepítve, a rendszer az információs sávon kéri erre. Ha az információs sáv megjelenik, válassza a **Legújabb verzió letöltése** lehetőséget, és telepítse az emulátort.
+2. Ha még nem telepítette hello Azure Storage Emulator,-e felszólító toodo Igen, az információs sávon. Ha hello információs sáv megjelenik, jelölje be **hello legújabb verzió letöltése**, majd telepítse a hello emulátor.
 
     ![Azure Storage Emulator letöltése prompt][22]
 
-3. Miután telepítette az emulátort, létrehozhat helyi blobokat, üzenetsorokat és táblákat, és kezelheti őket. Az egyes tárfióktípusok kezelésével kapcsolatos információkért kattintson az alábbi hivatkozások egyikére:
+3. Hello emulátor telepítése után hozzon létre, és együttműködik a helyi blobokat, üzenetsorokat és táblákat. hogyan írja be mindegyik storage-fiók toowork, toolearn lásd: hello a következők egyikét:
 
     * [Azure Blob Storage-erőforrások kezelése](vs-azure-tools-storage-explorer-blobs.md)
     * Azure File Share Storage-erőforrások kezelése: *Hamarosan elérhető*
@@ -93,139 +93,139 @@ A Tártallózó (előzetes verzió) segítségével a helyi tárterületen is do
     * Azure Table Storage-erőforrások kezelése: *Hamarosan elérhető*
 
 ## <a name="attach-or-detach-an-external-storage-account"></a>Külső tárfiók csatolása vagy leválasztása
-A Tártallózó (előzetes verzió) segítségével külső tárfiókokat csatolhat, így azok könnyen megoszthatók. Ez a szakasz külső tárfiókok csatolását (és leválasztását) írja le.
+A Tártallózó (előzetes verzió) csatolhat a szolgáltatáskéréshez tooexternal storage-fiókok, hogy a storage-fiókok azok könnyen megoszthatóak. Ez a szakasz azt ismerteti, hogyan tooattach too(and detach from) külső tárfiókok.
 
-### <a name="get-the-storage-account-credentials"></a>Tárfiók hitelesítő adatainak lekérése
-A külső tárfiókok megosztásához először az adott fiók tulajdonosának le kell kérnie a fiók hitelesítő adatait (a fióknevet és a kulcsot), majd meg kell osztania azokat a (külső) fiókot csatlakoztatni kívánó személlyel. A tárfiók hitelesítő adatainak lekérése az Azure Portalon keresztül lehetséges az alábbi lépések végrehajtásával:
+### <a name="get-hello-storage-account-credentials"></a>Hello tárfiók hitelesítő adatainak lekérése
+külső tárfiók tooshare, az adott fiók tulajdonosának hello kell szereznie hello fiók hello hitelesítő adatokat (a fióknevet és a kulcs) és oszthat meg ezt az információt tooattach toothat (külső) fiók kívánó hello személlyel. Beszerezhet hello tárfiók hitelesítő adatainak hello Azure-portálon keresztül hello következő tevékenységek végrehajtásával:
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com).
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
 
 2. Válassza a **Tallózás** lehetőséget.
 
 3. Válassza a **Tárfiókok** lehetőséget.
 
-4. A **Tárfiókok** panelen válassza ki a kívánt tárfiókot.
+4. A hello **Tárfiókok** panelen, a select hello kívánt tárfiókot.
 
-5. A kiválasztott tárfiók **Beállítások** panelén válassza a **Hozzáférési kulcs** lehetőséget.
+5. A hello **beállítások** hello panelen kiválasztott tárfiók, jelölje be **hívóbetűk**.
 
     ![Hozzáférési kulcs lehetőség][5]
 
-6. A **Hozzáférési kulcs** panelen másolja ki a **Tárfiók neve** és a **kulcs1** értékeket a tárfiók csatolásához.
+6. A hello **hívóbetűk** panelen, a Másolás hello **tárfióknév** és **key1** értékek toohello tárfiók csatolásához.
 
     ![Elérési kulcs][6]
 
-### <a name="attach-to-an-external-storage-account"></a>Külső tárfiók csatolása
-Külső tárfiók csatolásához szükség van a fiók nevére és kulcsára. A „Tárfiók hitelesítő adatainak lekérése” szakasz ismerteti ezen értékek lekérését az Azure Portalról. A portálon azonban a fiókkulcs neve: **kulcs1**. Tehát ahol a Tártallózó (előzetes verzió) fiókkulcsot kér, a **kulcs1** értéket kell megadni.
+### <a name="attach-tooan-external-storage-account"></a>Tooan külső tárfiók csatolása
+tooattach tooan külső tárfiók, kell hello fiók nevét és a kulcsot. hello "Get hello tárfiók hitelesítő adatainak" szakasz ismerteti, hogyan ezeket az értékeket tooobtain hello Azure-portálon. Azonban a hello portal hello fiókkulcs nevezik **key1**. Ezért a Tártallózó (előzetes verzió) fiókkulcs kér, ahol megadhatja hello **key1** érték.
 
-1. A Tártallózóban (előzetes verzió) válassza ki a **Csatlakozás Azure Storage-hoz** lehetőséget.
+1. A Tártallózó (előzetes verzió), válassza ki a **csatlakoztassa tooAzure tárterületet**.
 
-    ![Csatlakozás Azure Storage-hoz lehetőség][23]
+    ![Csatlakozási tooAzure tárolás beállítása][23]
 
-2. A **Csatlakozás Azure Storage-hoz** párbeszédpanelen adja meg a fiókkulcsot (a **kulcs1** értéket az Azure Portalról), majd válassza a **Tovább** lehetőséget.
+2. Hello a **tooAzure tárolási csatlakozás** párbeszédpanel hello fiókkulcs adja meg (hello **key1** hello Azure-portálon értéket), majd válassza ki **következő**.
 
     > [!NOTE]
-    > Megadhatja az országos Azure-on található tárfiók tárkapcsolati karakterláncát. Például a következőhöz hasonló kapcsolati karakterláncokat megadva csatlakozhat az Azure Germany-tárfiókokhoz: 
+    > A tárfiók nemzeti Azure adhat meg hello tárolási kapcsolati karakterlánc. Tooconnect tooAzure Németország storage-fiókok, írja be például a következő: kapcsolati karakterláncok hasonló toohello következő: 
     >
     >* DefaultEndpointsProtocol=https
     >* AccountName=cawatest03
     >* AccountKey=<tárfiók kulcsa>
     >* EndpointSuffix=core.cloudapi.de
     
-    >A „Tárfiók hitelesítő adatainak lekérése” szakaszban leírtak szerint kérheti le a kapcsolati karakterláncot az Azure Portalról.
+    >Hello kapcsolati karakterlánc beolvasása hello Azure portál a hello azonos hasonlóan hello "Hello tárfiók hitelesítő adatainak beolvasása" szakasz.
 
-    ![Csatlakozás az Azure Storage-hoz párbeszédpanel][24]
+    ![Csatlakozás tooAzure tárolási párbeszédpanel][24]
 
-3. A **Külső tárterület csatolása** párbeszédpanelen adja meg a tárfiók nevét a **Fióknév** mezőben, adja meg a további kívánt beállításokat, majd ha elkészült, válassza a **Tovább** lehetőséget.
+3. A hello **külső tárterület csatolása** párbeszédpanel hello **fióknév** mezőbe, írja be a tárfiók neve hello, adja meg az egyéb beállításait, és válassza **következő**.
 
     ![Külső tárterület csatolása párbeszédpanel][8]
 
-4. A **Kapcsolatok összegzése** párbeszédpanelen ellenőrizze az adatokat. Ha bármin változtatni szeretne, válassza a **Vissza** lehetőséget, és írja be újra a kívánt beállításokat. 
+4. A hello **kapcsolat összegzés** párbeszédpanel hello információk ellenőrizze, hogy. Ha semmi toochange, jelölje be **vissza** és írja be újra a hello szükséges beállításokat. 
 
 5. Kattintson a **Csatlakozás** gombra.
 
-6. A sikeres csatlakozást követően a külső tárfiók a nevét követő **(Külső)** jelöléssel jelenik meg a tárfiókok között.
+6. Miután sikeresen csatlakoztatva van, hello külső tárfiók jelenik meg, amely **(külső)** toohello tárfiók neve lesz hozzáfűzve.
 
-    ![Külső tárfiók csatolásának eredménye][9]
+    ![Külső tárfiók tooan kapcsolódás eredménye][9]
 
 ### <a name="detach-from-an-external-storage-account"></a>Külső tárfiók leválasztása
-1. Kattintson a jobb gombbal a leválasztani kívánt külső tárfiókra, és válassza a **Leválasztás** lehetőséget.
+1. Kattintson a jobb gombbal a külső tárfiók hello, szeretné, hogy toodetach, és válassza **leválasztási**.
 
     ![Tár leválasztása lehetőség][10]
 
-2. A megerősítő üzenetben kattintson az **Igen** gombra a külső tárfiók leválasztásának jóváhagyásához.
+2. Hello megerősítő üzenetet, jelölje ki **Igen** hello külső tárfiók leválasztásának tooconfirm hello.
 
 ## <a name="attach-a-storage-account-by-using-an-sas"></a>Tárfiók csatolása SAS használatával
-Az [SAS](storage/common/storage-dotnet-shared-access-signature-part-1.md) lehetővé teszi, hogy az Azure-előfizetés rendszergazdája ideiglenes hozzáférést engedélyezzen a tárfiókhoz anélkül, hogy kiadná az Azure-előfizetés hitelesítő adatait.
+Egy [SAS](storage/common/storage-dotnet-shared-access-signature-part-1.md) lehetővé teszi, hogy a Üdvözöljük a rendszergazdákat az Azure-előfizetés adjon ideiglenes hozzáférést tooa tárfiók tooprovide Azure-előfizetés hitelesítő adatok nélkül.
 
-E forgatókönyv szemléltetésére tegyük fel, hogy az „A” felhasználó valamely Azure-előfizetés rendszergazdája, és hozzáférést szeretne engedélyezni „B” felhasználó számára a tárfiókhoz adott időtartamra és meghatározott engedélyekkel:
+tooillustrate ebben az esetben most mondja ki, hogy "a" felhasználó Azure-előfizetés rendszergazdája, és "a" felhasználó szeretne tooallow "b" felhasználó tooaccess tárolási fiók adott időtartamra és meghatározott engedélyekkel:
 
-1. Az „A” felhasználó létrehoz egy SAS-kódot (amely a tárfiók kapcsolati karakterlánca) egy adott időtartamra és a kívánt engedélyekkel.
+1. "A" felhasználó időszak és hello szükséges engedélyekkel az adott időszak hoz létre egy SAS (álló hello tárfiók hello kapcsolati karakterlánc).
 
-2. Az „A” felhasználó megosztja a SAS-kódot a tárfiókhoz hozzáférést igénylő személlyel (esetünkben a „B” felhasználóval).  
+2. "A" felhasználó megosztások SAS hello személlyel hello ("b" felhasználó, a fenti példában) hozzáférési toohello tárfiók kívánó.  
 
-3. A „B” felhasználó a Tártallózó (előzetes verzió) segítségével csatolja az „A” felhasználóhoz tartozó fiókot a megadott SAS-kód használatával.
+3. "B" felhasználó a Tártallózó (előzetes verzió) tooattach toohello fiókot használja, amelyet a tooUserA tartozik hello megadott SAS.
 
-### <a name="get-an-sas-for-the-account-you-want-to-share"></a>SAS-kód lekérése a megosztani kívánt fiókhoz
-1. A Tártallózóban (előzetes verzió) kattintson a jobb gombbal a megosztani kívánt tárfiókra, és válassza a **Közös hozzáférésű jogosultságkód igénylése** lehetőséget.
+### <a name="get-an-sas-for-hello-account-you-want-tooshare"></a>Az SAS lekérése hello fióknevet, amelyet az tooshare
+1. A Tártallózó (előzetes verzió), kattintson a jobb gombbal szeretné osztani, majd válassza ki hello tárfiók **közös hozzáférésű Jogosultságkód beolvasása**.
 
     ![SAS beszerzése menüpont][13]
 
-2. A **Közös hozzáférésű jogosultságkód** párbeszédpanelen adja meg a kívánt időtartamot és engedélyeket a fiókhoz, és kattintson a **Létrehozás** gombra.
+2. A hello **közös hozzáférésű Jogosultságkód** párbeszédpanelen adja meg a hello időtartamot és engedélyeket, hello fiók, és válassza **létrehozása**.
 
     ![SAS beszerzése párbeszédpanel][14]  
-    A **Közös hozzáférésű jogosultságkód** párbeszédpanel megjeleníti a SAS kódot.
+    Hello **közös hozzáférésű Jogosultságkód** párbeszédpanel megnyílik, és hello SAS jeleníti meg.
 
-3. Kattintson a **Kapcsolati karakterlánc** mellett a **Másolás** parancsra annak a vágólapra másolásához, majd válassza a **Bezárás** elemet.
+3. Következő toohello **kapcsolati karakterlánc**, jelölje be **másolási** toocopy azt toohello vágólapra, majd válassza ki **Bezárás**.
 
-### <a name="attach-to-the-shared-account-by-using-the-sas"></a>Közös fiók csatolása a SAS használatával
-1. A Tártallózóban (előzetes verzió) válassza ki a **Csatlakozás Azure Storage-hoz** lehetőséget.
+### <a name="attach-toohello-shared-account-by-using-hello-sas"></a>Megosztott toohello fiók csatolása hello SAS segítségével
+1. A Tártallózó (előzetes verzió), válassza ki a **csatlakoztassa tooAzure tárterületet**.
 
-    ![Csatlakozás Azure Storage-hoz lehetőség][23]
+    ![Csatlakozási tooAzure tárolás beállítása][23]
 
-2. A **Csatlakozás az Azure Storage-hoz** párbeszédpanelen adja meg a kapcsolati karakterláncot, majd válassza a **Tovább** lehetőséget.
+2. A hello **tooAzure tárolási csatlakozás** párbeszédpanelen adja meg a hello kapcsolati karakterláncot, majd válassza ki **következő**.
 
-    ![Csatlakozás az Azure Storage-hoz párbeszédpanel][24]
+    ![Csatlakozás tooAzure tárolási párbeszédpanel][24]
 
-3. A **Kapcsolatok összegzése** párbeszédpanelen ellenőrizze az adatokat. A változtatáshoz válassza ki a **Vissza** elemet, majd adja meg a kívánt beállításokat. 
+3. A hello **kapcsolat összegzés** párbeszédpanel hello információk ellenőrizze, hogy. toomake módosításokat, válassza ki **vissza**, és írja be a kívánt hello beállításokat. 
 
 4. Kattintson a **Csatlakozás** gombra.
 
-5. A csatolást követően a tárfiók a megadott fióknevet követő **(SAS)** megjelöléssel jelenik meg a tárfiókok közt.
+5. Miután csatlakozik, hello tárfiók jelenik meg, amely **(SAS)** megadott fióknév toohello lesz hozzáfűzve.
 
-    ![SAS használatával végzett fiókhoz csatolás eredménye][17]
+    ![Csatolt tooan fiók SAS használatával eredménye][17]
 
 ## <a name="attach-a-service-by-using-an-sas"></a>Szolgáltatás csatolása SAS használatával
-A „Tárfiók csatolása SAS használatával” szakasz mutatja be, hogyan adhat az Azure-előfizetés rendszergazdája ideiglenes hozzáférést a tárfiókhoz a tárfiók SAS-kódjának létrehozásával és megosztásával. Hasonlóképpen SAS-kód létrehozható adott szolgáltatásokhoz (blob tárolókhoz, üzenetsorokhoz és táblákhoz) is a tárfiókon belül.  
+hello "Tárfiók csatolása a SAS használatával" szakasz ismerteti, hogyan egy Azure-előfizetés rendszergazdája biztosíthat ideiglenes hozzáférést tooa storage-fiók létrehozása és megosztása hello tárfiók egy SAS-kód. Hasonlóképpen SAS-kód létrehozható adott szolgáltatásokhoz (blob tárolókhoz, üzenetsorokhoz és táblákhoz) is a tárfiókon belül.  
 
-### <a name="generate-an-sas-for-the-service-that-you-want-to-share"></a>SAS-kód létrehozása a megosztani kívánt fiókhoz
-Ebben a kontextusban a szolgáltatások blob tárolók, üzenetsorok vagy táblák lehetnek. SAS létrehozása listázott szolgáltatáshoz az alábbiak szerint:
+### <a name="generate-an-sas-for-hello-service-that-you-want-tooshare"></a>Hello szolgáltatást, amelyet az tooshare egy SAS-kód készítése
+Ebben a kontextusban a szolgáltatások blob tárolók, üzenetsorok vagy táblák lehetnek. toogenerate hello SAS felsorolt szolgáltatáshoz, lásd:
 
-* [SAS lekérése blob tárolóhoz](vs-azure-tools-storage-explorer-blobs.md#get-the-sas-for-a-blob-container)
-* SAS lekérése fájlmegosztáshoz: *Hamarosan elérhető*
-* SAS lekérése üzenetsorhoz: *Hamarosan elérhető*
-* SAS lekérése táblához: *Hamarosan elérhető*
+* [Hello SAS lekérése blob tárolóhoz](vs-azure-tools-storage-explorer-blobs.md#get-the-sas-for-a-blob-container)
+* Hello SAS lekérése fájlmegosztás: *hamarosan elérhető*
+* Hello SAS lekérése várólista: *hamarosan elérhető*
+* Hello SAS lekérése táblához: *hamarosan elérhető*
 
-### <a name="attach-to-the-shared-account-service-by-using-the-sas"></a>Közös fiókszolgáltatás csatolása SAS használatával
-1. A Tártallózóban (előzetes verzió) válassza ki a **Csatlakozás Azure Storage-hoz** lehetőséget.
+### <a name="attach-toohello-shared-account-service-by-using-hello-sas"></a>A szolgáltatás hello SAS toohello közös fiók csatolása
+1. A Tártallózó (előzetes verzió), válassza ki a **csatlakoztassa tooAzure tárterületet**.
 
-    ![Csatlakozás Azure Storage-hoz lehetőség][23]
+    ![Csatlakozási tooAzure tárolás beállítása][23]
 
-2. A **Csatlakozás az Azure Storage-hoz** párbeszédpanelen adja meg a SAS URI-t, majd válassza a **Tovább** lehetőséget.
+2. A hello **tooAzure tárolási csatlakozás** párbeszédpanelen adja meg a hello SAS URI-t, és válassza **következő**.
 
-    ![Csatlakozás az Azure Storage-hoz párbeszédpanel][24]
+    ![Csatlakozás tooAzure tárolási párbeszédpanel][24]
 
-3. A **Kapcsolatok összegzése** párbeszédpanelen ellenőrizze az adatokat. A változtatáshoz válassza ki a **Vissza** elemet, majd adja meg a kívánt beállításokat. 
+3. A hello **kapcsolat összegzés** párbeszédpanel hello információk ellenőrizze, hogy. toomake módosításokat, válassza ki **vissza**, és írja be a kívánt hello beállításokat. 
 
 4. Kattintson a **Csatlakozás** gombra.
 
-5. A csatolást követően az újonnan csatolt szolgáltatás a **(Szolgáltatás SAS)** csomópont alatt jelenik meg.
+5. Miután csatlakozik, hello újonnan csatolt szolgáltatás alatt jelenik meg hello **(szolgáltatás SAS)** csomópont.
 
-    ![SAS használatával megosztott szolgáltatáshoz végzett csatolás eredménye][20]
+    ![Eredménye tooa megosztott szolgáltatás csatolása a SAS használatával][20]
 
 ## <a name="search-for-storage-accounts"></a>Tárfiókok keresése
-Amennyiben tárfiókjai listája túl hosszú, az adott tárfiókok megtalálásának egyszerű módja lehet a keresőmező használata a bal oldali ablaktábla tetején.
+Ha storage-fiókok listája túl hosszú, egy adott tárfiókok gyorsan toolocate toouse hello keresőmezőbe hello tetején hello bal oldali ablaktáblán.
 
-Ahogy elkezdi beírni a szöveget a keresőmezőbe, a bal oldali ablaktábla csak azokat a tárfiókokat jeleníti meg, amelyek tartalmazzák az addig beírt szövegre adott találatokat. Például az alábbi képernyőfotón látható egy olyan keresés, amely a **tarcher** karakterláncot keresi az összes tárfiók nevében:
+Hello keresőmezőbe írja be, mert hello bal oldali ablak megjeleníti hello tárfiókokat jeleníti toothat pont be a megadott hello keresett érték. Például egy keresési összes tárfiókot, amelynek a neve tartalmazza **tarcher** megjelenik-e a következő képernyőkép hello:
 
 ![Tárfiók keresése][11]
 

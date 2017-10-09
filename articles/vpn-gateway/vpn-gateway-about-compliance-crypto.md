@@ -1,5 +1,5 @@
 ---
-title: "Kriptográfiai követelményeiről és az Azure VPN gatewayek |} Microsoft Docs"
+title: "aaaAbout titkosítási követelmények és az Azure VPN gatewayek |} Microsoft Docs"
 description: "Ez a cikk ismerteti a titkosítási követelményeket és az Azure VPN gatewayek"
 services: vpn-gateway
 documentationcenter: na
@@ -15,39 +15,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/22/2017
 ms.author: yushwang
-ms.openlocfilehash: c789e6c278fc0c58c64f5d96e57f94aee5a6cefc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: af5f14d66beeea5316218f9788c4ad7876826162
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-cryptographic-requirements-and-azure-vpn-gateways"></a>Kriptográfiai követelményeiről és az Azure VPN gatewayek
 
-A cikk ismerteti, hogyan konfigurálhatja az Azure VPN gatewayek a kriptográfiai megfelelnek a létesítmények közötti S2S VPN-alagutat, mind az Azure VNet – VNet kapcsolatokhoz. 
+A cikk ismerteti, hogyan konfigurálhat Azure VPN-átjárók toosatisfy a létesítmények közötti S2S VPN-alagutat, mind az Azure VNet – VNet kapcsolatokhoz kriptográfiai követelményeinek. 
 
 ## <a name="about-ipsec-and-ike-policy-parameters-for-azure-vpn-gateways"></a>Az Azure VPN gatewayek IPsec és az internetes KULCSCSERE házirend paraméterek
-Standard IPsec és IKE protokoll titkosítási algoritmusok számos különböző kombinációkban támogatja. Ha az ügyfelek nem kérő titkosítási algoritmusok és a paraméterek megadott kombinációja, az Azure VPN gatewayek alapértelmezett javaslatokat készletének használata. Az alapértelmezett házirend beállítása azokat a külső VPN-eszközök alapértelmezett beállításokkal való együttműködés maximalizálása volt kiválasztva. Ennek eredményeképpen a szabályzatok és javaslatok számát nem tér ki az összes lehetséges kombinációjának elérhető titkosítási algoritmusok és a kulcs szintjeiről.
+Standard IPsec és IKE protokoll titkosítási algoritmusok számos különböző kombinációkban támogatja. Ha az ügyfelek nem kérő titkosítási algoritmusok és a paraméterek megadott kombinációja, az Azure VPN gatewayek alapértelmezett javaslatokat készletének használata. hello alapértelmezett házirend beállítása választott toomaximize együttműködés külső felek VPN-eszközök széles az alapértelmezett beállításokkal. Ennek eredményeképpen hello szabályzatok és javaslatok hello száma nem tér ki az összes lehetséges kombinációjának elérhető titkosítási algoritmusok és a kulcs szintjeiről.
 
-Az alapértelmezett házirend beállítása az Azure VPN-átjáró, a dokumentum szerepel: [kapcsolatos VPN-eszközök és webhelyek közötti VPN átjáró kapcsolatok IPsec/IKE paramétereinek](vpn-gateway-about-vpn-devices.md).
+alapértelmezett házirend beállítása az Azure VPN gateway hello dokumentum szerepel hello: [kapcsolatos VPN-eszközök és webhelyek közötti VPN átjáró kapcsolatok IPsec/IKE paramétereinek](vpn-gateway-about-vpn-devices.md).
 
 ## <a name="cryptographic-requirements"></a>Titkosítási követelmények
-A titkosítási algoritmusokat vagy paraméterek igénylő kommunikációhoz általában megfelelőségi és biztonsági követelmények miatt az ügyfelek segítségével mostantól beállíthatja az Azure VPN gatewayek egy egyéni IPsec/IKE házirend használatához az adott kriptográfiai algoritmusok és a kulcs szintjeiről helyett az Azure alapértelmezett házirend beállítása.
+A kommunikációhoz, vagy a titkosítási algoritmusokat és paramétereket általában toocompliance vagy biztonsági követelmények miatt az ügyfelek konfigurálhatja az Azure VPN-átjárók toouse IPsec/IKE egyéni házirendet kriptográfiai specifikus algoritmusok és a kulcs szintjeiről helyett hello Azure alapértelmezett házirend beállítása.
 
-Például az Azure VPN gatewayek IKEv2 alapmódú házirendeket használják-e csak Diffie-Hellman csoport 2 (1024 bit), mivel az ügyfelek internetes KULCSCSERE, például csoport 14 (2048 bites), a csoport 24 (2048 bites MODP csoport) vagy a ECP (elliptikus használandó erősebb csoportok megadására is szükség görbe csoportok) 384 vagy 256 bit (csoportos 19 csoport 20, illetve). Hasonló követelmények gyorsmódú házirendeket is érvényesek.
+Például hello IKEv2 alapmódú házirendek az Azure VPN gatewayek használják-e csak Diffie-Hellman csoport 2 (1024 bit), mivel az ügyfelek esetleg toospecify IKE, például csoport 14 (2048 bites), a csoport 24 (2048 bites MODP csoport) vagy a ECP (elliptikus használt erősebb csoportok toobe görbe csoportok) 384 vagy 256 bit (csoportos 19 csoport 20, illetve). Hasonló követelményeinek, valamint a tooIPsec gyorsmódú házirendeket alkalmazhat.
 
 ## <a name="custom-ipsecike-policy-with-azure-vpn-gateways"></a>Az Azure VPN gatewayek egyéni IPsec/IKE-házirend
-Az Azure VPN gatewayek mostantól támogatják az kapcsolatonként, egyéni IPsec/IKE-házirendet. Hely-hely vagy VNet – VNet-kapcsolatot választhat titkosítási algoritmusok egyedi kombinációja IPsec és az internetes KULCSCSERE a kívánt kulcs erősségét és a következő példában látható módon:
+Az Azure VPN gatewayek mostantól támogatják az kapcsolatonként, egyéni IPsec/IKE-házirendet. Hely-hely vagy VNet – VNet-kapcsolatot választhat titkosítási algoritmusok egyedi kombinációja IPsec és az internetes KULCSCSERE hello szükséges kulcs erősségét, a a hello a következő példában látható módon:
 
 ![IPSec-ike-házirend](./media/vpn-gateway-about-compliance-crypto/ipsecikepolicy.png)
 
-IPsec/IKE-házirend létrehozása, és egy új vagy meglévő kapcsolat alkalmazható. 
+IPsec/IKE-házirend létrehozása, és alkalmazza a tooa új vagy meglévő kapcsolat. 
 
 ### <a name="workflow"></a>Munkafolyamat
 
-1. A virtuális hálózatok, VPN-átjárók vagy a kapcsolat topológia más útmutatókat a helyi hálózati átjáró létrehozása
+1. Hozzon létre hello virtuális hálózatok, a VPN-átjárók és a helyi hálózati átjárók, a kapcsolat topológia, más hogyan toodocuments leírtak alapján.
 2. IPsec/IKE-házirend létrehozása
-3. Alkalmazhatja a szabályzatot, amikor egy S2S vagy VNet – VNet-kapcsolatot hoz létre
-4. Ha a kapcsolat már létrejött, alkalmazni, vagy egy létező kapcsolatra a házirend frissítése
+3. Hello házirendet alkalmazhat S2S vagy VNet – VNet kapcsolat létrehozásakor
+4. Ha hello kapcsolatot hozott létre, alkalmazása vagy hello házirend tooan meglévő kapcsolat frissítése
 
 
 ## <a name="ipsecike-policy-faq"></a>IPsec/IKE szabályzata – GYIK
@@ -58,4 +58,4 @@ IPsec/IKE-házirend létrehozása, és egy új vagy meglévő kapcsolat alkalmaz
 ## <a name="next-steps"></a>Következő lépések
 Lásd: [konfigurálása IPsec/IKE házirend](vpn-gateway-ipsecikepolicy-rm-powershell.md) lépésenkénti egyéni IPsec/IKE-házirend konfigurálása a kapcsolatot.
 
-Lásd még: [csatlakozás több csoportházirend-alapú VPN-eszközök](vpn-gateway-connect-multiple-policybased-rm-ps.md) további információt a UsePolicyBasedTrafficSelectors lehetőséget.
+Lásd még: [csatlakozás több csoportházirend-alapú VPN-eszközök](vpn-gateway-connect-multiple-policybased-rm-ps.md) toolearn hello UsePolicyBasedTrafficSelectors beállítás többet.

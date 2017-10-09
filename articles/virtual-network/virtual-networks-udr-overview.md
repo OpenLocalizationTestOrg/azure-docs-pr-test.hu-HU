@@ -1,6 +1,6 @@
 ---
-title: "Felhasználói útvonalak és IP-továbbítás az Azure-ban | Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhat a felhasználói útvonalakat (UDR) és az IP-továbbítást a forgalom hálózati virtuális készülékekre történő irányításához az Azure-ban."
+title: "aaaUser által definiált útvonalak és IP-továbbítást az Azure-ban |} Microsoft Docs"
+description: "Ismerje meg, hogyan tooconfigure felhasználó által definiált útvonalak (UDR) és az IP-továbbítás tooforward forgalom virtuális készülékek toonetwork az Azure-ban."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,50 +15,50 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 6274e0101f6fb0864c8d1efaef7fcde78b8760c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f1f1d46166d5a7c776f472b7ade1354d943ece10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="user-defined-routes-and-ip-forwarding"></a>Felhasználó által megadott útvonalak és IP-továbbítás
 
-Amikor az Azure-ban virtuális gépeket (VM-ek) ad hozzá egy virtuális hálózathoz (VNet), észre fogja venni, hogy a virtuális gépek automatikusan tudnak egymással kommunikálni a hálózaton keresztül. Nem kell megadni átjárót, akkor sem, ha a virtuális gépek külön alhálózatokon vannak. Ugyanez vonatkozik a virtuális gépek és a nyilvános internet közötti kommunikációra, és akár a helyszíni hálózatra is, ha jelen van egy hibrid kapcsolat az Azure és a saját adatközpont között.
+Amikor az Azure virtuális gépek (VM) tooa virtuális hálózathoz (VNet), megfigyelheti, hogy hello virtuális gépek automatikusan legyenek-e egymással képes toocommunicate hello hálózaton keresztül. Az átjáró toospecify nem kell annak ellenére, hogy a virtuális gépek hello külön alhálózatokon vannak. hello is igaz hello virtuális gépek toohello közti kommunikációhoz nyilvános interneten, és még akkor is, tooyour a helyszíni hálózatra is, ha egy hibrid kapcsolat az Azure tooyour saját datacenter jelen.
 
-A kommunikáció ilyen típusú áramlása azért lehetséges, mert az Azure rendszerútvonalak sorát használja az IP-cím adatforgalmának meghatározására. A rendszerútvonalak az alábbi helyzetekben irányítják a kommunikáció áramlását:
+Kommunikáció ilyen típusú áramlása azért lehetséges, mert az Azure rendszer útvonalak toodefine hogyan IP a forgalom sorát használja. Rendszerútvonalak vezérlő a következő forgatókönyvek hello kommunikáció hello áramlását:
 
-* Ha ugyanazon az alhálózaton belül történik.
-* Két alhálózat között történik egy virtuális hálózaton belül.
-* Virtuális gépek és az internet között történik.
-* Két VNet között történik egy VPN-átjárón keresztül.
-* Két VNet között történik Virtuális hálózatok közötti társviszony révén (Szolgáltatásláncolás).
-* Egy VNet és a helyszíni hálózat között történik egy VPN-átjárón keresztül.
+* Belül hello ugyanazon az alhálózaton.
+* Az alhálózati tooanother, egy Vneten belül.
+* A virtuális gépek toohello Internet.
+* Az egy VNet tooanother VNet egy VPN-átjárón keresztül.
+* A virtuális hálózat tooanother VNet Vnetben társviszony-létesítés (szolgáltatás láncolás) keresztül.
+* Virtuális hálózat tooyour a helyi hálózaton keresztül egy VPN-átjárón keresztül.
 
-Az alábbi ábrán egy egyszerű beállítás látható egy virtuális hálózattal, két alhálózattal és néhány virtuális géppel, valamint azokkal a rendszerútvonalakkal, amelyek engedélyezik az IP-cím forgalmának áramlását.
+hello az alábbi ábra egy egyszerű beállítás egy Vnetet két alhálózattal és néhány virtuális géppel, valamint hello rendszerútvonalak, amelyek lehetővé teszik az IP-forgalom tooflow.
 
 ![Rendszerútvonalak az Azure-ban](./media/virtual-networks-udr-overview/Figure1.png)
 
-Bár a rendszerútvonalak használata automatikusan segíti az üzemelő példány forgalmát, vannak esetek, amikor a csomagok útválasztását érdemesebb egy virtuális készüléken keresztül irányítani. Ezt úgy teheti meg, hogy felhasználó által megadott útvonalakat hoz létre, amelyek úgy határozzák meg a következő ugrást az adott alhálózatra áramló csomagok számára, hogy azok a virtuális készülékre érkezzenek, valamint engedélyezi az IP-továbbítást a virtuális készülékként futó virtuális gép számára.
+Bár a rendszerútvonalak hello használata elősegíti a forgalom automatikusan az üzembe helyezéshez, vannak esetek használni kívánt toocontrol hello a csomagok útválasztását egy virtuális készüléken keresztül. Úgy, hogy felhasználó által megadott útvonalak létrehozásával megadhatja hello következő ugrás tooa alhálózatot toogo tooyour virtuális készülék helyette áramló csomagok számára, és a továbbítási hello IP-engedélyezése a virtuális gép futtatásához használt hello virtuális készülék.
 
-Az alábbi ábra a felhasználó által megadott útvonalakra és az IP-továbbításra mutat egy példát, amelyben az egyik alhálózatról a másikra küldött csomagokat arra kényszerítik, hogy áthaladjanak a harmadik alhálózat virtuális készülékén.
+hello az alábbi ábra szemlélteti, felhasználó által definiált útvonalak és IP-továbbítás tooforce csomagok tooone alhálózati küldött egy másik toogo a harmadik alhálózat egy virtuális készüléken keresztül.
 
 ![Rendszerútvonalak az Azure-ban](./media/virtual-networks-udr-overview/Figure2.png)
 
 > [!IMPORTANT]
-> A rendszer a felhasználó által megadott útvonalakat az alhálózatot elhagyó, az alhálózatban lévő bármely erőforrásról (például a virtuális gépekhez csatolt hálózati adapterekről) származó forgalomra alkalmazza. Nem hozhat létre útvonalakat például azért, hogy meghatározza, milyen úton érkezik a forgalom az internetről egy alhálózatba. Az a készülék, amelyre a forgalmat továbbítja, nem lehet ugyanabban az alhálózatban, ahonnan a forgalom származik. Mindig hozzon létre egy külön alhálózatot a készülékeinek. 
+> Felhasználó által definiált útvonalak alkalmazott tootraffic alhálózatot elhagyó bármely erőforrás (például a hálózati adapterek csatolt tooVMs) hello alhálózatban. Nem hozhat létre útvonalakat toospecify hogyan forgalom ad meg egy alhálózatot a hello Internet, például. hello készülék, forgalom toocannot hello lennie ugyanazon az alhálózaton Ha hello forgalom származik. Mindig hozzon létre egy külön alhálózatot a készülékeinek. 
 > 
 > 
 
 ## <a name="route-resource"></a>Útvonal-erőforrás
-A csomagok útválasztása a TCP/IP-hálózatban egy útválasztási táblázaton alapul, ami a fizikai hálózat minden csomópontján meg van határozva. Az útválasztási táblázat külön útvonalak gyűjteménye, amelyet arra használnak, hogy az IP-célcím alapján eldöntsék, a rendszer hova továbbítsa a csomagokat. Az útvonalak a következőket tartalmazzák:
+Történik a csomagok irányítása alapján egy útválasztási táblázatot hello fizikai hálózat minden csomópontján definiált TCP/IP-hálózaton keresztül. Egy útválasztási táblázatot a külön útvonalak gyűjteménye használt toodecide ahol tooforward csomagok alapján hello cél IP-címet. Egy olyan útvonalat hello következő tevődik össze:
 
 | Tulajdonság | Leírás | Korlátozások | Megfontolások |
 | --- | --- | --- | --- |
-| Címelőtag |A cél CIDR, amelyre az útvonal vonatkozik, például 10.1.0.0/16. |Érvényes CIDR tartománynak kell lennie, ami a nyilvános interneten, az Azure virtuális hálózatban vagy a helyszíni adatközpontban található címeket jelöli. |Győződjön meg arról, hogy a **címelőtag** nem **a következő ugrás címét** tartalmazza, különben a csomagok bekerülnek egy hurokba, és a forrásuktól a következő ugráshoz kerülnek anélkül, hogy valaha is elérnék a céljukat. |
-| A következő ugrás típusa |Az Azure ugrás típusa, amellyel a csomagot küldeni kell. |A következő értékek egyikének kell lennie: <br/> **Virtuális hálózat**. A helyi virtuális hálózatot jelöli. Ha például ugyanabban a virtuális hálózatban két alhálózat van, (10.1.0.0/16 és 10.2.0.0/16) az útválasztási táblázatban az alhálózatok útvonalának következő ugrás értéke *Virtuális hálózat* lesz. <br/> **Virtuális hálózati átjáró**. Egy Azure S2S VPN Gateway átjárót jelöl. <br/> **Internet**. Az Azure infrastruktúra által biztosított alapértelmezett internetes átjárót jelöli. <br/> **Virtuális készülék**. Az Azure Virtual Networkhöz hozzáadott virtuális készüléket jelöli. <br/> **Nincs**. Egy fekete lyukat jelöl. A fekete lyukakba továbbított csomagok nem lesznek továbbítva. |Fontolja meg **Virtuális készülék** használatát az adatforgalom átirányításához egy virtuális gépre vagy az Azure Load Balancer belső IP-címére.  Ezzel a típussal megadható egy IP-cím, az alábbiakban ismertetettek szerint. Érdemes a **Nincs** típust használni, ha nem szeretné, hogy a csomagok elérjék a megadott céljukat. |
-| A következő ugrás címe |A következő ugrás címe azt az IP-címet tartalmazza, ahová a csomagokat továbbítani kell. A következő ugrás értékei csak az olyan útvonalaknál engedélyezettek, ahol a következő ugrás típusa *Virtuális készülék*. |Egy olyan IP-címnek kell lennie, ami elérhető azon virtuális hálózaton belül, ahol a felhasználó által megadott útvonal van alkalmazva anélkül, hogy áthaladna a **virtuális hálózati átjárón**. Az IP-címnek egy társított virtuális hálózaton, vagy ugyanazon a virtuális hálózaton kell lennie, ahol alkalmazva van. |Ha az IP-cím egy virtuális gépet jelöl, győződjön meg arról, hogy engedélyezi az [IP-továbbítást](#IP-forwarding) a virtuális gép számára az Azure-ban. Ha az IP-cím az Azure Load Balancer belső IP-címét jelöli, győződjön meg arról, hogy minden egyes porthoz, amelyen terheléselosztást kíván végrehajtani, hozzá van rendelve egy terheléselosztási szabály.|
+| Címelőtag |hello cél CIDR toowhich hello vonatkozik, például 10.1.0.0/16. |Hello címek képviselő érvényes CIDR tartománynak kell lennie nyilvános interneten, Azure-beli virtuális hálózat vagy a helyszíni adatközpontban. |Győződjön meg arról, hogy hello **címelőtag** nem tartalmaz hello hello címet **következő ugrási cím**, ellenkező esetben a csomagok bekerülnek egy hurokba, anélkül, hogy valaha is elérnék hello forrás toohello következő ugrás át hello cél. |
+| A következő ugrás típusa |hello típusú Azure Ugrás hello csomagot kell küldeni. |Hello a következő értékek egyike lehet: <br/> **Virtuális hálózat**. Hello helyi virtuális hálózatot jelenti. Például, ha két alhálózat, 10.1.0.0/16 és 10.2.0.0/16 található ugyanabban a virtuális hálózatban hello, hello útvonal minden hello útválasztási táblázatot az alhálózathoz kell egy következő ugrás értéke *virtuális hálózati*. <br/> **Virtuális hálózati átjáró**. Egy Azure S2S VPN Gateway átjárót jelöl. <br/> **Internet**. Hello hello Azure infrastruktúrája által biztosított alapértelmezett internetes átjárót jelöli. <br/> **Virtuális készülék**. Azure-beli virtuális hálózat tooyour hozzáadott virtuális készüléket jelöli. <br/> **Nincs**. Egy fekete lyukat jelöl. Tooa fekete lyuk továbbított csomagok egyáltalán nem lesznek továbbítva. |Érdemes lehet **virtuális készülék** toodirect forgalom tooa virtuális gép vagy az Azure Load Balancer belső IP-címet.  Ez a típus lehetővé teszi, hogy egy IP-címet az alább ismertetett hello megadását. Érdemes lehet egy **nincs** írja be a megadott cél szereplő tooa toostop-csomagokat. |
+| A következő ugrás címe |hello következő ugrási cím csomagokat továbbítani kell hello IP-címet tartalmazza. Következő ugrás értékei csak engedélyezettek hol található a következő ugrás típusa hello útvonalak *virtuális készülék*. |Virtuális hálózat, amikor a felhasználó által definiált útvonal hello érvényben, áthaladás nélkül hello belül elérhető IP-címnek kell lennie egy **virtuális hálózati átjáró**. hello IP-cím toobe van, ugyanazon virtuális hálózat az alkalmazása hello, vagy peered virtuális hálózaton. |Ha hello IP-cím egy virtuális Gépet jelöl, ellenőrizze, hogy engedélyezi [IP-továbbítás](#IP-forwarding) hello virtuális gép az Azure-ban. Ha hello IP cím jelöli hello belső IP-cím az Azure terheléselosztó, ellenőrizze, hogy a megfelelő terheléselosztási szabály minden port tooload egyenleg kívánja.|
 
-Az Azure PowerShellben néhány „NextHopType” értéknek különböző neve van:
+Az Azure PowerShell hello "NextHopType" értékek némelyike neve nem lehet ugyanaz:
 
 * A virtuális hálózat a VnetLocal
 * A virtuális hálózati átjáró a VirtualNetworkGateway
@@ -67,47 +67,47 @@ Az Azure PowerShellben néhány „NextHopType” értéknek különböző neve 
 * A nincs a Nincs
 
 ### <a name="system-routes"></a>Rendszerútvonalak
-A rendszer a virtuális hálózatban létrehozott összes alhálózatot automatikusan hozzárendeli egy útválasztási táblázathoz, ami az alábbi útválasztási szabályokat tartalmazza:
+A virtuális hálózatban létrehozott összes alhálózatot automatikusan hozzárendeli egy útválasztási táblázatot, amely tartalmazza a következő útvonal rendszerszabályok hello:
 
-* **Helyi Vnet szabály**: Ez a szabály a virtuális hálózat miden alhálózatában automatikusan létrejön. Meghatározza, hogy a virtuális hálózatban a virtuális gépek között közvetlen kapcsolat van, és nincs köztes ugrás.
-* **Helyszíni szabály**: Ez a szabály a helyszíni címtartományba irányuló teljes forgalomra érvényes, és VPN-átjárót használ a következő ugrási célként.
-* **Internet szabály**: Ez a szabály kezeli a nyilvános internet felé irányuló teljes forgalmat (címelőtag 0.0.0.0/0) , és az internetre irányuló forgalomnál az infrastruktúra internetes átjáróját használja következő ugrásként.
+* **Helyi Vnet szabály**: Ez a szabály a virtuális hálózat miden alhálózatában automatikusan létrejön. Meghatározza, hogy hello hello virtuális hálózat virtuális gépek között közvetlen kapcsolat van, és nincs köztes Ugrás.
+* **Helyszíni szabály**: Ez a szabály vonatkozik tooall adatforgalmat toohello helyszíni címtartomány és VPN-átjárót használ hello következő ugrási célként.
+* **Internet szabály**: Ez a szabály kezeli az összes adatforgalmat toohello nyilvános Internet (cím előtag 0.0.0.0/0) és a használt hello infrastruktúra internetes átjáróját hello, a következő az összes adatforgalmat toohello Internet az Ugrás.
 
 ### <a name="user-defined-routes"></a>Felhasználó által megadott útvonalak
-A legtöbb környezetben csak az Azure által meghatározott rendszerútvonalakra van szükség. Lehetséges azonban, hogy létre kell hoznia egy útválasztási táblázatot, amelyhez bizonyos esetekben hozzá kell adnia egy vagy több útvonalat, ilyenek például:
+A legtöbb környezetben csak akkor hello Azure által meghatározott rendszerútvonalakra. Azonban előfordulhat, hogy toocreate egy útválasztási táblázatot kell, és adjon hozzá egy vagy több útvonal például az adott esetben:
 
-* Kényszerített bújtatás az internetre a helyszíni hálózaton keresztül.
+* A kényszerített bújtatás toohello Internet a helyi hálózaton keresztül.
 * Virtuális készülékek használata Azure környezetben.
 
-A fenti helyzetekben létre kell hoznia egy útválasztási táblázatot, és hozzá kell adnia felhasználó által meghatározott útvonalakat. Egyszerre több útválasztási táblázattal is rendelkezhet, és ugyanazt az útválasztási táblázatot egy vagy több alhálózathoz is hozzá lehet rendelni. És minden alhálózathoz csak egy útválasztási táblázatot lehet hozzárendelni. Az alhálózat minden virtuális gépe és felhőszolgáltatása ugyanazt az alhálózathoz hozzárendelt útválasztási táblázatot használja.
+Hello a fenti helyzetekben toocreate rendelkezik egy útválasztási táblázatot, és adja hozzá a felhasználó által definiált útvonalak tooit. Több útválasztási táblázattal is rendelkezhet, és hello ugyanazt az útválasztási táblázatot lehet társított tooone vagy további alhálózatokat. És minden alhálózathoz csak társított tooa egy útválasztási táblázatot. Minden virtuális gépe és felhőszolgáltatása ugyanazt az alhálózat hello útvonal kapcsolódó tábla toothat alhálózati használata
 
-Az alhálózatok egészen addig rendszerútvonalakra támaszkodnak, amíg hozzá nem rendelnek egy útválasztási táblázatot az alhálózathoz. Miután egy hozzárendelés létrejött, az útválasztás a felhasználó által megadott útvonalaknál és a rendszerútvonalaknál is a leghosszabb előtag-megfeleltetés (LPM) alapján történik. Ha egynél több útvonal rendelkezik ugyanazzal az LPM megfeleltetéssel, akkor a rendszer az útvonalat a kiindulás alapján választja ki, az alábbi sorrendben:
+Alhálózatok rendszerútvonalakra támaszkodnak, amíg egy útválasztási táblázatot társított toohello alhálózat. Miután egy hozzárendelés létrejött, az útválasztás a felhasználó által megadott útvonalaknál és a rendszerútvonalaknál is a leghosszabb előtag-megfeleltetés (LPM) alapján történik. Ha egynél több útvonal rendelkezik hello azonos LPM egyezik egy útvonal van kiválasztva, majd a sorrend hello Kiindulás alapján:
 
 1. Felhasználó által megadott útvonal
 2. BGP-útvonal (ExpressRoute használatánál)
 3. Rendszerútvonal
 
-A felhasználó által megadott útvonalak létrehozásával kapcsolatban tekintse meg a [How to Create Routes and Enable IP Forwarding in Azure](virtual-network-create-udr-arm-template.md) (Hogyan hozhat létre útvonalakat, és engedélyezheti az IP-továbbítást az Azure-ban) című cikket.
+toolearn hogyan toocreate felhasználó által megadott útvonalak, lásd: [hogyan tooCreate útvonalak és IP-továbbítás az Azure-ban engedélyezése](virtual-network-create-udr-arm-template.md).
 
 > [!IMPORTANT]
-> A rendszer a felhasználó által megadott útvonalakat csak az Azure virtuális gépekre és felhőszolgáltatásokra alkalmazza. Ha például virtuális készülékként egy tűzfalat szeretne beiktatni a helyszíni hálózat és az Azure közé, létre kell hoznia egy felhasználó által megadott útvonalat az Azure útválasztási táblázatban, amely a helyszíni címtérre irányuló teljes forgalmat a virtuális készülékre továbbítja. Hozzáadhat egy felhasználó által megadott útvonalat a GatewaySubnet alhálózathoz, így az összes helyszíni forgalmat továbbíthatja az Azure-ba a virtuális készüléken keresztül. Ez a lehetőség a közelmúltban lett hozzáadva.
+> Felhasználó által megadott útvonalakat csak alkalmazott tooAzure virtuális gépek és a felhőalapú szolgáltatások. Például ha azt szeretné, hogy tooadd virtuális készülékként egy tűzfalat a helyszíni hálózat és az Azure között, akkor toocreate az Azure útválasztási táblázatban egy felhasználó által megadott útvonalat, amely továbbítja a teljes forgalmat toohello a helyi cím terület toohello virtuális készüléket. A felhasználó által definiált útvonal (UDR) toohello GatewaySubnet tooforward helyszíni tooAzure származó összes forgalmat hello virtuális készülék keresztül is hozzáadhat. Ez a lehetőség a közelmúltban lett hozzáadva.
 > 
 > 
 
 ### <a name="bgp-routes"></a>BGP-útvonalak
-Ha a helyszíni hálózat és az Azure között ExpressRoute kapcsolat van, akkor engedélyezni lehet a BGP-t, hogy az útvonalakat a helyszíni hálózatból az Azure-ba terjessze. A BGP-útvonalakat minden Azure alhálózatban ugyanúgy kell használni, mint a rendszerútvonalakat és a felhasználó által megadott útvonalakat. További információ: [ExpressRoute Introduction](../expressroute/expressroute-introduction.md) (Az ExpressRoute bemutatása).
+Ha a helyszíni hálózat és az Azure között ExpressRoute kapcsolat van, a helyszíni hálózati tooAzure a engedélyezheti toopropagate BGP-útvonalakat. Hello használatosak, a BGP-útvonalakat minden Azure alhálózatban ugyanúgy, mint a rendszerútvonalakat és a felhasználó által megadott útvonalak. További információ: [ExpressRoute Introduction](../expressroute/expressroute-introduction.md) (Az ExpressRoute bemutatása).
 
 > [!IMPORTANT]
-> Az Azure környezetet a helyszíni hálózaton keresztül lehet úgy konfigurálni, hogy kényszerített bújtatást használjon. Ehhez létre kell hozni egy felhasználó által megadott útvonalat a 0.0.0.0/0 alhálózat számára, amely a VPN-átjárót használja következő ugrásként. Ez azonban csak akkor működik, ha VPN-átjárót használ, nem ExpressRoute-ot. Az ExpressRoute-nál a kényszerített bújtatás konfigurálása a BGP-n keresztül történik.
+> Konfigurálhatja az Azure-alapú környezetben toouse kényszerített a helyszíni hálózaton hozzon létre egy felhasználó által megadott útvonalat a 0.0.0.0/0 alhálózat számára, amely a következő ugrás hello hello VPN-átjárót használ. Ez azonban csak akkor működik, ha VPN-átjárót használ, nem ExpressRoute-ot. Az ExpressRoute-nál a kényszerített bújtatás konfigurálása a BGP-n keresztül történik.
 > 
 > 
 
 ## <a name="ip-forwarding"></a>IP-továbbítás
-A fent leírtak szerint a felhasználó által megadott útvonal létrehozásának egyik fő oka a forgalom virtuális készülékre történő továbbítása. A virtuális készülék nem más, mint egy virtuális gép, amelyen egy olyan alkalmazás fut, ami a hálózati forgalmat kezeli valamilyen módon, például tűzfallal vagy NAT-eszközzel.
+A fent említett egyik fő oka annak toocreate hello egy felhasználó által megadott útvonalat tooforward forgalom tooa virtuális készülék. A virtuális készülék értéke "Nothing" több mint egy virtuális Gépet, amelyen az alkalmazás toohandle hálózati forgalom valamilyen módon, például egy tűzfal vagy NAT-eszköz.
 
-A virtuális készüléknek képesnek kell lennie fogadni a nem neki címzett bejövő forgalmat. Ahhoz, hogy egy virtuális gép számára engedélyezze a más célhelyre irányított forgalom fogadását, először engedélyeznie kell a virtuális gép számára az IP-továbbítást. Ez egy Azure beállítás, nem a vendég operációs rendszer beállítása.
+A virtuális gép kell lennie, amely képes tooreceive bejövő forgalom virtuális készüléknek tooitself nem foglalkozik. a virtuális gépek tooreceive forgalma tooallow címzett tooother a célok, engedélyeznie kell az IP-továbbítás az hello VM. Ez az egy Azure beállítás, nem a megfelelő értéket hello vendég operációs rendszer.
 
 ## <a name="next-steps"></a>Következő lépések
-* Ismerje meg, hogyan [hozhat létre útvonalakat a Resource Manager üzembe helyezési modellben](virtual-network-create-udr-arm-template.md), és hogyan rendelheti őket hozzá az alhálózatokhoz. 
-* Ismerje meg, hogyan [hozhat létre útvonalakat a klasszikus üzembe helyezési modellben](virtual-network-create-udr-classic-ps.md), és hogyan rendelheti őket hozzá az alhálózatokhoz.
+* Ismerje meg, hogyan túl[hozhat létre útvonalakat hello Resource Manager üzembe helyezési modellel](virtual-network-create-udr-arm-template.md) és toosubnets rendelje hozzá őket. 
+* Ismerje meg, hogyan túl[hozhat létre útvonalakat a klasszikus üzembe helyezési modellel hello](virtual-network-create-udr-classic-ps.md) és toosubnets rendelje hozzá őket.
 

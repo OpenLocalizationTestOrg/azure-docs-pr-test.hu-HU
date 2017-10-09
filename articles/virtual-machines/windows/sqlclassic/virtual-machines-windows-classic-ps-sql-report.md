@@ -1,6 +1,6 @@
 ---
-title: "Natív üzemmódú jelentéskészítő kiszolgálón hozzon létre egy virtuális Gépet a PowerShell használatával |} Microsoft Docs"
-description: "Ez a témakör ismerteti, és bemutatja, hogyan telepítését és konfigurálását az SQL Server Reporting Services natív üzemmódú jelentéskészítő kiszolgáló egy Azure virtuális gépen. "
+title: "aaaUse PowerShell tooCreate VM rendelkező egy natív mód jelentéskiszolgáló |} Microsoft Docs"
+description: "Ez a témakör ismerteti, és bemutatja, hogyan hello központi telepítése és konfigurálása az SQL Server Reporting Services natív üzemmódú jelentéskészítő kiszolgáló egy Azure virtuális gépen. "
 services: virtual-machines-windows
 documentationcenter: na
 author: guyinacube
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 5e5c11251cd316e8161dbe362b300be76927ac01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e7791199c87dff106132f1535da12de40a8dbc9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-powershell-to-create-an-azure-vm-with-a-native-mode-report-server"></a>Natív üzemmódú jelentéskészítő kiszolgálót futtató Azure-beli virtuális gép létrehozása a PowerShell-lel
+# <a name="use-powershell-toocreate-an-azure-vm-with-a-native-mode-report-server"></a>Használjon PowerShell tooCreate egy Azure virtuális gép, egy natív mód jelentéskészítő kiszolgáló
 > [!IMPORTANT] 
-> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk a klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén a Resource Manager modellt használja.
+> Azure az erőforrások létrehozására és kezelésére két különböző üzembe helyezési modellel rendelkezik: [Resource Manager és klasszikus](../../../azure-resource-manager/resource-manager-deployment-model.md). Ez a cikk hello klasszikus telepítési modell használatát bemutatja. A Microsoft azt javasolja, hogy az új telepítések esetén hello Resource Manager modellt használja.
 
-Ez a témakör ismerteti, és bemutatja, hogyan telepítését és konfigurálását az SQL Server Reporting Services natív üzemmódú jelentéskészítő kiszolgáló egy Azure virtuális gépen. A jelen dokumentumban leírt lépések manuális lépések kombinálhatja a virtuális gép és a Reporting Services konfigurálásához a virtuális Gépet a Windows PowerShell-parancsfájl létrehozásához. A konfigurációs parancsfájl tartalmazza a HTTP és HTTPs a tűzfal port megnyitása.
+Ez a témakör ismerteti, és bemutatja, hogyan hello központi telepítése és konfigurálása az SQL Server Reporting Services natív üzemmódú jelentéskészítő kiszolgáló egy Azure virtuális gépen. hello vonatkozó lépéseit a dokumentum használatban manuális toocreate hello virtuális gép és a Windows PowerShell-parancsfájl tooconfigure Reporting Services hello virtuális gép. hello konfigurációs parancsfájl tartalmazza a HTTP és HTTPs a tűzfal port megnyitása.
 
 > [!NOTE]
-> Ha nincs szüksége **HTTPS** a jelentéskészítő kiszolgálón **a 2**.
+> Ha nincs szüksége **HTTPS** hello jelentéskészítő kiszolgálón **a 2**.
 > 
-> Miután létrehozta a virtuális gép az 1. lépésben, keresse a parancsfájl használata a jelentéskészítő kiszolgáló és a HTTP konfigurálása. A parancsfájl futtatása után a jelentéskészítő kiszolgáló használatra készen áll.
+> Miután létrehozta a virtuális gép hello az 1. lépésben, lépjen a toohello szakasz használata parancsfájl tooconfigure hello jelentéskészítő kiszolgáló és a HTTP. Hello parancsfájl futtatása után a hello jelentéskészítő kiszolgáló készen áll a toouse.
 
 ## <a name="prerequisites-and-assumptions"></a>Előfeltételek és Előfeltételek
-* **Azure-előfizetés**: Ellenőrizze az elérhető az Azure-előfizetésében magok száma. Ha létrehozta az ajánlott Virtuálisgép-méretet **A3**, kell **4** rendelkezésre álló magot. Ha egy Virtuálisgép-méretet **A2**, kell **2** rendelkezésre álló magot.
+* **Azure-előfizetés**: Ellenőrizze az Azure-előfizetésben elérhető magok hello száma. Ha hoz létre a Virtuálisgép-méretet ajánlott hello **A3**, kell **4** rendelkezésre álló magot. Ha egy Virtuálisgép-méretet **A2**, kell **2** rendelkezésre álló magot.
   
-  * Ellenőrizze a core korlátot az előfizetéséhez, a klasszikus Azure portálon, kattintson a beállítások gombra a bal oldali ablaktáblán, majd kattintson a használati a felső menüben.
-  * A core kvóta növeléséhez forduljon [Azure támogatási](https://azure.microsoft.com/support/options/). Virtuálisgép-méret információkért lásd: [Azure virtuálisgép-méretek](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* **A Windows PowerShell-Parancsprogramokról**: A témakör feltételezi, hogy rendelkezik-e a Windows PowerShell alapszintű ismeretét. Windows PowerShell használatával kapcsolatos további információkért tekintse meg a következőket:
+  * tooverify hello core korlátot az előfizetéséhez, a klasszikus Azure-portál hello-beállítások gombra a hello bal oldali ablaktáblán, majd kattintson a használati hello felső menüjében.
+  * tooincrease hello core kvóta, kapcsolattartási [Azure támogatási](https://azure.microsoft.com/support/options/). Virtuálisgép-méret információkért lásd: [Azure virtuálisgép-méretek](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* **A Windows PowerShell-Parancsprogramokról**: hello a témakör feltételezi, hogy rendelkezik-e a Windows PowerShell alapszintű ismeretét. A Windows PowerShell használatával kapcsolatos további információkért tekintse meg a hello következőt:
   
   * [A Windows PowerShell indítása a Windows Server](https://technet.microsoft.com/library/hh847814.aspx)
   * [Bevezetés a Windows PowerShell használatával](https://technet.microsoft.com/library/hh857337.aspx)
 
 ## <a name="step-1-provision-an-azure-virtual-machine"></a>1. lépés: Az Azure virtuális gép kiépítése
-1. Tallózással keresse meg a klasszikus Azure portálon.
-2. Kattintson a **virtuális gépek** a bal oldali ablaktáblán.
+1. Keresse meg a klasszikus Azure portálon toohello.
+2. Kattintson a **virtuális gépek** hello bal oldali ablaktáblán.
    
     ![a Microsoft azure virtuális gépek](./media/virtual-machines-windows-classic-ps-sql-report/IC660124.gif)
 3. Kattintson az **Új** lehetőségre.
@@ -53,124 +53,124 @@ Ez a témakör ismerteti, és bemutatja, hogyan telepítését és konfigurálá
 4. Kattintson a **gyűjteményből**.
    
     ![új virtuális gép gyűjteményből](./media/virtual-machines-windows-classic-ps-sql-report/IC692020.gif)
-5. Kattintson a **SQL Server 2014 RTM Standard – Windows Server 2012 R2** és kattintson a nyílra, a folytatáshoz.
+5. Kattintson a **SQL Server 2014 RTM Standard – Windows Server 2012 R2** és kattintson a nyílra toocontinue hello.
    
     ![következő](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
    
-    Ha a Reporting Services adatvezérelt előfizetések funkció van szüksége, válassza a **SQL Server 2014 RTM vállalati – Windows Server 2012 R2**. SQL Server kiadása és által nyújtott szolgáltatások támogatásáról további információkért lásd: [SQL Server 2012 kiadásai által támogatott funkciók](https://msdn.microsoft.com/library/cc645993.aspx#Reporting).
-6. Az a **virtuálisgép-konfiguráció** lapon, módosítsa a következő mezőket:
+    Ha hello Reporting Services adatvezérelt előfizetések funkció van szüksége, válassza a **SQL Server 2014 RTM vállalati – Windows Server 2012 R2**. SQL Server kiadása és által nyújtott szolgáltatások támogatásáról további információkért lásd: [hello kiadás az SQL Server 2012 által támogatott funkciók](https://msdn.microsoft.com/library/cc645993.aspx#Reporting).
+6. A hello **virtuálisgép-konfiguráció** lapon, a következő mezők hello szerkesztése:
    
-   * Ha egynél több **VERZIÓJÚ kiadási dátum**, válassza ki az alkalmazás legújabb verziójára.
-   * **Virtuális gép neve**: A számítógép nevét is szolgál a következő konfigurációs lapon alapértelmezett felhőalapú szolgáltatás DNS-nevét. Az Azure szolgáltatásban, egyedinek kell lennie a DNS-nevét. Fontolja meg, hogy a virtuális Gépet, amely leírja, hogy a virtuális gép használt számítógépnévvel. Például ssrsnativecloud.
+   * Ha egynél több **VERZIÓJÚ kiadási dátum**, válassza ki a legújabb verziót hello.
+   * **Virtuális gép neve**: hello számítógép nevét is használatos hello tovább konfigurálása lapon hello alapértelmezett felhőalapú szolgáltatás DNS-névvel. hello DNS nevének egyedinek kell lennie a hello Azure szolgáltatás között. Fontolja meg, hogy hello VM nevű számítógép, amely leírja, milyen hello VM szolgál. Például ssrsnativecloud.
    * **Réteg**: Standard
-   * **Méret: A3** van az SQL Server munkaterhelésekhez ajánlott Virtuálisgép-méretet. Ha egy virtuális gép csak egy jelentéskészítő kiszolgálón, a virtuális gép méretét A2 is használhatók, kivéve, ha a jelentéskészítő kiszolgáló során a nagy terhelés lép fel. A virtuális gép a díjszabásról, lásd: [Virtual Machines díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/).
-   * **Új felhasználónevet**: a megadott jön létre a virtuális gép rendszergazdai jogosultságokkal.
-   * **Új jelszó** és **megerősítése**. Ezt a jelszót az új rendszergazdafiókhoz szolgál, és erős jelszó használatát javasoljuk.
+   * **Méret: A3** hello javasolt az SQL Server számítási feladatait a Virtuálisgép-méretet. Ha egy virtuális gép csak egy jelentéskészítő kiszolgálón, a virtuális gép méretét A2 esetén elegendő hello jelentéskészítő kiszolgáló észlel a nagy munkaterhelések. A virtuális gép a díjszabásról, lásd: [Virtual Machines díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/).
+   * **Új felhasználónevet**: hello-nevet a virtuális gép hello rendszergazdaként jön létre.
+   * **Új jelszó** és **megerősítése**. Hello új rendszergazdai fiókhoz használja ezt a jelszót, és erős jelszó használatát javasoljuk.
    * Kattintson a **Tovább** gombra. ![következő](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
-7. A következő lapon szerkessze a következő mezőket:
+7. Hello következő lapon szerkessze a következő mezők hello:
    
    * **A felhőalapú szolgáltatás**: válasszon **hozzon létre egy új felhőalapú szolgáltatás**.
-   * **A felhőalapú szolgáltatás DNS-név**: a felhőalapú szolgáltatás, a virtuális Géphez társított nyilvános DNS-neve. Alapértelmezés szerint ez a virtuális gép nevét a megadott névvel. Ha a témakör a későbbi lépésekben hoz létre egy megbízható az SSL-tanúsítványt, és majd a DNS-név értékének használható a "**kiadott**" a tanúsítvány.
-   * **Régió/affinitás csoport/virtuális hálózati**: válassza ki a végfelhasználók legközelebb eső régiót.
+   * **A felhőalapú szolgáltatás DNS-név**: Ez az hello Felhőszolgáltatás, amely kapcsolódik a virtuális gép hello hello nyilvános DNS-nevét. hello alapértelmezett értéke hello virtuális gép nevét a megadott hello névhez. Ha hello témakört a későbbi lépésekben hoz létre egy megbízható az SSL-tanúsítványt, és majd hello DNS-név használható hello hello értéke "**kiadott**" hello tanúsítvány.
+   * **Régió/affinitás csoport/virtuális hálózati**: válassza ki a hello régió legközelebbi tooyour végfelhasználók számára.
    * **A Tárfiók**: egy automatikusan létrehozott tárfiókot használja.
    * **A rendelkezésre állási csoport**: nincs.
-   * **VÉGPONTOK** tartsa a **távoli asztal** és **PowerShell** végpontok majd adja hozzá a HTTP vagy HTTPS-végpont a környezettől függően.
+   * **VÉGPONTOK** megtartása hello **távoli asztal** és **PowerShell** végpontok majd adja hozzá a HTTP vagy HTTPS-végpont a környezettől függően.
      
-     * **HTTP**: az alapértelmezett nyilvános és titkos portok: **80**. Vegye figyelembe, hogy ha egy magánhálózati port a 80-as, nem módosíthatja **$HTTPport = 80** a http-parancsfájl.
-     * **HTTPS**: az alapértelmezett nyilvános és titkos portok: **443-as**. Biztonsági szempontból ajánlott, hogy módosítsa a magánhálózati port és a tűzfal és a jelentéskészítő kiszolgáló a magánhálózati port használatára. A végpontok további információkért lásd: [hogyan állítsa be kommunikáció a virtuális gép](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Vegye figyelembe, hogy egy 443,-astól eltérő port használata esetén módosítsa a paraméter **$HTTPsport = 443-as** a HTTPS-parancsfájl.
+     * **HTTP**: nyilvános és titkos portok alapértelmezett hello **80**. Vegye figyelembe, hogy ha egy magánhálózati port a 80-as, nem módosíthatja **$HTTPport = 80** hello http parancsfájlban.
+     * **HTTPS**: nyilvános és titkos portok alapértelmezett hello **443-as**. Biztonsági szempontból ajánlott toochange hello magánhálózati port, és konfigurálja a tűzfal és hello jelentéskészítő kiszolgáló toouse hello magánhálózati port. A végpontok további információkért lásd: [hogyan tooSet be egy virtuális gép kommunikációs](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json). Vegye figyelembe, hogy egy 443,-astól eltérő port használata esetén módosítsa a hello paraméter **$HTTPsport = 443-as** a hello HTTPS parancsfájl.
    * Kattintson a Tovább gombra. ![következő](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
-8. A varázsló utolsó oldalán, tartsa meg az alapértelmezett **a Virtuálisgép-ügynök telepítése** kijelölt. A témakörben ismertetett lépések nem használja a Virtuálisgép-ügynök, de ha le szeretné tartani a virtuális Gépet, a Virtuálisgép-ügynök és a bővítmények lehetővé teszi javítása érdekében, hogy CM.  A Virtuálisgép-ügynök további információkért lásd: [ügynök és Virtuálisgép-bővítmények – 1. rész](https://azure.microsoft.com/blog/2014/04/11/vm-agent-and-extensions-part-1/). Az alapértelmezett telepített kiterjesztéseket ad futó egyik a "BGINFO" bővítményt, amely a virtuális gép asztali, a rendszer-információkat, például a belső IP-cím és a szabad lemezterületet jeleníti meg.
+8. Hello hello varázsló utolsó lapján, tartsa hello alapértelmezett **hello Virtuálisgép-ügynök telepítéséhez** kijelölt. hello témakörben leírt lépések hasznosíthatja hello Virtuálisgép-ügynök, de ha tookeep a virtuális gép, Virtuálisgép-ügynök hello és bővítmények lehetővé teszi a tooenhance helykiszolgálójához CM.  A Virtuálisgép-ügynök hello további információkért lásd: [ügynök és Virtuálisgép-bővítmények – 1. rész](https://azure.microsoft.com/blog/2014/04/11/vm-agent-and-extensions-part-1/). Hello alapértelmezett telepített kiterjesztéseket ad futó egyik hello "BGINFO" bővítményt, amely hello virtuális gép asztalán jeleníti meg, a rendszer-információkat, például a belső IP- és szabad terület meghajtó.
 9. Kattintson a Kész gombra. ![oké](./media/virtual-machines-windows-classic-ps-sql-report/IC660122.gif)
-10. A **állapota** látható a virtuális gép **indítása (kiépítés)** a kiépítési folyamat során értékként jelenik majd meg **futtató** a virtuális gép esetén kiosztott és készen áll a használatra.
+10. Hello **állapota** a virtuális gép részére hello **indítása (kiépítés)** során hello kiépítési folyamat és értékként jelenik majd meg **futtató** hello virtuális gép esetén kiosztott és készen áll toouse.
 
 ## <a name="step-2-create-a-server-certificate"></a>2. lépés: A kiszolgálói tanúsítvány létrehozása
 > [!NOTE]
-> Ha nincs szüksége HTTPS a jelentéskészítő kiszolgálón, akkor **a 2** , és keresse meg a **parancsfájl segítségével konfigurálja a jelentéskészítő kiszolgáló és a HTTP**. A HTTP-parancsfájl segítségével gyorsan konfigurálása a jelentéskészítő kiszolgáló, és a jelentéskészítő kiszolgáló készen áll a használatra.
+> Ha nincs szüksége HTTPS hello jelentéskészítő kiszolgálón, akkor **a 2** toohello szakaszt, és **parancsfájl tooconfigure hello jelentéskészítő kiszolgáló és a HTTP használata**. Használjon hello HTTP parancsfájl tooquickly hello jelentéskészítő kiszolgáló és a kiszolgáló készen áll a toouse lesz hello jelentés konfigurálása.
 
-A virtuális Gépen a HTTPS protokoll használatához megbízható az SSL-tanúsítvány van szüksége. A forgatókönyvtől függően az alábbi két módszer egyikét használhatja:
+Rendelés toouse HTTPS hello VM kell egy megbízható az SSL-tanúsítványt. A forgatókönyvtől függően hello a következő két módszer egyikét használhatja:
 
-* Érvényes SSL-tanúsítvány kiadott által hitelesítésszolgáltató (CA), és a Microsoft megbízhatónak. A Microsoft Root Certificate programon keresztül terjeszteni a hitelesítésszolgáltató legfelső szintű tanúsítványok szükségesek. A programra vonatkozó további információkért lásd: [Windows és Windows Phone 8 SSL Root Certificate Program (tag CAs)](http://social.technet.microsoft.com/wiki/contents/articles/14215.windows-and-windows-phone-8-ssl-root-certificate-program-member-cas.aspx) és [bemutatása a Microsoft Root Certificate Program](http://social.technet.microsoft.com/wiki/contents/articles/3281.introduction-to-the-microsoft-root-certificate-program.aspx).
+* Érvényes SSL-tanúsítvány kiadott által hitelesítésszolgáltató (CA), és a Microsoft megbízhatónak. hello hitelesítésszolgáltató legfelső szintű tanúsítványok hello Microsoft Root Certificate programon keresztül terjesztett szükséges toobe. A programra vonatkozó további információkért lásd: [Windows és Windows Phone 8 SSL Root Certificate Program (tag CAs)](http://social.technet.microsoft.com/wiki/contents/articles/14215.windows-and-windows-phone-8-ssl-root-certificate-program-member-cas.aspx) és [bemutatása toohello Microsoft Root Certificate Program](http://social.technet.microsoft.com/wiki/contents/articles/3281.introduction-to-the-microsoft-root-certificate-program.aspx).
 * Egy önaláírt tanúsítványt. Önaláírt tanúsítványok éles környezetekben nem ajánlott.
 
-### <a name="to-use-a-certificate-created-by-a-trusted-certificate-authority-ca"></a>Létrehozott egy megbízható tanúsítvány hitelesítésszolgáltatói (CA) tanúsítvány használatára
-1. **A webhely kiszolgálói tanúsítványt kérhet egy hitelesítésszolgáltatótól**. 
+### <a name="toouse-a-certificate-created-by-a-trusted-certificate-authority-ca"></a>toouse létrehozni egy tanúsítványt egy megbízható tanúsítvány hitelesítésszolgáltatói (CA)
+1. **Hello webhely kiszolgálói tanúsítványt kérhet egy hitelesítésszolgáltatótól**. 
    
-    A kiszolgálói tanúsítvány varázsló használhatja, vagy egy kérelem Tanúsítványfájl (Certreq.txt) hitelesítésszolgáltató küldendő létrehozásához, vagy egy online hitelesítésszolgáltatót kérelmet létrehozni. Például a Microsoft tanúsítványszolgáltatások újdonságai a Windows Server 2012-ben. Attól függően, hogy a kiszolgálói tanúsítvány által kínált azonosító megbízhatósági szintjét akkor a hitelesítésszolgáltatót a kérelem jóváhagyása és a tanúsítvány fájl küldése néhány hónapig néhány nap. 
+    Használhat kiszolgálói tanúsítvány varázsló hello vagy toogenerate kérelem Tanúsítványfájl (Certreq.txt), hogy küldjön tooa hitelesítésszolgáltató vagy toogenerate egy online hitelesítésszolgáltatót kérelmet. Például a Microsoft tanúsítványszolgáltatások újdonságai a Windows Server 2012-ben. Attól függően, hogy a kiszolgálói tanúsítvány által nyújtott azonosítás biztonsági szint hello hello certification authority tooapprove néhány napon tooseveral hónapig a kérést, és küldjön egy tanúsítványfájlt. 
    
-    A kiszolgálói tanúsítványok kérésével kapcsolatos további információkért tekintse át a következőket: 
+    A kiszolgálói tanúsítványok kérésével kapcsolatos további információkért tekintse meg a hello következőt: 
    
    * Használjon [Certreq](https://technet.microsoft.com/library/cc725793.aspx), [Certreq](https://technet.microsoft.com/library/cc725793.aspx).
-   * Biztonsági eszközök a Windows Server 2012 rendszerhez.
+   * Biztonsági eszközök tooAdminister Windows Server 2012-ben.
      
-     [Biztonsági eszközök a Windows Server 2012 rendszerhez](https://technet.microsoft.com/library/jj730960.aspx)
+     [Biztonsági eszközök tooAdminister Windows Server 2012-ben](https://technet.microsoft.com/library/jj730960.aspx)
      
      > [!NOTE]
-     > A **kiadott** mező a megbízható az SSL-tanúsítvány egyeznie kell a **felhőalapú szolgáltatás DNS-név** az új virtuális gép használja.
+     > Hello **kiadott** hello mezője megbízható az SSL-tanúsítványt kell kell hello ugyanaz, mint hello **felhőalapú szolgáltatás DNS-név** meg használt hello új virtuális gép.
 
-2. **A kiszolgálótanúsítvány telepítésének a webkiszolgálón**. A webkiszolgáló ebben az esetben a virtuális gép, amelyen a jelentéskészítő kiszolgáló és a webhely a későbbi lépésekben jön létre, amikor a Reporting Services konfigurálásához. A webkiszolgáló a kiszolgáló-tanúsítvány telepítése a tanúsítvány MMC beépülő modul használatával kapcsolatos további információkért lásd: [a kiszolgálótanúsítvány telepítésének](https://technet.microsoft.com/library/cc740068).
+2. **Hello kiszolgálótanúsítvány telepítésének hello webkiszolgálón**. hello webkiszolgáló a jelen esetben ez hello VM állomások hello jelentéskészítő kiszolgáló és a hello webhely a későbbi lépésekben jön létre, amikor a Reporting Services konfigurálásához. Hello kiszolgálói tanúsítvány telepítésével hello webkiszolgálón hello tanúsítvány MMC beépülő modul használatával kapcsolatos további információkért lásd: [a kiszolgálótanúsítvány telepítésének](https://technet.microsoft.com/library/cc740068).
    
-    Ha a jelentéskészítő kiszolgáló, az érték a tanúsítványok konfigurálása az ebben a témakörben-parancsprogramja használni kívánt **ujjlenyomat** szükséges, a parancsfájl-paraméterként. Tekintse át a következő című szakaszban talál információt szerezni a tanúsítvány ujjlenyomatát.
-3. A kiszolgáló-tanúsítványt hozzárendeli a jelentéskészítő kiszolgálón. A hozzárendelés befejeződött a következő szakaszban a jelentéskészítő kiszolgáló konfigurálásakor.
+    Ha azt szeretné, hogy toouse hello parancsprogramja ebben a témakörben tooconfigure hello jelentéskészítő kiszolgáló hello hello tanúsítványok értékének **ujjlenyomat** szükséges hello parancsfájl paraméterként. Hello részletei a következő szakaszban látható hogyan tooobtain hello hello tanúsítvány ujjlenyomata.
+3. Rendelje hozzá a hello kiszolgálói tanúsítvány toohello jelentéskészítő kiszolgáló. hello hozzárendelés hello jelentéskészítő kiszolgáló konfigurálásakor hello a következő szakaszban befejeződött.
 
-### <a name="to-use-the-virtual-machines-self-signed-certificate"></a>A virtuális gépek önaláírt tanúsítvány használatára
-Önaláírt tanúsítvány hozta létre a virtuális Gépre, a virtuális gép lett kiépítve. A tanúsítvány a a virtuális gép DNS-névvel megegyező névvel rendelkezik. Hitelesítési hibák elkerülése érdekében szükség, hogy megbízható, maga a virtuális gépen és a hely összes felhasználó-e a tanúsítvány.
+### <a name="toouse-hello-virtual-machines-self-signed-certificate"></a>Virtuális gépek önaláírt tanúsítvány toouse hello
+Egy önaláírt tanúsítványt a virtuális gép hello jött létre, amikor a virtuális gép hello lett kiépítve. a tanúsítványnak hello hello azonos nevet, amint hello VM DNS-nevét. Az order tooavoid tanúsítvány hibákat kell hello tanúsítvány megbízható-e a virtuális gépért hello és minden felhasználó hello hely.
 
-1. Megbízható a legfelső szintű hitelesítésszolgáltató a tanúsítvány a helyi virtuális Gépen, vegye fel a tanúsítványt a **megbízható legfelső szintű hitelesítésszolgáltatók**. A következő szükséges lépések összefoglalása látható. Ismerteti, hogy bízzon meg a hitelesítésszolgáltató, lásd a [a kiszolgálótanúsítvány telepítésének](https://technet.microsoft.com/library/cc740068).
+1. tootrust hello legfelső szintű hitelesítésszolgáltató hello tanúsítvány a helyi virtuális gép, hello hozzáadása hello tanúsítvány toohello **megbízható legfelső szintű hitelesítésszolgáltatók**. hello hello szükséges lépések összefoglalása látható. Hogyan tootrust hello hitelesítésszolgáltató részletes lépéseiért lásd: [a kiszolgálótanúsítvány telepítésének](https://technet.microsoft.com/library/cc740068).
    
-   1. A klasszikus Azure portálon válassza ki a virtuális Gépet, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat, hogy kérni fogja menteni egy .rdp fájlt, a virtuális Géphez való kapcsolódáshoz.
+   1. Hello a klasszikus Azure portálon, válassza ki hello virtuális gép, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat felszólító toosave csatlakozni a virtuális gép toohello .rdp fájlt.
       
-       ![Csatlakozás az azure virtuális géphez](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) A felhasználói virtuális gép nevét, a felhasználónév és a virtuális gép létrehozásakor beállított jelszót használja. 
+       ![Csatlakoztassa tooazure virtuális gépet](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) Hello VM felhasználónév, a felhasználónév és jelszó hello virtuális gép létrehozásakor beállított használja. 
       
-       Például az alábbi ábrán a virtuális gép neve van **ssrsnativecloud** és a felhasználónév **tesztfelhasználó néven**.
+       Például a következő kép hello, hello virtuális gép neve: **ssrsnativecloud** és hello felhasználónév **tesztfelhasználó néven**.
       
        ![bejelentkezési tartalmaz virtuális gép neve](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
-   2. Futtassa a mmc.exe. További információkért lásd: [hogyan: tanúsítványok megtekintése az MMC beépülő modullal rendelkező](https://msdn.microsoft.com/library/ms788967.aspx).
-   3. A Konzolalkalmazás **fájl** menüben adja hozzá a **tanúsítványok** beépülő modulban válassza **számítógépfiók** kéri, és kattintson **tovább**.
-   4. Válassza ki **helyi számítógép** kezelése, majd **Befejezés**.
-   5. Kattintson a **Ok** majd bontsa ki a **tanúsítványok - személyes** csomópont, és kattintson **tanúsítványok**. A tanúsítvány neve után a virtuális Gépet DNS-nevét, és végződik **cloudapp.net**. Kattintson a jobb gombbal a tanúsítványnevet, és kattintson a **másolási**.
-   6. Bontsa ki a **megbízható legfelső szintű hitelesítésszolgáltatók** csomópontot, és kattintson rá jobb gombbal **tanúsítványok** majd **Beillesztés**.
-   7. Érvényesíteni, kattintson duplán arra a tanúsítvány neve alatt **megbízható legfelső szintű hitelesítésszolgáltatók** , és ellenőrizze, hogy nincsenek hibák, és a tanúsítvány látható. Ha szeretné-e a HTTPS-parancsprogramja Ez a témakör segítségével konfigurálja a jelentéskészítő kiszolgáló, a tanúsítványok értékének **ujjlenyomat** szükséges, a parancsfájl-paraméterként. **Az ujjlenyomat értékének eléréséhez**, adja meg a következőket. Szerepel továbbá egy PowerShell-példa szakaszában az ujjlenyomat beolvasása [parancsfájl segítségével konfigurálja a jelentéskészítő kiszolgáló és a HTTPS](#use-script-to-configure-the-report-server-and-HTTPS).
+   2. Futtassa a mmc.exe. További információkért lásd: [hogyan: nézet tanúsítványok beépülő MMC-modulban hello](https://msdn.microsoft.com/library/ms788967.aspx).
+   3. Hello Konzolalkalmazás **fájl** menü hello hozzáadása **tanúsítványok** beépülő modulban válassza **számítógépfiók** kéri, majd **tovább**.
+   4. Válassza ki **helyi számítógép** toomanage majd **Befejezés**.
+   5. Kattintson a **Ok** majd bontsa ki a hello **tanúsítványok - személyes** csomópont, és kattintson **tanúsítványok**. hello tanúsítvány neve után hello VM hello DNS-nevét és végződik **cloudapp.net**. Kattintson a jobb gombbal a hello tanúsítványnevet, és kattintson a **másolási**.
+   6. Bontsa ki a hello **megbízható legfelső szintű hitelesítésszolgáltatók** csomópontot, és kattintson rá jobb gombbal **tanúsítványok** majd **Beillesztés**.
+   7. dupla toovalidate kattintson hello tanúsítvány neve alatt a **megbízható legfelső szintű hitelesítésszolgáltatók** , és ellenőrizze, hogy nincsenek hibák, és a tanúsítvány látható. Ha azt szeretné, hogy toouse hello HTTPS-parancsprogramja ebben a témakörben tooconfigure hello jelentéskészítő kiszolgáló hello hello tanúsítványok értékének **ujjlenyomat** szükséges hello parancsfájl paraméterként. **tooget hello ujjlenyomat értékének**, végezze el a következő hello. Van még egy PowerShell minta tooretrieve hello ujjlenyomatot szakaszban [parancsfájl tooconfigure hello jelentéskészítő kiszolgáló és a HTTPS használatára](#use-script-to-configure-the-report-server-and-HTTPS).
       
-      1. Kattintson duplán a tanúsítvány, például ssrsnativecloud.cloudapp.net neve.
-      2. Kattintson a **részletek** fülre.
-      3. Kattintson a **ujjlenyomat**. Az ujjlenyomat értékének jelenik meg a részleteket tartalmazó mező, például a6 08 3 c. df f9 0b f7 e3 7c 25 kell adnia végrehajtási adatokat a4 kell adnia végrehajtási adatokat 7e ac 91 9c 2c fb 2f.
-      4. Másolja le az ujjlenyomatot, és mentse a értéket későbbi használatra, vagy a parancsfájl most szerkesztése.
-      5. (*) A parancsfájl futtatása előtt távolítsa el a szóközöket a értékpárok Between. Például az ujjlenyomat előtt feljegyzett most lenne a6083cdff90bf7e37c25eda4ed7eac919c2cfb2f.
-      6. A kiszolgáló-tanúsítványt hozzárendeli a jelentéskészítő kiszolgálón. A hozzárendelés befejeződött a következő szakaszban a jelentéskészítő kiszolgáló konfigurálásakor.
+      1. Kattintson duplán a hello hello tanúsítvány nevével, például ssrsnativecloud.cloudapp.net.
+      2. Kattintson a hello **részletek** fülre.
+      3. Kattintson a **ujjlenyomat**. hello ujjlenyomat hello érték jelenik meg hello részleteket tartalmazó mező, például a6 08 3 c. df f9 0b f7 e3 7c 25 kell adnia végrehajtási adatokat a4 kell adnia végrehajtási adatokat 7e ac 91 9c 2c fb 2f.
+      4. Hello ujjlenyomat másolása és mentése hello értéket későbbi használatra, vagy most hello parancsfájl szerkesztése.
+      5. (*) Hello parancsfájl futtatása előtt távolítsa el a hello szóközöket Between hello értékpárok. Például előtt feljegyzett hello ujjlenyomat most lenne a6083cdff90bf7e37c25eda4ed7eac919c2cfb2f.
+      6. Rendelje hozzá a hello kiszolgálói tanúsítvány toohello jelentéskészítő kiszolgáló. hello hozzárendelés hello jelentéskészítő kiszolgáló konfigurálásakor hello a következő szakaszban befejeződött.
 
-Ha egy önaláírt SSL-tanúsítványt használ, a tanúsítvány neve már megfelel a virtuális gép állomásnevét. Ezért a DNS, a gép már regisztrálva van globálisan, és bármely ügyfél érhető el.
+Ha egy önaláírt SSL-tanúsítványt használ, a hello nevét hello tanúsítvány már megegyezik hello VM hello állomásnevével. Ezért hello DNS hello gép már regisztrálva van globálisan, és elérhető az összes ügyfél.
 
-## <a name="step-3-configure-the-report-server"></a>3. lépés: A jelentéskészítő kiszolgáló konfigurálása
-Ez a szakasz végigvezeti a virtuális gép konfigurálása natív üzemmódú Reporting Services jelentéskészítő kiszolgálón. A jelentéskészítő kiszolgáló konfigurálása a következő módszerek egyikét használhatja:
+## <a name="step-3-configure-hello-report-server"></a>3. lépés: Hello jelentéskészítő kiszolgáló konfigurálása
+Ez a szakasz bemutatja, hogyan hello VM konfigurálása natív üzemmódú Reporting Services jelentéskészítő kiszolgálón. A következő módszerek tooconfigure hello jelentéskészítő kiszolgáló hello egyikét használhatja:
 
-* A parancsfájl használata a jelentéskészítő kiszolgáló konfigurálása
-* A jelentéskészítő kiszolgáló konfigurálása a Configuration Manager használatával.
+* Hello parancsfájl tooconfigure hello jelentéskészítő kiszolgáló használatához
+* Használja a Configuration Manager tooConfigure hello jelentéskészítő kiszolgálón.
 
-Részletes lépéseket, tekintse meg a szakasz [csatlakozzon a virtuális géphez, és indítsa el a Reporting Services Configuration Manager](virtual-machines-windows-classic-ps-sql-bi.md#connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager).
+További részletes lépéseket, tekintse meg a hello szakasz [Connect toohello virtuális gép és a Start hello Reporting Services Configuration Manager](virtual-machines-windows-classic-ps-sql-bi.md#connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager).
 
-**Hitelesítési Megjegyzés:** Windows-hitelesítés a javasolt hitelesítési módszert, valamint az alapértelmezett Reporting Services hitelesítés. Csak a virtuális Gépen konfigurált felhasználók férhetnek a Reporting Services és a Reporting Services szerepkörökhöz hozzárendelt.
+**Hitelesítési Megjegyzés:** Windows-hitelesítés hello ajánlott hitelesítési módszert, valamint hello alapértelmezett Reporting Services hitelesítés. Csak a virtuális gép hello konfigurált felhasználók férhetnek a Reporting Services és tooReporting szolgáltatások szerepkört.
 
-### <a name="use-script-to-configure-the-report-server-and-http"></a>Parancsfájl használata a jelentéskészítő kiszolgáló és a HTTP konfigurálása
-A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell-parancsfájl használatához kövesse az alábbi lépéseket. A konfiguráció HTTP, HTTPS-nem tartalmazza:
+### <a name="use-script-tooconfigure-hello-report-server-and-http"></a>Parancsfájl tooconfigure hello jelentéskészítő kiszolgáló és a HTTP használata
+toouse hello Windows PowerShell parancsfájl tooconfigure hello jelentéskészítő kiszolgálón, a következő lépéseket teljes hello. hello konfiguráció HTTP, HTTPS-nem tartalmazza:
 
-1. A klasszikus Azure portálon válassza ki a virtuális Gépet, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat, hogy kérni fogja menteni egy .rdp fájlt, a virtuális Géphez való kapcsolódáshoz.
+1. Hello a klasszikus Azure portálon, válassza ki hello virtuális gép, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat felszólító toosave csatlakozni a virtuális gép toohello .rdp fájlt.
    
-    ![Csatlakozás az azure virtuális géphez](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) A felhasználói virtuális gép nevét, a felhasználónév és a virtuális gép létrehozásakor beállított jelszót használja. 
+    ![Csatlakoztassa tooazure virtuális gépet](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) Hello VM felhasználónév, a felhasználónév és jelszó hello virtuális gép létrehozásakor beállított használja. 
    
-    Például az alábbi ábrán a virtuális gép neve van **ssrsnativecloud** és a felhasználónév **tesztfelhasználó néven**.
+    Például a következő kép hello, hello virtuális gép neve: **ssrsnativecloud** és hello felhasználónév **tesztfelhasználó néven**.
    
     ![bejelentkezési tartalmaz virtuális gép neve](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
-2. Nyissa meg a virtuális gép **Windows PowerShell ISE** rendszergazdai jogosultságokkal. A PowerShell ISE a Windows server 2012 rendszeren alapértelmezés szerint telepítve van. Javasoljuk, akkor az ISE helyett a szabványos Windows PowerShell-ablakot, hogy a parancsfájl illessze be az ISE, módosítsa a parancsfájlt, és futtassa a parancsfájlt.
-3. A Windows PowerShell ISE, kattintson a **nézet** menüre, majd majd **parancsfájl ablaktábla megjelenítése**.
-4. Másolja a következő parancsfájlt, és illessze be a parancsfájlt a Windows PowerShell ISE parancsfájl ablaktáblára.
+2. Nyissa meg a virtuális gép hello, **Windows PowerShell ISE** rendszergazdai jogosultságokkal. a Windows server 2012 rendszerben alapértelmezés szerint telepítve van a PowerShell ISE hello. Ajánlott használnia hello ISE helyett a szabványos Windows PowerShell-ablakot, hogy hello parancsfájl beillesztése hello ISE, módosítsa hello parancsfájlt, és futtassa a hello parancsfájl.
+3. A Windows PowerShell ISE, kattintson a hello **nézet** menüre, majd majd **parancsfájl ablaktábla megjelenítése**.
+4. A következő parancsfájl hello másolással illessze be a hello parancsfájl hello Windows PowerShell ISE parancsfájl ablaktáblára.
    
         ## This script configures a Native mode report server without HTTPS
         $ErrorActionPreference = "Stop"
    
         $server = $env:COMPUTERNAME
-        $HTTPport = 80 # change the value if you used a different port for the private HTTP endpoint when the VM was created.
+        $HTTPport = 80 # change hello value if you used a different port for hello private HTTP endpoint when hello VM was created.
    
-        ## Set PowerShell execution policy to be able to run scripts
+        ## Set PowerShell execution policy toobe able toorun scripts
         Set-ExecutionPolicy RemoteSigned -Force
    
         ## Utility method for verifying an operation's result
@@ -189,13 +189,13 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell-parancsf
         $dbName='ReportServer'
    
         ## Register for MSReportServer_ConfigurationSetting
-        ## Change the version portion of the path to "v11" to use the script for SQL Server 2012
+        ## Change hello version portion of hello path too"v11" toouse hello script for SQL Server 2012
         $RSObject = Get-WmiObject -class "MSReportServer_ConfigurationSetting" -namespace "root\Microsoft\SqlServer\ReportServer\RS_MSSQLSERVER\v12\Admin"
    
         ## Report Server Configuration Steps
    
-        ## Setting the web service URL ##
-        write-host -foregroundcolor green "Setting the web service URL"
+        ## Setting hello web service URL ##
+        write-host -foregroundcolor green "Setting hello web service URL"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
@@ -210,22 +210,22 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell-parancsf
             $r = $RSObject.ReserveURL('ReportServerWebService',"http://+:$HTTPport",1033)
             CheckResult $r "ReserveURL for ReportServer port $HTTPport" 
    
-        ## Setting the Database ##
-        write-host -foregroundcolor green "Setting the Database"
+        ## Setting hello Database ##
+        write-host -foregroundcolor green "Setting hello Database"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
    
-        ## GenerateDatabaseScript - for creating the database
+        ## GenerateDatabaseScript - for creating hello database
             write-host "Calling GenerateDatabaseCreationScript for database $dbName"
             $r = $RSObject.GenerateDatabaseCreationScript($dbName,1033,$false)
             CheckResult $r "GenerateDatabaseCreationScript"
             $script = $r.Script
    
-        ## Execute sql script to create the database
+        ## Execute sql script toocreate hello database
             write-host 'Executing Database Creation Script'
             $savedcvd = Get-Location
-            Import-Module SQLPS              ## this automatically changes to sqlserver provider
+            Import-Module SQLPS              ## this automatically changes toosqlserver provider
             Invoke-SqlCmd -Query $script
             Set-Location $savedcvd
    
@@ -248,9 +248,9 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell-parancsf
             $r = $RSObject.SetDatabaseConnection($server,$dbName,2,'','')
             CheckResult $r "SetDatabaseConnection"  
    
-        ## Setting the Report Manager URL ##
+        ## Setting hello Report Manager URL ##
    
-        write-host -foregroundcolor green "Setting the Report Manager URL"
+        write-host -foregroundcolor green "Setting hello Report Manager URL"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
@@ -278,43 +278,43 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell-parancsf
         write-host -foregroundcolor DarkGray $starttime StartTime
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
-5. Ha a virtuális Gépet egy eltérő 80-as HTTP-port hozta létre, módosítsa a paramétert $HTTPport = 80-as.
-6. A parancsfájl a Reporting Services van beállítva. Ha azt szeretné, a parancsfájl futtatásához a Reporting Services, a "v11", a Get-WmiObject fényében a névtér elérési verzió részét módosíthatja.
-7. Futtassa a parancsfájlt.
+5. Egy HTTP-port a 80-as eltérő hello VM hozta létre, ha módosítani hello paraméter $HTTPport = 80-as.
+6. Reporting Services jelenleg konfigurált hello parancsfájl. Ha a Reporting Services toorun hello parancsfájl, hello verzió részét módosíthatja hello elérési toohello névtér túl "v11", a Get-WmiObject hello utasítást.
+7. Hello parancsprogrammal.
 
-**Érvényesítési**: az alapszintű jelentéskészítő kiszolgálói funkciók működésének ellenőrzéséhez tekintse meg a [a konfiguráció ellenőrzése](#verify-the-configuration) későbbi szakaszában talál.
+**Érvényesítési**: tooverify, amely hello alapvető jelentéskészítő kiszolgáló működőképes, lásd: hello [ellenőrizze hello konfigurációs](#verify-the-configuration) későbbi szakaszában talál.
 
-### <a name="use-script-to-configure-the-report-server-and-https"></a>Parancsfájl használata a jelentéskészítő kiszolgáló és a HTTPS konfigurálása
-A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használatához kövesse az alábbi lépéseket. A konfiguráció tartalmazza a HTTPS-en nem HTTP.
+### <a name="use-script-tooconfigure-hello-report-server-and-https"></a>Parancsfájl tooconfigure hello jelentéskészítő kiszolgáló és a HTTPS használatára
+toouse Windows PowerShell tooconfigure hello jelentéskészítő kiszolgálón, a következő lépéseket teljes hello. hello konfiguráció tartalmazza a HTTPS-en nem HTTP.
 
-1. A klasszikus Azure portálon válassza ki a virtuális Gépet, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat, hogy kérni fogja menteni egy .rdp fájlt, a virtuális Géphez való kapcsolódáshoz.
+1. Hello a klasszikus Azure portálon, válassza ki hello virtuális gép, és kattintson a Csatlakozás gombra. A böngésző konfigurációtól függően előfordulhat felszólító toosave csatlakozni a virtuális gép toohello .rdp fájlt.
    
-    ![Csatlakozás az azure virtuális géphez](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) A felhasználói virtuális gép nevét, a felhasználónév és a virtuális gép létrehozásakor beállított jelszót használja. 
+    ![Csatlakoztassa tooazure virtuális gépet](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif) Hello VM felhasználónév, a felhasználónév és jelszó hello virtuális gép létrehozásakor beállított használja. 
    
-    Például az alábbi ábrán a virtuális gép neve van **ssrsnativecloud** és a felhasználónév **tesztfelhasználó néven**.
+    Például a következő kép hello, hello virtuális gép neve: **ssrsnativecloud** és hello felhasználónév **tesztfelhasználó néven**.
    
     ![bejelentkezési tartalmaz virtuális gép neve](./media/virtual-machines-windows-classic-ps-sql-report/IC764111.png)
-2. Nyissa meg a virtuális gép **Windows PowerShell ISE** rendszergazdai jogosultságokkal. A PowerShell ISE a Windows server 2012 rendszeren alapértelmezés szerint telepítve van. Javasoljuk, akkor az ISE helyett a szabványos Windows PowerShell-ablakot, hogy a parancsfájl illessze be az ISE, módosítsa a parancsfájlt, és futtassa a parancsfájlt.
-3. Ahhoz, hogy a parancsfájlok futtatását, futtassa a következő Windows PowerShell-parancsot:
+2. Nyissa meg a virtuális gép hello, **Windows PowerShell ISE** rendszergazdai jogosultságokkal. a Windows server 2012 rendszerben alapértelmezés szerint telepítve van a PowerShell ISE hello. Ajánlott használnia hello ISE helyett a szabványos Windows PowerShell-ablakot, hogy hello parancsfájl beillesztése hello ISE, módosítsa hello parancsfájlt, és futtassa a hello parancsfájl.
+3. parancsfájlok futtatása, futtassa a következő Windows PowerShell-paranccsal hello tooenable:
    
         Set-ExecutionPolicy RemoteSigned
    
-    Ezt követően futtathatja a házirend ellenőrzése a következőt:
+    Ezt követően futtathatja a következő tooverify hello házirend hello:
    
         Get-ExecutionPolicy
-4. A **Windows PowerShell ISE**, kattintson a **nézet** menüre, majd majd **parancsfájl ablaktábla megjelenítése**.
-5. Másolja a következő parancsfájlt, és illessze be a Windows PowerShell ISE parancsfájl ablaktáblán.
+4. A **Windows PowerShell ISE**, kattintson a hello **nézet** menüre, és kattintson **parancsfájl ablaktábla megjelenítése**.
+5. Másolja az alábbi parancsfájlt, és illessze be a Windows PowerShell ISE panelbe hello hello.
    
-        ## This script configures the report server, including HTTPS
+        ## This script configures hello report server, including HTTPS
         $ErrorActionPreference = "Stop"
-        $httpsport=443 # modify if you used a different port number when the HTTPS endpoint was created.
+        $httpsport=443 # modify if you used a different port number when hello HTTPS endpoint was created.
    
-        # You can run the following command to get (.cloudapp.net certificates) so you can copy the thumbprint / certificate hash
+        # You can run hello following command tooget (.cloudapp.net certificates) so you can copy hello thumbprint / certificate hash
         #dir cert:\LocalMachine -rec | Select-Object * | where {$_.issuer -like "*cloudapp*" -and $_.pspath -like "*root*"} | select dnsnamelist, thumbprint, issuer
         #
-        # The certifacte hash is a REQUIRED parameter
+        # hello certifacte hash is a REQUIRED parameter
         $certificatehash="" 
-        # the certificate hash should not contain spaces
+        # hello certificate hash should not contain spaces
    
         if ($certificatehash.Length -lt 1) 
         {
@@ -323,7 +323,7 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használ
         # Certificates should be all lower case
         $certificatehash=$certificatehash.ToLower()
         $server = $env:COMPUTERNAME
-        # If the certificate is not a wildcard certificate, comment out the following line, and enable the full $DNSNAme reference.
+        # If hello certificate is not a wildcard certificate, comment out hello following line, and enable hello full $DNSNAme reference.
         $DNSName="+"
         #$DNSName="$server.cloudapp.net"
         $DNSNameAndPort = $DNSName + ":$httpsport"
@@ -343,16 +343,16 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használ
         ## ReportServer Database name - this can be changed if needed
         $dbName='ReportServer'
    
-        write-host "The script will use $DNSNameAndPort as the DNS name and port" 
+        write-host "hello script will use $DNSNameAndPort as hello DNS name and port" 
    
         ## Register for MSReportServer_ConfigurationSetting
-        ## Change the version portion of the path to "v11" to use the script for SQL Server 2012
+        ## Change hello version portion of hello path too"v11" toouse hello script for SQL Server 2012
         $RSObject = Get-WmiObject -class "MSReportServer_ConfigurationSetting" -namespace "root\Microsoft\SqlServer\ReportServer\RS_MSSQLSERVER\v12\Admin"
    
         ## Reporting Services Report Server Configuration Steps
    
-        ## 1. Setting the web service URL ##
-        write-host -foregroundcolor green "Setting the web service URL"
+        ## 1. Setting hello web service URL ##
+        write-host -foregroundcolor green "Setting hello web service URL"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
@@ -377,22 +377,22 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használ
             $r = $RSObject.CreateSSLCertificateBinding('ReportServerWebService',$certificatehash,'0.0.0.0',$httpsport,1033)
             CheckResult $r "CreateSSLCertificateBinding for ReportServer port $httpsport" 
    
-        ## 2. Setting the Database ##
-        write-host -foregroundcolor green "Setting the Database"
+        ## 2. Setting hello Database ##
+        write-host -foregroundcolor green "Setting hello Database"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
    
-        ## GenerateDatabaseScript - for creating the database
+        ## GenerateDatabaseScript - for creating hello database
             write-host "Calling GenerateDatabaseCreationScript for database $dbName"
             $r = $RSObject.GenerateDatabaseCreationScript($dbName,1033,$false)
             CheckResult $r "GenerateDatabaseCreationScript"
             $script = $r.Script
    
-        ## Execute sql script to create the database
+        ## Execute sql script toocreate hello database
             write-host 'Executing Database Creation Script'
             $savedcvd = Get-Location
-            Import-Module SQLPS                    ## this automatically changes to sqlserver provider
+            Import-Module SQLPS                    ## this automatically changes toosqlserver provider
             Invoke-SqlCmd -Query $script
             Set-Location $savedcvd
    
@@ -415,9 +415,9 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használ
             $r = $RSObject.SetDatabaseConnection($server,$dbName,2,'','')
             CheckResult $r "SetDatabaseConnection"  
    
-        ## 3. Setting the Report Manager URL ##
+        ## 3. Setting hello Report Manager URL ##
    
-        write-host -foregroundcolor green "Setting the Report Manager URL"
+        write-host -foregroundcolor green "Setting hello Report Manager URL"
         write-host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
@@ -455,156 +455,156 @@ A jelentéskészítő kiszolgáló konfigurálása a Windows PowerShell használ
         write-host -foregroundcolor DarkGray $starttime StartTime
         $time=Get-Date
         write-host -foregroundcolor DarkGray $time
-6. Módosítsa a **$certificatehash** paraméter a parancsfájlban:
+6. Módosítsa a hello **$certificatehash** paraméter hello parancsfájlban:
    
-   * Ez egy **szükséges** paraméter. Ha a tanúsítvány érték az előző lépésekben nem mentette, az a következő módszerek egyikét másolhatja a tanúsítvány kivonatoló értékét a tanúsítványok ujjlenyomatát.:
+   * Ez egy **szükséges** paraméter. Ha hello tanúsítvány érték nem mentette hello előző lépéseiből, valamelyikével módszerek toocopy hello tanúsítvány kivonatoló függvénnyel követően – hello tanúsítványok ujjlenyomat hello.:
      
-       A virtuális Gépre nyissa meg a Windows PowerShell ISE, és futtassa a következő parancsot:
+       A virtuális gép hello nyissa meg a Windows PowerShell ISE és hello a következő parancsot:
      
            dir cert:\LocalMachine -rec | Select-Object * | where {$_.issuer -like "*cloudapp*" -and $_.pspath -like "*root*"} | select dnsnamelist, thumbprint, issuer
      
-       A kimenet az alábbihoz hasonló fog kinézni. A parancsfájl egy üres sort ad vissza, ha a virtuális gép nem rendelkezik konfigurált például tanúsítvány, című részében [a virtuális gépek önaláírt tanúsítvány használatára](#to-use-the-virtual-machines-self-signed-certificate).
+       hello kimeneti hasonló toohello következő fog kinézni. Hello parancsfájl egy üres sort ad vissza, ha hello virtuális gép nem rendelkezik konfigurált például tanúsítvány, hello című [toouse hello virtuális gépek önaláírt tanúsítvány](#to-use-the-virtual-machines-self-signed-certificate).
      
      VAGY
-   * A virtuális gép fut mmc.exe, majd adja hozzá a **tanúsítványok** beépülő modult.
-   * Az a **megbízható legfelső szintű hitelesítésszolgáltatók** csomópontot, kattintson duplán a tanúsítvány neve. A virtuális gép önaláírt tanúsítványt használ, ha a tanúsítvány neve után a virtuális Gépet DNS-nevét, és végződik **cloudapp.net**.
-   * Kattintson a **részletek** fülre.
-   * Kattintson a **ujjlenyomat**. Az ujjlenyomat értékének jelenik meg a részleteket tartalmazó mező, például af 11 60 b6 4b 28 8 d 89 0a 82 12 ff 6b a9 c3 66 4f 31 90 48
-   * **A parancsfájl futtatása előtt**, távolítsa el a szóközöket érték párok között. Például af1160b64b288d890a8212ff6ba9c3664f319048
-7. Módosítsa a **$httpsport** paraméter: 
+   * A virtuális gép futtatásához mmc.exe hello, és adja meg az hello **tanúsítványok** beépülő modult.
+   * A hello **megbízható legfelső szintű hitelesítésszolgáltatók** csomópontot, kattintson duplán a tanúsítvány neve. Hello VM hello önaláírt tanúsítványát használja, ha hello tanúsítvány van elnevezve hello VM hello DNS-nevét, és végződik **cloudapp.net**.
+   * Kattintson a hello **részletek** fülre.
+   * Kattintson a **ujjlenyomat**. hello ujjlenyomat hello érték jelenik meg hello részleteket tartalmazó mező, például af 11 60 b6 4b 28 8 d 89 0a 82 12 ff 6b a9 c3 66 4f 31 90 48
+   * **Hello parancsfájl futtatása előtt**, távolítsa el Between hello értékpárok hello szóközöket. Például af1160b64b288d890a8212ff6ba9c3664f319048
+7. Módosítsa a hello **$httpsport** paraméter: 
    
-   * Ha a 443-as portot használja a HTTPS-végponton, majd nem módosítania ezt a paramétert a parancsfájlban. Ellenkező esetben használja a port értékét a titkos HTTPS-végpont a virtuális Gépre konfigurálásakor választotta.
-8. Módosítsa a **$DNSName** paraméter: 
+   * Ha a HTTPS-végpont hello 443-as portot használja, majd nem kell tooupdate hello parancsfájlban ezt a paramétert. Ellenkező esetben használja hello HTTPS titkos végpont a virtuális gép hello konfigurálása során kiválasztott hello portértéket.
+8. Módosítsa a hello **$DNSName** paraméter: 
    
-   * A parancsfájl beállítása helyettesítő tanúsítvány $DNSName = "+". Ha így tesz, nem kívánt segítségével konfigurálhatja a helyettesítő tanúsítvány kötés $DNSName megjegyzéssé ="+"és a következő sorban, a teljes $DNSNAme hivatkozás, ## $DNSName="$server.cloudapp.net engedélyezése".
+   * hello parancsfájl úgy van konfigurálva, a helyettesítő tanúsítvány $DNSName = "+". Ha nem akarja tooconfigure helyettesítő tanúsítvány kötés, megjegyzéssé $DNSName = "+"és a következő sorban, hello teljes $DNSNAme hivatkozás, ## $DNSName="$server.cloudapp.net hello engedélyezése".
      
-       Módosítsa a $DNSName értékét, ha nem szeretné használni a Reporting Services a virtuális gép DNS-nevét. Ha a paraméter használata esetén a tanúsítványt kell használnia az ezt a nevet, és regisztrálnia globálisan a DNS-kiszolgáló nevét.
-9. A parancsfájl a Reporting Services van beállítva. Ha azt szeretné, a parancsfájl futtatásához a Reporting Services, a "v11", a Get-WmiObject fényében a névtér elérési verzió részét módosíthatja.
-10. Futtassa a parancsfájlt.
+       Módosítsa a hello $DNSName értéket, ha nem szeretné a Reporting Services toouse hello virtuális gép DNS-nevét. Hello paraméter használatakor hello tanúsítványt kell használnia az ezt a nevet, és regisztrál egy DNS kiszolgálón lévő globálisan hello nevét.
+9. Reporting Services jelenleg konfigurált hello parancsfájl. Ha a Reporting Services toorun hello parancsfájl, hello verzió részét módosíthatja hello elérési toohello névtér túl "v11", a Get-WmiObject hello utasítást.
+10. Hello parancsprogrammal.
 
-**Érvényesítési**: az alapszintű jelentéskészítő kiszolgálói funkciók működésének ellenőrzéséhez tekintse meg a [a konfiguráció ellenőrzése](#verify-the-connection) későbbi szakaszában talál. Lévő tanúsítvány ellenőrzéséhez kötési nyisson meg egy parancssort rendszergazdai jogosultságokkal, és futtassa a következő parancsot:
+**Érvényesítési**: tooverify, amely hello alapvető jelentéskészítő kiszolgáló működőképes, lásd: hello [ellenőrizze hello konfigurációs](#verify-the-connection) későbbi szakaszában talál. tooverify hello tanúsítványkötés nyisson meg egy parancssort rendszergazdai jogosultságokkal, és futtassa a parancsot a következő hello:
 
     netsh http show sslcert
 
-Az eredmény a következőket tartalmazza:
+hello eredmény hello következőket tartalmazza:
 
     IP:port                      : 0.0.0.0:443
 
     Certificate Hash             : f98adf786994c1e4a153f53fe20f94210267d0e7
 
-### <a name="use-configuration-manager-to-configure-the-report-server"></a>A jelentéskészítő kiszolgáló konfigurálása a Configuration Manager használatával
-Ha nem szeretné, hogy a jelentéskészítő kiszolgáló konfigurálása a PowerShell parancsfájl futtatásához, kövesse az ebben a szakaszban a jelentéskészítő kiszolgáló konfigurálása a configuration manager jelentéskészítési szolgáltatások natív mód segítségével.
+### <a name="use-configuration-manager-tooconfigure-hello-report-server"></a>Használja a Configuration Manager tooConfigure hello jelentéskészítő kiszolgáló
+Ha nem szeretné, hogy toorun hello PowerShell parancsfájl tooconfigure hello jelentéskészítő kiszolgálón, lépésekkel hello Ez a szakasz toouse hello Reporting Services natív üzemmódú configuration manager tooconfigure hello jelentéskészítő kiszolgáló.
 
-1. A klasszikus Azure portálon válassza ki a virtuális Gépet, és kattintson a Csatlakozás gombra. A felhasználónév és a virtuális gép létrehozásakor beállított jelszó használata.
+1. Hello a klasszikus Azure portálon, válassza ki hello virtuális gép, és kattintson a Csatlakozás gombra. Hello felhasználónév és jelszó hello virtuális gép létrehozásakor beállított használata.
    
-    ![Csatlakozás az azure virtuális géphez](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif)
-2. Futtassa a Windows update, és telepítse a frissítéseket a virtuális géphez. Ha a virtuális gép újraindítására szükség, indítsa újra a virtuális gép, és csatlakozzon újra a virtuális Gépet a klasszikus Azure portálon.
-3. A virtuális Gépen a Start menüben írja be a **Reporting Services** , és nyissa meg **Reporting Services Configuration Manager**.
-4. Hagyja meg az alapértelmezett értékeit **kiszolgálónév** és **jelentéskészítő kiszolgáló példánya**. Kattintson a **Connect** (Csatlakozás) gombra.
-5. Kattintson a bal oldali ablaktáblában **webes szolgáltatás URL-címe**.
-6. Alapértelmezés szerint RS "Az összes hozzárendelt" IP-80-as HTTP-port van konfigurálva. HTTPS hozzáadása:
+    ![Csatlakoztassa tooazure virtuális gépet](./media/virtual-machines-windows-classic-ps-sql-report/IC650112.gif)
+2. Futtassa a Windows update és a frissítések toohello VM telepítése. Hello virtuális gép újraindítására szükség, ha hello virtuális gép újraindítása, és csatlakozzon újra a virtuális gép toohello a klasszikus Azure portálon hello.
+3. A virtuális gép hello hello Start menüben írja be a **Reporting Services** , és nyissa meg **Reporting Services Configuration Manager**.
+4. Hagyja bejelölve az alapértelmezett értékeit hello **kiszolgálónév** és **jelentéskészítő kiszolgáló példánya**. Kattintson a **Connect** (Csatlakozás) gombra.
+5. Hello bal oldali ablaktáblában kattintson **webes szolgáltatás URL-címe**.
+6. Alapértelmezés szerint RS "Az összes hozzárendelt" IP-80-as HTTP-port van konfigurálva. tooadd HTTPS:
    
-   1. A **SSL-tanúsítvány**: válassza ki a [virtuális gép neve] például használni kívánt tanúsítványt. cloudapp.net. Ha nincsenek felsorolva tanúsítványok, tekintse meg a szakasz **2. lépés: hozzon létre egy kiszolgálói tanúsítványt** telepítéséről és a virtuális Gépen a tanúsítvány megbízható olvashat.
-   2. A **SSL-Port**: válassza ki a 443-as. Ha konfigurálta a titkos HTTPS-végpont a virtuális gép más magánhálózati port, használni ezt az értéket.
-   3. Kattintson a **alkalmaz** és várjon, amíg a művelet elvégzéséhez.
-7. Kattintson a bal oldali ablaktáblában **adatbázis**.
+   1. A **SSL-tanúsítvány**: select hello tanúsítványt toouse, [a virtuális gép neve] például. cloudapp.net. Ha nincsenek felsorolva tanúsítványok, című hello **2. lépés: hozzon létre egy kiszolgálói tanúsítványt** olvashat, hogyan tooinstall és megbízhatósági hello hello VM-tanúsítványt.
+   2. A **SSL-Port**: válassza ki a 443-as. Ha más magánhálózati port VM hello konfigurált hello HTTPS titkos végpont, használni ezt az értéket.
+   3. Kattintson a **alkalmaz** és hello művelet toocomplete várja.
+7. Hello bal oldali ablaktáblában kattintson **adatbázis**.
    
    1. Kattintson a **Databas módosítása**e.
    2. Kattintson a **hozzon létre egy új jelentéskészítő kiszolgáló adatbázisában** majd **következő**.
-   3. Hagyja meg az alapértelmezett **kiszolgálónév**: neve legyen a virtuális Gépet, és hagyja meg az alapértelmezett **hitelesítési típus** , **aktuális felhasználó** – **integrált biztonsági**. Kattintson a **Tovább** gombra.
-   4. Hagyja meg az alapértelmezett **adatbázisnév** , **ReportServer** kattintson **következő**.
-   5. Hagyja meg az alapértelmezett **hitelesítési típus** , **szolgáltatás hitelesítő adatai** kattintson **következő**.
-   6. Kattintson a **következő** a a **összegzés** lap.
-   7. A konfiguráció befejeztével kattintson **Befejezés**.
-8. Kattintson a bal oldali ablaktáblában **Jelentéskezelő URL-címe**. Hagyja meg az alapértelmezett **virtuális könyvtár** , **jelentések** kattintson **alkalmaz**.
-9. Kattintson a **kilépési** a Reporting Services Configuration Manager bezárásához.
+   3. Hagyja hello alapértelmezett **kiszolgálónév**: neve hello VM legyen, és hagyja hello alapértelmezett **hitelesítési típus** , **aktuális felhasználó** – **integrált biztonsági**. Kattintson a **Tovább** gombra.
+   4. Hagyja hello alapértelmezett **adatbázisnév** , **ReportServer** kattintson **következő**.
+   5. Hagyja hello alapértelmezett **hitelesítési típus** , **szolgáltatás hitelesítő adatai** kattintson **következő**.
+   6. Kattintson a **következő** a hello **összegzés** lap.
+   7. Hello konfiguráció befejeztével kattintson **Befejezés**.
+8. Hello bal oldali ablaktáblában kattintson **Jelentéskezelő URL-címe**. Hagyja hello alapértelmezett **virtuális könyvtár** , **jelentések** kattintson **alkalmaz**.
+9. Kattintson a **kilépési** tooclose hello Reporting Services Configuration Manager.
 
 ## <a name="step-4-open-windows-firewall-port"></a>4. lépés: A Windows tűzfal Port megnyitása
 > [!NOTE]
-> Ha a parancsfájlok a jelentéskészítő kiszolgáló konfigurálása, ez a szakasz kihagyhatja. A parancsfájl tartalmazza a lépés a tűzfal-port megnyitásához. Az alapértelmezett port a 80-as HTTP és HTTPS – 443-as port volt.
+> Ha egy hello parancsfájlok tooconfigure hello jelentéskészítő kiszolgálón, ez a szakasz kihagyhatja. hello parancsfájl lépés tooopen hello tűzfalportot tartalmazza. hello alapértelmezett port a 80-as HTTP és HTTPS – 443-as port volt.
 > 
 > 
 
-Távolról kapcsolódni a Jelentéskezelő vagy a jelentéskészítő kiszolgáló, a virtuális gépen, a TCP-végpontot a virtuális gép szükséges. Szükség van rá ugyanazt a portot a virtuális gép megnyitása. A végpont jött létre, amikor a virtuális gép lett kiépítve.
+tooconnect távolról tooReport kezelő vagy hello jelentést Server hello virtuális gépen, a TCP-végpont hello virtuális gép szükséges. Ugyanaz a hello VM tűzfal port szükséges tooopen hello. hello végpont jött létre, amikor a virtuális gép hello lett kiépítve.
 
-Ez a szakasz a tűzfal-port megnyitásának módjáról alapvető információkat nyújt. További információkért lásd: [beállítani a tűzfalat a jelentéskészítő kiszolgáló elérése](https://technet.microsoft.com/library/bb934283.aspx)
+Ez a szakasz hogyan tooopen hello tűzfalportot alapvető információkat nyújt. További információkért lásd: [beállítani a tűzfalat a jelentéskészítő kiszolgáló elérése](https://technet.microsoft.com/library/bb934283.aspx)
 
 > [!NOTE]
-> Ha a parancsfájl a jelentéskészítő kiszolgáló konfigurálására szolgáló, ez a szakasz kihagyhatja. A parancsfájl tartalmazza a lépés a tűzfal-port megnyitásához.
+> Ha hello parancsfájl tooconfigure hello jelentéskészítő kiszolgáló használja, kihagyhatja ebben a szakaszban. hello parancsfájl lépés tooopen hello tűzfalportot tartalmazza.
 > 
 > 
 
-Ha a magánhálózati port a HTTPS használatára konfigurált 443-astól eltérő, annak megfelelően módosítsa a következő parancsfájlt. Port megnyitásához **443-as** a Windows tűzfalon, adja meg a következőket:
+A magánhálózati port a HTTPS használatára konfigurált 443-astól eltérő, ha módosítsa megfelelően a következő parancsfájl hello. tooopen port **443-as** a Windows tűzfal hello, végezze el a következő hello:
 
 1. Nyissa meg a Windows PowerShell ablakot rendszergazdai jogosultságokkal.
-2. Ha a 443-astól eltérő portot a HTTPS-végpont a virtuális Gépre való konfigurálásakor, frissíteni a következő parancsot a portot, és futtassa a parancsot:
+2. Hello a HTTPS-végpont a virtuális gép hello konfigurálása során a 443-astól eltérő port használata esetén a következő parancs hello hello port frissítése, és futtassa hello parancsot:
    
         New-NetFirewallRule -DisplayName “Report Server (TCP on port 443)” -Direction Inbound –Protocol TCP –LocalPort 443
-3. A parancs befejeződésekor **Ok** jelenik meg a parancssort.
+3. Hello parancs befejeződésekor **Ok** hello parancssor jelenik meg.
 
-Győződjön meg arról, hogy a port van megnyitva, nyisson meg egy Windows PowerShell-ablakot, és futtassa a következő parancsot:
+tooverify, hogy hello port meg van nyitva, nyisson meg egy Windows PowerShell ablakot, és futtassa a következő parancs hello:
 
     get-netfirewallrule | where {$_.displayname -like "*report*"} | select displayname,enabled,action
 
-## <a name="verify-the-configuration"></a>A konfiguráció ellenőrzése
-Győződjön meg arról, hogy a jelentés alapvető funkcióihoz most működik, nyissa meg a böngésző rendszergazdai jogosultságokkal, és tallózással keressen meg a következő jelentéskészítő kiszolgáló ad Jelentéskezelő URL-CÍMEK:
+## <a name="verify-hello-configuration"></a>Hello konfigurációjának ellenőrzése
+rendszergazdai jogosultságokkal rendelkező tooverify hello alapvető jelentéskészítő kiszolgálói funkciók most működik, nyissa meg a böngészőt, és Tallózás toohello következő jelentést készít a kiszolgáló ad Jelentéskezelő URL-CÍMEK:
 
-* A virtuális Gépre keresse meg a jelentéskészítő kiszolgáló URL-címe:
+* Keresse meg a virtuális gép hello, a toohello jelentéskészítő kiszolgáló URL-címe:
   
         http://localhost/reportserver
-* A virtuális Gépre keresse meg a jelentés Manager URL-címe:
+* Keresse meg a virtuális gép hello, a toohello jelentés Manager URL-címe:
   
         http://localhost/Reports
-* A helyi számítógépről, keresse meg a **távoli** Manager jelentést a virtuális Gépet. Szükség szerint az alábbi példában a DNS-név frissítése. Amikor a rendszer kéri a jelszót, akkor jön létre, amikor a virtuális gép lett kiépítve rendszergazdai hitelesítő adatokat használja. A felhasználó nevét kell a [tartomány]\[felhasználónév] formátumban, ahol a tartomány pedig a virtuális gép számítógép nevét, például ssrsnativecloud\testuser. Ha nem használja a HTTP**S**, távolítsa el a **s** az URL-címben. Tekintse meg a következő szakaszban talál további felhasználók létrehozásával a virtuális Gépen.
+* A helyi számítógépről, keresse meg a toohello **távoli** hello VM Manager jelentést. Hello DNS-név a következő példa megfelelő hello a frissítése. Amikor a rendszer kéri a jelszót, használja a hello rendszergazdai hitelesítő adatokat, akkor jön létre, amikor a virtuális gép hello lett kiépítve. hello felhasználói név van hello [tartomány]\[felhasználónév] formátumban, ahol a hello tartománya hello VM számítógép nevét, például ssrsnativecloud\testuser. Ha nem használja a HTTP**S**, távolítsa el a hello **s** hello URL-címben. Című rész hello Tovább információt a további felhasználók létrehozása a virtuális Gépen.
   
         https://ssrsnativecloud.cloudapp.net/Reports
-* A helyi számítógépről keresse meg azt a távoli jelentéskészítő kiszolgáló URL-címe. Szükség szerint az alábbi példában a DNS-név frissítése. Ha HTTPS nem használ, távolítsa el az s az URL-címben.
+* A helyi számítógépről keresse meg a toohello távoli jelentéskészítő kiszolgáló URL-címe. Hello DNS-név a következő példa megfelelő hello a frissítése. Ha HTTPS nem használ, távolítsa el a hello s hello URL-címben.
   
         https://ssrsnativecloud.cloudapp.net/ReportServer
 
 ## <a name="create-users-and-assign-roles"></a>Felhasználók létrehozása és szerepkörök hozzárendelése
-Konfigurálása, és a jelentéskészítő kiszolgáló ellenőrzése után a gyakori felügyeleti feladatokat, hogy hozzon létre egy vagy több felhasználó és a Reporting Services szerepkörökhöz rendeljen hozzá felhasználókat. További információkért tekintse át a következőket:
+Konfigurálásának és ellenőrzésének hello jelentés kiszolgáló, miután egy közös felügyeleti feladat toocreate egy vagy több felhasználó, és felhasználók tooReporting szolgáltatások szerepkörök hozzárendelése. További információkért lásd: hello következő:
 
 * [Helyi felhasználói fiók létrehozása](https://technet.microsoft.com/library/cc770642.aspx)
-* [A jelentéskészítő kiszolgáló (Jelentéskezelő) GRANT felhasználói hozzáférése](https://msdn.microsoft.com/library/ms156034.aspx))
+* [Felhasználói hozzáférés tooa jelentéskészítő kiszolgáló (Jelentéskezelő)](https://msdn.microsoft.com/library/ms156034.aspx))
 * [Létrehozása és kezelése a szerepkör-hozzárendelések](https://msdn.microsoft.com/library/ms155843.aspx)
 
-## <a name="to-create-and-publish-reports-to-the-azure-virtual-machine"></a>Hozzon létre, és a jelentések közzététele az Azure virtuális géphez
-A következő táblázat összefoglalja az egyes lehetőségekről a helyi számítógépről a jelentéskészítő kiszolgálón található meg a Microsoft Azure virtuális gép meglévő jelentések közzététele érdekében:
+## <a name="toocreate-and-publish-reports-toohello-azure-virtual-machine"></a>tooCreate és a jelentések közzététele toohello Azure virtuális gépen
+hello következő táblázat összefoglalja hello beállítások elérhető toopublish meglévő kiszolgálóról származó jelentések egy helyszíni számítógép toohello jelentés hello Microsoft Azure rendszerű virtuális gépeken üzemeltet egy részénél:
 
-* **RS.exe parancsfájl**: használata RS.exe parancsfájl jelentés elemeit és a meglévő jelentéskészítő kiszolgáló számára a Microsoft Azure virtuális gép másolása. További információkért lásd: a "Natív mód natív üzemmódra – a Microsoft Azure virtuális gép" szakaszban a [minta Reporting Services rs.exe tartalom áttelepítése jelentés kiszolgálók közötti parancsfájl](https://msdn.microsoft.com/library/dn531017.aspx).
-* **Jelentéskészítő**: A virtuális gépet tartalmaz, kattintson a-Microsoft SQL Server jelentéskészítő egyszer verzióját. Elindítja a jelentés jelentéskészítő első alkalommal a virtuális gépet:
+* **RS.exe parancsfájl**: használata RS.exe parancsfájl toocopy jelentés elemeit és meglévő jelentés server tooyour Microsoft Azure virtuális gépen. További információkért lásd: hello szakasz "natív üzemmódú tooNative módban – Ez a Microsoft Azure virtuális gép" a [minta Reporting Services rs.exe parancsfájl tooMigrate jelentés kiszolgálók közötti tartalom](https://msdn.microsoft.com/library/dn531017.aspx).
+* **Jelentéskészítő**: hello virtuális gépet tartalmaz hello kattintson-Microsoft SQL Server jelentéskészítő egyszer verzióját. toostart jelentés jelentéskészítő hello először hello virtuális gépen:
   
   1. A böngészőben rendszergazdai jogosultságokkal.
-  2. Keresse meg a Jelentéskezelő virtuális gépen, és kattintson a **jelentéskészítő** a szalagon.
+  2. Keresse meg a tooreport manager hello virtuális gépen, és kattintson a **jelentéskészítő** hello szalagon.
      
      További információkért lásd: [telepítése, eltávolítása és a jelentéskészítő támogató](https://technet.microsoft.com/library/dd207038.aspx).
-* **SQL Server Data Tools: Virtuális gép**: Ha a virtuális gép az SQL Server 2012-ben létrehozott, akkor az SQL Server Data Tools a virtuális gépre van telepítve, és segítségével hozzon létre **jelentés Server projektek** és a jelentések a virtuális gépen. SQL Server Data Tools közzéteheti a jelentéseket a jelentéskészítő kiszolgáló, a virtuális gépen.
+* **SQL Server Data Tools: Virtuális gép**: Ha SQL Server 2012-ben létrehozott hello VM, akkor az SQL Server Data Tools hello virtuális gépre van telepítve, és lehet használt toocreate **jelentés Server projektek** és virtuális hello szóló jelentések gép. SQL Server Data Tools közzétehet hello jelentések toohello jelentéskészítő kiszolgáló hello virtuális gépen.
   
-    Ha a virtuális gép az SQL server 2014 hozta létre, telepítheti az SQL Server Data Tools - BI visual Studio. További információkért tekintse át a következőket:
+    Ha SQL server 2014 hello VM hozta létre, telepítheti az SQL Server Data Tools - BI visual Studio. További információkért lásd: hello következő:
   
   * [Microsoft SQL Server Data Tools összetevővel - üzleti intelligencia, a Visual Studio 2013-hoz](https://www.microsoft.com/download/details.aspx?id=42313)
   * [Microsoft SQL Server Data Tools összetevővel - üzleti intelligencia, a Visual Studio 2012](https://www.microsoft.com/download/details.aspx?id=36843)
   * [SQL Server Data Tools összetevővel és az SQL Server Business Intelligence (SSDT-bA)](http://curah.microsoft.com/30004/sql-server-data-tools-ssdt-and-sql-server-business-intelligence)
-* **SQL Server Data Tools: Távoli**: A helyi számítógépen, a Reporting Services-projekt létrehozása az SQL Server Data Tools összetevővel, amely tartalmazza a Reporting Services-jelentéseket. A webes szolgáltatás URL-Címéhez való kapcsolódáshoz a projekt konfigurálásához.
+* **SQL Server Data Tools: Távoli**: A helyi számítógépen, a Reporting Services-projekt létrehozása az SQL Server Data Tools összetevővel, amely tartalmazza a Reporting Services-jelentéseket. Hello projekt tooconnect toohello webes szolgáltatás URL-CÍMEK konfigurálása.
   
     ![SSRS-projekt SSDT projektjének tulajdonságai](./media/virtual-machines-windows-classic-ps-sql-report/IC650114.gif)
-* **Parancsfájl használata**: parancsfájl segítségével másolja a jelentéskészítő kiszolgáló tartalmat. További információkért lásd: [minta Reporting Services rs.exe tartalom áttelepítése jelentés kiszolgálók közötti parancsfájl](https://msdn.microsoft.com/library/dn531017.aspx).
+* **Parancsfájl használata**: használja a parancsfájl toocopy jelentés tartalmához. További információkért lásd: [minta Reporting Services rs.exe parancsfájl tooMigrate jelentés kiszolgálók közötti tartalom](https://msdn.microsoft.com/library/dn531017.aspx).
 
-## <a name="minimize-cost-if-you-are-not-using-the-vm"></a>Ha nem használ a virtuális gép minimalizálása érdekében a költség
+## <a name="minimize-cost-if-you-are-not-using-hello-vm"></a>Ha nem használja a virtuális gép hello minimalizálása érdekében a költség
 > [!NOTE]
-> Költségek minimalizálása érdekében az az Azure virtuális gépek Ha nincsenek használatban, állítsa le a virtuális Gépet a klasszikus Azure portálon. A Windows energiagazdálkodási beállításait használja a virtuális Gépen belül a virtuális gép leállítása, ha még mindig van szó akkora a virtuális gép számára. Költségek csökkentése érdekében le a virtuális Gépet, a klasszikus Azure portálon kell. Ha már nincs szüksége a virtuális Gépet, ne felejtse el a virtuális gép és a hozzárendelt .vhd fájlokat tároló díjak elkerülése érdekében törölje. További információkért lásd: a következő gyakran feltett [virtuális gépek díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/).
+> toominimize költségek az az Azure virtuális gépek Ha nincsenek használatban, állítsa le a klasszikus Azure portálon hello VM hello. Hello Windows energiagazdálkodási beállításait hello VM le a virtuális gép tooshut belül használja, ha van is szó, ugyanaz a virtuális gép hello összeg hello. tooreduce költség, a klasszikus Azure portálon hello VM hello le tooshut van szüksége. Ha már nincs szüksége a virtuális gép hello, ne feledje toodelete hello virtuális gép, és hello hozzárendelt .vhd fájlok tooavoid tárolási költségek. További információkért lásd: gyakran ismételt kérdések hello szakasz [virtuális gépek díjszabása](https://azure.microsoft.com/pricing/details/virtual-machines/).
 
 ## <a name="more-information"></a>További információ
 ### <a name="resources"></a>Erőforrások
-* Az SQL Server Business Intelligence és a SharePoint 2013 egyetlen kiszolgáló telepítéséhez kapcsolódó hasonló tartalomhoz, lásd: [a Windows PowerShell szolgáltatás használatával hozzon létre egy Azure virtuális gép az SQL Server BI és a SharePoint 2013](https://msdn.microsoft.com/library/azure/dn385843.aspx).
-* A hasonló tartalomhoz kapcsolódó SQL Server Business Intelligence és a SharePoint 2013 többkiszolgálós telepítésben, lásd: [központi telepítése az SQL Server Business Intelligence Azure virtuális gépek](https://msdn.microsoft.com/library/dn321998.aspx).
-* A SQL Server Business Intelligence Azure virtuális gépek központi telepítéséhez kapcsolódó általános információkért lásd: [SQL Server Business Intelligence Azure virtuális gépek](virtual-machines-windows-classic-ps-sql-bi.md).
-* Az Azure számítási díjakat költsége kapcsolatos további információkért lásd: a virtuális gépek lapján [Azure árképzési Számológép](https://azure.microsoft.com/pricing/calculator/?scenario=virtual-machines).
+* A hasonló tartalomhoz kapcsolódó tooa egyetlen kiszolgáló telepítéséhez SQL Server Business Intelligence és a SharePoint 2013, lásd: [a Windows PowerShell tooCreate egy Azure virtuális gép az SQL Server BI és a SharePoint 2013](https://msdn.microsoft.com/library/azure/dn385843.aspx).
+* Többkiszolgálós telepítésben, SQL Server Business Intelligence és a SharePoint 2013-at, lásd: hasonló tartalom kapcsolódó tooa [központi telepítése az SQL Server Business Intelligence Azure virtuális gépek](https://msdn.microsoft.com/library/dn321998.aspx).
+* Általános információk az SQL Server Business Intelligence Azure virtuális gépek, kapcsolódó toodeployments: [SQL Server Business Intelligence Azure virtuális gépek](virtual-machines-windows-classic-ps-sql-bi.md).
+* További információ az Azure számítási díjakat hello költség: hello virtuális gépek lapján [Azure árképzési Számológép](https://azure.microsoft.com/pricing/calculator/?scenario=virtual-machines).
 
 ### <a name="community-content"></a>Közösségi tartalom
-* A jelentéskészítési szolgáltatások natív mód jelentéskészítő kiszolgáló létrehozásával parancsfájl használata nélkül részletes utasításokért lásd: [üzemeltető SQL jelentési szolgáltatás az Azure virtuális gép](http://adititechnologiesblog.blogspot.in/2012/07/hosting-sql-reporting-service-on-azure.html).
+* Hogyan toocreate jelentéskészítési szolgáltatások natív mód jelentést parancsfájl használata nélkül server részletes ismertetését lásd: [üzemeltető SQL jelentési szolgáltatás az Azure virtuális gép](http://adititechnologiesblog.blogspot.in/2012/07/hosting-sql-reporting-service-on-azure.html).
 
-### <a name="links-to-other-resources-for-sql-server-in-azure-vms"></a>Az SQL Server Azure virtuális gépeken egyéb forrásokra mutató hivatkozások
+### <a name="links-tooother-resources-for-sql-server-in-azure-vms"></a>Hivatkozások tooother erőforrások az SQL Server Azure virtuális gépeken
 [SQL Server Azure virtuális gépek – áttekintés](../sql/virtual-machines-windows-sql-server-iaas-overview.md)
 

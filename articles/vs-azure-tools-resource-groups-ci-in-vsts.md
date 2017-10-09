@@ -1,6 +1,6 @@
 ---
-title: "Folyamatos integrációt, a Visual STUDIO Team Services használatával Azure erőforráscsoport-projektek |} Microsoft Docs"
-description: "Ismerteti, hogyan lehet a Visual Studio Team Services folyamatos integráció beállítása a Visual Studio használatával Azure erőforráscsoport-telepítési projektek alapján."
+title: "a Visual STUDIO Team Services használatával Azure erőforráscsoport-projektek aaaContinuous integrációs |} Microsoft Docs"
+description: "Ismerteti, hogyan tooset folyamatos integrációt a Visual Studio Team Services, Azure-erőforráscsoport központi telepítéssel fel a Visual Studio projekt."
 services: visual-studio-online
 documentationcenter: na
 author: mlearned
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: mlearned
-ms.openlocfilehash: e7d98ca3fa281a136595c37ed9b7e71de0cf7bff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fe4a4b8989ee323e8ef2206fa4ebed503025670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="continuous-integration-in-visual-studio-team-services-using-azure-resource-group-deployment-projects"></a>A Visual Studio Team Services használatával Azure erőforráscsoport-telepítési projektek folyamatos integrációt
-Központi telepítése egy Azure-sablon alapján, hogy feladatokat különböző szakaszaiban: Build, tesztelési, másolása az Azure-ba (más néven "Tesztelés"), és a sablon telepítéséhez. Sablonok telepíteni a Visual Studio Team Services (Visual STUDIO Team Services) két különböző módja van. Mindkét módszer adja meg ugyanazokat az eredményeket, tehát azt, amelyik a legjobban megfelel a munkafolyamat.
+toodeploy Azure-sablon alapján, feladatokat hajthat végre különböző szakaszaiban: Build, tesztelési, másolása tooAzure (más néven "Tesztelés"), és a sablon telepítése. Nincsenek két különböző módon toodeploy sablonok tooVisual Studio Team Services (Visual STUDIO Team Services). Mindkét módszer hello meg ugyanazokat az eredményeket, tehát a hello, amelyik leginkább megfelel a munkafolyamat.
 
-1. Egyetlen lépésben hozzáadása a build-definíciót, amely futtatja a PowerShell-parancsfájlt, amely az Azure-erőforráscsoport telepítési projekt (telepítés-AzureResourceGroup.ps1) szerepel. A parancsfájl összetevők másolja, és ezután telepíti a sablon.
+1. Egyetlen lépésben tooyour build definícióját hello Azure erőforráscsoport-telepítési projekt (telepítés-AzureResourceGroup.ps1) szereplő hello PowerShell parancsfájlt futtató hozzáadása. hello parancsfájl összetevők másolja, és ezután telepíti a hello sablon.
 2. Vegyen fel több Visual STUDIO Team Services build lépéseket, egyenként a szakasz feladatok.
 
-Ez a cikk mindkét lehetőséget bemutatja. Az első lehetőség azt az előnyt, ugyanazzal a parancsfájllal fejlesztők a Visual Studio és az életciklus olyan egységének használják. A második lehetőség alternatívája a beépített parancsfájlt. Mindkét eljárás során feltételezzük, hogy már be van jelölve, a Visual STUDIO Team Services Visual Studio telepítési projekt.
+Ez a cikk mindkét lehetőséget bemutatja. hello első lehetőség van hello ugyanazt a parancsfájlt használja a fejlesztők a Visual Studio használatával és a hello életciklus egységének hello előnyeit. hello második lehetőség egy tetszőleges alternatív toohello beépített parancsfájl kínál. Mindkét eljárás során feltételezzük, hogy már be van jelölve, a Visual STUDIO Team Services Visual Studio telepítési projekt.
 
-## <a name="copy-artifacts-to-azure"></a>Összetevők másolása az Azure-bA
-Függetlenül a forgatókönyvben, ha bármely, a sablon-üzembehelyezés szükséges összetevők kell Azure Resource Manager hozzáférést adhat őket. Ezen összetevők például a fájlok közé tartoznak:
+## <a name="copy-artifacts-tooazure"></a>Az összetevők tooAzure másolása
+Függetlenül hello forgatókönyvben Ha bármely, a sablon-üzembehelyezés szükséges összetevők meg kell adni Azure Resource Manager hozzáférési toothem. Ezen összetevők például a fájlok közé tartoznak:
 
 * Beágyazott sablonok
 * Konfigurációs és DSC parancsfájlok
 * Bináris alkalmazásfájlokat
 
 ### <a name="nested-templates-and-configuration-scripts"></a>Beágyazott sablonok és konfigurációs parancsfájlokat
-A Visual Studio által biztosított sablonok használatakor (vagy a Visual Studio kódtöredékek építését), a PowerShell-parancsfájl nem csak előkészíti az összetevők, azt is parameterizes tartozó különféle központi telepítéseken erőforrás URI-JÁNAK. A parancsfájl, majd másolja át az összetevők biztonságos tárolót az Azure-ban létrehoz egy SaS-jogkivonatot, hogy a tároló és ezután továbbítja ezt az információt a sablon-üzembehelyezés be. Lásd: [hozzon létre egy sablon-üzembehelyezés](https://msdn.microsoft.com/library/azure/dn790564.aspx) beágyazott sablonok tájékozódhat.  Feladatok használata a Visual STUDIO Team Services, válassza ki a megfelelő feladatokat a sablon üzembe helyezésére, és szükség esetén továbbítsa paraméterértékeket az átmeneti lépésben a sablon telepítése.
+Visual Studio által biztosított hello sablonok használatakor (vagy a Visual Studio kódtöredékek építését), PowerShell-parancsfájl hello csak nem készít elő az hello összetevők, azt is parameterizes hello URI hello erőforrások a különböző központi telepítésénél. hello parancsfájl majd hello összetevők tooa biztonságos tároló másolja az Azure-ban létrehoz egy SaS-jogkivonatot, hogy a tároló és ezután továbbítja a toohello sablon-üzembehelyezés kapcsolatos információkat. Lásd: [hozzon létre egy sablon-üzembehelyezés](https://msdn.microsoft.com/library/azure/dn790564.aspx) toolearn arról beágyazott sablonok.  Feladatok használata a Visual STUDIO Team Services, hello megfelelő feladatokat a sablon üzembe helyezéshez választott, és ha szükséges, előkészítési lépés toohello sablon-üzembehelyezés hello átadása paraméterértékeket.
 
 ## <a name="set-up-continuous-deployment-in-vs-team-services"></a>A Visual STUDIO Team Services folyamatos üzembe helyezés beállítása
-A PowerShell parancsfájl hívni a Visual STUDIO Team Services, módosítania a build definícióját. Röviden a lépések a következők: 
+tooupdate szüksége toocall hello PowerShell-parancsfájlt a Visual STUDIO Team Services, a build definícióját. Röviden hello lépései a következők: 
 
-1. Szerkessze a build definíciót.
+1. Hello build definíciójának szerkesztése.
 2. A Visual STUDIO Team Services Azure engedélyezési beállítása.
-3. Adjon hozzá egy Azure PowerShell build lépést, amely a PowerShell-parancsfájlt a Azure erőforráscsoport-telepítési projekt hivatkozik.
-4. Állítsa a *- ArtifactsStagingDirectory* paraméter egy projektet a Visual STUDIO Team Services együttműködni.
+3. Adjon hozzá egy Azure PowerShell build lépést, amely PowerShell-parancsfájl hello hello Azure erőforráscsoport-telepítési projekt hivatkozik.
+4. Állítsa be hello hello *- ArtifactsStagingDirectory* paraméter toowork Visual STUDIO Team Services beépített projekthez.
 
 ### <a name="detailed-walkthrough-for-option-1"></a>Részletes bemutató az 1. lehetőség
-Az alábbi eljárások végigvezetik a Visual STUDIO Team Services, amelyen a PowerShell-parancsfájlt a projektben egy feladat használatával folyamatos telepítéséhez szükséges lépéseket. 
+hello alábbi eljárások végigvezetik Önt hello lépéseket szükséges tooconfigure folyamatos üzembe helyezés a Visual STUDIO Team Services, a projekt hello PowerShell parancsfájlt futtató egy feladat használatával. 
 
-1. Szerkesztés a Visual STUDIO Team Services build definícióját, és adjon hozzá egy Azure PowerShell build lépést. Válassza ki a build definíciója szerint a **definíciók Build** kategória és válassza a **szerkesztése** hivatkozásra.
+1. Szerkesztés a Visual STUDIO Team Services build definícióját, és adjon hozzá egy Azure PowerShell build lépést. Válasszon hello build definíciót a hello **definíciók Build** kategória majd hello **szerkesztése** hivatkozásra.
    
    ![Build definíciójának szerkesztése][0]
-2. Adjon hozzá egy új **Azure PowerShell** összeállítása lépés a build definíciójához, és válassza ki a **összeállítása lépés hozzáadása...** gombra.
+2. Adjon hozzá egy új **Azure PowerShell** összeállítása lépés toohello build definícióját, és válassza a hello **összeállítása lépés hozzáadása...** gombra.
    
    ![Build lépés hozzáadása][1]
-3. Válassza ki a **telepítés a feladat** kategória, jelölje be a **Azure PowerShell** feladat, és válassza a **Hozzáadás** gombra.
+3. Válassza ki a hello **telepítés a feladat** kategória, jelölje be hello **Azure PowerShell** feladat, és válassza a **hozzáadása** gombra.
    
    ![Feladatok hozzáadása][2]
-4. Válassza ki a **Azure PowerShell** összeállítása lépés, és töltse ki az értékeket.
+4. Válassza ki a hello **Azure PowerShell** összeállítása lépés, és töltse ki az értékeket.
    
-   1. Ha már rendelkezik egy Azure-szolgáltatások végpontot hozzáadni a Visual STUDIO Team Services, válassza ki az előfizetést a **Azure-előfizetés** legördülő lista és a majd váltson át a következő szakaszban. 
+   1. Ha már rendelkezik egy Azure szolgáltatás végpontjának hozzáadott tooVS Team Services, válasszon hello előfizetés hello **Azure-előfizetés** legördülő listában, majd a skip toohello a következő szakaszban. 
       
-      Ha Azure-szolgáltatás a végpont nem rendelkezik a Visual STUDIO Team Services, akkor vegyen fel egyet. Ez az alszakasz végigvezeti Önt a folyamaton. Ha az Azure-fiókjával (például Hotmail) Microsoft-fiókot használ, akkor szükséges, a következő lépéseket a egy egyszerű hitelesítést.
-   2. Válassza ki a **kezelése** melletti hivatkozásra a **Azure-előfizetés** legördülő listában.
+      Ha Azure-szolgáltatás a végpont nem rendelkezik a Visual STUDIO Team Services, egy tooadd kell. Ez a szakasz végigvezeti hello folyamaton. Ha az Azure-fiókjával (például Hotmail) Microsoft-fiókot használ, egy egyszerű hitelesítést a következő lépéseket tooget hello kell tennie.
+   2. Válassza ki a hello **kezelése** csatolása a következő toohello **Azure-előfizetés** legördülő listában.
       
       ![Az Azure-előfizetések kezelése][3]
-   3. Válasszon **Azure** a a **új szolgáltatási végpont** legördülő listában.
+   3. Válasszon **Azure** a hello **új szolgáltatási végpont** legördülő listában.
       
       ![Új szolgáltatási végpont][4]
-   4. Az a **Azure-előfizetés hozzáadása** párbeszédpanelen jelölje ki a **egyszerű** lehetőséget.
+   4. A hello **Azure-előfizetés hozzáadása** párbeszédpanel megnyitásához, jelölje be hello **egyszerű** lehetőséget.
       
       ![Szolgáltatás egyszerű beállítás][5]
-   5. Adja hozzá az Azure-előfizetés adatainak a **Azure-előfizetés hozzáadása** párbeszédpanel megnyitásához. Meg kell adni a következő elemek:
+   5. Adja hozzá az Azure-előfizetés információk toohello **Azure-előfizetés hozzáadása** párbeszédpanel megnyitásához. A következő elemek tooprovide hello lesz szüksége:
       
       * Előfizetés-azonosító
       * Előfizetés neve
       * Egyszerű szolgáltatás azonosítója
       * Szolgáltatás egyszerű kulcs
       * Bérlő azonosítója
-   6. Olyan nevet az Ön által választott, hogy a **előfizetés** neve mező. Ez az érték kövessék a a **Azure-előfizetés** legördülő listából válassza ki a Visual STUDIO Team Services. 
-   7. Ha nem ismeri az Azure-előfizetése Azonosítóját, használhatja a következő parancsok valamelyikét, ennek lekéréséhez.
+   6. A választott toohello nevet **előfizetés** neve mező. Ez az érték jelenik meg később hello **Azure-előfizetés** legördülő listából válassza ki a Visual STUDIO Team Services. 
+   7. Ha nem ismeri az Azure-előfizetése Azonosítóját, a következő parancsok tooretrieve hello egyikét használhatja azt.
       
       PowerShell-parancsfájlok használata:
       
@@ -89,31 +89,31 @@ Az alábbi eljárások végigvezetik a Visual STUDIO Team Services, amelyen a Po
       Azure CLI esetén használja az alábbi parancsot:
       
       `azure account show`
-   8. Beolvasása a szolgáltatás egyszerű Azonosítót, a szolgáltatás egyszerű kulcs és a bérlő azonosítója, hajtsa végre az eljárást [létrehozása az Active Directory-alkalmazás és szolgáltatás egyszerű portálon](resource-group-create-service-principal-portal.md) vagy [hitelesítése egy egyszerű Azure-ral Erőforrás-kezelő](resource-group-authenticate-service-principal.md).
-   9. A szolgáltatás egyszerű azonosító, a szolgáltatás egyszerű kulcs és a bérlő azonosítója értékeket adja hozzá a **Azure-előfizetés hozzáadása** párbeszédpanel mezőbe, majd válassza ki a **OK** gombra.
+   8. Szolgáltatás egyszerű kulcs és a bérlő azonosítója, a szolgáltatás egyszerű azonosító tooget a hello eljárással [létrehozása az Active Directory-alkalmazás és szolgáltatás egyszerű portál használatával](resource-group-create-service-principal-portal.md) vagy [a szolgáltatás egyszerű hitelesítés Az Azure Resource Manager](resource-group-authenticate-service-principal.md).
+   9. Hozzáadás hello szolgáltatás egyszerű azonosító, a szolgáltatás egyszerű kulcs és a bérlő azonosítója értékek toohello **Azure-előfizetés hozzáadása** párbeszédpanel mezőbe, majd válassza a hello **OK** gombra.
       
-      Most már rendelkezik egy érvényes egyszerű az Azure PowerShell-parancsfájl futtatásához.
-5. Szerkessze a build definíciót, majd válassza a **Azure PowerShell** összeállítása lépés. Válassza ki az előfizetést a **Azure-előfizetés** legördülő listában. (Ha az előfizetés nem jelenik meg, válassza ki azt a **frissítése** Tovább gombra a **kezelése** hivatkozást.) 
+      Most már rendelkezik egy érvényes egyszerű szolgáltatásnév toouse toorun hello Azure PowerShell-parancsfájlt.
+5. Hello build definíciójának szerkesztése, és válassza ki a hello **Azure PowerShell** összeállítása lépés. Válassza ki a hello előfizetést a hello **Azure-előfizetés** legördülő listában. (Ha hello előfizetés nem jelenik meg, válassza ki azt a hello **frissítése** gomb következő hello **kezelése** hivatkozást.) 
    
    ![Azure PowerShell összeállítási feladat konfigurálása][8]
-6. Adja meg a telepítés-AzureResourceGroup.ps1 PowerShell parancsfájl elérési útja. Ehhez az szükséges, válassza a három ponttal (…) gombra a a **parancsfájl elérési útján** a telepítés-AzureResourceGroup.ps1 PowerShell parancsfájl navigáljon a **parancsfájlok** mappa a projekt, válassza ki azt, majd Válassza ki a **OK** gombra.    
+6. Adjon meg egy elérési utat toohello telepítés-AzureResourceGroup.ps1 PowerShell-parancsfájlt. toodo, válassza ki a következő toohello a hello három ponttal (…) gombra **parancsfájl elérési útján** toohello telepítés-AzureResourceGroup.ps1 PowerShell parancsfájl hello válassza **parancsfájlok** mappa a projekt, válassza ki azt, majd hello **OK** gombra.    
    
-   ![Válassza ki a parancsfájl elérési útját][9]
-7. Miután kiválasztotta a parancsfájlt, frissítse az elérési út a parancsfájlt úgy, hogy akkor fut a Build.StagingDirectory (ugyanabban a könyvtárban, amely *ArtifactsLocation* értékre van állítva). Ehhez adja hozzá a "$(Build.StagingDirectory)/"az elején a parancsfájl elérési útját.
+   ![Válassza ki az elérési út tooscript][9]
+7. Hello parancsfájl kiválasztása után frissítse hello elérési toohello parancsfájl úgy, hogy fut, a hello Build.StagingDirectory (hello ugyanabban a könyvtárban, amely *ArtifactsLocation* értékre van állítva). Ehhez adja hozzá a "$(Build.StagingDirectory)/" toohello elejére hello parancsprogram elérési útját.
    
-    ![Parancsfájl elérési útját szerkesztése][10]
-8. Az a **parancsfájl argumentumai** mezőbe írja be a következő paramétereket (egy sorban). Amikor futtatja a parancsfájlt a Visual Studio, ellenőrizheti, hogyan VS használ a paramétereket a a **kimeneti** ablak. Ezzel kiindulási pontként a paramétert értékek beállításakor a build lépésben.
+    ![Elérési út tooscript szerkesztése][10]
+8. A hello **parancsfájl argumentumai** mezőbe írja be a következő paramétereket (egy sorba) hello. A Visual Studio hello parancsprogram futtatásakor láthatja, hogyan használja a Visual STUDIO hello hello paramétereiben **kimeneti** ablak. Ezzel kiindulási pontként a hello paraméterértékeinek beállítása a build lépésben.
    
    | Paraméter | Leírás |
    | --- | --- |
-   | -ResourceGroupLocation |A földrajzihely-értéket, ahol az erőforráscsoport megtalálható, például **eastus** vagy **"USA keleti régiója"**. (Ha adja hozzá szimpla idézőjelben a névben szóköz található.) Lásd: [Azure-régiókat](https://azure.microsoft.com/en-us/regions/) további információt. |
-   | -ResourceGroupName |Az ehhez a központi telepítéshez használt erőforráscsoport neve. |
-   | -UploadArtifacts |Ezt a paramétert, ha létezik, azt jelenti, hogy a helyi rendszerről az Azure-bA feltölteni kívánt igénylő összetevőket. Csak kell erre a kapcsolóra lesz beállítva, ha a sablon telepítéséhez szükséges további összetevők, amelyet szeretne tesztelése (például a parancsfájlokat vagy beágyazott sablonok) a PowerShell-parancsfájl használatával. |
-   | -StorageAccountName |A szakasz az összetevők ehhez a központi telepítéshez használt tárfiók neve. Ezt a paramétert csak akkor használja, ha meg vannak átmeneti összetevőket a telepítéshez. Ha meg van adva ez a paraméter, egy új tárfiókot jön létre, ha a parancsfájl nem létrehozva egy korábbi központi telepítés során. Ha a paraméter van megadva, a tárfiók már léteznie kell. |
-   | -StorageAccountResourceGroupName |A storage-fiókjához tartozó erőforráscsoport neve. Ez a paraméter megadása kötelező, csak akkor, ha megad egy értéket a StorageAccountName paraméter. |
-   | -TemplateFile |A fájl elérési útját a sablon a Azure-erőforráscsoport telepítésben található. Nagyobb rugalmasság érdekében használjon ezt a paramétert, amely a PowerShell parancsfájl abszolút elérési út helyett helyéhez viszonyított elérési utat. |
-   | -TemplateParametersFile |A fájl elérési útját a paraméterek a Azure-erőforráscsoport telepítésben található. Nagyobb rugalmasság érdekében használjon ezt a paramétert, amely a PowerShell parancsfájl abszolút elérési út helyett helyéhez viszonyított elérési utat. |
-   | -ArtifactStagingDirectory |Ez a paraméter lehetővé teszi, hogy a parancsfájl a mappa tudja, hova lehet másolni a projekt bináris fájlok a PowerShell. Ez az érték felülbírálja az alapértelmezett érték a PowerShell parancsfájlhoz használt. A Visual STUDIO Team Services használatához állítsa be az értéket: - ArtifactStagingDirectory $(Build.StagingDirectory) |
+   | -ResourceGroupLocation |földrajzihely-értéket, ahol hello erőforráscsoportban, többek között hello **eastus** vagy **"USA keleti régiója"**. (Ha adja hozzá szimpla idézőjelben hello névben szóköz található.) Lásd: [Azure-régiókat](https://azure.microsoft.com/en-us/regions/) további információt. |
+   | -ResourceGroupName |Ehhez a központi telepítéshez használt hello erőforráscsoport hello nevét. |
+   | -UploadArtifacts |Ezt a paramétert, ha létezik, adja meg, hogy az összetevők toobe igénylő feltöltött tooAzure hello helyi rendszerből. Csak akkor kell tooset ezt a kapcsolót, ha a sablon telepítéséhez szükséges további összetevők, amelyet az toostage (például a parancsfájlokat vagy beágyazott sablonok) hello PowerShell-parancsfájl használatával. |
+   | -StorageAccountName |Ehhez a központi telepítéshez használt toostage összetevők hello tárfiók hello neve. Ezt a paramétert csak akkor használja, ha meg vannak átmeneti összetevőket a telepítéshez. Ha meg van adva ez a paraméter, egy új tárfiókot jön létre, ha hello parancsfájl nem létrehozva egy korábbi központi telepítés során. Ha hello paraméter van megadva, a hello tárfiók már léteznie kell. |
+   | -StorageAccountResourceGroupName |hello tárfiók társított hello erőforráscsoport hello nevét. Ez a paraméter megadása kötelező, csak akkor, ha megad egy értéket hello StorageAccountName paraméter. |
+   | -TemplateFile |hello elérési toohello sablonfájl hello Azure erőforráscsoport-telepítési projekt. tooenhance rugalmas, elérési útvonalat használja a paraméter, amely PowerShell-parancsfájl abszolút elérési út helyett hello relatív toohello helyét. |
+   | -TemplateParametersFile |hello elérési toohello paraméterfájl hello Azure erőforráscsoport-telepítési projekt. tooenhance rugalmas, elérési útvonalat használja a paraméter, amely PowerShell-parancsfájl abszolút elérési út helyett hello relatív toohello helyét. |
+   | -ArtifactStagingDirectory |Ez a paraméter lehetővé teszi, hogy a hello hello mappa tudja, hova lehet másolni hello projekt bináris fájlok a PowerShell-parancsfájlt. Ez az érték hello PowerShell-parancsfájl által használt hello alapértelmezett érték felülbírálja. A Visual STUDIO Team Services használatához hello értékét állítsa: - ArtifactStagingDirectory $(Build.StagingDirectory) |
    
    Íme egy parancsfájl argumentumai példa (az olvashatóság hibás sor):
    
@@ -123,62 +123,62 @@ Az alábbi eljárások végigvezetik a Visual STUDIO Team Services, amelyen a Po
    –StorageAccountResourceGroupName 'Default-Storage-EastUS' -ArtifactStagingDirectory '$(Build.StagingDirectory)'    
    ```
    
-   Amikor végzett, a **parancsfájl argumentumai** mezőben a következő lista kell hasonlítania:
+   Amikor végzett, hello **parancsfájl argumentumai** mezőben a következő lista hello kell hasonlítania:
    
    ![Parancsfájl argumentumai][11]
-9. Miután az Azure PowerShell összeállítása lépés való felvételét a szükséges elemeket, válassza ki azt a **várólista** Szerkesztés gomb billentyűkombinációt a projekt létrehozásához. A **Build** a képernyőn látható a PowerShell-parancsfájl kimenete.
+9. Miután felvett összes hello Azure PowerShell összeállítása lépés szükséges elemeket toohello, válassza ki azt a hello **várólista** gomb toobuild hello projekt felépítéséhez. Hello **Build** a képernyőn látható hello hello PowerShell-parancsfájl kimenete.
 
 ### <a name="detailed-walkthrough-for-option-2"></a>2. lehetőség részletes bemutató
-Az alábbi eljárások végigvezetik a Visual STUDIO Team Services beépített feladatainak folyamatos telepítéséhez szükséges lépéseket.
+hello alábbi eljárások végigvezetik Önt hello lépéseket szükséges tooconfigure folyamatos üzembe helyezés a Visual STUDIO Team Services hello beépített feladatainak.
 
-1. Szerkesztés a Visual STUDIO Team Services build definíció két új build lépések hozzáadása. Válassza ki a build definíciója szerint a **definíciók Build** kategória és válassza a **szerkesztése** hivatkozásra.
+1. Szerkesztés a Visual STUDIO Team Services build definition tooadd két új build lépéseket. Válasszon hello build definíciót a hello **definíciók Build** kategória majd hello **szerkesztése** hivatkozásra.
    
    ![Build attribútumdefiníciós szerkesztése][12]
-2. A build definition használatával adjon hozzá az új build lépéseket a **összeállítása lépés hozzáadása...** gombra.
+2. Hozzáadás hello új build lépéseket toohello build definition hello segítségével **összeállítása lépés hozzáadása...** gombra.
    
    ![Build lépés hozzáadása][13]
-3. Válassza ki a **telepítés** Feladatkategória, jelölje be a **Azure fájl másolása** feladat, és válassza a **Hozzáadás** gombra.
+3. Válasszon hello **telepítés** Feladatkategória, jelölje be hello **Azure fájl másolása** feladat, és válassza a **hozzáadása** gomb.
    
    ![Azure-fájl másolása tevékenység hozzáadása][14]
-4. Válassza ki a **Azure erőforrás-csoport központi telepítésének** feladat, majd kattintson a **hozzáadása** gombra, majd **Bezárás** a **feladat katalógus**.
+4. Hello válassza **Azure erőforrás-csoport központi telepítésének** feladat, majd kattintson a **hozzáadása** gombra, majd **Bezárás** hello **feladat katalógus**.
    
    ![Adja hozzá Azure-erőforráscsoport telepítési feladat][15]
-5. Válassza ki a **Azure fájlmásolással** feladatot, és adja meg az értékeket.
+5. Válassza ki a hello **Azure fájlmásolással** feladatot, és adja meg az értékeket.
    
-   Ha már rendelkezik egy Azure-szolgáltatások végpontot hozzáadni a Visual STUDIO Team Services, válassza ki az előfizetést a **Azure-előfizetés** legördülő listában. Ha nem rendelkezik előfizetéssel, lásd: [1. lehetőség](#detailed-walkthrough-for-option-1) a Visual STUDIO Team Services egyik beállításával kapcsolatos utasításokat.
+   Ha már rendelkezik egy Azure szolgáltatás végpontjának hozzáadott tooVS Team Services, válasszon hello előfizetés hello **Azure-előfizetés** legördülő listában. Ha nem rendelkezik előfizetéssel, lásd: [1. lehetőség](#detailed-walkthrough-for-option-1) a Visual STUDIO Team Services egyik beállításával kapcsolatos utasításokat.
    
    * A forrás - írja be **$(Build.StagingDirectory)**
    * Az Azure kapcsolattípus - válassza **Azure Resource Manager**
-   * Az Azure erőforrás-kezelő előfizetési - válassza ki a használni kívánt tárfiók az előfizetést a **Azure-előfizetés** legördülő listában. Ha az előfizetés nem jelenik meg, válassza ki azt a **frissítése** Tovább gombra a **kezelése** hivatkozásra.
+   * Az Azure erőforrás-kezelő előfizetési - válassza hello előfizetés azt szeretné, hogy a hello toouse hello tárfiók **Azure-előfizetés** legördülő listában. Ha hello előfizetés nem jelenik meg, válassza ki azt a hello **frissítése** gomb következő hello **kezelése** hivatkozásra.
    * Cél típusának - válassza **Azure-Blobba**
-   * Erőforrás-kezelő Tárfiók – válassza ki a tárolási fiók, akkor az összetevők előkészítési használni szeretné
-   * Tároló neve – adja meg az átmeneti; használni szeretné a tároló neve az bármilyen érvényes tároló nevet, hanem egy másikkal pedig a build definícióját használata
+   * Erőforrás-kezelő Tárfiók - válassza hello tárolási fiók meg szeretné toouse összetevők átmeneti
+   * Tároló neve – hello nevét adja meg az átmeneti; toouse milyen hello tároló az bármilyen érvényes tároló nevet, hanem egy dedikált toothis build definíciót használatára
    
-   A kimeneti értékeket:
+   Hello kimeneti értékeket:
    
    * Adja meg a tároló URI - **artifactsLocation**
    * Tárolási tároló SAS-jogkivonat - meg **artifactsLocationSasToken**
    
    ![Azure-fájl másolása tevékenység konfigurálása][16]
-6. Válassza ki a **Azure erőforrás-csoport központi telepítésének** összeállítása lépés, és töltse ki az értékeket.
+6. Válassza ki a hello **Azure erőforrás-csoport központi telepítésének** összeállítása lépés, és töltse ki az értékeket.
    
    * Az Azure kapcsolattípus - válassza **Azure Resource Manager**
-   * Az Azure erőforrás-kezelő előfizetési - válassza ki az előfizetést a központi telepítést, a **Azure-előfizetés** legördülő listában. Ez általában megegyezik az előző lépésben használt ugyanahhoz az előfizetéshez
+   * Az Azure erőforrás-kezelő előfizetési - válassza hello előfizetés hello központi **Azure-előfizetés** legördülő listában. Ez általában lesz ugyanahhoz az előfizetéshez használt hello hello előző lépésben
    * Művelet – válassza **vagy frissítés erőforráscsoport létrehozása**
-   * Erőforráscsoport - válasszon egy erőforráscsoportot, vagy adja meg a központi telepítés egy új erőforráscsoport nevét
-   * Hely - adja meg az erőforrásnak a helyét
-   * Sablon - adja meg az elérési útja és neve a sablon telepítendő fertőző **$(Build.StagingDirectory)**, például: **$(Build.StagingDirectory/DSC-CI/azuredeploy.json)**
-   * Sablonparaméterek - adja meg az elérési útja és neve használandó, a paraméterek fertőző **$(Build.StagingDirectory)**, például: **$(Build.StagingDirectory/DSC-CI/azuredeploy.parameters.json)**
-   * Sablon paraméterének - adja meg vagy másolja és illessze be a következő kódot:
+   * Erőforráscsoport - válasszon egy erőforráscsoportot, vagy adjon meg egy új erőforráscsoport nevét hello hello központi telepítés
+   * Hely - válassza hello hely hello erőforráscsoport
+   * Sablon - adja meg a hello elérési útja és neve hello sablon telepített toobe fertőző **$(Build.StagingDirectory)**, például: **$(Build.StagingDirectory/DSC-CI/azuredeploy.json)**
+   * Sablonparaméterek - adja meg a hello elérési útját és nevét használva hello paraméterek toobe fertőző **$(Build.StagingDirectory)**, például: **$(Build.StagingDirectory/DSC-CI/azuredeploy.parameters.json)**
+   * Sablonparaméterek felülbírálása – adja meg, másolása és beillesztése hello a következő kódot:
      
      ```    
      -_artifactsLocation $(artifactsLocation) -_artifactsLocationSasToken (ConvertTo-SecureString -String "$(artifactsLocationSasToken)" -AsPlainText -Force)
      ```
      ![Azure erőforráscsoport-telepítési feladat konfigurálása][17]
-7. A szükséges elemeket hozzáadása után a build definition mentés, és válassza **új build várólistára** tetején.
+7. Az összes szükséges hello elemek felvételét, mentés hello build definícióját, és válassza **új build várólistára** hello tetején.
 
 ## <a name="next-steps"></a>Következő lépések
-Olvasási [Azure Resource Manager áttekintése](azure-resource-manager/resource-group-overview.md) további információt az Azure Resource Manager és az Azure erőforráscsoport-sablonok.
+Olvasási [Azure Resource Manager áttekintése](azure-resource-manager/resource-group-overview.md) toolearn további információk az Azure Resource Manager és az Azure erőforráscsoport-sablonok.
 
 [0]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough1.png
 [1]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough2.png

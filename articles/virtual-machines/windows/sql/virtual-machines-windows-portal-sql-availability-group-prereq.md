@@ -1,6 +1,6 @@
 ---
-title: "SQL Server rendelkezésre állási csoportok – az Azure virtual machines - Előfeltételek |} Microsoft Docs"
-description: "Ez az oktatóanyag bemutatja, hogyan konfigurálhatja az Azure virtuális gépeken futó SQL Server Always On rendelkezésre állási csoport létrehozására vonatkozó előfeltételek."
+title: "Kiszolgáló rendelkezésre állása aaaSQL csoportok – az Azure virtual machines - Előfeltételek |} Microsoft Docs"
+description: "Ez az oktatóanyag bemutatja, hogyan tooconfigure hello Előfeltételek létrehozásához egy SQL Server Always On rendelkezésre állási csoport Azure virtuális gépeken."
 services: virtual-machines
 documentationCenter: na
 authors: MikeRayMSFT
@@ -16,19 +16,19 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/09/2017
 ms.author: mikeray
-ms.openlocfilehash: 3d508877928e033f24dae62c1042745ea7250033
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: eed0729ead25c7793bb17a04cd7fd996c7dc8c9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="complete-the-prerequisites-for-creating-always-on-availability-groups-on-azure-virtual-machines"></a>Always On rendelkezésre állási csoportok létrehozása az Azure virtuális gépeken előfeltételeit teljesítenie
+# <a name="complete-hello-prerequisites-for-creating-always-on-availability-groups-on-azure-virtual-machines"></a>Always On rendelkezésre állási csoportok létrehozása az Azure virtuális gépeken teljes hello előfeltételei
 
-Ez az oktatóanyag bemutatja, hogyan lehet elvégezni az Előfeltételek létrehozásához egy [SQL Server Always On rendelkezésre állási csoport az Azure virtuális gépek (VM)](virtual-machines-windows-portal-sql-availability-group-tutorial.md). Amikor befejezte az előfeltételeket, vannak egy tartományvezérlő, két SQL Server virtuális gépen és a tanúsító kiszolgálói egyetlen erőforráscsoportként működnek.
+Ez az oktatóanyag bemutatja, hogyan toocomplete hello létrehozására vonatkozó Előfeltételek a [SQL Server Always On rendelkezésre állási csoport az Azure virtuális gépek (VM)](virtual-machines-windows-portal-sql-availability-group-tutorial.md). Ha befejezte a hello Előfeltételek, vannak egy tartományvezérlő, két SQL Server virtuális gépen és a tanúsító kiszolgálói egyetlen erőforráscsoportként működnek.
 
-**Becsült idő**: eltarthat néhány óra múlva az Előfeltételek befejezéséhez. Ezen idő nagy töltött, virtuális gépek létrehozását.
+**Becsült idő**: eltarthat néhány óra múlva toocomplete hello előfeltételek. Ezen idő nagy töltött, virtuális gépek létrehozását.
 
-A következő ábra szemlélteti, hogy az oktatóanyag felépítéséhez.
+hello következő diagram azt ábrázolja hello oktatóanyag felépítéséhez.
 
 ![Rendelkezésre állási csoport](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/00-EndstateSampleNoELB.png)
 
@@ -41,44 +41,44 @@ Ez az oktatóanyag feltételezi, hogy rendelkezik-e az SQL Server Always On rend
 Rendelkeznie kell Azure-fiókkal. Is [nyisson meg egy ingyenes Azure-fiók](/pricing/free-trial/?WT.mc_id=A261C142F) vagy [aktiválhatja a Visual Studio előfizetői előnyeit](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 
 ## <a name="create-a-resource-group"></a>Hozzon létre egy erőforráscsoportot
-1. Jelentkezzen be az [Azure Portalra](http://portal.azure.com).
-2. Kattintson a  **+**  új-objektum létrehozása a portálon.
+1. Jelentkezzen be toohello [Azure-portálon](http://portal.azure.com).
+2. Kattintson a  **+**  toocreate hello portál új objektumot.
 
    ![Új objektum](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-portalplus.png)
 
-3. Típus **erőforráscsoport** a a **piactér** keresési ablak.
+3. Típus **erőforráscsoport** a hello **piactér** keresési ablak.
 
    ![Erőforráscsoport](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-resourcegroupsymbol.png)
 4. Kattintson a **erőforráscsoport**.
 5. Kattintson a **Create** (Létrehozás) gombra.
-6. A a **erőforráscsoport** panel alatt **erőforráscsoport-név**, adja meg az erőforráscsoport nevét. Írja be például **sql-magas rendelkezésre állású-rg**.
-7. Ha több Azure-előfizetéssel rendelkezik, győződjön meg arról, hogy az előfizetés az Azure-előfizetés, amely a rendelkezésre állási csoport létrehozásához.
-8. Válasszon ki egy helyet. A hely az az Azure-régió, ahol szeretné a rendelkezésre állási csoport létrehozására. Ebben az oktatóanyagban az oktatóanyagban módosítjuk hozhat létre egy Azure-beli hely összes erőforrása.
-9. Ellenőrizze, hogy **rögzítés az irányítópulton** be van jelölve. A nem kötelező beállítás ahhoz az erőforráscsoporthoz parancsikont helyez el az Azure-portál irányítópultjának.
+6. A hello **erőforráscsoport** panelen, a **erőforráscsoport-név**, írja be az hello erőforráscsoport nevét. Írja be például **sql-magas rendelkezésre állású-rg**.
+7. Ha több Azure-előfizetéssel rendelkezik, győződjön meg arról, hogy hello előfizetés hello Azure-előfizetést, amelyet szeretne toocreate hello rendelkezésre állási csoport.
+8. Válasszon ki egy helyet. hello hello Azure-régió, ahol azt szeretné, hogy toocreate hello rendelkezésre állási csoport helye. Ebben az oktatóanyagban az oktatóanyagban módosítjuk toobuild egy Azure-beli hely összes erőforrása.
+9. Ellenőrizze, hogy **PIN-kód toodashboard** be van jelölve. A választható beállítás hello Azure-portál irányítópultjának hello erőforráscsoport parancsikont helyez el.
 
    ![Erőforráscsoport](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-resourcegroup.png)
 
-10. Kattintson a **létrehozása** az erőforráscsoport létrehozásához.
+10. Kattintson a **létrehozása** toocreate hello erőforráscsoportot.
 
-Azure erőforráscsoport és PIN-kódok parancsikon létrehozása az erőforráscsoportot a portálon.
+Azure erőforráscsoport hello és PIN-kód egy csoportot hoz létre helyi toohello erőforrás hello portálon.
 
-## <a name="create-the-network-and-subnets"></a>A hálózati és alhálózatok létrehozásával
-A következő lépés, ha a hálózatok és alhálózatok Azure erőforráscsoportban.
+## <a name="create-hello-network-and-subnets"></a>Hello hálózati és alhálózatok létrehozásával
+következő lépés hello toocreate hello hálózatok és alhálózatok hello Azure erőforráscsoport.
 
-A megoldás két alhálózat egy virtuális hálózatot használ. A [virtuális hálózat áttekintése](../../../virtual-network/virtual-networks-overview.md) hálózatok az Azure-ban további információt nyújt.
+hello megoldás egy virtuális hálózatot használ, két alhálózattal. Hello [virtuális hálózat áttekintése](../../../virtual-network/virtual-networks-overview.md) hálózatok az Azure-ban további információt nyújt.
 
-A virtuális hálózat létrehozása:
+toocreate hello virtuális hálózat:
 
-1. Az Azure portálon, az erőforráscsoportban, kattintson a **+ Hozzáadás**. Az Azure megnyílik a **mindent** panelen.
+1. Kattintson az erőforráscsoportban, Azure-portálon hello **+ Hozzáadás**. Az Azure megnyílik hello **mindent** panelen.
 
    ![Új elem](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/02-newiteminrg.png)
 2. Keresse meg **virtuális hálózati**.
 
      ![Keresési virtuális hálózat](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/04-findvirtualnetwork.png)
 3. Kattintson a **virtuális hálózati**.
-4. Az a **virtuális hálózati** panelen kattintson a **erőforrás-kezelő** üzembe helyezési modellt, és kattintson **létrehozása**.
+4. A hello **virtuális hálózati** panelen kattintson hello **erőforrás-kezelő** üzembe helyezési modellt, és kattintson **létrehozása**.
 
-    Az alábbi táblázat a virtuális hálózati beállításait:
+    hello következő táblázatban hello beállításai hello virtuális hálózathoz:
 
    | **Mező** | Érték |
    | --- | --- |
@@ -86,61 +86,61 @@ A virtuális hálózat létrehozása:
    | **Címtér** |10.33.0.0/24 |
    | **Alhálózat neve** |Rendszergazda |
    | **Alhálózati címtartomány** |10.33.0.0/29 |
-   | **Előfizetés** |Adja meg az előfizetést, amelyet lemezképfájlforrásként kíván használni. **Előfizetés** üres, ha csak egy előfizetéssel rendelkezik. |
-   | **Erőforráscsoport** |Válasszon **meglévő** , és válassza ki az erőforráscsoport nevét. |
-   | **Hely** |Adja meg az Azure-hely. |
+   | **Előfizetés** |Adja meg, hogy szeretné-e toouse hello előfizetés. **Előfizetés** üres, ha csak egy előfizetéssel rendelkezik. |
+   | **Erőforráscsoport** |Válasszon **meglévő** , és válassza ki a hello hello erőforráscsoport nevét. |
+   | **Hely** |Adja meg az Azure-beli hely hello. |
 
-   A cím és az alhálózati címtartományt eltérhet a táblából. Attól függően, hogy az előfizetéséhez a portál javasol, az elérhető és a megfelelő alhálózati címtartományt. Ha nincs elegendő címtérrel érhető el, használjon másik előfizetést.
+   A cím és az alhálózati címtartományt hello táblából eltérő lehet. Attól függően, hogy az előfizetés hello portal javasol, az elérhető és a megfelelő alhálózati címtartományt. Ha nincs elegendő címtérrel érhető el, használjon másik előfizetést.
 
-   A példában az alhálózati név **Admin**. Ez az alhálózat van a tartományvezérlőn.
+   hello példa használ hello alhálózati név **Admin**. Ez az alhálózat hello tartományvezérlők van.
 
 5. Kattintson a **Create** (Létrehozás) gombra.
 
-   ![A virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/06-configurevirtualnetwork.png)
+   ![Hello virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/06-configurevirtualnetwork.png)
 
-Azure ad vissza, a portál Irányítópultjára, és értesíti, amikor az új hálózat létre van hozva.
+Azure portál Irányítópultjára toohello adja vissza, és értesíti, amikor új hello-hálózatot hoznak létre.
 
 ### <a name="create-a-second-subnet"></a>Hozzon létre egy második alhálózatot
-Az új virtuális hálózat rendelkezik egy alhálózatot, nevű **Admin**. A tartományvezérlők ezt használni. A második alhálózat nevű SQL Server virtuális gépek használata **SQL**. Ez az alhálózat konfigurálása:
+hello új virtuális hálózat rendelkezik egy alhálózatot, nevű **Admin**. hello tartományvezérlők ezt használni. hello SQL Server virtuális gépen használni, a második nevű **SQL**. tooconfigure az alhálózaton:
 
-1. Az irányítópulton, kattintson a létrehozott, az erőforráscsoport **SQL-magas rendelkezésre ÁLLÁSÚ-RG**. Keresse meg a hálózati alatt az erőforráscsoportban **erőforrások**.
+1. Az irányítópulton, kattintson a létrehozott erőforráscsoport hello **SQL-magas rendelkezésre ÁLLÁSÚ-RG**. Keresse meg a hello hálózati hello erőforráscsoportban alatt **erőforrások**.
 
-    Ha **SQL-magas rendelkezésre ÁLLÁSÚ-RG** nem látható, megkereshetjük **erőforráscsoportok** és az erőforráscsoport neve szerinti szűrését.
-2. Kattintson a **autoHAVNET** az erőforrások listájában. Azure megnyílik a hálózati konfigurációs panel.
-3. Az a **autoHAVNET** virtuális hálózat panel alatt **beállítások** , kattintson a **alhálózatok**.
+    Ha **SQL-magas rendelkezésre ÁLLÁSÚ-RG** nem látható, megkereshetjük **erőforráscsoportok** és hello erőforráscsoport-név szerinti szűrését.
+2. Kattintson a **autoHAVNET** hello az erőforrások listájához a. Azure hello hálózati konfiguráció paneljének megnyitása.
+3. A hello **autoHAVNET** virtuális hálózat panel alatt **beállítások** , kattintson a **alhálózatok**.
 
-    Vegye figyelembe az alhálózatot, amelyet már hozott létre.
+    Megjegyzés: hello alhálózatot, amelyet már hozott létre.
 
-   ![A virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/07-addsubnet.png)
+   ![Hello virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/07-addsubnet.png)
 5. Hozzon létre egy második alhálózatot. Kattintson a **+ alhálózati**.
-6. A a **alhálózat hozzáadása** panelen írja be az alhálózat konfigurálása **sqlsubnet** alatt **neve**. Azure automatikusan megadja egy érvényes **-címtartományt**. Ellenőrizze, hogy a címtartomány legalább 10 cím szerepel. Éles környezetben több címet lehet szükség.
+6. A hello **alhálózat hozzáadása** panelen hello alhálózati konfigurálásához írja be a **sqlsubnet** alatt **neve**. Azure automatikusan megadja egy érvényes **-címtartományt**. Ellenőrizze, hogy a címtartomány legalább 10 cím szerepel. Éles környezetben több címet lehet szükség.
 7. Kattintson az **OK** gombra.
 
-    ![A virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/08-configuresubnet.png)
+    ![Hello virtuális hálózat konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/08-configuresubnet.png)
 
-A következő táblázat összefoglalja a hálózati konfigurációs beállításokat:
+a következő táblázat hello hello hálózati konfigurációs beállításokat foglalja össze:
 
 | **Mező** | Érték |
 | --- | --- |
 | **Name (Név)** |**autoHAVNET** |
-| **Címtér** |Ezt az értéket a rendelkezésre álló címterek az előfizetésében függ. Jellemző értéke 10.0.0.0/16. |
+| **Címtér** |Ez az érték hello elérhető címterek az előfizetésében függ. Jellemző értéke 10.0.0.0/16. |
 | **Alhálózat neve** |**rendszergazda** |
-| **Alhálózati címtartomány** |Ezt az értéket a rendelkezésre álló címtartományokat az előfizetésében függ. Jellemző értéke: 10.0.0.0/24. |
+| **Alhálózati címtartomány** |Ezt az értéket az előfizetés hello érhető el-címtartományokat függ. Jellemző értéke: 10.0.0.0/24. |
 | **Alhálózat neve** |**sqlsubnet** |
-| **Alhálózati címtartomány** |Ezt az értéket a rendelkezésre álló címtartományokat az előfizetésében függ. Jellemző értéke 10.0.1.0/24. |
-| **Előfizetés** |Adja meg az előfizetést, amelyet lemezképfájlforrásként kíván használni. |
+| **Alhálózati címtartomány** |Ezt az értéket az előfizetés hello érhető el-címtartományokat függ. Jellemző értéke 10.0.1.0/24. |
+| **Előfizetés** |Adja meg, hogy szeretné-e toouse hello előfizetés. |
 | **Erőforráscsoport** |**SQL-MAGAS RENDELKEZÉSRE ÁLLÁSÚ-RG-N** |
-| **Hely** |Adja meg az erőforráscsoport kiválasztott ugyanazon a helyen. |
+| **Hely** |Adja meg ugyanazon a helyen hello erőforráscsoport kiválasztott hello. |
 
 ## <a name="create-availability-sets"></a>Rendelkezésre állási csoportok létrehozása
 
-Virtuális gépek létrehozása előtt rendelkezésre állási csoportok létrehozásához szükséges. Rendelkezésre állási készletek csökkentik a leállásának elvégzett tervezett vagy nem tervezett karbantartási események. Egy Azure rendelkezésre állási csoportok pedig a logikai csoport, amely a fizikai tartalék tartományok és a frissítési tartományok Azure-erőforrások. A tartalék tartomány biztosítja, hogy a rendelkezésre állási csoport tagjai külön energia- és hálózati erőforrásokat. Egy frissítési tartományt biztosítja, hogy a rendelkezésre állási csoport tagjai nem állapotba a karbantartás egyszerre. További információkért lásd: [virtuális gépek rendelkezésre állásának kezelése](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Virtuális gépek létrehozása előtt toocreate rendelkezésre állási csoportokra szüksége. Rendelkezésre állási készletek csökkentik a hello leállásának elvégzett tervezett vagy nem tervezett karbantartási események. Egy Azure rendelkezésre állási csoportok pedig a logikai csoport, amely a fizikai tartalék tartományok és a frissítési tartományok Azure-erőforrások. A tartalék tartomány biztosítja, hogy hello rendelkezésre állási csoport tagjai hello külön energia- és hálózati erőforrásokat. Egy frissítési tartományt biztosítja, hogy hello rendelkezésre állási csoport tagjai nem állapotba: hello karbantartás azonos idő. További információkért lásd: [hello virtuális gépek rendelkezésre állásának kezelése](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Két rendelkezésre állási csoportokra van szüksége. A tartományvezérlők egyik. A második pedig az SQL Server virtuális gépen.
+Két rendelkezésre állási csoportokra van szüksége. Egyik hello tartományvezérlők. hello második van hello SQL Server virtuális gépekre vonatkozóan.
 
-Rendelkezésre állási csoportok létrehozásához lépjen az erőforráscsoportot, és kattintson **Hozzáadás**. Írja be az eredmények szűréséhez **rendelkezésre állási csoport**. Kattintson a **rendelkezésre állási csoport** az eredményeket, majd **létrehozása**.
+rendelkezésre állási beállítása nyissa toohello erőforráscsoport és kattintson az toocreate **Hozzáadás**. Írja be a hello eredmények szűréséhez **rendelkezésre állási csoport**. Kattintson a **rendelkezésre állási csoport** a hello eredményeit, és kattintson a **létrehozása**.
 
-Két rendelkezésre állási készletek paramétereknek megfelelően konfigurálja a következő táblázatban:
+Két rendelkezésre állási csoportok szerint toohello paraméterek a következő táblázat hello konfigurálása:
 
 | **Mező** | Tartomány a tartományvezérlő a rendelkezésre állási csoport | SQL Server rendelkezésre állási csoport |
 | --- | --- | --- |
@@ -149,29 +149,29 @@ Két rendelkezésre állási készletek paramétereknek megfelelően konfigurál
 | **Tartalék tartományok** |3 |3 |
 | **Tartományok frissítése** |5 |3 |
 
-A rendelkezésre állási csoportok létrehozása után térjen vissza az erőforráscsoportot az Azure portálon.
+Hello rendelkezésre állási csoportok létrehozása után adja vissza toohello erőforráscsoport hello Azure-portálon.
 
 ## <a name="create-domain-controllers"></a>Tartományvezérlők létrehozása
-Miután létrehozta a hálózaton, alhálózatok, rendelkezésre állási készletek és egy internetre irányuló terheléselosztót, készen áll a tartományvezérlők a virtuális gépek létrehozásához.
+Miután létrehozta a hello hálózati, alhálózatok, rendelkezésre állási készletek és egy internetre irányuló terheléselosztót, most készen áll a toocreate hello virtuális gépek hello tartományvezérlők.
 
-### <a name="create-virtual-machines-for-the-domain-controllers"></a>A tartományvezérlők virtuális gépek létrehozása
-Hozzon létre, és a tartományvezérlők konfigurálása, térjen vissza a **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoportot.
+### <a name="create-virtual-machines-for-hello-domain-controllers"></a>Hozzon létre a virtuális gépek hello tartományvezérlők
+toocreate és hello tartományvezérlők konfigurálása, a toohello **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoportot.
 
-1. Kattintson az **Add** (Hozzáadás) parancsra. A **mindent** panel nyílik meg.
+1. Kattintson az **Add** (Hozzáadás) parancsra. Hello **mindent** panel nyílik meg.
 2. Típus **Windows Server 2016 Datacenter**.
-3. Kattintson a **Windows Server 2016 Datacenter**. Az a **Windows Server 2016 Datacenter** panelen ellenőrizze, hogy van-e a telepítési modell **erőforrás-kezelő**, és kattintson a **létrehozása**. Az Azure megnyílik a **hozzon létre virtuális gépet** panelen.
+3. Kattintson a **Windows Server 2016 Datacenter**. A hello **Windows Server 2016 Datacenter** panelen, győződjön meg arról, hogy hello telepítési modell **erőforrás-kezelő**, és kattintson a **létrehozása**. Az Azure megnyílik hello **hozzon létre virtuális gépet** panelen.
 
-Ismételje meg az előző két virtuális gép létrehozásához. A két virtuális gép neve:
+Ismételje meg a lépéseket toocreate két virtuális gép megelőző hello. Hello két virtuális gép neve:
 
 * Active Directory-elsődleges-tartományvezérlők
 * Active Directory-másodlagos-tartományvezérlők
 
   > [!NOTE]
-  > A **ad – másodlagos-tartományvezérlő** virtuális gép nem kötelező, magas rendelkezésre állás biztosításához az Active Directory tartományi szolgáltatásokhoz.
+  > Hello **ad – másodlagos-tartományvezérlő** virtuális gép nem kötelező, tooprovide a magas rendelkezésre állás, az Active Directory tartományi szolgáltatásokhoz.
   >
   >
 
-Az alábbi táblázat a két gép beállításait:
+hello következő táblázatban a két gépek hello beállításait:
 
 | **Mező** | Érték |
 | --- | --- |
@@ -183,251 +183,251 @@ Az alábbi táblázat a két gép beállításait:
 | **Erőforráscsoport** |SQL-MAGAS RENDELKEZÉSRE ÁLLÁSÚ-RG-N |
 | **Hely** |*A hely* |
 | **Méret** |DS1_V2 |
-| **Storage** | **Felügyelt lemezeket használó** - **Igen** |
+| **Tárolás** | **Felügyelt lemezeket használó** - **Igen** |
 | **Virtuális hálózat** |autoHAVNET |
 | **Alhálózat** |Rendszergazda |
-| **Nyilvános IP-cím** |*A virtuális gép azonos néven* |
-| **Hálózati biztonsági csoport** |*A virtuális gép azonos néven* |
+| **Nyilvános IP-cím** |*Virtuális gép hello azonos néven* |
+| **Hálózati biztonsági csoport** |*Virtuális gép hello azonos néven* |
 | **A rendelkezésre állási csoport** |adavailabilityset </br>**Tartományok fault**: 2. régiója</br>**Tartományok frissítése**: 2. régiója|
 | **Diagnosztika** |Engedélyezve |
 | **Diagnosztikai tárfiók** |*Automatikusan létrehozott* |
 
    >[!IMPORTANT]
-   >Csak egy virtuális gép elhelyezheti rendelkezésre állási készlet létrehozásakor. A rendelkezésre állási csoportot a virtuális gép létrehozása után nem módosítható. Lásd: [virtuális gépek rendelkezésre állásának kezelése](../manage-availability.md).
+   >Csak egy virtuális gép elhelyezheti rendelkezésre állási készlet létrehozásakor. Hello rendelkezésre állási csoportot a virtuális gép létrehozása után nem módosítható. Lásd: [hello virtuális gépek rendelkezésre állásának kezelése](../manage-availability.md).
 
-A virtuális gépek az Azure létrehoz.
+Azure virtuális gépek hello hoz létre.
 
-Miután a virtuális gépek jönnek létre, állítsa be a tartományvezérlőt.
+Miután hello virtuális gépek jönnek létre, konfigurálja a hello tartományvezérlő.
 
-### <a name="configure-the-domain-controller"></a>A tartományvezérlő konfigurálása
-Az alábbi lépéseket kell konfigurálni a **ad-elsődleges-dc** gépi Corp.contoso.com tartományvezérlőként működik.
+### <a name="configure-hello-domain-controller"></a>Hello tartományvezérlő konfigurálása
+Hello a következő lépéseket, konfigurálja a hello **ad-elsődleges-dc** gépi Corp.contoso.com tartományvezérlőként működik.
 
-1. A portál, nyissa meg a **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforrás csoportot, és válassza a **ad-elsődleges-dc** gép. A a **ad-elsődleges-dc** panelen kattintson a **Connect** megnyitni egy RDP-fájlt a távoli asztal eléréséhez.
+1. Hello portálon, nyissa meg a hello **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoport és select hello **ad-elsődleges-dc** gép. A hello **Active Directory-elsődleges-tartományvezérlőt** panelen kattintson a **Connect** tooopen egy RDP fájlt a távoli asztal eléréséhez.
 
-    ![Csatlakozzon a virtuális géphez](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/20-connectrdp.png)
+    ![Csatlakoztassa tooa virtuális gépet](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/20-connectrdp.png)
 2. Jelentkezzen be a beállított rendszergazdai fiókkal (**\DomainAdmin**) és a jelszót (**Contoso! 0000**).
-3. Alapértelmezés szerint a **Kiszolgálókezelő** irányítópult üzenetnek kell megjelennie.
-4. Kattintson a **szerepkörök és szolgáltatások hozzáadása** az irányítópulton lévő hivatkozásra.
+3. Alapértelmezés szerint hello **Kiszolgálókezelő** irányítópult üzenetnek kell megjelennie.
+4. Kattintson a hello **szerepkörök és szolgáltatások hozzáadása** hello irányítópult hivatkozásra kattintva.
 
     ![Kiszolgálókezelő - Szerepkörök hozzáadása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-5. Válassza ki **következő** amíg elér a **kiszolgálói szerepkörök** szakasz.
-6. Válassza ki a **Active Directory tartományi szolgáltatások** és **DNS-kiszolgáló** szerepkörök. Amikor a rendszer kéri, adja hozzá ezeket a szerepköröket szükséges további funkciókkal.
+5. Válassza ki **következő** amíg elér toohello **kiszolgálói szerepkörök** szakasz.
+6. Jelölje be hello **Active Directory tartományi szolgáltatások** és **DNS-kiszolgáló** szerepkörök. Amikor a rendszer kéri, adja hozzá ezeket a szerepköröket szükséges további funkciókkal.
 
    > [!NOTE]
-   > A Windows figyelmeztetést jelenít meg, hogy nincs-e statikus IP-cím. Ha a konfigurációs tesztelést, kattintson a **Folytatás**. Éles környezetben, az IP-cím beállítása az Azure portálon, statikus vagy [PowerShell segítségével állítsa be a statikus IP-cím a tartomány a tartományvezérlő gép](../../../virtual-network/virtual-networks-reserved-private-ip.md).
+   > A Windows figyelmeztetést jelenít meg, hogy nincs-e statikus IP-cím. Ha a tesztelést hello konfigurációs, kattintson a **Folytatás**. Éles környezetben, állítsa be hello IP-cím toostatic hello Azure-portálon vagy [PowerShell tooset hello statikus IP-cím hello tartomány a tartományvezérlő számítógép](../../../virtual-network/virtual-networks-reserved-private-ip.md).
    >
    >
 
     ![Adja hozzá a szerepkörök párbeszédpanel](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/23-addroles.png)
-7. Kattintson a **következő** amíg el nem éri a **megerősítő** szakasz. Válassza ki a **a célkiszolgáló automatikus újraindítása, ha szükséges** jelölőnégyzetet.
+7. Kattintson a **következő** hello addig **megerősítő** szakasz. Jelölje be hello **újraindítás hello célkiszolgáló szükség esetén automatikusan** jelölőnégyzetet.
 8. Kattintson az **Install** (Telepítés) gombra.
-9. Miután a szolgáltatások telepítésének befejezéséhez, térjen vissza a **Kiszolgálókezelő** irányítópult.
-10. Jelölje be az új **Active Directory tartományi szolgáltatások** lehetőséget a bal oldali panelen.
-11. Kattintson a **további** a sárga figyelmeztető sáv hivatkozásra kattintva.
+9. Hello szolgáltatások telepítése, visszatérési toohello befejezése után **Kiszolgálókezelő** irányítópult.
+10. Jelölje be új hello **Active Directory tartományi szolgáltatások** lehetőséget a bal oldali panelen hello.
+11. Kattintson a hello **további** hello sárga figyelmeztető sáv hivatkozásra kattintva.
 
-    ![Az Active Directory tartományi szolgáltatások párbeszédpanel a DNS-kiszolgáló virtuális gépen](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/24-addsmore.png)
-12. Az a **művelet** oszlopa a **összes kiszolgáló feladat részletei** párbeszédpanel, kattintson a **a számítógép előléptetése tartományvezérlővé**.
-13. Az a **Active Directory tartományi szolgáltatások konfigurációs varázslója**, a következő értékeket használja:
+    ![Az Active Directory tartományi szolgáltatások párbeszédpanel hello DNS-kiszolgálói virtuális gép](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/24-addsmore.png)
+12. A hello **művelet** hello oszlopa **összes kiszolgáló feladat részletei** párbeszédpanel, kattintson a **a kiszolgáló tooa tartományvezérlő előléptetéséhez**.
+13. A hello **Active Directory tartományi szolgáltatások konfigurációs varázslója**, a következő értékek hello használata:
 
     | **Lap** | Beállítás |
     | --- | --- |
     | **Központi telepítés konfigurálása** |**Új erdő hozzáadása**<br/> **Gyökértartomány neve** = corp.contoso.com |
     | **Tartományvezérlő beállításai** |**DSRM-jelszót** = Contoso! 0000<br/>**Jelszó megerősítése** = Contoso! 0000 |
-14. Kattintson a **következő** haladhat végig a varázsló többi lapján. Az a **szükséges előfeltételek ellenőrzése** lapon, győződjön meg arról, hogy a következő üzenetet látja: **az előfeltétel-ellenőrzés sikeresen lefutott**. Tekintse át a megfelelő figyelmeztető üzeneteket, de lehetséges, a telepítés folytatásához.
-15. Kattintson az **Install** (Telepítés) gombra. A **ad-elsődleges-dc** virtuális gép automatikusan újraindul.
+14. Kattintson a **következő** keresztül toogo hello más hello varázsló lapjain. A hello **szükséges előfeltételek ellenőrzése** lapon, győződjön meg arról, hogy megjelenik-e a következő üzenet hello: **az előfeltétel-ellenőrzés sikeresen lefutott**. Tekintse át a megfelelő figyelmeztető üzeneteket, de lehetséges toocontinue hello telepítés.
+15. Kattintson az **Install** (Telepítés) gombra. Hello **ad-elsődleges-dc** virtuális gép automatikusan újraindul.
 
-### <a name="note-the-ip-address-of-the-primary-domain-controller"></a>Vegye figyelembe az elsődleges tartományvezérlő IP-címe
+### <a name="note-hello-ip-address-of-hello-primary-domain-controller"></a>Vegye figyelembe az elsődleges tartományvezérlő hello hello IP-címe
 
-Az elsődleges tartományvezérlőt használja a DNS. Vegye figyelembe az elsődleges tartományvezérlő IP-címét.
+A DNS hello elsődleges tartományvezérlőt használja. Vegye figyelembe a hello elsődleges tartományvezérlő IP-címét.
 
-Az elsődleges tartományvezérlő IP-címét egy módja van az Azure portálon keresztül.
+Egyirányú tooget hello elsődleges tartományvezérlő IP-címét hello Azure-portálon keresztül történik.
 
-1. Nyissa meg az erőforráscsoportot az Azure-portálon.
+1. Nyissa meg a hello Azure-portálon, a hello erőforráscsoportot.
 
-2. Kattintson az elsődleges tartományvezérlőn történik.
+2. Kattintson a hello elsődleges tartományvezérlőn történik.
 
-3. Az elsődleges tartományvezérlő paneljén kattintson **hálózati illesztőt**.
+3. Hello elsődleges tartományvezérlő paneljén kattintson **hálózati illesztőt**.
 
 ![Hálózati illesztők](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/25-primarydcip.png)
 
-Vegye figyelembe a magánhálózati IP-címet ehhez a kiszolgálóhoz.
+Vegye figyelembe a hello magánhálózati IP-címet ehhez a kiszolgálóhoz.
 
-### <a name="configure-the-virtual-network-dns"></a>A virtuális hálózat DNS konfigurálása
-Után az első tartományvezérlő létrehozásához, és a DNS engedélyezése az első kiszolgálón, konfigurálja a virtuális hálózat DNS-ehhez a kiszolgálóhoz használandó.
+### <a name="configure-hello-virtual-network-dns"></a>Hello virtuális hálózat DNS konfigurálása
+Miután hello első tartományvezérlő létrehozása és engedélyezése a DNS hello első kiszolgálón, hello virtuális hálózati toouse a kiszolgáló konfigurálása a DNS.
 
-1. Az Azure portálon kattintson a virtuális hálózaton.
+1. Hello Azure-portálon kattintson a virtuális hálózati hello.
 
 2. A **beállítások**, kattintson a **DNS-kiszolgáló**.
 
-3. Kattintson a **egyéni**, és írja be az elsődleges tartományvezérlő privát IP-címét.
+3. Kattintson a **egyéni**, és írja be az elsődleges tartományvezérlő hello hello magánhálózati IP-címe.
 
 4. Kattintson a **Save** (Mentés) gombra.
 
-### <a name="configure-the-second-domain-controller"></a>A második tartományvezérlő konfigurálása
-Miután az elsődleges tartományvezérlő újraindul, a második tartományvezérlő konfigurálhatja. Ez az opcionális lépés van a magas rendelkezésre állás érdekében. Kövesse az alábbi lépéseket a második tartományvezérlő konfigurálása:
+### <a name="configure-hello-second-domain-controller"></a>Második tartományvezérlő hello konfigurálása
+Hello elsődleges tartományvezérlő újraindul, miután hello második tartományvezérlő konfigurálhatja. Ez az opcionális lépés van a magas rendelkezésre állás érdekében. Kövesse a lépéseket tooconfigure hello második tartományvezérlő:
 
-1. A portál, nyissa meg a **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforrás csoportot, és válassza ki a **ad – másodlagos-tartományvezérlő** gép. A a **ad – másodlagos-tartományvezérlő** panelen kattintson a **Connect** megnyitni egy RDP-fájlt a távoli asztal eléréséhez.
-2. A konfigurált rendszergazda fiók használatával jelentkezzen be a virtuális gép (**BUILTIN\DomainAdmin**) és a jelszót (**Contoso! 0000**).
-3. Módosítsa a címet, a tartományvezérlő az előnyben részesített DNS-kiszolgáló címét.
-4. A **hálózati és megosztási központ**, kattintson a hálózati illesztőt.
+1. Hello portálon, nyissa meg a hello **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoport és select hello **ad – másodlagos-tartományvezérlő** gép. A hello **ad – másodlagos-tartományvezérlő** panelen kattintson a **Connect** tooopen egy RDP fájlt a távoli asztal eléréséhez.
+2. Jelentkezzen be toohello VM a konfigurált rendszergazdai fiókkal (**BUILTIN\DomainAdmin**) és a jelszót (**Contoso! 0000**).
+3. Az előnyben részesített DNS-kiszolgáló címe toohello címe hello tartományvezérlő módosítása hello.
+4. A **hálózati és megosztási központ**, kattintson a hello hálózati illesztőt.
    ![Hálózati illesztő](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/26-networkinterface.png)
 
 5. Kattintson a **Tulajdonságok** elemre.
 6. Válassza ki **Internet Protocol Version 4 (TCP/IPv4)** kattintson **tulajdonságok**.
-7. Válassza ki **a következő DNS-kiszolgálócímek használata** és adja meg az elsődleges tartományvezérlő **elsődleges DNS-kiszolgáló**.
-8. Kattintson a **OK**, majd **Bezárás** a módosítások véglegesítéséhez. Most már áll tudni csatlakozni a virtuális Gépet **corp.contoso.com**.
+7. Válassza ki **a következő DNS-kiszolgálócímek használata hello** , és adja meg a hello elsődleges tartományvezérlő a hello címét **elsődleges DNS-kiszolgáló**.
+8. Kattintson a **OK**, majd **Bezárás** toocommit hello módosításokat. Most már áll méretű képes toojoin hello túl**corp.contoso.com**.
 
    >[!IMPORTANT]
-   >Ha a DNS-beállítás módosítása után a távoli asztal elveszítik a kapcsolatot, nyissa meg az Azure portálra, és indítsa újra a virtuális gépet.
+   >Ha elveszti hello kapcsolat tooyour távoli asztal hello DNS beállítás módosítása után, nyissa meg az Azure portálon, és indítsa újra a hello virtuális gép toohello.
 
-9. A távoli asztalt a másodlagos tartományvezérlő, nyissa meg a **a Kiszolgálókezelő irányítópultja**.
-10. Kattintson a **szerepkörök és szolgáltatások hozzáadása** az irányítópulton lévő hivatkozásra.
+9. Hello távoli asztali toohello másodlagos tartományvezérlő, nyissa meg a **a Kiszolgálókezelő irányítópultja**.
+10. Kattintson a hello **szerepkörök és szolgáltatások hozzáadása** hello irányítópult hivatkozásra kattintva.
 
     ![Kiszolgálókezelő - Szerepkörök hozzáadása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-11. Válassza ki **következő** amíg elér a **kiszolgálói szerepkörök** szakasz.
-12. Válassza ki a **Active Directory tartományi szolgáltatások** és **DNS-kiszolgáló** szerepkörök. Amikor a rendszer kéri, adja hozzá ezeket a szerepköröket szükséges további funkciókkal.
-13. Miután a szolgáltatások telepítésének befejezéséhez, térjen vissza a **Kiszolgálókezelő** irányítópult.
-14. Jelölje be az új **Active Directory tartományi szolgáltatások** lehetőséget a bal oldali panelen.
-15. Kattintson a **további** a sárga figyelmeztető sáv hivatkozásra kattintva.
-16. Az a **művelet** oszlopa a **összes kiszolgáló feladat részletei** párbeszédpanel, kattintson a **a számítógép előléptetése tartományvezérlővé**.
-17. A **központi telepítés konfigurálása**, jelölje be **tartományvezérlő hozzáadása meglévő tartományhoz**.
+11. Válassza ki **következő** amíg elér toohello **kiszolgálói szerepkörök** szakasz.
+12. Jelölje be hello **Active Directory tartományi szolgáltatások** és **DNS-kiszolgáló** szerepkörök. Amikor a rendszer kéri, adja hozzá ezeket a szerepköröket szükséges további funkciókkal.
+13. Hello szolgáltatások telepítése, visszatérési toohello befejezése után **Kiszolgálókezelő** irányítópult.
+14. Jelölje be új hello **Active Directory tartományi szolgáltatások** lehetőséget a bal oldali panelen hello.
+15. Kattintson a hello **további** hello sárga figyelmeztető sáv hivatkozásra kattintva.
+16. A hello **művelet** hello oszlopa **összes kiszolgáló feladat részletei** párbeszédpanel, kattintson a **a kiszolgáló tooa tartományvezérlő előléptetéséhez**.
+17. A **központi telepítés konfigurálása**, jelölje be **egy tartomány tartományvezérlői tooan meglévő tartomány hozzáadása**.
    ![Központi telepítés konfigurálása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/28-deploymentconfig.png)
 18. Kattintson a **Kiválasztás** gombra.
-19. Csatlakozás a rendszergazdai fiók használatával (**vállalat esetében. CONTOSO.COM\domainadmin**) és a jelszót (**Contoso! 0000**).
-20. A **jelöljön ki egy tartományt az erdőből**, kattintson a tartomány, majd **OK**.
-21. A **tartományvezérlő-beállítások**, használja az alapértelmezett értékeket, majd állítsa be a DSRM-jelszót.
+19. Csatlakozás hello rendszergazdai fiókkal (**vállalat esetében. CONTOSO.COM\domainadmin**) és a jelszót (**Contoso! 0000**).
+20. A **jelöljön ki egy tartományt hello erdőből**, kattintson a tartomány, majd **OK**.
+21. A **tartományvezérlő-beállítások**, hello alapértelmezett értékeket használja, és állítsa be a DSRM-jelszót.
 
    >[!NOTE]
-   >A **DNS-beállítások** lap jelezheti, hogy a DNS-kiszolgáló egy delegálás nem hozható létre. Ez a figyelmeztetés nem éles környezetben figyelmen kívül hagyhatja.
-22. Kattintson a **következő** amíg el nem éri a párbeszédpanel a **Előfeltételek** ellenőrzése. Ezt követően kattintson a **Telepítés** gombra.
+   >Hello **DNS-beállítások** lap jelezheti, hogy a DNS-kiszolgáló egy delegálás nem hozható létre. Ez a figyelmeztetés nem éles környezetben figyelmen kívül hagyhatja.
+22. Kattintson a **következő** csak hello párbeszédpanel elérésekor hello **Előfeltételek** ellenőrzése. Ezt követően kattintson a **Telepítés** gombra.
 
-Ha a kiszolgáló befejezi a konfigurációs módosításokat, indítsa újra a kiszolgálót.
+Hello server hello konfigurációs módosítások befejezése után indítsa újra a hello kiszolgálót.
 
-### <a name="add-the-private-ip-address-to-the-second-domain-controller-to-the-vpn-dns-server"></a>A magánhálózati IP-cím hozzáadása a VPN DNS-kiszolgálót a második tartományvezérlő
+### <a name="add-hello-private-ip-address-toohello-second-domain-controller-toohello-vpn-dns-server"></a>Hello magánhálózati IP-cím toohello második tartomány a tartományvezérlő toohello VPN DNS-kiszolgáló hozzáadása
 
-Az Azure portálon, a virtuális hálózat módosítsa a DNS-kiszolgáló a másodlagos tartományvezérlő IP-címét tartalmazza. Ez lehetővé teszi a DNS szolgáltatás redundancia csökkentése érdekében.
+Az Azure-portálon, a virtuális hálózat hello hello DNS-kiszolgáló tooinclude hello IP-cím hello másodlagos tartományvezérlő módosításához. Ez lehetővé teszi a DNS-szolgáltatás redundancia hello.
 
-### <a name=DomainAccounts></a>A tartományi fiókok beállítása
+### <a name=DomainAccounts></a>Hello tartományi fiókok beállítása
 
-A következő lépésekkel konfigurálja az Active Directory-fiókokat. Az alábbi táblázat a fiókok:
+A következő lépések hello hello Active Directory-fiókok konfigurálása. hello következő táblázatban hello fiókok:
 
 | |Telepítési fiók<br/> |SQL Server-0 <br/>SQL Server és az SQL Agent szolgáltatás fiókja |SQL Server-1<br/>SQL Server és az SQL Agent szolgáltatás fiókja
 | --- | --- | --- | ---
 |**Utónév** |Telepítés |SQLSvc1 | SQLSvc2
 |**Felhasználó SamAccountName** |Telepítés |SQLSvc1 | SQLSvc2
 
-A következő lépésekkel minden fiók létrehozása.
+A következő lépéseket toocreate hello minden fiókot használja.
 
-1. Jelentkezzen be a **ad-elsődleges-dc** gép.
+1. Jelentkezzen be toohello **ad-elsődleges-dc** gép.
 2. A **Kiszolgálókezelő**, jelölje be **eszközök**, és kattintson a **Active Directory felügyeleti központ**.   
-3. Válassza ki **corp (helyi)** a bal oldali ablaktáblán.
-4. A jobb oldali **feladatok** ablaktáblán válassza előbb **új**, és kattintson a **felhasználói**.
+3. Válassza ki **corp (helyi)** hello bal oldali ablaktáblán.
+4. A jobb oldali hello **feladatok** ablaktáblán válassza előbb **új**, és kattintson a **felhasználói**.
    ![Active Directory felügyeleti központ](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/29-addcnewuser.png)
 
    >[!TIP]
-   >Az egyes fiókok számára összetett jelszót állíthat be.<br/> Nem éles környezetben állítsa be a felhasználói fiókot soha ne járjon le.
+   >Az egyes fiókok számára összetett jelszót állíthat be.<br/> Nem éles környezetben set hello felhasználói fiók toonever lejár.
 
-5. Kattintson a **OK** a felhasználó létrehozásához.
-6. Ismételje az előző három-fiókkal.
+5. Kattintson a **OK** toocreate hello felhasználó.
+6. Ismételje meg az előző lépésekben az egyes hello három fiókok hello.
 
-### <a name="grant-the-required-permissions-to-the-installation-account"></a>Adja meg a szükséges engedélyeket a telepítési fiók
-1. Az a **Active Directory felügyeleti központ**, jelölje be **corp (helyi)** a bal oldali ablaktáblán. Ezt a jobb oldali **feladatok** ablaktáblán kattintson a **tulajdonságok**.
+### <a name="grant-hello-required-permissions-toohello-installation-account"></a>Adja meg a hello szükséges engedélyeket toohello telepítési fiók
+1. A hello **Active Directory felügyeleti központ**, jelölje be **corp (helyi)** hello bal oldali ablaktáblán. Ezt a jobb oldali hello **feladatok** ablaktáblán kattintson a **tulajdonságok**.
 
     ![CORP felhasználó tulajdonságai](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/31-addcproperties.png)
-2. Válassza ki **bővítmények**, majd kattintson a **speciális** gombra a **biztonsági** lapon.
-3. Az a **speciális biztonsági beállítások vállalati** párbeszédpanel, kattintson a **Hozzáadás**.
+2. Válassza ki **bővítmények**, majd kattintson a hello **speciális** hello gombjára **biztonsági** lapon.
+3. A hello **speciális biztonsági beállítások vállalati** párbeszédpanel, kattintson a **Hozzáadás**.
 4. Kattintson a **rendszerbiztonsági tag kiválasztása**, keressen **CORP\Install**, és kattintson a **OK**.
-5. Válassza ki a **az összes tulajdonság olvasása** jelölőnégyzetet.
+5. Jelölje be hello **az összes tulajdonság olvasása** jelölőnégyzetet.
 
-6. Válassza ki a **számítógép-objektumok létrehozása** jelölőnégyzetet.
+6. Jelölje be hello **számítógép-objektumok létrehozása** jelölőnégyzetet.
 
      ![Corp felhasználói engedélyek](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/33-addpermissions.png)
-7. Kattintson a **OK**, és kattintson a **OK** újra. Zárja be a **corp** tulajdonságai ablakban.
+7. Kattintson a **OK**, és kattintson a **OK** újra. Bezárás hello **corp** tulajdonságai ablakban.
 
-Most, hogy befejezte az Active Directory és a felhasználói objektumok, két SQL Server virtuális gépen és a tanúsító kiszolgálói virtuális gép létrehozása. Majd a három tartományhoz csatlakozzon.
+Most, hogy az Active Directory és a felhasználói objektumok hello befejezése után hozzon létre két SQL Server virtuális gépen és a tanúsító kiszolgálói virtuális gép. Majd tartományhoz összes három toohello.
 
 ## <a name="create-sql-server-vms"></a>SQL Server virtuális gépek létrehozása
 
-Hozzon létre három további virtuális gépeket. A megoldás két virtuális gép az SQL Server-példányokat igényel. A harmadik virtuális gép egy tanúsító fog működni. Windows Server 2016 használhatja egy [tanúsító cloud](http://docs.microsoft.com/windows-server/failover-clustering/deploy-cloud-witness), azonban ez a dokumentum korábbi operációs rendszerekhez való konzisztenciáját a virtuális gép használja a tanúsító.  
+Hozzon létre három további virtuális gépeket. hello megoldást igényel a két virtuális gép az SQL Server-példányokat. A harmadik virtuális gép egy tanúsító fog működni. Windows Server 2016 használhatja egy [tanúsító cloud](http://docs.microsoft.com/windows-server/failover-clustering/deploy-cloud-witness), azonban ez a dokumentum korábbi operációs rendszerekhez való konzisztenciáját a virtuális gép használja a tanúsító.  
 
-Folytatás előtt fontolja meg a következőket deisign.
+Folytatás előtt fontolja meg a következő deisign döntések hello.
 
 * **Tároló - Azure által kezelt lemezeken**
 
-   A virtuális gépek tárolására Azure felügyelt lemezek használhatók. A Microsoft azt javasolja, hogy felügyelt lemezek SQL Server virtuális gépekhez. A Managed Disks szolgáltatás a háttérben kezeli a tárterületet. Emellett ha ugyanabban a rendelkezésre állási csoportban több, a Managed Diskset használó virtuális gép található, az Azure elosztja a tárolási erőforrásokat, hogy megfelelő redundanciát biztosítson. További információkért lásd az [Azure Managed Disks áttekintését](../managed-disks-overview.md). A rendelkezésre állási csoportba felügyelt lemezek kapcsolatos részletekért lásd: [használata felügyelt lemezeket a virtuális gépek rendelkezésre állási csoportba](../manage-availability.md#use-managed-disks-for-vms-in-an-availability-set).
+   A virtuálisgép-tároló hello Azure felügyelt lemezek használhatók. A Microsoft azt javasolja, hogy felügyelt lemezek SQL Server virtuális gépekhez. A felügyelt lemezek leírók tárolási hello színfalak mögött. Emellett, ha felügyelt lemezzel rendelkező virtuális gépek szerepelnek hello azonos rendelkezésre állási csoportot, Azure hello tárolási erőforrások tooprovide megfelelő redundancia osztja el. További információkért lásd az [Azure Managed Disks áttekintését](../managed-disks-overview.md). A rendelkezésre állási csoportba felügyelt lemezek kapcsolatos részletekért lásd: [használata felügyelt lemezeket a virtuális gépek rendelkezésre állási csoportba](../manage-availability.md#use-managed-disks-for-vms-in-an-availability-set).
 
 * **Hálózati - privát IP-címek éles környezetben**
 
-   A virtuális gépek esetén ez az oktatóanyag nyilvános IP-címet használja. Ez lehetővé teszi a távoli kapcsolat a virtuális gép számára közvetlenül az interneten keresztül, mert a konfigurációs lépéseket egyszerűbbé teszi. Éles környezetben a Microsoft azt javasolja, hogy csak privát IP-címek ahhoz, hogy csökkentse a biztonsági kockázatokat, az SQL Server-példány VM erőforrás.
+   Hello virtuális gépek esetén ez az oktatóanyag nyilvános IP-címet használja. Ez lehetővé teszi a távoli kapcsolat a közvetlen toohello virtuális gép keresztül hello internet - konfigurációs lépések egyszerűbbé teszi. Éles környezetben Microsoft azt javasolja, hogy csak privát IP-címek a rendelés tooreduce hello biztonsági kockázatokat hello SQL Server-példány virtuális gép erőforrásához.
 
-### <a name="create-and-configure-the-sql-server-vms"></a>Hozza létre és konfigurálja az SQL Server virtuális gépen
-Ezután hozzon létre három virtuális gépek – két SQL Server virtuális gépen és a virtuális gépek számára egy további fürtcsomópontra. Minden egyes virtuális gépek létrehozásához lépjen vissza a **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoport, kattintson **Hozzáadás**, keresse meg a megfelelő gyűjteményelemet, majd **virtuális gép**, és kattintson a  **Gyűjteményből**. Olvassa el a következő táblázat a virtuális gépek létrehozásához:
+### <a name="create-and-configure-hello-sql-server-vms"></a>Hozza létre és konfigurálja a hello SQL Server virtuális gépen
+Ezután hozzon létre három virtuális gépek – két SQL Server virtuális gépen és a virtuális gépek számára egy további fürtcsomópontra. toocreate minden hello virtuális gépek, lépjen vissza toohello **SQL-magas rendelkezésre ÁLLÁSÚ-RG** erőforráscsoport, kattintson a **Hozzáadás**, keresse meg a megfelelő gyűjteményelem hello, kattintson a **virtuális gép**, majd Kattintson a **a gyűjtemény**. Használja a következő tábla toohelp hello virtuális gépek létrehozása hello hello adatokat:
 
 
 | Lap | VM1 | VM2 VIRTUÁLIS GÉPNEK | VM3 |
 | --- | --- | --- | --- |
-| Válassza ki a megfelelő gyűjteményelem |**Windows Server 2016 Datacenter** |**SQL Server 2016 SP1 Enterprise, Windows Server 2016** |**SQL Server 2016 SP1 Enterprise, Windows Server 2016** |
+| Válassza ki a megfelelő gyűjteményelem hello |**Windows Server 2016 Datacenter** |**SQL Server 2016 SP1 Enterprise, Windows Server 2016** |**SQL Server 2016 SP1 Enterprise, Windows Server 2016** |
 | Virtuálisgép-konfiguráció **alapjai** |**Név** fürt-fsw =<br/>**Felhasználónév** tartománygazda =<br/>**Jelszó** = Contoso! 0000<br/>**Előfizetés** az előfizetés =<br/>**Erőforráscsoport** SQL-magas rendelkezésre ÁLLÁSÚ-RG =<br/>**Hely** az Azure-beli hely = |**Név** sqlserver – 0 =<br/>**Felhasználónév** tartománygazda =<br/>**Jelszó** = Contoso! 0000<br/>**Előfizetés** az előfizetés =<br/>**Erőforráscsoport** SQL-magas rendelkezésre ÁLLÁSÚ-RG =<br/>**Hely** az Azure-beli hely = |**Név** SQL Server-1 =<br/>**Felhasználónév** tartománygazda =<br/>**Jelszó** = Contoso! 0000<br/>**Előfizetés** az előfizetés =<br/>**Erőforráscsoport** SQL-magas rendelkezésre ÁLLÁSÚ-RG =<br/>**Hely** az Azure-beli hely = |
-| Virtuálisgép-konfiguráció **mérete** |**MÉRET** = DS1\_V2 (1 mag, 3.5-ös GB) |**MÉRET** = DS2\_V2 (2 mag, 7 GB)</br>A méret támogatnia kell az SSD-tárhelyre (prémium szintű támogatása. )) |**MÉRET** = DS2\_V2 (2 mag, 7 GB) |
+| Virtuálisgép-konfiguráció **mérete** |**MÉRET** = DS1\_V2 (1 mag, 3.5-ös GB) |**MÉRET** = DS2\_V2 (2 mag, 7 GB)</br>hello mérete támogatnia kell az SSD-tárhelyre (prémium szintű támogatása. )) |**MÉRET** = DS2\_V2 (2 mag, 7 GB) |
 | Virtuálisgép-konfiguráció **beállítások** |**Tárolási**: az kezelt lemezek.<br/>**Virtuális hálózati** = autoHAVNET<br/>**Alhálózati** = sqlsubnet(10.1.1.0/24)<br/>**Nyilvános IP-cím** automatikusan generált.<br/>**Hálózati biztonsági csoport** = None<br/>**Diagnosztikai figyelő** = engedélyezve<br/>**Diagnosztikai tárfiók** = egy automatikusan létrehozott tárfiók használata<br/>**A rendelkezésre állási csoport** = sqlAvailabilitySet<br/> |**Tárolási**: az kezelt lemezek.<br/>**Virtuális hálózati** = autoHAVNET<br/>**Alhálózati** = sqlsubnet(10.1.1.0/24)<br/>**Nyilvános IP-cím** automatikusan generált.<br/>**Hálózati biztonsági csoport** = None<br/>**Diagnosztikai figyelő** = engedélyezve<br/>**Diagnosztikai tárfiók** = egy automatikusan létrehozott tárfiók használata<br/>**A rendelkezésre állási csoport** = sqlAvailabilitySet<br/> |**Tárolási**: az kezelt lemezek.<br/>**Virtuális hálózati** = autoHAVNET<br/>**Alhálózati** = sqlsubnet(10.1.1.0/24)<br/>**Nyilvános IP-cím** automatikusan generált.<br/>**Hálózati biztonsági csoport** = None<br/>**Diagnosztikai figyelő** = engedélyezve<br/>**Diagnosztikai tárfiók** = egy automatikusan létrehozott tárfiók használata<br/>**A rendelkezésre állási csoport** = sqlAvailabilitySet<br/> |
 | Virtuálisgép-konfiguráció **SQL Server-beállítások** |Nem alkalmazható |**SQL-kapcsolat** = Private (virtuális hálózaton belül)<br/>**Port** = 1433<br/>**SQL-hitelesítés** = letiltás<br/>**Tárolási konfiguráció** általános =<br/>**Automatikus javítás** vasárnap = 2:00<br/>**Automatikus biztonsági mentés** = letiltva</br>**Az Azure Key Vault-integráció** = letiltva |**SQL-kapcsolat** = Private (virtuális hálózaton belül)<br/>**Port** = 1433<br/>**SQL-hitelesítés** = letiltás<br/>**Tárolási konfiguráció** általános =<br/>**Automatikus javítás** vasárnap = 2:00<br/>**Automatikus biztonsági mentés** = letiltva</br>**Az Azure Key Vault-integráció** = letiltva |
 
 <br/>
 
 > [!NOTE]
-> Az itt közölt méreteket úgy van kialakítva, a rendelkezésre állási csoportok tesztelése az Azure virtuális gépeken. A legjobb teljesítmény érdekében a termelési számítási feladatokhoz, javaslatok az SQL Server-gépek méretét és a konfigurációs [teljesítmény a bevált gyakorlat az SQL Server Azure virtuális gépek](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Itt javasolt hello méreteket úgy van kialakítva, a rendelkezésre állási csoportok tesztelése az Azure virtuális gépeken. Hello termelési számítási feladatokhoz a legjobb teljesítmény érdekében hello ajánlott méreteket SQL Server és a konfiguráció megtekintéséhez [teljesítmény a bevált gyakorlat az SQL Server Azure virtuális gépek](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 >
 >
 
-Miután a három virtuális gépek teljesen kiépített, kell-e csatlakoztassa azokat a **corp.contoso.com** tartomány- és támogatási CORP\Install rendszergazdai jogosultságokkal a gépek.
+Miután hello három virtuális gépek teljesen kiépített, toojoin kell őket toohello **corp.contoso.com** tartomány- és támogatási CORP\Install rendszergazdai jogosultságokkal toohello gépek.
 
-### <a name="joinDomain"></a>A kiszolgálók csatlakoztatása a tartományhoz
+### <a name="joinDomain"></a>Hello kiszolgálók toohello tartományhoz
 
-Most már elvégezheti a virtuális gép csatlakoztatás **corp.contoso.com**. Tegye a következőket mind az SQL Server virtuális gépen, és a tanúsító fájlmegosztás kiszolgálója:
+Most már tudja toojoin hello virtuális gépek túl Ön**corp.contoso.com**. Hello következő hello SQL Server virtuális gépen és a hello fájl ugyanazt a tanúsító kiszolgálói:
 
-1. Távolról csatlakozni a virtuális gép **BUILTIN\DomainAdmin**.
+1. Távoli kapcsolódás a virtuális gép toohello **BUILTIN\DomainAdmin**.
 2. A **Kiszolgálókezelő**, kattintson a **helyi kiszolgáló**.
-3. Kattintson a **munkacsoport** hivatkozásra.
-4. Az a **számítógépnév** kattintson **módosítása**.
-5. Válassza ki a **tartomány** jelölőnégyzetet, és írja be **corp.contoso.com** a szövegmezőben. Kattintson az **OK** gombra.
-6. Az a **Windows biztonsági** előugró párbeszédpanelen adja meg az alapértelmezett tartományi rendszergazdai fiók hitelesítő adatait (**CORP\DomainAdmin**) és a jelszót (**Contoso! 0000**) .
-7. Kattintson a "Üdvözli a corp.contoso.com tartomány" üzenet jelenik meg, amikor **OK**.
-8. Kattintson a **Bezárás**, és kattintson a **Újraindítás most** az előugró párbeszédpanelen.
+3. Kattintson a hello **munkacsoport** hivatkozásra.
+4. A hello **számítógépnév** kattintson **módosítása**.
+5. Jelölje be hello **tartomány** jelölőnégyzetet, és írja be **corp.contoso.com** hello szövegmezőben. Kattintson az **OK** gombra.
+6. A hello **Windows biztonsági** előugró párbeszédpanelen adja meg a hello hello alapértelmezett tartományi rendszergazdai fiók hitelesítő adatait (**CORP\DomainAdmin**) és hello jelszó (**Contoso! 0000**).
+7. Ha hello "Üdvözli toohello corp.contoso.com tartomány" üzenet jelenik meg, kattintson **OK**.
+8. Kattintson a **Bezárás**, és kattintson a **Újraindítás most** hello előugró párbeszédpanelen.
 
-### <a name="add-the-corpinstall-user-as-an-administrator-on-each-cluster-vm"></a>Minden virtuális gép fürtön rendszergazdaként Corp\Install felhasználó hozzáadása
+### <a name="add-hello-corpinstall-user-as-an-administrator-on-each-cluster-vm"></a>Minden virtuális gép fürtön rendszergazdaként hello Corp\Install felhasználó hozzáadása
 
-A tartomány tagjaként minden virtuális gép újraindítása után adja hozzá a **CORP\Install** a helyi Rendszergazdák csoport tagjaként.
+Minden virtuális gép újraindításával hello tartomány tagjaként hozzáadása **CORP\Install** hello helyi Rendszergazdák csoport tagjaként.
 
-1. Várjon, amíg a virtuális gép újraindul, majd indítsa el az RDP-fájl újra bejelentkezni az elsődleges tartományvezérlő **SQL Server-0** használatával a **CORP\DomainAdmin** fiók.
+1. Várjon, amíg a hello virtuális gép újraindul, majd indítsa el újra a hello elsődleges tartományvezérlő toosign az RDP-fájlban hello túl**SQL Server-0** hello segítségével **CORP\DomainAdmin** fiók.
    >[!TIP]
-   >Győződjön meg arról, hogy jelentkezzen be a tartományi rendszergazdai fiókot. Az előző lépésben a IN a beépített rendszergazdai fiókot használta. Most, hogy a kiszolgáló a tartományban, a tartományi fiókot használni. Az RDP-munkamenetbe, adja meg a *tartomány*\\*felhasználónév*.
+   >Győződjön meg arról, hogy jelentkezzen be hello tartományi rendszergazdai fiókot. Hello előző lépésekben hello IN beépített rendszergazdai fiókot használta. Most, hogy hello server hello tartományban, hello tartományi fiók használata. Az RDP-munkamenetbe, adja meg a *tartomány*\\*felhasználónév*.
 
 2. A **Kiszolgálókezelő**, jelölje be **eszközök**, és kattintson a **számítógép-kezelés**.
-3. Az a **számítógép-kezelés** ablakában bontsa ki a **helyi felhasználók és csoportok**, majd válassza ki **csoportok**.
-4. Kattintson duplán a **rendszergazdák** csoport.
-5. Az a **rendszergazdák tulajdonságok** párbeszédpanel, kattintson a **Hozzáadás** gombra.
-6. Adja meg a felhasználó **CORP\Install**, és kattintson a **OK**.
-7. Kattintson a **OK** bezárásához a **rendszergazda tulajdonságainak** párbeszédpanel.
-8. Ismételje meg az előző lépéseket **SQL Server-1** és **fürt-fsw**.
+3. A hello **számítógép-kezelés** ablakában bontsa ki a **helyi felhasználók és csoportok**, majd válassza ki **csoportok**.
+4. Kattintson duplán a hello **rendszergazdák** csoport.
+5. A hello **rendszergazdák tulajdonságok** párbeszédpanel, kattintson hello **Hozzáadás** gombra.
+6. Adja meg a hello felhasználói **CORP\Install**, és kattintson a **OK**.
+7. Kattintson a **OK** tooclose hello **rendszergazda tulajdonságainak** párbeszédpanel.
+8. Ismételje meg a korábbi lépéseket hello **SQL Server-1** és **fürt-fsw**.
 
-### <a name="setServiceAccount"></a>Az SQL Server szolgáltatás-fiók beállítása
+### <a name="setServiceAccount"></a>SQL Server szolgáltatásfiókok hello beállítása
 
-Minden egyes SQL Server virtuális gépen állítsa be az SQL Server szolgáltatásfiókja. A fiókok létrehozott mikor használják, akkor [konfigurálva a tartományi fiókok](#DomainAccounts).
+Az SQL Server virtuális gépek hello SQL Server szolgáltatásfiók beállítása. Létrehozott mikor hello fiókok használata akkor [hello tartományi fiókok konfigurált](#DomainAccounts).
 
 1. Nyissa meg **SQL Server Konfigurációkezelő**.
-2. Kattintson a jobb gombbal az SQL Server szolgáltatást, és kattintson **tulajdonságok**.
-3. Állítsa be a fiók és jelszó.
-4. Ismételje ezeket a lépéseket, a többi SQL Server virtuális Gépen.  
+2. Kattintson a jobb gombbal a hello SQL Server szolgáltatás, és kattintson **tulajdonságok**.
+3. Állítsa be a hello fiókot és jelszót.
+4. Ismételje meg ezeket a lépéseket a hello más SQL Server virtuális gép.  
 
-Az SQL Server rendelkezésre állási csoportok minden egyes SQL Server virtuális gép kell tartományi fiókként futtatni.
+Az SQL Server rendelkezésre állási csoportok minden egyes SQL Server virtuális gép toorun tartományi fiókként van szüksége.
 
-### <a name="create-a-sign-in-on-each-sql-server-vm-for-the-installation-account"></a>A bejelentkezés minden SQL Server virtuális gépen a telepítési fiók létrehozása
+### <a name="create-a-sign-in-on-each-sql-server-vm-for-hello-installation-account"></a>A bejelentkezés minden SQL Server virtuális gépen hello telepítési fiók létrehozása
 
-A telepítési fiók (CORP\install) használatával a rendelkezésre állási csoport konfigurálásához. Ennek a fióknak tagjának lennie kell a **sysadmin** rögzített kiszolgálói szerepkör minden egyes SQL Server virtuális gépen. Az alábbi lépéseket a bejelentkezés a telepítési fiók létrehozása:
+Hello telepítési fiók (CORP\install) tooconfigure hello rendelkezésre állási csoportot használjon. Ezt a fiókot kell toobe hello tagja **sysadmin** rögzített kiszolgálói szerepkör minden egyes SQL Server virtuális gépen. hello következő lépéseit hozza létre a bejelentkezés hello telepítési fiók:
 
-1. A kiszolgáló a távoli asztal protokoll (RDP) révén használatával kapcsolódnak a  *\<MachineName\>\DomainAdmin* fiók.
+1. Hello használatával kapcsolódnak a toohello server hello Remote Desktop Protocol (RDP) révén  *\<MachineName\>\DomainAdmin* fiók.
 
-1. Nyissa meg az SQL Server Management Studio eszközt, és csatlakozzon az SQL Server helyi példányát.
+1. Nyissa meg az SQL Server Management Studio eszközt, és csatlakozzon az SQL Server helyi példányát toohello.
 
 1. A **Object Explorer**, kattintson a **biztonsági**.
 
@@ -437,34 +437,34 @@ A telepítési fiók (CORP\install) használatával a rendelkezésre állási cs
 
 1. Kattintson a **helyek**.
 
-1. Adja meg a tartományi rendszergazda hálózati hitelesítő adatait.
+1. Adja meg a tartományi rendszergazda hitelesítő hello.
 
-1. A telepítési fiókot használni.
+1. Hello telepítési fiókot használni.
 
-1. A bejelentkezés tagja kell beállítani a **sysadmin** rögzített kiszolgálói szerepkör.
+1. Állítsa be a hello bejelentkezési toobe hello tagja **sysadmin** rögzített kiszolgálói szerepkör.
 
 1. Kattintson az **OK** gombra.
 
-Ismételje meg az előző lépéseket, a többi SQL Server virtuális Gépen.
+Ismételje meg az előző lépésekben a hello más SQL Server virtuális gép hello.
 
-## <a name="add-failover-clustering-features-to-both-sql-server-vms"></a>Adja hozzá a Feladatátvételi fürtszolgáltatással az mindkét SQL Server virtuális gépen
+## <a name="add-failover-clustering-features-tooboth-sql-server-vms"></a>Adja hozzá a Feladatátvételi fürtszolgáltatás szolgáltatások tooboth SQL Server virtuális gépen
 
-Feladatátvételi fürtszolgáltatással hozzáadásához tegye a következőket a mindkét SQL Server virtuális gépen:
+tooadd Feladatátvételi fürtszolgáltatással, hello mindkét SQL Server virtuális gépekre a következő:
 
-1. Az SQL Server virtuális géphez a távoli asztal protokoll (RDP) révén használatával kapcsolódnak a *CORP\install* fiók. Nyissa meg **a Kiszolgálókezelő irányítópultja**.
-2. Kattintson a **szerepkörök és szolgáltatások hozzáadása** az irányítópulton lévő hivatkozásra.
+1. Hello használatával kapcsolódnak a toohello SQL Server virtuális gép hello Remote Desktop Protocol (RDP) révén *CORP\install* fiók. Nyissa meg **a Kiszolgálókezelő irányítópultja**.
+2. Kattintson a hello **szerepkörök és szolgáltatások hozzáadása** hello irányítópult hivatkozásra kattintva.
 
     ![Kiszolgálókezelő - Szerepkörök hozzáadása](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-3. Válassza ki **következő** amíg elér a **kiszolgálószolgáltatások** szakasz.
+3. Válassza ki **következő** amíg elér toohello **kiszolgálószolgáltatások** szakasz.
 4. A **szolgáltatások**, jelölje be **feladatátvételi fürtszolgáltatás**.
 5. A további szükséges szolgáltatások hozzáadását.
-6. Kattintson a **telepítése** a szolgáltatások hozzáadását.
+6. Kattintson a **telepítése** tooadd hello szolgáltatásokat.
 
-Ismételje meg a többi SQL Server virtuális Gépen.
+Ismételje meg a hello hello a többi SQL Server virtuális gép.
 
-## <a name="a-nameendpoint-firewall-configure-the-firewall-on-each-sql-server-vm"></a><a name="endpoint-firewall">A tűzfal konfigurálása minden egyes SQL Server virtuális gépen
+## <a name="a-nameendpoint-firewall-configure-hello-firewall-on-each-sql-server-vm"></a><a name="endpoint-firewall">Minden egyes SQL Server virtuális gépen hello tűzfal konfigurálása
 
-A megoldás a következő TCP-portok nyitva a tűzfalon igényel:
+hello megoldás hello TCP-portok toobe hello tűzfal nyissa meg a következő szükséges:
 
 - **SQL Server rendszerű virtuális Géphez**:<br/>
    Az SQL Server alapértelmezett példányán 1433-as port.
@@ -473,25 +473,25 @@ A megoldás a következő TCP-portok nyitva a tűzfalon igényel:
 - **Adatbázis-tükrözési végpontját:** <br/>
    Minden elérhető port. Példák 5022 gyakran használnak.
 
-A tűzfalportok nyitva a mindkét SQL Server virtuális gépen kell.
+hello tűzfal portok kell toobe nyissa meg a mindkét SQL Server virtuális gépeken.
 
-A portok megnyitása módja attól függ, hogy a tűzfal megoldáshoz, amelyet használni. A következő szakasz ismerteti a portok megnyitása a Windows tűzfalon. Nyissa meg a szükséges portok minden egyes az SQL Server virtuális gépen.
+hello portok megnyitása hello módja attól függ, hogy hello tűzfal megoldáshoz, amelyet használni. hello a következő szakasz ismerteti, hogyan tooopen hello a Windows tűzfal portjai. Nyissa meg a szükséges hello portok minden egyes az SQL Server virtuális gépen.
 
-### <a name="open-a-tcp-port-in-the-firewall"></a>Nyissa meg a TCP-portot a tűzfalon
+### <a name="open-a-tcp-port-in-hello-firewall"></a>Nyissa meg a TCP-port hello tűzfal
 
-1. Az első SQL-kiszolgálón **Start** indítsa el a jobb **fokozott biztonságú Windows tűzfal**.
-2. A bal oldali panelen válassza ki a **bejövő szabályok**. Kattintson a jobb oldali ablaktáblában **új szabály**.
+1. Az első SQL-kiszolgáló hello **Start** indítsa el a jobb **fokozott biztonságú Windows tűzfal**.
+2. Hello bal oldali ablaktáblában jelölje ki **bejövő szabályok**. Kattintson a jobb oldali hello **új szabály**.
 3. A **szabálytípus**, válassza a **Port**.
-4. Adja meg a portot, **TCP** , és írja be a megfelelő portszámokat. Tekintse meg a következő példát:
+4. Hello port megadása **TCP** és a megfelelő számú portok típus hello. Tekintse meg a következő példa hello:
 
    ![SQL-tűzfal](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/35-tcpports.png)
 
 5. Kattintson a **Tovább** gombra.
-6. Az a **művelet** lapon, tartsa **a kapcsolat engedélyezéséhez** kiválasztva, és kattintson **következő**.
-7. Az a **profil** lapon fogadja el az alapértelmezett beállításokat, és kattintson a **következő**.
-8. A a **neve** csoportjában adja meg a szabály neve (például **Azure LB mintavételi**) az a **neve** szövegmezőbe, és kattintson **Befejezés**.
+6. A hello **művelet** lapon, tartsa **hello csatlakozás engedélyezése** kiválasztva, és kattintson **következő**.
+7. A hello **profil** lapon fogadja el hello alapértelmezett beállításokat, és kattintson a **következő**.
+8. A hello **neve** csoportjában adja meg a szabály neve (például **Azure LB mintavételi**) a hello **neve** szövegmezőbe, és kattintson **Befejezés**.
 
-Ismételje ezeket a lépéseket, a második SQL Server virtuális Gépen.
+Ismételje meg ezeket a lépéseket a második SQL Server virtuális gép hello.
 
 ## <a name="next-steps"></a>Következő lépések
 

@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy virtuális gép több hálózati adapter - Azure PowerShell |} Microsoft Docs"
-description: "Tudnivalók a PowerShell segítségével több hálózati adapterrel rendelkező virtuális gép létrehozása."
+title: "virtuális gép több hálózati adapter - Azure PowerShell és aaaCreate |} Microsoft Docs"
+description: "Megtudhatja, hogyan toocreate PowerShell segítségével több hálózati adapterrel rendelkező virtuális gép."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3a11afd8fbd6a5e6b94cf1ebee7ea20665421bd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 507a413510da3ee69aefed324977ee40e442268b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vm-with-multiple-nics-using-powershell"></a>PowerShell-lel több hálózati adapterrel rendelkező virtuális gép létrehozása
 
@@ -34,19 +34,19 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-deploy-multinic-intro-include.md](../../includes/virtual-network-deploy-multinic-intro-include.md)]
 
 > [!NOTE]
-> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md).  Ez a cikk a Resource Manager-alapú üzemi modell használatát ismerteti, amelyet a Microsoft a legtöbb új telepítéshez a [klasszikus üzemi modell](virtual-network-deploy-multinic-classic-ps.md) helyett javasol.
+> Az Azure két különböző üzembe helyezési modellel rendelkezik az erőforrások létrehozásához és használatához: [Resource Manager és klasszikus](../resource-manager-deployment-model.md).  Ez a cikk ismerteti a használatával a Microsoft azt javasolja, a legtöbb új központi telepítés helyett hello hello Resource Manager üzembe helyezési modellben [klasszikus üzembe helyezési modellel](virtual-network-deploy-multinic-classic-ps.md).
 >
 
 [!INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-Az alábbi lépéseket használja nevű erőforráscsoport *IaaSStory* a webkiszolgálók és az erőforráscsoport neve *IaaSStory-háttérrendszer* adatbázis-kiszolgálók.
+hello következő lépések használják nevű erőforráscsoport *IaaSStory* hello webkiszolgálók és az erőforráscsoport neve *IaaSStory-háttérrendszer* hello DB kiszolgálók.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az adatbázis-kiszolgálók létrehozása előtt kell létrehoznia a *IaaSStory* erőforráscsoport ehhez a forgatókönyvhöz szükséges minden erőforráshoz. Ezek az erőforrások létrehozásához kövesse az alábbi lépéseket:
+Mielőtt hello DB kiszolgálók hozhat létre, meg kell-e toocreate hello *IaaSStory* erőforráscsoport összes hello szükséges erőforrások ehhez a forgatókönyvhöz. toocreate ezeket az erőforrásokat, végezze el hello a következő lépéseket:
 
-1. Navigáljon a [sablonlap](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).
-2. A sablon lap jobb oldalán lévő **szülő erőforráscsoport**, kattintson a **az Azure telepítéséhez**.
-3. Ha szükséges, paraméterértékek módosításához, majd kövesse a telepítéséhez az erőforráscsoportot az Azure betekintő portálon.
+1. Keresse meg a túl[hello sablonlap](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).
+2. Hello sablon lapon jobbra toohello **szülő erőforráscsoport**, kattintson a **tooAzure telepítése**.
+3. Szükség esetén módosítsa a hello paraméterértékeket, majd hello lépésekkel hello Azure betekintő portál toodeploy hello erőforráscsoportban.
 
 > [!IMPORTANT]
 > Győződjön meg arról, hogy a tárfiókok neve egyedi. Ismétlődő tárfiókok neve nem lehet az Azure-ban.
@@ -54,17 +54,17 @@ Az adatbázis-kiszolgálók létrehozása előtt kell létrehoznia a *IaaSStory*
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-back-end-vms"></a>A háttér-virtuális gépek létrehozása
-A háttér-virtuális gépek létrehozását a következő erőforrások függ:
+## <a name="create-hello-back-end-vms"></a>Hello háttér virtuális gépek létrehozása
+hello háttér virtuális gépek hello létrehozása a következő erőforrások hello függ:
 
-* **Az adatlemezek tárfiók**. A jobb teljesítmény érdekében az adatlemezek az adatbázis-kiszolgálók a tartós állapotú meghajtót (SSD) technológiát, amely a prémium szintű tárfiók szükséges fogja használni. Győződjön meg arról, hogy az Azure-hely támogatja a prémium szintű storage telepít.
+* **Az adatlemezek tárfiók**. A jobb teljesítmény érdekében a hello adatbázis-kiszolgálóin hello adatlemezek tartós állapotú meghajtót (SSD) technológiát, amely a prémium szintű tárfiók szükséges fogja használni. Győződjön meg arról, hogy hello Azure-beli hely toosupport prémium szintű storage telepít.
 * **Hálózati adapter**. Minden virtuális gép lesz a két hálózati adapterrel, egy adatbázis-hozzáférési és felügyeleti egyet.
-* **A rendelkezésre állási csoport**. Minden adatbázis-kiszolgálók egyetlen rendelkezésre állási értékre, akkor ellenőrizze, hogy a virtuális gépek közül legalább egy, és a karbantartás során fut hozzáadandó.  
+* **A rendelkezésre állási csoport**. Minden adatbázis-kiszolgálók megkapja tooa egyetlen rendelkezésre állási csoportot, hello virtuális gépek közül legalább egy tooensure megfelelően működik, és karbantartás során.  
 
 ### <a name="step-1---start-your-script"></a>1. lépés – a parancsfájl futtatásához
-Letöltheti használt teljes PowerShell-parancsfájl [Itt](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1). Módosíthatja a parancsfájlnak a környezetben az alábbi lépésekkel.
+Letöltheti a hello használt teljes PowerShell parancsfájl [Itt](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1). Kövesse az alábbi toochange hello parancsfájl toowork környezetében hello lépéseket.
 
-1. A meglévő erőforráscsoport üzembe helyezett fent alapján az alábbi változók értékeinek módosítása [Előfeltételek](#Prerequisites).
+1. Hello hello-változók értékeit az alábbi a meglévő erőforráscsoport üzembe helyezett fent alapján módosítása [Előfeltételek](#Prerequisites).
 
     ```powershell
     $existingRGName        = "IaaSStory"
@@ -75,7 +75,7 @@ Letöltheti használt teljes PowerShell-parancsfájl [Itt](https://raw.githubuse
     $stdStorageAccountName = "wtestvnetstoragestd"
     ```
 
-2. A háttérrendszer telepítéshez használni kívánt értékek alapján az alábbi változók értékeinek módosítása.
+2. Hello értékek módosítása hello alábbi változók hello értékek alapján kívánt toouse a háttér-telepítéshez.
 
     ```powershell
     $backendRGName         = "IaaSStory-Backend"
@@ -94,7 +94,7 @@ Letöltheti használt teljes PowerShell-parancsfájl [Itt](https://raw.githubuse
     $ipAddressPrefix       = "192.168.2."
     $numberOfVMs           = 2
     ```
-3. Az üzembe helyezéshez szükséges a meglévő erőforrásokat lekérni.
+3. Az üzembe helyezéshez szükséges hello meglévő erőforrásokat lekérni.
 
     ```powershell
     $vnet                  = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $existingRGName
@@ -104,14 +104,14 @@ Letöltheti használt teljes PowerShell-parancsfájl [Itt](https://raw.githubuse
     ```
 
 ### <a name="step-2---create-necessary-resources-for-your-vms"></a>2. lépés - a szükséges erőforrásokat létrehozni a virtuális géphez
-Egy új erőforráscsoportot, egy tárfiókot az adatlemezek, és a rendelkezésre állási készlet összes virtuális gép létrehozásához szükséges. Módosíthat kell a helyi rendszergazdai fiók hitelesítő adatait az egyes virtuális gépek. Ezek az erőforrások létrehozásához hajtható végre az alábbi lépéseket.
+Egy új erőforráscsoportot, egy tárfiókot a hello adatlemezek, toocreate van szüksége, és minden virtuális gép rendelkezésre állási készlet. Módosíthat kell hello helyi rendszergazdai fiók hitelesítő adatait az egyes virtuális gépek. toocreate ezekkel az erőforrásokkal hajtható végre hello a következő lépéseket.
 
 1. Hozzon létre egy új erőforráscsoportot.
 
     ```powershell
     New-AzureRmResourceGroup -Name $backendRGName -Location $location
     ```
-2. Új prémium szintű storage-fiók létrehozása az előbb létrehozott erőforráscsoportban.
+2. Új prémium szintű storage-fiók létrehozása a fenti létrehozott hello erőforráscsoportban.
 
     ```powershell
     $prmStorageAccount = New-AzureRmStorageAccount -Name $prmStorageAccountName `
@@ -122,22 +122,22 @@ Egy új erőforráscsoportot, egy tárfiókot az adatlemezek, és a rendelkezés
     ```powershell
     $avSet = New-AzureRmAvailabilitySet -Name $avSetName -ResourceGroupName $backendRGName -Location $location
     ```
-4. A helyi rendszergazdai fiók hitelesítő adatokat, amelyek az egyes virtuális gépek beolvasása.
+4. Hello helyi rendszergazdai fiók hitelesítő adatait toobe az egyes virtuális gépek használt beolvasása.
 
     ```powershell
-    $cred = Get-Credential -Message "Type the name and password for the local administrator account."
+    $cred = Get-Credential -Message "Type hello name and password for hello local administrator account."
     ```
 
-### <a name="step-3---create-the-nics-and-back-end-vms"></a>3. lépés - a hálózati adapterek és a háttér-virtuális gépek létrehozása
-Hurok segítségével létrehozott egy tetszőleges számú virtuális gépet, és a szükséges hálózati adapterek és virtuális gépek létrehozása a hurkon belül kell. A hálózati adapterek és a virtuális gépek létrehozásához hajtsa végre az alábbi lépéseket.
+### <a name="step-3---create-hello-nics-and-back-end-vms"></a>3. lépés – hello hálózati adapter és a háttér-virtuális gépek létrehozása
+Szüksége van egy hurok toocreate toouse, sok virtuális gép, és hozzon létre hello szükséges hálózati adapterek és virtuális gépek hello hurkon belül. toocreate hello hálózati adapterek és virtuális gépek, hajtható végre a lépéseket követve hello.
 
-1. Indítsa el a `for` hozhatnak létre a virtuális gépek és két hálózati adaptert annyiszor szükséges, ismételje meg a hurok értéke alapján a `$numberOfVMs` változó.
+1. Indítsa el a `for` hurok toorepeat hello parancsok toocreate egy virtuális Gépet, és két hálózati adaptert, szükség esetén hányszor hello az alapján hello `$numberOfVMs` változó.
    
     ```powershell
     for ($suffixNumber = 1; $suffixNumber -le $numberOfVMs; $suffixNumber++){
     ```
 
-2. Az adatbázis eléréséhez használt hálózati adapter létrehozása
+2. Az adatbázis eléréséhez használt hálózati hello létrehozása.
 
     ```powershell
     $nic1Name = $nicNamePrefix + $suffixNumber + "-DA"
@@ -146,7 +146,7 @@ Hurok segítségével létrehozott egy tetszőleges számú virtuális gépet, �
     -Location $location -SubnetId $backendSubnet.Id -PrivateIpAddress $ipAddress1
     ```
 
-3. A táveléréshez használt hálózati adapter létrehozása Figyelje meg, hogyan rendelkezik az ehhez a hálózati Adapterhez a hozzá társított NSG-t.
+3. A távoli hozzáféréshez használt hálózati hello létrehozása. Figyelje meg, hogyan ehhez a hálózati Adapterhez van egy társított NSG-t tooit.
 
     ```powershell
     $nic2Name = $nicNamePrefix + $suffixNumber + "-RA"
@@ -163,7 +163,7 @@ Hurok segítségével létrehozott egy tetszőleges számú virtuális gépet, �
     $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize -AvailabilitySetId $avSet.Id
     ```
 
-5. Hozzon létre két adatlemezek virtuális gépenként. Figyelje meg, hogy az adatok lemezek vannak a korábban létrehozott prémium szintű storage-fiók.
+5. Hozzon létre két adatlemezek virtuális gépenként. Figyelje meg, hogy hello adatlemezek vannak a korábban létrehozott hello prémium szintű tárfiók.
 
     ```powershell
     $dataDisk1Name = $vmName + "-" + $osDiskPrefix + "-1"
@@ -177,21 +177,21 @@ Hurok segítségével létrehozott egy tetszőleges számú virtuális gépet, �
     -VhdUri $data2VhdUri -CreateOption empty -Lun 1
     ```
 
-6. Konfigurálja az operációs rendszer, és a virtuális géphez használandó kép.
+6. Hello operációs rendszer és a virtuális gép hello használt kép toobe konfigurálása
 
     ```powershell
     $vmConfig = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
     $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -PublisherName $publisher -Offer $offer -Skus $sku -Version $version
     ```
 
-7. Adja hozzá a fentiekben létrehozott két hálózati adaptert a `vmConfig` objektum.
+7. A fenti toohello létrehozott hello két hálózati adapterek hozzáadása `vmConfig` objektum.
 
     ```powershell
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic1.Id -Primary
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic2.Id
     ```
 
-8. Az operációsrendszer-lemez létrehozása, és hozza létre a virtuális Gépet. Figyelje meg a `}` befejezési a `for` hurok.
+8. Hello operációsrendszer-lemez létrehozása, és hozza létre a virtuális gép hello. Értesítés hello `}` hello befejezési `for` hurok.
 
     ```powershell
     $osDiskName = $vmName + "-" + $osDiskSuffix
@@ -201,10 +201,10 @@ Hurok segítségével létrehozott egy tetszőleges számú virtuális gépet, �
     }
     ```
 
-### <a name="step-4---run-the-script"></a>4. lépés: a parancsfájl futtatása
-Letöltött, és a igények alapján a parancsfájl módosított, runt ő parancsfájl létrehozásához a háttérbeli adatbázis virtuális gépek több hálózati adapterrel rendelkező.
+### <a name="step-4---run-hello-script"></a>4. lépés: hello parancsfájl futtatása
+Most, hogy a letöltött és módosított hello parancsfájl igényei szerint, ő parancsfájl toocreate hello háttérbeli adatbázis több hálózati adapterrel rendelkező virtuális gépek runt.
 
-1. Mentse a parancsfájlt, és futtassa azt a **PowerShell** parancssort, vagy **PowerShell ISE**. A kezdeti kimenetet fog látni az alábbiak szerint:
+1. Mentse a parancsfájlt, és futtassa a hello **PowerShell** parancssort, vagy **PowerShell ISE**. Hello kezdeti kimeneti, az alábbiak szerint jelenik meg:
 
         ResourceGroupName : IaaSStory-Backend
         Location          : westus
@@ -217,7 +217,7 @@ Letöltött, és a igények alapján a parancsfájl módosított, runt ő paranc
 
         ResourceId        : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend
 
-2. Néhány perc elteltével töltse ki a hitelesítő adatokat kér, majd kattintson **OK**. Az alábbi kimenet egy virtuális jelöli. Figyelje meg a teljes folyamat 8 percet vett igénybe.
+2. Néhány perc elteltével töltse ki a hello hitelesítő adatokat kér, és kattintson **OK**. az alábbi hello kimeneti egy virtuális jelöli. Értesítés hello teljes folyamat 8 perc toocomplete vett igénybe.
 
         ResourceGroupName            :
         Id                           :

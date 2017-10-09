@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy Azure virtuális hálózati társviszony - Resource Manager - ugyanahhoz az előfizetéshez |} Microsoft Docs"
-description: "Megtudhatja, hogyan hozzon létre egy virtuális hálózati társviszony-létesítés erőforrás-kezelőt hozott létre, amely szerepel az azonos Azure-előfizetés virtuális hálózatok között."
+title: "egy Azure virtuális hálózati társviszony - aaaCreate Resource Manager - ugyanahhoz az előfizetéshez |} Microsoft Docs"
+description: "Ismerje meg, hogyan hozták létre toocreate virtuális hálózati társviszony-létesítés virtuális hálózatok közötti erőforrás-kezelővel, amely szerepel hello azonos Azure-előfizetés."
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/17/2017
 ms.author: jdial;narayan;annahar
-ms.openlocfilehash: a32a6b33e04c603325ab3612f61e5852682eac7d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c2d24fdc8103c09c3bfb8e59be12e301d9e9a55a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-virtual-network-peering---resource-manager-same-subscription"></a>Hozzon létre egy virtuális hálózati társviszony - erőforrás-kezelő ugyanahhoz az előfizetéshez
 
-Ebben az oktatóanyagban elsajátíthatja társviszony-létesítés Resource Manager használatával létrehozott virtuális hálózatok közötti virtuális hálózat létrehozása. Mindkét virtuális hálózat szerepel a ugyanahhoz az előfizetéshez. A különböző virtuális hálózatokon kommunikálni egymással sávszélesség és a késés, mintha az erőforrások volt az azonos virtuális hálózatban lévő két virtuális hálózatok lehetővé teszi, hogy erőforrásokat társviszony-létesítés. További információ [virtuális hálózati társviszony-létesítés](virtual-network-peering-overview.md). 
+Ebben az oktatóanyagban elsajátíthatja toocreate egy virtuális hálózati társviszony-létesítés Resource Manager használatával létrehozott virtuális hálózatok között. Mindkét virtuális hálózat szerepel hello azonos előfizetéssel. Társviszony-létesítési két virtuális hálózatok lehetővé teszi, hogy erőforrások egymással a különböző virtuális hálózatokon toocommunicate hello azonos sávszélesség és a késés, mintha hello erőforrások szerepeltek hello ugyanazt a virtuális hálózatot. További információ [virtuális hálózati társviszony-létesítés](virtual-network-peering-overview.md). 
 
-Virtuális hálózati társviszony-létesítés létrehozásának lépései eltérőek, attól függően, hogy a virtuális hálózatok ugyanazon, vagy másik, előfizetések, és amely [Azure telepítési modell](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) a virtuális hálózatok használatával jönnek létre. Megtudhatja, hogyan hozhat létre virtuális hálózatot gombra kattintva a következő táblázat a forgatókönyv más esetekben társviszony:
+hello lépéseket toocreate virtuális hálózati társviszony-létesítés eltérőek, attól függően, hogy hello virtuális hálózatok vannak-e hello azonos vagy eltérő, előfizetések, és amely [Azure telepítési modell](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json) hello virtuális hálózatok jönnek létre. keresztül. Megtudhatja, hogyan toocreate a virtuális hálózati társviszony más esetekben hello forgatókönyv a következő táblázat hello kattintva:
 
 |Azure üzembehelyezési modell  | Azure-előfizetés  |
 |--------- |---------|
@@ -33,15 +33,15 @@ Virtuális hálózati társviszony-létesítés létrehozásának lépései elt�
 |[Egy erőforrás-kezelő egy klasszikus](create-peering-different-deployment-models.md) |Azonos|
 |[Egy erőforrás-kezelő egy klasszikus](create-peering-different-deployment-models-subscriptions.md) |Különböző|
 
-Virtuális hálózati társviszony-létesítés nem hozható létre, a klasszikus üzembe helyezési modellben telepített virtuális hálózatok között. Virtuális hálózati társviszony-létesítés csak létrehozhatók, amelyek azonos Azure-régióban található virtuális hálózatok között. Ha mindkét létrehozott a klasszikus üzembe helyezési modell használatával, és különböző Azure-régiók meglévő virtuális hálózatok csatlakoztatni kell, használhatja az Azure [VPN-átjáró](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json) virtuális hálózathoz csatlakozni. 
+Virtuális hálózati társviszony-létesítés nem hozható létre, hello klasszikus üzembe helyezési modellben telepített virtuális hálózatok között. Virtuális hálózati társviszony-létesítés csak hozhatók létre, amely szerepel hello azonos virtuális hálózatok között Azure-régiót. Ha tooconnect virtuális hálózatokat egyaránt létrehozott hello klasszikus telepítési modell használatával, vagy, amely létezik a különböző Azure-régiók van szüksége, használhatja az Azure [VPN-átjáró](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json) tooconnect hello virtuális hálózatok. 
 
-Használhatja a [Azure-portálon](#portal), az Azure [parancssori felület](#cli) (CLI), Azure [PowerShell](#powershell), vagy egy [Azure Resource Manager sablon](#template)létrehozni a virtuális hálózati társviszony-létesítés. Kattintson az előző eszköz hivatkozásokra kattintva közvetlenül Ugrás a virtuális hálózati társviszony-létesítés a eszközzel választott létrehozásához szükséges lépésekről.
+Használhatja a hello [Azure-portálon](#portal), hello Azure [parancssori felület](#cli) (CLI), Azure [PowerShell](#powershell), vagy egy [Azure Resource Manager sablon](#template) toocreate virtuális hálózati társviszony-létesítés. Kattintson bármelyik hello előző eszköz hivatkozások toogo, közvetlen toohello lépések létrehozása a virtuális hálózati társviszony-létesítés a kiválasztott eszköz segítségével.
 
 ## <a name="portal"></a>Hozzon létre a társviszony - Azure-portálon
 
-1. Jelentkezzen be az [Azure portálra](https://portal.azure.com). A fiókkal jelentkezik be az virtuális hálózati társviszony-létesítés létrehozásához szükséges engedélyekkel kell rendelkeznie. Tekintse meg a [engedélyek](#permissions) jelen cikkben alább szakasza.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com). hello fiókkal jelentkezik be az hello szükséges engedélyek toocreate rendelkeznie kell egy virtuális hálózati társviszony-létesítés. Lásd: hello [engedélyek](#permissions) jelen cikkben alább szakasza.
 2. Kattintson a **+ új**, kattintson a **hálózati**, majd kattintson a **virtuális hálózati**.
-3. Az a **virtuális hálózat létrehozása** panelen adja meg, vagy válassza ki a következő beállítások értékeit, majd kattintson **létrehozása**:
+3. A hello **virtuális hálózat létrehozása** panelen adja meg, vagy válassza ki a következő beállítások hello értékeit, majd kattintson **létrehozása**:
     - **Név**: *myVnet1*
     - **Címtér**: *10.0.0.0/16*
     - **Alhálózati név**: *alapértelmezett*
@@ -49,7 +49,7 @@ Használhatja a [Azure-portálon](#portal), az Azure [parancssori felület](#cli
     - **Előfizetés**: Jelölje ki az előfizetését
     - **Erőforráscsoport**: válasszon **hozzon létre új** , és írja be *myResourceGroup*
     - **Hely**: *USA keleti régiója*
-4. Végezze el újra a következő értékek megadása 3. lépés 2-3 lépéseket:
+4. Hajtsa végre a lépéseket 2-3 újra megadása az értékek a 3. lépésben a következő hello:
     - **Név**: *myVnet2*
     - **Címtér**: *10.1.0.0/16*
     - **Alhálózati név**: *alapértelmezett*
@@ -57,41 +57,41 @@ Használhatja a [Azure-portálon](#portal), az Azure [parancssori felület](#cli
     - **Előfizetés**: Jelölje ki az előfizetését
     - **Erőforráscsoport**: válasszon **meglévő** válassza *myResourceGroup*
     - **Hely**: *USA keleti régiója*
-5. Az a **keresési erőforrások** típus a portál felső részén *myResourceGroup*. Kattintson a **myResourceGroup** amikor megjelenik a keresési eredmények között. A panel jelenik meg a **myresourcegroup** erőforráscsoportot. Az erőforráscsoport az előző lépésekben létrehozott két virtuális hálózatot tartalmaz.
+5. A hello **keresési erőforrások** mezőt hello portálon típus hello tetején *myResourceGroup*. Kattintson a **myResourceGroup** amikor megjelenik a hello keresési eredmények között. A panel jelenik meg hello **myresourcegroup** erőforráscsoportot. hello erőforráscsoport hello két létrehozott virtuális hálózatokat az előző lépéseket tartalmazza.
 6. Kattintson a **myVNet1**.
-7. Az a **myVnet1** panel, amelyen megjelenik, kattintson a **Társviszony** a függőleges a panel bal oldalán lehetőségek közül.
-8. Az a **myVnet1 - esetében** panel, amelyen jelent meg, kattintson a **+ Hozzáadás**
-9. Az a **Hozzáadás társviszony-létesítés** panelen megjelenő, adja meg, vagy válassza a következő beállításokat, majd kattintson **OK**:
+7. A hello **myVnet1** panel, amelyen megjelenik, kattintson a **Társviszony** hello függőleges bal oldalán található hello panel hello beállítások listája.
+8. A hello **myVnet1 - esetében** panel, amelyen jelent meg, kattintson a **+ Hozzáadás**
+9. A hello **Hozzáadás társviszony-létesítés** panelen megjelenő, adja meg, vagy válassza ki az alábbi beállítások hello, majd kattintson **OK**:
      - **Név**: *myVnet1ToMyVnet2*
      - **Virtuális hálózat telepítési modell**: válasszon **erőforrás-kezelő**. 
      - **Előfizetés**: Jelölje ki az előfizetését
      - **Virtuális hálózati**: kattintson a **virtuális hálózatot választ**, majd kattintson a **myVnet2**.
      - **Virtuális hálózati hozzáférés engedélyezése:** ügyeljen arra, hogy **engedélyezve** van kiválasztva.
-    Ebben az oktatóanyagban nincs más beállítások használhatók. Minden társviszony-létesítési beállításaival kapcsolatos további tudnivalókért olvassa el a [kezelheti a virtuális hálózati társviszony](virtual-network-manage-peering.md#create-a-peering).
-10. Kattintás után **OK** az előző lépésben a **Hozzáadás társviszony-létesítés** panel bezárása után, és megjelenik a **myVnet1 - Társviszony** újra a panelt. Néhány másodpercen belül a társviszony-létesítés létrehozott jelenik meg a panelt. **Kezdeményezett** szerepel a **társviszony-LÉTESÍTÉS állapot** oszlopában a **myVnet1ToMyVnet2** társviszony-létesítés meg létrehozni. Már nincsenek társviszonyban Vnet1 Vnet2 számára, de most a myVnet1 myVnet2 kell partnert. A társviszony-létesítést ahhoz, hogy a virtuális hálózatok kommunikálnak egymással erőforrások mindkét irányban kell létrehozni.
-11. Végezze el újra az myVnet2 5-10 lépéseket.  A társviszony-létesítést name *myVnet2ToMyVnet1*.
-12. Néhány másodpercen belül kattintás után **OK** MyVnet2, a társviszony létrehozásához a **myVnet2ToMyVnet1** társviszony-létesítést az imént létrehozott szerepel **csatlakoztatva** a a  **Társviszony-LÉTESÍTÉS állapot** oszlop.
-13. Újra 5-7 lépéseinek elvégzését MyVnet1. A **társviszony-LÉTESÍTÉS állapot** a a **myVnet1ToVNet2** társviszony-létesítés már is **csatlakoztatva**. A társviszony-létesítést sikeresen létrejött, miután látta, **csatlakoztatva** a a **társviszony-LÉTESÍTÉS állapot** oszlop társviszony-létesítés mindkét virtuális hálózat számára.
-14. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gépről a másikra, való kapcsolat ellenőrzésére.
-15. **Nem kötelező**: az erőforrásokat, amelyek ebben az oktatóanyagban létrehozhat törléséhez lépéseinek végrehajtásához a [törli az erőforrást](#delete-portal) című szakaszát.
+    Ebben az oktatóanyagban nincs más beállítások használhatók. toolearn összes társviszony-létesítési beállításról, olvasni [kezelheti a virtuális hálózati társviszony](virtual-network-manage-peering.md#create-a-peering).
+10. Kattintás után **OK** hello a korábbi lépésben hello **Hozzáadás társviszony-létesítés** panel bezárása után, és látni hello **myVnet1 - Társviszony** újra a panelt. Néhány másodpercen belül létrehozott társviszony hello hello panel jelenik meg. **Kezdeményezett** hello szerepel **társviszony-LÉTESÍTÉS állapot** hello oszlopában **myVnet1ToMyVnet2** társviszony-létesítés meg létrehozni. Már nincsenek társviszonyban Vnet1 tooVnet2, de most myVnet2 toomyVnet1 kell partnert. hello társviszony-létesítés léteznie kell mindkét irányban hello virtuális hálózatok toocommunicate tooenable erőforrások egymással.
+11. Végezze el újra az myVnet2 5-10 lépéseket.  Név hello társviszony-létesítés *myVnet2ToMyVnet1*.
+12. Néhány másodpercen belül kattintás után **OK** toocreate hello társviszony-létesítés MyVnet2, a hello **myVnet2ToMyVnet1** társviszony-létesítést az imént létrehozott szerepel **csatlakoztatva** a hello  **Társviszony-LÉTESÍTÉS állapot** oszlop.
+13. Újra 5-7 lépéseinek elvégzését MyVnet1. Hello **társviszony-LÉTESÍTÉS állapot** a hello **myVnet1ToVNet2** társviszony-létesítés már is **csatlakoztatva**. hello társviszony-létesítés sikeresen létrejött, miután látta, **csatlakoztatva** a hello **társviszony-LÉTESÍTÉS állapot** mindkét virtuális hálózat hello társviszony-létesítés oszlopában.
+14. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gép toohello más, toovalidate kapcsolat.
+15. **Nem kötelező**: Ebben az oktatóanyagban létrehozhat hello erőforrások toodelete, teljes hello szükséges lépések hello [törli az erőforrást](#delete-portal) című szakaszát.
 
-Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is az IP-címek keresztül kommunikálnak egymással. Alapértelmezett Azure névfeloldást használ a virtuális hálózatok, a virtuális hálózatok erőforrások esetén nem tudják feloldani a virtuális hálózatok közötti. Ha szeretné feloldani egy társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Ismerje meg, hogyan állíthat be [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is képes toocommunicate egymás mellett az IP-címek használatával. Alapértelmezett Azure névfeloldás hello virtuális hálózatok használata, hello erőforrások hello virtuális hálózatok a rendszer nem tudja tooresolve nevek hello virtuális hálózatok közötti. Ha tooresolve nevek a társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Megtudhatja, hogyan mentése tooset [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
 
 ## <a name="cli"></a>Társviszony - létrehozása az Azure parancssori felület
 
-A következő parancsfájlt:
+a következő parancsfájl hello:
 
-- Van szükség az Azure parancssori felület 2.0.4 verzió vagy újabb. A verzió található, futtassa a `az --version` parancsot. Ha frissíteni szeretne: [Az Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json).
-- A rendszerhéjakba működik. Az Azure parancssori felület parancsfájlok futtatásához a Windows-ügyfelén beállítások, lásd: [futtatása az Azure parancssori felület a Windows](../virtual-machines/windows/cli-options.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
+- Szükséges hello Azure CLI 2.0.4 verzió vagy újabb. toofind hello verzió, futtassa a hello `az --version` parancsot. Ha tooupgrade van szüksége, tekintse meg [Azure CLI 2.0 telepítése]( /cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json).
+- A rendszerhéjakba működik. Az Azure parancssori felület parancsfájlok futtatásához a Windows-ügyfelén beállítások, lásd: [a Windows hello Azure CLI-t futtató](../virtual-machines/windows/cli-options.md?toc=%2fazure%2fvirtual-network%2ftoc.json). 
 
-A parancssori felület és függőségeinek telepítése, helyett az Azure-felhő rendszerhéj is használhatja. Az Azure Cloud Shell olyan ingyenes Bash-felület, amelyet közvetlenül futtathat az Azure Portalon. A fiókjával való használat érdekében az Azure CLI már előre telepítve és konfigurálva van rajta. Kattintson a **kipróbálás** gombra a parancsfájl, amely a következő, a felhő rendszerhéjat, amelyre bejelentkezik, amellyel bejelentkezhet az Azure-fiókjába. A parancsfájl végrehajtására, kattintson a **másolási** gombra, majd a tartalom illessze be a felhő rendszerhéj.
+Hello CLI és függőségeinek telepítése, helyett hello Azure Cloud rendszerhéj is használhatja. hello Azure Cloud rendszerhéj a szabad rendszerhéjakba futtatható közvetlenül hello Azure-portálon belül. Hello Azure CLI előtelepített és konfigurált toouse-fiókjához van. Kattintson a hello **kipróbálás** hello parancsfájl, amely a következő, a felhő rendszerhéjat, amelyre bejelentkezik, amellyel bejelentkezhet tooyour gombra az Azure-fiók. tooexecute hello parancsfájl, kattintson a hello **másolási** gombra, és hello tartalmának beillesztése a felhő rendszerhéjat.
 
 1. Hozzon létre egy erőforráscsoportot és két virtuális hálózatot.
 
     ```azurecli-interactive
     #!/bin/bash
 
-    # Variables for common values used throughout the script.
+    # Variables for common values used throughout hello script.
     rgName="myResourceGroup"
     location="eastus"
 
@@ -115,23 +115,23 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       --address-prefix 10.1.0.0/16
     ```
 
-2. Hozzon létre egy virtuális hálózati társviszony-létesítés a két virtuális hálózatok között.
+2. Hozzon létre egy virtuális hálózati társviszony-létesítés hello virtuális hálózatok között.
  
     ```azurecli-interactive
-    # Get the id for VNet1.
+    # Get hello id for VNet1.
     vnet1Id=$(az network vnet show \
       --resource-group $rgName \
       --name myVnet1 \
       --query id --out tsv)
 
-    # Get the id for VNet2.
+    # Get hello id for VNet2.
     vnet2Id=$(az network vnet show \
       --resource-group $rgName \
       --name myVnet2 \
       --query id \
       --out tsv)
 
-    # Peer VNet1 to VNet2.
+    # Peer VNet1 tooVNet2.
     az network vnet peering create \
       --name myVnet1ToMyVnet2 \
       --resource-group $rgName \
@@ -139,7 +139,7 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       --remote-vnet-id $vnet2Id \
       --allow-vnet-access
 
-    # Peer VNet2 to VNet1.
+    # Peer VNet2 tooVNet1.
     az network vnet peering create \
       --name myVnet2ToMyVnet1 \
       --resource-group $rgName \
@@ -148,7 +148,7 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       --allow-vnet-access
     ```
 
-3. Miután a parancsfájl végrehajtása során, tekintse át az egyes virtuális hálózati társviszony. 
+3. Miután hello parancsprogram végrehajtása során, tekintse át a hello esetében minden virtuális hálózathoz. 
 
     ```azurecli-interactive
     az network vnet peering list \
@@ -157,23 +157,23 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       --output table
     ```
     
-    Futtassa az előző parancsot újból, cseréje *myVnet1* rendelkező *myVnet2*. Kimenetének mindkét parancsok látható **csatlakoztatva** a a **PeeringState** oszlop.
+    Újrafuttatása hello előző parancs, cseréje *myVnet1* rendelkező *myVnet2*. hello kimenetének mindkét parancsok látható **csatlakoztatva** a hello **PeeringState** oszlop.
 
-     Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is az IP-címek keresztül kommunikálnak egymással. Alapértelmezett Azure névfeloldást használ a virtuális hálózatok, a virtuális hálózatok erőforrások esetén nem tudják feloldani a virtuális hálózatok közötti. Ha szeretné feloldani egy társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Ismerje meg, hogyan állíthat be [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+     Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is képes toocommunicate egymás mellett az IP-címek használatával. Alapértelmezett Azure névfeloldás hello virtuális hálózatok használata, hello erőforrások hello virtuális hálózatok a rendszer nem tudja tooresolve nevek hello virtuális hálózatok közötti. Ha tooresolve nevek a társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Megtudhatja, hogyan mentése tooset [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
 
-4. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gépről a másikra, való kapcsolat ellenőrzésére.
-5. **Nem kötelező**: az erőforrásokat, amelyek ebben az oktatóanyagban létrehozhat törléséhez végrehajtásához a [törli az erőforrást](#delete-cli) ebben a cikkben.
+4. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gép toohello más, toovalidate kapcsolat.
+5. **Nem kötelező**: Ebben az oktatóanyagban létrehozhat hello erőforrások toodelete, teljes hello szükséges lépések [törli az erőforrást](#delete-cli) ebben a cikkben.
 
 
 ## <a name="powershell"></a>Hozzon létre a társviszony - PowerShell
 
-1. Telepítse a PowerShell [AzureRm](https://www.powershellgallery.com/packages/AzureRM/) moduljának legújabb verzióját. Ha először használja a PowerShellt, olvassa el az [Azure PowerShell áttekintését](/powershell/azure/overview?toc=%2fazure%2fvirtual-network%2ftoc.json).
-2. Egy PowerShell-munkamenet megkezdéséhez lépjen a **Start** menüre, írja be a **powershell** kifejezést, majd kattintson a **PowerShell** elemre.
-3. A PowerShellben jelentkezzen be az Azure-ba a `login-azurermaccount` paranccsal. A fiókkal jelentkezik be az virtuális hálózati társviszony-létesítés létrehozásához szükséges engedélyekkel kell rendelkeznie. Tekintse meg a [engedélyek](#permissions) jelen cikkben alább szakasza.
-4. Hozzon létre egy erőforráscsoportot és két virtuális hálózatot. A parancsfájl végrehajtása, másolja a következő, illessze be a PowerShell, és nyomja le az `Enter` után utolsó sora a képernyőn jelenik meg:
+1. Hello hello PowerShell legújabb verziójának telepítéséhez [AzureRm](https://www.powershellgallery.com/packages/AzureRM/) modul. Ha új tooAzure PowerShell, lásd: [Azure PowerShell áttekintése](/powershell/azure/overview?toc=%2fazure%2fvirtual-network%2ftoc.json).
+2. toostart a PowerShell-munkamenetet, nyissa meg túl**Start**, adja meg **powershell**, és kattintson a **PowerShell**.
+3. A PowerShellben, jelentkezzen be tooAzure hello megadásával `login-azurermaccount` parancsot. hello fiókkal jelentkezik be az hello szükséges engedélyek toocreate rendelkeznie kell egy virtuális hálózati társviszony-létesítés. Lásd: hello [engedélyek](#permissions) jelen cikkben alább szakasza.
+4. Hozzon létre egy erőforráscsoportot és két virtuális hálózatot. tooexecute hello parancsfájl, másolása hello következő parancsfájlt, illessze be a PowerShell és nyomja le az `Enter` után utolsó sora hello hello képernyőn látható:
 
     ```powershell
-    # Variables for common values used throughout the script.
+    # Variables for common values used throughout hello script.
     $rgName='myResourceGroup'
     $location='eastus'
 
@@ -197,21 +197,21 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       -Location $location
     ```
 
-5. Hozzon létre egy virtuális hálózati társviszony-létesítés a két virtuális hálózatok között. Másolja a következő, illessze be a PowerShell és nyomja le az `Enter` után utolsó sora a képernyőn jelenik meg:
+5. Hozzon létre egy virtuális hálózati társviszony-létesítés hello virtuális hálózatok között. Másolás hello következő parancsfájl-, illessze be a tooPowerShell, és nyomja le az `Enter` után utolsó sora hello hello képernyőn látható:
     ```powershell
-    # Peer VNet1 to VNet2.
+    # Peer VNet1 tooVNet2.
     Add-AzureRmVirtualNetworkPeering `
       -Name 'myVnet1ToMyVnet2' `
       -VirtualNetwork $vnet1 `
       -RemoteVirtualNetworkId $vnet2.Id
 
-    # Peer VNet2 to VNet1.
+    # Peer VNet2 tooVNet1.
     Add-AzureRmVirtualNetworkPeering `
       -Name 'myVnet2ToMyVnet1' `
       -VirtualNetwork $vnet2 `
       -RemoteVirtualNetworkId $vnet1.Id
     ```
-6. Tekintse át a virtuális hálózati alhálózat, másolja be a következő parancsot, illessze be a PowerShell, és nyomja le az `Enter`:
+6. hello alhálózatok tooreview hello virtuális hálózat, másolása hello következő parancsot, illessze be a tooPowerShell, és nyomja le az `Enter`:
 
     ```powershell
     Get-AzureRmVirtualNetworkPeering `
@@ -220,41 +220,41 @@ A parancssori felület és függőségeinek telepítése, helyett az Azure-felh�
       | Format-Table VirtualNetworkName, PeeringState
     ```
 
-    Futtassa az előző parancsot újból, cseréje *myVnet1* rendelkező *myVnet2*. Kimenetének mindkét parancsok látható **csatlakoztatva** a a **PeeringState** oszlop.
-7. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gépről a másikra, való kapcsolat ellenőrzésére.
-8. **Nem kötelező**: az erőforrásokat, amelyek ebben az oktatóanyagban létrehozhat törléséhez végrehajtásához a [törli az erőforrást](#delete-powershell) ebben a cikkben.
+    Újrafuttatása hello előző parancs, cseréje *myVnet1* rendelkező *myVnet2*. hello kimenetének mindkét parancsok látható **csatlakoztatva** a hello **PeeringState** oszlop.
+7. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gép toohello más, toovalidate kapcsolat.
+8. **Nem kötelező**: Ebben az oktatóanyagban létrehozhat hello erőforrások toodelete, teljes hello szükséges lépések [törli az erőforrást](#delete-powershell) ebben a cikkben.
 
-Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is az IP-címek keresztül kommunikálnak egymással. Alapértelmezett Azure névfeloldást használ a virtuális hálózatok, a virtuális hálózatok erőforrások esetén nem tudják feloldani a virtuális hálózatok közötti. Ha szeretné feloldani egy társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Ismerje meg, hogyan állíthat be [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+Bármely Azure-hoz létre vagy virtuális hálózati erőforrások is képes toocommunicate egymás mellett az IP-címek használatával. Alapértelmezett Azure névfeloldás hello virtuális hálózatok használata, hello erőforrások hello virtuális hálózatok a rendszer nem tudja tooresolve nevek hello virtuális hálózatok közötti. Ha tooresolve nevek a társviszony-létesítés virtuális hálózatok között, létre kell hoznia a saját DNS-kiszolgáló. Megtudhatja, hogyan mentése tooset [névfeloldáshoz a saját DNS-kiszolgáló](virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
 
 ## <a name="template"></a>Hozzon létre a társviszony - Resource Manager-sablon
 
-1. Hivatkozás [hozzon létre egy virtuális hálózati társviszony-létesítés](https://azure.microsoft.com/resources/templates/201-vnet-to-vnet-peering) Resource Manager-sablon. A sablonhoz utasítások is járnak, amelyek alapján üzembe helyezheti a sablont az Azure Portal, a PowerShell vagy az Azure CLI használatával. Amelyik eszközzel való bejelentkezéshez válassza ki a sablon egy virtuális hálózati társviszony-létesítés létrehozásához szükséges engedélyekkel rendelkező fiók használatával történő telepítéséhez. Tekintse meg a [engedélyek](#permissions) jelen cikkben alább szakasza.
-2. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gépről a másikra, való kapcsolat ellenőrzésére.
-3. **Nem kötelező**: az erőforrásokat, amelyek ebben az oktatóanyagban létrehozhat törléséhez lépéseinek végrehajtásához a [törli az erőforrást](#delete) című szakaszát, az Azure-portálon, a PowerShell vagy az Azure parancssori felület használatával.
+1. Hivatkozás [hozzon létre egy virtuális hálózati társviszony-létesítés](https://azure.microsoft.com/resources/templates/201-vnet-to-vnet-peering) Resource Manager-sablon. Útmutatás a megadott hello sablonra telepítése hello sablon használatával hello Azure-portálon, a PowerShell vagy a hello Azure CLI el. Napló toowhichever eszközben úgy dönt, hogy toodeploy hello sablont egy olyan fiókkal, amely rendelkezik a szükséges engedélyek toocreate hello, virtuális hálózati társviszony-létesítés. Lásd: hello [engedélyek](#permissions) jelen cikkben alább szakasza.
+2. **Nem kötelező**: abban az esetben, ha ez az oktatóanyag nem vonatkozik a virtuális gépek létrehozását, hozzon létre egy virtuális gép minden egyes virtuális hálózati, és csatlakoztassa egy virtuális gép toohello más, toovalidate kapcsolat.
+3. **Nem kötelező**: Ebben az oktatóanyagban létrehozhat hello erőforrások toodelete, teljes hello szükséges lépések hello [törli az erőforrást](#delete) című szakaszát, használatával hello Azure-portálon, a PowerShell vagy a hello Azure parancssori felület.
 
 ## <a name="permissions"></a>Engedélyek
 
-A fiókokat hozhat létre a virtuális hálózati társviszony-létesítés a szükséges szerepkör vagy az engedélyekkel kell rendelkeznie. Például, ha két virtuális hálózatok VNet1 és VNet2 nevű volt társviszony, a fiókjához társítva kell lenni a következő minimális szerepkör vagy az engedélyekkel minden virtuális hálózathoz:
+hello fiókjai virtuális hálózati társviszony-létesítés toocreate hello szükséges szerepkör- vagy hozzáférési engedélyekkel kell rendelkeznie. Például, ha két virtuális hálózatok VNet1 és VNet2 nevű volt társviszony, a fiókjához társítva kell lenni a következő minimális szerepkör vagy minden egyes virtuális hálózati engedélyeinek hello:
     
 |Virtuális hálózat|Szerepkör|Engedélyek|
 |---|---|---|
 |VNet1|[Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write|
 |VNet2|[Hálózati közreműködő](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor)|Microsoft.Network/virtualNetworks/peer|
 
-További információ [beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) és rendelje hozzá adott engedélyeket [egyéni szerepkörök](../active-directory/role-based-access-control-custom-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json) (csak Resource Manager).
+További információ [beépített szerepkörök](../active-directory/role-based-access-built-in-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json#network-contributor) és konkrét engedélyeket túl[egyéni szerepkörök](../active-directory/role-based-access-control-custom-roles.md?toc=%2fazure%2fvirtual-network%2ftoc.json) (csak Resource Manager).
 
 ## <a name="delete"></a>Erőforrások törlése
-Ez az oktatóanyag befejezése után, előfordulhat, hogy törölni kívánja az erőforrások létrehozta az oktatóanyagban, használati költségek. Erőforráscsoport törlésével, az erőforráscsoport összes erőforrást is törli.
+Ez az oktatóanyag befejezése után, érdemes lehet toodelete hello erőforrások hello oktatóanyag, így a használati költségek létrehozott. Erőforráscsoport törlésekor a hello erőforráscsoportban található összes erőforrást is törlődnek.
 
 ### <a name="delete-portal"></a>Azure-portálon
 
-1. A portál keresési mezőbe, írja be a **myResourceGroup**. A keresési eredmények között kattintson **myResourceGroup**.
-2. Az a **myResourceGroup** panelen kattintson a **törlése** ikonra.
-3. A törlés megerősítéséhez a a **típus az ERŐFORRÁSCSOPORT neve** adja meg a **myResourceGroup**, és kattintson a **törlése**.
+1. Hello portál keresési mezőbe, írja be a **myResourceGroup**. Hello keresési eredmények között kattintson **myResourceGroup**.
+2. A hello **myResourceGroup** panelen kattintson hello **törlése** ikonra.
+3. tooconfirm hello törlésre, hello **típus hello ERŐFORRÁSCSOPORT-név** adja meg a **myResourceGroup**, és kattintson a **törlése**.
 
 ### <a name="delete-cli"></a>Az Azure parancssori felület
 
-Írja be a következő parancsot:
+Adja meg a következő parancs hello:
 
 ```azurecli-interactive
 az group delete --name myResourceGroup --yes
@@ -262,7 +262,7 @@ az group delete --name myResourceGroup --yes
 
 ### <a name="delete-powershell"></a>PowerShell
 
-Írja be a következő parancsot:
+Adja meg a következő parancs hello:
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -force
@@ -272,4 +272,4 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -force
 
 - Alaposan olvassa el a fontos [virtuális hálózati társviszony-létesítési korlátozások és viselkedéshez](virtual-network-manage-peering.md#requirements-and-constraints) társviszony-létesítés üzemi virtuális hálózat létrehozása előtt használja.
 - További tudnivalók az összes [virtuális hálózati társviszony-létesítési beállítások](virtual-network-manage-peering.md#create-a-peering).
-- Megtudhatja, hogyan [létrehoz egy központot, és a hálózati topológia irány](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering) a virtuális hálózati társviszony-létesítés.
+- Ismerje meg, hogyan túl[létrehoz egy központot, és a hálózati topológia irány](/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?toc=%2fazure%2fvirtual-network%2ftoc.json#vnet-peering) a virtuális hálózati társviszony-létesítés.

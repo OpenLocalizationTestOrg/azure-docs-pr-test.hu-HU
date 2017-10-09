@@ -1,6 +1,6 @@
 ---
-title: "Az Azure pont – hely kapcsolat kapcsolatos problémák elhárítása |} Microsoft Docs"
-description: "Útmutató a pont-pont csatlakozási hibák elhárítása."
+title: "Azure pont-pont aaaTroubleshoot kapcsolódási problémák |} Microsoft Docs"
+description: "Megtudhatja, hogyan tootroubleshoot pont-hely kapcsolódási problémák léptek fel."
 services: vpn-gateway
 documentationcenter: na
 author: chadmath
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/23/2017
 ms.author: genli
-ms.openlocfilehash: de37c8ffd47a2b8e201d18e3a20b5325d528ad59
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 98d66074be62ad8c7153a903f69cb0d01f988cd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-azure-point-to-site-connection-problems"></a>Hibáinak elhárítása: Az Azure pont – hely kapcsolat problémák
 
@@ -28,52 +28,52 @@ A cikk ismerteti, amelyekkel Ön is szembesülhet pont-pont csatlakozási probl�
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-ügyfél használatával csatlakoznak az Azure virtuális hálózat megkísérlésekor a következő hibaüzenet jelenhet meg:
+Azure-beli virtuális hálózat tooconnect tooan hello VPN-ügyfél segítségével kísérli meg, a hello a következő hibaüzenet jelenhet meg:
 
 **A tanúsítvány nem található, amely használható a bővíthető hitelesítési protokoll. (798 hiba)**
 
 ### <a name="cause"></a>Ok
 
-Ez a probléma akkor fordul elő, ha az ügyfél-tanúsítványa nem található a **tanúsítványok - aktuális User\Personal\Certificates**.
+Ez a probléma akkor fordul elő, ha hello ügyféltanúsítvány hiányzik a **tanúsítványok - aktuális User\Personal\Certificates**.
 
 ### <a name="solution"></a>Megoldás
 
-Győződjön meg arról, hogy az ügyféltanúsítvány telepítve van-e a tanúsítványok tároló (Certmgr.msc) a következő helyen:
+Győződjön meg arról, hogy hello ügyfél tanúsítvány telepítve van a hello hello tanúsítványtárolóba (Certmgr.msc) helye a következő:
  
 **Tanúsítványok – aktuális User\Personal\Certificates**
 
-Az ügyféltanúsítvány telepítésével kapcsolatos további információkért lásd: [tanúsítvány létrehozása és exportálása a pont – hely kapcsolatok](vpn-gateway-certificates-point-to-site.md).
+Hogyan tooinstall hello ügyféltanúsítvány kapcsolatos további információkért lásd: [tanúsítvány létrehozása és exportálása a pont – hely kapcsolatok](vpn-gateway-certificates-point-to-site.md).
 
 > [!NOTE]
-> Amikor importálja az ügyféltanúsítványt, ne jelölje be a **titkos kulcs erős védelmének engedélyezése** lehetőséget.
+> Hello ügyféltanúsítvány importálásakor, ne válassza hello **titkos kulcs erős védelmének engedélyezése** lehetőséget.
 
-## <a name="vpn-client-error-the-message-received-was-unexpected-or-badly-formatted"></a>VPN-ügyfél hiba: A fogadott üzenet nem várt vagy rosszul formázott
+## <a name="vpn-client-error-hello-message-received-was-unexpected-or-badly-formatted"></a>VPN-ügyfél hiba: hello fogadott üzenet nem várt vagy rosszul formázott
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-ügyfél használatával csatlakoznak az Azure virtuális hálózat megkísérlésekor a következő hibaüzenet jelenhet meg:
+Azure-beli virtuális hálózat tooconnect tooan hello VPN-ügyfél segítségével kísérli meg, a hello a következő hibaüzenet jelenhet meg:
 
-**A fogadott üzenet volt-e váratlan vagy rosszul formázott. (0x80090326 hiba)**
+**hello üzenet érkezett a váratlan vagy rosszul formázott volt. (0x80090326 hiba)**
 
 ### <a name="cause"></a>Ok
 
-Ez a probléma akkor fordul elő, ha a legfelső szintű tanúsítvány nyilvános kulcsa nem van töltve az Azure VPN gateway. Ez akkor is előfordulhat, ha a kulcs sérült vagy lejárt.
+Ez a probléma akkor fordul elő, ha hello legfelső szintű tanúsítvány nyilvános kulcsa nem hello Azure VPN gateway van töltve. Ez akkor is előfordulhat, ha hello kulcs sérült vagy lejárt.
 
 ### <a name="solution"></a>Megoldás
 
-A probléma megoldásához, a legfelső szintű tanúsítvány megtekintéséhez, hogy azt vissza lett vonva az Azure portálon állapotának ellenőrzéséhez. Ha nincs visszavonva, próbálja meg törölni a főtanúsítványt és reupload. További információkért lásd: [olyan tanúsítványokat hoznak létre](vpn-gateway-howto-point-to-site-classic-azure-portal.md#generatecerts).
+tooresolve probléma hello állapotát hello legfelső szintű tanúsítványt hello Azure portál toosee e visszavonásra került. Ha nincs visszavonva, próbálja meg toodelete hello legfelső szintű tanúsítvány és reupload. További információkért lásd: [olyan tanúsítványokat hoznak létre](vpn-gateway-howto-point-to-site-classic-azure-portal.md#generatecerts).
 
 ## <a name="vpn-client-error-a-certificate-chain-processed-but-terminated"></a>VPN-ügyfél hiba: A tanúsítványlánc feldolgozása, de a megszakadt 
 
 ### <a name="symptom"></a>Jelenség 
 
-A VPN-ügyfél használatával csatlakoznak az Azure virtuális hálózat megkísérlésekor a következő hibaüzenet jelenhet meg:
+Azure-beli virtuális hálózat tooconnect tooan hello VPN-ügyfél segítségével kísérli meg, a hello a következő hibaüzenet jelenhet meg:
 
-**A tanúsítványlánc feldolgozása, de a legfelső szintű tanúsítvány nem bízik meg a megbízható szolgáltatót megszakadt.**
+**Tanúsítványlánc feldolgozása befejeződött, de a hello megbízhatóság-ellenőrző nem megbízható legfelső szintű tanúsítványt megszakadt.**
 
 ### <a name="solution"></a>Megoldás
 
-1. Győződjön meg arról, hogy az alábbi tanúsítványok vannak-e a megfelelő helyen:
+1. Győződjön meg arról, hogy a következő tanúsítványok hello hello megfelelő helyen találhatók:
 
     | Tanúsítvány | Hely |
     | ------------- | ------------- |
@@ -81,13 +81,13 @@ A VPN-ügyfél használatával csatlakoznak az Azure virtuális hálózat megkí
     | Azuregateway -*GUID*. cloudapp.net  | Aktuális User\Trusted legfelső szintű hitelesítésszolgáltatók|
     | AzureGateway -*GUID*. cloudapp.net, AzureRoot.cer    | Helyi számítógép\Megbízható legfelső szintű hitelesítésszolgáltatók|
 
-2. Ha a tanúsítvány már a helyen, próbálja meg törölni a tanúsítványokat, és telepítse újra. A  **azuregateway -*GUID*. az ügyfél VPN-konfiguráció Azure-portálról letöltött csomag cloudapp.net** tanúsítvány van. Fájl archivers segítségével csomagolja ki a fájlokat a csomagból.
+2. Ha hello tanúsítványok már hello helyen, próbálja toodelete hello tanúsítványokat, és telepítse újra azokat. Hello  **azuregateway -*GUID*. cloudapp.net** tanúsítvány van hello VPN-konfigurációs ügyfélcsomag beszerzett hello Azure-portálon. Használhatja a fájl archivers tooextract hello fájlokat hello csomagból.
 
 ## <a name="file-download-error-target-uri-is-not-specified"></a>Letöltési hiba: nincs megadva a cél URI Azonosítóját
 
 ### <a name="symptom"></a>Jelenség
 
-A következő hibaüzenetet kapja:
+Hello a következő hibaüzenet jelenhet meg:
 
 **Hiba történt a fájl letöltése. Nincs megadva a cél URI Azonosítóját.**
 
@@ -97,56 +97,56 @@ A probléma miatt egy hibás átjáró típusa.
 
 ### <a name="solution"></a>Megoldás
 
-A VPN-átjáró típusúnak kell lennie **VPN**, és a VPN-típus lehet **RouteBased**.
+VPN-átjáró típusa hello kell **VPN**, és a VPN-típus hello kell **RouteBased**.
 
 ## <a name="vpn-client-error-azure-vpn-custom-script-failed"></a>VPN-ügyfél hiba: az Azure VPN egyéni parancsprogram végrehajtása sikertelen volt 
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-ügyfél használatával csatlakoznak az Azure virtuális hálózat megkísérlésekor a következő hibaüzenet jelenhet meg:
+Azure-beli virtuális hálózat tooconnect tooan hello VPN-ügyfél segítségével kísérli meg, a hello a következő hibaüzenet jelenhet meg:
 
-**Egyéni parancsfájl (frissítés az útválasztási táblában) sikertelen volt. (8007026f hiba)**
+**Egyéni parancsfájl (tooupdate az útválasztási táblázatot) nem sikerült. (8007026f hiba)**
 
 ### <a name="cause"></a>Ok
 
-Ez a probléma akkor fordulhat elő, ha a webhely pont közötti VPN-kapcsolat megnyitása egy helyi használatával próbálja.
+Ez a probléma akkor fordulhat elő, ha tooopen hello pont hely közötti VPN-kapcsolatot egy helyi használatával próbálja.
 
 ### <a name="solution"></a>Megoldás 
 
-Nyissa meg a VPN-csomag közvetlenül helyett a helyi megnyitja azt.
+Nyissa meg a hello VPN csomag közvetlenül nem kell megnyitnia az hello helyi.
 
-## <a name="cannot-install-the-vpn-client"></a>A VPN-ügyfél nem tudja telepíteni.
+## <a name="cannot-install-hello-vpn-client"></a>Hello VPN-ügyfél nem tudja telepíteni.
 
 ### <a name="cause"></a>Ok 
 
-Kiegészítő igazolás hogy bízzon meg a VPN-átjáró a virtuális hálózat szükséges. A tanúsítványt a VPN-konfigurációs ügyfélcsomag, az Azure-portálon létrehozott tartalmazza.
+Kiegészítő igazolás szükség tootrust hello VPN-átjáró a virtuális hálózat. hello tanúsítvány hello VPN-konfigurációs ügyfélcsomag a hello Azure-portálon létrehozott tartalmazza.
 
 ### <a name="solution"></a>Megoldás
 
-Bontsa ki a VPN-ügyfélcsomag konfigurációs, és keresse meg a .cer fájlt. A tanúsítvány telepítéséhez kövesse az alábbi lépéseket:
+Bontsa ki a hello VPN-ügyfélcsomag konfigurációs, és hello .cer fájl található. tooinstall hello tanúsítvány, kövesse az alábbi lépéseket:
 
 1. Nyissa meg a mmc.exe.
-2. Adja hozzá a **tanúsítványok** beépülő modult.
-3. Válassza ki a **számítógép** fiókot a helyi számítógépen.
-4. Kattintson a jobb gombbal a **megbízható legfelső szintű hitelesítésszolgáltatók** csomópont. Kattintson a **minden-tevékenység** > **importálási**, és keresse meg a .cer fájlt, a VPN-ügyfélcsomag konfigurációs kibontott.
-5. Indítsa újra a számítógépet. 
-6. Próbálja meg telepíteni a VPN-ügyfél.
+2. Adja hozzá a hello **tanúsítványok** beépülő modult.
+3. Jelölje be hello **számítógép** fiókot a helyi számítógép hello.
+4. Kattintson a jobb gombbal hello **megbízható legfelső szintű hitelesítésszolgáltatók** csomópont. Kattintson a **minden-tevékenység** > **importálása**, és tallózással keresse meg toohello .cer fájl hello VPN-ügyfélcsomag konfigurációs kibontott.
+5. Indítsa újra a hello számítógépet. 
+6. Próbálja meg tooinstall hello VPN-ügyfél.
 
-## <a name="azure-portal-error-failed-to-save-the-vpn-gateway-and-the-data-is-invalid"></a>Az Azure portál hiba: nem sikerült menteni a VPN-átjáró, és az adat érvénytelen
+## <a name="azure-portal-error-failed-toosave-hello-vpn-gateway-and-hello-data-is-invalid"></a>Az Azure portál hiba: nem sikerült toosave hello VPN-átjárót, és hello adat érvénytelen
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-átjáró módosításainak mentése az Azure-portálon megkísérlésekor a következő hibaüzenet jelenhet meg:
+Amikor toosave hello változásokat a VPN-átjáró hello hello Azure-portálon, hello a következő hibaüzenet jelenhet meg:
 
-**Nem sikerült menteni a virtuális hálózati átjáró &lt;* átjárónevet*&gt;. Tanúsítvány adatainak &lt; *tanúsítvány azonosító* &gt; van invalid.* *
+**Virtuális hálózati átjáró hibás toosave &lt;* átjárónevet*&gt;. Tanúsítvány adatainak &lt; *tanúsítvány azonosító* &gt; van invalid.* *
 
 ### <a name="cause"></a>Ok 
 
-Ez a probléma akkor fordulhat elő, ha a legfelső szintű tanúsítvány nyilvános kulcsa feltöltött tartalmaz egy érvénytelen karakter, például egy szóközzel.
+Ez a probléma akkor fordulhat elő, ha hello legfelső szintű tanúsítvány nyilvános kulcsa feltöltött tartalmaz egy érvénytelen karakter, például egy szóközzel.
 
 ### <a name="solution"></a>Megoldás
 
-Győződjön meg arról, hogy az adatok a tanúsítvány nem tartalmaz érvénytelen karaktereket, például sortörést (kocsivissza). Az egész értéknek kell lennie egy hosszú sor. A következő szöveg látható egy minta a tanúsítványt:
+Győződjön meg arról, hogy hello adatok hello tanúsítvány nem tartalmaz érvénytelen karaktereket, például sortörést (kocsivissza). hello egész értéknek kell lennie egy hosszú sor. a következő szöveg hello látható egy minta hello tanúsítvány:
 
     -----BEGIN CERTIFICATE-----
     MIIC5zCCAc+gAwIBAgIQFSwsLuUrCIdHwI3hzJbdBjANBgkqhkiG9w0BAQsFADAW
@@ -167,91 +167,91 @@ Győződjön meg arról, hogy az adatok a tanúsítvány nem tartalmaz érvényt
     e8Jcej7mzunzyjz4chN0/WVF94MtxbUkLkqP
     -----END CERTIFICATE-----
 
-## <a name="azure-portal-error-failed-to-save-the-vpn-gateway-and-the-resource-name-is-invalid"></a>Az Azure portál hiba: nem sikerült menteni a VPN-átjáró, és az erőforrás neve érvénytelen.
+## <a name="azure-portal-error-failed-toosave-hello-vpn-gateway-and-hello-resource-name-is-invalid"></a>Az Azure portál hiba: nem sikerült toosave hello VPN-átjáró, és hello erőforrás neve érvénytelen.
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-átjáró módosításainak mentése az Azure-portálon megkísérlésekor a következő hibaüzenet jelenhet meg: 
+Amikor toosave hello változásokat a VPN-átjáró hello hello Azure-portálon, hello a következő hibaüzenet jelenhet meg: 
 
-**Nem sikerült menteni a virtuális hálózati átjáró &lt;* átjárónevet*&gt;. Az erőforrásnév &lt; *megpróbálja feltölteni a tanúsítvány neve* &gt; van érvénytelen **.
+**Virtuális hálózati átjáró hibás toosave &lt;* átjárónevet*&gt;. Az erőforrásnév &lt; *tooupload meg a tanúsítvány neve* &gt; van érvénytelen **.
 
 ### <a name="cause"></a>Ok
 
-A probléma oka, hogy a tanúsítvány neve érvénytelen karaktert, például a szóközt tartalmaz. 
+A probléma oka, hogy hello tanúsítvány hello neve érvénytelen karaktert, például egy szóközzel tartalmaz. 
 
 ## <a name="azure-portal-error-vpn-package-file-download-error-503"></a>Az Azure portál hiba: VPN csomag fájl letöltési hiba 503-as
 
 ### <a name="symptom"></a>Jelenség
 
-Töltse le a VPN-ügyfélcsomag konfigurációs megkísérlésekor a következő hibaüzenet jelenhet meg:
+Amikor toodownload konfigurációs hello VPN-ügyfélcsomag, hello a következő hibaüzenet jelenhet meg:
 
-**Nem sikerült letölteni a fájlt. Hiba legutolsó részletes adatai: 503-as hiba. A kiszolgáló túlterhelt.**
+**Nem sikerült toodownload hello fájlt. Hiba legutolsó részletes adatai: 503-as hiba. hello kiszolgáló túlterhelt.**
  
 ### <a name="solution"></a>Megoldás
 
-Ez a hiba átmeneti hálózati probléma okozhatja. Próbálkozzon újra néhány perc múlva a VPN-csomagjának letöltése.
+Ez a hiba átmeneti hálózati probléma okozhatja. Toodownload hello VPN csomag próbálkozzon újra néhány perc múlva.
 
-## <a name="azure-vpn-gateway-upgrade-all-p2s-clients-are-unable-to-connect"></a>Az Azure VPN Gateway frissítése: minden P2S-ügyfelek nem tudnak csatlakozni
+## <a name="azure-vpn-gateway-upgrade-all-p2s-clients-are-unable-tooconnect"></a>Az Azure VPN Gateway frissítése: minden P2S-ügyfelek nem tooconnect
 
 ### <a name="cause"></a>Ok
 
-Ha a tanúsítvány több mint 50 %-a keresztül élettartamuk, a tanúsítvány frissítése.
+Ha hello tanúsítvány több mint 50 %-a teljes élettartama keresztül hello tanúsítvány frissítése.
 
 ### <a name="solution"></a>Megoldás
 
-Ez a probléma megoldása érdekében hozzon létre, és újra elosztják a VPN-ügyfelek az új tanúsítványok. 
+tooresolve probléma létrehozása, és újra elosztják a VPN-ügyfelek új tanúsítványok toohello. 
 
 ## <a name="too-many-vpn-clients-connected-at-once"></a>Túl sok a VPN-ügyfelek egyszerre csatlakoztatva
 
-Minden egyes VPN-átjáró esetén engedélyezett kapcsolatok maximális száma 128. Láthatja, hogy az Azure portálon csatlakoztatott ügyfelek teljes száma.
+Minden egyes VPN-átjáró hello engedélyezett kapcsolatok maximális száma 128 esetén. Láthatja, hogy hello hello Azure-portálon a csatlakoztatott ügyfelek teljes száma.
 
-## <a name="point-to-site-vpn-incorrectly-adds-a-route-for-100008-to-the-route-table"></a>Pont – hely típusú VPN helytelenül 10.0.0.0/8 útvonal hozzáadása az útvonaltábla
+## <a name="point-to-site-vpn-incorrectly-adds-a-route-for-100008-toohello-route-table"></a>Pont – hely típusú VPN helytelenül 10.0.0.0/8 toohello útvonaltábla útvonal hozzáadása
 
 ### <a name="symptom"></a>Jelenség
 
-Amikor a VPN-kapcsolatot a pont-pont ügyfélen, a VPN-ügyfél az Azure virtuális hálózat felé útvonal kell hozzáadása. Az IP-segítő szolgáltatás hozzá kell adnia egy útvonalat a VPN-ügyfelek az alhálózathoz. 
+Amikor hello hello pont-pont ügyfél VPN-kapcsolatot, a hello VPN-ügyfél kell hello Azure-beli virtuális hálózat felé útvonal hozzáadása. hello IP-segítő szolgáltatás hozzá kell adnia egy útvonal hello alhálózat hello VPN-ügyfelek. 
 
-A VPN-ügyfél tartomány 10.0.0.0/8, például a 10.0.12.0/24 kisebb alhálózatának tartozik. Helyett 10.0.12.0/24 útvonal, a 10.0.0.0/8 adjon hozzá egy útvonalat magasabb prioritással bír, amely. 
+VPN-ügyfél tartomány hello tooa kisebb alhálózata 10.0.0.0/8, például a 10.0.12.0/24 tartozik. Helyett 10.0.12.0/24 útvonal, a 10.0.0.0/8 adjon hozzá egy útvonalat magasabb prioritással bír, amely. 
 
-Ez helytelen az útvonal más hálózatokkal helyszíni, amely lehet, hogy a 10.0.0.0/8 tartományba 10.50.0.0/24, például egy másik alhálózat tartozik, amelyek nem rendelkeznek egy adott útvonal definiálva kapcsolat megszakad. 
+Ez helytelen az útvonal más hálózatokkal helyszíni tooanother alhálózati tartományba hello 10.0.0.0/8, például a 10.50.0.0/24, előfordulhat, hogy tartoznak, amelyek nem rendelkeznek egy adott útvonal definiálva kapcsolat megszakad. 
 
 ### <a name="cause"></a>Ok
 
-Ez szándékosan van a Windows-ügyfelek. Amikor az ügyfél a PPP IPCP protokollt használja, az IP-címet a alagútkapcsolat megszerzi a kiszolgálóról (a jelen esetben a VPN-átjáró). Azonban a protokoll korlátozása, mert az ügyfél nem rendelkezik az alhálózati maszkot. Mivel más módon nem lehet legyen, az ügyfél megpróbálja kitalálni az alhálózati maszkot az osztály az alagutat illesztő IP-cím alapján. 
+Ez szándékosan van a Windows-ügyfelek. Hello ügyfél hello PPP IPCP protokollt használja, amikor hello kiszolgálótól (ebben az esetben hello VPN-átjáró) beszerzett hello alagútkapcsolat hello IP-címet. Azonban hello protokoll korlátozása, miatt a hello ügyfél nem rendelkezik hello alhálózati maszkot. Mivel nincs más módja tooget, hello ügyfél megkísérli tooguess hello alhálózati maszk hello osztály hello alagút illesztő IP-cím alapján. 
 
-Ezért adjon hozzá egy útvonalat a következő statikus hozzárendelés alapján: 
+Ezért adjon hozzá egy útvonalat hello statikus leképezés a következő alapján: 
 
-Ha a cím az Öné egy--> alkalmazása /8
+Ha a cím tartozik tooclass A--> alkalmazása /8
 
-Ha a cím az Öné B--> osztály /16 alkalmazása
+Ha a cím tartozik B--> tooclass alkalmazása /16
 
-Ha a cím az Öné C--> osztály /24 alkalmazása
+Ha a cím tartozik C--> tooclass alkalmazása /24
 
 ## <a name="vpn-client-cannot-access-network-file-shares"></a>VPN-ügyfél nem tud hozzáférni a hálózati fájlmegosztások
 
 ### <a name="symptom"></a>Jelenség
 
-A VPN-ügyfél csatlakozott az Azure virtuális hálózat. Az ügyfél nem érhető el, hálózati megosztások.
+hello VPN-ügyfél csatlakozott toohello Azure-beli virtuális hálózat. Hello ügyfél azonban nem tud hozzáférni hálózati megosztások.
 
 ### <a name="cause"></a>Ok
 
-Az SMB protokollt használják a fájlmegosztási hozzáférést. Amikor a rendszer kezdeményezi a kapcsolatot, a VPN-ügyfél hozzáadása a munkamenet hitelesítő adatokat, és a hiba akkor fordul elő. A kapcsolat létrejötte után a rendszer kényszeríti az ügyfelet, a gyorsítótár hitelesítő adatok használata a Kerberos-hitelesítést. A folyamat elindul a lekérdezéseket, amelyekkel a kulcsszolgáltató (tartományvezérlő) a szolgáltatáshitelesítést egy token. Mivel az ügyfél az internetről csatlakozik, akkor nem feltétlenül tudni érnie a tartományvezérlő. Ezért az ügyfél nem feladatátvételt a Kerberos NTLM. 
+fájlmegosztási hozzáférést hello SMB protokoll használható. Hello kapcsolat elindításakor hello VPN-ügyfél hozzáadása hello munkamenet hitelesítő adatokat, és hello hiba történik. Hello kapcsolat létrejötte után hello ügyfél kényszeríti toouse hello gyorsítótár Kerberos-hitelesítés hitelesítő adatait. A folyamat elindul a lekérdezések toohello kulcsszolgáltató (tartományvezérlő) tooget jogkivonatot. Mivel hello ügyfél csatlakozik az internethez hello, nem feltétlenül tudja tooreach hello tartományvezérlő. Ezért hello ügyfél nem feladatátvételt a Kerberos tooNTLM. 
 
-Az egyetlen alkalom, hogy az ügyfélnek meg kell adnia a hitelesítő adatok megadása, ha van egy érvényes tanúsítványt (tárolóhálózathoz = UPN) kiállítja a tartomány, amelyhez csatlakozik. Az ügyfél is kell fizikailag csatlakozniuk kell a tartományi hálózaton. Ebben az esetben az ügyfél megpróbálja a tanúsítványt használni, és egészítse ki a tartományvezérlőre. A kulcsszolgáltató majd egy "KDC_ERR_C_PRINCIPAL_UNKNOWN" hibaüzenetet adja vissza. Az ügyfél NTLM átvehetné kényszeríti. 
+hello csak időt, hogy az ügyfél hello kéri a hitelesítő adatok esetén érvényes tanúsítvánnyal rendelkezik (tárolóhálózathoz = UPN) kiállító hello tartomány toowhich tartományhoz. hello ügyfél is fizikailag csatlakoztatott toohello tartományi hálózaton kell lennie. Ebben az esetben hello ügyfél megpróbál toouse hello tanúsítványt, és egészítse ki toohello tartományvezérlő. Hello kulcsszolgáltató majd egy "KDC_ERR_C_PRINCIPAL_UNKNOWN" hibaüzenetet adja vissza. hello ügyfél kényszerített toofail tooNTLM felett. 
 
 ### <a name="solution"></a>Megoldás
 
-A probléma megoldása érdekében tiltsa le a gyorsítótárba helyezése tartományi hitelesítő adatait a következő beállításkulcsot: 
+toowork hello a probléma, tiltsa le a tartományi hitelesítő adatait a következő beállításkulcsot hello gyorsítótárazását hello: 
 
-    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\DisableDomainCreds - Set the value to 1 
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\DisableDomainCreds - Set hello value too1 
 
 
-## <a name="cannot-find-the-point-to-site-vpn-connection-in-windows-after-reinstalling-the-vpn-client"></a>Nem található a Windows a pont-pont VPN-kapcsolatot a VPN-ügyfél újratelepítése után
+## <a name="cannot-find-hello-point-to-site-vpn-connection-in-windows-after-reinstalling-hello-vpn-client"></a>Nem található a Windows hello pont-pont VPN-kapcsolat hello VPN-ügyfél újratelepítése után
 
 ### <a name="symptom"></a>Jelenség
 
-Távolítsa el a pont-pont VPN-kapcsolatot, és telepítse újra a VPN-ügyfél. Ebben a helyzetben a VPN-kapcsolat beállítása nem sikerült. A VPN-kapcsolatot a nem látja a **hálózati kapcsolat** a Windows beállításai.
+Távolítsa el a hello pont-pont VPN-kapcsolatot, és telepítse a hello VPN-ügyfél. Ebben a helyzetben hello VPN-kapcsolat beállítása nem sikerült. Nem látja hello VPN-kapcsolatot a hello **hálózati kapcsolat** a Windows beállításai.
 
 ### <a name="solution"></a>Megoldás
 
-A probléma megoldása érdekében törölje a régi VPN ügyfél konfigurációs fájlokat a **C:\Users\TheUserName\AppData\Roaming\Microsoft\Network\Connections**, majd futtassa újra a VPN-ügyfél telepítőjét.
+tooresolve hello problémát, törölje a hello régi VPN ügyfél konfigurációs fájlokat a **C:\Users\TheUserName\AppData\Roaming\Microsoft\Network\Connections**, majd futtassa újra a hello VPN-ügyfél telepítőjét.

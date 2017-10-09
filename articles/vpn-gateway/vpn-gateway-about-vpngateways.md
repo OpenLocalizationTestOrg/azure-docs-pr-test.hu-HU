@@ -1,6 +1,6 @@
 ---
-title: "A VPN Gateway áttekintése: Létesítmények közötti VPN-kapcsolatok létrehozása Azure-alapú virtuális hálózatokhoz | Microsoft Docs"
-description: "A VPN Gateway áttekintése az Azure-alapú virtuális hálózatokhoz az interneten keresztül VPN-kapcsolattal történő csatlakozás módjait ismerteti. Tartalmazza az alapvető kapcsolatkonfigurációk ábráit is."
+title: "VPN-átjáró – áttekintés: TooAzure virtuális hálózatok létrehozása létesítmények közötti VPN-kapcsolatok |} Microsoft Docs"
+description: "A VPN-átjáró – áttekintés hello módon tooconnect tooAzure virtuális hálózatok hello interneten keresztül VPN-kapcsolattal ismerteti. Tartalmazza az alapvető kapcsolatkonfigurációk ábráit is."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/05/2017
 ms.author: cherylmc
-ms.openlocfilehash: ecfe6dab6e4deaa75d073badcb88d536396fe678
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 899270734270632a5b12d56021c924e977725a7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-vpn-gateway"></a>Információk a VPN Gateway-ről
 
-A VPN-átjáró a virtuális hálózati átjárók egy olyan típusa, amely titkosított adatforgalmat továbbít nyilvános kapcsolaton keresztül egy helyszíni helyre. A VPN-átjárókkal továbbá titkosított adatforgalmat továbbíthat az Azure-alapú virtuális hálózatok között a Microsoft hálózatán keresztül. Ha titkosított hálózati adatforgalmat szeretne továbbítani az Azure-alapú virtuális hálózatok és a helyszíni helyek között, létre kell hoznia egy VPN-átjárót a virtuális hálózathoz.
+VPN-átjáró egy olyan virtuális hálózati átjáró által a titkosított forgalmat egy nyilvános kapcsolat tooan között a helyszíni hely. VPN-átjárók toosend titkosított forgalmat hello Microsoft hálózaton keresztül az Azure virtuális hálózat között is használható. az Azure virtuális hálózat és a helyszíni hely közötti toosend titkosított a hálózati forgalom, létre kell hoznia egy VPN-átjáró a virtuális hálózat.
 
-Minden egyes virtuális hálózat kizárólag egy VPN-átjáróval rendelkezhet, de egy VPN-átjáróhoz létrehozhat több kapcsolatot is. Erre egy példa a Többhelyes csatlakozás konfiguráció. Amikor többhelyes csatlakozást hoz létre egyetlen VPN-átjáróhoz, az összes VPN-alagút, így a pont–hely VPN-ek is az átjáró számára elérhető sávszélességen osztozkodnak.
+Minden virtuális hálózathoz csak egy VPN-átjáró rendelkezhet, azonban több kapcsolatok toohello hozhat létre ugyanazon VPN-átjáró. Erre egy példa a Többhelyes csatlakozás konfiguráció. Ha több kapcsolatok toohello hoz létre ugyanazon VPN-átjárót, az összes VPN-alagutat, beleértve a pont-pont VPN, megosztás hello sávszélességét hello átjáró számára.
 
 ### <a name="whatis"></a>Mi az a virtuális hálózati átjáró?
 
-A virtuális hálózat átjáró két vagy több virtuális gépből áll, amelyek egy átjáróalhálózat nevű speciális alhálózatra vannak telepítve. Az átjáróalhálózatban található virtuális gépek a virtuális hálózati átjáró létrehozásakor jönnek létre. A virtuális hálózati átjáró virtuális gépei úgy vannak konfigurálva, hogy az átjáróra jellemző táblákat és átjárószolgáltatásokat tartalmazzanak. A virtuális hálózati átjáró virtuális gépeit nem konfigurálhatja közvetlenül, és nem szabad további erőforrásokat telepíteni az átjáróalhálózatra.
+A virtuális hálózati átjáró két áll, vagy további virtuális gépeket telepített hello GatewaySubnet nevű tooa alhálózatokhoz. hello GatewaySubnet jön létre, amikor hello virtuális hálózati átjáró létrehozása hello található virtuális gépek. Virtuális gépek virtuális hálózati átjáró konfigurált toocontain útválasztási táblázataiba, és a szolgáltatások adott toohello átjárók. Hello hello virtuális hálózati átjáró részét képező virtuális gépek közvetlenül nem állítható be, és további források toohello GatewaySubnet soha ne telepítsen.
 
-Amikor a „Vpn” átjárótípussal hoz létre virtuális hálózati átjárót, olyan speciális típusú virtuális hálózati átjáró jön létre, amely titkosítja az adatforgalmat – ezt hívják VPN-átjárónak. Egy VPN-átjáró létrehozása akár 45 percet is igénybe vehet. Ekkor a rendszer telepíti a VPN-átjáró virtuális gépeit az átjáróalhálózatra, és konfigurálja őket az Ön által megadott beállításokkal. A virtuális gépek teljesítményét az Ön által választott átjáró-termékváltozat határozza meg.
+A virtuális hálózati átjáró hello átjáró típusa "Vpn" használatával hoz létre, amikor létrehoz egy adott típusú virtuális hálózati átjáró, amely titkosítja a forgalmat; VPN-átjáró. VPN-átjáró too45 perc toocreate is eltarthat. Mivel a virtuális gépek hello hello VPN Gateway folyamatban van a telepített toohello GatewaySubnet, és a megadott hello beállításokat. hello kiválasztott átjáró-Termékváltozat meghatározza, hogy milyen teljesítményű hello virtuális gépeken.
 
 ## <a name="gwsku"></a>Átjáró-termékváltozatok
 
@@ -39,41 +39,41 @@ Amikor a „Vpn” átjárótípussal hoz létre virtuális hálózati átjáró
 
 ## <a name="configuring"></a>VPN Gateway-átjáró konfigurálása
 
-A VPN-átjárós kapcsolatok több erőforrást használnak, amelyek speciális beállításokkal konfigurálhatók. Az erőforrások többsége külön konfigurálható, néhány esetben azonban egy bizonyos sorrendben kell őket konfigurálni.
+A VPN-átjárós kapcsolatok több erőforrást használnak, amelyek speciális beállításokkal konfigurálhatók. Hello erőforrások többségét külön-külön konfigurálhatók, noha bizonyos esetekben egyes sorrendben kell konfigurálni.
 
 ### <a name="settings"></a>Beállítások
 
-Az egyes erőforrások megfelelő beállítása kritikus fontosságú a sikeres kapcsolat létrehozásához. További információ a VPN Gateway önálló erőforrásairól és beállításairól: [About VPN Gateway settings](vpn-gateway-about-vpn-gateway-settings.md) (Információk a VPN Gateway beállításairól). A cikk az átjáró-, a VPN- és a kapcsolattípusokkal, az átjáró-alhálózatokkal, a helyi hálózati átjárókkal, valamint a különböző erőforrások beállításaival kapcsolatos további hasznos információkat tartalmaz.
+az egyes erőforrások hello beállításokat kritikus toocreating a sikeres kapcsolat. További információ a VPN Gateway önálló erőforrásairól és beállításairól: [About VPN Gateway settings](vpn-gateway-about-vpn-gateway-settings.md) (Információk a VPN Gateway beállításairól). a cikkben hello információk toohelp átjárótípusok, VPN-típusokat, kapcsolattípusokat, átjáró-alhálózatot, helyi hálózati átjárók és különböző más erőforrás-beállítások, amelyeknél felmerülhet tooconsider ismertetése.
 
 ### <a name="tools"></a>Üzembehelyezési eszközök
 
-Az erőforrások létrehozásának és konfigurálásának megkezdéséhez használjon egy konfigurációs eszközt, például az Azure Portalt. A további erőforrások konfigurálásához, vagy adott esetekben a létező erőforrások módosításához később átválthat egy másik eszközre, például a PowerShellre. Jelenleg nem lehet a minden erőforrást és erőforrás-beállítást az Azure Portalon konfigurálni. Az egyes kapcsolati topológiákhoz tartozó cikkekben lévő utasítások egyértelműsítik, hogy mikor van szükség egy speciális konfigurációs eszközre. 
+Kimenő létrehozásához és konfigurálásához egy konfigurálása eszköz, például a hello Azure-portál használatával erőforrások megkezdése. Később tooswitch tooanother eszköz, például a PowerShell tooconfigure további erőforrások, döntse el, vagy módosítsa a meglévő erőforrásokat, ha alkalmazható. Jelenleg nem lehet konfigurálni minden erőforrás- és erőforrás-beállítás hello Azure-portálon. minden kapcsolat topológia hello cikkek hello utasításait adja meg, amikor egy adott konfigurációs eszköz szükséges. 
 
 ### <a name="models"></a>Üzemi modell
 
-A VPN Gateway konfigurálásakor a követendő lépések a virtuális hálózat létrehozásához használt üzemi modelltől függenek. Ha például a virtuális hálózatot a klasszikus üzembe helyezési modellel hozta létre, a VPN-átjáró beállításinak létrehozására és konfigurálására a klasszikus üzembe helyezési modell irányelvei és utasításai vonatkoznak. További információk az üzembe helyezési modellekről: [Az erőforrás-kezelői és a klasszikus üzembe helyezési modellek ismertetése](../azure-resource-manager/resource-manager-deployment-model.md).
+VPN-átjáró konfigurálásakor hello lépései függenek hello telepítési modell amellyel toocreate a virtuális hálózat. Például ha hozott létre a virtuális hálózat használatával hello klasszikus üzembe helyezési modellel, használatakor hello irányelvek és hello klasszikus üzembe helyezési utasításokat toocreate modell, és a VPN-átjáró beállításainak konfigurálásában. További információk az üzembe helyezési modellekről: [Az erőforrás-kezelői és a klasszikus üzembe helyezési modellek ismertetése](../azure-resource-manager/resource-manager-deployment-model.md).
 
 ## <a name="diagrams"></a>Kapcsolati topológia-diagramok
 
-Fontos szem előtt tartani, hogy a VPN-átjárós kapcsolatokhoz különböző konfigurációk érhetők el. Önnek kell eldöntenie, melyik konfiguráció felel meg a legjobban az igényeinek. Az alábbi szakaszokban a következő VPN-átjárós kapcsolatokról találhat információt és topológia-diagramokat: Az alábbi szakaszokban található táblázatok a következőket tartalmazzák:
+Fontos, hogy az érhetők el más konfigurációk VPN-átjáró kapcsolatok tooknow. Ajánlott konfiguráció megfelel az igényeinek toodetermine van szüksége. Hello lentebbi, megtekintheti a következő virtuális Magánhálózati átjárókapcsolatokhoz hello kapcsolatos információkat és topológia diagramok: a következő szakaszok hello tartalmazhat, amely a listában:
 
 * Elérhető üzemi modell
 * Elérhető konfigurációs eszközök
-* Hivatkozások, amelyek közvetlenül egy cikkre mutatnak, ha van ilyen
+* Hivatkozásokra közvetlenül tooan cikk, ha elérhető
 
-Az ábrák és a leírások segítségével kiválaszthatja az igényeinek megfelelő kapcsolati topológiát. Az ábrák bemutatják a fő alapvető topológiákat, az ábrákat útmutatásként használva azonban lehetséges összetettebb konfigurációk létrehozása is.
+Használjon hello diagramok és leírások toohelp hello kapcsolat topológia toomatch adja meg a szükséges követelményeket. hello diagramokon hello fő alapterv topológiákat, de lehetséges toobuild összetettebb konfigurációknál hello ábrák használatával az eszközöket.
 
 ## <a name="s2smulti"></a>Helyek közötti és többhelyes (IPsec/IKE VPN-alagút)
 
 ### <a name="S2S"></a>Helyek közötti kapcsolat
 
-A helyek közötti (Site-to-Site, S2S) VPN Gateway-kapcsolat egy IPsec/IKE (IKEv1 vagy IKEv2) VPN-alagúton keresztüli kapcsolat. A helyek közötti kapcsolatokhoz egy helyszíni VPN-eszközre van szükség, amelyhez hozzá van rendelve egy nyilvános IP-cím, és nem NAT mögött helyezkedik el. A helyek közötti kapcsolatok létesítmények közötti és hibrid konfigurációk esetében is alkalmazhatók.   
+A helyek közötti (Site-to-Site, S2S) VPN Gateway-kapcsolat egy IPsec/IKE (IKEv1 vagy IKEv2) VPN-alagúton keresztüli kapcsolat. Az S2S kapcsolathoz kell egy VPN található helyszíni Eszközkezelési, egy nyilvános IP-cím tooit és a NAT mögött nem található A helyek közötti kapcsolatok létesítmények közötti és hibrid konfigurációk esetében is alkalmazhatók.   
 
 ![Azure VPN Gateway helyek közti kapcsolat – példa](./media/vpn-gateway-about-vpngateways/vpngateway-site-to-site-connection-diagram.png)
 
 ### <a name="Multi"></a>Többhelyes kapcsolat
 
-Ez a típusú kapcsolat a helyek közötti kapcsolat egy változata. A virtuális hálózati átjáróról több VPN-kapcsolatot hoz létre, amelyek általában több helyszíni helyhez csatlakoznak. Ha több kapcsolatot használ, RouteBased (útvonalalapú) VPN-típust kell alkalmaznia (klasszikus virtuális hálózatok használatakor ezt dinamikus átjárónak nevezik). Mivel minden virtuális hálózat csak egy VPN-átjáróval rendelkezhet, az átjárón keresztüli összes kapcsolat osztozik a rendelkezésre álló sávszélességen. Ezt gyakran „többhelyes” kapcsolatnak nevezik.
+Ez a kapcsolat típus hello pont-pont kapcsolat egy változata. A virtuális hálózati átjáró egynél több VPN-kapcsolatot hoz létre, általában a toomultiple csatlakozás helyszíni hely. Ha több kapcsolatot használ, RouteBased (útvonalalapú) VPN-típust kell alkalmaznia (klasszikus virtuális hálózatok használatakor ezt dinamikus átjárónak nevezik). Mivel minden virtuális hálózathoz csak egy VPN-átjáró, az összes kapcsolat hello átjárón keresztül megosztása hello rendelkezésre álló sávszélesség. Ezt gyakran „többhelyes” kapcsolatnak nevezik.
 
 ![Azure VPN Gateway többhelyes kapcsolat – példa](./media/vpn-gateway-about-vpngateways/vpngateway-multisite-connection-diagram.png)
 
@@ -83,11 +83,11 @@ Ez a típusú kapcsolat a helyek közötti kapcsolat egy változata. A virtuáli
 
 ## <a name="P2S"></a>Pont–hely típusú (SSTP-alapú VPN)
 
-A pont–hely (P2S) VPN-átjáró lehetővé teszi biztonságos kapcsolat létesítését a virtuális hálózattal egy különálló ügyfélszámítógépről. A pont–hely VPN-kapcsolat akkor hasznos, ha távoli helyről szeretne csatlakozni a virtuális hálózathoz, például otthonról vagy egy konferenciáról. A pont–hely VPN emellett akkor is hasznos megoldás lehet a helyek közötti VPN helyett, ha csak néhány ügyfelet szeretne egy VNetre csatlakoztatni. 
+Pont-pont (P2S) VPN-átjáró lehetővé teszi a biztonságos kapcsolat tooyour virtuális hálózat létrehozása az egyéni ügyfél-számítógépről. Pont-pont VPN-kapcsolatok akkor hasznos, ha azt szeretné, hogy a virtuális hálózat egy távoli helyről, például amikor, amelyek dolgozzon home vagy konferencia tooconnect tooyour. P2S VPN esetén is egy hasznos megoldás toouse helyett a telephelyek közötti VPN tooconnect tooa VNet kell csak néhány ügyféllel. 
 
-A helyek közötti kapcsolatoktól eltérően a pont–hely kapcsolatok nem igényelnek helyszíni nyilvános IP-címet vagy VPN-eszközt a működéshez. A pont–hely (P2S) kapcsolatok helyek közötti (S2S) kapcsolatokkal együtt is használhatók ugyanazon a VPN-átjárón keresztül, ha a kapcsolatok minden konfigurációs követelménye kompatibilis egymással.
+A helyek közötti kapcsolatoktól eltérően a pont–hely kapcsolatok nem igényelnek helyszíni nyilvános IP-címet vagy VPN-eszközt a működéshez. P2S-kapcsolatok használható az S2S-kapcsolatok keresztül VPN-átjárón azonos hello mindaddig, amíg az összes hello konfigurációs követelmények, a mindkét kapcsolatok kompatibilis.
 
-A pont–hely kapcsolat a Secure Sockets Tunneling Protocol (SSTP) protokollt használja, amely egy SSL-alapú VPN-protokoll. A pont–hely VPN-kapcsolat létesítéséhez a kapcsolatot az ügyfélszámítógépről kell elindítani.
+P2S használja a Secure Socket Tunneling Protocol (SSTP), amely SSL-alapú VPN-protokoll hello. P2S VPN-kapcsolatot létesít hello ügyfélszámítógépről elindításával.
 
 ![Azure VPN Gateway pont–hely kapcsolat – példa](./media/vpn-gateway-about-vpngateways/vpngateway-point-to-site-connection-diagram.png)
 
@@ -97,23 +97,23 @@ A pont–hely kapcsolat a Secure Sockets Tunneling Protocol (SSTP) protokollt ha
 
 ## <a name="V2V"></a>Virtuális hálózatok közötti kapcsolatok (IPsec/IKE VPN-alagút)
 
-Egy virtuális hálózat egy másikkal való összekapcsolása (a virtuális hálózatok közötti kapcsolat) nagyon hasonlít egy virtuális hálózat egy helyszíni helyhez való csatlakoztatásához. Mindkét kapcsolattípus egy VPN-átjárót használ a biztonságos alagút IPsec/IKE használatával való kialakításához. A virtuális hálózatok közötti kommunikációt kombinálhatja többhelyes kapcsolati konfigurációkkal is. Így létrehozhat olyan hálózati topológiákat, amelyek a létesítmények közötti kapcsolatokat a virtuális hálózatok közötti kapcsolatokkal kombinálják.
+Csatlakozás a virtuális hálózati tooanother virtuális hálózatot (VNet – VNet) hasonló tooconnecting egy VNet tooan helyszíni hely. Mindkét csatlakozási típusok használja a VPN-átjáró tooprovide IPsec/IKE használatával biztonságos alagutat. A virtuális hálózatok közötti kommunikációt kombinálhatja többhelyes kapcsolati konfigurációkkal is. Így létrehozhat olyan hálózati topológiákat, amelyek a létesítmények közötti kapcsolatokat a virtuális hálózatok közötti kapcsolatokkal kombinálják.
 
-Az összekapcsolt virtuális hálózatok lehetnek:
+Csatlakozás Vnetek hello lehet:
 
-* azonos vagy eltérő régiókban
-* azonos vagy eltérő előfizetésekben 
-* azonos vagy eltérő üzemi modellekben
+* a hello azonos vagy különböző régiókban
+* a hello ugyanazon vagy másik előfizetések 
+* a hello ugyanazon vagy másik üzembe helyezési modellek
 
-![Azure VPN Gateway virtuális hálózatok közötti kapcsolat – példa](./media/vpn-gateway-about-vpngateways/vpngateway-vnet-to-vnet-connection-diagram.png)
+![Az Azure VPN Gateway VNet tooVNet kapcsolat – példa](./media/vpn-gateway-about-vpngateways/vpngateway-vnet-to-vnet-connection-diagram.png)
 
 ### <a name="connections-between-deployment-models"></a>Üzemi modellek közötti kapcsolat
 
-Az Azure jelenleg kétféle üzemi modellt kínál: a klasszikust és a Resource Managert. Ha már egy ideje használja az Azure-t, valószínűleg futtat Azure virtuális gépeket és példányszerepköröket egy klasszikus virtuális hálózaton. Lehetséges, hogy az újabb virtuális gépek és szerepkörpéldányok egy Resource Managerben létrehozott virtuális hálózatban futnak. Létrehozhat egy kapcsolatot a virtuális hálózatok között, így lehetővé teheti, hogy az egyik virtuális hálózatban lévő erőforrások közvetlenül kommunikáljanak a másikban lévő erőforrásokkal.
+Az Azure jelenleg kétféle üzemi modellt kínál: a klasszikust és a Resource Managert. Ha már egy ideje használja az Azure-t, valószínűleg futtat Azure virtuális gépeket és példányszerepköröket egy klasszikus virtuális hálózaton. Lehetséges, hogy az újabb virtuális gépek és szerepkörpéldányok egy Resource Managerben létrehozott virtuális hálózatban futnak. A közvetlenül egy másik erőforrásaival egy VNet toocommunicate hello Vnetek tooallow közötti kapcsolat hello erőforrások hozhat létre.
 
 ### <a name="vnet-peering"></a>Virtuális hálózatok közötti társviszony
 
-A kapcsolat létrehozására használhat virtuális hálózatok közötti társviszonyt, ha a virtuális hálózat megfelel bizonyos követelményeknek. A virtuális hálózatok közötti társviszony nem használ virtuális hálózati átjárót. További információ: [Társviszony létesítése virtuális hálózatok között](../virtual-network/virtual-network-peering-overview.md).
+Képes toouse hálózatokból toocreate a hálózati kapcsolatot, lehet, amíg a virtuális hálózat bizonyos követelményeknek. A virtuális hálózatok közötti társviszony nem használ virtuális hálózati átjárót. További információ: [Társviszony létesítése virtuális hálózatok között](../virtual-network/virtual-network-peering-overview.md).
 
 ### <a name="deployment-models-and-methods-for-vnet-to-vnet"></a>Üzembe helyezési modellek és módszerek virtuális hálózatok közötti kapcsolatokhoz
 
@@ -121,17 +121,17 @@ A kapcsolat létrehozására használhat virtuális hálózatok közötti társv
 
 ## <a name="ExpressRoute"></a>ExpressRoute (dedikált privát kapcsolat)
 
-A Microsoft Azure ExpressRoute használatával kiterjesztheti helyszíni hálózatait a Microsoft-felhőbe egy dedikált privát kapcsolaton keresztül, amelyet egy kapcsolatszolgáltató biztosít. Az ExpressRoute használatával kapcsolatokat létesíthet a Microsoft-felhőszolgáltatásokkal, például a Microsoft Azure-ral, az Office 365-tel és a CRM Online-nal. A kapcsolatok lehetnek: bármely elemek közötti (IP VPN) hálózat, pontok közötti Ethernet-hálózat vagy egy virtuális keresztkapcsolat egy kapcsolatszolgáltatón keresztül egy közös elhelyezési létesítményben.
+A Microsoft Azure ExpressRoute lehetővé teszi a helyszíni hálózatokhoz kiterjeszti a Microsoft cloud hello könnyíteni a kapcsolat szolgáltatóját egy dedikált titkos kapcsolaton keresztül. Az ExpressRoute létrehozhat kapcsolatok tooMicrosoft felhőszolgáltatások, például a Microsoft Azure, a Office 365 és a CRM Online-hoz. A kapcsolatok lehetnek: bármely elemek közötti (IP VPN) hálózat, pontok közötti Ethernet-hálózat vagy egy virtuális keresztkapcsolat egy kapcsolatszolgáltatón keresztül egy közös elhelyezési létesítményben.
 
-Az ExpressRoute-kapcsolatok nem a nyilvános interneten haladnak át. Így az ExpressRoute-kapcsolatok a tipikus internetes kapcsolatoknál megbízhatóbbak, gyorsabbak, gyorsabb a válaszidejük, és biztonságosabbak.
+Az ExpressRoute-kapcsolatok ne lépje át hello nyilvános internethez. Ez lehetővé teszi ExpressRoute kapcsolatok toooffer további megbízhatóságát, gyorsabb sebességű, kisebb késések fordulnak elő, és nagyobb biztonságot nyújtana tipikus kapcsolatok hello interneten keresztül.
 
-Az ExpressRoute-kapcsolatok nem használnak VPN-átjárót, azonban használnak virtuális hálózati átjárót a szükséges konfiguráció részeként. Az ExpressRoute-kapcsolatokban a virtuális hálózati átjáró a „VPN” helyett az „ExpressRoute” átjárótípussal van konfigurálva. További információ az ExpressRoute-tal kapcsolatban: [Az ExpressRoute technikai áttekintése](../expressroute/expressroute-introduction.md).
+Az ExpressRoute-kapcsolatok nem használnak VPN-átjárót, azonban használnak virtuális hálózati átjárót a szükséges konfiguráció részeként. Egy ExpressRoute-kapcsolatot, a hello virtuális hálózati átjáró hello átjáró típusa "Vpn" helyett "ExpressRoute" van konfigurálva. ExpressRoute kapcsolatos további információkért lásd: hello [ExpressRoute műszaki áttekintés](../expressroute/expressroute-introduction.md).
 
 ## <a name="coexisting"></a>Egyidejű helyek közötti és ExpressRoute-kapcsolatok
 
-Az ExpressRoute egy közvetlen, dedikált kapcsolat a Microsoft-szolgáltatásokkal (köztük az Azure-ral) WAN-on, és nem a nyilvános interneten keresztül. A helyek közötti VPN-adatforgalom titkosítva, a nyilvános interneten halad át. A helyek közötti VPN- és az ExpressRoute-kapcsolatok azonos virtuális hálózathoz való konfigurálásának lehetősége több előnnyel jár.
+ExpressRoute-e a WAN hálózaton való közvetlen, dedikált kapcsolat (nem pedig a nyilvános interneten hello) tooMicrosoft szolgáltatásokat, például az Azure. Pont-pont típusú VPN-forgalom titkosítva hello utazás nyilvános internethez. Sem tudja tooconfigure telephelyek közötti VPN és ExpressRoute kapcsolatok hello azonos virtuális hálózatban több előnye is van.
 
-A helyek közötti VPN-t konfigurálhatja biztonságos feladatátvételi útvonalként az ExpressRoute számára, vagy használhat helyek közötti VPN-eket is a hálózat részét nem képező, az ExpressRoute-on keresztül kapcsolódó helyekhez való csatlakozáshoz. Ebben a konfigurációban két virtuális hálózati átjáróra van szükség ugyanahhoz a virtuális hálózathoz, amelyek közül az egyik a „Vpn” átjárótípust, a másik pedig az „ExpressRoute” átjárótípust használja.
+Biztonságos feladatátvételi elérési útnak a telephelyek közötti VPN konfigurálása ExpressRoute, vagy használja a pont-pont VPN tooconnect toosites, amelyek nem részei a hálózaton, de ExpressRoute keresztül csatlakoznak. Figyelje meg, hogy ezt a konfigurációt igényel a két virtuális hálózati átjáró hello azonos virtuális hálózatban, egyet átjáró típusa "Vpn" hello, és egyéb használatával hello átjáró típusa "ExpressRoute" hello.
 
 ![ExpressRoute és VPN egyidejű kapcsolatok – példa](./media/vpn-gateway-about-vpngateways/expressroute-vpngateway-coexisting-connections-diagram.png)
 
@@ -147,11 +147,11 @@ További információ a VPN Gateway átjáró-termékváltozatokról: [Gateway S
 
 ## <a name="faq"></a>GYIK
 
-A VPN Gateway-re vonatkozó gyakori kérdésekért lásd a [VPN Gateway gyakori kérdéseit](vpn-gateway-vpn-faq.md).
+VPN-átjáróval kapcsolatos gyakori kérdésekre, lásd: hello [VPN Gateway – gyakori kérdések](vpn-gateway-vpn-faq.md).
 
 ## <a name="next-steps"></a>Következő lépések
 
 - A VPN-átjáró konfigurációjának megtervezése Lásd: [A VPN-átjáró tervezése és kialakítása](vpn-gateway-plan-design.md).
-- További információkért tekintse meg [A VPN Gatewayjel kapcsolatos gyakori kérdések](vpn-gateway-vpn-faq.md) című szakaszt.
-- Tekintse meg az [Előfizetés- és szolgáltatáskorlátok](../azure-subscription-service-limits.md#networking-limits) című szakaszt.
-- Ebben a dokumentumban az Azure egyéb lényeges [hálózat képességeivel](../networking/networking-overview.md) ismerkedhet meg.
+- Nézet hello [VPN Gateway – gyakori kérdések](vpn-gateway-vpn-faq.md) további információt.
+- Nézet hello [előfizetés és a szolgáltatásra vonatkozó korlátozások](../azure-subscription-service-limits.md#networking-limits).
+- Megismerhet néhány hello más kulcs [hálózati lehetőségeket](../networking/networking-overview.md) Azure.
